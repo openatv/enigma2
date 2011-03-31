@@ -22,7 +22,7 @@ weplist.append("HEX")
 
 config.plugins.wlan = ConfigSubsection()
 config.plugins.wlan.essid = NoSave(ConfigText(default = "home", fixed_size = False))
-config.plugins.wlan.hiddenessid = NoSave(ConfigText(default = "home", fixed_size = False))
+config.plugins.wlan.hiddenessid = NoSave(ConfigYesNo(default = False))
 
 config.plugins.wlan.encryption = ConfigSubsection()
 config.plugins.wlan.encryption.enabled = NoSave(ConfigYesNo(default = True))
@@ -146,15 +146,13 @@ class wpaSupplicant:
 		fp.write('ctrl_interface=/var/run/wpa_supplicant\n')
 		fp.write('eapol_version=1\n')
 		fp.write('fast_reauth=1\n')	
-		if essid == 'hidden...':
+
+		if hiddenessid:
 			fp.write('ap_scan=2\n')
 		else:
 			fp.write('ap_scan=1\n')
 		fp.write('network={\n')
-		if essid == 'hidden...':
-			fp.write('\tssid="'+hiddenessid+'"\n')
-		else:
-			fp.write('\tssid="'+essid+'"\n')
+		fp.write('\tssid="'+essid+'"\n')
 		fp.write('\tscan_ssid=0\n')			
 		if encrypted:
 			if encryption in ('WPA', 'WPA2', 'WPA/WPA2'):
@@ -184,7 +182,7 @@ class wpaSupplicant:
 		fp.write('}')
 		fp.write('\n')
 		fp.close()
-		system('cat ' + getWlanConfigName(iface))
+		#system('cat ' + getWlanConfigName(iface))
 		
 	def loadConfig(self,iface):
 		configfile = getWlanConfigName(iface)
@@ -196,22 +194,22 @@ class wpaSupplicant:
 			fp = file(configfile, 'r')
 			supplicant = fp.readlines()
 			fp.close()
-			ap_scan = False
 			essid = None
 
 			for s in supplicant:
 				split = s.strip().split('=',1)
 				if split[0] == 'ap_scan':
-					print "[Wlan.py] Got Hidden SSID Scan  Value ",split[1]
+					#print "[Wlan.py] Got Hidden SSID Scan Value ",split[1]
 					if split[1] == '2':
-						ap_scan = True
+						config.plugins.wlan.hiddenessid.value = True
 					else:
-						ap_scan = False
-						
-				elif split[0] == 'ssid':
-					print "[Wlan.py] Got SSID ",split[1][1:-1]
-					essid = split[1][1:-1]
+						config.plugins.wlan.hiddenessid.value = False
 					
+				elif split[0] == 'ssid':
+					#print "[Wlan.py] Got SSID ",split[1][1:-1]
+					essid = split[1][1:-1]
+					config.plugins.wlan.essid.value = essid
+				
 				elif split[0] == 'proto':
 					config.plugins.wlan.encryption.enabled.value = True
 					if split[1] == 'WPA' :
@@ -220,8 +218,8 @@ class wpaSupplicant:
 						mode = 'WPA2'
 					if split[1] in ('WPA RSN', 'WPA WPA2'):
 						mode = 'WPA/WPA2'
+					#print "[Wlan.py] Got Encryption: ",mode
 					config.plugins.wlan.encryption.type.value = mode
-					print "[Wlan.py] Got Encryption: "+mode
 					
 				elif split[0] == 'wep_key0':
 					config.plugins.wlan.encryption.enabled.value = True
@@ -238,12 +236,6 @@ class wpaSupplicant:
 				else:
 					pass
 				
-			if ap_scan is True:
-				config.plugins.wlan.hiddenessid.value = essid
-				config.plugins.wlan.essid.value = 'hidden...'
-			else:
-				config.plugins.wlan.hiddenessid.value = essid
-				config.plugins.wlan.essid.value = essid
 			wsconfig = {
 					'hiddenessid': config.plugins.wlan.hiddenessid.value,
 					'ssid': config.plugins.wlan.essid.value,
@@ -256,28 +248,28 @@ class wpaSupplicant:
 			for (key, item) in wsconfig.items():
 				if item is "None" or item is "":
 					if key == 'hiddenessid':
-						wsconfig['hiddenessid'] = "home"
+						wsconfig['hiddenessid'] = False
 					if key == 'ssid':
 						wsconfig['ssid'] = "home"
 					if key == 'encryption':
 						wsconfig['encryption'] = True				
-					if key == 'encryption':
+					if key == 'encryption_type':
 						wsconfig['encryption_type'] = "WPA/WPA2"
-					if key == 'encryption':
+					if key == 'encryption_wepkeytype':
 						wsconfig['encryption_wepkeytype'] = "ASCII"
-					if key == 'encryption':
+					if key == 'key':
 						wsconfig['key'] = "mysecurewlan"
 		except:
 			print "[Wlan.py] Error parsing ",configfile
 			wsconfig = {
-					'hiddenessid': "home",
+					'hiddenessid': False,
 					'ssid': "home",
 					'encryption': True,
 					'encryption_type': "WPA/WPA2",
 					'encryption_wepkeytype': "ASCII",
 					'key': "mysecurewlan",
 				}
-		print "[Wlan.py] WS-CONFIG-->",wsconfig
+		#print "[Wlan.py] WS-CONFIG-->",wsconfig
 		return wsconfig
 
 
@@ -309,17 +301,13 @@ class Status:
 				else:
 					if "Nickname" in line:
 						tmpssid=(line[line.index('ESSID')+7:line.index('"  Nickname')])
-						if tmpssid == '':
-							ssid = _("Hidden networkname")
-						elif tmpssid ==' ':
+						if tmpssid in ('', ' '):
 							ssid = _("Hidden networkname")
 						else:
 							ssid = tmpssid
 					else:
 						tmpssid=(line[line.index('ESSID')+7:len(line)-1])
-						if tmpssid == '':
-							ssid = _("Hidden networkname")
-						elif tmpssid ==' ':
+						if tmpssid in ('', ' '):
 							ssid = _("Hidden networkname")
 						else:
 							ssid = tmpssid						

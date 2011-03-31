@@ -11,7 +11,7 @@ from Components.Sources.List import List
 from Components.Label import Label,MultiColorLabel
 from Components.Pixmap import Pixmap,MultiPixmap
 from Components.MenuList import MenuList
-from Components.config import config, ConfigYesNo, ConfigIP, NoSave, ConfigText, ConfigPassword, ConfigSelection, getConfigListEntry, ConfigNothing
+from Components.config import config, ConfigYesNo, ConfigIP, NoSave, ConfigText, ConfigPassword, ConfigSelection, getConfigListEntry, ConfigNothing, ConfigBoolean
 from Components.ConfigList import ConfigListScreen
 from Components.PluginComponent import plugins
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
@@ -308,6 +308,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 			self.iface = networkinfo
 			self.essid = essid
 			self.aplist = aplist
+			
 		self.extended = None
 		self.applyConfigRef = None
 		self.finished_cb = None
@@ -406,6 +407,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 		self.weplist = None
 		self.wsconfig = None
 		self.default = None
+		self.hiddenNW = None
 
 		if iNetwork.isWirelessInterface(self.iface):
 			from Plugins.SystemPlugins.WirelessLan.Wlan import wpaSupplicant, iWlan
@@ -442,16 +444,22 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 			self.wsconfig = self.ws.loadConfig(self.iface)
 			if self.essid is not None: # ssid from wlan scan
 				self.default = self.essid
+				self.hiddenNW = self.wsconfig['hiddenessid']
+				if self.essid == '<hidden>':
+					self.hiddenNW = True
+					self.default = self.default = self.wsconfig['ssid']
 			else:
+				self.hiddenNW = self.wsconfig['hiddenessid']
 				self.default = self.wsconfig['ssid']
 
-			if "hidden..." not in self.nwlist:
-				self.nwlist.append(("hidden...",_("enter hidden network SSID")))
-			if self.default not in self.nwlist:
+			if (self.default not in self.nwlist and self.default is not '<hidden>'):
 				self.nwlist.append((self.default,self.default))
-			config.plugins.wlan.essid = NoSave(ConfigSelection(self.nwlist, default = self.default ))
-			config.plugins.wlan.hiddenessid = NoSave(ConfigText(default = self.wsconfig['hiddenessid'], visible_width = 50, fixed_size = False))
-
+			
+			config.plugins.wlan.hiddenessid = NoSave(ConfigYesNo(default = self.hiddenNW))
+			if config.plugins.wlan.hiddenessid.value is True:
+				config.plugins.wlan.essid = NoSave(ConfigText(default = self.default, visible_width = 50, fixed_size = False))
+			else:
+				config.plugins.wlan.essid = NoSave(ConfigSelection(self.nwlist, default = self.default ))
 			config.plugins.wlan.encryption.enabled = NoSave(ConfigYesNo(default = self.wsconfig['encryption'] ))
 			config.plugins.wlan.encryption.type = NoSave(ConfigSelection(self.encryptionlist, default = self.wsconfig['encryption_type'] ))
 			config.plugins.wlan.encryption.wepkeytype = NoSave(ConfigSelection(self.weplist, default = self.wsconfig['encryption_wepkeytype'] ))
@@ -497,14 +505,16 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 						if p.__call__.has_key("configStrings"):
 							self.configStrings = p.__call__["configStrings"]
 
-						if config.plugins.wlan.essid.value == 'hidden...':
-							self.wlanSSID = getConfigListEntry(_("Network SSID"), config.plugins.wlan.essid)
-							self.list.append(self.wlanSSID)
-							self.hiddenSSID = getConfigListEntry(_("Hidden network SSID"), config.plugins.wlan.hiddenessid)
-							self.list.append(self.hiddenSSID)
+						self.hiddenSSID = getConfigListEntry(_("enter hidden network SSID"), config.plugins.wlan.hiddenessid)
+						self.list.append(self.hiddenSSID)
+
+						if config.plugins.wlan.hiddenessid.value is True:
+							config.plugins.wlan.essid = NoSave(ConfigText(default = self.default, visible_width = 50, fixed_size = False))
+							self.wlanSSID = getConfigListEntry(_("Hidden network SSID"), config.plugins.wlan.essid)
 						else:
+							config.plugins.wlan.essid = NoSave(ConfigSelection(self.nwlist, default = self.default ))
 							self.wlanSSID = getConfigListEntry(_("Network SSID"), config.plugins.wlan.essid)
-							self.list.append(self.wlanSSID)
+						self.list.append(self.wlanSSID)
 						self.encryptionEnabled = getConfigListEntry(_("Encryption"), config.plugins.wlan.encryption.enabled)
 						self.list.append(self.encryptionEnabled)
 						
@@ -532,8 +542,8 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 			self.createSetup()
 		if self["config"].getCurrent() == self.gatewayEntry:
 			self.createSetup()
-		if iNetwork.isWirelessInterface(self.iface):	
-			if self["config"].getCurrent() == self.wlanSSID:
+		if iNetwork.isWirelessInterface(self.iface):
+			if self["config"].getCurrent() == self.hiddenSSID:
 				self.createSetup()
 			if self["config"].getCurrent() == self.encryptionEnabled:
 				self.createSetup()
@@ -677,7 +687,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 		
 	def hideInputHelp(self):
 		current = self["config"].getCurrent()
-		if current == self.hiddenSSID and config.plugins.wlan.essid.value == 'hidden...':
+		if current == self.wlanSSID and config.plugins.wlan.hiddenessid.value:
 			if current[1].help_window.instance is not None:
 				current[1].help_window.instance.hide()
 		elif current == self.encryptionKey and config.plugins.wlan.encryption.enabled.value:
