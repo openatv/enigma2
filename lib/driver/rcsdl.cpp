@@ -1,3 +1,4 @@
+#include <lib/base/etrace.h>
 #include <lib/driver/rcsdl.h>
 //#include <lib/actions/action.h>
 #include <lib/base/init.h>
@@ -18,6 +19,8 @@ eSDLInputDevice::~eSDLInputDevice()
 
 void eSDLInputDevice::handleCode(long arg)
 {
+	D_ENTER();
+
 	const SDL_KeyboardEvent *event = (const SDL_KeyboardEvent *)arg;
 	const SDL_keysym *key = &event->keysym;
 	int km = input->getKeyboardMode();
@@ -32,48 +35,43 @@ void eSDLInputDevice::handleCode(long arg)
 
 	if (km == eRCInput::kmNone) {
 		code = translateKey(key->sym);
+		D_PRINT("translated code: %d", code);
 	} else {
-		// ASCII keys should only generate key press events
-		if (flags == eRCKey::flagBreak)
-			return;
-
-		eDebug("unicode=%04x scancode=%02x", m_unicode, key->scancode);
-		if (m_unicode & 0xff80) {
-			eDebug("SDL: skipping unicode character");
-			return;
-		}
-		code = m_unicode & ~0xff80;
-		// unicode not set...!? use key symbol
-		if (code == 0) {
-			// keysym is ascii
-			if (key->sym >= 128) {
-				eDebug("SDL: cannot emulate ASCII");
-				return;
-			}
-			eDebug("SDL: emulate ASCII");
+		code = m_unicode;
+		D_PRINT("native virtual code: %d / sym: %d", code, key->sym);
+		if ((code == 0) && (key->sym < 128)) {
 			code = key->sym;
+			D_PRINT("ASCII code: %u", code);
 		}
-		if (km == eRCInput::kmAscii) {
-			// skip ESC c or ESC '[' c
-			if (m_escape) {
-				if (code != '[')
-					m_escape = false;
-				return;
+
+		if ((km == eRCInput::kmAscii) &&
+		    ((code < SDLK_SPACE) ||
+		     (code == 0x7e) ||
+		     (code == SDLK_DELETE) ||
+		     (code > 255))) {
+			code = translateKey(key->sym);
+		} else {
+			// ASCII keys should only generate key press events
+			if (flags == eRCKey::flagBreak)
+				D_RETURN();
+
+			if (km == eRCInput::kmAscii) {
+				// skip ESC c or ESC '[' c
+				if (m_escape) {
+					if (code != '[')
+						m_escape = false;
+					D_RETURN();
+				}
+				if (code == SDLK_ESCAPE)
+					m_escape = true;
 			}
-
-			if (code == SDLK_ESCAPE)
-				m_escape = true;
-
-			if ((code < SDLK_SPACE) ||
-			    (code == 0x7e) ||	// really?
-			    (code == SDLK_DELETE))
-				return;
+			flags |= eRCKey::flagAscii;
 		}
-		flags |= eRCKey::flagAscii;
 	}
 
-	eDebug("SDL code=%d flags=%d", code, flags);
+	D_PRINT("code=%d (%#x) flags=%d (%#x)", code, code, flags, flags);
 	input->keyPressed(eRCKey(this, code, flags));
+	D_RETURN();
 }
 
 const char *eSDLInputDevice::getDescription() const
