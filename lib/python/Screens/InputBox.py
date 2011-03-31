@@ -43,9 +43,9 @@ class InputBox(Screen):
 		}, -1)
 
 		if self["input"].type == Input.TEXT:
-			self.onShow.append(self.setKeyboardModeAscii)
+			self.onExecBegin.append(self.setKeyboardModeAscii)
 		else:
-			self.onShow.append(self.setKeyboardModeNone)
+			self.onExecBegin.append(self.setKeyboardModeNone)
 
 	def gotAsciiCode(self):
 		self["input"].handleAscii(getPrevAsciiCode())
