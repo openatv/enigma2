@@ -7,12 +7,11 @@ from Components.DiskInfo import DiskInfo
 from Components.Pixmap import Pixmap
 from Components.Label import Label
 from Components.PluginComponent import plugins
-from Components.config import config, ConfigSubsection, ConfigText, ConfigInteger, ConfigLocations, ConfigSet, ConfigYesNo, ConfigSelection, getConfigListEntry, NoSave
+from Components.config import config, ConfigSubsection, ConfigText, ConfigInteger, ConfigLocations, ConfigSet, ConfigYesNo, ConfigSelection, getConfigListEntry
 from Components.ConfigList import ConfigListScreen
 from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
 from Components.Sources.ServiceEvent import ServiceEvent
 from Components.Sources.StaticText import StaticText
-from shutil import move, copy2
 import Components.Harddisk
 
 from Plugins.Plugin import PluginDescriptor
@@ -167,8 +166,7 @@ def copyServiceFiles(serviceref, dest, name=None):
 	movedList = []
 	try:
 		for item in moveList:
-			job = FileCopyJob(item[0], item[1])
-			job.Start()
+			os.link(item[0], item[1])
 			movedList.append(item)
 		# this worked, we're done
 		return
