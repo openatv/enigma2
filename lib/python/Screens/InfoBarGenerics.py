@@ -263,7 +263,7 @@ class InfoBarShowHide:
 				content = f.read()
 				f.close()
 			except:
-				content = ""
+				content = "using: fta"
 			
 			contentInfo = content.split("\n")
 			for line in contentInfo:
@@ -285,7 +285,7 @@ class InfoBarShowHide:
 						address = "%s***" % address[:config.plugins.CCcamInfo.serverNameLength.value-3]
 				elif line.startswith("using:") or line.startswith("protocol:"):
 					using = "%s %s" % (_("\nProtocol:"), self.parseEcmInfoLine(line))
-					if using == "fta":
+					if using == "\nProtocol: fta":
 						using = _("Free to Air")
 				elif line.startswith("hops:"):
 					hops = "%s %s" % (_("Hops:"), self.parseEcmInfoLine(line))
