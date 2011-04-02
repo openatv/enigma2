@@ -75,8 +75,7 @@ class About:
 				return True
 			else:
 				return False
-
-		except IOError:
+		except:
 			return False
 
 	def getEnigmaVersionString(self):
