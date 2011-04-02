@@ -54,6 +54,31 @@ class About:
 
 		return "unavailable"
 
+	def getImageUpdateAvailable(self):
+		try:
+			file = open(resolveFilename(SCOPE_SYSETC, 'image-version'), 'r')
+			lines = file.readlines()
+			for x in lines:
+				splitted = x.split('=')
+				if splitted[0] == "date":
+					currentversion = splitted[1].replace('\n','')
+			file.close()
+			file = open('/tmp/online-image-version', 'r')
+			lines = file.readlines()
+			for x in lines:
+				splitted = x.split('=')
+				if splitted[0] == "date":
+					onlineversion = splitted[1].replace('\n','')
+			file.close()
+			if onlineversion > currentversion:
+				print '[VersionCheck] New online version found'
+				return True
+			else:
+				return False
+
+		except IOError:
+			return False
+
 	def getEnigmaVersionString(self):
 		return getEnigmaVersionString()
 

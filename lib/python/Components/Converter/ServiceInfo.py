@@ -1,6 +1,7 @@
 from Components.Converter.Converter import Converter
 from enigma import iServiceInformation, iPlayableService
 from Components.Element import cached
+from Components.About import about
 
 class ServiceInfo(Converter, object):
 	HAS_TELETEXT = 0
@@ -20,6 +21,7 @@ class ServiceInfo(Converter, object):
 	SID = 14
 	FRAMERATE = 15
 	TRANSFERBPS = 16
+	IMAGEUPDATEAVAILABLE = 17
 	
 
 	def __init__(self, type):
@@ -42,6 +44,7 @@ class ServiceInfo(Converter, object):
 				"Sid": (self.SID, (iPlayableService.evUpdatedInfo,)),
 				"Framerate": (self.FRAMERATE, (iPlayableService.evVideoSizeChanged,iPlayableService.evUpdatedInfo,)),
 				"TransferBPS": (self.TRANSFERBPS, (iPlayableService.evUpdatedInfo,)),
+				"ImageUpdateAvailable": (self.IMAGEUPDATEAVAILABLE, (iPlayableService.evUpdatedInfo,)),
 			}[type]
 
 	def getServiceInfoString(self, info, what, convert = lambda x: "%d" % x):
@@ -82,6 +85,8 @@ class ServiceInfo(Converter, object):
 		elif self.type == self.SUBSERVICES_AVAILABLE:
 			subservices = service.subServices()
 			return subservices and subservices.getNumberOfSubservices() > 0
+		elif self.type == self.IMAGEUPDATEAVAILABLE:
+			return about.getImageUpdateAvailable()
 
 	boolean = property(getBoolean)
 	
