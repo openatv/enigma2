@@ -4,8 +4,10 @@ from Components.Sources.StaticText import StaticText
 from Components.Harddisk import harddiskmanager
 from Components.NimManager import nimmanager
 from Components.About import about
+from Components.ScrollLabel import ScrollLabel
 
 from Tools.DreamboxHardware import getFPVersion
+from os import path
 
 class About(Screen):
 	def __init__(self, session):
@@ -65,15 +67,19 @@ class About(Screen):
 
 		self["hddA"] = StaticText(hdd1 + '\n' + hdd2 + '\n' + hdd3)
 
-		self["actions"] = ActionMap(["SetupActions", "ColorActions"], 
+		self["actions"] = ActionMap(["SetupActions", "ColorActions", "TimerEditActions"], 
 			{
 				"cancel": self.close,
 				"ok": self.close,
-				"green": self.showTranslationInfo
+				"green": self.showTranslationInfo,
+				'log': self.showAboutReleaseNotes
 			})
 
 	def showTranslationInfo(self):
 		self.session.open(TranslationInfo)
+
+	def showAboutReleaseNotes(self):
+		self.session.open(AboutReleaseNotes)
 
 	def createSummary(self):
 		return AboutSummary
@@ -122,3 +128,28 @@ class TranslationInfo(Screen):
 				"cancel": self.close,
 				"ok": self.close,
 			})
+
+class AboutReleaseNotes(Screen):
+	skin = """
+<screen name="AboutReleaseNotes" position="center,center" size="560,400" title="Release Notes" >
+	<widget name="list" position="0,0" size="560,400" font="Regular;16" />
+</screen>"""
+	def __init__(self, session):
+		self.session = session
+		Screen.__init__(self, session)
+		self.skinName = "AboutReleaseNotes"
+		if path.exists('/etc/releasenotes'):
+			releasenotes = file('/etc/releasenotes').read()
+		else:
+			releasenotes = ""
+		self["list"] = ScrollLabel(str(releasenotes))
+		self["setupActions"] = ActionMap(["SetupActions", "ColorActions", "DirectionActions"],
+		{
+			"cancel": self.cancel,
+			"ok": self.cancel,
+			"up": self["list"].pageUp,
+			"down": self["list"].pageDown
+		}, -2)
+
+	def cancel(self):
+		self.close()
