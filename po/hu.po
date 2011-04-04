@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-27 12:42+0000\n"
+"POT-Creation-Date: 2011-04-01 08:09+0000\n"
 "PO-Revision-Date: 2008-11-26 15:36+0100\n"
 "Last-Translator: MediaVox-Extrasat <info@mediavox.hu>\n"
 "Language-Team: none\n"
@@ -173,6 +173,12 @@ msgstr "#ffffffff"
 msgid "%H:%M"
 msgstr "%H:%M"
 
+#, python-format
+msgid ""
+"%d conflict(s) encountered when trying to add new timers:\n"
+"%s"
+msgstr ""
+
 #
 #, python-format
 msgid "%d jobs are running in the background!"
@@ -210,6 +216,10 @@ msgstr ""
 #, python-format
 msgid "%s (%s)\n"
 msgstr "%s (%s)\n"
+
+#, python-format
+msgid "%s: %s at %s"
+msgstr ""
 
 #
 msgid "(ZAP)"
@@ -367,10 +377,10 @@ msgstr "??"
 msgid "A"
 msgstr "A"
 
-msgid "A BackToTheRoots-Skin .. or good old times."
+msgid "A BackToTheRoots-Skin .. but with Warp-8 speed."
 msgstr ""
 
-msgid "A BackToTheRoots-Skin ... or good old times."
+msgid "A BackToTheRoots-Skin .. or good old times."
 msgstr ""
 
 msgid "A basic ftp client"
@@ -389,6 +399,9 @@ msgstr ""
 "Meg akarja tartani az Ön verzióját?"
 
 msgid "A demo plugin for TPM usage."
+msgstr ""
+
+msgid "A dreambox simulation from SG-Atlantis displays."
 msgstr ""
 
 #
@@ -412,6 +425,9 @@ msgid "A graphical EPG for all services of an specific bouquet"
 msgstr "Grafikus EPG egy adott bouquet összes csatornájához"
 
 msgid "A graphical EPG interface"
+msgstr ""
+
+msgid "A graphical EPG interface and EPG tools manager"
 msgstr ""
 
 msgid "A graphical EPG interface."
@@ -868,6 +884,9 @@ msgstr "Felhasználó kérdezése"
 msgid "Aspect Ratio"
 msgstr "Képarány"
 
+msgid "Aspect ratio"
+msgstr ""
+
 msgid "Assigning providers/services/caids to a CI module"
 msgstr ""
 
@@ -881,6 +900,9 @@ msgstr "Hang"
 #
 msgid "Audio Options..."
 msgstr "Hang beállítások..."
+
+msgid "Audio PID"
+msgstr ""
 
 #
 msgid "Audio Sync"
@@ -948,6 +970,15 @@ msgid ""
 "criteria."
 msgstr ""
 
+msgid "AutoTimer was added successfully"
+msgstr ""
+
+msgid "AutoTimer was changed successfully"
+msgstr ""
+
+msgid "AutoTimer was removed"
+msgstr ""
+
 #
 msgid "Automatic"
 msgstr "Automatikus"
@@ -980,6 +1011,24 @@ msgid "Automatically refresh EPG"
 msgstr ""
 
 msgid "Automatically send crashlogs to Dream Multimedia"
+msgstr ""
+
+#, python-format
+msgid ""
+"Autoresolution Plugin Testmode:\n"
+"Is %s ok?"
+msgstr ""
+
+msgid "Autoresolution Switch"
+msgstr ""
+
+msgid "Autoresolution is not working in Scart/DVI-PC Mode"
+msgstr ""
+
+msgid "Autoresolution settings"
+msgstr ""
+
+msgid "Autoresolution videomode setup"
 msgstr ""
 
 #
@@ -1023,6 +1072,12 @@ msgstr "BER:"
 #
 msgid "Back"
 msgstr "Vissza"
+
+msgid "Back, lower USB Slot"
+msgstr ""
+
+msgid "Back, upper USB Slot"
+msgstr ""
 
 #
 msgid "Background"
@@ -1118,6 +1173,11 @@ msgstr ""
 msgid "Brightness"
 msgstr "Fényerő"
 
+msgid ""
+"Browse ORF and SAT1 Teletext independent from channel. This need I-net "
+"conection."
+msgstr ""
+
 msgid "Browse for and connect to network shares"
 msgstr ""
 
@@ -1147,6 +1207,17 @@ msgstr ""
 #
 msgid "Bus: "
 msgstr "Bus: "
+
+msgid ""
+"By enabling this events will not be matched if they don't occur on certain "
+"dates."
+msgstr ""
+
+msgid ""
+"By enabling this you will be notified about timer conflicts found during "
+"automated polling. There is no intelligence involved, so it might bother you "
+"about the same conflict over and over."
+msgstr ""
 
 #
 msgid ""
@@ -1414,6 +1485,12 @@ msgstr ""
 msgid "Close title selection"
 msgstr ""
 
+msgid "Code rate HP"
+msgstr ""
+
+msgid "Code rate LP"
+msgstr ""
+
 #
 msgid "Code rate high"
 msgstr "Felsö kódarány"
@@ -1612,6 +1689,10 @@ msgstr ""
 msgid "Couldn't record due to conflicting timer %s"
 msgstr ""
 
+#, python-format
+msgid "Couldn't record due to invalid service %s"
+msgstr ""
+
 #
 msgid "Crashlog settings"
 msgstr ""
@@ -1791,6 +1872,9 @@ msgstr "DVB-S"
 msgid "DVB-S2"
 msgstr "DVB-S2"
 
+msgid "DVD Drive"
+msgstr ""
+
 #
 msgid "DVD File Browser"
 msgstr ""
@@ -1876,9 +1960,18 @@ msgstr ""
 msgid "Define a startup service for your Dreambox."
 msgstr ""
 
+msgid "Deinterlacer mode for interlaced content"
+msgstr ""
+
+msgid "Deinterlacer mode for progressive content"
+msgstr ""
+
 #
 msgid "Delay"
 msgstr "Késleltetés"
+
+msgid "Delay x seconds after service started"
+msgstr ""
 
 #
 msgid "Delete"
@@ -2066,6 +2159,12 @@ msgid ""
 msgstr ""
 "Biztos le akarja ellenőrizni a fájlrendszert?\n"
 "Ez hosszú ideig is eltarthat!"
+
+#, python-format
+msgid ""
+"Do you really want to delete %s\n"
+"%s?"
+msgstr ""
 
 #
 #, python-format
@@ -2403,9 +2502,24 @@ msgstr "Engedélyezve"
 msgid "Enable /media"
 msgstr ""
 
+msgid "Enable 1080p24 Mode"
+msgstr ""
+
+msgid "Enable 1080p25 Mode"
+msgstr ""
+
+msgid "Enable 1080p30 Mode"
+msgstr ""
+
 #
 msgid "Enable 5V for active antenna"
 msgstr "5V kimenet az akítv antennához engedélyezve"
+
+msgid "Enable 720p24 Mode"
+msgstr ""
+
+msgid "Enable Autoresolution"
+msgstr ""
 
 #
 msgid "Enable Cleanup Wizard?"
@@ -2527,16 +2641,8 @@ msgid ""
 msgstr ""
 
 #
-msgid "Enter Fast Forward at speed"
-msgstr "Adja meg a gyors előre csévélést ezen a sebességen"
-
-#
 msgid "Enter IP to scan..."
 msgstr ""
-
-#
-msgid "Enter Rewind at speed"
-msgstr "Adja meg a vissza csévélést ezen a sebességen"
 
 #
 msgid "Enter main menu..."
@@ -2810,6 +2916,11 @@ msgstr ""
 msgid "Finnish"
 msgstr "Finn"
 
+msgid ""
+"First day to match events. No event that begins before this date will be "
+"matched."
+msgstr ""
+
 msgid "First generate your skin-style with the Ai.HD-Control plugin."
 msgstr ""
 
@@ -2829,16 +2940,18 @@ msgstr ""
 msgid "Format"
 msgstr "Formázás"
 
+#, python-format
+msgid ""
+"Found a total of %d matching Events.\n"
+"%d Timer were added and %d modified, %d conflicts encountered."
+msgstr ""
+
 #
 #, python-format
 msgid ""
 "Found a total of %d matching Events.\n"
 "%d Timer were added and %d modified."
 msgstr ""
-
-#
-msgid "Frame repeat count during non-smooth winding"
-msgstr "Képkocka ismétlések száma non-smooth csévélésnél"
 
 #
 msgid "Frame size in full view"
@@ -2881,6 +2994,9 @@ msgid "Frisian"
 msgstr ""
 
 msgid "FritzCall shows incoming calls to your Fritz!Box on your Dreambox."
+msgstr ""
+
+msgid "Front USB Slot"
 msgstr ""
 
 msgid "Frontend for /tmp/mmi.socket"
@@ -2935,6 +3051,9 @@ msgstr ""
 
 #
 msgid "General PCM delay (ms)"
+msgstr ""
+
+msgid "Generates and Shows TV Charts of all users having this plugin installed"
 msgstr ""
 
 #
@@ -3015,14 +3134,17 @@ msgid "Green boost"
 msgstr ""
 
 msgid ""
-"Growlee allows your Dreambox to send short messages using the growl "
-"protocol\n"
-"like Recording started notifications to a PC running a growl client"
+"Growlee allows your Dreambox to forward notifications like 'Record started' "
+"to a PC running a growl, snarl or syslog compatible client or directly to an "
+"iPhone using prowl."
 msgstr ""
 
 #
 msgid "Guard Interval"
 msgstr "Védelmi intervallum"
+
+msgid "Guard interval"
+msgstr ""
 
 #
 msgid "Guard interval mode"
@@ -3030,6 +3152,12 @@ msgstr "Védelmi intervallum mód"
 
 #
 msgid "Guess existing timer based on begin/end"
+msgstr ""
+
+msgid "HD Interlace Mode"
+msgstr ""
+
+msgid "HD Progressive Mode"
 msgstr ""
 
 #
@@ -3071,6 +3199,9 @@ msgstr ""
 #
 msgid "Hierarchy Information"
 msgstr "Hierarchia információk"
+
+msgid "Hierarchy info"
+msgstr ""
 
 #
 msgid "Hierarchy mode"
@@ -3254,6 +3385,12 @@ msgstr "Információk"
 msgid "Init"
 msgstr "Inicializálás"
 
+msgid "Initial Fast Forward speed"
+msgstr ""
+
+msgid "Initial Rewind speed"
+msgstr ""
+
 #
 msgid "Initial location in new timers"
 msgstr ""
@@ -3353,6 +3490,9 @@ msgid "Internal Flash"
 msgstr "Belső Flash"
 
 msgid "Internal LAN adapter."
+msgstr ""
+
+msgid "Internal USB Slot"
 msgstr ""
 
 msgid "Internal firmware updater"
@@ -3550,6 +3690,11 @@ msgstr "Válasszon nyelvet"
 
 #
 msgid "Last config"
+msgstr ""
+
+msgid ""
+"Last day to match events. Events have to begin before this date to be "
+"matched."
 msgstr ""
 
 #
@@ -4032,6 +4177,9 @@ msgstr "Filmlista menü"
 msgid "Multi EPG"
 msgstr "Multi EPG"
 
+msgid "Multi-EPG bouquet selection"
+msgstr ""
+
 #
 msgid "Multimedia"
 msgstr ""
@@ -4039,6 +4187,9 @@ msgstr ""
 #
 msgid "Multiple service support"
 msgstr "Több csatorna támogatása"
+
+msgid "Multiplex"
+msgstr ""
 
 #
 msgid "Multisat"
@@ -4110,6 +4261,9 @@ msgstr ""
 msgid "NFS share"
 msgstr ""
 
+msgid "NIM"
+msgstr ""
+
 #
 msgid "NOW"
 msgstr "MOST"
@@ -4138,6 +4292,9 @@ msgstr "Névszerver beállítások"
 #
 msgid "Nameserver settings"
 msgstr "Névszerver beállítások..."
+
+msgid "Namespace"
+msgstr ""
 
 msgid "Nemesis BlackBox Skin"
 msgstr ""
@@ -4547,6 +4704,12 @@ msgstr "Észak"
 msgid "Norwegian"
 msgstr "Norvég"
 
+msgid "Not after"
+msgstr ""
+
+msgid "Not before"
+msgstr ""
+
 #
 #, python-format
 msgid ""
@@ -4601,6 +4764,9 @@ msgstr ""
 
 #
 msgid "OK, remove some extensions"
+msgstr ""
+
+msgid "ONID"
 msgstr ""
 
 #
@@ -4676,6 +4842,9 @@ msgstr ""
 msgid "Orbital Position"
 msgstr "Pálya pozíció"
 
+msgid "Orbital position"
+msgstr ""
+
 #
 msgid "Outer Bound (+/-)"
 msgstr ""
@@ -4697,9 +4866,15 @@ msgstr ""
 msgid "PAL"
 msgstr "PAL"
 
+msgid "PCR PID"
+msgstr ""
+
 #
 msgid "PIDs"
 msgstr "PID-ek"
+
+msgid "PMT PID"
+msgstr ""
 
 #
 msgid "Package list update"
@@ -5184,6 +5359,9 @@ msgstr "D Port"
 msgid "Portuguese"
 msgstr "Portugál"
 
+msgid "Position of finished Timers in Timerlist"
+msgstr ""
+
 #
 msgid "Positioner"
 msgstr "Pozícioner"
@@ -5509,6 +5687,9 @@ msgstr ""
 msgid "Recordings always have priority"
 msgstr "A felvételnek mindíg elsőbbsége van"
 
+msgid "Redirect notifications to Growl, Snarl, Prowl or Syslog"
+msgstr ""
+
 msgid "Reenter new PIN"
 msgstr ""
 
@@ -5730,6 +5911,9 @@ msgstr ""
 msgid "Restrict \"after event\" to a certain timespan?"
 msgstr ""
 
+msgid "Restrict to events on certain dates"
+msgstr ""
+
 #
 msgid "Resume from last position"
 msgstr "Folytatás az utolsó pozíciótól"
@@ -5770,6 +5954,9 @@ msgstr "Viszacsévélési sebességek"
 msgid "Right"
 msgstr "Jobb"
 
+msgid "Roll-off"
+msgstr ""
+
 #
 msgid "Rolloff"
 msgstr "Rolloff"
@@ -5782,6 +5969,9 @@ msgstr "Rotor mozgatási sebessége"
 msgid "Running"
 msgstr "Futó"
 
+msgid "Running in testmode"
+msgstr ""
+
 #
 msgid "Russia"
 msgstr ""
@@ -5793,6 +5983,21 @@ msgstr "Orosz"
 #
 msgid "S-Video"
 msgstr "S-Video"
+
+msgid "SD 25/50HZ Interlace Mode"
+msgstr ""
+
+msgid "SD 25/50HZ Progressive Mode"
+msgstr ""
+
+msgid "SD 30/60HZ Interlace Mode"
+msgstr ""
+
+msgid "SD 30/60HZ Progressive Mode"
+msgstr ""
+
+msgid "SID"
+msgstr ""
 
 #
 msgid "SINGLE LAYER DVD"
@@ -5808,6 +6013,19 @@ msgstr "SNR:"
 
 #
 msgid "SSID:"
+msgstr ""
+
+msgid ""
+"SVDRP is a protocol developed for the VDR software to control a set-top box "
+"remotely.\n"
+"This plugin only supports a subset of SVDRP and starts automatically using "
+"default settings.\n"
+"\n"
+"You probably don't need this plugin and should use the regular Web Interface "
+"for Enigma2 instead."
+msgstr ""
+
+msgid "SVDRP server for Enigma2"
 msgstr ""
 
 #
@@ -6270,6 +6488,9 @@ msgstr ""
 "Szolgáltatás nem található!\n"
 "(Nincs SID a PAT-ban)"
 
+msgid "Service reference"
+msgstr ""
+
 #
 msgid "Service scan"
 msgstr "Csatornakeresés"
@@ -6404,6 +6625,9 @@ msgstr ""
 msgid "Show in extension menu"
 msgstr ""
 
+msgid "Show info screen"
+msgstr ""
+
 #
 msgid "Show infobar on channel change"
 msgstr "Csatornaváltáskor mutassa az infósort"
@@ -6415,6 +6639,9 @@ msgstr "Műsorváltozásnál mutassa az infósort"
 #
 msgid "Show infobar on skip forward/backward"
 msgstr "Előre/Hátra lépésnél mutassa az infosort"
+
+msgid "Show notification on conflicts"
+msgstr ""
 
 #
 msgid "Show positioner movement"
@@ -6684,6 +6911,9 @@ msgstr ""
 msgid "Start Webinterface"
 msgstr ""
 
+msgid "Start easy your multimedia plugins with the PVR-button."
+msgstr ""
+
 #
 msgid "Start from the beginning"
 msgstr "Indítsa az elejétől"
@@ -6807,6 +7037,9 @@ msgstr "Vas"
 msgid "Sunday"
 msgstr "Vasárnap"
 
+msgid "Support \"Fast Scan\"?"
+msgstr ""
+
 #
 msgid "Swap Services"
 msgstr "Csatornák cserélése"
@@ -6835,6 +7068,9 @@ msgstr ""
 msgid "Symbol Rate"
 msgstr "Symbol Rate"
 
+msgid "Symbol rate"
+msgstr ""
+
 #
 msgid "Symbolrate"
 msgstr "Symbolrate"
@@ -6858,9 +7094,18 @@ msgstr ""
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr ""
 
+msgid "TSID"
+msgstr ""
+
+msgid "TV Charts of all users"
+msgstr ""
+
 #
 msgid "TV System"
 msgstr "TV rendszer"
+
+msgid "TXT PID"
+msgstr ""
 
 #
 msgid "Table of content for collection"
@@ -6892,6 +7137,9 @@ msgstr ""
 
 #
 msgid "Temperature and Fan control"
+msgstr ""
+
+msgid "Temperature-dependent fan control."
 msgstr ""
 
 #
@@ -7852,10 +8100,6 @@ msgid "Use and control multiple Dreamboxes with different RCs."
 msgstr ""
 
 #
-msgid "Use non-smooth winding at speeds above"
-msgstr "Non-smooth csévélés használata ezen sebességek felett"
-
-#
 msgid "Use power measurement"
 msgstr "Forgatási paraméterek megadása"
 
@@ -7937,11 +8181,20 @@ msgstr "VMGM (Intro trailer)"
 msgid "Vali-XD skin"
 msgstr ""
 
+msgid "Vali.HD.atlantis skin"
+msgstr ""
+
 msgid "Vali.HD.nano skin"
+msgstr ""
+
+msgid "Vali.HD.warp skin"
 msgstr ""
 
 msgid ""
 "Verify your Dreambox authenticity by running the genuine dreambox plugin!"
+msgstr ""
+
+msgid "Verifying your internet connection..."
 msgstr ""
 
 #
@@ -7959,6 +8212,9 @@ msgstr "Video finom beállítások varázsló"
 #
 msgid "Video Output"
 msgstr "Video kimenet"
+
+msgid "Video PID"
+msgstr ""
 
 #
 msgid "Video Setup"
@@ -8204,6 +8460,9 @@ msgstr ""
 msgid "Weatherforecast on your Dreambox"
 msgstr ""
 
+msgid "Web-Bouquet-Editor for PC"
+msgstr ""
+
 #
 msgid "Webinterface"
 msgstr ""
@@ -8348,6 +8607,11 @@ msgstr "Mit szeretne lekeresni?"
 
 #
 msgid "What to do with submitted crashlogs?"
+msgstr ""
+
+msgid ""
+"When supporting \"Fast Scan\" the service type is ignored. You don't need to "
+"enable this unless your Image supports \"Fast Scan\" and you are using it."
 msgstr ""
 
 #
@@ -8607,6 +8871,12 @@ msgid ""
 "in title' is what is looked for in the EPG."
 msgstr ""
 
+msgid ""
+"You can use the EasyInfo for manage your EPG plugins from info button. You "
+"have also a new now-next event viewer. Easy-PG, the own graphical EPG bowser "
+"is also included."
+msgstr ""
+
 #
 msgid "You cannot delete this!"
 msgstr "Ez nem törölheti le!"
@@ -8789,6 +9059,9 @@ msgstr ""
 
 #
 msgid "Your network configuration has been activated."
+msgstr ""
+
+msgid "Your network is not working. Please try again."
 msgstr ""
 
 #
@@ -9008,6 +9281,12 @@ msgstr ""
 msgid "assigned Services/Provider:"
 msgstr ""
 
+msgid "at beginning"
+msgstr ""
+
+msgid "at end"
+msgstr ""
+
 #
 #, python-format
 msgid "audio track (%s) format"
@@ -9024,6 +9303,9 @@ msgstr "hangsávok"
 
 #
 msgid "auto"
+msgstr ""
+
+msgid "autotimers need a match attribute"
 msgstr ""
 
 #
@@ -9056,6 +9338,9 @@ msgstr "feketelista"
 
 #
 msgid "blue"
+msgstr ""
+
+msgid "bob"
 msgstr ""
 
 #
@@ -9099,6 +9384,9 @@ msgstr "playlista törlése"
 msgid "complex"
 msgstr "komplex"
 
+msgid "config changed."
+msgstr ""
+
 #
 msgid "config menu"
 msgstr "konfig. menü"
@@ -9130,6 +9418,12 @@ msgstr ""
 msgid "create directory"
 msgstr "könyvtár létrehozása"
 
+msgid "creates virtual series folders from episodes"
+msgstr ""
+
+msgid "creates virtual series folders from sets of recorded episodes"
+msgstr ""
+
 #, python-format
 msgid "currently installed image: %s"
 msgstr ""
@@ -9141,6 +9435,9 @@ msgstr "naponta"
 #
 msgid "day"
 msgstr "nap"
+
+msgid "default"
+msgstr ""
 
 #
 msgid "delete"
@@ -9481,6 +9778,9 @@ msgstr "perc"
 msgid "minutes"
 msgstr "perc"
 
+msgid "missing parameter \"id\""
+msgstr ""
+
 #
 msgid "month"
 msgstr "hónap"
@@ -9677,9 +9977,6 @@ msgid "red"
 msgstr ""
 
 msgid "redesigned Kerni-HD1 skin"
-msgstr ""
-
-msgid "redirect notifications to Growl"
 msgstr ""
 
 #
@@ -10016,6 +10313,10 @@ msgid "toggle time, chapter, audio, subtitle info"
 msgstr "idő, chapter, hangsáv, feliratsáv választás"
 
 msgid "tuner is not supported"
+msgstr ""
+
+#, python-format
+msgid "unable to find timer with id %i"
 msgstr ""
 
 #
@@ -10522,6 +10823,14 @@ msgstr "zap-elt"
 #~ "© 2006 - Stephan Reichholf"
 
 #
+#~ msgid "Enter Fast Forward at speed"
+#~ msgstr "Adja meg a gyors előre csévélést ezen a sebességen"
+
+#
+#~ msgid "Enter Rewind at speed"
+#~ msgstr "Adja meg a vissza csévélést ezen a sebességen"
+
+#
 #~ msgid "Exit wizard and configure later manually"
 #~ msgstr "Kilépés a varázslóból, beállítás kézi módszerrel késöbb"
 
@@ -10542,6 +10851,10 @@ msgstr "zap-elt"
 #
 #~ msgid "Font size"
 #~ msgstr "Font méret"
+
+#
+#~ msgid "Frame repeat count during non-smooth winding"
+#~ msgstr "Képkocka ismétlések száma non-smooth csévélésnél"
 
 #
 #~ msgid "Fritz!Box FON IP address"
@@ -11091,6 +11404,10 @@ msgstr "zap-elt"
 #
 #~ msgid "Upgrade finished. Do you want to reboot your Dreambox?"
 #~ msgstr "Frissiítés sikeres. Újraindítsam most a DreamBox-ot?"
+
+#
+#~ msgid "Use non-smooth winding at speeds above"
+#~ msgstr "Non-smooth csévélés használata ezen sebességek felett"
 
 #
 #~ msgid "VCR Switch"
