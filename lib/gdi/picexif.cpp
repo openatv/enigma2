@@ -108,7 +108,7 @@ bool Cexif::DecodeExif(const char *filename, int Thumb)
 	strcpy(m_szLastError,"EXIF-Data not found");
 
 	if (a != 0xff || fgetc(hFile) != M_SOI)
-		goto decode_exif_out;
+		goto decode_exif_out_false;
 
 	for(;;)
 	{
@@ -119,7 +119,7 @@ bool Cexif::DecodeExif(const char *filename, int Thumb)
 		if (SectionsRead >= MAX_SECTIONS)
 		{
 			strcpy(m_szLastError,"Too many sections in jpg file");
-			goto decode_exif_out;
+			goto decode_exif_out_false;
 		}
 
 		for (a=0;a<7;a++)
@@ -130,14 +130,14 @@ bool Cexif::DecodeExif(const char *filename, int Thumb)
 			if (a >= 6)
 			{
 				strcpy(m_szLastError,"too many padding unsigned chars\n");
-				goto decode_exif_out;
+				goto decode_exif_out_false;
 			}
 		}
 
 		if (marker == 0xff)
 		{
 			strcpy(m_szLastError,"too many padding unsigned chars!");
-			goto decode_exif_out;
+			goto decode_exif_out_false;
 		}
 
 		Sections[SectionsRead].Type = marker;
@@ -150,7 +150,7 @@ bool Cexif::DecodeExif(const char *filename, int Thumb)
 		if (itemlen < 2)
 		{
 			strcpy(m_szLastError,"invalid marker");
-			goto decode_exif_out;
+			goto decode_exif_out_false;
 		}
 		Sections[SectionsRead].Size = itemlen;
 
@@ -158,7 +158,7 @@ bool Cexif::DecodeExif(const char *filename, int Thumb)
 		if (Data == NULL)
 		{
 			strcpy(m_szLastError,"Could not allocate memory");
-			goto decode_exif_out;
+			goto decode_exif_out_false;
 		}
 		Sections[SectionsRead].Data = Data;
 
@@ -170,17 +170,17 @@ bool Cexif::DecodeExif(const char *filename, int Thumb)
 		if (got != itemlen-2)
 		{
 			strcpy(m_szLastError,"Premature end of file?");
-			goto decode_exif_out;
+			goto decode_exif_out_false;
 		}
 		SectionsRead += 1;
 
 		switch(marker)
 		{
 		case M_SOS:
-			goto decode_exif_out;
+			goto decode_exif_out_true;
 		case M_EOI:
 			printf("No image in jpeg!\n");
-			goto decode_exif_out;
+			goto decode_exif_out_false;
 		case M_COM:
 			if (HaveCom)
 			{
@@ -227,9 +227,11 @@ bool Cexif::DecodeExif(const char *filename, int Thumb)
 			break;
 		}
 	}
+
+decode_exif_out_true:
 	ret = true;
 
-decode_exif_out:
+decode_exif_out_false:
 	fclose(hFile);
 	return ret;
 }
