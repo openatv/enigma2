@@ -177,7 +177,7 @@ bool Cexif::DecodeExif(const char *filename, int Thumb)
 		switch(marker)
 		{
 		case M_SOS:
-			return true;
+			goto decode_exif_out;
 		case M_EOI:
 			printf("No image in jpeg!\n");
 			goto decode_exif_out;
