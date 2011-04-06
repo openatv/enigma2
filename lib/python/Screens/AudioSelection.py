@@ -67,6 +67,16 @@ class AudioSelection(Screen, ConfigListScreen):
 		self.audioTracks = audio = service and service.audioTracks()
 		n = audio and audio.getNumberOfTracks() or 0
 		
+		subtitlelist = self.getSubtitleList()
+		if self.subtitlesEnabled():
+			selectedSubtitle = self.infobar.selected_subtitle
+			if selectedSubtitle == (0,0,0,0):
+				selectedSubtitle = None
+			else:
+				subtitlelist.append(selectedSubtitle)
+		else:
+			selectedSubtitle = None
+
 		if self.settings.menupage.getValue() == PAGE_AUDIO:
 			self.setTitle(_("Select audio track"))
 			if SystemInfo["CanDownmixAC3"]:
@@ -118,7 +128,6 @@ class AudioSelection(Screen, ConfigListScreen):
 				conflist.append(('',))
 				self["key_green"].setBoolean(False)
 
-			subtitlelist = self.getSubtitleList()
 			if len(subtitlelist):
 				conflist.append(getConfigListEntry(_("To subtitle selection"), self.settings.menupage))
 			else:
@@ -128,7 +137,6 @@ class AudioSelection(Screen, ConfigListScreen):
 			
 		elif self.settings.menupage.getValue() == PAGE_SUBTITLES:
 	
-			subtitlelist = self.getSubtitleList()
 			if not len(subtitlelist):
 				self.close(0)
 
@@ -138,28 +146,29 @@ class AudioSelection(Screen, ConfigListScreen):
 			self["key_red"].setBoolean(False)
 			self["key_green"].setBoolean(False)
 
-			if self.subtitlesEnabled():
-				sel = self.infobar.selected_subtitle
-			else:
-				sel = None
-
 			idx = 0
-			
+				
 			for x in subtitlelist:
 				number = str(x[1])
 				description = "?"
 				language = ""
 				selected = ""
 
-				if sel and x[:4] == sel[:4]:
+				if selectedSubtitle and x[:4] == selectedSubtitle[:4]:
 					selected = "X"
 					selectedidx = idx
+					if x != subtitlelist[-1]:
+						subtitlelist.pop()
+					SelectedSubtitle = None
 					
-				if x[4] != "und":
-					if LanguageCodes.has_key(x[4]):
-						language = LanguageCodes[x[4]][0]
-					else:
-						language = x[4]
+				try:
+					if x[4] != "und":
+						if LanguageCodes.has_key(x[4]):
+							language = LanguageCodes[x[4]][0]
+						else:
+							language = x[4]
+				except:
+					language = ""
 
 				if x[0] == 0:
 					description = "DVB"
