@@ -207,6 +207,9 @@ int eDVBAudio::startPid(int pid, int type)
 	case aDTSHD:
 		bypass = 0x10;
 		break;
+	case aDDP:
+		bypass = 0x22;
+		break;
 	}
 
 	eDebugNoNewLine("AUDIO_SET_BYPASS(%d) - ", bypass);
