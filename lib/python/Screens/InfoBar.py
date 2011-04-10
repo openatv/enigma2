@@ -45,6 +45,8 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 				"showMovies": (self.showMovies, _("Play recorded movies...")),
 				"showRadio": (self.showRadio, _("Show the radio player...")),
 				"showTv": (self.showTv, _("Show the tv player...")),
+				"openBouquetList": (self.openBouquetList, _("open bouquetlist")),
+				"showMediaPlayer": (self.showMediaPlayer, _("Show the media player...")),
 			}, prio=2)
 		
 		self.allowPiP = True
@@ -101,6 +103,10 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		self.serviceStarted()
 		self.onShown.remove(self.__checkServiceStarted)
 
+	def openBouquetList(self):
+		self.servicelist.showFavourites()
+		self.session.execDialog(self.servicelist)
+
 	def showTv(self):
 		self.showTvChannelList(True)
 
@@ -127,6 +133,14 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 				self.session.nav.playService(ref)
 		else:
 			self.session.open(MoviePlayer, service, slist = self.servicelist, lastservice = ref)
+
+	def showMediaPlayer(self):
+		try:
+			from Plugins.Extensions.MediaPlayer.plugin import MediaPlayer
+			self.session.open(MediaPlayer)
+			no_plugin = False
+		except Exception, e:
+			self.session.open(MessageBox, _("The MediaPlayer plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
 class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 		InfoBarMenu, \
