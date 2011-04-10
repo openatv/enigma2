@@ -14,13 +14,18 @@ class pliExpertInfo(Poll, Converter, object):
 	SMART_LABEL = 0
 	SMART_INFO_H = 1
 	SMART_INFO_V = 2
+	SERVICE_INFO = 3
+	CRYPTO_INFO = 4
+	
 	def __init__(self, type):
 		Converter.__init__(self, type)
 		Poll.__init__(self)
 		self.type = {
 				"ShowMe": self.SMART_LABEL,
 				"ExpertInfo": self.SMART_INFO_H,
-				"ExpertInfoVertical": self.SMART_INFO_V
+				"ExpertInfoVertical": self.SMART_INFO_V,
+				"ServiceInfo": self.SERVICE_INFO,
+				"CryptoInfo": self.CRYPTO_INFO
 			}[type]
 		try:
 			self.poll_interval = config.plugins.ValiKSSetup.pollTime.value*1000
@@ -48,10 +53,7 @@ class pliExpertInfo(Poll, Converter, object):
 		Ret_Text = ""
 		Sec_Text = ""
 
-		xresol = info.getInfo(iServiceInformation.sVideoWidth)
-		yresol = info.getInfo(iServiceInformation.sVideoHeight)
-		feinfo = (service and service.frontendInfo())
-		if (self.type == self.SMART_INFO_H): # HORIZONTAL
+		if (self.type == self.SMART_INFO_H or self.type == self.SERVICE_INFO or self.type == self.CRYPTO_INFO): # HORIZONTAL
 			sep = "  "
 			sep2 = " - "
 		elif (self.type == self.SMART_INFO_V): # VERTIKAL
@@ -60,79 +62,89 @@ class pliExpertInfo(Poll, Converter, object):
 		else:
 			return ""	# unsupported orientation
 		
-		prvd = info.getInfoString(iServiceInformation.sProvider)
-		Ret_Text = self.short(prvd)
-
-		frontendDataOrg = (feinfo and feinfo.getAll(False))
-		if (frontendDataOrg is not None):
-			frontendData = ConvertToHumanReadable(frontendDataOrg)
-			if ((frontendDataOrg.get("tuner_type") == "DVB-S") or (frontendDataOrg.get("tuner_type") == "DVB-C")):
-				frequency = (str((frontendData.get("frequency") / 1000)))
-				symbolrate = (str((frontendData.get("symbol_rate") / 1000)))
-				fec_inner = frontendData.get("fec_inner")
-				if (frontendDataOrg.get("tuner_type") == "DVB-S"):
-					Ret_Text += sep + frontendData.get("system")
-					Ret_Text += sep + frequency + frontendData.get("polarization")[:1]
-					Ret_Text += sep + symbolrate
-					Ret_Text += sep + frontendData.get("modulation") + "-" + fec_inner
-					orbital_pos = int(frontendData["orbital_position"])
-					if orbital_pos > 1800:
-						orb_pos = str((float(3600 - orbital_pos)) / 10.0) + "W"
-					elif orbital_pos > 0:
-						orb_pos = str((float(orbital_pos)) / 10.0) + "E"
-					Ret_Text += sep + orb_pos
-				else:
-					Ret_Text += sep + "DVB-C " + frequency + " MHz" + sep + fec_inner + sep + symbolrate
-			elif (frontendDataOrg.get("tuner_type") == "DVB-T"):
-				frequency = (str((frontendData.get("frequency") / 1000)))
-				Ret_Text += sep + "DVB-T" + sep + "Frequency:" + sep + frequency + " MHz"
-
-		if (feinfo is not None) and (xresol > 0):
-			if (yresol > 580):
-				Ret_Text += sep + "HD "
-			else:
-				Ret_Text += sep + "SD "
-			Ret_Text += str(xresol) + "x" + str(yresol)
-
-		decCI = "0" 
-		Sec_Text = ""
-		if (info.getInfo(iServiceInformation.sIsCrypted) == 1):
-			data = self.ecmdata.getEcmData()
-			Sec_Text = data[0]	
-			decCI = data[1]
-			provid = data[2]
-			pid = data[3]	
-
-			if decCI != '0':
-				decCIfull = "%04x" % int(decCI, 16)
-				for idline in self.idnames:
-					if int(decCI, 16) >= int(idline[0], 16) and int(decCI, 16) <= int(idline[1], 16):
-						decCIfull = idline[2] + ":" + decCIfull
-						break
-				Sec_Text += "\n" + decCIfull
-				if provid != '0':
-					Sec_Text += ":%04x" % int(provid, 16)
-				if pid != '0':
-					Sec_Text += sep + "pid:%04x" % int(pid, 16)
+		if (self.type == self.SMART_INFO_H or self.type == self.SMART_INFO_V or self.type == self.SERVICE_INFO):
 			
-		else:
-			Sec_Text = "FTA"
-		res = ""			
-		searchIDs = (info.getInfoObject(iServiceInformation.sCAIDs))
-		for idline in self.idnames:
-			if int(decCI, 16) >= int(idline[0], 16) and int(decCI, 16) <= int(idline[1], 16):                    
-				color="\c0000??00"
-			else:
-				color = "\c007?7?7?"
-				try:
-					for oneID in searchIDs:
-						if oneID >= int(idline[0], 16) and oneID <= int(idline[1], 16):
-							color="\c00????00"
-				except:
-					pass
-			res += color + idline[3] + " "
+			xresol = info.getInfo(iServiceInformation.sVideoWidth)
+			yresol = info.getInfo(iServiceInformation.sVideoHeight)
+			feinfo = (service and service.frontendInfo())
 
-		Ret_Text += "\n" + res + "\c00?????? " + Sec_Text
+			prvd = info.getInfoString(iServiceInformation.sProvider)
+			Ret_Text = self.short(prvd)
+
+			frontendDataOrg = (feinfo and feinfo.getAll(False))
+			if (frontendDataOrg is not None):
+				frontendData = ConvertToHumanReadable(frontendDataOrg)
+				if ((frontendDataOrg.get("tuner_type") == "DVB-S") or (frontendDataOrg.get("tuner_type") == "DVB-C")):
+					frequency = (str((frontendData.get("frequency") / 1000)))
+					symbolrate = (str((frontendData.get("symbol_rate") / 1000)))
+					fec_inner = frontendData.get("fec_inner")
+					if (frontendDataOrg.get("tuner_type") == "DVB-S"):
+						Ret_Text += sep + frontendData.get("system")
+						Ret_Text += sep + frequency + frontendData.get("polarization")[:1]
+						Ret_Text += sep + symbolrate
+						Ret_Text += sep + frontendData.get("modulation") + "-" + fec_inner
+						orbital_pos = int(frontendData["orbital_position"])
+						if orbital_pos > 1800:
+							orb_pos = str((float(3600 - orbital_pos)) / 10.0) + "W"
+						elif orbital_pos > 0:
+							orb_pos = str((float(orbital_pos)) / 10.0) + "E"
+						Ret_Text += sep + orb_pos
+					else:
+						Ret_Text += sep + "DVB-C " + frequency + " MHz" + sep + fec_inner + sep + symbolrate
+				elif (frontendDataOrg.get("tuner_type") == "DVB-T"):
+					frequency = (str((frontendData.get("frequency") / 1000)))
+					Ret_Text += sep + "DVB-T" + sep + "Frequency:" + sep + frequency + " MHz"
+
+			if (feinfo is not None) and (xresol > 0):
+				if (yresol > 580):
+					Ret_Text += sep + "HD "
+				else:
+					Ret_Text += sep + "SD "
+				Ret_Text += str(xresol) + "x" + str(yresol)
+
+		if (self.type == self.SMART_INFO_H or self.type == self.SMART_INFO_V or self.type == self.CRYPTO_INFO):
+
+			decCI = "0" 
+			Sec_Text = ""
+			if (info.getInfo(iServiceInformation.sIsCrypted) == 1):
+				data = self.ecmdata.getEcmData()
+				Sec_Text = data[0]	
+				decCI = data[1]
+				provid = data[2]
+				pid = data[3]	
+
+				if decCI != '0':
+					decCIfull = "%04x" % int(decCI, 16)
+					for idline in self.idnames:
+						if int(decCI, 16) >= int(idline[0], 16) and int(decCI, 16) <= int(idline[1], 16):
+							decCIfull = idline[2] + ":" + decCIfull
+							break
+					Sec_Text += "\n" + decCIfull
+					if provid != '0':
+						Sec_Text += ":%04x" % int(provid, 16)
+					if pid != '0':
+						Sec_Text += sep + "pid:%04x" % int(pid, 16)
+			
+			else:
+				Sec_Text = "FTA"
+			res = ""			
+			searchIDs = (info.getInfoObject(iServiceInformation.sCAIDs))
+			for idline in self.idnames:
+				if int(decCI, 16) >= int(idline[0], 16) and int(decCI, 16) <= int(idline[1], 16):                    
+					color="\c0000??00"
+				else:
+					color = "\c007?7?7?"
+					try:
+						for oneID in searchIDs:
+							if oneID >= int(idline[0], 16) and oneID <= int(idline[1], 16):
+								color="\c00????00"
+					except:
+						pass
+				res += color + idline[3] + " "
+			
+			if (self.type != self.CRYPTO_INFO):
+				Ret_Text += "\n"
+			Ret_Text += res + "\c00?????? " + Sec_Text
 
 		return Ret_Text
 

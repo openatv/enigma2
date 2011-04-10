@@ -2,7 +2,7 @@ from config import config, ConfigSlider, ConfigSelection, ConfigYesNo, \
 	ConfigEnableDisable, ConfigSubsection, ConfigBoolean, ConfigSelectionNumber, ConfigNothing, NoSave
 from enigma import eAVSwitch, getDesktop
 from SystemInfo import SystemInfo
-from os import path as os_path
+import os
 
 class AVSwitch:
 	def setInput(self, input):
@@ -153,11 +153,15 @@ def InitAVSwitch():
 		config.av.downmix_ac3 = ConfigYesNo(default = True)
 		config.av.downmix_ac3.addNotifier(setAC3Downmix)
 
-	can_downmix = os_path.exists("/usr/lib/gstreamer-0.10/libgstdtsdec.so")
+	can_downmix = os.path.exists("/usr/lib/gstreamer-0.10/libgstdtsdec.so")
 	SystemInfo["CanDownmixDTS"] = can_downmix
 	if can_downmix:
 		def setDTSDownmix(configElement):
 			open("/var/run/dts_mode", "w").write(configElement.value and "downmix" or "passthrough")
+			try:
+				os.unlink('/home/root/.gstreamer-0.10/registry.mipsel.bin')
+			except:
+				pass
 		config.av.downmix_dts = ConfigYesNo(default = False)
 		config.av.downmix_dts.addNotifier(setDTSDownmix)
 
@@ -175,7 +179,7 @@ def InitAVSwitch():
 		config.av.osd_alpha = ConfigSlider(default=255, limits=(0,255))
 		config.av.osd_alpha.addNotifier(setAlpha)
 
-	if os_path.exists("/proc/stb/vmpeg/0/pep_scaler_sharpness"):
+	if os.path.exists("/proc/stb/vmpeg/0/pep_scaler_sharpness"):
 		def setScaler_sharpness(config):
 			myval = int(config.value)
 			try:
