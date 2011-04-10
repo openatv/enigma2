@@ -88,11 +88,26 @@ void Cexif::ClearExif()
 	}
 }
 
+struct FileWrapper
+{
+	FILE* handle;
+	FileWrapper(const char *filename, const char* mode):
+		handle(fopen(filename, mode))
+	{}
+	~FileWrapper()
+	{
+		if (handle)
+		{
+			fclose(handle);
+		}
+	}
+};
+
 bool Cexif::DecodeExif(const char *filename, int Thumb)
 {
-	FILE * hFile = fopen(filename, "r");
+	FileWrapper wrapper(filename, "r");
+	FILE * hFile = wrapper.handle;
 	if(!hFile) return false;
-
 
 	m_exifinfo = new EXIFINFO;
 	memset(m_exifinfo,0,sizeof(EXIFINFO));
@@ -221,7 +236,6 @@ bool Cexif::DecodeExif(const char *filename, int Thumb)
 		}
 	}
 
-	fclose(hFile);
 	return true;
 }
 
