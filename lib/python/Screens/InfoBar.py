@@ -2,6 +2,9 @@ from Tools.Profile import profile
 
 # workaround for required config entry dependencies.
 import Screens.MovieSelection
+from Screens.MessageBox import MessageBox
+from Components.PluginComponent import plugins
+from Plugins.Plugin import PluginDescriptor
 
 from Screen import Screen
 
@@ -47,6 +50,10 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 				"showTv": (self.showTv, _("Show the tv player...")),
 				"openBouquetList": (self.openBouquetList, _("open bouquetlist")),
 				"showMediaPlayer": (self.showMediaPlayer, _("Show the media player...")),
+				"openTimerList": (self.openTimerList, _("Show the tv player...")),
+				"openAutoTimerList": (self.openAutoTimerList, _("Show the tv player...")),
+				"openEPGSearch": (self.openEPGSearch, _("Show the tv player...")),
+				"openIMDB": (self.openIMDB, _("Show the tv player...")),
 			}, prio=2)
 		
 		self.allowPiP = True
@@ -141,6 +148,37 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			no_plugin = False
 		except Exception, e:
 			self.session.open(MessageBox, _("The MediaPlayer plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+
+	def openTimerList(self):
+		from Screens.TimerEdit import TimerEditList
+		self.session.open(TimerEditList)
+
+	def openAutoTimerList(self):
+		try:
+			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU ,PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
+				if plugin.name == _("AutoTimer"):
+					self.runPlugin(plugin)
+					break
+		except Exception, e:
+			self.session.open(MessageBox, _("The AutoTimer plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+
+	def openEPGSearch(self):
+		try:
+			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU ,PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
+				if plugin.name == _("EPGSearch"):
+					self.runPlugin(plugin)
+					break
+		except Exception, e:
+			self.session.open(MessageBox, _("The EPGSearch plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+
+	def openIMDB(self):
+		try:
+			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU ,PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
+				if plugin.name == _("IMDb Details"):
+					self.runPlugin(plugin)
+					break
+		except Exception, e:
+			self.session.open(MessageBox, _("The IMDb plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
 class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 		InfoBarMenu, \
