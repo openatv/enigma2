@@ -108,10 +108,10 @@ class JobView(InfoBarNotifications, Screen, ConfigListScreen):
 			self.close(False)
 
 	def abort(self):
-		if self.job.status in (self.job.FINISHED, self.job.FAILED):
-			self.close(False)
-		if self["cancelable"].boolean == True:
+		if self.job.status == self.job.IN_PROGRESS and self["cancelable"].boolean == True:
 			self.job.cancel()
+		else:
+			self.close(False)
 
 	def performAfterEvent(self):
 		self["config"].hide()
