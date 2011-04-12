@@ -1,18 +1,50 @@
+import os
 from Renderer import Renderer
 from enigma import ePixmap
 from Tools.Directories import pathExists, SCOPE_SKIN_IMAGE, SCOPE_CURRENT_SKIN, resolveFilename
+from Components.Harddisk import harddiskmanager
+
+searchPaths = []
+
+def initPiconPaths():
+	global searchPaths
+	searchPaths = []
+	for mp in ('/usr/share/enigma2/', '/'):
+		onMountpointAdded(mp)
+	for part in harddiskmanager.getMountedPartitions():
+		onMountpointAdded(part.mountpoint)
+
+def onMountpointAdded(mountpoint):
+	global searchPaths
+	try:
+		path = os.path.join(mountpoint, 'picon') + '/'
+		if os.path.isdir(path) and path not in searchPaths:
+			for fn in os.listdir(path):
+				if fn.endswith('.png'):
+					print "[Picon] adding path:", path
+					searchPaths.append(path)
+					break
+	except Exception, ex:
+		print "[Picon] Failed to investigate %s:" % mountpoint, ex
+
+def onMountpointRemoved(mountpoint):
+	global searchPaths
+	path = os.path.join(mountpoint, 'picon') + '/'
+	try:
+		searchPaths.remove(path)
+		print "[Picon] removed path:", path
+	except:
+		pass
+
+def onPartitionChange(why, part):
+	if why == 'add':
+		onMountpointAdded(part.mountpoint)
+	elif why == 'remove':
+		onMountpointRemoved(part.mountpoint)
 
 class Picon(Renderer):
-	searchPaths = ('/usr/share/enigma2/picon/',
-				'/picon/',
-				'/media/cf/picon/',
-				'/media/mmc1/picon/',
-				'/media/usb/picon/')
-
 	def __init__(self):
 		Renderer.__init__(self)
-		if pathExists('/media/hdd/picon'):
-			self.searchPaths = self.searchPaths + ('/media/hdd/picon/',)
 		self.pngname = ""
 		self.lastPath = None
 		pngname = self.findPicon("picon_default")
@@ -26,10 +58,11 @@ class Picon(Renderer):
 
 	def addPath(self, value):
 		if pathExists(value):
+			global searchPaths
 			if not value.endswith('/'):
 				value += '/'
-			if value not in self.searchPaths:
-				self.searchPaths = self.searchPaths + (value,)
+			if value not in searchPaths:
+				searchPaths.append(value)
 
 	def applySkin(self, desktop, parent):
 		attribs = self.skinAttributes[:]
@@ -70,10 +103,14 @@ class Picon(Renderer):
 			pngname = self.lastPath + serviceName + ".png"
 			if pathExists(pngname):
 				return pngname
-		for path in self.searchPaths:
+		global searchPaths
+		for path in searchPaths:
 			if pathExists(path):
 				pngname = path + serviceName + ".png"
 				if pathExists(pngname):
 					self.lastPath = path
 					return pngname
 		return ""
+
+harddiskmanager.on_partition_list_change.append(onPartitionChange)
+initPiconPaths()
