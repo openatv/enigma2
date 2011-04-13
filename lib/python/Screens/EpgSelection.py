@@ -39,7 +39,7 @@ class EPGSelection(Screen):
 			<screen name="QuickEPG" position="0,505" size="1280,215" title="QuickEPG" backgroundColor="transparent" flags="wfNoBorder">
 				<ePixmap alphatest="off" pixmap="/usr/lib/enigma2/python/Plugins/VIX/VIXMainMenu/hd.png" position="0,0" size="1280,220" zPosition="0"/>
 				<widget source="Service" render="Picon" position="60,75" size="100,60" transparent="1" zPosition="2" alphatest="blend">
-					<convert type="ChannelSelectionExtraInfo">Reference</convert>
+					<convert type="ServiceName">Reference</convert>
 				</widget>
 				<widget source="Service" render="Label" position="0,42" size="1280,36" font="Regular;26" valign="top" halign="center" noWrap="1" backgroundColor="#101214" foregroundColor="#cccccc" transparent="1" zPosition="2" >
 					<convert type="ServiceName">Name</convert>
@@ -66,7 +66,7 @@ class EPGSelection(Screen):
 					<convert type="ClockToText">Date</convert>
 				</widget>
 				<widget source="Service" render="Picon" position="50,150" size="100,60" transparent="1" zPosition="4" alphatest="blend">
-					<convert type="ChannelSelectionExtraInfo">Reference</convert>
+					<convert type="ServiceName">Reference</convert>
 				</widget>
 				<widget source="Service" render="Label" borderColor="#0f0f0f" borderWidth="1" backgroundColor="#16000000" font="Enigma;24" foregroundColor="#00f0f0f0" halign="center" position="160,120" size="400,28" transparent="1" valign="bottom" zPosition="3" >
 					<convert type="ServiceName">Name</convert>
