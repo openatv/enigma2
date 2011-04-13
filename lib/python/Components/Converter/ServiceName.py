@@ -42,7 +42,10 @@ class ServiceName(Converter, object):
 		elif self.type == self.PROVIDER:
 			return self.getServiceInfoValue(info, iServiceInformation.sProvider, ref)
 		elif self.type == self.REFERENCE:
-			return self.getServiceInfoValue(info, iServiceInformation.sServiceref, ref)
+			if str(ref) != 'None':
+				return ref.toString()
+			else:
+				return self.getServiceInfoValue(info, iServiceInformation.sServiceref, ref)
 
 	text = property(getText)
 
