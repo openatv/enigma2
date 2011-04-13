@@ -87,13 +87,33 @@ self.selectKey("DOWN")
                         <listentry caption="Exit network wizard" step="end" />
                 </list>
         </step>
+
+        <step id="asknetworktype">
+		<condition>
+self.condition = (self.isInterfaceUp == True and self.WlanPluginInstalled == True)
+		</condition>
+                <text value="Wireless network connection setup." />
+                <displaytext value="Wireless network connection setup" />
+                <code>
+self.clearSelectedKeys()
+self.selectKey("OK")
+self.selectKey("UP")
+self.selectKey("DOWN")
+                </code>
+                <list>
+                        <listentry caption="List available networks" step="scanwlan" />
+                        <listentry caption="Manual configuration" step="wlanconfig" />
+                        <listentry caption="Exit network wizard" step="end" />
+                </list>
+        </step>
+
         <step id="scanwlan">
 		<condition>
 self.condition = (self.isInterfaceUp == True and self.WlanPluginInstalled == True)
                 </condition>
                 <text value="Please select the wireless network that you want to connect to.\n\nPlease press OK to continue." />
                 <displaytext value="Select wireless network" />
-                <list type="dynamic" source="listAccessPoints" evaluation="AccessPointsSelectionMade" onselect="AccessPointsSelectionMoved" />
+                <list type="dynamic" source="listAccessPoints" onselect="AccessPointsSelectionMoved" />
                 <code>
 self.clearSelectedKeys()
 self.selectKey("OK")
@@ -138,7 +158,7 @@ self.selectKey("DOWN")
         <step id="wlanconfig">
                 <text value="Please configure your internet connection by filling out the required values.\nWhen you are ready press OK to continue." />
                 <displaytext value="Configure interface" />
-                <config screen="AdapterSetup" module="NetworkSetup" args="(self.selectedInterface,self.ap,self.WlanList)" type="ConfigList" />
+                <config screen="AdapterSetup" module="NetworkSetup" args="(self.selectedInterface,self.ap)" type="ConfigList" />
                 <code>
 self.clearSelectedKeys()
 self.selectKey("OK")
@@ -195,5 +215,4 @@ self.selectKey("OK")
                 </code>
         </step>
 </wizard>
-
 
