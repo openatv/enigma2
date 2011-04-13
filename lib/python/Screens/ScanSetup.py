@@ -361,15 +361,15 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 				self.list.append(getConfigListEntry(_('Satellite'), self.scan_satselection[index_to_scan]))
 				self.list.append(getConfigListEntry(_('Frequency'), self.scan_sat.frequency))
 				self.list.append(getConfigListEntry(_('Inversion'), self.scan_sat.inversion))
-				self.list.append(getConfigListEntry(_('Symbol Rate'), self.scan_sat.symbolrate))
-				self.list.append(getConfigListEntry(_("Polarity"), self.scan_sat.polarization))
+				self.list.append(getConfigListEntry(_('Symbol rate'), self.scan_sat.symbolrate))
+				self.list.append(getConfigListEntry(_('Polarization'), self.scan_sat.polarization))
 				if self.scan_sat.system.value == eDVBFrontendParametersSatellite.System_DVB_S:
 					self.list.append(getConfigListEntry(_("FEC"), self.scan_sat.fec))
 				elif self.scan_sat.system.value == eDVBFrontendParametersSatellite.System_DVB_S2:
 					self.list.append(getConfigListEntry(_("FEC"), self.scan_sat.fec_s2))
 					self.modulationEntry = getConfigListEntry(_('Modulation'), self.scan_sat.modulation)
 					self.list.append(self.modulationEntry)
-					self.list.append(getConfigListEntry(_('Rolloff'), self.scan_sat.rolloff))
+					self.list.append(getConfigListEntry(_('Roll-off'), self.scan_sat.rolloff))
 					self.list.append(getConfigListEntry(_('Pilot'), self.scan_sat.pilot))
 			elif self.scan_type.value == "single_satellite":
 				self.updateSatList()
@@ -391,7 +391,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 			if self.scan_typecable.value == "single_transponder":
 				self.list.append(getConfigListEntry(_("Frequency"), self.scan_cab.frequency))
 				self.list.append(getConfigListEntry(_("Inversion"), self.scan_cab.inversion))
-				self.list.append(getConfigListEntry(_("Symbol Rate"), self.scan_cab.symbolrate))
+				self.list.append(getConfigListEntry(_("Symbol rate"), self.scan_cab.symbolrate))
 				self.list.append(getConfigListEntry(_("Modulation"), self.scan_cab.modulation))
 				self.list.append(getConfigListEntry(_("FEC"), self.scan_cab.fec))
 		elif nim.isCompatible("DVB-T"):
@@ -399,12 +399,12 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 				self.list.append(getConfigListEntry(_("Frequency"), self.scan_ter.frequency))
 				self.list.append(getConfigListEntry(_("Inversion"), self.scan_ter.inversion))
 				self.list.append(getConfigListEntry(_("Bandwidth"), self.scan_ter.bandwidth))
-				self.list.append(getConfigListEntry(_("Code rate high"), self.scan_ter.fechigh))
-				self.list.append(getConfigListEntry(_("Code rate low"), self.scan_ter.feclow))
+				self.list.append(getConfigListEntry(_("Code rate HP"), self.scan_ter.fechigh))
+				self.list.append(getConfigListEntry(_("Code rate LP"), self.scan_ter.feclow))
 				self.list.append(getConfigListEntry(_("Modulation"), self.scan_ter.modulation))
 				self.list.append(getConfigListEntry(_("Transmission mode"), self.scan_ter.transmission))
-				self.list.append(getConfigListEntry(_("Guard interval mode"), self.scan_ter.guard))
-				self.list.append(getConfigListEntry(_("Hierarchy mode"), self.scan_ter.hierarchy))
+				self.list.append(getConfigListEntry(_("Guard interval"), self.scan_ter.guard))
+				self.list.append(getConfigListEntry(_("Hierarchy info"), self.scan_ter.hierarchy))
 		self.list.append(getConfigListEntry(_("Network scan"), self.scan_networkScan))
 		self.list.append(getConfigListEntry(_("Clear before scan"), self.scan_clearallservices))
 		self.list.append(getConfigListEntry(_("Only Free scan"), self.scan_onlyfree))
@@ -557,8 +557,8 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 				(eDVBFrontendParametersSatellite.System_DVB_S2, _("DVB-S2"))])
 			self.scan_sat.frequency = ConfigInteger(default = defaultSat["frequency"], limits = (1, 99999))
 			self.scan_sat.inversion = ConfigSelection(default = defaultSat["inversion"], choices = [
-				(eDVBFrontendParametersSatellite.Inversion_Off, _("off")),
-				(eDVBFrontendParametersSatellite.Inversion_On, _("on")),
+				(eDVBFrontendParametersSatellite.Inversion_Off, _("Off")),
+				(eDVBFrontendParametersSatellite.Inversion_On, _("On")),
 				(eDVBFrontendParametersSatellite.Inversion_Unknown, _("Auto"))])
 			self.scan_sat.symbolrate = ConfigInteger(default = defaultSat["symbolrate"], limits = (1, 99999))
 			self.scan_sat.polarization = ConfigSelection(default = defaultSat["polarization"], choices = [
@@ -592,15 +592,15 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 				(eDVBFrontendParametersSatellite.RollOff_alpha_0_25, "0.25"),
 				(eDVBFrontendParametersSatellite.RollOff_alpha_0_20, "0.20")])
 			self.scan_sat.pilot = ConfigSelection(default = defaultSat.get("pilot", eDVBFrontendParametersSatellite.Pilot_Unknown), choices = [
-				(eDVBFrontendParametersSatellite.Pilot_Off, _("off")),
-				(eDVBFrontendParametersSatellite.Pilot_On, _("on")),
+				(eDVBFrontendParametersSatellite.Pilot_Off, _("Off")),
+				(eDVBFrontendParametersSatellite.Pilot_On, _("On")),
 				(eDVBFrontendParametersSatellite.Pilot_Unknown, _("Auto"))])
 
 			# cable
 			self.scan_cab.frequency = ConfigInteger(default = defaultCab["frequency"], limits = (50, 999))
 			self.scan_cab.inversion = ConfigSelection(default = defaultCab["inversion"], choices = [
-				(eDVBFrontendParametersCable.Inversion_Off, _("off")),
-				(eDVBFrontendParametersCable.Inversion_On, _("on")),
+				(eDVBFrontendParametersCable.Inversion_Off, _("Off")),
+				(eDVBFrontendParametersCable.Inversion_On, _("On")),
 				(eDVBFrontendParametersCable.Inversion_Unknown, _("Auto"))])
 			self.scan_cab.modulation = ConfigSelection(default = defaultCab["modulation"], choices = [
 				(eDVBFrontendParametersCable.Modulation_QAM16, "16-QAM"),
@@ -622,8 +622,8 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 			# terrestial
 			self.scan_ter.frequency = ConfigInteger(default = 466000, limits = (50000, 999000))
 			self.scan_ter.inversion = ConfigSelection(default = defaultTer["inversion"], choices = [
-				(eDVBFrontendParametersTerrestrial.Inversion_Off, _("off")),
-				(eDVBFrontendParametersTerrestrial.Inversion_On, _("on")),
+				(eDVBFrontendParametersTerrestrial.Inversion_Off, _("Off")),
+				(eDVBFrontendParametersTerrestrial.Inversion_On, _("On")),
 				(eDVBFrontendParametersTerrestrial.Inversion_Unknown, _("Auto"))])
 			# WORKAROUND: we can't use BW-auto
 			self.scan_ter.bandwidth = ConfigSelection(default = defaultTer["bandwidth"], choices = [

@@ -49,7 +49,6 @@ class PluginComponent:
 			directory_category = directory + c
 			if not os_path.isdir(directory_category):
 				continue
-			open(directory_category + "/__init__.py", "a").close()
 			for pluginname in os_listdir(directory_category):
 				path = directory_category + "/" + pluginname
 				if os_path.isdir(path):
