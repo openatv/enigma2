@@ -489,7 +489,6 @@ class SoftwareManagerInfo(Screen):
 			self.list = []
 			backupfiles = config.plugins.configurationbackup.backupdirs.value
 			for entry in backupfiles:
-				print entry
 				self.list.append((entry,))
 			self['list'].setList(self.list)
 			
@@ -569,6 +568,7 @@ class PluginManager(Screen, DreamInfoHandler):
 		self.currentSelectedIndex = None
 		self.currentSelectedPackage = None
 		self.saved_currentSelectedPackage = None
+		self.restartRequired = False
 		
 		self.onShown.append(self.setWindowTitle)
 		self.onLayoutFinish.append(self.getUpdateInfos)
@@ -892,6 +892,8 @@ class PluginManager(Screen, DreamInfoHandler):
 					self.package = iSoftwareTools.packageDetails[0]
 					if self.package[0].has_key("attributes"):
 						self.attributes = self.package[0]["attributes"]
+						if self.attributes.has_key("needsRestart"):
+							self.restartRequired = True
 					if self.attributes.has_key("package"):
 						self.packagefiles = self.attributes["package"]
 					if plugin[1] == 'installed':
@@ -924,11 +926,11 @@ class PluginManager(Screen, DreamInfoHandler):
 
 	def runExecuteFinished(self):
 		self.reloadPluginlist()
-		restartRequired = plugins.restartRequired
-		if restartRequired:
+		if plugins.restartRequired or self.restartRequired:
 			self.session.openWithCallback(self.ExecuteReboot, MessageBox, _("Install or remove finished.") +" "+_("Do you want to reboot your Dreambox?"), MessageBox.TYPE_YESNO)
 		else:
 			self.selectedFiles = []
+			self.restartRequired = False
 			self.detailsClosed(True)
 
 	def ExecuteReboot(self, result):
@@ -936,6 +938,7 @@ class PluginManager(Screen, DreamInfoHandler):
 			quitMainloop(3)
 		else:
 			self.selectedFiles = []
+			self.restartRequired = False
 			self.detailsClosed(True)
 
 	def reloadPluginlist(self):
@@ -1174,7 +1177,7 @@ class PluginDetails(Screen, DreamInfoHandler):
 		self.package = self.packageDetails[0]
 		if self.package[0].has_key("attributes"):
 			self.attributes = self.package[0]["attributes"]
-
+		self.restartRequired = False
 		self.cmdList = []
 		self.oktext = _("\nAfter pressing OK, please wait!")
 		self.picload = ePicLoad()
@@ -1272,6 +1275,8 @@ class PluginDetails(Screen, DreamInfoHandler):
 	def go(self):
 		if self.attributes.has_key("package"):
 			self.packagefiles = self.attributes["package"]
+		if self.attributes.has_key("needsRestart"):
+			self.restartRequired = True
 		self.cmdList = []
 		if self.pluginstate in ('installed', 'remove'):
 			if self.packagefiles:
@@ -1293,8 +1298,7 @@ class PluginDetails(Screen, DreamInfoHandler):
 
 	def runUpgradeFinished(self):
 		self.reloadPluginlist()
-		restartRequired = plugins.restartRequired
-		if restartRequired:
+		if plugins.restartRequired or self.restartRequired:
 			self.session.openWithCallback(self.UpgradeReboot, MessageBox, _("Installation finished.") +" "+_("Do you want to reboot your Dreambox?"), MessageBox.TYPE_YESNO)
 		else:
 			self.close(True)

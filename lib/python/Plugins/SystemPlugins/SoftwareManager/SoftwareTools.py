@@ -244,7 +244,7 @@ class SoftwareTools(DreamInfoHandler):
 			if self.NetworkConnectionAvailable == True:
 				if not self.UpdateConsole:
 					self.UpdateConsole = Console()
-				cmd = "opkg install enigma2-meta enigma2-plugins-meta enigma2-skins-meta"
+				cmd = "opkg install enigma2-meta enigma2-plugins-meta enigma2-skins-meta enigma2-drivers-meta"
 				self.UpdateConsole.ePopen(cmd, self.InstallMetaPackageCB, callback)
 			else:
 				self.InstallMetaPackageCB(True)
