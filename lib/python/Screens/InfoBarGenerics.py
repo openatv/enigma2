@@ -45,7 +45,7 @@ from RecordTimer import RecordTimerEntry, RecordTimer
 # hack alert!
 from Menu import MainMenu, mdom
 
-from Plugins.VIX.VIXMainMenu.EPG import BouquetSelector, VIXEPG
+from Plugins.VIX.VIXMainMenu.EPG import VIXBouquetSelector, VIXEPG
 
 SYSTEMS = ["irdeto", "seca", "nagra", "via", "conax", "betacrypt", "crypto", "dreamcrypt", "nds"]
 
@@ -1467,6 +1467,13 @@ class InfoBarExtensions:
 		self["InstantExtensionsActions"] = HelpableActionMap(self, "InfobarExtensions",
 			{
 				"extensions": (self.showExtensionSelection, _("view extensions...")),
+				"showPluginBrowser": self.showPluginBrowser,
+				"openAutoTimerList": self.openAutoTimerList,
+				"openEPGSearch": self.openEPGSearch,
+				"openIMDB": self.openIMDB,
+				"showVIXEPG": self.showVIXEPG,
+				"openSingleServiceEPG": self.openSingleServiceEPG,
+				"showEventInfo": self.openEventView,
 			}, 1) # lower priority
 
 	def addExtension(self, extension, key = None, type = EXTENSION_SINGLE):
@@ -1523,6 +1530,47 @@ class InfoBarExtensions:
 	def extensionCallback(self, answer):
 		if answer is not None:
 			answer[1][1]()
+
+	def showPluginBrowser(self):
+		from Screens.PluginBrowser import PluginBrowser
+		self.session.open(PluginBrowser)
+
+	def openAutoTimerList(self):
+		if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/AutoTimer/plugin.pyo"):
+			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU ,PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
+				if plugin.name == _("AutoTimer"):
+					self.runPlugin(plugin)
+					break
+		else:
+			self.session.open(MessageBox, _("The AutoTimer plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+
+	def openEPGSearch(self):
+		if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/EPGSearch/plugin.pyo"):
+			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU ,PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
+				if plugin.name == _("EPGSearch"):
+					self.runPlugin(plugin)
+					break
+		else:
+			self.session.open(MessageBox, _("The EPGSearch plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+
+	def openIMDB(self):
+		if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/IMDb/plugin.pyo"):
+			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU ,PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
+				if plugin.name == _("IMDb Details"):
+					self.runPlugin(plugin)
+					break
+		else:
+			self.session.open(MessageBox, _("The IMDb plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+
+	def showMediaPlayer(self):
+		if isinstance(self, InfoBarExtensions):
+			if isinstance(self, InfoBar):
+				try: # falls es nicht installiert ist
+					from Plugins.Extensions.MediaPlayer.plugin import MediaPlayer
+					self.session.open(MediaPlayer)
+					no_plugin = False
+				except Exception, e:
+					self.session.open(MessageBox, _("The MediaPlayer plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
 from Tools.BoundFunction import boundFunction
 
@@ -1870,6 +1918,7 @@ class InfoBarSubserviceSelection:
 		self["SubserviceSelectionAction"] = HelpableActionMap(self, "InfobarSubserviceSelectionActions",
 			{
 				"subserviceSelection": (self.subserviceSelection, _("Subservice list...")),
+				"openTimerList": self.openTimerList,
 			})
 
 		self["SubserviceQuickzapAction"] = HelpableActionMap(self, "InfobarSubserviceQuickzapActions",
@@ -1994,6 +2043,10 @@ class InfoBarSubserviceSelection:
 			self.bsel.close(True)
 		else:
 			del self.selectedSubservice
+
+	def openTimerList(self):
+		from Screens.TimerEdit import TimerEditList
+		self.session.open(TimerEditList)
 
 class InfoBarAdditionalInfo:
 	def __init__(self):
