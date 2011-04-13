@@ -296,18 +296,16 @@ class NameserverSetup(Screen, ConfigListScreen, HelpableScreen):
 
 
 class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
-	def __init__(self, session, networkinfo, essid=None, aplist=None):
+	def __init__(self, session, networkinfo, essid=None):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
 		self.session = session
 		if isinstance(networkinfo, (list, tuple)):
 			self.iface = networkinfo[0]
 			self.essid = networkinfo[1]
-			self.aplist = networkinfo[2]
 		else:
 			self.iface = networkinfo
 			self.essid = essid
-			self.aplist = aplist
 			
 		self.extended = None
 		self.applyConfigRef = None
@@ -399,71 +397,36 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 		self.gatewayEntry = None
 		self.hiddenSSID = None
 		self.wlanSSID = None
-		self.encryptionEnabled = None
-		self.encryptionKey = None
+		self.encryption = None
 		self.encryptionType = None
-		self.nwlist = None
+		self.encryptionKey = None
 		self.encryptionlist = None
 		self.weplist = None
 		self.wsconfig = None
 		self.default = None
-		self.hiddenNW = None
 
 		if iNetwork.isWirelessInterface(self.iface):
-			from Plugins.SystemPlugins.WirelessLan.Wlan import wpaSupplicant, iWlan
-			iWlan.setInterface(self.iface)
-			self.w = iWlan.getInterface()
+			from Plugins.SystemPlugins.WirelessLan.Wlan import wpaSupplicant
 			self.ws = wpaSupplicant()
 			self.encryptionlist = []
+			self.encryptionlist.append(("Unencrypted", _("Unencrypted")))
 			self.encryptionlist.append(("WEP", _("WEP")))
 			self.encryptionlist.append(("WPA", _("WPA")))
-			self.encryptionlist.append(("WPA2", _("WPA2")))
 			self.encryptionlist.append(("WPA/WPA2", _("WPA or WPA2")))
+			self.encryptionlist.append(("WPA2", _("WPA2")))
 			self.weplist = []
 			self.weplist.append("ASCII")
 			self.weplist.append("HEX")
-			if self.aplist is not None:
-				self.nwlist = self.aplist
-				self.nwlist.sort(key = lambda x: x[0])
-			else:
-				self.nwlist = []
-				self.aps = None
-				try:
-					self.aps = iWlan.getNetworkList()
-					if self.aps is not None:
-						for ap in self.aps:
-							a = self.aps[ap]
-							if a['active']:
-								if a['essid'] != '':
-									self.nwlist.append((a['essid'],a['essid']))
-					self.nwlist.sort(key = lambda x: x[0])
-					iWlan.stopGetNetworkList()
-				except:
-					self.nwlist.append(("No Networks found",_("No Networks found")))
 
 			self.wsconfig = self.ws.loadConfig(self.iface)
-			if self.essid is not None: # ssid from wlan scan
-				self.default = self.essid
-				self.hiddenNW = self.wsconfig['hiddenessid']
-				if self.essid == '<hidden>':
-					self.hiddenNW = True
-					self.default = self.default = self.wsconfig['ssid']
-			else:
-				self.hiddenNW = self.wsconfig['hiddenessid']
-				self.default = self.wsconfig['ssid']
+			if self.essid is None:
+				self.essid = self.wsconfig['ssid']
 
-			if (self.default not in self.nwlist and self.default is not '<hidden>'):
-				self.nwlist.append((self.default,self.default))
-			
-			config.plugins.wlan.hiddenessid = NoSave(ConfigYesNo(default = self.hiddenNW))
-			if config.plugins.wlan.hiddenessid.value is True:
-				config.plugins.wlan.essid = NoSave(ConfigText(default = self.default, visible_width = 50, fixed_size = False))
-			else:
-				config.plugins.wlan.essid = NoSave(ConfigSelection(self.nwlist, default = self.default ))
-			config.plugins.wlan.encryption.enabled = NoSave(ConfigYesNo(default = self.wsconfig['encryption'] ))
-			config.plugins.wlan.encryption.type = NoSave(ConfigSelection(self.encryptionlist, default = self.wsconfig['encryption_type'] ))
-			config.plugins.wlan.encryption.wepkeytype = NoSave(ConfigSelection(self.weplist, default = self.wsconfig['encryption_wepkeytype'] ))
-			config.plugins.wlan.encryption.psk = NoSave(ConfigPassword(default = self.wsconfig['key'], visible_width = 50, fixed_size = False))
+			config.plugins.wlan.hiddenessid = NoSave(ConfigYesNo(default = self.wsconfig['hiddenessid']))
+			config.plugins.wlan.essid = NoSave(ConfigText(default = self.essid, visible_width = 50, fixed_size = False))
+			config.plugins.wlan.encryption = NoSave(ConfigSelection(self.encryptionlist, default = self.wsconfig['encryption'] ))
+			config.plugins.wlan.wepkeytype = NoSave(ConfigSelection(self.weplist, default = self.wsconfig['wepkeytype'] ))
+			config.plugins.wlan.psk = NoSave(ConfigPassword(default = self.wsconfig['key'], visible_width = 50, fixed_size = False))
 
 		self.activateInterfaceEntry = NoSave(ConfigYesNo(default=iNetwork.getAdapterAttribute(self.iface, "up") or False))
 		self.dhcpConfigEntry = NoSave(ConfigYesNo(default=iNetwork.getAdapterAttribute(self.iface, "dhcp") or False))
@@ -505,30 +468,20 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 						if p.__call__.has_key("configStrings"):
 							self.configStrings = p.__call__["configStrings"]
 
-						self.hiddenSSID = getConfigListEntry(_("enter hidden network SSID"), config.plugins.wlan.hiddenessid)
+						self.hiddenSSID = getConfigListEntry(_("Hidden network"), config.plugins.wlan.hiddenessid)
 						self.list.append(self.hiddenSSID)
-
-						if config.plugins.wlan.hiddenessid.value is True:
-							config.plugins.wlan.essid = NoSave(ConfigText(default = self.default, visible_width = 50, fixed_size = False))
-							self.wlanSSID = getConfigListEntry(_("Hidden network SSID"), config.plugins.wlan.essid)
-						else:
-							config.plugins.wlan.essid = NoSave(ConfigSelection(self.nwlist, default = self.default ))
-							self.wlanSSID = getConfigListEntry(_("Network SSID"), config.plugins.wlan.essid)
+						self.wlanSSID = getConfigListEntry(_("Networkname (SSID)"), config.plugins.wlan.essid)
 						self.list.append(self.wlanSSID)
-						self.encryptionEnabled = getConfigListEntry(_("Encryption"), config.plugins.wlan.encryption.enabled)
-						self.list.append(self.encryptionEnabled)
-						
-						if config.plugins.wlan.encryption.enabled.value:
-							self.encryptionType = getConfigListEntry(_("Encryption Type"), config.plugins.wlan.encryption.type)
-							self.list.append(self.encryptionType)
-							if config.plugins.wlan.encryption.type.value == 'WEP':
-								self.list.append(getConfigListEntry(_("Encryption Keytype"), config.plugins.wlan.encryption.wepkeytype))
-								self.encryptionKey = getConfigListEntry(_("Encryption Key"), config.plugins.wlan.encryption.psk)
-								self.list.append(self.encryptionKey)
-							else:
-								self.encryptionKey = getConfigListEntry(_("Encryption Key"), config.plugins.wlan.encryption.psk)
-								self.list.append(self.encryptionKey)
+						self.encryption = getConfigListEntry(_("Encryption"), config.plugins.wlan.encryption)
+						self.list.append(self.encryption)						
 
+						self.encryptionType = getConfigListEntry(_("Encryption Keytype"), config.plugins.wlan.wepkeytype)
+						self.encryptionKey = getConfigListEntry(_("Encryption Key"), config.plugins.wlan.psk)
+						
+						if config.plugins.wlan.encryption.value != "Unencrypted":
+							if config.plugins.wlan.encryption.value == 'WEP':
+								self.list.append(self.encryptionType)
+							self.list.append(self.encryptionKey)
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
 
@@ -543,11 +496,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 		if self["config"].getCurrent() == self.gatewayEntry:
 			self.createSetup()
 		if iNetwork.isWirelessInterface(self.iface):
-			if self["config"].getCurrent() == self.hiddenSSID:
-				self.createSetup()
-			if self["config"].getCurrent() == self.encryptionEnabled:
-				self.createSetup()
-			if self["config"].getCurrent() == self.encryptionType:
+			if self["config"].getCurrent() == self.encryption:
 				self.createSetup()
 
 	def keyLeft(self):
@@ -607,16 +556,20 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 				iNetwork.setAdapterAttribute(self.iface, "gateway", self.gatewayConfigEntry.value)
 			else:
 				iNetwork.removeAdapterAttribute(self.iface, "gateway")
-			if self.extended is not None and self.configStrings is not None:
+
+			if (self.extended is not None and self.configStrings is not None):
 				iNetwork.setAdapterAttribute(self.iface, "configStrings", self.configStrings(self.iface))
 				self.ws.writeConfig(self.iface)
-
+				
 			if self.activateInterfaceEntry.value is False:
 				iNetwork.deactivateInterface(self.iface,self.deactivateInterfaceCB)
 				iNetwork.writeNetworkConfig()
 				self.applyConfigRef = self.session.openWithCallback(self.applyConfigfinishedCB, MessageBox, _("Please wait for activation of your network configuration..."), type = MessageBox.TYPE_INFO, enable_input = False)
 			else:
-				iNetwork.deactivateInterface(self.iface,self.activateInterfaceCB)
+				if self.oldInterfaceState is False:
+					iNetwork.activateInterface(self.iface,self.deactivateInterfaceCB)
+				else:
+					iNetwork.deactivateInterface(self.iface,self.activateInterfaceCB)
 				iNetwork.writeNetworkConfig()
 				self.applyConfigRef = self.session.openWithCallback(self.applyConfigfinishedCB, MessageBox, _("Please wait for activation of your network configuration..."), type = MessageBox.TYPE_INFO, enable_input = False)
 		else:
@@ -687,10 +640,10 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 		
 	def hideInputHelp(self):
 		current = self["config"].getCurrent()
-		if current == self.wlanSSID and config.plugins.wlan.hiddenessid.value:
+		if current == self.wlanSSID:
 			if current[1].help_window.instance is not None:
 				current[1].help_window.instance.hide()
-		elif current == self.encryptionKey and config.plugins.wlan.encryption.enabled.value:
+		elif current == self.encryptionKey and config.plugins.wlan.encryption.value is not "Unencrypted":
 			if current[1].help_window.instance is not None:
 				current[1].help_window.instance.hide()
 
@@ -764,7 +717,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 				ifobj = Wireless(iface) # a Wireless NIC Object
 				wlanresponse = ifobj.getAPaddr()
 			except IOError, (error_no, error_str):
-				if error_no in (errno.EOPNOTSUPP, errno.EINVAL, errno.ENODEV, errno.EPERM):
+				if error_no in (errno.EOPNOTSUPP, errno.ENODEV, errno.EPERM):
 					return False
 				else:
 					print "error: ",error_no,error_str
@@ -939,7 +892,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 
 	def WlanScanClosed(self,*ret):
 		if ret[0] is not None:
-			self.session.openWithCallback(self.AdapterSetupClosed, AdapterSetup, self.iface,ret[0],ret[1])
+			self.session.openWithCallback(self.AdapterSetupClosed, AdapterSetup, self.iface,ret[0])
 		else:
 			from Plugins.SystemPlugins.WirelessLan.Wlan import iStatus
 			iStatus.stopWlanConsole()
@@ -998,7 +951,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		if data is not None:
 			if data is True:
 				if status is not None:
-					if status[self.iface]["acesspoint"] == "No Connection" or status[self.iface]["acesspoint"] == "Not-Associated" or status[self.iface]["acesspoint"] == False:
+					if status[self.iface]["essid"] == "off" or status[self.iface]["accesspoint"] == "Not-Associated" or status[self.iface]["accesspoint"] == False:
 						self.LinkState = False
 						self["statuspic"].setPixmapNum(1)
 						self["statuspic"].show()
@@ -1420,7 +1373,7 @@ class NetworkAdapterTest(Screen):
 		if data is not None:
 			if data is True:
 				if status is not None:
-					if status[self.iface]["acesspoint"] == "No Connection" or status[self.iface]["acesspoint"] == "Not-Associated" or status[self.iface]["acesspoint"] == False:
+					if status[self.iface]["essid"] == "off" or status[self.iface]["accesspoint"] == "Not-Associated" or status[self.iface]["accesspoint"] == False:
 						self["Network"].setForegroundColorNum(1)
 						self["Network"].setText(_("disconnected"))
 						self["NetworkInfo_Check"].setPixmapNum(1)

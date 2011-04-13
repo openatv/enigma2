@@ -541,7 +541,7 @@ class Network:
 		def buildCommands(iface):
 			commands.append("ifdown " + iface)
 			commands.append("ip addr flush dev " + iface)
-			# HACK: wpa_supplicant sometimes doesn't quit properly on SIGTERM
+			#wpa_supplicant sometimes doesn't quit properly on SIGTERM
 			if os_path.exists('/var/run/wpa_supplicant/'+ iface):
 				commands.append("wpa_cli -i" + iface + " terminate")
 			
@@ -558,16 +558,35 @@ class Network:
 					callback(True)
 				return
 			buildCommands(ifaces)
-		self.deactivateInterfaceConsole.eBatch(commands, self.deactivateInterfaceFinished, callback, debug=True)
+		self.deactivateInterfaceConsole.eBatch(commands, self.deactivateInterfaceFinished, [ifaces,callback], debug=True)
 
 	def deactivateInterfaceFinished(self,extra_args):
-		callback = extra_args
+		(ifaces, callback) = extra_args
+		def checkCommandResult(iface):
+			if self.deactivateInterfaceConsole and self.deactivateInterfaceConsole.appResults.has_key("ifdown " + iface):
+				result = str(self.deactivateInterfaceConsole.appResults.get("ifdown " + iface)).strip("\n")
+				if result == "ifdown: interface " + iface + " not configured":
+					return False
+				else:
+					return True
+		#ifdown sometimes can't get the interface down.
+		if isinstance(ifaces, (list, tuple)):
+			for iface in ifaces:
+				if checkCommandResult(iface) is False:
+					Console().ePopen(("ifconfig " + iface + " down" ))
+		else:
+			if checkCommandResult(ifaces) is False:
+				Console().ePopen(("ifconfig " + ifaces + " down" ))
+
 		if self.deactivateInterfaceConsole:
 			if len(self.deactivateInterfaceConsole.appContainers) == 0:
 				if callback is not None:
 					callback(True)
 
 	def activateInterface(self,iface,callback = None):
+		if self.config_ready:
+			self.config_ready = False
+			self.msgPlugins()
 		if iface == 'eth0' and self.onRemoteRootFS():
 			if callback is not None:
 				callback(True)
@@ -576,7 +595,7 @@ class Network:
 			self.activateInterfaceConsole = Console()
 		commands = []
 		commands.append("ifup " + iface)
-		self.deactivateInterfaceConsole.eBatch(commands, self.activateInterfaceFinished, callback, debug=True)
+		self.activateInterfaceConsole.eBatch(commands, self.activateInterfaceFinished, callback, debug=True)
 
 	def activateInterfaceFinished(self,extra_args):
 		callback = extra_args
