@@ -13,6 +13,8 @@ from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN
 EPG_TYPE_SINGLE = 0
 EPG_TYPE_MULTI = 1
 EPG_TYPE_SIMILAR = 2
+EPG_TYPE_ENHANCED = 3
+EPG_TYPE_INFOBAR = 4
 
 class Rect:
 	def __init__(self, x, y, width, height):
@@ -47,6 +49,10 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.l.setFont(0, gFont("Regular", 22))
 		self.l.setFont(1, gFont("Regular", 16))
 		if type == EPG_TYPE_SINGLE:
+			self.l.setBuildFunc(self.buildSingleEntry)
+		elif type == EPG_TYPE_ENHANCED:
+			self.l.setBuildFunc(self.buildSingleEntry)
+		elif type == EPG_TYPE_INFOBAR:
 			self.l.setBuildFunc(self.buildSingleEntry)
 		elif type == EPG_TYPE_MULTI:
 			self.l.setBuildFunc(self.buildMultiEntry)
@@ -122,6 +128,14 @@ class EPGList(HTMLComponent, GUIComponent):
 		width = esize.width()
 		height = esize.height()
 		if self.type == EPG_TYPE_SINGLE:
+			self.weekday_rect = Rect(0, 0, width/20*2-10, height)
+			self.datetime_rect = Rect(width/20*2, 0, width/20*5-15, height)
+			self.descr_rect = Rect(width/20*7, 0, width/20*13, height)
+		elif self.type == EPG_TYPE_ENHANCED:
+			self.weekday_rect = Rect(0, 0, width/20*2-10, height)
+			self.datetime_rect = Rect(width/20*2, 0, width/20*5-15, height)
+			self.descr_rect = Rect(width/20*7, 0, width/20*13, height)
+		elif self.type == EPG_TYPE_INFOBAR:
 			self.weekday_rect = Rect(0, 0, width/20*2-10, height)
 			self.datetime_rect = Rect(width/20*2, 0, width/20*5-15, height)
 			self.descr_rect = Rect(width/20*7, 0, width/20*13, height)
