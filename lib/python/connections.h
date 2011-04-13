@@ -80,4 +80,23 @@ public:
 	}
 };
 
+template <class R, class V0, class V1, class V2>
+class PSignal3: public PSignal, public Signal3<R,V0,V1,V2>
+{
+public:
+	R operator()(V0 a0, V1 a1, V2 a2)
+	{
+		if (m_list)
+		{
+			PyObject *pArgs = PyTuple_New(3);
+			PyTuple_SET_ITEM(pArgs, 0, PyFrom(a0));
+			PyTuple_SET_ITEM(pArgs, 1, PyFrom(a1));
+			PyTuple_SET_ITEM(pArgs, 2, PyFrom(a2));
+			callPython(pArgs);
+			Org_Py_DECREF(pArgs);
+		}
+		return Signal3<R,V0,V1,V2>::operator()(a0, a1, a2);
+	}
+};
+
 #endif

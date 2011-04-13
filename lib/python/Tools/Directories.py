@@ -118,7 +118,11 @@ def resolveFilename(scope, base = "", path_prefix = None):
 
 	if flags == PATH_CREATE:
 		if not pathExists(path):
-			mkdir(path)
+			try:
+				mkdir(path)
+			except OSError:
+				print "resolveFilename: Couldn't create %s" % path
+				return None
 
 	fallbackPath = fallbackPaths.get(scope)
 
@@ -224,12 +228,13 @@ def InitFallbackFiles():
 # returns a list of tuples containing pathname and filename matching the given pattern
 # example-pattern: match all txt-files: ".*\.txt$"
 def crawlDirectory(directory, pattern):
-	expression = compile(pattern)
 	list = []
-	for root, dirs, files in walk(directory):
-		for file in files:
-			if expression.match(file) is not None:
-				list.append((root, file))
+	if directory:
+		expression = compile(pattern)
+		for root, dirs, files in walk(directory):
+			for file in files:
+				if expression.match(file) is not None:
+					list.append((root, file))
 	return list
 
 def copyfile(src, dst):

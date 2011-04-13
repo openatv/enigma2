@@ -325,19 +325,11 @@ void eDVBDB::loadServicelist(const char *file)
 {
 	eDebug("---- opening lame channel db");
 	FILE *f=fopen(file, "rt");
-	if (!f && strcmp(file, eEnv::resolve("${sysconfdir}/enigma2/lamedb").c_str()) == 0)
-	{
-		struct stat s;
-		if ( !stat("lamedb", &s) )
-		{
-			if ( !stat(eEnv::resolve("${sysconfdir}/enigma2").c_str(), &s) )
-			{
-				rename("lamedb", eEnv::resolve("${sysconfdir}/enigma2/lamedb").c_str());
-				reloadServicelist();
-			}
-		}
+	if (!f) {
+		eDebug("can't open %s: %m", file);
 		return;
 	}
+
 	char line[256];
 	int version=3;
 	if ((!fgets(line, 256, f)) || sscanf(line, "eDVB services /%d/", &version) != 1)
@@ -623,24 +615,16 @@ void eDVBDB::loadBouquet(const char *path)
 	p+=path;
 	eDebug("loading bouquet... %s", p.c_str());
 	FILE *fp=fopen(p.c_str(), "rt");
-	int entries=0;
 	if (!fp)
 	{
-		struct stat s;
-		if ( !stat(path, &s) )
-		{
-			rename(path, p.c_str() );
-			loadBouquet(path);
-			return;
-		}
-		eDebug("failed to open.");
-		if ( strstr(path, "bouquets.tv") )
+		eDebug("can't open %s: %m", p.c_str());
+		if (!strcmp(path, "bouquets.tv"))
 		{
 			eDebug("recreate bouquets.tv");
 			bouquet.m_bouquet_name="Bouquets (TV)";
 			bouquet.flushChanges();
 		}
-		else if ( strstr(path, "bouquets.radio") )
+		else if (!strcmp(path, "bouquets.radio"))
 		{
 			eDebug("recreate bouquets.radio");
 			bouquet.m_bouquet_name="Bouquets (Radio)";
@@ -648,6 +632,7 @@ void eDVBDB::loadBouquet(const char *path)
 		}
 		return;
 	}
+	int entries=0;
 	char line[256];
 	bool read_descr=false;
 	eServiceReference *e = NULL;
