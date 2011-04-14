@@ -45,11 +45,13 @@ class Network:
 					break
 		return self.remoteRootFS
 
+	def isBlacklisted(self, iface):
+		return iface in ('lo', 'wifi0', 'wmaster0')
+
 	def getInterfaces(self, callback = None):
 		self.configuredInterfaces = []
-		for device in listdir('/sys/class/net'):
-			if not device in ('lo','wifi0', 'wmaster0'):
-				self.getAddrInet(device, callback)
+		for device in self.getInstalledAdapters():
+			self.getAddrInet(device, callback)
 
 	# helper function
 	def regExpMatch(self, pattern, string):
@@ -58,7 +60,7 @@ class Network:
 		try:
 			return pattern.search(string).group()
 		except AttributeError:
-			None
+			return None
 
 	# helper function to convert ips from a sring to a list of ints
 	def convertIP(self, ip):
@@ -128,7 +130,7 @@ class Network:
 			print line[0:7]
 			if line[0:7] == "0.0.0.0":
 				gateway = self.regExpMatch(ipPattern, line[16:31])
-				if gateway is not None:
+				if gateway:
 					data['gateway'] = self.convertIP(gateway)
 					
 		self.ifaces[iface] = data
@@ -248,13 +250,13 @@ class Network:
 		for line in resolv:
 			if self.regExpMatch(nameserverPattern, line) is not None:
 				ip = self.regExpMatch(ipPattern, line)
-				if ip is not None:
+				if ip:
 					self.nameservers.append(self.convertIP(ip))
 
 		print "nameservers:", self.nameservers
 
 	def getInstalledAdapters(self):
-		return [x for x in listdir('/sys/class/net') if not x in ('lo','wifi0', 'wmaster0')]
+		return [x for x in listdir('/sys/class/net') if not self.isBlacklisted(x)]
 
 	def getConfiguredAdapters(self):
 		return self.configuredNetworkAdapters
@@ -265,32 +267,31 @@ class Network:
 	def getFriendlyAdapterName(self, x):
 		if x in self.friendlyNames.keys():
 			return self.friendlyNames.get(x, x)
-		else:
-			self.friendlyNames[x] = self.getFriendlyAdapterNaming(x)
-			return self.friendlyNames.get(x, x) # when we have no friendly name, use adapter name
+		self.friendlyNames[x] = self.getFriendlyAdapterNaming(x)
+		return self.friendlyNames.get(x, x) # when we have no friendly name, use adapter name
 
 	def getFriendlyAdapterNaming(self, iface):
-		if iface.startswith('eth'):
-			if iface not in self.lan_interfaces and len(self.lan_interfaces) == 0:
-				self.lan_interfaces.append(iface)
-				return _("LAN connection")
-			elif iface not in self.lan_interfaces and len(self.lan_interfaces) >= 1:
-				self.lan_interfaces.append(iface)
-				return _("LAN connection") + " " + str(len(self.lan_interfaces))
+		name = None
+		if self.isWirelessInterface(iface):
+			if iface not in self.wlan_interfaces:
+				self.wlan_interfaces.append(iface)
+				name = _("WLAN connection")
+				if len(self.wlan_interfaces):
+					name += " " + str(len(self.wlan_interfaces))
 		else:
-			if iface not in self.wlan_interfaces and len(self.wlan_interfaces) == 0:
-				self.wlan_interfaces.append(iface)
-				return _("WLAN connection")
-			elif iface not in self.wlan_interfaces and len(self.wlan_interfaces) >= 1:
-				self.wlan_interfaces.append(iface)
-				return _("WLAN connection") + " " + str(len(self.wlan_interfaces))
-
+			if iface not in self.lan_interfaces:
+				self.lan_interfaces.append(iface)
+				name = _("LAN connection")
+				if len(self.lan_interfaces):
+					name += " " + str(len(self.lan_interfaces))
+		return name
+	
 	def getFriendlyAdapterDescription(self, iface):
 		if not self.isWirelessInterface(iface):
 			return _('Ethernet network interface')
 
 		moduledir = self.getWlanModuleDir(iface)
-		if os_path.isdir(moduledir):
+		if moduledir:
 			name = os_path.basename(os_path.realpath(moduledir))
 			if name in ('ath_pci','ath5k'):
 				name = 'Atheros'
@@ -608,31 +609,45 @@ class Network:
 		return '/sys/class/net/' + iface
 
 	def isWirelessInterface(self, iface):
+		if iface in self.wlan_interfaces:
+			return True
+
 		if os_path.isdir(self.sysfsPath(iface) + '/wireless'):
 			return True
-		else:
-			ifaces = file('/proc/net/wireless').read().strip()
-			if iface in ifaces:
-				return True
-			else:
-				return False
+
+		# r871x_usb_drv on kernel 2.6.12 is not identifiable over /sys/class/net/'ifacename'/wireless so look also inside /proc/net/wireless
+		device = re_compile('[a-z]{2,}[0-9]*:')
+		ifnames = []
+		fp = open('/proc/net/wireless', 'r')
+		for line in fp:
+			try:
+				ifnames.append(device.search(line).group()[:-1])
+			except AttributeError:
+				pass
+		if iface in ifnames:
+			return True
+
+		return False
 
 	def getWlanModuleDir(self, iface = None):
 		devicedir = self.sysfsPath(iface) + '/device'
 		moduledir = devicedir + '/driver/module'
-		if not os_path.isdir(moduledir):
-			tmpfiles = listdir(devicedir)
-			moduledir_found = False
-			for x in tmpfiles:
-				if x.startswith("1-"):
-					moduledir_found = True
-					moduledir = devicedir + '/' + x + '/driver/module'
-			if not moduledir_found:
-				moduledir_found = True
-				if os_path.isdir(devicedir + '/driver'):
-					moduledir = devicedir + '/driver'
-		
-		return moduledir
+		if os_path.isdir(moduledir):
+			return moduledir
+
+		# identification is not possible over default moduledir
+		for x in listdir(devicedir):
+			# rt3070 on kernel 2.6.18 registers wireless devices as usb_device (e.g. 1-1.3:1.0) and identification is only possible over /sys/class/net/'ifacename'/device/1-xxx
+			if x.startswith("1-"):
+				moduledir = devicedir + '/' + x + '/driver/module'
+				if os_path.isdir(moduledir):
+					return moduledir
+		# rt73, zd1211b, r871x_usb_drv on kernel 2.6.12 can be identified over /sys/class/net/'ifacename'/device/driver, so look also here
+		moduledir = devicedir + '/driver'
+		if os_path.isdir(moduledir):
+			return moduledir
+
+		return None
 
 	def detectWlanModule(self, iface = None):
 		if not self.isWirelessInterface(iface):
@@ -643,7 +658,7 @@ class Network:
 			return 'nl80211'
 
 		moduledir = self.getWlanModuleDir(iface)
-		if os_path.isdir(moduledir):
+		if moduledir:
 			module = os_path.basename(os_path.realpath(moduledir))
 			if module in ('ath_pci','ath5k'):
 				return 'madwifi'
