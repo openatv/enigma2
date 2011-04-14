@@ -2,7 +2,7 @@
 #  Coded by Vali, updated by Mirakels for openpli
 #
 
-from enigma import iServiceInformation
+from enigma import iServiceInformation, eServiceCenter, iPlayableService, iPlayableServicePtr
 from Components.Converter.Converter import Converter
 from Components.Element import cached
 from Components.config import config
@@ -48,7 +48,13 @@ class pliExpertInfo(Poll, Converter, object):
 	@cached
 	def getText(self):
 		service = self.source.service
-		info = service and service.info()
+		try:
+			info = service and service.info()
+		except:
+			try:
+				info = eServiceCenter.getInstance().info(service)
+			except:
+				pass
 		if not info:
 			return ""	
 
@@ -65,13 +71,18 @@ class pliExpertInfo(Poll, Converter, object):
 			return ""	# unsupported orientation
 		
 		if (self.type == self.FREQUENCY_INFO):
-			
-			feinfo = (service and service.frontendInfo())
+			try:
+				feinfo = (service and service.frontendInfo())
+				prvd = info.getInfoString(iServiceInformation.sProvider)
+				Ret_Text = self.short(prvd)
+				frontendDataOrg = (feinfo and feinfo.getAll(False))
+			except:
+				try:
+					frontendDataOrg = info.getInfoObject(service, iServiceInformation.sTransponderData)
+					prvd = info.getInfoString(service, iServiceInformation.sProvider)
+				except:
+					pass
 
-			prvd = info.getInfoString(iServiceInformation.sProvider)
-			Ret_Text = self.short(prvd)
-
-			frontendDataOrg = (feinfo and feinfo.getAll(False))
 			if (frontendDataOrg is not None):
 				frontendData = ConvertToHumanReadable(frontendDataOrg)
 				if ((frontendDataOrg.get("tuner_type") == "DVB-S") or (frontendDataOrg.get("tuner_type") == "DVB-C")):
