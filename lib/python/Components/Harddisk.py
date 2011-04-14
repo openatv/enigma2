@@ -440,6 +440,8 @@ class Partition:
 		self.force_mounted = force_mounted
 		self.is_hotplug = force_mounted # so far; this might change.
 		self.device = device
+	def __str__(self):
+		return "Partition(mountpoint=%s,description=%s,device=%s)" % (self.mountpoint,self.description,self.device)
 
 	def stat(self):
 		return statvfs(self.mountpoint)
@@ -583,6 +585,13 @@ class HarddiskManager:
 	def getAutofsMountpoint(self, device):
 		return "/autofs/%s/" % (device)
 
+	def getMountpoint(self, device):
+		dev = "/dev/%s" % device
+		for item in getProcMounts():
+			if item[0] == dev:
+				return item[1] + '/'
+		return self.getAutofsMountpoint(device)
+
 	def addHotplugPartition(self, device, physdev = None):
 		# device is the device name, without /dev
 		# physdev is the physical device path, which we (might) use to determine the userfriendly name
@@ -596,9 +605,8 @@ class HarddiskManager:
 		error, blacklisted, removable, is_cdrom, partitions, medium_found = self.getBlockDevInfo(device)
 		if not blacklisted and not is_cdrom and medium_found:
 			description = self.getUserfriendlyDeviceName(device, physdev)
-			p = Partition(mountpoint = self.getAutofsMountpoint(device), description = description, force_mounted = True, device = device)
-			if pathExists(self.getAutofsMountpoint(device)):
-				self.partitions.append(p)
+			p = Partition(mountpoint = self.getMountpoint(device), description = description, force_mounted = True, device = device)
+			self.partitions.append(p)
 			self.on_partition_list_change("add", p)
 			# see if this is a harddrive
 			l = len(device)
@@ -609,9 +617,8 @@ class HarddiskManager:
 		return error, blacklisted, removable, is_cdrom, partitions, medium_found
 
 	def removeHotplugPartition(self, device):
-		mountpoint = self.getAutofsMountpoint(device)
 		for x in self.partitions[:]:
-			if x.mountpoint == mountpoint:
+			if x.device == device:
 				self.partitions.remove(x)
 				self.on_partition_list_change("remove", x)
 		l = len(device)

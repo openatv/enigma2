@@ -211,6 +211,15 @@ class PluginDownloadBrowser(Screen):
 	def installDestinationCallback(self, result):
 		if result is not None:
 			self.session.openWithCallback(self.installFinished, Console, cmdlist = [self.ipkg_install + " enigma2-plugin-" + self["list"].l.getCurrentSelection()[0].name + ' ' + result[1]], closeOnSuccess = True)
+			try:
+				self.postInstallCall()
+			except Exception, ex:
+				print "[PluginBrowser] postInstallCall failed:", ex
+		try:
+			del self.postInstallCall
+		except:
+			pass
+				
 
 	def runInstall(self, val):
 		if val:
@@ -242,6 +251,8 @@ class PluginDownloadBrowser(Screen):
 					if len(list):
 						self.session.openWithCallback(self.installDestinationCallback, ChoiceBox, title=_("Install picons on"), list = list)
 					return
+				from Renderer import Picon
+				self.postInstallCall = Picon.initPiconPaths
 				self.session.openWithCallback(self.installFinished, Console, cmdlist = [self.ipkg_install + " enigma2-plugin-" + self["list"].l.getCurrentSelection()[0].name], closeOnSuccess = True)
 			elif self.type == self.REMOVE:
 				self.session.openWithCallback(self.installFinished, Console, cmdlist = [self.ipkg_remove + " enigma2-plugin-" + self["list"].l.getCurrentSelection()[0].name], closeOnSuccess = True)
