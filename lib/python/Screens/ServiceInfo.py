@@ -114,26 +114,35 @@ class ServiceInfo(Screen):
 			else:
 				name = _("N/A")
 				refstr = _("N/A")
+
 			aspect = self.getServiceInfoValue(iServiceInformation.sAspect)
 			if aspect in ( 1, 2, 5, 6, 9, 0xA, 0xD, 0xE ):
 				aspect = "4:3"
 			else:
 				aspect = "16:9"
+
+			videocodec =  ("MPEG2", "MPEG4", "MPEG1", "MPEG4-II", "VC1", "VC1-SM", "-" )[self.info and self.info.getInfo(iServiceInformation.sVideoType)]
+
 			width = self.info and self.info.getInfo(iServiceInformation.sVideoWidth) or -1
 			height = self.info and self.info.getInfo(iServiceInformation.sVideoHeight) or -1
 			if width != -1 and height != -1:
-				Labels = ( (_("Name"), name, TYPE_TEXT),
-						(_("Provider"), self.getServiceInfoValue(iServiceInformation.sProvider), TYPE_TEXT),
-						(_("Videoformat"), aspect, TYPE_TEXT),
-						(_("Videosize"), "%dx%d" %(width, height), TYPE_TEXT),
-						(_("Namespace"), self.getServiceInfoValue(iServiceInformation.sNamespace), TYPE_VALUE_HEX, 8),
-						(_("Service Reference"), refstr, TYPE_TEXT))
+				if (height > 580):
+					resolution = "HD-"
+				else:
+					resolution = "SD-"
+				resolution += "%dx%d" % (width,height)
 			else:
-				Labels = ( (_("Name"), name, TYPE_TEXT),
-						(_("Provider"), self.getServiceInfoValue(iServiceInformation.sProvider), TYPE_TEXT),
-						(_("Videoformat"), aspect, TYPE_TEXT),
-						(_("Namespace"), self.getServiceInfoValue(iServiceInformation.sNamespace), TYPE_VALUE_HEX, 8),
-						(_("Service Reference"), refstr, TYPE_TEXT))
+				resolution = "-"
+				aspect = "-"
+
+			Labels = ( (_("Name"), name, TYPE_TEXT),
+					(_("Provider"), self.getServiceInfoValue(iServiceInformation.sProvider), TYPE_TEXT),
+					(_("Videoformat"), aspect, TYPE_TEXT),
+					(_("Videosize"), resolution, TYPE_TEXT),
+					(_("Videocodec"), videocodec, TYPE_TEXT),
+					(_("Namespace"), self.getServiceInfoValue(iServiceInformation.sNamespace), TYPE_VALUE_HEX, 8),
+					(_("Service Reference"), refstr, TYPE_TEXT))
+
 			self.fillList(Labels)
 		else:
 			if self.transponder_info:
