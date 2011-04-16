@@ -35,7 +35,7 @@ class About(Screen):
 		hddlist = harddiskmanager.HDDList()
 		hdd = hddlist and hddlist[0][1] or None
 		if hdd is not None and hdd.model() != "":
-			self["hddA"] = StaticText(_("%s\n(%s, %d MB free)") % (hdd.model(), hdd.capacity(),hdd.free()))
+			self["hddA"] = StaticText(_("%s\n(%s, %d GB %s)") % (hdd.model(), hdd.capacity(), hdd.free()/1024, _("free")))
 		else:
 			self["hddA"] = StaticText(_("none"))
 
