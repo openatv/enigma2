@@ -60,6 +60,7 @@ class pliExpertInfo(Poll, Converter, object):
 
 		Ret_Text = ""
 		Sec_Text = ""
+		Res_Text = ""
 
 		if (self.type == self.SMART_INFO_H or self.type == self.SERVICE_INFO or self.type == self.CRYPTO_INFO or self.type == self.FREQUENCY_INFO): # HORIZONTAL
 			sep = "  "
@@ -341,10 +342,11 @@ class pliExpertInfo(Poll, Converter, object):
 
 			if (feinfo is not None) and (xresol > 0):
 				if (yresol > 580):
-					Ret_Text += sep + "HD "
+					Res_Text = "HD-"
 				else:
-					Ret_Text += sep + "SD "
-				Ret_Text += str(xresol) + "x" + str(yresol)
+					Res_Text = "SD-"
+				Res_Text += ("MPEG2", "MPEG4", "MPEG1", "MPEG4-II", "VC1", "VC1-SM" )[info.getInfo(iServiceInformation.sVideoType)]
+				Res_Text += " " + str(xresol) + "x" + str(yresol)
 
 		if (self.type == self.SMART_INFO_H or self.type == self.SMART_INFO_V or self.type == self.CRYPTO_INFO):
 
@@ -389,6 +391,9 @@ class pliExpertInfo(Poll, Converter, object):
 			if (self.type != self.CRYPTO_INFO):
 				Ret_Text += "\n"
 			Ret_Text += res + "\c00?????? " + Sec_Text
+		
+		if Res_Text != "":
+			Ret_Text += sep + Res_Text
 
 		return Ret_Text
 
