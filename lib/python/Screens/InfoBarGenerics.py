@@ -45,8 +45,6 @@ from RecordTimer import RecordTimerEntry, RecordTimer
 # hack alert!
 from Menu import MainMenu, mdom
 
-from Plugins.VIX.VIXMainMenu.EPG import VIXBouquetSelector, VIXEPG
-
 SYSTEMS = ["irdeto", "seca", "nagra", "via", "conax", "betacrypt", "crypto", "dreamcrypt", "nds"]
 
 class InfoBarDish:
@@ -749,6 +747,7 @@ class InfoBarEPG:
 		self.session.open(EPGSelection, self.servicelist, self.EPGtype)
 			
 	def showVIXEPG(self):
+		from Plugins.VIX.VIXMainMenu.EPG import VIXBouquetSelector, VIXEPG
 		global Session
 		Session = self.session
 		global Servicelist
