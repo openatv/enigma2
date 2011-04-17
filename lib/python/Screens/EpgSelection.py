@@ -88,9 +88,13 @@ class EPGSelection(Screen):
 	
 	ZAP = 1
 
-	def __init__(self, session, service, zapFunc=None, eventid=None, bouquetChangeCB=None, serviceChangeCB=None, EPGtype=False):
+	def __init__(self, session, service, zapFunc=None, eventid=None, bouquetChangeCB=None, serviceChangeCB=None):
 		Screen.__init__(self, session)
-		print 'EPGtype',EPGtype
+		if zapFunc == 'infobar':
+			self.InfobarEPG = True
+			zapFunc = None
+		else:
+			self.InfobarEPG = False
 		self.bouquetChangeCB = bouquetChangeCB
 		self.serviceChangeCB = serviceChangeCB
 		self.ask_time = -1 #now
@@ -107,46 +111,28 @@ class EPGSelection(Screen):
 			self.eventid = eventid
 			self.zapFunc = None
 		elif isinstance(service, list):
-			if EPGtype == "graph":
-				self.type = EPG_TYPE_MULTI
-				self["key_yellow"] = Button(_("Prev"))
-				self["key_blue"] = Button(_("Next"))
-				self["now_button"] = Pixmap()
-				self["next_button"] = Pixmap()
-				self["more_button"] = Pixmap()
-				self["now_button_sel"] = Pixmap()
-				self["next_button_sel"] = Pixmap()
-				self["more_button_sel"] = Pixmap()
-				self["now_text"] = Label()
-				self["next_text"] = Label()
-				self["more_text"] = Label()
-				self["date"] = Label()
-				self.services = service
-				self.zapFunc = zapFunc
-			else:
-				self.skinName = "EPGSelectionMulti"
-				self.type = EPG_TYPE_MULTI
-				self["key_yellow"] = Button(_("Prev"))
-				self["key_blue"] = Button(_("Next"))
-				self["now_button"] = Pixmap()
-				self["next_button"] = Pixmap()
-				self["more_button"] = Pixmap()
-				self["now_button_sel"] = Pixmap()
-				self["next_button_sel"] = Pixmap()
-				self["more_button_sel"] = Pixmap()
-				self["now_text"] = Label()
-				self["next_text"] = Label()
-				self["more_text"] = Label()
-				self["date"] = Label()
-				self.services = service
-				self.zapFunc = zapFunc
+			self.type = EPG_TYPE_MULTI
+			self["key_yellow"] = Button(_("Prev"))
+			self["key_blue"] = Button(_("Next"))
+			self["now_button"] = Pixmap()
+			self["next_button"] = Pixmap()
+			self["more_button"] = Pixmap()
+			self["now_button_sel"] = Pixmap()
+			self["next_button_sel"] = Pixmap()
+			self["more_button_sel"] = Pixmap()
+			self["now_text"] = Label()
+			self["next_text"] = Label()
+			self["more_text"] = Label()
+			self["date"] = Label()
+			self.services = service
+			self.zapFunc = zapFunc
 
 		elif isinstance(service, eServiceReference) or isinstance(service, str):
 			self.type = EPG_TYPE_SINGLE
 			self.currentService=ServiceReference(service)
 			self.zapFunc = None
 		else:
-			if EPGtype:
+			if self.InfobarEPG:
 				self.type = EPG_TYPE_INFOBAR
 				self.skinName = "QuickEPG"
 			else:
