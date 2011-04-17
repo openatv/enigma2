@@ -1553,6 +1553,54 @@ class InfoBarExtensions:
 		else:
 			self.session.open(MessageBox, _("The EPGSearch plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
+	def openEventView(self):
+		epglist = [ ]
+		self.epglist = epglist
+		service = self.session.nav.getCurrentService()
+		ref = self.session.nav.getCurrentlyPlayingServiceReference()
+		info = service.info()
+		ptr=info.getEvent(0)
+		if ptr:
+			epglist.append(ptr)
+		ptr=info.getEvent(1)
+		if ptr:
+			epglist.append(ptr)
+		if epglist:
+			self.session.open(EventViewSimple, epglist[0], ServiceReference(ref), self.eventViewCallback)
+
+	def eventViewCallback(self, setEvent, setService, val): #used for now/next displaying
+		epglist = self.epglist
+		if len(epglist) > 1:
+			tmp = epglist[0]
+			epglist[0] = epglist[1]
+			epglist[1] = tmp
+			setEvent(epglist[0])
+
+	def openSingleServiceEPG(self):
+		self.session.open(EPGSelection, self.servicelist)
+		
+	def openInfoBarEPG(self):
+		self.EPGtype = "infobar"
+		self.session.open(EPGSelection, self.servicelist, self.EPGtype)
+			
+	def showVIXEPG(self):
+		from Plugins.VIX.VIXMainMenu.EPG import VIXBouquetSelector, VIXEPG
+		global Session
+		Session = self.session
+		global Servicelist
+		Servicelist = self.servicelist
+		global bouquets
+		bouquets = Servicelist and self.servicelist.getBouquetList()
+		global epg_bouquet
+		epg_bouquet = Servicelist and Servicelist.getRoot()
+		if epg_bouquet is not None:
+			if len(bouquets) > 1 :
+				cb = VIXEPG_CB
+			else:
+				cb = None
+			services = self.getBouquetServices(epg_bouquet)
+			Session.openWithCallback(VIXEPG_closed, VIXEPG, services, VIXEPG_zapToService, cb, ServiceReference(epg_bouquet).getServiceName())
+
 	def openIMDB(self):
 		if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/IMDb/plugin.pyo"):
 			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU ,PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
