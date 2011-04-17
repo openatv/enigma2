@@ -496,8 +496,8 @@ class InfoBarChannelSelection:
 		self.session.execDialog(self.servicelist)
 
 	def openInfoBarEPG(self):
-		self.ibEPG=True
-		self.session.open(EPGSelection, self.servicelist, None, None, None, None, self.ibEPG)
+		self.EPGtype = "infobar"
+		self.session.open(EPGSelection, self.servicelist, self.EPGtype)
 		
 	def zapUp(self):
 		if self.servicelist.inBouquet():
@@ -745,8 +745,8 @@ class InfoBarEPG:
 		self.session.open(EPGSelection, self.servicelist)
 		
 	def openInfoBarEPG(self):
-		self.EPGtype = True
-		self.session.open(EPGSelection, self.servicelist, None, None, None, None, self.EPGtype)
+		self.EPGtype = "infobar"
+		self.session.open(EPGSelection, self.servicelist, self.EPGtype)
 			
 	def showVIXEPG(self):
 		global Session
@@ -769,6 +769,7 @@ class InfoBarEPG:
 		list = [(p.name, boundFunction(self.runPlugin, p)) for p in plugins.getPlugins(where = PluginDescriptor.WHERE_EVENTINFO)]
 
 		if list:
+			list.append((_("Infobar EPG..."), self.openInfoBarEPG))
 			list.append((_("Single EPG..."), self.openSingleServiceEPG))
 			list.append((_("Multi EPG"), self.openMultiServiceEPG))
 			self.session.openWithCallback(self.EventInfoPluginChosen, ChoiceBox, title=_("Please choose an extension..."), list = list, skin_name = "EPGExtensionsList")
