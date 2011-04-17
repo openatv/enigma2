@@ -26,7 +26,7 @@ void eBackgroundFileEraser::idle()
 
 eBackgroundFileEraser::~eBackgroundFileEraser()
 {
-	messages.send(Message::quit);
+	messages.send(Message());
 	if (instance==this)
 		instance=0;
 	kill();  // i dont understand why this is needed .. in ~eThread::eThread is a kill() to..
@@ -35,15 +35,10 @@ eBackgroundFileEraser::~eBackgroundFileEraser()
 void eBackgroundFileEraser::thread()
 {
 	hasStarted();
-
 	nice(5);
-
 	setIoPrio(IOPRIO_CLASS_BE, 7);
-
 	reset();
-
 	runLoop();
-
 	stop_thread_timer->stop();
 }
 
@@ -59,25 +54,40 @@ void eBackgroundFileEraser::erase(const std::string& filename)
 			eDebug("Rename %s -> %s failed.", filename.c_str(), delname.c_str());
 			delname = filename;
 		}
-		messages.send(Message(Message::erase, delname));
+		messages.send(Message(delname));
 		run();
 	}
 }
 
 void eBackgroundFileEraser::gotMessage(const Message &msg )
 {
-	switch (msg.type)
+	if (msg.filename.empty())
 	{
-		case Message::erase:
-			if ( ::unlink(msg.filename.c_str()) < 0 )
-				eDebug("remove file %s failed (%m)", msg.filename.c_str());
-			stop_thread_timer->start(1000, true); // stop thread in one seconds
-			break;
-		case Message::quit:
-			quit(0);
-			break;
-		default:
-			eDebug("unhandled thread message");
+		quit(0);
+	}
+	else
+	{
+		const char* c_filename = msg.filename.c_str();
+		eDebug("[eBackgroundFileEraser] deleting '%s'", c_filename);
+		struct stat st;
+		if (::stat(c_filename, &st) == 0)
+		{
+			// Erase 50MB per second...
+			static const off_t ERASE_BLOCK_SIZE = 25*1024*1024;
+			while (st.st_size > ERASE_BLOCK_SIZE)
+			{
+				st.st_size -= ERASE_BLOCK_SIZE;
+				if (::truncate(c_filename, st.st_size) != 0)
+				{
+					eDebug("Failed to truncate %s", c_filename);
+					break; // don't try again, just unlink
+				}
+				usleep(500000); // wait half a second
+			}
+		}
+		if ( ::unlink(c_filename) < 0 )
+			eDebug("remove file %s failed (%m)", c_filename);
+		stop_thread_timer->start(1000, true); // stop thread in one seconds
 	}
 }
 
