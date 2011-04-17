@@ -126,11 +126,9 @@ class ServiceInfo(Screen):
 			width = self.info and self.info.getInfo(iServiceInformation.sVideoWidth) or -1
 			height = self.info and self.info.getInfo(iServiceInformation.sVideoHeight) or -1
 			if width != -1 and height != -1:
-				if (height > 580):
-					resolution = "HD-"
-				else:
-					resolution = "SD-"
-				resolution += "%dx%d" % (width,height)
+				resolution = "%dx%d" % (width,height)
+				resolution += ("i", "p", "")[self.info.getInfo(iServiceInformation.sProgressive)]
+				resolution += str((self.info.getInfo(iServiceInformation.sFrameRate) + 500) / 1000)
 			else:
 				resolution = "-"
 				aspect = "-"
