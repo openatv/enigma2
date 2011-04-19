@@ -219,6 +219,21 @@ def InitUsageConfig():
 		("1540096", "Large 1.5MB"),
 		("1925120", "Huge 2 MB")])
 	config.misc.demux_size.addNotifier(updateDemuxSize, immediate_feedback = False)
+	
+	def updateEraseSpeed(el):
+		enigma.eBackgroundFileEraser.getInstance().setEraseSpeed(int(el.value))
+	def updateEraseFlags(el):
+		enigma.eBackgroundFileEraser.getInstance().setEraseFlags(int(el.value))
+	config.misc.erase_speed = ConfigSelection(default="20", choices = [
+		("10", "10 MB/s"),
+		("20", "20 MB/s"),
+		("40", "40 MB/s")])
+	config.misc.erase_speed.addNotifier(updateEraseSpeed, immediate_feedback = False)
+	config.misc.erase_flags = ConfigSelection(default="1", choices = [
+		("0", _("Disable")),
+		("1", _("Internal hdd only")),
+		("3", _("Everywhere"))])
+	config.misc.erase_flags.addNotifier(updateEraseFlags, immediate_feedback = False)
 
 	SystemInfo["ZapMode"] = os.path.exists("/proc/stb/video/zapmode")
 	if SystemInfo["ZapMode"]:
