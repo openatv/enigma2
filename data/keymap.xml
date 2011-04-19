@@ -77,9 +77,9 @@
 	</map>
 
 	<map context="InfobarEPGActions">
-		<key id="KEY_INFO" mapto="showEventInfo" flags="b" />
+		<key id="KEY_INFO" mapto="InfoPressed" flags="b" />
 		<key id="KEY_INFO" mapto="showEventInfoPlugin" flags="l" />
-		<key id="KEY_EPG" mapto="showEventInfo" flags="b" />
+		<key id="KEY_EPG" mapto="EPGPressed" flags="b" />
 		<key id="KEY_EPG" mapto="showEventInfoPlugin" flags="l" />
 	</map>
 	
@@ -91,6 +91,13 @@
 	</map>
 
 	<map context="InfobarExtensions">
+		<key id="KEY_RED" mapto="RedPressed" flags="b" />
+		<key id="KEY_RED" mapto="showEventInfo" flags="l" />
+		<key id="KEY_GREEN" mapto="openAutoTimerList" flags="l" />
+		<key id="KEY_YELLOW" mapto="openEPGSearch" flags="b" />
+		<key id="KEY_YELLOW" mapto="openIMDB" flags="l" />
+		<key id="KEY_BLUE" mapto="showExtensionSelection" flags="b" />
+		<key id="KEY_BLUE" mapto="showPluginBrowser" flags="l" />
 		<key id="KEY_BLUE" mapto="extensions" flags="b" />
 	</map>
 
@@ -99,16 +106,16 @@
 	</map>
 
 	<map context="InfobarChannelSelection">
-		<key id="KEY_LEFT" mapto="zapUp" flags="mr" />
-		<key id="KEY_RIGHT" mapto="zapDown" flags="mr" />
+		<key id="KEY_LEFT" mapto="LeftPressed" flags="mr" />
+		<key id="KEY_RIGHT" mapto="RightPressed" flags="mr" />
 		<key id="KEY_UP" mapto="switchChannelUp" flags="mr" />
 		<key id="KEY_DOWN" mapto="switchChannelDown" flags="mr" />
 		<key id="KEY_PREVIOUS" mapto="historyBack" flags="mr" />
 		<key id="KEY_NEXT" mapto="historyNext" flags="mr" />
 		<key id="KEY_BACK" mapto="historyBack" flags="mr" />
 		<key id="KEY_FORWARD" mapto="historyNext" flags="mr" />
-		<key id="KEY_CHANNELUP" mapto="openServiceList" flags="m" />
-		<key id="KEY_CHANNELDOWN" mapto="openServiceList" flags="m" />
+		<key id="KEY_CHANNELUP" mapto="zapDown" flags="m" />
+		<key id="KEY_CHANNELDOWN" mapto="zapUp" flags="m" />
 		<key id="BTN_0" mapto="zapUp" flags="mr" />
 		<key id="BTN_1" mapto="zapDown" flags="mr" />
 	</map>
@@ -183,6 +190,7 @@
 	
 	<map context="InfobarShowHideActions">
 		<key id="KEY_OK" mapto="toggleShow" flags="m" />
+		<key id="KEY_OK" mapto="LongOKPressed" flags="l" />
 		<key id="KEY_ENTER" mapto="toggleShow" flags="m" />
 		<key id="KEY_EXIT" mapto="hide" flags="m" />
 		<key id="KEY_ESC" mapto="hide" flags="m" />
@@ -215,7 +223,7 @@
 	</map>
 
 	<map context="InfobarSubserviceSelectionActions">
-		<key id="KEY_GREEN" mapto="subserviceSelection" flags="b" />
+		<key id="KEY_GREEN" mapto="GreenPressed" flags="b" />
 	</map>
 
 	<map context="InfobarPiPActions">

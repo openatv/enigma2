@@ -115,7 +115,19 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		self.session.execDialog(self.servicelist)
 
 	def showTv(self):
-		self.showTvChannelList(True)
+		if config.plugins.ViXSettings.TVButtonAction.value == "Default":
+			from Screens.ChannelSelection import SimpleChannelSelection
+			self.showTvChannelList(True)
+			self.session.open(SimpleChannelSelection, None)
+		elif config.plugins.ViXSettings.TVButtonAction.value == "TVList":
+			self.showTvChannelList(True)
+		elif config.plugins.ViXSettings.TVButtonAction.value == "MovieList":
+			self.showTvChannelList(True)
+			self.showMovies()
+		elif config.plugins.ViXSettings.TVButtonAction.value == "BouquetList":
+			self.showTvChannelList(True)
+			self.servicelist.showFavourites()
+			self.session.execDialog(self.servicelist)
 
 	def showRadio(self):
 		if config.usage.e1like_radio_mode.value:

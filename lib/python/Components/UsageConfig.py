@@ -1,5 +1,5 @@
 from Components.Harddisk import harddiskmanager
-from config import ConfigSubsection, ConfigYesNo, config, ConfigSelection, ConfigText, ConfigNumber, ConfigSet, ConfigLocations
+from config import ConfigSubsection, ConfigYesNo, config, ConfigSelection, ConfigText, ConfigNumber, ConfigSet, ConfigLocations, NoSave, ConfigClock
 from Tools.Directories import resolveFilename, SCOPE_HDD
 from enigma import setTunerTypePriorityOrder, setPreferredTuner, setSpinnerOnOff, setEnableTtCachingOnOff;
 from enigma import Misc_Options, eEnv;
@@ -368,6 +368,53 @@ def InitUsageConfig():
 		("8", "4"),("9", "1,4"),("10", "2,4"),("11", "1,2,4"),
 		("12", "3,4"),("13", "1,3,4"),("14", "2,3,4"),("15", "All")])
 
+	config.plugins.ViXSettings  = ConfigSubsection()
+	config.plugins.ViXSettings.overscanamount = ConfigNumber(default = 32)
+	config.plugins.ViXSettings.swapautostart = ConfigYesNo(default = False)
+	config.plugins.ViXSettings.enabledebug = ConfigYesNo(default = False)
+	config.plugins.ViXSettings.cleandebug = NoSave(ConfigYesNo(default = False))
+	config.plugins.ViXSettings.powermanager = ConfigYesNo(default = False)
+	config.plugins.ViXSettings.powermanager_standby = ConfigYesNo(default = False)
+	config.plugins.ViXSettings.powermanager_standbytime = ConfigClock(default = 0) # 1:00
+	config.plugins.ViXSettings.powermanager_standbyretry = ConfigNumber(default = 30)
+	config.plugins.ViXSettings.powermanager_standbyretrycount = NoSave(ConfigNumber(default = 0))
+	config.plugins.ViXSettings.powermanager_deepstandby = ConfigYesNo(default = False)
+	config.plugins.ViXSettings.powermanager_deepstandbytime = ConfigClock(default = 0) # 1:00
+	config.plugins.ViXSettings.powermanager_deepstandbyretry = ConfigNumber(default = 30)
+	config.plugins.ViXSettings.powermanager_deepstandbyretrycount = NoSave(ConfigNumber(default = 0))
+	config.plugins.ViXSettings.powermanager_guirestart = ConfigYesNo(default = False)
+	config.plugins.ViXSettings.powermanager_guirestarttime = ConfigClock(default = 0) # 1:00
+	config.plugins.ViXSettings.powermanager_guirestartretry = ConfigNumber(default = 30)
+	config.plugins.ViXSettings.powermanager_guirestartretrycount = NoSave(ConfigNumber(default = 0))
+	config.plugins.ViXSettings.powermanager_reboot = ConfigYesNo(default = False)
+	config.plugins.ViXSettings.powermanager_reboottime = ConfigClock(default = 0) # 1:00
+	config.plugins.ViXSettings.powermanager_rebootretry = ConfigNumber(default = 30)
+	config.plugins.ViXSettings.powermanager_rebootretrycount = NoSave(ConfigNumber(default = 0))
+
+	config.plugins.ViXSettings.InfoBarMode = ConfigYesNo(default = True)
+	config.plugins.ViXSettings.TVButtonAction = ConfigSelection(default="Default", choices = [
+					("Default", _("Simple TV List")),
+					("TVList", _("Show TV List")),
+					("MovieList", _("Show Movie List")),
+					("BouquetList", _("Show Bouquet List"))])
+	config.plugins.ViXSettings.Subservice = ConfigYesNo(default = False)
+	config.plugins.ViXSettings.ColouredButtons = ConfigYesNo(default = True)
+
+	config.plugins.QuickEPG = ConfigSubsection()
+	config.plugins.QuickEPG.mode = ConfigSelection(default="3", choices = [
+					("0", _("as plugin in extended bar")),
+					("1", _("with long OK press")),
+					("2", _("with exit button")),
+					("3", _("with left/right buttons"))])
+	config.plugins.QuickEPG.curref = ConfigText()
+	config.plugins.QuickEPG.curbouquet = ConfigText()
+
+	config.plugins.ViXEPG = ConfigSubsection()
+	config.plugins.ViXEPG.mode = ConfigSelection(default="vixepg", choices = [
+					("vixepg", _("Show ViX EPG")),
+					("single", _("Show ViX Single EPG")),
+					("multi", _("Show Multi EPG")),
+					("cooltvguide", _("Show CoolTVGuide"))])
 def updateChoices(sel, choices):
 	if choices:
 		defval = None
