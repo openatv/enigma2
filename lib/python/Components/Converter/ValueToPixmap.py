@@ -24,7 +24,7 @@ class ValueToPixmap(Converter, object):
 			if val in (None, ""):
 				return None
 		if self.type == self.PATH:
-			return LoadPixmap(cached=True, path=val)
+			return LoadPixmap(val)
 		if self.type == self.LANGUAGE_CODE:
 			png = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "countries/" + val[3:].lower() + ".png"))
 			if png == None:
