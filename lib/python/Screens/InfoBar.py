@@ -4,6 +4,7 @@ from Tools.Profile import profile
 import Screens.MovieSelection
 from Screens.MessageBox import MessageBox
 from Components.PluginComponent import plugins
+from Components.Label import Label
 from Plugins.Plugin import PluginDescriptor
 
 from Screen import Screen
@@ -56,6 +57,17 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 				"openIMDB": (self.openIMDB, _("Show the tv player...")),
 			}, prio=2)
 		
+		if config.plugins.ViXEPG.mode.value == "vixepg":
+			self["key_red"] = Label("Single EPG")
+		else:
+			self["key_red"] = Label("ViX EPG")
+		self["key_yellow"] = Label("Search")
+		self["key_blue"] = Label("Extensions")
+		if not config.plugins.ViXSettings.Subservice.value:
+			self["key_green"] = Label("Timers")
+		else:
+			self["key_green"] = Label("Subservices")
+
 		self.allowPiP = True
 		
 		for x in HelpableScreen, \
@@ -215,6 +227,11 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 				"left": self.left,
 				"right": self.right
 			}, prio = -2)
+
+		self["key_red"] = Label("")
+		self["key_green"] = Label("Timers")
+		self["key_yellow"] = Label("Search")
+		self["key_blue"] = Label("Extensions")
 
 		self.allowPiP = True
 		

@@ -1576,12 +1576,6 @@ class InfoBarExtensions:
 				"openIMDB": self.openIMDB,
 				"showEventInfo": self.openEventView,
 			}, 1) # lower priority
-		if config.plugins.ViXEPG.mode.value == "vixepg":
-			self["key_red"] = Label("Single EPG")
-		else:
-			self["key_red"] = Label("ViX EPG")
-		self["key_yellow"] = Label("Search")
-		self["key_blue"] = Label("Extensions")
 
 	def RedPressed(self):
 		if config.plugins.ViXEPG.mode.value == "vixepg":
