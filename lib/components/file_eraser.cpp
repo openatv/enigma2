@@ -10,8 +10,11 @@
 
 eBackgroundFileEraser *eBackgroundFileEraser::instance;
 
-eBackgroundFileEraser::eBackgroundFileEraser()
-	:messages(this,1), stop_thread_timer(eTimer::create(this))
+eBackgroundFileEraser::eBackgroundFileEraser():
+	messages(this,1),
+	stop_thread_timer(eTimer::create(this)),
+	erase_flags(ERASE_FLAG_HDD),
+	erase_speed(20 << 20)
 {
 	if (!instance)
 		instance=this;
@@ -69,20 +72,22 @@ void eBackgroundFileEraser::gotMessage(const Message &msg )
 	{
 		const char* c_filename = msg.filename.c_str();
 		eDebug("[eBackgroundFileEraser] deleting '%s'", c_filename);
-		struct stat st;
-		if (::stat(c_filename, &st) == 0)
+		if ((((erase_flags & ERASE_FLAG_HDD) != 0) && (strncmp(c_filename, "/media/hdd/", 11) == 0)) ||
+		    ((erase_flags & ERASE_FLAG_OTHER) != 0))
 		{
-			// Erase 50MB per second...
-			static const off_t ERASE_BLOCK_SIZE = 25*1024*1024;
-			while (st.st_size > ERASE_BLOCK_SIZE)
+			struct stat st;
+			if (::stat(c_filename, &st) == 0)
 			{
-				st.st_size -= ERASE_BLOCK_SIZE;
-				if (::truncate(c_filename, st.st_size) != 0)
+				while (st.st_size > erase_speed)
 				{
-					eDebug("Failed to truncate %s", c_filename);
-					break; // don't try again, just unlink
+					st.st_size -= erase_speed;
+					if (::truncate(c_filename, st.st_size) != 0)
+					{
+						eDebug("Failed to truncate %s", c_filename);
+						break; // don't try again, just unlink
+					}
+					usleep(500000); // wait half a second
 				}
-				usleep(500000); // wait half a second
 			}
 		}
 		if ( ::unlink(c_filename) < 0 )
@@ -90,5 +95,17 @@ void eBackgroundFileEraser::gotMessage(const Message &msg )
 		stop_thread_timer->start(1000, true); // stop thread in one seconds
 	}
 }
+void eBackgroundFileEraser::setEraseSpeed(int inMBperSecond)
+{
+	off_t value = inMBperSecond;
+	value = value << 19; // erase_speed is in MB per half second
+	erase_speed = value;
+}
+
+void eBackgroundFileEraser::setEraseFlags(int flags)
+{
+	erase_flags = flags;
+}
+
 
 eAutoInitP0<eBackgroundFileEraser> init_eBackgroundFilEraser(eAutoInitNumbers::configuration+1, "Background File Eraser");
