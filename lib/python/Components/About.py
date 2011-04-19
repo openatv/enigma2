@@ -11,23 +11,13 @@ class About:
 
 	def getImageVersionString(self):
 		try:
-			fd = open("/proc/stb/info/version","r")
-			version = fd.read()
-			print 'int val',int(version.split()[0],16)
-			if int(version,16) < 0x130000 and int(version,16) > 0x110000:
-				box_type="Duo"
-			elif int(version,16) > 0x140000:
-				box_type="Solo"
-			elif int(version,16) > 0x1 and int(version,16) < 0x3:
-				box_type="ET9000"
-		except:
-			box_type=""
-
-		try:
+			box_type = ""
 			file = open(resolveFilename(SCOPE_SYSETC, 'image-version'), 'r')
 			lines = file.readlines()
 			for x in lines:
 				splitted = x.split('=')
+				if splitted[0] == "box_type":
+					box_type = splitted[1].replace('\n','') # 0 = release, 1 = experimental
 				if splitted[0] == "build_type":
 					image_type = splitted[1].replace('\n','') # 0 = release, 1 = experimental
 				elif splitted[0] == "version":
