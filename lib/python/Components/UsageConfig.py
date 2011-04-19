@@ -98,6 +98,8 @@ def InitUsageConfig():
 	])
 	config.usage.movielist_unseen = ConfigYesNo(default = False)
 
+	config.usage.swap_snr_on_osd = ConfigYesNo(default = False)
+
 	def SpinnerOnOffChanged(configElement):
 		setSpinnerOnOff(int(configElement.value))
 	config.usage.show_spinner.addNotifier(SpinnerOnOffChanged)
