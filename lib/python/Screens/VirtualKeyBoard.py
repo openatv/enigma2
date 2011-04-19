@@ -1,4 +1,6 @@
 # -*- coding: UTF-8 -*-
+from enigma import eListboxPythonMultiContent, gFont, RT_HALIGN_CENTER, RT_VALIGN_CENTER, getPrevAsciiCode
+from Screen import Screen
 from Components.Language import language
 from Components.ActionMap import ActionMap
 from Components.Sources.StaticText import StaticText
@@ -6,8 +8,6 @@ from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Components.MenuList import MenuList
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
-from enigma import eListboxPythonMultiContent, gFont, RT_HALIGN_CENTER, RT_VALIGN_CENTER
-from Screen import Screen
 from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN
 from Tools.LoadPixmap import LoadPixmap
 
@@ -97,8 +97,9 @@ class VirtualKeyBoard(Screen):
 		self["text"] = Label(self.text)
 		self["list"] = VirtualKeyBoardList([])
 		
-		self["actions"] = ActionMap(["OkCancelActions", "WizardActions", "ColorActions"],
+		self["actions"] = ActionMap(["OkCancelActions", "WizardActions", "ColorActions", "KeyboardInputActions", "InputBoxActions", "InputAsciiActions"],
 			{
+				"gotAsciiCode": self.keyGotAscii,
 				"ok": self.okClicked,
 				"cancel": self.exit,
 				"left": self.left,
@@ -107,9 +108,12 @@ class VirtualKeyBoard(Screen):
 				"down": self.down,
 				"red": self.backClicked,
 				"green": self.ok,
-				"yellow": self.switchLang
+				"yellow": self.switchLang,
+				"deleteBackward": self.backClicked,
+				"back": self.exit				
 			}, -2)
 		self.setLanq()
+		self.onExecBegin.append(self.setKeyboardModeAscii)
 		self.onLayoutFinish.append(self.buildVirtualKeyBoard)
 	
 	def switchLang(self):
@@ -362,3 +366,30 @@ class VirtualKeyBoard(Screen):
 
 	def showActiveKey(self):
 		self.buildVirtualKeyBoard(self.selectedKey)
+
+	def inShiftKeyList(self,key):
+		for KeyList in self.shiftkeys_list:
+			for char in KeyList:
+				if char == key:
+					return True
+		return False
+
+	def keyGotAscii(self):
+		char = str(unichr(getPrevAsciiCode()).encode('utf-8'))
+		if self.inShiftKeyList(char):
+			self.shiftMode = True
+			list = self.shiftkeys_list
+		else:
+			self.shiftMode = False
+			list = self.keys_list	
+
+		selkey = 0
+		for keylist in list:
+			for key in keylist:
+				if key == char:
+					self.selectedKey = selkey
+					self.okClicked()
+					self.showActiveKey()
+					return
+				else:
+					selkey += 1
