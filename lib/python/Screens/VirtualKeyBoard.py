@@ -112,16 +112,16 @@ class VirtualKeyBoard(Screen):
 				"deleteBackward": self.backClicked,
 				"back": self.exit				
 			}, -2)
-		self.setLanq()
+		self.setLang()
 		self.onExecBegin.append(self.setKeyboardModeAscii)
 		self.onLayoutFinish.append(self.buildVirtualKeyBoard)
 	
 	def switchLang(self):
 		self.lang = self.nextLang
-		self.setLanq()
+		self.setLang()
 		self.buildVirtualKeyBoard()
 
-	def setLanq(self):
+	def setLang(self):
 		if self.lang == 'de_DE':
 			self.keys_list = [
 				[u"EXIT", u"1", u"2", u"3", u"4", u"5", u"6", u"7", u"8", u"9", u"0", u"BACKSPACE"],
