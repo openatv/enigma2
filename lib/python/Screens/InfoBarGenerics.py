@@ -722,7 +722,7 @@ class InfoBarEPG:
 				"showEventInfoPlugin": (self.showEventInfoPlugins, _("list of EPG views...")),
 				"showInfobarOrEpgWhenInfobarAlreadyVisible": self.showEventInfoWhenNotVisible,
 				"InfoPressed": self.InfoPressed,
-				
+				"EPGPressed": self.EPGPressed,
 			})
 
 	def InfoPressed(self):
