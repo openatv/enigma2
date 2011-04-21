@@ -844,7 +844,7 @@ class InfoBarEPG:
 		self.session.open(EPGSelection, self.servicelist, self.EPGtype)
 
 	def showVIXEPG(self):
-		from Plugins.VIX.VIXMainMenu.EPG import VIXBouquetSelector, VIXEPG
+		from Plugins.VIX.EPG import VIXBouquetSelector, VIXEPG
 		global Session
 		Session = self.session
 		global Servicelist
