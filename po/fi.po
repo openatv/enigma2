@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-04-01 08:09+0000\n"
+"POT-Creation-Date: 2011-04-20 10:39+0000\n"
 "PO-Revision-Date: 2011-03-07 14:39+0200\n"
 "Last-Translator: Timo <timojarvenpaa@hotmail.com>\n"
 "Language-Team: none\n"
@@ -1470,22 +1470,6 @@ msgid "Code rate LP"
 msgstr ""
 
 #
-msgid "Code rate high"
-msgstr "Koodinopeus (korkea)"
-
-#
-msgid "Code rate low"
-msgstr "Koodinopeus (alhainen)"
-
-#
-msgid "Coderate HP"
-msgstr "Koodinopeus (HP)"
-
-#
-msgid "Coderate LP"
-msgstr "Koodinopeus (LP)"
-
-#
 msgid "Collection name"
 msgstr "Kokoelman nimi"
 
@@ -2325,6 +2309,12 @@ msgstr "DB-tiedostomuotoinen DVD (HDTV-yht.sopiva)"
 msgid "Dreambox software because updates are available."
 msgstr "Dreamboxin ohjelmistoa koska päivityksiä on saatavilla."
 
+msgid "Driver for Ralink RT8070/RT3070/RT3370 based wireless-n USB devices."
+msgstr ""
+
+msgid "Driver for Realtek r8712u based wireless-n USB devices."
+msgstr ""
+
 msgid "Duration: "
 msgstr "Kesto: "
 
@@ -2663,6 +2653,9 @@ msgstr ""
 #
 msgid "Estonian"
 msgstr "Viro"
+
+msgid "Ethernet network interface"
+msgstr ""
 
 #
 msgid "Eventview"
@@ -3071,16 +3064,8 @@ msgid ""
 "iPhone using prowl."
 msgstr ""
 
-#
-msgid "Guard Interval"
-msgstr "Suojaväli"
-
 msgid "Guard interval"
 msgstr ""
-
-#
-msgid "Guard interval mode"
-msgstr "Suojaväli-tila"
 
 msgid "Guess existing timer based on begin/end"
 msgstr "Arvaa olemassa oleva ajastus alku/loppuajan perusteella"
@@ -3114,6 +3099,9 @@ msgstr "Kiintolevyn automaattinen sammutus"
 msgid "Help"
 msgstr "Ohje"
 
+msgid "Hidden network"
+msgstr ""
+
 #
 msgid "Hidden network SSID"
 msgstr "Piilotettu verkko-SSID"
@@ -3122,16 +3110,8 @@ msgstr "Piilotettu verkko-SSID"
 msgid "Hidden networkname"
 msgstr "Piilotettu verkkonimi"
 
-#
-msgid "Hierarchy Information"
-msgstr "Hierarkia-tietoja"
-
 msgid "Hierarchy info"
 msgstr ""
-
-#
-msgid "Hierarchy mode"
-msgstr "Hierarkia-tila"
 
 #
 msgid "High bitrate support"
@@ -3200,10 +3180,8 @@ msgstr "Islanti"
 #, python-format
 msgid ""
 "If this is enabled an existing timer will also be considered recording an "
-"event if it records at least 80% of the it."
+"event if it records at least 80%% of the it."
 msgstr ""
-"Jos tämä valinta on käytössä, olemassa olevan ajastuksen tulkitaan "
-"tallentavan ohjelma jos se tallentaa vähintään 80% siitä."
 
 #
 msgid ""
@@ -3658,6 +3636,9 @@ msgstr "Tila:"
 msgid "Linked titles with a DVD menu"
 msgstr "Linkitetyt tallenteet ja DVD-valikko"
 
+msgid "List available networks"
+msgstr ""
+
 #
 msgid "List of Storage Devices"
 msgstr "Luettelo tallennusvälineistä"
@@ -3788,6 +3769,9 @@ msgstr "Hallitse vastaanottimen ohjelmistoa"
 #
 msgid "Manual Scan"
 msgstr "Manuaalihaku"
+
+msgid "Manual configuration"
+msgstr ""
 
 #
 msgid "Manual transponder"
@@ -4312,6 +4296,9 @@ msgstr "Verkon selaus"
 msgid "NetworkWizard"
 msgstr "Verkkoavustaja"
 
+msgid "Networkname (SSID)"
+msgstr ""
+
 msgid "Never"
 msgstr "Ei koskaan"
 
@@ -4481,6 +4468,9 @@ msgstr "Ei näytettäviä tallenteita"
 msgid "No wireless networks found! Please refresh."
 msgstr "WLAN-verkkoja ei löytynyt! Päivitä uudestaan."
 
+msgid "No wireless networks found! Searching..."
+msgstr ""
+
 #
 msgid ""
 "No working local network adapter found.\n"
@@ -4589,6 +4579,9 @@ msgstr ""
 msgid "Not fetching feed entries"
 msgstr "Feedejä ei noudeta"
 
+msgid "Not-Associated"
+msgstr ""
+
 #
 msgid ""
 "Nothing to scan!\n"
@@ -4693,10 +4686,6 @@ msgstr "Avaa lisäosavalikko"
 #
 msgid "Optionally enter your name if you want to."
 msgstr "Jos haluat, lisää nimesi."
-
-#
-msgid "Orbital Position"
-msgstr "Sijainti"
 
 msgid "Orbital position"
 msgstr ""
@@ -5161,10 +5150,6 @@ msgid "Poland"
 msgstr "Puola"
 
 #
-msgid "Polarity"
-msgstr "Polarisaatio"
-
-#
 msgid "Polarization"
 msgstr "Polarisaatio"
 
@@ -5405,6 +5390,9 @@ msgstr "RGB"
 
 msgid "RSS viewer"
 msgstr "RSS-lukija"
+
+msgid "RT8070/RT3070/RT3370 USB wireless-n driver"
+msgstr ""
 
 msgid "Radio"
 msgstr "Radio"
@@ -5769,9 +5757,6 @@ msgstr "Oikea"
 
 msgid "Roll-off"
 msgstr ""
-
-msgid "Rolloff"
-msgstr "Rolloff"
 
 #
 msgid "Rotor turning speed"
@@ -6848,16 +6833,8 @@ msgstr "Vaihda edelliseen alipalveluun"
 msgid "Switchable tuner types:"
 msgstr "Vaihdettavat viritintyypit:"
 
-#
-msgid "Symbol Rate"
-msgstr "Symbolinopeus"
-
 msgid "Symbol rate"
 msgstr ""
-
-#
-msgid "Symbolrate"
-msgstr "Symbolinopeus"
 
 #
 msgid "System"
@@ -7627,20 +7604,12 @@ msgid "Translation:"
 msgstr "Käännös:"
 
 #
-msgid "Transmission Mode"
-msgstr "Lähetystapa"
-
-#
 msgid "Transmission mode"
 msgstr "Lähetystapa"
 
 #
 msgid "Transponder"
 msgstr "Lähetin"
-
-#
-msgid "Transponder Type"
-msgstr "Lähettimen tyyppi"
 
 msgid "Travel & Events"
 msgstr "Matkailu ja tapahtumat"
@@ -7766,6 +7735,9 @@ msgstr "Kumoa asennus"
 msgid "Undo uninstall"
 msgstr "Kumoa as.poisto"
 
+msgid "Unencrypted"
+msgstr ""
+
 msgid "UnhandledKey"
 msgstr "TuntematonNäppäin"
 
@@ -7788,6 +7760,9 @@ msgstr "Yhdysvallat"
 #
 msgid "Universal LNB"
 msgstr "Universaali LNB"
+
+msgid "Unknown"
+msgstr ""
 
 msgid "Unknown network adapter."
 msgstr "Tuntematon verkkosovitin"
@@ -8494,6 +8469,15 @@ msgstr "Langaton verkko"
 #
 msgid "Wireless Network State"
 msgstr "WLAN-verkon tila"
+
+msgid "Wireless network connection setup"
+msgstr ""
+
+msgid "Wireless network connection setup."
+msgstr ""
+
+msgid "Wireless network state"
+msgstr ""
 
 msgid ""
 "With AntiScrollbar you can cover up annoying ticker lines (e.g. in news "
@@ -9360,6 +9344,9 @@ msgstr "Älä tallenna"
 #
 msgid "done!"
 msgstr "tallennettu"
+
+msgid "driver for Realtek USB wireless devices"
+msgstr ""
 
 #
 msgid "edit alternatives"
@@ -10251,6 +10238,9 @@ msgstr "joka viikko"
 msgid "whitelist"
 msgstr "hyväksytyt"
 
+msgid "wireless network interface"
+msgstr ""
+
 #
 msgid "working"
 msgstr "työskentelee"
@@ -10400,6 +10390,22 @@ msgstr "vaihdettu"
 #
 #~ msgid "Choose source"
 #~ msgstr "Valitse lähde"
+
+#
+#~ msgid "Code rate high"
+#~ msgstr "Koodinopeus (korkea)"
+
+#
+#~ msgid "Code rate low"
+#~ msgstr "Koodinopeus (alhainen)"
+
+#
+#~ msgid "Coderate HP"
+#~ msgstr "Koodinopeus (HP)"
+
+#
+#~ msgid "Coderate LP"
+#~ msgstr "Koodinopeus (LP)"
 
 #
 #~ msgid "Compact flash card"
@@ -10568,8 +10574,31 @@ msgstr "vaihdettu"
 #~ "asiakasohjelma"
 
 #
+#~ msgid "Guard Interval"
+#~ msgstr "Suojaväli"
+
+#
+#~ msgid "Guard interval mode"
+#~ msgstr "Suojaväli-tila"
+
+#
+#~ msgid "Hierarchy Information"
+#~ msgstr "Hierarkia-tietoja"
+
+#
+#~ msgid "Hierarchy mode"
+#~ msgstr "Hierarkia-tila"
+
+#
 #~ msgid "How to handle found crashlogs:"
 #~ msgstr "Mitä lokitiedostoille tehdään:"
+
+#~ msgid ""
+#~ "If this is enabled an existing timer will also be considered recording an "
+#~ "event if it records at least 80% of the it."
+#~ msgstr ""
+#~ "Jos tämä valinta on käytössä, olemassa olevan ajastuksen tulkitaan "
+#~ "tallentavan ohjelma jos se tallentaa vähintään 80% siitä."
 
 #
 #~ msgid "If you can see this page, please press OK."
@@ -10664,6 +10693,10 @@ msgstr "vaihdettu"
 #~ msgid "Online-Upgrade"
 #~ msgstr "Online-päivitys"
 
+#
+#~ msgid "Orbital Position"
+#~ msgstr "Sijainti"
+
 #~ msgid "Order by"
 #~ msgstr "Tilaaja"
 
@@ -10701,6 +10734,10 @@ msgstr "vaihdettu"
 #
 #~ msgid "Plugin manager"
 #~ msgstr "Lisäosien hallinta"
+
+#
+#~ msgid "Polarity"
+#~ msgstr "Polarisaatio"
 
 #~ msgid ""
 #~ "Power state to change to after recordings. Select \"standard\" to not "
@@ -10763,6 +10800,9 @@ msgstr "vaihdettu"
 
 #~ msgid "Retrieving network information. Please wait..."
 #~ msgstr "Noudetaan verkkotietoja. Odota..."
+
+#~ msgid "Rolloff"
+#~ msgstr "Rolloff"
 
 #
 #~ msgid "Satteliteequipment"
@@ -10891,6 +10931,14 @@ msgstr "vaihdettu"
 #~ msgid "Switch to user key- delays"
 #~ msgstr "Ota itse määritellyt viiveen pikavalinnat käyttöön"
 
+#
+#~ msgid "Symbol Rate"
+#~ msgstr "Symbolinopeus"
+
+#
+#~ msgid "Symbolrate"
+#~ msgstr "Symbolinopeus"
+
 #~ msgid ""
 #~ "The USB stick is now bootable. Do you want to download the latest image "
 #~ "from the feed server and save it on the stick?"
@@ -10975,6 +11023,14 @@ msgstr "vaihdettu"
 #~ "2) Kytke virta takaisin päälle ja pidä etupaneelin nuoli alas -näppäintä "
 #~ "10 sekuntia pohjassa.\n"
 #~ "3) Odota käynnistymistä ja seuraa ohjeita."
+
+#
+#~ msgid "Transmission Mode"
+#~ msgstr "Lähetystapa"
+
+#
+#~ msgid "Transponder Type"
+#~ msgstr "Lähettimen tyyppi"
 
 #
 #~ msgid "USB"
