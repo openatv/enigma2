@@ -7,9 +7,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-27 12:42+0000\n"
-"PO-Revision-Date: 2010-12-08 08:01+0200\n"
-"Last-Translator: sig <sigstop@hotmail.com>\n"
+"POT-Creation-Date: 2011-04-20 10:39+0000\n"
+"PO-Revision-Date: 2011-04-09 16:35+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -196,6 +197,14 @@ msgstr "#ffffffff"
 msgid "%H:%M"
 msgstr "%H:%M"
 
+#, python-format
+msgid ""
+"%d conflict(s) encountered when trying to add new timers:\n"
+"%s"
+msgstr ""
+"%d konflikter uppstod vid uppläggning av nya timers:\n"
+"%s"
+
 #
 #, python-format
 msgid "%d jobs are running in the background!"
@@ -229,6 +238,10 @@ msgstr ""
 #, python-format
 msgid "%s (%s)\n"
 msgstr "%s (%s)\n"
+
+#, python-format
+msgid "%s: %s at %s"
+msgstr "%s: %s at %s"
 
 #
 msgid "(ZAP)"
@@ -383,11 +396,11 @@ msgstr "??"
 msgid "A"
 msgstr "A"
 
+msgid "A BackToTheRoots-Skin .. but with Warp-8 speed."
+msgstr ""
+
 msgid "A BackToTheRoots-Skin .. or good old times."
 msgstr "Ett TillbakaTillRötterna-Skin .. eller gamla goda tider."
-
-msgid "A BackToTheRoots-Skin ... or good old times."
-msgstr "Ett TillbakaTillRötterna-Skin ... eller gamla goda tider."
 
 msgid "A basic ftp client"
 msgstr "En enkel ftp klient"
@@ -406,6 +419,9 @@ msgstr ""
 
 msgid "A demo plugin for TPM usage."
 msgstr "Ett demoplugin för TPM användning."
+
+msgid "A dreambox simulation from SG-Atlantis displays."
+msgstr ""
 
 #
 msgid ""
@@ -429,6 +445,9 @@ msgstr "En grafisk EPG för alla kanaler i en vald favoritlista"
 
 msgid "A graphical EPG interface"
 msgstr "Ett grafiskt EPG gränssnitt"
+
+msgid "A graphical EPG interface and EPG tools manager"
+msgstr "Ett grafiskt EPG gränssnitt och EPG verktygshanterare"
 
 msgid "A graphical EPG interface."
 msgstr "Ett grafiskt EPG gränssnitt."
@@ -900,6 +919,9 @@ msgstr "Fråga"
 msgid "Aspect Ratio"
 msgstr "Bildformat"
 
+msgid "Aspect ratio"
+msgstr "Bildförhållande"
+
 msgid "Assigning providers/services/caids to a CI module"
 msgstr "Tilldela operatörer/kanaler/caids till en CI modul"
 
@@ -913,6 +935,9 @@ msgstr "Ljud"
 #
 msgid "Audio Options..."
 msgstr "Ljudval..."
+
+msgid "Audio PID"
+msgstr "Ljud PID"
 
 #
 msgid "Audio Sync"
@@ -982,6 +1007,15 @@ msgid ""
 "criteria."
 msgstr ""
 
+msgid "AutoTimer was added successfully"
+msgstr ""
+
+msgid "AutoTimer was changed successfully"
+msgstr ""
+
+msgid "AutoTimer was removed"
+msgstr ""
+
 #
 msgid "Automatic"
 msgstr "Automatisk"
@@ -1014,6 +1048,24 @@ msgid "Automatically refresh EPG"
 msgstr ""
 
 msgid "Automatically send crashlogs to Dream Multimedia"
+msgstr ""
+
+#, python-format
+msgid ""
+"Autoresolution Plugin Testmode:\n"
+"Is %s ok?"
+msgstr ""
+
+msgid "Autoresolution Switch"
+msgstr ""
+
+msgid "Autoresolution is not working in Scart/DVI-PC Mode"
+msgstr ""
+
+msgid "Autoresolution settings"
+msgstr ""
+
+msgid "Autoresolution videomode setup"
 msgstr ""
 
 #
@@ -1057,6 +1109,12 @@ msgstr "BER:"
 #
 msgid "Back"
 msgstr "Tillbaka"
+
+msgid "Back, lower USB Slot"
+msgstr "Bak, nedre USB kontakt"
+
+msgid "Back, upper USB Slot"
+msgstr "Bak, övre USB kontakt"
 
 #
 msgid "Background"
@@ -1150,6 +1208,11 @@ msgstr "Brasilien"
 msgid "Brightness"
 msgstr "Ljusstyrka"
 
+msgid ""
+"Browse ORF and SAT1 Teletext independent from channel. This need I-net "
+"conection."
+msgstr ""
+
 msgid "Browse for and connect to network shares"
 msgstr "Bläddra efter och anslut till nätverksutdelningar"
 
@@ -1177,6 +1240,17 @@ msgstr "Bränn dina inspelningar till DVD"
 #
 msgid "Bus: "
 msgstr "Bus: "
+
+msgid ""
+"By enabling this events will not be matched if they don't occur on certain "
+"dates."
+msgstr ""
+
+msgid ""
+"By enabling this you will be notified about timer conflicts found during "
+"automated polling. There is no intelligence involved, so it might bother you "
+"about the same conflict over and over."
+msgstr ""
 
 #
 msgid ""
@@ -1440,21 +1514,11 @@ msgstr "Stäng och spar ändringar"
 msgid "Close title selection"
 msgstr "Stäng titelval"
 
-#
-msgid "Code rate high"
-msgstr "Code rate hög"
+msgid "Code rate HP"
+msgstr "Kodhastighet HP"
 
-#
-msgid "Code rate low"
-msgstr "Code rate låg"
-
-#
-msgid "Coderate HP"
-msgstr "Coderate HP"
-
-#
-msgid "Coderate LP"
-msgstr "Coderate LP"
+msgid "Code rate LP"
+msgstr "Kodhastighet LP"
 
 #
 msgid "Collection name"
@@ -1638,6 +1702,10 @@ msgstr "Gick inte att öppna Bild i Bild"
 msgid "Couldn't record due to conflicting timer %s"
 msgstr "Kunde inte spela in på grund av timerkonflikt med %s"
 
+#, python-format
+msgid "Couldn't record due to invalid service %s"
+msgstr ""
+
 #
 msgid "Crashlog settings"
 msgstr "Crashlog inställningar"
@@ -1817,6 +1885,9 @@ msgstr "DVB-S"
 msgid "DVB-S2"
 msgstr "DVB-S2"
 
+msgid "DVD Drive"
+msgstr ""
+
 #
 msgid "DVD File Browser"
 msgstr "DVD Filutforskare"
@@ -1899,9 +1970,18 @@ msgstr ""
 msgid "Define a startup service for your Dreambox."
 msgstr ""
 
+msgid "Deinterlacer mode for interlaced content"
+msgstr ""
+
+msgid "Deinterlacer mode for progressive content"
+msgstr ""
+
 #
 msgid "Delay"
 msgstr "Fördröjning"
+
+msgid "Delay x seconds after service started"
+msgstr ""
 
 #
 msgid "Delete"
@@ -2087,6 +2167,12 @@ msgid ""
 msgstr ""
 "Vill du verkligen kontrollera filsystemet?\n"
 "Detta kan ta lång tid!"
+
+#, python-format
+msgid ""
+"Do you really want to delete %s\n"
+"%s?"
+msgstr ""
 
 #
 #, python-format
@@ -2284,6 +2370,12 @@ msgstr "Dreambox formaterad data DVD (HDTV kompatibel)"
 msgid "Dreambox software because updates are available."
 msgstr "Dreambox mjukvara på grund av uppdateringar är tillgängliga."
 
+msgid "Driver for Ralink RT8070/RT3070/RT3370 based wireless-n USB devices."
+msgstr ""
+
+msgid "Driver for Realtek r8712u based wireless-n USB devices."
+msgstr ""
+
 #
 msgid "Duration: "
 msgstr "Längd: "
@@ -2422,9 +2514,24 @@ msgstr "Aktivera"
 msgid "Enable /media"
 msgstr "Aktivera /media"
 
+msgid "Enable 1080p24 Mode"
+msgstr "Aktivera 1080p24 läge"
+
+msgid "Enable 1080p25 Mode"
+msgstr "Aktiver 1080p25 läge"
+
+msgid "Enable 1080p30 Mode"
+msgstr "Aktivera 1080p30 läge"
+
 #
 msgid "Enable 5V for active antenna"
 msgstr "Aktivera 5V för aktiv antenn"
+
+msgid "Enable 720p24 Mode"
+msgstr "Aktiver 720p24 läge"
+
+msgid "Enable Autoresolution"
+msgstr "Aktiver Autoupplösning"
 
 #
 msgid "Enable Cleanup Wizard?"
@@ -2554,16 +2661,8 @@ msgstr ""
 "© 2006 - Stephan Reichholf"
 
 #
-msgid "Enter Fast Forward at speed"
-msgstr "Initial hastighet för snabbspolning framåt"
-
-#
 msgid "Enter IP to scan..."
 msgstr "Ange IP för sökning..."
-
-#
-msgid "Enter Rewind at speed"
-msgstr "Initial hastighet för snabbspolning bakåt"
 
 #
 msgid "Enter main menu..."
@@ -2635,6 +2734,9 @@ msgstr ""
 #
 msgid "Estonian"
 msgstr "Estniska"
+
+msgid "Ethernet network interface"
+msgstr ""
 
 #
 msgid "Eventview"
@@ -2832,6 +2934,11 @@ msgstr "Klar med omstarten av ditt nätverk"
 msgid "Finnish"
 msgstr "Finska"
 
+msgid ""
+"First day to match events. No event that begins before this date will be "
+"matched."
+msgstr ""
+
 msgid "First generate your skin-style with the Ai.HD-Control plugin."
 msgstr ""
 
@@ -2851,6 +2958,12 @@ msgstr "Följande saker kommer utföras efter du tryckt på OK!"
 msgid "Format"
 msgstr "Format"
 
+#, python-format
+msgid ""
+"Found a total of %d matching Events.\n"
+"%d Timer were added and %d modified, %d conflicts encountered."
+msgstr ""
+
 #
 #, python-format
 msgid ""
@@ -2859,10 +2972,6 @@ msgid ""
 msgstr ""
 "Hittade totalt %d händelser som matchade.\n"
 "%d Timer har lagts till och %d ändrade."
-
-#
-msgid "Frame repeat count during non-smooth winding"
-msgstr "Bildupprepning vid hackig spolning"
 
 #
 msgid "Frame size in full view"
@@ -2906,6 +3015,9 @@ msgstr "Frisiska"
 
 msgid "FritzCall shows incoming calls to your Fritz!Box on your Dreambox."
 msgstr ""
+
+msgid "Front USB Slot"
+msgstr "Fram USB kontakt"
 
 msgid "Frontend for /tmp/mmi.socket"
 msgstr ""
@@ -2961,6 +3073,9 @@ msgstr "Generisk PCM fördröjning"
 msgid "General PCM delay (ms)"
 msgstr "Generell PCM fördröjning (ms)"
 
+msgid "Generates and Shows TV Charts of all users having this plugin installed"
+msgstr ""
+
 #
 msgid "Genre"
 msgstr "Genre"
@@ -2973,7 +3088,7 @@ msgid "Genuine Dreambox validation failed!"
 msgstr "Äkta Dreambox validering misslyckades!"
 
 msgid "Genuine Dreambox verification"
-msgstr ""
+msgstr "Äkta Dreambox verifiering"
 
 #
 msgid "German"
@@ -3039,22 +3154,23 @@ msgid "Green boost"
 msgstr "Grön förstärkning"
 
 msgid ""
-"Growlee allows your Dreambox to send short messages using the growl "
-"protocol\n"
-"like Recording started notifications to a PC running a growl client"
+"Growlee allows your Dreambox to forward notifications like 'Record started' "
+"to a PC running a growl, snarl or syslog compatible client or directly to an "
+"iPhone using prowl."
 msgstr ""
 
-#
-msgid "Guard Interval"
-msgstr "Guard intervall"
-
-#
-msgid "Guard interval mode"
-msgstr "Guard intervalläge"
+msgid "Guard interval"
+msgstr ""
 
 #
 msgid "Guess existing timer based on begin/end"
 msgstr "Gissa existerande timer baserat på start/slut"
+
+msgid "HD Interlace Mode"
+msgstr "HD Interlace läge"
+
+msgid "HD Progressive Mode"
+msgstr "HD Progressive läge"
 
 #
 msgid "HD videos"
@@ -3084,6 +3200,9 @@ msgstr "Viloläge för hårddisk efter"
 msgid "Help"
 msgstr "Hjälp"
 
+msgid "Hidden network"
+msgstr ""
+
 #
 msgid "Hidden network SSID"
 msgstr "Dold nätverks SSID"
@@ -3092,12 +3211,8 @@ msgstr "Dold nätverks SSID"
 msgid "Hidden networkname"
 msgstr "Dolt nätverksnamn"
 
-msgid "Hierarchy Information"
-msgstr "Hierarkisk information"
-
-#
-msgid "Hierarchy mode"
-msgstr "Hierarkiskt läge"
+msgid "Hierarchy info"
+msgstr "Hierarkis info"
 
 #
 msgid "High bitrate support"
@@ -3170,7 +3285,7 @@ msgstr "Isländska"
 #, python-format
 msgid ""
 "If this is enabled an existing timer will also be considered recording an "
-"event if it records at least 80% of the it."
+"event if it records at least 80%% of the it."
 msgstr ""
 
 #
@@ -3269,6 +3384,12 @@ msgstr "Information"
 #
 msgid "Init"
 msgstr "Initiera"
+
+msgid "Initial Fast Forward speed"
+msgstr ""
+
+msgid "Initial Rewind speed"
+msgstr ""
 
 #
 msgid "Initial location in new timers"
@@ -3370,6 +3491,9 @@ msgstr "Intern Flash"
 
 msgid "Internal LAN adapter."
 msgstr "Intern LAN adapter."
+
+msgid "Internal USB Slot"
+msgstr ""
 
 msgid "Internal firmware updater"
 msgstr ""
@@ -3573,6 +3697,11 @@ msgstr "Välj språk"
 msgid "Last config"
 msgstr "Senaste konfiguration"
 
+msgid ""
+"Last day to match events. Events have to begin before this date to be "
+"matched."
+msgstr ""
+
 #
 msgid "Last speed"
 msgstr "Föregående hastighet"
@@ -3629,6 +3758,9 @@ msgstr "Länk:"
 #
 msgid "Linked titles with a DVD menu"
 msgstr "Länkade titlar med en DVD meny"
+
+msgid "List available networks"
+msgstr ""
 
 #
 msgid "List of Storage Devices"
@@ -3762,6 +3894,9 @@ msgstr "Hantera din mottagares mjukvara"
 #
 msgid "Manual Scan"
 msgstr "Manuell sökning"
+
+msgid "Manual configuration"
+msgstr ""
 
 #
 msgid "Manual transponder"
@@ -4049,6 +4184,9 @@ msgstr "Filmlista meny"
 msgid "Multi EPG"
 msgstr "Multi EPG"
 
+msgid "Multi-EPG bouquet selection"
+msgstr ""
+
 #
 msgid "Multimedia"
 msgstr "Multimedia"
@@ -4056,6 +4194,9 @@ msgstr "Multimedia"
 #
 msgid "Multiple service support"
 msgstr "Multipla kanaler stöds"
+
+msgid "Multiplex"
+msgstr ""
 
 #
 msgid "Multisat"
@@ -4124,6 +4265,9 @@ msgstr "NFI image flashning klar. Tryck Gul för omstart!"
 msgid "NFS share"
 msgstr "NFS delning"
 
+msgid "NIM"
+msgstr "NIM"
+
 msgid "NOW"
 msgstr "NU"
 
@@ -4151,6 +4295,9 @@ msgstr "Namnserver installation"
 #
 msgid "Nameserver settings"
 msgstr "Namnserver inställningar"
+
+msgid "Namespace"
+msgstr ""
 
 msgid "Nemesis BlackBox Skin"
 msgstr "Nemesis BlackBox Skin"
@@ -4306,6 +4453,9 @@ msgstr "Nätverksbläddring"
 #
 msgid "NetworkWizard"
 msgstr "Nätverksguide"
+
+msgid "Networkname (SSID)"
+msgstr ""
 
 #
 msgid "Never"
@@ -4473,6 +4623,9 @@ msgstr "Ingen video att visa"
 msgid "No wireless networks found! Please refresh."
 msgstr "Inget trådlöst nätverk hittat! Vänligen uppdatera."
 
+msgid "No wireless networks found! Searching..."
+msgstr ""
+
 #
 msgid ""
 "No working local network adapter found.\n"
@@ -4567,6 +4720,12 @@ msgstr "Nord"
 msgid "Norwegian"
 msgstr "Norska"
 
+msgid "Not after"
+msgstr "Inte efter"
+
+msgid "Not before"
+msgstr "Inte före"
+
 #
 #, python-format
 msgid ""
@@ -4579,6 +4738,9 @@ msgstr ""
 #
 msgid "Not fetching feed entries"
 msgstr "Hämtar inte feed poster"
+
+msgid "Not-Associated"
+msgstr ""
 
 #
 msgid ""
@@ -4621,6 +4783,9 @@ msgstr "OK, ta bort fler utökningar"
 #
 msgid "OK, remove some extensions"
 msgstr "OK, ta bort några utökningar"
+
+msgid "ONID"
+msgstr "ONID"
 
 #
 msgid "OSD Settings"
@@ -4689,9 +4854,8 @@ msgstr "Öppna plugin meny"
 msgid "Optionally enter your name if you want to."
 msgstr "Valfritt ange ditt namn om du vill."
 
-#
-msgid "Orbital Position"
-msgstr "Orbital position"
+msgid "Orbital position"
+msgstr ""
 
 #
 msgid "Outer Bound (+/-)"
@@ -4714,9 +4878,15 @@ msgstr "Skriv över konfigurationsfilerna vid mjukvaruuppgradering?"
 msgid "PAL"
 msgstr "PAL"
 
+msgid "PCR PID"
+msgstr "PCR PID"
+
 #
 msgid "PIDs"
 msgstr "PIDs"
+
+msgid "PMT PID"
+msgstr "PMT PID"
 
 #
 msgid "Package list update"
@@ -5164,10 +5334,6 @@ msgid "Poland"
 msgstr "Polen"
 
 #
-msgid "Polarity"
-msgstr "Polaritet"
-
-#
 msgid "Polarization"
 msgstr "Polarisation"
 
@@ -5202,6 +5368,9 @@ msgstr "Port D"
 #
 msgid "Portuguese"
 msgstr "Portugisiska"
+
+msgid "Position of finished Timers in Timerlist"
+msgstr ""
 
 #
 msgid "Positioner"
@@ -5419,6 +5588,9 @@ msgstr "RGB"
 msgid "RSS viewer"
 msgstr "RSS visare"
 
+msgid "RT8070/RT3070/RT3370 USB wireless-n driver"
+msgstr ""
+
 #
 msgid "Radio"
 msgstr "Radio"
@@ -5527,6 +5699,9 @@ msgstr "Inspelningar"
 #
 msgid "Recordings always have priority"
 msgstr "Inspelningar har alltid prioritet"
+
+msgid "Redirect notifications to Growl, Snarl, Prowl or Syslog"
+msgstr ""
 
 msgid "Reenter new PIN"
 msgstr ""
@@ -5748,6 +5923,9 @@ msgstr ""
 msgid "Restrict \"after event\" to a certain timespan?"
 msgstr "Begränsa \"efter händelse\" till ett visst tidsintervall?"
 
+msgid "Restrict to events on certain dates"
+msgstr ""
+
 #
 msgid "Resume from last position"
 msgstr "Återuppspela från senaste position"
@@ -5788,9 +5966,8 @@ msgstr "Hastigheter för snabbspolning bakåt"
 msgid "Right"
 msgstr "Höger"
 
-#
-msgid "Rolloff"
-msgstr "Rolloff"
+msgid "Roll-off"
+msgstr "Roll-off"
 
 #
 msgid "Rotor turning speed"
@@ -5799,6 +5976,9 @@ msgstr "Rotor rotationsfart"
 #
 msgid "Running"
 msgstr "Körandes"
+
+msgid "Running in testmode"
+msgstr ""
 
 #
 msgid "Russia"
@@ -5811,6 +5991,21 @@ msgstr "Ryska"
 #
 msgid "S-Video"
 msgstr "S-Video"
+
+msgid "SD 25/50HZ Interlace Mode"
+msgstr "SD 25/50Hz Interlace läge"
+
+msgid "SD 25/50HZ Progressive Mode"
+msgstr "SD 25/50Hz Progressive läge"
+
+msgid "SD 30/60HZ Interlace Mode"
+msgstr "SD 30/60Hz Interlace läge"
+
+msgid "SD 30/60HZ Progressive Mode"
+msgstr "SD 30/60Hz Progressive läge"
+
+msgid "SID"
+msgstr "SID"
 
 #
 msgid "SINGLE LAYER DVD"
@@ -5827,6 +6022,19 @@ msgstr "SNR:"
 #
 msgid "SSID:"
 msgstr "SSID:"
+
+msgid ""
+"SVDRP is a protocol developed for the VDR software to control a set-top box "
+"remotely.\n"
+"This plugin only supports a subset of SVDRP and starts automatically using "
+"default settings.\n"
+"\n"
+"You probably don't need this plugin and should use the regular Web Interface "
+"for Enigma2 instead."
+msgstr ""
+
+msgid "SVDRP server for Enigma2"
+msgstr ""
 
 #
 msgid "Sat"
@@ -6287,6 +6495,9 @@ msgstr ""
 "Service inte funnen!\n"
 "(SID inte funnen i PAT)"
 
+msgid "Service reference"
+msgstr ""
+
 #
 msgid "Service scan"
 msgstr "Kanalsökning"
@@ -6419,6 +6630,9 @@ msgstr "Visa händelse-utveckling i kanallistan"
 msgid "Show in extension menu"
 msgstr "Visa i utökningsmenyn"
 
+msgid "Show info screen"
+msgstr "Visa infoskärm"
+
 #
 msgid "Show infobar on channel change"
 msgstr "Visa infobalk vid kanalbyte"
@@ -6430,6 +6644,9 @@ msgstr "Visa infobalk vid händelseändring"
 #
 msgid "Show infobar on skip forward/backward"
 msgstr "Visa infobalk vid hopp framåt/bakåt"
+
+msgid "Show notification on conflicts"
+msgstr ""
 
 #
 msgid "Show positioner movement"
@@ -6703,6 +6920,9 @@ msgstr "Standby fläkt %d Volt"
 msgid "Start Webinterface"
 msgstr "Starta Webgränssnitt"
 
+msgid "Start easy your multimedia plugins with the PVR-button."
+msgstr ""
+
 #
 msgid "Start from the beginning"
 msgstr "Spela upp från början"
@@ -6822,6 +7042,9 @@ msgstr "Sön"
 msgid "Sunday"
 msgstr "Söndag"
 
+msgid "Support \"Fast Scan\"?"
+msgstr ""
+
 #
 msgid "Swap Services"
 msgstr "Byt kanal"
@@ -6846,13 +7069,8 @@ msgstr "Byt till föregående underkanal"
 msgid "Switchable tuner types:"
 msgstr "Växlingbara tunertyper:"
 
-#
-msgid "Symbol Rate"
-msgstr "Symbolrate"
-
-#
-msgid "Symbolrate"
-msgstr "Symbolrate"
+msgid "Symbol rate"
+msgstr "Symbolhastighet"
 
 #
 msgid "System"
@@ -6866,9 +7084,18 @@ msgstr ""
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS fil för stor för ISO9660 level 1!"
 
+msgid "TSID"
+msgstr "TSID"
+
+msgid "TV Charts of all users"
+msgstr ""
+
 #
 msgid "TV System"
 msgstr "TV System"
+
+msgid "TXT PID"
+msgstr "TXT PID"
 
 #
 msgid "Table of content for collection"
@@ -6901,6 +7128,9 @@ msgstr "Taiwan"
 #
 msgid "Temperature and Fan control"
 msgstr "Temperatur och Fläkt kontroll"
+
+msgid "Temperature-dependent fan control."
+msgstr ""
 
 #
 msgid "Terrestrial"
@@ -7620,20 +7850,12 @@ msgid "Translation:"
 msgstr "Översättning:"
 
 #
-msgid "Transmission Mode"
-msgstr "Sändningsläge"
-
-#
 msgid "Transmission mode"
 msgstr "Sändningstyp"
 
 #
 msgid "Transponder"
 msgstr "Transponder"
-
-#
-msgid "Transponder Type"
-msgstr "Transponder Typ"
 
 #
 msgid "Travel & Events"
@@ -7760,6 +7982,9 @@ msgstr "Ångra installation"
 msgid "Undo uninstall"
 msgstr "Ångra avinstallation"
 
+msgid "Unencrypted"
+msgstr ""
+
 #
 msgid "UnhandledKey"
 msgstr "Okänd knapp"
@@ -7787,6 +8012,9 @@ msgstr "USA"
 #
 msgid "Universal LNB"
 msgstr "Universal LNB"
+
+msgid "Unknown"
+msgstr ""
 
 msgid "Unknown network adapter."
 msgstr "Okänd nätverksadapter."
@@ -7905,10 +8133,6 @@ msgid "Use and control multiple Dreamboxes with different RCs."
 msgstr ""
 
 #
-msgid "Use non-smooth winding at speeds above"
-msgstr "Använd hackig spolning vid hastigheter över"
-
-#
 msgid "Use power measurement"
 msgstr "Använd strömmätning"
 
@@ -7989,12 +8213,21 @@ msgstr "VMGM (intro trailer)"
 msgid "Vali-XD skin"
 msgstr "Vali-XD skin"
 
+msgid "Vali.HD.atlantis skin"
+msgstr ""
+
 msgid "Vali.HD.nano skin"
 msgstr "Vali.HD.nano skin"
+
+msgid "Vali.HD.warp skin"
+msgstr ""
 
 msgid ""
 "Verify your Dreambox authenticity by running the genuine dreambox plugin!"
 msgstr "Kontrollera din Dreamboxs äkthet genom att köra Äkta Dreambox plugin!"
+
+msgid "Verifying your internet connection..."
+msgstr ""
 
 #
 msgid "Vertical"
@@ -8011,6 +8244,9 @@ msgstr "Video fininställnings guide"
 #
 msgid "Video Output"
 msgstr "Video Utsignal"
+
+msgid "Video PID"
+msgstr "Video PID"
 
 #
 msgid "Video Setup"
@@ -8256,6 +8492,9 @@ msgstr ""
 msgid "Weatherforecast on your Dreambox"
 msgstr ""
 
+msgid "Web-Bouquet-Editor for PC"
+msgstr ""
+
 #
 msgid "Webinterface"
 msgstr "Webgränssnitt"
@@ -8433,6 +8672,11 @@ msgstr "Vad vill du söka efter?"
 msgid "What to do with submitted crashlogs?"
 msgstr "Vad ska ske med skickade crashlogs?"
 
+msgid ""
+"When supporting \"Fast Scan\" the service type is ignored. You don't need to "
+"enable this unless your Image supports \"Fast Scan\" and you are using it."
+msgstr ""
+
 #
 msgid ""
 "When this option is enabled the AutoTimer won't match events where another "
@@ -8475,6 +8719,15 @@ msgstr "Trådlöst Nätverk"
 #
 msgid "Wireless Network State"
 msgstr "Status Trådlöst nätverk"
+
+msgid "Wireless network connection setup"
+msgstr ""
+
+msgid "Wireless network connection setup."
+msgstr ""
+
+msgid "Wireless network state"
+msgstr ""
 
 msgid ""
 "With AntiScrollbar you can cover up annoying ticker lines (e.g. in news "
@@ -8702,6 +8955,12 @@ msgstr ""
 "Då 'Namn' bara är bara ett visningsvärde i Overview, 'Match in title' är vad "
 "som ska letas efter i EPG."
 
+msgid ""
+"You can use the EasyInfo for manage your EPG plugins from info button. You "
+"have also a new now-next event viewer. Easy-PG, the own graphical EPG bowser "
+"is also included."
+msgstr ""
+
 #
 msgid "You cannot delete this!"
 msgstr "Du kan inte ta bort detta!"
@@ -8913,6 +9172,9 @@ msgstr "Ditt namn (valfritt):"
 #
 msgid "Your network configuration has been activated."
 msgstr "Din nätverkskonfiguration har aktiverats."
+
+msgid "Your network is not working. Please try again."
+msgstr ""
 
 #
 msgid "Your network mount has been activated."
@@ -9141,6 +9403,12 @@ msgstr "tilldelade CAIds:"
 msgid "assigned Services/Provider:"
 msgstr "utpekade kanaler/operatörer:"
 
+msgid "at beginning"
+msgstr "i början"
+
+msgid "at end"
+msgstr "i slutet"
+
 #
 #, python-format
 msgid "audio track (%s) format"
@@ -9158,6 +9426,9 @@ msgstr "ljudspår"
 #
 msgid "auto"
 msgstr "auto"
+
+msgid "autotimers need a match attribute"
+msgstr ""
 
 #
 msgid "available"
@@ -9190,6 +9461,9 @@ msgstr "svartlista"
 #
 msgid "blue"
 msgstr "blå"
+
+msgid "bob"
+msgstr ""
 
 #
 #, python-format
@@ -9230,6 +9504,9 @@ msgstr "rensa spellista"
 msgid "complex"
 msgstr "komplex"
 
+msgid "config changed."
+msgstr ""
+
 #
 msgid "config menu"
 msgstr "konfigurationsmeny"
@@ -9261,6 +9538,12 @@ msgstr "kunde inte tas bort"
 msgid "create directory"
 msgstr "skapa bibliotek"
 
+msgid "creates virtual series folders from episodes"
+msgstr ""
+
+msgid "creates virtual series folders from sets of recorded episodes"
+msgstr ""
+
 #, python-format
 msgid "currently installed image: %s"
 msgstr "nuvarande installerad image: %s"
@@ -9272,6 +9555,9 @@ msgstr "daglig"
 #
 msgid "day"
 msgstr "dag"
+
+msgid "default"
+msgstr "grundvärde"
 
 #
 msgid "delete"
@@ -9331,6 +9617,9 @@ msgstr "spela inte in"
 #
 msgid "done!"
 msgstr "klar!"
+
+msgid "driver for Realtek USB wireless devices"
+msgstr ""
 
 #
 msgid "edit alternatives"
@@ -9612,6 +9901,9 @@ msgstr "minut"
 msgid "minutes"
 msgstr "minuter"
 
+msgid "missing parameter \"id\""
+msgstr "saknar värde \"id\""
+
 #
 msgid "month"
 msgstr "månad"
@@ -9807,9 +10099,6 @@ msgstr "röd"
 
 msgid "redesigned Kerni-HD1 skin"
 msgstr "omdesignat Kerni-HD1 skin"
-
-msgid "redirect notifications to Growl"
-msgstr "omdirigera notifieringar till Growl"
 
 #
 msgid "remove a nameserver entry"
@@ -10144,6 +10433,10 @@ msgstr "skifta tid, kapitel, ljud, textning info"
 msgid "tuner is not supported"
 msgstr "tuner stöds inte"
 
+#, python-format
+msgid "unable to find timer with id %i"
+msgstr "kan inte hitta timer med id %i"
+
 #
 msgid "unavailable"
 msgstr "ej tillgänglig"
@@ -10214,6 +10507,9 @@ msgstr "veckolig"
 msgid "whitelist"
 msgstr "vitlista"
 
+msgid "wireless network interface"
+msgstr ""
+
 #
 msgid "working"
 msgstr "arbetar"
@@ -10247,264 +10543,60 @@ msgid "zapped"
 msgstr "zapped"
 
 #
-#~ msgid ".NFI Download failed:"
-#~ msgstr ".NFI Nedladdning misslyckades:"
+#~ msgid "Code rate high"
+#~ msgstr "Code rate hög"
 
 #
-#~ msgid ""
-#~ ".NFI file passed md5sum signature check. You can safely flash this image!"
-#~ msgstr ""
-#~ ".NFI fil passerade md5sum signatur kontroll. Du kan använda denna image!"
+#~ msgid "Code rate low"
+#~ msgstr "Code rate låg"
 
 #
-#~ msgid "Cannot parse feed directory"
-#~ msgstr "Kan inte läsa feed bibliotek"
+#~ msgid "Coderate HP"
+#~ msgstr "Coderate HP"
 
 #
-#~ msgid "Change dir."
-#~ msgstr "Byt bibl."
-
-#~ msgid "Change service pin"
-#~ msgstr "Ändra program pin"
-
-#~ msgid "Change service pins"
-#~ msgstr "Ändra program pin"
-
-#~ msgid "Change setup pin"
-#~ msgstr "Ändra installations pin"
+#~ msgid "Coderate LP"
+#~ msgstr "Coderate LP"
 
 #
-#~ msgid "Destination directory"
-#~ msgstr "Målbibliotek"
+#~ msgid "Guard Interval"
+#~ msgstr "Guard intervall"
 
 #
-#~ msgid "Details for extension: "
-#~ msgstr "Detaljer för utökning: "
+#~ msgid "Guard interval mode"
+#~ msgstr "Guard intervalläge"
+
+#~ msgid "Hierarchy Information"
+#~ msgstr "Hierarkisk information"
 
 #
-#~ msgid "Disable Subtitles"
-#~ msgstr "Avaktivera textning"
-
-#~ msgid "Download of USB flasher boot image failed: "
-#~ msgstr "Ladda ner USB flash boot image misslyckades: "
+#~ msgid "Hierarchy mode"
+#~ msgstr "Hierarkiskt läge"
 
 #
-#~ msgid ""
-#~ "First we need to download the latest boot environment for the USB flasher."
-#~ msgstr "Först måste vi ladda ner senaste bootmiljön för USB flasher."
-
-#~ msgid ""
-#~ "If this is enabled an existing timer will also be considered recording an "
-#~ "event if it records at least 80%% of the it."
-#~ msgstr ""
-#~ "Om detta är aktiverat kommer befintlig timer att behandlas som en "
-#~ "inspelning om den spelar in minst 80%% av den."
+#~ msgid "Orbital Position"
+#~ msgstr "Orbital position"
 
 #
-#~ msgid "Image flash utility"
-#~ msgstr "Image flash redskap"
+#~ msgid "Polarity"
+#~ msgstr "Polaritet"
 
 #
-#~ msgid "Integrated Ethernet"
-#~ msgstr "Integrerat nätverk"
+#~ msgid "Rolloff"
+#~ msgstr "Rolloff"
 
 #
-#~ msgid "Integrated Wireless"
-#~ msgstr "Inbyggt Trådlöst"
-
-#~ msgid "New pin"
-#~ msgstr "Ny pin"
+#~ msgid "Symbol Rate"
+#~ msgstr "Symbolrate"
 
 #
-#~ msgid "No useable USB stick found"
-#~ msgstr "Ingen användbar USB-sticka hittad"
+#~ msgid "Symbolrate"
+#~ msgstr "Symbolrate"
 
 #
-#~ msgid "Page"
-#~ msgstr "Sida"
+#~ msgid "Transmission Mode"
+#~ msgstr "Sändningsläge"
 
 #
-#~ msgid "Please choose .NFI image file from feed server to download"
-#~ msgstr "Vänligen välj .NFI image fil från feed server som ska laddas ner"
-
-#
-#~ msgid ""
-#~ "Please disconnect all USB devices from your Dreambox and (re-)attach the "
-#~ "target USB stick (minimum size is 64 MB) now!"
-#~ msgstr ""
-#~ "Vänligen koppla bort alla USB enheter från din Dreambox och (åter-)anslut "
-#~ "USB-stickan (minimumstorlek är 64MB) nu!"
-
-#~ msgid "Please enter the old pin code"
-#~ msgstr "Vänligen ange den gamla pin koden"
-
-#
-#~ msgid "Please select .NFI flash image file from medium"
-#~ msgstr "Vänligen välj .NFI flash image fil från media"
-
-#
-#~ msgid "Please select target directory or medium"
-#~ msgstr "Vänligen välj målbibliotek eller media"
-
-#
-#~ msgid "Press OK to view full changelog"
-#~ msgstr "Tryck OK för att visa full förändringslog"
-
-#~ msgid "Reenter new pin"
-#~ msgstr "Ange ny pin igen"
-
-#
-#~ msgid "Remember service pin"
-#~ msgstr "Kom ihåg service pin"
-
-#
-#~ msgid "Remember service pin cancel"
-#~ msgstr "Avbryt kom ihåg service pin"
-
-#
-#~ msgid "Remove the broken .NFI file?"
-#~ msgstr "Ta bort trasig .NFI fil?"
-
-#
-#~ msgid "Remove the incomplete .NFI file?"
-#~ msgstr "Ta bort ofullständig .NFI fil?"
-
-#
-#~ msgid ""
-#~ "Scan your network for wireless Access Points and connect to them using "
-#~ "your selected wireless device.\n"
-#~ msgstr ""
-#~ "Sök ditt nätverk efter trådlös Accesspunkt och anslut till det med din "
-#~ "valda trådlösa enhet.\n"
-
-#
-#~ msgid "Select audio mode"
-#~ msgstr "Välj ljudläge"
-
-#
-#~ msgid "Select files for backup. Currently selected:\n"
-#~ msgstr "Välj filer för backuptagning. Nuvarande valda:\n"
-
-#
-#~ msgid "Select image"
-#~ msgstr "Välj image"
-
-#
-#~ msgid "Selected source image"
-#~ msgstr "Välj käll image"
-
-#
-#~ msgid "Stereo"
-#~ msgstr "Stereo"
-
-#
-#~ msgid ""
-#~ "The USB stick is now bootable. Do you want to download the latest image "
-#~ "from the feed server and save it on the stick?"
-#~ msgstr ""
-#~ "USB-stickan är nu bootbar. Vill du ladda ner senaste image från feed "
-#~ "server och spara den på stickan?"
-
-#~ msgid ""
-#~ "The md5sum validation failed, the file may be corrupted! Are you sure "
-#~ "that you want to burn this image to flash memory? You are doing this at "
-#~ "your own risk!"
-#~ msgstr ""
-#~ "Validering av md5sun misslyckades, filen kan vara korrupt! Är du säker på "
-#~ "att du vill flasha denna image till flashminnet? Du utför detta på egen "
-#~ "risk!"
-
-#~ msgid ""
-#~ "The md5sum validation failed, the file may be downloaded incompletely or "
-#~ "be corrupted!"
-#~ msgstr ""
-#~ "Validering av md5sum misslyckades, filen kanske inte blev helt nedladdad "
-#~ "eller är korrupt!"
-
-#~ msgid "The pin code has been changed successfully."
-#~ msgstr "Bytet av pin koden utfördes."
-
-#~ msgid "The pin codes you entered are different."
-#~ msgstr "Pin koderna du angav är olika."
-
-#
-#~ msgid "This .NFI file does not contain a valid %s image!"
-#~ msgstr "Denna .NFI fil innehåller ingen giltig %s image!"
-
-#
-#~ msgid ""
-#~ "This .NFI file does not have a md5sum signature and is not guaranteed to "
-#~ "work. Do you really want to burn this image to flash memory?"
-#~ msgstr ""
-#~ "Denna .NFI har ingen md5sum signatur och är inte garanterad att den "
-#~ "fungerar. Vill du verkligen flasha denna image till flashminnet?"
-
-#
-#~ msgid ""
-#~ "This .NFI file has a valid md5 signature. Continue programming this image "
-#~ "to flash memory?"
-#~ msgstr ""
-#~ "Denna .NFI har giltig md5sum. Fortsätta programmera denna image till "
-#~ "flashminnet?"
-
-#~ msgid ""
-#~ "To update your Dreambox firmware, please follow these steps:\n"
-#~ "1) Turn off your box with the rear power switch and plug in the bootable "
-#~ "USB stick.\n"
-#~ "2) Turn mains back on and hold the DOWN button on the front panel pressed "
-#~ "for 10 seconds.\n"
-#~ "3) Wait for bootup and follow instructions of the wizard."
-#~ msgstr ""
-#~ "För att uppdatera din Dreambox firmware, vänligen utför följande steg:\n"
-#~ "1) Stäng av din box med strömbrytaren på baksidan och sätt in bootbar USB-"
-#~ "sticka.\n"
-#~ "2) Slå på strömbrytaren och håll NER pil på fronten intryckt i ungerfär "
-#~ "10 sekunder.\n"
-#~ "3) Vänta på uppstart och följ instruktionerna från guiden."
-
-#
-#~ msgid ""
-#~ "USB stick wizard finished. Your dreambox will now restart with your new "
-#~ "image!"
-#~ msgstr ""
-#~ "USB-sticke-guide klar. Din dreambox kommer nu starta om med din nya image!"
-
-#
-#~ msgid "Wireless"
-#~ msgstr "Trådlöst"
-
-#
-#~ msgid "Writing NFI image file to flash completed"
-#~ msgstr "Skrivning av NFI image fil till flash klart"
-
-#
-#~ msgid ""
-#~ "You need to set a pin code and hide it from your children.\n"
-#~ "\n"
-#~ "Do you want to set the pin now?"
-#~ msgstr ""
-#~ "Du måste ange en PIN kod och dölja det från dina barn.\n"
-#~ "\n"
-#~ "Vill du ange PIN kod nu?"
-
-#
-#~ msgid "choose destination directory"
-#~ msgstr "välj destinationsbibliotek"
-
-#
-#~ msgid "failed"
-#~ msgstr "misslyckades"
-
-#
-#~ msgid "select .NFI flash file"
-#~ msgstr "välj .NFI flash fil"
-
-#
-#~ msgid "select image from server"
-#~ msgstr "välj image från server"
-
-#~ msgid "service pin"
-#~ msgstr "kanal pin"
-
-#~ msgid "setup pin"
-#~ msgstr "installation pin"
+#~ msgid "Transponder Type"
+#~ msgstr "Transponder Typ"

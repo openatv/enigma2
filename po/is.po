@@ -5,14 +5,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Icelandic translation v.1.44\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-27 12:42+0000\n"
-"PO-Revision-Date: 2010-11-18 19:57+0200\n"
+"POT-Creation-Date: 2011-04-20 10:39+0000\n"
+"PO-Revision-Date: 2011-04-20 20:09+0200\n"
 "Last-Translator: Baldur <bsveinsson@gmail.com>\n"
 "Language-Team: Polar Team/LT Team <baddi@oreind.is>\n"
+"Language: is\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: is\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.0.3\n"
 "X-Poedit-Language: Icelandic\n"
@@ -196,6 +196,14 @@ msgstr "#ffffffff"
 msgid "%H:%M"
 msgstr "%H:%M"
 
+#, python-format
+msgid ""
+"%d conflict(s) encountered when trying to add new timers:\n"
+"%s"
+msgstr ""
+"Það urðu %d árekstrar við að bæta við upptökum:\n"
+"%s"
+
 #
 #, python-format
 msgid "%d jobs are running in the background!"
@@ -232,6 +240,10 @@ msgstr ""
 #, python-format
 msgid "%s (%s)\n"
 msgstr "%s (%s)\n"
+
+#, python-format
+msgid "%s: %s at %s"
+msgstr "%s: %s við %s"
 
 #
 msgid "(ZAP)"
@@ -383,10 +395,10 @@ msgstr "??"
 msgid "A"
 msgstr "A"
 
-msgid "A BackToTheRoots-Skin .. or good old times."
-msgstr "BackToTheRoots-Skin eða gömlu góðu dagarnir."
+msgid "A BackToTheRoots-Skin .. but with Warp-8 speed."
+msgstr "BackToTheRoots-Skinn .. en með Warp-8 hraða."
 
-msgid "A BackToTheRoots-Skin ... or good old times."
+msgid "A BackToTheRoots-Skin .. or good old times."
 msgstr "BackToTheRoots-Skin eða gömlu góðu dagarnir."
 
 msgid "A basic ftp client"
@@ -406,6 +418,9 @@ msgstr ""
 
 msgid "A demo plugin for TPM usage."
 msgstr "Íforrits sýnishorn."
+
+msgid "A dreambox simulation from SG-Atlantis displays."
+msgstr "Skinn í stíl SG-Atlantis."
 
 #
 msgid ""
@@ -429,6 +444,9 @@ msgstr "Myndrænt EPG fyrir allar rásir á ákveðnum rásavendi"
 
 msgid "A graphical EPG interface"
 msgstr "Myndrænt EPG viðmót"
+
+msgid "A graphical EPG interface and EPG tools manager"
+msgstr "Myndrænt EPG viðmót og EPG tóla stjórnun"
 
 msgid "A graphical EPG interface."
 msgstr "Myndrænt EPG viðmót."
@@ -841,6 +859,9 @@ msgstr "Spyrja notanda"
 msgid "Aspect Ratio"
 msgstr "Stærðarhlutfall"
 
+msgid "Aspect ratio"
+msgstr "Stærðar hlutfall"
+
 msgid "Assigning providers/services/caids to a CI module"
 msgstr "Merkja sendendur/rásir/caids til að nota CI einingu"
 
@@ -852,6 +873,9 @@ msgstr "Hljóð"
 
 msgid "Audio Options..."
 msgstr "Hljóð stillingar..."
+
+msgid "Audio PID"
+msgstr "Hljóð PID"
 
 msgid "Audio Sync"
 msgstr "Hljóð tími"
@@ -909,6 +933,15 @@ msgstr ""
 "Sjálfvirk tímataka leita í EPG og bætir við upptökum eftir þeim "
 "leitarskilyrðum sem notandi slær inn."
 
+msgid "AutoTimer was added successfully"
+msgstr "Tókst að bæta við sjálfvirkum tímastillingum."
+
+msgid "AutoTimer was changed successfully"
+msgstr "Tókst að breyta sjálfvirkri tímastillingu"
+
+msgid "AutoTimer was removed"
+msgstr "Sjálfvirk upptaka var tekin út"
+
 msgid "Automatic"
 msgstr "Sjálfvirkt"
 
@@ -943,6 +976,26 @@ msgstr "Uppfærir EPG sjálfvirkt"
 msgid "Automatically send crashlogs to Dream Multimedia"
 msgstr "Sendir sjálfvirkt hrunskýrslur til Dream Multimedia"
 
+#, python-format
+msgid ""
+"Autoresolution Plugin Testmode:\n"
+"Is %s ok?"
+msgstr ""
+"Prufuhamur Sjálfvirkrar upplausnar:\n"
+"Er þetta í lagi (%s)?"
+
+msgid "Autoresolution Switch"
+msgstr "Sjálfvirk upplausn"
+
+msgid "Autoresolution is not working in Scart/DVI-PC Mode"
+msgstr "Sjálfvirk upplausn virkar ekki með Scart/DVI-PC ham"
+
+msgid "Autoresolution settings"
+msgstr "Stillingar Sjálfvirkrar upplausnar"
+
+msgid "Autoresolution videomode setup"
+msgstr "Uppsetning sjálfvirkrar upplausnar"
+
 msgid "Autos & Vehicles"
 msgstr "Bílar og farartæki"
 
@@ -975,6 +1028,12 @@ msgstr "BER:"
 
 msgid "Back"
 msgstr "Til baka"
+
+msgid "Back, lower USB Slot"
+msgstr "Neðra USB tengi, aftaná"
+
+msgid "Back, upper USB Slot"
+msgstr "Efra USB tengi, aftaná"
 
 msgid "Background"
 msgstr "Bakgrunnur"
@@ -1048,6 +1107,12 @@ msgstr "Brasilía"
 msgid "Brightness"
 msgstr "Birta"
 
+msgid ""
+"Browse ORF and SAT1 Teletext independent from channel. This need I-net "
+"conection."
+msgstr ""
+"Skoða ORF og SAT1 Textavarp án tenginar við rás. Þetta þarf I-net tengingu."
+
 msgid "Browse for and connect to network shares"
 msgstr "Leita að og tengjast við samnýtt gögn á netinu"
 
@@ -1071,6 +1136,22 @@ msgstr "Brenna þínar upptökur á DVD disk"
 
 msgid "Bus: "
 msgstr "Rás:"
+
+msgid ""
+"By enabling this events will not be matched if they don't occur on certain "
+"dates."
+msgstr ""
+"Með því að virkja þetta þá munu atriði ekki vera valin ef þau eru ekki á "
+"ákveðnum dögum."
+
+msgid ""
+"By enabling this you will be notified about timer conflicts found during "
+"automated polling. There is no intelligence involved, so it might bother you "
+"about the same conflict over and over."
+msgstr ""
+"Ef þetta er valið þá ertu látinn vita um árekstra á milli atriða jafnóðum og "
+"þau finnast en ekki er athugað ef þau komi fyrir aftur og aftur. Varað er "
+"við árekstrum jafnóðum og þeir koma fram."
 
 msgid ""
 "By pressing the OK Button on your remote control, the info bar is being "
@@ -1156,13 +1237,13 @@ msgid "Change pin code"
 msgstr "Breyta aðgangskóða"
 
 msgid "Change service PIN"
-msgstr ""
+msgstr "Breyta aðgangsorði fyrir rásir"
 
 msgid "Change service PINs"
-msgstr ""
+msgstr "Breyta aðgangsorðum fyrir rásir"
 
 msgid "Change setup PIN"
-msgstr ""
+msgstr "Breyta aðgangsorði fyrir uppsetningu"
 
 msgid "Change step size"
 msgstr "Breyta skrefa stærð"
@@ -1255,10 +1336,10 @@ msgid "Cleanup Wizard settings"
 msgstr "Stillingar tiltektar ráðgjafa"
 
 msgid "Cleanup timerlist automatically"
-msgstr ""
+msgstr "Hreinsa tímalista sjálfvirkt"
 
 msgid "Cleanup timerlist automatically."
-msgstr ""
+msgstr "Hreinsa tímalista sjálfvirkt."
 
 msgid "CleanupWizard"
 msgstr "Tiltektar ráðgjafi"
@@ -1284,17 +1365,11 @@ msgstr "Loka og vista breytingar"
 msgid "Close title selection"
 msgstr "Loka titils vali"
 
-msgid "Code rate high"
-msgstr "Gagna hraði, hár"
+msgid "Code rate HP"
+msgstr "Bitahraði HP"
 
-msgid "Code rate low"
-msgstr "Gagna hraði, lár"
-
-msgid "Coderate HP"
-msgstr "Gagnahraði HP"
-
-msgid "Coderate LP"
-msgstr "Gagnahraði LP"
+msgid "Code rate LP"
+msgstr "Bitahraði LP"
 
 msgid "Collection name"
 msgstr "Nafn safns"
@@ -1357,7 +1432,7 @@ msgid "Configure nameservers"
 msgstr "Stilla nafnaþjón"
 
 msgid "Configure your WLAN network interface"
-msgstr ""
+msgstr "Stilla WLAN netkort"
 
 msgid "Configure your internal LAN"
 msgstr "Stilla innbyggt netkort"
@@ -1406,28 +1481,28 @@ msgid "Contrast"
 msgstr "Skerpa"
 
 msgid "Control your Dreambox with your Web browser."
-msgstr ""
+msgstr "Stjórna Dreamboxinu þínu með vef vafra."
 
 msgid "Control your Dreambox with your browser"
-msgstr ""
+msgstr "Stjórna Dreamboxinu þínu með vef vafra"
 
 msgid "Control your dreambox with only the MUTE button"
-msgstr ""
+msgstr "Stjórna Dreamboxinu bara með MUTE takka"
 
 msgid "Control your dreambox with only the MUTE button."
-msgstr ""
+msgstr "Stjórna Dreamboxinu bara með MUTE takka."
 
 msgid "Control your internal system fan."
-msgstr ""
+msgstr "Stjórna viftunni í móttakaranum."
 
 msgid "Control your kids's tv usage"
-msgstr ""
+msgstr "Stjórna sjónvarps notkun barnanna"
 
 msgid "Control your system fan"
-msgstr ""
+msgstr "Stjórna viftunni í móttakaranum"
 
 msgid "Copy, rename, delete, move local files on your Dreambox."
-msgstr ""
+msgstr "Afrita, endurnefna, eyða og færa skrár á Dreamboxinu."
 
 msgid "Could not connect to Dreambox .NFI Image Feed Server:"
 msgstr "Gat ekki tengt við Dreambox .NFI stýrikerfis vefþjón:"
@@ -1441,6 +1516,10 @@ msgstr "Gat ekki opnað mynd í mynd"
 #, python-format
 msgid "Couldn't record due to conflicting timer %s"
 msgstr "Gat ekki tekið upp vegna skörunar á tímastillingum %s"
+
+#, python-format
+msgid "Couldn't record due to invalid service %s"
+msgstr "Gat ekki tekið upp vegna þess að rásin %s er ekki í lagi"
 
 msgid "Crashlog settings"
 msgstr "Hrunskýrslu stillingar"
@@ -1465,10 +1544,10 @@ msgid "Create DVD-ISO"
 msgstr "Búa til DVD-ISO"
 
 msgid "Create a backup of your Video DVD on your DreamBox hard drive."
-msgstr ""
+msgstr "Taka afrit af DVD disknum yfir á harða diskinn."
 
 msgid "Create a backup of your Video-DVD"
-msgstr ""
+msgstr "Taka afrit af DVD diskunum þínum"
 
 msgid "Create a new AutoTimer."
 msgstr "Búa til nýjan sjálfvirka tíma stillingu."
@@ -1483,13 +1562,13 @@ msgid "Create movie folder failed"
 msgstr "Tókst ekki að búa til bíómyndamöppu"
 
 msgid "Create preview pictures of your Movies"
-msgstr ""
+msgstr "Búa til forsýn af bíómyndum þínum"
 
 msgid "Create remote timers"
-msgstr ""
+msgstr "Búa til fjarstýriðar tímastillingar"
 
 msgid "Create timers on remote Dreamboxes."
-msgstr ""
+msgstr "Búa til tímastillingar á öðrum Dreamboxum"
 
 #, python-format
 msgid "Creating directory %s failed."
@@ -1542,22 +1621,22 @@ msgid "Customize"
 msgstr "Aðrar stillingar"
 
 msgid "Customize Vali-XD skins"
-msgstr ""
+msgstr "Stillingar Vali-XD skinna"
 
 msgid "Customize Vali-XD skins by yourself."
-msgstr ""
+msgstr "Hér getur þú stillt Vali-XD skinnið."
 
 msgid "Cut"
 msgstr "Klippa"
 
 msgid "Cut your movies"
-msgstr ""
+msgstr "Klippa bíómyndirnar"
 
 msgid "Cut your movies."
-msgstr ""
+msgstr "Klippa bíómyndirnar."
 
 msgid "CutListEditor allows you to edit your movies"
-msgstr ""
+msgstr "Klippistjórinn gerir þér mögulegt að klippa til bíómyndirnar"
 
 msgid ""
 "CutListEditor allows you to edit your movies.\n"
@@ -1565,6 +1644,11 @@ msgid ""
 "cut'.\n"
 "Then seek to the end, press OK, select 'end cut'. That's it."
 msgstr ""
+"Klippistjórinn gerir mögulegt að klippa bíómyndirnar.\n"
+"Farðu á byrjun þess sem að þú vilt klippa burtu, ýttu á OK og veldu 'byrja "
+"klippingu'.\n"
+"Farðu svo að enda þess sem á að klippa burtu og ýttu á OK og veldu 'enda "
+"klippingu'."
 
 msgid "Cutlist editor..."
 msgstr "Klippingastjóri..."
@@ -1591,6 +1675,9 @@ msgstr "DVB-S"
 msgid "DVB-S2"
 msgstr "DVB-S2"
 
+msgid "DVD Drive"
+msgstr "DVD drif"
+
 msgid "DVD File Browser"
 msgstr "DVD skráar stjóri"
 
@@ -1607,13 +1694,16 @@ msgid "DVD media toolbox"
 msgstr "DVD miðla tól"
 
 msgid "DVDPlayer plays your DVDs on your Dreambox"
-msgstr ""
+msgstr "DVD spilari spilar DVD diska á Dreamboxinu"
 
 msgid ""
 "DVDPlayer plays your DVDs on your Dreambox.\n"
 "With the DVDPlayer you can play your DVDs on your Dreambox from a DVD or "
 "even from an iso file or video_ts folder on your harddisc or network."
 msgstr ""
+"DVD spilari spilar DVD diska á Dreamboxinu.\n"
+"Með DVD spilaranum getur þú spilað DVD diska og einnig ISO skrár frá harða "
+"diskinum þínum eða video_ts möppur af harða disknum eða netinu."
 
 #
 msgid "Danish"
@@ -1664,14 +1754,23 @@ msgid "Defaults"
 msgstr "Venjulegt"
 
 msgid "Define a startup service"
-msgstr ""
+msgstr "Velja þjónustu sem starta á"
 
 msgid "Define a startup service for your Dreambox."
+msgstr "Velja þjónustu sem starta á við ræsingu."
+
+msgid "Deinterlacer mode for interlaced content"
+msgstr ""
+
+msgid "Deinterlacer mode for progressive content"
 msgstr ""
 
 #
 msgid "Delay"
 msgstr "Seinkun"
+
+msgid "Delay x seconds after service started"
+msgstr ""
 
 #
 msgid "Delete"
@@ -1852,6 +1951,12 @@ msgid ""
 msgstr ""
 "Viltu örugglega athuga skráarkerfi?\n"
 "Það tekur langan tíma!"
+
+#, python-format
+msgid ""
+"Do you really want to delete %s\n"
+"%s?"
+msgstr ""
 
 #
 #, python-format
@@ -2037,6 +2142,12 @@ msgstr "Dreambox gagna formaður DVD diskur (HDTV samhæfður)"
 msgid "Dreambox software because updates are available."
 msgstr "Hugbúnaður uppfærslur eru tiltækar fyrir Dreamboxið."
 
+msgid "Driver for Ralink RT8070/RT3070/RT3370 based wireless-n USB devices."
+msgstr ""
+
+msgid "Driver for Realtek r8712u based wireless-n USB devices."
+msgstr ""
+
 msgid "Duration: "
 msgstr "Lengd:"
 
@@ -2161,9 +2272,24 @@ msgstr "Virkja"
 msgid "Enable /media"
 msgstr "Virkja /media"
 
+msgid "Enable 1080p24 Mode"
+msgstr ""
+
+msgid "Enable 1080p25 Mode"
+msgstr ""
+
+msgid "Enable 1080p30 Mode"
+msgstr ""
+
 #
 msgid "Enable 5V for active antenna"
 msgstr "Kveikja á 5V fyrir loftnet með magnara"
+
+msgid "Enable 720p24 Mode"
+msgstr ""
+
+msgid "Enable Autoresolution"
+msgstr ""
 
 msgid "Enable Cleanup Wizard?"
 msgstr "Virkja hreinsi ráðgjafa?"
@@ -2279,16 +2405,8 @@ msgstr ""
 "\n"
 "© 2006 - Stephan Reichholf"
 
-#
-msgid "Enter Fast Forward at speed"
-msgstr "Hraðspólunar hraði áfram, fyrst"
-
 msgid "Enter IP to scan..."
 msgstr "Sláðu inn IP til að leita..."
-
-#
-msgid "Enter Rewind at speed"
-msgstr "Hraðspólunar hraði til baka, fyrst"
 
 #
 msgid "Enter main menu..."
@@ -2350,6 +2468,9 @@ msgstr ""
 #
 msgid "Estonian"
 msgstr "Eistneska"
+
+msgid "Ethernet network interface"
+msgstr ""
 
 #
 msgid "Eventview"
@@ -2530,6 +2651,11 @@ msgstr "Búið að endurræsa netkerfið"
 msgid "Finnish"
 msgstr "Finnska"
 
+msgid ""
+"First day to match events. No event that begins before this date will be "
+"matched."
+msgstr ""
+
 msgid "First generate your skin-style with the Ai.HD-Control plugin."
 msgstr ""
 
@@ -2551,13 +2677,16 @@ msgstr "Forma"
 #, python-format
 msgid ""
 "Found a total of %d matching Events.\n"
+"%d Timer were added and %d modified, %d conflicts encountered."
+msgstr ""
+
+#, python-format
+msgid ""
+"Found a total of %d matching Events.\n"
 "%d Timer were added and %d modified."
 msgstr ""
 "Fann samtals %d passandi atriði.\n"
 "%d tímastillingar verða bætt við og %d breytt."
-
-msgid "Frame repeat count during non-smooth winding"
-msgstr "Fjöldi ramma sem á að sleppa við hraðspólun"
 
 #
 msgid "Frame size in full view"
@@ -2598,6 +2727,9 @@ msgid "Frisian"
 msgstr "Frísneska"
 
 msgid "FritzCall shows incoming calls to your Fritz!Box on your Dreambox."
+msgstr ""
+
+msgid "Front USB Slot"
 msgstr ""
 
 msgid "Frontend for /tmp/mmi.socket"
@@ -2650,6 +2782,9 @@ msgstr "Heildar PCM seinkun"
 
 msgid "General PCM delay (ms)"
 msgstr "Heildar PCM seinkun (ms)"
+
+msgid "Generates and Shows TV Charts of all users having this plugin installed"
+msgstr ""
 
 #
 msgid "Genre"
@@ -2723,21 +2858,22 @@ msgid "Green boost"
 msgstr "Auka grænan"
 
 msgid ""
-"Growlee allows your Dreambox to send short messages using the growl "
-"protocol\n"
-"like Recording started notifications to a PC running a growl client"
+"Growlee allows your Dreambox to forward notifications like 'Record started' "
+"to a PC running a growl, snarl or syslog compatible client or directly to an "
+"iPhone using prowl."
 msgstr ""
 
-#
-msgid "Guard Interval"
-msgstr "Guard Interval"
-
-#
-msgid "Guard interval mode"
-msgstr "Guard millibils hamur"
+msgid "Guard interval"
+msgstr ""
 
 msgid "Guess existing timer based on begin/end"
 msgstr "Giska á núverandi tímastillingu grundvallað á byrjun og enda"
+
+msgid "HD Interlace Mode"
+msgstr ""
+
+msgid "HD Progressive Mode"
+msgstr ""
 
 msgid "HD videos"
 msgstr "HD myndir"
@@ -2763,6 +2899,9 @@ msgstr "Harði diskur í biðstöðu eftir"
 msgid "Help"
 msgstr "Hjálp"
 
+msgid "Hidden network"
+msgstr ""
+
 #
 msgid "Hidden network SSID"
 msgstr "Falið netkerfis SSID"
@@ -2770,12 +2909,8 @@ msgstr "Falið netkerfis SSID"
 msgid "Hidden networkname"
 msgstr "Falið nafn á netkerfi"
 
-#
-msgid "Hierarchy Information"
-msgstr "Stigskipta upplýsingar"
-
-msgid "Hierarchy mode"
-msgstr "Stigskipta hamur"
+msgid "Hierarchy info"
+msgstr ""
 
 #
 msgid "High bitrate support"
@@ -2844,10 +2979,8 @@ msgstr "Íslenska"
 #, python-format
 msgid ""
 "If this is enabled an existing timer will also be considered recording an "
-"event if it records at least 80% of the it."
+"event if it records at least 80%% of the it."
 msgstr ""
-"Ef þetta er virkt þá mun núverandi tímastilling vera líka skoðuð sem upptaka "
-"er atriði er allavega 80% tekið upp."
 
 #
 msgid ""
@@ -2941,6 +3074,12 @@ msgstr "Upplýsingar"
 msgid "Init"
 msgstr "Stilli"
 
+msgid "Initial Fast Forward speed"
+msgstr ""
+
+msgid "Initial Rewind speed"
+msgstr ""
+
 msgid "Initial location in new timers"
 msgstr "Sjálfgefin staður í nýjum tímastillingum"
 
@@ -3032,6 +3171,9 @@ msgstr "Innra Flash minni"
 
 msgid "Internal LAN adapter."
 msgstr "Innbyggt netkort."
+
+msgid "Internal USB Slot"
+msgstr ""
 
 msgid "Internal firmware updater"
 msgstr ""
@@ -3225,6 +3367,11 @@ msgstr "Val tungumáls"
 msgid "Last config"
 msgstr "Síðasta stilling"
 
+msgid ""
+"Last day to match events. Events have to begin before this date to be "
+"matched."
+msgstr ""
+
 #
 msgid "Last speed"
 msgstr "Síðasti hraði"
@@ -3280,6 +3427,9 @@ msgstr "Tenging:"
 #
 msgid "Linked titles with a DVD menu"
 msgstr "Tengdir titlar við DVD valmynd"
+
+msgid "List available networks"
+msgstr ""
 
 msgid "List of Storage Devices"
 msgstr "Listi geymslu tækja"
@@ -3407,6 +3557,9 @@ msgstr "Stjórna hugbúnaði móttakarans"
 #
 msgid "Manual Scan"
 msgstr "Handvirk leitun"
+
+msgid "Manual configuration"
+msgstr ""
 
 #
 msgid "Manual transponder"
@@ -3662,6 +3815,9 @@ msgstr "Bíómynda valmynd"
 msgid "Multi EPG"
 msgstr "Mörg EPG"
 
+msgid "Multi-EPG bouquet selection"
+msgstr ""
+
 #
 msgid "Multimedia"
 msgstr "Margmiðlun"
@@ -3669,6 +3825,9 @@ msgstr "Margmiðlun"
 #
 msgid "Multiple service support"
 msgstr "Styður margar rásir"
+
+msgid "Multiplex"
+msgstr ""
 
 #
 msgid "Multisat"
@@ -3728,6 +3887,9 @@ msgstr "NFI forritun er lokið. Ýttu á gulan til að endurræsa!"
 msgid "NFS share"
 msgstr "NFS samnýting"
 
+msgid "NIM"
+msgstr ""
+
 #
 msgid "NOW"
 msgstr "NÚNA"
@@ -3756,6 +3918,9 @@ msgstr "Uppsetning nafnaþjóns"
 #
 msgid "Nameserver settings"
 msgstr "Uppsetning nafnaþjóns"
+
+msgid "Namespace"
+msgstr ""
 
 msgid "Nemesis BlackBox Skin"
 msgstr ""
@@ -3908,6 +4073,9 @@ msgstr "Netkerfis vafri"
 
 msgid "NetworkWizard"
 msgstr "Nettengi ráðgjafi"
+
+msgid "Networkname (SSID)"
+msgstr ""
 
 msgid "Never"
 msgstr "Aldrei"
@@ -4067,6 +4235,9 @@ msgstr "Engar bíómyndir til að sýna"
 msgid "No wireless networks found! Please refresh."
 msgstr "Það fannst ekkert þráðlaust net! Reyndu aftur."
 
+msgid "No wireless networks found! Searching..."
+msgstr ""
+
 #
 msgid ""
 "No working local network adapter found.\n"
@@ -4155,6 +4326,12 @@ msgstr "Norður"
 msgid "Norwegian"
 msgstr "Norska"
 
+msgid "Not after"
+msgstr ""
+
+msgid "Not before"
+msgstr ""
+
 #
 #, python-format
 msgid ""
@@ -4166,6 +4343,9 @@ msgstr ""
 
 msgid "Not fetching feed entries"
 msgstr "Sæki ekki fæði rásir"
+
+msgid "Not-Associated"
+msgstr ""
 
 #
 msgid ""
@@ -4205,6 +4385,9 @@ msgstr "OK, eyða öðru íforriti"
 
 msgid "OK, remove some extensions"
 msgstr "OK, eyða íforritum"
+
+msgid "ONID"
+msgstr ""
 
 #
 msgid "OSD Settings"
@@ -4265,9 +4448,8 @@ msgstr "Opna íforrita valmynd"
 msgid "Optionally enter your name if you want to."
 msgstr "Settu inn nafn þitt ef að þú vilt."
 
-#
-msgid "Orbital Position"
-msgstr "Staðsetnging gervihnattar"
+msgid "Orbital position"
+msgstr ""
 
 msgid "Outer Bound (+/-)"
 msgstr "Ytri mörk (+/-)"
@@ -4288,9 +4470,15 @@ msgstr "Skrifa yfir stillinga skrár við hugbúnaðar uppfærslu?"
 msgid "PAL"
 msgstr "PAL"
 
+msgid "PCR PID"
+msgstr ""
+
 #
 msgid "PIDs"
 msgstr "PIDs"
+
+msgid "PMT PID"
+msgstr ""
 
 #
 msgid "Package list update"
@@ -4718,10 +4906,6 @@ msgid "Poland"
 msgstr "Pólland"
 
 #
-msgid "Polarity"
-msgstr "Pólun"
-
-#
 msgid "Polarization"
 msgstr "Pólun"
 
@@ -4754,6 +4938,9 @@ msgstr "Tengi D"
 #
 msgid "Portuguese"
 msgstr "Portúgalska"
+
+msgid "Position of finished Timers in Timerlist"
+msgstr ""
 
 #
 msgid "Positioner"
@@ -4961,6 +5148,9 @@ msgstr "RGB"
 msgid "RSS viewer"
 msgstr ""
 
+msgid "RT8070/RT3070/RT3370 USB wireless-n driver"
+msgstr ""
+
 #
 msgid "Radio"
 msgstr "Útvarp"
@@ -5063,6 +5253,9 @@ msgstr "Upptökur"
 #
 msgid "Recordings always have priority"
 msgstr "Upptaka hefur alltaf forgang"
+
+msgid "Redirect notifications to Growl, Snarl, Prowl or Syslog"
+msgstr ""
 
 msgid "Reenter new PIN"
 msgstr ""
@@ -5272,6 +5465,9 @@ msgstr ""
 msgid "Restrict \"after event\" to a certain timespan?"
 msgstr "Binda \"eftir atriði\" að ákveðnu tímabili?"
 
+msgid "Restrict to events on certain dates"
+msgstr ""
+
 #
 msgid "Resume from last position"
 msgstr "Halda áfram frá sama stað og síðast"
@@ -5311,9 +5507,8 @@ msgstr "Hraði hraðspólunar til baka"
 msgid "Right"
 msgstr "Hægri"
 
-#
-msgid "Rolloff"
-msgstr "Sníða af"
+msgid "Roll-off"
+msgstr ""
 
 #
 msgid "Rotor turning speed"
@@ -5322,6 +5517,9 @@ msgstr "Hraði mótors"
 #
 msgid "Running"
 msgstr "Keyri"
+
+msgid "Running in testmode"
+msgstr ""
 
 msgid "Russia"
 msgstr "Rûssland"
@@ -5333,6 +5531,21 @@ msgstr "Rússneska"
 #
 msgid "S-Video"
 msgstr "S-Video"
+
+msgid "SD 25/50HZ Interlace Mode"
+msgstr ""
+
+msgid "SD 25/50HZ Progressive Mode"
+msgstr ""
+
+msgid "SD 30/60HZ Interlace Mode"
+msgstr ""
+
+msgid "SD 30/60HZ Progressive Mode"
+msgstr ""
+
+msgid "SID"
+msgstr ""
 
 msgid "SINGLE LAYER DVD"
 msgstr "SINGLE LAYER DVD"
@@ -5348,6 +5561,19 @@ msgstr "SNR:"
 #
 msgid "SSID:"
 msgstr "SSID:"
+
+msgid ""
+"SVDRP is a protocol developed for the VDR software to control a set-top box "
+"remotely.\n"
+"This plugin only supports a subset of SVDRP and starts automatically using "
+"default settings.\n"
+"\n"
+"You probably don't need this plugin and should use the regular Web Interface "
+"for Enigma2 instead."
+msgstr ""
+
+msgid "SVDRP server for Enigma2"
+msgstr ""
 
 #
 msgid "Sat"
@@ -5580,7 +5806,7 @@ msgid "Searching for new installed or removed packages. Please wait..."
 msgstr "Leita að nýinnsettum eða fjarlægðum pökkum. Vinsamlega bíðið..."
 
 msgid "Searching your network. Please wait..."
-msgstr "Leita á netinu. VInsamlega bíðið..."
+msgstr "Leita á neti. Vinsamlega bíðið..."
 
 #
 msgid "Secondary DNS"
@@ -5775,6 +6001,9 @@ msgstr ""
 "Rás fannst ekki!\n"
 "(SID fannst ekki í PAT)"
 
+msgid "Service reference"
+msgstr ""
+
 #
 msgid "Service scan"
 msgstr "Rása leit"
@@ -5901,6 +6130,9 @@ msgstr "Sýna framvindu atriðis við rásaval"
 msgid "Show in extension menu"
 msgstr "Sýna við viðbótar valmynd"
 
+msgid "Show info screen"
+msgstr ""
+
 #
 msgid "Show infobar on channel change"
 msgstr "Sýna upplýsingaborða við að skipta um stöð"
@@ -5912,6 +6144,9 @@ msgstr "Sýna upplýsinga borða við breytingu á atriði"
 #
 msgid "Show infobar on skip forward/backward"
 msgstr "Sýna upplýsingaborða við stökk fram eða aftur"
+
+msgid "Show notification on conflicts"
+msgstr ""
 
 #
 msgid "Show positioner movement"
@@ -6174,6 +6409,9 @@ msgstr "%d Volt á viftu í biðstöðu "
 msgid "Start Webinterface"
 msgstr "Ræsa vefviðmót"
 
+msgid "Start easy your multimedia plugins with the PVR-button."
+msgstr ""
+
 #
 msgid "Start from the beginning"
 msgstr "Byrja frá byrjun"
@@ -6292,6 +6530,9 @@ msgstr "Sun"
 msgid "Sunday"
 msgstr "Sunnudagur"
 
+msgid "Support \"Fast Scan\"?"
+msgstr ""
+
 #
 msgid "Swap Services"
 msgstr "Skipta á rásum"
@@ -6314,13 +6555,8 @@ msgstr "Skipta á fyrri undirrás"
 msgid "Switchable tuner types:"
 msgstr "Gerðir umskiptanlegra móttakara:"
 
-#
-msgid "Symbol Rate"
-msgstr "Gagnahraði"
-
-#
-msgid "Symbolrate"
-msgstr "Gagnahraði"
+msgid "Symbol rate"
+msgstr ""
 
 #
 msgid "System"
@@ -6341,9 +6577,18 @@ msgstr ""
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS skrá er of stór fyrir ISO9660 level 1!"
 
+msgid "TSID"
+msgstr ""
+
+msgid "TV Charts of all users"
+msgstr ""
+
 #
 msgid "TV System"
 msgstr "Sjónvarps kerfi"
+
+msgid "TXT PID"
+msgstr ""
 
 #
 msgid "Table of content for collection"
@@ -6372,6 +6617,9 @@ msgstr "Taiwan"
 
 msgid "Temperature and Fan control"
 msgstr "Hiti og viftu stillingar"
+
+msgid "Temperature-dependent fan control."
+msgstr ""
 
 #
 msgid "Terrestrial"
@@ -7052,20 +7300,12 @@ msgid "Translation:"
 msgstr "Þýðing:"
 
 #
-msgid "Transmission Mode"
-msgstr "Sendi aðferð"
-
-#
 msgid "Transmission mode"
 msgstr "Sendi stilling"
 
 #
 msgid "Transponder"
 msgstr "Sendir"
-
-#
-msgid "Transponder Type"
-msgstr "Gerð sendis"
 
 msgid "Travel & Events"
 msgstr "Ferðalög"
@@ -7189,6 +7429,9 @@ msgstr "Hætta við innsetningu"
 msgid "Undo uninstall"
 msgstr "Hætta við að hætta við"
 
+msgid "Unencrypted"
+msgstr ""
+
 msgid "UnhandledKey"
 msgstr "Ónotaður"
 
@@ -7213,6 +7456,9 @@ msgstr "Bandaríkin"
 #
 msgid "Universal LNB"
 msgstr "Venjulegt LNB"
+
+msgid "Unknown"
+msgstr ""
 
 msgid "Unknown network adapter."
 msgstr "Óþekkt netkort."
@@ -7323,10 +7569,6 @@ msgid "Use and control multiple Dreamboxes with different RCs."
 msgstr ""
 
 #
-msgid "Use non-smooth winding at speeds above"
-msgstr "Nota kyrrmyndir við hraðspólun hraðar en"
-
-#
 msgid "Use power measurement"
 msgstr "Nota aflmælingu"
 
@@ -7404,7 +7646,13 @@ msgstr "VMGM (mynd sýnishorn)"
 msgid "Vali-XD skin"
 msgstr ""
 
+msgid "Vali.HD.atlantis skin"
+msgstr ""
+
 msgid "Vali.HD.nano skin"
+msgstr ""
+
+msgid "Vali.HD.warp skin"
 msgstr ""
 
 msgid ""
@@ -7412,6 +7660,9 @@ msgid ""
 msgstr ""
 "Athuga hvort Dreamboxið þitt er orginal með því að keyra genuine dreambox "
 "íforrit!"
+
+msgid "Verifying your internet connection..."
+msgstr ""
 
 #
 msgid "Vertical"
@@ -7427,6 +7678,9 @@ msgstr "Mynd fínstillinga ráðgjafi"
 #
 msgid "Video Output"
 msgstr "Mynd útgangur"
+
+msgid "Video PID"
+msgstr ""
 
 #
 msgid "Video Setup"
@@ -7660,6 +7914,9 @@ msgstr ""
 msgid "Weatherforecast on your Dreambox"
 msgstr ""
 
+msgid "Web-Bouquet-Editor for PC"
+msgstr ""
+
 msgid "Webinterface"
 msgstr "Vefviðmót"
 
@@ -7830,6 +8087,11 @@ msgid "What to do with submitted crashlogs?"
 msgstr "Hvað skal gera við innsendar hrunskýrslur?"
 
 msgid ""
+"When supporting \"Fast Scan\" the service type is ignored. You don't need to "
+"enable this unless your Image supports \"Fast Scan\" and you are using it."
+msgstr ""
+
+msgid ""
 "When this option is enabled the AutoTimer won't match events where another "
 "timer with the same description already exists in the timer list."
 msgstr ""
@@ -7870,6 +8132,15 @@ msgstr "Þráðlaust netkerfi"
 #
 msgid "Wireless Network State"
 msgstr "Staða þráðlausa nets"
+
+msgid "Wireless network connection setup"
+msgstr ""
+
+msgid "Wireless network connection setup."
+msgstr ""
+
+msgid "Wireless network state"
+msgstr ""
 
 msgid ""
 "With AntiScrollbar you can cover up annoying ticker lines (e.g. in news "
@@ -8088,6 +8359,12 @@ msgstr ""
 "Þegar 'Nafn' er bara skiljanlegt nafn sýnt í yfirliti, 'Passar í titli' er "
 "það sem leitað er að í EPG."
 
+msgid ""
+"You can use the EasyInfo for manage your EPG plugins from info button. You "
+"have also a new now-next event viewer. Easy-PG, the own graphical EPG bowser "
+"is also included."
+msgstr ""
+
 #
 msgid "You cannot delete this!"
 msgstr "Þú getur ekki eytt þessu!"
@@ -8288,6 +8565,9 @@ msgstr "Nafn þitt (aukalega):"
 #
 msgid "Your network configuration has been activated."
 msgstr "Stillingar netkerfis hafa verið gerðar virkar."
+
+msgid "Your network is not working. Please try again."
+msgstr ""
 
 msgid "Your network mount has been activated."
 msgstr "Nettengi punktur hefur verið gerður virkur."
@@ -8504,6 +8784,12 @@ msgstr "úthlutað CAIds:"
 msgid "assigned Services/Provider:"
 msgstr "úthlutaðar rásir/sendendur:"
 
+msgid "at beginning"
+msgstr ""
+
+msgid "at end"
+msgstr ""
+
 #
 #, python-format
 msgid "audio track (%s) format"
@@ -8521,6 +8807,9 @@ msgstr "hljóð rás"
 #
 msgid "auto"
 msgstr "sjálfvirkt"
+
+msgid "autotimers need a match attribute"
+msgstr ""
 
 #
 msgid "available"
@@ -8553,6 +8842,9 @@ msgstr "svarti listi"
 #
 msgid "blue"
 msgstr "blár"
+
+msgid "bob"
+msgstr ""
 
 #
 #, python-format
@@ -8593,6 +8885,9 @@ msgstr "hreinsa spilunarlista"
 msgid "complex"
 msgstr "flókinn"
 
+msgid "config changed."
+msgstr ""
+
 #
 msgid "config menu"
 msgstr "stillinga valmynd"
@@ -8624,6 +8919,12 @@ msgstr "var ekki hægt að taka út"
 msgid "create directory"
 msgstr "búa til möppu"
 
+msgid "creates virtual series folders from episodes"
+msgstr ""
+
+msgid "creates virtual series folders from sets of recorded episodes"
+msgstr ""
+
 #, python-format
 msgid "currently installed image: %s"
 msgstr "núverandi stýrikerfi: %s"
@@ -8635,6 +8936,9 @@ msgstr "daglega"
 #
 msgid "day"
 msgstr "dagur"
+
+msgid "default"
+msgstr ""
 
 #
 msgid "delete"
@@ -8694,6 +8998,9 @@ msgstr "ekki taka upp"
 #
 msgid "done!"
 msgstr "búinn!"
+
+msgid "driver for Realtek USB wireless devices"
+msgstr ""
 
 #
 msgid "edit alternatives"
@@ -8968,6 +9275,9 @@ msgstr "mínúta"
 msgid "minutes"
 msgstr "mínútur"
 
+msgid "missing parameter \"id\""
+msgstr ""
+
 #
 msgid "month"
 msgstr "mánuður"
@@ -9161,9 +9471,6 @@ msgid "red"
 msgstr "rauður"
 
 msgid "redesigned Kerni-HD1 skin"
-msgstr ""
-
-msgid "redirect notifications to Growl"
 msgstr ""
 
 #
@@ -9412,9 +9719,8 @@ msgstr "venjulegt"
 msgid "standby"
 msgstr "biðstaða"
 
-#
 msgid "start cut here"
-msgstr "byrja að klippa hér"
+msgstr "byrja klippingu hér"
 
 #
 msgid "start directory"
@@ -9499,6 +9805,10 @@ msgstr "skipta á milli tíma, kafla, undirtexta upplýsingar"
 msgid "tuner is not supported"
 msgstr ""
 
+#, python-format
+msgid "unable to find timer with id %i"
+msgstr ""
+
 #
 msgid "unavailable"
 msgstr "ekki tiltækt"
@@ -9565,6 +9875,9 @@ msgstr "vikulega"
 #
 msgid "whitelist"
 msgstr "hvíti listi"
+
+msgid "wireless network interface"
+msgstr ""
 
 #
 msgid "working"
@@ -9696,6 +10009,9 @@ msgstr "stokkið"
 #
 #~ msgid "50 Hz"
 #~ msgstr "50 Hz"
+
+#~ msgid "A BackToTheRoots-Skin ... or good old times."
+#~ msgstr "BackToTheRoots-Skin eða gömlu góðu dagarnir."
 
 #
 #~ msgid "A sleep timer want's to set your"
@@ -9835,6 +10151,18 @@ msgstr "stokkið"
 #
 #~ msgid "Choose source"
 #~ msgstr "Veldu miðil"
+
+#~ msgid "Code rate high"
+#~ msgstr "Gagna hraði, hár"
+
+#~ msgid "Code rate low"
+#~ msgstr "Gagna hraði, lár"
+
+#~ msgid "Coderate HP"
+#~ msgstr "Gagnahraði HP"
+
+#~ msgid "Coderate LP"
+#~ msgstr "Gagnahraði LP"
 
 #
 #~ msgid "Compact flash card"
@@ -10024,6 +10352,14 @@ msgstr "stokkið"
 #~ "© 2006 - Stephan Reichholf"
 
 #
+#~ msgid "Enter Fast Forward at speed"
+#~ msgstr "Hraðspólunar hraði áfram, fyrst"
+
+#
+#~ msgid "Enter Rewind at speed"
+#~ msgstr "Hraðspólunar hraði til baka, fyrst"
+
+#
 #~ msgid "Enter WLAN network name/SSID:"
 #~ msgstr "Setjið inn WLAN nafn/SSID:"
 
@@ -10070,6 +10406,9 @@ msgstr "stokkið"
 #~ msgid "Font size"
 #~ msgstr "Stafa stærð"
 
+#~ msgid "Frame repeat count during non-smooth winding"
+#~ msgstr "Fjöldi ramma sem á að sleppa við hraðspólun"
+
 #
 #~ msgid "Fritz!Box FON IP address"
 #~ msgstr "Fritz!Box FON IP address"
@@ -10095,6 +10434,14 @@ msgstr "stokkið"
 #~ msgstr "Gerð:"
 
 #
+#~ msgid "Guard Interval"
+#~ msgstr "Guard Interval"
+
+#
+#~ msgid "Guard interval mode"
+#~ msgstr "Guard millibils hamur"
+
+#
 #~ msgid "Hello!"
 #~ msgstr "Halló!"
 
@@ -10107,8 +10454,22 @@ msgstr "stokkið"
 #~ msgstr "Fela villuglugga"
 
 #
+#~ msgid "Hierarchy Information"
+#~ msgstr "Stigskipta upplýsingar"
+
+#~ msgid "Hierarchy mode"
+#~ msgstr "Stigskipta hamur"
+
+#
 #~ msgid "How to handle found crashlogs:"
 #~ msgstr "Hvernig á að meðhöndla hrunskýrslur:"
+
+#~ msgid ""
+#~ "If this is enabled an existing timer will also be considered recording an "
+#~ "event if it records at least 80% of the it."
+#~ msgstr ""
+#~ "Ef þetta er virkt þá mun núverandi tímastilling vera líka skoðuð sem "
+#~ "upptaka er atriði er allavega 80% tekið upp."
 
 #
 #~ msgid "If you can see this page, please press OK."
@@ -10263,6 +10624,10 @@ msgstr "stokkið"
 #~ msgstr "Uppfærsla frá neti"
 
 #
+#~ msgid "Orbital Position"
+#~ msgstr "Staðsetnging gervihnattar"
+
+#
 #~ msgid "Other..."
 #~ msgstr "Annað..."
 
@@ -10328,6 +10693,10 @@ msgstr "stokkið"
 #
 #~ msgid "Plugin manager process information..."
 #~ msgstr "Innskots verk upplýsingar..."
+
+#
+#~ msgid "Polarity"
+#~ msgstr "Pólun"
 
 #
 #~ msgid "Positioner mode"
@@ -10444,6 +10813,10 @@ msgstr "stokkið"
 #~ msgstr ""
 #~ "Innsetning stillinga er lokið. Ýtið á OK til að virkja innsettar "
 #~ "stillingar."
+
+#
+#~ msgid "Rolloff"
+#~ msgstr "Sníða af"
 
 #
 #~ msgid "Satconfig"
@@ -10595,6 +10968,14 @@ msgstr "stokkið"
 #~ msgstr "Skipta á milli rása"
 
 #
+#~ msgid "Symbol Rate"
+#~ msgstr "Gagnahraði"
+
+#
+#~ msgid "Symbolrate"
+#~ msgstr "Gagnahraði"
+
+#
 #~ msgid ""
 #~ "The .NFI Image flasher USB stick is now ready to use. Please download an ."
 #~ "NFI image file from the feed server and save it on the stick. Then reboot "
@@ -10715,6 +11096,14 @@ msgstr "stokkið"
 #~ "3) Bíðið eftir ræsingu og fylgdu leiðbeiningunum á skjánum."
 
 #
+#~ msgid "Transmission Mode"
+#~ msgstr "Sendi aðferð"
+
+#
+#~ msgid "Transponder Type"
+#~ msgstr "Gerð sendis"
+
+#
 #~ msgid "Transpondertype"
 #~ msgstr "Gerð sendis"
 
@@ -10778,6 +11167,10 @@ msgstr "stokkið"
 #
 #~ msgid "Usage settings"
 #~ msgstr "Stillia notkun"
+
+#
+#~ msgid "Use non-smooth winding at speeds above"
+#~ msgstr "Nota kyrrmyndir við hraðspólun hraðar en"
 
 #
 #~ msgid "VCR Switch"

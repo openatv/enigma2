@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-27 12:42+0000\n"
+"POT-Creation-Date: 2011-04-20 10:39+0000\n"
 "PO-Revision-Date: 2008-01-27 23:38+0100\n"
 "Last-Translator: Jurica <jurica@clarkdigital.com>\n"
 "Language-Team:  <jurica@dream-multimedia.eu>\n"
@@ -168,6 +168,12 @@ msgstr "#ffffffff"
 msgid "%H:%M"
 msgstr "%S:%M"
 
+#, python-format
+msgid ""
+"%d conflict(s) encountered when trying to add new timers:\n"
+"%s"
+msgstr ""
+
 #
 #, python-format
 msgid "%d jobs are running in the background!"
@@ -205,6 +211,10 @@ msgstr ""
 #, python-format
 msgid "%s (%s)\n"
 msgstr "%s (%s)\n"
+
+#, python-format
+msgid "%s: %s at %s"
+msgstr ""
 
 #
 msgid "(ZAP)"
@@ -362,10 +372,10 @@ msgstr "??"
 msgid "A"
 msgstr "A"
 
-msgid "A BackToTheRoots-Skin .. or good old times."
+msgid "A BackToTheRoots-Skin .. but with Warp-8 speed."
 msgstr ""
 
-msgid "A BackToTheRoots-Skin ... or good old times."
+msgid "A BackToTheRoots-Skin .. or good old times."
 msgstr ""
 
 msgid "A basic ftp client"
@@ -384,6 +394,9 @@ msgstr ""
 "Želite li zadržati vašu verziju?"
 
 msgid "A demo plugin for TPM usage."
+msgstr ""
+
+msgid "A dreambox simulation from SG-Atlantis displays."
 msgstr ""
 
 #
@@ -407,6 +420,9 @@ msgid "A graphical EPG for all services of an specific bouquet"
 msgstr "Grafički EPG za sve usluge od specifičnog paketa"
 
 msgid "A graphical EPG interface"
+msgstr ""
+
+msgid "A graphical EPG interface and EPG tools manager"
 msgstr ""
 
 msgid "A graphical EPG interface."
@@ -856,6 +872,9 @@ msgstr ""
 msgid "Aspect Ratio"
 msgstr "Omjer slike"
 
+msgid "Aspect ratio"
+msgstr ""
+
 msgid "Assigning providers/services/caids to a CI module"
 msgstr ""
 
@@ -869,6 +888,9 @@ msgstr "Zvuk"
 #
 msgid "Audio Options..."
 msgstr "Zvučne opcije..."
+
+msgid "Audio PID"
+msgstr ""
 
 #
 msgid "Audio Sync"
@@ -936,6 +958,15 @@ msgid ""
 "criteria."
 msgstr ""
 
+msgid "AutoTimer was added successfully"
+msgstr ""
+
+msgid "AutoTimer was changed successfully"
+msgstr ""
+
+msgid "AutoTimer was removed"
+msgstr ""
+
 #
 msgid "Automatic"
 msgstr ""
@@ -968,6 +999,24 @@ msgid "Automatically refresh EPG"
 msgstr ""
 
 msgid "Automatically send crashlogs to Dream Multimedia"
+msgstr ""
+
+#, python-format
+msgid ""
+"Autoresolution Plugin Testmode:\n"
+"Is %s ok?"
+msgstr ""
+
+msgid "Autoresolution Switch"
+msgstr ""
+
+msgid "Autoresolution is not working in Scart/DVI-PC Mode"
+msgstr ""
+
+msgid "Autoresolution settings"
+msgstr ""
+
+msgid "Autoresolution videomode setup"
 msgstr ""
 
 #
@@ -1010,6 +1059,12 @@ msgstr "BER:"
 
 #
 msgid "Back"
+msgstr ""
+
+msgid "Back, lower USB Slot"
+msgstr ""
+
+msgid "Back, upper USB Slot"
 msgstr ""
 
 #
@@ -1106,6 +1161,11 @@ msgstr ""
 msgid "Brightness"
 msgstr "Svjetlost"
 
+msgid ""
+"Browse ORF and SAT1 Teletext independent from channel. This need I-net "
+"conection."
+msgstr ""
+
 msgid "Browse for and connect to network shares"
 msgstr ""
 
@@ -1135,6 +1195,17 @@ msgstr ""
 #
 msgid "Bus: "
 msgstr "Bus:"
+
+msgid ""
+"By enabling this events will not be matched if they don't occur on certain "
+"dates."
+msgstr ""
+
+msgid ""
+"By enabling this you will be notified about timer conflicts found during "
+"automated polling. There is no intelligence involved, so it might bother you "
+"about the same conflict over and over."
+msgstr ""
 
 #
 msgid ""
@@ -1403,21 +1474,11 @@ msgstr ""
 msgid "Close title selection"
 msgstr ""
 
-#
-msgid "Code rate high"
-msgstr "Visoka kod rata"
+msgid "Code rate HP"
+msgstr ""
 
-#
-msgid "Code rate low"
-msgstr "Niska kod rata"
-
-#
-msgid "Coderate HP"
-msgstr "Kodrata HP"
-
-#
-msgid "Coderate LP"
-msgstr "Kodrata LP"
+msgid "Code rate LP"
+msgstr ""
 
 #
 msgid "Collection name"
@@ -1601,6 +1662,10 @@ msgstr ""
 msgid "Couldn't record due to conflicting timer %s"
 msgstr ""
 
+#, python-format
+msgid "Couldn't record due to invalid service %s"
+msgstr ""
+
 #
 msgid "Crashlog settings"
 msgstr ""
@@ -1780,6 +1845,9 @@ msgstr "DVB-S"
 msgid "DVB-S2"
 msgstr "DVB-S2"
 
+msgid "DVD Drive"
+msgstr ""
+
 #
 msgid "DVD File Browser"
 msgstr ""
@@ -1865,9 +1933,18 @@ msgstr ""
 msgid "Define a startup service for your Dreambox."
 msgstr ""
 
+msgid "Deinterlacer mode for interlaced content"
+msgstr ""
+
+msgid "Deinterlacer mode for progressive content"
+msgstr ""
+
 #
 msgid "Delay"
 msgstr "Odgoda"
+
+msgid "Delay x seconds after service started"
+msgstr ""
 
 #
 msgid "Delete"
@@ -2048,6 +2125,12 @@ msgstr ""
 msgid ""
 "Do you really want to check the filesystem?\n"
 "This could take lots of time!"
+msgstr ""
+
+#, python-format
+msgid ""
+"Do you really want to delete %s\n"
+"%s?"
 msgstr ""
 
 #
@@ -2243,6 +2326,12 @@ msgstr ""
 msgid "Dreambox software because updates are available."
 msgstr ""
 
+msgid "Driver for Ralink RT8070/RT3070/RT3370 based wireless-n USB devices."
+msgstr ""
+
+msgid "Driver for Realtek r8712u based wireless-n USB devices."
+msgstr ""
+
 #
 msgid "Duration: "
 msgstr ""
@@ -2384,9 +2473,24 @@ msgstr "Omogući"
 msgid "Enable /media"
 msgstr ""
 
+msgid "Enable 1080p24 Mode"
+msgstr ""
+
+msgid "Enable 1080p25 Mode"
+msgstr ""
+
+msgid "Enable 1080p30 Mode"
+msgstr ""
+
 #
 msgid "Enable 5V for active antenna"
 msgstr "Uključi 5V za aktivnu antenu"
+
+msgid "Enable 720p24 Mode"
+msgstr ""
+
+msgid "Enable Autoresolution"
+msgstr ""
 
 #
 msgid "Enable Cleanup Wizard?"
@@ -2508,15 +2612,7 @@ msgid ""
 msgstr ""
 
 #
-msgid "Enter Fast Forward at speed"
-msgstr ""
-
-#
 msgid "Enter IP to scan..."
-msgstr ""
-
-#
-msgid "Enter Rewind at speed"
 msgstr ""
 
 #
@@ -2588,6 +2684,9 @@ msgstr ""
 
 #
 msgid "Estonian"
+msgstr ""
+
+msgid "Ethernet network interface"
 msgstr ""
 
 #
@@ -2788,6 +2887,11 @@ msgstr ""
 msgid "Finnish"
 msgstr "Finski"
 
+msgid ""
+"First day to match events. No event that begins before this date will be "
+"matched."
+msgstr ""
+
 msgid "First generate your skin-style with the Ai.HD-Control plugin."
 msgstr ""
 
@@ -2807,15 +2911,17 @@ msgstr ""
 msgid "Format"
 msgstr ""
 
+#, python-format
+msgid ""
+"Found a total of %d matching Events.\n"
+"%d Timer were added and %d modified, %d conflicts encountered."
+msgstr ""
+
 #
 #, python-format
 msgid ""
 "Found a total of %d matching Events.\n"
 "%d Timer were added and %d modified."
-msgstr ""
-
-#
-msgid "Frame repeat count during non-smooth winding"
 msgstr ""
 
 #
@@ -2859,6 +2965,9 @@ msgid "Frisian"
 msgstr ""
 
 msgid "FritzCall shows incoming calls to your Fritz!Box on your Dreambox."
+msgstr ""
+
+msgid "Front USB Slot"
 msgstr ""
 
 msgid "Frontend for /tmp/mmi.socket"
@@ -2913,6 +3022,9 @@ msgstr ""
 
 #
 msgid "General PCM delay (ms)"
+msgstr ""
+
+msgid "Generates and Shows TV Charts of all users having this plugin installed"
 msgstr ""
 
 #
@@ -2993,21 +3105,22 @@ msgid "Green boost"
 msgstr ""
 
 msgid ""
-"Growlee allows your Dreambox to send short messages using the growl "
-"protocol\n"
-"like Recording started notifications to a PC running a growl client"
+"Growlee allows your Dreambox to forward notifications like 'Record started' "
+"to a PC running a growl, snarl or syslog compatible client or directly to an "
+"iPhone using prowl."
+msgstr ""
+
+msgid "Guard interval"
 msgstr ""
 
 #
-msgid "Guard Interval"
-msgstr "Interval Zaštite"
-
-#
-msgid "Guard interval mode"
-msgstr "Mod zaštitnog intervala"
-
-#
 msgid "Guess existing timer based on begin/end"
+msgstr ""
+
+msgid "HD Interlace Mode"
+msgstr ""
+
+msgid "HD Progressive Mode"
 msgstr ""
 
 #
@@ -3038,6 +3151,9 @@ msgstr "Isključi tvrdi disk nakon"
 msgid "Help"
 msgstr ""
 
+msgid "Hidden network"
+msgstr ""
+
 #
 msgid "Hidden network SSID"
 msgstr ""
@@ -3046,13 +3162,8 @@ msgstr ""
 msgid "Hidden networkname"
 msgstr ""
 
-#
-msgid "Hierarchy Information"
-msgstr "Informacije hierhije"
-
-#
-msgid "Hierarchy mode"
-msgstr "Mod hierhije"
+msgid "Hierarchy info"
+msgstr ""
 
 #
 msgid "High bitrate support"
@@ -3123,11 +3234,10 @@ msgstr ""
 msgid "Icelandic"
 msgstr "Islandski"
 
-#
 #, python-format
 msgid ""
 "If this is enabled an existing timer will also be considered recording an "
-"event if it records at least 80% of the it."
+"event if it records at least 80%% of the it."
 msgstr ""
 
 #
@@ -3222,6 +3332,12 @@ msgstr "Informacije"
 #
 msgid "Init"
 msgstr "Init"
+
+msgid "Initial Fast Forward speed"
+msgstr ""
+
+msgid "Initial Rewind speed"
+msgstr ""
 
 #
 msgid "Initial location in new timers"
@@ -3322,6 +3438,9 @@ msgid "Internal Flash"
 msgstr "Unutarnji Flash"
 
 msgid "Internal LAN adapter."
+msgstr ""
+
+msgid "Internal USB Slot"
 msgstr ""
 
 msgid "Internal firmware updater"
@@ -3521,6 +3640,11 @@ msgstr "Odaberite Jezik"
 msgid "Last config"
 msgstr ""
 
+msgid ""
+"Last day to match events. Events have to begin before this date to be "
+"matched."
+msgstr ""
+
 #
 msgid "Last speed"
 msgstr ""
@@ -3576,6 +3700,9 @@ msgstr ""
 
 #
 msgid "Linked titles with a DVD menu"
+msgstr ""
+
+msgid "List available networks"
 msgstr ""
 
 #
@@ -3713,6 +3840,9 @@ msgstr ""
 #
 msgid "Manual Scan"
 msgstr "Ručno skeniranje"
+
+msgid "Manual configuration"
+msgstr ""
 
 #
 msgid "Manual transponder"
@@ -4001,6 +4131,9 @@ msgstr "Meni izbornika filmova"
 msgid "Multi EPG"
 msgstr "Multi EPG"
 
+msgid "Multi-EPG bouquet selection"
+msgstr ""
+
 #
 msgid "Multimedia"
 msgstr ""
@@ -4008,6 +4141,9 @@ msgstr ""
 #
 msgid "Multiple service support"
 msgstr "Podrška za višestruke usluge"
+
+msgid "Multiplex"
+msgstr ""
 
 #
 msgid "Multisat"
@@ -4078,6 +4214,9 @@ msgstr ""
 msgid "NFS share"
 msgstr ""
 
+msgid "NIM"
+msgstr ""
+
 #
 msgid "NOW"
 msgstr "SADA"
@@ -4105,6 +4244,9 @@ msgstr "Postavke Nameservera"
 
 #
 msgid "Nameserver settings"
+msgstr ""
+
+msgid "Namespace"
 msgstr ""
 
 msgid "Nemesis BlackBox Skin"
@@ -4260,6 +4402,9 @@ msgstr ""
 
 #
 msgid "NetworkWizard"
+msgstr ""
+
+msgid "Networkname (SSID)"
 msgstr ""
 
 #
@@ -4430,6 +4575,9 @@ msgstr ""
 msgid "No wireless networks found! Please refresh."
 msgstr ""
 
+msgid "No wireless networks found! Searching..."
+msgstr ""
+
 #
 msgid ""
 "No working local network adapter found.\n"
@@ -4515,6 +4663,12 @@ msgstr "Sjever"
 msgid "Norwegian"
 msgstr "Norveški"
 
+msgid "Not after"
+msgstr ""
+
+msgid "Not before"
+msgstr ""
+
 #
 #, python-format
 msgid ""
@@ -4524,6 +4678,9 @@ msgstr ""
 
 #
 msgid "Not fetching feed entries"
+msgstr ""
+
+msgid "Not-Associated"
 msgstr ""
 
 #
@@ -4563,6 +4720,9 @@ msgstr ""
 
 #
 msgid "OK, remove some extensions"
+msgstr ""
+
+msgid "ONID"
 msgstr ""
 
 #
@@ -4634,9 +4794,8 @@ msgstr ""
 msgid "Optionally enter your name if you want to."
 msgstr ""
 
-#
-msgid "Orbital Position"
-msgstr "Orbitalna Pozicija"
+msgid "Orbital position"
+msgstr ""
 
 #
 msgid "Outer Bound (+/-)"
@@ -4659,9 +4818,15 @@ msgstr ""
 msgid "PAL"
 msgstr "PAL"
 
+msgid "PCR PID"
+msgstr ""
+
 #
 msgid "PIDs"
 msgstr "PIDs"
+
+msgid "PMT PID"
+msgstr ""
 
 #
 msgid "Package list update"
@@ -5101,10 +5266,6 @@ msgid "Poland"
 msgstr ""
 
 #
-msgid "Polarity"
-msgstr "Polaritet"
-
-#
 msgid "Polarization"
 msgstr "Polarizacija"
 
@@ -5139,6 +5300,9 @@ msgstr "Port D"
 #
 msgid "Portuguese"
 msgstr "Portugalski"
+
+msgid "Position of finished Timers in Timerlist"
+msgstr ""
 
 #
 msgid "Positioner"
@@ -5355,6 +5519,9 @@ msgstr "RGB"
 msgid "RSS viewer"
 msgstr ""
 
+msgid "RT8070/RT3070/RT3370 USB wireless-n driver"
+msgstr ""
+
 #
 msgid "Radio"
 msgstr "Radio"
@@ -5464,6 +5631,9 @@ msgstr ""
 #
 msgid "Recordings always have priority"
 msgstr "Snimanje uvijek ima prioritet"
+
+msgid "Redirect notifications to Growl, Snarl, Prowl or Syslog"
+msgstr ""
 
 msgid "Reenter new PIN"
 msgstr ""
@@ -5686,6 +5856,9 @@ msgstr ""
 msgid "Restrict \"after event\" to a certain timespan?"
 msgstr ""
 
+msgid "Restrict to events on certain dates"
+msgstr ""
+
 #
 msgid "Resume from last position"
 msgstr ""
@@ -5726,9 +5899,8 @@ msgstr ""
 msgid "Right"
 msgstr "Desno"
 
-#
-msgid "Rolloff"
-msgstr "Rolloff"
+msgid "Roll-off"
+msgstr ""
 
 #
 msgid "Rotor turning speed"
@@ -5737,6 +5909,9 @@ msgstr "Brzina okretanja rotora"
 #
 msgid "Running"
 msgstr "Pokrenuto"
+
+msgid "Running in testmode"
+msgstr ""
 
 #
 msgid "Russia"
@@ -5749,6 +5924,21 @@ msgstr "Ruski"
 #
 msgid "S-Video"
 msgstr "S-Video"
+
+msgid "SD 25/50HZ Interlace Mode"
+msgstr ""
+
+msgid "SD 25/50HZ Progressive Mode"
+msgstr ""
+
+msgid "SD 30/60HZ Interlace Mode"
+msgstr ""
+
+msgid "SD 30/60HZ Progressive Mode"
+msgstr ""
+
+msgid "SID"
+msgstr ""
 
 #
 msgid "SINGLE LAYER DVD"
@@ -5764,6 +5954,19 @@ msgstr "SNR:"
 
 #
 msgid "SSID:"
+msgstr ""
+
+msgid ""
+"SVDRP is a protocol developed for the VDR software to control a set-top box "
+"remotely.\n"
+"This plugin only supports a subset of SVDRP and starts automatically using "
+"default settings.\n"
+"\n"
+"You probably don't need this plugin and should use the regular Web Interface "
+"for Enigma2 instead."
+msgstr ""
+
+msgid "SVDRP server for Enigma2"
 msgstr ""
 
 #
@@ -6226,6 +6429,9 @@ msgstr ""
 "Usluga nije pronađena!\n"
 "(SID nije pronađen u PATu)"
 
+msgid "Service reference"
+msgstr ""
+
 #
 msgid "Service scan"
 msgstr "Pretraga usluga"
@@ -6360,6 +6566,9 @@ msgstr ""
 msgid "Show in extension menu"
 msgstr ""
 
+msgid "Show info screen"
+msgstr ""
+
 #
 msgid "Show infobar on channel change"
 msgstr "Prikaži infobar na promjeni kanala"
@@ -6371,6 +6580,9 @@ msgstr "Prikaži info traku pri promjeni događaja"
 #
 msgid "Show infobar on skip forward/backward"
 msgstr "Prikaži info traku na presk. naprijed/unazad"
+
+msgid "Show notification on conflicts"
+msgstr ""
 
 #
 msgid "Show positioner movement"
@@ -6640,6 +6852,9 @@ msgstr ""
 msgid "Start Webinterface"
 msgstr ""
 
+msgid "Start easy your multimedia plugins with the PVR-button."
+msgstr ""
+
 #
 msgid "Start from the beginning"
 msgstr ""
@@ -6763,6 +6978,9 @@ msgstr "Ned"
 msgid "Sunday"
 msgstr "Nedelja"
 
+msgid "Support \"Fast Scan\"?"
+msgstr ""
+
 #
 msgid "Swap Services"
 msgstr "Zamjeni prozore"
@@ -6787,13 +7005,8 @@ msgstr "prebaci u predhodnu poduslugu "
 msgid "Switchable tuner types:"
 msgstr ""
 
-#
-msgid "Symbol Rate"
-msgstr "Simbol rata"
-
-#
-msgid "Symbolrate"
-msgstr "Simbolrata"
+msgid "Symbol rate"
+msgstr ""
 
 #
 msgid "System"
@@ -6808,9 +7021,18 @@ msgstr ""
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr ""
 
+msgid "TSID"
+msgstr ""
+
+msgid "TV Charts of all users"
+msgstr ""
+
 #
 msgid "TV System"
 msgstr "TV Sistem"
+
+msgid "TXT PID"
+msgstr ""
 
 #
 msgid "Table of content for collection"
@@ -6842,6 +7064,9 @@ msgstr ""
 
 #
 msgid "Temperature and Fan control"
+msgstr ""
+
+msgid "Temperature-dependent fan control."
 msgstr ""
 
 #
@@ -7475,20 +7700,12 @@ msgid "Translation:"
 msgstr "Prijevod:"
 
 #
-msgid "Transmission Mode"
-msgstr "Mod Transmisije"
-
-#
 msgid "Transmission mode"
 msgstr "Mod transmisije"
 
 #
 msgid "Transponder"
 msgstr "Transponder"
-
-#
-msgid "Transponder Type"
-msgstr "Tip Transpondera"
 
 #
 msgid "Travel & Events"
@@ -7618,6 +7835,9 @@ msgstr ""
 msgid "Undo uninstall"
 msgstr ""
 
+msgid "Unencrypted"
+msgstr ""
+
 #
 msgid "UnhandledKey"
 msgstr ""
@@ -7645,6 +7865,9 @@ msgstr ""
 #
 msgid "Universal LNB"
 msgstr "Univerzalni LNB"
+
+msgid "Unknown"
+msgstr ""
 
 msgid "Unknown network adapter."
 msgstr ""
@@ -7761,10 +7984,6 @@ msgid "Use and control multiple Dreamboxes with different RCs."
 msgstr ""
 
 #
-msgid "Use non-smooth winding at speeds above"
-msgstr ""
-
-#
 msgid "Use power measurement"
 msgstr "Koristi mjerenje snage"
 
@@ -7847,11 +8066,20 @@ msgstr ""
 msgid "Vali-XD skin"
 msgstr ""
 
+msgid "Vali.HD.atlantis skin"
+msgstr ""
+
 msgid "Vali.HD.nano skin"
+msgstr ""
+
+msgid "Vali.HD.warp skin"
 msgstr ""
 
 msgid ""
 "Verify your Dreambox authenticity by running the genuine dreambox plugin!"
+msgstr ""
+
+msgid "Verifying your internet connection..."
 msgstr ""
 
 #
@@ -7869,6 +8097,9 @@ msgstr ""
 #
 msgid "Video Output"
 msgstr "Video izlaz"
+
+msgid "Video PID"
+msgstr ""
 
 #
 msgid "Video Setup"
@@ -8109,6 +8340,9 @@ msgstr ""
 msgid "Weatherforecast on your Dreambox"
 msgstr ""
 
+msgid "Web-Bouquet-Editor for PC"
+msgstr ""
+
 #
 msgid "Webinterface"
 msgstr ""
@@ -8249,6 +8483,11 @@ msgstr "Što želite skenirati?"
 msgid "What to do with submitted crashlogs?"
 msgstr ""
 
+msgid ""
+"When supporting \"Fast Scan\" the service type is ignored. You don't need to "
+"enable this unless your Image supports \"Fast Scan\" and you are using it."
+msgstr ""
+
 #
 msgid ""
 "When this option is enabled the AutoTimer won't match events where another "
@@ -8283,6 +8522,15 @@ msgstr ""
 
 #
 msgid "Wireless Network State"
+msgstr ""
+
+msgid "Wireless network connection setup"
+msgstr ""
+
+msgid "Wireless network connection setup."
+msgstr ""
+
+msgid "Wireless network state"
 msgstr ""
 
 msgid ""
@@ -8504,6 +8752,12 @@ msgid ""
 "in title' is what is looked for in the EPG."
 msgstr ""
 
+msgid ""
+"You can use the EasyInfo for manage your EPG plugins from info button. You "
+"have also a new now-next event viewer. Easy-PG, the own graphical EPG bowser "
+"is also included."
+msgstr ""
+
 #
 msgid "You cannot delete this!"
 msgstr "Ne možete obrisati ovo!"
@@ -8679,6 +8933,9 @@ msgstr ""
 
 #
 msgid "Your network configuration has been activated."
+msgstr ""
+
+msgid "Your network is not working. Please try again."
 msgstr ""
 
 #
@@ -8898,6 +9155,12 @@ msgstr ""
 msgid "assigned Services/Provider:"
 msgstr ""
 
+msgid "at beginning"
+msgstr ""
+
+msgid "at end"
+msgstr ""
+
 #
 #, python-format
 msgid "audio track (%s) format"
@@ -8914,6 +9177,9 @@ msgstr ""
 
 #
 msgid "auto"
+msgstr ""
+
+msgid "autotimers need a match attribute"
 msgstr ""
 
 #
@@ -8946,6 +9212,9 @@ msgstr "crnalista"
 
 #
 msgid "blue"
+msgstr ""
+
+msgid "bob"
 msgstr ""
 
 #
@@ -8989,6 +9258,9 @@ msgstr "očisti Playlistu"
 msgid "complex"
 msgstr "kompleksno"
 
+msgid "config changed."
+msgstr ""
+
 #
 msgid "config menu"
 msgstr "konfiguracijski izbornik"
@@ -9020,6 +9292,12 @@ msgstr ""
 msgid "create directory"
 msgstr ""
 
+msgid "creates virtual series folders from episodes"
+msgstr ""
+
+msgid "creates virtual series folders from sets of recorded episodes"
+msgstr ""
+
 #, python-format
 msgid "currently installed image: %s"
 msgstr ""
@@ -9030,6 +9308,9 @@ msgstr "dnevno"
 
 #
 msgid "day"
+msgstr ""
+
+msgid "default"
 msgstr ""
 
 #
@@ -9090,6 +9371,9 @@ msgstr "ne snimaj"
 #
 msgid "done!"
 msgstr "Učinjeno!"
+
+msgid "driver for Realtek USB wireless devices"
+msgstr ""
 
 #
 msgid "edit alternatives"
@@ -9371,6 +9655,9 @@ msgstr "minuta"
 msgid "minutes"
 msgstr "minute"
 
+msgid "missing parameter \"id\""
+msgstr ""
+
 #
 msgid "month"
 msgstr ""
@@ -9567,9 +9854,6 @@ msgid "red"
 msgstr ""
 
 msgid "redesigned Kerni-HD1 skin"
-msgstr ""
-
-msgid "redirect notifications to Growl"
 msgstr ""
 
 #
@@ -9908,6 +10192,10 @@ msgstr ""
 msgid "tuner is not supported"
 msgstr ""
 
+#, python-format
+msgid "unable to find timer with id %i"
+msgstr ""
+
 #
 msgid "unavailable"
 msgstr ""
@@ -9977,6 +10265,9 @@ msgstr "tjedno"
 #
 msgid "whitelist"
 msgstr "bijelalista"
+
+msgid "wireless network interface"
+msgstr ""
 
 #
 msgid "working"
@@ -10173,6 +10464,22 @@ msgstr "prebačen"
 #~ msgstr "Odaberi izvor"
 
 #
+#~ msgid "Code rate high"
+#~ msgstr "Visoka kod rata"
+
+#
+#~ msgid "Code rate low"
+#~ msgstr "Niska kod rata"
+
+#
+#~ msgid "Coderate HP"
+#~ msgstr "Kodrata HP"
+
+#
+#~ msgid "Coderate LP"
+#~ msgstr "Kodrata LP"
+
+#
 #~ msgid "Compact flash card"
 #~ msgstr "Kompakt flash kartica"
 
@@ -10301,8 +10608,24 @@ msgstr "prebačen"
 #~ msgstr "Igre / Dodaci"
 
 #
+#~ msgid "Guard Interval"
+#~ msgstr "Interval Zaštite"
+
+#
+#~ msgid "Guard interval mode"
+#~ msgstr "Mod zaštitnog intervala"
+
+#
 #~ msgid "Hide error windows"
 #~ msgstr "Sakrij prozor greA!ke"
+
+#
+#~ msgid "Hierarchy Information"
+#~ msgstr "Informacije hierhije"
+
+#
+#~ msgid "Hierarchy mode"
+#~ msgstr "Mod hierhije"
 
 #
 #~ msgid "Image-Upgrade"
@@ -10377,6 +10700,10 @@ msgstr "prebačen"
 #~ msgstr "Online-nadogradnja"
 
 #
+#~ msgid "Orbital Position"
+#~ msgstr "Orbitalna Pozicija"
+
+#
 #~ msgid "Other..."
 #~ msgstr "Ostalo..."
 
@@ -10399,6 +10726,10 @@ msgstr "prebačen"
 #
 #~ msgid "Please select keyword to filter..."
 #~ msgstr "Molim odaberite kljućnu riječ za filtraciju..."
+
+#
+#~ msgid "Polarity"
+#~ msgstr "Polaritet"
 
 #
 #~ msgid "Predefined satellite"
@@ -10483,6 +10814,10 @@ msgstr "prebačen"
 #~ msgstr ""
 #~ "Vraćanje postavki je završeno.Molim pritisnite OK za aktiviranje vraćenih "
 #~ "postavki sada."
+
+#
+#~ msgid "Rolloff"
+#~ msgstr "Rolloff"
 
 #
 #~ msgid "Satconfig"
@@ -10575,6 +10910,14 @@ msgstr "prebačen"
 #~ msgstr "Stereo"
 
 #
+#~ msgid "Symbol Rate"
+#~ msgstr "Simbol rata"
+
+#
+#~ msgid "Symbolrate"
+#~ msgstr "Simbolrata"
+
+#
 #~ msgid "The pin code has been changed successfully."
 #~ msgstr "Pin kod je uspješno promjenjen."
 
@@ -10589,6 +10932,14 @@ msgstr "prebačen"
 #
 #~ msgid "Timeshifting"
 #~ msgstr "Vremeski pomak"
+
+#
+#~ msgid "Transmission Mode"
+#~ msgstr "Mod Transmisije"
+
+#
+#~ msgid "Transponder Type"
+#~ msgstr "Tip Transpondera"
 
 #
 #~ msgid "Transpondertype"
