@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-27 12:42+0000\n"
+"POT-Creation-Date: 2011-04-20 10:39+0000\n"
 "PO-Revision-Date: 2009-02-25 20:35+0200\n"
 "Last-Translator: Ivo Grinbergs <ivog@apollo.lv>\n"
 "Language-Team: Ivo / enigma2 (c) <ivog@apolllo.lv>\n"
@@ -194,6 +194,12 @@ msgstr "#ffffffff"
 msgid "%H:%M"
 msgstr "%H:%M"
 
+#, python-format
+msgid ""
+"%d conflict(s) encountered when trying to add new timers:\n"
+"%s"
+msgstr ""
+
 #
 #, python-format
 msgid "%d jobs are running in the background!"
@@ -231,6 +237,10 @@ msgstr ""
 #, python-format
 msgid "%s (%s)\n"
 msgstr "%s (%s)\n"
+
+#, python-format
+msgid "%s: %s at %s"
+msgstr ""
 
 #
 # ???
@@ -389,10 +399,10 @@ msgstr "??"
 msgid "A"
 msgstr "A"
 
-msgid "A BackToTheRoots-Skin .. or good old times."
+msgid "A BackToTheRoots-Skin .. but with Warp-8 speed."
 msgstr ""
 
-msgid "A BackToTheRoots-Skin ... or good old times."
+msgid "A BackToTheRoots-Skin .. or good old times."
 msgstr ""
 
 msgid "A basic ftp client"
@@ -412,6 +422,9 @@ msgstr ""
 "Vai vēlaties paturēt savu versiju?"
 
 msgid "A demo plugin for TPM usage."
+msgstr ""
+
+msgid "A dreambox simulation from SG-Atlantis displays."
 msgstr ""
 
 #
@@ -436,6 +449,9 @@ msgid "A graphical EPG for all services of an specific bouquet"
 msgstr "Grafiskais EPG visiem kanāliem izvēlētā buķetē"
 
 msgid "A graphical EPG interface"
+msgstr ""
+
+msgid "A graphical EPG interface and EPG tools manager"
 msgstr ""
 
 msgid "A graphical EPG interface."
@@ -901,6 +917,9 @@ msgstr "Jautāt"
 msgid "Aspect Ratio"
 msgstr "Malu attiecība"
 
+msgid "Aspect ratio"
+msgstr ""
+
 msgid "Assigning providers/services/caids to a CI module"
 msgstr ""
 
@@ -914,6 +933,9 @@ msgstr "Skaņa"
 #
 msgid "Audio Options..."
 msgstr "Skaņas opcijas..."
+
+msgid "Audio PID"
+msgstr ""
 
 #
 msgid "Audio Sync"
@@ -981,6 +1003,15 @@ msgid ""
 "criteria."
 msgstr ""
 
+msgid "AutoTimer was added successfully"
+msgstr ""
+
+msgid "AutoTimer was changed successfully"
+msgstr ""
+
+msgid "AutoTimer was removed"
+msgstr ""
+
 #
 msgid "Automatic"
 msgstr "Automātiski"
@@ -1013,6 +1044,24 @@ msgid "Automatically refresh EPG"
 msgstr ""
 
 msgid "Automatically send crashlogs to Dream Multimedia"
+msgstr ""
+
+#, python-format
+msgid ""
+"Autoresolution Plugin Testmode:\n"
+"Is %s ok?"
+msgstr ""
+
+msgid "Autoresolution Switch"
+msgstr ""
+
+msgid "Autoresolution is not working in Scart/DVI-PC Mode"
+msgstr ""
+
+msgid "Autoresolution settings"
+msgstr ""
+
+msgid "Autoresolution videomode setup"
 msgstr ""
 
 #
@@ -1057,6 +1106,12 @@ msgstr "BER:"
 #
 msgid "Back"
 msgstr "Atpakaļ"
+
+msgid "Back, lower USB Slot"
+msgstr ""
+
+msgid "Back, upper USB Slot"
+msgstr ""
 
 #
 msgid "Background"
@@ -1153,6 +1208,11 @@ msgstr ""
 msgid "Brightness"
 msgstr "Spilgtums"
 
+msgid ""
+"Browse ORF and SAT1 Teletext independent from channel. This need I-net "
+"conection."
+msgstr ""
+
 msgid "Browse for and connect to network shares"
 msgstr ""
 
@@ -1182,6 +1242,17 @@ msgstr ""
 #
 msgid "Bus: "
 msgstr "Bus: "
+
+msgid ""
+"By enabling this events will not be matched if they don't occur on certain "
+"dates."
+msgstr ""
+
+msgid ""
+"By enabling this you will be notified about timer conflicts found during "
+"automated polling. There is no intelligence involved, so it might bother you "
+"about the same conflict over and over."
+msgstr ""
 
 #
 msgid ""
@@ -1451,21 +1522,11 @@ msgstr ""
 msgid "Close title selection"
 msgstr ""
 
-#
-msgid "Code rate high"
-msgstr "Augsts kodēšanas ātrums "
+msgid "Code rate HP"
+msgstr ""
 
-#
-msgid "Code rate low"
-msgstr "Zems kodēšanas ātrums"
-
-#
-msgid "Coderate HP"
-msgstr "Kodēšanas ātrums HP"
-
-#
-msgid "Coderate LP"
-msgstr "Kodēšanas ātrums LP"
+msgid "Code rate LP"
+msgstr ""
 
 #
 msgid "Collection name"
@@ -1650,6 +1711,10 @@ msgstr ""
 msgid "Couldn't record due to conflicting timer %s"
 msgstr "Nevar ierakstīt dēļ taimeru konflikta %s"
 
+#, python-format
+msgid "Couldn't record due to invalid service %s"
+msgstr ""
+
 #
 msgid "Crashlog settings"
 msgstr ""
@@ -1829,6 +1894,9 @@ msgstr "DVB-S"
 msgid "DVB-S2"
 msgstr "DVB-S2"
 
+msgid "DVD Drive"
+msgstr ""
+
 #
 msgid "DVD File Browser"
 msgstr ""
@@ -1914,9 +1982,18 @@ msgstr ""
 msgid "Define a startup service for your Dreambox."
 msgstr ""
 
+msgid "Deinterlacer mode for interlaced content"
+msgstr ""
+
+msgid "Deinterlacer mode for progressive content"
+msgstr ""
+
 #
 msgid "Delay"
 msgstr "Aizkave"
+
+msgid "Delay x seconds after service started"
+msgstr ""
 
 #
 msgid "Delete"
@@ -2108,6 +2185,12 @@ msgid ""
 msgstr ""
 "Vai tiešām vēlaties pārbaudīt failsistēmu?\n"
 "Tas var prasīt daudz laika!"
+
+#, python-format
+msgid ""
+"Do you really want to delete %s\n"
+"%s?"
+msgstr ""
 
 #
 #, python-format
@@ -2306,6 +2389,12 @@ msgstr "Dreambox formāta datu DVD (savietojams ar HDTV)"
 msgid "Dreambox software because updates are available."
 msgstr ""
 
+msgid "Driver for Ralink RT8070/RT3070/RT3370 based wireless-n USB devices."
+msgstr ""
+
+msgid "Driver for Realtek r8712u based wireless-n USB devices."
+msgstr ""
+
 #
 msgid "Duration: "
 msgstr ""
@@ -2448,9 +2537,25 @@ msgstr "Aktivizēt"
 msgid "Enable /media"
 msgstr ""
 
+msgid "Enable 1080p24 Mode"
+msgstr ""
+
+msgid "Enable 1080p25 Mode"
+msgstr ""
+
+msgid "Enable 1080p30 Mode"
+msgstr ""
+
 #
 msgid "Enable 5V for active antenna"
 msgstr "Aktivizēt 5V aktīvai antenai"
+
+msgid "Enable 720p24 Mode"
+msgstr ""
+
+#
+msgid "Enable Autoresolution"
+msgstr "Aktivizēt auto izšķirtspēju"
 
 #
 msgid "Enable Cleanup Wizard?"
@@ -2572,16 +2677,8 @@ msgid ""
 msgstr ""
 
 #
-msgid "Enter Fast Forward at speed"
-msgstr "Ievadiet ātrās pārtīšanas ātrumu"
-
-#
 msgid "Enter IP to scan..."
 msgstr ""
-
-#
-msgid "Enter Rewind at speed"
-msgstr "Ievadiet attīšanas ātrumu"
 
 #
 msgid "Enter main menu..."
@@ -2654,6 +2751,9 @@ msgstr ""
 
 #
 msgid "Estonian"
+msgstr ""
+
+msgid "Ethernet network interface"
 msgstr ""
 
 #
@@ -2855,6 +2955,11 @@ msgstr "Tīkla restartēšana pabeigta"
 msgid "Finnish"
 msgstr "Somu"
 
+msgid ""
+"First day to match events. No event that begins before this date will be "
+"matched."
+msgstr ""
+
 msgid "First generate your skin-style with the Ai.HD-Control plugin."
 msgstr ""
 
@@ -2874,16 +2979,18 @@ msgstr ""
 msgid "Format"
 msgstr "Formatēt"
 
+#, python-format
+msgid ""
+"Found a total of %d matching Events.\n"
+"%d Timer were added and %d modified, %d conflicts encountered."
+msgstr ""
+
 #
 #, python-format
 msgid ""
 "Found a total of %d matching Events.\n"
 "%d Timer were added and %d modified."
 msgstr ""
-
-#
-msgid "Frame repeat count during non-smooth winding"
-msgstr "Atkārtoto kadru skaits 'attēlu virknes' režīmā"
 
 #
 # ???
@@ -2927,6 +3034,9 @@ msgid "Frisian"
 msgstr "Frīzu"
 
 msgid "FritzCall shows incoming calls to your Fritz!Box on your Dreambox."
+msgstr ""
+
+msgid "Front USB Slot"
 msgstr ""
 
 msgid "Frontend for /tmp/mmi.socket"
@@ -2981,6 +3091,9 @@ msgstr ""
 
 #
 msgid "General PCM delay (ms)"
+msgstr ""
+
+msgid "Generates and Shows TV Charts of all users having this plugin installed"
 msgstr ""
 
 #
@@ -3061,21 +3174,22 @@ msgid "Green boost"
 msgstr ""
 
 msgid ""
-"Growlee allows your Dreambox to send short messages using the growl "
-"protocol\n"
-"like Recording started notifications to a PC running a growl client"
+"Growlee allows your Dreambox to forward notifications like 'Record started' "
+"to a PC running a growl, snarl or syslog compatible client or directly to an "
+"iPhone using prowl."
+msgstr ""
+
+msgid "Guard interval"
 msgstr ""
 
 #
-msgid "Guard Interval"
-msgstr "Sardzes intervāls"
-
-#
-msgid "Guard interval mode"
-msgstr "Sardzes intervāla režīms"
-
-#
 msgid "Guess existing timer based on begin/end"
+msgstr ""
+
+msgid "HD Interlace Mode"
+msgstr ""
+
+msgid "HD Progressive Mode"
 msgstr ""
 
 #
@@ -3106,6 +3220,9 @@ msgstr "Cietā diska gaidstāve pēc"
 msgid "Help"
 msgstr ""
 
+msgid "Hidden network"
+msgstr ""
+
 #
 msgid "Hidden network SSID"
 msgstr "Slēpts tīkla SSID"
@@ -3114,13 +3231,8 @@ msgstr "Slēpts tīkla SSID"
 msgid "Hidden networkname"
 msgstr ""
 
-#
-msgid "Hierarchy Information"
-msgstr "Hierarhijas informācija"
-
-#
-msgid "Hierarchy mode"
-msgstr "Hierarhijas režīms"
+msgid "Hierarchy info"
+msgstr ""
 
 #
 msgid "High bitrate support"
@@ -3191,11 +3303,10 @@ msgstr "ISO ceļš"
 msgid "Icelandic"
 msgstr "Islandiešu"
 
-#
 #, python-format
 msgid ""
 "If this is enabled an existing timer will also be considered recording an "
-"event if it records at least 80% of the it."
+"event if it records at least 80%% of the it."
 msgstr ""
 
 #
@@ -3299,6 +3410,12 @@ msgstr "Informācija"
 msgid "Init"
 msgstr "Inic"
 
+msgid "Initial Fast Forward speed"
+msgstr ""
+
+msgid "Initial Rewind speed"
+msgstr ""
+
 #
 msgid "Initial location in new timers"
 msgstr ""
@@ -3398,6 +3515,9 @@ msgid "Internal Flash"
 msgstr "Iekšējā atmiņa"
 
 msgid "Internal LAN adapter."
+msgstr ""
+
+msgid "Internal USB Slot"
 msgstr ""
 
 msgid "Internal firmware updater"
@@ -3597,6 +3717,11 @@ msgstr "Valodas izvēle"
 msgid "Last config"
 msgstr ""
 
+msgid ""
+"Last day to match events. Events have to begin before this date to be "
+"matched."
+msgstr ""
+
 #
 msgid "Last speed"
 msgstr "Pēdējais ātrums"
@@ -3653,6 +3778,9 @@ msgstr "Saite:"
 #
 msgid "Linked titles with a DVD menu"
 msgstr "Saistītie nosaukumi ar DVD izvēlni"
+
+msgid "List available networks"
+msgstr ""
 
 #
 msgid "List of Storage Devices"
@@ -3789,6 +3917,9 @@ msgstr "Pārvaldīt ierīces programmatūru"
 #
 msgid "Manual Scan"
 msgstr "Manuālā meklēšana"
+
+msgid "Manual configuration"
+msgstr ""
 
 #
 msgid "Manual transponder"
@@ -4077,6 +4208,9 @@ msgstr "Filmu saraksta izvēlne"
 msgid "Multi EPG"
 msgstr "Daudzkanālu EPG"
 
+msgid "Multi-EPG bouquet selection"
+msgstr ""
+
 #
 msgid "Multimedia"
 msgstr ""
@@ -4084,6 +4218,9 @@ msgstr ""
 #
 msgid "Multiple service support"
 msgstr "Daudzkanālu atbalsts"
+
+msgid "Multiplex"
+msgstr ""
 
 #
 msgid "Multisat"
@@ -4154,6 +4291,9 @@ msgstr "NFI imidža lādēšana pabeigta. Spiediet dzelteno pogu, lai atsāknēt
 msgid "NFS share"
 msgstr ""
 
+msgid "NIM"
+msgstr ""
+
 #
 msgid "NOW"
 msgstr "PAŠREIZ"
@@ -4182,6 +4322,9 @@ msgstr "Domēna vārdu servera iestatne"
 #
 msgid "Nameserver settings"
 msgstr "Domēna vārdu servera iestatījumi"
+
+msgid "Namespace"
+msgstr ""
 
 msgid "Nemesis BlackBox Skin"
 msgstr ""
@@ -4337,6 +4480,9 @@ msgstr ""
 #
 msgid "NetworkWizard"
 msgstr "Tīkla vednis"
+
+msgid "Networkname (SSID)"
+msgstr ""
 
 #
 msgid "Never"
@@ -4504,6 +4650,9 @@ msgstr ""
 msgid "No wireless networks found! Please refresh."
 msgstr ""
 
+msgid "No wireless networks found! Searching..."
+msgstr ""
+
 #
 msgid ""
 "No working local network adapter found.\n"
@@ -4598,6 +4747,12 @@ msgstr "Ziemeļi"
 msgid "Norwegian"
 msgstr "Norvēģu"
 
+msgid "Not after"
+msgstr ""
+
+msgid "Not before"
+msgstr ""
+
 #
 #, python-format
 msgid ""
@@ -4609,6 +4764,9 @@ msgstr ""
 
 #
 msgid "Not fetching feed entries"
+msgstr ""
+
+msgid "Not-Associated"
 msgstr ""
 
 #
@@ -4651,6 +4809,9 @@ msgstr ""
 
 #
 msgid "OK, remove some extensions"
+msgstr ""
+
+msgid "ONID"
 msgstr ""
 
 #
@@ -4722,9 +4883,8 @@ msgstr ""
 msgid "Optionally enter your name if you want to."
 msgstr ""
 
-#
-msgid "Orbital Position"
-msgstr "Pozīcija orbītā"
+msgid "Orbital position"
+msgstr ""
 
 #
 msgid "Outer Bound (+/-)"
@@ -4747,9 +4907,15 @@ msgstr ""
 msgid "PAL"
 msgstr "PAL"
 
+msgid "PCR PID"
+msgstr ""
+
 #
 msgid "PIDs"
 msgstr "PIDs"
+
+msgid "PMT PID"
+msgstr ""
 
 #
 msgid "Package list update"
@@ -5195,10 +5361,6 @@ msgid "Poland"
 msgstr ""
 
 #
-msgid "Polarity"
-msgstr "Polaritāte"
-
-#
 msgid "Polarization"
 msgstr "Polarizācija"
 
@@ -5233,6 +5395,9 @@ msgstr "Pieslēgvieta D"
 #
 msgid "Portuguese"
 msgstr "Portugāļu"
+
+msgid "Position of finished Timers in Timerlist"
+msgstr ""
 
 #
 msgid "Positioner"
@@ -5450,6 +5615,9 @@ msgstr "RGB"
 msgid "RSS viewer"
 msgstr ""
 
+msgid "RT8070/RT3070/RT3370 USB wireless-n driver"
+msgstr ""
+
 #
 msgid "Radio"
 msgstr "Radio"
@@ -5559,6 +5727,9 @@ msgstr ""
 #
 msgid "Recordings always have priority"
 msgstr "Ierakstiem vienmēr ir prioritāte"
+
+msgid "Redirect notifications to Growl, Snarl, Prowl or Syslog"
+msgstr ""
 
 msgid "Reenter new PIN"
 msgstr ""
@@ -5781,6 +5952,9 @@ msgstr ""
 msgid "Restrict \"after event\" to a certain timespan?"
 msgstr ""
 
+msgid "Restrict to events on certain dates"
+msgstr ""
+
 #
 msgid "Resume from last position"
 msgstr "Atsākt no pēdējā stāvokļa"
@@ -5821,10 +5995,8 @@ msgstr "Attīšanas ātrumi"
 msgid "Right"
 msgstr "Labais"
 
-#
-#, fuzzy
-msgid "Rolloff"
-msgstr "Rolloff"
+msgid "Roll-off"
+msgstr ""
 
 #
 msgid "Rotor turning speed"
@@ -5833,6 +6005,9 @@ msgstr "Pozicioniera griešanās ātrums"
 #
 msgid "Running"
 msgstr "Darbojas"
+
+msgid "Running in testmode"
+msgstr ""
 
 #
 msgid "Russia"
@@ -5845,6 +6020,21 @@ msgstr "Krievu"
 #
 msgid "S-Video"
 msgstr "S-Video"
+
+msgid "SD 25/50HZ Interlace Mode"
+msgstr ""
+
+msgid "SD 25/50HZ Progressive Mode"
+msgstr ""
+
+msgid "SD 30/60HZ Interlace Mode"
+msgstr ""
+
+msgid "SD 30/60HZ Progressive Mode"
+msgstr ""
+
+msgid "SID"
+msgstr ""
 
 #
 msgid "SINGLE LAYER DVD"
@@ -5860,6 +6050,19 @@ msgstr "SNR:"
 
 #
 msgid "SSID:"
+msgstr ""
+
+msgid ""
+"SVDRP is a protocol developed for the VDR software to control a set-top box "
+"remotely.\n"
+"This plugin only supports a subset of SVDRP and starts automatically using "
+"default settings.\n"
+"\n"
+"You probably don't need this plugin and should use the regular Web Interface "
+"for Enigma2 instead."
+msgstr ""
+
+msgid "SVDRP server for Enigma2"
 msgstr ""
 
 #
@@ -6325,6 +6528,9 @@ msgstr ""
 "Kanāls nav atrasts!\n"
 "(SID nav atrasts iekš PAT)"
 
+msgid "Service reference"
+msgstr ""
+
 #
 msgid "Service scan"
 msgstr "Kanālu meklēšana"
@@ -6459,6 +6665,9 @@ msgstr ""
 msgid "Show in extension menu"
 msgstr ""
 
+msgid "Show info screen"
+msgstr ""
+
 #
 msgid "Show infobar on channel change"
 msgstr "Rādīt infojoslu, mainot kanālu"
@@ -6470,6 +6679,9 @@ msgstr "Rādīt infojoslu, mainot notikumu"
 #
 msgid "Show infobar on skip forward/backward"
 msgstr "Rādīt infojoslu pārlēciena turp/atpakaļ laikāl"
+
+msgid "Show notification on conflicts"
+msgstr ""
 
 #
 msgid "Show positioner movement"
@@ -6744,6 +6956,9 @@ msgstr ""
 msgid "Start Webinterface"
 msgstr ""
 
+msgid "Start easy your multimedia plugins with the PVR-button."
+msgstr ""
+
 #
 msgid "Start from the beginning"
 msgstr "Sākt no sākuma"
@@ -6867,6 +7082,9 @@ msgstr "Sv"
 msgid "Sunday"
 msgstr "Svētdiena"
 
+msgid "Support \"Fast Scan\"?"
+msgstr ""
+
 #
 msgid "Swap Services"
 msgstr "Mainīit kanālus"
@@ -6891,13 +7109,8 @@ msgstr "Pārslēgt iepriekšējo papildkanālu"
 msgid "Switchable tuner types:"
 msgstr ""
 
-#
-msgid "Symbol Rate"
-msgstr "Simbolu ātrums"
-
-#
-msgid "Symbolrate"
-msgstr "Simbolātrums"
+msgid "Symbol rate"
+msgstr ""
 
 #
 msgid "System"
@@ -6912,9 +7125,18 @@ msgstr "Ivo Grinbergs Jelgava, Latvija"
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS datne ir par lielu priekš ISO9660 līmeņa 1!"
 
+msgid "TSID"
+msgstr ""
+
+msgid "TV Charts of all users"
+msgstr ""
+
 #
 msgid "TV System"
 msgstr "TV sistēma"
+
+msgid "TXT PID"
+msgstr ""
 
 #
 msgid "Table of content for collection"
@@ -6946,6 +7168,9 @@ msgstr ""
 
 #
 msgid "Temperature and Fan control"
+msgstr ""
+
+msgid "Temperature-dependent fan control."
 msgstr ""
 
 #
@@ -7622,20 +7847,12 @@ msgid "Translation:"
 msgstr "Translēšana:"
 
 #
-msgid "Transmission Mode"
-msgstr "Pārraides režīms"
-
-#
 msgid "Transmission mode"
 msgstr "Pārraides režīms"
 
 #
 msgid "Transponder"
 msgstr "Transponderis"
-
-#
-msgid "Transponder Type"
-msgstr "Transpondera veids"
 
 #
 msgid "Travel & Events"
@@ -7766,6 +7983,9 @@ msgstr ""
 msgid "Undo uninstall"
 msgstr ""
 
+msgid "Unencrypted"
+msgstr ""
+
 #
 msgid "UnhandledKey"
 msgstr ""
@@ -7793,6 +8013,9 @@ msgstr ""
 #
 msgid "Universal LNB"
 msgstr "Universālā LNB"
+
+msgid "Unknown"
+msgstr ""
 
 msgid "Unknown network adapter."
 msgstr ""
@@ -7907,10 +8130,6 @@ msgid "Use and control multiple Dreamboxes with different RCs."
 msgstr ""
 
 #
-msgid "Use non-smooth winding at speeds above"
-msgstr "Izmantot 'attēlu virknes' režīmu pie augstākminētajiem ātrumiem"
-
-#
 msgid "Use power measurement"
 msgstr "Lietot sprieguma mērīšanu"
 
@@ -7994,11 +8213,20 @@ msgstr "VMGM (ievada treileris)"
 msgid "Vali-XD skin"
 msgstr ""
 
+msgid "Vali.HD.atlantis skin"
+msgstr ""
+
 msgid "Vali.HD.nano skin"
+msgstr ""
+
+msgid "Vali.HD.warp skin"
 msgstr ""
 
 msgid ""
 "Verify your Dreambox authenticity by running the genuine dreambox plugin!"
+msgstr ""
+
+msgid "Verifying your internet connection..."
 msgstr ""
 
 #
@@ -8016,6 +8244,9 @@ msgstr "Precīzās atēla regulēšanas vednis"
 #
 msgid "Video Output"
 msgstr "Attēla izeja"
+
+msgid "Video PID"
+msgstr ""
 
 #
 msgid "Video Setup"
@@ -8262,6 +8493,9 @@ msgstr ""
 msgid "Weatherforecast on your Dreambox"
 msgstr ""
 
+msgid "Web-Bouquet-Editor for PC"
+msgstr ""
+
 #
 msgid "Webinterface"
 msgstr ""
@@ -8407,6 +8641,11 @@ msgstr "Ko Jūs vēlaties meklēt?"
 msgid "What to do with submitted crashlogs?"
 msgstr ""
 
+msgid ""
+"When supporting \"Fast Scan\" the service type is ignored. You don't need to "
+"enable this unless your Image supports \"Fast Scan\" and you are using it."
+msgstr ""
+
 #
 msgid ""
 "When this option is enabled the AutoTimer won't match events where another "
@@ -8446,6 +8685,15 @@ msgstr "Bezvadu tīkls"
 
 #
 msgid "Wireless Network State"
+msgstr ""
+
+msgid "Wireless network connection setup"
+msgstr ""
+
+msgid "Wireless network connection setup."
+msgstr ""
+
+msgid "Wireless network state"
 msgstr ""
 
 msgid ""
@@ -8669,6 +8917,12 @@ msgid ""
 "in title' is what is looked for in the EPG."
 msgstr ""
 
+msgid ""
+"You can use the EasyInfo for manage your EPG plugins from info button. You "
+"have also a new now-next event viewer. Easy-PG, the own graphical EPG bowser "
+"is also included."
+msgstr ""
+
 #
 msgid "You cannot delete this!"
 msgstr "Jūs šo nevarat dzēst!"
@@ -8855,6 +9109,9 @@ msgstr ""
 #
 msgid "Your network configuration has been activated."
 msgstr "Tīkla konfigurācija aktivizēta."
+
+msgid "Your network is not working. Please try again."
+msgstr ""
 
 #
 msgid "Your network mount has been activated."
@@ -9074,6 +9331,12 @@ msgstr ""
 msgid "assigned Services/Provider:"
 msgstr ""
 
+msgid "at beginning"
+msgstr ""
+
+msgid "at end"
+msgstr ""
+
 #
 #, python-format
 msgid "audio track (%s) format"
@@ -9091,6 +9354,9 @@ msgstr "skaņas celiņi"
 #
 msgid "auto"
 msgstr "auto"
+
+msgid "autotimers need a match attribute"
+msgstr ""
 
 #
 msgid "available"
@@ -9123,6 +9389,9 @@ msgstr "melnais saraksts"
 #
 msgid "blue"
 msgstr "zils"
+
+msgid "bob"
+msgstr ""
 
 #
 #, python-format
@@ -9165,6 +9434,9 @@ msgstr "notīrīt repertuāru"
 msgid "complex"
 msgstr "kompleksa"
 
+msgid "config changed."
+msgstr ""
+
 #
 msgid "config menu"
 msgstr "konfigurācijas izvēlne"
@@ -9196,6 +9468,12 @@ msgstr ""
 msgid "create directory"
 msgstr "izveidot mapi"
 
+msgid "creates virtual series folders from episodes"
+msgstr ""
+
+msgid "creates virtual series folders from sets of recorded episodes"
+msgstr ""
+
 #, python-format
 msgid "currently installed image: %s"
 msgstr ""
@@ -9207,6 +9485,9 @@ msgstr "ikdienas"
 #
 msgid "day"
 msgstr "diena"
+
+msgid "default"
+msgstr ""
 
 #
 msgid "delete"
@@ -9266,6 +9547,9 @@ msgstr "nerakstīt"
 #
 msgid "done!"
 msgstr "pabeigts!"
+
+msgid "driver for Realtek USB wireless devices"
+msgstr ""
 
 #
 msgid "edit alternatives"
@@ -9548,6 +9832,9 @@ msgstr "minūte"
 msgid "minutes"
 msgstr "minūtēm"
 
+msgid "missing parameter \"id\""
+msgstr ""
+
 #
 msgid "month"
 msgstr "mēnesis"
@@ -9745,9 +10032,6 @@ msgid "red"
 msgstr "sarkans"
 
 msgid "redesigned Kerni-HD1 skin"
-msgstr ""
-
-msgid "redirect notifications to Growl"
 msgstr ""
 
 #
@@ -10086,6 +10370,10 @@ msgstr "Ie-/iz-slēgt laiku, nodaļu, skaņu, subtitru informāciju"
 msgid "tuner is not supported"
 msgstr ""
 
+#, python-format
+msgid "unable to find timer with id %i"
+msgstr ""
+
 #
 msgid "unavailable"
 msgstr ""
@@ -10155,6 +10443,9 @@ msgstr "iknedēļas"
 #
 msgid "whitelist"
 msgstr "baltais saraksts"
+
+msgid "wireless network interface"
+msgstr ""
 
 #
 msgid "working"
@@ -10309,6 +10600,22 @@ msgstr "pārslēgts"
 #~ msgstr "Izvēlēties avotu"
 
 #
+#~ msgid "Code rate high"
+#~ msgstr "Augsts kodēšanas ātrums "
+
+#
+#~ msgid "Code rate low"
+#~ msgstr "Zems kodēšanas ātrums"
+
+#
+#~ msgid "Coderate HP"
+#~ msgstr "Kodēšanas ātrums HP"
+
+#
+#~ msgid "Coderate LP"
+#~ msgstr "Kodēšanas ātrums LP"
+
+#
 #~ msgid "Compact flash card"
 #~ msgstr "Compact flash karte"
 
@@ -10374,10 +10681,6 @@ msgstr "pārslēgts"
 #~ msgstr "USB lādētāja palaišanas imidža ielāde neizdevās:"
 
 #
-#~ msgid "Enable Autoresolution"
-#~ msgstr "Aktivizēt auto izšķirtspēju"
-
-#
 #~ msgid ""
 #~ "Enigma2 Skinselector v0.5 BETA\n"
 #~ "\n"
@@ -10392,6 +10695,14 @@ msgstr "pārslēgts"
 #~ "stephan@reichholf.net\n"
 #~ "\n"
 #~ "© 2006 - Stephan Reichholf"
+
+#
+#~ msgid "Enter Fast Forward at speed"
+#~ msgstr "Ievadiet ātrās pārtīšanas ātrumu"
+
+#
+#~ msgid "Enter Rewind at speed"
+#~ msgstr "Ievadiet attīšanas ātrumu"
 
 #
 #~ msgid "Enter WLAN network name/SSID:"
@@ -10413,12 +10724,32 @@ msgstr "pārslēgts"
 #~ "ielādes."
 
 #
+#~ msgid "Frame repeat count during non-smooth winding"
+#~ msgstr "Atkārtoto kadru skaits 'attēlu virknes' režīmā"
+
+#
 #~ msgid "Fritz!Box FON IP address"
 #~ msgstr "Fritz!Box FON IP adrese"
 
 #
 #~ msgid "Function not yet implemented"
 #~ msgstr "Funkcija vēl nav realizēta"
+
+#
+#~ msgid "Guard Interval"
+#~ msgstr "Sardzes intervāls"
+
+#
+#~ msgid "Guard interval mode"
+#~ msgstr "Sardzes intervāla režīms"
+
+#
+#~ msgid "Hierarchy Information"
+#~ msgstr "Hierarhijas informācija"
+
+#
+#~ msgid "Hierarchy mode"
+#~ msgstr "Hierarhijas režīms"
 
 #
 #~ msgid "If you can see this page, please press OK."
@@ -10541,6 +10872,10 @@ msgstr "pārslēgts"
 #~ msgstr "Tiešsaistes atjaunināšana"
 
 #
+#~ msgid "Orbital Position"
+#~ msgstr "Pozīcija orbītā"
+
+#
 #~ msgid "Page"
 #~ msgstr "Lappuse"
 
@@ -10567,6 +10902,10 @@ msgstr "pārslēgts"
 #
 #~ msgid "Please select target directory or medium"
 #~ msgstr "Lūdzu izvēlieties mērķa mapi vai datu nesēju"
+
+#
+#~ msgid "Polarity"
+#~ msgstr "Polaritāte"
 
 #
 #~ msgid "RSS Feed URI"
@@ -10599,6 +10938,11 @@ msgstr "pārslēgts"
 #~ msgstr ""
 #~ "Iestatījumu atjaunošana pabeigta. Lūdzu spiediet OK, lai aktivizētu "
 #~ "atjaunotos iestatījumus."
+
+#
+#, fuzzy
+#~ msgid "Rolloff"
+#~ msgstr "Rolloff"
 
 #
 #~ msgid ""
@@ -10676,6 +11020,14 @@ msgstr "pārslēgts"
 #
 #~ msgid "Stereo"
 #~ msgstr "Stereo"
+
+#
+#~ msgid "Symbol Rate"
+#~ msgstr "Simbolu ātrums"
+
+#
+#~ msgid "Symbolrate"
+#~ msgstr "Simbolātrums"
 
 #
 #~ msgid ""
@@ -10759,6 +11111,14 @@ msgstr "pārslēgts"
 #~ "3) Gaidiet līdz ielādējas un sekojiet vedņa norādījumiem."
 
 #
+#~ msgid "Transmission Mode"
+#~ msgstr "Pārraides režīms"
+
+#
+#~ msgid "Transponder Type"
+#~ msgstr "Transpondera veids"
+
+#
 #~ msgid "USB"
 #~ msgstr "USB"
 
@@ -10769,6 +11129,10 @@ msgstr "pārslēgts"
 #
 #~ msgid "Upgrade finished. Do you want to reboot your Dreambox?"
 #~ msgstr "Atjaunināšana pabeigta. Vai vēlaties atsāknēt Dreambox?"
+
+#
+#~ msgid "Use non-smooth winding at speeds above"
+#~ msgstr "Izmantot 'attēlu virknes' režīmu pie augstākminētajiem ātrumiem"
 
 #
 #~ msgid ""
