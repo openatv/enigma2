@@ -333,26 +333,41 @@ class InfoBarShowHide:
 			self["ecmInfo"].visible = config.usage.show_cryptoinfo.value
 
 	def openEventView(self):
-		ref = self.session.nav.getCurrentlyPlayingServiceReference()
-		self.getNowNext()
-		epglist = self.epglist
-		if not epglist:
-			self.is_now_next = False
-			epg = eEPGCache.getInstance()
-			ptr = ref and ref.valid() and epg.lookupEventTime(ref, -1)
-			if ptr:
-				epglist.append(ptr)
-				ptr = epg.lookupEventTime(ref, ptr.getBeginTime(), +1)
+		if isinstance(self, InfoBarEPG):
+			ref = self.session.nav.getCurrentlyPlayingServiceReference()
+			self.getNowNext()
+			epglist = self.epglist
+			if not epglist:
+				self.is_now_next = False
+				epg = eEPGCache.getInstance()
+				ptr = ref and ref.valid() and epg.lookupEventTime(ref, -1)
 				if ptr:
 					epglist.append(ptr)
+					ptr = epg.lookupEventTime(ref, ptr.getBeginTime(), +1)
+					if ptr:
+						epglist.append(ptr)
+			else:
+				self.is_now_next = True
+			if epglist:
+				self.eventView = self.session.openWithCallback(self.closed, EventViewEPGSelect, self.epglist[0], ServiceReference(ref), self.eventViewCallback, self.openSingleServiceEPG, self.openMultiServiceEPG, self.openSimilarList)
+				self.dlg_stack.append(self.eventView)
+			else:
+				print "no epg for the service avail.. so we show multiepg instead of eventinfo"
+				self.openMultiServiceEPG(False)
 		else:
-			self.is_now_next = True
-		if epglist:
-			self.eventView = self.session.openWithCallback(self.closed, EventViewEPGSelect, self.epglist[0], ServiceReference(ref), self.eventViewCallback, self.openSingleServiceEPG, self.openMultiServiceEPG, self.openSimilarList)
-			self.dlg_stack.append(self.eventView)
-		else:
-			print "no epg for the service avail.. so we show multiepg instead of eventinfo"
-			self.openMultiServiceEPG(False)
+			epglist = [ ]
+			self.epglist = epglist
+			service = self.session.nav.getCurrentService()
+			ref = self.session.nav.getCurrentlyPlayingServiceReference()
+			info = service.info()
+			ptr=info.getEvent(0)
+			if ptr:
+				epglist.append(ptr)
+			ptr=info.getEvent(1)
+			if ptr:
+				epglist.append(ptr)
+			if epglist:
+				self.session.open(EventViewSimple, epglist[0], ServiceReference(ref), self.eventViewCallback)
 
 	def eventViewCallback(self, setEvent, setService, val): #used for now/next displaying
 		epglist = self.epglist
@@ -624,6 +639,7 @@ class InfoBarSimpleEventView:
 			{
 				"showEventInfo": (self.openEventView, _("show event details")),
 				"showInfobarOrEpgWhenInfobarAlreadyVisible": self.showEventInfoWhenNotVisible,
+				"InfoPressed": self.openEventView,
 			})
 
 	def showEventInfoWhenNotVisible(self):
