@@ -13,6 +13,7 @@ from enigma import eEPGCache, eTimer, eServiceReference
 from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT
 from TimerEntry import TimerEntry
 from Plugins.Plugin import PluginDescriptor
+from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN
 from Tools.BoundFunction import boundFunction
 from time import localtime
 from Components.config import config
@@ -241,7 +242,13 @@ class EventViewBase:
 class EventViewSimple(Screen, EventViewBase):
 	def __init__(self, session, Event, Ref, callback=None, similarEPGCB=None):
 		Screen.__init__(self, session)
-		self.skinName = "EventView"
+		data = resolveFilename(SCOPE_CURRENT_SKIN,"skin.xml")
+		data = data.replace('/ skin.xml','/skin.xml')
+		data = file(resolveFilename(SCOPE_CURRENT_SKIN,"skin.xml")).read()
+		if data.find('EventViewSimple') >= 0:
+			self.skinName = "EventViewSimple"
+		else:
+			self.skinName = "EventView"
 		EventViewBase.__init__(self, Event, Ref, callback, similarEPGCB)
 
 class EventViewEPGSelect(Screen, EventViewBase):
