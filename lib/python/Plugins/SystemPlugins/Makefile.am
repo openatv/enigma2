@@ -9,7 +9,15 @@ if CLARKETECH
 SUBDIRS += SatelliteEquipmentControl DiseqcTester FastScan OSD3DSetup OSDPositionSetup FanSetupClarkeTech
 endif
 
+if VUUNO
+SUBDIRS += FanSetupVuPlus
+endif
+
 if VUDUO
+SUBDIRS += FanSetupVuPlus
+endif
+
+if VUULTIMO
 SUBDIRS += FanSetupVuPlus
 endif
 
