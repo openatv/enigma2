@@ -6,7 +6,7 @@ SUBDIRS = SoftwareManager PositionerSetup Satfinder \
 	VideoEnhancement WirelessLan NetworkWizard
 
 if CLARKETECH
-SUBDIRS += SatelliteEquipmentControl DiseqcTester FastScan OSD3DSetup OSDPositionSetup
+SUBDIRS += SatelliteEquipmentControl DiseqcTester FastScan OSD3DSetup OSDPositionSetup FanSetupClarkeTech
 endif
 
 if VUDUO
@@ -14,7 +14,7 @@ SUBDIRS += FanSetupVuPlus
 endif
 
 if ET9000
-SUBDIRS += FanSetupClarkeTech VFDSetupClarkeTech
+SUBDIRS += VFDSetupClarkeTech
 endif
 
 if HAVE_TEMPFANCONTROL
