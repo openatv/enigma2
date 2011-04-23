@@ -1,4 +1,4 @@
-from ChannelSelection import ChannelSelection, BouquetSelector
+from ChannelSelection import ChannelSelection, BouquetSelector, VIXBouquetSelector
 
 from Components.ActionMap import ActionMap, HelpableActionMap
 from Components.ActionMap import NumberActionMap
@@ -860,7 +860,7 @@ class InfoBarEPG:
 		self.session.open(EPGSelection, self.servicelist, self.EPGtype)
 
 	def showVIXEPG(self):
-		from Plugins.SystemPlugins.ViX.EPG import VIXBouquetSelector, VIXEPG
+		from Plugins.SystemPlugins.ViX.EPG import VIXEPG
 		global Session
 		Session = self.session
 		global Servicelist
@@ -1687,8 +1687,7 @@ class InfoBarExtensions:
 
 	def showVIXEPG(self):
 		if isinstance(self, InfoBarEPG):
-			if isinstance(self, InfoBar):
-				InfoBar.showVIXEPG(InfoBar.instance)
+			InfoBarEPG.showVIXEPG()
 
 	def openInfoBarEPG(self):
 		if isinstance(self, InfoBarEPG):
@@ -2693,7 +2692,7 @@ def VIXEPG_closed(ret=False):
 	VIXEPG_cleanup()
 
 def onBouquetSelectorClose(bouquet):
-	if not bouquet is None:
+	if bouquet:
 		services = VIXEPG_getBouquetServices(bouquet)
 		if len(services):
 			global epg_bouquet
@@ -2713,4 +2712,4 @@ def VIXEPG_openBouquetEPG(bouquet):
 def VIXEPG_CB(direction, epgcall):
 	global epg
 	epg = epgcall
-	Session.openWithCallback(onBouquetSelectorClose, BouquetSelector, bouquets, epg_bouquet, direction)
+	Session.openWithCallback(onBouquetSelectorClose, VIXBouquetSelector, bouquets, epg_bouquet, direction)
