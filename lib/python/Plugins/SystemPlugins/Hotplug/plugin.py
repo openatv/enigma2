@@ -50,12 +50,12 @@ IOC_TYPESHIFT = (IOC_NRSHIFT+IOC_NRBITS)
 BLKRRPART = ((0x12<<IOC_TYPESHIFT) | (95<<IOC_NRSHIFT))
 
 def autostart(reason, **kwargs):
+	global bdpoll
 	if reason == 0:
 		print "starting hotplug handler"
 
 		if fileExists('/dev/.udev'):
 			global netlink
-			global bdpoll
 			from enigma import eSocketNotifier, eTimer, ePythonMessagePump
 			import socket
 			from select import POLLIN, POLLPRI
@@ -295,6 +295,12 @@ def autostart(reason, **kwargs):
 			factory = Factory()
 			factory.protocol = Hotplug
 			reactor.listenUNIX("/tmp/hotplug.socket", factory)
+	else:
+		if bdpoll:
+			bdpoll.running = False
+			bdpoll.timeout() # XXX: I assume the timer is shut down before it executes again, so release the semaphore manually
+			bdpoll.join()
+		bdpoll = None
 
 def Plugins(**kwargs):
 	return PluginDescriptor(name = "Hotplug", description = "listens to hotplug events", where = PluginDescriptor.WHERE_AUTOSTART, needsRestart = True, fnc = autostart)
