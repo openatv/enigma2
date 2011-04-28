@@ -341,12 +341,10 @@ class pliExpertInfo(Poll, Converter, object):
 					Ret_Text += sep + "DVB-T" + sep + "Frequency:" + sep + frequency + " MHz"
 
 			if (feinfo is not None) and (xresol > 0):
-				if (yresol > 580):
-					Res_Text = "HD-"
-				else:
-					Res_Text = "SD-"
-				Res_Text += ("MPEG2", "MPEG4", "MPEG1", "MPEG4-II", "VC1", "VC1-SM" )[info.getInfo(iServiceInformation.sVideoType)]
-				Res_Text += " " + str(xresol) + "x" + str(yresol)
+				Res_Text += ("MPEG2 ", "MPEG4 ", "MPEG1 ", "MPEG4-II ", "VC1 ", "VC1-SM ", "")[info.getInfo(iServiceInformation.sVideoType)]
+				Res_Text += str(xresol) + "x" + str(yresol) 
+				Res_Text += ("i", "p", "")[info.getInfo(iServiceInformation.sProgressive)]
+				Res_Text += str((info.getInfo(iServiceInformation.sFrameRate) + 500) / 1000)
 
 		if (self.type == self.SMART_INFO_H or self.type == self.SMART_INFO_V or self.type == self.CRYPTO_INFO):
 
