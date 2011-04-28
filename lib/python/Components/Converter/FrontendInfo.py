@@ -1,5 +1,6 @@
 from Components.Converter.Converter import Converter
 from Components.Element import cached
+from Components.config import config
 
 class FrontendInfo(Converter, object):
 	BER = 0
@@ -31,6 +32,7 @@ class FrontendInfo(Converter, object):
 	def getText(self):
 		assert self.type not in (self.LOCK, self.SLOT_NUMBER), "the text output of FrontendInfo cannot be used for lock info"
 		percent = None
+		swapsnr = config.usage.swap_snr_on_osd.value
 		if self.type == self.BER: # as count
 			count = self.source.ber
 			if count is not None:
@@ -39,9 +41,9 @@ class FrontendInfo(Converter, object):
 				return "N/A"
 		elif self.type == self.AGC:
 			percent = self.source.agc
-		elif self.type == self.SNR:
+		elif (self.type == self.SNR and not swapsnr) or (self.type == self.SNRdB and swapsnr):
 			percent = self.source.snr
-		elif self.type == self.SNRdB:
+		elif self.type  == self.SNR or self.type == self.SNRdB:
 			if self.source.snr_db is not None:
 				return "%3.01f dB" % (self.source.snr_db / 100.0)
 			elif self.source.snr is not None: #fallback to normal SNR...

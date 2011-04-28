@@ -10,8 +10,11 @@
 
 eBackgroundFileEraser *eBackgroundFileEraser::instance;
 
-eBackgroundFileEraser::eBackgroundFileEraser()
-	:messages(this,1), stop_thread_timer(eTimer::create(this))
+eBackgroundFileEraser::eBackgroundFileEraser():
+	messages(this,1),
+	stop_thread_timer(eTimer::create(this)),
+	erase_flags(ERASE_FLAG_HDD),
+	erase_speed(20 << 20)
 {
 	if (!instance)
 		instance=this;
@@ -26,7 +29,7 @@ void eBackgroundFileEraser::idle()
 
 eBackgroundFileEraser::~eBackgroundFileEraser()
 {
-	messages.send(Message::quit);
+	messages.send(Message());
 	if (instance==this)
 		instance=0;
 	kill();  // i dont understand why this is needed .. in ~eThread::eThread is a kill() to..
@@ -35,15 +38,10 @@ eBackgroundFileEraser::~eBackgroundFileEraser()
 void eBackgroundFileEraser::thread()
 {
 	hasStarted();
-
 	nice(5);
-
 	setIoPrio(IOPRIO_CLASS_BE, 7);
-
 	reset();
-
 	runLoop();
-
 	stop_thread_timer->stop();
 }
 
@@ -59,26 +57,55 @@ void eBackgroundFileEraser::erase(const std::string& filename)
 			eDebug("Rename %s -> %s failed.", filename.c_str(), delname.c_str());
 			delname = filename;
 		}
-		messages.send(Message(Message::erase, delname));
+		messages.send(Message(delname));
 		run();
 	}
 }
 
 void eBackgroundFileEraser::gotMessage(const Message &msg )
 {
-	switch (msg.type)
+	if (msg.filename.empty())
 	{
-		case Message::erase:
-			if ( ::unlink(msg.filename.c_str()) < 0 )
-				eDebug("remove file %s failed (%m)", msg.filename.c_str());
-			stop_thread_timer->start(1000, true); // stop thread in one seconds
-			break;
-		case Message::quit:
-			quit(0);
-			break;
-		default:
-			eDebug("unhandled thread message");
+		quit(0);
+	}
+	else
+	{
+		const char* c_filename = msg.filename.c_str();
+		eDebug("[eBackgroundFileEraser] deleting '%s'", c_filename);
+		if ((((erase_flags & ERASE_FLAG_HDD) != 0) && (strncmp(c_filename, "/media/hdd/", 11) == 0)) ||
+		    ((erase_flags & ERASE_FLAG_OTHER) != 0))
+		{
+			struct stat st;
+			if (::stat(c_filename, &st) == 0)
+			{
+				while (st.st_size > erase_speed)
+				{
+					st.st_size -= erase_speed;
+					if (::truncate(c_filename, st.st_size) != 0)
+					{
+						eDebug("Failed to truncate %s", c_filename);
+						break; // don't try again, just unlink
+					}
+					usleep(500000); // wait half a second
+				}
+			}
+		}
+		if ( ::unlink(c_filename) < 0 )
+			eDebug("remove file %s failed (%m)", c_filename);
+		stop_thread_timer->start(1000, true); // stop thread in one seconds
 	}
 }
+void eBackgroundFileEraser::setEraseSpeed(int inMBperSecond)
+{
+	off_t value = inMBperSecond;
+	value = value << 19; // erase_speed is in MB per half second
+	erase_speed = value;
+}
+
+void eBackgroundFileEraser::setEraseFlags(int flags)
+{
+	erase_flags = flags;
+}
+
 
 eAutoInitP0<eBackgroundFileEraser> init_eBackgroundFilEraser(eAutoInitNumbers::configuration+1, "Background File Eraser");
