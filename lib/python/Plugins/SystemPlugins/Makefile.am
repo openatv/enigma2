@@ -10,14 +10,14 @@ SUBDIRS += SatelliteEquipmentControl DiseqcTester FastScan OSD3DSetup OSDPositio
 endif
 
 if VUUNO
-SUBDIRS += FanSetupVuPlus
-endif
-
-if VUDUO
-SUBDIRS += FanSetupVuPlus
+SUBDIRS += CableScan FastScan OSD3DSetup OSDPositionSetup
 endif
 
 if VUULTIMO
+SUBDIRS += CableScan FastScan OSD3DSetup OSDPositionSetup
+endif
+
+if VUDUO
 SUBDIRS += FanSetupVuPlus
 endif
 
