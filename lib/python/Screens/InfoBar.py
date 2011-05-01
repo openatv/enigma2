@@ -129,7 +129,6 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 	def showTv(self):
 		if config.plugins.ViXSettings.TVButtonAction.value == "Default":
 			from Screens.ChannelSelection import SimpleChannelSelection
-			self.showTvChannelList(True)
 			self.session.open(SimpleChannelSelection, None)
 		elif config.plugins.ViXSettings.TVButtonAction.value == "TVList":
 			self.showTvChannelList(True)
