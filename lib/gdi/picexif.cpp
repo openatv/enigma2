@@ -90,9 +90,9 @@ void Cexif::ClearExif()
 
 bool Cexif::DecodeExif(const char *filename, int Thumb)
 {
+	bool ret = false;
 	FILE * hFile = fopen(filename, "r");
-	if(!hFile) return false;
-
+	if(!hFile) return ret;
 
 	m_exifinfo = new EXIFINFO;
 	memset(m_exifinfo,0,sizeof(EXIFINFO));
@@ -107,7 +107,8 @@ bool Cexif::DecodeExif(const char *filename, int Thumb)
 	int a = fgetc(hFile);
 	strcpy(m_szLastError,"EXIF-Data not found");
 
-	if (a != 0xff || fgetc(hFile) != M_SOI) return false;
+	if (a != 0xff || fgetc(hFile) != M_SOI)
+		goto decode_exif_out_false;
 
 	for(;;)
 	{
@@ -117,7 +118,8 @@ bool Cexif::DecodeExif(const char *filename, int Thumb)
 
 		if (SectionsRead >= MAX_SECTIONS)
 		{
-			strcpy(m_szLastError,"Too many sections in jpg file"); return false;
+			strcpy(m_szLastError,"Too many sections in jpg file");
+			goto decode_exif_out_false;
 		}
 
 		for (a=0;a<7;a++)
@@ -127,13 +129,15 @@ bool Cexif::DecodeExif(const char *filename, int Thumb)
 
 			if (a >= 6)
 			{
-				strcpy(m_szLastError,"too many padding unsigned chars\n"); return false;
+				strcpy(m_szLastError,"too many padding unsigned chars\n");
+				goto decode_exif_out_false;
 			}
 		}
 
 		if (marker == 0xff)
 		{
-			strcpy(m_szLastError,"too many padding unsigned chars!"); return false;
+			strcpy(m_szLastError,"too many padding unsigned chars!");
+			goto decode_exif_out_false;
 		}
 
 		Sections[SectionsRead].Type = marker;
@@ -145,14 +149,16 @@ bool Cexif::DecodeExif(const char *filename, int Thumb)
 
 		if (itemlen < 2)
 		{
-			strcpy(m_szLastError,"invalid marker"); return false;
+			strcpy(m_szLastError,"invalid marker");
+			goto decode_exif_out_false;
 		}
 		Sections[SectionsRead].Size = itemlen;
 
 		Data = (unsigned char *)malloc(itemlen);
 		if (Data == NULL)
 		{
-			strcpy(m_szLastError,"Could not allocate memory"); return false;
+			strcpy(m_szLastError,"Could not allocate memory");
+			goto decode_exif_out_false;
 		}
 		Sections[SectionsRead].Data = Data;
 
@@ -163,17 +169,18 @@ bool Cexif::DecodeExif(const char *filename, int Thumb)
 		got = fread(Data+2, 1, itemlen-2,hFile);
 		if (got != itemlen-2)
 		{
-			strcpy(m_szLastError,"Premature end of file?"); return false;
+			strcpy(m_szLastError,"Premature end of file?");
+			goto decode_exif_out_false;
 		}
 		SectionsRead += 1;
 
 		switch(marker)
 		{
 		case M_SOS:
-			return true;
+			goto decode_exif_out_true;
 		case M_EOI:
 			printf("No image in jpeg!\n");
-			return false;
+			goto decode_exif_out_false;
 		case M_COM:
 			if (HaveCom)
 			{
@@ -221,8 +228,12 @@ bool Cexif::DecodeExif(const char *filename, int Thumb)
 		}
 	}
 
+decode_exif_out_true:
+	ret = true;
+
+decode_exif_out_false:
 	fclose(hFile);
-	return true;
+	return ret;
 }
 
 bool Cexif::process_EXIF(unsigned char * CharBuf, unsigned int length)
