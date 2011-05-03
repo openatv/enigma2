@@ -4,11 +4,13 @@ from Screens.InputBox import InputBox
 from Screens.Standby import *
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Screens.HelpMenu import HelpableScreen
+from Components.Console import Console
 from Components.Network import iNetwork
 from Components.Sources.StaticText import StaticText
 from Components.Sources.Boolean import Boolean
 from Components.Sources.List import List
 from Components.Label import Label,MultiColorLabel
+from Components.ScrollLabel import ScrollLabel
 from Components.Pixmap import Pixmap,MultiPixmap
 from Components.MenuList import MenuList
 from Components.config import config, ConfigYesNo, ConfigIP, NoSave, ConfigText, ConfigPassword, ConfigSelection, getConfigListEntry, ConfigNothing
@@ -21,8 +23,10 @@ from Tools.LoadPixmap import LoadPixmap
 from Plugins.Plugin import PluginDescriptor
 from enigma import eTimer, ePoint, eSize, RT_HALIGN_LEFT, eListboxPythonMultiContent, gFont
 from os import path as os_path, system as os_system, unlink
+from os import chmod, path, remove, symlink, unlink
+from shutil import move
 from re import compile as re_compile, search as re_search
-
+import time
 
 class NetworkAdapterSelection(Screen,HelpableScreen):
 	def __init__(self, session):
@@ -1451,4 +1455,643 @@ class NetworkAdapterTest(Screen):
 			pass
 		else:
 			iStatus.stopWlanConsole()
+
+class NetworkFtp(Screen):
+	skin = """
+		<screen position="center,center" size="340,310" title="Ftp Setup">
+			<widget name="lab1" position="20,30" size="300,80" font="Regular;20" valign="center" transparent="1"/>
+			<widget name="lab2" position="20,150" size="150,30" font="Regular;20" valign="center" transparent="1"/>
+			<widget name="labstop" position="170,150" size="100,30" font="Regular;20" valign="center"  halign="center" backgroundColor="red"/>
+			<widget name="labrun" position="170,150" size="100,30" zPosition="1" font="Regular;20" valign="center"  halign="center" backgroundColor="green"/>
+			<ePixmap pixmap="skin_default/buttons/red.png" position="20,260" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/green.png" position="180,260" size="140,40" alphatest="on" />
+			<widget name="key_red" position="20,260" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+			<widget name="key_green" position="180,260" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+		</screen>"""
+
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		self["title"] = Label(_("FTP Setup"))
+		self['lab1'] = Label(_("Ftpd service type: Vsftpd server"))
+		self['lab2'] = Label(_("Current Status:"))
+		self['labstop'] = Label(_("Stopped"))
+		self['labrun'] = Label(_("Running"))
+		self['key_red'] = Label(_("Enable"))
+		self['key_green'] = Label(_("Disable"))
+		self.my_ftp_active = False
+		self.Console = Console()
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.FtpStart, 'green': self.FtpStop})
+		self.onLayoutFinish.append(self.updateFtp)
+
+	def FtpStart(self):
+		if self.my_ftp_active == False:
+			if path.exists('/etc/inetd.conf'):
+				inme = open('/etc/inetd.conf', 'r')
+				out = open('/etc/inetd.tmp', 'w')
+				for line in inme.readlines():
+					if line.find('vsftpd') != -1:
+						line = line.replace('#', '')
+					out.write(line)
+				out.close()
+				inme.close()
+			if path.exists('/etc/inetd.tmp'):
+				move('/etc/inetd.tmp', '/etc/inetd.conf')
+				self.Console.ePopen('killall -HUP inetd')
+				self.Console.ePopen('ps')
+				mybox = self.session.open(MessageBox, _("Ftp service Enabled."), MessageBox.TYPE_INFO)
+				mybox.setTitle(_("Info"))
+				self.updateFtp()
+
+	def FtpStop(self):
+		if self.my_ftp_active == True:
+			if path.exists('/etc/inetd.conf'):
+				inme = open('/etc/inetd.conf', 'r')
+				out = open('/etc/inetd.tmp', 'w')
+				for line in inme.readlines():
+					if line.find('vsftpd') != -1:
+						line = '#' + line
+					out.write(line)
+				out.close()
+				inme.close()
+			if path.exists('/etc/inetd.tmp'):
+				move('/etc/inetd.tmp', '/etc/inetd.conf')
+				self.Console.ePopen('killall -HUP inetd')
+				self.Console.ePopen('ps')
+				mybox = self.session.open(MessageBox, _("Ftp service Disabled."), MessageBox.TYPE_INFO)
+				mybox.setTitle(_("Info"))
+				self.updateFtp()
+
+	def updateFtp(self):
+		self['labrun'].hide()
+		self['labstop'].hide()
+		self.my_ftp_active = False
+		if path.exists('/etc/inetd.conf'):
+			f = open('/etc/inetd.conf', 'r')
+			for line in f.readlines():
+				parts = line.strip().split()
+				if parts[0] == 'ftp':
+					self.my_ftp_active = True
+					continue
+			f.close()
+		if self.my_ftp_active == True:
+			self['labstop'].hide()
+			self['labrun'].show()
+		else:
+			self['labstop'].show()
+			self['labrun'].hide()
+
+class NetworkNfs(Screen):
+	skin = """
+		<screen position="center,center" size="420,310" title="NFS Setup">
+			<widget name="lab1" position="20,50" size="200,30" font="Regular;20" valign="center" transparent="0"/>
+			<widget name="labactive" position="220,50" size="150,30" font="Regular;20" valign="center" transparent="0"/>
+			<widget name="lab2" position="20,100" size="200,30" font="Regular;20" valign="center" transparent="0"/>
+			<widget name="labstop" position="220,100" size="100,30" font="Regular;20" valign="center"  halign="center" backgroundColor="red"/>
+			<widget name="labrun" position="220,100" size="100,30" zPosition="1" font="Regular;20" valign="center"  halign="center" backgroundColor="green"/>
+			<ePixmap pixmap="skin_default/buttons/red.png" position="0,260" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/green.png" position="140,260" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,260" size="140,40" alphatest="on" />
+			<widget name="key_red" position="0,260" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+			<widget name="key_green" position="140,260" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+			<widget name="key_yellow" position="280,260" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
+		</screen>"""
+
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		self["title"] = Label(_("NFS Setup"))
+		self['lab1'] = Label(_("Autostart:"))
+		self['labactive'] = Label(_(_("Disabled")))
+		self['lab2'] = Label(_("Current Status:"))
+		self['labstop'] = Label(_("Stopped"))
+		self['labrun'] = Label(_("Running"))
+		self['key_red'] = Label(_("Start"))
+		self['key_green'] = Label(_("Stop"))
+		self['key_yellow'] = Label(_("Autostart"))
+		self.Console = Console()
+		self.my_nfs_active = False
+		self.my_nfs_run = False
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.NfsStart, 'green': self.NfsStop, 'yellow': self.Nfsset})
+		self.onLayoutFinish.append(self.updateNfs)
+
+	def NfsStart(self):
+		if self.my_nfs_run == False:
+			self.Console.ePopen('/etc/init.d/nfsserver start')
+			time.sleep(3)
+			self.updateNfs()
+		if self.my_nfs_run == True:
+			self.Console.ePopen('/etc/init.d/nfsserver restart')
+			time.sleep(3)
+			self.updateNfs()
+
+	def NfsStop(self):
+		if self.my_nfs_run == True:
+			self.Console.ePopen('/etc/init.d/nfsserver stop')
+			time.sleep(3)
+			self.updateNfs()
+
+	def Nfsset(self):
+		if path.exists('/etc/rc0.d/K20nfsserver'):
+			unlink('/etc/rc0.d/K20nfsserver')
+			mymess = _("Autostart Disabled.")
+		else:
+			symlink('/etc/init.d/nfsserver', '/etc/rc0.d/K20nfsserver')
+			mymess = _("Autostart Enabled.")
+
+		if path.exists('/etc/rc1.d/K20nfsserver'):
+			unlink('/etc/rc1.d/K20nfsserver')
+			mymess = _("Autostart Disabled.")
+		else:
+			symlink('/etc/init.d/nfsserver', '/etc/rc1.d/K20nfsserver')
+			mymess = _("Autostart Enabled.")
+
+		if path.exists('/etc/rc2.d/S20nfsserver'):
+			unlink('/etc/rc2.d/S20nfsserver')
+			mymess = _("Autostart Disabled.")
+		else:
+			symlink('/etc/init.d/nfsserver', '/etc/rc2.d/S20nfsserver')
+			mymess = _("Autostart Enabled.")
+
+		if path.exists('/etc/rc3.d/S20nfsserver'):
+			unlink('/etc/rc3.d/S20nfsserver')
+			mymess = _("Autostart Disabled.")
+		else:
+			symlink('/etc/init.d/nfsserver', '/etc/rc3.d/S20nfsserver')
+			mymess = _("Autostart Enabled.")
+
+		if path.exists('/etc/rc4.d/S20nfsserver'):
+			unlink('/etc/rc4.d/S20nfsserver')
+			mymess = _("Autostart Disabled.")
+		else:
+			symlink('/etc/init.d/nfsserver', '/etc/rc4.d/S20nfsserver')
+			mymess = _("Autostart Enabled.")
+
+		if path.exists('/etc/rc5.d/S20nfsserver'):
+			unlink('/etc/rc5.d/S20nfsserver')
+			mymess = _("Autostart Disabled.")
+		else:
+			symlink('/etc/init.d/nfsserver', '/etc/rc5.d/S20nfsserver')
+			mymess = _("Autostart Enabled.")
+
+		if path.exists('/etc/rc6.d/K20nfsserver'):
+			unlink('/etc/rc6.d/K20nfsserver')
+			mymess = _("Autostart Disabled.")
+		else:
+			symlink('/etc/init.d/nfsserver', '/etc/rc6.d/K20nfsserver')
+			mymess = _("Autostart Enabled.")
+
+		mybox = self.session.open(MessageBox, mymess, MessageBox.TYPE_INFO)
+		mybox.setTitle(_("Info"))
+		self.updateNfs()
+
+	def updateNfs(self):
+		self.Console.ePopen('ps > /tmp/Nfs.tmp')
+		time.sleep(1)
+		self['labrun'].hide()
+		self['labstop'].hide()
+		self['labactive'].setText(_("Disabled"))
+		self.my_nfs_active = False
+		self.my_nfs_run = False
+		if path.exists('/etc/rc3.d/S20nfsserver'):
+			self['labactive'].setText(_("Enabled"))
+			self['labactive'].show()
+			self.my_nfs_active = True
+		if path.exists('/tmp/Nfs.tmp'):
+			f = open('/tmp/Nfs.tmp', 'r')
+			for line in f.readlines():
+				if line.find('nfsd') != -1:
+					self.my_nfs_run = True
+					continue
+			f.close()
+			remove('/tmp/Nfs.tmp')
+		if self.my_nfs_run == True:
+			self['labstop'].hide()
+			self['labrun'].show()
+			self['key_red'].setText(_("Restart"))
+		else:
+			self['labstop'].show()
+			self['labrun'].hide()
+			self['key_red'].setText(_("Start"))
+
+class NetworkOpenvpn(Screen):
+	skin = """
+		<screen position="center,center" size="560,310" title="OpenVpn Setup">
+			<widget name="lab1" position="20,90" size="150,30" font="Regular;20" valign="center" transparent="0"/>
+			<widget name="labactive" position="180,90" size="250,30" font="Regular;20" valign="center" transparent="0"/>
+			<widget name="lab2" position="20,160" size="150,30" font="Regular;20" valign="center" transparent="0"/>
+			<widget name="labstop" position="180,160" size="100,30" font="Regular;20" valign="center" halign="center" backgroundColor="red"/>
+			<widget name="labrun" position="180,160" size="100,30" zPosition="1" font="Regular;20" valign="center"  halign="center" backgroundColor="green"/>
+			<ePixmap pixmap="skin_default/buttons/red.png" position="0,260" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/green.png" position="140,260" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,260" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/blue.png" position="420,260" size="140,40" alphatest="on" />
+			<widget name="key_red" position="0,260" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+			<widget name="key_green" position="140,260" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+			<widget name="key_yellow" position="280,260" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
+			<widget name="key_blue" position="420,260" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
+		</screen>"""
+
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		self["title"] = Label(_("OpenVpn Setup"))
+		self['lab1'] = Label(_("Autostart:"))
+		self['labactive'] = Label(_(_("Disabled")))
+		self['lab2'] = Label(_("Current Status:"))
+		self['labstop'] = Label(_("Stopped"))
+		self['labrun'] = Label(_("Running"))
+		self['key_red'] = Label(_("Start"))
+		self['key_green'] = Label(_("Stop"))
+		self['key_yellow'] = Label(_("Autostart"))
+		self['key_blue'] = Label(_("Show Log"))
+		self.Console = Console()
+		self.my_vpn_active = False
+		self.my_vpn_run = False
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.VpnStart, 'green': self.VpnStop, 'yellow': self.activateVpn, 'blue': self.Vpnshowlog})
+		self.onLayoutFinish.append(self.updateVpn)
+
+	def Vpnshowlog(self):
+		self.session.open(NetworkVpnLog)
+
+	def VpnStart(self):
+		if self.my_vpn_run == False:
+			self.Console.ePopen('/etc/init.d/openvpn start')
+			time.sleep(3)
+			self.updateVpn()
+		elif self.my_vpn_run == True:
+			self.Console.ePopen('/etc/init.d/openvpn restart')
+			time.sleep(3)
+			self.updateVpn()
+
+	def VpnStop(self):
+		if self.my_vpn_run == True:
+			self.Console.ePopen('/etc/init.d/openvpn stop')
+			time.sleep(3)
+			self.updatemy_Vpn()
+
+	def activateVpn(self):
+		if path.exists('/etc/rc0.d/K20openvpn'):
+			unlink('/etc/rc0.d/K20openvpn')
+			mymess = _("Autostart Disabled.")
+		else:
+			symlink('/etc/init.d/openvpn', '/etc/rc0.d/K20openvpn')
+			mymess = _("Autostart Enabled.")
+
+		if path.exists('/etc/rc1.d/K20openvpn'):
+			unlink('/etc/rc1.d/K20openvpn')
+			mymess = _("Autostart Disabled.")
+		else:
+			symlink('/etc/init.d/openvpn', '/etc/rc1.d/K20openvpn')
+			mymess = _("Autostart Enabled.")
+
+		if path.exists('/etc/rc2.d/S20openvpn'):
+			unlink('/etc/rc2.d/S20openvpn')
+			mymess = _("Autostart Disabled.")
+		else:
+			symlink('/etc/init.d/openvpn', '/etc/rc2.d/S20openvpn')
+			mymess = _("Autostart Enabled.")
+
+		if path.exists('/etc/rc3.d/S20openvpn'):
+			unlink('/etc/rc3.d/S20openvpn')
+			mymess = _("Autostart Disabled.")
+		else:
+			symlink('/etc/init.d/openvpn', '/etc/rc3.d/S20openvpn')
+			mymess = _("Autostart Enabled.")
+
+		if path.exists('/etc/rc4.d/S20openvpn'):
+			unlink('/etc/rc4.d/S20openvpn')
+			mymess = _("Autostart Disabled.")
+		else:
+			symlink('/etc/init.d/openvpn', '/etc/rc4.d/S20openvpn')
+			mymess = _("Autostart Enabled.")
+
+		if path.exists('/etc/rc5.d/S20openvpn'):
+			unlink('/etc/rc5.d/S20openvpn')
+			mymess = _("Autostart Disabled.")
+		else:
+			symlink('/etc/init.d/openvpn', '/etc/rc5.d/S20openvpn')
+			mymess = _("Autostart Enabled.")
+
+		if path.exists('/etc/rc6.d/K20openvpn'):
+			unlink('/etc/rc6.d/K20openvpn')
+			mymess = _("Autostart Disabled.")
+		else:
+			symlink('/etc/init.d/openvpn', '/etc/rc6.d/K20openvpn')
+			mymess = _("Autostart Enabled.")
+
+		mybox = self.session.open(MessageBox, mymess, MessageBox.TYPE_INFO)
+		mybox.setTitle(_("Info"))
+		self.updateVpn()
+
+	def updateVpn(self):
+		self.Console.ePopen('ps > /tmp/vpn.tmp')
+		time.sleep(1)
+		self['labrun'].hide()
+		self['labstop'].hide()
+		self['labactive'].setText(_("Disabled"))
+		self.my_Vpn_active = False
+		self.my_vpn_run = False
+		if path.exists('/etc/rc3.d/S20openvpn'):
+			self['labactive'].setText(_("Enabled"))
+			self['labactive'].show()
+			self.my_Vpn_active = True
+		if path.exists('/tmp/vpn.tmp'):
+			f = open('/tmp/vpn.tmp', 'r')
+			for line in f.readlines():
+				if line.find('Vpnd') != -1:
+					self['labstop'].hide()
+					self['labrun'].show()
+					self.my_vpn_run = True
+					continue
+			f.close()
+			remove('/tmp/vpn.tmp')
+		if self.my_vpn_run == True:
+			self['labstop'].hide()
+			self['labrun'].show()
+			self['key_red'].setText(_("Restart"))
+		else:
+			self['labstop'].show()
+			self['labrun'].hide()
+			self['key_red'].setText(_("Start"))
+
+class NetworkVpnLog(Screen):
+	skin = """
+		<screen position="80,100" size="560,400" title="OpenVpn Log">
+				<widget name="infotext" position="10,10" size="540,380" font="Regular;18" />
+		</screen>"""
+
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		self["title"] = Label(_("OpenVpn Log"))
+		self['infotext'] = ScrollLabel('')
+		self.Console = Console()
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'up': self['infotext'].pageUp, 'down': self['infotext'].pageDown})
+		strview = ''
+		self.Console.ePopen('tail /etc/openvpn/openvpn.log > /etc/openvpn/tmp.log')
+		time.sleep(1)
+		if path.exists('/etc/openvpn/tmp.log'):
+			f = open('/etc/openvpn/tmp.log', 'r')
+			for line in f.readlines():
+				strview += line
+			f.close()
+			remove('/etc/openvpn/tmp.log')
+		self['infotext'].setText(strview)
+
+
+
+class NetworkSamba(Screen):
+	skin = """
+		<screen position="center,center" size="560,310" title="Samba Setup">
+			<widget name="lab1" position="20,90" size="150,30" font="Regular;20" valign="center" transparent="0"/>
+			<widget name="labactive" position="180,90" size="250,30" font="Regular;20" valign="center" transparent="0"/>
+			<widget name="lab2" position="20,160" size="150,30" font="Regular;20" valign="center" transparent="0"/>
+			<widget name="labstop" position="180,160" size="100,30" font="Regular;20" valign="center" halign="center" backgroundColor="red"/>
+			<widget name="labrun" position="180,160" size="100,30" zPosition="1" font="Regular;20" valign="center"  halign="center" backgroundColor="green"/>
+			<ePixmap pixmap="skin_default/buttons/red.png" position="0,260" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/green.png" position="140,260" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,260" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/blue.png" position="420,260" size="140,40" alphatest="on" />
+			<widget name="key_red" position="0,260" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+			<widget name="key_green" position="140,260" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+			<widget name="key_yellow" position="280,260" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
+			<widget name="key_blue" position="420,260" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
+		</screen>"""
+
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		self["title"] = Label(_("Samba Setup"))
+		self['lab1'] = Label(_("Autostart:"))
+		self['labactive'] = Label(_(_("Disabled")))
+		self['lab2'] = Label(_("Current Status:"))
+		self['labstop'] = Label(_("Stopped"))
+		self['labrun'] = Label(_("Running"))
+		self['key_red'] = Label(_("Start"))
+		self['key_green'] = Label(_("Stop"))
+		self['key_yellow'] = Label(_("Autostart"))
+		self['key_blue'] = Label(_("Show Log"))
+		self.Console = Console()
+		self.my_Samba_active = False
+		self.my_Samba_run = False
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.SambaStart, 'green': self.SambaStop, 'yellow': self.activateSamba, 'blue': self.Sambashowlog})
+		self.onLayoutFinish.append(self.updateSamba)
+
+	def Sambashowlog(self):
+		self.session.open(NetworkSambaLog)
+
+	def SambaStart(self):
+		if self.my_Samba_run == False:
+			self.Console.ePopen('/etc/init.d/samba start')
+			time.sleep(3)
+			self.updateSamba()
+		elif self.my_Samba_run == True:
+			self.Console.ePopen('/etc/init.d/samba restart')
+			time.sleep(3)
+			self.updateSamba()
+
+	def SambaStop(self):
+		if self.my_Samba_run == True:
+			self.Console.ePopen('/etc/init.d/samba stop')
+			time.sleep(3)
+			self.updateSamba()
+
+	def activateSamba(self):
+		if path.exists('/etc/rc0.d/K20samba'):
+			unlink('/etc/rc0.d/K20samba')
+			mymess = _("Autostart Disabled.")
+		else:
+			symlink('/etc/init.d/samba', '/etc/rc0.d/K20samba')
+			mymess = _("Autostart Enabled.")
+
+		if path.exists('/etc/rc1.d/K20samba'):
+			unlink('/etc/rc1.d/K20samba')
+			mymess = _("Autostart Disabled.")
+		else:
+			symlink('/etc/init.d/samba', '/etc/rc1.d/K20samba')
+			mymess = _("Autostart Enabled.")
+
+		if path.exists('/etc/rc2.d/S20samba'):
+			unlink('/etc/rc2.d/S20samba')
+			mymess = _("Autostart Disabled.")
+		else:
+			symlink('/etc/init.d/samba', '/etc/rc2.d/S20samba')
+			mymess = _("Autostart Enabled.")
+
+		if path.exists('/etc/rc3.d/S20samba'):
+			unlink('/etc/rc3.d/S20samba')
+			mymess = _("Autostart Disabled.")
+		else:
+			symlink('/etc/init.d/samba', '/etc/rc3.d/S20samba')
+			mymess = _("Autostart Enabled.")
+
+		if path.exists('/etc/rc4.d/S20samba'):
+			unlink('/etc/rc4.d/S20samba')
+			mymess = _("Autostart Disabled.")
+		else:
+			symlink('/etc/init.d/samba', '/etc/rc4.d/S20samba')
+			mymess = _("Autostart Enabled.")
+
+		if path.exists('/etc/rc5.d/S20samba'):
+			unlink('/etc/rc5.d/S20samba')
+			mymess = _("Autostart Disabled.")
+		else:
+			symlink('/etc/init.d/samba', '/etc/rc5.d/S20samba')
+			mymess = _("Autostart Enabled.")
+
+		if path.exists('/etc/rc6.d/K20samba'):
+			unlink('/etc/rc6.d/K20samba')
+			mymess = _("Autostart Disabled.")
+		else:
+			symlink('/etc/init.d/samba', '/etc/rc6.d/K20samba')
+			mymess = _("Autostart Enabled.")
+
+		mybox = self.session.open(MessageBox, mymess, MessageBox.TYPE_INFO)
+		mybox.setTitle(_("Info"))
+		self.updateSamba()
+
+	def updateSamba(self):
+		self.Console.ePopen('ps > /tmp/Samba.tmp')
+		time.sleep(1)
+		self['labrun'].hide()
+		self['labstop'].hide()
+		self['labactive'].setText(_("Disabled"))
+		self.my_Samba_active = False
+		self.my_Samba_run = False
+		if path.exists('/etc/rc3.d/S20samba'):
+			self['labactive'].setText(_("Enabled"))
+			self['labactive'].show()
+			self.my_Samba_active = True
+		if path.exists('/tmp/Samba.tmp'):
+			f = open('/tmp/Samba.tmp', 'r')
+			for line in f.readlines():
+				if line.find('smbd') >= 0:
+					#self['labstop'].hide()
+					#self['labactive'].show()
+					#self['labrun'].show()
+					#self['key_red'].setText(_("Restart"))
+					self.my_Samba_run = True
+					continue
+				#else:
+					#self['labstop'].show()
+					#self['labactive'].show()
+					#self['labrun'].hide()
+					#self['key_red'].setText(_("Start"))
+			f.close()
+			remove('/tmp/Samba.tmp')
+		if self.my_Samba_run == True:
+			print 'SMBD TRUE'
+			self['labstop'].hide()
+			self['labactive'].show()
+			self['labrun'].show()
+			self['key_red'].setText(_("Restart"))
+		else:
+			print 'SMBD FALSE'
+			self['labrun'].hide()
+			self['labstop'].show()
+			self['labactive'].show()
+			self['key_red'].setText(_("Start"))
+
+class NetworkSambaLog(Screen):
+	skin = """
+		<screen position="80,100" size="560,400" title="Samba Log">
+				<widget name="infotext" position="10,10" size="540,380" font="Regular;18" />
+		</screen>"""
+
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		self["title"] = Label(_("OpenVpn Log"))
+		self['infotext'] = ScrollLabel('')
+		self.Console = Console()
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'up': self['infotext'].pageUp, 'down': self['infotext'].pageDown})
+		strview = ''
+		self.Console.ePopen('tail /tmp/smb.log > /tmp/tmp.log')
+		time.sleep(1)
+		if path.exists('/tmp/tmp.log'):
+			f = open('//tmp/tmp.log', 'r')
+			for line in f.readlines():
+				strview += line
+			f.close()
+			remove('/tmp/tmp.log')
+		self['infotext'].setText(strview)
+
+class NetworkTelnet(Screen):
+	skin = """
+		<screen position="center,center" size="340,310" title="Telnet Setup">
+			<widget name="lab1" position="20,30" size="300,80" font="Regular;20" valign="center" transparent="1"/>
+			<widget name="lab2" position="20,150" size="150,30" font="Regular;20" valign="center" transparent="1"/>
+			<widget name="labstop" position="170,150" size="100,30" font="Regular;20" valign="center"  halign="center" backgroundColor="red"/>
+			<widget name="labrun" position="170,150" size="100,30" zPosition="1" font="Regular;20" valign="center"  halign="center" backgroundColor="green"/>
+			<ePixmap pixmap="skin_default/buttons/red.png" position="20,260" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/green.png" position="180,260" size="140,40" alphatest="on" />
+			<widget name="key_red" position="20,260" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+			<widget name="key_green" position="180,260" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+		</screen>"""
+
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		self["title"] = Label(_("Telnet Setup"))
+		self['lab1'] = Label(_("You can disable Telnet Server and use ssh to login to your Vu+."))
+		self['lab2'] = Label(_("Current Status:"))
+		self['labstop'] = Label(_("Stopped"))
+		self['labrun'] = Label(_("Running"))
+		self['key_red'] = Label(_("Enable"))
+		self['key_green'] = Label(_("Disable"))
+		self.Console = Console()
+		self.my_telnet_active = False
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.TelnetStart, 'green': self.TelnetStop})
+		self.onLayoutFinish.append(self.updateTelnet)
+
+	def TelnetStart(self):
+		if self.my_telnet_active == False:
+			if path.exists('/etc/inetd.conf'):
+				inme = open('/etc/inetd.conf', 'r')
+				out = open('/etc/inetd.tmp', 'w')
+				for line in inme.readlines():
+					if line.find('telnetd') != -1:
+						line = line.replace('#', '')
+					out.write(line)
+				out.close()
+				inme.close()
+			if path.exists('/etc/inetd.tmp'):
+				move('/etc/inetd.tmp', '/etc/inetd.conf')
+				self.Console.ePopen('killall -HUP inetd')
+				self.Console.ePopen('ps')
+				mybox = self.session.open(MessageBox, _("Telnet service Enabled."), MessageBox.TYPE_INFO)
+				mybox.setTitle(_("Info"))
+				self.updateTelnet()
+
+	def TelnetStop(self):
+		if self.my_telnet_active == True:
+			if path.exists('/etc/inetd.conf'):
+				inme = open('/etc/inetd.conf', 'r')
+				out = open('/etc/inetd.tmp', 'w')
+				for line in inme.readlines():
+					if line.find('telnetd') != -1:
+						line = '#' + line
+					out.write(line)
+				out.close()
+				inme.close()
+			if path.exists('/etc/inetd.tmp'):
+				move('/etc/inetd.tmp', '/etc/inetd.conf')
+				self.Console.ePopen('killall -HUP inetd')
+				self.Console.ePopen('ps')
+				mybox = self.session.open(MessageBox, _("Telnet service Disabled."), MessageBox.TYPE_INFO)
+				mybox.setTitle(_("Info"))
+				self.updateTelnet()
+
+	def updateTelnet(self):
+		self['labrun'].hide()
+		self['labstop'].hide()
+		self.my_telnet_active = False
+		if path.exists('/etc/inetd.conf'):
+			f = open('/etc/inetd.conf', 'r')
+			for line in f.readlines():
+				parts = line.strip().split()
+				if parts[0] == 'telnet':
+					self.my_telnet_active = True
+					continue
+			f.close()
+		if self.my_telnet_active == True:
+			self['labstop'].hide()
+			self['labrun'].show()
+		else:
+			self['labstop'].show()
+			self['labrun'].hide()
 
