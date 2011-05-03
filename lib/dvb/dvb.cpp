@@ -145,19 +145,20 @@ eDVBAdapterLinux::eDVBAdapterLinux(int nr): m_nr(nr)
 #endif
 		if (stat(filename, &s))
 			break;
-		ePtr<eDVBFrontend> fe;
+		eDVBFrontend *fe;
 
-		{
-			int ok = 0;
-			fe = new eDVBFrontend(m_nr, num_fe, ok);
-			if (ok)
-				m_frontend.push_back(fe);
-		}
 		{
 			int ok = 0;
 			fe = new eDVBFrontend(m_nr, num_fe, ok, true);
 			if (ok)
-				m_simulate_frontend.push_back(fe);
+				m_simulate_frontend.push_back(ePtr<eDVBFrontend>(fe));
+		}
+
+		{
+			int ok = 0;
+			fe = new eDVBFrontend(m_nr, num_fe, ok, false, fe);
+			if (ok)
+				m_frontend.push_back(ePtr<eDVBFrontend>(fe));
 		}
 		++num_fe;
 	}
