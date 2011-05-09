@@ -8,37 +8,40 @@ from Components.Sources.List import List
 from Components.MenuList import MenuList
 from Components.config import config, getConfigListEntry, ConfigYesNo, NoSave, ConfigSubsection, ConfigText, ConfigSelection, ConfigPassword
 from Components.ConfigList import ConfigListScreen
-from Components.Network import Network, iNetwork
+from Components.Network import iNetwork
 from Components.Console import Console
 from Plugins.Plugin import PluginDescriptor
 from os import system, path as os_path, listdir
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_SKIN_IMAGE
 from Tools.LoadPixmap import LoadPixmap
 from Tools.HardwareInfo import HardwareInfo
-from Wlan import Wlan, wpaSupplicant, iStatus
-import sha
+from Wlan import iWlan, wpaSupplicant, iStatus, getWlanConfigName
+import hashlib
+from time import time
+from os import urandom, system
+from re import escape as re_escape
 
 plugin_path = eEnv.resolve("${libdir}/enigma2/python/Plugins/SystemPlugins/WirelessLan")
 
+
 list = []
+list.append("Unencrypted")
 list.append("WEP")
 list.append("WPA")
-list.append("WPA2")
 list.append("WPA/WPA2")
+list.append("WPA2")
 
 weplist = []
 weplist.append("ASCII")
 weplist.append("HEX")
 
 config.plugins.wlan = ConfigSubsection()
-config.plugins.wlan.essid = NoSave(ConfigText(default = "home", fixed_size = False))
-config.plugins.wlan.hiddenessid = NoSave(ConfigText(default = "home", fixed_size = False))
+config.plugins.wlan.essid = NoSave(ConfigText(default = "", fixed_size = False))
+config.plugins.wlan.hiddenessid = NoSave(ConfigYesNo(default = False))
+config.plugins.wlan.encryption = NoSave(ConfigSelection(list, default = "WPA2"))
+config.plugins.wlan.wepkeytype = NoSave(ConfigSelection(weplist, default = "ASCII"))
+config.plugins.wlan.psk = NoSave(ConfigPassword(default = "", fixed_size = False))
 
-config.plugins.wlan.encryption = ConfigSubsection()
-config.plugins.wlan.encryption.enabled = NoSave(ConfigYesNo(default = False))
-config.plugins.wlan.encryption.type = NoSave(ConfigSelection(list, default = "WPA/WPA2" ))
-config.plugins.wlan.encryption.wepkeytype = NoSave(ConfigSelection(weplist, default = "ASCII"))
-config.plugins.wlan.encryption.psk = NoSave(ConfigPassword(default = "mysecurewlan", fixed_size = False))
 
 
 class WlanStatus(Screen):
@@ -105,7 +108,7 @@ class WlanStatus(Screen):
 		}, -1)
 		self.timer = eTimer()
 		self.timer.timeout.get().append(self.resetList) 
-		self.onShown.append(lambda: self.timer.start(5000))
+		self.onShown.append(lambda: self.timer.start(8000))
 		self.onLayoutFinish.append(self.layoutFinished)
 		self.onClose.append(self.cleanup)
 
@@ -113,7 +116,7 @@ class WlanStatus(Screen):
 		iStatus.stopWlanConsole()
 		
 	def layoutFinished(self):
-		self.setTitle(_("Wireless Network State"))
+		self.setTitle(_("Wireless network state"))
 		
 	def resetList(self):
 		iStatus.getDataForInterface(self.iface,self.getInfoCB)
@@ -122,32 +125,65 @@ class WlanStatus(Screen):
 		if data is not None:
 			if data is True:
 				if status is not None:
-					self["BSSID"].setText(status[self.iface]["acesspoint"])
-					self["ESSID"].setText(status[self.iface]["essid"])
-					self["quality"].setText(status[self.iface]["quality"])
-					self["signal"].setText(status[self.iface]["signal"])
-					self["bitrate"].setText(status[self.iface]["bitrate"])
-					self["enc"].setText(status[self.iface]["encryption"])
+					if status[self.iface]["essid"] == "off":
+						essid = _("No Connection")
+					else:
+						essid = status[self.iface]["essid"]
+					if status[self.iface]["accesspoint"] == "Not-Associated":
+						accesspoint = _("Not-Associated")
+						essid = _("No Connection")
+					else:
+						accesspoint = status[self.iface]["accesspoint"]
+					if self.has_key("BSSID"):
+						self["BSSID"].setText(accesspoint)
+					if self.has_key("ESSID"):
+						self["ESSID"].setText(essid)
+
+					quality = status[self.iface]["quality"]
+					if self.has_key("quality"):
+						self["quality"].setText(quality)
+						
+					if status[self.iface]["bitrate"] == '0':
+						bitrate = _("Unsupported")
+					else:
+						bitrate = str(status[self.iface]["bitrate"]) + " Mb/s"
+					if self.has_key("bitrate"):
+						self["bitrate"].setText(bitrate)					
+					
+					signal = status[self.iface]["signal"]
+					if self.has_key("signal"):
+						self["signal"].setText(signal)
+
+					if status[self.iface]["encryption"] == "off":
+						if accesspoint == "Not-Associated":
+							encryption = _("Disabled")
+						else:
+							encryption = _("Unsupported")
+					else:
+						encryption = _("Enabled")
+					if self.has_key("enc"):
+						self["enc"].setText(encryption)
 					self.updateStatusLink(status)
 
 	def exit(self):
 		self.timer.stop()
-		self.close(True)	
+		self.close(True)
 
 	def updateStatusbar(self):
-		self["BSSID"].setText(_("Please wait..."))
-		self["ESSID"].setText(_("Please wait..."))
-		self["quality"].setText(_("Please wait..."))
-		self["signal"].setText(_("Please wait..."))
-		self["bitrate"].setText(_("Please wait..."))
-		self["enc"].setText(_("Please wait..."))
+		wait_txt = _("Please wait...")
+		self["BSSID"].setText(wait_txt)
+		self["ESSID"].setText(wait_txt)
+		self["quality"].setText(wait_txt)
+		self["signal"].setText(wait_txt)
+		self["bitrate"].setText(wait_txt)
+		self["enc"].setText(wait_txt)
 		self["IFtext"].setText(_("Network:"))
 		self["IF"].setText(iNetwork.getFriendlyAdapterName(self.iface))
 		self["Statustext"].setText(_("Link:"))
 
 	def updateStatusLink(self,status):
 		if status is not None:
-			if status[self.iface]["acesspoint"] == "No Connection" or status[self.iface]["acesspoint"] == "Not-Associated" or status[self.iface]["acesspoint"] == False:
+			if status[self.iface]["essid"] == "off" or status[self.iface]["accesspoint"] == "Not-Associated" or status[self.iface]["accesspoint"] == False:
 				self["statuspic"].setPixmapNum(1)
 			else:
 				self["statuspic"].setPixmapNum(0)
@@ -217,6 +253,8 @@ class WlanScan(Screen):
 			"red": self.cancel,
 			"green": self.select,
 		})
+		iWlan.setInterface(self.iface)
+		self.w = iWlan.getInterface()
 		self.onLayoutFinish.append(self.layoutFinished)
 		self.getAccessPoints(refresh = False)
 		
@@ -226,42 +264,24 @@ class WlanScan(Screen):
 	def select(self):
 		cur = self["list"].getCurrent()
 		if cur is not None:
+			iWlan.stopGetNetworkList()
 			self.rescanTimer.stop()
 			del self.rescanTimer
-			if cur[1] is not None:
-				if cur[1] == 'hidden...':
-					essid = cur[1]
-				else:
-					essid = cur[0]
-				self.close(essid,self.getWlanList())
+			if cur[0] is not None:
+				self.close(cur[0])
 			else:
-				self.close(None,None)
+				self.close(None)
 		else:
-			self.rescanTimer.stop()
-			del self.rescanTimer
-			self.close(None,None)
-	
-	def WlanSetupClosed(self, *ret):
-		if ret[0] == 2:
+			iWlan.stopGetNetworkList()
 			self.rescanTimer.stop()
 			del self.rescanTimer
 			self.close(None)
 	
 	def cancel(self):
-		if self.oldInterfaceState is False:
-			iNetwork.setAdapterAttribute(self.iface, "up", False)
-			iNetwork.deactivateInterface(self.iface,self.deactivateInterfaceCB)
-		else:
-			self.rescanTimer.stop()
-			del self.rescanTimer
-			self.close(None)
-
-	def deactivateInterfaceCB(self,data):
-		if data is not None:
-			if data is True:
-				self.rescanTimer.stop()
-				del self.rescanTimer
-				self.close(None)
+		iWlan.stopGetNetworkList()
+		self.rescanTimer.stop()
+		del self.rescanTimer
+		self.close(None)
 
 	def rescanTimerFired(self):
 		self.rescanTimer.stop()
@@ -270,10 +290,7 @@ class WlanScan(Screen):
 	def buildEntryComponent(self, essid, bssid, encrypted, iface, maxrate, signal):
 		divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/div-h.png"))
 		encryption = encrypted and _("Yes") or _("No")
-		if bssid == 'hidden...':
-			return((essid, bssid, None, None, None, None, divpng))
-		else:					
-			return((essid, bssid, _("Signal: ") + str(signal), _("Max. Bitrate: ") + str(maxrate), _("Encrypted: ") + encryption, _("Interface: ") + str(iface), divpng))
+		return((essid, bssid, _("Signal: ") + str(signal), _("Max. Bitrate: ") + str(maxrate), _("Encrypted: ") + encryption, _("Interface: ") + str(iface), divpng))
 
 	def updateAPList(self):
 		newList = []
@@ -290,20 +307,19 @@ class WlanScan(Screen):
 				tmpList.append(data)
 
 		if len(tmpList):
-			if "hidden..." not in tmpList:
-				tmpList.append( ( _("enter hidden network SSID"), "hidden...", True, self.iface, _("unavailable"), "" ) )
-	
 			for entry in tmpList:
 				self.newAPList.append(self.buildEntryComponent( entry[0], entry[1], entry[2], entry[3], entry[4], entry[5] ))
 	
 			currentListEntry = self["list"].getCurrent()
-			idx = 0
-			for entry in self.newAPList:
-				if entry[0] == currentListEntry[0]:
-					newListIndex = idx
-				idx +=1
+			if currentListEntry is not None:
+				idx = 0
+				for entry in self.newAPList:
+					if entry[0] == currentListEntry[0]:
+						newListIndex = idx
+					idx +=1
 			self['list'].setList(self.newAPList)
-			self["list"].setIndex(newListIndex)
+			if newListIndex is not None:
+				self["list"].setIndex(newListIndex)
 			self["list"].updateList(self.newAPList)
 			self.listLength = len(self.newAPList)
 			self.buildWlanList()
@@ -312,8 +328,7 @@ class WlanScan(Screen):
 	def getAccessPoints(self, refresh = False):
 		self.APList = []
 		self.cleanList = []
-		self.w = Wlan(self.iface)
-		aps = self.w.getNetworkList()
+		aps = iWlan.getNetworkList()
 		if aps is not None:
 			print "[WirelessLan.py] got Accespoints!"
 			tmpList = []
@@ -336,9 +351,6 @@ class WlanScan(Screen):
 				else:
 					self.oldlist[entry[0]]['data'] = entry
 		
-		if "hidden..." not in self.cleanList:
-			self.cleanList.append( ( _("enter hidden network SSID"), "hidden...", True, self.iface, _("unavailable"), "" ) )
-
 		for entry in self.cleanList:
 			self.APList.append(self.buildEntryComponent( entry[0], entry[1], entry[2], entry[3], entry[4], entry[5] ))
 		
@@ -351,20 +363,17 @@ class WlanScan(Screen):
 
 	def setInfo(self):
 		length = self.getLength()
-		if length <= 1:
-			self["info"].setText(_("No wireless networks found! Please refresh."))
-		elif length == 2:
+		if length == 0:
+			self["info"].setText(_("No wireless networks found! Searching..."))
+		elif length == 1:
 			self["info"].setText(_("1 wireless network found!"))
 		else:
-			self["info"].setText(str(length-1)+_(" wireless networks found!"))
+			self["info"].setText(str(length)+_(" wireless networks found!"))
 
 	def buildWlanList(self):
 		self.WlanList = []
 		for entry in self['list'].list:
-			if entry[1] == "hidden...":
-				self.WlanList.append(( "hidden...",_("enter hidden network SSID") ))#continue
-			else:
-				self.WlanList.append( (entry[0], entry[0]) )
+			self.WlanList.append( (entry[0], entry[0]) )
 
 	def getLength(self):
 		return self.listLength		
@@ -391,7 +400,7 @@ def decrypt_block(src, mod):
 	if len(src) != 128 and len(src) != 202:
 		return None
 	dest = rsa_pub1024(src[:128], mod)
-	hash = sha.new(dest[1:107])
+	hash = hashlib.sha1(dest[1:107])
 	if len(src) == 202:
 		hash.update(src[131:192])	
 	result = hash.digest()
@@ -399,65 +408,69 @@ def decrypt_block(src, mod):
 		return dest
 	return None
 
-def validate_cert(cert, key):
+def validate_certificate(cert, key):
 	buf = decrypt_block(cert[8:], key) 
 	if buf is None:
 		return None
 	return buf[36:107] + cert[139:196]
 
-def read_random():
+def get_random():
 	try:
-		fd = open("/dev/urandom", "r")
-		buf = fd.read(8)
-		fd.close()
-		return buf
+		xor = lambda a,b: ''.join(chr(ord(c)^ord(d)) for c,d in zip(a,b*100))
+		random = urandom(8)
+		x = str(time())[-8:]
+		result = xor(random, x)
+				
+		return result
 	except:
 		return None
 
 def WlanStatusScreenMain(session, iface):
 	session.open(WlanStatus, iface)
 
-
 def callFunction(iface):
-	w = Wlan(iface)
-	i = w.getWirelessInterfaces()
+	iWlan.setInterface(iface)
+	i = iWlan.getWirelessInterfaces()
 	if i:
-		if iface in i:
+		if iface in i or iNetwork.isWirelessInterface(iface):
 			return WlanStatusScreenMain
+		return None
 	return None
 
-
 def configStrings(iface):
-	hardware_info = HardwareInfo()
-	if  hardware_info.device_name != "dm7025":
+	try:
+		device = open("/proc/stb/info/model", "r").readline().strip()
+	except:
+		device = ""	
+	if device != "dm7025":
 		rootkey = ['\x9f', '|', '\xe4', 'G', '\xc9', '\xb4', '\xf4', '#', '&', '\xce', '\xb3', '\xfe', '\xda', '\xc9', 'U', '`', '\xd8', '\x8c', 's', 'o', '\x90', '\x9b', '\\', 'b', '\xc0', '\x89', '\xd1', '\x8c', '\x9e', 'J', 'T', '\xc5', 'X', '\xa1', '\xb8', '\x13', '5', 'E', '\x02', '\xc9', '\xb2', '\xe6', 't', '\x89', '\xde', '\xcd', '\x9d', '\x11', '\xdd', '\xc7', '\xf4', '\xe4', '\xe4', '\xbc', '\xdb', '\x9c', '\xea', '}', '\xad', '\xda', 't', 'r', '\x9b', '\xdc', '\xbc', '\x18', '3', '\xe7', '\xaf', '|', '\xae', '\x0c', '\xe3', '\xb5', '\x84', '\x8d', '\r', '\x8d', '\x9d', '2', '\xd0', '\xce', '\xd5', 'q', '\t', '\x84', 'c', '\xa8', ')', '\x99', '\xdc', '<', '"', 'x', '\xe8', '\x87', '\x8f', '\x02', ';', 'S', 'm', '\xd5', '\xf0', '\xa3', '_', '\xb7', 'T', '\t', '\xde', '\xa7', '\xf1', '\xc9', '\xae', '\x8a', '\xd7', '\xd2', '\xcf', '\xb2', '.', '\x13', '\xfb', '\xac', 'j', '\xdf', '\xb1', '\x1d', ':', '?']
 		etpm = eTPM()
 		l2cert = etpm.getCert(eTPM.TPMD_DT_LEVEL2_CERT)
 		if l2cert is None:
 			return
-		l2key = validate_cert(l2cert, rootkey)
+		l2key = validate_certificate(l2cert, rootkey)
 		if l2key is None:
 			return
 		l3cert = etpm.getCert(eTPM.TPMD_DT_LEVEL3_CERT)
 		if l3cert is None:
-			print "better run the genuine dreambox plugin"
 			return
-		l3key = validate_cert(l3cert, l2key)
+		l3key = validate_certificate(l3cert, l2key)
 		if l3key is None:
 			return
-		rnd = read_random()
+		rnd = get_random()
 		if rnd is None:
 			return
 		val = etpm.challenge(rnd)
 		result = decrypt_block(val, l3key)
-	if hardware_info.device_name == "dm7025" or result[80:88] == rnd:
+	if device == "dm7025" or result[80:88] == rnd:
 		driver = iNetwork.detectWlanModule(iface)
 	else:
 		driver = 'dreambox'
+	print 'Using "%s" as wpa-supplicant driver' % (driver)
 	ret = ""
-	if driver == 'madwifi' and config.plugins.wlan.essid.value == "hidden...":
-		ret += "\tpre-up iwconfig " + iface + " essid \"" + config.plugins.wlan.hiddenessid.value + "\" || true\n"
-	ret += "\tpre-up wpa_supplicant -i" + iface + " -c/etc/wpa_supplicant.conf -B -dd -D" + driver + " || true\n"
+	if driver == 'madwifi' and config.plugins.wlan.hiddenessid.value:
+		ret += "\tpre-up iwconfig " + iface + " essid \"" + re_escape(config.plugins.wlan.essid.value) + "\" || true\n"
+	ret += "\tpre-up wpa_supplicant -i" + iface + " -c" + getWlanConfigName(iface) + " -B -dd -D" + driver + " || true\n"
 	ret += "\tpre-down wpa_cli -i" + iface + " terminate || true\n"
 	return ret
 
