@@ -43,10 +43,10 @@ from SoftwareTools import iSoftwareTools
 
 config.plugins.configurationbackup = ConfigSubsection()
 config.plugins.configurationbackup.backuplocation = ConfigText(default = '/media/hdd/', visible_width = 50, fixed_size = False)
-config.plugins.configurationbackup.backupdirs = ConfigLocations(default=[eEnv.resolve('${sysconfdir}/enigma2/'), '/etc/network/interfaces', '/etc/wpa_supplicant.conf', '/etc/resolv.conf', '/etc/default_gw', '/etc/hostname'])
+config.plugins.configurationbackup.backupdirs = ConfigLocations(default=[eEnv.resolve('${sysconfdir}/enigma2/'), '/etc/network/interfaces', '/etc/wpa_supplicant.conf', '/etc/wpa_supplicant.ath0.conf', '/etc/wpa_supplicant.wlan0.conf', '/etc/resolv.conf', '/etc/default_gw', '/etc/hostname'])
 
-config.plugins.SoftwareManager = ConfigSubsection()
-config.plugins.SoftwareManager.overwriteConfigFiles = ConfigSelection(
+config.plugins.softwaremanager = ConfigSubsection()
+config.plugins.softwaremanager.overwriteConfigFiles = ConfigSelection(
 				[
 				 ("Y", _("Yes, always")),
 				 ("N", _("No, never")),				 
@@ -365,7 +365,7 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 
 	def createSetup(self):
 		self.list = [ ]
-		self.overwriteConfigfilesEntry = getConfigListEntry(_("Overwrite configuration files ?"), config.plugins.SoftwareManager.overwriteConfigFiles)
+		self.overwriteConfigfilesEntry = getConfigListEntry(_("Overwrite configuration files ?"), config.plugins.softwaremanager.overwriteConfigFiles)
 		self.list.append(self.overwriteConfigfilesEntry)	
 		self["config"].list = self.list
 		self["config"].l.setSeperation(400)
@@ -489,7 +489,6 @@ class SoftwareManagerInfo(Screen):
 			self.list = []
 			backupfiles = config.plugins.configurationbackup.backupdirs.value
 			for entry in backupfiles:
-				print entry
 				self.list.append((entry,))
 			self['list'].setList(self.list)
 			
@@ -569,6 +568,7 @@ class PluginManager(Screen, DreamInfoHandler):
 		self.currentSelectedIndex = None
 		self.currentSelectedPackage = None
 		self.saved_currentSelectedPackage = None
+		self.restartRequired = False
 		
 		self.onShown.append(self.setWindowTitle)
 		self.onLayoutFinish.append(self.getUpdateInfos)
@@ -892,6 +892,8 @@ class PluginManager(Screen, DreamInfoHandler):
 					self.package = iSoftwareTools.packageDetails[0]
 					if self.package[0].has_key("attributes"):
 						self.attributes = self.package[0]["attributes"]
+						if self.attributes.has_key("needsRestart"):
+							self.restartRequired = True
 					if self.attributes.has_key("package"):
 						self.packagefiles = self.attributes["package"]
 					if plugin[1] == 'installed':
@@ -924,11 +926,11 @@ class PluginManager(Screen, DreamInfoHandler):
 
 	def runExecuteFinished(self):
 		self.reloadPluginlist()
-		restartRequired = plugins.restartRequired
-		if restartRequired:
+		if plugins.restartRequired or self.restartRequired:
 			self.session.openWithCallback(self.ExecuteReboot, MessageBox, _("Install or remove finished.") +" "+_("Do you want to reboot your Dreambox?"), MessageBox.TYPE_YESNO)
 		else:
 			self.selectedFiles = []
+			self.restartRequired = False
 			self.detailsClosed(True)
 
 	def ExecuteReboot(self, result):
@@ -936,6 +938,7 @@ class PluginManager(Screen, DreamInfoHandler):
 			quitMainloop(3)
 		else:
 			self.selectedFiles = []
+			self.restartRequired = False
 			self.detailsClosed(True)
 
 	def reloadPluginlist(self):
@@ -1174,7 +1177,7 @@ class PluginDetails(Screen, DreamInfoHandler):
 		self.package = self.packageDetails[0]
 		if self.package[0].has_key("attributes"):
 			self.attributes = self.package[0]["attributes"]
-
+		self.restartRequired = False
 		self.cmdList = []
 		self.oktext = _("\nAfter pressing OK, please wait!")
 		self.picload = ePicLoad()
@@ -1272,6 +1275,8 @@ class PluginDetails(Screen, DreamInfoHandler):
 	def go(self):
 		if self.attributes.has_key("package"):
 			self.packagefiles = self.attributes["package"]
+		if self.attributes.has_key("needsRestart"):
+			self.restartRequired = True
 		self.cmdList = []
 		if self.pluginstate in ('installed', 'remove'):
 			if self.packagefiles:
@@ -1293,8 +1298,7 @@ class PluginDetails(Screen, DreamInfoHandler):
 
 	def runUpgradeFinished(self):
 		self.reloadPluginlist()
-		restartRequired = plugins.restartRequired
-		if restartRequired:
+		if plugins.restartRequired or self.restartRequired:
 			self.session.openWithCallback(self.UpgradeReboot, MessageBox, _("Installation finished.") +" "+_("Do you want to reboot your Dreambox?"), MessageBox.TYPE_YESNO)
 		else:
 			self.close(True)
@@ -1414,8 +1418,8 @@ class UpdatePlugin(Screen):
 			self.status.setText(_("Configuring"))
 			
 		elif event == IpkgComponent.EVENT_MODIFIED:
-			if config.plugins.SoftwareManager.overwriteConfigFiles.value in ("N", "Y"):
-				self.ipkg.write(True and config.plugins.SoftwareManager.overwriteConfigFiles.value)
+			if config.plugins.softwaremanager.overwriteConfigFiles.value in ("N", "Y"):
+				self.ipkg.write(True and config.plugins.softwaremanager.overwriteConfigFiles.value)
 			else:
 				self.session.openWithCallback(
 					self.modificationCallback,
