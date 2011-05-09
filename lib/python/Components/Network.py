@@ -274,16 +274,16 @@ class Network:
 		name = None
 		if self.isWirelessInterface(iface):
 			if iface not in self.wlan_interfaces:
-				self.wlan_interfaces.append(iface)
 				name = _("WLAN connection")
 				if len(self.wlan_interfaces):
-					name += " " + str(len(self.wlan_interfaces))
+					name += " " + str(len(self.wlan_interfaces)+1)
+				self.wlan_interfaces.append(iface)								
 		else:
 			if iface not in self.lan_interfaces:
-				self.lan_interfaces.append(iface)
 				name = _("LAN connection")
 				if len(self.lan_interfaces):
-					name += " " + str(len(self.lan_interfaces))
+					name += " " + str(len(self.lan_interfaces)+1)
+				self.lan_interfaces.append(iface)
 		return name
 	
 	def getFriendlyAdapterDescription(self, iface):
