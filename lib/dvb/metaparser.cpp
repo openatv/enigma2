@@ -68,9 +68,9 @@ int eDVBMetaParser::parseMeta(const std::string &tsname)
 		return -ENOENT;
 
 	int linecnt = 0;
-	
+
 	m_time_create = 0;
-	
+
 	while (1)
 	{
 		char line[1024];
@@ -103,7 +103,7 @@ int eDVBMetaParser::parseMeta(const std::string &tsname)
 			m_time_create = atoi(line);
 			if (m_time_create == 0)
 			{
-			        m_time_create = getctime(tsname);
+				m_time_create = getctime(tsname);
 			}
 			break;
 		case 4:
