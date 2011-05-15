@@ -73,8 +73,8 @@ int eDVBMetaParser::parseMeta(const std::string &tsname)
 
 	while (1)
 	{
-		char line[1024];
-		if (!fgets(line, 1024, f))
+		char line[4096];
+		if (!fgets(line, 4096, f))
 			break;
 		size_t len = strlen(line);
 		if (len && line[len-1] == '\n')
