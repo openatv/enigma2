@@ -41,6 +41,7 @@ public:
 	RESULT getName(const eServiceReference &ref, std::string &name);
 	int getLength(const eServiceReference &ref);
 	int getInfo(const eServiceReference &ref, int w);
+	PyObject* getInfoObject(const eServiceReference &ref, int w);
 };
 
 typedef struct _GstElement GstElement;

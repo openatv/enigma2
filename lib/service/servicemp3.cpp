@@ -204,19 +204,26 @@ int eStaticServiceMP3Info::getInfo(const eServiceReference &ref, int w)
 			}
 		}
 		break;
+	}
+	return iServiceInformation::resNA;
+}
+
+PyObject* eStaticServiceMP3Info::getInfoObject(const eServiceReference &ref, int w)
+{
+	switch(w)
+	{
 	case iServiceInformation::sFileSize:
 		{
 			struct stat s;
 			if(stat(ref.path.c_str(), &s) == 0)
 			{
-				return s.st_size;
+				return PyLong_FromLongLong(s.st_size);
 			}
 		}
 		break;
 	}
-	return iServiceInformation::resNA;
+	Py_RETURN_NONE;
 }
- 
 
 // eServiceMP3
 int eServiceMP3::ac3_delay,
