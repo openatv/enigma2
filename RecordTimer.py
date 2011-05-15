@@ -388,7 +388,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			# that in our state, with also keeping the possibility to re-try.
 			# TODO: this has to be done.
 		elif event == iRecordableService.evStart:
-			text = _("A record has been started:\n%s") % self.name
+			text = _("A recording has been started:\n%s") % self.name
 			if self.dirnameHadToFallback:
 				text = '\n'.join((text, _("Please note that the previously selected media could not be accessed and therefore the default directory is being used instead.")))
 
