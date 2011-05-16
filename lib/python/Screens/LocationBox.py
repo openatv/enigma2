@@ -122,12 +122,16 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 		# Actions that will reset quickselect
 		self["WizardActions"] = LocationBoxActionMap(self, "WizardActions",
 			{
+				"ok": (self.ok, _("select")),
+				"back": (self.cancel, _("Cancel")),
+			}, -2)
+
+		self["DirectionActions"] = LocationBoxActionMap(self, "DirectionActions",
+			{
 				"left": self.left,
 				"right": self.right,
 				"up": self.up,
 				"down": self.down,
-				"ok": (self.ok, _("select")),
-				"back": (self.cancel, _("Cancel")),
 			}, -2)
 
 		self["ColorActions"] = LocationBoxActionMap(self, "ColorActions",

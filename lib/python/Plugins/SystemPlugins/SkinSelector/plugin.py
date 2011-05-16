@@ -34,7 +34,7 @@ class SkinSelector(Screen):
 		self["SkinList"] = MenuList(self.skinlist)
 		self["Preview"] = Pixmap()
 
-		self["actions"] = NumberActionMap(["WizardActions", "InputActions", "EPGSelectActions"],
+		self["actions"] = NumberActionMap(["WizardActions", "DirectionActions", "InputActions", "EPGSelectActions"],
 		{
 			"ok": self.ok,
 			"back": self.close,

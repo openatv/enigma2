@@ -20,7 +20,7 @@ class Upgrade(Screen):
 
 		self["text"] = ScrollLabel(_("Please press OK!"))
 				
-		self["actions"] = ActionMap(["WizardActions"], 
+		self["actions"] = ActionMap(["WizardActions", "DirectionActions"], 
 		{
 			"ok": self.go,
 			"back": self.close,
