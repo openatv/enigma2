@@ -155,7 +155,7 @@ class VirtualKeyBoard(Screen):
 		self["text"] = Label(text)
 		self["list"] = VirtualKeyBoardList([])
 		
-		self["actions"] = ActionMap(["OkCancelActions", "WizardActions", "ColorActions"],
+		self["actions"] = ActionMap(["OkCancelActions", "WizardActions", "DirectionActions", "ColorActions"],
 			{
 				"ok": self.okClicked,
 				"cancel": self.exit,

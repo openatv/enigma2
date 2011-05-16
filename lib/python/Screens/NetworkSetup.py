@@ -709,7 +709,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		self.reboottext = _("Your Dreambox will restart after pressing OK on your remote control.")
 		self.errortext = _("No working wireless network interface found.\n Please verify that you have attached a compatible WLAN device or enable your local network interface.")	
 		
-		self["WizardActions"] = HelpableActionMap(self, "WizardActions",
+		self["WizardActions"] = HelpableActionMap(self, "DirectionActions",
 			{
 			"up": (self.up, _("move up to previous entry")),
 			"down": (self.down, _("move down to next entry")),
@@ -728,7 +728,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 			"red": (self.close, _("exit networkadapter setup menu")),	
 			})
 
-		self["actions"] = NumberActionMap(["WizardActions","ShortcutActions"],
+		self["actions"] = NumberActionMap(["WizardActions", "DirectionActions" ,"ShortcutActions"],
 		{
 			"ok": self.ok,
 			"back": self.close,
@@ -1045,7 +1045,7 @@ class NetworkAdapterTest(Screen):
 		self.onClose.append(self.cleanup)
 		self.onHide.append(self.cleanup)
 		
-		self["updown_actions"] = NumberActionMap(["WizardActions","ShortcutActions"],
+		self["updown_actions"] = NumberActionMap(["WizardActions", "DirectionActions" ,"ShortcutActions"],
 		{
 			"ok": self.KeyOK,
 			"blue": self.KeyOK,

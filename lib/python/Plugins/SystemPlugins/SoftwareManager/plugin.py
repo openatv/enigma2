@@ -1170,7 +1170,7 @@ class PluginDetails(Screen, DreamInfoHandler):
 
 		self.thumbnail = ""
 
-		self["shortcuts"] = ActionMap(["ShortcutActions", "WizardActions"],
+		self["shortcuts"] = ActionMap(["ShortcutActions", "WizardActions", "DirectionActions"],
 		{
 			"back": self.exit,
 			"red": self.exit,
@@ -1589,7 +1589,7 @@ class IPKGSource(Screen):
 		else:
 			self["text"] = Input(text, maxSize=False, visible_width = 55, type=Input.TEXT)
 
-		self["actions"] = NumberActionMap(["WizardActions", "InputActions", "TextEntryActions", "KeyboardInputActions","ShortcutActions"], 
+		self["actions"] = NumberActionMap(["WizardActions", "DirectionActions", "InputActions", "TextEntryActions", "KeyboardInputActions","ShortcutActions"], 
 		{
 			"ok": self.go,
 			"back": self.close,

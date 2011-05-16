@@ -219,7 +219,7 @@ class Wizard(Screen):
 		
 		self.disableKeys = False
 		
-		self["actions"] = NumberActionMap(["WizardActions", "NumberActions", "ColorActions", "SetupActions", "InputAsciiActions", "KeyboardInputActions"],
+		self["actions"] = NumberActionMap(["WizardActions", "DirectionActions", "NumberActions", "ColorActions", "SetupActions", "InputAsciiActions", "KeyboardInputActions"],
 		{
 			"gotAsciiCode": self.keyGotAscii,
 			"ok": self.ok,
