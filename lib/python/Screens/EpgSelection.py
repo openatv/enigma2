@@ -151,39 +151,76 @@ class EPGSelection(Screen):
 		self["list"] = EPGList(type = self.type, selChangedCB = self.onSelectionChanged, timer = session.nav.RecordTimer)
 
 		if self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
-			self["actions"] = ActionMap(["OkCancelActions", "InfobarInstantRecord", "EPGSelectActions", "ChannelSelectBaseActions", "ColorActions", "DirectionActions", "MenuActions", "HelpActions"], 
-			{
-				"ok": self.ZapTo, 
-				"cancel": self.closing,
-				"nextBouquet": self.nextBouquet,
-				"prevBouquet": self.prevBouquet,
-				"nextService": self.nextService,
-				"prevService": self.prevService,
-	#			"prevBouquet": self.openServiceList,
-				"red": self.redButtonPressed,
-				"timerAdd": self.timerAdd,
-				"yellow": self.yellowButtonPressed,
-				"blue": self.blueButtonPressed,
-				"info": self.infoKeyPressed,
-				"instantRecord": self.Record,
-				},-2)
-			self["actions2"] = NumberActionMap(["NumberActions"],
-			{
-				"1": self.keyNumberGlobal,
-				"2": self.keyNumberGlobal,
-				"3": self.keyNumberGlobal,
-				"4": self.keyNumberGlobal,
-				"5": self.keyNumberGlobal,
-				"6": self.keyNumberGlobal,
-				"7": self.keyNumberGlobal,
-				"8": self.keyNumberGlobal,
-				"9": self.keyNumberGlobal,
-			}, -1)
-			self["MenuActions"] = HelpableActionMap(self, "MenuActions",
+			if self.type == EPG_TYPE_ENHANCED:
+				self["actions"] = ActionMap(["OkCancelActions", "InfobarInstantRecord", "EPGSelectActions", "ChannelSelectBaseActions", "ColorActions", "DirectionActions", "MenuActions", "HelpActions"], 
 				{
-					"menu": (self.createSetup, _("Open Context Menu"))
-				}
-			)
+					"ok": self.ZapTo, 
+					"cancel": self.closing,
+					"nextBouquet": self.nextBouquet,
+					"prevBouquet": self.prevBouquet,
+					"nextService": self.nextService,
+					"prevService": self.prevService,
+		#			"prevBouquet": self.openServiceList,
+					"red": self.redButtonPressed,
+					"timerAdd": self.timerAdd,
+					"yellow": self.yellowButtonPressed,
+					"blue": self.blueButtonPressed,
+					"info": self.infoKeyPressed,
+					"instantRecord": self.Record,
+					},-2)
+				self["actions2"] = NumberActionMap(["NumberActions"],
+				{
+					"1": self.keyNumberGlobal,
+					"2": self.keyNumberGlobal,
+					"3": self.keyNumberGlobal,
+					"4": self.keyNumberGlobal,
+					"5": self.keyNumberGlobal,
+					"6": self.keyNumberGlobal,
+					"7": self.keyNumberGlobal,
+					"8": self.keyNumberGlobal,
+					"9": self.keyNumberGlobal,
+				}, -1)
+				self["MenuActions"] = HelpableActionMap(self, "MenuActions",
+					{
+						"menu": (self.createSetup, _("Open Context Menu"))
+					}
+				)
+			if self.type == EPG_TYPE_INFOBAR:
+				self["actions"] = ActionMap(["OkCancelActions", "InfobarInstantRecord", "EPGSelectActions", "ChannelSelectBaseActions", "ColorActions", "DirectionActions", "MenuActions", "HelpActions"], 
+				{
+					"ok": self.ZapTo, 
+					"cancel": self.closing,
+					"right": self.nextService,
+					"left": self.prevService,
+					"nextBouquet": self.nextBouquet,
+					"prevBouquet": self.prevBouquet,
+					"nextService": self.nextPage,
+					"prevService": self.prevPage,
+		#			"prevBouquet": self.openServiceList,
+					"red": self.redButtonPressed,
+					"timerAdd": self.timerAdd,
+					"yellow": self.yellowButtonPressed,
+					"blue": self.blueButtonPressed,
+					"info": self.infoKeyPressed,
+					"instantRecord": self.Record,
+					},-2)
+				self["actions2"] = NumberActionMap(["NumberActions"],
+				{
+					"1": self.keyNumberGlobal,
+					"2": self.keyNumberGlobal,
+					"3": self.keyNumberGlobal,
+					"4": self.keyNumberGlobal,
+					"5": self.keyNumberGlobal,
+					"6": self.keyNumberGlobal,
+					"7": self.keyNumberGlobal,
+					"8": self.keyNumberGlobal,
+					"9": self.keyNumberGlobal,
+				}, -1)
+				self["MenuActions"] = HelpableActionMap(self, "MenuActions",
+					{
+						"menu": (self.createSetup, _("Open Context Menu"))
+					}
+				)
 			self.onLayoutFinish.append(self.onCreate)
 			self.servicelist = service
 			self.servicelist_orig_zap = self.servicelist.zap 
@@ -272,6 +309,12 @@ class EPGSelection(Screen):
 				self.sort_type = 1
 			l.sortSingleEPG(self.sort_type)
 
+	def nextPage(self):
+		self["list"].instance.moveSelection(self["list"].instance.pageUp)
+
+	def prevPage(self):
+		self["list"].instance.moveSelection(self["list"].instance.pageDown)
+
 	def nextBouquet(self):
 		if self.type != EPG_TYPE_ENHANCED and self.bouquetChangeCB:
 			self.bouquetChangeCB(1, self)
@@ -288,6 +331,7 @@ class EPGSelection(Screen):
 
 	def nextService(self):
 		if self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
+			self["list"].instance.moveSelectionTo(0)
 			if self.servicelist.inBouquet():
 				prev = self.servicelist.getCurrentSelection()
 				if prev:
@@ -312,6 +356,7 @@ class EPGSelection(Screen):
 
 	def prevService(self):
 		if self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
+			self["list"].instance.moveSelectionTo(0)
 			if self.servicelist.inBouquet():
 				prev = self.servicelist.getCurrentSelection()
 				if prev:
