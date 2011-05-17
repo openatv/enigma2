@@ -41,12 +41,13 @@ public:
 	RESULT getName(const eServiceReference &ref, std::string &name);
 	int getLength(const eServiceReference &ref);
 	int getInfo(const eServiceReference &ref, int w);
+	PyObject* getInfoObject(const eServiceReference &ref, int w);
 };
 
 typedef struct _GstElement GstElement;
 
 typedef enum { atUnknown, atMPEG, atMP3, atAC3, atDTS, atAAC, atPCM, atOGG, atFLAC } audiotype_t;
-typedef enum { stPlainText, stSSA, stSRT } subtype_t;
+typedef enum { stUnknown, stPlainText, stSSA, stASS, stSRT, stVOB, stPGS } subtype_t;
 typedef enum { ctNone, ctMPEGTS, ctMPEGPS, ctMKV, ctAVI, ctMP4, ctVCD, ctCDA } containertype_t;
 
 class eServiceMP3: public iPlayableService, public iPauseableService,
@@ -153,9 +154,12 @@ public:
 	};
 	struct sourceStream
 	{
+		audiotype_t audiotype;
+		containertype_t containertype;
+		bool is_video;
 		bool is_streaming;
 		sourceStream()
-			: is_streaming(FALSE)
+			:audiotype(atUnknown), containertype(ctNone), is_video(FALSE), is_streaming(FALSE)
 		{
 		}
 	};
@@ -170,6 +174,12 @@ public:
 		{
 		}
 	};
+	struct errorInfo
+	{
+		std::string error_message;
+		std::string missing_codec;
+	};
+
 private:
 	static int pcm_delay;
 	static int ac3_delay;
@@ -184,6 +194,7 @@ private:
 	eServiceReference m_ref;
 	int m_buffer_size;
 	bufferInfo m_bufferInfo;
+	errorInfo m_errorInfo;
 	eServiceMP3(eServiceReference ref);
 	Signal2<void,iPlayableService*,int> m_event;
 	enum
@@ -198,34 +209,52 @@ private:
 	{
 		DECLARE_REF(GstMessageContainer);
 		GstMessage *messagePointer;
+		GstPad *messagePad;
+		int messageType;
 
 	public:
-		GstMessageContainer(GstMessage *msg)
+		GstMessageContainer(int type, GstMessage *msg, GstPad *pad)
 		{
 			messagePointer = msg;
+			messagePad = pad;
+			messageType = type;
 		}
 		~GstMessageContainer()
 		{
 			if (messagePointer) gst_message_unref(messagePointer);
+			if (messagePad) gst_object_unref(messagePad);
 		}
+		int getType() { return messageType; }
 		operator GstMessage *() { return messagePointer; }
+		operator GstPad *() { return messagePad; }
 	};
 	eFixedMessagePump<ePtr<GstMessageContainer> > m_pump;
-	std::string m_error_message;
 
 	audiotype_t gstCheckAudioPad(GstStructure* structure);
 	void gstBusCall(GstMessage *msg);
 	void handleMessage(GstMessage *msg);
 	static GstBusSyncReply gstBusSyncHandler(GstBus *bus, GstMessage *message, gpointer user_data);
+	static void gstTextpadHasCAPS(GstPad *pad, GParamSpec * unused, gpointer user_data);
+	void gstTextpadHasCAPS_synced(GstPad *pad);
 	static void gstCBsubtitleAvail(GstElement *element, gpointer user_data);
 	GstPad* gstCreateSubtitleSink(eServiceMP3* _this, subtype_t type);
 	void gstPoll(ePtr<GstMessageContainer> const &);
 	static void gstHTTPSourceSetAgent(GObject *source, GParamSpec *unused, gpointer user_data);
 
-	std::list<ePangoSubtitlePage> m_subtitle_pages;
+	struct SubtitlePage
+	{
+		enum { Unknown, Pango, Vob } type;
+		ePangoSubtitlePage pango_page;
+		eVobSubtitlePage vob_page;
+	};
+
+	std::list<SubtitlePage> m_subtitle_pages;
 	ePtr<eTimer> m_subtitle_sync_timer;
 	
 	ePtr<eTimer> m_streamingsrc_timeout;
+	pts_t m_prev_decoder_time;
+	int m_decoder_time_valid_state;
+
 	void pushSubtitles();
 	void pullSubtitle();
 	void sourceTimeout();
