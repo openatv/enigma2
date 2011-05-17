@@ -72,7 +72,7 @@ class AudioSelection(Screen, ConfigListScreen):
 			selectedSubtitle = self.infobar.selected_subtitle
 			if selectedSubtitle == (0,0,0,0):
 				selectedSubtitle = None
-			else:
+			elif selectedSubtitle:
 				subtitlelist.append(selectedSubtitle)
 		else:
 			selectedSubtitle = None
@@ -159,7 +159,7 @@ class AudioSelection(Screen, ConfigListScreen):
 					selectedidx = idx
 					if x != subtitlelist[-1]:
 						subtitlelist.pop()
-					SelectedSubtitle = None
+					selectedSubtitle = None
 					
 				try:
 					if x[4] != "und":
