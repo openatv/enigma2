@@ -25,9 +25,10 @@ class DefaultWizard(WizardLanguage, DreamInfoHandler):
 		self["arrowup2"] = MovingPixmap()
 	
 	def setDirectory(self):
-		os_system("mount %s %s" % (resolveFilename(SCOPE_DEFAULTPARTITION), resolveFilename(SCOPE_DEFAULTPARTITIONMOUNTDIR)))
 		self.directory = resolveFilename(SCOPE_DEFAULTPARTITIONMOUNTDIR)
 		self.xmlfile = "defaultwizard.xml"
+		if self.directory:
+			os_system("mount %s %s" % (resolveFilename(SCOPE_DEFAULTPARTITION), self.directory))
         
 	def markDone(self):
 		config.misc.defaultchosen.value = 0
