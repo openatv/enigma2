@@ -787,6 +787,9 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			updates = pickle.load(open(path, "rb"))
 			self.applyConfigSettings(updates)
 		except IOError, e:
+			config.movielist.moviesort.value = config.movielist.moviesort.default
+			config.movielist.listtype.value = config.movielist.listtype.default
+			config.movielist.description.value = config.movielist.description.default
 			pass # ignore fail to open errors
 		except Exception, e:
 			print "Failed to load settings:", e
@@ -803,6 +806,9 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		if self.settings["moviesort"] != self["list"].sort_type:
 			self["list"].setSortType(self.settings["moviesort"])
 			needUpdate = True
+		config.movielist.moviesort.value = self.settings["moviesort"]
+		config.movielist.listtype.value = self.settings["listtype"]
+		config.movielist.description.value = self.settings["description"]
 		return needUpdate
 
 	def sortBy(self, newType):
