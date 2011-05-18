@@ -41,6 +41,7 @@ config.movielist.last_timer_videodir = ConfigText(default=resolveFilename(SCOPE_
 config.movielist.videodirs = ConfigLocations(default=[resolveFilename(SCOPE_HDD)])
 config.movielist.last_selected_tags = ConfigSet([], default=[])
 config.movielist.play_audio_internal = ConfigYesNo(default=True)
+config.movielist.settings_per_directory = ConfigYesNo(default=True)
 
 userDefinedButtons = None
 
@@ -225,6 +226,7 @@ class Config(ConfigListScreen,Screen):
 			getConfigListEntry(_("Sort"), cfg.moviesort),
 			getConfigListEntry(_("show extended description"), cfg.description),
 			getConfigListEntry(_("Type"), cfg.listtype),
+			getConfigListEntry(_("Remember these settings for each folder"), config.movielist.settings_per_directory),
 			getConfigListEntry(_("Load Length of Movies in Movielist"), config.usage.load_length_of_movies_in_moviellist),
 			getConfigListEntry(_("Show status icons in Movielist"), config.usage.show_icons_in_movielist),
 			getConfigListEntry(_("Show icon for new/unseen items"), config.usage.movielist_unseen),
@@ -270,6 +272,10 @@ class Config(ConfigListScreen,Screen):
 			config.movielist.description.value = MovieList.SHOW_DESCRIPTION
 		else:
 			config.movielist.description.value = MovieList.HIDE_DESCRIPTION 
+		if not config.movielist.settings_per_directory.value:
+			config.movielist.moviesort.save()
+			config.movielist.listtype.save()
+			config.movielist.description.save()
 		self.close(True)
 
 	def cancel(self):
@@ -879,7 +885,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			self["freeDiskSpace"].path = path
 		if sel is None:
 			sel = self.getCurrent()
-		self.loadLocalSettings()
+		if config.movielist.settings_per_directory.value:
+			self.loadLocalSettings()
 		self["list"].reload(self.current_ref, self.selected_tags)
 		self.updateTags()
 		title = _("Recorded files...")
