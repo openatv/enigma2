@@ -1976,8 +1976,12 @@ class IpkgInstaller(Screen):
 		<screen name="IpkgInstaller" position="center,center" size="550,450" title="Install extensions" >
 			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
 			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
 			<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+			<widget source="key_yellow" render="Label" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
+			<widget source="key_blue" render="Label" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
 			<widget name="list" position="5,50" size="540,360" />
 			<ePixmap pixmap="skin_default/div-h.png" position="0,410" zPosition="10" size="560,2" transparent="1" alphatest="on" />
 			<widget source="introduction" render="Label" position="5,420" zPosition="10" size="550,30" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
@@ -1989,18 +1993,21 @@ class IpkgInstaller(Screen):
 		self.list = SelectionList()
 		self["list"] = self.list
 		for listindex in range(len(list)):
-			self.list.addSelection(list[listindex], list[listindex], listindex, True)
+			self.list.addSelection(list[listindex], list[listindex], listindex, False)
 
 		self["key_red"] = StaticText(_("Close"))
 		self["key_green"] = StaticText(_("Install"))
+		self["key_yellow"] = StaticText()
+		self["key_blue"] = StaticText(_("Invert"))
 		self["introduction"] = StaticText(_("Press OK to toggle the selection."))
 		
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"], 
 		{
-			"ok": self.list.toggleSelection, 
+			"ok": self.list.toggleSelection,
 			"cancel": self.close,
 			"red": self.close,
-			"green": self.install
+			"green": self.install,
+			"blue": self.list.toggleAllSelection
 		}, -1)
 
 	def install(self):
