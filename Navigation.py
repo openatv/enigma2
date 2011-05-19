@@ -35,7 +35,9 @@ class Navigation:
 				print "buggy fp driver detected!!! please update drivers.... ignore timer wakeup!"
 			elif nextRecordTimerAfterEventActionAuto and (len(self.getRecordings()) or abs(self.RecordTimer.getNextRecordingTime() - time()) <= 360):
 				if not Screens.Standby.inTryQuitMainloop: # not a shutdown messagebox is open
-					RecordTimer.RecordTimerEntry.TryQuitMainloop(False) # start shutdown handling
+					from Tools import Notifications
+					Notifications.AddNotification(Screens.Standby.Standby)
+					RecordTimer.RecordTimerEntry.TryQuitMainloopDeepsleep(False) # start shutdown handling
 		self.SleepTimer = SleepTimer.SleepTimer()
 
 	def dispatchEvent(self, i):
