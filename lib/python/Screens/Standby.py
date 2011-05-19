@@ -125,19 +125,23 @@ class TryQuitMainloop(MessageBox):
 			else:
 				reason += (_("%d jobs are running in the background!") % jobs) + '\n'
 		if reason:
-			if retvalue == 1:
-				MessageBox.__init__(self, session, reason+_("Really shutdown now?"), type = MessageBox.TYPE_YESNO, timeout = timeout, default = default_yes)
-			elif retvalue == 2:
-				MessageBox.__init__(self, session, reason+_("Really reboot now?"), type = MessageBox.TYPE_YESNO, timeout = timeout, default = default_yes)
-			elif retvalue == 4:
-				pass
+			if retvalue == 5:
+				retvalue = 1
+				session.nav.record_event.append(self.getRecordEvent)
 			else:
-				MessageBox.__init__(self, session, reason+_("Really restart now?"), type = MessageBox.TYPE_YESNO, timeout = timeout, default = default_yes)
-			self.skinName = "MessageBox"
-			session.nav.record_event.append(self.getRecordEvent)
-			self.connected = True
-			self.onShow.append(self.__onShow)
-			self.onHide.append(self.__onHide)
+				if retvalue == 1:
+					MessageBox.__init__(self, session, reason+_("Really shutdown now?"), type = MessageBox.TYPE_YESNO, timeout = timeout, default = default_yes)
+				elif retvalue == 2:
+					MessageBox.__init__(self, session, reason+_("Really reboot now?"), type = MessageBox.TYPE_YESNO, timeout = timeout, default = default_yes)
+				elif retvalue == 4:
+					pass
+				else:
+					MessageBox.__init__(self, session, reason+_("Really restart now?"), type = MessageBox.TYPE_YESNO, timeout = timeout, default = default_yes)
+				self.skinName = "MessageBox"
+				session.nav.record_event.append(self.getRecordEvent)
+				self.connected = True
+				self.onShow.append(self.__onShow)
+				self.onHide.append(self.__onHide)
 		else:
 			self.skin = """<screen position="0,0" size="0,0"/>"""
 			Screen.__init__(self, session)
