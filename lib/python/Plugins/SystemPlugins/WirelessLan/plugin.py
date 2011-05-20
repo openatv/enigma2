@@ -49,20 +49,19 @@ class WlanStatus(Screen):
 		<screen name="WlanStatus" position="center,center" size="560,400" title="Wireless Network State" >
 			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-	
-			<widget source="LabelBSSID" render="Label" position="10,60" size="250,25" valign="left" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
-			<widget source="LabelESSID" render="Label" position="10,100" size="250,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
-			<widget source="LabelQuality" render="Label" position="10,140" size="250,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
-			<widget source="LabelSignal" render="Label" position="10,180" size="250,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
-			<widget source="LabelBitrate" render="Label" position="10,220" size="250,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
-			<widget source="LabelEnc" render="Label" position="10,260" size="250,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
-			
-			<widget source="BSSID" render="Label" position="320,60" size="180,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
-			<widget source="ESSID" render="Label" position="320,100" size="180,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
-			<widget source="quality" render="Label" position="320,140" size="180,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
-			<widget source="signal" render="Label" position="320,180" size="180,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
-			<widget source="bitrate" render="Label" position="320,220" size="180,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
-			<widget source="enc" render="Label" position="320,260" size="180,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
+
+			<widget source="LabelBSSID" render="Label" position="10,60" size="200,25" valign="left" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
+			<widget source="LabelESSID" render="Label" position="10,100" size="200,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
+			<widget source="LabelQuality" render="Label" position="10,140" size="200,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
+			<widget source="LabelSignal" render="Label" position="10,180" size="200,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
+			<widget source="LabelBitrate" render="Label" position="10,220" size="200,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
+			<widget source="LabelEnc" render="Label" position="10,260" size="200,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
+			<widget source="BSSID" render="Label" position="220,60" size="330,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
+			<widget source="ESSID" render="Label" position="220,100" size="330,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
+			<widget source="quality" render="Label" position="220,140" size="330,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
+			<widget source="signal" render="Label" position="220,180" size="330,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
+			<widget source="bitrate" render="Label" position="220,220" size="330,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
+			<widget source="enc" render="Label" position="220,260" size="330,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
 	
 			<ePixmap pixmap="skin_default/div-h.png" position="0,350" zPosition="1" size="560,2" />		
 			<widget source="IFtext" render="Label" position="10,355" size="120,21" zPosition="10" font="Regular;20" halign="left" backgroundColor="#25062748" transparent="1" />
