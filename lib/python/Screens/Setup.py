@@ -3,7 +3,10 @@ from Components.ActionMap import NumberActionMap
 from Components.config import config, ConfigNothing
 from Components.SystemInfo import SystemInfo
 from Components.ConfigList import ConfigListScreen
+from Components.Pixmap import Pixmap,MultiPixmap
 from Components.Sources.StaticText import StaticText
+from Screens.VirtualKeyBoard import VirtualKeyBoard
+
 from enigma import eEnv
 
 import xml.etree.cElementTree
@@ -75,6 +78,9 @@ class Setup(ConfigListScreen, Screen):
 		Screen.__init__(self, session)
 		# for the skin: first try a setup_<setupID>, then Setup
 		self.skinName = ["setup_" + setup, "Setup" ]
+
+		self["HelpWindow"] = Pixmap()
+		self["HelpWindow"].hide()
 
 		self.onChangedEntry = [ ]
 
