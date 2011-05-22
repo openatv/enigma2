@@ -48,16 +48,20 @@
 			<item level="2" text="Behavior of 0 key in PiP-mode">config.usage.pip_zero_button</item>
 			<item level="2" text="Alternative services tuner priority">config.usage.alternatives_priority</item>
 			<item level="2" text="Preferred tuner">config.usage.frontend_priority</item>
+			<item level="2" text="Show background in Radio Mode">config.misc.showradiopic</item>
+			<item level="2" text="Create more detailed crash log">config.crash.details</item>
+		</setup>
+		<setup key="epgsetup" title="Settings...">
+			<item level="2" text="EPG location">config.epg.epgcache_path</item>
+			<item level="2" text="EPG filename">config.epg.epgcache_filename</item>
 			<item level="2" text="Disable background scanning">config.misc.disable_background_scan</item>
 			<item level="2" text="Enable EIT EPG">config.epg.eit</item>
 			<item level="2" text="Enable MHW EPG">config.epg.mhw</item>
 			<item level="2" text="Enable freesat EPG">config.epg.freesat</item>
 			<item level="2" text="Enable ViaSat EPG">config.epg.viasat</item>
 			<item level="2" text="Enable Netmed EPG">config.epg.netmed</item>
-			<item level="2" text="Show background in Radio Mode">config.misc.showradiopic</item>
-			<item level="2" text="Create more detailed crash log">config.crash.details</item>
 		</setup>
-		<setup key="subtitlesetup" title="Subtitle settings">
+		<setup key="subtitlesetup" title="Subtitle Settings">
 			<item level="2" text="Teletext subtitle color">config.subtitles.ttx_subtitle_colors</item>
 			<item level="2" text="Use original teletext position">config.subtitles.ttx_subtitle_original_position</item>
 			<item level="2" text="Rewrap teletext subtitles">config.subtitles.subtitle_rewrap</item>
@@ -71,7 +75,7 @@
 			<item level="2" text="DVB subtitle black transparency">config.subtitles.dvb_subtitles_backtrans</item>
 			<item level="2" text="Yellow pango subtitles">config.subtitles.pango_subtitles_yellow</item>
 		</setup>
-		<setup key="autolanguagesetup" title="Auto language selection">
+		<setup key="autolanguagesetup" title="Auto Language Selection">
 			<item level="1" text="Audio language selection 1">config.autolanguage.audio_autoselect1</item>
 			<item level="1" text="Audio language selection 2">config.autolanguage.audio_autoselect2</item>
 			<item level="1" text="Audio language selection 3">config.autolanguage.audio_autoselect3</item>
@@ -88,7 +92,7 @@
 			<item level="1" text="Prefer DVB-grafical subtitles">config.autolanguage.subtitle_defaultdvb</item>
 			<item level="1" text="Prefer subtitle stored by service">config.autolanguage.subtitle_usecache</item>
 		</setup>		
-		<setup key="recording" title="Record">
+		<setup key="recording" title="Record Settings">
 			<item level="1" text="Recordings always have priority">config.recording.asktozap</item>
 			<item level="0" text="Margin before record (minutes)">config.recording.margin_before</item>
 			<item level="0" text="Margin after record">config.recording.margin_after</item>
