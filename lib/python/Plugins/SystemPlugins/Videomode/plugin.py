@@ -4,6 +4,8 @@ from Components.SystemInfo import SystemInfo
 from Components.ConfigList import ConfigListScreen
 from Components.config import getConfigListEntry, config, ConfigBoolean, ConfigNothing, ConfigSlider
 from Components.Sources.StaticText import StaticText
+from Components.Pixmap import Pixmap,MultiPixmap
+from Screens.VirtualKeyBoard import VirtualKeyBoard
 
 from VideoHardware import video_hw
 
@@ -16,6 +18,9 @@ class VideoSetup(Screen, ConfigListScreen):
 		# for the skin: first try VideoSetup, then Setup, this allows individual skinning
 		self.skinName = ["VideoSetup", "Setup" ]
 		self.setup_title = _("A/V Settings")
+		self["HelpWindow"] = Pixmap()
+		self["HelpWindow"].hide()
+
 		self.hw = hw
 		self.onChangedEntry = [ ]
 

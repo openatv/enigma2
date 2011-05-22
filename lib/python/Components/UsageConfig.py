@@ -6,6 +6,7 @@ from enigma import Misc_Options, eEnv;
 from Components.NimManager import nimmanager
 from Components.Harddisk import harddiskmanager
 from SystemInfo import SystemInfo
+from Tools.Directories import pathExists
 import os
 import enigma
 
@@ -150,6 +151,21 @@ def InitUsageConfig():
 	config.epg.freesat.addNotifier(EpgSettingsChanged)
 	config.epg.viasat.addNotifier(EpgSettingsChanged)
 	config.epg.netmed.addNotifier(EpgSettingsChanged)
+
+	epgdata = []
+	for p in harddiskmanager.getMountedPartitions():
+		d = os.path.normpath(p.mountpoint)
+		if pathExists(p.mountpoint):
+			if p.mountpoint == '/':
+				epgdata.append(('/hdd/', p.description))
+			else:
+				epgdata.append((d + '/', p.mountpoint))
+	if len(epgdata):
+		config.epg.epgcache_path = ConfigSelection(default = "/hdd/", choices = epgdata)
+
+	config.epg.epgcache_filename = ConfigText(default='epg.dat', fixed_size=False)
+	config.misc.epgcache_filename.value = config.epg.epgcache_path.value + config.epg.epgcache_filename.value
+	config.misc.epgcache_filename.addNotifier(EpgSettingsChanged)
 
 	def setHDDStandby(configElement):
 		for hdd in harddiskmanager.HDDList():
