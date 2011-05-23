@@ -63,7 +63,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			self["key_red"] = Label("ViX EPG")
 		self["key_yellow"] = Label("Search")
 		self["key_blue"] = Label("Extensions")
-		if not config.plugins.ViXSettings.Subservice.value:
+		if not config.vixsettings.Subservice.value:
 			self["key_green"] = Label("Timers")
 		else:
 			self["key_green"] = Label("Subservices")
@@ -127,15 +127,15 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		self.session.execDialog(self.servicelist)
 
 	def showTv(self):
-		if config.plugins.ViXSettings.TVButtonAction.value == "Default":
+		if config.vixsettings.TVButtonAction.value == "Default":
 			from Screens.ChannelSelection import SimpleChannelSelection
 			self.session.open(SimpleChannelSelection, None)
-		elif config.plugins.ViXSettings.TVButtonAction.value == "TVList":
+		elif config.vixsettings.TVButtonAction.value == "TVList":
 			self.showTvChannelList(True)
-		elif config.plugins.ViXSettings.TVButtonAction.value == "MovieList":
+		elif config.vixsettings.TVButtonAction.value == "MovieList":
 			self.showTvChannelList(True)
 			self.showMovies()
-		elif config.plugins.ViXSettings.TVButtonAction.value == "BouquetList":
+		elif config.vixsettings.TVButtonAction.value == "BouquetList":
 			self.showTvChannelList(True)
 			self.servicelist.showFavourites()
 			self.session.execDialog(self.servicelist)

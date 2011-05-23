@@ -2070,7 +2070,7 @@ class InfoBarSubserviceSelection:
 			{
 				"GreenPressed": (self.GreenPressed),
 			})
-		if not config.plugins.ViXSettings.Subservice.value:
+		if not config.vixsettings.Subservice.value:
 			self["key_green"] = Label("Timers")
 		else:
 			self["key_green"] = Label("Subservices")
@@ -2091,7 +2091,7 @@ class InfoBarSubserviceSelection:
 		self.bsel = None
 
 	def GreenPressed(self):
-		if not config.plugins.ViXSettings.Subservice.value:
+		if not config.vixsettings.Subservice.value:
 			self.openTimerList()
 		else:
 			self.subserviceSelection()
