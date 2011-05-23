@@ -454,36 +454,7 @@ def InitUsageConfig():
 		("12", "3,4"),("13", "1,3,4"),("14", "2,3,4"),("15", "All")])
 
 	config.vixsettings = ConfigSubsection()
-	config.vixsettings.backuplocation = ConfigText(default = '/media/hdd', visible_width = 50, fixed_size = False)
-	choiceslist = [('None', 'None')]
-	config.vixsettings.default_command = NoSave(ConfigSelection(default='None', choices = choiceslist))
-	config.vixsettings.cmdtime = NoSave(ConfigClock(default=0))
-	config.vixsettings.cmdtime.value, mytmpt = ([0, 0], [0, 0])
-	config.vixsettings.user_command = NoSave(ConfigText(default='None', fixed_size=False))
-	config.vixsettings.runwhen = NoSave(ConfigSelection(default='Daily', choices = [('Hourly', 'Hourly'),('Daily', 'Daily'),('Weekly', 'Weekly'),('Monthly', 'Monthly')]))
-	config.vixsettings.dayofweek = NoSave(ConfigSelection(default='Monday', choices = [('Monday', 'Monday'),('Tuesday', 'Tuesday'),('Wednesday', 'Wednesday'),('Thursday', 'Thursday'),('Friday', 'Friday'),('Saturday', 'Saturday'),('Sunday', 'Sunday')]))
-	config.vixsettings.dayofmonth = NoSave(ConfigInteger(default=1, limits=(1, 31)))
 	config.vixsettings.overscanamount = ConfigNumber(default = 32)
-
-	config.vixsettings.swapautostart = ConfigYesNo(default = False)
-	config.vixsettings.powermanager = ConfigYesNo(default = False)
-	config.vixsettings.powermanager_standby = ConfigYesNo(default = False)
-	config.vixsettings.powermanager_standbytime = ConfigClock(default = 0) # 1:00
-	config.vixsettings.powermanager_standbyretry = ConfigNumber(default = 30)
-	config.vixsettings.powermanager_standbyretrycount = NoSave(ConfigNumber(default = 0))
-	config.vixsettings.powermanager_deepstandby = ConfigYesNo(default = False)
-	config.vixsettings.powermanager_deepstandbytime = ConfigClock(default = 0) # 1:00
-	config.vixsettings.powermanager_deepstandbyretry = ConfigNumber(default = 30)
-	config.vixsettings.powermanager_deepstandbyretrycount = NoSave(ConfigNumber(default = 0))
-	config.vixsettings.powermanager_guirestart = ConfigYesNo(default = False)
-	config.vixsettings.powermanager_guirestarttime = ConfigClock(default = 0) # 1:00
-	config.vixsettings.powermanager_guirestartretry = ConfigNumber(default = 30)
-	config.vixsettings.powermanager_guirestartretrycount = NoSave(ConfigNumber(default = 0))
-	config.vixsettings.powermanager_reboot = ConfigYesNo(default = False)
-	config.vixsettings.powermanager_reboottime = ConfigClock(default = 0) # 1:00
-	config.vixsettings.powermanager_rebootretry = ConfigNumber(default = 30)
-	config.vixsettings.powermanager_rebootretrycount = NoSave(ConfigNumber(default = 0))
-
 	config.vixsettings.TVButtonAction = ConfigSelection(default="Default", choices = [
 					("Default", _("Simple TV List")),
 					("TVList", _("Show TV List")),
