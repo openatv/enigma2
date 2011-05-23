@@ -25,6 +25,7 @@ def InitUsageConfig():
 	config.usage.show_infobar_on_zap = ConfigYesNo(default = True)
 	config.usage.show_infobar_on_skip = ConfigYesNo(default = True)
 	config.usage.show_infobar_on_event_change = ConfigYesNo(default = False)
+	config.usage.show_infobar_eventinfo = ConfigYesNo(default = True)
 	config.usage.show_spinner = ConfigYesNo(default = True)
 	config.usage.enable_tt_caching = ConfigYesNo(default = True)
 	config.usage.hdd_standby = ConfigSelection(default = "300", choices = [
@@ -221,6 +222,16 @@ def InitUsageConfig():
 		os.remove(inputfile)
 		os.rename(outputfile,inputfile)
 		os.chmod('/usr/bin/enigma2.sh',0755)
+		filename = ""
+		for filename in glob('/home/root/*.log') :
+			if os.path.getsize(filename) > (config.crash.debugloglimit.value * 1024 * 1024):
+				fh = open(filename, 'rb+')
+				fh.seek(-(config.crash.debugloglimit.value * 1024 * 1024), 2)
+				data = fh.read()
+				fh.seek(0) # rewind
+				fh.write(data)
+				fh.truncate()
+				fh.close()
 		print '[DEBUG LOG] Enabled'
 	elif not config.crash.enabledebug.value:
 		inputfile = "/usr/bin/enigma2.sh"
@@ -236,6 +247,9 @@ def InitUsageConfig():
 		os.remove(inputfile)
 		os.rename(outputfile,inputfile)
 		os.chmod('/usr/bin/enigma2.sh',0755)
+		filename = ""
+		for filename in glob('/home/root/*.log') :
+			os.remove(filename)
 		print '[DEBUG LOG] Disabled'
 
 	config.usage.timerlist_finished_timer_position = ConfigSelection(default = "end", choices = [("beginning", _("at beginning")), ("end", _("at end"))])
@@ -458,7 +472,6 @@ def InitUsageConfig():
 	config.plugins.ViXSettings.powermanager_rebootretry = ConfigNumber(default = 30)
 	config.plugins.ViXSettings.powermanager_rebootretrycount = NoSave(ConfigNumber(default = 0))
 
-	config.plugins.ViXSettings.InfoBarMode = ConfigYesNo(default = True)
 	config.plugins.ViXSettings.TVButtonAction = ConfigSelection(default="Default", choices = [
 					("Default", _("Simple TV List")),
 					("TVList", _("Show TV List")),
