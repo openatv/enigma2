@@ -8,6 +8,7 @@ from Components.Harddisk import harddiskmanager
 from SystemInfo import SystemInfo
 from Tools.Directories import pathExists
 import os
+from glob import glob
 import enigma
 
 def InitUsageConfig():
@@ -203,6 +204,40 @@ def InitUsageConfig():
 
 	config.crash = ConfigSubsection()
 	config.crash.details = ConfigYesNo(default = False)
+	config.crash.enabledebug = ConfigYesNo(default = False)
+	config.crash.debugloglimit = ConfigNumber(default=4)
+	
+	if config.crash.enabledebug.value:
+		inputfile = "/usr/bin/enigma2.sh"
+		outputfile = inputfile+'.tmp'
+		stext = 'LD_PRELOAD=/usr/lib/libopen.so.0.0.0 /usr/bin/enigma2\n'
+		rtext = 'LD_PRELOAD=/usr/lib/libopen.so.0.0.0 /usr/bin/enigma2 &>/home/root/Enigma2-$(date +%d-%m-%Y_%H-%M-%S).log\n'
+		input = open(inputfile)
+		output = open(outputfile,'w')
+		for s in input:
+			output.write(s.replace(stext,rtext))
+		output.close()
+		input.close()
+		os.remove(inputfile)
+		os.rename(outputfile,inputfile)
+		os.chmod('/usr/bin/enigma2.sh',0755)
+		print '[DEBUG LOG] Enabled'
+	elif not config.crash.enabledebug.value:
+		inputfile = "/usr/bin/enigma2.sh"
+		outputfile = inputfile+'.tmp'
+		stext = 'LD_PRELOAD=/usr/lib/libopen.so.0.0.0 /usr/bin/enigma2 /usr/bin/enigma2 &>/home/root/Enigma2-$(date +%d-%m-%Y_%H-%M-%S).log\n'
+		rtext = 'LD_PRELOAD=/usr/lib/libopen.so.0.0.0 /usr/bin/enigma2\n'
+		input = open(inputfile)
+		output = open(outputfile,'w')
+		for s in input:
+			output.write(s.replace(stext,rtext))
+		output.close()
+		input.close()
+		os.remove(inputfile)
+		os.rename(outputfile,inputfile)
+		os.chmod('/usr/bin/enigma2.sh',0755)
+		print '[DEBUG LOG] Disabled'
+
 	config.usage.timerlist_finished_timer_position = ConfigSelection(default = "end", choices = [("beginning", _("at beginning")), ("end", _("at end"))])
 
 	def updateEnterForward(configElement):
@@ -405,8 +440,6 @@ def InitUsageConfig():
 	config.plugins.ViXSettings  = ConfigSubsection()
 	config.plugins.ViXSettings.overscanamount = ConfigNumber(default = 32)
 	config.plugins.ViXSettings.swapautostart = ConfigYesNo(default = False)
-	config.plugins.ViXSettings.enabledebug = ConfigYesNo(default = False)
-	config.plugins.ViXSettings.cleandebug = NoSave(ConfigYesNo(default = False))
 	config.plugins.ViXSettings.powermanager = ConfigYesNo(default = False)
 	config.plugins.ViXSettings.powermanager_standby = ConfigYesNo(default = False)
 	config.plugins.ViXSettings.powermanager_standbytime = ConfigClock(default = 0) # 1:00
