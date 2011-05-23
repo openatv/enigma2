@@ -235,6 +235,7 @@ class AudioSelection(Screen, ConfigListScreen):
 			self.infobar.selected_subtitle = subtitles
 			if subtitles:
 				self.infobar.subtitles_enabled = True
+				self.infobar.selected_subtitle = subtitles
 
 	def changeAC3Downmix(self, downmix):
 		if downmix.getValue() == True:
