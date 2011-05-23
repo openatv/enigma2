@@ -1013,6 +1013,10 @@ def movielist_open(list, session, **kwargs):
 	else:
 		stype = 4097
 	if InfoBar.instance:
+		path = os_path.split(f.path)[0]
+		if not path.endswith('/'):
+			path += '/'
+		config.movielist.last_videodir.value = path
 		InfoBar.instance.showMovies(eServiceReference(stype, 0, f.path))
 
 def filescan(**kwargs):
