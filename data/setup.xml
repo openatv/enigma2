@@ -44,17 +44,23 @@
 			<item level="2" text="Hide CI messages">config.usage.hide_ci_messages</item>
 			<item level="2" text="Show crypto info in infobar">config.usage.show_cryptoinfo</item>
 			<item level="2" text="Swap SNR in db with SNR in percentage on OSD">config.usage.swap_snr_on_osd</item>
-			<item level="2" text="Show EIT now/next in infobar">config.usage.show_eit_nownext</item>
 			<item level="2" text="Behavior of 0 key in PiP-mode">config.usage.pip_zero_button</item>
 			<item level="2" text="Alternative services tuner priority">config.usage.alternatives_priority</item>
 			<item level="2" text="Preferred tuner">config.usage.frontend_priority</item>
+			<item level="2" text="Disable background scanning">config.misc.disable_background_scan</item>
 			<item level="2" text="Show background in Radio Mode">config.misc.showradiopic</item>
+		</setup>
+		<setup key="logs" title="Logs">
 			<item level="2" text="Create more detailed crash log">config.crash.details</item>
+			<item level="2" text="Enable Debug log">config.crash.debuglog</item>
+		self.list.append(getConfigListEntry(_("Enable Debug logs"), config.plugins.ViXSettings.enabledebug))
+		if config.plugins.ViXSettings.enabledebug.value:
+			self.list.append(getConfigListEntry(_("Clean Debug logs"), config.plugins.ViXSettings.cleandebug))
 		</setup>
 		<setup key="epgsetup" title="Settings...">
 			<item level="2" text="EPG location">config.epg.epgcache_path</item>
 			<item level="2" text="EPG filename">config.epg.epgcache_filename</item>
-			<item level="2" text="Disable background scanning">config.misc.disable_background_scan</item>
+			<item level="2" text="Show EIT now/next in infobar">config.usage.show_eit_nownext</item>
 			<item level="2" text="Enable EIT EPG">config.epg.eit</item>
 			<item level="2" text="Enable MHW EPG">config.epg.mhw</item>
 			<item level="2" text="Enable freesat EPG">config.epg.freesat</item>
