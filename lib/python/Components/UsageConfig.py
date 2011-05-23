@@ -18,6 +18,7 @@ def InitUsageConfig():
 	config.usage.panicbutton = ConfigYesNo(default = True)
 	config.usage.quickzap_bouquet_change = ConfigYesNo(default = False)
 	config.usage.e1like_radio_mode = ConfigYesNo(default = True)
+	config.usage.infobar_onlinecheck = ConfigNumber(default=12)
 	config.usage.infobar_timeout = ConfigSelection(default = "5", choices = [
 		("0", _("no timeout")), ("1", "1 " + _("second")), ("2", "2 " + _("seconds")), ("3", "3 " + _("seconds")),
 		("4", "4 " + _("seconds")), ("5", "5 " + _("seconds")), ("6", "6 " + _("seconds")), ("7", "7 " + _("seconds")),
@@ -159,11 +160,11 @@ def InitUsageConfig():
 		d = os.path.normpath(p.mountpoint)
 		if pathExists(p.mountpoint):
 			if p.mountpoint == '/':
-				epgdata.append(('/hdd/', p.description))
+				epgdata.append(('/etc/enigma2/', p.description))
 			else:
 				epgdata.append((d + '/', p.mountpoint))
 	if len(epgdata):
-		config.epg.epgcache_path = ConfigSelection(default = "/hdd/", choices = epgdata)
+		config.epg.epgcache_path = ConfigSelection(default = "/etc/enigma2/", choices = epgdata)
 
 	config.epg.epgcache_filename = ConfigText(default='epg.dat', fixed_size=False)
 	config.misc.epgcache_filename.value = config.epg.epgcache_path.value + config.epg.epgcache_filename.value

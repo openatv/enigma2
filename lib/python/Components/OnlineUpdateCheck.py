@@ -1,4 +1,5 @@
 import Components.Task
+from config import config
 from Tools.Directories import pathExists
 from twisted.internet import reactor, threads, task
 from time import localtime, time, strftime
@@ -34,7 +35,7 @@ class VersionCheckPoller:
 		job = Components.Task.Job(name)
 		task = CheckTask(job, name)
 		Components.Task.job_manager.AddJob(job)
-		self.timer.startLongTimer(43200)
+		self.timer.startLongTimer(int(config.usage.infobar_onlinecheck.value) * 3600)
 
 class CheckTask(Components.Task.PythonTask):
 	def work(self):
