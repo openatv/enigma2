@@ -202,7 +202,7 @@ class InfoBarShowHide:
 
 	def toggleShow(self):
 		if self.__state == self.STATE_SHOWN:
-			if config.plugins.ViXSettings.InfoBarMode.value:
+			if config.usage.show_infobar_eventinfo.value:
 				self.hide()
 				self.hideTimer.stop()
 				self.openEventView()
