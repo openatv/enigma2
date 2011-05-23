@@ -5,8 +5,6 @@ from time import localtime, time, strftime
 from enigma import eTimer
 from os import rename, remove
 
-_session = None
-
 def AutoVersionCheck(session=None, **kwargs):
 	global versioncheckpoller
 	print "[OnlineVersionCheck] AutoStart Enabled"
@@ -20,14 +18,9 @@ class VersionCheckPoller:
 		self.timer = eTimer()
 
 	def start(self, initial = True):
-		if initial:
-			self.delay = 600 #10 minutes
-		else:
-			self.delay = 43200 #twice a day
-
 		if self.version_check not in self.timer.callback:
 			self.timer.callback.append(self.version_check)
-		self.timer.startLongTimer(self.delay)
+		self.timer.startLongTimer(60)
 
 	def stop(self):
 		if self.version_check in self.timer.callback:
@@ -41,7 +34,7 @@ class VersionCheckPoller:
 		job = Components.Task.Job(name)
 		task = CheckTask(job, name)
 		Components.Task.job_manager.AddJob(job)
-		self.timer.startLongTimer(self.delay)
+		self.timer.startLongTimer(43200)
 
 class CheckTask(Components.Task.PythonTask):
 	def work(self):
@@ -70,4 +63,3 @@ class CheckTask(Components.Task.PythonTask):
 			sourcefile='http://enigma2.world-of-satellite.com/feeds/ghtudh66383/' + box_type + '/image-version'
 		sourcefile,headers = urllib.urlretrieve(sourcefile)
 		rename(sourcefile,'/tmp/online-image-version')
-
