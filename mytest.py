@@ -552,6 +552,10 @@ profile("UsageConfig")
 import Components.UsageConfig
 Components.UsageConfig.InitUsageConfig()
 
+profile("Init:OnlineUpdateCheck")
+import Components.OnlineUpdateCheck
+Components.OnlineUpdateCheck.AutoVersionCheck()
+
 profile("keymapparser")
 import keymapparser
 keymapparser.readKeymap(config.usage.keymap.value)
