@@ -960,7 +960,7 @@ PyObject *eServiceMP3::getInfoObject(int w)
 			break;
 	}
 
-	if (m_stream_tags)
+	if (m_stream_tags && tag)
 	{
 		if (isBuffer)
 		{
