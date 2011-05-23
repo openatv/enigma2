@@ -1,5 +1,5 @@
 from Components.Harddisk import harddiskmanager
-from config import ConfigSubsection, ConfigYesNo, config, ConfigSelection, ConfigText, ConfigNumber, ConfigSet, ConfigLocations, NoSave, ConfigClock
+from config import ConfigSubsection, ConfigYesNo, config, ConfigSelection, ConfigText, ConfigNumber, ConfigSet, ConfigLocations, NoSave, ConfigClock, ConfigInteger
 from Tools.Directories import resolveFilename, SCOPE_HDD
 from enigma import setTunerTypePriorityOrder, setPreferredTuner, setSpinnerOnOff, setEnableTtCachingOnOff;
 from enigma import Misc_Options, eEnv;
@@ -167,6 +167,7 @@ def InitUsageConfig():
 		config.epg.epgcache_path = ConfigSelection(default = "/etc/enigma2/", choices = epgdata)
 
 	config.epg.epgcache_filename = ConfigText(default='epg.dat', fixed_size=False)
+	config.misc.epgcache_filename = ConfigText(default = "/hdd/epg.dat")
 	config.misc.epgcache_filename.value = config.epg.epgcache_path.value + config.epg.epgcache_filename.value
 	config.misc.epgcache_filename.addNotifier(EpgSettingsChanged)
 
@@ -452,34 +453,44 @@ def InitUsageConfig():
 		("8", "4"),("9", "1,4"),("10", "2,4"),("11", "1,2,4"),
 		("12", "3,4"),("13", "1,3,4"),("14", "2,3,4"),("15", "All")])
 
-	config.plugins.ViXSettings  = ConfigSubsection()
-	config.plugins.ViXSettings.overscanamount = ConfigNumber(default = 32)
-	config.plugins.ViXSettings.swapautostart = ConfigYesNo(default = False)
-	config.plugins.ViXSettings.powermanager = ConfigYesNo(default = False)
-	config.plugins.ViXSettings.powermanager_standby = ConfigYesNo(default = False)
-	config.plugins.ViXSettings.powermanager_standbytime = ConfigClock(default = 0) # 1:00
-	config.plugins.ViXSettings.powermanager_standbyretry = ConfigNumber(default = 30)
-	config.plugins.ViXSettings.powermanager_standbyretrycount = NoSave(ConfigNumber(default = 0))
-	config.plugins.ViXSettings.powermanager_deepstandby = ConfigYesNo(default = False)
-	config.plugins.ViXSettings.powermanager_deepstandbytime = ConfigClock(default = 0) # 1:00
-	config.plugins.ViXSettings.powermanager_deepstandbyretry = ConfigNumber(default = 30)
-	config.plugins.ViXSettings.powermanager_deepstandbyretrycount = NoSave(ConfigNumber(default = 0))
-	config.plugins.ViXSettings.powermanager_guirestart = ConfigYesNo(default = False)
-	config.plugins.ViXSettings.powermanager_guirestarttime = ConfigClock(default = 0) # 1:00
-	config.plugins.ViXSettings.powermanager_guirestartretry = ConfigNumber(default = 30)
-	config.plugins.ViXSettings.powermanager_guirestartretrycount = NoSave(ConfigNumber(default = 0))
-	config.plugins.ViXSettings.powermanager_reboot = ConfigYesNo(default = False)
-	config.plugins.ViXSettings.powermanager_reboottime = ConfigClock(default = 0) # 1:00
-	config.plugins.ViXSettings.powermanager_rebootretry = ConfigNumber(default = 30)
-	config.plugins.ViXSettings.powermanager_rebootretrycount = NoSave(ConfigNumber(default = 0))
+	config.vixsettings = ConfigSubsection()
+	config.vixsettings.backuplocation = ConfigText(default = '/media/hdd', visible_width = 50, fixed_size = False)
+	choiceslist = [('None', 'None')]
+	config.vixsettings.default_command = NoSave(ConfigSelection(default='None', choices = choiceslist))
+	config.vixsettings.cmdtime = NoSave(ConfigClock(default=0))
+	config.vixsettings.cmdtime.value, mytmpt = ([0, 0], [0, 0])
+	config.vixsettings.user_command = NoSave(ConfigText(default='None', fixed_size=False))
+	config.vixsettings.runwhen = NoSave(ConfigSelection(default='Daily', choices = [('Hourly', 'Hourly'),('Daily', 'Daily'),('Weekly', 'Weekly'),('Monthly', 'Monthly')]))
+	config.vixsettings.dayofweek = NoSave(ConfigSelection(default='Monday', choices = [('Monday', 'Monday'),('Tuesday', 'Tuesday'),('Wednesday', 'Wednesday'),('Thursday', 'Thursday'),('Friday', 'Friday'),('Saturday', 'Saturday'),('Sunday', 'Sunday')]))
+	config.vixsettings.dayofmonth = NoSave(ConfigInteger(default=1, limits=(1, 31)))
+	config.vixsettings.overscanamount = ConfigNumber(default = 32)
 
-	config.plugins.ViXSettings.TVButtonAction = ConfigSelection(default="Default", choices = [
+	config.vixsettings.swapautostart = ConfigYesNo(default = False)
+	config.vixsettings.powermanager = ConfigYesNo(default = False)
+	config.vixsettings.powermanager_standby = ConfigYesNo(default = False)
+	config.vixsettings.powermanager_standbytime = ConfigClock(default = 0) # 1:00
+	config.vixsettings.powermanager_standbyretry = ConfigNumber(default = 30)
+	config.vixsettings.powermanager_standbyretrycount = NoSave(ConfigNumber(default = 0))
+	config.vixsettings.powermanager_deepstandby = ConfigYesNo(default = False)
+	config.vixsettings.powermanager_deepstandbytime = ConfigClock(default = 0) # 1:00
+	config.vixsettings.powermanager_deepstandbyretry = ConfigNumber(default = 30)
+	config.vixsettings.powermanager_deepstandbyretrycount = NoSave(ConfigNumber(default = 0))
+	config.vixsettings.powermanager_guirestart = ConfigYesNo(default = False)
+	config.vixsettings.powermanager_guirestarttime = ConfigClock(default = 0) # 1:00
+	config.vixsettings.powermanager_guirestartretry = ConfigNumber(default = 30)
+	config.vixsettings.powermanager_guirestartretrycount = NoSave(ConfigNumber(default = 0))
+	config.vixsettings.powermanager_reboot = ConfigYesNo(default = False)
+	config.vixsettings.powermanager_reboottime = ConfigClock(default = 0) # 1:00
+	config.vixsettings.powermanager_rebootretry = ConfigNumber(default = 30)
+	config.vixsettings.powermanager_rebootretrycount = NoSave(ConfigNumber(default = 0))
+
+	config.vixsettings.TVButtonAction = ConfigSelection(default="Default", choices = [
 					("Default", _("Simple TV List")),
 					("TVList", _("Show TV List")),
 					("MovieList", _("Show Movie List")),
 					("BouquetList", _("Show Bouquet List"))])
-	config.plugins.ViXSettings.Subservice = ConfigYesNo(default = False)
-	config.plugins.ViXSettings.ColouredButtons = ConfigYesNo(default = True)
+	config.vixsettings.Subservice = ConfigYesNo(default = False)
+	config.vixsettings.ColouredButtons = ConfigYesNo(default = True)
 
 	config.plugins.QuickEPG = ConfigSubsection()
 	config.plugins.QuickEPG.mode = ConfigSelection(default="3", choices = [
