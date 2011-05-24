@@ -29,7 +29,7 @@ from Tools.LoadPixmap import LoadPixmap
 from Tools.NumericalTextInput import NumericalTextInput
 from enigma import eTimer, quitMainloop, RT_HALIGN_LEFT, RT_VALIGN_CENTER, eListboxPythonMultiContent, eListbox, gFont, getDesktop, ePicLoad, eRCInput, getPrevAsciiCode, eEnv
 from cPickle import dump, load
-from os import path as os_path, system as os_system, unlink, stat, mkdir, popen, makedirs, listdir, access, rename, remove, W_OK, R_OK, F_OK
+from os import path as os_path, system as os_system, unlink, stat, mkdir, popen, makedirs, listdir, access, rename, remove, W_OK, R_OK, F_OK, popen
 from time import time, gmtime, strftime, localtime
 from stat import ST_MTIME
 from datetime import date
@@ -1353,6 +1353,13 @@ class UpdatePlugin(Screen):
 	def __init__(self, session, *args):
 		Screen.__init__(self, session)
 
+		memcheck_stdout = popen('free | grep Total | tr -s " " | cut -d " " -f 4', "r")
+		memcheck = memcheck_stdout.read()
+		if int(memcheck) < 61440:
+			popen("dd if=/dev/zero of=" + config.plugins.configurationbackup.backuplocation.value + "swapfile_upgrade bs=1024 count=16440")
+			popen("mkswap " + config.plugins.configurationbackup.backuplocation.value + "swapfile_upgrade")
+			popen("swapon " + config.plugins.configurationbackup.backuplocation.value + "swapfile_upgrade")
+
 		self.sliderPackages = { "dreambox-dvb-modules": 1, "enigma2": 2, "tuxbox-image-info": 3 }
 
 		self.slider = Slider(0, 4)
@@ -1446,6 +1453,10 @@ class UpdatePlugin(Screen):
 				self.activityTimer.stop()
 				self.activityslider.setValue(0)
 				
+				if os_path.exists(config.plugins.configurationbackup.backuplocation.value + 'swapfile_upgrade'):
+					popen("swapoff " + config.plugins.configurationbackup.backuplocation.value + "swapfile_upgrade")
+					remove(config.plugins.configurationbackup.backuplocation.value + 'swapfile_upgrade')
+
 				self.package.setText(_("Done - Installed or upgraded %d packages") % self.packages)
 				self.status.setText(self.oktext)
 			else:
