@@ -160,12 +160,12 @@ class InfoBarShowHide:
 		self.onHide.append(self.__onHide)
 
 	def LongOKPressed(self):
-		if config.plugins.QuickEPG.mode.value == "1":
+		if config.vixsettings.QuickEPG_mode.value == "1":
 			self.openInfoBarEPG()
 
 	def ExitPressed(self):
 		if self.__state == self.STATE_HIDDEN:
-			if config.plugins.QuickEPG.mode.value == "2":
+			if config.vixsettings.QuickEPG_mode.value == "2":
 				self.openInfoBarEPG()
 			else:
 				self.hide()
@@ -523,13 +523,13 @@ class InfoBarChannelSelection:
 			})
 
 	def LeftPressed(self):
-		if config.plugins.QuickEPG.mode.value == "3":
+		if config.vixsettings.QuickEPG_mode.value == "3":
 			self.openInfoBarEPG()
 		else:
 			self.zapUp()
 
 	def RightPressed(self):
-		if config.plugins.QuickEPG.mode.value == "3":
+		if config.vixsettings.QuickEPG_mode.value == "3":
 			self.openInfoBarEPG()
 		else:
 			self.zapDown()
@@ -745,23 +745,23 @@ class InfoBarEPG:
 		if self.box_type == 'et9000' or self.box_type == 'et5000':
 			self.openEventView()
 		else:
-			if config.plugins.ViXEPG.mode.value == "vixepg":
+			if config.vixsettings.ViXEPG_mode.value == "vixepg":
 				self.showVIXEPG()
-			elif config.plugins.ViXEPG.mode.value == "multi":
+			elif config.vixsettings.ViXEPG_mode.value == "multi":
 				self.openMultiServiceEPG()
-			elif config.plugins.ViXEPG.mode.value == "single":
+			elif config.vixsettings.ViXEPG_mode.value == "single":
 				self.openSingleServiceEPG()
-			elif config.plugins.ViXEPG.mode.value == "cooltvguide":
+			elif config.vixsettings.ViXEPG_mode.value == "cooltvguide":
 				self.showCoolTVGuide()
 
 	def EPGPressed(self):
-		if config.plugins.ViXEPG.mode.value == "vixepg":
+		if config.vixsettings.ViXEPG_mode.value == "vixepg":
 			self.showVIXEPG()
-		elif config.plugins.ViXEPG.mode.value == "multi":
+		elif config.vixsettings.ViXEPG_mode.value == "multi":
 			self.openMultiServiceEPG()
-		elif config.plugins.ViXEPG.mode.value == "single":
+		elif config.vixsettings.ViXEPG_mode.value == "single":
 			self.openSingleServiceEPG()
-		elif config.plugins.ViXEPG.mode.value == "cooltvguide":
+		elif config.vixsettings.ViXEPG_mode.value == "cooltvguide":
 			self.showCoolTVGuide()
 
 	def showEventInfoWhenNotVisible(self):
@@ -1600,7 +1600,7 @@ class InfoBarExtensions:
 			}, 1) # lower priority
 
 	def RedPressed(self):
-		if config.plugins.ViXEPG.mode.value == "vixepg":
+		if config.vixsettings.ViXEPG_mode.value == "vixepg":
 			self.openSingleServiceEPG()
 		else:
 			self.showVIXEPG()

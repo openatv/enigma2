@@ -462,22 +462,17 @@ def InitUsageConfig():
 					("BouquetList", _("Show Bouquet List"))])
 	config.vixsettings.Subservice = ConfigYesNo(default = False)
 	config.vixsettings.ColouredButtons = ConfigYesNo(default = True)
-
-	config.plugins.QuickEPG = ConfigSubsection()
-	config.plugins.QuickEPG.mode = ConfigSelection(default="3", choices = [
-					("0", _("as plugin in extended bar")),
-					("1", _("with long OK press")),
-					("2", _("with exit button")),
-					("3", _("with left/right buttons"))])
-	config.plugins.QuickEPG.curref = ConfigText()
-	config.plugins.QuickEPG.curbouquet = ConfigText()
-
-	config.plugins.ViXEPG = ConfigSubsection()
-	config.plugins.ViXEPG.mode = ConfigSelection(default="vixepg", choices = [
+	config.vixsettings.ViXEPG_mode = ConfigSelection(default="vixepg", choices = [
 					("vixepg", _("Show ViX EPG")),
 					("single", _("Show ViX Single EPG")),
 					("multi", _("Show Multi EPG")),
 					("cooltvguide", _("Show CoolTVGuide"))])
+	config.vixsettings.QuickEPG_mode = ConfigSelection(default="3", choices = [
+					("0", _("as plugin in extended bar")),
+					("1", _("with long OK press")),
+					("2", _("with exit button")),
+					("3", _("with left/right buttons"))])
+
 def updateChoices(sel, choices):
 	if choices:
 		defval = None
