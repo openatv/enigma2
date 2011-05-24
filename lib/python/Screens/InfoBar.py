@@ -57,7 +57,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 				"openIMDB": (self.openIMDB, _("Show the tv player...")),
 			}, prio=2)
 		
-		if config.plugins.ViXEPG.mode.value == "vixepg":
+		if config.vixsettings.ViXEPG_mode.value == "vixepg":
 			self["key_red"] = Label("Single EPG")
 		else:
 			self["key_red"] = Label("ViX EPG")
