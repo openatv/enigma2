@@ -41,7 +41,7 @@ class ScrollLabel(HTMLComponent, GUIComponent):
 		self.scrollbar.setRange(0,100)
 		self.scrollbar.setBorderWidth(1)
 		self.long_text.move(ePoint(0,0))
-		self.long_text.resize(eSize(s.width()-30, self.pageHeight*16))
+		self.long_text.resize(eSize(s.width()-30, self.pageHeight*40))
 		self.setText(self.message)
 		return ret
 
