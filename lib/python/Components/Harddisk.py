@@ -529,7 +529,12 @@ class HarddiskManager:
 					("/media/usb", _("USB Stick")),
 					("/", _("Internal Flash"))
 				]
-
+		try:
+			netmount = listdir('/media/net')
+			for fil in netmount:
+				p.append(('/media/net/' + fil, fil))
+		except:
+			pass
 		self.partitions.extend([ Partition(mountpoint = x[0], description = x[1]) for x in p ])
 
 	def getBlockDevInfo(self, blockdev):
