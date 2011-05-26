@@ -11,7 +11,11 @@ if [ -d /home/root ]; then
 	cd /home/root
 fi
 
-LD_PRELOAD=@libdir@/libopen.so.0.0.0 @bindir@/enigma2
+if [ $(grep config.crash.enabledebug /etc/enigma2/settings) == "config.crash.enabledebug=true" ]; then
+ 	LD_PRELOAD=@libdir@/libopen.so.0.0.0 @bindir@/enigma2 &>$(grep config.crash.debug_path /etc/enigma2/settings)Enigma2-$(date +%d-%m-%Y_%H-%M-%S).log
+else
+ 	LD_PRELOAD=@libdir@/libopen.so.0.0.0 @bindir@/enigma2
+fi
 
 # enigma2 exit codes:
 #

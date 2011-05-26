@@ -52,10 +52,11 @@
 		<item level="2" text="Disable background scanning">config.misc.disable_background_scan</item>
 		<item level="2" text="Show background in Radio Mode">config.misc.showradiopic</item>
 	</setup>
-	<setup key="logs" title="Logs">
+	<setup key="logs" title="Settings...">
 		<item level="2" text="Create more detailed crash log">config.crash.details</item>
 		<item level="2" text="Enable Debug log">config.crash.enabledebug</item>
 		<item level="2" text="Limit Debug log size (MB)">config.crash.debugloglimit</item>
+		<item level="2" text="Debug Log location">config.crash.debug_path</item>
 	</setup>
 	<setup key="epgsetup" title="Settings...">
 		<item level="2" text="EPG location">config.epg.epgcache_path</item>

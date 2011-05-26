@@ -4,7 +4,6 @@ from Tools.Directories import resolveFilename, SCOPE_HDD
 from enigma import setTunerTypePriorityOrder, setPreferredTuner, setSpinnerOnOff, setEnableTtCachingOnOff;
 from enigma import Misc_Options, eEnv;
 from Components.NimManager import nimmanager
-from Components.Harddisk import harddiskmanager
 from SystemInfo import SystemInfo
 from Tools.Directories import pathExists
 import os
@@ -164,10 +163,9 @@ def InitUsageConfig():
 			else:
 				epgdata.append((d + '/', p.mountpoint))
 	if len(epgdata):
-		config.epg.epgcache_path = ConfigSelection(default = "/etc/enigma2/", choices = epgdata)
+		config.epg.epgcache_path = ConfigSelection(default = "/media/hdd/", choices = epgdata)
 
 	config.epg.epgcache_filename = ConfigText(default='epg.dat', fixed_size=False)
-	config.misc.epgcache_filename = ConfigText(default = "/hdd/epg.dat")
 	config.misc.epgcache_filename.value = config.epg.epgcache_path.value + config.epg.epgcache_filename.value
 	config.misc.epgcache_filename.addNotifier(EpgSettingsChanged)
 
@@ -210,49 +208,16 @@ def InitUsageConfig():
 	config.crash.enabledebug = ConfigYesNo(default = False)
 	config.crash.debugloglimit = ConfigNumber(default=4)
 	
-	if config.crash.enabledebug.value:
-		inputfile = "/usr/bin/enigma2.sh"
-		outputfile = inputfile+'.tmp'
-		stext = 'LD_PRELOAD=/usr/lib/libopen.so.0.0.0 /usr/bin/enigma2\n'
-		rtext = 'LD_PRELOAD=/usr/lib/libopen.so.0.0.0 /usr/bin/enigma2 &>/home/root/Enigma2-$(date +%d-%m-%Y_%H-%M-%S).log\n'
-		input = open(inputfile)
-		output = open(outputfile,'w')
-		for s in input:
-			output.write(s.replace(stext,rtext))
-		output.close()
-		input.close()
-		os.remove(inputfile)
-		os.rename(outputfile,inputfile)
-		os.chmod('/usr/bin/enigma2.sh',0755)
-		filename = ""
-		for filename in glob('/home/root/*.log') :
-			if os.path.getsize(filename) > (config.crash.debugloglimit.value * 1024 * 1024):
-				fh = open(filename, 'rb+')
-				fh.seek(-(config.crash.debugloglimit.value * 1024 * 1024), 2)
-				data = fh.read()
-				fh.seek(0) # rewind
-				fh.write(data)
-				fh.truncate()
-				fh.close()
-		print '[DEBUG LOG] Enabled'
-	elif not config.crash.enabledebug.value:
-		inputfile = "/usr/bin/enigma2.sh"
-		outputfile = inputfile+'.tmp'
-		stext = 'LD_PRELOAD=/usr/lib/libopen.so.0.0.0 /usr/bin/enigma2 /usr/bin/enigma2 &>/home/root/Enigma2-$(date +%d-%m-%Y_%H-%M-%S).log\n'
-		rtext = 'LD_PRELOAD=/usr/lib/libopen.so.0.0.0 /usr/bin/enigma2\n'
-		input = open(inputfile)
-		output = open(outputfile,'w')
-		for s in input:
-			output.write(s.replace(stext,rtext))
-		output.close()
-		input.close()
-		os.remove(inputfile)
-		os.rename(outputfile,inputfile)
-		os.chmod('/usr/bin/enigma2.sh',0755)
-		filename = ""
-		for filename in glob('/home/root/*.log') :
-			os.remove(filename)
-		print '[DEBUG LOG] Disabled'
+	crashloglocation = []
+	for p in harddiskmanager.getMountedPartitions():
+		d = os.path.normpath(p.mountpoint)
+		if pathExists(p.mountpoint):
+			if p.mountpoint == '/':
+				epgdata.append(('/home/root/','/home/root/'))
+			else:
+				epgdata.append((d + '/', p.mountpoint))
+	if len(epgdata):
+		config.crash.debug_path = ConfigSelection(default = "/home/root/", choices = epgdata)
 
 	config.usage.timerlist_finished_timer_position = ConfigSelection(default = "end", choices = [("beginning", _("at beginning")), ("end", _("at end"))])
 
