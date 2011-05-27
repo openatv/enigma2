@@ -50,11 +50,12 @@ config.misc.isNextRecordTimerAfterEventActionAuto = ConfigYesNo(default=False)
 config.misc.useTransponderTime = ConfigYesNo(default=True)
 config.misc.startCounter = ConfigInteger(default=0) # number of e2 starts...
 config.misc.standbyCounter = NoSave(ConfigInteger(default=0)) # number of standby
-from os import rename
-data = file('/etc/enigma2/settings').read()
-if data.find('epgcache_filename') >= 0:
-	file('/etc/enigma2/settings.tmp', 'w').writelines([l for l in file('/etc/enigma2/settings').readlines() if 'epgcache_filename' not in l])
-	rename('/etc/enigma2/settings.tmp','/etc/enigma2/settings')
+from os import rename, path
+if path.exists('/etc/enigma2/settings'):
+	data = file('/etc/enigma2/settings').read()
+	if data.find('epgcache_filename') >= 0:
+		file('/etc/enigma2/settings.tmp', 'w').writelines([l for l in file('/etc/enigma2/settings').readlines() if 'epgcache_filename' not in l])
+		rename('/etc/enigma2/settings.tmp','/etc/enigma2/settings')
 config.misc.epgcache_filename = ConfigText(default = "/media/hdd/epg.dat")
 
 def setEPGCachePath(configElement):
