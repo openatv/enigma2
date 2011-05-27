@@ -7,117 +7,16 @@ from Components.MenuList import MenuList
 from Components.config import config
 from Screens.MessageBox import MessageBox
 from os import path,listdir, remove
+from time import time, localtime
 
-import urllib
+# Import smtplib for the actual sending function
+import smtplib, base64
 
-# Python interface to the Pastebin API
-# More information here: http://pastebin.com/api.php
-# Blog post: http://http://breakingcode.wordpress.com/2010/03/06/using-the-pastebin-api-with-python/
-class Pastebin(object):
-
-    # Valid Pastebin URLs begin with this string
-    prefix_url = 'http://pastebin.com/'
-
-    # Valid Pastebin URLs with a custom subdomain begin with this string
-    subdomain_url = 'http://%s.pastebin.com/' # % paste_subdomain
-
-    # URL to the POST API
-    api_url = 'http://pastebin.com/api_public.php'
-    #api_url = 'http://pastebin.com/api/api_post.php'
-
-    # Valid paste_expire_date values
-    paste_expire_date = ('N', '10M', '1H', '1D', '1M')
-
-    # Valid parse_format values
-    paste_format = (
-        'abap', 'actionscript', 'actionscript3', 'ada', 'apache',
-        'applescript', 'apt_sources', 'asm', 'asp', 'autoit', 'avisynth',
-        'bash', 'basic4gl', 'bibtex', 'blitzbasic', 'bnf', 'boo', 'bf', 'c',
-        'c_mac', 'cill', 'csharp', 'cpp', 'caddcl', 'cadlisp', 'cfdg',
-        'klonec', 'klonecpp', 'cmake', 'cobol', 'cfm', 'css', 'd', 'dcs',
-        'delphi', 'dff', 'div', 'dos', 'dot', 'eiffel', 'email', 'erlang',
-        'fo', 'fortran', 'freebasic', 'gml', 'genero', 'gettext', 'groovy',
-        'haskell', 'hq9plus', 'html4strict', 'idl', 'ini', 'inno', 'intercal',
-        'io', 'java', 'java5', 'javascript', 'kixtart', 'latex', 'lsl2',
-        'lisp', 'locobasic', 'lolcode', 'lotusformulas', 'lotusscript',
-        'lscript', 'lua', 'm68k', 'make', 'matlab', 'matlab', 'mirc',
-        'modula3', 'mpasm', 'mxml', 'mysql', 'text', 'nsis', 'oberon2', 'objc',
-        'ocaml-brief', 'ocaml', 'glsl', 'oobas', 'oracle11', 'oracle8',
-        'pascal', 'pawn', 'per', 'perl', 'php', 'php-brief', 'pic16',
-        'pixelbender', 'plsql', 'povray', 'powershell', 'progress', 'prolog',
-        'properties', 'providex', 'python', 'qbasic', 'rails', 'rebol', 'reg',
-        'robots', 'ruby', 'gnuplot', 'sas', 'scala', 'scheme', 'scilab',
-        'sdlbasic', 'smalltalk', 'smarty', 'sql', 'tsql', 'tcl', 'tcl',
-        'teraterm', 'thinbasic', 'typoscript', 'unreal', 'vbnet', 'verilog',
-        'vhdl', 'vim', 'visualprolog', 'vb', 'visualfoxpro', 'whitespace',
-        'whois', 'winbatch', 'xml', 'xorg_conf', 'xpp', 'z80'
-    )
-
-    # Submit a code snippet to Pastebin
-    @classmethod
-    def submit(cls, paste_code,
-                paste_name = None, paste_subdomain = None,
-                paste_private = None, paste_expire_date = None,
-                paste_format = None, dev_key = None,
-                user_name = None, user_password = None):
-
-        # Code snippet to submit
-        argv = { 'paste_code' : str(paste_code) }
-
-        # Name of the poster
-        if paste_name is not None:
-            argv['paste_name'] = str(paste_name)
-
-	# Developer Key
-        if dev_key is not None:
-            argv['dev_key'] = str(dev_key)
-
-	# User Name
-        if user_name is not None:
-            argv['user_name'] = str(user_name)
-
-	# User Password
-        if user_password is not None:
-            argv['user_password'] = str(user_password)
-
-        # Custom subdomain
-        if paste_subdomain is not None:
-            paste_subdomain = str(paste_subdomain).strip().lower()
-            argv['paste_subdomain'] = paste_subdomain
-
-        # Is the snippet private?
-        if paste_private is not None:
-            argv['paste_private'] = int(bool(int(paste_private)))
-
-        # Expiration for the snippet
-        if paste_expire_date is not None:
-            paste_expire_date = str(paste_expire_date).strip().upper()
-            if not paste_expire_date in cls.paste_expire_date:
-                raise ValueError, "Bad expire date: %s" % paste_expire_date
-
-        # Syntax highlighting
-        if paste_format is not None:
-            paste_format = str(paste_format).strip().lower()
-            if not paste_format in cls.paste_format:
-                raise ValueError, "Bad format: %s" % paste_format
-            argv['paste_format'] = paste_format
-
-        # Make the request to the Pastebin API
-        fd = urllib.urlopen(cls.api_url, urllib.urlencode(argv))
-        try:
-            response = fd.read()
-        finally:
-            fd.close()
-        del fd
-
-        # Return the new snippet URL on success, raise exception on error
-        if argv.has_key('paste_subdomain'):
-            prefix = cls.subdomain_url % paste_subdomain
-        else:
-            prefix = cls.prefix_url
-        if not response.startswith(prefix):
-            raise RuntimeError, response
-        return response
+# Here are the email package modules we'll need
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.Utils import formatdate
+from email import encoders
 
 class LogManager(Screen):
 	skin = """<screen name="LogManager" position="center,center" size="560,400" title="Log Manager" flags="wfBorder">
@@ -213,16 +112,38 @@ class LogManager(Screen):
 		self.populate_List()
 
 	def sendlog(self):
+		ref = str(time())
 		self.sel = self['list'].getCurrent()
 		self["list"].instance.moveSelectionTo(0)
 		if self.logtype == 'crashlogs':
-			data = open('/media/hdd/' + self.sel, 'rb').read()
+			fp = open('/media/hdd/' + self.sel, 'rb')
+			data = MIMEText(fp.read())
+			fp.close()
 		else:
-			data = open(config.crash.debug_path.value + self.sel, 'rb').read()
+			fp = open(config.crash.debug_path.value + self.sel, 'rb')
+			data= MIMEText(fp.read())
+			fp.close()
 			
-		url = Pastebin.submit(paste_code = data, paste_name = 'ViX-Image', dev_key = '99332e2f3765ed8610e3ec3fbea90791', user_name = 'andyblac', user_password = 'x6cAsDdn')
-		self.session.open(MessageBox, _("This is the part you need to post. \n") + url, MessageBox.TYPE_INFO)
-
+		# Create the container (outer) email message.
+		msg = MIMEMultipart()
+		fromuser = 'Andy Blackburn <andyblac@o2.co.uk>'
+		fromlogman = 'ViX Log Manager <vixlogs@world-of-satellite.com>'
+		tovixlogs = 'vixlogs@world-of-satellite.com'
+		msg['From'] = fromlogman
+		msg['To'] = tovixlogs
+		msg['Date'] = formatdate(localtime=True)
+		msg['Subject'] = 'Ref: ' + ref
+		msg.attach(MIMEText('please find attached my crash from', 'plain'))
+		msg.attach(data)
+		# Send the email via our own SMTP server.
+		wos_user = 'vixlogs@world-of-satellite.com'
+		wos_pwd = base64.b64decode('NDJJWnojMEpldUxX')
+		s = smtplib.SMTP("mail.world-of-satellite.com",25)
+		s.login(wos_user, wos_pwd)
+		s.sendmail(fromuser, tovixlogs, msg.as_string())
+		s.quit()
+		self.session.open(MessageBox, _('Log ' + self.sel + ' has been sent to the ViX beta team.\nplease quote ' + ref + ' when asking question about this log'), MessageBox.TYPE_INFO)
+		
 	def myclose(self):
 		self.close()
 			
