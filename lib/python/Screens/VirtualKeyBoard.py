@@ -164,7 +164,8 @@ class VirtualKeyBoard(Screen):
 				"up": self.up,
 				"down": self.down,
 				"red": self.backClicked,
-				"green": self.ok
+				"green": self.ok,
+				"yellow": self.okClicked
 			}, -2)
 		
 		self.onLayoutFinish.append(self.buildVirtualKeyBoard)
