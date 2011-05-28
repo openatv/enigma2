@@ -18,7 +18,7 @@
 
 /************************************************/
 
-#define CRASH_EMAILADDR "crashlog@dream-multimedia-tv.de"
+#define CRASH_EMAILADDR "vixlogs@world-of-satellite.com"
 #define INFOFILE "/maintainer.info"
 
 #define RINGBUFFER_SIZE 16384
@@ -173,7 +173,7 @@ void bsodFatal(const char *component)
 
 		XmlGenerator xml(f);
 
-		xml.open("opendreambox");
+		xml.open("openvix");
 
 		xml.open("enigma2");
 		xml.string("crashdate", tm_str);
@@ -211,7 +211,8 @@ void bsodFatal(const char *component)
 		{
 			xml.open("software");
 			xml.cDataFromCmd("enigma2software", "opkg list_installed 'enigma2*'");
-			xml.cDataFromCmd("dreamboxsoftware", "opkg list_installed 'dream*'");
+			xml.cDataFromCmd("vuplussoftware", "opkg list_installed 'vuplus*'");
+			xml.cDataFromCmd("xtrendsoftware", "opkg list_installed 'et-*'");
 			xml.cDataFromCmd("gstreamersoftware", "opkg list_installed 'gst*'");
 			xml.close();
 		}
