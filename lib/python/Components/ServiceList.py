@@ -237,7 +237,7 @@ class ServiceList(HTMLComponent, GUIComponent):
 		self.mode = mode
 		self.l.setItemHeight(self.ItemHeight)
 		self.l.setVisualMode(eListboxServiceContent.visModeComplex)
-		if mode == self.MODE_NORMAL:
+		if mode == self.MODE_NORMAL or not config.usage.show_channel_numbers_in_servicelist.value:
 			if config.usage.show_event_progress_in_servicelist.value:
 				self.l.setElementPosition(self.l.celServiceEventProgressbar, eRect(0, 0, 52, self.ItemHeight))
 			else:
