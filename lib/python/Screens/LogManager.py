@@ -4,7 +4,10 @@ from Components.Label import Label
 from Components.Button import Button
 from Components.ScrollLabel import ScrollLabel
 from Components.MenuList import MenuList
-from Components.config import config
+from Components.config import getConfigListEntry, config, ConfigText
+from Components.ConfigList import ConfigListScreen, ConfigList
+from Components.Pixmap import Pixmap,MultiPixmap
+from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Screens.MessageBox import MessageBox
 from os import path,listdir, remove
 from time import time, localtime
@@ -20,6 +23,7 @@ from email import encoders
 
 class LogManager(Screen):
 	skin = """<screen name="LogManager" position="center,center" size="560,400" title="Log Manager" flags="wfBorder">
+		<ePixmap pixmap="skin_default/buttons/key_menu.png" position="0,40" zPosition="4" size="35,25" alphatest="on" transparent="1" />
 		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
@@ -36,7 +40,6 @@ class LogManager(Screen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		self["title"] = Label(_("Log Manager"))
 		self.logtype = 'crashlogs'
 		self['myactions'] = ActionMap(['ColorActions', 'OkCancelActions', 'DirectionActions', "TimerEditActions", "MenuActions"],
 			{
@@ -59,7 +62,7 @@ class LogManager(Screen):
 		self['list'] = MenuList(self.emlist)
 
 	def createSetup(self):
-		self.session.open(CrashlogAutoSubmitConfiguration)
+		self.session.open(LogManagerMenu)
 
 	def populate_List(self, answer = False):
 		if self.logtype == 'crashlogs':
@@ -126,8 +129,10 @@ class LogManager(Screen):
 			
 		# Create the container (outer) email message.
 		msg = MIMEMultipart()
-		fromuser = 'Andy Blackburn <andyblac@o2.co.uk>'
-		fromlogman = 'ViX Log Manager <vixlogs@world-of-satellite.com>'
+		if config.vixsettings.user_command.value != " " and config.vixsettings.logmanageruseremail.value != ' ':
+			fromlogman = config.vixsettings.user_command.value + '  <' + config.vixsettings.logmanageruseremail.value + '>'
+		else:
+			fromlogman = 'ViX Log Manager <vixlogs@world-of-satellite.com>'
 		tovixlogs = 'vixlogs@world-of-satellite.com'
 		msg['From'] = fromlogman
 		msg['To'] = tovixlogs
@@ -178,3 +183,99 @@ class LogManagerViewLog(Screen):
 	def cancel(self):
 		self.close()
 
+config.vixsettings.logmanageruser = ConfigText(default=' ', fixed_size=False)
+config.vixsettings.logmanageruseremail = ConfigText(default=' ', fixed_size=False)
+
+class LogManagerMenu(ConfigListScreen, Screen):
+	skin = """
+		<screen name="LogManagerMenu" position="center,center" size="500,285" title="Log Manager Setup">
+			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
+			<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+			<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+			<widget name="key_yellow" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+			<widget name="config" position="10,45" size="480,100" scrollbarMode="showOnDemand" />
+			<widget name="HelpWindow" pixmap="skin_default/vkey_icon.png" position="440,400" zPosition="1" size="1,1" transparent="1" alphatest="on" />
+		</screen>"""
+
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		self.session = session
+		self.skin = LogManagerMenu.skin
+		self.skinName = "LogManagerMenu"
+		self["HelpWindow"] = Pixmap()
+		self["HelpWindow"].hide()
+
+		self.onChangedEntry = [ ]
+		self.list = []
+		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
+		self.createSetup()
+		
+		self["actions"] = ActionMap(["SetupActions", 'ColorActions'],
+		{
+			"cancel": self.keyCancel,
+			"save": self.keySaveNew,
+			'yellow': self.vkeyb
+		}, -2)
+		self["key_red"] = Button(_("Cancel"))
+		self["key_green"] = Button(_("OK"))
+		self['key_yellow'] = Label(_('KeyBoard'))
+
+	def createSetup(self):
+		self.editListEntry = None
+		self.list = []
+		self.list.append(getConfigListEntry(_("User Name"), config.vixsettings.logmanageruser))
+		self.list.append(getConfigListEntry(_("e-Mail address"), config.vixsettings.logmanageruseremail))
+		self["config"].list = self.list
+		self["config"].setList(self.list)
+
+	def keyLeft(self):
+		ConfigListScreen.keyLeft(self)
+		self.createSetup()
+
+	def keyRight(self):
+		ConfigListScreen.keyRight(self)
+		self.createSetup()
+
+	# for summary:
+	def changedEntry(self):
+		for x in self.onChangedEntry:
+			x()
+
+	def getCurrentEntry(self):
+		return self["config"].getCurrent()[0]
+
+	def getCurrentValue(self):
+		return str(self["config"].getCurrent()[1].getText())
+
+	def keySaveNew(self):
+		for x in self["config"].list:
+			x[1].save()
+		self.close()
+
+	def keyCancel(self):
+		for x in self["config"].list:
+			x[1].cancel()
+		self.close()
+
+	def vkeyb(self):
+		sel = self['config'].getCurrent()
+		if sel:
+			self.vkvar = sel[0]
+			self.session.openWithCallback(self.UpdateAgain, VirtualKeyBoard, title=self.vkvar, text=config.vixsettings.logmanageruser.value)
+
+	def UpdateAgain(self, text):
+		self.list = []
+		if text is None or text == '':
+			text = ' '
+		if self.vkvar == "User Name":
+			config.vixsettings.logmanageruser.value = text
+		elif self.vkvar == "e-Mail address":
+			config.vixsettings.logmanageruseremail.value = text
+		self.list = []
+		self.list.append(getConfigListEntry(_("User Name"), config.vixsettings.logmanageruser))
+		self.list.append(getConfigListEntry(_("e-Mail address"), config.vixsettings.logmanageruseremail))
+		self["config"].list = self.list
+		self["config"].setList(self.list)
+		return None
