@@ -92,10 +92,11 @@ class Setup(ConfigListScreen, Screen):
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
 
-		self["actions"] = NumberActionMap(["SetupActions"], 
+		self["actions"] = NumberActionMap(["SetupActions", 'VirtualKeyboardActions'], 
 			{
 				"cancel": self.keyCancel,
 				"save": self.keySave,
+				'showVirtualKeyboard': self.vkeyb,
 			}, -2)
 
 		ConfigListScreen.__init__(self, list, session = session, on_change = self.changedEntry)
@@ -148,6 +149,20 @@ class Setup(ConfigListScreen, Screen):
 				# the second one is converted to string.
 				if not isinstance(item, ConfigNothing):
 					list.append( (item_text, item) )
+
+	def vkeyb(self):
+		sel = self['config'].getCurrent()
+		if sel:
+			self.vkvar = sel[0]
+			if self.vkvar == "EPG filename":
+				self.session.openWithCallback(self.UpdateAgain, VirtualKeyBoard, title=self.vkvar, text=config.epg.epgcache_filename.value)
+
+	def UpdateAgain(self, text):
+		if text is None or text == '':
+			text = ''
+		if self.vkvar == "EPG filename":
+			config.epg.epgcache_filename.value = text
+		self.changedEntry()
 
 def getSetupTitle(id):
 	xmldata = setupdom.getroot()
