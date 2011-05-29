@@ -29,7 +29,7 @@ from Tools.LoadPixmap import LoadPixmap
 from Tools.NumericalTextInput import NumericalTextInput
 from enigma import eTimer, quitMainloop, RT_HALIGN_LEFT, RT_VALIGN_CENTER, eListboxPythonMultiContent, eListbox, gFont, getDesktop, ePicLoad, eRCInput, getPrevAsciiCode, eEnv
 from cPickle import dump, load
-from os import path as os_path, system as os_system, unlink, stat, mkdir, popen, makedirs, listdir, access, rename, remove, W_OK, R_OK, F_OK, popen
+from os import path as os_path, system as os_system, unlink, stat, mkdir, popen, makedirs, listdir, access, rename, remove, W_OK, R_OK, F_OK
 from time import time, gmtime, strftime, localtime
 from stat import ST_MTIME
 from datetime import date
@@ -1353,12 +1353,17 @@ class UpdatePlugin(Screen):
 	def __init__(self, session, *args):
 		Screen.__init__(self, session)
 
-		memcheck_stdout = popen('free | grep Total | tr -s " " | cut -d " " -f 4', "r")
-		memcheck = memcheck_stdout.read()
-		if int(memcheck) < 61440:
-			popen("dd if=/dev/zero of=" + config.plugins.configurationbackup.backuplocation.value + "swapfile_upgrade bs=1024 count=16440")
-			popen("mkswap " + config.plugins.configurationbackup.backuplocation.value + "swapfile_upgrade")
-			popen("swapon " + config.plugins.configurationbackup.backuplocation.value + "swapfile_upgrade")
+		try:
+			memcheck_stdout = popen('free | grep Total | tr -s " " | cut -d " " -f 4', "r")
+			memcheck = memcheck_stdout.read()
+			if int(memcheck) < 61440:
+				os_system("dd if=/dev/zero of=" + config.plugins.configurationbackup.backuplocation.value + "swapfile_upgrade bs=1024 count=16440")
+				os_system("mkswap " + config.plugins.configurationbackup.backuplocation.value + "swapfile_upgrade")
+				os_system("swapon " + config.plugins.configurationbackup.backuplocation.value + "swapfile_upgrade")
+		except:
+			os_system("dd if=/dev/zero of=" + config.plugins.configurationbackup.backuplocation.value + "swapfile_upgrade bs=1024 count=16440")
+			os_system("mkswap " + config.plugins.configurationbackup.backuplocation.value + "swapfile_upgrade")
+			os_system("swapon " + config.plugins.configurationbackup.backuplocation.value + "swapfile_upgrade")
 
 		self.sliderPackages = { "dreambox-dvb-modules": 1, "enigma2": 2, "tuxbox-image-info": 3 }
 
