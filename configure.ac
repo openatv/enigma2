@@ -251,8 +251,6 @@ lib/python/Plugins/SystemPlugins/CleanupWizard/Makefile
 lib/python/Plugins/SystemPlugins/CleanupWizard/meta/Makefile
 lib/python/Plugins/SystemPlugins/CommonInterfaceAssignment/Makefile
 lib/python/Plugins/SystemPlugins/CommonInterfaceAssignment/meta/Makefile
-lib/python/Plugins/SystemPlugins/CrashlogAutoSubmit/Makefile
-lib/python/Plugins/SystemPlugins/CrashlogAutoSubmit/meta/Makefile
 lib/python/Plugins/SystemPlugins/DefaultServicesScanner/Makefile
 lib/python/Plugins/SystemPlugins/DefaultServicesScanner/meta/Makefile
 lib/python/Plugins/SystemPlugins/DiseqcTester/Makefile
