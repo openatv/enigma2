@@ -4,7 +4,7 @@ from Components.Label import Label
 from Components.Button import Button
 from Components.ScrollLabel import ScrollLabel
 from Components.MenuList import MenuList
-from Components.config import getConfigListEntry, config, ConfigText
+from Components.config import getConfigListEntry, config, ConfigText, ConfigYesNo
 from Components.ConfigList import ConfigListScreen, ConfigList
 from Components.Pixmap import Pixmap,MultiPixmap
 from Screens.VirtualKeyBoard import VirtualKeyBoard
@@ -23,7 +23,7 @@ from email import encoders
 
 class LogManager(Screen):
 	skin = """<screen name="LogManager" position="center,center" size="560,400" title="Log Manager" flags="wfBorder">
-		<ePixmap pixmap="skin_default/buttons/key_menu.png" position="0,40" zPosition="4" size="35,25" alphatest="on" transparent="1" />
+		<ePixmap pixmap="skin_default/buttons/key_menu.png" position="0,35" zPosition="4" size="35,25" alphatest="on" transparent="1" />
 		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
@@ -32,7 +32,7 @@ class LogManager(Screen):
 		<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
 		<widget name="key_yellow" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
 		<widget name="key_blue" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-		<widget name="list" position="0,60" size="560,340" transparent="0" scrollbarMode="showOnDemand" />
+		<widget name="list" position="0,70" size="560,325" transparent="0" scrollbarMode="showOnDemand" />
 		<applet type="onLayoutFinish">
 			self["list"].instance.setItemHeight(25)
 		</applet>
@@ -93,7 +93,8 @@ class LogManager(Screen):
 
 	def showLog(self):
 		self.sel = self['list'].getCurrent()
-		self.session.open(LogManagerViewLog, self.sel, self.logtype)
+		if self.sel:
+			self.session.open(LogManagerViewLog, self.sel, self.logtype)
 
 	def deletelog(self):
 		self.sel = self['list'].getCurrent()
@@ -129,13 +130,14 @@ class LogManager(Screen):
 			
 		# Create the container (outer) email message.
 		msg = MIMEMultipart()
-		if config.vixsettings.user_command.value != " " and config.vixsettings.logmanageruseremail.value != ' ':
-			fromlogman = config.vixsettings.user_command.value + '  <' + config.vixsettings.logmanageruseremail.value + '>'
+		if config.vixsettings.logmanageruser.value != '' and config.vixsettings.logmanageruseremail.value != '':
+			fromlogman = config.vixsettings.logmanageruser.value + '  <' + config.vixsettings.logmanageruseremail.value + '>'
 		else:
 			fromlogman = 'ViX Log Manager <vixlogs@world-of-satellite.com>'
 		tovixlogs = 'vixlogs@world-of-satellite.com'
 		msg['From'] = fromlogman
 		msg['To'] = tovixlogs
+		msg['Cc'] = fromlogman
 		msg['Date'] = formatdate(localtime=True)
 		msg['Subject'] = 'Ref: ' + ref
 		msg.attach(MIMEText('please find attached my crash from', 'plain'))
@@ -143,11 +145,22 @@ class LogManager(Screen):
 		# Send the email via our own SMTP server.
 		wos_user = 'vixlogs@world-of-satellite.com'
 		wos_pwd = base64.b64decode('NDJJWnojMEpldUxX')
-		s = smtplib.SMTP("mail.world-of-satellite.com",25)
-		s.login(wos_user, wos_pwd)
-		s.sendmail(fromuser, tovixlogs, msg.as_string())
-		s.quit()
-		self.session.open(MessageBox, _('Log ' + self.sel + ' has been sent to the ViX beta team.\nplease quote ' + ref + ' when asking question about this log'), MessageBox.TYPE_INFO)
+
+		try:
+			print "connecting to server: mail.world-of-satellite.com"
+			#socket.setdefaulttimeout(30)
+			s = smtplib.SMTP("mail.world-of-satellite.com",26)
+			s.login(wos_user, wos_pwd)
+			if config.vixsettings.logmanagerusersendcopy.value:
+				s.sendmail(fromlogman, [tovixlogs, fromlogman], msg.as_string())
+				s.quit()
+				self.session.open(MessageBox, _('Log ' + self.sel + ' has been sent to the ViX beta team.\nplease quote ' + ref + ' when asking question about this log\n\nA copy has been sent to yourself.'), MessageBox.TYPE_INFO)
+			else:
+				s.sendmail(fromlogman, tovixlogs, msg.as_string())
+				s.quit()
+				self.session.open(MessageBox, _('Log ' + self.sel + ' has been sent to the ViX beta team.\nplease quote ' + ref + ' when asking question about this log'), MessageBox.TYPE_INFO)
+		except Exception,e:
+			self.session.open(MessageBox, _("Error:\n%s" % e), MessageBox.TYPE_INFO, timeout = 10)
 		
 	def myclose(self):
 		self.close()
@@ -155,9 +168,9 @@ class LogManager(Screen):
 
 class LogManagerViewLog(Screen):
 	skin = """
-<screen name="LogManagerViewLog" position="center,center" size="700,400" title="Log Manager" >
-	<widget name="list" position="0,0" size="700,400" font="Console;14" />
-</screen>"""
+		<screen name="LogManagerViewLog" position="center,center" size="700,400" title="Log Manager" >
+			<widget name="list" position="0,0" size="700,400" font="Console;14" />
+		</screen>"""
 	def __init__(self, session, selected, logtype):
 		self.session = session
 		Screen.__init__(self, session)
@@ -183,20 +196,20 @@ class LogManagerViewLog(Screen):
 	def cancel(self):
 		self.close()
 
-config.vixsettings.logmanageruser = ConfigText(default=' ', fixed_size=False)
-config.vixsettings.logmanageruseremail = ConfigText(default=' ', fixed_size=False)
+config.vixsettings.logmanageruser = ConfigText(default='', fixed_size=False)
+config.vixsettings.logmanageruseremail = ConfigText(default='', fixed_size=False)
+config.vixsettings.logmanagerusersendcopy = ConfigYesNo(default = True)
 
 class LogManagerMenu(ConfigListScreen, Screen):
 	skin = """
 		<screen name="LogManagerMenu" position="center,center" size="500,285" title="Log Manager Setup">
 			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
 			<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
 			<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-			<widget name="key_yellow" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
 			<widget name="config" position="10,45" size="480,100" scrollbarMode="showOnDemand" />
 			<widget name="HelpWindow" pixmap="skin_default/vkey_icon.png" position="440,400" zPosition="1" size="1,1" transparent="1" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/key_text.png" position="290,5" zPosition="4" size="35,25" alphatest="on" transparent="1" />
 		</screen>"""
 
 	def __init__(self, session):
@@ -212,21 +225,21 @@ class LogManagerMenu(ConfigListScreen, Screen):
 		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
 		self.createSetup()
 		
-		self["actions"] = ActionMap(["SetupActions", 'ColorActions'],
+		self["actions"] = ActionMap(["SetupActions", 'ColorActions', 'VirtualKeyboardActions'],
 		{
 			"cancel": self.keyCancel,
 			"save": self.keySaveNew,
-			'yellow': self.vkeyb
+			'showVirtualKeyboard': self.vkeyb
 		}, -2)
 		self["key_red"] = Button(_("Cancel"))
 		self["key_green"] = Button(_("OK"))
-		self['key_yellow'] = Label(_('KeyBoard'))
 
 	def createSetup(self):
 		self.editListEntry = None
 		self.list = []
 		self.list.append(getConfigListEntry(_("User Name"), config.vixsettings.logmanageruser))
 		self.list.append(getConfigListEntry(_("e-Mail address"), config.vixsettings.logmanageruseremail))
+		self.list.append(getConfigListEntry(_("Send yourself a copy ?"), config.vixsettings.logmanagerusersendcopy))
 		self["config"].list = self.list
 		self["config"].setList(self.list)
 
@@ -263,12 +276,15 @@ class LogManagerMenu(ConfigListScreen, Screen):
 		sel = self['config'].getCurrent()
 		if sel:
 			self.vkvar = sel[0]
-			self.session.openWithCallback(self.UpdateAgain, VirtualKeyBoard, title=self.vkvar, text=config.vixsettings.logmanageruser.value)
+			if self.vkvar == "User Name":
+				self.session.openWithCallback(self.UpdateAgain, VirtualKeyBoard, title=self.vkvar, text=config.vixsettings.logmanageruser.value)
+			elif self.vkvar == "e-Mail address":
+				self.session.openWithCallback(self.UpdateAgain, VirtualKeyBoard, title=self.vkvar, text=config.vixsettings.logmanageruseremail.value)
 
 	def UpdateAgain(self, text):
 		self.list = []
 		if text is None or text == '':
-			text = ' '
+			text = ''
 		if self.vkvar == "User Name":
 			config.vixsettings.logmanageruser.value = text
 		elif self.vkvar == "e-Mail address":
@@ -276,6 +292,7 @@ class LogManagerMenu(ConfigListScreen, Screen):
 		self.list = []
 		self.list.append(getConfigListEntry(_("User Name"), config.vixsettings.logmanageruser))
 		self.list.append(getConfigListEntry(_("e-Mail address"), config.vixsettings.logmanageruseremail))
+		self.list.append(getConfigListEntry(_("Send yourself a copy ?"), config.vixsettings.logmanagerusersendcopy))
 		self["config"].list = self.list
 		self["config"].setList(self.list)
 		return None
