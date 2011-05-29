@@ -30,7 +30,7 @@ SUBDIRS += TempFanControl
 endif
 
 if DREAMBOX
-SUBDIRS += FrontprocessorUpgrade NFIFlash SatelliteEquipmentControl DiseqcTester CableScan FastScan OSDPositionSetup OSD3DSetup CrashlogAutoSubmit
+SUBDIRS += FrontprocessorUpgrade NFIFlash SatelliteEquipmentControl DiseqcTester CableScan FastScan OSDPositionSetup OSD3DSetup
 endif
 
 install_PYTHON =	\
