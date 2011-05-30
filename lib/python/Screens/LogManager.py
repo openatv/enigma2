@@ -229,7 +229,7 @@ class LogManagerMenu(ConfigListScreen, Screen):
 		{
 			"cancel": self.keyCancel,
 			"save": self.keySaveNew,
-			'showVirtualKeyboard': self.vkeyb
+			'showVirtualKeyboard': self.KeyText
 		}, -2)
 		self["key_red"] = Button(_("Cancel"))
 		self["key_green"] = Button(_("OK"))
@@ -272,27 +272,11 @@ class LogManagerMenu(ConfigListScreen, Screen):
 			x[1].cancel()
 		self.close()
 
-	def vkeyb(self):
-		sel = self['config'].getCurrent()
-		if sel:
-			self.vkvar = sel[0]
-			if self.vkvar == "User Name":
-				self.session.openWithCallback(self.UpdateAgain, VirtualKeyBoard, title=self.vkvar, text=config.vixsettings.logmanageruser.value)
-			elif self.vkvar == "e-Mail address":
-				self.session.openWithCallback(self.UpdateAgain, VirtualKeyBoard, title=self.vkvar, text=config.vixsettings.logmanageruseremail.value)
+	def KeyText(self):
+		from Screens.VirtualKeyBoard import VirtualKeyBoard
+		self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title = self["config"].getCurrent()[0], text = self["config"].getCurrent()[1].getValue())
 
-	def UpdateAgain(self, text):
-		self.list = []
-		if text is None or text == '':
-			text = ''
-		if self.vkvar == "User Name":
-			config.vixsettings.logmanageruser.value = text
-		elif self.vkvar == "e-Mail address":
-			config.vixsettings.logmanageruseremail.value = text
-		self.list = []
-		self.list.append(getConfigListEntry(_("User Name"), config.vixsettings.logmanageruser))
-		self.list.append(getConfigListEntry(_("e-Mail address"), config.vixsettings.logmanageruseremail))
-		self.list.append(getConfigListEntry(_("Send yourself a copy ?"), config.vixsettings.logmanagerusersendcopy))
-		self["config"].list = self.list
-		self["config"].setList(self.list)
-		return None
+	def VirtualKeyBoardCallback(self, callback = None):
+		if callback is not None and len(callback):
+			self["config"].getCurrent()[1].setValue(callback)
+			self["config"].invalidate(self["config"].getCurrent())
