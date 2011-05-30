@@ -1,11 +1,12 @@
 from Screen import Screen
-from Components.ActionMap import NumberActionMap
+from Components.ActionMap import NumberActionMap, ActionMap
 from Components.config import config, ConfigNothing
 from Components.SystemInfo import SystemInfo
 from Components.ConfigList import ConfigListScreen
 from Components.Pixmap import Pixmap,MultiPixmap
 from Components.Sources.StaticText import StaticText
 from Screens.VirtualKeyBoard import VirtualKeyBoard
+from Components.Sources.Boolean import Boolean
 
 from enigma import eEnv
 
@@ -81,6 +82,7 @@ class Setup(ConfigListScreen, Screen):
 
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
+		self["VKeyIcon"] = Boolean(False)
 
 		self.onChangedEntry = [ ]
 
@@ -92,17 +94,59 @@ class Setup(ConfigListScreen, Screen):
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
 
-		self["actions"] = NumberActionMap(["SetupActions", 'VirtualKeyboardActions'], 
+		self["actions"] = NumberActionMap(["SetupActions"], 
 			{
 				"cancel": self.keyCancel,
 				"save": self.keySave,
-				'showVirtualKeyboard': self.vkeyb,
 			}, -2)
 
+		self["VirtualKB"] = ActionMap(["VirtualKeyboardActions"],
+		{
+			"showVirtualKeyboard": self.KeyText,
+		}, -2)
+		self["VirtualKB"].setEnabled(False)
+		
 		ConfigListScreen.__init__(self, list, session = session, on_change = self.changedEntry)
 
+		if not self.handleInputHelpers in self["config"].onSelectionChanged:
+			self["config"].onSelectionChanged.append(self.handleInputHelpers)
 		self.changedEntry()
 		self.onLayoutFinish.append(self.layoutFinished)
+
+	def handleInputHelpers(self):
+		if self["config"].getCurrent() is not None:
+			try:
+				from Components.config import ConfigText, ConfigPassword
+				if isinstance(self["config"].getCurrent()[1], ConfigText) or isinstance(self["config"].getCurrent()[1], ConfigPassword):
+					if self.has_key("VKeyIcon"):
+						self["VirtualKB"].setEnabled(True)
+						self["VKeyIcon"].boolean = True
+					if self.has_key("HelpWindow"):
+						if self["config"].getCurrent()[1].help_window.instance is not None:
+							helpwindowpos = self["HelpWindow"].getPosition()
+							from enigma import ePoint
+							self["config"].getCurrent()[1].help_window.instance.move(ePoint(helpwindowpos[0],helpwindowpos[1]))
+				else:
+					if self.has_key("VKeyIcon"):
+						self["VirtualKB"].setEnabled(False)
+						self["VKeyIcon"].boolean = False
+			except:
+				if self.has_key("VKeyIcon"):
+					self["VirtualKB"].setEnabled(False)
+					self["VKeyIcon"].boolean = False
+		else:
+			if self.has_key("VKeyIcon"):
+				self["VirtualKB"].setEnabled(False)
+				self["VKeyIcon"].boolean = False
+
+	def KeyText(self):
+		from Screens.VirtualKeyBoard import VirtualKeyBoard
+		self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title = self["config"].getCurrent()[0], text = self["config"].getCurrent()[1].getValue())
+
+	def VirtualKeyBoardCallback(self, callback = None):
+		if callback is not None and len(callback):
+			self["config"].getCurrent()[1].setValue(callback)
+			self["config"].invalidate(self["config"].getCurrent())
 
 	def layoutFinished(self):
 		self.setTitle(_(self.setup_title))
@@ -149,20 +193,6 @@ class Setup(ConfigListScreen, Screen):
 				# the second one is converted to string.
 				if not isinstance(item, ConfigNothing):
 					list.append( (item_text, item) )
-
-	def vkeyb(self):
-		sel = self['config'].getCurrent()
-		if sel:
-			self.vkvar = sel[0]
-			if self.vkvar == "EPG filename":
-				self.session.openWithCallback(self.UpdateAgain, VirtualKeyBoard, title=self.vkvar, text=config.epg.epgcache_filename.value)
-
-	def UpdateAgain(self, text):
-		if text is None or text == '':
-			text = ''
-		if self.vkvar == "EPG filename":
-			config.epg.epgcache_filename.value = text
-		self.changedEntry()
 
 def getSetupTitle(id):
 	xmldata = setupdom.getroot()
