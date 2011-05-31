@@ -43,6 +43,16 @@ from Tools.Directories import InitFallbackFiles, resolveFilename, SCOPE_PLUGINS,
 from Components.config import config, configfile, ConfigText, ConfigYesNo, ConfigInteger, NoSave
 InitFallbackFiles()
 
+profile("UsageConfig")
+from os import rename, path
+if path.exists('/etc/enigma2/settings'):
+	data = file('/etc/enigma2/settings').read()
+	if data.find('epgcache_filename') >= 0:
+		file('/etc/enigma2/settings.tmp', 'w').writelines([l for l in file('/etc/enigma2/settings').readlines() if 'epgcache_filename' not in l])
+		rename('/etc/enigma2/settings.tmp','/etc/enigma2/settings')
+import Components.UsageConfig
+Components.UsageConfig.InitUsageConfig()
+
 profile("config.misc")
 config.misc.radiopic = ConfigText(default = resolveFilename(SCOPE_CURRENT_SKIN, "radio.mvi"))
 config.misc.blackradiopic = ConfigText(default = resolveFilename(SCOPE_CURRENT_SKIN, "black.mvi"))
@@ -50,13 +60,6 @@ config.misc.isNextRecordTimerAfterEventActionAuto = ConfigYesNo(default=False)
 config.misc.useTransponderTime = ConfigYesNo(default=True)
 config.misc.startCounter = ConfigInteger(default=0) # number of e2 starts...
 config.misc.standbyCounter = NoSave(ConfigInteger(default=0)) # number of standby
-from os import rename, path
-if path.exists('/etc/enigma2/settings'):
-	data = file('/etc/enigma2/settings').read()
-	if data.find('epgcache_filename') >= 0:
-		file('/etc/enigma2/settings.tmp', 'w').writelines([l for l in file('/etc/enigma2/settings').readlines() if 'epgcache_filename' not in l])
-		rename('/etc/enigma2/settings.tmp','/etc/enigma2/settings')
-config.misc.epgcache_filename = ConfigText(default = "/media/hdd/epg.dat")
 
 def setEPGCachePath(configElement):
 	enigma.eEPGCache.getInstance().setCacheFile(configElement.value)
@@ -553,10 +556,6 @@ Components.AVSwitch.InitAVSwitch()
 profile("RecordingConfig")
 import Components.RecordingConfig
 Components.RecordingConfig.InitRecordingConfig()
-
-profile("UsageConfig")
-import Components.UsageConfig
-Components.UsageConfig.InitUsageConfig()
 
 profile("Init:OnlineUpdateCheck")
 import Components.OnlineUpdateCheck
