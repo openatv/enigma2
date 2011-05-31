@@ -154,19 +154,19 @@ def InitUsageConfig():
 	config.epg.viasat.addNotifier(EpgSettingsChanged)
 	config.epg.netmed.addNotifier(EpgSettingsChanged)
 
-	epgdata = []
+	epgdata = [('/etc/enigma2/', 'Internal Flash')]
 	for p in harddiskmanager.getMountedPartitions():
 		d = os.path.normpath(p.mountpoint)
 		if pathExists(p.mountpoint):
-			if p.mountpoint == '/':
-				epgdata.append(('/etc/enigma2/', p.description))
-			else:
+			if p.mountpoint != '/':
 				epgdata.append((d + '/', p.mountpoint))
-	if len(epgdata):
-		config.epg.epgcache_path = ConfigSelection(default = "/media/hdd/", choices = epgdata)
+		config.epg.epgcache_path = ConfigSelection(default = "/etc/enigma2/", choices = epgdata)
+		config.epg.epgcache_path.addNotifier(EpgSettingsChanged)
 
 	config.epg.epgcache_filename = ConfigText(default='epg.dat', fixed_size=False)
-	config.misc.epgcache_filename.value = config.epg.epgcache_path.value + config.epg.epgcache_filename.value
+	config.epg.epgcache_filename.addNotifier(EpgSettingsChanged)
+	config.misc.epgcache_filename = ConfigText(default = (config.epg.epgcache_path.value + config.epg.epgcache_filename.value))
+	config.misc.epgcache_filename.value = (config.epg.epgcache_path.value + config.epg.epgcache_filename.value)
 	config.misc.epgcache_filename.addNotifier(EpgSettingsChanged)
 
 	def setHDDStandby(configElement):
