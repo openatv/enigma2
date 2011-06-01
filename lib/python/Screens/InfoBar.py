@@ -123,22 +123,33 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		self.onShown.remove(self.__checkServiceStarted)
 
 	def openBouquetList(self):
-		self.servicelist.showFavourites()
-		self.session.execDialog(self.servicelist)
-
-	def showTv(self):
-		if config.vixsettings.TVButtonAction.value == "Default":
-			from Screens.ChannelSelection import SimpleChannelSelection
-			self.session.open(SimpleChannelSelection, None)
-		elif config.vixsettings.TVButtonAction.value == "TVList":
-			self.showTvChannelList(True)
-		elif config.vixsettings.TVButtonAction.value == "MovieList":
-			self.showTvChannelList(True)
-			self.showMovies()
-		elif config.vixsettings.TVButtonAction.value == "BouquetList":
+		if config.usage.tvbutton_mode.value == "SimpleTVList":
+			self.showTvSimpleChannelList(True)
+			self.simpleservicelist.showFavourites()
+		elif config.usage.tvbutton_mode.value == "SimpleBouquetList":
+			self.showTvSimpleChannelList(True)
+		elif config.usage.tvbutton_mode.value == "TVList":
 			self.showTvChannelList(True)
 			self.servicelist.showFavourites()
-			self.session.execDialog(self.servicelist)
+		elif config.usage.tvbutton_mode.value == "BouquetList":
+			self.showTvChannelList(True)
+		elif config.usage.tvbutton_mode.value == "MovieList":
+			self.showTvSimpleChannelList(True)
+
+	def showTv(self):
+		if config.usage.tvbutton_mode.value == "SimpleTVList":
+			self.showTvSimpleChannelList(True)
+		elif config.usage.tvbutton_mode.value == "SimpleBouquetList":
+			self.showTvSimpleChannelList(True)
+			self.simpleservicelist.showFavourites()
+		elif config.usage.tvbutton_mode.value == "TVList":
+			self.showTvChannelList(True)
+		elif config.usage.tvbutton_mode.value == "BouquetList":
+			self.showTvChannelList(True)
+			self.servicelist.showFavourites()
+		elif config.usage.tvbutton_mode.value == "MovieList":
+			self.showTvChannelList(True)
+			self.showMovies()
 
 	def showRadio(self):
 		if config.usage.e1like_radio_mode.value:

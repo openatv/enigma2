@@ -1,4 +1,4 @@
-from ChannelSelection import ChannelSelection, BouquetSelector, VIXBouquetSelector
+from ChannelSelection import SimpleChannelSelection, ChannelSelection, BouquetSelector, VIXBouquetSelector
 
 from Components.ActionMap import ActionMap, HelpableActionMap
 from Components.ActionMap import NumberActionMap
@@ -505,6 +505,7 @@ class InfoBarChannelSelection:
 	def __init__(self):
 		#instantiate forever
 		self.servicelist = self.session.instantiateDialog(ChannelSelection)
+		self.simpleservicelist = self.session.instantiateDialog(SimpleChannelSelection)
 
 		if config.misc.initialchannelselection.value:
 			self.onShown.append(self.firstRun)
@@ -513,6 +514,8 @@ class InfoBarChannelSelection:
 			{
 				"switchChannelUp": (self.switchChannelUp, _("open servicelist(up)")),
 				"switchChannelDown": (self.switchChannelDown, _("open servicelist(down)")),
+				"switchChannelUpLong": (self.switchChannelUpLong, _("open servicelist(up)")),
+				"switchChannelDownLong": (self.switchChannelDownLong, _("open servicelist(down)")),
 				"LeftPressed": self.LeftPressed,
 				"RightPressed": self.RightPressed,
 				"zapUp": (self.zapUp, _("previous channel")),
@@ -533,6 +536,14 @@ class InfoBarChannelSelection:
 			self.openInfoBarEPG()
 		else:
 			self.zapDown()
+
+	def showTvSimpleChannelList(self, zap=False):
+		self.simpleservicelist.setModeTv()
+		self.servicelist.setModeTv()
+		if zap:
+			self.simpleservicelist.zap()
+		if config.usage.show_servicelist.value:
+			self.session.execDialog(self.simpleservicelist)
 
 	def showTvChannelList(self, zap=False):
 		self.servicelist.setModeTv()
@@ -561,12 +572,69 @@ class InfoBarChannelSelection:
 		self.servicelist.historyNext()
 
 	def switchChannelUp(self):
-		self.servicelist.moveUp()
-		self.session.execDialog(self.servicelist)
+		if config.usage.servicelist_mode.value != "simple":
+			if not config.usage.show_bouquetalways.value:
+				self.servicelist.moveUp()
+				self.session.execDialog(self.servicelist)
+			else:
+				self.servicelist.showFavourites()
+				self.session.execDialog(self.servicelist)
+		else:
+			if not config.usage.show_bouquetalways.value:
+				self.simpleservicelist.moveUp()
+				self.session.execDialog(self.simpleservicelist)
+			else:
+				self.simpleservicelist.showFavourites()
+				self.session.execDialog(self.simpleservicelist)
 
 	def switchChannelDown(self):
-		self.servicelist.moveDown()
-		self.session.execDialog(self.servicelist)
+		if config.usage.servicelist_mode.value != "simple":
+			if not config.usage.show_bouquetalways.value:
+				self.servicelist.moveDown()
+				self.session.execDialog(self.servicelist)
+			else:
+				self.servicelist.showFavourites()
+				self.session.execDialog(self.servicelist)
+		else:
+			if not config.usage.show_bouquetalways.value:
+				self.simpleservicelist.moveDown()
+				self.session.execDialog(self.simpleservicelist)
+			else:
+				self.simpleservicelist.showFavourites()
+				self.session.execDialog(self.simpleservicelist)
+
+	def switchChannelUpLong(self):
+		if config.usage.servicelist_mode.value != "simple":
+			if not config.usage.show_bouquetalways.value:
+				self.servicelist.moveUp()
+				self.session.execDialog(self.servicelist)
+			else:
+				self.servicelist.showFavourites()
+				self.session.execDialog(self.servicelist)
+		else:
+			if not config.usage.show_bouquetalways.value:
+				self.simpleservicelist.moveUp()
+				self.session.execDialog(self.simpleservicelist)
+			else:
+				self.simpleservicelist.showFavourites()
+				self.session.execDialog(self.simpleservicelist)
+
+	def switchChannelDownLong(self):
+		if config.usage.servicelist_mode.value == "simple":
+			if not config.usage.show_bouquetalways.value:
+				self.servicelist.moveDown()
+				self.session.execDialog(self.servicelist)
+			else:
+				self.servicelist.showFavourites()
+				self.session.execDialog(self.servicelist)
+		else:
+			if not config.usage.show_bouquetalways.value:
+				self.simpleservicelist.moveDown()
+				self.session.execDialog(self.simpleservicelist)
+			else:
+				self.simpleservicelist.showFavourites()
+				self.session.execDialog(self.simpleservicelist)
+
 
 	def openServiceList(self):
 		self.session.execDialog(self.servicelist)
