@@ -516,19 +516,20 @@ class HarddiskManager:
 		# still, if stuff is mounted into the correct mountpoints by
 		# external tools, everything is fine (until somebody inserts
 		# a second usb stick.)
-		p = [
-					("/media/hdd", _("Harddisk")),
-					("/media/card", _("Card")),
-					("/media/cf", _("Compact Flash")),
-					("/media/mmc1", _("MMC Card")),
-					("/media/net", _("Network Mount")),
-					("/media/net1", _("Network Mount") + " 1"),
-					("/media/net2", _("Network Mount") + " 2"),
-					("/media/net3", _("Network Mount") + " 3"),
-					("/media/ram", _("Ram Disk")),
-					("/media/usb", _("USB Stick")),
-					("/", _("Internal Flash"))
-				]
+		#p = [
+					#("/media/hdd", _("Harddisk")),
+					#("/media/card", _("Card")),
+					#("/media/cf", _("Compact Flash")),
+					#("/media/mmc1", _("MMC Card")),
+					#("/media/net", _("Network Mount")),
+					#("/media/net1", _("Network Mount") + " 1"),
+					#("/media/net2", _("Network Mount") + " 2"),
+					#("/media/net3", _("Network Mount") + " 3"),
+					#("/media/ram", _("Ram Disk")),
+					#("/media/usb", _("USB Stick")),
+					#("/", _("Internal Flash"))
+				#]
+		p = []
 		try:
 			netmount = listdir('/media/net')
 			for fil in netmount:
