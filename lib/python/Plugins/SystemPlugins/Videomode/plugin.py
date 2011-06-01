@@ -6,6 +6,7 @@ from Components.config import getConfigListEntry, config, ConfigBoolean, ConfigN
 from Components.Sources.StaticText import StaticText
 from Components.Pixmap import Pixmap,MultiPixmap
 from Screens.VirtualKeyBoard import VirtualKeyBoard
+from Components.Sources.Boolean import Boolean
 
 from VideoHardware import video_hw
 
@@ -20,6 +21,7 @@ class VideoSetup(Screen, ConfigListScreen):
 		self.setup_title = _("A/V Settings")
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
+		self["VKeyIcon"] = Boolean(False)
 
 		self.hw = hw
 		self.onChangedEntry = [ ]
