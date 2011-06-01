@@ -110,6 +110,8 @@
 		<key id="KEY_RIGHT" mapto="RightPressed" flags="mr" />
 		<key id="KEY_UP" mapto="switchChannelUp" flags="b" />
 		<key id="KEY_DOWN" mapto="switchChannelDown" flags="b" />
+		<key id="KEY_UP" mapto="switchChannelUpLong" flags="l" />
+		<key id="KEY_DOWN" mapto="switchChannelDownLong" flags="l" />
 		<key id="KEY_PREVIOUS" mapto="historyBack" flags="mr" />
 		<key id="KEY_NEXT" mapto="historyNext" flags="mr" />
 		<key id="KEY_BACK" mapto="historyBack" flags="mr" />
@@ -206,8 +208,6 @@
 		<key id="KEY_PROGRAM" mapto="openAutoTimerList" flags="l" />
 		<key id="KEY_SEARCH" mapto="openEPGSearch" flags="b" />
 		<key id="KEY_SEARCH" mapto="openIMDB" flags="l" />
-		<key id="KEY_UP" mapto="showTv" flags="l" />
-		<key id="KEY_DOWN" mapto="showTv" flags="l" />
 	</map>
 
 	<map context="InfobarAudioSelectionActions">

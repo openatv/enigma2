@@ -34,6 +34,8 @@
 		<item level="1" text="Action on short powerbutton press">config.usage.on_short_powerpress</item>
 		<item level="1" text="Position of finished Timers in Timerlist">config.usage.timerlist_finished_timer_position</item>
 		<item level="1" text="12V output" requires="12V_Output">config.usage.output_12V</item>
+		<item level="0" text="Channel list service mode">config.usage.servicelist_mode</item>
+		<item level="0" text="Always show bouquets">config.usage.show_bouquetalways</item>
 		<item level="0" text="Show channel selection on mode change">config.usage.show_servicelist</item>
 		<item level="0" text="Show event-progress in channel selection">config.usage.show_event_progress_in_servicelist</item>
 		<item level="0" text="Show channel number in channel selection">config.usage.show_event_number_in_servicelist</item>
@@ -51,6 +53,12 @@
 		<item level="2" text="Preferred tuner">config.usage.frontend_priority</item>
 		<item level="2" text="Disable background scanning">config.misc.disable_background_scan</item>
 		<item level="2" text="Show background in Radio Mode">config.misc.showradiopic</item>
+	</setup>
+	<setup key="remotesetup" title="Remote Setup">
+		<item level="0" text="EPG buton mode">config.vixsettings.ViXEPG_mode</item>
+		<item level="0" text="Subservice mode">config.vixsettings.Subservice</item>
+		<item level="0" text="QuickEPG mode">config.vixsettings.QuickEPG_mode</item>
+		<item level="0" text="TV button mode">config.usage.tvbutton_mode</item>
 	</setup>
 	<setup key="logs" title="Settings...">
 		<item level="2" text="Create more detailed crash log">config.crash.details</item>
@@ -175,10 +183,6 @@
 	</setup>
 	<setup key="vix" title="VIX">
 		<item level="0" text="Menu Overscan amount">config.vixsettings.overscanamount</item>
-		<item level="0" text="Use TV button to">config.vixsettings.TVButtonAction</item>
 		<item level="0" text="Use ViX Coloured Butons">config.vixsettings.ColouredButtons</item>
-		<item level="0" text="Subservice (Green)">config.vixsettings.Subservice</item>
-		<item level="0" text="EPG buton mode">config.vixsettings.ViXEPG_mode</item>
-		<item level="0" text="QuickEPG Usage">config.vixsettings.QuickEPG_mode</item>
 	</setup>
 </setupxml>
