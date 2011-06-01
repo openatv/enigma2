@@ -2,14 +2,17 @@ from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.Label import Label
 from Components.Button import Button
+from Components.FileList import FileList
+from Components.Scanner import openFile
 from Components.ScrollLabel import ScrollLabel
 from Components.MenuList import MenuList
-from Components.config import getConfigListEntry, config, ConfigText, ConfigYesNo
+from Components.config import getConfigListEntry, config, ConfigText, ConfigYesNo, NoSave
 from Components.ConfigList import ConfigListScreen, ConfigList
 from Components.Pixmap import Pixmap,MultiPixmap
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Screens.MessageBox import MessageBox
 from os import path,listdir, remove
+from os.path import isdir as os_path_isdir
 from time import time, localtime
 
 # Import smtplib for the actual sending function
@@ -116,6 +119,27 @@ class LogManager(Screen):
 		self.populate_List()
 
 	def sendlog(self):
+		message = _("Do you want to add any additional infomation ?")
+		ybox = self.session.openWithCallback(self.sendlog2, MessageBox, message, MessageBox.TYPE_YESNO)
+		ybox.setTitle(_("Addtional Info"))
+
+	def sendlog2(self,answer):
+		if answer:
+			message = _("Do you want to attach a text file to explain the log ?")
+			ybox = self.session.openWithCallback(self.sendlog3, MessageBox, message, MessageBox.TYPE_YESNO)
+			ybox.setTitle(_("Attach a file"))
+		else:
+			self.doSendlog()
+
+	def sendlog3(self,answer):
+		if answer:
+			self.session.openWithCallback(self.doSendlog, LogManagerFb)
+		else:
+			config.vixsettings.logmanager_additionalinfo.value = ""
+			from Screens.VirtualKeyBoard import VirtualKeyBoard
+			self.session.openWithCallback(self.doSendlog, VirtualKeyBoard, title = 'Additonal Info')
+
+	def doSendlog(self, addtionalinfo = None):
 		ref = str(time())
 		self.sel = self['list'].getCurrent()
 		self["list"].instance.moveSelectionTo(0)
@@ -140,7 +164,10 @@ class LogManager(Screen):
 		msg['Cc'] = fromlogman
 		msg['Date'] = formatdate(localtime=True)
 		msg['Subject'] = 'Ref: ' + ref
-		msg.attach(MIMEText('please find attached my crash from', 'plain'))
+		if not config.vixsettings.logmanager_additionalinfo.value:
+			msg.attach(MIMEText(addtionalinfo, 'plain'))
+		else:
+			msg.attach(MIMEText(config.vixsettings.logmanager_additionalinfo.value, 'plain'))
 		msg.attach(data)
 		# Send the email via our own SMTP server.
 		wos_user = 'vixlogs@world-of-satellite.com'
@@ -164,7 +191,6 @@ class LogManager(Screen):
 		
 	def myclose(self):
 		self.close()
-			
 
 class LogManagerViewLog(Screen):
 	skin = """
@@ -243,14 +269,6 @@ class LogManagerMenu(ConfigListScreen, Screen):
 		self["config"].list = self.list
 		self["config"].setList(self.list)
 
-	def keyLeft(self):
-		ConfigListScreen.keyLeft(self)
-		self.createSetup()
-
-	def keyRight(self):
-		ConfigListScreen.keyRight(self)
-		self.createSetup()
-
 	# for summary:
 	def changedEntry(self):
 		for x in self.onChangedEntry:
@@ -280,3 +298,86 @@ class LogManagerMenu(ConfigListScreen, Screen):
 		if callback is not None and len(callback):
 			self["config"].getCurrent()[1].setValue(callback)
 			self["config"].invalidate(self["config"].getCurrent())
+
+config.vixsettings.logmanager_savedirs = ConfigYesNo(default = True)
+config.vixsettings.logmanager_path = ConfigText(default = "/")
+config.vixsettings.logmanager_additionalinfo = NoSave(ConfigText(default = ""))
+
+class LogManagerFb(Screen):
+	skin = """
+		<screen name="LogManagerFb" position="center,center" size="265,430" title="">
+			<widget name="list" position="0,0" size="265,430" scrollbarMode="showOnDemand" />
+		</screen>
+		"""
+	def __init__(self, session,path=None):
+		if path is None:
+			if os_path_isdir(config.vixsettings.logmanager_path.value) and config.vixsettings.logmanager_savedirs.value:
+				path = config.vixsettings.logmanager_path.value
+			else:
+				path = "/"
+
+		self.session = session
+		Screen.__init__(self, session)
+		self.skin = LogManagerFb.skin
+		self.skinName = "LogManagerFb"
+
+		self["list"] = FileList(path, matchingPattern = "^.*")
+		self["red"] = Label(_("delete"))
+		self["green"] = Label(_("move"))
+		self["yellow"] = Label(_("copy"))
+		self["blue"] = Label(_("rename"))
+
+
+		self["actions"] = ActionMap(["ChannelSelectBaseActions","WizardActions", "DirectionActions","MenuActions","NumberActions","ColorActions"],
+			{
+			 "ok":	  self.ok,
+			 "back":	self.exit,
+			 "up": self.goUp,
+			 "down": self.goDown,
+			 "left": self.goLeft,
+			 "right": self.goRight,
+			 "0": self.doRefresh,
+			 }, -1)
+		self.onLayoutFinish.append(self.mainlist)
+
+	def exit(self):
+		config.vixsettings.logmanager_additionalinfo.value = ""
+		if self["list"].getCurrentDirectory() and config.vixsettings.logmanager_savedirs.value:
+			config.vixsettings.logmanager_path.value = self["list"].getCurrentDirectory()
+			config.vixsettings.logmanager_path.save()
+		self.close()
+
+	def ok(self):
+		if self.SOURCELIST.canDescent(): # isDir
+			self.SOURCELIST.descent()
+			if self.SOURCELIST.getCurrentDirectory(): #??? when is it none
+				self.setTitle(self.SOURCELIST.getCurrentDirectory())
+		else:
+			self.onFileAction()
+
+	def goLeft(self):
+		self.SOURCELIST.pageUp()
+
+	def goRight(self):
+		self.SOURCELIST.pageDown()
+
+	def goUp(self):
+		self.SOURCELIST.up()
+
+	def goDown(self):
+		self.SOURCELIST.down()
+
+	def doRefresh(self):
+		self.SOURCELIST.refresh()
+
+	def mainlist(self):
+		self["list"].selectionEnabled(1)
+		self.SOURCELIST = self["list"]
+		self.setTitle(self.SOURCELIST.getCurrentDirectory())
+
+	def onFileAction(self):
+		config.vixsettings.logmanager_additionalinfo.value = data = file(self.SOURCELIST.getCurrentDirectory()+self.SOURCELIST.getFilename()).read()
+		if self["list"].getCurrentDirectory() and config.vixsettings.logmanager_savedirs.value:
+			config.vixsettings.logmanager_path.value = self["list"].getCurrentDirectory()
+			config.vixsettings.logmanager_path.save()
+		self.close()
