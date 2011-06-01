@@ -165,7 +165,8 @@ class VirtualKeyBoard(Screen):
 				"down": self.down,
 				"red": self.backClicked,
 				"green": self.ok,
-				"yellow": self.okClicked
+				"yellow": self.okClicked,
+				"blue": self.shiftClicked
 			}, -2)
 		
 		self.onLayoutFinish.append(self.buildVirtualKeyBoard)
@@ -195,6 +196,14 @@ class VirtualKeyBoard(Screen):
 		self["list"].setList(list)
 
 	
+	def shiftClicked(self):
+		if self.shiftMode:
+			self.shiftMode = False
+		else:
+			self.shiftMode = True
+		
+		self.buildVirtualKeyBoard(self.selectedKey)
+			
 	def backClicked(self):
 		self.text = self.text[:-1]
 		self["text"].setText(self.text.encode("utf-8"))
