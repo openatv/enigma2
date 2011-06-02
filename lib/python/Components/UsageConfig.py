@@ -88,6 +88,16 @@ def InitUsageConfig():
 	config.misc.disable_background_scan = ConfigYesNo(default = False)
 
 	config.usage.show_servicelist = ConfigYesNo(default = True)
+	config.usage.servicelist_mode = ConfigSelection(default = "standard", choices = [
+		("standard", _("Standard")),
+		("simple", _("Simple")) ] )
+	config.usage.tvbutton_mode = ConfigSelection(default="SimpleTVList", choices = [
+					("SimpleTVList", _("Simple TV List")),
+					("SimpleBouquetList", _("Simple Bouquet List")),
+					("TVList", _("TV List")),
+					("BouquetList", _("Bouquet List")),
+					("MovieList", _("Movie List"))])
+	config.usage.show_bouquetalways = ConfigYesNo(default = False)
 	config.usage.show_event_progress_in_servicelist = ConfigYesNo(default = True)
 	config.usage.show_event_number_in_servicelist = ConfigYesNo(default = True)
 
@@ -420,11 +430,6 @@ def InitUsageConfig():
 
 	config.vixsettings = ConfigSubsection()
 	config.vixsettings.overscanamount = ConfigNumber(default = 32)
-	config.vixsettings.TVButtonAction = ConfigSelection(default="Default", choices = [
-					("Default", _("Simple TV List")),
-					("TVList", _("Show TV List")),
-					("MovieList", _("Show Movie List")),
-					("BouquetList", _("Show Bouquet List"))])
 	config.vixsettings.Subservice = ConfigYesNo(default = False)
 	config.vixsettings.ColouredButtons = ConfigYesNo(default = True)
 	config.vixsettings.ViXEPG_mode = ConfigSelection(default="vixepg", choices = [
