@@ -170,8 +170,8 @@ def InitUsageConfig():
 		if pathExists(p.mountpoint):
 			if p.mountpoint != '/':
 				epgdata.append((d + '/', p.mountpoint))
-		config.epg.epgcache_path = ConfigSelection(default = "/etc/enigma2/", choices = epgdata)
-		config.epg.epgcache_path.addNotifier(EpgSettingsChanged)
+	config.epg.epgcache_path = ConfigSelection(default = "/etc/enigma2/", choices = epgdata)
+	config.epg.epgcache_path.addNotifier(EpgSettingsChanged)
 
 	config.epg.epgcache_filename = ConfigText(default='epg.dat', fixed_size=False)
 	config.epg.epgcache_filename.addNotifier(EpgSettingsChanged)
