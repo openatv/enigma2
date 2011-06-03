@@ -64,15 +64,17 @@ if config.vixsettings.overscanamount.value <= "0":
 		skinposinput = open(skinposinputfile,'r')
 		stext = skinposinput.readline()
 	else:
-		stext = 'position="32,0" size="541,720"'
+		stext = "nothing to find"
 	rtext = 'position="' + str(config.vixsettings.overscanamount.value) + ',0" size="541,720"'
-	print '[SEARCH] ' + stext
-	print '[REPLACE] ' + rtext
 
 	input = open(inputfile)
 	output = open(outputfile,'w')
 	for s in input:
-		output.write(s.replace(stext,rtext))
+		if s.find('position="32,0" size="541,720"') != -1:
+			output.write(s.replace('position="32,0" size="541,720"',rtext))
+		else:
+			output.write(s.replace(stext,rtext))
+	print '[REPLACE] ' + rtext
 	output.close()
 	input.close()
 	os.remove(inputfile)
