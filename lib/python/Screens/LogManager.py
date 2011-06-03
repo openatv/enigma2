@@ -254,7 +254,7 @@ class LogManagerMenu(ConfigListScreen, Screen):
 		self["actions"] = ActionMap(["SetupActions", 'ColorActions', 'VirtualKeyboardActions'],
 		{
 			"cancel": self.keyCancel,
-			"save": self.keySaveNew,
+			"save": self.keySave,
 			'showVirtualKeyboard': self.KeyText
 		}, -2)
 		self["key_red"] = Button(_("Cancel"))
@@ -280,24 +280,40 @@ class LogManagerMenu(ConfigListScreen, Screen):
 	def getCurrentValue(self):
 		return str(self["config"].getCurrent()[1].getText())
 
-	def keySaveNew(self):
-		for x in self["config"].list:
-			x[1].save()
-		self.close()
-
-	def keyCancel(self):
-		for x in self["config"].list:
-			x[1].cancel()
-		self.close()
-
 	def KeyText(self):
-		from Screens.VirtualKeyBoard import VirtualKeyBoard
-		self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title = self["config"].getCurrent()[0], text = self["config"].getCurrent()[1].getValue())
+		if self['config'].getCurrent():
+			if self['config'].getCurrent()[0] == "User Name" or self['config'].getCurrent()[0] == "e-Mail address":
+				from Screens.VirtualKeyBoard import VirtualKeyBoard
+				self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title = self["config"].getCurrent()[0], text = self["config"].getCurrent()[1].getValue())
 
 	def VirtualKeyBoardCallback(self, callback = None):
 		if callback is not None and len(callback):
 			self["config"].getCurrent()[1].setValue(callback)
 			self["config"].invalidate(self["config"].getCurrent())
+
+	def saveAll(self):
+		for x in self["config"].list:
+			x[1].save()
+
+	# keySave and keyCancel are just provided in case you need them.
+	# you have to call them by yourself.
+	def keySave(self):
+		self.saveAll()
+		self.close()
+	
+	def cancelConfirm(self, result):
+		if not result:
+			return
+
+		for x in self["config"].list:
+			x[1].cancel()
+		self.close()
+
+	def keyCancel(self):
+		if self["config"].isChanged():
+			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"))
+		else:
+			self.close()
 
 config.vixsettings.logmanager_savedirs = ConfigYesNo(default = True)
 config.vixsettings.logmanager_path = ConfigText(default = "/")
