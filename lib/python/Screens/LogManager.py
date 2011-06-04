@@ -135,7 +135,7 @@ class LogManager(Screen):
 		if answer:
 			self.session.openWithCallback(self.doSendlog, LogManagerFb)
 		else:
-			config.vixsettings.logmanager_additionalinfo.value = ""
+			config.logmanager.additionalinfo.value = ""
 			from Screens.VirtualKeyBoard import VirtualKeyBoard
 			self.session.openWithCallback(self.doSendlog, VirtualKeyBoard, title = 'Additonal Info')
 
@@ -154,8 +154,8 @@ class LogManager(Screen):
 			
 		# Create the container (outer) email message.
 		msg = MIMEMultipart()
-		if config.vixsettings.logmanageruser.value != '' and config.vixsettings.logmanageruseremail.value != '':
-			fromlogman = config.vixsettings.logmanageruser.value + '  <' + config.vixsettings.logmanageruseremail.value + '>'
+		if config.logmanager.user.value != '' and config.logmanager.useremail.value != '':
+			fromlogman = config.logmanager.user.value + '  <' + config.logmanager.useremail.value + '>'
 		else:
 			fromlogman = 'ViX Log Manager <vixlogs@world-of-satellite.com>'
 		tovixlogs = 'vixlogs@world-of-satellite.com'
@@ -164,10 +164,10 @@ class LogManager(Screen):
 		msg['Cc'] = fromlogman
 		msg['Date'] = formatdate(localtime=True)
 		msg['Subject'] = 'Ref: ' + ref
-		if not config.vixsettings.logmanager_additionalinfo.value:
+		if not config.logmanager.additionalinfo.value:
 			msg.attach(MIMEText(addtionalinfo, 'plain'))
 		else:
-			msg.attach(MIMEText(config.vixsettings.logmanager_additionalinfo.value, 'plain'))
+			msg.attach(MIMEText(config.logmanager.additionalinfo.value, 'plain'))
 		msg.attach(data)
 		# Send the email via our own SMTP server.
 		wos_user = 'vixlogs@world-of-satellite.com'
@@ -178,7 +178,7 @@ class LogManager(Screen):
 			#socket.setdefaulttimeout(30)
 			s = smtplib.SMTP("mail.world-of-satellite.com",26)
 			s.login(wos_user, wos_pwd)
-			if config.vixsettings.logmanagerusersendcopy.value:
+			if config.logmanager.usersendcopy.value:
 				s.sendmail(fromlogman, [tovixlogs, fromlogman], msg.as_string())
 				s.quit()
 				self.session.open(MessageBox, _('Log ' + self.sel + ' has been sent to the ViX beta team.\nplease quote ' + ref + ' when asking question about this log\n\nA copy has been sent to yourself.'), MessageBox.TYPE_INFO)
@@ -222,10 +222,6 @@ class LogManagerViewLog(Screen):
 	def cancel(self):
 		self.close()
 
-config.vixsettings.logmanageruser = ConfigText(default='', fixed_size=False)
-config.vixsettings.logmanageruseremail = ConfigText(default='', fixed_size=False)
-config.vixsettings.logmanagerusersendcopy = ConfigYesNo(default = True)
-
 class LogManagerMenu(ConfigListScreen, Screen):
 	skin = """
 		<screen name="LogManagerMenu" position="center,center" size="500,285" title="Log Manager Setup">
@@ -263,9 +259,10 @@ class LogManagerMenu(ConfigListScreen, Screen):
 	def createSetup(self):
 		self.editListEntry = None
 		self.list = []
-		self.list.append(getConfigListEntry(_("User Name"), config.vixsettings.logmanageruser))
-		self.list.append(getConfigListEntry(_("e-Mail address"), config.vixsettings.logmanageruseremail))
-		self.list.append(getConfigListEntry(_("Send yourself a copy ?"), config.vixsettings.logmanagerusersendcopy))
+		self.list.append(getConfigListEntry(_("Show in extensions list (requires gui restart)"), config.logmanager.showinextensions))
+		self.list.append(getConfigListEntry(_("User Name"), config.logmanager.user))
+		self.list.append(getConfigListEntry(_("e-Mail address"), config.logmanager.useremail))
+		self.list.append(getConfigListEntry(_("Send yourself a copy ?"), config.logmanager.usersendcopy))
 		self["config"].list = self.list
 		self["config"].setList(self.list)
 
@@ -315,10 +312,6 @@ class LogManagerMenu(ConfigListScreen, Screen):
 		else:
 			self.close()
 
-config.vixsettings.logmanager_savedirs = ConfigYesNo(default = True)
-config.vixsettings.logmanager_path = ConfigText(default = "/")
-config.vixsettings.logmanager_additionalinfo = NoSave(ConfigText(default = ""))
-
 class LogManagerFb(Screen):
 	skin = """
 		<screen name="LogManagerFb" position="center,center" size="265,430" title="">
@@ -327,8 +320,8 @@ class LogManagerFb(Screen):
 		"""
 	def __init__(self, session,path=None):
 		if path is None:
-			if os_path_isdir(config.vixsettings.logmanager_path.value) and config.vixsettings.logmanager_savedirs.value:
-				path = config.vixsettings.logmanager_path.value
+			if os_path_isdir(config.logmanager.path.value):
+				path = config.logmanager.path.value
 			else:
 				path = "/"
 
@@ -357,10 +350,10 @@ class LogManagerFb(Screen):
 		self.onLayoutFinish.append(self.mainlist)
 
 	def exit(self):
-		config.vixsettings.logmanager_additionalinfo.value = ""
-		if self["list"].getCurrentDirectory() and config.vixsettings.logmanager_savedirs.value:
-			config.vixsettings.logmanager_path.value = self["list"].getCurrentDirectory()
-			config.vixsettings.logmanager_path.save()
+		config.logmanager.additionalinfo.value = ""
+		if self["list"].getCurrentDirectory():
+			config.logmanager.path.value = self["list"].getCurrentDirectory()
+			config.logmanager.path.save()
 		self.close()
 
 	def ok(self):
@@ -392,8 +385,8 @@ class LogManagerFb(Screen):
 		self.setTitle(self.SOURCELIST.getCurrentDirectory())
 
 	def onFileAction(self):
-		config.vixsettings.logmanager_additionalinfo.value = data = file(self.SOURCELIST.getCurrentDirectory()+self.SOURCELIST.getFilename()).read()
-		if self["list"].getCurrentDirectory() and config.vixsettings.logmanager_savedirs.value:
-			config.vixsettings.logmanager_path.value = self["list"].getCurrentDirectory()
-			config.vixsettings.logmanager_path.save()
+		config.logmanager.additionalinfo.value = data = file(self.SOURCELIST.getCurrentDirectory()+self.SOURCELIST.getFilename()).read()
+		if self["list"].getCurrentDirectory():
+			config.logmanager.path.value = self["list"].getCurrentDirectory()
+			config.logmanager.path.save()
 		self.close()
