@@ -428,6 +428,14 @@ def InitUsageConfig():
 		("8", "4"),("9", "1,4"),("10", "2,4"),("11", "1,2,4"),
 		("12", "3,4"),("13", "1,3,4"),("14", "2,3,4"),("15", "All")])
 
+	config.logmanager = ConfigSubsection()
+	config.logmanager.showinextensions = ConfigYesNo(default = False)
+	config.logmanager.user = ConfigText(default='', fixed_size=False)
+	config.logmanager.useremail = ConfigText(default='', fixed_size=False)
+	config.logmanager.usersendcopy = ConfigYesNo(default = True)
+	config.logmanager.path = ConfigText(default = "/")
+	config.logmanager.additionalinfo = NoSave(ConfigText(default = ""))
+
 	config.vixsettings = ConfigSubsection()
 	config.vixsettings.overscanamount = ConfigNumber(default = 32)
 	config.vixsettings.Subservice = ConfigYesNo(default = False)

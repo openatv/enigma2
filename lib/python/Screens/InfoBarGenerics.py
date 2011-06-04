@@ -604,7 +604,7 @@ class InfoBarChannelSelection:
 				self.session.execDialog(self.simpleservicelist)
 
 	def switchChannelUpLong(self):
-		if config.usage.servicelist_mode.value != "simple":
+		if config.usage.servicelist_mode.value == "simple":
 			if not config.usage.show_bouquetalways.value:
 				self.servicelist.moveUp()
 				self.session.execDialog(self.servicelist)
@@ -1666,6 +1666,11 @@ class InfoBarExtensions:
 				"openIMDB": self.openIMDB,
 				"showEventInfo": self.openEventView,
 			}, 1) # lower priority
+		if config.logmanager.showinextensions.value:
+			self.addExtension((self.getLmName, self.openLogManager, lambda: True))
+
+	def getLmName(self):
+		return _("Log Manager")
 
 	def RedPressed(self):
 		if config.vixsettings.ViXEPG_mode.value == "vixepg":
@@ -1734,6 +1739,10 @@ class InfoBarExtensions:
 
 	def openTimerList(self):
 		self.session.open(TimerEditList)
+
+	def openLogManager(self):
+		from Screens.LogManager import LogManager
+		self.session.open(LogManager)
 
 	def openAutoTimerList(self):
 		if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/AutoTimer/plugin.pyo"):
