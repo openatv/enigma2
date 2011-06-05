@@ -133,7 +133,7 @@ class LogManager(Screen):
 		self.sel = self["list"].getCurrent()[0]
 		self.selectedFiles = self["list"].getSelectedList()
 		if self.sel or self.selectedFiles:
-			message = _("Do you want to delete all selected files:\n(choose 'No' to only delete the currently selected file.")
+			message = _("Do you want to delete all selected files:\n(choose 'No' to only delete the currently selected file.)")
 			ybox = self.session.openWithCallback(self.doDelete1, MessageBox, message, MessageBox.TYPE_YESNO)
 			ybox.setTitle(_("Delete Confirmation"))
 		else:
@@ -180,7 +180,7 @@ class LogManager(Screen):
 			self["list"].changeDir(defaultDir)
 
 	def sendlog(self, addtionalinfo = None):
-		message = _("Do you want to send all selected files:\n(choose 'No' to only send the currently selected file.")
+		message = _("Do you want to send all selected files:\n(choose 'No' to only send the currently selected file.)")
 		ybox = self.session.openWithCallback(self.sendlog1, MessageBox, message, MessageBox.TYPE_YESNO)
 		ybox.setTitle(_("Delete Confirmation"))
 
