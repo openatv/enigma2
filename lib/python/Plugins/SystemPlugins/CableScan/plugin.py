@@ -109,7 +109,7 @@ config.plugins.CableScan.keepnumbering = ConfigYesNo(default = False)
 config.plugins.CableScan.hdlist = ConfigYesNo(default = False)
 config.plugins.CableScan.frequency = ConfigInteger(default = 323, limits = (1, 999))
 config.plugins.CableScan.symbolrate = ConfigInteger(default = 6875, limits = (1, 9999))
-config.plugins.CableScan.networkid = ConfigInteger(default = 0, limits = (0, 9999))
+config.plugins.CableScan.networkid = ConfigInteger(default = 0, limits = (0, 99999))
 config.plugins.CableScan.modulation = ConfigSelection(
 	choices =
 		[(str(eDVBFrontendParametersCable.Modulation_QAM16), "QAM16"),

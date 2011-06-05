@@ -1022,7 +1022,7 @@ def movielist_open(list, session, **kwargs):
 def filescan(**kwargs):
 	from Components.Scanner import Scanner, ScanPath
 	mediatypes = [
-		Scanner(mimetypes = ["video/mpeg", "video/MP2T", "video/x-msvideo"],
+		Scanner(mimetypes = ["video/mpeg", "video/MP2T", "video/x-msvideo", "video/mkv"],
 			paths_to_scan =
 				[
 					ScanPath(path = "", with_subdirs = False),
