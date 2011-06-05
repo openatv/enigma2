@@ -39,8 +39,6 @@ class freesatHuffmanDecoder
 private:
 	huffTableEntry	*m_tables[2][256];
 	void 		loadFile(int tableid, char *filename);
-	unsigned char 	resolveChar(char *str);
-	unsigned long 	decodeBinary(char *binary);
 	void 		loadTables();
 	bool		m_tablesLoaded;
 public:
