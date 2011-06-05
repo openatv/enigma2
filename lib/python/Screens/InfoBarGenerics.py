@@ -66,6 +66,13 @@ def setResumePoint(session):
 							candidate = k
 					del resumePointCache[candidate]
 
+def delResumePoint(ref):
+	global resumePointCache
+	try:
+		del resumePointCache[ref.toString()]
+	except KeyError:
+		pass
+
 def getResumePoint(session):
 	global resumePointCache
 	ref = session.nav.getCurrentlyPlayingServiceReference()
