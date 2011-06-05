@@ -435,6 +435,7 @@ def InitUsageConfig():
 	config.logmanager.usersendcopy = ConfigYesNo(default = True)
 	config.logmanager.path = ConfigText(default = "/")
 	config.logmanager.additionalinfo = NoSave(ConfigText(default = ""))
+	config.logmanager.sentfiles = ConfigLocations(default='')
 
 	config.vixsettings = ConfigSubsection()
 	config.vixsettings.overscanamount = ConfigNumber(default = 32)

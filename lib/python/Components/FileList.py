@@ -3,7 +3,7 @@ from os import path as os_path, listdir
 from MenuList import MenuList
 from Components.Harddisk import harddiskmanager
 
-from Tools.Directories import SCOPE_CURRENT_SKIN, resolveFilename, fileExists
+from Tools.Directories import SCOPE_CURRENT_SKIN, resolveFilename, fileExists, pathExists
 
 from enigma import RT_HALIGN_LEFT, eListboxPythonMultiContent, \
 	eServiceReference, eServiceCenter, gFont
@@ -323,7 +323,11 @@ class MultiFileSelectList(FileList):
 		self.l.setList(self.list)
 	
 	def getSelectedList(self):
-		return self.selectedFiles
+		selectedFilesExist = []
+		for x in self.selectedFiles:
+			if pathExists(x):
+				selectedFilesExist.append(x)
+		return selectedFilesExist
 
 	def changeDir(self, directory, select = None):
 		self.list = []
