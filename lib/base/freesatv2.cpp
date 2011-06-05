@@ -67,10 +67,8 @@ void freesatHuffmanDecoder::loadTables()
 *
 *  \return Raw character
 */
-unsigned char freesatHuffmanDecoder::resolveChar(char *str)
+static unsigned char resolveChar(char *str)
 {
-	int val;
-
 	if (str[1] == 0) return str[0];
 
 	if ( strcmp(str,"ESCAPE") == 0 )
@@ -85,9 +83,13 @@ unsigned char freesatHuffmanDecoder::resolveChar(char *str)
 	{
 		return START;
 	}
-	else if ( sscanf(str,"0x%02x", &val) == 1 )
+	else
 	{
-		return val;
+		int val;
+		if ( sscanf(str,"0x%02x", &val) == 1 )
+		{
+			return val;
+		}
 	}
 	return str[0];
 }
@@ -99,7 +101,7 @@ unsigned char freesatHuffmanDecoder::resolveChar(char *str)
 *
 *  \return Decoded value
 */
-unsigned long freesatHuffmanDecoder::decodeBinary(char *binary)
+static unsigned long decodeBinary(char *binary)
 {
 	unsigned long mask = 0x80000000;
 	unsigned long val = 0;

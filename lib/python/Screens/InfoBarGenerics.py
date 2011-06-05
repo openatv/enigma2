@@ -48,6 +48,39 @@ from Menu import MainMenu, mdom
 
 SYSTEMS = ["irdeto", "seca", "nagra", "via", "conax", "betacrypt", "crypto", "dreamcrypt", "nds"]
 
+resumePointCache = {}
+
+def setResumePoint(session):
+	global resumePointCache
+	service = session.nav.getCurrentService()
+	ref = session.nav.getCurrentlyPlayingServiceReference()
+	if (service is not None) and (ref is not None) and (ref.type != 1):
+		# ref type 1 has its own memory...
+		seek = service.seek()
+		if seek:
+			pos = seek.getPlayPosition()
+			if not pos[0]:
+				key = ref.toString()
+				lru = time()
+				resumePointCache[key] = [lru, pos[1]]
+				if len(resumePointCache) > 100:
+					candidate = key
+					for k,v in resumePointCache.items():
+						if v[0] < lru:
+							candidate = k
+					del resumePointCache[candidate]
+
+def getResumePoint(session):
+	global resumePointCache
+	ref = session.nav.getCurrentlyPlayingServiceReference()
+	if (ref is not None) and (ref.type != 1):
+		try:
+			entry = resumePointCache[ref.toString()]
+			entry[0] = time() # update LRU timestamp
+			return entry[1]
+		except KeyError:
+			return None
+
 class InfoBarDish:
 	def __init__(self):
 		self.dishDialog = self.session.instantiateDialog(Dish)
@@ -2382,6 +2415,8 @@ class InfoBarCueSheetSupport:
 					last = pts
 					break
 			else:
+				last = getResumePoint(self.session)
+			if last is None:
 				return
 			# only resume if at least 10 seconds ahead, or <10 seconds before the end.
 			seekable = self.__getSeekable()
@@ -2390,7 +2425,7 @@ class InfoBarCueSheetSupport:
 			length = seekable.getLength() or (None,0)
 			print "seekable.getLength() returns:", length
 			# Hmm, this implies we don't resume if the length is unknown...
-			if last is not None and (last > 900000) and (last < length[1] - 900000):
+			if (last > 900000) and (last < length[1] - 900000):
 				self.resume_point = last
 				
 				l = last / 90000

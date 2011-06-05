@@ -75,8 +75,12 @@ class Navigation:
 					return 0
 			else:
 				playref = ref
-			if self.pnav and not self.pnav.playService(playref):
+			if self.pnav:
+				self.pnav.stopService()
 				self.currentlyPlayingServiceReference = playref
+				if self.pnav.playService(playref):
+					print "Failed to start", playref
+					self.currentlyPlayingServiceReference = None
 				return 0
 		else:
 			self.stopService()
@@ -111,7 +115,6 @@ class Navigation:
 		return self.currentlyPlayingService
 
 	def stopService(self):
-		print "stopService"
 		if self.pnav:
 			self.pnav.stopService()
 
