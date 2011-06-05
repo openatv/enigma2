@@ -20,6 +20,11 @@ def getProcMounts():
 		return []
 	return [line.strip().split(' ') for line in mounts]
 
+def createMovieFolder():
+	movie = resolveFilename(SCOPE_HDD)
+	if not pathExists(movie):
+		makedirs(movie)
+
 DEVTYPE_UDEV = 0
 DEVTYPE_DEVFS = 1
 
@@ -289,6 +294,11 @@ class Harddisk:
 		else:
 			# Smaller disks don't need that
 			task.initial_input = "0,\n;\n;\n;\ny\n"
+
+		task = Task.ConditionTask(job, _("Wait for partition"))
+		task.check = lambda: path.exists(self.partitionPath("1"))
+		task.weighting = 1
+
 		task = MkfsTask(job, _("Create Filesystem"))
 		task.setTool("mkfs.ext3")
 
@@ -299,11 +309,15 @@ class Harddisk:
 		task.args += ["-m0", "-O", "dir_index", self.partitionPath("1")]
 
 		task = MountTask(job, self)
-		task.weighting = 5
+		task.weighting = 3
+
+		task = Task.ConditionTask(job, _("Wait for mount"))
+		task.check = self.mountDevice
+		task.weighting = 1
 
 		task = Task.PythonTask(job, _("Create movie directory"))
 		task.weighting = 1
-		task.work = self.createMovieFolder
+		task.work = createMovieFolder
 
 		return job
 
@@ -365,6 +379,8 @@ class Harddisk:
 		task.args.append('-p')
 		task.args.append(dev)
 		MountTask(job, self)
+		task = Task.ConditionTask(job, _("Wait for mount"))
+		task.check = self.mountDevice
 		return job
 
 	def getDeviceDir(self):
@@ -733,8 +749,8 @@ class MountTask(Task.LoggingTask):
 				return
 		# device is not in fstab
 		if self.hdd.type == DEVTYPE_UDEV:
-			# we can let udev do the job, re-read the partition table, and give it some time to mount
-			self.setCmdline('sfdisk -R ' + self.hdd.disk_path + '; sleep 5')
+			# we can let udev do the job, re-read the partition table
+			self.setCmdline('sfdisk -R ' + self.hdd.disk_path)
 			self.postconditions.append(Task.ReturncodePostcondition())
 
 class MkfsTask(Task.LoggingTask):
