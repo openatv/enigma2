@@ -17,7 +17,7 @@ from Screens.InfoBarGenerics import InfoBarShowHide, \
 	InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport, InfoBarSimpleEventView, \
 	InfoBarSummarySupport, InfoBarMoviePlayerSummarySupport, InfoBarTimeshiftState, InfoBarTeletextPlugin, InfoBarExtensions, \
 	InfoBarSubtitleSupport, InfoBarPiP, InfoBarPlugins, InfoBarServiceErrorPopupSupport, InfoBarJobman, \
-	setResumePoint
+	setResumePoint, delResumePoint
 
 profile("LOAD:InitBar_Components")
 from Components.ActionMap import HelpableActionMap
@@ -253,6 +253,9 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 			return
 		if not playing :
 			return
+		ref = self.session.nav.getCurrentlyPlayingServiceReference()
+		if ref:
+			delResumePoint(ref)
 		self.handleLeave(config.usage.on_movie_eof.value)
 
 	def up(self):
