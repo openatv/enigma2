@@ -98,6 +98,7 @@ class LogManager(Screen):
 
 	def saveSelection(self):
 		self.selectedFiles = self["list"].getSelectedList()
+		self.previouslySent = self["list"].getSelectedList()
 		config.logmanager.sentfiles.value = self.selectedFiles
 		config.logmanager.sentfiles.save()
 		config.logmanager.save()
@@ -204,7 +205,12 @@ class LogManager(Screen):
 			message = _("Do you want to add any additional infomation ?")
 			ybox = self.session.openWithCallback(self.sendlog3, MessageBox, message, MessageBox.TYPE_YESNO)
 			ybox.setTitle(_("Addtional Info"))
-		
+		else:
+			self.sendallfiles = False
+			message = _("Are you sure you want to send this log:\n") + str(self.sel[0])
+			ybox = self.session.openWithCallback(self.sendlog2, MessageBox, message, MessageBox.TYPE_YESNO)
+			ybox.setTitle(_("Delete Confirmation"))
+
 	def sendlog2(self,answer):
 		if answer:
 			self.sendallfiles = False
@@ -245,11 +251,10 @@ class LogManager(Screen):
 			msg.attach(MIMEText(additonalinfo, 'plain'))
 		else:
 			msg.attach(MIMEText(config.logmanager.additionalinfo.value, 'plain'))
-		print 'SENDALLFILES',self.sendallfiles
 		if self.sendallfiles:
 			self.selectedFiles = self["list"].getSelectedList()
-			for send in self.selectedFiles:
-				if send in self.previouslySent:
+			for send in self.previouslySent:
+				if send in self.selectedFiles:
 					self.selectedFiles.remove(send)
 			self.sel = ",".join(self.selectedFiles).replace(",", " ")
 			self["list"].instance.moveSelectionTo(0)
