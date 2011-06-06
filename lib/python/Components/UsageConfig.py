@@ -437,6 +437,11 @@ def InitUsageConfig():
 	config.logmanager.additionalinfo = NoSave(ConfigText(default = ""))
 	config.logmanager.sentfiles = ConfigLocations(default='')
 
+	config.softcammanager = ConfigSubsection()
+	config.softcammanager.softcams_autostart = ConfigLocations(default='')
+	config.softcammanager.softcamtimerenabled = ConfigYesNo(default = True)
+	config.softcammanager.softcamtimer = ConfigNumber(default = 6)
+
 	config.vixsettings = ConfigSubsection()
 	config.vixsettings.overscanamount = ConfigNumber(default = 32)
 	config.vixsettings.Subservice = ConfigYesNo(default = False)
