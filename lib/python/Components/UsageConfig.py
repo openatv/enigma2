@@ -218,16 +218,13 @@ def InitUsageConfig():
 	config.crash.enabledebug = ConfigYesNo(default = False)
 	config.crash.debugloglimit = ConfigNumber(default=4)
 	
-	crashloglocation = []
+	crashloglocation = [('/home/root/','/home/root/')]
 	for p in harddiskmanager.getMountedPartitions():
 		d = os.path.normpath(p.mountpoint)
 		if pathExists(p.mountpoint):
-			if p.mountpoint == '/':
-				epgdata.append(('/home/root/','/home/root/'))
-			else:
+			if p.mountpoint != '/':
 				epgdata.append((d + '/', p.mountpoint))
-	if len(epgdata):
-		config.crash.debug_path = ConfigSelection(default = "/home/root/", choices = epgdata)
+	config.crash.debug_path = ConfigSelection(default = "/home/root/", choices = crashloglocation)
 
 	config.usage.timerlist_finished_timer_position = ConfigSelection(default = "end", choices = [("beginning", _("at beginning")), ("end", _("at end"))])
 
