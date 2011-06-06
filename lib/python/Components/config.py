@@ -1305,7 +1305,7 @@ class ConfigLocations(ConfigElement):
 		add = [x for x in value if not x in loc]
 		diff = add + [x for x in loc if not x in value]
 		locations = [x for x in locations if not x[0] in diff] + [[x, self.getMountpoint(x), True, True] for x in add]
-		locations.sort(key = lambda x: x[0])
+		#locations.sort(key = lambda x: x[0])
 		self.locations = locations
 		self.changed()
 
