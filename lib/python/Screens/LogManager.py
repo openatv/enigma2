@@ -65,11 +65,12 @@ class LogManager(Screen):
 		self["key_green"] = Button(_("View"))
 		self["key_yellow"] = Button(_("Delete"))
 		self["key_blue"] = Button(_("Send"))
-		
+
+		self.sentsingle = ""
 		self.selectedFiles = config.logmanager.sentfiles.value
 		self.previouslySent = config.logmanager.sentfiles.value
-		defaultDir = '/media/hdd/'
-		self.filelist = MultiFileSelectList(self.selectedFiles, defaultDir, showDirectories = False, matchingPattern = '.log' )
+		self.defaultDir = '/media/hdd/'
+		self.filelist = MultiFileSelectList(self.selectedFiles, self.defaultDir, showDirectories = False, matchingPattern = '.log' )
 		self["list"] = self.filelist
 		#if not self.selectionChanged in self["list"].onSelectionChanged:
 			#self["list"].onSelectionChanged.append(self.selectionChanged)
@@ -101,7 +102,6 @@ class LogManager(Screen):
 		config.logmanager.sentfiles.save()
 		config.logmanager.save()
 		config.save()
-		#self.close(None)
 
 	def exit(self):
 		self.close(None)
@@ -132,9 +132,13 @@ class LogManager(Screen):
 	def deletelog(self):
 		self.sel = self["list"].getCurrent()[0]
 		self.selectedFiles = self["list"].getSelectedList()
-		if self.sel or self.selectedFiles:
+		if self.selectedFiles:
 			message = _("Do you want to delete all selected files:\n(choose 'No' to only delete the currently selected file.)")
 			ybox = self.session.openWithCallback(self.doDelete1, MessageBox, message, MessageBox.TYPE_YESNO)
+			ybox.setTitle(_("Delete Confirmation"))
+		elif self.sel:
+			message = _("Are you sure you want to delete this log:\n") + str(self.sel[0])
+			ybox = self.session.openWithCallback(self.doDelete3, MessageBox, message, MessageBox.TYPE_YESNO)
 			ybox.setTitle(_("Delete Confirmation"))
 		else:
 			self.session.open(MessageBox, _("You have selected no logs to delete."), MessageBox.TYPE_INFO, timeout = 10)
@@ -156,58 +160,67 @@ class LogManager(Screen):
 		if answer is True:
 			self.selectedFiles = self["list"].getSelectedList()
 			self["list"].instance.moveSelectionTo(0)
+			if self.logtype == 'crashlogs':
+				self.defaultDir = '/media/hdd/'
+			else:
+				self.defaultDir = config.crash.debug_path.value
 			for f in self.selectedFiles:
 				remove(f)
-			if self.logtype == 'crashlogs':
-				defaultDir = '/media/hdd/'
-			else:
-				defaultDir = config.crash.debug_path.value
 			config.logmanager.sentfiles.value = ""
 			config.logmanager.sentfiles.save()
 			config.logmanager.save()
 			config.save()
-			self["list"].changeDir(defaultDir)
+			self["list"].changeDir(self.defaultDir)
 
 	def doDelete3(self, answer):
 		if answer is True:
 			self.sel = self["list"].getCurrent()[0]
 			self["list"].instance.moveSelectionTo(0)
 			if self.logtype == 'crashlogs':
-				defaultDir = '/media/hdd/'
+				self.defaultDir = '/media/hdd/'
 			else:
-				defaultDir = config.crash.debug_path.value
-			remove(defaultDir + self.sel[0])
-			self["list"].changeDir(defaultDir)
+				self.defaultDir = config.crash.debug_path.value
+			remove(self.defaultDir + self.sel[0])
+			self["list"].changeDir(self.defaultDir)
 
 	def sendlog(self, addtionalinfo = None):
-		message = _("Do you want to send all selected files:\n(choose 'No' to only send the currently selected file.)")
-		ybox = self.session.openWithCallback(self.sendlog1, MessageBox, message, MessageBox.TYPE_YESNO)
-		ybox.setTitle(_("Delete Confirmation"))
+		self.sel = self["list"].getCurrent()[0]
+		self.selectedFiles = self["list"].getSelectedList()
+		if self.selectedFiles:
+			message = _("Do you want to send all selected files:\n(choose 'No' to only send the currently selected file.)")
+			ybox = self.session.openWithCallback(self.sendlog1, MessageBox, message, MessageBox.TYPE_YESNO)
+			ybox.setTitle(_("Delete Confirmation"))
+		elif self.sel:
+			self.sendallfiles = False
+			message = _("Are you sure you want to send this log:\n") + str(self.sel[0])
+			ybox = self.session.openWithCallback(self.sendlog2, MessageBox, message, MessageBox.TYPE_YESNO)
+			ybox.setTitle(_("Delete Confirmation"))
+		else:
+			self.session.open(MessageBox, _("You have selected no logs to send."), MessageBox.TYPE_INFO, timeout = 10)
 
 	def sendlog1(self,answer):
 		if answer:
 			self.sendallfiles = True
-		else:
-			self.sendallfiles = False
-		self.sel = self["list"].getCurrent()[0]
-		self.selectedFiles = self["list"].getSelectedList()
-		if self.sel or self.selectedFiles:
 			message = _("Do you want to add any additional infomation ?")
-			ybox = self.session.openWithCallback(self.sendlog2, MessageBox, message, MessageBox.TYPE_YESNO)
+			ybox = self.session.openWithCallback(self.sendlog3, MessageBox, message, MessageBox.TYPE_YESNO)
 			ybox.setTitle(_("Addtional Info"))
-		else:
-			self.session.open(MessageBox, _("You have selected no logs to send."), MessageBox.TYPE_INFO, timeout = 10)
-
+		
 	def sendlog2(self,answer):
 		if answer:
-			message = _("Do you want to attach a text file to explain the log ?")
+			self.sendallfiles = False
+			message = _("Do you want to add any additional infomation ?")
 			ybox = self.session.openWithCallback(self.sendlog3, MessageBox, message, MessageBox.TYPE_YESNO)
-			ybox.setTitle(_("Attach a file"))
-		else:
-			config.logmanager.additionalinfo.value = " "
-			self.doSendlog()
+			ybox.setTitle(_("Addtional Info"))
 
 	def sendlog3(self,answer):
+		if answer:
+			message = _("Do you want to attach a text file to explain the log ?\n(choose 'No' to type message using virtual keyboard.)")
+			ybox = self.session.openWithCallback(self.sendlog4, MessageBox, message, MessageBox.TYPE_YESNO)
+			ybox.setTitle(_("Attach a file"))
+		else:
+			self.doSendlog()
+
+	def sendlog4(self,answer):
 		if answer:
 			self.session.openWithCallback(self.doSendlog, LogManagerFb)
 		else:
@@ -232,16 +245,12 @@ class LogManager(Screen):
 			msg.attach(MIMEText(additonalinfo, 'plain'))
 		else:
 			msg.attach(MIMEText(config.logmanager.additionalinfo.value, 'plain'))
+		print 'SENDALLFILES',self.sendallfiles
 		if self.sendallfiles:
 			self.selectedFiles = self["list"].getSelectedList()
-			print 'self.selectedFiles',self.selectedFiles
 			for send in self.selectedFiles:
-				print 'SEND',send
-				print 'self.previouslySent',self.previouslySent
 				if send in self.previouslySent:
 					self.selectedFiles.remove(send)
-					print 'self.selectedFiles',self.selectedFiles
-				
 			self.sel = ",".join(self.selectedFiles).replace(",", " ")
 			self["list"].instance.moveSelectionTo(0)
 			for f in self.selectedFiles:
@@ -255,13 +264,16 @@ class LogManager(Screen):
 			self.sel = self["list"].getCurrent()[0]
 			self.sel = str(self.sel[0])
 			if self.logtype == 'crashlogs':
-				defaultDir = '/media/hdd/'
+				self.defaultDir = '/media/hdd/'
 			else:
-				defaultDir = config.crash.debug_path.value
-			fp = open((defaultDir + self.sel), 'rb')
+				self.defaultDir = config.crash.debug_path.value
+			fp = open((self.defaultDir + self.sel), 'rb')
 			data = MIMEText(fp.read())
 			fp.close()
 			msg.attach(data)
+			self.sentsingle = self.defaultDir + self.sel
+			self.changeSelectionState()
+			self.saveSelection()
 
 		# Send the email via our own SMTP server.
 		wos_user = 'vixlogs@world-of-satellite.com'
