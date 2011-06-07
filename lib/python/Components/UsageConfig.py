@@ -11,6 +11,20 @@ from glob import glob
 import enigma
 
 def InitUsageConfig():
+	try:
+		file = open('/etc/image-version', 'r')
+		lines = file.readlines()
+		file.close()
+		for x in lines:
+			splitted = x.split('=')
+			if splitted[0] == "box_type":
+				folderprefix = splitted[1].replace('\n','') # 0 = release, 1 = experimental
+				boxtype = splitted[1].replace('\n','') # 0 = release, 1 = experimental
+	except:
+		folderprefix=""
+		boxtype="not detected"
+	config.misc.boxtype = ConfigText(default = boxtype)
+
 	config.usage = ConfigSubsection();
 	config.usage.showdish = ConfigYesNo(default = True)
 	config.usage.multibouquet = ConfigYesNo(default = True)
@@ -164,13 +178,13 @@ def InitUsageConfig():
 	config.epg.viasat.addNotifier(EpgSettingsChanged)
 	config.epg.netmed.addNotifier(EpgSettingsChanged)
 
-	epgdata = [('/etc/enigma2/', 'Internal Flash')]
+	hddchoises = [('/etc/enigma2/', 'Internal Flash')]
 	for p in harddiskmanager.getMountedPartitions():
 		d = os.path.normpath(p.mountpoint)
 		if pathExists(p.mountpoint):
 			if p.mountpoint != '/':
-				epgdata.append((d + '/', p.mountpoint))
-	config.epg.epgcache_path = ConfigSelection(default = "/etc/enigma2/", choices = epgdata)
+				hddchoises.append((d + '/', p.mountpoint))
+	config.epg.epgcache_path = ConfigSelection(default = "/etc/enigma2/", choices = hddchoises)
 	config.epg.epgcache_path.addNotifier(EpgSettingsChanged)
 
 	config.epg.epgcache_filename = ConfigText(default='epg.dat', fixed_size=False)
@@ -218,13 +232,7 @@ def InitUsageConfig():
 	config.crash.enabledebug = ConfigYesNo(default = False)
 	config.crash.debugloglimit = ConfigNumber(default=4)
 	
-	crashloglocation = [('/home/root/','/home/root/')]
-	for p in harddiskmanager.getMountedPartitions():
-		d = os.path.normpath(p.mountpoint)
-		if pathExists(p.mountpoint):
-			if p.mountpoint != '/':
-				epgdata.append((d + '/', p.mountpoint))
-	config.crash.debug_path = ConfigSelection(default = "/home/root/", choices = crashloglocation)
+	config.crash.debug_path = ConfigSelection(default = "/home/root/", choices = hddchoises)
 
 	config.usage.timerlist_finished_timer_position = ConfigSelection(default = "end", choices = [("beginning", _("at beginning")), ("end", _("at end"))])
 
@@ -438,6 +446,15 @@ def InitUsageConfig():
 	config.softcammanager.softcams_autostart = ConfigLocations(default='')
 	config.softcammanager.softcamtimerenabled = ConfigYesNo(default = True)
 	config.softcammanager.softcamtimer = ConfigNumber(default = 6)
+
+	config.imagemanager = ConfigSubsection()
+	config.imagemanager.folderprefix = ConfigText(default=folderprefix, fixed_size=False)
+	config.imagemanager.backuplocation = ConfigSelection(choices = hddchoises)
+	config.imagemanager.schedule = ConfigYesNo(default = False)
+	config.imagemanager.scheduletime = ConfigClock(default = 0) # 1:00
+	config.imagemanager.repeattype = ConfigSelection(default = "daily", choices = [("daily", _("Daily")), ("weekly", _("Weely")), ("monthly", _("30 Days"))])
+	config.imagemanager.backupretry = ConfigNumber(default = 30)
+	config.imagemanager.backupretrycount = NoSave(ConfigNumber(default = 0))
 
 	config.vixsettings = ConfigSubsection()
 	config.vixsettings.overscanamount = ConfigNumber(default = 32)
