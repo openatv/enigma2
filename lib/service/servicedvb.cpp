@@ -3171,7 +3171,24 @@ void eDVBServicePlay::newDVBSubtitlePage(const eDVBSubtitlePage &p)
 		if (m_decoder)
 			m_decoder->getPTS(0, pos);
 		eDebug("got new subtitle page %lld %lld", pos, p.m_show_time);
-		m_dvb_subtitle_pages.push_back(p);
+		if ( abs(pos-p.m_show_time)>1800000 && (m_is_pvr || m_timeshift_enabled))
+		{
+			eDebug("Subtitle without PTS and recording");
+
+			std::string configvalue;
+			int subtitledelay = 315000;
+			if (!ePythonConfigQuery::getConfigValue("config.subtitles.subtitle_noPTSrecordingdelay", configvalue))
+			{
+				subtitledelay = atoi(configvalue.c_str());
+			}
+
+			eDVBSubtitlePage tmppage;
+			tmppage = p;
+			tmppage.m_show_time = pos + subtitledelay;
+			m_dvb_subtitle_pages.push_back(tmppage);
+		}
+		else
+			m_dvb_subtitle_pages.push_back(p);
 		checkSubtitleTiming();
 	}
 }
