@@ -129,7 +129,7 @@ class LogManager(Screen):
 			self.defaultDir = '/media/hdd/'
 		else:
 			self.defaultDir = config.crash.debug_path.value
-		if not listdir(self.defaultDir):
+		if listdir(self.defaultDir):
 			self.sel = self["list"].getCurrent()[0]
 			if self.sel:
 				self.session.open(LogManagerViewLog, self.sel[0], self.logtype)
