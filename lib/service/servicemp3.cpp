@@ -397,7 +397,7 @@ eServiceMP3::~eServiceMP3()
 {
 	// disconnect subtitle callback
 	GstElement *sink;
-	g_object_get (G_OBJECT (m_gst_playbin), "text-sink", &sink, NULL);
+	g_object_get (G_OBJECT (m_gst_playbin), "subtitle_sink", &sink, NULL);
 	if (sink)
 	{
 		g_signal_handler_disconnect (sink, m_subs_to_pull_handler_id);
