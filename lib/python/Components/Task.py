@@ -296,6 +296,37 @@ class PythonTask(Task):
 		del self.timer
 		self.finish()
 
+class ConditionTask(Task):
+	"""
+	Reactor-driven pthread_condition.
+	Wait for something to happen. Call trigger when something occurs that
+	is likely to make check() return true. Raise exception in check() to
+	signal error.
+	Default is to call trigger() once per second, override prepare/cleanup
+	to do something else (like waiting for hotplug)...
+	"""
+	def _run(self):
+		self.triggerCount = 0
+	def prepare(self):
+		from enigma import eTimer
+		self.timer = eTimer()
+		self.timer.callback.append(self.trigger)
+		self.timer.start(1)
+	def cleanup(self, failed):
+		self.timer.stop()
+		del self.timer
+	def check(self):
+		# override to return True only when condition triggers
+		return True
+	def trigger(self):
+		self.triggerCount += 1
+		try:
+			res = self.check()
+		except Exception, e:
+			self.postconditions.append(FailedPostcondition(e))
+			res = True
+		if res:
+			self.finish()
 
 # The jobmanager will execute multiple jobs, each after another.
 # later, it will also support suspending jobs (and continuing them after reboot etc)

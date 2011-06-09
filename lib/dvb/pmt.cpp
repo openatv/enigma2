@@ -392,7 +392,7 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 						}
 					case 0x81: // user private ... but bluray AC3
 					case 0xA1: // bluray secondary AC3
-						if (!isvideo && !isaudio && is_hdmv)
+						if (!isvideo && !isaudio)
 						{
 							isaudio = 1;
 							audio.type = audioStream::atAC3;
