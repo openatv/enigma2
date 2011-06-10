@@ -396,12 +396,12 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 eServiceMP3::~eServiceMP3()
 {
 	// disconnect subtitle callback
-	GstElement *sink;
-	g_object_get (G_OBJECT (m_gst_playbin), "subtitle_sink", &sink, NULL);
-	if (sink)
+	GstElement *appsink = gst_bin_get_by_name(GST_BIN(m_gst_playbin), "subtitle_sink");
+
+	if (appsink)
 	{
-		g_signal_handler_disconnect (sink, m_subs_to_pull_handler_id);
-		gst_object_unref(sink);
+		g_signal_handler_disconnect (appsink, m_subs_to_pull_handler_id);
+		gst_object_unref(appsink);
 	}
 
 	delete m_subtitle_widget;
