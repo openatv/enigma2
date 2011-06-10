@@ -305,22 +305,28 @@ class ConditionTask(Task):
 	Default is to call trigger() once per second, override prepare/cleanup
 	to do something else (like waiting for hotplug)...
 	"""
+	def __init__(self, job, name, timeoutCount=None):
+		Task.__init__(self, job, name)
+		self.timeoutCount = timeoutCount
 	def _run(self):
 		self.triggerCount = 0
 	def prepare(self):
 		from enigma import eTimer
 		self.timer = eTimer()
 		self.timer.callback.append(self.trigger)
-		self.timer.start(1)
+		self.timer.start(1000)
 	def cleanup(self, failed):
-		self.timer.stop()
-		del self.timer
+		if hasattr(self, 'timer'):
+			self.timer.stop()
+			del self.timer
 	def check(self):
 		# override to return True only when condition triggers
 		return True
 	def trigger(self):
 		self.triggerCount += 1
 		try:
+			if (self.timeoutCount is not None) and (self.triggerCount > self.timeoutCount):
+				raise Exception, "Timeout elapsed, sorry"
 			res = self.check()
 		except Exception, e:
 			self.postconditions.append(FailedPostcondition(e))
