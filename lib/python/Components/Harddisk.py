@@ -280,6 +280,16 @@ class Harddisk:
 		task.work = self.killPartitionTable
 		task.weighting = 1
 
+		task = Task.LoggingTask(job, _("Reread partition table"))
+		task.weighting = 1
+		task.setTool('sfdisk')
+		task.args.append('-R')
+		task.args.append(self.disk_path)
+
+		task = Task.ConditionTask(job, _("Wait for partition"), timeoutCount=20)
+		task.check = lambda: not path.exists(self.partitionPath("1"))
+		task.weighting = 1
+
 		size = self.diskSize()
 		print "[HD] size: %s MB" % size
 		task = Task.LoggingTask(job, _("Create Partition"))
@@ -311,7 +321,7 @@ class Harddisk:
 		task = MountTask(job, self)
 		task.weighting = 3
 
-		task = Task.ConditionTask(job, _("Wait for mount"))
+		task = Task.ConditionTask(job, _("Wait for mount"), timeoutCount=20)
 		task.check = self.mountDevice
 		task.weighting = 1
 
@@ -750,8 +760,10 @@ class MountTask(Task.LoggingTask):
 		# device is not in fstab
 		if self.hdd.type == DEVTYPE_UDEV:
 			# we can let udev do the job, re-read the partition table
-			self.setCmdline('sfdisk -R ' + self.hdd.disk_path)
+			# Sorry for the sleep 2 hack...
+			self.setCmdline('sleep 2; sfdisk -R ' + self.hdd.disk_path)
 			self.postconditions.append(Task.ReturncodePostcondition())
+
 
 class MkfsTask(Task.LoggingTask):
 	def prepare(self):
