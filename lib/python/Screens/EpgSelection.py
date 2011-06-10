@@ -114,6 +114,8 @@ class EPGSelection(Screen):
 			self.type = EPG_TYPE_MULTI
 			self["key_yellow"] = Button(_("Prev"))
 			self["key_blue"] = Button(_("Next"))
+			self["key_red"] = Button(_("IMDb Search"))
+			self["key_green"] = Button(_("Add timer"))
 			self["now_button"] = Pixmap()
 			self["next_button"] = Pixmap()
 			self["more_button"] = Pixmap()
@@ -128,6 +130,10 @@ class EPGSelection(Screen):
 			self.zapFunc = zapFunc
 
 		elif isinstance(service, eServiceReference) or isinstance(service, str):
+			self["key_red"] = Button(_("IMDb Search"))
+			self["key_yellow"] = Button(_("EPG Search"))
+			self["key_blue"] = Button(_("Add AutoTimer"))
+			self["key_green"] = Button(_("Add timer"))
 			self.type = EPG_TYPE_SINGLE
 			self.currentService=ServiceReference(service)
 			self.zapFunc = None
@@ -137,15 +143,15 @@ class EPGSelection(Screen):
 				self.skinName = "QuickEPG"
 			else:
 				self.type = EPG_TYPE_ENHANCED
+			self["key_red"] = Button(_("IMDb Search"))
+			self["key_yellow"] = Button(_("EPG Search"))
+			self["key_blue"] = Button(_("Add AutoTimer"))
+			self["key_green"] = Button(_("Add timer"))
 			self.list = []
 			self.oldService = self.session.nav.getCurrentlyPlayingServiceReference()
 			self.currentService=self.session.nav.getCurrentlyPlayingServiceReference()
 			self.zapFunc = None
 
-		self["key_red"] = Button(_("IMDb Search"))
-		self["key_yellow"] = Button(_("EPG Search"))
-		self["key_blue"] = Button(_("Add AutoTimer"))
-		self["key_green"] = Button(_("Add timer"))
 		self.key_green_choice = self.ADD_TIMER
 		self.key_red_choice = self.EMPTY
 		self["list"] = EPGList(type = self.type, selChangedCB = self.onSelectionChanged, timer = session.nav.RecordTimer)
