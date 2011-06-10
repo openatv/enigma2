@@ -383,6 +383,9 @@ class VirtualKeyBoard(Screen):
 			self.shiftMode = False
 			list = self.keys_list	
 
+		if char == " ":
+			char = "SPACE"
+
 		selkey = 0
 		for keylist in list:
 			for key in keylist:
