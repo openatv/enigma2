@@ -1630,6 +1630,11 @@ void eServiceMP3::pullSubtitle()
 				{
 					--m_subs_to_pull;
 					g_signal_emit_by_name (sink, "pull-buffer", &buffer);
+					if (!buffer)
+					{
+						/* appsink stopped, or EOS occurred. We should not continue in our pull loop */
+						m_subs_to_pull = 0;
+					}
 				}
 			}
 			if (buffer)
