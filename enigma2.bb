@@ -6,19 +6,24 @@ DEPENDS = "jpeg libungif libmad libpng libsigc++-1.2 gettext-native \
 	dvd+rw-tools dvdauthor mjpegtools cdrkit python-imaging ${DEMUXTOOL} \
 	libfribidi libxmlccwrap libdreamdvd libdvdcss tuxtxt-enigma2 ethtool \
 	gstreamer gst-plugins-bad gst-plugins-good gst-plugins-ugly \
-	python-wifi"
+	python-wifi hotplug-e2-helper"
 RDEPENDS_${PN} = "python-codecs python-core python-lang python-re python-threading \
 	python-xml python-fcntl gst-plugin-decodebin gst-plugin-decodebin2 python-stringold \
 	python-pickle gst-plugin-app \
 	gst-plugin-id3demux gst-plugin-mad gst-plugin-ogg gst-plugin-playbin \
 	gst-plugin-typefindfunctions gst-plugin-audioconvert gst-plugin-audioresample \
-	gst-plugin-wavparse python-netclient gst-plugin-mpegstream gst-plugin-selector \
+	gst-plugin-wavparse python-netclient gst-plugin-mpegstream \
 	gst-plugin-flac gst-plugin-mpegdemux gst-plugin-dvdsub \
 	gst-plugin-souphttpsrc gst-plugin-mpegaudioparse gst-plugin-subparse \
 	gst-plugin-apetag gst-plugin-icydemux gst-plugin-autodetect gst-plugin-audioparsersbad \
-	python-twisted-core python-elementtree \
+	python-twisted-core python-elementtree python-compression \
+	python-utf8-hack \
 	enigma2-fonts \
 	glibc-gconv-iso8859-15 ethtool"
+
+# DVD playback is integrated, we need the libraries
+RDEPENDS_${PN} += "libdreamdvd"
+RRECOMMENDS_${PN} = "libdvdcss"
 
 RDEPENDS_${PN} += "${@base_contains("MACHINE_FEATURES", "blindscan", "virtual/blindscanutils" , "", d)}"
 
@@ -62,8 +67,6 @@ DESCRIPTION_append_enigma2-plugin-systemplugins-satelliteequipmentcontrol = "all
 DESCRIPTION_append_enigma2-plugin-systemplugins-satfinder = "helps you to align your dish."
 DESCRIPTION_append_enigma2-plugin-systemplugins-skinselector = "shows a menu with selectable skins."
 DESCRIPTION_append_enigma2-plugin-systemplugins-videomode = "selects advanced video modes"
-RDEPENDS_enigma2-plugin-extensions-dvdplayer = "libdreamdvd"
-RRECOMMENDS_enigma2-plugin-extensions-dvdplayer = "libdvdcss"
 RDEPENDS_enigma2-plugin-systemplugins-nfiflash = "python-twisted-web"
 RDEPENDS_enigma2-plugin-systemplugins-softwaremanager = "python-twisted-web"
 DESCRIPTION_append_enigma2-plugin-systemplugins-crashlogautosubmit = "automatically send crashlogs to Dream Multimedia"
@@ -75,6 +78,7 @@ DESCRIPTION_append_enigma2-plugin-systemplugins-wirelesslan = "helps you configu
 RDEPENDS_enigma2-plugin-systemplugins-wirelesslan = "wpa-supplicant wireless-tools python-wifi"
 DESCRIPTION_append_enigma2-plugin-systemplugins-networkwizard = "provides easy step by step network configuration"
 RDEPENDS_enigma2-plugin-extensions-dvdburn = "dvd+rw-tools dvdauthor mjpegtools cdrkit python-imaging ${DEMUXTOOL}"
+RDEPENDS_enigma2-plugin-systemplugins-hotplug = "hotplug-e2-helper"
 
 inherit gitpkgv srctree
 
