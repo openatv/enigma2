@@ -227,7 +227,10 @@ class AudioSelection(Screen, ConfigListScreen):
 		return l
 
 	def subtitlesEnabled(self):
-		return self.infobar.subtitles_enabled
+		try:
+			return self.infobar.subtitles_enabled
+		except: 
+			return False
 
 	def enableSubtitle(self, subtitles):
 		if self.infobar.selected_subtitle != subtitles:
