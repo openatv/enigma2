@@ -1617,8 +1617,7 @@ void eServiceMP3::gstTextpadHasCAPS_synced(GstPad *pad)
 
 void eServiceMP3::pullSubtitle()
 {
-	GstElement *sink;
-	g_object_get (G_OBJECT (m_gst_playbin), "text-sink", &sink, NULL);
+	GstElement *sink = gst_bin_get_by_name(GST_BIN(m_gst_playbin), "subtitle_sink");
 	if (sink)
 	{
 		while (m_subs_to_pull && m_subtitle_pages.size() < 2)
@@ -1631,6 +1630,11 @@ void eServiceMP3::pullSubtitle()
 				{
 					--m_subs_to_pull;
 					g_signal_emit_by_name (sink, "pull-buffer", &buffer);
+					if (!buffer)
+					{
+						/* appsink stopped, or EOS occurred. We should not continue in our pull loop */
+						m_subs_to_pull = 0;
+					}
 				}
 			}
 			if (buffer)
