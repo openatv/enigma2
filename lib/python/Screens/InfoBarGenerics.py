@@ -1,4 +1,4 @@
-from ChannelSelection import SimpleChannelSelection, ChannelSelection, BouquetSelector, VIXBouquetSelector
+from ChannelSelection import SlimChannelSelection, ChannelSelection, BouquetSelector, VIXBouquetSelector
 
 from Components.ActionMap import ActionMap, HelpableActionMap
 from Components.ActionMap import NumberActionMap
@@ -545,7 +545,7 @@ class InfoBarChannelSelection:
 	def __init__(self):
 		#instantiate forever
 		self.servicelist = self.session.instantiateDialog(ChannelSelection)
-		self.simpleservicelist = self.session.instantiateDialog(SimpleChannelSelection)
+		self.slimservicelist = self.session.instantiateDialog(SlimChannelSelection)
 
 		if config.misc.initialchannelselection.value:
 			self.onShown.append(self.firstRun)
@@ -578,12 +578,12 @@ class InfoBarChannelSelection:
 			self.zapDown()
 
 	def showTvSimpleChannelList(self, zap=False):
-		self.simpleservicelist.setModeTv()
+		self.slimservicelist.setModeTv()
 		self.servicelist.setModeTv()
 		if zap:
-			self.simpleservicelist.zap()
+			self.slimservicelist.zap()
 		if config.usage.show_servicelist.value:
-			self.session.execDialog(self.simpleservicelist)
+			self.session.execDialog(self.slimservicelist)
 
 	def showTvChannelList(self, zap=False):
 		self.servicelist.setModeTv()
@@ -621,11 +621,11 @@ class InfoBarChannelSelection:
 				self.session.execDialog(self.servicelist)
 		else:
 			if not config.usage.show_bouquetalways.value:
-				self.simpleservicelist.moveUp()
-				self.session.execDialog(self.simpleservicelist)
+				self.slimservicelist.moveUp()
+				self.session.execDialog(self.slimservicelist)
 			else:
-				self.simpleservicelist.showFavourites()
-				self.session.execDialog(self.simpleservicelist)
+				self.slimservicelist.showFavourites()
+				self.session.execDialog(self.slimservicelist)
 
 	def switchChannelDown(self):
 		if config.usage.servicelist_mode.value != "simple":
@@ -637,11 +637,11 @@ class InfoBarChannelSelection:
 				self.session.execDialog(self.servicelist)
 		else:
 			if not config.usage.show_bouquetalways.value:
-				self.simpleservicelist.moveDown()
-				self.session.execDialog(self.simpleservicelist)
+				self.slimservicelist.moveDown()
+				self.session.execDialog(self.slimservicelist)
 			else:
-				self.simpleservicelist.showFavourites()
-				self.session.execDialog(self.simpleservicelist)
+				self.slimservicelist.showFavourites()
+				self.session.execDialog(self.slimservicelist)
 
 	def switchChannelUpLong(self):
 		if config.usage.servicelist_mode.value == "simple":
@@ -653,11 +653,11 @@ class InfoBarChannelSelection:
 				self.session.execDialog(self.servicelist)
 		else:
 			if not config.usage.show_bouquetalways.value:
-				self.simpleservicelist.moveUp()
-				self.session.execDialog(self.simpleservicelist)
+				self.slimservicelist.moveUp()
+				self.session.execDialog(self.slimservicelist)
 			else:
-				self.simpleservicelist.showFavourites()
-				self.session.execDialog(self.simpleservicelist)
+				self.slimservicelist.showFavourites()
+				self.session.execDialog(self.slimservicelist)
 
 	def switchChannelDownLong(self):
 		if config.usage.servicelist_mode.value == "simple":
@@ -669,11 +669,11 @@ class InfoBarChannelSelection:
 				self.session.execDialog(self.servicelist)
 		else:
 			if not config.usage.show_bouquetalways.value:
-				self.simpleservicelist.moveDown()
-				self.session.execDialog(self.simpleservicelist)
+				self.slimservicelist.moveDown()
+				self.session.execDialog(self.slimservicelist)
 			else:
-				self.simpleservicelist.showFavourites()
-				self.session.execDialog(self.simpleservicelist)
+				self.slimservicelist.showFavourites()
+				self.session.execDialog(self.slimservicelist)
 
 
 	def openServiceList(self):
@@ -780,7 +780,7 @@ class InfoBarSimpleEventView:
 			epglist[1] = tmp
 			setEvent(epglist[0])
 
-class SimpleServicelist:
+class SlimServicelist:
 	def __init__(self, services):
 		self.services = services
 		self.length = len(services)
