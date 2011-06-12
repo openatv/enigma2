@@ -259,6 +259,7 @@ private:
 	void pullSubtitle();
 	void sourceTimeout();
 	int m_subs_to_pull;
+	bool m_seeking;
 	sourceStream m_sourceinfo;
 	eSingleLock m_subs_to_pull_lock;
 	gulong m_subs_to_pull_handler_id;
