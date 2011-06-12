@@ -126,7 +126,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 	def openBouquetList(self):
 		if config.usage.tvbutton_mode.value == "SimpleTVList":
 			self.showTvSimpleChannelList(True)
-			self.simpleservicelist.showFavourites()
+			self.slimservicelist.showFavourites()
 		elif config.usage.tvbutton_mode.value == "SimpleBouquetList":
 			self.showTvSimpleChannelList(True)
 		elif config.usage.tvbutton_mode.value == "TVList":
@@ -142,7 +142,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			self.showTvSimpleChannelList(True)
 		elif config.usage.tvbutton_mode.value == "SimpleBouquetList":
 			self.showTvSimpleChannelList(True)
-			self.simpleservicelist.showFavourites()
+			self.slimservicelist.showFavourites()
 		elif config.usage.tvbutton_mode.value == "TVList":
 			self.showTvChannelList(True)
 		elif config.usage.tvbutton_mode.value == "BouquetList":
