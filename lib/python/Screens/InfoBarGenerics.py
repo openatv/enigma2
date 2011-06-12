@@ -50,7 +50,7 @@ def setResumePoint(session):
 	global resumePointCache
 	service = session.nav.getCurrentService()
 	ref = session.nav.getCurrentlyPlayingServiceReference()
-	if (service is not None) and (ref is not None) and (ref.type != 1):
+	if (service is not None) and (ref is not None): # and (ref.type != 1):
 		# ref type 1 has its own memory...
 		seek = service.seek()
 		if seek:
@@ -58,7 +58,12 @@ def setResumePoint(session):
 			if not pos[0]:
 				key = ref.toString()
 				lru = time()
-				resumePointCache[key] = [lru, pos[1]]
+				l = seek.getLength()
+				if l:
+					l = l[1]
+				else:
+					l = None 
+				resumePointCache[key] = [lru, pos[1], l]
 				if len(resumePointCache) > 100:
 					candidate = key
 					for k,v in resumePointCache.items():

@@ -42,9 +42,14 @@ class StubInfo:
 		return ''
 justStubInfo = StubInfo()
 
-def moviePlayState(cutsFileName, length=None):
+def lastPlayPosFromCache(ref):
+	from Screens.InfoBarGenerics import resumePointCache
+	return resumePointCache.get(ref.toString(), None)
+
+def moviePlayState(cutsFileName, ref, length):
 	'''Returns None, 0..100 for percentage'''
 	try:
+		# read the cuts file first
 		f = open(cutsFileName, 'rb')
 		lastCut = None
 		cutPTS = None
@@ -58,11 +63,17 @@ def moviePlayState(cutsFileName, length=None):
 			else:
 				lastCut = cut
 		f.close()
-		if not cutPTS:
-			# Was not played (or played till the end)
-			return None
+		# See what we have in RAM (it might help)
+		last = lastPlayPosFromCache(ref)
+		if last:
+			# Get the length from the cache
+			if not lastCut:
+				lastCut = last[2]
+			# Get the cut point from the cache if not in the file
+			if not cutPTS:
+				cutPTS = last[1]
 		if not lastCut:
-			if length:
+			if length and (length > 0):
 				lastCut = length * 90000
 			else:
 				# dunno
@@ -71,10 +82,21 @@ def moviePlayState(cutsFileName, length=None):
 			return 100
 		return (100 * cutPTS) // lastCut
 	except:
+		cutPTS = lastPlayPosFromCache(ref)
+		if cutPTS:
+			if not length or (length<0):
+				length = cutPTS[2]
+			if length:
+				return (100 * cutPTS[1]) // length
+			else:
+				return 50
 		return None
 
-def resetMoviePlayState(cutsFileName):
+def resetMoviePlayState(cutsFileName, ref=None):
 	try:
+		if ref is not None:
+			from Screens.InfoBarGenerics import delResumePoint
+			delResumePoint(ref)
 		f = open(cutsFileName, 'rb')
 		cutlist = []
 		while 1:
@@ -89,8 +111,9 @@ def resetMoviePlayState(cutsFileName):
 		f.write(''.join(cutlist))
 		f.close()
 	except:
-		import sys
-		print "Exception in resetMoviePlayState: %s: %s" % sys.exc_info()[:2]
+		pass
+		#import sys
+		#print "Exception in resetMoviePlayState: %s: %s" % sys.exc_info()[:2]
 
         
 class MovieList(GUIComponent):
@@ -266,8 +289,8 @@ class MovieList(GUIComponent):
 			if os.path.split(pathName)[1] in self.runningTimers:
 				data.icon = self.iconMovieRec
 			else:
-				switch = config.usage.show_icons_in_movielist.value 
-				data.part = moviePlayState(pathName + '.cuts', data.len)
+				switch = config.usage.show_icons_in_movielist.value
+				data.part = moviePlayState(pathName + '.cuts', serviceref, data.len)
 				if switch == 'i':
 					if data.part is None:
 						if config.usage.movielist_unseen.value:
