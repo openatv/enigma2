@@ -30,6 +30,7 @@ profile("ChannelSelection.py 4")
 from Screens.PictureInPicture import PictureInPicture
 from Screens.RdsDisplay import RassInteractive
 from ServiceReference import ServiceReference
+from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN
 from Tools.BoundFunction import boundFunction
 from os import remove
 profile("ChannelSelection.py after imports")
@@ -1691,7 +1692,13 @@ class SlimChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSe
 		ChannelSelectionEdit.__init__(self)
 		ChannelSelectionEPG.__init__(self)
 		SelectionEventInfo.__init__(self)
-		self.skinName = "SimpleChannelSelection"
+		data = resolveFilename(SCOPE_CURRENT_SKIN,"skin.xml")
+		data = data.replace('/ skin.xml','/skin.xml')
+		data = file(resolveFilename(SCOPE_CURRENT_SKIN,"skin.xml")).read()
+		if data.find('SlimChannelSelection') >= 0:
+			self.skinName = "SlimChannelSelection"
+		else:
+			self.skinName = "SimpleChannelSelection"
 
 		self["actions"] = ActionMap(["OkCancelActions", "TvRadioActions"],
 			{
