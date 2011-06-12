@@ -986,14 +986,12 @@ class InfoBarEPG:
 			Session.openWithCallback(VIXEPG_closed, VIXEPG, services, VIXEPG_zapToService, cb, ServiceReference(epg_bouquet).getServiceName())
 
 	def showCoolTVGuide(self):
-		if isinstance(self, InfoBarEPG):
-			if isinstance(self, InfoBar):
-				try: # falls es nicht installiert ist
-					from Plugins.Extensions.CoolTVGuide.plugin import CoolTVGuide
-					self.session.open(CoolTVGuide)
-					no_plugin = False
-				except Exception, e:
-					self.session.open(MessageBox, _("The Cool TV Guide plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+		try: # falls es nicht installiert ist
+			from Plugins.Extensions.CoolTVGuide.plugin import CoolTVGuide
+			self.session.open(CoolTVGuide)
+			no_plugin = False
+		except Exception, e:
+			self.session.open(MessageBox, _("The Cool TV Guide plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
 	def showEventInfoPlugins(self):
 		list = [(p.name, boundFunction(self.runPlugin, p)) for p in plugins.getPlugins(where = PluginDescriptor.WHERE_EVENTINFO)]
