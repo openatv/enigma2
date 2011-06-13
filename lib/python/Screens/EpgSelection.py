@@ -107,6 +107,7 @@ class EPGSelection(Screen):
 			self["key_yellow"] = Button()
 			self["key_blue"] = Button()
 			self["key_red"] = Button()
+			self["key_green"] = Button()
 			self.currentService=service
 			self.eventid = eventid
 			self.zapFunc = None
