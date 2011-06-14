@@ -13,17 +13,16 @@ from Components.Label import Label,MultiColorLabel
 from Components.ScrollLabel import ScrollLabel
 from Components.Pixmap import Pixmap,MultiPixmap
 from Components.MenuList import MenuList
-from Components.config import config, ConfigYesNo, ConfigIP, NoSave, ConfigText, ConfigPassword, ConfigSelection, getConfigListEntry, ConfigNothing
+from Components.config import config, ConfigYesNo, ConfigIP, NoSave, ConfigText, ConfigPassword, ConfigSelection, getConfigListEntry, ConfigNothing, ConfigNumber
 from Components.ConfigList import ConfigListScreen
 from Components.PluginComponent import plugins
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 from Components.ActionMap import ActionMap, NumberActionMap, HelpableActionMap
-from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_CURRENT_SKIN
+from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS, SCOPE_CURRENT_SKIN
 from Tools.LoadPixmap import LoadPixmap
 from Plugins.Plugin import PluginDescriptor
 from enigma import eTimer, ePoint, eSize, RT_HALIGN_LEFT, eListboxPythonMultiContent, gFont
-from os import path as os_path, system as os_system, unlink
-from os import chmod, path, remove, symlink, unlink
+from os import remove, symlink, unlink, rename, chmod
 from shutil import move
 from re import compile as re_compile, search as re_search
 import time
@@ -127,10 +126,10 @@ class NetworkAdapterSelection(Screen,HelpableScreen):
 			self["introduction"].setText(self.edittext)
 			self["DefaultInterfaceAction"].setEnabled(False)
 
-		if num_configured_if < 2 and os_path.exists("/etc/default_gw"):
+		if num_configured_if < 2 and fileExists("/etc/default_gw"):
 			unlink("/etc/default_gw")
 			
-		if os_path.exists("/etc/default_gw"):
+		if fileExists("/etc/default_gw"):
 			fp = file('/etc/default_gw', 'r')
 			result = fp.read()
 			fp.close()
@@ -150,7 +149,7 @@ class NetworkAdapterSelection(Screen,HelpableScreen):
 					active_int = False
 				self.list.append(self.buildInterfaceList(x[1],_(x[0]),default_int,active_int ))
 		
-		if os_path.exists(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkWizard/networkwizard.xml")):
+		if fileExists(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkWizard/networkwizard.xml")):
 			self["key_blue"].setText(_("NetworkWizard"))
 		self["list"].setList(self.list)
 
@@ -159,7 +158,7 @@ class NetworkAdapterSelection(Screen,HelpableScreen):
 		num_if = len(self.list)
 		old_default_gw = None
 		num_configured_if = len(iNetwork.getConfiguredAdapters())
-		if os_path.exists("/etc/default_gw"):
+		if fileExists("/etc/default_gw"):
 			fp = open('/etc/default_gw', 'r')
 			old_default_gw = fp.read()
 			fp.close()
@@ -222,7 +221,7 @@ class NetworkAdapterSelection(Screen,HelpableScreen):
 			self.session.open(MessageBox, _("Finished configuring your network"), type = MessageBox.TYPE_INFO, timeout = 10, default = False)
 
 	def openNetworkWizard(self):
-		if os_path.exists(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkWizard/networkwizard.xml")):
+		if fileExists(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkWizard/networkwizard.xml")):
 			try:
 				from Plugins.SystemPlugins.NetworkWizard.NetworkWizard import NetworkWizard
 			except ImportError:
@@ -913,7 +912,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 					self.extendedSetup = ('extendedSetup',menuEntryDescription, self.extended)
 					menu.append((menuEntryName,self.extendedSetup))					
 			
-		if os_path.exists(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkWizard/networkwizard.xml")):
+		if fileExists(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkWizard/networkwizard.xml")):
 			menu.append((_("NetworkWizard"), "openwizard"))
 
 		return menu
@@ -1485,7 +1484,7 @@ class NetworkFtp(Screen):
 
 	def FtpStart(self):
 		if self.my_ftp_active == False:
-			if path.exists('/etc/inetd.conf'):
+			if fileExists('/etc/inetd.conf'):
 				inme = open('/etc/inetd.conf', 'r')
 				out = open('/etc/inetd.tmp', 'w')
 				for line in inme.readlines():
@@ -1494,7 +1493,7 @@ class NetworkFtp(Screen):
 					out.write(line)
 				out.close()
 				inme.close()
-			if path.exists('/etc/inetd.tmp'):
+			if fileExists('/etc/inetd.tmp'):
 				move('/etc/inetd.tmp', '/etc/inetd.conf')
 				self.Console.ePopen('killall -HUP inetd')
 				self.Console.ePopen('ps')
@@ -1504,7 +1503,7 @@ class NetworkFtp(Screen):
 
 	def FtpStop(self):
 		if self.my_ftp_active == True:
-			if path.exists('/etc/inetd.conf'):
+			if fileExists('/etc/inetd.conf'):
 				inme = open('/etc/inetd.conf', 'r')
 				out = open('/etc/inetd.tmp', 'w')
 				for line in inme.readlines():
@@ -1513,7 +1512,7 @@ class NetworkFtp(Screen):
 					out.write(line)
 				out.close()
 				inme.close()
-			if path.exists('/etc/inetd.tmp'):
+			if fileExists('/etc/inetd.tmp'):
 				move('/etc/inetd.tmp', '/etc/inetd.conf')
 				self.Console.ePopen('killall -HUP inetd')
 				self.Console.ePopen('ps')
@@ -1525,7 +1524,7 @@ class NetworkFtp(Screen):
 		self['labrun'].hide()
 		self['labstop'].hide()
 		self.my_ftp_active = False
-		if path.exists('/etc/inetd.conf'):
+		if fileExists('/etc/inetd.conf'):
 			f = open('/etc/inetd.conf', 'r')
 			for line in f.readlines():
 				parts = line.strip().split()
@@ -1590,49 +1589,49 @@ class NetworkNfs(Screen):
 			self.updateNfs()
 
 	def Nfsset(self):
-		if path.exists('/etc/rc0.d/K20nfsserver'):
+		if fileExists('/etc/rc0.d/K20nfsserver'):
 			unlink('/etc/rc0.d/K20nfsserver')
 			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/nfsserver', '/etc/rc0.d/K20nfsserver')
 			mymess = _("Autostart Enabled.")
 
-		if path.exists('/etc/rc1.d/K20nfsserver'):
+		if fileExists('/etc/rc1.d/K20nfsserver'):
 			unlink('/etc/rc1.d/K20nfsserver')
 			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/nfsserver', '/etc/rc1.d/K20nfsserver')
 			mymess = _("Autostart Enabled.")
 
-		if path.exists('/etc/rc2.d/S20nfsserver'):
+		if fileExists('/etc/rc2.d/S20nfsserver'):
 			unlink('/etc/rc2.d/S20nfsserver')
 			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/nfsserver', '/etc/rc2.d/S20nfsserver')
 			mymess = _("Autostart Enabled.")
 
-		if path.exists('/etc/rc3.d/S20nfsserver'):
+		if fileExists('/etc/rc3.d/S20nfsserver'):
 			unlink('/etc/rc3.d/S20nfsserver')
 			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/nfsserver', '/etc/rc3.d/S20nfsserver')
 			mymess = _("Autostart Enabled.")
 
-		if path.exists('/etc/rc4.d/S20nfsserver'):
+		if fileExists('/etc/rc4.d/S20nfsserver'):
 			unlink('/etc/rc4.d/S20nfsserver')
 			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/nfsserver', '/etc/rc4.d/S20nfsserver')
 			mymess = _("Autostart Enabled.")
 
-		if path.exists('/etc/rc5.d/S20nfsserver'):
+		if fileExists('/etc/rc5.d/S20nfsserver'):
 			unlink('/etc/rc5.d/S20nfsserver')
 			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/nfsserver', '/etc/rc5.d/S20nfsserver')
 			mymess = _("Autostart Enabled.")
 
-		if path.exists('/etc/rc6.d/K20nfsserver'):
+		if fileExists('/etc/rc6.d/K20nfsserver'):
 			unlink('/etc/rc6.d/K20nfsserver')
 			mymess = _("Autostart Disabled.")
 		else:
@@ -1651,11 +1650,11 @@ class NetworkNfs(Screen):
 		self['labactive'].setText(_("Disabled"))
 		self.my_nfs_active = False
 		self.my_nfs_run = False
-		if path.exists('/etc/rc3.d/S20nfsserver'):
+		if fileExists('/etc/rc3.d/S20nfsserver'):
 			self['labactive'].setText(_("Enabled"))
 			self['labactive'].show()
 			self.my_nfs_active = True
-		if path.exists('/tmp/Nfs.tmp'):
+		if fileExists('/tmp/Nfs.tmp'):
 			f = open('/tmp/Nfs.tmp', 'r')
 			for line in f.readlines():
 				if line.find('nfsd') != -1:
@@ -1728,49 +1727,49 @@ class NetworkOpenvpn(Screen):
 			self.updatemy_Vpn()
 
 	def activateVpn(self):
-		if path.exists('/etc/rc0.d/K20openvpn'):
+		if fileExists('/etc/rc0.d/K20openvpn'):
 			unlink('/etc/rc0.d/K20openvpn')
 			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/openvpn', '/etc/rc0.d/K20openvpn')
 			mymess = _("Autostart Enabled.")
 
-		if path.exists('/etc/rc1.d/K20openvpn'):
+		if fileExists('/etc/rc1.d/K20openvpn'):
 			unlink('/etc/rc1.d/K20openvpn')
 			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/openvpn', '/etc/rc1.d/K20openvpn')
 			mymess = _("Autostart Enabled.")
 
-		if path.exists('/etc/rc2.d/S20openvpn'):
+		if fileExists('/etc/rc2.d/S20openvpn'):
 			unlink('/etc/rc2.d/S20openvpn')
 			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/openvpn', '/etc/rc2.d/S20openvpn')
 			mymess = _("Autostart Enabled.")
 
-		if path.exists('/etc/rc3.d/S20openvpn'):
+		if fileExists('/etc/rc3.d/S20openvpn'):
 			unlink('/etc/rc3.d/S20openvpn')
 			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/openvpn', '/etc/rc3.d/S20openvpn')
 			mymess = _("Autostart Enabled.")
 
-		if path.exists('/etc/rc4.d/S20openvpn'):
+		if fileExists('/etc/rc4.d/S20openvpn'):
 			unlink('/etc/rc4.d/S20openvpn')
 			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/openvpn', '/etc/rc4.d/S20openvpn')
 			mymess = _("Autostart Enabled.")
 
-		if path.exists('/etc/rc5.d/S20openvpn'):
+		if fileExists('/etc/rc5.d/S20openvpn'):
 			unlink('/etc/rc5.d/S20openvpn')
 			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/openvpn', '/etc/rc5.d/S20openvpn')
 			mymess = _("Autostart Enabled.")
 
-		if path.exists('/etc/rc6.d/K20openvpn'):
+		if fileExists('/etc/rc6.d/K20openvpn'):
 			unlink('/etc/rc6.d/K20openvpn')
 			mymess = _("Autostart Disabled.")
 		else:
@@ -1789,11 +1788,11 @@ class NetworkOpenvpn(Screen):
 		self['labactive'].setText(_("Disabled"))
 		self.my_Vpn_active = False
 		self.my_vpn_run = False
-		if path.exists('/etc/rc3.d/S20openvpn'):
+		if fileExists('/etc/rc3.d/S20openvpn'):
 			self['labactive'].setText(_("Enabled"))
 			self['labactive'].show()
 			self.my_Vpn_active = True
-		if path.exists('/tmp/vpn.tmp'):
+		if fileExists('/tmp/vpn.tmp'):
 			f = open('/tmp/vpn.tmp', 'r')
 			for line in f.readlines():
 				if line.find('Vpnd') != -1:
@@ -1827,7 +1826,7 @@ class NetworkVpnLog(Screen):
 		strview = ''
 		self.Console.ePopen('tail /etc/openvpn/openvpn.log > /etc/openvpn/tmp.log')
 		time.sleep(1)
-		if path.exists('/etc/openvpn/tmp.log'):
+		if fileExists('/etc/openvpn/tmp.log'):
 			f = open('/etc/openvpn/tmp.log', 'r')
 			for line in f.readlines():
 				strview += line
@@ -1893,49 +1892,49 @@ class NetworkSamba(Screen):
 			self.updateSamba()
 
 	def activateSamba(self):
-		if path.exists('/etc/rc0.d/K20samba'):
+		if fileExists('/etc/rc0.d/K20samba'):
 			unlink('/etc/rc0.d/K20samba')
 			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/samba', '/etc/rc0.d/K20samba')
 			mymess = _("Autostart Enabled.")
 
-		if path.exists('/etc/rc1.d/K20samba'):
+		if fileExists('/etc/rc1.d/K20samba'):
 			unlink('/etc/rc1.d/K20samba')
 			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/samba', '/etc/rc1.d/K20samba')
 			mymess = _("Autostart Enabled.")
 
-		if path.exists('/etc/rc2.d/S20samba'):
+		if fileExists('/etc/rc2.d/S20samba'):
 			unlink('/etc/rc2.d/S20samba')
 			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/samba', '/etc/rc2.d/S20samba')
 			mymess = _("Autostart Enabled.")
 
-		if path.exists('/etc/rc3.d/S20samba'):
+		if fileExists('/etc/rc3.d/S20samba'):
 			unlink('/etc/rc3.d/S20samba')
 			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/samba', '/etc/rc3.d/S20samba')
 			mymess = _("Autostart Enabled.")
 
-		if path.exists('/etc/rc4.d/S20samba'):
+		if fileExists('/etc/rc4.d/S20samba'):
 			unlink('/etc/rc4.d/S20samba')
 			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/samba', '/etc/rc4.d/S20samba')
 			mymess = _("Autostart Enabled.")
 
-		if path.exists('/etc/rc5.d/S20samba'):
+		if fileExists('/etc/rc5.d/S20samba'):
 			unlink('/etc/rc5.d/S20samba')
 			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/samba', '/etc/rc5.d/S20samba')
 			mymess = _("Autostart Enabled.")
 
-		if path.exists('/etc/rc6.d/K20samba'):
+		if fileExists('/etc/rc6.d/K20samba'):
 			unlink('/etc/rc6.d/K20samba')
 			mymess = _("Autostart Disabled.")
 		else:
@@ -1954,11 +1953,11 @@ class NetworkSamba(Screen):
 		self['labactive'].setText(_("Disabled"))
 		self.my_Samba_active = False
 		self.my_Samba_run = False
-		if path.exists('/etc/rc3.d/S20samba'):
+		if fileExists('/etc/rc3.d/S20samba'):
 			self['labactive'].setText(_("Enabled"))
 			self['labactive'].show()
 			self.my_Samba_active = True
-		if path.exists('/tmp/Samba.tmp'):
+		if fileExists('/tmp/Samba.tmp'):
 			f = open('/tmp/Samba.tmp', 'r')
 			for line in f.readlines():
 				if line.find('smbd') >= 0:
@@ -2003,7 +2002,7 @@ class NetworkSambaLog(Screen):
 		strview = ''
 		self.Console.ePopen('tail /tmp/smb.log > /tmp/tmp.log')
 		time.sleep(1)
-		if path.exists('/tmp/tmp.log'):
+		if fileExists('/tmp/tmp.log'):
 			f = open('//tmp/tmp.log', 'r')
 			for line in f.readlines():
 				strview += line
@@ -2040,7 +2039,7 @@ class NetworkTelnet(Screen):
 
 	def TelnetStart(self):
 		if self.my_telnet_active == False:
-			if path.exists('/etc/inetd.conf'):
+			if fileExists('/etc/inetd.conf'):
 				inme = open('/etc/inetd.conf', 'r')
 				out = open('/etc/inetd.tmp', 'w')
 				for line in inme.readlines():
@@ -2049,7 +2048,7 @@ class NetworkTelnet(Screen):
 					out.write(line)
 				out.close()
 				inme.close()
-			if path.exists('/etc/inetd.tmp'):
+			if fileExists('/etc/inetd.tmp'):
 				move('/etc/inetd.tmp', '/etc/inetd.conf')
 				self.Console.ePopen('killall -HUP inetd')
 				self.Console.ePopen('ps')
@@ -2059,7 +2058,7 @@ class NetworkTelnet(Screen):
 
 	def TelnetStop(self):
 		if self.my_telnet_active == True:
-			if path.exists('/etc/inetd.conf'):
+			if fileExists('/etc/inetd.conf'):
 				inme = open('/etc/inetd.conf', 'r')
 				out = open('/etc/inetd.tmp', 'w')
 				for line in inme.readlines():
@@ -2068,7 +2067,7 @@ class NetworkTelnet(Screen):
 					out.write(line)
 				out.close()
 				inme.close()
-			if path.exists('/etc/inetd.tmp'):
+			if fileExists('/etc/inetd.tmp'):
 				move('/etc/inetd.tmp', '/etc/inetd.conf')
 				self.Console.ePopen('killall -HUP inetd')
 				self.Console.ePopen('ps')
@@ -2080,7 +2079,7 @@ class NetworkTelnet(Screen):
 		self['labrun'].hide()
 		self['labstop'].hide()
 		self.my_telnet_active = False
-		if path.exists('/etc/inetd.conf'):
+		if fileExists('/etc/inetd.conf'):
 			f = open('/etc/inetd.conf', 'r')
 			for line in f.readlines():
 				parts = line.strip().split()
@@ -2094,4 +2093,340 @@ class NetworkTelnet(Screen):
 		else:
 			self['labstop'].show()
 			self['labrun'].hide()
+
+class NetworkInadyn(Screen):
+	skin = """
+		<screen position="center,center" size="590,410" title="Inadyn Manager">
+			<widget name="autostart" position="10,0" size="100,24" font="Regular;20" valign="center" transparent="0" />
+			<widget name="labdisabled" position="110,0" size="100,24" font="Regular;20" valign="center" halign="center" backgroundColor="red" zPosition="1" />
+			<widget name="labactive" position="110,0" size="100,24" font="Regular;20" valign="center" halign="center" backgroundColor="green" zPosition="2" />
+			<widget name="status" position="240,0" size="150,24" font="Regular;20" valign="center" transparent="0" />
+			<widget name="labstop" position="390,0" size="100,24" font="Regular;20" valign="center" halign="center" backgroundColor="red" zPosition="1" />
+			<widget name="labrun" position="390,0" size="100,24" font="Regular;20" valign="center" halign="center" backgroundColor="green" zPosition="2"/>
+			<widget name="time" position="10,50" size="230,30" font="Regular;20" valign="center" transparent="1"/>
+			<widget name="labtime" position="240,50" size="100,30" font="Regular;20" valign="center" backgroundColor="#4D5375"/>
+			<widget name="username" position="10,100" size="150,30" font="Regular;20" valign="center" transparent="1"/>
+			<widget name="labuser" position="160,100" size="310,30" font="Regular;20" valign="center" backgroundColor="#4D5375"/>
+			<widget name="password" position="10,150" size="150,30" font="Regular;20" valign="center" transparent="1"/>
+			<widget name="labpass" position="160,150" size="310,30" font="Regular;20" valign="center" backgroundColor="#4D5375"/>
+			<widget name="alias" position="10,200" size="150,30" font="Regular;20" valign="center" transparent="1"/>
+			<widget name="labalias" position="160,200" size="310,30" font="Regular;20" valign="center" backgroundColor="#4D5375"/>
+			<widget name="sinactive" position="10,250" zPosition="1" pixmap="skin_default/icons/lock_off.png" size="32,32"  alphatest="on" />
+			<widget name="sactive" position="10,250" zPosition="2" pixmap="skin_default/icons/lock_on.png" size="32,32"  alphatest="on" />
+			<widget name="system" position="50,250" size="100,30" font="Regular;20" valign="center" transparent="1"/>
+			<widget name="labsys" position="160,250" size="310,30" font="Regular;20" valign="center" backgroundColor="#4D5375"/>
+			<ePixmap pixmap="skin_default/buttons/red.png" position="0,360" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/green.png" position="150,360" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/yellow.png" position="300,360" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/blue.png" position="450,360" size="140,40" alphatest="on" />
+			<widget name="key_red" position="0,360" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+			<widget name="key_green" position="150,360" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+			<widget name="key_yellow" position="300,360" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
+			<widget name="key_blue" position="450,360" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
+		</screen>"""
+
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		self['autostart'] = Label(_("Autostart:"))
+		self['labactive'] = Label(_(_("Active")))
+		self['labdisabled'] = Label(_(_("Disabled")))
+		self['status'] = Label(_("Current Status:"))
+		self['labstop'] = Label(_("Stopped"))
+		self['labrun'] = Label(_("Running"))
+		self['time'] = Label(_('Time Update in Minutes:'))
+		self['labtime'] = Label()
+		self['username'] = Label(_('Username:'))
+		self['labuser'] = Label()
+		self['password'] = Label(_('Password:'))
+		self['labpass'] = Label()
+		self['alias'] = Label(_('Alias:'))
+		self['labalias'] = Label()
+		self['sactive'] = Pixmap()
+		self['sinactive'] = Pixmap()
+		self['system'] = Label(_('System:'))
+		self['labsys'] = Label()
+		self['key_red'] = Label(_('Setup'))
+		self['key_green'] = Label(_('Show Log'))
+		self['key_yellow'] = Label(_("Start"))
+		self['key_blue'] = Label(_("Autostart"))
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.setupin, 'back': self.close, 'red': self.setupin, 'green': self.inaLog, 'yellow': self.InadynStart, 'blue': self.autostart})
+		self.Console = Console()
+		self.onLayoutFinish.append(self.updateIna)
+
+	def InadynStart(self):
+		if self.my_inadyn_run == False:
+			self.Console.ePopen('/etc/init.d/inadyn-daemon start')
+			time.sleep(3)
+			self.updateIna()
+		elif self.my_inadyn_run == True:
+			self.Console.ePopen('/etc/init.d/inadyn-daemon stop')
+			time.sleep(3)
+			self.updateIna()
+
+	def autostart(self):
+		if fileExists('/etc/rc0.d/K20inadyn-daemon'):
+			unlink('/etc/rc0.d/K20inadyn-daemon')
+			mymess = _("Autostart Disabled.")
+		else:
+			symlink('/etc/init.d/inadyn-daemon', '/etc/rc0.d/K20inadyn-daemon')
+			mymess = _("Autostart Enabled.")
+
+		if fileExists('/etc/rc1.d/K20inadyn-daemon'):
+			unlink('/etc/rc1.d/K20inadyn-daemon')
+			mymess = _("Autostart Disabled.")
+		else:
+			symlink('/etc/init.d/inadyn-daemon', '/etc/rc1.d/K20inadyn-daemon')
+			mymess = _("Autostart Enabled.")
+
+		if fileExists('/etc/rc2.d/S20inadyn-daemon'):
+			unlink('/etc/rc2.d/S20inadyn-daemon')
+			mymess = _("Autostart Disabled.")
+		else:
+			symlink('/etc/init.d/inadyn-daemon', '/etc/rc2.d/S20inadyn-daemon')
+			mymess = _("Autostart Enabled.")
+
+		if fileExists('/etc/rc3.d/S20inadyn-daemon'):
+			unlink('/etc/rc3.d/S20inadyn-daemon')
+			mymess = _("Autostart Disabled.")
+		else:
+			symlink('/etc/init.d/inadyn-daemon', '/etc/rc3.d/S20inadyn-daemon')
+			mymess = _("Autostart Enabled.")
+
+		if fileExists('/etc/rc4.d/S20inadyn-daemon'):
+			unlink('/etc/rc4.d/S20inadyn-daemon')
+			mymess = _("Autostart Disabled.")
+		else:
+			symlink('/etc/init.d/inadyn-daemon', '/etc/rc4.d/S20inadyn-daemon')
+			mymess = _("Autostart Enabled.")
+
+		if fileExists('/etc/rc5.d/S20inadyn-daemon'):
+			unlink('/etc/rc5.d/S20inadyn-daemon')
+			mymess = _("Autostart Disabled.")
+		else:
+			symlink('/etc/init.d/inadyn-daemon', '/etc/rc5.d/S20inadyn-daemon')
+			mymess = _("Autostart Enabled.")
+
+		if fileExists('/etc/rc6.d/K20inadyn-daemon'):
+			unlink('/etc/rc6.d/K20inadyn-daemon')
+			mymess = _("Autostart Disabled.")
+		else:
+			symlink('/etc/init.d/inadyn-daemon', '/etc/rc6.d/K20inadyn-daemon')
+			mymess = _("Autostart Enabled.")
+
+		mybox = self.session.open(MessageBox, mymess, MessageBox.TYPE_INFO, timeout = 10)
+		mybox.setTitle(_("Info"))
+		self.updateIna()
+
+	def updateIna(self):
+		import process
+		p = process.ProcessList()
+		inadyn_process = str(p.named('inadyn')).strip('[]')
+		self['labrun'].hide()
+		self['labstop'].hide()
+		self['labactive'].hide()
+		self['labdisabled'].hide()
+		self.my_inadyn_active = False
+		self.my_inadyn_run = False
+		if fileExists('/etc/rc3.d/S20inadyn-daemon'):
+			self['labdisabled'].hide()
+			self['labactive'].show()
+			self.my_inadyn_active = True
+		else:
+			self['labactive'].hide()
+			self['labdisabled'].show()
+		if inadyn_process:
+			self.my_inadyn_run = True
+		if self.my_inadyn_run == True:
+			self['labstop'].hide()
+			self['labrun'].show()
+			self['key_yellow'].setText(_("Stop"))
+		else:
+			self['labstop'].show()
+			self['labrun'].hide()
+			self['key_yellow'].setText(_("Start"))
+
+		#self.my_nabina_state = False
+		if fileExists('/etc/init.d/inadyn-daemon'):
+			f = open('/etc/init.d/inadyn-daemon', 'r')
+			for line in f.readlines():
+				line = line.strip()
+				if line.find('INADYN_USERNAME=') != -1:
+					line = line[16:]
+					self['labuser'].setText(line)
+				elif line.find('INADYN_PASSWORD=') != -1:
+					line = line[16:]
+					self['labpass'].setText(line)
+				elif line.find('INADYN_ALIAS=') != -1:
+					line = line[13:]
+					self['labalias'].setText(line)
+				elif line.find('UPDATE_PERIOD=') != -1:
+					line = int(line[14:])
+					line = ((line / 1000) / 60)
+					self['labtime'].setText(str(line))
+				elif line.find('DYN_SYSTEM_ON=') != -1:
+					line = line[14:]
+					if line == '1' and self['sactive'].show():
+						pass
+				elif line.find('DYN_SYSTEM=') != -1:
+					line = line[11:]
+					self['labsys'].setText(line)
+			f.close()
+
+	def setupin(self):
+		self.session.openWithCallback(self.updateIna, NetworkInadynSetup)
+
+	def inaLog(self):
+		self.session.open(NetworkInadynLog)
+
+
+
+class NetworkInadynSetup(Screen, ConfigListScreen):
+	skin = """
+		<screen name="InadynSetup" position="center,center" size="440,350" title="Inadyn Setup">
+			<widget name="config" position="10,10" size="420,240" scrollbarMode="showOnDemand" />
+			<widget name="HelpWindow" pixmap="skin_default/vkey_icon.png" position="170,300" zPosition="1" size="440,350" transparent="1" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/red.png" position="130,310" size="140,40" alphatest="on" />
+			<widget name="key_red" position="130,310" size="140,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+			<ePixmap pixmap="skin_default/buttons/key_text.png" position="300,313" zPosition="4" size="35,25" alphatest="on" transparent="1" />
+		</screen>"""
+
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		self.onChangedEntry = [ ]
+		self.list = []
+		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
+		self["title"] = Label(_("Inadyn Manager"))
+		self['key_red'] = Label(_('Save'))
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'VirtualKeyboardActions'], {'red': self.saveIna, 'back': self.close, 'showVirtualKeyboard': self.KeyText})
+		self["HelpWindow"] = Pixmap()
+		self["HelpWindow"].hide()
+		self.updateList()
+
+	def updateList(self):
+		self.ina_user = NoSave(ConfigText(fixed_size=False))
+		self.ina_pass = NoSave(ConfigText(fixed_size=False))
+		self.ina_alias = NoSave(ConfigText(fixed_size=False))
+		self.ina_period = NoSave(ConfigNumber())
+		self.ina_sysactive = NoSave(ConfigYesNo(default='False'))
+		self.ina_system = NoSave(ConfigText(fixed_size=False))
+		if fileExists('/etc/init.d/inadyn-daemon'):
+			f = open('/etc/init.d/inadyn-daemon', 'r')
+			for line in f.readlines():
+				line = line.strip()
+				if line.find('INADYN_USERNAME=') != -1:
+					line = line[16:]
+					self.ina_user.value = line
+					ina_user1 = getConfigListEntry('Username', self.ina_user)
+					self.list.append(ina_user1)
+				elif line.find('INADYN_PASSWORD=') != -1:
+					line = line[16:]
+					self.ina_pass.value = line
+					ina_pass1 = getConfigListEntry('Password', self.ina_pass)
+					self.list.append(ina_pass1)
+				elif line.find('INADYN_ALIAS=') != -1:
+					line = line[13:]
+					self.ina_alias.value = line
+					ina_alias1 = getConfigListEntry('Alias', self.ina_alias)
+					self.list.append(ina_alias1)
+				elif line.find('UPDATE_PERIOD=') != -1:
+					line = int(line[14:])
+					line = ((line / 1000) / 60)
+					self.ina_period.value = line
+					ina_period1 = getConfigListEntry('Time Update in Minutes', self.ina_period)
+					self.list.append(ina_period1)
+				elif line.find('DYN_SYSTEM_ON=') != -1:
+					line = line[14:]
+					if (line == '1'):
+						self.ina_sysactive.value = True
+					else:
+						self.ina_sysactive.value = False
+					ina_sysactive1 = getConfigListEntry('Set System', self.ina_sysactive)
+					self.list.append(ina_sysactive1)
+				elif line.find('DYN_SYSTEM=') != -1:
+					line = line[11:]
+					self.ina_system.value = line
+					ina_system1 = getConfigListEntry('System', self.ina_system)
+					self.list.append(ina_system1)
+
+			f.close()
+		self['config'].list = self.list
+		self['config'].l.setList(self.list)
+
+	def changedEntry(self):
+		for x in self.onChangedEntry:
+			x()
+
+	def getCurrentEntry(self):
+		return self["config"].getCurrent()[0]
+
+	def KeyText(self):
+		sel = self['config'].getCurrent()
+		if sel:
+			self.vkvar = sel[0]
+			if self.vkvar == "Username" or self.vkvar == "Password" or self.vkvar == "Alias" or self.vkvar == "System":
+				from Screens.VirtualKeyBoard import VirtualKeyBoard
+				self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title = self["config"].getCurrent()[0], text = self["config"].getCurrent()[1].getValue())
+
+	def VirtualKeyBoardCallback(self, callback = None):
+		if callback is not None and len(callback):
+			self["config"].getCurrent()[1].setValue(callback)
+			self["config"].invalidate(self["config"].getCurrent())
+
+	def saveIna(self):
+		if fileExists('/etc/init.d/inadyn-daemon'):
+			inme = open('/etc/init.d/inadyn-daemon', 'r')
+			out = open('/etc/init.d/inadyn-daemon.tmp', 'w')
+			for line in inme.readlines():
+				line = line.replace('\n', '')
+				if line.find('INADYN_USERNAME=') != -1:
+					line = ('INADYN_USERNAME=' + self.ina_user.value.strip())
+				elif line.find('INADYN_PASSWORD=') != -1:
+					line = ('INADYN_PASSWORD=' + self.ina_pass.value.strip())
+				elif line.find('INADYN_ALIAS=') != -1:
+					line = ('INADYN_ALIAS=' + self.ina_alias.value.strip())
+				elif line.find('UPDATE_PERIOD=') != -1:
+					strview = ((self.ina_period.value * 1000) * 60)
+					strview = str(strview)
+					line = ('UPDATE_PERIOD=' + strview)
+				elif line.find('DYN_SYSTEM_ON=') != -1:
+					strview = '0'
+					if (self.ina_sysactive.value == True):
+						strview = '1'
+					line = ('DYN_SYSTEM_ON=' + strview)
+				elif line.find('DYN_SYSTEM=') != -1:
+					line = ('DYN_SYSTEM=' + self.ina_system.value.strip())
+				out.write((line + '\n'))
+			out.close()
+			inme.close()
+		else:
+			self.session.open(MessageBox, 'Sorry Inadyn Script is Missing', MessageBox.TYPE_INFO)
+			self.close()
+		if fileExists('/etc/init.d/inadyn-daemon.tmp'):
+			rename('/etc/init.d/inadyn-daemon.tmp', '/etc/init.d/inadyn-daemon')
+			chmod('/etc/init.d/inadyn-daemon',0755)
+		self.myStop()
+
+	def myStop(self):
+		self.close()
+
+class NetworkInadynLog(Screen):
+	skin = """
+		<screen name="InadynLog" position="center,center" size="590,410" title="Inadyn Log">
+			<widget name="infotext" position="10,10" size="590,410" font="Console;16" />
+		</screen>"""
+
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		self['infotext'] = ScrollLabel('')
+		self['actions'] = ActionMap(['WizardActions', 'DirectionActions', 'ColorActions'], {'ok': self.close,
+		 'back': self.close,
+		 'up': self['infotext'].pageUp,
+		 'down': self['infotext'].pageDown})
+		strview = ''
+		if fileExists('/var/log/inadyn.log'):
+			f = open('/var/log/inadyn.log', 'r')
+			for line in f.readlines():
+				strview += line
+			f.close()
+		self['infotext'].setText(strview)
 
