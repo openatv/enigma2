@@ -2127,6 +2127,7 @@ class NetworkInadyn(Screen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
+		self["title"] = Label(_("Inadyn Manager"))
 		self['autostart'] = Label(_("Autostart:"))
 		self['labactive'] = Label(_(_("Active")))
 		self['labdisabled'] = Label(_(_("Disabled")))
@@ -2295,7 +2296,7 @@ class NetworkInadynSetup(Screen, ConfigListScreen):
 		self.onChangedEntry = [ ]
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
-		self["title"] = Label(_("Inadyn Manager"))
+		self["title"] = Label(_("Inadyn Setup"))
 		self['key_red'] = Label(_('Save'))
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'VirtualKeyboardActions'], {'red': self.saveIna, 'back': self.close, 'showVirtualKeyboard': self.KeyText})
 		self["HelpWindow"] = Pixmap()
@@ -2417,6 +2418,7 @@ class NetworkInadynLog(Screen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
+		self["title"] = Label(_("Inadyn Log"))
 		self['infotext'] = ScrollLabel('')
 		self['actions'] = ActionMap(['WizardActions', 'DirectionActions', 'ColorActions'], {'ok': self.close,
 		 'back': self.close,
