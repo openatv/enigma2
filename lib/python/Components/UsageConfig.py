@@ -1,5 +1,5 @@
 from Components.Harddisk import harddiskmanager
-from config import ConfigSubsection, ConfigYesNo, config, ConfigSelection, ConfigText, ConfigNumber, ConfigSet, ConfigLocations, NoSave, ConfigClock, ConfigInteger
+from config import ConfigSubsection, ConfigYesNo, config, ConfigSelection, ConfigText, ConfigNumber, ConfigSet, ConfigLocations, NoSave, ConfigClock, ConfigInteger, ConfigBoolean
 from Tools.Directories import resolveFilename, SCOPE_HDD
 from enigma import setTunerTypePriorityOrder, setPreferredTuner, setSpinnerOnOff, setEnableTtCachingOnOff;
 from enigma import Misc_Options, eEnv;
@@ -9,6 +9,7 @@ from Tools.Directories import pathExists
 import os
 from glob import glob
 import enigma
+from time import time
 
 def InitUsageConfig():
 	try:
@@ -452,7 +453,7 @@ def InitUsageConfig():
 	config.imagemanager.backuplocation = ConfigSelection(choices = hddchoises)
 	config.imagemanager.schedule = ConfigYesNo(default = False)
 	config.imagemanager.scheduletime = ConfigClock(default = 0) # 1:00
-	config.imagemanager.repeattype = ConfigSelection(default = "daily", choices = [("daily", _("Daily")), ("weekly", _("Weely")), ("monthly", _("30 Days"))])
+	config.imagemanager.repeattype = ConfigSelection(default = "daily", choices = [("daily", _("Daily")), ("weekly", _("Weekly")), ("monthly", _("30 Days"))])
 	config.imagemanager.backupretry = ConfigNumber(default = 30)
 	config.imagemanager.backupretrycount = NoSave(ConfigNumber(default = 0))
 
@@ -461,8 +462,8 @@ def InitUsageConfig():
 	config.vixsettings.Subservice = ConfigYesNo(default = False)
 	config.vixsettings.ColouredButtons = ConfigYesNo(default = True)
 	config.vixsettings.ViXEPG_mode = ConfigSelection(default="vixepg", choices = [
-					("vixepg", _("Show ViX EPG")),
-					("single", _("Show ViX Single EPG")),
+					("vixepg", _("Show Graphical EPG")),
+					("single", _("Show Single EPG")),
 					("multi", _("Show Multi EPG")),
 					("cooltvguide", _("Show CoolTVGuide"))])
 	config.vixsettings.QuickEPG_mode = ConfigSelection(default="3", choices = [
@@ -470,6 +471,30 @@ def InitUsageConfig():
 					("1", _("with long OK press")),
 					("2", _("with exit button")),
 					("3", _("with left/right buttons"))])
+
+	config.GraphEPG = ConfigSubsection()
+	config.GraphEPG.ShowBouquet = ConfigYesNo(default = False)
+	config.GraphEPG.OK = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap")
+	config.GraphEPG.OKLong = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap + Exit")
+	config.GraphEPG.Info = ConfigSelection(choices = [("Channel Info", _("Channel Info")), ("Single EPG", _("Single EPG"))], default = "Channel Info")
+	config.GraphEPG.InfoLong = ConfigSelection(choices = [("Channel Info", _("Channel Info")), ("Single EPG", _("Single EPG"))], default = "Single EPG")
+	config.GraphEPG.prev_time=ConfigClock(default = time())
+	config.GraphEPG.Primetime1 = ConfigInteger(default=20, limits=(0, 23))
+	config.GraphEPG.Primetime2 = ConfigInteger(default=0, limits=(0, 59))
+	config.GraphEPG.UsePicon = ConfigYesNo(default = True)
+	config.GraphEPG.channel1 = ConfigYesNo(default = False)
+	config.GraphEPG.coolswitch = ConfigSelection(choices = [("7-8", _("7-8")), ("14-16", _("14-16"))], default = "7-8")
+	config.GraphEPG.prev_time_period=ConfigInteger(default=180, limits=(60,300))
+	config.GraphEPG.Fontsize = ConfigInteger(default=18, limits=(10, 30))
+	config.GraphEPG.Left_Fontsize = ConfigInteger(default=22, limits=(10, 30))
+	config.GraphEPG.Timeline = ConfigInteger(default=20, limits=(10, 30))
+	config.GraphEPG.items_per_page = ConfigInteger(default=11, limits=(3, 16))
+	config.GraphEPG.item_hight = NoSave(ConfigInteger(default=0))
+	config.GraphEPG.item_hight16 = NoSave(ConfigInteger(default=0))
+	config.GraphEPG.left8 = ConfigInteger(default=110, limits=(70, 250))
+	config.GraphEPG.left16 = ConfigInteger(default=190, limits=(70, 250))
+	config.GraphEPG.overjump = ConfigYesNo(default = False)
+	config.GraphEPG.PIG = ConfigYesNo(default = False)
 
 def updateChoices(sel, choices):
 	if choices:
