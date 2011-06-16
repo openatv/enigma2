@@ -1,4 +1,4 @@
-SUBDIRS = menu icons buttons spinner
+SUBDIRS = menu icons buttons spinner GraphEPG
 
 installdir = $(pkgdatadir)/skin_default
 

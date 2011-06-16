@@ -1,5 +1,4 @@
 from ChannelSelection import SlimChannelSelection, ChannelSelection, BouquetSelector, VIXBouquetSelector
-
 from Components.ActionMap import ActionMap, HelpableActionMap
 from Components.ActionMap import NumberActionMap
 from Components.Harddisk import harddiskmanager
@@ -13,7 +12,6 @@ from Components.SystemInfo import SystemInfo
 from Components.UsageConfig import preferredInstantRecordPath, defaultMoviePath
 from EpgSelection import EPGSelection
 from Plugins.Plugin import PluginDescriptor
-
 from Screen import Screen
 from Screens.ChoiceBox import ChoiceBox
 from Screens.Dish import Dish
@@ -854,7 +852,7 @@ class InfoBarEPG:
 			self.openEventView()
 		else:
 			if config.vixsettings.ViXEPG_mode.value == "vixepg":
-				self.showVIXEPG()
+				self.openGraphEPG()
 			elif config.vixsettings.ViXEPG_mode.value == "multi":
 				self.openMultiServiceEPG()
 			elif config.vixsettings.ViXEPG_mode.value == "single":
@@ -864,7 +862,7 @@ class InfoBarEPG:
 
 	def EPGPressed(self):
 		if config.vixsettings.ViXEPG_mode.value == "vixepg":
-			self.showVIXEPG()
+			self.openGraphEPG()
 		elif config.vixsettings.ViXEPG_mode.value == "multi":
 			self.openMultiServiceEPG()
 		elif config.vixsettings.ViXEPG_mode.value == "single":
@@ -923,6 +921,19 @@ class InfoBarEPG:
 				self.epg_bouquet = bouquet
 				epg.setServices(services)
 
+	def GraphEPG_CB(self, direction, epgcall):
+		bouquets = self.servicelist.getBouquetList()
+		self.epg = epgcall
+		self.session.openWithCallback(self.onBouquetSelectorClose, VIXBouquetSelector, self.bouquets, self.epg_bouquet, direction)
+
+	def onBouquetSelectorClose(self, bouquet):
+		if bouquet:
+			services = self.getBouquetServices(bouquet)
+			if len(services):
+				self.epg_bouquet = bouquet
+				self.epg.setServices(services)
+				self.epg.setTitle(ServiceReference(self.epg_bouquet).getServiceName())
+
 	def closed(self, ret=False):
 		closedScreen = self.dlg_stack.pop()
 		if self.bouquetSel and closedScreen == self.bouquetSel:
@@ -967,23 +978,50 @@ class InfoBarEPG:
 		self.EPGtype = "infobar"
 		self.session.open(EPGSelection, self.servicelist, self.EPGtype)
 
-	def showVIXEPG(self):
-		from Plugins.SystemPlugins.ViX.EPG import VIXEPG
-		global Session
-		Session = self.session
-		global Servicelist
-		Servicelist = self.servicelist
-		global bouquets
-		bouquets = Servicelist and self.servicelist.getBouquetList()
-		global epg_bouquet
-		epg_bouquet = Servicelist and Servicelist.getRoot()
-		if epg_bouquet is not None:
-			if len(bouquets) > 1 :
-				cb = VIXEPG_CB
+	def openGraphEPG(self, withCallback=True):
+		if config.GraphEPG.ShowBouquet.value:
+			self.bouquets = self.servicelist.getBouquetList()
+			if self.bouquets is None:
+				cnt = 0
 			else:
-				cb = None
-			services = self.getBouquetServices(epg_bouquet)
-			Session.openWithCallback(VIXEPG_closed, VIXEPG, services, VIXEPG_zapToService, cb, ServiceReference(epg_bouquet).getServiceName())
+				cnt = len(self.bouquets)
+			if cnt > 1: # show bouquet list
+				if withCallback:
+					self.bouquetSel = self.session.openWithCallback(self.closed, BouquetSelector, self.bouquets, self.openBouquetGraphEPG, enableWrapAround=True)
+					self.dlg_stack.append(self.bouquetSel)
+				else:
+					self.bouquetSel = self.session.open(BouquetSelector, self.bouquets, self.openBouquetGraphEPG, enableWrapAround=True)
+			elif cnt == 1:
+				self.openBouquetEPG(self.bouquets[0][1], withCallback)
+		else:
+			self.EPGtype = "graph"
+			Servicelist = self.servicelist
+			self.bouquets = Servicelist and self.servicelist.getBouquetList()
+			self.epg_bouquet = Servicelist and Servicelist.getRoot()
+			if self.epg_bouquet is not None:
+				if len(self.bouquets) > 1 :
+					cb = self.GraphEPG_CB
+				else:
+					cb = None
+				services = self.getBouquetServices(self.epg_bouquet)
+				self.session.openWithCallback(self.closeGraphEPG, EPGSelection, services, self.zapToService, None, cb, self.EPGtype)
+
+	def openBouquetGraphEPG(self, bouquet, withCallback=True):
+		self.EPGtype = "graph"
+		services = self.getBouquetServices(bouquet)
+		if services:
+			self.epg_bouquet = bouquet
+			if withCallback:
+				self.dlg_stack.append(self.session.openWithCallback(self.closed, EPGSelection, services, self.zapToService, None, self.GraphEPG_CB, self.EPGtype))
+			else:
+				self.session.open(EPGSelection, services, self.zapToService, None, self.GraphEPG_CB, self.EPGtype)
+
+	def closeGraphEPG(self, ret=False):
+		self.GraphEPG_cleanup()
+
+	def GraphEPG_cleanup(self):
+		global epg
+		epg = None
 
 	def showCoolTVGuide(self):
 		try: # falls es nicht installiert ist
@@ -1714,7 +1752,7 @@ class InfoBarExtensions:
 		if config.vixsettings.ViXEPG_mode.value == "vixepg":
 			self.openSingleServiceEPG()
 		else:
-			self.showVIXEPG()
+			self.openGraphEPG()
 
 	def addExtension(self, extension, key = None, type = EXTENSION_SINGLE):
 		self.list.append((type, extension, key))
@@ -1800,9 +1838,9 @@ class InfoBarExtensions:
 		else:
 			self.session.open(MessageBox, _("The EPGSearch plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
-	def showVIXEPG(self):
+	def openGraphEPG(self):
 		if isinstance(self, InfoBarEPG):
-			InfoBarEPG.showVIXEPG()
+			InfoBarEPG.openGraphEPG(InfoBar.instance)
 
 	def openInfoBarEPG(self):
 		if isinstance(self, InfoBarEPG):
@@ -2769,64 +2807,3 @@ class InfoBarServiceErrorPopupSupport:
 				Notifications.AddPopup(text = error, type = MessageBox.TYPE_ERROR, timeout = 5, id = "ZapError")
 			else:
 				Notifications.RemovePopup(id = "ZapError")
-
-def VIXEPG_zapToService(service):
-	if not service is None:
-		if Servicelist.getRoot() != epg_bouquet: #already in correct bouquet?
-			Servicelist.clearPath()
-			if Servicelist.bouquet_root != epg_bouquet:
-				Servicelist.enterPath(Servicelist.bouquet_root)
-			Servicelist.enterPath(epg_bouquet)
-		Servicelist.setCurrentSelection(service) #select the service in Servicelist
-		Servicelist.zap()
-
-def VIXEPG_getBouquetServices(bouquet):
-	services = [ ]
-	Servicelist = eServiceCenter.getInstance().list(bouquet)
-	if not Servicelist is None:
-		while True:
-			service = Servicelist.getNext()
-			if not service.valid(): #check if end of list
-				break
-			if service.flags & (eServiceReference.isDirectory | eServiceReference.isMarker): #ignore non playable services
-				continue
-			services.append(ServiceReference(service))
-	return services
-
-def VIXEPG_cleanup():
-	global Session
-	Session = None
-	global Servicelist
-	Servicelist = None
-	global bouquets
-	bouquets = None
-	global epg_bouquet
-	epg_bouquet = None
-	global epg
-	epg = None
-
-def VIXEPG_closed(ret=False):
-	VIXEPG_cleanup()
-
-def onBouquetSelectorClose(bouquet):
-	if bouquet:
-		services = VIXEPG_getBouquetServices(bouquet)
-		if len(services):
-			global epg_bouquet
-			epg_bouquet = bouquet
-			epg.setServices(services)
-			epg.setTitle(ServiceReference(epg_bouquet).getServiceName())
-
-def VIXEPG_openBouquetEPG(bouquet):
-	services = VIXEPG_getBouquetServices(bouquet)
-	if len(services):
-		global epg_bouquet
-		epg_bouquet = bouquet
-		dlg_stack.append(Session.openWithCallback(VIXEPG_closed, VIXEPG, services, VIXEPG_zapToService, VIXEPG_CB))
-		return True
-	return False
-
-def VIXEPG_CB(direction, epgcall):
-	global epg
-	epg = epgcall
-	Session.openWithCallback(onBouquetSelectorClose, VIXBouquetSelector, bouquets, epg_bouquet, direction)
