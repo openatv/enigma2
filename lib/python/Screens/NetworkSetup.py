@@ -1470,7 +1470,7 @@ class NetworkFtp(Screen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		self["title"] = Label(_("FTP Setup"))
+		Screen.setTitle(self, _("FTP Setup"))
 		self['lab1'] = Label(_("Ftpd service type: Vsftpd server"))
 		self['lab2'] = Label(_("Current Status:"))
 		self['labstop'] = Label(_("Stopped"))
@@ -1557,7 +1557,7 @@ class NetworkNfs(Screen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		self["title"] = Label(_("NFS Setup"))
+		Screen.setTitle(self, _("NFS Setup"))
 		self['lab1'] = Label(_("Autostart:"))
 		self['labactive'] = Label(_(_("Disabled")))
 		self['lab2'] = Label(_("Current Status:"))
@@ -1691,7 +1691,7 @@ class NetworkOpenvpn(Screen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		self["title"] = Label(_("OpenVpn Setup"))
+		Screen.setTitle(self, _("OpenVpn Setup"))
 		self['lab1'] = Label(_("Autostart:"))
 		self['labactive'] = Label(_(_("Disabled")))
 		self['lab2'] = Label(_("Current Status:"))
@@ -1819,7 +1819,7 @@ class NetworkVpnLog(Screen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		self["title"] = Label(_("OpenVpn Log"))
+		Screen.setTitle(self, _("OpenVpn Log"))
 		self['infotext'] = ScrollLabel('')
 		self.Console = Console()
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'up': self['infotext'].pageUp, 'down': self['infotext'].pageDown})
@@ -1856,7 +1856,7 @@ class NetworkSamba(Screen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		self["title"] = Label(_("Samba Setup"))
+		Screen.setTitle(self, _("Samba Setup"))
 		self['lab1'] = Label(_("Autostart:"))
 		self['labactive'] = Label(_(_("Disabled")))
 		self['lab2'] = Label(_("Current Status:"))
@@ -1995,7 +1995,7 @@ class NetworkSambaLog(Screen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		self["title"] = Label(_("OpenVpn Log"))
+		Screen.setTitle(self, _("OpenVpn Log"))
 		self['infotext'] = ScrollLabel('')
 		self.Console = Console()
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'up': self['infotext'].pageUp, 'down': self['infotext'].pageDown})
@@ -2025,7 +2025,7 @@ class NetworkTelnet(Screen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		self["title"] = Label(_("Telnet Setup"))
+		Screen.setTitle(self, _("Telnet Setup"))
 		self['lab1'] = Label(_("You can disable Telnet Server and use ssh to login to your Vu+."))
 		self['lab2'] = Label(_("Current Status:"))
 		self['labstop'] = Label(_("Stopped"))
@@ -2127,7 +2127,7 @@ class NetworkInadyn(Screen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		self["title"] = Label(_("Inadyn Manager"))
+		Screen.setTitle(self, _("Inadyn Manager"))
 		self['autostart'] = Label(_("Autostart:"))
 		self['labactive'] = Label(_(_("Active")))
 		self['labdisabled'] = Label(_(_("Disabled")))
@@ -2296,7 +2296,7 @@ class NetworkInadynSetup(Screen, ConfigListScreen):
 		self.onChangedEntry = [ ]
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
-		self["title"] = Label(_("Inadyn Setup"))
+		Screen.setTitle(self, _("Inadyn Setup"))
 		self['key_red'] = Label(_('Save'))
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'VirtualKeyboardActions'], {'red': self.saveIna, 'back': self.close, 'showVirtualKeyboard': self.KeyText})
 		self["HelpWindow"] = Pixmap()
@@ -2418,7 +2418,7 @@ class NetworkInadynLog(Screen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		self["title"] = Label(_("Inadyn Log"))
+		Screen.setTitle(self, _("Inadyn Log"))
 		self['infotext'] = ScrollLabel('')
 		self['actions'] = ActionMap(['WizardActions', 'DirectionActions', 'ColorActions'], {'ok': self.close,
 		 'back': self.close,
