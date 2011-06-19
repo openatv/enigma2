@@ -86,6 +86,13 @@ def isSimpleFile(item):
 		return False
 	return (item[0].flags & eServiceReference.mustDescent) == 0
 
+def isFolder(item):
+	if not item:
+		return False
+	if not item[0] or not item[1]:
+		return False
+	return (item[0].flags & eServiceReference.mustDescent) != 0
+
 canDelete = isSimpleFile
 
 def canMove(item):
@@ -320,6 +327,7 @@ class MovieContextMenu(Screen):
 					menu.append((_("Permanently remove all deleted items"), csel.purgeAll))
 				else:
 					menu.append((_("Move"), csel.do_move))
+					menu.append((_("Rename"), csel.do_rename))
 			else:
 				menu = [(_("Delete"), csel.do_delete),
 					(_("Move"), csel.do_move),
@@ -509,6 +517,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				'tags': _("Tags"),
 				'addbookmark': _("Add Bookmark"),
 				'bookmarks': _("Location"),
+				'rename': _("Rename")
 			}
 			for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST):
 				print "Plugin:", p.description, p.name
@@ -1075,6 +1084,49 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			msg = _("Error") + '\n' + str(e)
 		if msg:
 			self.session.open(MessageBox, msg, type = MessageBox.TYPE_ERROR, timeout = 5)
+
+	def can_rename(self, item):
+		# Currently only for directories
+		r = isFolder(item)
+		return r
+	def do_rename(self):
+		item = self.getCurrentSelection()
+		if isFolder(item):
+			p = os.path.split(item[0].getPath())
+			if not p[1]:
+				# if path ends in '/', p is blank.
+				p = os.path.split(p[0])
+			name = p[1]
+			from Screens.InputBox import InputBox
+			self.session.openWithCallback(self.renameCallback, InputBox,
+				title = _("Rename"),
+				text = name)
+	def renameCallback(self, name):
+		if not name:
+			return
+		item = self.getCurrentSelection()
+		if item and item[0]:
+			path = item[0].getPath()
+			if path.endswith('/'):
+				path = path[:-1]
+			pathname,filename = os.path.split(path)
+			newpath = os.path.join(pathname, name)
+			msg = None
+			try:
+				print "[ML] rename", path, "to", newpath
+				os.rename(path, newpath)
+				self.reloadList(sel = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + newpath))
+			except OSError, e:
+				print "Error %s:" % e.errno, e
+				if e.errno == 17:
+					msg = _("The path %s already exists.") % name
+				else:
+					msg = _("Error") + '\n' + str(e)
+			except Exception, e:
+				print "[ML] Unexpected error:", e
+				msg = _("Error") + '\n' + str(e)
+			if msg:
+				self.session.open(MessageBox, msg, type = MessageBox.TYPE_ERROR, timeout = 5)
 
 	def do_reset(self):
 		current = self.getCurrent()
