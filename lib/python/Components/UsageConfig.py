@@ -179,20 +179,27 @@ def InitUsageConfig():
 	config.epg.viasat.addNotifier(EpgSettingsChanged)
 	config.epg.netmed.addNotifier(EpgSettingsChanged)
 
-	hddchoises = [('/etc/enigma2/', 'Internal Flash')]
+	hddchoises = []
 	for p in harddiskmanager.getMountedPartitions():
 		d = os.path.normpath(p.mountpoint)
 		if pathExists(p.mountpoint):
 			if p.mountpoint != '/':
 				hddchoises.append((d + '/', p.mountpoint))
-	config.epg.epgcache_path = ConfigSelection(default = "/etc/enigma2/", choices = hddchoises)
-	config.epg.epgcache_path.addNotifier(EpgSettingsChanged)
+	if not hddchoises:
+		hddchoises.append(('/etc/enigma2/', 'Internal Flash'))
+	config.misc.epgcachepath = ConfigSelection(choices = hddchoises)
+	config.misc.epgcachefilename = ConfigText(default='epg.dat', fixed_size=False)
+	config.misc.epgcache_filename = ConfigText(default = (config.misc.epgcachepath.value + config.misc.epgcachepath.value))
+	def EpgCacheChanged(configElement):
+		config.misc.epgcache_filename.setValue(config.misc.epgcachepath.value + config.misc.epgcachefilename.value)
+		config.misc.epgcache_filename.save()
+		enigma.eEPGCache.getInstance().setCacheFile(config.misc.epgcachepath.value + config.misc.epgcachefilename.value)
+		from enigma import eEPGCache
+		epgcache = eEPGCache.getInstance()
+		epgcache.save()
+	config.misc.epgcachepath.addNotifier(EpgCacheChanged, immediate_feedback = False)
+	config.misc.epgcachefilename.addNotifier(EpgCacheChanged, immediate_feedback = False)
 
-	config.epg.epgcache_filename = ConfigText(default='epg.dat', fixed_size=False)
-	config.epg.epgcache_filename.addNotifier(EpgSettingsChanged)
-	config.misc.epgcache_filename = ConfigText(default = (config.epg.epgcache_path.value + config.epg.epgcache_filename.value))
-	config.misc.epgcache_filename.value = (config.epg.epgcache_path.value + config.epg.epgcache_filename.value)
-	config.misc.epgcache_filename.addNotifier(EpgSettingsChanged)
 
 	def setHDDStandby(configElement):
 		for hdd in harddiskmanager.HDDList():
@@ -232,8 +239,14 @@ def InitUsageConfig():
 	config.crash.details = ConfigYesNo(default = False)
 	config.crash.enabledebug = ConfigYesNo(default = False)
 	config.crash.debugloglimit = ConfigNumber(default=4)
-	
-	config.crash.debug_path = ConfigSelection(default = "/home/root/", choices = hddchoises)
+
+	debugpath = [('/home/root/', '/home/root/')]
+	for p in harddiskmanager.getMountedPartitions():
+		d = os.path.normpath(p.mountpoint)
+		if pathExists(p.mountpoint):
+			if p.mountpoint != '/':
+				debugpath.append((d + '/', p.mountpoint))
+	config.crash.debug_path = ConfigSelection(default = "/home/root/", choices = debugpath)
 
 	config.usage.timerlist_finished_timer_position = ConfigSelection(default = "end", choices = [("beginning", _("at beginning")), ("end", _("at end"))])
 
@@ -456,6 +469,7 @@ def InitUsageConfig():
 	config.imagemanager.repeattype = ConfigSelection(default = "daily", choices = [("daily", _("Daily")), ("weekly", _("Weekly")), ("monthly", _("30 Days"))])
 	config.imagemanager.backupretry = ConfigNumber(default = 30)
 	config.imagemanager.backupretrycount = NoSave(ConfigNumber(default = 0))
+	config.imagemanager.nextscheduletime = NoSave(ConfigNumber(default = 0))
 
 	config.vixsettings = ConfigSubsection()
 	config.vixsettings.overscanamount = ConfigNumber(default = 32)
@@ -500,6 +514,19 @@ def updateChoices(sel, choices):
 	if choices:
 		defval = None
 		val = int(sel.value)
+		if not val in choices:
+			tmp = choices[:]
+			tmp.reverse()
+			for x in tmp:
+				if x < val:
+					defval = str(x)
+					break
+		sel.setChoices(map(str, choices), defval)
+
+def updateChoices2(sel, choices):
+	if choices:
+		defval = None
+		val = sel.value
 		if not val in choices:
 			tmp = choices[:]
 			tmp.reverse()
