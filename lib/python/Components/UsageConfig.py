@@ -188,12 +188,12 @@ def InitUsageConfig():
 	if not hddchoises:
 		hddchoises.append(('/etc/enigma2/', 'Internal Flash'))
 	config.misc.epgcachepath = ConfigSelection(choices = hddchoises)
-	config.misc.epgcachefilename = ConfigText(default='epg.dat', fixed_size=False)
-	config.misc.epgcache_filename = ConfigText(default = (config.misc.epgcachepath.value + config.misc.epgcachepath.value))
+	config.misc.epgcachefilename = ConfigText(default='epg', fixed_size=False)
+	config.misc.epgcache_filename = ConfigText(default = (config.misc.epgcachepath.value + config.misc.epgcachefilename.value.replace('.dat','') + '.dat'))
 	def EpgCacheChanged(configElement):
-		config.misc.epgcache_filename.setValue(config.misc.epgcachepath.value + config.misc.epgcachefilename.value)
+		config.misc.epgcache_filename.setValue(config.misc.epgcachepath.value + config.misc.epgcachefilename.value.replace('.dat','') + '.dat')
 		config.misc.epgcache_filename.save()
-		enigma.eEPGCache.getInstance().setCacheFile(config.misc.epgcachepath.value + config.misc.epgcachefilename.value)
+		enigma.eEPGCache.getInstance().setCacheFile(config.misc.epgcachepath.value + config.misc.epgcachefilename.value.replace('.dat','') + '.dat')
 		from enigma import eEPGCache
 		epgcache = eEPGCache.getInstance()
 		epgcache.save()
