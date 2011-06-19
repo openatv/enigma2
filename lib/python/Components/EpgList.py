@@ -56,6 +56,9 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.offs = 0
 		self.curr_refcool = None	
 		self.coolheight = 54
+		self.time_base = None
+		self.time_epoch = time_epoch
+		self.event_rect = None
 
 		self.timer = timer
 		self.onSelChanged = [ ]
@@ -85,10 +88,8 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.clock_pre_pixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_pre.png'))
 		self.clock_post_pixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_post.png'))
 		self.clock_prepost_pixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_prepost.png'))
-		self.setOverjump_Empty(overjump_empty)
-		self.time_base = None
-		self.time_epoch = time_epoch
-		self.event_rect = None
+		if type == EPG_TYPE_GRAPH:
+			self.setOverjump_Empty(overjump_empty)
 		self.nowForeColor = 0xffffff
 		self.nowForeColorSelected = 0x000000
 		self.foreColor = 0xffffff
