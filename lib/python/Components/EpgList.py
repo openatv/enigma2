@@ -56,21 +56,6 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.offs = 0
 		self.curr_refcool = None	
 		self.coolheight = 54
-		self.setOverjump_Empty(overjump_empty)
-		self.time_base = None
-		self.time_epoch = time_epoch
-		self.event_rect = None
-		self.nowForeColor = 0xffffff
-		self.nowForeColorSelected = 0x000000
-		self.foreColor = 0xffffff
-		self.foreColorSelected = 0x000000
-		self.borderColor = 0xC0C0C0
-		self.backColor = 0x2D455E
-		self.backColorSelected = 0xC0C0C0
-		self.nowBackColor = 0x00825F
-		self.nowBackColorSelected = 0x4800FF
-		self.foreColorService = 0xffffff
-		self.backColorService = 0x000000
 
 		self.timer = timer
 		self.onSelChanged = [ ]
@@ -100,6 +85,21 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.clock_pre_pixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_pre.png'))
 		self.clock_post_pixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_post.png'))
 		self.clock_prepost_pixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_prepost.png'))
+		self.setOverjump_Empty(overjump_empty)
+		self.time_base = None
+		self.time_epoch = time_epoch
+		self.event_rect = None
+		self.nowForeColor = 0xffffff
+		self.nowForeColorSelected = 0x000000
+		self.foreColor = 0xffffff
+		self.foreColorSelected = 0x000000
+		self.borderColor = 0xC0C0C0
+		self.backColor = 0x2D455E
+		self.backColorSelected = 0xC0C0C0
+		self.nowBackColor = 0x00825F
+		self.nowBackColorSelected = 0x4800FF
+		self.foreColorService = 0xffffff
+		self.backColorService = 0x000000
 
 
 	def applySkin(self, desktop, screen):
