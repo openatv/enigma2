@@ -256,6 +256,8 @@ def autostart(reason, **kwargs):
 					self.__lock.release()
 
 			netlink = Netlink()
+			if bdpoll is not None:
+				bdpoll.running = False
 			bdpoll = BDPoll()
 			for blockdev, removable, is_cdrom, medium_found in harddiskmanager.devices_scanned_on_init:
 				if removable or is_cdrom:
