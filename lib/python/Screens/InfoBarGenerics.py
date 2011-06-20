@@ -10,6 +10,7 @@ from Components.Sources.Boolean import Boolean
 from Components.config import config, ConfigBoolean, ConfigClock
 from Components.SystemInfo import SystemInfo
 from Components.UsageConfig import preferredInstantRecordPath, defaultMoviePath
+from Components.Renderer.Picon import reloadPicons, invalidatePicons
 from EpgSelection import EPGSelection
 from Plugins.Plugin import PluginDescriptor
 from Screen import Screen
@@ -52,7 +53,7 @@ def setResumePoint(session):
 	global resumePointCache
 	service = session.nav.getCurrentService()
 	ref = session.nav.getCurrentlyPlayingServiceReference()
-	if (service is not None) and (ref is not None) and (ref.type != 1):
+	if (service is not None) and (ref is not None): # and (ref.type != 1):
 		# ref type 1 has its own memory...
 		seek = service.seek()
 		if seek:
@@ -60,7 +61,12 @@ def setResumePoint(session):
 			if not pos[0]:
 				key = ref.toString()
 				lru = time()
-				resumePointCache[key] = [lru, pos[1]]
+				l = seek.getLength()
+				if l:
+					l = l[1]
+				else:
+					l = None 
+				resumePointCache[key] = [lru, pos[1], l]
 				if len(resumePointCache) > 100:
 					candidate = key
 					for k,v in resumePointCache.items():
@@ -216,6 +222,7 @@ class InfoBarShowHide:
 				self.doShow()
 
 	def __onShow(self):
+		reloadPicons()
 		self.__state = self.STATE_SHOWN
 		self.ecmTimer.start(1000, False)
 		self.startHideTimer()
@@ -2702,6 +2709,7 @@ class InfoBarTeletextPlugin:
 
 	def startTeletext(self):
 		self.teletext_plugin(session=self.session, service=self.session.nav.getCurrentService())
+		invalidatePicons()
 
 class InfoBarSubtitleSupport(object):
 	def __init__(self):
