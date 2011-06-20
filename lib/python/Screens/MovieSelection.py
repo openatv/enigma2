@@ -1078,7 +1078,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 	def do_reset(self):
 		current = self.getCurrent()
 		if current:
-			resetMoviePlayState(current.getPath() + ".cuts")
+			resetMoviePlayState(current.getPath() + ".cuts", current)
 			self["list"].invalidateCurrentItem() # trigger repaint
 
 	def do_move(self):
@@ -1235,6 +1235,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 						moveServiceFiles(self.getCurrent(), trash, name, allowCopy=False)
 						self["list"].removeService(current)
 						# Files were moved to .Trash, ok.
+						from Screens.InfoBarGenerics import delResumePoint
+						delResumePoint(current)
 						return
 				except OSError, e:
 					print "[MovieSelection] Cannot move to trash", e
@@ -1269,6 +1271,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			self.session.open(MessageBox, _("Delete failed!"), MessageBox.TYPE_ERROR)
 		else:
 			self["list"].removeService(current)
+			from Screens.InfoBarGenerics import delResumePoint
+			delResumePoint(current)
 			# Todo: This is pointless, delete is not finished yet.
 			self["freeDiskSpace"].update()
 
