@@ -21,7 +21,7 @@ from Screens.ChoiceBox import ChoiceBox
 from Screens.LocationBox import MovieLocationBox
 from Screens.HelpMenu import HelpableScreen
 
-from Tools.Directories import resolveFilename, SCOPE_HDD
+from Tools.Directories import resolveFilename, SCOPE_HDD, SCOPE_CURRENT_SKIN
 from Tools.BoundFunction import boundFunction
 import Tools.Trashcan
 import NavigationInstance
@@ -33,6 +33,7 @@ import time
 import cPickle as pickle
 
 config.movielist = ConfigSubsection()
+config.movielist.useslim = ConfigYesNo(default=False)
 config.movielist.moviesort = ConfigInteger(default=MovieList.SORT_RECORDED)
 config.movielist.listtype = ConfigInteger(default=MovieList.LISTTYPE_MINIMAL)
 config.movielist.description = ConfigInteger(default=MovieList.SHOW_DESCRIPTION)
@@ -187,7 +188,7 @@ def copyServiceFiles(serviceref, dest, name=None):
 	CopyFiles.copyFiles(moveList, name)
 	print "[MovieSelection] Copying in background..."
 
-class Config(ConfigListScreen,Screen):
+class MovieBrowserConfig(ConfigListScreen,Screen):
 	skin = """
 <screen position="center,center" size="560,400" title="Movie Browser Configuration" >
 	<ePixmap name="red"    position="0,0"   zPosition="2" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
@@ -207,6 +208,7 @@ class Config(ConfigListScreen,Screen):
 	def __init__(self, session, args = 0):
 		self.session = session
 		self.setup_title = _("Movie List Configuration")
+		self.skinName = "MovieBrowserConfig"
 		Screen.__init__(self, session)
 		cfg = ConfigSubsection()
 		self.cfg = cfg
@@ -223,6 +225,7 @@ class Config(ConfigListScreen,Screen):
 			(str(MovieList.LISTTYPE_MINIMAL), _("list style single line"))])
 		cfg.description = ConfigYesNo(default=(config.movielist.description.value != MovieList.HIDE_DESCRIPTION))
 		configList = [
+			getConfigListEntry(_("Use slim screen"), config.movielist.useslim),
 			getConfigListEntry(_("Sort"), cfg.moviesort),
 			getConfigListEntry(_("show extended description"), cfg.description),
 			getConfigListEntry(_("Type"), cfg.listtype),
@@ -276,6 +279,7 @@ class Config(ConfigListScreen,Screen):
 			config.movielist.moviesort.save()
 			config.movielist.listtype.save()
 			config.movielist.description.save()
+		config.movielist.useslim.save()
 		self.close(True)
 
 	def cancel(self):
@@ -400,6 +404,17 @@ class MovieSelectionSummary(Screen):
 class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 	def __init__(self, session, selectedmovie = None):
 		Screen.__init__(self, session)
+		data = resolveFilename(SCOPE_CURRENT_SKIN,"skin.xml")
+		data = data.replace('/ skin.xml','/skin.xml')
+		data = file(resolveFilename(SCOPE_CURRENT_SKIN,"skin.xml")).read()
+		if config.movielist.useslim.value:
+			if data.find('MovieSelectionSlim') >= 0:
+				self.skinName = "MovieSelectionSlim"
+			else:
+				self.skinName = "MovieSelection"
+		else:
+			self.skinName = "MovieSelection"
+
 		HelpableScreen.__init__(self)
 		InfoBarBase.__init__(self) # For ServiceEventTracker
 		self.initUserDefinedActions()
@@ -846,7 +861,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		config.movielist.last_selected_tags.value = self.selected_tags
 		
 	def configure(self):
-		self.session.openWithCallback(self.configureDone, Config)
+		self.session.openWithCallback(self.configureDone, MovieBrowserConfig)
 
 	def configureDone(self, result):
 		if result:
