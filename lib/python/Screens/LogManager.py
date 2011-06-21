@@ -375,7 +375,7 @@ class LogManagerMenu(ConfigListScreen, Screen):
 	def createSetup(self):
 		self.editListEntry = None
 		self.list = []
-		self.list.append(getConfigListEntry(_("Show in extensions list (requires gui restart)"), config.logmanager.showinextensions))
+		self.list.append(getConfigListEntry(_("Show in extensions list ?"), config.logmanager.showinextensions))
 		self.list.append(getConfigListEntry(_("User Name"), config.logmanager.user))
 		self.list.append(getConfigListEntry(_("e-Mail address"), config.logmanager.useremail))
 		self.list.append(getConfigListEntry(_("Send yourself a copy ?"), config.logmanager.usersendcopy))
