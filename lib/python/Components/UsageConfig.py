@@ -1,5 +1,5 @@
 from Components.Harddisk import harddiskmanager
-from config import ConfigSubsection, ConfigYesNo, config, ConfigSelection, ConfigText, ConfigNumber, ConfigSet, ConfigLocations, NoSave, ConfigClock, ConfigInteger, ConfigBoolean
+from config import config, ConfigSubsection, ConfigYesNo, ConfigSelection, ConfigText, ConfigNumber, ConfigSet, ConfigLocations, NoSave, ConfigClock, ConfigInteger, ConfigBoolean, ConfigPassword, ConfigIP
 from Tools.Directories import resolveFilename, SCOPE_HDD
 from enigma import setTunerTypePriorityOrder, setPreferredTuner, setSpinnerOnOff, setEnableTtCachingOnOff;
 from enigma import Misc_Options, eEnv;
@@ -509,6 +509,21 @@ def InitUsageConfig():
 	config.GraphEPG.left16 = ConfigInteger(default=190, limits=(70, 250))
 	config.GraphEPG.overjump = ConfigYesNo(default = False)
 	config.GraphEPG.PIG = ConfigYesNo(default = False)
+
+	softcams = os.listdir('/usr/softcams/')
+	config.oscaminfo = ConfigSubsection()
+	config.oscaminfo.showInExtensions = ConfigYesNo(default=False)
+	SystemInfo["OScamInstalled"] = False
+	config.cccaminfo = ConfigSubsection()
+	config.cccaminfo.showInExtensions = ConfigYesNo(default=False)
+	SystemInfo["CCcamInstalled"] = False
+	for softcam in softcams:
+		if softcam.lower().startswith('cccam'):
+			config.cccaminfo.showInExtensions = ConfigYesNo(default=True)
+			SystemInfo["CCcamInstalled"] = True
+		elif softcam.lower().startswith('oscam'):
+			config.oscaminfo.showInExtensions = ConfigYesNo(default=True)
+			SystemInfo["OScamInstalled"] = True
 
 def updateChoices(sel, choices):
 	if choices:

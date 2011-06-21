@@ -1749,11 +1749,37 @@ class InfoBarExtensions:
 				"openIMDB": self.openIMDB,
 				"showEventInfo": self.openEventView,
 			}, 1) # lower priority
-		if config.logmanager.showinextensions.value:
-			self.addExtension((self.getLmName, self.openLogManager, lambda: True))
 
-	def getLmName(self):
+		self.addExtension(extension = self.getLogManager, type = InfoBarExtensions.EXTENSION_LIST)
+		self.addExtension(extension = self.getCCcamInfo, type = InfoBarExtensions.EXTENSION_LIST)
+		self.addExtension(extension = self.getOScamInfo, type = InfoBarExtensions.EXTENSION_LIST)
+
+	def getLMname(self):
 		return _("Log Manager")
+
+	def getLogManager(self):
+		if config.logmanager.showinextensions.value:
+			return [((boundFunction(self.getLMname), boundFunction(self.openLogManager), lambda: True), None)]
+		else:
+			return []
+
+	def getCCname(self):
+		return _("CCcam Info")
+
+	def getCCcamInfo(self):
+		if config.cccaminfo.showInExtensions.value:
+			return [((boundFunction(self.getCCname), boundFunction(self.openCCcamInfo), lambda: True), None)]
+		else:
+			return []
+
+	def getOSname(self):
+		return _("OScam Info")
+
+	def getOScamInfo(self):
+		if config.oscaminfo.showInExtensions.value:
+			return [((boundFunction(self.getOSname), boundFunction(self.openOScamInfo), lambda: True), None)]
+		else:
+			return []
 
 	def RedPressed(self):
 		if config.vixsettings.ViXEPG_mode.value == "vixepg":
@@ -1819,6 +1845,14 @@ class InfoBarExtensions:
 	def showPluginBrowser(self):
 		from Screens.PluginBrowser import PluginBrowser
 		self.session.open(PluginBrowser)
+
+	def openCCcamInfo(self):
+		from Screens.CCcamInfo import CCcamInfoMain
+		self.session.open(CCcamInfoMain)
+
+	def openOScamInfo(self):
+		from Screens.OScamInfo import OscamInfoMenu
+		self.session.open(OscamInfoMenu)
 
 	def openTimerList(self):
 		self.session.open(TimerEditList)
