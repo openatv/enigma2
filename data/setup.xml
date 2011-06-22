@@ -60,6 +60,10 @@
 		<item level="0" text="QuickEPG mode">config.vixsettings.QuickEPG_mode</item>
 		<item level="0" text="TV button mode">config.usage.tvbutton_mode</item>
 	</setup>
+	<setup key="sofcamsetup" title="Settings...">
+		<item level="2" text="Show CCcam in extensions ?">config.cccaminfo.showInExtensions</item>
+		<item level="2" text="Show OScam in extensions ?">config.oscaminfo.showInExtensions</item>
+	</setup>
 	<setup key="logs" title="Settings...">
 		<item level="2" text="Create more detailed crash log">config.crash.details</item>
 		<item level="2" text="Enable Debug log">config.crash.enabledebug</item>
