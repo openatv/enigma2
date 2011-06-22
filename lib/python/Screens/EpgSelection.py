@@ -303,7 +303,6 @@ class EPGSelection(Screen):
 			self.zapFunc = None
 		elif isinstance(service, list):
 			if self.GraphicalEPG:
-				print 'GRAPH'
 				self.type = EPG_TYPE_GRAPH
 				if not config.GraphEPG.PIG.value:
 					self.skin = self.GraphEPG
@@ -567,7 +566,6 @@ class EPGSelection(Screen):
 		self.activityTimer.start(750)
 
 	def onCreate(self):
-		print 'TYPE A:',self.type
 		if self.type == EPG_TYPE_GRAPH:
 			self.activityTimer.stop()
 			self["list"].curr_refcool = self.session.nav.getCurrentlyPlayingServiceReference()
