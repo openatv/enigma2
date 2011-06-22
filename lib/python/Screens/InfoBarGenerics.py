@@ -1743,11 +1743,11 @@ class InfoBarExtensions:
 				"extensions": (self.showExtensionSelection, _("view extensions...")),
 				"RedPressed": self.RedPressed,
 				"showPluginBrowser": self.showPluginBrowser,
-				"openTimerList": self.openTimerList,
-				"openAutoTimerList": self.openAutoTimerList,
-				"openEPGSearch": self.openEPGSearch,
-				"openIMDB": self.openIMDB,
-				"showEventInfo": self.openEventView,
+				"openTimerList": self.showTimerList,
+				"openAutoTimerList": self.showAutoTimerList,
+				"openEPGSearch": self.showEPGSearch,
+				"openIMDB": self.showIMDB,
+				"showEventInfo": self.showEventView,
 			}, 1) # lower priority
 
 		self.addExtension(extension = self.getLogManager, type = InfoBarExtensions.EXTENSION_LIST)
@@ -1854,14 +1854,14 @@ class InfoBarExtensions:
 		from Screens.OScamInfo import OscamInfoMenu
 		self.session.open(OscamInfoMenu)
 
-	def openTimerList(self):
+	def showTimerList(self):
 		self.session.open(TimerEditList)
 
 	def openLogManager(self):
 		from Screens.LogManager import LogManager
 		self.session.open(LogManager)
 
-	def openAutoTimerList(self):
+	def showAutoTimerList(self):
 		if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/AutoTimer/plugin.pyo"):
 			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU ,PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
 				if plugin.name == _("AutoTimer"):
@@ -1870,14 +1870,16 @@ class InfoBarExtensions:
 		else:
 			self.session.open(MessageBox, _("The AutoTimer plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
-	def openEPGSearch(self):
-		if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/EPGSearch/plugin.pyo"):
-			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU ,PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
-				if plugin.name == _("EPGSearch"):
-					self.runPlugin(plugin)
-					break
+	def showEPGSearch(self):
+		from Plugins.Extensions.EPGSearch.EPGSearch import EPGSearch
+		s = self.session.nav.getCurrentService()
+		if s:
+			info = s.info()
+			event = info.getEvent(0) # 0 = now, 1 = next
+			name = event and event.getEventName() or ''
+			self.session.open(EPGSearch, name, False)
 		else:
-			self.session.open(MessageBox, _("The EPGSearch plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			self.session.open(EPGSearch)
 
 	def openGraphEPG(self):
 		if isinstance(self, InfoBarEPG):
@@ -1893,12 +1895,12 @@ class InfoBarExtensions:
 			if isinstance(self, InfoBar):
 				InfoBar.openSingleServiceEPG(InfoBar.instance)
 
-	def openEventView(self):
+	def showEventView(self):
 		if isinstance(self, InfoBarEPG):
 			if isinstance(self, InfoBar):
 				InfoBar.openEventView(InfoBar.instance)
 
-	def openIMDB(self):
+	def showIMDB(self):
 		if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/IMDb/plugin.pyo"):
 			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU ,PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
 				if plugin.name == _("IMDb Details"):
