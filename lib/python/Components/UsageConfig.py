@@ -516,6 +516,7 @@ def InitUsageConfig():
 	SystemInfo["OScamInstalled"] = False
 	config.cccaminfo = ConfigSubsection()
 	config.cccaminfo.showInExtensions = ConfigYesNo(default=False)
+	config.cccaminfo.serverNameLength = ConfigInteger(default=22, limits=(10, 100))
 	SystemInfo["CCcamInstalled"] = False
 	for softcam in softcams:
 		if softcam.lower().startswith('cccam'):

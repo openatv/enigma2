@@ -348,7 +348,7 @@ class InfoBarShowHide:
 				elif line.startswith("address:") or line.startswith("from:"):
 					address = "%s %s" % (_("Server:"), self.parseEcmInfoLine(line))
 					if len(address) > 34:
-						address = "%s***" % address[:config.plugins.CCcamInfo.serverNameLength.value-3]
+						address = "%s***" % address[:config.cccaminfo.serverNameLength.value-3]
 				elif line.startswith("using:") or line.startswith("protocol:"):
 					using = "%s %s" % (_("\nProtocol:"), self.parseEcmInfoLine(line))
 					if using == "\nProtocol: fta":
