@@ -20,7 +20,7 @@
 	</setup>
 	<setup key="usage" title="Customize">
 		<item level="0" text="Setup Mode">config.usage.setup_level</item>
-		<item level="1" text="Online Check every (Hours)">config.usage.infobar_onlinecheck</item>
+		<item level="1" text="Online version check every (hours) 0 = Disable">config.usage.infobar_onlinechecktimer</item>
 		<item level="1" text="Zap mode" requires="ZapMode">config.misc.zapmode</item>
 		<item level="2" text="Enable panic button">config.usage.panicbutton</item>
 		<item level="0" text="Show blinking clock in display during recording">config.usage.blinking_display_clock_during_recording</item>

@@ -1,48 +1,61 @@
 import Components.Task
 from config import config
-from Tools.Directories import pathExists
+from Tools.Directories import pathExists, resolveFilename, SCOPE_SYSETC
 from twisted.internet import reactor, threads, task
 from time import localtime, time, strftime
 from enigma import eTimer
 from os import rename, remove
 
-def AutoVersionCheck(session=None, **kwargs):
-	global versioncheckpoller
-	print "[OnlineVersionCheck] AutoStart Enabled"
-	versioncheckpoller = VersionCheckPoller()
-	versioncheckpoller.start()
-
-class VersionCheckPoller:
-	"""Automatically Poll SoftCam"""
+class VersionCheck:
 	def __init__(self):
-		# Init Timer
-		self.timer = eTimer()
+		pass
 
-	def start(self, initial = True):
-		if self.version_check not in self.timer.callback:
-			self.timer.callback.append(self.version_check)
-		self.timer.startLongTimer(60)
-
-	def stop(self):
-		if self.version_check in self.timer.callback:
-			self.timer.callback.remove(self.version_check)
-		self.timer.stop()
-
-	def version_check(self):
+	def getImageUpdateAvailable(self):
 		now = int(time())
-		print "[OnlineVersionCheck] Poll occured at", strftime("%c", localtime(now))
-		name = _("OnlineCheck")
-		job = Components.Task.Job(name)
-		task = CheckTask(job, name)
-		Components.Task.job_manager.AddJob(job)
-		self.timer.startLongTimer(int(config.usage.infobar_onlinecheck.value) * 3600)
+		if config.usage.infobar_onlineupdatelastcheck.value != 0:
+			lastchecked = (now - config.usage.infobar_onlineupdatelastcheck.value)
+			CheckTime = (config.usage.infobar_onlinechecktimer.value * 3600) - lastchecked
+		else:
+			lastchecked = 0
+			CheckTime = 0
+		NextCheckTime = now + CheckTime
+		if config.usage.infobar_onlinechecktimer.value > 0 and CheckTime <= 0:
+			print '[OnlineVersionCheck] Online check started'
+			Components.Task.job_manager.AddJob(self.createCheckJob())
+			if config.usage.infobar_onlineupdatefound.value:
+				print '[OnlineVersionCheck] New online version found'
+				print "[OnlineVersionCheck] Next check allowed at", strftime("%c", localtime(NextCheckTime)), strftime("(now=%c)", localtime(now)), strftime("(Last Check=%c)", localtime(config.usage.infobar_onlineupdatelastcheck.value))
+				return True
+			else:
+				print '[OnlineVersionCheck] No New online version found'
+				print "[OnlineVersionCheck] Next check allowed at", strftime("%c", localtime(NextCheckTime)), strftime("(now=%c)", localtime(now)), strftime("(Last Check=%c)", localtime(config.usage.infobar_onlineupdatelastcheck.value))
+				return False
+		else:
+			print "[OnlineVersionCheck] Next check allowed at", strftime("%c", localtime(NextCheckTime)), strftime("(now=%c)", localtime(now)), strftime("(Last Check=%c)", localtime(config.usage.infobar_onlineupdatelastcheck.value))
+			return False
 
-class CheckTask(Components.Task.PythonTask):
-	def work(self):
+	def createCheckJob(self):
+		job = Components.Task.Job(_("OnlineVersionCheck"))
+
+		task = Components.Task.PythonTask(job, _("Downloading file..."))
+		task.work = self.JobStart
+		task.weighting = 1
+
+		task = Components.Task.ConditionTask(job, _("Downloading file..."), timeoutCount=20)
+		task.check = lambda: pathExists('/tmp/online-image-version')
+		task.weighting = 1
+
+		task = Components.Task.PythonTask(job, _("Checking Version..."))
+		task.work = self.CheckVersion
+		task.weighting = 1
+
+		return job
+
+	def JobStart(self):
+		print '[OnlineVersionCheck] Downloading online version file.'
 		if pathExists('/tmp/online-image-version'):
 			remove('/tmp/online-image-version')
-
-		file = open('/etc/image-version', 'r')
+		file = open(resolveFilename(SCOPE_SYSETC, 'image-version'), 'r')
 		lines = file.readlines()
 		file.close()
 		for x in lines:
@@ -64,3 +77,29 @@ class CheckTask(Components.Task.PythonTask):
 			sourcefile='http://enigma2.world-of-satellite.com/feeds/ghtudh66383/' + box_type + '/image-version'
 		sourcefile,headers = urllib.urlretrieve(sourcefile)
 		rename(sourcefile,'/tmp/online-image-version')
+
+	def CheckVersion(self):
+		print '[OnlineVersionCheck] parsing online version file.'
+		file = open(resolveFilename(SCOPE_SYSETC, 'image-version'), 'r')
+		lines = file.readlines()
+		for x in lines:
+			splitted = x.split('=')
+			if splitted[0] == "date":
+				currentversion = splitted[1].replace('\n','')
+		file.close()
+		file = open('/tmp/online-image-version', 'r')
+		lines = file.readlines()
+		for x in lines:
+			splitted = x.split('=')
+			if splitted[0] == "date":
+				onlineversion = splitted[1].replace('\n','')
+		file.close()
+		if onlineversion > currentversion:
+			config.usage.infobar_onlineupdatefound.setValue(True)
+		else:
+			config.usage.infobar_onlineupdatefound.setValue(False)
+		if pathExists('/tmp/online-image-version'):
+			remove('/tmp/online-image-version')
+		config.usage.infobar_onlineupdatelastcheck.setValue(int(time()))
+
+versioncheck = VersionCheck()
