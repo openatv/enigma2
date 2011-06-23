@@ -515,10 +515,31 @@ def InitUsageConfig():
 	softcams = os.listdir('/usr/softcams/')
 	config.oscaminfo = ConfigSubsection()
 	config.oscaminfo.showInExtensions = ConfigYesNo(default=False)
+	config.oscaminfo.userdatafromconf = ConfigYesNo(default = False)
+	config.oscaminfo.autoupdate = ConfigYesNo(default = False)
+	config.oscaminfo.username = ConfigText(default = "username", fixed_size = False, visible_width=12)
+	config.oscaminfo.password = ConfigPassword(default = "password", fixed_size = False)
+	config.oscaminfo.ip = ConfigIP( default = [ 127,0,0,1 ], auto_jump=True)
+	config.oscaminfo.port = ConfigInteger(default = 16002, limits=(0,65536) )
+	config.oscaminfo.intervall = ConfigInteger(default = 10, limits=(1,600) )
 	SystemInfo["OScamInstalled"] = False
+
 	config.cccaminfo = ConfigSubsection()
 	config.cccaminfo.showInExtensions = ConfigYesNo(default=False)
 	config.cccaminfo.serverNameLength = ConfigInteger(default=22, limits=(10, 100))
+	config.cccaminfo.name = ConfigText(default="Profile", fixed_size=False)
+	config.cccaminfo.ip = ConfigText(default="192.168.2.12", fixed_size=False)
+	config.cccaminfo.username = ConfigText(default="", fixed_size=False)
+	config.cccaminfo.password = ConfigText(default="", fixed_size=False)
+	config.cccaminfo.port = ConfigInteger(default=16001, limits=(1, 65535))
+	config.cccaminfo.profile = ConfigText(default="", fixed_size=False)
+	config.cccaminfo.ecmInfoEnabled = ConfigYesNo(default=True)
+	config.cccaminfo.ecmInfoTime = ConfigInteger(default=5, limits=(1, 10))
+	config.cccaminfo.ecmInfoForceHide = ConfigYesNo(default=True)
+	config.cccaminfo.ecmInfoPositionX = ConfigInteger(default=50)
+	config.cccaminfo.ecmInfoPositionY = ConfigInteger(default=50)
+	config.cccaminfo.blacklist = ConfigText(default="/media/cf/CCcamInfo.blacklisted", fixed_size=False)
+	config.cccaminfo.profiles = ConfigText(default="/media/cf/CCcamInfo.profiles", fixed_size=False)
 	SystemInfo["CCcamInstalled"] = False
 	for softcam in softcams:
 		if softcam.lower().startswith('cccam'):

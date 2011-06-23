@@ -33,14 +33,6 @@ else:
 	sizeH = 700
 	HDSKIN = False
 
-config.oscaminfo.userdatafromconf = ConfigYesNo(default = False)
-config.oscaminfo.autoupdate = ConfigYesNo(default = False)
-config.oscaminfo.username = ConfigText(default = "username", fixed_size = False, visible_width=12)
-config.oscaminfo.password = ConfigPassword(default = "password", fixed_size = False)
-config.oscaminfo.ip = ConfigIP( default = [ 127,0,0,1 ], auto_jump=True)
-config.oscaminfo.port = ConfigInteger(default = 16002, limits=(0,65536) )
-config.oscaminfo.intervall = ConfigInteger(default = 10, limits=(1,600) )
-
 class OscamInfo:
 	TYPE = 0
 	NAME = 1
