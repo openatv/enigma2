@@ -32,19 +32,6 @@ import gettext
 VERSION = "v1.3c"
 DATE = "24.12.2009"
 CFG = "/var/etc/CCcam.cfg"
-config.cccaminfo.name = ConfigText(default="Profile", fixed_size=False)
-config.cccaminfo.ip = ConfigText(default="192.168.2.12", fixed_size=False)
-config.cccaminfo.username = ConfigText(default="", fixed_size=False)
-config.cccaminfo.password = ConfigText(default="", fixed_size=False)
-config.cccaminfo.port = ConfigInteger(default=16001, limits=(1, 65535))
-config.cccaminfo.profile = ConfigText(default="", fixed_size=False)
-config.cccaminfo.ecmInfoEnabled = ConfigYesNo(default=True)
-config.cccaminfo.ecmInfoTime = ConfigInteger(default=5, limits=(1, 10))
-config.cccaminfo.ecmInfoForceHide = ConfigYesNo(default=True)
-config.cccaminfo.ecmInfoPositionX = ConfigInteger(default=50)
-config.cccaminfo.ecmInfoPositionY = ConfigInteger(default=50)
-config.cccaminfo.blacklist = ConfigText(default="/media/cf/CCcamInfo.blacklisted", fixed_size=False)
-config.cccaminfo.profiles = ConfigText(default="/media/cf/CCcamInfo.profiles", fixed_size=False)
 
 #############################################################
 
