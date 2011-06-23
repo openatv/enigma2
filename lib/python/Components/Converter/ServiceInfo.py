@@ -2,6 +2,7 @@ from Components.Converter.Converter import Converter
 from enigma import iServiceInformation, iPlayableService
 from Components.Element import cached
 from Components.About import about
+from Components.OnlineUpdateCheck import versioncheck
 
 class ServiceInfo(Converter, object):
 	HAS_TELETEXT = 0
@@ -86,7 +87,7 @@ class ServiceInfo(Converter, object):
 			subservices = service.subServices()
 			return subservices and subservices.getNumberOfSubservices() > 0
 		elif self.type == self.IMAGEUPDATEAVAILABLE:
-			return about.getImageUpdateAvailable()
+			return versioncheck.getImageUpdateAvailable()
 
 	boolean = property(getBoolean)
 	

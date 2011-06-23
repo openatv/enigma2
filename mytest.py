@@ -561,10 +561,6 @@ profile("RecordingConfig")
 import Components.RecordingConfig
 Components.RecordingConfig.InitRecordingConfig()
 
-profile("Init:OnlineUpdateCheck")
-import Components.OnlineUpdateCheck
-Components.OnlineUpdateCheck.AutoVersionCheck()
-
 profile("Init:DebugLogCheck")
 import Components.DebugLogCheck
 Components.DebugLogCheck.AutoDebugLogCheck()
