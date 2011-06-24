@@ -15,10 +15,10 @@ def readFile(filename):
 def getProcMounts():
 	try:
 		mounts = open("/proc/mounts")
+		return [line.strip().split(' ') for line in mounts]
 	except IOError, ex:
 		print "[Harddisk] Failed to open /proc/mounts", ex 
 		return []
-	return [line.strip().split(' ') for line in mounts]
 
 def createMovieFolder():
 	movie = resolveFilename(SCOPE_HDD)
@@ -500,8 +500,12 @@ class Partition:
 
 	def filesystem(self):
 		for fields in getProcMounts():
-			if fields[1] == self.mountpoint:
-				return fields[2]
+			if self.mountpoint.endswith('/'):
+				if fields[1] + '/' == self.mountpoint:
+					return fields[2]
+			else:
+				if fields[1] == self.mountpoint:
+					return fields[2]
 		return ''
 
 DEVICEDB =  \
