@@ -52,7 +52,6 @@ class VersionCheck:
 		return job
 
 	def JobStart(self):
-		print '[OnlineVersionCheck] Downloading online version file.'
 		if pathExists('/tmp/online-image-version'):
 			remove('/tmp/online-image-version')
 		file = open(resolveFilename(SCOPE_SYSETC, 'image-version'), 'r')
@@ -72,8 +71,10 @@ class VersionCheck:
 		fileurl = fd.read()
 		fd.close()
 		if fileurl.find('experimental') != -1:
+			print '[OnlineVersionCheck] Downloading RELEASE online version file.'
 			sourcefile='http://enigma2.world-of-satellite.com/feeds/release/' + box_type + '/image-version'
 		else:
+			print '[OnlineVersionCheck] Downloading BETA online version file.'
 			sourcefile='http://enigma2.world-of-satellite.com/feeds/ghtudh66383/' + box_type + '/image-version'
 		sourcefile,headers = urllib.urlretrieve(sourcefile)
 		rename(sourcefile,'/tmp/online-image-version')
