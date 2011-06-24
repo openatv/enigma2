@@ -542,7 +542,7 @@ class HarddiskManager:
 		# still, if stuff is mounted into the correct mountpoints by
 		# external tools, everything is fine (until somebody inserts
 		# a second usb stick.)
-		#p = [
+		p = [
 					#("/media/hdd", _("Harddisk")),
 					#("/media/card", _("Card")),
 					#("/media/cf", _("Compact Flash")),
@@ -553,9 +553,8 @@ class HarddiskManager:
 					#("/media/net3", _("Network Mount") + " 3"),
 					#("/media/ram", _("Ram Disk")),
 					#("/media/usb", _("USB Stick")),
-					#("/", _("Internal Flash"))
-				#]
-		p = []
+					("/", _("Internal Flash"))
+				]
 		try:
 			netmount = listdir('/media/net')
 			for fil in netmount:
