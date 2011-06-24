@@ -80,6 +80,8 @@ class VersionCheck:
 		rename(sourcefile,'/tmp/online-image-version')
 
 	def CheckVersion(self):
+		onlineversion = ""
+		currentversion = ""
 		print '[OnlineVersionCheck] parsing online version file.'
 		file = open(resolveFilename(SCOPE_SYSETC, 'image-version'), 'r')
 		lines = file.readlines()
