@@ -235,18 +235,18 @@ class PluginDownloadBrowser(Screen):
 					mountpoint = '/'
 					if mountpoint in partitiondict.keys() and partitiondict[mountpoint].free() > 5 * 1024 * 1024:
 						list.append((partitiondict[mountpoint].description, '', partitiondict[mountpoint]))
-					mountpoint = '/media/cf'
+					mountpoint = '/media/cf/'
 					if mountpoint in partitiondict.keys() and partitiondict[mountpoint].filesystem() in supported_filesystems:
-						list.append((partitiondict[mountpoint].description, '-d cf', partitiondict[mountpoint]))
-					mountpoint = '/media/mmc1'
+						list.append((partitiondict[mountpoint].mountpoint, '-d cf', partitiondict[mountpoint]))
+					mountpoint = '/media/mmc1/'
 					if mountpoint in partitiondict.keys() and partitiondict[mountpoint].filesystem() in supported_filesystems:
-						list.append((partitiondict[mountpoint].description, '-d mmc1', partitiondict[mountpoint]))
-					mountpoint = '/media/usb'
+						list.append((partitiondict[mountpoint].mountpoint, '-d mmc1', partitiondict[mountpoint]))
+					mountpoint = '/media/usb/'
 					if mountpoint in partitiondict.keys() and partitiondict[mountpoint].filesystem() in supported_filesystems:
-						list.append((partitiondict[mountpoint].description, '-d usb', partitiondict[mountpoint]))
-					mountpoint = '/media/hdd'
+						list.append((partitiondict[mountpoint].mountpoint, '-d usb', partitiondict[mountpoint]))
+					mountpoint = '/media/hdd/'
 					if mountpoint in partitiondict.keys() and partitiondict[mountpoint].filesystem() in supported_filesystems:
-						list.append((partitiondict[mountpoint].description, '-d hdd', partitiondict[mountpoint]))
+						list.append((partitiondict[mountpoint].mountpoint, '-d hdd', partitiondict[mountpoint]))
 
 					if len(list):
 						from Components.Renderer import Picon
