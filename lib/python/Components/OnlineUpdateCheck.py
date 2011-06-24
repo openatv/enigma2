@@ -70,7 +70,7 @@ class VersionCheck:
 		fd = open('/etc/opkg/all-feed.conf', 'r')
 		fileurl = fd.read()
 		fd.close()
-		if fileurl.find('experimental') != -1:
+		if fileurl.find('release') != -1:
 			print '[OnlineVersionCheck] Downloading RELEASE online version file.'
 			sourcefile='http://enigma2.world-of-satellite.com/feeds/release/' + box_type + '/image-version'
 		else:
