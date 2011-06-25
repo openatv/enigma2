@@ -6,6 +6,7 @@
 #include <lib/gdi/fb.h>
 #include <lib/gui/ewidget.h>
 #include <lib/gui/ewidgetdesktop.h>
+#include <lib/python/python.h>
 
 extern "C" int tuxtxt_run_ui(int pid, int demux);
 extern "C" int tuxtxt_init();
@@ -60,6 +61,16 @@ void eTuxtxtApp::thread_finished()
 	fbClass::getInstance()->unlock();
 	/* force redraw */
 	getDesktop(0)->resize(getDesktop(0)->size());
+}
+
+PyObject *eTuxtxtApp::getTuxtxtUIRunning()
+{
+	ePyObject tuple = PyTuple_New(1);
+	if (uiRunning)
+		PyTuple_SET_ITEM(tuple, 0, PyInt_FromLong(1));
+	else
+		PyTuple_SET_ITEM(tuple, 0, PyInt_FromLong(0));
+	return tuple;
 }
 
 void eTuxtxtApp::initCache()

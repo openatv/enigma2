@@ -11,7 +11,6 @@ from Components.Sources.Boolean import Boolean
 from Components.config import config, ConfigBoolean, ConfigClock
 from Components.SystemInfo import SystemInfo
 from Components.UsageConfig import preferredInstantRecordPath, defaultMoviePath
-from Components.Renderer.Picon import reloadPicons, invalidatePicons
 from EpgSelection import EPGSelection
 from Plugins.Plugin import PluginDescriptor
 
@@ -164,7 +163,6 @@ class InfoBarShowHide:
 				self.doShow()
 
 	def __onShow(self):
-		reloadPicons()
 		self.__state = self.STATE_SHOWN
 		self.startHideTimer()
 
@@ -2211,7 +2209,6 @@ class InfoBarTeletextPlugin:
 
 	def startTeletext(self):
 		self.teletext_plugin(session=self.session, service=self.session.nav.getCurrentService())
-		invalidatePicons()
 
 class InfoBarSubtitleSupport(object):
 	def __init__(self):

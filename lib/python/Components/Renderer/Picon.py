@@ -6,7 +6,6 @@ from Components.Harddisk import harddiskmanager
 
 searchPaths = []
 picons = []
-piconsInvalidated = False
 
 def initPiconPaths():
 	global searchPaths
@@ -45,17 +44,10 @@ def onPartitionChange(why, part):
 		onMountpointRemoved(part.mountpoint)
 
 def reloadPicons():
-	global piconsInvalidated
-	if piconsInvalidated and picons:
-		for s in picons:
-			if s.instance and s.pngname:
-                                s.instance.setPixmapFromFile(s.pngname)
-	piconsInvalidated = False
+	for s in picons:
+		if s.instance and s.pngname:
+			s.instance.setPixmapFromFile(s.pngname)
 
-def invalidatePicons():
-	global piconsInvalidated
-	piconsInvalidated = True	
-						
 class Picon(Renderer):
 	def __init__(self):
 		picons.append(self)
