@@ -18,13 +18,17 @@ class About:
 				if splitted[0] == "date":
 					#YYYY MM DD hh mm
 					#2005 11 29 01 16
-					date = splitted[1].replace('\n','')
-					year = date[0:4]
-					month = date[4:6]
-					day = date[6:8]
+					string = splitted[1].replace('\n','')
+					year = string[0:4]
+					month = string[4:6]
+					day = string[6:8]
 					date = '-'.join((year, month, day))
+					hour = string[8:10]
+					minute = string[10:12]
+					time = ':'.join((hour, minute))
+					lastupdated = ' '.join((date, time))
 			file.close()
-			return date
+			return lastupdated
 		except IOError:
 			return "unavailable"
 
