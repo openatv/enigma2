@@ -4,6 +4,7 @@ from Components.Sources.StaticText import StaticText
 from Components.Harddisk import harddiskmanager
 from Components.NimManager import nimmanager
 from Components.About import about
+from Components.config import config
 from Components.ScrollLabel import ScrollLabel
 
 from Tools.DreamboxHardware import getFPVersion
@@ -13,8 +14,21 @@ class About(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 
-		self["EnigmaVersion"] = StaticText("Enigma: " + about.getEnigmaVersionString())
-		self["ImageVersion"] = StaticText("Last updated: " + about.getImageVersionString())
+		if config.misc.boxtype.value == 'vuuno':
+			self["BoxType"] = StaticText("Hardware: Vu+ Uno")
+		elif config.misc.boxtype.value == 'vuuno':
+			self["BoxType"] = StaticText("Hardware: Vu+ Uno")
+		elif config.misc.boxtype.value == 'vuduo':
+			self["BoxType"] = StaticText("Hardware: Vu+ Duo")
+		elif config.misc.boxtype.value == 'et5000':
+			self["BoxType"] = StaticText("Hardware: Xtrend ET5000")
+		elif config.misc.boxtype.value == 'et9000':
+			self["BoxType"] = StaticText("Hardware: Xtrend ET9000")
+		else:
+			self["BoxType"] = StaticText("Hardware: " + config.misc.boxtype.value)
+		self["ImageVersion"] = StaticText("Version: " + about.getImageVersionString())
+		self["EnigmaVersion"] = StaticText("Last Update: " + about.getLastUpdateString())
+		self["ImageType"] = StaticText("Image: " + about.getImageTypeString())
 
 		self["TunerHeader"] = StaticText(_("Detected NIMs:"))
 
@@ -92,7 +106,10 @@ class AboutSummary(Screen):
 
 	def __init__(self, session, parent):
 		Screen.__init__(self, session, parent = parent)
-		self["selected"] = StaticText("Enigma: " + about.getEnigmaVersionString())
+		if about.getImageTypeString() == 'Release':
+			self["selected"] = StaticText("ViX:" + about.getImageVersionString() + '(Release)')
+		elif about.getImageTypeString() == 'Experimental':
+			self["selected"] = StaticText("ViX:" + about.getImageVersionString() + '(Beta)')
 
 class TranslationInfo(Screen):
 	def __init__(self, session):
