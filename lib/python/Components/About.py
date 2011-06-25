@@ -9,20 +9,13 @@ class About:
 	def getVersionString(self):
 		return self.getImageVersionString()
 
-	def getImageVersionString(self):
+	def getLastUpdateString(self):
 		try:
-			box_type = ""
 			file = open(resolveFilename(SCOPE_SYSETC, 'image-version'), 'r')
 			lines = file.readlines()
 			for x in lines:
 				splitted = x.split('=')
-				if splitted[0] == "box_type":
-					box_type = splitted[1].replace('\n','') # 0 = release, 1 = experimental
-				if splitted[0] == "build_type":
-					image_type = splitted[1].replace('\n','') # 0 = release, 1 = experimental
-				elif splitted[0] == "version":
-					version = splitted[1].replace('\n','')
-				elif splitted[0] == "date":
+				if splitted[0] == "date":
 					#YYYY MM DD hh mm
 					#2005 11 29 01 16
 					date = splitted[1].replace('\n','')
@@ -31,18 +24,39 @@ class About:
 					day = date[6:8]
 					date = '-'.join((year, month, day))
 			file.close()
+			return date
 		except IOError:
-			pass
+			return "unavailable"
 
-		if image_type == '0':
-			image_type = "Release v"
-			ver = ''.join((image_type, version))
-			return ' '.join((box_type, ver, ' - ', date))
-		else:
-			image_type = "Experimental"
-			return ' '.join((box_type, image_type, ' - ', date))
+	def getImageVersionString(self):
+		try:
+			file = open(resolveFilename(SCOPE_SYSETC, 'image-version'), 'r')
+			lines = file.readlines()
+			for x in lines:
+				splitted = x.split('=')
+				if splitted[0] == "version":
+					version = splitted[1].replace('\n','')
+			file.close()
+			return version
+		except IOError:
+			return "unavailable"
 
-		return "unavailable"
+	def getImageTypeString(self):
+		try:
+			file = open(resolveFilename(SCOPE_SYSETC, 'image-version'), 'r')
+			lines = file.readlines()
+			for x in lines:
+				splitted = x.split('=')
+				if splitted[0] == "build_type":
+					image_type = splitted[1].replace('\n','') # 0 = release, 1 = experimental
+			file.close()
+			if image_type == '0':
+				image_type = "Release"
+			else:
+				image_type = "Experimental"
+			return image_type
+		except IOError:
+			return "unavailable"
 
 	def getEnigmaVersionString(self):
 		return getEnigmaVersionString()
