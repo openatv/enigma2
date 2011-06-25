@@ -4,6 +4,7 @@
 #include <string>
 #include <lib/base/ebase.h>
 #include <lib/base/thread.h>
+#include <lib/python/python.h>
 
 class eTuxtxtApp: private eThread, public Object
 {
@@ -22,6 +23,7 @@ public:
 	~eTuxtxtApp();
 	static eTuxtxtApp *getInstance() { return instance; }
 	int startUi();
+	PyObject *getTuxtxtUIRunning();
 	void initCache();
 	void freeCache();
 	void startCaching( int tpid, int tdemux );
