@@ -31,13 +31,13 @@ from ServiceReference import ServiceReference
 from skin import parseColor
 
 from Tools import Notifications
-from Tools.Directories import fileExists
+from Tools.Directories import fileExists, pathExists
 
 from enigma import eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, \
 	iPlayableService, eServiceReference, eEPGCache, eActionMap
 
 from time import time, localtime, strftime
-from os import stat as os_stat
+from os import stat as os_stat, listdir
 from bisect import insort
 
 from RecordTimer import RecordTimerEntry, RecordTimer
@@ -1767,8 +1767,13 @@ class InfoBarExtensions:
 		return _("CCcam Info")
 
 	def getCCcamInfo(self):
-		if config.cccaminfo.showInExtensions.value:
-			return [((boundFunction(self.getCCname), boundFunction(self.openCCcamInfo), lambda: True), None)]
+		if pathExists('/usr/softcams/'):
+			softcams = listdir('/usr/softcams/')
+		for softcam in softcams:
+			if softcam.lower().startswith('cccam') and config.cccaminfo.showInExtensions.value:
+				return [((boundFunction(self.getCCname), boundFunction(self.openCCcamInfo), lambda: True), None)]
+			else:
+				return []
 		else:
 			return []
 
@@ -1776,8 +1781,13 @@ class InfoBarExtensions:
 		return _("OScam Info")
 
 	def getOScamInfo(self):
-		if config.oscaminfo.showInExtensions.value:
-			return [((boundFunction(self.getOSname), boundFunction(self.openOScamInfo), lambda: True), None)]
+		if pathExists('/usr/softcams/'):
+			softcams = listdir('/usr/softcams/')
+		for softcam in softcams:
+			if softcam.lower().startswith('oscam') and config.oscaminfo.showInExtensions.value:
+				return [((boundFunction(self.getOSname), boundFunction(self.openOScamInfo), lambda: True), None)]
+			else:
+				return []
 		else:
 			return []
 
