@@ -512,6 +512,8 @@ def InitUsageConfig():
 	config.GraphEPG.overjump = ConfigYesNo(default = False)
 	config.GraphEPG.PIG = ConfigYesNo(default = False)
 
+	if not pathExists('/usr/softcams/'):
+		os.mkdir('/usr/softcams/',0755)
 	softcams = os.listdir('/usr/softcams/')
 	config.oscaminfo = ConfigSubsection()
 	config.oscaminfo.showInExtensions = ConfigYesNo(default=False)
