@@ -506,7 +506,6 @@ class EPGSelection(Screen):
 					"9": self.key9,
 					"0": self.key0,
 				},-1)
-			self.curRef = self["list"].getCurrent()[1]
 			self.curBouquet = bouquetChangeCB
 			self.updateTimelineTimer = eTimer()
 			self.updateTimelineTimer.callback.append(self.moveTimeLines)
@@ -571,6 +570,7 @@ class EPGSelection(Screen):
 			self["list"].curr_refcool = self.session.nav.getCurrentlyPlayingServiceReference()
 			self["list"].fillGraphEPG(self.services, self.ask_time)
 			self["list"].moveToService(self.session.nav.getCurrentlyPlayingServiceReference())
+			self.curRef = self["list"].getCurrent()[1]
 			self.moveTimeLines()
 			if config.GraphEPG.channel1.value:
 				self["list"].instance.moveSelectionTo(0)
@@ -746,10 +746,12 @@ class EPGSelection(Screen):
 					self.moveTimeLines(True)
 
 	def closing(self):
-		if self.oldService:
-			self.session.nav.playService(self.oldService)
 		if self.type != EPG_TYPE_GRAPH:
+			if self.oldService:
+				self.session.nav.playService(self.oldService)
 			self.setServicelistSelection(self.curBouquet, self.curRef.ref)
+		else:
+			self.zapFunc(self.curRef.ref)
 		self.close(self.closeRecursive)
 
 	def GraphEPGClose(self):
