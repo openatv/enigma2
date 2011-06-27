@@ -517,7 +517,7 @@ class EPGSelection(Screen):
 	#		self.onLayoutFinish.append(self.updateList)
 
 		else:
-			self["actions"] = ActionMap(["EPGSelectActions", "OkCancelActions"],
+			self["actions"] = ActionMap(["EPGSelectActions", "OkCancelActions", "ColorActions"],
 			{
 				"cancel": self.closeScreen,
 				"ok": self.eventSelected,
