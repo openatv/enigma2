@@ -50,6 +50,8 @@ dist_install_DATA = \
 	screws_mp.png \
 	screws.png \
 	sleeptimer.png \
+	slider.png \
+	slider_back.png \
 	timeline-now.png \
 	timeline.png \
 	unhandled-key.png \

@@ -219,6 +219,17 @@ def InitUsageConfig():
 
 	config.usage.keymap = ConfigText(default = eEnv.resolve("${datadir}/enigma2/keymap.xml"))
 
+	config.timeshift = ConfigSubsection()
+	config.timeshift.enabled = ConfigYesNo(default = False)
+	config.timeshift.maxevents = ConfigInteger(default=5, limits=(1, 99))
+	config.timeshift.maxlength = ConfigInteger(default=180, limits=(5, 999))
+	config.timeshift.startdelay = ConfigInteger(default=5, limits=(5, 999))
+	config.timeshift.showinfobar = ConfigYesNo(default = True)
+	config.timeshift.stopwhilerecording = ConfigYesNo(default = False)
+	config.timeshift.favoriteSaveAction = ConfigSelection([("askuser", _("Ask user")),("savetimeshift", _("Save and stop")),("savetimeshiftandrecord", _("Save and record")),("noSave", _("Don't save"))], "askuser")
+	config.timeshift.permanentrecording = ConfigYesNo(default = False)
+	config.timeshift.isRecording = NoSave(ConfigYesNo(default = False))
+
 	config.seek = ConfigSubsection()
 	config.seek.selfdefined_13 = ConfigNumber(default=15)
 	config.seek.selfdefined_46 = ConfigNumber(default=60)

@@ -116,6 +116,7 @@ self.session.openWithCallback(msgClosed, EpgLoadMsg)
 				<item level="0" entryID="remote_setup"><setup id="remotesetup"/></item>
 				<item level="1" entryID="rfmod_setup" requires="RfModulator"><setup id="RFmod"/></item>
 				<item level="2" entryID="subtitle_setup"><setup id="subtitlesetup" /></item>
+				<item level="2" entryID="timshift_setup"><setup id="timeshiftsetup" /></item>
 				<item level="0" entryID="timezone_setup"><setup id="timezone"/></item>
 				<!--<item level="0" text="Video Setup" entryID="video_setup"><screen module="VideoSetup" /></item>-->
 				<item weight="500" level="0" entryID="vix_setup"><setup id="vix" /></item>
