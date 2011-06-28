@@ -4,6 +4,7 @@ from enigma import eEPGCache, getBestPlayableServiceReference, \
 from Components.config import config
 from Components.UsageConfig import defaultMoviePath
 from Components.TimerSanityCheck import TimerSanityCheck
+from Components.Task import Task, Job, job_manager as JobManager
 
 from Screens.MessageBox import MessageBox
 import Screens.Standby
@@ -646,7 +647,7 @@ class RecordTimer(timer.Timer):
 			return timer.begin
 		return -1
 
-	def getNextRecordingTime(self):
+	def getNextRecordingTimeOld(self):
 		now = time()
 		for timer in self.timer_list:
 			next_act = timer.getNextActivation()
@@ -654,6 +655,18 @@ class RecordTimer(timer.Timer):
 				continue
 			return next_act
 		return -1
+
+	def getNextRecordingTime(self):
+		nextrectime = self.getNextRecordingTimeOld()
+		faketime = time()+300
+
+		if config.timeshift.isRecording.value or len(JobManager.getPendingJobs()) >= 1:
+			if nextrectime > 0 and nextrectime < faketime:
+				return nextrectime
+			else:
+				return faketime
+		else:
+			return nextrectime
 
 	def isNextRecordAfterEventActionAuto(self):
 		now = time()

@@ -80,6 +80,17 @@
 		<item level="2" text="Enable ViaSat EPG">config.epg.viasat</item>
 		<item level="2" text="Enable Netmed EPG">config.epg.netmed</item>
 	</setup>
+
+	<setup key="timeshiftsetup" title="Timeshift Settings...">
+		<item level="2" text="Permanent Timeshift Enable">config.timeshift.enabled</item>
+		<item level="2" text="Permanent Timeshift Max Events">config.timeshift.maxevents</item>
+		<item level="2" text="Permanent Timeshift Max Length">config.timeshift.maxlength</item>
+		<item level="2" text="Permanent Timeshift Start Delay">config.timeshift.startdelay</item>
+		<item level="2" text="Timeshift-Save Action on zap">config.timeshift.favoriteSaveAction</item>
+		<item level="2" text="Stop timeshift while recording?">config.timeshift.stopwhilerecording</item>
+		<item level="2" text="Show PTS Infobar while timeshifting?">config.timeshift.showinfobar</item>
+	</setup>
+
 	<setup key="subtitlesetup" title="Subtitle Settings">
 		<item level="2" text="Teletext subtitle color">config.subtitles.ttx_subtitle_colors</item>
 		<item level="2" text="Use original teletext position">config.subtitles.ttx_subtitle_original_position</item>
