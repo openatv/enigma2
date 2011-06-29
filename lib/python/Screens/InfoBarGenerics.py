@@ -2900,64 +2900,9 @@ class InfoBarTimeshift:
 				self.ActivatePermanentTimeshift()
 			Notifications.AddNotification(MessageBox,_("Maximum Timeshift length per Event reached!\nRestarting Timeshift now ..."), MessageBox.TYPE_INFO, timeout=5)
 
-
-
-
-
-
 	def getTimeshift(self):
 		service = self.session.nav.getCurrentService()
 		return service and service.timeshift()
-
-	#def startTimeshift(self):
-		#print "enable timeshift"
-		#ts = self.getTimeshift()
-		#if ts is None:
-			#self.session.open(MessageBox, _("Timeshift not possible!"), MessageBox.TYPE_ERROR)
-			#print "no ts interface"
-			#return 0
-
-		#if self.timeshift_enabled:
-			#print "hu, timeshift already enabled?"
-		#else:
-			#if not ts.startTimeshift():
-				#self.timeshift_enabled = 1
-
-				## we remove the "relative time" for now.
-				##self.pvrStateDialog["timeshift"].setRelative(time.time())
-
-				## PAUSE.
-				##self.setSeekState(self.SEEK_STATE_PAUSE)
-				#self.activateTimeshiftEnd(False)
-
-				## enable the "TimeshiftEnableActions", which will override
-				## the startTimeshift actions
-				#self.__seekableStatusChanged()
-			#else:
-				#print "timeshift failed"
-
-	#def stopTimeshift(self):
-		#if not self.timeshift_enabled:
-			#return 0
-		#print "disable timeshift"
-		#ts = self.getTimeshift()
-		#if ts is None:
-			#return 0
-		#self.session.openWithCallback(self.stopTimeshiftConfirmed, MessageBox, _("Stop Timeshift?"), MessageBox.TYPE_YESNO)
-
-	#def stopTimeshiftConfirmed(self, confirmed):
-		#if not confirmed:
-			#return
-
-		#ts = self.getTimeshift()
-		#if ts is None:
-			#return
-
-		#ts.stopTimeshift()
-		#self.timeshift_enabled = 0
-
-		## disable actions
-		#self.__seekableStatusChanged()
 
 	# activates timeshift, and seeks to (almost) the end
 	def activateTimeshiftEnd(self, back = True):
@@ -2986,25 +2931,6 @@ class InfoBarTimeshift:
 		print "activateTimeshiftEndAndPause"
 		#state = self.seekstate
 		self.activateTimeshiftEnd(False)
-
-	#def __seekableStatusChanged(self):
-		#enabled = False
-
-##		print "self.isSeekable", self.isSeekable()
-##		print "self.timeshift_enabled", self.timeshift_enabled
-
-		## when this service is not seekable, but timeshift
-		## is enabled, this means we can activate
-		## the timeshift
-		#if not self.isSeekable() and self.timeshift_enabled:
-			#enabled = True
-
-##		print "timeshift activate:", enabled
-		#self["TimeshiftActivateActions"].setEnabled(enabled)
-
-	#def __serviceStarted(self):
-		#self.timeshift_enabled = False
-		#self.__seekableStatusChanged()
 
 from Screens.PiPSetup import PiPSetup
 
@@ -3149,7 +3075,7 @@ class InfoBarExtensions:
 		self.session.open(LogManager)
 
 	def showAutoTimerList(self):
-		if Directories.Directories.fileExists("/usr/lib/enigma2/python/Plugins/Extensions/AutoTimer/plugin.pyo"):
+		if Directories.fileExists("/usr/lib/enigma2/python/Plugins/Extensions/AutoTimer/plugin.pyo"):
 			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU ,PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
 				if plugin.name == _("AutoTimer"):
 					self.runPlugin(plugin)
@@ -3188,7 +3114,7 @@ class InfoBarExtensions:
 				InfoBar.openEventView(InfoBar.instance)
 
 	def showIMDB(self):
-		if Directories.Directories.fileExists("/usr/lib/enigma2/python/Plugins/Extensions/IMDb/plugin.pyo"):
+		if Directories.fileExists("/usr/lib/enigma2/python/Plugins/Extensions/IMDb/plugin.pyo"):
 			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU ,PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
 				if plugin.name == _("IMDb Details"):
 					self.runPlugin(plugin)
@@ -3518,7 +3444,7 @@ class InfoBarInstantRecord:
 	def instantRecord(self):
 		if not config.timeshift.enabled.value or not self.timeshift_enabled:
 			dir = preferredInstantRecordPath()
-			if not dir or not Directories.Directories.fileExists(dir, 'w'):
+			if not dir or not Directories.fileExists(dir, 'w'):
 				dir = defaultMoviePath()
 			try:
 				stat = os_stat(dir)
@@ -3549,7 +3475,7 @@ class InfoBarInstantRecord:
 			return
 		else:
 			dir = preferredInstantRecordPath()
-			if not dir or not Directories.Directories.fileExists(dir, 'w'):
+			if not dir or not Directories.fileExists(dir, 'w'):
 				dir = defaultMoviePath()
 			try:
 				stat = os_stat(dir)
@@ -4218,14 +4144,14 @@ class AddCopyTimeshiftTask(Task):
 		self.ProgressTimer.callback.append(self.ProgressUpdate)
 
 	def ProgressUpdate(self):
-		if self.srcsize <= 0 or not Directories.Directories.fileExists(self.destfile, 'r'):
+		if self.srcsize <= 0 or not Directories.fileExists(self.destfile, 'r'):
 			return
 
 		self.setProgress(int((os_path.getsize(self.destfile)/float(self.srcsize))*100))
 		self.ProgressTimer.start(7500, True)
 
 	def prepare(self):
-		if Directories.Directories.fileExists(self.srcfile, 'r'):
+		if Directories.fileExists(self.srcfile, 'r'):
 			self.srcsize = os_path.getsize(self.srcfile)
 			self.ProgressTimer.start(7500, True)
 
@@ -4261,14 +4187,14 @@ class AddMergeTimeshiftTask(Task):
 		self.ProgressTimer.callback.append(self.ProgressUpdate)
 
 	def ProgressUpdate(self):
-		if self.srcsize <= 0 or not Directories.Directories.fileExists(self.destfile, 'r'):
+		if self.srcsize <= 0 or not Directories.fileExists(self.destfile, 'r'):
 			return
 
 		self.setProgress(int((os_path.getsize(self.destfile)/float(self.srcsize))*100))
 		self.ProgressTimer.start(7500, True)
 
 	def prepare(self):
-		if Directories.Directories.fileExists(self.srcfile, 'r') and Directories.Directories.fileExists(self.destfile, 'r'):
+		if Directories.fileExists(self.srcfile, 'r') and Directories.fileExists(self.destfile, 'r'):
 			fsize1 = os_path.getsize(self.srcfile)
 			fsize2 = os_path.getsize(self.destfile)
 			self.srcsize = fsize1 + fsize2
