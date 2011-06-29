@@ -15,10 +15,11 @@ extern "C" int tuxtxt_stop();
 extern "C" void tuxtxt_close();
 
 eAutoInitP0<eTuxtxtApp> init_eTuxtxtApp(eAutoInitNumbers::lowlevel, "Tuxtxt");
-eTuxtxtApp *eTuxtxtApp::instance;
+eTuxtxtApp *eTuxtxtApp::instance = NULL;
 
-eTuxtxtApp::eTuxtxtApp() : pid(0), enableTtCaching(false), uiRunning(false)
+eTuxtxtApp::eTuxtxtApp() : pid(0), enableTtCaching(false), uiRunning(false), messagePump(eApp, 0)
 {
+	CONNECT(messagePump.recv_msg, eTuxtxtApp::recvEvent);
 	pthread_mutex_init( &cacheChangeLock, 0 );
 	if (!instance)
 		instance=this;
@@ -30,6 +31,16 @@ eTuxtxtApp::~eTuxtxtApp()
 		instance=0;
 	kill();
 	pthread_mutex_destroy( &cacheChangeLock );
+}
+
+void eTuxtxtApp::recvEvent(const int &evt)
+{
+	uiRunning = false;
+	eRCInput::getInstance()->unlock();
+	eDBoxLCD::getInstance()->unlock();
+	eDBoxLCD::getInstance()->update();
+	fbClass::getInstance()->unlock();
+	/* emit */appClosed();
 }
 
 int eTuxtxtApp::startUi()
@@ -54,23 +65,7 @@ void eTuxtxtApp::thread()
 
 void eTuxtxtApp::thread_finished()
 {
-	uiRunning = false;
-	eRCInput::getInstance()->unlock();
-	eDBoxLCD::getInstance()->unlock();
-	eDBoxLCD::getInstance()->update();
-	fbClass::getInstance()->unlock();
-	/* force redraw */
-	getDesktop(0)->resize(getDesktop(0)->size());
-}
-
-PyObject *eTuxtxtApp::getTuxtxtUIRunning()
-{
-	ePyObject tuple = PyTuple_New(1);
-	if (uiRunning)
-		PyTuple_SET_ITEM(tuple, 0, PyInt_FromLong(1));
-	else
-		PyTuple_SET_ITEM(tuple, 0, PyInt_FromLong(0));
-	return tuple;
+	messagePump.send(0);
 }
 
 void eTuxtxtApp::initCache()
