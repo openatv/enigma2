@@ -43,11 +43,6 @@ def onPartitionChange(why, part):
 	elif why == 'remove':
 		onMountpointRemoved(part.mountpoint)
 
-def reloadPicons():
-	for s in picons:
-		if s.instance and s.pngname:
-			s.instance.setPixmapFromFile(s.pngname)
-
 class Picon(Renderer):
 	def __init__(self):
 		picons.append(self)
