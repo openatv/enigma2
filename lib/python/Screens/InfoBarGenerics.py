@@ -569,6 +569,10 @@ class InfoBarChannelSelection:
 		#instantiate forever
 		self.servicelist = self.session.instantiateDialog(ChannelSelection)
 		self.slimservicelist = self.session.instantiateDialog(SlimChannelSelection)
+		if config.usage.servicelist_mode.value != "simple":
+			self.serviceListType = "Norm"
+		else:
+			self.serviceListType = "Slim"
 
 		if config.misc.initialchannelselection.value:
 			self.onShown.append(self.firstRun)
@@ -661,16 +665,20 @@ class InfoBarChannelSelection:
 		else:
 			if config.usage.servicelist_mode.value != "simple":
 				if not config.usage.show_bouquetalways.value:
+					self.serviceListType = "Norm"
 					self.servicelist.moveUp()
 					self.session.execDialog(self.servicelist)
 				else:
+					self.serviceListType = "Norm"
 					self.servicelist.showFavourites()
 					self.session.execDialog(self.servicelist)
 			else:
 				if not config.usage.show_bouquetalways.value:
+					self.serviceListType = "Slim"
 					self.slimservicelist.moveUp()
 					self.session.execDialog(self.slimservicelist)
 				else:
+					self.serviceListType = "Slim"
 					self.slimservicelist.showFavourites()
 					self.session.execDialog(self.slimservicelist)
 
@@ -680,54 +688,66 @@ class InfoBarChannelSelection:
 		else:
 			if config.usage.servicelist_mode.value != "simple":
 				if not config.usage.show_bouquetalways.value:
+					self.serviceListType = "Norm"
 					self.servicelist.moveDown()
 					self.session.execDialog(self.servicelist)
 				else:
+					self.serviceListType = "Norm"
 					self.servicelist.showFavourites()
 					self.session.execDialog(self.servicelist)
 			else:
 				if not config.usage.show_bouquetalways.value:
+					self.serviceListType = "Slim"
 					self.slimservicelist.moveDown()
 					self.session.execDialog(self.slimservicelist)
 				else:
+					self.serviceListType = "Slim"
 					self.slimservicelist.showFavourites()
 					self.session.execDialog(self.slimservicelist)
 
 	def switchChannelUpLong(self):
 		if self.save_current_timeshift and self.timeshift_enabled:
-			InfoBarTimeshift.saveTimeshiftActions(self, postaction="switchChannelDown")
+			InfoBarTimeshift.saveTimeshiftActions(self, postaction="switchChannelUpLong")
 		else:
 			if config.usage.servicelist_mode.value == "simple":
 				if not config.usage.show_bouquetalways.value:
+					self.serviceListType = "Norm"
 					self.servicelist.moveUp()
 					self.session.execDialog(self.servicelist)
 				else:
+					self.serviceListType = "Norm"
 					self.servicelist.showFavourites()
 					self.session.execDialog(self.servicelist)
 			else:
 				if not config.usage.show_bouquetalways.value:
+					self.serviceListType = "Slim"
 					self.slimservicelist.moveUp()
 					self.session.execDialog(self.slimservicelist)
 				else:
+					self.serviceListType = "Slim"
 					self.slimservicelist.showFavourites()
 					self.session.execDialog(self.slimservicelist)
 
 	def switchChannelDownLong(self):
 		if self.save_current_timeshift and self.timeshift_enabled:
-			InfoBarTimeshift.saveTimeshiftActions(self, postaction="switchChannelDown")
+			InfoBarTimeshift.saveTimeshiftActions(self, postaction="switchChannelDownLong")
 		else:
 			if config.usage.servicelist_mode.value == "simple":
 				if not config.usage.show_bouquetalways.value:
+					self.serviceListType = "Norm"
 					self.servicelist.moveDown()
 					self.session.execDialog(self.servicelist)
 				else:
+					self.serviceListType = "Norm"
 					self.servicelist.showFavourites()
 					self.session.execDialog(self.servicelist)
 			else:
 				if not config.usage.show_bouquetalways.value:
+					self.serviceListType = "Slim"
 					self.slimservicelist.moveDown()
 					self.session.execDialog(self.slimservicelist)
 				else:
+					self.serviceListType = "Slim"
 					self.slimservicelist.showFavourites()
 					self.session.execDialog(self.slimservicelist)
 
@@ -749,21 +769,38 @@ class InfoBarChannelSelection:
 		if self.save_current_timeshift and self.timeshift_enabled:
 			InfoBarTimeshift.saveTimeshiftActions(self, postaction="zapUp")
 		else:
-			if self.servicelist.inBouquet():
-				prev = self.servicelist.getCurrentSelection()
-				if prev:
-					prev = prev.toString()
-					while True:
-						if config.usage.quickzap_bouquet_change.value:
-							if self.servicelist.atBegin():
-								self.servicelist.prevBouquet()
-						self.servicelist.moveUp()
-						cur = self.servicelist.getCurrentSelection()
-						if not cur or (not (cur.flags & 64)) or cur.toString() == prev:
-							break
+			if self.serviceListType == "Norm":
+				if self.servicelist.inBouquet():
+					prev = self.servicelist.getCurrentSelection()
+					if prev:
+						prev = prev.toString()
+						while True:
+							if config.usage.quickzap_bouquet_change.value:
+								if self.servicelist.atBegin():
+									self.servicelist.prevBouquet()
+							self.servicelist.moveUp()
+							cur = self.servicelist.getCurrentSelection()
+							if not cur or (not (cur.flags & 64)) or cur.toString() == prev:
+								break
+				else:
+					self.servicelist.moveUp()
+				self.servicelist.zap(enable_pipzap = True)
 			else:
-				self.servicelist.moveUp()
-			self.servicelist.zap(enable_pipzap = True)
+				if self.slimservicelist.inBouquet():
+					prev = self.slimservicelist.getCurrentSelection()
+					if prev:
+						prev = prev.toString()
+						while True:
+							if config.usage.quickzap_bouquet_change.value:
+								if self.slimservicelist.atBegin():
+									self.slimservicelist.prevBouquet()
+							self.slimservicelist.moveUp()
+							cur = self.slimservicelist.getCurrentSelection()
+							if not cur or (not (cur.flags & 64)) or cur.toString() == prev:
+								break
+				else:
+					self.slimservicelist.moveUp()
+				self.slimservicelist.zap(enable_pipzap = True)
 
 	def zapDown(self):
 		if self.pts_blockZap_timer.isActive():
@@ -772,21 +809,38 @@ class InfoBarChannelSelection:
 		if self.save_current_timeshift and self.timeshift_enabled:
 			InfoBarTimeshift.saveTimeshiftActions(self, postaction="zapDown")
 		else:
-			if self.servicelist.inBouquet():
-				prev = self.servicelist.getCurrentSelection()
-				if prev:
-					prev = prev.toString()
-					while True:
-						if config.usage.quickzap_bouquet_change.value and self.servicelist.atEnd():
-							self.servicelist.nextBouquet()
-						else:
-							self.servicelist.moveDown()
-						cur = self.servicelist.getCurrentSelection()
-						if not cur or (not (cur.flags & 64)) or cur.toString() == prev:
-							break
+			if self.serviceListType == "Norm":
+				if self.servicelist.inBouquet():
+					prev = self.servicelist.getCurrentSelection()
+					if prev:
+						prev = prev.toString()
+						while True:
+							if config.usage.quickzap_bouquet_change.value and self.servicelist.atEnd():
+								self.servicelist.nextBouquet()
+							else:
+								self.servicelist.moveDown()
+							cur = self.servicelist.getCurrentSelection()
+							if not cur or (not (cur.flags & 64)) or cur.toString() == prev:
+								break
+				else:
+					self.servicelist.moveDown()
+				self.servicelist.zap(enable_pipzap = True)
 			else:
-				self.servicelist.moveDown()
-			self.servicelist.zap(enable_pipzap = True)
+				if self.slimservicelist.inBouquet():
+					prev = self.slimservicelist.getCurrentSelection()
+					if prev:
+						prev = prev.toString()
+						while True:
+							if config.usage.quickzap_bouquet_change.value and self.slimservicelist.atEnd():
+								self.slimservicelist.nextBouquet()
+							else:
+								self.slimservicelist.moveDown()
+							cur = self.slimservicelist.getCurrentSelection()
+							if not cur or (not (cur.flags & 64)) or cur.toString() == prev:
+								break
+				else:
+					self.slimservicelist.moveDown()
+				self.slimservicelist.zap(enable_pipzap = True)
 
 class InfoBarMenu:
 	""" Handles a menu action, to open the (main) menu """
