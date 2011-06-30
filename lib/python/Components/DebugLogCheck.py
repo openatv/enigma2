@@ -23,7 +23,7 @@ class DebugLogCheckPoller:
 	def start(self):
 		if self.debug_check not in self.timer.callback:
 			self.timer.callback.append(self.debug_check)
-		self.timer.startLongTimer(60)
+		self.timer.startLongTimer(0)
 
 	def stop(self):
 		if self.version_check in self.timer.callback:
@@ -31,6 +31,7 @@ class DebugLogCheckPoller:
 		self.timer.stop()
 
 	def debug_check(self):
+		print '[DebugLogCheck] Poll Started'
 		now = int(time())
 		if config.crash.enabledebug.value:
 			filename = ""
