@@ -1941,6 +1941,7 @@ class InfoBarTimeshift:
 			enabled = True
 
 		self["TimeshiftSeekPointerActions"].setEnabled(enabled)
+		self["SeekActions"].setEnabled(enabled)
 
 		# Reset Seek Pointer And Eventname in InfoBar
 		if config.timeshift.enabled.value and self.timeshift_enabled and not self.isSeekable():
