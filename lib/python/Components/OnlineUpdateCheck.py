@@ -22,16 +22,13 @@ class VersionCheck:
 		if config.usage.infobar_onlinechecktimer.value > 0 and CheckTime <= 0:
 			print '[OnlineVersionCheck] Online check started'
 			Components.Task.job_manager.AddJob(self.createCheckJob())
-			if config.usage.infobar_onlineupdatefound.value:
-				print '[OnlineVersionCheck] New online version found'
-				print "[OnlineVersionCheck] Next check allowed at", strftime("%c", localtime(NextCheckTime)), strftime("(now=%c)", localtime(now)), strftime("(Last Check=%c)", localtime(config.usage.infobar_onlineupdatelastcheck.value))
-				return True
-			else:
-				print '[OnlineVersionCheck] No New online version found'
-				print "[OnlineVersionCheck] Next check allowed at", strftime("%c", localtime(NextCheckTime)), strftime("(now=%c)", localtime(now)), strftime("(Last Check=%c)", localtime(config.usage.infobar_onlineupdatelastcheck.value))
-				return False
 		else:
 			print "[OnlineVersionCheck] Next check allowed at", strftime("%c", localtime(NextCheckTime)), strftime("(now=%c)", localtime(now)), strftime("(Last Check=%c)", localtime(config.usage.infobar_onlineupdatelastcheck.value))
+		if config.usage.infobar_onlineupdatefound.value:
+			print '[OnlineVersionCheck] New online version found'
+			return True
+		else:
+			print '[OnlineVersionCheck] No New online version found'
 			return False
 
 	def createCheckJob(self):
