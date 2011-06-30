@@ -6,30 +6,31 @@ from time import localtime, time, strftime
 from enigma import eTimer
 from os import rename, remove
 
-class VersionCheck:
-	def __init__(self):
-		pass
+def OnlineUpdateCheck(session=None, **kwargs):
+	global onlineupdatecheckpoller
+	onlineupdatecheckpoller = OnlineUpdateCheckPoller()
+	onlineupdatecheckpoller.start()
 
-	def getImageUpdateAvailable(self):
-		now = int(time())
-		if config.usage.infobar_onlineupdatelastcheck.value != 0:
-			lastchecked = (now - config.usage.infobar_onlineupdatelastcheck.value)
-			CheckTime = (config.usage.infobar_onlinechecktimer.value * 3600) - lastchecked
-		else:
-			lastchecked = 0
-			CheckTime = 0
-		NextCheckTime = now + CheckTime
-		if config.usage.infobar_onlinechecktimer.value > 0 and CheckTime <= 0:
-			print '[OnlineVersionCheck] Online check started'
-			Components.Task.job_manager.AddJob(self.createCheckJob())
-		else:
-			print "[OnlineVersionCheck] Next check allowed at", strftime("%c", localtime(NextCheckTime)), strftime("(now=%c)", localtime(now)), strftime("(Last Check=%c)", localtime(config.usage.infobar_onlineupdatelastcheck.value))
-		if config.usage.infobar_onlineupdatefound.value:
-			print '[OnlineVersionCheck] New online version found'
-			return True
-		else:
-			print '[OnlineVersionCheck] No New online version found'
-			return False
+class OnlineUpdateCheckPoller:
+	"""Automatically Poll SoftCam"""
+	def __init__(self):
+		# Init Timer
+		self.timer = eTimer()
+
+	def start(self):
+		print '[OnlineVersionCheck] Poll Started'
+		if self.onlineupdate_check not in self.timer.callback:
+			self.timer.callback.append(self.onlineupdate_check)
+		self.timer.startLongTimer(0)
+
+	def stop(self):
+		if self.version_check in self.timer.callback:
+			self.timer.callback.remove(self.onlineupdate_check)
+		self.timer.stop()
+
+	def onlineupdate_check(self):
+		print '[OnlineVersionCheck] Online check started'
+		Components.Task.job_manager.AddJob(self.createCheckJob())
 
 	def createCheckJob(self):
 		job = Components.Task.Job(_("OnlineVersionCheck"))
@@ -49,6 +50,7 @@ class VersionCheck:
 		return job
 
 	def JobStart(self):
+		now = int(time())
 		if pathExists('/tmp/online-image-version'):
 			remove('/tmp/online-image-version')
 		file = open(resolveFilename(SCOPE_SYSETC, 'image-version'), 'r')
@@ -76,6 +78,12 @@ class VersionCheck:
 		sourcefile,headers = urllib.urlretrieve(sourcefile)
 		rename(sourcefile,'/tmp/online-image-version')
 
+		nextcheck = now + (int(config.usage.infobar_onlinechecktimer.value )* 3600)
+		print 'NEXT CHECK',nextcheck
+		print "[OnlineVersionCheck] Next check at:", strftime("%c", localtime(int(nextcheck))), strftime("(now=%c)", localtime(now))
+		self.timer.startLongTimer(config.usage.infobar_onlinechecktimer.value * 3600)
+
+
 	def CheckVersion(self):
 		onlineversion = ""
 		currentversion = ""
@@ -100,6 +108,18 @@ class VersionCheck:
 			config.usage.infobar_onlineupdatefound.setValue(False)
 		if pathExists('/tmp/online-image-version'):
 			remove('/tmp/online-image-version')
-		config.usage.infobar_onlineupdatelastcheck.setValue(int(time()))
+
+
+class VersionCheck:
+	def __init__(self):
+		pass
+
+	def getImageUpdateAvailable(self):
+		if config.usage.infobar_onlineupdatefound.value:
+			print '[OnlineVersionCheck] New online version found'
+			return True
+		else:
+			print '[OnlineVersionCheck] No New online version found'
+			return False
 
 versioncheck = VersionCheck()

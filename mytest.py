@@ -565,6 +565,10 @@ profile("Init:DebugLogCheck")
 import Components.DebugLogCheck
 Components.DebugLogCheck.AutoDebugLogCheck()
 
+profile("Init:OnlineCheckState")
+import Components.OnlineUpdateCheck
+Components.OnlineUpdateCheck.OnlineUpdateCheck()
+
 profile("keymapparser")
 import keymapparser
 keymapparser.readKeymap(config.usage.keymap.value)
