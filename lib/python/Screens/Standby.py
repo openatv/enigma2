@@ -5,10 +5,11 @@ from Components.AVSwitch import AVSwitch
 from Components.SystemInfo import SystemInfo
 from GlobalActions import globalActionMap
 from enigma import eDVBVolumecontrol
+import Screens.InfoBar
 
 inStandby = None
 
-class Standby(Screen):
+class Standby2(Screen):
 	def Power(self):
 		print "leave standby"
 		#set input to encoder
@@ -33,6 +34,7 @@ class Standby(Screen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
+		self.skinName = "Standby"
 		self.avswitch = AVSwitch()
 
 		print "enter standby"
@@ -87,20 +89,20 @@ class Standby(Screen):
 	def createSummary(self):
 		return StandbySummary
 
-class StandbyPTS(Standby):
+class Standby(Standby2):
 	def __init__(self, session):
-		if config.plugins.pts.isRecording.value:
+		if config.timeshift.isRecording.value:
 			self.skin = """<screen position="0,0" size="0,0"/>"""
 			Screen.__init__(self, session)
 			self.onFirstExecBegin.append(self.showMessageBox)
 			self.onHide.append(self.close)
 		else:
-			Standby.__init__(self, session)
+			Standby2.__init__(self, session)
 			self.skinName = "Standby"
 
 	def showMessageBox(self):
-		if InfoBar and InfoBar.instance:
-			InfoBar.saveTimeshiftActions(InfoBar.instance, postaction="standby")
+		if Screens.InfoBar.InfoBar and Screens.InfoBar.InfoBar.instance:
+			Screens.InfoBar.InfoBar.saveTimeshiftActions(Screens.InfoBar.InfoBar.instance, postaction="standby")
 
 class StandbySummary(Screen):
 	skin = """

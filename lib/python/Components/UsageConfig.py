@@ -58,11 +58,37 @@ def InitUsageConfig():
 		("standard", _("standard")), ("swap", _("swap PiP and main picture")),
 		("swapstop", _("move PiP to main picture")), ("stop", _("stop PiP")) ])
 
-	config.usage.default_path = ConfigText(default = resolveFilename(SCOPE_HDD))
+	if not pathExists(resolveFilename(SCOPE_HDD) + 'movie'):
+		os.mkdir(resolveFilename(SCOPE_HDD) + 'movie',0755)
+	config.usage.default_path = ConfigText(default = resolveFilename(SCOPE_HDD) + 'movie/')
+	if not config.usage.default_path.value.endswith('/'):
+		tmpvalue = config.usage.default_path.value
+		config.usage.default_path.setValue(tmpvalue + '/')
+		config.usage.default_path.save()
+	def defaultpathChanged(configElement):
+		if not config.usage.default_path.value.endswith('/'):
+			tmpvalue = config.usage.default_path.value
+			config.usage.default_path.setValue(tmpvalue + '/')
+			config.usage.default_path.save()
+	config.usage.default_path.addNotifier(defaultpathChanged, immediate_feedback = False)
+
 	config.usage.timer_path = ConfigText(default = "<default>")
 	config.usage.instantrec_path = ConfigText(default = "<default>")
-	config.usage.timeshift_path = ConfigText(default = "/media/hdd/")
-	config.usage.allowed_timeshift_paths = ConfigLocations(default = ["/media/hdd/"])
+	
+	if not pathExists(resolveFilename(SCOPE_HDD) + 'timeshift'):
+		os.mkdir(resolveFilename(SCOPE_HDD) + 'timeshift',0755)
+	config.usage.timeshift_path = ConfigText(default = resolveFilename(SCOPE_HDD) + 'timeshift/')
+	if not config.usage.default_path.value.endswith('/'):
+		tmpvalue = config.usage.timeshift_path.value
+		config.usage.timeshift_path.setValue(tmpvalue + '/')
+		config.usage.timeshift_path.save()
+	def timeshiftpathChanged(configElement):
+		if not config.usage.timeshift_path.value.endswith('/'):
+			tmpvalue = config.usage.timeshift_path.value
+			config.usage.timeshift_path.setValue(tmpvalue + '/')
+			config.usage.timeshift_path.save()
+	config.usage.timeshift_path.addNotifier(timeshiftpathChanged, immediate_feedback = False)
+	config.usage.allowed_timeshift_paths = ConfigLocations(default = [resolveFilename(SCOPE_HDD) + 'timeshift'])
 
 	config.usage.movielist_trashcan = ConfigYesNo(default=True)
 	config.usage.movielist_trashcan_days = ConfigNumber(default=8)
