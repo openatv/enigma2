@@ -2504,8 +2504,10 @@ class InfoBarTimeshift:
 							Directories.copyfile("%s%s.eit" % (config.usage.default_path.value, ptsmergeSRC[0:-3]),"%s%s.eit" % (config.usage.default_path.value, ptsmergeDEST[0:-3]))
 
 						# Delete AP and SC Files
-						os_remove("%s%s.ap" % (config.usage.default_path.value, ptsmergeDEST))
-						os_remove("%s%s.sc" % (config.usage.default_path.value, ptsmergeDEST))
+						if Directories.fileExists("%s%s.ap" % (config.usage.default_path.value, ptsmergeDEST)):
+							os_remove("%s%s.ap" % (config.usage.default_path.value, ptsmergeDEST))
+						if Directories.fileExists("%s%s.sc" % (config.usage.default_path.value, ptsmergeDEST)):
+							os_remove("%s%s.sc" % (config.usage.default_path.value, ptsmergeDEST))
 						
 						# Add Merge Job to JobManager
 						JobManager.AddJob(MergeTimeshiftJob(self, "cat \"%s%s\" >> \"%s%s\"" % (config.usage.default_path.value,ptsmergeSRC,config.usage.default_path.value,ptsmergeDEST), ptsmergeSRC, ptsmergeDEST, eventname))
