@@ -54,6 +54,10 @@ int eTuxtxtApp::startUi()
 		pthread_mutex_unlock( &cacheChangeLock );
 		run();
 	}
+	else
+	{
+		/* emit */appClosed();
+	}
 	return 0;
 }
 
