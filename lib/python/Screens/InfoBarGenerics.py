@@ -1850,12 +1850,14 @@ class InfoBarTimeshift:
 		self.pts_seekpointer_MaxX = 396 # make sure you can divide this through 2
 
 	def __evStart(self):
+		print "!!!!!!!!!!!!!! PTS-Plugin: __evStart"
 		self.service_changed = 1
 		self.pts_delay_timer.stop()
 		self.pts_service_changed = True
 
 	def __evEnd(self):
 		self.service_changed = 0
+		self.timeshift_enabled = 0
 		print "!!!!!!!!!!!!!! PTS-Plugin: __evEnd"
 
 	def __evSOF(self):
@@ -2177,7 +2179,7 @@ class InfoBarTimeshift:
 		elif self.save_timeshift_postaction == "showRadioChannelList":
 			InfoBarChannelSelection.showRadioChannelList(self, zap=True)
 		elif self.save_timeshift_postaction == "standby":
-			Notifications.AddNotification(Screens_Standby_Standby)
+			Notifications.AddNotification(Screens.Standby.StandbyPTS)
 			
 	def SaveTimeshift(self, timeshiftfile=None, mergelater=False):
 		self.save_current_timeshift = False
