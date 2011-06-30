@@ -87,6 +87,21 @@ class Standby(Screen):
 	def createSummary(self):
 		return StandbySummary
 
+class StandbyPTS(Standby):
+	def __init__(self, session):
+		if config.plugins.pts.isRecording.value:
+			self.skin = """<screen position="0,0" size="0,0"/>"""
+			Screen.__init__(self, session)
+			self.onFirstExecBegin.append(self.showMessageBox)
+			self.onHide.append(self.close)
+		else:
+			Standby.__init__(self, session)
+			self.skinName = "Standby"
+
+	def showMessageBox(self):
+		if InfoBar and InfoBar.instance:
+			InfoBar.saveTimeshiftActions(InfoBar.instance, postaction="standby")
+
 class StandbySummary(Screen):
 	skin = """
 	<screen position="0,0" size="132,64">
@@ -109,6 +124,7 @@ inTryQuitMainloop = False
 class TryQuitMainloop(MessageBox):
 	def __init__(self, session, retvalue=1, timeout=-1, default_yes = True):
 		self.retval=retvalue
+		self.session.ptsmainloopvalue = retvalue
 		recordings = session.nav.getRecordings()
 		jobs = len(job_manager.getPendingJobs())
 		self.connected = False
@@ -148,17 +164,20 @@ class TryQuitMainloop(MessageBox):
 			self.close(True)
 
 	def getRecordEvent(self, recservice, event):
-		if event == iRecordableService.evEnd:
-			recordings = self.session.nav.getRecordings()
-			if not recordings: # no more recordings exist
-				rec_time = self.session.nav.RecordTimer.getNextRecordingTime()
-				if rec_time > 0 and (rec_time - time()) < 360:
-					self.initTimeout(360) # wait for next starting timer
-					self.startTimer()
-				else:
-					self.close(True) # immediate shutdown
-		elif event == iRecordableService.evStart:
-			self.stopTimer()
+		if event == iRecordableService.evEnd and (config.plugins.pts.isRecording.value or len(JobManager.getPendingJobs()) >= 1):
+			return
+		else:
+			if event == iRecordableService.evEnd:
+				recordings = self.session.nav.getRecordings()
+				if not recordings: # no more recordings exist
+					rec_time = self.session.nav.RecordTimer.getNextRecordingTime()
+					if rec_time > 0 and (rec_time - time()) < 360:
+						self.initTimeout(360) # wait for next starting timer
+						self.startTimer()
+					else:
+						self.close(True) # immediate shutdown
+			elif event == iRecordableService.evStart:
+				self.stopTimer()
 
 	def close(self, value):
 		if self.connected:
