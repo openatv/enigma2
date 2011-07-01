@@ -2183,8 +2183,6 @@ class InfoBarTimeshift:
 	def SaveTimeshift(self, timeshiftfile=None, mergelater=False):
 		self.save_current_timeshift = False
 		savefilename = None
-		print 'PTS: MOVIE LOCATION',config.usage.default_path.value
-
 		if timeshiftfile is not None:
 			savefilename = timeshiftfile
 
@@ -2283,7 +2281,6 @@ class InfoBarTimeshift:
 			# Let's try to copy the file in background now! This might take a while ...
 			if not timeshift_saved:
 				try:
-					print 'PTS: MOVIE LOCATION',config.usage.default_path.value
 					stat = statvfs(config.usage.default_path.value)
 					freespace = stat.f_bfree / 1000 * stat.f_bsize / 1000
 					randomint = randint(1, 999)
