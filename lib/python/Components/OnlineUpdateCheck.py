@@ -18,10 +18,16 @@ class OnlineUpdateCheckPoller:
 		self.timer = eTimer()
 
 	def start(self):
-		print '[OnlineVersionCheck] Poll Started'
+		now = int(time())
 		if self.onlineupdate_check not in self.timer.callback:
 			self.timer.callback.append(self.onlineupdate_check)
-		self.timer.startLongTimer(0)
+		if config.usage.infobar_onlinechecktimer.value > 0:
+			print "[OnlineVersionCheck] Schedule Enabled at ", strftime("%c", localtime(now))
+			if now > 1262304000:
+				self.timer.startLongTimer(0)
+			else:
+				print "[OnlineVersionCheck] Time not yet set, delaying", strftime("%c", localtime(now))
+				self.timer.startLongTimer(120)
 
 	def stop(self):
 		if self.version_check in self.timer.callback:
@@ -29,8 +35,12 @@ class OnlineUpdateCheckPoller:
 		self.timer.stop()
 
 	def onlineupdate_check(self):
-		print '[OnlineVersionCheck] Online check started'
-		Components.Task.job_manager.AddJob(self.createCheckJob())
+		now = int(time())
+		if config.usage.infobar_onlinechecktimer.value > 0:
+			print '[OnlineVersionCheck] Online check started', strftime("(now=%c)", localtime(now))
+			Components.Task.job_manager.AddJob(self.createCheckJob())
+		else:
+			print '[OnlineVersionCheck] Online check skiped', strftime("(now=%c)", localtime(now))
 
 	def createCheckJob(self):
 		job = Components.Task.Job(_("OnlineVersionCheck"))
