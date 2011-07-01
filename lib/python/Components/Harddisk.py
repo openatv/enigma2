@@ -1,5 +1,5 @@
 from os import system, listdir, statvfs, popen, makedirs, stat, major, minor, path, access
-from Tools.Directories import SCOPE_HDD, resolveFilename, pathExists
+from Tools.Directories import SCOPE_HDD, SCOPE_TIMESHIFT, resolveFilename, pathExists
 from Tools.CList import CList
 from SystemInfo import SystemInfo
 import time
@@ -24,6 +24,9 @@ def createMovieFolder():
 	movie = resolveFilename(SCOPE_HDD)
 	if not pathExists(movie):
 		makedirs(movie)
+	timeshift = resolveFilename(SCOPE_TIMESHIFT)
+	if not pathExists(timeshift):
+		makedirs(timeshift)
 
 DEVTYPE_UDEV = 0
 DEVTYPE_DEVFS = 1
@@ -238,6 +241,11 @@ class Harddisk:
 		if not pathExists(resolveFilename(SCOPE_HDD)):
 			try:
 				makedirs(resolveFilename(SCOPE_HDD))
+			except OSError:
+				return -1
+		if not pathExists(resolveFilename(SCOPE_TIMESHIFT)):
+			try:
+				makedirs(resolveFilename(SCOPE_TIMESHIFT))
 			except OSError:
 				return -1
 		return 0

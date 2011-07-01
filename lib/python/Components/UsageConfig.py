@@ -1,6 +1,6 @@
 from Components.Harddisk import harddiskmanager
 from config import config, ConfigSubsection, ConfigYesNo, ConfigSelection, ConfigText, ConfigNumber, ConfigSet, ConfigLocations, NoSave, ConfigClock, ConfigInteger, ConfigBoolean, ConfigPassword, ConfigIP
-from Tools.Directories import resolveFilename, SCOPE_HDD
+from Tools.Directories import resolveFilename, SCOPE_HDD, SCOPE_TIMESHIFT
 from enigma import setTunerTypePriorityOrder, setPreferredTuner, setSpinnerOnOff, setEnableTtCachingOnOff;
 from enigma import Misc_Options, eEnv;
 from Components.NimManager import nimmanager
@@ -58,9 +58,12 @@ def InitUsageConfig():
 		("standard", _("standard")), ("swap", _("swap PiP and main picture")),
 		("swapstop", _("move PiP to main picture")), ("stop", _("stop PiP")) ])
 
-	if not pathExists(resolveFilename(SCOPE_HDD) + 'movie'):
-		os.mkdir(resolveFilename(SCOPE_HDD) + 'movie',0755)
-	config.usage.default_path = ConfigText(default = resolveFilename(SCOPE_HDD) + 'movie/')
+	if not pathExists(resolveFilename(SCOPE_HDD)):
+		try:
+			os.mkdir(resolveFilename(SCOPE_HDD),0755)
+		except OSError:
+			return -1
+	config.usage.default_path = ConfigText(default = resolveFilename(SCOPE_HDD))
 	if not config.usage.default_path.value.endswith('/'):
 		tmpvalue = config.usage.default_path.value
 		config.usage.default_path.setValue(tmpvalue + '/')
@@ -75,9 +78,12 @@ def InitUsageConfig():
 	config.usage.timer_path = ConfigText(default = "<default>")
 	config.usage.instantrec_path = ConfigText(default = "<default>")
 	
-	if not pathExists(resolveFilename(SCOPE_HDD) + 'timeshift'):
-		os.mkdir(resolveFilename(SCOPE_HDD) + 'timeshift',0755)
-	config.usage.timeshift_path = ConfigText(default = resolveFilename(SCOPE_HDD) + 'timeshift/')
+	if not pathExists(resolveFilename(SCOPE_TIMESHIFT)):
+		try:
+			os.mkdir(resolveFilename(SCOPE_TIMESHIFT),0755)
+		except OSError:
+			return -1
+	config.usage.timeshift_path = ConfigText(default = resolveFilename(SCOPE_TIMESHIFT))
 	if not config.usage.default_path.value.endswith('/'):
 		tmpvalue = config.usage.timeshift_path.value
 		config.usage.timeshift_path.setValue(tmpvalue + '/')
@@ -88,7 +94,7 @@ def InitUsageConfig():
 			config.usage.timeshift_path.setValue(tmpvalue + '/')
 			config.usage.timeshift_path.save()
 	config.usage.timeshift_path.addNotifier(timeshiftpathChanged, immediate_feedback = False)
-	config.usage.allowed_timeshift_paths = ConfigLocations(default = [resolveFilename(SCOPE_HDD) + 'timeshift'])
+	config.usage.allowed_timeshift_paths = ConfigLocations(default = [resolveFilename(SCOPE_TIMESHIFT)])
 
 	config.usage.movielist_trashcan = ConfigYesNo(default=True)
 	config.usage.movielist_trashcan_days = ConfigNumber(default=8)
@@ -509,6 +515,16 @@ def InitUsageConfig():
 	config.imagemanager.backupretry = ConfigNumber(default = 30)
 	config.imagemanager.backupretrycount = NoSave(ConfigNumber(default = 0))
 	config.imagemanager.nextscheduletime = NoSave(ConfigNumber(default = 0))
+
+	config.backupmanager = ConfigSubsection()
+	config.backupmanager.folderprefix = ConfigText(default=folderprefix, fixed_size=False)
+	config.backupmanager.backuplocation = ConfigSelection(choices = hddchoises)
+	config.backupmanager.schedule = ConfigYesNo(default = False)
+	config.backupmanager.scheduletime = ConfigClock(default = 0) # 1:00
+	config.backupmanager.repeattype = ConfigSelection(default = "daily", choices = [("daily", _("Daily")), ("weekly", _("Weekly")), ("monthly", _("30 Days"))])
+	config.backupmanager.backupretry = ConfigNumber(default = 30)
+	config.backupmanager.backupretrycount = NoSave(ConfigNumber(default = 0))
+	config.backupmanager.nextscheduletime = NoSave(ConfigNumber(default = 0))
 
 	config.vixsettings = ConfigSubsection()
 	config.vixsettings.overscanamount = ConfigNumber(default = 32)
