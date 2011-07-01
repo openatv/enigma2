@@ -525,6 +525,7 @@ def InitUsageConfig():
 	config.backupmanager.backupretry = ConfigNumber(default = 30)
 	config.backupmanager.backupretrycount = NoSave(ConfigNumber(default = 0))
 	config.backupmanager.nextscheduletime = NoSave(ConfigNumber(default = 0))
+	config.backupmanager.backupdirs = ConfigLocations(default=[eEnv.resolve('${sysconfdir}/CCcam.cfg'), eEnv.resolve('${sysconfdir}/CCcam.channelinfo'), eEnv.resolve('${sysconfdir}/CCcam.providers'), eEnv.resolve('${sysconfdir}/default_gw'), eEnv.resolve('${sysconfdir}/enigma2/'), eEnv.resolve('${sysconfdir}/hostname'), eEnv.resolve('${sysconfdir}/network/interfaces'), eEnv.resolve('${sysconfdir}/passwd'), eEnv.resolve('${sysconfdir}/resolv.conf'), eEnv.resolve('${sysconfdir}/tuxbox/config/'), eEnv.resolve('${sysconfdir}/wpa_supplicant.conf'), '/usr/crossepg/crossepg.config', '/usr/softcams/'])
 
 	config.vixsettings = ConfigSubsection()
 	config.vixsettings.overscanamount = ConfigNumber(default = 32)
