@@ -9,7 +9,7 @@ class OnlineCheckState(Poll, Source, object):
 	def __init__(self):
 		Source.__init__(self)
 		Poll.__init__(self)
-		self.poll_interval = 1000
+		self.poll_interval = 60000
 		self.poll_enabled = True
 
 	@cached
