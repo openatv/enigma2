@@ -126,7 +126,7 @@ inTryQuitMainloop = False
 class TryQuitMainloop(MessageBox):
 	def __init__(self, session, retvalue=1, timeout=-1, default_yes = True):
 		self.retval=retvalue
-		self.session.ptsmainloopvalue = retvalue
+		self.ptsmainloopvalue = retvalue
 		recordings = session.nav.getRecordings()
 		jobs = len(job_manager.getPendingJobs())
 		self.connected = False
