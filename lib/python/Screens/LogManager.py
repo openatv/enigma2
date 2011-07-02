@@ -190,14 +190,31 @@ class LogManager(Screen):
 
 	def sendlog(self, addtionalinfo = None):
 		self.sel = self["list"].getCurrent()[0]
+		self.sel = str(self.sel[0])
+		if self.logtype == 'crashlogs':
+			self.defaultDir = '/media/hdd/'
+		else:
+			self.defaultDir = config.crash.debug_path.value
 		self.selectedFiles = self["list"].getSelectedList()
+		self.resend = False
+		for send in self.previouslySent:
+			print 'SEND',send
+			if send in self.selectedFiles:
+				self.selectedFiles.remove(send)
+			if send == (self.defaultDir + self.sel):
+				self.resend = True
 		if self.selectedFiles:
 			message = _("Do you want to send all selected files:\n(choose 'No' to only send the currently selected file.)")
 			ybox = self.session.openWithCallback(self.sendlog1, MessageBox, message, MessageBox.TYPE_YESNO)
 			ybox.setTitle(_("Delete Confirmation"))
-		elif self.sel:
+		elif self.sel and not self.resend:
 			self.sendallfiles = False
-			message = _("Are you sure you want to send this log:\n") + str(self.sel[0])
+			message = _("Are you sure you want to send this log:\n") + self.sel
+			ybox = self.session.openWithCallback(self.sendlog2, MessageBox, message, MessageBox.TYPE_YESNO)
+			ybox.setTitle(_("Delete Confirmation"))
+		elif self.sel and self.resend:
+			self.sendallfiles = False
+			message = _("You have already sent this log, are you sure you want to resend this log:\n") + self.sel
 			ybox = self.session.openWithCallback(self.sendlog2, MessageBox, message, MessageBox.TYPE_YESNO)
 			ybox.setTitle(_("Delete Confirmation"))
 		else:
