@@ -240,7 +240,6 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 	m_subtitle_widget = 0;
 	m_currentTrickRatio = 1.0;
 	m_subs_to_pull = 0;
-	m_seeking = false;
 	m_buffer_size = 1*1024*1024;
 	m_prev_decoder_time = -1;
 	m_decoder_time_valid_state = 0;
@@ -560,25 +559,15 @@ RESULT eServiceMP3::seekTo(pts_t to)
 {
 	RESULT ret = -1;
 
-	if (m_gst_playbin)
-	{
-		{
-			eSingleLocker l(m_subs_to_pull_lock);
-			m_seeking = true;
-			m_subtitle_pages.clear();
-			m_prev_decoder_time = -1;
-			m_decoder_time_valid_state = 0;
-			m_subs_to_pull = 0;
-		}
+	if (m_gst_playbin) {
+		eSingleLocker l(m_subs_to_pull_lock); // this is needed to dont handle incomming subtitles during seek!
 		if (!(ret = seekToImpl(to)))
 		{
-			eSingleLocker l(m_subs_to_pull_lock);
 			m_subtitle_pages.clear();
 			m_prev_decoder_time = -1;
 			m_decoder_time_valid_state = 0;
 			m_subs_to_pull = 0;
 		}
-		m_seeking = false;
 	}
 
 	return ret;
@@ -1654,9 +1643,8 @@ void eServiceMP3::pullSubtitle()
 				gint64 duration_ns = GST_BUFFER_DURATION(buffer);
 				size_t len = GST_BUFFER_SIZE(buffer);
 				eDebug("pullSubtitle m_subtitleStreams[m_currentSubtitleStream].type=%i",m_subtitleStreams[m_currentSubtitleStream].type);
-
-				/* We drop all subtitle data while seeking, or while not at normal playback speed */
-				if ( !m_seeking && m_currentTrickRatio == 1.0 && m_subtitleStreams[m_currentSubtitleStream].type )
+				
+				if ( m_subtitleStreams[m_currentSubtitleStream].type )
 				{
 					if ( m_subtitleStreams[m_currentSubtitleStream].type < stVOB )
 					{

@@ -1,4 +1,4 @@
-from enigma import eServiceCenter, eServiceReference, pNavigation, getBestPlayableServiceReference, iPlayableService
+from enigma import eServiceCenter, eServiceReference, eTimer, pNavigation, getBestPlayableServiceReference, iPlayableService
 from Components.ParentalControl import parentalControl
 from Tools.BoundFunction import boundFunction
 from Tools.DreamboxHardware import setFPWakeuptime, getFPWakeuptime, getFPWasTimerWakeup, clearFPWasTimerWakeup
@@ -33,12 +33,20 @@ class Navigation:
 			clearFPWasTimerWakeup()
 			if getFPWasTimerWakeup(): # sanity check to detect if the FP driver is working correct!
 				print "buggy fp driver detected!!! please update drivers.... ignore timer wakeup!"
-			elif nextRecordTimerAfterEventActionAuto and (len(self.getRecordings()) or abs(self.RecordTimer.getNextRecordingTime() - time()) <= 360):
-				if not Screens.Standby.inTryQuitMainloop: # not a shutdown messagebox is open
-					from Tools import Notifications
-					Notifications.AddNotification(Screens.Standby.Standby)
-					RecordTimer.RecordTimerEntry.TryQuitMainloopDeepsleep(False) # start shutdown handling
+			elif nextRecordTimerAfterEventActionAuto:
+				# We need to give the systemclock the chance to sync with the transponder time, 
+				# before we will make the decision about whether or not we need to shutdown 
+				# after the upcoming recording has completed
+				self.recordshutdowntimer = eTimer()
+				self.recordshutdowntimer.callback.append(self.checkShutdownAfterRecording)
+				self.recordshutdowntimer.start(30000, True)
 		self.SleepTimer = SleepTimer.SleepTimer()
+
+	def checkShutdownAfterRecording(self):
+		if len(self.getRecordings()) or abs(self.RecordTimer.getNextRecordingTime() - time()) <= 360:
+			if not Screens.Standby.inTryQuitMainloop: # not a shutdown messagebox is open
+				#Notifications.AddNotification(Screens.Standby.Standby)
+				RecordTimer.RecordTimerEntry.TryQuitMainloop(False) # start shutdown handling
 
 	def dispatchEvent(self, i):
 		for x in self.event:

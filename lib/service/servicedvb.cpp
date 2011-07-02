@@ -17,6 +17,7 @@
 #include <lib/dvb/tstools.h>
 #include <lib/python/python.h>
 #include <lib/base/nconfig.h> // access to python config
+#include <lib/base/httpstream.h>
 
 		/* for subtitles */
 #include <lib/gui/esubtitle.h>
@@ -955,7 +956,8 @@ eDVBServicePlay::eDVBServicePlay(const eServiceReference &ref, eDVBService *serv
 	m_is_primary(1),
 	m_have_video_pid(0),
 	m_tune_state(-1),
-	m_is_pvr(!ref.path.empty()),
+	m_is_stream(ref.path.substr(0, 7) == "http://"),
+	m_is_pvr(!ref.path.empty() && !m_is_stream),
 	m_timeshift_enabled(0),
 	m_timeshift_active(0),
 	m_timeshift_changed(0),
@@ -1666,6 +1668,18 @@ RESULT eDVBServicePlay::getName(std::string &name)
 	{
 		ePtr<iStaticServiceInformation> i = new eStaticServiceDVBPVRInformation(m_reference);
 		return i->getName(m_reference, name);
+	}
+	else if (m_is_stream)
+	{
+		name = m_reference.name;
+		if (name.empty())
+		{
+			name = m_reference.path;
+		}
+		if (name.empty())
+		{
+			name = "(...)";
+		}
 	}
 	else if (m_dvb_service)
 	{
@@ -2472,9 +2486,18 @@ void eDVBServicePlay::resetTimeshift(int start)
 
 ePtr<iTsSource> eDVBServicePlay::createTsSource(eServiceReferenceDVB &ref)
 {
-	eRawFile *f = new eRawFile();
-	f->open(ref.path.c_str());
-	return ePtr<iTsSource>(f);
+	if (m_is_stream)
+	{
+		eHttpStream *f = new eHttpStream();
+		f->open(ref.path.c_str());
+		return ePtr<iTsSource>(f);
+	}
+	else
+	{
+		eRawFile *f = new eRawFile();
+		f->open(ref.path.c_str());
+		return ePtr<iTsSource>(f);
+	}
 }
 
 void eDVBServicePlay::switchToTimeshift()
@@ -2632,7 +2655,7 @@ void eDVBServicePlay::updateDecoder(bool sendSeekableStateChanged)
 
 		selectAudioStream();
 
-		if (!(m_is_pvr || m_timeshift_active))
+		if (!(m_is_pvr || m_is_stream || m_timeshift_active))
 			m_decoder->setSyncPCR(pcrpid);
 		else
 			m_decoder->setSyncPCR(-1);
