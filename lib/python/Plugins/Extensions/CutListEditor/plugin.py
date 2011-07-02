@@ -57,18 +57,18 @@ class CutListContextMenu(FixedMenu):
 
 		if state == self.SHOW_STARTCUT:
 			menu.append((_("start cut here"), self.startCut))
-		else:
-			menu.append((_("start cut here"), ))
+		#else:
+			#menu.append((_("start cut here"), ))
 
 		if state == self.SHOW_ENDCUT:
 			menu.append((_("end cut here"), self.endCut))
-		else:
-			menu.append((_("end cut here"), ))
+		#else:
+			#menu.append((_("end cut here"), ))
 
 		if state == self.SHOW_DELETECUT:
 			menu.append((_("delete cut"), self.deleteCut))
-		else:
-			menu.append((_("delete cut"), ))
+		#else:
+			#menu.append((_("delete cut"), ))
 
 		menu.append((_("remove before this position"), self.removeBefore))
 		menu.append((_("remove after this position"), self.removeAfter))
