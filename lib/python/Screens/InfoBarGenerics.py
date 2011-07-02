@@ -506,11 +506,18 @@ class InfoBarNumberZap:
 				self.pipDoHandle0Action()
 			else:
 				if config.usage.panicbutton.value:
-					self.servicelist.history = [ ]
-					self.servicelist.history_pos = 0
+					if self.serviceListType == "Norm":
+						self.servicelist.history = [ ]
+						self.servicelist.history_pos = 0
+					elif self.serviceListType == "Slim":
+						self.slimservicelist.history = [ ]
+						self.slimservicelist.history_pos = 0
 					self.zapToNumber(1)
 				else:
-					self.servicelist.recallPrevService()
+					if self.serviceListType == "Norm":
+						self.servicelist.recallPrevService()
+					elif self.serviceListType == "Slim":
+						self.slimservicelist.recallPrevService()
 		else:
 			if self.has_key("TimeshiftActions") and not self.timeshift_enabled:
 				self.session.openWithCallback(self.numberEntered, NumberZap, number)
@@ -537,7 +544,10 @@ class InfoBarNumberZap:
 		return None, num
 
 	def zapToNumber(self, number):
-		bouquet = self.servicelist.bouquet_root
+		if self.serviceListType == "Norm":
+			bouquet = self.servicelist.bouquet_root
+		elif self.serviceListType == "Slim":
+			bouquet = self.slimservicelist.bouquet_root
 		service = None
 		serviceHandler = eServiceCenter.getInstance()
 		if not config.usage.multibouquet.value:
@@ -552,13 +562,22 @@ class InfoBarNumberZap:
 					if bouquet.flags & eServiceReference.isDirectory:
 						service, number = self.searchNumberHelper(serviceHandler, number, bouquet)
 		if not service is None:
-			if self.servicelist.getRoot() != bouquet: #already in correct bouquet?
-				self.servicelist.clearPath()
-				if self.servicelist.bouquet_root != bouquet:
-					self.servicelist.enterPath(self.servicelist.bouquet_root)
-				self.servicelist.enterPath(bouquet)
-			self.servicelist.setCurrentSelection(service) #select the service in servicelist
-			self.servicelist.zap(enable_pipzap = True)
+			if self.serviceListType == "Norm":
+				if self.servicelist.getRoot() != bouquet: #already in correct bouquet?
+					self.servicelist.clearPath()
+					if self.servicelist.bouquet_root != bouquet:
+						self.servicelist.enterPath(self.servicelist.bouquet_root)
+					self.servicelist.enterPath(bouquet)
+				self.servicelist.setCurrentSelection(service) #select the service in servicelist
+				self.servicelist.zap(enable_pipzap = True)
+			if self.serviceListType == "Slim":
+				if self.slimservicelist.getRoot() != bouquet: #already in correct bouquet?
+					self.slimservicelist.clearPath()
+					if self.slimservicelist.bouquet_root != bouquet:
+						self.slimservicelist.enterPath(self.slimservicelist.bouquet_root)
+					self.slimservicelist.enterPath(bouquet)
+				self.slimservicelist.setCurrentSelection(service) #select the service in servicelist
+				self.slimservicelist.zap(enable_pipzap = True)
 
 config.misc.initialchannelselection = ConfigBoolean(default = True)
 
@@ -645,7 +664,10 @@ class InfoBarChannelSelection:
 		elif self.save_current_timeshift and self.timeshift_enabled:
 			InfoBarTimeshift.saveTimeshiftActions(self, postaction="historyBack")
 		else:
-			self.servicelist.historyBack()
+			if self.serviceListType == "Norm":
+				self.servicelist.historyBack()
+			elif self.serviceListType == "Slim":
+				self.slimservicelist.historyBack()
 
 	def historyNext(self):
 		if self.pts_pvrStateDialog == "Screens.PVRState.PTSTimeshiftState" and self.timeshift_enabled and self.isSeekable():
@@ -657,7 +679,10 @@ class InfoBarChannelSelection:
 		elif self.save_current_timeshift and self.timeshift_enabled:
 			InfoBarTimeshift.saveTimeshiftActions(self, postaction="historyNext")
 		else:
-			self.servicelist.historyNext()
+			if self.serviceListType == "Norm":
+				self.servicelist.historyNext()
+			if self.serviceListType == "Slim":
+				self.slimservicelist.historyNext()
 
 	def switchChannelUp(self):
 		if self.save_current_timeshift and self.timeshift_enabled:
@@ -1099,15 +1124,25 @@ class InfoBarEPG:
 		self.serviceSel = None
 
 	def openSingleServiceEPG(self):
-		self.session.open(EPGSelection, self.servicelist)
+		if self.serviceListType == "Norm":
+			self.session.open(EPGSelection, self.servicelist)
+		elif self.serviceListType == "Slim":
+			self.session.open(EPGSelection, self.slimservicelist)
 		
 	def openInfoBarEPG(self):
 		self.EPGtype = "infobar"
-		self.session.open(EPGSelection, self.servicelist, self.EPGtype)
+		if self.serviceListType == "Norm":
+			self.session.open(EPGSelection, self.servicelist, self.EPGtype)
+		elif self.serviceListType == "Slim":
+			self.session.open(EPGSelection, self.slimservicelist, self.EPGtype)
 
 	def openGraphEPG(self, withCallback=True):
+
 		if config.GraphEPG.ShowBouquet.value:
-			self.bouquets = self.servicelist.getBouquetList()
+			if self.serviceListType == "Norm":
+				self.bouquets = self.servicelist.getBouquetList()
+			elif self.serviceListType == "Slim":
+				self.bouquets = self.slimservicelist.getBouquetList()
 			if self.bouquets is None:
 				cnt = 0
 			else:
@@ -1122,8 +1157,12 @@ class InfoBarEPG:
 				self.openBouquetEPG(self.bouquets[0][1], withCallback)
 		else:
 			self.EPGtype = "graph"
-			Servicelist = self.servicelist
-			self.bouquets = Servicelist and self.servicelist.getBouquetList()
+			if self.serviceListType == "Norm":
+				Servicelist = self.servicelist
+				self.bouquets = Servicelist and self.servicelist.getBouquetList()
+			elif self.serviceListType == "Slim":
+				Servicelist = self.slimservicelist
+				self.bouquets = Servicelist and self.slimservicelist.getBouquetList()
 			self.epg_bouquet = Servicelist and Servicelist.getRoot()
 			if self.epg_bouquet is not None:
 				if len(self.bouquets) > 1 :
@@ -1170,7 +1209,10 @@ class InfoBarEPG:
 			self.openSingleServiceEPG()
 
 	def runPlugin(self, plugin):
-		plugin(session = self.session, servicelist = self.servicelist)
+		if self.serviceListType == "Norm":
+			plugin(session = self.session, servicelist = self.servicelist)
+		elif self.serviceListType == "Slim":
+			plugin(session = self.session, servicelist = self.slimservicelist)
 		
 	def EventInfoPluginChosen(self, answer):
 		if answer is not None:
@@ -3215,7 +3257,10 @@ class InfoBarPiP:
 		return _("Move Picture in Picture")
 
 	def getTogglePipzapName(self):
-		slist = self.servicelist
+		if self.serviceListType == "Norm":
+			slist = self.servicelist
+		if self.serviceListType == "Slim":
+			slist = self.slimservicelist
 		if slist and slist.dopipzap:
 			return _("Zap focus to main screen")
 		return _("Zap focus to Picture in Picture")
@@ -3224,13 +3269,19 @@ class InfoBarPiP:
 	def togglePipzap(self):
 		if not self.session.pipshown:
 			self.showPiP()
-		slist = self.servicelist
+		if self.serviceListType == "Norm":
+			slist = self.servicelist
+		if self.serviceListType == "Slim":
+			slist = self.slimservicelist
 		if slist:
 			slist.togglePipzap()
 
 	def showPiP(self):
 		if self.session.pipshown:
-			slist = self.servicelist
+			if self.serviceListType == "Norm":
+				slist = self.servicelist
+			if self.serviceListType == "Slim":
+				slist = self.slimservicelist
 			if slist and slist.dopipzap:
 				slist.togglePipzap()
 			del self.session.pip
@@ -3241,7 +3292,10 @@ class InfoBarPiP:
 			newservice = self.session.nav.getCurrentlyPlayingServiceReference()
 			if self.session.pip.playService(newservice):
 				self.session.pipshown = True
-				self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
+				if self.serviceListType == "Norm":
+					self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
+				elif self.serviceListType == "Slim":
+					self.session.pip.servicePath = self.slimservicelist.getCurrentServicePath()
 			else:
 				self.session.pipshown = False
 				del self.session.pip
@@ -3252,7 +3306,10 @@ class InfoBarPiP:
 		if swapservice and pipref and pipref.toString() != swapservice.toString():
 				self.session.pip.playService(swapservice)
 
-				slist = self.servicelist
+				if self.serviceListType == "Norm":
+					slist = self.servicelist
+				elif self.serviceListType == "Slim":
+					slist = self.slimservicelist
 				if slist:
 					# TODO: this behaves real bad on subservices
 					if slist.dopipzap:
@@ -3603,7 +3660,10 @@ class InfoBarSubserviceSelection:
 	def subserviceSelection(self):
 		service = self.session.nav.getCurrentService()
 		subservices = service and service.subServices()
-		self.bouquets = self.servicelist.getBouquetList()
+		if self.serviceListType == "Norm":
+			self.bouquets = self.servicelist.getBouquetList()
+		elif self.serviceListType == "Slim":
+			self.bouquets = self.slimservicelist.getBouquetList()
 		n = subservices and subservices.getNumberOfSubservices()
 		selection = 0
 		if n and n > 0:
@@ -3662,7 +3722,10 @@ class InfoBarSubserviceSelection:
 			self.session.open(MessageBox, _("Service has been added to the selected bouquet."), MessageBox.TYPE_INFO)
 
 	def addSubserviceToBouquet(self, dest):
-		self.servicelist.addServiceToBouquet(dest, self.selectedSubservice[1])
+		if self.serviceListType == "Norm":
+			self.servicelist.addServiceToBouquet(dest, self.selectedSubservice[1])
+		if self.serviceListType == "Slim":
+			self.slimservicelist.addServiceToBouquet(dest, self.selectedSubservice[1])
 		if self.bsel:
 			self.bsel.close(True)
 		else:
