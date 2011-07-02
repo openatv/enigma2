@@ -4,6 +4,9 @@
 #include <string>
 #include <lib/base/ebase.h>
 #include <lib/base/thread.h>
+#include <lib/base/message.h>
+#include <lib/python/python.h>
+#include <lib/python/connections.h>
 
 class eTuxtxtApp: private eThread, public Object
 {
@@ -13,6 +16,9 @@ class eTuxtxtApp: private eThread, public Object
 	bool enableTtCaching, uiRunning;
 	static eTuxtxtApp *instance;
 	pthread_mutex_t cacheChangeLock;
+
+	eFixedMessagePump<int> messagePump;
+	void recvEvent(const int &evt);
 
 	void thread();
 	void thread_finished();
@@ -28,6 +34,7 @@ public:
 	void stopCaching();
 	void resetPid() { pid = 0; demux = 0; }
 	void setEnableTtCachingOnOff( int onoff );
+	PSignal0<void> appClosed;
 };
 
 #endif // __LIB_COMPONENTS_TUXTXTAPP_H__

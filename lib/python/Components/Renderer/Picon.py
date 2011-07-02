@@ -5,8 +5,6 @@ from Tools.Directories import pathExists, SCOPE_SKIN_IMAGE, SCOPE_CURRENT_SKIN, 
 from Components.Harddisk import harddiskmanager
 
 searchPaths = []
-picons = []
-piconsInvalidated = False
 
 def initPiconPaths():
 	global searchPaths
@@ -44,21 +42,8 @@ def onPartitionChange(why, part):
 	elif why == 'remove':
 		onMountpointRemoved(part.mountpoint)
 
-def reloadPicons():
-	global piconsInvalidated
-	if piconsInvalidated and picons:
-		for s in picons:
-			if s.instance and s.pngname:
-                                s.instance.setPixmapFromFile(s.pngname)
-	piconsInvalidated = False
-
-def invalidatePicons():
-	global piconsInvalidated
-	piconsInvalidated = True	
-						
 class Picon(Renderer):
 	def __init__(self):
-		picons.append(self)
 		Renderer.__init__(self)
 		self.pngname = ""
 		self.lastPath = None

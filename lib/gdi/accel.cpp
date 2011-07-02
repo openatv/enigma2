@@ -196,7 +196,7 @@ int gAccel::accelAlloc(void *&addr, int &phys_addr, int size)
 	}
 	eDebug("accel memstat: used=%d kB, free %d kB, s %d kB", used * 4, free * 4, s * 4);
 
-	for (i=0; i < m_accel_size - size; ++i)
+	for (i = m_accel_size - size; i >= 0 ; --i)
 	{
 		int a;
 		for (a=0; a<size; ++a)
