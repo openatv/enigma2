@@ -1643,8 +1643,9 @@ class NetworkNfs(Screen):
 		self.updateNfs()
 
 	def updateNfs(self):
-		self.Console.ePopen('ps > /tmp/Nfs.tmp')
-		time.sleep(1)
+		import process
+		p = process.ProcessList()
+		nfs_process = str(p.named('nfsd')).strip('[]')
 		self['labrun'].hide()
 		self['labstop'].hide()
 		self['labactive'].setText(_("Disabled"))
@@ -1654,14 +1655,8 @@ class NetworkNfs(Screen):
 			self['labactive'].setText(_("Enabled"))
 			self['labactive'].show()
 			self.my_nfs_active = True
-		if fileExists('/tmp/Nfs.tmp'):
-			f = open('/tmp/Nfs.tmp', 'r')
-			for line in f.readlines():
-				if line.find('nfsd') != -1:
-					self.my_nfs_run = True
-					continue
-			f.close()
-			remove('/tmp/Nfs.tmp')
+		if nfs_process:
+			self.my_nfs_run = True
 		if self.my_nfs_run == True:
 			self['labstop'].hide()
 			self['labrun'].show()
@@ -1781,8 +1776,9 @@ class NetworkOpenvpn(Screen):
 		self.updateVpn()
 
 	def updateVpn(self):
-		self.Console.ePopen('ps > /tmp/vpn.tmp')
-		time.sleep(1)
+		import process
+		p = process.ProcessList()
+		openvpn_process = str(p.named('openvpn')).strip('[]')
 		self['labrun'].hide()
 		self['labstop'].hide()
 		self['labactive'].setText(_("Disabled"))
@@ -1792,16 +1788,8 @@ class NetworkOpenvpn(Screen):
 			self['labactive'].setText(_("Enabled"))
 			self['labactive'].show()
 			self.my_Vpn_active = True
-		if fileExists('/tmp/vpn.tmp'):
-			f = open('/tmp/vpn.tmp', 'r')
-			for line in f.readlines():
-				if line.find('Vpnd') != -1:
-					self['labstop'].hide()
-					self['labrun'].show()
-					self.my_vpn_run = True
-					continue
-			f.close()
-			remove('/tmp/vpn.tmp')
+		if openvpn_process:
+			self.my_vpn_run = True
 		if self.my_vpn_run == True:
 			self['labstop'].hide()
 			self['labrun'].show()
