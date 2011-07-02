@@ -209,7 +209,9 @@ protected:
 	void serviceEvent(int event);
 	void serviceEventTimeshift(int event);
 	Signal2<void,iPlayableService*,int> m_event;
-	
+
+	int m_is_stream;
+
 		/* pvr */
 	int m_is_pvr, m_is_paused, m_timeshift_enabled, m_timeshift_active, m_timeshift_changed;
 	int m_first_program_info;
