@@ -2214,6 +2214,7 @@ class NetworkInadyn(Screen):
 		self['labstop'].hide()
 		self['labactive'].hide()
 		self['labdisabled'].hide()
+		self['sactive'].hide()
 		self.my_inadyn_active = False
 		self.my_inadyn_run = False
 		if fileExists('/etc/rc3.d/S20inadyn-daemon'):
@@ -2235,29 +2236,31 @@ class NetworkInadyn(Screen):
 			self['key_yellow'].setText(_("Start"))
 
 		#self.my_nabina_state = False
-		if fileExists('/etc/init.d/inadyn-daemon'):
-			f = open('/etc/init.d/inadyn-daemon', 'r')
+		if fileExists('/etc/inadyn.conf'):
+			f = open('/etc/inadyn.conf', 'r')
 			for line in f.readlines():
 				line = line.strip()
-				if line.find('INADYN_USERNAME=') != -1:
-					line = line[16:]
+				if line.startswith('username '):
+					line = line[9:]
 					self['labuser'].setText(line)
-				elif line.find('INADYN_PASSWORD=') != -1:
-					line = line[16:]
+				elif line.startswith('password '):
+					line = line[9:]
 					self['labpass'].setText(line)
-				elif line.find('INADYN_ALIAS=') != -1:
-					line = line[13:]
+				elif line.startswith('alias '):
+					line = line[6:]
 					self['labalias'].setText(line)
-				elif line.find('UPDATE_PERIOD=') != -1:
-					line = int(line[14:])
-					line = ((line / 1000) / 60)
+				elif line.startswith('update_period_sec '):
+					line = line[18:]
+					line = (int(line) / 60)
 					self['labtime'].setText(str(line))
-				elif line.find('DYN_SYSTEM_ON=') != -1:
-					line = line[14:]
-					if line == '1' and self['sactive'].show():
-						pass
-				elif line.find('DYN_SYSTEM=') != -1:
-					line = line[11:]
+				elif line.startswith('dyndns_system ') or line.startswith('#dyndns_system '):
+					print 'DYNDNS',line
+					if line.startswith('#'):
+						line = line[15:]
+						self['sactive'].hide()
+					else:
+						line = line[14:]
+						self['sactive'].show()
 					self['labsys'].setText(line)
 			f.close()
 
@@ -2297,44 +2300,47 @@ class NetworkInadynSetup(Screen, ConfigListScreen):
 		self.ina_alias = NoSave(ConfigText(fixed_size=False))
 		self.ina_period = NoSave(ConfigNumber())
 		self.ina_sysactive = NoSave(ConfigYesNo(default='False'))
-		self.ina_system = NoSave(ConfigText(fixed_size=False))
-		if fileExists('/etc/init.d/inadyn-daemon'):
-			f = open('/etc/init.d/inadyn-daemon', 'r')
+		self.ina_system = NoSave(ConfigSelection(default = "dyndns@dyndns.org", choices = [("dyndns@dyndns.org", "dyndns@dyndns.org"), ("statdns@dyndns.org", "statdns@dyndns.org"), ("custom@dyndns.org", "custom@dyndns.org")]))
+
+		if fileExists('/etc/inadyn.conf'):
+			f = open('/etc/inadyn.conf', 'r')
 			for line in f.readlines():
 				line = line.strip()
-				if line.find('INADYN_USERNAME=') != -1:
-					line = line[16:]
+				if line.startswith('username '):
+					line = line[9:]
 					self.ina_user.value = line
 					ina_user1 = getConfigListEntry('Username', self.ina_user)
 					self.list.append(ina_user1)
-				elif line.find('INADYN_PASSWORD=') != -1:
-					line = line[16:]
+				elif line.startswith('password '):
+					line = line[9:]
 					self.ina_pass.value = line
 					ina_pass1 = getConfigListEntry('Password', self.ina_pass)
 					self.list.append(ina_pass1)
-				elif line.find('INADYN_ALIAS=') != -1:
-					line = line[13:]
+				elif line.startswith('alias '):
+					line = line[6:]
 					self.ina_alias.value = line
 					ina_alias1 = getConfigListEntry('Alias', self.ina_alias)
 					self.list.append(ina_alias1)
-				elif line.find('UPDATE_PERIOD=') != -1:
-					line = int(line[14:])
-					line = ((line / 1000) / 60)
+				elif line.startswith('update_period_sec '):
+					line = line[18:]
+					line = (int(line) / 60)
 					self.ina_period.value = line
 					ina_period1 = getConfigListEntry('Time Update in Minutes', self.ina_period)
 					self.list.append(ina_period1)
-				elif line.find('DYN_SYSTEM_ON=') != -1:
-					line = line[14:]
-					if (line == '1'):
+				elif line.startswith('dyndns_system ') or line.startswith('#dyndns_system '):
+					if not line.startswith('#'):
 						self.ina_sysactive.value = True
 					else:
 						self.ina_sysactive.value = False
 					ina_sysactive1 = getConfigListEntry('Set System', self.ina_sysactive)
 					self.list.append(ina_sysactive1)
-				elif line.find('DYN_SYSTEM=') != -1:
-					line = line[11:]
+				elif line.startswith('dyndns_system ') or line.startswith('#dyndns_system '):
+					if line.startswith('#'):
+						line = line[15:]
+					else:
+						line = line[14:]
 					self.ina_system.value = line
-					ina_system1 = getConfigListEntry('System', self.ina_system)
+					ina_system1 = getConfigListEntry('System ', self.ina_system)
 					self.list.append(ina_system1)
 
 			f.close()
@@ -2362,37 +2368,34 @@ class NetworkInadynSetup(Screen, ConfigListScreen):
 			self["config"].invalidate(self["config"].getCurrent())
 
 	def saveIna(self):
-		if fileExists('/etc/init.d/inadyn-daemon'):
-			inme = open('/etc/init.d/inadyn-daemon', 'r')
-			out = open('/etc/init.d/inadyn-daemon.tmp', 'w')
+		if fileExists('/etc/inadyn.conf'):
+			inme = open('/etc/inadyn.conf', 'r')
+			out = open('/etc/inadyn.conf.tmp', 'w')
 			for line in inme.readlines():
 				line = line.replace('\n', '')
-				if line.find('INADYN_USERNAME=') != -1:
-					line = ('INADYN_USERNAME=' + self.ina_user.value.strip())
-				elif line.find('INADYN_PASSWORD=') != -1:
-					line = ('INADYN_PASSWORD=' + self.ina_pass.value.strip())
-				elif line.find('INADYN_ALIAS=') != -1:
-					line = ('INADYN_ALIAS=' + self.ina_alias.value.strip())
-				elif line.find('UPDATE_PERIOD=') != -1:
-					strview = ((self.ina_period.value * 1000) * 60)
+				if line.startswith('username '):
+					line = ('username ' + self.ina_user.value.strip())
+				elif line.startswith('password '):
+					line = ('password ' + self.ina_pass.value.strip())
+				elif line.startswith('alias '):
+					line = ('alias ' + self.ina_alias.value.strip())
+				elif line.startswith('update_period_sec '):
+					strview = (self.ina_period.value * 60)
 					strview = str(strview)
-					line = ('UPDATE_PERIOD=' + strview)
-				elif line.find('DYN_SYSTEM_ON=') != -1:
-					strview = '0'
-					if (self.ina_sysactive.value == True):
-						strview = '1'
-					line = ('DYN_SYSTEM_ON=' + strview)
-				elif line.find('DYN_SYSTEM=') != -1:
-					line = ('DYN_SYSTEM=' + self.ina_system.value.strip())
+					line = ('update_period_sec ' + strview)
+				elif line.startswith('dyndns_system ') or line.startswith('#dyndns_system '):
+					if self.ina_sysactive.value == True:
+						line = ('dyndns_system ' + self.ina_system.value.strip())
+					else:
+						line = ('#dyndns_system ' + self.ina_system.value.strip())
 				out.write((line + '\n'))
 			out.close()
 			inme.close()
 		else:
-			self.session.open(MessageBox, 'Sorry Inadyn Script is Missing', MessageBox.TYPE_INFO)
+			self.session.open(MessageBox, 'Sorry Inadyn Config is Missing', MessageBox.TYPE_INFO)
 			self.close()
-		if fileExists('/etc/init.d/inadyn-daemon.tmp'):
-			rename('/etc/init.d/inadyn-daemon.tmp', '/etc/init.d/inadyn-daemon')
-			chmod('/etc/init.d/inadyn-daemon',0755)
+		if fileExists('/etc/inadyn.conf.tmp'):
+			rename('/etc/inadyn.conf.tmp', '/etc/inadyn.conf')
 		self.myStop()
 
 	def myStop(self):
