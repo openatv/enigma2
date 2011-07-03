@@ -27,6 +27,16 @@ def InitUsageConfig():
 	config.misc.boxtype = ConfigText(default = boxtype)
 
 	config.usage = ConfigSubsection();
+	config.misc.useNTP = ConfigYesNo(default = False)
+	config.misc.useNTPminutes =ConfigSelection(default = "30", choices = [("30", "30 Minutes"), ("60", _("Hour")), ("1440", _("Once per day"))])
+
+	def NTPChanged(configElement):
+		if config.misc.useNTP.value:
+			from Components.Console import Console
+			Console = Console()
+			Console.ePopen('/usr/bin/ntpdate pool.ntp.org')
+	config.misc.useNTP.addNotifier(NTPChanged, immediate_feedback = False)
+
 	config.usage.showdish = ConfigYesNo(default = True)
 	config.usage.multibouquet = ConfigYesNo(default = True)
 	config.usage.panicbutton = ConfigYesNo(default = True)
