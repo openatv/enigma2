@@ -32,6 +32,6 @@ class NTPSyncPoller:
 	def ntp_sync(self):
 		print '[NTPSync] Poll Started'
 		now = int(time())
-		if not config.misc.useNTP.value:
+		if config.misc.SyncTimeUsing.value == "NTP":
 			self.Console.ePopen('/usr/bin/ntpdate -s -u pool.ntp.org')
 		self.timer.startLongTimer(int(config.misc.useNTPminutes.value) * 60)
