@@ -4,8 +4,11 @@
 		<item level="0" text="Delay">config.inputDevices.delay</item>
 		<item level="0" text="Keymap">config.rc.map</item>
 	</setup>
-	<setup key="timezone" title="Timezone">
+	<setup key="time" title="Time">
 		<item level="0" text="Timezone">config.timezone.val</item>
+		<item level="0" text="Use transponder time">config.misc.useTransponderTime</item>
+		<item level="0" text="Enable NetworkTimeProtocol">config.misc.useNTP</item>
+		<item level="0" text="Sync NTP every (minutes)">config.misc.useNTPminutes</item>
 	</setup>
 	<setup key="avsetup" title="A/V Settings">
 		<item level="0" text="Color Format">config.av.colorformat</item>

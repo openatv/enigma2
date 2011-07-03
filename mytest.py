@@ -569,6 +569,14 @@ profile("Init:OnlineCheckState")
 import Components.OnlineUpdateCheck
 Components.OnlineUpdateCheck.OnlineUpdateCheck()
 
+profile("Init:NTPSync")
+import Components.NetworkTime
+from Components.Console import Console
+Console = Console()
+if config.misc.useNTP.value:
+	Console.ePopen('/usr/bin/ntpdate pool.ntp.org')
+Components.NetworkTime.AutoNTPSync()
+
 profile("keymapparser")
 import keymapparser
 keymapparser.readKeymap(config.usage.keymap.value)
