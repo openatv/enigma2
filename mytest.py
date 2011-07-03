@@ -44,7 +44,7 @@ from skin import readSkin
 
 profile("LOAD:Tools")
 from Tools.Directories import InitFallbackFiles, resolveFilename, SCOPE_PLUGINS, SCOPE_CURRENT_SKIN
-from Components.config import config, configfile, ConfigText, ConfigYesNo, ConfigInteger, NoSave
+from Components.config import config, configfile, ConfigText, ConfigYesNo, ConfigInteger, ConfigSelection, NoSave
 InitFallbackFiles()
 
 profile("UsageConfig")
@@ -61,7 +61,8 @@ profile("config.misc")
 config.misc.radiopic = ConfigText(default = resolveFilename(SCOPE_CURRENT_SKIN, "radio.mvi"))
 config.misc.blackradiopic = ConfigText(default = resolveFilename(SCOPE_CURRENT_SKIN, "black.mvi"))
 config.misc.isNextRecordTimerAfterEventActionAuto = ConfigYesNo(default=False)
-config.misc.useTransponderTime = ConfigYesNo(default=True)
+config.misc.SyncTimeUsing = ConfigSelection(default = "Transponder", choices = [("Transponder", "Transponder Time"), ("NTP", _("NTP"))])
+
 config.misc.startCounter = ConfigInteger(default=0) # number of e2 starts...
 config.misc.standbyCounter = NoSave(ConfigInteger(default=0)) # number of standby
 
@@ -80,9 +81,18 @@ def setEPGCachePath(configElement):
 #config.misc.standbyCounter.addNotifier(standbyCountChanged, initial_call = False)
 ####################################################
 
-def useTransponderTimeChanged(configElement):
-	enigma.eDVBLocalTimeHandler.getInstance().setUseDVBTime(configElement.value)
-config.misc.useTransponderTime.addNotifier(useTransponderTimeChanged)
+def useSyncUsingChanged(configElement):
+	print 'SyncTimeUsing',config.misc.SyncTimeUsing.value
+	if config.misc.SyncTimeUsing.value == "Transponder":
+		value = True
+		enigma.eDVBLocalTimeHandler.getInstance().setUseDVBTime(value)
+	else:
+		value = False
+		enigma.eDVBLocalTimeHandler.getInstance().setUseDVBTime(value)
+		from Components.Console import Console
+		Console = Console()
+		Console.ePopen('/usr/bin/ntpdate pool.ntp.org')
+config.misc.SyncTimeUsing.addNotifier(useSyncUsingChanged)
 
 profile("Twisted")
 try:
@@ -526,7 +536,7 @@ def runScreenTest():
 			wptime = nowTime + 30  # so switch back on in 30 seconds
 		else:
 			wptime = startTime[0] - 240
-		if not config.misc.useTransponderTime.value:
+		if not config.misc.SyncTimeUsing.value == "Transponder":
 			print "dvb time sync disabled... so set RTC now to current linux time!", strftime("%Y/%m/%d %H:%M", localtime(nowTime))
 			setRTCtime(nowTime)
 		print "set wakeup time to", strftime("%Y/%m/%d %H:%M", localtime(wptime))
@@ -571,10 +581,6 @@ Components.OnlineUpdateCheck.OnlineUpdateCheck()
 
 profile("Init:NTPSync")
 import Components.NetworkTime
-from Components.Console import Console
-Console = Console()
-if config.misc.useNTP.value:
-	Console.ePopen('/usr/bin/ntpdate pool.ntp.org')
 Components.NetworkTime.AutoNTPSync()
 
 profile("keymapparser")
