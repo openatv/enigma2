@@ -36,17 +36,17 @@ class AudioSelection(Screen, ConfigListScreen):
 		self.cached_subtitle_checked = False
 		self.__selected_subtitle = None
 
-		self["actions"] = ActionMap(["ColorActions", "SetupActions", "DirectionActions"],
+		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "DirectionActions"],
 		{
+			"ok": self.keyOk,
+			"cancel": self.cancel,
 			"red": self.keyRed,
 			"green": self.keyGreen,
 			"yellow": self.keyYellow,
 			"blue": self.keyBlue,
-			"ok": self.keyOk,
-			"cancel": self.cancel,
 			"up": self.keyUp,
-			"down": self.keyDown,
-		}, -3)
+			"down": self.keyDown
+		})
 
 		self.settings = ConfigSubsection()
 		choicelist = [(PAGE_AUDIO,""), (PAGE_SUBTITLES,"")]
