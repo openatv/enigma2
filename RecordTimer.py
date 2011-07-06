@@ -489,7 +489,10 @@ class RecordTimer(timer.Timer):
 			if w.activate():
 				w.state += 1
 
-		self.timer_list.remove(w)
+		try:
+			self.timer_list.remove(w)
+		except:
+			print '[RecordTimer]: Remove list failed'
 
 		# did this timer reached the last state?
 		if w.state < RecordTimerEntry.StateEnded:
