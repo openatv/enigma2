@@ -2014,7 +2014,7 @@ class NetworkTelnet(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Telnet Setup"))
-		self['lab1'] = Label(_("You can disable Telnet Server and use ssh to login to your Vu+."))
+		self['lab1'] = Label(_("You can disable Telnet Server and use ssh to login."))
 		self['lab2'] = Label(_("Current Status:"))
 		self['labstop'] = Label(_("Stopped"))
 		self['labrun'] = Label(_("Running"))
