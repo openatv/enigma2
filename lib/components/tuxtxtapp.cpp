@@ -7,6 +7,7 @@
 #include <lib/gui/ewidget.h>
 #include <lib/gui/ewidgetdesktop.h>
 #include <lib/python/python.h>
+#include <lib/base/nconfig.h>
 
 extern "C" int tuxtxt_run_ui(int pid, int demux);
 extern "C" int tuxtxt_init();
@@ -45,7 +46,10 @@ void eTuxtxtApp::recvEvent(const int &evt)
 
 int eTuxtxtApp::startUi()
 {
-	if (pid && fbClass::getInstance()->lock() >= 0)
+	std::string configvalue;
+	bool allow_no_tpid = (ePythonConfigQuery::getConfigValue("config.usage.allow_no_tpid", configvalue) >= 0 && configvalue == "True");
+
+	if ( (pid || allow_no_tpid) && fbClass::getInstance()->lock() >= 0)
 	{
 		eDBoxLCD::getInstance()->lock();
 		eRCInput::getInstance()->lock();
