@@ -2992,7 +2992,7 @@ class InfoBarExtensions:
 				"openAutoTimerList": self.showAutoTimerList,
 				"openEPGSearch": self.showEPGSearch,
 				"openIMDB": self.showIMDB,
-				"showEventInfo": self.showEventView,
+				"showEventInfo": self.openEventView,
 			}, 1) # lower priority
 
 		self.addExtension(extension = self.getLogManager, type = InfoBarExtensions.EXTENSION_LIST)
@@ -3135,25 +3135,6 @@ class InfoBarExtensions:
 			self.session.open(EPGSearch, name, False)
 		else:
 			self.session.open(EPGSearch)
-
-	def openGraphEPG(self):
-		if isinstance(self, InfoBarEPG):
-			InfoBarEPG.openGraphEPG(InfoBar.instance)
-
-	def openInfoBarEPG(self):
-		if isinstance(self, InfoBarEPG):
-			if isinstance(self, InfoBar):
-				InfoBar.openInfoBarEPG(InfoBar.instance)
-
-	def openSingleServiceEPG(self):
-		if isinstance(self, InfoBarEPG):
-			if isinstance(self, InfoBar):
-				InfoBar.openSingleServiceEPG(InfoBar.instance)
-
-	def showEventView(self):
-		if isinstance(self, InfoBarEPG):
-			if isinstance(self, InfoBar):
-				InfoBar.openEventView(InfoBar.instance)
 
 	def showIMDB(self):
 		if Directories.fileExists("/usr/lib/enigma2/python/Plugins/Extensions/IMDb/plugin.pyo"):
