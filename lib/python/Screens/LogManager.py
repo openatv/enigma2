@@ -125,11 +125,18 @@ class LogManager(Screen):
 			self["list"].changeDir('/media/hdd/')
 
 	def showLog(self):
+		listtest = listdir(self.defaultDir)
+		loglist = []
+		if listtest:
+			for l in listtest:
+				if l.endswith('log'):
+					loglist.append(l)
+
 		if self.logtype == 'crashlogs':
 			self.defaultDir = '/media/hdd/'
 		else:
 			self.defaultDir = config.crash.debug_path.value
-		if listdir(self.defaultDir):
+		if loglist:
 			self.sel = self["list"].getCurrent()[0]
 			if self.sel:
 				self.session.open(LogManagerViewLog, self.sel[0], self.logtype)
