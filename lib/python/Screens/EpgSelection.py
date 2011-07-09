@@ -37,7 +37,7 @@ config.misc.EPGSort = ConfigSelection(default="Time", choices = [
 
 class EPGSelection(Screen):
 	sz_w = getDesktop(0).size().width()
-	if sz_w >= 720:
+	if sz_w >= 1280:
 		QuickEPG = """
 			<screen name="QuickEPG" position="0,505" size="1280,215" title="QuickEPG" backgroundColor="transparent" flags="wfNoBorder">
 				<ePixmap alphatest="off" pixmap="Magic/infobar/infobar-hd.png" position="0,0" size="1280,220" zPosition="0"/>
@@ -71,12 +71,12 @@ class EPGSelection(Screen):
 				<widget name="lab1" position="0,90" size="1280,480" font="Regular;24" halign="center" valign="center" backgroundColor="#000000" transparent="0" zPosition="2" />
 				<widget name="timeline_text" position="9, 60" size="1230,30" foregroundColor="#00e5b243" backgroundColor="#000000" transparent="1"/>
 				<widget name="list" position="40,90" size="1200, 480" scrollbarMode="showNever" transparent="1" />
-				<widget name="timeline0" position="0,140" zPosition="1" size="0,0" pixmap="skin_default/timeline.png" />
-				<widget name="timeline1" position="0,140" zPosition="1" size="0,0" pixmap="skin_default/timeline.png" />
-				<widget name="timeline2" position="0,140" zPosition="1" size="0,0" pixmap="skin_default/timeline.png" />
-				<widget name="timeline3" position="0,140" zPosition="1" size="0,0" pixmap="skin_default/timeline.png" />
-				<widget name="timeline4" position="0,140" zPosition="1" size="0,0" pixmap="skin_default/timeline.png" />
-				<widget name="timeline5" position="0,140" zPosition="1" size="0,0" pixmap="skin_default/timeline.png" />
+				<widget name="timeline0" position="0,90" zPosition="2" size="2,480" pixmap="skin_default/timeline.png" />
+				<widget name="timeline1" position="0,90" zPosition="2" size="2,480" pixmap="skin_default/timeline.png" />
+				<widget name="timeline2" position="0,90" zPosition="2" size="2,480" pixmap="skin_default/timeline.png" />
+				<widget name="timeline3" position="0,90" zPosition="2" size="2,480" pixmap="skin_default/timeline.png" />
+				<widget name="timeline4" position="0,90" zPosition="2" size="2,480" pixmap="skin_default/timeline.png" />
+				<widget name="timeline5" position="0,90" zPosition="2" size="2,480" pixmap="skin_default/timeline.png" />
 
 				<widget name="timeline_now" position="0, 90" zPosition="2" size="19, 480" pixmap="/usr/share/enigma2/skin_default/GraphEPG/timeline-now.png" alphatest="on" />
 				<widget source="Event" render="Label" position="5, 575" size="100, 30" font="Regular;26" foregroundColor="#00e5b243" backgroundColor="#000000" shadowColor="#000000" halign="right" transparent="1">
@@ -131,12 +131,12 @@ class EPGSelection(Screen):
 				<widget name="lab1" position="40,320" size="1200,350" font="Regular;24" halign="center" valign="center" backgroundColor="#000000" transparent="0" zPosition="2" />
 				<widget name="timeline_text" position="9,290" size="1230,30" foregroundColor="#00e5b243" backgroundColor="#000000" transparent="1" />
 				<widget name="list" position="40,320" size="1200,350" scrollbarMode="showNever" transparent="1" />
-				<widget name="timeline0" position="0,320" zPosition="1" size="0,0" pixmap="skin_default/timeline.png" />
-				<widget name="timeline1" position="0,320" zPosition="1" size="0,0" pixmap="skin_default/timeline.png" />
-				<widget name="timeline2" position="0,320" zPosition="1" size="0,0" pixmap="skin_default/timeline.png" />
-				<widget name="timeline3" position="0,320" zPosition="1" size="0,0" pixmap="skin_default/timeline.png" />
-				<widget name="timeline4" position="0,320" zPosition="1" size="0,0" pixmap="skin_default/timeline.png" />
-				<widget name="timeline5" position="0,320" zPosition="1" size="0,0" pixmap="skin_default/timeline.png" />
+				<widget name="timeline0" position="0,320" zPosition="1" size="2,350" pixmap="skin_default/timeline.png" />
+				<widget name="timeline1" position="0,320" zPosition="1" size="2,350" pixmap="skin_default/timeline.png" />
+				<widget name="timeline2" position="0,320" zPosition="1" size="2,350" pixmap="skin_default/timeline.png" />
+				<widget name="timeline3" position="0,320" zPosition="1" size="2,350" pixmap="skin_default/timeline.png" />
+				<widget name="timeline4" position="0,320" zPosition="1" size="2,350" pixmap="skin_default/timeline.png" />
+				<widget name="timeline5" position="0,320" zPosition="1" size="2,350" pixmap="skin_default/timeline.png" />
 				<widget name="timeline_now" position="0,320" zPosition="2" size="19,350" pixmap="/usr/share/enigma2/skin_default/GraphEPG/timeline-now.png" alphatest="on" />
 				<ePixmap pixmap="skin_default/buttons/red.png" position="270, 675" size="25,25" alphatest="blend" />
 				<widget name="key_red" position="305, 679" size="150, 24" font="Regular;20" foregroundColor="#9F1313" backgroundColor="#000000" shadowColor="#000000" halign="left" valign="top" transparent="1" />
@@ -386,7 +386,7 @@ class EPGSelection(Screen):
 
 		if self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
 			if self.type == EPG_TYPE_ENHANCED:
-				self["actions"] = ActionMap(["OkCancelActions", "InfobarInstantRecord", "EPGSelectActions", "ChannelSelectBaseActions", "ColorActions", "DirectionActions", "MenuActions", "HelpActions"], 
+				self["actions"] = ActionMap(["OkCancelActions", "InfobarInstantRecord", "EPGSelectActions", "ChannelSelectBaseActions", "ColorActions", "DirectionActions", "HelpActions"], 
 				{
 					"ok": self.ZapTo, 
 					"cancel": self.closing,
@@ -401,6 +401,7 @@ class EPGSelection(Screen):
 					"blue": self.blueButtonPressed,
 					"info": self.infoKeyPressed,
 					"instantRecord": self.Record,
+					"Menu": self.createSetup,
 					},-2)
 				self["actions2"] = NumberActionMap(["NumberActions"],
 				{
@@ -414,13 +415,8 @@ class EPGSelection(Screen):
 					"8": self.keyNumberGlobal,
 					"9": self.keyNumberGlobal,
 				}, -1)
-				self["MenuActions"] = HelpableActionMap(self, "MenuActions",
-					{
-						"menu": (self.createSetup, _("Open Context Menu"))
-					}
-				)
 			elif self.type == EPG_TYPE_INFOBAR:
-				self["actions"] = ActionMap(["OkCancelActions", "InfobarInstantRecord", "EPGSelectActions", "ChannelSelectBaseActions", "ColorActions", "DirectionActions", "MenuActions", "HelpActions"], 
+				self["actions"] = ActionMap(["OkCancelActions", "InfobarInstantRecord", "EPGSelectActions", "ChannelSelectBaseActions", "ColorActions", "DirectionActions", "HelpActions"], 
 				{
 					"ok": self.ZapTo, 
 					"cancel": self.closing,
@@ -437,7 +433,7 @@ class EPGSelection(Screen):
 					"blue": self.blueButtonPressed,
 					"info": self.infoKeyPressed,
 					"instantRecord": self.Record,
-					"menu": self.createSetup,
+					"Menu": self.createSetup,
 					},-2)
 				self["actions2"] = NumberActionMap(["NumberActions"],
 				{
@@ -470,7 +466,7 @@ class EPGSelection(Screen):
 			self.startBouquet = self.servicelist.getRoot()
 			self.onClose.append(self.__onClose)
 		elif self.type == EPG_TYPE_GRAPH:
-			self["actions"] = ActionMap(["OkCancelActions", "InfobarInstantRecord", "EPGSelectActions", "ChannelSelectBaseActions", "ColorActions", "DirectionActions", "MenuActions", "HelpActions"],
+			self["actions"] = ActionMap(["OkCancelActions", "InfobarInstantRecord", "EPGSelectActions", "ChannelSelectBaseActions", "ColorActions", "DirectionActions", "HelpActions"],
 				{
 					"cancel": self.closing,
 					"displayHelp": self.myhelp,
@@ -488,7 +484,7 @@ class EPGSelection(Screen):
 					"Info": self.Info,
 					"InfoLong": self.InfoLong,
 					"instantRecord": self.Record,
-					"menu": self.createSetup,
+					"Menu": self.createSetup,
 				},-1)
 
 			self["input_actions"] = ActionMap(["InputActions"],
@@ -1636,8 +1632,8 @@ class EPGSelectionSetup(Screen, ConfigListScreen):
 			<ePixmap pixmap="skin_default/buttons/green.png" position="185,5" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/yellow.png" position="350,5" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/blue.png" position="515,5" size="140,40" alphatest="on" />
-			<widget name="canceltext" position="20,5" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-			<widget name="oktext" position="185,5" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+			<widget name="key_red" position="20,5" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+			<widget name="key_green" position="185,5" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
 			<eLabel text="press ( left OK right ) to change your Buttons !!!" position="15,455" size="650,60" font="Regular;20" foregroundColor="#9f1313" backgroundColor="#000000" shadowColor="#000000" halign="center" transparent="1" />
 			<widget name="config" position="20,60" size="640,370" />
 		</screen>"""
