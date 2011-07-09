@@ -53,9 +53,16 @@ void eBackgroundFileEraser::erase(const std::string& filename)
 		delname.append(".del");
 		if (rename(filename.c_str(), delname.c_str())<0)
 		{
+			// if rename fails with ENOENT (file doesn't exist), do nothing
+			if (errno == ENOENT)
+			{
+				return;
+			} else
 			// if rename fails, try deleting the file itself without renaming.
-			eDebug("Rename %s -> %s failed.", filename.c_str(), delname.c_str());
-			delname = filename;
+			{
+				eDebug("Rename %s -> %s failed.", filename.c_str(), delname.c_str());
+				delname = filename;
+			}
 		}
 		messages.send(Message(delname));
 		run();
@@ -76,7 +83,9 @@ void eBackgroundFileEraser::gotMessage(const Message &msg )
 		    ((erase_flags & ERASE_FLAG_OTHER) != 0))
 		{
 			struct stat st;
-			if (::stat(c_filename, &st) == 0)
+			int i = ::stat(c_filename, &st);
+			// truncate only if file exists and does not have any hard links
+			if (i == 0 && st.st_nlink == 1 )
 			{
 				while (st.st_size > erase_speed)
 				{

@@ -47,6 +47,7 @@ def InitUsageConfig():
 	config.usage.show_infobar_eventinfo = ConfigYesNo(default = True)
 	config.usage.show_spinner = ConfigYesNo(default = True)
 	config.usage.enable_tt_caching = ConfigYesNo(default = True)
+	config.usage.allow_no_tpid = ConfigYesNo(default = False)
 	config.usage.hdd_standby = ConfigSelection(default = "300", choices = [
 		("0", _("no standby")), ("10", "10 " + _("seconds")), ("30", "30 " + _("seconds")),
 		("60", "1 " + _("minute")), ("120", "2 " + _("minutes")),
