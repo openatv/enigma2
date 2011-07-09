@@ -46,7 +46,7 @@ class AudioSelection(Screen, ConfigListScreen):
 			"blue": self.keyBlue,
 			"up": self.keyUp,
 			"down": self.keyDown
-		})
+		},-1)
 
 		self.settings = ConfigSubsection()
 		choicelist = [(PAGE_AUDIO,""), (PAGE_SUBTITLES,"")]
