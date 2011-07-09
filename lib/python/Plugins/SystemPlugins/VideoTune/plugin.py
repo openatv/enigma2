@@ -30,7 +30,7 @@ def startSetup(menuid):
 	if menuid != "system": 
 		return [ ]
 
-	return [(_("Video Fine-Tuning"), videoFinetuneMain, "video_finetune", None)]
+	return [(_("Video Fine-Tuning"), videoFinetuneMain, "videofinetune_setup", None)]
 
 def Plugins(**kwargs):
 	return [
