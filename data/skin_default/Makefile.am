@@ -37,6 +37,7 @@ dist_install_DATA = \
 	mute.png \
 	nim_active.png \
 	no_coverArt.png \
+	noprev.png \
 	pal.png \
 	picon_default.png \
 	position_arrow.png \

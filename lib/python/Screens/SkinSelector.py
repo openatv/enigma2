@@ -110,7 +110,7 @@ class SkinSelector(Screen):
 			pngpath = self.root+self["SkinList"].getCurrent()+"/prev.png"
 
 		if not path.exists(pngpath):
-			pngpath = resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SkinSelector/noprev.png")
+			pngpath = "/usr/share/enigma2/skin_default/noprev.png"
 
 		if self.previewPath != pngpath:
 			self.previewPath = pngpath
@@ -125,10 +125,10 @@ def SkinSelMain(session, **kwargs):
 	session.open(SkinSelector)
 
 def SkinSelSetup(menuid, **kwargs):
-	if menuid == "system":
-		return [(_("Skin"), SkinSelMain, "skin_selector", 50)]
-	else:
-		return []
+	if menuid != "system": 
+		return [ ]
+
+	return [(_("Skin"), SkinSelMain, "skin_selector", None)]
 
 def Plugins(**kwargs):
 	return PluginDescriptor(name="Skinselector", description="Select Your Skin", where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc=SkinSelSetup)
