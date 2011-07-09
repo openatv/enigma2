@@ -1,8 +1,9 @@
+import os
+import time
 from os import system, listdir, statvfs, popen, makedirs, stat, major, minor, path, access
 from Tools.Directories import SCOPE_HDD, resolveFilename, pathExists
 from Tools.CList import CList
 from SystemInfo import SystemInfo
-import time
 from Components.Console import Console
 import Task
 
@@ -731,6 +732,11 @@ class UnmountTask(Task.LoggingTask):
 		Task.LoggingTask.__init__(self, job, _("Unmount"))
 		self.hdd = hdd
 	def prepare(self):
+		try:
+			dev = self.hdd.disk_path.split('/')[-1]
+			open('/dev/nomount.%s' % dev, "wb").close()
+		except Exception, e:
+			print "ERROR: Failed to create /dev/nomount file:", e
 		dev = self.hdd.mountDevice()
 		if dev:
 			self.setCmdline('umount -f ' + dev)
@@ -741,6 +747,11 @@ class MountTask(Task.LoggingTask):
 		Task.LoggingTask.__init__(self, job, _("Mount"))
 		self.hdd = hdd
 	def prepare(self):
+		try:
+			dev = self.hdd.disk_path.split('/')[-1]
+			os.unlink('/dev/nomount.%s' % dev)
+		except Exception, e:
+			print "ERROR: Failed to remove /dev/nomount file:", e
 		# try mounting through fstab first
 		if self.hdd.mount_device is None:
 			dev = self.hdd.partitionPath("1")
