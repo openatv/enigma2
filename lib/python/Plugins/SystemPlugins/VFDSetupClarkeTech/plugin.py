@@ -12,7 +12,7 @@ config.plugins.VFDSetup.scrollspeed = ConfigInteger(default = 150)
 
 class VFDSetupScreen(Screen, ConfigListScreen):
 	skin = """
-	<screen position="c-200,c-100" size="400,200" title="Display Setup">
+	<screen name="VFDSetupScreen" position="c-200,c-100" size="400,200" title="Display Setup">
 		<widget name="config" position="c-175,c-75" size="350,150" />
 		<ePixmap pixmap="skin_default/buttons/green.png" position="c-145,e-45" zPosition="0" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/red.png" position="c+5,e-45" zPosition="0" size="140,40" alphatest="on" />
@@ -27,6 +27,7 @@ class VFDSetupScreen(Screen, ConfigListScreen):
 		from Components.ActionMap import ActionMap
 		from Components.Button import Button
 
+		self.setTitle(_("VFD Setup"))
 		self["ok"] = Button(_("OK"))
 		self["cancel"] = Button(_("Cancel"))
 
@@ -94,7 +95,13 @@ def applySettings(mode, repeat, scrollspeed):
 def setConfiguredSettings():
 	applySettings(int(config.plugins.VFDSetup.mode.value), int(config.plugins.VFDSetup.repeat.value), int(config.plugins.VFDSetup.scrollspeed.value))
 
-def main(session, **kwargs):
+def main(menuid):
+	if menuid != "system": 
+		return [ ]
+
+	return [(_("VFD Setup"), showVFDMenu, "vfd_setup",None)]
+
+def showVFDMenu(session, **kwargs):
 	session.open(VFDSetupScreen)
 
 def startup(reason, **kwargs):
@@ -104,6 +111,6 @@ def Plugins(**kwargs):
 	from os import path
 	if path.exists("/proc/stb/lcd/scroll_delay"):
 		from Plugins.Plugin import PluginDescriptor
-		return [PluginDescriptor(name = "VFD setup", description = _("Adjust display scrolling and symbols"), where = PluginDescriptor.WHERE_PLUGINMENU, fnc = main),
+		return [PluginDescriptor(name = "VFD setup", description = _("Adjust display scrolling and symbols"), where = PluginDescriptor.WHERE_MENU, fnc = main),
 					PluginDescriptor(name = "VFD setup", description = "", where = PluginDescriptor.WHERE_SESSIONSTART, fnc = startup)]
 	return []
