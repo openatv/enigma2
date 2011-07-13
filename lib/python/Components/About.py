@@ -14,7 +14,7 @@ class About:
 		try:
 			st = os.stat('/usr/lib/ipkg/status')
 			tm = time.localtime(st.st_mtime)
-			return time.strftime("%Y-%m-%d %H:%M", tm)
+			return time.strftime("%b %e %Y %H:%M:%S", tm)
 		except:
 			pass
 		return "unavailable"
