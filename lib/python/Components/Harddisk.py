@@ -194,6 +194,12 @@ class Harddisk:
 
 	def mkfs(self):
 		cmd = "mkfs.ext3 "
+		try:
+			filesystems = open('/etc/filesystems').readlines()
+			if "ext4" in filesystems:
+				cmd = "mkfs.ext4 "
+		except Exception, e:
+			print "[Harddisk] failed to read /etc/filesystems"
 		size = self.diskSize()
 		if size > 16 * 1024:
 			cmd += "-T largefile -O sparse_super "
