@@ -1,6 +1,7 @@
 from Tools.Directories import resolveFilename, SCOPE_SYSETC
 from enigma import getEnigmaVersionString
-import os 
+import os
+import time
 
 class About:
 	def __init__(self):
@@ -11,11 +12,11 @@ class About:
 
 	def getImageVersionString(self):
 		try:
-			image_status = os.popen('ls -le /usr/lib/ipkg/status').read()
-			return  image_status[47:53]+image_status[62:67]+image_status[53:62]
+			st = os.stat('/usr/lib/ipkg/status')
+			tm = time.localtime(st.st_mtime)
+			return time.strftime("%Y-%m-%d %H:%M", tm)
 		except:
 			pass
-
 		return "unavailable"
 
 	def getEnigmaVersionString(self):
