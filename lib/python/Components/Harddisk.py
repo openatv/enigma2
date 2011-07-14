@@ -26,6 +26,16 @@ def createMovieFolder():
 	if not pathExists(movie):
 		makedirs(movie)
 
+def isFileSystemSupported(filesystem):
+	try:
+		for fs in open('/proc/filesystems', 'r'):
+			if fs.strip().endswith(filesystem):
+				return True
+		return False
+	except Exception, ex:
+		print "[Harddisk] Failed to read /proc/filesystems:", ex
+
+
 DEVTYPE_UDEV = 0
 DEVTYPE_DEVFS = 1
 
@@ -193,13 +203,10 @@ class Harddisk:
 		return (res >> 8)
 
 	def mkfs(self):
-		cmd = "mkfs.ext3 "
-		try:
-			filesystems = open('/etc/filesystems').readlines()
-			if "ext4" in filesystems:
-				cmd = "mkfs.ext4 "
-		except Exception, e:
-			print "[Harddisk] failed to read /etc/filesystems"
+		if isFileSystemSupported("ext4"):
+			cmd = "mkfs.ext4 "
+		else:
+			cmd = "mkfs.ext3 "
 		size = self.diskSize()
 		if size > 16 * 1024:
 			cmd += "-T largefile -O sparse_super "
@@ -317,7 +324,11 @@ class Harddisk:
 		task.weighting = 1
 
 		task = MkfsTask(job, _("Create Filesystem"))
-		task.setTool("mkfs.ext3")
+		if isFileSystemSupported("ext4"):
+			cmd = "mkfs.ext4"
+		else:
+			cmd = "mkfs.ext3"
+		task.setTool(cmd)
 
 		if size > 16 * 1024:
 			task.args += ["-T", "largefile", "-O", "sparse_super"]
@@ -541,29 +552,29 @@ class HarddiskManager:
 		self.partitions = [ ]
 		self.devices_scanned_on_init = [ ]
 		self.on_partition_list_change = CList()
-
 		self.enumerateBlockDevices()
-
 		# currently, this is just an enumeration of what's possible,
 		# this probably has to be changed to support automount stuff.
 		# still, if stuff is mounted into the correct mountpoints by
 		# external tools, everything is fine (until somebody inserts
 		# a second usb stick.)
-		p = [
-					("/media/hdd", _("Harddisk")),
-					("/media/card", _("Card")),
-					("/media/cf", _("Compact Flash")),
-					("/media/mmc1", _("MMC Card")),
-					("/media/net", _("Network Mount")),
-					("/media/net1", _("Network Mount") + " 1"),
-					("/media/net2", _("Network Mount") + " 2"),
-					("/media/net3", _("Network Mount") + " 3"),
-					("/media/ram", _("Ram Disk")),
-					("/media/usb", _("USB Stick")),
-					("/", _("Internal Flash"))
-				]
-
-		self.partitions.extend([ Partition(mountpoint = x[0], description = x[1]) for x in p ])
+		p = (
+			("/media/hdd", _("Harddisk")),
+			("/media/card", _("Card")),
+			("/media/cf", _("Compact Flash")),
+			("/media/mmc1", _("MMC Card")),
+			("/media/net", _("Network Mount")),
+			("/media/net1", _("Network Mount") + " 1"),
+			("/media/net2", _("Network Mount") + " 2"),
+			("/media/net3", _("Network Mount") + " 3"),
+			("/media/ram", _("Ram Disk")),
+			("/media/usb", _("USB Stick")),
+			("/", _("Internal Flash"))
+		)
+		known = set([path.normpath(a.mountpoint) for a in self.partitions])
+		for m,d in p:
+			if (m not in known) and path.ismount(m):
+				self.partitions.append(Partition(mountpoint=m, description=d))
 
 	def getBlockDevInfo(self, blockdev):
 		devpath = "/sys/block/" + blockdev
@@ -607,7 +618,7 @@ class HarddiskManager:
 		return error, blacklisted, removable, is_cdrom, partitions, medium_found
 
 	def enumerateBlockDevices(self):
-		print "enumerating block devices..."
+		print "[Harddisk] enumerating block devices..."
 		for blockdev in listdir("/sys/block"):
 			error, blacklisted, removable, is_cdrom, partitions, medium_found = self.addHotplugPartition(blockdev)
 			if not error and not blacklisted and medium_found:
@@ -639,6 +650,7 @@ class HarddiskManager:
 		if not blacklisted and medium_found:
 			description = self.getUserfriendlyDeviceName(device, physdev)
 			p = Partition(mountpoint = self.getMountpoint(device), description = description, force_mounted = True, device = device)
+			print "[Harddisk] add partition:", p.mountpoint 
 			self.partitions.append(p)
 			self.on_partition_list_change("add", p)
 			# see if this is a harddrive
