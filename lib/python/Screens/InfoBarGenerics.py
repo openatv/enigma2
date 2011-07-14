@@ -1979,6 +1979,8 @@ class InfoBarTimeshift:
 		enabled = False
 		if config.timeshift.enabled.value and self.timeshift_enabled and self.isSeekable():
 			enabled = True
+		elif not config.timeshift.enabled.value and self.timeshift_enabled and self.isSeekable():
+			enabled = True
 
 		self["TimeshiftSeekPointerActions"].setEnabled(enabled)
 		self["SeekActions"].setEnabled(enabled)
