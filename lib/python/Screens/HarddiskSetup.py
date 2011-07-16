@@ -12,74 +12,39 @@ class HarddiskSetup(Screen):
 	HARDDISK_INITIALIZE = 1
 	HARDDISK_CHECK = 2
 
-	def __init__(self, session, hdd, type = None):
+	def __init__(self, session, hdd, action, text, question):
 		Screen.__init__(self, session)
-		self.hdd = hdd
-
-		if type not in (self.HARDDISK_INITIALIZE, self.HARDDISK_CHECK):
-			self.type = self.HARDDISK_INITIALIZE
-		else:
-			self.type = type
-
+		self.action = action
+		self.question = question
 		self["model"] = Label(_("Model: ") + hdd.model())
 		self["capacity"] = Label(_("Capacity: ") + hdd.capacity())
 		self["bus"] = Label(_("Bus: ") + hdd.bus())
 		self["initialize"] = Pixmap()
-
-		if self.type == self.HARDDISK_INITIALIZE:
-			text = _("Initialize")
-		else:
-			text = _("Check")
 		self["initializetext"] = Label(text)
-
 		self["actions"] = ActionMap(["OkCancelActions"],
 		{
 			"ok": self.close,
 			"cancel": self.close
 		})
-		
 		self["shortcuts"] = ActionMap(["ShortcutActions"],
 		{
 			"red": self.hddQuestion
 		})
 
-	def hddReady(self, result):
-		print "Result: " + str(result)
-		if result is None:
-			# todo: Notify about background task?
-			self.close()
-		elif (result != 0):
-			if self.type == self.HARDDISK_INITIALIZE:
-				message = _("Unable to initialize device.\nError: ")
-			else:
-				message = _("Unable to complete filesystem check.\nError: ")
-			self.session.open(MessageBox, message + str(self.hdd.errorList[0 - result]), MessageBox.TYPE_ERROR)
-		else:
-			self.close()
-
 	def hddQuestion(self):
-		if self.type == self.HARDDISK_INITIALIZE:
-			message = _("Do you really want to initialize the device?\nAll data on the disk will be lost!")
-		else:
-			message = _("Do you really want to check the filesystem?\nThis could take lots of time!")
-		message += "\n" + _("You can continue watching TV etc. while this is running.")
+		message = self.question + "\n" + _("You can continue watching TV etc. while this is running.")
 		self.session.openWithCallback(self.hddConfirmed, MessageBox, message)
 
 	def hddConfirmed(self, confirmed):
 		if not confirmed:
 			return
-		print "this will start either the initialize or the fsck now!"
-		if self.type == self.HARDDISK_INITIALIZE:
-			Components.Task.job_manager.AddJob(self.hdd.createInitializeJob())
-		else:
-			Components.Task.job_manager.AddJob(self.hdd.createCheckJob())
+		Components.Task.job_manager.AddJob(self.action())
 		self.close()
 
 
 class HarddiskSelection(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		
 		if harddiskmanager.HDDCount() == 0:
 			tlist = []
 			tlist.append((_("no storage devices found"), 0))
@@ -93,10 +58,16 @@ class HarddiskSelection(Screen):
 			"cancel": self.close
 		})
 
+	def doIt(self, selection):
+		self.session.openWithCallback(self.close, HarddiskSetup, selection,
+			 action=selection.createInitializeJob,
+			 text=_("Initialize"),
+			 question=_("Do you really want to initialize the device?\nAll data on the disk will be lost!"))
+	
 	def okbuttonClick(self):
 		selection = self["hddlist"].getCurrent()
 		if selection[1] != 0:
-			self.session.openWithCallback(self.close, HarddiskSetup, selection[1], HarddiskSetup.HARDDISK_INITIALIZE)
+			self.doIt(selection[1])
 
 # This is actually just HarddiskSelection but with correct type
 class HarddiskFsckSelection(HarddiskSelection):
@@ -104,7 +75,19 @@ class HarddiskFsckSelection(HarddiskSelection):
 		HarddiskSelection.__init__(self, session)
 		self.skinName = "HarddiskSelection"
 
-	def okbuttonClick(self):
-		selection = self["hddlist"].getCurrent()
-		if selection[1] != 0:
-			self.session.open(HarddiskSetup, selection[1], HarddiskSetup.HARDDISK_CHECK)
+	def doIt(self, selection):
+		self.session.openWithCallback(self.close, HarddiskSetup, selection,
+			 action=selection.createCheckJob,
+			 text=_("Check"),
+			 question=_("Do you really want to check the filesystem?\nThis could take lots of time!"))
+
+class HarddiskConvertExt4Selection(HarddiskSelection):
+	def __init__(self, session):
+		HarddiskSelection.__init__(self, session)
+		self.skinName = "HarddiskSelection"
+
+	def doIt(self, selection):
+		self.session.openWithCallback(self.close, HarddiskSetup, selection,
+			 action=selection.createExt4ConversionJob,
+			 text=_("Convert ext3 to ext4"),
+			 question=_("Do you really want to convert the filesystem?\nYou cannot go back!"))
