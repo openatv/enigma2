@@ -203,19 +203,8 @@ class Harddisk:
 		return (res >> 8)
 
 	def mkfs(self):
-		if isFileSystemSupported("ext4"):
-			cmd = "mkfs.ext4 "
-		else:
-			cmd = "mkfs.ext3 "
-		size = self.diskSize()
-		if size > 16 * 1024:
-			cmd += "-T largefile -O sparse_super "
-		elif size > 2 * 1024:
-			cmd += "-T largefile -N %d " % (size * 32)
-		cmd += "-m0 -O dir_index " + self.partitionPath("1")
-		print "[Harddisk]", cmd
-		res = system(cmd)
-		return (res >> 8)
+		# No longer supported, use createInitializeJob instead
+		return 1 
 
 	def mount(self):
 		# try mounting through fstab first
@@ -257,15 +246,8 @@ class Harddisk:
 		return 0
 
 	def fsck(self):
-		# We autocorrect any failures
-		# TODO: we could check if the fs is actually ext3
-		if self.mount_device is None:
-			dev = self.partitionPath("1")
-		else:
-			dev = self.mount_device
-		cmd = "fsck.ext3 -f -p " + dev
-		res = system(cmd)
-		return (res >> 8)
+		# No longer supported, use createCheckJob instead
+		return 1 
 
 	def killPartitionTable(self):
 		zero = 512 * '\0'
@@ -350,47 +332,12 @@ class Harddisk:
 		return job
 
 	def initialize(self):
-		self.unmount()
-
-		# Udev tries to mount the partition immediately if there is an
-		# old filesystem on it when fdisk reloads the partition table.
-		# To prevent that, we overwrite the first 3 sectors of the
-		# partition, if the partition existed before. That's enough for
-		# ext3 at least.
-		self.killPartition("1")
-
-		if self.createPartition() != 0:
-			return -1
-
-		if self.mkfs() != 0:
-			return -2
-
-		if self.mount() != 0:
-			return -3
-
-		if self.createMovieFolder() != 0:
-			return -4
-
-		return 0
+		# no longer supported
+		return -5
 
 	def check(self):
-		self.unmount()
-
-		res = self.fsck()
-		if res & 2 == 2:
-			return -6
-
-		if res & 4 == 4:
-			return -7
-
-		if res != 0 and res != 1:
-			# A sum containing 1 will also include a failure
-			return -5
-
-		if self.mount() != 0:
-			return -3
-
-		return 0
+		# no longer supported
+		return -5
 		
 	def createCheckJob(self):
 		job = Task.Job(_("Checking Filesystem..."))
@@ -405,6 +352,47 @@ class Harddisk:
 		task.setTool('fsck.ext3')
 		task.args.append('-f')
 		task.args.append('-p')
+		task.args.append(dev)
+		MountTask(job, self)
+		task = Task.ConditionTask(job, _("Wait for mount"))
+		task.check = self.mountDevice
+		return job
+
+	def createExt4ConversionJob(self):
+		if not isFileSystemSupported('ext4'):
+			raise Exception, _("You system does not support ext4")
+		job = Task.Job(_("Convert ext3 to ext4..."))
+		if not path.exists('/sbin/tune2fs'):
+			task = Task.LoggingTask(job, "update packages")
+			task.setTool('opkg')
+			task.args.append('update')
+			task = Task.LoggingTask(job, "Install e2fsprogs-tune2fs")
+			task.setTool('opkg')
+			task.args.append('install')
+			task.args.append('e2fsprogs-tune2fs')
+		if self.findMount():
+			# Create unmount task if it was not mounted
+			UnmountTask(job, self)
+			dev = self.mount_device
+		else:
+			# otherwise, assume there is one partition
+			dev = self.partitionPath("1")
+		task = Task.LoggingTask(job, "fsck")
+		task.setTool('fsck.ext3')
+		task.args.append('-f')
+		task.args.append('-p')
+		task.args.append(dev)
+		task = Task.LoggingTask(job, "tune2fs")
+		task.setTool('tune2fs')
+		task.args.append('-O')
+		task.args.append('extents,uninit_bg,dir_index')
+		task.args.append(dev)
+		task = Task.LoggingTask(job, "fsck")
+		task.setTool('fsck.ext4')
+		task.postconditions = [] # ignore result, it will always "fail"
+		task.args.append('-f')
+		task.args.append('-p')
+		task.args.append('-D')
 		task.args.append(dev)
 		MountTask(job, self)
 		task = Task.ConditionTask(job, _("Wait for mount"))
