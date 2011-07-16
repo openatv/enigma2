@@ -1981,7 +1981,6 @@ class InfoBarTimeshift:
 			enabled = True
 		elif not config.timeshift.enabled.value and self.timeshift_enabled and self.isSeekable():
 			enabled = True
-
 		self["TimeshiftSeekPointerActions"].setEnabled(enabled)
 		self["SeekActions"].setEnabled(enabled)
 
@@ -3035,10 +3034,13 @@ class InfoBarExtensions:
 			return []
 
 	def RedPressed(self):
-		if config.vixsettings.ViXEPG_mode.value == "vixepg":
-			self.openSingleServiceEPG()
+		if isinstance(self, InfoBarEPG):
+			if config.vixsettings.ViXEPG_mode.value == "vixepg":
+				self.openSingleServiceEPG()
+			else:
+				self.openGraphEPG()
 		else:
-			self.openGraphEPG()
+			self.openEventView()
 
 	def addExtension(self, extension, key = None, type = EXTENSION_SINGLE):
 		self.list.append((type, extension, key))
