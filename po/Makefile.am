@@ -1,6 +1,6 @@
 dist_noinst_SCRIPTS = xml2po.py
 
-LANGS = ar ca cs da de el en es et fi fr fy hr hu is it lt lv nl no pl pt ru sv sk sl sr th tr uk
+LANGS = ar ca cs da de el en es et fi fr fy gr hr hu is it lt lv nl no pl pt ru sv sk sl sr th tr uk
 LANGMO = $(LANGS:=.mo)
 LANGPO = $(LANGS:=.po)
 
@@ -26,10 +26,6 @@ enigma2.pot: enigma2-py.pot enigma2-xml.pot
 endif
 
 .po.mo:
-	if [ -f pli_$< ] ; then \
-		mv $< dmm_$< ; \
-		msgcat --use-first -o $< pli_$< dmm_$< ; \
-	fi
 	$(MSGFMT) -o $@ $<
 
 BUILT_SOURCES = $(LANGMO)
