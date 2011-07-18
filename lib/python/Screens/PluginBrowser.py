@@ -208,50 +208,45 @@ class PluginDownloadBrowser(Screen):
 		self.container.dataAvail.remove(self.dataAvail)
 		self.close()
 
-	def installDestinationCallback(self, result):
-		if result is not None:
-			self.session.openWithCallback(self.installFinished, Console, cmdlist = [self.ipkg_install + " enigma2-plugin-" + self["list"].l.getCurrentSelection()[0].name + ' ' + result[1]], closeOnSuccess = True)
-			try:
-				self.postInstallCall()
-			except Exception, ex:
-				print "[PluginBrowser] postInstallCall failed:", ex
+	def resetPostInstall(self):
 		try:
 			del self.postInstallCall
 		except:
 			pass
-				
 
+	def installDestinationCallback(self, result):
+		if result is not None:
+			dest = result[1]
+			if dest.startswith('/'):
+				# Custom install path, create temp opkg.conf to do it
+				tmp = open('/tmp/opkg.conf', 'w')
+				for line in open('/etc/opkg/opkg.conf', 'r'):
+					if line.strip().split(' ', 2)[0] in ('option', 'lists_dir'):
+						tmp.write(line)
+				tmp.write('dest %s %s\n' % (dest,dest))
+				tmp.close()
+				extra = '-f /tmp/opkg.conf -d ' + dest
+			else:
+				extra = '-d ' + dest
+			self.session.openWithCallback(self.installFinished, Console, cmdlist = [self.ipkg_install + " enigma2-plugin-" + self["list"].l.getCurrentSelection()[0].name + ' ' + extra], closeOnSuccess = True)
+		else:
+			self.resetPostInstall()
+				
 	def runInstall(self, val):
 		if val:
 			if self.type == self.DOWNLOAD:
 				if self["list"].l.getCurrentSelection()[0].name[0:7] == "picons-":
-					partitions = harddiskmanager.getMountedPartitions()
-					partitiondict = {}
-					for partition in partitions:
-						partitiondict[partition.mountpoint] = partition
-
-					supported_filesystems = ['ext3', 'ext2', 'reiser', 'reiser4']
-					list = []
-					mountpoint = '/'
-					if mountpoint in partitiondict.keys() and partitiondict[mountpoint].free() > 5 * 1024 * 1024:
-						list.append((partitiondict[mountpoint].description, '', partitiondict[mountpoint]))
-					mountpoint = '/media/cf'
-					if mountpoint in partitiondict.keys() and partitiondict[mountpoint].filesystem() in supported_filesystems:
-						list.append((partitiondict[mountpoint].description, '-d cf', partitiondict[mountpoint]))
-					mountpoint = '/media/mmc1'
-					if mountpoint in partitiondict.keys() and partitiondict[mountpoint].filesystem() in supported_filesystems:
-						list.append((partitiondict[mountpoint].description, '-d mmc1', partitiondict[mountpoint]))
-					mountpoint = '/media/usb'
-					if mountpoint in partitiondict.keys() and partitiondict[mountpoint].filesystem() in supported_filesystems:
-						list.append((partitiondict[mountpoint].description, '-d usb', partitiondict[mountpoint]))
-					mountpoint = '/media/hdd'
-					if mountpoint in partitiondict.keys() and partitiondict[mountpoint].filesystem() in supported_filesystems:
-						list.append((partitiondict[mountpoint].description, '-d hdd', partitiondict[mountpoint]))
-
-					if len(list):
+					supported_filesystems = frozenset(('ext4', 'ext3', 'ext2', 'reiser', 'reiser4', 'jffs2', 'ubifs', 'rootfs'))
+					candidates = []
+					import Components.Harddisk
+					mounts = Components.Harddisk.getProcMounts() 
+					for partition in harddiskmanager.getMountedPartitions(False, mounts):
+						if partition.filesystem(mounts) in supported_filesystems:
+							candidates.append((partition.description, partition.mountpoint)) 
+					if candidates:
 						from Components.Renderer import Picon
 						self.postInstallCall = Picon.initPiconPaths
-						self.session.openWithCallback(self.installDestinationCallback, ChoiceBox, title=_("Install picons on"), list = list)
+						self.session.openWithCallback(self.installDestinationCallback, ChoiceBox, title=_("Install picons on"), list=candidates)
 					return
 				self.session.openWithCallback(self.installFinished, Console, cmdlist = [self.ipkg_install + " enigma2-plugin-" + self["list"].l.getCurrentSelection()[0].name], closeOnSuccess = True)
 			elif self.type == self.REMOVE:
@@ -287,6 +282,16 @@ class PluginDownloadBrowser(Screen):
 			self.startIpkgListInstalled()
 
 	def installFinished(self):
+		if hasattr(self, 'postInstallCall'):
+			try:
+				self.postInstallCall()
+			except Exception, ex:
+				print "[PluginBrowser] postInstallCall failed:", ex
+			self.resetPostInstall()
+		try:
+			os.unlink('/tmp/opkg.conf')
+		except:
+			pass
 		for plugin in self.pluginlist:
 			if plugin[3] == self["list"].l.getCurrentSelection()[0].name:
 				self.pluginlist.remove(plugin)

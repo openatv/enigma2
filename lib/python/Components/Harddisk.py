@@ -504,8 +504,10 @@ class Partition:
 				return True
 		return False
 
-	def filesystem(self):
-		for fields in getProcMounts():
+	def filesystem(self, mounts = None):
+		if mounts is None:
+			mounts = getProcMounts()
+		for fields in mounts:
 			if fields[1] == self.mountpoint:
 				return fields[2]
 		return ''
@@ -621,7 +623,7 @@ class HarddiskManager:
 		dev = "/dev/%s" % device
 		for item in getProcMounts():
 			if item[0] == dev:
-				return item[1] + '/'
+				return item[1]
 		return self.getAutofsMountpoint(device)
 
 	def addHotplugPartition(self, device, physdev = None):
@@ -679,8 +681,9 @@ class HarddiskManager:
 	def getCD(self):
 		return self.cd
 
-	def getMountedPartitions(self, onlyhotplug = False):
-		mounts = getProcMounts()
+	def getMountedPartitions(self, onlyhotplug = False, mounts=None):
+		if mounts is None:
+			mounts = getProcMounts()
 		parts = [x for x in self.partitions if (x.is_hotplug or not onlyhotplug) and x.mounted(mounts)]
 		devs = set([x.device for x in parts])
 		for devname in devs.copy():
