@@ -400,7 +400,8 @@ class EPGSelection(Screen):
 					"yellow": self.yellowButtonPressed,
 					"blue": self.blueButtonPressed,
 					"info": self.infoKeyPressed,
-					"instantRecord": self.Record,
+					"ShortRecord": self.doRecordTimer,
+					"LongRecord": self.doZapTimer,
 					"Menu": self.createSetup,
 					},-2)
 				self["actions2"] = NumberActionMap(["NumberActions"],
@@ -432,7 +433,8 @@ class EPGSelection(Screen):
 					"yellow": self.yellowButtonPressed,
 					"blue": self.blueButtonPressed,
 					"info": self.infoKeyPressed,
-					"instantRecord": self.Record,
+					"ShortRecord": self.doRecordTimer,
+					"LongRecord": self.doZapTimer,
 					"Menu": self.createSetup,
 					},-2)
 				self["actions2"] = NumberActionMap(["NumberActions"],
@@ -483,7 +485,8 @@ class EPGSelection(Screen):
 					"OKLong": self.OKLong,
 					"Info": self.Info,
 					"InfoLong": self.InfoLong,
-					"instantRecord": self.Record,
+					"ShortRecord": self.doRecordTimer,
+					"LongRecord": self.doZapTimer,
 					"Menu": self.createSetup,
 				},-1)
 
@@ -915,7 +918,9 @@ class EPGSelection(Screen):
 	def finishSanityCorrection(self, answer):
 		self.finishedAdd(answer)
 
-	def Record(self):
+	def doRecordTimer(self):
+		print 'SETUP RECORD TIMER'
+		zap = False
 		cur = self["list"].getCurrent()
 		event = cur[0]
 		serviceref = cur[1]
@@ -930,7 +935,26 @@ class EPGSelection(Screen):
 				break
 		else:
 			newEntry = RecordTimerEntry(serviceref, checkOldTimers = True, *parseEvent(event))
-			self.session.openWithCallback(self.finishedAdd, RecordSetup, newEntry)
+			self.session.openWithCallback(self.finishedAdd, RecordSetup, newEntry, zap)
+
+	def doZapTimer(self):
+		print 'SETUP ZAP TIMER'
+		zap = True
+		cur = self["list"].getCurrent()
+		event = cur[0]
+		serviceref = cur[1]
+		if event is None:
+			return
+		eventid = event.getEventId()
+		refstr = serviceref.ref.toString()
+		for timer in self.session.nav.RecordTimer.timer_list:
+			if timer.eit == eventid and timer.service_ref.ref.toString() == refstr:
+				cb_func = lambda ret : not ret or self.removeTimer(timer)
+				self.session.openWithCallback(cb_func, MessageBox, _("Do you really want to delete %s?") % event.getEventName())
+				break
+		else:
+			newEntry = RecordTimerEntry(serviceref, checkOldTimers = True, *parseEvent(event))
+			self.session.openWithCallback(self.finishedAdd, RecordSetup, newEntry, zap)
 
 	def moveUp(self):
 		self["list"].moveUp()
@@ -1352,236 +1376,22 @@ class EPGSelection(Screen):
 			})
 
 class RecordSetup(TimerEntry):
-	def __init__(self, session, timer):
+	def __init__(self, session, timer, zap):
 		Screen.__init__(self, session)
 		self.timer = timer
+		self.timer.justplay = zap
+		if self.timer.justplay:
+			self.timerentry_showendtime = False
+			self.timerentry_endtime.value = self.timerentry_starttime.value
 		self.entryDate = None
 		self.entryService = None
-		self.createConfig()
-		self.list = []
-		ConfigListScreen.__init__(self, self.list, session = session)
-		self.createSetup("config")
-
-	def createConfig(self):
-			justplay = self.timer.justplay
-			afterevent = {
-				AFTEREVENT.NONE: "nothing",
-				AFTEREVENT.DEEPSTANDBY: "deepstandby",
-				AFTEREVENT.STANDBY: "standby",
-				AFTEREVENT.AUTO: "auto"
-				}[self.timer.afterEvent]
-
-			weekday_table = ("mon", "tue", "wed", "thu", "fri", "sat", "sun")
-			# calculate default values
-			day = []
-			weekday = 0
-			for x in (0, 1, 2, 3, 4, 5, 6):
-				day.append(0)
-			if self.timer.repeated: # repeated
-				type = "repeated"
-				if (self.timer.repeated == 31): # Mon-Fri
-					repeated = "weekdays"
-				elif (self.timer.repeated == 127): # daily
-					repeated = "daily"
-				else:
-					flags = self.timer.repeated
-					repeated = "user"
-					count = 0
-					for x in (0, 1, 2, 3, 4, 5, 6):
-						if flags == 1: # weekly
-							print "Set to weekday " + str(x)
-							weekday = x
-						if flags & 1 == 1: # set user defined flags
-							day[x] = 1
-							count += 1
-						else:
-							day[x] = 0
-						flags = flags >> 1
-					if count == 1:
-						repeated = "weekly"
-			else: # once
-				type = "once"
-				repeated = None
-				weekday = (int(strftime("%w", localtime(self.timer.begin))) - 1) % 7
-				day[weekday] = 1
-
-			self.timerentry_justplay = ConfigSelection(choices = [("zap", _("zap")), ("record", _("record"))], default = {0: "record", 1: "zap"}[justplay])
-			if SystemInfo["DeepstandbySupport"]:
-				shutdownString = _("go to deep standby")
-			else:
-				shutdownString = _("shut down")
-			self.timerentry_afterevent = ConfigSelection(choices = [("nothing", _("do nothing")), ("standby", _("go to standby")), ("deepstandby", shutdownString), ("auto", _("auto"))], default = afterevent)
-			self.timerentry_type = ConfigSelection(choices = [("once",_("once")), ("repeated", _("repeated"))], default = type)
-			self.timerentry_name = ConfigText(default = self.timer.name, visible_width = 50, fixed_size = False)
-			self.timerentry_description = ConfigText(default = self.timer.description, visible_width = 50, fixed_size = False)
-			self.timerentry_tags = self.timer.tags[:]
-			self.timerentry_tagsset = ConfigSelection(choices = [not self.timerentry_tags and "None" or " ".join(self.timerentry_tags)])
-			self.timerentry_repeated = ConfigSelection(default = repeated, choices = [("daily", _("daily")), ("weekly", _("weekly")), ("weekdays", _("Mon-Fri")), ("user", _("user defined"))])
-			self.timerentry_date = ConfigDateTime(default = self.timer.begin, formatstring = _("%d.%B %Y"), increment = 86400)
-			self.timerentry_starttime = ConfigClock(default = self.timer.begin)
-			self.timerentry_endtime = ConfigClock(default = self.timer.end)
-			self.timerentry_showendtime = ConfigSelection(default = ((self.timer.end - self.timer.begin) > 4), choices = [(True, _("yes")), (False, _("no"))])
-
-			default = self.timer.dirname or defaultMoviePath()
-			tmp = config.movielist.videodirs.value
-			if default not in tmp:
-				tmp.append(default)
-			self.timerentry_dirname = ConfigSelection(default = default, choices = tmp)
-			self.timerentry_repeatedbegindate = ConfigDateTime(default = self.timer.repeatedbegindate, formatstring = _("%d.%B %Y"), increment = 86400)
-			self.timerentry_weekday = ConfigSelection(default = weekday_table[weekday], choices = [("mon",_("Monday")), ("tue", _("Tuesday")), ("wed",_("Wednesday")), ("thu", _("Thursday")), ("fri", _("Friday")), ("sat", _("Saturday")), ("sun", _("Sunday"))])
-			self.timerentry_day = ConfigSubList()
-			for x in (0, 1, 2, 3, 4, 5, 6):
-				self.timerentry_day.append(ConfigYesNo(default = day[x]))
-
-			# FIXME some service-chooser needed here
-			servicename = "N/A"
-			try: # no current service available?
-				servicename = str(self.timer.service_ref.getServiceName())
-			except:
-				pass
-			self.timerentry_service_ref = self.timer.service_ref
-			self.timerentry_service = ConfigSelection([servicename])
-
-	def createSetup(self, widget):
-		self.list = []
-		self.list.append(getConfigListEntry(_("Name"), self.timerentry_name))
-		self.list.append(getConfigListEntry(_("Description"), self.timerentry_description))
-		self.timerJustplayEntry = getConfigListEntry(_("Timer Type"), self.timerentry_justplay)
-		self.list.append(self.timerJustplayEntry)
-		self.timerTypeEntry = getConfigListEntry(_("Repeat Type"), self.timerentry_type)
-		self.list.append(self.timerTypeEntry)
-
-		if self.timerentry_type.value == "once":
-			self.frequencyEntry = None
-		else: # repeated
-			self.frequencyEntry = getConfigListEntry(_("Repeats"), self.timerentry_repeated)
-			self.list.append(self.frequencyEntry)
-			self.repeatedbegindateEntry = getConfigListEntry(_("Starting on"), self.timerentry_repeatedbegindate)
-			self.list.append(self.repeatedbegindateEntry)
-			if self.timerentry_repeated.value == "daily":
-				pass
-			if self.timerentry_repeated.value == "weekdays":
-				pass
-			if self.timerentry_repeated.value == "weekly":
-				self.list.append(getConfigListEntry(_("Weekday"), self.timerentry_weekday))
-			if self.timerentry_repeated.value == "user":
-				self.list.append(getConfigListEntry(_("Monday"), self.timerentry_day[0]))
-				self.list.append(getConfigListEntry(_("Tuesday"), self.timerentry_day[1]))
-				self.list.append(getConfigListEntry(_("Wednesday"), self.timerentry_day[2]))
-				self.list.append(getConfigListEntry(_("Thursday"), self.timerentry_day[3]))
-				self.list.append(getConfigListEntry(_("Friday"), self.timerentry_day[4]))
-				self.list.append(getConfigListEntry(_("Saturday"), self.timerentry_day[5]))
-				self.list.append(getConfigListEntry(_("Sunday"), self.timerentry_day[6]))
-
-		self.entryDate = getConfigListEntry(_("Date"), self.timerentry_date)
-		if self.timerentry_type.value == "once":
-			self.list.append(self.entryDate)
-		
-		self.entryStartTime = getConfigListEntry(_("StartTime"), self.timerentry_starttime)
-		self.list.append(self.entryStartTime)
-		
-		self.entryShowEndTime = getConfigListEntry(_("Set End Time"), self.timerentry_showendtime)
-		if self.timerentry_justplay.value == "zap":
-			self.list.append(self.entryShowEndTime)
-		self.entryEndTime = getConfigListEntry(_("EndTime"), self.timerentry_endtime)
-		if self.timerentry_justplay.value != "zap" or self.timerentry_showendtime.value:
-			self.list.append(self.entryEndTime)
-
-		self.channelEntry = getConfigListEntry(_("Channel"), self.timerentry_service)
-		self.list.append(self.channelEntry)
-
-		self.dirname = getConfigListEntry(_("Location"), self.timerentry_dirname)
-		self.tagsSet = getConfigListEntry(_("Tags"), self.timerentry_tagsset)
-		if self.timerentry_justplay.value != "zap":
-			if config.usage.setup_level.index >= 2: # expert+
-				self.list.append(self.dirname)
-			if getPreferredTagEditor():
-				self.list.append(self.tagsSet)
-			self.list.append(getConfigListEntry(_("After event"), self.timerentry_afterevent))
-
 		self.keyGo()
 
-	def finishedChannelSelection(self, *args):
-		if args:
-			self.timerentry_service_ref = ServiceReference(args[0])
-			self.timerentry_service.setCurrentText(self.timerentry_service_ref.getServiceName())
-			self["config"].invalidate(self.channelEntry)
-			
-	def getTimestamp(self, date, mytime):
-		d = localtime(date)
-		dt = datetime(d.tm_year, d.tm_mon, d.tm_mday, mytime[0], mytime[1])
-		return int(mktime(dt.timetuple()))
-
-	def getBeginEnd(self):
-		date = self.timerentry_date.value
-		endtime = self.timerentry_endtime.value
-		starttime = self.timerentry_starttime.value
-		begin = self.getTimestamp(date, starttime)
-		end = self.getTimestamp(date, endtime)
-		# if the endtime is less than the starttime, add 1 day.
-		if end < begin:
-			end += 86400
-		return begin, end
-
-	def selectChannelSelector(self, *args):
-		self.session.openWithCallback(
-				self.finishedChannelSelectionCorrection,
-				ChannelSelection.SimpleChannelSelection,
-				_("Select channel to record from")
-			)
-
-	def finishedChannelSelectionCorrection(self, *args):
-		if args:
-			self.finishedChannelSelection(*args)
-			self.keyGo()
-
 	def keyGo(self, result = None):
-		self.timer.name = self.timerentry_name.value
-		self.timer.description = self.timerentry_description.value
-		self.timer.justplay = self.timerentry_justplay.value == "zap"
-		if self.timerentry_justplay.value == "zap":
-			if not self.timerentry_showendtime.value:
-				self.timerentry_endtime.value = self.timerentry_starttime.value
+		if self.timer.justplay:
+			self.timerentry_showendtime = False
+			self.timerentry_endtime.value = self.timerentry_starttime.value
 		self.timer.resetRepeated()
-		self.timer.afterEvent = {
-			"auto": AFTEREVENT.AUTO
-			}[self.timerentry_afterevent.value]
-		self.timer.service_ref = self.timerentry_service_ref
-		self.timer.tags = self.timerentry_tags
-
-		if self.timer.dirname or self.timerentry_dirname.value != defaultMoviePath():
-			self.timer.dirname = self.timerentry_dirname.value
-			config.movielist.last_timer_videodir.value = self.timer.dirname
-			config.movielist.last_timer_videodir.save()
-
-		if self.timerentry_type.value == "once":
-			self.timer.begin, self.timer.end = self.getBeginEnd()
-
-		if self.timer.eit is not None:
-			event = eEPGCache.getInstance().lookupEventId(self.timer.service_ref.ref, self.timer.eit)
-			if event:
-				n = event.getNumOfLinkageServices()
-				if n > 1:
-					tlist = []
-					ref = self.session.nav.getCurrentlyPlayingServiceReference()
-					parent = self.timer.service_ref.ref
-					selection = 0
-					for x in range(n):
-						i = event.getLinkageService(parent, x)
-						if i.toString() == ref.toString():
-							selection = x
-						tlist.append((i.getName(), i))
-					self.session.openWithCallback(self.subserviceSelected, ChoiceBox, title=_("Please select a subservice to record..."), list = tlist, selection = selection)
-					return
-				elif n > 0:
-					parent = self.timer.service_ref.ref
-					self.timer.service_ref = ServiceReference(event.getLinkageService(parent, 0))
-		self.saveTimer()
-		self.close((True, self.timer))
-
-	def subserviceSelected(self, service):
-		if not service is None:
-			self.timer.service_ref = ServiceReference(service[1])
 		self.saveTimer()
 		self.close((True, self.timer))
 
