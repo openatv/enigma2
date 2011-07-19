@@ -1380,17 +1380,13 @@ class RecordSetup(TimerEntry):
 		Screen.__init__(self, session)
 		self.timer = timer
 		self.timer.justplay = zap
-		if self.timer.justplay:
-			self.timerentry_showendtime = False
-			self.timerentry_endtime.value = self.timerentry_starttime.value
 		self.entryDate = None
 		self.entryService = None
 		self.keyGo()
 
 	def keyGo(self, result = None):
 		if self.timer.justplay:
-			self.timerentry_showendtime = False
-			self.timerentry_endtime.value = self.timerentry_starttime.value
+			self.timer.end = self.timer.begin
 		self.timer.resetRepeated()
 		self.saveTimer()
 		self.close((True, self.timer))
