@@ -1,13 +1,11 @@
-# Copyright (C) 2005 THE tuxbox-enigma'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the tuxbox-enigma package.
-# Automatically generated, 2005.
+# Dutch translations for Enigma2.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
-"Report-Msgid-Bugs-To: \n"
+"Report-Msgid-Bugs-To: enigma2-translations@lists.elitedvb.net\n"
 "POT-Creation-Date: 2011-04-20 10:39+0000\n"
-"PO-Revision-Date: 2011-04-23 00:17+0200\n"
+"PO-Revision-Date: 2011-05-14 11:41+0200\n"
 "Last-Translator: Benny <Benny.DeTandt@gmail.com>\n"
 "Language-Team: <Benny.DeTandt@gmail.com>\n"
 "Language: nl\n"
@@ -209,6 +207,8 @@ msgid ""
 "%d conflict(s) encountered when trying to add new timers:\n"
 "%s"
 msgstr ""
+"%d conflict(en) bij het toevoegen van nieuwe timers:\n"
+"\"%s"
 
 #
 #, python-format
@@ -256,7 +256,7 @@ msgstr "%s (%s)\n"
 
 #, python-format
 msgid "%s: %s at %s"
-msgstr ""
+msgstr "%s: %s bij %s"
 
 #
 msgid "(ZAP)"
@@ -538,7 +538,7 @@ msgstr ""
 "Wilt u de tweede netwerk interface uitschakelen?"
 
 msgid "A simple downloading application for other plugins"
-msgstr "Een eenvoudige downloadapplicatie voor andere plugins"
+msgstr "Eenvoudige downloadapplicatie voor andere plugins"
 
 #
 msgid ""
@@ -1071,18 +1071,20 @@ msgid ""
 "Autoresolution Plugin Testmode:\n"
 "Is %s ok?"
 msgstr ""
+"Auto resolutie plugin testmode:\n"
+"Is %s ok?"
 
 msgid "Autoresolution Switch"
-msgstr ""
+msgstr "Auto resolutie switch"
 
 msgid "Autoresolution is not working in Scart/DVI-PC Mode"
-msgstr "Autoresolutie werkt niet in Scart/DVI-PC-modus"
+msgstr "Auto resolutie werkt niet in Scart/DVI-PC modus"
 
 msgid "Autoresolution settings"
-msgstr "Autoresolutie instellingen"
+msgstr "Auto resolutie instellingen"
 
 msgid "Autoresolution videomode setup"
-msgstr "Autoresolution videomode instellen"
+msgstr "Auto resolutie videomode instellen"
 
 #
 msgid "Autos & Vehicles"
@@ -1266,12 +1268,17 @@ msgid ""
 "By enabling this events will not be matched if they don't occur on certain "
 "dates."
 msgstr ""
+"Met deze instelling zullen gebeurtenissen die niet op bepaalde dagen "
+"plaatsvinden niet worden opgenomen"
 
 msgid ""
 "By enabling this you will be notified about timer conflicts found during "
 "automated polling. There is no intelligence involved, so it might bother you "
 "about the same conflict over and over."
 msgstr ""
+"Met deze instelling wordt u op de hoogte gebracht van conflicten die tijdens "
+"het controleren ondervonden worden. Het ist geen intelligent proces, dus u "
+"kunt steeds weer over hetzelfde conflict worden lastig gevallen."
 
 #
 msgid ""
@@ -1321,10 +1328,10 @@ msgid "Cache Thumbnails"
 msgstr "Miniatuurafbeeldingen cachen"
 
 msgid "Callmonitor for NCID-based call notification"
-msgstr ""
+msgstr "Oproepmonitor voor op NCID gebaseerde oproepen"
 
 msgid "Callmonitor for the Fritz!Box routers"
-msgstr ""
+msgstr "Oproepmonitor voor Fritz!Box routers"
 
 #
 msgid "Can't connect to server. Please check your network!"
@@ -1735,7 +1742,7 @@ msgstr "Kan niet opnemen vanwege conflicterende timer %s"
 
 #, python-format
 msgid "Couldn't record due to invalid service %s"
-msgstr ""
+msgstr "Opname mislukt vanwege ongeldige service %s"
 
 #
 msgid "Crashlog settings"
@@ -1749,9 +1756,8 @@ msgstr "Crashlog mailer"
 msgid "CrashlogAutoSubmit settings"
 msgstr "Crashlog mailer instellingen"
 
-#
 msgid "CrashlogAutoSubmit settings..."
-msgstr "Crashlog mailer instellingen"
+msgstr "Crashlog mailer instellingen..."
 
 #
 msgid ""
@@ -1769,7 +1775,7 @@ msgid "Create a backup of your Video DVD on your DreamBox hard drive."
 msgstr "Maak een back-up van uw Video-DVD op de harde schijf van uw Dreambox."
 
 msgid "Create a backup of your Video-DVD"
-msgstr "Maak een back-up van van uw Video-DVD"
+msgstr "Maak een back-up van uw Video-DVD"
 
 #
 msgid "Create a new AutoTimer."
@@ -1950,9 +1956,9 @@ msgid ""
 "With the DVDPlayer you can play your DVDs on your Dreambox from a DVD or "
 "even from an iso file or video_ts folder on your harddisc or network."
 msgstr ""
-"DVD-speler speelt uw DVD's af op uw Dreambox.Met de DVD-speler kunt u DVD's "
-"afspelen op uw Dreambox, maar ook een ISO-bestand en een Video-ts map op uw "
-"harde schijf of van uw netwerk.\""
+"DVD-speler speelt uw DVD's af op uw Dreambox.\n"
+"Met de DVD-speler kunt u DVD's afspelen op uw Dreambox, maar ook een ISO-"
+"bestand en een Video-ts map op uw harde schijf of van uw netwerk."
 
 #
 msgid "Danish"
@@ -2024,7 +2030,7 @@ msgid "Delay"
 msgstr "Vertraging"
 
 msgid "Delay x seconds after service started"
-msgstr ""
+msgstr "Wacht x seconden na het starten van de service"
 
 #
 msgid "Delete"
@@ -2415,11 +2421,11 @@ msgstr "Dreambox software want er zijn updates beschikbaar."
 
 msgid "Driver for Ralink RT8070/RT3070/RT3370 based wireless-n USB devices."
 msgstr ""
-"Driver voor op Ralink RT8070/RT3070/RT3370 gebaseerde Wireless-N USB-"
+"Driver voor op Ralink RT8070/RT3070/RT3370 gebaseerde wireless-n USB-"
 "apparaten."
 
 msgid "Driver for Realtek r8712u based wireless-n USB devices."
-msgstr "Driver voor op Realtek r8712u gebaseerde Wireless-N USB-apparaten."
+msgstr "Driver voor op Realtek r8712u gebaseerde wireless-n USB-apparaten."
 
 msgid "Duration: "
 msgstr "Duur: "
@@ -2565,20 +2571,20 @@ msgid "Enable /media"
 msgstr "Activeer harde schijf"
 
 msgid "Enable 1080p24 Mode"
-msgstr "Activeer 1080p24 Modus"
+msgstr "Activeer 1080p24 modus"
 
 msgid "Enable 1080p25 Mode"
-msgstr "Activeer 1080p25 Modus"
+msgstr "Activeer 1080p25 modus"
 
 msgid "Enable 1080p30 Mode"
-msgstr "Activeer 1080p30 Modus"
+msgstr "Activeer 1080p30 modus"
 
 #
 msgid "Enable 5V for active antenna"
 msgstr "5V voor actieve antenne inschakelen"
 
 msgid "Enable 720p24 Mode"
-msgstr "Activeer 720p24 Modus"
+msgstr "Activeer 720p24 modus"
 
 msgid "Enable Autoresolution"
 msgstr "Activeer auto resolutie"
@@ -2690,6 +2696,8 @@ msgid ""
 "Enigma2 Plugin to play AVI/DIVX/WMV/etc. videos from PC on your Dreambox. "
 "Needs a running VLC from www.videolan.org on your pc."
 msgstr ""
+"Enigma2 Plugin om AVI/DIVX/WMV/etc. video's af te spelen vanaf de PC op je "
+"Dreambox. VLC van www.videolan.org moet op je PC actief zijn."
 
 #
 msgid ""
@@ -2806,9 +2814,8 @@ msgstr "Overschrijdt dubbel lagen medium!"
 msgid "Exclude"
 msgstr "Uitsluiten"
 
-#
 msgid "Execute \"after event\" during timespan"
-msgstr "Uitvoeren na gebeurtenis gedurende tijdspanne"
+msgstr "Uitvoeren \"na gebeurtenis\" gedurende tijdspanne"
 
 msgid "Execute TuxboxPlugins"
 msgstr "Voer TuxboxPlugins uit"
@@ -2993,6 +3000,8 @@ msgid ""
 "First day to match events. No event that begins before this date will be "
 "matched."
 msgstr ""
+"Eerste dag voor overeenkomende gebeurtenissen. Eerdere gebeurtenissen dan "
+"deze datum zullen niet worden opgenomen."
 
 msgid "First generate your skin-style with the Ai.HD-Control plugin."
 msgstr "Eerst uw skin stijl genereren met de Ai.HD-Control plugin."
@@ -3020,14 +3029,13 @@ msgstr ""
 "Een totaal van %d overeenkomende gebeurtenissen gevonden.\n"
 "%d timers werden toegevoegd en %d gewijzigd, %d conflicten ondervonden."
 
-#
 #, python-format
 msgid ""
 "Found a total of %d matching Events.\n"
 "%d Timer were added and %d modified."
 msgstr ""
-"Een totaal van %d overeenkomende gebeurtenissen gevonden.\n"
-"%d Timers werd toegevoegd en %d gewijzigd."
+"Een totaal van %d overeenkomende gebeurtenissen gevonden.%d timers werden "
+"toegevoegd en %d gewijzigd."
 
 #
 msgid "Frame size in full view"
@@ -3232,7 +3240,7 @@ msgid "HD Interlace Mode"
 msgstr "HD interlace modus"
 
 msgid "HD Progressive Mode"
-msgstr "HD progressieve Modus"
+msgstr "HD progressieve modus"
 
 #
 msgid "HD videos"
@@ -3348,6 +3356,8 @@ msgid ""
 "If this is enabled an existing timer will also be considered recording an "
 "event if it records at least 80%% of the it."
 msgstr ""
+"Indien ingeschakeld wordt een programma al als opgenomen beschouwd als een "
+"andere timer eral 80%% van opneemt."
 
 #
 msgid ""
@@ -3765,6 +3775,8 @@ msgid ""
 "Last day to match events. Events have to begin before this date to be "
 "matched."
 msgstr ""
+"Laatste dag voor overeenkomende gebeurtenissen. Gebeurtenissen moeten eerder "
+"plaatsvinden om te worden opgenomen."
 
 #
 msgid "Last speed"
@@ -4709,7 +4721,7 @@ msgid "No wireless networks found! Please refresh."
 msgstr "Geen draadloze netwerken gevonden! Vernieuw."
 
 msgid "No wireless networks found! Searching..."
-msgstr "Geen draadloze netwerken gevonden! Zoeken ..."
+msgstr "Geen draadloze netwerken gevonden! Zoeken..."
 
 #
 msgid ""
@@ -4866,7 +4878,7 @@ msgid "OK, remove some extensions"
 msgstr "OK, verwijder een aantal extensies"
 
 msgid "ONID"
-msgstr ""
+msgstr "ONID"
 
 #
 msgid "OSD Settings"
@@ -5111,7 +5123,7 @@ msgid "Playback of Youtube through a PC"
 msgstr "Het afspelen van Youtube door middel van een PC"
 
 msgid "Player for Network and Internet Streams"
-msgstr "Speler voor netwerk-en internet streams"
+msgstr "Speler voor netwerk- en internetstreams"
 
 msgid "Player for Network and Internet Streams."
 msgstr "Speler voor netwerk-en internet streams."
@@ -6075,7 +6087,7 @@ msgid "Running"
 msgstr "In behandeling"
 
 msgid "Running in testmode"
-msgstr ""
+msgstr "Draait in testmode"
 
 #
 msgid "Russia"
@@ -6099,7 +6111,7 @@ msgid "SD 30/60HZ Interlace Mode"
 msgstr "30/60HZ SD interlace modus"
 
 msgid "SD 30/60HZ Progressive Mode"
-msgstr "30/60HZ SD progressieve Modus"
+msgstr "30/60HZ SD progressieve modus"
 
 msgid "SID"
 msgstr "SID"
@@ -6129,9 +6141,16 @@ msgid ""
 "You probably don't need this plugin and should use the regular Web Interface "
 "for Enigma2 instead."
 msgstr ""
+"SVDRP is een protocol dat is ontwikkeld voor de VDR software om een set-top "
+"box op afstand te beheren.\n"
+"Deze plugin ondersteunt alleen een subset van SVDRP en start automatisch bij "
+"gebruik van de default instellingen.\n"
+"\n"
+"Waarschijnlijk heeft u deze plugin helemaal niet nodig en kunt u in plaats "
+"daarvan de standaard webinterface gebruiken."
 
 msgid "SVDRP server for Enigma2"
-msgstr ""
+msgstr "SVDRP server voor Enigma2"
 
 #
 msgid "Sat"
@@ -6351,7 +6370,6 @@ msgstr "Zoek oost"
 msgid "Search for network shares"
 msgstr "Zoeken naar gedeelde mappen"
 
-#
 msgid "Search for network shares..."
 msgstr "Zoeken naar gedeelde mappen."
 
@@ -6400,7 +6418,7 @@ msgid "Security service not running."
 msgstr "Security service draait niet."
 
 msgid "See service-epg (and PiP) from other channels in an infobar."
-msgstr "Bekijk EPG (en PiP) van andere kanalen in de informatiebalk."
+msgstr "Bekijk EPG (en PiP) van andere kanalen in de infobalk."
 
 #
 msgid "Seek"
@@ -6494,10 +6512,9 @@ msgstr "Selecteer herhalingsfrequentie"
 msgid "Select service to add..."
 msgstr "Selecteer zender om toe te voegen..."
 
-#
 #, python-format
 msgid "Select the key you want to set to %i ms"
-msgstr "Selecteer de toets die u wilt instellen op %i ms..."
+msgstr "Selecteer de toets die u wilt instellen op %i ms"
 
 #
 msgid "Select the location to save the recording to."
@@ -6600,7 +6617,7 @@ msgstr ""
 "(SID not found in PAT)"
 
 msgid "Service reference"
-msgstr ""
+msgstr "Service referentie"
 
 #
 msgid "Service scan"
@@ -7161,7 +7178,7 @@ msgid "Sunday"
 msgstr "Zondag"
 
 msgid "Support \"Fast Scan\"?"
-msgstr "Ondersteuning \\ \"Fast Scan \"?"
+msgstr "Ondersteuning \"Fast Scan \"?"
 
 #
 msgid "Swap Services"
@@ -7210,7 +7227,7 @@ msgid "TSID"
 msgstr "TSID"
 
 msgid "TV Charts of all users"
-msgstr "TV grafieken van alle gebruikers"
+msgstr "TV Grafieken van alle gebruikers"
 
 #
 msgid "TV System"
@@ -7341,8 +7358,8 @@ msgid ""
 "The box automatically wakes up for recordings or at the end of the sleep "
 "time. You therefore don't have to wait until it is on again."
 msgstr ""
-"e Elektro Power Save plugin schakelt uw ontvanger op de ingestelde tijden in "
-"Deep Sleep (uit).\n"
+"De Elektro Power Save plugin schakelt uw ontvanger op de ingestelde tijden "
+"in Deep Sleep (uit).\n"
 "Dat gebeurt alleen als de ontvanger in standby staat en er in de komende 20 "
 "minuten geen opname gepland is.\n"
 "De ontvanger start automatisch op tijd op voor opnames of op de ingestelde "
@@ -7567,20 +7584,19 @@ msgid "The timer file (timers.xml) is corrupt and could not be loaded."
 msgstr ""
 "Het timer bestand (timer.xml) is beschadigd en kan niet worden geladen."
 
-#
 msgid ""
 "The wireless LAN plugin is not installed!\n"
 "Please install it and choose what you want to do next."
 msgstr ""
-"De draadloze LAN applicatie is niet geïnstalleerd!\n"
+"De draadloze LAN-plugin is niet geïnstalleerd!\n"
 "Installeer het en kies wat u hierna wenst te doen."
 
-#
 msgid ""
 "The wireless LAN plugin is not installed!\n"
 "Please install it."
 msgstr ""
-"De WiFi plugin is niet geïnstalleerd.Deze plugin eerst installeren a.u.b."
+"De draadloze LAN-plugin is niet geïnstalleerd!\n"
+"Deze plugin eerst installeren a.u.b."
 
 #
 msgid ""
@@ -8113,21 +8129,19 @@ msgstr "USB stick wizard"
 msgid "Ukrainian"
 msgstr "Oekraïens"
 
-#
 msgid ""
 "Unable to complete filesystem check.\n"
 "Error: "
 msgstr ""
 "De bestandssysteemcontrole is mislukt.\n"
-"Foutmelding:"
+"Foutmelding: "
 
-#
 msgid ""
 "Unable to initialize harddisk.\n"
 "Error: "
 msgstr ""
 "Kon de harde schijf niet initialiseren.\n"
-"Foutmelding:"
+"Foutmelding: "
 
 #
 msgid "Uncommitted DiSEqC command"
@@ -8146,7 +8160,7 @@ msgstr "Ongecodeerd"
 
 #
 msgid "UnhandledKey"
-msgstr ""
+msgstr "Ongeldige toets"
 
 #
 msgid "Unicable"
@@ -8499,9 +8513,8 @@ msgstr "Bekijk opname..."
 msgid "View Photos..."
 msgstr "Bekijk foto's..."
 
-#
 msgid "View Rass interactive..."
-msgstr "Rass Interactive weergeven"
+msgstr "Rass Interactive weergeven..."
 
 #
 msgid "View Video CD..."
@@ -8598,12 +8611,14 @@ msgid "Virtual KeyBoard"
 msgstr "Virtueel Toetsenbord"
 
 msgid "Visualization for the European Installation Bus"
-msgstr ""
+msgstr "Visualisatie voor de European Installation Bus"
 
 msgid ""
 "Visualize and control your lights, dimmers, blinds, thermostats etc. through "
 "EIB/KNX. (linknx server required)"
 msgstr ""
+"Visualiseer en bedien uw licht, dimmers, zonwering, thermostaten etc. "
+"middels EIB/KNX. (linknx server benodigd)"
 
 #
 msgid "Voltage mode"
@@ -8648,9 +8663,8 @@ msgstr "WSS bij 4:3"
 msgid "Wait time in ms before activation:"
 msgstr "Wachttijd in ms voor activering"
 
-#
 msgid "Waiting"
-msgstr "Wacht..."
+msgstr "Wacht"
 
 #
 msgid "Warn if free space drops below (kB):"
@@ -8851,6 +8865,9 @@ msgid ""
 "When supporting \"Fast Scan\" the service type is ignored. You don't need to "
 "enable this unless your Image supports \"Fast Scan\" and you are using it."
 msgstr ""
+"Als  \"Fast Scan\"  wordt ondersteund, wordt dat service type genegeerd. U "
+"hoeft dit niet in te stellen tenzij uw image  \"Fast Scan\" ondersteunt en u "
+"het ok gebruikt."
 
 #
 msgid ""
@@ -8904,7 +8921,7 @@ msgid "Wireless network connection setup."
 msgstr "Draadloze netwerkverbinding instellen."
 
 msgid "Wireless network state"
-msgstr "Draadloos netwerk status"
+msgstr "Status draadloos netwerk"
 
 msgid ""
 "With AntiScrollbar you can cover up annoying ticker lines (e.g. in news "
@@ -8958,6 +8975,10 @@ msgid ""
 "(between 1 and 9 minutes long) which will automatically zap back to the "
 "original channel after execution."
 msgstr ""
+"Met Werbezapper kunt u automatisch reclame overslaan door korte timers in te "
+"voegen\n"
+"\"(tussen 1 en 9 minuten lang) die ervoor zorgen automatisch naar het kanaal "
+"terug te zappen als ze zijn verlopen."
 
 msgid ""
 "With YouTubePlayer you can watch YouTube-Videos on the Dreambox.\n"
@@ -8981,6 +9002,8 @@ msgid ""
 "With the CrashlogAutoSubmit plugin it is possible to automaticallymail "
 "crashlogs found on your hard drive to Dream Multimedia."
 msgstr ""
+"Met de CrashlogAutoSubmit plugin is het mogelijk crashlogs op de harde "
+"schijf van uw Dreambox automatisch naar Dream Multimedia te versturen."
 
 msgid ""
 "With the DefaultServicesScanner plugin you can scan default lamedbs sorted "
@@ -9138,9 +9161,8 @@ msgstr ""
 "U kunt nu een standaard zenderlijst installeren. Kies de zenderlijst die u "
 "wenst te installeren."
 
-#
 msgid "You can choose, what you want to install..."
-msgstr "U kunt hier kiezen wat u wenst te installeren."
+msgstr "U kunt hier kiezen wat u wenst te installeren..."
 
 #
 msgid "You can install this plugin."
@@ -9169,6 +9191,9 @@ msgid ""
 "have also a new now-next event viewer. Easy-PG, the own graphical EPG bowser "
 "is also included."
 msgstr ""
+"Met EasyInfo kunt u de EPG-plugins met de 'info-toets' beheren. Er is ook "
+"een nieuwe Nu/Volgende EPG-viewer. Easy-PG, de eigen grafische EPG-browser "
+"is ook opgenomen."
 
 #
 msgid "You cannot delete this!"
@@ -9611,10 +9636,10 @@ msgid "assigned Services/Provider:"
 msgstr "Toegewezen Zenders/Provider:"
 
 msgid "at beginning"
-msgstr "aan het begin"
+msgstr "Aan het begin"
 
 msgid "at end"
-msgstr "aan het einde"
+msgstr "Aan het einde"
 
 #
 #, python-format
@@ -9635,7 +9660,7 @@ msgid "auto"
 msgstr "auto"
 
 msgid "autotimers need a match attribute"
-msgstr ""
+msgstr "autotimers hebben een overeenkomend attribuut nodig"
 
 #
 msgid "available"
@@ -9748,10 +9773,10 @@ msgid "create directory"
 msgstr "Map aanmaken"
 
 msgid "creates virtual series folders from episodes"
-msgstr ""
+msgstr "Creëert virtuele mappen van de afleveringen"
 
 msgid "creates virtual series folders from sets of recorded episodes"
-msgstr ""
+msgstr "creëert virtuele mappen uit sets van de opgenomen afleveringen"
 
 #, python-format
 msgid "currently installed image: %s"
@@ -9766,7 +9791,7 @@ msgid "day"
 msgstr "dag"
 
 msgid "default"
-msgstr "standaard"
+msgstr "Standaard"
 
 #
 msgid "delete"
@@ -9828,7 +9853,7 @@ msgid "done!"
 msgstr "gereed!"
 
 msgid "driver for Realtek USB wireless devices"
-msgstr ""
+msgstr "Driver voor Realtek draadloze USB-apparaten"
 
 #
 msgid "edit alternatives"
@@ -9858,9 +9883,8 @@ msgstr "Boeket bewerken activeren"
 msgid "enable favourite edit"
 msgstr "Favorieten bewerken activeren"
 
-#
 msgid "enable move mode"
-msgstr "Verplaatsmodus activeren"
+msgstr "Verplaats modus activeren"
 
 #
 msgid "enabled"
@@ -9942,9 +9966,8 @@ msgstr "Vooruit naar volgend hoofdstuk"
 msgid "free"
 msgstr "vrij"
 
-#
 msgid "free diskspace"
-msgstr "ruimte vrij..."
+msgstr "ruimte vrij"
 
 #
 msgid "go to deep standby"
@@ -10042,9 +10065,8 @@ msgstr "spring naar de volgende markering"
 msgid "jump to previous marked position"
 msgstr "spring naar de vorige markering"
 
-#
 msgid "leave movie player..."
-msgstr "Opname menu afsluiten"
+msgstr "Opname menu afsluiten..."
 
 #
 msgid "left"
@@ -10054,9 +10076,8 @@ msgstr "links"
 msgid "length"
 msgstr "lengte"
 
-#
 msgid "list of EPG views..."
-msgstr ""
+msgstr "lijst van EPG weergeven..."
 
 #
 msgid "list style compact"
@@ -10412,7 +10433,7 @@ msgid "seconds"
 msgstr "seconden"
 
 msgid "see service-epg (and PiP) from channels in an infobar"
-msgstr ""
+msgstr "Bekijk EPG (en PiP) uit de kanalen in een infobalk"
 
 #
 msgid "select"
@@ -10446,7 +10467,7 @@ msgid "service PIN"
 msgstr "zender pincode"
 
 msgid "set enigma2 to standby-mode after startup"
-msgstr ""
+msgstr "Stel enigma2 in op standby-mode na het opstarten"
 
 #
 msgid "sets the Audio Delay (LipSync)"
@@ -10648,7 +10669,7 @@ msgstr "tuner wordt niet ondersteund"
 
 #, python-format
 msgid "unable to find timer with id %i"
-msgstr ""
+msgstr "kan timer met id %i niet vinden"
 
 #
 msgid "unavailable"
@@ -10675,10 +10696,10 @@ msgid "use as HDD replacement"
 msgstr "Gebruik als harde schijf vervanging"
 
 msgid "use your Dreambox as Web proxy"
-msgstr ""
+msgstr "gebruik je Dreambox als Web Proxy"
 
 msgid "use your Dreambox as Web proxy."
-msgstr ""
+msgstr "gebruik je Dreambox als Web Proxy."
 
 #
 msgid "user defined"
