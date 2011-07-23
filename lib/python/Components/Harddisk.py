@@ -379,7 +379,6 @@ class Harddisk:
 			dev = self.partitionPath("1")
 		task = Task.LoggingTask(job, "fsck")
 		task.setTool('fsck.ext3')
-		task.args.append('-f')
 		task.args.append('-p')
 		task.args.append(dev)
 		task = Task.LoggingTask(job, "tune2fs")
@@ -466,17 +465,21 @@ class Harddisk:
 		return self.is_sleeping
 
 class Partition:
+	# for backward compatibility, force_mounted actually means "hotplug"
 	def __init__(self, mountpoint, device = None, description = "", force_mounted = False):
 		self.mountpoint = mountpoint
 		self.description = description
-		self.force_mounted = force_mounted
+		self.force_mounted = mountpoint and force_mounted
 		self.is_hotplug = force_mounted # so far; this might change.
 		self.device = device
 	def __str__(self):
 		return "Partition(mountpoint=%s,description=%s,device=%s)" % (self.mountpoint,self.description,self.device)
 
 	def stat(self):
-		return statvfs(self.mountpoint)
+		if self.mountpoint:
+			return statvfs(self.mountpoint)
+		else:
+			raise OSError, "Device %s is not mounted" % self.device
 
 	def free(self):
 		try:
@@ -497,19 +500,21 @@ class Partition:
 		# TODO: can os.path.ismount be used?
 		if self.force_mounted:
 			return True
-		if mounts is None:
-			mounts = getProcMounts()
-		for parts in mounts:
-			if parts[1] == self.mountpoint:
-				return True
+		if self.mountpoint:
+			if mounts is None:
+				mounts = getProcMounts()
+			for parts in mounts:
+				if parts[1] == self.mountpoint:
+					return True
 		return False
 
 	def filesystem(self, mounts = None):
-		if mounts is None:
-			mounts = getProcMounts()
-		for fields in mounts:
-			if fields[1] == self.mountpoint:
-				return fields[2]
+		if self.mountpoint:
+			if mounts is None:
+				mounts = getProcMounts()
+			for fields in mounts:
+				if fields[1] == self.mountpoint:
+					return fields[2]
 		return ''
 
 DEVICEDB =  \
@@ -543,11 +548,7 @@ class HarddiskManager:
 		self.devices_scanned_on_init = [ ]
 		self.on_partition_list_change = CList()
 		self.enumerateBlockDevices()
-		# currently, this is just an enumeration of what's possible,
-		# this probably has to be changed to support automount stuff.
-		# still, if stuff is mounted into the correct mountpoints by
-		# external tools, everything is fine (until somebody inserts
-		# a second usb stick.)
+		# Find stuff not detected by the enumeration
 		p = (
 			("/media/hdd", _("Harddisk")),
 			("/media/card", _("Card")),
@@ -561,7 +562,7 @@ class HarddiskManager:
 			("/media/usb", _("USB Stick")),
 			("/", _("Internal Flash"))
 		)
-		known = set([path.normpath(a.mountpoint) for a in self.partitions])
+		known = set([path.normpath(a.mountpoint) for a in self.partitions if a.mountpoint])
 		for m,d in p:
 			if (m not in known) and path.ismount(m):
 				self.partitions.append(Partition(mountpoint=m, description=d))
@@ -617,14 +618,14 @@ class HarddiskManager:
 				self.devices_scanned_on_init.append((blockdev, removable, is_cdrom, medium_found))
 
 	def getAutofsMountpoint(self, device):
-		return "/autofs/%s/" % (device)
+		return "/autofs/%s" % (device)
 
 	def getMountpoint(self, device):
 		dev = "/dev/%s" % device
 		for item in getProcMounts():
 			if item[0] == dev:
 				return item[1]
-		return self.getAutofsMountpoint(device)
+		return None
 
 	def addHotplugPartition(self, device, physdev = None):
 		# device is the device name, without /dev
@@ -640,22 +641,23 @@ class HarddiskManager:
 		if not blacklisted and medium_found:
 			description = self.getUserfriendlyDeviceName(device, physdev)
 			p = Partition(mountpoint = self.getMountpoint(device), description = description, force_mounted = True, device = device)
-			print "[Harddisk] add partition:", p.mountpoint 
 			self.partitions.append(p)
-			self.on_partition_list_change("add", p)
+			if p.mountpoint: # Plugins won't expect unmounted devices 
+				self.on_partition_list_change("add", p)
 			# see if this is a harddrive
 			l = len(device)
 			if l and not device[l-1].isdigit():
 				self.hdd.append(Harddisk(device))
 				self.hdd.sort()
-				SystemInfo["Harddisk"] = len(self.hdd) > 0
+				SystemInfo["Harddisk"] = True
 		return error, blacklisted, removable, is_cdrom, partitions, medium_found
 
 	def removeHotplugPartition(self, device):
 		for x in self.partitions[:]:
 			if x.device == device:
 				self.partitions.remove(x)
-				self.on_partition_list_change("remove", x)
+				if x.mountpoint: # Plugins won't expect unmounted devices
+					self.on_partition_list_change("remove", x)
 		l = len(device)
 		if l and not device[l-1].isdigit():
 			for hdd in self.hdd:
@@ -713,22 +715,20 @@ class HarddiskManager:
 		except IOError, s:
 			print "couldn't read model: ", s
 		from Tools.HardwareInfo import HardwareInfo
-		for physdevprefix, pdescription in DEVICEDB.get(HardwareInfo().device_name,{}).items():
+		for physdevprefix, pdescription in DEVICEDB.get(HardwareInfo().device_name,{}):
 			if phys.startswith(physdevprefix):
 				description = pdescription
-
 		# not wholedisk and not partition 1
 		if part and part != 1:
 			description += " (Partition %d)" % part
 		return description
 
 	def addMountedPartition(self, device, desc):
-		already_mounted = False
-		for x in self.partitions[:]:
+		for x in self.partitions:
 			if x.mountpoint == device:
-				already_mounted = True
-		if not already_mounted:
-			self.partitions.append(Partition(mountpoint = device, description = desc))
+				#already_mounted
+				return
+		self.partitions.append(Partition(mountpoint=device, description=desc))
 
 	def removeMountedPartition(self, mountpoint):
 		for x in self.partitions[:]:
