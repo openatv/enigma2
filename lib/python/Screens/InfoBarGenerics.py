@@ -602,6 +602,8 @@ class InfoBarChannelSelection:
 				"switchChannelDownLong": (self.switchChannelDownLong, _("open servicelist(down)")),
 				"LeftPressed": self.LeftPressed,
 				"RightPressed": self.RightPressed,
+				"ChannelPlusPressed": self.ChannelPlusPressed,
+				"ChannelMinusPressed": self.ChannelMinusPressed,
 				"zapUp": (self.zapUp, _("previous channel")),
 				"zapDown": (self.zapDown, _("next channel")),
 				"historyBack": (self.historyBack, _("previous channel in history")),
@@ -620,6 +622,18 @@ class InfoBarChannelSelection:
 			self.openInfoBarEPG()
 		else:
 			self.zapDown()
+
+	def ChannelPlusPressed(self):
+		if config.usage.channelbutton_mode.value == "0":
+			self.zapDown()
+		else:
+			self.openServiceList()
+
+	def ChannelMinusPressed(self):
+		if config.usage.channelbutton_mode.value == "0":
+			self.zapUp()
+		else:
+			self.openServiceList()
 
 	def showTvSimpleChannelList(self, zap=False):
 		self.slimservicelist.setModeTv()
@@ -779,11 +793,17 @@ class InfoBarChannelSelection:
 		if self.save_current_timeshift and self.timeshift_enabled:
 			InfoBarTimeshift.saveTimeshiftActions(self, postaction="openServiceList")
 		else:
-			self.session.execDialog(self.servicelist)
+			if self.serviceListType == "Norm":
+				self.session.execDialog(self.servicelist)
+			else:
+				self.session.execDialog(self.slimservicelist)
 
 	def openInfoBarEPG(self):
 		self.EPGtype = "infobar"
-		self.session.open(EPGSelection, self.servicelist, self.EPGtype)
+		if self.serviceListType == "Norm":
+			self.session.open(EPGSelection, self.servicelist, self.EPGtype)
+		else:
+			self.session.open(EPGSelection, self.slimservicelist, self.EPGtype)
 		
 	def zapUp(self):
 		if self.pts_blockZap_timer.isActive():
