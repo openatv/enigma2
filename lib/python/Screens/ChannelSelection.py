@@ -1116,10 +1116,16 @@ class ChannelSelectionBase(Screen):
 		return self.servicelist.atEnd()
 
 	def nextBouquet(self):
-		self.changeBouquet(+1)
+		if config.usage.channelbutton_mode.value == "0":
+			self.changeBouquet(+1)
+		else:
+			self.servicelist.moveDown()
 
 	def prevBouquet(self):
-		self.changeBouquet(-1)
+		if config.usage.channelbutton_mode.value == "0":
+			self.changeBouquet(-1)
+		else:
+			self.servicelist.moveUp()
 
 	def showFavourites(self):
 		if not self.pathChangeDisabled:
@@ -1239,6 +1245,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 				iPlayableService.evEnd: self.__evServiceEnd
 			})
 
+		self.startref = None
 		self.history_tv = [ ]
 		self.history_radio = [ ]
 		self.history = self.history_tv
@@ -1328,6 +1335,9 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			self.zap()
 
 	def channelSelected(self):
+		if not self.startref:
+			self.startref = self.session.nav.getCurrentlyPlayingServiceReference()
+		curref = self.session.nav.getCurrentlyPlayingServiceReference()
 		ref = self.getCurrentSelection()
 		if self.movemode:
 			self.toggleMoveMarked()
@@ -1341,7 +1351,14 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			if not root or not (root.flags & eServiceReference.isGroup):
 				self.zap(enable_pipzap = True)
 				self.asciiOff()
-				self.close(ref)
+				if config.usage.servicelistpreview_mode.value:
+					if ref == curref:
+						self.startref = None
+						self.saveRoot()
+						self.saveChannel(ref)
+						config.servicelist.lastmode.save()
+						self.addToHistory(ref)
+						self.close(ref)
 
 	def togglePipzap(self):
 		assert(self.session.pip)
@@ -1392,10 +1409,11 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			if ref is None or ref != nref:
 				self.new_service_played = True
 				self.session.nav.playService(nref)
-				self.saveRoot()
-				self.saveChannel(nref)
-				config.servicelist.lastmode.save()
-				self.addToHistory(nref)
+				if not config.usage.servicelistpreview_mode.value:
+					self.saveRoot()
+					self.saveChannel(nref)
+					config.servicelist.lastmode.save()
+					self.addToHistory(nref)
 
 			# Yes, we might double-check this, but we need to re-select pipservice if pipzap is active
 			# and we just wanted to zap in mainwindow once
@@ -1526,6 +1544,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			self.setHistoryPath()
 
 	def cancel(self):
+		curref = self.session.nav.getCurrentlyPlayingServiceReference()
 		if self.revertMode is None:
 			if self.dopipzap:
 				# This unfortunately won't work with subservices
@@ -1541,6 +1560,11 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			self.setModeRadio()
 		self.revertMode = None
 		self.asciiOff()
+		if config.usage.servicelistpreview_mode.value:
+			if self.startref and (curref != self.startref):
+				self.new_service_played = True
+				self.session.nav.playService(self.startref)
+		self.startref = None
 		self.close(None)
 
 class RadioInfoBar(Screen):
@@ -1714,7 +1738,7 @@ class SlimChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSe
 				iPlayableService.evEnd: self.__evServiceEnd
 			})
 
-		self.title = ''
+		self.startref = None
 		self.history_tv = [ ]
 		self.history_radio = [ ]
 		self.history = self.history_tv
@@ -1804,6 +1828,9 @@ class SlimChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSe
 			self.zap()
 
 	def channelSelected(self):
+		if not self.startref:
+			self.startref = self.session.nav.getCurrentlyPlayingServiceReference()
+		curref = self.session.nav.getCurrentlyPlayingServiceReference()
 		ref = self.getCurrentSelection()
 		if self.movemode:
 			self.toggleMoveMarked()
@@ -1817,7 +1844,14 @@ class SlimChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSe
 			if not root or not (root.flags & eServiceReference.isGroup):
 				self.zap(enable_pipzap = True)
 				self.asciiOff()
-				self.close(ref)
+				if config.usage.servicelistpreview_mode.value:
+					if ref == curref:
+						self.startref = None
+						self.saveRoot()
+						self.saveChannel(ref)
+						config.servicelist.lastmode.save()
+						self.addToHistory(ref)
+						self.close(ref)
 
 	def togglePipzap(self):
 		assert(self.session.pip)
@@ -1868,10 +1902,11 @@ class SlimChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSe
 			if ref is None or ref != nref:
 				self.new_service_played = True
 				self.session.nav.playService(nref)
-				self.saveRoot()
-				self.saveChannel(nref)
-				config.servicelist.lastmode.save()
-				self.addToHistory(nref)
+				if not config.usage.servicelistpreview_mode.value:
+					self.saveRoot()
+					self.saveChannel(nref)
+					config.servicelist.lastmode.save()
+					self.addToHistory(nref)
 
 			# Yes, we might double-check this, but we need to re-select pipservice if pipzap is active
 			# and we just wanted to zap in mainwindow once
@@ -2002,6 +2037,7 @@ class SlimChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSe
 			self.setHistoryPath()
 
 	def cancel(self):
+		curref = self.session.nav.getCurrentlyPlayingServiceReference()
 		if self.revertMode is None:
 			if self.dopipzap:
 				# This unfortunately won't work with subservices
@@ -2017,6 +2053,11 @@ class SlimChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSe
 			self.setModeRadio()
 		self.revertMode = None
 		self.asciiOff()
+		if config.usage.servicelistpreview_mode.value:
+			if self.startref and (curref != self.startref):
+				self.new_service_played = True
+				self.session.nav.playService(self.startref)
+		self.startref = None
 		self.close(None)
 
 class SimpleChannelSelection(ChannelSelectionBase):
