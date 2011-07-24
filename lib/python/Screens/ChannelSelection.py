@@ -1359,6 +1359,8 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 						config.servicelist.lastmode.save()
 						self.addToHistory(ref)
 						self.close(ref)
+				else:
+						self.close(ref)
 
 	def togglePipzap(self):
 		assert(self.session.pip)
@@ -1851,6 +1853,8 @@ class SlimChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSe
 						self.saveChannel(ref)
 						config.servicelist.lastmode.save()
 						self.addToHistory(ref)
+						self.close(ref)
+				else:
 						self.close(ref)
 
 	def togglePipzap(self):
