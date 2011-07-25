@@ -1,0 +1,16 @@
+<default>
+	  <prerequisites>
+                    <tag type="System" />
+	  </prerequisites>
+          <info>
+                    <author>oskwon</author>
+                    <name>FPGAUpgrade</name>
+                    <packagename>enigma2-plugin-systemplugins-fpgaupgrade</packagename>
+                    <shortdescription>Upgrade your system FPGA</shortdescription>
+                    <description>Upgrade your internal system FPGA.</description>
+          </info>
+
+	  <files type="package"> <!-- without version, without .ipk -->
+		<file type="package" name="enigma2-plugin-systemplugins-fpgaupgrade" />
+	</files>
+</default>

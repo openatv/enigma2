@@ -258,6 +258,8 @@ lib/python/Plugins/SystemPlugins/FanSetupVuPlus/Makefile
 lib/python/Plugins/SystemPlugins/FanSetupVuPlus/meta/Makefile
 lib/python/Plugins/SystemPlugins/FanSetupXtrend/Makefile
 lib/python/Plugins/SystemPlugins/FanSetupXtrend/meta/Makefile
+lib/python/Plugins/SystemPlugins/FPGAUpgrade/Makefile
+lib/python/Plugins/SystemPlugins/FPGAUpgrade/meta/Makefile
 lib/python/Plugins/SystemPlugins/FrontprocessorUpgrade/Makefile
 lib/python/Plugins/SystemPlugins/FrontprocessorUpgrade/meta/Makefile
 lib/python/Plugins/SystemPlugins/Hotplug/Makefile
