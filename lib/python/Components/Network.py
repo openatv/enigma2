@@ -92,14 +92,14 @@ class Network:
 		globalIPpattern = re_compile("scope global")
 		ipRegexp = '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}'
 		netRegexp = '[0-9]{1,2}'
-		macRegexp = '[0-9]{2}\:[0-9]{2}\:[0-9]{2}\:[a-z0-9]{2}\:[a-z0-9]{2}\:[a-z0-9]{2}'
+		macRegexp = '[0-9A-Fa-f]{2}\:[0-9A-Fa-f]{2}\:[0-9A-Fa-f]{2}\:[0-9A-Fa-f]{2}\:[0-9A-Fa-f]{2}\:[0-9A-Fa-f]{2}'
 		ipLinePattern = re_compile('inet ' + ipRegexp + '/')
 		ipPattern = re_compile(ipRegexp)
 		netmaskLinePattern = re_compile('/' + netRegexp)
 		netmaskPattern = re_compile(netRegexp)
 		bcastLinePattern = re_compile(' brd ' + ipRegexp)
 		upPattern = re_compile('UP')
-		macPattern = re_compile('[0-9]{2}\:[0-9]{2}\:[0-9]{2}\:[a-z0-9]{2}\:[a-z0-9]{2}\:[a-z0-9]{2}')
+		macPattern = re_compile(macRegexp)
 		macLinePattern = re_compile('link/ether ' + macRegexp)
 		
 		for line in result.splitlines():

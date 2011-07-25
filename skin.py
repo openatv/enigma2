@@ -28,7 +28,7 @@ class SkinError(Exception):
 		self.msg = message
 
 	def __str__(self):
-		return "{%s}: %s" % (config.skin.primary_skin.value, self.msg)
+		return "{%s}: %s. Please contact the skin's author!" % (config.skin.primary_skin.value, self.msg)
 
 dom_skins = [ ]
 
@@ -241,19 +241,19 @@ class AttributeParser:
 		self.scale = scale
 	def applyOne(self, attrib, value):
 		try:
-			fn = getattr(self, attrib)
+			getattr(self, attrib)(value)
 		except AttributeError:
-			print "[***SKIN***] Attribute not implemented:", attrib, "value:", value
-			return
-		fn(value)
+			print "[Skin] Attribute not implemented:", attrib, "value:", value
+		except SkinError, ex:
+			print "[Skin] Error:", ex
 	def applyAll(self, attrs):
 		for attrib, value in attrs:
 			try:
-				fn = getattr(self, attrib)
+				getattr(self, attrib)(value)
 			except AttributeError:
-				print "[***SKIN***] Attribute not implemented:", attrib, "value:", value
-				continue
-			fn(value)
+				print "[Skin] Attribute not implemented:", attrib, "value:", value
+			except SkinError, ex:
+				print "[Skin] Error:", ex
 	def position(self, value):
 		self.guiObject.move(parsePosition(value, self.scale, self.guiObject, self.desktop, self.guiObject.csize()))
 	def size(self, value):
@@ -645,106 +645,109 @@ def readSkin(screen, skin, names, desktop):
 
 	# now walk all widgets
 	for widget in myscreen.findall("widget"):
-		get_attr = widget.attrib.get
-		# ok, we either have 1:1-mapped widgets ('old style'), or 1:n-mapped
-		# widgets (source->renderer).
-
-		wname = get_attr('name')
-		wsource = get_attr('source')
-
-		if wname is None and wsource is None:
-			print "widget has no name and no source!"
-			continue
-
-		if wname:
-			#print "Widget name=", wname
-			visited_components.add(wname)
-
-			# get corresponding 'gui' object
-			try:
-				attributes = screen[wname].skinAttributes = [ ]
-			except:
-				raise SkinError("component with name '" + wname + "' was not found in skin of screen '" + name + "'!")
-				#print "WARNING: component with name '" + wname + "' was not found in skin of screen '" + name + "'!"
-
-#			assert screen[wname] is not Source
-
-			# and collect attributes for this
-			collectAttributes(attributes, widget, skin_path_prefix, ignore=['name'])
-		elif wsource:
-			# get corresponding source
-			#print "Widget source=", wsource
-
-			while True: # until we found a non-obsolete source
-
-				# parse our current "wsource", which might specifiy a "related screen" before the dot,
-				# for example to reference a parent, global or session-global screen.
-				scr = screen
-
-				# resolve all path components
-				path = wsource.split('.')
-				while len(path) > 1:
-					scr = screen.getRelatedScreen(path[0])
-					if scr is None:
-						#print wsource
-						#print name
-						raise SkinError("specified related screen '" + wsource + "' was not found in screen '" + name + "'!")
-					path = path[1:]
-
-				# resolve the source.
-				source = scr.get(path[0])
-				if isinstance(source, ObsoleteSource):
-					# however, if we found an "obsolete source", issue warning, and resolve the real source.
-					print "WARNING: SKIN '%s' USES OBSOLETE SOURCE '%s', USE '%s' INSTEAD!" % (name, wsource, source.new_source)
-					print "OBSOLETE SOURCE WILL BE REMOVED %s, PLEASE UPDATE!" % (source.removal_date)
-					if source.description:
-						print source.description
-
-					wsource = source.new_source
-				else:
-					# otherwise, use that source.
-					break
-
-			if source is None:
-				raise SkinError("source '" + wsource + "' was not found in screen '" + name + "'!")
-
-			wrender = get_attr('render')
-
-			if not wrender:
-				raise SkinError("you must define a renderer with render= for source '%s'" % (wsource))
-
-			for converter in widget.findall("convert"):
-				ctype = converter.get('type')
-				assert ctype, "'convert'-tag needs a 'type'-attribute"
-				#print "Converter:", ctype
+		try:
+			get_attr = widget.attrib.get
+			# ok, we either have 1:1-mapped widgets ('old style'), or 1:n-mapped
+			# widgets (source->renderer).
+	
+			wname = get_attr('name')
+			wsource = get_attr('source')
+	
+			if wname is None and wsource is None:
+				print "widget has no name and no source!"
+				continue
+	
+			if wname:
+				#print "Widget name=", wname
+				visited_components.add(wname)
+	
+				# get corresponding 'gui' object
 				try:
-					parms = converter.text.strip()
+					attributes = screen[wname].skinAttributes = [ ]
 				except:
-					parms = ""
-				#print "Params:", parms
-				converter_class = my_import('.'.join(("Components", "Converter", ctype))).__dict__.get(ctype)
-
-				c = None
-
-				for i in source.downstream_elements:
-					if isinstance(i, converter_class) and i.converter_arguments == parms:
-						c = i
-
-				if c is None:
-					c = converter_class(parms)
-					c.connect(source)
-
-				source = c
-
-			renderer_class = my_import('.'.join(("Components", "Renderer", wrender))).__dict__.get(wrender)
-
-			renderer = renderer_class() # instantiate renderer
-
-			renderer.connect(source) # connect to source
-			attributes = renderer.skinAttributes = [ ]
-			collectAttributes(attributes, widget, skin_path_prefix, ignore=['render', 'source'])
-
-			screen.renderer.append(renderer)
+					raise SkinError("component with name '" + wname + "' was not found in skin of screen '" + name + "'!")
+					#print "WARNING: component with name '" + wname + "' was not found in skin of screen '" + name + "'!"
+	
+	#			assert screen[wname] is not Source
+	
+				# and collect attributes for this
+				collectAttributes(attributes, widget, skin_path_prefix, ignore=['name'])
+			elif wsource:
+				# get corresponding source
+				#print "Widget source=", wsource
+	
+				while True: # until we found a non-obsolete source
+	
+					# parse our current "wsource", which might specifiy a "related screen" before the dot,
+					# for example to reference a parent, global or session-global screen.
+					scr = screen
+	
+					# resolve all path components
+					path = wsource.split('.')
+					while len(path) > 1:
+						scr = screen.getRelatedScreen(path[0])
+						if scr is None:
+							#print wsource
+							#print name
+							raise SkinError("specified related screen '" + wsource + "' was not found in screen '" + name + "'!")
+						path = path[1:]
+	
+					# resolve the source.
+					source = scr.get(path[0])
+					if isinstance(source, ObsoleteSource):
+						# however, if we found an "obsolete source", issue warning, and resolve the real source.
+						print "WARNING: SKIN '%s' USES OBSOLETE SOURCE '%s', USE '%s' INSTEAD!" % (name, wsource, source.new_source)
+						print "OBSOLETE SOURCE WILL BE REMOVED %s, PLEASE UPDATE!" % (source.removal_date)
+						if source.description:
+							print source.description
+	
+						wsource = source.new_source
+					else:
+						# otherwise, use that source.
+						break
+	
+				if source is None:
+					raise SkinError("source '" + wsource + "' was not found in screen '" + name + "'!")
+	
+				wrender = get_attr('render')
+	
+				if not wrender:
+					raise SkinError("you must define a renderer with render= for source '%s'" % (wsource))
+	
+				for converter in widget.findall("convert"):
+					ctype = converter.get('type')
+					assert ctype, "'convert'-tag needs a 'type'-attribute"
+					#print "Converter:", ctype
+					try:
+						parms = converter.text.strip()
+					except:
+						parms = ""
+					#print "Params:", parms
+					converter_class = my_import('.'.join(("Components", "Converter", ctype))).__dict__.get(ctype)
+	
+					c = None
+	
+					for i in source.downstream_elements:
+						if isinstance(i, converter_class) and i.converter_arguments == parms:
+							c = i
+	
+					if c is None:
+						c = converter_class(parms)
+						c.connect(source)
+	
+					source = c
+	
+				renderer_class = my_import('.'.join(("Components", "Renderer", wrender))).__dict__.get(wrender)
+	
+				renderer = renderer_class() # instantiate renderer
+	
+				renderer.connect(source) # connect to source
+				attributes = renderer.skinAttributes = [ ]
+				collectAttributes(attributes, widget, skin_path_prefix, ignore=['render', 'source'])
+	
+				screen.renderer.append(renderer)
+		except SkinError, e:
+			print "[Skin] SKIN ERROR:", e
 
 	from Components.GUIComponent import GUIComponent
 	nonvisited_components = [x for x in set(screen.keys()) - visited_components if isinstance(x, GUIComponent)]

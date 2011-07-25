@@ -116,6 +116,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 		self.playlist = MyPlayList()
 		self.is_closing = False
 		self.delname = ""
+		self.playlistname = ""
 		self["playlist"] = self.playlist
 
 		self["PositionGauge"] = ServicePositionGauge(self.session.nav)
@@ -613,13 +614,14 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 		self.updateCurrentInfo()
 
 	def save_playlist(self):
-		self.session.openWithCallback(self.save_playlist2,InputBox, title=_("Please enter filename (empty = use current date)"),windowTitle = _("Save Playlist"))
+		self.session.openWithCallback(self.save_playlist2,InputBox, title=_("Please enter filename (empty = use current date)"),windowTitle = _("Save Playlist"), text=self.playlistname)
 
 	def save_playlist2(self, name):
 		if name is not None:
 			name = name.strip()
 			if name == "":
 				name = strftime("%y%m%d_%H%M%S")
+			self.playlistname = name
 			name += ".e2pls"
 			self.playlistIOInternal.clear()
 			for x in self.playlist.list:
@@ -640,6 +642,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 
 	def PlaylistSelected(self,path):
 		if path is not None:
+			self.playlistname = path[0].rsplit('.',1)[-2]
 			self.clear_playlist()
 			extension = path[0].rsplit('.',1)[-1]
 			if self.playlistparsers.has_key(extension):

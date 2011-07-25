@@ -337,6 +337,7 @@ class MovieContextMenu(Screen):
 					(_("Move"), csel.do_move),
 					(_("Copy"), csel.do_copy),
 					(_("Reset playback position"), csel.do_reset),
+					(_("Rename"), csel.do_rename),
 					]
 				# Plugins expect a valid selection, so only include them if we selected a non-dir 
 				menu.extend([(p.description, boundFunction(p, session, service)) for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST)])
@@ -1105,28 +1106,50 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		return r
 	def do_rename(self):
 		item = self.getCurrentSelection()
+		if not item or not item[0]:
+			return
 		if isFolder(item):
 			p = os.path.split(item[0].getPath())
 			if not p[1]:
 				# if path ends in '/', p is blank.
 				p = os.path.split(p[0])
 			name = p[1]
-			from Screens.InputBox import InputBox
-			self.session.openWithCallback(self.renameCallback, InputBox,
-				title = _("Rename"),
-				text = name)
+		else:
+			info = item[1]
+			name = info.getName(item[0])
+		from Screens.InputBox import InputBox
+		self.session.openWithCallback(self.renameCallback, InputBox,
+			title = _("Rename"),
+			text = name)
+
 	def renameCallback(self, name):
 		if not name:
 			return
+		name = name.strip()
 		item = self.getCurrentSelection()
 		if item and item[0]:
-			path = item[0].getPath()
-			if path.endswith('/'):
-				path = path[:-1]
-			pathname,filename = os.path.split(path)
-			newpath = os.path.join(pathname, name)
-			msg = None
 			try:
+				path = item[0].getPath().rstrip('/')
+				meta = path + '.meta'
+				if os.path.isfile(meta):
+					metafile = open(meta, "r+")
+					sid = metafile.readline()
+					oldtitle = metafile.readline()
+					rest = metafile.read()
+					metafile.seek(0)
+					metafile.write("%s%s\n%s" %(sid, name, rest))
+					metafile.truncate()
+					metafile.close()
+					index = self.list.getCurrentIndex()
+					info = self.list.list[index]
+					if hasattr(info[3], 'txt'):
+						info[3].txt = name
+					else:
+						self.list.invalidateCurrentItem()
+					return
+				pathname,filename = os.path.split(path)
+				newpath = os.path.join(pathname, name)
+				msg = None
 				print "[ML] rename", path, "to", newpath
 				os.rename(path, newpath)
 				self.reloadList(sel = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + newpath))
@@ -1137,7 +1160,9 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				else:
 					msg = _("Error") + '\n' + str(e)
 			except Exception, e:
+				import traceback
 				print "[ML] Unexpected error:", e
+				traceback.print_exc()
 				msg = _("Error") + '\n' + str(e)
 			if msg:
 				self.session.open(MessageBox, msg, type = MessageBox.TYPE_ERROR, timeout = 5)
