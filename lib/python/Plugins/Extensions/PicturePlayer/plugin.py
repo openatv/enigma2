@@ -11,6 +11,7 @@ from Components.FileList import FileList
 from Components.AVSwitch import AVSwitch
 from Components.Sources.List import List
 from Components.ConfigList import ConfigList, ConfigListScreen
+from Components.Sources.Boolean import Boolean
 
 from Components.config import config, ConfigSubsection, ConfigInteger, ConfigSelection, ConfigText, ConfigEnableDisable, KEY_LEFT, KEY_RIGHT, KEY_0, getConfigListEntry
 
@@ -153,6 +154,9 @@ class Pic_Setup(Screen, ConfigListScreen):
 		self.setup_title = _("Settings")
 		self.onChangedEntry = [ ]
 		self.session = session
+		self["HelpWindow"] = Pixmap()
+		self["HelpWindow"].hide()
+		self["VKeyIcon"] = Boolean(False)
 
 		self["actions"] = ActionMap(["SetupActions"],
 			{
