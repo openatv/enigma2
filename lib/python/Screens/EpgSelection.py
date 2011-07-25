@@ -36,8 +36,10 @@ config.misc.EPGSort = ConfigSelection(default="Time", choices = [
 				])
 
 class EPGSelection(Screen):
-	sz_w = getDesktop(0).size().width()
-	if sz_w >= 1280:
+	data = resolveFilename(SCOPE_CURRENT_SKIN,"skin.xml")
+	data = data.replace('/ skin.xml','/skin.xml')
+	data = file(resolveFilename(SCOPE_CURRENT_SKIN,"skin.xml")).read()
+	if data.find('xres="1280"') >= 0:
 		QuickEPG = """
 			<screen name="QuickEPG" position="0,505" size="1280,215" title="QuickEPG" backgroundColor="transparent" flags="wfNoBorder">
 				<ePixmap alphatest="off" pixmap="Magic/infobar/infobar-hd.png" position="0,0" size="1280,220" zPosition="0"/>
