@@ -18,6 +18,9 @@ eTPM::eTPM()
 	unsigned char buf[8];
 	unsigned int tag;
 	size_t len;
+	unsigned char *val;
+
+	level2_cert_read = level3_cert_read = false;
 
 	addr.sun_family = AF_UNIX;
 	strcpy(addr.sun_path, TPMD_SOCKET);
@@ -42,14 +45,14 @@ eTPM::eTPM()
 		return;
 	}
 
-	unsigned char val[2*210 + 2*4];
-	len = sizeof(val);
-	tag = recv_cmd(val, &len);
-	if (tag == 0xFFFFFFFF)
+	val = (unsigned char*)recv_cmd(&tag, &len);
+	if (val == NULL)
 	{
 		return;
 	}
+
 	parse_data(val, len);
+	free(val);
 }
 
 eTPM::~eTPM()
@@ -77,32 +80,37 @@ bool eTPM::send_cmd(enum tpmd_cmd cmd, const void *data, size_t len)
 	return true;
 }
 
-unsigned int eTPM::recv_cmd(void *data, size_t *len)
+void* eTPM::recv_cmd(unsigned int *tag, size_t *len)
 {
 	unsigned char buf[4];
+	void *val;
 
 	if (read(fd, buf, 4) != 4)
 	{
 		fprintf(stderr, "%s: incomplete read\n", __func__);
-		return 0xFFFFFFFF;
+		return NULL;
 	}
 
-	unsigned int tag = (buf[0] << 8) | buf[1];
-	unsigned int rlen = (buf[2] << 8) | buf[3];
-	if (rlen > *len)
-		rlen = *len;
+	*tag = (buf[0] << 8) | buf[1];
+	*len = (buf[2] << 8) | buf[3];
 
-	ssize_t rd = read(fd, data, rlen);
+	val = malloc(*len);
+	if (val == NULL)
+		return NULL;
+
+	ssize_t rd = read(fd, val, *len);
 	if (rd < 0)
 	{
 		perror("eTPM::recv_cmd read");
+		free(val);
 	}
-        else if ((unsigned int)rd != rlen) {
+        else if ((size_t)rd != *len) {
 		fprintf(stderr, "%s: incomplete read\n", __func__);
-		return 0xFFFFFFFF;
+		free(val);
+		return NULL;
 	}
-	*len = rlen;
-	return tag;
+
+	return val;
 }
 
 void eTPM::parse_data(const unsigned char *data, size_t datalen)
@@ -122,11 +130,13 @@ void eTPM::parse_data(const unsigned char *data, size_t datalen)
 			if (len != 210)
 				break;
 			memcpy(level2_cert, val, 210);
+			level2_cert_read = true;
 			break;
 		case TPMD_DT_LEVEL3_CERT:
 			if (len != 210)
 				break;
 			memcpy(level3_cert, val, 210);
+			level3_cert_read = true;
 			break;
 		}
 	}
@@ -134,27 +144,30 @@ void eTPM::parse_data(const unsigned char *data, size_t datalen)
 
 std::string eTPM::getCert(cert_type type)
 {
-	switch (type)
-	{
-		case TPMD_DT_LEVEL2_CERT:
-			return std::string((char*)level2_cert, 210);
-		case TPMD_DT_LEVEL3_CERT:
-			return std::string((char*)level3_cert, 210);
-		default:
-			return "";
-	}
+	if (type == TPMD_DT_LEVEL2_CERT && level2_cert_read)
+		return std::string((char*)level2_cert, 210);
+	else if (type == TPMD_DT_LEVEL3_CERT && level3_cert_read)
+		return std::string((char*)level3_cert, 210);
+	return "";
 }
 
 std::string eTPM::challenge(std::string rnd)
 {
 	if (rnd.length() == 8)
 	{
-		send_cmd(TPMD_CMD_COMPUTE_SIGNATURE, rnd.c_str(), 8);
-		unsigned char val[80+8];
-		memcpy(val+80, rnd.data(), 8);
-		size_t len = sizeof(val);
-		unsigned int tag = (unsigned char*)recv_cmd(val, &len);
-		return std::string((char*)val, len);
+		if (!send_cmd(TPMD_CMD_COMPUTE_SIGNATURE, rnd.c_str(), 8))
+			return "";
+
+		unsigned int tag;
+		size_t len;
+		unsigned char *val = (unsigned char*)recv_cmd(&tag, &len);
+
+		if (tag != TPMD_CMD_COMPUTE_SIGNATURE)
+			return "";
+
+		std::string ret((char*)val, len);
+		free(val);
+		return ret;
 	}
 	return "";
 }

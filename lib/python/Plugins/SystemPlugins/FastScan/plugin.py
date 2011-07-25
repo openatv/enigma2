@@ -153,6 +153,7 @@ class FastScanScreen(ConfigListScreen, Screen):
 		provider_list.append((str(920), 'TéléSAT'))
 		provider_list.append((str(930), 'Mobistar NL'))
 		provider_list.append((str(940), 'Mobistar FR'))
+		provider_list.append((str(950), 'AustriaSat'))
 
 		self.scan_provider = ConfigSelection(choices = provider_list)
 		self.scan_hd = ConfigYesNo(default = False)

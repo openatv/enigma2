@@ -1,6 +1,7 @@
 from Tools.Directories import resolveFilename, SCOPE_SYSETC
 from enigma import getEnigmaVersionString
 from os import popen
+import os, time
 
 class About:
 	def __init__(self):
@@ -67,7 +68,7 @@ class About:
 
 	def getKernelVersionString(self):
 		try:
-			result = popen("uname -r","r").read().strip("\n").split('-')
+			result = os.popen("uname -r","r").read().strip("\n").split('-')
 			kernel_version = result[0]
 			return kernel_version
 		except:
