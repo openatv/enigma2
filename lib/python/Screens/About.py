@@ -14,21 +14,30 @@ class About(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 
+		self["lab1"] = StaticText(_("Virtuosso Image Xtreme"))
+		self["lab2"] = StaticText(_("By Team ViX"))
 		if config.misc.boxtype.value == 'vuuno':
-			self["BoxType"] = StaticText("Hardware: Vu+ Uno")
+			self["lab3"] = StaticText(_("Support at") + " www.vuplus-support.co.uk")
+			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Uno")
 		elif config.misc.boxtype.value == 'vuuno':
-			self["BoxType"] = StaticText("Hardware: Vu+ Uno")
+			self["lab3"] = StaticText(_("Support at") + " www.vuplus-support.co.uk")
+			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Uno")
 		elif config.misc.boxtype.value == 'vuduo':
-			self["BoxType"] = StaticText("Hardware: Vu+ Duo")
+			self["lab3"] = StaticText(_("Support at") + " www.vuplus-support.co.uk")
+			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Duo")
 		elif config.misc.boxtype.value == 'et5000':
-			self["BoxType"] = StaticText("Hardware: Xtrend ET5000")
+			self["lab3"] = StaticText(_("Support at") + " www.xtrend-support.co.uk")
+			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET5000")
 		elif config.misc.boxtype.value == 'et9000':
-			self["BoxType"] = StaticText("Hardware: Xtrend ET9000")
+			self["lab3"] = StaticText(_("Support at") + " www.xtrend-support.co.uk")
+			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET9000")
 		else:
-			self["BoxType"] = StaticText("Hardware: " + config.misc.boxtype.value)
-		self["ImageVersion"] = StaticText("Version: " + about.getImageVersionString())
-		self["EnigmaVersion"] = StaticText("Last Update: " + about.getLastUpdateString())
-		self["ImageType"] = StaticText("Image: " + about.getImageTypeString())
+			self["lab3"] = StaticText(_("Support at") + " www.world-of-satellite.co.uk")
+			self["BoxType"] = StaticText(_("Hardware:") + " " + config.misc.boxtype.value)
+		self["ImageVersion"] = StaticText(_("Version:") + " " + about.getImageVersionString())
+		self["BuildVersion"] = StaticText(_("Build:") + " " + about.getBuildVersionString())
+		self["EnigmaVersion"] = StaticText(_("Last Update:") + " " + about.getLastUpdateString())
+		self["ImageType"] = StaticText(_("Image:") + " " + about.getImageTypeString())
 
 		self["TunerHeader"] = StaticText(_("Detected NIMs:"))
 
@@ -49,7 +58,7 @@ class About(Screen):
 
 		self["HDDHeader"] = StaticText(_("Detected HDD:"))
 		hddlist = harddiskmanager.HDDList()
-		hdd1 = "None"
+		hdd1 = _("None")
 		hdd2 = ""
 		hdd3 = ""
 		for count in (0, 1, 2):
@@ -59,25 +68,25 @@ class About(Screen):
 					hdd = hddlist0[1]
 					if int(hdd.free()) > 1024:
 						freespace = int(hdd.free()) / 1024
-						hdd1 = str(hdd.model()) + ' ' + str(hdd.capacity()) + ', (' + str(freespace) + ' GB free)'
+						hdd1 = str(hdd.model()) + ' ' + str(hdd.capacity()) + ', (' + str(freespace) + ' ' + _("GB") + ' ' + _("free") + ')'
 					else:
-						hdd1 = str(hdd.model()) + ' ' + str(hdd.capacity()) + ', (' + str(hdd.free()) + ' MB free)'
+						hdd1 = str(hdd.model()) + ' ' + str(hdd.capacity()) + ', (' + str(hdd.free()) + ' ' + _("MB") + ' ' + _("free") + ')'
 				elif str(count) == '1':
 					hddlist1 = hddlist[1]
 					hdd = hddlist1[1]
 					if int(hdd.free()) > 1024:
 						freespace = int(hdd.free()) / 1024
-						hdd2 = str(hdd.model()) + ' ' + str(hdd.capacity()) + ', (' + str(freespace) + ' GB free)'
+						hdd2 = str(hdd.model()) + ' ' + str(hdd.capacity()) + ', (' + str(freespace) + ' ' + _("GB") + ' ' + _("free") + ')'
 					else:
-						hdd2 = str(hdd.model()) + ' ' + str(hdd.capacity()) + ', (' + str(hdd.free()) + ' MB free)'
+						hdd2 = str(hdd.model()) + ' ' + str(hdd.capacity()) + ', (' + str(hdd.free()) + ' ' + _("MB") + ' ' + _("free") + ')'
 				elif str(count) == '2':
 					hddlist1 = hddlist[2]
 					hdd = hddlist1[1]
 					if int(hdd.free()) > 1024:
 						freespace = int(hdd.free()) / 1024
-						hdd3 = str(hdd.model()) + ' ' + str(hdd.capacity()) + ', (' + str(freespace) + ' GB free)'
+						hdd3 = str(hdd.model()) + ' ' + str(hdd.capacity()) + ', (' + str(freespace) + ' ' + _("GB") + ' ' + _("free") + ')'
 					else:
-						hdd3 = str(hdd.model()) + ' ' + str(hdd.capacity()) + ', (' + str(hdd.free()) + ' MB free)'
+						hdd3 = str(hdd.model()) + ' ' + str(hdd.capacity()) + ', (' + str(hdd.free()) + ' ' + _("MB") + ' ' + _("free") + ')'
 
 		self["hddA"] = StaticText(hdd1 + '\n' + hdd2 + '\n' + hdd3)
 
@@ -107,9 +116,9 @@ class AboutSummary(Screen):
 	def __init__(self, session, parent):
 		Screen.__init__(self, session, parent = parent)
 		if about.getImageTypeString() == 'Release':
-			self["selected"] = StaticText("ViX:" + about.getImageVersionString() + '(Release)')
+			self["selected"] = StaticText("ViX:" + about.getImageVersionString() + ' ' + _('(Release)'))
 		elif about.getImageTypeString() == 'Experimental':
-			self["selected"] = StaticText("ViX:" + about.getImageVersionString() + '(Beta)')
+			self["selected"] = StaticText("ViX:" + about.getImageVersionString() + ' ' + _('(Beta)'))
 
 class TranslationInfo(Screen):
 	def __init__(self, session):
