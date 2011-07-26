@@ -37,7 +37,7 @@ class FPGAUpgrade(Screen):
                 self.session = session 
 
 		self["key_red"] = StaticText(_("Close"))
-		self["key_green"] = StaticText(_("Ugrade"))
+		self["key_green"] = StaticText(_("Upgrade"))
 		self["key_yellow"] = StaticText(_(" "))
 		self["key_blue"] = StaticText(_("Download"))
 		#self["key_blue"] = StaticText(_(" "))
