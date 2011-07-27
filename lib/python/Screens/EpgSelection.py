@@ -1265,13 +1265,16 @@ class EPGSelection(Screen):
 				else:
 					self.close(True)
 		else:
-			currch = self.session.nav.getCurrentlyPlayingServiceReference()
-			currch = currch.toString()
-			switchto = ServiceReference(self.servicelist.getCurrentSelection())
-			switchto = str(switchto)
-			if not switchto == currch:
-				self.servicelist_orig_zap()
-			else:
+			try:
+				currch = self.session.nav.getCurrentlyPlayingServiceReference()
+				currch = currch.toString()
+				switchto = ServiceReference(self.servicelist.getCurrentSelection())
+				switchto = str(switchto)
+				if not switchto == currch:
+					self.servicelist_orig_zap()
+				else:
+					self.close()
+			except:
 				self.close()
 
 	def keyNumberGlobal(self, number):
