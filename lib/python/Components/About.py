@@ -1,11 +1,10 @@
 from Tools.Directories import resolveFilename, SCOPE_SYSETC
-from enigma import getEnigmaVersionString
 import sys
 
 def getVersionString():
 	return getImageVersionString()
 
-def getLastUpdateString(self):
+def getLastUpdateString():
 	try:
 		file = open(resolveFilename(SCOPE_SYSETC, 'image-version'), 'r')
 		lines = file.readlines()
@@ -28,7 +27,7 @@ def getLastUpdateString(self):
 	except IOError:
 		return "unavailable"
 
-def getImageVersionString(self):
+def getImageVersionString():
 	try:
 		file = open(resolveFilename(SCOPE_SYSETC, 'image-version'), 'r')
 		lines = file.readlines()
@@ -41,7 +40,7 @@ def getImageVersionString(self):
 	except IOError:
 		return "unavailable"
 
-def getBuildVersionString(self):
+def getBuildVersionString():
 	try:
 		file = open(resolveFilename(SCOPE_SYSETC, 'image-version'), 'r')
 		lines = file.readlines()
@@ -54,7 +53,7 @@ def getBuildVersionString(self):
 	except IOError:
 		return "unavailable"
 
-def getImageTypeString(self):
+def getImageTypeString():
 	try:
 		file = open(resolveFilename(SCOPE_SYSETC, 'image-version'), 'r')
 		lines = file.readlines()
@@ -71,8 +70,10 @@ def getImageTypeString(self):
 	except IOError:
 		return "unavailable"
 
-def getEnigmaVersionString(self):
-	return getEnigmaVersionString()
+def getEnigmaVersionString():
+	import enigma
+	enigma_version = enigma.getEnigmaVersionString()
+	return enigma_version
 
 def getKernelVersionString():
 	try:
