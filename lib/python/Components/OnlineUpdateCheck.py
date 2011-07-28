@@ -81,10 +81,10 @@ class OnlineUpdateCheckPoller:
 		fd.close()
 		if fileurl.find('release') != -1:
 			print '[OnlineVersionCheck] Downloading RELEASE online version file.'
-			sourcefile='http://enigma2.world-of-satellite.com/feeds/release/' + box_type + '/image-version'
+			sourcefile='http://enigma2.world-of-satellite.com/feeds/2.3/release/' + box_type + '/image-version'
 		else:
 			print '[OnlineVersionCheck] Downloading BETA online version file.'
-			sourcefile='http://enigma2.world-of-satellite.com/feeds/ghtudh66383/' + box_type + '/image-version'
+			sourcefile='http://enigma2.world-of-satellite.com/feeds/2.3/experimental/' + box_type + '/image-version'
 		sourcefile,headers = urllib.urlretrieve(sourcefile)
 		rename(sourcefile,'/tmp/online-image-version')
 
