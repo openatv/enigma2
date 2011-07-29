@@ -25,7 +25,7 @@ class eTPM
 	};
 
 	bool send_cmd(enum tpmd_cmd cmd, const void *data, size_t len);
-	unsigned int recv_cmd(void *data, size_t *len);
+	void *recv_cmd(unsigned int *tag, size_t *len);
 	void parse_data(const unsigned char *data, size_t datalen);
 
 #endif

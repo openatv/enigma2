@@ -367,9 +367,11 @@ class TimerSanityConflict(Screen):
 	def toggleTimer1(self):
 		if self.timer[0].disabled:
 			self.timer[0].disabled = False
+			self.session.nav.RecordTimer.timeChanged(self.timer[0])
 		else:
 			if not self.timer[0].isRunning():
 				self.timer[0].disabled = True
+				self.session.nav.RecordTimer.timeChanged(self.timer[0])
 		self.finishedEdit((True, self.timer[0]))
 	
 	def editTimer2(self):
@@ -379,8 +381,10 @@ class TimerSanityConflict(Screen):
 		x = self["list"].getSelectedIndex() + 1 # the first is the new timer so we do +1 here
 		if self.timer[x].disabled:
 			self.timer[x].disabled = False
+			self.session.nav.RecordTimer.timeChanged(self.timer[x])
 		elif not self.timer[x].isRunning():
 				self.timer[x].disabled = True
+				self.session.nav.RecordTimer.timeChanged(self.timer[x])
 		self.finishedEdit((True, self.timer[0]))
 	
 	def finishedEdit(self, answer):
