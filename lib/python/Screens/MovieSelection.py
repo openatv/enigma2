@@ -1101,12 +1101,10 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			self.session.open(MessageBox, msg, type = MessageBox.TYPE_ERROR, timeout = 5)
 
 	def can_rename(self, item):
-		# Currently only for directories
-		r = isFolder(item)
-		return r
+		return canMove(item)
 	def do_rename(self):
 		item = self.getCurrentSelection()
-		if not item or not item[0]:
+		if not canMove(item):
 			return
 		if isFolder(item):
 			p = os.path.split(item[0].getPath())
