@@ -11,6 +11,7 @@ class About(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 
+		self["KernelVersion"] = StaticText("Kernel: " + about.getKernelVersionString())
 		self["EnigmaVersion"] = StaticText("Enigma: " + about.getEnigmaVersionString())
 		self["ImageVersion"] = StaticText("Image: " + about.getImageVersionString())
 
