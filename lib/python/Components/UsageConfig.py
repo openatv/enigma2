@@ -47,7 +47,6 @@ def InitUsageConfig():
 	config.usage.show_infobar_eventinfo = ConfigYesNo(default = True)
 	config.usage.show_spinner = ConfigYesNo(default = True)
 	config.usage.enable_tt_caching = ConfigYesNo(default = True)
-	config.usage.allow_no_tpid = ConfigYesNo(default = False)
 	config.usage.hdd_standby = ConfigSelection(default = "300", choices = [
 		("0", _("no standby")), ("10", "10 " + _("seconds")), ("30", "30 " + _("seconds")),
 		("60", "1 " + _("minute")), ("120", "2 " + _("minutes")),
@@ -416,42 +415,12 @@ def InitUsageConfig():
 	config.subtitles.pango_subtitles_yellow = ConfigYesNo(default = False)
 
 	config.autolanguage = ConfigSubsection()
-	subtitle_language_choices = [
-		("---", "None"),
-		("ara", "Arabic"),
-		("eus baq", "Basque"),
-		("hrv", "Croatian"),
-		("ces cze", "Czech"),
-		("dan", "Danish"),
-		("dut ndl", "Dutch"),
-		("eng", "English"),
-		("est", "Estonian"),
-		("fin", "Finnish"),
-		("fra fre", "French"),
-		("deu ger", "German"),
-		("ell gre", "Greek"),
-		("hun", "Hungarian"),
-		("ita", "Italian"),
-		("lat", "Latvian"),
-		("lit", "Lithuanian"),
-		("ltz", "Letzeburgesch"),
-		("nob", "Norwegian"),
-		("pol", "Polish"),
-		("por", "Portuguese"),
-		("fas per", "Persian"),
-		("ron rum", "Romanian"),
-		("rus", "Russian"),
-		("srp", "Serbian"),
-		("slk slo", "Slovak"),
-		("slv", "Slovenian"),
-		("spa", "Spanish"),
-		("swe", "Swedish"),
-		("tur", "Turkish")]
 	audio_language_choices=[	
 		("---", "None"),
-		("orj dos ory org esl qaa und", "Original"),
+		("orj dos ory org esl qaa und mis mul ORY", "Original"),
 		("ara", "Arabic"),
 		("eus baq", "Basque"),
+		("bul", "Bulgarian"), 
 		("hrv", "Croatian"),
 		("ces cze", "Czech"),
 		("dan", "Danish"),
@@ -462,6 +431,7 @@ def InitUsageConfig():
 		("fra fre", "French"),
 		("deu ger", "German"),
 		("ell gre", "Greek"),
+		("heb", "Hebrew"),
 		("hun", "Hungarian"),
 		("ita", "Italian"),
 		("lat", "Latvian"),
@@ -485,6 +455,8 @@ def InitUsageConfig():
 	config.autolanguage.audio_autoselect4 = ConfigSelection(choices=audio_language_choices, default="---")
 	config.autolanguage.audio_defaultac3 = ConfigYesNo(default = False)
 	config.autolanguage.audio_usecache = ConfigYesNo(default = True)
+
+	subtitle_language_choices = audio_language_choices[:1] + audio_language_choices [2:]
 	config.autolanguage.subtitle_autoselect1 = ConfigSelection(choices=subtitle_language_choices, default="---")
 	config.autolanguage.subtitle_autoselect2 = ConfigSelection(choices=subtitle_language_choices, default="---")
 	config.autolanguage.subtitle_autoselect3 = ConfigSelection(choices=subtitle_language_choices, default="---")
