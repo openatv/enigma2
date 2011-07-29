@@ -32,6 +32,7 @@ from ServiceReference import ServiceReference
 from skin import parseColor
 
 from RecordTimer import RecordTimer, RecordTimerEntry, parseEvent
+from timer import TimerEntry
 
 from Tools import Directories, ASCIItranslit, Notifications
 
