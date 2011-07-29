@@ -166,7 +166,7 @@ class TryQuitMainloop(MessageBox):
 			self.close(True)
 
 	def getRecordEvent(self, recservice, event):
-		if event == iRecordableService.evEnd and (config.plugins.pts.isRecording.value or len(JobManager.getPendingJobs()) >= 1):
+		if event == iRecordableService.evEnd and (config.timeshift.isRecording.value or len(JobManager.getPendingJobs()) >= 1):
 			return
 		else:
 			if event == iRecordableService.evEnd:
