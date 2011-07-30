@@ -16,10 +16,10 @@ def readFile(filename):
 def getProcMounts():
 	try:
 		mounts = open("/proc/mounts")
+		return [line.strip().split(' ') for line in mounts]
 	except IOError, ex:
 		print "[Harddisk] Failed to open /proc/mounts", ex 
 		return []
-	return [line.strip().split(' ') for line in mounts]
 
 def createMovieFolder():
 	movie = resolveFilename(SCOPE_HDD)
@@ -561,25 +561,16 @@ class HarddiskManager:
 		self.on_partition_list_change = CList()
 		self.enumerateBlockDevices()
 		# Find stuff not detected by the enumeration
-		p = (
-			("/media/hdd", _("Harddisk")),
-			("/media/card", _("Card")),
-			("/media/cf", _("Compact Flash")),
-			("/media/mmc1", _("MMC Card")),
-			("/media/ram", _("Ram Disk")),
-			("/media/usb", _("USB Stick")),
-			("/", _("Internal Flash"))
-		)
+		p = [
+				("/", _("Internal Flash"))
+			]
 		try:
 			netmount = listdir('/media/net')
 			for fil in netmount:
 				p.append(('/media/net/' + fil, fil))
 		except:
 			pass
-		known = set([path.normpath(a.mountpoint) for a in self.partitions if a.mountpoint])
-		for m,d in p:
-			if (m not in known) and path.ismount(m):
-				self.partitions.append(Partition(mountpoint=m, description=d))
+		self.partitions.extend([ Partition(mountpoint = x[0], description = x[1]) for x in p ])
 
 	def getBlockDevInfo(self, blockdev):
 		devpath = "/sys/block/" + blockdev
@@ -638,7 +629,7 @@ class HarddiskManager:
 		dev = "/dev/%s" % device
 		for item in getProcMounts():
 			if item[0] == dev:
-				return item[1]
+				return item[1] + '/'
 		return None
 
 	def addHotplugPartition(self, device, physdev = None):
