@@ -27,6 +27,19 @@ def getLastUpdateString():
 	except IOError:
 		return "unavailable"
 
+def getImageVersionString():
+	try:
+		file = open(resolveFilename(SCOPE_SYSETC, 'image-version'), 'r')
+		lines = file.readlines()
+		for x in lines:
+			splitted = x.split('=')
+			if splitted[0] == "version":
+				version = splitted[1].replace('\n','')
+		file.close()
+		return version
+	except IOError:
+		return "unavailable"
+
 def getImageTypeString():
 	try:
 		file = open(resolveFilename(SCOPE_SYSETC, 'image-version'), 'r')
