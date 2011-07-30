@@ -637,9 +637,8 @@ class InfoBarChannelSelection:
 		else:
 			self.openServiceList()
 
-	def showTvSimpleChannelList(self, zap=False):
+	def showTvSlimChannelList(self, zap=False):
 		self.slimservicelist.setModeTv()
-		self.servicelist.setModeTv()
 		if zap:
 			self.slimservicelist.zap()
 		if config.usage.show_servicelist.value:
@@ -651,6 +650,16 @@ class InfoBarChannelSelection:
 			self.servicelist.zap()
 		if config.usage.show_servicelist.value:
 			self.session.execDialog(self.servicelist)
+
+	def showRadioSlimChannelList(self, zap=False):
+		if self.save_current_timeshift and self.timeshift_enabled:
+			InfoBarTimeshift.saveTimeshiftActions(self, postaction="showRadioChannelList")
+		else:
+			self.slimservicelist.setModeRadio()
+			if zap:
+				self.slimservicelist.zap()
+			if config.usage.show_servicelist.value:
+				self.session.execDialog(self.slimservicelist)
 
 	def showRadioChannelList(self, zap=False):
 		if self.save_current_timeshift and self.timeshift_enabled:
