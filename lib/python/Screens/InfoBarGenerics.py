@@ -205,8 +205,9 @@ class InfoBarShowHide:
 		self.onHide.append(self.__onHide)
 
 	def LongOKPressed(self):
-		if config.vixsettings.QuickEPG_mode.value == "1":
-			self.openInfoBarEPG()
+		if isinstance(self, InfoBarEPG):
+			if config.vixsettings.QuickEPG_mode.value == "1":
+				self.openInfoBarEPG()
 
 	def ExitPressed(self):
 		if self.__state == self.STATE_HIDDEN:
