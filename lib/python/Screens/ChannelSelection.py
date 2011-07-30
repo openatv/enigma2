@@ -1569,149 +1569,6 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		self.startref = None
 		self.close(None)
 
-class RadioInfoBar(Screen):
-	def __init__(self, session):
-		Screen.__init__(self, session)
-		self["RdsDecoder"] = RdsDecoder(self.session.nav)
-
-class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelectionEPG, InfoBarBase):
-	ALLOW_SUSPEND = True
-
-	def __init__(self, session, infobar):
-		ChannelSelectionBase.__init__(self, session)
-		ChannelSelectionEdit.__init__(self)
-		ChannelSelectionEPG.__init__(self)
-		InfoBarBase.__init__(self)
-		self.infobar = infobar
-		self.onLayoutFinish.append(self.onCreate)
-
-		self.info = session.instantiateDialog(RadioInfoBar) # our simple infobar
-
-		self["actions"] = ActionMap(["OkCancelActions", "TvRadioActions"],
-			{
-				"keyTV": self.cancel,
-				"keyRadio": self.cancel,
-				"cancel": self.cancel,
-				"ok": self.channelSelected,
-			})
-
-		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
-			{
-				iPlayableService.evStart: self.__evServiceStart,
-				iPlayableService.evEnd: self.__evServiceEnd
-			})
-
-########## RDS Radiotext / Rass Support BEGIN
-		self.infobar = infobar # reference to real infobar (the one and only)
-		self["RdsDecoder"] = self.info["RdsDecoder"]
-		self["RdsActions"] = HelpableActionMap(self, "InfobarRdsActions",
-		{
-			"startRassInteractive": (self.startRassInteractive, _("View Rass interactive..."))
-		},-1)
-		self["RdsActions"].setEnabled(False)
-		infobar.rds_display.onRassInteractivePossibilityChanged.append(self.RassInteractivePossibilityChanged)
-		self.onClose.append(self.__onClose)
-
-	def __onClose(self):
-		lastservice=eServiceReference(config.tv.lastservice.value)
-		self.session.nav.playService(lastservice)
-
-	def startRassInteractive(self):
-		self.info.hide();
-		self.infobar.rass_interactive = self.session.openWithCallback(self.RassInteractiveClosed, RassInteractive)
-
-	def RassInteractiveClosed(self):
-		self.info.show()
-		self.infobar.rass_interactive = None
-		self.infobar.RassSlidePicChanged()
-
-	def RassInteractivePossibilityChanged(self, state):
-		self["RdsActions"].setEnabled(state)
-########## RDS Radiotext / Rass Support END
-
-	def cancel(self):
-		self.infobar.rds_display.onRassInteractivePossibilityChanged.remove(self.RassInteractivePossibilityChanged)
-		self.info.hide()
-		#set previous tv service
-		self.close(None)
-
-	def __evServiceStart(self):
-		service = self.session.nav.getCurrentService()
-		if service:
-			info = service.info()
-			if info:
-				refstr = info.getInfoString(iServiceInformation.sServiceref)
-				self.servicelist.setPlayableIgnoreService(eServiceReference(refstr))
-
-	def __evServiceEnd(self):
-		self.servicelist.setPlayableIgnoreService(eServiceReference())
-
-	def saveRoot(self):
-		path = ''
-		for i in self.servicePathRadio:
-			path += i.toString()
-			path += ';'
-		if path and path != config.radio.lastroot.value:
-			config.radio.lastroot.value = path
-			config.radio.lastroot.save()
-
-	def restoreRoot(self):
-		tmp = [x for x in config.radio.lastroot.value.split(';') if x != '']
-		current = [x.toString() for x in self.servicePath]
-		if tmp != current or self.rootChanged:
-			cnt = 0
-			for i in tmp:
-				self.servicePathRadio.append(eServiceReference(i))
-				cnt += 1
-			if cnt:
-				path = self.servicePathRadio.pop()
-				self.enterPath(path)
-			else:
-				self.showFavourites()
-				self.saveRoot()
-			self.rootChanged = False
-
-	def preEnterPath(self, refstr):
-		if self.servicePathRadio and self.servicePathRadio[0] != eServiceReference(refstr):
-			pathstr = config.radio.lastroot.value
-			if pathstr is not None and pathstr.find(refstr) == 0:
-				self.restoreRoot()
-				lastservice=eServiceReference(config.radio.lastservice.value)
-				if lastservice.valid():
-					self.setCurrentSelection(lastservice)
-				return True
-		return False
-
-	def onCreate(self):
-		self.setRadioMode()
-		self.restoreRoot()
-		lastservice=eServiceReference(config.radio.lastservice.value)
-		if lastservice.valid():
-			self.servicelist.setCurrent(lastservice)
-			self.session.nav.playService(lastservice)
-		else:
-			self.session.nav.stopService()
-		self.info.show()
-
-	def channelSelected(self): # just return selected service
-		ref = self.getCurrentSelection()
-		if self.movemode:
-			self.toggleMoveMarked()
-		elif (ref.flags & 7) == 7:
-			self.enterPath(ref)
-		elif self.bouquet_mark_edit != OFF:
-			if not (self.bouquet_mark_edit == EDIT_ALTERNATIVES and ref.flags & eServiceReference.isGroup):
-				self.doMark()
-		elif not (ref.flags & eServiceReference.isMarker): # no marker
-			cur_root = self.getRoot()
-			if not cur_root or not (cur_root.flags & eServiceReference.isGroup):
-				playingref = self.session.nav.getCurrentlyPlayingServiceReference()
-				if playingref is None or playingref != ref:
-					self.session.nav.playService(ref)
-					config.radio.lastservice.value = ref.toString()
-					config.radio.lastservice.save()
-				self.saveRoot()
-
 class SlimChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelectionEPG, SelectionEventInfo):
 	def __init__(self, session):
 		ChannelSelectionBase.__init__(self,session)
@@ -2179,3 +2036,146 @@ class SimpleChannelSelection(ChannelSelectionBase):
 	def setModeRadio(self):
 		self.setRadioMode()
 		self.showFavourites()
+		
+class RadioInfoBar(Screen):
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		self["RdsDecoder"] = RdsDecoder(self.session.nav)
+
+class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelectionEPG, InfoBarBase):
+	ALLOW_SUSPEND = True
+
+	def __init__(self, session, infobar):
+		ChannelSelectionBase.__init__(self, session)
+		ChannelSelectionEdit.__init__(self)
+		ChannelSelectionEPG.__init__(self)
+		InfoBarBase.__init__(self)
+		self.infobar = infobar
+		self.onLayoutFinish.append(self.onCreate)
+
+		self.info = session.instantiateDialog(RadioInfoBar) # our simple infobar
+
+		self["actions"] = ActionMap(["OkCancelActions", "TvRadioActions"],
+			{
+				"keyTV": self.cancel,
+				"keyRadio": self.cancel,
+				"cancel": self.cancel,
+				"ok": self.channelSelected,
+			})
+
+		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
+			{
+				iPlayableService.evStart: self.__evServiceStart,
+				iPlayableService.evEnd: self.__evServiceEnd
+			})
+
+########## RDS Radiotext / Rass Support BEGIN
+		self.infobar = infobar # reference to real infobar (the one and only)
+		self["RdsDecoder"] = self.info["RdsDecoder"]
+		self["RdsActions"] = HelpableActionMap(self, "InfobarRdsActions",
+		{
+			"startRassInteractive": (self.startRassInteractive, _("View Rass interactive..."))
+		},-1)
+		self["RdsActions"].setEnabled(False)
+		infobar.rds_display.onRassInteractivePossibilityChanged.append(self.RassInteractivePossibilityChanged)
+		self.onClose.append(self.__onClose)
+
+	def __onClose(self):
+		lastservice=eServiceReference(config.tv.lastservice.value)
+		self.session.nav.playService(lastservice)
+
+	def startRassInteractive(self):
+		self.info.hide();
+		self.infobar.rass_interactive = self.session.openWithCallback(self.RassInteractiveClosed, RassInteractive)
+
+	def RassInteractiveClosed(self):
+		self.info.show()
+		self.infobar.rass_interactive = None
+		self.infobar.RassSlidePicChanged()
+
+	def RassInteractivePossibilityChanged(self, state):
+		self["RdsActions"].setEnabled(state)
+########## RDS Radiotext / Rass Support END
+
+	def cancel(self):
+		self.infobar.rds_display.onRassInteractivePossibilityChanged.remove(self.RassInteractivePossibilityChanged)
+		self.info.hide()
+		#set previous tv service
+		self.close(None)
+
+	def __evServiceStart(self):
+		service = self.session.nav.getCurrentService()
+		if service:
+			info = service.info()
+			if info:
+				refstr = info.getInfoString(iServiceInformation.sServiceref)
+				self.servicelist.setPlayableIgnoreService(eServiceReference(refstr))
+
+	def __evServiceEnd(self):
+		self.servicelist.setPlayableIgnoreService(eServiceReference())
+
+	def saveRoot(self):
+		path = ''
+		for i in self.servicePathRadio:
+			path += i.toString()
+			path += ';'
+		if path and path != config.radio.lastroot.value:
+			config.radio.lastroot.value = path
+			config.radio.lastroot.save()
+
+	def restoreRoot(self):
+		tmp = [x for x in config.radio.lastroot.value.split(';') if x != '']
+		current = [x.toString() for x in self.servicePath]
+		if tmp != current or self.rootChanged:
+			cnt = 0
+			for i in tmp:
+				self.servicePathRadio.append(eServiceReference(i))
+				cnt += 1
+			if cnt:
+				path = self.servicePathRadio.pop()
+				self.enterPath(path)
+			else:
+				self.showFavourites()
+				self.saveRoot()
+			self.rootChanged = False
+
+	def preEnterPath(self, refstr):
+		if self.servicePathRadio and self.servicePathRadio[0] != eServiceReference(refstr):
+			pathstr = config.radio.lastroot.value
+			if pathstr is not None and pathstr.find(refstr) == 0:
+				self.restoreRoot()
+				lastservice=eServiceReference(config.radio.lastservice.value)
+				if lastservice.valid():
+					self.setCurrentSelection(lastservice)
+				return True
+		return False
+
+	def onCreate(self):
+		self.setRadioMode()
+		self.restoreRoot()
+		lastservice=eServiceReference(config.radio.lastservice.value)
+		if lastservice.valid():
+			self.servicelist.setCurrent(lastservice)
+			self.session.nav.playService(lastservice)
+		else:
+			self.session.nav.stopService()
+		self.info.show()
+
+	def channelSelected(self): # just return selected service
+		ref = self.getCurrentSelection()
+		if self.movemode:
+			self.toggleMoveMarked()
+		elif (ref.flags & 7) == 7:
+			self.enterPath(ref)
+		elif self.bouquet_mark_edit != OFF:
+			if not (self.bouquet_mark_edit == EDIT_ALTERNATIVES and ref.flags & eServiceReference.isGroup):
+				self.doMark()
+		elif not (ref.flags & eServiceReference.isMarker): # no marker
+			cur_root = self.getRoot()
+			if not cur_root or not (cur_root.flags & eServiceReference.isGroup):
+				playingref = self.session.nav.getCurrentlyPlayingServiceReference()
+				if playingref is None or playingref != ref:
+					self.session.nav.playService(ref)
+					config.radio.lastservice.value = ref.toString()
+					config.radio.lastservice.save()
+				self.saveRoot()
