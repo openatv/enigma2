@@ -143,10 +143,8 @@ def InitUsageConfig():
 		("standard", _("Standard")),
 		("simple", _("Simple")) ] )
 	config.usage.servicelistpreview_mode = ConfigYesNo(default = False)
-	config.usage.tvbutton_mode = ConfigSelection(default="SimpleBouquetList", choices = [
-					("SimpleTVList", _("Simple TV List")),
-					("SimpleBouquetList", _("Simple Bouquet List")),
-					("TVList", _("TV List")),
+	config.usage.tvradiobutton_mode = ConfigSelection(default="BouquetList", choices = [
+					("ChannelList", _("Channel List")),
 					("BouquetList", _("Bouquet List")),
 					("MovieList", _("Movie List"))])
 	config.usage.channelbutton_mode = ConfigSelection(default="0", choices = [
