@@ -628,14 +628,33 @@ class InfoBarChannelSelection:
 	def ChannelPlusPressed(self):
 		if config.usage.channelbutton_mode.value == "0":
 			self.zapDown()
-		else:
+		elif config.usage.channelbutton_mode.value == "1":
 			self.openServiceList()
+		elif config.usage.channelbutton_mode.value == "2":
+			if config.usage.servicelist_mode.value != "simple":
+				self.serviceListType = "Norm"
+				self.servicelist.showFavourites()
+				self.session.execDialog(self.servicelist)
+			else:
+				self.serviceListType = "Slim"
+				self.slimservicelist.showFavourites()
+				self.session.execDialog(self.slimservicelist)
 
 	def ChannelMinusPressed(self):
 		if config.usage.channelbutton_mode.value == "0":
 			self.zapUp()
-		else:
+		elif config.usage.channelbutton_mode.value == "1":
 			self.openServiceList()
+		elif config.usage.channelbutton_mode.value == "2":
+			if config.usage.servicelist_mode.value != "simple":
+				self.serviceListType = "Norm"
+				self.servicelist.showFavourites()
+				self.session.execDialog(self.servicelist)
+			else:
+				self.serviceListType = "Slim"
+				self.slimservicelist.showFavourites()
+				self.session.execDialog(self.slimservicelist)
+
 
 	def showTvSlimChannelList(self, zap=False):
 		self.slimservicelist.setModeTv()
