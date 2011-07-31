@@ -2,7 +2,7 @@ from Tools.Directories import resolveFilename, SCOPE_SYSETC
 import sys
 
 def getVersionString():
-	return self.getImageVersionString()
+	return getImageVersionString()
 
 def getLastUpdateString():
 	try:
