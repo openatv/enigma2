@@ -491,6 +491,15 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				"cancel": (self.abort, _("exit movielist")),
 				"ok": (self.itemSelected, _("select movie")),
 			})
+		tPreview = _("Preview")
+		self["SeekActions"] = HelpableActionMap(self, "InfobarSeekActions",
+			{
+				"playpauseService": (self.preview, _("Preview")),
+				"seekFwd": (lambda: self.seekRelative(1, config.seek.selfdefined_46.value) , _("skip forward") + " (" + tPreview +")"),
+				"seekFwdManual": (lambda: self.seekRelative(1, config.seek.selfdefined_79.value), _("skip forward") + " (" + tPreview +")"),
+				"seekBack": (lambda: self.seekRelative(-1, config.seek.selfdefined_46.value), _("skip backward") + " (" + tPreview +")"),
+				"seekBackManual": (lambda: self.seekRelative(-1, config.seek.selfdefined_79.value), _("skip backward") + " (" + tPreview +")"),
+			}, prio=5)
 
 		self.onShown.append(self.go)
 		self.onLayoutFinish.append(self.saveListsize)
@@ -738,6 +747,13 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				else:
 					self.playInBackground = current
 					self.session.nav.playService(current)
+
+	def seekRelative(self, direction, amount):
+		if self.playInBackground:
+			seekable = self.getSeek()
+			if seekable is None:
+				return
+			seekable.seekRelative(direction, amount)
 
 	def playbackStop(self):
 		if self.playInBackground:
