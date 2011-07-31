@@ -492,15 +492,25 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				"ok": (self.itemSelected, _("select movie")),
 			})
 		tPreview = _("Preview")
+		tFwd = _("skip forward") + " (" + tPreview +")"
+		tBack= _("skip backward") + " (" + tPreview +")"
+		sfwd = lambda: self.seekRelative(1, config.seek.selfdefined_46.value)
+		ssfwd = lambda: self.seekRelative(1, config.seek.selfdefined_79.value)
+		sback = lambda: self.seekRelative(-1, config.seek.selfdefined_46.value)
+		ssback = lambda: self.seekRelative(-1, config.seek.selfdefined_79.value)
 		self["SeekActions"] = HelpableActionMap(self, "InfobarSeekActions",
 			{
 				"playpauseService": (self.preview, _("Preview")),
-				"seekFwd": (lambda: self.seekRelative(1, config.seek.selfdefined_46.value) , _("skip forward") + " (" + tPreview +")"),
-				"seekFwdManual": (lambda: self.seekRelative(1, config.seek.selfdefined_79.value), _("skip forward") + " (" + tPreview +")"),
-				"seekBack": (lambda: self.seekRelative(-1, config.seek.selfdefined_46.value), _("skip backward") + " (" + tPreview +")"),
-				"seekBackManual": (lambda: self.seekRelative(-1, config.seek.selfdefined_79.value), _("skip backward") + " (" + tPreview +")"),
+				"seekFwd": (sfwd, tFwd),
+				"seekFwdManual": (ssfwd, tFwd),
+				"seekBack": (sback, tBack),
+				"seekBackManual": (ssback, tBack),
+				"seekdef:3": (lambda: self.seekRelative(1, config.seek.selfdefined_13.value), tFwd),
+				"seekdef:4": (sback, tBack),
+				"seekdef:6": (sfwd, tFwd),
+				"seekdef:7": (ssback, tBack),
+				"seekdef:9": (ssfwd, tFwd),
 			}, prio=5)
-
 		self.onShown.append(self.go)
 		self.onLayoutFinish.append(self.saveListsize)
 		self.list.connectSelChanged(self.updateButtons)
