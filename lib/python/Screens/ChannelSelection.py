@@ -1119,13 +1119,13 @@ class ChannelSelectionBase(Screen):
 		if config.usage.channelbutton_mode.value == "0":
 			self.changeBouquet(+1)
 		else:
-			self.servicelist.moveDown()
+			self.servicelist.moveUp()
 
 	def prevBouquet(self):
 		if config.usage.channelbutton_mode.value == "0":
 			self.changeBouquet(-1)
 		else:
-			self.servicelist.moveUp()
+			self.servicelist.moveDown()
 
 	def showFavourites(self):
 		if not self.pathChangeDisabled:

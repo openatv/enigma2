@@ -149,7 +149,8 @@ def InitUsageConfig():
 					("MovieList", _("Movie List"))])
 	config.usage.channelbutton_mode = ConfigSelection(default="0", choices = [
 					("0", _("Just change channels")),
-					("1", _("Open channel selection"))])
+					("1", _("Open channel selection")),
+					("2", _("Open bouquet selection"))])
 	config.usage.show_bouquetalways = ConfigYesNo(default = False)
 	config.usage.show_event_progress_in_servicelist = ConfigYesNo(default = True)
 	config.usage.show_channel_numbers_in_servicelist = ConfigYesNo(default = True)
