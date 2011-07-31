@@ -1455,6 +1455,138 @@ class NetworkAdapterTest(Screen):
 		else:
 			iStatus.stopWlanConsole()
 
+class NetworkAfp(Screen):
+	skin = """
+		<screen position="center,center" size="560,310" title="Samba Setup">
+			<widget name="lab1" position="20,90" size="150,30" font="Regular;20" valign="center" transparent="0"/>
+			<widget name="labactive" position="180,90" size="250,30" font="Regular;20" valign="center" transparent="0"/>
+			<widget name="lab2" position="20,160" size="150,30" font="Regular;20" valign="center" transparent="0"/>
+			<widget name="labstop" position="180,160" size="100,30" font="Regular;20" valign="center" halign="center" backgroundColor="red"/>
+			<widget name="labrun" position="180,160" size="100,30" zPosition="1" font="Regular;20" valign="center"  halign="center" backgroundColor="green"/>
+			<ePixmap pixmap="skin_default/buttons/red.png" position="0,260" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/green.png" position="140,260" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,260" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/blue.png" position="420,260" size="140,40" alphatest="on" />
+			<widget name="key_red" position="0,260" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+			<widget name="key_green" position="140,260" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+			<widget name="key_yellow" position="280,260" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
+			<widget name="key_blue" position="420,260" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
+		</screen>"""
+
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		Screen.setTitle(self, _("AFP Setup"))
+		self['lab1'] = Label(_("Autostart:"))
+		self['labactive'] = Label(_(_("Disabled")))
+		self['lab2'] = Label(_("Current Status:"))
+		self['labstop'] = Label(_("Stopped"))
+		self['labrun'] = Label(_("Running"))
+		self['key_red'] = Label(_("Start"))
+		self['key_green'] = Label(_("Stop"))
+		self['key_yellow'] = Label(_("Autostart"))
+		self['key_blue'] = Label()
+		self.Console = Console()
+		self.my_Samba_active = False
+		self.my_Samba_run = False
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.AfpStart, 'green': self.AfpStop, 'yellow': self.activateAfp})
+		self.onLayoutFinish.append(self.updateAfp)
+
+	def AfpStart(self):
+		if self.my_Afp_run == False:
+			self.Console.ePopen('/etc/init.d/atalk start')
+			time.sleep(3)
+			self.updateAfp()
+		elif self.my_Afp_run == True:
+			self.Console.ePopen('/etc/init.d/atalk restart')
+			time.sleep(3)
+			self.updateAfp()
+
+	def AfpStop(self):
+		if self.my_Afp_run == True:
+			self.Console.ePopen('/etc/init.d/atalk stop')
+			time.sleep(3)
+			self.updateAfp()
+
+	def activateAfp(self):
+		if fileExists('/etc/rc0.d/K65atalk'):
+			unlink('/etc/rc0.d/K65atalk')
+			mymess = _("Autostart Disabled.")
+		else:
+			symlink('/etc/init.d/samba', '/etc/rc0.d/K65atalk')
+			mymess = _("Autostart Enabled.")
+
+		if fileExists('/etc/rc1.d/K65atalk'):
+			unlink('/etc/rc1.d/K65atalk')
+			mymess = _("Autostart Disabled.")
+		else:
+			symlink('/etc/init.d/samba', '/etc/rc1.d/K65atalk')
+			mymess = _("Autostart Enabled.")
+
+		if fileExists('/etc/rc2.d/S65atalk'):
+			unlink('/etc/rc2.d/S65atalk')
+			mymess = _("Autostart Disabled.")
+		else:
+			symlink('/etc/init.d/samba', '/etc/rc2.d/S65atalk')
+			mymess = _("Autostart Enabled.")
+
+		if fileExists('/etc/rc3.d/S65atalk'):
+			unlink('/etc/rc3.d/S65atalk')
+			mymess = _("Autostart Disabled.")
+		else:
+			symlink('/etc/init.d/samba', '/etc/rc3.d/S65atalk')
+			mymess = _("Autostart Enabled.")
+
+		if fileExists('/etc/rc4.d/S65atalk'):
+			unlink('/etc/rc4.d/S65atalk')
+			mymess = _("Autostart Disabled.")
+		else:
+			symlink('/etc/init.d/samba', '/etc/rc4.d/S65atalk')
+			mymess = _("Autostart Enabled.")
+
+		if fileExists('/etc/rc5.d/S65atalk'):
+			unlink('/etc/rc5.d/S65atalk')
+			mymess = _("Autostart Disabled.")
+		else:
+			symlink('/etc/init.d/samba', '/etc/rc5.d/S65atalk')
+			mymess = _("Autostart Enabled.")
+
+		if fileExists('/etc/rc6.d/K65atalk'):
+			unlink('/etc/rc6.d/K65atalk')
+			mymess = _("Autostart Disabled.")
+		else:
+			symlink('/etc/init.d/samba', '/etc/rc6.d/K65atalk')
+			mymess = _("Autostart Enabled.")
+
+		mybox = self.session.open(MessageBox, mymess, MessageBox.TYPE_INFO)
+		mybox.setTitle(_("Info"))
+		self.updateAfp()
+
+	def updateAfp(self):
+		import process
+		p = process.ProcessList()
+		afp_process = str(p.named('afpd')).strip('[]')
+ 		self['labrun'].hide()
+		self['labstop'].hide()
+		self['labactive'].setText(_("Disabled"))
+		self.my_afp_active = False
+		self.my_afp_run = False
+		if fileExists('/etc/rc3.d/S65atalk'):
+			self['labactive'].setText(_("Enabled"))
+			self['labactive'].show()
+			self.my_afp_active = True
+		if afp_process:
+			self.my_afp_run = True
+		if self.my_afp_run == True:
+			self['labstop'].hide()
+			self['labactive'].show()
+			self['labrun'].show()
+			self['key_red'].setText(_("Restart"))
+		else:
+			self['labrun'].hide()
+			self['labstop'].show()
+			self['labactive'].show()
+			self['key_red'].setText(_("Start"))
+
 class NetworkFtp(Screen):
 	skin = """
 		<screen position="center,center" size="340,310" title="Ftp Setup">
@@ -1822,8 +1954,6 @@ class NetworkVpnLog(Screen):
 			remove('/etc/openvpn/tmp.log')
 		self['infotext'].setText(strview)
 
-
-
 class NetworkSamba(Screen):
 	skin = """
 		<screen position="center,center" size="560,310" title="Samba Setup">
@@ -1934,8 +2064,9 @@ class NetworkSamba(Screen):
 		self.updateSamba()
 
 	def updateSamba(self):
-		self.Console.ePopen('ps > /tmp/Samba.tmp')
-		time.sleep(1)
+		import process
+		p = process.ProcessList()
+		samba_process = str(p.named('smbd')).strip('[]')
 		self['labrun'].hide()
 		self['labstop'].hide()
 		self['labactive'].setText(_("Disabled"))
@@ -1945,31 +2076,14 @@ class NetworkSamba(Screen):
 			self['labactive'].setText(_("Enabled"))
 			self['labactive'].show()
 			self.my_Samba_active = True
-		if fileExists('/tmp/Samba.tmp'):
-			f = open('/tmp/Samba.tmp', 'r')
-			for line in f.readlines():
-				if line.find('smbd') >= 0:
-					#self['labstop'].hide()
-					#self['labactive'].show()
-					#self['labrun'].show()
-					#self['key_red'].setText(_("Restart"))
-					self.my_Samba_run = True
-					continue
-				#else:
-					#self['labstop'].show()
-					#self['labactive'].show()
-					#self['labrun'].hide()
-					#self['key_red'].setText(_("Start"))
-			f.close()
-			remove('/tmp/Samba.tmp')
+		if samba_process:
+			self.my_Samba_run = True
 		if self.my_Samba_run == True:
-			print 'SMBD TRUE'
 			self['labstop'].hide()
 			self['labactive'].show()
 			self['labrun'].show()
 			self['key_red'].setText(_("Restart"))
 		else:
-			print 'SMBD FALSE'
 			self['labrun'].hide()
 			self['labstop'].show()
 			self['labactive'].show()
@@ -2309,30 +2423,30 @@ class NetworkInadynSetup(Screen, ConfigListScreen):
 				if line.startswith('username '):
 					line = line[9:]
 					self.ina_user.value = line
-					ina_user1 = getConfigListEntry('Username', self.ina_user)
+					ina_user1 = getConfigListEntry(_('Username'), self.ina_user)
 					self.list.append(ina_user1)
 				elif line.startswith('password '):
 					line = line[9:]
 					self.ina_pass.value = line
-					ina_pass1 = getConfigListEntry('Password', self.ina_pass)
+					ina_pass1 = getConfigListEntry(_('Password'), self.ina_pass)
 					self.list.append(ina_pass1)
 				elif line.startswith('alias '):
 					line = line[6:]
 					self.ina_alias.value = line
-					ina_alias1 = getConfigListEntry('Alias', self.ina_alias)
+					ina_alias1 = getConfigListEntry(_('Alias'), self.ina_alias)
 					self.list.append(ina_alias1)
 				elif line.startswith('update_period_sec '):
 					line = line[18:]
 					line = (int(line) / 60)
 					self.ina_period.value = line
-					ina_period1 = getConfigListEntry('Time Update in Minutes', self.ina_period)
+					ina_period1 = getConfigListEntry(_('Time Update in Minutes'), self.ina_period)
 					self.list.append(ina_period1)
 				elif line.startswith('dyndns_system ') or line.startswith('#dyndns_system '):
 					if not line.startswith('#'):
 						self.ina_sysactive.value = True
 					else:
 						self.ina_sysactive.value = False
-					ina_sysactive1 = getConfigListEntry('Set System', self.ina_sysactive)
+					ina_sysactive1 = getConfigListEntry(_('Set System'), self.ina_sysactive)
 					self.list.append(ina_sysactive1)
 				elif line.startswith('dyndns_system ') or line.startswith('#dyndns_system '):
 					if line.startswith('#'):
@@ -2340,7 +2454,7 @@ class NetworkInadynSetup(Screen, ConfigListScreen):
 					else:
 						line = line[14:]
 					self.ina_system.value = line
-					ina_system1 = getConfigListEntry('System ', self.ina_system)
+					ina_system1 = getConfigListEntry(_('System'), self.ina_system)
 					self.list.append(ina_system1)
 
 			f.close()
@@ -2358,7 +2472,7 @@ class NetworkInadynSetup(Screen, ConfigListScreen):
 		sel = self['config'].getCurrent()
 		if sel:
 			self.vkvar = sel[0]
-			if self.vkvar == "Username" or self.vkvar == "Password" or self.vkvar == "Alias" or self.vkvar == "System":
+			if self.vkvar == _("Username") or self.vkvar == _("Password") or self.vkvar == _("Alias") or self.vkvar == _("System"):
 				from Screens.VirtualKeyBoard import VirtualKeyBoard
 				self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title = self["config"].getCurrent()[0], text = self["config"].getCurrent()[1].getValue())
 
@@ -2392,7 +2506,7 @@ class NetworkInadynSetup(Screen, ConfigListScreen):
 			out.close()
 			inme.close()
 		else:
-			self.session.open(MessageBox, 'Sorry Inadyn Config is Missing', MessageBox.TYPE_INFO)
+			self.session.open(MessageBox, _('Sorry Inadyn Config is Missing'), MessageBox.TYPE_INFO)
 			self.close()
 		if fileExists('/etc/inadyn.conf.tmp'):
 			rename('/etc/inadyn.conf.tmp', '/etc/inadyn.conf')
