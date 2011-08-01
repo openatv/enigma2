@@ -1238,11 +1238,12 @@ class InfoBarEPG:
 		epg = None
 
 	def showCoolTVGuide(self):
-		try: # falls es nicht installiert ist
-			from Plugins.Extensions.CoolTVGuide.plugin import CoolTVGuide
-			self.session.open(CoolTVGuide)
-			no_plugin = False
-		except Exception, e:
+		if Directories.fileExists("/usr/lib/enigma2/python/Plugins/Extensions/CoolTVGuide/plugin.pyo"):
+			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
+				if plugin.name == _("Cool TV Guide"):
+					self.runPlugin(plugin)
+					break
+		else:
 			self.session.open(MessageBox, _("The Cool TV Guide plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
 	def showEventInfoPlugins(self):
