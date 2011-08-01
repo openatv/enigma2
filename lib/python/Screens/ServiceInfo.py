@@ -64,6 +64,7 @@ TYPE_TRANSPONDER_INFO = 2
 class ServiceInfo(Screen):
 	def __init__(self, session, serviceref=None):
 		Screen.__init__(self, session)
+		Screen.setTitle(self, _("Service Information"))
 		
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
 		{
