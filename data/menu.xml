@@ -122,7 +122,6 @@ self.session.openWithCallback(msgClosed, EpgLoadMsg)
 				<item level="2" entryID="timshift_setup"><setup id="timeshiftsetup" /></item>
 				<item level="0" entryID="time_setup"><setup id="time"/></item>
 				<!--<item level="0" text="Video Setup" entryID="video_setup"><screen module="VideoSetup" /></item>-->
-				<item weight="500" level="0" entryID="vix_setup"><setup id="vix" /></item>
 			</menu>
 			<menu weight="10" text="SoftCam / CI" entryID="cam_setup">
 				<id val="cam" />
