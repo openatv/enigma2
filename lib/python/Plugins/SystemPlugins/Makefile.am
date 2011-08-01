@@ -5,8 +5,8 @@ SUBDIRS = PositionerSetup Satfinder \
 	DefaultServicesScanner CommonInterfaceAssignment \
 	VideoEnhancement WirelessLan NetworkWizard
 
-if CLARKETECH
-SUBDIRS += SatelliteEquipmentControl DiseqcTester FastScan OSD3DSetup OSDPositionSetup FanSetupClarkeTech
+if XTREND
+SUBDIRS += SatelliteEquipmentControl DiseqcTester FastScan OSD3DSetup OSDPositionSetup FanSetupXtrend
 endif
 
 if VUUNO
@@ -17,17 +17,12 @@ if VUULTIMO
 SUBDIRS += SatelliteEquipmentControl DiseqcTester CableScan FastScan
 endif
 
-if VUULTIMO
-SUBDIRS += SatelliteEquipmentControl DiseqcTester CableScan FastScan OSD3DSetup FPGAUpgrade
->>>>>>> 4b0ccb2... OSDPositionSetup" removed from builing on Vu+ Uno & Ultimo
-endif
-
 if VUDUO
 SUBDIRS += FanSetupVuPlus
 endif
 
 if ET9000
-SUBDIRS += VFDSetupClarkeTech
+SUBDIRS += VFDSetupXtrend
 endif
 
 if HAVE_TEMPFANCONTROL

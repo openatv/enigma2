@@ -54,7 +54,7 @@ AC_DEFINE_UNQUOTED(BOXTYPE,"$BOXTYPE",[box type])
 
 AM_CONDITIONAL(DREAMBOX, test `echo "$BOXTYPE" | cut -b 1-2` == "dm")
 AM_CONDITIONAL(VUPLUS, test `echo "$BOXTYPE" | cut -b 1-2` == "vu")
-AM_CONDITIONAL(CLARKETECH, test `echo "$BOXTYPE" | cut -b 1-2` == "et")
+AM_CONDITIONAL(XTREND, test `echo "$BOXTYPE" | cut -b 1-2` == "et")
 AM_CONDITIONAL(VUUNO, test "$BOXTYPE" == vuuno)
 AM_CONDITIONAL(VUULTIMO, test "$BOXTYPE" == vuultimo)
 AM_CONDITIONAL(VUSOLO, test "$BOXTYPE" == vusolo)
@@ -256,8 +256,10 @@ lib/python/Plugins/SystemPlugins/DiseqcTester/Makefile
 lib/python/Plugins/SystemPlugins/DiseqcTester/meta/Makefile
 lib/python/Plugins/SystemPlugins/FanSetupVuPlus/Makefile
 lib/python/Plugins/SystemPlugins/FanSetupVuPlus/meta/Makefile
-lib/python/Plugins/SystemPlugins/FanSetupClarkeTech/Makefile
-lib/python/Plugins/SystemPlugins/FanSetupClarkeTech/meta/Makefile
+lib/python/Plugins/SystemPlugins/FanSetupXtrend/Makefile
+lib/python/Plugins/SystemPlugins/FanSetupXtrend/meta/Makefile
+lib/python/Plugins/SystemPlugins/FPGAUpgrade/Makefile
+lib/python/Plugins/SystemPlugins/FPGAUpgrade/meta/Makefile
 lib/python/Plugins/SystemPlugins/FrontprocessorUpgrade/Makefile
 lib/python/Plugins/SystemPlugins/FrontprocessorUpgrade/meta/Makefile
 lib/python/Plugins/SystemPlugins/Hotplug/Makefile
@@ -275,8 +277,8 @@ lib/python/Plugins/SystemPlugins/SatelliteEquipmentControl/Makefile
 lib/python/Plugins/SystemPlugins/SatelliteEquipmentControl/meta/Makefile
 lib/python/Plugins/SystemPlugins/Satfinder/Makefile
 lib/python/Plugins/SystemPlugins/Satfinder/meta/Makefile
-lib/python/Plugins/SystemPlugins/VFDSetupClarkeTech/Makefile
-lib/python/Plugins/SystemPlugins/VFDSetupClarkeTech/meta/Makefile
+lib/python/Plugins/SystemPlugins/VFDSetupXtrend/Makefile
+lib/python/Plugins/SystemPlugins/VFDSetupXtrend/meta/Makefile
 lib/python/Plugins/SystemPlugins/VideoEnhancement/Makefile
 lib/python/Plugins/SystemPlugins/VideoEnhancement/meta/Makefile
 lib/python/Plugins/SystemPlugins/VideoTune/Makefile
