@@ -117,7 +117,9 @@ class VideoSetup(Screen, ConfigListScreen):
 		if not isinstance(config.av.scaler_sharpness, ConfigNothing):
 			self.list.append(getConfigListEntry(_("Scaler sharpness"), config.av.scaler_sharpness))
 
-		self["config"].list = self.list
+		self.list.append(getConfigListEntry(_("ViX HD Overscan amount"), config.vixsettings.overscanamount))
+
+	self["config"].list = self.list
 		self["config"].l.setList(self.list)
 
 	def keyLeft(self):
