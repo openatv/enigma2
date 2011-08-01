@@ -10,11 +10,11 @@ SUBDIRS += SatelliteEquipmentControl DiseqcTester FastScan OSD3DSetup OSDPositio
 endif
 
 if VUUNO
-SUBDIRS += SatelliteEquipmentControl DiseqcTester CableScan FastScan OSD3DSetup OSDPositionSetup FPGAUpgrade
+SUBDIRS += SatelliteEquipmentControl DiseqcTester CableScan FastScan OSD3DSetup FPGAUpgrade
 endif
 
 if VUULTIMO
-SUBDIRS += SatelliteEquipmentControl DiseqcTester CableScan FastScan OSD3DSetup OSDPositionSetup FPGAUpgrade
+SUBDIRS += SatelliteEquipmentControl DiseqcTester CableScan FastScan OSD3DSetup FPGAUpgrade
 endif
 
 if VUDUO
