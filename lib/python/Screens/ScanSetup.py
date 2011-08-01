@@ -304,6 +304,7 @@ class DefaultSatLists(DefaultWizard):
 class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 	def __init__(self, session):
 		Screen.__init__(self, session)
+		Screen.setTitle(self, _("Manual Scan"))
 
 		self.finished_cb = None
 		self.updateSatList()
@@ -902,6 +903,7 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
+		Screen.setTitle(self, _("Automatic Scan"))
 
 		self["actions"] = ActionMap(["SetupActions"],
 		{
