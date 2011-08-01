@@ -32,6 +32,7 @@ class Satfinder(ScanSetup):
 		return False
 
 	def __init__(self, session, feid):
+		Screen.setTitle(self, _("Satfinder"))
 		self.initcomplete = False
 		self.feid = feid
 		self.oldref = None
@@ -231,6 +232,7 @@ class SatNimSelection(Screen):
 		
 	def __init__(self, session):
 		Screen.__init__(self, session)
+		Screen.setTitle(self, _("Satfinder"))
 
 		nimlist = nimmanager.getNimListOfType("DVB-S")
 		nimMenuList = []
