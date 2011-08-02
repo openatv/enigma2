@@ -506,7 +506,26 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				"cancel": (self.abort, _("exit movielist")),
 				"ok": (self.itemSelected, _("select movie")),
 			})
-
+		tPreview = _("Preview")
+		tFwd = _("skip forward") + " (" + tPreview +")"
+		tBack= _("skip backward") + " (" + tPreview +")"
+		sfwd = lambda: self.seekRelative(1, config.seek.selfdefined_46.value)
+		ssfwd = lambda: self.seekRelative(1, config.seek.selfdefined_79.value)
+		sback = lambda: self.seekRelative(-1, config.seek.selfdefined_46.value)
+		ssback = lambda: self.seekRelative(-1, config.seek.selfdefined_79.value)
+		self["SeekActions"] = HelpableActionMap(self, "InfobarSeekActions",
+			{
+				"playpauseService": (self.preview, _("Preview")),
+				"seekFwd": (sfwd, tFwd),
+				"seekFwdManual": (ssfwd, tFwd),
+				"seekBack": (sback, tBack),
+				"seekBackManual": (ssback, tBack),
+				"seekdef:3": (lambda: self.seekRelative(1, config.seek.selfdefined_13.value), tFwd),
+				"seekdef:4": (sback, tBack),
+				"seekdef:6": (sfwd, tFwd),
+				"seekdef:7": (ssback, tBack),
+				"seekdef:9": (ssfwd, tFwd),
+			}, prio=5)
 		self.onShown.append(self.updateHDDData)
 		self.onLayoutFinish.append(self.saveListsize)
 		self.list.connectSelChanged(self.updateButtons)
@@ -752,6 +771,13 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				else:
 					self.playInBackground = current
 					self.session.nav.playService(current)
+
+	def seekRelative(self, direction, amount):
+		if self.playInBackground:
+			seekable = self.getSeek()
+			if seekable is None:
+				return
+			seekable.seekRelative(direction, amount)
 
 	def playbackStop(self):
 		if self.playInBackground:

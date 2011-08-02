@@ -38,6 +38,7 @@ class About(Screen):
 		self["ImageVersion"] = StaticText(_("Version:") + " " + about.getImageVersionString())
 		self["BuildVersion"] = StaticText(_("Build:") + " " + about.getBuildVersionString())
 		self["EnigmaVersion"] = StaticText(_("Last Update:") + " " + about.getLastUpdateString())
+		self["KernelVersion"] = StaticText(_("Kernel:") + " " + about.getKernelVersionString())
 		self["ImageType"] = StaticText(_("Image:") + " " + about.getImageTypeString())
 
 		self["TunerHeader"] = StaticText(_("Detected NIMs:"))
@@ -57,7 +58,7 @@ class About(Screen):
 			else:
 				self["Tuner" + str(count)] = StaticText("")
 
-		self["HDDHeader"] = StaticText(_("Detected HDD:"))
+		self["HDDHeader"] = StaticText(_("Detected Devices:"))
 		hddlist = harddiskmanager.HDDList()
 		hdd1 = _("None")
 		hdd2 = ""
