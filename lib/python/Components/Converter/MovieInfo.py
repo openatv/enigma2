@@ -35,7 +35,7 @@ class MovieInfo(Converter, object):
 				if event:
 					descr = info.getInfoString(service, iServiceInformation.sDescription)
 					if descr == "":
-						return event.getShortDescription()
+						return event.getExtendedDescription() or event.getShortDescription()
 					else:
 						return descr
 			elif self.type == self.MOVIE_META_DESCRIPTION:
