@@ -154,6 +154,8 @@ class FastScanScreen(ConfigListScreen, Screen):
 		provider_list.append((str(930), 'Mobistar NL'))
 		provider_list.append((str(940), 'Mobistar FR'))
 		provider_list.append((str(950), 'AustriaSat'))
+		provider_list.append((str(30),  'Czech Republic'))
+		provider_list.append((str(31),  'Slovak Republic'))
 
 		self.scan_provider = ConfigSelection(choices = provider_list)
 		self.scan_hd = ConfigYesNo(default = False)
@@ -189,7 +191,7 @@ class FastScanScreen(ConfigListScreen, Screen):
 
 	def startScan(self):
 		pid = int(self.scan_provider.value)
-		if self.scan_hd.value and pid < 930:
+		if self.scan_hd.value and pid >=900 and pid < 930:
 			pid += 1
 		if self.scan_nims.value:
 			self.session.open(FastScanStatus, scanTuner = int(self.scan_nims.value), scanPid = pid, keepNumbers = self.scan_keepnumbering.value, keepSettings = self.scan_keepsettings.value, providerName = self.scan_provider.getText())
