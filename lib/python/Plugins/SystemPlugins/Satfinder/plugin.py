@@ -32,7 +32,6 @@ class Satfinder(ScanSetup):
 		return False
 
 	def __init__(self, session, feid):
-		Screen.setTitle(self, _("Satfinder"))
 		self.initcomplete = False
 		self.feid = feid
 		self.oldref = None
@@ -48,6 +47,7 @@ class Satfinder(ScanSetup):
 						self.frontend = None # in normal case this should not happen
 
 		ScanSetup.__init__(self, session)
+		Screen.setTitle(self, _("Satfinder"))
 		self.tuner = Tuner(self.frontend)
 		self["introduction"].setText("")
 		self["Frontend"] = FrontendStatus(frontend_source = lambda : self.frontend, update_interval = 100)
