@@ -1077,8 +1077,10 @@ class InfoBarEPG:
 			self.toggleShow()
 			return 1
 
-	def zapToService(self, service):
+	def zapToService(self, service, bouquet=None):
 		if not service is None:
+			if bouquet:
+				self.epg_bouquet = bouquet
 			if self.servicelist.getRoot() != self.epg_bouquet: #already in correct bouquet?
 				self.servicelist.clearPath()
 				if self.servicelist.bouquet_root != self.epg_bouquet:
@@ -1185,7 +1187,6 @@ class InfoBarEPG:
 			self.session.open(EPGSelection, self.slimservicelist, self.EPGtype)
 
 	def openGraphEPG(self, withCallback=True):
-
 		if config.GraphEPG.ShowBouquet.value:
 			if self.serviceListType == "Norm":
 				self.bouquets = self.servicelist.getBouquetList()
@@ -1212,13 +1213,16 @@ class InfoBarEPG:
 				Servicelist = self.slimservicelist
 				self.bouquets = Servicelist and self.slimservicelist.getBouquetList()
 			self.epg_bouquet = Servicelist and Servicelist.getRoot()
+			self.StartBouquet = Servicelist and Servicelist.getRoot()
+			print 'BOUQUET:', self.StartBouquet
+			print 'BOUQUET:', self.StartBouquet.toString()
 			if self.epg_bouquet is not None:
 				if len(self.bouquets) > 1 :
 					cb = self.GraphEPG_CB
 				else:
 					cb = None
 				services = self.getBouquetServices(self.epg_bouquet)
-				self.session.openWithCallback(self.closeGraphEPG, EPGSelection, services, self.zapToService, None, cb, self.EPGtype)
+				self.session.openWithCallback(self.closeGraphEPG, EPGSelection, services, self.zapToService, None, cb, self.EPGtype, self.StartBouquet)
 
 	def openBouquetGraphEPG(self, bouquet, withCallback=True):
 		self.EPGtype = "graph"

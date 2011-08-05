@@ -274,17 +274,17 @@ class EPGSelection(Screen):
 
 	def __init__(self, session, service, zapFunc=None, eventid=None, bouquetChangeCB=None, serviceChangeCB=None, EPGtype = None,  bouquetname=""):
 		Screen.__init__(self, session)
-
+		if EPGtype:
+			self.StartBouquet = EPGtype
+			EPGtype = None
 		if zapFunc == 'infobar':
 			self.InfobarEPG = True
 			zapFunc = None
-
 		else:
 			self.InfobarEPG = False
 		if serviceChangeCB == 'graph':
 			self.GraphicalEPG = True
 			serviceChangeCB = None
-
 		else:
 			self.GraphicalEPG = False
 		self.bouquetChangeCB = bouquetChangeCB
@@ -512,7 +512,7 @@ class EPGSelection(Screen):
 			self.updateTimelineTimer.callback.append(self.moveTimeLines)
 			self.updateTimelineTimer.start(60*1000)
 			self.activityTimer = eTimer()
-			self.activityTimer.timeout.get().append(self.onCreate)
+			self.activityTimer.timeout.get().append(self.onStartup)
 			self.updateList()
 	#		self.onLayoutFinish.append(self.updateList)
 
@@ -564,6 +564,19 @@ class EPGSelection(Screen):
 		scanning = 'Wait please while gathering data...'
 		self['lab1'].setText(scanning)
 		self.activityTimer.start(750)
+
+	def onStartup(self):
+		if self.type == EPG_TYPE_GRAPH:
+			self.activityTimer.stop()
+			self["list"].curr_refcool = self.session.nav.getCurrentlyPlayingServiceReference()
+			self["list"].fillGraphEPG(self.services, self.ask_time)
+			self["list"].moveToService(self.session.nav.getCurrentlyPlayingServiceReference())
+			self.curRef = self["list"].getCurrent()[1]
+			self.startRef = self["list"].getCurrent()[1]
+			self.moveTimeLines()
+			if config.GraphEPG.channel1.value:
+				self["list"].instance.moveSelectionTo(0)
+			self['lab1'].hide()
 
 	def onCreate(self):
 		if self.type == EPG_TYPE_GRAPH:
@@ -752,7 +765,7 @@ class EPGSelection(Screen):
 				self.session.nav.playService(self.oldService)
 			self.setServicelistSelection(self.curBouquet, self.curRef.ref)
 		else:
-			self.zapFunc(self.curRef.ref)
+			self.zapFunc(self.startRef.ref, self.StartBouquet)
 		self.close(self.closeRecursive)
 
 	def GraphEPGClose(self):
