@@ -11,9 +11,11 @@ class About(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 
+		self["BoxType"] = StaticText("Hardware: " + about.getHardwareType())
+		self["ImageType"] = StaticText("Image: " + about.getImageType())
 		self["KernelVersion"] = StaticText("Kernel: " + about.getKernelVersionString())
 		self["EnigmaVersion"] = StaticText("Enigma: " + about.getEnigmaVersionString())
-		self["ImageVersion"] = StaticText("Image: " + about.getImageVersionString())
+		self["ImageVersion"] = StaticText("Last Upgrade: " + about.getImageVersionString())
 
 		self["TunerHeader"] = StaticText(_("Detected NIMs:"))
 
@@ -26,7 +28,7 @@ class About(Screen):
 		self["FPVersion"] = StaticText(fp_version)
 
 		nims = nimmanager.nimList()
-		for count in (0, 1, 2, 3):
+		for count in range(4):
 			if count < len(nims):
 				self["Tuner" + str(count)] = StaticText(nims[count])
 			else:
@@ -34,11 +36,21 @@ class About(Screen):
 
 		self["HDDHeader"] = StaticText(_("Detected HDD:"))
 		hddlist = harddiskmanager.HDDList()
-		hdd = hddlist and hddlist[0][1] or None
-		if hdd is not None and hdd.model() != "":
-			self["hddA"] = StaticText(_("%s\n(%s, %d GB %s)") % (hdd.model(), hdd.capacity(), hdd.free()/1024, _("free")))
+
+		hddinfo = ""
+		if hddlist:
+			for count in range(len(hddlist)):
+				if hddinfo:
+					hddinfo += "\n"
+				hdd = hddlist[count][1]
+				if int(hdd.free()) > 1024:
+					hddinfo += "%s\n(%s, %d GB %s)" % (hdd.model(), hdd.capacity(), hdd.free()/1024, _("free"))
+ 
+				else:
+					hddinfo += "%s\n(%s, %d MB %s)" % (hdd.model(), hdd.capacity(), hdd.free(), _("free"))
 		else:
-			self["hddA"] = StaticText(_("none"))
+			hddinfo = _("none")
+		self["hddA"] = StaticText(hddinfo)
 
 		self["actions"] = ActionMap(["SetupActions", "ColorActions"], 
 			{

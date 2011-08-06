@@ -28,5 +28,27 @@ def getKernelVersionString():
 	except:
 		return "unknown"
 
+def getHardwareType():
+	value = "Unavailable"
+	if os.path.isfile("/etc/hostname"):
+		file = open("/etc/hostname","r")
+		value = file.readline().strip().upper()
+		file.close()
+	return value
+
+def getImageType():
+	value="Undefined"
+	if os.path.isfile("/etc/issue"):
+		file = open("/etc/issue","r")
+		while 1:
+			line = file.readline()
+			if not line:
+				break
+			if "pli" in line and "\\" in line:
+				value = line[:line.index("\\")].strip().capitalize()
+				break
+		file.close()
+	return value
+
 # For modules that do "from About import about"
 about = sys.modules[__name__]
