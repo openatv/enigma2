@@ -28,7 +28,7 @@ def getKernelVersionString():
 	except:
 		return "unknown"
 
-def getHardwareType():
+def getHardwareTypeString():
 	value = "Unavailable"
 	if os.path.isfile("/etc/hostname"):
 		file = open("/etc/hostname","r")
@@ -36,7 +36,7 @@ def getHardwareType():
 		file.close()
 	return value
 
-def getImageType():
+def getImageTypeString():
 	value="Undefined"
 	if os.path.isfile("/etc/issue"):
 		file = open("/etc/issue","r")
