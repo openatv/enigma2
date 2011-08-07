@@ -1493,17 +1493,17 @@ class NetworkAfp(Screen):
 		self.onLayoutFinish.append(self.updateAfp)
 
 	def AfpStart(self):
-		if self.my_Afp_run == False:
+		if self.my_afp_run == False:
 			self.Console.ePopen('/etc/init.d/atalk start')
 			time.sleep(3)
 			self.updateAfp()
-		elif self.my_Afp_run == True:
+		elif self.my_afp_run == True:
 			self.Console.ePopen('/etc/init.d/atalk restart')
 			time.sleep(3)
 			self.updateAfp()
 
 	def AfpStop(self):
-		if self.my_Afp_run == True:
+		if self.my_afp_run == True:
 			self.Console.ePopen('/etc/init.d/atalk stop')
 			time.sleep(3)
 			self.updateAfp()
