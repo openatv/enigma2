@@ -1042,6 +1042,20 @@ int eDVBFrontend::readFrontendData(int type)
 			}
 			return (FE_HAS_SYNC | FE_HAS_LOCK);
 		}
+		case iFrontendInformation_ENUMS::frequency:
+		{
+			struct dtv_property p;
+			struct dtv_properties cmdseq;
+			oparm.getSystem(type);
+			cmdseq.props = &p;
+			cmdseq.num = 1;
+			p.cmd = DTV_FREQUENCY;
+			if (ioctl(m_fd, FE_GET_PROPERTY, &cmdseq) < 0)
+			{
+				return 0;
+			}
+			return p.u.data + m_data[FREQ_OFFSET];
+		}
 	}
 	return 0;
 }

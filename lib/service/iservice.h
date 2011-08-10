@@ -430,6 +430,7 @@ public:
 		signalQualitydB,
 		frontendStatus,
 		snrValue,
+		frequency,
 	};
 };
 
