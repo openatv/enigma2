@@ -346,12 +346,11 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 		CONNECT(m_streamingsrc_timeout->timeout, eServiceMP3::sourceTimeout);
 
 		std::string config_str;
-		if( ePythonConfigQuery::getConfigValue("config.mediaplayer.useAlternateUserAgent", config_str) == 0 )
+		if (eConfigManager::getConfigBoolValue("config.mediaplayer.useAlternateUserAgent"))
 		{
-			if ( config_str == "True" )
-				ePythonConfigQuery::getConfigValue("config.mediaplayer.alternateUserAgent", m_useragent);
+			m_useragent = eConfigManager::getConfigValue("config.mediaplayer.alternateUserAgent");
 		}
-		if ( m_useragent.length() == 0 )
+		if (m_useragent.empty())
 			m_useragent = "Enigma2 Mediaplayer";
 
 		if (strstr(filename, " buffer=1"))
@@ -1983,14 +1982,8 @@ void eServiceMP3::pullSubtitle(GstBuffer *buffer)
 		{
 			if ( m_subtitleStreams[m_currentSubtitleStream].type < stVOB )
 			{
-				int delay = 0;
-				std::string configvalue;
-				if(ePythonConfigQuery::getConfigValue("config.subtitles.pango_subtitles_delay", configvalue)==0)
-					delay = atoi(configvalue.c_str());
-
-				int subtitle_fps = 1; // = original
-				if(ePythonConfigQuery::getConfigValue("config.subtitles.pango_subtitles_fps", configvalue)==0)
-					subtitle_fps = atoi(configvalue.c_str());
+				int delay = eConfigManager::getConfigIntValue("config.subtitles.pango_subtitles_delay");
+				int subtitle_fps = eConfigManager::getConfigIntValue("config.subtitles.pango_subtitles_fps");
 
 				double convert_fps = 1.0;
 				if (subtitle_fps > 1 && m_framerate > 0)
@@ -2237,9 +2230,7 @@ void eServiceMP3::setAC3Delay(int delay)
 		 */
 		if (videoSink)
 		{
-			std::string config_delay;
-			if(ePythonConfigQuery::getConfigValue("config.av.generalAC3delay", config_delay) == 0)
-				config_delay_int += atoi(config_delay.c_str());
+			config_delay_int += eConfigManager::getConfigIntValue("config.av.generalAC3delay");
 		}
 		else
 		{
@@ -2270,9 +2261,7 @@ void eServiceMP3::setPCMDelay(int delay)
 		 */
 		if (videoSink)
 		{
-			std::string config_delay;
-			if(ePythonConfigQuery::getConfigValue("config.av.generalPCMdelay", config_delay) == 0)
-				config_delay_int += atoi(config_delay.c_str());
+			config_delay_int += eConfigManager::getConfigIntValue("config.av.generalPCMdelay");
 		}
 		else
 		{

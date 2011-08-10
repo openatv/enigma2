@@ -2568,12 +2568,10 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 		if (res)
 			goto tune_error;
 
-		std::string enable_5V;
 		char configStr[255];
 		snprintf(configStr, 255, "config.Nims.%d.terrestrial_5V", m_slotid);
 		m_sec_sequence.push_back( eSecCommand(eSecCommand::START_TUNE_TIMEOUT, timeout) );
-		ePythonConfigQuery::getConfigValue(configStr, enable_5V);
-		if (enable_5V == "True")
+		if (eConfigManager::getConfigBoolValue(configStr))
 			m_sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, iDVBFrontend::voltage13) );
 		else
 			m_sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, iDVBFrontend::voltageOff) );
