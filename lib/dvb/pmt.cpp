@@ -388,13 +388,17 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 
 		std::string configvalue;
 		std::vector<std::string> autoaudio_languages;
-		if (!ePythonConfigQuery::getConfigValue("config.autolanguage.audio_autoselect1", configvalue) && configvalue != "None")
+		configvalue = eConfigManager::getConfigValue("config.autolanguage.audio_autoselect1");
+		if (configvalue != "" && configvalue != "None")
 			autoaudio_languages.push_back(configvalue);
-		if (!ePythonConfigQuery::getConfigValue("config.autolanguage.audio_autoselect2", configvalue) && configvalue != "None")
+		configvalue = eConfigManager::getConfigValue("config.autolanguage.audio_autoselect2");
+		if (configvalue != "" && configvalue != "None")
 			autoaudio_languages.push_back(configvalue);
-		if (!ePythonConfigQuery::getConfigValue("config.autolanguage.audio_autoselect3", configvalue) && configvalue != "None")
+		configvalue = eConfigManager::getConfigValue("config.autolanguage.audio_autoselect3");
+		if (configvalue != "" && configvalue != "None")
 			autoaudio_languages.push_back(configvalue);
-		if (!ePythonConfigQuery::getConfigValue("config.autolanguage.audio_autoselect4", configvalue) && configvalue != "None")
+		configvalue = eConfigManager::getConfigValue("config.autolanguage.audio_autoselect4");
+		if (configvalue != "" && configvalue != "None")
 			autoaudio_languages.push_back(configvalue);
 
 		int autosub_txt_normal = -1;
@@ -404,13 +408,17 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 		int autosub_level =4;
 
 		std::vector<std::string> autosub_languages;
-		if (!ePythonConfigQuery::getConfigValue("config.autolanguage.subtitle_autoselect1", configvalue) && configvalue != "None")
+		configvalue = eConfigManager::getConfigValue("config.autolanguage.subtitle_autoselect1");
+		if (configvalue != "" && configvalue != "None")
 			autosub_languages.push_back(configvalue);
-		if (!ePythonConfigQuery::getConfigValue("config.autolanguage.subtitle_autoselect2", configvalue) && configvalue != "None")
+		configvalue = eConfigManager::getConfigValue("config.autolanguage.subtitle_autoselect2");
+		if (configvalue != "" && configvalue != "None")
 			autosub_languages.push_back(configvalue);
-		if (!ePythonConfigQuery::getConfigValue("config.autolanguage.subtitle_autoselect3", configvalue) && configvalue != "None")
+		configvalue = eConfigManager::getConfigValue("config.autolanguage.subtitle_autoselect3");
+		if (configvalue != "" && configvalue != "None")
 			autosub_languages.push_back(configvalue);
-		if (!ePythonConfigQuery::getConfigValue("config.autolanguage.subtitle_autoselect4", configvalue) && configvalue != "None")
+		configvalue = eConfigManager::getConfigValue("config.autolanguage.subtitle_autoselect4");
+		if (configvalue != "" && configvalue != "None")
 			autosub_languages.push_back(configvalue);
 
 		m_dsmcc_pid = program.dsmccPid;
@@ -494,13 +502,8 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 			}
 		}
 
-		bool defaultac3 = false;
-		bool useaudio_cache = false;
-
-		if (!ePythonConfigQuery::getConfigValue("config.autolanguage.audio_defaultac3", configvalue))
-			defaultac3 = configvalue == "True";
-		if (!ePythonConfigQuery::getConfigValue("config.autolanguage.audio_usecache", configvalue))
-			useaudio_cache = configvalue == "True";
+		bool defaultac3 = eConfigManager::getConfigBoolValue("config.autolanguage.audio_defaultac3");
+		bool useaudio_cache = eConfigManager::getConfigBoolValue("config.autolanguage.audio_usecache");
 
 		if (useaudio_cache && audio_cached != -1)
 			program.defaultAudioStream = audio_cached;
@@ -521,19 +524,10 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 				program.defaultAudioStream = autoaudio_ac3;
 		}
 
-		bool allow_hearingimpaired = false;
-		bool default_hearingimpaired = false;
-		bool defaultdvb = false;
-		int equallanguagemask = false;
-
-		if (!ePythonConfigQuery::getConfigValue("config.autolanguage.subtitle_hearingimpaired", configvalue))
-			allow_hearingimpaired = configvalue == "True";
-		if (!ePythonConfigQuery::getConfigValue("config.autolanguage.subtitle_defaultimpaired", configvalue))
-			default_hearingimpaired = configvalue == "True";
-		if (!ePythonConfigQuery::getConfigValue("config.autolanguage.subtitle_defaultdvb", configvalue))
-			defaultdvb = configvalue == "True";
-		if (!ePythonConfigQuery::getConfigValue("config.autolanguage.equal_languages", configvalue))
-			equallanguagemask = atoi(configvalue.c_str());
+		bool allow_hearingimpaired = eConfigManager::getConfigBoolValue("config.autolanguage.subtitle_hearingimpaired");
+		bool default_hearingimpaired = eConfigManager::getConfigBoolValue("config.autolanguage.subtitle_defaultimpaired");
+		bool defaultdvb = eConfigManager::getConfigBoolValue("config.autolanguage.subtitle_defaultdvb");
+		int equallanguagemask = eConfigManager::getConfigIntValue("config.autolanguage.equal_languages");
 
 		if (defaultdvb)
 		{
@@ -788,9 +782,7 @@ int eDVBServicePMTHandler::tuneExt(eServiceReferenceDVB &ref, int use_decode_dem
 			if (ref.path.empty())
 			{
 				m_dvb_scan = new eDVBScan(m_channel, true, false);
-				std::string disable_background_scan;
-				if (ePythonConfigQuery::getConfigValue("config.misc.disable_background_scan", disable_background_scan) < 0
-					|| disable_background_scan != "True")
+				if (!eConfigManager::getConfigBoolValue("config.misc.disable_background_scan"))
 				{
 					/*
 					 * not starting a dvb scan triggers what appears to be a
@@ -822,9 +814,7 @@ int eDVBServicePMTHandler::tuneExt(eServiceReferenceDVB &ref, int use_decode_dem
 
 			if (m_service_type == offline) 
 			{
-				std::string delay;
-				ePythonConfigQuery::getConfigValue("config.recording.offline_decode_delay", delay);
-				m_pvr_channel->setOfflineDecodeMode(atoi(delay.c_str()));
+				m_pvr_channel->setOfflineDecodeMode(eConfigManager::getConfigIntValue("config.recording.offline_decode_delay"));
 			}
 		}
 	}

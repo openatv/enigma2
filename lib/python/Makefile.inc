@@ -2,12 +2,14 @@ noinst_LIBRARIES += python/libenigma_python.a
 
 python_libenigma_python_a_SOURCES = \
 	python/connections.cpp \
-	python/python.cpp
+	python/python.cpp \
+	python/pythonconfig.cpp
 
 pythonincludedir = $(pkgincludedir)/lib/python
 pythoninclude_HEADERS = \
 	python/connections.h \
 	python/python.h \
+	python/pythonconfig.h \
 	python/swig.h
 
 nodist_python_libenigma_python_a_SOURCES = \
