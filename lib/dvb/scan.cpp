@@ -927,13 +927,11 @@ void eDVBScan::channelDone()
 					ePtr<iDVBFrontend> fe;
 					if (!m_channel->getFrontend(fe))
 					{
-						ePyObject tp_dict = PyDict_New();
-						fe->getTransponderData(tp_dict, false);
+						int frequency = fe->readFrontendData(frequency);
 //						eDebug("add tuner data for tsid %04x, onid %04x, ns %08x",
 //							m_chid_current.transport_stream_id.get(), m_chid_current.original_network_id.get(),
 //							m_chid_current.dvbnamespace.get());
-						m_tuner_data.insert(std::pair<eDVBChannelID, ePyObjectWrapper>(m_chid_current, tp_dict));
-						Py_DECREF(tp_dict);
+						m_tuner_data.insert(std::pair<eDVBChannelID, int>(m_chid_current, frequency));
 					}
 				}
 				default:
@@ -1086,7 +1084,7 @@ void eDVBScan::insertInto(iDVBChannelList *db, bool backgroundscanresult)
 	{
 		int system;
 		ch->second->getSystem(system);
-		std::map<eDVBChannelID, ePyObjectWrapper>::iterator it = m_tuner_data.find(ch->first);
+		std::map<eDVBChannelID, int>::iterator it = m_tuner_data.find(ch->first);
 
 		switch(system)
 		{
@@ -1094,7 +1092,7 @@ void eDVBScan::insertInto(iDVBChannelList *db, bool backgroundscanresult)
 			{
 				eDVBFrontendParameters *p = (eDVBFrontendParameters*)&(*ch->second);
 				eDVBFrontendParametersTerrestrial parm;
-				int freq = PyInt_AsLong(PyDict_GetItemString(it->second, "frequency"));
+				int freq = it->second;
 				p->getDVBT(parm);
 //				eDebug("corrected freq for tsid %04x, onid %04x, ns %08x is %d, old was %d",
 //					ch->first.transport_stream_id.get(), ch->first.original_network_id.get(),
