@@ -659,7 +659,17 @@ PyObject *eDVBResourceManager::setFrontendSlotInformations(ePyObject list)
 		int pos=0;
 		while (pos < PyList_Size(list)) {
 			ePyObject obj = PyList_GET_ITEM(list, pos++);
-			if (!i->m_frontend->setSlotInfo(obj))
+			ePyObject Id, Descr, Enabled, IsDVBS2, frontendId;
+			if (!PyTuple_Check(obj) || PyTuple_Size(obj) != 5)
+				continue;
+			Id = PyTuple_GET_ITEM(obj, 0);
+			Descr = PyTuple_GET_ITEM(obj, 1);
+			Enabled = PyTuple_GET_ITEM(obj, 2);
+			IsDVBS2 = PyTuple_GET_ITEM(obj, 3);
+			frontendId = PyTuple_GET_ITEM(obj, 4);
+			if (!PyInt_Check(Id) || !PyString_Check(Descr) || !PyBool_Check(Enabled) || !PyBool_Check(IsDVBS2) || !PyInt_Check(frontendId))
+				continue;
+			if (!i->m_frontend->setSlotInfo(PyInt_AsLong(Id), PyString_AS_STRING(Descr), Enabled == Py_True, IsDVBS2 == Py_True, PyInt_AsLong(frontendId)))
 				continue;
 			++assigned;
 			break;
@@ -674,7 +684,17 @@ PyObject *eDVBResourceManager::setFrontendSlotInformations(ePyObject list)
 		int pos=0;
 		while (pos < PyList_Size(list)) {
 			ePyObject obj = PyList_GET_ITEM(list, pos++);
-			if (!i->m_frontend->setSlotInfo(obj))
+			ePyObject Id, Descr, Enabled, IsDVBS2, frontendId;
+			if (!PyTuple_Check(obj) || PyTuple_Size(obj) != 5)
+				continue;
+			Id = PyTuple_GET_ITEM(obj, 0);
+			Descr = PyTuple_GET_ITEM(obj, 1);
+			Enabled = PyTuple_GET_ITEM(obj, 2);
+			IsDVBS2 = PyTuple_GET_ITEM(obj, 3);
+			frontendId = PyTuple_GET_ITEM(obj, 4);
+			if (!PyInt_Check(Id) || !PyString_Check(Descr) || !PyBool_Check(Enabled) || !PyBool_Check(IsDVBS2) || !PyInt_Check(frontendId))
+				continue;
+			if (!i->m_frontend->setSlotInfo(PyInt_AsLong(Id), PyString_AS_STRING(Descr), Enabled == Py_True, IsDVBS2 == Py_True, PyInt_AsLong(frontendId)))
 				continue;
 			break;
 		}
