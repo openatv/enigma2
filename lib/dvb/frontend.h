@@ -144,7 +144,7 @@ public:
 	int isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm);
 	int getDVBID() { return m_dvbid; }
 	int getSlotID() { return m_slotid; }
-	bool setSlotInfo(ePyObject obj); // get a tuple (slotid, slotdescr)
+	bool setSlotInfo(int id, const char *descr, bool enabled, bool isDVBS2, int frontendid);
 	static void setTypePriorityOrder(int val) { PriorityOrder = val; }
 	static int getTypePriorityOrder() { return PriorityOrder; }
 	static void setPreferredFrontend(int index) { PreferredFrontendIndex = index; }
