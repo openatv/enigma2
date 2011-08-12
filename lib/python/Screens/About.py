@@ -4,6 +4,7 @@ from Components.Sources.StaticText import StaticText
 from Components.Harddisk import harddiskmanager
 from Components.NimManager import nimmanager
 from Components.About import about
+from Components.ScrollLabel import ScrollLabel
 
 from Tools.DreamboxHardware import getFPVersion
 
@@ -11,32 +12,43 @@ class About(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 
-		self["BoxType"] = StaticText("Hardware: " + about.getHardwareTypeString())
-		self["ImageType"] = StaticText("Image: " + about.getImageTypeString())
-		self["KernelVersion"] = StaticText("Kernel: " + about.getKernelVersionString())
-		self["EnigmaVersion"] = StaticText("Enigma: " + about.getEnigmaVersionString())
-		self["ImageVersion"] = StaticText("Last Upgrade: " + about.getImageVersionString())
-
-		self["TunerHeader"] = StaticText(_("Detected NIMs:"))
+		
+		AboutText = _("Hardware: ") + about.getHardwareTypeString() + "\n"
+		AboutText += _("Image: ") + about.getImageTypeString() + "\n"
+		AboutText += _("Kernel Version: ") + about.getKernelVersionString() + "\n"
+		
+		EnigmaVersion = "Enigma: " + about.getEnigmaVersionString()
+		self["EnigmaVersion"] = StaticText(EnigmaVersion)
+		AboutText += EnigmaVersion + "\n"
+		
+		ImageVersion = _("Last Upgrade: ") + about.getImageVersionString()
+		self["ImageVersion"] = StaticText(ImageVersion)
+		AboutText += ImageVersion + "\n"
 
 		fp_version = getFPVersion()
 		if fp_version is None:
 			fp_version = ""
 		else:
 			fp_version = _("Frontprocessor version: %d") % fp_version
+			AboutText += fp_version + "\n"
 
 		self["FPVersion"] = StaticText(fp_version)
+		
+		self["TunerHeader"] = StaticText(_("Detected NIMs:"))
+		AboutText += "\n" + _("Detected NIMs:") + "\n"
 
 		nims = nimmanager.nimList()
 		for count in range(4):
 			if count < len(nims):
 				self["Tuner" + str(count)] = StaticText(nims[count])
+				AboutText += nims[count] + "\n"
 			else:
 				self["Tuner" + str(count)] = StaticText("")
 
 		self["HDDHeader"] = StaticText(_("Detected HDD:"))
-		hddlist = harddiskmanager.HDDList()
+		AboutText += "\n" + _("Detected HDD:") + "\n"
 
+		hddlist = harddiskmanager.HDDList()
 		hddinfo = ""
 		if hddlist:
 			for count in range(len(hddlist)):
@@ -51,12 +63,16 @@ class About(Screen):
 		else:
 			hddinfo = _("none")
 		self["hddA"] = StaticText(hddinfo)
+		AboutText += hddinfo
+		self["AboutScrollLabel"] = ScrollLabel(AboutText)
 
-		self["actions"] = ActionMap(["SetupActions", "ColorActions"], 
+		self["actions"] = ActionMap(["SetupActions", "ColorActions", "DirectionActions"], 
 			{
 				"cancel": self.close,
 				"ok": self.close,
-				"green": self.showTranslationInfo
+				"green": self.showTranslationInfo,
+				"up": self["AboutScrollLabel"].pageUp,
+				"down": self["AboutScrollLabel"].pageDown
 			})
 
 	def showTranslationInfo(self):
