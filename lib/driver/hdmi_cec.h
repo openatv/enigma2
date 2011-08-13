@@ -1,12 +1,12 @@
 #ifndef _hdmi_cec_h
 #define _hdmi_cec_h
 
-#include <lib/base/object.h>
+#include <lib/driver/rc.h>
 #include <lib/python/connections.h>
 
 class eSocketNotifier;
 
-class eHdmiCEC: public Object
+class eHdmiCEC : public eRCDriver
 {
 #ifndef SWIG
 public:
@@ -21,6 +21,9 @@ protected:
 	static eHdmiCEC *instance;
 	int hdmiFd;
 	ePtr<eSocketNotifier> messageNotifier;
+	void getPhysicalAddress(unsigned char *data);
+	bool getStandbyStatus();
+	long translateKey(unsigned char code);
 	void hdmiEvent(int what);
 #ifdef SWIG
 	eHdmiCEC();
@@ -34,6 +37,15 @@ public:
 	static eHdmiCEC *getInstance();
 	PSignal2<void, int, int> messageReceived;
 	void sendMessage(unsigned char address, unsigned char length, char *data);
+	int getPhysicalAddress();
+};
+
+class eHdmiCECDevice : public eRCDevice
+{
+public:
+	void handleCode(long code);
+	eHdmiCECDevice(eRCDriver *driver);
+	const char *getDescription() const;
 };
 
 #endif
