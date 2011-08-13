@@ -3,13 +3,15 @@ noinst_LIBRARIES += python/libenigma_python.a
 python_libenigma_python_a_SOURCES = \
 	python/connections.cpp \
 	python/python.cpp \
-	python/pythonconfig.cpp
+	python/pythonconfig.cpp \
+	python/python_helpers.cpp
 
 pythonincludedir = $(pkgincludedir)/lib/python
 pythoninclude_HEADERS = \
 	python/connections.h \
 	python/python.h \
 	python/pythonconfig.h \
+	python/python_helpers.h \
 	python/swig.h
 
 nodist_python_libenigma_python_a_SOURCES = \
@@ -19,7 +21,9 @@ noinst_PYTHON += \
 	python/enigma_py_patcher.py
 
 EXTRA_DIST += \
-	python/enigma_python.i
+	python/enigma_python.i \
+	python/python_service.i \
+	python/python_dvb.i
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/python/enigma_python.Pcpp@am__quote@
 

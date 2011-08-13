@@ -106,6 +106,7 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/dvb_ci/dvbci.h>
 #include <lib/dvb_ci/dvbci_ui.h>
 #include <lib/python/python.h>
+#include <lib/python/python_helpers.h>
 #include <lib/gdi/picload.h>
 %}
 
@@ -144,6 +145,9 @@ typedef long time_t;
 %include <lib/base/object.h>
 %include <lib/base/eenv.h>
 %include <lib/base/eerror.h>
+
+%include <lib/python/python_dvb.i>
+%include <lib/python/python_service.i>
 
 %immutable eSocketNotifier::activated;
 %include <lib/base/ebase.h>
