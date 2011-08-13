@@ -89,7 +89,6 @@ class OnlineUpdateCheckPoller:
 		rename(sourcefile,'/tmp/online-image-version')
 
 		nextcheck = now + (int(config.usage.infobar_onlinechecktimer.value )* 3600)
-		print 'NEXT CHECK',nextcheck
 		print "[OnlineVersionCheck] Next check at:", strftime("%c", localtime(int(nextcheck))), strftime("(now=%c)", localtime(now))
 		self.timer.startLongTimer(config.usage.infobar_onlinechecktimer.value * 3600)
 

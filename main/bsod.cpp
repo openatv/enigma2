@@ -241,10 +241,10 @@ void bsodFatal(const char *component)
 
 	eRect usable_area = eRect(100, 70, my_dc->size().width() - 150, 100);
 	
-	std::string text("We are really sorry. Your Dreambox encountered "
+	std::string text("We are really sorry. Your receiver encountered "
 		"a software problem, and needs to be restarted. "
 		"Please send the logfile created in /hdd/ to " + crash_emailaddr + ".\n"
-		"Your Dreambox restarts in 10 seconds!\n"
+		"Your receiver restarts in 10 seconds!\n"
 		"Component: " + crash_component);
 
 	p.renderText(usable_area, text.c_str(), gPainter::RT_WRAP|gPainter::RT_HALIGN_LEFT);
