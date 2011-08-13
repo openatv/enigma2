@@ -197,7 +197,12 @@ class Session:
 		self.screen = SessionGlobals(self)
 
 		for p in plugins.getPlugins(PluginDescriptor.WHERE_SESSIONSTART):
-			p(reason=0, session=self)
+			try:
+				p(reason=0, session=self)
+			except:
+				print "Plugin raised exception at WHERE_SESSIONSTART"
+				import traceback
+				traceback.print_exc()
 
 	def processDelay(self):
 		callback = self.current_dialog.callback
