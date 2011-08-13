@@ -111,7 +111,7 @@ class PluginComponent:
 
 		for x in where:
 			res.extend(self.plugins.get(x, [ ]))
-		res.sort(key=lambda x:x.weight)
+		res.sort(key=lambda x:(x.weight, x.name))
 		return res
 
 	def getPluginsForMenu(self, menuid):

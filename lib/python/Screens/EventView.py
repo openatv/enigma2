@@ -212,7 +212,9 @@ class EventViewBase:
 		self["epg_description"].pageDown()
 
 	def getSimilarEvents(self):
-	 # search similar broadcastings
+		# search similar broadcastings
+		if not self.event:
+			return
 		refstr = str(self.currentService)
 		id = self.event.getEventId()
 		epgcache = eEPGCache.getInstance()

@@ -1449,6 +1449,12 @@ class UpdatePlugin(Screen):
 			if self.updating:
 				self.updating = False
 				if self.offline:
+					from enigma import gMainDC, getDesktop, eSize
+					desktop = getDesktop(0)
+					if desktop.size() != eSize(720,576):
+						gMainDC.getInstance().setResolution(720,576)
+	                                	desktop.resize(eSize(720,576))
+					self.session.open(MessageBox, _("Offline upgrade in progress\nPlease wait until your box reboots\nThis may take a few minutes"), MessageBox.TYPE_INFO)
 					quitMainloop(42)
 				else:
 					self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE, args = {'test_only': False})

@@ -41,8 +41,6 @@ class About(Screen):
 		self["KernelVersion"] = StaticText(_("Kernel:") + " " + about.getKernelVersionString())
 		self["ImageType"] = StaticText(_("Image:") + " " + about.getImageTypeString())
 
-		self["TunerHeader"] = StaticText(_("Detected NIMs:"))
-
 		fp_version = getFPVersion()
 		if fp_version is None:
 			fp_version = ""
@@ -50,9 +48,11 @@ class About(Screen):
 			fp_version = _("Frontprocessor version: %d") % fp_version
 
 		self["FPVersion"] = StaticText(fp_version)
+		
+		self["TunerHeader"] = StaticText(_("Detected NIMs:"))
 
 		nims = nimmanager.nimList()
-		for count in (0, 1, 2, 3):
+		for count in range(4):
 			if count < len(nims):
 				self["Tuner" + str(count)] = StaticText(nims[count])
 			else:
@@ -60,37 +60,20 @@ class About(Screen):
 
 		self["HDDHeader"] = StaticText(_("Detected Devices:"))
 		hddlist = harddiskmanager.HDDList()
-		hdd1 = _("None")
-		hdd2 = ""
-		hdd3 = ""
-		for count in (0, 1, 2):
-			if count < len(hddlist):
-				if str(count) == '0':
-					hddlist0 = hddlist[0]
-					hdd = hddlist0[1]
-					if int(hdd.free()) > 1024:
-						freespace = int(hdd.free()) / 1024
-						hdd1 = str(hdd.model()) + ' ' + str(hdd.capacity()) + ', (' + str(freespace) + ' ' + _("GB") + ' ' + _("free") + ')'
-					else:
-						hdd1 = str(hdd.model()) + ' ' + str(hdd.capacity()) + ', (' + str(hdd.free()) + ' ' + _("MB") + ' ' + _("free") + ')'
-				elif str(count) == '1':
-					hddlist1 = hddlist[1]
-					hdd = hddlist1[1]
-					if int(hdd.free()) > 1024:
-						freespace = int(hdd.free()) / 1024
-						hdd2 = str(hdd.model()) + ' ' + str(hdd.capacity()) + ', (' + str(freespace) + ' ' + _("GB") + ' ' + _("free") + ')'
-					else:
-						hdd2 = str(hdd.model()) + ' ' + str(hdd.capacity()) + ', (' + str(hdd.free()) + ' ' + _("MB") + ' ' + _("free") + ')'
-				elif str(count) == '2':
-					hddlist1 = hddlist[2]
-					hdd = hddlist1[1]
-					if int(hdd.free()) > 1024:
-						freespace = int(hdd.free()) / 1024
-						hdd3 = str(hdd.model()) + ' ' + str(hdd.capacity()) + ', (' + str(freespace) + ' ' + _("GB") + ' ' + _("free") + ')'
-					else:
-						hdd3 = str(hdd.model()) + ' ' + str(hdd.capacity()) + ', (' + str(hdd.free()) + ' ' + _("MB") + ' ' + _("free") + ')'
-
-		self["hddA"] = StaticText(hdd1 + '\n' + hdd2 + '\n' + hdd3)
+		hddinfo = ""
+		if hddlist:
+			for count in range(len(hddlist)):
+				if hddinfo:
+					hddinfo += "\n"
+				hdd = hddlist[count][1]
+				if int(hdd.free()) > 1024:
+					hddinfo += "%s\n(%s, %d GB %s)" % (hdd.model(), hdd.capacity(), hdd.free()/1024, _("free"))
+ 
+				else:
+					hddinfo += "%s\n(%s, %d MB %s)" % (hdd.model(), hdd.capacity(), hdd.free(), _("free"))
+		else:
+			hddinfo = _("none")
+		self["hddA"] = StaticText(hddinfo)
 
 		self["actions"] = ActionMap(["SetupActions", "ColorActions", "TimerEditActions"], 
 			{
