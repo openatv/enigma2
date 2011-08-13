@@ -12,6 +12,7 @@
 #include <lib/dvb/scan.h>
 #include <lib/dvb/frontend.h>
 #include <lib/dvb/db.h>
+#include <lib/dvb/frontendparms.h>
 #include <lib/base/eenv.h>
 #include <lib/base/eerror.h>
 #include <lib/base/estring.h>

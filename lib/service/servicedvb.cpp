@@ -39,7 +39,7 @@ public:
 	RESULT getName(const eServiceReference &ref, std::string &name);
 	int getLength(const eServiceReference &ref);
 	int isPlayable(const eServiceReference &ref, const eServiceReference &ignore, bool simulate=false);
-	PyObject *getInfoObject(const eServiceReference &ref, int);
+	ePtr<iDVBTransponderData> getTransponderData(const eServiceReference &ref);
 };
 
 DEFINE_REF(eStaticServiceDVBInformation);
@@ -98,61 +98,66 @@ int eStaticServiceDVBInformation::isPlayable(const eServiceReference &ref, const
 	return 0;
 }
 
-PyObject *eStaticServiceDVBInformation::getInfoObject(const eServiceReference &r, int what)
+ePtr<iDVBTransponderData> eStaticServiceDVBInformation::getTransponderData(const eServiceReference &r)
 {
+	ePtr<iDVBTransponderData> retval;
 	if (r.type == eServiceReference::idDVB)
 	{
 		const eServiceReferenceDVB &ref = (const eServiceReferenceDVB&)r;
-		switch(what)
+		ePtr<eDVBResourceManager> res;
+		if (!eDVBResourceManager::getInstance(res))
 		{
-			case iServiceInformation::sTransponderData:
+			ePtr<iDVBChannelList> db;
+			if (!res->getChannelList(db))
 			{
-				ePtr<eDVBResourceManager> res;
-				if (!eDVBResourceManager::getInstance(res))
+				eDVBChannelID chid;
+				ref.getChannelID(chid);
+				ePtr<iDVBFrontendParameters> feparm;
+				if (!db->getChannelFrontendData(chid, feparm))
 				{
-					ePtr<iDVBChannelList> db;
-					if (!res->getChannelList(db))
+					int system;
+					if (!feparm->getSystem(system))
 					{
-						eDVBChannelID chid;
-						ref.getChannelID(chid);
-						ePtr<iDVBFrontendParameters> feparm;
-						if (!db->getChannelFrontendData(chid, feparm))
+						switch (system)
 						{
-							int system;
-							if (!feparm->getSystem(system))
+							case iDVBFrontend::feSatellite:
 							{
-								ePyObject dict = PyDict_New();
-								switch (system)
-								{
-									case iDVBFrontend::feSatellite:
-									{
-										PutSatelliteDataToDict(dict, feparm);
-										break;
-									}
-									case iDVBFrontend::feTerrestrial:
-									{
-										PutTerrestrialDataToDict(dict, feparm);
-										break;
-									}
-									case iDVBFrontend::feCable:
-									{
-										PutCableDataToDict(dict, feparm);
-										break;
-									}
-									default:
-										eDebug("unknown frontend type %d", system);
-										Py_DECREF(dict);
-										break;
-								}
-								return dict;
+								eDVBFrontendParametersSatellite s;
+								feparm->getDVBS(s);
+								retval = new eDVBSatelliteTransponderData(NULL, 0, s, 0, true);
+								break;
 							}
+							case iDVBFrontend::feTerrestrial:
+							{
+								eDVBFrontendParametersTerrestrial t;
+								feparm->getDVBT(t);
+								retval = new eDVBTerrestrialTransponderData(NULL, 0, t, true);
+								break;
+							}
+							case iDVBFrontend::feCable:
+							{
+								eDVBFrontendParametersCable c;
+								feparm->getDVBC(c);
+								retval = new eDVBCableTransponderData(NULL, 0, c, true);
+								break;
+							}
+							case iDVBFrontend::feATSC:
+							{
+								eDVBFrontendParametersATSC a;
+								feparm->getATSC(a);
+								retval = new eDVBATSCTransponderData(NULL, 0, a, true);
+								break;
+							}
+							default:
+								eDebug("unknown frontend type %d", system);
+								break;
 						}
 					}
 				}
 			}
 		}
 	}
-	Py_RETURN_NONE;
+	return retval;
 }
 
 DEFINE_REF(eStaticServiceDVBBouquetInformation);
@@ -299,7 +304,8 @@ public:
 	int isPlayable(const eServiceReference &ref, const eServiceReference &ignore, bool simulate) { return 1; }
 	int getInfo(const eServiceReference &ref, int w);
 	std::string getInfoString(const eServiceReference &ref,int w);
-	PyObject *getInfoObject(const eServiceReference &r, int what);
+	ePtr<iDVBTransponderData> getTransponderData(const eServiceReference &r);
+	long long getFileSize(const eServiceReference &r);
 };
 
 DEFINE_REF(eStaticServiceDVBPVRInformation);
@@ -429,15 +435,15 @@ std::string eStaticServiceDVBPVRInformation::getInfoString(const eServiceReferen
 	}
 }
 
-PyObject *eStaticServiceDVBPVRInformation::getInfoObject(const eServiceReference &r, int what)
+ePtr<iDVBTransponderData> eStaticServiceDVBPVRInformation::getTransponderData(const eServiceReference &r)
 {
-	switch (what)
-	{
-	case iServiceInformation::sFileSize:
-		return PyLong_FromLongLong(m_parser.m_filesize);
-	default:
-		Py_RETURN_NONE;
-	}
+	ePtr<iDVBTransponderData> retval;
+	return retval;
+}
+
+long long eStaticServiceDVBPVRInformation::getFileSize(const eServiceReference &ref)
+{
+	return m_parser.m_filesize;
 }
 
 RESULT eStaticServiceDVBPVRInformation::getEvent(const eServiceReference &ref, ePtr<eServiceEvent> &evt, time_t start_time)
@@ -1913,20 +1919,9 @@ std::string eDVBServicePlay::getInfoString(int w)
 	return iServiceInformation::getInfoString(w);
 }
 
-PyObject *eDVBServicePlay::getInfoObject(int w)
+ePtr<iDVBTransponderData> eDVBServicePlay::getTransponderData()
 {
-	switch (w)
-	{
-	case sCAIDs:
-		return m_service_handler.getCaIds();
-	case sCAIDPIDs:
-		return m_service_handler.getCaIds(true);
-	case sTransponderData:
-		return eStaticServiceDVBInformation().getInfoObject(m_reference, w);
-	default:
-		break;
-	}
-	return iServiceInformation::getInfoObject(w);
+	return eStaticServiceDVBInformation().getTransponderData(m_reference);
 }
 
 int eDVBServicePlay::getNumberOfTracks()
@@ -2212,75 +2207,41 @@ int eDVBServiceBase::getFrontendInfo(int w)
 	return fe->readFrontendData(w);
 }
 
-PyObject *eDVBServiceBase::getFrontendData()
+ePtr<iDVBFrontendData> eDVBServiceBase::getFrontendData()
 {
-	ePyObject ret = PyDict_New();
-	if (ret)
+	ePtr<iDVBFrontendData> ret;
+	eUsePtr<iDVBChannel> channel;
+	if(!m_service_handler.getChannel(channel))
 	{
-		eUsePtr<iDVBChannel> channel;
-		if(!m_service_handler.getChannel(channel))
-		{
-			ePtr<iDVBFrontend> fe;
-			if(!channel->getFrontend(fe))
-				fe->getFrontendData(ret);
-		}
+		ePtr<iDVBFrontend> fe;
+		if(!channel->getFrontend(fe))
+			fe->getFrontendData(ret);
 	}
-	else
-		Py_RETURN_NONE;
 	return ret;
 }
 
-PyObject *eDVBServiceBase::getFrontendStatus()
+ePtr<iDVBFrontendStatus> eDVBServiceBase::getFrontendStatus()
 {
-	ePyObject ret = PyDict_New();
-	if (ret)
+	ePtr<iDVBFrontendStatus> ret;
+	eUsePtr<iDVBChannel> channel;
+	if(!m_service_handler.getChannel(channel))
 	{
-		eUsePtr<iDVBChannel> channel;
-		if(!m_service_handler.getChannel(channel))
-		{
-			ePtr<iDVBFrontend> fe;
-			if(!channel->getFrontend(fe))
-				fe->getFrontendStatus(ret);
-		}
+		ePtr<iDVBFrontend> fe;
+		if(!channel->getFrontend(fe))
+			fe->getFrontendStatus(ret);
 	}
-	else
-		Py_RETURN_NONE;
 	return ret;
 }
 
-PyObject *eDVBServiceBase::getTransponderData(bool original)
+ePtr<iDVBTransponderData> eDVBServiceBase::getTransponderData(bool original)
 {
-	ePyObject ret = PyDict_New();
-	if (ret)
+	ePtr<iDVBTransponderData> ret;
+	eUsePtr<iDVBChannel> channel;
+	if(!m_service_handler.getChannel(channel))
 	{
-		eUsePtr<iDVBChannel> channel;
-		if(!m_service_handler.getChannel(channel))
-		{
-			ePtr<iDVBFrontend> fe;
-			if(!channel->getFrontend(fe))
-				fe->getTransponderData(ret, original);
-		}
-	}
-	else
-		Py_RETURN_NONE;
-	return ret;
-}
-
-PyObject *eDVBServiceBase::getAll(bool original)
-{
-	ePyObject ret = getTransponderData(original);
-	if (ret != Py_None)
-	{
-		eUsePtr<iDVBChannel> channel;
-		if(!m_service_handler.getChannel(channel))
-		{
-			ePtr<iDVBFrontend> fe;
-			if(!channel->getFrontend(fe))
-			{
-				fe->getFrontendData(ret);
-				fe->getFrontendStatus(ret);
-			}
-		}
+		ePtr<iDVBFrontend> fe;
+		if(!channel->getFrontend(fe))
+			fe->getTransponderData(ret, original);
 	}
 	return ret;
 }
@@ -3434,41 +3395,23 @@ RESULT eDVBServicePlay::stream(ePtr<iStreamableService> &ptr)
 	return 0;
 }
 
-PyObject *eDVBServicePlay::getStreamingData()
+ePtr<iStreamData> eDVBServicePlay::getStreamingData()
 {
+	ePtr<iStreamData> retval;
 	eDVBServicePMTHandler::program program;
-	if (m_service_handler.getProgramInfo(program))
+	if (!m_service_handler.getProgramInfo(program))
 	{
-		Py_RETURN_NONE;
+		retval = new eDVBServicePMTHandler::eStreamData(program);
 	}
-
-	ePyObject r = program.createPythonObject();
-	ePtr<iDVBDemux> demux;
-	if (!m_service_handler.getDataDemux(demux))
-	{
-		uint8_t demux_id, adapter_id;
-		if (!demux->getCADemuxID(demux_id))
-			PutToDict(r, "demux", demux_id);
-		if (!demux->getCAAdapterID(adapter_id))
-			PutToDict(r, "adapter", adapter_id);
-	}
-
-	return r;
+	return retval;
 }
 
 
 DEFINE_REF(eDVBServicePlay)
 
-PyObject *eDVBService::getInfoObject(const eServiceReference &ref, int w)
+ePtr<iDVBTransponderData> eDVBService::getTransponderData(const eServiceReference &ref)
 {
-	switch (w)
-	{
-	case iServiceInformation::sTransponderData:
-		return eStaticServiceDVBInformation().getInfoObject(ref, w);
-	default:
-		break;
-	}
-	return iStaticServiceInformation::getInfoObject(ref, w);
+	return eStaticServiceDVBInformation().getTransponderData(ref);
 }
 
 eAutoInitPtr<eServiceFactoryDVB> init_eServiceFactoryDVB(eAutoInitNumbers::service+1, "eServiceFactoryDVB");

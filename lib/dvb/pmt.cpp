@@ -360,6 +360,7 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 	int cached_vpid = -1;
 	int cached_tpid = -1;
 	int ret = -1;
+	uint8_t adapter, demux;
 
 	if (m_have_cached_program)
 	{
@@ -368,6 +369,14 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 	}
 
 	eDVBPMTParser::clearProgramInfo(program);
+
+	if (m_demux)
+	{
+		m_demux->getCAAdapterID(adapter);
+		program.adapterId = adapter;
+		m_demux->getCADemuxID(demux);
+		program.demuxId = demux;
+	}
 
 	if ( m_service && !m_service->cacheEmpty() )
 	{
@@ -861,55 +870,4 @@ void eDVBServicePMTHandler::free()
 	m_channel = 0;
 	m_pvr_channel = 0;
 	m_demux = 0;
-}
-
-static PyObject *createTuple(int pid, const char *type)
-{
-	PyObject *r = PyTuple_New(2);
-	PyTuple_SET_ITEM(r, 0, PyInt_FromLong(pid));
-	PyTuple_SET_ITEM(r, 1, PyString_FromString(type));
-	return r;
-}
-
-static inline void PyList_AppendSteal(PyObject *list, PyObject *item)
-{
-	PyList_Append(list, item);
-	Py_DECREF(item);
-}
-
-extern void PutToDict(ePyObject &dict, const char*key, ePyObject item); // defined in dvb/frontend.cpp
-
-PyObject *eDVBServicePMTHandler::program::createPythonObject()
-{
-	ePyObject r = PyDict_New();
-	ePyObject l = PyList_New(0);
-
-	PyList_AppendSteal(l, createTuple(0, "pat"));
-
-	if (pmtPid != -1)
-		PyList_AppendSteal(l, createTuple(pmtPid, "pmt"));
-
-	for (std::vector<eDVBServicePMTHandler::videoStream>::const_iterator
-			i(videoStreams.begin()); 
-			i != videoStreams.end(); ++i)
-		PyList_AppendSteal(l, createTuple(i->pid, "video"));
-
-	for (std::vector<eDVBServicePMTHandler::audioStream>::const_iterator
-			i(audioStreams.begin()); 
-			i != audioStreams.end(); ++i)
-		PyList_AppendSteal(l, createTuple(i->pid, "audio"));
-
-	for (std::vector<eDVBServicePMTHandler::subtitleStream>::const_iterator
-			i(subtitleStreams.begin());
-			i != subtitleStreams.end(); ++i)
-		PyList_AppendSteal(l, createTuple(i->pid, "subtitle"));
-
-	PyList_AppendSteal(l, createTuple(pcrPid, "pcr"));
-
-	if (textPid != -1)
-		PyList_AppendSteal(l, createTuple(textPid, "text"));
-
-	PutToDict(r, "pids", l);
-
-	return r;
 }

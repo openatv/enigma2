@@ -1,10 +1,9 @@
 #include <lib/base/eerror.h>
 #include <lib/base/estring.h>
-#include <lib/python/python.h>
 #include <lib/service/service.h>
 #include <lib/base/init_num.h>
 #include <lib/base/init.h>
-#include <lib/python/python.h>
+#include <lib/dvb/idvb.h>
 
 static std::string encode(const std::string s)
 {
@@ -281,9 +280,25 @@ std::string iStaticServiceInformation::getInfoString(const eServiceReference &re
 	return "";
 }
 
-PyObject *iStaticServiceInformation::getInfoObject(const eServiceReference &ref, int w)
+ePtr<iDVBTransponderData> iStaticServiceInformation::getTransponderData(const eServiceReference &ref)
 {
-	Py_RETURN_NONE;
+	ePtr<iDVBTransponderData> retval;
+	return retval;
+}
+
+long long iStaticServiceInformation::getFileSize(const eServiceReference &ref)
+{
+	return 0;
+}
+
+int iStaticServiceInformation::setInfo(const eServiceReference &ref, int w, int v)
+{
+	return -1;
+}
+
+int iStaticServiceInformation::setInfoString(const eServiceReference &ref, int w, const char *v)
+{
+	return -1;
 }
 
 int iServiceInformation::getInfo(int w)
@@ -296,19 +311,15 @@ std::string iServiceInformation::getInfoString(int w)
 	return "";
 }
 
-PyObject* iServiceInformation::getInfoObject(int w)
+ePtr<iDVBTransponderData> iServiceInformation::getTransponderData()
 {
-	Py_RETURN_NONE;
+	ePtr<iDVBTransponderData> retval;
+	return retval;
 }
 
-int iStaticServiceInformation::setInfo(const eServiceReference &ref, int w, int v)
+long long iServiceInformation::getFileSize()
 {
-	return -1;
-}
-
-int iStaticServiceInformation::setInfoString(const eServiceReference &ref, int w, const char *v)
-{
-	return -1;
+	return 0;
 }
 
 int iServiceInformation::setInfo(int w, int v)
