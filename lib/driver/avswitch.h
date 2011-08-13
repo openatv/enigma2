@@ -10,6 +10,7 @@ class eAVSwitch: public Object
 {
 	static eAVSwitch *instance;
 	int m_video_mode;
+	bool m_active;
 	ePtr<eSocketNotifier> m_fp_notifier;
 	void fp_event(int what);
 	int m_fp_fd;
@@ -31,6 +32,7 @@ public:
 	void setVideomode(int mode);
 	void setInput(int val);
 	void setWSS(int val);
+	bool isActive();
 	PSignal1<void, int> vcr_sb_notifier;
 };
 
