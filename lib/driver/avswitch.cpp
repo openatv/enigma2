@@ -16,6 +16,7 @@ eAVSwitch::eAVSwitch()
 	ASSERT(!instance);
 	instance = this;
 	m_video_mode = 0;
+	m_active = false;
 	m_fp_fd = open("/dev/dbox/fp0", O_RDONLY|O_NONBLOCK);
 	if (m_fp_fd == -1)
 	{
@@ -124,7 +125,9 @@ void eAVSwitch::setInput(int val)
 	const char *input[] = {"encoder", "scart", "aux"};
 
 	int fd;
-	
+
+	m_active = val == 0;
+
 	if((fd = open("/proc/stb/avs/0/input", O_WRONLY)) < 0) {
 		eDebug("cannot open /proc/stb/avs/0/input");
 		return;
@@ -132,6 +135,11 @@ void eAVSwitch::setInput(int val)
 
 	write(fd, input[val], strlen(input[val]));
 	close(fd);
+}
+
+bool eAVSwitch::isActive()
+{
+	return m_active;
 }
 
 void eAVSwitch::setColorFormat(int format)
