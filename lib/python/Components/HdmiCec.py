@@ -2,26 +2,25 @@ import struct
 from config import config, ConfigSelection, ConfigYesNo, ConfigSubsection
 from enigma import eHdmiCEC
 
+config.hdmicec = ConfigSubsection()
+config.hdmicec.enabled = ConfigYesNo(default = True)
+config.hdmicec.standby_message = ConfigSelection(
+	choices = {
+	"standby": _("TV standby"),
+	"inactive": _("Source inactive"),
+	"nothing": _("Nothing"),
+	},
+	default = "standby")
+config.hdmicec.wakeup_message = ConfigSelection(
+	choices = {
+	"wakeup": _("TV wakeup"),
+	"active": _("Source active"),
+	"nothing": _("Nothing"),
+	},
+	default = "wakeup")
+
 class HdmiCec:
 	def __init__(self):
-		config.hdmicec = ConfigSubsection()
-		config.hdmicec.enabled = ConfigYesNo(default = True)
-		config.hdmicec.active_source_reply = ConfigYesNo(default = True)
-		config.hdmicec.standby_message = ConfigSelection(
-			choices = {
-			"inactive,standby": _("TV standby"),
-			"inactive": _("Source inactive"),
-			"nothing": _("Nothing"),
-			},
-			default = "inactive,standby")
-		config.hdmicec.wakeup_message = ConfigSelection(
-			choices = {
-			"wakeup,active": _("TV wakeup"),
-			"active": _("Source active"),
-			"nothing": _("Nothing"),
-			},
-			default = "wakeup,active")
-
 		eHdmiCEC.getInstance().messageReceived.get().append(self.messageReceived)
 		config.misc.standbyCounter.addNotifier(self.enterStandby, initial_call = False)
 
@@ -31,11 +30,13 @@ class HdmiCec:
 			if message == "wakeup":
 				cmd = struct.pack('B', 0x04)
 			elif message == "active":
-				cmd = struct.pack('B', 0x82)
+				physicaladdress = eHdmiCEC.getInstance().getPhysicalAddress()
+				cmd = struct.pack('BBB', 0x82, int(physicaladdress/256), int(physicaladdress%256))
 			elif message == "standby":
 				cmd = struct.pack('B', 0x36)
 			elif message == "inactive":
-				cmd = struct.pack('B', 0x9e)
+				physicaladdress = eHdmiCEC.getInstance().getPhysicalAddress()
+				cmd = struct.pack('BBB', 0x9d, int(physicaladdress/256), int(physicaladdress%256))
 			if cmd:
 				eHdmiCEC.getInstance().sendMessage(address, len(cmd), str(cmd))
 
@@ -50,12 +51,11 @@ class HdmiCec:
 			self.sendMessages(0, config.hdmicec.standby_message.value)
 
 	def messageReceived(self, address, message):
-		print "received cec message %x from %x" % (message, address)
 		if config.hdmicec.enabled.value:
-			if message == 0x85 and config.hdmicec.active_source_reply.value:
-				# tv is requesting active sources
+			if message == 0x36:
+				from Screens.Standby import Standby, inStandby
 				if not inStandby:
-					# we are active
-					self.sendMessages(address, "active")
+					from Tools import Notifications
+					Notifications.AddNotification(Standby)
 
 hdmi_cec = HdmiCec()
