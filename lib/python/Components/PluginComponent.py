@@ -4,6 +4,7 @@ from sys import stdout
 
 from Tools.Directories import fileExists
 from Tools.Import import my_import
+from Tools.Profile import profile
 from Plugins.Plugin import PluginDescriptor
 import keymapparser
 
@@ -52,6 +53,7 @@ class PluginComponent:
 				path = directory_category + "/" + pluginname
 				if os_path.isdir(path):
 					if fileExists(path + "/plugin.pyc") or fileExists(path + "/plugin.pyo") or fileExists(path + "/plugin.py"):
+						profile('plugin '+pluginname)
 						try:
 							plugin = my_import('.'.join(["Plugins", c, pluginname, "plugin"]))
 
