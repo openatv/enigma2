@@ -927,7 +927,7 @@ void eDVBScan::channelDone()
 					ePtr<iDVBFrontend> fe;
 					if (!m_channel->getFrontend(fe))
 					{
-						int frequency = fe->readFrontendData(frequency);
+						int frequency = fe->readFrontendData(iFrontendInformation_ENUMS::frequency);
 //						eDebug("add tuner data for tsid %04x, onid %04x, ns %08x",
 //							m_chid_current.transport_stream_id.get(), m_chid_current.original_network_id.get(),
 //							m_chid_current.dvbnamespace.get());
