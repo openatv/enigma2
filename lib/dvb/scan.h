@@ -93,8 +93,6 @@ class eDVBScan: public Object, public iObject
 	int m_networkid;
 	bool m_usePAT;
 	bool m_scan_debug;
-	ePyObject m_additional_tsid_onid_check_func;
-	bool m_show_add_tsid_onid_check_failed_msg;
 public:
 	eDVBScan(iDVBChannel *channel, bool usePAT=true, bool debug=true );
 	~eDVBScan();
