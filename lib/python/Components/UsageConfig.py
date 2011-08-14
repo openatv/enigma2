@@ -323,7 +323,7 @@ def InitUsageConfig():
 		("lat", "Latvian"),
 		("lit", "Lithuanian"),
 		("ltz", "Letzeburgesch"),
-		("nob", "Norwegian"),
+		("nor", "Norwegian"),
 		("pol", "Polish"),
 		("por", "Portuguese"),
 		("fas per", "Persian"),
