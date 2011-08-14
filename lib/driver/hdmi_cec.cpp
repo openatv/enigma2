@@ -79,6 +79,7 @@ void eHdmiCEC::hdmiEvent(int what)
 		if (::read(hdmiFd, &message.data, message.length) == message.length)
 		{
 			bool keypressed = false;
+			static unsigned char pressedkey = 0;
 
 			/* there is no simple way to pass the complete message object to python, so we support only single byte commands for now */
 			messageReceived(message.address, message.data[0]);
@@ -93,14 +94,16 @@ void eHdmiCEC::hdmiEvent(int what)
 			{
 				case 0x44: /* key pressed */
 					keypressed = true;
+					pressedkey = message.data[1];
 				case 0x45: /* key released */
 				{
-					long code = translateKey(message.data[1]);
+					long code = translateKey(pressedkey);
 					if (keypressed) code |= 0x80000000;
 					for (std::list<eRCDevice*>::iterator i(listeners.begin()); i != listeners.end(); ++i)
 					{
 						(*i)->handleCode(code);
 					}
+					message.length = 0; /* no reply */
 					break;
 				}
 				case 0x46: /* request name */
@@ -266,11 +269,11 @@ void eHdmiCECDevice::handleCode(long code)
 {
 	if (code & 0x80000000)
 	{
-		/*emit*/ input->keyPressed(eRCKey(this, code, 0));
+		/*emit*/ input->keyPressed(eRCKey(this, code & 0xffff, 0));
 	}
 	else
 	{
-		/*emit*/ input->keyPressed(eRCKey(this, code, eRCKey::flagBreak));
+		/*emit*/ input->keyPressed(eRCKey(this, code & 0xffff, eRCKey::flagBreak));
 	}
 }
 
@@ -295,4 +298,4 @@ public:
 	}
 };
 
-eAutoInitP0<eHdmiCEC> init_hdmicec(eAutoInitNumbers::rc + 1, "Hdmi CEC driver");
+eAutoInitP0<eHdmiCECInit> init_hdmicec(eAutoInitNumbers::rc + 2, "Hdmi CEC driver");
