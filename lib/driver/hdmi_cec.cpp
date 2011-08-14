@@ -63,7 +63,7 @@ int eHdmiCEC::getPhysicalAddress()
 	return (data[0] << 8) | data[1];
 }
 
-bool eHdmiCEC::getStandbyStatus()
+bool eHdmiCEC::getActiveStatus()
 {
 	bool active = true;
 	eAVSwitch *avswitch = eAVSwitch::getInstance();
@@ -110,7 +110,7 @@ void eHdmiCEC::hdmiEvent(int what)
 					break;
 				case 0x8f: /* request power status */
 					message.data[0] = 0x90; /* report power */
-					message.data[1] = getStandbyStatus() ? 0x00 : 0x01;
+					message.data[1] = getActiveStatus() ? 0x00 : 0x01;
 					message.length = 2;
 					break;
 				case 0x83: /* request address */
@@ -121,13 +121,13 @@ void eHdmiCEC::hdmiEvent(int what)
 					break;
 				case 0x86: /* request streaming path */
 					message.address = 0x0f; /* broadcast */
-					message.data[0] = getStandbyStatus() ? 0x82 : 0x9d; /* report active / inactive */
+					message.data[0] = getActiveStatus() ? 0x82 : 0x9d; /* report active / inactive */
 					getPhysicalAddress(&message.data[1]);
 					message.length = 3;
 					break;
 				case 0x85: /* request active source */
 					message.address = 0x0f; /* broadcast */
-					message.data[0] = getStandbyStatus() ? 0x82 : 0x9d; /* report active / inactive */
+					message.data[0] = getActiveStatus() ? 0x82 : 0x9d; /* report active / inactive */
 					getPhysicalAddress(&message.data[1]);
 					message.length = 3;
 					break;
@@ -142,7 +142,7 @@ void eHdmiCEC::hdmiEvent(int what)
 					if (message.data[1] == 0x02) /* query */
 					{
 						message.data[0] = 0x8e; /* menu status */
-						message.data[1] = 0x01; /* menu deactivated */
+						message.data[1] = getActiveStatus() ? 0x00 : 0x01; /* menu activated / deactivated (reporting 'menu active' will activate rc passthrough mode on some tv's) */
 						message.length = 2;
 					}
 					break;
