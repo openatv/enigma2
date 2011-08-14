@@ -1,7 +1,4 @@
-from os import path as os_path, listdir as os_listdir
-from traceback import print_exc
-from sys import stdout
-
+import os
 from Tools.Directories import fileExists
 from Tools.Import import my_import
 from Tools.Profile import profile
@@ -40,32 +37,22 @@ class PluginComponent:
 
 	def readPluginList(self, directory):
 		"""enumerates plugins"""
-
-		categories = os_listdir(directory)
-
-		new_plugins = [ ]
-
-		for c in categories:
-			directory_category = directory + c
-			if not os_path.isdir(directory_category):
+		new_plugins = []
+		for c in os.listdir(directory):
+			directory_category = os.path.join(directory, c)
+			if not os.path.isdir(directory_category):
 				continue
-			for pluginname in os_listdir(directory_category):
-				path = directory_category + "/" + pluginname
-				if os_path.isdir(path):
-					if fileExists(path + "/plugin.pyc") or fileExists(path + "/plugin.pyo") or fileExists(path + "/plugin.py"):
+			for pluginname in os.listdir(directory_category):
+				path = os.path.join(directory_category, pluginname)
+				if os.path.isdir(path):
 						profile('plugin '+pluginname)
 						try:
 							plugin = my_import('.'.join(["Plugins", c, pluginname, "plugin"]))
-
-							if not plugin.__dict__.has_key("Plugins"):
-								print "Plugin %s doesn't have 'Plugin'-call." % (pluginname)
-								continue
-
 							plugins = plugin.Plugins(path=path)
 						except Exception, exc:
 							print "Plugin ", c + "/" + pluginname, "failed to load:", exc
-							print_exc(file=stdout)
-							print "skipping plugin."
+							from traceback import print_exc
+							print_exc()
 							self.warnings.append( (c + "/" + pluginname, str(exc)) )
 							continue
 
@@ -77,9 +64,10 @@ class PluginComponent:
 							p.updateIcon(path)
 							new_plugins.append(p)
 
-						if fileExists(path + "/keymap.xml"):
+						keymap = os.path.join(path, "keymap.xml")
+						if fileExists(keymap):
 							try:
-								keymapparser.readKeymap(path + "/keymap.xml")
+								keymapparser.readKeymap(keymap)
 							except Exception, exc:
 								print "keymap for plugin %s/%s failed to load: " % (c, pluginname), exc
 								self.warnings.append( (c + "/" + pluginname, str(exc)) )
