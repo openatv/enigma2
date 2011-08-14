@@ -4,8 +4,8 @@ from Components.config import config, getConfigListEntry
 
 class HdmiCECSetupScreen(Screen, ConfigListScreen):
 	skin = """
-	<screen position="c-250,c-150" size="500,300" title="HDMI CEC setup">
-		<widget name="config" position="c-225,c-125" size="450,250" />
+	<screen position="c-300,c-150" size="600,300" title="HDMI CEC setup">
+		<widget name="config" position="c-275,c-125" size="550,250" />
 		<ePixmap pixmap="skin_default/buttons/green.png" position="c-145,e-45" zPosition="0" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/red.png" position="c+5,e-45" zPosition="0" size="140,40" alphatest="on" />
 		<widget name="ok" position="c-145,e-45" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;20" transparent="1" backgroundColor="green" />
@@ -33,9 +33,11 @@ class HdmiCECSetupScreen(Screen, ConfigListScreen):
 
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session = self.session)
+		
 		self.list.append(getConfigListEntry(_("Enabled"), config.hdmicec.enabled))
-		self.list.append(getConfigListEntry(_("Standby message"), config.hdmicec.standby_message))
-		self.list.append(getConfigListEntry(_("Wakeup message"), config.hdmicec.wakeup_message))
+		self.list.append(getConfigListEntry(_("Standby actions"), config.hdmicec.standby_message))
+		self.list.append(getConfigListEntry(_("Wakeup actions"), config.hdmicec.wakeup_message))
+		self.list.append(getConfigListEntry(_("TV on sequence"), config.hdmicec.wakeup_handling))
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
 
