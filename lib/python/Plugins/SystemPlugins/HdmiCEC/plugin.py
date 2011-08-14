@@ -4,8 +4,8 @@ from Components.config import config, getConfigListEntry
 
 class HdmiCECSetupScreen(Screen, ConfigListScreen):
 	skin = """
-	<screen position="c-200,c-100" size="400,200" title="HDMI CEC setup">
-		<widget name="config" position="c-175,c-75" size="350,150" />
+	<screen position="c-250,c-150" size="500,300" title="HDMI CEC setup">
+		<widget name="config" position="c-225,c-125" size="450,250" />
 		<ePixmap pixmap="skin_default/buttons/green.png" position="c-145,e-45" zPosition="0" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/red.png" position="c+5,e-45" zPosition="0" size="140,40" alphatest="on" />
 		<widget name="ok" position="c-145,e-45" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;20" transparent="1" backgroundColor="green" />
@@ -46,10 +46,13 @@ class HdmiCECSetupScreen(Screen, ConfigListScreen):
 		ConfigListScreen.keyRight(self)
 
 	def keyGo(self):
-		config.hdmicec.save()
+		for x in self["config"].list:
+			x[1].save()
 		self.close()
 
 	def keyCancel(self):
+		for x in self["config"].list:
+			x[1].cancel()
 		self.close()
 
 def main(session, **kwargs):
