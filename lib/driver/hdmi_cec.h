@@ -22,7 +22,7 @@ protected:
 	int hdmiFd;
 	ePtr<eSocketNotifier> messageNotifier;
 	void getPhysicalAddress(unsigned char *data);
-	bool getStandbyStatus();
+	bool getActiveStatus();
 	long translateKey(unsigned char code);
 	void hdmiEvent(int what);
 #ifdef SWIG
