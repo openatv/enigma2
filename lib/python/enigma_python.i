@@ -187,6 +187,7 @@ typedef long time_t;
 %immutable iCryptoInfo::decodetime;
 %immutable iCryptoInfo::usedcardid;
 %immutable eTuxtxtApp::appClosed;
+%immutable iDVBChannel::receivedTsidOnid;
 %include <lib/base/message.h>
 %include <lib/base/etpm.h>
 %include <lib/driver/rc.h>
