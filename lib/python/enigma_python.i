@@ -149,6 +149,7 @@ typedef long time_t;
 %include <lib/python/python_dvb.i>
 %include <lib/python/python_service.i>
 %include <lib/python/python_pmt.i>
+%include <lib/python/python_pcore.i>
 
 %immutable eSocketNotifier::activated;
 %include <lib/base/ebase.h>
