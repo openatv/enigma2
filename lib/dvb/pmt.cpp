@@ -314,42 +314,18 @@ void eDVBServicePMTHandler::OCready(int error)
 	m_OC.stop();
 }
 
-PyObject *eDVBServicePMTHandler::getCaIds(bool pair)
+void eDVBServicePMTHandler::getCaIds(std::vector<int> &caids, std::vector<int> &ecmpids)
 {
-	ePyObject ret;
-
 	program prog;
 
-	if ( !getProgramInfo(prog) )
+	if (!getProgramInfo(prog))
 	{
-		if (pair)
+		for (std::list<program::capid_pair>::iterator it = prog.caids.begin(); it != prog.caids.end(); ++it)
 		{
-			int cnt=prog.caids.size();
-			if (cnt)
-			{
-				ret=PyList_New(cnt);
-				std::list<program::capid_pair>::iterator it(prog.caids.begin());
-				while(cnt--)
-				{
-					ePyObject tuple = PyTuple_New(2);
-					PyTuple_SET_ITEM(tuple, 0, PyInt_FromLong(it->caid));
-					PyTuple_SET_ITEM(tuple, 1, PyInt_FromLong((it++)->capid));
-					PyList_SET_ITEM(ret, cnt, tuple);
-				}
-			}
-		}
-		else
-		{
-			std::set<program::capid_pair> set(prog.caids.begin(), prog.caids.end());
-			std::set<program::capid_pair>::iterator it(set.begin());
-			int cnt=set.size();
-			ret=PyList_New(cnt);
-			while(cnt--)
-				PyList_SET_ITEM(ret, cnt, PyInt_FromLong((it++)->caid));
+			caids.push_back(it->caid);
+			ecmpids.push_back(it->capid);
 		}
 	}
-
-	return ret ? (PyObject*)ret : (PyObject*)PyList_New(0);
 }
 
 int eDVBServicePMTHandler::getProgramInfo(program &program)
