@@ -28,27 +28,21 @@ def getKernelVersionString():
 	except:
 		return "unknown"
 
-def getHardwareTypeString():
-	value = "Unavailable"
-	if os.path.isfile("/etc/hostname"):
-		file = open("/etc/hostname","r")
-		value = file.readline().strip().upper()
-		file.close()
-	return value
-
-def getImageTypeString():
-	value="Undefined"
-	if os.path.isfile("/etc/issue"):
-		file = open("/etc/issue","r")
-		while 1:
-			line = file.readline()
-			if not line:
-				break
-			if "pli" in line and "\\" in line:
-				value = line[:line.index("\\")].strip().capitalize()
-				break
-		file.close()
-	return value
+def getHardwareTypeString():                                                    
+	if os.path.isfile("/proc/stb/info/boxtype"):                            
+		return open("/proc/stb/info/boxtype").read().strip().upper()    
+	if os.path.isfile("/proc/stb/info/vumodel"):                            
+		return "VU+" + open("/proc/stb/info/vumodel").read().strip().upper()
+	if os.path.isfile("/proc/stb/info/model"):                              
+		return open("/proc/stb/info/model").read().strip().upper()      
+	return "Unavailable"                                                    
+                                                                                
+def getImageTypeString():                                                             
+	try:                                                            
+		return open("/etc/issue").readlines()[-2].capitalize().strip()[:-6]
+	except:                                                         
+		pass                                                    
+	return "Undefined" 
 
 # For modules that do "from About import about"
 about = sys.modules[__name__]
