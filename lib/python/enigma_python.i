@@ -415,3 +415,6 @@ extern eApplication *getApplication();
 extern const char *getEnigmaVersionString();
 extern const char *getBoxType();
 extern void dump_malloc_stats(void);
+
+%include <lib/python/python_console.i>
+%include <lib/python/python_base.i>
