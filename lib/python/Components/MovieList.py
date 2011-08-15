@@ -480,7 +480,8 @@ class MovieList(GUIComponent):
 		# skip '/'
 		if len(rootPath) > 1:
 			parent = os.path.split(os.path.normpath(rootPath))[0]
-			if parent and (parent not in defaultInhibitDirs):
+			currentfolder = os.path.normpath(rootPath) + '/'
+			if parent and (parent not in defaultInhibitDirs) and not currentfolder.endswith(config.usage.default_path.value):
 				# enigma wants an extra '/' appended
 				if not parent.endswith('/'):
 					parent += '/'
@@ -497,8 +498,10 @@ class MovieList(GUIComponent):
 				info = justStubInfo 
 			begin = info.getInfo(serviceref, iServiceInformation.sTimeCreate)
 			if serviceref.flags & eServiceReference.mustDescent:
-				self.list.append((serviceref, info, begin, -1))
-				numberOfDirs += 1
+				dirname = info.getName(serviceref)
+				if not dirname.endswith('.AppleDouble/') and not dirname.endswith('.AppleDB/'):
+					self.list.append((serviceref, info, begin, -1))
+					numberOfDirs += 1
 				continue
 			# convert space-seperated list of tags into a set
 			this_tags = info.getInfoString(serviceref, iServiceInformation.sTags).split(' ')
