@@ -33,7 +33,7 @@ public:
 	
 	RESULT recordService(const eServiceReference &ref, ePtr<iRecordableService> &service, bool simulate=false);
 	RESULT stopRecordService(ePtr<iRecordableService> &service);
-	PyObject *getRecordings(bool simulate=false);
+	void getRecordings(std::vector<ePtr<iRecordableService> > &recordings, bool simulate=false);
 	
 	RESULT pause(int p);
 	eNavigation(iServiceHandler *serviceHandler);

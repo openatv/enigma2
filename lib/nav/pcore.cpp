@@ -47,9 +47,9 @@ RESULT pNavigation::stopRecordService(ePtr<iRecordableService> &service)
 	return m_core->stopRecordService(service);
 }
 
-PyObject *pNavigation::getRecordings(bool simulate)
+void pNavigation::getRecordings(std::vector<ePtr<iRecordableService> > &recordings, bool simulate)
 {
-	return m_core->getRecordings(simulate);
+	m_core->getRecordings(recordings, simulate);
 }
 
 void pNavigation::navEvent(int event)

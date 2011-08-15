@@ -122,17 +122,14 @@ RESULT eNavigation::stopRecordService(ePtr<iRecordableService> &service)
 	return -1;
 }
 
-PyObject *eNavigation::getRecordings(bool simulate)
+void eNavigation::getRecordings(std::vector<ePtr<iRecordableService> > &recordings, bool simulate)
 {
-	ePyObject result = PyList_New(simulate ? m_simulate_recordings.size() : m_recordings.size());
-	int pos=0;
 	if (simulate)
 		for (std::set<ePtr<iRecordableService> >::iterator it(m_simulate_recordings.begin()); it != m_simulate_recordings.end(); ++it)
-			PyList_SET_ITEM(result, pos++, NEW_iRecordableServicePtr(*it));
+			recordings.push_back(*it);
 	else
 		for (std::map<ePtr<iRecordableService>, ePtr<eConnection> >::iterator it(m_recordings.begin()); it != m_recordings.end(); ++it)
-			PyList_SET_ITEM(result, pos++, NEW_iRecordableServicePtr(it->first)); 
-	return result;
+			recordings.push_back(it->first);
 }
 
 RESULT eNavigation::pause(int dop)
