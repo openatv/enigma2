@@ -52,6 +52,7 @@
 				<id val="system" />
 				<item level="1" entryID="autolanguage_setup"><setup id="autolanguagesetup" /></item>
 				<item level="0" entryID="av_setup"><setup id="avsetup"/></item>
+				<item level="0" entryID="remote_setup"><setup id="remotesetup"/></item>
 				<item level="0" entryID="usage_setup"><setup id="usage" /></item>
 				<item requires="Display"><setup level="1" id="lcd" /></item>
 				<menu level="2" text="EPG" entryID="epg_menu">
@@ -115,7 +116,6 @@ self.session.openWithCallback(msgClosed, EpgLoadMsg)
 				</menu>
 				<item level="0" entryID="recording_setup"><setup id="recording" /></item>
 				<item level="2" text="Recording Paths" entryID="RecordPaths"><screen module="RecordPaths" screen="RecordPathsSettings" /></item>
-				<item level="0" entryID="remote_setup"><setup id="remotesetup"/></item>
 				<item level="1" entryID="rfmod_setup" requires="RfModulator"><setup id="RFmod"/></item>
 				<item level="0" text="Skin Setup" entryID="skin_setup"><screen module="SkinSelector" screen="SkinSelector"/></item>
 				<item level="2" entryID="subtitle_setup"><setup id="subtitlesetup" /></item>
