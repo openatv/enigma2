@@ -21,50 +21,6 @@ std::string eServiceEvent::m_language = "de_DE";
 DEFINE_REF(eServiceEvent);
 DEFINE_REF(eComponentData);
 
-const char MAX_LANG = 38;
-/* OSD language (see /share/locales/locales) to iso639 conversion table */
-std::string ISOtbl[MAX_LANG][2] =
-{
-	{"ar_AE","ara"},
-	{"C","eng"},
-	{"cs_CZ","ces"},     /* or 'cze' */
-	{"cs_CZ","cze"},
-	{"da_DK","dan"},
-	{"de_DE","deu"},     /* also 'ger' is valid iso639 code!! */
-	{"de_DE","ger"},
-	{"el_GR","gre"},     /* also 'ell' is valid */
-	{"el_GR","ell"},
-	{"es_ES","esl"},     /* also 'spa' is ok */
-	{"es_ES","spa"},
-	{"et_EE","est"},
-	{"fi_FI","fin"},
-	{"fr_FR","fra"},
-	{"hr_HR","hrv"},     /* or 'scr' */
-	{"hr_HR","scr"},
-	{"hu_HU","hun"},
-	{"is_IS","isl"},     /* or 'ice' */
-	{"is_IS","ice"},
-	{"it_IT","ita"},
-	{"lt_LT","lit"},
-	{"nl_NL","nld"},     /* or 'dut' */
-	{"nl_NL","dut"},
-	{"no_NO","nor"},
-	{"pl_PL","pol"},
-	{"pt_PT","por"},
-	{"ro_RO","ron"},     /* or 'rum' */
-	{"ro_RO","rum"},
-	{"ru_RU","rus"},
-	{"sk_SK","slk"},     /* or 'slo' */
-	{"sk_SK","slo"},
-	{"sl_SI","slv"},
-	{"sr_YU","srp"},     /* or 'scc' */
-	{"sr_YU","scc"},
-	{"sv_SE","swe"},
-	{"th_TH","tha"},
-	{"tr_TR","tur"},
-	{"ur_IN","urd"}
-};
-
 /* search for the presence of language from given EIT event descriptors*/
 bool eServiceEvent::loadLanguage(Event *evt, std::string lang, int tsidonid)
 {
@@ -82,9 +38,7 @@ bool eServiceEvent::loadLanguage(Event *evt, std::string lang, int tsidonid)
 				std::string cc = sed->getIso639LanguageCode();
 				std::transform(cc.begin(), cc.end(), cc.begin(), tolower);
 				int table=encodingHandler.getCountryCodeDefaultMapping(cc);
-				if (lang.empty())
-					lang = cc;  // use first found language
-				if (cc == lang)
+				if ( lang == "---" || lang.find(cc) != -1)
 				{
 					m_event_name = replace_all(replace_all(convertDVBUTF8(sed->getEventName(), table, tsidonid), "\n", " "), "\t", " ");
 					m_short_description = convertDVBUTF8(sed->getText(), table, tsidonid);
@@ -98,9 +52,7 @@ bool eServiceEvent::loadLanguage(Event *evt, std::string lang, int tsidonid)
 				std::string cc = eed->getIso639LanguageCode();
 				std::transform(cc.begin(), cc.end(), cc.begin(), tolower);
 				int table=encodingHandler.getCountryCodeDefaultMapping(cc);
-				if (lang.empty())
-					lang = cc;  // use first found language
-				if (cc == lang)
+				if ( lang == "---" || lang.find(cc) != -1)
 				{
 					/*
 					 * Bit of a hack, some providers put the event description partly in the short descriptor,
@@ -193,13 +145,11 @@ RESULT eServiceEvent::parseFrom(Event *evt, int tsidonid)
 	);
 	m_event_id = evt->getEventId();
 	m_duration = fromBCD(duration>>16)*3600+fromBCD(duration>>8)*60+fromBCD(duration);
-	for (int i=0; i < MAX_LANG; i++)
-		if (m_language==ISOtbl[i][0])
-			if (loadLanguage(evt, ISOtbl[i][1], tsidonid))
-				return 0;
+	if (loadLanguage(evt, m_language, tsidonid))
+		return 0;
 	if (loadLanguage(evt, "eng", tsidonid))
 		return 0;
-	if (loadLanguage(evt, std::string(), tsidonid))
+	if (loadLanguage(evt, "---", tsidonid))
 		return 0;
 	return 0;
 }
