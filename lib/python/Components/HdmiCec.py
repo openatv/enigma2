@@ -111,5 +111,9 @@ class HdmiCec:
 				if not inStandby:
 					from Tools import Notifications
 					Notifications.AddNotification(Standby)
+			elif message == 0x86:
+				from Screens.Standby import Standby, inStandby
+				if inStandby:
+					inStandby.Power()
 
 hdmi_cec = HdmiCec()
