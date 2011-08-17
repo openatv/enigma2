@@ -38,12 +38,12 @@ class About(Screen):
 		AboutText += "\n" + _("Detected NIMs:") + "\n"
 
 		nims = nimmanager.nimList()
-		for count in range(4):
-			if count < len(nims):
+		for count in range(len(nims)):
+			if count < 4:
 				self["Tuner" + str(count)] = StaticText(nims[count])
-				AboutText += nims[count] + "\n"
 			else:
 				self["Tuner" + str(count)] = StaticText("")
+			AboutText += nims[count] + "\n"
 
 		self["HDDHeader"] = StaticText(_("Detected HDD:"))
 		AboutText += "\n" + _("Detected HDD:") + "\n"
