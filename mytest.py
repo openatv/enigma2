@@ -13,15 +13,6 @@ enigma.eTimer = eBaseImpl.eTimer
 enigma.eSocketNotifier = eBaseImpl.eSocketNotifier
 enigma.eConsoleAppContainer = eConsoleImpl.eConsoleAppContainer
 
-profile("LANGUAGE")
-from Components.Language import language
-
-def setEPGLanguage():
-	print "language set to", language.getLanguage()
-	enigma.eServiceEvent.setEPGLanguage(language.getLanguage())
-
-language.addCallback(setEPGLanguage)
-
 from traceback import print_exc
 profile("LOAD:InfoBar")
 import Screens.InfoBar
