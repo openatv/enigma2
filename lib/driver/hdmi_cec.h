@@ -21,10 +21,11 @@ protected:
 	static eHdmiCEC *instance;
 	int hdmiFd;
 	ePtr<eSocketNotifier> messageNotifier;
-	void getPhysicalAddress(unsigned char *data);
+	void getAddressInfo(unsigned char *physicaladdress, unsigned char &logicaladdress, unsigned char &type);
 	bool getActiveStatus();
 	long translateKey(unsigned char code);
 	void hdmiEvent(int what);
+	void sendMessage(struct cec_message &message);
 #ifdef SWIG
 	eHdmiCEC();
 	~eHdmiCEC();
@@ -37,7 +38,9 @@ public:
 	static eHdmiCEC *getInstance();
 	PSignal2<void, int, int> messageReceived;
 	void sendMessage(unsigned char address, unsigned char length, char *data);
+	int getLogicalAddress();
 	int getPhysicalAddress();
+	int getDeviceType();
 };
 
 class eHdmiCECDevice : public eRCDevice
