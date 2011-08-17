@@ -36,6 +36,7 @@ config.hdmicec.wakeup_handling = ConfigSelection(
 class HdmiCec:
 	def __init__(self):
 		eHdmiCEC.getInstance().messageReceived.get().append(self.messageReceived)
+		eHdmiCEC.getInstance().streamRequestReceived.get().append(self.streamRequestReceived)
 		config.misc.standbyCounter.addNotifier(self.enterStandby, initial_call = False)
 		self.timer = eTimer()
 		self.timer.callback.append(self.timeout)
@@ -54,6 +55,7 @@ class HdmiCec:
 		for message in self.messages:
 			cmd = None
 			self.messages = self.messages[1:]
+			address = self.destinationaddress
 			if message == "delay":
 				print "HdmiCec: delay"
 				self.timer.start(3000, True)
@@ -69,11 +71,13 @@ class HdmiCec:
 			elif message == "wakeup":
 				cmd = struct.pack('B', 0x04)
 			elif message == "sourceactive":
+				address = 0x0f # use broadcast for active source command
 				physicaladdress = eHdmiCEC.getInstance().getPhysicalAddress()
 				cmd = struct.pack('BBB', 0x82, int(physicaladdress/256), int(physicaladdress%256))
 			elif message == "standby":
 				cmd = struct.pack('B', 0x36)
 			elif message == "sourceinactive":
+				address = 0x0f # use broadcast for inactive source command
 				physicaladdress = eHdmiCEC.getInstance().getPhysicalAddress()
 				cmd = struct.pack('BBB', 0x9d, int(physicaladdress/256), int(physicaladdress%256))
 			elif message == "menuactive":
@@ -102,18 +106,20 @@ class HdmiCec:
 				print "HdmiCec: activity detected, continue"
 				self.waitforactivity = False
 				self.sendMessages(self.destinationaddress, self.messages)
-			if self.waitforstreamrequest and message == 0x86:
-				print "HdmiCec: streaming path request received, continue"
-				self.waitforstreamrequest = False
-				self.sendMessages(self.destinationaddress, self.messages)
 			if message == 0x36:
 				from Screens.Standby import Standby, inStandby
 				if not inStandby:
 					from Tools import Notifications
 					Notifications.AddNotification(Standby)
-			elif message == 0x86:
-				from Screens.Standby import Standby, inStandby
-				if inStandby:
-					inStandby.Power()
+
+	def streamRequestReceived(self, address):
+		if config.hdmicec.enabled.value:
+			if self.waitforstreamrequest:
+				print "HdmiCec: streaming path request received, continue"
+				self.waitforstreamrequest = False
+				self.sendMessages(self.destinationaddress, self.messages)
+			from Screens.Standby import Standby, inStandby
+			if inStandby:
+				inStandby.Power()
 
 hdmi_cec = HdmiCec()
