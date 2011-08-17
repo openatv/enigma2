@@ -37,6 +37,7 @@ public:
 #endif
 	static eHdmiCEC *getInstance();
 	PSignal2<void, int, int> messageReceived;
+	PSignal1<void, int> streamRequestReceived;
 	void sendMessage(unsigned char address, unsigned char length, char *data);
 	int getLogicalAddress();
 	int getPhysicalAddress();

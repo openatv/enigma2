@@ -101,6 +101,7 @@ void eHdmiCEC::hdmiEvent(int what)
 		{
 			bool keypressed = false;
 			unsigned char logicaladdress, devicetype;
+			bool ignore = false;
 			static unsigned char pressedkey = 0;
 
 			eDebugNoNewLine("eHdmiCEC: received message");
@@ -110,7 +111,7 @@ void eHdmiCEC::hdmiEvent(int what)
 			}
 			eDebug(" ");
 			txmessage.length = 0; /* no reply */
-			txmessage.address = 0; /* TV */
+			txmessage.address = rxmessage.address; /* reply to source address */
 			switch (rxmessage.data[0])
 			{
 				case 0x44: /* key pressed */
@@ -144,14 +145,31 @@ void eHdmiCEC::hdmiEvent(int what)
 					txmessage.length = 4;
 					break;
 				case 0x86: /* request streaming path */
-					if (getActiveStatus())
+				{
+					unsigned char physicaladdress[2];
+					getAddressInfo(physicaladdress, logicaladdress, devicetype);
+					if (!memcmp(physicaladdress, &rxmessage.data[1], sizeof(physicaladdress)))
 					{
-						txmessage.address = 0x0f; /* broadcast */
-						txmessage.data[0] = 0x82; /* report active source */
-						getAddressInfo(&txmessage.data[1], logicaladdress, devicetype);
-						txmessage.length = 3;
+						/* for us */
+						if (getActiveStatus())
+						{
+							txmessage.address = 0x0f; /* broadcast */
+							txmessage.data[0] = 0x82; /* report active source */
+							txmessage.data[1] = physicaladdress[0];
+							txmessage.data[2] = physicaladdress[1];
+							txmessage.length = 3;
+						}
+						else
+						{
+							streamRequestReceived(rxmessage.address);
+						}
+					}
+					else
+					{
+						ignore = true; /* not for us, do not pass to external components */
 					}
 					break;
+				}
 				case 0x85: /* request active source */
 					if (getActiveStatus())
 					{
@@ -182,7 +200,7 @@ void eHdmiCEC::hdmiEvent(int what)
 			{
 				sendMessage(txmessage);
 			}
-			else
+			else if (!ignore)
 			{
 				/* we did not reply, allow the command to be handled by external components */
 				/* there is no simple way to pass the complete message object to python, so we support only single byte commands for now */
