@@ -46,34 +46,7 @@ class About(Screen):
 			fp_version = ""
 		else:
 			fp_version = _("Frontprocessor version: %d") % fp_version
-
 		self["FPVersion"] = StaticText(fp_version)
-		
-		self["TunerHeader"] = StaticText(_("Detected NIMs:"))
-
-		nims = nimmanager.nimList()
-		for count in range(len(nims)):
-			if count < 4:
-				self["Tuner" + str(count)] = StaticText(nims[count])
-			else:
-				self["Tuner" + str(count)] = StaticText("")
-
-		self["HDDHeader"] = StaticText(_("Detected Devices:"))
-		hddlist = harddiskmanager.HDDList()
-		hddinfo = ""
-		if hddlist:
-			for count in range(len(hddlist)):
-				if hddinfo:
-					hddinfo += "\n"
-				hdd = hddlist[count][1]
-				if int(hdd.free()) > 1024:
-					hddinfo += "%s\n(%s, %d GB %s)" % (hdd.model(), hdd.capacity(), hdd.free()/1024, _("free"))
- 
-				else:
-					hddinfo += "%s\n(%s, %d MB %s)" % (hdd.model(), hdd.capacity(), hdd.free(), _("free"))
-		else:
-			hddinfo = _("none")
-		self["hddA"] = StaticText(hddinfo)
 
 		self["actions"] = ActionMap(["SetupActions", "ColorActions", "TimerEditActions"], 
 			{
@@ -83,33 +56,9 @@ class About(Screen):
 				'log': self.showAboutReleaseNotes
 			})
 
-	def showTranslationInfo(self):
-		self.session.open(TranslationInfo)
 
-	def showAboutReleaseNotes(self):
-		self.session.open(AboutReleaseNotes)
-
-	def createSummary(self):
-		return AboutSummary
-
-class AboutSummary(Screen):
-	skin = """
-	<screen position="0,0" size="132,64">
-		<widget source="selected" render="Label" position="0,0" size="124,32" font="Regular;16" />
-	</screen>"""
-
-	def __init__(self, session, parent):
-		Screen.__init__(self, session, parent = parent)
-		if about.getImageTypeString() == 'Release':
-			self["selected"] = StaticText("ViX:" + about.getImageVersionString() + ' ' + _('(Release)'))
-		elif about.getImageTypeString() == 'Experimental':
-			self["selected"] = StaticText("ViX:" + about.getImageVersionString() + ' ' + _('(Beta)'))
-
-class TranslationInfo(Screen):
-	def __init__(self, session):
-		Screen.__init__(self, session)
+		self["TranslationHeader"] = StaticText(_("Translation:"))
 		# don't remove the string out of the _(), or it can't be "translated" anymore.
-
 		# TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 		info = _("TRANSLATOR_INFO")
 
@@ -134,11 +83,78 @@ class TranslationInfo(Screen):
 
 		self["TranslatorName"] = StaticText(translator_name)
 
-		self["actions"] = ActionMap(["SetupActions"], 
+	def showTranslationInfo(self):
+		self.session.open(TranslationInfo)
+
+	def showAboutReleaseNotes(self):
+		self.session.open(AboutReleaseNotes)
+
+	def createSummary(self):
+		return AboutSummary
+
+class Devices(Screen):
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		Screen.setTitle(self, _("System Information"))
+		
+		self["TunerHeader"] = StaticText(_("Detected NIMs:"))
+		niminfo = ""
+		nims = nimmanager.nimList()
+		for count in range(len(nims)):
+			if niminfo:
+				niminfo += "\n"
+			niminfo += nims[count]
+		self["nims"] = StaticText(niminfo)
+
+		self["HDDHeader"] = StaticText(_("Detected Devices:"))
+		hddlist = harddiskmanager.HDDList()
+		hddinfo = ""
+		if hddlist:
+			for count in range(len(hddlist)):
+				if hddinfo:
+					hddinfo += "\n"
+				hdd = hddlist[count][1]
+				if int(hdd.free()) > 1024:
+					hddinfo += "%s\n(%s, %d GB %s)" % (hdd.model(), hdd.capacity(), hdd.free()/1024, _("free"))
+				else:
+					hddinfo += "%s\n(%s, %d MB %s)" % (hdd.model(), hdd.capacity(), hdd.free(), _("free"))
+		else:
+			hddinfo = _("none")
+		self["hdd"] = StaticText(hddinfo)
+
+		self["MountsHeader"] = StaticText(_("Network Servers:"))
+		mountinfo = ""
+		f = open('/proc/mounts', 'r')
+		for line in f.readlines():
+			if mountinfo:
+				mountinfo += "\n"
+			parts = line.strip().split()
+			if parts[0].startswith('192'):
+				mountinfo += str(parts[0])
+		f.close()
+		self["mounts"] = StaticText(mountinfo)
+
+		self["actions"] = ActionMap(["SetupActions", "ColorActions", "TimerEditActions"], 
 			{
 				"cancel": self.close,
 				"ok": self.close,
 			})
+
+	def createSummary(self):
+		return AboutSummary
+
+class AboutSummary(Screen):
+	skin = """
+	<screen position="0,0" size="132,64">
+		<widget source="selected" render="Label" position="0,0" size="124,32" font="Regular;16" />
+	</screen>"""
+
+	def __init__(self, session, parent):
+		Screen.__init__(self, session, parent = parent)
+		if about.getImageTypeString() == 'Release':
+			self["selected"] = StaticText("ViX:" + about.getImageVersionString() + ' (R)')
+		elif about.getImageTypeString() == 'Experimental':
+			self["selected"] = StaticText("ViX:" + about.getImageVersionString() + ' (B)')
 
 class AboutReleaseNotes(Screen):
 	skin = """
