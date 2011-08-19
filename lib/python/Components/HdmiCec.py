@@ -88,7 +88,6 @@ class HdmiCec:
 			eHdmiCEC.getInstance().sendMessage(address, cmd, data, len(data))
 
 	def sendMessages(self, address, messages):
-		print messages
 		for message in messages:
 			self.sendMessage(address, message)
 
@@ -166,7 +165,7 @@ class HdmiCec:
 			elif cmd == 0x8c: # request vendor id
 				self.sendMessage(message.getAddress(), 'vendorid')
 			elif cmd == 0x8d: # menu request
-				requesttype = struct.unpack('B', data)
+				requesttype = ord(data[0])
 				if requesttype == 2: # query
 					if inStandby:
 						self.sendMessage(message.getAddress(), 'menuinactive')
