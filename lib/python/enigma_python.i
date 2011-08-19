@@ -170,6 +170,7 @@ typedef long time_t;
 %immutable eDVBResourceManager::frontendUseMaskChanged;
 %immutable eAVSwitch::vcr_sb_notifier;
 %immutable eHdmiCEC::messageReceived;
+%immutable eHdmiCEC::streamRequestReceived;
 %immutable ePythonMessagePump::recv_msg;
 %immutable eDVBLocalTimeHandler::m_timeUpdated;
 %immutable iCryptoInfo::clientname;

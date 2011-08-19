@@ -36,10 +36,12 @@ eHdmiCEC *eHdmiCEC::getInstance()
 	return instance;
 }
 
-void eHdmiCEC::getPhysicalAddress(unsigned char *data)
+void eHdmiCEC::getAddressInfo(unsigned char *physicaladdress, unsigned char &logicaladdress, unsigned char &type)
 {
-	data[0] = 0x10;
-	data[1] = 0x00;
+	physicaladdress[0] = 0x10;
+	physicaladdress[1] = 0x00;
+	logicaladdress = 3;
+	type = 3;
 	if (hdmiFd >= 0)
 	{
 		struct
@@ -50,17 +52,36 @@ void eHdmiCEC::getPhysicalAddress(unsigned char *data)
 		} addressinfo;
 		if (ioctl(hdmiFd, 1, &addressinfo) >= 0)
 		{
-			data[0] = addressinfo.physical[0];
-			data[1] = addressinfo.physical[1];
+			physicaladdress[0] = addressinfo.physical[0];
+			physicaladdress[1] = addressinfo.physical[1];
+			type = addressinfo.type;
+			logicaladdress = addressinfo.logical;
 		}
 	}
 }
 
+int eHdmiCEC::getLogicalAddress()
+{
+	unsigned char physicaladdress[2];
+	unsigned char logicaladdress, type;
+	getAddressInfo(physicaladdress, logicaladdress, type);
+	return logicaladdress;
+}
+
 int eHdmiCEC::getPhysicalAddress()
 {
-	unsigned char data[2];
-	getPhysicalAddress(data);
-	return (data[0] << 8) | data[1];
+	unsigned char physicaladdress[2];
+	unsigned char logicaladdress, type;
+	getAddressInfo(physicaladdress, logicaladdress, type);
+	return (physicaladdress[0] << 8) | physicaladdress[1];
+}
+
+int eHdmiCEC::getDeviceType()
+{
+	unsigned char physicaladdress[2];
+	unsigned char logicaladdress, type;
+	getAddressInfo(physicaladdress, logicaladdress, type);
+	return type;
 }
 
 bool eHdmiCEC::getActiveStatus()
@@ -73,28 +94,29 @@ bool eHdmiCEC::getActiveStatus()
 
 void eHdmiCEC::hdmiEvent(int what)
 {
-	struct cec_message message;
-	if (::read(hdmiFd, &message, 2) == 2)
+	struct cec_message rxmessage, txmessage;
+	if (::read(hdmiFd, &rxmessage, 2) == 2)
 	{
-		if (::read(hdmiFd, &message.data, message.length) == message.length)
+		if (::read(hdmiFd, &rxmessage.data, rxmessage.length) == rxmessage.length)
 		{
 			bool keypressed = false;
+			unsigned char logicaladdress, devicetype;
+			bool ignore = false;
 			static unsigned char pressedkey = 0;
 
-			/* there is no simple way to pass the complete message object to python, so we support only single byte commands for now */
-			messageReceived(message.address, message.data[0]);
 			eDebugNoNewLine("eHdmiCEC: received message");
-			for (int i = 0; i < message.length; i++)
+			for (int i = 0; i < rxmessage.length; i++)
 			{
-				eDebugNoNewLine(" %02X", message.data[i]);
+				eDebugNoNewLine(" %02X", rxmessage.data[i]);
 			}
-			eDebug("");
-			message.address = 0; /* TV */
-			switch (message.data[0])
+			eDebug(" ");
+			txmessage.length = 0; /* no reply */
+			txmessage.address = rxmessage.address; /* reply to source address */
+			switch (rxmessage.data[0])
 			{
 				case 0x44: /* key pressed */
 					keypressed = true;
-					pressedkey = message.data[1];
+					pressedkey = rxmessage.data[1];
 				case 0x45: /* key released */
 				{
 					long code = translateKey(pressedkey);
@@ -103,60 +125,86 @@ void eHdmiCEC::hdmiEvent(int what)
 					{
 						(*i)->handleCode(code);
 					}
-					message.length = 0; /* no reply */
 					break;
 				}
 				case 0x46: /* request name */
-					message.data[0] = 0x47; /* set name */
-					strcpy(&message.data[1], "linux stb");
-					message.length = 11;
+					txmessage.data[0] = 0x47; /* set name */
+					strcpy((char*)&txmessage.data[1], "linux stb");
+					txmessage.length = 11;
 					break;
 				case 0x8f: /* request power status */
-					message.data[0] = 0x90; /* report power */
-					message.data[1] = getActiveStatus() ? 0x00 : 0x01;
-					message.length = 2;
+					txmessage.data[0] = 0x90; /* report power */
+					txmessage.data[1] = getActiveStatus() ? 0x00 : 0x01;
+					txmessage.length = 2;
 					break;
 				case 0x83: /* request address */
-					message.address = 0x0f; /* broadcast */
-					message.data[0] = 0x84; /* report address */
-					getPhysicalAddress(&message.data[1]);
-					message.length = 3;
+					txmessage.address = 0x0f; /* broadcast */
+					txmessage.data[0] = 0x84; /* report address */
+					getAddressInfo(&txmessage.data[1], logicaladdress, devicetype);
+					txmessage.data[3] = devicetype;
+					txmessage.length = 4;
 					break;
 				case 0x86: /* request streaming path */
-					message.address = 0x0f; /* broadcast */
-					message.data[0] = getActiveStatus() ? 0x82 : 0x9d; /* report active / inactive */
-					getPhysicalAddress(&message.data[1]);
-					message.length = 3;
-					break;
-				case 0x85: /* request active source */
-					message.address = 0x0f; /* broadcast */
-					message.data[0] = getActiveStatus() ? 0x82 : 0x9d; /* report active / inactive */
-					getPhysicalAddress(&message.data[1]);
-					message.length = 3;
-					break;
-				case 0x8c: /* request vendor id */
-					message.data[0] = 0x87; /* vendor id */
-					message.data[1] = 0x00; /* example: panasonic */
-					message.data[2] = 0x80;
-					message.data[3] = 0x45;
-					message.length = 4;
-					break;
-				case 0x8d: /* menu request */
-					if (message.data[1] == 0x02) /* query */
+				{
+					unsigned char physicaladdress[2];
+					getAddressInfo(physicaladdress, logicaladdress, devicetype);
+					if (!memcmp(physicaladdress, &rxmessage.data[1], sizeof(physicaladdress)))
 					{
-						message.data[0] = 0x8e; /* menu status */
-						message.data[1] = getActiveStatus() ? 0x00 : 0x01; /* menu activated / deactivated (reporting 'menu active' will activate rc passthrough mode on some tv's) */
-						message.length = 2;
+						/* for us */
+						if (getActiveStatus())
+						{
+							txmessage.address = 0x0f; /* broadcast */
+							txmessage.data[0] = 0x82; /* report active source */
+							txmessage.data[1] = physicaladdress[0];
+							txmessage.data[2] = physicaladdress[1];
+							txmessage.length = 3;
+						}
+						else
+						{
+							streamRequestReceived(rxmessage.address);
+						}
+					}
+					else
+					{
+						ignore = true; /* not for us, do not pass to external components */
 					}
 					break;
-				default:
-					message.length = 0; /* no reply */
+				}
+				case 0x85: /* request active source */
+					if (getActiveStatus())
+					{
+						txmessage.address = 0x0f; /* broadcast */
+						txmessage.data[0] = 0x82; /* report active source */
+						getAddressInfo(&txmessage.data[1], logicaladdress, devicetype);
+						txmessage.length = 3;
+					}
+					break;
+				case 0x8c: /* request vendor id */
+					txmessage.data[0] = 0x87; /* vendor id */
+					txmessage.data[1] = 0x00; /* example: panasonic */
+					txmessage.data[2] = 0x80;
+					txmessage.data[3] = 0x45;
+					txmessage.length = 4;
+					break;
+				case 0x8d: /* menu request */
+					if (txmessage.data[1] == 0x02) /* query */
+					{
+						txmessage.data[0] = 0x8e; /* menu status */
+						txmessage.data[1] = getActiveStatus() ? 0x00 : 0x01; /* menu activated / deactivated (reporting 'menu active' will activate rc passthrough mode on some tv's) */
+						txmessage.length = 2;
+					}
 					break;
 			}
 
-			if (message.length)
+			if (txmessage.length)
 			{
-				sendMessage(message.address, message.length, message.data);
+				sendMessage(txmessage);
+			}
+			else if (!ignore)
+			{
+				/* we did not reply, allow the command to be handled by external components */
+				/* there is no simple way to pass the complete message object to python, so we support only single byte commands for now */
+				messageReceived(rxmessage.address, rxmessage.data[0]);
 			}
 		}
 	}
@@ -246,23 +294,28 @@ long eHdmiCEC::translateKey(unsigned char code)
 	return key;
 }
 
-void eHdmiCEC::sendMessage(unsigned char address, unsigned char length, char *data)
+void eHdmiCEC::sendMessage(struct cec_message &message)
 {
 	if (hdmiFd >= 0)
 	{
-		struct cec_message message;
-		message.address = address;
-		if (length > sizeof(message.data)) length = sizeof(message.data);
-		message.length = length;
-		memcpy(message.data, data, length);
 		eDebugNoNewLine("eHdmiCEC: send message");
 		for (int i = 0; i < message.length; i++)
 		{
 			eDebugNoNewLine(" %02X", message.data[i]);
 		}
-		eDebug("");
-		::write(hdmiFd, &message, 2 + length);
+		eDebug(" ");
+		::write(hdmiFd, &message, 2 + message.length);
 	}
+}
+
+void eHdmiCEC::sendMessage(unsigned char address, unsigned char length, char *data)
+{
+	struct cec_message message;
+	message.address = address;
+	if (length > sizeof(message.data)) length = (unsigned char)sizeof(message.data);
+	message.length = length;
+	memcpy(message.data, data, length);
+	sendMessage(message);
 }
 
 void eHdmiCECDevice::handleCode(long code)
