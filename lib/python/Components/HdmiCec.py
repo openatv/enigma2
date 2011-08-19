@@ -1,125 +1,201 @@
 import struct
-from config import config, ConfigSelection, ConfigYesNo, ConfigSubsection
-from enigma import eHdmiCEC, eTimer
+import os
+from config import config, ConfigSelection, ConfigYesNo, ConfigSubsection, ConfigText
+from enigma import eHdmiCEC
 
 config.hdmicec = ConfigSubsection()
 config.hdmicec.enabled = ConfigYesNo(default = True)
-config.hdmicec.standby_message = ConfigSelection(
+config.hdmicec.control_tv_standby = ConfigYesNo(default = True)
+config.hdmicec.control_tv_wakeup = ConfigYesNo(default = True)
+config.hdmicec.report_active_source = ConfigYesNo(default = True)
+config.hdmicec.report_active_menu = ConfigYesNo(default = True)
+config.hdmicec.handle_tv_standby = ConfigYesNo(default = True)
+config.hdmicec.handle_tv_wakeup = ConfigYesNo(default = True)
+config.hdmicec.tv_wakeup_detection = ConfigSelection(
 	choices = {
-	"standby": _("TV off"),
-	"sourceinactive": _("Source inactive"),
-	"menuinactive": _("Menu inactive"),
-	"nothing": _("Nothing"),
+	"wakeup": _("Wakeup"),
+	"sourcerequest": _("Source request"),
+	"streamrequest": _("Stream request"),
+	"streamrequest": _("Stream request"),
+	"activity": _("Any activity"),
 	},
-	default = "standby")
-config.hdmicec.wakeup_message = ConfigSelection(
-	choices = {
-	"wakeup": _("TV on"),
-	"sourceactive": _("Source active"),
-	"menuactive": _("Menu active"),
-	"wakeup,menuactive": _("TV on, menu active"),
-	"sourceactive,menuactive": _("Source active, menu active"),
-	"wakeup,sourceactive,menuactive": _("TV on, source active, menu active"),
-	"nothing": _("Nothing"),
-	},
-	default = "wakeup,sourceactive,menuactive")
-config.hdmicec.wakeup_handling = ConfigSelection(
-	choices = {
-		"": _("Wakeup"),
-		"delay": _("Wakeup, wait 3s"),
-		"delay,delay": _("Wakeup, wait 6s"),
-		"waitforactivity,delay": _("Wakeup, wait for activity, wait 3s"),
-		"waitforstreamrequest,delay": _("Wakeup, wait for stream request, wait 3s"),
-	},
-	default = "waitforstreamrequest,delay")
+	default = "streamrequest")
+config.hdmicec.fixed_physical_address = ConfigText(default = "0.0.0.0")
+config.hdmicec.match_upstream_stream_request = ConfigYesNo(default = False)
 
 class HdmiCec:
 	def __init__(self):
 		eHdmiCEC.getInstance().messageReceived.get().append(self.messageReceived)
-		eHdmiCEC.getInstance().streamRequestReceived.get().append(self.streamRequestReceived)
-		config.misc.standbyCounter.addNotifier(self.enterStandby, initial_call = False)
-		self.timer = eTimer()
-		self.timer.callback.append(self.timeout)
-		self.messages = []
-		self.destinationaddress = 0
-		self.waitforactivity = False
-		self.waitforstreamrequest = False
+		config.misc.standbyCounter.addNotifier(self.onEnterStandby, initial_call = False)
+		self.setFixedPhysicalAddress(config.hdmicec.fixed_physical_address.value)
 
-	def timeout(self):
-		print "HdmiCec: continue after delay"
-		self.sendMessages(self.destinationaddress, self.messages)
+	def getPhysicalAddress(self):
+		physicaladdress = eHdmiCEC.getInstance().getPhysicalAddress()
+		hexstring = '%04x' % physicaladdress
+		return hexstring[0] + '.' + hexstring[1] + '.' + hexstring[2] + '.' + hexstring[3]
+
+	def setFixedPhysicalAddress(self, address):
+		if address != config.hdmicec.fixed_physical_address.value:
+			config.hdmicec.fixed_physical_address.value = address
+			config.hdmicec.fixed_physical_address.save()
+		hexstring = address[0] + address[2] + address[4] + address[6]
+		eHdmiCEC.getInstance().setFixedPhysicalAddress(int(float.fromhex(hexstring)))
+
+	def sendMessage(self, address, message):
+		cmd = 0
+		data = ''
+		if message == "wakeup":
+			cmd = 0x04
+		elif message == "sourceactive":
+			address = 0x0f # use broadcast for active source command
+			cmd = 0x82
+			physicaladdress = eHdmiCEC.getInstance().getPhysicalAddress()
+			data = str(struct.pack('BB', int(physicaladdress/256), int(physicaladdress%256)))
+		elif message == "standby":
+			cmd = 0x36
+		elif message == "sourceinactive":
+			address = 0x0f # use broadcast for inactive source command
+			physicaladdress = eHdmiCEC.getInstance().getPhysicalAddress()
+			cmd = 0x9d
+			data = str(struct.pack('BB', int(physicaladdress/256), int(physicaladdress%256)))
+		elif message == "menuactive":
+			cmd = 0x8e
+			data = str(struct.pack('B', 0x00))
+		elif message == "menuinactive":
+			cmd = 0x8e
+			data = str(struct.pack('B', 0x01))
+		elif message == "osdname":
+			cmd = 0x47
+			data = os.popen('hostname').readline()
+			data = data[:13]
+			data = data.split('\n')[0]
+		elif message == "poweractive":
+			cmd = 0x90
+			data = str(struct.pack('B', 0x01))
+		elif message == "powerinactive":
+			cmd = 0x90
+			data = str(struct.pack('B', 0x00))
+		elif message == "reportaddress":
+			address = 0x0f # use broadcast address
+			cmd = 0x84
+			physicaladdress = eHdmiCEC.getInstance().getPhysicalAddress()
+			devicetype = eHdmiCEC.getInstance().getDeviceType()
+			data = str(struct.pack('BBB', int(physicaladdress/256), int(physicaladdress%256), devicetype))
+		elif message == "vendorid":
+			cmd = 0x87
+			data = '\x00\x00\x00'
+		if cmd:
+			eHdmiCEC.getInstance().sendMessage(address, cmd, data, len(data))
 
 	def sendMessages(self, address, messages):
-		self.messages = messages
-		self.destinationaddress = address
-		for message in self.messages:
-			cmd = None
-			self.messages = self.messages[1:]
-			address = self.destinationaddress
-			if message == "delay":
-				print "HdmiCec: delay"
-				self.timer.start(3000, True)
-				break
-			elif message == "waitforactivity":
-				print "HdmiCec: wait for activity..."
-				self.waitforactivity = True
-				break
-			elif message == "waitforstreamrequest":
-				print "HdmiCec: wait for streaming path request..."
-				self.waitforstreamrequest = True
-				break
-			elif message == "wakeup":
-				cmd = struct.pack('B', 0x04)
-			elif message == "sourceactive":
-				address = 0x0f # use broadcast for active source command
-				physicaladdress = eHdmiCEC.getInstance().getPhysicalAddress()
-				cmd = struct.pack('BBB', 0x82, int(physicaladdress/256), int(physicaladdress%256))
-			elif message == "standby":
-				cmd = struct.pack('B', 0x36)
-			elif message == "sourceinactive":
-				address = 0x0f # use broadcast for inactive source command
-				physicaladdress = eHdmiCEC.getInstance().getPhysicalAddress()
-				cmd = struct.pack('BBB', 0x9d, int(physicaladdress/256), int(physicaladdress%256))
-			elif message == "menuactive":
-				cmd = struct.pack('BB', 0x8e, 0x00)
-			elif message == "menuinactive":
-				cmd = struct.pack('BB', 0x8e, 0x01)
-			if cmd:
-				eHdmiCEC.getInstance().sendMessage(address, len(cmd), str(cmd))
+		print messages
+		for message in messages:
+			self.sendMessage(address, message)
 
-	def leaveStandby(self):
+	def onLeaveStandby(self):
 		if config.hdmicec.enabled.value:
-			messages = config.hdmicec.wakeup_message.value
-			if config.hdmicec.wakeup_handling.value:
-				messages = messages.replace("wakeup", "wakeup," + config.hdmicec.wakeup_handling.value)
-			self.sendMessages(0, messages.split(','))
+			messages = []
+			if config.hdmicec.control_tv_wakeup.value:
+				messages.append("wakeup")
+			if config.hdmicec.report_active_source.value:
+				messages.append("sourceactive")
+			if config.hdmicec.report_active_menu.value:
+				messages.append("menuactive")
+			if messages:
+				self.sendMessages(0, messages)
 
-	def enterStandby(self, configElement):
+	def onEnterStandby(self, configElement):
 		from Screens.Standby import inStandby
-		inStandby.onClose.append(self.leaveStandby)
+		inStandby.onClose.append(self.onLeaveStandby)
 		if config.hdmicec.enabled.value:
-			self.sendMessages(0, config.hdmicec.standby_message.value.split(','))
+			messages = []
+			if config.hdmicec.control_tv_standby.value:
+				messages.append("standby")
+			else:
+				if config.hdmicec.report_active_source.value:
+					messages.append("sourceinactive")
+				if config.hdmicec.report_active_menu.value:
+					messages.append("menuinactive")
+			if messages:
+				self.sendMessages(0, messages)
 
-	def messageReceived(self, address, message):
+	def standby(self):
+		from Screens.Standby import Standby, inStandby
+		if not inStandby:
+			from Tools import Notifications
+			Notifications.AddNotification(Standby)
+
+	def wakeup(self):
+		from Screens.Standby import Standby, inStandby
+		if inStandby:
+			inStandby.Power()
+
+	def messageReceived(self, message):
 		if config.hdmicec.enabled.value:
-			if self.waitforactivity:
-				print "HdmiCec: activity detected, continue"
-				self.waitforactivity = False
-				self.sendMessages(self.destinationaddress, self.messages)
-			if message == 0x36:
-				from Screens.Standby import Standby, inStandby
+			from Screens.Standby import inStandby
+			cmd = message.getCommand()
+			data = 16 * '\x00'
+			length = message.getData(data, len(data))
+			if cmd == 0x46: # request name
+				self.sendMessage(message.getAddress(), 'osdname')
+			elif cmd == 0x8f: # request power status
+				if inStandby:
+					self.sendMessage(message.getAddress(), 'powerinactive')
+				else:
+					self.sendMessage(message.getAddress(), 'poweractive')
+			elif cmd == 0x83: # request address
+				self.sendMessage(message.getAddress(), 'reportaddress')
+			elif cmd == 0x86: # request streaming path
+				physicaladdress = '%04x' % (ord(data[0]) * 256 + ord(data[1]))
+				ouraddress = '%04x' % eHdmiCEC.getInstance().getPhysicalAddress()
+				match = physicaladdress == ouraddress
+				if not match and config.hdmicec.match_upstream_stream_request.value:
+					match = True
+					for nibble in range(4):
+						if physicaladdress[nibble] is not '0' and physicaladdress[nibble] is not ouraddress[nibble]:
+							match = False
+							break
+				if match:
+					if not inStandby:
+						if config.hdmicec.report_active_source.value:
+							self.sendMessage(message.getAddress(), 'sourceactive')
+			elif cmd == 0x85: # request active source
 				if not inStandby:
-					from Tools import Notifications
-					Notifications.AddNotification(Standby)
+					if config.hdmicec.report_active_source.value:
+						self.sendMessage(message.getAddress(), 'sourceactive')
+			elif cmd == 0x8c: # request vendor id
+				self.sendMessage(message.getAddress(), 'vendorid')
+			elif cmd == 0x8d: # menu request
+				requesttype = struct.unpack('B', data)
+				if requesttype == 2: # query
+					if inStandby:
+						self.sendMessage(message.getAddress(), 'menuinactive')
+					else:
+						self.sendMessage(message.getAddress(), 'menuactive')
 
-	def streamRequestReceived(self, address):
-		if config.hdmicec.enabled.value:
-			if self.waitforstreamrequest:
-				print "HdmiCec: streaming path request received, continue"
-				self.waitforstreamrequest = False
-				self.sendMessages(self.destinationaddress, self.messages)
-			from Screens.Standby import Standby, inStandby
-			if inStandby:
-				inStandby.Power()
+			# handle standby request from the tv
+			if cmd == 0x36 and config.hdmicec.handle_tv_standby.value:
+				self.standby()
+
+			# handle wakeup requests from the tv
+			if config.hdmicec.handle_tv_wakeup.value:
+				if cmd == 0x04 and config.hdmicec.tv_wakeup_detection.value == "wakeup":
+					self.wakeup()
+				elif cmd == 0x85 and config.hdmicec.tv_wakeup_detection.value == "sourcerequest":
+					self.wakeup()
+				elif cmd == 0x86 and config.hdmicec.tv_wakeup_detection.value == "streamrequest":
+					physicaladdress = '%04x' % (ord(data[0]) * 256 + ord(data[1]))
+					ouraddress = '%04x' % eHdmiCEC.getInstance().getPhysicalAddress()
+					match = physicaladdress == ouraddress
+					if not match and config.hdmicec.match_upstream_stream_request.value:
+						match = True
+						for nibble in range(4):
+							if physicaladdress[nibble] is not '0' and physicaladdress[nibble] is not ouraddress[nibble]:
+								match = False
+								break
+					if match:
+						self.wakeup()
+				elif config.hdmicec.tv_wakeup_detection.value == "activity":
+					self.wakeup()
 
 hdmi_cec = HdmiCec()
