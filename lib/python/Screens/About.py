@@ -8,56 +8,74 @@ from Components.config import config
 from Components.ScrollLabel import ScrollLabel
 
 from Tools.DreamboxHardware import getFPVersion
-from os import path
+from os import path, popen
 
 class About(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("System Information"))
+		Screen.setTitle(self, _("Image Information"))
+		self.populate()
+		
+		self["actions"] = ActionMap(["SetupActions", "ColorActions", "TimerEditActions"], 
+			{
+				"cancel": self.close,
+				"ok": self.close,
+				'log': self.showAboutReleaseNotes,
+				"up": self["AboutScrollLabel"].pageUp,
+				"down": self["AboutScrollLabel"].pageDown
+			})
 
+	def populate(self):
 		self["lab1"] = StaticText(_("Virtuosso Image Xtreme"))
 		self["lab2"] = StaticText(_("By Team ViX"))
 		if config.misc.boxtype.value == 'vuuno':
 			self["lab3"] = StaticText(_("Support at") + " www.vuplus-support.co.uk")
 			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Uno")
-		elif config.misc.boxtype.value == 'vuuno':
+			AboutText = _("Hardware:") + " Vu+ Uno\n"
+		elif config.misc.boxtype.value == 'vusolo':
 			self["lab3"] = StaticText(_("Support at") + " www.vuplus-support.co.uk")
-			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Uno")
+			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Solo")
+			AboutText = _("Hardware:") + " Vu+ Solo\n"
 		elif config.misc.boxtype.value == 'vuduo':
 			self["lab3"] = StaticText(_("Support at") + " www.vuplus-support.co.uk")
 			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Duo")
+			AboutText = _("Hardware:") + " Vu+ Duo\n"
 		elif config.misc.boxtype.value == 'et5000':
 			self["lab3"] = StaticText(_("Support at") + " www.xtrend-support.co.uk")
 			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET5000")
+			AboutText = _("Hardware:") + " Xtrend ET5000\n"
 		elif config.misc.boxtype.value == 'et9000':
 			self["lab3"] = StaticText(_("Support at") + " www.xtrend-support.co.uk")
 			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET9000")
+			AboutText = _("Hardware:") + " Xtrend ET9000\n"
 		else:
 			self["lab3"] = StaticText(_("Support at") + " www.world-of-satellite.co.uk")
 			self["BoxType"] = StaticText(_("Hardware:") + " " + config.misc.boxtype.value)
-		self["ImageVersion"] = StaticText(_("Version:") + " " + about.getImageVersionString())
-		self["BuildVersion"] = StaticText(_("Build:") + " " + about.getBuildVersionString())
-		self["EnigmaVersion"] = StaticText(_("Last Update:") + " " + about.getLastUpdateString())
+			AboutText = _("Hardware:") + " " + config.misc.boxtype.value + "\n"
+
 		self["KernelVersion"] = StaticText(_("Kernel:") + " " + about.getKernelVersionString())
+		AboutText += _("Kernel:") + " " + about.getKernelVersionString() + "\n"
 		self["ImageType"] = StaticText(_("Image:") + " " + about.getImageTypeString())
+		AboutText += _("Image:") + " " + about.getImageTypeString() + "\n"
+		self["ImageVersion"] = StaticText(_("Version:") + " " + about.getImageVersionString())
+		AboutText += _("Version:") + " " + about.getImageVersionString() + "\n"
+		self["BuildVersion"] = StaticText(_("Build:") + " " + about.getBuildVersionString())
+		AboutText += _("Build:") + " " + about.getBuildVersionString() + "\n"
+		self["EnigmaVersion"] = StaticText(_("Last Update:") + " " + about.getLastUpdateString())
+		AboutText += _("Last Update:") + " " + about.getLastUpdateString() + "\n\n"
 
 		fp_version = getFPVersion()
+		print 'FP:',fp_version
 		if fp_version is None:
 			fp_version = ""
-		else:
+		elif fp_version != 0:
 			fp_version = _("Frontprocessor version: %d") % fp_version
+			AboutText += fp_version + "\n"
 		self["FPVersion"] = StaticText(fp_version)
 
-		self["actions"] = ActionMap(["SetupActions", "ColorActions", "TimerEditActions"], 
-			{
-				"cancel": self.close,
-				"ok": self.close,
-				"green": self.showTranslationInfo,
-				'log': self.showAboutReleaseNotes
-			})
-
-
 		self["TranslationHeader"] = StaticText(_("Translation:"))
+		AboutText += _("Translation:") + "\n"
+
 		# don't remove the string out of the _(), or it can't be "translated" anymore.
 		# TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 		info = _("TRANSLATOR_INFO")
@@ -75,16 +93,17 @@ class About(Screen):
 			infomap[type] = value
 		print infomap
 
-		self["TranslationInfo"] = StaticText(info)
-
 		translator_name = infomap.get("Language-Team", "none")
 		if translator_name == "none":
 			translator_name = infomap.get("Last-Translator", "")
 
 		self["TranslatorName"] = StaticText(translator_name)
+		AboutText += translator_name + "\n\n"
 
-	def showTranslationInfo(self):
-		self.session.open(TranslationInfo)
+		self["TranslationInfo"] = StaticText(info)
+		AboutText += info
+
+		self["AboutScrollLabel"] = ScrollLabel(AboutText)
 
 	def showAboutReleaseNotes(self):
 		self.session.open(AboutReleaseNotes)
@@ -95,8 +114,16 @@ class About(Screen):
 class Devices(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("System Information"))
+		Screen.setTitle(self, _("Device Information"))
+		self.populate()
 		
+		self["actions"] = ActionMap(["SetupActions", "ColorActions", "TimerEditActions"], 
+			{
+				"cancel": self.close,
+				"ok": self.close,
+			})
+
+	def populate(self):
 		self["TunerHeader"] = StaticText(_("Detected NIMs:"))
 		niminfo = ""
 		nims = nimmanager.nimList()
@@ -134,11 +161,40 @@ class Devices(Screen):
 		f.close()
 		self["mounts"] = StaticText(mountinfo)
 
+	def createSummary(self):
+		return AboutSummary
+
+class SystemInfo(Screen):
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		Screen.setTitle(self, _("System Information"))
+		self.skinName = "About"
+		self.populate()
+		
 		self["actions"] = ActionMap(["SetupActions", "ColorActions", "TimerEditActions"], 
 			{
 				"cancel": self.close,
 				"ok": self.close,
 			})
+
+	def populate(self):
+		out_lines = popen("cat /proc/meminfo").readlines()
+		for lidx in range(len(out_lines)-1):
+			tstLine = out_lines[lidx].split()
+			if "MemTotal:" in tstLine:
+				MemTotal = out_lines[lidx].split()
+				AboutText = _("Total Memory:") + " " + MemTotal[1] + "\n"
+			if "MemFree:" in tstLine:
+				MemFree = out_lines[lidx].split()
+				AboutText += _("Free Memory:") + " " + MemFree[1] + "\n"
+			if "SwapTotal:" in tstLine:
+				SwapTotal = out_lines[lidx].split()
+				AboutText += _("Total Swap:") + " " + SwapTotal[1] + "\n"
+			if "SwapFree:" in tstLine:
+				SwapFree = out_lines[lidx].split()
+				AboutText += _("Free Swap:") + " " + SwapFree[1] + "\n"
+
+		self["AboutScrollLabel"] = ScrollLabel(AboutText)
 
 	def createSummary(self):
 		return AboutSummary
