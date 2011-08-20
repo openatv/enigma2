@@ -66,9 +66,8 @@ class HdmiCec:
 			data = str(struct.pack('B', 0x01))
 		elif message == "osdname":
 			cmd = 0x47
-			data = os.popen('hostname').readline()
+			data = os.uname()[1]
 			data = data[:14]
-			data = data.split('\n')[0]
 		elif message == "poweractive":
 			cmd = 0x90
 			data = str(struct.pack('B', 0x00))
