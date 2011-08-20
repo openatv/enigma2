@@ -150,6 +150,7 @@ eServiceDVD::eServiceDVD(eServiceReference ref):
 	CONNECT(m_pump.recv_msg, eServiceDVD::gotThreadMessage);
 	strcpy(m_ddvd_titlestring,"");
 	m_cue_pts = 0;
+	pause();
 }
 
 void eServiceDVD::gotThreadMessage(const int &msg)
