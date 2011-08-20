@@ -67,14 +67,14 @@ class HdmiCec:
 		elif message == "osdname":
 			cmd = 0x47
 			data = os.popen('hostname').readline()
-			data = data[:13]
+			data = data[:14]
 			data = data.split('\n')[0]
 		elif message == "poweractive":
 			cmd = 0x90
-			data = str(struct.pack('B', 0x01))
+			data = str(struct.pack('B', 0x00))
 		elif message == "powerinactive":
 			cmd = 0x90
-			data = str(struct.pack('B', 0x00))
+			data = str(struct.pack('B', 0x01))
 		elif message == "reportaddress":
 			address = 0x0f # use broadcast address
 			cmd = 0x84
