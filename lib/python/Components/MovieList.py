@@ -499,7 +499,7 @@ class MovieList(GUIComponent):
 			begin = info.getInfo(serviceref, iServiceInformation.sTimeCreate)
 			if serviceref.flags & eServiceReference.mustDescent:
 				dirname = info.getName(serviceref)
-				if not dirname.endswith('.AppleDouble/') and not dirname.endswith('.AppleDB/'):
+				if not dirname.endswith('.AppleDouble/') and not dirname.endswith('.AppleDesktop/') and not dirname.endswith('.AppleDB/') and not dirname.endswith('Network Trash Folder/') and not dirname.endswith('Temporary Items/'):
 					self.list.append((serviceref, info, begin, -1))
 					numberOfDirs += 1
 				continue
