@@ -142,9 +142,9 @@ class Devices(Screen):
 					hddinfo += "\n"
 				hdd = hddlist[count][1]
 				if int(hdd.free()) > 1024:
-					hddinfo += "%s\n(%s, %d GB %s)" % (hdd.model(), hdd.capacity(), hdd.free()/1024, _("free"))
+					hddinfo += "%s (%s, %d GB %s)" % (hdd.model(), hdd.capacity(), hdd.free()/1024, _("free"))
 				else:
-					hddinfo += "%s\n(%s, %d MB %s)" % (hdd.model(), hdd.capacity(), hdd.free(), _("free"))
+					hddinfo += "%s (%s, %d MB %s)" % (hdd.model(), hdd.capacity(), hdd.free(), _("free"))
 		else:
 			hddinfo = _("none")
 		self["hdd"] = StaticText(hddinfo)
@@ -157,7 +157,28 @@ class Devices(Screen):
 				mountinfo += "\n"
 			parts = line.strip().split()
 			if parts[0].startswith('192'):
-				mountinfo += str(parts[0])
+				mounttmp = popen("df -m " + parts[1] + " | grep -v '^Filesystem'")
+				mount = mounttmp.read()
+				mounttmp.close()
+				mount = str(mount).replace('\n','')
+				mount = mount.split()
+				if int(mount[1]) > 1024 and int(mount[3]) > 1024:
+					mounttotal = int(mount[1])/1024
+					mountfree = int(mount[3])/1024
+					mountinfo += "%s (%s GB, %d GB %s)" % (parts[0], mounttotal, mountfree, _("free")) 
+				elif int(mount[1]) < 1025 and int(mount[3]) > 1024:
+					mounttotal = int(mount[1])/1024
+					mountfree = int(mount[3])/1024
+					mountinfo += "%s (%s MB, %d GB %s)" % (parts[0], mounttotal, mountfree, _("free")) 
+				elif int(mount[1]) > 1024 and int(mount[3]) < 1025:
+					mounttotal = int(mount[1])/1024
+					mountfree = int(mount[3])/1024
+					mountinfo += "%s (%s GB, %d MB %s)" % (parts[0], mounttotal, mountfree, _("free")) 
+				else:
+					mounttotal = int(mount[1])
+					mountfree = int(mount[3])
+					mountinfo += "%s (%s MB, %d MB %s)" % (parts[0], mounttotal, mountfree, _("free")) 
+
 		f.close()
 		self["mounts"] = StaticText(mountinfo)
 
