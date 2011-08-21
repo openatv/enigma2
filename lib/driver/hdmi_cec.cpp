@@ -13,16 +13,52 @@
 
 eHdmiCEC *eHdmiCEC::instance = NULL;
 
+DEFINE_REF(eHdmiCEC::eCECMessage);
+
+eHdmiCEC::eCECMessage::eCECMessage(int addr, int cmd, char *data, int length)
+{
+	address = addr;
+	command = cmd;
+	if (length > (int)sizeof(messageData)) length = sizeof(messageData);
+	if (length && data) memcpy(messageData, data, length);
+	dataLength = length;
+}
+
+int eHdmiCEC::eCECMessage::getAddress()
+{
+	return address;
+}
+
+int eHdmiCEC::eCECMessage::getCommand()
+{
+	return command;
+}
+
+int eHdmiCEC::eCECMessage::getData(char *data, int length)
+{
+	if (length > (int)dataLength) length = dataLength;
+	memcpy(data, messageData, length);
+	return length;
+}
+
 eHdmiCEC::eHdmiCEC()
-: eRCDriver(eRCInput::getInstance())
+: eRCDriver(eRCInput::getInstance()), addressTimer(eTimer::create(eApp))
 {
 	ASSERT(!instance);
 	instance = this;
+	fixedAddress = false;
+	physicalAddress[0] = 0x10;
+	physicalAddress[1] = 0x00;
+	logicalAddress = 3;
+	deviceType = 3;
 	hdmiFd = ::open("/dev/hdmi_cec", O_RDWR | O_NONBLOCK);
 	if (hdmiFd >= 0)
 	{
+		::ioctl(hdmiFd, 0); /* flush old messages */
 		messageNotifier = eSocketNotifier::create(eApp, hdmiFd, eSocketNotifier::Read);
 		CONNECT(messageNotifier->activated, eHdmiCEC::hdmiEvent);
+		CONNECT(addressTimer->timeout, eHdmiCEC::addressPoll);
+		addressTimer->start(1000, 0);
 	}
 }
 
@@ -36,12 +72,35 @@ eHdmiCEC *eHdmiCEC::getInstance()
 	return instance;
 }
 
+void eHdmiCEC::addressPoll()
+{
+	unsigned char newaddress[2];
+	unsigned char logicaladdress, type;
+	getAddressInfo(newaddress, logicaladdress, type);
+	if (newaddress[0] && memcmp(physicalAddress, newaddress, sizeof(newaddress)))
+	{
+		struct cec_message txmessage;
+		eDebug("eHdmiCEC: detected physical address change: %02X%02X --> %02X%02X", physicalAddress[0], physicalAddress[1], newaddress[0], newaddress[1]);
+		logicaladdress = logicalAddress;
+		deviceType = type;
+		memcpy(physicalAddress, newaddress, sizeof(newaddress));
+		txmessage.address = 0x0f; /* broadcast */
+		txmessage.data[0] = 0x84; /* report address */
+		txmessage.data[1] = physicalAddress[0];
+		txmessage.data[2] = physicalAddress[1];
+		txmessage.data[3] = deviceType;
+		txmessage.length = 4;
+		sendMessage(txmessage);
+	}
+}
+
 void eHdmiCEC::getAddressInfo(unsigned char *physicaladdress, unsigned char &logicaladdress, unsigned char &type)
 {
-	physicaladdress[0] = 0x10;
-	physicaladdress[1] = 0x00;
-	logicaladdress = 3;
-	type = 3;
+	physicaladdress[0] = physicalAddress[0];
+	physicaladdress[1] = physicalAddress[1];
+	logicaladdress = logicalAddress;
+	type = deviceType;
+
 	if (hdmiFd >= 0)
 	{
 		struct
@@ -50,10 +109,16 @@ void eHdmiCEC::getAddressInfo(unsigned char *physicaladdress, unsigned char &log
 			unsigned char physical[2];
 			unsigned char type;
 		} addressinfo;
-		if (ioctl(hdmiFd, 1, &addressinfo) >= 0)
+		addressinfo.type = 0;
+		if (::ioctl(hdmiFd, 1, &addressinfo) >= 0)
 		{
-			physicaladdress[0] = addressinfo.physical[0];
-			physicaladdress[1] = addressinfo.physical[1];
+			/* HACK: work around nonworking address info ioctl */
+			if (addressinfo.type != 3) return;
+			if (!fixedAddress)
+			{
+				physicaladdress[0] = addressinfo.physical[0];
+				physicaladdress[1] = addressinfo.physical[1];
+			}
 			type = addressinfo.type;
 			logicaladdress = addressinfo.logical;
 		}
@@ -76,6 +141,29 @@ int eHdmiCEC::getPhysicalAddress()
 	return (physicaladdress[0] << 8) | physicaladdress[1];
 }
 
+void eHdmiCEC::setFixedPhysicalAddress(int address)
+{
+	if (address)
+	{
+		physicalAddress[0] = (address >> 8) & 0xff;
+		physicalAddress[1] = address & 0xff;
+		fixedAddress = true;
+		/* report our (possibly new) address */
+		struct cec_message txmessage;
+		txmessage.address = 0x0f; /* broadcast */
+		txmessage.data[0] = 0x84; /* report address */
+		txmessage.data[1] = physicalAddress[0];
+		txmessage.data[2] = physicalAddress[1];
+		txmessage.data[3] = deviceType;
+		txmessage.length = 4;
+		sendMessage(txmessage);
+	}
+	else
+	{
+		fixedAddress = false;
+	}
+}
+
 int eHdmiCEC::getDeviceType()
 {
 	unsigned char physicaladdress[2];
@@ -94,14 +182,12 @@ bool eHdmiCEC::getActiveStatus()
 
 void eHdmiCEC::hdmiEvent(int what)
 {
-	struct cec_message rxmessage, txmessage;
+	struct cec_message rxmessage;
 	if (::read(hdmiFd, &rxmessage, 2) == 2)
 	{
 		if (::read(hdmiFd, &rxmessage.data, rxmessage.length) == rxmessage.length)
 		{
 			bool keypressed = false;
-			unsigned char logicaladdress, devicetype;
-			bool ignore = false;
 			static unsigned char pressedkey = 0;
 
 			eDebugNoNewLine("eHdmiCEC: received message");
@@ -110,8 +196,6 @@ void eHdmiCEC::hdmiEvent(int what)
 				eDebugNoNewLine(" %02X", rxmessage.data[i]);
 			}
 			eDebug(" ");
-			txmessage.length = 0; /* no reply */
-			txmessage.address = rxmessage.address; /* reply to source address */
 			switch (rxmessage.data[0])
 			{
 				case 0x44: /* key pressed */
@@ -127,85 +211,9 @@ void eHdmiCEC::hdmiEvent(int what)
 					}
 					break;
 				}
-				case 0x46: /* request name */
-					txmessage.data[0] = 0x47; /* set name */
-					strcpy((char*)&txmessage.data[1], "linux stb");
-					txmessage.length = 11;
-					break;
-				case 0x8f: /* request power status */
-					txmessage.data[0] = 0x90; /* report power */
-					txmessage.data[1] = getActiveStatus() ? 0x00 : 0x01;
-					txmessage.length = 2;
-					break;
-				case 0x83: /* request address */
-					txmessage.address = 0x0f; /* broadcast */
-					txmessage.data[0] = 0x84; /* report address */
-					getAddressInfo(&txmessage.data[1], logicaladdress, devicetype);
-					txmessage.data[3] = devicetype;
-					txmessage.length = 4;
-					break;
-				case 0x86: /* request streaming path */
-				{
-					unsigned char physicaladdress[2];
-					getAddressInfo(physicaladdress, logicaladdress, devicetype);
-					if (!memcmp(physicaladdress, &rxmessage.data[1], sizeof(physicaladdress)))
-					{
-						/* for us */
-						if (getActiveStatus())
-						{
-							txmessage.address = 0x0f; /* broadcast */
-							txmessage.data[0] = 0x82; /* report active source */
-							txmessage.data[1] = physicaladdress[0];
-							txmessage.data[2] = physicaladdress[1];
-							txmessage.length = 3;
-						}
-						else
-						{
-							streamRequestReceived(rxmessage.address);
-						}
-					}
-					else
-					{
-						ignore = true; /* not for us, do not pass to external components */
-					}
-					break;
-				}
-				case 0x85: /* request active source */
-					if (getActiveStatus())
-					{
-						txmessage.address = 0x0f; /* broadcast */
-						txmessage.data[0] = 0x82; /* report active source */
-						getAddressInfo(&txmessage.data[1], logicaladdress, devicetype);
-						txmessage.length = 3;
-					}
-					break;
-				case 0x8c: /* request vendor id */
-					txmessage.data[0] = 0x87; /* vendor id */
-					txmessage.data[1] = 0x00; /* example: panasonic */
-					txmessage.data[2] = 0x80;
-					txmessage.data[3] = 0x45;
-					txmessage.length = 4;
-					break;
-				case 0x8d: /* menu request */
-					if (txmessage.data[1] == 0x02) /* query */
-					{
-						txmessage.data[0] = 0x8e; /* menu status */
-						txmessage.data[1] = getActiveStatus() ? 0x00 : 0x01; /* menu activated / deactivated (reporting 'menu active' will activate rc passthrough mode on some tv's) */
-						txmessage.length = 2;
-					}
-					break;
 			}
-
-			if (txmessage.length)
-			{
-				sendMessage(txmessage);
-			}
-			else if (!ignore)
-			{
-				/* we did not reply, allow the command to be handled by external components */
-				/* there is no simple way to pass the complete message object to python, so we support only single byte commands for now */
-				messageReceived(rxmessage.address, rxmessage.data[0]);
-			}
+			ePtr<iCECMessage> msg = new eCECMessage(rxmessage.address, rxmessage.data[0], (char*)&rxmessage.data[1], rxmessage.length);
+			messageReceived(msg);
 		}
 	}
 }
@@ -308,13 +316,14 @@ void eHdmiCEC::sendMessage(struct cec_message &message)
 	}
 }
 
-void eHdmiCEC::sendMessage(unsigned char address, unsigned char length, char *data)
+void eHdmiCEC::sendMessage(unsigned char address, unsigned char cmd, char *data, int length)
 {
 	struct cec_message message;
 	message.address = address;
-	if (length > sizeof(message.data)) length = (unsigned char)sizeof(message.data);
-	message.length = length;
-	memcpy(message.data, data, length);
+	if (length > (int)(sizeof(message.data) - 1)) length = sizeof(message.data) - 1;
+	message.length = length + 1;
+	memcpy(&message.data[1], data, length);
+	message.data[0] = cmd;
 	sendMessage(message);
 }
 
