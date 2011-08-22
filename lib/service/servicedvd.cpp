@@ -916,15 +916,34 @@ void eServiceDVD::setCutListEnable(int /*enable*/)
 
 void eServiceDVD::loadCuesheet()
 {
-	char filename[128];
-	if ( m_ddvd_titlestring[0] != '\0' )
-		snprintf(filename, 128, "/home/root/dvd-%s.cuts", m_ddvd_titlestring);
-	else
-		snprintf(filename, 128, "%s/dvd.cuts", m_ref.path.c_str());
+	FILE* f;
+	{
+		std::string filename = m_ref.path;
+		filename += "/dvd.cuts";
+		f = fopen(filename.c_str(), "rb");
+	}
+	if (f == NULL)
+	{
+		char filename[128];
+		if ( m_ddvd_titlestring[0] != '\0' )
+			snprintf(filename, sizeof(filename), "/home/root/dvd-%s.cuts", m_ddvd_titlestring);
+		else
+		{
+			struct stat st;
+			if (stat(m_ref.path.c_str(), &st) == 0)
+			{
+				// DVD has no name and cannot be written. Use the mtime to generate something unique...
+				snprintf(filename, 128, "/home/root/dvd-%x.cuts", st.st_mtime);
+			}
+			else
+			{
+				strcpy(filename, "/home/root/dvd-untitled.cuts");
+			}
+		}
+		eDebug("eServiceDVD::loadCuesheet() filename=%s",filename);
+		f = fopen(filename, "rb");
+	}
 
-	eDebug("eServiceDVD::loadCuesheet() filename=%s",filename);
-
-	FILE *f = fopen(filename, "rb");
 
 	if (f)
 	{
@@ -987,13 +1006,33 @@ void eServiceDVD::saveCuesheet()
 		m_cue_pts = 0;
 	}
 
-	char filename[128];
-	if ( m_ddvd_titlestring[0] != '\0' )
-		snprintf(filename, 128, "/home/root/dvd-%s.cuts", m_ddvd_titlestring);
-	else
-		snprintf(filename, 128, "%s/dvd.cuts", m_ref.path.c_str());
-	
-	FILE *f = fopen(filename, "wb");
+	FILE* f;
+	{
+		std::string filename = m_ref.path;
+		filename += "/dvd.cuts";
+		f = fopen(filename.c_str(), "wb");
+	}
+	if (f == NULL)
+	{
+		char filename[128];
+		if ( m_ddvd_titlestring[0] != '\0' )
+			snprintf(filename, sizeof(filename), "/home/root/dvd-%s.cuts", m_ddvd_titlestring);
+		else
+		{
+			struct stat st;
+			if (stat(m_ref.path.c_str(), &st) == 0)
+			{
+				// DVD has no name and cannot be written. Use the mtime to generate something unique...
+				snprintf(filename, 128, "/home/root/dvd-%x.cuts", st.st_mtime);
+			}
+			else
+			{
+				strcpy(filename, "/home/root/dvd-untitled.cuts");
+			}
+		}
+		eDebug("eServiceDVD::saveCuesheet() filename=%s",filename);
+		f = fopen(filename, "wb");
+	}
 
 	if (f)
 	{
