@@ -156,7 +156,7 @@ class Devices(Screen):
 			if mountinfo:
 				mountinfo += "\n"
 			parts = line.strip().split()
-			if parts[0].startswith('192'):
+			if parts[0].startswith('192') or parts[0].startswith('//192'):
 				mounttmp = popen("df -m " + parts[1] + " | grep -v '^Filesystem'")
 				mount = mounttmp.read()
 				mounttmp.close()
