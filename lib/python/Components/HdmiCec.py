@@ -24,6 +24,8 @@ config.hdmicec.tv_wakeup_detection = ConfigSelection(
 config.hdmicec.fixed_physical_address = ConfigText(default = "0.0.0.0")
 config.hdmicec.match_upstream_stream_request = ConfigYesNo(default = False)
 config.hdmicec.volume_forwarding = ConfigYesNo(default = False)
+config.hdmicec.control_receiver_wakeup = ConfigYesNo(default = False)
+config.hdmicec.control_receiver_standby = ConfigYesNo(default = False)
 
 class HdmiCec:
 	instance = None
@@ -79,6 +81,11 @@ class HdmiCec:
 		elif message == "givesystemaudiostatus":
 			cmd = 0x7d
 			address = 0x05
+		elif message == "setsystemaudiomode":
+			cmd = 0x70
+			address = 0x05
+			physicaladdress = eHdmiCEC.getInstance().getPhysicalAddress()
+			data = str(struct.pack('BB', int(physicaladdress/256), int(physicaladdress%256)))
 		elif message == "osdname":
 			cmd = 0x47
 			data = os.uname()[1]
@@ -117,6 +124,9 @@ class HdmiCec:
 			if messages:
 				self.sendMessages(0, messages)
 
+			if config.hdmicec.control_receiver_wakeup:
+				self.sendMessage(5, "setsystemaudiomode")
+
 	def onEnterStandby(self, configElement):
 		from Screens.Standby import inStandby
 		inStandby.onClose.append(self.onLeaveStandby)
@@ -131,6 +141,9 @@ class HdmiCec:
 					messages.append("menuinactive")
 			if messages:
 				self.sendMessages(0, messages)
+
+			if config.hdmicec.control_receiver_standby:
+				self.sendMessage(5, "standby")
 
 	def standby(self):
 		from Screens.Standby import Standby, inStandby
