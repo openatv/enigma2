@@ -315,7 +315,7 @@ void eDVBDB::parseServiceData(ePtr<eDVBService> s, std::string str)
 		{
 			int val;
 			sscanf(v.c_str(), "%04x", &val);
-			s->m_ca.push_front((uint16_t)val);
+			s->m_ca.push_back((uint16_t)val);
 		}
 	}
 }
