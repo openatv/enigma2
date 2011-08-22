@@ -1,7 +1,7 @@
 import struct
 import os
 from config import config, ConfigSelection, ConfigYesNo, ConfigSubsection, ConfigText
-from enigma import eHdmiCEC
+from enigma import eHdmiCEC, eRCInput
 
 config.hdmicec = ConfigSubsection()
 config.hdmicec.enabled = ConfigYesNo(default = True)
@@ -23,12 +23,23 @@ config.hdmicec.tv_wakeup_detection = ConfigSelection(
 	default = "streamrequest")
 config.hdmicec.fixed_physical_address = ConfigText(default = "0.0.0.0")
 config.hdmicec.match_upstream_stream_request = ConfigYesNo(default = False)
+config.hdmicec.volume_forwarding = ConfigYesNo(default = False)
 
 class HdmiCec:
+	instance = None
+
 	def __init__(self):
+		assert not HdmiCec.instance, "only one HdmiCec instance is allowed!"
+		HdmiCec.instance = self
+
 		eHdmiCEC.getInstance().messageReceived.get().append(self.messageReceived)
 		config.misc.standbyCounter.addNotifier(self.onEnterStandby, initial_call = False)
 		self.setFixedPhysicalAddress(config.hdmicec.fixed_physical_address.value)
+		
+		self.volumeForwardingEnabled = False
+		self.volumeForwardingDestination = 0
+		eRCInput.getInstance().pyKeyEvent.get().append(self.keyEvent)
+		config.hdmicec.volume_forwarding.addNotifier(self.configVolumeForwarding)
 
 	def getPhysicalAddress(self):
 		physicaladdress = eHdmiCEC.getInstance().getPhysicalAddress()
@@ -65,6 +76,9 @@ class HdmiCec:
 		elif message == "menuinactive":
 			cmd = 0x8e
 			data = str(struct.pack('B', 0x01))
+		elif message == "givesystemaudiostatus":
+			cmd = 0x7d
+			address = 0x05
 		elif message == "osdname":
 			cmd = 0x47
 			data = os.uname()[1]
@@ -135,8 +149,20 @@ class HdmiCec:
 			cmd = message.getCommand()
 			data = 16 * '\x00'
 			length = message.getData(data, len(data))
-			if cmd == 0x46: # request name
+			if cmd == 0x00: # feature abort
+				if data[0] == '\x44':
+					print 'eHdmiCec: volume forwarding not supported by device %02x'%(message.getAddress())
+					self.volumeForwardingEnabled = False;
+			elif cmd == 0x46: # request name
 				self.sendMessage(message.getAddress(), 'osdname')
+			elif cmd == 0x7e or cmd == 0x72: # system audio mode status
+				if data[0] == '\x01':
+					self.volumeForwardingDestination = 5; # on: send volume keys to receiver 
+				else:
+					self.volumeForwardingDestination = 0; # off: send volume keys to tv
+				if config.hdmicec.volume_forwarding:
+					print 'eHdmiCec: volume forwarding to device %02x enabled'%(self.volumeForwardingDestination)
+					self.volumeForwardingEnabled = True;
 			elif cmd == 0x8f: # request power status
 				if inStandby:
 					self.sendMessage(message.getAddress(), 'powerinactive')
@@ -198,5 +224,40 @@ class HdmiCec:
 					self.wakeup()
 				elif config.hdmicec.tv_wakeup_detection.value == "activity":
 					self.wakeup()
+
+	def configVolumeForwarding(self, configElement):
+		if configElement.value:
+			self.volumeForwardingEnabled = True
+			self.sendMessage(0x05, 'givesystemaudiostatus')
+		else:
+			self.volumeForwardingEnabled = False
+
+	def keyEvent(self, keyCode, keyEvent):
+		if not self.volumeForwardingEnabled: return
+		cmd = 0
+		data = ''
+		print "keyEvent hdmi: %d %d"%(keyCode, keyEvent)
+		if keyEvent == 0:
+			if keyCode == 115:
+				cmd = 0x44
+				data = str(struct.pack('B', 0x41))
+			if keyCode == 114:
+				cmd = 0x44
+				data = str(struct.pack('B', 0x42))
+			if keyCode == 113:
+				cmd = 0x44
+				data = str(struct.pack('B', 0x43))
+		if keyEvent == 2:
+			if keyCode == 115:
+				cmd = 0x44
+				data = str(struct.pack('B', 0x41))
+			if keyCode == 114:
+				cmd = 0x44
+				data = str(struct.pack('B', 0x42))
+		if keyEvent == 1:
+			if keyCode == 115 or keyCode == 114 or keyCode == 113:
+				cmd = 0x45
+		if cmd:
+			eHdmiCEC.getInstance().sendMessage(self.volumeForwardingDestination, cmd, data, len(data))
 
 hdmi_cec = HdmiCec()
