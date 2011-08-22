@@ -20,13 +20,7 @@
 #include <libsig_comp.h>
 #include <connection.h>
 
-#if defined(__GNUC__) && ((__GNUC__ == 3 && __GNUC_MINOR__ >= 1) || __GNUC__ == 4 )  // check if gcc version >= 3.1
-#include <ext/slist>
-#define CAID_LIST __gnu_cxx::slist<uint16_t>
-#else
-#include <slist>
-#define CAID_LIST std::slist<uint16_t>
-#endif
+#define CAID_LIST std::list<uint16_t>
 
 #ifndef DMX_FILTER_SIZE
 #define DMX_FILTER_SIZE   16

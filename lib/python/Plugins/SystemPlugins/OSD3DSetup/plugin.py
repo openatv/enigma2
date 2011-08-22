@@ -2,10 +2,10 @@ from Screens.Screen import Screen
 from Components.ConfigList import ConfigListScreen
 from Components.config import config, ConfigSubsection, ConfigInteger, ConfigSelection, ConfigSlider, getConfigListEntry
 
-modelist = {"0": _("Auto"), "1": _("Side by Side"), "2": _("Top and Bottom")}
+modelist = {"off": _("Off"), "auto": _("Auto"), "sidebyside": _("Side by Side"), "topandbottom": _("Top and Bottom")}
 
 config.plugins.OSD3DSetup = ConfigSubsection()
-config.plugins.OSD3DSetup.mode = ConfigSelection(choices = modelist, default = "0")
+config.plugins.OSD3DSetup.mode = ConfigSelection(choices = modelist, default = "auto")
 config.plugins.OSD3DSetup.znorm = ConfigInteger(default = 0)
 
 class OSD3DSetupScreen(Screen, ConfigListScreen):
