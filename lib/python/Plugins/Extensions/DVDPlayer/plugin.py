@@ -529,6 +529,9 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 				self.doShow()
 		
 	def askLeavePlayer(self):
+		if self.autoplay:
+			self.exitCB((None,"exit"))
+			return
 		choices = [(_("Exit"), "exit"), (_("Continue playing"), "play")]
 		if True or not self.physicalDVD:
 			choices.insert(1,(_("Return to file browser"), "browser"))
