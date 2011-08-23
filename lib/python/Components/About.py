@@ -1,4 +1,5 @@
 from Tools.Directories import resolveFilename, SCOPE_SYSETC
+from Tools.HardwareInfo import HardwareInfo
 import sys
 
 def getVersionString():
@@ -76,10 +77,7 @@ def getEnigmaVersionString():
 	return enigma_version
 
 def getKernelVersionString():
-	try:
-		return open("/proc/version","r").read().split(' ', 4)[2].split('-',2)[0]
-	except:
-		return "unknown"
+	return HardwareInfo().linux_kernel()
 
 # For modules that do "from About import about"
 about = sys.modules[__name__]
