@@ -14,8 +14,8 @@ enigma.eSocketNotifier = eBaseImpl.eSocketNotifier
 enigma.eConsoleAppContainer = eConsoleImpl.eConsoleAppContainer
 
 from traceback import print_exc
-profile("LOAD:InfoBar")
-import Screens.InfoBar
+profile("SimpleSummary")
+from Screens import InfoBar
 from Screens.SimpleSummary import SimpleSummary
 
 from sys import stdout, exc_info
@@ -446,7 +446,7 @@ def runScreenTest():
 	profile("wizards")
 	screensToRun += wizardManager.getWizards()
 
-	screensToRun.append((100, Screens.InfoBar.InfoBar))
+	screensToRun.append((100, InfoBar.InfoBar))
 
 	screensToRun.sort()
 
@@ -529,7 +529,9 @@ def runScreenTest():
 
 	profile("configfile.save")
 	configfile.save()
-
+	from Screens import InfoBarGenerics
+	InfoBarGenerics.saveResumePoints()
+	
 	return 0
 
 profile("Init:skin")

@@ -44,10 +44,8 @@ from RecordTimer import RecordTimerEntry, RecordTimer
 # hack alert!
 from Menu import MainMenu, mdom
 
-resumePointCache = {}
-
 def setResumePoint(session):
-	global resumePointCache
+	global resumePointCache, resumePointCacheLast
 	service = session.nav.getCurrentService()
 	ref = session.nav.getCurrentlyPlayingServiceReference()
 	if (service is not None) and (ref is not None): # and (ref.type != 1):
@@ -57,26 +55,30 @@ def setResumePoint(session):
 			pos = seek.getPlayPosition()
 			if not pos[0]:
 				key = ref.toString()
-				lru = time()
+				lru = int(time())
 				l = seek.getLength()
 				if l:
 					l = l[1]
 				else:
 					l = None 
 				resumePointCache[key] = [lru, pos[1], l]
-				if len(resumePointCache) > 100:
+				if len(resumePointCache) > 50:
 					candidate = key
 					for k,v in resumePointCache.items():
 						if v[0] < lru:
 							candidate = k
 					del resumePointCache[candidate]
+				if lru - resumePointCacheLast > 3600:
+					saveResumePoints()
 
 def delResumePoint(ref):
-	global resumePointCache
+	global resumePointCache, resumePointCacheLast
 	try:
 		del resumePointCache[ref.toString()]
 	except KeyError:
 		pass
+	if int(time()) - resumePointCacheLast > 3600:
+		saveResumePoints()
 
 def getResumePoint(session):
 	global resumePointCache
@@ -84,10 +86,31 @@ def getResumePoint(session):
 	if (ref is not None) and (ref.type != 1):
 		try:
 			entry = resumePointCache[ref.toString()]
-			entry[0] = time() # update LRU timestamp
+			entry[0] = int(time()) # update LRU timestamp
 			return entry[1]
 		except KeyError:
 			return None
+
+def saveResumePoints():
+	global resumePointCache, resumePointCacheLast
+	import cPickle
+	try:
+		f = open('/home/root/resumepoints.pkl', 'wb')
+		cPickle.dump(resumePointCache, f, cPickle.HIGHEST_PROTOCOL)
+	except Exception, ex:
+		print "[InfoBar] Failed to write resumepoints:", ex
+	resumePointCacheLast = int(time())
+
+def loadResumePoints():
+	import cPickle
+	try:
+		return cPickle.load(open('/home/root/resumepoints.pkl', 'rb'))
+	except Exception, ex:
+		print "[InfoBar] Failed to load resumepoints:", ex
+		return {}
+
+resumePointCache = loadResumePoints()
+resumePointCacheLast = int(time())
 
 class InfoBarDish:
 	def __init__(self):
