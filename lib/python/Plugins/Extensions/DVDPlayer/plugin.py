@@ -625,6 +625,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 
 	def playPhysicalCB(self, answer):
 		if answer == True:
+			harddiskmanager.setDVDSpeed(harddiskmanager.getCD(), 1)
 			self.FileBrowserClosed(harddiskmanager.getAutofsMountpoint(harddiskmanager.getCD()))
 		else:
 			self.session.openWithCallback(self.FileBrowserClosed, FileBrowser)
