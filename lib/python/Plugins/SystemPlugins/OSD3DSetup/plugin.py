@@ -59,7 +59,7 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 		self.setPreviewSettings()
 
 	def setPreviewSettings(self):
-		applySettings(int(self.mode.value), int(self.znorm.value) - 50)
+		applySettings(self.mode.value, int(self.znorm.value) - 50)
 
 	def keyGo(self):
 		config.plugins.OSD3DSetup.mode.value = self.mode.value
@@ -74,7 +74,7 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 def applySettings(mode, znorm):
 	try:
 		file = open("/proc/stb/fb/3dmode", "w")
-		file.write('%d' % mode)
+		file.write(mode)
 		file.close()
 		file = open("/proc/stb/fb/znorm", "w")
 		file.write('%d' % znorm)
