@@ -81,7 +81,7 @@ class TimerList(HTMLComponent, GUIComponent, object):
 		self.l.setBuildFunc(self.buildTimerEntry)
 		self.l.setFont(0, gFont("Regular", 20))
 		self.l.setFont(1, gFont("Regular", 18))
-		self.l.setItemHeight(49)
+		self.l.setItemHeight(50)
 		self.l.setList(list)
 		self.iconWait = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/timer_wait.png"))
 		self.iconRecording = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/timer_rec.png"))
