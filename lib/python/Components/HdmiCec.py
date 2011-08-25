@@ -16,7 +16,6 @@ config.hdmicec.tv_wakeup_detection = ConfigSelection(
 	"wakeup": _("Wakeup"),
 	"sourcerequest": _("Source request"),
 	"streamrequest": _("Stream request"),
-	"streamrequest": _("Stream request"),
 	"osdnamerequest": _("OSD name request"),
 	"activity": _("Any activity"),
 	},
