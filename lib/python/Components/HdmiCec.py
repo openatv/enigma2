@@ -2,6 +2,7 @@ import struct
 import os
 from config import config, ConfigSelection, ConfigYesNo, ConfigSubsection, ConfigText
 from enigma import eHdmiCEC, eRCInput
+from Tools.DreamboxHardware import getFPWasTimerWakeup
 
 config.hdmicec = ConfigSubsection()
 config.hdmicec.enabled = ConfigYesNo(default = True)
@@ -21,10 +22,10 @@ config.hdmicec.tv_wakeup_detection = ConfigSelection(
 	},
 	default = "streamrequest")
 config.hdmicec.fixed_physical_address = ConfigText(default = "0.0.0.0")
-config.hdmicec.match_upstream_stream_request = ConfigYesNo(default = False)
 config.hdmicec.volume_forwarding = ConfigYesNo(default = False)
 config.hdmicec.control_receiver_wakeup = ConfigYesNo(default = False)
 config.hdmicec.control_receiver_standby = ConfigYesNo(default = False)
+config.hdmicec.handle_deepstandby_events = ConfigYesNo(default = False)
 
 class HdmiCec:
 	instance = None
@@ -41,6 +42,9 @@ class HdmiCec:
 		self.volumeForwardingDestination = 0
 		eRCInput.getInstance().pyKeyEvent.get().append(self.keyEvent)
 		config.hdmicec.volume_forwarding.addNotifier(self.configVolumeForwarding)
+		if config.hdmicec.handle_deepstandby_events.value:
+			if not getFPWasTimerWakeup():
+				self.wakeupMessages()
 
 	def getPhysicalAddress(self):
 		physicaladdress = eHdmiCEC.getInstance().getPhysicalAddress()
@@ -111,7 +115,7 @@ class HdmiCec:
 		for message in messages:
 			self.sendMessage(address, message)
 
-	def onLeaveStandby(self):
+	def wakeupMessages(self):
 		if config.hdmicec.enabled.value:
 			messages = []
 			if config.hdmicec.control_tv_wakeup.value:
@@ -126,9 +130,7 @@ class HdmiCec:
 			if config.hdmicec.control_receiver_wakeup:
 				self.sendMessage(5, "setsystemaudiomode")
 
-	def onEnterStandby(self, configElement):
-		from Screens.Standby import inStandby
-		inStandby.onClose.append(self.onLeaveStandby)
+	def standbyMessages(self):
 		if config.hdmicec.enabled.value:
 			messages = []
 			if config.hdmicec.control_tv_standby.value:
@@ -143,6 +145,14 @@ class HdmiCec:
 
 			if config.hdmicec.control_receiver_standby:
 				self.sendMessage(5, "standby")
+
+	def onLeaveStandby(self):
+		self.wakeupMessages()
+
+	def onEnterStandby(self, configElement):
+		from Screens.Standby import inStandby
+		inStandby.onClose.append(self.onLeaveStandby)
+		self.standbyMessages()
 
 	def standby(self):
 		from Screens.Standby import Standby, inStandby
@@ -183,16 +193,9 @@ class HdmiCec:
 			elif cmd == 0x83: # request address
 				self.sendMessage(message.getAddress(), 'reportaddress')
 			elif cmd == 0x86: # request streaming path
-				physicaladdress = '%04x' % (ord(data[0]) * 256 + ord(data[1]))
-				ouraddress = '%04x' % eHdmiCEC.getInstance().getPhysicalAddress()
-				match = physicaladdress == ouraddress
-				if not match and config.hdmicec.match_upstream_stream_request.value:
-					match = True
-					for nibble in range(4):
-						if physicaladdress[nibble] is not '0' and physicaladdress[nibble] is not ouraddress[nibble]:
-							match = False
-							break
-				if match:
+				physicaladdress = ord(data[0]) * 256 + ord(data[1])
+				ouraddress = eHdmiCEC.getInstance().getPhysicalAddress()
+				if physicaladdress == ouraddress:
 					if not inStandby:
 						if config.hdmicec.report_active_source.value:
 							self.sendMessage(message.getAddress(), 'sourceactive')
@@ -221,16 +224,9 @@ class HdmiCec:
 				elif cmd == 0x85 and config.hdmicec.tv_wakeup_detection.value == "sourcerequest":
 					self.wakeup()
 				elif cmd == 0x86 and config.hdmicec.tv_wakeup_detection.value == "streamrequest":
-					physicaladdress = '%04x' % (ord(data[0]) * 256 + ord(data[1]))
-					ouraddress = '%04x' % eHdmiCEC.getInstance().getPhysicalAddress()
-					match = physicaladdress == ouraddress
-					if not match and config.hdmicec.match_upstream_stream_request.value:
-						match = True
-						for nibble in range(4):
-							if physicaladdress[nibble] is not '0' and physicaladdress[nibble] is not ouraddress[nibble]:
-								match = False
-								break
-					if match:
+					physicaladdress = ord(data[0]) * 256 + ord(data[1])
+					ouraddress = eHdmiCEC.getInstance().getPhysicalAddress()
+					if physicaladdress == ouraddress:
 						self.wakeup()
 				elif cmd == 0x46 and config.hdmicec.tv_wakeup_detection.value == "osdnamerequest":
 					self.wakeup()
