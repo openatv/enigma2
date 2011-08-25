@@ -1,7 +1,7 @@
 from enigma import eServiceCenter, eServiceReference, eTimer, pNavigation, getBestPlayableServiceReference, iPlayableService
 from Components.ParentalControl import parentalControl
 from Tools.BoundFunction import boundFunction
-from Tools.DreamboxHardware import setFPWakeuptime, getFPWakeuptime, getFPWasTimerWakeup, clearFPWasTimerWakeup
+from Tools.DreamboxHardware import setFPWakeuptime, getFPWakeuptime, getFPWasTimerWakeup
 from time import time
 import RecordTimer
 import SleepTimer
@@ -30,10 +30,7 @@ class Navigation:
 		self.currentlyPlayingService = None
 		self.RecordTimer = RecordTimer.RecordTimer()
 		if getFPWasTimerWakeup():
-			clearFPWasTimerWakeup()
-			if getFPWasTimerWakeup(): # sanity check to detect if the FP driver is working correct!
-				print "buggy fp driver detected!!! please update drivers.... ignore timer wakeup!"
-			elif nextRecordTimerAfterEventActionAuto:
+			if nextRecordTimerAfterEventActionAuto:
 				# We need to give the systemclock the chance to sync with the transponder time, 
 				# before we will make the decision about whether or not we need to shutdown 
 				# after the upcoming recording has completed
