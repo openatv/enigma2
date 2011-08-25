@@ -467,7 +467,6 @@ class EPGSelection(Screen):
 			self.curRef = ServiceReference(self.servicelist.getCurrentSelection())
 			self.curBouquet = self.servicelist.getRoot()
 			self.startRef = ServiceReference(self.servicelist.getCurrentSelection())
-			self.startBouquet = self.servicelist.getRoot()
 			self.onClose.append(self.__onClose)
 		elif self.type == EPG_TYPE_GRAPH:
 			self["actions"] = ActionMap(["OkCancelActions", "InfobarInstantRecord", "EPGSelectActions", "ChannelSelectBaseActions", "ColorActions", "DirectionActions", "HelpActions"],
@@ -765,7 +764,10 @@ class EPGSelection(Screen):
 				self.session.nav.playService(self.oldService)
 			self.setServicelistSelection(self.curBouquet, self.curRef.ref)
 		else:
-			self.zapFunc(self.startRef.ref, self.StartBouquet)
+			try:
+				self.zapFunc(self.startRef.ref, self.StartBouquet)
+			except:
+				pass
 		self.close(self.closeRecursive)
 
 	def GraphEPGClose(self):
