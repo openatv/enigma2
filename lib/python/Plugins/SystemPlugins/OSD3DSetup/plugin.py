@@ -83,7 +83,7 @@ def applySettings(mode, znorm):
 		return
 
 def setConfiguredSettings():
-	applySettings(int(config.plugins.OSD3DSetup.mode.value), int(config.plugins.OSD3DSetup.znorm.value))
+	applySettings(config.plugins.OSD3DSetup.mode.value, int(config.plugins.OSD3DSetup.znorm.value))
 
 def main(session, **kwargs):
 	session.open(OSD3DSetupScreen)
