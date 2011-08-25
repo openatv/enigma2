@@ -149,8 +149,8 @@ def InitUsageConfig():
 					("MovieList", _("Movie List"))])
 	config.usage.channelbutton_mode = ConfigSelection(default="0", choices = [
 					("0", _("Just change channels")),
-					("1", _("Open channel selection")),
-					("2", _("Open bouquet selection"))])
+					("1", _("Channel List")),
+					("2", _("Bouquet List"))])
 	config.usage.show_bouquetalways = ConfigYesNo(default = False)
 	config.usage.show_event_progress_in_servicelist = ConfigYesNo(default = True)
 	config.usage.show_channel_numbers_in_servicelist = ConfigYesNo(default = True)
@@ -594,19 +594,6 @@ def updateChoices(sel, choices):
 	if choices:
 		defval = None
 		val = int(sel.value)
-		if not val in choices:
-			tmp = choices[:]
-			tmp.reverse()
-			for x in tmp:
-				if x < val:
-					defval = str(x)
-					break
-		sel.setChoices(map(str, choices), defval)
-
-def updateChoices2(sel, choices):
-	if choices:
-		defval = None
-		val = sel.value
 		if not val in choices:
 			tmp = choices[:]
 			tmp.reverse()

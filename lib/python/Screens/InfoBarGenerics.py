@@ -1,4 +1,4 @@
-from ChannelSelection import SlimChannelSelection, ChannelSelection, BouquetSelector, VIXBouquetSelector
+from ChannelSelection import ChannelSelection, BouquetSelector, VIXBouquetSelector
 from Components.ActionMap import ActionMap, HelpableActionMap
 from Components.ActionMap import NumberActionMap
 from Components.Harddisk import harddiskmanager
@@ -506,18 +506,10 @@ class InfoBarNumberZap:
 				self.pipDoHandle0Action()
 			else:
 				if config.usage.panicbutton.value:
-					if self.serviceListType == "Norm":
-						self.servicelist.history = [ ]
-						self.servicelist.history_pos = 0
-					elif self.serviceListType == "Slim":
-						self.slimservicelist.history = [ ]
-						self.slimservicelist.history_pos = 0
-					self.zapToNumber(1)
+					self.servicelist.history = [ ]
+					self.servicelist.history_pos = 0
 				else:
-					if self.serviceListType == "Norm":
-						self.servicelist.recallPrevService()
-					elif self.serviceListType == "Slim":
-						self.slimservicelist.recallPrevService()
+					self.servicelist.recallPrevService()
 		else:
 			if self.has_key("TimeshiftActions") and not self.timeshift_enabled:
 				self.session.openWithCallback(self.numberEntered, NumberZap, number)
@@ -544,10 +536,7 @@ class InfoBarNumberZap:
 		return None, num
 
 	def zapToNumber(self, number):
-		if self.serviceListType == "Norm":
-			bouquet = self.servicelist.bouquet_root
-		elif self.serviceListType == "Slim":
-			bouquet = self.slimservicelist.bouquet_root
+		bouquet = self.servicelist.bouquet_root
 		service = None
 		serviceHandler = eServiceCenter.getInstance()
 		if not config.usage.multibouquet.value:
@@ -562,22 +551,13 @@ class InfoBarNumberZap:
 					if bouquet.flags & eServiceReference.isDirectory:
 						service, number = self.searchNumberHelper(serviceHandler, number, bouquet)
 		if not service is None:
-			if self.serviceListType == "Norm":
-				if self.servicelist.getRoot() != bouquet: #already in correct bouquet?
-					self.servicelist.clearPath()
-					if self.servicelist.bouquet_root != bouquet:
-						self.servicelist.enterPath(self.servicelist.bouquet_root)
-					self.servicelist.enterPath(bouquet)
-				self.servicelist.setCurrentSelection(service) #select the service in servicelist
-				self.servicelist.zap(enable_pipzap = True)
-			if self.serviceListType == "Slim":
-				if self.slimservicelist.getRoot() != bouquet: #already in correct bouquet?
-					self.slimservicelist.clearPath()
-					if self.slimservicelist.bouquet_root != bouquet:
-						self.slimservicelist.enterPath(self.slimservicelist.bouquet_root)
-					self.slimservicelist.enterPath(bouquet)
-				self.slimservicelist.setCurrentSelection(service) #select the service in servicelist
-				self.slimservicelist.zap(enable_pipzap = True)
+			if self.servicelist.getRoot() != bouquet: #already in correct bouquet?
+				self.servicelist.clearPath()
+				if self.servicelist.bouquet_root != bouquet:
+					self.servicelist.enterPath(self.servicelist.bouquet_root)
+				self.servicelist.enterPath(bouquet)
+			self.servicelist.setCurrentSelection(service) #select the service in servicelist
+			self.servicelist.zap(enable_pipzap = True)
 
 config.misc.initialchannelselection = ConfigBoolean(default = True)
 
@@ -587,11 +567,6 @@ class InfoBarChannelSelection:
 	def __init__(self):
 		#instantiate forever
 		self.servicelist = self.session.instantiateDialog(ChannelSelection)
-		self.slimservicelist = self.session.instantiateDialog(SlimChannelSelection)
-		if config.usage.servicelist_mode.value != "simple":
-			self.serviceListType = "Norm"
-		else:
-			self.serviceListType = "Slim"
 
 		if config.misc.initialchannelselection.value:
 			self.onShown.append(self.firstRun)
@@ -600,8 +575,6 @@ class InfoBarChannelSelection:
 			{
 				"switchChannelUp": (self.switchChannelUp, _("open servicelist(up)")),
 				"switchChannelDown": (self.switchChannelDown, _("open servicelist(down)")),
-				"switchChannelUpLong": (self.switchChannelUpLong, _("open servicelist(up)")),
-				"switchChannelDownLong": (self.switchChannelDownLong, _("open servicelist(down)")),
 				"LeftPressed": self.LeftPressed,
 				"RightPressed": self.RightPressed,
 				"ChannelPlusPressed": self.ChannelPlusPressed,
@@ -631,14 +604,9 @@ class InfoBarChannelSelection:
 		elif config.usage.channelbutton_mode.value == "1":
 			self.openServiceList()
 		elif config.usage.channelbutton_mode.value == "2":
-			if config.usage.servicelist_mode.value != "simple":
-				self.serviceListType = "Norm"
-				self.servicelist.showFavourites()
-				self.session.execDialog(self.servicelist)
-			else:
-				self.serviceListType = "Slim"
-				self.slimservicelist.showFavourites()
-				self.session.execDialog(self.slimservicelist)
+			self.serviceListType = "Norm"
+			self.servicelist.showFavourites()
+			self.session.execDialog(self.servicelist)
 
 	def ChannelMinusPressed(self):
 		if config.usage.channelbutton_mode.value == "0":
@@ -646,22 +614,9 @@ class InfoBarChannelSelection:
 		elif config.usage.channelbutton_mode.value == "1":
 			self.openServiceList()
 		elif config.usage.channelbutton_mode.value == "2":
-			if config.usage.servicelist_mode.value != "simple":
-				self.serviceListType = "Norm"
-				self.servicelist.showFavourites()
-				self.session.execDialog(self.servicelist)
-			else:
-				self.serviceListType = "Slim"
-				self.slimservicelist.showFavourites()
-				self.session.execDialog(self.slimservicelist)
-
-
-	def showTvSlimChannelList(self, zap=False):
-		self.slimservicelist.setModeTv()
-		if zap:
-			self.slimservicelist.zap()
-		if config.usage.show_servicelist.value:
-			self.session.execDialog(self.slimservicelist)
+			self.serviceListType = "Norm"
+			self.servicelist.showFavourites()
+			self.session.execDialog(self.servicelist)
 
 	def showTvChannelList(self, zap=False):
 		self.servicelist.setModeTv()
@@ -669,16 +624,6 @@ class InfoBarChannelSelection:
 			self.servicelist.zap()
 		if config.usage.show_servicelist.value:
 			self.session.execDialog(self.servicelist)
-
-	def showRadioSlimChannelList(self, zap=False):
-		if self.save_current_timeshift and self.timeshift_enabled:
-			InfoBarTimeshift.saveTimeshiftActions(self, postaction="showRadioChannelList")
-		else:
-			self.slimservicelist.setModeRadio()
-			if zap:
-				self.slimservicelist.zap()
-			if config.usage.show_servicelist.value:
-				self.session.execDialog(self.slimservicelist)
 
 	def showRadioChannelList(self, zap=False):
 		if self.save_current_timeshift and self.timeshift_enabled:
@@ -706,10 +651,7 @@ class InfoBarChannelSelection:
 		elif self.save_current_timeshift and self.timeshift_enabled:
 			InfoBarTimeshift.saveTimeshiftActions(self, postaction="historyBack")
 		else:
-			if self.serviceListType == "Norm":
-				self.servicelist.historyBack()
-			elif self.serviceListType == "Slim":
-				self.slimservicelist.historyBack()
+			self.servicelist.historyBack()
 
 	def historyNext(self):
 		if self.pts_pvrStateDialog == "Screens.PVRState.PTSTimeshiftState" and self.timeshift_enabled and self.isSeekable():
@@ -721,119 +663,39 @@ class InfoBarChannelSelection:
 		elif self.save_current_timeshift and self.timeshift_enabled:
 			InfoBarTimeshift.saveTimeshiftActions(self, postaction="historyNext")
 		else:
-			if self.serviceListType == "Norm":
-				self.servicelist.historyNext()
-			if self.serviceListType == "Slim":
-				self.slimservicelist.historyNext()
+			self.servicelist.historyNext()
 
 	def switchChannelUp(self):
 		if self.save_current_timeshift and self.timeshift_enabled:
 			InfoBarTimeshift.saveTimeshiftActions(self, postaction="switchChannelUp")
 		else:
-			if config.usage.servicelist_mode.value != "simple":
-				if not config.usage.show_bouquetalways.value:
-					self.serviceListType = "Norm"
-					self.servicelist.moveUp()
-					self.session.execDialog(self.servicelist)
-				else:
-					self.serviceListType = "Norm"
-					self.servicelist.showFavourites()
-					self.session.execDialog(self.servicelist)
+			if not config.usage.show_bouquetalways.value:
+				self.servicelist.moveUp()
+				self.session.execDialog(self.servicelist)
 			else:
-				if not config.usage.show_bouquetalways.value:
-					self.serviceListType = "Slim"
-					self.slimservicelist.moveUp()
-					self.session.execDialog(self.slimservicelist)
-				else:
-					self.serviceListType = "Slim"
-					self.slimservicelist.showFavourites()
-					self.session.execDialog(self.slimservicelist)
+				self.servicelist.showFavourites()
+				self.session.execDialog(self.servicelist)
 
 	def switchChannelDown(self):
 		if self.save_current_timeshift and self.timeshift_enabled:
 			InfoBarTimeshift.saveTimeshiftActions(self, postaction="switchChannelDown")
 		else:
-			if config.usage.servicelist_mode.value != "simple":
-				if not config.usage.show_bouquetalways.value:
-					self.serviceListType = "Norm"
-					self.servicelist.moveDown()
-					self.session.execDialog(self.servicelist)
-				else:
-					self.serviceListType = "Norm"
-					self.servicelist.showFavourites()
-					self.session.execDialog(self.servicelist)
+			if not config.usage.show_bouquetalways.value:
+				self.servicelist.moveDown()
+				self.session.execDialog(self.servicelist)
 			else:
-				if not config.usage.show_bouquetalways.value:
-					self.serviceListType = "Slim"
-					self.slimservicelist.moveDown()
-					self.session.execDialog(self.slimservicelist)
-				else:
-					self.serviceListType = "Slim"
-					self.slimservicelist.showFavourites()
-					self.session.execDialog(self.slimservicelist)
-
-	def switchChannelUpLong(self):
-		if self.save_current_timeshift and self.timeshift_enabled:
-			InfoBarTimeshift.saveTimeshiftActions(self, postaction="switchChannelUpLong")
-		else:
-			if config.usage.servicelist_mode.value == "simple":
-				if not config.usage.show_bouquetalways.value:
-					self.serviceListType = "Norm"
-					self.servicelist.moveUp()
-					self.session.execDialog(self.servicelist)
-				else:
-					self.serviceListType = "Norm"
-					self.servicelist.showFavourites()
-					self.session.execDialog(self.servicelist)
-			else:
-				if not config.usage.show_bouquetalways.value:
-					self.serviceListType = "Slim"
-					self.slimservicelist.moveUp()
-					self.session.execDialog(self.slimservicelist)
-				else:
-					self.serviceListType = "Slim"
-					self.slimservicelist.showFavourites()
-					self.session.execDialog(self.slimservicelist)
-
-	def switchChannelDownLong(self):
-		if self.save_current_timeshift and self.timeshift_enabled:
-			InfoBarTimeshift.saveTimeshiftActions(self, postaction="switchChannelDownLong")
-		else:
-			if config.usage.servicelist_mode.value == "simple":
-				if not config.usage.show_bouquetalways.value:
-					self.serviceListType = "Norm"
-					self.servicelist.moveDown()
-					self.session.execDialog(self.servicelist)
-				else:
-					self.serviceListType = "Norm"
-					self.servicelist.showFavourites()
-					self.session.execDialog(self.servicelist)
-			else:
-				if not config.usage.show_bouquetalways.value:
-					self.serviceListType = "Slim"
-					self.slimservicelist.moveDown()
-					self.session.execDialog(self.slimservicelist)
-				else:
-					self.serviceListType = "Slim"
-					self.slimservicelist.showFavourites()
-					self.session.execDialog(self.slimservicelist)
-
+				self.servicelist.showFavourites()
+				self.session.execDialog(self.servicelist)
 
 	def openServiceList(self):
 		if self.save_current_timeshift and self.timeshift_enabled:
 			InfoBarTimeshift.saveTimeshiftActions(self, postaction="openServiceList")
 		else:
-			if self.serviceListType == "Norm":
-				self.session.execDialog(self.servicelist)
-			else:
-				self.session.execDialog(self.slimservicelist)
+			self.session.execDialog(self.servicelist)
 
 	def openInfoBarEPG(self):
 		self.EPGtype = "infobar"
-		if self.serviceListType == "Norm":
-			self.session.open(EPGSelection, self.servicelist, self.EPGtype)
-		else:
-			self.session.open(EPGSelection, self.slimservicelist, self.EPGtype)
+		self.session.open(EPGSelection, self.servicelist, self.EPGtype)
 		
 	def zapUp(self):
 		if self.pts_blockZap_timer.isActive():
@@ -842,38 +704,21 @@ class InfoBarChannelSelection:
 		if self.save_current_timeshift and self.timeshift_enabled:
 			InfoBarTimeshift.saveTimeshiftActions(self, postaction="zapUp")
 		else:
-			if self.serviceListType == "Norm":
-				if self.servicelist.inBouquet():
-					prev = self.servicelist.getCurrentSelection()
-					if prev:
-						prev = prev.toString()
-						while True:
-							if config.usage.quickzap_bouquet_change.value:
-								if self.servicelist.atBegin():
-									self.servicelist.prevBouquet()
-							self.servicelist.moveUp()
-							cur = self.servicelist.getCurrentSelection()
-							if not cur or (not (cur.flags & 64)) or cur.toString() == prev:
-								break
-				else:
-					self.servicelist.moveUp()
-				self.servicelist.zap(enable_pipzap = True)
+			if self.servicelist.inBouquet():
+				prev = self.servicelist.getCurrentSelection()
+				if prev:
+					prev = prev.toString()
+					while True:
+						if config.usage.quickzap_bouquet_change.value:
+							if self.servicelist.atBegin():
+								self.servicelist.prevBouquet()
+						self.servicelist.moveUp()
+						cur = self.servicelist.getCurrentSelection()
+						if not cur or (not (cur.flags & 64)) or cur.toString() == prev:
+							break
 			else:
-				if self.slimservicelist.inBouquet():
-					prev = self.slimservicelist.getCurrentSelection()
-					if prev:
-						prev = prev.toString()
-						while True:
-							if config.usage.quickzap_bouquet_change.value:
-								if self.slimservicelist.atBegin():
-									self.slimservicelist.prevBouquet()
-							self.slimservicelist.moveUp()
-							cur = self.slimservicelist.getCurrentSelection()
-							if not cur or (not (cur.flags & 64)) or cur.toString() == prev:
-								break
-				else:
-					self.slimservicelist.moveUp()
-				self.slimservicelist.zap(enable_pipzap = True)
+				self.servicelist.moveUp()
+			self.servicelist.zap(enable_pipzap = True)
 
 	def zapDown(self):
 		if self.pts_blockZap_timer.isActive():
@@ -882,38 +727,21 @@ class InfoBarChannelSelection:
 		if self.save_current_timeshift and self.timeshift_enabled:
 			InfoBarTimeshift.saveTimeshiftActions(self, postaction="zapDown")
 		else:
-			if self.serviceListType == "Norm":
-				if self.servicelist.inBouquet():
-					prev = self.servicelist.getCurrentSelection()
-					if prev:
-						prev = prev.toString()
-						while True:
-							if config.usage.quickzap_bouquet_change.value and self.servicelist.atEnd():
-								self.servicelist.nextBouquet()
-							else:
-								self.servicelist.moveDown()
-							cur = self.servicelist.getCurrentSelection()
-							if not cur or (not (cur.flags & 64)) or cur.toString() == prev:
-								break
-				else:
-					self.servicelist.moveDown()
-				self.servicelist.zap(enable_pipzap = True)
+			if self.servicelist.inBouquet():
+				prev = self.servicelist.getCurrentSelection()
+				if prev:
+					prev = prev.toString()
+					while True:
+						if config.usage.quickzap_bouquet_change.value and self.servicelist.atEnd():
+							self.servicelist.nextBouquet()
+						else:
+							self.servicelist.moveDown()
+						cur = self.servicelist.getCurrentSelection()
+						if not cur or (not (cur.flags & 64)) or cur.toString() == prev:
+							break
 			else:
-				if self.slimservicelist.inBouquet():
-					prev = self.slimservicelist.getCurrentSelection()
-					if prev:
-						prev = prev.toString()
-						while True:
-							if config.usage.quickzap_bouquet_change.value and self.slimservicelist.atEnd():
-								self.slimservicelist.nextBouquet()
-							else:
-								self.slimservicelist.moveDown()
-							cur = self.slimservicelist.getCurrentSelection()
-							if not cur or (not (cur.flags & 64)) or cur.toString() == prev:
-								break
-				else:
-					self.slimservicelist.moveDown()
-				self.slimservicelist.zap(enable_pipzap = True)
+				self.servicelist.moveDown()
+			self.servicelist.zap(enable_pipzap = True)
 
 class InfoBarMenu:
 	""" Handles a menu action, to open the (main) menu """
@@ -978,45 +806,45 @@ class InfoBarSimpleEventView:
 			epglist[1] = tmp
 			setEvent(epglist[0])
 
-class SlimServicelist:
-	def __init__(self, services):
-		self.services = services
-		self.length = len(services)
-		self.current = 0
-
-	def selectService(self, service):
-		if not self.length:
-			self.current = -1
-			return False
-		else:
-			self.current = 0
-			while self.services[self.current].ref != service:
-				self.current += 1
-				if self.current >= self.length:
-					return False
-		return True
-
-	def nextService(self):
-		if not self.length:
-			return
-		if self.current+1 < self.length:
-			self.current += 1
-		else:
-			self.current = 0
-
-	def prevService(self):
-		if not self.length:
-			return
-		if self.current-1 > -1:
-			self.current -= 1
-		else:
-			self.current = self.length - 1
-
-	def currentService(self):
-		if not self.length or self.current >= self.length:
-			return None
-		return self.services[self.current]
-
+# class SlimServicelist:
+# 	def __init__(self, services):
+# 		self.services = services
+# 		self.length = len(services)
+# 		self.current = 0
+# 
+# 	def selectService(self, service):
+# 		if not self.length:
+# 			self.current = -1
+# 			return False
+# 		else:
+# 			self.current = 0
+# 			while self.services[self.current].ref != service:
+# 				self.current += 1
+# 				if self.current >= self.length:
+# 					return False
+# 		return True
+# 
+# 	def nextService(self):
+# 		if not self.length:
+# 			return
+# 		if self.current+1 < self.length:
+# 			self.current += 1
+# 		else:
+# 			self.current = 0
+# 
+# 	def prevService(self):
+# 		if not self.length:
+# 			return
+# 		if self.current-1 > -1:
+# 			self.current -= 1
+# 		else:
+# 			self.current = self.length - 1
+# 
+# 	def currentService(self):
+# 		if not self.length or self.current >= self.length:
+# 			return None
+# 		return self.services[self.current]
+# 
 class InfoBarEPG:
 	""" EPG - Opens an EPG list when the showEPGList action fires """
 	def __init__(self):
@@ -1051,14 +879,7 @@ class InfoBarEPG:
 		if self.box_type == 'et9000' or self.box_type == 'et5000':
 			self.openEventView()
 		else:
-			if config.vixsettings.ViXEPG_mode.value == "vixepg":
-				self.openGraphEPG()
-			elif config.vixsettings.ViXEPG_mode.value == "multi":
-				self.openMultiServiceEPG()
-			elif config.vixsettings.ViXEPG_mode.value == "single":
-				self.openSingleServiceEPG()
-			elif config.vixsettings.ViXEPG_mode.value == "cooltvguide":
-				self.showCoolTVGuide()
+			self.EPGPressed()
 
 	def EPGPressed(self):
 		if config.vixsettings.ViXEPG_mode.value == "vixepg":
@@ -1174,24 +995,15 @@ class InfoBarEPG:
 		self.serviceSel = None
 
 	def openSingleServiceEPG(self):
-		if self.serviceListType == "Norm":
-			self.session.open(EPGSelection, self.servicelist)
-		elif self.serviceListType == "Slim":
-			self.session.open(EPGSelection, self.slimservicelist)
+		self.session.open(EPGSelection, self.servicelist)
 		
 	def openInfoBarEPG(self):
 		self.EPGtype = "infobar"
-		if self.serviceListType == "Norm":
-			self.session.open(EPGSelection, self.servicelist, self.EPGtype)
-		elif self.serviceListType == "Slim":
-			self.session.open(EPGSelection, self.slimservicelist, self.EPGtype)
+		self.session.open(EPGSelection, self.servicelist, self.EPGtype)
 
 	def openGraphEPG(self, withCallback=True):
 		if config.GraphEPG.ShowBouquet.value:
-			if self.serviceListType == "Norm":
-				self.bouquets = self.servicelist.getBouquetList()
-			elif self.serviceListType == "Slim":
-				self.bouquets = self.slimservicelist.getBouquetList()
+			self.bouquets = self.servicelist.getBouquetList()
 			if self.bouquets is None:
 				cnt = 0
 			else:
@@ -1206,16 +1018,10 @@ class InfoBarEPG:
 				self.openBouquetEPG(self.bouquets[0][1], withCallback)
 		else:
 			self.EPGtype = "graph"
-			if self.serviceListType == "Norm":
-				Servicelist = self.servicelist
-				self.bouquets = Servicelist and self.servicelist.getBouquetList()
-			elif self.serviceListType == "Slim":
-				Servicelist = self.slimservicelist
-				self.bouquets = Servicelist and self.slimservicelist.getBouquetList()
+			Servicelist = self.servicelist
+			self.bouquets = Servicelist and self.servicelist.getBouquetList()
 			self.epg_bouquet = Servicelist and Servicelist.getRoot()
 			self.StartBouquet = Servicelist and Servicelist.getRoot()
-			print 'BOUQUET:', self.StartBouquet
-			print 'BOUQUET:', self.StartBouquet.toString()
 			if self.epg_bouquet is not None:
 				if len(self.bouquets) > 1 :
 					cb = self.GraphEPG_CB
@@ -1262,10 +1068,7 @@ class InfoBarEPG:
 			self.openSingleServiceEPG()
 
 	def runPlugin(self, plugin):
-		if self.serviceListType == "Norm":
-			plugin(session = self.session, servicelist = self.servicelist)
-		elif self.serviceListType == "Slim":
-			plugin(session = self.session, servicelist = self.slimservicelist)
+		plugin(session = self.session, servicelist = self.servicelist)
 		
 	def EventInfoPluginChosen(self, answer):
 		if answer is not None:
@@ -3291,10 +3094,7 @@ class InfoBarPiP:
 		return _("Move Picture in Picture")
 
 	def getTogglePipzapName(self):
-		if self.serviceListType == "Norm":
-			slist = self.servicelist
-		if self.serviceListType == "Slim":
-			slist = self.slimservicelist
+		slist = self.servicelist
 		if slist and slist.dopipzap:
 			return _("Zap focus to main screen")
 		return _("Zap focus to Picture in Picture")
@@ -3303,19 +3103,13 @@ class InfoBarPiP:
 	def togglePipzap(self):
 		if not self.session.pipshown:
 			self.showPiP()
-		if self.serviceListType == "Norm":
-			slist = self.servicelist
-		if self.serviceListType == "Slim":
-			slist = self.slimservicelist
+		slist = self.servicelist
 		if slist:
 			slist.togglePipzap()
 
 	def showPiP(self):
 		if self.session.pipshown:
-			if self.serviceListType == "Norm":
-				slist = self.servicelist
-			if self.serviceListType == "Slim":
-				slist = self.slimservicelist
+			slist = self.servicelist
 			if slist and slist.dopipzap:
 				slist.togglePipzap()
 			del self.session.pip
@@ -3326,10 +3120,7 @@ class InfoBarPiP:
 			newservice = self.session.nav.getCurrentlyPlayingServiceReference()
 			if self.session.pip.playService(newservice):
 				self.session.pipshown = True
-				if self.serviceListType == "Norm":
-					self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
-				elif self.serviceListType == "Slim":
-					self.session.pip.servicePath = self.slimservicelist.getCurrentServicePath()
+				self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
 			else:
 				self.session.pipshown = False
 				del self.session.pip
@@ -3339,11 +3130,7 @@ class InfoBarPiP:
 		pipref = self.session.pip.getCurrentService()
 		if swapservice and pipref and pipref.toString() != swapservice.toString():
 				self.session.pip.playService(swapservice)
-
-				if self.serviceListType == "Norm":
-					slist = self.servicelist
-				elif self.serviceListType == "Slim":
-					slist = self.slimservicelist
+				slist = self.servicelist
 				if slist:
 					# TODO: this behaves real bad on subservices
 					if slist.dopipzap:
@@ -3694,10 +3481,7 @@ class InfoBarSubserviceSelection:
 	def subserviceSelection(self):
 		service = self.session.nav.getCurrentService()
 		subservices = service and service.subServices()
-		if self.serviceListType == "Norm":
-			self.bouquets = self.servicelist.getBouquetList()
-		elif self.serviceListType == "Slim":
-			self.bouquets = self.slimservicelist.getBouquetList()
+		self.bouquets = self.servicelist.getBouquetList()
 		n = subservices and subservices.getNumberOfSubservices()
 		selection = 0
 		if n and n > 0:
@@ -3756,10 +3540,7 @@ class InfoBarSubserviceSelection:
 			self.session.open(MessageBox, _("Service has been added to the selected bouquet."), MessageBox.TYPE_INFO)
 
 	def addSubserviceToBouquet(self, dest):
-		if self.serviceListType == "Norm":
-			self.servicelist.addServiceToBouquet(dest, self.selectedSubservice[1])
-		if self.serviceListType == "Slim":
-			self.slimservicelist.addServiceToBouquet(dest, self.selectedSubservice[1])
+		self.servicelist.addServiceToBouquet(dest, self.selectedSubservice[1])
 		if self.bsel:
 			self.bsel.close(True)
 		else:
