@@ -823,3 +823,4 @@ class MkfsTask(Task.LoggingTask):
 
 
 harddiskmanager = HarddiskManager()
+SystemInfo["ext4"] = isFileSystemSupported("ext4")
