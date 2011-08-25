@@ -127,50 +127,29 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		if config.usage.tvradiobutton_mode.value == "MovieList":
 			self.showTvChannelList(True)
 			self.showMovies()
-		elif config.usage.servicelist_mode.value != "simple":
-			if config.usage.tvradiobutton_mode.value == "ChannelList":
-				self.showTvChannelList(True)
-			elif config.usage.tvradiobutton_mode.value == "BouquetList":
-				self.showTvChannelList(True)
-				self.servicelist.showFavourites()
-		elif config.usage.servicelist_mode.value == "simple":
-			if config.usage.tvradiobutton_mode.value == "ChannelList":
-				self.showTvSlimChannelList(True)
-			elif config.usage.tvradiobutton_mode.value == "BouquetList":
-				self.showTvSlimChannelList(True)
-				self.slimservicelist.showFavourites()
+		elif config.usage.tvradiobutton_mode.value == "ChannelList":
+			self.showTvChannelList(True)
+		elif config.usage.tvradiobutton_mode.value == "BouquetList":
+			self.showTvChannelList(True)
+			self.servicelist.showFavourites()
 
 	def showTv(self):
 		if config.usage.tvradiobutton_mode.value == "MovieList":
 			self.showTvChannelList(True)
 			self.showMovies()
-		elif config.usage.servicelist_mode.value != "simple":
-			if config.usage.tvradiobutton_mode.value == "BouquetList":
-				self.showTvChannelList(True)
-				self.servicelist.showFavourites()
-			else:
-				self.showTvChannelList(True)
-		elif config.usage.servicelist_mode.value == "simple":
-			if config.usage.tvradiobutton_mode.value == "BouquetList":
-				self.showTvSlimChannelList(True)
-				self.slimservicelist.showFavourites()
-			else:
-				self.showTvSlimChannelList(True)
+		elif config.usage.tvradiobutton_mode.value == "BouquetList":
+			self.showTvChannelList(True)
+			self.servicelist.showFavourites()
+		else:
+			self.showTvChannelList(True)
 
 	def showRadio(self):
 		if config.usage.e1like_radio_mode.value:
-			if config.usage.servicelist_mode.value != "simple":
-				if config.usage.tvradiobutton_mode.value == "BouquetList":
-					self.showRadioChannelList(True)
-					self.servicelist.showFavourites()
-				else:
-					self.showRadioChannelList(True)
-			elif config.usage.servicelist_mode.value == "simple":
-				if config.usage.tvradiobutton_mode.value == "BouquetList":
-					self.showRadioSlimChannelList(True)
-					self.slimservicelist.showFavourites()
-				else:
-					self.showRadioSlimChannelList(True)
+			if config.usage.tvradiobutton_mode.value == "BouquetList":
+				self.showRadioChannelList(True)
+				self.servicelist.showFavourites()
+			else:
+				self.showRadioChannelList(True)
 		else:
 			self.rds_display.hide() # in InfoBarRdsDecoder
 			from Screens.ChannelSelection import ChannelSelectionRadio
