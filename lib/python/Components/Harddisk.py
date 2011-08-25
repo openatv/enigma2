@@ -521,7 +521,7 @@ class Partition:
 			if mounts is None:
 				mounts = getProcMounts()
 			for fields in mounts:
-				if self.mountpoint.endswith('/'):
+				if self.mountpoint.endswith('/') and not self.mountpoint == '/':
 					if fields[1] + '/' == self.mountpoint:
 						return fields[2]
 				else:
