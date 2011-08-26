@@ -741,6 +741,18 @@ class HarddiskManager:
 				self.partitions.remove(x)
 				self.on_partition_list_change("remove", x)
 
+	def setDVDSpeed(self, device, speed = 0):
+		ioctl_flag=int(0x5322)
+		if not device.startswith('/'):
+			device = "/dev/" + device
+		try:
+			from fcntl import ioctl
+			cd = open(device)
+			ioctl(cd.fileno(), ioctl_flag, speed) 
+			cd.close()
+		except Exception, ex:
+			print "[Harddisk] Failed to set %s speed to %s" % (device, speed), ex
+
 class UnmountTask(Task.LoggingTask):
 	def __init__(self, job, hdd):
 		Task.LoggingTask.__init__(self, job, _("Unmount"))
@@ -816,3 +828,4 @@ class MkfsTask(Task.LoggingTask):
 
 
 harddiskmanager = HarddiskManager()
+SystemInfo["ext4"] = isFileSystemSupported("ext4")

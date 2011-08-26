@@ -5,10 +5,10 @@ from Components.Sources.StaticText import StaticText
 
 class HdmiCECSetupScreen(Screen, ConfigListScreen):
 	skin = """
-	<screen position="c-300,c-200" size="600,400" title="HDMI CEC setup">
-		<widget name="config" position="25,25" size="550,250" />
-		<widget source="current_address" render="Label" position="25,275" size="550,30" zPosition="10" font="Regular;21" halign="left" valign="center" />
-		<widget source="fixed_address" render="Label" position="25,305" size="550,30" zPosition="10" font="Regular;21" halign="left" valign="center" />
+	<screen position="c-300,c-250" size="600,500" title="HDMI CEC setup">
+		<widget name="config" position="25,25" size="550,350" />
+		<widget source="current_address" render="Label" position="25,375" size="550,30" zPosition="10" font="Regular;21" halign="left" valign="center" />
+		<widget source="fixed_address" render="Label" position="25,405" size="550,30" zPosition="10" font="Regular;21" halign="left" valign="center" />
 		<ePixmap pixmap="skin_default/buttons/red.png" position="20,e-45" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/green.png" position="160,e-45" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/yellow.png" position="300,e-45" size="140,40" alphatest="on" />
@@ -58,7 +58,7 @@ class HdmiCECSetupScreen(Screen, ConfigListScreen):
 		self.list.append(getConfigListEntry(_("Forward volume keys"), config.hdmicec.volume_forwarding))
 		self.list.append(getConfigListEntry(_("Put receiver in standby"), config.hdmicec.control_receiver_standby)) 
 		self.list.append(getConfigListEntry(_("Wakeup receiver from standby"), config.hdmicec.control_receiver_wakeup)) 
-		self.list.append(getConfigListEntry(_("Match upstream stream request"), config.hdmicec.match_upstream_stream_request))
+		self.list.append(getConfigListEntry(_("Handle deepstandby events"), config.hdmicec.handle_deepstandby_events))
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
 

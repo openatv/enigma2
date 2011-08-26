@@ -45,17 +45,25 @@ def getFPWakeuptime():
 			print "getFPWakeupTime failed!"
 	return ret
 
+wasTimerWakeup = None
+
 def getFPWasTimerWakeup():
-	was_wakeup = False
+	global wasTimerWakeup
+	if wasTimerWakeup is not None:
+		return wasTimerWakeup
+	wasTimerWakeup = False
 	try:
-		was_wakeup = int(open("/proc/stb/fp/was_timer_wakeup", "r").read()) and True or False
+		wasTimerWakeup = int(open("/proc/stb/fp/was_timer_wakeup", "r").read()) and True or False
 	except:
 		try:
 			fp = open("/dev/dbox/fp0")
-			was_wakeup = unpack('B', ioctl(fp.fileno(), 9, ' '))[0] and True or False
+			wasTimerWakeup = unpack('B', ioctl(fp.fileno(), 9, ' '))[0] and True or False
 		except IOError:
 			print "wasTimerWakeup failed!"
-	return was_wakeup
+	if wasTimerWakeup:
+		# clear hardware status
+		clearFPWasTimerWakeup()
+	return wasTimerWakeup
 
 def clearFPWasTimerWakeup():
 	try:
