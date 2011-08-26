@@ -57,7 +57,6 @@ class About(Screen):
 				hdd = hddlist[count][1]
 				if int(hdd.free()) > 1024:
 					hddinfo += "%s\n(%s, %d GB %s)" % (hdd.model(), hdd.capacity(), hdd.free()/1024, _("free"))
- 
 				else:
 					hddinfo += "%s\n(%s, %d MB %s)" % (hdd.model(), hdd.capacity(), hdd.free(), _("free"))
 		else:
