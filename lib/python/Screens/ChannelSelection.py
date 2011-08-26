@@ -1358,9 +1358,9 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		elif not (ref.flags & eServiceReference.isMarker): # no marker
 			root = self.getRoot()
 			if not root or not (root.flags & eServiceReference.isGroup):
-				self.zap(enable_pipzap = True)
-				self.asciiOff()
 				if config.usage.servicelistpreview_mode.value:
+					self.preview(enable_pipzap = True)
+					self.asciiOff()
 					if ref == curref:
 						self.startref = None
 						self.saveRoot()
@@ -1369,7 +1369,9 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 						self.addToHistory(ref)
 						self.close(ref)
 				else:
-						self.close(ref)
+					self.zap(enable_pipzap = True)
+					self.asciiOff()
+					self.close(ref)
 
 	def togglePipzap(self):
 		assert(self.session.pip)
@@ -1406,6 +1408,22 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		self.buildTitleString()
 
 	#called from infoBar and channelSelected
+	def preview(self, enable_pipzap = False):
+		self.revertMode=None
+		nref = self.getCurrentSelection()
+		if enable_pipzap and self.dopipzap:
+			ref = self.session.pip.getCurrentService()
+			if ref is None or ref != nref:
+				if not self.session.pip.playService(nref):
+					# XXX: Make sure we set an invalid ref
+					self.session.pip.playService(None)
+		else:
+			ref = self.session.nav.getCurrentlyPlayingServiceReference()
+			if ref is None or ref != nref:
+				self.new_service_played = True
+				self.session.nav.playService(nref)
+
+	#called from infoBar and channelSelected
 	def zap(self, enable_pipzap = False):
 		self.revertMode=None
 		nref = self.getCurrentSelection()
@@ -1420,11 +1438,10 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			if ref is None or ref != nref:
 				self.new_service_played = True
 				self.session.nav.playService(nref)
-				if not config.usage.servicelistpreview_mode.value:
-					self.saveRoot()
-					self.saveChannel(nref)
-					config.servicelist.lastmode.save()
-					self.addToHistory(nref)
+				self.saveRoot()
+				self.saveChannel(nref)
+				config.servicelist.lastmode.save()
+				self.addToHistory(nref)
 
 			# Yes, we might double-check this, but we need to re-select pipservice if pipzap is active
 			# and we just wanted to zap in mainwindow once
