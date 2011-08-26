@@ -129,7 +129,9 @@ class Harddisk:
 		cap = self.diskSize()
 		if cap == 0:
 			return ""
-		return "%d.%03d GB" % (cap/1000, cap%1000)
+		if cap >= 1024:
+			return "%d GB" % (cap/1024)
+		return "%03d MB" % cap
 
 	def model(self):
 		try:
