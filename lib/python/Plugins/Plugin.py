@@ -96,3 +96,24 @@ class PluginDescriptor:
 
 	def __eq__(self, other):
 		return self.__call__ == other.__call__
+
+	def __ne__(self, other):
+		return self.__call__ != other.__call__
+
+	def __lt__(self, other):
+		if self.weight < other.weight:
+			return True
+		elif self.weight == other.weight:
+			return self.name < other.name
+		else:
+			return False
+
+	def __gt__(self, other):
+		return other<self
+
+	def __ge__(self, other):
+		return not self<other
+
+	def __le__(self, other):
+		return not other<self
+ 
