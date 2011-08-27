@@ -11,6 +11,7 @@ from Components.config import config, ConfigBoolean, ConfigClock
 from Components.SystemInfo import SystemInfo
 from Components.UsageConfig import preferredInstantRecordPath, defaultMoviePath
 from Components.Task import Task, Job, job_manager as JobManager
+from Components.Pixmap import MovingPixmap
 from EpgSelection import EPGSelection
 from Plugins.Plugin import PluginDescriptor
 from Screen import Screen
@@ -1198,6 +1199,78 @@ class InfoBarRdsDecoder:
 			self.RassSlidePicChanged()
 		self.rds_display.show()
 
+class Seekbar(Screen):
+	skin = """
+	<screen position="center,40" size="560,55" title="%s" flags="wfNoBorder">
+		<widget name="cursor" position="0,15" size="8,18" pixmap="skin_default/position_arrow.png" alphatest="on" />
+		<widget source="session.CurrentService" render="PositionGauge" position="145,30" size="270,10" zPosition="2" pointer="skin_default/position_pointer.png:540,0" transparent="1" foregroundColor="#20224f">
+			<convert type="ServicePosition">Gauge</convert>
+		</widget>
+		<widget name="time" position="50,25" size="100,20" font="Regular;20" halign="left" backgroundColor="#4e5a74" transparent="1" />
+		<widget source="session.CurrentService" render="Label" position="420,25" size="90,24" font="Regular;20" halign="right" backgroundColor="#4e5a74" transparent="1">
+			<convert type="ServicePosition">Length</convert>
+		</widget>
+	</screen>""" % _("Seek")
+
+	def __init__(self, session, fwd):
+		Screen.__init__(self, session)
+		self.session = session
+		self.fwd = fwd
+		self.percent = 0.0
+		self.length = None
+		service = session.nav.getCurrentService()
+		if service:
+			self.seek = service.seek()
+			if self.seek:
+				self.length = self.seek.getLength()
+				position = self.seek.getPlayPosition()
+				if self.length and position:
+					if int(position[1]) > 0:
+						self.percent = float(position[1]) * 100.0 / float(self.length[1])
+				
+		self["cursor"] = MovingPixmap()
+		self["time"] = Label()
+		
+		self["actions"] = ActionMap(["WizardActions", "DirectionActions"], {"back": self.exit, "ok": self.keyOK, "left": self.keyLeft, "right": self.keyRight}, -1)
+		
+		self.cursorTimer = eTimer()
+		self.cursorTimer.callback.append(self.updateCursor)
+		self.cursorTimer.start(200, False)
+		
+	def updateCursor(self):
+		if self.length:
+			x = 145 + int(2.7 * self.percent)
+			self["cursor"].moveTo(x, 15, 1)
+			self["cursor"].startMoving()
+			pts = int(float(self.length[1]) / 100.0 * self.percent)
+			self["time"].setText("%d:%02d" % ((pts/60/90000), ((pts/90000)%60)))
+
+	def exit(self):
+		self.cursorTimer.stop()
+		self.close()
+
+	def keyOK(self):
+		if self.length:
+			self.seek.seekTo(int(float(self.length[1]) / 100.0 * self.percent))
+			self.exit()
+
+	def keyLeft(self):
+		self.percent -= float(config.seek.sensibility.value) / 10.0
+		if self.percent < 0.0:
+			self.percent = 0.0
+
+	def keyRight(self):
+		self.percent += float(config.seek.sensibility.value) / 10.0
+		if self.percent > 100.0:
+			self.percent = 100.0
+
+	def keyNumberGlobal(self, number):
+		sel = self["config"].getCurrent()[1]
+		if sel == self.positionEntry:
+			self.percent = float(number) * 10.0
+		else:
+			ConfigListScreen.keyNumberGlobal(self, number)
+
 class InfoBarSeek:
 	"""handles actions like seeking, pause"""
 
@@ -1246,7 +1319,10 @@ class InfoBarSeek:
 				"seekFwd": (self.seekFwd, _("skip forward")),
 				"seekFwdManual": (self.seekFwdManual, _("skip forward (enter time)")),
 				"seekBack": (self.seekBack, _("skip backward")),
-				"seekBackManual": (self.seekBackManual, _("skip backward (enter time)"))
+				"seekBackManual": (self.seekBackManual, _("skip backward (enter time)")),
+
+				"SeekbarFwd": self.seekFwdSeekbar,
+				"SeekbarBack": self.seekBackSeekbar
 			}, prio=-1)
 			# give them a little more priority to win over color buttons
 
@@ -1359,10 +1435,10 @@ class InfoBarSeek:
 				pauseable.pause()
 			elif self.seekstate[1]:
 				print "resolved to FAST FORWARD"
-				pauseable.setFastForward(self.seekstate[1])
+ 				pauseable.setFastForward(self.seekstate[1])
 			elif self.seekstate[2]:
 				print "resolved to SLOW MOTION"
-				pauseable.setSlowMotion(self.seekstate[2])
+ 				pauseable.setSlowMotion(self.seekstate[2])
 			else:
 				print "resolved to PLAY"
 				pauseable.unpause()
@@ -1499,12 +1575,18 @@ class InfoBarSeek:
 	def seekFwdManual(self):
 		self.session.openWithCallback(self.fwdSeekTo, MinuteInput)
 
+	def seekFwdSeekbar(self, fwd=True):
+		self.session.open(Seekbar, fwd)
+
 	def fwdSeekTo(self, minutes):
 		print "Seek", minutes, "minutes forward"
 		self.doSeekRelative(minutes * 60 * 90000)
 
 	def seekBackManual(self):
 		self.session.openWithCallback(self.rwdSeekTo, MinuteInput)
+
+	def seekBackSeekbar(self, fwd=False):
+		self.session.open(Seekbar, fwd)
 
 	def rwdSeekTo(self, minutes):
 		print "rwdSeekTo"

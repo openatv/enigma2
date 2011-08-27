@@ -228,12 +228,6 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 				"leavePlayer": (self.leavePlayer, _("leave movie player..."))
 			})
 
-		self["DirectionActions"] = HelpableActionMap(self, "DirectionActions",
-			{
-				"left": self.left,
-				"right": self.right
-			}, prio = -2)
-
 		self["key_red"] = Label("")
 		self["key_green"] = Label("Timers")
 		self["key_yellow"] = Label("Search")
