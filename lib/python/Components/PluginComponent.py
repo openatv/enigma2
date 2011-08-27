@@ -1,4 +1,5 @@
 import os
+from bisect import insort
 from Tools.Directories import fileExists
 from Tools.Import import my_import
 from Tools.Profile import profile
@@ -22,7 +23,7 @@ class PluginComponent:
 		if self.firstRun or not plugin.needsRestart:
 			self.pluginList.append(plugin)
 			for x in plugin.where:
-				self.plugins.setdefault(x, []).append(plugin)
+				insort(self.plugins.setdefault(x, []), (plugin))
 				if x == PluginDescriptor.WHERE_AUTOSTART:
 					plugin(reason=0)
 		else:
@@ -100,14 +101,16 @@ class PluginComponent:
 
 	def getPlugins(self, where):
 		"""Get list of plugins in a specific category"""
-
 		if not isinstance(where, list):
-			where = [ where ]
-		res = [ ]
-
+			# if not a list, we're done quickly, because the
+			# lists are already sorted
+			return self.plugins.get(where, [])
+		res = []
+		# Efficiently merge two sorted lists together, though this
+		# appears to never be used in code anywhere...
 		for x in where:
-			res.extend(self.plugins.get(x, [ ]))
-		res.sort(key=lambda x:(x.weight, x.name))
+			for p in self.plugins.get(x, []):
+				insort(res, p)
 		return res
 
 	def getPluginsForMenu(self, menuid):
