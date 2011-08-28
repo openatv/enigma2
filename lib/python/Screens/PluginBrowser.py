@@ -245,7 +245,7 @@ class PluginDownloadBrowser(Screen):
 		if val:
 			if self.type == self.DOWNLOAD:
 				if self["list"].l.getCurrentSelection()[0].name[0:7] == "picons-":
-					supported_filesystems = frozenset(('ext4', 'ext3', 'ext2', 'reiser', 'reiser4', 'jffs2', 'ubifs', 'rootfs'))
+					supported_filesystems = frozenset(('ext4', 'ext3', 'ext2', 'reiser', 'reiser4', 'jffs2', 'ubifs', 'rootfs', 'nfs'))
 					candidates = []
 					import Components.Harddisk
 					mounts = Components.Harddisk.getProcMounts() 
