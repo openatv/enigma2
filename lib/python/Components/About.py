@@ -5,6 +5,40 @@ import sys
 def getVersionString():
 	return getImageVersionString()
 
+def getImageVersionString():
+	try:
+		file = open(resolveFilename(SCOPE_SYSETC, 'image-version'), 'r')
+		lines = file.readlines()
+		for x in lines:
+			splitted = x.split('=')
+			if splitted[0] == "version":
+				version = splitted[1].replace('\n','')
+		file.close()
+		return version
+	except IOError:
+		return "unavailable"
+
+def getEnigmaVersionString():
+	import enigma
+	enigma_version = enigma.getEnigmaVersionString()
+	return enigma_version
+
+def getKernelVersionString():
+	return HardwareInfo().linux_kernel()
+
+def getBuildVersionString():
+	try:
+		file = open(resolveFilename(SCOPE_SYSETC, 'image-version'), 'r')
+		lines = file.readlines()
+		for x in lines:
+			splitted = x.split('=')
+			if splitted[0] == "build":
+				version = splitted[1].replace('\n','')
+		file.close()
+		return version
+	except IOError:
+		return "unavailable"
+
 def getLastUpdateString():
 	try:
 		file = open(resolveFilename(SCOPE_SYSETC, 'image-version'), 'r')
@@ -28,32 +62,6 @@ def getLastUpdateString():
 	except IOError:
 		return "unavailable"
 
-def getImageVersionString():
-	try:
-		file = open(resolveFilename(SCOPE_SYSETC, 'image-version'), 'r')
-		lines = file.readlines()
-		for x in lines:
-			splitted = x.split('=')
-			if splitted[0] == "version":
-				version = splitted[1].replace('\n','')
-		file.close()
-		return version
-	except IOError:
-		return "unavailable"
-
-def getBuildVersionString():
-	try:
-		file = open(resolveFilename(SCOPE_SYSETC, 'image-version'), 'r')
-		lines = file.readlines()
-		for x in lines:
-			splitted = x.split('=')
-			if splitted[0] == "build":
-				version = splitted[1].replace('\n','')
-		file.close()
-		return version
-	except IOError:
-		return "unavailable"
-
 def getImageTypeString():
 	try:
 		file = open(resolveFilename(SCOPE_SYSETC, 'image-version'), 'r')
@@ -70,14 +78,6 @@ def getImageTypeString():
 		return image_type
 	except IOError:
 		return "unavailable"
-
-def getEnigmaVersionString():
-	import enigma
-	enigma_version = enigma.getEnigmaVersionString()
-	return enigma_version
-
-def getKernelVersionString():
-	return HardwareInfo().linux_kernel()
 
 # For modules that do "from About import about"
 about = sys.modules[__name__]
