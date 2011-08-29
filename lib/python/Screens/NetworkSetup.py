@@ -1477,6 +1477,7 @@ class NetworkAfp(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("AFP Setup"))
+		self.skinName = "NetworkServiceSetup"
 		self['lab1'] = Label(_("Autostart:"))
 		self['labactive'] = Label(_(_("Disabled")))
 		self['lab2'] = Label(_("Current Status:"))
@@ -1509,56 +1510,56 @@ class NetworkAfp(Screen):
 			self.updateAfp()
 
 	def activateAfp(self):
-		if fileExists('/etc/rc0.d/K65atalk'):
-			unlink('/etc/rc0.d/K65atalk')
+		if fileExists('/etc/rc0.d/K20atalk'):
+			unlink('/etc/rc0.d/K20atalk')
 			mymess = _("Autostart Disabled.")
 		else:
-			symlink('/etc/init.d/samba', '/etc/rc0.d/K65atalk')
+			symlink('/etc/init.d/samba', '/etc/rc0.d/K20atalk')
 			mymess = _("Autostart Enabled.")
 
-		if fileExists('/etc/rc1.d/K65atalk'):
-			unlink('/etc/rc1.d/K65atalk')
+		if fileExists('/etc/rc1.d/K20atalk'):
+			unlink('/etc/rc1.d/K20atalk')
 			mymess = _("Autostart Disabled.")
 		else:
-			symlink('/etc/init.d/samba', '/etc/rc1.d/K65atalk')
+			symlink('/etc/init.d/samba', '/etc/rc1.d/K20atalk')
 			mymess = _("Autostart Enabled.")
 
-		if fileExists('/etc/rc2.d/S65atalk'):
-			unlink('/etc/rc2.d/S65atalk')
+		if fileExists('/etc/rc2.d/S20atalk'):
+			unlink('/etc/rc2.d/S20atalk')
 			mymess = _("Autostart Disabled.")
 		else:
-			symlink('/etc/init.d/samba', '/etc/rc2.d/S65atalk')
+			symlink('/etc/init.d/samba', '/etc/rc2.d/S20atalk')
 			mymess = _("Autostart Enabled.")
 
-		if fileExists('/etc/rc3.d/S65atalk'):
-			unlink('/etc/rc3.d/S65atalk')
+		if fileExists('/etc/rc3.d/S20atalk'):
+			unlink('/etc/rc3.d/S20atalk')
 			mymess = _("Autostart Disabled.")
 		else:
-			symlink('/etc/init.d/samba', '/etc/rc3.d/S65atalk')
+			symlink('/etc/init.d/samba', '/etc/rc3.d/S20atalk')
 			mymess = _("Autostart Enabled.")
 
-		if fileExists('/etc/rc4.d/S65atalk'):
-			unlink('/etc/rc4.d/S65atalk')
+		if fileExists('/etc/rc4.d/S20atalk'):
+			unlink('/etc/rc4.d/S20atalk')
 			mymess = _("Autostart Disabled.")
 		else:
-			symlink('/etc/init.d/samba', '/etc/rc4.d/S65atalk')
+			symlink('/etc/init.d/samba', '/etc/rc4.d/S20atalk')
 			mymess = _("Autostart Enabled.")
 
-		if fileExists('/etc/rc5.d/S65atalk'):
-			unlink('/etc/rc5.d/S65atalk')
+		if fileExists('/etc/rc5.d/S20atalk'):
+			unlink('/etc/rc5.d/S20atalk')
 			mymess = _("Autostart Disabled.")
 		else:
-			symlink('/etc/init.d/samba', '/etc/rc5.d/S65atalk')
+			symlink('/etc/init.d/samba', '/etc/rc5.d/S20atalk')
 			mymess = _("Autostart Enabled.")
 
-		if fileExists('/etc/rc6.d/K65atalk'):
-			unlink('/etc/rc6.d/K65atalk')
+		if fileExists('/etc/rc6.d/K20atalk'):
+			unlink('/etc/rc6.d/K20atalk')
 			mymess = _("Autostart Disabled.")
 		else:
-			symlink('/etc/init.d/samba', '/etc/rc6.d/K65atalk')
+			symlink('/etc/init.d/samba', '/etc/rc6.d/K20atalk')
 			mymess = _("Autostart Enabled.")
 
-		mybox = self.session.open(MessageBox, mymess, MessageBox.TYPE_INFO)
+		mybox = self.session.open(MessageBox, mymess, MessageBox.TYPE_INFO,timeout = 10)
 		mybox.setTitle(_("Info"))
 		self.updateAfp()
 
@@ -1571,7 +1572,7 @@ class NetworkAfp(Screen):
 		self['labactive'].setText(_("Disabled"))
 		self.my_afp_active = False
 		self.my_afp_run = False
-		if fileExists('/etc/rc3.d/S65atalk'):
+		if fileExists('/etc/rc3.d/S20atalk'):
 			self['labactive'].setText(_("Enabled"))
 			self['labactive'].show()
 			self.my_afp_active = True
@@ -1691,6 +1692,7 @@ class NetworkNfs(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("NFS Setup"))
+		self.skinName = "NetworkServiceSetup"
 		self['lab1'] = Label(_("Autostart:"))
 		self['labactive'] = Label(_(_("Disabled")))
 		self['lab2'] = Label(_("Current Status:"))
@@ -1771,7 +1773,7 @@ class NetworkNfs(Screen):
 			symlink('/etc/init.d/nfsserver', '/etc/rc6.d/K20nfsserver')
 			mymess = _("Autostart Enabled.")
 
-		mybox = self.session.open(MessageBox, mymess, MessageBox.TYPE_INFO)
+		mybox = self.session.open(MessageBox, mymess, MessageBox.TYPE_INFO,timeout = 10)
 		mybox.setTitle(_("Info"))
 		self.updateNfs()
 
@@ -1820,6 +1822,7 @@ class NetworkOpenvpn(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("OpenVpn Setup"))
+		self.skinName = "NetworkServiceSetup"
 		self['lab1'] = Label(_("Autostart:"))
 		self['labactive'] = Label(_(_("Disabled")))
 		self['lab2'] = Label(_("Current Status:"))
@@ -1904,7 +1907,7 @@ class NetworkOpenvpn(Screen):
 			symlink('/etc/init.d/openvpn', '/etc/rc6.d/K20openvpn')
 			mymess = _("Autostart Enabled.")
 
-		mybox = self.session.open(MessageBox, mymess, MessageBox.TYPE_INFO)
+		mybox = self.session.open(MessageBox, mymess, MessageBox.TYPE_INFO,timeout = 10)
 		mybox.setTitle(_("Info"))
 		self.updateVpn()
 
@@ -1976,6 +1979,7 @@ class NetworkSamba(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Samba Setup"))
+		self.skinName = "NetworkServiceSetup"
 		self['lab1'] = Label(_("Autostart:"))
 		self['labactive'] = Label(_(_("Disabled")))
 		self['lab2'] = Label(_("Current Status:"))
@@ -2060,7 +2064,7 @@ class NetworkSamba(Screen):
 			symlink('/etc/init.d/samba', '/etc/rc6.d/K20samba')
 			mymess = _("Autostart Enabled.")
 
-		mybox = self.session.open(MessageBox, mymess, MessageBox.TYPE_INFO)
+		mybox = self.session.open(MessageBox, mymess, MessageBox.TYPE_INFO,timeout = 10)
 		mybox.setTitle(_("Info"))
 		self.updateSamba()
 
@@ -2385,8 +2389,6 @@ class NetworkInadyn(Screen):
 	def inaLog(self):
 		self.session.open(NetworkInadynLog)
 
-
-
 class NetworkInadynSetup(Screen, ConfigListScreen):
 	skin = """
 		<screen name="InadynSetup" position="center,center" size="440,350" title="Inadyn Setup">
@@ -2537,4 +2539,137 @@ class NetworkInadynLog(Screen):
 				strview += line
 			f.close()
 		self['infotext'].setText(strview)
+
+class NetworkuShare(Screen):
+	skin = """
+		<screen position="center,center" size="560,310" title="Samba Setup">
+			<widget name="lab1" position="20,90" size="150,30" font="Regular;20" valign="center" transparent="0"/>
+			<widget name="labactive" position="180,90" size="250,30" font="Regular;20" valign="center" transparent="0"/>
+			<widget name="lab2" position="20,160" size="150,30" font="Regular;20" valign="center" transparent="0"/>
+			<widget name="labstop" position="180,160" size="100,30" font="Regular;20" valign="center" halign="center" backgroundColor="red"/>
+			<widget name="labrun" position="180,160" size="100,30" zPosition="1" font="Regular;20" valign="center"  halign="center" backgroundColor="green"/>
+			<ePixmap pixmap="skin_default/buttons/red.png" position="0,260" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/green.png" position="140,260" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,260" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/blue.png" position="420,260" size="140,40" alphatest="on" />
+			<widget name="key_red" position="0,260" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+			<widget name="key_green" position="140,260" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+			<widget name="key_yellow" position="280,260" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
+			<widget name="key_blue" position="420,260" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
+		</screen>"""
+
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		Screen.setTitle(self, _("uShare Setup"))
+		self.skinName = "NetworkServiceSetup"
+		self['lab1'] = Label(_("Autostart:"))
+		self['labactive'] = Label(_(_("Disabled")))
+		self['lab2'] = Label(_("Current Status:"))
+		self['labstop'] = Label(_("Stopped"))
+		self['labrun'] = Label(_("Running"))
+		self['key_red'] = Label(_("Start"))
+		self['key_green'] = Label(_("Stop"))
+		self['key_yellow'] = Label(_("Autostart"))
+		self['key_blue'] = Label()
+		self.Console = Console()
+		self.my_Samba_active = False
+		self.my_Samba_run = False
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.uShareStart, 'green': self.uShareStop, 'yellow': self.activateuShare})
+		self.onLayoutFinish.append(self.updateuShare)
+
+	def uShareStart(self):
+		if self.my_ushare_run == False:
+			self.Console.ePopen('/etc/init.d/ushare start')
+			time.sleep(3)
+			self.updateuShare()
+		elif self.my_ushare_run == True:
+			self.Console.ePopen('/etc/init.d/ushare restart')
+			time.sleep(3)
+			self.updateuShare()
+
+	def uShareStop(self):
+		if self.my_ushare_run == True:
+			self.Console.ePopen('/etc/init.d/ushare stop')
+			time.sleep(3)
+			self.updateuShare()
+
+	def activateuShare(self):
+		if fileExists('/etc/rc0.d/K20ushare'):
+			unlink('/etc/rc0.d/K20ushare')
+			mymess = _("Autostart Disabled.")
+		else:
+			symlink('/etc/init.d/samba', '/etc/rc0.d/K20ushare')
+			mymess = _("Autostart Enabled.")
+
+		if fileExists('/etc/rc1.d/K20ushare'):
+			unlink('/etc/rc1.d/K20ushare')
+			mymess = _("Autostart Disabled.")
+		else:
+			symlink('/etc/init.d/samba', '/etc/rc1.d/K20ushare')
+			mymess = _("Autostart Enabled.")
+
+		if fileExists('/etc/rc2.d/S20ushare'):
+			unlink('/etc/rc2.d/S20ushare')
+			mymess = _("Autostart Disabled.")
+		else:
+			symlink('/etc/init.d/samba', '/etc/rc2.d/S20ushare')
+			mymess = _("Autostart Enabled.")
+
+		if fileExists('/etc/rc3.d/S20ushare'):
+			unlink('/etc/rc3.d/S20ushare')
+			mymess = _("Autostart Disabled.")
+		else:
+			symlink('/etc/init.d/samba', '/etc/rc3.d/S20ushare')
+			mymess = _("Autostart Enabled.")
+
+		if fileExists('/etc/rc4.d/S20ushare'):
+			unlink('/etc/rc4.d/S20ushare')
+			mymess = _("Autostart Disabled.")
+		else:
+			symlink('/etc/init.d/samba', '/etc/rc4.d/S20ushare')
+			mymess = _("Autostart Enabled.")
+
+		if fileExists('/etc/rc5.d/S20ushare'):
+			unlink('/etc/rc5.d/S20ushare')
+			mymess = _("Autostart Disabled.")
+		else:
+			symlink('/etc/init.d/samba', '/etc/rc5.d/S20ushare')
+			mymess = _("Autostart Enabled.")
+
+		if fileExists('/etc/rc6.d/K20ushare'):
+			unlink('/etc/rc6.d/K20ushare')
+			mymess = _("Autostart Disabled.")
+		else:
+			symlink('/etc/init.d/samba', '/etc/rc6.d/K20ushare')
+			mymess = _("Autostart Enabled.")
+
+		mybox = self.session.open(MessageBox, mymess, MessageBox.TYPE_INFO,timeout = 10)
+		mybox.setTitle(_("Info"))
+		self.updateuShare()
+
+	def updateuShare(self):
+		import process
+		p = process.ProcessList()
+		ushare_process = str(p.named('ushare')).strip('[]')
+ 		self['labrun'].hide()
+		self['labstop'].hide()
+		self['labactive'].setText(_("Disabled"))
+		self.my_ushare_active = False
+		self.my_ushare_run = False
+		if fileExists('/etc/rc3.d/S20ushare'):
+			self['labactive'].setText(_("Enabled"))
+			self['labactive'].show()
+			self.my_ushare_active = True
+		if ushare_process:
+			self.my_ushare_run = True
+		if self.my_ushare_run == True:
+			self['labstop'].hide()
+			self['labactive'].show()
+			self['labrun'].show()
+			self['key_red'].setText(_("Restart"))
+		else:
+			self['labrun'].hide()
+			self['labstop'].show()
+			self['labactive'].show()
+			self['key_red'].setText(_("Start"))
 
