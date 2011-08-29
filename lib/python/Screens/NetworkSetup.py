@@ -2234,7 +2234,7 @@ class NetworkInadyn(Screen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Inadyn Manager"))
+		Screen.setTitle(self, _("Inadyn Setup"))
 		self['autostart'] = Label(_("Autostart:"))
 		self['labactive'] = Label(_(_("Active")))
 		self['labdisabled'] = Label(_(_("Disabled")))
@@ -2243,15 +2243,15 @@ class NetworkInadyn(Screen):
 		self['labrun'] = Label(_("Running"))
 		self['time'] = Label(_('Time Update in Minutes:'))
 		self['labtime'] = Label()
-		self['username'] = Label(_('Username:'))
+		self['username'] = Label(_('Username') +':')
 		self['labuser'] = Label()
-		self['password'] = Label(_('Password:'))
+		self['password'] = Label(_('Password') +':')
 		self['labpass'] = Label()
-		self['alias'] = Label(_('Alias:'))
+		self['alias'] = Label(_('Alias') +':')
 		self['labalias'] = Label()
 		self['sactive'] = Pixmap()
 		self['sinactive'] = Pixmap()
-		self['system'] = Label(_('System:'))
+		self['system'] = Label(_('System') +':')
 		self['labsys'] = Label()
 		self['key_red'] = Label(_('Setup'))
 		self['key_green'] = Label(_('Show Log'))
@@ -2426,38 +2426,35 @@ class NetworkInadynSetup(Screen, ConfigListScreen):
 				if line.startswith('username '):
 					line = line[9:]
 					self.ina_user.value = line
-					ina_user1 = getConfigListEntry(_('Username'), self.ina_user)
+					ina_user1 = getConfigListEntry(_('Username') +':', self.ina_user)
 					self.list.append(ina_user1)
 				elif line.startswith('password '):
 					line = line[9:]
 					self.ina_pass.value = line
-					ina_pass1 = getConfigListEntry(_('Password'), self.ina_pass)
+					ina_pass1 = getConfigListEntry(_('Password') +':', self.ina_pass)
 					self.list.append(ina_pass1)
 				elif line.startswith('alias '):
 					line = line[6:]
 					self.ina_alias.value = line
-					ina_alias1 = getConfigListEntry(_('Alias'), self.ina_alias)
+					ina_alias1 = getConfigListEntry(_('Alias') +':', self.ina_alias)
 					self.list.append(ina_alias1)
 				elif line.startswith('update_period_sec '):
 					line = line[18:]
 					line = (int(line) / 60)
 					self.ina_period.value = line
-					ina_period1 = getConfigListEntry(_('Time Update in Minutes'), self.ina_period)
+					ina_period1 = getConfigListEntry(_('Time Update in Minutes') +':', self.ina_period)
 					self.list.append(ina_period1)
 				elif line.startswith('dyndns_system ') or line.startswith('#dyndns_system '):
 					if not line.startswith('#'):
 						self.ina_sysactive.value = True
+						line = line[14:]
 					else:
 						self.ina_sysactive.value = False
-					ina_sysactive1 = getConfigListEntry(_('Set System'), self.ina_sysactive)
-					self.list.append(ina_sysactive1)
-				elif line.startswith('dyndns_system ') or line.startswith('#dyndns_system '):
-					if line.startswith('#'):
 						line = line[15:]
-					else:
-						line = line[14:]
+					ina_sysactive1 = getConfigListEntry(_('Set System') +':', self.ina_sysactive)
+					self.list.append(ina_sysactive1)
 					self.ina_system.value = line
-					ina_system1 = getConfigListEntry(_('System'), self.ina_system)
+					ina_system1 = getConfigListEntry(_('System') +':', self.ina_system)
 					self.list.append(ina_system1)
 
 			f.close()
@@ -2586,7 +2583,7 @@ class NetworkuShare(Screen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("uShare Manager"))
+		Screen.setTitle(self, _("uShare Setup"))
 		self['autostart'] = Label(_("Autostart:"))
 		self['labactive'] = Label(_(_("Active")))
 		self['labdisabled'] = Label(_(_("Disabled")))
