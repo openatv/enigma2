@@ -2609,7 +2609,7 @@ class NetworkuShare(Screen):
 		self['xbox'] = Label(_('XBox 360 support') + ':')
 		self['xboxactive'] = Pixmap()
 		self['xboxinactive'] = Pixmap()
-		self['dlna'] = Label(_('PlayStation3 support') + ':')
+		self['dlna'] = Label(_('DLNA support') + ':')
 		self['dlnaactive'] = Pixmap()
 		self['dlnainactive'] = Pixmap()
 
@@ -2854,7 +2854,7 @@ class NetworkuShareSetup(Screen, ConfigListScreen):
 						self.ushare_ps3.value = False
 					else:
 						self.ushare_ps3.value = True
-					ushare_ps31 = getConfigListEntry(_('PlayStation3 support') + ':', self.ushare_ps3)
+					ushare_ps31 = getConfigListEntry(_('DLNA support') + ':', self.ushare_ps3)
 					self.list.append(ushare_ps31)
 			f.close()
 		self['config'].list = self.list
