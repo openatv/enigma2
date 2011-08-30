@@ -1,4 +1,4 @@
-installdir = $(pkglibdir)/python/Plugins/Extensions/2IB
+installdir = $(pkglibdir)/python/Plugins/Extensions/SIB
 
 install_PYTHON = \
 	__init__.py \
