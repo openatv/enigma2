@@ -609,11 +609,13 @@ void eEPGCache::sectionRead(const __u8 *data, int source, channel_data *channel)
 			eit_event->start_time_5,
 			&event_hash);
 
-		if ( (TM != 3599) &&		// NVOD Service
-		     (now <= (TM+duration)) &&	// skip old events
-		     (TM < (now+14*24*60*60)) &&	// no more than 2 weeks in future
-		     ( (onid != 1714) || (duration != (24*3600-1)) )	// PlatformaHD invalid event
-		   )
+		if ( TM == 3599 )
+			goto next;
+
+		if ( TM != 3599 && (TM+duration < now || TM > now+14*24*60*60) )
+			goto next;
+
+		if ( now <= (TM+duration) || TM == 3599 /*NVOD Service*/ )  // old events should not be cached
 		{
 			__u16 event_id = HILO(eit_event->event_id);
 			eventData *evt = 0;
