@@ -104,8 +104,8 @@ class VideoSetup(Screen, ConfigListScreen):
 		if level >= 1:
 			if SystemInfo["CanDownmixAC3"]:
 				self.list.append(getConfigListEntry(_("Digital downmix"), config.av.downmix_ac3))
-# 			if SystemInfo["CanDownmixDTS"]:
-# 				self.list.append(getConfigListEntry(_("DTS downmix"), config.av.downmix_dts))
+ 			if SystemInfo["CanDownmixDTS"]:
+ 				self.list.append(getConfigListEntry(_("DTS downmix"), config.av.downmix_dts))
 			self.list.extend((
 				getConfigListEntry(_("General AC3 Delay"), config.av.generalAC3delay),
 				getConfigListEntry(_("General PCM Delay"), config.av.generalPCMdelay)
@@ -117,7 +117,7 @@ class VideoSetup(Screen, ConfigListScreen):
 		if not isinstance(config.av.scaler_sharpness, ConfigNothing):
 			self.list.append(getConfigListEntry(_("Scaler sharpness"), config.av.scaler_sharpness))
 
-		self.list.append(getConfigListEntry(_("ViX HD Overscan amount"), config.vixsettings.overscanamount))
+		self.list.append(getConfigListEntry(_("PLI HD Overscan amount"), config.plisettings.overscanamount))
 
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)

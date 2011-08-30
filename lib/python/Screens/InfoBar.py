@@ -58,13 +58,13 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 				"openIMDB": (self.openIMDB, _("Show the tv player...")),
 			}, prio=2)
 		
-		if config.vixsettings.ViXEPG_mode.value == "vixepg":
+		if config.plisettings.ViXEPG_mode.value == "pliepg":
 			self["key_red"] = Label("Single EPG")
 		else:
-			self["key_red"] = Label("ViX EPG")
+			self["key_red"] = Label("PLI EPG")
 		self["key_yellow"] = Label("Search")
 		self["key_blue"] = Label("Extensions")
-		if not config.vixsettings.Subservice.value:
+		if not config.plisettings.Subservice.value:
 			self["key_green"] = Label("Timers")
 		else:
 			self["key_green"] = Label("Subservices")

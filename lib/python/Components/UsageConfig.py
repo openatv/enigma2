@@ -513,16 +513,16 @@ def InitUsageConfig():
 	config.backupmanager.backupdirs = ConfigLocations(default=[eEnv.resolve('${sysconfdir}/CCcam.cfg'), eEnv.resolve('${sysconfdir}/CCcam.channelinfo'), eEnv.resolve('${sysconfdir}/CCcam.providers'), eEnv.resolve('${sysconfdir}/enigma2/'), eEnv.resolve('${sysconfdir}/fstab'), eEnv.resolve('${sysconfdir}/hostname'), eEnv.resolve('${sysconfdir}/network/interfaces'), eEnv.resolve('${sysconfdir}/passwd'), eEnv.resolve('${sysconfdir}/resolv.conf'), eEnv.resolve('${sysconfdir}/inadyn.conf'), eEnv.resolve('${sysconfdir}/tuxbox/config/'), eEnv.resolve('${sysconfdir}/wpa_supplicant.conf'), '/usr/crossepg/crossepg.config', '/usr/softcams/'])
 	config.backupmanager.lastlog = ConfigText(default=' ', fixed_size=False)
 
-	config.vixsettings = ConfigSubsection()
-	config.vixsettings.overscanamount = ConfigNumber(default = 32)
-	config.vixsettings.Subservice = ConfigYesNo(default = False)
-	config.vixsettings.ColouredButtons = ConfigYesNo(default = True)
-	config.vixsettings.ViXEPG_mode = ConfigSelection(default="vixepg", choices = [
-					("vixepg", _("Show Graphical EPG")),
+	config.plisettings = ConfigSubsection()
+	config.plisettings.overscanamount = ConfigNumber(default = 32)
+	config.plisettings.Subservice = ConfigYesNo(default = False)
+	config.plisettings.ColouredButtons = ConfigYesNo(default = True)
+	config.plisettings.ViXEPG_mode = ConfigSelection(default="pliepg", choices = [
+					("pliepg", _("Show Graphical EPG")),
 					("single", _("Show Single EPG")),
 					("multi", _("Show Multi EPG")),
 					("cooltvguide", _("Show CoolTVGuide"))])
-	config.vixsettings.QuickEPG_mode = ConfigSelection(default="3", choices = [
+	config.plisettings.QuickEPG_mode = ConfigSelection(default="3", choices = [
 					("0", _("as plugin in extended bar")),
 					("1", _("with long OK press")),
 					("2", _("with exit button")),

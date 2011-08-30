@@ -18,7 +18,7 @@
 		<item level="1" text="General PCM delay (ms)">config.av.generalPCMdelay</item>
 		<item level="1" text="Digital downmix" requires="CanDownmixAC3">config.av.downmix_ac3</item>
 		<item level="1" text="Auto scart switching" requires="ScartSwitch">config.av.vcrswitch</item>
-		<item level="0" text="Menu Overscan amount">config.vixsettings.overscanamount</item>
+		<item level="0" text="Menu Overscan amount">config.plisettings.overscanamount</item>
 	</setup>
 	<setup key="usage" title="Customize">
 		<item level="0" text="Setup Mode">config.usage.setup_level</item>
@@ -58,12 +58,12 @@
 		<item level="2" text="Show background in Radio Mode">config.misc.showradiopic</item>
 	</setup>
 	<setup key="remotesetup" title="Button Setup">
-		<item level="0" text="EPG buton mode">config.vixsettings.ViXEPG_mode</item>
-		<item level="0" text="Subservice mode">config.vixsettings.Subservice</item>
-		<item level="0" text="QuickEPG mode">config.vixsettings.QuickEPG_mode</item>
+		<item level="0" text="EPG buton mode">config.plisettings.ViXEPG_mode</item>
+		<item level="0" text="Subservice mode">config.plisettings.Subservice</item>
+		<item level="0" text="QuickEPG mode">config.plisettings.QuickEPG_mode</item>
 		<item level="0" text="TV button mode">config.usage.tvradiobutton_mode</item>
 		<item level="0" text="Channel +/- button mode">config.usage.channelbutton_mode</item>
-		<item level="0" text="Use ViX Coloured Butons">config.vixsettings.ColouredButtons</item>
+		<item level="0" text="Use PLI Coloured Butons">config.plisettings.ColouredButtons</item>
 	</setup>
 	<setup key="sofcamsetup" title="Settings...">
 		<item level="2" text="Show CCcam in extensions ?">config.cccaminfo.showInExtensions</item>

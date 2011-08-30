@@ -1,0 +1,21 @@
+<default>
+	  <prerequisites>
+                    <tag type="Display" />
+                    <tag type="Skin" />
+	  </prerequisites>
+          <info language="en">
+                    <author>Dream Multimedia</author>
+                    <name>SkinSelector</name>
+                    <packagename>enigma2-plugin-systemplugins-skinselector</packagename>
+                    <shortdescription>SkinSelector shows a menu with selectable skins</shortdescription>
+                    <description>The SkinSelector shows a menu with selectable skins.\n
+                    It's now easy to change the look and feel of your Dreambox.
+                    </description>
+                    <screenshot src="http://www.dreamboxupdate.com/preview/plugin_skinselector_en.jpg" />
+          </info>
+
+	  <files type="package"> <!-- without version, without .ipk -->
+		<file type="package" name="enigma2-plugin-systemplugins-skinselector" />
+	  </files>
+
+</default>

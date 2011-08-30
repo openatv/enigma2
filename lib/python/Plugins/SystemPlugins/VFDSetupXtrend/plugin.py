@@ -3,12 +3,13 @@ from Components.ConfigList import ConfigListScreen
 from Components.config import config, ConfigSubsection, ConfigInteger, ConfigSelection, ConfigSlider, getConfigListEntry
 
 modelist = {"0": _("No"), "1": _("Yes")}
-repeatlist = {"0": _("Continues"), "1": _("NOT"), "2": _("1X"), "3": _("2X"), "4": _("3X")}
+repeatlist = {"0": _("No"), "1": _("1X"), "2": _("2X"), "3": _("3X")}
 
 config.plugins.VFDSetup = ConfigSubsection()
-config.plugins.VFDSetup.mode = ConfigSelection(choices = modelist, default = "1")
-config.plugins.VFDSetup.repeat = ConfigSelection(choices = repeatlist, default = "3")
+config.plugins.VFDSetup.mode = ConfigSelection(choices = modelist, default = "0")
+config.plugins.VFDSetup.repeat = ConfigSelection(choices = repeatlist, default = "0")
 config.plugins.VFDSetup.scrollspeed = ConfigInteger(default = 150)
+config.plugins.VFDSetup.oledbrightness = ConfigInteger(default = 200)
 
 class VFDSetupScreen(Screen, ConfigListScreen):
 	skin = """
@@ -46,14 +47,17 @@ class VFDSetupScreen(Screen, ConfigListScreen):
 		mode = config.plugins.VFDSetup.mode.value
 		repeat = config.plugins.VFDSetup.repeat.value
 		scrollspeed = config.plugins.VFDSetup.scrollspeed.value
-
+                oledbrightness = config.plugins.VFDSetup.oledbrightness.value
+                
 		self.mode = ConfigSelection(choices = modelist, default = mode)
 		self.repeat = ConfigSelection(choices = repeatlist, default = repeat)
-		self.scrollspeed = ConfigSlider(default = scrollspeed, increment = 10, limits = (0, 500))
-		self.list.append(getConfigListEntry(_("Show Display Icons"), self.mode))
+		self.scrollspeed = ConfigSlider(default = scrollspeed, increment = 10, limits = (0, 150))
+		self.oledbrightness = ConfigSlider(default = oledbrightness , increment = 10, limits = (0, 200))
+                self.list.append(getConfigListEntry(_("Show Display Icons"), self.mode))
 		self.list.append(getConfigListEntry(_("Repeat Display Message"), self.repeat))
 		self.list.append(getConfigListEntry(_("scrolling Speed"), self.scrollspeed))
-		self["config"].list = self.list
+		self.list.append(getConfigListEntry(_("Oled Brightness"), self.oledbrightness))
+                self["config"].list = self.list
 		self["config"].l.setList(self.list)
 
 	def keyLeft(self):
@@ -65,20 +69,21 @@ class VFDSetupScreen(Screen, ConfigListScreen):
 		self.setPreviewSettings()
 
 	def setPreviewSettings(self):
-		applySettings(int(self.mode.value), int(self.repeat.value), int(self.scrollspeed.value))
+		applySettings(int(self.mode.value), int(self.repeat.value), int(self.scrollspeed.value), int(self.oledbrightness.value))
 
 	def keyGo(self):
 		config.plugins.VFDSetup.mode.value = self.mode.value
 		config.plugins.VFDSetup.repeat.value = self.repeat.value
 		config.plugins.VFDSetup.scrollspeed.value = int(self.scrollspeed.value)
-		config.plugins.VFDSetup.save()
+		config.plugins.VFDSetup.oledbrightness.value = int(self.oledbrightness.value)
+                config.plugins.VFDSetup.save()
 		self.close()
 
 	def keyCancel(self):
 		setConfiguredSettings()
 		self.close()
 
-def applySettings(mode, repeat, scrollspeed):
+def applySettings(mode, repeat, scrollspeed, oledbrightness):
 	try:
 		file = open("/proc/stb/lcd/show_symbols", "w")
 		file.write('%d' % mode)
@@ -88,21 +93,20 @@ def applySettings(mode, repeat, scrollspeed):
 		file.close()
 		file = open("/proc/stb/lcd/scroll_delay", "w")
 		file.write('%d' % scrollspeed)
-		file.close()
+		file = open("/proc/stb/lcd/oled_brightness", "w")
+		file.write('%d' % oledbrightness)
+                file.close()
 	except:
 		return
 
 def setConfiguredSettings():
-	applySettings(int(config.plugins.VFDSetup.mode.value), int(config.plugins.VFDSetup.repeat.value), int(config.plugins.VFDSetup.scrollspeed.value))
+	applySettings(int(config.plugins.VFDSetup.mode.value), int(config.plugins.VFDSetup.repeat.value), int(config.plugins.VFDSetup.scrollspeed.value), int(config.plugins.VFDSetup.oledbrightness.value))
 
 def main(menuid):
 	if menuid != "system": 
 		return [ ]
 
 	return [(_("VFD Setup"), showVFDMenu, "vfd_setup",None)]
-
-def showVFDMenu(session, **kwargs):
-	session.open(VFDSetupScreen)
 
 def startup(reason, **kwargs):
 	setConfiguredSettings()

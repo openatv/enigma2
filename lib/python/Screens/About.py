@@ -26,30 +26,30 @@ class About(Screen):
 			})
 
 	def populate(self):
-		self["lab1"] = StaticText(_("Virtuosso Image Xtreme"))
-		self["lab2"] = StaticText(_("By Team ViX"))
+		self["lab1"] = StaticText(_("openAAF"))
+		self["lab2"] = StaticText(_("By AAF TEAM"))
 		if config.misc.boxtype.value == 'vuuno':
-			self["lab3"] = StaticText(_("Support at") + " www.vuplus-support.co.uk")
+			self["lab3"] = StaticText(_("Support at") + " www.aaf-digital.info")
 			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Uno")
 			AboutText = _("Hardware:") + " Vu+ Uno\n"
 		elif config.misc.boxtype.value == 'vusolo':
-			self["lab3"] = StaticText(_("Support at") + " www.vuplus-support.co.uk")
+			self["lab3"] = StaticText(_("Support at") + " www.aaf-digital.info")
 			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Solo")
 			AboutText = _("Hardware:") + " Vu+ Solo\n"
 		elif config.misc.boxtype.value == 'vuduo':
-			self["lab3"] = StaticText(_("Support at") + " www.vuplus-support.co.uk")
+			self["lab3"] = StaticText(_("Support at") + " www.aaf-digital.info")
 			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Duo")
 			AboutText = _("Hardware:") + " Vu+ Duo\n"
 		elif config.misc.boxtype.value == 'et5000':
-			self["lab3"] = StaticText(_("Support at") + " www.xtrend-support.co.uk")
+			self["lab3"] = StaticText(_("Support at") + " www.aaf-digital.info")
 			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET5000")
 			AboutText = _("Hardware:") + " Xtrend ET5000\n"
 		elif config.misc.boxtype.value == 'et9000':
-			self["lab3"] = StaticText(_("Support at") + " www.xtrend-support.co.uk")
+			self["lab3"] = StaticText(_("Support at") + " www.aaf-digital.info")
 			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET9000")
 			AboutText = _("Hardware:") + " Xtrend ET9000\n"
 		else:
-			self["lab3"] = StaticText(_("Support at") + " www.world-of-satellite.co.uk")
+			self["lab3"] = StaticText(_("Support at") + " www.aaf-digital.info")
 			self["BoxType"] = StaticText(_("Hardware:") + " " + config.misc.boxtype.value)
 			AboutText = _("Hardware:") + " " + config.misc.boxtype.value + "\n"
 
@@ -229,9 +229,9 @@ class AboutSummary(Screen):
 	def __init__(self, session, parent):
 		Screen.__init__(self, session, parent = parent)
 		if about.getImageTypeString() == 'Release':
-			self["selected"] = StaticText("ViX:" + about.getImageVersionString() + ' (R)')
+			self["selected"] = StaticText("AAF:" + about.getImageVersionString() + ' (R)')
 		elif about.getImageTypeString() == 'Experimental':
-			self["selected"] = StaticText("ViX:" + about.getImageVersionString() + ' (B)')
+			self["selected"] = StaticText("AAF:" + about.getImageVersionString() + ' (B)')
 
 class AboutReleaseNotes(Screen):
 	skin = """

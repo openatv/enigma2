@@ -266,9 +266,9 @@ class LogManager(Screen):
 		msg = MIMEMultipart()
 		if config.logmanager.user.value != '' and config.logmanager.useremail.value != '':
 			fromlogman = config.logmanager.user.value + '  <' + config.logmanager.useremail.value + '>'
-			tovixlogs = 'vixlogs@world-of-satellite.com'
+			tocrashlogs = 'crashlogs@dummy.org'
 			msg['From'] = fromlogman
-			msg['To'] = tovixlogs
+			msg['To'] = tocrashlogs
 			msg['Cc'] = fromlogman
 			msg['Date'] = formatdate(localtime=True)
 			msg['Subject'] = 'Ref: ' + ref
@@ -306,22 +306,22 @@ class LogManager(Screen):
 				self.saveSelection()
 	
 			# Send the email via our own SMTP server.
-			wos_user = 'vixlogs@world-of-satellite.com'
+			wos_user = 'crashlogs@dummy.org'
 			wos_pwd = base64.b64decode('NDJJWnojMEpldUxX')
 	
 			try:
-				print "connecting to server: mail.world-of-satellite.com"
+				print "connecting to server: mail.dummy.org"
 				#socket.setdefaulttimeout(30)
-				s = smtplib.SMTP("mail.world-of-satellite.com",26)
+				s = smtplib.SMTP("mail.dummy.org",26)
 				s.login(wos_user, wos_pwd)
 				if config.logmanager.usersendcopy.value:
-					s.sendmail(fromlogman, [tovixlogs, fromlogman], msg.as_string())
+					s.sendmail(fromlogman, [tocrashlogs, fromlogman], msg.as_string())
 					s.quit()
-					self.session.open(MessageBox, _(self.sel + ' has been sent to the ViX beta team.\nplease quote ' + ref + ' when asking question about this log\n\nA copy has been sent to yourself.'), MessageBox.TYPE_INFO)
+					self.session.open(MessageBox, _(self.sel + ' has been sent to the SVN team.\nplease quote ' + ref + ' when asking question about this log\n\nA copy has been sent to yourself.'), MessageBox.TYPE_INFO)
 				else:
-					s.sendmail(fromlogman, tovixlogs, msg.as_string())
+					s.sendmail(fromlogman, tocrashlogs, msg.as_string())
 					s.quit()
-					self.session.open(MessageBox, _(self.sel + ' has been sent to the ViX beta team.\nplease quote ' + ref + ' when asking question about this log'), MessageBox.TYPE_INFO)
+					self.session.open(MessageBox, _(self.sel + ' has been sent to the SVN team.\nplease quote ' + ref + ' when asking question about this log'), MessageBox.TYPE_INFO)
 			except Exception,e:
 				self.session.open(MessageBox, _("Error:\n%s" % e), MessageBox.TYPE_INFO, timeout = 10)
 		else:

@@ -36,13 +36,14 @@ from datetime import date
 from twisted.web import client
 from twisted.internet import reactor
 
+from ImageBackup import ImageBackup
 from ImageWizard import ImageWizard
 from BackupRestore import BackupSelection, RestoreMenu, BackupScreen, RestoreScreen, getBackupPath, getBackupFilename
 from SoftwareTools import iSoftwareTools
 
 config.plugins.configurationbackup = ConfigSubsection()
 config.plugins.configurationbackup.backuplocation = ConfigText(default = '/media/hdd/', visible_width = 50, fixed_size = False)
-config.plugins.configurationbackup.backupdirs = ConfigLocations(default=[eEnv.resolve('${sysconfdir}/enigma2/'), '/etc/network/interfaces', '/etc/wpa_supplicant.conf', '/etc/resolv.conf', '/etc/default_gw', '/etc/hostname'])
+config.plugins.configurationbackup.backupdirs = ConfigLocations(default=[eEnv.resolve('${sysconfdir}/enigma2/'), '/etc/CCcam.cfg', '/etc/network/interfaces', '/etc/wpa_supplicant.conf', '/etc/resolv.conf', '/etc/default_gw', '/etc/hostname'])
 
 config.plugins.SoftwareManager = ConfigSubsection()
 config.plugins.SoftwareManager.overwriteConfigFiles = ConfigSelection(
@@ -128,6 +129,7 @@ class UpdatePluginMenu(Screen):
 			self.list.append(("software-update", _("Software update"), _("\nOnline update of your Dreambox software." ) + self.oktext, None))
 			self.list.append(("software-update-offline", _("Software update") + " (Offline)", _("\nOnline update of your Dreambox software." ) + _("\nShut down upgrade and reboot") + self.oktext, None))
 			self.list.append(("software-restore", _("Software restore"), _("\nRestore your Dreambox with a new firmware." ) + self.oktext, None))
+			self.list.append(("backup-image", _("Backup Image"), _("\nBackup your running Dreambox image to HDD or USB." ) + self.oktext, None))
 			self.list.append(("system-backup", _("Backup system settings"), _("\nBackup your Dreambox settings." ) + self.oktext + "\n\n" + self.infotext, None))
 			self.list.append(("system-restore",_("Restore system settings"), _("\nRestore your Dreambox settings." ) + self.oktext, None))
 			self.list.append(("ipkg-install", _("Install local extension"),  _("\nScan for local extensions and install them." ) + self.oktext, None))
@@ -253,8 +255,10 @@ class UpdatePluginMenu(Screen):
 					self.session.open(ImageWizard)
 				elif (currentEntry == "install-extensions"):
 					self.session.open(PluginManager, self.skin_path)
+				elif (currentEntry == "backup-image"):
+					self.session.open(ImageBackup)
 				elif (currentEntry == "system-backup"):
-					self.session.openWithCallback(self.backupDone,BackupScreen, runBackup = True)
+					self.session.openWithCallback(self.backupDone,BackupScreen, runBackup = True)					
 				elif (currentEntry == "system-restore"):
 					if os_path.exists(self.fullbackupfilename):
 						self.session.openWithCallback(self.startRestore, MessageBox, _("Are you sure you want to restore your Enigma2 backup?\nEnigma2 will restart after the restore"))

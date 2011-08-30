@@ -53,19 +53,19 @@ def addSkin(name, scope = SCOPE_SKIN):
 from Components.config import ConfigSubsection, config, ConfigNumber
 from Tools.Directories import pathExists
 import os
-config.vixsettings = ConfigSubsection()
-config.vixsettings.overscanamount = ConfigNumber(default = 32)
-if config.vixsettings.overscanamount.value <= "0":
-	inputfile = "/usr/share/enigma2/ViX_HD/skin.xml"
+config.plisettings = ConfigSubsection()
+config.plisettings.overscanamount = ConfigNumber(default = 32)
+if config.plisettings.overscanamount.value <= "0":
+	inputfile = "/usr/share/enigma2/DMConcinnity-HD/skin.xml"
 	outputfile = inputfile+'.tmp'
-	skinposinputfile = '/usr/share/enigma2/ViX_HD/skinpos.loc'
-	skinposoutputfile = '/usr/share/enigma2/ViX_HD/skinpos.tmp'
+	skinposinputfile = '/usr/share/enigma2/DMConcinnity-HD/skinpos.loc'
+	skinposoutputfile = '/usr/share/enigma2/DMConcinnity-HD/skinpos.tmp'
 	if pathExists(skinposinputfile):
 		skinposinput = open(skinposinputfile,'r')
 		stext = skinposinput.readline()
 	else:
 		stext = "nothing to find"
-	rtext = 'position="' + str(config.vixsettings.overscanamount.value) + ',0" size="541,720"'
+	rtext = 'position="' + str(config.plisettings.overscanamount.value) + ',0" size="541,720"'
 
 	input = open(inputfile)
 	output = open(outputfile,'w')
@@ -89,7 +89,7 @@ if config.vixsettings.overscanamount.value <= "0":
 
 # example: loadSkin("nemesis_greenline/skin.xml")
 config.skin = ConfigSubsection()
-DEFAULT_SKIN = "ViX_HD/skin.xml"
+DEFAULT_SKIN = "DMConcinnity-HD/skin.xml"
 config.skin.primary_skin = ConfigText(default=DEFAULT_SKIN)
 
 profile("LoadSkin")

@@ -7,7 +7,8 @@ install_PYTHON =	\
 	plugin.py \
 	BackupRestore.py \
 	ImageWizard.py \
-	SoftwareTools.py
+	SoftwareTools.py \
+	ImageBackup.py
 
 dist_install_DATA = \
 	imagewizard.xml \
@@ -19,4 +20,6 @@ dist_install_DATA = \
 	remove.png \
 	update.png \
 	upgradeable.png \
-	upgrade.png
+	upgrade.png \
+	backup-hdd.sh \
+	backup-usb.sh
