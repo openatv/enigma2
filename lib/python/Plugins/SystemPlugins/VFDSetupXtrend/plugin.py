@@ -107,6 +107,9 @@ def main(menuid):
 		return [ ]
 
 	return [(_("VFD Setup"), showVFDMenu, "vfd_setup",None)]
+	
+def showVFDMenu(session, **kwargs):
+	session.open(VFDSetupScreen)	
 
 def startup(reason, **kwargs):
 	setConfiguredSettings()

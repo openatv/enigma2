@@ -870,6 +870,46 @@ class InfoBarSimpleEventView:
 # 			return None
 # 		return self.services[self.current]
 # 
+
+class SimpleServicelist:
+	def __init__(self, services):
+		self.services = services
+		self.length = len(services)
+		self.current = 0
+
+	def selectService(self, service):
+		if not self.length:
+			self.current = -1
+			return False
+		else:
+			self.current = 0
+			while self.services[self.current].ref != service:
+				self.current += 1
+				if self.current >= self.length:
+					return False
+		return True
+
+	def nextService(self):
+		if not self.length:
+			return
+		if self.current+1 < self.length:
+			self.current += 1
+		else:
+			self.current = 0
+
+	def prevService(self):
+		if not self.length:
+			return
+		if self.current-1 > -1:
+			self.current -= 1
+		else:
+			self.current = self.length - 1
+
+	def currentService(self):
+		if not self.length or self.current >= self.length:
+			return None
+		return self.services[self.current]
+
 class InfoBarEPG:
 	""" EPG - Opens an EPG list when the showEPGList action fires """
 	def __init__(self):

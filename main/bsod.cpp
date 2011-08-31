@@ -18,7 +18,7 @@
 
 /************************************************/
 
-#define CRASH_EMAILADDR "crashlogs@dummy.org"
+#define CRASH_EMAILADDR "crashlog@dream-multimedia-tv.de"
 #define INFOFILE "/maintainer.info"
 
 #define RINGBUFFER_SIZE 16384
@@ -173,7 +173,7 @@ void bsodFatal(const char *component)
 
 		XmlGenerator xml(f);
 
-		xml.open("openaaf");
+		xml.open("opendreambox");
 
 		xml.open("enigma2");
 		xml.string("crashdate", tm_str);
@@ -183,22 +183,35 @@ void bsodFatal(const char *component)
 
 		xml.string("skin", getConfigString("config.skin.primary_skin", "Default Skin"));
 		xml.string("sourcedate", enigma2_date);
+		xml.string("branch", enigma2_branch);
+		xml.string("rev", enigma2_rev);
 		xml.string("version", PACKAGE_VERSION);
 		xml.close();
 
 		xml.open("image");
-		xml.stringFromFile("receivermodel", "/proc/stb/info/model");
+		xml.stringFromFile("dreamboxmodel", "/proc/stb/info/model");
 		xml.stringFromFile("kernelcmdline", "/proc/cmdline");
 		xml.stringFromFile("nimsockets", "/proc/bus/nim_sockets");
+		if (!getConfigBool("config.plugins.crashlogautosubmit.sendAnonCrashlog", true)) {
+			xml.cDataFromFile("dreamboxca", "/proc/stb/info/ca");
+			xml.cDataFromFile("enigma2settings", eEnv::resolve("${sysconfdir}/enigma2/settings"), ".password=");
+		}
+		if (getConfigBool("config.plugins.crashlogautosubmit.addNetwork", false)) {
+			xml.cDataFromFile("networkinterfaces", "/etc/network/interfaces");
+			xml.cDataFromFile("dns", "/etc/resolv.conf");
+			xml.cDataFromFile("defaultgateway", "/etc/default_gw");
+		}
+		if (getConfigBool("config.plugins.crashlogautosubmit.addWlan", false))
+			xml.cDataFromFile("wpasupplicant", "/etc/wpa_supplicant.conf");
 		xml.cDataFromFile("imageversion", "/etc/image-version");
+		xml.cDataFromFile("imageissue", "/etc/issue.net");
 		xml.close();
 
 		if (detailedCrash)
 		{
 			xml.open("software");
 			xml.cDataFromCmd("enigma2software", "opkg list_installed 'enigma2*'");
-			xml.cDataFromCmd("vuplussoftware", "opkg list_installed 'vuplus*'");
-			xml.cDataFromCmd("xtrendsoftware", "opkg list_installed 'et-*'");
+			xml.cDataFromCmd("dreamboxsoftware", "opkg list_installed 'dream*'");
 			xml.cDataFromCmd("gstreamersoftware", "opkg list_installed 'gst*'");
 			xml.close();
 		}
@@ -227,10 +240,10 @@ void bsodFatal(const char *component)
 
 	eRect usable_area = eRect(100, 70, my_dc->size().width() - 150, 100);
 	
-	std::string text("We are really sorry. Your receiver encountered "
+	std::string text("We are really sorry. Your Dreambox encountered "
 		"a software problem, and needs to be restarted. "
 		"Please send the logfile created in /hdd/ to " + crash_emailaddr + ".\n"
-		"Your receiver restarts in 10 seconds!\n"
+		"Your Dreambox restarts in 10 seconds!\n"
 		"Component: " + crash_component);
 
 	p.renderText(usable_area, text.c_str(), gPainter::RT_WRAP|gPainter::RT_HALIGN_LEFT);

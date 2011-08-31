@@ -388,7 +388,7 @@ class pliExpertInfo(Poll, Converter, object):
 			
 			if (self.type != self.CRYPTO_INFO):
 				Ret_Text += "\n"
-			Ret_Text += res + "\c00?????? " + Sec_Text
+			Ret_Text += res + "\c00000000 " + Sec_Text
 		
 		if Res_Text != "":
 			Ret_Text += sep + Res_Text
