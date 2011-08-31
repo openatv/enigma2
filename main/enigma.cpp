@@ -235,7 +235,7 @@ int main(int argc, char **argv)
 	setIoPrio(IOPRIO_CLASS_BE, 3);
 
 //	python.execute("mytest", "__main__");
-	python.execFile(eEnv::resolve("${libdir}/enigma2/python/main.py").c_str());
+	python.execFile(eEnv::resolve("${libdir}/enigma2/python/mytest.py").c_str());
 
 	extern void setFullsize(); // definend in lib/gui/evideo.cpp
 	setFullsize();
