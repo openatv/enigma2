@@ -13,10 +13,11 @@ from Components.Label import Label,MultiColorLabel
 from Components.ScrollLabel import ScrollLabel
 from Components.Pixmap import Pixmap,MultiPixmap
 from Components.MenuList import MenuList
-from Components.config import config, ConfigYesNo, ConfigIP, NoSave, ConfigText, ConfigPassword, ConfigSelection, getConfigListEntry, ConfigNothing, ConfigNumber
+from Components.config import config, ConfigSubsection, ConfigYesNo, ConfigIP, NoSave, ConfigText, ConfigPassword, ConfigSelection, getConfigListEntry, ConfigNothing, ConfigNumber, ConfigLocations, NoSave
 from Components.ConfigList import ConfigListScreen
 from Components.PluginComponent import plugins
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
+from Components.FileList import MultiFileSelectList
 from Components.ActionMap import ActionMap, NumberActionMap, HelpableActionMap
 from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS, SCOPE_CURRENT_SKIN
 from Tools.LoadPixmap import LoadPixmap
@@ -498,12 +499,12 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 			self.dhcpEntry = getConfigListEntry(_("Use DHCP"), self.dhcpConfigEntry)
 			self.list.append(self.dhcpEntry)
 			if not self.dhcpConfigEntry.value:
-				self.list.append(getConfigListEntry(_('IP Address'), self.ipConfigEntry))
-				self.list.append(getConfigListEntry(_('Netmask'), self.netmaskConfigEntry))
-				self.gatewayEntry = getConfigListEntry(_('Use a gateway'), self.hasGatewayConfigEntry)
+				self.list.append(getConfigListEntry(_("IP Address"), self.ipConfigEntry))
+				self.list.append(getConfigListEntry(_("Netmask"), self.netmaskConfigEntry))
+				self.gatewayEntry = getConfigListEntry(_("Use a gateway"), self.hasGatewayConfigEntry)
 				self.list.append(self.gatewayEntry)
 				if self.hasGatewayConfigEntry.value:
-					self.list.append(getConfigListEntry(_('Gateway'), self.gatewayConfigEntry))
+					self.list.append(getConfigListEntry(_("Gateway"), self.gatewayConfigEntry))
 
 			self.extended = None
 			for p in plugins.getPlugins(PluginDescriptor.WHERE_NETWORKSETUP):
@@ -905,11 +906,11 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 					if p.__call__.has_key("menuEntryName"):
 						menuEntryName = p.__call__["menuEntryName"](self.iface)
 					else:
-						menuEntryName = _('Extended Setup...')
+						menuEntryName = _("Extended Setup...")
 					if p.__call__.has_key("menuEntryDescription"):
 						menuEntryDescription = p.__call__["menuEntryDescription"](self.iface)
 					else:
-						menuEntryDescription = _('Extended Networksetup Plugin...')
+						menuEntryDescription = _("Extended Networksetup Plugin...")
 					self.extendedSetup = ('extendedSetup',menuEntryDescription, self.extended)
 					menu.append((menuEntryName,self.extendedSetup))					
 			
@@ -2241,20 +2242,20 @@ class NetworkInadyn(Screen):
 		self['status'] = Label(_("Current Status:"))
 		self['labstop'] = Label(_("Stopped"))
 		self['labrun'] = Label(_("Running"))
-		self['time'] = Label(_('Time Update in Minutes:'))
+		self['time'] = Label(_("Time Update in Minutes:"))
 		self['labtime'] = Label()
-		self['username'] = Label(_('Username') +':')
+		self['username'] = Label(_("Username") + ":")
 		self['labuser'] = Label()
-		self['password'] = Label(_('Password') +':')
+		self['password'] = Label(_("Password") + ":")
 		self['labpass'] = Label()
-		self['alias'] = Label(_('Alias') +':')
+		self['alias'] = Label(_("Alias") + ":")
 		self['labalias'] = Label()
 		self['sactive'] = Pixmap()
 		self['sinactive'] = Pixmap()
-		self['system'] = Label(_('System') +':')
+		self['system'] = Label(_("System") + ":")
 		self['labsys'] = Label()
-		self['key_red'] = Label(_('Setup'))
-		self['key_green'] = Label(_('Show Log'))
+		self['key_red'] = Label(_("Setup"))
+		self['key_green'] = Label(_("Show Log"))
 		self['key_yellow'] = Label(_("Start"))
 		self['key_blue'] = Label(_("Autostart"))
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.setupin, 'back': self.close, 'red': self.setupin, 'green': self.inaLog, 'yellow': self.InadynStart, 'blue': self.autostart})
@@ -2373,7 +2374,6 @@ class NetworkInadyn(Screen):
 					line = (int(line) / 60)
 					self['labtime'].setText(str(line))
 				elif line.startswith('dyndns_system ') or line.startswith('#dyndns_system '):
-					print 'DYNDNS',line
 					if line.startswith('#'):
 						line = line[15:]
 						self['sactive'].hide()
@@ -2405,7 +2405,7 @@ class NetworkInadynSetup(Screen, ConfigListScreen):
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
 		Screen.setTitle(self, _("Inadyn Setup"))
-		self['key_red'] = Label(_('Save'))
+		self['key_red'] = Label(_("Save"))
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'VirtualKeyboardActions'], {'red': self.saveIna, 'back': self.close, 'showVirtualKeyboard': self.KeyText})
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
@@ -2426,23 +2426,23 @@ class NetworkInadynSetup(Screen, ConfigListScreen):
 				if line.startswith('username '):
 					line = line[9:]
 					self.ina_user.value = line
-					ina_user1 = getConfigListEntry(_('Username') +':', self.ina_user)
+					ina_user1 = getConfigListEntry(_("Username") + ":", self.ina_user)
 					self.list.append(ina_user1)
 				elif line.startswith('password '):
 					line = line[9:]
 					self.ina_pass.value = line
-					ina_pass1 = getConfigListEntry(_('Password') +':', self.ina_pass)
+					ina_pass1 = getConfigListEntry(_("Password") + ":", self.ina_pass)
 					self.list.append(ina_pass1)
 				elif line.startswith('alias '):
 					line = line[6:]
 					self.ina_alias.value = line
-					ina_alias1 = getConfigListEntry(_('Alias') +':', self.ina_alias)
+					ina_alias1 = getConfigListEntry(_("Alias") + ":", self.ina_alias)
 					self.list.append(ina_alias1)
 				elif line.startswith('update_period_sec '):
 					line = line[18:]
 					line = (int(line) / 60)
 					self.ina_period.value = line
-					ina_period1 = getConfigListEntry(_('Time Update in Minutes') +':', self.ina_period)
+					ina_period1 = getConfigListEntry(_("Time Update in Minutes") + ":", self.ina_period)
 					self.list.append(ina_period1)
 				elif line.startswith('dyndns_system ') or line.startswith('#dyndns_system '):
 					if not line.startswith('#'):
@@ -2451,10 +2451,10 @@ class NetworkInadynSetup(Screen, ConfigListScreen):
 					else:
 						self.ina_sysactive.value = False
 						line = line[15:]
-					ina_sysactive1 = getConfigListEntry(_('Set System') +':', self.ina_sysactive)
+					ina_sysactive1 = getConfigListEntry(_("Set System") + ":", self.ina_sysactive)
 					self.list.append(ina_sysactive1)
 					self.ina_system.value = line
-					ina_system1 = getConfigListEntry(_('System') +':', self.ina_system)
+					ina_system1 = getConfigListEntry(_("System") + ":", self.ina_system)
 					self.list.append(ina_system1)
 
 			f.close()
@@ -2506,7 +2506,7 @@ class NetworkInadynSetup(Screen, ConfigListScreen):
 			out.close()
 			inme.close()
 		else:
-			self.session.open(MessageBox, _('Sorry Inadyn Config is Missing'), MessageBox.TYPE_INFO)
+			self.session.open(MessageBox, _("Sorry Inadyn Config is Missing"), MessageBox.TYPE_INFO)
 			self.close()
 		if fileExists('/etc/inadyn.conf.tmp'):
 			rename('/etc/inadyn.conf.tmp', '/etc/inadyn.conf')
@@ -2537,6 +2537,8 @@ class NetworkInadynLog(Screen):
 			f.close()
 		self['infotext'].setText(strview)
 
+config.networkushare = ConfigSubsection();
+config.networkushare.mediafolders = NoSave(ConfigLocations(default=""))
 class NetworkuShare(Screen):
 	skin = """
 		<screen position="center,center" size="590,410" title="uShare Manager">
@@ -2555,22 +2557,19 @@ class NetworkuShare(Screen):
 			<widget name="telnetport" position="10,170" size="150,30" font="Regular;20" valign="center" transparent="1"/>
 			<widget name="labtelnetport" position="160,170" size="310,30" font="Regular;20" valign="center" backgroundColor="#4D5375"/>
 			<widget name="sharedir" position="10,210" size="150,30" font="Regular;20" valign="center" transparent="1"/>
-			<widget name="labsharedir" position="160,210" size="310,30" font="Regular;20" valign="center" backgroundColor="#4D5375"/>
-
-			<widget name="web" position="10,250" size="180,30" font="Regular;20" valign="center" transparent="1"/>
-			<widget name="webinactive" position="200,250" zPosition="1" pixmap="skin_default/icons/lock_off.png" size="32,32"  alphatest="on" />
-			<widget name="webactive" position="200,250" zPosition="2" pixmap="skin_default/icons/lock_on.png" size="32,32"  alphatest="on" />
-			<widget name="telnet" position="10,290" size="180,30" font="Regular;20" valign="center" transparent="1"/>
-			<widget name="telnetinactive" position="200,290" zPosition="1" pixmap="skin_default/icons/lock_off.png" size="32,32"  alphatest="on" />
-			<widget name="telnetactive" position="200,290" zPosition="2" pixmap="skin_default/icons/lock_on.png" size="32,32"  alphatest="on" />
-			<widget name="xbox" position="250,250" size="200,30" font="Regular;20" valign="center" transparent="1"/>
-			<widget name="xboxinactive" position="470,250" zPosition="1" pixmap="skin_default/icons/lock_off.png" size="32,32"  alphatest="on" />
-			<widget name="xboxactive" position="470,250" zPosition="2" pixmap="skin_default/icons/lock_on.png" size="32,32"  alphatest="on" />
-			<widget name="dlna" position="250,290" size="200,30" font="Regular;20" valign="center" transparent="1"/>
-			<widget name="dlnainactive" position="470,290" zPosition="1" pixmap="skin_default/icons/lock_off.png" size="32,32"  alphatest="on" />
-			<widget name="dlnaactive" position="470,290" zPosition="2" pixmap="skin_default/icons/lock_on.png" size="32,32"  alphatest="on" />
-			
-			
+			<widget name="labsharedir" position="160,210" size="310,90" font="Regular;20" valign="center" backgroundColor="#4D5375"/>
+			<widget name="web" position="10,300" size="180,30" font="Regular;20" valign="center" transparent="1"/>
+			<widget name="webinactive" position="200,300" zPosition="1" pixmap="skin_default/icons/lock_off.png" size="32,32"  alphatest="on" />
+			<widget name="webactive" position="200,300" zPosition="2" pixmap="skin_default/icons/lock_on.png" size="32,32"  alphatest="on" />
+			<widget name="telnet" position="10,330" size="180,30" font="Regular;20" valign="center" transparent="1"/>
+			<widget name="telnetinactive" position="200,330" zPosition="1" pixmap="skin_default/icons/lock_off.png" size="32,32"  alphatest="on" />
+			<widget name="telnetactive" position="200,330" zPosition="2" pixmap="skin_default/icons/lock_on.png" size="32,32"  alphatest="on" />
+			<widget name="xbox" position="250,300" size="200,30" font="Regular;20" valign="center" transparent="1"/>
+			<widget name="xboxinactive" position="470,300" zPosition="1" pixmap="skin_default/icons/lock_off.png" size="32,32"  alphatest="on" />
+			<widget name="xboxactive" position="470,300" zPosition="2" pixmap="skin_default/icons/lock_on.png" size="32,32"  alphatest="on" />
+			<widget name="dlna" position="250,330" size="200,30" font="Regular;20" valign="center" transparent="1"/>
+			<widget name="dlnainactive" position="470,330" zPosition="1" pixmap="skin_default/icons/lock_off.png" size="32,32"  alphatest="on" />
+			<widget name="dlnaactive" position="470,330" zPosition="2" pixmap="skin_default/icons/lock_on.png" size="32,32"  alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/red.png" position="0,360" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/green.png" position="150,360" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/yellow.png" position="300,360" size="140,40" alphatest="on" />
@@ -2590,30 +2589,30 @@ class NetworkuShare(Screen):
 		self['status'] = Label(_("Current Status:"))
 		self['labstop'] = Label(_("Stopped"))
 		self['labrun'] = Label(_("Running"))
-		self['username'] = Label(_('uShare Name') + ':')
+		self['username'] = Label(_("uShare Name") + ":")
 		self['labuser'] = Label()
-		self['iface'] = Label(_('Inetrface') + ':')
+		self['iface'] = Label(_("Inetrface") + ":")
 		self['labiface'] = Label()
-		self['port'] = Label(_('uShare Port') + ':')
+		self['port'] = Label(_("uShare Port") + ":")
 		self['labport'] = Label()
-		self['telnetport'] = Label(_('Telnet Port') + ':')
+		self['telnetport'] = Label(_("Telnet Port") + ":")
 		self['labtelnetport'] = Label()
-		self['sharedir'] = Label(_('Share Folder') + ':')
+		self['sharedir'] = Label(_("Share Folder's") + ":")
 		self['labsharedir'] = Label()
-		self['web'] = Label(_('Web Interface') + ':')
+		self['web'] = Label(_("Web Interface") + ":")
 		self['webactive'] = Pixmap()
 		self['webinactive'] = Pixmap()
-		self['telnet'] = Label(_('Telnet Interface') + ':')
+		self['telnet'] = Label(_("Telnet Interface") + ":")
 		self['telnetactive'] = Pixmap()
 		self['telnetinactive'] = Pixmap()
-		self['xbox'] = Label(_('XBox 360 support') + ':')
+		self['xbox'] = Label(_("XBox 360 support") + ":")
 		self['xboxactive'] = Pixmap()
 		self['xboxinactive'] = Pixmap()
-		self['dlna'] = Label(_('DLNA support') + ':')
+		self['dlna'] = Label(_("DLNA support") + ":")
 		self['dlnaactive'] = Pixmap()
 		self['dlnainactive'] = Pixmap()
 
-		self['key_red'] = Label(_('Setup'))
+		self['key_red'] = Label(_("Setup"))
 		self['key_green'] = Label('')
 		self['key_yellow'] = Label(_("Start"))
 		self['key_blue'] = Label(_("Autostart"))
@@ -2731,6 +2730,7 @@ class NetworkuShare(Screen):
 					self['labtelnetport'].setText(line)
 				elif line.startswith('USHARE_DIR='):
 					line = line[11:]
+					self.mediafolders = line
 					self['labsharedir'].setText(line)
 				elif line.startswith('ENABLE_WEB='):
 					if line[11:] == 'no':
@@ -2767,32 +2767,36 @@ class NetworkuShare(Screen):
 
 class NetworkuShareSetup(Screen, ConfigListScreen):
 	skin = """
-		<screen name="uShareSetup" position="center,center" size="440,400" title="uShare Setup">
+		<screen name="uShareSetup" position="center,center" size="440,400">
 			<widget name="config" position="10,10" size="420,240" scrollbarMode="showOnDemand" />
-			<widget name="HelpWindow" pixmap="skin_default/vkey_icon.png" position="440,390" zPosition="1" size="440,350" transparent="1" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/red.png" position="130,360" size="140,40" alphatest="on" />
-			<widget name="key_red" position="130,360" size="140,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-			<ePixmap pixmap="skin_default/buttons/key_text.png" position="300,366" zPosition="4" size="35,25" alphatest="on" transparent="1" />
+			<widget name="HelpWindow" pixmap="skin_default/vkey_icon.png" position="440,390" size="440,350" transparent="1" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/red.png" position="0,360" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/green.png" position="150,360" size="140,40" alphatest="on" />
+			<widget name="key_red" position="0,360" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+			<widget name="key_green" position="150,360" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+			<ePixmap pixmap="skin_default/buttons/key_text.png" position="320,366" zPosition="4" size="35,25" alphatest="on" transparent="1" />
 		</screen>"""
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
+		Screen.setTitle(self, _("uShare Setup"))
 		self.onChangedEntry = [ ]
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
 		Screen.setTitle(self, _("uShare Setup"))
-		self['key_red'] = Label(_('Save'))
-		self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'VirtualKeyboardActions'], {'red': self.saveIna, 'back': self.close, 'showVirtualKeyboard': self.KeyText})
+		self['key_red'] = Label(_("Save"))
+		self['key_green'] = Label(_("Shares"))
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'VirtualKeyboardActions'], {'red': self.saveIna, 'green': self.selectfolders, 'back': self.close, 'showVirtualKeyboard': self.KeyText})
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self.updateList()
 
-	def updateList(self):
+	def updateList(self, ret=None):
+		self.list = []
 		self.ushare_user = NoSave(ConfigText(default=config.misc.boxtype.value,fixed_size=False))
 		self.ushare_iface = NoSave(ConfigText(fixed_size=False))
 		self.ushare_port = NoSave(ConfigNumber())
 		self.ushare_telnetport = NoSave(ConfigNumber())
-		self.ushare_sharefolder = NoSave(ConfigText(fixed_size=False))
 		self.ushare_web = NoSave(ConfigYesNo(default='True'))
 		self.ushare_telnet = NoSave(ConfigYesNo(default='True'))
 		self.ushare_xbox= NoSave(ConfigYesNo(default='True'))
@@ -2806,55 +2810,50 @@ class NetworkuShareSetup(Screen, ConfigListScreen):
 				if line.startswith('USHARE_NAME='):
 					line = line[12:]
 					self.ushare_user.value = line
-					ushare_user1 = getConfigListEntry(_('uShare Name') + ':', self.ushare_user)
+					ushare_user1 = getConfigListEntry(_("uShare Name") + ":", self.ushare_user)
 					self.list.append(ushare_user1)
 				elif line.startswith('USHARE_IFACE='):
 					line = line[13:]
 					self.ushare_iface.value = line
-					ushare_iface1 = getConfigListEntry(_('Inetrface') + ':', self.ushare_iface)
+					ushare_iface1 = getConfigListEntry(_("Inetrface") + ":", self.ushare_iface)
 					self.list.append(ushare_iface1)
 				elif line.startswith('USHARE_PORT='):
 					line = line[12:]
 					self.ushare_port.value = line
-					ushare_port1 = getConfigListEntry(_('uShare Port') + ':', self.ushare_port)
+					ushare_port1 = getConfigListEntry(_("uShare Port") + ":", self.ushare_port)
 					self.list.append(ushare_port1)
 				elif line.startswith('USHARE_TELNET_PORT='):
 					line = line[19:]
 					self.ushare_telnetport.value = line
-					ushare_telnetport1 = getConfigListEntry(_('Telnet Port') + ':', self.ushare_telnetport)
+					ushare_telnetport1 = getConfigListEntry(_("Telnet Port") + ":", self.ushare_telnetport)
 					self.list.append(ushare_telnetport1)
-				elif line.startswith('USHARE_DIR='):
-					line = line[11:]
-					self.ushare_sharefolder.value = line
-					ushare_sharefolder1 = getConfigListEntry(_('Share Folder') + ':', self.ushare_sharefolder)
-					self.list.append(ushare_sharefolder1)
 				elif line.startswith('ENABLE_WEB='):
 					if line[11:] == 'no':
 						self.ushare_web.value = False
 					else:
 						self.ushare_web.value = True
-					ushare_web1 = getConfigListEntry(_('Web Interface') + ':', self.ushare_web)
+					ushare_web1 = getConfigListEntry(_("Web Interface") + ":", self.ushare_web)
 					self.list.append(ushare_web1)
 				elif line.startswith('ENABLE_TELNET='):
 					if line[14:] == 'no':
 						self.ushare_telnet.value = False
 					else:
 						self.ushare_telnet.value = True
-					ushare_telnet1 = getConfigListEntry(_('Telnet Interface') + ':', self.ushare_telnet)
+					ushare_telnet1 = getConfigListEntry(_("Telnet Interface") + ":", self.ushare_telnet)
 					self.list.append(ushare_telnet1)
 				elif line.startswith('ENABLE_XBOX='):
 					if line[12:] == 'no':
 						self.ushare_xbox.value = False
 					else:
 						self.ushare_xbox.value = True
-					ushare_xbox1 = getConfigListEntry(_('XBox 360 support') + ':', self.ushare_xbox)
+					ushare_xbox1 = getConfigListEntry(_("XBox 360 support") + ":", self.ushare_xbox)
 					self.list.append(ushare_xbox1)
 				elif line.startswith('ENABLE_DLNA='):
 					if line[12:] == 'no':
 						self.ushare_ps3.value = False
 					else:
 						self.ushare_ps3.value = True
-					ushare_ps31 = getConfigListEntry(_('DLNA support') + ':', self.ushare_ps3)
+					ushare_ps31 = getConfigListEntry(_("DLNA support") + ":", self.ushare_ps3)
 					self.list.append(ushare_ps31)
 			f.close()
 		self['config'].list = self.list
@@ -2871,7 +2870,7 @@ class NetworkuShareSetup(Screen, ConfigListScreen):
 		sel = self['config'].getCurrent()
 		if sel:
 			self.vkvar = sel[0]
-			if self.vkvar == _("uShare Name") + ':' or self.vkvar == _("Share Folder") + ':':
+			if self.vkvar == _("uShare Name") + ":" or self.vkvar == _("Share Folder's") + ":":
 				from Screens.VirtualKeyBoard import VirtualKeyBoard
 				self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title = self["config"].getCurrent()[0], text = self["config"].getCurrent()[1].getValue())
 
@@ -2895,7 +2894,7 @@ class NetworkuShareSetup(Screen, ConfigListScreen):
 				elif line.startswith('USHARE_TELNET_PORT='):
 					line = ('USHARE_TELNET_PORT=' + str(self.ushare_telnetport.value))
 				elif line.startswith('USHARE_DIR='):
-					line = ('USHARE_DIR=' + self.ushare_sharefolder.value.strip())
+					line = ('USHARE_DIR=' + ', '.join( config.networkushare.mediafolders.value ))
 				elif line.startswith('ENABLE_WEB='):
 					if not self.ushare_web.value:
 						line = 'ENABLE_WEB=no'
@@ -2920,7 +2919,7 @@ class NetworkuShareSetup(Screen, ConfigListScreen):
 			out.close()
 			inme.close()
 		else:
-			self.session.open(MessageBox, _('Sorry uShare Config is Missing'), MessageBox.TYPE_INFO)
+			self.session.open(MessageBox, _("Sorry uShare Config is Missing"), MessageBox.TYPE_INFO)
 			self.close()
 		if fileExists('/etc/ushare.conf.tmp'):
 			rename('/etc/ushare.conf.tmp', '/etc/ushare.conf')
@@ -2928,3 +2927,93 @@ class NetworkuShareSetup(Screen, ConfigListScreen):
 
 	def myStop(self):
 		self.close()
+
+	def selectfolders(self):
+		self.session.openWithCallback(self.updateList,uShareSelection)
+
+class uShareSelection(Screen):
+	skin = """
+		<screen name="uShareSelection" position="center,center" size="560,400" zPosition="3" >
+			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
+			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+			<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+			<widget source="key_yellow" render="Label" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
+			<widget name="checkList" position="5,50" size="550,350" transparent="1" scrollbarMode="showOnDemand" />
+		</screen>"""
+
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		Screen.setTitle(self, _("Select folders"))
+		self["key_red"] = StaticText(_("Cancel"))
+		self["key_green"] = StaticText(_("Save"))
+		self["key_yellow"] = StaticText()
+		
+		if fileExists('/etc/ushare.conf'):
+			f = open('/etc/ushare.conf', 'r')
+			for line in f.readlines():
+				line = line.strip()
+				if line.startswith('USHARE_DIR='):
+					line = line[11:]
+					self.mediafolders = line
+		self.selectedFiles = [str(n) for n in self.mediafolders.split(', ')]
+		defaultDir = '/media/'
+		self.filelist = MultiFileSelectList(self.selectedFiles, defaultDir,showFiles = False )
+		self["checkList"] = self.filelist
+		
+		self["actions"] = ActionMap(["DirectionActions", "OkCancelActions", "ShortcutActions"],
+		{
+			"cancel": self.exit,
+			"red": self.exit,
+			"yellow": self.changeSelectionState,
+			"green": self.saveSelection,
+			"ok": self.okClicked,
+			"left": self.left,
+			"right": self.right,
+			"down": self.down,
+			"up": self.up
+		}, -1)
+		if not self.selectionChanged in self["checkList"].onSelectionChanged:
+			self["checkList"].onSelectionChanged.append(self.selectionChanged)
+		self.onLayoutFinish.append(self.layoutFinished)
+
+	def layoutFinished(self):
+		idx = 0
+		self["checkList"].moveToIndex(idx)
+		self.selectionChanged()
+
+	def selectionChanged(self):
+		current = self["checkList"].getCurrent()[0]
+		if current[2] is True:
+			self["key_yellow"].setText(_("Deselect"))
+		else:
+			self["key_yellow"].setText(_("Select"))
+		
+	def up(self):
+		self["checkList"].up()
+
+	def down(self):
+		self["checkList"].down()
+
+	def left(self):
+		self["checkList"].pageUp()
+
+	def right(self):
+		self["checkList"].pageDown()
+
+	def changeSelectionState(self):
+		self["checkList"].changeSelectionState()
+		self.selectedFiles = self["checkList"].getSelectedList()
+
+	def saveSelection(self):
+		self.selectedFiles = self["checkList"].getSelectedList()
+		config.networkushare.mediafolders.value = self.selectedFiles
+		self.close(None)
+
+	def exit(self):
+		self.close(None)
+
+	def okClicked(self):
+		if self.filelist.canDescent():
+			self.filelist.descent()
