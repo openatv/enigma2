@@ -372,7 +372,7 @@ class Aafpanel(Screen, InfoBarPiP):
 			self.session.open(Info, "Partitions")
 		elif menu == "Swap":
 			self.session.open(Info, "Swap")
-		elif menu == "System Info":
+		elif menu == "System_Info":
 			self.System()
 		elif menu == "SoftwareManager":
 			self.session.open(UpdatePluginMenu)
@@ -388,13 +388,13 @@ class Aafpanel(Screen, InfoBarPiP):
 			self.session.open(SoftcamPanel)
 		elif menu == "MultiQuickButton":
 			self.session.open(MultiQuickButton)
-		elif menu == "Remote setup":
+		elif menu == "Remote_setup":
 			self.session.open(RCSetupScreen)
 		elif menu == "FanSetup":
 			self.session.open(FanSetupScreen)
 		elif menu == "VFDSetup":
 			self.session.open(VFDSetupScreen)	
-		elif menu == "Device Manager":
+		elif menu == "Device_Manager":
 			self.session.open(HddSetup)
 		elif menu == "SundtekControlCenter":
 			self.session.open(SundtekControlCenter)
@@ -422,7 +422,7 @@ class Aafpanel(Screen, InfoBarPiP):
 		if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/plugin.pyo") is True:
 			self.tlist.append(MenuEntryItem((AafEntryComponent('MultiQuickButton'), _("MultiQuickButton"), 'MultiQuickButton')))	
 		if os.path.isfile("/usr/lib/enigma2/python/Plugins/SystemPlugins/choiceRC/plugin.pyo") is True:
-			self.tlist.append(MenuEntryItem((AafEntryComponent('Remote setup'), _("Remote setup"), 'Remote setup')))
+			self.tlist.append(MenuEntryItem((AafEntryComponent('Remote_setup'), _("Remote_setup"), 'Remote_setup')))
 		if os.path.isfile("/usr/lib/enigma2/python/Plugins/SystemPlugins/FanSetup/plugin.pyo") is True:
 			self.tlist.append(MenuEntryItem((AafEntryComponent('FanSetup'), _("FanSetup"), 'FanSetup')))
 		if os.path.isfile("/usr/lib/enigma2/python/Plugins/SystemPlugins/HdmiCEC/plugin.pyo") is True:
@@ -443,7 +443,7 @@ class Aafpanel(Screen, InfoBarPiP):
 		self.oldmlist = self.Mlist
 		#self.tlist.append(MenuEntryItem((AafEntryComponent('Pluginbrowser'), _("Pluginbrowser"), 'Pluginbrowser')))
 		self.tlist.append(MenuEntryItem((AafEntryComponent('AddOnBrowser'), _("AddOnBrowser"), 'AddOnBrowser')))
-		self.tlist.append(MenuEntryItem((AafEntryComponent('Device Manager'), _("Device Manager"), 'Device Manager')))
+		self.tlist.append(MenuEntryItem((AafEntryComponent('Device_Manager'), _("Device_Manager"), 'Device_Manager')))
 		self.tlist.append(MenuEntryItem((AafEntryComponent('CronManager'), _("CronManager"), 'CronManager')))
 		self.tlist.append(MenuEntryItem((AafEntryComponent('JobManager'), _("JobManager"), 'JobManager')))
 		#self.tlist.append(MenuEntryItem((AafEntryComponent('DaemonManager'), _("DaemonManager"), 'DaemonManager')))
@@ -468,7 +468,7 @@ class Aafpanel(Screen, InfoBarPiP):
 		self.tlist.append(MenuEntryItem((AafEntryComponent('Mounts'), _("Mounts"), 'Mounts')))
 		self.tlist.append(MenuEntryItem((AafEntryComponent('Network'), _("Network"), 'Network')))
 		self.tlist.append(MenuEntryItem((AafEntryComponent('Ram'), _("Ram"), 'Ram')))
-		self.tlist.append(MenuEntryItem((AafEntryComponent('System Info'), _("System Info"), 'System Info')))
+		self.tlist.append(MenuEntryItem((AafEntryComponent('System_Info'), _("System_Info"), 'System_Info')))
 		self["Mlist"].moveToIndex(0)
 		self["Mlist"].l.setList(self.tlist)
 		self.oldmlist1 = self.tlist
