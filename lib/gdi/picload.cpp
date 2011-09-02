@@ -635,6 +635,7 @@ void ePicLoad::decodeThumb()
 			{
 				if(exif->m_exifinfo->Thumnailstate==2)
 				{
+					free(m_filepara->file);
 					m_filepara->file = strdup(THUMBNAILTMPFILE);
 					exif_thumbnail = true;
 					eDebug("[Picload] Exif Thumbnail found");
@@ -679,6 +680,7 @@ void ePicLoad::decodeThumb()
 			if(!access(cachefile.c_str(), R_OK))
 			{
 				cachefile_found = true;
+				free(m_filepara->file);
 				m_filepara->file = strdup(cachefile.c_str());
 				m_filepara->id = F_JPEG;
 				eDebug("[Picload] Cache File found");
