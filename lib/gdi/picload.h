@@ -8,35 +8,32 @@
 #include <lib/base/ebase.h>
 
 #ifndef SWIG
-class Cfilepara
+struct Cfilepara
 {
-public:
+	const char *file;
+	unsigned char *pic_buffer;
+	int id;
 	int max_x;
 	int max_y;
-	bool callback;
-	
-	const char *file;
-	int id;
 	int ox;
 	int oy;
-	unsigned char *pic_buffer;
 	std::string picinfo;
-	int test;
+	bool callback;
 	
-	Cfilepara(const char *mfile, int mid, std::string size)
+	Cfilepara(const char *mfile, int mid, std::string size):
+		file(strdup(mfile)),
+		pic_buffer(NULL),
+		id(mid),
+		picinfo(mfile),
+		callback(true)
 	{
-		file = strdup(mfile);
-		id = mid;
-		pic_buffer = NULL;
-		callback = true;
-		picinfo = mfile;
-		picinfo += + "\n" + size + "\n";
+		picinfo += "\n" + size + "\n";
 	}
 	
 	~Cfilepara()
 	{
-		if(pic_buffer != NULL)	delete pic_buffer;
-		picinfo.clear();
+		if (pic_buffer != NULL)	delete pic_buffer;
+		free(file);
 	}
 	
 	void addExifInfo(std::string val) { picinfo += val + "\n"; }
