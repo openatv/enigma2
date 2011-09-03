@@ -461,10 +461,9 @@ static unsigned char *gif_load(const char *file, int *ox, int *oy)
 				*ox = px = gft->Image.Width;
 				*oy = py = gft->Image.Height;
 				pic_buffer = new unsigned char[px * py * 3];
-				lb = (unsigned char *)malloc(px * 3);
 				slb = (unsigned char *) malloc(px);
 
-				if (lb != NULL && slb != NULL)
+				if (slb != NULL)
 				{
 					cmap = (gft->Image.ColorMap ? gft->Image.ColorMap : gft->SColorMap);
 					cmaps = cmap->ColorCount;
@@ -477,8 +476,7 @@ static unsigned char *gif_load(const char *file, int *ox, int *oy)
 						{
 							if (DGifGetLine(gft, slb, px) == GIF_ERROR)
 								goto ERROR_R;
-							m_rend_gif_decodecolormap(slb, lb, cmap, cmaps, px);
-							memcpy(fbptr, lb, px * 3);
+							m_rend_gif_decodecolormap(slb, fbptr, cmap, cmaps, px);
 						}
 					}
 					else
@@ -490,16 +488,10 @@ static unsigned char *gif_load(const char *file, int *ox, int *oy)
 							{
 								if (DGifGetLine(gft, slb, px) == GIF_ERROR)
 									goto ERROR_R;
-								m_rend_gif_decodecolormap(slb, lb, cmap, cmaps, px);
-								memcpy(fbptr, lb, px * 3);
+								m_rend_gif_decodecolormap(slb, fbptr, cmap, cmaps, px);
 							}
 						}
 					}
-				}
-				if (lb)
-				{
-					free(lb);
-					lb=NULL;
 				}
 				if (slb)
 				{
@@ -524,8 +516,8 @@ static unsigned char *gif_load(const char *file, int *ox, int *oy)
 	return(pic_buffer);
 ERROR_R:
 	eDebug("[Picload] <Error gif>");
-	if (lb) 	free(lb);
-	if (slb) 	free(slb);
+	if (slb)
+		free(slb);
 	DGifCloseFile(gft);
 	return NULL;
 }
