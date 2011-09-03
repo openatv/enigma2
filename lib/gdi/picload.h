@@ -58,11 +58,12 @@ class ePicLoad: public eMainloop, public eThread, public Object, public iObject
 		int max_x;
 		int max_y;
 		double aspect_ratio;
-		unsigned char background[4];
+		int background;
 		bool resizetype;
 		bool usecache;
 		int thumbnailsize;
 		int test;
+		PConf();
 	} m_conf;
 	
 	struct Message
