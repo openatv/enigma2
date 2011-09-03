@@ -10,7 +10,7 @@
 #ifndef SWIG
 struct Cfilepara
 {
-	const char *file;
+	char *file;
 	unsigned char *pic_buffer;
 	int id;
 	int max_x;

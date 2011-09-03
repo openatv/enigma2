@@ -24,27 +24,6 @@ static std::string getSize(const char* file)
 	return tmp;
 }
 
-static unsigned char *conv24to32(unsigned char *orgin, int size, unsigned char alpha = 0xFF)
-{
-	int s, d;
-	unsigned char *cr = new unsigned char[size * 4];
-	if (cr == NULL)
-	{
-		eDebug("[Picload] Error malloc");
-		return(orgin);
-	}
-
-	for (s = 0, d = 0 ; s < (size * 3); s += 3, d += 4 )
-	{
-		cr[d] = orgin[s];
-		cr[d+1] = orgin[s + 1];
-		cr[d+2] = orgin[s + 2];
-		cr[d+3] = alpha;
-	}
-	delete [] orgin;
-	return(cr);
-}
-
 static unsigned char *simple_resize(unsigned char *orgin, int ox, int oy, int dx, int dy)
 {
 	unsigned char *cr, *p, *l;
@@ -255,8 +234,6 @@ static unsigned char *bmp_load(const char *file,  int *x, int *y)
 
 static unsigned char *png_load(const char *file, int *ox, int *oy)
 {
-	static const png_color_16 my_background = {0, 0, 0, 0, 0};
-
 	png_uint_32 width, height;
 	unsigned int i;
 	int bit_depth, color_type, interlace_type;
@@ -930,14 +907,12 @@ int ePicLoad::getData(ePtr<gPixmap> &result)
 	result = 0;
 	if(m_filepara->pic_buffer == NULL) return 0;
 	
-	m_filepara->pic_buffer = conv24to32(m_filepara->pic_buffer, m_filepara->ox * m_filepara->oy);
-	
 	result=new gPixmap(eSize(m_filepara->max_x, m_filepara->max_y), 32);
 	gSurface *surface = result->surface;
-	int nc=0, oc=0;
 	int o_y=0, u_y=0, v_x=0, h_x=0;
 
 	unsigned char *tmp_buffer=((unsigned char *)(surface->data));
+	unsigned char *origin = m_filepara->pic_buffer;
 	
 	if(m_filepara->oy < m_filepara->max_y)
 	{
@@ -950,13 +925,15 @@ int ePicLoad::getData(ePtr<gPixmap> &result)
 		h_x = m_filepara->max_x - m_filepara->ox - v_x;
 	}
 	
+	int background;
+	memcpy(&background, &m_conf.background, 4);
 	if(m_filepara->oy < m_filepara->max_y)
 	{
 		int ma = o_y * m_filepara->ox;
-		for(int a=0; a<ma; a++, nc+=4)
+		for(int a=0; a<ma; ++a)
 		{
-			tmp_buffer=((unsigned char *)(surface->data)) + nc;
-			memcpy(tmp_buffer, m_conf.background, sizeof(m_conf.background));
+			*(int*)tmp_buffer = background;
+			tmp_buffer += 4;
 		}
 	}
 	
@@ -964,38 +941,42 @@ int ePicLoad::getData(ePtr<gPixmap> &result)
 	{
 		if(m_filepara->ox < m_filepara->max_x)
 		{
-			for(int b=0; b<v_x; b++, nc+=4)
+			for(int b=0; b<v_x; b++)
 			{
-				tmp_buffer=((unsigned char *)(surface->data)) + nc;
-				memcpy(tmp_buffer, m_conf.background, sizeof(m_conf.background));
+				*(int*)tmp_buffer = background;
+				tmp_buffer += 4;
 			}
 		}
 
-		for(int b=0; b < m_filepara->ox; ++b, nc+=4)
+		for(int b=0; b < m_filepara->ox; ++b)
 		{
-			tmp_buffer=((unsigned char *)(surface->data)) + nc;
-			tmp_buffer[2] = m_filepara->pic_buffer[oc++];
-			tmp_buffer[1] = m_filepara->pic_buffer[oc++];
-			tmp_buffer[0] = m_filepara->pic_buffer[oc++];
-			tmp_buffer[3] = m_filepara->pic_buffer[oc++];
+			tmp_buffer[2] = *origin;
+			++origin;
+			tmp_buffer[1] = *origin;
+			++origin;
+			tmp_buffer[0] = *origin;
+			++origin;
+			tmp_buffer[3] = 0xFF; // alpha
+			tmp_buffer += 4;
 		}
 		
 		if(m_filepara->ox < m_filepara->max_x)
 		{
-			for(int b=0; b<h_x; b++, nc+=4)
+			for(int b=0; b<h_x; b++)
 			{
-				tmp_buffer=((unsigned char *)(surface->data)) + nc;
-				memcpy(tmp_buffer, m_conf.background, sizeof(m_conf.background));
+				*(int*)tmp_buffer = background;
+				tmp_buffer += 4;
 			}
 		}
 	}
 	
 	if(m_filepara->oy < m_filepara->max_y)
 	{
-		for(int a=0; a<(u_y*m_filepara->ox); a++, nc+=4)
+		int na = u_y*m_filepara->ox;
+		for(int a=0; a < na; a++)
 		{
-			tmp_buffer=((unsigned char *)(surface->data)) + nc;
-			memcpy(tmp_buffer, m_conf.background, sizeof(m_conf.background));
+			*(int*)tmp_buffer = background;
+			tmp_buffer += 4;
 		}
 	}
 	
