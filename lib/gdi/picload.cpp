@@ -532,21 +532,26 @@ ERROR_R:
 
 //---------------------------------------------------------------------------------------------
 
-ePicLoad::ePicLoad()
-	:msg_thread(this,1), msg_main(eApp,1)
+ePicLoad::ePicLoad():
+	m_filepara(NULL),
+	threadrunning(false),
+	m_conf(),
+	msg_thread(this,1),
+	msg_main(eApp,1)
 {
 	CONNECT(msg_thread.recv_msg, ePicLoad::gotMessage);
 	CONNECT(msg_main.recv_msg, ePicLoad::gotMessage);
-	
-	threadrunning = false;
-	m_filepara = NULL;
-	m_conf.max_x = 0;
-	m_conf.max_y = 0;
-	m_conf.aspect_ratio = 1.066400; //4:3
-	m_conf.usecache = false;
-	m_conf.resizetype = 1;
-	memset(m_conf.background,0x00,sizeof(m_conf.background));
-	m_conf.thumbnailsize = 180;
+}
+
+ePicLoad::PConf::PConf():
+	max_x(0),
+	max_y(0),
+	aspect_ratio(1.066400), //4:3
+	usecache(false),
+	resizetype(1),
+	background(0),
+	thumbnailsize(180)
+{
 }
 
 void ePicLoad::waitFinished()
@@ -925,30 +930,28 @@ int ePicLoad::getData(ePtr<gPixmap> &result)
 		h_x = m_filepara->max_x - m_filepara->ox - v_x;
 	}
 	
-	int background;
-	memcpy(&background, &m_conf.background, 4);
+	int background = m_conf.background;
 	if(m_filepara->oy < m_filepara->max_y)
 	{
-		int ma = o_y * m_filepara->ox;
-		for(int a=0; a<ma; ++a)
+		for(int ma = o_y * m_filepara->ox; ma != 0; --ma)
 		{
 			*(int*)tmp_buffer = background;
 			tmp_buffer += 4;
 		}
 	}
 	
-	for(int a=0; a<m_filepara->oy; a++)
+	for(int a = m_filepara->oy; a > 0; --a)
 	{
 		if(m_filepara->ox < m_filepara->max_x)
 		{
-			for(int b=0; b<v_x; b++)
+			for(int b = v_x; b != 0; --b)
 			{
 				*(int*)tmp_buffer = background;
 				tmp_buffer += 4;
 			}
 		}
 
-		for(int b=0; b < m_filepara->ox; ++b)
+		for(int b = m_filepara->ox; b != 0; --b)
 		{
 			tmp_buffer[2] = *origin;
 			++origin;
@@ -962,7 +965,7 @@ int ePicLoad::getData(ePtr<gPixmap> &result)
 		
 		if(m_filepara->ox < m_filepara->max_x)
 		{
-			for(int b=0; b<h_x; b++)
+			for(int b = h_x; b != 0; --b)
 			{
 				*(int*)tmp_buffer = background;
 				tmp_buffer += 4;
@@ -972,8 +975,7 @@ int ePicLoad::getData(ePtr<gPixmap> &result)
 	
 	if(m_filepara->oy < m_filepara->max_y)
 	{
-		int na = u_y*m_filepara->ox;
-		for(int a=0; a < na; a++)
+		for(a = u_y * m_filepara->ox; a != 0; --a)
 		{
 			*(int*)tmp_buffer = background;
 			tmp_buffer += 4;
@@ -1007,13 +1009,9 @@ RESULT ePicLoad::setPara(PyObject *val)
 	
 		if(bg_str[0] == '#' && strlen(bg_str)==9)
 		{
-			int bg = strtoul(bg_str+1, NULL, 16);
-			m_conf.background[0] = bg&0xFF;		//BB
-			m_conf.background[1] = (bg>>8)&0xFF;	//GG
-			m_conf.background[2] = (bg>>16)&0xFF;	//RR
-			m_conf.background[3] = bg>>24;		//AA
+			m_conf.background = strtoul(bg_str+1, NULL, 16);
 		}
-		eDebug("[Picload] setPara max-X=%d max-Y=%d aspect_ratio=%lf cache=%d resize=%d bg=#%02X%02X%02X%02X", m_conf.max_x, m_conf.max_y, m_conf.aspect_ratio, (int)m_conf.usecache, (int)m_conf.resizetype, m_conf.background[3], m_conf.background[2], m_conf.background[1], m_conf.background[0]);
+		eDebug("[Picload] setPara max-X=%d max-Y=%d aspect_ratio=%lf cache=%d resize=%d bg=#%08X", m_conf.max_x, m_conf.max_y, m_conf.aspect_ratio, (int)m_conf.usecache, (int)m_conf.resizetype, m_conf.background);
 	}
 	return 1;
 }
