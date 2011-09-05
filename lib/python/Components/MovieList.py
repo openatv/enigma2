@@ -120,6 +120,8 @@ class MovieList(GUIComponent):
 	SORT_ALPHANUMERIC = 1
 	SORT_RECORDED = 2
 	SHUFFLE = 3
+	SORT_ALPHANUMERIC_REVERSE = 4
+	SORT_RECORDED_REVERSE = 5
 
 	LISTTYPE_ORIGINAL = 1
 	LISTTYPE_COMPACT_DESCRIPTION = 2
@@ -524,14 +526,17 @@ class MovieList(GUIComponent):
 		if self.sort_type == MovieList.SORT_ALPHANUMERIC:
 			self.list.sort(key=self.buildAlphaNumericSortKey)
 		else:
-			# sort: key is 'begin'
 			self.list.sort(key=self.buildBeginTimeSortKey)
 		if self.sort_type == MovieList.SHUFFLE:
 			dirlist=self.list[:numberOfDirs]
 			shufflelist=self.list[numberOfDirs:]
 			random.shuffle(shufflelist)
 			self.list=dirlist+shufflelist
-		
+		elif self.sort_type == MovieList.SORT_ALPHANUMERIC_REVERSE:
+			self.list = self.list[:numberOfDirs] + sorted(self.list[numberOfDirs:], key=self.buildAlphaNumericSortKey, reverse = True)
+		elif self.sort_type == MovieList.SORT_RECORDED_REVERSE:
+			self.list = self.list[:numberOfDirs] + sorted(self.list[numberOfDirs:], key=self.buildBeginTimeSortKey, reverse = True)
+	
 		# finally, store a list of all tags which were found. these can be presented
 		# to the user to filter the list
 		# ML: Only use the tags that occur more than once in the list OR that were
