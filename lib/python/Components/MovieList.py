@@ -526,12 +526,13 @@ class MovieList(GUIComponent):
 		if self.sort_type == MovieList.SORT_ALPHANUMERIC:
 			self.list.sort(key=self.buildAlphaNumericSortKey)
 		else:
+			#always sort first always this way to avoid shuffle and reverse-sort directories
 			self.list.sort(key=self.buildBeginTimeSortKey)
 		if self.sort_type == MovieList.SHUFFLE:
-			dirlist=self.list[:numberOfDirs]
-			shufflelist=self.list[numberOfDirs:]
+			dirlist = self.list[:numberOfDirs]
+			shufflelist = self.list[numberOfDirs:]
 			random.shuffle(shufflelist)
-			self.list=dirlist+shufflelist
+			self.list = dirlist + shufflelist
 		elif self.sort_type == MovieList.SORT_ALPHANUMERIC_REVERSE:
 			self.list = self.list[:numberOfDirs] + sorted(self.list[numberOfDirs:], key=self.buildAlphaNumericSortKey, reverse = True)
 		elif self.sort_type == MovieList.SORT_RECORDED_REVERSE:
