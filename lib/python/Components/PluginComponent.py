@@ -60,7 +60,11 @@ class PluginComponent:
 									print_exc()
 									break
 							else:
-								print "Plugin probably removed, but not cleanly..."
+								print "Plugin probably removed, but not cleanly in", path
+								try:
+									os.rmdir(path)
+								except:
+								        pass
 							continue
 
 						# allow single entry not to be a list
