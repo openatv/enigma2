@@ -115,8 +115,8 @@ class AudioSelection(Screen, ConfigListScreen):
 							language += ' / '
 						if LanguageCodes.has_key(lang):
 							language += LanguageCodes[lang][0]
-						elif lang == "und":
-							""
+# 						elif lang == "und":
+# 							""
 						else:
 							language += lang
 						cnt += 1
