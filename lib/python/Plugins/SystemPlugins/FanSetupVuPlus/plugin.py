@@ -16,10 +16,10 @@ config.plugins.fansetups.usetimer = ConfigSelection(default = "off", choices = [
 	("off", _("no")), ("on", _("yes"))])
 config.plugins.fansetups.fanontime = ConfigInteger(default = 5, limits = (1, 100))
 config.plugins.fansetups.fanofftime = ConfigInteger(default = 60, limits = (1, 100))
-
-class FanSetupConfiguration(Screen, ConfigListScreen):
+FanSetupScreen
+class FanSetupScreen(Screen, ConfigListScreen):
 	skin = """
-		<screen name="FanSetupConfiguration" position="center,center" size="560,300" title="Standbymode FanSetup settings" >
+		<screen name="FanSetupScreen" position="center,center" size="560,300" title="Standbymode FanSetup settings" >
 			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" foregroundColor="#ececec" backgroundColor="#9f1313" transparent="1" />
@@ -144,7 +144,7 @@ class FanSetupConfiguration(Screen, ConfigListScreen):
 		
 	
 def openconfig(session, **kwargs):
-	session.open(FanSetupConfiguration)
+	session.open(FanSetupScreen)
 
 def selSetup(menuid, **kwargs):
 	if menuid != "system":
