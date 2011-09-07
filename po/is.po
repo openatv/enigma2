@@ -1,18 +1,17 @@
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Icelandic translations for Enigma2.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Icelandic translation v.1.44\n"
+"Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-04-20 10:39+0000\n"
-"PO-Revision-Date: 2011-05-04 19:44+0200\n"
+"POT-Creation-Date: 2011-09-07 11:08+0000\n"
+"PO-Revision-Date: 2011-05-07 12:23+0200\n"
 "Last-Translator: Baldur <bsveinsson@gmail.com>\n"
 "Language-Team: Polar Team/LT Team <baddi@oreind.is>\n"
-"Language: is\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: is\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.0.3\n"
 "X-Poedit-Language: Icelandic\n"
@@ -203,6 +202,12 @@ msgid ""
 msgstr ""
 "Það urðu %d árekstrar við að bæta við upptökum:\n"
 "%s"
+
+#, python-format
+msgid ""
+"%d conflict(s) solved with similar timer(s):\n"
+"%s"
+msgstr ""
 
 #
 #, python-format
@@ -467,6 +472,9 @@ msgstr "Fallegt HD skinn með burstuðu ál útliti frá Kerni."
 msgid "A nice looking skin from Kerni"
 msgstr "Flott skinn frá Kerni"
 
+msgid "A plugin to add / remove / modify entries of fstab."
+msgstr ""
+
 #
 #, python-format
 msgid ""
@@ -580,6 +588,9 @@ msgstr "Um"
 msgid "About..."
 msgstr "Um..."
 
+msgid "Access the EPG from within the Movie Player"
+msgstr ""
+
 msgid "Access to the ARD-Mediathek"
 msgstr "Aðgangur að ARD-Mediathek"
 
@@ -604,6 +615,9 @@ msgstr "Aðgerð:"
 #
 msgid "Activate Picture in Picture"
 msgstr "Virkja Mynd í Mynd"
+
+msgid "Activate VPS"
+msgstr ""
 
 #
 msgid "Activate network settings"
@@ -656,6 +670,12 @@ msgstr "Bæta við nýrri sjálfvirkri tímastillingu"
 msgid "Add new network mount point"
 msgstr "Bæta við nýrri tengingu af neti"
 
+msgid "Add similar timer on conflict"
+msgstr ""
+
+msgid "Add tags to recorded movies"
+msgstr ""
+
 msgid "Add timer"
 msgstr "Taka upp"
 
@@ -669,13 +689,17 @@ msgid "Add to bouquet"
 msgstr "Bæta við rásavönd"
 
 msgid "Add to favourites"
-msgstr "Bæta við uppáhaldsrásir"
+msgstr "Bæta við eftirlætisrásir"
 
 msgid "Add zap timer instead of record timer?"
 msgstr "Bæta við stökk tímastillingu í stað upptöku?"
 
 msgid "Added: "
 msgstr "Bætt við:"
+
+msgid ""
+"Adds 'search...' to the context menu of the movie list to allow searches."
+msgstr ""
 
 msgid ""
 "Adds enigma2 settings and dreambox model informations like SN, rev... if "
@@ -757,14 +781,31 @@ msgstr "Allir tímar"
 msgid "All non-repeating timers"
 msgstr "Allar ekki endurteknar tímastillingar"
 
+msgid "Allow to search recordings"
+msgstr ""
+
 msgid "Allow zapping via Webinterface"
 msgstr "Leyfa stökk á milli rása um vefviðmót"
 
 msgid "Allows the execution of TuxboxPlugins."
 msgstr "Leyfir keyrslu á TuxboxÍforritum."
 
+msgid "Allows to change the order of entries in the main menu manually."
+msgstr ""
+
+msgid "Allows to zap using the picture in picture."
+msgstr ""
+
 msgid "Allows user to download files from rapidshare in the background."
 msgstr "Gerir mögulegt að hlaða niður skrám frá Rapidshare í bakgrunni."
+
+msgid ""
+"Allows you to access the service list and plugins requiring access to the "
+"service list (e.g. Graphical Multi EPG) from within the standard movie "
+"player.DO NOT install this plugin if you're using a nonstandard movie "
+"player, e.g. EMC. It will probably break and you might end up with a "
+"unusable movie player until you uninstall one of the conflicting plugins."
+msgstr ""
 
 msgid "Alpha"
 msgstr "Gegnsæi"
@@ -781,8 +822,8 @@ msgstr "Spyrja alltaf"
 msgid "Always ask before sending"
 msgstr "Spyrja alltaf fyrir sendingu"
 
-msgid "Ammount of recordings left"
-msgstr "Fjöldi upptaka sem eftir er"
+msgid "Amount of recordings left"
+msgstr ""
 
 msgid "An empty filename is illegal."
 msgstr "Það þarf að vera skráarnafn."
@@ -795,6 +836,9 @@ msgstr "Óþekkt villa varð!"
 
 msgid "Anonymize crashlog?"
 msgstr "Hrunskýrsla ónafngreind?"
+
+msgid "Any service/recording"
+msgstr ""
 
 msgid "Arabic"
 msgstr "Arabíska"
@@ -864,9 +908,6 @@ msgstr "Stærðar hlutfall"
 
 msgid "Assigning providers/services/caids to a CI module"
 msgstr "Merkja sendendur/rásir/caids til að nota CI einingu"
-
-msgid "Atheros"
-msgstr "Atheros"
 
 msgid "Audio"
 msgstr "Hljóð"
@@ -976,13 +1017,14 @@ msgstr "Uppfærir EPG sjálfvirkt"
 msgid "Automatically send crashlogs to Dream Multimedia"
 msgstr "Sendir sjálfvirkt hrunskýrslur til Dream Multimedia"
 
+msgid "Autoresolution"
+msgstr ""
+
 #, python-format
 msgid ""
 "Autoresolution Plugin Testmode:\n"
-"Is %s ok?"
+"Is %s OK?"
 msgstr ""
-"Prufuhamur Sjálfvirkrar upplausnar:\n"
-"Er þetta í lagi (%s)?"
 
 msgid "Autoresolution Switch"
 msgstr "Sjálfvirk upplausn"
@@ -1143,6 +1185,12 @@ msgid ""
 msgstr ""
 "Með því að virkja þetta þá munu atriði ekki vera valin ef þau eru ekki á "
 "ákveðnum dögum."
+
+msgid ""
+"By enabling this you will be notified about similar timers added during "
+"automated polling. There is no intelligence involved, so it might bother you "
+"about the same conflict over and over."
+msgstr ""
 
 msgid ""
 "By enabling this you will be notified about timer conflicts found during "
@@ -1341,6 +1389,15 @@ msgstr "Hreinsa tímalista sjálfvirkt"
 msgid "Cleanup timerlist automatically."
 msgstr "Hreinsa tímalista sjálfvirkt."
 
+msgid ""
+"Cleanup timerlist, orphaned movie files and setting backups automatically "
+"according to specfied rules."
+msgstr ""
+
+msgid ""
+"Cleanup timerlist, orphaned movie files and setting backups automatically."
+msgstr ""
+
 msgid "CleanupWizard"
 msgstr "Tiltektar ráðgjafi"
 
@@ -1479,6 +1536,9 @@ msgstr "Halda áfram að spila"
 
 msgid "Contrast"
 msgstr "Skerpa"
+
+msgid "Control recording completely by service"
+msgstr ""
 
 msgid "Control your Dreambox with your Web browser."
 msgstr "Stjórna Dreamboxinu þínu með vef vafra."
@@ -1933,8 +1993,11 @@ msgstr "Sýna útkomu leitar sem:"
 msgid "Display your photos on the TV"
 msgstr "Sýna myndirnar þínar á skjánum"
 
-msgid "Displays movie information from the InternetMovieDatabase"
-msgstr "Sýna upplýsingar um bíómyndina frá gagnagrunni af internetinu"
+msgid "Displays Movie Information from the InternetMovieDatabase"
+msgstr ""
+
+msgid "Displays Movie Information from the Online Film Datenbank (German)"
+msgstr ""
 
 #, python-format
 msgid ""
@@ -2174,14 +2237,11 @@ msgstr "EPG kóðun"
 
 msgid ""
 "EPGRefresh will automatically switch to user-defined channels when the box "
-"is idleing\n"
-"(in standby mode without any running recordings) to perform updates of the "
-"epg information on these channels."
+"is idling(i.e. in standby mode and no recordings running) to perform updates "
+"of the EPG information on these channels.\n"
+"On multi-tuner boxes it may optionally run in background hidden or in PiP, "
+"to not disturb the current TV program."
 msgstr ""
-"EPGHressing mun skipta yfir á rás sem að notandi stillir ef að móttakarinn "
-"er ónotaður\n"
-"(í biðstöðu ef upptaka er ekki í gangi) til að uppfæra EPG upplýsingar á "
-"þessum rásum."
 
 #, python-format
 msgid "ERROR - failed to scan (%s)!"
@@ -2208,6 +2268,7 @@ msgstr "Breyta rásum á sjálfvirkri tímastillingu"
 msgid "Edit DNS"
 msgstr "Breyta DNS"
 
+#. TRANSLATORS: description of AutoTimer in PluginBrowser
 msgid "Edit Timers and scan for new Events"
 msgstr "Breyta tímastillingum og leita að nýjum atriðum"
 
@@ -2258,6 +2319,9 @@ msgstr "Breyta uppfærslu uppruna slóð."
 
 msgid "Editing"
 msgstr "Breyta"
+
+msgid "Editor for fstab"
+msgstr ""
 
 msgid "Editor for new AutoTimers"
 msgstr "Ritill til að breyta sjálfvirkum tímastillingum"
@@ -2365,10 +2429,6 @@ msgstr "Kóðunar lykill"
 #
 msgid "Encryption Keytype"
 msgstr "Kóðunar lykilgerð"
-
-#
-msgid "Encryption Type"
-msgstr "Gerð kóðunar"
 
 msgid "Encryption:"
 msgstr "Kóðun:"
@@ -2609,9 +2669,8 @@ msgstr "Hraðspólunar hraði áfram"
 msgid "Fast epoch"
 msgstr "Hratt tímabil"
 
-#
 msgid "Favourites"
-msgstr "Uppáhald listar"
+msgstr "Eftirlætis listar"
 
 msgid "Fetching feed entries"
 msgstr "Sæki fæði atriði"
@@ -2691,18 +2750,9 @@ msgstr "Forma"
 #, python-format
 msgid ""
 "Found a total of %d matching Events.\n"
-"%d Timer were added and %d modified, %d conflicts encountered."
+"%d Timer were added and %d modified, %d conflicts encountered, %d similars "
+"added."
 msgstr ""
-"Fann samtals %d passandi atriði.\n"
-"%d atriðum var bætt við tímastillingar og %d var breytt. %d skaranir fundust."
-
-#, python-format
-msgid ""
-"Found a total of %d matching Events.\n"
-"%d Timer were added and %d modified."
-msgstr ""
-"Fann samtals %d passandi atriði.\n"
-"%d tímastillingar verða bætt við og %d breytt."
 
 #
 msgid "Frame size in full view"
@@ -2730,6 +2780,9 @@ msgstr "Skref við tíðnileit (khz)"
 #
 msgid "Frequency steps"
 msgstr "Tíðniskref"
+
+msgid "Frequently asked questions"
+msgstr ""
 
 #
 msgid "Fri"
@@ -2925,12 +2978,8 @@ msgstr "Hjálp"
 msgid "Hidden network"
 msgstr "Falið netkerfi"
 
-#
-msgid "Hidden network SSID"
-msgstr "Falið netkerfis SSID"
-
-msgid "Hidden networkname"
-msgstr "Falið nafn á netkerfi"
+msgid "Hide Plugin from Plugin or Extensionsmenu."
+msgstr ""
 
 msgid "Hierarchy info"
 msgstr "Hierarchy upplýsingar"
@@ -2998,6 +3047,17 @@ msgstr "Slóð ISO skráar"
 #
 msgid "Icelandic"
 msgstr "Íslenska"
+
+msgid ""
+"If a timer conflict occurs, AutoTimer will search outside the timespan for a "
+"similar event and add it."
+msgstr ""
+
+msgid ""
+"If installed, the plugin allows to modify the order in which entries of the "
+"main menu are shown.It can be changed using the \"MenuSort\" plugin, "
+"launchable from the regular plugin overview."
+msgstr ""
 
 #, python-format
 msgid ""
@@ -3193,9 +3253,6 @@ msgstr "millistig"
 #
 msgid "Internal Flash"
 msgstr "Innra Flash minni"
-
-msgid "Internal LAN adapter."
-msgstr "Innbyggt netkort."
 
 msgid "Internal USB Slot"
 msgstr "Innra USB tengi"
@@ -3461,11 +3518,8 @@ msgstr "Sýna netkerfi í boði"
 msgid "List of Storage Devices"
 msgstr "Listi geymslu tækja"
 
-msgid "Listen and record internet radio"
-msgstr "Hlusta á og taka upp netútvarp"
-
-msgid "Listen and record shoutcast internet radio on your Dreambox."
-msgstr "Hlusta á og taka upp shoutcast netútvarp á Dreamboxið."
+msgid "Listen and record Shoutcast Internet Radio on your Dreambox."
+msgstr ""
 
 #
 msgid "Lithuanian"
@@ -3623,11 +3677,9 @@ msgid "Maximum duration (in m)"
 msgstr "Mesti tími (í mín)"
 
 msgid ""
-"Maximum event duration to match. If an event is longer than this ammount of "
+"Maximum event duration to match. If an event is longer than this amount of "
 "time (without offset) it won't be matched."
 msgstr ""
-"Mesti tími atriðis þarf að passa. Ef að atriði er lengra en þessi tími (án "
-"tímamarka) þá er það ekki tekið með."
 
 #
 msgid "Media player"
@@ -3649,8 +3701,8 @@ msgid ""
 "Play all your favorite music and video files, organize them in playlists, "
 "view cover and album information."
 msgstr ""
-"Spilari spilar uppáhaldstónlistina og bíómyndirnar þínar.\n"
-"Spilar alla uppáhalds tónlist og bíóyndir, búa til spilunarlista, skoða "
+"Spilari spilar eftirlætis tónlistina og bíómyndirnar þínar.\n"
+"Spilar alla eftirlætis tónlist og bíómyndir, búa til spilunarlista, skoða "
 "albúmin og upplýsingar um plöturnar."
 
 #
@@ -3822,12 +3874,6 @@ msgstr "Færa mynd upp"
 msgid "Move west"
 msgstr "Færa vestur"
 
-msgid "Movie information from the Online Film Datenbank (German)."
-msgstr "Bíómynda upplýsingar frá gagnabanka af netinu (Þýskur)."
-
-msgid "Movie informations from the Online Film Datenbank"
-msgstr "Bíómynda upplýsingar frá gagnabanka af netinu"
-
 msgid "Movie location"
 msgstr "Staðsetning bíómynda"
 
@@ -3863,7 +3909,7 @@ msgid "Multiple service support"
 msgstr "Styður margar rásir"
 
 msgid "Multiplex"
-msgstr ""
+msgstr "Margar rásir"
 
 #
 msgid "Multisat"
@@ -4073,10 +4119,6 @@ msgid "Network Mount"
 msgstr "Tengingar við netkerfi"
 
 #
-msgid "Network SSID"
-msgstr "SSID nets"
-
-#
 msgid "Network Setup"
 msgstr "Stilla netkerfi"
 
@@ -4154,10 +4196,6 @@ msgstr "Engin tenging"
 #
 msgid "No HDD found or HDD not initialized!"
 msgstr "Fann ekki harðan disk eða hann ekki formaður!"
-
-#
-msgid "No Networks found"
-msgstr "Engin netkerfi fundust"
 
 #
 msgid "No backup needed"
@@ -4268,10 +4306,6 @@ msgstr ""
 
 msgid "No videos to display"
 msgstr "Engar bíómyndir til að sýna"
-
-#
-msgid "No wireless networks found! Please refresh."
-msgstr "Það fannst ekkert þráðlaust net! Reyndu aftur."
 
 msgid "No wireless networks found! Searching..."
 msgstr "Ekkert þráðlaust net fannst! Leita..."
@@ -4466,6 +4500,9 @@ msgstr "Bara sjálfvirkar tímastillingar búnar til núna"
 msgid "Only Free scan"
 msgstr "Bara fríar rásir"
 
+msgid "Only add timer for next x days"
+msgstr ""
+
 msgid "Only extensions."
 msgstr "Bara viðbætur."
 
@@ -4626,18 +4663,18 @@ msgstr "Spila hljóð disk..."
 msgid "Play DVD"
 msgstr "Spila DVD"
 
+msgid "Play Internet Radio downloaded from Last.FM"
+msgstr ""
+
+msgid "Play Internet Radio downloaded from ShoutCast"
+msgstr ""
+
 #
 msgid "Play Music..."
 msgstr "Spila tónlist..."
 
 msgid "Play YouTube movies"
 msgstr "Spila YouTube myndbönd"
-
-msgid "Play music from Last.fm"
-msgstr "Spila tónlist frá Last.FM"
-
-msgid "Play music from Last.fm."
-msgstr "Spila tónlist frá Last.FM."
 
 msgid "Play next video"
 msgstr "Spila næstu bíómynd"
@@ -4661,7 +4698,7 @@ msgid "Player for Network and Internet Streams."
 msgstr "Spilari fyrir Netkerfi og Internet strauma."
 
 msgid "Plays your favorite music and videos"
-msgstr "Spilar uppáhalds tónlistina og bíómyndirnar þínar"
+msgstr "Spilar eftirlætis tónlistina og bíómyndirnar þínar"
 
 #
 msgid "Please Reboot"
@@ -5160,6 +5197,17 @@ msgstr "Sendendur"
 msgid "Published"
 msgstr "Útgefið"
 
+msgid "Push key \"Exit long\" to show the clock while watching TV."
+msgstr ""
+
+msgid ""
+"Push key \"Exit long\" to show the clock while watching TV. Clock will "
+"disappear after the specified timeout or by pushing key \"Exit long\" "
+"again.\n"
+"Modify the settings to match your preferences. To change the clock position, "
+"select \"Move clock\" and relocate."
+msgstr ""
+
 #
 msgid "Python frontend for /tmp/mmi.socket"
 msgstr "Python framendi fyrir /tmp/mmi.socket"
@@ -5196,9 +5244,6 @@ msgstr "Þráðlaust USB netkort byggt á RT8070/RT3070/RT3370"
 #
 msgid "Radio"
 msgstr "Útvarp"
-
-msgid "Ralink"
-msgstr ""
 
 #
 msgid "Ram Disk"
@@ -5540,6 +5585,9 @@ msgstr "Til baka til mynda lista"
 #
 msgid "Return to previous service"
 msgstr "Til  baka á síðustu rás"
+
+msgid "Reusable Help-component for other plugins."
+msgstr ""
 
 #
 msgid "Rewind speeds"
@@ -5986,6 +6034,9 @@ msgstr "Veldu þráðlaust net"
 msgid "Select your choice."
 msgstr "Veldu nú."
 
+msgid "Select your favourite music (Artist, Album, Genre)."
+msgstr ""
+
 #
 msgid "Send DiSEqC"
 msgstr "Senda DiSEqC"
@@ -6027,9 +6078,8 @@ msgstr "Leita að rásum"
 msgid "Service delay"
 msgstr "Seinkun hljóðs"
 
-#
 msgid "Service has been added to the favourites."
-msgstr "Rás hefur verið bætt við uppáhaldslista."
+msgstr "Rás hefur verið bætt við eftirlætis lista."
 
 #
 msgid "Service has been added to the selected bouquet."
@@ -6105,9 +6155,6 @@ msgstr "Stilla mesta tímabil"
 
 msgid "Set this NO to disable this AutoTimer."
 msgstr "Stilla á NEI til að hætta með sjálfvirka tímastillingu"
-
-msgid "Sets your Dreambox into Deep-Standby"
-msgstr "Setja Dreamboxið þitt í djúpan svefn"
 
 msgid "Setting key canceled"
 msgstr "Hætt við að stilla takka"
@@ -6198,6 +6245,9 @@ msgstr "Sýna upplýsingaborða við stökk fram eða aftur"
 msgid "Show notification on conflicts"
 msgstr "Sýna viðvaranir um árekstra"
 
+msgid "Show notification on similars"
+msgstr ""
+
 #
 msgid "Show positioner movement"
 msgstr "Sýna færslu mótors"
@@ -6235,6 +6285,9 @@ msgstr "Sýnir tölfræði rása sem horft er á"
 msgid "Shows the clock permanently on the screen"
 msgstr "Sýnir klukku alltaf á skjánum"
 
+msgid "Shows the service name instead of the service number when zapping."
+msgstr ""
+
 #
 msgid "Shows the state of your wireless LAN connection.\n"
 msgstr "Sýnir stöðu þráðlausrar nettenginar.\n"
@@ -6245,6 +6298,9 @@ msgstr "Slökkva"
 #
 msgid "Shutdown Dreambox after"
 msgstr "Slökkva á móttakara eftir"
+
+msgid "Shuts down your Dreambox into Deep Standby (Power Save Mode)"
+msgstr ""
 
 #
 msgid "Signal Strength:"
@@ -6407,6 +6463,9 @@ msgstr "Raða A-Ö"
 
 msgid "Sort AutoTimer"
 msgstr "Raða sjálfvirkum tímastillingum"
+
+msgid "Sort Plugins in the PluginBrowser."
+msgstr ""
 
 #
 #. TRANSLATORS: This must fit into the header button in the EPG-List
@@ -6749,19 +6808,13 @@ msgstr ""
 "gagna disk (sem ekki er hægt að venjulegum DVD spilara) í staðinn?"
 
 msgid ""
-"The Elektro Power Save plugin puts the box from standby to sleep mode (Deep "
-"Standby) at certain times.\n"
+"The Elektro Power Save Plugin puts the box from Standby to sleep mode (Deep "
+"Standby) at specified times.\n"
 "This only happens if the box is in standby and no recording is running or "
-"sheduled in the next 20 minutes.\n"
-"The box automatically wakes up for recordings or at the end of the sleep "
-"time. You therefore don't have to wait until it is on again."
+"scheduled during the next 20 minutes.\n"
+"The box automatically wakes up for recordings or at the end of the specified "
+"sleep time. Hence you needn't wait for it to boot-up."
 msgstr ""
-"Elektro Save íforritið setur móttakarann í djúp svefn (Deep Standby) á "
-"ákveðnum tímum.\n"
-"Það gerist bara ef að móttakarinn er í biðstöðu og það er engin upptaka á "
-"dagskrá næstu 20 mínúturnar.\n"
-"Móttakarinn vaknar sjálfvirkt fyrir forritaðar upptökur og við enda svefn "
-"tímans."
 
 msgid ""
 "The Hotplug plugin notifies your system of newly added or removed devices."
@@ -6839,6 +6892,11 @@ msgid ""
 msgstr ""
 "USB stauturinn var gerður ræsanlegur.\n"
 "Núna getur þú hlaðið niður NFI  stýrikerfis skrá!"
+
+msgid ""
+"The VPS-Plugin can determine whether a programme begins earlier or lasts "
+"longer."
+msgstr ""
 
 msgid ""
 "The VideoEnhancement plugin provides advanced video enhancement settings."
@@ -7061,6 +7119,11 @@ msgstr "Þetta Dreambox getur ekki afrugað %s strauma!"
 
 msgid "This Month"
 msgstr "Þennan mánuð"
+
+msgid ""
+"This Plugin modifies the original PluginBrowser so you can move Plugins "
+"around."
+msgstr ""
 
 msgid "This Week"
 msgstr "Þessa viku"
@@ -7289,6 +7352,16 @@ msgstr "Tíma staða:"
 msgid "Timer type"
 msgstr "Gerð tímastillingar"
 
+msgid ""
+"Timerliste, verwaiste Film-Dateien und Einstellungs-Sicherungen automatisch "
+"bereinigen."
+msgstr ""
+
+msgid ""
+"Timerliste, verwaiste Film-Dateien und Einstellungs-Sicherungen nach "
+"einstellbaren Regeln automatisch bereinigen."
+msgstr ""
+
 #
 msgid "Timeshift"
 msgstr "Lifandi pása"
@@ -7364,8 +7437,8 @@ msgstr "Hæsta einkunn"
 msgid "Track"
 msgstr "Spor"
 
-msgid "TrafficInfo shows german traffic information."
-msgstr "TrafficInfo sýnir upplýsingar um umferð í Þýskalandi."
+msgid "TrafficInfo shows German traffic jams."
+msgstr ""
 
 #
 msgid "Translation"
@@ -7536,9 +7609,6 @@ msgstr "Venjulegt LNB"
 msgid "Unknown"
 msgstr "Óþekkt"
 
-msgid "Unknown network adapter."
-msgstr "Óþekkt netkort."
-
 msgid ""
 "Unless this is enabled AutoTimer will NOT automatically look for events "
 "matching your AutoTimers but only when you leave the GUI with the green "
@@ -7556,8 +7626,8 @@ msgstr "Aftenging tókst ekki"
 msgid "Unsupported"
 msgstr "Ekki stutt"
 
-msgid "UnwetterInfo shows german storm information."
-msgstr "Unwetterinfo sýnir þýskar stormviðvaranir"
+msgid "UnwetterInfo shows German storm information."
+msgstr ""
 
 #
 msgid "Update"
@@ -7718,6 +7788,9 @@ msgstr "Vídeó scart"
 #
 msgid "VMGM (intro trailer)"
 msgstr "VMGM (mynd sýnishorn)"
+
+msgid "VPS-Plugin"
+msgstr ""
 
 msgid "Vali-XD skin"
 msgstr "Vali-XD skinn"
@@ -7949,9 +8022,6 @@ msgstr "W"
 #
 msgid "WEP"
 msgstr "WEP"
-
-msgid "WLAN adapter."
-msgstr "WLAN netkort."
 
 msgid "WLAN connection"
 msgstr "WLAN nettenging"
@@ -8209,10 +8279,6 @@ msgstr "­Þráðlaust net"
 msgid "Wireless Network"
 msgstr "Þráðlaust netkerfi"
 
-#
-msgid "Wireless Network State"
-msgstr "Staða þráðlausa nets"
-
 msgid "Wireless network connection setup"
 msgstr "Uppsetning á þráðlausu neti"
 
@@ -8252,11 +8318,9 @@ msgstr ""
 "Með Genuine Dreambox getur þú athugað hvort að þú sért með ekta Dreambox."
 
 msgid ""
-"With IMDb you can download and displays movie information (rating, poster, "
+"With IMDb you can display downloaded movie information (rating, poster, "
 "cast, synopsis etc.) about the selected event."
 msgstr ""
-"Með IMDB getur þú hlaðið niður og skoðað upplýsingar af netinu um valið "
-"atriði."
 
 msgid "With MovieRetitle you can rename your movies."
 msgstr "Með MovieRetitle getur þú endurnefnt bíómyndirnar þínar."
@@ -8266,6 +8330,11 @@ msgid ""
 msgstr ""
 "Með MyTube getur þú spilað YouTube myndbönd beint á sjónvarpinu þínu án "
 "tölvu."
+
+msgid ""
+"With OFDb you can display downloaded movie information (rating, poster, "
+"cast, synopsis etc.) about the selected event."
+msgstr ""
 
 msgid "With WebcamViewer you can watch webcams on your TV Screen."
 msgstr ""
@@ -8357,11 +8426,9 @@ msgstr ""
 "til um."
 
 msgid ""
-"With this option you can restrict the AutoTimer to a certain ammount of "
+"With this option you can restrict the AutoTimer to a certain amount of "
 "scheduled recordings. Set this to 0 to disable this functionality."
 msgstr ""
-"Með þetta valið er hægt að takmarka sjálvirka tímastillinguna við hámarks "
-"fjölda upptaka. Hafðu þetta í 0 til að gera óvirkt."
 
 msgid "Wizard"
 msgstr "Ráðgjafi"
@@ -8461,6 +8528,11 @@ msgstr ""
 msgid "You can choose, what you want to install..."
 msgstr "Þú getur valið það sem að þú vilt setja inn..."
 
+msgid ""
+"You can control for how many days in the future timers are added. Set this "
+"to 0 to disable this feature."
+msgstr ""
+
 msgid "You can install this plugin."
 msgstr "Þú getur sett inn þetta íforrit."
 
@@ -8487,6 +8559,13 @@ msgstr ""
 "Þú getur notað EasyInfo til að stjórna EPG íforritum frá Info takkanum. Þú "
 "færð líka nýja nú og næst sýn. Myndræna EPG Easy-PG íforritið er líka "
 "innifalið."
+
+msgid ""
+"You can use this plugin to dynamically hide Plugins from either the "
+"Extensions- or Pluginmenu without having to modify the source code of the "
+"respective plugin.After installation you find the settings as \"Hide Plugins"
+"\" under Setup / System."
+msgstr ""
 
 #
 msgid "You cannot delete this!"
@@ -8693,7 +8772,7 @@ msgid "Your network configuration has been activated."
 msgstr "Stillingar netkerfis hafa verið gerðar virkar."
 
 msgid "Your network is not working. Please try again."
-msgstr ""
+msgstr "Netið virkar ekki. Reyndu aftur."
 
 msgid "Your network mount has been activated."
 msgstr "Nettengi punktur hefur verið gerður virkur."
@@ -8717,7 +8796,7 @@ msgstr ""
 "Vinsamlega veldu hvað þú vilt gera næst."
 
 msgid "ZDFMediathek allows you to watch streams from ZDF Mediathek."
-msgstr ""
+msgstr "ZDFMediathek gerir mögulegt að horfa á ZDF Mediathek."
 
 msgid "Zap back to previously tuned service?"
 msgstr "Fara aftur á rás sem áður var stillt á?"
@@ -8734,19 +8813,16 @@ msgid "Zap back to service before tuner setup?"
 msgstr "Fara aftur á rás fyrir stillingu móttakara?"
 
 msgid "Zap between commercials"
-msgstr ""
+msgstr "Stökkva á meðan auglýsingar eru"
 
 msgid "ZapStatistic shows the watched services with some statistics."
-msgstr ""
+msgstr "ZapStatistic sýnir rásir sem horft hefur verið á með tölfræði."
 
 msgid "Zoom into letterboxed/anamorph movies"
-msgstr ""
+msgstr "Stækka letterbox/anamorph bíómyndir"
 
 msgid "Zoom into letterboxed/anamorph movies."
-msgstr ""
-
-msgid "Zydas"
-msgstr ""
+msgstr "Stækka letterbox/anamorph bíómyndir."
 
 #
 msgid "[alternative edit]"
@@ -8756,16 +8832,15 @@ msgstr "[breyta valkostum]"
 msgid "[bouquet edit]"
 msgstr "[breyta fléttu]"
 
-#
 msgid "[favourite edit]"
-msgstr "[breyta uppáhalds lista]"
+msgstr "[breyta eftirlætis lista]"
 
 #
 msgid "[move mode]"
 msgstr "[færslu staða]"
 
 msgid "a HD skin from Kerni"
-msgstr ""
+msgstr "HD skinn frá Kerni"
 
 #
 msgid "a gui to assign services/providers to common interface modules"
@@ -8786,9 +8861,8 @@ msgstr "hætta við að breyta valkostum"
 msgid "abort bouquet edit"
 msgstr "hætta við að breyta fléttu"
 
-#
 msgid "abort favourites edit"
-msgstr "hætta við að breyta uppáhaldsl ista"
+msgstr "hætta við að breyta eftirlætis lista"
 
 #
 msgid "about to start"
@@ -8801,6 +8875,11 @@ msgstr "virkja núverandi stillingar"
 msgid "activate network adapter configuration"
 msgstr "virkja stillingar netkorts"
 
+#. TRANSLATORS: AutoTimer title in MovieList (automatically opens importer, I consider this no further interaction)
+msgid "add AutoTimer"
+msgstr ""
+
+#. TRANSLATORS: AutoTimer title in EventInfo dialog (requires the user to select an event to base the AutoTimer on)
 msgid "add AutoTimer..."
 msgstr "bæta við sjálfvirkri tímastillingu..."
 
@@ -8867,15 +8946,11 @@ msgstr "bæta við upptöku (stoppa eftir núverandi atriði)"
 msgid "add service to bouquet"
 msgstr "bæta rás við fléttu"
 
-#
 msgid "add service to favourites"
-msgstr "bæta rás við uppáhalds lista"
+msgstr "bæta rás við eftirlætis lista"
 
 msgid "add services"
 msgstr "bæta við rásum"
-
-msgid "add tags to recorded movies"
-msgstr ""
 
 #
 msgid "add to parental protection"
@@ -8891,16 +8966,20 @@ msgstr "raða í stafrófsröð"
 
 msgid "assign color buttons (red/green/yellow/blue) to plugins from MOVIELIST."
 msgstr ""
+"bæta tengingu íforrita við litaða takka (rauða/græna/gula/bláa) af "
+"bíómyndalista."
 
 msgid "assign color buttons to plugins from MOVIELIST"
-msgstr ""
+msgstr "bæta tengingu íforrita við lituðu takka frá bíómyndalista"
 
 msgid ""
 "assign long key-press (red/green/yellow/blue) to plugins or E2 functions."
 msgstr ""
+"bæta við tengingu íforrita eða E2 aðgerðir ef ýtt er lengi á takka (rauða/"
+"græna/gula/bláa) "
 
 msgid "assign long key-press on color buttons to plugins or E2 functions"
-msgstr ""
+msgstr "bæta við tengingu íforrita eða E2 aðgerðir ef ýtt er lengi á takka"
 
 #
 msgid "assigned CAIds:"
@@ -8911,10 +8990,10 @@ msgid "assigned Services/Provider:"
 msgstr "úthlutaðar rásir/sendendur:"
 
 msgid "at beginning"
-msgstr ""
+msgstr "að byrjun"
 
 msgid "at end"
-msgstr ""
+msgstr "að enda"
 
 #
 #, python-format
@@ -8935,7 +9014,7 @@ msgid "auto"
 msgstr "sjálfvirkt"
 
 msgid "autotimers need a match attribute"
-msgstr ""
+msgstr "sjálfvirka tímastillingin þarf passandi atriði"
 
 #
 msgid "available"
@@ -9012,7 +9091,7 @@ msgid "complex"
 msgstr "flókinn"
 
 msgid "config changed."
-msgstr ""
+msgstr "Stillingum breytt."
 
 #
 msgid "config menu"
@@ -9031,7 +9110,7 @@ msgid "continue"
 msgstr "halda áfram"
 
 msgid "control multiple Dreamboxes with different RCs"
-msgstr ""
+msgstr "stjórna mörgum Dreamboxum með mismunandi fjarstýringum"
 
 #
 msgid "copy to bouquets"
@@ -9046,10 +9125,10 @@ msgid "create directory"
 msgstr "búa til möppu"
 
 msgid "creates virtual series folders from episodes"
-msgstr ""
+msgstr "búa til sýnda möppur með framhaldsþáttum"
 
 msgid "creates virtual series folders from sets of recorded episodes"
-msgstr ""
+msgstr "búa til sýnda möppur með uppteknum framhaldsþáttum"
 
 #, python-format
 msgid "currently installed image: %s"
@@ -9064,7 +9143,7 @@ msgid "day"
 msgstr "dagur"
 
 msgid "default"
-msgstr ""
+msgstr "sjálfgefið"
 
 #
 msgid "delete"
@@ -9091,7 +9170,7 @@ msgid "delete..."
 msgstr "eyða...."
 
 msgid "description"
-msgstr ""
+msgstr "lýsing"
 
 #
 msgid "disable"
@@ -9126,7 +9205,7 @@ msgid "done!"
 msgstr "búinn!"
 
 msgid "driver for Realtek USB wireless devices"
-msgstr ""
+msgstr "rekill fyrir Realtek USB þráðlaust netkort"
 
 #
 msgid "edit alternatives"
@@ -9150,9 +9229,8 @@ msgstr "virkt"
 msgid "enable bouquet edit"
 msgstr "byrja féttu breytingu"
 
-#
 msgid "enable favourite edit"
-msgstr "byrja breytingu uppáhalds lista"
+msgstr "virkja breytingu eftirlætis lista"
 
 #
 msgid "enable move mode"
@@ -9174,13 +9252,8 @@ msgstr "hætta að breyta fléttu"
 msgid "end cut here"
 msgstr "enda klippingu hér"
 
-#
 msgid "end favourites edit"
-msgstr "hætta að breyta uppáhalds lista"
-
-#
-msgid "enter hidden network SSID"
-msgstr "sláðu inn SSID falins netkerfis"
+msgstr "hætta breytingum eftirlætis lista"
 
 #
 msgid "equal to"
@@ -9402,7 +9475,7 @@ msgid "minutes"
 msgstr "mínútur"
 
 msgid "missing parameter \"id\""
-msgstr ""
+msgstr "vantar \"id\" "
 
 #
 msgid "month"
@@ -9492,7 +9565,7 @@ msgid "not locked"
 msgstr "ekki læst"
 
 msgid "not supported"
-msgstr ""
+msgstr "ekki stutt"
 
 #
 msgid "not used"
@@ -9597,7 +9670,7 @@ msgid "red"
 msgstr "rauður"
 
 msgid "redesigned Kerni-HD1 skin"
-msgstr ""
+msgstr "endurhannað Kerni-HD1 skinn"
 
 #
 msgid "remove a nameserver entry"
@@ -9701,7 +9774,7 @@ msgid "seconds"
 msgstr "sekúndur"
 
 msgid "see service-epg (and PiP) from channels in an infobar"
-msgstr ""
+msgstr "sjá rása-EPG (og PIP) í upplýsingaborða"
 
 #
 msgid "select"
@@ -9732,16 +9805,16 @@ msgid "select the movie path"
 msgstr "velja slóð að mynd"
 
 msgid "service PIN"
-msgstr ""
+msgstr "rása PIN"
 
 msgid "set enigma2 to standby-mode after startup"
-msgstr ""
+msgstr "setja Dreamboxið í biðstöðu eftir ræsingu"
 
 msgid "sets the Audio Delay (LipSync)"
 msgstr "stilla hljóð seinkum (LipSync)"
 
 msgid "setup PIN"
-msgstr ""
+msgstr "valmynda PIN"
 
 #
 msgid "show DVD main menu"
@@ -9929,15 +10002,11 @@ msgid "toggle time, chapter, audio, subtitle info"
 msgstr "skipta á milli tíma, kafla, undirtexta upplýsingar"
 
 msgid "tuner is not supported"
-msgstr ""
+msgstr "móttakari er ekki studdur"
 
 #, python-format
 msgid "unable to find timer with id %i"
-msgstr ""
-
-#
-msgid "unavailable"
-msgstr "ekki tiltækt"
+msgstr "fann ekki tímastillingu merkt með %i"
 
 #
 msgid "unconfirmed"
@@ -9952,16 +10021,16 @@ msgid "unknown service"
 msgstr "óþekkt rás"
 
 msgid "until standby/restart"
-msgstr "þartil biðstaða/endurræsa"
+msgstr "bíða til biðstöðu/endurræsingu"
 
 msgid "use as HDD replacement"
 msgstr "nota í staðinn fyrir harðan disk"
 
 msgid "use your Dreambox as Web proxy"
-msgstr ""
+msgstr "nota Dreamboxið sem Vefumboð (proxy)"
 
 msgid "use your Dreambox as Web proxy."
-msgstr ""
+msgstr "Nota Dreamboxið sem Vefumboð (proxy)."
 
 #
 msgid "user defined"
@@ -9994,6 +10063,9 @@ msgstr "bíð"
 msgid "was removed successfully"
 msgstr "var tekinn út"
 
+msgid "watch trailer from epglist/eventview"
+msgstr ""
+
 #
 msgid "weekly"
 msgstr "vikulega"
@@ -10003,7 +10075,7 @@ msgid "whitelist"
 msgstr "hvíti listi"
 
 msgid "wireless network interface"
-msgstr ""
+msgstr "þráðlaust netkort"
 
 #
 msgid "working"
@@ -10199,6 +10271,9 @@ msgstr "stokkið"
 #~ msgid "All..."
 #~ msgstr "Allt..."
 
+#~ msgid "Ammount of recordings left"
+#~ msgstr "Fjöldi upptaka sem eftir er"
+
 #
 #~ msgid "Artist:"
 #~ msgstr "Listmaður:"
@@ -10206,6 +10281,9 @@ msgstr "stokkið"
 #
 #~ msgid "Ask before zapping"
 #~ msgstr "Spyrja fyrir rásastökk"
+
+#~ msgid "Atheros"
+#~ msgstr "Atheros"
 
 #
 #~ msgid "Audio / Video"
@@ -10218,6 +10296,13 @@ msgstr "stokkið"
 #
 #~ msgid "Automatic SSID lookup"
 #~ msgstr "Leita að SSID sjálfvirkt"
+
+#~ msgid ""
+#~ "Autoresolution Plugin Testmode:\n"
+#~ "Is %s ok?"
+#~ msgstr ""
+#~ "Prufuhamur Sjálfvirkrar upplausnar:\n"
+#~ "Er þetta í lagi (%s)?"
 
 #
 #~ msgid "Backup"
@@ -10385,6 +10470,9 @@ msgstr "stokkið"
 #~ "Fritz!Box! (%s)\n"
 #~ "retrying..."
 
+#~ msgid "Displays movie information from the InternetMovieDatabase"
+#~ msgstr "Sýna upplýsingar um bíómyndina frá gagnagrunni af internetinu"
+
 #
 #~ msgid ""
 #~ "Do you really want to REMOVE\n"
@@ -10445,6 +10533,17 @@ msgstr "stokkið"
 #~ msgid "Dreambox to standby. Do that now?"
 #~ msgstr "Fara í biðstöðu. Gera það núna?"
 
+#~ msgid ""
+#~ "EPGRefresh will automatically switch to user-defined channels when the "
+#~ "box is idleing\n"
+#~ "(in standby mode without any running recordings) to perform updates of "
+#~ "the epg information on these channels."
+#~ msgstr ""
+#~ "EPGHressing mun skipta yfir á rás sem að notandi stillir ef að "
+#~ "móttakarinn er ónotaður\n"
+#~ "(í biðstöðu ef upptaka er ekki í gangi) til að uppfæra EPG upplýsingar á "
+#~ "þessum rásum."
+
 #
 #~ msgid "Edit IPKG source URL..."
 #~ msgstr "Breyta IPKG uppruna slóð..."
@@ -10452,6 +10551,10 @@ msgstr "stokkið"
 #
 #~ msgid "Encrypted: %s"
 #~ msgstr "Ruglað: %s"
+
+#
+#~ msgid "Encryption Type"
+#~ msgstr "Gerð kóðunar"
 
 #
 #~ msgid "End"
@@ -10532,6 +10635,21 @@ msgstr "stokkið"
 #~ msgid "Font size"
 #~ msgstr "Stafa stærð"
 
+#~ msgid ""
+#~ "Found a total of %d matching Events.\n"
+#~ "%d Timer were added and %d modified, %d conflicts encountered."
+#~ msgstr ""
+#~ "Fann samtals %d passandi atriði.\n"
+#~ "%d atriðum var bætt við tímastillingar og %d var breytt. %d skaranir "
+#~ "fundust."
+
+#~ msgid ""
+#~ "Found a total of %d matching Events.\n"
+#~ "%d Timer were added and %d modified."
+#~ msgstr ""
+#~ "Fann samtals %d passandi atriði.\n"
+#~ "%d tímastillingar verða bætt við og %d breytt."
+
 #~ msgid "Frame repeat count during non-smooth winding"
 #~ msgstr "Fjöldi ramma sem á að sleppa við hraðspólun"
 
@@ -10574,6 +10692,13 @@ msgstr "stokkið"
 #
 #~ msgid "Here is a small overview of the available icon states."
 #~ msgstr "Hér er smá yfirsýn yfir vali á smámyndastöðu."
+
+#
+#~ msgid "Hidden network SSID"
+#~ msgstr "Falið netkerfis SSID"
+
+#~ msgid "Hidden networkname"
+#~ msgstr "Falið nafn á netkerfi"
 
 #
 #~ msgid "Hide error windows"
@@ -10633,6 +10758,9 @@ msgstr "stokkið"
 #~ msgid "Interface: %s"
 #~ msgstr "Netkort: %s"
 
+#~ msgid "Internal LAN adapter."
+#~ msgstr "Innbyggt netkort."
+
 #
 #~ msgid "Invert"
 #~ msgstr "Snúa við"
@@ -10657,6 +10785,12 @@ msgstr "stokkið"
 #~ msgid "Lets you view/edit files in your Dreambox"
 #~ msgstr "Leyfir skoðun/breytingu á skrám Dreaboxins þíns"
 
+#~ msgid "Listen and record internet radio"
+#~ msgstr "Hlusta á og taka upp netútvarp"
+
+#~ msgid "Listen and record shoutcast internet radio on your Dreambox."
+#~ msgstr "Hlusta á og taka upp shoutcast netútvarp á Dreamboxið."
+
 #
 #~ msgid "Loopthrough to Socket A"
 #~ msgstr "Tengt á milli í tengi A"
@@ -10665,9 +10799,22 @@ msgstr "stokkið"
 #~ msgid "Max. Bitrate: %s"
 #~ msgstr "Mesti bitahraði: %s"
 
+#~ msgid ""
+#~ "Maximum event duration to match. If an event is longer than this ammount "
+#~ "of time (without offset) it won't be matched."
+#~ msgstr ""
+#~ "Mesti tími atriðis þarf að passa. Ef að atriði er lengra en þessi tími "
+#~ "(án tímamarka) þá er það ekki tekið með."
+
 #
 #~ msgid "Movie Menu"
 #~ msgstr "Bíómynda valmynd"
+
+#~ msgid "Movie information from the Online Film Datenbank (German)."
+#~ msgstr "Bíómynda upplýsingar frá gagnabanka af netinu (Þýskur)."
+
+#~ msgid "Movie informations from the Online Film Datenbank"
+#~ msgstr "Bíómynda upplýsingar frá gagnabanka af netinu"
 
 #
 #~ msgid "Multi bouquets"
@@ -10682,6 +10829,10 @@ msgstr "stokkið"
 #~ msgstr "Uppsetning nafnaþjóns..."
 
 #
+#~ msgid "Network SSID"
+#~ msgstr "SSID nets"
+
+#
 #~ msgid "Network..."
 #~ msgstr "Netkerfi..."
 
@@ -10694,8 +10845,16 @@ msgstr "stokkið"
 #~ msgstr "Ekki 50 Hz, því miður. :("
 
 #
+#~ msgid "No Networks found"
+#~ msgstr "Engin netkerfi fundust"
+
+#
 #~ msgid "No useable USB stick found"
 #~ msgstr "Ekkert nothæfur USB stautur fannst"
+
+#
+#~ msgid "No wireless networks found! Please refresh."
+#~ msgstr "Það fannst ekkert þráðlaust net! Reyndu aftur."
 
 #
 #~ msgid ""
@@ -10777,6 +10936,12 @@ msgstr "stokkið"
 #~ msgid "Partitioning USB stick..."
 #~ msgstr "Bý til diskhluta á USB staut..."
 
+#~ msgid "Play music from Last.fm"
+#~ msgstr "Spila tónlist frá Last.FM"
+
+#~ msgid "Play music from Last.fm."
+#~ msgstr "Spila tónlist frá Last.FM."
+
 #
 #~ msgid "Please choose .NFI image file from feed server to download"
 #~ msgstr "Vinsamlega veldu .NFI af strauma vefþjón til að hlaða niður"
@@ -10839,6 +11004,9 @@ msgstr "stokkið"
 #
 #~ msgid "RSS Feed URI"
 #~ msgstr "RSS strauma URI"
+
+#~ msgid "Ralink"
+#~ msgstr "Ralink"
 
 #
 #~ msgid "Really delete this timer?"
@@ -11023,6 +11191,9 @@ msgstr "stokkið"
 #~ msgid "Set as default Interface"
 #~ msgstr "Gera að sjálfgefnu netkorti"
 
+#~ msgid "Sets your Dreambox into Deep-Standby"
+#~ msgstr "Setja Dreamboxið þitt í djúpan svefn"
+
 #
 #~ msgid "Setup Lock"
 #~ msgstr "Setja upp læsingu"
@@ -11112,6 +11283,21 @@ msgstr "stokkið"
 #~ "niður .NFI stýrikerfi frá strauma vefþjón og vistað það á stautnum. Þá "
 #~ "getur þú endurræst og með því að halda niður 'Niður' takka framaná "
 #~ "móttakaranum þá getur þú valið stýrikerfi frá stautnum!"
+
+#~ msgid ""
+#~ "The Elektro Power Save plugin puts the box from standby to sleep mode "
+#~ "(Deep Standby) at certain times.\n"
+#~ "This only happens if the box is in standby and no recording is running or "
+#~ "sheduled in the next 20 minutes.\n"
+#~ "The box automatically wakes up for recordings or at the end of the sleep "
+#~ "time. You therefore don't have to wait until it is on again."
+#~ msgstr ""
+#~ "Elektro Save íforritið setur móttakarann í djúp svefn (Deep Standby) á "
+#~ "ákveðnum tímum.\n"
+#~ "Það gerist bara ef að móttakarinn er í biðstöðu og það er engin upptaka á "
+#~ "dagskrá næstu 20 mínúturnar.\n"
+#~ "Móttakarinn vaknar sjálfvirkt fyrir forritaðar upptökur og við enda svefn "
+#~ "tímans."
 
 #
 #~ msgid ""
@@ -11221,6 +11407,9 @@ msgstr "stokkið"
 #~ "framhlið móttakarans í 10 sekúndur eftir það.\n"
 #~ "3) Bíðið eftir ræsingu og fylgdu leiðbeiningunum á skjánum."
 
+#~ msgid "TrafficInfo shows german traffic information."
+#~ msgstr "TrafficInfo sýnir upplýsingar um umferð í Þýskalandi."
+
 #
 #~ msgid "Transmission Mode"
 #~ msgstr "Sendi aðferð"
@@ -11274,6 +11463,12 @@ msgstr "stokkið"
 #~ "Hætta við\n"
 #~ "Taka út"
 
+#~ msgid "Unknown network adapter."
+#~ msgstr "Óþekkt netkort."
+
+#~ msgid "UnwetterInfo shows german storm information."
+#~ msgstr "Unwetterinfo sýnir þýskar stormviðvaranir"
+
 #
 #~ msgid "Updates your receiver's software"
 #~ msgstr "Uppfærir forrit móttakarans"
@@ -11310,6 +11505,9 @@ msgstr "stokkið"
 #~ msgid "Visualize positioner movement"
 #~ msgstr "Sýna færslu mótorsins"
 
+#~ msgid "WLAN adapter."
+#~ msgstr "WLAN netkort."
+
 #
 #~ msgid "Waiting for USB stick to settle..."
 #~ msgstr "Bíð eftir að USB tengist..."
@@ -11332,6 +11530,24 @@ msgstr "stokkið"
 #
 #~ msgid "Wireless"
 #~ msgstr "Þráðlaust"
+
+#
+#~ msgid "Wireless Network State"
+#~ msgstr "Staða þráðlausa nets"
+
+#~ msgid ""
+#~ "With IMDb you can download and displays movie information (rating, "
+#~ "poster, cast, synopsis etc.) about the selected event."
+#~ msgstr ""
+#~ "Með IMDB getur þú hlaðið niður og skoðað upplýsingar af netinu um valið "
+#~ "atriði."
+
+#~ msgid ""
+#~ "With this option you can restrict the AutoTimer to a certain ammount of "
+#~ "scheduled recordings. Set this to 0 to disable this functionality."
+#~ msgstr ""
+#~ "Með þetta valið er hægt að takmarka sjálvirka tímastillinguna við hámarks "
+#~ "fjölda upptaka. Hafðu þetta í 0 til að gera óvirkt."
 
 #
 #~ msgid "Writing NFI image file to flash completed"
@@ -11431,9 +11647,15 @@ msgstr "stokkið"
 #~ "\n"
 #~ "Viltu taka netkort tvö úr notkun?"
 
+#~ msgid "Zydas"
+#~ msgstr "Zydas"
+
 #
 #~ msgid "add bouquet..."
 #~ msgstr "bæta við rásavendi..."
+
+#~ msgid "add tags to recorded movies"
+#~ msgstr "bæta við merki við uppteknar bíómyndir"
 
 #
 #~ msgid ""
@@ -11474,6 +11696,10 @@ msgstr "stokkið"
 #
 #~ msgid "enigma2 and network"
 #~ msgstr "enigma2 og netkerfi"
+
+#
+#~ msgid "enter hidden network SSID"
+#~ msgstr "sláðu inn SSID falins netkerfis"
 
 #
 #~ msgid "equal to Socket A"
@@ -11642,6 +11868,10 @@ msgstr "stokkið"
 #
 #~ msgid "text"
 #~ msgstr "texti"
+
+#
+#~ msgid "unavailable"
+#~ msgstr "ekki tiltækt"
 
 #
 #~ msgid "until restart"
