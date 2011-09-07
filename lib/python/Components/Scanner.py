@@ -11,6 +11,8 @@ add_type("application/x-dream-package", ".dmpkg")
 add_type("application/x-dream-image", ".nfi")
 add_type("video/MP2T", ".ts")
 add_type("video/x-dvd-iso", ".iso")
+add_type("video/x-matroska", ".mkv")
+add_type("audio/x-matroska", ".mka")
 
 def getType(file):
 	(type, _) = guess_type(file)
