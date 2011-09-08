@@ -2591,7 +2591,7 @@ class NetworkuShare(Screen):
 		self['labrun'] = Label(_("Running"))
 		self['username'] = Label(_("uShare Name") + ":")
 		self['labuser'] = Label()
-		self['iface'] = Label(_("Inetrface") + ":")
+		self['iface'] = Label(_("Interface") + ":")
 		self['labiface'] = Label()
 		self['port'] = Label(_("uShare Port") + ":")
 		self['labport'] = Label()
@@ -2815,7 +2815,7 @@ class NetworkuShareSetup(Screen, ConfigListScreen):
 				elif line.startswith('USHARE_IFACE='):
 					line = line[13:]
 					self.ushare_iface.value = line
-					ushare_iface1 = getConfigListEntry(_("Inetrface") + ":", self.ushare_iface)
+					ushare_iface1 = getConfigListEntry(_("Interface") + ":", self.ushare_iface)
 					self.list.append(ushare_iface1)
 				elif line.startswith('USHARE_PORT='):
 					line = line[12:]
