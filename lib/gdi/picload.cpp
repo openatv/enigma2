@@ -437,7 +437,6 @@ static unsigned char *gif_load(const char *file, int *ox, int *oy)
 	unsigned char *pic_buffer = NULL;
 	int px, py, i, j, ibxs;
 	unsigned char *fbptr;
-	unsigned char *lb=NULL;
 	unsigned char *slb=NULL;
 	GifFileType *gft;
 	GifRecordType rt;
@@ -539,9 +538,9 @@ ePicLoad::PConf::PConf():
 	max_x(0),
 	max_y(0),
 	aspect_ratio(1.066400), //4:3
-	usecache(false),
-	resizetype(1),
 	background(0),
+	resizetype(1),
+	usecache(false),
 	thumbnailsize(180)
 {
 }
@@ -902,7 +901,17 @@ PyObject *ePicLoad::getInfo(const char *filename)
 int ePicLoad::getData(ePtr<gPixmap> &result)
 {
 	result = 0;
-	if(m_filepara->pic_buffer == NULL) return 0;
+	if (m_filepara == NULL)
+	{
+		eDebug("picload - Weird situation, I wasn't decoding anything!");
+		return 1;
+	}
+	if(m_filepara->pic_buffer == NULL)
+	{
+		delete m_filepara;
+		m_filepara = NULL;
+		return 0;
+	}
 	
 	result=new gPixmap(eSize(m_filepara->max_x, m_filepara->max_y), 32);
 	gSurface *surface = result->surface;
@@ -967,7 +976,7 @@ int ePicLoad::getData(ePtr<gPixmap> &result)
 	
 	if(m_filepara->oy < m_filepara->max_y)
 	{
-		for(a = u_y * m_filepara->ox; a != 0; --a)
+		for(int a = u_y * m_filepara->ox; a != 0; --a)
 		{
 			*(int*)tmp_buffer = background;
 			tmp_buffer += 4;
