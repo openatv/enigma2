@@ -111,7 +111,7 @@ addSkin('skin_subtitles.xml')
 try:
 	if not addSkin(config.skin.primary_skin.value):
 		raise SkinError, "primary skin not found"
-except (SkinError, IOError, AssertionError), err:
+except Exception, err:
 	print "SKIN ERROR:", err
 	skin = DEFAULT_SKIN
 	if config.skin.primary_skin.value == skin:
