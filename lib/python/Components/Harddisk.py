@@ -313,10 +313,14 @@ class Harddisk:
 		else:
 			cmd = "mkfs.ext3"
 		task.setTool(cmd)
-
-		if size > 16 * 1024:
+		if size > 250000:
+			# No more than 256k i-nodes (prevent problems with fsck memory requirements)
+			task.args += ["-T", "largefile", "-O", "sparse_super", "-N", "262144"]
+		elif size > 16384:
+			# between 16GB and 250GB: 1 i-node per megabyte
 			task.args += ["-T", "largefile", "-O", "sparse_super"]
-		elif size > 2 * 1024:
+		elif size > 2048:
+			# Over 2GB: 32 i-nodes per megabyte
 			task.args += ["-T", "largefile", "-N", str(size * 32)]
 		task.args += ["-m0", "-O", "dir_index", self.partitionPath("1")]
 
