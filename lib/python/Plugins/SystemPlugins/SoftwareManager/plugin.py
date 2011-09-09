@@ -1450,6 +1450,7 @@ class UpdatePlugin(Screen):
 				self.updating = False
 				if self.offline:
 					from enigma import gMainDC, getDesktop, eSize
+					self.session.nav.stopService()
 					desktop = getDesktop(0)
 					if desktop.size() != eSize(720,576):
 						gMainDC.getInstance().setResolution(720,576)
