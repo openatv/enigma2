@@ -240,15 +240,41 @@ class UpdatePluginMenu(Screen):
 			if currentEntry in ("system-backup","backupfiles"):
 				self.session.open(SoftwareManagerInfo, mode = "backupinfo")
 
+	def checkTraficLight(self, offline):
+		from urllib import urlopen
+		import socket
+		currentTimeoutDefault = socket.getdefaulttimeout()
+		socket.setdefaulttimeout(3)
+		message = ""
+		picon = None
+		default = True
+		try:
+			if not "/stable.png" in urlopen("http://www.pli-images.org").read():
+
+				message = _("The current beta image is not stable")+"\n"+_("For more information see www.pli-images.org")+"\n"
+				picon = MessageBox.TYPE_ERROR
+				default = False
+		except:
+			message = _("The status of the current beta image could not be checked")+"\n"+_("probably www.pli-images.org is offline")+"\n"
+			picon = MessageBox.TYPE_ERROR
+			default = False
+		socket.setdefaulttimeout(currentTimeoutDefault)
+		if offline:
+			message += _("Do you want to update your Dreambox?")+"\n"+_("The screen will go blank while upgrading, be patient and wait for the reboot.")
+			self.session.openWithCallback(self.runUpgradeOffline, MessageBox, message, default = default, picon = picon)
+		else:
+			message += _("Do you want to update your Dreambox?")+"\n"+_("After pressing OK, please wait!")
+			self.session.openWithCallback(self.runUpgrade, MessageBox, message, default = default, picon = picon)
+
 	def go(self):
 		current = self["menu"].getCurrent()
 		if current:
 			currentEntry = current[0]
 			if self.menu == 0:
 				if (currentEntry == "software-update"):
-					self.session.openWithCallback(self.runUpgrade, MessageBox, _("Do you want to update your Dreambox?")+"\n"+_("\nAfter pressing OK, please wait!"))
+					self.checkTraficLight(False)
 				if (currentEntry == "software-update-offline"):
-					self.session.openWithCallback(self.runUpgradeOffline, MessageBox, _("Do you want to update your Dreambox?")+"\n"+_("The screen will go blank while upgrading, be patient and wait for the reboot."))
+					self.checkTraficLight(True)
 				elif (currentEntry == "software-restore"):
 					self.session.open(ImageWizard)
 				elif (currentEntry == "install-extensions"):
@@ -1442,7 +1468,7 @@ class UpdatePlugin(Screen):
 					desktop = getDesktop(0)
 					if desktop.size() != eSize(720,576):
 						gMainDC.getInstance().setResolution(720,576)
-	                                	desktop.resize(eSize(720,576))
+						desktop.resize(eSize(720,576))
 					self.session.open(MessageBox, _("Offline upgrade in progress\nPlease wait until your box reboots\nThis may take a few minutes"), MessageBox.TYPE_INFO)
 					quitMainloop(42)
 				else:
