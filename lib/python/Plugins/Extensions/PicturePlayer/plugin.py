@@ -2,6 +2,14 @@ from Plugins.Plugin import PluginDescriptor
 
 #------------------------------------------------------------------------------------------
 
+def Pic_Thumb(*args, **kwa):
+	import ui
+	return ui.Pic_Thumb(*args, **kwa)
+
+def picshow(*args, **kwa):
+	import ui
+	return ui.picshow(*args, **kwa)
+
 def main(session, **kwargs):
 	from ui import picshow
 	session.open(picshow)
