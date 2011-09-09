@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-02 16:10+0100\n"
+"POT-Creation-Date: 2011-09-08 16:22+0100\n"
 "PO-Revision-Date: 2009-02-25 20:35+0200\n"
 "Last-Translator: Ivo Grinbergs <ivog@apollo.lv>\n"
 "Language-Team: Ivo / enigma2 (c) <ivog@apolllo.lv>\n"
@@ -245,12 +245,6 @@ msgid "%s (%s)\n"
 msgstr "%s (%s)\n"
 
 msgid "( All readers)"
-msgstr ""
-
-msgid "(Beta)"
-msgstr ""
-
-msgid "(Release)"
 msgstr ""
 
 msgid "(Show only reader:"
@@ -578,9 +572,6 @@ msgstr "Pārveide AC3 -> stereo"
 msgid "AFP Setup"
 msgstr ""
 
-msgid "AVL Xtrend blindscan running... please wait"
-msgstr ""
-
 #
 msgid "Abort"
 msgstr ""
@@ -698,6 +689,9 @@ msgstr ""
 msgid "Adjust 3D settings"
 msgstr ""
 
+msgid "Adjust HDMI CEC settings"
+msgstr ""
+
 msgid "Adjust display scrolling and symbols"
 msgstr ""
 
@@ -757,9 +751,6 @@ msgstr "Albums"
 msgid "Alias"
 msgstr ""
 
-msgid "Alias:"
-msgstr ""
-
 #
 msgid "All"
 msgstr "Visi"
@@ -768,7 +759,7 @@ msgstr "Visi"
 msgid "All Satellites"
 msgstr "Visi pavadoņi"
 
-msgid "Allow Subtiles equals Audio mask"
+msgid "Allow Subtitle equals Audio mask"
 msgstr ""
 
 msgid "Allow hearing impaired subtitles"
@@ -810,6 +801,9 @@ msgstr "Nezināma kļūda!"
 
 #
 msgid "Anonymize crashlog?"
+msgstr ""
+
+msgid "Any activity"
 msgstr ""
 
 msgid "April"
@@ -1083,9 +1077,6 @@ msgstr ""
 msgid "Black screen till locked"
 msgstr ""
 
-msgid "Blindscan"
-msgstr ""
-
 #
 msgid "Block noise reduction"
 msgstr ""
@@ -1266,7 +1257,7 @@ msgstr "Kanālu izvēle"
 msgid "Channel list preview mode"
 msgstr ""
 
-msgid "Channel list service mode"
+msgid "Channel list service mode (requires restart)"
 msgstr ""
 
 #
@@ -1366,6 +1357,9 @@ msgstr ""
 #
 msgid "Clear before scan"
 msgstr "Notīrīt pirms meklēšanas"
+
+msgid "Clear fixed"
+msgstr ""
 
 #
 msgid "Clear log"
@@ -1651,6 +1645,9 @@ msgstr "Veido mapi %s neizdevās."
 msgid "Creating partition failed"
 msgstr "Neizdevās izveidot sadaļu"
 
+msgid "Current CEC address"
+msgstr ""
+
 msgid "Current Event:"
 msgstr ""
 
@@ -1719,6 +1716,9 @@ msgstr "D"
 #
 msgid "DHCP"
 msgstr "DHCP"
+
+msgid "DLNA support"
+msgstr ""
 
 #
 msgid "DUAL LAYER DVD"
@@ -1861,7 +1861,13 @@ msgstr ""
 msgid "Detected NIMs:"
 msgstr "Atrasts NIMs:"
 
+msgid "Device Information"
+msgstr ""
+
 msgid "Device Setup"
+msgstr ""
+
+msgid "Devices"
 msgstr ""
 
 #
@@ -1914,6 +1920,10 @@ msgstr "Mape %s neeksistē."
 
 #
 msgid "Directory browser"
+msgstr ""
+
+#, python-format
+msgid "Directory contains %d file(s) and %d sub-directories.\n"
 msgstr ""
 
 #
@@ -2692,10 +2702,19 @@ msgstr ""
 msgid "Format"
 msgstr "Formatēt"
 
+msgid "Forward volume keys"
+msgstr ""
+
 #
 # ???
 msgid "Frame size in full view"
 msgstr "Kadra izmērs pilnskatā"
+
+msgid "Free Memory:"
+msgstr ""
+
+msgid "Free Swap:"
+msgstr ""
 
 msgid "Free memory"
 msgstr ""
@@ -2749,9 +2768,6 @@ msgid "Ftp service Enabled."
 msgstr ""
 
 msgid "Ftpd service type: Vsftpd server"
-msgstr ""
-
-msgid "GB"
 msgstr ""
 
 #
@@ -2839,6 +2855,15 @@ msgid "Guard interval mode"
 msgstr "Sardzes intervāla režīms"
 
 msgid "HD list"
+msgstr ""
+
+msgid "Handle deepstandby events"
+msgstr ""
+
+msgid "Handle standby from TV"
+msgstr ""
+
+msgid "Handle wakeup from TV"
 msgstr ""
 
 #
@@ -2980,6 +3005,9 @@ msgstr ""
 "nākamajā solī.\n"
 "Ja esat apmierināts ar rezultātu, spiediet OK."
 
+msgid "Image Information"
+msgstr ""
+
 msgid "Image:"
 msgstr ""
 
@@ -2994,9 +3022,6 @@ msgstr ""
 "TV tika pārslēgts uz ierakstāmo kanālu, lai uzsāktu ierakstu pēc taimera!\n"
 
 msgid "Inadyn Log"
-msgstr ""
-
-msgid "Inadyn Manager"
 msgstr ""
 
 msgid "Inadyn Setup"
@@ -3129,6 +3154,9 @@ msgstr "Tūlītējs ieraksts..."
 
 #
 msgid "Instant record location"
+msgstr ""
+
+msgid "Interface"
 msgstr ""
 
 #
@@ -3407,9 +3435,6 @@ msgstr ""
 #
 msgid "Longitude"
 msgstr "Garums"
-
-msgid "MB"
-msgstr ""
 
 #
 msgid "MORE"
@@ -3710,6 +3735,9 @@ msgstr ""
 msgid "Network SSID"
 msgstr "Tīkla SSID"
 
+msgid "Network Servers:"
+msgstr ""
+
 #
 msgid "Network Setup"
 msgstr "Tīkla iestatne"
@@ -4005,9 +4033,6 @@ msgid ""
 "Path: %s"
 msgstr ""
 
-msgid "Nothing"
-msgstr ""
-
 #
 msgid ""
 "Nothing to scan!\n"
@@ -4056,6 +4081,9 @@ msgstr ""
 msgid "OSD Settings"
 msgstr "OSD iestatījumi"
 
+msgid "OSD name request"
+msgstr ""
+
 #
 msgid "OSD visibility"
 msgstr "OSD redzamība"
@@ -4069,6 +4097,12 @@ msgstr ""
 #
 msgid "Off"
 msgstr "Izslēgt"
+
+msgid ""
+"Offline upgrade in progress\n"
+"Please wait until your box reboots\n"
+"This may take a few minutes"
+msgstr ""
 
 msgid "Ok"
 msgstr ""
@@ -4100,12 +4134,6 @@ msgstr ""
 
 #
 msgid "Open Context Menu"
-msgstr ""
-
-msgid "Open bouquet selection"
-msgstr ""
-
-msgid "Open channel selection"
 msgstr ""
 
 msgid "OpenVPN Setup"
@@ -4624,6 +4652,9 @@ msgstr ""
 msgid "Prefer subtitle stored by service"
 msgstr ""
 
+msgid "Prefered EPG Language"
+msgstr ""
+
 msgid "Preferred tuner"
 msgstr ""
 
@@ -4764,6 +4795,12 @@ msgid "Providers:"
 msgstr ""
 
 msgid "Providers: "
+msgstr ""
+
+msgid "Put TV in standby"
+msgstr ""
+
+msgid "Put receiver in standby"
 msgstr ""
 
 #
@@ -5301,9 +5338,6 @@ msgstr "Meklēt bezvadu tīklus"
 msgid "Scan additional SR"
 msgstr "Meklēt papildu SR"
 
-msgid "Scan band"
-msgstr ""
-
 #
 msgid "Scan band EU HYPER"
 msgstr "Meklēt diapazonā EU HYPER "
@@ -5351,18 +5385,6 @@ msgstr "Meklēt diapazonā US MID"
 #
 msgid "Scan band US SUPER"
 msgstr "Meklēt diapazonā US SUPER"
-
-msgid "Scan start frequency"
-msgstr ""
-
-msgid "Scan start symbolrate"
-msgstr ""
-
-msgid "Scan stop frequency"
-msgstr ""
-
-msgid "Scan stop symbolrate"
-msgstr ""
 
 msgid ""
 "Scan your network for wireless access points and connect to them using your "
@@ -5414,6 +5436,9 @@ msgstr "Sekundārā DNS"
 msgid "Seek"
 msgstr "Meklēt"
 
+msgid "Seekbar sensibility"
+msgstr ""
+
 #
 msgid "Select"
 msgstr "Izvēlēties"
@@ -5456,6 +5481,9 @@ msgstr ""
 
 #
 msgid "Select files/folders to backup"
+msgstr ""
+
+msgid "Select folders"
 msgstr ""
 
 msgid "Select input device"
@@ -5618,6 +5646,9 @@ msgstr "Iestatīt spriegumu un 22 KHZ"
 msgid "Set available internal memory threshold for the warning."
 msgstr ""
 
+msgid "Set fixed"
+msgstr ""
+
 #
 msgid "Set interface as default Interface"
 msgstr "Iestatīt interfeisu kā noklusēto"
@@ -5646,6 +5677,9 @@ msgstr "Iestatnes režīms"
 msgid ""
 "Shall the USB stick wizard proceed and program the image file %s into flash "
 "memory?"
+msgstr ""
+
+msgid "Share Folder's"
 msgstr ""
 
 msgid "Share View"
@@ -5928,6 +5962,9 @@ msgstr "Atvainojiet, MediaScanner nav uzstādīts!"
 msgid "Sorry no backups found!"
 msgstr "Atvainojiet, dublējumkopijas nav atrastas!"
 
+msgid "Sorry uShare Config is Missing"
+msgstr ""
+
 #
 msgid ""
 "Sorry your Backup destination does not exist\n"
@@ -5971,10 +6008,7 @@ msgstr "Skaņa"
 msgid "Soundcarrier"
 msgstr "Skaņas nesējs"
 
-msgid "Source active"
-msgstr ""
-
-msgid "Source inactive"
+msgid "Source request"
 msgstr ""
 
 #
@@ -6095,6 +6129,9 @@ msgstr "Saglabāt pozīciju"
 msgid "Stored position"
 msgstr "Saglabātā pozīcija"
 
+msgid "Stream request"
+msgstr ""
+
 msgid "Subservice mode"
 msgstr ""
 
@@ -6152,6 +6189,9 @@ msgstr ""
 msgid "Swap Services"
 msgstr "Mainīit kanālus"
 
+msgid "Switch TV to correct input"
+msgstr ""
+
 msgid "Switch config"
 msgstr ""
 
@@ -6185,10 +6225,10 @@ msgstr ""
 msgid "System"
 msgstr "Sistēma"
 
-msgid "System Information"
+msgid "System Infomation"
 msgstr ""
 
-msgid "System:"
+msgid "System Information"
 msgstr ""
 
 msgid "System: "
@@ -6210,12 +6250,6 @@ msgstr "TV sistēma"
 msgid "TV button mode"
 msgstr ""
 
-msgid "TV standby"
-msgstr ""
-
-msgid "TV wakeup"
-msgstr ""
-
 #
 msgid "Table of content for collection"
 msgstr "Satura rādītājs kolekcijai"
@@ -6225,6 +6259,12 @@ msgid "Tags"
 msgstr "Etiķetes"
 
 msgid "Teletext subtitle color"
+msgstr ""
+
+msgid "Telnet Interface"
+msgstr ""
+
+msgid "Telnet Port"
 msgstr ""
 
 msgid "Telnet Setup"
@@ -6804,6 +6844,12 @@ msgstr ""
 msgid "Total"
 msgstr ""
 
+msgid "Total Memory:"
+msgstr ""
+
+msgid "Total Swap:"
+msgstr ""
+
 msgid "Total cards:"
 msgstr ""
 
@@ -7066,6 +7112,9 @@ msgstr "Lietot interfeisu"
 msgid "Use Power Measurement"
 msgstr "Lietot sprieguma mērīšanu"
 
+msgid "Use TV remote control"
+msgstr ""
+
 msgid "Use ViX Coloured Butons"
 msgstr ""
 
@@ -7166,6 +7215,9 @@ msgid "Username (httpuser)"
 msgstr ""
 
 msgid "Username:"
+msgstr ""
+
+msgid "Using fixed address"
 msgstr ""
 
 msgid "Using old profile: "
@@ -7393,8 +7445,23 @@ msgstr ""
 msgid "Waiting"
 msgstr "Gaida"
 
+msgid "Wakeup"
+msgstr ""
+
+msgid "Wakeup TV from standby"
+msgstr ""
+
+msgid "Wakeup receiver from standby"
+msgstr ""
+
+msgid "Wakeup signal from TV"
+msgstr ""
+
 #
 msgid "Warn if free space drops below (kB):"
+msgstr ""
+
+msgid "Web Interface"
 msgstr ""
 
 #
@@ -7533,6 +7600,9 @@ msgstr "Rakstīšanas kļūda ieraksta laikā. Vai disks ir pilns?\n"
 #
 msgid "Write failed!"
 msgstr "Rakstīšana neizdevās!"
+
+msgid "XBox 360 support"
+msgstr ""
 
 #
 msgid "YPbPr"
@@ -7693,6 +7763,11 @@ msgid ""
 msgstr ""
 "You have chosen to restore your settings. Enigma2 will restart after "
 "restore. Please press OK to start the restore now."
+
+msgid ""
+"You have not setup your user info in the setup screen\n"
+"Press MENU, and enter your info, then try again"
+msgstr ""
 
 msgid "You have selected no logs to delete."
 msgstr ""
@@ -8360,9 +8435,6 @@ msgstr "palīdzība..."
 msgid "hide player"
 msgstr "slēpt atskaņotāju"
 
-msgid "high"
-msgstr ""
-
 msgid "hops:"
 msgstr ""
 
@@ -8465,9 +8537,6 @@ msgstr "slēgts"
 #, fuzzy
 msgid "loopthrough to"
 msgstr "loopthrough to"
-
-msgid "low"
-msgstr ""
 
 #
 msgid "manual"
@@ -8573,6 +8642,10 @@ msgstr "nav noildzes"
 
 msgid "no transparency"
 msgstr ""
+
+#
+msgid "none"
+msgstr "nē"
 
 #
 msgid "not configured"
@@ -9081,6 +9154,15 @@ msgid "top"
 msgstr ""
 
 msgid "tuner is not supported"
+msgstr ""
+
+msgid "uShare Name"
+msgstr ""
+
+msgid "uShare Port"
+msgstr ""
+
+msgid "uShare Setup"
 msgstr ""
 
 #
@@ -10098,10 +10180,6 @@ msgstr "pārslēgts"
 #
 #~ msgid "no HDD found"
 #~ msgstr "cietais disks nav atrasts"
-
-#
-#~ msgid "none"
-#~ msgstr "nē"
 
 #
 #~ msgid "open virtual keyboard input help"

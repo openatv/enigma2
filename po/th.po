@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1-En-Th\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-02 16:10+0100\n"
+"POT-Creation-Date: 2011-09-08 16:22+0100\n"
 "PO-Revision-Date: 2010-04-08 18:13+0700\n"
 "Last-Translator: Tony - Thaidreambox\n"
 "Language-Team: Tony @ Thai Dreambox <tonyboyth@gmail.com>\n"
@@ -215,12 +215,6 @@ msgid "%s (%s)\n"
 msgstr "%s (%s)\n"
 
 msgid "( All readers)"
-msgstr ""
-
-msgid "(Beta)"
-msgstr ""
-
-msgid "(Release)"
 msgstr ""
 
 msgid "(Show only reader:"
@@ -480,9 +474,6 @@ msgstr "แปลงเสียง AC3"
 msgid "AFP Setup"
 msgstr ""
 
-msgid "AVL Xtrend blindscan running... please wait"
-msgstr ""
-
 msgid "Abort"
 msgstr "ยกเลิก"
 
@@ -575,6 +566,9 @@ msgstr ""
 msgid "Adjust 3D settings"
 msgstr ""
 
+msgid "Adjust HDMI CEC settings"
+msgstr ""
+
 msgid "Adjust display scrolling and symbols"
 msgstr ""
 
@@ -619,16 +613,13 @@ msgstr "อัลบัม"
 msgid "Alias"
 msgstr ""
 
-msgid "Alias:"
-msgstr ""
-
 msgid "All"
 msgstr "ทั้งหมด"
 
 msgid "All Satellites"
 msgstr "ดาวเทียมทั้งหมด"
 
-msgid "Allow Subtiles equals Audio mask"
+msgid "Allow Subtitle equals Audio mask"
 msgstr ""
 
 msgid "Allow hearing impaired subtitles"
@@ -663,6 +654,9 @@ msgstr "เกิดข้อผิดพลาดขึ้น!"
 
 msgid "Anonymize crashlog?"
 msgstr "รายงานปัญหาเครื่องแบบไม่ระบุตัวตน?"
+
+msgid "Any activity"
+msgstr ""
 
 msgid "April"
 msgstr ""
@@ -891,9 +885,6 @@ msgstr ""
 msgid "Black screen till locked"
 msgstr ""
 
-msgid "Blindscan"
-msgstr ""
-
 msgid "Block noise reduction"
 msgstr "Block noise reduction"
 
@@ -1048,7 +1039,7 @@ msgstr "เลือกช่องรายการ"
 msgid "Channel list preview mode"
 msgstr ""
 
-msgid "Channel list service mode"
+msgid "Channel list service mode (requires restart)"
 msgstr ""
 
 msgid "Channel not in services list"
@@ -1125,6 +1116,9 @@ msgstr "CleanupWizard"
 
 msgid "Clear before scan"
 msgstr "ลบข้อมูลเดิมก่อนค้นหา"
+
+msgid "Clear fixed"
+msgstr ""
 
 msgid "Clear log"
 msgstr "Clear log"
@@ -1362,6 +1356,9 @@ msgstr "ไม่สามารถสร้างโฟลเดอร์ %s �
 msgid "Creating partition failed"
 msgstr "การสร้างพาร์ทิชั่นล้มเหลว"
 
+msgid "Current CEC address"
+msgstr ""
+
 msgid "Current Event:"
 msgstr ""
 
@@ -1418,6 +1415,9 @@ msgstr "D"
 
 msgid "DHCP"
 msgstr "DHCP"
+
+msgid "DLNA support"
+msgstr ""
 
 msgid "DUAL LAYER DVD"
 msgstr ""
@@ -1534,7 +1534,13 @@ msgstr ""
 msgid "Detected NIMs:"
 msgstr "NIMs ที่พบ:"
 
+msgid "Device Information"
+msgstr ""
+
 msgid "Device Setup"
+msgstr ""
+
+msgid "Devices"
 msgstr ""
 
 msgid "DiSEqC"
@@ -1576,6 +1582,10 @@ msgstr "ไม่พบโฟล์เดอร์ %s ในระบบ"
 
 msgid "Directory browser"
 msgstr "ดูโฟล์เดอร์"
+
+#, python-format
+msgid "Directory contains %d file(s) and %d sub-directories.\n"
+msgstr ""
 
 msgid "Disable"
 msgstr "ไม่ใช้งาน"
@@ -2225,8 +2235,17 @@ msgstr ""
 msgid "Format"
 msgstr "ฟอร์แมท"
 
+msgid "Forward volume keys"
+msgstr ""
+
 msgid "Frame size in full view"
 msgstr "เต็มหน้าจอ"
+
+msgid "Free Memory:"
+msgstr ""
+
+msgid "Free Swap:"
+msgstr ""
 
 msgid "Free memory"
 msgstr ""
@@ -2272,9 +2291,6 @@ msgid "Ftp service Enabled."
 msgstr ""
 
 msgid "Ftpd service type: Vsftpd server"
-msgstr ""
-
-msgid "GB"
 msgstr ""
 
 msgid ""
@@ -2348,6 +2364,15 @@ msgid "Guard interval mode"
 msgstr "โหมด Guard interval"
 
 msgid "HD list"
+msgstr ""
+
+msgid "Handle deepstandby events"
+msgstr ""
+
+msgid "Handle standby from TV"
+msgstr ""
+
+msgid "Handle wakeup from TV"
 msgstr ""
 
 msgid "Harddisk"
@@ -2468,6 +2493,9 @@ msgstr ""
 "ตอนนี้ยังไม่ต้องกังวลในส่วนของแถบสว่าง ส่วนของแถบสว่างจะถูกปรับแต่งภายหลัง\n"
 "หากท่านพอใจแล้วให้กดปุ่ม OK เพื่อเข้าส่วนต่อไป"
 
+msgid "Image Information"
+msgstr ""
+
 msgid "Image:"
 msgstr ""
 
@@ -2479,9 +2507,6 @@ msgid ""
 msgstr "ต้องย้ายไปยังข่องรายการอื่นเพื่อที่จะบันทึกรายการตามที่ได้ตั้งไว้\n"
 
 msgid "Inadyn Log"
-msgstr ""
-
-msgid "Inadyn Manager"
 msgstr ""
 
 msgid "Inadyn Setup"
@@ -2587,6 +2612,9 @@ msgid "Instant Record..."
 msgstr "บันทึกรายการ..."
 
 msgid "Instant record location"
+msgstr ""
+
+msgid "Interface"
 msgstr ""
 
 msgid "Interface: "
@@ -2820,9 +2848,6 @@ msgstr ""
 
 msgid "Longitude"
 msgstr "ลองจิจูด"
-
-msgid "MB"
-msgstr ""
 
 msgid "MORE"
 msgstr "เพิ่ม"
@@ -3067,6 +3092,9 @@ msgstr ""
 msgid "Network SSID"
 msgstr "ค่า SSID"
 
+msgid "Network Servers:"
+msgstr ""
+
 msgid "Network Setup"
 msgstr "ตั้งค่าเครือข่าย"
 
@@ -3307,9 +3335,6 @@ msgid ""
 "Path: %s"
 msgstr ""
 
-msgid "Nothing"
-msgstr ""
-
 msgid ""
 "Nothing to scan!\n"
 "Please setup your tuner settings before you start a service scan."
@@ -3349,6 +3374,9 @@ msgstr "ตกลง - ลบส่วนเพิ่มเติมอื่น
 msgid "OSD Settings"
 msgstr "ตั้งค่า OSD"
 
+msgid "OSD name request"
+msgstr ""
+
 msgid "OSD visibility"
 msgstr "ความชัดของ OSD"
 
@@ -3360,6 +3388,12 @@ msgstr ""
 
 msgid "Off"
 msgstr "ปิด"
+
+msgid ""
+"Offline upgrade in progress\n"
+"Please wait until your box reboots\n"
+"This may take a few minutes"
+msgstr ""
 
 msgid "Ok"
 msgstr ""
@@ -3386,12 +3420,6 @@ msgid "Only extensions."
 msgstr ""
 
 msgid "Open Context Menu"
-msgstr ""
-
-msgid "Open bouquet selection"
-msgstr ""
-
-msgid "Open channel selection"
 msgstr ""
 
 msgid "OpenVPN Setup"
@@ -3819,6 +3847,9 @@ msgstr ""
 msgid "Prefer subtitle stored by service"
 msgstr ""
 
+msgid "Prefered EPG Language"
+msgstr ""
+
 msgid "Preferred tuner"
 msgstr ""
 
@@ -3935,6 +3966,12 @@ msgid "Providers:"
 msgstr ""
 
 msgid "Providers: "
+msgstr ""
+
+msgid "Put TV in standby"
+msgstr ""
+
+msgid "Put receiver in standby"
 msgstr ""
 
 msgid "Python frontend for /tmp/mmi.socket"
@@ -4368,9 +4405,6 @@ msgstr "ค้นหาเครือข่ายไร้สาย"
 msgid "Scan additional SR"
 msgstr "ค้นหา additional SR"
 
-msgid "Scan band"
-msgstr ""
-
 msgid "Scan band EU HYPER"
 msgstr "ค้นหา band EU HYPER"
 
@@ -4406,18 +4440,6 @@ msgstr "ค้นหา band US MID"
 
 msgid "Scan band US SUPER"
 msgstr "ค้นหา band US SUPER"
-
-msgid "Scan start frequency"
-msgstr ""
-
-msgid "Scan start symbolrate"
-msgstr ""
-
-msgid "Scan stop frequency"
-msgstr ""
-
-msgid "Scan stop symbolrate"
-msgstr ""
 
 msgid ""
 "Scan your network for wireless access points and connect to them using your "
@@ -4460,6 +4482,9 @@ msgstr "DNS สำรอง"
 msgid "Seek"
 msgstr "ค้นหา"
 
+msgid "Seekbar sensibility"
+msgstr ""
+
 msgid "Select"
 msgstr "เลือก"
 
@@ -4495,6 +4520,9 @@ msgstr ""
 
 msgid "Select files/folders to backup"
 msgstr "เลือกไฟล์/โฟล์เดอร์ที่จะสำรอง"
+
+msgid "Select folders"
+msgstr ""
 
 msgid "Select input device"
 msgstr ""
@@ -4628,6 +4656,9 @@ msgstr "ตั้งค่า Voltage และ 22KHz"
 msgid "Set available internal memory threshold for the warning."
 msgstr "ตั้งค่าการเตือนเมื่อหน่วยความจำเหลือจำกัด"
 
+msgid "Set fixed"
+msgstr ""
+
 msgid "Set interface as default Interface"
 msgstr "ตั้งให้อินเตอร์เฟซนี้เป็นค่าเริ่มต้น"
 
@@ -4650,6 +4681,9 @@ msgstr "โหมดการตั้งค่า"
 msgid ""
 "Shall the USB stick wizard proceed and program the image file %s into flash "
 "memory?"
+msgstr ""
+
+msgid "Share Folder's"
 msgstr ""
 
 msgid "Share View"
@@ -4887,6 +4921,9 @@ msgstr "ท่านยังไม่ได้ติดตั้งตัว Me
 msgid "Sorry no backups found!"
 msgstr "ไม่พบชุดสำรองข้อมูล"
 
+msgid "Sorry uShare Config is Missing"
+msgstr ""
+
 msgid ""
 "Sorry your Backup destination does not exist\n"
 "\n"
@@ -4927,10 +4964,7 @@ msgstr "เสียง"
 msgid "Soundcarrier"
 msgstr "Soundcarrier"
 
-msgid "Source active"
-msgstr ""
-
-msgid "Source inactive"
+msgid "Source request"
 msgstr ""
 
 msgid "South"
@@ -5028,6 +5062,9 @@ msgstr "บันทึกตำแหน่ง"
 msgid "Stored position"
 msgstr "บันทึกตำแหน่งแล้ว"
 
+msgid "Stream request"
+msgstr ""
+
 msgid "Subservice mode"
 msgstr ""
 
@@ -5079,6 +5116,9 @@ msgstr ""
 msgid "Swap Services"
 msgstr "สลับบริการ"
 
+msgid "Switch TV to correct input"
+msgstr ""
+
 msgid "Switch config"
 msgstr ""
 
@@ -5106,10 +5146,10 @@ msgstr ""
 msgid "System"
 msgstr "ระบบ"
 
-msgid "System Information"
+msgid "System Infomation"
 msgstr ""
 
-msgid "System:"
+msgid "System Information"
 msgstr ""
 
 msgid "System: "
@@ -5128,12 +5168,6 @@ msgstr "ระบบโทรทัศน์"
 msgid "TV button mode"
 msgstr ""
 
-msgid "TV standby"
-msgstr ""
-
-msgid "TV wakeup"
-msgstr ""
-
 msgid "Table of content for collection"
 msgstr "สารบัญของคอลเล็คชั่น"
 
@@ -5141,6 +5175,12 @@ msgid "Tags"
 msgstr "ป้าย"
 
 msgid "Teletext subtitle color"
+msgstr ""
+
+msgid "Telnet Interface"
+msgstr ""
+
+msgid "Telnet Port"
 msgstr ""
 
 msgid "Telnet Setup"
@@ -5629,6 +5669,12 @@ msgstr ""
 msgid "Total"
 msgstr ""
 
+msgid "Total Memory:"
+msgstr ""
+
+msgid "Total Swap:"
+msgstr ""
+
 msgid "Total cards:"
 msgstr ""
 
@@ -5838,6 +5884,9 @@ msgstr "เลือกใช้อินเตอร์เฟซนี้"
 msgid "Use Power Measurement"
 msgstr "ใช้ Power Measurement"
 
+msgid "Use TV remote control"
+msgstr ""
+
 msgid "Use ViX Coloured Butons"
 msgstr ""
 
@@ -5922,6 +5971,9 @@ msgid "Username (httpuser)"
 msgstr ""
 
 msgid "Username:"
+msgstr ""
+
+msgid "Using fixed address"
 msgstr ""
 
 msgid "Using old profile: "
@@ -6106,8 +6158,23 @@ msgstr ""
 msgid "Waiting"
 msgstr "กำลังคอย..."
 
+msgid "Wakeup"
+msgstr ""
+
+msgid "Wakeup TV from standby"
+msgstr ""
+
+msgid "Wakeup receiver from standby"
+msgstr ""
+
+msgid "Wakeup signal from TV"
+msgstr ""
+
 msgid "Warn if free space drops below (kB):"
 msgstr "เตือนทันที่ที่เนื้อที่ต่ำกว่า (kB)"
+
+msgid "Web Interface"
+msgstr ""
 
 msgid "Wed"
 msgstr "พุธ"
@@ -6234,6 +6301,9 @@ msgstr "เกิดข้อผิดพลาดในการบันทึ
 msgid "Write failed!"
 msgstr "พบข้อผิดพลาดในการเขียนข้อมูล!"
 
+msgid "XBox 360 support"
+msgstr ""
+
 msgid "YPbPr"
 msgstr "YPbPr"
 
@@ -6355,6 +6425,11 @@ msgid ""
 msgstr ""
 "ท่านได้เลือกที่จะนำสำรองกลับมาใช้ เครื่องจะบูทให้เมื่อเสร็จสิ้นกระบวนการ กรุณากดปุ่ม OK "
 "เพื่อเริ่มทำงาน"
+
+msgid ""
+"You have not setup your user info in the setup screen\n"
+"Press MENU, and enter your info, then try again"
+msgstr ""
 
 msgid "You have selected no logs to delete."
 msgstr ""
@@ -6892,9 +6967,6 @@ msgstr "ช่วยเหลือ..."
 msgid "hide player"
 msgstr "ซ่อนตัวเล่น"
 
-msgid "high"
-msgstr ""
-
 msgid "hops:"
 msgstr ""
 
@@ -6972,9 +7044,6 @@ msgstr "ล๊อคแล้ว"
 
 msgid "loopthrough to"
 msgstr "ปล่อยผ่านไปที่"
-
-msgid "low"
-msgstr ""
 
 msgid "manual"
 msgstr "ทำเอง"
@@ -7056,6 +7125,9 @@ msgstr "ไม่มีการหมดเวลา"
 
 msgid "no transparency"
 msgstr ""
+
+msgid "none"
+msgstr "ไม่มี"
 
 msgid "not configured"
 msgstr ""
@@ -7464,6 +7536,15 @@ msgid "top"
 msgstr ""
 
 msgid "tuner is not supported"
+msgstr ""
+
+msgid "uShare Name"
+msgstr ""
+
+msgid "uShare Port"
+msgstr ""
+
+msgid "uShare Setup"
 msgstr ""
 
 msgid "unavailable"
@@ -8218,9 +8299,6 @@ msgstr "เปลี่ยนช่องแล้ว"
 
 #~ msgid "no HDD found"
 #~ msgstr "ไม่พบฮาร์ดดิสก์ (HDD)"
-
-#~ msgid "none"
-#~ msgstr "ไม่มี"
 
 #~ msgid "open virtual keyboard input help"
 #~ msgstr "เรียกส่วนช่วยเหลือแป้นพิมพ์จำลอง"

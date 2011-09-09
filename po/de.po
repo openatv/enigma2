@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-02 16:10+0100\n"
+"POT-Creation-Date: 2011-09-08 16:22+0100\n"
 "PO-Revision-Date: 2011-08-02 13:59+0100\n"
 "Last-Translator: belierzz <belierzz@gmx.net>\n"
 "Language-Team: ViX\n"
@@ -263,12 +263,6 @@ msgstr "%s (%s)\n"
 
 msgid "( All readers)"
 msgstr "(Alle Lesegeräte)"
-
-msgid "(Beta)"
-msgstr "(Beta)"
-
-msgid "(Release)"
-msgstr "(Release)"
 
 msgid "(Show only reader:"
 msgstr "(Nur Lesegeräte zeigen:)"
@@ -592,9 +586,6 @@ msgstr "AC3-Downmix"
 msgid "AFP Setup"
 msgstr "AFP-Einstellungen"
 
-msgid "AVL Xtrend blindscan running... please wait"
-msgstr "AVL Xtrend Blindscan wird ausgeführt...bitte warten "
-
 #
 msgid "Abort"
 msgstr "Abbrechen"
@@ -713,6 +704,9 @@ msgstr "Zusatzinformationen"
 msgid "Adjust 3D settings"
 msgstr "3D-Einstellungen anpassen"
 
+msgid "Adjust HDMI CEC settings"
+msgstr ""
+
 msgid "Adjust display scrolling and symbols"
 msgstr "Bildschirm-Scrollverhalten und Symbole anpassen"
 
@@ -772,9 +766,6 @@ msgstr "Album"
 msgid "Alias"
 msgstr "Alias"
 
-msgid "Alias:"
-msgstr "Alias:"
-
 #
 msgid "All"
 msgstr "Alle"
@@ -783,8 +774,8 @@ msgstr "Alle"
 msgid "All Satellites"
 msgstr "Alle Satelliten"
 
-msgid "Allow Subtiles equals Audio mask"
-msgstr "Untertitel entsprechend Audioeingabemaske zulassen"
+msgid "Allow Subtitle equals Audio mask"
+msgstr ""
 
 msgid "Allow hearing impaired subtitles"
 msgstr "Untertitel für Hörgeschädigte zulassen"
@@ -825,6 +816,9 @@ msgstr "Unbekannter Fehler aufgetreten!"
 #
 msgid "Anonymize crashlog?"
 msgstr "Crashlog anonymisieren?"
+
+msgid "Any activity"
+msgstr ""
 
 msgid "April"
 msgstr "April"
@@ -1094,9 +1088,6 @@ msgstr "Schwarzer Bildschirm"
 msgid "Black screen till locked"
 msgstr "Schwarzer Bildschirm bis gesichert"
 
-msgid "Blindscan"
-msgstr "Blindscan"
-
 #
 msgid "Block noise reduction"
 msgstr "Block Noise-Reduzierung"
@@ -1280,8 +1271,8 @@ msgstr "Kanalauswahl"
 msgid "Channel list preview mode"
 msgstr "Programmlisten-Vorschau-Modus"
 
-msgid "Channel list service mode"
-msgstr "Programmlisten Service-Modus"
+msgid "Channel list service mode (requires restart)"
+msgstr ""
 
 #
 msgid "Channel not in services list"
@@ -1380,6 +1371,9 @@ msgstr "Aufräumassistent"
 #
 msgid "Clear before scan"
 msgstr "Vor dem Suchlauf löschen"
+
+msgid "Clear fixed"
+msgstr ""
 
 #
 msgid "Clear log"
@@ -1669,6 +1663,9 @@ msgstr "Erzeugen des Verzeichnisses %s fehlgeschlagen."
 msgid "Creating partition failed"
 msgstr "Partitionserzeugung fehlgeschlagen"
 
+msgid "Current CEC address"
+msgstr ""
+
 msgid "Current Event:"
 msgstr "Event:"
 
@@ -1736,6 +1733,9 @@ msgstr "D"
 #
 msgid "DHCP"
 msgstr "DHCP"
+
+msgid "DLNA support"
+msgstr ""
 
 msgid "DUAL LAYER DVD"
 msgstr "DUAL LAYER DVD"
@@ -1875,8 +1875,14 @@ msgstr ""
 msgid "Detected NIMs:"
 msgstr "Erkannte Tuner:"
 
+msgid "Device Information"
+msgstr ""
+
 msgid "Device Setup"
 msgstr "Geräte-Setup"
+
+msgid "Devices"
+msgstr ""
 
 #
 msgid "DiSEqC"
@@ -1928,6 +1934,10 @@ msgstr "Verzeichnis %s existiert nicht."
 #
 msgid "Directory browser"
 msgstr "Datei-Manager"
+
+#, python-format
+msgid "Directory contains %d file(s) and %d sub-directories.\n"
+msgstr ""
 
 #
 msgid "Disable"
@@ -2721,9 +2731,18 @@ msgstr "Nach Drücken von OK wird folgende Aufgabe ausgeführt!"
 msgid "Format"
 msgstr "Formatieren"
 
+msgid "Forward volume keys"
+msgstr ""
+
 #
 msgid "Frame size in full view"
 msgstr "Rahmengröße in Vollansicht"
+
+msgid "Free Memory:"
+msgstr ""
+
+msgid "Free Swap:"
+msgstr ""
 
 msgid "Free memory"
 msgstr "Freier Speicher"
@@ -2778,9 +2797,6 @@ msgstr "FTP-Dienst aktiviert"
 
 msgid "Ftpd service type: Vsftpd server"
 msgstr "Typ des FTPD-Dienstes: VSFTPD-Server"
-
-msgid "GB"
-msgstr "GB"
 
 #
 msgid ""
@@ -2868,6 +2884,15 @@ msgstr "Überwachungsintervall-Modus"
 
 msgid "HD list"
 msgstr "HD-Liste"
+
+msgid "Handle deepstandby events"
+msgstr ""
+
+msgid "Handle standby from TV"
+msgstr ""
+
+msgid "Handle wakeup from TV"
+msgstr ""
 
 #
 msgid "Harddisk"
@@ -3009,6 +3034,9 @@ msgstr ""
 "bleiben. Die hellen Schattierungen werden im folgenden Schritt eingestellt.\n"
 "Drücken Sie OK, wenn Sie mit dem Ergebnis zufrieden sind."
 
+msgid "Image Information"
+msgstr ""
+
 msgid "Image:"
 msgstr "Image:"
 
@@ -3025,9 +3053,6 @@ msgstr ""
 
 msgid "Inadyn Log"
 msgstr "Inadyn-Log"
-
-msgid "Inadyn Manager"
-msgstr "Inadyn-Manager"
 
 msgid "Inadyn Setup"
 msgstr "Inadyn-Einstellungen"
@@ -3160,6 +3185,9 @@ msgstr "Sofortaufnahme..."
 #
 msgid "Instant record location"
 msgstr "Verzeichnis der Sofortaufnahme"
+
+msgid "Interface"
+msgstr ""
 
 #
 msgid "Interface: "
@@ -3437,9 +3465,6 @@ msgstr "OK-Taste lang"
 #
 msgid "Longitude"
 msgstr "Längengrad"
-
-msgid "MB"
-msgstr "MB"
 
 #
 msgid "MORE"
@@ -3742,6 +3767,9 @@ msgstr "Netzwerk-ID"
 #
 msgid "Network SSID"
 msgstr "Netzwerk-SSID"
+
+msgid "Network Servers:"
+msgstr ""
 
 #
 msgid "Network Setup"
@@ -4051,9 +4079,6 @@ msgstr ""
 "Freier Speicher: %sMB\n"
 "Pfad: %s"
 
-msgid "Nothing"
-msgstr "Nichts"
-
 #
 msgid ""
 "Nothing to scan!\n"
@@ -4103,6 +4128,9 @@ msgstr "OK, Erweiterungen entfernen."
 msgid "OSD Settings"
 msgstr "OSD-Einstellungen"
 
+msgid "OSD name request"
+msgstr ""
+
 #
 msgid "OSD visibility"
 msgstr "GUI-Deckkraft"
@@ -4116,6 +4144,12 @@ msgstr "Oktober"
 #
 msgid "Off"
 msgstr "Aus"
+
+msgid ""
+"Offline upgrade in progress\n"
+"Please wait until your box reboots\n"
+"This may take a few minutes"
+msgstr ""
 
 msgid "Ok"
 msgstr "OK"
@@ -4148,12 +4182,6 @@ msgstr "Nur Erweiterungen."
 #
 msgid "Open Context Menu"
 msgstr "Öffne Kontext-Menü"
-
-msgid "Open bouquet selection"
-msgstr "Freie Bouquet-Auswahl"
-
-msgid "Open channel selection"
-msgstr "Kanalauswahl öffnen"
 
 msgid "OpenVPN Setup"
 msgstr "OpenVPN-Einstellungen"
@@ -4677,6 +4705,9 @@ msgstr "Untertitel für Hörgeschädigte bevorzugen"
 msgid "Prefer subtitle stored by service"
 msgstr "Standard-Untertitel des Programms bevorzugen"
 
+msgid "Prefered EPG Language"
+msgstr ""
+
 msgid "Preferred tuner"
 msgstr "Bevorzugter Tuner "
 
@@ -4818,6 +4849,12 @@ msgstr "Anbieter:"
 
 msgid "Providers: "
 msgstr "Anbieter: "
+
+msgid "Put TV in standby"
+msgstr ""
+
+msgid "Put receiver in standby"
+msgstr ""
 
 #
 msgid "Python frontend for /tmp/mmi.socket"
@@ -5356,9 +5393,6 @@ msgstr "WLAN-Netzwerke suchen"
 msgid "Scan additional SR"
 msgstr "Durchsuche weitere SR"
 
-msgid "Scan band"
-msgstr "Band scannen"
-
 #
 msgid "Scan band EU HYPER"
 msgstr "EU HYPER scannen"
@@ -5406,18 +5440,6 @@ msgstr "US MID scannen"
 #
 msgid "Scan band US SUPER"
 msgstr "US SUPER scannen"
-
-msgid "Scan start frequency"
-msgstr "Scan-Anfangsfrequenz"
-
-msgid "Scan start symbolrate"
-msgstr "Scan-Anfangssymbolrate"
-
-msgid "Scan stop frequency"
-msgstr "Scan-Endfrequenz"
-
-msgid "Scan stop symbolrate"
-msgstr "Scan-Endsymbolrate"
 
 msgid ""
 "Scan your network for wireless access points and connect to them using your "
@@ -5473,6 +5495,9 @@ msgstr "Sekundärer DNS"
 msgid "Seek"
 msgstr "Ermitteln"
 
+msgid "Seekbar sensibility"
+msgstr ""
+
 #
 msgid "Select"
 msgstr "Auswählen"
@@ -5516,6 +5541,9 @@ msgstr "Dateien zum sichern auswählen."
 #
 msgid "Select files/folders to backup"
 msgstr "Wählen Sie Dateien/Ordner für die Sicherung"
+
+msgid "Select folders"
+msgstr ""
 
 msgid "Select input device"
 msgstr "Eingabegerät auswählen."
@@ -5676,6 +5704,9 @@ msgstr "Spannung und 22KHz einstellen"
 msgid "Set available internal memory threshold for the warning."
 msgstr "Warnschwelle für verfügbaren internen Speicher setzen"
 
+msgid "Set fixed"
+msgstr ""
+
 #
 msgid "Set interface as default Interface"
 msgstr "Setze Netzwerkadapter als Standard"
@@ -5706,6 +5737,9 @@ msgid ""
 msgstr ""
 "Soll der USB-Speicherstick-Assistent fortfahren und die Image-Datei %s in "
 "den Flashspeicher schreiben?"
+
+msgid "Share Folder's"
+msgstr ""
 
 msgid "Share View"
 msgstr "Ansicht Netzlaufwerk"
@@ -5984,6 +6018,9 @@ msgstr "Entschuldigung, der MediaScanner ist nicht installiert!"
 msgid "Sorry no backups found!"
 msgstr "Entschuldigung, keine Sicherungen gefunden!"
 
+msgid "Sorry uShare Config is Missing"
+msgstr ""
+
 msgid ""
 "Sorry your Backup destination does not exist\n"
 "\n"
@@ -6029,11 +6066,8 @@ msgstr "Ton"
 msgid "Soundcarrier"
 msgstr "Audio-Carrier"
 
-msgid "Source active"
-msgstr "Akitve Quelle"
-
-msgid "Source inactive"
-msgstr "Quelle inaktiv"
+msgid "Source request"
+msgstr ""
 
 #
 msgid "South"
@@ -6153,6 +6187,9 @@ msgstr "Position speichern"
 msgid "Stored position"
 msgstr "Gespeicherte Position"
 
+msgid "Stream request"
+msgstr ""
+
 msgid "Subservice mode"
 msgstr "Unterkanal-Modus"
 
@@ -6210,6 +6247,9 @@ msgstr "Tausche SNR/dB mit SNR/% im OSD"
 msgid "Swap Services"
 msgstr "Kanäle tauschen"
 
+msgid "Switch TV to correct input"
+msgstr ""
+
 msgid "Switch config"
 msgstr "Konfiguration umschalten"
 
@@ -6243,11 +6283,11 @@ msgstr "Zeit-Synchronisierung mit"
 msgid "System"
 msgstr "System"
 
+msgid "System Infomation"
+msgstr ""
+
 msgid "System Information"
 msgstr "System-Info"
-
-msgid "System:"
-msgstr "System:"
 
 msgid "System: "
 msgstr "System: "
@@ -6268,12 +6308,6 @@ msgstr "Fernsehnorm"
 msgid "TV button mode"
 msgstr "TV-Taster Modus"
 
-msgid "TV standby"
-msgstr "Standby TV"
-
-msgid "TV wakeup"
-msgstr "Aufwecken TV"
-
 #
 msgid "Table of content for collection"
 msgstr "Inhalt der Zusammenstellung"
@@ -6284,6 +6318,12 @@ msgstr "Tags"
 
 msgid "Teletext subtitle color"
 msgstr "Farbe Teletext-Untertitel"
+
+msgid "Telnet Interface"
+msgstr ""
+
+msgid "Telnet Port"
+msgstr ""
 
 msgid "Telnet Setup"
 msgstr "Telnet-Einstellungen"
@@ -6913,6 +6953,12 @@ msgstr "Kopf- und Fußteil"
 msgid "Total"
 msgstr "Insgesamt"
 
+msgid "Total Memory:"
+msgstr ""
+
+msgid "Total Swap:"
+msgstr ""
+
 msgid "Total cards:"
 msgstr "Anzahl Smartcards:"
 
@@ -7175,6 +7221,9 @@ msgstr "Netzwerkadapter aktivieren"
 msgid "Use Power Measurement"
 msgstr "Verwende Stromaufnahmen-Messung"
 
+msgid "Use TV remote control"
+msgstr ""
+
 msgid "Use ViX Coloured Butons"
 msgstr "Nutze VIX-Farbtasten"
 
@@ -7277,6 +7326,9 @@ msgstr "Nutzername (httpuser)"
 
 msgid "Username:"
 msgstr "Nutzername:"
+
+msgid "Using fixed address"
+msgstr ""
 
 msgid "Using old profile: "
 msgstr "Altes Profil verwenden: "
@@ -7504,9 +7556,24 @@ msgstr "Partitionierung abwarten"
 msgid "Waiting"
 msgstr "Warte"
 
+msgid "Wakeup"
+msgstr ""
+
+msgid "Wakeup TV from standby"
+msgstr ""
+
+msgid "Wakeup receiver from standby"
+msgstr ""
+
+msgid "Wakeup signal from TV"
+msgstr ""
+
 #
 msgid "Warn if free space drops below (kB):"
 msgstr "Warnen wenn der freie interne Speicher unter (kB) fällt:"
+
+msgid "Web Interface"
+msgstr ""
 
 #
 msgid "Wed"
@@ -7658,6 +7725,9 @@ msgstr "Schreibfehler bei der Aufnahme. Festplatte voll?\n"
 #
 msgid "Write failed!"
 msgstr "Schreiben fehlgeschlagen!"
+
+msgid "XBox 360 support"
+msgstr ""
 
 #
 msgid "YPbPr"
@@ -7820,6 +7890,11 @@ msgstr ""
 "Sie haben sich entschlossen, Ihre Einstellungen wiederherzustellen. Enigma2 "
 "wird nach der Wiederherstellung neu starten. Bitte drücken Sie OK um mit der "
 "Wiederherstellung zu beginnen."
+
+msgid ""
+"You have not setup your user info in the setup screen\n"
+"Press MENU, and enter your info, then try again"
+msgstr ""
 
 msgid "You have selected no logs to delete."
 msgstr "Sie haben keine Logs zum löschen ausgewählt."
@@ -8511,9 +8586,6 @@ msgstr "Hilfe..."
 msgid "hide player"
 msgstr "Player ausblenden"
 
-msgid "high"
-msgstr "Hoch"
-
 msgid "hops:"
 msgstr "Hops:"
 
@@ -8615,9 +8687,6 @@ msgstr "Signal"
 #
 msgid "loopthrough to"
 msgstr "Verbunden mit"
-
-msgid "low"
-msgstr "Niedrig"
 
 #
 msgid "manual"
@@ -8722,6 +8791,9 @@ msgstr "Kein Timeout"
 
 msgid "no transparency"
 msgstr "Keine Transparenz"
+
+msgid "none"
+msgstr ""
 
 #
 msgid "not configured"
@@ -9232,6 +9304,15 @@ msgstr "Oben"
 msgid "tuner is not supported"
 msgstr "Nicht unterstützter Tuner"
 
+msgid "uShare Name"
+msgstr ""
+
+msgid "uShare Port"
+msgstr ""
+
+msgid "uShare Setup"
+msgstr ""
+
 #
 msgid "unavailable"
 msgstr "Nicht verfügbar"
@@ -9358,6 +9439,12 @@ msgstr "Umgeschaltet"
 #~ "%s\n"
 #~ "(%s, %d MB frei)"
 
+#~ msgid "(Beta)"
+#~ msgstr "(Beta)"
+
+#~ msgid "(Release)"
+#~ msgstr "(Release)"
+
 #~ msgid "A BackToTheRoots-Skin .. or good old times."
 #~ msgstr "Ein BackToTheRoots-Skin"
 
@@ -9399,6 +9486,9 @@ msgstr "Umgeschaltet"
 #
 #~ msgid "AC3 default"
 #~ msgstr "AC3 standardmäßig"
+
+#~ msgid "AVL Xtrend blindscan running... please wait"
+#~ msgstr "AVL Xtrend Blindscan wird ausgeführt...bitte warten "
 
 #
 #~ msgid "Abort this Wizard."
@@ -9458,9 +9548,15 @@ msgstr "Umgeschaltet"
 #~ msgid "Ai.HD skin-style control plugin"
 #~ msgstr "Ai.HD Skin-Stil Einstellungen"
 
+#~ msgid "Alias:"
+#~ msgstr "Alias:"
+
 #
 #~ msgid "All non-repeating timers"
 #~ msgstr "Alle sich nicht Wiederholenden"
+
+#~ msgid "Allow Subtiles equals Audio mask"
+#~ msgstr "Untertitel entsprechend Audioeingabemaske zulassen"
 
 #
 #~ msgid "Allow zapping via Webinterface"
@@ -9598,6 +9694,9 @@ msgstr "Umgeschaltet"
 #~ msgid "Begin of timespan"
 #~ msgstr "Anfang der Zeitspanne"
 
+#~ msgid "Blindscan"
+#~ msgstr "Blindscan"
+
 #~ msgid "Bonjour/Avahi control plugin"
 #~ msgstr "Bonjour/Avahi Kontrolle"
 
@@ -9693,6 +9792,9 @@ msgstr "Umgeschaltet"
 #
 #~ msgid "Channel audio:"
 #~ msgstr "Kanal Tonspur:"
+
+#~ msgid "Channel list service mode"
+#~ msgstr "Programmlisten Service-Modus"
 
 #
 #~ msgid "Channels"
@@ -9889,14 +9991,68 @@ msgstr "Umgeschaltet"
 #~ msgid "Detected HDD:"
 #~ msgstr "Erkannte Festplatte:"
 
+#~ msgid "GB"
+#~ msgstr "GB"
+
+#~ msgid "Inadyn Manager"
+#~ msgstr "Inadyn-Manager"
+
+#~ msgid "MB"
+#~ msgstr "MB"
+
 #~ msgid "MMC Card"
 #~ msgstr "MMC Card"
 
+#~ msgid "Nothing"
+#~ msgstr "Nichts"
+
+#~ msgid "Open bouquet selection"
+#~ msgstr "Freie Bouquet-Auswahl"
+
+#~ msgid "Open channel selection"
+#~ msgstr "Kanalauswahl öffnen"
+
 #~ msgid "Remote Setup"
 #~ msgstr "Fernbedienung-Einstellungen"
+
+#~ msgid "Scan band"
+#~ msgstr "Band scannen"
+
+#~ msgid "Scan start frequency"
+#~ msgstr "Scan-Anfangsfrequenz"
+
+#~ msgid "Scan start symbolrate"
+#~ msgstr "Scan-Anfangssymbolrate"
+
+#~ msgid "Scan stop frequency"
+#~ msgstr "Scan-Endfrequenz"
+
+#~ msgid "Scan stop symbolrate"
+#~ msgstr "Scan-Endsymbolrate"
+
+#~ msgid "Source active"
+#~ msgstr "Akitve Quelle"
+
+#~ msgid "Source inactive"
+#~ msgstr "Quelle inaktiv"
+
+#~ msgid "System:"
+#~ msgstr "System:"
+
+#~ msgid "TV standby"
+#~ msgstr "Standby TV"
+
+#~ msgid "TV wakeup"
+#~ msgstr "Aufwecken TV"
 
 #~ msgid "Timeshift Settings..."
 #~ msgstr "Timeshift-EInstellungen"
 
 #~ msgid "VIX"
 #~ msgstr "VIX"
+
+#~ msgid "high"
+#~ msgstr "Hoch"
+
+#~ msgid "low"
+#~ msgstr "Niedrig"

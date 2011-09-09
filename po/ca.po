@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ca\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-02 16:10+0100\n"
+"POT-Creation-Date: 2011-09-08 16:22+0100\n"
 "PO-Revision-Date: 2007-08-14 10:23+0200\n"
 "Last-Translator: Oriol Pellicer <oriol@elsud.org>\n"
 "Language-Team: \n"
@@ -227,12 +227,6 @@ msgid "%s (%s)\n"
 msgstr "%s (%s)\n"
 
 msgid "( All readers)"
-msgstr ""
-
-msgid "(Beta)"
-msgstr ""
-
-msgid "(Release)"
 msgstr ""
 
 msgid "(Show only reader:"
@@ -558,9 +552,6 @@ msgstr ""
 msgid "AFP Setup"
 msgstr ""
 
-msgid "AVL Xtrend blindscan running... please wait"
-msgstr ""
-
 #
 msgid "Abort"
 msgstr ""
@@ -677,6 +668,9 @@ msgstr ""
 msgid "Adjust 3D settings"
 msgstr ""
 
+msgid "Adjust HDMI CEC settings"
+msgstr ""
+
 msgid "Adjust display scrolling and symbols"
 msgstr ""
 
@@ -731,9 +725,6 @@ msgstr "Àlbum"
 msgid "Alias"
 msgstr ""
 
-msgid "Alias:"
-msgstr ""
-
 #
 msgid "All"
 msgstr "Tot"
@@ -742,7 +733,7 @@ msgstr "Tot"
 msgid "All Satellites"
 msgstr ""
 
-msgid "Allow Subtiles equals Audio mask"
+msgid "Allow Subtitle equals Audio mask"
 msgstr ""
 
 msgid "Allow hearing impaired subtitles"
@@ -783,6 +774,9 @@ msgstr ""
 
 #
 msgid "Anonymize crashlog?"
+msgstr ""
+
+msgid "Any activity"
 msgstr ""
 
 msgid "April"
@@ -1046,9 +1040,6 @@ msgstr ""
 msgid "Black screen till locked"
 msgstr ""
 
-msgid "Blindscan"
-msgstr ""
-
 #
 msgid "Block noise reduction"
 msgstr ""
@@ -1227,7 +1218,7 @@ msgstr "Selecció de canal"
 msgid "Channel list preview mode"
 msgstr ""
 
-msgid "Channel list service mode"
+msgid "Channel list service mode (requires restart)"
 msgstr ""
 
 #
@@ -1327,6 +1318,9 @@ msgstr ""
 #
 msgid "Clear before scan"
 msgstr "Netejar abans de buscar"
+
+msgid "Clear fixed"
+msgstr ""
 
 #
 msgid "Clear log"
@@ -1611,6 +1605,9 @@ msgstr ""
 msgid "Creating partition failed"
 msgstr "No s'ha pogut crear la partició"
 
+msgid "Current CEC address"
+msgstr ""
+
 msgid "Current Event:"
 msgstr ""
 
@@ -1678,6 +1675,9 @@ msgstr ""
 
 #
 msgid "DHCP"
+msgstr ""
+
+msgid "DLNA support"
 msgstr ""
 
 #
@@ -1817,7 +1817,13 @@ msgstr ""
 msgid "Detected NIMs:"
 msgstr "NIMs detectats:"
 
+msgid "Device Information"
+msgstr ""
+
 msgid "Device Setup"
+msgstr ""
+
+msgid "Devices"
 msgstr ""
 
 #
@@ -1869,6 +1875,10 @@ msgstr ""
 
 #
 msgid "Directory browser"
+msgstr ""
+
+#, python-format
+msgid "Directory contains %d file(s) and %d sub-directories.\n"
 msgstr ""
 
 #
@@ -2635,8 +2645,17 @@ msgstr ""
 msgid "Format"
 msgstr ""
 
+msgid "Forward volume keys"
+msgstr ""
+
 #
 msgid "Frame size in full view"
+msgstr ""
+
+msgid "Free Memory:"
+msgstr ""
+
+msgid "Free Swap:"
 msgstr ""
 
 msgid "Free memory"
@@ -2692,9 +2711,6 @@ msgid "Ftp service Enabled."
 msgstr ""
 
 msgid "Ftpd service type: Vsftpd server"
-msgstr ""
-
-msgid "GB"
 msgstr ""
 
 #
@@ -2782,6 +2798,15 @@ msgid "Guard interval mode"
 msgstr "Mode interval segur"
 
 msgid "HD list"
+msgstr ""
+
+msgid "Handle deepstandby events"
+msgstr ""
+
+msgid "Handle standby from TV"
+msgstr ""
+
+msgid "Handle wakeup from TV"
 msgstr ""
 
 #
@@ -2914,6 +2939,9 @@ msgid ""
 "If you are happy with the result, press OK."
 msgstr ""
 
+msgid "Image Information"
+msgstr ""
+
 msgid "Image:"
 msgstr ""
 
@@ -2928,9 +2956,6 @@ msgstr ""
 "Per a poder fer una gravació programada, s'ha canviat al canal adequat!\n"
 
 msgid "Inadyn Log"
-msgstr ""
-
-msgid "Inadyn Manager"
 msgstr ""
 
 msgid "Inadyn Setup"
@@ -3063,6 +3088,9 @@ msgstr "Gravació instantània..."
 
 #
 msgid "Instant record location"
+msgstr ""
+
+msgid "Interface"
 msgstr ""
 
 #
@@ -3342,9 +3370,6 @@ msgstr ""
 #
 msgid "Longitude"
 msgstr "Longitud"
-
-msgid "MB"
-msgstr ""
 
 #
 msgid "MORE"
@@ -3645,6 +3670,9 @@ msgstr ""
 msgid "Network SSID"
 msgstr ""
 
+msgid "Network Servers:"
+msgstr ""
+
 #
 msgid "Network Setup"
 msgstr "Config xarxa"
@@ -3931,9 +3959,6 @@ msgid ""
 "Path: %s"
 msgstr ""
 
-msgid "Nothing"
-msgstr ""
-
 #
 msgid ""
 "Nothing to scan!\n"
@@ -3979,6 +4004,9 @@ msgstr ""
 msgid "OSD Settings"
 msgstr "Config OSD"
 
+msgid "OSD name request"
+msgstr ""
+
 #
 msgid "OSD visibility"
 msgstr ""
@@ -3992,6 +4020,12 @@ msgstr ""
 #
 msgid "Off"
 msgstr "Desactivat"
+
+msgid ""
+"Offline upgrade in progress\n"
+"Please wait until your box reboots\n"
+"This may take a few minutes"
+msgstr ""
 
 msgid "Ok"
 msgstr ""
@@ -4023,12 +4057,6 @@ msgstr ""
 
 #
 msgid "Open Context Menu"
-msgstr ""
-
-msgid "Open bouquet selection"
-msgstr ""
-
-msgid "Open channel selection"
 msgstr ""
 
 msgid "OpenVPN Setup"
@@ -4541,6 +4569,9 @@ msgstr ""
 msgid "Prefer subtitle stored by service"
 msgstr ""
 
+msgid "Prefered EPG Language"
+msgstr ""
+
 msgid "Preferred tuner"
 msgstr ""
 
@@ -4681,6 +4712,12 @@ msgid "Providers:"
 msgstr ""
 
 msgid "Providers: "
+msgstr ""
+
+msgid "Put TV in standby"
+msgstr ""
+
+msgid "Put receiver in standby"
 msgstr ""
 
 #
@@ -5218,9 +5255,6 @@ msgstr ""
 msgid "Scan additional SR"
 msgstr "Escanejar SR addicional"
 
-msgid "Scan band"
-msgstr ""
-
 #
 msgid "Scan band EU HYPER"
 msgstr "Escanejar banda EU HYPER"
@@ -5268,18 +5302,6 @@ msgstr "Escanejar banda US MID"
 #
 msgid "Scan band US SUPER"
 msgstr "Escanejar banda US SUPER"
-
-msgid "Scan start frequency"
-msgstr ""
-
-msgid "Scan start symbolrate"
-msgstr ""
-
-msgid "Scan stop frequency"
-msgstr ""
-
-msgid "Scan stop symbolrate"
-msgstr ""
 
 msgid ""
 "Scan your network for wireless access points and connect to them using your "
@@ -5329,6 +5351,9 @@ msgstr ""
 msgid "Seek"
 msgstr "Posicionar"
 
+msgid "Seekbar sensibility"
+msgstr ""
+
 #
 msgid "Select"
 msgstr ""
@@ -5371,6 +5396,9 @@ msgstr ""
 
 #
 msgid "Select files/folders to backup"
+msgstr ""
+
+msgid "Select folders"
 msgstr ""
 
 msgid "Select input device"
@@ -5532,6 +5560,9 @@ msgstr ""
 msgid "Set available internal memory threshold for the warning."
 msgstr ""
 
+msgid "Set fixed"
+msgstr ""
+
 #
 msgid "Set interface as default Interface"
 msgstr ""
@@ -5560,6 +5591,9 @@ msgstr ""
 msgid ""
 "Shall the USB stick wizard proceed and program the image file %s into flash "
 "memory?"
+msgstr ""
+
+msgid "Share Folder's"
 msgstr ""
 
 msgid "Share View"
@@ -5840,6 +5874,9 @@ msgstr ""
 msgid "Sorry no backups found!"
 msgstr ""
 
+msgid "Sorry uShare Config is Missing"
+msgstr ""
+
 #
 msgid ""
 "Sorry your Backup destination does not exist\n"
@@ -5881,10 +5918,7 @@ msgstr "So"
 msgid "Soundcarrier"
 msgstr "Portadora de so"
 
-msgid "Source active"
-msgstr ""
-
-msgid "Source inactive"
+msgid "Source request"
 msgstr ""
 
 #
@@ -6006,6 +6040,9 @@ msgstr "Guardar la posició"
 msgid "Stored position"
 msgstr "Posició guardada"
 
+msgid "Stream request"
+msgstr ""
+
 msgid "Subservice mode"
 msgstr ""
 
@@ -6063,6 +6100,9 @@ msgstr ""
 msgid "Swap Services"
 msgstr "Intercanviar canals"
 
+msgid "Switch TV to correct input"
+msgstr ""
+
 msgid "Switch config"
 msgstr ""
 
@@ -6096,10 +6136,10 @@ msgstr ""
 msgid "System"
 msgstr "Sistema"
 
-msgid "System Information"
+msgid "System Infomation"
 msgstr ""
 
-msgid "System:"
+msgid "System Information"
 msgstr ""
 
 msgid "System: "
@@ -6121,12 +6161,6 @@ msgstr "Sistema de TV"
 msgid "TV button mode"
 msgstr ""
 
-msgid "TV standby"
-msgstr ""
-
-msgid "TV wakeup"
-msgstr ""
-
 #
 msgid "Table of content for collection"
 msgstr ""
@@ -6136,6 +6170,12 @@ msgid "Tags"
 msgstr ""
 
 msgid "Teletext subtitle color"
+msgstr ""
+
+msgid "Telnet Interface"
+msgstr ""
+
+msgid "Telnet Port"
 msgstr ""
 
 msgid "Telnet Setup"
@@ -6674,6 +6714,12 @@ msgstr ""
 msgid "Total"
 msgstr ""
 
+msgid "Total Memory:"
+msgstr ""
+
+msgid "Total Swap:"
+msgstr ""
+
 msgid "Total cards:"
 msgstr ""
 
@@ -6938,6 +6984,9 @@ msgstr ""
 msgid "Use Power Measurement"
 msgstr "Utilitzar mesura de corrent"
 
+msgid "Use TV remote control"
+msgstr ""
+
 msgid "Use ViX Coloured Butons"
 msgstr ""
 
@@ -7037,6 +7086,9 @@ msgid "Username (httpuser)"
 msgstr ""
 
 msgid "Username:"
+msgstr ""
+
+msgid "Using fixed address"
 msgstr ""
 
 msgid "Using old profile: "
@@ -7259,8 +7311,23 @@ msgstr ""
 msgid "Waiting"
 msgstr ""
 
+msgid "Wakeup"
+msgstr ""
+
+msgid "Wakeup TV from standby"
+msgstr ""
+
+msgid "Wakeup receiver from standby"
+msgstr ""
+
+msgid "Wakeup signal from TV"
+msgstr ""
+
 #
 msgid "Warn if free space drops below (kB):"
+msgstr ""
+
+msgid "Web Interface"
 msgstr ""
 
 #
@@ -7387,6 +7454,9 @@ msgstr "Error d'escriptura durant la gravació. Disc ple?\n"
 
 #
 msgid "Write failed!"
+msgstr ""
+
+msgid "XBox 360 support"
 msgstr ""
 
 #
@@ -7535,6 +7605,11 @@ msgstr ""
 msgid ""
 "You have chosen to restore your settings. Enigma2 will restart after "
 "restore. Please press OK to start the restore now."
+msgstr ""
+
+msgid ""
+"You have not setup your user info in the setup screen\n"
+"Press MENU, and enter your info, then try again"
 msgstr ""
 
 msgid "You have selected no logs to delete."
@@ -8200,9 +8275,6 @@ msgstr "ajuda..."
 msgid "hide player"
 msgstr "amagar reproductor"
 
-msgid "high"
-msgstr ""
-
 msgid "hops:"
 msgstr ""
 
@@ -8303,9 +8375,6 @@ msgstr "bloquejat"
 
 #
 msgid "loopthrough to"
-msgstr ""
-
-msgid "low"
 msgstr ""
 
 #
@@ -8414,6 +8483,10 @@ msgstr "sense timeout"
 
 msgid "no transparency"
 msgstr ""
+
+#
+msgid "none"
+msgstr "cap"
 
 #
 msgid "not configured"
@@ -8922,6 +8995,15 @@ msgid "top"
 msgstr ""
 
 msgid "tuner is not supported"
+msgstr ""
+
+msgid "uShare Name"
+msgstr ""
+
+msgid "uShare Port"
+msgstr ""
+
+msgid "uShare Setup"
 msgstr ""
 
 #
@@ -9624,10 +9706,6 @@ msgstr "zappejat"
 #
 #~ msgid "no Picture found"
 #~ msgstr "no s'han trobat imatges"
-
-#
-#~ msgid "none"
-#~ msgstr "cap"
 
 #
 #~ msgid "only /etc/enigma2 directory"
