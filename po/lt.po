@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-02 16:10+0100\n"
+"POT-Creation-Date: 2011-09-08 16:22+0100\n"
 "PO-Revision-Date: 2010-04-03 17:28+0200\n"
 "Last-Translator: Audronis Grincevicius <audrgrin@takas.lt>\n"
 "Language-Team: \n"
@@ -215,12 +215,6 @@ msgid "%s (%s)\n"
 msgstr "%s (%s)\n"
 
 msgid "( All readers)"
-msgstr ""
-
-msgid "(Beta)"
-msgstr ""
-
-msgid "(Release)"
 msgstr ""
 
 msgid "(Show only reader:"
@@ -488,9 +482,6 @@ msgstr "AC3 žemyn miksuotas"
 msgid "AFP Setup"
 msgstr ""
 
-msgid "AVL Xtrend blindscan running... please wait"
-msgstr ""
-
 msgid "Abort"
 msgstr "Nutraukti"
 
@@ -585,6 +576,9 @@ msgstr ""
 msgid "Adjust 3D settings"
 msgstr ""
 
+msgid "Adjust HDMI CEC settings"
+msgstr ""
+
 msgid "Adjust display scrolling and symbols"
 msgstr ""
 
@@ -634,16 +628,13 @@ msgstr "Albumas"
 msgid "Alias"
 msgstr ""
 
-msgid "Alias:"
-msgstr ""
-
 msgid "All"
 msgstr "Visi"
 
 msgid "All Satellites"
 msgstr "Visi palydovai"
 
-msgid "Allow Subtiles equals Audio mask"
+msgid "Allow Subtitle equals Audio mask"
 msgstr ""
 
 msgid "Allow hearing impaired subtitles"
@@ -678,6 +669,9 @@ msgstr "Įvyko nežinoma klaida!"
 
 msgid "Anonymize crashlog?"
 msgstr "Anonimizuotas crashlog?"
+
+msgid "Any activity"
+msgstr ""
 
 msgid "April"
 msgstr ""
@@ -906,9 +900,6 @@ msgstr ""
 msgid "Black screen till locked"
 msgstr ""
 
-msgid "Blindscan"
-msgstr ""
-
 msgid "Block noise reduction"
 msgstr "Blokuoti triukšmo mažėjimą"
 
@@ -1063,7 +1054,7 @@ msgstr "Kanalo pasirinkimas"
 msgid "Channel list preview mode"
 msgstr ""
 
-msgid "Channel list service mode"
+msgid "Channel list service mode (requires restart)"
 msgstr ""
 
 msgid "Channel not in services list"
@@ -1140,6 +1131,9 @@ msgstr "Išvalymo vedlys"
 
 msgid "Clear before scan"
 msgstr "Išvalyti prieš skanavimą"
+
+msgid "Clear fixed"
+msgstr ""
 
 msgid "Clear log"
 msgstr "Išvalyti log"
@@ -1377,6 +1371,9 @@ msgstr "Direktorijos sukurti %s nepavyko."
 msgid "Creating partition failed"
 msgstr "Disko skaidinio sukurti nepavyko"
 
+msgid "Current CEC address"
+msgstr ""
+
 msgid "Current Event:"
 msgstr ""
 
@@ -1433,6 +1430,9 @@ msgstr "D"
 
 msgid "DHCP"
 msgstr "DHCP"
+
+msgid "DLNA support"
+msgstr ""
 
 msgid "DUAL LAYER DVD"
 msgstr "DVIGUBAS DVD"
@@ -1549,7 +1549,13 @@ msgstr ""
 msgid "Detected NIMs:"
 msgstr "Rasti imtuvai:"
 
+msgid "Device Information"
+msgstr ""
+
 msgid "Device Setup"
+msgstr ""
+
+msgid "Devices"
 msgstr ""
 
 msgid "DiSEqC"
@@ -1591,6 +1597,10 @@ msgstr "Direktorijos %s nėra."
 
 msgid "Directory browser"
 msgstr "Direktorijų naršyklė"
+
+#, python-format
+msgid "Directory contains %d file(s) and %d sub-directories.\n"
+msgstr ""
 
 msgid "Disable"
 msgstr "Išjungti"
@@ -2247,8 +2257,17 @@ msgstr "Kitos užduotys bus atliktos po to, kai jūs paspausite OK!"
 msgid "Format"
 msgstr "Formatas"
 
+msgid "Forward volume keys"
+msgstr ""
+
 msgid "Frame size in full view"
 msgstr "Kadro dydis pilname vaizde"
+
+msgid "Free Memory:"
+msgstr ""
+
+msgid "Free Swap:"
+msgstr ""
 
 msgid "Free memory"
 msgstr ""
@@ -2294,9 +2313,6 @@ msgid "Ftp service Enabled."
 msgstr ""
 
 msgid "Ftpd service type: Vsftpd server"
-msgstr ""
-
-msgid "GB"
 msgstr ""
 
 msgid ""
@@ -2370,6 +2386,15 @@ msgid "Guard interval mode"
 msgstr "Apsaugos intervalo režimas"
 
 msgid "HD list"
+msgstr ""
+
+msgid "Handle deepstandby events"
+msgstr ""
+
+msgid "Handle standby from TV"
+msgstr ""
+
+msgid "Handle wakeup from TV"
 msgstr ""
 
 msgid "Harddisk"
@@ -2494,6 +2519,9 @@ msgstr ""
 "žingsnyje.\n"
 "Jeigu Jūs patenkinti gautu rezultatu, spauskite OK."
 
+msgid "Image Information"
+msgstr ""
+
 msgid "Image:"
 msgstr ""
 
@@ -2507,9 +2535,6 @@ msgstr ""
 "kanalą!\n"
 
 msgid "Inadyn Log"
-msgstr ""
-
-msgid "Inadyn Manager"
 msgstr ""
 
 msgid "Inadyn Setup"
@@ -2617,6 +2642,9 @@ msgstr "Greitas įrašas..."
 
 msgid "Instant record location"
 msgstr "Greito įrašo vieta"
+
+msgid "Interface"
+msgstr ""
 
 msgid "Interface: "
 msgstr "Sąsaja:"
@@ -2849,9 +2877,6 @@ msgstr ""
 
 msgid "Longitude"
 msgstr "Ilguma"
-
-msgid "MB"
-msgstr ""
 
 msgid "MORE"
 msgstr "DAUGIAU"
@@ -3097,6 +3122,9 @@ msgstr ""
 
 msgid "Network SSID"
 msgstr "Tinklo SSID"
+
+msgid "Network Servers:"
+msgstr ""
 
 msgid "Network Setup"
 msgstr "Tinklo nustatymas"
@@ -3350,9 +3378,6 @@ msgid ""
 "Path: %s"
 msgstr ""
 
-msgid "Nothing"
-msgstr ""
-
 msgid ""
 "Nothing to scan!\n"
 "Please setup your tuner settings before you start a service scan."
@@ -3393,6 +3418,9 @@ msgstr "Gerai, pašalinkite bet kokius išplėtimus"
 msgid "OSD Settings"
 msgstr "OSD nustatymai"
 
+msgid "OSD name request"
+msgstr ""
+
 msgid "OSD visibility"
 msgstr "OSD matomumas"
 
@@ -3404,6 +3432,12 @@ msgstr ""
 
 msgid "Off"
 msgstr "Išjungta"
+
+msgid ""
+"Offline upgrade in progress\n"
+"Please wait until your box reboots\n"
+"This may take a few minutes"
+msgstr ""
 
 msgid "Ok"
 msgstr ""
@@ -3431,12 +3465,6 @@ msgstr "Tik išplėtimus."
 
 msgid "Open Context Menu"
 msgstr "Atidaryti konteksto meniu"
-
-msgid "Open bouquet selection"
-msgstr ""
-
-msgid "Open channel selection"
-msgstr ""
 
 msgid "OpenVPN Setup"
 msgstr ""
@@ -3873,6 +3901,9 @@ msgstr ""
 msgid "Prefer subtitle stored by service"
 msgstr ""
 
+msgid "Prefered EPG Language"
+msgstr ""
+
 msgid "Preferred tuner"
 msgstr "Imtuvo pirmenybė"
 
@@ -3992,6 +4023,12 @@ msgid "Providers:"
 msgstr ""
 
 msgid "Providers: "
+msgstr ""
+
+msgid "Put TV in standby"
+msgstr ""
+
+msgid "Put receiver in standby"
 msgstr ""
 
 msgid "Python frontend for /tmp/mmi.socket"
@@ -4426,9 +4463,6 @@ msgstr "Skanuoti Bevielį Tinklą"
 msgid "Scan additional SR"
 msgstr "Papildomai skanuoti SR"
 
-msgid "Scan band"
-msgstr ""
-
 msgid "Scan band EU HYPER"
 msgstr "Skanuoti diapazoną EU HYPER"
 
@@ -4464,18 +4498,6 @@ msgstr "Skanuoti diapazoną US MID"
 
 msgid "Scan band US SUPER"
 msgstr "Skanuoti diapazoną US SUPER"
-
-msgid "Scan start frequency"
-msgstr ""
-
-msgid "Scan start symbolrate"
-msgstr ""
-
-msgid "Scan stop frequency"
-msgstr ""
-
-msgid "Scan stop symbolrate"
-msgstr ""
 
 msgid ""
 "Scan your network for wireless access points and connect to them using your "
@@ -4522,6 +4544,9 @@ msgstr "Antrinis DNS"
 msgid "Seek"
 msgstr "Ieškoti"
 
+msgid "Seekbar sensibility"
+msgstr ""
+
 msgid "Select"
 msgstr "Išsirinkite"
 
@@ -4557,6 +4582,9 @@ msgstr "Pasirinkite failus atsarginei kopijai."
 
 msgid "Select files/folders to backup"
 msgstr "Išsirinkite failus/aplankus dėl atsarginės kopijos"
+
+msgid "Select folders"
+msgstr ""
 
 msgid "Select input device"
 msgstr "Išsirinkite įvesties prietaisą"
@@ -4690,6 +4718,9 @@ msgstr "Nustatyti įtampą ir 22 KHZ"
 msgid "Set available internal memory threshold for the warning."
 msgstr "Nustatykite pasiekiamą vidaus atminties slenkstį įspėjimui."
 
+msgid "Set fixed"
+msgstr ""
+
 msgid "Set interface as default Interface"
 msgstr "Nustatykite sąsają, kaip numatytą sąsają"
 
@@ -4715,6 +4746,9 @@ msgid ""
 msgstr ""
 "Ar USB atmintinės vedliui vykdyti programos atvaizdo failą %s į \"vidinę\" "
 "atmintį?"
+
+msgid "Share Folder's"
+msgstr ""
 
 msgid "Share View"
 msgstr ""
@@ -4951,6 +4985,9 @@ msgstr "Gaila MediaScanner nėra įdiegtas!"
 msgid "Sorry no backups found!"
 msgstr "Gaila, jokios atsarginės kopijos nerastos!"
 
+msgid "Sorry uShare Config is Missing"
+msgstr ""
+
 msgid ""
 "Sorry your Backup destination does not exist\n"
 "\n"
@@ -4991,10 +5028,7 @@ msgstr "Garsas"
 msgid "Soundcarrier"
 msgstr "Garso nešančioji"
 
-msgid "Source active"
-msgstr ""
-
-msgid "Source inactive"
+msgid "Source request"
 msgstr ""
 
 msgid "South"
@@ -5092,6 +5126,9 @@ msgstr "Išsaugoti padėtį"
 msgid "Stored position"
 msgstr "Išsaugota padėtis"
 
+msgid "Stream request"
+msgstr ""
+
 msgid "Subservice mode"
 msgstr ""
 
@@ -5143,6 +5180,9 @@ msgstr ""
 msgid "Swap Services"
 msgstr "Keisti kanalus"
 
+msgid "Switch TV to correct input"
+msgstr ""
+
 msgid "Switch config"
 msgstr ""
 
@@ -5170,10 +5210,10 @@ msgstr ""
 msgid "System"
 msgstr "Sistema"
 
-msgid "System Information"
+msgid "System Infomation"
 msgstr ""
 
-msgid "System:"
+msgid "System Information"
 msgstr ""
 
 msgid "System: "
@@ -5192,12 +5232,6 @@ msgstr "TV sistema"
 msgid "TV button mode"
 msgstr ""
 
-msgid "TV standby"
-msgstr ""
-
-msgid "TV wakeup"
-msgstr ""
-
 msgid "Table of content for collection"
 msgstr "Turinio lentelė dėl kolekcijos"
 
@@ -5205,6 +5239,12 @@ msgid "Tags"
 msgstr "Kortelės"
 
 msgid "Teletext subtitle color"
+msgstr ""
+
+msgid "Telnet Interface"
+msgstr ""
+
+msgid "Telnet Port"
 msgstr ""
 
 msgid "Telnet Setup"
@@ -5733,6 +5773,12 @@ msgstr ""
 msgid "Total"
 msgstr ""
 
+msgid "Total Memory:"
+msgstr ""
+
+msgid "Total Swap:"
+msgstr ""
+
 msgid "Total cards:"
 msgstr ""
 
@@ -5944,6 +5990,9 @@ msgstr "Naudoti sąsają"
 msgid "Use Power Measurement"
 msgstr "Naudoti įtampos matavimą"
 
+msgid "Use TV remote control"
+msgstr ""
+
 msgid "Use ViX Coloured Butons"
 msgstr ""
 
@@ -6030,6 +6079,9 @@ msgid "Username (httpuser)"
 msgstr ""
 
 msgid "Username:"
+msgstr ""
+
+msgid "Using fixed address"
 msgstr ""
 
 msgid "Using old profile: "
@@ -6215,8 +6267,23 @@ msgstr ""
 msgid "Waiting"
 msgstr "Laukite"
 
+msgid "Wakeup"
+msgstr ""
+
+msgid "Wakeup TV from standby"
+msgstr ""
+
+msgid "Wakeup receiver from standby"
+msgstr ""
+
+msgid "Wakeup signal from TV"
+msgstr ""
+
 msgid "Warn if free space drops below (kB):"
 msgstr "Įspėti, jei laisva erdvė krinta žemiau (kb):"
+
+msgid "Web Interface"
+msgstr ""
 
 msgid "Wed"
 msgstr "Tre"
@@ -6349,6 +6416,9 @@ msgstr "Įrašymo klaida. Diskas pilnas?\n"
 msgid "Write failed!"
 msgstr "Įrašymas klaidingas!"
 
+msgid "XBox 360 support"
+msgstr ""
+
 msgid "YPbPr"
 msgstr "YPbPr"
 
@@ -6480,6 +6550,11 @@ msgid ""
 msgstr ""
 "Jūs nusprendėte atkurti savo nustatymus. Enigma2 iš naujo pasileis po "
 "atkūrimo. Prašome spausti OK, kad pradėtumėte atkūrimą dabar."
+
+msgid ""
+"You have not setup your user info in the setup screen\n"
+"Press MENU, and enter your info, then try again"
+msgstr ""
 
 msgid "You have selected no logs to delete."
 msgstr ""
@@ -7033,9 +7108,6 @@ msgstr "pagalba..."
 msgid "hide player"
 msgstr "slėpti grotuvą"
 
-msgid "high"
-msgstr ""
-
 msgid "hops:"
 msgstr ""
 
@@ -7113,9 +7185,6 @@ msgstr "užrakinta"
 
 msgid "loopthrough to"
 msgstr "šiurkštus į"
-
-msgid "low"
-msgstr ""
 
 msgid "manual"
 msgstr "rankinis"
@@ -7197,6 +7266,9 @@ msgstr "nedaryti pertraukos"
 
 msgid "no transparency"
 msgstr ""
+
+msgid "none"
+msgstr "jokio"
 
 msgid "not configured"
 msgstr "nesukonfigūruotas"
@@ -7606,6 +7678,15 @@ msgstr ""
 
 msgid "tuner is not supported"
 msgstr "imtuvas nepalaikomas"
+
+msgid "uShare Name"
+msgstr ""
+
+msgid "uShare Port"
+msgstr ""
+
+msgid "uShare Setup"
+msgstr ""
 
 msgid "unavailable"
 msgstr "nepasiekiamas"
@@ -12273,9 +12354,6 @@ msgstr "įjungta"
 
 #~ msgid "no module"
 #~ msgstr "nėra modulio"
-
-#~ msgid "none"
-#~ msgstr "jokio"
 
 #~ msgid "not available"
 #~ msgstr "nėra"

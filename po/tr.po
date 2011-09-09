@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 Turkish Locale\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-02 16:10+0100\n"
+"POT-Creation-Date: 2011-09-08 16:22+0100\n"
 "PO-Revision-Date: 2010-04-30 20:58+0200\n"
 "Last-Translator: Zulfikar <zveyis@gmail.com>\n"
 "Language-Team: http://hobiagaci.com <z.veyisoglu@hobiagaci.com>\n"
@@ -251,12 +251,6 @@ msgid "%s (%s)\n"
 msgstr "%s (%s)\n"
 
 msgid "( All readers)"
-msgstr ""
-
-msgid "(Beta)"
-msgstr ""
-
-msgid "(Release)"
 msgstr ""
 
 msgid "(Show only reader:"
@@ -580,9 +574,6 @@ msgstr "AC3 izi steryo ver"
 msgid "AFP Setup"
 msgstr ""
 
-msgid "AVL Xtrend blindscan running... please wait"
-msgstr ""
-
 #
 msgid "Abort"
 msgstr "Vazgeç"
@@ -701,6 +692,9 @@ msgstr ""
 msgid "Adjust 3D settings"
 msgstr ""
 
+msgid "Adjust HDMI CEC settings"
+msgstr ""
+
 msgid "Adjust display scrolling and symbols"
 msgstr ""
 
@@ -758,9 +752,6 @@ msgstr "Albüm"
 msgid "Alias"
 msgstr ""
 
-msgid "Alias:"
-msgstr ""
-
 #
 msgid "All"
 msgstr "Tümü"
@@ -769,7 +760,7 @@ msgstr "Tümü"
 msgid "All Satellites"
 msgstr "Tüm uydular"
 
-msgid "Allow Subtiles equals Audio mask"
+msgid "Allow Subtitle equals Audio mask"
 msgstr ""
 
 msgid "Allow hearing impaired subtitles"
@@ -811,6 +802,9 @@ msgstr "Bilinmeyen bir hata oluştu!"
 #
 msgid "Anonymize crashlog?"
 msgstr "Hata günlüğüne detay bilgiler eklensin mi?"
+
+msgid "Any activity"
+msgstr ""
 
 msgid "April"
 msgstr ""
@@ -1083,9 +1077,6 @@ msgstr ""
 msgid "Black screen till locked"
 msgstr ""
 
-msgid "Blindscan"
-msgstr ""
-
 #
 msgid "Block noise reduction"
 msgstr "Blok gürültü azaltma"
@@ -1261,7 +1252,7 @@ msgstr "Kanal Seçimi"
 msgid "Channel list preview mode"
 msgstr ""
 
-msgid "Channel list service mode"
+msgid "Channel list service mode (requires restart)"
 msgstr ""
 
 #
@@ -1361,6 +1352,9 @@ msgstr "Temizlik sihirbazı"
 #
 msgid "Clear before scan"
 msgstr "Arama öncesi kanal listesini temizle"
+
+msgid "Clear fixed"
+msgstr ""
 
 #
 msgid "Clear log"
@@ -1648,6 +1642,9 @@ msgstr "%s klasörü oluşturulamadı."
 msgid "Creating partition failed"
 msgstr "Diski bölümü oluşturulamadı"
 
+msgid "Current CEC address"
+msgstr ""
+
 msgid "Current Event:"
 msgstr ""
 
@@ -1716,6 +1713,9 @@ msgstr "D"
 #
 msgid "DHCP"
 msgstr "DHCP"
+
+msgid "DLNA support"
+msgstr ""
 
 msgid "DUAL LAYER DVD"
 msgstr "ÇİFT KATMAN DVD"
@@ -1858,7 +1858,13 @@ msgstr ""
 msgid "Detected NIMs:"
 msgstr "Tanınan NIM:"
 
+msgid "Device Information"
+msgstr ""
+
 msgid "Device Setup"
+msgstr ""
+
+msgid "Devices"
 msgstr ""
 
 #
@@ -1911,6 +1917,10 @@ msgstr "%s klasörü oluşturulmamış."
 #
 msgid "Directory browser"
 msgstr "Klasör görüntüleyici"
+
+#, python-format
+msgid "Directory contains %d file(s) and %d sub-directories.\n"
+msgstr ""
 
 #
 msgid "Disable"
@@ -2694,9 +2704,18 @@ msgstr "Belirtilen görevler OK'a basmanızın ardından işleme alınacak!"
 msgid "Format"
 msgstr "Biçimlendir"
 
+msgid "Forward volume keys"
+msgstr ""
+
 #
 msgid "Frame size in full view"
 msgstr "Tam ekranda çerçeve boyutu"
+
+msgid "Free Memory:"
+msgstr ""
+
+msgid "Free Swap:"
+msgstr ""
 
 msgid "Free memory"
 msgstr ""
@@ -2750,9 +2769,6 @@ msgid "Ftp service Enabled."
 msgstr ""
 
 msgid "Ftpd service type: Vsftpd server"
-msgstr ""
-
-msgid "GB"
 msgstr ""
 
 #
@@ -2840,6 +2856,15 @@ msgid "Guard interval mode"
 msgstr "Koruma süre kipi"
 
 msgid "HD list"
+msgstr ""
+
+msgid "Handle deepstandby events"
+msgstr ""
+
+msgid "Handle standby from TV"
+msgstr ""
+
+msgid "Handle wakeup from TV"
 msgstr ""
 
 #
@@ -2982,6 +3007,9 @@ msgstr ""
 "ayarlayabilirsiniz.\n"
 "Sonuçtan memnunsanız, OK tuşuna basın."
 
+msgid "Image Information"
+msgstr ""
+
 msgid "Image:"
 msgstr ""
 
@@ -2997,9 +3025,6 @@ msgstr ""
 "geçildi!\n"
 
 msgid "Inadyn Log"
-msgstr ""
-
-msgid "Inadyn Manager"
 msgstr ""
 
 msgid "Inadyn Setup"
@@ -3132,6 +3157,9 @@ msgstr "Anlık Kayıt..."
 #
 msgid "Instant record location"
 msgstr "Anlık kayıt konumu"
+
+msgid "Interface"
+msgstr ""
 
 #
 msgid "Interface: "
@@ -3409,9 +3437,6 @@ msgstr ""
 #
 msgid "Longitude"
 msgstr "Boylam"
-
-msgid "MB"
-msgstr ""
 
 #
 msgid "MORE"
@@ -3710,6 +3735,9 @@ msgstr ""
 #
 msgid "Network SSID"
 msgstr "Ağ SSID"
+
+msgid "Network Servers:"
+msgstr ""
 
 #
 msgid "Network Setup"
@@ -4011,9 +4039,6 @@ msgid ""
 "Path: %s"
 msgstr ""
 
-msgid "Nothing"
-msgstr ""
-
 #
 msgid ""
 "Nothing to scan!\n"
@@ -4062,6 +4087,9 @@ msgstr "Tamam, benzer eklentileri kaldır"
 msgid "OSD Settings"
 msgstr "OSD Ayarları"
 
+msgid "OSD name request"
+msgstr ""
+
 #
 msgid "OSD visibility"
 msgstr "OSD görünürlüğü"
@@ -4075,6 +4103,12 @@ msgstr ""
 #
 msgid "Off"
 msgstr "Kapalı"
+
+msgid ""
+"Offline upgrade in progress\n"
+"Please wait until your box reboots\n"
+"This may take a few minutes"
+msgstr ""
 
 msgid "Ok"
 msgstr ""
@@ -4106,12 +4140,6 @@ msgstr "Yalnızca eklentiler"
 
 msgid "Open Context Menu"
 msgstr "İçerik menüsünü aç"
-
-msgid "Open bouquet selection"
-msgstr ""
-
-msgid "Open channel selection"
-msgstr ""
 
 msgid "OpenVPN Setup"
 msgstr ""
@@ -4636,6 +4664,9 @@ msgstr ""
 msgid "Prefer subtitle stored by service"
 msgstr ""
 
+msgid "Prefered EPG Language"
+msgstr ""
+
 msgid "Preferred tuner"
 msgstr ""
 
@@ -4776,6 +4807,12 @@ msgid "Providers:"
 msgstr ""
 
 msgid "Providers: "
+msgstr ""
+
+msgid "Put TV in standby"
+msgstr ""
+
+msgid "Put receiver in standby"
 msgstr ""
 
 #
@@ -5311,9 +5348,6 @@ msgstr "Kablosuz Ağları Ara"
 msgid "Scan additional SR"
 msgstr "Eklenen SR'leri ara"
 
-msgid "Scan band"
-msgstr ""
-
 #
 msgid "Scan band EU HYPER"
 msgstr "EU HYPER bantını ara"
@@ -5361,18 +5395,6 @@ msgstr "US MID bantını ara"
 #
 msgid "Scan band US SUPER"
 msgstr "US SUPER bantını ara"
-
-msgid "Scan start frequency"
-msgstr ""
-
-msgid "Scan start symbolrate"
-msgstr ""
-
-msgid "Scan stop frequency"
-msgstr ""
-
-msgid "Scan stop symbolrate"
-msgstr ""
 
 msgid ""
 "Scan your network for wireless access points and connect to them using your "
@@ -5424,6 +5446,9 @@ msgstr "İkincil DNS"
 msgid "Seek"
 msgstr "Ara"
 
+msgid "Seekbar sensibility"
+msgstr ""
+
 #
 msgid "Select"
 msgstr "Seç"
@@ -5467,6 +5492,9 @@ msgstr ""
 #
 msgid "Select files/folders to backup"
 msgstr "Yedeklenecek dosya/klasörleri seç"
+
+msgid "Select folders"
+msgstr ""
 
 msgid "Select input device"
 msgstr ""
@@ -5629,6 +5657,9 @@ msgstr ""
 "Dahili belleğin belirtilen değere düşmesi halinde uyarı verilecek alt limiti "
 "giriniz."
 
+msgid "Set fixed"
+msgstr ""
+
 #
 msgid "Set interface as default Interface"
 msgstr "Arayüzü varsayılan arayüz olarak ata"
@@ -5657,6 +5688,9 @@ msgstr "Kullanıcı tecrübesi"
 msgid ""
 "Shall the USB stick wizard proceed and program the image file %s into flash "
 "memory?"
+msgstr ""
+
+msgid "Share Folder's"
 msgstr ""
 
 msgid "Share View"
@@ -5935,6 +5969,9 @@ msgstr "Üzgünüm, MediaScanner eklentisi yüklü değil!"
 msgid "Sorry no backups found!"
 msgstr "Üzgünüm, yedekleme dosyası bulunamadı!"
 
+msgid "Sorry uShare Config is Missing"
+msgstr ""
+
 #
 msgid ""
 "Sorry your Backup destination does not exist\n"
@@ -5981,10 +6018,7 @@ msgstr "Ses"
 msgid "Soundcarrier"
 msgstr "Ses taşıyıcı"
 
-msgid "Source active"
-msgstr ""
-
-msgid "Source inactive"
+msgid "Source request"
 msgstr ""
 
 #
@@ -6106,6 +6140,9 @@ msgstr "Pozisyonu kaydet"
 msgid "Stored position"
 msgstr "Kaydedilen pozisyonlar"
 
+msgid "Stream request"
+msgstr ""
+
 msgid "Subservice mode"
 msgstr ""
 
@@ -6163,6 +6200,9 @@ msgstr ""
 msgid "Swap Services"
 msgstr "Ana <-> PiP yer değiştir"
 
+msgid "Switch TV to correct input"
+msgstr ""
+
 msgid "Switch config"
 msgstr ""
 
@@ -6195,10 +6235,10 @@ msgstr ""
 msgid "System"
 msgstr "Sistem"
 
-msgid "System Information"
+msgid "System Infomation"
 msgstr ""
 
-msgid "System:"
+msgid "System Information"
 msgstr ""
 
 msgid "System: "
@@ -6220,12 +6260,6 @@ msgstr "TV Sistemi"
 msgid "TV button mode"
 msgstr ""
 
-msgid "TV standby"
-msgstr ""
-
-msgid "TV wakeup"
-msgstr ""
-
 #
 msgid "Table of content for collection"
 msgstr "Koleksiyonun içerik tablosu (TOC)"
@@ -6235,6 +6269,12 @@ msgid "Tags"
 msgstr "Etiketler"
 
 msgid "Teletext subtitle color"
+msgstr ""
+
+msgid "Telnet Interface"
+msgstr ""
+
+msgid "Telnet Port"
 msgstr ""
 
 msgid "Telnet Setup"
@@ -6821,6 +6861,12 @@ msgstr ""
 msgid "Total"
 msgstr ""
 
+msgid "Total Memory:"
+msgstr ""
+
+msgid "Total Swap:"
+msgstr ""
+
 msgid "Total cards:"
 msgstr ""
 
@@ -7084,6 +7130,9 @@ msgstr "Arayüzü Kullan"
 msgid "Use Power Measurement"
 msgstr "Güç Ölçümünü Kullan"
 
+msgid "Use TV remote control"
+msgstr ""
+
 msgid "Use ViX Coloured Butons"
 msgstr ""
 
@@ -7182,6 +7231,9 @@ msgid "Username (httpuser)"
 msgstr ""
 
 msgid "Username:"
+msgstr ""
+
+msgid "Using fixed address"
 msgstr ""
 
 msgid "Using old profile: "
@@ -7410,9 +7462,24 @@ msgstr ""
 msgid "Waiting"
 msgstr "Bekleniyor"
 
+msgid "Wakeup"
+msgstr ""
+
+msgid "Wakeup TV from standby"
+msgstr ""
+
+msgid "Wakeup receiver from standby"
+msgstr ""
+
+msgid "Wakeup signal from TV"
+msgstr ""
+
 #
 msgid "Warn if free space drops below (kB):"
 msgstr "Boş alan belirtilen eşiğin altına inince uyar (kB):"
+
+msgid "Web Interface"
+msgstr ""
 
 #
 msgid "Wed"
@@ -7564,6 +7631,9 @@ msgstr "Kaydederken hata oluştu. Disk dolu mu?\n"
 #
 msgid "Write failed!"
 msgstr "Yazma başarısız!"
+
+msgid "XBox 360 support"
+msgstr ""
 
 #
 msgid "YPbPr"
@@ -7727,6 +7797,11 @@ msgstr ""
 "Ayarlarınızı geri yüklemeyi seçtiniz. Geri yükleme işleminin ardından "
 "Enigma2 yeniden başlayacaktır. Geri yüklemeyi başlatmak için OK tuşuna "
 "basın..."
+
+msgid ""
+"You have not setup your user info in the setup screen\n"
+"Press MENU, and enter your info, then try again"
+msgstr ""
 
 msgid "You have selected no logs to delete."
 msgstr ""
@@ -8412,9 +8487,6 @@ msgstr "yardım..."
 msgid "hide player"
 msgstr "oynatıcıyı gizle"
 
-msgid "high"
-msgstr ""
-
 msgid "hops:"
 msgstr ""
 
@@ -8515,9 +8587,6 @@ msgstr "kilitli"
 #
 msgid "loopthrough to"
 msgstr "üzerinden bağla"
-
-msgid "low"
-msgstr ""
 
 #
 msgid "manual"
@@ -8622,6 +8691,10 @@ msgstr "zaman aşımı kullanılmasın"
 
 msgid "no transparency"
 msgstr ""
+
+#
+msgid "none"
+msgstr "yok"
 
 msgid "not configured"
 msgstr "henüz yapılandırılmamış"
@@ -9128,6 +9201,15 @@ msgid "top"
 msgstr ""
 
 msgid "tuner is not supported"
+msgstr ""
+
+msgid "uShare Name"
+msgstr ""
+
+msgid "uShare Port"
+msgstr ""
+
+msgid "uShare Setup"
 msgstr ""
 
 #
@@ -12519,10 +12601,6 @@ msgstr "kanal değiştirildi"
 #
 #~ msgid "no module"
 #~ msgstr "modül yok"
-
-#
-#~ msgid "none"
-#~ msgstr "yok"
 
 #
 #~ msgid "on Weekday"

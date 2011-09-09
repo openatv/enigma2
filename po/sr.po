@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-02 16:10+0100\n"
+"POT-Creation-Date: 2011-09-08 16:22+0100\n"
 "PO-Revision-Date: 2009-10-10 11:18+0100\n"
 "Last-Translator: maja <jovanovic@gmx.ch>\n"
 "Language-Team: veselin & majevica CRNABERZA <jovanovic@gmx.ch>\n"
@@ -250,12 +250,6 @@ msgid "%s (%s)\n"
 msgstr "%s (%s)\n"
 
 msgid "( All readers)"
-msgstr ""
-
-msgid "(Beta)"
-msgstr ""
-
-msgid "(Release)"
 msgstr ""
 
 msgid "(Show only reader:"
@@ -582,9 +576,6 @@ msgstr "AC3 downmix"
 msgid "AFP Setup"
 msgstr ""
 
-msgid "AVL Xtrend blindscan running... please wait"
-msgstr ""
-
 #
 msgid "Abort"
 msgstr "Prekini"
@@ -704,6 +695,9 @@ msgstr ""
 msgid "Adjust 3D settings"
 msgstr ""
 
+msgid "Adjust HDMI CEC settings"
+msgstr ""
+
 msgid "Adjust display scrolling and symbols"
 msgstr ""
 
@@ -762,9 +756,6 @@ msgstr "Album"
 msgid "Alias"
 msgstr ""
 
-msgid "Alias:"
-msgstr ""
-
 #
 msgid "All"
 msgstr "Svi"
@@ -773,7 +764,7 @@ msgstr "Svi"
 msgid "All Satellites"
 msgstr "Svi sateliti"
 
-msgid "Allow Subtiles equals Audio mask"
+msgid "Allow Subtitle equals Audio mask"
 msgstr ""
 
 msgid "Allow hearing impaired subtitles"
@@ -815,6 +806,9 @@ msgstr "Nepoznata greška se desila"
 #
 msgid "Anonymize crashlog?"
 msgstr "Anonimni krah zapis?"
+
+msgid "Any activity"
+msgstr ""
 
 msgid "April"
 msgstr ""
@@ -1087,9 +1081,6 @@ msgstr ""
 msgid "Black screen till locked"
 msgstr ""
 
-msgid "Blindscan"
-msgstr ""
-
 #
 msgid "Block noise reduction"
 msgstr "Blokiraj smanjenje šuma"
@@ -1269,7 +1260,7 @@ msgstr "Izbor kanala"
 msgid "Channel list preview mode"
 msgstr ""
 
-msgid "Channel list service mode"
+msgid "Channel list service mode (requires restart)"
 msgstr ""
 
 #
@@ -1369,6 +1360,9 @@ msgstr "Čarobnjak za čišćenje"
 #
 msgid "Clear before scan"
 msgstr "Obriši pre skeniranja"
+
+msgid "Clear fixed"
+msgstr ""
 
 #
 msgid "Clear log"
@@ -1656,6 +1650,9 @@ msgstr "Pravljenje direktorijuma %s nije uspelo"
 msgid "Creating partition failed"
 msgstr "Neuspešno kreiranje particije"
 
+msgid "Current CEC address"
+msgstr ""
+
 msgid "Current Event:"
 msgstr ""
 
@@ -1724,6 +1721,9 @@ msgstr "D"
 #
 msgid "DHCP"
 msgstr "DHCP"
+
+msgid "DLNA support"
+msgstr ""
 
 #
 msgid "DUAL LAYER DVD"
@@ -1864,7 +1864,13 @@ msgstr ""
 msgid "Detected NIMs:"
 msgstr "Primećeni NIMs:"
 
+msgid "Device Information"
+msgstr ""
+
 msgid "Device Setup"
+msgstr ""
+
+msgid "Devices"
 msgstr ""
 
 #
@@ -1917,6 +1923,10 @@ msgstr "Direktorijum %s ne postoji"
 #
 msgid "Directory browser"
 msgstr "Pretraživač direktorijuma"
+
+#, python-format
+msgid "Directory contains %d file(s) and %d sub-directories.\n"
+msgstr ""
 
 #
 msgid "Disable"
@@ -2699,9 +2709,18 @@ msgstr "Sledeći zadaci će biti urađeni kad pritisnete OK!"
 msgid "Format"
 msgstr "Formatiranje"
 
+msgid "Forward volume keys"
+msgstr ""
+
 #
 msgid "Frame size in full view"
 msgstr "Veličina frejma u punom izgledu"
+
+msgid "Free Memory:"
+msgstr ""
+
+msgid "Free Swap:"
+msgstr ""
 
 msgid "Free memory"
 msgstr ""
@@ -2755,9 +2774,6 @@ msgid "Ftp service Enabled."
 msgstr ""
 
 msgid "Ftpd service type: Vsftpd server"
-msgstr ""
-
-msgid "GB"
 msgstr ""
 
 #
@@ -2845,6 +2861,15 @@ msgid "Guard interval mode"
 msgstr "Način zaštitnog intervala"
 
 msgid "HD list"
+msgstr ""
+
+msgid "Handle deepstandby events"
+msgstr ""
+
+msgid "Handle standby from TV"
+msgstr ""
+
+msgid "Handle wakeup from TV"
 msgstr ""
 
 #
@@ -2985,6 +3010,9 @@ msgstr ""
 "Ne brinite sada za svetle senke.One će biti postavljene u sledećem koraku.\n"
 "Ako ste zadovoljni rezultatom,stisnite OK."
 
+msgid "Image Information"
+msgstr ""
+
 msgid "Image:"
 msgstr ""
 
@@ -2999,9 +3027,6 @@ msgstr ""
 "Da bi počelo snimanje po tajmeru,TV je prebačen na kanal za snimanje!\n"
 
 msgid "Inadyn Log"
-msgstr ""
-
-msgid "Inadyn Manager"
 msgstr ""
 
 msgid "Inadyn Setup"
@@ -3135,6 +3160,9 @@ msgstr "Trenutno snimanje..."
 #
 msgid "Instant record location"
 msgstr "Lokacija instant snimanja"
+
+msgid "Interface"
+msgstr ""
 
 #
 msgid "Interface: "
@@ -3413,9 +3441,6 @@ msgstr ""
 #
 msgid "Longitude"
 msgstr "Geografska dužina"
-
-msgid "MB"
-msgstr ""
 
 #
 msgid "MORE"
@@ -3716,6 +3741,9 @@ msgstr ""
 msgid "Network SSID"
 msgstr "Mrežni SSID"
 
+msgid "Network Servers:"
+msgstr ""
+
 #
 msgid "Network Setup"
 msgstr "Postavke Mreže"
@@ -4015,9 +4043,6 @@ msgid ""
 "Path: %s"
 msgstr ""
 
-msgid "Nothing"
-msgstr ""
-
 #
 msgid ""
 "Nothing to scan!\n"
@@ -4066,6 +4091,9 @@ msgstr "OK,uklonite neke dodatke"
 msgid "OSD Settings"
 msgstr "Postavke OSD"
 
+msgid "OSD name request"
+msgstr ""
+
 #
 msgid "OSD visibility"
 msgstr "OSD preglednost"
@@ -4079,6 +4107,12 @@ msgstr ""
 #
 msgid "Off"
 msgstr "Isključi"
+
+msgid ""
+"Offline upgrade in progress\n"
+"Please wait until your box reboots\n"
+"This may take a few minutes"
+msgstr ""
 
 #
 #
@@ -4113,12 +4147,6 @@ msgstr "Samo proširenja:"
 #
 msgid "Open Context Menu"
 msgstr "Otvori dopunski meni"
-
-msgid "Open bouquet selection"
-msgstr ""
-
-msgid "Open channel selection"
-msgstr ""
 
 msgid "OpenVPN Setup"
 msgstr ""
@@ -4645,6 +4673,9 @@ msgstr ""
 msgid "Prefer subtitle stored by service"
 msgstr ""
 
+msgid "Prefered EPG Language"
+msgstr ""
+
 msgid "Preferred tuner"
 msgstr ""
 
@@ -4785,6 +4816,12 @@ msgid "Providers:"
 msgstr ""
 
 msgid "Providers: "
+msgstr ""
+
+msgid "Put TV in standby"
+msgstr ""
+
+msgid "Put receiver in standby"
 msgstr ""
 
 #
@@ -5321,9 +5358,6 @@ msgstr "Pretražite bežičnu mrežu"
 msgid "Scan additional SR"
 msgstr "Skeniraj dodatne SR"
 
-msgid "Scan band"
-msgstr ""
-
 #
 msgid "Scan band EU HYPER"
 msgstr "Skeniraj band EU HYPER"
@@ -5371,18 +5405,6 @@ msgstr "Skeniraj band US MID"
 #
 msgid "Scan band US SUPER"
 msgstr "Skeniraj band US SUPER"
-
-msgid "Scan start frequency"
-msgstr ""
-
-msgid "Scan start symbolrate"
-msgstr ""
-
-msgid "Scan stop frequency"
-msgstr ""
-
-msgid "Scan stop symbolrate"
-msgstr ""
 
 msgid ""
 "Scan your network for wireless access points and connect to them using your "
@@ -5434,6 +5456,9 @@ msgstr "Sekundarni DNS"
 msgid "Seek"
 msgstr "Traži"
 
+msgid "Seekbar sensibility"
+msgstr ""
+
 #
 msgid "Select"
 msgstr "Izaberi"
@@ -5477,6 +5502,9 @@ msgstr ""
 #
 msgid "Select files/folders to backup"
 msgstr "Izaberi datoteke/fascikle za bekap"
+
+msgid "Select folders"
+msgstr ""
 
 msgid "Select input device"
 msgstr ""
@@ -5637,6 +5665,9 @@ msgstr "Podesi napon i 22Khz"
 msgid "Set available internal memory threshold for the warning."
 msgstr "Podesi prag dostupne interne memorije za opomenu"
 
+msgid "Set fixed"
+msgstr ""
+
 #
 msgid "Set interface as default Interface"
 msgstr "Postavi interfejs kao osnovni interfejs"
@@ -5665,6 +5696,9 @@ msgstr "Mod postavki"
 msgid ""
 "Shall the USB stick wizard proceed and program the image file %s into flash "
 "memory?"
+msgstr ""
+
+msgid "Share Folder's"
 msgstr ""
 
 msgid "Share View"
@@ -5944,6 +5978,9 @@ msgstr "Žao mi je,MediaScanner nije instalisan"
 msgid "Sorry no backups found!"
 msgstr "Žao mi je,nema rezervnih kopija"
 
+msgid "Sorry uShare Config is Missing"
+msgstr ""
+
 #
 msgid ""
 "Sorry your Backup destination does not exist\n"
@@ -5990,10 +6027,7 @@ msgstr "Zvuk"
 msgid "Soundcarrier"
 msgstr "Zvučni nosilac"
 
-msgid "Source active"
-msgstr ""
-
-msgid "Source inactive"
+msgid "Source request"
 msgstr ""
 
 #
@@ -6115,6 +6149,9 @@ msgstr "Snimi poziciju"
 msgid "Stored position"
 msgstr "Snimljene pozicije"
 
+msgid "Stream request"
+msgstr ""
+
 msgid "Subservice mode"
 msgstr ""
 
@@ -6172,6 +6209,9 @@ msgstr ""
 msgid "Swap Services"
 msgstr "Zameni kanale"
 
+msgid "Switch TV to correct input"
+msgstr ""
+
 msgid "Switch config"
 msgstr ""
 
@@ -6205,10 +6245,10 @@ msgstr ""
 msgid "System"
 msgstr "Sistem "
 
-msgid "System Information"
+msgid "System Infomation"
 msgstr ""
 
-msgid "System:"
+msgid "System Information"
 msgstr ""
 
 msgid "System: "
@@ -6230,12 +6270,6 @@ msgstr "TV Sistem"
 msgid "TV button mode"
 msgstr ""
 
-msgid "TV standby"
-msgstr ""
-
-msgid "TV wakeup"
-msgstr ""
-
 #
 msgid "Table of content for collection"
 msgstr "Tabela sadržaja za kolekciju"
@@ -6245,6 +6279,12 @@ msgid "Tags"
 msgstr "Oznake"
 
 msgid "Teletext subtitle color"
+msgstr ""
+
+msgid "Telnet Interface"
+msgstr ""
+
+msgid "Telnet Port"
 msgstr ""
 
 msgid "Telnet Setup"
@@ -6829,6 +6869,12 @@ msgstr ""
 msgid "Total"
 msgstr ""
 
+msgid "Total Memory:"
+msgstr ""
+
+msgid "Total Swap:"
+msgstr ""
+
 msgid "Total cards:"
 msgstr ""
 
@@ -7096,6 +7142,9 @@ msgstr "Koristi interfejs"
 msgid "Use Power Measurement"
 msgstr "Koristi merenje snage"
 
+msgid "Use TV remote control"
+msgstr ""
+
 msgid "Use ViX Coloured Butons"
 msgstr ""
 
@@ -7195,6 +7244,9 @@ msgid "Username (httpuser)"
 msgstr ""
 
 msgid "Username:"
+msgstr ""
+
+msgid "Using fixed address"
 msgstr ""
 
 msgid "Using old profile: "
@@ -7423,9 +7475,24 @@ msgstr ""
 msgid "Waiting"
 msgstr "Čekanje"
 
+msgid "Wakeup"
+msgstr ""
+
+msgid "Wakeup TV from standby"
+msgstr ""
+
+msgid "Wakeup receiver from standby"
+msgstr ""
+
+msgid "Wakeup signal from TV"
+msgstr ""
+
 #
 msgid "Warn if free space drops below (kB):"
 msgstr "Upozorii ako slobodan prostor padne ispod (kB):"
+
+msgid "Web Interface"
+msgstr ""
 
 #
 msgid "Wed"
@@ -7570,6 +7637,9 @@ msgstr "Greška tokom snimanja. Disk Pun?\n"
 #
 msgid "Write failed!"
 msgstr "Upisivanje nije uspelo!"
+
+msgid "XBox 360 support"
+msgstr ""
 
 #
 msgid "YPbPr"
@@ -7730,6 +7800,11 @@ msgid ""
 msgstr ""
 "Izabrali ste da povratite vaše postavke.Enigma2 će ponovo startovati posle "
 "vraćanja.Molim sada pritisnite OK da počnete vraćanje."
+
+msgid ""
+"You have not setup your user info in the setup screen\n"
+"Press MENU, and enter your info, then try again"
+msgstr ""
 
 msgid "You have selected no logs to delete."
 msgstr ""
@@ -8415,9 +8490,6 @@ msgstr "pomoć..."
 msgid "hide player"
 msgstr "sakrij plejer"
 
-msgid "high"
-msgstr ""
-
 msgid "hops:"
 msgstr ""
 
@@ -8519,9 +8591,6 @@ msgstr "zaključan"
 #
 msgid "loopthrough to"
 msgstr "Prolaz do"
-
-msgid "low"
-msgstr ""
 
 #
 msgid "manual"
@@ -8626,6 +8695,10 @@ msgstr "nema vremenskog ograničenja"
 
 msgid "no transparency"
 msgstr ""
+
+#
+msgid "none"
+msgstr "prazno"
 
 #
 msgid "not configured"
@@ -9134,6 +9207,15 @@ msgid "top"
 msgstr ""
 
 msgid "tuner is not supported"
+msgstr ""
+
+msgid "uShare Name"
+msgstr ""
+
+msgid "uShare Port"
+msgstr ""
+
+msgid "uShare Setup"
 msgstr ""
 
 #
@@ -12434,10 +12516,6 @@ msgstr "prebačen"
 #
 #~ msgid "no Picture found"
 #~ msgstr "nema pronađene slike"
-
-#
-#~ msgid "none"
-#~ msgstr "prazno"
 
 #
 #~ msgid "on Weekday"

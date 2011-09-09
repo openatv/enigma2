@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-02 16:10+0100\n"
+"POT-Creation-Date: 2011-09-08 16:22+0100\n"
 "PO-Revision-Date: 2010-05-12 13:09+0200\n"
 "Last-Translator: acid-burn <>\n"
 "Language-Team: none\n"
@@ -231,12 +231,6 @@ msgid "%s (%s)\n"
 msgstr "%s (%s)\n"
 
 msgid "( All readers)"
-msgstr ""
-
-msgid "(Beta)"
-msgstr ""
-
-msgid "(Release)"
 msgstr ""
 
 msgid "(Show only reader:"
@@ -499,9 +493,6 @@ msgstr "AC3 downmix"
 msgid "AFP Setup"
 msgstr ""
 
-msgid "AVL Xtrend blindscan running... please wait"
-msgstr ""
-
 msgid "Abort"
 msgstr "Zrušiť"
 
@@ -596,6 +587,9 @@ msgstr ""
 msgid "Adjust 3D settings"
 msgstr ""
 
+msgid "Adjust HDMI CEC settings"
+msgstr ""
+
 msgid "Adjust display scrolling and symbols"
 msgstr ""
 
@@ -644,16 +638,13 @@ msgstr "Album"
 msgid "Alias"
 msgstr ""
 
-msgid "Alias:"
-msgstr ""
-
 msgid "All"
 msgstr "Všetky"
 
 msgid "All Satellites"
 msgstr "Všetky satelity"
 
-msgid "Allow Subtiles equals Audio mask"
+msgid "Allow Subtitle equals Audio mask"
 msgstr ""
 
 msgid "Allow hearing impaired subtitles"
@@ -688,6 +679,9 @@ msgstr "Objavila sa neznáma chyba!"
 
 msgid "Anonymize crashlog?"
 msgstr "Anonymizovať správy o zrútení?"
+
+msgid "Any activity"
+msgstr ""
 
 msgid "April"
 msgstr ""
@@ -916,9 +910,6 @@ msgstr ""
 msgid "Black screen till locked"
 msgstr ""
 
-msgid "Blindscan"
-msgstr ""
-
 msgid "Block noise reduction"
 msgstr "Potlačenie blokového šumu"
 
@@ -1073,7 +1064,7 @@ msgstr "Voľba stanice"
 msgid "Channel list preview mode"
 msgstr ""
 
-msgid "Channel list service mode"
+msgid "Channel list service mode (requires restart)"
 msgstr ""
 
 msgid "Channel not in services list"
@@ -1150,6 +1141,9 @@ msgstr "Sprievodca vyčistením"
 
 msgid "Clear before scan"
 msgstr "Vymazať pred skenovaním"
+
+msgid "Clear fixed"
+msgstr ""
 
 msgid "Clear log"
 msgstr "Vymazať log"
@@ -1387,6 +1381,9 @@ msgstr "Nepodarilo sa vytvoriť adresár %s."
 msgid "Creating partition failed"
 msgstr "Nepodarilo sa vytvoriť partíciu"
 
+msgid "Current CEC address"
+msgstr ""
+
 msgid "Current Event:"
 msgstr ""
 
@@ -1443,6 +1440,9 @@ msgstr "D"
 
 msgid "DHCP"
 msgstr "DHCP"
+
+msgid "DLNA support"
+msgstr ""
 
 msgid "DUAL LAYER DVD"
 msgstr "DVOJVRSTVOVÉ DVD"
@@ -1559,7 +1559,13 @@ msgstr ""
 msgid "Detected NIMs:"
 msgstr "Zistené tunery:"
 
+msgid "Device Information"
+msgstr ""
+
 msgid "Device Setup"
+msgstr ""
+
+msgid "Devices"
 msgstr ""
 
 msgid "DiSEqC"
@@ -1601,6 +1607,10 @@ msgstr "Adresár %s neexistuje."
 
 msgid "Directory browser"
 msgstr "Prehľadávač adresárov"
+
+#, python-format
+msgid "Directory contains %d file(s) and %d sub-directories.\n"
+msgstr ""
 
 msgid "Disable"
 msgstr "Vypnúť"
@@ -2253,8 +2263,17 @@ msgstr "Po stlačení OK sa vykonajú tieto úlohy."
 msgid "Format"
 msgstr "Formát"
 
+msgid "Forward volume keys"
+msgstr ""
+
 msgid "Frame size in full view"
 msgstr "Veľkosť obrazu pri plnom zobrazení"
+
+msgid "Free Memory:"
+msgstr ""
+
+msgid "Free Swap:"
+msgstr ""
 
 msgid "Free memory"
 msgstr ""
@@ -2300,9 +2319,6 @@ msgid "Ftp service Enabled."
 msgstr ""
 
 msgid "Ftpd service type: Vsftpd server"
-msgstr ""
-
-msgid "GB"
 msgstr ""
 
 msgid ""
@@ -2376,6 +2392,15 @@ msgid "Guard interval mode"
 msgstr "Režim ochranného intervalu"
 
 msgid "HD list"
+msgstr ""
+
+msgid "Handle deepstandby events"
+msgstr ""
+
+msgid "Handle standby from TV"
+msgstr ""
+
+msgid "Handle wakeup from TV"
 msgstr ""
 
 msgid "Harddisk"
@@ -2499,6 +2524,9 @@ msgstr ""
 "kroku.\n"
 "Ak ste spokojní s výsledkom, stlačte tlačidlo OK."
 
+msgid "Image Information"
+msgstr ""
+
 msgid "Image:"
 msgstr ""
 
@@ -2511,9 +2539,6 @@ msgstr ""
 "Aby sa mohol nahrať načasovaný program, preplo sa na nahrávanú stanicu!\n"
 
 msgid "Inadyn Log"
-msgstr ""
-
-msgid "Inadyn Manager"
 msgstr ""
 
 msgid "Inadyn Setup"
@@ -2620,6 +2645,9 @@ msgstr "Okamžité nahrávanie..."
 
 msgid "Instant record location"
 msgstr "Umiestnenie okamžitého záznamu"
+
+msgid "Interface"
+msgstr ""
 
 msgid "Interface: "
 msgstr "Rozhranie:"
@@ -2852,9 +2880,6 @@ msgstr ""
 
 msgid "Longitude"
 msgstr "Zem. dĺžka"
-
-msgid "MB"
-msgstr ""
 
 msgid "MORE"
 msgstr "VIAC"
@@ -3098,6 +3123,9 @@ msgstr ""
 
 msgid "Network SSID"
 msgstr "Sieťový SSID"
+
+msgid "Network Servers:"
+msgstr ""
 
 msgid "Network Setup"
 msgstr "Nastavenie siete"
@@ -3347,9 +3375,6 @@ msgid ""
 "Path: %s"
 msgstr ""
 
-msgid "Nothing"
-msgstr ""
-
 msgid ""
 "Nothing to scan!\n"
 "Please setup your tuner settings before you start a service scan."
@@ -3389,6 +3414,9 @@ msgstr "OK, odstrániť niektoré rozšírenia"
 msgid "OSD Settings"
 msgstr "Nastavenia OSD"
 
+msgid "OSD name request"
+msgstr ""
+
 msgid "OSD visibility"
 msgstr "Viditeľnosť OSD"
 
@@ -3400,6 +3428,12 @@ msgstr ""
 
 msgid "Off"
 msgstr "Vypnúť"
+
+msgid ""
+"Offline upgrade in progress\n"
+"Please wait until your box reboots\n"
+"This may take a few minutes"
+msgstr ""
 
 msgid "Ok"
 msgstr ""
@@ -3427,12 +3461,6 @@ msgstr "Len rozšírenia."
 
 msgid "Open Context Menu"
 msgstr "Otvoriť kontextové menu"
-
-msgid "Open bouquet selection"
-msgstr ""
-
-msgid "Open channel selection"
-msgstr ""
 
 msgid "OpenVPN Setup"
 msgstr ""
@@ -3863,6 +3891,9 @@ msgstr ""
 msgid "Prefer subtitle stored by service"
 msgstr ""
 
+msgid "Prefered EPG Language"
+msgstr ""
+
 msgid "Preferred tuner"
 msgstr ""
 
@@ -3979,6 +4010,12 @@ msgid "Providers:"
 msgstr ""
 
 msgid "Providers: "
+msgstr ""
+
+msgid "Put TV in standby"
+msgstr ""
+
+msgid "Put receiver in standby"
 msgstr ""
 
 msgid "Python frontend for /tmp/mmi.socket"
@@ -4412,9 +4449,6 @@ msgstr "Vyhľadať bezdrôt. siete"
 msgid "Scan additional SR"
 msgstr "Prehľadať ďalšie SR"
 
-msgid "Scan band"
-msgstr ""
-
 msgid "Scan band EU HYPER"
 msgstr "Prehľadať pásmo EU HYPER"
 
@@ -4450,18 +4484,6 @@ msgstr "Prehľadať pásmo US MID"
 
 msgid "Scan band US SUPER"
 msgstr "Prehľadať pásmo US SUPER"
-
-msgid "Scan start frequency"
-msgstr ""
-
-msgid "Scan start symbolrate"
-msgstr ""
-
-msgid "Scan stop frequency"
-msgstr ""
-
-msgid "Scan stop symbolrate"
-msgstr ""
 
 msgid ""
 "Scan your network for wireless access points and connect to them using your "
@@ -4507,6 +4529,9 @@ msgstr "Sekundárny DNS"
 msgid "Seek"
 msgstr "Hľadanie"
 
+msgid "Seekbar sensibility"
+msgstr ""
+
 msgid "Select"
 msgstr "Zvoliť"
 
@@ -4542,6 +4567,9 @@ msgstr "Zvoľte súbory na zálohovanie"
 
 msgid "Select files/folders to backup"
 msgstr "Zvoľte súbory a adresáre na zálohovanie"
+
+msgid "Select folders"
+msgstr ""
 
 msgid "Select input device"
 msgstr "Zvoľte vstupné zariadenie"
@@ -4675,6 +4703,9 @@ msgstr "Nastaviť napätie a 22 kHz"
 msgid "Set available internal memory threshold for the warning."
 msgstr "Nastaviť prah dostupnej internej pamäte pre varovanie."
 
+msgid "Set fixed"
+msgstr ""
+
 msgid "Set interface as default Interface"
 msgstr "Nastaviť rozhranie ako predvolené"
 
@@ -4700,6 +4731,9 @@ msgid ""
 msgstr ""
 "Má sorievodca kľúčom USB pokračovať a naprogramovať súbor image %s do pamäte "
 "flash?"
+
+msgid "Share Folder's"
+msgstr ""
 
 msgid "Share View"
 msgstr ""
@@ -4936,6 +4970,9 @@ msgstr "Ľutujem, MediaScanner nie je nainštalovaný!"
 msgid "Sorry no backups found!"
 msgstr "Neboli nájdené žiadne zálohy!"
 
+msgid "Sorry uShare Config is Missing"
+msgstr ""
+
 msgid ""
 "Sorry your Backup destination does not exist\n"
 "\n"
@@ -4973,10 +5010,7 @@ msgstr "Zvuk"
 msgid "Soundcarrier"
 msgstr "Nosný kmitočet zvuku"
 
-msgid "Source active"
-msgstr ""
-
-msgid "Source inactive"
+msgid "Source request"
 msgstr ""
 
 msgid "South"
@@ -5074,6 +5108,9 @@ msgstr "Uložiť pozíciu"
 msgid "Stored position"
 msgstr "Uložená pozícia"
 
+msgid "Stream request"
+msgstr ""
+
 msgid "Subservice mode"
 msgstr ""
 
@@ -5125,6 +5162,9 @@ msgstr ""
 msgid "Swap Services"
 msgstr "Vymeniť stanice"
 
+msgid "Switch TV to correct input"
+msgstr ""
+
 msgid "Switch config"
 msgstr ""
 
@@ -5152,10 +5192,10 @@ msgstr ""
 msgid "System"
 msgstr "Systém"
 
-msgid "System Information"
+msgid "System Infomation"
 msgstr ""
 
-msgid "System:"
+msgid "System Information"
 msgstr ""
 
 msgid "System: "
@@ -5174,12 +5214,6 @@ msgstr "TV norma"
 msgid "TV button mode"
 msgstr ""
 
-msgid "TV standby"
-msgstr ""
-
-msgid "TV wakeup"
-msgstr ""
-
 msgid "Table of content for collection"
 msgstr "Obsah zostavy"
 
@@ -5187,6 +5221,12 @@ msgid "Tags"
 msgstr "Štítky"
 
 msgid "Teletext subtitle color"
+msgstr ""
+
+msgid "Telnet Interface"
+msgstr ""
+
+msgid "Telnet Port"
 msgstr ""
 
 msgid "Telnet Setup"
@@ -5705,6 +5745,12 @@ msgstr ""
 msgid "Total"
 msgstr ""
 
+msgid "Total Memory:"
+msgstr ""
+
+msgid "Total Swap:"
+msgstr ""
+
 msgid "Total cards:"
 msgstr ""
 
@@ -5914,6 +5960,9 @@ msgstr "Použiť sieťový adaptér"
 msgid "Use Power Measurement"
 msgstr "Použiť meranie spotreby"
 
+msgid "Use TV remote control"
+msgstr ""
+
 msgid "Use ViX Coloured Butons"
 msgstr ""
 
@@ -6001,6 +6050,9 @@ msgid "Username (httpuser)"
 msgstr ""
 
 msgid "Username:"
+msgstr ""
+
+msgid "Using fixed address"
 msgstr ""
 
 msgid "Using old profile: "
@@ -6187,8 +6239,23 @@ msgstr ""
 msgid "Waiting"
 msgstr "Čakám"
 
+msgid "Wakeup"
+msgstr ""
+
+msgid "Wakeup TV from standby"
+msgstr ""
+
+msgid "Wakeup receiver from standby"
+msgstr ""
+
+msgid "Wakeup signal from TV"
+msgstr ""
+
 msgid "Warn if free space drops below (kB):"
 msgstr "Varovať, ak voľné miesto poklesne pod (kB):"
+
+msgid "Web Interface"
+msgstr ""
 
 msgid "Wed"
 msgstr "St"
@@ -6316,6 +6383,9 @@ msgstr "Chyba zápisu pri nahrávaní. Plný disk?\n"
 
 msgid "Write failed!"
 msgstr "Zápis zlyhal!"
+
+msgid "XBox 360 support"
+msgstr ""
 
 msgid "YPbPr"
 msgstr "YPbPr"
@@ -6449,6 +6519,11 @@ msgid ""
 msgstr ""
 "Vybrali ste si obnovu nastavení. Po obnovení sa Enigma2 reštartuje. "
 "Stlačením tlačidla OK spustíte obnovu."
+
+msgid ""
+"You have not setup your user info in the setup screen\n"
+"Press MENU, and enter your info, then try again"
+msgstr ""
 
 msgid "You have selected no logs to delete."
 msgstr ""
@@ -7000,9 +7075,6 @@ msgstr "Pomoc..."
 msgid "hide player"
 msgstr "skryť prehrávač"
 
-msgid "high"
-msgstr ""
-
 msgid "hops:"
 msgstr ""
 
@@ -7080,9 +7152,6 @@ msgstr "zachytený"
 
 msgid "loopthrough to"
 msgstr "prepojiť s"
-
-msgid "low"
-msgstr ""
 
 msgid "manual"
 msgstr "ručne"
@@ -7164,6 +7233,9 @@ msgstr "žiadny časový limit"
 
 msgid "no transparency"
 msgstr ""
+
+msgid "none"
+msgstr "žiadne"
 
 msgid "not configured"
 msgstr "nenakonfigurované"
@@ -7573,6 +7645,15 @@ msgstr ""
 
 msgid "tuner is not supported"
 msgstr "tuner nie je podporovaný"
+
+msgid "uShare Name"
+msgstr ""
+
+msgid "uShare Port"
+msgstr ""
+
+msgid "uShare Setup"
+msgstr ""
 
 msgid "unavailable"
 msgstr "nedostupné"
@@ -10486,9 +10567,6 @@ msgstr "prepnuté"
 
 #~ msgid "no HDD found"
 #~ msgstr "nenájdený pevný disk"
-
-#~ msgid "none"
-#~ msgstr "žiadne"
 
 #~ msgid "on Weekday"
 #~ msgstr "v pracovný deň"

@@ -80,10 +80,10 @@ class About(Screen):
 		# TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 		info = _("TRANSLATOR_INFO")
 
-		if info == "TRANSLATOR_INFO":
+		if info == _("TRANSLATOR_INFO"):
 			info = "(N/A)"
 
-		infolines = _("").split("\n")
+		infolines = "".split("\n")
 		infomap = {}
 		for x in infolines:
 			l = x.split(': ')

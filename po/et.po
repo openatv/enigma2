@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-02 16:10+0100\n"
+"POT-Creation-Date: 2011-09-08 16:22+0100\n"
 "PO-Revision-Date: 2010-12-30 09:00+0200\n"
 "Last-Translator: Arvo <arvo@softshark.ee>\n"
 "Language-Team: none\n"
@@ -225,12 +225,6 @@ msgid "%s (%s)\n"
 msgstr "%s (%s)\n"
 
 msgid "( All readers)"
-msgstr ""
-
-msgid "(Beta)"
-msgstr ""
-
-msgid "(Release)"
 msgstr ""
 
 msgid "(Show only reader:"
@@ -537,9 +531,6 @@ msgstr "AC3 muutmine stereoks"
 msgid "AFP Setup"
 msgstr ""
 
-msgid "AVL Xtrend blindscan running... please wait"
-msgstr ""
-
 #
 msgid "Abort"
 msgstr "Katkesta"
@@ -652,6 +643,9 @@ msgstr ""
 msgid "Adjust 3D settings"
 msgstr ""
 
+msgid "Adjust HDMI CEC settings"
+msgstr ""
+
 msgid "Adjust display scrolling and symbols"
 msgstr ""
 
@@ -709,9 +703,6 @@ msgstr "Album"
 msgid "Alias"
 msgstr ""
 
-msgid "Alias:"
-msgstr ""
-
 #
 msgid "All"
 msgstr "Kõik kanalid"
@@ -720,7 +711,7 @@ msgstr "Kõik kanalid"
 msgid "All Satellites"
 msgstr "Kõik satelliidid"
 
-msgid "Allow Subtiles equals Audio mask"
+msgid "Allow Subtitle equals Audio mask"
 msgstr ""
 
 msgid "Allow hearing impaired subtitles"
@@ -758,6 +749,9 @@ msgstr "Tundmatu viga!"
 
 msgid "Anonymize crashlog?"
 msgstr "Muuda vealogi nimetuks?"
+
+msgid "Any activity"
+msgstr ""
 
 msgid "April"
 msgstr ""
@@ -1023,9 +1017,6 @@ msgstr ""
 msgid "Black screen till locked"
 msgstr ""
 
-msgid "Blindscan"
-msgstr ""
-
 #
 msgid "Block noise reduction"
 msgstr "Blokeeri müra vähendamist"
@@ -1197,7 +1188,7 @@ msgstr "Kanalite valik"
 msgid "Channel list preview mode"
 msgstr ""
 
-msgid "Channel list service mode"
+msgid "Channel list service mode (requires restart)"
 msgstr ""
 
 msgid "Channel not in services list"
@@ -1287,6 +1278,9 @@ msgstr "Puhastusabiline"
 #
 msgid "Clear before scan"
 msgstr "Kustuta kanalid"
+
+msgid "Clear fixed"
+msgstr ""
 
 #
 msgid "Clear log"
@@ -1565,6 +1559,9 @@ msgstr "Kausta loomine %s nurjus."
 msgid "Creating partition failed"
 msgstr "Partitsiooni tegemine nurjus"
 
+msgid "Current CEC address"
+msgstr ""
+
 msgid "Current Event:"
 msgstr ""
 
@@ -1630,6 +1627,9 @@ msgstr "D"
 #
 msgid "DHCP"
 msgstr "DHCP"
+
+msgid "DLNA support"
+msgstr ""
 
 msgid "DUAL LAYER DVD"
 msgstr "Kahekihiline DVD"
@@ -1766,7 +1766,13 @@ msgstr ""
 msgid "Detected NIMs:"
 msgstr "Leitud tuunerid:"
 
+msgid "Device Information"
+msgstr ""
+
 msgid "Device Setup"
+msgstr ""
+
+msgid "Devices"
 msgstr ""
 
 msgid "DiSEqC"
@@ -1814,6 +1820,10 @@ msgstr "Kataloogi %s ei eksisteeri."
 #
 msgid "Directory browser"
 msgstr "Kausta brauser"
+
+#, python-format
+msgid "Directory contains %d file(s) and %d sub-directories.\n"
+msgstr ""
 
 #
 msgid "Disable"
@@ -2561,9 +2571,18 @@ msgstr "Järgmised toimingud tehakse pärast OK vajutamist!"
 msgid "Format"
 msgstr "Formaadi"
 
+msgid "Forward volume keys"
+msgstr ""
+
 #
 msgid "Frame size in full view"
 msgstr "Kaadri suurus täisvaates"
+
+msgid "Free Memory:"
+msgstr ""
+
+msgid "Free Swap:"
+msgstr ""
 
 msgid "Free memory"
 msgstr ""
@@ -2617,9 +2636,6 @@ msgid "Ftp service Enabled."
 msgstr ""
 
 msgid "Ftpd service type: Vsftpd server"
-msgstr ""
-
-msgid "GB"
 msgstr ""
 
 msgid ""
@@ -2703,6 +2719,15 @@ msgid "Guard interval mode"
 msgstr "Kaitsevahemiku seaded"
 
 msgid "HD list"
+msgstr ""
+
+msgid "Handle deepstandby events"
+msgstr ""
+
+msgid "Handle standby from TV"
+msgstr ""
+
+msgid "Handle wakeup from TV"
 msgstr ""
 
 #
@@ -2840,6 +2865,9 @@ msgstr ""
 "Ära hooli praegu heledatest varjunditest, need seame paika järgmisena. \n"
 "Kui oled tulemusega rahul, vajuta OK."
 
+msgid "Image Information"
+msgstr ""
+
 msgid "Image:"
 msgstr ""
 
@@ -2854,9 +2882,6 @@ msgstr ""
 "tuunerit!\n"
 
 msgid "Inadyn Log"
-msgstr ""
-
-msgid "Inadyn Manager"
 msgstr ""
 
 msgid "Inadyn Setup"
@@ -2971,6 +2996,9 @@ msgstr "Kohene salvestus..."
 #
 msgid "Instant record location"
 msgstr "Kohese salvestuse asukoht"
+
+msgid "Interface"
+msgstr ""
 
 msgid "Interface: "
 msgstr "Liides: "
@@ -3241,9 +3269,6 @@ msgstr ""
 #
 msgid "Longitude"
 msgstr "Pikkuskraad"
-
-msgid "MB"
-msgstr ""
 
 msgid "MORE"
 msgstr "VEEL"
@@ -3529,6 +3554,9 @@ msgstr ""
 msgid "Network SSID"
 msgstr "Võrgu SSID"
 
+msgid "Network Servers:"
+msgstr ""
+
 msgid "Network Setup"
 msgstr "Võrgu häälestamine"
 
@@ -3804,9 +3832,6 @@ msgid ""
 "Path: %s"
 msgstr ""
 
-msgid "Nothing"
-msgstr ""
-
 msgid ""
 "Nothing to scan!\n"
 "Please setup your tuner settings before you start a service scan."
@@ -3853,6 +3878,9 @@ msgstr "OK, eemalda mõned laiendused"
 msgid "OSD Settings"
 msgstr "Ekraaninäidu seaded"
 
+msgid "OSD name request"
+msgstr ""
+
 #
 msgid "OSD visibility"
 msgstr "OSD nähtavus"
@@ -3866,6 +3894,12 @@ msgstr ""
 #
 msgid "Off"
 msgstr "Väljas"
+
+msgid ""
+"Offline upgrade in progress\n"
+"Please wait until your box reboots\n"
+"This may take a few minutes"
+msgstr ""
 
 msgid "Ok"
 msgstr ""
@@ -3897,12 +3931,6 @@ msgstr "Ainult laiendused."
 #
 msgid "Open Context Menu"
 msgstr "Lahtise kontekstiga menüü"
-
-msgid "Open bouquet selection"
-msgstr ""
-
-msgid "Open channel selection"
-msgstr ""
 
 msgid "OpenVPN Setup"
 msgstr ""
@@ -4385,6 +4413,9 @@ msgstr ""
 msgid "Prefer subtitle stored by service"
 msgstr ""
 
+msgid "Prefered EPG Language"
+msgstr ""
+
 msgid "Preferred tuner"
 msgstr ""
 
@@ -4517,6 +4548,12 @@ msgid "Providers:"
 msgstr ""
 
 msgid "Providers: "
+msgstr ""
+
+msgid "Put TV in standby"
+msgstr ""
+
+msgid "Put receiver in standby"
 msgstr ""
 
 #
@@ -5021,9 +5058,6 @@ msgstr "Otsi WiFi võrke"
 msgid "Scan additional SR"
 msgstr "Otsi lisa SR"
 
-msgid "Scan band"
-msgstr ""
-
 #
 msgid "Scan band EU HYPER"
 msgstr "Otsi EU HYPER sagedusalast"
@@ -5071,18 +5105,6 @@ msgstr "Otsi US MID sagedusalast"
 #
 msgid "Scan band US SUPER"
 msgstr "Otsi US SUPER sagedusalast"
-
-msgid "Scan start frequency"
-msgstr ""
-
-msgid "Scan start symbolrate"
-msgstr ""
-
-msgid "Scan stop frequency"
-msgstr ""
-
-msgid "Scan stop symbolrate"
-msgstr ""
 
 msgid ""
 "Scan your network for wireless access points and connect to them using your "
@@ -5134,6 +5156,9 @@ msgstr "Sekundaarne DNS"
 msgid "Seek"
 msgstr "Otsi"
 
+msgid "Seekbar sensibility"
+msgstr ""
+
 #
 msgid "Select"
 msgstr "Vali"
@@ -5176,6 +5201,9 @@ msgstr "Vali failid varundamiseks."
 #
 msgid "Select files/folders to backup"
 msgstr "Vali failid/kaustad varukoopiale"
+
+msgid "Select folders"
+msgstr ""
 
 msgid "Select input device"
 msgstr "Vali sisendseade"
@@ -5327,6 +5355,9 @@ msgstr "Vali pinge ja 22 KHz"
 msgid "Set available internal memory threshold for the warning."
 msgstr "Sea saadaoleva sisemälu mahu hoiatusnivoo."
 
+msgid "Set fixed"
+msgstr ""
+
 #
 msgid "Set interface as default Interface"
 msgstr "Määra vaikimisi võrguliideseks"
@@ -5357,6 +5388,9 @@ msgid ""
 msgstr ""
 "Kas USB pulga abiline alustab toimingut ja salvestab tarkvara %s flash "
 "mälusse?"
+
+msgid "Share Folder's"
+msgstr ""
 
 msgid "Share View"
 msgstr ""
@@ -5621,6 +5655,9 @@ msgstr "Kahjuks MediaScanner ei ole seadistatud!"
 msgid "Sorry no backups found!"
 msgstr "Ei leidnud varukoopiat!"
 
+msgid "Sorry uShare Config is Missing"
+msgstr ""
+
 #
 msgid ""
 "Sorry your Backup destination does not exist\n"
@@ -5664,10 +5701,7 @@ msgstr "Heli"
 msgid "Soundcarrier"
 msgstr "Heli kandevsagedus"
 
-msgid "Source active"
-msgstr ""
-
-msgid "Source inactive"
+msgid "Source request"
 msgstr ""
 
 #
@@ -5786,6 +5820,9 @@ msgstr "Salvesta asukoht"
 msgid "Stored position"
 msgstr "Salvestatud asukoht"
 
+msgid "Stream request"
+msgstr ""
+
 msgid "Subservice mode"
 msgstr ""
 
@@ -5842,6 +5879,9 @@ msgstr ""
 msgid "Swap Services"
 msgstr "Vaheta PiP- ja peapilt omavahel"
 
+msgid "Switch TV to correct input"
+msgstr ""
+
 msgid "Switch config"
 msgstr ""
 
@@ -5871,10 +5911,10 @@ msgstr ""
 msgid "System"
 msgstr "Süsteem"
 
-msgid "System Information"
+msgid "System Infomation"
 msgstr ""
 
-msgid "System:"
+msgid "System Information"
 msgstr ""
 
 msgid "System: "
@@ -5895,12 +5935,6 @@ msgstr "TV-süsteem"
 msgid "TV button mode"
 msgstr ""
 
-msgid "TV standby"
-msgstr ""
-
-msgid "TV wakeup"
-msgstr ""
-
 #
 msgid "Table of content for collection"
 msgstr "Sisutabel kogumiseks"
@@ -5910,6 +5944,12 @@ msgid "Tags"
 msgstr "Võtmesõnad"
 
 msgid "Teletext subtitle color"
+msgstr ""
+
+msgid "Telnet Interface"
+msgstr ""
+
+msgid "Telnet Port"
 msgstr ""
 
 msgid "Telnet Setup"
@@ -6481,6 +6521,12 @@ msgstr ""
 msgid "Total"
 msgstr ""
 
+msgid "Total Memory:"
+msgstr ""
+
+msgid "Total Swap:"
+msgstr ""
+
 msgid "Total cards:"
 msgstr ""
 
@@ -6726,6 +6772,9 @@ msgstr "Kasuta kasutajaliidest"
 msgid "Use Power Measurement"
 msgstr "Kasuta võimsuse mõõtmist"
 
+msgid "Use TV remote control"
+msgstr ""
+
 msgid "Use ViX Coloured Butons"
 msgstr ""
 
@@ -6820,6 +6869,9 @@ msgid "Username (httpuser)"
 msgstr ""
 
 msgid "Username:"
+msgstr ""
+
+msgid "Using fixed address"
 msgstr ""
 
 msgid "Using old profile: "
@@ -7034,8 +7086,23 @@ msgstr ""
 msgid "Waiting"
 msgstr "Ootan"
 
+msgid "Wakeup"
+msgstr ""
+
+msgid "Wakeup TV from standby"
+msgstr ""
+
+msgid "Wakeup receiver from standby"
+msgstr ""
+
+msgid "Wakeup signal from TV"
+msgstr ""
+
 msgid "Warn if free space drops below (kB):"
 msgstr "Hoiata, kui vaba ruumi alla (kB):"
+
+msgid "Web Interface"
+msgstr ""
 
 #
 msgid "Wed"
@@ -7176,6 +7243,9 @@ msgstr "Kirjutamise viga. Kõvaketas täis?\n"
 msgid "Write failed!"
 msgstr "Kirjutamine nurjus!"
 
+msgid "XBox 360 support"
+msgstr ""
+
 msgid "YPbPr"
 msgstr "YPbPr"
 
@@ -7315,6 +7385,11 @@ msgid ""
 msgstr ""
 "Oled valinud oma seadete taastamise.Enigma2 taaskäivitub pärast taastamist. "
 "Vajuta nüüd OK taastamise alustamiseks."
+
+msgid ""
+"You have not setup your user info in the setup screen\n"
+"Press MENU, and enter your info, then try again"
+msgstr ""
 
 msgid "You have selected no logs to delete."
 msgstr ""
@@ -7922,9 +7997,6 @@ msgstr "abi..."
 msgid "hide player"
 msgstr "peida mängija"
 
-msgid "high"
-msgstr ""
-
 msgid "hops:"
 msgstr ""
 
@@ -8014,9 +8086,6 @@ msgstr "lukustatud"
 #
 msgid "loopthrough to"
 msgstr "läbiviik kuni"
-
-msgid "low"
-msgstr ""
 
 #
 msgid "manual"
@@ -8111,6 +8180,9 @@ msgstr "ilma vaheajata"
 
 msgid "no transparency"
 msgstr ""
+
+msgid "none"
+msgstr "mitte midagi"
 
 #
 msgid "not configured"
@@ -8559,6 +8631,15 @@ msgstr ""
 
 msgid "tuner is not supported"
 msgstr "tuuner pole toetatud"
+
+msgid "uShare Name"
+msgstr ""
+
+msgid "uShare Port"
+msgstr ""
+
+msgid "uShare Setup"
+msgstr ""
 
 #
 msgid "unavailable"
@@ -12083,9 +12164,6 @@ msgstr "vahetatud"
 
 #~ msgid "no HDD found"
 #~ msgstr "kõvaketast ei leitud"
-
-#~ msgid "none"
-#~ msgstr "mitte midagi"
 
 #
 #~ msgid "on Weekday"

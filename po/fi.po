@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-02 16:10+0100\n"
+"POT-Creation-Date: 2011-09-08 16:22+0100\n"
 "PO-Revision-Date: 2010-12-19 14:53+0200\n"
 "Last-Translator: Timo <timojarvenpaa@hotmail.com>\n"
 "Language-Team: none\n"
@@ -238,12 +238,6 @@ msgid "%s (%s)\n"
 msgstr "%s (%s)\n"
 
 msgid "( All readers)"
-msgstr ""
-
-msgid "(Beta)"
-msgstr ""
-
-msgid "(Release)"
 msgstr ""
 
 msgid "(Show only reader:"
@@ -554,9 +548,6 @@ msgstr "AC3 muunnos stereoksi"
 msgid "AFP Setup"
 msgstr ""
 
-msgid "AVL Xtrend blindscan running... please wait"
-msgstr ""
-
 #
 msgid "Abort"
 msgstr "Keskeytä"
@@ -673,6 +664,9 @@ msgstr ""
 msgid "Adjust 3D settings"
 msgstr ""
 
+msgid "Adjust HDMI CEC settings"
+msgstr ""
+
 msgid "Adjust display scrolling and symbols"
 msgstr ""
 
@@ -730,9 +724,6 @@ msgstr "Albumi"
 msgid "Alias"
 msgstr ""
 
-msgid "Alias:"
-msgstr ""
-
 #
 msgid "All"
 msgstr "Kaikki"
@@ -741,7 +732,7 @@ msgstr "Kaikki"
 msgid "All Satellites"
 msgstr "Kaikki satelliitit"
 
-msgid "Allow Subtiles equals Audio mask"
+msgid "Allow Subtitle equals Audio mask"
 msgstr ""
 
 msgid "Allow hearing impaired subtitles"
@@ -783,6 +774,9 @@ msgstr "Tuntematon virhe!"
 #
 msgid "Anonymize crashlog?"
 msgstr "Anonyymi kaatumisloki?"
+
+msgid "Any activity"
+msgstr ""
 
 msgid "April"
 msgstr ""
@@ -1053,9 +1047,6 @@ msgstr ""
 msgid "Black screen till locked"
 msgstr ""
 
-msgid "Blindscan"
-msgstr ""
-
 #
 msgid "Block noise reduction"
 msgstr "Pakkausneliöiden pehmennys"
@@ -1230,7 +1221,7 @@ msgstr "Kanavien valinta"
 msgid "Channel list preview mode"
 msgstr ""
 
-msgid "Channel list service mode"
+msgid "Channel list service mode (requires restart)"
 msgstr ""
 
 #
@@ -1333,6 +1324,9 @@ msgstr "Puhdistusavustaja"
 #  päästä.
 msgid "Clear before scan"
 msgstr "Tyhjennä kanavalista"
+
+msgid "Clear fixed"
+msgstr ""
 
 #
 msgid "Clear log"
@@ -1613,6 +1607,9 @@ msgstr "Hakemiston %s luominen epäonnistui."
 msgid "Creating partition failed"
 msgstr "Kiintolevyosion luonti epäonnistui"
 
+msgid "Current CEC address"
+msgstr ""
+
 msgid "Current Event:"
 msgstr ""
 
@@ -1680,6 +1677,9 @@ msgstr "D"
 
 msgid "DHCP"
 msgstr "DCHP"
+
+msgid "DLNA support"
+msgstr ""
 
 msgid "DUAL LAYER DVD"
 msgstr "DUAL LAYER DVD"
@@ -1818,7 +1818,13 @@ msgstr ""
 msgid "Detected NIMs:"
 msgstr "Virittimet:"
 
+msgid "Device Information"
+msgstr ""
+
 msgid "Device Setup"
+msgstr ""
+
+msgid "Devices"
 msgstr ""
 
 #
@@ -1870,6 +1876,10 @@ msgstr "Hakemistoa %s ei löydy."
 #
 msgid "Directory browser"
 msgstr "Hakemistoselain"
+
+#, python-format
+msgid "Directory contains %d file(s) and %d sub-directories.\n"
+msgstr ""
 
 #
 msgid "Disable"
@@ -2651,9 +2661,18 @@ msgstr "Seuraavat tehtävät suoritetaan kun painat OK!"
 msgid "Format"
 msgstr "Alusta"
 
+msgid "Forward volume keys"
+msgstr ""
+
 #
 msgid "Frame size in full view"
 msgstr "Kehyksen koko kokoruudussa"
+
+msgid "Free Memory:"
+msgstr ""
+
+msgid "Free Swap:"
+msgstr ""
 
 msgid "Free memory"
 msgstr ""
@@ -2706,9 +2725,6 @@ msgid "Ftp service Enabled."
 msgstr ""
 
 msgid "Ftpd service type: Vsftpd server"
-msgstr ""
-
-msgid "GB"
 msgstr ""
 
 #
@@ -2796,6 +2812,15 @@ msgid "Guard interval mode"
 msgstr "Suojaväli-tila"
 
 msgid "HD list"
+msgstr ""
+
+msgid "Handle deepstandby events"
+msgstr ""
+
+msgid "Handle standby from TV"
+msgstr ""
+
+msgid "Handle wakeup from TV"
 msgstr ""
 
 msgid "Harddisk"
@@ -2937,6 +2962,9 @@ msgstr ""
 "\n"
 "Kun olet tyytyväinen tulokseen, paina OK."
 
+msgid "Image Information"
+msgstr ""
+
 msgid "Image:"
 msgstr ""
 
@@ -2952,9 +2980,6 @@ msgstr ""
 "käynnistyi juuri ja tarvitsi tätä viritintä.\n"
 
 msgid "Inadyn Log"
-msgstr ""
-
-msgid "Inadyn Manager"
 msgstr ""
 
 msgid "Inadyn Setup"
@@ -3083,6 +3108,9 @@ msgstr "Pikatallennus..."
 
 msgid "Instant record location"
 msgstr "Pikatallennuksen hakemisto"
+
+msgid "Interface"
+msgstr ""
 
 msgid "Interface: "
 msgstr "Liittymä: "
@@ -3355,9 +3383,6 @@ msgstr ""
 #
 msgid "Longitude"
 msgstr "Pituusaste"
-
-msgid "MB"
-msgstr ""
 
 #
 msgid "MORE"
@@ -3652,6 +3677,9 @@ msgstr ""
 #
 msgid "Network SSID"
 msgstr "Verkon SSID"
+
+msgid "Network Servers:"
+msgstr ""
 
 #
 msgid "Network Setup"
@@ -3956,9 +3984,6 @@ msgid ""
 "Path: %s"
 msgstr ""
 
-msgid "Nothing"
-msgstr ""
-
 #
 msgid ""
 "Nothing to scan!\n"
@@ -4009,6 +4034,9 @@ msgstr "OK, poista joitain laajennuksia"
 msgid "OSD Settings"
 msgstr "Kuvaruutunäytön asetukset"
 
+msgid "OSD name request"
+msgstr ""
+
 #
 msgid "OSD visibility"
 msgstr "OSD:n läpinäkyvyys"
@@ -4022,6 +4050,12 @@ msgstr ""
 #
 msgid "Off"
 msgstr "Pois"
+
+msgid ""
+"Offline upgrade in progress\n"
+"Please wait until your box reboots\n"
+"This may take a few minutes"
+msgstr ""
 
 msgid "Ok"
 msgstr ""
@@ -4052,12 +4086,6 @@ msgstr "Vain laajennukset."
 
 msgid "Open Context Menu"
 msgstr "Avaa valikko"
-
-msgid "Open bouquet selection"
-msgstr ""
-
-msgid "Open channel selection"
-msgstr ""
 
 msgid "OpenVPN Setup"
 msgstr ""
@@ -4574,6 +4602,9 @@ msgstr ""
 msgid "Prefer subtitle stored by service"
 msgstr ""
 
+msgid "Prefered EPG Language"
+msgstr ""
+
 msgid "Preferred tuner"
 msgstr ""
 
@@ -4713,6 +4744,12 @@ msgid "Providers:"
 msgstr ""
 
 msgid "Providers: "
+msgstr ""
+
+msgid "Put TV in standby"
+msgstr ""
+
+msgid "Put receiver in standby"
 msgstr ""
 
 msgid "Python frontend for /tmp/mmi.socket"
@@ -5240,9 +5277,6 @@ msgstr "Hae langattomia verkkoja"
 msgid "Scan additional SR"
 msgstr "Hae muita SR:iä"
 
-msgid "Scan band"
-msgstr ""
-
 msgid "Scan band EU HYPER"
 msgstr "Hae alue EU HYPER"
 
@@ -5289,18 +5323,6 @@ msgstr "Hae alue US MID"
 #
 msgid "Scan band US SUPER"
 msgstr "Hae alue US SUPER"
-
-msgid "Scan start frequency"
-msgstr ""
-
-msgid "Scan start symbolrate"
-msgstr ""
-
-msgid "Scan stop frequency"
-msgstr ""
-
-msgid "Scan stop symbolrate"
-msgstr ""
 
 msgid ""
 "Scan your network for wireless access points and connect to them using your "
@@ -5353,6 +5375,9 @@ msgstr "Toissijainen DNS"
 msgid "Seek"
 msgstr "Etsi"
 
+msgid "Seekbar sensibility"
+msgstr ""
+
 #
 msgid "Select"
 msgstr "Valitse"
@@ -5396,6 +5421,9 @@ msgstr "Valitse varmistettavat tiedostot."
 #
 msgid "Select files/folders to backup"
 msgstr "Valitse varmistettavat tiedostot/kansiot"
+
+msgid "Select folders"
+msgstr ""
 
 msgid "Select input device"
 msgstr "Valitse syöttölaite"
@@ -5558,6 +5586,9 @@ msgstr "Aseta jännite ja 22KHz"
 msgid "Set available internal memory threshold for the warning."
 msgstr "Aseta vapaan muistin määrä varoitusta varten."
 
+msgid "Set fixed"
+msgstr ""
+
 #
 msgid "Set interface as default Interface"
 msgstr "Määritä sovitin oletussovittimeksi"
@@ -5587,6 +5618,9 @@ msgid ""
 "memory?"
 msgstr ""
 "Saako USB-muistiavustaja jatkaa ja kirjoittaa päivityksen %s flash-muistiin?"
+
+msgid "Share Folder's"
+msgstr ""
 
 msgid "Share View"
 msgstr ""
@@ -5861,6 +5895,9 @@ msgstr "Mediascanneria ei ole asennettu!"
 msgid "Sorry no backups found!"
 msgstr "Varmuuskopioita ei löytynyt!"
 
+msgid "Sorry uShare Config is Missing"
+msgstr ""
+
 #
 msgid ""
 "Sorry your Backup destination does not exist\n"
@@ -5907,10 +5944,7 @@ msgstr "Ääni"
 msgid "Soundcarrier"
 msgstr "Äänikantoaallon taajuus"
 
-msgid "Source active"
-msgstr ""
-
-msgid "Source inactive"
+msgid "Source request"
 msgstr ""
 
 #
@@ -6028,6 +6062,9 @@ msgstr "Tallenna sijainti"
 msgid "Stored position"
 msgstr "Sijainnin muistipaikka"
 
+msgid "Stream request"
+msgstr ""
+
 msgid "Subservice mode"
 msgstr ""
 
@@ -6085,6 +6122,9 @@ msgstr ""
 msgid "Swap Services"
 msgstr "Vaihda PiP- ja pääkuva keskenään"
 
+msgid "Switch TV to correct input"
+msgstr ""
+
 msgid "Switch config"
 msgstr ""
 
@@ -6117,10 +6157,10 @@ msgstr ""
 msgid "System"
 msgstr "Järjestelmä"
 
-msgid "System Information"
+msgid "System Infomation"
 msgstr ""
 
-msgid "System:"
+msgid "System Information"
 msgstr ""
 
 msgid "System: "
@@ -6144,12 +6184,6 @@ msgstr "TV-järjestelmä"
 msgid "TV button mode"
 msgstr ""
 
-msgid "TV standby"
-msgstr ""
-
-msgid "TV wakeup"
-msgstr ""
-
 #
 msgid "Table of content for collection"
 msgstr "Kokoelman hakemisto"
@@ -6159,6 +6193,12 @@ msgid "Tags"
 msgstr "Avainsanat"
 
 msgid "Teletext subtitle color"
+msgstr ""
+
+msgid "Telnet Interface"
+msgstr ""
+
+msgid "Telnet Port"
 msgstr ""
 
 msgid "Telnet Setup"
@@ -6769,6 +6809,12 @@ msgstr ""
 msgid "Total"
 msgstr ""
 
+msgid "Total Memory:"
+msgstr ""
+
+msgid "Total Swap:"
+msgstr ""
+
 msgid "Total cards:"
 msgstr ""
 
@@ -7024,6 +7070,9 @@ msgstr "Sovitin käytössä"
 msgid "Use Power Measurement"
 msgstr "Käytä virran mittausta"
 
+msgid "Use TV remote control"
+msgstr ""
+
 msgid "Use ViX Coloured Butons"
 msgstr ""
 
@@ -7138,6 +7187,9 @@ msgid "Username (httpuser)"
 msgstr ""
 
 msgid "Username:"
+msgstr ""
+
+msgid "Using fixed address"
 msgstr ""
 
 msgid "Using old profile: "
@@ -7360,9 +7412,24 @@ msgstr ""
 msgid "Waiting"
 msgstr "Odottaa"
 
+msgid "Wakeup"
+msgstr ""
+
+msgid "Wakeup TV from standby"
+msgstr ""
+
+msgid "Wakeup receiver from standby"
+msgstr ""
+
+msgid "Wakeup signal from TV"
+msgstr ""
+
 #
 msgid "Warn if free space drops below (kB):"
 msgstr "Varoita jos tyhjä tila putoaa alle (kB):"
+
+msgid "Web Interface"
+msgstr ""
 
 #
 msgid "Wed"
@@ -7522,6 +7589,9 @@ msgstr "Kirjoitusvirhe tallennuksessa. Levy täynnä?\n"
 msgid "Write failed!"
 msgstr "Kirjoitus epäonnistui!"
 
+msgid "XBox 360 support"
+msgstr ""
+
 #
 msgid "YPbPr"
 msgstr "Komponentti (YPbPr)"
@@ -7673,6 +7743,11 @@ msgid ""
 msgstr ""
 "Valitsit asetusten palautuksen. Enigma2 käynnistyy uudelleen palautuksen "
 "jälkeen. Aloita painamalla OK-näppäintä."
+
+msgid ""
+"You have not setup your user info in the setup screen\n"
+"Press MENU, and enter your info, then try again"
+msgstr ""
 
 msgid "You have selected no logs to delete."
 msgstr ""
@@ -8355,9 +8430,6 @@ msgstr "apua..."
 msgid "hide player"
 msgstr "piilota soitin"
 
-msgid "high"
-msgstr ""
-
 msgid "hops:"
 msgstr ""
 
@@ -8459,9 +8531,6 @@ msgstr "lukittu"
 #
 msgid "loopthrough to"
 msgstr "Läpisyöttö"
-
-msgid "low"
-msgstr ""
 
 #
 msgid "manual"
@@ -8566,6 +8635,10 @@ msgstr "ei aikaa"
 
 msgid "no transparency"
 msgstr ""
+
+#
+msgid "none"
+msgstr "ei mitään"
 
 #
 msgid "not configured"
@@ -9074,6 +9147,15 @@ msgid "top"
 msgstr ""
 
 msgid "tuner is not supported"
+msgstr ""
+
+msgid "uShare Name"
+msgstr ""
+
+msgid "uShare Port"
+msgstr ""
+
+msgid "uShare Setup"
 msgstr ""
 
 #
@@ -12480,10 +12562,6 @@ msgstr "vaihdettu"
 #
 #~ msgid "no HDD found"
 #~ msgstr "kiintolevyä ei löydy"
-
-#
-#~ msgid "none"
-#~ msgstr "ei mitään"
 
 #
 #~ msgid "on Weekday"

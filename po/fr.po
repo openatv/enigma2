@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma 2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-02 16:10+0100\n"
+"POT-Creation-Date: 2011-09-08 16:22+0100\n"
 "PO-Revision-Date: 2011-02-09 20:34+0200\n"
 "Last-Translator: Remi <remi.jarrige0293@orange.fr>\n"
 "Language-Team: french\n"
@@ -227,12 +227,6 @@ msgid "%s (%s)\n"
 msgstr "%s (%s)\n"
 
 msgid "( All readers)"
-msgstr ""
-
-msgid "(Beta)"
-msgstr ""
-
-msgid "(Release)"
 msgstr ""
 
 msgid "(Show only reader:"
@@ -525,9 +519,6 @@ msgstr "Downmix AC3"
 msgid "AFP Setup"
 msgstr ""
 
-msgid "AVL Xtrend blindscan running... please wait"
-msgstr ""
-
 #
 msgid "Abort"
 msgstr "Abandon"
@@ -646,6 +637,9 @@ msgstr ""
 msgid "Adjust 3D settings"
 msgstr ""
 
+msgid "Adjust HDMI CEC settings"
+msgstr ""
+
 msgid "Adjust display scrolling and symbols"
 msgstr ""
 
@@ -706,9 +700,6 @@ msgstr "Album"
 msgid "Alias"
 msgstr ""
 
-msgid "Alias:"
-msgstr ""
-
 #
 msgid "All"
 msgstr "Toutes"
@@ -717,7 +708,7 @@ msgstr "Toutes"
 msgid "All Satellites"
 msgstr "Tous satellites"
 
-msgid "Allow Subtiles equals Audio mask"
+msgid "Allow Subtitle equals Audio mask"
 msgstr ""
 
 msgid "Allow hearing impaired subtitles"
@@ -759,6 +750,9 @@ msgstr "Une erreur est arrivée!"
 #
 msgid "Anonymize crashlog?"
 msgstr "Afficher crashlog anonyme?"
+
+msgid "Any activity"
+msgstr ""
 
 msgid "April"
 msgstr ""
@@ -1028,9 +1022,6 @@ msgstr ""
 msgid "Black screen till locked"
 msgstr ""
 
-msgid "Blindscan"
-msgstr ""
-
 #
 msgid "Block noise reduction"
 msgstr "Bloc réduction bruit"
@@ -1209,7 +1200,7 @@ msgstr "Sélection de la chaîne"
 msgid "Channel list preview mode"
 msgstr ""
 
-msgid "Channel list service mode"
+msgid "Channel list service mode (requires restart)"
 msgstr ""
 
 #
@@ -1309,6 +1300,9 @@ msgstr "AssistantNettoyage"
 #
 msgid "Clear before scan"
 msgstr "Effacer avant d'analyser"
+
+msgid "Clear fixed"
+msgstr ""
 
 #
 msgid "Clear log"
@@ -1593,6 +1587,9 @@ msgstr "Echec création répertoire %s."
 msgid "Creating partition failed"
 msgstr "Echec création partition"
 
+msgid "Current CEC address"
+msgstr ""
+
 msgid "Current Event:"
 msgstr ""
 
@@ -1660,6 +1657,9 @@ msgstr "D"
 #
 msgid "DHCP"
 msgstr "DHCP"
+
+msgid "DLNA support"
+msgstr ""
 
 #
 msgid "DUAL LAYER DVD"
@@ -1798,7 +1798,13 @@ msgstr ""
 msgid "Detected NIMs:"
 msgstr "Tuners détectés:"
 
+msgid "Device Information"
+msgstr ""
+
 msgid "Device Setup"
+msgstr ""
+
+msgid "Devices"
 msgstr ""
 
 #
@@ -1851,6 +1857,10 @@ msgstr "Répertoire %s non existant."
 #
 msgid "Directory browser"
 msgstr "Navigateur répertoire"
+
+#, python-format
+msgid "Directory contains %d file(s) and %d sub-directories.\n"
+msgstr ""
 
 #
 msgid "Disable"
@@ -2622,9 +2632,18 @@ msgstr "Le suivi des tâches suivantes sera fait après appui sur OK!"
 msgid "Format"
 msgstr "Format"
 
+msgid "Forward volume keys"
+msgstr ""
+
 #
 msgid "Frame size in full view"
 msgstr "Dimension frame en plein écran"
+
+msgid "Free Memory:"
+msgstr ""
+
+msgid "Free Swap:"
+msgstr ""
 
 msgid "Free memory"
 msgstr ""
@@ -2678,9 +2697,6 @@ msgid "Ftp service Enabled."
 msgstr ""
 
 msgid "Ftpd service type: Vsftpd server"
-msgstr ""
-
-msgid "GB"
 msgstr ""
 
 #
@@ -2768,6 +2784,15 @@ msgid "Guard interval mode"
 msgstr "Mode intervalle garde"
 
 msgid "HD list"
+msgstr ""
+
+msgid "Handle deepstandby events"
+msgstr ""
+
+msgid "Handle standby from TV"
+msgstr ""
+
+msgid "Handle wakeup from TV"
 msgstr ""
 
 msgid "Harddisk"
@@ -2905,6 +2930,9 @@ msgstr ""
 "des nuances luminosité maintenant. Elles seront fixées dans la prochaine "
 "étape. si vous êtes satisfait du résultat, pressez OK."
 
+msgid "Image Information"
+msgstr ""
+
 msgid "Image:"
 msgstr ""
 
@@ -2919,9 +2947,6 @@ msgstr ""
 "enregistrée!\n"
 
 msgid "Inadyn Log"
-msgstr ""
-
-msgid "Inadyn Manager"
 msgstr ""
 
 msgid "Inadyn Setup"
@@ -3054,6 +3079,9 @@ msgstr "enregistrement immédiat..."
 #
 msgid "Instant record location"
 msgstr "Emplacement enregistrements immédiats"
+
+msgid "Interface"
+msgstr ""
 
 #
 msgid "Interface: "
@@ -3329,9 +3357,6 @@ msgstr ""
 #
 msgid "Longitude"
 msgstr "Longitude"
-
-msgid "MB"
-msgstr ""
 
 #
 msgid "MORE"
@@ -3632,6 +3657,9 @@ msgstr ""
 msgid "Network SSID"
 msgstr "Réseau SSID"
 
+msgid "Network Servers:"
+msgstr ""
+
 #
 msgid "Network Setup"
 msgstr "Paramètres réseau"
@@ -3923,9 +3951,6 @@ msgid ""
 "Path: %s"
 msgstr ""
 
-msgid "Nothing"
-msgstr ""
-
 msgid ""
 "Nothing to scan!\n"
 "Please setup your tuner settings before you start a service scan."
@@ -3974,6 +3999,9 @@ msgstr "OK, retirer quelques extensions"
 msgid "OSD Settings"
 msgstr "Paramètres OSD"
 
+msgid "OSD name request"
+msgstr ""
+
 #
 msgid "OSD visibility"
 msgstr "Visibilité OSD"
@@ -3987,6 +4015,12 @@ msgstr ""
 #
 msgid "Off"
 msgstr "Arrêt"
+
+msgid ""
+"Offline upgrade in progress\n"
+"Please wait until your box reboots\n"
+"This may take a few minutes"
+msgstr ""
 
 msgid "Ok"
 msgstr ""
@@ -4019,12 +4053,6 @@ msgstr "Extensions seules"
 #
 msgid "Open Context Menu"
 msgstr "Ouvrir menu contextuel"
-
-msgid "Open bouquet selection"
-msgstr ""
-
-msgid "Open channel selection"
-msgstr ""
 
 msgid "OpenVPN Setup"
 msgstr ""
@@ -4552,6 +4580,9 @@ msgstr ""
 msgid "Prefer subtitle stored by service"
 msgstr ""
 
+msgid "Prefered EPG Language"
+msgstr ""
+
 msgid "Preferred tuner"
 msgstr ""
 
@@ -4688,6 +4719,12 @@ msgid "Providers:"
 msgstr ""
 
 msgid "Providers: "
+msgstr ""
+
+msgid "Put TV in standby"
+msgstr ""
+
+msgid "Put receiver in standby"
 msgstr ""
 
 #
@@ -5227,9 +5264,6 @@ msgstr "Scanner réseaux sans fil"
 msgid "Scan additional SR"
 msgstr "Analyser additional SR"
 
-msgid "Scan band"
-msgstr ""
-
 #
 msgid "Scan band EU HYPER"
 msgstr "Analyser band EU HYPER"
@@ -5277,18 +5311,6 @@ msgstr "Analyser band US MID"
 #
 msgid "Scan band US SUPER"
 msgstr "Analyser band US SUPER"
-
-msgid "Scan start frequency"
-msgstr ""
-
-msgid "Scan start symbolrate"
-msgstr ""
-
-msgid "Scan stop frequency"
-msgstr ""
-
-msgid "Scan stop symbolrate"
-msgstr ""
 
 msgid ""
 "Scan your network for wireless access points and connect to them using your "
@@ -5342,6 +5364,9 @@ msgstr "DNS secondaire"
 msgid "Seek"
 msgstr "Sauter"
 
+msgid "Seekbar sensibility"
+msgstr ""
+
 #
 msgid "Select"
 msgstr "Sélectionner"
@@ -5385,6 +5410,9 @@ msgstr "Choisir fichiers pour la sauvegarde."
 #
 msgid "Select files/folders to backup"
 msgstr "Choisir fichiers/dossiers pour sauvegarde"
+
+msgid "Select folders"
+msgstr ""
 
 msgid "Select input device"
 msgstr "Choisir périphérique entrée"
@@ -5543,6 +5571,9 @@ msgstr "Utiliser Voltage et 22KHz"
 msgid "Set available internal memory threshold for the warning."
 msgstr "Paramétrer seuil mémoire disponible avant l'avertissement"
 
+msgid "Set fixed"
+msgstr ""
+
 #
 msgid "Set interface as default Interface"
 msgstr "Utiliser interface comme interface par défaut"
@@ -5573,6 +5604,9 @@ msgid ""
 msgstr ""
 "L'assistant clé USB doit-il procéder et programmer le dossier d'image %s "
 "dans la mémoire Flash?"
+
+msgid "Share Folder's"
+msgstr ""
 
 msgid "Share View"
 msgstr ""
@@ -5847,6 +5881,9 @@ msgstr "Désolé, MédiaScanner non installé!"
 msgid "Sorry no backups found!"
 msgstr "Désolé pas de sauvegardes trouvées!"
 
+msgid "Sorry uShare Config is Missing"
+msgstr ""
+
 #
 msgid ""
 "Sorry your Backup destination does not exist\n"
@@ -5893,10 +5930,7 @@ msgstr "Son"
 msgid "Soundcarrier"
 msgstr "Porteuse sonore"
 
-msgid "Source active"
-msgstr ""
-
-msgid "Source inactive"
+msgid "Source request"
 msgstr ""
 
 #
@@ -6018,6 +6052,9 @@ msgstr "Enregistrer la position"
 msgid "Stored position"
 msgstr "Position enregistrée"
 
+msgid "Stream request"
+msgstr ""
+
 msgid "Subservice mode"
 msgstr ""
 
@@ -6075,6 +6112,9 @@ msgstr ""
 msgid "Swap Services"
 msgstr "Inverser fenêtres services"
 
+msgid "Switch TV to correct input"
+msgstr ""
+
 msgid "Switch config"
 msgstr ""
 
@@ -6107,10 +6147,10 @@ msgstr ""
 msgid "System"
 msgstr "Système"
 
-msgid "System Information"
+msgid "System Infomation"
 msgstr ""
 
-msgid "System:"
+msgid "System Information"
 msgstr ""
 
 msgid "System: "
@@ -6133,12 +6173,6 @@ msgstr "Système TV"
 msgid "TV button mode"
 msgstr ""
 
-msgid "TV standby"
-msgstr ""
-
-msgid "TV wakeup"
-msgstr ""
-
 #
 msgid "Table of content for collection"
 msgstr "Table des matières pour la collection"
@@ -6148,6 +6182,12 @@ msgid "Tags"
 msgstr "Etich."
 
 msgid "Teletext subtitle color"
+msgstr ""
+
+msgid "Telnet Interface"
+msgstr ""
+
+msgid "Telnet Port"
 msgstr ""
 
 msgid "Telnet Setup"
@@ -6751,6 +6791,12 @@ msgstr ""
 msgid "Total"
 msgstr ""
 
+msgid "Total Memory:"
+msgstr ""
+
+msgid "Total Swap:"
+msgstr ""
+
 msgid "Total cards:"
 msgstr ""
 
@@ -7014,6 +7060,9 @@ msgstr "Utiliser interface"
 msgid "Use Power Measurement"
 msgstr "Utiliser mesure puissance"
 
+msgid "Use TV remote control"
+msgstr ""
+
 msgid "Use ViX Coloured Butons"
 msgstr ""
 
@@ -7113,6 +7162,9 @@ msgid "Username (httpuser)"
 msgstr ""
 
 msgid "Username:"
+msgstr ""
+
+msgid "Using fixed address"
 msgstr ""
 
 msgid "Using old profile: "
@@ -7339,9 +7391,24 @@ msgstr ""
 msgid "Waiting"
 msgstr "Attendez"
 
+msgid "Wakeup"
+msgstr ""
+
+msgid "Wakeup TV from standby"
+msgstr ""
+
+msgid "Wakeup receiver from standby"
+msgstr ""
+
+msgid "Wakeup signal from TV"
+msgstr ""
+
 #
 msgid "Warn if free space drops below (kB):"
 msgstr "Avertissement si l'espace libre chute sous (kB):"
+
+msgid "Web Interface"
+msgstr ""
 
 #
 msgid "Wed"
@@ -7487,6 +7554,9 @@ msgstr "Erreur d'écriture en enregistrement. Disque plein?\n"
 #
 msgid "Write failed!"
 msgstr "Echec d'écriture!"
+
+msgid "XBox 360 support"
+msgstr ""
 
 #
 msgid "YPbPr"
@@ -7646,6 +7716,11 @@ msgid ""
 msgstr ""
 "Vious avez choisi de restaurer vos paramètres. Enigma2 redémarrera après la "
 "la restauration. Veuillez appuyer sur OK pour démarrer la restauration."
+
+msgid ""
+"You have not setup your user info in the setup screen\n"
+"Press MENU, and enter your info, then try again"
+msgstr ""
 
 msgid "You have selected no logs to delete."
 msgstr ""
@@ -8328,9 +8403,6 @@ msgstr "aide..."
 msgid "hide player"
 msgstr "cacher le lecteur"
 
-msgid "high"
-msgstr ""
-
 msgid "hops:"
 msgstr ""
 
@@ -8432,9 +8504,6 @@ msgstr "verrouillé"
 #
 msgid "loopthrough to"
 msgstr "rebouclé par"
-
-msgid "low"
-msgstr ""
 
 #
 msgid "manual"
@@ -8538,6 +8607,10 @@ msgstr "pas de temps dépassé"
 
 msgid "no transparency"
 msgstr ""
+
+#
+msgid "none"
+msgstr "aucun"
 
 #
 msgid "not configured"
@@ -9043,6 +9116,15 @@ msgstr ""
 
 msgid "tuner is not supported"
 msgstr "le tuner n'est pas supporté"
+
+msgid "uShare Name"
+msgstr ""
+
+msgid "uShare Port"
+msgstr ""
+
+msgid "uShare Setup"
+msgstr ""
 
 #
 msgid "unavailable"
@@ -13130,10 +13212,6 @@ msgstr "zappé"
 #
 #~ msgid "no Picture found"
 #~ msgstr "pas d'image trouvée"
-
-#
-#~ msgid "none"
-#~ msgstr "aucun"
 
 #
 #~ msgid "on Weekday"
