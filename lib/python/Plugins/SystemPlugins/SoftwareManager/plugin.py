@@ -250,7 +250,6 @@ class UpdatePluginMenu(Screen):
 		default = True
 		try:
 			if not "/stable.png" in urlopen("http://www.pli-images.org").read():
-
 				message = _("The current beta image is not stable")+"\n"+_("For more information see www.pli-images.org")+"\n"
 				picon = MessageBox.TYPE_ERROR
 				default = False
