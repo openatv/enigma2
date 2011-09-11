@@ -81,9 +81,9 @@ class About(Screen):
 		info = _("TRANSLATOR_INFO")
 
 		if info == _("TRANSLATOR_INFO"):
-			info = "(N/A)"
+			info = ""
 
-		infolines = "".split("\n")
+		infolines = _("").split("\n")
 		infomap = {}
 		for x in infolines:
 			l = x.split(': ')
@@ -91,7 +91,6 @@ class About(Screen):
 				continue
 			(type, value) = l
 			infomap[type] = value
-		print infomap
 
 		translator_name = infomap.get("Language-Team", "none")
 		if translator_name == "none":
