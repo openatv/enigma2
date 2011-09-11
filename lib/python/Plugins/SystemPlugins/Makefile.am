@@ -21,10 +21,6 @@ if VUDUO
 SUBDIRS += FanSetupVuPlus
 endif
 
-if ET9000
-SUBDIRS += VFDSetupXtrend
-endif
-
 if HAVE_TEMPFANCONTROL
 SUBDIRS += TempFanControl
 endif
