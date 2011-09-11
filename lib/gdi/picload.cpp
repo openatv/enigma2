@@ -45,11 +45,11 @@ static unsigned char *conv24to32(unsigned char *orgin, int size, unsigned char a
 	return(cr);
 }
 
-static unsigned char *simple_resize(unsigned char *orgin, int ox, int oy, int dx, int dy)
+static unsigned char *simple_resize(unsigned char *orgin, int ox, int oy, int dx, int dy, int bypp)
 {
 	unsigned char *cr, *p, *l;
 	int i, j, k, ip;
-	cr = new unsigned char[dx * dy * 3];
+	cr = new unsigned char[dx * dy * bypp];
 	if (cr == NULL)
 	{
 		eDebug("[Picload] Error malloc");
@@ -57,27 +57,28 @@ static unsigned char *simple_resize(unsigned char *orgin, int ox, int oy, int dx
 	}
 	l = cr;
 
-	for (j = 0; j < dy; j++,l += dx * 3)
+	for (j = 0; j < dy; j++,l += dx * bypp)
 	{
-		p = orgin + (j * oy / dy * ox * 3);
-		for (i = 0, k = 0; i < dx; i++, k += 3)
+		p = orgin + (j * oy / dy * ox * bypp);
+		for (i = 0, k = 0; i < dx; i++, k += bypp)
 		{
-			ip = i * ox / dx * 3;
+			ip = i * ox / dx * bypp;
 			l[k] = p[ip];
 			l[k+1] = p[ip + 1];
 			l[k+2] = p[ip + 2];
+			if(bypp == 4) l[k+3] = p[ip + 3];
 		}
 	}
 	delete [] orgin;
 	return(cr);
 }
 
-static unsigned char *color_resize(unsigned char * orgin, int ox, int oy, int dx, int dy)
+static unsigned char *color_resize(unsigned char * orgin, int ox, int oy, int dx, int dy, int bypp)
 {
 	unsigned char *cr, *p, *q;
 	int i, j, k, l, xa, xb, ya, yb;
-	int sq, r, g, b;
-	cr = new unsigned char[dx * dy * 3];
+	int sq, r, g, b, a;
+	cr = new unsigned char[dx * dy * bypp];
 	if (cr == NULL)
 	{
 		eDebug("[Picload] Error malloc");
@@ -87,7 +88,7 @@ static unsigned char *color_resize(unsigned char * orgin, int ox, int oy, int dx
 
 	for (j = 0; j < dy; j++)
 	{
-		for (i = 0; i < dx; i++, p += 3)
+		for (i = 0; i < dx; i++, p += bypp)
 		{
 			xa = i * ox / dx;
 			ya = j * oy / dy;
@@ -97,15 +98,17 @@ static unsigned char *color_resize(unsigned char * orgin, int ox, int oy, int dx
 			yb = (j + 1) * oy / dy; 
 			if (yb >= oy)
 				yb = oy - 1;
-			for (l = ya, r = 0, g = 0, b = 0, sq = 0; l <= yb; l++)
+			for (l = ya, r = 0, g = 0, b = 0, a = 0, sq = 0; l <= yb; l++)
 			{
-				q = orgin + ((l * ox + xa) * 3);
-				for (k = xa; k <= xb; k++, q += 3, sq++)
+				q = orgin + ((l * ox + xa) * bypp);
+				for (k = xa; k <= xb; k++, q += bypp, sq++)
 				{
 					r += q[0]; g += q[1]; b += q[2];
+					if(bypp == 4) a += q[3];
 				}
 			}
 			p[0] = r / sq; p[1] = g / sq; p[2] = b / sq;
+			if(bypp == 4) p[3] = a / sq;
 		}
 	}
 	delete [] orgin;
@@ -253,7 +256,7 @@ static unsigned char *bmp_load(const char *file,  int *x, int *y)
 
 //---------------------------------------------------------------------
 
-static unsigned char *png_load(const char *file, int *ox, int *oy)
+static unsigned char *png_load(const char *file, int *ox, int *oy, int *_bypp)
 {
 	static const png_color_16 my_background = {0, 0, 0, 0, 0};
 
@@ -289,7 +292,7 @@ static unsigned char *png_load(const char *file, int *ox, int *oy)
 	png_read_info(png_ptr, info_ptr);
 	png_get_IHDR(png_ptr, info_ptr, &width, &height, &bit_depth, &color_type, &interlace_type, NULL, NULL);
 
-	if ((color_type == PNG_COLOR_TYPE_PALETTE)||(color_type == PNG_COLOR_TYPE_GRAY && bit_depth < 8)||(png_get_valid(png_ptr, info_ptr, PNG_INFO_tRNS)))
+	if ((color_type & PNG_COLOR_TYPE_PALETTE)||(color_type == PNG_COLOR_TYPE_GRAY && bit_depth < 8)||(png_get_valid(png_ptr, info_ptr, PNG_INFO_tRNS)))
 		png_set_expand(png_ptr);
 	if (bit_depth == 16)
 		png_set_strip_16(png_ptr);
@@ -298,8 +301,9 @@ static unsigned char *png_load(const char *file, int *ox, int *oy)
 
 	int number_passes = png_set_interlace_handling(png_ptr);
 	png_read_update_info(png_ptr, info_ptr);
+	int bypp = png_get_rowbytes(png_ptr, info_ptr) / width;
 
-	if (width * 3 != png_get_rowbytes(png_ptr, info_ptr))
+	if(bypp != 4 && bypp != 3)
 	{
 		eDebug("[Picload] Error processing");
 		png_destroy_read_struct(&png_ptr, &info_ptr, (png_infopp)NULL);
@@ -307,14 +311,15 @@ static unsigned char *png_load(const char *file, int *ox, int *oy)
 		return NULL;
 	}
 
-	unsigned char *pic_buffer = new unsigned char[height * width * 3];
+	unsigned char *pic_buffer = new unsigned char[height * width * bypp];
 	*ox=width;
 	*oy=height;
+	*_bypp = bypp;
 
 	for(int pass = 0; pass < number_passes; pass++)
 	{
 		fbptr = (png_byte *)pic_buffer;
-		for (i = 0; i < height; i++, fbptr += width * 3)
+		for (i = 0; i < height; i++, fbptr += width * bypp)
 			png_read_row(png_ptr, fbptr, NULL);
 	}
 	png_read_end(png_ptr, info_ptr);
@@ -594,7 +599,7 @@ void ePicLoad::decodePic()
 	
 	switch(m_filepara->id)
 	{
-		case F_PNG:	m_filepara->pic_buffer = png_load(m_filepara->file, &m_filepara->ox, &m_filepara->oy);	break;
+		case F_PNG:	m_filepara->pic_buffer = png_load(m_filepara->file, &m_filepara->ox, &m_filepara->oy, &m_filepara->bypp);	break;
 		case F_JPEG:	m_filepara->pic_buffer = jpeg_load(m_filepara->file, &m_filepara->ox, &m_filepara->oy);	break;
 		case F_BMP:	m_filepara->pic_buffer = bmp_load(m_filepara->file, &m_filepara->ox, &m_filepara->oy);	break;
 		case F_GIF:	m_filepara->pic_buffer = gif_load(m_filepara->file, &m_filepara->ox, &m_filepara->oy);	break;
@@ -677,7 +682,7 @@ void ePicLoad::decodeThumb()
 
 	switch(m_filepara->id)
 	{
-		case F_PNG:	m_filepara->pic_buffer = png_load(m_filepara->file, &m_filepara->ox, &m_filepara->oy);	break;
+		case F_PNG:	m_filepara->pic_buffer = png_load(m_filepara->file, &m_filepara->ox, &m_filepara->oy, &m_filepara->bypp);	break;
 		case F_JPEG:	m_filepara->pic_buffer = jpeg_load(m_filepara->file, &m_filepara->ox, &m_filepara->oy);	break;
 		case F_BMP:	m_filepara->pic_buffer = bmp_load(m_filepara->file, &m_filepara->ox, &m_filepara->oy);	break;
 		case F_GIF:	m_filepara->pic_buffer = gif_load(m_filepara->file, &m_filepara->ox, &m_filepara->oy);	break;
@@ -707,7 +712,7 @@ void ePicLoad::decodeThumb()
 				imy = (int)( (m_conf.thumbnailsize * ((double)m_filepara->oy)) / ((double)m_filepara->ox) );
 			}
 
-			m_filepara->pic_buffer = color_resize(m_filepara->pic_buffer, m_filepara->ox, m_filepara->oy, imx, imy);
+			m_filepara->pic_buffer = color_resize(m_filepara->pic_buffer, m_filepara->ox, m_filepara->oy, imx, imy, m_filepara->bypp);
 			m_filepara->ox = imx;
 			m_filepara->oy = imy;
 
@@ -735,9 +740,9 @@ void ePicLoad::resizePic()
 	}
 		
 	if(m_conf.resizetype)
-		m_filepara->pic_buffer = color_resize(m_filepara->pic_buffer, m_filepara->ox, m_filepara->oy, imx, imy);
+		m_filepara->pic_buffer = color_resize(m_filepara->pic_buffer, m_filepara->ox, m_filepara->oy, imx, imy, m_filepara->bypp);
 	else
-		m_filepara->pic_buffer = simple_resize(m_filepara->pic_buffer, m_filepara->ox, m_filepara->oy, imx, imy);
+		m_filepara->pic_buffer = simple_resize(m_filepara->pic_buffer, m_filepara->ox, m_filepara->oy, imx, imy, m_filepara->bypp);
 
 	m_filepara->ox = imx;
 	m_filepara->oy = imy;
@@ -917,8 +922,11 @@ int ePicLoad::getData(ePtr<gPixmap> &result)
 	result = 0;
 	if(m_filepara->pic_buffer == NULL) return 0;
 	
-	m_filepara->pic_buffer = conv24to32(m_filepara->pic_buffer, m_filepara->ox * m_filepara->oy);
-	
+	if(m_filepara->bypp == 3)
+	{
+		m_filepara->pic_buffer = conv24to32(m_filepara->pic_buffer, m_filepara->ox * m_filepara->oy);
+	}
+
 	result=new gPixmap(eSize(m_filepara->max_x, m_filepara->max_y), 32);
 	gSurface *surface = result->surface;
 	int a=0, b=0;
