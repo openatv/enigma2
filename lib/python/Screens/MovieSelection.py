@@ -42,6 +42,7 @@ config.movielist.videodirs = ConfigLocations(default=[resolveFilename(SCOPE_HDD)
 config.movielist.last_selected_tags = ConfigSet([], default=[])
 config.movielist.play_audio_internal = ConfigYesNo(default=True)
 config.movielist.settings_per_directory = ConfigYesNo(default=True)
+config.movielist.root = ConfigSelection(default="/media", choices=["/","/media","/media/hdd"])
 
 userDefinedButtons = None
 
@@ -241,6 +242,7 @@ class Config(ConfigListScreen,Screen):
 			getConfigListEntry(_("Show status icons in Movielist"), config.usage.show_icons_in_movielist),
 			getConfigListEntry(_("Show icon for new/unseen items"), config.usage.movielist_unseen),
 			getConfigListEntry(_("Play audio in background"), config.movielist.play_audio_internal),
+			getConfigListEntry(_("Root directory"), config.movielist.root),
 			]
 		for k,v in userDefinedButtons.items():
 			configList.append(getConfigListEntry(_(k), v))
