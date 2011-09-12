@@ -244,8 +244,8 @@ class Config(ConfigListScreen,Screen):
 			getConfigListEntry(_("Play audio in background"), config.movielist.play_audio_internal),
 			getConfigListEntry(_("Root directory"), config.movielist.root),
 			]
-		for k,v in userDefinedButtons.items():
-			configList.append(getConfigListEntry(_(k), v))
+		for btn in ('red', 'green', 'yellow', 'blue', 'tv', 'radio'):
+			configList.append(getConfigListEntry(_(btn), userDefinedButtons[btn]))
 		ConfigListScreen.__init__(self, configList, session=session, on_change = self.changedEntry)
 		self["key_red"] = Button(_("Cancel"))
 		self["key_green"] = Button(_("Ok"))
@@ -465,11 +465,13 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self["InfobarActions"] = HelpableActionMap(self, "InfobarActions", 
 			{
 				"showMovies": (self.doPathSelect, _("select the movie path")),
+				"showRadio": (self.btn_radio, "?"),
+				"showTv": (self.btn_tv, _("Home")),
 			})
 
 		self["NumberActions"] =  HelpableActionMap(self, "NumberActions", 
 			{
-				"1": (self.preview, _("Preview")),
+				"0": (self.preview, _("Preview")),
 				"2": (self.list.moveToFirst, _("Go to top of list")),
 				"5": (self.list.moveToFirstMovie, _("Go to first movie")),
 				"8": (self.list.moveToLast, _("Go to last item")),
@@ -510,6 +512,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				"seekFwdManual": (ssfwd, tFwd),
 				"seekBack": (sback, tBack),
 				"seekBackManual": (ssback, tBack),
+				"seekdef:1": (lambda: self.seekRelative(-1, config.seek.selfdefined_13.value*90000), tFwd),
 				"seekdef:3": (lambda: self.seekRelative(1, config.seek.selfdefined_13.value*90000), tFwd),
 				"seekdef:4": (sback, tBack),
 				"seekdef:6": (sfwd, tFwd),
@@ -542,20 +545,24 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				'tags': _("Tags"),
 				'addbookmark': _("Add Bookmark"),
 				'bookmarks': _("Location"),
-				'rename': _("Rename")
+				'rename': _("Rename"),
+				'gohome': _("Home"),
 			}
 			for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST):
-				print "Plugin:", p.description, p.name
 				userDefinedActions['@' + p.name] = p.description
 			config.movielist.btn_red = ConfigSelection(default='delete', choices=userDefinedActions)
 			config.movielist.btn_green = ConfigSelection(default='move', choices=userDefinedActions)
 			config.movielist.btn_yellow = ConfigSelection(default='bookmarks', choices=userDefinedActions)
 			config.movielist.btn_blue = ConfigSelection(default='tags', choices=userDefinedActions)
+			config.movielist.btn_radio = ConfigSelection(default='bookmarks', choices=userDefinedActions)
+			config.movielist.btn_tv = ConfigSelection(default='gohome', choices=userDefinedActions)
 			userDefinedButtons ={
 				'red': config.movielist.btn_red,
 				'green': config.movielist.btn_green,
 				'yellow': config.movielist.btn_yellow,
-				'blue': config.movielist.btn_blue
+				'blue': config.movielist.btn_blue,
+				'radio': config.movielist.btn_radio,
+				'tv': config.movielist.btn_tv,
 			}
 		
         def _callButton(self, name):
@@ -582,7 +589,11 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self._callButton(config.movielist.btn_yellow.value)
 	def btn_blue(self):
 		self._callButton(config.movielist.btn_blue.value)
-		
+	def btn_radio(self):
+		self._callButton(config.movielist.btn_radio.value)
+	def btn_tv(self):
+		self._callButton(config.movielist.btn_tv.value)
+
 	def __onClose(self):
 		try:
 			NavigationInstance.instance.RecordTimer.on_state_change.remove(self.list.updateRecordings)
@@ -617,8 +628,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 
 	def updateButtons(self):
 		item = self.getCurrentSelection()
-		for name,cfg in userDefinedButtons.items():
-			action = cfg.value
+		for name in ('red', 'green', 'yellow', 'blue'):
+		        action = userDefinedButtons[name].value
 			if action.startswith('@'):
 				check = self.can_default
 			else:
@@ -1461,3 +1472,9 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 	def showNetworkSetup(self):
 		import NetworkSetup
 		self.session.open(NetworkSetup.NetworkAdapterSelection)
+
+	def can_gohome(self, item):
+	        return True
+
+	def do_gohome(self):
+	        self.gotFilename(defaultMoviePath())
