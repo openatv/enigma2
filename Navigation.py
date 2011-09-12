@@ -8,6 +8,7 @@ import SleepTimer
 import Screens.Standby
 import NavigationInstance
 import ServiceReference
+from os import path
 
 # TODO: remove pNavgation, eNavigation and rewrite this stuff in python.
 class Navigation:
@@ -63,6 +64,15 @@ class Navigation:
 			print "ignore request to play already running service(1)"
 			return 0
 		print "playing", ref and ref.toString()
+		if path.exists("/proc/stb/lcd/symbol_signal"):
+			if not ref.toString().startswith('1:0:0:0:0:0:0:0:0:0:'):
+				signal = 1
+			else:
+				signal = 0
+			file = open("/proc/stb/lcd/symbol_signal", "w")
+			file.write('%d' % int(signal))
+			file.close()
+		
 		if ref is None:
 			self.stopService()
 			return 0

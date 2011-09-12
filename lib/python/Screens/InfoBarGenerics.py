@@ -1328,6 +1328,9 @@ class InfoBarSeek:
 
 		self["SeekActions"].setEnabled(False)
 
+		self.activity = 0
+		self.activityTimer = eTimer()
+		self.activityTimer.callback.append(self.doActivityTimer)
 		self.seekstate = self.SEEK_STATE_PLAY
 		self.lastseekstate = self.SEEK_STATE_PLAY
 
@@ -1404,7 +1407,27 @@ class InfoBarSeek:
 			self.setSeekState(self.SEEK_STATE_PLAY)
 		else:
 			self["SeekActions"].setEnabled(True)
+			self.activityTimer.start(200, False)
 #			print "seekable"
+
+	def doActivityTimer(self):
+		if self.isSeekable():
+			self.activity += 16
+			hdd = 1
+			if self.activity >= 100:
+				self.activity = 0
+		else:
+ 			self.activityTimer.stop()
+ 			self.activity = 0
+ 			hdd = 0
+		if os_path.exists("/proc/stb/lcd/symbol_hdd"):
+			file = open("/proc/stb/lcd/symbol_hdd", "w")
+			file.write('%d' % int(hdd))
+			file.close()
+		if os_path.exists("/proc/stb/lcd/symbol_hddprogress"):
+			file = open("/proc/stb/lcd/symbol_hddprogress", "w")
+			file.write('%d' % int(self.activity))
+			file.close()
 
 	def __serviceStarted(self):
 		self.fast_winding_hint_message_showed = False
@@ -1432,6 +1455,7 @@ class InfoBarSeek:
 		if pauseable is not None:
 			if self.seekstate[0]:
 				print "resolved to PAUSE"
+				self.activityTimer.stop()
 				pauseable.pause()
 			elif self.seekstate[1]:
 				print "resolved to FAST FORWARD"
@@ -1441,6 +1465,7 @@ class InfoBarSeek:
  				pauseable.setSlowMotion(self.seekstate[2])
 			else:
 				print "resolved to PLAY"
+				self.activityTimer.start(200, False)
 				pauseable.unpause()
 
 		for c in self.onPlayStateChanged:
