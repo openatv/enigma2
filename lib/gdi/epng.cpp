@@ -74,6 +74,12 @@ int loadPNG(ePtr<gPixmap> &result, const char *filename, int accel)
 	
 	if (color_type == PNG_COLOR_TYPE_GRAY || color_type & PNG_COLOR_MASK_PALETTE)
 	{
+		if (bit_depth < 8)
+		{
+			png_set_packing(png_ptr);
+			bit_depth = 8;
+		}
+
 		result=new gPixmap(eSize(width, height), bit_depth, accel);
 		gSurface *surface = result->surface;
 	
