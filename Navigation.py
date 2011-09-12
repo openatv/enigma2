@@ -132,6 +132,11 @@ class Navigation:
 	def stopService(self):
 		if self.pnav:
 			self.pnav.stopService()
+		if path.exists("/proc/stb/lcd/symbol_signal"):
+			signal = 0
+			file = open("/proc/stb/lcd/symbol_signal", "w")
+			file.write('%d' % int(signal))
+			file.close()
 
 	def pause(self, p):
 		return self.pnav and self.pnav.pause(p)
