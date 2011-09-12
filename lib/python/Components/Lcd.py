@@ -78,36 +78,6 @@ class LCD:
 		file.close()
 		print "[LCD] set scrollspeed to %d" % int(value)
 
-	def setHdd(self, value):
-		file = open("/proc/stb/lcd/symbol_hdd", "w")
-		file.write('%d' % int(value))
-		file.close()
-		print "[LCD] set Hdd to %d" % int(value)
-
-	def setHddProgress(self, value):
-		file = open("/proc/stb/lcd/symbol_hddprogress", "w")
-		file.write('%d' % int(value))
-		file.close()
-		print "[LCD] set HDD Progress to %d" % int(value)
-
-	def setSignal(self, value):
-		file = open("/proc/stb/lcd/symbol_signal", "w")
-		file.write('%d' % int(value))
-		file.close()
-		print "[LCD] set Signal to %d" % int(value)
-
-	def setTv(self, value):
-		file = open("/proc/stb/lcd/symbol_tv", "w")
-		file.write('%d' % int(value))
-		file.close()
-		print "[LCD] set TV to %d" % int(value)
-
-	def setUsb(self, value):
-		file = open("/proc/stb/lcd/symbol_usb", "w")
-		file.write('%d' % int(value))
-		file.close()
-		print "[LCD] set USB to %d" % int(value)
-
 def leaveStandby():
 	config.lcd.bright.apply()
 
@@ -139,21 +109,6 @@ def InitLcd():
 		def setLCDscrollspeed(configElement):
 			ilcd.setScrollspeed(configElement.value);
 
-		def setLCDhdd(configElement):
-			ilcd.setHdd(configElement.value);
-
-		def setLCDhddprogress(configElement):
-			ilcd.setHddProgress(configElement.value);
-
-		def setLCDsignal(configElement):
-			ilcd.setSignal(configElement.value);
-
-		def setLCDtv(configElement):
-			ilcd.setTv(configElement.value);
-
-		def setLCDusb(configElement):
-			ilcd.setUsb(configElement.value);
-
 		standby_default = 0
 
 		ilcd = LCD()
@@ -184,12 +139,6 @@ def InitLcd():
 			config.lcd.repeat.addNotifier(setLCDrepeat);
 			config.lcd.scrollspeed = ConfigSlider(default = 150, increment = 10, limits = (0, 500))
 			config.lcd.scrollspeed.addNotifier(setLCDscrollspeed);
-			config.lcd.hddprogress = ConfigSlider(default = 150, increment = 16.6, limits = (0, 100))
-			config.lcd.hddprogress.addNotifier(setLCDhddprogress);
-			config.lcd.tv = ConfigSelection([("0", _("No")), ("1", _("Yes"))], "1")
-			config.lcd.tv.addNotifier(setLCDtv);
-			config.lcd.usb = ConfigSelection([("0", _("No")), ("1", _("Yes"))], "1")
-			config.lcd.usb.addNotifier(setLCDusb);
 		else:
 			config.lcd.mode = ConfigNothing()
 			config.lcd.repeat = ConfigNothing()
