@@ -22,11 +22,12 @@ def filescan_open(list, session, **kwargs):
 
 def filescan(**kwargs):
 	from Components.Scanner import Scanner, ScanPath
+	import os
 
 	# Overwrite checkFile to only detect local
 	class LocalScanner(Scanner):
 		def checkFile(self, file):
-			return fileExists(file.path)
+			return os.path.exists(file.path)
 
 	return \
 		LocalScanner(mimetypes = ["image/jpeg", "image/png", "image/gif", "image/bmp"],
