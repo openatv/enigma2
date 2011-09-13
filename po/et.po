@@ -1,19 +1,17 @@
-# Copyright (C) 2005 THE tuxbox-enigma'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the tuxbox-enigma package.
-# Automatically generated, 2005.
+# Estonian translations for Enigma2.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: tuxbox-enigma 0.0.1\n"
+"Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-04-20 10:39+0000\n"
+"POT-Creation-Date: 2011-09-07 11:08+0000\n"
 "PO-Revision-Date: 2011-04-26 15:47+0200\n"
 "Last-Translator: Arvo <arvo@softshark.ee>\n"
 "Language-Team: none\n"
-"Language: et\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: et\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.0.3\n"
 
@@ -185,6 +183,12 @@ msgid ""
 msgstr ""
 "%d konflikt (i) leiti uute taimerite lisamisel:\n"
 "%s"
+
+#, python-format
+msgid ""
+"%d conflict(s) solved with similar timer(s):\n"
+"%s"
+msgstr ""
 
 #, python-format
 msgid "%d jobs are running in the background!"
@@ -441,6 +445,9 @@ msgstr "Ilus HD välimus Brushed Alu tehtud Kerni poolt."
 msgid "A nice looking skin from Kerni"
 msgstr "Kena välimus Kernilt"
 
+msgid "A plugin to add / remove / modify entries of fstab."
+msgstr ""
+
 #
 #, python-format
 msgid ""
@@ -549,6 +556,9 @@ msgstr "Süstemiinfo"
 msgid "About..."
 msgstr "Süsteemiinfo..."
 
+msgid "Access the EPG from within the Movie Player"
+msgstr ""
+
 msgid "Access to the ARD-Mediathek"
 msgstr "Juurdepääs ARD-Mediathek-le"
 
@@ -573,6 +583,9 @@ msgstr "Tegutse:"
 #
 msgid "Activate Picture in Picture"
 msgstr "Ava pilt-pildis"
+
+msgid "Activate VPS"
+msgstr ""
 
 #
 msgid "Activate network settings"
@@ -627,6 +640,12 @@ msgstr "Lisa uus AutoTimer"
 msgid "Add new network mount point"
 msgstr "Lisa uus võrgu haakepunkt"
 
+msgid "Add similar timer on conflict"
+msgstr ""
+
+msgid "Add tags to recorded movies"
+msgstr ""
+
 #
 msgid "Add timer"
 msgstr "Lisa taimer"
@@ -651,6 +670,10 @@ msgstr "Lisan zap taimer savestustimeri asemel?"
 
 msgid "Added: "
 msgstr "Lisatud: "
+
+msgid ""
+"Adds 'search...' to the context menu of the movie list to allow searches."
+msgstr ""
 
 msgid ""
 "Adds enigma2 settings and dreambox model informations like SN, rev... if "
@@ -747,14 +770,31 @@ msgstr "Kogu aeg"
 msgid "All non-repeating timers"
 msgstr "Kõik mittekorduvad taimerid"
 
+msgid "Allow to search recordings"
+msgstr ""
+
 msgid "Allow zapping via Webinterface"
 msgstr "Luba zap veebiliidesest"
 
 msgid "Allows the execution of TuxboxPlugins."
 msgstr "Lubab TuxboxPluginate käivituse."
 
+msgid "Allows to change the order of entries in the main menu manually."
+msgstr ""
+
+msgid "Allows to zap using the picture in picture."
+msgstr ""
+
 msgid "Allows user to download files from rapidshare in the background."
 msgstr "Lubab laadida rapidshare faile alla taustal."
+
+msgid ""
+"Allows you to access the service list and plugins requiring access to the "
+"service list (e.g. Graphical Multi EPG) from within the standard movie "
+"player.DO NOT install this plugin if you're using a nonstandard movie "
+"player, e.g. EMC. It will probably break and you might end up with a "
+"unusable movie player until you uninstall one of the conflicting plugins."
+msgstr ""
 
 #
 msgid "Alpha"
@@ -774,8 +814,8 @@ msgstr "Alati küsi"
 msgid "Always ask before sending"
 msgstr "Küsi alati enne saatmist"
 
-msgid "Ammount of recordings left"
-msgstr "Järelejäänud salvestuste arv"
+msgid "Amount of recordings left"
+msgstr ""
 
 msgid "An empty filename is illegal."
 msgstr "Tühi failinimi ei ole lubatud."
@@ -788,6 +828,9 @@ msgstr "Tundmatu viga!"
 
 msgid "Anonymize crashlog?"
 msgstr "Muuda vealogi nimetuks?"
+
+msgid "Any service/recording"
+msgstr ""
 
 #
 msgid "Arabic"
@@ -867,9 +910,6 @@ msgstr "Pildisuhe"
 
 msgid "Assigning providers/services/caids to a CI module"
 msgstr "Määra levitaja/kanal/caid CI moodulile"
-
-msgid "Atheros"
-msgstr "Atheros"
 
 #
 msgid "Audio"
@@ -985,13 +1025,14 @@ msgstr "Värskenda automaatselt EPG-d"
 msgid "Automatically send crashlogs to Dream Multimedia"
 msgstr "Saada automaatselt vealogi ära"
 
+msgid "Autoresolution"
+msgstr ""
+
 #, python-format
 msgid ""
 "Autoresolution Plugin Testmode:\n"
-"Is %s ok?"
+"Is %s OK?"
 msgstr ""
-"Autoresolutsiooni test:\n"
-"Kas %s on ok?"
 
 msgid "Autoresolution Switch"
 msgstr "Autoresolutsiooni vahetus"
@@ -1177,6 +1218,12 @@ msgid ""
 "By enabling this events will not be matched if they don't occur on certain "
 "dates."
 msgstr "Seda lubades saated ei ühtu, kui nad ei toimu tetavatel päevadel."
+
+msgid ""
+"By enabling this you will be notified about similar timers added during "
+"automated polling. There is no intelligence involved, so it might bother you "
+"about the same conflict over and over."
+msgstr ""
 
 msgid ""
 "By enabling this you will be notified about timer conflicts found during "
@@ -1396,6 +1443,15 @@ msgstr "Puhasta taimerite nimekiri automaatselt"
 msgid "Cleanup timerlist automatically."
 msgstr "Puhasta taimerite nimekiri automaatselt."
 
+msgid ""
+"Cleanup timerlist, orphaned movie files and setting backups automatically "
+"according to specfied rules."
+msgstr ""
+
+msgid ""
+"Cleanup timerlist, orphaned movie files and setting backups automatically."
+msgstr ""
+
 #
 msgid "CleanupWizard"
 msgstr "Puhastusabiline"
@@ -1566,6 +1622,9 @@ msgstr "Jätka taasesitust"
 #
 msgid "Contrast"
 msgstr "Kontrast"
+
+msgid "Control recording completely by service"
+msgstr ""
 
 msgid "Control your Dreambox with your Web browser."
 msgstr "Halda oma vastuvõtjat veebibrauseriga."
@@ -2041,8 +2100,11 @@ msgstr "Näita otsingu tulemust:"
 msgid "Display your photos on the TV"
 msgstr "Näita pilte ekraanil"
 
-msgid "Displays movie information from the InternetMovieDatabase"
-msgstr "Filmi info näitamine InternetMovieDatabase-st"
+msgid "Displays Movie Information from the InternetMovieDatabase"
+msgstr ""
+
+msgid "Displays Movie Information from the Online Film Datenbank (German)"
+msgstr ""
 
 #, python-format
 msgid ""
@@ -2281,13 +2343,11 @@ msgstr "EPG kodeering"
 
 msgid ""
 "EPGRefresh will automatically switch to user-defined channels when the box "
-"is idleing\n"
-"(in standby mode without any running recordings) to perform updates of the "
-"epg information on these channels."
+"is idling(i.e. in standby mode and no recordings running) to perform updates "
+"of the EPG information on these channels.\n"
+"On multi-tuner boxes it may optionally run in background hidden or in PiP, "
+"to not disturb the current TV program."
 msgstr ""
-"EPFRefresh lülitub ise kasutaja määratud kanalitele, kui tuuner on "
-"ooteasendis\n"
-"(ootel ilma ühegi töötava salvestuseta) et nende kanalite EPG infot uuendada."
 
 #, python-format
 msgid "ERROR - failed to scan (%s)!"
@@ -2314,6 +2374,7 @@ msgstr "Muuda AutoTaimeri teenuseid"
 msgid "Edit DNS"
 msgstr "Muuda DNS"
 
+#. TRANSLATORS: description of AutoTimer in PluginBrowser
 msgid "Edit Timers and scan for new Events"
 msgstr "Muuda taimereid ja otsi uusi saateid"
 
@@ -2367,6 +2428,9 @@ msgstr "Muuda uuenduste allika url."
 
 msgid "Editing"
 msgstr "Muudan"
+
+msgid "Editor for fstab"
+msgstr ""
 
 msgid "Editor for new AutoTimers"
 msgstr "Editor uuele AutoTaimerile"
@@ -2474,10 +2538,6 @@ msgstr "Kodeeringu võti"
 #
 msgid "Encryption Keytype"
 msgstr "Kodeeringu võti"
-
-#
-msgid "Encryption Type"
-msgstr "Kodeeringu tüüp"
 
 #
 msgid "Encryption:"
@@ -2809,18 +2869,9 @@ msgstr "Formaadi"
 #, python-format
 msgid ""
 "Found a total of %d matching Events.\n"
-"%d Timer were added and %d modified, %d conflicts encountered."
+"%d Timer were added and %d modified, %d conflicts encountered, %d similars "
+"added."
 msgstr ""
-"Leiti %d ühilduvat saadet.\n"
-"%d taimerit lisati ja %d muudeti. %d konflikti."
-
-#, python-format
-msgid ""
-"Found a total of %d matching Events.\n"
-"%d Timer were added and %d modified."
-msgstr ""
-"Leidus kokku %d vastet.\n"
-"%d Timerit lisati ja %d muudeti."
 
 #
 msgid "Frame size in full view"
@@ -2849,6 +2900,9 @@ msgstr "Sageduse otsingu samm (khz)"
 #
 msgid "Frequency steps"
 msgstr "Sageduse samm"
+
+msgid "Frequently asked questions"
+msgstr ""
 
 #
 msgid "Fri"
@@ -3042,13 +3096,8 @@ msgstr "Abi"
 msgid "Hidden network"
 msgstr "Peidetud võrk"
 
-#
-msgid "Hidden network SSID"
-msgstr "Võrgu SSID"
-
-#
-msgid "Hidden networkname"
-msgstr "Varjatud võrgunimi"
+msgid "Hide Plugin from Plugin or Extensionsmenu."
+msgstr ""
 
 msgid "Hierarchy info"
 msgstr "Hierarhia teave"
@@ -3115,6 +3164,17 @@ msgstr "ISO kataloog"
 #
 msgid "Icelandic"
 msgstr "Island"
+
+msgid ""
+"If a timer conflict occurs, AutoTimer will search outside the timespan for a "
+"similar event and add it."
+msgstr ""
+
+msgid ""
+"If installed, the plugin allows to modify the order in which entries of the "
+"main menu are shown.It can be changed using the \"MenuSort\" plugin, "
+"launchable from the regular plugin overview."
+msgstr ""
 
 #, python-format
 msgid ""
@@ -3302,9 +3362,6 @@ msgstr "Keskmine"
 #
 msgid "Internal Flash"
 msgstr "Sisemine flash-mälu"
-
-msgid "Internal LAN adapter."
-msgstr "Sisemine LAN adapter."
 
 msgid "Internal USB Slot"
 msgstr "Sisemine USB pesa"
@@ -3573,11 +3630,8 @@ msgstr ""
 msgid "List of Storage Devices"
 msgstr "Salvestusseadmete loetelu"
 
-msgid "Listen and record internet radio"
-msgstr "Kuula ja salvesta interneti raadiot"
-
-msgid "Listen and record shoutcast internet radio on your Dreambox."
-msgstr "Kuula ja salvesta Shoutcast interneti raadiot oma tuuneris."
+msgid "Listen and record Shoutcast Internet Radio on your Dreambox."
+msgstr ""
 
 #
 msgid "Lithuanian"
@@ -3741,13 +3795,10 @@ msgstr "Max.Bitikiirus: "
 msgid "Maximum duration (in m)"
 msgstr "Maksimaalne kestus (min)"
 
-#
 msgid ""
-"Maximum event duration to match. If an event is longer than this ammount of "
+"Maximum event duration to match. If an event is longer than this amount of "
 "time (without offset) it won't be matched."
 msgstr ""
-"Suurim sobiv saate kestus. Kui saade on pikem kui see ajavahemik (ilma "
-"seatud eranditeta), see ei sobi."
 
 #
 msgid "Media player"
@@ -3968,12 +4019,6 @@ msgstr "Liiguta ekraan üles"
 #
 msgid "Move west"
 msgstr "Liiguta läände"
-
-msgid "Movie information from the Online Film Datenbank (German)."
-msgstr "Filmi info Online Film Datenbank'ist (Saksa)."
-
-msgid "Movie informations from the Online Film Datenbank"
-msgstr "Filmi info Online Film Datenbank'ist"
 
 #
 msgid "Movie location"
@@ -4221,10 +4266,6 @@ msgstr "Võrgu häälestamine..."
 msgid "Network Mount"
 msgstr "Võrgu külgehaakimine"
 
-#
-msgid "Network SSID"
-msgstr "Võrgu SSID"
-
 msgid "Network Setup"
 msgstr "Võrgu häälestamine"
 
@@ -4302,9 +4343,6 @@ msgstr "Pole ühendust"
 
 msgid "No HDD found or HDD not initialized!"
 msgstr "Kõvaketast ei leitud või seda pole formaaditud!"
-
-msgid "No Networks found"
-msgstr "Võrke ei leitud"
 
 #
 msgid "No backup needed"
@@ -4411,10 +4449,6 @@ msgstr ""
 #
 msgid "No videos to display"
 msgstr "Videod puuduvad"
-
-#
-msgid "No wireless networks found! Please refresh."
-msgstr "Ei leidnud WiFi võrke! Palun värskenda."
 
 msgid "No wireless networks found! Searching..."
 msgstr ""
@@ -4617,6 +4651,9 @@ msgstr "Ainult sel korral loodud Autotaimerid"
 msgid "Only Free scan"
 msgstr "Ainult vabade otsimine"
 
+msgid "Only add timer for next x days"
+msgstr ""
+
 msgid "Only extensions."
 msgstr "Ainult laiendused."
 
@@ -4776,18 +4813,18 @@ msgstr "Mängi Audio-CD..."
 msgid "Play DVD"
 msgstr "Taasesita"
 
+msgid "Play Internet Radio downloaded from Last.FM"
+msgstr ""
+
+msgid "Play Internet Radio downloaded from ShoutCast"
+msgstr ""
+
 msgid "Play Music..."
 msgstr "Mängi Muusikat..."
 
 #
 msgid "Play YouTube movies"
 msgstr "Mängi YouTube filme"
-
-msgid "Play music from Last.fm"
-msgstr "Mängi muusikat Last.fm-st"
-
-msgid "Play music from Last.fm."
-msgstr "Mängi muusikat Last.fm-st."
 
 #
 msgid "Play next video"
@@ -5300,6 +5337,17 @@ msgstr "Levitajad"
 msgid "Published"
 msgstr "Avalikud"
 
+msgid "Push key \"Exit long\" to show the clock while watching TV."
+msgstr ""
+
+msgid ""
+"Push key \"Exit long\" to show the clock while watching TV. Clock will "
+"disappear after the specified timeout or by pushing key \"Exit long\" "
+"again.\n"
+"Modify the settings to match your preferences. To change the clock position, "
+"select \"Move clock\" and relocate."
+msgstr ""
+
 #
 msgid "Python frontend for /tmp/mmi.socket"
 msgstr "Pythoni programm /tmp/mmi.socket jaoks"
@@ -5334,9 +5382,6 @@ msgstr ""
 #
 msgid "Radio"
 msgstr "Raadio"
-
-msgid "Ralink"
-msgstr "Ralink"
 
 #
 msgid "Ram Disk"
@@ -5674,6 +5719,9 @@ msgstr "Tagasi salvestiste nimekirja"
 #
 msgid "Return to previous service"
 msgstr "Tagasi eelmisele kanalile"
+
+msgid "Reusable Help-component for other plugins."
+msgstr ""
 
 #
 msgid "Rewind speeds"
@@ -6137,6 +6185,9 @@ msgstr "Vali WiFi võrk"
 msgid "Select your choice."
 msgstr "Tee oma valik."
 
+msgid "Select your favourite music (Artist, Album, Genre)."
+msgstr ""
+
 msgid "Send DiSEqC"
 msgstr "DiSEqC"
 
@@ -6255,9 +6306,6 @@ msgstr "Sea maksimaalne kestus"
 msgid "Set this NO to disable this AutoTimer."
 msgstr "Autotaimeri keelamiseks vali EI."
 
-msgid "Sets your Dreambox into Deep-Standby"
-msgstr "Paneb vastuvõtja sügavootele"
-
 #
 msgid "Setting key canceled"
 msgstr "Seade nupp on tühistatud"
@@ -6353,6 +6401,9 @@ msgstr "Näita kerimisel inforiba"
 msgid "Show notification on conflicts"
 msgstr ""
 
+msgid "Show notification on similars"
+msgstr ""
+
 #
 msgid "Show positioner movement"
 msgstr "Näita positsioneeri liikumist"
@@ -6388,6 +6439,9 @@ msgstr "Näitab vaadatud kanalite statistikat"
 msgid "Shows the clock permanently on the screen"
 msgstr "Näitab püsivalt kella ekraanil"
 
+msgid "Shows the service name instead of the service number when zapping."
+msgstr ""
+
 msgid "Shows the state of your wireless LAN connection.\n"
 msgstr "Näitab WiFi olekut.\n"
 
@@ -6398,6 +6452,9 @@ msgstr "Lülita välja"
 #
 msgid "Shutdown Dreambox after"
 msgstr "Lülita välja peale"
+
+msgid "Shuts down your Dreambox into Deep Standby (Power Save Mode)"
+msgstr ""
 
 #
 msgid "Signal Strength:"
@@ -6552,6 +6609,9 @@ msgstr "Tähestikujärj."
 #
 msgid "Sort AutoTimer"
 msgstr "Järjestai autotaimerit"
+
+msgid "Sort Plugins in the PluginBrowser."
+msgstr ""
 
 #
 #. TRANSLATORS: This must fit into the header button in the EPG-List
@@ -6894,19 +6954,13 @@ msgstr ""
 "Dreambox formaadis andmete (data) DVD, mida teised DVD mängijad ei mängi?"
 
 msgid ""
-"The Elektro Power Save plugin puts the box from standby to sleep mode (Deep "
-"Standby) at certain times.\n"
+"The Elektro Power Save Plugin puts the box from Standby to sleep mode (Deep "
+"Standby) at specified times.\n"
 "This only happens if the box is in standby and no recording is running or "
-"sheduled in the next 20 minutes.\n"
-"The box automatically wakes up for recordings or at the end of the sleep "
-"time. You therefore don't have to wait until it is on again."
+"scheduled during the next 20 minutes.\n"
+"The box automatically wakes up for recordings or at the end of the specified "
+"sleep time. Hence you needn't wait for it to boot-up."
 msgstr ""
-"Elektro Power Save laiendus seab vastuvõtja ootereziimist sügavootele teatud "
-"juhtudel. \n"
-"See juhtub ainult siis, kui vastuvõtja on ootel ja lähema 20 minuti jooksul "
-"ei salvestata või planeerita salvestust. \n"
-"Vastuvõtja alustab tööd ise või hakkab salvestama. Sellepärast ei pea ootama "
-"vastuvõtja sisselülitumist."
 
 msgid ""
 "The Hotplug plugin notifies your system of newly added or removed devices."
@@ -6990,6 +7044,11 @@ msgid ""
 msgstr ""
 "USB pulk oli ette valmistatud käivitatavana.\n"
 "Nüüd saad NFI tarkvara faili alla laadida!"
+
+msgid ""
+"The VPS-Plugin can determine whether a programme begins earlier or lasts "
+"longer."
+msgstr ""
 
 msgid ""
 "The VideoEnhancement plugin provides advanced video enhancement settings."
@@ -7202,6 +7261,11 @@ msgstr "Vastuvõtja ei suuda dekodeerida %s video voogesitust!"
 #
 msgid "This Month"
 msgstr "See kuu"
+
+msgid ""
+"This Plugin modifies the original PluginBrowser so you can move Plugins "
+"around."
+msgstr ""
 
 #
 msgid "This Week"
@@ -7438,6 +7502,16 @@ msgstr "Taimeri olek:"
 msgid "Timer type"
 msgstr "Taimeri tüüp"
 
+msgid ""
+"Timerliste, verwaiste Film-Dateien und Einstellungs-Sicherungen automatisch "
+"bereinigen."
+msgstr ""
+
+msgid ""
+"Timerliste, verwaiste Film-Dateien und Einstellungs-Sicherungen nach "
+"einstellbaren Regeln automatisch bereinigen."
+msgstr ""
+
 #
 msgid "Timeshift"
 msgstr "Ajanihe"
@@ -7515,8 +7589,8 @@ msgstr "Enim hinnatud"
 msgid "Track"
 msgstr "Rada"
 
-msgid "TrafficInfo shows german traffic information."
-msgstr "TrafficInfo näitab Saksa liiklusinfot."
+msgid "TrafficInfo shows German traffic jams."
+msgstr ""
 
 #
 msgid "Translation"
@@ -7680,9 +7754,6 @@ msgstr "Universaal LNB"
 msgid "Unknown"
 msgstr ""
 
-msgid "Unknown network adapter."
-msgstr "Tundmatu võrgu adapter."
-
 msgid ""
 "Unless this is enabled AutoTimer will NOT automatically look for events "
 "matching your AutoTimers but only when you leave the GUI with the green "
@@ -7700,8 +7771,8 @@ msgstr "Lahtiühendamine nurjus"
 msgid "Unsupported"
 msgstr "Pole toetatud"
 
-msgid "UnwetterInfo shows german storm information."
-msgstr "UnwetterInfo näitab Saksa tormiinformatsiooni."
+msgid "UnwetterInfo shows German storm information."
+msgstr ""
 
 #
 msgid "Update"
@@ -7865,6 +7936,9 @@ msgstr "VCR scart"
 
 msgid "VMGM (intro trailer)"
 msgstr "VMGM (intro trailer)"
+
+msgid "VPS-Plugin"
+msgstr ""
 
 msgid "Vali-XD skin"
 msgstr "Vali-XD välimus"
@@ -8093,9 +8167,6 @@ msgstr "W"
 #
 msgid "WEP"
 msgstr "WEP"
-
-msgid "WLAN adapter."
-msgstr "WiFi adapter."
 
 msgid "WLAN connection"
 msgstr "WiFi ühendus"
@@ -8333,10 +8404,6 @@ msgstr "Traadita LAN"
 msgid "Wireless Network"
 msgstr "Traadita võrk"
 
-#
-msgid "Wireless Network State"
-msgstr "WiFi võrgu olek"
-
 msgid "Wireless network connection setup"
 msgstr ""
 
@@ -8368,11 +8435,9 @@ msgstr ""
 "Genuine Dreambox laienduse abil saate kontrollida oma Dreamboxi autentsust."
 
 msgid ""
-"With IMDb you can download and displays movie information (rating, poster, "
+"With IMDb you can display downloaded movie information (rating, poster, "
 "cast, synopsis etc.) about the selected event."
 msgstr ""
-"IMBb abil saad alla laadida ja vaadata filmide infot (hindamine, poster, "
-"näitlejad, sisu jne.) valitud filmi kohta."
 
 msgid "With MovieRetitle you can rename your movies."
 msgstr "MovieRetitle abil saad oma salvestisi ümber nimetada."
@@ -8381,6 +8446,11 @@ msgid ""
 "With MyTube you can play YouTube videos directly on your TV without a PC."
 msgstr ""
 "MyTube abil saad mängida YouTube videosid oma TV ekraanil ilma arvutita."
+
+msgid ""
+"With OFDb you can display downloaded movie information (rating, poster, "
+"cast, synopsis etc.) about the selected event."
+msgstr ""
 
 msgid "With WebcamViewer you can watch webcams on your TV Screen."
 msgstr "WebcamViewer abil saad jälgida veebikaamerate pilte TV ekraanil."
@@ -8464,9 +8534,8 @@ msgid ""
 "alternative service it is restricted to."
 msgstr ""
 
-#
 msgid ""
-"With this option you can restrict the AutoTimer to a certain ammount of "
+"With this option you can restrict the AutoTimer to a certain amount of "
 "scheduled recordings. Set this to 0 to disable this functionality."
 msgstr ""
 
@@ -8566,6 +8635,11 @@ msgstr ""
 msgid "You can choose, what you want to install..."
 msgstr "Saad valida, mida tahad installida..."
 
+msgid ""
+"You can control for how many days in the future timers are added. Set this "
+"to 0 to disable this feature."
+msgstr ""
+
 msgid "You can install this plugin."
 msgstr "Te saate paigaldada selle laienduse."
 
@@ -8586,6 +8660,13 @@ msgid ""
 "You can use the EasyInfo for manage your EPG plugins from info button. You "
 "have also a new now-next event viewer. Easy-PG, the own graphical EPG bowser "
 "is also included."
+msgstr ""
+
+msgid ""
+"You can use this plugin to dynamically hide Plugins from either the "
+"Extensions- or Pluginmenu without having to modify the source code of the "
+"respective plugin.After installation you find the settings as \"Hide Plugins"
+"\" under Setup / System."
 msgstr ""
 
 #
@@ -8830,9 +8911,6 @@ msgstr "Suurenda letterbox/anamorph filme"
 msgid "Zoom into letterboxed/anamorph movies."
 msgstr "Suurenda letterbox/anamorph filme."
 
-msgid "Zydas"
-msgstr "Zydas"
-
 msgid "[alternative edit]"
 msgstr "[lisavõimaluste lisamine ja kustutamine]"
 
@@ -8876,6 +8954,11 @@ msgstr "aktiveeri muudatused"
 msgid "activate network adapter configuration"
 msgstr "aktiveeri võrgukaardi seaded"
 
+#. TRANSLATORS: AutoTimer title in MovieList (automatically opens importer, I consider this no further interaction)
+msgid "add AutoTimer"
+msgstr ""
+
+#. TRANSLATORS: AutoTimer title in EventInfo dialog (requires the user to select an event to base the AutoTimer on)
 msgid "add AutoTimer..."
 msgstr "lisa autotaimer..."
 
@@ -8935,9 +9018,6 @@ msgstr "lisa kanal Lemmikutesse"
 #
 msgid "add services"
 msgstr "lisa kanal"
-
-msgid "add tags to recorded movies"
-msgstr "sildista salvestatud filmid"
 
 #
 msgid "add to parental protection"
@@ -9216,10 +9296,6 @@ msgstr "lõpeta lõige siin"
 #
 msgid "end favourites edit"
 msgstr "salvesta muudatused ja välju"
-
-#
-msgid "enter hidden network SSID"
-msgstr "sisesta varjatud võrgu SSID"
 
 #
 msgid "equal to"
@@ -9884,10 +9960,6 @@ msgid "unable to find timer with id %i"
 msgstr ""
 
 #
-msgid "unavailable"
-msgstr "pole saadaval"
-
-#
 msgid "unconfirmed"
 msgstr "kinnitamata"
 
@@ -9940,6 +10012,9 @@ msgstr "ootan"
 #
 msgid "was removed successfully"
 msgstr "edukalt eemaldatud"
+
+msgid "watch trailer from epglist/eventview"
+msgstr ""
 
 #
 msgid "weekly"
@@ -10022,6 +10097,19 @@ msgstr "vahetatud"
 #
 #~ msgid "Advanced"
 #~ msgstr "Lisavalikud"
+
+#~ msgid "Ammount of recordings left"
+#~ msgstr "Järelejäänud salvestuste arv"
+
+#~ msgid "Atheros"
+#~ msgstr "Atheros"
+
+#~ msgid ""
+#~ "Autoresolution Plugin Testmode:\n"
+#~ "Is %s ok?"
+#~ msgstr ""
+#~ "Autoresolutsiooni test:\n"
+#~ "Kas %s on ok?"
 
 #
 #~ msgid "Backup"
@@ -10151,6 +10239,9 @@ msgstr "vahetatud"
 #~ "Fritz!Boxiga! (%s)\n"
 #~ "uus katse..."
 
+#~ msgid "Displays movie information from the InternetMovieDatabase"
+#~ msgstr "Filmi info näitamine InternetMovieDatabase-st"
+
 #
 #~ msgid ""
 #~ "Do you want to backup now?\n"
@@ -10166,9 +10257,24 @@ msgstr "vahetatud"
 #~ msgid "Download of USB flasher boot image failed: "
 #~ msgstr "Allalaadimine USB-le nurjus:"
 
+#~ msgid ""
+#~ "EPGRefresh will automatically switch to user-defined channels when the "
+#~ "box is idleing\n"
+#~ "(in standby mode without any running recordings) to perform updates of "
+#~ "the epg information on these channels."
+#~ msgstr ""
+#~ "EPFRefresh lülitub ise kasutaja määratud kanalitele, kui tuuner on "
+#~ "ooteasendis\n"
+#~ "(ootel ilma ühegi töötava salvestuseta) et nende kanalite EPG infot "
+#~ "uuendada."
+
 #
 #~ msgid "Edit IPKG source URL..."
 #~ msgstr "Muuda IPKG allika URL-i"
+
+#
+#~ msgid "Encryption Type"
+#~ msgstr "Kodeeringu tüüp"
 
 #
 #~ msgid ""
@@ -10215,6 +10321,20 @@ msgstr "vahetatud"
 #~ msgid "Following tasks will be done after you press continue."
 #~ msgstr "Jätkamisel lõpetatakse järgnevad toimingud"
 
+#~ msgid ""
+#~ "Found a total of %d matching Events.\n"
+#~ "%d Timer were added and %d modified, %d conflicts encountered."
+#~ msgstr ""
+#~ "Leiti %d ühilduvat saadet.\n"
+#~ "%d taimerit lisati ja %d muudeti. %d konflikti."
+
+#~ msgid ""
+#~ "Found a total of %d matching Events.\n"
+#~ "%d Timer were added and %d modified."
+#~ msgstr ""
+#~ "Leidus kokku %d vastet.\n"
+#~ "%d Timerit lisati ja %d muudeti."
+
 #
 #~ msgid "Frame repeat count during non-smooth winding"
 #~ msgstr "Kaadri korduste arv mittesujuva kerimisega"
@@ -10254,6 +10374,14 @@ msgstr "vahetatud"
 #
 #~ msgid "Here is a small overview of the available icon states."
 #~ msgstr "Ülevaade saadaolevatest ikoonivõimalustest"
+
+#
+#~ msgid "Hidden network SSID"
+#~ msgstr "Võrgu SSID"
+
+#
+#~ msgid "Hidden networkname"
+#~ msgstr "Varjatud võrgunimi"
 
 #
 #~ msgid "Hierarchy Information"
@@ -10302,6 +10430,9 @@ msgstr "vahetatud"
 #~ msgid "Integrated Wireless"
 #~ msgstr "Sisemine WiFi"
 
+#~ msgid "Internal LAN adapter."
+#~ msgstr "Sisemine LAN adapter."
+
 #
 #~ msgid "Invert display"
 #~ msgstr "Negatiiv"
@@ -10309,6 +10440,30 @@ msgstr "vahetatud"
 #
 #~ msgid "Language..."
 #~ msgstr "Keel"
+
+#~ msgid "Listen and record internet radio"
+#~ msgstr "Kuula ja salvesta interneti raadiot"
+
+#~ msgid "Listen and record shoutcast internet radio on your Dreambox."
+#~ msgstr "Kuula ja salvesta Shoutcast interneti raadiot oma tuuneris."
+
+#
+#~ msgid ""
+#~ "Maximum event duration to match. If an event is longer than this ammount "
+#~ "of time (without offset) it won't be matched."
+#~ msgstr ""
+#~ "Suurim sobiv saate kestus. Kui saade on pikem kui see ajavahemik (ilma "
+#~ "seatud eranditeta), see ei sobi."
+
+#~ msgid "Movie information from the Online Film Datenbank (German)."
+#~ msgstr "Filmi info Online Film Datenbank'ist (Saksa)."
+
+#~ msgid "Movie informations from the Online Film Datenbank"
+#~ msgstr "Filmi info Online Film Datenbank'ist"
+
+#
+#~ msgid "Network SSID"
+#~ msgstr "Võrgu SSID"
 
 #
 #~ msgid "Network..."
@@ -10322,9 +10477,16 @@ msgstr "vahetatud"
 #~ msgid "No 50 Hz, sorry. :("
 #~ msgstr "Mitte 50 Hz, kahjuks. :("
 
+#~ msgid "No Networks found"
+#~ msgstr "Võrke ei leitud"
+
 #
 #~ msgid "No useable USB stick found"
 #~ msgstr "Ei leidnud kasutuskõlblikut USB-e pulka"
+
+#
+#~ msgid "No wireless networks found! Please refresh."
+#~ msgstr "Ei leidnud WiFi võrke! Palun värskenda."
 
 #
 #~ msgid "Online-Upgrade"
@@ -10341,6 +10503,12 @@ msgstr "vahetatud"
 #
 #~ msgid "Page"
 #~ msgstr "Lehekülg"
+
+#~ msgid "Play music from Last.fm"
+#~ msgstr "Mängi muusikat Last.fm-st"
+
+#~ msgid "Play music from Last.fm."
+#~ msgstr "Mängi muusikat Last.fm-st."
 
 #
 #~ msgid "Please choose .NFI image file from feed server to download"
@@ -10388,6 +10556,9 @@ msgstr "vahetatud"
 #
 #~ msgid "RSS Feed URI"
 #~ msgstr "RSS-i URL"
+
+#~ msgid "Ralink"
+#~ msgstr "Ralink"
 
 #
 #~ msgid "Reenter new pin"
@@ -10471,6 +10642,9 @@ msgstr "vahetatud"
 #~ msgid "Set as default Interface"
 #~ msgstr "Määra vaikimisi võrguliideseks"
 
+#~ msgid "Sets your Dreambox into Deep-Standby"
+#~ msgstr "Paneb vastuvõtja sügavootele"
+
 #
 #~ msgid "Skin..."
 #~ msgstr "Välimus"
@@ -10507,6 +10681,21 @@ msgstr "vahetatud"
 
 #~ msgid "Symbolrate"
 #~ msgstr "Sümbolrate"
+
+#~ msgid ""
+#~ "The Elektro Power Save plugin puts the box from standby to sleep mode "
+#~ "(Deep Standby) at certain times.\n"
+#~ "This only happens if the box is in standby and no recording is running or "
+#~ "sheduled in the next 20 minutes.\n"
+#~ "The box automatically wakes up for recordings or at the end of the sleep "
+#~ "time. You therefore don't have to wait until it is on again."
+#~ msgstr ""
+#~ "Elektro Power Save laiendus seab vastuvõtja ootereziimist sügavootele "
+#~ "teatud juhtudel. \n"
+#~ "See juhtub ainult siis, kui vastuvõtja on ootel ja lähema 20 minuti "
+#~ "jooksul ei salvestata või planeerita salvestust. \n"
+#~ "Vastuvõtja alustab tööd ise või hakkab salvestama. Sellepärast ei pea "
+#~ "ootama vastuvõtja sisselülitumist."
 
 #
 #~ msgid ""
@@ -10589,6 +10778,9 @@ msgstr "vahetatud"
 #~ "3) Oota kuni vastuvõtja teeb alglaadimist ja täida edasisi vastuvõtja "
 #~ "juhiseid."
 
+#~ msgid "TrafficInfo shows german traffic information."
+#~ msgstr "TrafficInfo näitab Saksa liiklusinfot."
+
 #
 #~ msgid "Transmission Mode"
 #~ msgstr "Edastamise moodus"
@@ -10617,6 +10809,12 @@ msgstr "vahetatud"
 #~ "Tagasi\n"
 #~ "Eemalda"
 
+#~ msgid "Unknown network adapter."
+#~ msgstr "Tundmatu võrgu adapter."
+
+#~ msgid "UnwetterInfo shows german storm information."
+#~ msgstr "UnwetterInfo näitab Saksa tormiinformatsiooni."
+
 #
 #~ msgid "Updates your receiver's software"
 #~ msgstr "Uuendab vastuvõtja tarkvara"
@@ -10637,6 +10835,9 @@ msgstr "vahetatud"
 #~ msgid "View list of available Satteliteequipment extensions."
 #~ msgstr "Vaata satelliidiseadmete laienduste nimekirja."
 
+#~ msgid "WLAN adapter."
+#~ msgstr "WiFi adapter."
+
 #
 #~ msgid ""
 #~ "We will now test if your TV can also display this resolution at 50hz. If "
@@ -10650,6 +10851,17 @@ msgstr "vahetatud"
 #
 #~ msgid "Wireless"
 #~ msgstr "Wifi"
+
+#
+#~ msgid "Wireless Network State"
+#~ msgstr "WiFi võrgu olek"
+
+#~ msgid ""
+#~ "With IMDb you can download and displays movie information (rating, "
+#~ "poster, cast, synopsis etc.) about the selected event."
+#~ msgstr ""
+#~ "IMBb abil saad alla laadida ja vaadata filmide infot (hindamine, poster, "
+#~ "näitlejad, sisu jne.) valitud filmi kohta."
 
 #
 #~ msgid "Writing NFI image file to flash completed"
@@ -10709,6 +10921,12 @@ msgstr "vahetatud"
 #~ "\n"
 #~ "Kas lülitada teine seadistatud liides välja?"
 
+#~ msgid "Zydas"
+#~ msgstr "Zydas"
+
+#~ msgid "add tags to recorded movies"
+#~ msgstr "sildista salvestatud filmid"
+
 #
 #~ msgid ""
 #~ "are you sure you want to restore\n"
@@ -10732,6 +10950,10 @@ msgstr "vahetatud"
 #
 #~ msgid "enigma2 and network"
 #~ msgstr "enigma2 ja võrk"
+
+#
+#~ msgid "enter hidden network SSID"
+#~ msgstr "sisesta varjatud võrgu SSID"
 
 #
 #~ msgid "exceeds dual layer medium!"
@@ -10779,6 +11001,10 @@ msgstr "vahetatud"
 #
 #~ msgid "setup pin"
 #~ msgstr "seadistuste kood"
+
+#
+#~ msgid "unavailable"
+#~ msgstr "pole saadaval"
 
 #
 #~ msgid "until restart"
