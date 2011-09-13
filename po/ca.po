@@ -1,14 +1,11 @@
-# translation of ca.po to
-# Copyright (C) 2006 THE tuxbox-enigma'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the tuxbox-enigma package.
+# Catalan translations for Enigma2.
 #
-# Automatically generated, 2006.
 # Oriol Pellicer i Sabrià <oriol@elsud.org>, 2006, 2007.
 msgid ""
 msgstr ""
-"Project-Id-Version: ca\n"
+"Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-04-20 10:39+0000\n"
+"POT-Creation-Date: 2011-09-07 11:08+0000\n"
 "PO-Revision-Date: 2007-08-14 10:23+0200\n"
 "Last-Translator: Oriol Pellicer <oriol@elsud.org>\n"
 "Language-Team: \n"
@@ -180,6 +177,12 @@ msgstr "%H:%M"
 #, python-format
 msgid ""
 "%d conflict(s) encountered when trying to add new timers:\n"
+"%s"
+msgstr ""
+
+#, python-format
+msgid ""
+"%d conflict(s) solved with similar timer(s):\n"
 "%s"
 msgstr ""
 
@@ -454,6 +457,9 @@ msgstr ""
 msgid "A nice looking skin from Kerni"
 msgstr ""
 
+msgid "A plugin to add / remove / modify entries of fstab."
+msgstr ""
+
 #
 #, python-format
 msgid ""
@@ -570,6 +576,9 @@ msgstr "Quant a"
 msgid "About..."
 msgstr "Quant a..."
 
+msgid "Access the EPG from within the Movie Player"
+msgstr ""
+
 msgid "Access to the ARD-Mediathek"
 msgstr ""
 
@@ -595,6 +604,9 @@ msgstr ""
 #
 msgid "Activate Picture in Picture"
 msgstr "Activar PiP"
+
+msgid "Activate VPS"
+msgstr ""
 
 #
 msgid "Activate network settings"
@@ -650,6 +662,12 @@ msgstr ""
 msgid "Add new network mount point"
 msgstr ""
 
+msgid "Add similar timer on conflict"
+msgstr ""
+
+msgid "Add tags to recorded movies"
+msgstr ""
+
 #
 msgid "Add timer"
 msgstr "Gravar"
@@ -676,6 +694,10 @@ msgstr ""
 
 #
 msgid "Added: "
+msgstr ""
+
+msgid ""
+"Adds 'search...' to the context menu of the movie list to allow searches."
 msgstr ""
 
 #
@@ -770,6 +792,9 @@ msgstr ""
 msgid "All non-repeating timers"
 msgstr ""
 
+msgid "Allow to search recordings"
+msgstr ""
+
 #
 msgid "Allow zapping via Webinterface"
 msgstr ""
@@ -777,7 +802,21 @@ msgstr ""
 msgid "Allows the execution of TuxboxPlugins."
 msgstr ""
 
+msgid "Allows to change the order of entries in the main menu manually."
+msgstr ""
+
+msgid "Allows to zap using the picture in picture."
+msgstr ""
+
 msgid "Allows user to download files from rapidshare in the background."
+msgstr ""
+
+msgid ""
+"Allows you to access the service list and plugins requiring access to the "
+"service list (e.g. Graphical Multi EPG) from within the standard movie "
+"player.DO NOT install this plugin if you're using a nonstandard movie "
+"player, e.g. EMC. It will probably break and you might end up with a "
+"unusable movie player until you uninstall one of the conflicting plugins."
 msgstr ""
 
 #
@@ -799,8 +838,7 @@ msgstr ""
 msgid "Always ask before sending"
 msgstr ""
 
-#
-msgid "Ammount of recordings left"
+msgid "Amount of recordings left"
 msgstr ""
 
 #
@@ -817,6 +855,9 @@ msgstr ""
 
 #
 msgid "Anonymize crashlog?"
+msgstr ""
+
+msgid "Any service/recording"
 msgstr ""
 
 #
@@ -887,9 +928,6 @@ msgid "Aspect ratio"
 msgstr ""
 
 msgid "Assigning providers/services/caids to a CI module"
-msgstr ""
-
-msgid "Atheros"
 msgstr ""
 
 #
@@ -1012,10 +1050,13 @@ msgstr ""
 msgid "Automatically send crashlogs to Dream Multimedia"
 msgstr ""
 
+msgid "Autoresolution"
+msgstr ""
+
 #, python-format
 msgid ""
 "Autoresolution Plugin Testmode:\n"
-"Is %s ok?"
+"Is %s OK?"
 msgstr ""
 
 msgid "Autoresolution Switch"
@@ -1209,6 +1250,12 @@ msgstr "Bus: "
 msgid ""
 "By enabling this events will not be matched if they don't occur on certain "
 "dates."
+msgstr ""
+
+msgid ""
+"By enabling this you will be notified about similar timers added during "
+"automated polling. There is no intelligence involved, so it might bother you "
+"about the same conflict over and over."
 msgstr ""
 
 msgid ""
@@ -1452,6 +1499,15 @@ msgstr ""
 msgid "Cleanup timerlist automatically."
 msgstr ""
 
+msgid ""
+"Cleanup timerlist, orphaned movie files and setting backups automatically "
+"according to specfied rules."
+msgstr ""
+
+msgid ""
+"Cleanup timerlist, orphaned movie files and setting backups automatically."
+msgstr ""
+
 #
 msgid "CleanupWizard"
 msgstr ""
@@ -1630,6 +1686,9 @@ msgstr ""
 #
 msgid "Contrast"
 msgstr "Contrast"
+
+msgid "Control recording completely by service"
+msgstr ""
 
 msgid "Control your Dreambox with your Web browser."
 msgstr ""
@@ -2121,7 +2180,10 @@ msgstr ""
 msgid "Display your photos on the TV"
 msgstr ""
 
-msgid "Displays movie information from the InternetMovieDatabase"
+msgid "Displays Movie Information from the InternetMovieDatabase"
+msgstr ""
+
+msgid "Displays Movie Information from the Online Film Datenbank (German)"
 msgstr ""
 
 #
@@ -2368,9 +2430,10 @@ msgstr ""
 
 msgid ""
 "EPGRefresh will automatically switch to user-defined channels when the box "
-"is idleing\n"
-"(in standby mode without any running recordings) to perform updates of the "
-"epg information on these channels."
+"is idling(i.e. in standby mode and no recordings running) to perform updates "
+"of the EPG information on these channels.\n"
+"On multi-tuner boxes it may optionally run in background hidden or in PiP, "
+"to not disturb the current TV program."
 msgstr ""
 
 #
@@ -2403,6 +2466,7 @@ msgid "Edit DNS"
 msgstr ""
 
 #
+#. TRANSLATORS: description of AutoTimer in PluginBrowser
 msgid "Edit Timers and scan for new Events"
 msgstr ""
 
@@ -2458,6 +2522,9 @@ msgstr ""
 
 #
 msgid "Editing"
+msgstr ""
+
+msgid "Editor for fstab"
 msgstr ""
 
 #
@@ -2576,10 +2643,6 @@ msgstr ""
 
 #
 msgid "Encryption Keytype"
-msgstr ""
-
-#
-msgid "Encryption Type"
 msgstr ""
 
 #
@@ -2925,14 +2988,8 @@ msgstr ""
 #, python-format
 msgid ""
 "Found a total of %d matching Events.\n"
-"%d Timer were added and %d modified, %d conflicts encountered."
-msgstr ""
-
-#
-#, python-format
-msgid ""
-"Found a total of %d matching Events.\n"
-"%d Timer were added and %d modified."
+"%d Timer were added and %d modified, %d conflicts encountered, %d similars "
+"added."
 msgstr ""
 
 #
@@ -2963,6 +3020,9 @@ msgstr "Mida de pas de freqüència(khz)"
 #, fuzzy
 msgid "Frequency steps"
 msgstr "Passos de freqüència"
+
+msgid "Frequently asked questions"
+msgstr ""
 
 #
 msgid "Fri"
@@ -3166,12 +3226,7 @@ msgstr ""
 msgid "Hidden network"
 msgstr ""
 
-#
-msgid "Hidden network SSID"
-msgstr ""
-
-#
-msgid "Hidden networkname"
+msgid "Hide Plugin from Plugin or Extensionsmenu."
 msgstr ""
 
 msgid "Hierarchy info"
@@ -3245,6 +3300,17 @@ msgstr ""
 #
 msgid "Icelandic"
 msgstr "Islandès"
+
+msgid ""
+"If a timer conflict occurs, AutoTimer will search outside the timespan for a "
+"similar event and add it."
+msgstr ""
+
+msgid ""
+"If installed, the plugin allows to modify the order in which entries of the "
+"main menu are shown.It can be changed using the \"MenuSort\" plugin, "
+"launchable from the regular plugin overview."
+msgstr ""
 
 #, python-format
 msgid ""
@@ -3447,9 +3513,6 @@ msgstr ""
 #
 msgid "Internal Flash"
 msgstr "Flash interna"
-
-msgid "Internal LAN adapter."
-msgstr ""
 
 msgid "Internal USB Slot"
 msgstr ""
@@ -3720,10 +3783,7 @@ msgstr ""
 msgid "List of Storage Devices"
 msgstr "Dispositius d'emmagatzematge"
 
-msgid "Listen and record internet radio"
-msgstr ""
-
-msgid "Listen and record shoutcast internet radio on your Dreambox."
+msgid "Listen and record Shoutcast Internet Radio on your Dreambox."
 msgstr ""
 
 #
@@ -3894,9 +3954,8 @@ msgstr ""
 msgid "Maximum duration (in m)"
 msgstr ""
 
-#
 msgid ""
-"Maximum event duration to match. If an event is longer than this ammount of "
+"Maximum event duration to match. If an event is longer than this amount of "
 "time (without offset) it won't be matched."
 msgstr ""
 
@@ -4115,12 +4174,6 @@ msgstr ""
 #
 msgid "Move west"
 msgstr "Moure a l'oest"
-
-msgid "Movie information from the Online Film Datenbank (German)."
-msgstr ""
-
-msgid "Movie informations from the Online Film Datenbank"
-msgstr ""
 
 #
 msgid "Movie location"
@@ -4374,10 +4427,6 @@ msgid "Network Mount"
 msgstr "Muntatge per xarxa"
 
 #
-msgid "Network SSID"
-msgstr ""
-
-#
 msgid "Network Setup"
 msgstr "Config xarxa"
 
@@ -4461,10 +4510,6 @@ msgstr ""
 #
 msgid "No HDD found or HDD not initialized!"
 msgstr "No hi ha disc dur o no està inicialitzat!"
-
-#
-msgid "No Networks found"
-msgstr ""
 
 #
 msgid "No backup needed"
@@ -4581,10 +4626,6 @@ msgstr ""
 
 #
 msgid "No videos to display"
-msgstr ""
-
-#
-msgid "No wireless networks found! Please refresh."
 msgstr ""
 
 msgid "No wireless networks found! Searching..."
@@ -4781,6 +4822,9 @@ msgstr ""
 msgid "Only Free scan"
 msgstr ""
 
+msgid "Only add timer for next x days"
+msgstr ""
+
 #
 msgid "Only extensions."
 msgstr ""
@@ -4950,18 +4994,18 @@ msgstr ""
 msgid "Play DVD"
 msgstr ""
 
+msgid "Play Internet Radio downloaded from Last.FM"
+msgstr ""
+
+msgid "Play Internet Radio downloaded from ShoutCast"
+msgstr ""
+
 #
 msgid "Play Music..."
 msgstr ""
 
 #
 msgid "Play YouTube movies"
-msgstr ""
-
-msgid "Play music from Last.fm"
-msgstr ""
-
-msgid "Play music from Last.fm."
 msgstr ""
 
 #
@@ -5502,6 +5546,17 @@ msgstr "Proveïdors"
 msgid "Published"
 msgstr ""
 
+msgid "Push key \"Exit long\" to show the clock while watching TV."
+msgstr ""
+
+msgid ""
+"Push key \"Exit long\" to show the clock while watching TV. Clock will "
+"disappear after the specified timeout or by pushing key \"Exit long\" "
+"again.\n"
+"Modify the settings to match your preferences. To change the clock position, "
+"select \"Move clock\" and relocate."
+msgstr ""
+
 #
 msgid "Python frontend for /tmp/mmi.socket"
 msgstr ""
@@ -5537,9 +5592,6 @@ msgstr ""
 
 #
 msgid "Radio"
-msgstr ""
-
-msgid "Ralink"
 msgstr ""
 
 #
@@ -5902,6 +5954,9 @@ msgstr ""
 
 #
 msgid "Return to previous service"
+msgstr ""
+
+msgid "Reusable Help-component for other plugins."
 msgstr ""
 
 #
@@ -6374,6 +6429,9 @@ msgstr ""
 msgid "Select your choice."
 msgstr ""
 
+msgid "Select your favourite music (Artist, Album, Genre)."
+msgstr ""
+
 #
 msgid "Send DiSEqC"
 msgstr ""
@@ -6501,9 +6559,6 @@ msgstr ""
 msgid "Set this NO to disable this AutoTimer."
 msgstr ""
 
-msgid "Sets your Dreambox into Deep-Standby"
-msgstr ""
-
 #
 msgid "Setting key canceled"
 msgstr ""
@@ -6597,6 +6652,9 @@ msgstr "Mostrar la barra anant endavant/enrere"
 msgid "Show notification on conflicts"
 msgstr ""
 
+msgid "Show notification on similars"
+msgstr ""
+
 #
 msgid "Show positioner movement"
 msgstr "Mostrar el moviment del motor"
@@ -6633,6 +6691,9 @@ msgstr ""
 msgid "Shows the clock permanently on the screen"
 msgstr ""
 
+msgid "Shows the service name instead of the service number when zapping."
+msgstr ""
+
 #
 msgid "Shows the state of your wireless LAN connection.\n"
 msgstr ""
@@ -6644,6 +6705,9 @@ msgstr ""
 #
 msgid "Shutdown Dreambox after"
 msgstr "Apagar la Dreambox després de"
+
+msgid "Shuts down your Dreambox into Deep Standby (Power Save Mode)"
+msgstr ""
 
 #
 msgid "Signal Strength:"
@@ -6805,6 +6869,9 @@ msgstr ""
 
 #
 msgid "Sort AutoTimer"
+msgstr ""
+
+msgid "Sort Plugins in the PluginBrowser."
 msgstr ""
 
 #
@@ -7155,12 +7222,12 @@ msgid ""
 msgstr ""
 
 msgid ""
-"The Elektro Power Save plugin puts the box from standby to sleep mode (Deep "
-"Standby) at certain times.\n"
+"The Elektro Power Save Plugin puts the box from Standby to sleep mode (Deep "
+"Standby) at specified times.\n"
 "This only happens if the box is in standby and no recording is running or "
-"sheduled in the next 20 minutes.\n"
-"The box automatically wakes up for recordings or at the end of the sleep "
-"time. You therefore don't have to wait until it is on again."
+"scheduled during the next 20 minutes.\n"
+"The box automatically wakes up for recordings or at the end of the specified "
+"sleep time. Hence you needn't wait for it to boot-up."
 msgstr ""
 
 msgid ""
@@ -7222,6 +7289,11 @@ msgstr ""
 msgid ""
 "The USB stick was prepared to be bootable.\n"
 "Now you can download an NFI image file!"
+msgstr ""
+
+msgid ""
+"The VPS-Plugin can determine whether a programme begins earlier or lasts "
+"longer."
 msgstr ""
 
 msgid ""
@@ -7430,6 +7502,11 @@ msgstr ""
 msgid "This Month"
 msgstr ""
 
+msgid ""
+"This Plugin modifies the original PluginBrowser so you can move Plugins "
+"around."
+msgstr ""
+
 #
 msgid "This Week"
 msgstr ""
@@ -7630,6 +7707,16 @@ msgstr "Estat de la programació:"
 msgid "Timer type"
 msgstr ""
 
+msgid ""
+"Timerliste, verwaiste Film-Dateien und Einstellungs-Sicherungen automatisch "
+"bereinigen."
+msgstr ""
+
+msgid ""
+"Timerliste, verwaiste Film-Dateien und Einstellungs-Sicherungen nach "
+"einstellbaren Regeln automatisch bereinigen."
+msgstr ""
+
 #
 msgid "Timeshift"
 msgstr "Pausa"
@@ -7704,7 +7791,7 @@ msgstr ""
 msgid "Track"
 msgstr ""
 
-msgid "TrafficInfo shows german traffic information."
+msgid "TrafficInfo shows German traffic jams."
 msgstr ""
 
 #
@@ -7884,9 +7971,6 @@ msgstr "LNB universal"
 msgid "Unknown"
 msgstr ""
 
-msgid "Unknown network adapter."
-msgstr ""
-
 #
 msgid ""
 "Unless this is enabled AutoTimer will NOT automatically look for events "
@@ -7902,7 +7986,7 @@ msgstr "Ha fallat la comanda unmount"
 msgid "Unsupported"
 msgstr ""
 
-msgid "UnwetterInfo shows german storm information."
+msgid "UnwetterInfo shows German storm information."
 msgstr ""
 
 #
@@ -8075,6 +8159,9 @@ msgstr "Euroconnector VCR"
 
 #
 msgid "VMGM (intro trailer)"
+msgstr ""
+
+msgid "VPS-Plugin"
 msgstr ""
 
 msgid "Vali-XD skin"
@@ -8312,9 +8399,6 @@ msgstr "O"
 msgid "WEP"
 msgstr ""
 
-msgid "WLAN adapter."
-msgstr ""
-
 msgid "WLAN connection"
 msgstr ""
 
@@ -8534,10 +8618,6 @@ msgstr ""
 msgid "Wireless Network"
 msgstr ""
 
-#
-msgid "Wireless Network State"
-msgstr ""
-
 msgid "Wireless network connection setup"
 msgstr ""
 
@@ -8567,7 +8647,7 @@ msgid "With Genuine Dreambox you can verify the authenticity of your Dreambox."
 msgstr ""
 
 msgid ""
-"With IMDb you can download and displays movie information (rating, poster, "
+"With IMDb you can display downloaded movie information (rating, poster, "
 "cast, synopsis etc.) about the selected event."
 msgstr ""
 
@@ -8576,6 +8656,11 @@ msgstr ""
 
 msgid ""
 "With MyTube you can play YouTube videos directly on your TV without a PC."
+msgstr ""
+
+msgid ""
+"With OFDb you can display downloaded movie information (rating, poster, "
+"cast, synopsis etc.) about the selected event."
 msgstr ""
 
 msgid "With WebcamViewer you can watch webcams on your TV Screen."
@@ -8640,9 +8725,8 @@ msgid ""
 "alternative service it is restricted to."
 msgstr ""
 
-#
 msgid ""
-"With this option you can restrict the AutoTimer to a certain ammount of "
+"With this option you can restrict the AutoTimer to a certain amount of "
 "scheduled recordings. Set this to 0 to disable this functionality."
 msgstr ""
 
@@ -8747,6 +8831,11 @@ msgstr ""
 msgid "You can choose, what you want to install..."
 msgstr ""
 
+msgid ""
+"You can control for how many days in the future timers are added. Set this "
+"to 0 to disable this feature."
+msgstr ""
+
 #
 msgid "You can install this plugin."
 msgstr ""
@@ -8770,6 +8859,13 @@ msgid ""
 "You can use the EasyInfo for manage your EPG plugins from info button. You "
 "have also a new now-next event viewer. Easy-PG, the own graphical EPG bowser "
 "is also included."
+msgstr ""
+
+msgid ""
+"You can use this plugin to dynamically hide Plugins from either the "
+"Extensions- or Pluginmenu without having to modify the source code of the "
+"respective plugin.After installation you find the settings as \"Hide Plugins"
+"\" under Setup / System."
 msgstr ""
 
 #
@@ -9002,9 +9098,6 @@ msgstr ""
 msgid "Zoom into letterboxed/anamorph movies."
 msgstr ""
 
-msgid "Zydas"
-msgstr ""
-
 #
 msgid "[alternative edit]"
 msgstr "[edició alternatives]"
@@ -9056,7 +9149,12 @@ msgstr ""
 msgid "activate network adapter configuration"
 msgstr ""
 
+#. TRANSLATORS: AutoTimer title in MovieList (automatically opens importer, I consider this no further interaction)
+msgid "add AutoTimer"
+msgstr ""
+
 #
+#. TRANSLATORS: AutoTimer title in EventInfo dialog (requires the user to select an event to base the AutoTimer on)
 msgid "add AutoTimer..."
 msgstr ""
 
@@ -9130,9 +9228,6 @@ msgstr "afegir el canal als preferits"
 
 #
 msgid "add services"
-msgstr ""
-
-msgid "add tags to recorded movies"
 msgstr ""
 
 #
@@ -9439,10 +9534,6 @@ msgstr "acabar el tall aquí"
 #
 msgid "end favourites edit"
 msgstr "fi de l'edició de preferits"
-
-#
-msgid "enter hidden network SSID"
-msgstr ""
 
 #
 msgid "equal to"
@@ -10213,10 +10304,6 @@ msgid "unable to find timer with id %i"
 msgstr ""
 
 #
-msgid "unavailable"
-msgstr ""
-
-#
 msgid "unconfirmed"
 msgstr ""
 
@@ -10272,6 +10359,9 @@ msgstr "esperant"
 
 #
 msgid "was removed successfully"
+msgstr ""
+
+msgid "watch trailer from epglist/eventview"
 msgstr ""
 
 #
