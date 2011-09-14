@@ -108,7 +108,6 @@ class Job(object):
 			self.tasks[i].abort()
 
 	def cancel(self):
-		# some Jobs might have a better idea of how to cancel a job
 		self.abort()
 
 class Task(object):
@@ -305,6 +304,7 @@ class JobManager:
 			list.append(self.active_job)
 		list += self.active_jobs
 		return list
+
 # some examples:
 #class PartitionExistsPostcondition:
 #	def __init__(self, device):
