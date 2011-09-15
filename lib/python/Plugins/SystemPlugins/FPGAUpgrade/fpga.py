@@ -66,6 +66,17 @@ except AttributeError:
     _newclass = 0
 
 
+DP_NO_ACTION_FOUND = _fpga.DP_NO_ACTION_FOUND
+DP_DEVICE_INFO_ACTION_CODE = _fpga.DP_DEVICE_INFO_ACTION_CODE
+DP_READ_IDCODE_ACTION_CODE = _fpga.DP_READ_IDCODE_ACTION_CODE
+DP_ERASE_ACTION_CODE = _fpga.DP_ERASE_ACTION_CODE
+DP_PROGRAM_ACTION_CODE = _fpga.DP_PROGRAM_ACTION_CODE
+DP_VERIFY_ACTION_CODE = _fpga.DP_VERIFY_ACTION_CODE
+NO_SRC_FILE_PATH = _fpga.NO_SRC_FILE_PATH
+NO_TAR_DEVICE_PATH = _fpga.NO_TAR_DEVICE_PATH
+FAIL_OPEN_SRC_FILE = _fpga.FAIL_OPEN_SRC_FILE
+ZERO_SRC_FILE_SIZE = _fpga.ZERO_SRC_FILE_SIZE
+FAIL_OPEN_DEVICE = _fpga.FAIL_OPEN_DEVICE
 class Fpga(_object):
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, Fpga, name, value)
@@ -78,8 +89,10 @@ class Fpga(_object):
         except: self.this = this
     __swig_destroy__ = _fpga.delete_Fpga
     __del__ = lambda self : None;
+    def get_interval(self): return _fpga.Fpga_get_interval(self)
     def get_error_msg(self, *args): return _fpga.Fpga_get_error_msg(self, *args)
     def fpga_upgrade(self, *args): return _fpga.Fpga_fpga_upgrade(self, *args)
+    def get_status(self): return _fpga.Fpga_get_status(self)
 Fpga_swigregister = _fpga.Fpga_swigregister
 Fpga_swigregister(Fpga)
 

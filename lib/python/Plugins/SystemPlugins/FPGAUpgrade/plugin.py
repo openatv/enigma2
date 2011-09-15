@@ -1,5 +1,8 @@
 import os
 
+import fpga
+from enigma import eTimer
+
 from urllib import urlretrieve
 import urllib
 
@@ -8,15 +11,93 @@ from Screens.MessageBox import MessageBox
 
 from Plugins.Plugin import PluginDescriptor
 
-from Components.PluginComponent import plugins
-from Components.Pixmap import Pixmap
-from Components.ActionMap import ActionMap
-from Components.Sources.StaticText import StaticText
-from Components.FileList import FileList 
 from Tools.Directories import fileExists
 
+from Components.Label import Label
+from Components.Slider import Slider
+from Components.Pixmap import Pixmap
+from Components.FileList import FileList 
+from Components.ActionMap import ActionMap
+from Components.PluginComponent import plugins
+from Components.Sources.StaticText import StaticText
+
+class UpgradeStatus(Screen):
+	skin = 	"""
+		<screen position="center,center" size="450,100" title="FPGA Upgrade">
+			<widget name="name" position="10,0" size="430,20" font="Regular;18" halign="left" valign="bottom"/>
+			<widget name="slider" position="10,25" size="430,30" backgroundColor="white"/>
+			<widget name="status" position="10,25" zPosition="1" size="430,30" font="Regular;18" halign="center" valign="center" foregroundColor="black" backgroundColor="black" transparent="1"/>
+			<widget source="info" render="Label" position="10,70" zPosition="1" size="430,30" font="Regular;22" halign="center" valign="center" backgroundColor="#a08500" transparent="1"/>
+		</screen>
+		"""
+	def __init__(self, session, parent, timeout = 10):
+		Screen.__init__(self,session)
+		self.session = session
+
+		self["actions"] = ActionMap(["OkCancelActions"],
+                {
+			"ok": self.keyExit,
+                }, -1)
+
+		self.is_done = 0
+		self.exit_count = 0
+		self.timeout = timeout
+		self.title_str = "FPGA Upgrade"
+
+		#self["name"] = Label(_("Upgrade status"))
+		self["name"] = Label(_(" "))
+		self["info"] = StaticText(_("Can't cancel during upgrade!!"))
+
+		self["status"] = Label(_("Status : 0%"))
+		self.status_bar = self["status"] 
+
+		self.slider = Slider(0, 100)
+		self["slider"] = self.slider
+		
+		self.parent = parent
+		self.timer_check_progress = eTimer()
+		self.timer_check_progress.callback.append(self.callbackDoCheckProgress)
+		interval = self.parent.FPGA.get_interval()
+		self.timer_check_progress.start(interval)
+
+	def callbackDoCheckProgress(self):
+		self.status = self.parent.FPGA.get_status()
+
+		if self.status > 0:
+			self.slider.setValue(self.status)
+
+		if self.status == 100:
+			#print "fpga-upgrade done!!"
+			self.status_bar.setText(_("Success. Press OK to exit."))
+			#self.status_bar.setText(_("%d / 100" % (self.status)))
+			self.timer_check_progress.stop()
+			self.is_done = 1
+
+			self.timer_exit = eTimer()
+			self.timer_exit.callback.append(self.callbackExit)
+			self.timer_exit.start(1000)
+		elif self.status == -1 or self.status == -2:
+			#print "fpga-upgrade error >> errno : [%d]" % (self.status)
+			self.status_bar.setText(_("Error[%d]. Press Cancel to exit." % (self.status)))
+			self.timer_check_progress.stop()
+			self.is_done = 1
+		else:
+			#print "fpga-upgrade status : %d" % self.status
+			self.status_bar.setText(_("%d / 100" % (self.status)))
+
+	def callbackExit(self):
+		if self.exit_count == self.timeout:
+			self.timer_exit.stop()
+			self.keyExit()
+		self.exit_count = self.exit_count + 1
+		self.instance.setTitle("%s (%d)" % (self.title_str, (self.timeout-self.exit_count)))
+
+	def keyExit(self):
+		if self.is_done :
+			self.close()
+		
 class FPGAUpgrade(Screen):
-	skin = """
+	skin = 	"""
 		<screen position="center,center" size="560,440" title="FPGA Upgrade" >
 			<ePixmap pixmap="Vu_HD/buttons/red.png" position="0,7" size="140,40" alphatest="blend" />
 			<ePixmap pixmap="Vu_HD/buttons/green.png" position="140,7" size="140,40" alphatest="blend" />
@@ -30,7 +111,8 @@ class FPGAUpgrade(Screen):
 
 			<widget source="status" render="Label" position="15,45" zPosition="1" size="540,40" font="Regular;18" halign="left" valign="center" backgroundColor="#a08500" transparent="1" />
 			<widget name="file_list" position="0,100" size="555,325" scrollbarMode="showOnDemand" />
-                </screen>"""
+                </screen>
+		"""
 
 	def __init__(self, session): 
 		Screen.__init__(self, session)
@@ -64,13 +146,13 @@ class FPGAUpgrade(Screen):
                 self.STATUS_BAR = self["status"]                                                                             
                 self.STATUS_BAR.setText(_(self.SOURCELIST.getCurrentDirectory()))
 
-		self.DEVICE_PATH = '/dev/misc/dp'                                                                                       
+		self.DEVICE_LIST = '/dev/fpga_dp;/dev/misc/dp;'
 		self.DOWNLOAD_TAR_PATH = '/tmp/'                                                                             
 		self.DOWNLOAD_FILE_NAME = 'TS_PRO.dat'                                                                       
 		self.DOWNLOAD_URL = ''
 		self.doLoadConf()
-
-		print self.DEVICE_PATH
+		self.FPGA = fpga.Fpga()
+		print self.DEVICE_LIST
 		print self.DOWNLOAD_TAR_PATH
 		print self.DOWNLOAD_FILE_NAME
 		print self.DOWNLOAD_URL
@@ -102,9 +184,7 @@ class FPGAUpgrade(Screen):
 	def doUpgradeHandler(self, confirmed):
 		if confirmed == False:
 			return
-
-		import fpga
-		FPGA = fpga.Fpga()
+		
 		path = ''
 		try:
 			path = self.SOURCELIST.getCurrentDirectory() + self.SOURCELIST.getFilename() 
@@ -112,15 +192,30 @@ class FPGAUpgrade(Screen):
 			#self.session.open(MessageBox, _("Can't select directory."), MessageBox.TYPE_INFO, timeout = 5)
 			return
 
-		self.ERROR_CODE = FPGA.fpga_upgrade(path, self.DEVICE_PATH)
-		if self.ERROR_CODE > 0:
-			self.ERROR_MSG = FPGA.get_error_msg(self.ERROR_CODE, self.ERROR_MSG)
-			self.session.openWithCallback(self.onCallbackHandler, MessageBox, _("Fail to upgrade.\nCause : " + self.ERROR_MSG + "\nDo you want to exit?"), MessageBox.TYPE_YESNO, timeout = 10, default = True)
+		device = ""
+		device_list = self.DEVICE_LIST.split(";")
 
-			print "DEVICE_PATH : ", self.DEVICE_PATH
-			print "FILE_PATH : ", path
+		for d in device_list:
+			if os.path.exists(d):
+				device = d
+				break
+
+		if device == None or len(device) == 0:
+			message = "Fail to upgrade.\nCause : Can't found device.\nDo you want to exit?"
+			self.session.openWithCallback(self.onCallbackHandler, MessageBox, _(message), MessageBox.TYPE_YESNO, timeout = 10, default = True)
+			print "DEVICE_LIST : ", device_list
+
+		print "DEVICE : ", device
+		self.ERROR_CODE = self.FPGA.fpga_upgrade(path, device)
+		if self.ERROR_CODE > 0:
+			self.ERROR_MSG = self.FPGA.get_error_msg(self.ERROR_CODE, self.ERROR_MSG)
+			message = "Fail to upgrade.\nCause : " + self.ERROR_MSG + "\nDo you want to exit?"
+			self.session.openWithCallback(self.onCallbackHandler, MessageBox, _(message), MessageBox.TYPE_YESNO, timeout = 10, default = True)
+			print "DEVICE : ", device
+			print "FILE : ", path
 		else:
-			self.session.open(MessageBox, _("Success!!"), MessageBox.TYPE_INFO, timeout = 5)
+			#self.session.open(MessageBox, _("Success!!"), MessageBox.TYPE_INFO, timeout = 5)
+			self.session.open(UpgradeStatus, self, timeout = 10)			
 
 	def onClickRed(self):
 		self.doExit()
@@ -128,7 +223,8 @@ class FPGAUpgrade(Screen):
 	# run upgrade!!
 	def onClickGreen(self):
 		#self.session.open(MessageBox, _("Upgrade will take about 5 minutes to finish."), MessageBox.TYPE_INFO, timeout = 10)
-		self.session.openWithCallback(self.doUpgradeHandler, MessageBox, _("Upgrade will take about 5 minutes to finish.\nDo you want to upgrade?"), MessageBox.TYPE_YESNO, timeout = 10, default = True)
+		message = "Upgrade will take about 5 minutes to finish.\nDo you want to upgrade?"
+		self.session.openWithCallback(self.doUpgradeHandler, MessageBox, _(message), MessageBox.TYPE_YESNO, timeout = 10, default = True)
 
 	def onClickBlue(self):
 		fname = ''
