@@ -592,7 +592,7 @@ Components.Network.InitNetwork()
 profile("LCD")
 import Components.Lcd
 Components.Lcd.InitLcd()
-Components.Lcd.NetworkLinkCheck()
+Components.Lcd.IconCheck()
 
 profile("SetupDevices")
 import Components.SetupDevices

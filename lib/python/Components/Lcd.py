@@ -2,14 +2,27 @@ from config import config, ConfigSubsection, ConfigSelection, ConfigSlider, Conf
 from enigma import eDBoxLCD, eTimer
 from Components.SystemInfo import SystemInfo
 from os import path
+import usb
 
-def NetworkLinkCheck(session=None, **kwargs):
+def IconCheck(session=None, **kwargs):
+	busses = usb.busses()
+	for bus in busses:
+		devices = bus.devices
+		for dev in devices:
+			if dev.deviceClass != 9 and dev.idVendor > 0:
+				print ' '
+				print "Device:", dev.filename
+				print "  Number:", dev.deviceClass
+				print "  idVendor: %d (0x%04x)" % (dev.idVendor, dev.idVendor)
+				print "  idProduct: %d (0x%04x)" % (dev.idProduct, dev.idProduct)
+				print "  iProduct: %s" % (usb.util.get_string(dev.dev,20, dev.iProduct))
+				print "  iManufacturer: %s" % (usb.util.get_string(dev.dev,20, dev.iManufacturer))
 	if path.exists("/proc/stb/lcd/symbol_network"):
 		global networklinkpoller
-		networklinkpoller = NetworkLinkCheckPoller()
+		networklinkpoller = IconCheckPoller()
 		networklinkpoller.start()
 
-class NetworkLinkCheckPoller:
+class IconCheckPoller:
 	def __init__(self):
 		self.timer = eTimer()
 
@@ -32,6 +45,17 @@ class NetworkLinkCheckPoller:
 		file = open("/proc/stb/lcd/symbol_network", "w")
 		file.write('%d' % int(LinkState))
 		file.close()
+		if path.exists("/proc/stb/lcd/symbol_usb"):
+			USBState = 0
+			busses = usb.busses()
+			for bus in busses:
+				devices = bus.devices
+				for dev in devices:
+					if dev.deviceClass != 9 and dev.idVendor > 0:
+						USBState = 1
+			file = open("/proc/stb/lcd/symbol_usb", "w")
+			file.write('%d' % int(USBState))
+			file.close()
 		self.timer.startLongTimer(30)
 
 class LCD:
