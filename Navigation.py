@@ -65,13 +65,19 @@ class Navigation:
 			return 0
 		print "playing", ref and ref.toString()
 		if path.exists("/proc/stb/lcd/symbol_signal"):
-			if not ref.toString().startswith('1:0:0:0:0:0:0:0:0:0:'):
-				signal = 1
-			else:
+			try:
+				if not ref.toString().startswith('1:0:0:0:0:0:0:0:0:0:'):
+					signal = 1
+				else:
+					signal = 0
+				file = open("/proc/stb/lcd/symbol_signal", "w")
+				file.write('%d' % int(signal))
+				file.close()
+			except:
 				signal = 0
-			file = open("/proc/stb/lcd/symbol_signal", "w")
-			file.write('%d' % int(signal))
-			file.close()
+				file = open("/proc/stb/lcd/symbol_signal", "w")
+				file.write('%d' % int(signal))
+				file.close()
 		
 		if ref is None:
 			self.stopService()
