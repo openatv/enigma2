@@ -6,15 +6,15 @@ SUBDIRS = PositionerSetup Satfinder \
 	VideoEnhancement WirelessLan NetworkWizard
 
 if XTREND
-SUBDIRS += SatelliteEquipmentControl DiseqcTester FastScan OSD3DSetup OSDPositionSetup FanSetupXtrend
+SUBDIRS += SatelliteEquipmentControl DiseqcTester FastScan OSD3DSetup OSDPositionSetup FanSetupXtrend Blindscan
 endif
 
 if VUUNO
-SUBDIRS += SatelliteEquipmentControl DiseqcTester CableScan FastScan FPGAUpgrade
+SUBDIRS += SatelliteEquipmentControl DiseqcTester CableScan FastScan FPGAUpgrade Blindscan
 endif
 
 if VUULTIMO
-SUBDIRS += SatelliteEquipmentControl DiseqcTester CableScan FastScan FPGAUpgrade
+SUBDIRS += SatelliteEquipmentControl DiseqcTester CableScan FastScan FPGAUpgrade Blindscan
 endif
 
 if VUDUO
