@@ -45,7 +45,7 @@ class IconCheckPoller:
 			for bus in busses:
 				devices = bus.devices
 				for dev in devices:
-					if dev.deviceClass != 9 and dev.idVendor > 0:
+					if dev.deviceClass != 9 and dev.deviceClass != 2 and dev.idVendor > 0:
 						print ' '
 						print "Device:", dev.filename
 						print "  Number:", dev.deviceClass
