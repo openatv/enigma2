@@ -482,5 +482,5 @@ def main(session, **kwargs):
                                                            
 def BlindscanSetup(menuid):
 	if menuid == "scan":
-		return [(_("Blind Scan"), main, "blinscan", None)]
+		return [(_("Blind Scan"), main, "blinscan", 25)]
 	return []
