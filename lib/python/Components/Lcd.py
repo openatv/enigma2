@@ -5,19 +5,7 @@ from os import path
 import usb
 
 def IconCheck(session=None, **kwargs):
-	busses = usb.busses()
-	for bus in busses:
-		devices = bus.devices
-		for dev in devices:
-			if dev.deviceClass != 9 and dev.idVendor > 0:
-				print ' '
-				print "Device:", dev.filename
-				print "  Number:", dev.deviceClass
-				print "  idVendor: %d (0x%04x)" % (dev.idVendor, dev.idVendor)
-				print "  idProduct: %d (0x%04x)" % (dev.idProduct, dev.idProduct)
-				print "  iProduct: %s" % (usb.util.get_string(dev.dev,20, dev.iProduct))
-				print "  iManufacturer: %s" % (usb.util.get_string(dev.dev,20, dev.iManufacturer))
-	if path.exists("/proc/stb/lcd/symbol_network"):
+	if path.exists("/proc/stb/lcd/symbol_network") or path.exists("/proc/stb/lcd/symbol_usb"):
 		global networklinkpoller
 		networklinkpoller = IconCheckPoller()
 		networklinkpoller.start()
@@ -27,24 +15,30 @@ class IconCheckPoller:
 		self.timer = eTimer()
 
 	def start(self):
-		if self.networklink_check not in self.timer.callback:
-			self.timer.callback.append(self.networklink_check)
+		if self.iconcheck not in self.timer.callback:
+			self.timer.callback.append(self.iconcheck)
 		self.timer.startLongTimer(0)
 
 	def stop(self):
-		if self.version_check in self.timer.callback:
-			self.timer.callback.remove(self.networklinkcheck)
+		if self.iconcheck in self.timer.callback:
+			self.timer.callback.remove(self.iconcheck)
 		self.timer.stop()
 
-	def networklink_check(self):
-		if path.exists('/sys/class/net/wlan0/carrier'):
-			LinkState = open('/sys/class/net/wlan0/carrier').read()
-		elif path.exists('/sys/class/net/eth0/carrier'):
-			LinkState = open('/sys/class/net/eth0/carrier').read()
-		LinkState = LinkState[:1]
-		file = open("/proc/stb/lcd/symbol_network", "w")
-		file.write('%d' % int(LinkState))
-		file.close()
+	def iconcheck(self):
+		if path.exists("/proc/stb/lcd/symbol_network"):
+			LinkState = 0
+			if path.exists('/sys/class/net/wlan0/operstate'):
+				LinkState = open('/sys/class/net/wlan0/operstate').read()
+				if LinkState != 'down':
+					LinkState = open('/sys/class/net/wlan0/operstate').read()
+			elif path.exists('/sys/class/net/eth0/operstate'):
+				LinkState = open('/sys/class/net/eth0/operstate').read()
+				if LinkState != 'down':
+					LinkState = open('/sys/class/net/eth0/carrier').read()
+			LinkState = LinkState[:1]
+			file = open("/proc/stb/lcd/symbol_network", "w")
+			file.write('%d' % int(LinkState))
+			file.close()
 		if path.exists("/proc/stb/lcd/symbol_usb"):
 			USBState = 0
 			busses = usb.busses()
@@ -52,6 +46,11 @@ class IconCheckPoller:
 				devices = bus.devices
 				for dev in devices:
 					if dev.deviceClass != 9 and dev.idVendor > 0:
+						print ' '
+						print "Device:", dev.filename
+						print "  Number:", dev.deviceClass
+						print "  idVendor: %d (0x%04x)" % (dev.idVendor, dev.idVendor)
+						print "  idProduct: %d (0x%04x)" % (dev.idProduct, dev.idProduct)
 						USBState = 1
 			file = open("/proc/stb/lcd/symbol_usb", "w")
 			file.write('%d' % int(USBState))
