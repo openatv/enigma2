@@ -51,7 +51,7 @@ class Blindscan(ConfigListScreen, Screen):
 
 		ConfigListScreen.__init__(self, self.list)
 		if self.scan_nims.value != None and self.scan_nims.value != "" :
-			self["actions"] = ActionMap(["OkCancelActions", "ShortcutActions", "WizardActions", "ColorActions", "SetupActions", ],
+			self["actions"] = ActionMap(["ColorActions", "SetupActions", 'DirectionActions'],
 			{
 				"red": self.keyCancel,
 				"green": self.keyGo,
@@ -65,7 +65,7 @@ class Blindscan(ConfigListScreen, Screen):
 			self["introduction"] = Label(_("Press Green/OK to start the scan"))
 			self.createSetup()
 		else :
-			self["actions"] = ActionMap(["OkCancelActions", "ShortcutActions", "WizardActions", "ColorActions", "SetupActions", ],
+			self["actions"] = ActionMap(["ColorActions", "SetupActions", 'DirectionActions'],
 			{
 				"red": self.keyCancel,
 				"green": self.keyNone,
