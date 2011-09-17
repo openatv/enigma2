@@ -14,35 +14,6 @@ STATE_REWIND = 3
 STATE_FORWARD = 4
 STATE_NONE = 5
 
-PlayIcon = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/ico_mp_play.png"))
-PauseIcon = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/ico_mp_pause.png"))
-StopIcon = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/ico_mp_stop.png"))
-RewindIcon = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/ico_mp_rewind.png"))
-ForwardIcon = LoadPixmap(path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/ico_mp_forward.png"))
-
-def PlaylistEntryComponent(serviceref, state):
-	res = [ serviceref ]
-	text = serviceref.getName()
-	if text is "":
-		text = path.split(serviceref.getPath().split('/')[-1])[1]
-	res.append((eListboxPythonMultiContent.TYPE_TEXT,25, 1, 470, 22, 0, RT_VALIGN_CENTER, text))
-	png = None
-	if state == STATE_PLAY:
-		png = PlayIcon
-	elif state == STATE_PAUSE:
-		png = PauseIcon
-	elif state == STATE_STOP:
-		png = StopIcon
-	elif state == STATE_REWIND:
-		png = RewindIcon
-	elif state == STATE_FORWARD:
-		png = ForwardIcon
-
-	if png is not None:
-		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 5, 3, 16, 16, png))
-
-	return res
-
 class PlayList(MenuList):
 	def __init__(self, enableWrapAround = False):
 		MenuList.__init__(self, [], enableWrapAround, eListboxPythonMultiContent)
@@ -51,6 +22,26 @@ class PlayList(MenuList):
 		self.currPlaying = -1
 		self.oldCurrPlaying = -1
 		self.serviceHandler = eServiceCenter.getInstance()
+		self.icons = [
+			LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/ico_mp_play.png")),
+			LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/ico_mp_pause.png")),
+			LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/ico_mp_stop.png")),
+			LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/ico_mp_rewind.png")),
+			LoadPixmap(path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/ico_mp_forward.png")),
+		]
+
+	def PlaylistEntryComponent(self, serviceref, state):
+		res = [ serviceref ]
+		text = serviceref.getName()
+		if text is "":
+			text = path.split(serviceref.getPath().split('/')[-1])[1]
+		res.append((eListboxPythonMultiContent.TYPE_TEXT,25, 1, 470, 22, 0, RT_VALIGN_CENTER, text))
+		try:
+		        png = self.icons[state]
+			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 5, 3, 16, 16, png))
+		except:
+		        pass
+		return res
 
 	def clear(self):
 		del self.list[:]
@@ -62,11 +53,11 @@ class PlayList(MenuList):
 		return self.l.getCurrentSelection() and self.l.getCurrentSelection()[0]
 
 	def addFile(self, serviceref):
-		self.list.append(PlaylistEntryComponent(serviceref, STATE_NONE))
+		self.list.append(self.PlaylistEntryComponent(serviceref, STATE_NONE))
 
 	def updateFile(self, index, newserviceref):
 		if index < len(self.list):
-		    self.list[index] = PlaylistEntryComponent(newserviceref, STATE_NONE)
+		    self.list[index] = self.PlaylistEntryComponent(newserviceref, STATE_NONE)
 
 	def deleteFile(self, index):
 		if self.currPlaying >= index:
@@ -80,9 +71,9 @@ class PlayList(MenuList):
 
 	def updateState(self, state):
 		if len(self.list) > self.oldCurrPlaying and self.oldCurrPlaying != -1:
-			self.list[self.oldCurrPlaying] = PlaylistEntryComponent(self.list[self.oldCurrPlaying][0], STATE_NONE)
+			self.list[self.oldCurrPlaying] = self.PlaylistEntryComponent(self.list[self.oldCurrPlaying][0], STATE_NONE)
 		if self.currPlaying != -1 and self.currPlaying < len(self.list):
-			self.list[self.currPlaying] = PlaylistEntryComponent(self.list[self.currPlaying][0], state)
+			self.list[self.currPlaying] = self.PlaylistEntryComponent(self.list[self.currPlaying][0], state)
 		self.updateList()
 
 	def playFile(self):
