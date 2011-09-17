@@ -225,7 +225,9 @@ class MovieBrowserConfig(ConfigListScreen,Screen):
 		cfg.moviesort = ConfigSelection(default=str(config.movielist.moviesort.value), choices = [
 			(str(MovieList.SORT_RECORDED), _("sort by date")),
 			(str(MovieList.SORT_ALPHANUMERIC), _("alphabetic sort")),
-			(str(MovieList.SHUFFLE), _("shuffle"))])
+			(str(MovieList.SHUFFLE), _("shuffle")),
+			(str(MovieList.SORT_RECORDED_REVERSE), _("reverse by date")),
+			(str(MovieList.SORT_ALPHANUMERIC_REVERSE), _("alphabetic reverse"))])
 		cfg.listtype = ConfigSelection(default=str(config.movielist.listtype.value), choices = [
 			(str(MovieList.LISTTYPE_ORIGINAL), _("list style default")),
 			(str(MovieList.LISTTYPE_COMPACT_DESCRIPTION), _("list style compact with description")),

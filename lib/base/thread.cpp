@@ -33,12 +33,10 @@ eThread::eThread()
 
 int eThread::runAsync(int prio, int policy)
 {
-	eDebug("before: %d", m_state.value());
 		/* the thread might already run. */
 	if (sync())
 		return -1;
 	
-	eDebug("after: %d", m_state.value());
 	ASSERT(m_state.value() == 1); /* sync postconditions */
 	ASSERT(!m_alive);
 	m_state.down();

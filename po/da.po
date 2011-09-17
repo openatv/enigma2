@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-02 16:10+0100\n"
+"POT-Creation-Date: 2011-09-08 16:22+0100\n"
 "PO-Revision-Date: 2010-04-13 21:10+0200\n"
 "Last-Translator: Ingmar <dreambox@ingmar.dk>\n"
 "Language-Team: jazzydane <dreambox@ingmar.dk>\n"
@@ -248,12 +248,6 @@ msgid "%s (%s)\n"
 msgstr "%s (%s)\n"
 
 msgid "( All readers)"
-msgstr ""
-
-msgid "(Beta)"
-msgstr ""
-
-msgid "(Release)"
 msgstr ""
 
 msgid "(Show only reader:"
@@ -567,9 +561,6 @@ msgstr "AC3 Nedmix"
 msgid "AFP Setup"
 msgstr ""
 
-msgid "AVL Xtrend blindscan running... please wait"
-msgstr ""
-
 #
 msgid "Abort"
 msgstr "Afbryd"
@@ -687,6 +678,9 @@ msgstr ""
 msgid "Adjust 3D settings"
 msgstr ""
 
+msgid "Adjust HDMI CEC settings"
+msgstr ""
+
 msgid "Adjust display scrolling and symbols"
 msgstr ""
 
@@ -745,9 +739,6 @@ msgstr "Album"
 msgid "Alias"
 msgstr ""
 
-msgid "Alias:"
-msgstr ""
-
 #
 msgid "All"
 msgstr "Alle"
@@ -756,7 +747,7 @@ msgstr "Alle"
 msgid "All Satellites"
 msgstr "Alle satellitter"
 
-msgid "Allow Subtiles equals Audio mask"
+msgid "Allow Subtitle equals Audio mask"
 msgstr ""
 
 msgid "Allow hearing impaired subtitles"
@@ -798,6 +789,9 @@ msgstr "Der opstod en ukendt fejl!"
 #
 msgid "Anonymize crashlog?"
 msgstr "Anonymiser nedbrudslog?"
+
+msgid "Any activity"
+msgstr ""
 
 msgid "April"
 msgstr ""
@@ -1070,9 +1064,6 @@ msgstr ""
 msgid "Black screen till locked"
 msgstr ""
 
-msgid "Blindscan"
-msgstr ""
-
 #
 msgid "Block noise reduction"
 msgstr "Video støjreduktion (Block noise reduction)"
@@ -1251,7 +1242,7 @@ msgstr "Kanal Vælger"
 msgid "Channel list preview mode"
 msgstr ""
 
-msgid "Channel list service mode"
+msgid "Channel list service mode (requires restart)"
 msgstr ""
 
 #
@@ -1351,6 +1342,9 @@ msgstr "Oprydningshjælper"
 #
 msgid "Clear before scan"
 msgstr "Slet før søgning"
+
+msgid "Clear fixed"
+msgstr ""
 
 #
 msgid "Clear log"
@@ -1638,6 +1632,9 @@ msgstr "Oprettelse af mappen %s mislykkedes."
 msgid "Creating partition failed"
 msgstr "Oprettelse af partition fejlede"
 
+msgid "Current CEC address"
+msgstr ""
+
 msgid "Current Event:"
 msgstr ""
 
@@ -1706,6 +1703,9 @@ msgstr "D"
 #
 msgid "DHCP"
 msgstr "DHCP"
+
+msgid "DLNA support"
+msgstr ""
 
 #
 msgid "DUAL LAYER DVD"
@@ -1846,7 +1846,13 @@ msgstr ""
 msgid "Detected NIMs:"
 msgstr "Fundne NIMs:"
 
+msgid "Device Information"
+msgstr ""
+
 msgid "Device Setup"
+msgstr ""
+
+msgid "Devices"
 msgstr ""
 
 #
@@ -1899,6 +1905,10 @@ msgstr "Mappen %s findes ikke."
 #
 msgid "Directory browser"
 msgstr "Mappe gennemsyn"
+
+#, python-format
+msgid "Directory contains %d file(s) and %d sub-directories.\n"
+msgstr ""
 
 #
 msgid "Disable"
@@ -2680,9 +2690,18 @@ msgstr "Følgende opgaver vil blive udført efter tryk på OK!"
 msgid "Format"
 msgstr "Formatere"
 
+msgid "Forward volume keys"
+msgstr ""
+
 #
 msgid "Frame size in full view"
 msgstr "Billed størrelse i fuld "
+
+msgid "Free Memory:"
+msgstr ""
+
+msgid "Free Swap:"
+msgstr ""
 
 msgid "Free memory"
 msgstr ""
@@ -2736,9 +2755,6 @@ msgid "Ftp service Enabled."
 msgstr ""
 
 msgid "Ftpd service type: Vsftpd server"
-msgstr ""
-
-msgid "GB"
 msgstr ""
 
 #
@@ -2826,6 +2842,15 @@ msgid "Guard interval mode"
 msgstr "Sikkerhedsinterval type"
 
 msgid "HD list"
+msgstr ""
+
+msgid "Handle deepstandby events"
+msgstr ""
+
+msgid "Handle standby from TV"
+msgstr ""
+
+msgid "Handle wakeup from TV"
 msgstr ""
 
 #
@@ -2966,6 +2991,9 @@ msgstr ""
 "Tænk ikke på de lyse skygger nu. De vil blive indstillet i næste trin.\n"
 "Hvis du er tilfreds med resultatet, tryk OK."
 
+msgid "Image Information"
+msgstr ""
+
 msgid "Image:"
 msgstr ""
 
@@ -2979,9 +3007,6 @@ msgid ""
 msgstr "For at optage via timer, er TV skiftet til optage kanal!\n"
 
 msgid "Inadyn Log"
-msgstr ""
-
-msgid "Inadyn Manager"
 msgstr ""
 
 msgid "Inadyn Setup"
@@ -3115,6 +3140,9 @@ msgstr "Hurtig optagelse..."
 #
 msgid "Instant record location"
 msgstr "Umiddelbar optagelsesplacering"
+
+msgid "Interface"
+msgstr ""
 
 #
 msgid "Interface: "
@@ -3392,9 +3420,6 @@ msgstr ""
 #
 msgid "Longitude"
 msgstr "Længdegrad"
-
-msgid "MB"
-msgstr ""
 
 #
 msgid "MORE"
@@ -3696,6 +3721,9 @@ msgstr ""
 msgid "Network SSID"
 msgstr "Netværks SSID"
 
+msgid "Network Servers:"
+msgstr ""
+
 #
 msgid "Network Setup"
 msgstr "Netværks opsætning"
@@ -3996,9 +4024,6 @@ msgid ""
 "Path: %s"
 msgstr ""
 
-msgid "Nothing"
-msgstr ""
-
 #
 msgid ""
 "Nothing to scan!\n"
@@ -4047,6 +4072,9 @@ msgstr "OK, fjern nog udvidelser"
 msgid "OSD Settings"
 msgstr "OSD indstilling"
 
+msgid "OSD name request"
+msgstr ""
+
 #
 msgid "OSD visibility"
 msgstr "OSD synlighed"
@@ -4060,6 +4088,12 @@ msgstr ""
 #
 msgid "Off"
 msgstr "Fra"
+
+msgid ""
+"Offline upgrade in progress\n"
+"Please wait until your box reboots\n"
+"This may take a few minutes"
+msgstr ""
 
 msgid "Ok"
 msgstr ""
@@ -4091,12 +4125,6 @@ msgstr "Kun udvidelser."
 
 #
 msgid "Open Context Menu"
-msgstr ""
-
-msgid "Open bouquet selection"
-msgstr ""
-
-msgid "Open channel selection"
 msgstr ""
 
 msgid "OpenVPN Setup"
@@ -4624,6 +4652,9 @@ msgstr ""
 msgid "Prefer subtitle stored by service"
 msgstr ""
 
+msgid "Prefered EPG Language"
+msgstr ""
+
 msgid "Preferred tuner"
 msgstr ""
 
@@ -4764,6 +4795,12 @@ msgid "Providers:"
 msgstr ""
 
 msgid "Providers: "
+msgstr ""
+
+msgid "Put TV in standby"
+msgstr ""
+
+msgid "Put receiver in standby"
 msgstr ""
 
 #
@@ -5300,9 +5337,6 @@ msgstr "Søge trådløse netværk"
 msgid "Scan additional SR"
 msgstr "Søge yderligere SR"
 
-msgid "Scan band"
-msgstr ""
-
 #
 msgid "Scan band EU HYPER"
 msgstr "Søge bånd EU HYPER"
@@ -5350,18 +5384,6 @@ msgstr "Søge bånd US MID"
 #
 msgid "Scan band US SUPER"
 msgstr "Søge bånd US SUPER"
-
-msgid "Scan start frequency"
-msgstr ""
-
-msgid "Scan start symbolrate"
-msgstr ""
-
-msgid "Scan stop frequency"
-msgstr ""
-
-msgid "Scan stop symbolrate"
-msgstr ""
 
 msgid ""
 "Scan your network for wireless access points and connect to them using your "
@@ -5412,6 +5434,9 @@ msgstr "Sekundær DNS"
 msgid "Seek"
 msgstr "Søg"
 
+msgid "Seekbar sensibility"
+msgstr ""
+
 #
 msgid "Select"
 msgstr "Vælg"
@@ -5455,6 +5480,9 @@ msgstr ""
 #
 msgid "Select files/folders to backup"
 msgstr "Vælg filer/mapper til backup"
+
+msgid "Select folders"
+msgstr ""
 
 msgid "Select input device"
 msgstr ""
@@ -5615,6 +5643,9 @@ msgstr "Sætter spænding og 22KHz"
 msgid "Set available internal memory threshold for the warning."
 msgstr "Trådløs netværkstilstand"
 
+msgid "Set fixed"
+msgstr ""
+
 #
 msgid "Set interface as default Interface"
 msgstr "Sætter interfacet om standard interface"
@@ -5643,6 +5674,9 @@ msgstr "Opsætnings type"
 msgid ""
 "Shall the USB stick wizard proceed and program the image file %s into flash "
 "memory?"
+msgstr ""
+
+msgid "Share Folder's"
 msgstr ""
 
 msgid "Share View"
@@ -5922,6 +5956,9 @@ msgstr "Desværre, MediaScanner er ikke installeret!"
 msgid "Sorry no backups found!"
 msgstr "Beklager, ingen backup fundet!"
 
+msgid "Sorry uShare Config is Missing"
+msgstr ""
+
 #
 msgid ""
 "Sorry your Backup destination does not exist\n"
@@ -5968,10 +6005,7 @@ msgstr "Lyd"
 msgid "Soundcarrier"
 msgstr "Lydfrekvens"
 
-msgid "Source active"
-msgstr ""
-
-msgid "Source inactive"
+msgid "Source request"
 msgstr ""
 
 #
@@ -6093,6 +6127,9 @@ msgstr "Gemme position"
 msgid "Stored position"
 msgstr "Gemt position"
 
+msgid "Stream request"
+msgstr ""
+
 msgid "Subservice mode"
 msgstr ""
 
@@ -6150,6 +6187,9 @@ msgstr ""
 msgid "Swap Services"
 msgstr "Bytte kanaler"
 
+msgid "Switch TV to correct input"
+msgstr ""
+
 msgid "Switch config"
 msgstr ""
 
@@ -6183,10 +6223,10 @@ msgstr ""
 msgid "System"
 msgstr "System"
 
-msgid "System Information"
+msgid "System Infomation"
 msgstr ""
 
-msgid "System:"
+msgid "System Information"
 msgstr ""
 
 msgid "System: "
@@ -6215,12 +6255,6 @@ msgstr "TV system"
 msgid "TV button mode"
 msgstr ""
 
-msgid "TV standby"
-msgstr ""
-
-msgid "TV wakeup"
-msgstr ""
-
 #
 msgid "Table of content for collection"
 msgstr "Indholdsfortegnelse for kollektion"
@@ -6230,6 +6264,12 @@ msgid "Tags"
 msgstr "Tags"
 
 msgid "Teletext subtitle color"
+msgstr ""
+
+msgid "Telnet Interface"
+msgstr ""
+
+msgid "Telnet Port"
 msgstr ""
 
 msgid "Telnet Setup"
@@ -6813,6 +6853,12 @@ msgstr ""
 msgid "Total"
 msgstr ""
 
+msgid "Total Memory:"
+msgstr ""
+
+msgid "Total Swap:"
+msgstr ""
+
 msgid "Total cards:"
 msgstr ""
 
@@ -7076,6 +7122,9 @@ msgstr "Benyt interface"
 msgid "Use Power Measurement"
 msgstr "Brug strømmåling"
 
+msgid "Use TV remote control"
+msgstr ""
+
 msgid "Use ViX Coloured Butons"
 msgstr ""
 
@@ -7174,6 +7223,9 @@ msgid "Username (httpuser)"
 msgstr ""
 
 msgid "Username:"
+msgstr ""
+
+msgid "Using fixed address"
 msgstr ""
 
 msgid "Using old profile: "
@@ -7403,9 +7455,24 @@ msgstr ""
 msgid "Waiting"
 msgstr "Venter"
 
+msgid "Wakeup"
+msgstr ""
+
+msgid "Wakeup TV from standby"
+msgstr ""
+
+msgid "Wakeup receiver from standby"
+msgstr ""
+
+msgid "Wakeup signal from TV"
+msgstr ""
+
 #
 msgid "Warn if free space drops below (kB):"
 msgstr "Advar ved frie tomme udfald under (kb):"
+
+msgid "Web Interface"
+msgstr ""
 
 #
 msgid "Wed"
@@ -7555,6 +7622,9 @@ msgstr "Skrive fejl under optagelse. Disken fuld?\n"
 #
 msgid "Write failed!"
 msgstr "Skrivning mislykkedes!"
+
+msgid "XBox 360 support"
+msgstr ""
 
 #
 msgid "YPbPr"
@@ -7715,6 +7785,11 @@ msgid ""
 msgstr ""
 "Du har valgt at gendanne dine indstillinger. Enigma2 vil genstarte efter "
 "gendannelsen. Tryk venligst på OK for at starte gendannelsen nu."
+
+msgid ""
+"You have not setup your user info in the setup screen\n"
+"Press MENU, and enter your info, then try again"
+msgstr ""
 
 msgid "You have selected no logs to delete."
 msgstr ""
@@ -8399,9 +8474,6 @@ msgstr "hjælp..."
 msgid "hide player"
 msgstr "skjul afspiller"
 
-msgid "high"
-msgstr ""
-
 msgid "hops:"
 msgstr ""
 
@@ -8503,9 +8575,6 @@ msgstr "låst "
 #
 msgid "loopthrough to"
 msgstr "gennemløb til"
-
-msgid "low"
-msgstr ""
 
 #
 msgid "manual"
@@ -8610,6 +8679,10 @@ msgstr "ingen timeout"
 
 msgid "no transparency"
 msgstr ""
+
+#
+msgid "none"
+msgstr "ingen"
 
 #
 msgid "not configured"
@@ -9118,6 +9191,15 @@ msgid "top"
 msgstr ""
 
 msgid "tuner is not supported"
+msgstr ""
+
+msgid "uShare Name"
+msgstr ""
+
+msgid "uShare Port"
+msgstr ""
+
+msgid "uShare Setup"
 msgstr ""
 
 #
@@ -11026,10 +11108,6 @@ msgstr "zappet"
 #
 #~ msgid "no Picture found"
 #~ msgstr "Intet Billede fundet"
-
-#
-#~ msgid "none"
-#~ msgstr "ingen"
 
 #
 #~ msgid "only /etc/enigma2 directory"

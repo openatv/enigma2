@@ -80,8 +80,8 @@ class About(Screen):
 		# TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 		info = _("TRANSLATOR_INFO")
 
-		if info == "TRANSLATOR_INFO":
-			info = "(N/A)"
+		if info == _("TRANSLATOR_INFO"):
+			info = ""
 
 		infolines = _("").split("\n")
 		infomap = {}
@@ -91,7 +91,6 @@ class About(Screen):
 				continue
 			(type, value) = l
 			infomap[type] = value
-		print infomap
 
 		translator_name = infomap.get("Language-Team", "none")
 		if translator_name == "none":
