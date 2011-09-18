@@ -179,16 +179,6 @@ int main(int argc, char **argv)
 	dsk.setDC(my_dc);
 	dsk_lcd.setDC(my_lcd_dc);
 
-#ifdef I_THINK_THIS_IS_FOR_OLD_HARDWARE_WITH_8_BIT_FRAMEBUFFERS
-	ePtr<gPixmap> m_pm;
-	loadPNG(m_pm, eEnv::resolve("${datadir}/enigma2/skin_default/pal.png").c_str());
-	if (!m_pm)
-	{
-		eDebug("pal.png not found!");
-	} else
-		dsk.setPalette(*m_pm);
-#endif
-
 	dsk.setBackgroundColor(gRGB(0,0,0,0xFF));
 #endif
 
