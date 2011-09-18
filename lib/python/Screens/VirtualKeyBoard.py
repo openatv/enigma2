@@ -155,7 +155,7 @@ class VirtualKeyBoard(Screen):
 		self["text"] = Label(text)
 		self["list"] = VirtualKeyBoardList([])
 		
-		self["actions"] = ActionMap(["OkCancelActions", "WizardActions", "DirectionActions", "ColorActions"],
+		self["actions"] = ActionMap(["OkCancelActions", "WizardActions", "DirectionActions", "ColorActions", "KeyboardInputActions"],
 			{
 				"ok": self.okClicked,
 				"cancel": self.exit,
@@ -166,7 +166,49 @@ class VirtualKeyBoard(Screen):
 				"red": self.backClicked,
 				"green": self.ok,
 				"yellow": self.okClicked,
-				"blue": self.shiftClicked
+				"blue": self.shiftClicked,
+				"key_minus": self.key_minus,
+				"key_equal": self.key_equal,
+				"key_backspace": self.key_backspace,
+				"key_q": self.key_q,
+				"key_w": self.key_w,
+				"key_e": self.key_e,
+				"key_r": self.key_r,
+				"key_t": self.key_t,
+				"key_y": self.key_y,
+				"key_u": self.key_u,
+				"key_i": self.key_i,
+				"key_o": self.key_o,
+				"key_p": self.key_p,
+				"key_leftbrace": self.key_leftbrace,
+				"key_enter": self.key_enter,
+				"key_a": self.key_a,
+				"key_s": self.key_s,
+				"key_d": self.key_d,
+				"key_f": self.key_f,
+				"key_g": self.key_g,
+				"key_h": self.key_h,
+				"key_j": self.key_j,
+				"key_k": self.key_k,
+				"key_l": self.key_l,
+				"key_semicolon": self.key_semicolon,
+				"key_apostrophe": self.key_apostrophe,
+				"key_backslash": self.key_backslash,
+				"key_leftshift": self.key_leftshift,
+				"key_z": self.key_z,
+				"key_x": self.key_x,
+				"key_c": self.key_c,
+				"key_v": self.key_v,
+				"key_b": self.key_b,
+				"key_n": self.key_n,
+				"key_m": self.key_m,
+				"key_comma": self.key_comma,
+				"key_dot": self.key_dot,
+				"key_slash": self.key_slash,
+				"key_rightshift": self.key_rightshift,
+				"key_space": self.key_space,
+				"key_capslock": self.key_capslock,
+				"key_esc": self.key_esc,
 			}, -2)
 		
 		self.onLayoutFinish.append(self.buildVirtualKeyBoard)
@@ -215,6 +257,7 @@ class VirtualKeyBoard(Screen):
 			list = self.keys_list
 		
 		selectedKey = self.selectedKey
+		print 'K:',selectedKey
 
 		text = None
 
@@ -258,6 +301,182 @@ class VirtualKeyBoard(Screen):
 		else:
 			self.text += text
 			self["text"].setText(self.text.encode("utf-8"))
+
+	def key_backspace(self):
+		self.selectedKey = 11
+		self.okClicked()
+
+	def key_minus(self):
+		self.selectedKey = 22
+		self.okClicked()
+
+	def key_equal(self):
+		self.selectedKey = 23
+		self.okClicked()
+
+	def key_q(self):
+		self.selectedKey = 12
+		self.okClicked()
+
+	def key_w(self):
+		self.selectedKey = 13
+		self.okClicked()
+
+	def key_e(self):
+		self.selectedKey = 14
+		self.okClicked()
+
+	def key_r(self):
+		self.selectedKey = 15
+		self.okClicked()
+
+	def key_t(self):
+		self.selectedKey = 16
+		self.okClicked()
+
+	def key_y(self):
+		self.selectedKey = 17
+		self.okClicked()
+
+	def key_u(self):
+		self.selectedKey = 18
+		self.okClicked()
+
+	def key_i(self):
+		self.selectedKey = 19
+		self.okClicked()
+
+	def key_o(self):
+		self.selectedKey = 20
+		self.okClicked()
+
+	def key_p(self):
+		self.selectedKey = 21
+		self.okClicked()
+
+	def key_leftbrace(self):
+		self.selectedKey = 36
+		self.okClicked()
+
+	def key_rightbrace(self):
+		self.selectedKey = 35
+		self.okClicked()
+
+	def key_enter(self):
+		self.selectedKey = 23
+		self.okClicked()
+
+	def key_a(self):
+		self.selectedKey = 24
+		self.okClicked()
+
+	def key_s(self):
+		self.selectedKey = 25
+		self.okClicked()
+
+	def key_d(self):
+		self.selectedKey = 26
+		self.okClicked()
+
+	def key_f(self):
+		self.selectedKey = 27
+		self.okClicked()
+
+	def key_g(self):
+		self.selectedKey = 28
+		self.okClicked()
+
+	def key_h(self):
+		self.selectedKey = 29
+		self.okClicked()
+
+	def key_j(self):
+		self.selectedKey = 30
+		self.okClicked()
+
+	def key_k(self):
+		self.selectedKey = 31
+		self.okClicked()
+
+	def key_l(self):
+		self.selectedKey = 32
+		self.okClicked()
+
+	def key_semicolon(self):
+		self.selectedKey = 33
+		self.okClicked()
+
+	def key_apostrophe(self):
+		self.selectedKey = 34
+		self.okClicked()
+
+	def key_grave(self):
+		self.selectedKey = 35
+		self.okClicked()
+
+	def key_leftshift(self):
+		self.selectedKey = 48
+		self.okClicked()
+
+	def key_backslash(self):
+		self.selectedKey = 35
+		self.okClicked()
+
+	def key_z(self):
+		self.selectedKey = 37
+		self.okClicked()
+
+	def key_x(self):
+		self.selectedKey = 38
+		self.okClicked()
+
+	def key_c(self):
+		self.selectedKey = 39
+		self.okClicked()
+
+	def key_v(self):
+		self.selectedKey = 40
+		self.okClicked()
+
+	def key_b(self):
+		self.selectedKey = 41
+		self.okClicked()
+
+	def key_n(self):
+		self.selectedKey = 42
+		self.okClicked()
+
+	def key_m(self):
+		self.selectedKey = 43
+		self.okClicked()
+
+	def key_comma(self):
+		self.selectedKey = 44
+		self.okClicked()
+
+	def key_dot(self):
+		self.selectedKey = 45
+		self.okClicked()
+
+	def key_slash(self):
+		self.selectedKey = 46
+		self.okClicked()
+
+	def key_rightshift(self):
+		self.selectedKey = 48
+		self.okClicked()
+
+	def key_space(self):
+		self.selectedKey = 49
+		self.okClicked()
+
+	def key_capslock(self):
+		self.selectedKey = 52
+		self.okClicked()
+
+	def key_esc(self):
+		self.selectedKey = 50
+		self.okClicked()
 
 	def ok(self):
 		self.close(self.text.encode("utf-8"))
