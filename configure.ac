@@ -254,7 +254,6 @@ lib/python/Plugins/Extensions/Aafpanel/pics/Makefile
 lib/python/Plugins/Extensions/Aafpanel/locale/Makefile
 lib/python/Plugins/Extensions/Aafpanel/icons/Makefile
 lib/python/Plugins/Extensions/Aafpanel/Extra/Makefile
-lib/python/Plugins/Extensions/SIB/Makefile
 lib/python/Plugins/Extensions/GraphMultiEPG/Makefile
 lib/python/Plugins/Extensions/GraphMultiEPG/meta/Makefile
 lib/python/Plugins/PLi/Makefile
