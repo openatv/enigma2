@@ -1,5 +1,5 @@
 from Components.config import ConfigSubsection, config
-from Tools.LoadPixmap import LoadPixmap
+import os
 
 config.plugins = ConfigSubsection()
 
@@ -75,7 +75,6 @@ class PluginDescriptor:
 
 		if icon is None or isinstance(icon, str):
 			self.iconstr = icon
-			self.icon = None
 		else:
 			self.icon = icon
 
@@ -86,13 +85,21 @@ class PluginDescriptor:
 		self.__call__ = fnc
 
 	def updateIcon(self, path):
-		if isinstance(self.iconstr, str):
-			self.icon = LoadPixmap('/'.join((path, self.iconstr)))
-		else:
-			self.icon = None
+		self.path = path
 
 	def getWakeupTime(self):
 		return self.wakeupfnc and self.wakeupfnc() or -1
+
+	def __getattr__(self, name):
+		if name == 'icon':
+			if isinstance(self.iconstr, str):
+				from Tools.LoadPixmap import LoadPixmap
+				icon = LoadPixmap(os.path.join(self.path, self.iconstr))
+			else:
+				icon = None
+			self.icon = icon
+			return icon
+		raise AttributeError
 
 	def __eq__(self, other):
 		return self.__call__ == other.__call__
