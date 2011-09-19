@@ -1,6 +1,7 @@
 from enigma import eDVBResourceManager
 from Tools.Directories import fileExists
 from Tools.HardwareInfo import HardwareInfo
+from os import path
 
 SystemInfo = { }
 
@@ -25,8 +26,14 @@ def countFrontpanelLEDs():
 
 	return leds
 
+def isHDMICECSupported():
+	if path.exists("/dev/hdmi_cec") and path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/HdmiCEC/plugin.pyo"):
+		return True
+	return False
+
 SystemInfo["NumFrontpanelLEDs"] = countFrontpanelLEDs()
 SystemInfo["FrontpanelDisplay"] = fileExists("/dev/dbox/oled0") or fileExists("/dev/dbox/lcd0")
 SystemInfo["FrontpanelDisplayGrayscale"] = fileExists("/dev/dbox/oled0")
 SystemInfo["DeepstandbySupport"] = HardwareInfo().get_device_name() != "dm800"
 SystemInfo["Kernel2.6.31"] = HardwareInfo().linux_kernel() == "2.6.31"
+SystemInfo["HDMICEC"] = isHDMICECSupported()

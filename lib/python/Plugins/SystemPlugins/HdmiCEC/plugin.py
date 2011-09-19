@@ -2,6 +2,10 @@ from Screens.Screen import Screen
 from Components.ConfigList import ConfigListScreen
 from Components.config import config, getConfigListEntry
 from Components.Sources.StaticText import StaticText
+from Components.SystemInfo import SystemInfo
+from os import path
+if path.exists("/dev/hdmi_cec"):
+	import Components.HdmiCec
 
 class HdmiCECSetupScreen(Screen, ConfigListScreen):
 	skin = """
@@ -98,14 +102,3 @@ class HdmiCECSetupScreen(Screen, ConfigListScreen):
 		else:
 			fixedaddresslabel = _("Using fixed address") + ": " + config.hdmicec.fixed_physical_address.value
 		self["fixed_address"].setText(fixedaddresslabel)
-
-def main(session, **kwargs):
-	session.open(HdmiCECSetupScreen)
-
-def Plugins(**kwargs):
-	from os import path
-	if path.exists("/dev/hdmi_cec"):
-		import Components.HdmiCec
-		from Plugins.Plugin import PluginDescriptor
-		return [PluginDescriptor(name = "HDMI CEC setup", description = _("Adjust HDMI CEC settings"), where = PluginDescriptor.WHERE_PLUGINMENU, fnc = main)]
-	return []
