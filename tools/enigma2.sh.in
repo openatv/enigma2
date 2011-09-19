@@ -2,9 +2,10 @@
 
 prefix=@prefix@
 exec_prefix=@exec_prefix@
+datarootdir=@datarootdir@
 
-if [ -x @bindir@/showiframe -a -f /usr/share/backdrop.mvi ]; then
-	@bindir@/showiframe /usr/share/backdrop.mvi
+if [ -x @bindir@/showiframe -a -f @datadir@/backdrop.mvi ]; then
+	@bindir@/showiframe @datadir@/backdrop.mvi
 fi
 
 # hook to execute scripts always before enigma2 start

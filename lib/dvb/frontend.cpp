@@ -1873,11 +1873,11 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 						int slotid = sec_fe->m_slotid;
 						// FIXMEEEEEE hardcoded i2c devices for dm7025 and dm8000
 						if (slotid < 2)
-							sprintf(dev, "/dev/i2c/%d", slotid);
+							sprintf(dev, "/dev/i2c-%d", slotid);
 						else if (slotid == 2)
-							sprintf(dev, "/dev/i2c/2"); // first nim socket on DM8000 use /dev/i2c/2
+							sprintf(dev, "/dev/i2c-2"); // first nim socket on DM8000 use /dev/i2c-2
 						else if (slotid == 3)
-							sprintf(dev, "/dev/i2c/4"); // second nim socket on DM8000 use /dev/i2c/4
+							sprintf(dev, "/dev/i2c-4"); // second nim socket on DM8000 use /dev/i2c-4
 						int fd = ::open(dev, O_RDWR);
 
 						unsigned char data[2];
