@@ -831,45 +831,6 @@ class InfoBarSimpleEventView:
 			epglist[1] = tmp
 			setEvent(epglist[0])
 
-# class SlimServicelist:
-# 	def __init__(self, services):
-# 		self.services = services
-# 		self.length = len(services)
-# 		self.current = 0
-# 
-# 	def selectService(self, service):
-# 		if not self.length:
-# 			self.current = -1
-# 			return False
-# 		else:
-# 			self.current = 0
-# 			while self.services[self.current].ref != service:
-# 				self.current += 1
-# 				if self.current >= self.length:
-# 					return False
-# 		return True
-# 
-# 	def nextService(self):
-# 		if not self.length:
-# 			return
-# 		if self.current+1 < self.length:
-# 			self.current += 1
-# 		else:
-# 			self.current = 0
-# 
-# 	def prevService(self):
-# 		if not self.length:
-# 			return
-# 		if self.current-1 > -1:
-# 			self.current -= 1
-# 		else:
-# 			self.current = self.length - 1
-# 
-# 	def currentService(self):
-# 		if not self.length or self.current >= self.length:
-# 			return None
-# 		return self.services[self.current]
-# 
 class InfoBarEPG:
 	""" EPG - Opens an EPG list when the showEPGList action fires """
 	def __init__(self):
@@ -3107,13 +3068,63 @@ class InfoBarExtensions:
 
 	def showAutoTimerList(self):
 		if Directories.fileExists("/usr/lib/enigma2/python/Plugins/Extensions/AutoTimer/plugin.pyo"):
-			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU ,PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
-				if plugin.name == _("AutoTimer"):
-					self.runPlugin(plugin)
-					break
+			from Plugins.Extensions.AutoTimer.plugin import main, autostart
+			from Plugins.Extensions.AutoTimer.AutoTimer import AutoTimer
+			from Plugins.Extensions.AutoTimer.AutoPoller import AutoPoller
+			autopoller = AutoPoller()
+			autotimer = AutoTimer()
+			global autotimer
+			global autopoller
+		
+		
+			try:
+				autotimer.readXml()
+			except SyntaxError as se:
+				self.session.open(
+					MessageBox,
+					_("Your config file is not well-formed:\n%s") % (str(se)),
+					type = MessageBox.TYPE_ERROR,
+					timeout = 10
+				)
+				return
+		
+			# Do not run in background while editing, this might screw things up
+			if autopoller is not None:
+				autopoller.stop()
+		
+			from Plugins.Extensions.AutoTimer.AutoTimerOverview import AutoTimerOverview
+			self.session.openWithCallback(
+				self.editCallback,
+				AutoTimerOverview,
+				autotimer
+			)
 		else:
 			self.session.open(MessageBox, _("The AutoTimer plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
+	def editCallback(self, session):
+		global autotimer
+		global autopoller
+	
+		# XXX: canceling of GUI (Overview) won't affect config values which might have been changed - is this intended?
+	
+		# Don't parse EPG if editing was canceled
+		if session is not None:
+			# Save xml
+			autotimer.writeXml()
+			# Poll EPGCache
+			autotimer.parseEPG()
+	
+		# Start autopoller again if wanted
+		if config.plugins.autotimer.autopoll.value:
+			if autopoller is None:
+				from Plugins.Extensions.AutoTimer.AutoPoller import AutoPoller
+				autopoller = AutoPoller()
+			autopoller.start()
+		# Remove instance if not running in background
+		else:
+			autopoller = None
+			autotimer = None
+	
 	def showEPGSearch(self):
 		from Plugins.Extensions.EPGSearch.EPGSearch import EPGSearch
 		s = self.session.nav.getCurrentService()
