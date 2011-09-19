@@ -2914,7 +2914,7 @@ class InfoBarTimeshift:
 			self.setSeekState(self.SEEK_STATE_PAUSE)
 
 		if back:
-			self.ts_rewind_timer.start(200, 1)
+			self.ts_rewind_timer.start(500, 1)
 
 	def rewindService(self):
 		self.setSeekState(self.makeStateBackward(int(config.seek.enter_backward.value)))
@@ -3138,10 +3138,13 @@ class InfoBarExtensions:
 
 	def showIMDB(self):
 		if Directories.fileExists("/usr/lib/enigma2/python/Plugins/Extensions/IMDb/plugin.pyo"):
-			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU ,PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
-				if plugin.name == _("IMDb Details"):
-					self.runPlugin(plugin)
-					break
+			from Plugins.Extensions.IMDb.plugin import IMDB
+			s = self.session.nav.getCurrentService()
+			if s:
+				info = s.info()
+				event = info.getEvent(0) # 0 = now, 1 = next
+				name = event and event.getEventName() or ''
+				self.session.open(IMDB, name)
 		else:
 			self.session.open(MessageBox, _("The IMDb plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
