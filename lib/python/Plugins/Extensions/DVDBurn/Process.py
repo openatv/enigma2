@@ -175,7 +175,8 @@ class DemuxTask(Task):
 		print "[DemuxTask::cleanup]"
 		self.mplex_streamfiles = [ self.mplex_videofile ]
 		for pid in self.relevantAudioPIDs:
-			self.mplex_streamfiles.append(self.mplex_audiofiles[pid])
+			if pid in self.mplex_audiofiles:
+				self.mplex_streamfiles.append(self.mplex_audiofiles[pid])
 		print self.mplex_streamfiles
 
 		if failed:

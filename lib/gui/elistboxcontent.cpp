@@ -675,7 +675,8 @@ static ePyObject lookupColor(ePyObject color, ePyObject data)
 	if ((icolor & 0xFF000000) == 0xFF000000)
 	{
 		int index = icolor & 0xFFFFFF;
-		eDebug("[eListboxPythonMultiContent] template color index: %d", index);
+		if (PyTuple_GetItem(data, index) == Py_None)
+			return ePyObject();
 		return PyTuple_GetItem(data, index);
 	}
 

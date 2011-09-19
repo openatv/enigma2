@@ -749,7 +749,7 @@ PyObject *eServiceDVD::getSubtitleList()
 		ePyObject tuple = PyTuple_New(5);
 		PyTuple_SetItem(tuple, 0, PyInt_FromLong(2));
 		PyTuple_SetItem(tuple, 1, PyInt_FromLong(spu_id+1));
-		PyTuple_SetItem(tuple, 2, PyInt_FromLong(3));
+		PyTuple_SetItem(tuple, 2, PyInt_FromLong(5));
 		PyTuple_SetItem(tuple, 3, PyInt_FromLong(0));
 		PyTuple_SetItem(tuple, 4, PyString_FromString(spu_string));
 		PyList_Append(l, tuple);

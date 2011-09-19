@@ -1137,18 +1137,18 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 		return;
 	gchar *sourceName;
 	GstObject *source;
-
 	source = GST_MESSAGE_SRC(msg);
+	if (!GST_IS_OBJECT(source))
+		return;
 	sourceName = gst_object_get_name(source);
 #if 0
+	gchar *string;
 	if (gst_message_get_structure(msg))
-	{
-		gchar *string = gst_structure_to_string(gst_message_get_structure(msg));
-		eDebug("eServiceMP3::gst_message from %s: %s", sourceName, string);
-		g_free(string);
-	}
+		string = gst_structure_to_string(gst_message_get_structure(msg));
 	else
-		eDebug("eServiceMP3::gst_message from %s: %s (without structure)", sourceName, GST_MESSAGE_TYPE_NAME(msg));
+		string = g_strdup(GST_MESSAGE_TYPE_NAME(msg));
+	eDebug("eTsRemoteSource::gst_message from %s: %s", sourceName, string);
+	g_free(string);
 #endif
 	switch (GST_MESSAGE_TYPE (msg))
 	{
