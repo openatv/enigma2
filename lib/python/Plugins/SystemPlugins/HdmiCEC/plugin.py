@@ -102,3 +102,6 @@ class HdmiCECSetupScreen(Screen, ConfigListScreen):
 		else:
 			fixedaddresslabel = _("Using fixed address") + ": " + config.hdmicec.fixed_physical_address.value
 		self["fixed_address"].setText(fixedaddresslabel)
+
+def Plugins(**kwargs):
+	return []
