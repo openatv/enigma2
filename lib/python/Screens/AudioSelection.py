@@ -14,7 +14,7 @@ from enigma import iPlayableService
 from Tools.ISO639 import LanguageCodes
 from Tools.BoundFunction import boundFunction
 FOCUS_CONFIG, FOCUS_STREAMS = range(2)
-[PAGE_AUDIO, PAGE_SUBTITLES] = ["audio","subtitles"]
+[PAGE_AUDIO, PAGE_SUBTITLES] = ["audio", "subtitles"]
 
 class AudioSelection(Screen, ConfigListScreen):
 	def __init__(self, session, infobar=None, page=PAGE_AUDIO):
@@ -46,7 +46,7 @@ class AudioSelection(Screen, ConfigListScreen):
 			"cancel": self.cancel,
 			"up": self.keyUp,
 			"down": self.keyDown,
-		}, -3)
+		}, -2)
 
 		self.settings = ConfigSubsection()
 		choicelist = [(PAGE_AUDIO,""), (PAGE_SUBTITLES,"")]
@@ -79,6 +79,9 @@ class AudioSelection(Screen, ConfigListScreen):
 
 		if self.settings.menupage.getValue() == PAGE_AUDIO:
 			self.setTitle(_("Select audio track"))
+			service = self.session.nav.getCurrentService()
+			self.audioTracks = audio = service and service.audioTracks()
+			n = audio and audio.getNumberOfTracks() or 0
 			if SystemInfo["CanDownmixAC3"]:
 				self.settings.downmix = ConfigOnOff(default=config.av.downmix_ac3.value)
 				self.settings.downmix.addNotifier(self.changeAC3Downmix, initial_call = False)
@@ -207,7 +210,7 @@ class AudioSelection(Screen, ConfigListScreen):
 				conflist.append(getConfigListEntry(Plugins[0][0], ConfigNothing()))
 				self.plugincallfunc = Plugins[0][1]
 			if len(Plugins) > 1:
-				print "these plugins are installed but not displayed in the dialog box:", Plugins[1:]
+				print "plugin(s) installed but not displayed in the dialog box:", Plugins[1:]
 
 		self["config"].list = conflist
 		self["config"].l.setList(conflist)
