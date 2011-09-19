@@ -7,11 +7,23 @@ if [ -x @bindir@/showiframe -a -f /usr/share/backdrop.mvi ]; then
 	@bindir@/showiframe /usr/share/backdrop.mvi
 fi
 
+# hook to execute scripts always before enigma2 start
+if [ -x @bindir@/enigma2_pre_start.sh ]; then
+	@bindir@/enigma2_pre_start.sh
+fi
+
 if [ -d /home/root ]; then
 	cd /home/root
 fi
 
-LD_PRELOAD=@libdir@/libopen.so.0.0.0 @bindir@/enigma2
+LIBS=@libdir@/libopen.so.0.0.0
+
+#check for dreambox specific passthrough helper lib
+if [ -e @libdir@/libpassthrough.so ]; then
+	LIBS="$LIBS @libdir@/libpassthrough.so"
+fi
+
+LD_PRELOAD=$LIBS @bindir@/enigma2
 
 # enigma2 exit codes:
 #
