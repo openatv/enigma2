@@ -93,10 +93,16 @@ self.session.openWithCallback(msgClosed, EpgLoadMsg)
 					<item level="0" text="Filesystem Check" entryID="harddisk_check"><screen module="HarddiskSetup" screen="HarddiskFsckSelection"/></item>
 					<item level="0" text="Convert filesystem ext3 to ext4" entryID="harddisk_convert" requires="ext4"><screen module="HarddiskSetup" screen="HarddiskConvertExt4Selection"/></item>
 				</menu>
+				<item level="0" text="HDMI CEC" entryID="hdmicec" requires="HDMICEC">
+<code>
+from Plugins.SystemPlugins.HdmiCEC.plugin import HdmiCECSetupScreen
+self.session.open(HdmiCECSetupScreen)
+</code>
+				</item>
 				<!--<item text="Remote Control"><setup id="rc" /></item>-->
 				<!--<item text="OSD"><setup id="osd" /></item>-->
 <!--				<item level="0" text="Network" entryID="network_setup"><screen module="NetworkSetup" screen="NetworkAdapterSelection" /></item>-->
-<!--				<item level="1" text="Input devices" entryID="input_device_setup"><screen module="InputDeviceSetup" screen="InputDeviceSelection" /></item>-->
+				<item level="1" text="Input devices" entryID="input_device_setup"><screen module="InputDeviceSetup" screen="InputDeviceSelection" /></item>
 				<item text="Keyboard"><setup id="keyboard" /></item>
 				<item level="0" text="Language" entryID="language_setup"><screen module="LanguageSelection" /></item>
 				<menu level="2" text="Logs" entryID="logs_setup">
