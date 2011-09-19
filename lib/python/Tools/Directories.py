@@ -57,7 +57,7 @@ defaultPaths = {
 		SCOPE_USERETC: ("", PATH_DONTCREATE), # user home directory
 		
 		SCOPE_DEFAULTDIR: (eEnv.resolve("${datadir}/enigma2/defaults/"), PATH_CREATE),
-		SCOPE_DEFAULTPARTITION: ("/dev/mtdblock/6", PATH_DONTCREATE),
+		SCOPE_DEFAULTPARTITION: ("/dev/mtdblock6", PATH_DONTCREATE),
 		SCOPE_DEFAULTPARTITIONMOUNTDIR: (eEnv.resolve("${datadir}/enigma2/dealer"), PATH_CREATE),
 		SCOPE_METADIR: (eEnv.resolve("${datadir}/meta"), PATH_CREATE),
 	}
