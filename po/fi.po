@@ -3,14 +3,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-04-01 08:09+0000\n"
-"PO-Revision-Date: 2011-03-07 14:39+0200\n"
+"POT-Creation-Date: 2011-04-20 10:39+0000\n"
+"PO-Revision-Date: 2011-04-24 16:43+0200\n"
 "Last-Translator: Timo <timojarvenpaa@hotmail.com>\n"
 "Language-Team: none\n"
+"Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: fi\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.0.3\n"
 "X-Poedit-Language: Finnish\n"
@@ -193,6 +193,8 @@ msgid ""
 "%d conflict(s) encountered when trying to add new timers:\n"
 "%s"
 msgstr ""
+"%d ristiriita(a) uusien ajastuksien lisäyksessä:\n"
+"%s"
 
 #
 #, python-format
@@ -232,7 +234,7 @@ msgstr "%s (%s)\n"
 
 #, python-format
 msgid "%s: %s at %s"
-msgstr ""
+msgstr "%s: %s at %s"
 
 #
 msgid "(ZAP)"
@@ -376,10 +378,10 @@ msgid "A"
 msgstr "A"
 
 msgid "A BackToTheRoots-Skin .. but with Warp-8 speed."
-msgstr ""
+msgstr "BackToTheRoots-teema .. mutta Warp-8 nopeudella."
 
 msgid "A BackToTheRoots-Skin .. or good old times."
-msgstr ""
+msgstr "BackToTheRoots-teema .. vanhat hyvät ajat."
 
 msgid "A basic ftp client"
 msgstr "FTP-asiakasohjelma"
@@ -400,7 +402,7 @@ msgid "A demo plugin for TPM usage."
 msgstr "Demo-lisäosa TPM:n käyttöön"
 
 msgid "A dreambox simulation from SG-Atlantis displays."
-msgstr ""
+msgstr "SG-Atlantis näyttöjen simulaatio Dreamboxille."
 
 #
 msgid ""
@@ -426,7 +428,7 @@ msgid "A graphical EPG interface"
 msgstr "Graafinen EPG"
 
 msgid "A graphical EPG interface and EPG tools manager"
-msgstr ""
+msgstr "Graafinen EPG ja EPG-työkalujen hallinta"
 
 msgid "A graphical EPG interface."
 msgstr "Graafinen EPG"
@@ -647,7 +649,7 @@ msgid "Add timer"
 msgstr "Lisää ajastus"
 
 msgid "Add timer as disabled on conflict"
-msgstr "Ajastusristiriidassa lisää ei käytössä oleva ajastus"
+msgstr "Ristiriitatapauksessa lisää ei käytössä oleva ajastus"
 
 #
 msgid "Add title"
@@ -885,7 +887,7 @@ msgid "Aspect Ratio"
 msgstr "Kuvasuhde"
 
 msgid "Aspect ratio"
-msgstr ""
+msgstr "Kuvasuhde"
 
 msgid "Assigning providers/services/caids to a CI module"
 msgstr "Määritä palvelutarjoajat/kanavat/CAId:t haluamaasi CI-moduuliin"
@@ -902,7 +904,7 @@ msgid "Audio Options..."
 msgstr "Äänivalinnat"
 
 msgid "Audio PID"
-msgstr ""
+msgstr "Ääni-PID"
 
 msgid "Audio Sync"
 msgstr "Äänen synkronointi"
@@ -967,13 +969,13 @@ msgstr ""
 "määrittämien ehtojen mukaisesti."
 
 msgid "AutoTimer was added successfully"
-msgstr ""
+msgstr "Automaattiajastuksen lisäys onnistui"
 
 msgid "AutoTimer was changed successfully"
-msgstr ""
+msgstr "Automaattiajastuksen muutos onnistui"
 
 msgid "AutoTimer was removed"
-msgstr ""
+msgstr "Automaattiajastus poistettu"
 
 #
 msgid "Automatic"
@@ -1072,10 +1074,10 @@ msgid "Back"
 msgstr "Takaisin"
 
 msgid "Back, lower USB Slot"
-msgstr ""
+msgstr "Takana, alempi USB-portti"
 
 msgid "Back, upper USB Slot"
-msgstr ""
+msgstr "Takana, ylempi USB-portti"
 
 #
 msgid "Background"
@@ -1170,7 +1172,7 @@ msgstr "Kirkkaus"
 msgid ""
 "Browse ORF and SAT1 Teletext independent from channel. This need I-net "
 "conection."
-msgstr ""
+msgstr "Selaa ORF ja SAT1 kanavien teksti-tv:tä internetin kautta."
 
 msgid "Browse for and connect to network shares"
 msgstr "Selaa ja yhdistä verkkojakoja"
@@ -1202,12 +1204,16 @@ msgid ""
 "By enabling this events will not be matched if they don't occur on certain "
 "dates."
 msgstr ""
+"Tällä valinnalla voit estää hakutulokset joita ei esitetä tiettyinä päivinä."
 
 msgid ""
 "By enabling this you will be notified about timer conflicts found during "
 "automated polling. There is no intelligence involved, so it might bother you "
 "about the same conflict over and over."
 msgstr ""
+"Valitsemalla tämän saat automaattihaun aikana ilmoituksen päällekkäisistä "
+"ajastuksista. Toiminnossa ei ole älyä, joten se saattaa ilmoittaa "
+"toistuvasti samoista päällekkäisyyksistä."
 
 #
 msgid ""
@@ -1464,26 +1470,10 @@ msgid "Close title selection"
 msgstr "Sulje otsikon valinta"
 
 msgid "Code rate HP"
-msgstr ""
+msgstr "Koodinopeus HP"
 
 msgid "Code rate LP"
-msgstr ""
-
-#
-msgid "Code rate high"
-msgstr "Koodinopeus (korkea)"
-
-#
-msgid "Code rate low"
-msgstr "Koodinopeus (alhainen)"
-
-#
-msgid "Coderate HP"
-msgstr "Koodinopeus (HP)"
-
-#
-msgid "Coderate LP"
-msgstr "Koodinopeus (LP)"
+msgstr "Koodinopeus LP"
 
 #
 msgid "Collection name"
@@ -1662,7 +1652,7 @@ msgstr "Ajastusristiriidan takia ei voitu tallentaa %s"
 
 #, python-format
 msgid "Couldn't record due to invalid service %s"
-msgstr ""
+msgstr "Ei voitu tallentaa virheellisen kanavan takia %s"
 
 #
 msgid "Crashlog settings"
@@ -1839,7 +1829,7 @@ msgid "DVB-S2"
 msgstr "DVB-S2"
 
 msgid "DVD Drive"
-msgstr ""
+msgstr "DVD-asema"
 
 #
 msgid "DVD File Browser"
@@ -2121,6 +2111,8 @@ msgid ""
 "Do you really want to delete %s\n"
 "%s?"
 msgstr ""
+"Oletko varma, että haluat poistaa %s\n"
+"%s?"
 
 #
 #, python-format
@@ -2324,6 +2316,12 @@ msgstr "DB-tiedostomuotoinen DVD (HDTV-yht.sopiva)"
 
 msgid "Dreambox software because updates are available."
 msgstr "Dreamboxin ohjelmistoa koska päivityksiä on saatavilla."
+
+msgid "Driver for Ralink RT8070/RT3070/RT3370 based wireless-n USB devices."
+msgstr "Ajuri Ralink RT8070/RT3070/RT3370-pohjaisille WLAN USB-laitteille."
+
+msgid "Driver for Realtek r8712u based wireless-n USB devices."
+msgstr "Ajuri Realtek r8712u-pohjaisille WLAN USB-laitteille."
 
 msgid "Duration: "
 msgstr "Kesto: "
@@ -2664,6 +2662,9 @@ msgstr ""
 msgid "Estonian"
 msgstr "Viro"
 
+msgid "Ethernet network interface"
+msgstr "Verkkokortti"
+
 #
 msgid "Eventview"
 msgstr "Ohjelmatiedot"
@@ -2857,7 +2858,7 @@ msgstr "Suomi"
 msgid ""
 "First day to match events. No event that begins before this date will be "
 "matched."
-msgstr ""
+msgstr "Ensimmäinen automaattihaun päivä. Tätä aikaisempia ohjelmia ei haeta."
 
 msgid "First generate your skin-style with the Ai.HD-Control plugin."
 msgstr "Luo ensin oma teema Ai.HD-control lisäosalla."
@@ -2881,6 +2882,8 @@ msgid ""
 "Found a total of %d matching Events.\n"
 "%d Timer were added and %d modified, %d conflicts encountered."
 msgstr ""
+"Löytyi %d hakuehtojen mukaista ohjelmaa.\n"
+"%d ajastusta lisättiin ja %d muutettiin, %d ajastusristiriitaa ilmeni."
 
 #, python-format
 msgid ""
@@ -2933,7 +2936,7 @@ msgid "FritzCall shows incoming calls to your Fritz!Box on your Dreambox."
 msgstr "FritzCall näyttää Fritz!Boxiin saapuvat puhelut Dreamboxissa."
 
 msgid "Front USB Slot"
-msgstr ""
+msgstr "Etupaneelin USB-portti"
 
 msgid "Frontend for /tmp/mmi.socket"
 msgstr "Käyttöliittymä /tmp/mmi.socketille"
@@ -3071,16 +3074,8 @@ msgid ""
 "iPhone using prowl."
 msgstr ""
 
-#
-msgid "Guard Interval"
-msgstr "Suojaväli"
-
 msgid "Guard interval"
-msgstr ""
-
-#
-msgid "Guard interval mode"
-msgstr "Suojaväli-tila"
+msgstr "Guard interval"
 
 msgid "Guess existing timer based on begin/end"
 msgstr "Arvaa olemassa oleva ajastus alku/loppuajan perusteella"
@@ -3114,6 +3109,9 @@ msgstr "Kiintolevyn automaattinen sammutus"
 msgid "Help"
 msgstr "Ohje"
 
+msgid "Hidden network"
+msgstr "Piilotettu verkko"
+
 #
 msgid "Hidden network SSID"
 msgstr "Piilotettu verkko-SSID"
@@ -3122,16 +3120,8 @@ msgstr "Piilotettu verkko-SSID"
 msgid "Hidden networkname"
 msgstr "Piilotettu verkkonimi"
 
-#
-msgid "Hierarchy Information"
-msgstr "Hierarkia-tietoja"
-
 msgid "Hierarchy info"
-msgstr ""
-
-#
-msgid "Hierarchy mode"
-msgstr "Hierarkia-tila"
+msgstr "Hierarkia info"
 
 #
 msgid "High bitrate support"
@@ -3200,10 +3190,8 @@ msgstr "Islanti"
 #, python-format
 msgid ""
 "If this is enabled an existing timer will also be considered recording an "
-"event if it records at least 80% of the it."
+"event if it records at least 80%% of the it."
 msgstr ""
-"Jos tämä valinta on käytössä, olemassa olevan ajastuksen tulkitaan "
-"tallentavan ohjelma jos se tallentaa vähintään 80% siitä."
 
 #
 msgid ""
@@ -3302,10 +3290,10 @@ msgid "Init"
 msgstr "Palauta CA-moduulin alkuasetukset"
 
 msgid "Initial Fast Forward speed"
-msgstr ""
+msgstr "Eteenpäinkelauksen aloitusnopeus"
 
 msgid "Initial Rewind speed"
-msgstr ""
+msgstr "Taaksepäinkelauksen aloitusnopeus"
 
 msgid "Initial location in new timers"
 msgstr "Uusien ajastuksien oletustallennushakemisto"
@@ -3404,7 +3392,7 @@ msgid "Internal LAN adapter."
 msgstr "Sisäinen verkkokortti."
 
 msgid "Internal USB Slot"
-msgstr ""
+msgstr "Sisäinen USB-portti"
 
 msgid "Internal firmware updater"
 msgstr "Edustaprosessorin ohjelmiston päivitysohjelma"
@@ -3601,6 +3589,7 @@ msgid ""
 "Last day to match events. Events have to begin before this date to be "
 "matched."
 msgstr ""
+"Viimeinen automaattiajastuksen päivä. Tämän jälkeisiä ohjelmia ei haeta."
 
 #
 msgid "Last speed"
@@ -3657,6 +3646,9 @@ msgstr "Tila:"
 #
 msgid "Linked titles with a DVD menu"
 msgstr "Linkitetyt tallenteet ja DVD-valikko"
+
+msgid "List available networks"
+msgstr "Näytä verkot"
 
 #
 msgid "List of Storage Devices"
@@ -3788,6 +3780,9 @@ msgstr "Hallitse vastaanottimen ohjelmistoa"
 #
 msgid "Manual Scan"
 msgstr "Manuaalihaku"
+
+msgid "Manual configuration"
+msgstr "Manuaalinen määritys"
 
 #
 msgid "Manual transponder"
@@ -4051,7 +4046,7 @@ msgid "Multi EPG"
 msgstr "Kanavaopas"
 
 msgid "Multi-EPG bouquet selection"
-msgstr ""
+msgstr "Multi-EPG suosikkilistan valinta"
 
 msgid "Multimedia"
 msgstr "Multimedia"
@@ -4061,7 +4056,7 @@ msgid "Multiple service support"
 msgstr "Usean kanavan tuki"
 
 msgid "Multiplex"
-msgstr ""
+msgstr "Multipleksi"
 
 #
 msgid "Multisat"
@@ -4124,7 +4119,7 @@ msgid "NFS share"
 msgstr "NFS-jako"
 
 msgid "NIM"
-msgstr ""
+msgstr "NIM"
 
 #
 msgid "NOW"
@@ -4312,6 +4307,9 @@ msgstr "Verkon selaus"
 msgid "NetworkWizard"
 msgstr "Verkkoavustaja"
 
+msgid "Networkname (SSID)"
+msgstr "Verkkonimi (SSID)"
+
 msgid "Never"
 msgstr "Ei koskaan"
 
@@ -4481,6 +4479,9 @@ msgstr "Ei näytettäviä tallenteita"
 msgid "No wireless networks found! Please refresh."
 msgstr "WLAN-verkkoja ei löytynyt! Päivitä uudestaan."
 
+msgid "No wireless networks found! Searching..."
+msgstr "WLAN-verkkoja ei löytynyt! Etsitään..."
+
 #
 msgid ""
 "No working local network adapter found.\n"
@@ -4572,10 +4573,10 @@ msgid "Norwegian"
 msgstr "Norja"
 
 msgid "Not after"
-msgstr ""
+msgstr "Ei jälkeen"
 
 msgid "Not before"
-msgstr ""
+msgstr "Ei ennen"
 
 #
 #, python-format
@@ -4588,6 +4589,9 @@ msgstr ""
 
 msgid "Not fetching feed entries"
 msgstr "Feedejä ei noudeta"
+
+msgid "Not-Associated"
+msgstr "Ei assosioitu"
 
 #
 msgid ""
@@ -4633,7 +4637,7 @@ msgid "OK, remove some extensions"
 msgstr "OK, poista joitain laajennuksia"
 
 msgid "ONID"
-msgstr ""
+msgstr "ONID"
 
 #
 msgid "OSD Settings"
@@ -4694,12 +4698,8 @@ msgstr "Avaa lisäosavalikko"
 msgid "Optionally enter your name if you want to."
 msgstr "Jos haluat, lisää nimesi."
 
-#
-msgid "Orbital Position"
-msgstr "Sijainti"
-
 msgid "Orbital position"
-msgstr ""
+msgstr "Sijainti"
 
 msgid "Outer Bound (+/-)"
 msgstr "Ääriraja (+/-)"
@@ -4721,14 +4721,14 @@ msgid "PAL"
 msgstr "PAL"
 
 msgid "PCR PID"
-msgstr ""
+msgstr "PCR PID"
 
 #
 msgid "PIDs"
 msgstr "PIDit"
 
 msgid "PMT PID"
-msgstr ""
+msgstr "PMT PID"
 
 #
 msgid "Package list update"
@@ -5161,10 +5161,6 @@ msgid "Poland"
 msgstr "Puola"
 
 #
-msgid "Polarity"
-msgstr "Polarisaatio"
-
-#
 msgid "Polarization"
 msgstr "Polarisaatio"
 
@@ -5199,7 +5195,7 @@ msgid "Portuguese"
 msgstr "Portugali"
 
 msgid "Position of finished Timers in Timerlist"
-msgstr ""
+msgstr "Tallennettujen ajastuksien paikka ajastusluettelossa"
 
 #
 msgid "Positioner"
@@ -5405,6 +5401,9 @@ msgstr "RGB"
 
 msgid "RSS viewer"
 msgstr "RSS-lukija"
+
+msgid "RT8070/RT3070/RT3370 USB wireless-n driver"
+msgstr "RT8070/RT3070/RT3370 USB WLAN-ajuri"
 
 msgid "Radio"
 msgstr "Radio"
@@ -5768,10 +5767,7 @@ msgid "Right"
 msgstr "Oikea"
 
 msgid "Roll-off"
-msgstr ""
-
-msgid "Rolloff"
-msgstr "Rolloff"
+msgstr "Roll-off"
 
 #
 msgid "Rotor turning speed"
@@ -5808,7 +5804,7 @@ msgid "SD 30/60HZ Progressive Mode"
 msgstr "SD 30/60Hz lomittamaton tila"
 
 msgid "SID"
-msgstr ""
+msgstr "SID"
 
 msgid "SINGLE LAYER DVD"
 msgstr "SINGLE LAYER DVD"
@@ -6434,7 +6430,7 @@ msgid "Show infobar on skip forward/backward"
 msgstr "Näytä tietopalkki kelauksien/hyppyjen aikana"
 
 msgid "Show notification on conflicts"
-msgstr ""
+msgstr "Näytä ilmoitus ristiriidoista"
 
 #
 msgid "Show positioner movement"
@@ -6848,16 +6844,8 @@ msgstr "Vaihda edelliseen alipalveluun"
 msgid "Switchable tuner types:"
 msgstr "Vaihdettavat viritintyypit:"
 
-#
-msgid "Symbol Rate"
-msgstr "Symbolinopeus"
-
 msgid "Symbol rate"
-msgstr ""
-
-#
-msgid "Symbolrate"
-msgstr "Symbolinopeus"
+msgstr "Symbol rate"
 
 #
 msgid "System"
@@ -6875,7 +6863,7 @@ msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS-tiedosto on liian suuri ISO9660 1-tasolle!"
 
 msgid "TSID"
-msgstr ""
+msgstr "TSID"
 
 msgid "TV Charts of all users"
 msgstr ""
@@ -6885,7 +6873,7 @@ msgid "TV System"
 msgstr "TV-järjestelmä"
 
 msgid "TXT PID"
-msgstr ""
+msgstr "TXT PID"
 
 #
 msgid "Table of content for collection"
@@ -7627,20 +7615,12 @@ msgid "Translation:"
 msgstr "Käännös:"
 
 #
-msgid "Transmission Mode"
-msgstr "Lähetystapa"
-
-#
 msgid "Transmission mode"
 msgstr "Lähetystapa"
 
 #
 msgid "Transponder"
 msgstr "Lähetin"
-
-#
-msgid "Transponder Type"
-msgstr "Lähettimen tyyppi"
 
 msgid "Travel & Events"
 msgstr "Matkailu ja tapahtumat"
@@ -7766,6 +7746,9 @@ msgstr "Kumoa asennus"
 msgid "Undo uninstall"
 msgstr "Kumoa as.poisto"
 
+msgid "Unencrypted"
+msgstr "Salaamaton"
+
 msgid "UnhandledKey"
 msgstr "TuntematonNäppäin"
 
@@ -7788,6 +7771,9 @@ msgstr "Yhdysvallat"
 #
 msgid "Universal LNB"
 msgstr "Universaali LNB"
+
+msgid "Unknown"
+msgstr "Tuntematon"
 
 msgid "Unknown network adapter."
 msgstr "Tuntematon verkkosovitin"
@@ -7992,23 +7978,23 @@ msgid "VMGM (intro trailer)"
 msgstr "VMGM (intro trailer)"
 
 msgid "Vali-XD skin"
-msgstr ""
+msgstr "Vali-XD teema"
 
 msgid "Vali.HD.atlantis skin"
-msgstr ""
+msgstr "Vali.HD.atlantis teema"
 
 msgid "Vali.HD.nano skin"
-msgstr ""
+msgstr "Vali.HD.nano teema"
 
 msgid "Vali.HD.warp skin"
-msgstr ""
+msgstr "Vali.HD.warp teema"
 
 msgid ""
 "Verify your Dreambox authenticity by running the genuine dreambox plugin!"
 msgstr "Tarkista Dreamboxin aitous suorittamalla Aito Dreambox -lisäosa!"
 
 msgid "Verifying your internet connection..."
-msgstr ""
+msgstr "Tarkistetaan internet-yhteyttä"
 
 #
 msgid "Vertical"
@@ -8026,7 +8012,7 @@ msgid "Video Output"
 msgstr "Video-ulostulo"
 
 msgid "Video PID"
-msgstr ""
+msgstr "Video PID"
 
 #
 msgid "Video Setup"
@@ -8495,6 +8481,15 @@ msgstr "Langaton verkko"
 msgid "Wireless Network State"
 msgstr "WLAN-verkon tila"
 
+msgid "Wireless network connection setup"
+msgstr "WLAN-verkon asetukset"
+
+msgid "Wireless network connection setup."
+msgstr "WLAN-verkon asetukset."
+
+msgid "Wireless network state"
+msgstr "WLAN-verkon tila"
+
 msgid ""
 "With AntiScrollbar you can cover up annoying ticker lines (e.g. in news "
 "channels)."
@@ -8917,7 +8912,7 @@ msgid "Your network configuration has been activated."
 msgstr "Verkkoasetukset on aktivoitu."
 
 msgid "Your network is not working. Please try again."
-msgstr ""
+msgstr "Verkkoyhteys ei toimi. Yritä uudestaan."
 
 msgid "Your network mount has been activated."
 msgstr "Verkkojako on aktivoitu."
@@ -9140,10 +9135,10 @@ msgid "assigned Services/Provider:"
 msgstr "Määritetyt kanavat/palveluntarjoajat:"
 
 msgid "at beginning"
-msgstr ""
+msgstr "alussa"
 
 msgid "at end"
-msgstr ""
+msgstr "lopussa"
 
 #
 #, python-format
@@ -9244,7 +9239,7 @@ msgid "complex"
 msgstr "monipuolinen"
 
 msgid "config changed."
-msgstr ""
+msgstr "asetuksia muutettu."
 
 #
 msgid "config menu"
@@ -9360,6 +9355,9 @@ msgstr "Älä tallenna"
 #
 msgid "done!"
 msgstr "tallennettu"
+
+msgid "driver for Realtek USB wireless devices"
+msgstr "Ajuri Realtek USB WLAN-laitteille"
 
 #
 msgid "edit alternatives"
@@ -9641,7 +9639,7 @@ msgid "minutes"
 msgstr "minuuttia"
 
 msgid "missing parameter \"id\""
-msgstr ""
+msgstr "parametri \"id\" puuttuu"
 
 #
 msgid "month"
@@ -10179,7 +10177,7 @@ msgstr "viritin ei ole tuettu"
 
 #, python-format
 msgid "unable to find timer with id %i"
-msgstr ""
+msgstr "ei löydy ajastusta id %i"
 
 #
 msgid "unavailable"
@@ -10250,6 +10248,9 @@ msgstr "joka viikko"
 #
 msgid "whitelist"
 msgstr "hyväksytyt"
+
+msgid "wireless network interface"
+msgstr "WLAN-yhteys"
 
 #
 msgid "working"
@@ -10400,6 +10401,22 @@ msgstr "vaihdettu"
 #
 #~ msgid "Choose source"
 #~ msgstr "Valitse lähde"
+
+#
+#~ msgid "Code rate high"
+#~ msgstr "Koodinopeus (korkea)"
+
+#
+#~ msgid "Code rate low"
+#~ msgstr "Koodinopeus (alhainen)"
+
+#
+#~ msgid "Coderate HP"
+#~ msgstr "Koodinopeus (HP)"
+
+#
+#~ msgid "Coderate LP"
+#~ msgstr "Koodinopeus (LP)"
 
 #
 #~ msgid "Compact flash card"
@@ -10568,8 +10585,31 @@ msgstr "vaihdettu"
 #~ "asiakasohjelma"
 
 #
+#~ msgid "Guard Interval"
+#~ msgstr "Suojaväli"
+
+#
+#~ msgid "Guard interval mode"
+#~ msgstr "Suojaväli-tila"
+
+#
+#~ msgid "Hierarchy Information"
+#~ msgstr "Hierarkia-tietoja"
+
+#
+#~ msgid "Hierarchy mode"
+#~ msgstr "Hierarkia-tila"
+
+#
 #~ msgid "How to handle found crashlogs:"
 #~ msgstr "Mitä lokitiedostoille tehdään:"
+
+#~ msgid ""
+#~ "If this is enabled an existing timer will also be considered recording an "
+#~ "event if it records at least 80% of the it."
+#~ msgstr ""
+#~ "Jos tämä valinta on käytössä, olemassa olevan ajastuksen tulkitaan "
+#~ "tallentavan ohjelma jos se tallentaa vähintään 80% siitä."
 
 #
 #~ msgid "If you can see this page, please press OK."
@@ -10664,6 +10704,10 @@ msgstr "vaihdettu"
 #~ msgid "Online-Upgrade"
 #~ msgstr "Online-päivitys"
 
+#
+#~ msgid "Orbital Position"
+#~ msgstr "Sijainti"
+
 #~ msgid "Order by"
 #~ msgstr "Tilaaja"
 
@@ -10701,6 +10745,10 @@ msgstr "vaihdettu"
 #
 #~ msgid "Plugin manager"
 #~ msgstr "Lisäosien hallinta"
+
+#
+#~ msgid "Polarity"
+#~ msgstr "Polarisaatio"
 
 #~ msgid ""
 #~ "Power state to change to after recordings. Select \"standard\" to not "
@@ -10763,6 +10811,9 @@ msgstr "vaihdettu"
 
 #~ msgid "Retrieving network information. Please wait..."
 #~ msgstr "Noudetaan verkkotietoja. Odota..."
+
+#~ msgid "Rolloff"
+#~ msgstr "Rolloff"
 
 #
 #~ msgid "Satteliteequipment"
@@ -10891,6 +10942,14 @@ msgstr "vaihdettu"
 #~ msgid "Switch to user key- delays"
 #~ msgstr "Ota itse määritellyt viiveen pikavalinnat käyttöön"
 
+#
+#~ msgid "Symbol Rate"
+#~ msgstr "Symbolinopeus"
+
+#
+#~ msgid "Symbolrate"
+#~ msgstr "Symbolinopeus"
+
 #~ msgid ""
 #~ "The USB stick is now bootable. Do you want to download the latest image "
 #~ "from the feed server and save it on the stick?"
@@ -10975,6 +11034,14 @@ msgstr "vaihdettu"
 #~ "2) Kytke virta takaisin päälle ja pidä etupaneelin nuoli alas -näppäintä "
 #~ "10 sekuntia pohjassa.\n"
 #~ "3) Odota käynnistymistä ja seuraa ohjeita."
+
+#
+#~ msgid "Transmission Mode"
+#~ msgstr "Lähetystapa"
+
+#
+#~ msgid "Transponder Type"
+#~ msgstr "Lähettimen tyyppi"
 
 #
 #~ msgid "USB"
