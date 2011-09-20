@@ -230,12 +230,12 @@ class InfoBarShowHide:
 
 	def LongOKPressed(self):
 		if isinstance(self, InfoBarEPG):
-			if config.vixsettings.QuickEPG_mode.value == "1":
+			if config.plisettings.QuickEPG_mode.value == "1":
 				self.openInfoBarEPG()
 
 	def ExitPressed(self):
 		if self.__state == self.STATE_HIDDEN:
-			if config.vixsettings.QuickEPG_mode.value == "2":
+			if config.plisettings.QuickEPG_mode.value == "2":
 				self.openInfoBarEPG()
 			else:
 				self.hide()
@@ -612,13 +612,13 @@ class InfoBarChannelSelection:
 			})
 
 	def LeftPressed(self):
-		if config.vixsettings.QuickEPG_mode.value == "3":
+		if config.plisettings.QuickEPG_mode.value == "3":
 			self.openInfoBarEPG()
 		else:
 			self.zapUp()
 
 	def RightPressed(self):
-		if config.vixsettings.QuickEPG_mode.value == "3":
+		if config.plisettings.QuickEPG_mode.value == "3":
 			self.openInfoBarEPG()
 		else:
 			self.zapDown()
@@ -831,6 +831,45 @@ class InfoBarSimpleEventView:
 			epglist[1] = tmp
 			setEvent(epglist[0])
 
+class SimpleServicelist:
+	def __init__(self, services):
+		self.services = services
+		self.length = len(services)
+		self.current = 0
+
+	def selectService(self, service):
+		if not self.length:
+			self.current = -1
+			return False
+		else:
+			self.current = 0
+			while self.services[self.current].ref != service:
+				self.current += 1
+				if self.current >= self.length:
+					return False
+		return True
+
+	def nextService(self):
+		if not self.length:
+			return
+		if self.current+1 < self.length:
+			self.current += 1
+		else:
+			self.current = 0
+
+	def prevService(self):
+		if not self.length:
+			return
+		if self.current-1 > -1:
+			self.current -= 1
+		else:
+			self.current = self.length - 1
+
+	def currentService(self):
+		if not self.length or self.current >= self.length:
+			return None
+		return self.services[self.current]
+
 class InfoBarEPG:
 	""" EPG - Opens an EPG list when the showEPGList action fires """
 	def __init__(self):
@@ -868,13 +907,13 @@ class InfoBarEPG:
 			self.EPGPressed()
 
 	def EPGPressed(self):
-		if config.vixsettings.ViXEPG_mode.value == "vixepg":
+		if config.plisettings.ViXEPG_mode.value == "pliepg":
 			self.openGraphEPG()
-		elif config.vixsettings.ViXEPG_mode.value == "multi":
+		elif config.plisettings.ViXEPG_mode.value == "multi":
 			self.openMultiServiceEPG()
-		elif config.vixsettings.ViXEPG_mode.value == "single":
+		elif config.plisettings.ViXEPG_mode.value == "single":
 			self.openSingleServiceEPG()
-		elif config.vixsettings.ViXEPG_mode.value == "cooltvguide":
+		elif config.plisettings.ViXEPG_mode.value == "cooltvguide":
 			self.showCoolTVGuide()
 
 	def showEventInfoWhenNotVisible(self):
@@ -2985,7 +3024,7 @@ class InfoBarExtensions:
 
 	def RedPressed(self):
 		if isinstance(self, InfoBarEPG):
-			if config.vixsettings.ViXEPG_mode.value == "vixepg":
+			if config.plisettings.ViXEPG_mode.value == "pliepg":
 				self.openSingleServiceEPG()
 			else:
 				self.openGraphEPG()
@@ -3557,7 +3596,7 @@ class InfoBarSubserviceSelection:
 			{
 				"GreenPressed": (self.GreenPressed),
 			})
-		if not config.vixsettings.Subservice.value:
+		if not config.plisettings.Subservice.value:
 			self["key_green"] = Label("Timers")
 		else:
 			self["key_green"] = Label("Subservices")
@@ -3578,7 +3617,7 @@ class InfoBarSubserviceSelection:
 		self.bsel = None
 
 	def GreenPressed(self):
-		if not config.vixsettings.Subservice.value:
+		if not config.plisettings.Subservice.value:
 			self.openTimerList()
 		else:
 			self.subserviceSelection()
