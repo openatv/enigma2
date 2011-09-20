@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-27 12:42+0000\n"
+"POT-Creation-Date: 2011-04-01 08:09+0000\n"
 "PO-Revision-Date: 2010-12-30 09:00+0200\n"
 "Last-Translator: Arvo <arvo@softshark.ee>\n"
 "Language-Team: none\n"
@@ -179,6 +179,12 @@ msgid "%H:%M"
 msgstr "%H:%M"
 
 #, python-format
+msgid ""
+"%d conflict(s) encountered when trying to add new timers:\n"
+"%s"
+msgstr ""
+
+#, python-format
 msgid "%d jobs are running in the background!"
 msgstr "%d protsessi käib tausta!"
 
@@ -210,6 +216,10 @@ msgstr ""
 #, python-format
 msgid "%s (%s)\n"
 msgstr "%s (%s)\n"
+
+#, python-format
+msgid "%s: %s at %s"
+msgstr ""
 
 msgid "(ZAP)"
 msgstr "(Ainult kanalivahetus)"
@@ -358,11 +368,11 @@ msgstr "??"
 msgid "A"
 msgstr "A"
 
+msgid "A BackToTheRoots-Skin .. but with Warp-8 speed."
+msgstr ""
+
 msgid "A BackToTheRoots-Skin .. or good old times."
 msgstr "BackToTheRoots välimus.. või vanad head ajad."
-
-msgid "A BackToTheRoots-Skin ... or good old times."
-msgstr "BackToTheRoots välimus... või vanad head ajad."
 
 msgid "A basic ftp client"
 msgstr "Põhi-ftp klient"
@@ -380,6 +390,9 @@ msgstr ""
 
 msgid "A demo plugin for TPM usage."
 msgstr "Demo laiendus TPM kasutamiseks."
+
+msgid "A dreambox simulation from SG-Atlantis displays."
+msgstr ""
 
 msgid ""
 "A finished record timer wants to set your\n"
@@ -402,6 +415,9 @@ msgstr "Graafiline EPG kõigile kanalitele selles valikus"
 
 msgid "A graphical EPG interface"
 msgstr "Graafiline EPG liides"
+
+msgid "A graphical EPG interface and EPG tools manager"
+msgstr ""
 
 msgid "A graphical EPG interface."
 msgstr "Graafiline EPG liides."
@@ -844,6 +860,9 @@ msgstr "Küsi kasutajalt"
 msgid "Aspect Ratio"
 msgstr "Pildisuhe"
 
+msgid "Aspect ratio"
+msgstr ""
+
 msgid "Assigning providers/services/caids to a CI module"
 msgstr "Määra levitaja/kanal/caid CI moodulile"
 
@@ -856,6 +875,9 @@ msgstr "Heli"
 
 msgid "Audio Options..."
 msgstr "Helisätted..."
+
+msgid "Audio PID"
+msgstr ""
 
 msgid "Audio Sync"
 msgstr "Heli sünkroniseerimine"
@@ -917,6 +939,15 @@ msgstr ""
 "AutoTimer otsib  EPG-d ja loob taimerid vastavalt kasutaja määratud "
 "otsingukriteeriumitele."
 
+msgid "AutoTimer was added successfully"
+msgstr ""
+
+msgid "AutoTimer was changed successfully"
+msgstr ""
+
+msgid "AutoTimer was removed"
+msgstr ""
+
 #
 msgid "Automatic"
 msgstr "Automaatne"
@@ -951,6 +982,24 @@ msgstr "Värskenda automaatselt EPG-d"
 
 msgid "Automatically send crashlogs to Dream Multimedia"
 msgstr "Saada automaatselt vealogi ära"
+
+#, python-format
+msgid ""
+"Autoresolution Plugin Testmode:\n"
+"Is %s ok?"
+msgstr ""
+
+msgid "Autoresolution Switch"
+msgstr ""
+
+msgid "Autoresolution is not working in Scart/DVI-PC Mode"
+msgstr ""
+
+msgid "Autoresolution settings"
+msgstr ""
+
+msgid "Autoresolution videomode setup"
+msgstr ""
 
 msgid "Autos & Vehicles"
 msgstr "Autod"
@@ -991,6 +1040,12 @@ msgstr "BER:"
 #
 msgid "Back"
 msgstr "Tagasi"
+
+msgid "Back, lower USB Slot"
+msgstr ""
+
+msgid "Back, upper USB Slot"
+msgstr ""
 
 #
 msgid "Background"
@@ -1082,6 +1137,11 @@ msgstr "Brasiilia"
 msgid "Brightness"
 msgstr "Heledus"
 
+msgid ""
+"Browse ORF and SAT1 Teletext independent from channel. This need I-net "
+"conection."
+msgstr ""
+
 msgid "Browse for and connect to network shares"
 msgstr "Otsi ja ühenda võrguosalustega"
 
@@ -1108,6 +1168,17 @@ msgstr "Kirjuta salvestused DVD-le"
 
 msgid "Bus: "
 msgstr "Siin: "
+
+msgid ""
+"By enabling this events will not be matched if they don't occur on certain "
+"dates."
+msgstr ""
+
+msgid ""
+"By enabling this you will be notified about timer conflicts found during "
+"automated polling. There is no intelligence involved, so it might bother you "
+"about the same conflict over and over."
+msgstr ""
 
 #
 msgid ""
@@ -1350,6 +1421,12 @@ msgstr "Sulge ja salvesta muudatused"
 msgid "Close title selection"
 msgstr "Sulge pealkirja valik"
 
+msgid "Code rate HP"
+msgstr ""
+
+msgid "Code rate LP"
+msgstr ""
+
 msgid "Code rate high"
 msgstr "Code rate ülemine"
 
@@ -1539,6 +1616,10 @@ msgstr "Ei saa avada Pilt Pildis"
 msgid "Couldn't record due to conflicting timer %s"
 msgstr "Ei saa kahjuks salvestada.Taimerite konflikt %s"
 
+#, python-format
+msgid "Couldn't record due to invalid service %s"
+msgstr ""
+
 #
 msgid "Crashlog settings"
 msgstr "Vealogi seaded"
@@ -1717,6 +1798,9 @@ msgstr "DVB-S"
 msgid "DVB-S2"
 msgstr "DVB-S2"
 
+msgid "DVD Drive"
+msgstr ""
+
 #
 msgid "DVD File Browser"
 msgstr "DVD failibrauser"
@@ -1798,9 +1882,18 @@ msgstr "Määra alguskanal"
 msgid "Define a startup service for your Dreambox."
 msgstr "Määra alguskanal oma tuuneri jaoks."
 
+msgid "Deinterlacer mode for interlaced content"
+msgstr ""
+
+msgid "Deinterlacer mode for progressive content"
+msgstr ""
+
 #
 msgid "Delay"
 msgstr "Viide"
+
+msgid "Delay x seconds after service started"
+msgstr ""
 
 #
 msgid "Delete"
@@ -1973,6 +2066,12 @@ msgid ""
 msgstr ""
 "Kas soovid kindlasti failisüsteemi kontrollida?\n"
 "Selleks kulub palju aega!"
+
+#, python-format
+msgid ""
+"Do you really want to delete %s\n"
+"%s?"
+msgstr ""
 
 #
 #, python-format
@@ -2289,8 +2388,23 @@ msgstr "Luba"
 msgid "Enable /media"
 msgstr "Luba /media"
 
+msgid "Enable 1080p24 Mode"
+msgstr ""
+
+msgid "Enable 1080p25 Mode"
+msgstr ""
+
+msgid "Enable 1080p30 Mode"
+msgstr ""
+
 msgid "Enable 5V for active antenna"
 msgstr "Luba 5 V toide aktiivantennile"
+
+msgid "Enable 720p24 Mode"
+msgstr ""
+
+msgid "Enable Autoresolution"
+msgstr ""
 
 #
 msgid "Enable Cleanup Wizard?"
@@ -2409,16 +2523,8 @@ msgstr ""
 "\n"
 "© 2006 - Stephan Reichholf"
 
-#
-msgid "Enter Fast Forward at speed"
-msgstr "Alusta edasikerimist kiirusega"
-
 msgid "Enter IP to scan..."
 msgstr "Sisesta IP..."
-
-#
-msgid "Enter Rewind at speed"
-msgstr "Alusta tagasikerimist kiirusega"
 
 msgid "Enter main menu..."
 msgstr "Mine peamenüüsse..."
@@ -2675,6 +2781,11 @@ msgstr "Võrgu restart on tehtud"
 msgid "Finnish"
 msgstr "Soome"
 
+msgid ""
+"First day to match events. No event that begins before this date will be "
+"matched."
+msgstr ""
+
 msgid "First generate your skin-style with the Ai.HD-Control plugin."
 msgstr "Alguseks anna oma skini stiil kasutades Ai.HD lisandit."
 
@@ -2695,14 +2806,16 @@ msgstr "Formaadi"
 #, python-format
 msgid ""
 "Found a total of %d matching Events.\n"
+"%d Timer were added and %d modified, %d conflicts encountered."
+msgstr ""
+
+#, python-format
+msgid ""
+"Found a total of %d matching Events.\n"
 "%d Timer were added and %d modified."
 msgstr ""
 "Leidus kokku %d vastet.\n"
 "%d Timerit lisati ja %d muudeti."
-
-#
-msgid "Frame repeat count during non-smooth winding"
-msgstr "Kaadri korduste arv mittesujuva kerimisega"
 
 #
 msgid "Frame size in full view"
@@ -2745,6 +2858,9 @@ msgstr "Friisi"
 
 msgid "FritzCall shows incoming calls to your Fritz!Box on your Dreambox."
 msgstr "FritzCall näitab sinu FritzBoxi sisenevaid kõnesid tuuneri kaudu."
+
+msgid "Front USB Slot"
+msgstr ""
 
 msgid "Frontend for /tmp/mmi.socket"
 msgstr "Liides /tmp/mmi.socket-le"
@@ -2798,6 +2914,9 @@ msgstr "Üldine PCM viide"
 #
 msgid "General PCM delay (ms)"
 msgstr "Üldine PCM viide (ms)"
+
+msgid "Generates and Shows TV Charts of all users having this plugin installed"
+msgstr ""
 
 msgid "Genre"
 msgstr "Zanr"
@@ -2873,16 +2992,17 @@ msgid "Green boost"
 msgstr "Roheline boost"
 
 msgid ""
-"Growlee allows your Dreambox to send short messages using the growl "
-"protocol\n"
-"like Recording started notifications to a PC running a growl client"
+"Growlee allows your Dreambox to forward notifications like 'Record started' "
+"to a PC running a growl, snarl or syslog compatible client or directly to an "
+"iPhone using prowl."
 msgstr ""
-"Growlee võimaldab tuuneril saata SMS kasutades growl protokolli\n"
-"nagu Salvestus alanud teade PC-le, kus töötab growl klientprogramm"
 
 #
 msgid "Guard Interval"
 msgstr "Kaitsevahemik"
+
+msgid "Guard interval"
+msgstr ""
 
 #
 msgid "Guard interval mode"
@@ -2891,6 +3011,12 @@ msgstr "Kaitsevahemiku seaded"
 #
 msgid "Guess existing timer based on begin/end"
 msgstr "Eelda olemasolev taimer alguse/lõpu aja järgi"
+
+msgid "HD Interlace Mode"
+msgstr ""
+
+msgid "HD Progressive Mode"
+msgstr ""
 
 msgid "HD videos"
 msgstr "HD videod"
@@ -2927,6 +3053,9 @@ msgstr "Varjatud võrgunimi"
 #
 msgid "Hierarchy Information"
 msgstr "Hierarhia teave"
+
+msgid "Hierarchy info"
+msgstr ""
 
 #
 msgid "Hierarchy mode"
@@ -3098,6 +3227,12 @@ msgstr "Info"
 msgid "Init"
 msgstr "Algseaded"
 
+msgid "Initial Fast Forward speed"
+msgstr ""
+
+msgid "Initial Rewind speed"
+msgstr ""
+
 msgid "Initial location in new timers"
 msgstr "Esialgne asukoht uutes taimerites"
 
@@ -3180,6 +3315,9 @@ msgstr "Sisemine flash-mälu"
 
 msgid "Internal LAN adapter."
 msgstr "Sisemine LAN adapter."
+
+msgid "Internal USB Slot"
+msgstr ""
 
 msgid "Internal firmware updater"
 msgstr "Sisemine tarkvara uuendaja"
@@ -3377,6 +3515,11 @@ msgstr "Keele valik"
 #
 msgid "Last config"
 msgstr "Viimane seadistus"
+
+msgid ""
+"Last day to match events. Events have to begin before this date to be "
+"matched."
+msgstr ""
 
 #
 msgid "Last speed"
@@ -3860,12 +4003,18 @@ msgstr "Salvestiste menüü"
 msgid "Multi EPG"
 msgstr "Kanalite saatekava"
 
+msgid "Multi-EPG bouquet selection"
+msgstr ""
+
 msgid "Multimedia"
 msgstr "Multimeedia"
 
 #
 msgid "Multiple service support"
 msgstr "Mitme programmi tugi"
+
+msgid "Multiplex"
+msgstr ""
 
 #
 msgid "Multisat"
@@ -3934,6 +4083,9 @@ msgstr "NFI tarkvara on fläshitud.Vajuta kollast nuppu taaskäivitamiseks!"
 msgid "NFS share"
 msgstr "NFS võrgukoht"
 
+msgid "NIM"
+msgstr ""
+
 msgid "NOW"
 msgstr "PRAEGU"
 
@@ -3960,6 +4112,9 @@ msgstr "Nimeserveri seaded"
 #
 msgid "Nameserver settings"
 msgstr "Nimeserveri seaded"
+
+msgid "Namespace"
+msgstr ""
 
 msgid "Nemesis BlackBox Skin"
 msgstr "Nemesis BlackBox välimus"
@@ -4351,6 +4506,12 @@ msgstr "Põhi"
 msgid "Norwegian"
 msgstr "Norra"
 
+msgid "Not after"
+msgstr ""
+
+msgid "Not before"
+msgstr ""
+
 #
 #, python-format
 msgid ""
@@ -4404,6 +4565,9 @@ msgstr "OK, eemalda teised laiendused"
 #
 msgid "OK, remove some extensions"
 msgstr "OK, eemalda mõned laiendused"
+
+msgid "ONID"
+msgstr ""
 
 msgid "OSD Settings"
 msgstr "Ekraaninäidu seaded"
@@ -4476,6 +4640,9 @@ msgstr "Kui soovite, sisestage oma nimi."
 msgid "Orbital Position"
 msgstr "Orbitaalpositsioon"
 
+msgid "Orbital position"
+msgstr ""
+
 #
 msgid "Outer Bound (+/-)"
 msgstr "Väline piir (+/-)"
@@ -4497,8 +4664,14 @@ msgstr "Kas tarkvara uuendamisel kirjutada üle konfiguratsioonifailid?"
 msgid "PAL"
 msgstr "PAL"
 
+msgid "PCR PID"
+msgstr ""
+
 msgid "PIDs"
 msgstr "PIDd"
+
+msgid "PMT PID"
+msgstr ""
 
 #
 msgid "Package list update"
@@ -4950,6 +5123,9 @@ msgstr "Port D"
 msgid "Portuguese"
 msgstr "Portugali"
 
+msgid "Position of finished Timers in Timerlist"
+msgstr ""
+
 #
 msgid "Positioner"
 msgstr "Positsioneer"
@@ -5260,6 +5436,9 @@ msgstr "Salvestised"
 msgid "Recordings always have priority"
 msgstr "Salvestused omavad alati eelist"
 
+msgid "Redirect notifications to Growl, Snarl, Prowl or Syslog"
+msgstr ""
+
 msgid "Reenter new PIN"
 msgstr "Korda uut PIN-i"
 
@@ -5462,6 +5641,9 @@ msgstr "Taasta vastuvõtja tarkvara USB pulga abil"
 msgid "Restrict \"after event\" to a certain timespan?"
 msgstr "Kas keelata \"pärast sündmust\" teatud ajavahemikuks?"
 
+msgid "Restrict to events on certain dates"
+msgstr ""
+
 #
 msgid "Resume from last position"
 msgstr "Jätka viimaselt positsioonilt"
@@ -5501,6 +5683,9 @@ msgstr "Tagasikerimise kiirused"
 msgid "Right"
 msgstr "Parem"
 
+msgid "Roll-off"
+msgstr ""
+
 msgid "Rolloff"
 msgstr "Rolloff"
 
@@ -5512,6 +5697,9 @@ msgstr "Mootori pööramise kiirus"
 msgid "Running"
 msgstr "Kasutusel"
 
+msgid "Running in testmode"
+msgstr ""
+
 #
 msgid "Russia"
 msgstr "Venemaa"
@@ -5522,6 +5710,21 @@ msgstr "Vene"
 
 msgid "S-Video"
 msgstr "S-video (Y/C)"
+
+msgid "SD 25/50HZ Interlace Mode"
+msgstr ""
+
+msgid "SD 25/50HZ Progressive Mode"
+msgstr ""
+
+msgid "SD 30/60HZ Interlace Mode"
+msgstr ""
+
+msgid "SD 30/60HZ Progressive Mode"
+msgstr ""
+
+msgid "SID"
+msgstr ""
 
 #
 msgid "SINGLE LAYER DVD"
@@ -5538,6 +5741,19 @@ msgstr "SNR:"
 #
 msgid "SSID:"
 msgstr "SSID:"
+
+msgid ""
+"SVDRP is a protocol developed for the VDR software to control a set-top box "
+"remotely.\n"
+"This plugin only supports a subset of SVDRP and starts automatically using "
+"default settings.\n"
+"\n"
+"You probably don't need this plugin and should use the regular Web Interface "
+"for Enigma2 instead."
+msgstr ""
+
+msgid "SVDRP server for Enigma2"
+msgstr ""
 
 #
 msgid "Sat"
@@ -5987,6 +6203,9 @@ msgstr ""
 "Valitud kanalit ei leitud!\n"
 "(SID ei leitud PAT-st)"
 
+msgid "Service reference"
+msgstr ""
+
 msgid "Service scan"
 msgstr "Kanali otsing"
 
@@ -6119,6 +6338,9 @@ msgstr "Näita saate edenemist kanalivalikus"
 msgid "Show in extension menu"
 msgstr "Näita laienduste menüüs"
 
+msgid "Show info screen"
+msgstr ""
+
 #
 msgid "Show infobar on channel change"
 msgstr "Näita kanali vahetusel inforiba"
@@ -6130,6 +6352,9 @@ msgstr "Näita saate vahetumisel inforiba"
 #
 msgid "Show infobar on skip forward/backward"
 msgstr "Näita kerimisel inforiba"
+
+msgid "Show notification on conflicts"
+msgstr ""
 
 #
 msgid "Show positioner movement"
@@ -6388,6 +6613,9 @@ msgstr "Ooterežiimil ventilaatori %d pinge"
 msgid "Start Webinterface"
 msgstr "Käivita veebiliides"
 
+msgid "Start easy your multimedia plugins with the PVR-button."
+msgstr ""
+
 #
 msgid "Start from the beginning"
 msgstr "Alusta algusest"
@@ -6509,6 +6737,9 @@ msgstr "P"
 msgid "Sunday"
 msgstr "Pühapäev"
 
+msgid "Support \"Fast Scan\"?"
+msgstr ""
+
 #
 msgid "Swap Services"
 msgstr "Vaheta PiP- ja peapilt omavahel"
@@ -6535,6 +6766,9 @@ msgstr "Ümberlülitatavate tuunerite tüübid:"
 msgid "Symbol Rate"
 msgstr "SR"
 
+msgid "Symbol rate"
+msgstr ""
+
 msgid "Symbolrate"
 msgstr "Sümbolrate"
 
@@ -6549,9 +6783,18 @@ msgstr "TÕLKE_INFO"
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS fail on liiga suur ISO9660/1-le!"
 
+msgid "TSID"
+msgstr ""
+
+msgid "TV Charts of all users"
+msgstr ""
+
 #
 msgid "TV System"
 msgstr "TV-süsteem"
+
+msgid "TXT PID"
+msgstr ""
 
 #
 msgid "Table of content for collection"
@@ -6583,6 +6826,9 @@ msgstr "Taivan"
 #
 msgid "Temperature and Fan control"
 msgstr "Temp. ja ventilaatori kontroll"
+
+msgid "Temperature-dependent fan control."
+msgstr ""
 
 msgid "Terrestrial"
 msgstr "Digitaalne TV (DVB-T)"
@@ -7560,10 +7806,6 @@ msgid "Use and control multiple Dreamboxes with different RCs."
 msgstr "Kasuta ja juhi mitut vastuvõtjat erinevate pultidega."
 
 #
-msgid "Use non-smooth winding at speeds above"
-msgstr "Kasutage mittesujuvat kerimist kiirustel"
-
-#
 msgid "Use power measurement"
 msgstr "Kasuta võimsuse mõõtmist"
 
@@ -7639,12 +7881,21 @@ msgstr "VMGM (intro trailer)"
 msgid "Vali-XD skin"
 msgstr "Vali-XD välimus"
 
+msgid "Vali.HD.atlantis skin"
+msgstr ""
+
 msgid "Vali.HD.nano skin"
 msgstr "Vali.HD.nano välimus"
+
+msgid "Vali.HD.warp skin"
+msgstr ""
 
 msgid ""
 "Verify your Dreambox authenticity by running the genuine dreambox plugin!"
 msgstr "Kontrolli Dreamboxi audentsust \"genuine dreambox\" laienduse abil!"
+
+msgid "Verifying your internet connection..."
+msgstr ""
 
 msgid "Vertical"
 msgstr "Vertikaal"
@@ -7660,6 +7911,9 @@ msgstr "Video peenhäälestuse toiming"
 #
 msgid "Video Output"
 msgstr "Video-väljund"
+
+msgid "Video PID"
+msgstr ""
 
 #
 msgid "Video Setup"
@@ -7894,6 +8148,9 @@ msgstr "Ilmalaiendus näitab ilmaennustust Teie vastuvõtjas."
 msgid "Weatherforecast on your Dreambox"
 msgstr "Ilmaennustus Teie vastuvõtjas"
 
+msgid "Web-Bouquet-Editor for PC"
+msgstr ""
+
 #
 msgid "Webinterface"
 msgstr "Veebiliides"
@@ -8044,6 +8301,11 @@ msgstr "Mida soovid otsida?"
 #
 msgid "What to do with submitted crashlogs?"
 msgstr "Mida teha saadud vealogidega?"
+
+msgid ""
+"When supporting \"Fast Scan\" the service type is ignored. You don't need to "
+"enable this unless your Image supports \"Fast Scan\" and you are using it."
+msgstr ""
 
 #
 msgid ""
@@ -8323,6 +8585,12 @@ msgid ""
 "in title' is what is looked for in the EPG."
 msgstr ""
 
+msgid ""
+"You can use the EasyInfo for manage your EPG plugins from info button. You "
+"have also a new now-next event viewer. Easy-PG, the own graphical EPG bowser "
+"is also included."
+msgstr ""
+
 #
 msgid "You cannot delete this!"
 msgstr "Seda ei saa kustutada!"
@@ -8506,6 +8774,9 @@ msgstr "Teie nimi (soovi korral):"
 
 msgid "Your network configuration has been activated."
 msgstr "Võrguseadistus on aktiveeritud."
+
+msgid "Your network is not working. Please try again."
+msgstr ""
 
 #
 msgid "Your network mount has been activated."
@@ -8707,6 +8978,12 @@ msgstr "määratud CAId-d:"
 msgid "assigned Services/Provider:"
 msgstr "määratud kanalid/levitajad:"
 
+msgid "at beginning"
+msgstr ""
+
+msgid "at end"
+msgstr ""
+
 #, python-format
 msgid "audio track (%s) format"
 msgstr "audio raja (%s) formaat"
@@ -8720,6 +8997,9 @@ msgstr "audio rajad"
 
 msgid "auto"
 msgstr "automaatne"
+
+msgid "autotimers need a match attribute"
+msgstr ""
 
 #
 msgid "available"
@@ -8748,6 +9028,9 @@ msgstr "keelatud"
 #
 msgid "blue"
 msgstr "sinine"
+
+msgid "bob"
+msgstr ""
 
 #, python-format
 msgid "burn audio track (%s)"
@@ -8786,6 +9069,9 @@ msgstr "tühjenda esitusloend"
 msgid "complex"
 msgstr "keeruline"
 
+msgid "config changed."
+msgstr ""
+
 #
 msgid "config menu"
 msgstr "seadete menüü"
@@ -8813,6 +9099,12 @@ msgstr "eemaldamine võimatu"
 msgid "create directory"
 msgstr "loo kataloog"
 
+msgid "creates virtual series folders from episodes"
+msgstr ""
+
+msgid "creates virtual series folders from sets of recorded episodes"
+msgstr ""
+
 #, python-format
 msgid "currently installed image: %s"
 msgstr "praegu installitud tarkvara: %s"
@@ -8823,6 +9115,9 @@ msgstr "iga päev"
 
 msgid "day"
 msgstr "päev"
+
+msgid "default"
+msgstr ""
 
 msgid "delete"
 msgstr "kustuta"
@@ -9124,6 +9419,9 @@ msgstr "minut"
 msgid "minutes"
 msgstr "minutid"
 
+msgid "missing parameter \"id\""
+msgstr ""
+
 #
 msgid "month"
 msgstr "kuu"
@@ -9294,9 +9592,6 @@ msgstr "punane"
 
 msgid "redesigned Kerni-HD1 skin"
 msgstr "redesigned Kerni-HD1 välimus"
-
-msgid "redirect notifications to Growl"
-msgstr "saada teated edasi Growl-i"
 
 msgid "remove a nameserver entry"
 msgstr "kustuta nimeserver"
@@ -9584,6 +9879,10 @@ msgstr "vaheta aja,salvestuse,heli,subtiitri info"
 msgid "tuner is not supported"
 msgstr "tuuner pole toetatud"
 
+#, python-format
+msgid "unable to find timer with id %i"
+msgstr ""
+
 #
 msgid "unavailable"
 msgstr "pole saadaval"
@@ -9713,6 +10012,9 @@ msgstr "vahetatud"
 #
 #~ msgid "50 Hz"
 #~ msgstr "50 Hz"
+
+#~ msgid "A BackToTheRoots-Skin ... or good old times."
+#~ msgstr "BackToTheRoots välimus... või vanad head ajad."
 
 #
 #~ msgid "Advanced"
@@ -9870,6 +10172,14 @@ msgstr "vahetatud"
 #~ "© 2006 - Stephan Reichholf"
 
 #
+#~ msgid "Enter Fast Forward at speed"
+#~ msgstr "Alusta edasikerimist kiirusega"
+
+#
+#~ msgid "Enter Rewind at speed"
+#~ msgstr "Alusta tagasikerimist kiirusega"
+
+#
 #~ msgid "Enter WLAN network name/SSID:"
 #~ msgstr "Sisesta WLAN võrgu nimi/SSID:"
 
@@ -9891,6 +10201,10 @@ msgstr "vahetatud"
 #~ msgstr "Jätkamisel lõpetatakse järgnevad toimingud"
 
 #
+#~ msgid "Frame repeat count during non-smooth winding"
+#~ msgstr "Kaadri korduste arv mittesujuva kerimisega"
+
+#
 #~ msgid "Fritz!Box FON IP address"
 #~ msgstr "Fritz!Box FON IP aadress"
 
@@ -9905,6 +10219,14 @@ msgstr "vahetatud"
 #
 #~ msgid "General PCM delay"
 #~ msgstr "Üldine PCM viide"
+
+#~ msgid ""
+#~ "Growlee allows your Dreambox to send short messages using the growl "
+#~ "protocol\n"
+#~ "like Recording started notifications to a PC running a growl client"
+#~ msgstr ""
+#~ "Growlee võimaldab tuuneril saata SMS kasutades growl protokolli\n"
+#~ "nagu Salvestus alanud teade PC-le, kus töötab growl klientprogramm"
 
 #
 #~ msgid "Here is a small overview of the available icon states."
@@ -10244,6 +10566,10 @@ msgstr "vahetatud"
 #~ msgstr "Uuendus valmis. Soovid vastuvõtja uuesti käivitada?"
 
 #
+#~ msgid "Use non-smooth winding at speeds above"
+#~ msgstr "Kasutage mittesujuvat kerimist kiirustel"
+
+#
 #~ msgid "View list of available Satteliteequipment extensions."
 #~ msgstr "Vaata satelliidiseadmete laienduste nimekirja."
 
@@ -10370,6 +10696,9 @@ msgstr "vahetatud"
 #
 #~ msgid "open virtual keyboard input help"
 #~ msgstr "Ava virtuaalklahvistik"
+
+#~ msgid "redirect notifications to Growl"
+#~ msgstr "saada teated edasi Growl-i"
 
 #
 #~ msgid "select .NFI flash file"
