@@ -325,19 +325,11 @@ void eDVBDB::loadServicelist(const char *file)
 {
 	eDebug("---- opening lame channel db");
 	FILE *f=fopen(file, "rt");
-	if (!f && strcmp(file, eEnv::resolve("${sysconfdir}/enigma2/lamedb").c_str()) == 0)
-	{
-		struct stat s;
-		if ( !stat("lamedb", &s) )
-		{
-			if ( !stat(eEnv::resolve("${sysconfdir}/enigma2").c_str(), &s) )
-			{
-				rename("lamedb", eEnv::resolve("${sysconfdir}/enigma2/lamedb").c_str());
-				reloadServicelist();
-			}
-		}
+	if (!f) {
+		eDebug("can't open %s: %m", file);
 		return;
 	}
+
 	char line[256];
 	int version=3;
 	if ((!fgets(line, 256, f)) || sscanf(line, "eDVB services /%d/", &version) != 1)

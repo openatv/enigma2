@@ -88,7 +88,7 @@ class Network:
 
 	def IPaddrFinished(self, result, retval, extra_args):
 		(iface, callback ) = extra_args
-		data = { 'up': False, 'dhcp': False, 'preup' : False, 'postdown' : False }
+		data = { 'up': False, 'dhcp': False, 'preup' : False, 'predown' : False }
 		globalIPpattern = re_compile("scope global")
 		ipRegexp = '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}'
 		netRegexp = '[0-9]{1,2}'
@@ -171,11 +171,12 @@ class Network:
 					if iface.has_key('gateway'):
 						fp.write("	gateway %d.%d.%d.%d\n" % tuple(iface['gateway']))
 			if iface.has_key("configStrings"):
-				fp.write("\n" + iface["configStrings"] + "\n")
+				fp.write(iface["configStrings"])
 			if iface["preup"] is not False and not iface.has_key("configStrings"):
 				fp.write(iface["preup"])
-				fp.write(iface["postdown"])
-			fp.write("\n")				
+			if iface["predown"] is not False and not iface.has_key("configStrings"):
+				fp.write(iface["predown"])
+			fp.write("\n")
 		fp.close()
 		self.writeNameserverConfig()
 
@@ -225,9 +226,9 @@ class Network:
 				if (split[0] == "pre-up"):
 					if self.ifaces[currif].has_key("preup"):
 						self.ifaces[currif]["preup"] = i
-				if (split[0] == "post-down"):
-					if self.ifaces[currif].has_key("postdown"):
-						self.ifaces[currif]["postdown"] = i
+				if (split[0] in ("pre-down","post-down")):
+					if self.ifaces[currif].has_key("predown"):
+						self.ifaces[currif]["predown"] = i
 
 		for ifacename, iface in ifaces.items():
 			if self.ifaces.has_key(ifacename):

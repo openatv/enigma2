@@ -265,23 +265,22 @@ class wpaSupplicant:
 				fp.write('\tssid="'+essid+'"\n')
 			fp.write('\tscan_ssid=0\n')			
 			if encrypted:
-				if encryption == 'WPA' or encryption == 'WPA2' or encryption == 'WPA/WPA2' :
+				if encryption in ('WPA', 'WPA2', 'WPA/WPA2'):
 					fp.write('\tkey_mgmt=WPA-PSK\n')
-					
+		
 					if encryption == 'WPA':
 						fp.write('\tproto=WPA\n')
 						fp.write('\tpairwise=TKIP\n')
 						fp.write('\tgroup=TKIP\n')
 					elif encryption == 'WPA2':
+						fp.write('\tproto=RSN\n')
+						fp.write('\tpairwise=CCMP\n')
+						fp.write('\tgroup=CCMP\n')
+					else:
 						fp.write('\tproto=WPA RSN\n')
 						fp.write('\tpairwise=CCMP TKIP\n')
-						fp.write('\tgroup=CCMP TKIP\n')						
-					else:
-						fp.write('\tproto=WPA WPA2\n')
-						fp.write('\tpairwise=CCMP\n')
-						fp.write('\tgroup=TKIP\n')					
+						fp.write('\tgroup=CCMP TKIP\n')
 					fp.write('\tpsk="'+psk+'"\n')
-						
 				elif encryption == 'WEP':
 					fp.write('\tkey_mgmt=NONE\n')
 					if wepkeytype == 'ASCII':
@@ -319,22 +318,15 @@ class wpaSupplicant:
 					
 				elif split[0] == 'proto':
 					config.plugins.wlan.encryption.enabled.value = True
-					if split[1] == "WPA" :
+					if split[1] == 'WPA' :
 						mode = 'WPA'
-					if split[1] == "WPA WPA2" :
-						mode = 'WPA/WPA2'
-					if split[1] == "WPA RSN" :
+					if split[1] == 'RSN':
 						mode = 'WPA2'
+					if split[1] in ('WPA RSN', 'WPA WPA2'):
+						mode = 'WPA/WPA2'
+
 					config.plugins.wlan.encryption.type.value = mode
 					print "[Wlan.py] Got Encryption: "+mode
-					
-				#currently unused !
-				#elif split[0] == 'key_mgmt':
-				#	print "split[1]",split[1]
-				#	if split[1] == "WPA-PSK" :
-				#		config.plugins.wlan.encryption.enabled.value = True
-				#		config.plugins.wlan.encryption.type.value = "WPA/WPA2"
-				#	print "[Wlan.py] Got Encryption: "+ config.plugins.wlan.encryption.type.value
 					
 				elif split[0] == 'wep_key0':
 					config.plugins.wlan.encryption.enabled.value = True
@@ -394,10 +386,6 @@ class wpaSupplicant:
 		print "[Wlan.py] WS-CONFIG-->",wsconfig
 		return wsconfig
 
-	
-	def restart(self, iface):
-		system("start-stop-daemon -K -x /usr/sbin/wpa_supplicant")
-		system("start-stop-daemon -S -x /usr/sbin/wpa_supplicant -- -B -i"+iface+" -c/etc/wpa_supplicant.conf")
 
 class Status:
 	def __init__(self):
@@ -408,6 +396,7 @@ class Status:
 	def stopWlanConsole(self):
 		if self.WlanConsole is not None:
 			print "killing self.WlanConsole"
+			self.WlanConsole.killAll()
 			self.WlanConsole = None
 			
 	def getDataForInterface(self, iface, callback = None):
