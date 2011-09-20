@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-27 12:42+0000\n"
+"POT-Creation-Date: 2011-04-01 08:09+0000\n"
 "PO-Revision-Date: 2008-07-17 12:13+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -167,6 +167,12 @@ msgstr "#ffffffff"
 msgid "%H:%M"
 msgstr "%H:%M"
 
+#, python-format
+msgid ""
+"%d conflict(s) encountered when trying to add new timers:\n"
+"%s"
+msgstr ""
+
 #
 #, python-format
 msgid "%d jobs are running in the background!"
@@ -204,6 +210,10 @@ msgstr ""
 #, python-format
 msgid "%s (%s)\n"
 msgstr "%s (%s)\n"
+
+#, python-format
+msgid "%s: %s at %s"
+msgstr ""
 
 #
 msgid "(ZAP)"
@@ -361,10 +371,10 @@ msgstr "??"
 msgid "A"
 msgstr "A"
 
-msgid "A BackToTheRoots-Skin .. or good old times."
+msgid "A BackToTheRoots-Skin .. but with Warp-8 speed."
 msgstr ""
 
-msgid "A BackToTheRoots-Skin ... or good old times."
+msgid "A BackToTheRoots-Skin .. or good old times."
 msgstr ""
 
 msgid "A basic ftp client"
@@ -383,6 +393,9 @@ msgstr ""
 "θελετε να κρατησετε την δικια σας version;"
 
 msgid "A demo plugin for TPM usage."
+msgstr ""
+
+msgid "A dreambox simulation from SG-Atlantis displays."
 msgstr ""
 
 #
@@ -406,6 +419,9 @@ msgid "A graphical EPG for all services of an specific bouquet"
 msgstr "Γραφικό EPG για ολα τα κανάλια σε συγκεκριμένο μπουκέτο"
 
 msgid "A graphical EPG interface"
+msgstr ""
+
+msgid "A graphical EPG interface and EPG tools manager"
 msgstr ""
 
 msgid "A graphical EPG interface."
@@ -860,6 +876,9 @@ msgstr "Ορισμός από το χρήστη"
 msgid "Aspect Ratio"
 msgstr "Aspect Ratio"
 
+msgid "Aspect ratio"
+msgstr ""
+
 msgid "Assigning providers/services/caids to a CI module"
 msgstr ""
 
@@ -873,6 +892,9 @@ msgstr "Ήχος"
 #
 msgid "Audio Options..."
 msgstr "Παράμετροι ήχου"
+
+msgid "Audio PID"
+msgstr ""
 
 #
 msgid "Audio Sync"
@@ -940,6 +962,15 @@ msgid ""
 "criteria."
 msgstr ""
 
+msgid "AutoTimer was added successfully"
+msgstr ""
+
+msgid "AutoTimer was changed successfully"
+msgstr ""
+
+msgid "AutoTimer was removed"
+msgstr ""
+
 #
 msgid "Automatic"
 msgstr "Αυτόματο"
@@ -972,6 +1003,24 @@ msgid "Automatically refresh EPG"
 msgstr ""
 
 msgid "Automatically send crashlogs to Dream Multimedia"
+msgstr ""
+
+#, python-format
+msgid ""
+"Autoresolution Plugin Testmode:\n"
+"Is %s ok?"
+msgstr ""
+
+msgid "Autoresolution Switch"
+msgstr ""
+
+msgid "Autoresolution is not working in Scart/DVI-PC Mode"
+msgstr ""
+
+msgid "Autoresolution settings"
+msgstr ""
+
+msgid "Autoresolution videomode setup"
 msgstr ""
 
 #
@@ -1015,6 +1064,12 @@ msgstr "BER:"
 #
 msgid "Back"
 msgstr "Πίσω"
+
+msgid "Back, lower USB Slot"
+msgstr ""
+
+msgid "Back, upper USB Slot"
+msgstr ""
 
 #
 msgid "Background"
@@ -1110,6 +1165,11 @@ msgstr ""
 msgid "Brightness"
 msgstr "Φωτεινότητα"
 
+msgid ""
+"Browse ORF and SAT1 Teletext independent from channel. This need I-net "
+"conection."
+msgstr ""
+
 msgid "Browse for and connect to network shares"
 msgstr ""
 
@@ -1138,6 +1198,17 @@ msgstr ""
 #
 msgid "Bus: "
 msgstr "Bus:"
+
+msgid ""
+"By enabling this events will not be matched if they don't occur on certain "
+"dates."
+msgstr ""
+
+msgid ""
+"By enabling this you will be notified about timer conflicts found during "
+"automated polling. There is no intelligence involved, so it might bother you "
+"about the same conflict over and over."
+msgstr ""
 
 #
 msgid ""
@@ -1405,6 +1476,12 @@ msgstr ""
 msgid "Close title selection"
 msgstr ""
 
+msgid "Code rate HP"
+msgstr ""
+
+msgid "Code rate LP"
+msgstr ""
+
 #
 msgid "Code rate high"
 msgstr "Υψηλό Code rate"
@@ -1603,6 +1680,10 @@ msgstr ""
 msgid "Couldn't record due to conflicting timer %s"
 msgstr ""
 
+#, python-format
+msgid "Couldn't record due to invalid service %s"
+msgstr ""
+
 #
 msgid "Crashlog settings"
 msgstr ""
@@ -1782,6 +1863,9 @@ msgstr "DVB-S"
 msgid "DVB-S2"
 msgstr "DVB-S2"
 
+msgid "DVD Drive"
+msgstr ""
+
 #
 msgid "DVD File Browser"
 msgstr ""
@@ -1867,9 +1951,18 @@ msgstr ""
 msgid "Define a startup service for your Dreambox."
 msgstr ""
 
+msgid "Deinterlacer mode for interlaced content"
+msgstr ""
+
+msgid "Deinterlacer mode for progressive content"
+msgstr ""
+
 #
 msgid "Delay"
 msgstr "Αργοπορία"
+
+msgid "Delay x seconds after service started"
+msgstr ""
 
 #
 msgid "Delete"
@@ -2053,6 +2146,12 @@ msgid ""
 msgstr ""
 "Είστε σίγουρος οτι θέλετε να εξετάσετε το filesystem;\n"
 "Ενδεχομένος να πάρει αρκετό χρονικό διάστημα!"
+
+#, python-format
+msgid ""
+"Do you really want to delete %s\n"
+"%s?"
+msgstr ""
 
 #
 #, python-format
@@ -2390,9 +2489,24 @@ msgstr "Ενεργοποίηση"
 msgid "Enable /media"
 msgstr ""
 
+msgid "Enable 1080p24 Mode"
+msgstr ""
+
+msgid "Enable 1080p25 Mode"
+msgstr ""
+
+msgid "Enable 1080p30 Mode"
+msgstr ""
+
 #
 msgid "Enable 5V for active antenna"
 msgstr "Ενεργοποίηση των 5 V για την ενεργή κεραία"
+
+msgid "Enable 720p24 Mode"
+msgstr ""
+
+msgid "Enable Autoresolution"
+msgstr ""
 
 #
 msgid "Enable Cleanup Wizard?"
@@ -2514,16 +2628,8 @@ msgid ""
 msgstr ""
 
 #
-msgid "Enter Fast Forward at speed"
-msgstr "Παραμετροποιήσετε την ταχύτητα Fast Forward"
-
-#
 msgid "Enter IP to scan..."
 msgstr ""
-
-#
-msgid "Enter Rewind at speed"
-msgstr "Παραμετροποιήσετε την ταχύτητα Rewind "
 
 #
 msgid "Enter main menu..."
@@ -2794,6 +2900,11 @@ msgstr ""
 msgid "Finnish"
 msgstr "Φιλλανδικά"
 
+msgid ""
+"First day to match events. No event that begins before this date will be "
+"matched."
+msgstr ""
+
 msgid "First generate your skin-style with the Ai.HD-Control plugin."
 msgstr ""
 
@@ -2813,15 +2924,17 @@ msgstr ""
 msgid "Format"
 msgstr ""
 
+#, python-format
+msgid ""
+"Found a total of %d matching Events.\n"
+"%d Timer were added and %d modified, %d conflicts encountered."
+msgstr ""
+
 #
 #, python-format
 msgid ""
 "Found a total of %d matching Events.\n"
 "%d Timer were added and %d modified."
-msgstr ""
-
-#
-msgid "Frame repeat count during non-smooth winding"
 msgstr ""
 
 #
@@ -2865,6 +2978,9 @@ msgid "Frisian"
 msgstr ""
 
 msgid "FritzCall shows incoming calls to your Fritz!Box on your Dreambox."
+msgstr ""
+
+msgid "Front USB Slot"
 msgstr ""
 
 msgid "Frontend for /tmp/mmi.socket"
@@ -2919,6 +3035,9 @@ msgstr ""
 
 #
 msgid "General PCM delay (ms)"
+msgstr ""
+
+msgid "Generates and Shows TV Charts of all users having this plugin installed"
 msgstr ""
 
 #
@@ -3001,13 +3120,16 @@ msgid "Green boost"
 msgstr ""
 
 msgid ""
-"Growlee allows your Dreambox to send short messages using the growl "
-"protocol\n"
-"like Recording started notifications to a PC running a growl client"
+"Growlee allows your Dreambox to forward notifications like 'Record started' "
+"to a PC running a growl, snarl or syslog compatible client or directly to an "
+"iPhone using prowl."
 msgstr ""
 
 #
 msgid "Guard Interval"
+msgstr ""
+
+msgid "Guard interval"
 msgstr ""
 
 #
@@ -3016,6 +3138,12 @@ msgstr "Guard interval mode"
 
 #
 msgid "Guess existing timer based on begin/end"
+msgstr ""
+
+msgid "HD Interlace Mode"
+msgstr ""
+
+msgid "HD Progressive Mode"
 msgstr ""
 
 #
@@ -3057,6 +3185,9 @@ msgstr ""
 #
 msgid "Hierarchy Information"
 msgstr "Πληροφωρίες ιεραρχίας"
+
+msgid "Hierarchy info"
+msgstr ""
 
 #
 msgid "Hierarchy mode"
@@ -3237,6 +3368,12 @@ msgstr "Πληροφορίες"
 msgid "Init"
 msgstr "Init"
 
+msgid "Initial Fast Forward speed"
+msgstr ""
+
+msgid "Initial Rewind speed"
+msgstr ""
+
 #
 msgid "Initial location in new timers"
 msgstr ""
@@ -3336,6 +3473,9 @@ msgid "Internal Flash"
 msgstr "Εσωτερική Flash"
 
 msgid "Internal LAN adapter."
+msgstr ""
+
+msgid "Internal USB Slot"
 msgstr ""
 
 msgid "Internal firmware updater"
@@ -3533,6 +3673,11 @@ msgstr "Επιλογή γλώσσας"
 
 #
 msgid "Last config"
+msgstr ""
+
+msgid ""
+"Last day to match events. Events have to begin before this date to be "
+"matched."
 msgstr ""
 
 #
@@ -4015,6 +4160,9 @@ msgstr "Μένου λίστας Movie"
 msgid "Multi EPG"
 msgstr "Multi EPG"
 
+msgid "Multi-EPG bouquet selection"
+msgstr ""
+
 #
 msgid "Multimedia"
 msgstr ""
@@ -4022,6 +4170,9 @@ msgstr ""
 #
 msgid "Multiple service support"
 msgstr "Υποστήριξη πολλαπλών λειτουργιών"
+
+msgid "Multiplex"
+msgstr ""
 
 #
 msgid "Multisat"
@@ -4092,6 +4243,9 @@ msgstr ""
 msgid "NFS share"
 msgstr ""
 
+msgid "NIM"
+msgstr ""
+
 #
 msgid "NOW"
 msgstr "ΤΩΡΑ"
@@ -4120,6 +4274,9 @@ msgstr "Nameserver Setup"
 #
 msgid "Nameserver settings"
 msgstr "Παραμετροποιήσης Nameserver "
+
+msgid "Namespace"
+msgstr ""
 
 msgid "Nemesis BlackBox Skin"
 msgstr ""
@@ -4532,6 +4689,12 @@ msgstr "Βορράς"
 msgid "Norwegian"
 msgstr "Νορβηφικά"
 
+msgid "Not after"
+msgstr ""
+
+msgid "Not before"
+msgstr ""
+
 #
 #, python-format
 msgid ""
@@ -4582,6 +4745,9 @@ msgstr ""
 
 #
 msgid "OK, remove some extensions"
+msgstr ""
+
+msgid "ONID"
 msgstr ""
 
 #
@@ -4657,6 +4823,9 @@ msgstr ""
 msgid "Orbital Position"
 msgstr "Orbital Position"
 
+msgid "Orbital position"
+msgstr ""
+
 #
 msgid "Outer Bound (+/-)"
 msgstr ""
@@ -4678,9 +4847,15 @@ msgstr ""
 msgid "PAL"
 msgstr "PAL"
 
+msgid "PCR PID"
+msgstr ""
+
 #
 msgid "PIDs"
 msgstr "PIDs"
+
+msgid "PMT PID"
+msgstr ""
 
 #
 msgid "Package list update"
@@ -5161,6 +5336,9 @@ msgstr "Πόρτα D"
 msgid "Portuguese"
 msgstr "Πορτογαλλικά"
 
+msgid "Position of finished Timers in Timerlist"
+msgstr ""
+
 #
 msgid "Positioner"
 msgstr "Positioner"
@@ -5486,6 +5664,9 @@ msgstr ""
 msgid "Recordings always have priority"
 msgstr "Οι εγγραφές έχουν πάντα προτεραιότητα"
 
+msgid "Redirect notifications to Growl, Snarl, Prowl or Syslog"
+msgstr ""
+
 msgid "Reenter new PIN"
 msgstr ""
 
@@ -5707,6 +5888,9 @@ msgstr ""
 msgid "Restrict \"after event\" to a certain timespan?"
 msgstr ""
 
+msgid "Restrict to events on certain dates"
+msgstr ""
+
 #
 msgid "Resume from last position"
 msgstr "Συνέχεια απο τελευταίο σημείο"
@@ -5747,6 +5931,9 @@ msgstr "Ταχύτητα Rewind "
 msgid "Right"
 msgstr "Δεξιά"
 
+msgid "Roll-off"
+msgstr ""
+
 #
 msgid "Rolloff"
 msgstr "Rolloff"
@@ -5759,6 +5946,9 @@ msgstr "Ταχύτητα του ρότορα"
 msgid "Running"
 msgstr "Τρέχει"
 
+msgid "Running in testmode"
+msgstr ""
+
 #
 msgid "Russia"
 msgstr ""
@@ -5770,6 +5960,21 @@ msgstr "Ρωσικά"
 #
 msgid "S-Video"
 msgstr "S-Video"
+
+msgid "SD 25/50HZ Interlace Mode"
+msgstr ""
+
+msgid "SD 25/50HZ Progressive Mode"
+msgstr ""
+
+msgid "SD 30/60HZ Interlace Mode"
+msgstr ""
+
+msgid "SD 30/60HZ Progressive Mode"
+msgstr ""
+
+msgid "SID"
+msgstr ""
 
 #
 msgid "SINGLE LAYER DVD"
@@ -5785,6 +5990,19 @@ msgstr "SNR:"
 
 #
 msgid "SSID:"
+msgstr ""
+
+msgid ""
+"SVDRP is a protocol developed for the VDR software to control a set-top box "
+"remotely.\n"
+"This plugin only supports a subset of SVDRP and starts automatically using "
+"default settings.\n"
+"\n"
+"You probably don't need this plugin and should use the regular Web Interface "
+"for Enigma2 instead."
+msgstr ""
+
+msgid "SVDRP server for Enigma2"
 msgstr ""
 
 #
@@ -6249,6 +6467,9 @@ msgstr ""
 "Η υπηρεσία δεν βρέθηκε\n"
 "(SID not found in PAT)"
 
+msgid "Service reference"
+msgstr ""
+
 #
 msgid "Service scan"
 msgstr "Ανεύρεση υπηρεσίων"
@@ -6383,6 +6604,9 @@ msgstr ""
 msgid "Show in extension menu"
 msgstr ""
 
+msgid "Show info screen"
+msgstr ""
+
 #
 msgid "Show infobar on channel change"
 msgstr "Εμφάνηζει την infobar με κάθε αλλαγή καναλιού"
@@ -6394,6 +6618,9 @@ msgstr "Εμφάνηζει infobar σε αλλαγή του event "
 #
 msgid "Show infobar on skip forward/backward"
 msgstr "Εμφάνηζει το  infobar όταν κάνεις forward/backward"
+
+msgid "Show notification on conflicts"
+msgstr ""
 
 #
 msgid "Show positioner movement"
@@ -6663,6 +6890,9 @@ msgstr ""
 msgid "Start Webinterface"
 msgstr ""
 
+msgid "Start easy your multimedia plugins with the PVR-button."
+msgstr ""
+
 #
 msgid "Start from the beginning"
 msgstr "Έναρξη  απο την αρχή"
@@ -6786,6 +7016,9 @@ msgstr "Κυρ"
 msgid "Sunday"
 msgstr "Κυριακή"
 
+msgid "Support \"Fast Scan\"?"
+msgstr ""
+
 #
 msgid "Swap Services"
 msgstr "Αντιμετάθεση υπηρεσιών"
@@ -6814,6 +7047,9 @@ msgstr ""
 msgid "Symbol Rate"
 msgstr "Symbol Rate"
 
+msgid "Symbol rate"
+msgstr ""
+
 #
 msgid "Symbolrate"
 msgstr "Symbolrate"
@@ -6831,9 +7067,18 @@ msgstr "TRANSLATOR_INFO"
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr ""
 
+msgid "TSID"
+msgstr ""
+
+msgid "TV Charts of all users"
+msgstr ""
+
 #
 msgid "TV System"
 msgstr "Σύστημα TV"
+
+msgid "TXT PID"
+msgstr ""
 
 #
 msgid "Table of content for collection"
@@ -6865,6 +7110,9 @@ msgstr ""
 
 #
 msgid "Temperature and Fan control"
+msgstr ""
+
+msgid "Temperature-dependent fan control."
 msgstr ""
 
 #
@@ -7811,10 +8059,6 @@ msgid "Use and control multiple Dreamboxes with different RCs."
 msgstr ""
 
 #
-msgid "Use non-smooth winding at speeds above"
-msgstr ""
-
-#
 msgid "Use power measurement"
 msgstr "Χρεισημοποιήστε power measurement"
 
@@ -7896,11 +8140,20 @@ msgstr ""
 msgid "Vali-XD skin"
 msgstr ""
 
+msgid "Vali.HD.atlantis skin"
+msgstr ""
+
 msgid "Vali.HD.nano skin"
+msgstr ""
+
+msgid "Vali.HD.warp skin"
 msgstr ""
 
 msgid ""
 "Verify your Dreambox authenticity by running the genuine dreambox plugin!"
+msgstr ""
+
+msgid "Verifying your internet connection..."
 msgstr ""
 
 #
@@ -7918,6 +8171,9 @@ msgstr "Video Fine-Tuning Wizard"
 #
 msgid "Video Output"
 msgstr "Video Output"
+
+msgid "Video PID"
+msgstr ""
 
 #
 msgid "Video Setup"
@@ -8164,6 +8420,9 @@ msgstr ""
 msgid "Weatherforecast on your Dreambox"
 msgstr ""
 
+msgid "Web-Bouquet-Editor for PC"
+msgstr ""
+
 #
 msgid "Webinterface"
 msgstr ""
@@ -8299,6 +8558,11 @@ msgstr "Τι θέλεις να ανεύρεις;"
 
 #
 msgid "What to do with submitted crashlogs?"
+msgstr ""
+
+msgid ""
+"When supporting \"Fast Scan\" the service type is ignored. You don't need to "
+"enable this unless your Image supports \"Fast Scan\" and you are using it."
 msgstr ""
 
 #
@@ -8558,6 +8822,12 @@ msgid ""
 "in title' is what is looked for in the EPG."
 msgstr ""
 
+msgid ""
+"You can use the EasyInfo for manage your EPG plugins from info button. You "
+"have also a new now-next event viewer. Easy-PG, the own graphical EPG bowser "
+"is also included."
+msgstr ""
+
 #
 msgid "You cannot delete this!"
 msgstr "Δεν μπορετε να διαγράψτε αυτό"
@@ -8733,6 +9003,9 @@ msgstr ""
 
 #
 msgid "Your network configuration has been activated."
+msgstr ""
+
+msgid "Your network is not working. Please try again."
 msgstr ""
 
 #
@@ -8951,6 +9224,12 @@ msgstr ""
 msgid "assigned Services/Provider:"
 msgstr ""
 
+msgid "at beginning"
+msgstr ""
+
+msgid "at end"
+msgstr ""
+
 #
 #, python-format
 msgid "audio track (%s) format"
@@ -8967,6 +9246,9 @@ msgstr ""
 
 #
 msgid "auto"
+msgstr ""
+
+msgid "autotimers need a match attribute"
 msgstr ""
 
 #
@@ -8999,6 +9281,9 @@ msgstr "Μαύρη λίστα"
 
 #
 msgid "blue"
+msgstr ""
+
+msgid "bob"
 msgstr ""
 
 #
@@ -9042,6 +9327,9 @@ msgstr "Καθάρισε την λίστα"
 msgid "complex"
 msgstr "Σύνθετο"
 
+msgid "config changed."
+msgstr ""
+
 #
 msgid "config menu"
 msgstr "config menu"
@@ -9073,6 +9361,12 @@ msgstr ""
 msgid "create directory"
 msgstr ""
 
+msgid "creates virtual series folders from episodes"
+msgstr ""
+
+msgid "creates virtual series folders from sets of recorded episodes"
+msgstr ""
+
 #, python-format
 msgid "currently installed image: %s"
 msgstr ""
@@ -9083,6 +9377,9 @@ msgstr "Καθημερινά"
 
 #
 msgid "day"
+msgstr ""
+
+msgid "default"
 msgstr ""
 
 #
@@ -9424,6 +9721,9 @@ msgstr "λεπτό"
 msgid "minutes"
 msgstr "λεπτά"
 
+msgid "missing parameter \"id\""
+msgstr ""
+
 #
 msgid "month"
 msgstr ""
@@ -9620,9 +9920,6 @@ msgid "red"
 msgstr ""
 
 msgid "redesigned Kerni-HD1 skin"
-msgstr ""
-
-msgid "redirect notifications to Growl"
 msgstr ""
 
 #
@@ -9959,6 +10256,10 @@ msgid "toggle time, chapter, audio, subtitle info"
 msgstr ""
 
 msgid "tuner is not supported"
+msgstr ""
+
+#, python-format
+msgid "unable to find timer with id %i"
 msgstr ""
 
 #
@@ -10313,6 +10614,14 @@ msgstr "zapped"
 #~ "stephan@reichholf.net\n"
 #~ "\n"
 #~ "© 2006 - Stephan Reichholf"
+
+#
+#~ msgid "Enter Fast Forward at speed"
+#~ msgstr "Παραμετροποιήσετε την ταχύτητα Fast Forward"
+
+#
+#~ msgid "Enter Rewind at speed"
+#~ msgstr "Παραμετροποιήσετε την ταχύτητα Rewind "
 
 #
 #~ msgid "Exit wizard and configure later manually"

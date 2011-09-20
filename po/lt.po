@@ -3,14 +3,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-27 12:42+0000\n"
+"POT-Creation-Date: 2011-04-01 08:09+0000\n"
 "PO-Revision-Date: 2011-01-28 21:11+0200\n"
 "Last-Translator: Audronis <audrgrin@takas.lt>\n"
 "Language-Team: Adga / enigma2 (c) <audrgrin@takas.lt>\n"
-"Language: lt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: lt\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%"
 "100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.0.3\n"
@@ -187,6 +187,12 @@ msgid "%H:%M"
 msgstr "%H:%M"
 
 #, python-format
+msgid ""
+"%d conflict(s) encountered when trying to add new timers:\n"
+"%s"
+msgstr ""
+
+#, python-format
 msgid "%d jobs are running in the background!"
 msgstr "%d darbai, veikiantys fone!"
 
@@ -218,6 +224,10 @@ msgstr ""
 #, python-format
 msgid "%s (%s)\n"
 msgstr "%s (%s)\n"
+
+#, python-format
+msgid "%s: %s at %s"
+msgstr ""
 
 msgid "(ZAP)"
 msgstr "(JUNGTI)"
@@ -367,11 +377,11 @@ msgstr "??"
 msgid "A"
 msgstr "A"
 
+msgid "A BackToTheRoots-Skin .. but with Warp-8 speed."
+msgstr ""
+
 msgid "A BackToTheRoots-Skin .. or good old times."
 msgstr "Atgal į TheRoots-Temą .. arba kaip senais gerais laikais."
-
-msgid "A BackToTheRoots-Skin ... or good old times."
-msgstr "Atgal į TheRoots-Temą ... arba kaip senais gerais laikais."
 
 msgid "A basic ftp client"
 msgstr "Pagrindinis ftp klientas"
@@ -390,6 +400,9 @@ msgstr ""
 
 msgid "A demo plugin for TPM usage."
 msgstr "Demonstracinė papildoma programa TPM vartojimui"
+
+msgid "A dreambox simulation from SG-Atlantis displays."
+msgstr ""
 
 #
 msgid ""
@@ -412,6 +425,9 @@ msgstr "Grafinis EPG visiems kanalams iš specifinio paketo"
 
 msgid "A graphical EPG interface"
 msgstr "Grafinė EPG sąsaja"
+
+msgid "A graphical EPG interface and EPG tools manager"
+msgstr ""
 
 msgid "A graphical EPG interface."
 msgstr "Grafinė EPG sąsaja."
@@ -869,6 +885,9 @@ msgstr "Klausti vartotojo"
 msgid "Aspect Ratio"
 msgstr "Vaizdo formatas"
 
+msgid "Aspect ratio"
+msgstr ""
+
 msgid "Assigning providers/services/caids to a CI module"
 msgstr "Priskirti tiekėjus/kanalus/caids CI moduliui"
 
@@ -882,6 +901,9 @@ msgstr "Garsas"
 #
 msgid "Audio Options..."
 msgstr "Garso nustatymai..."
+
+msgid "Audio PID"
+msgstr ""
 
 msgid "Audio Sync"
 msgstr "Garso sinchronizavimas"
@@ -951,6 +973,15 @@ msgstr ""
 "Autolaikmatis skanuoja EPG ir kuria Laikmačius priklausomai nuo vartotojo "
 "apibrėžtų paieškos kriterijų."
 
+msgid "AutoTimer was added successfully"
+msgstr ""
+
+msgid "AutoTimer was changed successfully"
+msgstr ""
+
+msgid "AutoTimer was removed"
+msgstr ""
+
 #
 msgid "Automatic"
 msgstr "Automatinis"
@@ -987,6 +1018,30 @@ msgstr "Automatiškai atnaujinti EPG"
 msgid "Automatically send crashlogs to Dream Multimedia"
 msgstr "Automatiškai siųsti crashlogs į Dream Multimediją"
 
+#
+#, python-format
+msgid ""
+"Autoresolution Plugin Testmode:\n"
+"Is %s ok?"
+msgstr ""
+"Auto rezoliucijos papildomos programos testavimas:\n"
+"Yra %s gerai?"
+
+#
+msgid "Autoresolution Switch"
+msgstr "Auto rezoliucijos perjungėjas"
+
+msgid "Autoresolution is not working in Scart/DVI-PC Mode"
+msgstr "Auto rezoliucija neveikia Scart/DVI-PC režime"
+
+#
+msgid "Autoresolution settings"
+msgstr "Autorezoliucijos nustatymai"
+
+#
+msgid "Autoresolution videomode setup"
+msgstr "Auto rezoliucijos vaizdo būdo valdymas"
+
 msgid "Autos & Vehicles"
 msgstr "Automobiliai ir transporto priemonės"
 
@@ -1021,6 +1076,12 @@ msgstr "BER:"
 #
 msgid "Back"
 msgstr "Atgal"
+
+msgid "Back, lower USB Slot"
+msgstr ""
+
+msgid "Back, upper USB Slot"
+msgstr ""
 
 #
 msgid "Background"
@@ -1116,6 +1177,11 @@ msgstr "Brazilija"
 msgid "Brightness"
 msgstr "Šviesumas"
 
+msgid ""
+"Browse ORF and SAT1 Teletext independent from channel. This need I-net "
+"conection."
+msgstr ""
+
 msgid "Browse for and connect to network shares"
 msgstr "Ieškoti ir jungtis prie tinklo bendrinimo"
 
@@ -1142,6 +1208,17 @@ msgstr "Irašyti savo įrašus į DVD"
 
 msgid "Bus: "
 msgstr "Bus:"
+
+msgid ""
+"By enabling this events will not be matched if they don't occur on certain "
+"dates."
+msgstr ""
+
+msgid ""
+"By enabling this you will be notified about timer conflicts found during "
+"automated polling. There is no intelligence involved, so it might bother you "
+"about the same conflict over and over."
+msgstr ""
 
 #
 msgid ""
@@ -1390,6 +1467,12 @@ msgstr "Uždaryti ir išsaugoti pakeitimus"
 msgid "Close title selection"
 msgstr "Uždaryti pavadinimo pasirinkimą"
 
+msgid "Code rate HP"
+msgstr ""
+
+msgid "Code rate LP"
+msgstr ""
+
 msgid "Code rate high"
 msgstr "Aukšta kodavimo norma"
 
@@ -1580,6 +1663,10 @@ msgstr "Negalima atidaryti paveikslėlio paveikslėlyje"
 msgid "Couldn't record due to conflicting timer %s"
 msgstr "Neįrašyta dėl prieštaringo laikmačio %s"
 
+#, python-format
+msgid "Couldn't record due to invalid service %s"
+msgstr ""
+
 msgid "Crashlog settings"
 msgstr "Crashlog nustatymai"
 
@@ -1744,6 +1831,9 @@ msgstr "DVB-S"
 msgid "DVB-S2"
 msgstr "DVB-S2"
 
+msgid "DVD Drive"
+msgstr ""
+
 #
 msgid "DVD File Browser"
 msgstr "DVD failų naršyklė"
@@ -1830,8 +1920,20 @@ msgid "Define a startup service for your Dreambox."
 msgstr "Nustatykite paleidimo kanalą jūsų Dreambox'e."
 
 #
+msgid "Deinterlacer mode for interlaced content"
+msgstr "Deinterlacer būdas besikeičiančiam turiniui"
+
+#
+msgid "Deinterlacer mode for progressive content"
+msgstr "Deinterlacer būdas progresyviam turiniui"
+
+#
 msgid "Delay"
 msgstr "Užlaikymas"
+
+#
+msgid "Delay x seconds after service started"
+msgstr "Užlaikyti x sekundžių po kanalo starto"
 
 #
 msgid "Delete"
@@ -2010,6 +2112,12 @@ msgid ""
 msgstr ""
 "Tikrai norite atlikti failų sistemos tikrinimą?\n"
 "Tai gali trukti ilgą laiką!"
+
+#, python-format
+msgid ""
+"Do you really want to delete %s\n"
+"%s?"
+msgstr ""
 
 #
 #, python-format
@@ -2353,8 +2461,28 @@ msgid "Enable /media"
 msgstr "Įjungta /medija"
 
 #
+msgid "Enable 1080p24 Mode"
+msgstr "Įjungti 1080p24 būdą"
+
+#
+msgid "Enable 1080p25 Mode"
+msgstr "Įjungti 1080p25 būdą"
+
+#
+msgid "Enable 1080p30 Mode"
+msgstr "Įjungti 1080p30 būdą"
+
+#
 msgid "Enable 5V for active antenna"
 msgstr "Įjungti 5V aktyviai antenai"
+
+#
+msgid "Enable 720p24 Mode"
+msgstr "Įjungti 720p24 būdą"
+
+#
+msgid "Enable Autoresolution"
+msgstr "Įjungti autorezoliuciją"
 
 msgid "Enable Cleanup Wizard?"
 msgstr "Įjungti išvalymo vedlį?"
@@ -2462,14 +2590,8 @@ msgstr ""
 "\n"
 "© 2006 - Stephan Reichholf"
 
-msgid "Enter Fast Forward at speed"
-msgstr "Eiti į greitą persukimą"
-
 msgid "Enter IP to scan..."
 msgstr "Įrašykite IP skanavimui..."
-
-msgid "Enter Rewind at speed"
-msgstr "Eiti į greitą atsukimą"
 
 msgid "Enter main menu..."
 msgstr "Eiti į pagrindinį meniu..."
@@ -2688,6 +2810,11 @@ msgstr "Baigtas jūsų tinklo paleidimas iš naujo"
 msgid "Finnish"
 msgstr "Suomių"
 
+msgid ""
+"First day to match events. No event that begins before this date will be "
+"matched."
+msgstr ""
+
 msgid "First generate your skin-style with the Ai.HD-Control plugin."
 msgstr "Pirma savo temos stiliaus generacija su Ai.HD-Control priedu."
 
@@ -2707,13 +2834,16 @@ msgstr "Formatas"
 #, python-format
 msgid ""
 "Found a total of %d matching Events.\n"
+"%d Timer were added and %d modified, %d conflicts encountered."
+msgstr ""
+
+#, python-format
+msgid ""
+"Found a total of %d matching Events.\n"
 "%d Timer were added and %d modified."
 msgstr ""
 "Surasta iš viso %d atitikimo įvykių.\n"
 "%d Laikmatis buvo pridėtas ir %d pakeistas."
-
-msgid "Frame repeat count during non-smooth winding"
-msgstr "Rėmo pakartojimo skaičiavimas per nelygų vingiavimą"
 
 msgid "Frame size in full view"
 msgstr "Kadro dydis pilname vaizde"
@@ -2747,6 +2877,9 @@ msgstr "Frizų"
 
 msgid "FritzCall shows incoming calls to your Fritz!Box on your Dreambox."
 msgstr "FritzCall rodo gaunamus skambučius į jūsų Fritz! Box jūsų Dreambox'e."
+
+msgid "Front USB Slot"
+msgstr ""
 
 msgid "Frontend for /tmp/mmi.socket"
 msgstr "Priekinės ir /tmp/mmi.socket"
@@ -2792,6 +2925,9 @@ msgstr "Bendras PCM užlaikymas"
 
 msgid "General PCM delay (ms)"
 msgstr "Bendras PCM užlaikymas (ms)"
+
+msgid "Generates and Shows TV Charts of all users having this plugin installed"
+msgstr ""
 
 msgid "Genre"
 msgstr "Žanras"
@@ -2861,22 +2997,28 @@ msgid "Green boost"
 msgstr "Žalio didėjimas"
 
 msgid ""
-"Growlee allows your Dreambox to send short messages using the growl "
-"protocol\n"
-"like Recording started notifications to a PC running a growl client"
+"Growlee allows your Dreambox to forward notifications like 'Record started' "
+"to a PC running a growl, snarl or syslog compatible client or directly to an "
+"iPhone using prowl."
 msgstr ""
-"Growlee leidžia jūsų Dreambox siųsti trumpąsias žinutes, naudojant growl "
-"protokolą\n"
-"Įrašas paleidžia pranešimus į PC, veikiant growl klientui"
 
 msgid "Guard Interval"
 msgstr "Apsaugos intervalas"
+
+msgid "Guard interval"
+msgstr ""
 
 msgid "Guard interval mode"
 msgstr "Apsaugos intervalo režimas"
 
 msgid "Guess existing timer based on begin/end"
 msgstr "Spėti esamą laikmatį remiantis pradžia/pabaiga"
+
+msgid "HD Interlace Mode"
+msgstr ""
+
+msgid "HD Progressive Mode"
+msgstr ""
 
 msgid "HD videos"
 msgstr "HD vaizdai"
@@ -2907,6 +3049,9 @@ msgstr "Paslėptas tinklo pavadinimas"
 
 msgid "Hierarchy Information"
 msgstr "Hierarchijos informacija"
+
+msgid "Hierarchy info"
+msgstr ""
 
 msgid "Hierarchy mode"
 msgstr "Hierarchijos režimas"
@@ -3058,6 +3203,12 @@ msgstr "Informacija"
 msgid "Init"
 msgstr "Inicializacija"
 
+msgid "Initial Fast Forward speed"
+msgstr ""
+
+msgid "Initial Rewind speed"
+msgstr ""
+
 msgid "Initial location in new timers"
 msgstr "Pradinė naujų laikmačių vieta"
 
@@ -3135,6 +3286,9 @@ msgstr "Vidinė atmintinė"
 
 msgid "Internal LAN adapter."
 msgstr "Vidinis LAN adapteris"
+
+msgid "Internal USB Slot"
+msgstr ""
 
 msgid "Internal firmware updater"
 msgstr "Vidinis programinės įrangos atnaujinimas"
@@ -3305,6 +3459,11 @@ msgstr "Kalbos pasirinkimas"
 
 msgid "Last config"
 msgstr "Paskutinis config"
+
+msgid ""
+"Last day to match events. Events have to begin before this date to be "
+"matched."
+msgstr ""
 
 msgid "Last speed"
 msgstr "Paskutinis greitis"
@@ -3699,11 +3858,17 @@ msgstr "Filmų sąrašo meniu"
 msgid "Multi EPG"
 msgstr "Kanalų EPG"
 
+msgid "Multi-EPG bouquet selection"
+msgstr ""
+
 msgid "Multimedia"
 msgstr "Multimedija"
 
 msgid "Multiple service support"
 msgstr "Kelių kanalų palaikymas"
+
+msgid "Multiplex"
+msgstr ""
 
 msgid "Multisat"
 msgstr "Daug palydovų"
@@ -3762,6 +3927,9 @@ msgstr ""
 msgid "NFS share"
 msgstr "NFS bendrinimas"
 
+msgid "NIM"
+msgstr ""
+
 msgid "NOW"
 msgstr "DABAR"
 
@@ -3783,6 +3951,9 @@ msgstr "Serverio nustatymas"
 
 msgid "Nameserver settings"
 msgstr "Serverio pavadinimas"
+
+msgid "Namespace"
+msgstr ""
 
 msgid "Nemesis BlackBox Skin"
 msgstr "Nemesis BlackBox tema"
@@ -4139,6 +4310,12 @@ msgstr "Šiaurė"
 msgid "Norwegian"
 msgstr "Norvegų"
 
+msgid "Not after"
+msgstr ""
+
+msgid "Not before"
+msgstr ""
+
 #, python-format
 msgid ""
 "Not enough diskspace. Please free up some diskspace and try again. (%d MB "
@@ -4183,6 +4360,9 @@ msgstr "Gerai, pašalinkite kitus išplėtimus"
 
 msgid "OK, remove some extensions"
 msgstr "Gerai, pašalinkite bet kokius išplėtimus"
+
+msgid "ONID"
+msgstr ""
 
 msgid "OSD Settings"
 msgstr "OSD nustatymai"
@@ -4239,6 +4419,9 @@ msgstr "Pasirinktinai įrašykite savo vardą, jei jūs norite."
 msgid "Orbital Position"
 msgstr "Pozicija orbitoje"
 
+msgid "Orbital position"
+msgstr ""
+
 msgid "Outer Bound (+/-)"
 msgstr "Išorinis Susijęs (+/-)"
 
@@ -4257,8 +4440,14 @@ msgstr "Perrašyti konfigūracijos failus per programinės įrangos atnaujinimą
 msgid "PAL"
 msgstr "PAL"
 
+msgid "PCR PID"
+msgstr ""
+
 msgid "PIDs"
 msgstr "PIDs"
+
+msgid "PMT PID"
+msgstr ""
 
 msgid "Package list update"
 msgstr "Paketo sąrašo atnaujinimas"
@@ -4657,6 +4846,9 @@ msgstr "Jungtis D"
 msgid "Portuguese"
 msgstr "Portugalų"
 
+msgid "Position of finished Timers in Timerlist"
+msgstr ""
+
 msgid "Positioner"
 msgstr "Pozicionierius"
 
@@ -4916,6 +5108,9 @@ msgstr "Įrašai"
 msgid "Recordings always have priority"
 msgstr "Įrašai visada turi pirmenybę"
 
+msgid "Redirect notifications to Growl, Snarl, Prowl or Syslog"
+msgstr ""
+
 msgid "Reenter new PIN"
 msgstr "Iš naujo įrašykite naują PIN"
 
@@ -5089,6 +5284,9 @@ msgstr "Atkurkite savo Dreambox su USB įrenginiu"
 msgid "Restrict \"after event\" to a certain timespan?"
 msgstr "Riboti \"po įvykio \" tam tikrą laiko atkarpą?"
 
+msgid "Restrict to events on certain dates"
+msgstr ""
+
 msgid "Resume from last position"
 msgstr "Tęsti nuo paskutinės pozicijos"
 
@@ -5121,6 +5319,9 @@ msgstr "Persukimo greitis"
 msgid "Right"
 msgstr "Dešinys"
 
+msgid "Roll-off"
+msgstr ""
+
 msgid "Rolloff"
 msgstr "Rolloff"
 
@@ -5130,6 +5331,9 @@ msgstr "Pozicionieriaus sukimosi greitis"
 msgid "Running"
 msgstr "Veikiantis"
 
+msgid "Running in testmode"
+msgstr ""
+
 msgid "Russia"
 msgstr "Rusija"
 
@@ -5138,6 +5342,21 @@ msgstr "Rusų"
 
 msgid "S-Video"
 msgstr "S-Video"
+
+msgid "SD 25/50HZ Interlace Mode"
+msgstr ""
+
+msgid "SD 25/50HZ Progressive Mode"
+msgstr ""
+
+msgid "SD 30/60HZ Interlace Mode"
+msgstr ""
+
+msgid "SD 30/60HZ Progressive Mode"
+msgstr ""
+
+msgid "SID"
+msgstr ""
 
 msgid "SINGLE LAYER DVD"
 msgstr "VIENO SLUOKSNIO DVD"
@@ -5150,6 +5369,19 @@ msgstr "SNR:"
 
 msgid "SSID:"
 msgstr "SSID:"
+
+msgid ""
+"SVDRP is a protocol developed for the VDR software to control a set-top box "
+"remotely.\n"
+"This plugin only supports a subset of SVDRP and starts automatically using "
+"default settings.\n"
+"\n"
+"You probably don't need this plugin and should use the regular Web Interface "
+"for Enigma2 instead."
+msgstr ""
+
+msgid "SVDRP server for Enigma2"
+msgstr ""
 
 msgid "Sat"
 msgstr "Šeš"
@@ -5514,6 +5746,9 @@ msgstr ""
 "Kanalas nerastas!\n"
 "(SID nėra PAT)"
 
+msgid "Service reference"
+msgstr ""
+
 msgid "Service scan"
 msgstr "Kanalo skanavimas"
 
@@ -5621,6 +5856,9 @@ msgstr "Rodyti atvejo eigą kanalo pasirinkime"
 msgid "Show in extension menu"
 msgstr "Rodyti išplėstame meniu"
 
+msgid "Show info screen"
+msgstr ""
+
 msgid "Show infobar on channel change"
 msgstr "Rodyti infojuostą perjungiant kanalą"
 
@@ -5629,6 +5867,9 @@ msgstr "Rodyti infojuostą pasikeičiant užduočiai"
 
 msgid "Show infobar on skip forward/backward"
 msgstr "Rodyti infojuostą praleidžiant į priekį/atgal"
+
+msgid "Show notification on conflicts"
+msgstr ""
 
 msgid "Show positioner movement"
 msgstr "Rodyti pozicionieriaus judėjimą"
@@ -5850,6 +6091,9 @@ msgstr "Aušintuvo budėjimo %d įtampa"
 msgid "Start Webinterface"
 msgstr "Paleisti Tinklo sąsają"
 
+msgid "Start easy your multimedia plugins with the PVR-button."
+msgstr ""
+
 msgid "Start from the beginning"
 msgstr "Pradėti nuo pradžios"
 
@@ -5945,6 +6189,9 @@ msgstr "Sek"
 msgid "Sunday"
 msgstr "Sekmadienis"
 
+msgid "Support \"Fast Scan\"?"
+msgstr ""
+
 msgid "Swap Services"
 msgstr "Keisti kanalus"
 
@@ -5966,6 +6213,9 @@ msgstr "Perjungiamų imtuvą tipai:"
 msgid "Symbol Rate"
 msgstr "Simbolių greitis"
 
+msgid "Symbol rate"
+msgstr ""
+
 msgid "Symbolrate"
 msgstr "Simbolių greitis"
 
@@ -5979,8 +6229,17 @@ msgstr "Audronis Grincevičius (ADGA) Pasvalys, Lietuva"
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS failas yra per didelis ISO9660 lygmeniui 1!"
 
+msgid "TSID"
+msgstr ""
+
+msgid "TV Charts of all users"
+msgstr ""
+
 msgid "TV System"
 msgstr "TV sistema"
+
+msgid "TXT PID"
+msgstr ""
 
 msgid "Table of content for collection"
 msgstr "Turinio lentelė dėl kolekcijos"
@@ -6005,6 +6264,9 @@ msgstr "Taivanis"
 
 msgid "Temperature and Fan control"
 msgstr "Temperatūros ir aušintuvo kontrolė"
+
+msgid "Temperature-dependent fan control."
+msgstr ""
 
 msgid "Terrestrial"
 msgstr "Antžeminė"
@@ -6877,9 +7139,6 @@ msgstr "Naudoti šliuzą"
 msgid "Use and control multiple Dreamboxes with different RCs."
 msgstr "Naudoti bei kontroliuoti kelis Dreambox su skirtingais RC."
 
-msgid "Use non-smooth winding at speeds above"
-msgstr "Naudoti nelygų vingiavimą greičiais didesniais kaip"
-
 msgid "Use power measurement"
 msgstr "Naudoti įtampos išmatavimus"
 
@@ -6947,13 +7206,22 @@ msgstr "VMGM (įvadas)"
 msgid "Vali-XD skin"
 msgstr "Vali-XD tema"
 
+msgid "Vali.HD.atlantis skin"
+msgstr ""
+
 msgid "Vali.HD.nano skin"
 msgstr "Vali.HD.nano tema"
+
+msgid "Vali.HD.warp skin"
+msgstr ""
 
 msgid ""
 "Verify your Dreambox authenticity by running the genuine dreambox plugin!"
 msgstr ""
 "Patvirtinkite savo Dreambox autentiškumą paleisdami tikro Dreambox priedą!"
+
+msgid "Verifying your internet connection..."
+msgstr ""
 
 msgid "Vertical"
 msgstr "Vertikalus"
@@ -6966,6 +7234,9 @@ msgstr "Tikslaus vaizdo suderinimo vedlys"
 
 msgid "Video Output"
 msgstr "Vaizdo išėjimas"
+
+msgid "Video PID"
+msgstr ""
 
 msgid "Video Setup"
 msgstr "Vaizdo valdymas"
@@ -7169,6 +7440,9 @@ msgstr "WeatherPlugin rodo orų prognozes jūsų Dreambox."
 msgid "Weatherforecast on your Dreambox"
 msgstr "Orų prognozė Jūsų Dreambox"
 
+msgid "Web-Bouquet-Editor for PC"
+msgstr ""
+
 msgid "Webinterface"
 msgstr "Web sąsaja"
 
@@ -7333,6 +7607,11 @@ msgstr "Ką Jūs norite skanuoti?"
 
 msgid "What to do with submitted crashlogs?"
 msgstr "Ką daryti su pateiktu crashlogs?"
+
+msgid ""
+"When supporting \"Fast Scan\" the service type is ignored. You don't need to "
+"enable this unless your Image supports \"Fast Scan\" and you are using it."
+msgstr ""
 
 msgid ""
 "When this option is enabled the AutoTimer won't match events where another "
@@ -7601,6 +7880,12 @@ msgstr ""
 "Tuo metu, kai 'Vardas' yra tik žmogaus lengvai skaitomas vardas, rodytas "
 "Peržiūroje, 'Pavadinime' yra tai, kas ieškoma EPG."
 
+msgid ""
+"You can use the EasyInfo for manage your EPG plugins from info button. You "
+"have also a new now-next event viewer. Easy-PG, the own graphical EPG bowser "
+"is also included."
+msgstr ""
+
 msgid "You cannot delete this!"
 msgstr "Jūs negalite to ištrinti!"
 
@@ -7788,6 +8073,9 @@ msgstr "Jūsų (laisvai pasirenkamas) vardas:"
 msgid "Your network configuration has been activated."
 msgstr "Jūsų tinklo konfigūracija aktyvuota."
 
+msgid "Your network is not working. Please try again."
+msgstr ""
+
 msgid "Your network mount has been activated."
 msgstr "Jūsų tinklo pajungimas aktyvuotas."
 
@@ -7972,6 +8260,12 @@ msgstr "priskirti CAIds:"
 msgid "assigned Services/Provider:"
 msgstr "priskirti Kanalai/Tiekėjai:"
 
+msgid "at beginning"
+msgstr ""
+
+msgid "at end"
+msgstr ""
+
 #, python-format
 msgid "audio track (%s) format"
 msgstr "Garso takelio (%s) formatas"
@@ -7985,6 +8279,9 @@ msgstr "garso takeliai"
 
 msgid "auto"
 msgstr "auto"
+
+msgid "autotimers need a match attribute"
+msgstr ""
 
 msgid "available"
 msgstr "pasiekiamas"
@@ -8009,6 +8306,9 @@ msgstr "juodas sąrašas"
 
 msgid "blue"
 msgstr "mėlynas"
+
+msgid "bob"
+msgstr ""
 
 #, python-format
 msgid "burn audio track (%s)"
@@ -8041,6 +8341,9 @@ msgstr "išvalyti grojaraštį"
 msgid "complex"
 msgstr "sudėtinis"
 
+msgid "config changed."
+msgstr ""
+
 msgid "config menu"
 msgstr "konfigūracijos meniu"
 
@@ -8065,6 +8368,12 @@ msgstr "negalėjo būti pašalintas"
 msgid "create directory"
 msgstr "kurti direktoriją"
 
+msgid "creates virtual series folders from episodes"
+msgstr ""
+
+msgid "creates virtual series folders from sets of recorded episodes"
+msgstr ""
+
 #, python-format
 msgid "currently installed image: %s"
 msgstr "šiuo metu įdiegtas atvaizdas: %s"
@@ -8074,6 +8383,9 @@ msgstr "kasdien"
 
 msgid "day"
 msgstr "diena"
+
+msgid "default"
+msgstr ""
 
 msgid "delete"
 msgstr "trinti"
@@ -8330,6 +8642,9 @@ msgstr "minutė"
 msgid "minutes"
 msgstr "minučių"
 
+msgid "missing parameter \"id\""
+msgstr ""
+
 msgid "month"
 msgstr "mėnuo"
 
@@ -8479,9 +8794,6 @@ msgstr "raudonas"
 
 msgid "redesigned Kerni-HD1 skin"
 msgstr "pertvarkyta Kerni-HD1 tema"
-
-msgid "redirect notifications to Growl"
-msgstr "nukreipti pranešimai Growl"
 
 msgid "remove a nameserver entry"
 msgstr "pašalinkite serverio pavadinimo įrašą"
@@ -8739,6 +9051,10 @@ msgstr "laikas, skyrius, garsas, subtitrų informacija"
 msgid "tuner is not supported"
 msgstr "imtuvas nepalaikomas"
 
+#, python-format
+msgid "unable to find timer with id %i"
+msgstr ""
+
 msgid "unavailable"
 msgstr "nepasiekiamas"
 
@@ -8845,35 +9161,15 @@ msgstr "įjungta"
 #~ msgid "50 Hz"
 #~ msgstr "50 Hz"
 
+#~ msgid "A BackToTheRoots-Skin ... or good old times."
+#~ msgstr "Atgal į TheRoots-Temą ... arba kaip senais gerais laikais."
+
 #
 #~ msgid "Advanced"
 #~ msgstr "Išplėstinis"
 
 #~ msgid "Ascanding"
 #~ msgstr "Ascanding"
-
-#
-#~ msgid ""
-#~ "Autoresolution Plugin Testmode:\n"
-#~ "Is %s ok?"
-#~ msgstr ""
-#~ "Auto rezoliucijos papildomos programos testavimas:\n"
-#~ "Yra %s gerai?"
-
-#
-#~ msgid "Autoresolution Switch"
-#~ msgstr "Auto rezoliucijos perjungėjas"
-
-#~ msgid "Autoresolution is not working in Scart/DVI-PC Mode"
-#~ msgstr "Auto rezoliucija neveikia Scart/DVI-PC režime"
-
-#
-#~ msgid "Autoresolution settings"
-#~ msgstr "Autorezoliucijos nustatymai"
-
-#
-#~ msgid "Autoresolution videomode setup"
-#~ msgstr "Auto rezoliucijos vaizdo būdo valdymas"
 
 #
 #~ msgid "Backup"
@@ -8961,18 +9257,6 @@ msgstr "įjungta"
 #~ msgstr "Numatyti nustatymai"
 
 #
-#~ msgid "Deinterlacer mode for interlaced content"
-#~ msgstr "Deinterlacer būdas besikeičiančiam turiniui"
-
-#
-#~ msgid "Deinterlacer mode for progressive content"
-#~ msgstr "Deinterlacer būdas progresyviam turiniui"
-
-#
-#~ msgid "Delay x seconds after service started"
-#~ msgstr "Užlaikyti x sekundžių po kanalo starto"
-
-#
 #~ msgid "Delete selected mount"
 #~ msgstr "Trinti pasirinktą pajungimą"
 
@@ -9014,25 +9298,11 @@ msgstr "įjungta"
 #~ msgid "Download of USB flasher boot image failed: "
 #~ msgstr "USB diegėjo atvaizdo parsisiuntimas klaidingas:"
 
-#
-#~ msgid "Enable 1080p24 Mode"
-#~ msgstr "Įjungti 1080p24 būdą"
+#~ msgid "Enter Fast Forward at speed"
+#~ msgstr "Eiti į greitą persukimą"
 
-#
-#~ msgid "Enable 1080p25 Mode"
-#~ msgstr "Įjungti 1080p25 būdą"
-
-#
-#~ msgid "Enable 1080p30 Mode"
-#~ msgstr "Įjungti 1080p30 būdą"
-
-#
-#~ msgid "Enable 720p24 Mode"
-#~ msgstr "Įjungti 720p24 būdą"
-
-#
-#~ msgid "Enable Autoresolution"
-#~ msgstr "Įjungti autorezoliuciją"
+#~ msgid "Enter Rewind at speed"
+#~ msgstr "Eiti į greitą atsukimą"
 
 #~ msgid ""
 #~ "First we need to download the latest boot environment for the USB flasher."
@@ -9042,6 +9312,18 @@ msgstr "įjungta"
 #
 #~ msgid "Following tasks will be done after you press continue!"
 #~ msgstr "Kitos užduotys bus padarytos po to, kai jūs paspausite tęsti!"
+
+#~ msgid "Frame repeat count during non-smooth winding"
+#~ msgstr "Rėmo pakartojimo skaičiavimas per nelygų vingiavimą"
+
+#~ msgid ""
+#~ "Growlee allows your Dreambox to send short messages using the growl "
+#~ "protocol\n"
+#~ "like Recording started notifications to a PC running a growl client"
+#~ msgstr ""
+#~ "Growlee leidžia jūsų Dreambox siųsti trumpąsias žinutes, naudojant growl "
+#~ "protokolą\n"
+#~ "Įrašas paleidžia pranešimus į PC, veikiant growl klientui"
 
 #~ msgid "Image flash utility"
 #~ msgstr "Atvaizdo diegimo programėlė"
@@ -9187,6 +9469,9 @@ msgstr "įjungta"
 #~ msgstr ""
 #~ "USB vedlys baigė darbą. Jūsų Dreambox dabar bus iš naujo paleistas su "
 #~ "nauju atvaizdu!"
+
+#~ msgid "Use non-smooth winding at speeds above"
+#~ msgstr "Naudoti nelygų vingiavimą greičiais didesniais kaip"
 
 #
 #~ msgid "Webinterface: edit Interface"
@@ -9392,6 +9677,9 @@ msgstr "įjungta"
 #
 #~ msgid "rebooting..."
 #~ msgstr "perleidžiama..."
+
+#~ msgid "redirect notifications to Growl"
+#~ msgstr "nukreipti pranešimai Growl"
 
 #
 #~ msgid "reindex..."
