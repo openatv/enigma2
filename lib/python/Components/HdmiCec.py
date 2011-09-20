@@ -129,6 +129,9 @@ class HdmiCec:
 
 			if config.hdmicec.control_receiver_wakeup:
 				self.sendMessage(5, "setsystemaudiomode")
+		else
+			self.volumeForwardingEnabled = False
+			self.volumeForwardingDestination = 0
 
 	def standbyMessages(self):
 		if config.hdmicec.enabled.value:
@@ -145,6 +148,9 @@ class HdmiCec:
 
 			if config.hdmicec.control_receiver_standby:
 				self.sendMessage(5, "standby")
+		else
+			self.volumeForwardingEnabled = False
+			self.volumeForwardingDestination = 0		
 
 	def onLeaveStandby(self):
 		self.wakeupMessages()

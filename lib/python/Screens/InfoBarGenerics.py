@@ -230,12 +230,12 @@ class InfoBarShowHide:
 
 	def LongOKPressed(self):
 		if isinstance(self, InfoBarEPG):
-			if config.plisettings.QuickEPG_mode.value == "1":
+			if config.vixsettings.QuickEPG_mode.value == "1":
 				self.openInfoBarEPG()
 
 	def ExitPressed(self):
 		if self.__state == self.STATE_HIDDEN:
-			if config.plisettings.QuickEPG_mode.value == "2":
+			if config.vixsettings.QuickEPG_mode.value == "2":
 				self.openInfoBarEPG()
 			else:
 				self.hide()
@@ -612,13 +612,13 @@ class InfoBarChannelSelection:
 			})
 
 	def LeftPressed(self):
-		if config.plisettings.QuickEPG_mode.value == "3":
+		if config.vixsettings.QuickEPG_mode.value == "3":
 			self.openInfoBarEPG()
 		else:
 			self.zapUp()
 
 	def RightPressed(self):
-		if config.plisettings.QuickEPG_mode.value == "3":
+		if config.vixsettings.QuickEPG_mode.value == "3":
 			self.openInfoBarEPG()
 		else:
 			self.zapDown()
@@ -831,85 +831,6 @@ class InfoBarSimpleEventView:
 			epglist[1] = tmp
 			setEvent(epglist[0])
 
-# class SlimServicelist:
-# 	def __init__(self, services):
-# 		self.services = services
-# 		self.length = len(services)
-# 		self.current = 0
-# 
-# 	def selectService(self, service):
-# 		if not self.length:
-# 			self.current = -1
-# 			return False
-# 		else:
-# 			self.current = 0
-# 			while self.services[self.current].ref != service:
-# 				self.current += 1
-# 				if self.current >= self.length:
-# 					return False
-# 		return True
-# 
-# 	def nextService(self):
-# 		if not self.length:
-# 			return
-# 		if self.current+1 < self.length:
-# 			self.current += 1
-# 		else:
-# 			self.current = 0
-# 
-# 	def prevService(self):
-# 		if not self.length:
-# 			return
-# 		if self.current-1 > -1:
-# 			self.current -= 1
-# 		else:
-# 			self.current = self.length - 1
-# 
-# 	def currentService(self):
-# 		if not self.length or self.current >= self.length:
-# 			return None
-# 		return self.services[self.current]
-# 
-
-class SimpleServicelist:
-	def __init__(self, services):
-		self.services = services
-		self.length = len(services)
-		self.current = 0
-
-	def selectService(self, service):
-		if not self.length:
-			self.current = -1
-			return False
-		else:
-			self.current = 0
-			while self.services[self.current].ref != service:
-				self.current += 1
-				if self.current >= self.length:
-					return False
-		return True
-
-	def nextService(self):
-		if not self.length:
-			return
-		if self.current+1 < self.length:
-			self.current += 1
-		else:
-			self.current = 0
-
-	def prevService(self):
-		if not self.length:
-			return
-		if self.current-1 > -1:
-			self.current -= 1
-		else:
-			self.current = self.length - 1
-
-	def currentService(self):
-		if not self.length or self.current >= self.length:
-			return None
-		return self.services[self.current]
-
 class InfoBarEPG:
 	""" EPG - Opens an EPG list when the showEPGList action fires """
 	def __init__(self):
@@ -947,13 +868,13 @@ class InfoBarEPG:
 			self.EPGPressed()
 
 	def EPGPressed(self):
-		if config.plisettings.ViXEPG_mode.value == "pliepg":
+		if config.vixsettings.ViXEPG_mode.value == "vixepg":
 			self.openGraphEPG()
-		elif config.plisettings.ViXEPG_mode.value == "multi":
+		elif config.vixsettings.ViXEPG_mode.value == "multi":
 			self.openMultiServiceEPG()
-		elif config.plisettings.ViXEPG_mode.value == "single":
+		elif config.vixsettings.ViXEPG_mode.value == "single":
 			self.openSingleServiceEPG()
-		elif config.plisettings.ViXEPG_mode.value == "cooltvguide":
+		elif config.vixsettings.ViXEPG_mode.value == "cooltvguide":
 			self.showCoolTVGuide()
 
 	def showEventInfoWhenNotVisible(self):
@@ -2993,7 +2914,7 @@ class InfoBarTimeshift:
 			self.setSeekState(self.SEEK_STATE_PAUSE)
 
 		if back:
-			self.ts_rewind_timer.start(200, 1)
+			self.ts_rewind_timer.start(500, 1)
 
 	def rewindService(self):
 		self.setSeekState(self.makeStateBackward(int(config.seek.enter_backward.value)))
@@ -3064,7 +2985,7 @@ class InfoBarExtensions:
 
 	def RedPressed(self):
 		if isinstance(self, InfoBarEPG):
-			if config.plisettings.ViXEPG_mode.value == "pliepg":
+			if config.vixsettings.ViXEPG_mode.value == "vixepg":
 				self.openSingleServiceEPG()
 			else:
 				self.openGraphEPG()
@@ -3147,13 +3068,63 @@ class InfoBarExtensions:
 
 	def showAutoTimerList(self):
 		if Directories.fileExists("/usr/lib/enigma2/python/Plugins/Extensions/AutoTimer/plugin.pyo"):
-			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU ,PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
-				if plugin.name == _("AutoTimer"):
-					self.runPlugin(plugin)
-					break
+			from Plugins.Extensions.AutoTimer.plugin import main, autostart
+			from Plugins.Extensions.AutoTimer.AutoTimer import AutoTimer
+			from Plugins.Extensions.AutoTimer.AutoPoller import AutoPoller
+			autopoller = AutoPoller()
+			autotimer = AutoTimer()
+			global autotimer
+			global autopoller
+		
+		
+			try:
+				autotimer.readXml()
+			except SyntaxError as se:
+				self.session.open(
+					MessageBox,
+					_("Your config file is not well-formed:\n%s") % (str(se)),
+					type = MessageBox.TYPE_ERROR,
+					timeout = 10
+				)
+				return
+		
+			# Do not run in background while editing, this might screw things up
+			if autopoller is not None:
+				autopoller.stop()
+		
+			from Plugins.Extensions.AutoTimer.AutoTimerOverview import AutoTimerOverview
+			self.session.openWithCallback(
+				self.editCallback,
+				AutoTimerOverview,
+				autotimer
+			)
 		else:
 			self.session.open(MessageBox, _("The AutoTimer plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
+	def editCallback(self, session):
+		global autotimer
+		global autopoller
+	
+		# XXX: canceling of GUI (Overview) won't affect config values which might have been changed - is this intended?
+	
+		# Don't parse EPG if editing was canceled
+		if session is not None:
+			# Save xml
+			autotimer.writeXml()
+			# Poll EPGCache
+			autotimer.parseEPG()
+	
+		# Start autopoller again if wanted
+		if config.plugins.autotimer.autopoll.value:
+			if autopoller is None:
+				from Plugins.Extensions.AutoTimer.AutoPoller import AutoPoller
+				autopoller = AutoPoller()
+			autopoller.start()
+		# Remove instance if not running in background
+		else:
+			autopoller = None
+			autotimer = None
+	
 	def showEPGSearch(self):
 		from Plugins.Extensions.EPGSearch.EPGSearch import EPGSearch
 		s = self.session.nav.getCurrentService()
@@ -3167,10 +3138,13 @@ class InfoBarExtensions:
 
 	def showIMDB(self):
 		if Directories.fileExists("/usr/lib/enigma2/python/Plugins/Extensions/IMDb/plugin.pyo"):
-			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU ,PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
-				if plugin.name == _("IMDb Details"):
-					self.runPlugin(plugin)
-					break
+			from Plugins.Extensions.IMDb.plugin import IMDB
+			s = self.session.nav.getCurrentService()
+			if s:
+				info = s.info()
+				event = info.getEvent(0) # 0 = now, 1 = next
+				name = event and event.getEventName() or ''
+				self.session.open(IMDB, name)
 		else:
 			self.session.open(MessageBox, _("The IMDb plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
@@ -3583,7 +3557,7 @@ class InfoBarSubserviceSelection:
 			{
 				"GreenPressed": (self.GreenPressed),
 			})
-		if not config.plisettings.Subservice.value:
+		if not config.vixsettings.Subservice.value:
 			self["key_green"] = Label("Timers")
 		else:
 			self["key_green"] = Label("Subservices")
@@ -3604,7 +3578,7 @@ class InfoBarSubserviceSelection:
 		self.bsel = None
 
 	def GreenPressed(self):
-		if not config.plisettings.Subservice.value:
+		if not config.vixsettings.Subservice.value:
 			self.openTimerList()
 		else:
 			self.subserviceSelection()
