@@ -1,67 +1,16 @@
 from Plugins.Plugin import PluginDescriptor
 from GraphMultiEpg import GraphMultiEPG
-from Screens.ChannelSelection import BouquetSelector
+from Screens.ChannelSelection import BouquetSelector, SilentBouquetSelector
 from enigma import eServiceCenter, eServiceReference
 from ServiceReference import ServiceReference
-from Screens.Screen import Screen
-from Components.ActionMap import ActionMap
-from Components.MenuList import MenuList
+from Components.config import config
 
 Session = None
 Servicelist = None
+
 bouquetSel = None
 epg_bouquet = None
-epg = None
-
-class SelectBouquet(Screen):
-	skin = """<screen name="SelectBouquet" position="center,center" size="300,240" title="Choose bouquet">
-              <widget name="menu" position="10,10" size="290,225" scrollbarMode="showOnDemand" />
-          </screen>"""
-
-	def __init__(self, session, bouquets, curbouquet, direction, enableWrapAround=True):
-		Screen.__init__(self, session)
-
-		self["actions"] = ActionMap(["OkCancelActions", "EPGSelectActions"],
-			{
-				"ok": self.okbuttonClick,
-				"cancel": self.cancelClick,
-				"nextBouquet": self.up,
-				"prevBouquet": self.down
-			})
-		entrys = [ (x[0], x[1]) for x in bouquets ]
-		self["menu"] = MenuList(entrys, enableWrapAround)
-		idx = 0
-		for x in bouquets:
-			if x[1] == curbouquet:
-				break
-			idx += 1
-		self.idx = idx
-		self.dir = direction
-		self.onShow.append(self.__onShow)
-
-	def __onShow(self):
-		self["menu"].moveToIndex(self.idx)
-		if self.dir == -1:
-			self.down()
-		else:
-			self.up()
-
-	def getCurrent(self):
-		cur = self["menu"].getCurrent()
-		return cur and cur[1]
-
-	def okbuttonClick(self):
-		self.close(self.getCurrent())
-
-	def up(self):
-		self["menu"].up()
-
-	def down(self):
-		self["menu"].down()
-
-	def cancelClick(self):
-		self.close(None)
-
+dlg_stack = [ ]
 
 def zapToService(service):
 	if not service is None:
@@ -91,46 +40,80 @@ def cleanup():
 	Session = None
 	global Servicelist
 	Servicelist = None
-	global bouquets
-	bouquets = None
-	global epg_bouquet
-	epg_bouquet = None
-	global epg
-	epg = None
 
 def closed(ret=False):
-	cleanup()
+	closedScreen = dlg_stack.pop()
+	global bouquetSel
+	if bouquetSel and closedScreen == bouquetSel:
+		bouquetSel = None
+	dlgs=len(dlg_stack)
+	if ret and dlgs > 0: # recursive close wished
+		dlg_stack[dlgs-1].close(dlgs > 1)
+	if dlgs <= 0:
+		cleanup()
 
-def onSelectBouquetClose(bouquet):
-	if not bouquet is None:
+def openBouquetEPG(bouquet):
+	services = getBouquetServices(bouquet)
+	if len(services):
+		global epg_bouquet
+		epg_bouquet = bouquet
+		dlg_stack.append(Session.openWithCallback(closed, GraphMultiEPG, services, zapToService, changeBouquetCB))
+		return True
+	return False
+
+def changeBouquetCB(direction, epg):
+	if bouquetSel:
+		if direction > 0:
+			bouquetSel.down()
+		else:
+			bouquetSel.up()
+		bouquet = bouquetSel.getCurrent()
 		services = getBouquetServices(bouquet)
 		if len(services):
 			global epg_bouquet
 			epg_bouquet = bouquet
 			epg.setServices(services)
-			epg.setTitle(ServiceReference(epg_bouquet).getServiceName())
 
-def changeBouquetCB(direction, epgcall):
-	global epg
-	epg = epgcall
-	Session.openWithCallback(onSelectBouquetClose, SelectBouquet, bouquets, epg_bouquet, direction)
+def openAskBouquet(Session, bouquets, cnt):
+	if cnt > 1: # show bouquet list
+		global bouquetSel
+		bouquetSel = Session.openWithCallback(closed, BouquetSelector, bouquets, openBouquetEPG, enableWrapAround=True)
+		dlg_stack.append(bouquetSel)
+	elif cnt == 1:
+		if not openBouquetEPG(bouquets[0][1]):
+			cleanup()
 
-def main(session, servicelist = None, **kwargs):
+def openSilent(Servicelist, bouquets, cnt):
+	root = Servicelist.getRoot()
+	if cnt > 1: # create bouquet list
+		global bouquetSel
+		current = 0
+		rootstr = root.toCompareString()
+		for bouquet in bouquets:
+			if bouquet[1].toCompareString() == rootstr:
+				break
+			current += 1
+		if current >= cnt:
+			current = 0
+		bouquetSel = SilentBouquetSelector(bouquets, True, current)
+	if cnt >= 1: # open current bouquet
+		if not openBouquetEPG(root):
+			cleanup()
+
+def main(session, servicelist, **kwargs):
 	global Session
 	Session = session
 	global Servicelist
 	Servicelist = servicelist
-	global bouquets
-	bouquets = Servicelist and Servicelist.getBouquetList()
-	global epg_bouquet
-	epg_bouquet = Servicelist and Servicelist.getRoot()
-	if epg_bouquet is not None:
-		if len(bouquets) > 1 :
-			cb = changeBouquetCB
-		else:
-			cb = None
-		services = getBouquetServices(epg_bouquet)
-		Session.openWithCallback(closed, GraphMultiEPG, services, zapToService, cb, ServiceReference(epg_bouquet).getServiceName())
+	bouquets = Servicelist.getBouquetList()
+	if bouquets is None:
+		cnt = 0
+	else:
+		cnt = len(bouquets)
+	if config.usage.multiepg_ask_bouquet.value:
+		openAskBouquet(session, bouquets, cnt)
+	else:
+		openSilent(servicelist, bouquets, cnt)
 
 def Plugins(**kwargs):
 	name = _("Graphical Multi EPG")
