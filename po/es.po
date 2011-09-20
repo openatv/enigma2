@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-04-01 08:09+0000\n"
-"PO-Revision-Date: 2011-03-29 10:47+0200\n"
+"POT-Creation-Date: 2011-04-20 10:39+0000\n"
+"PO-Revision-Date: 2011-04-12 22:26+0200\n"
 "Last-Translator: Jose Juan <jzapater@gmail.com>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
@@ -210,6 +210,8 @@ msgid ""
 "%d conflict(s) encountered when trying to add new timers:\n"
 "%s"
 msgstr ""
+"%d conflictos encontrados cuando intentamos añadir nuevas programaciones:\n"
+"%s"
 
 #
 #, python-format
@@ -250,7 +252,7 @@ msgstr "%s (%s)\n"
 
 #, python-format
 msgid "%s: %s at %s"
-msgstr ""
+msgstr "%s: %s a %s"
 
 #
 msgid "(ZAP)"
@@ -409,7 +411,7 @@ msgid "A"
 msgstr "A"
 
 msgid "A BackToTheRoots-Skin .. but with Warp-8 speed."
-msgstr ""
+msgstr "Una piel BackToTheRoots .. pero con la velicidad Warp-8."
 
 msgid "A BackToTheRoots-Skin .. or good old times."
 msgstr "Una Piel BackToTheRoots .. or buenos momentos antiguos"
@@ -433,7 +435,7 @@ msgid "A demo plugin for TPM usage."
 msgstr "Un plugin de demo para el uso de TPM"
 
 msgid "A dreambox simulation from SG-Atlantis displays."
-msgstr ""
+msgstr "Una simulación dreambox de las visualizaciones SG-Atlantis."
 
 #
 msgid ""
@@ -1520,22 +1522,6 @@ msgid "Code rate LP"
 msgstr ""
 
 #
-msgid "Code rate high"
-msgstr "Velocidad de código alta"
-
-#
-msgid "Code rate low"
-msgstr "Velocidad de código baja"
-
-#
-msgid "Coderate HP"
-msgstr "Velocidad de código HP"
-
-#
-msgid "Coderate LP"
-msgstr "Velocidad de código LP"
-
-#
 msgid "Collection name"
 msgstr "Nombre de la colección"
 
@@ -2384,6 +2370,12 @@ msgstr "Formato dreambox DVD (HDTV compatible)"
 msgid "Dreambox software because updates are available."
 msgstr "Actualizaciones del software Dreambox están disponibles."
 
+msgid "Driver for Ralink RT8070/RT3070/RT3370 based wireless-n USB devices."
+msgstr ""
+
+msgid "Driver for Realtek r8712u based wireless-n USB devices."
+msgstr ""
+
 msgid "Duration: "
 msgstr "Duración:"
 
@@ -2732,6 +2724,9 @@ msgstr ""
 #
 msgid "Estonian"
 msgstr "Estonio"
+
+msgid "Ethernet network interface"
+msgstr ""
 
 #
 msgid "Eventview"
@@ -3157,16 +3152,8 @@ msgid ""
 "iPhone using prowl."
 msgstr ""
 
-#
-msgid "Guard Interval"
-msgstr "Intervalo de guarda"
-
 msgid "Guard interval"
 msgstr ""
-
-#
-msgid "Guard interval mode"
-msgstr "Modo intervalo seguro"
 
 #
 msgid "Guess existing timer based on begin/end"
@@ -3202,6 +3189,9 @@ msgstr "Disco duro en reposo después"
 msgid "Help"
 msgstr "Ayuda"
 
+msgid "Hidden network"
+msgstr ""
+
 #
 msgid "Hidden network SSID"
 msgstr "SSID de red oculta"
@@ -3210,16 +3200,8 @@ msgstr "SSID de red oculta"
 msgid "Hidden networkname"
 msgstr "Nombre de la red oculta"
 
-#
-msgid "Hierarchy Information"
-msgstr "Información jerárquica"
-
 msgid "Hierarchy info"
 msgstr ""
-
-#
-msgid "Hierarchy mode"
-msgstr "Modo jerárquico"
 
 #
 msgid "High bitrate support"
@@ -3288,10 +3270,8 @@ msgstr "Islandés"
 #, python-format
 msgid ""
 "If this is enabled an existing timer will also be considered recording an "
-"event if it records at least 80% of the it."
+"event if it records at least 80%% of the it."
 msgstr ""
-"Si activa esto, una grabación existente también será considerada grabación "
-"si el evento graba al menos el 80% de ella."
 
 #
 msgid ""
@@ -3754,6 +3734,9 @@ msgstr "Enlace:"
 msgid "Linked titles with a DVD menu"
 msgstr "Enlazar los títulos con un menú de DVD"
 
+msgid "List available networks"
+msgstr ""
+
 #
 msgid "List of Storage Devices"
 msgstr "Listar dispositivos de almacenamiento"
@@ -3887,6 +3870,9 @@ msgstr "Manejar el software de su receptor"
 #
 msgid "Manual Scan"
 msgstr "Búsqueda Manual"
+
+msgid "Manual configuration"
+msgstr ""
 
 #
 msgid "Manual transponder"
@@ -4425,6 +4411,9 @@ msgstr "Examinar red"
 msgid "NetworkWizard"
 msgstr "Asistente de Red"
 
+msgid "Networkname (SSID)"
+msgstr ""
+
 #
 msgid "Never"
 msgstr "Nunca"
@@ -4591,6 +4580,9 @@ msgstr "No hay video para ver"
 msgid "No wireless networks found! Please refresh."
 msgstr "¡No he encontrado redes wifi! Refresque."
 
+msgid "No wireless networks found! Searching..."
+msgstr ""
+
 #
 msgid ""
 "No working local network adapter found.\n"
@@ -4698,6 +4690,9 @@ msgstr ""
 
 msgid "Not fetching feed entries"
 msgstr "No descargo las entradas del feed"
+
+msgid "Not-Associated"
+msgstr ""
 
 #
 msgid ""
@@ -4810,10 +4805,6 @@ msgstr "Menú de abrir plugin"
 #
 msgid "Optionally enter your name if you want to."
 msgstr "Introduzca su nombre opcionalmente si quiere."
-
-#
-msgid "Orbital Position"
-msgstr "Posición Orbital"
 
 msgid "Orbital position"
 msgstr ""
@@ -5292,10 +5283,6 @@ msgid "Poland"
 msgstr "Polonia"
 
 #
-msgid "Polarity"
-msgstr "Polaridad"
-
-#
 msgid "Polarization"
 msgstr "Polarización"
 
@@ -5542,6 +5529,9 @@ msgstr "RGB"
 
 msgid "RSS viewer"
 msgstr "Visor RSS"
+
+msgid "RT8070/RT3070/RT3370 USB wireless-n driver"
+msgstr ""
 
 #
 msgid "Radio"
@@ -5912,10 +5902,6 @@ msgstr "Dcha"
 
 msgid "Roll-off"
 msgstr ""
-
-#
-msgid "Rolloff"
-msgstr "Caerte"
 
 #
 msgid "Rotor turning speed"
@@ -6982,16 +6968,8 @@ msgstr "Cambiar al subcanal anterior"
 msgid "Switchable tuner types:"
 msgstr "Tipos de tuner seleccionables::"
 
-#
-msgid "Symbol Rate"
-msgstr "Velocidad de símbolo"
-
 msgid "Symbol rate"
 msgstr ""
-
-#
-msgid "Symbolrate"
-msgstr "Velocidad de símbolo"
 
 #
 msgid "System"
@@ -7790,20 +7768,12 @@ msgid "Translation:"
 msgstr "Traducción:"
 
 #
-msgid "Transmission Mode"
-msgstr "Modo de trasmisión"
-
-#
 msgid "Transmission mode"
 msgstr "Modo de trasmisión"
 
 #
 msgid "Transponder"
 msgstr "Transponder"
-
-#
-msgid "Transponder Type"
-msgstr "Tipo de Transponder"
 
 msgid "Travel & Events"
 msgstr "Viajes y Eventos"
@@ -7930,6 +7900,9 @@ msgstr "Deshacer instalación"
 msgid "Undo uninstall"
 msgstr "Deshacer desinstalación"
 
+msgid "Unencrypted"
+msgstr ""
+
 msgid "UnhandledKey"
 msgstr "Tecla no manejada"
 
@@ -7955,6 +7928,9 @@ msgstr "Estados Unidos"
 #
 msgid "Universal LNB"
 msgstr "LNB Universal"
+
+msgid "Unknown"
+msgstr ""
 
 msgid "Unknown network adapter."
 msgstr "Adaptador de red desconocido."
@@ -8652,6 +8628,15 @@ msgstr "Red Inalámbrica"
 #
 msgid "Wireless Network State"
 msgstr "Estado Red Inalámbrica"
+
+msgid "Wireless network connection setup"
+msgstr ""
+
+msgid "Wireless network connection setup."
+msgstr ""
+
+msgid "Wireless network state"
+msgstr ""
 
 msgid ""
 "With AntiScrollbar you can cover up annoying ticker lines (e.g. in news "
@@ -9574,6 +9559,9 @@ msgstr "no grabar"
 msgid "done!"
 msgstr "¡hecho!"
 
+msgid "driver for Realtek USB wireless devices"
+msgstr ""
+
 #
 msgid "edit alternatives"
 msgstr "editar alternativas"
@@ -10459,6 +10447,9 @@ msgstr "semanalmente"
 msgid "whitelist"
 msgstr "lista blanca"
 
+msgid "wireless network interface"
+msgstr ""
+
 #
 msgid "working"
 msgstr "trabajando"
@@ -10694,6 +10685,22 @@ msgstr "zapeado"
 #
 #~ msgid "Choose source"
 #~ msgstr "Elige origen"
+
+#
+#~ msgid "Code rate high"
+#~ msgstr "Velocidad de código alta"
+
+#
+#~ msgid "Code rate low"
+#~ msgstr "Velocidad de código baja"
+
+#
+#~ msgid "Coderate HP"
+#~ msgstr "Velocidad de código HP"
+
+#
+#~ msgid "Coderate LP"
+#~ msgstr "Velocidad de código LP"
 
 #
 #~ msgid "Compact flash card"
@@ -10990,12 +10997,35 @@ msgstr "zapeado"
 #~ "cliente growl"
 
 #
+#~ msgid "Guard Interval"
+#~ msgstr "Intervalo de guarda"
+
+#
+#~ msgid "Guard interval mode"
+#~ msgstr "Modo intervalo seguro"
+
+#
 #~ msgid "Hello!"
 #~ msgstr "¡Hola!"
 
 #
 #~ msgid "Here is a small overview of the available icon states."
 #~ msgstr "Aquí hay una pequeña explicación de los estados de los iconos."
+
+#
+#~ msgid "Hierarchy Information"
+#~ msgstr "Información jerárquica"
+
+#
+#~ msgid "Hierarchy mode"
+#~ msgstr "Modo jerárquico"
+
+#~ msgid ""
+#~ "If this is enabled an existing timer will also be considered recording an "
+#~ "event if it records at least 80% of the it."
+#~ msgstr ""
+#~ "Si activa esto, una grabación existente también será considerada "
+#~ "grabación si el evento graba al menos el 80% de ella."
 
 #
 #~ msgid "If you can see this page, please press OK."
@@ -11168,6 +11198,10 @@ msgstr "zapeado"
 #~ msgstr "Actualización-Online"
 
 #
+#~ msgid "Orbital Position"
+#~ msgstr "Posición Orbital"
+
+#
 #~ msgid "Other..."
 #~ msgstr "Otro..."
 
@@ -11230,6 +11264,10 @@ msgstr "zapeado"
 #
 #~ msgid "Plugin manager process information..."
 #~ msgstr "Información de preceso del manejador de plugin..."
+
+#
+#~ msgid "Polarity"
+#~ msgstr "Polaridad"
 
 #
 #~ msgid "Port"
@@ -11365,6 +11403,10 @@ msgstr "zapeado"
 #~ "configuración ahora."
 
 #
+#~ msgid "Rolloff"
+#~ msgstr "Caerte"
+
+#
 #~ msgid "SSL"
 #~ msgstr "SSL"
 
@@ -11494,6 +11536,14 @@ msgstr "zapeado"
 #~ msgstr "Stéreo"
 
 #
+#~ msgid "Symbol Rate"
+#~ msgstr "Velocidad de símbolo"
+
+#
+#~ msgid "Symbolrate"
+#~ msgstr "Velocidad de símbolo"
+
+#
 #~ msgid ""
 #~ "The .NFI Image flasher USB stick is now ready to use. Please download an ."
 #~ "NFI image file from the feed server and save it on the stick. Then reboot "
@@ -11595,6 +11645,14 @@ msgstr "zapeado"
 #~ "2) Vuelva a conectar la corriente y pulse el botón ABAJO en el panel "
 #~ "frontal presiando por 10 segundos.\n"
 #~ "3) Espere a que arranque y siga las instrucciones del asistente."
+
+#
+#~ msgid "Transmission Mode"
+#~ msgstr "Modo de trasmisión"
+
+#
+#~ msgid "Transponder Type"
+#~ msgstr "Tipo de Transponder"
 
 #
 #~ msgid "Transpondertype"

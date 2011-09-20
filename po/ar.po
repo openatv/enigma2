@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-04-01 08:09+0000\n"
+"POT-Creation-Date: 2011-04-20 10:39+0000\n"
 "PO-Revision-Date: 2010-08-20 00:08+0200\n"
 "Last-Translator: Hazem <moustafagamal@hotmail.com>\n"
 "Language-Team: Arabic <moustafagamal@hotmail.com>\n"
@@ -1402,22 +1402,6 @@ msgstr ""
 msgid "Code rate LP"
 msgstr ""
 
-#
-msgid "Code rate high"
-msgstr ""
-
-#
-msgid "Code rate low"
-msgstr ""
-
-#
-msgid "Coderate HP"
-msgstr ""
-
-#
-msgid "Coderate LP"
-msgstr ""
-
 msgid "Collection name"
 msgstr "اسم المجموعه"
 
@@ -2155,6 +2139,12 @@ msgstr ""
 msgid "Dreambox software because updates are available."
 msgstr "البرنامج التشغيلى للدريم بوكس لتوافر تحديثات"
 
+msgid "Driver for Ralink RT8070/RT3070/RT3370 based wireless-n USB devices."
+msgstr ""
+
+msgid "Driver for Realtek r8712u based wireless-n USB devices."
+msgstr ""
+
 #
 msgid "Duration: "
 msgstr "مده زمنيه"
@@ -2481,6 +2471,9 @@ msgstr ""
 
 msgid "Estonian"
 msgstr "أستونى"
+
+msgid "Ethernet network interface"
+msgstr ""
 
 #
 msgid "Eventview"
@@ -2863,14 +2856,8 @@ msgid ""
 "iPhone using prowl."
 msgstr ""
 
-msgid "Guard Interval"
-msgstr "فاصل الحرس"
-
 msgid "Guard interval"
 msgstr ""
-
-msgid "Guard interval mode"
-msgstr "وضعية فاصل الحرس"
 
 #
 msgid "Guess existing timer based on begin/end"
@@ -2906,6 +2893,9 @@ msgstr "القرص الصلب فى وضع الاستعداد بعد"
 msgid "Help"
 msgstr "مسـاعده"
 
+msgid "Hidden network"
+msgstr ""
+
 #
 msgid "Hidden network SSID"
 msgstr "شبكه مخفيه SSID"
@@ -2914,14 +2904,8 @@ msgstr "شبكه مخفيه SSID"
 msgid "Hidden networkname"
 msgstr "إسم شبكه مخفى"
 
-msgid "Hierarchy Information"
-msgstr "معلومات التسلسل الهرمى"
-
 msgid "Hierarchy info"
 msgstr ""
-
-msgid "Hierarchy mode"
-msgstr "وضعية التسلسل الهرمى"
 
 msgid "High bitrate support"
 msgstr "دعم معدل البث العالى"
@@ -2981,12 +2965,11 @@ msgstr "مسار أيزو"
 msgid "Icelandic"
 msgstr "ايسلندى"
 
-#
 #, python-format
 msgid ""
 "If this is enabled an existing timer will also be considered recording an "
-"event if it records at least 80% of the it."
-msgstr "عند تفعيل هذا سيعتبر المؤقت الحالى يسجل حدثإذا سجل على الاقل 80% منه"
+"event if it records at least 80%% of the it."
+msgstr ""
 
 msgid ""
 "If you see this, something is wrong with\n"
@@ -3421,6 +3404,9 @@ msgstr ""
 msgid "Linked titles with a DVD menu"
 msgstr ""
 
+msgid "List available networks"
+msgstr ""
+
 #
 msgid "List of Storage Devices"
 msgstr "قائمة أجهزة التخزين"
@@ -3550,6 +3536,9 @@ msgstr "تحكم فى البرنامج التشغيلى للرسيفر"
 #
 msgid "Manual Scan"
 msgstr "بحـث يدوى"
+
+msgid "Manual configuration"
+msgstr ""
 
 msgid "Manual transponder"
 msgstr "تردد يدوى"
@@ -4065,6 +4054,9 @@ msgstr "متصفح الشبكه"
 msgid "NetworkWizard"
 msgstr "نافذة إعدادات الشبكه"
 
+msgid "Networkname (SSID)"
+msgstr ""
+
 #
 msgid "Never"
 msgstr "مطلقا"
@@ -4217,6 +4209,9 @@ msgstr "لا يوجد فيديو للعرض"
 msgid "No wireless networks found! Please refresh."
 msgstr "لم يتم العثور على شبكه لاسلكيه! . من فضلك حدث"
 
+msgid "No wireless networks found! Searching..."
+msgstr ""
+
 msgid ""
 "No working local network adapter found.\n"
 "Please verify that you have attached a network cable and your network is "
@@ -4316,6 +4311,9 @@ msgstr ""
 
 #
 msgid "Not fetching feed entries"
+msgstr ""
+
+msgid "Not-Associated"
 msgstr ""
 
 msgid ""
@@ -4419,10 +4417,6 @@ msgstr "أفتح قائمة البلج إنز"
 
 msgid "Optionally enter your name if you want to."
 msgstr "أدخل اسم إذا كنت ترغب فى ذلك - إختيارى-"
-
-#
-msgid "Orbital Position"
-msgstr "الوضع المدارى"
 
 msgid "Orbital position"
 msgstr ""
@@ -4847,10 +4841,6 @@ msgid "Poland"
 msgstr "بولندا"
 
 #
-msgid "Polarity"
-msgstr "القطبيه"
-
-#
 msgid "Polarization"
 msgstr "الاستقطاب"
 
@@ -5072,6 +5062,9 @@ msgid "RGB"
 msgstr "RGB"
 
 msgid "RSS viewer"
+msgstr ""
+
+msgid "RT8070/RT3070/RT3370 USB wireless-n driver"
 msgstr ""
 
 msgid "Radio"
@@ -5394,10 +5387,6 @@ msgid "Right"
 msgstr "يمين"
 
 msgid "Roll-off"
-msgstr ""
-
-#
-msgid "Rolloff"
 msgstr ""
 
 #
@@ -6406,14 +6395,8 @@ msgstr "الانتقال الى الفرعيه السابقه"
 msgid "Switchable tuner types:"
 msgstr ""
 
-msgid "Symbol Rate"
-msgstr "معدل الترميز"
-
 msgid "Symbol rate"
 msgstr ""
-
-msgid "Symbolrate"
-msgstr "معدل الترميز"
 
 #
 msgid "System"
@@ -7104,20 +7087,12 @@ msgid "Translation:"
 msgstr "ترجمه:"
 
 #
-msgid "Transmission Mode"
-msgstr "وضع الترجمه"
-
-#
 msgid "Transmission mode"
 msgstr "وضع النقل"
 
 #
 msgid "Transponder"
 msgstr "التردد"
-
-#
-msgid "Transponder Type"
-msgstr "نوع التردد"
 
 #
 msgid "Travel & Events"
@@ -7234,6 +7209,9 @@ msgstr "تراجع عن التثبيت"
 msgid "Undo uninstall"
 msgstr "تراجع عن الغاء التثبيت"
 
+msgid "Unencrypted"
+msgstr ""
+
 #
 msgid "UnhandledKey"
 msgstr ""
@@ -7258,6 +7236,9 @@ msgstr "الولايات المتحده"
 
 #
 msgid "Universal LNB"
+msgstr ""
+
+msgid "Unknown"
 msgstr ""
 
 msgid "Unknown network adapter."
@@ -7891,6 +7872,15 @@ msgstr "شبكه لا سلكيه"
 
 msgid "Wireless Network State"
 msgstr "حالة الشبكه اللاسلكيه"
+
+msgid "Wireless network connection setup"
+msgstr ""
+
+msgid "Wireless network connection setup."
+msgstr ""
+
+msgid "Wireless network state"
+msgstr ""
 
 msgid ""
 "With AntiScrollbar you can cover up annoying ticker lines (e.g. in news "
@@ -8664,6 +8654,9 @@ msgstr ""
 msgid "done!"
 msgstr "تم !"
 
+msgid "driver for Realtek USB wireless devices"
+msgstr ""
+
 msgid "edit alternatives"
 msgstr "تحرير البدائل"
 
@@ -9414,6 +9407,9 @@ msgstr "اسبوعى"
 msgid "whitelist"
 msgstr "القائمه البيضاء"
 
+msgid "wireless network interface"
+msgstr ""
+
 msgid "working"
 msgstr "يعمل"
 
@@ -9531,9 +9527,28 @@ msgstr "تم الانتقال"
 #~ msgid "Games / Plugins"
 #~ msgstr "العاب/بلج إنز"
 
+#~ msgid "Guard Interval"
+#~ msgstr "فاصل الحرس"
+
+#~ msgid "Guard interval mode"
+#~ msgstr "وضعية فاصل الحرس"
+
 #
 #~ msgid "Hide error windows"
 #~ msgstr "إخفاء نافذه الاخطاء"
+
+#~ msgid "Hierarchy Information"
+#~ msgstr "معلومات التسلسل الهرمى"
+
+#~ msgid "Hierarchy mode"
+#~ msgstr "وضعية التسلسل الهرمى"
+
+#
+#~ msgid ""
+#~ "If this is enabled an existing timer will also be considered recording an "
+#~ "event if it records at least 80% of the it."
+#~ msgstr ""
+#~ "عند تفعيل هذا سيعتبر المؤقت الحالى يسجل حدثإذا سجل على الاقل 80% منه"
 
 #~ msgid "Image flash utility"
 #~ msgstr "استخدام شحن الفلاش"
@@ -9570,6 +9585,10 @@ msgstr "تم الانتقال"
 #~ msgstr "لاشيئ متصل"
 
 #
+#~ msgid "Orbital Position"
+#~ msgstr "الوضع المدارى"
+
+#
 #~ msgid "Page"
 #~ msgstr "صفحه"
 
@@ -9600,6 +9619,10 @@ msgstr "تم الانتقال"
 #
 #~ msgid "Please select target directory or medium"
 #~ msgstr "من فضلك إختار الدليل الهدف أو الوسيط"
+
+#
+#~ msgid "Polarity"
+#~ msgstr "القطبيه"
 
 #
 #~ msgid "Positioner mode"
@@ -9674,6 +9697,12 @@ msgstr "تم الانتقال"
 #~ msgid "Stereo"
 #~ msgstr "ستيريـو"
 
+#~ msgid "Symbol Rate"
+#~ msgstr "معدل الترميز"
+
+#~ msgid "Symbolrate"
+#~ msgstr "معدل الترميز"
+
 #
 #~ msgid "Thanks for using the wizard. Your box is now ready to use."
 #~ msgstr "شكرا، الرسيفر جاهز للاستخدام الان"
@@ -9737,6 +9766,14 @@ msgstr "تم الانتقال"
 #~ "للأقلاع \n"
 #~ "2-أعد الكهرباء وأضغط على ذر DOWN الموجود فى مقدمه الجهاز لمدة 10 ثوانى \n"
 #~ "3-أنتظر الأقلاع ثم أتبع التعليمات على الشاشه ."
+
+#
+#~ msgid "Transmission Mode"
+#~ msgstr "وضع الترجمه"
+
+#
+#~ msgid "Transponder Type"
+#~ msgstr "نوع التردد"
 
 #~ msgid ""
 #~ "USB stick wizard finished. Your dreambox will now restart with your new "
