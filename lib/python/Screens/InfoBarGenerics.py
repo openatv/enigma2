@@ -1,4 +1,4 @@
-from ChannelSelection import ChannelSelection, BouquetSelector
+from ChannelSelection import ChannelSelection, BouquetSelector, SilentBouquetSelector
 
 from Components.ActionMap import ActionMap, HelpableActionMap
 from Components.ActionMap import NumberActionMap
@@ -626,6 +626,12 @@ class InfoBarEPG:
 			cnt = 0
 		else:
 			cnt = len(bouquets)
+		if config.usage.multiepg_ask_bouquet.value:
+			self.openMultiServiceEPGAskBouquet(bouquets, cnt, withCallback)
+		else:
+			self.openMultiServiceEPGSilent(bouquets, cnt, withCallback)
+
+	def openMultiServiceEPGAskBouquet(self, bouquets, cnt, withCallback):
 		if cnt > 1: # show bouquet list
 			if withCallback:
 				self.bouquetSel = self.session.openWithCallback(self.closed, BouquetSelector, bouquets, self.openBouquetEPG, enableWrapAround=True)
@@ -634,6 +640,21 @@ class InfoBarEPG:
 				self.bouquetSel = self.session.open(BouquetSelector, bouquets, self.openBouquetEPG, enableWrapAround=True)
 		elif cnt == 1:
 			self.openBouquetEPG(bouquets[0][1], withCallback)
+
+	def openMultiServiceEPGSilent(self, bouquets, cnt, withCallback):
+		root = self.servicelist.getRoot()
+		rootstr = root.toCompareString()
+		current = 0
+		for bouquet in bouquets:
+			if bouquet[1].toCompareString() == rootstr:
+				break
+			current += 1
+		if current >= cnt:
+			current = 0
+		if cnt > 1: # create bouquet list for bouq+/-
+			self.bouquetSel = SilentBouquetSelector(bouquets, True, self.servicelist.getBouquetNumOffset(root))
+		if cnt >= 1:
+			self.openBouquetEPG(root, withCallback)
 
 	def changeServiceCB(self, direction, epg):
 		if self.serviceSel:

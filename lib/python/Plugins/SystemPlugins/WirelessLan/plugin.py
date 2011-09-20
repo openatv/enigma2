@@ -395,39 +395,7 @@ def callFunction(iface):
 	return None
 
 def configStrings(iface):
-<<<<<<< HEAD
 	driver = iNetwork.detectWlanModule(iface)
-=======
-	try:
-		device = open("/proc/stb/info/model", "r").readline().strip()
-	except:
-		device = ""	
-	if device != "dm7025":
-		rootkey = ['\x9f', '|', '\xe4', 'G', '\xc9', '\xb4', '\xf4', '#', '&', '\xce', '\xb3', '\xfe', '\xda', '\xc9', 'U', '`', '\xd8', '\x8c', 's', 'o', '\x90', '\x9b', '\\', 'b', '\xc0', '\x89', '\xd1', '\x8c', '\x9e', 'J', 'T', '\xc5', 'X', '\xa1', '\xb8', '\x13', '5', 'E', '\x02', '\xc9', '\xb2', '\xe6', 't', '\x89', '\xde', '\xcd', '\x9d', '\x11', '\xdd', '\xc7', '\xf4', '\xe4', '\xe4', '\xbc', '\xdb', '\x9c', '\xea', '}', '\xad', '\xda', 't', 'r', '\x9b', '\xdc', '\xbc', '\x18', '3', '\xe7', '\xaf', '|', '\xae', '\x0c', '\xe3', '\xb5', '\x84', '\x8d', '\r', '\x8d', '\x9d', '2', '\xd0', '\xce', '\xd5', 'q', '\t', '\x84', 'c', '\xa8', ')', '\x99', '\xdc', '<', '"', 'x', '\xe8', '\x87', '\x8f', '\x02', ';', 'S', 'm', '\xd5', '\xf0', '\xa3', '_', '\xb7', 'T', '\t', '\xde', '\xa7', '\xf1', '\xc9', '\xae', '\x8a', '\xd7', '\xd2', '\xcf', '\xb2', '.', '\x13', '\xfb', '\xac', 'j', '\xdf', '\xb1', '\x1d', ':', '?']
-		etpm = eTPM()
-		l2cert = etpm.getCert(eTPM.TPMD_DT_LEVEL2_CERT)
-		if l2cert is None:
-			return
-		l2key = validate_certificate(l2cert, rootkey)
-		if l2key is None:
-			return
-		l3cert = etpm.getCert(eTPM.TPMD_DT_LEVEL3_CERT)
-		if l3cert is None:
-			return
-		l3key = validate_certificate(l3cert, l2key)
-		if l3key is None:
-			return
-		rnd = get_random()
-		if rnd is None:
-			return
-		val = etpm.challenge(rnd)
-		result = decrypt_block(val, l3key)
-	if device == "dm7025" or result[80:88] == rnd:
-		driver = iNetwork.detectWlanModule(iface)
-	else:
-		driver = 'dreambox'
-	print 'Using "%s" as wpa-supplicant driver' % (driver)
->>>>>>> acb231d17468a18e7ee92654b8cdf07059a9ca66
 	ret = ""
 	if driver == 'madwifi' and config.plugins.wlan.hiddenessid.value:
 		ret += "\tpre-up iwconfig " + iface + " essid \"" + re_escape(config.plugins.wlan.essid.value) + "\" || true\n"

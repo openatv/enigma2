@@ -1,13 +1,10 @@
-# Arabic translations for tuxbox-enigma package.
-# Copyright (C) 2005 THE tuxbox-enigma'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the tuxbox-enigma package.
-# Automatically generated, 2005.
+# Arabic translations for Enigma2.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: tuxbox-enigma 0.0.1\n"
+"Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-04-20 10:39+0000\n"
+"POT-Creation-Date: 2011-09-07 11:08+0000\n"
 "PO-Revision-Date: 2010-08-20 00:08+0200\n"
 "Last-Translator: Hazem <moustafagamal@hotmail.com>\n"
 "Language-Team: Arabic <moustafagamal@hotmail.com>\n"
@@ -195,6 +192,12 @@ msgstr "%H:%M"
 #, python-format
 msgid ""
 "%d conflict(s) encountered when trying to add new timers:\n"
+"%s"
+msgstr ""
+
+#, python-format
+msgid ""
+"%d conflict(s) solved with similar timer(s):\n"
 "%s"
 msgstr ""
 
@@ -435,6 +438,9 @@ msgstr ""
 msgid "A nice looking skin from Kerni"
 msgstr ""
 
+msgid "A plugin to add / remove / modify entries of fstab."
+msgstr ""
+
 #, python-format
 msgid ""
 "A record has been started:\n"
@@ -542,6 +548,9 @@ msgstr "عن"
 msgid "About..."
 msgstr "عـن..."
 
+msgid "Access the EPG from within the Movie Player"
+msgstr ""
+
 msgid "Access to the ARD-Mediathek"
 msgstr ""
 
@@ -567,6 +576,9 @@ msgstr "العمل"
 #
 msgid "Activate Picture in Picture"
 msgstr "صوره داخل صوره نشط"
+
+msgid "Activate VPS"
+msgstr ""
 
 #
 msgid "Activate network settings"
@@ -623,6 +635,12 @@ msgstr "إضافة مؤقت تلقائى جديد"
 msgid "Add new network mount point"
 msgstr "إضافة نقطة إعتلاء شبكه جديده"
 
+msgid "Add similar timer on conflict"
+msgstr ""
+
+msgid "Add tags to recorded movies"
+msgstr ""
+
 #
 msgid "Add timer"
 msgstr "أضف مؤقت"
@@ -648,6 +666,10 @@ msgstr "أضف مؤقت تنقل بدلا من مؤقت تسجيل"
 #
 msgid "Added: "
 msgstr "تمت الاضافه"
+
+msgid ""
+"Adds 'search...' to the context menu of the movie list to allow searches."
+msgstr ""
 
 #
 msgid ""
@@ -741,13 +763,30 @@ msgstr "كل الوقت"
 msgid "All non-repeating timers"
 msgstr "مؤقت غير متكرر"
 
+msgid "Allow to search recordings"
+msgstr ""
+
 msgid "Allow zapping via Webinterface"
 msgstr "السماح بالتنقل من خلال واجهة الشبكه"
 
 msgid "Allows the execution of TuxboxPlugins."
 msgstr ""
 
+msgid "Allows to change the order of entries in the main menu manually."
+msgstr ""
+
+msgid "Allows to zap using the picture in picture."
+msgstr ""
+
 msgid "Allows user to download files from rapidshare in the background."
+msgstr ""
+
+msgid ""
+"Allows you to access the service list and plugins requiring access to the "
+"service list (e.g. Graphical Multi EPG) from within the standard movie "
+"player.DO NOT install this plugin if you're using a nonstandard movie "
+"player, e.g. EMC. It will probably break and you might end up with a "
+"unusable movie player until you uninstall one of the conflicting plugins."
 msgstr ""
 
 #
@@ -768,9 +807,8 @@ msgstr ""
 msgid "Always ask before sending"
 msgstr "اسأل دائما قبل الارسال"
 
-#
-msgid "Ammount of recordings left"
-msgstr "التسجيل المتبقى"
+msgid "Amount of recordings left"
+msgstr ""
 
 #
 msgid "An empty filename is illegal."
@@ -785,6 +823,9 @@ msgstr "حدث خطأ غير معروف !"
 
 #
 msgid "Anonymize crashlog?"
+msgstr ""
+
+msgid "Any service/recording"
 msgstr ""
 
 msgid "Arabic"
@@ -855,9 +896,6 @@ msgstr ""
 
 msgid "Assigning providers/services/caids to a CI module"
 msgstr ""
-
-msgid "Atheros"
-msgstr "اثيروس"
 
 #
 msgid "Audio"
@@ -969,10 +1007,13 @@ msgstr ""
 msgid "Automatically send crashlogs to Dream Multimedia"
 msgstr ""
 
+msgid "Autoresolution"
+msgstr ""
+
 #, python-format
 msgid ""
 "Autoresolution Plugin Testmode:\n"
-"Is %s ok?"
+"Is %s OK?"
 msgstr ""
 
 msgid "Autoresolution Switch"
@@ -1150,6 +1191,12 @@ msgstr "الناقل"
 msgid ""
 "By enabling this events will not be matched if they don't occur on certain "
 "dates."
+msgstr ""
+
+msgid ""
+"By enabling this you will be notified about similar timers added during "
+"automated polling. There is no intelligence involved, so it might bother you "
+"about the same conflict over and over."
 msgstr ""
 
 msgid ""
@@ -1371,6 +1418,15 @@ msgstr ""
 msgid "Cleanup timerlist automatically."
 msgstr ""
 
+msgid ""
+"Cleanup timerlist, orphaned movie files and setting backups automatically "
+"according to specfied rules."
+msgstr ""
+
+msgid ""
+"Cleanup timerlist, orphaned movie files and setting backups automatically."
+msgstr ""
+
 msgid "CleanupWizard"
 msgstr "نافذة التنظيف"
 
@@ -1511,6 +1567,9 @@ msgstr "استمرار العرض"
 
 msgid "Contrast"
 msgstr "تباين"
+
+msgid "Control recording completely by service"
+msgstr ""
 
 msgid "Control your Dreambox with your Web browser."
 msgstr ""
@@ -1948,7 +2007,10 @@ msgstr "إظهار نتائج البحث بـ :"
 msgid "Display your photos on the TV"
 msgstr ""
 
-msgid "Displays movie information from the InternetMovieDatabase"
+msgid "Displays Movie Information from the InternetMovieDatabase"
+msgstr ""
+
+msgid "Displays Movie Information from the Online Film Datenbank (German)"
 msgstr ""
 
 #, python-format
@@ -2169,9 +2231,10 @@ msgstr ""
 
 msgid ""
 "EPGRefresh will automatically switch to user-defined channels when the box "
-"is idleing\n"
-"(in standby mode without any running recordings) to perform updates of the "
-"epg information on these channels."
+"is idling(i.e. in standby mode and no recordings running) to perform updates "
+"of the EPG information on these channels.\n"
+"On multi-tuner boxes it may optionally run in background hidden or in PiP, "
+"to not disturb the current TV program."
 msgstr ""
 
 #
@@ -2200,6 +2263,7 @@ msgstr "تحرير خدمات المؤقت الالى"
 msgid "Edit DNS"
 msgstr ""
 
+#. TRANSLATORS: description of AutoTimer in PluginBrowser
 msgid "Edit Timers and scan for new Events"
 msgstr "تحرير المؤقت والبحث عن أحداث جديده"
 
@@ -2249,6 +2313,9 @@ msgstr "تحرير عنوان مصدر الترقيه"
 
 #
 msgid "Editing"
+msgstr ""
+
+msgid "Editor for fstab"
 msgstr ""
 
 #
@@ -2365,9 +2432,6 @@ msgstr "مفتاح التشقير"
 
 msgid "Encryption Keytype"
 msgstr "نوع مفتاح التشفير"
-
-msgid "Encryption Type"
-msgstr "نوع التشفير"
 
 msgid "Encryption:"
 msgstr "التشفير:"
@@ -2668,16 +2732,9 @@ msgstr "نسق"
 #, python-format
 msgid ""
 "Found a total of %d matching Events.\n"
-"%d Timer were added and %d modified, %d conflicts encountered."
+"%d Timer were added and %d modified, %d conflicts encountered, %d similars "
+"added."
 msgstr ""
-
-#, python-format
-msgid ""
-"Found a total of %d matching Events.\n"
-"%d Timer were added and %d modified."
-msgstr ""
-"تم العثور على إجمالى %d أحداث متطابقه \n"
-"تم إضافة مؤقت %d وتم تعديل %d"
 
 #
 msgid "Frame size in full view"
@@ -2704,6 +2761,9 @@ msgstr ""
 #
 msgid "Frequency steps"
 msgstr "خطوات التردد"
+
+msgid "Frequently asked questions"
+msgstr ""
 
 #
 msgid "Fri"
@@ -2896,13 +2956,8 @@ msgstr "مسـاعده"
 msgid "Hidden network"
 msgstr ""
 
-#
-msgid "Hidden network SSID"
-msgstr "شبكه مخفيه SSID"
-
-#
-msgid "Hidden networkname"
-msgstr "إسم شبكه مخفى"
+msgid "Hide Plugin from Plugin or Extensionsmenu."
+msgstr ""
 
 msgid "Hierarchy info"
 msgstr ""
@@ -2964,6 +3019,17 @@ msgstr "مسار أيزو"
 #
 msgid "Icelandic"
 msgstr "ايسلندى"
+
+msgid ""
+"If a timer conflict occurs, AutoTimer will search outside the timespan for a "
+"similar event and add it."
+msgstr ""
+
+msgid ""
+"If installed, the plugin allows to modify the order in which entries of the "
+"main menu are shown.It can be changed using the \"MenuSort\" plugin, "
+"launchable from the regular plugin overview."
+msgstr ""
 
 #, python-format
 msgid ""
@@ -3149,9 +3215,6 @@ msgstr "متوسط"
 #
 msgid "Internal Flash"
 msgstr "الفلاش الداخلى"
-
-msgid "Internal LAN adapter."
-msgstr "محول شبكه محليه داخلى"
 
 msgid "Internal USB Slot"
 msgstr ""
@@ -3411,10 +3474,7 @@ msgstr ""
 msgid "List of Storage Devices"
 msgstr "قائمة أجهزة التخزين"
 
-msgid "Listen and record internet radio"
-msgstr ""
-
-msgid "Listen and record shoutcast internet radio on your Dreambox."
+msgid "Listen and record Shoutcast Internet Radio on your Dreambox."
 msgstr ""
 
 #
@@ -3574,9 +3634,8 @@ msgstr ""
 msgid "Maximum duration (in m)"
 msgstr ""
 
-#
 msgid ""
-"Maximum event duration to match. If an event is longer than this ammount of "
+"Maximum event duration to match. If an event is longer than this amount of "
 "time (without offset) it won't be matched."
 msgstr ""
 
@@ -3773,12 +3832,6 @@ msgstr "حرك الشاشه لأعلى"
 
 msgid "Move west"
 msgstr "تحرك للغرب"
-
-msgid "Movie information from the Online Film Datenbank (German)."
-msgstr ""
-
-msgid "Movie informations from the Online Film Datenbank"
-msgstr ""
 
 msgid "Movie location"
 msgstr "مكان الفيلم"
@@ -4019,10 +4072,6 @@ msgid "Network Mount"
 msgstr "إعتلاء الشبكه"
 
 #
-msgid "Network SSID"
-msgstr ""
-
-#
 msgid "Network Setup"
 msgstr "ضبط الشبـكة"
 
@@ -4100,10 +4149,6 @@ msgid "No HDD found or HDD not initialized!"
 msgstr ""
 "لا يوجد قرص صلب\n"
 "أو ان القرص الصلب لم يبدأ"
-
-#
-msgid "No Networks found"
-msgstr "لم يتم العثور على شبكات"
 
 #
 msgid "No backup needed"
@@ -4205,9 +4250,6 @@ msgstr ""
 
 msgid "No videos to display"
 msgstr "لا يوجد فيديو للعرض"
-
-msgid "No wireless networks found! Please refresh."
-msgstr "لم يتم العثور على شبكه لاسلكيه! . من فضلك حدث"
 
 msgid "No wireless networks found! Searching..."
 msgstr ""
@@ -4398,6 +4440,9 @@ msgstr "فقط المؤقتات الاليه التى تم عملها فى هذ�
 msgid "Only Free scan"
 msgstr "فقط بحث عن القنوات المفتوحه"
 
+msgid "Only add timer for next x days"
+msgstr ""
+
 msgid "Only extensions."
 msgstr "إضافات فقط"
 
@@ -4550,6 +4595,12 @@ msgstr "تشغيل سى دى صوت"
 msgid "Play DVD"
 msgstr "تشغيل دى فى دى"
 
+msgid "Play Internet Radio downloaded from Last.FM"
+msgstr ""
+
+msgid "Play Internet Radio downloaded from ShoutCast"
+msgstr ""
+
 #
 msgid "Play Music..."
 msgstr "تشغيل موسيقى"
@@ -4557,12 +4608,6 @@ msgstr "تشغيل موسيقى"
 #
 msgid "Play YouTube movies"
 msgstr "تشغيل افلام يوتيوب"
-
-msgid "Play music from Last.fm"
-msgstr ""
-
-msgid "Play music from Last.fm."
-msgstr ""
 
 #
 msgid "Play next video"
@@ -5038,6 +5083,17 @@ msgstr "مقدمو الخدمه"
 msgid "Published"
 msgstr "تم النشر"
 
+msgid "Push key \"Exit long\" to show the clock while watching TV."
+msgstr ""
+
+msgid ""
+"Push key \"Exit long\" to show the clock while watching TV. Clock will "
+"disappear after the specified timeout or by pushing key \"Exit long\" "
+"again.\n"
+"Modify the settings to match your preferences. To change the clock position, "
+"select \"Move clock\" and relocate."
+msgstr ""
+
 #
 msgid "Python frontend for /tmp/mmi.socket"
 msgstr ""
@@ -5069,9 +5125,6 @@ msgstr ""
 
 msgid "Radio"
 msgstr "راديو"
-
-msgid "Ralink"
-msgstr ""
 
 #
 msgid "Ram Disk"
@@ -5379,6 +5432,9 @@ msgstr "العوده الى قائمة الأفلام"
 
 msgid "Return to previous service"
 msgstr "العوده الى الخدمه القناه السابقه"
+
+msgid "Reusable Help-component for other plugins."
+msgstr ""
 
 msgid "Rewind speeds"
 msgstr "سرعة العوده للخلف"
@@ -5794,6 +5850,9 @@ msgstr "اختار الشبكه اللاسلكيه"
 msgid "Select your choice."
 msgstr "حدد إختيارك"
 
+msgid "Select your favourite music (Artist, Album, Genre)."
+msgstr ""
+
 msgid "Send DiSEqC"
 msgstr "أرسل دايزك"
 
@@ -5906,9 +5965,6 @@ msgstr "حدد أقصى مده"
 msgid "Set this NO to disable this AutoTimer."
 msgstr ""
 
-msgid "Sets your Dreambox into Deep-Standby"
-msgstr ""
-
 #
 msgid "Setting key canceled"
 msgstr "تم الغاء مفاتيح الاعداد"
@@ -5992,6 +6048,9 @@ msgstr "شاهد شريط المعلومات عند الانتقال للأما�
 msgid "Show notification on conflicts"
 msgstr ""
 
+msgid "Show notification on similars"
+msgstr ""
+
 msgid "Show positioner movement"
 msgstr "شاهد حركة الموتور"
 
@@ -6027,6 +6086,9 @@ msgstr ""
 msgid "Shows the clock permanently on the screen"
 msgstr ""
 
+msgid "Shows the service name instead of the service number when zapping."
+msgstr ""
+
 #
 msgid "Shows the state of your wireless LAN connection.\n"
 msgstr "تشاهد حالة إتصال الشبكه المحليه اللاسلكيه \n"
@@ -6038,6 +6100,9 @@ msgstr "إغلاق"
 #
 msgid "Shutdown Dreambox after"
 msgstr "إغلاق الدريم بوكس بعد"
+
+msgid "Shuts down your Dreambox into Deep Standby (Power Save Mode)"
+msgstr ""
 
 #
 msgid "Signal Strength:"
@@ -6188,6 +6253,9 @@ msgstr "تصنيف أبجدى"
 #
 msgid "Sort AutoTimer"
 msgstr "تصنيف المؤقت الالى"
+
+msgid "Sort Plugins in the PluginBrowser."
+msgstr ""
 
 #
 #. TRANSLATORS: This must fit into the header button in the EPG-List
@@ -6523,12 +6591,12 @@ msgstr ""
 "دى فى دى للدريم بوكس بدلا من ذلك (هذا لن يعمل فى مشغلات دى فى دى المستقله ) ؟"
 
 msgid ""
-"The Elektro Power Save plugin puts the box from standby to sleep mode (Deep "
-"Standby) at certain times.\n"
+"The Elektro Power Save Plugin puts the box from Standby to sleep mode (Deep "
+"Standby) at specified times.\n"
 "This only happens if the box is in standby and no recording is running or "
-"sheduled in the next 20 minutes.\n"
-"The box automatically wakes up for recordings or at the end of the sleep "
-"time. You therefore don't have to wait until it is on again."
+"scheduled during the next 20 minutes.\n"
+"The box automatically wakes up for recordings or at the end of the specified "
+"sleep time. Hence you needn't wait for it to boot-up."
 msgstr ""
 
 msgid ""
@@ -6594,6 +6662,11 @@ msgstr ""
 msgid ""
 "The USB stick was prepared to be bootable.\n"
 "Now you can download an NFI image file!"
+msgstr ""
+
+msgid ""
+"The VPS-Plugin can determine whether a programme begins earlier or lasts "
+"longer."
 msgstr ""
 
 msgid ""
@@ -6799,6 +6872,11 @@ msgstr ""
 msgid "This Month"
 msgstr "هذا الشهر"
 
+msgid ""
+"This Plugin modifies the original PluginBrowser so you can move Plugins "
+"around."
+msgstr ""
+
 msgid "This Week"
 msgstr "هذا الاسبوع"
 
@@ -7003,6 +7081,16 @@ msgstr "حالة المؤقت:"
 msgid "Timer type"
 msgstr "نوع المؤقت"
 
+msgid ""
+"Timerliste, verwaiste Film-Dateien und Einstellungs-Sicherungen automatisch "
+"bereinigen."
+msgstr ""
+
+msgid ""
+"Timerliste, verwaiste Film-Dateien und Einstellungs-Sicherungen nach "
+"einstellbaren Regeln automatisch bereinigen."
+msgstr ""
+
 #
 msgid "Timeshift"
 msgstr "تحول الوقت"
@@ -7075,7 +7163,7 @@ msgstr "الاعلى تصنيفا"
 msgid "Track"
 msgstr "مسار"
 
-msgid "TrafficInfo shows german traffic information."
+msgid "TrafficInfo shows German traffic jams."
 msgstr ""
 
 #
@@ -7241,9 +7329,6 @@ msgstr ""
 msgid "Unknown"
 msgstr ""
 
-msgid "Unknown network adapter."
-msgstr "محول شبكه غير معروف"
-
 msgid ""
 "Unless this is enabled AutoTimer will NOT automatically look for events "
 "matching your AutoTimers but only when you leave the GUI with the green "
@@ -7259,7 +7344,7 @@ msgstr ""
 msgid "Unsupported"
 msgstr "غير مدعم"
 
-msgid "UnwetterInfo shows german storm information."
+msgid "UnwetterInfo shows German storm information."
 msgstr ""
 
 #
@@ -7416,6 +7501,9 @@ msgstr "وصله فيديو كاسيت"
 
 #
 msgid "VMGM (intro trailer)"
+msgstr ""
+
+msgid "VPS-Plugin"
 msgstr ""
 
 msgid "Vali-XD skin"
@@ -7632,9 +7720,6 @@ msgstr ""
 #
 msgid "WEP"
 msgstr ""
-
-msgid "WLAN adapter."
-msgstr "محوله شبكه واسعه"
 
 msgid "WLAN connection"
 msgstr "إتصال شبكه واسعه"
@@ -7870,9 +7955,6 @@ msgstr "شبكه محليه لا سلكيه"
 msgid "Wireless Network"
 msgstr "شبكه لا سلكيه"
 
-msgid "Wireless Network State"
-msgstr "حالة الشبكه اللاسلكيه"
-
 msgid "Wireless network connection setup"
 msgstr ""
 
@@ -7902,7 +7984,7 @@ msgid "With Genuine Dreambox you can verify the authenticity of your Dreambox."
 msgstr ""
 
 msgid ""
-"With IMDb you can download and displays movie information (rating, poster, "
+"With IMDb you can display downloaded movie information (rating, poster, "
 "cast, synopsis etc.) about the selected event."
 msgstr ""
 
@@ -7911,6 +7993,11 @@ msgstr ""
 
 msgid ""
 "With MyTube you can play YouTube videos directly on your TV without a PC."
+msgstr ""
+
+msgid ""
+"With OFDb you can display downloaded movie information (rating, poster, "
+"cast, synopsis etc.) about the selected event."
 msgstr ""
 
 msgid "With WebcamViewer you can watch webcams on your TV Screen."
@@ -7975,13 +8062,10 @@ msgid ""
 "alternative service it is restricted to."
 msgstr ""
 
-#
 msgid ""
-"With this option you can restrict the AutoTimer to a certain ammount of "
+"With this option you can restrict the AutoTimer to a certain amount of "
 "scheduled recordings. Set this to 0 to disable this functionality."
 msgstr ""
-"من خلال هذه الخاصيه تستطيع حصر المؤقت الالى لعدد محددمن التسجيلات المجدوله، "
-"ضعها فى الاعداد 0 لتعطيل هذه الوظيفه"
 
 #
 msgid "Wizard"
@@ -8068,6 +8152,11 @@ msgstr ""
 msgid "You can choose, what you want to install..."
 msgstr "تستطيع أن تختار . ماذا تريد أن تثبت......"
 
+msgid ""
+"You can control for how many days in the future timers are added. Set this "
+"to 0 to disable this feature."
+msgstr ""
+
 msgid "You can install this plugin."
 msgstr "تستطيع تثبيت هذا البلج إن"
 
@@ -8087,6 +8176,13 @@ msgid ""
 "You can use the EasyInfo for manage your EPG plugins from info button. You "
 "have also a new now-next event viewer. Easy-PG, the own graphical EPG bowser "
 "is also included."
+msgstr ""
+
+msgid ""
+"You can use this plugin to dynamically hide Plugins from either the "
+"Extensions- or Pluginmenu without having to modify the source code of the "
+"respective plugin.After installation you find the settings as \"Hide Plugins"
+"\" under Setup / System."
 msgstr ""
 
 #
@@ -8314,9 +8410,6 @@ msgstr ""
 msgid "Zoom into letterboxed/anamorph movies."
 msgstr ""
 
-msgid "Zydas"
-msgstr ""
-
 msgid "[alternative edit]"
 msgstr "[تحرير البديل]"
 
@@ -8361,6 +8454,11 @@ msgstr "تنشيط التكوين الحالى"
 msgid "activate network adapter configuration"
 msgstr "تنشيط تكوين محول الشبكه"
 
+#. TRANSLATORS: AutoTimer title in MovieList (automatically opens importer, I consider this no further interaction)
+msgid "add AutoTimer"
+msgstr ""
+
+#. TRANSLATORS: AutoTimer title in EventInfo dialog (requires the user to select an event to base the AutoTimer on)
 msgid "add AutoTimer..."
 msgstr "إضافة مؤقت ألى...."
 
@@ -8427,9 +8525,6 @@ msgstr "إضافه القناه الى المفضله"
 
 msgid "add services"
 msgstr "إضافة قنوات"
-
-msgid "add tags to recorded movies"
-msgstr ""
 
 msgid "add to parental protection"
 msgstr "أضف حمايه أبويه"
@@ -8700,10 +8795,6 @@ msgstr "إنتهاء القطع هنا"
 #
 msgid "end favourites edit"
 msgstr "إنتهاء تحرير المفضله"
-
-#
-msgid "enter hidden network SSID"
-msgstr ""
 
 msgid "equal to"
 msgstr "مساوى لـــ"
@@ -9345,9 +9436,6 @@ msgstr ""
 msgid "unable to find timer with id %i"
 msgstr ""
 
-msgid "unavailable"
-msgstr "غير متاح"
-
 msgid "unconfirmed"
 msgstr "غير مؤكد"
 
@@ -9399,6 +9487,9 @@ msgstr "فى الانتظار"
 
 msgid "was removed successfully"
 msgstr "تم الحذف بنجاح"
+
+msgid "watch trailer from epglist/eventview"
+msgstr ""
 
 #
 msgid "weekly"
@@ -9458,8 +9549,15 @@ msgstr "تم الانتقال"
 #~ msgstr "متقدم"
 
 #
+#~ msgid "Ammount of recordings left"
+#~ msgstr "التسجيل المتبقى"
+
+#
 #~ msgid "Ask before zapping"
 #~ msgstr "أسأل قبل التنقل"
+
+#~ msgid "Atheros"
+#~ msgstr "اثيروس"
 
 #
 #~ msgid "Auto show inforbar"
@@ -9508,6 +9606,9 @@ msgstr "تم الانتقال"
 #~ "هل تريد إلغـاء التسجيل\n"
 #~ "الحالى؟"
 
+#~ msgid "Encryption Type"
+#~ msgstr "نوع التشفير"
+
 #
 #~ msgid "End"
 #~ msgstr "النهايه"
@@ -9523,6 +9624,13 @@ msgstr "تم الانتقال"
 #~ msgid "Fast zapping"
 #~ msgstr "التنقل السريع"
 
+#~ msgid ""
+#~ "Found a total of %d matching Events.\n"
+#~ "%d Timer were added and %d modified."
+#~ msgstr ""
+#~ "تم العثور على إجمالى %d أحداث متطابقه \n"
+#~ "تم إضافة مؤقت %d وتم تعديل %d"
+
 #
 #~ msgid "Games / Plugins"
 #~ msgstr "العاب/بلج إنز"
@@ -9532,6 +9640,14 @@ msgstr "تم الانتقال"
 
 #~ msgid "Guard interval mode"
 #~ msgstr "وضعية فاصل الحرس"
+
+#
+#~ msgid "Hidden network SSID"
+#~ msgstr "شبكه مخفيه SSID"
+
+#
+#~ msgid "Hidden networkname"
+#~ msgstr "إسم شبكه مخفى"
 
 #
 #~ msgid "Hide error windows"
@@ -9556,6 +9672,9 @@ msgstr "تم الانتقال"
 #~ msgid "Integrated Wireless"
 #~ msgstr "لاسلكى مدمج"
 
+#~ msgid "Internal LAN adapter."
+#~ msgstr "محول شبكه محليه داخلى"
+
 #
 #~ msgid "Invert"
 #~ msgstr "مقلوب"
@@ -9577,8 +9696,15 @@ msgstr "تم الانتقال"
 #~ msgstr "رقم سرى جديد"
 
 #
+#~ msgid "No Networks found"
+#~ msgstr "لم يتم العثور على شبكات"
+
+#
 #~ msgid "No useable USB stick found"
 #~ msgstr "لم يتم العثور على يو أس بى"
+
+#~ msgid "No wireless networks found! Please refresh."
+#~ msgstr "لم يتم العثور على شبكه لاسلكيه! . من فضلك حدث"
 
 #
 #~ msgid "Nothing connected"
@@ -9792,6 +9918,9 @@ msgstr "تم الانتقال"
 #~ "من فضلك راجع تعليمات التشغيل\n"
 #~ "خطـأ .. "
 
+#~ msgid "Unknown network adapter."
+#~ msgstr "محول شبكه غير معروف"
+
 #
 #~ msgid "VCR Switch"
 #~ msgstr "مفتاح فيديو كاسيت"
@@ -9800,9 +9929,23 @@ msgstr "تم الانتقال"
 #~ msgid "Video Audio"
 #~ msgstr "صوره صوت"
 
+#~ msgid "WLAN adapter."
+#~ msgstr "محوله شبكه واسعه"
+
 #
 #~ msgid "Wireless"
 #~ msgstr "لاسلكى"
+
+#~ msgid "Wireless Network State"
+#~ msgstr "حالة الشبكه اللاسلكيه"
+
+#
+#~ msgid ""
+#~ "With this option you can restrict the AutoTimer to a certain ammount of "
+#~ "scheduled recordings. Set this to 0 to disable this functionality."
+#~ msgstr ""
+#~ "من خلال هذه الخاصيه تستطيع حصر المؤقت الالى لعدد محددمن التسجيلات "
+#~ "المجدوله، ضعها فى الاعداد 0 لتعطيل هذه الوظيفه"
 
 #~ msgid "Writing NFI image file to flash completed"
 #~ msgstr "إكتمال كتابة صوره NFI على الفلاش"
@@ -9878,6 +10021,9 @@ msgstr "تم الانتقال"
 
 #~ msgid "setup pin"
 #~ msgstr "الرقم السرى للاعدادات"
+
+#~ msgid "unavailable"
+#~ msgstr "غير متاح"
 
 #
 #~ msgid "القناه السابقه"
