@@ -6,6 +6,8 @@ profile("LOAD:Source")
 from Components.Sources.Source import Source
 profile("LOAD:GUIComponent")
 from Components.GUIComponent import GUIComponent
+profile("LOAD:eRCInput")
+from enigma import eRCInput
 
 class Screen(dict, GUISkin):
 
@@ -46,6 +48,24 @@ class Screen(dict, GUISkin):
 		# stand alone screens (for example web screens)
 		# don't care about having or not having focus.
 		self.stand_alone = False
+		self.keyboardMode = None
+
+	def saveKeyboardMode(self):
+		rcinput = eRCInput.getInstance()
+		self.keyboardMode = rcinput.getKeyboardMode()
+
+	def setKeyboardModeAscii(self):
+		rcinput = eRCInput.getInstance()
+		rcinput.setKeyboardMode(rcinput.kmAscii)
+
+	def setKeyboardModeNone(self):
+		rcinput = eRCInput.getInstance()
+		rcinput.setKeyboardMode(rcinput.kmNone)
+
+	def restoreKeyboardMode(self):
+		rcinput = eRCInput.getInstance()
+		if self.keyboardMode is not None:
+			rcinput.setKeyboardMode(self.keyboardMode)
 
 	def execBegin(self):
 		self.active_components = [ ]

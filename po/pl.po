@@ -1,13 +1,10 @@
-# English translations for tuxbox-enigma package.
-# Copyright (C) 2005 THE tuxbox-enigma'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the tuxbox-enigma package.
-# Automatically generated, 2005.
+# Polish translations for Enigma2.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: tuxbox-enigma 0.0.1\n"
+"Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-27 12:42+0000\n"
+"POT-Creation-Date: 2011-09-07 11:08+0000\n"
 "PO-Revision-Date: 2010-07-23 12:21+0200\n"
 "Last-Translator: Mladen <acid-burn@opendreambox.org>\n"
 "Language-Team: none\n"
@@ -184,6 +181,20 @@ msgstr "#ffffffff"
 msgid "%H:%M"
 msgstr "%H:%M"
 
+#, python-format
+msgid ""
+"%d conflict(s) encountered when trying to add new timers:\n"
+"%s"
+msgstr ""
+"%d napotkano konflikt(y) podczas próby dodania nowych timerów: \n"
+"%s"
+
+#, python-format
+msgid ""
+"%d conflict(s) solved with similar timer(s):\n"
+"%s"
+msgstr ""
+
 #
 #, python-format
 msgid "%d jobs are running in the background!"
@@ -221,6 +232,10 @@ msgstr ""
 #, python-format
 msgid "%s (%s)\n"
 msgstr "%s (%s)\n"
+
+#, python-format
+msgid "%s: %s at %s"
+msgstr "%s: %s w %s"
 
 #
 msgid "(ZAP)"
@@ -378,11 +393,11 @@ msgstr "??"
 msgid "A"
 msgstr "A"
 
+msgid "A BackToTheRoots-Skin .. but with Warp-8 speed."
+msgstr "Powrót do skór podstawowych .. "
+
 msgid "A BackToTheRoots-Skin .. or good old times."
 msgstr "Powrót do korzeni-Skórka .. lub starych dobrych czasów."
-
-msgid "A BackToTheRoots-Skin ... or good old times."
-msgstr "Powrót do korzeni-Skórka ... lub starych dobrych czasów."
 
 msgid "A basic ftp client"
 msgstr "Podstawowy klient ftp"
@@ -401,6 +416,9 @@ msgstr ""
 
 msgid "A demo plugin for TPM usage."
 msgstr "Plugin demo dla użytku TPM."
+
+msgid "A dreambox simulation from SG-Atlantis displays."
+msgstr "Symaulacja dreambox`a dla ekranów SG-Atlantis."
 
 #
 msgid ""
@@ -425,6 +443,9 @@ msgstr "Graficzny EPG dla wszystkich usług określonego bukietu"
 msgid "A graphical EPG interface"
 msgstr "Graficzny interfejs EPG"
 
+msgid "A graphical EPG interface and EPG tools manager"
+msgstr "Graficzny interfejs EPG i EPG Menedżer narzędzi"
+
 msgid "A graphical EPG interface."
 msgstr "Graficzny interfejs EPG."
 
@@ -444,6 +465,9 @@ msgstr "Fajnie wyglądająca skórka HD w tonacji starego aluminium od Kerni"
 
 msgid "A nice looking skin from Kerni"
 msgstr "Fajnie wyglądająca skórka od Kerni"
+
+msgid "A plugin to add / remove / modify entries of fstab."
+msgstr ""
 
 #
 #, python-format
@@ -562,6 +586,9 @@ msgstr "O tunerze..."
 msgid "About..."
 msgstr "Informacje o tunerze..."
 
+msgid "Access the EPG from within the Movie Player"
+msgstr ""
+
 msgid "Access to the ARD-Mediathek"
 msgstr "Dostęp do ARD-Mediathek"
 
@@ -587,6 +614,9 @@ msgstr "Akcja:"
 #
 msgid "Activate Picture in Picture"
 msgstr "Aktywuj PiP"
+
+msgid "Activate VPS"
+msgstr ""
 
 #
 msgid "Activate network settings"
@@ -644,6 +674,12 @@ msgstr "Dodaj nowy AutoTimer"
 msgid "Add new network mount point"
 msgstr "Dodaj nowy punkt montowania sieci"
 
+msgid "Add similar timer on conflict"
+msgstr ""
+
+msgid "Add tags to recorded movies"
+msgstr ""
+
 #
 msgid "Add timer"
 msgstr "Dodaj timer"
@@ -671,6 +707,10 @@ msgstr "Dodać zap timer zamiast timera nagrywania?"
 #
 msgid "Added: "
 msgstr "Dodano: "
+
+msgid ""
+"Adds 'search...' to the context menu of the movie list to allow searches."
+msgstr ""
 
 #
 msgid ""
@@ -771,6 +811,9 @@ msgstr "Cały czas"
 msgid "All non-repeating timers"
 msgstr "Wszystkie nie-powtarzane timery"
 
+msgid "Allow to search recordings"
+msgstr ""
+
 #
 msgid "Allow zapping via Webinterface"
 msgstr "Zezwól na przełącznie z poziomu Web"
@@ -778,8 +821,22 @@ msgstr "Zezwól na przełącznie z poziomu Web"
 msgid "Allows the execution of TuxboxPlugins."
 msgstr "Umożliwia wykonanie TuxboxPlugins."
 
+msgid "Allows to change the order of entries in the main menu manually."
+msgstr ""
+
+msgid "Allows to zap using the picture in picture."
+msgstr ""
+
 msgid "Allows user to download files from rapidshare in the background."
 msgstr "Pozwala użytkownikowi na pobieranie w tle plików z rapidshare."
+
+msgid ""
+"Allows you to access the service list and plugins requiring access to the "
+"service list (e.g. Graphical Multi EPG) from within the standard movie "
+"player.DO NOT install this plugin if you're using a nonstandard movie "
+"player, e.g. EMC. It will probably break and you might end up with a "
+"unusable movie player until you uninstall one of the conflicting plugins."
+msgstr ""
 
 #
 msgid "Alpha"
@@ -800,9 +857,8 @@ msgstr "Zawsze pytaj"
 msgid "Always ask before sending"
 msgstr "Zawsze pytaj przed wysłaniem"
 
-#
-msgid "Ammount of recordings left"
-msgstr "Spośród pozostałych nagrań"
+msgid "Amount of recordings left"
+msgstr ""
 
 #
 msgid "An empty filename is illegal."
@@ -819,6 +875,9 @@ msgstr "Wystąpił nieznany błąd!"
 #
 msgid "Anonymize crashlog?"
 msgstr "Anonimowy crashlog"
+
+msgid "Any service/recording"
+msgstr ""
 
 #
 msgid "Arabic"
@@ -896,11 +955,11 @@ msgstr "Zapytaj użytkownika"
 msgid "Aspect Ratio"
 msgstr "Format obrazu:"
 
+msgid "Aspect ratio"
+msgstr "Format obrazu"
+
 msgid "Assigning providers/services/caids to a CI module"
 msgstr "Przypisywanie dostawców / usług / CAID do modułu CI"
-
-msgid "Atheros"
-msgstr "Atheros"
 
 #
 msgid "Audio"
@@ -909,6 +968,9 @@ msgstr "Dźwięk"
 #
 msgid "Audio Options..."
 msgstr "Opcje Dźwięku..."
+
+msgid "Audio PID"
+msgstr "Audio PID"
 
 #
 msgid "Audio Sync"
@@ -980,6 +1042,15 @@ msgstr ""
 "AutoTimer skanuje EPG i tworzy Timery w zależności od zdefiniowanych przez "
 "użytkownika kryteriów."
 
+msgid "AutoTimer was added successfully"
+msgstr "Auto Timer został dodany pomyślnie"
+
+msgid "AutoTimer was changed successfully"
+msgstr "Auto Timer został zmieniony pomyślnie"
+
+msgid "AutoTimer was removed"
+msgstr "Auto Timer został usunięty"
+
 #
 msgid "Automatic"
 msgstr "Automatycznie"
@@ -1015,6 +1086,31 @@ msgstr "Automatyczne odświeżanie EPG"
 
 msgid "Automatically send crashlogs to Dream Multimedia"
 msgstr "Automatyczne wysyłanie crash logów do Dream Multimedia"
+
+msgid "Autoresolution"
+msgstr ""
+
+#, python-format
+msgid ""
+"Autoresolution Plugin Testmode:\n"
+"Is %s OK?"
+msgstr ""
+
+#
+msgid "Autoresolution Switch"
+msgstr "Włącznik autoresolution"
+
+#
+msgid "Autoresolution is not working in Scart/DVI-PC Mode"
+msgstr "Autoresolution nie działa w trybie Scart/DVI-PC"
+
+#
+msgid "Autoresolution settings"
+msgstr "Ustawienia Autoresolution"
+
+#
+msgid "Autoresolution videomode setup"
+msgstr "Konfiguracja trybu wideo Autoresolution "
 
 #
 msgid "Autos & Vehicles"
@@ -1057,6 +1153,12 @@ msgstr "BER:"
 #
 msgid "Back"
 msgstr "Powrót"
+
+msgid "Back, lower USB Slot"
+msgstr "Tył, dolne gniazdo USB"
+
+msgid "Back, upper USB Slot"
+msgstr "Tył, górne gniazdo USB"
 
 #
 msgid "Background"
@@ -1152,6 +1254,13 @@ msgstr "Brazylia"
 msgid "Brightness"
 msgstr "Jasność"
 
+msgid ""
+"Browse ORF and SAT1 Teletext independent from channel. This need I-net "
+"conection."
+msgstr ""
+"Przeglądaj Teletext ORF i SAT1 niezależnie od kanału. Wymaga połaczenia I-"
+"net."
+
 msgid "Browse for and connect to network shares"
 msgstr "Przeglądaj i łącz się do udziałów sieciowych"
 
@@ -1179,6 +1288,28 @@ msgstr "Wypal swoje nagrania na DVD"
 #
 msgid "Bus: "
 msgstr "Bus:"
+
+msgid ""
+"By enabling this events will not be matched if they don't occur on certain "
+"dates."
+msgstr ""
+"Po włączeniu tej funkcji wydrzenia nie zostaną dopasowane, jeśli nie "
+"występują one w określonych terminach."
+
+msgid ""
+"By enabling this you will be notified about similar timers added during "
+"automated polling. There is no intelligence involved, so it might bother you "
+"about the same conflict over and over."
+msgstr ""
+
+msgid ""
+"By enabling this you will be notified about timer conflicts found during "
+"automated polling. There is no intelligence involved, so it might bother you "
+"about the same conflict over and over."
+msgstr ""
+"Po włączeniu tej funkcji zostaniesz powiadomiony o konfliktach Timerów "
+"znalezionych podczas automatycznego pobierania. Nie jest to inteligentne "
+"rozwiązanie, więc ten sam konflikt może dręczyć Cię w kółko."
 
 #
 msgid ""
@@ -1414,6 +1545,15 @@ msgstr "Czyść listę Timerów automatycznie"
 msgid "Cleanup timerlist automatically."
 msgstr "Czyść listę Timerów automatycznie."
 
+msgid ""
+"Cleanup timerlist, orphaned movie files and setting backups automatically "
+"according to specfied rules."
+msgstr ""
+
+msgid ""
+"Cleanup timerlist, orphaned movie files and setting backups automatically."
+msgstr ""
+
 #
 msgid "CleanupWizard"
 msgstr "Kreator czyszczenia"
@@ -1446,21 +1586,11 @@ msgstr "Zamknij i zapisz zmiany"
 msgid "Close title selection"
 msgstr "Zamknij wybór tytułu"
 
-#
-msgid "Code rate high"
-msgstr "Poziom kodu wysoki"
+msgid "Code rate HP"
+msgstr "Wskaźnik kodu HP"
 
-#
-msgid "Code rate low"
-msgstr "Poziom kodu niski"
-
-#
-msgid "Coderate HP"
-msgstr "Poziom kodu HP"
-
-#
-msgid "Coderate LP"
-msgstr "Poziom kodu LP"
+msgid "Code rate LP"
+msgstr "Wskaźnik kodu LP"
 
 #
 msgid "Collection name"
@@ -1604,6 +1734,9 @@ msgstr "Kontynuuj odtwarzanie"
 msgid "Contrast"
 msgstr "Kontrast"
 
+msgid "Control recording completely by service"
+msgstr ""
+
 msgid "Control your Dreambox with your Web browser."
 msgstr "Zarządzaj Dreamboxem przez przeglądarkę internetową."
 
@@ -1644,6 +1777,10 @@ msgstr "Nie mozna otworzyć PiP"
 #, python-format
 msgid "Couldn't record due to conflicting timer %s"
 msgstr "Nie można nagrać z powodu konfliktu timera %s"
+
+#, python-format
+msgid "Couldn't record due to invalid service %s"
+msgstr "Nie można nagrywać z powodu nieprawidłowych serwisów % s"
 
 #
 msgid "Crashlog settings"
@@ -1831,6 +1968,9 @@ msgstr "DVB-S"
 msgid "DVB-S2"
 msgstr "DVB-S2"
 
+msgid "DVD Drive"
+msgstr "Napęd DVD"
+
 #
 msgid "DVD File Browser"
 msgstr "Przeglądarka DVD"
@@ -1919,8 +2059,20 @@ msgid "Define a startup service for your Dreambox."
 msgstr "Zdefiniuj usługi startowe dla Twojego Dreamboxa."
 
 #
+msgid "Deinterlacer mode for interlaced content"
+msgstr "Tryb bez przeplotu dla zawartości z przeplotem"
+
+#
+msgid "Deinterlacer mode for progressive content"
+msgstr "Tryb bez przeplotu dla zawartości progresywnej"
+
+#
 msgid "Delay"
 msgstr "Opóźnienie"
+
+#
+msgid "Delay x seconds after service started"
+msgstr "Opóżnienie x sekund po starcie serwisu"
 
 #
 msgid "Delete"
@@ -2089,8 +2241,11 @@ msgstr "Pokaż rezultat wyszukiwania wg:"
 msgid "Display your photos on the TV"
 msgstr "Wyświetlanie zdjęć na ekranie telewizora"
 
-msgid "Displays movie information from the InternetMovieDatabase"
-msgstr "Wyświetla napisy z InternetMovieDatabase"
+msgid "Displays Movie Information from the InternetMovieDatabase"
+msgstr ""
+
+msgid "Displays Movie Information from the Online Film Datenbank (German)"
+msgstr ""
 
 #
 #, python-format
@@ -2108,6 +2263,14 @@ msgid ""
 msgstr ""
 "Czy na pewno chcesz sprawdzić sysem plików?\n"
 "Czynność może zająć dużo czasu!"
+
+#, python-format
+msgid ""
+"Do you really want to delete %s\n"
+"%s?"
+msgstr ""
+"Czy na pewno chcesz usunąć %s\n"
+"%s?"
 
 #
 #, python-format
@@ -2304,6 +2467,12 @@ msgstr "Format danych DVD (kompatybilny z HDTV)"
 msgid "Dreambox software because updates are available."
 msgstr "Oprogramowanie dreamboxa ponieważ aktualizacje są dostępne"
 
+msgid "Driver for Ralink RT8070/RT3070/RT3370 based wireless-n USB devices."
+msgstr "Sterownik dla Ralink RT8070/RT3070/RT3370 dla urządzeń WiFi N USB"
+
+msgid "Driver for Realtek r8712u based wireless-n USB devices."
+msgstr "Sterownik dla Realtek r8712u dla urządzeń WiFi N USB"
+
 #
 msgid "Duration: "
 msgstr "Trwanie: "
@@ -2330,14 +2499,11 @@ msgstr "Kodowanie EPG"
 
 msgid ""
 "EPGRefresh will automatically switch to user-defined channels when the box "
-"is idleing\n"
-"(in standby mode without any running recordings) to perform updates of the "
-"epg information on these channels."
+"is idling(i.e. in standby mode and no recordings running) to perform updates "
+"of the EPG information on these channels.\n"
+"On multi-tuner boxes it may optionally run in background hidden or in PiP, "
+"to not disturb the current TV program."
 msgstr ""
-"EPGRefresh automatycznie przełączy się na kanały zdefiniowane przez "
-"użytkownika\n"
-"(Gdy jest w trybie czuwania bez uruchomionych nagrań), aby wykonać "
-"aktualizacje informacji EPG na tych kanałach."
 
 #
 #, python-format
@@ -2369,6 +2535,7 @@ msgid "Edit DNS"
 msgstr "Edytuj DNS"
 
 #
+#. TRANSLATORS: description of AutoTimer in PluginBrowser
 msgid "Edit Timers and scan for new Events"
 msgstr "Edytuj timery i skanuj po nowe wydarzenia"
 
@@ -2426,6 +2593,9 @@ msgstr "Edytuj adres aktualizacji"
 msgid "Editing"
 msgstr "Edytowanie"
 
+msgid "Editor for fstab"
+msgstr ""
+
 #
 msgid "Editor for new AutoTimers"
 msgstr "Edytor dla nowych AutoTimerów"
@@ -2450,8 +2620,28 @@ msgid "Enable /media"
 msgstr "Włącz katalog /media"
 
 #
+msgid "Enable 1080p24 Mode"
+msgstr "Włącz tryb 1080p24"
+
+#
+msgid "Enable 1080p25 Mode"
+msgstr "Włącz tryb 1080p25"
+
+#
+msgid "Enable 1080p30 Mode"
+msgstr "Włącz tryb 1080p30"
+
+#
 msgid "Enable 5V for active antenna"
 msgstr "Włącz 5V dla aktywnej anteny"
+
+#
+msgid "Enable 720p24 Mode"
+msgstr "Włącz tryb 720p24"
+
+#
+msgid "Enable Autoresolution"
+msgstr "Włącz Autoresolution"
 
 #
 msgid "Enable Cleanup Wizard?"
@@ -2532,10 +2722,6 @@ msgid "Encryption Keytype"
 msgstr "Typ klucza kodowania"
 
 #
-msgid "Encryption Type"
-msgstr "Typ szyfrowania"
-
-#
 msgid "Encryption:"
 msgstr "Kodowanie:"
 
@@ -2584,16 +2770,8 @@ msgstr ""
 "© 2006 - Stephan Reichholf"
 
 #
-msgid "Enter Fast Forward at speed"
-msgstr "Przejdź do przodu bardzo szybko"
-
-#
 msgid "Enter IP to scan..."
 msgstr "Wpisz IP do skanowania..."
-
-#
-msgid "Enter Rewind at speed"
-msgstr "Przejdź wstecz bardzo szybko"
 
 #
 msgid "Enter main menu..."
@@ -2667,6 +2845,9 @@ msgstr ""
 #
 msgid "Estonian"
 msgstr "Estoński"
+
+msgid "Ethernet network interface"
+msgstr "Interfejs sieciowy Ethernet"
 
 #
 msgid "Eventview"
@@ -2871,6 +3052,13 @@ msgstr "Zakończono restartowanie sieci"
 msgid "Finnish"
 msgstr "Fiński"
 
+msgid ""
+"First day to match events. No event that begins before this date will be "
+"matched."
+msgstr ""
+"Pierwszy dzień dopasuje wydarzenia. Brak wydarzeń, które rozpoczynają się "
+"przed tą datą będą porównywane."
+
 msgid "First generate your skin-style with the Ai.HD-Control plugin."
 msgstr "Pierwsze wygeneruj styl skóry za pomocą wtyczki Ai.HD-Control."
 
@@ -2890,18 +3078,12 @@ msgstr "Ponizsze zadania będą wykonane po wciśnięciu OK!"
 msgid "Format"
 msgstr "Format"
 
-#
 #, python-format
 msgid ""
 "Found a total of %d matching Events.\n"
-"%d Timer were added and %d modified."
+"%d Timer were added and %d modified, %d conflicts encountered, %d similars "
+"added."
 msgstr ""
-"Znaleziono w sumie %d pasujących wydarzeń.\n"
-"%d Timer będzie dodany %d i zmodyfikowany."
-
-#
-msgid "Frame repeat count during non-smooth winding"
-msgstr "Oblicz powtórzenie ramki podczas nie-płynnego zwijania"
 
 #
 msgid "Frame size in full view"
@@ -2931,6 +3113,9 @@ msgstr "Rozmiar stopnia skanowania (khz)"
 msgid "Frequency steps"
 msgstr "Stopnie częstotliwości"
 
+msgid "Frequently asked questions"
+msgstr ""
+
 #
 msgid "Fri"
 msgstr "Pią"
@@ -2946,6 +3131,9 @@ msgstr "Fryzyjski"
 msgid "FritzCall shows incoming calls to your Fritz!Box on your Dreambox."
 msgstr ""
 "FritzCall pokazuje połączenia przychodzące do Fritz!Box na Twoim Dreamboxie."
+
+msgid "Front USB Slot"
+msgstr "Przednie gniazdo USB"
 
 msgid "Frontend for /tmp/mmi.socket"
 msgstr "Nakładka na /tmp/mmi.socket"
@@ -3002,6 +3190,11 @@ msgstr "Główne opóźnienie PCM"
 #
 msgid "General PCM delay (ms)"
 msgstr "Główne opóźnienie PCM (ms)"
+
+msgid "Generates and Shows TV Charts of all users having this plugin installed"
+msgstr ""
+"Generuje i  wyświetla Wykresy TV wszystkich użytkowników mających "
+"zainstalowaną tą wtyczkę."
 
 #
 msgid "Genre"
@@ -3083,26 +3276,31 @@ msgid "Green boost"
 msgstr "Zielony"
 
 msgid ""
-"Growlee allows your Dreambox to send short messages using the growl "
-"protocol\n"
-"like Recording started notifications to a PC running a growl client"
+"Growlee allows your Dreambox to forward notifications like 'Record started' "
+"to a PC running a growl, snarl or syslog compatible client or directly to an "
+"iPhone using prowl."
 msgstr ""
-"Growlee pozwala Dreamboxowi na wysyłanie krótkich wiadomości tekstowych przy "
-"użyciu protokołu growl\n"
-"jak np rozpoczęcie nagrywania zgłoszone do komputera z uruchomionym klientem "
-"growl"
+"Growlee pozwala Dreambox do przekazania powiadomienia, takich jak \"Record "
+"zaczął do komputera z systemem ryk, warczenie lub syslog zgodne klienta lub "
+"bezpośrednio na iPhone przy użyciu krążą.Growlee pozwala Dreambox`owi na "
+"przekazywanie powiadomień, takich jak \"Rozpoczęcie Nagrywania\" do "
+"komputera PC z uruchomionym Growl, Snar lub Syslog kompatybilne z klientem "
+"lub bezpośrednio do iPhone za pomocą Prowl."
 
-#
-msgid "Guard Interval"
-msgstr "Ochrona odstępu"
-
-#
-msgid "Guard interval mode"
-msgstr "Ochronny tryb odstępu"
+msgid "Guard interval"
+msgstr "Przedział ochrony"
 
 #
 msgid "Guess existing timer based on begin/end"
 msgstr "Przypuszczalnie istniejący timer bazowany na początku/końcu"
+
+#
+msgid "HD Interlace Mode"
+msgstr "Tryb HD z przeplotem"
+
+#
+msgid "HD Progressive Mode"
+msgstr "Progresywny tryb HD"
 
 #
 msgid "HD videos"
@@ -3132,21 +3330,14 @@ msgstr "Tryb czuwania dysku twardego po"
 msgid "Help"
 msgstr "Pomoc"
 
-#
-msgid "Hidden network SSID"
-msgstr "Ukryty sieciowy SSID"
+msgid "Hidden network"
+msgstr "Ukryta sieć"
 
-#
-msgid "Hidden networkname"
-msgstr "Ukryta nazwa sieci"
+msgid "Hide Plugin from Plugin or Extensionsmenu."
+msgstr ""
 
-#
-msgid "Hierarchy Information"
-msgstr "Informacja hierarchii"
-
-#
-msgid "Hierarchy mode"
-msgstr "Tryb hierarchii"
+msgid "Hierarchy info"
+msgstr "Informacje o hierarchii"
 
 #
 msgid "High bitrate support"
@@ -3217,14 +3408,24 @@ msgstr "Ścieżka ISO"
 msgid "Icelandic"
 msgstr "Islandzki"
 
-#
+msgid ""
+"If a timer conflict occurs, AutoTimer will search outside the timespan for a "
+"similar event and add it."
+msgstr ""
+
+msgid ""
+"If installed, the plugin allows to modify the order in which entries of the "
+"main menu are shown.It can be changed using the \"MenuSort\" plugin, "
+"launchable from the regular plugin overview."
+msgstr ""
+
 #, python-format
 msgid ""
 "If this is enabled an existing timer will also be considered recording an "
-"event if it records at least 80% of the it."
+"event if it records at least 80%% of the it."
 msgstr ""
-"Jeśli to jest włączone na istniejącym timerze wtedy będzie też za nagraniem "
-"jeśli nagrywa ostanie 80% of tego."
+"Jeśli ta funkcja jest włączona, istniejący Timer uważa za nagranie "
+"zdarzenia, jeśli zapisał co najmniej 80%% z zaplanowanego nagrania."
 
 #
 msgid ""
@@ -3326,6 +3527,12 @@ msgstr "Informacje"
 msgid "Init"
 msgstr "Init"
 
+msgid "Initial Fast Forward speed"
+msgstr "Początkowa prędkość przewijania"
+
+msgid "Initial Rewind speed"
+msgstr "Początkowa prędkość cofania"
+
 #
 msgid "Initial location in new timers"
 msgstr "Początkowa lokalizacja nowego timera"
@@ -3424,8 +3631,8 @@ msgstr "Pośrednia"
 msgid "Internal Flash"
 msgstr "Wewnętrzny Flash"
 
-msgid "Internal LAN adapter."
-msgstr "Wewnętrzny adapter LAN."
+msgid "Internal USB Slot"
+msgstr "Wewnętrzne gnizado USB"
 
 msgid "Internal firmware updater"
 msgstr "Aktualizator oprogramowania wewnętrznego"
@@ -3626,6 +3833,13 @@ msgstr "Wybór języka"
 msgid "Last config"
 msgstr "Ostatnie ust"
 
+msgid ""
+"Last day to match events. Events have to begin before this date to be "
+"matched."
+msgstr ""
+"Ostatni dzień dopasuje wydarzenia. Wydarzenia zaczynjące się przed tą datą "
+"należy dopasować."
+
 #
 msgid "Last speed"
 msgstr "Ostatnia prędkość"
@@ -3683,15 +3897,15 @@ msgstr "Łącze:"
 msgid "Linked titles with a DVD menu"
 msgstr "Połącz tytuł z menu DVD"
 
+msgid "List available networks"
+msgstr "Lista dostępnych sieci"
+
 #
 msgid "List of Storage Devices"
 msgstr "Lista zapamiętanych urządzeń"
 
-msgid "Listen and record internet radio"
-msgstr "Słuchaj i nagrywaj radio internetowe"
-
-msgid "Listen and record shoutcast internet radio on your Dreambox."
-msgstr "Słuchaj i nagrywaj radio internetowe shoutcast na Dreamboxie."
+msgid "Listen and record Shoutcast Internet Radio on your Dreambox."
+msgstr ""
 
 #
 msgid "Lithuanian"
@@ -3824,6 +4038,9 @@ msgstr "Zarządzaj oprogramowaniem tunera"
 msgid "Manual Scan"
 msgstr "Ręczne skanowanie"
 
+msgid "Manual configuration"
+msgstr "Ręczna konfiguracja"
+
 #
 msgid "Manual transponder"
 msgstr "Własny transponder"
@@ -3862,13 +4079,10 @@ msgstr "Max. Bitrate: "
 msgid "Maximum duration (in m)"
 msgstr "Maksymalne trwanie (w m)"
 
-#
 msgid ""
-"Maximum event duration to match. If an event is longer than this ammount of "
+"Maximum event duration to match. If an event is longer than this amount of "
 "time (without offset) it won't be matched."
 msgstr ""
-"Maksymalne trwanie wydarzaenia. Jesli wydarzenie jest dłuższe jak ten czas "
-"(bez offsetu) nie będzie dopasowane."
 
 #
 msgid "Media player"
@@ -4093,12 +4307,6 @@ msgstr "Przenieś obraz wyżej"
 msgid "Move west"
 msgstr "Przesuń na zachód"
 
-msgid "Movie information from the Online Film Datenbank (German)."
-msgstr "Informacje o filmach z Filmowej Bazy Danych  (Niemcy)"
-
-msgid "Movie informations from the Online Film Datenbank"
-msgstr "Informacje o filmach z Filmowej Bazy Danych"
-
 #
 msgid "Movie location"
 msgstr "Przenieś lokalizację"
@@ -4123,6 +4331,9 @@ msgstr "Menu listy filmów"
 msgid "Multi EPG"
 msgstr "Multi EPG"
 
+msgid "Multi-EPG bouquet selection"
+msgstr "Pokaż bukiet jako Multi-EPG"
+
 #
 msgid "Multimedia"
 msgstr "Multimedia"
@@ -4130,6 +4341,9 @@ msgstr "Multimedia"
 #
 msgid "Multiple service support"
 msgstr "Wielokrotny support serwisu"
+
+msgid "Multiplex"
+msgstr "Multiplex"
 
 #
 msgid "Multisat"
@@ -4203,6 +4417,9 @@ msgstr ""
 msgid "NFS share"
 msgstr "Udział NFS"
 
+msgid "NIM"
+msgstr "Tuner"
+
 #
 msgid "NOW"
 msgstr "Teraz"
@@ -4231,6 +4448,9 @@ msgstr "Konfiguracja Nameserver"
 #
 msgid "Nameserver settings"
 msgstr "Ustawienia nameserver"
+
+msgid "Namespace"
+msgstr "Namespace"
 
 msgid "Nemesis BlackBox Skin"
 msgstr "Nemesis BlackBox Skin"
@@ -4345,10 +4565,6 @@ msgid "Network Mount"
 msgstr "Montowanie sieci"
 
 #
-msgid "Network SSID"
-msgstr "Sieciowe SSID"
-
-#
 msgid "Network Setup"
 msgstr "Ustawienia sieci"
 
@@ -4386,6 +4602,9 @@ msgstr "Przeglądarka sieciowa"
 #
 msgid "NetworkWizard"
 msgstr "Kreator sieci"
+
+msgid "Networkname (SSID)"
+msgstr "Nazwa sieci (SSID)"
 
 #
 msgid "Never"
@@ -4429,10 +4648,6 @@ msgstr "Brak połączenia"
 #
 msgid "No HDD found or HDD not initialized!"
 msgstr "Nie znaleziono HDD lub HDD nie jest zainicjowany!"
-
-#
-msgid "No Networks found"
-msgstr "Nie znaleziono sieci"
 
 #
 msgid "No backup needed"
@@ -4553,9 +4768,8 @@ msgstr ""
 msgid "No videos to display"
 msgstr "Brak filmów do wyswietlenia"
 
-#
-msgid "No wireless networks found! Please refresh."
-msgstr "Brak sieci bezprzewodowych! Proszę odśwież"
+msgid "No wireless networks found! Searching..."
+msgstr "Nie znaleziono sieci bezprzewodowych! Wyszukiwanie ..."
 
 #
 msgid ""
@@ -4651,6 +4865,12 @@ msgstr "Północ"
 msgid "Norwegian"
 msgstr "Norweski"
 
+msgid "Not after"
+msgstr "Nie po"
+
+msgid "Not before"
+msgstr "Nie przed"
+
 #
 #, python-format
 msgid ""
@@ -4663,6 +4883,9 @@ msgstr ""
 #
 msgid "Not fetching feed entries"
 msgstr "Brk wyszukiwanych wpisów"
+
+msgid "Not-Associated"
+msgstr "Nie Związane"
 
 #
 msgid ""
@@ -4705,6 +4928,9 @@ msgstr "OK, usuń kolejne rozszerzenia"
 #
 msgid "OK, remove some extensions"
 msgstr "OK, usuń kilka rozszerzeń"
+
+msgid "ONID"
+msgstr "ONID"
 
 #
 msgid "OSD Settings"
@@ -4750,6 +4976,9 @@ msgstr "Tylko AutoTimery stworzone podczas tej sesji"
 msgid "Only Free scan"
 msgstr "Skanuj tylko FTA"
 
+msgid "Only add timer for next x days"
+msgstr ""
+
 #
 msgid "Only extensions."
 msgstr "Tylko rozszerzenia."
@@ -4775,9 +5004,8 @@ msgstr "Otwórz menu plugina"
 msgid "Optionally enter your name if you want to."
 msgstr "Opcjonalnie dodaj nazwę jeśli chcesz."
 
-#
-msgid "Orbital Position"
-msgstr "Pozycja orbitalna"
+msgid "Orbital position"
+msgstr "Pozycja sat"
 
 #
 msgid "Outer Bound (+/-)"
@@ -4800,9 +5028,15 @@ msgstr "Zastąpić pliki konfiguracyjne podczas aktualizacji oprogramowania?"
 msgid "PAL"
 msgstr "PAL"
 
+msgid "PCR PID"
+msgstr "PCR PID"
+
 #
 msgid "PIDs"
 msgstr "Pidy"
+
+msgid "PMT PID"
+msgstr "PMT PID"
 
 #
 msgid "Package list update"
@@ -4872,7 +5106,7 @@ msgid "PermanentClock shows the clock permanently on the screen."
 msgstr "PermanentClock pokazuje na stałe zegar na ekranie."
 
 msgid "Persian"
-msgstr ""
+msgstr "Perski"
 
 #
 msgid "Pets & Animals"
@@ -4915,6 +5149,12 @@ msgstr "Odtwarzanie CD-Audio..."
 msgid "Play DVD"
 msgstr "Odtwórz DVD"
 
+msgid "Play Internet Radio downloaded from Last.FM"
+msgstr ""
+
+msgid "Play Internet Radio downloaded from ShoutCast"
+msgstr ""
+
 #
 msgid "Play Music..."
 msgstr "Odtwórz Muzykę..."
@@ -4922,12 +5162,6 @@ msgstr "Odtwórz Muzykę..."
 #
 msgid "Play YouTube movies"
 msgstr "Odtwarzacz filmów YouTube"
-
-msgid "Play music from Last.fm"
-msgstr "Odtwarzanie muzyki z Last.fm"
-
-msgid "Play music from Last.fm."
-msgstr "Odtwarzanie muzyki z Last.fm."
 
 #
 msgid "Play next video"
@@ -5256,10 +5490,6 @@ msgid "Poland"
 msgstr "Polska"
 
 #
-msgid "Polarity"
-msgstr "Polaryzacja"
-
-#
 msgid "Polarization"
 msgstr "Polaryzacja"
 
@@ -5294,6 +5524,9 @@ msgstr "Port D"
 #
 msgid "Portuguese"
 msgstr "Portugalski"
+
+msgid "Position of finished Timers in Timerlist"
+msgstr "Pozycja zakończonych nagrań w liście timera"
 
 #
 msgid "Positioner"
@@ -5482,6 +5715,17 @@ msgstr "Providerzy"
 msgid "Published"
 msgstr "Publikacji"
 
+msgid "Push key \"Exit long\" to show the clock while watching TV."
+msgstr ""
+
+msgid ""
+"Push key \"Exit long\" to show the clock while watching TV. Clock will "
+"disappear after the specified timeout or by pushing key \"Exit long\" "
+"again.\n"
+"Modify the settings to match your preferences. To change the clock position, "
+"select \"Move clock\" and relocate."
+msgstr ""
+
 #
 msgid "Python frontend for /tmp/mmi.socket"
 msgstr "Python frontend dla /tmp/mmi.socket"
@@ -5512,12 +5756,12 @@ msgstr "RGB"
 msgid "RSS viewer"
 msgstr "Przeglądarka RSS"
 
+msgid "RT8070/RT3070/RT3370 USB wireless-n driver"
+msgstr "RT8070/RT3070/RT3370 USB WiFi - n sterownik"
+
 #
 msgid "Radio"
 msgstr "Radio"
-
-msgid "Ralink"
-msgstr "Ralink"
 
 #
 msgid "Ram Disk"
@@ -5623,6 +5867,9 @@ msgstr "Nagrania"
 #
 msgid "Recordings always have priority"
 msgstr "Nagrywanie zawsze ma priorytet"
+
+msgid "Redirect notifications to Growl, Snarl, Prowl or Syslog"
+msgstr "Przekierowanie powiadomień Growl, Snarl, Prowl lub Syslog"
 
 msgid "Reenter new PIN"
 msgstr "Wpisz ponownie nowy PIN"
@@ -5845,6 +6092,9 @@ msgstr "Przywróć ustawienia Dreamboxa za pomocą pamięci USB"
 msgid "Restrict \"after event\" to a certain timespan?"
 msgstr "Ograniczyć \"po wydarzeniu\" do pewnych horyzontów czasowych?"
 
+msgid "Restrict to events on certain dates"
+msgstr "Ograniczenia dla wydarzeń w określonych terminach"
+
 #
 msgid "Resume from last position"
 msgstr "Wznów od ostatniej pozycji"
@@ -5877,6 +6127,9 @@ msgstr "Powrót do listy filmów"
 msgid "Return to previous service"
 msgstr "Powrót do poprzedniego serwisu"
 
+msgid "Reusable Help-component for other plugins."
+msgstr ""
+
 #
 msgid "Rewind speeds"
 msgstr "Prędkości przewijania w tył"
@@ -5885,9 +6138,8 @@ msgstr "Prędkości przewijania w tył"
 msgid "Right"
 msgstr "Prawo"
 
-#
-msgid "Rolloff"
-msgstr "Rolloff"
+msgid "Roll-off"
+msgstr "Roll-off"
 
 #
 msgid "Rotor turning speed"
@@ -5896,6 +6148,10 @@ msgstr "Prędkość obrotu rotora"
 #
 msgid "Running"
 msgstr "Uruchomiony"
+
+#
+msgid "Running in testmode"
+msgstr "Uruchomiony w trybie testowym"
 
 #
 msgid "Russia"
@@ -5908,6 +6164,25 @@ msgstr "Rosyjski"
 #
 msgid "S-Video"
 msgstr "S-Video"
+
+#
+msgid "SD 25/50HZ Interlace Mode"
+msgstr "SD 25/50HZ Tryb z przeplotem"
+
+#
+msgid "SD 25/50HZ Progressive Mode"
+msgstr "SD 25/50HZ Tryb progresywny"
+
+#
+msgid "SD 30/60HZ Interlace Mode"
+msgstr "SD 30/60HZ Tryb z przeplotem"
+
+#
+msgid "SD 30/60HZ Progressive Mode"
+msgstr "SD 30/60HZ Tryb progresywny"
+
+msgid "SID"
+msgstr "SID"
 
 #
 msgid "SINGLE LAYER DVD"
@@ -5924,6 +6199,25 @@ msgstr "SNR:"
 #
 msgid "SSID:"
 msgstr "SSID:"
+
+msgid ""
+"SVDRP is a protocol developed for the VDR software to control a set-top box "
+"remotely.\n"
+"This plugin only supports a subset of SVDRP and starts automatically using "
+"default settings.\n"
+"\n"
+"You probably don't need this plugin and should use the regular Web Interface "
+"for Enigma2 instead."
+msgstr ""
+"SVDRP jest protokołem oprogramowania VDR do kontroli tunera zdalnie.\n"
+"Ta wtyczka obsługuje tylko podzbiór SVDRP i uruchamia się automatycznie przy "
+"użyciu domyślnych ustawień.\n"
+"\n"
+"Prawdopodobnie nie potrzebujesz tej wtyczki i zamiast niej powinno się "
+"używać Web Interfejsu dla Enigma2."
+
+msgid "SVDRP server for Enigma2"
+msgstr "Serwer SVDRP dla Enigmy 2"
 
 #
 msgid "Sat"
@@ -6322,6 +6616,9 @@ msgstr "Wybierz sieć bezprzewodową WiFi"
 msgid "Select your choice."
 msgstr "Wybierz jedną z opcji:"
 
+msgid "Select your favourite music (Artist, Album, Genre)."
+msgstr ""
+
 #
 msgid "Send DiSEqC"
 msgstr "Wyślij DiSEqC"
@@ -6390,6 +6687,9 @@ msgstr ""
 "Serwis nie znaleziony!\n"
 "(SID nie znaleziony w PAT)"
 
+msgid "Service reference"
+msgstr "Reference Info"
+
 #
 msgid "Service scan"
 msgstr "Skanowanie serwisów"
@@ -6445,9 +6745,6 @@ msgstr "Ustaw maksymalne trwanie"
 #
 msgid "Set this NO to disable this AutoTimer."
 msgstr "Ustaw na NIE aby wyłączyć AutoTimer."
-
-msgid "Sets your Dreambox into Deep-Standby"
-msgstr "Przełącz Dreamboxa w tryb głębokiego uśpienia"
 
 #
 msgid "Setting key canceled"
@@ -6529,6 +6826,10 @@ msgid "Show in extension menu"
 msgstr "Pokaż w menu rozszerzeń"
 
 #
+msgid "Show info screen"
+msgstr "Pokaż ekran info"
+
+#
 msgid "Show infobar on channel change"
 msgstr "Pokaż pasek info podczas zmiany kanału"
 
@@ -6539,6 +6840,12 @@ msgstr "Pokaż pasek info podczas zmiany wydarzenia"
 #
 msgid "Show infobar on skip forward/backward"
 msgstr "Pokaż pasek info podczas przewijania przód/tył"
+
+msgid "Show notification on conflicts"
+msgstr "Pokaż powiadomienia o konfliktach"
+
+msgid "Show notification on similars"
+msgstr ""
 
 #
 msgid "Show positioner movement"
@@ -6578,6 +6885,9 @@ msgstr "Pokazuje statystyki oglądanych kanałów"
 msgid "Shows the clock permanently on the screen"
 msgstr "Wyświetla na stałe zegar na ekranie"
 
+msgid "Shows the service name instead of the service number when zapping."
+msgstr ""
+
 #
 msgid "Shows the state of your wireless LAN connection.\n"
 msgstr "Pokaż status połaczenia bezprzewodowego LAN.\n"
@@ -6589,6 +6899,9 @@ msgstr "Wyłącz"
 #
 msgid "Shutdown Dreambox after"
 msgstr "Wyłącza dreamboxa po"
+
+msgid "Shuts down your Dreambox into Deep Standby (Power Save Mode)"
+msgstr ""
 
 #
 msgid "Signal Strength:"
@@ -6756,6 +7069,9 @@ msgstr "Sortuj od A-Z"
 msgid "Sort AutoTimer"
 msgstr "Sortuj AutoTimer"
 
+msgid "Sort Plugins in the PluginBrowser."
+msgstr ""
+
 #
 #. TRANSLATORS: This must fit into the header button in the EPG-List
 msgid "Sort Time"
@@ -6814,6 +7130,9 @@ msgstr "Wiatrak w standby %d napięcie"
 #
 msgid "Start Webinterface"
 msgstr "Uruchom Webinterfejs"
+
+msgid "Start easy your multimedia plugins with the PVR-button."
+msgstr "Uruchamia twoje wtyczki multimedialne klawiszem PVR."
 
 #
 msgid "Start from the beginning"
@@ -6938,6 +7257,9 @@ msgstr "Nie"
 msgid "Sunday"
 msgstr "Niedziela"
 
+msgid "Support \"Fast Scan\"?"
+msgstr "Wspiera \"Szybkie Skanowanie\"?"
+
 #
 msgid "Swap Services"
 msgstr "Zamiana serwisów"
@@ -6962,13 +7284,8 @@ msgstr "Przełącz na poprzedni subserwis"
 msgid "Switchable tuner types:"
 msgstr "Przełącz typy tunerów:"
 
-#
-msgid "Symbol Rate"
-msgstr "Symbol Rate"
-
-#
-msgid "Symbolrate"
-msgstr "Symbolrate"
+msgid "Symbol rate"
+msgstr "Wartość SR"
 
 #
 msgid "System"
@@ -6986,9 +7303,18 @@ msgstr ""
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "Plik TS jest za duży dla ISO9660 poziom 1!"
 
+msgid "TSID"
+msgstr "TSID"
+
+msgid "TV Charts of all users"
+msgstr "Wykresy TV wszystkich użytkowników"
+
 #
 msgid "TV System"
 msgstr "System TV"
+
+msgid "TXT PID"
+msgstr "TXT PID"
 
 #
 msgid "Table of content for collection"
@@ -7021,6 +7347,9 @@ msgstr "tajwan"
 #
 msgid "Temperature and Fan control"
 msgstr "Temperatura i kontrola wiatraka"
+
+msgid "Temperature-dependent fan control."
+msgstr "Temperatura-zależna od sterowania wentylatorem."
 
 #
 msgid "Terrestrial"
@@ -7102,19 +7431,13 @@ msgstr ""
 "stacjonarnych czytnikach DVD."
 
 msgid ""
-"The Elektro Power Save plugin puts the box from standby to sleep mode (Deep "
-"Standby) at certain times.\n"
+"The Elektro Power Save Plugin puts the box from Standby to sleep mode (Deep "
+"Standby) at specified times.\n"
 "This only happens if the box is in standby and no recording is running or "
-"sheduled in the next 20 minutes.\n"
-"The box automatically wakes up for recordings or at the end of the sleep "
-"time. You therefore don't have to wait until it is on again."
+"scheduled during the next 20 minutes.\n"
+"The box automatically wakes up for recordings or at the end of the specified "
+"sleep time. Hence you needn't wait for it to boot-up."
 msgstr ""
-"Wtyczka Elektro Power Save przełącza tuner z trybu czuwania w tryb uśpienia "
-"(Deep Standby) w określonych przez użytkownika godzinach.\n"
-"Tylko wtedy, gdy tuner jest w trybie czuwania i nie ma włączonych lub "
-"zaplanowanych nagran w ciągu następnych 20 minut.\n"
-"Tuner automatycznie wzbudzi się (również do zaplanowanych nagrań). Możesz "
-"zatem nie czekać, aż zostanie ponownie uruchomiony."
 
 msgid ""
 "The Hotplug plugin notifies your system of newly added or removed devices."
@@ -7198,6 +7521,11 @@ msgid ""
 msgstr ""
 "USB został przygotowany jako bootowalny.\n"
 "Teraz możesz pobrać plik Image .nfi!"
+
+msgid ""
+"The VPS-Plugin can determine whether a programme begins earlier or lasts "
+"longer."
+msgstr ""
 
 msgid ""
 "The VideoEnhancement plugin provides advanced video enhancement settings."
@@ -7436,6 +7764,11 @@ msgstr "Ten Dreambox nie może zdekodować %s streamu!"
 #
 msgid "This Month"
 msgstr "Ten miesiąc"
+
+msgid ""
+"This Plugin modifies the original PluginBrowser so you can move Plugins "
+"around."
+msgstr ""
 
 #
 msgid "This Week"
@@ -7678,6 +8011,16 @@ msgstr "Status timera:"
 msgid "Timer type"
 msgstr "Typ timera"
 
+msgid ""
+"Timerliste, verwaiste Film-Dateien und Einstellungs-Sicherungen automatisch "
+"bereinigen."
+msgstr ""
+
+msgid ""
+"Timerliste, verwaiste Film-Dateien und Einstellungs-Sicherungen nach "
+"einstellbaren Regeln automatisch bereinigen."
+msgstr ""
+
 #
 msgid "Timeshift"
 msgstr "Timeshift"
@@ -7756,8 +8099,8 @@ msgstr "Najlepiej oceniane"
 msgid "Track"
 msgstr "Ścieżka"
 
-msgid "TrafficInfo shows german traffic information."
-msgstr "TrafficInfo pokazuje informacje o niemieckim ruchu drogowym."
+msgid "TrafficInfo shows German traffic jams."
+msgstr ""
 
 #
 msgid "Translation"
@@ -7768,20 +8111,12 @@ msgid "Translation:"
 msgstr "Tłumaczenie:"
 
 #
-msgid "Transmission Mode"
-msgstr "Tryb transmisji"
-
-#
 msgid "Transmission mode"
 msgstr "Tryb transmisji"
 
 #
 msgid "Transponder"
 msgstr "Transponder"
-
-#
-msgid "Transponder Type"
-msgstr "Typ transpondera"
 
 #
 msgid "Travel & Events"
@@ -7913,6 +8248,9 @@ msgstr "Anuluj instalację"
 msgid "Undo uninstall"
 msgstr "Anuluj odinstalowanie"
 
+msgid "Unencrypted"
+msgstr "Niezaszyfrowane"
+
 #
 msgid "UnhandledKey"
 msgstr "UnhandledKey"
@@ -7941,8 +8279,8 @@ msgstr "Stany Zjednoczone"
 msgid "Universal LNB"
 msgstr "Uniwersalny LNB"
 
-msgid "Unknown network adapter."
-msgstr "Nieznany adapter sieciowy."
+msgid "Unknown"
+msgstr "Nieznany"
 
 #
 msgid ""
@@ -7962,8 +8300,8 @@ msgstr "Błąd odmontowania"
 msgid "Unsupported"
 msgstr "Nieobsługiwany"
 
-msgid "UnwetterInfo shows german storm information."
-msgstr "UnwetterInfo pokazuje niemieckie informacje burzowe."
+msgid "UnwetterInfo shows German storm information."
+msgstr ""
 
 #
 msgid "Update"
@@ -8056,10 +8394,6 @@ msgid "Use and control multiple Dreamboxes with different RCs."
 msgstr "Używaj i kontroluj wiele Dreamboxów za pomocą różnych pilotów."
 
 #
-msgid "Use non-smooth winding at speeds above"
-msgstr "Użyj nie-płynnego przewijania z poza szybkości"
-
-#
 msgid "Use power measurement"
 msgstr "Użyj pomiaru mocy"
 
@@ -8137,15 +8471,27 @@ msgstr "VCR Scart"
 msgid "VMGM (intro trailer)"
 msgstr "VMGM (intro trailer)"
 
+msgid "VPS-Plugin"
+msgstr ""
+
 msgid "Vali-XD skin"
 msgstr "Vali-XD skin"
+
+msgid "Vali.HD.atlantis skin"
+msgstr "Vali.HD.atlantis skin"
 
 msgid "Vali.HD.nano skin"
 msgstr "Vali.HD.nano skin"
 
+msgid "Vali.HD.warp skin"
+msgstr "Vali.HD.warp skin"
+
 msgid ""
 "Verify your Dreambox authenticity by running the genuine dreambox plugin!"
 msgstr "Sprawdź autentyczność Dreamboxa uruchamiając plugin autentyczności!"
+
+msgid "Verifying your internet connection..."
+msgstr "Sprawdzanie połączenia internetowego ..."
 
 #
 msgid "Vertical"
@@ -8162,6 +8508,9 @@ msgstr "Kreator czystości obrazu "
 #
 msgid "Video Output"
 msgstr "Wyjście Wideo"
+
+msgid "Video PID"
+msgstr "Video PID"
 
 #
 msgid "Video Setup"
@@ -8368,9 +8717,6 @@ msgstr "W"
 msgid "WEP"
 msgstr "WEP"
 
-msgid "WLAN adapter."
-msgstr "Adapter WLAN."
-
 msgid "WLAN connection"
 msgstr "Połączenie WLAN."
 
@@ -8410,6 +8756,9 @@ msgstr "Wtyczka WeatherPlugin pokazuje prognozę pogody na Dreamboxie."
 
 msgid "Weatherforecast on your Dreambox"
 msgstr "Prognoza pogody na Dreambox"
+
+msgid "Web-Bouquet-Editor for PC"
+msgstr "Webowy Edytor Bukietów dla PC "
 
 msgid "Webinterface"
 msgstr "Webinterfejs"
@@ -8589,6 +8938,14 @@ msgstr "Co chcesz skanować?"
 msgid "What to do with submitted crashlogs?"
 msgstr "Co zrobić z danymi crashlogami?"
 
+msgid ""
+"When supporting \"Fast Scan\" the service type is ignored. You don't need to "
+"enable this unless your Image supports \"Fast Scan\" and you are using it."
+msgstr ""
+"Wspierając \"Szybkie Skanowanie\" typ serwisu jest ignorowany. Nie musisz "
+"włączyć tej funkcji, chyba że Image obsługuje \"Szybkie Skanowanie\" i "
+"używasz tego."
+
 #
 msgid ""
 "When this option is enabled the AutoTimer won't match events where another "
@@ -8628,8 +8985,13 @@ msgstr "Sieć bezprzewodowa"
 msgid "Wireless Network"
 msgstr "Sieć bezprzewodowa"
 
-#
-msgid "Wireless Network State"
+msgid "Wireless network connection setup"
+msgstr "Konfiguracjia sieci bezprzewodowej"
+
+msgid "Wireless network connection setup."
+msgstr "Konfiguracjia sieci bezprzewodowej."
+
+msgid "Wireless network state"
 msgstr "Status sieci bezprzewodowej"
 
 msgid ""
@@ -8661,11 +9023,9 @@ msgstr ""
 "Za pomocą Genuine Drembox można zweryfikować autentyczność swojego Dreamboxa."
 
 msgid ""
-"With IMDb you can download and displays movie information (rating, poster, "
+"With IMDb you can display downloaded movie information (rating, poster, "
 "cast, synopsis etc.) about the selected event."
 msgstr ""
-"Za pomocą IMDb możesz pobrać i wyświetlić informacje o filmach (ocena, "
-"plakat, obsada, streszczenie itp.) na temat wybranego wydarzenia."
 
 msgid "With MovieRetitle you can rename your movies."
 msgstr "Z pomocą MovieRetitle można zmieniać nazwy swoich filmów."
@@ -8675,6 +9035,11 @@ msgid ""
 msgstr ""
 "Za pomocą MyTube można odtwarzać filmy z YouTube bezpośrednio na ekranie "
 "telewizora bez użycia komputera PC."
+
+msgid ""
+"With OFDb you can display downloaded movie information (rating, poster, "
+"cast, synopsis etc.) about the selected event."
+msgstr ""
 
 msgid "With WebcamViewer you can watch webcams on your TV Screen."
 msgstr ""
@@ -8762,13 +9127,10 @@ msgstr ""
 "Z tą opcją włączoną kanał do nagrania może być zmieniony na alternatywny "
 "serwis ograniczający się do."
 
-#
 msgid ""
-"With this option you can restrict the AutoTimer to a certain ammount of "
+"With this option you can restrict the AutoTimer to a certain amount of "
 "scheduled recordings. Set this to 0 to disable this functionality."
 msgstr ""
-"Z tą opcją możesz ograniczyć AutoTimer do pewnych ilości zaprogramowanych "
-"nagrań. Ustaw na 0 aby wyłączyć."
 
 #
 msgid "Wizard"
@@ -8873,6 +9235,11 @@ msgstr ""
 msgid "You can choose, what you want to install..."
 msgstr "Proszę wybrać komponenty do zainstalowania..."
 
+msgid ""
+"You can control for how many days in the future timers are added. Set this "
+"to 0 to disable this feature."
+msgstr ""
+
 #
 msgid "You can install this plugin."
 msgstr "Możesz zainstalować ten plugin"
@@ -8894,6 +9261,22 @@ msgstr ""
 "Możesz tutaj ustawić podstawowe opcje AutoTimera.\n"
 "Podczas gdy nazwa jest zrozumiała dla nas nazwa wyświetlona w opisie "
 "wyszukania w tytule jest tym czego szukasz w EPG."
+
+msgid ""
+"You can use the EasyInfo for manage your EPG plugins from info button. You "
+"have also a new now-next event viewer. Easy-PG, the own graphical EPG bowser "
+"is also included."
+msgstr ""
+"Możesz użyć EasyInfo do zarządzania wtyczek EPG przyciskiem Info. Masz "
+"również nową przeglądarkę nowych/przyszłych zdarzeń. Posiada również Easy-"
+"PG, graficzną przeglądarkę EPG."
+
+msgid ""
+"You can use this plugin to dynamically hide Plugins from either the "
+"Extensions- or Pluginmenu without having to modify the source code of the "
+"respective plugin.After installation you find the settings as \"Hide Plugins"
+"\" under Setup / System."
+msgstr ""
 
 #
 msgid "You cannot delete this!"
@@ -9108,6 +9491,9 @@ msgstr "Twoja nazwa (opcjonalnie):"
 msgid "Your network configuration has been activated."
 msgstr "Twoja konfiguracja sieci została aktywowana."
 
+msgid "Your network is not working. Please try again."
+msgstr "Twoja sieć nie działa. Spróbuj ponownie..."
+
 #
 msgid "Your network mount has been activated."
 msgstr "Twoje montowanie sieci zostało aktywowane."
@@ -9163,9 +9549,6 @@ msgstr "Zoom w filmach do letterboxed / anamorph"
 msgid "Zoom into letterboxed/anamorph movies."
 msgstr "Zoom w filmach do letterboxed / anamorph."
 
-msgid "Zydas"
-msgstr "Zydas"
-
 #
 msgid "[alternative edit]"
 msgstr "[edycja wybranych]"
@@ -9217,7 +9600,12 @@ msgstr "Aktywuj aktualną konfigurację"
 msgid "activate network adapter configuration"
 msgstr "Aktywuj konfigurację adaptera sieci"
 
+#. TRANSLATORS: AutoTimer title in MovieList (automatically opens importer, I consider this no further interaction)
+msgid "add AutoTimer"
+msgstr ""
+
 #
+#. TRANSLATORS: AutoTimer title in EventInfo dialog (requires the user to select an event to base the AutoTimer on)
 msgid "add AutoTimer..."
 msgstr "Dodaj AutoTimer..."
 
@@ -9293,9 +9681,6 @@ msgstr "Dodaj serwis do ulubionych"
 msgid "add services"
 msgstr "Dodaj serwisy"
 
-msgid "add tags to recorded movies"
-msgstr "dodaj tagi do nagranych filmów"
-
 #
 msgid "add to parental protection"
 msgstr "Dodaj do kontroli rodzicielskiej"
@@ -9335,6 +9720,12 @@ msgstr "Wyznaczone CAIds:"
 msgid "assigned Services/Provider:"
 msgstr "Wyznaczone serwisy/prowiderzy:"
 
+msgid "at beginning"
+msgstr "Na początku"
+
+msgid "at end"
+msgstr "Na końcu"
+
 #
 #, python-format
 msgid "audio track (%s) format"
@@ -9352,6 +9743,9 @@ msgstr "Ścieżki audio"
 #
 msgid "auto"
 msgstr "Auto"
+
+msgid "autotimers need a match attribute"
+msgstr "Auto Timery potrzebują dopasowania atrybutów"
 
 #
 msgid "available"
@@ -9384,6 +9778,10 @@ msgstr "Czarna lista"
 #
 msgid "blue"
 msgstr "Niebieski"
+
+#
+msgid "bob"
+msgstr "bob"
 
 #
 #, python-format
@@ -9426,6 +9824,9 @@ msgstr "Wyczyść playlistę"
 msgid "complex"
 msgstr "złożony"
 
+msgid "config changed."
+msgstr "Konfig zmieniony."
+
 #
 msgid "config menu"
 msgstr "Menu konfiguracji"
@@ -9457,6 +9858,12 @@ msgstr "Nie może być usunięty"
 msgid "create directory"
 msgstr "Utwórz katalog"
 
+msgid "creates virtual series folders from episodes"
+msgstr "tworzy wirtualne serie folderów z odcinków"
+
+msgid "creates virtual series folders from sets of recorded episodes"
+msgstr "tworzy wirtualne serie folderów z zapisanych odcinków"
+
 #, python-format
 msgid "currently installed image: %s"
 msgstr "aktualnie instalowany Image: %s"
@@ -9468,6 +9875,10 @@ msgstr "Codziennie"
 #
 msgid "day"
 msgstr "Dzień"
+
+#
+msgid "default"
+msgstr "Domyślny"
 
 #
 msgid "delete"
@@ -9528,6 +9939,9 @@ msgstr "Nie nagrywaj"
 msgid "done!"
 msgstr "Zrobione!"
 
+msgid "driver for Realtek USB wireless devices"
+msgstr "Sterownik Realtek dla sieci bezprzewodowych urządzeń USB "
+
 #
 msgid "edit alternatives"
 msgstr "Edytuj wybrane kanały"
@@ -9579,10 +9993,6 @@ msgstr "Zakończ cięcie tutaj"
 #
 msgid "end favourites edit"
 msgstr "Koniec edycji ulubionych"
-
-#
-msgid "enter hidden network SSID"
-msgstr "Wprowadż ukrytą sieć SSID"
 
 #
 msgid "equal to"
@@ -9808,6 +10218,9 @@ msgstr "Minuta"
 msgid "minutes"
 msgstr "Minutach"
 
+msgid "missing parameter \"id\""
+msgstr "brakujący parametr \"id\""
+
 #
 msgid "month"
 msgstr "Miesiąc"
@@ -10005,9 +10418,6 @@ msgstr "czerwony"
 
 msgid "redesigned Kerni-HD1 skin"
 msgstr "przerobiony Kerni-HD1 skin"
-
-msgid "redirect notifications to Growl"
-msgstr "przekierowanie powiadomień do Growl"
 
 #
 msgid "remove a nameserver entry"
@@ -10345,9 +10755,9 @@ msgstr "czas odtwarzania, rozdział, audio, informacja o napisach"
 msgid "tuner is not supported"
 msgstr "Tuner nieobsługiwany"
 
-#
-msgid "unavailable"
-msgstr "Niedostępny"
+#, python-format
+msgid "unable to find timer with id %i"
+msgstr "Nie można znaleźć timera z ID %i"
 
 #
 msgid "unconfirmed"
@@ -10407,6 +10817,9 @@ msgstr "Oczekiwanie"
 msgid "was removed successfully"
 msgstr "Usunięto pomyślnie"
 
+msgid "watch trailer from epglist/eventview"
+msgstr ""
+
 #
 msgid "weekly"
 msgstr "Tygodniowo"
@@ -10414,6 +10827,9 @@ msgstr "Tygodniowo"
 #
 msgid "whitelist"
 msgstr "Biała lista"
+
+msgid "wireless network interface"
+msgstr "Interfejs sieci bezprzewodowej"
 
 #
 msgid "working"
@@ -10502,6 +10918,9 @@ msgstr "Przełączony"
 #~ msgid "50 Hz"
 #~ msgstr "50 Hz"
 
+#~ msgid "A BackToTheRoots-Skin ... or good old times."
+#~ msgstr "Powrót do korzeni-Skórka ... lub starych dobrych czasów."
+
 #
 #~ msgid "AGC"
 #~ msgstr "AGC"
@@ -10529,6 +10948,10 @@ msgstr "Przełączony"
 #
 #~ msgid "All..."
 #~ msgstr "Wszystkie..."
+
+#
+#~ msgid "Ammount of recordings left"
+#~ msgstr "Spośród pozostałych nagrań"
 
 #
 #~ msgid "An error has occured. (%s)"
@@ -10560,6 +10983,9 @@ msgstr "Przełączony"
 #~ msgid "Artist:"
 #~ msgstr "Artysta:"
 
+#~ msgid "Atheros"
+#~ msgstr "Atheros"
+
 #
 #~ msgid "August"
 #~ msgstr "Sierpień"
@@ -10579,22 +11005,6 @@ msgstr "Przełączony"
 #~ msgstr ""
 #~ "Tryb testowy autoresolution:\n"
 #~ "Jest %s ok?"
-
-#
-#~ msgid "Autoresolution Switch"
-#~ msgstr "Włącznik autoresolution"
-
-#
-#~ msgid "Autoresolution is not working in Scart/DVI-PC Mode"
-#~ msgstr "Autoresolution nie działa w trybie Scart/DVI-PC"
-
-#
-#~ msgid "Autoresolution settings"
-#~ msgstr "Ustawienia Autoresolution"
-
-#
-#~ msgid "Autoresolution videomode setup"
-#~ msgstr "Konfiguracja trybu wideo Autoresolution "
 
 #
 #~ msgid "Backup"
@@ -10680,6 +11090,22 @@ msgstr "Przełączony"
 #
 #~ msgid "CleanupWizardConfiguration"
 #~ msgstr "Kreator czyszczenia"
+
+#
+#~ msgid "Code rate high"
+#~ msgstr "Poziom kodu wysoki"
+
+#
+#~ msgid "Code rate low"
+#~ msgstr "Poziom kodu niski"
+
+#
+#~ msgid "Coderate HP"
+#~ msgstr "Poziom kodu HP"
+
+#
+#~ msgid "Coderate LP"
+#~ msgstr "Poziom kodu LP"
 
 #
 #~ msgid "Compact flash card"
@@ -10780,18 +11206,6 @@ msgstr "Przełączony"
 #~ msgstr "Ustawienia standardowe"
 
 #
-#~ msgid "Deinterlacer mode for interlaced content"
-#~ msgstr "Tryb bez przeplotu dla zawartości z przeplotem"
-
-#
-#~ msgid "Deinterlacer mode for progressive content"
-#~ msgstr "Tryb bez przeplotu dla zawartości progresywnej"
-
-#
-#~ msgid "Delay x seconds after service started"
-#~ msgstr "Opóżnienie x sekund po starcie serwisu"
-
-#
 #~ msgid "Delete selected mount"
 #~ msgstr "Usuń wybrane montowanie"
 
@@ -10828,6 +11242,9 @@ msgstr "Przełączony"
 #~ "Rozłączono z\n"
 #~ "Fritz!Box! (%s)\n"
 #~ "ponawianie..."
+
+#~ msgid "Displays movie information from the InternetMovieDatabase"
+#~ msgstr "Wyświetla napisy z InternetMovieDatabase"
 
 #
 #~ msgid ""
@@ -10889,6 +11306,17 @@ msgstr "Przełączony"
 #~ msgid "Dreambox Keyboard Deutsch"
 #~ msgstr "Klawiatura Niemiecka"
 
+#~ msgid ""
+#~ "EPGRefresh will automatically switch to user-defined channels when the "
+#~ "box is idleing\n"
+#~ "(in standby mode without any running recordings) to perform updates of "
+#~ "the epg information on these channels."
+#~ msgstr ""
+#~ "EPGRefresh automatycznie przełączy się na kanały zdefiniowane przez "
+#~ "użytkownika\n"
+#~ "(Gdy jest w trybie czuwania bez uruchomionych nagrań), aby wykonać "
+#~ "aktualizacje informacji EPG na tych kanałach."
+
 #
 #~ msgid "Edit IPKG source URL..."
 #~ msgstr "Edytuj URL źródła IPKG..."
@@ -10905,26 +11333,6 @@ msgstr "Przełączony"
 #
 #~ msgid "Enable /hdd"
 #~ msgstr "Włącz katalog /hdd"
-
-#
-#~ msgid "Enable 1080p24 Mode"
-#~ msgstr "Włącz tryb 1080p24"
-
-#
-#~ msgid "Enable 1080p25 Mode"
-#~ msgstr "Włącz tryb 1080p25"
-
-#
-#~ msgid "Enable 1080p30 Mode"
-#~ msgstr "Włącz tryb 1080p30"
-
-#
-#~ msgid "Enable 720p24 Mode"
-#~ msgstr "Włącz tryb 720p24"
-
-#
-#~ msgid "Enable Autoresolution"
-#~ msgstr "Włącz Autoresolution"
 
 #
 #~ msgid "Enable LAN"
@@ -10947,6 +11355,10 @@ msgstr "Przełączony"
 #~ msgstr "Zakodowana: %s"
 
 #
+#~ msgid "Encryption Type"
+#~ msgstr "Typ szyfrowania"
+
+#
 #~ msgid "End"
 #~ msgstr "Koniec"
 
@@ -10965,6 +11377,14 @@ msgstr "Przełączony"
 #~ "stephan@reichholf.net\n"
 #~ "\n"
 #~ "© 2006 - Stephan Reichholf"
+
+#
+#~ msgid "Enter Fast Forward at speed"
+#~ msgstr "Przejdź do przodu bardzo szybko"
+
+#
+#~ msgid "Enter Rewind at speed"
+#~ msgstr "Przejdź wstecz bardzo szybko"
 
 #
 #~ msgid "Enter WLAN network name/SSID:"
@@ -11009,6 +11429,25 @@ msgstr "Przełączony"
 #~ msgid "Font size"
 #~ msgstr "Rozmiar fontu"
 
+#~ msgid ""
+#~ "Found a total of %d matching Events.\n"
+#~ "%d Timer were added and %d modified, %d conflicts encountered."
+#~ msgstr ""
+#~ "Znaleziono w sumie %d pasujących Wydarzeń.\n"
+#~ "%d Timery zostały dodane i %d zmodyfikowane, %d napotkanych konfliktów."
+
+#
+#~ msgid ""
+#~ "Found a total of %d matching Events.\n"
+#~ "%d Timer were added and %d modified."
+#~ msgstr ""
+#~ "Znaleziono w sumie %d pasujących wydarzeń.\n"
+#~ "%d Timer będzie dodany %d i zmodyfikowany."
+
+#
+#~ msgid "Frame repeat count during non-smooth winding"
+#~ msgstr "Oblicz powtórzenie ramki podczas nie-płynnego zwijania"
+
 #
 #~ msgid "Fritz!Box FON IP address"
 #~ msgstr "Fritz!Box FON IP Adres"
@@ -11033,17 +11472,43 @@ msgstr "Przełączony"
 #~ msgid "Genre:"
 #~ msgstr "Gatunek:"
 
-#
-#~ msgid "HD Interlace Mode"
-#~ msgstr "Tryb HD z przeplotem"
+#~ msgid ""
+#~ "Growlee allows your Dreambox to send short messages using the growl "
+#~ "protocol\n"
+#~ "like Recording started notifications to a PC running a growl client"
+#~ msgstr ""
+#~ "Growlee pozwala Dreamboxowi na wysyłanie krótkich wiadomości tekstowych "
+#~ "przy użyciu protokołu growl\n"
+#~ "jak np rozpoczęcie nagrywania zgłoszone do komputera z uruchomionym "
+#~ "klientem growl"
 
 #
-#~ msgid "HD Progressive Mode"
-#~ msgstr "Progresywny tryb HD"
+#~ msgid "Guard Interval"
+#~ msgstr "Ochrona odstępu"
+
+#
+#~ msgid "Guard interval mode"
+#~ msgstr "Ochronny tryb odstępu"
 
 #
 #~ msgid "Here is a small overview of the available icon states."
 #~ msgstr "Przegląd dostępnych stanów ikon"
+
+#
+#~ msgid "Hidden network SSID"
+#~ msgstr "Ukryty sieciowy SSID"
+
+#
+#~ msgid "Hidden networkname"
+#~ msgstr "Ukryta nazwa sieci"
+
+#
+#~ msgid "Hierarchy Information"
+#~ msgstr "Informacja hierarchii"
+
+#
+#~ msgid "Hierarchy mode"
+#~ msgstr "Tryb hierarchii"
 
 #
 #~ msgid "How to handle found crashlogs:"
@@ -11052,6 +11517,14 @@ msgstr "Przełączony"
 #
 #~ msgid "IMDb Details Plugin"
 #~ msgstr "Plugin IMDb"
+
+#
+#~ msgid ""
+#~ "If this is enabled an existing timer will also be considered recording an "
+#~ "event if it records at least 80% of the it."
+#~ msgstr ""
+#~ "Jeśli to jest włączone na istniejącym timerze wtedy będzie też za "
+#~ "nagraniem jeśli nagrywa ostanie 80% of tego."
 
 #
 #~ msgid "If you can see this page, please press OK."
@@ -11101,6 +11574,9 @@ msgstr "Przełączony"
 #~ msgid "Interfaces"
 #~ msgstr "Interfejs"
 
+#~ msgid "Internal LAN adapter."
+#~ msgstr "Wewnętrzny adapter LAN."
+
 #
 #~ msgid "Invert display"
 #~ msgstr "Odwróć wyświetlanie"
@@ -11137,6 +11613,12 @@ msgstr "Przełączony"
 #~ msgid "Lets you view/edit files in your Dreambox"
 #~ msgstr "Pozwól przeglądać/edytować pliki Dreamboxa"
 
+#~ msgid "Listen and record internet radio"
+#~ msgstr "Słuchaj i nagrywaj radio internetowe"
+
+#~ msgid "Listen and record shoutcast internet radio on your Dreambox."
+#~ msgstr "Słuchaj i nagrywaj radio internetowe shoutcast na Dreamboxie."
+
 #
 #~ msgid "Load saved project from disk"
 #~ msgstr "Odczytaj projekt z dysku"
@@ -11154,6 +11636,14 @@ msgstr "Przełączony"
 #~ msgstr "Max. Bitrate: %s"
 
 #
+#~ msgid ""
+#~ "Maximum event duration to match. If an event is longer than this ammount "
+#~ "of time (without offset) it won't be matched."
+#~ msgstr ""
+#~ "Maksymalne trwanie wydarzaenia. Jesli wydarzenie jest dłuższe jak ten "
+#~ "czas (bez offsetu) nie będzie dopasowane."
+
+#
 #~ msgid "May"
 #~ msgstr "Maj"
 
@@ -11164,6 +11654,12 @@ msgstr "Przełączony"
 #
 #~ msgid "Movie Menu"
 #~ msgstr "Menu filmu"
+
+#~ msgid "Movie information from the Online Film Datenbank (German)."
+#~ msgstr "Informacje o filmach z Filmowej Bazy Danych  (Niemcy)"
+
+#~ msgid "Movie informations from the Online Film Datenbank"
+#~ msgstr "Informacje o filmach z Filmowej Bazy Danych"
 
 #
 #
@@ -11185,6 +11681,10 @@ msgstr "Przełączony"
 #~ msgstr "Ustawienia Nameserver..."
 
 #
+#~ msgid "Network SSID"
+#~ msgstr "Sieciowe SSID"
+
+#
 #~ msgid "Network..."
 #~ msgstr "Sieć..."
 
@@ -11201,8 +11701,16 @@ msgstr "Przełączony"
 #~ msgstr "Brak 50 Hz, przepraszam. :("
 
 #
+#~ msgid "No Networks found"
+#~ msgstr "Nie znaleziono sieci"
+
+#
 #~ msgid "No useable USB stick found"
 #~ msgstr "Nie znaleziono uzytecznego nośnika USB"
+
+#
+#~ msgid "No wireless networks found! Please refresh."
+#~ msgstr "Brak sieci bezprzewodowych! Proszę odśwież"
 
 #
 #~ msgid ""
@@ -11285,6 +11793,10 @@ msgstr "Przełączony"
 #~ msgstr "Online - Aktualizacja"
 
 #
+#~ msgid "Orbital Position"
+#~ msgstr "Pozycja orbitalna"
+
+#
 #~ msgid "Other..."
 #~ msgstr "Inne..."
 
@@ -11307,6 +11819,12 @@ msgstr "Przełączony"
 #
 #~ msgid "Play in Mainwindow"
 #~ msgstr "Pokaż na ekranie głównym"
+
+#~ msgid "Play music from Last.fm"
+#~ msgstr "Odtwarzanie muzyki z Last.fm"
+
+#~ msgid "Play music from Last.fm."
+#~ msgstr "Odtwarzanie muzyki z Last.fm."
 
 #
 #~ msgid ""
@@ -11387,6 +11905,10 @@ msgstr "Przełączony"
 #~ msgstr "Informacja o procesach menadżera pluginów..."
 
 #
+#~ msgid "Polarity"
+#~ msgstr "Polaryzacja"
+
+#
 #~ msgid "Port"
 #~ msgstr "Port"
 
@@ -11426,6 +11948,9 @@ msgstr "Przełączony"
 #
 #~ msgid "RSS Feed URI"
 #~ msgstr "Adres serwisu RSS"
+
+#~ msgid "Ralink"
+#~ msgstr "Ralink"
 
 #
 #~ msgid "Really delete this Interface?"
@@ -11524,24 +12049,8 @@ msgstr "Przełączony"
 #~ msgstr "Pobieranie informacji sieciowej. Proszę czekać..."
 
 #
-#~ msgid "Running in testmode"
-#~ msgstr "Uruchomiony w trybie testowym"
-
-#
-#~ msgid "SD 25/50HZ Interlace Mode"
-#~ msgstr "SD 25/50HZ Tryb z przeplotem"
-
-#
-#~ msgid "SD 25/50HZ Progressive Mode"
-#~ msgstr "SD 25/50HZ Tryb progresywny"
-
-#
-#~ msgid "SD 30/60HZ Interlace Mode"
-#~ msgstr "SD 30/60HZ Tryb z przeplotem"
-
-#
-#~ msgid "SD 30/60HZ Progressive Mode"
-#~ msgstr "SD 30/60HZ Tryb progresywny"
+#~ msgid "Rolloff"
+#~ msgstr "Rolloff"
 
 #
 #~ msgid "SSL"
@@ -11634,13 +12143,12 @@ msgstr "Przełączony"
 #~ msgid "Set menu background"
 #~ msgstr "Ustaw tło menu"
 
+#~ msgid "Sets your Dreambox into Deep-Standby"
+#~ msgstr "Przełącz Dreamboxa w tryb głębokiego uśpienia"
+
 #
 #~ msgid "Show files from %s"
 #~ msgstr "Pokaż pliki od %s"
-
-#
-#~ msgid "Show info screen"
-#~ msgstr "Pokaż ekran info"
 
 #
 #~ msgid "Skin..."
@@ -11697,6 +12205,14 @@ msgstr "Przełączony"
 #~ msgstr "Przełącz audio"
 
 #
+#~ msgid "Symbol Rate"
+#~ msgstr "Symbol Rate"
+
+#
+#~ msgid "Symbolrate"
+#~ msgstr "Symbolrate"
+
+#
 #~ msgid "Table of content to be burned to DVD:"
 #~ msgstr "Dane do wypalenia na DVD:"
 
@@ -11745,6 +12261,21 @@ msgstr "Przełączony"
 #~ msgstr ""
 #~ "Naped USB .NFI flash'era jest gotowy do użycia. Proszę załadować omage ."
 #~ "NFI z serwera"
+
+#~ msgid ""
+#~ "The Elektro Power Save plugin puts the box from standby to sleep mode "
+#~ "(Deep Standby) at certain times.\n"
+#~ "This only happens if the box is in standby and no recording is running or "
+#~ "sheduled in the next 20 minutes.\n"
+#~ "The box automatically wakes up for recordings or at the end of the sleep "
+#~ "time. You therefore don't have to wait until it is on again."
+#~ msgstr ""
+#~ "Wtyczka Elektro Power Save przełącza tuner z trybu czuwania w tryb "
+#~ "uśpienia (Deep Standby) w określonych przez użytkownika godzinach.\n"
+#~ "Tylko wtedy, gdy tuner jest w trybie czuwania i nie ma włączonych lub "
+#~ "zaplanowanych nagran w ciągu następnych 20 minut.\n"
+#~ "Tuner automatycznie wzbudzi się (również do zaplanowanych nagrań). Możesz "
+#~ "zatem nie czekać, aż zostanie ponownie uruchomiony."
 
 #
 #~ msgid ""
@@ -11867,6 +12398,17 @@ msgstr "Przełączony"
 #~ "10 sekund.\n"
 #~ "3) Poczekaj aż zbootuje i podążaj wg. instrukcji kreatora."
 
+#~ msgid "TrafficInfo shows german traffic information."
+#~ msgstr "TrafficInfo pokazuje informacje o niemieckim ruchu drogowym."
+
+#
+#~ msgid "Transmission Mode"
+#~ msgstr "Tryb transmisji"
+
+#
+#~ msgid "Transponder Type"
+#~ msgstr "Typ transpondera"
+
 #
 #~ msgid "Type:"
 #~ msgstr "Typ:"
@@ -11908,6 +12450,12 @@ msgstr "Przełączony"
 #~ "Cofnij\n"
 #~ "Usuń"
 
+#~ msgid "Unknown network adapter."
+#~ msgstr "Nieznany adapter sieciowy."
+
+#~ msgid "UnwetterInfo shows german storm information."
+#~ msgstr "UnwetterInfo pokazuje niemieckie informacje burzowe."
+
 #
 #~ msgid "Updates your receiver's software"
 #~ msgstr "Aktualizuje oprogramowanie Twojego tunera"
@@ -11930,6 +12478,10 @@ msgstr "Przełączony"
 #~ "Użyj domeny/nazwy użytkownika dla domen windowsa jako nazwy użytkownika!"
 
 #
+#~ msgid "Use non-smooth winding at speeds above"
+#~ msgstr "Użyj nie-płynnego przewijania z poza szybkości"
+
+#
 #~ msgid "VCR Switch"
 #~ msgstr "Automatycznie przełącz VCR"
 
@@ -11948,6 +12500,9 @@ msgstr "Przełączony"
 #
 #~ msgid "View list of available Satteliteequipment extensions."
 #~ msgstr "Pokaż listę dostępnych rozszerzeń Wyposażenia satelity"
+
+#~ msgid "WLAN adapter."
+#~ msgstr "Adapter WLAN."
 
 #
 #~ msgid "Waiting for USB stick to settle..."
@@ -11999,6 +12554,25 @@ msgstr "Przełączony"
 #
 #~ msgid "Wireless"
 #~ msgstr "Bezprzewodowy"
+
+#
+#~ msgid "Wireless Network State"
+#~ msgstr "Status sieci bezprzewodowej"
+
+#~ msgid ""
+#~ "With IMDb you can download and displays movie information (rating, "
+#~ "poster, cast, synopsis etc.) about the selected event."
+#~ msgstr ""
+#~ "Za pomocą IMDb możesz pobrać i wyświetlić informacje o filmach (ocena, "
+#~ "plakat, obsada, streszczenie itp.) na temat wybranego wydarzenia."
+
+#
+#~ msgid ""
+#~ "With this option you can restrict the AutoTimer to a certain ammount of "
+#~ "scheduled recordings. Set this to 0 to disable this functionality."
+#~ msgstr ""
+#~ "Z tą opcją możesz ograniczyć AutoTimer do pewnych ilości zaprogramowanych "
+#~ "nagrań. Ustaw na 0 aby wyłączyć."
 
 #
 #~ msgid "Writing NFI image file to flash completed"
@@ -12136,6 +12710,12 @@ msgstr "Przełączony"
 #~ msgid "Zap focus to main screen"
 #~ msgstr "Przełącz na ekran główny"
 
+#~ msgid "Zydas"
+#~ msgstr "Zydas"
+
+#~ msgid "add tags to recorded movies"
+#~ msgstr "dodaj tagi do nagranych filmów"
+
 #
 #~ msgid ""
 #~ "are you sure you want to restore\n"
@@ -12151,10 +12731,6 @@ msgstr "Przełączony"
 #
 #~ msgid "assigned Services/Provider"
 #~ msgstr "Wyznaczone Serwisy/Providerzy"
-
-#
-#~ msgid "bob"
-#~ msgstr "bob"
 
 #
 #~ msgid "by Exif"
@@ -12173,16 +12749,16 @@ msgstr "Przełączony"
 #~ msgstr "kolor"
 
 #
-#~ msgid "default"
-#~ msgstr "Domyślny"
-
-#
 #~ msgid "edit Interface"
 #~ msgstr "Edycja Interfejsu"
 
 #
 #~ msgid "enigma2 and network"
 #~ msgstr "Enigma2 i sieć"
+
+#
+#~ msgid "enter hidden network SSID"
+#~ msgstr "Wprowadż ukrytą sieć SSID"
 
 #
 #~ msgid "equal to Socket A"
@@ -12268,6 +12844,9 @@ msgstr "Przełączony"
 #~ msgid "rebooting..."
 #~ msgstr "restatrowanie..."
 
+#~ msgid "redirect notifications to Growl"
+#~ msgstr "przekierowanie powiadomień do Growl"
+
 #
 #~ msgid "required medium type:"
 #~ msgstr "Wymagany średni typ:"
@@ -12335,6 +12914,10 @@ msgstr "Przełączony"
 #
 #~ msgid "text"
 #~ msgstr "Tekst"
+
+#
+#~ msgid "unavailable"
+#~ msgstr "Niedostępny"
 
 #
 #~ msgid "until restart"

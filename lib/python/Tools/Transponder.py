@@ -1,4 +1,5 @@
 from enigma import eDVBFrontendParametersSatellite, eDVBFrontendParametersCable, eDVBFrontendParametersTerrestrial
+from Components.NimManager import nimmanager
 
 def ConvertToHumanReadable(tp, type = None):
 	ret = { }
@@ -27,6 +28,7 @@ def ConvertToHumanReadable(tp, type = None):
 			eDVBFrontendParametersSatellite.Modulation_QPSK : "QPSK",
 			eDVBFrontendParametersSatellite.Modulation_QAM16 : "QAM16",
 			eDVBFrontendParametersSatellite.Modulation_8PSK : "8PSK"}[tp["modulation"]]
+		ret["orbital_position"] = nimmanager.getSatName(int(tp["orbital_position"]))
 		ret["polarization"] = {
 			eDVBFrontendParametersSatellite.Polarisation_Horizontal : _("Horizontal"),
 			eDVBFrontendParametersSatellite.Polarisation_Vertical : _("Vertical"),
