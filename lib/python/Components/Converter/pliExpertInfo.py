@@ -84,7 +84,7 @@ class pliExpertInfo(Poll, Converter, object):
 						Ret_Text += sep + frequency + frontendData.get("polarization")[:1]
 						Ret_Text += sep + symbolrate
 						Ret_Text += sep + frontendData.get("modulation") + "-" + fec_inner
-						orbital_pos = int(frontendData["orbital_position"])
+						orbital_pos = int(frontendDataOrg["orbital_position"])
 						if orbital_pos > 1800:
 							orb_pos = str((float(3600 - orbital_pos)) / 10.0) + "W"
 						elif orbital_pos > 0:
