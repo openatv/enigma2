@@ -232,7 +232,7 @@ static unsigned char *bmp_load(const char *file,  int *x, int *y)
 
 //---------------------------------------------------------------------
 
-static unsigned char *png_load(const char *file, int *ox, int *oy)
+static unsigned char *png_load(const char *file, int *ox, int *oy, int background)
 {
 	png_uint_32 width, height;
 	unsigned int i;
@@ -272,13 +272,24 @@ static unsigned char *png_load(const char *file, int *ox, int *oy)
 		png_set_strip_16(png_ptr);
 	if (color_type == PNG_COLOR_TYPE_GRAY || color_type == PNG_COLOR_TYPE_GRAY_ALPHA)
 		png_set_gray_to_rgb(png_ptr);
+	if ((color_type == PNG_COLOR_TYPE_RGB_ALPHA) || (color_type == PNG_COLOR_TYPE_GRAY_ALPHA))
+	{
+		png_set_strip_alpha(png_ptr);
+		png_color_16 bg;
+		bg.red = (background >> 16) & 0xFF;
+		bg.green = (background >> 8) & 0xFF;
+		bg.blue = (background) & 0xFF;
+		bg.gray = bg.green;
+		bg.index = 0;
+		png_set_background(png_ptr, &bg, PNG_BACKGROUND_GAMMA_SCREEN, 0, 1.0);
+	}
 
 	int number_passes = png_set_interlace_handling(png_ptr);
 	png_read_update_info(png_ptr, info_ptr);
 
 	if (width * 3 != png_get_rowbytes(png_ptr, info_ptr))
 	{
-		eDebug("[Picload] Error processing");
+		eDebug("[Picload] Error processing (did not get RGB data from PNG file)");
 		png_destroy_read_struct(&png_ptr, &info_ptr, (png_infopp)NULL);
 		fclose(fh);
 		return NULL;
@@ -578,7 +589,7 @@ void ePicLoad::decodePic()
 	
 	switch(m_filepara->id)
 	{
-		case F_PNG:	m_filepara->pic_buffer = png_load(m_filepara->file, &m_filepara->ox, &m_filepara->oy);	break;
+		case F_PNG:	m_filepara->pic_buffer = png_load(m_filepara->file, &m_filepara->ox, &m_filepara->oy, m_conf.background);	break;
 		case F_JPEG:	m_filepara->pic_buffer = jpeg_load(m_filepara->file, &m_filepara->ox, &m_filepara->oy, m_filepara->max_x, m_filepara->max_y);	break;
 		case F_BMP:	m_filepara->pic_buffer = bmp_load(m_filepara->file, &m_filepara->ox, &m_filepara->oy);	break;
 		case F_GIF:	m_filepara->pic_buffer = gif_load(m_filepara->file, &m_filepara->ox, &m_filepara->oy);	break;
@@ -663,7 +674,7 @@ void ePicLoad::decodeThumb()
 
 	switch(m_filepara->id)
 	{
-		case F_PNG:	m_filepara->pic_buffer = png_load(m_filepara->file, &m_filepara->ox, &m_filepara->oy);	break;
+		case F_PNG:	m_filepara->pic_buffer = png_load(m_filepara->file, &m_filepara->ox, &m_filepara->oy, m_conf.background);	break;
 		case F_JPEG:	m_filepara->pic_buffer = jpeg_load(m_filepara->file, &m_filepara->ox, &m_filepara->oy, m_filepara->max_x, m_filepara->max_y);	break;
 		case F_BMP:	m_filepara->pic_buffer = bmp_load(m_filepara->file, &m_filepara->ox, &m_filepara->oy);	break;
 		case F_GIF:	m_filepara->pic_buffer = gif_load(m_filepara->file, &m_filepara->ox, &m_filepara->oy);	break;
