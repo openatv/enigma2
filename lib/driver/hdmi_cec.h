@@ -62,14 +62,14 @@ public:
 #endif
 protected:
 	static eHdmiCEC *instance;
-	ePtr<eTimer> addressTimer;
 	unsigned char physicalAddress[2];
 	bool fixedAddress;
 	unsigned char deviceType, logicalAddress;
 	int hdmiFd;
 	ePtr<eSocketNotifier> messageNotifier;
 	void addressPoll();
-	void getAddressInfo(unsigned char *physicaladdress, unsigned char &logicaladdress, unsigned char &type);
+	void reportPhysicalAddress();
+	void getAddressInfo();
 	bool getActiveStatus();
 	long translateKey(unsigned char code);
 	void hdmiEvent(int what);
@@ -84,6 +84,7 @@ public:
 #endif
 	static eHdmiCEC *getInstance();
 	PSignal1<void, ePtr<iCECMessage> &> messageReceived;
+	PSignal1<void, int> addressChanged;
 	void sendMessage(unsigned char address, unsigned char cmd, char *data, int length);
 	int getLogicalAddress();
 	int getPhysicalAddress();

@@ -42,7 +42,7 @@ int eHdmiCEC::eCECMessage::getData(char *data, int length)
 }
 
 eHdmiCEC::eHdmiCEC()
-: eRCDriver(eRCInput::getInstance()), addressTimer(eTimer::create(eApp))
+: eRCDriver(eRCInput::getInstance())
 {
 	ASSERT(!instance);
 	instance = this;
@@ -55,10 +55,9 @@ eHdmiCEC::eHdmiCEC()
 	if (hdmiFd >= 0)
 	{
 		::ioctl(hdmiFd, 0); /* flush old messages */
-		messageNotifier = eSocketNotifier::create(eApp, hdmiFd, eSocketNotifier::Read);
+		getAddressInfo();
+		messageNotifier = eSocketNotifier::create(eApp, hdmiFd, eSocketNotifier::Read | eSocketNotifier::Priority);
 		CONNECT(messageNotifier->activated, eHdmiCEC::hdmiEvent);
-		CONNECT(addressTimer->timeout, eHdmiCEC::addressPoll);
-		addressTimer->start(1000, 0);
 	}
 }
 
@@ -72,35 +71,20 @@ eHdmiCEC *eHdmiCEC::getInstance()
 	return instance;
 }
 
-void eHdmiCEC::addressPoll()
+void eHdmiCEC::reportPhysicalAddress()
 {
-	unsigned char newaddress[2];
-	unsigned char logicaladdress, type;
-	getAddressInfo(newaddress, logicaladdress, type);
-	if (newaddress[0] && memcmp(physicalAddress, newaddress, sizeof(newaddress)))
-	{
-		struct cec_message txmessage;
-		eDebug("eHdmiCEC: detected physical address change: %02X%02X --> %02X%02X", physicalAddress[0], physicalAddress[1], newaddress[0], newaddress[1]);
-		logicaladdress = logicalAddress;
-		deviceType = type;
-		memcpy(physicalAddress, newaddress, sizeof(newaddress));
-		txmessage.address = 0x0f; /* broadcast */
-		txmessage.data[0] = 0x84; /* report address */
-		txmessage.data[1] = physicalAddress[0];
-		txmessage.data[2] = physicalAddress[1];
-		txmessage.data[3] = deviceType;
-		txmessage.length = 4;
-		sendMessage(txmessage);
-	}
+	struct cec_message txmessage;
+	txmessage.address = 0x0f; /* broadcast */
+	txmessage.data[0] = 0x84; /* report address */
+	txmessage.data[1] = physicalAddress[0];
+	txmessage.data[2] = physicalAddress[1];
+	txmessage.data[3] = deviceType;
+	txmessage.length = 4;
+	sendMessage(txmessage);
 }
 
-void eHdmiCEC::getAddressInfo(unsigned char *physicaladdress, unsigned char &logicaladdress, unsigned char &type)
+void eHdmiCEC::getAddressInfo()
 {
-	physicaladdress[0] = physicalAddress[0];
-	physicaladdress[1] = physicalAddress[1];
-	logicaladdress = logicalAddress;
-	type = deviceType;
-
 	if (hdmiFd >= 0)
 	{
 		struct
@@ -109,67 +93,55 @@ void eHdmiCEC::getAddressInfo(unsigned char *physicaladdress, unsigned char &log
 			unsigned char physical[2];
 			unsigned char type;
 		} addressinfo;
-		addressinfo.type = 0;
 		if (::ioctl(hdmiFd, 1, &addressinfo) >= 0)
 		{
-			/* HACK: work around nonworking address info ioctl */
-			if (addressinfo.type != 3) return;
+			deviceType = addressinfo.type;
+			logicalAddress = addressinfo.logical;
 			if (!fixedAddress)
 			{
-				physicaladdress[0] = addressinfo.physical[0];
-				physicaladdress[1] = addressinfo.physical[1];
+				if (memcmp(physicalAddress, addressinfo.physical, sizeof(physicalAddress)))
+				{
+					eDebug("eHdmiCEC: detected physical address change: %02X%02X --> %02X%02X", physicalAddress[0], physicalAddress[1], addressinfo.physical[0], addressinfo.physical[1]);
+					memcpy(physicalAddress, addressinfo.physical, sizeof(physicalAddress));
+					reportPhysicalAddress();
+					/* emit */ addressChanged((physicalAddress[0] << 8) | physicalAddress[1]);
+				}
 			}
-			type = addressinfo.type;
-			logicaladdress = addressinfo.logical;
 		}
 	}
 }
 
 int eHdmiCEC::getLogicalAddress()
 {
-	unsigned char physicaladdress[2];
-	unsigned char logicaladdress, type;
-	getAddressInfo(physicaladdress, logicaladdress, type);
-	return logicaladdress;
+	return logicalAddress;
 }
 
 int eHdmiCEC::getPhysicalAddress()
 {
-	unsigned char physicaladdress[2];
-	unsigned char logicaladdress, type;
-	getAddressInfo(physicaladdress, logicaladdress, type);
-	return (physicaladdress[0] << 8) | physicaladdress[1];
+	return (physicalAddress[0] << 8) | physicalAddress[1];
 }
 
 void eHdmiCEC::setFixedPhysicalAddress(int address)
 {
 	if (address)
 	{
+		fixedAddress = true;
 		physicalAddress[0] = (address >> 8) & 0xff;
 		physicalAddress[1] = address & 0xff;
-		fixedAddress = true;
 		/* report our (possibly new) address */
-		struct cec_message txmessage;
-		txmessage.address = 0x0f; /* broadcast */
-		txmessage.data[0] = 0x84; /* report address */
-		txmessage.data[1] = physicalAddress[0];
-		txmessage.data[2] = physicalAddress[1];
-		txmessage.data[3] = deviceType;
-		txmessage.length = 4;
-		sendMessage(txmessage);
+		reportPhysicalAddress();
 	}
 	else
 	{
 		fixedAddress = false;
+		/* get our current address */
+		getAddressInfo();
 	}
 }
 
 int eHdmiCEC::getDeviceType()
 {
-	unsigned char physicaladdress[2];
-	unsigned char logicaladdress, type;
-	getAddressInfo(physicaladdress, logicaladdress, type);
-	return type;
+	return deviceType;
 }
 
 bool eHdmiCEC::getActiveStatus()
@@ -182,38 +154,45 @@ bool eHdmiCEC::getActiveStatus()
 
 void eHdmiCEC::hdmiEvent(int what)
 {
-	struct cec_message rxmessage;
-	if (::read(hdmiFd, &rxmessage, 2) == 2)
+	if (what & eSocketNotifier::Priority)
 	{
-		if (::read(hdmiFd, &rxmessage.data, rxmessage.length) == rxmessage.length)
+		getAddressInfo();
+	}
+	if (what & eSocketNotifier::Read)
+	{
+		struct cec_message rxmessage;
+		if (::read(hdmiFd, &rxmessage, 2) == 2)
 		{
-			bool keypressed = false;
-			static unsigned char pressedkey = 0;
+			if (::read(hdmiFd, &rxmessage.data, rxmessage.length) == rxmessage.length)
+			{
+				bool keypressed = false;
+				static unsigned char pressedkey = 0;
 
-			eDebugNoNewLine("eHdmiCEC: received message");
-			for (int i = 0; i < rxmessage.length; i++)
-			{
-				eDebugNoNewLine(" %02X", rxmessage.data[i]);
-			}
-			eDebug(" ");
-			switch (rxmessage.data[0])
-			{
-				case 0x44: /* key pressed */
-					keypressed = true;
-					pressedkey = rxmessage.data[1];
-				case 0x45: /* key released */
+				eDebugNoNewLine("eHdmiCEC: received message");
+				for (int i = 0; i < rxmessage.length; i++)
 				{
-					long code = translateKey(pressedkey);
-					if (keypressed) code |= 0x80000000;
-					for (std::list<eRCDevice*>::iterator i(listeners.begin()); i != listeners.end(); ++i)
-					{
-						(*i)->handleCode(code);
-					}
-					break;
+					eDebugNoNewLine(" %02X", rxmessage.data[i]);
 				}
+				eDebug(" ");
+				switch (rxmessage.data[0])
+				{
+					case 0x44: /* key pressed */
+						keypressed = true;
+						pressedkey = rxmessage.data[1];
+					case 0x45: /* key released */
+					{
+						long code = translateKey(pressedkey);
+						if (keypressed) code |= 0x80000000;
+						for (std::list<eRCDevice*>::iterator i(listeners.begin()); i != listeners.end(); ++i)
+						{
+							(*i)->handleCode(code);
+						}
+						break;
+					}
+				}
+				ePtr<iCECMessage> msg = new eCECMessage(rxmessage.address, rxmessage.data[0], (char*)&rxmessage.data[1], rxmessage.length);
+				messageReceived(msg);
 			}
-			ePtr<iCECMessage> msg = new eCECMessage(rxmessage.address, rxmessage.data[0], (char*)&rxmessage.data[1], rxmessage.length);
-			messageReceived(msg);
 		}
 	}
 }
