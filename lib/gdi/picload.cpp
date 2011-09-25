@@ -523,7 +523,7 @@ inline void m_rend_gif_decodecolormap(unsigned char *cmb, unsigned char *rgbb, C
 static void gif_load(Cfilepara* filepara)
 {
 	unsigned char *pic_buffer = NULL;
-	int px, py, i, j, ibxs;
+	int px, py, i, j;
 	unsigned char *fbptr;
 	unsigned char *slb=NULL;
 	GifFileType *gft;
@@ -1009,6 +1009,10 @@ int ePicLoad::getData(ePtr<gPixmap> &result)
 	{
 	result=new gPixmap(eSize(m_filepara->max_x, m_filepara->max_y), 8);
 	gSurface *surface = result->surface;
+	surface->clut.data = m_filepara->palette;
+	surface->clut.colors = m_filepara->palette_size;
+	surface->clut.start=0;
+	m_filepara->palette = NULL; // transfer ownership
 	int o_y=0, u_y=0, v_x=0, h_x=0;
 
 	unsigned char *tmp_buffer=((unsigned char *)(surface->data));
@@ -1025,7 +1029,10 @@ int ePicLoad::getData(ePtr<gPixmap> &result)
 		h_x = m_filepara->max_x - m_filepara->ox - v_x;
 	}
 	
-	int background = 0; //TODO: m_conf.background;
+	int background;
+	gRGB bg(m_conf.background);
+	background = surface->clut.findColor(bg);
+
 	if(m_filepara->oy < m_filepara->max_y)
 	{
 		memset(tmp_buffer, background, o_y * m_filepara->ox);
@@ -1057,10 +1064,6 @@ int ePicLoad::getData(ePtr<gPixmap> &result)
 		tmp_buffer += u_y * m_filepara->ox;
 	}
 	
-	surface->clut.data = m_filepara->palette;
-	surface->clut.colors = m_filepara->palette_size;
-	surface->clut.start=0;
-	m_filepara->palette = NULL; // transfer ownership
 	}
 	else
 //----------------
