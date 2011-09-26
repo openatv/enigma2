@@ -28,6 +28,10 @@
 #include <byteswap.h>
 #include <netinet/in.h>
 
+#include <iostream>
+#include <fstream>
+using namespace std;
+
 #ifndef BYTE_ORDER
 #error no byte order defined!
 #endif
@@ -2260,6 +2264,13 @@ RESULT eDVBServicePlay::startTimeshift()
 
 	eDebug("recording to %s", templ);
 
+    ofstream fileout;
+    fileout.open("/proc/stb/lcd/symbol_timeshift");
+    if(fileout.is_open())
+    {
+        fileout << "1";
+    }
+
 	delete [] templ;
 
 	if (m_timeshift_fd < 0)
@@ -2296,6 +2307,14 @@ RESULT eDVBServicePlay::stopTimeshift(bool swToLive)
 		close(m_timeshift_fd);
 		m_timeshift_fd = -1;
 	}
+    
+    ofstream fileout;
+    fileout.open("/proc/stb/lcd/symbol_timeshift");
+    if(fileout.is_open())
+    {
+        fileout << "0";
+    }
+	
 	eDebug("remove timeshift file");
 	eBackgroundFileEraser::getInstance()->erase(m_timeshift_file);
 	
