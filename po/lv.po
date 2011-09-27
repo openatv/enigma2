@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-08 16:22+0100\n"
+"POT-Creation-Date: 2011-09-27 18:44+0100\n"
 "PO-Revision-Date: 2009-02-25 20:35+0200\n"
 "Last-Translator: Ivo Grinbergs <ivog@apollo.lv>\n"
 "Language-Team: Ivo / enigma2 (c) <ivog@apolllo.lv>\n"
@@ -220,6 +220,10 @@ msgstr "#ffffffff"
 msgid "%H:%M"
 msgstr "%H:%M"
 
+#, python-format
+msgid "%d / 100"
+msgstr ""
+
 #
 #, python-format
 msgid "%d jobs are running in the background!"
@@ -380,6 +384,9 @@ msgstr "4:3 Letterbox"
 #
 msgid "4:3 PanScan"
 msgstr "4:3 PanScan"
+
+msgid "4X"
+msgstr ""
 
 #
 msgid "5"
@@ -689,12 +696,6 @@ msgstr ""
 msgid "Adjust 3D settings"
 msgstr ""
 
-msgid "Adjust HDMI CEC settings"
-msgstr ""
-
-msgid "Adjust display scrolling and symbols"
-msgstr ""
-
 #
 msgid ""
 "Adjust the color settings so that all the color shades are distinguishable, "
@@ -881,9 +882,6 @@ msgstr "Jautāt"
 #
 msgid "Aspect Ratio"
 msgstr "Malu attiecība"
-
-msgid "Atheros"
-msgstr ""
 
 msgid "Attach a file"
 msgstr ""
@@ -1077,6 +1075,12 @@ msgstr ""
 msgid "Black screen till locked"
 msgstr ""
 
+msgid "Blind Scan"
+msgstr ""
+
+msgid "Blindscan was canceled by the user."
+msgstr ""
+
 #
 msgid "Block noise reduction"
 msgstr ""
@@ -1176,6 +1180,9 @@ msgstr ""
 # ???
 msgid "Cache Thumbnails"
 msgstr "Kešatmiņas sīktēli"
+
+msgid "Can't cancel during upgrade!!"
+msgstr ""
 
 #
 msgid "Cancel"
@@ -2395,10 +2402,6 @@ msgid "Encryption Keytype"
 msgstr "Šifrēšanas atslēgas veids"
 
 #
-msgid "Encryption Type"
-msgstr "Šifrēšanas veids"
-
-#
 msgid "Encryption:"
 msgstr ""
 
@@ -2467,6 +2470,13 @@ msgid ""
 msgstr ""
 "Kļūda: %s\n"
 "Atkārtot??"
+
+#, python-format
+msgid "Error[%d]. Press Cancel to exit."
+msgstr ""
+
+msgid "Ethernet network interface"
+msgstr ""
 
 msgid "Event Fontsize"
 msgstr ""
@@ -2582,11 +2592,6 @@ msgstr ""
 #
 msgid "Factory reset"
 msgstr "Rūpnīcas uzstādījumi"
-
-msgid ""
-"Fail to upgrade.\n"
-"Cause : "
-msgstr ""
 
 #
 msgid "Failed"
@@ -2857,6 +2862,9 @@ msgstr "Sardzes intervāla režīms"
 msgid "HD list"
 msgstr ""
 
+msgid "HDMI CEC"
+msgstr ""
+
 msgid "Handle deepstandby events"
 msgstr ""
 
@@ -2881,12 +2889,7 @@ msgstr "Cietā diska gaidstāve pēc"
 msgid "Hardware:"
 msgstr ""
 
-#
-msgid "Hidden network SSID"
-msgstr "Slēpts tīkla SSID"
-
-#
-msgid "Hidden networkname"
+msgid "Hidden network"
 msgstr ""
 
 msgid "Hide CI messages"
@@ -3093,6 +3096,9 @@ msgstr "Ievade"
 msgid "Input device setup"
 msgstr ""
 
+msgid "Input devices"
+msgstr ""
+
 #
 msgid "Install"
 msgstr ""
@@ -3170,9 +3176,6 @@ msgstr "Vidējs"
 #
 msgid "Internal Flash"
 msgstr "Iekšējā atmiņa"
-
-msgid "Internal LAN adapter."
-msgstr ""
 
 msgid "Internal hdd only"
 msgstr ""
@@ -3436,6 +3439,17 @@ msgstr ""
 msgid "Longitude"
 msgstr "Garums"
 
+#, python-format
+msgid ""
+"Looking for available transponders.\n"
+"This will take several minutes.\n"
+"\n"
+"   Current Status : %d/%d\n"
+"   Orbital Positions : %s\n"
+"   Polarization : %s\n"
+"   Bandwidth : %s"
+msgstr ""
+
 #
 msgid "MORE"
 msgstr "VAIRĀK"
@@ -3675,9 +3689,6 @@ msgstr ""
 msgid "NIM"
 msgstr ""
 
-msgid "NOT"
-msgstr ""
-
 #
 msgid "NOW"
 msgstr "PAŠREIZ"
@@ -3731,10 +3742,6 @@ msgstr "Tīkla konfigurācija..."
 msgid "Network ID"
 msgstr ""
 
-#
-msgid "Network SSID"
-msgstr "Tīkla SSID"
-
 msgid "Network Servers:"
 msgstr ""
 
@@ -3773,6 +3780,9 @@ msgstr "Tīkls:"
 msgid "NetworkWizard"
 msgstr "Tīkla vednis"
 
+msgid "Networkname (SSID)"
+msgstr ""
+
 #
 msgid "New"
 msgstr "Jauns"
@@ -3806,10 +3816,6 @@ msgstr ""
 #
 msgid "No HDD found or HDD not initialized!"
 msgstr "Nav atrasts vai nav inicializēts cietais disks!"
-
-#
-msgid "No Networks found"
-msgstr "Nav atrasts neviens tīkls"
 
 msgid "No Timeshift found to save as recording!"
 msgstr ""
@@ -3852,6 +3858,11 @@ msgstr "Nav atrasta informācija par notikumiem, ieraksts turpinās."
 msgid ""
 "No fast winding possible yet.. but you can use the number buttons to skip "
 "forward/backward!"
+msgstr ""
+
+msgid ""
+"No found transponders!!\n"
+"Please check the satellite connection, or scan other search condition."
 msgstr ""
 
 #
@@ -3935,8 +3946,7 @@ msgstr ""
 "Vai vēleties mainīt iestatnes PIN tagad?\n"
 "Ja teiksiet 'NĒ', iestatnes aizsardzība paliks neaktīva!"
 
-#
-msgid "No wireless networks found! Please refresh."
+msgid "No wireless networks found! Searching..."
 msgstr ""
 
 #
@@ -4031,6 +4041,9 @@ msgid ""
 "Filesize: %sMB\n"
 "Free Space: %sMB\n"
 "Path: %s"
+msgstr ""
+
+msgid "Not-Associated"
 msgstr ""
 
 #
@@ -4338,6 +4351,36 @@ msgstr ""
 msgid "Please change recording endtime"
 msgstr "Lūdzu nomainiet ieraksta beigu laiku"
 
+msgid ""
+"Please check again.\n"
+"Frequency : start value is larger than stop value."
+msgstr ""
+
+msgid ""
+"Please check again.\n"
+"Start frequency must be between 950 and 2150."
+msgstr ""
+
+msgid ""
+"Please check again.\n"
+"Start symbolrate must be between 2MHz and 45MHz."
+msgstr ""
+
+msgid ""
+"Please check again.\n"
+"Stop frequency must be between 950 and 2150."
+msgstr ""
+
+msgid ""
+"Please check again.\n"
+"Stop symbolrate must be between 2MHz and 45MHz."
+msgstr ""
+
+msgid ""
+"Please check again.\n"
+"Symbolrate : start value is larger than stop value."
+msgstr ""
+
 #
 msgid "Please check your network settings!"
 msgstr "Lūdzu pārbaudiet tīkla iestatījumus!"
@@ -4500,6 +4543,9 @@ msgstr "Lūdzu iestatiet C uztvērēju"
 #
 msgid "Please set up tuner D"
 msgstr "Lūdzu iestatiet D uztvērēju"
+
+msgid "Please setup your tuner configuration."
+msgstr ""
 
 #
 msgid ""
@@ -4668,6 +4714,9 @@ msgstr "Sagatavo... Lūdzu gaidiet"
 msgid "Press '0' to toggle internal/external PiP."
 msgstr ""
 
+msgid "Press Green/OK to start the scan"
+msgstr ""
+
 msgid "Press INFO on your remote control for additional information."
 msgstr ""
 
@@ -4833,9 +4882,6 @@ msgstr "RGB"
 #
 msgid "Radio"
 msgstr "Radio"
-
-msgid "Ralink"
-msgstr ""
 
 #
 msgid "Random"
@@ -5338,6 +5384,9 @@ msgstr "Meklēt bezvadu tīklus"
 msgid "Scan additional SR"
 msgstr "Meklēt papildu SR"
 
+msgid "Scan band"
+msgstr ""
+
 #
 msgid "Scan band EU HYPER"
 msgstr "Meklēt diapazonā EU HYPER "
@@ -5385,6 +5434,18 @@ msgstr "Meklēt diapazonā US MID"
 #
 msgid "Scan band US SUPER"
 msgstr "Meklēt diapazonā US SUPER"
+
+msgid "Scan start frequency"
+msgstr ""
+
+msgid "Scan start symbolrate"
+msgstr ""
+
+msgid "Scan stop frequency"
+msgstr ""
+
+msgid "Scan stop symbolrate"
+msgstr ""
 
 msgid ""
 "Scan your network for wireless access points and connect to them using your "
@@ -6069,6 +6130,9 @@ msgstr "Palaižas uz"
 msgid "Status"
 msgstr ""
 
+msgid "Status : 0%"
+msgstr ""
+
 #
 msgid "Step east"
 msgstr "Soli uz austrumiem"
@@ -6168,7 +6232,7 @@ msgstr ""
 msgid "Subtitles"
 msgstr "Subtitri"
 
-msgid "Success!!"
+msgid "Success. Press OK to exit."
 msgstr ""
 
 #
@@ -6992,6 +7056,9 @@ msgstr ""
 msgid "Undo uninstall"
 msgstr ""
 
+msgid "Unencrypted"
+msgstr ""
+
 #
 msgid "UnhandledKey"
 msgstr ""
@@ -7016,7 +7083,7 @@ msgstr ""
 msgid "Universal LNB"
 msgstr "Universālā LNB"
 
-msgid "Unknown network adapter."
+msgid "Unknown"
 msgstr ""
 
 msgid "Unmount"
@@ -7067,11 +7134,6 @@ msgstr "Atjaunināšana pabeigta."
 #
 msgid "Upgrade finished. Do you want to reboot your Dreambox?"
 msgstr "Atjaunināšana pabeigta. Vai vēlaties atsāknēt Dreambox?"
-
-msgid ""
-"Upgrade will take about 5 minutes to finish.\n"
-"Do you want to upgrade?"
-msgstr ""
 
 #
 msgid "Upgrading"
@@ -7226,9 +7288,6 @@ msgstr ""
 #
 msgid "VCR scart"
 msgstr "VCR scart savienojums"
-
-msgid "VFD Setup"
-msgstr ""
 
 #
 msgid "VMGM (intro trailer)"
@@ -7413,9 +7472,6 @@ msgstr "W"
 msgid "WEP"
 msgstr "WEP"
 
-msgid "WLAN adapter."
-msgstr ""
-
 msgid "WLAN connection"
 msgstr ""
 
@@ -7589,8 +7645,7 @@ msgstr ""
 msgid "Wireless Network"
 msgstr "Bezvadu tīkls"
 
-#
-msgid "Wireless Network State"
+msgid "Wireless network state"
 msgstr ""
 
 #
@@ -7820,9 +7875,8 @@ msgid ""
 "Please press OK to continue."
 msgstr ""
 
-#
-msgid "Your Dreambox will restart after pressing OK on your remote control."
-msgstr "Dreambox restartēsies pēc OK taustiņa nospiešanas uz tālvadības pults."
+msgid "Your STB will restart after pressing OK on your remote control."
+msgstr ""
 
 #
 msgid ""
@@ -7836,6 +7890,12 @@ msgstr ""
 msgid ""
 "Your collection exceeds the size of a single layer medium, you will need a "
 "blank dual layer DVD!"
+msgstr ""
+
+#, python-format
+msgid ""
+"Your config file is not well-formed:\n"
+"%s"
 msgstr ""
 
 #
@@ -7917,9 +7977,6 @@ msgid "Zap focus to main screen"
 msgstr ""
 
 msgid "Zap mode"
-msgstr ""
-
-msgid "Zydas"
 msgstr ""
 
 #
@@ -8048,6 +8105,9 @@ msgstr ""
 #
 msgid "advanced"
 msgstr "paplašināts"
+
+msgid "alphabetic reverse"
+msgstr ""
 
 #
 msgid "alphabetic sort"
@@ -8431,9 +8491,15 @@ msgstr ""
 msgid "help..."
 msgstr "palīdzība..."
 
+msgid "hi_low"
+msgstr ""
+
 #
 msgid "hide player"
 msgstr "slēpt atskaņotāju"
+
+msgid "high"
+msgstr ""
 
 msgid "hops:"
 msgstr ""
@@ -8441,6 +8507,9 @@ msgstr ""
 #
 msgid "horizontal"
 msgstr "horizontāli"
+
+msgid "horizontal_vertical"
+msgstr ""
 
 #
 msgid "hour"
@@ -8537,6 +8606,9 @@ msgstr "slēgts"
 #, fuzzy
 msgid "loopthrough to"
 msgstr "loopthrough to"
+
+msgid "low"
+msgstr ""
 
 #
 msgid "manual"
@@ -8833,6 +8905,9 @@ msgstr "atkārtot repertuāru"
 #
 msgid "repeated"
 msgstr "atkārtots"
+
+msgid "reverse by date"
+msgstr ""
 
 #
 msgid "rewind to the previous chapter"
@@ -9234,6 +9309,9 @@ msgstr "baltais saraksts"
 msgid "width"
 msgstr ""
 
+msgid "wireless network interface"
+msgstr ""
+
 msgid "with exit button"
 msgstr ""
 
@@ -9274,969 +9352,3 @@ msgstr "pārslēgt"
 #
 msgid "zapped"
 msgstr "pārslēgts"
-
-#
-#~ msgid ""
-#~ "\n"
-#~ "Enigma2 will restart after the restore"
-#~ msgstr ""
-#~ "\n"
-#~ "Enigma2 restartēsies pēc atjaunošanas"
-
-#
-#~ msgid ""
-#~ "\n"
-#~ "Scan for local packages and install them."
-#~ msgstr ""
-#~ "\n"
-#~ "Meklēt lokālās pakotnes un uzstādīt tās."
-
-#
-#~ msgid ""
-#~ "%s\n"
-#~ "(%s, %d MB free)"
-#~ msgstr ""
-#~ "%s\n"
-#~ "(%s, %d MB brīvi)"
-
-#
-#~ msgid "* Only available when entering hidden SSID or network key"
-#~ msgstr "* Pieejams tikai ievadot slēptu SSID vai tīkla atslēgu"
-
-#
-#~ msgid ".NFI Download failed:"
-#~ msgstr ".NFI lejuplāde neizdevās:"
-
-#
-#~ msgid ""
-#~ ".NFI file passed md5sum signature check. You can safely flash this image!"
-#~ msgstr ""
-#~ ".NFI datne izsgāja md5sum paraksta pārbaudi. Varat droši lādēt šo imidžu!"
-
-#
-#~ msgid "5 seconds"
-#~ msgstr "5 sekundes"
-
-#
-#~ msgid "50 Hz"
-#~ msgstr "50 Hz"
-
-#
-#~ msgid "AC3 default"
-#~ msgstr "AC3 pēc noklusējuma"
-
-#
-#~ msgid "Advanced"
-#~ msgstr "Paplašināts"
-
-#
-#~ msgid "An error occured!"
-#~ msgstr "Kļūda!"
-
-#
-#~ msgid "Arabic"
-#~ msgstr "Arābu"
-
-#
-#~ msgid "Autoresolution Settings"
-#~ msgstr "Auto izšķirtspējas iestatījumi"
-
-#
-#~ msgid "Autoresolution..."
-#~ msgstr "Auto izšķirtspēja..."
-
-#
-#~ msgid "Backup is done. Please press OK to see the result."
-#~ msgstr ""
-#~ "Dublējumkopija izveidota. Lūdzu spiediet OK, lai apskatītu rezultātu."
-
-#
-#~ msgid "Backup running"
-#~ msgstr "Dublējumkopija tiek veidota"
-
-#
-#~ msgid "Backup running..."
-#~ msgstr "Dublējumkopija tiek veidota..."
-
-#, fuzzy
-#~ msgid "CDInfo"
-#~ msgstr "Infojosla"
-
-#
-#~ msgid "Call monitoring"
-#~ msgstr "Zvanu monitorings"
-
-#, fuzzy
-#~ msgid "Can't connect to server. Please check your network!"
-#~ msgstr "Lūdzu pārbaudiet tīkla iestatījumus!"
-
-#
-# ???
-#~ msgid "Cannot parse feed directory"
-#~ msgstr "Nevar analizēt barotnes katalogu"
-
-#
-#~ msgid "Card"
-#~ msgstr "Karte"
-
-#
-#~ msgid "Catalan"
-#~ msgstr "Katāliešu"
-
-#
-#~ msgid "Change dir."
-#~ msgstr "Mainīt dir."
-
-#
-#~ msgid "Change service pin"
-#~ msgstr "Mainīt kanāla PIN"
-
-#
-#~ msgid "Change service pins"
-#~ msgstr "Mainīt kanālu PIN"
-
-#
-#~ msgid "Change setup pin"
-#~ msgstr "Mainīt iestatnes PIN"
-
-#
-#~ msgid "Choose source"
-#~ msgstr "Izvēlēties avotu"
-
-#
-#~ msgid "Compact Flash"
-#~ msgstr "Compact Flash"
-
-#
-#~ msgid "Compact flash card"
-#~ msgstr "Compact flash karte"
-
-#
-#~ msgid "Connected to Fritz!Box!"
-#~ msgstr "Pieslēgts Fritz!Box!"
-
-#
-#~ msgid "Connecting to Fritz!Box..."
-#~ msgstr "Pieslēdzas Fritz!Box..."
-
-#
-#~ msgid ""
-#~ "Connection to Fritz!Box\n"
-#~ "failed! (%s)\n"
-#~ "retrying..."
-#~ msgstr ""
-#~ "Pieslēgšanās Fritz!Box\n"
-#~ "neizdevās! (%s)\n"
-#~ "atkārto..."
-
-#
-#~ msgid "Croatian"
-#~ msgstr "Horvātu"
-
-#
-#~ msgid "Czech"
-#~ msgstr "Čehu"
-
-#
-#~ msgid "Danish"
-#~ msgstr "Dāņu"
-
-#
-#~ msgid "Default services lists"
-#~ msgstr "Noklus. kanālu saraksti"
-
-#
-#~ msgid "Default settings"
-#~ msgstr "Noklusējuma iestatījumi"
-
-#
-#, fuzzy
-#~ msgid "Defaults"
-#~ msgstr "Noklusējuma iestatījumi"
-
-#
-#~ msgid "Deinterlacer Mode"
-#~ msgstr "Pārlecošās izvērses režīms"
-
-#
-#~ msgid "Destination directory"
-#~ msgstr "Galamērķa mape"
-
-#
-#~ msgid "Detected HDD:"
-#~ msgstr "Atrasts HDD:"
-
-#
-#~ msgid "Disable Subtitles"
-#~ msgstr "Izslēgt subtitrus"
-
-#
-#~ msgid ""
-#~ "Disconnected from\n"
-#~ "Fritz!Box! (%s)\n"
-#~ "retrying..."
-#~ msgstr ""
-#~ "Atvienots no\n"
-#~ "Fritz!Box! (%s)\n"
-#~ "atkārto..."
-
-#
-#~ msgid ""
-#~ "Do you really want to initialize the harddisk?\n"
-#~ "All data on the disk will be lost!"
-#~ msgstr ""
-#~ "Vai tiešām vēlaties inicializēt cieto disku?\n"
-#~ "Visi uz diska esošie dati tiks zaudēti!"
-
-#
-#~ msgid "Do you want to install default sat lists?"
-#~ msgstr "Vai vēlaties uzstādīt noklusētos pavadoņu sarakstus?"
-
-#
-#~ msgid "Done - Installed or upgraded %d packages with %d errors"
-#~ msgstr "Pabeigts - uzstādītas vai atjauninātas %d pakotnes ar %d kļūdām"
-
-#
-# ???
-#~ msgid "Download of USB flasher boot image failed: "
-#~ msgstr "USB lādētāja palaišanas imidža ielāde neizdevās:"
-
-#
-#~ msgid "Dutch"
-#~ msgstr "Holandiešu"
-
-#
-#~ msgid "Enable Autoresolution"
-#~ msgstr "Aktivizēt auto izšķirtspēju"
-
-#
-#~ msgid "English"
-#~ msgstr "Angļu"
-
-#
-#~ msgid ""
-#~ "Enigma2 Skinselector v0.5 BETA\n"
-#~ "\n"
-#~ "If you experience any problems please contact\n"
-#~ "stephan@reichholf.net\n"
-#~ "\n"
-#~ "© 2006 - Stephan Reichholf"
-#~ msgstr ""
-#~ "Enigma2 Skinselector v0.5 BETA\n"
-#~ "\n"
-#~ "Problēmu gadījumā kontaktēties\n"
-#~ "stephan@reichholf.net\n"
-#~ "\n"
-#~ "© 2006 - Stephan Reichholf"
-
-#
-#~ msgid "Enter Fast Forward at speed"
-#~ msgstr "Ievadiet ātrās pārtīšanas ātrumu"
-
-#
-#~ msgid "Enter Rewind at speed"
-#~ msgstr "Ievadiet attīšanas ātrumu"
-
-#
-#~ msgid "Enter WLAN network name/SSID:"
-#~ msgstr "Ievadiet bezvadu tīkla nosaukumu /SSID:"
-
-#
-#~ msgid "Enter WLAN passphrase/key:"
-#~ msgstr "Ievadiet bezvadu tīkla paroli/atslēgu:"
-
-#
-#~ msgid "Filesystem Check..."
-#~ msgstr "Failsistēmas pārbaude..."
-
-#
-#~ msgid "Finnish"
-#~ msgstr "Somu"
-
-#
-#~ msgid ""
-#~ "First we need to download the latest boot environment for the USB flasher."
-#~ msgstr ""
-#~ "No sākuma nepieciešams lejuplādēt pēdējo palaišanas vidi priekš USB "
-#~ "ielādes."
-
-#
-#~ msgid "Frame repeat count during non-smooth winding"
-#~ msgstr "Atkārtoto kadru skaits 'attēlu virknes' režīmā"
-
-#
-#~ msgid "French"
-#~ msgstr "Franču"
-
-#
-#~ msgid "Frisian"
-#~ msgstr "Frīzu"
-
-#
-#~ msgid "Fritz!Box FON IP address"
-#~ msgstr "Fritz!Box FON IP adrese"
-
-#
-#~ msgid "Function not yet implemented"
-#~ msgstr "Funkcija vēl nav realizēta"
-
-#
-#~ msgid "German"
-#~ msgstr "Vācu"
-
-#
-#~ msgid "Greek"
-#~ msgstr "Grieķu"
-
-#
-#~ msgid "Hungarian"
-#~ msgstr "Ungāru"
-
-#
-#~ msgid "Icelandic"
-#~ msgstr "Islandiešu"
-
-#
-#~ msgid "If you can see this page, please press OK."
-#~ msgstr "Ja redzat šo lappusi, spiediet OK."
-
-#
-#~ msgid "Image flash utility"
-#~ msgstr "Imidža ielādes utilītprogramma"
-
-#
-#~ msgid "Image-Upgrade"
-#~ msgstr "Imidža atjaunināšana"
-
-#
-#~ msgid "Initialization..."
-#~ msgstr "Inicializācija..."
-
-#
-#~ msgid "Initializing Harddisk..."
-#~ msgstr "Inicializē cieto disku..."
-
-#
-#~ msgid "Input 1"
-#~ msgstr "1 ieeja"
-
-#
-#~ msgid "Input 10"
-#~ msgstr "10 ieeja"
-
-#
-#~ msgid "Input 11"
-#~ msgstr "11 ieeja"
-
-#
-#~ msgid "Input 12"
-#~ msgstr "12 ieeja"
-
-#
-#~ msgid "Input 13"
-#~ msgstr "13 ieeja"
-
-#
-#~ msgid "Input 14"
-#~ msgstr "14 ieeja"
-
-#
-#~ msgid "Input 15"
-#~ msgstr "15 ieeja"
-
-#
-#~ msgid "Input 16"
-#~ msgstr "16 ieeja"
-
-#
-#~ msgid "Input 2"
-#~ msgstr "2 ieeja"
-
-#
-#~ msgid "Input 3"
-#~ msgstr "3 ieeja"
-
-#
-#~ msgid "Input 4"
-#~ msgstr "4 ieeja"
-
-#
-#~ msgid "Input 5"
-#~ msgstr "5 ieeja"
-
-#
-#~ msgid "Input 6"
-#~ msgstr "6 ieeja"
-
-#
-#~ msgid "Input 7"
-#~ msgstr "7 ieeja"
-
-#
-#~ msgid "Input 8"
-#~ msgstr "8 ieeja"
-
-#
-#~ msgid "Input 9"
-#~ msgstr "9 ieeja"
-
-#
-#~ msgid "Install local IPKG"
-#~ msgstr "Uzstādīt lokālo IPKG"
-
-#
-#~ msgid "Integrated Ethernet"
-#~ msgstr "Iebūvētais Ethernet"
-
-#
-#~ msgid "Integrated Wireless"
-#~ msgstr "Iebūvētais Wireless"
-
-#
-#~ msgid "Invert display"
-#~ msgstr "Inverss displejs"
-
-#
-#~ msgid "Italian"
-#~ msgstr "Itāļu"
-
-#
-#~ msgid "Language..."
-#~ msgstr "Valoda..."
-
-#
-#~ msgid "Latvian"
-#~ msgstr "Latviešu"
-
-#
-#~ msgid "Lithuanian"
-#~ msgstr "Lietuviešu"
-
-#
-#~ msgid "MMC Card"
-#~ msgstr "MMC karte"
-
-#
-#~ msgid "Network Mount"
-#~ msgstr "Tīkla montēšana"
-
-#
-#~ msgid "Network..."
-#~ msgstr "Tīkls..."
-
-#
-#~ msgid "New pin"
-#~ msgstr "Jauns pin kods"
-
-#
-#~ msgid "No 50 Hz, sorry. :("
-#~ msgstr "Nav 50 Hz, atvainojiet. :("
-
-#
-#~ msgid "No useable USB stick found"
-#~ msgstr "Nav atrasta lietojama USB atmiņa"
-
-#
-#~ msgid "Norwegian"
-#~ msgstr "Norvēģu"
-
-#
-#~ msgid "Online-Upgrade"
-#~ msgstr "Tiešsaistes atjaunināšana"
-
-#
-#~ msgid "Page"
-#~ msgstr "Lappuse"
-
-#
-#~ msgid "Please choose .NFI image file from feed server to download"
-#~ msgstr "Lūdzu izvēlēties .NFI imidža datni lejuplādei no barotnes servera"
-
-#
-#~ msgid ""
-#~ "Please disconnect all USB devices from your Dreambox and (re-)attach the "
-#~ "target USB stick (minimum size is 64 MB) now!"
-#~ msgstr ""
-#~ "Tagad lūdzu atvienojiet visas USB ierīces no Dreambox, un pievienojiet "
-#~ "atpakaļ USB atmiņu (minimālais izmērs 64 MB)!"
-
-#
-#~ msgid "Please enter the old pin code"
-#~ msgstr "Lūdzu ievadiet veco PIN kodu"
-
-#
-#~ msgid "Please select .NFI flash image file from medium"
-#~ msgstr "Lūdzu izvēlieties lādējamo .NFI imidža datni no datu nesēja"
-
-#
-#~ msgid "Please select target directory or medium"
-#~ msgstr "Lūdzu izvēlieties mērķa mapi vai datu nesēju"
-
-#
-#, fuzzy
-#~ msgid "Please wait (Step 2)"
-#~ msgstr "Lūdzu gaidiet..."
-
-#
-#~ msgid "Polish"
-#~ msgstr "Poļu"
-
-#
-#~ msgid "Portuguese"
-#~ msgstr "Portugāļu"
-
-#
-#~ msgid "RSS Feed URI"
-#~ msgstr "RSS barotnes URI"
-
-#
-#~ msgid "Ram Disk"
-#~ msgstr "Ram Disks"
-
-#
-#~ msgid "Reenter new pin"
-#~ msgstr "Ievadiet vēlreiz jauno pin"
-
-#
-#~ msgid "Remove the broken .NFI file?"
-#~ msgstr "Dzēst bojāto .NFI datni?"
-
-#
-#~ msgid "Remove the incomplete .NFI file?"
-#~ msgstr "Dzēst nepilnīgo .NFI datni?"
-
-#
-#~ msgid "Restart GUI"
-#~ msgstr "Restartēt GUI"
-
-#
-#~ msgid "Restore backups..."
-#~ msgstr "Atjaunot dublējumkopijas..."
-
-#
-#~ msgid "Restore running..."
-#~ msgstr "Notiek atjaunošana..."
-
-#
-#~ msgid ""
-#~ "Restoring the settings is done. Please press OK to activate the restored "
-#~ "settings now."
-#~ msgstr ""
-#~ "Iestatījumu atjaunošana pabeigta. Lūdzu spiediet OK, lai aktivizētu "
-#~ "atjaunotos iestatījumus."
-
-#
-#~ msgid "Russian"
-#~ msgstr "Krievu"
-
-#
-#~ msgid ""
-#~ "Scan your network for wireless Access Points and connect to them using "
-#~ "your WLAN USB Stick\n"
-#~ msgstr ""
-#~ "Meklēt bezvadu piekļuves punktus tīklā un savienoties ar tiem, lietojot "
-#~ "bezvadu tīkla USB ierīci\n"
-
-#
-#~ msgid "Select audio mode"
-#~ msgstr "Izvēlēties skaņas režīmu"
-
-#
-#~ msgid "Select files for backup. Currently selected:\n"
-#~ msgstr "Izvēlēties datnes dublējumkopēšanai. Pašreiz izvēlētas:\n"
-
-#
-#~ msgid "Select files/folders to backup..."
-#~ msgstr "Izvēlēties datnes/mapes dublējumkopēšanai..."
-
-#
-#~ msgid "Select image"
-#~ msgstr "Izvēlēties imidžu"
-
-#
-#~ msgid "Select video input"
-#~ msgstr "Izvēlēties attēla ieeju"
-
-#
-# ???
-#~ msgid "Selected source image"
-#~ msgstr "Izvēlētā avota imidžs"
-
-#
-#~ msgid "Set as default Interface"
-#~ msgstr "Iestatīt kā noklusēto interfeisu"
-
-#
-#~ msgid "Skin..."
-#~ msgstr "Ādiņa..."
-
-#
-#~ msgid "Software manager"
-#~ msgstr "Programmatūras pārvaldnieks"
-
-#
-#~ msgid "Software manager..."
-#~ msgstr "Programmatūras pārvaldnieks..."
-
-#
-#~ msgid "Somewhere else"
-#~ msgstr "Kaut kur citur"
-
-#
-#~ msgid ""
-#~ "Sorry, your backup destination is not writeable.\n"
-#~ "\n"
-#~ "Lūdzu izvēlieties citu."
-#~ msgstr ""
-#~ "Izvēlētais dublējumkopijas galamērķis nav ierakstāms.\n"
-#~ "\n"
-#~ "Lūdzu izvēlieties citu."
-
-#
-#~ msgid "Sort A-Z"
-#~ msgstr "Kārtot A-Z"
-
-#
-#~ msgid "Sort Time"
-#~ msgstr "Kārt.laikus"
-
-#
-#~ msgid "Spanish"
-#~ msgstr "Spāņu"
-
-#
-#~ msgid "Stereo"
-#~ msgstr "Stereo"
-
-#
-#~ msgid "Subservice list..."
-#~ msgstr "Papildkanālu saraksts..."
-
-#
-#~ msgid "Swedish"
-#~ msgstr "Zviedru"
-
-#
-#~ msgid "Tag 1"
-#~ msgstr "Etiķete 1"
-
-#
-#~ msgid "Tag 2"
-#~ msgstr "Etiķete 2"
-
-#
-#~ msgid ""
-#~ "The USB stick is now bootable. Do you want to download the latest image "
-#~ "from the feed server and save it on the stick?"
-#~ msgstr ""
-#~ "USB atmiņas ierīce tagad ir sāknējama. Vai vēlaties lejuplādēt pēdējo "
-#~ "imidžu no barotnes servera un saglabāt to USB atmiņas ierīcē?"
-
-#
-#~ msgid ""
-#~ "The md5sum validation failed, the file may be corrupted! Are you sure "
-#~ "that you want to burn this image to flash memory? You are doing this at "
-#~ "your own risk!"
-#~ msgstr ""
-#~ "Md5sum validācija neizdevās, iespējams, ka datne ir bojāta! Vai tiešām "
-#~ "vēlaties rakstīt šo imidžu iekšējā atmiņā? Tā darot, Jūs riskējat!"
-
-#
-#~ msgid ""
-#~ "The md5sum validation failed, the file may be downloaded incompletely or "
-#~ "be corrupted!"
-#~ msgstr ""
-#~ "Md5sum validācija neizdevās, iespējams, ka datne ir nepilnīgi ielādēta "
-#~ "vai bojāta!"
-
-#
-#~ msgid "The pin code has been changed successfully."
-#~ msgstr "PIN kods veiksmīgi nomainīts."
-
-#
-#~ msgid "The pin codes you entered are different."
-#~ msgstr "Jūsu ievadītie PIN kodi ir atšķirīgi."
-
-#
-#~ msgid "This .NFI file does not contain a valid %s image!"
-#~ msgstr "Šī .NFI datne nesatur derīgu %s imidžu!"
-
-#
-#~ msgid ""
-#~ "This .NFI file does not have a md5sum signature and is not guaranteed to "
-#~ "work. Do you really want to burn this image to flash memory?"
-#~ msgstr ""
-#~ "Šai .NFI datnei nav md5sum paraksta un nav garantijas ka tā strādās. Vai "
-#~ "tiešām vēlaties šo imidžu rakstīt iekšējā atmiņā?"
-
-#
-#~ msgid ""
-#~ "This .NFI file has a valid md5 signature. Continue programming this image "
-#~ "to flash memory?"
-#~ msgstr ""
-#~ "Šai .NFI datnei ir derīgs md5sum paraksts. Vai turpināt imidža "
-#~ "programmēšanu iekšējā atmiņā?"
-
-#
-#~ msgid "This Dreambox can't decode %s video streams!"
-#~ msgstr "Šis Dreambox modelis nevar atkodēt %s attēla plūsmas!"
-
-#
-#~ msgid "This is unsupported at the moment."
-#~ msgstr "Tas šobrīd nav atbalstīts."
-
-#
-#~ msgid "Timer"
-#~ msgstr "Taimeris"
-
-#
-#~ msgid "Timeshift path..."
-#~ msgstr "Laikaiztures ceļš..."
-
-#
-#~ msgid ""
-#~ "To update your Dreambox firmware, please follow these steps:\n"
-#~ "1) Turn off your box with the rear power switch and plug in the bootable "
-#~ "USB stick.\n"
-#~ "2) Turn mains back on and hold the DOWN button on the front panel pressed "
-#~ "for 10 seconds.\n"
-#~ "3) Wait for bootup and follow instructions of the wizard."
-#~ msgstr ""
-#~ "Lūdzu veiciet šādus soļus, lai atjauninātu Dreambox programmatūru:\n"
-#~ "1) Izslēdziet ierīci ar aizmugures barošanas slēdzi un iespraudiet "
-#~ "sāknējamu USB atmiņu.\n"
-#~ "2) Ieslēdziet ierīci un 10 sekundes turiet nospiestu DOWN pogu uz "
-#~ "priekšējā paneļa.\n"
-#~ "3) Gaidiet līdz ielādējas un sekojiet vedņa norādījumiem."
-
-#
-#~ msgid "Turkish"
-#~ msgstr "Turku"
-
-#
-#~ msgid "USB"
-#~ msgstr "USB"
-
-#
-#~ msgid "Ukrainian"
-#~ msgstr "Ukraiņu"
-
-#
-#~ msgid ""
-#~ "Unable to complete filesystem check.\n"
-#~ "Error: "
-#~ msgstr ""
-#~ "Nevar pabeigt failsistēmas pārbaudi.\n"
-#~ "Kļūda:"
-
-#
-#~ msgid ""
-#~ "Unable to initialize harddisk.\n"
-#~ "Error: "
-#~ msgstr ""
-#~ "Nevar inicializēt cieto disku. \n"
-#~ "Kļūca:"
-
-#, fuzzy
-#~ msgid "Update done..."
-#~ msgstr "Atjaunināt"
-
-#
-#, fuzzy
-#~ msgid "Updating, please wait..."
-#~ msgstr "Lūdzu gaidiet..."
-
-#
-#~ msgid "Use non-smooth winding at speeds above"
-#~ msgstr "Izmantot 'attēlu virknes' režīmu pie augstākminētajiem ātrumiem"
-
-#
-#~ msgid ""
-#~ "We will now test if your TV can also display this resolution at 50hz. If "
-#~ "your screen goes black, wait 20 seconds and it will switch back to 60hz.\n"
-#~ "Please press OK to begin."
-#~ msgstr ""
-#~ "Tagad pārbaudīsim vai Jūsu TV var attēlot šo izšķirtspēju arī pie 50 Hz. "
-#~ "Ja ekrāns paliek melns, pagaidiet 20 sekundes un tas pārslēgsies atpakaļ "
-#~ "uz 60 Hz.\n"
-#~ "Lūdzu spiediet OK, lai sāktu."
-
-#
-#~ msgid "Wireless"
-#~ msgstr "Bezvadu"
-
-#
-#~ msgid "Writing NFI image file to flash completed"
-#~ msgstr "NFI imidža datnes rakstīšana iekšējā atmiņā pabeigta"
-
-#
-#~ msgid ""
-#~ "You do not seem to have a harddisk in your Dreambox. So backing up to a "
-#~ "harddisk is not an option for you."
-#~ msgstr ""
-#~ "Izskatās, ka šajā Dreambox nav uzstādīts cietais disks. Tādēļ "
-#~ "dublējumkopijas veidošana uz cietā diska jums nav pieejama."
-
-#
-#~ msgid ""
-#~ "You have chosen to backup to a compact flash card. The card must be in "
-#~ "the slot. We do not verify if it is really used at the moment. So better "
-#~ "backup to the harddisk!\n"
-#~ "Please press OK to start the backup now."
-#~ msgstr ""
-#~ "Jūs izvēlējāties veidot dublējumkopiju CF kartē. Kartei jābūt ievietotai "
-#~ "slotā. Mēs nevaram pārbaudīt, vai tā patiešām ir pieejama. Tādēļ iesakām "
-#~ "veidot dublējumkopiju uz cietā diska!\n"
-#~ "Lūdzu spiediet OK, lai sāktu dublējumkopijas veidošanu."
-
-#
-#~ msgid ""
-#~ "You have chosen to backup to an usb drive. Better backup to the "
-#~ "harddisk!\n"
-#~ "Please press OK to start the backup now."
-#~ msgstr ""
-#~ "Jūs izvēlējāties veidot dublējumkopiju USB atmiņā. Labāk izmantojiet šim "
-#~ "mērķim cieto disku!\n"
-#~ "Lūdzu spiediet OK, lai sāktu dublējumkopijas veidošanu."
-
-#
-#~ msgid ""
-#~ "You have chosen to backup to your harddisk. Please press OK to start the "
-#~ "backup now."
-#~ msgstr ""
-#~ "Jūs izvēlējāties veidot dublējumkopiju uz cietā diska! Lūdzu spiediet OK, "
-#~ "lai sāktu dublējumkopijas veidošanu."
-
-#
-#~ msgid ""
-#~ "You need to set a pin code and hide it from your children.\n"
-#~ "\n"
-#~ "Do you want to set the pin now?"
-#~ msgstr ""
-#~ "Jums vajag uzstādīt PIN kodu un nerādīt to bērniem.\n"
-#~ "\n"
-#~ "Vai vēlaties tagad uzstādīt PIN kodu?"
-
-#
-#~ msgid "Your TV works with 50 Hz. Good!"
-#~ msgstr "Jūsu TV darbojas ar 50 Hz. Labi!"
-
-#
-#~ msgid ""
-#~ "Your network configuration has been activated.\n"
-#~ "A second configured interface has been found.\n"
-#~ "\n"
-#~ "Do you want to disable the second network interface?"
-#~ msgstr ""
-#~ "Tīkla konfigurācija aktivizēta.\n"
-#~ "Atrasts otrs konfigurētais interfeiss.\n"
-#~ "\n"
-#~ "Vai vēlaties deaktivizēt otru tīkla interfeisu?"
-
-#
-#~ msgid "choose destination directory"
-#~ msgstr "izvēlēties galamērķa mapi"
-
-#
-#~ msgid "committed, toneburst"
-#~ msgstr "aktīvā, toņsignāls"
-
-#
-#~ msgid "committed, uncommitted, toneburst"
-#~ msgstr "aktīvā, pasīvā, toņsignāls"
-
-#
-#~ msgid "exceeds dual layer medium!"
-#~ msgstr "pārsniedz divslāņu datu nesēja ietilpību!"
-
-#
-#~ msgid "exit network adapter setup menu"
-#~ msgstr "iziet no tīkla adaptera iestatīšanas izvēlnes"
-
-#
-#~ msgid "failed"
-#~ msgstr "neizdevās"
-
-#
-#~ msgid "hidden network"
-#~ msgstr "slēpts tīkls"
-
-#
-#~ msgid "hide extended description"
-#~ msgstr "slēpt paplašināto aprakstu"
-
-#
-#~ msgid ""
-#~ "incoming call!\n"
-#~ "%s calls on %s!"
-#~ msgstr ""
-#~ "ienākošais zvans!\n"
-#~ "%s zvani uz %s!"
-
-#
-#~ msgid "menulist"
-#~ msgstr "izvēlņu saraksts"
-
-#
-#~ msgid "no HDD found"
-#~ msgstr "cietais disks nav atrasts"
-
-#
-#~ msgid "open virtual keyboard input help"
-#~ msgstr "atvērt virtuālās klaviatūras ievades palīgu"
-
-#
-#~ msgid "select .NFI flash file"
-#~ msgstr "izvēlēties .NFI lādējamo datni"
-
-#
-#~ msgid "select image from server"
-#~ msgstr "izvēlēties imidžu no servera"
-
-#
-#~ msgid "service pin"
-#~ msgstr "kanāla PIN"
-
-#
-#~ msgid "setup pin"
-#~ msgstr "iestatnes PIN"
-
-#
-#~ msgid "show EPG..."
-#~ msgstr "rādīt EPG..."
-
-#
-#~ msgid "show all"
-#~ msgstr "rādīt visu"
-
-#
-#~ msgid "show first selected tag"
-#~ msgstr "rādīt pirmo izvēlēto etiķeti"
-
-#
-#~ msgid "show second selected tag"
-#~ msgstr "rādīt otro izvēlēto etiķeti"
-
-#
-#~ msgid "show single service EPG..."
-#~ msgstr "rādīt viena kanāla EPG..."
-
-#
-#~ msgid "toneburst, committed"
-#~ msgstr "toņsignāls, aktīvā"
-
-#
-#~ msgid "toneburst, committed, uncommitted"
-#~ msgstr "toņsignāls, aktīvā, pasīvā"
-
-#
-#~ msgid "toneburst, uncommitted, commmitted"
-#~ msgstr "toņsignāls, pasīvā, aktīvā"
-
-#
-#~ msgid "uncommitted, committed, toneburst"
-#~ msgstr "pasīvā, aktīvā, toņsignāls"
-
-#
-#~ msgid "until restart"
-#~ msgstr "līdz restartēšanai"

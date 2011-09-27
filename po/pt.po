@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma Portuguese\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-08 16:22+0100\n"
+"POT-Creation-Date: 2011-09-27 18:44+0100\n"
 "PO-Revision-Date: 2008-03-30 18:45-0000\n"
 "Last-Translator: Muaitai <muaitai@gmail.com>\n"
 "Language-Team: Muaitai <muaitai@gmail.com>\n"
@@ -198,6 +198,10 @@ msgstr "#ffffffff"
 msgid "%H:%M"
 msgstr "%H:%M"
 
+#, python-format
+msgid "%d / 100"
+msgstr ""
+
 #
 #, python-format
 msgid "%d jobs are running in the background!"
@@ -357,6 +361,9 @@ msgstr "4:3 Letterbox"
 #
 msgid "4:3 PanScan"
 msgstr "4:3 PanScan"
+
+msgid "4X"
+msgstr ""
 
 #
 msgid "5"
@@ -662,12 +669,6 @@ msgstr ""
 msgid "Adjust 3D settings"
 msgstr ""
 
-msgid "Adjust HDMI CEC settings"
-msgstr ""
-
-msgid "Adjust display scrolling and symbols"
-msgstr ""
-
 #
 msgid ""
 "Adjust the color settings so that all the color shades are distinguishable, "
@@ -843,9 +844,6 @@ msgstr "Consultar Utilizador"
 #
 msgid "Aspect Ratio"
 msgstr "Aspect Ratio"
-
-msgid "Atheros"
-msgstr ""
 
 msgid "Attach a file"
 msgstr ""
@@ -1037,6 +1035,12 @@ msgstr ""
 msgid "Black screen till locked"
 msgstr ""
 
+msgid "Blind Scan"
+msgstr ""
+
+msgid "Blindscan was canceled by the user."
+msgstr ""
+
 #
 msgid "Block noise reduction"
 msgstr ""
@@ -1135,6 +1139,9 @@ msgstr ""
 #
 msgid "Cache Thumbnails"
 msgstr "Cache Thumbnails"
+
+msgid "Can't cancel during upgrade!!"
+msgstr ""
 
 #
 msgid "Cancel"
@@ -2339,10 +2346,6 @@ msgid "Encryption Keytype"
 msgstr ""
 
 #
-msgid "Encryption Type"
-msgstr ""
-
-#
 msgid "Encryption:"
 msgstr ""
 
@@ -2408,6 +2411,13 @@ msgstr ""
 msgid ""
 "Error: %s\n"
 "Retry?"
+msgstr ""
+
+#, python-format
+msgid "Error[%d]. Press Cancel to exit."
+msgstr ""
+
+msgid "Ethernet network interface"
 msgstr ""
 
 msgid "Event Fontsize"
@@ -2523,11 +2533,6 @@ msgstr ""
 #
 msgid "Factory reset"
 msgstr "Reset de Fabrica"
-
-msgid ""
-"Fail to upgrade.\n"
-"Cause : "
-msgstr ""
 
 #
 msgid "Failed"
@@ -2797,6 +2802,9 @@ msgstr "Manter  modo intervalo"
 msgid "HD list"
 msgstr ""
 
+msgid "HDMI CEC"
+msgstr ""
+
 msgid "Handle deepstandby events"
 msgstr ""
 
@@ -2821,12 +2829,7 @@ msgstr "Disco rigido suspenso após "
 msgid "Hardware:"
 msgstr ""
 
-#
-msgid "Hidden network SSID"
-msgstr ""
-
-#
-msgid "Hidden networkname"
+msgid "Hidden network"
 msgstr ""
 
 msgid "Hide CI messages"
@@ -3031,6 +3034,9 @@ msgstr "Entrada"
 msgid "Input device setup"
 msgstr ""
 
+msgid "Input devices"
+msgstr ""
+
 #
 msgid "Install"
 msgstr ""
@@ -3108,9 +3114,6 @@ msgstr "Intermediario"
 #
 msgid "Internal Flash"
 msgstr "Flash Interna"
-
-msgid "Internal LAN adapter."
-msgstr ""
 
 msgid "Internal hdd only"
 msgstr ""
@@ -3374,6 +3377,17 @@ msgstr ""
 msgid "Longitude"
 msgstr "Longitude"
 
+#, python-format
+msgid ""
+"Looking for available transponders.\n"
+"This will take several minutes.\n"
+"\n"
+"   Current Status : %d/%d\n"
+"   Orbital Positions : %s\n"
+"   Polarization : %s\n"
+"   Bandwidth : %s"
+msgstr ""
+
 #
 msgid "MORE"
 msgstr "MAIS"
@@ -3613,9 +3627,6 @@ msgstr ""
 msgid "NIM"
 msgstr ""
 
-msgid "NOT"
-msgstr ""
-
 #
 msgid "NOW"
 msgstr "Agora"
@@ -3669,10 +3680,6 @@ msgstr ""
 msgid "Network ID"
 msgstr ""
 
-#
-msgid "Network SSID"
-msgstr ""
-
 msgid "Network Servers:"
 msgstr ""
 
@@ -3711,6 +3718,9 @@ msgstr ""
 msgid "NetworkWizard"
 msgstr ""
 
+msgid "Networkname (SSID)"
+msgstr ""
+
 #
 msgid "New"
 msgstr "Novo"
@@ -3744,10 +3754,6 @@ msgstr ""
 #
 msgid "No HDD found or HDD not initialized!"
 msgstr "HDD não encontrado ou Falha ao Iniciar"
-
-#
-msgid "No Networks found"
-msgstr ""
 
 msgid "No Timeshift found to save as recording!"
 msgstr ""
@@ -3790,6 +3796,11 @@ msgstr "Não encontrou o evento, gravar indefinidamente"
 msgid ""
 "No fast winding possible yet.. but you can use the number buttons to skip "
 "forward/backward!"
+msgstr ""
+
+msgid ""
+"No found transponders!!\n"
+"Please check the satellite connection, or scan other search condition."
 msgstr ""
 
 #
@@ -3873,8 +3884,7 @@ msgstr ""
 "Deseja alterar o PIN do canal agora?\n"
 "Se responder 'NÃO' a protecção do canal fica desabilitada!"
 
-#
-msgid "No wireless networks found! Please refresh."
+msgid "No wireless networks found! Searching..."
 msgstr ""
 
 #
@@ -3958,6 +3968,9 @@ msgid ""
 "Filesize: %sMB\n"
 "Free Space: %sMB\n"
 "Path: %s"
+msgstr ""
+
+msgid "Not-Associated"
 msgstr ""
 
 #
@@ -4265,6 +4278,36 @@ msgstr ""
 msgid "Please change recording endtime"
 msgstr "Altere o tempo final da gravação"
 
+msgid ""
+"Please check again.\n"
+"Frequency : start value is larger than stop value."
+msgstr ""
+
+msgid ""
+"Please check again.\n"
+"Start frequency must be between 950 and 2150."
+msgstr ""
+
+msgid ""
+"Please check again.\n"
+"Start symbolrate must be between 2MHz and 45MHz."
+msgstr ""
+
+msgid ""
+"Please check again.\n"
+"Stop frequency must be between 950 and 2150."
+msgstr ""
+
+msgid ""
+"Please check again.\n"
+"Stop symbolrate must be between 2MHz and 45MHz."
+msgstr ""
+
+msgid ""
+"Please check again.\n"
+"Symbolrate : start value is larger than stop value."
+msgstr ""
+
 #
 msgid "Please check your network settings!"
 msgstr ""
@@ -4423,6 +4466,9 @@ msgstr "Configure tuner C"
 #
 msgid "Please set up tuner D"
 msgstr "Configure tuner D"
+
+msgid "Please setup your tuner configuration."
+msgstr ""
 
 #
 msgid ""
@@ -4586,6 +4632,9 @@ msgid "Preparing... Please wait"
 msgstr "Em preparação… Por favor espere "
 
 msgid "Press '0' to toggle internal/external PiP."
+msgstr ""
+
+msgid "Press Green/OK to start the scan"
 msgstr ""
 
 msgid "Press INFO on your remote control for additional information."
@@ -4753,9 +4802,6 @@ msgstr "RGB"
 #
 msgid "Radio"
 msgstr "Radio"
-
-msgid "Ralink"
-msgstr ""
 
 #
 msgid "Random"
@@ -5257,6 +5303,9 @@ msgstr ""
 msgid "Scan additional SR"
 msgstr "Scan additional SR"
 
+msgid "Scan band"
+msgstr ""
+
 #
 msgid "Scan band EU HYPER"
 msgstr "Scan band EU HYPER"
@@ -5304,6 +5353,18 @@ msgstr "Scan band US MID"
 #
 msgid "Scan band US SUPER"
 msgstr "Scan band US SUPER"
+
+msgid "Scan start frequency"
+msgstr ""
+
+msgid "Scan start symbolrate"
+msgstr ""
+
+msgid "Scan stop frequency"
+msgstr ""
+
+msgid "Scan stop symbolrate"
+msgstr ""
 
 msgid ""
 "Scan your network for wireless access points and connect to them using your "
@@ -5981,6 +6042,9 @@ msgstr "A Iniciar"
 msgid "Status"
 msgstr ""
 
+msgid "Status : 0%"
+msgstr ""
+
 #
 msgid "Step east"
 msgstr "Avançar para Este"
@@ -6080,7 +6144,7 @@ msgstr ""
 msgid "Subtitles"
 msgstr "Legendas"
 
-msgid "Success!!"
+msgid "Success. Press OK to exit."
 msgstr ""
 
 #
@@ -6865,6 +6929,9 @@ msgstr ""
 msgid "Undo uninstall"
 msgstr ""
 
+msgid "Unencrypted"
+msgstr ""
+
 #
 msgid "UnhandledKey"
 msgstr ""
@@ -6889,7 +6956,7 @@ msgstr ""
 msgid "Universal LNB"
 msgstr "LNB Universal "
 
-msgid "Unknown network adapter."
+msgid "Unknown"
 msgstr ""
 
 msgid "Unmount"
@@ -6940,11 +7007,6 @@ msgstr ""
 #
 msgid "Upgrade finished. Do you want to reboot your Dreambox?"
 msgstr "Actualização terminada.Deseja reiniciar?"
-
-msgid ""
-"Upgrade will take about 5 minutes to finish.\n"
-"Do you want to upgrade?"
-msgstr ""
 
 #
 msgid "Upgrading"
@@ -7098,9 +7160,6 @@ msgstr ""
 #
 msgid "VCR scart"
 msgstr "Entrada VCR"
-
-msgid "VFD Setup"
-msgstr ""
 
 #
 msgid "VMGM (intro trailer)"
@@ -7285,9 +7344,6 @@ msgstr "W"
 msgid "WEP"
 msgstr ""
 
-msgid "WLAN adapter."
-msgstr ""
-
 msgid "WLAN connection"
 msgstr ""
 
@@ -7447,8 +7503,7 @@ msgstr ""
 msgid "Wireless Network"
 msgstr ""
 
-#
-msgid "Wireless Network State"
+msgid "Wireless network state"
 msgstr ""
 
 #
@@ -7665,8 +7720,7 @@ msgid ""
 "Please press OK to continue."
 msgstr ""
 
-#
-msgid "Your Dreambox will restart after pressing OK on your remote control."
+msgid "Your STB will restart after pressing OK on your remote control."
 msgstr ""
 
 #
@@ -7679,6 +7733,12 @@ msgstr "Operação bem sucedida.Continuar a explicar o processo de actualizaçã
 msgid ""
 "Your collection exceeds the size of a single layer medium, you will need a "
 "blank dual layer DVD!"
+msgstr ""
+
+#, python-format
+msgid ""
+"Your config file is not well-formed:\n"
+"%s"
 msgstr ""
 
 #
@@ -7760,9 +7820,6 @@ msgid "Zap focus to main screen"
 msgstr ""
 
 msgid "Zap mode"
-msgstr ""
-
-msgid "Zydas"
 msgstr ""
 
 #
@@ -7890,6 +7947,9 @@ msgstr ""
 #
 msgid "advanced"
 msgstr "Avançados"
+
+msgid "alphabetic reverse"
+msgstr ""
 
 #
 msgid "alphabetic sort"
@@ -8272,9 +8332,15 @@ msgstr ""
 msgid "help..."
 msgstr "ajuda..."
 
+msgid "hi_low"
+msgstr ""
+
 #
 msgid "hide player"
 msgstr "Esconder reprodutor"
+
+msgid "high"
+msgstr ""
 
 msgid "hops:"
 msgstr ""
@@ -8282,6 +8348,9 @@ msgstr ""
 #
 msgid "horizontal"
 msgstr "horizontal"
+
+msgid "horizontal_vertical"
+msgstr ""
 
 #
 msgid "hour"
@@ -8376,6 +8445,9 @@ msgstr "Sintonizado"
 
 #
 msgid "loopthrough to"
+msgstr ""
+
+msgid "low"
 msgstr ""
 
 #
@@ -8672,6 +8744,9 @@ msgstr ""
 #
 msgid "repeated"
 msgstr "Repetido"
+
+msgid "reverse by date"
+msgstr ""
 
 #
 msgid "rewind to the previous chapter"
@@ -9073,6 +9148,9 @@ msgstr "Lista Branca"
 msgid "width"
 msgstr ""
 
+msgid "wireless network interface"
+msgstr ""
+
 msgid "with exit button"
 msgstr ""
 
@@ -9113,798 +9191,3 @@ msgstr "zap"
 #
 msgid "zapped"
 msgstr "zapped"
-
-#
-#~ msgid ""
-#~ "\n"
-#~ "Enigma2 will restart after the restore"
-#~ msgstr ""
-#~ "\n"
-#~ "Enigma2 vai reiniciar depois do restauro"
-
-#
-#~ msgid "\"?"
-#~ msgstr "\"?"
-
-#
-#~ msgid "#003258"
-#~ msgstr "#003258"
-
-#
-#~ msgid "#33294a6b"
-#~ msgstr "#33294a6b"
-
-#
-#~ msgid "#77ffffff"
-#~ msgstr "#77ffffff"
-
-#
-#~ msgid ""
-#~ "%s\n"
-#~ "(%s, %d MB free)"
-#~ msgstr ""
-#~ "%s\n"
-#~ "(%s, %d MB livres)"
-
-#
-#~ msgid "50 Hz"
-#~ msgstr "50 Hz"
-
-#
-#~ msgid "AC3 default"
-#~ msgstr "AC3 por defeito"
-
-#
-#~ msgid "AGC"
-#~ msgstr "AGC"
-
-#
-#~ msgid "AGC:"
-#~ msgstr "AGC:"
-
-#
-#~ msgid "Add files to playlist"
-#~ msgstr "Adicionar ficheiros á lista de reprodução"
-
-#
-#~ msgid "Add title..."
-#~ msgstr "Adicionar titulo..."
-
-#
-#~ msgid "Advanced"
-#~ msgstr "Avançadas"
-
-#
-#~ msgid "Album:"
-#~ msgstr "Album:"
-
-#
-#~ msgid "All..."
-#~ msgstr "Todos..."
-
-#
-#~ msgid "Arabic"
-#~ msgstr "Arabe"
-
-#
-#~ msgid "Backup is done. Please press OK to see the result."
-#~ msgstr "Backup Completo. Pressione OK para ver o resultado"
-
-#
-#~ msgid "Burn"
-#~ msgstr "Gravar"
-
-#
-#~ msgid "Burn DVD..."
-#~ msgstr "Gravar DVD..."
-
-#, fuzzy
-#~ msgid "CDInfo"
-#~ msgstr "Barra de Info"
-
-#
-#~ msgid "Call monitoring"
-#~ msgstr "Call monitoring"
-
-#
-#~ msgid "Card"
-#~ msgstr "Cartão"
-
-#
-#~ msgid "Catalan"
-#~ msgstr "Catalão"
-
-#
-#~ msgid "Change service pin"
-#~ msgstr "Alterar o  PIN do canal"
-
-#
-#~ msgid "Change service pins"
-#~ msgstr "Alterar o PIN dos Canais"
-
-#
-#~ msgid "Change setup pin"
-#~ msgstr "Alterar o PIN"
-
-#
-#~ msgid "Choose Location"
-#~ msgstr "Seleccione Localização"
-
-#
-#~ msgid "Choose source"
-#~ msgstr "Escolha a fonte"
-
-#
-#~ msgid "Compact Flash"
-#~ msgstr "Compact Flash"
-
-#
-#~ msgid "Compact flash card"
-#~ msgstr "Cartão Compact Flash"
-
-#
-#~ msgid "Confirm"
-#~ msgstr "Confirme"
-
-#
-#~ msgid "Connected to Fritz!Box!"
-#~ msgstr "Ligado a Fritz!Box!"
-
-#
-#~ msgid "Connecting to Fritz!Box..."
-#~ msgstr "A ligar a Fritz!Box!"
-
-#
-#~ msgid ""
-#~ "Connection to Fritz!Box\n"
-#~ "failed! (%s)\n"
-#~ "retrying..."
-#~ msgstr ""
-#~ "Ligação ao Fritz!Box\n"
-#~ "falhou! (%s)\n"
-#~ "Tentar de novo..."
-
-#
-#~ msgid "Croatian"
-#~ msgstr "Croata"
-
-#
-#~ msgid "Czech"
-#~ msgstr "Checo"
-
-#
-#~ msgid "Danish"
-#~ msgstr "Dinamarquês"
-
-#
-#~ msgid "Default-Wizard"
-#~ msgstr "Assistente"
-
-#
-#, fuzzy
-#~ msgid "Defaults"
-#~ msgstr "Assistente"
-
-#
-#~ msgid "Detected HDD:"
-#~ msgstr "Disco rígido detectado:"
-
-#
-#~ msgid "Device Setup..."
-#~ msgstr "Definições..."
-
-#
-#~ msgid "Disable Subtitles"
-#~ msgstr "Desabilitar Legendas"
-
-#
-#~ msgid ""
-#~ "Disconnected from\n"
-#~ "Fritz!Box! (%s)\n"
-#~ "retrying..."
-#~ msgstr ""
-#~ "Desligado de\n"
-#~ "Fritz!Box! (%s)\n"
-#~ "a tentar..."
-
-#
-#~ msgid ""
-#~ "Do you really want to REMOVE\n"
-#~ "the plugin \""
-#~ msgstr ""
-#~ "De certeza que quer REMOVER\n"
-#~ "o plugin \""
-
-#
-#~ msgid ""
-#~ "Do you really want to download\n"
-#~ "the plugin \""
-#~ msgstr "Descarregar plugin \""
-
-#
-#~ msgid ""
-#~ "Do you really want to initialize the harddisk?\n"
-#~ "All data on the disk will be lost!"
-#~ msgstr ""
-#~ "Tem a certeza que quer inicializar o Disco Rigido?\n"
-#~ "Todos os dados serão perdidos!"
-
-#
-#~ msgid "Do you want to view a cutlist tutorial?"
-#~ msgstr "Deseja ver um manual do editor de listas?"
-
-#
-#~ msgid "Done - Installed or upgraded %d packages with %d errors"
-#~ msgstr "OK - %d Pacotes instalados ou actualizados com %d erros"
-
-#
-#~ msgid "Dutch"
-#~ msgstr "Holandês"
-
-#
-#~ msgid "Edit current title"
-#~ msgstr "Editar o titulo actual"
-
-#
-#~ msgid "Edit title..."
-#~ msgstr "Editar o titulo..."
-
-#
-#~ msgid "End"
-#~ msgstr "Terminar"
-
-#
-#~ msgid "English"
-#~ msgstr "Inglês"
-
-#
-#~ msgid ""
-#~ "Enigma2 Skinselector v0.5 BETA\n"
-#~ "\n"
-#~ "If you experience any problems please contact\n"
-#~ "stephan@reichholf.net\n"
-#~ "\n"
-#~ "© 2006 - Stephan Reichholf"
-#~ msgstr ""
-#~ "Enigma2 Skinselector v0.5 BETA\n"
-#~ "\n"
-#~ "Se tiver problemas por favor contacte\n"
-#~ "stephan@reichholf.net\n"
-#~ "\n"
-#~ "© 2006 - Stephan Reichholf"
-
-#
-#~ msgid "Enter Fast Forward at speed"
-#~ msgstr "Velocidade do avance rapido"
-
-#
-#~ msgid "Enter Rewind at speed"
-#~ msgstr "Velocidade do retrocesso rapido"
-
-#
-#~ msgid "Filesystem Check..."
-#~ msgstr "Verificação do sistema de ficheiros"
-
-#
-#~ msgid "Finnish"
-#~ msgstr "Finlandês"
-
-#
-#~ msgid "Frame repeat count during non-smooth winding"
-#~ msgstr "Numero de frames repetidas, a usar com a função Vento Forte."
-
-#
-#~ msgid "French"
-#~ msgstr "Francês"
-
-#
-#~ msgid "Fritz!Box FON IP address"
-#~ msgstr "Endereço de IP do Fritz-Box FON"
-
-#
-#~ msgid "Function not yet implemented"
-#~ msgstr "Função não implementada"
-
-#
-#~ msgid "Games / Plugins"
-#~ msgstr "Jogos / Plugins"
-
-#
-#~ msgid "German"
-#~ msgstr "Alemão"
-
-#
-#~ msgid "Greek"
-#~ msgstr "Grego"
-
-#
-#~ msgid "Hello!"
-#~ msgstr "Olá!!"
-
-#
-#~ msgid "Hungarian"
-#~ msgstr "Hungaro"
-
-#
-#~ msgid "Icelandic"
-#~ msgstr "Islandês"
-
-#
-#~ msgid "If you can see this page, please press OK."
-#~ msgstr "Se consegue ler isto, carregue OK."
-
-#
-#~ msgid "Image-Upgrade"
-#~ msgstr "Actualizar imagem"
-
-#
-#~ msgid "Initialization..."
-#~ msgstr "A iniciar...."
-
-#
-#~ msgid "Initializing Harddisk..."
-#~ msgstr "A iniciar o disco rigido"
-
-#
-#~ msgid "Integrated Ethernet"
-#~ msgstr "Ethernet integrada"
-
-#
-#~ msgid "Invert display"
-#~ msgstr "Inverter o Display"
-
-#
-#~ msgid "Italian"
-#~ msgstr "Italiano"
-
-#
-#~ msgid "Language..."
-#~ msgstr "Idioma"
-
-#
-#~ msgid "Lithuanian"
-#~ msgstr "Lituano"
-
-#
-#~ msgid "MMC Card"
-#~ msgstr "Cartão MMC"
-
-#
-#~ msgid "Movie Menu"
-#~ msgstr "Menu de Filmes"
-
-#
-#~ msgid "Nameserver Setup..."
-#~ msgstr "Nameserver Setup..."
-
-#
-#~ msgid "Network Mount"
-#~ msgstr "Mount da Rede"
-
-#
-#~ msgid "Network..."
-#~ msgstr "Rede..."
-
-#
-#~ msgid "New DVD"
-#~ msgstr "Novo DVD"
-
-#
-#~ msgid "New pin"
-#~ msgstr "Novo Pin"
-
-#
-#~ msgid "No 50 Hz, sorry. :("
-#~ msgstr "Sem 50Hz, desculpe.:("
-
-#
-#~ msgid "Norwegian"
-#~ msgstr "Norueguês"
-
-#
-#~ msgid "Online-Upgrade"
-#~ msgstr "Actualiização Online"
-
-#
-#~ msgid "Other..."
-#~ msgstr "Outros.."
-
-#
-#~ msgid "Page"
-#~ msgstr "Página"
-
-#
-#~ msgid "Please enter the old pin code"
-#~ msgstr "Escreva o PIN antigo"
-
-#
-#~ msgid "Please select keyword to filter..."
-#~ msgstr "Escreva palavra a filtrar"
-
-#
-#~ msgid "Polish"
-#~ msgstr "Polaco"
-
-#
-#~ msgid "Portuguese"
-#~ msgstr "Português"
-
-#
-#~ msgid "RSS Feed URI"
-#~ msgstr "RSS Feed URI"
-
-#
-#~ msgid "Ram Disk"
-#~ msgstr "Disco Ram"
-
-#
-#~ msgid "Really delete this timer?"
-#~ msgstr "Apagar este timer?"
-
-#
-#~ msgid ""
-#~ "Recording(s) are in progress or coming up in few seconds... really reboot "
-#~ "now?"
-#~ msgstr ""
-#~ "As gravações estão em andamento ou a iniciar em poucos segundos… Deseja "
-#~ "reiniciar agora? "
-
-#
-#~ msgid ""
-#~ "Recording(s) are in progress or coming up in few seconds... really "
-#~ "restart now?"
-#~ msgstr ""
-#~ "As gravações estão em andamento ou a iniciar em poucos segundos… Deseja "
-#~ "reiniciar agora? "
-
-#
-#~ msgid ""
-#~ "Recording(s) are in progress or coming up in few seconds... really "
-#~ "shutdown now?"
-#~ msgstr ""
-#~ "As gravações estão em andamento ou a iniciar em poucos segundos… Deseja "
-#~ "desligar agora? "
-
-#
-#~ msgid "Reenter new pin"
-#~ msgstr "Reintroduza o PIN"
-
-#
-#~ msgid "Replace current playlist"
-#~ msgstr "Substituir a lista actual"
-
-#
-#~ msgid "Restart Enigma2"
-#~ msgstr "Reiniciar Enigma2"
-
-#
-#~ msgid "Restart GUI"
-#~ msgstr "Reiniciar GUI"
-
-#
-#~ msgid ""
-#~ "Restoring the settings is done. Please press OK to activate the restored "
-#~ "settings now."
-#~ msgstr "O restauro está concluído. Por favor carregue em OK para activar."
-
-#
-#~ msgid "Russian"
-#~ msgstr "Russo"
-
-#
-#~ msgid "Save current project to disk"
-#~ msgstr "Gravar para o Disco rigido"
-
-#
-#~ msgid "Save..."
-#~ msgstr "Guardar..."
-
-#
-#~ msgid "Select audio mode"
-#~ msgstr "Selecione o modo de Audio"
-
-#
-#~ msgid "Select video input"
-#~ msgstr "Seleccione entrada de Video"
-
-#
-#~ msgid "Show files from %s"
-#~ msgstr "Mostras os ficheiros de %s"
-
-#
-#~ msgid "Somewhere else"
-#~ msgstr "Algures"
-
-#
-#~ msgid "Sort A-Z"
-#~ msgstr "ordenar A-Z"
-
-#
-#~ msgid "Sort Time"
-#~ msgstr "Ordenar por tempo"
-
-#
-#~ msgid "Spanish"
-#~ msgstr "Catalão"
-
-#
-#~ msgid "Startwizard"
-#~ msgstr "Assistente"
-
-#
-#~ msgid "Step "
-#~ msgstr "Avançar"
-
-#
-#~ msgid "Stereo"
-#~ msgstr "Estereo"
-
-#
-#~ msgid "Subservice list..."
-#~ msgstr "Lista de Subserviços... "
-
-#
-#~ msgid "Swedish"
-#~ msgstr "Sueco"
-
-#
-#~ msgid "The pin code has been changed successfully."
-#~ msgstr "A alterção do PIN coom sucesso."
-
-#
-#~ msgid "The pin codes you entered are different."
-#~ msgstr "O PIN que introduziu está errado."
-
-#
-#~ msgid "This is unsupported at the moment."
-#~ msgstr "Não suportado de momento."
-
-#
-#~ msgid "Timer"
-#~ msgstr "Temporizador"
-
-#
-#~ msgid "Turkish"
-#~ msgstr "Turco"
-
-#
-#~ msgid "USB"
-#~ msgstr "USB"
-
-#
-#~ msgid ""
-#~ "Unable to complete filesystem check.\n"
-#~ "Error: "
-#~ msgstr ""
-#~ "Erro ao completar a verificação do sistema de ficheiros.\n"
-#~ "Erro:"
-
-#
-#~ msgid ""
-#~ "Unable to initialize harddisk.\n"
-#~ "Error: "
-#~ msgstr ""
-#~ "Erro ao iniciar o HDD.\n"
-#~ "Erro:"
-
-#
-#~ msgid ""
-#~ "Unable to initialize harddisk.\n"
-#~ "Please refer to the user manual.\n"
-#~ "Error: "
-#~ msgstr ""
-#~ "Impossivel Inicializar Disco Duro.\n"
-#~ "Por favor consulte o manual.\n"
-#~ "Erro:"
-
-#
-#, fuzzy
-#~ msgid "Updating, please wait..."
-#~ msgstr "Em preparação… Por favor espere "
-
-#
-#~ msgid "Use non-smooth winding at speeds above"
-#~ msgstr "Usar a função Vento Forte nas velocidades acima"
-
-#
-#~ msgid "VCR Switch"
-#~ msgstr "Mudar para VCR"
-
-#
-#~ msgid ""
-#~ "We will now test if your TV can also display this resolution at 50hz. If "
-#~ "your screen goes black, wait 20 seconds and it will switch back to 60hz.\n"
-#~ "Please press OK to begin."
-#~ msgstr ""
-#~ "Vamos agora testar se a sua TV suporta resolução a 50hz.Se o ecrã ficar "
-#~ "preto, espere 20 segundos e irá voltar a 60hz.\n"
-#~ "Carregue OK para começar"
-
-#
-#~ msgid "Wireless"
-#~ msgstr "Wireless"
-
-#
-#~ msgid ""
-#~ "You do not seem to have a harddisk in your Dreambox. So backing up to a "
-#~ "harddisk is not an option for you."
-#~ msgstr "Disco rigido não encontrado.Esta opção não é válida para si."
-
-#
-#~ msgid ""
-#~ "You have chosen to backup to a compact flash card. The card must be in "
-#~ "the slot. We do not verify if it is really used at the moment. So better "
-#~ "backup to the harddisk!\n"
-#~ "Please press OK to start the backup now."
-#~ msgstr ""
-#~ "Escolheu gravar para compact flash.O card deve estar inserido.Não é "
-#~ "possivel verificar se está em uso.Deve gravar para o Disco rigido!\n"
-#~ "Carregue OK para iniciar."
-
-#
-#~ msgid ""
-#~ "You have chosen to backup to an usb drive. Better backup to the "
-#~ "harddisk!\n"
-#~ "Please press OK to start the backup now."
-#~ msgstr ""
-#~ "Escolheu gravar para USB.Deve gravar para o Disco rigido!\n"
-#~ "Carregue OK para iniciar."
-
-#
-#~ msgid ""
-#~ "You have chosen to backup to your harddisk. Please press OK to start the "
-#~ "backup now."
-#~ msgstr ""
-#~ "Escolheu fazer um backup do seu disco rigido. Carregue OK para iniciar."
-
-#
-#~ msgid ""
-#~ "You need to define some keywords first!\n"
-#~ "Press the menu-key to define keywords.\n"
-#~ "Do you want to define keywords now?"
-#~ msgstr ""
-#~ "Necessita definir palavra chave!\n"
-#~ "Carregue em MENU para definir a palavra chave.\n"
-#~ "Deseja definir palavra chave?"
-
-#
-#~ msgid ""
-#~ "You need to set a pin code and hide it from your children.\n"
-#~ "\n"
-#~ "Do you want to set the pin now?"
-#~ msgstr ""
-#~ "Necessita de codigo PIN para esconder.\n"
-#~ "\n"
-#~ "Introduzir PIN?"
-
-#
-#~ msgid "You selected a playlist"
-#~ msgstr "Seleccionou uma playlist"
-
-#
-#~ msgid "Your TV works with 50 Hz. Good!"
-#~ msgstr "A sua TV trabalha a 50hz.Optimo!"
-
-#
-#~ msgid "by Exif"
-#~ msgstr "por Exif"
-
-#
-#~ msgid "equal to Socket A"
-#~ msgstr "Igual ao socket A"
-
-#
-#~ msgid "full /etc directory"
-#~ msgstr "pasta full /etc "
-
-#
-#~ msgid "hide extended description"
-#~ msgstr "ocultar descrição"
-
-#
-#~ msgid ""
-#~ "incoming call!\n"
-#~ "%s calls on %s!"
-#~ msgstr ""
-#~ "Chamada!\n"
-#~ "%s chamdas activas %s!"
-
-#
-#~ msgid "loopthrough to socket A"
-#~ msgstr "Passagem atraves do socket A"
-
-#
-#~ msgid "no HDD found"
-#~ msgstr "Nenhum disco rigido detectado"
-
-#
-#~ msgid "no Picture found"
-#~ msgstr "Imagens não encontradas"
-
-#
-#~ msgid "only /etc/enigma2 directory"
-#~ msgstr "só a pasta /etc/enigma2"
-
-#
-#~ msgid "play next playlist entry"
-#~ msgstr "reproduzir a próxima entrada de lista"
-
-#
-#~ msgid "play previous playlist entry"
-#~ msgstr "reproduzir a entrada de lista anterior"
-
-#
-#~ msgid ""
-#~ "scan done!\n"
-#~ "%d services found!"
-#~ msgstr ""
-#~ "Busca Terminada!\n"
-#~ "%d Canais encontrados!"
-
-#
-#~ msgid ""
-#~ "scan done!\n"
-#~ "No service found!"
-#~ msgstr ""
-#~ "Busca Terminada!\n"
-#~ "%d Nenhum canal encontrado!"
-
-#
-#~ msgid ""
-#~ "scan done!\n"
-#~ "One service found!"
-#~ msgstr ""
-#~ "Busca terminada!\n"
-#~ "Canal encontrado!"
-
-#
-#~ msgid ""
-#~ "scan in progress - %d %% done!\n"
-#~ "%d services found!"
-#~ msgstr ""
-#~ "Busca em progresso - %d %% Terminado!\n"
-#~ "%d Canais encontrados!"
-
-#
-#~ msgid "service pin"
-#~ msgstr "PIN do canal"
-
-#
-#~ msgid "setup pin"
-#~ msgstr "Definir PIN"
-
-#
-#~ msgid "show EPG..."
-#~ msgstr "Mostar EPG..."
-
-#
-#~ msgid "show all"
-#~ msgstr "mostrar todos"
-
-#
-#~ msgid "show first tag"
-#~ msgstr "mostrar primeira marca"
-
-#
-#~ msgid "show second tag"
-#~ msgstr "mostrar segunda marca"
-
-#
-#~ msgid "show single service EPG..."
-#~ msgstr "mostrar EPG simples"
-
-#
-#~ msgid "skip backward (self defined)"
-#~ msgstr "voltar atrás (autodefinido)"
-
-#
-#~ msgid "skip forward (self defined)"
-#~ msgstr "avançar (autodefinido)"
-
-#
-#~ msgid "text"
-#~ msgstr "texto"
-
-#
-#~ msgid "until restart"
-#~ msgstr "Até reinicio"

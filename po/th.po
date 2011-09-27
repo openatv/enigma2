@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1-En-Th\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-08 16:22+0100\n"
+"POT-Creation-Date: 2011-09-27 18:44+0100\n"
 "PO-Revision-Date: 2010-04-08 18:13+0700\n"
 "Last-Translator: Tony - Thaidreambox\n"
 "Language-Team: Tony @ Thai Dreambox <tonyboyth@gmail.com>\n"
@@ -196,6 +196,10 @@ msgid "%H:%M"
 msgstr "%H:%M"
 
 #, python-format
+msgid "%d / 100"
+msgstr ""
+
+#, python-format
 msgid "%d jobs are running in the background!"
 msgstr "กำลังมีงานแบบฉากหลัง %d งาน"
 
@@ -321,6 +325,9 @@ msgstr "4:3 Letterbox"
 
 msgid "4:3 PanScan"
 msgstr "4:3 PanScan"
+
+msgid "4X"
+msgstr ""
 
 msgid "5"
 msgstr "5"
@@ -566,12 +573,6 @@ msgstr ""
 msgid "Adjust 3D settings"
 msgstr ""
 
-msgid "Adjust HDMI CEC settings"
-msgstr ""
-
-msgid "Adjust display scrolling and symbols"
-msgstr ""
-
 msgid ""
 "Adjust the color settings so that all the color shades are distinguishable, "
 "but appear as saturated as possible. If you are happy with the result, press "
@@ -725,9 +726,6 @@ msgstr "ถามผู้ใช้"
 
 msgid "Aspect Ratio"
 msgstr "สัดส่วนภาพ"
-
-msgid "Atheros"
-msgstr ""
 
 msgid "Attach a file"
 msgstr ""
@@ -885,6 +883,12 @@ msgstr ""
 msgid "Black screen till locked"
 msgstr ""
 
+msgid "Blind Scan"
+msgstr ""
+
+msgid "Blindscan was canceled by the user."
+msgstr ""
+
 msgid "Block noise reduction"
 msgstr "Block noise reduction"
 
@@ -966,6 +970,9 @@ msgstr ""
 
 msgid "Cache Thumbnails"
 msgstr "เก็บภาพเล็กแคช"
+
+msgid "Can't cancel during upgrade!!"
+msgstr ""
 
 msgid "Cancel"
 msgstr "ยกเลิก"
@@ -1974,9 +1981,6 @@ msgstr "คีย์สำหรับเข้ารหัส"
 msgid "Encryption Keytype"
 msgstr "ชนิดคีย์"
 
-msgid "Encryption Type"
-msgstr "เข้ารหัสแบบ"
-
 msgid "Encryption:"
 msgstr "การเข้ารหัส:"
 
@@ -2041,6 +2045,13 @@ msgid ""
 msgstr ""
 "ผิดพลาด: %s\n"
 "ทำอีกครั้งหรือไม่?"
+
+#, python-format
+msgid "Error[%d]. Press Cancel to exit."
+msgstr ""
+
+msgid "Ethernet network interface"
+msgstr ""
 
 msgid "Event Fontsize"
 msgstr ""
@@ -2134,11 +2145,6 @@ msgstr ""
 
 msgid "Factory reset"
 msgstr "ตั้งค่าจากโรงงาน"
-
-msgid ""
-"Fail to upgrade.\n"
-"Cause : "
-msgstr ""
 
 msgid "Failed"
 msgstr "ล้มเหลว"
@@ -2366,6 +2372,9 @@ msgstr "โหมด Guard interval"
 msgid "HD list"
 msgstr ""
 
+msgid "HDMI CEC"
+msgstr ""
+
 msgid "Handle deepstandby events"
 msgstr ""
 
@@ -2387,11 +2396,8 @@ msgstr "ให้ฮาร์ดดิสก์ standby หลังจาก"
 msgid "Hardware:"
 msgstr ""
 
-msgid "Hidden network SSID"
-msgstr "SSID ของเครือข่ายที่ซ้อนไว้"
-
-msgid "Hidden networkname"
-msgstr "ชื่อเครือข่ายที่ซ่อนไว้"
+msgid "Hidden network"
+msgstr ""
 
 msgid "Hide CI messages"
 msgstr ""
@@ -2566,6 +2572,9 @@ msgstr "นำเข้า (Input)"
 msgid "Input device setup"
 msgstr ""
 
+msgid "Input devices"
+msgstr ""
+
 msgid "Install"
 msgstr "ติดตั้ง"
 
@@ -2625,9 +2634,6 @@ msgstr "ปานกลาง"
 
 msgid "Internal Flash"
 msgstr "หน่วยความจำภายใน"
-
-msgid "Internal LAN adapter."
-msgstr ""
 
 msgid "Internal hdd only"
 msgstr ""
@@ -2849,6 +2855,17 @@ msgstr ""
 msgid "Longitude"
 msgstr "ลองจิจูด"
 
+#, python-format
+msgid ""
+"Looking for available transponders.\n"
+"This will take several minutes.\n"
+"\n"
+"   Current Status : %d/%d\n"
+"   Orbital Positions : %s\n"
+"   Polarization : %s\n"
+"   Bandwidth : %s"
+msgstr ""
+
 msgid "MORE"
 msgstr "เพิ่ม"
 
@@ -3043,9 +3060,6 @@ msgstr ""
 msgid "NIM"
 msgstr ""
 
-msgid "NOT"
-msgstr ""
-
 msgid "NOW"
 msgstr "ตอนนี้"
 
@@ -3089,9 +3103,6 @@ msgstr "ตั้งค่าเครือข่าย..."
 msgid "Network ID"
 msgstr ""
 
-msgid "Network SSID"
-msgstr "ค่า SSID"
-
 msgid "Network Servers:"
 msgstr ""
 
@@ -3122,6 +3133,9 @@ msgstr "เครือข่าย:"
 msgid "NetworkWizard"
 msgstr "ตัวช่วยเครือข่าย"
 
+msgid "Networkname (SSID)"
+msgstr ""
+
 msgid "New"
 msgstr "ใหม่"
 
@@ -3148,9 +3162,6 @@ msgstr "ไม่พบการเชื่อมต่อ"
 
 msgid "No HDD found or HDD not initialized!"
 msgstr "ไม่พบฮาร์ดดิสก์ (HDD) หรือยังไม่ได้เตรียมเพื่อให้ใช้งานได้"
-
-msgid "No Networks found"
-msgstr "ไม่พบเครือข่าย"
 
 msgid "No Timeshift found to save as recording!"
 msgstr ""
@@ -3186,6 +3197,11 @@ msgstr "ไม่พบข้อมูลเวลากำกับ บัน�
 msgid ""
 "No fast winding possible yet.. but you can use the number buttons to skip "
 "forward/backward!"
+msgstr ""
+
+msgid ""
+"No found transponders!!\n"
+"Please check the satellite connection, or scan other search condition."
 msgstr ""
 
 msgid "No free tuner!"
@@ -3256,8 +3272,8 @@ msgstr ""
 "ต้องการเปลี่ยนรหัสตอนนี้หรือไม่?\n"
 "หากตอบ 'ไม่' หมายถึงยกเลิกการป้องกันด้วยรหัสผ่าน"
 
-msgid "No wireless networks found! Please refresh."
-msgstr "ไม่พบเครือข่ายไร้สาย! กรุณาลองอีกครั้ง"
+msgid "No wireless networks found! Searching..."
+msgstr ""
 
 msgid ""
 "No working local network adapter found.\n"
@@ -3333,6 +3349,9 @@ msgid ""
 "Filesize: %sMB\n"
 "Free Space: %sMB\n"
 "Path: %s"
+msgstr ""
+
+msgid "Not-Associated"
 msgstr ""
 
 msgid ""
@@ -3592,6 +3611,36 @@ msgstr ""
 msgid "Please change recording endtime"
 msgstr "กรุณาเปลี่ยนเวลาสิ้นสุดการบันทึกรายการ"
 
+msgid ""
+"Please check again.\n"
+"Frequency : start value is larger than stop value."
+msgstr ""
+
+msgid ""
+"Please check again.\n"
+"Start frequency must be between 950 and 2150."
+msgstr ""
+
+msgid ""
+"Please check again.\n"
+"Start symbolrate must be between 2MHz and 45MHz."
+msgstr ""
+
+msgid ""
+"Please check again.\n"
+"Stop frequency must be between 950 and 2150."
+msgstr ""
+
+msgid ""
+"Please check again.\n"
+"Stop symbolrate must be between 2MHz and 45MHz."
+msgstr ""
+
+msgid ""
+"Please check again.\n"
+"Symbolrate : start value is larger than stop value."
+msgstr ""
+
 msgid "Please check your network settings!"
 msgstr "กรุณตรวจสอบการตั้งค่าเครือข่าย"
 
@@ -3728,6 +3777,9 @@ msgstr "กรุณาตั้งค่า Tuner C"
 msgid "Please set up tuner D"
 msgstr "กรุณาตั้งค่า Tuner D"
 
+msgid "Please setup your tuner configuration."
+msgstr ""
+
 msgid ""
 "Please use direction keys to move the PiP window.\n"
 "Press Bouquet +/- to resize the window.\n"
@@ -3860,6 +3912,9 @@ msgid "Preparing... Please wait"
 msgstr "กำลังเตรียมงาน... รอสักครู่"
 
 msgid "Press '0' to toggle internal/external PiP."
+msgstr ""
+
+msgid "Press Green/OK to start the scan"
 msgstr ""
 
 msgid "Press INFO on your remote control for additional information."
@@ -3997,9 +4052,6 @@ msgstr "RGB"
 
 msgid "Radio"
 msgstr "วิทยุ"
-
-msgid "Ralink"
-msgstr ""
 
 msgid "Random"
 msgstr "แบบสุ่ม"
@@ -4405,6 +4457,9 @@ msgstr "ค้นหาเครือข่ายไร้สาย"
 msgid "Scan additional SR"
 msgstr "ค้นหา additional SR"
 
+msgid "Scan band"
+msgstr ""
+
 msgid "Scan band EU HYPER"
 msgstr "ค้นหา band EU HYPER"
 
@@ -4440,6 +4495,18 @@ msgstr "ค้นหา band US MID"
 
 msgid "Scan band US SUPER"
 msgstr "ค้นหา band US SUPER"
+
+msgid "Scan start frequency"
+msgstr ""
+
+msgid "Scan start symbolrate"
+msgstr ""
+
+msgid "Scan stop frequency"
+msgstr ""
+
+msgid "Scan stop symbolrate"
+msgstr ""
 
 msgid ""
 "Scan your network for wireless access points and connect to them using your "
@@ -5014,6 +5081,9 @@ msgstr "เริ่มตอน"
 msgid "Status"
 msgstr ""
 
+msgid "Status : 0%"
+msgstr ""
+
 msgid "Step east"
 msgstr "ไปทางทิศตะวันออก"
 
@@ -5098,7 +5168,7 @@ msgstr ""
 msgid "Subtitles"
 msgstr "ซับไตเติ้ล"
 
-msgid "Success!!"
+msgid "Success. Press OK to exit."
 msgstr ""
 
 msgid "Sun"
@@ -5786,6 +5856,9 @@ msgstr ""
 msgid "Undo uninstall"
 msgstr ""
 
+msgid "Unencrypted"
+msgstr ""
+
 msgid "UnhandledKey"
 msgstr ""
 
@@ -5804,7 +5877,7 @@ msgstr ""
 msgid "Universal LNB"
 msgstr "Universal LNB"
 
-msgid "Unknown network adapter."
+msgid "Unknown"
 msgstr ""
 
 msgid "Unmount"
@@ -5845,11 +5918,6 @@ msgstr "อัพเกรดเสร็จสิ้น"
 
 msgid "Upgrade finished. Do you want to reboot your Dreambox?"
 msgstr "อัพเกรดเสร็จแล้ว ท่านต้องการที่จะบูทเครื่องดรีมบอกซ์หรือไม่?"
-
-msgid ""
-"Upgrade will take about 5 minutes to finish.\n"
-"Do you want to upgrade?"
-msgstr ""
 
 msgid "Upgrading"
 msgstr "กำลังอัพเกรด"
@@ -5981,9 +6049,6 @@ msgstr ""
 
 msgid "VCR scart"
 msgstr "VCR scart"
-
-msgid "VFD Setup"
-msgstr ""
 
 msgid "VMGM (intro trailer)"
 msgstr "VMGM (intro trailer)"
@@ -6130,9 +6195,6 @@ msgstr "W"
 
 msgid "WEP"
 msgstr "WEP"
-
-msgid "WLAN adapter."
-msgstr ""
 
 msgid "WLAN connection"
 msgstr ""
@@ -6292,8 +6354,8 @@ msgstr "แลนแบบไร้สาย"
 msgid "Wireless Network"
 msgstr "เครือข่ายไร้สาย"
 
-msgid "Wireless Network State"
-msgstr "สถานะเครือข่ายไร้สาย"
+msgid "Wireless network state"
+msgstr ""
 
 msgid "Write error while recording. Disk full?\n"
 msgstr "เกิดข้อผิดพลาดในการบันทึกรายการ ไดรฟ์เต็มหรือไม่?\n"
@@ -6478,8 +6540,8 @@ msgstr ""
 "\n"
 "กดปุ่ม OK เพื่อทำงานต่อ"
 
-msgid "Your Dreambox will restart after pressing OK on your remote control."
-msgstr "เครื่องจะทำการเริ่มระบบใหม่เมื่อท่านกดปุ่ม OK"
+msgid "Your STB will restart after pressing OK on your remote control."
+msgstr ""
 
 msgid ""
 "Your backup succeeded. We will now continue to explain the further upgrade "
@@ -6490,6 +6552,12 @@ msgid ""
 "Your collection exceeds the size of a single layer medium, you will need a "
 "blank dual layer DVD!"
 msgstr "ข้อมูลที่เลือกใหญ่กว่าดีวีดีแบบชั้นเดียว ท่านต้องใช้ดีวีดีแบบ 2 ชั้น"
+
+#, python-format
+msgid ""
+"Your config file is not well-formed:\n"
+"%s"
+msgstr ""
 
 msgid "Your current collection will get lost!"
 msgstr ""
@@ -6561,9 +6629,6 @@ msgid "Zap focus to main screen"
 msgstr ""
 
 msgid "Zap mode"
-msgstr ""
-
-msgid "Zydas"
 msgstr ""
 
 msgid "[alternative edit]"
@@ -6661,6 +6726,9 @@ msgstr ""
 
 msgid "advanced"
 msgstr "ขั้นสูง"
+
+msgid "alphabetic reverse"
+msgstr ""
 
 msgid "alphabetic sort"
 msgstr "เรียงตามอักษร"
@@ -6964,14 +7032,23 @@ msgstr ""
 msgid "help..."
 msgstr "ช่วยเหลือ..."
 
+msgid "hi_low"
+msgstr ""
+
 msgid "hide player"
 msgstr "ซ่อนตัวเล่น"
+
+msgid "high"
+msgstr ""
 
 msgid "hops:"
 msgstr ""
 
 msgid "horizontal"
 msgstr "แนวนอน (H)"
+
+msgid "horizontal_vertical"
+msgstr ""
 
 msgid "hour"
 msgstr "ชั่วโมง"
@@ -7044,6 +7121,9 @@ msgstr "ล๊อคแล้ว"
 
 msgid "loopthrough to"
 msgstr "ปล่อยผ่านไปที่"
+
+msgid "low"
+msgstr ""
 
 msgid "manual"
 msgstr "ทำเอง"
@@ -7275,6 +7355,9 @@ msgstr "กลับไปที่สารบัญ"
 
 msgid "repeated"
 msgstr "เล่นซ้ำ"
+
+msgid "reverse by date"
+msgstr ""
 
 msgid "rewind to the previous chapter"
 msgstr "กลับไปตอนที่แล้ว"
@@ -7601,6 +7684,9 @@ msgstr "รายการที่อนุญาต"
 msgid "width"
 msgstr ""
 
+msgid "wireless network interface"
+msgstr ""
+
 msgid "with exit button"
 msgstr ""
 
@@ -7632,703 +7718,3 @@ msgstr "เปลี่ยนช่อง"
 
 msgid "zapped"
 msgstr "เปลี่ยนช่องแล้ว"
-
-#~ msgid ""
-#~ "\n"
-#~ "Scan for local packages and install them."
-#~ msgstr ""
-#~ "\n"
-#~ "ค้นหาและติดตั้งส่วนประกอบ"
-
-#~ msgid ""
-#~ "%s\n"
-#~ "(%s, %d MB free)"
-#~ msgstr ""
-#~ "%s\n"
-#~ "(%s, %d MB ว่างอยู่)"
-
-#~ msgid "* Only available when entering hidden SSID or network key"
-#~ msgstr "* ต้องป้อน SSID หรือคีย์ของเครือข่าย"
-
-#~ msgid ".NFI Download failed:"
-#~ msgstr "โหลดไฟล์ .NFI ล้มเหลว"
-
-#~ msgid ""
-#~ ".NFI file passed md5sum signature check. You can safely flash this image!"
-#~ msgstr "นำไปใช้ได้ ไฟล์ .NFI นี้ผ่านตรวจสอบด้วย MD5 แล้ว"
-
-#~ msgid "50 Hz"
-#~ msgstr "50 Hz"
-
-#~ msgid "AC3 default"
-#~ msgstr "ให้ AC3 เป็นค่าเริ่มต้น"
-
-#~ msgid "Advanced"
-#~ msgstr "ขั้นสูง"
-
-#~ msgid "Arabic"
-#~ msgstr "ภาษาอาหรับ"
-
-#~ msgid "Backup is done. Please press OK to see the result."
-#~ msgstr "สำรองข้อมูลแล้วเสร็จ กรุณากดปุ่ม OK เพื่อดูรายงาน"
-
-#~ msgid "Burn to DVD..."
-#~ msgstr "เขียนแผ่นดีวีดี..."
-
-#~ msgid "Call monitoring"
-#~ msgstr "เฝ้าดูการโทร"
-
-#~ msgid "Cannot parse feed directory"
-#~ msgstr "ไม่สามารถอ่าน Feed ได้"
-
-#~ msgid "Card"
-#~ msgstr "การ์ด"
-
-#~ msgid "Catalan"
-#~ msgstr "ภาษาคาตาลัน"
-
-#~ msgid "Change dir."
-#~ msgstr "เปลี่ยนโฟลเดอร์"
-
-#~ msgid "Change service pin"
-#~ msgstr "เปลี่ยนรหัสบริการ"
-
-#~ msgid "Change service pins"
-#~ msgstr "เปลี่ยนรหัสบริการ"
-
-#~ msgid "Change setup pin"
-#~ msgstr "เปลี่ยนรหัสติดตั้ง"
-
-#~ msgid "Choose source"
-#~ msgstr "เลือกที่มา"
-
-#~ msgid "Compact Flash"
-#~ msgstr "Compact Flash"
-
-#~ msgid "Compact flash card"
-#~ msgstr "Compact flash card"
-
-#~ msgid "Config"
-#~ msgstr "ตั้งค่า"
-
-#~ msgid "Connected to Fritz!Box!"
-#~ msgstr "เชื่อมต่อกับ Fritz!Box แล้ว!"
-
-#~ msgid "Connecting to Fritz!Box..."
-#~ msgstr "กำลังติดต่อ Fritz!Box..."
-
-#~ msgid ""
-#~ "Connection to Fritz!Box\n"
-#~ "failed! (%s)\n"
-#~ "retrying..."
-#~ msgstr ""
-#~ "ติดต่อ Fritz!Box\n"
-#~ "ล้มเหลว! (%s)\n"
-#~ "กำลังลองใหม่อีกครั้ง..."
-
-#~ msgid ""
-#~ "Crashlogs found!\n"
-#~ "Send them to Dream Multimedia ?"
-#~ msgstr ""
-#~ "พบรายงานปัญหาเครื่อง!\n"
-#~ "ต้องการส่งรายงานให้ Dream Multimedia หรือไม่?"
-
-#~ msgid "Croatian"
-#~ msgstr "ภาษาโคเอเชีย"
-
-#~ msgid "Czech"
-#~ msgstr "ภาษาเชค"
-
-#~ msgid "Danish"
-#~ msgstr "ภาษาเดนมาร์ก"
-
-#~ msgid "Default services lists"
-#~ msgstr "บริการเริ่มต้น"
-
-#~ msgid "Default settings"
-#~ msgstr "ตั้งค่าเริ่มต้น"
-
-#~ msgid "Destination directory"
-#~ msgstr "โฟล์เดอร์ปลายทาง"
-
-#~ msgid "Detected HDD:"
-#~ msgstr "ฮาร์ดไดรฟ์ที่พบ:"
-
-#~ msgid "Disable Subtitles"
-#~ msgstr "ไม่แสดงซับไดเติ้ล"
-
-#~ msgid ""
-#~ "Disconnected from\n"
-#~ "Fritz!Box! (%s)\n"
-#~ "retrying..."
-#~ msgstr ""
-#~ "การเชื่อมต่อกับ\n"
-#~ "Fritz!Box! (%s) ถูกตัด\n"
-#~ "กำลังลองเชื่อมต่อซ้ำ..."
-
-#~ msgid ""
-#~ "Do you really want to initialize the harddisk?\n"
-#~ "All data on the disk will be lost!"
-#~ msgstr ""
-#~ "ท่านต้องการที่จะทำให้ฮาร์ดไดรฟ์ของท่านพร้อมใช้งานหรือไม่?\n"
-#~ "คำเตือน: ข้อมูลที่มีอยู่บนไดรฟ์ทั้งหมดจะหายไปทันที!"
-
-#~ msgid "Do you want to install default sat lists?"
-#~ msgstr "ท่านต้องการติดตั้งดาวเทียมตามค่าเริ่มต้นหรือไม่?"
-
-#~ msgid "Done - Installed or upgraded %d packages with %d errors"
-#~ msgstr "เสร็จแล้ว - ติดตั้งหรือปรับปรุง %d รายการ พบข้อผิดพลาด %d รายการ"
-
-#~ msgid "Download of USB flasher boot image failed: "
-#~ msgstr "ดาวน์โหลดอิมเมจ USB flasher ล้มเหลว"
-
-#~ msgid "Dutch"
-#~ msgstr "ภาษาดัช"
-
-#~ msgid "Encrypted: %s"
-#~ msgstr "ถูกเข้ารหัส: %s"
-
-#~ msgid "English"
-#~ msgstr "ภาษาอังกฤษ"
-
-#~ msgid ""
-#~ "Enigma2 Skinselector v0.5 BETA\n"
-#~ "\n"
-#~ "If you experience any problems please contact\n"
-#~ "stephan@reichholf.net\n"
-#~ "\n"
-#~ "© 2006 - Stephan Reichholf"
-#~ msgstr ""
-#~ "Enigma2 Skinselector v0.5 BETA\n"
-#~ "\n"
-#~ "หากท่านประสบปัญหาในการใช้งานกรุณาติดต่อ\n"
-#~ "stephan@reichholf.net\n"
-#~ "\n"
-#~ "© 2006 - Stephan Reichholf"
-
-#~ msgid "Enter Fast Forward at speed"
-#~ msgstr "ป้อนความเร็วในการเดินหน้า"
-
-#~ msgid "Enter Rewind at speed"
-#~ msgstr "ป้อนความเร็วในการย้อนหลัง"
-
-#~ msgid "Enter WLAN network name/SSID:"
-#~ msgstr "ป้อนชื่อเครือข่าย WLAN/SSID:"
-
-#~ msgid "Enter WLAN passphrase/key:"
-#~ msgstr "ป้อนคีย์สำหรับ WLAN:"
-
-#~ msgid "Estonian"
-#~ msgstr "ภาษาเอสโตเนี่ยน"
-
-#~ msgid "Filesystem Check..."
-#~ msgstr "ตรวจสอบระบบไฟล์..."
-
-#~ msgid "Finnish"
-#~ msgstr "จบการทำงาน"
-
-#~ msgid ""
-#~ "First we need to download the latest boot environment for the USB flasher."
-#~ msgstr "ต้องดาวน์โหลด USB Flasher ก่อน"
-
-#~ msgid "Following tasks will be done after you press continue!"
-#~ msgstr "คำสั่งต่อไปนี้จะทำงานเมื่อเลือก 'ต่อไป'"
-
-#~ msgid "Frame repeat count during non-smooth winding"
-#~ msgstr "จำนวนแฟรมสำหรับ non-smooth winding"
-
-#~ msgid "French"
-#~ msgstr "ภาษาฝรั่งเศษ"
-
-#~ msgid "Frisian"
-#~ msgstr "ภาษาไฟรเชียน"
-
-#~ msgid "Fritz!Box FON IP address"
-#~ msgstr "Fritz!Box FON IP address"
-
-#~ msgid "Function not yet implemented"
-#~ msgstr "ฟังก์ชั่นยังทำงานไม่ได้"
-
-#~ msgid "General AC3 delay"
-#~ msgstr "General AC3 delay"
-
-#~ msgid "General PCM delay"
-#~ msgstr "General PCM delay"
-
-#~ msgid "German"
-#~ msgstr "ภาษาเยอรมัน"
-
-#~ msgid "Greek"
-#~ msgstr "ภาษากรีก"
-
-#~ msgid "Hungarian"
-#~ msgstr "ภาษาฮังการี่"
-
-#~ msgid "Icelandic"
-#~ msgstr "ภาษาไอซ์แลนด์"
-
-#~ msgid "If you can see this page, please press OK."
-#~ msgstr "หากเห็นหน้าจอนี้ให้กดปุ่ม OK"
-
-#~ msgid "Image flash utility"
-#~ msgstr "ยูทิลิตี้สำรับอิมเมจ"
-
-#~ msgid "Image-Upgrade"
-#~ msgstr "Image-Upgrade"
-
-#~ msgid "Initialization..."
-#~ msgstr "การเตรียมการ..."
-
-#~ msgid "Initializing Harddisk..."
-#~ msgstr "กำลังเตรียมฮาร์ดดิสก์..."
-
-#~ msgid "Integrated Ethernet"
-#~ msgstr "Integrated Ethernet"
-
-#~ msgid "Integrated Wireless"
-#~ msgstr "Integrated Wireless"
-
-#~ msgid "Interface: %s"
-#~ msgstr "อินเตอร์เฟซ: %s"
-
-#~ msgid "Invert display"
-#~ msgstr "แสดงกลับสี"
-
-#~ msgid "Italian"
-#~ msgstr "ภาษาอิตาลี่"
-
-#~ msgid "Latvian"
-#~ msgstr "ภาษาลัทเวีย"
-
-#~ msgid "Lithuanian"
-#~ msgstr "ภาษาลิธูเนี่ยน"
-
-#~ msgid "MMC Card"
-#~ msgstr "MMC Card"
-
-#~ msgid "Max. Bitrate: %s"
-#~ msgstr "Bitrate สูงสุด: %s"
-
-#~ msgid "Network Mount"
-#~ msgstr "Network Mount"
-
-#~ msgid "Network..."
-#~ msgstr "เครือข่าย..."
-
-#~ msgid "New pin"
-#~ msgstr "รหัสใหม่"
-
-#~ msgid "No 50 Hz, sorry. :("
-#~ msgstr "ขอโทษครับ ไม่มี 50 Hz :("
-
-#~ msgid "No useable USB stick found"
-#~ msgstr "ไม่พบ USB เมโมรี่ใดๆ เลย"
-
-#~ msgid "Norwegian"
-#~ msgstr "ภาษานอร์เว"
-
-#~ msgid "Online-Upgrade"
-#~ msgstr "ปรังปรุงแบบออนไลน์"
-
-#~ msgid "Package details for: "
-#~ msgstr "รายละเอียดของส่วนประกอบ:"
-
-#~ msgid "Page"
-#~ msgstr "หน้า"
-
-#~ msgid "Please choose .NFI image file from feed server to download"
-#~ msgstr "กรุณาเลือกไฟล์ .NFI ที่จะดาวน์โหลดจากเซอร์พเวอร์"
-
-#~ msgid ""
-#~ "Please disconnect all USB devices from your Dreambox and (re-)attach the "
-#~ "target USB stick (minimum size is 64 MB) now!"
-#~ msgstr "กรุณาดึงไดรฟ์ USB ออกจากเครื่อง แล้วเสียบใหม่ตอนนี้เลย (อย่างน้อย 64 MB)"
-
-#~ msgid "Please enter the old pin code"
-#~ msgstr "กรุณาป้อนรหัสเดิม"
-
-#~ msgid "Please select .NFI flash image file from medium"
-#~ msgstr "กรุณาเลือกไฟล์ .NFI จากสื่อบันทึกที่ต้องการ"
-
-#~ msgid "Please select target directory or medium"
-#~ msgstr "กรุณาเลือกโฟล์เดอร์หรืออุปกรณ์ปลายทาง"
-
-#~ msgid "Plugin manager"
-#~ msgstr "ตัวจัดการปลั๊กอิน"
-
-#~ msgid "Polish"
-#~ msgstr "ภาษาโปแลนด์"
-
-#~ msgid "Portuguese"
-#~ msgstr "ภาษาโปตุเกส"
-
-#~ msgid "Press OK to view full changelog"
-#~ msgstr "กดปุ่ม OK เพื่อดูทั้งหมด"
-
-#~ msgid "RSS Feed URI"
-#~ msgstr "RSS Feed URI"
-
-#~ msgid "Ram Disk"
-#~ msgstr "Ram Disk"
-
-#~ msgid "Reenter new pin"
-#~ msgstr "ป้อนรหัสซ้ำอีกครั้ง"
-
-#~ msgid "Refresh"
-#~ msgstr "ปรับหน้าจอ"
-
-#~ msgid "Remove the broken .NFI file?"
-#~ msgstr "ลบไฟล์ .NFI ที่เสียหายหรือไม่?"
-
-#~ msgid "Remove the incomplete .NFI file?"
-#~ msgstr "ต้องการที่จะลบไฟล์ .NFI ที่ไม่สมบูรณ์หรือไม่?"
-
-#~ msgid "Restart GUI"
-#~ msgstr "เริ่มทำงานใหม่ (GUI)"
-
-#~ msgid ""
-#~ "Restoring the settings is done. Please press OK to activate the restored "
-#~ "settings now."
-#~ msgstr "การนำสำรองกลับมาใช้เสร็จเรียบร้อยแล้ว กรุณกดปุ่ม OK เพื่อเรียกใช้งานทันที"
-
-#~ msgid "Russian"
-#~ msgstr "ภาษารัสเซีย"
-
-#~ msgid "Satteliteequipment"
-#~ msgstr "อุปกรณ์ดาวเทียม"
-
-#~ msgid ""
-#~ "Scan your network for wireless Access Points and connect to them using "
-#~ "your WLAN USB Stick\n"
-#~ msgstr "ค้นหาเครือข่ายไร้สายและเชื่อมต่อโดยใช้อุปกรณ์ USB\n"
-
-#~ msgid ""
-#~ "Scan your network for wireless Access Points and connect to them using "
-#~ "your selected wireless device.\n"
-#~ msgstr "ค้นหาหาเครือข่ายไร้สายและเชื่อมต่อโดยใช้อุปกรณ์ไร้สายที่ได้เลือกไว้\n"
-
-#~ msgid "Select audio mode"
-#~ msgstr "เลือกโหมดเสียง"
-
-#~ msgid "Select files for backup. Currently selected:\n"
-#~ msgstr "เลือกไฟล์ที่จะสำรอง ปัจจุบันเป็น:\n"
-
-#~ msgid "Select image"
-#~ msgstr "เลือกอิมเมจ"
-
-#~ msgid "Select video input"
-#~ msgstr "เลือกช่องสัญญาณวิดีโอ"
-
-#~ msgid "Selected source image"
-#~ msgstr "เลือกที่มาของอิมเมจ"
-
-#~ msgid "Serbian"
-#~ msgstr "ภาษาเซอร์เบี่ยน"
-
-#~ msgid "Set as default Interface"
-#~ msgstr "ตั้งค่าให้เป็นอินเตอร์เฟซเริ่มต้น"
-
-#~ msgid "Skin..."
-#~ msgstr "สกิน..."
-
-#~ msgid "Slovakian"
-#~ msgstr "ภาษาสโลวาเกี่ยน"
-
-#~ msgid "Slovenian"
-#~ msgstr "ภาษาสโลเวเนี่ยน"
-
-#~ msgid "Software manager"
-#~ msgstr "ส่วนจัดการซอพท์แวร์"
-
-#~ msgid "Somewhere else"
-#~ msgstr "ที่อื่นๆ"
-
-#~ msgid "Sort A-Z"
-#~ msgstr "เรียง A-Z"
-
-#~ msgid "Sort Time"
-#~ msgstr "จัดเรียงเวลา"
-
-#~ msgid "Spanish"
-#~ msgstr "ภาษาสเปน"
-
-#~ msgid "Stereo"
-#~ msgstr "สเตอริโอ"
-
-#~ msgid "Subservice list..."
-#~ msgstr "บริการย่อย..."
-
-#~ msgid "Swedish"
-#~ msgstr "ภาษาสวีเดน"
-
-#~ msgid "Tag 1"
-#~ msgstr "ป้าย 1"
-
-#~ msgid "Tag 2"
-#~ msgstr "ป้าย 2"
-
-#~ msgid ""
-#~ "The USB stick is now bootable. Do you want to download the latest image "
-#~ "from the feed server and save it on the stick?"
-#~ msgstr ""
-#~ "ตัว USB เมโมรี่นี้สามารถบูทได้ "
-#~ "ท่านต้องการที่จะโหลดอิมเมจล่าสุดจากเซอร์พเวอร์ลงเมโมรี่นี้หรือไม่?"
-
-#~ msgid ""
-#~ "The md5sum validation failed, the file may be corrupted! Are you sure "
-#~ "that you want to burn this image to flash memory? You are doing this at "
-#~ "your own risk!"
-#~ msgstr ""
-#~ "ตรวจสอบด้วย MD5 ล้มเหลว ไฟล์นี้อาจไม่สมบูรณ์ ต้องการติดตั้งอิมเมจนี้หรือไม่ "
-#~ "(เครื่องอาจเสียหายได้ ถ้าเลือกว่า ใช่)"
-
-#~ msgid ""
-#~ "The md5sum validation failed, the file may be downloaded incompletely or "
-#~ "be corrupted!"
-#~ msgstr "ไฟล์นี้ไม่สมบูรณ์ ตรวจสอบด้วย MD5 ไม่ผ่าน"
-
-#~ msgid "The pin code has been changed successfully."
-#~ msgstr "การเปลี่ยนรหัสเรียบร้อยแล้ว"
-
-#~ msgid "The pin codes you entered are different."
-#~ msgstr "รหัสที่ป้อนไม่ตรงกัน"
-
-#~ msgid "There is nothing to be done."
-#~ msgstr "ไม่มีอะไรต้องทำ"
-
-#~ msgid "This .NFI file does not contain a valid %s image!"
-#~ msgstr "ไฟล์อิมเมจ .NFI นี้ไม่ใช่อิมเมจ %s ที่ถูกต้อง!"
-
-#~ msgid ""
-#~ "This .NFI file does not have a md5sum signature and is not guaranteed to "
-#~ "work. Do you really want to burn this image to flash memory?"
-#~ msgstr ""
-#~ "ไฟล์อิมเมจ .NFI นี้ไม่ผ่านการตรวจสอบ MD5 อาจมีผลข้างเคียงหลังจากการติดตั้งได้ "
-#~ "ท่านจะทำการติดตั้งลงเครื่องหรือไม่?"
-
-#~ msgid ""
-#~ "This .NFI file has a valid md5 signature. Continue programming this image "
-#~ "to flash memory?"
-#~ msgstr "ไฟล์ .NFI นี้ผ่านการตรวจสอบ MD5 แล้ว ท่านต้องการที่จะติดตั้งอิมเมจนี้ลงเครื่องหรือไม่?"
-
-#~ msgid "This Dreambox can't decode %s video streams!"
-#~ msgstr "Dreambox เครื่องนี้ไม่สามารถอ่านไฟล์วีดีโอ %s ได้!"
-
-#~ msgid "This is unsupported at the moment."
-#~ msgstr "ยังไม่รองรับในขณะนี้"
-
-#~ msgid "Timer"
-#~ msgstr "ตั้งเวลา"
-
-#~ msgid "Timeshift path..."
-#~ msgstr "พาธสำหรับการควบคุมรายการสด..."
-
-#~ msgid ""
-#~ "To update your Dreambox firmware, please follow these steps:\n"
-#~ "1) Turn off your box with the rear power switch and plug in the bootable "
-#~ "USB stick.\n"
-#~ "2) Turn mains back on and hold the DOWN button on the front panel pressed "
-#~ "for 10 seconds.\n"
-#~ "3) Wait for bootup and follow instructions of the wizard."
-#~ msgstr ""
-#~ "ในการอัพเดตเฟิร์มแวร์บนดรีมบอกซ์ของท่านกรุณาทำดังนี้:\n"
-#~ "1) ปิดเครื่อง (Turn off) และถอดปลั๊ก จากนั้นเสียบ USB ที่บูทได้\n"
-#~ "2) กดปุ่มด้านหน้าเครื่องค้างไว้ และเปิดเครื่อง (เสียบปลั๊ก) นานประมาณ 10 วินาที\n"
-#~ "3) รอจนบูทเครื่องเสร็จแล้วทำตามคำแนะนำ"
-
-#~ msgid "Turkish"
-#~ msgstr "ภาษาตูรกี"
-
-#~ msgid "USB"
-#~ msgstr "USB"
-
-#~ msgid "Ukrainian"
-#~ msgstr "ภาษายูเครน"
-
-#~ msgid ""
-#~ "Unable to complete filesystem check.\n"
-#~ "Error: "
-#~ msgstr ""
-#~ "ไม่สามารถตรวจสอบระบบไฟล์ได้\n"
-#~ "Error: "
-
-#~ msgid ""
-#~ "Unable to initialize harddisk.\n"
-#~ "Error: "
-#~ msgstr ""
-#~ "ไม่สามารถเตรียมการใช้งานฮาร์ดดิสก์ได้.\n"
-#~ "Error: "
-
-#~ msgid ""
-#~ "Undo\n"
-#~ "Install"
-#~ msgstr ""
-#~ "ยกเลิก\n"
-#~ "ติดตั้ง"
-
-#~ msgid ""
-#~ "Undo\n"
-#~ "Remove"
-#~ msgstr ""
-#~ "ยกเลิก\n"
-#~ "ลบออก"
-
-#~ msgid "Use non-smooth winding at speeds above"
-#~ msgstr "ใช้ Non-smooth winding ที่ความเร็วข้างบนนี้"
-
-#~ msgid "Video enhancement settings"
-#~ msgstr "ตั้งค่าวิดีโอขั้นสูง"
-
-#~ msgid "View list of available Satteliteequipment extensions."
-#~ msgstr "แสดงรายการส่วนเพิ่มเติมสำหรับอุปกรณ์ดาวเทียม"
-
-#~ msgid ""
-#~ "We will now test if your TV can also display this resolution at 50hz. If "
-#~ "your screen goes black, wait 20 seconds and it will switch back to 60hz.\n"
-#~ "Please press OK to begin."
-#~ msgstr ""
-#~ "เราจะทำการทดสอบว่า เครื่องรับโทรทัศน์ขอท่านรองรับ 50Hz หรือไม่ หากหน้าจอมือ "
-#~ "ให้รอสักครู่ประมาณ 20 วินาที เครื่องจะกลับมาทำงานที่ 60Hz\n"
-#~ "กรุณากดปุ่ม OK เพื่อเริ่มทดสอบ"
-
-#~ msgid "Wireless"
-#~ msgstr "ไร้สาย"
-
-#~ msgid "Writing NFI image file to flash completed"
-#~ msgstr "เขียนไฟล์อิมเมจแบบ NFI ลงแฟรชเรียบร้อยแล้ว"
-
-#~ msgid ""
-#~ "You do not seem to have a harddisk in your Dreambox. So backing up to a "
-#~ "harddisk is not an option for you."
-#~ msgstr "ไม่พบฮาร์ดดิสก์ในเครื่องของท่าน ดังนั้นการสำรองข้อมูลลงฮาร์ดดิสก์จึงไม่สามารถทำได้"
-
-#~ msgid ""
-#~ "You have chosen to backup to a compact flash card. The card must be in "
-#~ "the slot. We do not verify if it is really used at the moment. So better "
-#~ "backup to the harddisk!\n"
-#~ "Please press OK to start the backup now."
-#~ msgstr ""
-#~ "ท่านได้เลือกที่จะสำรองข้อมูลสู่ Compact flash (CF) กรุณาเสียบแผ่นในช่องอ่านตอนนี้  "
-#~ "เนื่องจากไม่มีการตรวจแผ่น ทางที่ดีแนะนำให้สำรองสู่ฮาร์ดดิสก์!\n"
-#~ "กดปุ่ม OK เพื่อเริ่มทำงาน"
-
-#~ msgid ""
-#~ "You have chosen to backup to an usb drive. Better backup to the "
-#~ "harddisk!\n"
-#~ "Please press OK to start the backup now."
-#~ msgstr ""
-#~ "ท่านได้เลือกที่จะสำรองข้อมูลลงสู่ USB (สำรองลงฮาร์ดดิสก์จะดีกว่า)\n"
-#~ "กรุณากดปุ่ม OK เพื่อเริ่มทำงาน"
-
-#~ msgid ""
-#~ "You have chosen to backup to your harddisk. Please press OK to start the "
-#~ "backup now."
-#~ msgstr "ท่านได้เลือกสำรองข้อมูลลงฮาร์ดดิสก์ กรุณากดปุ่ม OK เพื่อเริ่มทำงาน"
-
-#~ msgid ""
-#~ "You need a PC connected to your dreambox. If you need further "
-#~ "instructions, please visit the website http://www.dm7025.de\n"
-#~ "Your dreambox will now be halted. After you have performed the update "
-#~ "instructions from the website, your new firmware will ask you to restore "
-#~ "your settings."
-#~ msgstr ""
-#~ "เชื่อม PC ของท่านกับดรีมบอกซ์แล้ว หากที่ต้องการคำอธิบายเพิ่มให้ติดต่อ http://www.dm7025."
-#~ "de\n"
-#~ "เครื่องดรีมบอกซ์ของท่านจะแฮงค์ หลังจากที่ท่านได้ทำตามคำแนะนำตามเวบไซด์แล้ว "
-#~ "ตัวอิมเมจใหม่จะให้ท่านนำสำรองกลับมาใช้"
-
-#~ msgid ""
-#~ "You need to set a pin code and hide it from your children.\n"
-#~ "\n"
-#~ "Do you want to set the pin now?"
-#~ msgstr ""
-#~ "ท่านต้องป้อนรหัสควบคุมช่องจากเด็ก\n"
-#~ "\n"
-#~ "ท่านต้องการตั้งรหัสตอนนี้หรือไม่?"
-
-#~ msgid "Your TV works with 50 Hz. Good!"
-#~ msgstr "โทรทัศน์ของท่านทำงานได้ที่ 50Hz เยี่ยมเลย!"
-
-#~ msgid ""
-#~ "Your network configuration has been activated.\n"
-#~ "A second configured interface has been found.\n"
-#~ "\n"
-#~ "Do you want to disable the second network interface?"
-#~ msgstr ""
-#~ "เครือข่ายของท่านทำงานได้แล้ว\n"
-#~ "พบการตั้งค่าอินเตอร์เฟซอีกอันในระบบ\n"
-#~ "\n"
-#~ "ท่านต้องการที่จะยกเลิการใช้งานอินเตอร์เฟซที่พบหรือไม่?"
-
-#~ msgid "assigned CAIds"
-#~ msgstr "ตั้งค่า CAIds"
-
-#~ msgid "assigned Services/Provider"
-#~ msgstr "กำหนดบริการ/ผู้ให้บริการ"
-
-#~ msgid "choose destination directory"
-#~ msgstr "เลือกโฟล์เดอร์ปลายทาง"
-
-#~ msgid "exceeds dual layer medium!"
-#~ msgstr "มากกว่าความจุของสื่อบันทึกสองหน้า"
-
-#~ msgid "exit network adapter setup menu"
-#~ msgstr "ออกจากเมนูตั้งค่าระบบเครือข่าย"
-
-#~ msgid "failed"
-#~ msgstr "ผิดพลาด"
-
-#~ msgid "hidden network"
-#~ msgstr "เครือข่ายที่ถูกซ่อน"
-
-#~ msgid "hidden..."
-#~ msgstr "ถูกซ่อนไว้..."
-
-#~ msgid "hide extended description"
-#~ msgstr "ซ่อนคำอธิบาย"
-
-#~ msgid ""
-#~ "incoming call!\n"
-#~ "%s calls on %s!"
-#~ msgstr ""
-#~ "มีสายเข้า!!\n"
-#~ "%s สายที่ %s!"
-
-#~ msgid "menulist"
-#~ msgstr "รายการ"
-
-#~ msgid "no HDD found"
-#~ msgstr "ไม่พบฮาร์ดดิสก์ (HDD)"
-
-#~ msgid "open virtual keyboard input help"
-#~ msgstr "เรียกส่วนช่วยเหลือแป้นพิมพ์จำลอง"
-
-#~ msgid "select .NFI flash file"
-#~ msgstr "เลือกไฟล์ .NFI"
-
-#~ msgid "select image from server"
-#~ msgstr "เลือกอิมเมจจากเซอร์พเวอร์"
-
-#~ msgid "service pin"
-#~ msgstr "รหัสบริการ"
-
-#~ msgid "setup pin"
-#~ msgstr "ตั้งรหัส"
-
-#~ msgid "show EPG..."
-#~ msgstr "แสดงผังรายการ (EPG)"
-
-#~ msgid "show all"
-#~ msgstr "แสดงทั้งหมด"
-
-#~ msgid "show first selected tag"
-#~ msgstr "แสดงป้ายแรกที่เลือก"
-
-#~ msgid "show second selected tag"
-#~ msgstr "แสดงป้ายที่สอง"
-
-#~ msgid "show single service EPG..."
-#~ msgstr "แสดงผังรายการ (EPG) แบบเดี่ยว ..."
-
-#~ msgid "until restart"
-#~ msgstr "จนกระทั้งเริ่มระบบใหม่"

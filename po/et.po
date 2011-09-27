@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-08 16:22+0100\n"
+"POT-Creation-Date: 2011-09-27 18:44+0100\n"
 "PO-Revision-Date: 2010-12-30 09:00+0200\n"
 "Last-Translator: Arvo <arvo@softshark.ee>\n"
 "Language-Team: none\n"
@@ -205,6 +205,10 @@ msgid "%H:%M"
 msgstr "%H:%M"
 
 #, python-format
+msgid "%d / 100"
+msgstr ""
+
+#, python-format
 msgid "%d jobs are running in the background!"
 msgstr "%d protsessi käib tausta!"
 
@@ -350,6 +354,9 @@ msgstr "4:3 Letterbox"
 
 msgid "4:3 PanScan"
 msgstr "4:3 PanScan"
+
+msgid "4X"
+msgstr ""
 
 #
 msgid "5"
@@ -643,12 +650,6 @@ msgstr ""
 msgid "Adjust 3D settings"
 msgstr ""
 
-msgid "Adjust HDMI CEC settings"
-msgstr ""
-
-msgid "Adjust display scrolling and symbols"
-msgstr ""
-
 #
 msgid ""
 "Adjust the color settings so that all the color shades are distinguishable, "
@@ -828,9 +829,6 @@ msgstr "Küsi kasutajalt"
 #
 msgid "Aspect Ratio"
 msgstr "Pildisuhe"
-
-msgid "Atheros"
-msgstr "Atheros"
 
 msgid "Attach a file"
 msgstr ""
@@ -1017,6 +1015,12 @@ msgstr ""
 msgid "Black screen till locked"
 msgstr ""
 
+msgid "Blind Scan"
+msgstr ""
+
+msgid "Blindscan was canceled by the user."
+msgstr ""
+
 #
 msgid "Block noise reduction"
 msgstr "Blokeeri müra vähendamist"
@@ -1109,6 +1113,9 @@ msgstr ""
 #
 msgid "Cache Thumbnails"
 msgstr "Salvesta Thumbnail-d"
+
+msgid "Can't cancel during upgrade!!"
+msgstr ""
 
 #
 msgid "Cancel"
@@ -2278,10 +2285,6 @@ msgid "Encryption Keytype"
 msgstr "Kodeeringu võti"
 
 #
-msgid "Encryption Type"
-msgstr "Kodeeringu tüüp"
-
-#
 msgid "Encryption:"
 msgstr "Kodeering:"
 
@@ -2350,6 +2353,13 @@ msgid ""
 msgstr ""
 "Viga: %s\n"
 "Uuesti?"
+
+#, python-format
+msgid "Error[%d]. Press Cancel to exit."
+msgstr ""
+
+msgid "Ethernet network interface"
+msgstr ""
 
 msgid "Event Fontsize"
 msgstr ""
@@ -2458,11 +2468,6 @@ msgstr ""
 
 msgid "Factory reset"
 msgstr "Algseadistuse taaste"
-
-msgid ""
-"Fail to upgrade.\n"
-"Cause : "
-msgstr ""
 
 #
 msgid "Failed"
@@ -2721,6 +2726,9 @@ msgstr "Kaitsevahemiku seaded"
 msgid "HD list"
 msgstr ""
 
+msgid "HDMI CEC"
+msgstr ""
+
 msgid "Handle deepstandby events"
 msgstr ""
 
@@ -2745,13 +2753,8 @@ msgstr "Kõvaketta väljalülitamine peale"
 msgid "Hardware:"
 msgstr ""
 
-#
-msgid "Hidden network SSID"
-msgstr "Võrgu SSID"
-
-#
-msgid "Hidden networkname"
-msgstr "Varjatud võrgunimi"
+msgid "Hidden network"
+msgstr ""
 
 msgid "Hide CI messages"
 msgstr ""
@@ -2947,6 +2950,9 @@ msgstr "Sisend"
 msgid "Input device setup"
 msgstr "Sisendseadmete seadistamine"
 
+msgid "Input devices"
+msgstr "Sisendseadmed"
+
 msgid "Install"
 msgstr "Installin"
 
@@ -3010,9 +3016,6 @@ msgstr "Keskmine"
 #
 msgid "Internal Flash"
 msgstr "Sisemine flash-mälu"
-
-msgid "Internal LAN adapter."
-msgstr "Sisemine LAN adapter."
 
 msgid "Internal hdd only"
 msgstr ""
@@ -3270,6 +3273,17 @@ msgstr ""
 msgid "Longitude"
 msgstr "Pikkuskraad"
 
+#, python-format
+msgid ""
+"Looking for available transponders.\n"
+"This will take several minutes.\n"
+"\n"
+"   Current Status : %d/%d\n"
+"   Orbital Positions : %s\n"
+"   Polarization : %s\n"
+"   Bandwidth : %s"
+msgstr ""
+
 msgid "MORE"
 msgstr "VEEL"
 
@@ -3499,9 +3513,6 @@ msgstr ""
 msgid "NIM"
 msgstr ""
 
-msgid "NOT"
-msgstr ""
-
 msgid "NOW"
 msgstr "PRAEGU"
 
@@ -3550,10 +3561,6 @@ msgstr "Võrgu häälestamine..."
 msgid "Network ID"
 msgstr ""
 
-#
-msgid "Network SSID"
-msgstr "Võrgu SSID"
-
 msgid "Network Servers:"
 msgstr ""
 
@@ -3588,6 +3595,9 @@ msgstr "Võrk:"
 msgid "NetworkWizard"
 msgstr "Võrguhäälestus"
 
+msgid "Networkname (SSID)"
+msgstr ""
+
 #
 msgid "New"
 msgstr "Uus"
@@ -3619,9 +3629,6 @@ msgstr "Pole ühendust"
 
 msgid "No HDD found or HDD not initialized!"
 msgstr "Kõvaketast ei leitud või seda pole formaaditud!"
-
-msgid "No Networks found"
-msgstr "Võrke ei leitud"
 
 msgid "No Timeshift found to save as recording!"
 msgstr ""
@@ -3666,6 +3673,11 @@ msgid ""
 msgstr ""
 "Kiire kerimine pole veel võimalik, aga saad kasutad numbrinuppe edasi/tagasi "
 "hüppamiseks!"
+
+msgid ""
+"No found transponders!!\n"
+"Please check the satellite connection, or scan other search condition."
+msgstr ""
 
 msgid "No free tuner!"
 msgstr "Pole vaba tuunerit!"
@@ -3738,9 +3750,8 @@ msgstr ""
 "Kas soovid määrata koodi?\n"
 "Kui vastad 'Ei', kanalit ei kaitsta koodiga!"
 
-#
-msgid "No wireless networks found! Please refresh."
-msgstr "Ei leidnud WiFi võrke! Palun värskenda."
+msgid "No wireless networks found! Searching..."
+msgstr ""
 
 msgid ""
 "No working local network adapter found.\n"
@@ -3830,6 +3841,9 @@ msgid ""
 "Filesize: %sMB\n"
 "Free Space: %sMB\n"
 "Path: %s"
+msgstr ""
+
+msgid "Not-Associated"
 msgstr ""
 
 msgid ""
@@ -4121,6 +4135,36 @@ msgstr ""
 msgid "Please change recording endtime"
 msgstr "Muuda salvestamise lõpuaega"
 
+msgid ""
+"Please check again.\n"
+"Frequency : start value is larger than stop value."
+msgstr ""
+
+msgid ""
+"Please check again.\n"
+"Start frequency must be between 950 and 2150."
+msgstr ""
+
+msgid ""
+"Please check again.\n"
+"Start symbolrate must be between 2MHz and 45MHz."
+msgstr ""
+
+msgid ""
+"Please check again.\n"
+"Stop frequency must be between 950 and 2150."
+msgstr ""
+
+msgid ""
+"Please check again.\n"
+"Stop symbolrate must be between 2MHz and 45MHz."
+msgstr ""
+
+msgid ""
+"Please check again.\n"
+"Symbolrate : start value is larger than stop value."
+msgstr ""
+
 #
 msgid "Please check your network settings!"
 msgstr "Palun kontrolli oma võrguseadeid!"
@@ -4271,6 +4315,9 @@ msgstr "Määra tuuneri C seaded"
 
 msgid "Please set up tuner D"
 msgstr "Määra tuuneri D seaded"
+
+msgid "Please setup your tuner configuration."
+msgstr ""
 
 #
 msgid ""
@@ -4429,6 +4476,9 @@ msgstr "Ettevalmistus.Oota"
 msgid "Press '0' to toggle internal/external PiP."
 msgstr ""
 
+msgid "Press Green/OK to start the scan"
+msgstr ""
+
 msgid "Press INFO on your remote control for additional information."
 msgstr "Vajuta INFO nuppu puldil lisainfo saamiseks."
 
@@ -4584,9 +4634,6 @@ msgstr "RGB"
 #
 msgid "Radio"
 msgstr "Raadio"
-
-msgid "Ralink"
-msgstr "Ralink"
 
 msgid "Random"
 msgstr "Juhuslik"
@@ -5058,6 +5105,9 @@ msgstr "Otsi WiFi võrke"
 msgid "Scan additional SR"
 msgstr "Otsi lisa SR"
 
+msgid "Scan band"
+msgstr ""
+
 #
 msgid "Scan band EU HYPER"
 msgstr "Otsi EU HYPER sagedusalast"
@@ -5105,6 +5155,18 @@ msgstr "Otsi US MID sagedusalast"
 #
 msgid "Scan band US SUPER"
 msgstr "Otsi US SUPER sagedusalast"
+
+msgid "Scan start frequency"
+msgstr ""
+
+msgid "Scan start symbolrate"
+msgstr ""
+
+msgid "Scan stop frequency"
+msgstr ""
+
+msgid "Scan stop symbolrate"
+msgstr ""
 
 msgid ""
 "Scan your network for wireless access points and connect to them using your "
@@ -5760,6 +5822,9 @@ msgstr "Alates"
 msgid "Status"
 msgstr ""
 
+msgid "Status : 0%"
+msgstr ""
+
 #
 msgid "Step east"
 msgstr "Samm itta"
@@ -5858,7 +5923,7 @@ msgstr ""
 msgid "Subtitles"
 msgstr "Subtiitrid"
 
-msgid "Success!!"
+msgid "Success. Press OK to exit."
 msgstr ""
 
 #
@@ -6658,6 +6723,9 @@ msgstr "Tühista install"
 msgid "Undo uninstall"
 msgstr "Tühista uninstall"
 
+msgid "Unencrypted"
+msgstr ""
+
 msgid "UnhandledKey"
 msgstr "Käsitlematu võti"
 
@@ -6678,8 +6746,8 @@ msgstr "Eemalda"
 msgid "Universal LNB"
 msgstr "Universaal LNB"
 
-msgid "Unknown network adapter."
-msgstr "Tundmatu võrgu adapter."
+msgid "Unknown"
+msgstr ""
 
 msgid "Unmount"
 msgstr ""
@@ -6727,11 +6795,6 @@ msgstr "Uuendus valmis."
 #
 msgid "Upgrade finished. Do you want to reboot your Dreambox?"
 msgstr "Uuendus valmis. Soovid vastuvõtja uuesti käivitada?"
-
-msgid ""
-"Upgrade will take about 5 minutes to finish.\n"
-"Do you want to upgrade?"
-msgstr ""
 
 #
 msgid "Upgrading"
@@ -6879,9 +6942,6 @@ msgstr ""
 
 msgid "VCR scart"
 msgstr "VCR scart"
-
-msgid "VFD Setup"
-msgstr ""
 
 msgid "VMGM (intro trailer)"
 msgstr "VMGM (intro trailer)"
@@ -7053,9 +7113,6 @@ msgstr "W"
 #
 msgid "WEP"
 msgstr "WEP"
-
-msgid "WLAN adapter."
-msgstr "WiFi adapter."
 
 msgid "WLAN connection"
 msgstr "WiFi ühendus"
@@ -7231,9 +7288,8 @@ msgstr "Traadita LAN"
 msgid "Wireless Network"
 msgstr "Traadita võrk"
 
-#
-msgid "Wireless Network State"
-msgstr "WiFi võrgu olek"
+msgid "Wireless network state"
+msgstr ""
 
 #
 msgid "Write error while recording. Disk full?\n"
@@ -7450,8 +7506,8 @@ msgstr ""
 "\n"
 "Vajutage OK jätkamiseks."
 
-msgid "Your Dreambox will restart after pressing OK on your remote control."
-msgstr "Teie vastuvõtja teeb pärast puldilt OK vajutamist taaskäivituse."
+msgid "Your STB will restart after pressing OK on your remote control."
+msgstr ""
 
 msgid ""
 "Your backup succeeded. We will now continue to explain the further upgrade "
@@ -7464,6 +7520,15 @@ msgid ""
 msgstr ""
 "Teie salvestiste kollektsioon ei mahu ühekihilisele plaadile, vaja on tühja "
 "kahekihilist DVD plaati!"
+
+#
+#, python-format
+msgid ""
+"Your config file is not well-formed:\n"
+"%s"
+msgstr ""
+"Teie seadete fail pole õieti tehtud:\n"
+"%s"
 
 #
 msgid "Your current collection will get lost!"
@@ -7546,9 +7611,6 @@ msgstr ""
 
 msgid "Zap mode"
 msgstr ""
-
-msgid "Zydas"
-msgstr "Zydas"
 
 msgid "[alternative edit]"
 msgstr "[lisavõimaluste lisamine ja kustutamine]"
@@ -7652,6 +7714,9 @@ msgstr ""
 #
 msgid "advanced"
 msgstr "lisavalikud"
+
+msgid "alphabetic reverse"
+msgstr ""
 
 #
 msgid "alphabetic sort"
@@ -7994,8 +8059,14 @@ msgstr ""
 msgid "help..."
 msgstr "abi..."
 
+msgid "hi_low"
+msgstr ""
+
 msgid "hide player"
 msgstr "peida mängija"
+
+msgid "high"
+msgstr ""
 
 msgid "hops:"
 msgstr ""
@@ -8003,6 +8074,9 @@ msgstr ""
 #
 msgid "horizontal"
 msgstr "horisontaal"
+
+msgid "horizontal_vertical"
+msgstr ""
 
 #
 msgid "hour"
@@ -8086,6 +8160,9 @@ msgstr "lukustatud"
 #
 msgid "loopthrough to"
 msgstr "läbiviik kuni"
+
+msgid "low"
+msgstr ""
 
 #
 msgid "manual"
@@ -8351,6 +8428,9 @@ msgstr "korda esitusloendit"
 #
 msgid "repeated"
 msgstr "korduvalt"
+
+msgid "reverse by date"
+msgstr ""
 
 msgid "rewind to the previous chapter"
 msgstr "hüppa eelmisele peatükile"
@@ -8706,6 +8786,9 @@ msgstr ""
 msgid "width"
 msgstr ""
 
+msgid "wireless network interface"
+msgstr ""
+
 msgid "with exit button"
 msgstr ""
 
@@ -8744,3495 +8827,3 @@ msgstr "kanalivahetus"
 #
 msgid "zapped"
 msgstr "vahetatud"
-
-#
-#~ msgid ""
-#~ "\n"
-#~ "Scan for local packages and install them."
-#~ msgstr ""
-#~ "\n"
-#~ "Otsi kohalikke programme ja seadista need."
-
-#~ msgid " Results"
-#~ msgstr " Tulemused"
-
-#~ msgid "%i ms"
-#~ msgstr "%i ms"
-
-#
-#~ msgid ""
-#~ "%s\n"
-#~ "(%s, %d MB free)"
-#~ msgstr ""
-#~ "%s\n"
-#~ "(%s, %d MB vaba)"
-
-#
-#~ msgid "* Only available when entering hidden SSID or network key"
-#~ msgstr "* Ainult SSID ja võrguvõtme sisestamiseks"
-
-#
-#~ msgid ".NFI Download failed:"
-#~ msgstr ".NFI Allalaadimine nurjus:"
-
-#
-#~ msgid ""
-#~ ".NFI file passed md5sum signature check. You can safely flash this image!"
-#~ msgstr ""
-#~ ".NFI faili md5sum signatuur korras.Te saate nüüd turvaliselt tarkvara "
-#~ "paigaldada!"
-
-#
-#~ msgid "50 Hz"
-#~ msgstr "50 Hz"
-
-#~ msgid "A BackToTheRoots-Skin .. or good old times."
-#~ msgstr "BackToTheRoots välimus.. või vanad head ajad."
-
-#~ msgid "A BackToTheRoots-Skin ... or good old times."
-#~ msgstr "BackToTheRoots välimus... või vanad head ajad."
-
-#~ msgid "A basic ftp client"
-#~ msgstr "Põhi-ftp klient"
-
-#~ msgid "A client for www.dyndns.org"
-#~ msgstr "www.dyndns.org klient"
-
-#~ msgid "A graphical EPG interface"
-#~ msgstr "Graafiline EPG liides"
-
-#~ msgid "A graphical EPG interface."
-#~ msgstr "Graafiline EPG liides."
-
-#
-#~ msgid ""
-#~ "A mount entry with this name already exists!\n"
-#~ "Update existing entry and continue?\n"
-#~ msgstr ""
-#~ "Sellise nimega ühenduspunkt on juba olemas!\n"
-#~ "Muuda olemasolev ja jätka?\n"
-
-#~ msgid "A nice looking HD skin from Kerni"
-#~ msgstr "Ilus Kerni HD välimus"
-
-#~ msgid "A nice looking HD skin in Brushed Alu Design from Kerni."
-#~ msgstr "Ilus HD välimus Brushed Alu tehtud Kerni poolt."
-
-#~ msgid "A nice looking skin from Kerni"
-#~ msgstr "Kena välimus Kernilt"
-
-#~ msgid "A simple downloading application for other plugins"
-#~ msgstr "Lihtne programm ülejäänud laienduste allalaadimiseks"
-
-#
-#~ msgid "AC3 default"
-#~ msgstr "AC3-heli vaikimisi"
-
-#~ msgid "Abort this Wizard."
-#~ msgstr "Katkesta seadistusabi."
-
-#~ msgid "Access to the ARD-Mediathek"
-#~ msgstr "Juurdepääs ARD-Mediathek-le"
-
-#~ msgid "Access to the ARD-Mediathek online video database."
-#~ msgstr "Juurdepääs ARD-Mediathek onlain video andmebaasi."
-
-#
-#~ msgid ""
-#~ "Active/\n"
-#~ "Inactive"
-#~ msgstr ""
-#~ "Aktiveeritud/\n"
-#~ "Mitteaktiveeritud"
-
-#
-#~ msgid "Add a new NFS or CIFS mount point to your Dreambox."
-#~ msgstr "Lisa uus NFS või CIFS haakepunkt oma tuunerile."
-
-#~ msgid "Add new AutoTimer"
-#~ msgstr "Lisa uus AutoTimer"
-
-#
-#~ msgid "Add new network mount point"
-#~ msgstr "Lisa uus võrgu haakepunkt"
-
-#~ msgid "Add timer as disabled on conflict"
-#~ msgstr "Lisa taimer nagu konfliktne"
-
-#~ msgid "Add zap timer instead of record timer?"
-#~ msgstr "Lisan zap taimer savestustimeri asemel?"
-
-#~ msgid "Added: "
-#~ msgstr "Lisatud: "
-
-#~ msgid "Adult streaming plugin"
-#~ msgstr "Täiskasvanute voogesitus laiendus"
-
-#~ msgid "Adult streaming plugin."
-#~ msgstr "Täiskasvanute voogesitus laiendus."
-
-#
-#~ msgid "Advanced"
-#~ msgstr "Lisavalikud"
-
-#~ msgid ""
-#~ "After a reboot or power outage, StartupToStandby will bring your Dreambox "
-#~ "to standby-mode."
-#~ msgstr ""
-#~ "Pärast taaskäivitust või voolukatkestust, viib laiendus StartupToStandby "
-#~ "Teie vastuvõtja ooterežiimi."
-
-#~ msgid "Ai.HD skin-style control plugin"
-#~ msgstr "Ai.HD välimuse-stiili muutmise laiendus"
-
-#~ msgid "All Time"
-#~ msgstr "Kogu aeg"
-
-#~ msgid "All non-repeating timers"
-#~ msgstr "Kõik mittekorduvad taimerid"
-
-#~ msgid "Allow zapping via Webinterface"
-#~ msgstr "Luba zap veebiliidesest"
-
-#~ msgid "Allows the execution of TuxboxPlugins."
-#~ msgstr "Lubab TuxboxPluginate käivituse."
-
-#~ msgid "Allows user to download files from rapidshare in the background."
-#~ msgstr "Lubab laadida rapidshare faile alla taustal."
-
-#~ msgid "Ammount of recordings left"
-#~ msgstr "Järelejäänud salvestuste arv"
-
-#~ msgid "An error occured."
-#~ msgstr "Leidis aset viga."
-
-#
-#~ msgid "Arabic"
-#~ msgstr "Araabia"
-
-#
-#~ msgid ""
-#~ "Are you sure you want to save this network mount?\n"
-#~ "\n"
-#~ msgstr ""
-#~ "Soovite salvestada selle võrgu haakepunkti?\n"
-#~ "\n"
-
-#~ msgid "Ascending"
-#~ msgstr "Kasvav"
-
-#~ msgid "Assigning providers/services/caids to a CI module"
-#~ msgstr "Määra levitaja/kanal/caid CI moodulile"
-
-#~ msgid "Audio Sync"
-#~ msgstr "Heli sünkroniseerimine"
-
-#~ msgid "Audio Sync Setup"
-#~ msgstr "Heli sünkroniseerimise seaded"
-
-#~ msgid ""
-#~ "AudoSync allows delaying the sound output (Bitstream/PCM) so that it is "
-#~ "synchronous to the picture."
-#~ msgstr ""
-#~ "AudoSync muudab heli viidet väljundis (Bitstream / PCM) nii, et see on "
-#~ "sünkroonis pildiga."
-
-#
-#~ msgid "Australia"
-#~ msgstr "Austraalia"
-
-#~ msgid "AutoTimer Editor"
-#~ msgstr "AutoTaimeri muutja"
-
-#~ msgid "AutoTimer Filters"
-#~ msgstr "AutoTaimeri filtrid"
-
-#~ msgid "AutoTimer Services"
-#~ msgstr "AutoTaimeri teenused"
-
-#~ msgid "AutoTimer Settings"
-#~ msgstr "AutoTaimeri seaded"
-
-#~ msgid "AutoTimer overview"
-#~ msgstr "AutoTaimeri ülevaade"
-
-#~ msgid ""
-#~ "AutoTimer scans the EPG and creates Timers depending on user-defined "
-#~ "search  criteria."
-#~ msgstr ""
-#~ "AutoTimer otsib  EPG-d ja loob taimerid vastavalt kasutaja määratud "
-#~ "otsingukriteeriumitele."
-
-#~ msgid "Automatic volume adjustment"
-#~ msgstr "Automaatne helitugevuse korrigeerimine"
-
-#~ msgid "Automatic volume adjustment for ac3/dts services."
-#~ msgstr "Automaatne helitugevuse kohandamine ac3/dts kanalitel."
-
-#~ msgid "Automatically change video resolution"
-#~ msgstr "Automaatselt muuda video resolutsiooni"
-
-#~ msgid ""
-#~ "Automatically changes the output resolution depending on the video "
-#~ "resolution you are watching."
-#~ msgstr ""
-#~ "Muudab väljundi eraldust vastavalt selle video eraldusele, mida vaatad."
-
-#~ msgid "Automatically create timer events based on keywords"
-#~ msgstr "Tekitab salvestuse ajad võtmesõnadele tuginedes"
-
-#~ msgid "Automatically informs you on low internal memory"
-#~ msgstr "Teavitab Sind vähese sisemälu korral"
-
-#~ msgid "Automatically refresh EPG"
-#~ msgstr "Värskenda automaatselt EPG-d"
-
-#~ msgid "Automatically send crashlogs to Dream Multimedia"
-#~ msgstr "Saada automaatselt vealogi ära"
-
-#~ msgid "Autos & Vehicles"
-#~ msgstr "Autod"
-
-#~ msgid "Autowrite timer"
-#~ msgstr "Isesalvestav taimer"
-
-#~ msgid "BASIC-HD Skin by Ismail Demir"
-#~ msgstr "BASIC-HD välimus Ismail Demir-lt"
-
-#~ msgid "BASIC-HD Skin for Dreambox Images created from Ismail Demir"
-#~ msgstr "BASIC-HD välimus, tehtud Ismail Demir poolt"
-
-#
-#~ msgid "Backup is done. Please press OK to see the result."
-#~ msgstr "Varukoopia valmis. Vajuta OK tulemuse vaatamiseks."
-
-#
-#~ msgid "Backup running"
-#~ msgstr "Varukoopia asukoht"
-
-#
-#~ msgid "Backup running..."
-#~ msgstr "Varukoopia valmistus"
-
-#
-#~ msgid "Begin of timespan"
-#~ msgstr "Alusta kestuseta salvestust"
-
-#~ msgid "Bonjour/Avahi control plugin"
-#~ msgstr "Bonjour/Avahi seadelisandus"
-
-#~ msgid "Bonjour/Avahi control plugin."
-#~ msgstr "Bonjour/Avahi seadelisandus."
-
-#~ msgid "Bouquets"
-#~ msgstr "Favoriit kaustad"
-
-#
-#~ msgid "Brazil"
-#~ msgstr "Brasiilia"
-
-#~ msgid "Browse for and connect to network shares"
-#~ msgstr "Otsi ja ühenda võrguosalustega"
-
-#~ msgid "Browse for nfs/cifs shares and connect to them."
-#~ msgstr "Otsi NFS/CIFS osalusi ja ühenda nendega."
-
-#
-#~ msgid "Browse network neighbourhood"
-#~ msgstr "Otsi võrgunaabreid"
-
-#~ msgid "Burn your recordings to DVD"
-#~ msgstr "Kirjuta salvestused DVD-le"
-
-#~ msgid "CDInfo"
-#~ msgstr "Info"
-
-#~ msgid ""
-#~ "CDInfo enables gathering album and track details from CDDB and CD-Text "
-#~ "when playing Audio CDs in Mediaplayer."
-#~ msgstr ""
-#~ "CDInfo võimaldab albumi ja loo andmete kogumist CDDB ja CD-Text põhjal, "
-#~ "kui AudioCD-d mängivad Mediaplayeris."
-
-#
-#~ msgid "CIFS share"
-#~ msgstr "CIFS võrgukoht"
-
-#
-#~ msgid "Call monitoring"
-#~ msgstr "Kõne jälgimine"
-
-#~ msgid "Callmonitor for NCID-based call notification"
-#~ msgstr "NCID teavituse kõnemonitor"
-
-#~ msgid "Callmonitor for the Fritz!Box routers"
-#~ msgstr "Fritz!Box ruuterite kõnemonitor"
-
-#~ msgid "Can't connect to server. Please check your network!"
-#~ msgstr "Palun kontrolli oma võrguseadeid!"
-
-#
-#~ msgid "Canada"
-#~ msgstr "Kanada"
-
-#
-#~ msgid "Cannot parse feed directory"
-#~ msgstr "Ei saa sõeluda feedi kausta"
-
-#
-#~ msgid "Card"
-#~ msgstr "Kaart"
-
-#
-#~ msgid "Catalan"
-#~ msgstr "Katalaani"
-
-#~ msgid "Center screen at the lower border"
-#~ msgstr "Tsentreeri alumisel piirjoonel"
-
-#~ msgid "Center screen at the upper border"
-#~ msgstr "Tsentreeri ülemisel piirjoonel"
-
-#~ msgid "Change active delay"
-#~ msgstr "Muuda hilistust"
-
-#~ msgid "Change default recording offset?"
-#~ msgstr "Muuda salvestuse vaikimisi offsetti?"
-
-#
-#~ msgid "Change dir."
-#~ msgstr "Vaheta kausta."
-
-#~ msgid "Change hostname"
-#~ msgstr "Muuda nime"
-
-#
-#~ msgid "Change service pin"
-#~ msgstr "Vaheta kanali kood"
-
-#
-#~ msgid "Change service pins"
-#~ msgstr "Vaheta kanali koodid"
-
-#
-#~ msgid "Change setup pin"
-#~ msgstr "Vaheta seadete kood"
-
-#~ msgid "Change the hostname of your Dreambox."
-#~ msgstr "Muuda oma tuuneri nime."
-
-#~ msgid "Channel audio:"
-#~ msgstr "Helikanal:"
-
-#~ msgid "Channels"
-#~ msgstr "Kanalid"
-
-#
-#~ msgid "Choose source"
-#~ msgstr "Vali allikas"
-
-#~ msgid "Classic"
-#~ msgstr "Classikaline"
-
-#~ msgid "Cleanup timerlist automatically"
-#~ msgstr "Puhasta taimerite nimekiri automaatselt"
-
-#~ msgid "Cleanup timerlist automatically."
-#~ msgstr "Puhasta taimerite nimekiri automaatselt."
-
-#~ msgid "Clear history on Exit:"
-#~ msgstr "Kustuta väljudes ajalugu:"
-
-#~ msgid "Close and forget changes"
-#~ msgstr "Sulge ja unusta muudatused"
-
-#~ msgid "Close and save changes"
-#~ msgstr "Sulge ja salvesta muudatused"
-
-#
-#~ msgid "Comedy"
-#~ msgstr "Komöödia"
-
-#
-#~ msgid "Compact Flash"
-#~ msgstr "CompactFlash"
-
-#
-#~ msgid "Compact flash card"
-#~ msgstr "CompactFlash-kaart"
-
-#
-#~ msgid "Config"
-#~ msgstr "Seadistan"
-
-#~ msgid "Configuration for the Webinterface"
-#~ msgstr "Veebiinterfeisi seadistamine"
-
-#
-#~ msgid "Configure AutoTimer behavior"
-#~ msgstr "Seadista autotaimeri käitumist"
-
-#~ msgid "Configure your WLAN network interface"
-#~ msgstr "Häälesta WiFi võrgukaart"
-
-#
-#~ msgid "Connected to Fritz!Box!"
-#~ msgstr "Ühendatud Fritz!Boxiga!"
-
-#
-#~ msgid "Connecting to Fritz!Box..."
-#~ msgstr "Ühendamas Fritz!Boxiga..."
-
-#
-#~ msgid ""
-#~ "Connection to Fritz!Box\n"
-#~ "failed! (%s)\n"
-#~ "retrying..."
-#~ msgstr ""
-#~ "Ühendus Fritz!Boxiga\n"
-#~ "nurjus! (%s)\n"
-#~ "uus katse..."
-
-#~ msgid "Control your Dreambox with your Web browser."
-#~ msgstr "Halda oma vastuvõtjat veebibrauseriga."
-
-#~ msgid "Control your Dreambox with your browser"
-#~ msgstr "Halda oma vastuvõtjat kasutatava brauseriga"
-
-#~ msgid "Control your dreambox with only the MUTE button"
-#~ msgstr "Halda oma vastuvõtjat ainult MUTE nupuga"
-
-#~ msgid "Control your dreambox with only the MUTE button."
-#~ msgstr "Halda oma vastuvõtjat ainult MUTE nupuga."
-
-#~ msgid "Control your internal system fan."
-#~ msgstr "Kontrolli sisemist süsteemiventilaatorit."
-
-#~ msgid "Control your kids's tv usage"
-#~ msgstr "Kontrolli laste TV kasutust"
-
-#~ msgid "Control your system fan"
-#~ msgstr "Kontrolli süsteemi ventilaatorit"
-
-#~ msgid "Copy, rename, delete, move local files on your Dreambox."
-#~ msgstr "Kopeeri, liiguta, kustuta või nimeta ümber faile oma vastuvõtjas."
-
-#
-#~ msgid ""
-#~ "Crashlogs found!\n"
-#~ "Send them to Dream Multimedia ?"
-#~ msgstr ""
-#~ "Vealogid leitud!\n"
-#~ "Kas saadan ära"
-
-#~ msgid "Create a backup of your Video DVD on your DreamBox hard drive."
-#~ msgstr "Tee varukoopia oma VideoDVD-st oma vastuvõtja HDD peale."
-
-#~ msgid "Create a backup of your Video-DVD"
-#~ msgstr "Tee video DVD-st backup"
-
-#~ msgid "Create a new AutoTimer."
-#~ msgstr "Loo uus AutoTaimer."
-
-#~ msgid "Create a new timer using the classic editor"
-#~ msgstr "Loo uus taimer tavaeditoriga"
-
-#~ msgid "Create a new timer using the wizard"
-#~ msgstr "Loo uus taimer abilisega"
-
-#~ msgid "Create preview pictures of your Movies"
-#~ msgstr "Loo algvaate pildid oma filmidest"
-
-#~ msgid "Create remote timers"
-#~ msgstr "Sea kaugjuhitavad taimerid"
-
-#~ msgid "Create timers on remote Dreamboxes."
-#~ msgstr "Sea taimerid kaugjuhitavatel tuuneritel."
-
-#
-#~ msgid "Croatian"
-#~ msgstr "Horvaatia"
-
-#
-#~ msgid "Custom (%s)"
-#~ msgstr "Tava (%s)"
-
-#
-#~ msgid "Custom location"
-#~ msgstr "Tavaasukoht"
-
-#
-#~ msgid "Custom offset"
-#~ msgstr "Sea kõrvalekalle"
-
-#~ msgid "Customize Vali-XD skins"
-#~ msgstr "Muuda Vali-XD välimust"
-
-#~ msgid "Customize Vali-XD skins by yourself."
-#~ msgstr "Muuda Vali-XD välimust ise."
-
-#~ msgid "Cut your movies"
-#~ msgstr "Lõika filmi"
-
-#~ msgid "Cut your movies."
-#~ msgstr "Lõika filmi."
-
-#~ msgid "CutListEditor allows you to edit your movies"
-#~ msgstr "CutListEditor võimaldab töödelda su filme"
-
-#~ msgid ""
-#~ "CutListEditor allows you to edit your movies.\n"
-#~ "Seek to the start of the stuff you want to cut away. Press OK, select "
-#~ "'start cut'.\n"
-#~ "Then seek to the end, press OK, select 'end cut'. That's it."
-#~ msgstr ""
-#~ "CutListEditor võimaldab töödelda su filme. \n"
-#~ "Otsi selle koha algus, mille tahad maha lõigata. Vajuta OK, vali 'alusta "
-#~ "lõiget'.\n"
-#~ "Siis leia lõpp, vajuta OK, vali 'lõpeta lõige'. TEHTUD."
-
-#
-#~ msgid "Czech"
-#~ msgstr "Tšehhi"
-
-#
-#~ msgid "Czech Republic"
-#~ msgstr "Tśehhi Vabariik"
-
-#~ msgid "DVDPlayer plays your DVDs on your Dreambox"
-#~ msgstr "DVDPlayer näitab su DVDsid su tuuneris"
-
-#~ msgid ""
-#~ "DVDPlayer plays your DVDs on your Dreambox.\n"
-#~ "With the DVDPlayer you can play your DVDs on your Dreambox from a DVD or "
-#~ "even from an iso file or video_ts folder on your harddisc or network."
-#~ msgstr ""
-#~ "DVDPlayer näitab su DVDsid su tuuneris. \n"
-#~ "DVDPlayeriga saad vaadata oma DVDsid tuuneri abil otse DVD pealt või "
-#~ "isegi iso failist või video_ts kaustast kõvakettalt või võrgust."
-
-#
-#~ msgid "Danish"
-#~ msgstr "Taani"
-
-#~ msgid "Decrease delay"
-#~ msgstr "Vähenda viidet"
-
-#~ msgid "Decrease delay by %i ms (can be set)"
-#~ msgstr "Vähenda viidet %i ms"
-
-#~ msgid "Default services lists"
-#~ msgstr "Vaikimisi teenuste nimekiri"
-
-#
-#~ msgid "Default settings"
-#~ msgstr "Vaikimisi sätted"
-
-#~ msgid "Defaults"
-#~ msgstr "Vaikimisi"
-
-#~ msgid "Define a startup service"
-#~ msgstr "Määra alguskanal"
-
-#~ msgid "Define a startup service for your Dreambox."
-#~ msgstr "Määra alguskanal oma tuuneri jaoks."
-
-#
-#~ msgid "Delete mount"
-#~ msgstr "Kustuta haage"
-
-#~ msgid "Descending"
-#~ msgstr "Kahanev"
-
-#
-#~ msgid "Destination directory"
-#~ msgstr "Sihtkataloog"
-
-#
-#~ msgid "Details for extension: "
-#~ msgstr "Laienduse detailid"
-
-#~ msgid "Detected HDD:"
-#~ msgstr "Leitud kõvaketas:"
-
-#~ msgid "Dir:"
-#~ msgstr "Kaust:"
-
-#~ msgid "Direct playback of Youtube videos"
-#~ msgstr "Youtube videote kohene taasesitus"
-
-#
-#~ msgid "Disable Subtitles"
-#~ msgstr "Peida subtiitrid"
-
-#~ msgid "Discard changes and close plugin"
-#~ msgstr "Tühista muudatused ja sulge laiendus"
-
-#~ msgid "Discard changes and close screen"
-#~ msgstr "Tühista muudatused ja sulge aken"
-
-#
-#~ msgid ""
-#~ "Disconnected from\n"
-#~ "Fritz!Box! (%s)\n"
-#~ "retrying..."
-#~ msgstr ""
-#~ "Ühendus katkenud \n"
-#~ "Fritz!Boxiga! (%s)\n"
-#~ "uus katse..."
-
-#~ msgid "Display search results by:"
-#~ msgstr "Näita otsingu tulemust:"
-
-#~ msgid "Display your photos on the TV"
-#~ msgstr "Näita pilte ekraanil"
-
-#~ msgid "Displays movie information from the InternetMovieDatabase"
-#~ msgstr "Filmi info näitamine InternetMovieDatabase-st"
-
-#
-#~ msgid ""
-#~ "Do you really want to initialize the harddisk?\n"
-#~ "All data on the disk will be lost!"
-#~ msgstr ""
-#~ "Kas tahad formaatida kõvaketast?\n"
-#~ "Kogu ketta sisu läheb kaduma!"
-
-#~ msgid "Do you want to enter a username and password for this host?\n"
-#~ msgstr "Kas soovid seada kasutajanime ja parooli sellele seadmele?\n"
-
-#
-#~ msgid "Do you want to install default sat lists?"
-#~ msgstr "Kas soovid installida vaikimisi satelliitide nimekirja?"
-
-#~ msgid "Do you want to see more entries?"
-#~ msgstr "Kas soovid näha veel ridu?"
-
-#
-#~ msgid "Done - Installed or upgraded %d packages with %d errors"
-#~ msgstr "Valmis - installitud või uuendatud %d , %d veaga"
-
-#~ msgid "Download Video"
-#~ msgstr "Lae video alla"
-
-#~ msgid "Download files from Rapidshare"
-#~ msgstr "Lae faile Rapidsharest"
-
-#~ msgid "Download location"
-#~ msgstr "Allalaadimise koht"
-
-#~ msgid "Download of USB flasher boot image failed: "
-#~ msgstr "Allalaadimine USB-le nurjus:"
-
-#~ msgid "Downloading screenshots. Please wait..."
-#~ msgstr "Laadin eelvaadet. Palun oodake..."
-
-#~ msgid "Duration: "
-#~ msgstr "Kestus: "
-
-#
-#~ msgid "Dutch"
-#~ msgstr "Holland"
-
-#~ msgid "EPG encoding"
-#~ msgstr "EPG kodeering"
-
-#~ msgid ""
-#~ "EPGRefresh will automatically switch to user-defined channels when the "
-#~ "box is idleing\n"
-#~ "(in standby mode without any running recordings) to perform updates of "
-#~ "the epg information on these channels."
-#~ msgstr ""
-#~ "EPFRefresh lülitub ise kasutaja määratud kanalitele, kui tuuner on "
-#~ "ooteasendis\n"
-#~ "(ootel ilma ühegi töötava salvestuseta) et nende kanalite EPG infot "
-#~ "uuendada."
-
-#~ msgid "Edit AutoTimer"
-#~ msgstr "Muuda AutoTaimer"
-
-#~ msgid "Edit AutoTimer filters"
-#~ msgstr "Muuda AutoTaimeri filtreid"
-
-#~ msgid "Edit AutoTimer services"
-#~ msgstr "Muuda AutoTaimeri teenuseid"
-
-#
-#~ msgid "Edit IPKG source URL..."
-#~ msgstr "Muuda IPKG allika URL-i"
-
-#~ msgid "Edit Timers and scan for new Events"
-#~ msgstr "Muuda taimereid ja otsi uusi saateid"
-
-#~ msgid "Edit new timer defaults"
-#~ msgstr "Muuda uute taimerite vaikeväärtuseid"
-
-#~ msgid "Edit selected AutoTimer"
-#~ msgstr "Muuda valitud AutoTaimerit"
-
-#~ msgid "Edit tags of recorded movies"
-#~ msgstr "Muuda salvestatud filmide märkeid"
-
-#~ msgid "Edit tags of recorded movies."
-#~ msgstr "Muuda salvestatud filmide märkeid."
-
-#~ msgid "Editing"
-#~ msgstr "Muudan"
-
-#~ msgid "Editor for new AutoTimers"
-#~ msgstr "Editor uuele AutoTaimerile"
-
-#~ msgid "Education"
-#~ msgstr "Haridus"
-
-#~ msgid "Emailclient is an IMAP4 e-mail viewer for the Dreambox."
-#~ msgstr "E-maili klient on IMAP4 näitaja tuuneri jaoks."
-
-#~ msgid "Enable /media"
-#~ msgstr "Luba /media"
-
-#~ msgid "Enable Filtering"
-#~ msgstr "Luba filtreerimine"
-
-#~ msgid "Enable HTTP Access"
-#~ msgstr "Luba HTTP Access"
-
-#~ msgid "Enable HTTP Authentication"
-#~ msgstr "Luba HTTP autoriseerimine"
-
-#~ msgid "Enable HTTPS Access"
-#~ msgstr "Luba HTTPS Access"
-
-#~ msgid "Enable HTTPS Authentication"
-#~ msgstr "Luba HTTPS autoriseerimine"
-
-#~ msgid "Enable Service Restriction"
-#~ msgstr "Luba teenuse piirangud"
-
-#
-#~ msgid "Enable Streaming Authentication"
-#~ msgstr "Luba striimimise autentimine"
-
-#~ msgid ""
-#~ "Enable this to be able to access the AutoTimer Overview from within the "
-#~ "extension menu."
-#~ msgstr "Luba see, et tagada AutoTimeri ülevaade laienduste menüüst."
-
-#~ msgid ""
-#~ "Encoding the channel uses for it's EPG data. You only need to change this "
-#~ "if you're searching for special characters like the german umlauts."
-#~ msgstr ""
-#~ "Kodeeringut kasutatakse EPG andmetes. Seda vaja muuta ainult kui soovite "
-#~ "täpitähti õieti näha."
-
-#
-#~ msgid "End of \"after event\" timespan"
-#~ msgstr "\"pärast sündmust\" ajavahemiku lõpp"
-
-#
-#~ msgid "End of timespan"
-#~ msgstr "Ajavahemiku lõpp"
-
-#
-#~ msgid "English"
-#~ msgstr "Inglise"
-
-#~ msgid ""
-#~ "Enigma2 Plugin to play AVI/DIVX/WMV/etc. videos from PC on your Dreambox. "
-#~ "Needs a running VLC from www.videolan.org on your pc."
-#~ msgstr ""
-#~ "Enigma2 lisa AVI/DIVX/WMV/jne. PC-st tulevate videote mängimiseks "
-#~ "vastuvõtjas. Vajab arvutis töötavat VLC programmi www.videolan.org -st."
-
-#
-#~ msgid ""
-#~ "Enigma2 Skinselector v0.5 BETA\n"
-#~ "\n"
-#~ "If you experience any problems please contact\n"
-#~ "stephan@reichholf.net\n"
-#~ "\n"
-#~ "© 2006 - Stephan Reichholf"
-#~ msgstr ""
-#~ "Enigma2 Skinselector v0.5 BETA\n"
-#~ "\n"
-#~ "Kui Teil on probleeme rüüvahetajaga, kirjutage\n"
-#~ "stephan@reichholf.net\n"
-#~ "\n"
-#~ "© 2006 - Stephan Reichholf"
-
-#
-#~ msgid "Enter Fast Forward at speed"
-#~ msgstr "Alusta edasikerimist kiirusega"
-
-#~ msgid "Enter IP to scan..."
-#~ msgstr "Sisesta IP..."
-
-#
-#~ msgid "Enter Rewind at speed"
-#~ msgstr "Alusta tagasikerimist kiirusega"
-
-#
-#~ msgid "Enter WLAN network name/SSID:"
-#~ msgstr "Sisesta WLAN võrgu nimi/SSID:"
-
-#
-#~ msgid "Enter WLAN passphrase/key:"
-#~ msgstr "Sisesta WLAN võtmesõna/võti:"
-
-#~ msgid "Enter new hostname for your Dreambox"
-#~ msgstr "Sisesta uus nimi oma tuunerile"
-
-#
-#~ msgid "Enter options:"
-#~ msgstr "Sisesta valikud:"
-
-#~ msgid "Enter password:"
-#~ msgstr "Sisesta parool:"
-
-#
-#~ msgid "Enter share directory:"
-#~ msgstr "Sisesta võrgukoha kaust:"
-
-#
-#~ msgid "Enter share name:"
-#~ msgstr "Nimeta võrgukoht:"
-
-#~ msgid "Enter user and password for host: "
-#~ msgstr "Sisesta kasutajanimi ja parool seadmele: "
-
-#~ msgid "Enter username:"
-#~ msgstr "Sisesta kasutajanimi:"
-
-#~ msgid "Enter your search term(s)"
-#~ msgstr "Sisesta otsingu tingimus(ed)"
-
-#
-#~ msgid "Entertainment"
-#~ msgstr "Meelelahutus"
-
-#
-#~ msgid "Estonian"
-#~ msgstr "Eesti"
-
-#~ msgid "Exact match"
-#~ msgstr "Täpne vaste"
-
-#
-#~ msgid "Exclude"
-#~ msgstr "Välista"
-
-#
-#~ msgid "Execute \"after event\" during timespan"
-#~ msgstr "Teosta \"pärast sündmust\" ajavahemiku ajal"
-
-#~ msgid "Execute TuxboxPlugins"
-#~ msgstr "Käivita TuxboxPlugins"
-
-#~ msgid ""
-#~ "FTPBrowser allows uploading and downloading files between your Dreambox "
-#~ "and a server using the file transfer protocol."
-#~ msgstr ""
-#~ "FTPBrowser võimaldab failide vahendust vastuvõtja ja serveri vahel, "
-#~ "kasutades failivahenduse protokolli FTP."
-
-#
-#~ msgid "Fetching feed entries"
-#~ msgstr "Fiidide sisestuste võtmine"
-
-#
-#~ msgid "Fetching search entries"
-#~ msgstr "Otsingute sisestuste võtmine"
-
-#
-#~ msgid "Filesystem Check..."
-#~ msgstr "Failisüsteemi kontroll"
-
-#
-#~ msgid "Film & Animation"
-#~ msgstr "Film & Animatsioon"
-
-#~ msgid "Filter"
-#~ msgstr "Filter"
-
-#~ msgid ""
-#~ "Filters are another powerful tool when matching events. An AutoTimer can "
-#~ "be restricted to certain Weekdays or only match an event with a text "
-#~ "inside eg it's Description.\n"
-#~ "Press BLUE to add a new restriction and YELLOW to remove the selected one."
-#~ msgstr ""
-#~ "Filtrid on üks võimsaid vahendeid vajalike saadete leidmiseks. "
-#~ "AutoTimer'i abil saab ära keelata teatud nädalapäevade jaoks või ainult "
-#~ "leida saade , kus on kirjelduses tekst nt. \n"
-#~ "Vajuta BLUE uue keelu seadmiseks ja YELLOW seatud keelu muutmiseks."
-
-#
-#~ msgid "Finnish"
-#~ msgstr "Soome"
-
-#~ msgid "First generate your skin-style with the Ai.HD-Control plugin."
-#~ msgstr "Alguseks anna oma skini stiil kasutades Ai.HD lisandit."
-
-#
-#~ msgid ""
-#~ "First we need to download the latest boot environment for the USB flasher."
-#~ msgstr "Algatuseks peame laadima alla uusima boot tarkvara USB flashijale"
-
-#
-#~ msgid "Following tasks will be done after you press continue."
-#~ msgstr "Jätkamisel lõpetatakse järgnevad toimingud"
-
-#~ msgid ""
-#~ "Found a total of %d matching Events.\n"
-#~ "%d Timer were added and %d modified."
-#~ msgstr ""
-#~ "Leidus kokku %d vastet.\n"
-#~ "%d Timerit lisati ja %d muudeti."
-
-#
-#~ msgid "Frame repeat count during non-smooth winding"
-#~ msgstr "Kaadri korduste arv mittesujuva kerimisega"
-
-#
-#~ msgid "France"
-#~ msgstr "Prantsusmaa"
-
-#
-#~ msgid "French"
-#~ msgstr "Prantsuse"
-
-#~ msgid "Frisian"
-#~ msgstr "Friisi"
-
-#
-#~ msgid "Fritz!Box FON IP address"
-#~ msgstr "Fritz!Box FON IP aadress"
-
-#~ msgid "FritzCall shows incoming calls to your Fritz!Box on your Dreambox."
-#~ msgstr "FritzCall näitab sinu FritzBoxi sisenevaid kõnesid tuuneri kaudu."
-
-#~ msgid "Frontend for /tmp/mmi.socket"
-#~ msgstr "Liides /tmp/mmi.socket-le"
-
-#
-#~ msgid "Function not yet implemented"
-#~ msgstr "Tegevus on veel loomata"
-
-#~ msgid "GUI that allows user to change the ftp- / telnet password."
-#~ msgstr "Graafiline kasutajaliides ftp ja telneti salasõna muutmiseks."
-
-#~ msgid ""
-#~ "GUI that allows user to change the ftp-/telnet-password of the Dreambox."
-#~ msgstr ""
-#~ "Graafiline kasutajaliides ftp ja telneti salasõna muutmiseks tuuneris."
-
-#~ msgid "GUI to change the ftp and telnet-password"
-#~ msgstr "GUI ftp ja telneti salasõna muutmiseks"
-
-#
-#~ msgid "Gaming"
-#~ msgstr "Mängud"
-
-#
-#~ msgid "General AC3 delay"
-#~ msgstr "Üldine AC3 viide"
-
-#
-#~ msgid "General PCM delay"
-#~ msgstr "Üldine PCM viide"
-
-#
-#~ msgid "Genuine Dreambox"
-#~ msgstr "Ehtne Dreambox"
-
-#~ msgid "Genuine Dreambox validation failed!"
-#~ msgstr "Teie Dreambox ei läbinud ehtsuse kontrolli!"
-
-#~ msgid "Genuine Dreambox verification"
-#~ msgstr "Dreamboxi ehtsuse kontroll"
-
-#
-#~ msgid "German"
-#~ msgstr "Saksa"
-
-#~ msgid "German storm information"
-#~ msgstr "Saksamaa tormi info"
-
-#~ msgid "German traffic information"
-#~ msgstr "Saksamaa liiklusinfo"
-
-#~ msgid "Germany"
-#~ msgstr "Saksamaa"
-
-#~ msgid "Get AudioCD info from CDDB and CD-Text"
-#~ msgstr "Leia AudioCD info CDDB ja CD-Texti abil"
-
-#~ msgid "Global delay"
-#~ msgstr "Globaalne viide"
-
-#~ msgid "GraphMultiEPG shows a graphical timeline EPG"
-#~ msgstr "GraphMultiEPG näitab EPG infot vastavalt kellaajale"
-
-#~ msgid ""
-#~ "GraphMultiEPG shows a graphical timeline EPG.\n"
-#~ "Shows a nice overview of all running und upcoming tv shows."
-#~ msgstr ""
-#~ "GraphMultiEPG näitab EPG infot vastavalt kellaajale.\n"
-#~ "Näitab kõikide käivate ja algavate TV saadete ülevaadet."
-
-#~ msgid "Great Britain"
-#~ msgstr "Suurbritannia"
-
-#
-#~ msgid "Greek"
-#~ msgstr "Kreeka"
-
-#~ msgid ""
-#~ "Growlee allows your Dreambox to send short messages using the growl "
-#~ "protocol\n"
-#~ "like Recording started notifications to a PC running a growl client"
-#~ msgstr ""
-#~ "Growlee võimaldab tuuneril saata SMS kasutades growl protokolli\n"
-#~ "nagu Salvestus alanud teade PC-le, kus töötab growl klientprogramm"
-
-#
-#~ msgid "Guess existing timer based on begin/end"
-#~ msgstr "Eelda olemasolev taimer alguse/lõpu aja järgi"
-
-#~ msgid "HD videos"
-#~ msgstr "HD videod"
-
-#~ msgid "HTTP Port"
-#~ msgstr "HTTP Port"
-
-#~ msgid "HTTPS Port"
-#~ msgstr "HTTPS Port"
-
-#~ msgid "Help"
-#~ msgstr "Abi"
-
-#
-#~ msgid "Here is a small overview of the available icon states."
-#~ msgstr "Ülevaade saadaolevatest ikoonivõimalustest"
-
-#~ msgid "History"
-#~ msgstr "Ajalugu"
-
-#~ msgid "Holland"
-#~ msgstr "Holland"
-
-#~ msgid "Hong Kong"
-#~ msgstr "Hong Kong"
-
-#~ msgid "Hotplugging for removeable devices"
-#~ msgstr "Eemaldatavate seadmete ühendamine"
-
-#~ msgid "Howto & Style"
-#~ msgstr "Howto & Stiil"
-
-#
-#~ msgid "Hungarian"
-#~ msgstr "Ungari"
-
-#~ msgid "IMAP4 e-mail viewer for the Dreambox"
-#~ msgstr "IMAP4 e-maili jälgija vastuvõtja jaoks"
-
-#~ msgid "IRC Client for Enigma2"
-#~ msgstr "IRC klient Enigma2-le"
-
-#
-#~ msgid "Icelandic"
-#~ msgstr "Island"
-
-#~ msgid ""
-#~ "If this is enabled an existing timer will also be considered recording an "
-#~ "event if it records at least 80% of the it."
-#~ msgstr ""
-#~ "Kui see on lubatud, siis taimer loetakse salvestavaks , kui ta salvestab "
-#~ "80% enda ajast."
-
-#
-#~ msgid "If you can see this page, please press OK."
-#~ msgstr "Kui sa näed seda lehte, vajuta OK."
-
-#
-#~ msgid "Image flash utility"
-#~ msgstr "Tarkvara fläshimis tööriist"
-
-#
-#~ msgid "Image-Upgrade"
-#~ msgstr "Image-uuendus"
-
-#
-#~ msgid "Import AutoTimer"
-#~ msgstr "Impordi autotaimer"
-
-#
-#~ msgid "Import existing Timer"
-#~ msgstr "Impordi olemasolev taimer"
-
-#
-#~ msgid "Import from EPG"
-#~ msgstr "Impordi EPG-st"
-
-#
-#~ msgid "Include"
-#~ msgstr "Kaasa arvatud"
-
-#
-#~ msgid "Increase delay"
-#~ msgstr "Suurenda viidet"
-
-#
-#~ msgid "Increase delay by %i ms (can be set)"
-#~ msgstr "Suurenda viidet %i ms (saab määrata)"
-
-#~ msgid "India"
-#~ msgstr "India"
-
-#
-#~ msgid "Initialization..."
-#~ msgstr "Algseadistus..."
-
-#~ msgid "Initializing Harddisk..."
-#~ msgstr "Formaadin kõvaketast..."
-
-#~ msgid "Input devices"
-#~ msgstr "Sisendseadmed"
-
-#
-#~ msgid "Install local IPKG"
-#~ msgstr "Paigalda kohalik IPKG"
-
-#
-#~ msgid "Install software updates..."
-#~ msgstr "Installin tarkvara..."
-
-#
-#~ msgid "Integrated Ethernet"
-#~ msgstr "Sisemine võrgukaart"
-
-#
-#~ msgid "Integrated Wireless"
-#~ msgstr "Sisemine WiFi"
-
-#~ msgid "Internal firmware updater"
-#~ msgstr "Sisemine tarkvara uuendaja"
-
-#
-# File: tmp/enigma2_plugins/genuinedreambox/src/plugin.py, line: 304
-#~ msgid "Invalid response from Security service pls restart again"
-#~ msgstr "Mittekehtiv vastus Security Service poolt, palun tee restart"
-
-#
-# File: tmp/enigma2_plugins/genuinedreambox/src/plugin.py, line: 132
-#~ msgid "Invalid response from server."
-#~ msgstr "Vigane serveri vastus."
-
-#
-# File: tmp/enigma2_plugins/genuinedreambox/src/plugin.py, line: 177
-#~ msgid "Invalid response from server. Please report: %s"
-#~ msgstr "Vigane serveri vastus. Palun teavitage: %s"
-
-#
-#~ msgid "Invalid selection"
-#~ msgstr "Vale valik"
-
-#
-#~ msgid "Invert display"
-#~ msgstr "Negatiiv"
-
-#
-#~ msgid "Ireland"
-#~ msgstr "Iirimaa"
-
-#
-#~ msgid "Israel"
-#~ msgstr "Iisrael"
-
-#
-#~ msgid ""
-#~ "It's possible to restrict an AutoTimer to certain Services or Bouquets or "
-#~ "to deny specific ones.\n"
-#~ "An Event will only match this AutoTimer if it's on a specific and not "
-#~ "denied Service (inside a Bouquet).\n"
-#~ "Press BLUE to add a new restriction and YELLOW to remove the selected one."
-#~ msgstr ""
-#~ "Saab keelata AutoTimeri teatud teenuste või kanalivalikute jaoks või "
-#~ "eirata neid.\n"
-#~ "Saade vastab sellele AutoTimerile kui see on kindlal ja mitte eiratud "
-#~ "teenusel (kanalivaliku sees).\n"
-#~ "Vajuta BLUE uue keelu seadmiseks ja YELLOW valitud keelu muutmiseks."
-
-#
-#~ msgid "Italian"
-#~ msgstr "Itaalia"
-
-#~ msgid "Italian Weather forecast on Dreambox"
-#~ msgstr "Itaalia ilmateate prognoos"
-
-#~ msgid "Italian Weather forecast on Dreambox from www.google.it."
-#~ msgstr "Itaalia ilmateate prognoos www.google.it."
-
-#
-#~ msgid "Italy"
-#~ msgstr "Itaalia"
-
-#
-#~ msgid "Japan"
-#~ msgstr "Jaapan"
-
-#~ msgid "Kerni's BrushedAlu-HD skin"
-#~ msgstr "Kerni's BrushedAlu-HD välimus"
-
-#~ msgid "Kerni's DreamMM-HD skin"
-#~ msgstr "Kerni's DreamMM-HD välimus"
-
-#~ msgid "Kerni's Elgato-HD skin"
-#~ msgstr "Kerni's Elgato-HD välimus"
-
-#~ msgid "Kerni's SWAIN skin"
-#~ msgstr "Kerni's SWAIN välimus"
-
-#~ msgid "Kerni's SWAIN-HD skin"
-#~ msgstr "Kerni's SWAIN-HD välimus"
-
-#~ msgid "Kerni's UltraViolet skin"
-#~ msgstr "Kerni's UltraViolet välimus"
-
-#~ msgid "Kerni's YADS-HD skin"
-#~ msgstr "Kerni's YADS-HD välimus"
-
-#~ msgid "Kerni's dTV-HD skin"
-#~ msgstr "Kerni's dTV-HD välimus"
-
-#~ msgid "Kerni's dTV-HD-Reloaded skin"
-#~ msgstr "Kerni's dTV-HD-Reloaded välimus"
-
-#~ msgid "Kerni's dmm-HD skin"
-#~ msgstr "Kerni's dmm-HD välimus"
-
-#~ msgid "Kerni's dreamTV-HD skin"
-#~ msgstr "Kerni's dreamTV-HD välimus"
-
-#~ msgid "Kerni's simple skin"
-#~ msgstr "Kerni's simple välimus"
-
-#~ msgid "Kerni-HD1 skin"
-#~ msgstr "Kerni-HD1 välimus"
-
-#~ msgid "Kerni-HD1R2 skin"
-#~ msgstr "Kerni-HD1R2 välimus"
-
-#~ msgid "Kernis HD1 skin"
-#~ msgstr "Kernis HD1 välimus"
-
-#~ msgid "Key %(Key)s successfully set to %(delay)i ms"
-#~ msgstr "Nupp %(Key)s edukalt seatud %(delay)i ms"
-
-#~ msgid "Key %(key)s (current value: %(value)i ms)"
-#~ msgstr "Nupp %(key)s (hetke väärtus: %(value)i ms)"
-
-#~ msgid "KiddyTimer allows to control your kids's daily tv usage."
-#~ msgstr "KiddyTimer võimaldab kontrollida laste igapäevast tv kasutust."
-
-#
-#~ msgid "Language..."
-#~ msgstr "Keel"
-
-#
-#~ msgid "Latvian"
-#~ msgstr "Läti"
-
-#~ msgid "Listen and record internet radio"
-#~ msgstr "Kuula ja salvesta interneti raadiot"
-
-#~ msgid "Listen and record shoutcast internet radio on your Dreambox."
-#~ msgstr "Kuula ja salvesta Shoutcast interneti raadiot oma tuuneris."
-
-#
-#~ msgid "Lithuanian"
-#~ msgstr "Leedu"
-
-#~ msgid "Load feed on startup:"
-#~ msgstr "Laadi feed alustades:"
-
-#
-#~ msgid "Load movie-length"
-#~ msgstr "Laadi filmi kestus"
-
-#
-#~ msgid "Local share name"
-#~ msgstr "Kohaliku võrgukoha nimi"
-
-#
-#~ msgid "Lower bound of timespan."
-#~ msgstr "Ajavahemiku väikseim piir."
-
-#
-#~ msgid ""
-#~ "Lower bound of timespan. Nothing before this time will be matched. "
-#~ "Offsets are not taken into account!"
-#~ msgstr ""
-#~ "Ajavahemiku alumine piir. Miski enne seda aega ei sobi. Seatud erandeid "
-#~ "ei võeta arvesse!"
-
-#
-#~ msgid "MMC Card"
-#~ msgstr "MMC-kaart"
-
-#~ msgid "Manage local files"
-#~ msgstr "Halda kohalike faile"
-
-#~ msgid "Manage logos to display at boot time or while in radio mode."
-#~ msgstr "Sea logod, mida näidatakse alustamisel või raadio moodis."
-
-#~ msgid "Manage logos to display at boottime"
-#~ msgstr "Sea logod näitamiseks alustamisel"
-
-#
-#~ msgid "Manage network shares"
-#~ msgstr "Halda võrgukohti"
-
-#~ msgid ""
-#~ "Manage your music files in a database, play it with Merlin Music Player."
-#~ msgstr ""
-#~ "Sea oma muusikafailid andmebaasis, mängi neid Merlin Music Player'iga."
-
-#~ msgid "Manage your network shares..."
-#~ msgstr "Halda oma võrgukohti..."
-
-#~ msgid "Match Timespan: %02d:%02d - %02d:%02d"
-#~ msgstr "Vastab ajavahemikuga: %02d:%02d - %02d:%02d"
-
-#
-#~ msgid "Match title"
-#~ msgstr "Vastab pealkirjaga"
-
-#
-#~ msgid "Match title: %s"
-#~ msgstr "Vastab pealkirjaga: %s"
-
-#
-#~ msgid "Maximum duration (in m)"
-#~ msgstr "Maksimaalne kestus (min)"
-
-#
-#~ msgid ""
-#~ "Maximum event duration to match. If an event is longer than this ammount "
-#~ "of time (without offset) it won't be matched."
-#~ msgstr ""
-#~ "Suurim sobiv saate kestus. Kui saade on pikem kui see ajavahemik (ilma "
-#~ "seatud eranditeta), see ei sobi."
-
-#~ msgid ""
-#~ "MediaScanner scans devices for playable media files and displays a menu "
-#~ "with possible actions like viewing pictures or playing movies."
-#~ msgstr ""
-#~ "MediaScanner otsib seadmeid mängitavate meediafailide jaoks ja näitab "
-#~ "menüüd võimalike toimingutega nagu piltide vaatamine või filmide "
-#~ "mängimine."
-
-#~ msgid ""
-#~ "Mediaplayer plays your favorite music and videos.\n"
-#~ "Play all your favorite music and video files, organize them in playlists, "
-#~ "view cover and album information."
-#~ msgstr ""
-#~ "Mediaplayer mängib su lemmikmuusikat ja videosid. \n"
-#~ "Mängi oma lemmikmuusikat ja videofaile, sea neid nimekirjadesse, vaata "
-#~ "kaane- ja albumi infot."
-
-#~ msgid "Merlin Music Player and iDream"
-#~ msgstr "Merlin muusika mängija ja iDream"
-
-#
-#~ msgid "Mexico"
-#~ msgstr "Mehiko"
-
-#
-#~ msgid "Modify existing timers"
-#~ msgstr "Muuda olemasolevaid taimereid"
-
-#
-#~ msgid "Monthly"
-#~ msgstr "Igakuine"
-
-#
-#~ msgid "More video entries."
-#~ msgstr "Veel video valikuid."
-
-#
-#~ msgid "Most discussed"
-#~ msgstr "Enim arutatud"
-
-#
-#~ msgid "Most linked"
-#~ msgstr "Enim lingitud"
-
-#
-#~ msgid "Most popular"
-#~ msgstr "Kõige populaarsemad"
-
-#
-#~ msgid "Most recent"
-#~ msgstr "Kõige uuemad"
-
-#
-#~ msgid "Most responded"
-#~ msgstr "Enim vastatud"
-
-#
-#~ msgid "Most viewed"
-#~ msgstr "Enim vaadatud"
-
-#
-#~ msgid "Mount informations"
-#~ msgstr "Haake informatsioon"
-
-#
-#~ msgid "Mount options"
-#~ msgstr "Haake seaded"
-
-#
-#~ msgid "Mount type"
-#~ msgstr "Haake tüüp"
-
-#
-#~ msgid "MountManager"
-#~ msgstr "Haakehaldur"
-
-#
-#~ msgid ""
-#~ "Mounted/\n"
-#~ "Unmounted"
-#~ msgstr ""
-#~ "Haagitud/\n"
-#~ "Lahtihaagitud"
-
-#
-#~ msgid "Mountpoints management"
-#~ msgstr "Haakepunktide haldamine"
-
-#
-#~ msgid "Mounts editor"
-#~ msgstr "Haake muutja"
-
-#
-#~ msgid "Mounts management"
-#~ msgstr "Haakepunktide haldamine"
-
-#
-#~ msgid "Move plugin screen"
-#~ msgstr "Liiguta lisandite ekraani"
-
-#
-#~ msgid "Move screen down"
-#~ msgstr "Liiguta ekraani allapoole"
-
-#
-#~ msgid "Move screen to the center of your TV"
-#~ msgstr "Liiguta ekraan oma TV keskmesse"
-
-#
-#~ msgid "Move screen to the left"
-#~ msgstr "Liiguta ekraani vasakule"
-
-#
-#~ msgid "Move screen to the lower left corner"
-#~ msgstr "Liiguta ekraani alumisse vasakusse nurka"
-
-#
-#~ msgid "Move screen to the lower right corner"
-#~ msgstr "Liiguta ekraani alumisse paremasse nurka"
-
-#
-#~ msgid "Move screen to the middle of the left border"
-#~ msgstr "Liiguta ekraan vasaku ääre keskele"
-
-#
-#~ msgid "Move screen to the middle of the right border"
-#~ msgstr "Liiguta ekraan parema ääre keskele"
-
-#
-#~ msgid "Move screen to the right"
-#~ msgstr "Liiguta ekraan paremale"
-
-#
-#~ msgid "Move screen to the upper left corner"
-#~ msgstr "Liiguta ekraan ülemisse vasakusse nurka"
-
-#
-#~ msgid "Move screen to the upper right corner"
-#~ msgstr "Liiguta ekraan ülemisse paremasse nurka"
-
-#
-#~ msgid "Move screen up"
-#~ msgstr "Liiguta ekraan üles"
-
-#~ msgid "Movie information from the Online Film Datenbank (German)."
-#~ msgstr "Filmi info Online Film Datenbank'ist (Saksa)."
-
-#~ msgid "Movie informations from the Online Film Datenbank"
-#~ msgstr "Filmi info Online Film Datenbank'ist"
-
-#~ msgid ""
-#~ "MovieTagger adds tags to recorded movies to sort a large list of movies."
-#~ msgstr ""
-#~ "Movie Tagger lisab salvestatud filmidele märked pika filminimekirja "
-#~ "sorteerimiseks."
-
-#~ msgid ""
-#~ "Movielist Preview creates screenshots of recordings and shows them inside "
-#~ "the movielist."
-#~ msgstr ""
-#~ "Movielist Preview loob salvestiste ekraanitõmmised ja näitab neid filmide "
-#~ "nimekirjas."
-
-#
-#~ msgid "Music"
-#~ msgstr "Muusika"
-
-#
-#~ msgid "My TubePlayer"
-#~ msgstr "My Tube mängija"
-
-#
-#~ msgid "MyTube Settings"
-#~ msgstr "MyTube seaded"
-
-#
-#~ msgid "MyTubePlayer"
-#~ msgstr "My Tube mängija"
-
-#
-#~ msgid "MyTubePlayer Help"
-#~ msgstr "MyTubePlayer abi"
-
-#
-#~ msgid "MyTubePlayer active video downloads"
-#~ msgstr "My Tube mängija aktiivsed video allalaadimised"
-
-#
-#~ msgid "MyTubePlayer settings"
-#~ msgstr "MyTubePlayer seaded"
-
-#
-#~ msgid "MyTubeVideoInfoScreen"
-#~ msgstr "MyTube videoinfo ekraan"
-
-#
-#~ msgid "MyTubeVideohelpScreen"
-#~ msgstr "MyTube videoabi ekraan"
-
-#
-#~ msgid "NFS share"
-#~ msgstr "NFS võrgukoht"
-
-#~ msgid "Nemesis BlackBox Skin"
-#~ msgstr "Nemesis BlackBox välimus"
-
-#~ msgid "Nemesis BlackBox Skin for the Dreambox"
-#~ msgstr "Nemesis BlackBox välimus Dreamboxile"
-
-#~ msgid "Nemesis Blueline Single Skin"
-#~ msgstr "Nemesis Blueline Single välimus"
-
-#~ msgid "Nemesis Blueline Single Skin for the Dreambox"
-#~ msgstr "Nemesis Blueline Single välimus Dreamboxile"
-
-#~ msgid "Nemesis Blueline Skin"
-#~ msgstr "Nemesis Blueline välimus"
-
-#~ msgid "Nemesis Blueline Skin for the Dreambox"
-#~ msgstr "Nemesis Blueline välimus Dreamboxile"
-
-#~ msgid "Nemesis Blueline.Extended Skin"
-#~ msgstr "Nemesis Blueline.Extended välimus"
-
-#~ msgid "Nemesis Blueline.Extended Skin for the Dreambox"
-#~ msgstr "Nemesis Blueline.Extended välimus Dreamboxile"
-
-#~ msgid "Nemesis ChromeLine Cobolt Skin"
-#~ msgstr "Nemesis ChromeLine Cobolt välimus"
-
-#~ msgid "Nemesis ChromeLine Cobolt Skin for the Dreambox"
-#~ msgstr "Nemesis ChromeLine Cobolt välimus Dreamboxile"
-
-#~ msgid "Nemesis ChromeLine Skin"
-#~ msgstr "Nemesis ChromeLine välimus"
-
-#~ msgid "Nemesis ChromeLine Skin for the Dreambox"
-#~ msgstr "Nemesis ChromeLine välimus Dreamboxile"
-
-#~ msgid "Nemesis Flatline Blue Skin"
-#~ msgstr "Nemesis Flatline Blue välimus"
-
-#~ msgid "Nemesis Flatline Blue Skin for the Dreambox"
-#~ msgstr "Nemesis Flatline Blue välimus Dreamboxile"
-
-#~ msgid "Nemesis Flatline Skin"
-#~ msgstr "Nemesis Flatline välimus"
-
-#~ msgid "Nemesis Flatline Skin for the Dreambox"
-#~ msgstr "Nemesis Flatline välimus Dreamboxile"
-
-#~ msgid "Nemesis GlassLine Skin"
-#~ msgstr "Nemesis GlassLine välimus"
-
-#~ msgid "Nemesis GlassLine Skin for the Dreambox"
-#~ msgstr "Nemesis GlassLine välimus Dreamboxile"
-
-#~ msgid "Nemesis Greenline Extended Skin"
-#~ msgstr "Nemesis Greenline Extended välimus"
-
-#~ msgid "Nemesis Greenline Extended Skin for the Dreambox"
-#~ msgstr "Nemesis Greenline Extended välimus Dreamboxile"
-
-#~ msgid "Nemesis Greenline Single Skin"
-#~ msgstr "Nemesis Greenline Single välimus"
-
-#~ msgid "Nemesis Greenline Single Skin for the Dreambox"
-#~ msgstr "Nemesis Greenline Single välimus Dreamboxile"
-
-#~ msgid "Nemesis Greenline Skin"
-#~ msgstr "Nemesis Greenline välimus"
-
-#~ msgid "Nemesis Greenline Skin for the Dreambox"
-#~ msgstr "Nemesis Greenline välimus Dreamboxile"
-
-#~ msgid "Nemesis Greyline Extended Skin"
-#~ msgstr "Nemesis Greyline Extended välimus"
-
-#~ msgid "Nemesis Greyline Extended Skin for the Dreambox"
-#~ msgstr "Nemesis Greyline Extended välimus Dreamboxile"
-
-#~ msgid "Nemesis Greyline Single Skin"
-#~ msgstr "Nemesis Greyline Single välimus"
-
-#~ msgid "Nemesis Greyline Single Skin for the Dreambox"
-#~ msgstr "Nemesis Greyline Single välimus Dreamboxile"
-
-#~ msgid "Nemesis Greyline Skin"
-#~ msgstr "Nemesis Greyline välimus"
-
-#~ msgid "Nemesis Greyline Skin for the Dreambox"
-#~ msgstr "Nemesis Greyline välimus Dreamboxile"
-
-#~ msgid "Nemesis ShadowLine Skin"
-#~ msgstr "Nemesis ShadowLine välimus"
-
-#~ msgid "Nemesis ShadowLine Skin for the Dreambox"
-#~ msgstr "Nemesis ShadowLine välimus Dreamboxile"
-
-#
-#~ msgid "Network Mount"
-#~ msgstr "Võrgu külgehaakimine"
-
-#
-#~ msgid "Network..."
-#~ msgstr "Võrk"
-
-#~ msgid "NetworkBrowser"
-#~ msgstr "Võrgubrauser"
-
-#
-#~ msgid "Never"
-#~ msgstr "Mitte kunagi"
-
-#
-#~ msgid "New Zealand"
-#~ msgstr "Uus-Meremaa"
-
-#
-#~ msgid "New pin"
-#~ msgstr "Uus kood"
-
-#
-#~ msgid "News & Politics"
-#~ msgstr "Uudised & Poliitika"
-
-#
-#~ msgid "No 50 Hz, sorry. :("
-#~ msgstr "Mitte 50 Hz, kahjuks. :("
-
-#
-#~ msgid "No network devices found!"
-#~ msgstr "Võrguseadmeid ei leitud!"
-
-#
-#~ msgid "No playable video found! Stop playing this movie?"
-#~ msgstr "Ei leia mängitavat videot! Kas peatada selle filmi näitamine?"
-
-#
-#~ msgid "No useable USB stick found"
-#~ msgstr "Ei leidnud kasutuskõlblikut USB-e pulka"
-
-#
-#~ msgid "No videos to display"
-#~ msgstr "Videod puuduvad"
-
-#
-#~ msgid "No, but play video again"
-#~ msgstr "Ei, kuid mängi video uuesti"
-
-#
-#~ msgid "No, but switch to video entries."
-#~ msgstr "Ei, kuid vaheta video sisestustele."
-
-#
-#~ msgid "No, but switch to video search."
-#~ msgstr "Ei, kuid vaheta videootsingule."
-
-#
-#~ msgid "No, remove them."
-#~ msgstr "Ei, eemalda need."
-
-#~ msgid "Nonprofits & Activism"
-#~ msgstr "Mittetulundus & Aktivism"
-
-#
-#~ msgid "Norwegian"
-#~ msgstr "Norra"
-
-#
-#~ msgid "Not fetching feed entries"
-#~ msgstr "Otsingut ei toimu"
-
-#
-#~ msgid "Number of scheduled recordings left."
-#~ msgstr "Järgijäänud määratud salvestuste arv."
-
-#
-#~ msgid "Offset after recording (in m)"
-#~ msgstr "Ajavaru pärast salvestust (min)"
-
-#
-#~ msgid "Offset before recording (in m)"
-#~ msgstr "Ajavaru enne salvestust (min)"
-
-#
-#~ msgid "On any service"
-#~ msgstr "Igal kanalil"
-
-#
-#~ msgid "On same service"
-#~ msgstr "Samal kanalil"
-
-#
-#~ msgid "Online-Upgrade"
-#~ msgstr "Online-uuendus"
-
-#
-#~ msgid "Only AutoTimers created during this session"
-#~ msgstr "Ainult sel korral loodud Autotaimerid"
-
-#
-#~ msgid "Only match during timespan"
-#~ msgstr "Ajavahemikus ainuke kokkulangevus"
-
-#
-#~ msgid "Only on Service: %s"
-#~ msgstr "Ainult kanalil: %s"
-
-#
-#~ msgid "Open plugin menu"
-#~ msgstr "Ava laienduse menüü"
-
-#
-#~ msgid "Outer Bound (+/-)"
-#~ msgstr "Väline piir (+/-)"
-
-#~ msgid "Overlay for scrolling bars"
-#~ msgstr "Liikuvate ribade ülekate"
-
-#
-#~ msgid "Override found with alternative service"
-#~ msgstr "Teise kanaliga on leitud kattuvus"
-
-#
-#~ msgid "Package details for: "
-#~ msgstr "Paketi detailid: "
-
-#
-#~ msgid "Page"
-#~ msgstr "Lehekülg"
-
-#~ msgid ""
-#~ "Partnerbox allows editing a remote Dreambox's record timers and stream "
-#~ "its TV  program."
-#~ msgstr ""
-#~ "Partnerbox lubab muuta server tuuneri salvestustaimereid ja voogesitada "
-#~ "TV   programme."
-
-#
-#~ msgid "People & Blogs"
-#~ msgstr "Inimesed & blogid"
-
-#~ msgid "PermanentClock shows the clock permanently on the screen."
-#~ msgstr "PermanentClock näitab ekraanil pidevalt kellaaega."
-
-#
-#~ msgid "Pets & Animals"
-#~ msgstr "Loomad & Lemmikloomad"
-
-#
-#~ msgid "Play YouTube movies"
-#~ msgstr "Mängi YouTube filme"
-
-#~ msgid "Play music from Last.fm"
-#~ msgstr "Mängi muusikat Last.fm-st"
-
-#~ msgid "Play music from Last.fm."
-#~ msgstr "Mängi muusikat Last.fm-st."
-
-#
-#~ msgid "Play next video"
-#~ msgstr "Mängi järgmist videot"
-
-#
-#~ msgid "Play video again"
-#~ msgstr "Mängi video uuesti"
-
-#~ msgid "Play videos from PC on your Dreambox"
-#~ msgstr "Mängi vastuvõtjaga videosid PC pealt"
-
-#~ msgid "Playback of Youtube through a PC"
-#~ msgstr "Youtube mahamängimine PC kaudu"
-
-#~ msgid "Player for Network and Internet Streams"
-#~ msgstr "Võrgu ja Interneti striimide mängija"
-
-#~ msgid "Player for Network and Internet Streams."
-#~ msgstr "Võrgu ja Interneti striimide mängija."
-
-#~ msgid "Plays your favorite music and videos"
-#~ msgstr "Mängib Su lemmikmuusikat ja videosid"
-
-#
-#~ msgid "Please choose .NFI image file from feed server to download"
-#~ msgstr "Palun vali allalaetav .NFI tarkvara fail serverist"
-
-#~ msgid ""
-#~ "Please disconnect all USB devices from your Dreambox and (re-)attach the "
-#~ "target USB stick (minimum size is 64 MB) now!"
-#~ msgstr ""
-#~ "Palun ühenda lahti kõik USB seadmed vastuvõtjal ja ühenda (uuesti) nüüd "
-#~ "USB pulk (min suurus 64mb) !"
-
-#
-#~ msgid "Please enter the old pin code"
-#~ msgstr "Sisesta vana kood"
-
-#
-#~ msgid "Please enter your search term."
-#~ msgstr "Palun sisesta otsingusõna."
-
-#
-#~ msgid "Please provide a Text to match"
-#~ msgstr "Palun sisesta otsitav tekst"
-
-#
-#~ msgid "Please select .NFI flash image file from medium"
-#~ msgstr "Palun vali .NFI tarkvara fail meediumile"
-
-#
-#~ msgid "Please select a standard feed or try searching for videos."
-#~ msgstr "Palun vali standardfeed või proovi videote otsingut."
-
-#
-#~ msgid "Please select target directory or medium"
-#~ msgstr "Palun vali sihtkaust või meedia"
-
-#
-#~ msgid "Please wait (Step 2)"
-#~ msgstr "Palun oota (toiming 2)"
-
-#
-#~ msgid "Please wait for activation of your network mount..."
-#~ msgstr "Palun oota oma võrguühenduse aktiveerimist..."
-
-#
-#~ msgid "Please wait while removing your network mount..."
-#~ msgstr "Palun oota oma võrguühenduse kõrvaldamist..."
-
-#
-#~ msgid "Please wait while updating your network mount..."
-#~ msgstr "Palun oota oma võrguühenduse uuendamist..."
-
-#
-#~ msgid "Plugin manager"
-#~ msgstr "Laienduste haldur"
-
-#
-#~ msgid "Plugin manager help..."
-#~ msgstr "Laienduste halduri abi"
-
-#
-#~ msgid "Plugin manager process information..."
-#~ msgstr "Laienduste halduri toimingu teave"
-
-#~ msgid "Plugin: %(plugin)s , Version: %(version)s"
-#~ msgstr "Lisa: %(plugin)s , Versioon: %(version)s"
-
-#~ msgid "PodCast streams podcasts to your Dreambox."
-#~ msgstr "PodCast esitab/striimib podcast'i Sinu vastuvõtjasse."
-
-#
-#~ msgid "Poland"
-#~ msgstr "Poola"
-
-#
-#~ msgid "Polish"
-#~ msgstr "Poola"
-
-#
-#~ msgid "Poll Interval (in h)"
-#~ msgstr "Hääletuse intervall ( h)"
-
-#
-#~ msgid "Poll automatically"
-#~ msgstr "Hääleta automaatselt"
-
-#
-#~ msgid "Portuguese"
-#~ msgstr "Portugali"
-
-#~ msgid "PositionerSetup helps you installing a motorized dish"
-#~ msgstr "PositionerSetup abistab mootoriga antenni seadistamisel"
-
-#
-#~ msgid "Press OK to edit selected settings."
-#~ msgstr "Vajuta OK valitud seade muutmiseks."
-
-#
-#~ msgid "Press OK to mount this share!"
-#~ msgstr "Vajuta OK võrgukoha haakimiseks!"
-
-#
-#~ msgid "Press OK to mount!"
-#~ msgstr "Vajuta OK haakimiseks!"
-
-#
-#~ msgid "Press OK to save settings."
-#~ msgstr "Vajuta OK seadete salvestamiseks."
-
-#
-#~ msgid "Press OK to select."
-#~ msgstr "Vajuta OK valikuks."
-
-#
-#~ msgid "Press OK to view full changelog"
-#~ msgstr "Vajuta OK kogu muutuste logi vaatamiseks"
-
-#
-#~ msgid "Preview AutoTimer"
-#~ msgstr "Autotaimeri eelvaade"
-
-#~ msgid "Preview screenshots of running tv shows"
-#~ msgstr "Käivate TV saadete ekraanitõmmiste eelvaade"
-
-#~ msgid "Preview screenshots of running tv shows."
-#~ msgstr "Käivate TV saadete ekraanitõmmiste eelvaade."
-
-#
-#~ msgid "Published"
-#~ msgstr "Avalikud"
-
-#~ msgid "Python frontend for /tmp/mmi.socket."
-#~ msgstr "Pythoni programm /tmp/mmi.socket jaoks."
-
-#
-#~ msgid "RSS Feed URI"
-#~ msgstr "RSS-i URL"
-
-#~ msgid "RSS viewer"
-#~ msgstr "RSS näitaja"
-
-#
-#~ msgid "Ram Disk"
-#~ msgstr "RAM-ketas"
-
-#
-#~ msgid "Rating"
-#~ msgstr "Hinnang"
-
-#~ msgid "Ratings: "
-#~ msgstr "Hinnangud: "
-
-#
-#~ msgid "Really quit MyTube Player?"
-#~ msgstr "Kas sulgeme MyTube mängija?"
-
-#
-#~ msgid "Recently featured"
-#~ msgstr "Hiljuti esile tõstetud"
-
-#~ msgid "Reconstruct .ap and .sc files"
-#~ msgstr "Taasta .ap ja .sc failid"
-
-#~ msgid "Reconstruct missing or corrupt .ap and .sc files of recorded movies."
-#~ msgstr "Taasta puuduvad või vigased .ap ja .sc failid salvestatud filmidel."
-
-#
-#~ msgid "Record a maximum of x times"
-#~ msgstr "Salvesta maksimaalselt x korda"
-
-#
-#~ msgid "Record on"
-#~ msgstr "Salvestus käib"
-
-#
-#~ msgid "Recording paths"
-#~ msgstr "Salvestuskaustad"
-
-#
-#~ msgid "Reenter new pin"
-#~ msgstr "Korda koodi"
-
-#
-#~ msgid "Related video entries."
-#~ msgstr "Seotud videod."
-
-#
-#~ msgid "Relevance"
-#~ msgstr "Asjakohasus"
-
-#
-#~ msgid "Remove selected AutoTimer"
-#~ msgstr "Kustuta valitud autotaimer"
-
-#
-#~ msgid "Remove the broken .NFI file?"
-#~ msgstr "Eemaldan vigase .NFI tarkvara faili?"
-
-#
-#~ msgid "Remove the incomplete .NFI file?"
-#~ msgstr "Eemaldan pooliku .NFI tarkvara?"
-
-#~ msgid "Rename your movies"
-#~ msgstr "Muuda filmi nimed"
-
-#~ msgid "Replace the minute input for the seek functions with a seekbar."
-#~ msgstr "Asenda otsiriba minutite sisestus otsingufunktsioonide jaoks."
-
-#~ msgid "Replace the rewind  input with a seekbar"
-#~ msgstr "Asenda tagasikerimine  sisestus otsiribaga"
-
-#
-#~ msgid "Require description to be unique"
-#~ msgstr "Nõua unikaalset kirjeldust"
-
-#
-#~ msgid "Rescan"
-#~ msgstr "Otsi uuesti"
-
-#
-#~ msgid "Reset count"
-#~ msgstr "Nulli arvesti"
-
-#
-#~ msgid "Reset saved position"
-#~ msgstr "Nulli salvestatud positsioon"
-
-#
-#~ msgid "Response video entries."
-#~ msgstr "Vastused video otsingule."
-
-#~ msgid "Restart GUI"
-#~ msgstr "Taaskäivita Enigma2"
-
-#
-#~ msgid "Restore backups..."
-#~ msgstr "Taasta varukoopiad"
-
-#
-#~ msgid "Restore running..."
-#~ msgstr "Taaste käib..."
-
-#~ msgid "Restore your Dreambox with a USB stick"
-#~ msgstr "Taasta vastuvõtja tarkvara USB pulga abil"
-
-#
-#~ msgid ""
-#~ "Restoring the settings is done. Please press OK to activate the restored "
-#~ "settings now."
-#~ msgstr ""
-#~ "Seadete taastamine tehtud. Vajuta OK taastatud seadete aktiveerimiseks."
-
-#
-#~ msgid "Restrict \"after event\" to a certain timespan?"
-#~ msgstr "Kas keelata \"pärast sündmust\" teatud ajavahemikuks?"
-
-#
-#~ msgid "Russia"
-#~ msgstr "Venemaa"
-
-#
-#~ msgid "Russian"
-#~ msgstr "Vene"
-
-#~ msgid "SatelliteEquipmentControl allows you to fine-tune DiSEqC-settings"
-#~ msgstr "SatelliteEquipmentControl võimaldab DiSEqC seadete täppisseadmist"
-
-#~ msgid "Satfinder helps you to align your dish"
-#~ msgstr "Satfinder abistab antenni häälestamisel"
-
-#
-#~ msgid "Satteliteequipment"
-#~ msgstr "Satelliidiseadmete  seaded"
-
-#
-#~ msgid "Save current delay to key"
-#~ msgstr "Salvest kehtiv viide võtmeks"
-
-#
-#~ msgid "Save to key"
-#~ msgstr "Salvesta võtmeks"
-
-#
-#~ msgid "Save values and close plugin"
-#~ msgstr "Salvesta väärtused ja sulge laiendus"
-
-#
-#~ msgid "Save values and close screen"
-#~ msgstr "Salvesta väärtused ja sulge aken"
-
-#
-#~ msgid "Scan NFS share"
-#~ msgstr "Otsi NFS võrgukohta"
-
-#~ msgid "Scan devices for playable media files"
-#~ msgstr "Otsi seadmelt meediafaile"
-
-#
-#~ msgid "Scan range"
-#~ msgstr "Otsi piirkonda"
-
-#
-#~ msgid ""
-#~ "Scan your network for wireless Access Points and connect to them using "
-#~ "your WLAN USB Stick\n"
-#~ msgstr ""
-#~ "Otsi WiFi-t ja püüa ühendada, kasutades vastuvõtjaga ühendatud USB WiFi "
-#~ "adapterit\n"
-
-#
-#~ msgid ""
-#~ "Scan your network for wireless Access Points and connect to them using "
-#~ "your selected wireless device.\n"
-#~ msgstr ""
-#~ "Otsi WiFi võrke ja püüa nendega ühenduda, kasutades Teie poolt valitud "
-#~ "WLAN seadet.\n"
-
-#~ msgid "Scans default lamedbs sorted by satellite"
-#~ msgstr "Otsib satelliidi järgi valitud vaikimisi lamedb faile"
-
-#
-#~ msgid "Science & Technology"
-#~ msgstr "Teadus & Tehnoloogia"
-
-#
-#~ msgid "Search Term(s)"
-#~ msgstr "Otsisõna(d)"
-
-#
-#~ msgid "Search category:"
-#~ msgstr "Otsi kategooriat:"
-
-#
-#~ msgid "Search for network shares"
-#~ msgstr "Otsi võrgukohti"
-
-#
-#~ msgid "Search for network shares..."
-#~ msgstr "Otsi võrgukohti..."
-
-#
-#~ msgid "Search region:"
-#~ msgstr "Otsi piirkond:"
-
-#
-#~ msgid "Search restricted content:"
-#~ msgstr "Otsi keelatud sisu:"
-
-#
-#~ msgid "Search strictness"
-#~ msgstr "Otsingu põhjalikkus"
-
-#~ msgid "Search through the EPG"
-#~ msgstr "Otsi EPG kaudu"
-
-#
-#~ msgid "Search type"
-#~ msgstr "Otsingu tüüp"
-
-#~ msgid "Searching your network. Please wait..."
-#~ msgstr "Otsin võrku. Palun oota..."
-
-#
-#~ msgid "Security service not running."
-#~ msgstr "Turvateenus ei tööta."
-
-#~ msgid "See service-epg (and PiP) from other channels in an infobar."
-#~ msgstr "Vaata kanali epg-d (ja PIP) teise kanali inforibal."
-
-#
-#~ msgid "Select IPKG source to edit..."
-#~ msgstr "Vali IPKG allikas muutmiseks"
-
-#
-#~ msgid "Select a timer to import"
-#~ msgstr "Vali taimer importimiseks"
-
-#
-#~ msgid "Select audio mode"
-#~ msgstr "Vali heli väljund"
-
-#
-#~ msgid "Select bouquet to record on"
-#~ msgstr "Vali favoriit millelt salvestada"
-
-#
-#~ msgid "Select channel to record on"
-#~ msgstr "Vali kanal millelt salvestada"
-
-#
-#~ msgid "Select files for backup. Currently selected:\n"
-#~ msgstr "Vali varundamiseks failid. Hetkel on valitud:\n"
-
-#
-#~ msgid "Select files/folders to backup..."
-#~ msgstr "Vali failid/kaustad varundamiseks"
-
-#
-#~ msgid "Select image"
-#~ msgstr "Vali pilt"
-
-#
-#~ msgid "Select new feed to view."
-#~ msgstr "Vali uus kanal/Feed vaatamiseks."
-
-#
-#~ msgid "Select the key you want to set to %i ms"
-#~ msgstr "Vali nupp, mille tahad seada %i ms jaoks"
-
-#
-#~ msgid "Select the location to save the recording to."
-#~ msgstr "Vali salvestise jaoks sobiv asukoht."
-
-#
-#~ msgid "Select type of Filter"
-#~ msgstr "Vali filtri tüüp"
-
-#
-#~ msgid "Select video input"
-#~ msgstr "Vali video sisend"
-
-#
-#~ msgid "Select whether or not you want to enforce case correctness."
-#~ msgstr "Vali, kas soovid kasutada tähesuuruse korrektsuse jälgimist."
-
-#
-#~ msgid "Select your choice."
-#~ msgstr "Tee oma valik."
-
-#
-#~ msgid "Selected source image"
-#~ msgstr "Valitud tarkvara"
-
-#
-#~ msgid "Serbian"
-#~ msgstr "Serbia"
-
-#
-#~ msgid "Server IP"
-#~ msgstr "Serveri IP"
-
-#
-#~ msgid "Server share"
-#~ msgstr "Serveri võrgukoht"
-
-#
-#~ msgid "Service delay"
-#~ msgstr "Kanali viide"
-
-#~ msgid "Set Bitstream/PCM audio delays"
-#~ msgstr "Määra Bitivoo/PCM audio viide"
-
-#
-#~ msgid "Set as default Interface"
-#~ msgstr "Määra vaikimisi võrguliideseks"
-
-#
-#~ msgid "Set delay to %i ms (can be set)"
-#~ msgstr "Määra viide %i ms (saab muuta)"
-
-#
-#~ msgid "Set maximum duration"
-#~ msgstr "Sea maksimaalne kestus"
-
-#
-#~ msgid "Set this NO to disable this AutoTimer."
-#~ msgstr "Autotaimeri keelamiseks vali EI."
-
-#~ msgid "Sets your Dreambox into Deep-Standby"
-#~ msgstr "Paneb vastuvõtja sügavootele"
-
-#
-#~ msgid "Setting key canceled"
-#~ msgstr "Seade nupp on tühistatud"
-
-#
-#~ msgid "Setup for the Audio Sync Plugin"
-#~ msgstr "Laienduse Audio Sync seaded"
-
-#
-#~ msgid "Short Movies"
-#~ msgstr "Lühifilmid"
-
-#
-#~ msgid "Should this AutoTimer be restricted to a timespan?"
-#~ msgstr "Kas keelata see AutoTimer antud ajavahemikus?"
-
-#
-#~ msgid "Should this AutoTimer only match up to a certain event duration?"
-#~ msgstr "Kas see AutoTimer peaks vastama ainult teatud kindlale kestusele?"
-
-#
-#~ msgid ""
-#~ "Should timers created by this AutoTimer be recorded to a custom location?"
-#~ msgstr ""
-#~ "Kas selle AutoTimeri poolt seatud taimerid tuleks salvestada määratud "
-#~ "asukohta?"
-
-#
-#~ msgid "Show in extension menu"
-#~ msgstr "Näita laienduste menüüs"
-
-#~ msgid "Show webcam pictures on your TV Screen"
-#~ msgstr "Näita veebikaamera pilte TV ekraanil"
-
-#~ msgid ""
-#~ "Shows a list containing the zapping-history and allows user to zap to the "
-#~ "entries or to modify them."
-#~ msgstr ""
-#~ "Näitab kanalite vahetuse ajaloo nimekirja ja võimaldab kasutajal vahetada "
-#~ "või muuta sisestusi."
-
-#~ msgid "Shows a list of recent zap entries"
-#~ msgstr "Näitab äsjaste kanalivahetuste nimekirja"
-
-#~ msgid "Shows average bitrate of video and audio"
-#~ msgstr "Näitab video ja audio keskmist bitikiirust"
-
-#~ msgid "Shows statistics of watched services"
-#~ msgstr "Näitab vaadatud kanalite statistikat"
-
-#~ msgid "Shows the clock permanently on the screen"
-#~ msgstr "Näitab püsivalt kella ekraanil"
-
-#~ msgid "Simple IRC GroupChat client for e2 #dm8000-vip channel"
-#~ msgstr "Lihtne IRC klient e2 #dm8000-vip kanalile"
-
-#~ msgid "SimpleRSS allows reading RSS newsfeeds on your Dreambox."
-#~ msgstr "SimpleRSS võimaldab RSS uudisvoogude lugemist vastuvõtjaga."
-
-#
-#~ msgid "Skin..."
-#~ msgstr "Välimus"
-
-#~ msgid "SkinSelector shows a menu with selectable skins"
-#~ msgstr "SkinSelector näitab valitavate välimustega menüüd"
-
-#
-#~ msgid "Slovakian"
-#~ msgstr "Slovakkia"
-
-#
-#~ msgid "Slovenian"
-#~ msgstr "Sloveenia"
-
-#
-#~ msgid "Software manager"
-#~ msgstr "Tarkvara haldur"
-
-#
-#~ msgid "Software manager..."
-#~ msgstr "Tarkvara haldur"
-
-#~ msgid "SoftwareManager manages your Dreambox software"
-#~ msgstr "Tarkvarahaldur haldab Teie vastuvõtja tarkvara"
-
-#
-#~ msgid "Somewhere else"
-#~ msgstr "Kusagil mujal"
-
-#
-#~ msgid "Sorry, video is not available!"
-#~ msgstr "Kahjuks pole video saadaval!"
-
-#~ msgid "Sort A-Z"
-#~ msgstr "Tähestikujärj."
-
-#
-#~ msgid "Sort AutoTimer"
-#~ msgstr "Järjestai autotaimerit"
-
-#
-#~ msgid "Sort Time"
-#~ msgstr "Ajajärj."
-
-#
-#~ msgid "South Korea"
-#~ msgstr "Lõuna Korea"
-
-#
-#~ msgid "Spain"
-#~ msgstr "Hispaania"
-
-#
-#~ msgid "Spanish"
-#~ msgstr "Hispaania"
-
-#
-#~ msgid "Sports"
-#~ msgstr "Sport"
-
-#
-#~ msgid "Start Webinterface"
-#~ msgstr "Käivita veebiliides"
-
-#
-#~ msgid "Start with following feed:"
-#~ msgstr "Alusta järgmise kanali/Feediga:"
-
-#
-#~ msgid "Std. Feeds"
-#~ msgstr "Tava vood"
-
-#~ msgid "Step by step network configuration"
-#~ msgstr "Samm-sammult võrgu häälestamine"
-
-#
-#~ msgid "Step in ms for arrow keys"
-#~ msgstr "Sisestab ms noolenuppude jaoks"
-
-#
-#~ msgid "Step in ms for key %i"
-#~ msgstr "Sisestab ms nupu %i jaoks"
-
-#
-#~ msgid "Step in ms for keys '%s'"
-#~ msgstr "Sisestab ms nuppude '%s' jaoks"
-
-#
-#~ msgid "Stereo"
-#~ msgstr "Stereo"
-
-#~ msgid "Stream podcasts"
-#~ msgstr "Mängi podcast'e"
-
-#~ msgid "Streaming modules for the orf.at iptv web page."
-#~ msgstr "Voogesitus moodul orf.at iptv veebilehele."
-
-#~ msgid "Subservice list..."
-#~ msgstr "Alamteenuste nimekiri..."
-
-#
-#~ msgid "Sweden"
-#~ msgstr "Rootsi"
-
-#
-#~ msgid "Swedish"
-#~ msgstr "Rootsi"
-
-#
-#~ msgid "Tag 1"
-#~ msgstr "Võtmesõna 1"
-
-#
-#~ msgid "Tag 2"
-#~ msgstr "Võtmesõna 2"
-
-#
-#~ msgid "Tags the Timer/Recording will have."
-#~ msgstr "Nimesilt taimerile/salvestusele."
-
-#~ msgid "Tags: "
-#~ msgstr "Silt: "
-
-#
-#~ msgid "Taiwan"
-#~ msgstr "Taivan"
-
-#
-# File: tmp/enigma2_plugins/genuinedreambox/src/plugin.py, line: 80
-#~ msgid "Test again"
-#~ msgstr "Testi uuesti"
-
-#~ msgid "Test your DiSEqC equipment"
-#~ msgstr "Proovi oma DiSEqC seadmeid"
-
-#
-#~ msgid ""
-#~ "Thank you for using the wizard. Your new AutoTimer has been added to the "
-#~ "List.\n"
-#~ "Please press OK to continue."
-#~ msgstr ""
-#~ "Tänan abilise kasutamise eest, uus AutoTimer on lisatud nimekirja. \n"
-#~ "Vajuta jätkamiseks OK."
-
-#~ msgid ""
-#~ "The CleanupWizard informs you when the internal free memory of your "
-#~ "dreambox has dropped below a definable threshold.You can use this wizard "
-#~ "to remove some plugins."
-#~ msgstr ""
-#~ "Cleanup Wizard teavitab vastuvõtja sisemise vaba mälumahu langemisest "
-#~ "allapoole määratud suurust. Saad kasutada seda abilist mõne lisa "
-#~ "kustutamiseks."
-
-#~ msgid ""
-#~ "The Elektro Power Save plugin puts the box from standby to sleep mode "
-#~ "(Deep Standby) at certain times.\n"
-#~ "This only happens if the box is in standby and no recording is running or "
-#~ "sheduled in the next 20 minutes.\n"
-#~ "The box automatically wakes up for recordings or at the end of the sleep "
-#~ "time. You therefore don't have to wait until it is on again."
-#~ msgstr ""
-#~ "Elektro Power Save laiendus seab vastuvõtja ootereziimist sügavootele "
-#~ "teatud juhtudel. \n"
-#~ "See juhtub ainult siis, kui vastuvõtja on ootel ja lähema 20 minuti "
-#~ "jooksul ei salvestata või planeerita salvestust. \n"
-#~ "Vastuvõtja alustab tööd ise või hakkab salvestama. Sellepärast ei pea "
-#~ "ootama vastuvõtja sisselülitumist."
-
-#~ msgid ""
-#~ "The Hotplug plugin notifies your system of newly added or removed devices."
-#~ msgstr ""
-#~ "Hotplug laiendus teavitab hiljuti süsteemi lisatud või süsteemist "
-#~ "kõrvaldatud seadmetest."
-
-#~ msgid ""
-#~ "The PicturePlayer displays your photos on the TV.\n"
-#~ "You can view them as thumbnails or slideshow."
-#~ msgstr ""
-#~ "PicturePlayer näiab TV ekraanil fotosid. \n"
-#~ "Saad neid vaadata pisipiltidena või slaidide järgnevusena."
-
-#~ msgid ""
-#~ "The Satfinder plugin helps you to align your dish.\n"
-#~ "It shows you informations about signal rate and errors."
-#~ msgstr ""
-#~ "Satfinder laiendus aitab SAT antenni häälestada. \n"
-#~ "See näitab signaali taseme ja signaali vigade infot."
-
-#~ msgid ""
-#~ "The SkinSelector shows a menu with selectable skins.\n"
-#~ "It's now easy to change the look and feel of your Dreambox."
-#~ msgstr ""
-#~ "SkinSelector näitab valitavate välimuste menüüd. \n"
-#~ "Nii on lihtne muuta vastuvõtja pildi väljanägemist ja kasutust."
-
-#~ msgid ""
-#~ "The SoftwareManager manages your Dreambox software.\n"
-#~ "It's easy to update your receiver's software, install or remove plugins "
-#~ "or even backup and restore your system settings."
-#~ msgstr ""
-#~ "SoftwareManager tegeleb vastuvõtja tarkvaraga. \n"
-#~ "Nii on lihtne uuendada vastuvõtja tarkvara, seada või kustutada lisasid "
-#~ "ning varundada ja taastada süsteemi seadeid."
-
-#
-#~ msgid ""
-#~ "The Timer will not be added to the List.\n"
-#~ "Please press OK to close this Wizard."
-#~ msgstr ""
-#~ "Taimerit ei lisata nimekirja. \n"
-#~ "Vajuta abilise sulgemiseks OK."
-
-#
-#~ msgid ""
-#~ "The Timespan of an AutoTimer is the first 'advanced' attribute. If a "
-#~ "timespan is specified an event will only match this AutoTimer if it lies "
-#~ "inside of this timespan."
-#~ msgstr ""
-#~ "AutoTimer abilise Timespan on esimene laiendatud vahend. Kui ajavahemik "
-#~ "on määratud, vastab antud AutoTimer'ile ainult selle ajavahemiku sees "
-#~ "olev sündmus."
-
-#
-#~ msgid ""
-#~ "The USB stick is now bootable. Do you want to download the latest image "
-#~ "from the feed server and save it on the stick?"
-#~ msgstr ""
-#~ "USB pulk on nüüd alglaetav.Kas Te soovite alla laadida serverist "
-#~ "vastuvõtja tarkvara ja paigaldada seda USB pulgale?"
-
-#~ msgid ""
-#~ "The VideoEnhancement plugin provides advanced video enhancement settings."
-#~ msgstr "VideoEnhancement lisa võimaldab kasutada laiendatud videoseadeid."
-
-#~ msgid ""
-#~ "The VideoTune helps fine-tuning your tv display.\n"
-#~ "You can control brightness and contrast of your tv."
-#~ msgstr ""
-#~ "VideoTune aitab TV ekraani pilti seada. \n"
-#~ "Saad oma TV heledust ja kontrastsust muuta."
-
-#~ msgid "The Videomode plugin provides advanced video mode settings."
-#~ msgstr "Videomode laiendus võimaldab kasutada laiendatud videoseadeid."
-
-#~ msgid ""
-#~ "The WirelessLan plugin helps you configuring your WLAN network interface."
-#~ msgstr "WirelessLan laiendus aitab seada WLAN võrgu liidest."
-
-#
-#~ msgid ""
-#~ "The counter can automatically be reset to the limit at certain intervals."
-#~ msgstr ""
-#~ "Loendurit saab automaatselt seada piirangutele teatud ajavahemike järel."
-
-#
-#~ msgid "The match attribute is mandatory."
-#~ msgstr "Vastete omadus on kohustuslik."
-
-#
-#~ msgid ""
-#~ "The md5sum validation failed, the file may be corrupted! Are you sure "
-#~ "that you want to burn this image to flash memory? You are doing this at "
-#~ "your own risk!"
-#~ msgstr ""
-#~ "NFI failil puudub md5 kontroll ja see võib vigane olla.Kas soovid ikkagi "
-#~ "tarkvara fläsh mällu installida?Ära hiljem süüdista kedagi "
-#~ "ebaõnnestumises!!"
-
-#
-#~ msgid ""
-#~ "The md5sum validation failed, the file may be downloaded incompletely or "
-#~ "be corrupted!"
-#~ msgstr ""
-#~ "MD5 faili kontroll nurjus.Fail on kas vigane või poolikult allalaetud!!!"
-
-#
-#~ msgid "The pin code has been changed successfully."
-#~ msgstr "Kood vahetatud."
-
-#
-#~ msgid "The pin codes you entered are different."
-#~ msgstr "Koodid on erinevad."
-
-#~ msgid "The skin is in KingSize-definition 1024x576"
-#~ msgstr "Välimus on KingSize eraldusega 1024x576"
-
-#
-#~ msgid "There was an error getting the feed entries. Please try again."
-#~ msgstr "Viga nimekirja toomisel. Palun proovige uuesti."
-
-#
-# File: tmp/enigma2_plugins/genuinedreambox/src/plugin.py, line: 130
-#~ msgid ""
-#~ "There's a certificate update available for your dreambox. Would you like "
-#~ "to apply this update now?"
-#~ msgstr "Teie Dreamboxile on sertifikaadi uuendus? Kas uuendame kohe?"
-
-#
-#~ msgid "This .NFI file does not contain a valid %s image!"
-#~ msgstr "See .NFI fail ei sisalda sobivat %s tarkvara!"
-
-#
-#~ msgid ""
-#~ "This .NFI file does not have a md5sum signature and is not guaranteed to "
-#~ "work. Do you really want to burn this image to flash memory?"
-#~ msgstr ""
-#~ "NFI failil puudub md5 kontroll ja see võib vigane olla.Kas soovid ikkagi "
-#~ "seda tarkvara fläsh mällu installida?"
-
-#~ msgid ""
-#~ "This .NFI file has a valid md5 signature. Continue programming this image "
-#~ "to flash memory?"
-#~ msgstr ""
-#~ "Tarkvara MD5 kontroll korras.Soovid jätkata tarkvara installimist "
-#~ "vastuvõtja fläsh mällu?"
-
-#
-#~ msgid "This Dreambox can't decode %s video streams!"
-#~ msgstr "Vastuvõtja ei suuda dekodeerida %s video voogesitust!"
-
-#
-#~ msgid "This Month"
-#~ msgstr "See kuu"
-
-#
-#~ msgid "This Week"
-#~ msgstr "See nädal"
-
-#
-#~ msgid ""
-#~ "This is a name you can give the AutoTimer. It will be shown in the "
-#~ "Overview and the Preview."
-#~ msgstr ""
-#~ "See on nimi, mille saab anda Autotimerile. Antud nime näidatakse nii "
-#~ "ülevaates kui ka eelvaates."
-
-#
-#~ msgid ""
-#~ "This is the delay in hours that the AutoTimer will wait after a search to "
-#~ "search the EPG again."
-#~ msgstr ""
-#~ "See on AutoTimeri ooteaeg tundides eelmise EPG info otsingu ja uue "
-#~ "otsingu vahel."
-
-#
-#~ msgid "This is the help screen. Feed me with something to display."
-#~ msgstr "See on abilise aken. Saada mulle midagi kuvamiseks."
-
-#
-#~ msgid "This is unsupported at the moment."
-#~ msgstr "Seda hetkel ei toetata."
-
-#
-#~ msgid ""
-#~ "This setting controls the behavior when a timer matches a found event."
-#~ msgstr ""
-#~ "See seadistus kontrollib vastuvõtja käitumist taimeri kattumisel leitud "
-#~ "sündmusega."
-
-#~ msgid ""
-#~ "This system tool is internally used to program the hardware with firmware "
-#~ "updates."
-#~ msgstr ""
-#~ "See süsteemivahend on kasutusel raudvara programmeerimiseks tarkvara "
-#~ "uuendustega."
-
-#
-#~ msgid ""
-#~ "This toggles the behavior on timer conflicts. If an AutoTimer matches an "
-#~ "event that conflicts with an existing timer it will not ignore this event "
-#~ "but add it disabled."
-#~ msgstr ""
-#~ "See määrab käitumise taimeri konflikti puhul. Kui AutoTimer vastab "
-#~ "sündmusele, mis on konfliktis olemasoleva taimeriga, lisatakse sündmus "
-#~ "mitte lubatuna."
-
-#
-#~ msgid "Time in minutes to append to recording."
-#~ msgstr "Salvestuse lõppu lisatav varuaeg minutites."
-
-#
-#~ msgid "Time in minutes to prepend to recording."
-#~ msgstr "Salvestise ette lisatav eelaeg minutites."
-
-#
-#~ msgid "Timer"
-#~ msgstr "Taimer"
-
-#
-#~ msgid "Timer type"
-#~ msgstr "Taimeri tüüp"
-
-#
-#~ msgid "Timeshift path..."
-#~ msgstr "Ajanihe"
-
-#~ msgid "To be used as simple downloading application by other Plugins."
-#~ msgstr "Kasutatakse teiste lisade poolt lihtsa allalaadimise võimalusena."
-
-#
-#~ msgid ""
-#~ "To update your Dreambox firmware, please follow these steps:\n"
-#~ "1) Turn off your box with the rear power switch and plug in the bootable "
-#~ "USB stick.\n"
-#~ "2) Turn mains back on and hold the DOWN button on the front panel pressed "
-#~ "for 10 seconds.\n"
-#~ "3) Wait for bootup and follow instructions of the wizard."
-#~ msgstr ""
-#~ "Vastuvõtja tarkvara uuendamiseks, tee palun järgmist:\n"
-#~ "1) Lülita vastuvõtja vooluvõrgust välja ja ühenda vastuvõtjaga alglaetav "
-#~ "USB pulk.\n"
-#~ "2) Lülita vastuvõtja uuesti vooluvõrku ja hoia all DOWN nuppu esipaneelil "
-#~ "10 sekundit.\n"
-#~ "3) Oota kuni vastuvõtja teeb alglaadimist ja täida edasisi vastuvõtja "
-#~ "juhiseid."
-
-#
-#~ msgid "Top favorites"
-#~ msgstr "Tipplemmikud"
-
-#
-#~ msgid "Top rated"
-#~ msgstr "Enim hinnatud"
-
-#~ msgid "TrafficInfo shows german traffic information."
-#~ msgstr "TrafficInfo näitab Saksa liiklusinfot."
-
-#
-#~ msgid "Travel & Events"
-#~ msgstr "Reisimine & Sündmused"
-
-#
-#~ msgid "Trying to download the Youtube feed entries. Please wait..."
-#~ msgstr "Proovin laadida Youtube videote nimekirja. Palun oota..."
-
-#
-#~ msgid "Trying to download the Youtube search results. Please wait..."
-#~ msgstr "Üritan alla laadida YouTube otsingu tulemusi. Oota..."
-
-#
-#~ msgid "Turkish"
-#~ msgstr "Türgi"
-
-#
-#~ msgid "USB"
-#~ msgstr "USB"
-
-#
-#~ msgid "Ukrainian"
-#~ msgstr "Ukraina"
-
-#~ msgid ""
-#~ "Unable to complete filesystem check.\n"
-#~ "Error: "
-#~ msgstr ""
-#~ "Failisüsteemi kontroll nurjus.\n"
-#~ "Viga: "
-
-#~ msgid ""
-#~ "Unable to initialize harddisk.\n"
-#~ "Error: "
-#~ msgstr ""
-#~ "Kõvaketta formaatimine nurjus.\n"
-#~ "Viga: "
-
-#
-#~ msgid ""
-#~ "Undo\n"
-#~ "Install"
-#~ msgstr ""
-#~ "Tagasi\n"
-#~ "Paigalda"
-
-#
-#~ msgid ""
-#~ "Undo\n"
-#~ "Remove"
-#~ msgstr ""
-#~ "Tagasi\n"
-#~ "Eemalda"
-
-#
-#~ msgid "United States"
-#~ msgstr "USA"
-
-#~ msgid ""
-#~ "Unless this is enabled AutoTimer will NOT automatically look for events "
-#~ "matching your AutoTimers but only when you leave the GUI with the green "
-#~ "button."
-#~ msgstr ""
-#~ "Kuni selle lubamiseni ei kontrolli AutoTimer automaatselt sündmuste "
-#~ "kokkusobivust seatud AutoTimeritega. Kontroll toimub GUI'st (graafilisest "
-#~ "kasutajaliidesest) lahkumisel rohelist nuppu vajutades."
-
-#~ msgid "UnwetterInfo shows german storm information."
-#~ msgstr "UnwetterInfo näitab Saksa tormiinformatsiooni."
-
-#~ msgid "Update done..."
-#~ msgstr "Uuendus on valmis..."
-
-#
-# File: tmp/enigma2_plugins/genuinedreambox/src/plugin.py, line: 170
-#~ msgid ""
-#~ "Update done... The genuine dreambox test will now be rerun and should not "
-#~ "ask you to update again."
-#~ msgstr ""
-#~ "Uuendus valmis ... Audentne dreambox laiendus teeb nüüd uue testi ja ei "
-#~ "tohiks enam uuendamist küsida."
-
-#
-# File: tmp/enigma2_plugins/genuinedreambox/src/plugin.py, line: 150
-#~ msgid ""
-#~ "Updating failed. Nothing is broken, just the update couldn't be applied."
-#~ msgstr "Uuendus ebaõnnestus. Midagi pole katki, kuid uuendust ei toimunud."
-
-#
-#~ msgid "Updating, please wait..."
-#~ msgstr "Uuendan, palun oota..."
-
-#
-#~ msgid "Upper bound of timespan."
-#~ msgstr "Ajavahemiku ülemine piir."
-
-#
-#~ msgid ""
-#~ "Upper bound of timespan. Nothing after this time will be matched. Offsets "
-#~ "are not taken into account!"
-#~ msgstr ""
-#~ "Ajavahemiku ülemine piir. Pärast seda aega miski ei sobi. Arvesse ei "
-#~ "võeta püsimuutusi!"
-
-#
-#~ msgid "Use a custom location"
-#~ msgstr "Kasuta määratud asukohta"
-
-#~ msgid "Use and control multiple Dreamboxes with different RCs."
-#~ msgstr "Kasuta ja juhi mitut vastuvõtjat erinevate pultidega."
-
-#
-#~ msgid "Use non-smooth winding at speeds above"
-#~ msgstr "Kasutage mittesujuvat kerimist kiirustel"
-
-#
-#~ msgid "User management"
-#~ msgstr "Kasutaja haldamine"
-
-#
-#~ msgid "Usermanager"
-#~ msgstr "Kasutajahaldur"
-
-#~ msgid "Vali-XD skin"
-#~ msgstr "Vali-XD välimus"
-
-#~ msgid "Vali.HD.nano skin"
-#~ msgstr "Vali.HD.nano välimus"
-
-#~ msgid ""
-#~ "Verify your Dreambox authenticity by running the genuine dreambox plugin!"
-#~ msgstr "Kontrolli Dreamboxi audentsust \"genuine dreambox\" laienduse abil!"
-
-#
-#~ msgid "Video enhancement settings"
-#~ msgstr "Pildi paranduste seaded"
-
-#~ msgid "Video streaming from the orf.at web page"
-#~ msgstr "Videostriiming orf.at kodulehelt"
-
-#~ msgid "VideoEnhancement provides advanced video enhancement settings"
-#~ msgstr "VideoEnhancement võimaldab laiendatud video parandamise seadeid"
-
-#~ msgid "VideoTune helps fine-tuning your tv display"
-#~ msgstr "VideoTune aitab TV ekraani seada"
-
-#
-#~ msgid "Videobrowser exit behavior:"
-#~ msgstr "Videobrauserist väljumine:"
-
-#~ msgid "Videomode provides advanced video mode settings"
-#~ msgstr "Videomode võimaldab laiendatud videoseadeid"
-
-#
-#~ msgid "Videoplayer stop/exit behavior:"
-#~ msgstr "Videoplayer peatamine/väljumine:"
-
-#
-#~ msgid "View Count"
-#~ msgstr "Vaata loendust"
-
-#~ msgid "View Google maps"
-#~ msgstr "Vaata Google kaarte"
-
-#~ msgid "View Google maps with your Dreambox."
-#~ msgstr "Vaata Google kaarti oma vastuvõtjaga."
-
-#
-#~ msgid "View active downloads"
-#~ msgstr "Vaata aktiivseid allalaadimisi"
-
-#
-#~ msgid "View list of available Satteliteequipment extensions."
-#~ msgstr "Vaata satelliidiseadmete laienduste nimekirja."
-
-#
-#~ msgid "View related videos"
-#~ msgstr "Vaata seotud videoid"
-
-#
-#~ msgid "View response videos"
-#~ msgstr "Vaata vastuse videoid"
-
-#
-#~ msgid "View, edit or delete mountpoints on your Dreambox."
-#~ msgstr "Vaata, muuda või kustuta vastuvõtja haakepunkte."
-
-#
-#~ msgid "View, edit or delete usernames and passwords for your network."
-#~ msgstr "Vaata, muuda või kustuta oma võrgu kasutajanimesid ja salasõnu."
-
-#~ msgid "Views: "
-#~ msgstr "Vaated: "
-
-#
-#~ msgid "Wait time in ms before activation:"
-#~ msgstr "Ooteaeg ms enne aktiveerimist:"
-
-#~ msgid "Watch streams from ZDF Mediathek"
-#~ msgstr "Vaata voogesitust ZDF Mediathekist"
-
-#
-#~ msgid ""
-#~ "We will now test if your TV can also display this resolution at 50hz. If "
-#~ "your screen goes black, wait 20 seconds and it will switch back to 60hz.\n"
-#~ "Please press OK to begin."
-#~ msgstr ""
-#~ "Nüüd proovime, kas TV näitab seda eraldust 50 Hz juures. Kui ekraan läheb "
-#~ "mustaks, oota 20 sekundit ja TV lülitub tagasi 60 Hz peale.\n"
-#~ "Vajuta alustamiseks OK."
-
-#~ msgid "WeatherPlugin shows weatherforecasts on your Dreambox."
-#~ msgstr "Ilmalaiendus näitab ilmaennustust Teie vastuvõtjas."
-
-#~ msgid "Weatherforecast on your Dreambox"
-#~ msgstr "Ilmaennustus Teie vastuvõtjas"
-
-#
-#~ msgid "Webinterface"
-#~ msgstr "Veebiliides"
-
-#
-#~ msgid "Webinterface: Main Setup"
-#~ msgstr "Veebiliides: Seaded"
-
-#
-#~ msgid "Weekend"
-#~ msgstr "Nädalavahetus"
-
-#
-#~ msgid "Weekly (Monday)"
-#~ msgstr "Iganädalane (Esmaspäev)"
-
-#
-#~ msgid "Weekly (Sunday)"
-#~ msgstr "Iganädalane (Pühapäev)"
-
-#~ msgid ""
-#~ "Welcome.\n"
-#~ "\n"
-#~ "This Wizard will help you to create a new AutoTimer by providing "
-#~ "descriptions for common settings."
-#~ msgstr ""
-#~ "Teretulemast.\n"
-#~ "\n"
-#~ "See nõustaja aitab luua uut AutoTaimerit, vastavalt Teie kirjeldustele ja "
-#~ "üldseadetele."
-
-#
-#~ msgid ""
-#~ "When this option is enabled the AutoTimer won't match events where "
-#~ "another timer with the same description already exists in the timer list."
-#~ msgstr ""
-#~ "Kui see võimalus on aktiivne, ei vasta AutoTimer sündmustele isegi juhul, "
-#~ "kui samasuguse kirjeldusega teine taimer on juba taimerite nimekirjas."
-
-#
-#~ msgid "Wireless"
-#~ msgstr "Wifi"
-
-#~ msgid ""
-#~ "With AntiScrollbar you can cover up annoying ticker lines (e.g. in news "
-#~ "channels)."
-#~ msgstr ""
-#~ "AntiScrollbar abil saad varjata häirivad inforead (näiteks "
-#~ "uudistekanalites)."
-
-#~ msgid "With EPGSearch you can search through the EPG and create timers."
-#~ msgstr "EPGSearch abil saad vaadata läbi EPG-d ja seada taimerid."
-
-#~ msgid ""
-#~ "With Genuine Dreambox you can verify the authenticity of your Dreambox."
-#~ msgstr ""
-#~ "Genuine Dreambox laienduse abil saate kontrollida oma Dreamboxi "
-#~ "autentsust."
-
-#~ msgid ""
-#~ "With IMDb you can download and displays movie information (rating, "
-#~ "poster, cast, synopsis etc.) about the selected event."
-#~ msgstr ""
-#~ "IMBb abil saad alla laadida ja vaadata filmide infot (hindamine, poster, "
-#~ "näitlejad, sisu jne.) valitud filmi kohta."
-
-#~ msgid "With MovieRetitle you can rename your movies."
-#~ msgstr "MovieRetitle abil saad oma salvestisi ümber nimetada."
-
-#~ msgid ""
-#~ "With MyTube you can play YouTube videos directly on your TV without a PC."
-#~ msgstr ""
-#~ "MyTube abil saad mängida YouTube videosid oma TV ekraanil ilma arvutita."
-
-#~ msgid "With WebcamViewer you can watch webcams on your TV Screen."
-#~ msgstr "WebcamViewer abil saad jälgida veebikaamerate pilte TV ekraanil."
-
-#~ msgid ""
-#~ "With Werbezapper you can bridge commercials by creating short timers\n"
-#~ "(between 1 and 9 minutes long) which will automatically zap back to the "
-#~ "original channel after execution."
-#~ msgstr ""
-#~ "Werbezapper abil saad vältida reklaame lühikeste taimerite abil\n"
-#~ "(1 kuni 9 minuti kestvusega) mis vahetavad automaatselt tagasi algsele "
-#~ "kanalile pärast lõpetamist."
-
-#~ msgid ""
-#~ "With YouTubePlayer you can watch YouTube-Videos on the Dreambox.\n"
-#~ "This plugin requires a PC with the VLC program running."
-#~ msgstr ""
-#~ "YouTubePlayer abil saad vaadata YouTube videosid vastuvõtjas. \n"
-#~ "See lisa vajab arvutit töötava VLC programmiga."
-
-#~ msgid ""
-#~ "With the CommonInterfaceAssignment plugin it is possible to use "
-#~ "differentCI modules in your Dreambox and assign dedicated providers/"
-#~ "services or caids to each of them.\n"
-#~ "This allows watching a scrambled service while recording another one."
-#~ msgstr ""
-#~ "CommonInterfaceAssignment laiend võimaldab kasutada erinevaid CI "
-#~ "mooduleid vastuvõtjas ja määrata kindlaid kanaleid/levitajaid või CAID-e "
-#~ "igale moodulile. \n"
-#~ "See võimaldab vaadata salastatud kanalit teise kanali salvestamise ajal."
-
-#~ msgid ""
-#~ "With the CrashlogAutoSubmit plugin it is possible to automaticallymail "
-#~ "crashlogs found on your hard drive to Dream Multimedia."
-#~ msgstr ""
-#~ "CrashLogAutoSubmit võimaldab automaatselt saata kõvakettalt leitud "
-#~ "vealogisid vajalikule e-maili aadressile."
-
-#~ msgid ""
-#~ "With the DiseqcTester plugin you can test your satellite equipment for "
-#~ "DiSEqC compatibility and errors."
-#~ msgstr ""
-#~ "DiSEqCTester võimaldab kontrollida oma SAT seadmeid DiSEqC sobivuse ja "
-#~ "võimalike vigade osas."
-
-#~ msgid ""
-#~ "With the NFIFlash plugin it is possible to prepare a USB stick with an "
-#~ "Dreambox image.\n"
-#~ "It is then possible to flash your Dreambox with the image on that stick."
-#~ msgstr ""
-#~ "NFIFlash lisa abil saab ette valmistada USB pulga koos vastuvõtja "
-#~ "tarkvaraga. \n"
-#~ "Siis saab sellel pulgal asuva tarkvara salvestada vastuvõtja flash mällu."
-
-#~ msgid ""
-#~ "With the NetworkWizard you can easily configure your network step by step."
-#~ msgstr ""
-#~ "NetworkWizard abil saad lihtsalt seada oma võrgu parameetrid samm-sammult."
-
-#~ msgid ""
-#~ "With the PositionerSetup plugin it is easy to install and configure a "
-#~ "motorized dish."
-#~ msgstr ""
-#~ "PositionerSetup lisa abil saab lihtsalt üles seada mootoriga SAT antenni."
-
-#~ msgid ""
-#~ "With the SatelliteEquipmentControl plugin it is possible to fine-tune "
-#~ "DiSEqC-settings."
-#~ msgstr ""
-#~ "SatelliteEquipmentControl lisa abil saab seada ja peenhäälestada DiSEqC "
-#~ "seadeid."
-
-#
-#~ msgid "Wizard"
-#~ msgstr "Abiline"
-
-#
-#~ msgid "Writing NFI image file to flash completed"
-#~ msgstr ".NFI tarkvara on fläsh mällu saadetud"
-
-#
-#~ msgid "Yes, but play next video"
-#~ msgstr "Jah, kuid mängi järgmine video"
-
-#
-#~ msgid "Yes, but play previous video"
-#~ msgstr "Jah, kuid mängi eelmine video"
-
-#
-#~ msgid "Yes, keep them."
-#~ msgstr "Jah, hoia alles."
-
-#
-#~ msgid ""
-#~ "You do not seem to have a harddisk in your Dreambox. So backing up to a "
-#~ "harddisk is not an option for you."
-#~ msgstr ""
-#~ "Seadmes ei ole kõvaketast, seega ei saa teha varukoopiat kõvakettale"
-
-#
-#~ msgid ""
-#~ "You have chosen to backup to a compact flash card. The card must be in "
-#~ "the slot. We do not verify if it is really used at the moment. So better "
-#~ "backup to the harddisk!\n"
-#~ "Please press OK to start the backup now."
-#~ msgstr "Oled valinud turvakoopia mälukaardile. Vajuta OK alustamiseks nüüd."
-
-#
-#~ msgid ""
-#~ "You have chosen to backup to an usb drive. Better backup to the "
-#~ "harddisk!\n"
-#~ "Please press OK to start the backup now."
-#~ msgstr "Oled valinud turvakoopia USB-le. Vajuta OK alustamiseks nüüd."
-
-#
-#~ msgid ""
-#~ "You have chosen to backup to your harddisk. Please press OK to start the "
-#~ "backup now."
-#~ msgstr "Oled valinud turvakoopia kõvakettale. Vajuta OK alustamiseks nüüd."
-
-#
-#~ msgid ""
-#~ "You need to set a pin code and hide it from your children.\n"
-#~ "\n"
-#~ "Do you want to set the pin now?"
-#~ msgstr ""
-#~ "Sa pead määrama koodi ja peitma selle laste eest.\n"
-#~ "\n"
-#~ "Kas tahad määrata koodi nüüd?"
-
-#
-#~ msgid ""
-#~ "You successfully configured a new AutoTimer. Do you want to add it to the "
-#~ "list?\n"
-#~ "\n"
-#~ "You can go back a step by pressing EXIT on your remote."
-#~ msgstr ""
-#~ "Teie uus autotaimer on häälestatud. Soovite seda lisada nimekirja?\n"
-#~ "\n"
-#~ "Te saate minna samm tagasi vajutades puldil EXIT."
-
-#
-#~ msgid "Your TV works with 50 Hz. Good!"
-#~ msgstr "TV töötab 50 Hz korral. Tore!"
-
-#
-#~ msgid ""
-#~ "Your config file is not well-formed:\n"
-#~ "%s"
-#~ msgstr ""
-#~ "Teie seadete fail pole õieti tehtud:\n"
-#~ "%s"
-
-#
-#~ msgid ""
-#~ "Your network configuration has been activated.\n"
-#~ "A second configured interface has been found.\n"
-#~ "\n"
-#~ "Do you want to disable the second network interface?"
-#~ msgstr ""
-#~ "Võrguseaded on aktiveeritud.\n"
-#~ "Leitud on ka teine seadistatud liides.\n"
-#~ "\n"
-#~ "Kas lülitada teine seadistatud liides välja?"
-
-#
-#~ msgid "Your network mount has been activated."
-#~ msgstr "Teie võrgu haage on aktiveeritud."
-
-#
-#~ msgid "Your network mount has been removed."
-#~ msgstr "Teie võrgu haage on kustutatud."
-
-#
-#~ msgid "Your network mount has been updated."
-#~ msgstr "Teie võrgu haakepunkt on uuendatud."
-
-#~ msgid "ZDFMediathek allows you to watch streams from ZDF Mediathek."
-#~ msgstr "ZDFMediathek võimaldab vaadata striime ZDF Mediathek valikust."
-
-#~ msgid "Zap between commercials"
-#~ msgstr "Vaheta reklaamide vahel"
-
-#~ msgid "ZapStatistic shows the watched services with some statistics."
-#~ msgstr "ZapStatistics näitab vaadatud kanaleid koos mõninga statistikaga."
-
-#~ msgid "Zoom into letterboxed/anamorph movies"
-#~ msgstr "Suurenda letterbox/anamorph filme"
-
-#~ msgid "Zoom into letterboxed/anamorph movies."
-#~ msgstr "Suurenda letterbox/anamorph filme."
-
-#~ msgid "a HD skin from Kerni"
-#~ msgstr "HD välimus Kernilt"
-
-#~ msgid "add AutoTimer..."
-#~ msgstr "lisa autotaimer..."
-
-#
-#~ msgid "add filters"
-#~ msgstr "lisa filtrid"
-
-#
-#~ msgid "add services"
-#~ msgstr "lisa kanal"
-
-#~ msgid "add tags to recorded movies"
-#~ msgstr "sildista salvestatud filmid"
-
-#~ msgid ""
-#~ "assign color buttons (red/green/yellow/blue) to plugins from MOVIELIST."
-#~ msgstr ""
-#~ "omista värvilised nupud (punane/roheline/kollane/sinine) MOVIELIST "
-#~ "lisadele."
-
-#~ msgid "assign color buttons to plugins from MOVIELIST"
-#~ msgstr "omista värvilised nupud MOVIELIST lisadele"
-
-#~ msgid ""
-#~ "assign long key-press (red/green/yellow/blue) to plugins or E2 functions."
-#~ msgstr ""
-#~ "omista pikk vajutus (punane/roheline/kollane/sinine) lisadele või E2 "
-#~ "toimingutele."
-
-#~ msgid "assign long key-press on color buttons to plugins or E2 functions"
-#~ msgstr "omista värviliste nuppude pikk vajutus lisadele või E2 toimingutele"
-
-#
-#~ msgid "assigned CAIds"
-#~ msgstr "määratud CAId-d"
-
-#
-#~ msgid "assigned Services/Provider"
-#~ msgstr "määratud Kanalid/Levitaja"
-
-#
-#~ msgid "case-insensitive search"
-#~ msgstr "tõstutundetu otsing"
-
-#
-#~ msgid "case-sensitive search"
-#~ msgstr "tõstutundlik otsing"
-
-#
-#~ msgid "choose destination directory"
-#~ msgstr "Vali sihtkataloog"
-
-#~ msgid "control multiple Dreamboxes with different RCs"
-#~ msgstr "juhi mitut vastuvõtjat erinevate pultidega"
-
-#~ msgid "description"
-#~ msgstr "kirjeldus"
-
-#
-#~ msgid "edit filters"
-#~ msgstr "muuda filtreid"
-
-#
-#~ msgid "edit services"
-#~ msgstr "muuda kanalit"
-
-#
-#~ msgid "exact match"
-#~ msgstr "täpne vaste"
-
-#
-#~ msgid "exceeds dual layer medium!"
-#~ msgstr "liiga suur kahekihilise ketta jaoks!"
-
-#
-#~ msgid "exit network adapter setup menu"
-#~ msgstr "Välju võrguliidese seademenüüst"
-
-#
-#~ msgid "failed"
-#~ msgstr "ebaõnnestunud"
-
-#
-#~ msgid "hidden network"
-#~ msgstr "Taaskäivitame võrgu"
-
-#
-#~ msgid "hide extended description"
-#~ msgstr "peida laiendatud programmi info"
-
-#
-#~ msgid "in Description"
-#~ msgstr "kirjelduses"
-
-#~ msgid "in Shortdescription"
-#~ msgstr "lühikirjelduses"
-
-#
-#~ msgid "in Title"
-#~ msgstr "pealkirjas"
-
-#
-#~ msgid ""
-#~ "incoming call!\n"
-#~ "%s calls on %s!"
-#~ msgstr ""
-#~ "Teile on kõne!\n"
-#~ "%s kõne sisse %s!"
-
-#
-#~ msgid "menulist"
-#~ msgstr "menüü nimekiri"
-
-#~ msgid "no HDD found"
-#~ msgstr "kõvaketast ei leitud"
-
-#
-#~ msgid "on Weekday"
-#~ msgstr "nädalapäevast"
-
-#
-#~ msgid "open virtual keyboard input help"
-#~ msgstr "Ava virtuaalklahvistik"
-
-#
-#~ msgid "partial match"
-#~ msgstr "osaline vaste"
-
-#~ msgid "redesigned Kerni-HD1 skin"
-#~ msgstr "redesigned Kerni-HD1 välimus"
-
-#~ msgid "redirect notifications to Growl"
-#~ msgstr "saada teated edasi Growl-i"
-
-#~ msgid "see service-epg (and PiP) from channels in an infobar"
-#~ msgstr "vaata inforiba kanalite teenuse EPG (ja pilt-pildis)"
-
-#
-#~ msgid "select .NFI flash file"
-#~ msgstr "vali .NFI tarkvara fail"
-
-#
-#~ msgid "select image from server"
-#~ msgstr "vali tarkvara serverist"
-
-#
-#~ msgid "service pin"
-#~ msgstr "kanalite kood"
-
-#~ msgid "set enigma2 to standby-mode after startup"
-#~ msgstr "pärast taaskäivitust läheb enigma2 ooterežiimi"
-
-#
-#~ msgid "sets the Audio Delay (LipSync)"
-#~ msgstr "seab audio viite (LipSync)"
-
-#
-#~ msgid "setup pin"
-#~ msgstr "seadistuste kood"
-
-#~ msgid "show EPG..."
-#~ msgstr "näita EPG..."
-
-#~ msgid "show all"
-#~ msgstr "näita kõik"
-
-#~ msgid "show first selected tag"
-#~ msgstr "näita esimene valitud märksõna"
-
-#~ msgid "show second selected tag"
-#~ msgstr "näita teine valitud märksõna"
-
-#~ msgid "show single service EPG..."
-#~ msgstr "näita ühe kanali EPG..."
-
-#
-#~ msgid "until restart"
-#~ msgstr "kuni uuesti käivituseni"
-
-#~ msgid "use as HDD replacement"
-#~ msgstr "kasuta HDD asenduseks"
-
-#~ msgid "use your Dreambox as Web proxy"
-#~ msgstr "kasuta oma vasuvõtjat proksiserverina"
-
-#~ msgid "use your Dreambox as Web proxy."
-#~ msgstr "kasuta oma vasuvõtjat proksiserverina."

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-08 16:22+0100\n"
+"POT-Creation-Date: 2011-09-27 18:44+0100\n"
 "PO-Revision-Date: 2008-07-17 12:13+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -192,6 +192,10 @@ msgstr "#ffffffff"
 msgid "%H:%M"
 msgstr "%H:%M"
 
+#, python-format
+msgid "%d / 100"
+msgstr ""
+
 #
 #, python-format
 msgid "%d jobs are running in the background!"
@@ -351,6 +355,9 @@ msgstr "4:3 Letterbox"
 #
 msgid "4:3 PanScan"
 msgstr "4:3 PanScan"
+
+msgid "4X"
+msgstr ""
 
 #
 msgid "5"
@@ -656,12 +663,6 @@ msgstr ""
 msgid "Adjust 3D settings"
 msgstr ""
 
-msgid "Adjust HDMI CEC settings"
-msgstr ""
-
-msgid "Adjust display scrolling and symbols"
-msgstr ""
-
 #
 msgid ""
 "Adjust the color settings so that all the color shades are distinguishable, "
@@ -839,9 +840,6 @@ msgstr "Ορισμός από το χρήστη"
 #
 msgid "Aspect Ratio"
 msgstr "Aspect Ratio"
-
-msgid "Atheros"
-msgstr ""
 
 msgid "Attach a file"
 msgstr ""
@@ -1033,6 +1031,12 @@ msgstr ""
 msgid "Black screen till locked"
 msgstr ""
 
+msgid "Blind Scan"
+msgstr ""
+
+msgid "Blindscan was canceled by the user."
+msgstr ""
+
 #
 msgid "Block noise reduction"
 msgstr ""
@@ -1130,6 +1134,9 @@ msgstr ""
 #
 msgid "Cache Thumbnails"
 msgstr "Cache Thumbnails"
+
+msgid "Can't cancel during upgrade!!"
+msgstr ""
 
 #
 msgid "Cancel"
@@ -2336,10 +2343,6 @@ msgid "Encryption Keytype"
 msgstr ""
 
 #
-msgid "Encryption Type"
-msgstr "Τυπος κωδικοποίησης"
-
-#
 msgid "Encryption:"
 msgstr ""
 
@@ -2405,6 +2408,13 @@ msgstr ""
 msgid ""
 "Error: %s\n"
 "Retry?"
+msgstr ""
+
+#, python-format
+msgid "Error[%d]. Press Cancel to exit."
+msgstr ""
+
+msgid "Ethernet network interface"
 msgstr ""
 
 msgid "Event Fontsize"
@@ -2520,11 +2530,6 @@ msgstr ""
 #
 msgid "Factory reset"
 msgstr "Επαναφορά στις εργοστασιακές παραμετροποιήσης"
-
-msgid ""
-"Fail to upgrade.\n"
-"Cause : "
-msgstr ""
 
 #
 msgid "Failed"
@@ -2796,6 +2801,9 @@ msgstr "Guard interval mode"
 msgid "HD list"
 msgstr ""
 
+msgid "HDMI CEC"
+msgstr ""
+
 msgid "Handle deepstandby events"
 msgstr ""
 
@@ -2820,12 +2828,7 @@ msgstr "Ο σκληρός δίσκος θα τεθεί σε αναμονή σε"
 msgid "Hardware:"
 msgstr ""
 
-#
-msgid "Hidden network SSID"
-msgstr ""
-
-#
-msgid "Hidden networkname"
+msgid "Hidden network"
 msgstr ""
 
 msgid "Hide CI messages"
@@ -3030,6 +3033,9 @@ msgstr "Input"
 msgid "Input device setup"
 msgstr ""
 
+msgid "Input devices"
+msgstr ""
+
 #
 msgid "Install"
 msgstr ""
@@ -3107,9 +3113,6 @@ msgstr "Προχωρημένος"
 #
 msgid "Internal Flash"
 msgstr "Εσωτερική Flash"
-
-msgid "Internal LAN adapter."
-msgstr ""
 
 msgid "Internal hdd only"
 msgstr ""
@@ -3373,6 +3376,17 @@ msgstr ""
 msgid "Longitude"
 msgstr "Longitude"
 
+#, python-format
+msgid ""
+"Looking for available transponders.\n"
+"This will take several minutes.\n"
+"\n"
+"   Current Status : %d/%d\n"
+"   Orbital Positions : %s\n"
+"   Polarization : %s\n"
+"   Bandwidth : %s"
+msgstr ""
+
 #
 msgid "MORE"
 msgstr "MORE"
@@ -3612,9 +3626,6 @@ msgstr ""
 msgid "NIM"
 msgstr ""
 
-msgid "NOT"
-msgstr ""
-
 #
 msgid "NOW"
 msgstr "ΤΩΡΑ"
@@ -3668,10 +3679,6 @@ msgstr "Παραμετροποιήσης δικτύου..."
 msgid "Network ID"
 msgstr ""
 
-#
-msgid "Network SSID"
-msgstr "SSID δικτύου"
-
 msgid "Network Servers:"
 msgstr ""
 
@@ -3710,6 +3717,9 @@ msgstr "Δικτύο:"
 msgid "NetworkWizard"
 msgstr "Wizard δυκτίου"
 
+msgid "Networkname (SSID)"
+msgstr ""
+
 #
 msgid "New"
 msgstr "Νέο"
@@ -3745,10 +3755,6 @@ msgid "No HDD found or HDD not initialized!"
 msgstr ""
 "Δεν βρέθηκε σκληρός δίσκος \n"
 "ή δεν έχει γίνει μορφοποίηση!"
-
-#
-msgid "No Networks found"
-msgstr ""
 
 msgid "No Timeshift found to save as recording!"
 msgstr ""
@@ -3793,6 +3799,11 @@ msgstr ""
 msgid ""
 "No fast winding possible yet.. but you can use the number buttons to skip "
 "forward/backward!"
+msgstr ""
+
+msgid ""
+"No found transponders!!\n"
+"Please check the satellite connection, or scan other search condition."
 msgstr ""
 
 #
@@ -3877,8 +3888,7 @@ msgstr ""
 "Σε περίπτωση που πειτε \"Οχ\"' η προστασία του setup θα μείνει "
 "απεργοποιήμενη!"
 
-#
-msgid "No wireless networks found! Please refresh."
+msgid "No wireless networks found! Searching..."
 msgstr ""
 
 #
@@ -3962,6 +3972,9 @@ msgid ""
 "Filesize: %sMB\n"
 "Free Space: %sMB\n"
 "Path: %s"
+msgstr ""
+
+msgid "Not-Associated"
 msgstr ""
 
 #
@@ -4268,6 +4281,36 @@ msgstr ""
 msgid "Please change recording endtime"
 msgstr "Παρακαλώ αλλάξτε την ώρα τερματισμού"
 
+msgid ""
+"Please check again.\n"
+"Frequency : start value is larger than stop value."
+msgstr ""
+
+msgid ""
+"Please check again.\n"
+"Start frequency must be between 950 and 2150."
+msgstr ""
+
+msgid ""
+"Please check again.\n"
+"Start symbolrate must be between 2MHz and 45MHz."
+msgstr ""
+
+msgid ""
+"Please check again.\n"
+"Stop frequency must be between 950 and 2150."
+msgstr ""
+
+msgid ""
+"Please check again.\n"
+"Stop symbolrate must be between 2MHz and 45MHz."
+msgstr ""
+
+msgid ""
+"Please check again.\n"
+"Symbolrate : start value is larger than stop value."
+msgstr ""
+
 #
 msgid "Please check your network settings!"
 msgstr ""
@@ -4428,6 +4471,9 @@ msgstr "Παρακαλώ παραμετροποιήσετε το tuner C"
 #
 msgid "Please set up tuner D"
 msgstr "Παρακαλώ παραμετροποιήσετε το tuner D"
+
+msgid "Please setup your tuner configuration."
+msgstr ""
 
 #
 msgid ""
@@ -4591,6 +4637,9 @@ msgid "Preparing... Please wait"
 msgstr "Παρακαλώ περιμένετε, προετοιμασία…"
 
 msgid "Press '0' to toggle internal/external PiP."
+msgstr ""
+
+msgid "Press Green/OK to start the scan"
 msgstr ""
 
 msgid "Press INFO on your remote control for additional information."
@@ -4758,9 +4807,6 @@ msgstr "RGB"
 #
 msgid "Radio"
 msgstr "Ραδιόφωνο"
-
-msgid "Ralink"
-msgstr ""
 
 #
 msgid "Random"
@@ -5262,6 +5308,9 @@ msgstr "Ανεύρεση δίκτυα Wireless"
 msgid "Scan additional SR"
 msgstr "Ανεύρεση εναλλακτική SR"
 
+msgid "Scan band"
+msgstr ""
+
 #
 msgid "Scan band EU HYPER"
 msgstr "Ανεύρεση μπάντα EU HYPER"
@@ -5309,6 +5358,18 @@ msgstr "Ανεύρεση μπάντα US MID"
 #
 msgid "Scan band US SUPER"
 msgstr "Ανεύρεση μπάντα US SUPER"
+
+msgid "Scan start frequency"
+msgstr ""
+
+msgid "Scan start symbolrate"
+msgstr ""
+
+msgid "Scan stop frequency"
+msgstr ""
+
+msgid "Scan stop symbolrate"
+msgstr ""
 
 msgid ""
 "Scan your network for wireless access points and connect to them using your "
@@ -5988,6 +6049,9 @@ msgstr "Έναρξη απο"
 msgid "Status"
 msgstr ""
 
+msgid "Status : 0%"
+msgstr ""
+
 #
 msgid "Step east"
 msgstr "Βήμα ανατολικά"
@@ -6087,7 +6151,7 @@ msgstr ""
 msgid "Subtitles"
 msgstr "Υπότιτλοι"
 
-msgid "Success!!"
+msgid "Success. Press OK to exit."
 msgstr ""
 
 #
@@ -6895,6 +6959,9 @@ msgstr ""
 msgid "Undo uninstall"
 msgstr ""
 
+msgid "Unencrypted"
+msgstr ""
+
 #
 msgid "UnhandledKey"
 msgstr ""
@@ -6919,7 +6986,7 @@ msgstr ""
 msgid "Universal LNB"
 msgstr "Universal LNB"
 
-msgid "Unknown network adapter."
+msgid "Unknown"
 msgstr ""
 
 msgid "Unmount"
@@ -6970,11 +7037,6 @@ msgstr ""
 #
 msgid "Upgrade finished. Do you want to reboot your Dreambox?"
 msgstr "Η αναβάθμιση τελείωσε . Να γίνει επανεκκίνηση του dream;"
-
-msgid ""
-"Upgrade will take about 5 minutes to finish.\n"
-"Do you want to upgrade?"
-msgstr ""
 
 #
 msgid "Upgrading"
@@ -7127,9 +7189,6 @@ msgstr ""
 #
 msgid "VCR scart"
 msgstr "VCR scart"
-
-msgid "VFD Setup"
-msgstr ""
 
 #
 msgid "VMGM (intro trailer)"
@@ -7314,9 +7373,6 @@ msgstr "W"
 msgid "WEP"
 msgstr "WEP"
 
-msgid "WLAN adapter."
-msgstr ""
-
 msgid "WLAN connection"
 msgstr ""
 
@@ -7477,8 +7533,7 @@ msgstr ""
 msgid "Wireless Network"
 msgstr "Δίκτυο Wireless"
 
-#
-msgid "Wireless Network State"
+msgid "Wireless network state"
 msgstr ""
 
 #
@@ -7700,9 +7755,8 @@ msgid ""
 "Please press OK to continue."
 msgstr ""
 
-#
-msgid "Your Dreambox will restart after pressing OK on your remote control."
-msgstr "Η Dreambox 8α επανςκκινήσει πιέζοντας ΟΚ."
+msgid "Your STB will restart after pressing OK on your remote control."
+msgstr ""
 
 #
 msgid ""
@@ -7715,6 +7769,12 @@ msgstr ""
 msgid ""
 "Your collection exceeds the size of a single layer medium, you will need a "
 "blank dual layer DVD!"
+msgstr ""
+
+#, python-format
+msgid ""
+"Your config file is not well-formed:\n"
+"%s"
 msgstr ""
 
 #
@@ -7795,9 +7855,6 @@ msgid "Zap focus to main screen"
 msgstr ""
 
 msgid "Zap mode"
-msgstr ""
-
-msgid "Zydas"
 msgstr ""
 
 #
@@ -7925,6 +7982,9 @@ msgstr ""
 #
 msgid "advanced"
 msgstr "Προχωρημένο"
+
+msgid "alphabetic reverse"
+msgstr ""
 
 #
 msgid "alphabetic sort"
@@ -8306,9 +8366,15 @@ msgstr ""
 msgid "help..."
 msgstr "βοήθεια..."
 
+msgid "hi_low"
+msgstr ""
+
 #
 msgid "hide player"
 msgstr "Κρύψε τον player"
+
+msgid "high"
+msgstr ""
 
 msgid "hops:"
 msgstr ""
@@ -8316,6 +8382,9 @@ msgstr ""
 #
 msgid "horizontal"
 msgstr "οριζόντια"
+
+msgid "horizontal_vertical"
+msgstr ""
 
 #
 msgid "hour"
@@ -8410,6 +8479,9 @@ msgstr "κλειδωμένο "
 
 #
 msgid "loopthrough to"
+msgstr ""
+
+msgid "low"
 msgstr ""
 
 #
@@ -8706,6 +8778,9 @@ msgstr ""
 #
 msgid "repeated"
 msgstr "Επαναλαμβανόμενο"
+
+msgid "reverse by date"
+msgstr ""
 
 #
 msgid "rewind to the previous chapter"
@@ -9107,6 +9182,9 @@ msgstr "Άσπρη λίστα"
 msgid "width"
 msgstr ""
 
+msgid "wireless network interface"
+msgstr ""
+
 msgid "with exit button"
 msgstr ""
 
@@ -9147,982 +9225,3 @@ msgstr "zap"
 #
 msgid "zapped"
 msgstr "zapped"
-
-#
-#~ msgid ""
-#~ "\n"
-#~ "Enigma2 will restart after the restore"
-#~ msgstr ""
-#~ "\n"
-#~ "Το Enigma2 θα επανεκκινήσει μετά το restore"
-
-#
-#~ msgid "\"?"
-#~ msgstr "\"?"
-
-#
-#~ msgid "#33294a6b"
-#~ msgstr "#33294a6b"
-
-#
-#~ msgid ""
-#~ "%s\n"
-#~ "(%s, %d MB free)"
-#~ msgstr ""
-#~ "%s\n"
-#~ "(%s, %d MB free)"
-
-#
-#~ msgid "50 Hz"
-#~ msgstr "50 Hz"
-
-#
-#~ msgid "AC3 default"
-#~ msgstr "AC3 default"
-
-#
-#~ msgid "AGC"
-#~ msgstr "AGC"
-
-#
-#~ msgid "AGC:"
-#~ msgstr "AGC:"
-
-#
-#~ msgid "Add files to playlist"
-#~ msgstr "Πρόσθεσε αρχεία στο playlist"
-
-#
-#~ msgid "Advanced"
-#~ msgstr "Προχωρημένο"
-
-#
-#~ msgid "All..."
-#~ msgstr "Όλα..."
-
-#
-#~ msgid "Arabic"
-#~ msgstr "Αραβικά"
-
-#
-#~ msgid ""
-#~ "Are you sure you want to enable WLAN support?\n"
-#~ "Connect your Wlan USB Stick to your Dreambox and press OK.\n"
-#~ "\n"
-#~ msgstr ""
-#~ "Είστε σίγουρος οτι θέλετε να ενεργοποιήσετε το WLAN;\n"
-#~ "Σύνδεστε το Wlan USB Stick στην Dreambox  και πατήστε ΟΚ.\n"
-#~ "\n"
-
-#
-#~ msgid ""
-#~ "Are you sure you want to enable your local network?\n"
-#~ "\n"
-#~ msgstr ""
-#~ "Είστε σίγουρος οτι θέλετε να ενεργοποιήσετε το local network;\n"
-#~ "\n"
-
-#
-#~ msgid "Backup is done. Please press OK to see the result."
-#~ msgstr "Το backup τελείωσε. Πάτηστε Οκ για να δείτε το αποτέλεσμα."
-
-#, fuzzy
-#~ msgid "CDInfo"
-#~ msgstr "InfoBar"
-
-#
-#~ msgid "Call monitoring"
-#~ msgstr "Παρακολούθηση κλήσεων"
-
-#
-#~ msgid "Card"
-#~ msgstr "Κάρτα"
-
-#
-#~ msgid "Catalan"
-#~ msgstr "Catalan"
-
-#
-#~ msgid "Change service pin"
-#~ msgstr "Αλλαγή του pin υπηρεσίας:"
-
-#
-#~ msgid "Change service pins"
-#~ msgstr "Αλλαγή των pin υπηρεσίων"
-
-#
-#~ msgid "Change setup pin"
-#~ msgstr "Αλλαγή του setup pin"
-
-#
-#~ msgid "Choose source"
-#~ msgstr "Επέλεξτε source"
-
-#
-#~ msgid "Compact Flash"
-#~ msgstr "Compact Flash"
-
-#
-#~ msgid "Compact flash card"
-#~ msgstr "Compact flash card"
-
-#
-#~ msgid "Configure your internal LAN again"
-#~ msgstr "Παραμετροποιήστε ξανα το LAN"
-
-#
-#~ msgid "Configure your wireless LAN"
-#~ msgstr "Παραμετροποιήστε το wireless  LAN"
-
-#
-#~ msgid "Confirm"
-#~ msgstr "Επιβεβαίωση"
-
-#
-#~ msgid "Connect to the Internet with a USB Wlan Stick"
-#~ msgstr "Σύνδεση με Internet  μέσω USB Wlan Stick"
-
-#
-#~ msgid "Connect to the Internet with your local LAN"
-#~ msgstr "Σύνδεση με Internet  μέσω LAN"
-
-#
-#~ msgid "Connected to Fritz!Box!"
-#~ msgstr "Σύνδεθηκε με το Fritz!Box!"
-
-#
-#~ msgid "Connecting to Fritz!Box..."
-#~ msgstr "Προσπάθεια σύνδεσης με το Fritz!Box..."
-
-#
-#~ msgid ""
-#~ "Connection to Fritz!Box\n"
-#~ "failed! (%s)\n"
-#~ "retrying..."
-#~ msgstr ""
-#~ "Η σύνδεση με το Fritz!Box απέτυχε (%s)\n"
-#~ "Ξαναπροσπάθια..."
-
-#
-#~ msgid "Croatian"
-#~ msgstr "Κροάτικα"
-
-#
-#~ msgid "Czech"
-#~ msgstr "Τσέχικα"
-
-#
-#~ msgid "DVD ENTER key"
-#~ msgstr "Πλήκτρο \"ENTER\" για DVD"
-
-#
-#~ msgid "DVD down key"
-#~ msgstr "Πλήκτρο \"κατω\" για DVD"
-
-#
-#~ msgid "DVD left key"
-#~ msgstr "Πλήκτρο \"αριστερα\" για DVD"
-
-#
-#~ msgid "DVD right key"
-#~ msgstr "Πλήκτρο \"δεξια\" για DVD"
-
-#
-#~ msgid "DVD up key"
-#~ msgstr "Πληκτρο \"πανω\" για DVD"
-
-#
-#~ msgid "Danish"
-#~ msgstr "Δανικά"
-
-#
-#~ msgid "Default services lists"
-#~ msgstr "Προρυθμιζμένες λίστες καναλιών"
-
-#
-#~ msgid "Default settings"
-#~ msgstr "Προρυθμιζμένα settings"
-
-#
-#, fuzzy
-#~ msgid "Defaults"
-#~ msgstr "Προρυθμιζμένα settings"
-
-#
-#~ msgid "Detected HDD:"
-#~ msgstr "Εντοπίστηκε HDD:"
-
-#
-#~ msgid "Disable Subtitles"
-#~ msgstr "Απενεργοποίηση υποτίτλων"
-
-#
-#~ msgid ""
-#~ "Disconnected from\n"
-#~ "Fritz!Box! (%s)\n"
-#~ "retrying..."
-#~ msgstr ""
-#~ "Αποσύνδεση  με το\n"
-#~ "Fritz!Box! (%s)\n"
-#~ "Ξαναπροσπαθια..."
-
-#
-#~ msgid ""
-#~ "Do you really want to REMOVE\n"
-#~ "the plugin \""
-#~ msgstr ""
-#~ "Θέλετε πραγματικά να\n"
-#~ "διαγράψετε το plugin \""
-
-#
-#~ msgid ""
-#~ "Do you really want to download\n"
-#~ "the plugin \""
-#~ msgstr ""
-#~ "Θέλετε πραγματικά να\n"
-#~ "κατεβάσετε το plugin \""
-
-#
-#~ msgid ""
-#~ "Do you really want to initialize the harddisk?\n"
-#~ "All data on the disk will be lost!"
-#~ msgstr ""
-#~ "Θέλετε να κάνετε Format τον σκληρό δίσκο;\n"
-#~ "Όλα τα δεδομένα θα χαθούν!"
-
-#
-#~ msgid "Done - Installed or upgraded %d packages with %d errors"
-#~ msgstr ""
-#~ "Η εγκατάσταση ή η αναβάθμηση\n"
-#~ "%d πακετων συντελέστηκε με %d λάθη"
-
-#
-#~ msgid "Dutch"
-#~ msgstr "Ολλανδικά"
-
-#
-#~ msgid "Enable LAN"
-#~ msgstr "Ενεργοποίησε LAN"
-
-#
-#~ msgid "Enable WLAN"
-#~ msgstr "Ενεργοποίησε WLAN"
-
-#
-#~ msgid ""
-#~ "Enable the local network of your Dreambox.\n"
-#~ "\n"
-#~ msgstr ""
-#~ "Ενεργοποίηστε το δικτυο της Dreambox.\n"
-#~ "\n"
-
-#
-#~ msgid "End"
-#~ msgstr "Τέλος"
-
-#
-#~ msgid "English"
-#~ msgstr "Αγγλικά"
-
-#
-#~ msgid ""
-#~ "Enigma2 Skinselector v0.5 BETA\n"
-#~ "\n"
-#~ "If you experience any problems please contact\n"
-#~ "stephan@reichholf.net\n"
-#~ "\n"
-#~ "© 2006 - Stephan Reichholf"
-#~ msgstr ""
-#~ "Enigma2 Skinselector v0.5 BETA\n"
-#~ "\n"
-#~ "Εάν συνατίσετε προβλήματα να επικινονίσετε με\n"
-#~ "stephan@reichholf.net\n"
-#~ "\n"
-#~ "© 2006 - Stephan Reichholf"
-
-#
-#~ msgid "Enter Fast Forward at speed"
-#~ msgstr "Παραμετροποιήσετε την ταχύτητα Fast Forward"
-
-#
-#~ msgid "Enter Rewind at speed"
-#~ msgstr "Παραμετροποιήσετε την ταχύτητα Rewind "
-
-#
-#~ msgid "Exit wizard and configure later manually"
-#~ msgstr "Έξοδος απο τον wizard και χειροκίνητη ρύθμιση αργότερα"
-
-#
-#~ msgid "Filesystem Check..."
-#~ msgstr "Έλεγχος Filesystem..."
-
-#
-#~ msgid "Finnish"
-#~ msgstr "Φιλλανδικά"
-
-#
-#~ msgid "French"
-#~ msgstr "Γαλλικά"
-
-#
-#~ msgid "Fritz!Box FON IP address"
-#~ msgstr "Διεύθυνση Fritz!Box FON IP"
-
-#
-#~ msgid "Function not yet implemented"
-#~ msgstr "H Λειτουργία δεν έχει ακόμα τεθεί σε εφαρμογή"
-
-#
-#~ msgid "Games / Plugins"
-#~ msgstr "Games / Plugins"
-
-#
-#~ msgid "German"
-#~ msgstr "Γερμανικά"
-
-#
-#~ msgid "Greek"
-#~ msgstr "Ελληνικά"
-
-#
-#~ msgid "Hungarian"
-#~ msgstr "Ουγγαρεζικά"
-
-#
-#~ msgid "Icelandic"
-#~ msgstr "Ισλανδικά"
-
-#
-#~ msgid "If you can see this page, please press OK."
-#~ msgstr "Εαν μπορείτε να δειτε αυτήν την σελίδα πατήστε ΟΚ."
-
-#
-#~ msgid "Image-Upgrade"
-#~ msgstr "Αναβάθμιση του image"
-
-#
-#~ msgid "Initialization..."
-#~ msgstr "Αρχικοποίηση..."
-
-#
-#~ msgid "Initializing Harddisk..."
-#~ msgstr "Αρχικοποίηση σκληρού δίσκου..."
-
-#
-#~ msgid "Integrated Ethernet"
-#~ msgstr "Ενσωματωμένο Ethernet"
-
-#
-#~ msgid "Invert display"
-#~ msgstr "Αναστροφή display"
-
-#
-#~ msgid "Italian"
-#~ msgstr "Ιταλικά"
-
-#
-#~ msgid "Jump to video title 1 (play movie from start)"
-#~ msgstr "Πίγενε στο video με τίτλο 1 (αναπαραγωγή απο την αρχή)"
-
-#
-#~ msgid "Language..."
-#~ msgstr "Γλώσσα "
-
-#
-#~ msgid "Lithuanian"
-#~ msgstr "Λιθουανικά"
-
-#
-#~ msgid "MMC Card"
-#~ msgstr "Κάρτα MMC"
-
-#
-#~ msgid "Movie Menu"
-#~ msgstr "Μενού ταινιών"
-
-#
-#~ msgid "Network Mount"
-#~ msgstr "Network Mount"
-
-#
-#~ msgid "Network..."
-#~ msgstr "Δικτύο..."
-
-#
-#~ msgid "New pin"
-#~ msgstr "Νέο pin"
-
-#
-#~ msgid "No 50 Hz, sorry. :("
-#~ msgstr "Δεν ύπαρχει 50 Hz, sorry. :("
-
-#
-#~ msgid ""
-#~ "No working local networkadapter found.\n"
-#~ "Please verify that you have attached a network cable and your Network is "
-#~ "configured correctly."
-#~ msgstr ""
-#~ "Δεν βρέθηκε ενεργοποιήμενη προσαρμογή δυκτίου.\n"
-#~ "Σιγουρευτείτε οτι οι παραμετροποιήσης δυκτίου ειναι σοστές και τα καλόδια "
-#~ "ειναι συνδεμένα σοστά."
-
-#
-#~ msgid ""
-#~ "No working wireless interface found.\n"
-#~ " Please verify that you have attached a compatible WLAN USB Stick or "
-#~ "enable your local network interface."
-#~ msgstr ""
-#~ "Δεν βρέθηκε wireless interface.\n"
-#~ "Σιγουρευτείτε οτι συνδέσατε ενα υποστηριζόμενο WLAN USB Stick ή "
-#~ "ενεργοποιήστε το wireless interface σας."
-
-#
-#~ msgid ""
-#~ "No working wireless networkadapter found.\n"
-#~ "Please verify that you have attached a compatible WLAN USB Stick and your "
-#~ "Network is configured correctly."
-#~ msgstr ""
-#~ "Δεν βρέθηκε ενεργοποιήμενη προσαρμογή wireless.\n"
-#~ "Σιγουρευτείτε οτι συνδέσατε ενα υποστηριζόμενο WLAN USB Stick και οι "
-#~ "παραμετροποιήσης ειναι σοστές."
-
-#
-#~ msgid "No, let me choose default lists"
-#~ msgstr ""
-#~ "Όχι. Θα δωθεί δυνατότητα να επιλέξετε απο της προρυθμίζμενες λίστες."
-
-#
-#~ msgid "Norwegian"
-#~ msgstr "Νορβηφικά"
-
-#
-#~ msgid "Online-Upgrade"
-#~ msgstr "Αναβάθμιση Online"
-
-#
-#~ msgid "Other..."
-#~ msgstr "Άλλο..."
-
-#
-#~ msgid "Page"
-#~ msgstr "Σελίδα"
-
-#
-#~ msgid ""
-#~ "Please attach your Zydas ZD1211B chipset compatibe WLAN USB Stick to your "
-#~ "Dreambox and press the OK button on your remote control to enable the "
-#~ "built in wireless network support"
-#~ msgstr ""
-#~ "Συνδέσετε το WLAN USB Stick εύθετο σε Zydas ZD1211B chipset στο Dreambox "
-#~ "και πατήστε ΟΚ να ενεργοποιηθεί το ενσωματωμένο wireless network support"
-
-#
-#~ msgid ""
-#~ "Please configure your local LAN internet connection by filling out the "
-#~ "needed values.\n"
-#~ "When you are ready please press OK to continue."
-#~ msgstr ""
-#~ "Παρακαλώ συμπληρώστε τα αναγκαία στοιχία για την σύνδεση με το δίκτυο LAN "
-#~ "και internet.\n"
-#~ "Οταν τελειώσετε πιέστε ΟΚ."
-
-#
-#~ msgid ""
-#~ "Please configure your wireless LAN internet connection by filling out the "
-#~ "needed values.\n"
-#~ "When you are ready please press OK to continue."
-#~ msgstr ""
-#~ "Παρακαλώ συμπληρώστε τα αναγκαία στοιχία για την σύνδεση με το δίκτυο "
-#~ "wireless LAN και internet.\n"
-#~ "Οταν τελειώσετε πιέστε ΟΚ."
-
-#
-#~ msgid "Please enter the old pin code"
-#~ msgstr "Βάλε τον παλιό κωδικό pin "
-
-#
-#~ msgid "Please select below the wireless network you want to connect to."
-#~ msgstr "Παρακαλώ επιλέξτε το δίκτυο wireless που θέλετε να συνδεθείτε."
-
-#
-#~ msgid "Please select keyword to filter..."
-#~ msgstr "Βαλτε μια λέξη για φίλτρο..."
-
-#
-#~ msgid "Polish"
-#~ msgstr "Πολωνικά"
-
-#
-#~ msgid "Portuguese"
-#~ msgstr "Πορτογαλλικά"
-
-#
-#~ msgid ""
-#~ "Pressing OK enables the built in wireless LAN support of your Dreambox.\n"
-#~ "Wlan USB Sticks with Zydas ZD1211B and RAlink RT73 Chipset are "
-#~ "supported.\n"
-#~ "Connect your Wlan USB Stick to your Dreambox before pressing OK.\n"
-#~ "\n"
-#~ msgstr ""
-#~ "Πιέζοντας ΟΚ ενεργοποιεί το ενσωματομένο wireless LAN support της  "
-#~ "Dreambox.\n"
-#~ "Υποστιρίζοντε Wlan USB Sticks με Zydas ZD1211B και RAlink RT73 Chipset.\n"
-#~ "Πιέστε ΟΚ αφου συνδέσατε το Wlan USB Stick .\n"
-#~ "\n"
-
-#
-#~ msgid "RSS Feed URI"
-#~ msgstr "RSS Feed URI"
-
-#
-#~ msgid "Ram Disk"
-#~ msgstr "Δίσκος RAM"
-
-#
-#~ msgid "Really delete this timer?"
-#~ msgstr "Να διαγράψω αυτόν τον timer;"
-
-#
-#~ msgid ""
-#~ "Recording(s) are in progress or coming up in few seconds... really reboot "
-#~ "now?"
-#~ msgstr "Εγγραφή(ές) ειναι προγραμματισμένες... Να γινει επανεκκίνηση;"
-
-#
-#~ msgid ""
-#~ "Recording(s) are in progress or coming up in few seconds... really "
-#~ "restart now?"
-#~ msgstr "Εγγραφή(ές) ειναι προγραμματισμένες... Να γινει επανεκκίνηση;"
-
-#
-#~ msgid ""
-#~ "Recording(s) are in progress or coming up in few seconds... really "
-#~ "shutdown now?"
-#~ msgstr "Εγγραφή(ές) ειναι προγραμματισμένες... Σίγουρα να κλείσιει τώρα;"
-
-#
-#~ msgid "Reenter new pin"
-#~ msgstr "Ξαναβάλε το νέο PIN"
-
-#
-#~ msgid "Replace current playlist"
-#~ msgstr "Αντικατέστησε την τρέχουσα playlist"
-
-#
-#~ msgid "Restart GUI"
-#~ msgstr "Eπανεκκίνηση του GUI"
-
-#
-#~ msgid "Restart your wireless interface"
-#~ msgstr "Κάνετε επανεκκίνηση του wireless interface"
-
-#
-#~ msgid ""
-#~ "Restoring the settings is done. Please press OK to activate the restored "
-#~ "settings now."
-#~ msgstr "Η επαναφορά τελείωσε. Πιέστε ΟΚ για να ενεργοποιηθούν τα settings"
-
-#
-#~ msgid "Russian"
-#~ msgstr "Ρωσικά"
-
-#
-#~ msgid ""
-#~ "Scan your network for wireless Access Points and connect to them using "
-#~ "your WLAN USB Stick\n"
-#~ msgstr ""
-#~ "Ανεύρεση στο δικτυο για wireless Access Points και συνδεθείτε μέσο WLAN "
-#~ "USB Stick\n"
-
-#
-#~ msgid "Select audio mode"
-#~ msgstr "Επιλέξτε mode ήχου"
-
-#
-#~ msgid "Select video input"
-#~ msgstr "Επιλέξτε video input"
-
-#
-#~ msgid "Somewhere else"
-#~ msgstr "Κάπου αλλού"
-
-#
-#~ msgid "Sort A-Z"
-#~ msgstr "Ταξινόμηση  A-Z"
-
-#
-#~ msgid "Sort Time"
-#~ msgstr "Ταξινόμηση χρονου"
-
-#
-#~ msgid "Spanish"
-#~ msgstr "Ισπανικά"
-
-#
-#~ msgid "Startwizard"
-#~ msgstr "Startwizard"
-
-#
-#~ msgid "Step "
-#~ msgstr "Βήμα "
-
-#
-#~ msgid "Stereo"
-#~ msgstr "Stereo"
-
-#
-#~ msgid "Subservice list..."
-#~ msgstr "Λίστα υπό-υπηρεσία..."
-
-#
-#~ msgid "Swedish"
-#~ msgstr "Σουιδεζικά"
-
-#
-#~ msgid ""
-#~ "Thank you for using the wizard. Your Dreambox is now ready to use.\n"
-#~ "\n"
-#~ "Your local LAN internet connection is working now.\n"
-#~ "\n"
-#~ "Please press OK to continue."
-#~ msgstr ""
-#~ "Ευχαριστώ που χρεισημοποιήσατε τον wizard. Η Dreambox εινα έτοιμη για "
-#~ "χρήση.\n"
-#~ "\n"
-#~ "Η σύνδεση LAN internet εχει πλήρης εγκατασταθεί.\n"
-#~ "\n"
-#~ "Πιέστε ΟΚ."
-
-#
-#~ msgid ""
-#~ "Thank you for using the wizard. Your Dreambox is now ready to use.\n"
-#~ "\n"
-#~ "Your wireless internet connection is working now.\n"
-#~ "\n"
-#~ "Please press OK to continue."
-#~ msgstr ""
-#~ "Ευχαριστώ που χρεισημοποιήσατε τον wizard. Η Dreambox εινα έτοιμη για "
-#~ "χρήση.\n"
-#~ "\n"
-#~ "Η σύνδεση wireless internet εχει πλήρης εγκατασταθεί.\n"
-#~ "\n"
-#~ "Πιέστε ΟΚ."
-
-#
-#~ msgid ""
-#~ "Thank you for using the wizard. Your Dreambox is now ready to use.\n"
-#~ "Please press OK to start using your Dreambox."
-#~ msgstr ""
-#~ "Ευχαριστώ που χρεισημοποιήσατε τον wizard. Η Dreambox εινα έτοιμη για "
-#~ "χρήση.\n"
-#~ "Πιέστε ΟΚ."
-
-#
-#~ msgid "The pin code has been changed successfully."
-#~ msgstr "Το PIN αλλάχτηκε με επιτυχία."
-
-#
-#~ msgid "The pin codes you entered are different."
-#~ msgstr "Τα PIN είναι διαφορετικά."
-
-#
-#~ msgid "This is unsupported at the moment."
-#~ msgstr "Αυτό δεν υποστηρίζεται για την ώρα (τρομάρα μας)"
-
-#
-#~ msgid "Timer"
-#~ msgstr "Timer"
-
-#
-#~ msgid "Turkish"
-#~ msgstr "Τούρκικα"
-
-#
-#~ msgid "USB"
-#~ msgstr "USB"
-
-#
-#~ msgid ""
-#~ "Unable to complete filesystem check.\n"
-#~ "Error: "
-#~ msgstr ""
-#~ "Αδυνατο να ολοκληροθεί ο ελεγχος filesystem.\n"
-#~ "Λάθος: "
-
-#
-#~ msgid ""
-#~ "Unable to initialize harddisk.\n"
-#~ "Error: "
-#~ msgstr ""
-#~ "Αδυνατη αναγνώριση harddisk.\n"
-#~ "Λάθος: "
-
-#
-#~ msgid ""
-#~ "Unable to initialize harddisk.\n"
-#~ "Please refer to the user manual.\n"
-#~ "Error: "
-#~ msgstr ""
-#~ "Αποτυχία ενεργοποίησης δίσκου.\n"
-#~ "Παρακαλώ διαβάστε το manual. (χαχα).\n"
-#~ "Λάθος:"
-
-#
-#, fuzzy
-#~ msgid "Updating, please wait..."
-#~ msgstr "Παρακαλώ περιμένετε, προετοιμασία…"
-
-#
-#~ msgid "VCR Switch"
-#~ msgstr "VCR Switch"
-
-#
-#~ msgid ""
-#~ "We will now test if your TV can also display this resolution at 50hz. If "
-#~ "your screen goes black, wait 20 seconds and it will switch back to 60hz.\n"
-#~ "Please press OK to begin."
-#~ msgstr ""
-#~ "θα ελεχτεί εαν το TV σας μπόρει να δουλέψει με αυτήν την ανάλυση στα "
-#~ "50hz. Εαν δεν έχετε άλλο εικόνα, περιμένετε 20 δευτερόλεπτα και θα "
-#~ "γυρίσει πάλι στα 60hz.\n"
-#~ "Πιέστε ΟΚ για έναρξη."
-
-#
-#~ msgid ""
-#~ "Welcome.\n"
-#~ "\n"
-#~ "If you want to connect your Dreambox to the Internet, this wizard will "
-#~ "guide you through the basic network setup of your Dreambox.\n"
-#~ "\n"
-#~ "Press the OK button on your remote control to move to the next step."
-#~ msgstr ""
-#~ "Καλώς ορίσατε.\n"
-#~ "\n"
-#~ "Εαν θέλετε να συνδέσετε την Dreambox με το Internet, το wizard θα σας "
-#~ "οδηγίσει στο setup τοθ δικτύου της Dreambox.\n"
-#~ "\n"
-#~ "Πιέστε ΟΚ για να πάτε στο επόμενο βήμα."
-
-#
-#~ msgid "Wireless"
-#~ msgstr "Wireless"
-
-#
-#~ msgid ""
-#~ "You do not seem to have a harddisk in your Dreambox. So backing up to a "
-#~ "harddisk is not an option for you."
-#~ msgstr ""
-#~ "Δεν φαίνετε να έχετε σκληρό δισκο στο Dreambox. Δεν μπορεί να γίνει "
-#~ "backing στο  σκληρό δισκο."
-
-#
-#~ msgid ""
-#~ "You have chosen to backup to a compact flash card. The card must be in "
-#~ "the slot. We do not verify if it is really used at the moment. So better "
-#~ "backup to the harddisk!\n"
-#~ "Please press OK to start the backup now."
-#~ msgstr ""
-#~ "Επιλέξατε να κάνετε backup σε compact flash card. Η κάρτα πρέπει να είναι "
-#~ "στο slot. Δεν είναι σίγοθρο οτι δεν χρεισημοποιήτε αθτήν την στιγμή. "
-#~ "Καλύτερα να γίνει backup στο σκληρό δίσκο!\n"
-#~ "Πιέστε ΟΚ για έναρξη backup."
-
-#
-#~ msgid ""
-#~ "You have chosen to backup to an usb drive. Better backup to the "
-#~ "harddisk!\n"
-#~ "Please press OK to start the backup now."
-#~ msgstr ""
-#~ "Επιλέξατε να κάνετε backup σε usb drive. Καλύτερα να γίνει backup στο "
-#~ "σκληρό δίσκο!\n"
-#~ "Πιέστε ΟΚ για έναρξη backup."
-
-#
-#~ msgid ""
-#~ "You have chosen to backup to your harddisk. Please press OK to start the "
-#~ "backup now."
-#~ msgstr ""
-#~ "Επιλέξατε να γίνει backup στο σκληρό δίσκο!\n"
-#~ "Πιέστε ΟΚ για έναρξη backup."
-
-#
-#~ msgid ""
-#~ "You need to define some keywords first!\n"
-#~ "Press the menu-key to define keywords.\n"
-#~ "Do you want to define keywords now?"
-#~ msgstr ""
-#~ "Πρέπει να ορίσετε μερικά keywords πρώτα!\n"
-#~ "Πιέστε το menu για να τα ορίσετε.\n"
-#~ "Θέλετε να τα ορίσετε τώρα;"
-
-#
-#~ msgid ""
-#~ "You need to set a pin code and hide it from your children.\n"
-#~ "\n"
-#~ "Do you want to set the pin now?"
-#~ msgstr ""
-#~ "Πρέπει να ορίσετε ένα pin και να μην το πειτε σε παιδιά.\n"
-#~ "\n"
-#~ "θέλετε να βάλετε το pin τώρα;"
-
-#
-#~ msgid "You selected a playlist"
-#~ msgstr "Διάλεξες μια playlist"
-
-#
-#~ msgid "Your TV works with 50 Hz. Good!"
-#~ msgstr "Η TV σας δουλεύει στα 50 Hz. Τελεια!"
-
-#
-#~ msgid ""
-#~ "Your local LAN internet connection is not working!\n"
-#~ "Please choose what you want to do next."
-#~ msgstr ""
-#~ "Η συνθεση με το LAN internet δεν δουλέυει!\n"
-#~ "Επιλέξτε τι θέλετε να κάνετε."
-
-#
-#~ msgid ""
-#~ "Your network is restarting.\n"
-#~ "You will be automatically forwarded to the next step."
-#~ msgstr ""
-#~ "Το δίκτυο σας επανεκκινητε.\n"
-#~ "θα προωθήτε αύτοματα στο επόμενο βήμα."
-
-#
-#~ msgid ""
-#~ "Your wired LAN Adapter could not be started.\n"
-#~ "Do you want to reboot your Dreambox to apply the new configuration?\n"
-#~ msgstr ""
-#~ "Η προσαρμογή LAN δεν μπορούσε να εκκινηθεί.\n"
-#~ "θέλετε να γίνει επανεκκίνηση της Dreambox για να εφαρμοστούν οι νέες "
-#~ "παραμετροποιήσης;\n"
-
-#
-#~ msgid ""
-#~ "Your wireless LAN Adapter could not be started.\n"
-#~ "Do you want to reboot your Dreambox to apply the new configuration?\n"
-#~ msgstr ""
-#~ "Η προσαρμογή wireless LAN δεν μπορούσε να εκκινηθεί.\n"
-#~ "θέλετε να γίνει επανεκκίνηση της Dreambox για να εφαρμοστούν οι νέες "
-#~ "παραμετροποιήσης;\n"
-
-#
-#~ msgid ""
-#~ "Your wireless internet connection is not working!\n"
-#~ "Please choose what you want to do next."
-#~ msgstr ""
-#~ "Η σύνθεση wireless με το internet δεν δουλέυει!\n"
-#~ "Επιλέξτε τι θέλετε να κάνετε."
-
-#
-#~ msgid "by Exif"
-#~ msgstr "Με το Exif"
-
-#
-#~ msgid "equal to Socket A"
-#~ msgstr "Ίδιο με το Socket A"
-
-#
-#~ msgid "full /etc directory"
-#~ msgstr "full /etc directory"
-
-#
-#~ msgid "hide extended description"
-#~ msgstr "κρυψιμο εκτεινόμενη περιγραφή"
-
-#
-#~ msgid ""
-#~ "incoming call!\n"
-#~ "%s calls on %s!"
-#~ msgstr ""
-#~ "εισερχόμενη κλήση!\n"
-#~ "%s καλεί στο %s!"
-
-#
-#~ msgid "loopthrough to socket A"
-#~ msgstr "loopthrough to socket A"
-
-#
-#~ msgid "no HDD found"
-#~ msgstr "δεν βρέθηκε σκληρός δίσκος"
-
-#
-#~ msgid "no Picture found"
-#~ msgstr "δεν βρέθηκε εικόνα"
-
-#
-#~ msgid "only /etc/enigma2 directory"
-#~ msgstr "only /etc/enigma2 directory"
-
-#
-#~ msgid ""
-#~ "scan done!\n"
-#~ "%d services found!"
-#~ msgstr ""
-#~ "Το scan τελείωσε!\n"
-#~ " %d services βρέθηκαν!"
-
-#
-#~ msgid ""
-#~ "scan done!\n"
-#~ "No service found!"
-#~ msgstr ""
-#~ "Το scan τελείωσε.\n"
-#~ "Δεν βρέθηκαν services"
-
-#
-#~ msgid ""
-#~ "scan done!\n"
-#~ "One service found!"
-#~ msgstr ""
-#~ "Το scan τελείωσε.\n"
-#~ "Ένα services  βρέθηκε"
-
-#
-#~ msgid ""
-#~ "scan in progress - %d %% done!\n"
-#~ "%d services found!"
-#~ msgstr ""
-#~ "Το scan είναι σε εξέλιξη - %d %% done!\n"
-#~ "%d services βρέθηκαν "
-
-#
-#~ msgid "seconds."
-#~ msgstr "δευτερόλεπτα."
-
-#
-#~ msgid "service pin"
-#~ msgstr "pin υπηρεσίας"
-
-#
-#~ msgid "setup pin"
-#~ msgstr "setup pin"
-
-#
-#~ msgid "show EPG..."
-#~ msgstr "Εμφάνισε το EGP..."
-
-#
-#~ msgid "show all"
-#~ msgstr "εμφάνηση όλων"
-
-#
-#~ msgid "show first tag"
-#~ msgstr "εφάνιση πρώτου tag"
-
-#
-#~ msgid "show second tag"
-#~ msgstr "εφάνιση δέυτερου tag"
-
-#
-#~ msgid "show single service EPG..."
-#~ msgstr "εφάνιση EPG συγκεκριμένης υπερησίας"
-
-#
-#~ msgid "text"
-#~ msgstr "κείμενο "
-
-#
-#~ msgid "until restart"
-#~ msgstr "μέχρι να γίνει  επανεκκίνηση"
