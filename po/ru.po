@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-08 16:22+0100\n"
+"POT-Creation-Date: 2011-09-27 18:44+0100\n"
 "PO-Revision-Date: 2010-05-18 18:10+0200\n"
 "Last-Translator: peter <peter@dreambox.org.ua>\n"
 "Language-Team: Russian / enigma(c) Ukraine, Kiev>\n"
@@ -210,6 +210,10 @@ msgstr "#ffffffff"
 msgid "%H:%M"
 msgstr "%H:%M"
 
+#, python-format
+msgid "%d / 100"
+msgstr ""
+
 #
 #, python-format
 msgid "%d jobs are running in the background!"
@@ -362,6 +366,9 @@ msgstr "4:3 Letterbox"
 #
 msgid "4:3 PanScan"
 msgstr "4:3 PanScan"
+
+msgid "4X"
+msgstr ""
 
 msgid "5"
 msgstr "5"
@@ -653,12 +660,6 @@ msgstr ""
 msgid "Adjust 3D settings"
 msgstr ""
 
-msgid "Adjust HDMI CEC settings"
-msgstr ""
-
-msgid "Adjust display scrolling and symbols"
-msgstr ""
-
 #
 msgid ""
 "Adjust the color settings so that all the color shades are distinguishable, "
@@ -842,9 +843,6 @@ msgstr "Спросить пользователя"
 #
 msgid "Aspect Ratio"
 msgstr "Сотношение сторон"
-
-msgid "Atheros"
-msgstr ""
 
 msgid "Attach a file"
 msgstr ""
@@ -1036,6 +1034,12 @@ msgstr ""
 msgid "Black screen till locked"
 msgstr ""
 
+msgid "Blind Scan"
+msgstr ""
+
+msgid "Blindscan was canceled by the user."
+msgstr ""
+
 #
 msgid "Block noise reduction"
 msgstr ""
@@ -1134,6 +1138,9 @@ msgstr ""
 #
 msgid "Cache Thumbnails"
 msgstr "Кешировать Эскизы"
+
+msgid "Can't cancel during upgrade!!"
+msgstr ""
 
 #
 msgid "Cancel"
@@ -2344,10 +2351,6 @@ msgid "Encryption Keytype"
 msgstr "Тип ключа шифрования"
 
 #
-msgid "Encryption Type"
-msgstr "Тип шифрования"
-
-#
 msgid "Encryption:"
 msgstr ""
 
@@ -2416,6 +2419,13 @@ msgid ""
 msgstr ""
 "Ошибка: %s\n"
 "Повторить?"
+
+#, python-format
+msgid "Error[%d]. Press Cancel to exit."
+msgstr ""
+
+msgid "Ethernet network interface"
+msgstr ""
 
 msgid "Event Fontsize"
 msgstr ""
@@ -2531,11 +2541,6 @@ msgstr ""
 #
 msgid "Factory reset"
 msgstr "Заводские установки"
-
-msgid ""
-"Fail to upgrade.\n"
-"Cause : "
-msgstr ""
 
 #
 msgid "Failed"
@@ -2805,6 +2810,9 @@ msgstr "Guard interval mode"
 msgid "HD list"
 msgstr ""
 
+msgid "HDMI CEC"
+msgstr ""
+
 msgid "Handle deepstandby events"
 msgstr ""
 
@@ -2829,12 +2837,7 @@ msgstr "Отключение HDD через"
 msgid "Hardware:"
 msgstr ""
 
-#
-msgid "Hidden network SSID"
-msgstr "Скрытый SSID сети"
-
-#
-msgid "Hidden networkname"
+msgid "Hidden network"
 msgstr ""
 
 msgid "Hide CI messages"
@@ -3040,6 +3043,9 @@ msgstr "Вход"
 msgid "Input device setup"
 msgstr ""
 
+msgid "Input devices"
+msgstr ""
+
 #
 msgid "Install"
 msgstr ""
@@ -3117,9 +3123,6 @@ msgstr "Промежуточный"
 #
 msgid "Internal Flash"
 msgstr "Внутренняя флешь"
-
-msgid "Internal LAN adapter."
-msgstr ""
 
 msgid "Internal hdd only"
 msgstr ""
@@ -3383,6 +3386,17 @@ msgstr ""
 msgid "Longitude"
 msgstr "Долгота"
 
+#, python-format
+msgid ""
+"Looking for available transponders.\n"
+"This will take several minutes.\n"
+"\n"
+"   Current Status : %d/%d\n"
+"   Orbital Positions : %s\n"
+"   Polarization : %s\n"
+"   Bandwidth : %s"
+msgstr ""
+
 #
 msgid "MORE"
 msgstr "БОЛЬШЕ"
@@ -3622,9 +3636,6 @@ msgstr ""
 msgid "NIM"
 msgstr ""
 
-msgid "NOT"
-msgstr ""
-
 #
 msgid "NOW"
 msgstr "СЕЙЧАС"
@@ -3678,10 +3689,6 @@ msgstr "Конфигурация сети..."
 msgid "Network ID"
 msgstr ""
 
-#
-msgid "Network SSID"
-msgstr "SSID сети"
-
 msgid "Network Servers:"
 msgstr ""
 
@@ -3720,6 +3727,9 @@ msgstr "Сеть:"
 msgid "NetworkWizard"
 msgstr "Мастер настройки сети"
 
+msgid "Networkname (SSID)"
+msgstr ""
+
 #
 msgid "New"
 msgstr "Новые"
@@ -3755,10 +3765,6 @@ msgid "No HDD found or HDD not initialized!"
 msgstr ""
 "HDD не найден или \n"
 "не установлен."
-
-#
-msgid "No Networks found"
-msgstr "Сети не найдены"
 
 msgid "No Timeshift found to save as recording!"
 msgstr ""
@@ -3801,6 +3807,11 @@ msgstr "Информация о событиях не найдена, запис
 msgid ""
 "No fast winding possible yet.. but you can use the number buttons to skip "
 "forward/backward!"
+msgstr ""
+
+msgid ""
+"No found transponders!!\n"
+"Please check the satellite connection, or scan other search condition."
 msgstr ""
 
 #
@@ -3886,8 +3897,7 @@ msgstr ""
 "Если вы ответите 'НЕТ', то защита настроек \n"
 "не будет включена!"
 
-#
-msgid "No wireless networks found! Please refresh."
+msgid "No wireless networks found! Searching..."
 msgstr ""
 
 #
@@ -3982,6 +3992,9 @@ msgid ""
 "Filesize: %sMB\n"
 "Free Space: %sMB\n"
 "Path: %s"
+msgstr ""
+
+msgid "Not-Associated"
 msgstr ""
 
 #
@@ -4290,6 +4303,36 @@ msgstr ""
 msgid "Please change recording endtime"
 msgstr "Пожалуйста, измените время окончания записи"
 
+msgid ""
+"Please check again.\n"
+"Frequency : start value is larger than stop value."
+msgstr ""
+
+msgid ""
+"Please check again.\n"
+"Start frequency must be between 950 and 2150."
+msgstr ""
+
+msgid ""
+"Please check again.\n"
+"Start symbolrate must be between 2MHz and 45MHz."
+msgstr ""
+
+msgid ""
+"Please check again.\n"
+"Stop frequency must be between 950 and 2150."
+msgstr ""
+
+msgid ""
+"Please check again.\n"
+"Stop symbolrate must be between 2MHz and 45MHz."
+msgstr ""
+
+msgid ""
+"Please check again.\n"
+"Symbolrate : start value is larger than stop value."
+msgstr ""
+
 #
 msgid "Please check your network settings!"
 msgstr "Пожалуйста, проверьте настройки сети!"
@@ -4464,6 +4507,9 @@ msgstr "Пожалуйста, настройте тюнер C"
 msgid "Please set up tuner D"
 msgstr "Пожалуйста, настройте тюнер D"
 
+msgid "Please setup your tuner configuration."
+msgstr ""
+
 #
 msgid ""
 "Please use direction keys to move the PiP window.\n"
@@ -4628,6 +4674,9 @@ msgid "Preparing... Please wait"
 msgstr "Подготовка ... Пожалуйста, подождите"
 
 msgid "Press '0' to toggle internal/external PiP."
+msgstr ""
+
+msgid "Press Green/OK to start the scan"
 msgstr ""
 
 msgid "Press INFO on your remote control for additional information."
@@ -4795,9 +4844,6 @@ msgstr "RGB"
 #
 msgid "Radio"
 msgstr "Радио"
-
-msgid "Ralink"
-msgstr ""
 
 #
 msgid "Random"
@@ -5299,6 +5345,9 @@ msgstr "Сканировать беспроводные сети"
 msgid "Scan additional SR"
 msgstr "Сканировать дополн. SR"
 
+msgid "Scan band"
+msgstr ""
+
 #
 msgid "Scan band EU HYPER"
 msgstr "Сканировать диапазон EU HUPER"
@@ -5346,6 +5395,18 @@ msgstr "Сканировать диапазон US MID"
 #
 msgid "Scan band US SUPER"
 msgstr "Сканировать диапазон US SUPER"
+
+msgid "Scan start frequency"
+msgstr ""
+
+msgid "Scan start symbolrate"
+msgstr ""
+
+msgid "Scan stop frequency"
+msgstr ""
+
+msgid "Scan stop symbolrate"
+msgstr ""
 
 msgid ""
 "Scan your network for wireless access points and connect to them using your "
@@ -6027,6 +6088,9 @@ msgstr "Начиная с"
 msgid "Status"
 msgstr ""
 
+msgid "Status : 0%"
+msgstr ""
+
 #
 msgid "Step east"
 msgstr "Шаг на восток"
@@ -6126,7 +6190,7 @@ msgstr ""
 msgid "Subtitles"
 msgstr "Субтитры"
 
-msgid "Success!!"
+msgid "Success. Press OK to exit."
 msgstr ""
 
 #
@@ -6956,6 +7020,9 @@ msgstr ""
 msgid "Undo uninstall"
 msgstr ""
 
+msgid "Unencrypted"
+msgstr ""
+
 #
 msgid "UnhandledKey"
 msgstr ""
@@ -6980,7 +7047,7 @@ msgstr ""
 msgid "Universal LNB"
 msgstr "универсальный-LNB"
 
-msgid "Unknown network adapter."
+msgid "Unknown"
 msgstr ""
 
 msgid "Unmount"
@@ -7031,11 +7098,6 @@ msgstr "Обновление завершено"
 #
 msgid "Upgrade finished. Do you want to reboot your Dreambox?"
 msgstr "Обновление завершено. Вы хотите перезагрузить Dreambox?"
-
-msgid ""
-"Upgrade will take about 5 minutes to finish.\n"
-"Do you want to upgrade?"
-msgstr ""
 
 #
 msgid "Upgrading"
@@ -7189,9 +7251,6 @@ msgstr ""
 #
 msgid "VCR scart"
 msgstr "Видеомагнитофон"
-
-msgid "VFD Setup"
-msgstr ""
 
 #
 msgid "VMGM (intro trailer)"
@@ -7376,9 +7435,6 @@ msgstr "W"
 msgid "WEP"
 msgstr "WEP"
 
-msgid "WLAN adapter."
-msgstr ""
-
 msgid "WLAN connection"
 msgstr ""
 
@@ -7557,8 +7613,7 @@ msgstr ""
 msgid "Wireless Network"
 msgstr "Беспроводная сеть"
 
-#
-msgid "Wireless Network State"
+msgid "Wireless network state"
 msgstr ""
 
 #
@@ -7791,9 +7846,8 @@ msgstr ""
 "\n"
 "Нажмите ОК для продолжения."
 
-#
-msgid "Your Dreambox will restart after pressing OK on your remote control."
-msgstr "Ваш Dreambox будет перезагружен после нажатия кнопки OK на пульте."
+msgid "Your STB will restart after pressing OK on your remote control."
+msgstr ""
 
 #
 msgid ""
@@ -7808,6 +7862,12 @@ msgid ""
 msgstr ""
 "Ваша коллекция превышает размер однослойного диска. Вам нужен чистый "
 "двухслойный DVD!"
+
+#, python-format
+msgid ""
+"Your config file is not well-formed:\n"
+"%s"
+msgstr ""
 
 #
 msgid "Your current collection will get lost!"
@@ -7894,9 +7954,6 @@ msgid "Zap focus to main screen"
 msgstr ""
 
 msgid "Zap mode"
-msgstr ""
-
-msgid "Zydas"
 msgstr ""
 
 #
@@ -8024,6 +8081,9 @@ msgstr ""
 #
 msgid "advanced"
 msgstr "Расширенный"
+
+msgid "alphabetic reverse"
+msgstr ""
 
 #
 msgid "alphabetic sort"
@@ -8407,9 +8467,15 @@ msgstr ""
 msgid "help..."
 msgstr "помощь..."
 
+msgid "hi_low"
+msgstr ""
+
 #
 msgid "hide player"
 msgstr "скрыть проигрыватель"
+
+msgid "high"
+msgstr ""
 
 msgid "hops:"
 msgstr ""
@@ -8417,6 +8483,9 @@ msgstr ""
 #
 msgid "horizontal"
 msgstr "горизонтальная"
+
+msgid "horizontal_vertical"
+msgstr ""
 
 #
 msgid "hour"
@@ -8512,6 +8581,9 @@ msgstr "захвачено"
 #
 msgid "loopthrough to"
 msgstr "петля к"
+
+msgid "low"
+msgstr ""
 
 #
 msgid "manual"
@@ -8807,6 +8879,9 @@ msgstr "повторить плейлист"
 #
 msgid "repeated"
 msgstr "повторный"
+
+msgid "reverse by date"
+msgstr ""
 
 #
 msgid "rewind to the previous chapter"
@@ -9208,6 +9283,9 @@ msgstr "белый список"
 msgid "width"
 msgstr ""
 
+msgid "wireless network interface"
+msgstr ""
+
 msgid "with exit button"
 msgstr ""
 
@@ -9248,1036 +9326,3 @@ msgstr "переключить"
 #
 msgid "zapped"
 msgstr "переключено"
-
-#
-#~ msgid ""
-#~ "\n"
-#~ "Enigma2 will restart after the restore"
-#~ msgstr ""
-#~ "\n"
-#~ "Enigma2 будет запущена после восстановления."
-
-#
-#~ msgid ""
-#~ "\n"
-#~ "Scan for local packages and install them."
-#~ msgstr ""
-#~ "\n"
-#~ "Сканирование и установка локальных пакетов."
-
-#~ msgid " Results"
-#~ msgstr " Результаты"
-
-#
-#~ msgid "\"?"
-#~ msgstr "\"?"
-
-#~ msgid "%i ms"
-#~ msgstr "%i ms"
-
-#
-#~ msgid ""
-#~ "%s\n"
-#~ "(%s, %d MB free)"
-#~ msgstr ""
-#~ "%s\n"
-#~ "(%s, %d MB свободно)"
-
-#
-#~ msgid "* Only available when entering hidden SSID or network key"
-#~ msgstr "* Доступно только при введенном скрытом SSID или ключе сети"
-
-#
-#~ msgid ".NFI Download failed:"
-#~ msgstr ".NFI Download failed:"
-
-#~ msgid ""
-#~ ".NFI file passed md5sum signature check. You can safely flash this image!"
-#~ msgstr ""
-#~ ".NFI md5 сигнатура проверена. Вы можете безопасно прошить этот имидж!"
-
-#
-#~ msgid "50 Hz"
-#~ msgstr "50 Гц"
-
-#~ msgid ""
-#~ "A mount entry with this name already exists!\n"
-#~ "Update existing entry and continue?\n"
-#~ msgstr ""
-#~ "Точка монтирования с таким именем уже существует!\n"
-#~ "Обновить существующую запись и продолжить?\n"
-
-#
-#~ msgid "AC3 default"
-#~ msgstr "AC3 по умолчанию"
-
-#
-#~ msgid "AGC:"
-#~ msgstr "AGC:"
-
-#~ msgid "Abort this Wizard."
-#~ msgstr "Прервать работу мастера."
-
-#~ msgid ""
-#~ "Active/\n"
-#~ "Inactive"
-#~ msgstr ""
-#~ "Активный/\n"
-#~ "Не активный"
-
-#~ msgid "Add a new NFS or CIFS mount point to your Dreambox."
-#~ msgstr "Добавить новую точку монтирования NFS или CIFS к вашему Dreambox."
-
-#
-#~ msgid "Add files to playlist"
-#~ msgstr "Добавить файлы к списку воспроизведения"
-
-#~ msgid "Add new AutoTimer"
-#~ msgstr "Добавить новый Авто Таймер"
-
-#~ msgid "Add new network mount point"
-#~ msgstr "Добавить новую точку подключения сети"
-
-#~ msgid "Add zap timer instead of record timer?"
-#~ msgstr "Добавить таймер переключения вместо таймера записи?"
-
-#~ msgid "Added: "
-#~ msgstr "Добавлено: "
-
-#
-#~ msgid "Advanced"
-#~ msgstr "Расширенный"
-
-#~ msgid "All Time"
-#~ msgstr "Все Время"
-
-#~ msgid "All non-repeating timers"
-#~ msgstr "Все не повторяющиеся таймеры"
-
-#~ msgid "Allow zapping via Webinterface"
-#~ msgstr "Разрешить переключение через Веб-интерфейс"
-
-#, fuzzy
-#~ msgid "Ammount of recordings left"
-#~ msgstr "Количество записей осталось"
-
-#~ msgid "An error occured."
-#~ msgstr "Произошла ошибка."
-
-#
-#~ msgid "Arabic"
-#~ msgstr "Арабский"
-
-#
-#~ msgid "Backup is done. Please press OK to see the result."
-#~ msgstr "Сохранено. Пожалуйста, нажмите OK для просмотра результата"
-
-#
-#~ msgid "Backup running"
-#~ msgstr "Идет сохранение"
-
-#
-#~ msgid "Backup running..."
-#~ msgstr "Идет сохранение..."
-
-#, fuzzy
-#~ msgid "CDInfo"
-#~ msgstr "ИнфоПанель"
-
-#
-#~ msgid "Call monitoring"
-#~ msgstr "Мониторинг звонка"
-
-#, fuzzy
-#~ msgid "Can't connect to server. Please check your network!"
-#~ msgstr "Пожалуйста, проверьте настройки сети!"
-
-#
-#~ msgid "Cannot parse feed directory"
-#~ msgstr "Невозможно разобрать каталог с пакетами"
-
-#
-#~ msgid "Card"
-#~ msgstr "Карта"
-
-#
-#~ msgid "Catalan"
-#~ msgstr "Каталонский"
-
-#
-#~ msgid "Change dir."
-#~ msgstr "Изменить каталог."
-
-#
-#~ msgid "Change service pin"
-#~ msgstr "Изменить PIN сервиса"
-
-#
-#~ msgid "Change service pins"
-#~ msgstr "Измененить PINs сервиса"
-
-#
-#~ msgid "Change setup pin"
-#~ msgstr "Изменить  PIN настроек"
-
-#
-#~ msgid "Choose source"
-#~ msgstr "Выберите иточник"
-
-#
-#~ msgid "Compact Flash"
-#~ msgstr "Compact Flash"
-
-#
-#~ msgid "Compact flash card"
-#~ msgstr "Compact Flash карта"
-
-#
-#~ msgid "Connected to Fritz!Box!"
-#~ msgstr "Подключен к Fritz!Box!"
-
-#
-#~ msgid "Connecting to Fritz!Box..."
-#~ msgstr "Подключение к Fritz!Box!..."
-
-#
-#~ msgid ""
-#~ "Connection to Fritz!Box\n"
-#~ "failed! (%s)\n"
-#~ "retrying..."
-#~ msgstr ""
-#~ "Подключение к  Fritz!Box\n"
-#~ "неудалось! (%s)\n"
-#~ "повтор..."
-
-#
-#~ msgid "Croatian"
-#~ msgstr "Хорватский"
-
-#
-#~ msgid "Czech"
-#~ msgstr "Чешский"
-
-#
-#~ msgid "Danish"
-#~ msgstr "Датский"
-
-#
-#~ msgid "Default services lists"
-#~ msgstr "Сервисы по умолчанию"
-
-#
-#~ msgid "Default settings"
-#~ msgstr "Настройки по умолчанию"
-
-#
-#, fuzzy
-#~ msgid "Defaults"
-#~ msgstr "Настройки по умолчанию"
-
-#
-#~ msgid "Destination directory"
-#~ msgstr "Каталог назначения"
-
-#
-#~ msgid "Detected HDD:"
-#~ msgstr "Найден HDD:"
-
-#
-#~ msgid "Disable Subtitles"
-#~ msgstr "Отключить субтитры"
-
-#
-#~ msgid ""
-#~ "Disconnected from\n"
-#~ "Fritz!Box! (%s)\n"
-#~ "retrying..."
-#~ msgstr ""
-#~ "Отключен от\n"
-#~ "Fritz!Box! (%s)\n"
-#~ "повтор..."
-
-#
-#~ msgid ""
-#~ "Do you really want to REMOVE\n"
-#~ "the plugin \""
-#~ msgstr ""
-#~ "Вы действительно хотите удалить\n"
-#~ "плагин \""
-
-#
-#~ msgid ""
-#~ "Do you really want to download\n"
-#~ "the plugin \""
-#~ msgstr ""
-#~ "Вы действительно хотите скачать\n"
-#~ "плагин \""
-
-#
-#~ msgid ""
-#~ "Do you really want to initialize the harddisk?\n"
-#~ "All data on the disk will be lost!"
-#~ msgstr ""
-#~ "Вы действительно хотите форматировать жесткий диск?\n"
-#~ "Все  данные на данном диске будут удалены!"
-
-#
-#~ msgid "Do you want to install default sat lists?"
-#~ msgstr "Вы хотите установить спутники по умолчанию?"
-
-#
-#~ msgid "Done - Installed or upgraded %d packages with %d errors"
-#~ msgstr "Выполнено - Установлено или обновлено %d пакетов с %d ошибками"
-
-#
-#~ msgid "Download of USB flasher boot image failed: "
-#~ msgstr "Не удалось скачать загрузочный имидж:"
-
-#
-#~ msgid "Dutch"
-#~ msgstr "Нидерландский"
-
-#
-#~ msgid "Edit IPKG source URL..."
-#~ msgstr "Редактировать "
-
-#
-#~ msgid "End"
-#~ msgstr "Конец"
-
-#
-#~ msgid "English"
-#~ msgstr "Английский"
-
-#
-#~ msgid ""
-#~ "Enigma2 Skinselector v0.5 BETA\n"
-#~ "\n"
-#~ "If you experience any problems please contact\n"
-#~ "stephan@reichholf.net\n"
-#~ "\n"
-#~ "© 2006 - Stephan Reichholf"
-#~ msgstr ""
-#~ "Enigma2 Skinselector v0.5 BETA\n"
-#~ "\n"
-#~ "Если у вас возникли проблемы пишите\n"
-#~ "stephan@reichholf.net\n"
-#~ "\n"
-#~ "© 2006 - Stephan Reichholf"
-
-#
-#~ msgid "Enter Fast Forward at speed"
-#~ msgstr "Скорость перемотки вперед"
-
-#
-#~ msgid "Enter Rewind at speed"
-#~ msgstr "Скорость перемотки назад"
-
-#
-#~ msgid "Enter WLAN network name/SSID:"
-#~ msgstr "Введите имя беспроводной сети/SSID:"
-
-#
-#~ msgid "Enter WLAN passphrase/key:"
-#~ msgstr "Введите ключ сети"
-
-#
-#~ msgid "Filesystem Check..."
-#~ msgstr "Файловая система..."
-
-#
-#~ msgid "Finnish"
-#~ msgstr "Финский"
-
-#
-#~ msgid ""
-#~ "First we need to download the latest boot environment for the USB flasher."
-#~ msgstr "Сначала нужно скачать загрузочную среду для USB flasher."
-
-#
-#~ msgid "Frame repeat count during non-smooth winding"
-#~ msgstr "Расчет повтора кадров для покадрового воспроизведения"
-
-#
-#~ msgid "French"
-#~ msgstr "Французский"
-
-#
-#~ msgid "Frisian"
-#~ msgstr "Фризский"
-
-#
-#~ msgid "Fritz!Box FON IP address"
-#~ msgstr "Fritz!Box FON IP адрес"
-
-#
-#~ msgid "Function not yet implemented"
-#~ msgstr "Функция не реализована"
-
-#
-#~ msgid "Games / Plugins"
-#~ msgstr "Игры / Плагины"
-
-#
-#~ msgid "German"
-#~ msgstr "Немецкий"
-
-#
-#~ msgid "Greek"
-#~ msgstr "Греческий"
-
-#
-#~ msgid "Hungarian"
-#~ msgstr "Венгерский"
-
-#
-#~ msgid "Icelandic"
-#~ msgstr "Исландский"
-
-#
-#~ msgid "If you can see this page, please press OK."
-#~ msgstr "Если вы видите эту страницу нажмите ОК."
-
-#
-#~ msgid "Image flash utility"
-#~ msgstr "Утилита прошивки имиджа"
-
-#
-#~ msgid "Image-Upgrade"
-#~ msgstr "Обновление имиджа"
-
-#
-#~ msgid "Initialization..."
-#~ msgstr "Инициализация..."
-
-#
-#~ msgid "Initializing Harddisk..."
-#~ msgstr "Инициализация жесткого диска..."
-
-#
-#~ msgid "Install local IPKG"
-#~ msgstr "Установить локальный IPKG"
-
-#
-#~ msgid "Install software updates..."
-#~ msgstr "Установить обновления..."
-
-#
-#~ msgid "Integrated Ethernet"
-#~ msgstr "Адаптер локальной сети"
-
-#
-#~ msgid "Integrated Wireless"
-#~ msgstr "Адаптер беспроводной сети"
-
-#
-#~ msgid "Invert display"
-#~ msgstr "Инверсия экрана"
-
-#
-#~ msgid "Italian"
-#~ msgstr "Итальянский"
-
-#
-#~ msgid "Language..."
-#~ msgstr "Язык..."
-
-#
-#~ msgid "Latvian"
-#~ msgstr "Латвийский"
-
-#
-#~ msgid "Lets you view/edit files in your Dreambox"
-#~ msgstr "Позволяет просматривать и редактировать файлы на Dreambox"
-
-#
-#~ msgid "Lithuanian"
-#~ msgstr "Литовский"
-
-#
-#~ msgid "MMC Card"
-#~ msgstr "MMC карта"
-
-#
-#~ msgid "Movie Menu"
-#~ msgstr "Меню видеопрограмм"
-
-#
-#~ msgid "Network Mount"
-#~ msgstr "Сетевые подключения"
-
-#
-#~ msgid "Network..."
-#~ msgstr "Сеть..."
-
-#
-#~ msgid "New pin"
-#~ msgstr "Новый PIN"
-
-#
-#~ msgid "No 50 Hz, sorry. :("
-#~ msgstr "Нет 50 Hz, извините. :("
-
-#
-#~ msgid "No useable USB stick found"
-#~ msgstr "Не найден пригодный USB стик"
-
-#
-#~ msgid "Norwegian"
-#~ msgstr "Норвежский"
-
-#
-#~ msgid "Online-Upgrade"
-#~ msgstr "Online-обновление"
-
-#
-#~ msgid "Output"
-#~ msgstr "Действие"
-
-#
-#~ msgid "Page"
-#~ msgstr "Страница"
-
-#
-#~ msgid "Please choose .NFI image file from feed server to download"
-#~ msgstr "Пожалуйста, выберите .NFI имидж на сервере для загрузки"
-
-#
-#~ msgid ""
-#~ "Please disconnect all USB devices from your Dreambox and (re-)attach the "
-#~ "target USB stick (minimum size is 64 MB) now!"
-#~ msgstr ""
-#~ "Пожалуйста, отключите все USB устройства от ресивера и (пере-)подключите "
-#~ "USB-стик (минимальный размер 64Мб) сейчас!"
-
-#
-#~ msgid "Please enter the old pin code"
-#~ msgstr "Введите старый PIN"
-
-#
-#~ msgid "Please select .NFI flash image file from medium"
-#~ msgstr "Пожалуйста, выберите .NFI имидж с носителя"
-
-#
-#~ msgid "Please select target directory or medium"
-#~ msgstr "Пожалуйста, выберите целевой каталог или носитель"
-
-#
-#, fuzzy
-#~ msgid "Please wait (Step 2)"
-#~ msgstr "Пожалуйста, подождите..."
-
-#
-#~ msgid "Polish"
-#~ msgstr "Польский"
-
-#
-#~ msgid "Portuguese"
-#~ msgstr "Португальский"
-
-#
-#~ msgid "RSS Feed URI"
-#~ msgstr "RSS Feed URI"
-
-#
-#~ msgid "Ram Disk"
-#~ msgstr "Ram Disk"
-
-#
-#~ msgid "Really delete this timer?"
-#~ msgstr "Действительно удалить данный таймер?"
-
-#
-#~ msgid "Reenter new pin"
-#~ msgstr "Повторите новый PIN"
-
-#
-#~ msgid "Remove the broken .NFI file?"
-#~ msgstr "Удалить поврежденный .NFI файл?"
-
-#
-#~ msgid "Remove the incomplete .NFI file?"
-#~ msgstr "Удалить неполный .NFI файл?"
-
-#
-#~ msgid "Replace current playlist"
-#~ msgstr "Переместить текущий список воспроизведения"
-
-#
-#~ msgid "Restart GUI"
-#~ msgstr "Перезагрузить GUI"
-
-#
-#~ msgid "Restore backups..."
-#~ msgstr "Востановление резервной копии"
-
-#
-#~ msgid "Restore running..."
-#~ msgstr "Выполняется восстановление..."
-
-#
-#~ msgid ""
-#~ "Restoring the settings is done. Please press OK to activate the restored "
-#~ "settings now."
-#~ msgstr ""
-#~ "Восстановление установок завершено. Пожалуйста, нажмите OK для активации."
-
-#
-#~ msgid "Russian"
-#~ msgstr "Русский"
-
-#
-#~ msgid ""
-#~ "Scan your network for wireless Access Points and connect to them using "
-#~ "your WLAN USB Stick\n"
-#~ msgstr ""
-#~ "Поиск и подключение беспроводных точек доступа в вашей сети используя "
-#~ "беспроводный USB адаптер\n"
-
-#
-#~ msgid "Select IPKG source to edit..."
-#~ msgstr "Выберите IPKG источник для редактирования..."
-
-#
-#~ msgid "Select audio mode"
-#~ msgstr "Выбрать аудио режим"
-
-#
-#~ msgid "Select files for backup. Currently selected:\n"
-#~ msgstr "Выбор файлов для резервной копии. Выбрано:\n"
-
-#
-#~ msgid "Select files/folders to backup..."
-#~ msgstr "Выбор файлов/папок для сохранения"
-
-#
-#~ msgid "Select image"
-#~ msgstr "Выбор имиджа"
-
-#
-#~ msgid "Select video input"
-#~ msgstr "Выбор видео входа"
-
-#
-#~ msgid "Selected source image"
-#~ msgstr "Выбранный имидж"
-
-#
-#~ msgid "Set as default Interface"
-#~ msgstr "Установить как интерфейс по умолчанию"
-
-#
-#~ msgid "Skin..."
-#~ msgstr "Скин..."
-
-#
-#~ msgid "Software manager"
-#~ msgstr "Менеджер ПО"
-
-#
-#~ msgid "Software manager..."
-#~ msgstr "Менеджер ПО..."
-
-#
-#~ msgid "Somewhere else"
-#~ msgstr "где-нибудь еще"
-
-#
-#~ msgid "Sort A-Z"
-#~ msgstr "Сортировать A-Z"
-
-#
-#~ msgid "Sort Time"
-#~ msgstr "По времени"
-
-#
-#~ msgid "Spanish"
-#~ msgstr "Испанский"
-
-#
-#~ msgid "Startwizard"
-#~ msgstr "Мастер настройки"
-
-#
-#~ msgid "Step "
-#~ msgstr "Шаг "
-
-#
-#~ msgid "Stereo"
-#~ msgstr "Стерео"
-
-#
-#~ msgid "Subservice list..."
-#~ msgstr "Список подсервисов..."
-
-#
-#~ msgid "Swedish"
-#~ msgstr "Шведский"
-
-#
-#~ msgid "Tag 1"
-#~ msgstr "Тэг 1"
-
-#
-#~ msgid "Tag 2"
-#~ msgstr "Тэг 2"
-
-#
-#~ msgid ""
-#~ "The USB stick is now bootable. Do you want to download the latest image "
-#~ "from the feed server and save it on the stick?"
-#~ msgstr ""
-#~ "USB стик теперь загрузочный. Вы хотите загрузить последний имидж с "
-#~ "сервера и сохранить его на стик?"
-
-#
-#~ msgid ""
-#~ "The md5sum validation failed, the file may be corrupted! Are you sure "
-#~ "that you want to burn this image to flash memory? You are doing this at "
-#~ "your own risk!"
-#~ msgstr ""
-#~ "Md5sum проверка неудачна, файл может быть поврежден! Вы уверены, что вы "
-#~ "хотите записать этот образ во флэш-память? Вы делаете это на свой страх и "
-#~ "риск!"
-
-#
-#~ msgid ""
-#~ "The md5sum validation failed, the file may be downloaded incompletely or "
-#~ "be corrupted!"
-#~ msgstr ""
-#~ "Md5sum проверка неудачна, файл может быть загружен не полностью или "
-#~ "поврежден!"
-
-#
-#~ msgid "The pin code has been changed successfully."
-#~ msgstr "PIN код удачно изменен."
-
-#
-#~ msgid "The pin codes you entered are different."
-#~ msgstr "Введенный PIN код отличается."
-
-#
-#~ msgid "This .NFI file does not contain a valid %s image!"
-#~ msgstr "Этот .NFI файл не содержит валидный %s имидж!"
-
-#
-#~ msgid ""
-#~ "This .NFI file does not have a md5sum signature and is not guaranteed to "
-#~ "work. Do you really want to burn this image to flash memory?"
-#~ msgstr ""
-#~ "Этот .NFI файл не имеет md5sum сигнатуры и это не гарантирует его работу. "
-#~ "Вы действительно хотите записать этот образ во флэш-память?"
-
-#
-#~ msgid ""
-#~ "This .NFI file has a valid md5 signature. Continue programming this image "
-#~ "to flash memory?"
-#~ msgstr ""
-#~ "Этот .NFI файл имеет действительную md5 подпись. Продолжить запись образа "
-#~ "во флэш-память?"
-
-#
-#~ msgid "This Dreambox can't decode %s video streams!"
-#~ msgstr "Этот Dreambox не может декодировать %s видео потоки!"
-
-#
-#~ msgid "This is unsupported at the moment."
-#~ msgstr "Это не поддерживается в данный момент."
-
-#
-#~ msgid "Timer"
-#~ msgstr "Таймер"
-
-#
-#~ msgid "Timeshift path..."
-#~ msgstr "Таймшифт файл..."
-
-#
-#~ msgid ""
-#~ "To update your Dreambox firmware, please follow these steps:\n"
-#~ "1) Turn off your box with the rear power switch and plug in the bootable "
-#~ "USB stick.\n"
-#~ "2) Turn mains back on and hold the DOWN button on the front panel pressed "
-#~ "for 10 seconds.\n"
-#~ "3) Wait for bootup and follow instructions of the wizard."
-#~ msgstr ""
-#~ "Для обновления микропрограммы Dreambox, выполните следующие действия:\n"
-#~ "1) Выключите Dreambox кнопкой на задней панели и вставьте загрузочный USB "
-#~ "стик.\n"
-#~ "2) Включите ресивер и удерживайте кнопку ВНИЗ на передней панели около 10 "
-#~ "секунд.\n"
-#~ "3) Дождитесь загрузки и следуйте инструкциям мастера."
-
-#
-#~ msgid "Turkish"
-#~ msgstr "Турецкий"
-
-#
-#~ msgid "USB"
-#~ msgstr "USB"
-
-#
-#~ msgid "Ukrainian"
-#~ msgstr "Украинский"
-
-#
-#~ msgid ""
-#~ "Unable to complete filesystem check.\n"
-#~ "Error: "
-#~ msgstr ""
-#~ "Невозможно проверить файловую систему.\n"
-#~ "Ошибка:"
-
-#
-#~ msgid ""
-#~ "Unable to initialize harddisk.\n"
-#~ "Error: "
-#~ msgstr ""
-#~ "Невозможно отформатировать жесткий диск:\n"
-#~ "Ошибка:"
-
-#
-#~ msgid ""
-#~ "Unable to initialize harddisk.\n"
-#~ "Please refer to the user manual.\n"
-#~ "Error: "
-#~ msgstr ""
-#~ "Невозможно инициализировать жесткий диск.\n"
-#~ "Пожалуйста, обратитесь к инструкции пользователя.\n"
-#~ "Ошибка: "
-
-#
-#, fuzzy
-#~ msgid "Update done..."
-#~ msgstr "Обновление"
-
-#
-#, fuzzy
-#~ msgid "Updating, please wait..."
-#~ msgstr "Пожалуйста, подождите..."
-
-#
-#~ msgid "Use non-smooth winding at speeds above"
-#~ msgstr "Использовать прерывистую перемотку на скоростях выше"
-
-#
-#~ msgid "VCR Switch"
-#~ msgstr "VCR переключатель"
-
-#
-#~ msgid ""
-#~ "We will now test if your TV can also display this resolution at 50hz. If "
-#~ "your screen goes black, wait 20 seconds and it will switch back to 60hz.\n"
-#~ "Please press OK to begin."
-#~ msgstr ""
-#~ "Сейчас мы проверим, может ли ваш ТВ работать в этом разрешении на частоте "
-#~ "50 Гц. Если ваш экран станет черным, подождите 20 секунд, и он будет "
-#~ "переключен на 60 Гц.\n"
-#~ "Пожалуйста, нажмите кнопку \"ОК\", чтобы начать."
-
-#
-#~ msgid "Wireless"
-#~ msgstr "Беспроводный"
-
-#
-#~ msgid "Writing NFI image file to flash completed"
-#~ msgstr "Запись NFI образа во влешь-память завершена"
-
-#
-#~ msgid ""
-#~ "You do not seem to have a harddisk in your Dreambox. So backing up to a "
-#~ "harddisk is not an option for you."
-#~ msgstr ""
-#~ "Возможно не установлен жесткий диск. Поэтому вы не можете выбрать "
-#~ "сохранение на HDD."
-
-#
-#~ msgid ""
-#~ "You have chosen to backup to a compact flash card. The card must be in "
-#~ "the slot. We do not verify if it is really used at the moment. So better "
-#~ "backup to the harddisk!\n"
-#~ "Please press OK to start the backup now."
-#~ msgstr ""
-#~ "Вы  выбрали сохранение на CF карту. Карта должна быть в слоте. Мы не "
-#~ "можем проверить, есть действительно карта в данный момент. Лучше провести "
-#~ "сохранение на жесткий диск!\n"
-#~ "Пожалуйста, нажмите OK для начала сохранения."
-
-#
-#~ msgid ""
-#~ "You have chosen to backup to an usb drive. Better backup to the "
-#~ "harddisk!\n"
-#~ "Please press OK to start the backup now."
-#~ msgstr ""
-#~ "Вы выбрали сохранение на USB устройство. Лучше провести запись на жесткий "
-#~ "диск Пожалуйста, нажмите OK для начала сохранения."
-
-#
-#~ msgid ""
-#~ "You have chosen to backup to your harddisk. Please press OK to start the "
-#~ "backup now."
-#~ msgstr ""
-#~ "Вы выбрали сохранение на Ваш жесткий диск. Пожалуйста, нажмите OK для "
-#~ "начала сохранения."
-
-#
-#~ msgid ""
-#~ "You need to set a pin code and hide it from your children.\n"
-#~ "\n"
-#~ "Do you want to set the pin now?"
-#~ msgstr ""
-#~ "Вы можете задать PIN код и скрыть его от детей.\n"
-#~ "\n"
-#~ "Вы хотите установить PIN сейчас?"
-
-#
-#~ msgid "You selected a playlist"
-#~ msgstr "Вы выбрали список воспроизведения"
-
-#
-#~ msgid "Your TV works with 50 Hz. Good!"
-#~ msgstr "Ваш ТВ поддерживает 50 Гц. Отлично!"
-
-#
-#~ msgid ""
-#~ "Your network configuration has been activated.\n"
-#~ "A second configured interface has been found.\n"
-#~ "\n"
-#~ "Do you want to disable the second network interface?"
-#~ msgstr ""
-#~ "Ваши сетевые настройки активированы.\n"
-#~ "В системе найден второй сетевой интерфейс.\n"
-#~ "\n"
-#~ "Вы желаете отключить второй интерфейс?"
-
-#
-#~ msgid "choose destination directory"
-#~ msgstr "выберите каталог назначения"
-
-#
-#~ msgid "exceeds dual layer medium!"
-#~ msgstr "превышает двухслойный носитель"
-
-#
-#~ msgid "exit network adapter setup menu"
-#~ msgstr "закрыть настройки сетевого адаптера"
-
-#
-#~ msgid "failed"
-#~ msgstr "ошибка"
-
-#
-#~ msgid "full /etc directory"
-#~ msgstr "всю папку /etc"
-
-#
-#~ msgid "hidden network"
-#~ msgstr "скрытая сеть"
-
-#
-#~ msgid "hidden..."
-#~ msgstr "скрытый..."
-
-#
-#~ msgid "hide extended description"
-#~ msgstr "скрыть расширенное описание"
-
-#
-#~ msgid ""
-#~ "incoming call!\n"
-#~ "%s calls on %s!"
-#~ msgstr ""
-#~ "входящий звонок!\n"
-#~ "%sзвонок на %s!"
-
-#
-#~ msgid "menulist"
-#~ msgstr "список меню"
-
-#
-#~ msgid "no HDD found"
-#~ msgstr "не найден HDD"
-
-#
-#~ msgid "no Picture found"
-#~ msgstr "Изображение не найдено"
-
-#
-#~ msgid "open virtual keyboard input help"
-#~ msgstr "показать помошь к вирт. клавиатуре"
-
-#
-#~ msgid ""
-#~ "scan done!\n"
-#~ "%d services found!"
-#~ msgstr ""
-#~ "поиск завершен.\n"
-#~ "%d сервисов найдено."
-
-#
-#~ msgid ""
-#~ "scan done!\n"
-#~ "No service found!"
-#~ msgstr ""
-#~ "поиск завершен.\n"
-#~ "сервис не найден."
-
-#
-#~ msgid ""
-#~ "scan done!\n"
-#~ "One service found!"
-#~ msgstr ""
-#~ "поиск завершен.\n"
-#~ "Один сервис найден."
-
-#
-#~ msgid ""
-#~ "scan in progress - %d %% done!\n"
-#~ "%d services found!"
-#~ msgstr ""
-#~ "идет поиск- %d %% выполнено!\n"
-#~ "%d сервисов найдено!"
-
-#
-#~ msgid "select .NFI flash file"
-#~ msgstr "выбрать .NFI имидж"
-
-#
-#~ msgid "select image from server"
-#~ msgstr "выбрать имидж с сервера"
-
-#
-#~ msgid "service pin"
-#~ msgstr "pin сервиса"
-
-#
-#~ msgid "setup pin"
-#~ msgstr "pin настроек"
-
-#
-#~ msgid "show EPG..."
-#~ msgstr "Показать EPG..."
-
-#
-#~ msgid "show all"
-#~ msgstr "показать все"
-
-#
-#~ msgid "show first selected tag"
-#~ msgstr "показать первую выбранную метку"
-
-#
-#~ msgid "show second selected tag"
-#~ msgstr "показать вторую выбранную метку"
-
-#
-#~ msgid "show single service EPG..."
-#~ msgstr "показать телегид"
-
-#
-#~ msgid "text"
-#~ msgstr "текст"
-
-#
-#~ msgid "until restart"
-#~ msgstr "во время перезагрузки"

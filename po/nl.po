@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-08 16:04+0100\n"
+"POT-Creation-Date: 2011-09-27 18:44+0100\n"
 "PO-Revision-Date: 2011-09-19 10:48+0100\n"
 "Last-Translator: R.L. van der Does\n"
 "Language-Team: AndyBlac\n"
@@ -208,6 +208,10 @@ msgid "%H:%M"
 msgstr "%H:%M"
 
 #, python-format
+msgid "%d / 100"
+msgstr ""
+
+#, python-format
 msgid "%d jobs are running in the background!"
 msgstr "%d opdrachten draaien op de achtergrond."
 
@@ -334,6 +338,9 @@ msgstr "4:3 Letterbox"
 msgid "4:3 PanScan"
 msgstr "4:3 PanScan"
 
+msgid "4X"
+msgstr ""
+
 msgid "5"
 msgstr "5"
 
@@ -420,14 +427,23 @@ msgstr ""
 "Bezig met opnemen.\n"
 "Wat wilt u doen?"
 
-msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
-msgstr "U bent aan het opnemen. Stop de opname voordat u probeert de rotor instellingen te wijzigen."
+msgid ""
+"A recording is currently running. Please stop the recording before trying to "
+"configure the positioner."
+msgstr ""
+"U bent aan het opnemen. Stop de opname voordat u probeert de rotor "
+"instellingen te wijzigen."
 
-msgid "A recording is currently running. Please stop the recording before trying to scan."
+msgid ""
+"A recording is currently running. Please stop the recording before trying to "
+"scan."
 msgstr "Een opname is nu bezig. Stop de opname voor u gaat scannen."
 
-msgid "A recording is currently running. Please stop the recording before trying to start the satfinder."
-msgstr "U bent aan het opnemen. Stop de opname voordat u de signaalmeting start."
+msgid ""
+"A recording is currently running. Please stop the recording before trying to "
+"start the satfinder."
+msgstr ""
+"U bent aan het opnemen. Stop de opname voordat u de signaalmeting start."
 
 #, python-format
 msgid "A required tool (%s) was not found."
@@ -562,8 +578,12 @@ msgstr "Voeg aan favorieten toe"
 msgid "Address"
 msgstr "Adres"
 
-msgid "Adds enigma2 settings and dreambox model informations like SN, rev... if enabled."
-msgstr "Enigma2 instellingen en Dreambox model informatie toevoegen zoals SN, rev... indien ingeschakeld."
+msgid ""
+"Adds enigma2 settings and dreambox model informations like SN, rev... if "
+"enabled."
+msgstr ""
+"Enigma2 instellingen en Dreambox model informatie toevoegen zoals SN, rev... "
+"indien ingeschakeld."
 
 msgid "Adds network configuration if enabled."
 msgstr "Netwerkconfiguratie toevoegen indien ingeschakeld."
@@ -577,14 +597,15 @@ msgstr "Aanvullende Info"
 msgid "Adjust 3D settings"
 msgstr "Adjust 3D settings"
 
-msgid "Adjust HDMI CEC settings"
-msgstr "Pas HDMI CEC instellingen aan"
-
-msgid "Adjust display scrolling and symbols"
-msgstr "Aanpassen van display scrolling en symbolen"
-
-msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
-msgstr "Wijzig de kleuren zodanig dat alle tinten te onderscheiden, maar wel zo verzadigd mogelijk zijn. Zodra het resultaat u bevalt, drukt u op OK om dit menu af te sluiten of u selecteert met de nummertoetsen een ander testscherm."
+msgid ""
+"Adjust the color settings so that all the color shades are distinguishable, "
+"but appear as saturated as possible. If you are happy with the result, press "
+"OK to close the video fine-tuning, or use the number keys to select other "
+"test screens."
+msgstr ""
+"Wijzig de kleuren zodanig dat alle tinten te onderscheiden, maar wel zo "
+"verzadigd mogelijk zijn. Zodra het resultaat u bevalt, drukt u op OK om dit "
+"menu af te sluiten of u selecteert met de nummertoetsen een ander testscherm."
 
 msgid "Advanced Options"
 msgstr "Geavanceerde opties"
@@ -607,8 +628,12 @@ msgstr "Geavanceerd herstellen"
 msgid "After event"
 msgstr "Na opname"
 
-msgid "After the start wizard is completed, you need to protect single services. Refer to your dreambox's manual on how to do that."
-msgstr "Zodra de installatiewizard gereed is, kunt u een zender beveiligen. Raadpleeg de handleiding voor aanwijzigingen."
+msgid ""
+"After the start wizard is completed, you need to protect single services. "
+"Refer to your dreambox's manual on how to do that."
+msgstr ""
+"Zodra de installatiewizard gereed is, kunt u een zender beveiligen. "
+"Raadpleeg de handleiding voor aanwijzigingen."
 
 msgid "Album"
 msgstr "Album"
@@ -728,9 +753,6 @@ msgstr "Vraag gebruiker"
 
 msgid "Aspect Ratio"
 msgstr "Beeldverhouding"
-
-msgid "Atheros"
-msgstr "Atheros"
 
 msgid "Attach a file"
 msgstr "Voeg een bestand toe"
@@ -888,6 +910,12 @@ msgstr "Zwart scherm"
 msgid "Black screen till locked"
 msgstr "Zwart scherm tot gelocked"
 
+msgid "Blind Scan"
+msgstr ""
+
+msgid "Blindscan was canceled by the user."
+msgstr ""
+
 msgid "Block noise reduction"
 msgstr "Blok ruis vermindering"
 
@@ -925,7 +953,9 @@ msgstr "Toets instellingen"
 msgid "By Team ViX"
 msgstr "Door het VIX team"
 
-msgid "By pressing the OK Button on your remote control, the info bar is being displayed."
+msgid ""
+"By pressing the OK Button on your remote control, the info bar is being "
+"displayed."
 msgstr "Door op OK te drukken, wordt de infobalk zichtbaar."
 
 msgid "C"
@@ -973,11 +1003,15 @@ msgstr "Kabel scan"
 msgid "Cache Thumbnails"
 msgstr "Miniatuurafbeeldingen cachen"
 
+msgid "Can't cancel during upgrade!!"
+msgstr ""
+
 msgid "Cancel"
 msgstr "Annuleren"
 
 msgid "Cannot move files on a different disk or system to the trash can"
-msgstr "Kan bestanden niet van een ander apparaat naar de prullenbak verplaatsen"
+msgstr ""
+"Kan bestanden niet van een ander apparaat naar de prullenbak verplaatsen"
 
 msgid "Cannot move to trash can"
 msgstr "Kan bestanden niet naar de prullenbak verplaatsen"
@@ -1759,8 +1793,12 @@ msgstr ""
 "Wilt u alle geselecteerde bestanden versturen:\n"
 "(kies 'Nee' om aleen het nu geselecteerde bestand te versturen)"
 
-msgid "Do you want to submit your email address and name so that we can contact you if needed?"
-msgstr "Wilt u uw e-mailadres en naam opgeven zodat wij contact met u kunnen opnemen indien nodig?"
+msgid ""
+"Do you want to submit your email address and name so that we can contact you "
+"if needed?"
+msgstr ""
+"Wilt u uw e-mailadres en naam opgeven zodat wij contact met u kunnen opnemen "
+"indien nodig?"
 
 msgid "Do you want to update your Dreambox?"
 msgstr "Wilt u uw Dreambox updaten?"
@@ -1799,7 +1837,8 @@ msgstr "Klaar - %d pakket(ten) geïnstalleerd of vervangen"
 
 #, python-format
 msgid "Done - Installed, upgraded or removed %d packages with %d errors"
-msgstr "Klaar - %d pakket(ten) geïnstalleerd, vervangen of verwijderd met %d fouten"
+msgstr ""
+"Klaar - %d pakket(ten) geïnstalleerd, vervangen of verwijderd met %d fouten"
 
 msgid "Download"
 msgstr "Downloaden"
@@ -1992,9 +2031,6 @@ msgstr "Coderingssleutel"
 msgid "Encryption Keytype"
 msgstr "Codering Sleuteltype"
 
-msgid "Encryption Type"
-msgstr "Coderingstype"
-
 msgid "Encryption:"
 msgstr "Codering:"
 
@@ -2029,7 +2065,8 @@ msgid "Enter the service pin"
 msgstr "Voer de zender PINcode in"
 
 msgid "Enter your email address so that we can contact you if needed."
-msgstr "Vul uw e-mailadres in, zodat wij contact met u kunnen opnemen indien nodig."
+msgstr ""
+"Vul uw e-mailadres in, zodat wij contact met u kunnen opnemen indien nodig."
 
 msgid "Entitlements"
 msgstr "Benaming"
@@ -2061,6 +2098,13 @@ msgid ""
 msgstr ""
 "Fout: %s\n"
 "Opnieuw?"
+
+#, python-format
+msgid "Error[%d]. Press Cancel to exit."
+msgstr ""
+
+msgid "Ethernet network interface"
+msgstr ""
 
 msgid "Event Fontsize"
 msgstr "Event lettergrootte"
@@ -2156,13 +2200,6 @@ msgstr "FTP Instellingen"
 
 msgid "Factory reset"
 msgstr "Fabrieksinstellingen"
-
-msgid ""
-"Fail to upgrade.\n"
-"Cause : "
-msgstr ""
-"Upgrade niet gelukt.\n"
-"Oorzak : "
 
 msgid "Failed"
 msgstr "Mislukt"
@@ -2395,6 +2432,9 @@ msgstr "Guard interval modus"
 msgid "HD list"
 msgstr "HD lijst"
 
+msgid "HDMI CEC"
+msgstr ""
+
 msgid "Handle deepstandby events"
 msgstr "Verwerk deepstandby gebeurtenissen"
 
@@ -2416,11 +2456,8 @@ msgstr "Harde schijf standby na"
 msgid "Hardware:"
 msgstr "Hardware:"
 
-msgid "Hidden network SSID"
-msgstr "Verborgen netwerk SSID"
-
-msgid "Hidden networkname"
-msgstr "Verborgen netwerknaam"
+msgid "Hidden network"
+msgstr ""
 
 msgid "Hide CI messages"
 msgstr "Verberg CI meldingen"
@@ -2506,15 +2543,25 @@ msgstr ""
 "scart aansluiting. Druk op OK om terug te keren."
 
 msgid ""
-"If your TV has a brightness or contrast enhancement, disable it. If there is something called \"dynamic\", set it to standard. Adjust the backlight level to a value suiting your taste. Turn down contrast on your TV as much as possible.\n"
-"Then turn the brightness setting as low as possible, but make sure that the two lowermost shades of gray stay distinguishable.\n"
-"Do not care about the bright shades now. They will be set up in the next step.\n"
+"If your TV has a brightness or contrast enhancement, disable it. If there is "
+"something called \"dynamic\", set it to standard. Adjust the backlight level "
+"to a value suiting your taste. Turn down contrast on your TV as much as "
+"possible.\n"
+"Then turn the brightness setting as low as possible, but make sure that the "
+"two lowermost shades of gray stay distinguishable.\n"
+"Do not care about the bright shades now. They will be set up in the next "
+"step.\n"
 "If you are happy with the result, press OK."
 msgstr ""
-"Indien uw TV over contrast- of helderheidsoptimalisatie opties en andere 'beeldverbeteraars' beschikt, zet deze dan uit!\n"
-"Instellingen als 'Dynamic', op standaard instellen. Stel bij een LCD TV de achtergrondverlichting op een niveau in dat u bevalt. Zet 'contrast' zo laag mogelijk.\n"
-"Daarna 'helderheid' zo laag mogelijk instellen, maar wel zodanig dat ook de donkerste grijstinten zichtbaar zijn.\n"
-"Let nu even niet op de heldere vlakken. Die worden pas bij de volgende stap ingesteld.\n"
+"Indien uw TV over contrast- of helderheidsoptimalisatie opties en andere "
+"'beeldverbeteraars' beschikt, zet deze dan uit!\n"
+"Instellingen als 'Dynamic', op standaard instellen. Stel bij een LCD TV de "
+"achtergrondverlichting op een niveau in dat u bevalt. Zet 'contrast' zo laag "
+"mogelijk.\n"
+"Daarna 'helderheid' zo laag mogelijk instellen, maar wel zodanig dat ook de "
+"donkerste grijstinten zichtbaar zijn.\n"
+"Let nu even niet op de heldere vlakken. Die worden pas bij de volgende stap "
+"ingesteld.\n"
 "Indien het resultaat nu goed is, drukt u op OK."
 
 msgid "Image Information"
@@ -2526,7 +2573,8 @@ msgstr "Image:"
 msgid "In Progress"
 msgstr "Is bezig"
 
-msgid "In order to record a timer, the TV was switched to the recording service!\n"
+msgid ""
+"In order to record a timer, the TV was switched to the recording service!\n"
 msgstr "Voor een geplande opname is nu de juiste zender ingeschakeld!\n"
 
 msgid "Inadyn Log"
@@ -2543,9 +2591,6 @@ msgstr "Verhoogd voltage"
 
 msgid "Index"
 msgstr "Index"
-
-msgid "Inetrface"
-msgstr "Interface"
 
 msgid "Info"
 msgstr "Informatie"
@@ -2591,6 +2636,9 @@ msgstr "Invoer"
 
 msgid "Input device setup"
 msgstr "Invoerapparaat instellingen"
+
+msgid "Input devices"
+msgstr ""
 
 msgid "Install"
 msgstr "Installeer"
@@ -2640,6 +2688,9 @@ msgstr "Directe opname..."
 msgid "Instant record location"
 msgstr "Locatie directe opname"
 
+msgid "Interface"
+msgstr ""
+
 #
 msgid "Interface: "
 msgstr "Interface: "
@@ -2649,9 +2700,6 @@ msgstr "Tussenliggend"
 
 msgid "Internal Flash"
 msgstr "Intern geheugen"
-
-msgid "Internal LAN adapter."
-msgstr "Interne LAN adapter."
 
 msgid "Internal hdd only"
 msgstr "Alleen interne HDD"
@@ -2873,6 +2921,17 @@ msgstr "OK-toets lang"
 msgid "Longitude"
 msgstr "Lengtegraad"
 
+#, python-format
+msgid ""
+"Looking for available transponders.\n"
+"This will take several minutes.\n"
+"\n"
+"   Current Status : %d/%d\n"
+"   Orbital Positions : %s\n"
+"   Polarization : %s\n"
+"   Bandwidth : %s"
+msgstr ""
+
 msgid "MORE"
 msgstr "MEER"
 
@@ -3069,9 +3128,6 @@ msgstr "NFS Instellingen"
 msgid "NIM"
 msgstr "NIM"
 
-msgid "NOT"
-msgstr "NOT"
-
 msgid "NOW"
 msgstr "NU"
 
@@ -3115,9 +3171,6 @@ msgstr "Netwerk configuratie..."
 msgid "Network ID"
 msgstr "Netwerk ID"
 
-msgid "Network SSID"
-msgstr "Netwerk SSID"
-
 msgid "Network Servers:"
 msgstr "Netwerk Servers:"
 
@@ -3148,6 +3201,9 @@ msgstr "Netwerk:"
 msgid "NetworkWizard"
 msgstr "Netwerk wizard"
 
+msgid "Networkname (SSID)"
+msgstr ""
+
 msgid "New"
 msgstr "Nieuw"
 
@@ -3174,9 +3230,6 @@ msgstr "Geen verbinding"
 
 msgid "No HDD found or HDD not initialized!"
 msgstr "Geen harde schijf gevonden of de harde schijf is niet geformatteerd!"
-
-msgid "No Networks found"
-msgstr "Geen netwerken gevonden"
 
 msgid "No Timeshift found to save as recording!"
 msgstr "Geen Timeshift gevonden om als opname op te slaan!"
@@ -3209,8 +3262,17 @@ msgstr "Geen weer te geven bestanden op dit medium gevonden!"
 msgid "No event info found, recording indefinitely."
 msgstr "Geen EPG gegevens gevonden. Opname voor onbepaalde tijd."
 
-msgid "No fast winding possible yet.. but you can use the number buttons to skip forward/backward!"
-msgstr "Snel spoelen is nog niet mogelijk....maar u kunt de cijfertoetsengebruiken om te springen"
+msgid ""
+"No fast winding possible yet.. but you can use the number buttons to skip "
+"forward/backward!"
+msgstr ""
+"Snel spoelen is nog niet mogelijk....maar u kunt de cijfertoetsengebruiken "
+"om te springen"
+
+msgid ""
+"No found transponders!!\n"
+"Please check the satellite connection, or scan other search condition."
+msgstr ""
 
 msgid "No free tuner!"
 msgstr "Geen vrije tuner!"
@@ -3230,8 +3292,11 @@ msgstr "Geen netwerkverbinding beschikbaar"
 msgid "No networks found"
 msgstr "Geen netwerken gevonden"
 
-msgid "No packages were upgraded yet. So you can check your network and try again."
-msgstr "Er zijn geen softwarepakketten gevonden. Controleer uw netwerk en probeer het opnieuw."
+msgid ""
+"No packages were upgraded yet. So you can check your network and try again."
+msgstr ""
+"Er zijn geen softwarepakketten gevonden. Controleer uw netwerk en probeer "
+"het opnieuw."
 
 msgid "No picture on TV? Press EXIT and retry."
 msgstr "Geen beeld op uw TV? Druk op exit en probeer opnieuw."
@@ -3279,29 +3344,35 @@ msgstr ""
 "Wilt u de menu PINcode nu wijzigen?\n"
 "Indien u 'nee' kiest, blijft het menu onbeveiligd!"
 
-msgid "No wireless networks found! Please refresh."
-msgstr "Geen draadloze netwerken gevonden! Vernieuw."
+msgid "No wireless networks found! Searching..."
+msgstr ""
 
 msgid ""
 "No working local network adapter found.\n"
-"Please verify that you have attached a network cable and your network is configured correctly."
+"Please verify that you have attached a network cable and your network is "
+"configured correctly."
 msgstr ""
 "Geen werkende lokale netwerkadapter gevonden.\n"
-"Controleer of er een netwerkkabel is geplaatst en uw netwerk correct is geconfigureerd."
+"Controleer of er een netwerkkabel is geplaatst en uw netwerk correct is "
+"geconfigureerd."
 
 msgid ""
 "No working wireless network adapter found.\n"
-"Please verify that you have attached a compatible WLAN device and your network is configured correctly."
+"Please verify that you have attached a compatible WLAN device and your "
+"network is configured correctly."
 msgstr ""
 "Geen werkende draadloze netwerkadapter gevonden.\n"
-"Controleer of er een compatibel WLAN apparaat is geplaatst en uw netwerk correct is geconfigureerd."
+"Controleer of er een compatibel WLAN apparaat is geplaatst en uw netwerk "
+"correct is geconfigureerd."
 
 msgid ""
 "No working wireless network interface found.\n"
-" Please verify that you have attached a compatible WLAN device or enable your local network interface."
+" Please verify that you have attached a compatible WLAN device or enable "
+"your local network interface."
 msgstr ""
 "Geen werkende draadloze netwerk interface gevonden.\n"
-"Controleer of er een compatibel WLAN apparaat is geplaatst of activeer uw lokale netwerk interface."
+"Controleer of er een compatibel WLAN apparaat is geplaatst of activeer uw "
+"lokale netwerk interface."
 
 msgid "No, but restart from begin"
 msgstr "Nee, vanaf begin herstarten"
@@ -3341,8 +3412,12 @@ msgid "North"
 msgstr "Noord"
 
 #, python-format
-msgid "Not enough diskspace. Please free up some diskspace and try again. (%d MB required, %d MB available)"
-msgstr "Onvoldoende schijfruimte. Maak ruimte vrij en probeer het opnieuw (%d MB benodigd, %d MB beschikbaar)"
+msgid ""
+"Not enough diskspace. Please free up some diskspace and try again. (%d MB "
+"required, %d MB available)"
+msgstr ""
+"Onvoldoende schijfruimte. Maak ruimte vrij en probeer het opnieuw (%d MB "
+"benodigd, %d MB beschikbaar)"
 
 #, python-format
 msgid ""
@@ -3358,6 +3433,9 @@ msgstr ""
 "Vrije ruimte: %sMB\n"
 "Pad: %s"
 
+msgid "Not-Associated"
+msgstr ""
+
 msgid ""
 "Nothing to scan!\n"
 "Please setup your tuner settings before you start a service scan."
@@ -3371,9 +3449,14 @@ msgstr "November"
 msgid "Now Playing"
 msgstr "Weergave loopt"
 
-msgid "Now, use the contrast setting to turn up the brightness of the background as much as possible, but make sure that you can still see the difference between the two brightest levels of shades.If you have done that, press OK."
+msgid ""
+"Now, use the contrast setting to turn up the brightness of the background as "
+"much as possible, but make sure that you can still see the difference "
+"between the two brightest levels of shades.If you have done that, press OK."
 msgstr ""
-"Gebruik nu 'contrast' om de helderheid van de achtergrond zo hoog mogelijk in te stellen, maar zorg er voor dat u nog steeds de helderste grijze vlakken van elkaar kunt onderscheiden.\n"
+"Gebruik nu 'contrast' om de helderheid van de achtergrond zo hoog mogelijk "
+"in te stellen, maar zorg er voor dat u nog steeds de helderste grijze "
+"vlakken van elkaar kunt onderscheiden.\n"
 "Indien het resultaat goed is, drukt u op OK."
 
 msgid "OK"
@@ -3609,11 +3692,43 @@ msgstr "Selecteer het te scannen medium..."
 msgid "Please add titles to the compilation."
 msgstr "Gelieve titels aan de compilatie toe te voegen."
 
-msgid "Please be aware, that anyone can disable the parental control, if you have not set a PIN."
+msgid ""
+"Please be aware, that anyone can disable the parental control, if you have "
+"not set a PIN."
 msgstr "Als er geen PIN is ingesteld, kan iedereen het kinderslot uitschakelen"
 
 msgid "Please change recording endtime"
 msgstr "Wijzig de opname eindtijd a.u.b."
+
+msgid ""
+"Please check again.\n"
+"Frequency : start value is larger than stop value."
+msgstr ""
+
+msgid ""
+"Please check again.\n"
+"Start frequency must be between 950 and 2150."
+msgstr ""
+
+msgid ""
+"Please check again.\n"
+"Start symbolrate must be between 2MHz and 45MHz."
+msgstr ""
+
+msgid ""
+"Please check again.\n"
+"Stop frequency must be between 950 and 2150."
+msgstr ""
+
+msgid ""
+"Please check again.\n"
+"Stop symbolrate must be between 2MHz and 45MHz."
+msgstr ""
+
+msgid ""
+"Please check again.\n"
+"Symbolrate : start value is larger than stop value."
+msgstr ""
 
 msgid "Please check your network settings!"
 msgstr "Controleer uw netwerkinstellingen a.u.b.!"
@@ -3634,14 +3749,17 @@ msgid "Please choose the default services lists you want to install."
 msgstr "Kies de te installeren standaard zenderlijst a.u.b."
 
 msgid ""
-"Please configure or verify your Nameservers by filling out the required values.\n"
+"Please configure or verify your Nameservers by filling out the required "
+"values.\n"
 "When you are ready press OK to continue."
 msgstr ""
-"Configureer of kijk uw nameservers na door de verplichte velden in te vullen.\n"
+"Configureer of kijk uw nameservers na door de verplichte velden in te "
+"vullen.\n"
 "Druk op OK om verder te gaan."
 
 msgid ""
-"Please configure your internet connection by filling out the required values.\n"
+"Please configure your internet connection by filling out the required "
+"values.\n"
 "When you are ready press OK to continue."
 msgstr ""
 "Configureer uw internetverbinding door de verplichte velden in te vullen.\n"
@@ -3680,8 +3798,12 @@ msgstr "Geef hier uw naam (optioneel):"
 msgid "Please follow the instructions on the TV"
 msgstr "Volg nu de instructies op uw TV"
 
-msgid "Please note that the previously selected media could not be accessed and therefore the default directory is being used instead."
-msgstr "De zojuist geselecteerde media kon niet worden benaderd en om die reden wordt nu de standaard map gebruikt."
+msgid ""
+"Please note that the previously selected media could not be accessed and "
+"therefore the default directory is being used instead."
+msgstr ""
+"De zojuist geselecteerde media kon niet worden benaderd en om die reden "
+"wordt nu de standaard map gebruikt."
 
 msgid "Please press OK to continue."
 msgstr "Druk op OK om door te gaan."
@@ -3720,11 +3842,13 @@ msgid "Please select the movie path..."
 msgstr "Selecteer het opnamepad..."
 
 msgid ""
-"Please select the network interface that you want to use for your internet connection.\n"
+"Please select the network interface that you want to use for your internet "
+"connection.\n"
 "\n"
 "Please press OK to continue."
 msgstr ""
-"Selecteer de netwerk interface die u wilt gebruiken voor uw internetverbinding.\n"
+"Selecteer de netwerk interface die u wilt gebruiken voor uw "
+"internetverbinding.\n"
 "\n"
 "Druk op OK om verder te gaan."
 
@@ -3746,6 +3870,9 @@ msgstr "Instellingen voor Tuner C"
 msgid "Please set up tuner D"
 msgstr "Instellingen voor Tuner D"
 
+msgid "Please setup your tuner configuration."
+msgstr ""
+
 msgid ""
 "Please use direction keys to move the PiP window.\n"
 "Press Bouquet +/- to resize the window.\n"
@@ -3755,8 +3882,12 @@ msgstr ""
 "Druk op Boeket +/- om PiP venster te vergroten of verkleinen.\n"
 "Druk op OK om terug te gaan naar TV modus of EXIT na verplaatsen."
 
-msgid "Please use the UP and DOWN keys to select your language. Afterwards press the OK button."
-msgstr "Gebruik de omhoog/omlaag toeten om de gewenste taal te selecteren. Druk daarna op OK."
+msgid ""
+"Please use the UP and DOWN keys to select your language. Afterwards press "
+"the OK button."
+msgstr ""
+"Gebruik de omhoog/omlaag toeten om de gewenste taal te selecteren. Druk "
+"daarna op OK."
 
 msgid "Please wait for activation of your network configuration..."
 msgstr "Een ogenblikje geduld terwijl we uw netwerk activeren..."
@@ -3774,7 +3905,8 @@ msgid "Please wait while we configure your network..."
 msgstr "Een ogenblikje geduld a.u.b. terwijl we uw netwerk configureren..."
 
 msgid "Please wait while we prepare your network interfaces..."
-msgstr "Een ogenblikje geduld a.u.b. terwijl we uw netwerk interface klaar maken..."
+msgstr ""
+"Een ogenblikje geduld a.u.b. terwijl we uw netwerk interface klaar maken..."
 
 msgid "Please wait while we test your network..."
 msgstr "Een ogenblikje geduld a.u.b. we testen uw netwerk..."
@@ -3877,6 +4009,9 @@ msgstr "Voorbereiden... Een ogenblik geduld a.u.b."
 
 msgid "Press '0' to toggle internal/external PiP."
 msgstr "Druk op  '0' om te schakelen tussen interne/externe PiP."
+
+msgid "Press Green/OK to start the scan"
+msgstr ""
 
 msgid "Press INFO on your remote control for additional information."
 msgstr "Druk op INFO voor aanvullende informatie."
@@ -4013,9 +4148,6 @@ msgstr "RGB"
 
 msgid "Radio"
 msgstr "Radio"
-
-msgid "Ralink"
-msgstr "Ralink"
 
 msgid "Random"
 msgstr "Random"
@@ -4424,6 +4556,9 @@ msgstr "WiFi netwerken zoeken"
 msgid "Scan additional SR"
 msgstr "Zoek ook op SR"
 
+msgid "Scan band"
+msgstr "Scan band"
+
 msgid "Scan band EU HYPER"
 msgstr "Zoek band EU HYPER"
 
@@ -4460,8 +4595,24 @@ msgstr "Zoek band US MID"
 msgid "Scan band US SUPER"
 msgstr "Zoek band US SUPER"
 
-msgid "Scan your network for wireless access points and connect to them using your selected wireless device.\n"
-msgstr "Doorzoek uw netwerk naar draadloze access points en maak een verbinding met uw geselecteerd apparaat.\n"
+msgid "Scan start frequency"
+msgstr "Scan start frequentie"
+
+msgid "Scan start symbolrate"
+msgstr "Scan start symbolrate"
+
+msgid "Scan stop frequency"
+msgstr "Scan stop frequentie"
+
+msgid "Scan stop symbolrate"
+msgstr "Scan stop symbolrate"
+
+msgid ""
+"Scan your network for wireless access points and connect to them using your "
+"selected wireless device.\n"
+msgstr ""
+"Doorzoek uw netwerk naar draadloze access points en maak een verbinding met "
+"uw geselecteerd apparaat.\n"
 
 #, python-format
 msgid "Scanning %s..."
@@ -4477,8 +4628,11 @@ msgstr "Zoeken mislukt!"
 msgid "Scanning..."
 msgstr "Zoeken..."
 
-msgid "Scans default lamedbs sorted by satellite with a connected dish positioner"
-msgstr "Doorzoekt standaard lamedbs gesorteerd op satelliet middels een verbonden DiSEqC rotor"
+msgid ""
+"Scans default lamedbs sorted by satellite with a connected dish positioner"
+msgstr ""
+"Doorzoekt standaard lamedbs gesorteerd op satelliet middels een verbonden "
+"DiSEqC rotor"
 
 msgid "Search east"
 msgstr "Zoek oost"
@@ -4491,7 +4645,8 @@ msgid "Searching for available updates. Please wait..."
 msgstr "Zoeken naar beschikbare updates. Ogenblikje..."
 
 msgid "Searching for new installed or removed packages. Please wait..."
-msgstr "Zoeken naar nieuw geïnstalleerde of verwijderde pakketten. Een ogenblikje..."
+msgstr ""
+"Zoeken naar nieuw geïnstalleerde of verwijderde pakketten. Een ogenblikje..."
 
 msgid "Secondary DNS"
 msgstr "Secondaire DNS"
@@ -4697,8 +4852,12 @@ msgstr "Menu modus"
 
 #
 #, python-format
-msgid "Shall the USB stick wizard proceed and program the image file %s into flash memory?"
-msgstr "Zal de USB-stick wizard verder gaan en het bestand %s in het flash geheugen wegschrijven?"
+msgid ""
+"Shall the USB stick wizard proceed and program the image file %s into flash "
+"memory?"
+msgstr ""
+"Zal de USB-stick wizard verder gaan en het bestand %s in het flash geheugen "
+"wegschrijven?"
 
 msgid "Share Folder's"
 msgstr "Deel Folder's"
@@ -5035,6 +5194,9 @@ msgstr "Start op"
 msgid "Status"
 msgstr "Status"
 
+msgid "Status : 0%"
+msgstr ""
+
 msgid "Step east"
 msgstr "Stap > oost"
 
@@ -5119,8 +5281,8 @@ msgstr "Ondertitel selectie..."
 msgid "Subtitles"
 msgstr "Ondertitels"
 
-msgid "Success!!"
-msgstr "Gelukt!"
+msgid "Success. Press OK to exit."
+msgstr ""
 
 msgid "Sun"
 msgstr "Zo"
@@ -5258,7 +5420,8 @@ msgid ""
 "Thank you for using the wizard. Your box is now ready to use.\n"
 "Please press OK to start using your Dreambox."
 msgstr ""
-"Bedankt voor het gebruik van deze wizard. Uw Dreambox is klaar voor gebruik.\n"
+"Bedankt voor het gebruik van deze wizard. Uw Dreambox is klaar voor "
+"gebruik.\n"
 "Druk op OK om verder te gaan."
 
 msgid ""
@@ -5275,8 +5438,13 @@ msgstr ""
 "De Cool TV Guide plugin is niet geïnstalleerd!\n"
 "Installeer die aub."
 
-msgid "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to create a Dreambox format data DVD (which will not play in stand-alone DVD players) instead?"
-msgstr "De DVD standaard ondersteunt geen H.264 (HDTV) video. Wil je een Dreambox formaat data DVD maken (deze speelt niet af in een DVD speler) ?"
+msgid ""
+"The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to "
+"create a Dreambox format data DVD (which will not play in stand-alone DVD "
+"players) instead?"
+msgstr ""
+"De DVD standaard ondersteunt geen H.264 (HDTV) video. Wil je een Dreambox "
+"formaat data DVD maken (deze speelt niet af in een DVD speler) ?"
 
 msgid ""
 "The EPGSearch plugin is not installed!\n"
@@ -5371,16 +5539,22 @@ msgstr "De volgende bestanden werden gevonden..."
 
 msgid ""
 "The input port should be configured now.\n"
-"You can now configure the screen by displaying some test pictures. Do you want to do that now?"
+"You can now configure the screen by displaying some test pictures. Do you "
+"want to do that now?"
 msgstr ""
 "De video ingang van uw TV kan nu worden ingesteld.\n"
-"U kunt uw TV instellen door een aantal testbeelden weer te geven. Wilt u dat nu doen?"
+"U kunt uw TV instellen door een aantal testbeelden weer te geven. Wilt u dat "
+"nu doen?"
 
 msgid "The installation of the default services lists is finished."
 msgstr "De installatie van de standaard zenderlijst is voltooid."
 
-msgid "The installation of the default settings is finished. You can now continue configuring your Dreambox by pressing the OK button on the remote control."
-msgstr "De installatie van de standaard zenderlijst is voltooid. U kunt nu uw Dreambox verder configureren door op OK te drukken."
+msgid ""
+"The installation of the default settings is finished. You can now continue "
+"configuring your Dreambox by pressing the OK button on the remote control."
+msgstr ""
+"De installatie van de standaard zenderlijst is voltooid. U kunt nu uw "
+"Dreambox verder configureren door op OK te drukken."
 
 msgid "The md5sum validation failed, the file may be corrupted!"
 msgstr "De md5sum validatie is mislukt, het bestand is misschien beschadigd!"
@@ -5402,8 +5576,11 @@ msgstr "De ingevoerde PINcode is onjuist."
 msgid "The results have been written to %s."
 msgstr "De resultaten zijn bewaard op %s."
 
-msgid "The screen will go blank while upgrading, be patient and wait for the reboot."
-msgstr "Het beeld wordt zwart tijdens de update. Wees geduldig en wacht op de herstart."
+msgid ""
+"The screen will go blank while upgrading, be patient and wait for the reboot."
+msgstr ""
+"Het beeld wordt zwart tijdens de update. Wees geduldig en wacht op de "
+"herstart."
 
 msgid "The sleep timer has been activated."
 msgstr "De slaaptimer is geactiveerd."
@@ -5412,7 +5589,8 @@ msgid "The sleep timer has been disabled."
 msgstr "De slaaptimer is uitgeschakeld."
 
 msgid "The timer file (timers.xml) is corrupt and could not be loaded."
-msgstr "Het timer bestand (timer.xml) is beschadigd en kan niet worden geladen."
+msgstr ""
+"Het timer bestand (timer.xml) is beschadigd en kan niet worden geladen."
 
 msgid ""
 "The wireless LAN plugin is not installed!\n"
@@ -5424,14 +5602,21 @@ msgstr ""
 msgid ""
 "The wireless LAN plugin is not installed!\n"
 "Please install it."
-msgstr "De WiFi plugin is niet geïnstalleerd.Deze plugin eerst installeren a.u.b."
+msgstr ""
+"De WiFi plugin is niet geïnstalleerd.Deze plugin eerst installeren a.u.b."
 
-msgid "The wizard can backup your current settings. Do you want to do a backup now?"
-msgstr "De wizard kan uw huidige settings opslaan. Wilt u nu een back-up maken?"
+msgid ""
+"The wizard can backup your current settings. Do you want to do a backup now?"
+msgstr ""
+"De wizard kan uw huidige settings opslaan. Wilt u nu een back-up maken?"
 
 #, python-format
-msgid "The wizard found a configuration backup. Do you want to restore your old settings from %s?"
-msgstr "De wizard vond een configuratie back-up. Wilt u uw oude instellingen van %s herstellen?"
+msgid ""
+"The wizard found a configuration backup. Do you want to restore your old "
+"settings from %s?"
+msgstr ""
+"De wizard vond een configuratie back-up. Wilt u uw oude instellingen van %s "
+"herstellen?"
 
 msgid "The wizard is finished now."
 msgstr "De wizard is nu gereed."
@@ -5465,13 +5650,19 @@ msgstr ""
 "Weet u zeker dat u wilt doorgaan?"
 
 msgid "There was an error downloading the packetlist. Please try again."
-msgstr "Er is een fout opgetreden bij het downloaden van de pakketlijst. Probeer het opnieuw."
+msgstr ""
+"Er is een fout opgetreden bij het downloaden van de pakketlijst. Probeer het "
+"opnieuw."
 
 msgid "There was an error. The package:"
 msgstr "Er is een fout. Het pakket:"
 
-msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
-msgstr "Dit DVD-RW medium is reeds geformatteerd - herformatteren zal alles wissen op deze disk."
+msgid ""
+"This DVD RW medium is already formatted - reformatting will erase all "
+"content on the disc."
+msgstr ""
+"Dit DVD-RW medium is reeds geformatteerd - herformatteren zal alles wissen "
+"op deze disk."
 
 #, python-format
 msgid "This Dreambox can't decode %s streams!"
@@ -5481,15 +5672,21 @@ msgid "This is step number 2."
 msgstr "Dit is stap nummer 2."
 
 msgid ""
-"This plugin creates a USB stick which can be used to update the firmware of your Dreambox without the need for a network or WLAN connection.\n"
+"This plugin creates a USB stick which can be used to update the firmware of "
+"your Dreambox without the need for a network or WLAN connection.\n"
 "First, a USB stick needs to be prepared so that it becomes bootable.\n"
-"In the next step, an NFI image file can be downloaded from the update server and saved on the USB stick.\n"
-"If you already have a prepared bootable USB stick, please insert it now. Otherwise plug in a USB stick with a minimum size of 64 MB!"
+"In the next step, an NFI image file can be downloaded from the update server "
+"and saved on the USB stick.\n"
+"If you already have a prepared bootable USB stick, please insert it now. "
+"Otherwise plug in a USB stick with a minimum size of 64 MB!"
 msgstr ""
-"Deze plugin creëert een USB-stick die kan worden gebruikt om de software van uw Dreambox te updaten zonder dat u een LAN of WLAN verbinding nodig heeft.\n"
+"Deze plugin creëert een USB-stick die kan worden gebruikt om de software van "
+"uw Dreambox te updaten zonder dat u een LAN of WLAN verbinding nodig heeft.\n"
 "Eerst moet de stick bootaable gemaakt worden.\n"
-"In de volgende stap kan een BFI-bestand worden gedownload van de update server en op de stick worden opgeslagen.\n"
-"Als u al een geschikte stick heeft, kunt u die nu inpluggen. Anders een stick met minimaal 64MB gebruiken!"
+"In de volgende stap kan een BFI-bestand worden gedownload van de update "
+"server en op de stick worden opgeslagen.\n"
+"Als u al een geschikte stick heeft, kunt u die nu inpluggen. Anders een "
+"stick met minimaal 64MB gebruiken!"
 
 msgid "This plugin is installed."
 msgstr "Deze plugin is geïnstalleerd."
@@ -5507,7 +5704,8 @@ msgid ""
 "This test checks for configured Nameservers.\n"
 "If you get a \"unconfirmed\" message:\n"
 "- please check your DHCP, cabling and Adapter setup\n"
-"- if you configured your Nameservers manually please verify your entries in the \"Nameserver\" Configuration"
+"- if you configured your Nameservers manually please verify your entries in "
+"the \"Nameserver\" Configuration"
 msgstr ""
 "Deze test controleert de Nameservers.\n"
 "Indien u een \"onbevestigd\" bericht ziet:\n"
@@ -5520,7 +5718,8 @@ msgid ""
 "- verify that a network cable is attached\n"
 "- verify that the cable is not broken"
 msgstr ""
-"Deze test controleert of er een netwerkkabel met uw LAN adapter verbonden is.\n"
+"Deze test controleert of er een netwerkkabel met uw LAN adapter verbonden "
+"is.\n"
 "Indien u een \"disconnected\" bericht ziet:\n"
 "- controleer of de netwerkkabel goed aangesloten is\n"
 "- controleer of de kabel niet defect is."
@@ -5531,25 +5730,30 @@ msgid ""
 "- no valid IP Address was found\n"
 "- please check your DHCP, cabling and adapter setup"
 msgstr ""
-"Deze test controleert of er voor uw LAN adapter een geldig IP adres gevonden is.\n"
+"Deze test controleert of er voor uw LAN adapter een geldig IP adres gevonden "
+"is.\n"
 "Indien u de \"onbevestigd\" melding ziet:\n"
 "- Is er geen geldig IP adres gevonden\n"
 "- Dient u uw DHCP server, kabels en instellingen te controleren"
 
 msgid ""
-"This test checks whether your LAN Adapter is set up for automatic IP Address configuration with DHCP.\n"
+"This test checks whether your LAN Adapter is set up for automatic IP Address "
+"configuration with DHCP.\n"
 "If you get a \"disabled\" message:\n"
 " - then your LAN Adapter is configured for manual IP Setup\n"
-"- verify thay you have entered correct IP informations in the AdapterSetup dialog.\n"
+"- verify thay you have entered correct IP informations in the AdapterSetup "
+"dialog.\n"
 "If you get an \"enabeld\" message:\n"
 "-verify that you have a configured and working DHCP Server in your network."
 msgstr ""
-"Deze test controleert of uw LAN adapter ingesteld is voor automatisch toewijzen van het IP adres middels DHCP.\n"
+"Deze test controleert of uw LAN adapter ingesteld is voor automatisch "
+"toewijzen van het IP adres middels DHCP.\n"
 "Indien u de \"Gedeactiveerd\" melding ziet:\n"
 "- Is uw LAN adapter mogelijk handmatig ingesteld\n"
 "- controleer dan of u wel de juiste (IP) gegevens gebruikt heeft\n"
 "Indien u een \"Ingeschakeld\" melding ziet:\n"
-"- controleer dan of u wel een correct werkende DHCP server in uw netwerk heeft."
+"- controleer dan of u wel een correct werkende DHCP server in uw netwerk "
+"heeft."
 
 msgid "This test detects your configured LAN-Adapter."
 msgstr "Deze test detecteert de geconfigureerde LAN-adapter."
@@ -5671,13 +5875,17 @@ msgstr "Naar ondertitel selectie"
 
 msgid ""
 "To update your Dreambox firmware, please follow these steps:\n"
-"1) Turn off your box with the rear power switch and make sure the bootable USB stick is plugged in.\n"
-"2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n"
+"1) Turn off your box with the rear power switch and make sure the bootable "
+"USB stick is plugged in.\n"
+"2) Turn mains back on and hold the DOWN button on the front panel pressed "
+"for 10 seconds.\n"
 "3) Wait for bootup and follow instructions of the wizard."
 msgstr ""
 "Om de Dreambox firmware te upgraden, ga als volgt te werk :\n"
-"1)Zet uw box af via de knop achteraan het toestel en plaats een opstartbare USB stick.\n"
-"2)Zet de box aan via dezelfde knop en druk op de DOWN toets gedurende 10 seconden.\n"
+"1)Zet uw box af via de knop achteraan het toestel en plaats een opstartbare "
+"USB stick.\n"
+"2)Zet de box aan via dezelfde knop en druk op de DOWN toets gedurende 10 "
+"seconden.\n"
 "3)Wacht op het opstarten en volg de instructies van de wizard."
 
 msgid "Today"
@@ -5748,10 +5956,14 @@ msgid "Tries left:"
 msgstr "Aantal pogingen over:"
 
 msgid "Try to find used Transponders in cable network.. please wait..."
-msgstr "Probeert gebruikte transponders op het kabelnetwerk te vinden. Een ogenblik a.u.b..."
+msgstr ""
+"Probeert gebruikte transponders op het kabelnetwerk te vinden. Een ogenblik "
+"a.u.b..."
 
 msgid "Try to find used transponders in cable network.. please wait..."
-msgstr "Probeert gebruikte transponders op het kabelnetwerk te vinden. Een ogenblik a.u.b..."
+msgstr ""
+"Probeert gebruikte transponders op het kabelnetwerk te vinden. Een ogenblik "
+"a.u.b..."
 
 msgid "Trying to download a new packetlist. Please wait..."
 msgstr "Probeert een nieuwe pakketlijst te downloaden. Een ogenblik a.u.b..."
@@ -5822,6 +6034,9 @@ msgstr "Installatie ongedaan maken"
 msgid "Undo uninstall"
 msgstr "Ongedaan"
 
+msgid "Unencrypted"
+msgstr ""
+
 msgid "UnhandledKey"
 msgstr "Niet ondersteunde toets"
 
@@ -5841,8 +6056,8 @@ msgstr "Deinstalleer"
 msgid "Universal LNB"
 msgstr "Universeel LNB"
 
-msgid "Unknown network adapter."
-msgstr "Onbekende netwerkadapter."
+msgid "Unknown"
+msgstr ""
 
 msgid "Unmount"
 msgstr "Unmount"
@@ -5873,7 +6088,9 @@ msgid "Updating software catalog"
 msgstr "Software catalogus wordt geupdate"
 
 msgid "Updating... Please wait... This can take some minutes..."
-msgstr "Software update is bezig. Een ogenblik geduld a.u.b. Dit kan enkele minuten duren..."
+msgstr ""
+"Software update is bezig. Een ogenblik geduld a.u.b. Dit kan enkele minuten "
+"duren..."
 
 msgid "Upgrade"
 msgstr "Upgrade"
@@ -5883,13 +6100,6 @@ msgstr "Upgrade voltooid."
 
 msgid "Upgrade finished. Do you want to reboot your Dreambox?"
 msgstr "Software update gereed. Uw Dreambox herstarten?"
-
-msgid ""
-"Upgrade will take about 5 minutes to finish.\n"
-"Do you want to upgrade?"
-msgstr ""
-"Upgrade zal ongeveer 5 minuten duren.\n"
-"Wilt u upgraden?"
 
 msgid "Upgrading"
 msgstr "Bezig met update"
@@ -5952,7 +6162,8 @@ msgid "Use slim screen"
 msgstr "Gebruik slim screen"
 
 msgid "Use the Networkwizard to configure selected network adapter"
-msgstr "Gebruik de NetwerkWizard om de geselecteerde netwerkadapter te configureren"
+msgstr ""
+"Gebruik de NetwerkWizard om de geselecteerde netwerkadapter te configureren"
 
 msgid "Use the Networkwizard to configure your Network\n"
 msgstr "Gebruik de netwerk wizard om het netwerk te configureren\n"
@@ -5966,7 +6177,9 @@ msgstr ""
 "\n"
 "Instellingen voor tuner A"
 
-msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
+msgid ""
+"Use the up/down keys on your remote control to select an option. After that, "
+"press OK."
 msgstr "U kunt met de omhoog/omlaag toets een optie kiezen. Druk daarna op OK."
 
 msgid "Use this input device settings?"
@@ -6020,9 +6233,6 @@ msgstr "Gebruik oud profiel:"
 msgid "VCR scart"
 msgstr "VCR scart"
 
-msgid "VFD Setup"
-msgstr "VFD instellingen"
-
 msgid "VMGM (intro trailer)"
 msgstr "VMGM (intro trailer)"
 
@@ -6065,7 +6275,8 @@ msgstr "Videoverbetering instelling..."
 msgid ""
 "Video input selection\n"
 "\n"
-"Please press OK if you can see this page on your TV (or select a different input port).\n"
+"Please press OK if you can see this page on your TV (or select a different "
+"input port).\n"
 "\n"
 "The next input port will be automatically probed in 10 seconds."
 msgstr ""
@@ -6114,7 +6325,8 @@ msgid "View list of available CommonInterface extensions"
 msgstr "Bekijk de lijst met beschikbare CommonInterface extensies"
 
 msgid "View list of available Display and Userinterface extensions."
-msgstr "Bekijk de lijst met beschikbare Display en gebruikersinterface extensies."
+msgstr ""
+"Bekijk de lijst met beschikbare Display en gebruikersinterface extensies."
 
 msgid "View list of available EPG extensions."
 msgstr "Bekijk de lijst met beschikbare EPG-extensies."
@@ -6167,9 +6379,6 @@ msgstr "W"
 
 msgid "WEP"
 msgstr "WEP"
-
-msgid "WLAN adapter."
-msgstr "WLAN adapter."
 
 msgid "WLAN connection"
 msgstr "WLAN verbinding"
@@ -6228,42 +6437,54 @@ msgstr "Wekelijks"
 msgid ""
 "Welcome to the Cutlist editor.\n"
 "\n"
-"Seek to the start of the stuff you want to cut away. Press OK, select 'start cut'.\n"
+"Seek to the start of the stuff you want to cut away. Press OK, select 'start "
+"cut'.\n"
 "\n"
 "Then seek to the end, press OK, select 'end cut'. That's it."
 msgstr ""
 "Wekom bij de Cutlist editor.\n"
 "\n"
-"Start met zoeken wat u wenst te verwijderen. Druk op OK, selecteer 'start cut'.\n"
+"Start met zoeken wat u wenst te verwijderen. Druk op OK, selecteer 'start "
+"cut'.\n"
 "\n"
 "Ga naar het einde, druk op OK, selecteer 'end cut'. Eenvoudiger kan niet."
 
-msgid "Welcome to the Image upgrade wizard. The wizard will assist you in upgrading the firmware of your Dreambox by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware."
-msgstr "Welkom bij de software update wizard. De wizard biedt u hulp bij het vernieuwen van de software in uw Dreambox, het maken van een back-up van uw huidige instellingen en geeft u een korte uitleg over dit proces."
+msgid ""
+"Welcome to the Image upgrade wizard. The wizard will assist you in upgrading "
+"the firmware of your Dreambox by providing a backup facility for your "
+"current settings and a short explanation of how to upgrade your firmware."
+msgstr ""
+"Welkom bij de software update wizard. De wizard biedt u hulp bij het "
+"vernieuwen van de software in uw Dreambox, het maken van een back-up van uw "
+"huidige instellingen en geeft u een korte uitleg over dit proces."
 
 msgid ""
 "Welcome to the cleanup wizard.\n"
 "\n"
 "We have detected that your available internal memory has dropped below 2MB.\n"
-"To ensure stable operation of your Dreambox, the internal memory should be cleaned up.\n"
+"To ensure stable operation of your Dreambox, the internal memory should be "
+"cleaned up.\n"
 "You can use this wizard to remove some extensions.\n"
 msgstr ""
 "Welkom bij de cleanup wizard.\n"
 "\n"
 "De beschikbare hoeveelheid intern geheugen is minder dan 2 MB.\n"
-"Om een stabiele werking van uw Dreambox te garanderen zou er meer geheugen vrijgemaakt moeten worden.\n"
+"Om een stabiele werking van uw Dreambox te garanderen zou er meer geheugen "
+"vrijgemaakt moeten worden.\n"
 "Deze wizard kan u hierbij helpen.\n"
 
 msgid ""
 "Welcome.\n"
 "\n"
-"If you want to connect your Dreambox to the Internet, this wizard will guide you through the basic network setup of your Dreambox.\n"
+"If you want to connect your Dreambox to the Internet, this wizard will guide "
+"you through the basic network setup of your Dreambox.\n"
 "\n"
 "Press OK to start configuring your network"
 msgstr ""
 "Welkom.\n"
 "\n"
-"Als u uw Dreambox wenst te verbinden met het internet, kan deze wizard u helpen bij de basis netwerkinstellingen van uw Dreambox .\n"
+"Als u uw Dreambox wenst te verbinden met het internet, kan deze wizard u "
+"helpen bij de basis netwerkinstellingen van uw Dreambox .\n"
 "\n"
 "Druk op  OK om uw netwerk te configureren."
 
@@ -6293,14 +6514,16 @@ msgstr "Wat te doen met ingediende crashlogs?"
 msgid ""
 "When you do a factory reset, you will lose ALL your configuration data\n"
 "(including bouquets, services, satellite data ...)\n"
-"After completion of factory reset, your receiver will restart automatically!\n"
+"After completion of factory reset, your receiver will restart "
+"automatically!\n"
 "\n"
 "Really do a factory reset?"
 msgstr ""
 "Wanneer u terug gaat naar de fabrieksinstellingen, verliest u\n"
 "alle gegevens van uw configuratie.\n"
 "(inclusief boeketten, zenders, satellietdata, etc ...)\n"
-"Na voltooiing van de fabrieksinstellingen, zal uw Dreambox automatisch herstarten!\n"
+"Na voltooiing van de fabrieksinstellingen, zal uw Dreambox automatisch "
+"herstarten!\n"
 "\n"
 "Werkelijk uitvoeren?"
 
@@ -6319,8 +6542,8 @@ msgstr "Draadloos LAN"
 msgid "Wireless Network"
 msgstr "Draadloos netwerk"
 
-msgid "Wireless Network State"
-msgstr "Status draadloos netwerk"
+msgid "Wireless network state"
+msgstr ""
 
 msgid "Write error while recording. Disk full?\n"
 msgstr "Schrijffout tijdens opname. Harde schijf vol?\n"
@@ -6391,8 +6614,12 @@ msgstr "Installatie kan worden geannuleerd."
 msgid "You can cancel the removal."
 msgstr "Verwijderen kan worden geannuleerd."
 
-msgid "You can choose some default settings now. Please select the settings you want to be installed."
-msgstr "U kunt nu een standaard zenderlijst installeren. Kies de zenderlijst die u wilt installeren."
+msgid ""
+"You can choose some default settings now. Please select the settings you "
+"want to be installed."
+msgstr ""
+"U kunt nu een standaard zenderlijst installeren. Kies de zenderlijst die u "
+"wilt installeren."
 
 msgid "You can choose, what you want to install..."
 msgstr "U kunt hier kiezen wat u wilt installeren."
@@ -6419,26 +6646,46 @@ msgstr "U kunt dit niet wissen!"
 msgid "You chose not to install any default services lists."
 msgstr "U heeft er voor gekozen om geen standaard zenderlijst te installeren."
 
-msgid "You chose not to install any default settings. You can however install the default settings later in the settings menu."
-msgstr "U heeft er voor gekozen om standaard instellingen niet te gebruiken. U kunt dit later vanuit het menu alsnog doen."
+msgid ""
+"You chose not to install any default settings. You can however install the "
+"default settings later in the settings menu."
+msgstr ""
+"U heeft er voor gekozen om standaard instellingen niet te gebruiken. U kunt "
+"dit later vanuit het menu alsnog doen."
 
-msgid "You chose not to install anything. Please press OK finish the install wizard."
-msgstr "U heeft er voor gekozen om niets te installeren. Druk op OK om de wizard af te sluiten. "
+msgid ""
+"You chose not to install anything. Please press OK finish the install wizard."
+msgstr ""
+"U heeft er voor gekozen om niets te installeren. Druk op OK om de wizard af "
+"te sluiten. "
 
 msgid "You didn't select a channel to record from."
 msgstr "U heeft geen kanaal geselecteerd om op te nemen."
 
-msgid "You have already sent this log, are you sure you want to resend this log:\n"
+msgid ""
+"You have already sent this log, are you sure you want to resend this log:\n"
 msgstr "U heeft dit log al verstuurd; nogmaals verzenden van log:\n"
 
-msgid "You have chosen to backup your settings. Please press OK to start the backup now."
-msgstr "U heeft gekozen een back-up van uw instellingen te maken. Druk op OK om te beginnen."
+msgid ""
+"You have chosen to backup your settings. Please press OK to start the backup "
+"now."
+msgstr ""
+"U heeft gekozen een back-up van uw instellingen te maken. Druk op OK om te "
+"beginnen."
 
-msgid "You have chosen to create a new .NFI flasher bootable USB stick. This will repartition the USB stick and therefore all data on it will be erased."
-msgstr "U heeft gekozen om een nieuwe .NFI flasher opstart USB stick aan te maken. Alle data op de USB stick gaat onherroepelijk verloren."
+msgid ""
+"You have chosen to create a new .NFI flasher bootable USB stick. This will "
+"repartition the USB stick and therefore all data on it will be erased."
+msgstr ""
+"U heeft gekozen om een nieuwe .NFI flasher opstart USB stick aan te maken. "
+"Alle data op de USB stick gaat onherroepelijk verloren."
 
-msgid "You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now."
-msgstr "U heeft gekozen om uw instellingen te herstellen. Enigma2 zal herstarten na het herstel. Druk op OK om te beginnen met het herstel."
+msgid ""
+"You have chosen to restore your settings. Enigma2 will restart after "
+"restore. Please press OK to start the restore now."
+msgstr ""
+"U heeft gekozen om uw instellingen te herstellen. Enigma2 zal herstarten na "
+"het herstel. Druk op OK om te beginnen met het herstel."
 
 msgid ""
 "You have not setup your user info in the setup screen\n"
@@ -6458,11 +6705,17 @@ msgid "You have to wait %s!"
 msgstr "Wacht op %s!"
 
 msgid ""
-"You need a PC connected to your dreambox. If you need further instructions, please visit the website http://www.dm7025.de.\n"
-"Your dreambox will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
+"You need a PC connected to your dreambox. If you need further instructions, "
+"please visit the website http://www.dm7025.de.\n"
+"Your dreambox will now be halted. After you have performed the update "
+"instructions from the website, your new firmware will ask you to restore "
+"your settings."
 msgstr ""
-"U moet uw PC met uw Dreambox verbinden. Voor meer informatie verwijzen wij u naar de website http://www.dm7025.de.\n"
-"De Dreambox word nu uitgeschakeld. Indien u deze aanwijzingen nauwgezet volgt, zal de Dreambox u na de update vragen of u uw instellingen terug wilt plaatsen."
+"U moet uw PC met uw Dreambox verbinden. Voor meer informatie verwijzen wij u "
+"naar de website http://www.dm7025.de.\n"
+"De Dreambox word nu uitgeschakeld. Indien u deze aanwijzingen nauwgezet "
+"volgt, zal de Dreambox u na de update vragen of u uw instellingen terug wilt "
+"plaatsen."
 
 msgid ""
 "You need to set a PIN code and hide it from your children.\n"
@@ -6501,14 +6754,28 @@ msgstr ""
 "\n"
 "Druk op OK om verder te gaan."
 
-msgid "Your Dreambox will restart after pressing OK on your remote control."
-msgstr "Uw Dreambox zal herstarten nadat u op OK drukt."
+msgid "Your STB will restart after pressing OK on your remote control."
+msgstr ""
 
-msgid "Your backup succeeded. We will now continue to explain the further upgrade process."
-msgstr "De back-up is geslaagd. U krijgt nu een korte uitleg over het vervolg van het update proces."
+msgid ""
+"Your backup succeeded. We will now continue to explain the further upgrade "
+"process."
+msgstr ""
+"De back-up is geslaagd. U krijgt nu een korte uitleg over het vervolg van "
+"het update proces."
 
-msgid "Your collection exceeds the size of a single layer medium, you will need a blank dual layer DVD!"
-msgstr "Uw verzameling is groter dan wat erop een enkel laags medium past, u heeft een lege dubbel laags DVD nodig!"
+msgid ""
+"Your collection exceeds the size of a single layer medium, you will need a "
+"blank dual layer DVD!"
+msgstr ""
+"Uw verzameling is groter dan wat erop een enkel laags medium past, u heeft "
+"een lege dubbel laags DVD nodig!"
+
+#, python-format
+msgid ""
+"Your config file is not well-formed:\n"
+"%s"
+msgstr ""
 
 #
 msgid "Your current collection will get lost!"
@@ -6517,8 +6784,12 @@ msgstr "Uw huidige collectie zal verloren gaan!"
 msgid "Your dreambox is shutting down. Please stand by..."
 msgstr "Uw Dreambox wordt nu afgesloten. Een ogenblik a.u.b..."
 
-msgid "Your dreambox isn't connected to the internet properly. Please check it and try again."
-msgstr "Uw Dreambox heeft geen verbinding met het internet kunnen maken. Controleer instellingen en kabels en probeer opnieuw."
+msgid ""
+"Your dreambox isn't connected to the internet properly. Please check it and "
+"try again."
+msgstr ""
+"Uw Dreambox heeft geen verbinding met het internet kunnen maken. Controleer "
+"instellingen en kabels en probeer opnieuw."
 
 msgid "Your email address:"
 msgstr "Uw e-mailadres:"
@@ -6580,9 +6851,6 @@ msgstr "Zappen in hoofdscherm"
 
 msgid "Zap mode"
 msgstr "Zap modus"
-
-msgid "Zydas"
-msgstr "Zydas"
 
 msgid "[alternative edit]"
 msgstr "[alternatieven bewerken]"
@@ -6679,6 +6947,9 @@ msgstr "adres:"
 
 msgid "advanced"
 msgstr "geavanceerd"
+
+msgid "alphabetic reverse"
+msgstr ""
 
 msgid "alphabetic sort"
 msgstr "Sorteer alfabetisch"
@@ -6982,14 +7253,23 @@ msgstr "hoogte"
 msgid "help..."
 msgstr "Help..."
 
+msgid "hi_low"
+msgstr ""
+
 msgid "hide player"
 msgstr "Afspelen op de achtergrond"
+
+msgid "high"
+msgstr "hoog"
 
 msgid "hops:"
 msgstr "hops:"
 
 msgid "horizontal"
 msgstr "horizontaal"
+
+msgid "horizontal_vertical"
+msgstr ""
 
 msgid "hour"
 msgstr "uur"
@@ -7063,6 +7343,9 @@ msgstr "Ja"
 
 msgid "loopthrough to"
 msgstr "Doorlus naar"
+
+msgid "low"
+msgstr "laag"
 
 msgid "manual"
 msgstr "handmatig"
@@ -7295,6 +7578,9 @@ msgstr "Herhaal afspeellijst"
 
 msgid "repeated"
 msgstr "herhalen"
+
+msgid "reverse by date"
+msgstr ""
 
 msgid "rewind to the previous chapter"
 msgstr "terugspoelen naar vorig hoofdstuk"
@@ -7621,6 +7907,9 @@ msgstr "witte lijst"
 msgid "width"
 msgstr "breedte"
 
+msgid "wireless network interface"
+msgstr ""
+
 msgid "with exit button"
 msgstr "met exit toets"
 
@@ -7642,987 +7931,15 @@ msgstr "ja"
 msgid "yes (keep feeds)"
 msgstr "ja (bewaar feeds)"
 
-msgid "your dreambox might be unusable now. Please consult the manual for further assistance before rebooting your dreambox."
-msgstr "uw Dreambox is nu mogelijk onbruikbaar. Raadpleeg de handleiding voordat u de Dreambox herstart."
+msgid ""
+"your dreambox might be unusable now. Please consult the manual for further "
+"assistance before rebooting your dreambox."
+msgstr ""
+"uw Dreambox is nu mogelijk onbruikbaar. Raadpleeg de handleiding voordat u "
+"de Dreambox herstart."
 
 msgid "zap"
 msgstr "zap"
 
 msgid "zapped"
 msgstr "zapte"
-
-#~ msgid ""
-#~ "\n"
-#~ "Enigma2 will restart after the restore"
-#~ msgstr ""
-#~ "\n"
-#~ "Enigma2 zal herstarten na het terugzetten."
-
-#~ msgid ""
-#~ "\n"
-#~ "Scan for local packages and install them."
-#~ msgstr ""
-#~ "\n"
-#~ "Lokale pakketten zoeken en deze installeren."
-
-#~ msgid " Results"
-#~ msgstr " Resultaten"
-
-#~ msgid ""
-#~ "%s\n"
-#~ "(%s, %d MB free)"
-#~ msgstr ""
-#~ "%s\n"
-#~ "(%s, %d MB vrij)"
-
-#~ msgid "(Beta)"
-#~ msgstr "(Beta)"
-
-#~ msgid "(Release)"
-#~ msgstr "(Release)"
-
-#~ msgid "* Only available when entering hidden SSID or network key"
-#~ msgstr ""
-#~ "* Alleen beschikbaar bij het ingegeven van de verborgen SSID of netwerk "
-#~ "sleutel"
-
-#~ msgid ".NFI Download failed:"
-#~ msgstr ".NFI Download is mislukt:"
-
-#~ msgid ""
-#~ ".NFI file passed md5sum signature check. You can safely flash this image!"
-#~ msgstr ""
-#~ "Md5 controle was succesvol op .NFI bestand. U kunt dit image veilig "
-#~ "schrijven!"
-
-#~ msgid "50 Hz"
-#~ msgstr "50 Hz"
-
-#~ msgid ""
-#~ "A record has been started:\n"
-#~ "%s"
-#~ msgstr ""
-#~ "Een opname is gestart:\n"
-#~ "%s"
-
-#~ msgid "AC3 default"
-#~ msgstr "Standaard AC3"
-
-#~ msgid "AVL Xtrend blindscan running... please wait"
-#~ msgstr "AVL Xtrend bezig met  blindscan ... even wachten"
-
-#~ msgid "Advanced"
-#~ msgstr "Geavanceerd"
-
-#~ msgid "Alias:"
-#~ msgstr "Alias:"
-
-#~ msgid "Allow Subtiles equals Audio mask"
-#~ msgstr "Mag ondertitel-taal overeenkomen met audio-keuze?"
-
-#~ msgid "An error occured!"
-#~ msgstr "Er is een fout opgetreden!"
-
-#~ msgid "Arabic"
-#~ msgstr "Arabisch"
-
-#~ msgid "Backup is done. Please press OK to see the result."
-#~ msgstr "Back-up is voltooid. Druk op OK om de resultaten te zien."
-
-#~ msgid "Backup running"
-#~ msgstr "Back-up bezig"
-
-#~ msgid "Backup running..."
-#~ msgstr "Back-up bezig..."
-
-#~ msgid "Blindscan"
-#~ msgstr "Blindscan"
-
-#~ msgid "Burn to DVD..."
-#~ msgstr "Schrijf op DVD..."
-
-#~ msgid "Cable scan"
-#~ msgstr "Kabel scan"
-
-#~ msgid "Call monitoring"
-#~ msgstr "Bel monitor"
-
-#~ msgid "Cannot parse feed directory"
-#~ msgstr "Kan feed map niet doorgeven"
-
-#~ msgid "Card"
-#~ msgstr "Kaart"
-
-#~ msgid "Catalan"
-#~ msgstr "Catalaans"
-
-#~ msgid "Change dir."
-#~ msgstr "Wijzig map."
-
-#~ msgid "Change service pin"
-#~ msgstr "Wijzig zender PINcode"
-
-#~ msgid "Change service pins"
-#~ msgstr "Wijzig zender PINcode"
-
-#~ msgid "Change setup pin"
-#~ msgstr "Wijzig menu PINcode"
-
-#~ msgid "Channel list service mode"
-#~ msgstr "Kanaal lijst service mode"
-
-#~ msgid "Choose source"
-#~ msgstr "Bron kiezen"
-
-#~ msgid "Compact Flash"
-#~ msgstr "Compact Flash"
-
-#~ msgid "Compact flash card"
-#~ msgstr "Compact flash kaart"
-
-#~ msgid "Config"
-#~ msgstr "Configuratie"
-
-#~ msgid "Configuration for the CrashlogAutoSubmitter"
-#~ msgstr "Configuratie van de crashlog mailer"
-
-#~ msgid "Connected to Fritz!Box!"
-#~ msgstr "Verbonden met Fritz!Box!"
-
-#~ msgid "Connecting to Fritz!Box..."
-#~ msgstr "Verbinden met Fritz!Box..."
-
-#~ msgid ""
-#~ "Connection to Fritz!Box\n"
-#~ "failed! (%s)\n"
-#~ "retrying..."
-#~ msgstr ""
-#~ "Verbinding met Fritz!Box\n"
-#~ "mislukt! (%s)\n"
-#~ "probeer opnieuw..."
-
-#~ msgid "CrashlogAutoSubmitConfiguration"
-#~ msgstr "Crashlog mailer instellingen"
-
-#~ msgid ""
-#~ "Crashlogs found!\n"
-#~ "Send them to Dream Multimedia ?"
-#~ msgstr ""
-#~ "Crashlogs gevonden!\n"
-#~ "Verstuur ze naar Dream Multimedia?"
-
-#~ msgid "Croatian"
-#~ msgstr "Kroatisch"
-
-#~ msgid "Czech"
-#~ msgstr "Tsjechisch"
-
-#~ msgid "DTS downmix"
-#~ msgstr "DTS downmix"
-
-#~ msgid "Danish"
-#~ msgstr "Deens"
-
-#~ msgid "Default services lists"
-#~ msgstr "Standaard zenderlijst"
-
-#~ msgid "Default settings"
-#~ msgstr "Standaard instellingen"
-
-#~ msgid "Destination directory"
-#~ msgstr "Doelmap"
-
-#~ msgid "Details"
-#~ msgstr "Details"
-
-#~ msgid "Details for extension: "
-#~ msgstr "Details van de extension"
-
-#~ msgid "Detected HDD:"
-#~ msgstr "Gedetecteerde harde schijf:"
-
-#~ msgid "Device Setup..."
-#~ msgstr "Apparaat instellingen..."
-
-#~ msgid "Disable Subtitles"
-#~ msgstr "Ondertitels uit"
-
-#~ msgid "Disable parental lock"
-#~ msgstr "Kinderslot uitschakelen"
-
-#~ msgid ""
-#~ "Disconnected from\n"
-#~ "Fritz!Box! (%s)\n"
-#~ "retrying..."
-#~ msgstr ""
-#~ "Verbinding metFritz!Box\n"
-#~ "verbroken! (%s)\n"
-#~ "probeer opnieuw..."
-
-#~ msgid ""
-#~ "Do you really want to initialize the harddisk?\n"
-#~ "All data on the disk will be lost!"
-#~ msgstr ""
-#~ "Weet u zeker dat u de harde schijf wilt formatteren?\n"
-#~ "Alle gegevens op de harde schijf gaan dan verloren!"
-
-#~ msgid "Do you want to continue installing or removing selected plugins?\n"
-#~ msgstr ""
-#~ "Wilt u doorgaan met het installeren of verwijderen van de geselecteerde "
-#~ "applicaties?\n"
-
-#~ msgid "Do you want to install default sat lists?"
-#~ msgstr "Wilt u de standaard satellietlijst installeren?"
-
-#~ msgid "Done - Installed or upgraded %d packages with %d errors"
-#~ msgstr "Klaar - %d pakket(ten) geïnstalleerd of vervangen met %d fouten"
-
-#~ msgid "Download of USB flasher boot image failed: "
-#~ msgstr "Downloaden van USB flasher opstart image mislukt: "
-
-#~ msgid "Dutch"
-#~ msgstr "Nederlands"
-
-#~ msgid "Edit IPKG source URL..."
-#~ msgstr "Wijzig IPKG bron URL..."
-
-#~ msgid "Encrypted: %s"
-#~ msgstr "Gecodeerd : %s"
-
-#~ msgid "English"
-#~ msgstr "Engels"
-
-#~ msgid ""
-#~ "Enigma2 Skinselector v0.5 BETA\n"
-#~ "\n"
-#~ "If you experience any problems please contact\n"
-#~ "stephan@reichholf.net\n"
-#~ "\n"
-#~ "© 2006 - Stephan Reichholf"
-#~ msgstr ""
-#~ "Enigma2 Skinselector v0.5 BETA\n"
-#~ "\n"
-#~ "Als u problemen ondervind kunt u kontakt opnemen\n"
-#~ "via e-mail: stephan@reichholf.net\n"
-#~ "\n"
-#~ "© 2007 - Stephan Reichholf"
-
-#~ msgid "Enter Fast Forward at speed"
-#~ msgstr "Snel vooruitspoelen op volgende snelheid"
-
-#~ msgid "Enter Rewind at speed"
-#~ msgstr "Snel terugspoelen op volgende snelheid"
-
-#~ msgid "Enter WLAN network name/SSID:"
-#~ msgstr "Geef WLAN netwerk naam/SSID:"
-
-#~ msgid "Enter WLAN passphrase/key:"
-#~ msgstr "Geef WLAN wachtwoord/sleutel:"
-
-#~ msgid "Estonian"
-#~ msgstr "Estlands"
-
-#~ msgid "Fast scan"
-#~ msgstr "Factscan"
-
-#~ msgid "Filesystem Check..."
-#~ msgstr "Bestandssysteem controle..."
-
-#~ msgid "Finnish"
-#~ msgstr "Fins"
-
-#~ msgid ""
-#~ "First we need to download the latest boot environment for the USB flasher."
-#~ msgstr ""
-#~ "Eerst moeten we de opstart omgeving voor de USB flasher te downloaden."
-
-#~ msgid "Following tasks will be done after you press continue!"
-#~ msgstr "De volgende taken worden zodadelijk uitgevoerd!"
-
-#~ msgid "Following tasks will be done after you press continue."
-#~ msgstr "Volgende taken zullen gebeuren nadat u op OK drukt."
-
-#~ msgid "Frame repeat count during non-smooth winding"
-#~ msgstr "Beeldherhalingsfrequentie tijdens 'ruw' spoelen"
-
-#~ msgid "French"
-#~ msgstr "Frans"
-
-#~ msgid "Frisian"
-#~ msgstr "Fries"
-
-#~ msgid "Fritz!Box FON IP address"
-#~ msgstr "Fritz!Box FON IP adres"
-
-#~ msgid "Function not yet implemented"
-#~ msgstr "Functie nog niet geïmplementeerd"
-
-#~ msgid "GB"
-#~ msgstr "GB"
-
-#~ msgid "General AC3 delay"
-#~ msgstr "Algemene AC3 vertraging"
-
-#~ msgid "General PCM delay"
-#~ msgstr "Algemene PCM vertraging"
-
-#~ msgid "German"
-#~ msgstr "Duits"
-
-#~ msgid "Greek"
-#~ msgstr "Grieks"
-
-#~ msgid "Here is a small overview of the available icon states."
-#~ msgstr "Hier is een klein overzicht van de beschikbare icoontjes."
-
-#~ msgid "How to handle found crashlogs:"
-#~ msgstr "Wat te doen met crashlogs:"
-
-#~ msgid "Hungarian"
-#~ msgstr "Hongaars"
-
-#~ msgid "Icelandic"
-#~ msgstr "Ijslands"
-
-#~ msgid "If you can see this page, please press OK."
-#~ msgstr "Indien u deze pagina kunt zien, druk dan op OK"
-
-#~ msgid "Image flash utility"
-#~ msgstr "Image flash utility"
-
-#~ msgid "Image-Upgrade"
-#~ msgstr "Image vernieuwen"
-
-#~ msgid "Inadyn Manager"
-#~ msgstr "Inadyn Manager"
-
-#~ msgid "Initialization..."
-#~ msgstr "Formatteren..."
-
-#~ msgid "Initializing Harddisk..."
-#~ msgstr "Formatteren harde schijf..."
-
-#~ msgid "Install local IPKG"
-#~ msgstr "Installeer lokale IPKG"
-
-#~ msgid "Install software updates..."
-#~ msgstr "Installeer software updates..."
-
-#~ msgid ""
-#~ "Install/\n"
-#~ "Remove"
-#~ msgstr ""
-#~ "Installeer/ \n"
-#~ "Verwijder"
-
-#~ msgid "Integrated Ethernet"
-#~ msgstr "Geïntegreerde ethernet"
-
-#~ msgid "Integrated Wireless"
-#~ msgstr "Geïntegreerde WiFi"
-
-#~ msgid "Interface: %s"
-#~ msgstr "Interface: %s"
-
-#~ msgid "Invert display"
-#~ msgstr "Display omkeren"
-
-#~ msgid "Italian"
-#~ msgstr "Italiaans"
-
-#~ msgid "Latvian"
-#~ msgstr "Lets"
-
-#~ msgid "Lets you view/edit files in your Dreambox"
-#~ msgstr "Hiermee kunt u bestanden bekijken/bewerken in uw  Dreambox"
-
-#~ msgid "Lithuanian"
-#~ msgstr "Litouws"
-
-#~ msgid "MB"
-#~ msgstr "MB"
-
-#~ msgid "MMC Card"
-#~ msgstr "MMC kaart"
-
-#~ msgid "Max. Bitrate: %s"
-#~ msgstr "Max. Bitrate: %s"
-
-#~ msgid "Network Mount"
-#~ msgstr "Netwerk verbinding"
-
-#~ msgid "Network..."
-#~ msgstr "Netwerk..."
-
-#~ msgid "New pin"
-#~ msgstr "Nieuwe PINcode"
-
-#~ msgid "No 50 Hz, sorry. :("
-#~ msgstr "Geen 50Hz, sorry! :("
-
-#~ msgid "No useable USB stick found"
-#~ msgstr "Geen bruikbare USB stick gevonden"
-
-#~ msgid "No, send them never."
-#~ msgstr "Nee, verstuur ze nooit."
-
-#~ msgid "Norwegian"
-#~ msgstr "Noors"
-
-#~ msgid "Nothing"
-#~ msgstr "Niets"
-
-#~ msgid "Oktober"
-#~ msgstr "Oktober"
-
-#~ msgid "Online-Upgrade"
-#~ msgstr "Online software update"
-
-#~ msgid "Open bouquet selection"
-#~ msgstr "Open boeket selectie"
-
-#~ msgid "Open channel selection"
-#~ msgstr "Open kanaal selectiescherm"
-
-#~ msgid "Package details for: "
-#~ msgstr "Pakket details voor:"
-
-#~ msgid "Page"
-#~ msgstr "Pagina"
-
-#~ msgid "Please choose .NFI image file from feed server to download"
-#~ msgstr "Kies een NFI bestand van feed server om te downloaden"
-
-#~ msgid ""
-#~ "Please disconnect all USB devices from your Dreambox and (re-)attach the "
-#~ "target USB stick (minimum size is 64 MB) now!"
-#~ msgstr ""
-#~ "Verwijder al uw USB apparaten van uw Dreambox en plaats nu de doel USB "
-#~ "stick (min grootte van 64 mb)!"
-
-#~ msgid "Please enter the old pin code"
-#~ msgstr "Oude PINcode invoeren a.u.b."
-
-#~ msgid "Please select .NFI flash image file from medium"
-#~ msgstr "Selecteer.NFI flash image bestand van medium"
-
-#~ msgid "Please select target directory or medium"
-#~ msgstr "Selecteer doelmap of medium"
-
-#~ msgid "Plugin manager"
-#~ msgstr "Pakket beheer"
-
-#~ msgid "Plugin manager help..."
-#~ msgstr "Help Pakket beheer..."
-
-#~ msgid "Plugin manager process information..."
-#~ msgstr "Pakket beheer proces informatie..."
-
-#~ msgid "Polish"
-#~ msgstr "Pools"
-
-#~ msgid "Portuguese"
-#~ msgstr "Portugees"
-
-#~ msgid "Press OK to view full changelog"
-#~ msgstr "Druk op OK en bekijk de volledige changelog"
-
-#~ msgid "RSS Feed URI"
-#~ msgstr "RSS Feed URI"
-
-#~ msgid "Ram Disk"
-#~ msgstr "Ram Disk"
-
-#~ msgid "Recording paths"
-#~ msgstr "Opname locaties"
-
-#~ msgid "Reenter new pin"
-#~ msgstr "Voer nieuwe pincode nogmaals in"
-
-#~ msgid "Refresh"
-#~ msgstr "Vernieuwen"
-
-#~ msgid "Remember service pin"
-#~ msgstr "Onthoud zender pincode"
-
-#~ msgid "Remember service pin cancel"
-#~ msgstr "Zender pincode niet meer onthouden"
-
-#~ msgid "Remote Setup"
-#~ msgstr "A/B instellingen"
-
-#~ msgid "Remove the broken .NFI file?"
-#~ msgstr "Verwijder het defecte .NFI bestand?"
-
-#~ msgid "Remove the incomplete .NFI file?"
-#~ msgstr "Verwijder het onvolledige .NFI bestand?"
-
-#~ msgid "Restart GUI"
-#~ msgstr "GUI herstarten"
-
-#~ msgid "Restore backups..."
-#~ msgstr "Back-ups herstellen..."
-
-#~ msgid "Restore running..."
-#~ msgstr "Herstellen bezig..."
-
-#~ msgid ""
-#~ "Restoring the settings is done. Please press OK to activate the restored "
-#~ "settings now."
-#~ msgstr ""
-#~ "Herstellen van de instellingen is gereed. Druk op OK om de instellingen "
-#~ "te activeren."
-
-#~ msgid "Russian"
-#~ msgstr "Russisch"
-
-#~ msgid "Satteliteequipment"
-#~ msgstr "Satellietapparatuur"
-
-#~ msgid "Scan band"
-#~ msgstr "Scan band"
-
-#~ msgid "Scan start frequency"
-#~ msgstr "Scan start frequentie"
-
-#~ msgid "Scan start symbolrate"
-#~ msgstr "Scan start symbolrate"
-
-#~ msgid "Scan stop frequency"
-#~ msgstr "Scan stop frequentie"
-
-#~ msgid "Scan stop symbolrate"
-#~ msgstr "Scan stop symbolrate"
-
-#~ msgid ""
-#~ "Scan your network for wireless Access Points and connect to them using "
-#~ "your WLAN USB Stick\n"
-#~ msgstr ""
-#~ "Zoek naar WiFi accesspoints en verbind hiermee middels uw WLAN USB "
-#~ "Stick.\n"
-
-#~ msgid ""
-#~ "Scan your network for wireless Access Points and connect to them using "
-#~ "your selected wireless device.\n"
-#~ msgstr ""
-#~ "Doorzoek uw netwerk naar draadloze Access Points en connecteer met behulp "
-#~ "van uw geselecteerde draadloze apparaat.\n"
-
-#~ msgid "Select IPKG source to edit..."
-#~ msgstr "Selecteer IPKG bron om te bewerken..."
-
-#~ msgid "Select audio mode"
-#~ msgstr "Kies audio modus"
-
-#~ msgid "Select files for backup. Currently selected:\n"
-#~ msgstr "Kies bestanden voor back-up. Momenteel geselecteerd:\n"
-
-#~ msgid "Select files/folders to backup..."
-#~ msgstr "Kies bestanden/mappen om te back-uppen..."
-
-#~ msgid "Select image"
-#~ msgstr "Selecteer bestand"
-
-#~ msgid "Select video input"
-#~ msgstr "Selecteer video ingang"
-
-#~ msgid "Selected source image"
-#~ msgstr "Selecteer bron bestand"
-
-#~ msgid "Serbian"
-#~ msgstr "Servisch"
-
-#~ msgid "Service pin timeout (minutes)"
-#~ msgstr "Service pin tijdsduur (minuten)"
-
-#~ msgid "Set as default Interface"
-#~ msgstr "Als standaard interface instellen"
-
-#~ msgid "Set zap focus to Picture in Picture"
-#~ msgstr "Zappen in PiP scherm"
-
-#~ msgid "Set zap focus to main screen"
-#~ msgstr "Zappen in hoofdscherm"
-
-#~ msgid "Simple Bouquet List"
-#~ msgstr "Eenvoudige Favorieten lijst"
-
-#~ msgid "Simple TV List"
-#~ msgstr "Eenvoudige TV Lijst"
-
-#~ msgid "Skin..."
-#~ msgstr "Skin..."
-
-#~ msgid "Slovakian"
-#~ msgstr "Slowaaks"
-
-#~ msgid "Slovene"
-#~ msgstr "Sloveens"
-
-#~ msgid "Slovenian"
-#~ msgstr "Sloveens"
-
-#~ msgid "Software manager"
-#~ msgstr "Softwarebeheer"
-
-#~ msgid "Software manager..."
-#~ msgstr "Softwarebeheer..."
-
-#~ msgid "Somewhere else"
-#~ msgstr "Ergens anders"
-
-#~ msgid "Sort A-Z"
-#~ msgstr "Sorteer A/Z"
-
-#~ msgid "Sort Time"
-#~ msgstr "Sorteer tijd"
-
-#~ msgid "Source active"
-#~ msgstr "Bron actief"
-
-#~ msgid "Source inactive"
-#~ msgstr "Bron niet actief"
-
-#~ msgid "Spanish"
-#~ msgstr "Spaans"
-
-#~ msgid "Stereo"
-#~ msgstr "Stereo"
-
-#~ msgid "Subservice list..."
-#~ msgstr "Subzenderlijst..."
-
-#~ msgid "Swedish"
-#~ msgstr "Zweeds"
-
-#~ msgid "System:"
-#~ msgstr "Systeem:"
-
-#~ msgid "TV List"
-#~ msgstr "TV lijst"
-
-#~ msgid "TV standby"
-#~ msgstr "TV standby"
-
-#~ msgid "TV wakeup"
-#~ msgstr "TV ontwaakt"
-
-#~ msgid "Tag 1"
-#~ msgstr "Tag 1"
-
-#~ msgid "Tag 2"
-#~ msgstr "Tag 2"
-
-#~ msgid ""
-#~ "The USB stick is now bootable. Do you want to download the latest image "
-#~ "from the feed server and save it on the stick?"
-#~ msgstr ""
-#~ "De USB stick is opstartbaar. Wilt u de laatste image downloaden van de "
-#~ "feed server en opslaan op de stick ?"
-
-#~ msgid ""
-#~ "The md5sum validation failed, the file may be corrupted! Are you sure "
-#~ "that you want to burn this image to flash memory? You are doing this at "
-#~ "your own risk!"
-#~ msgstr ""
-#~ "De md5 validatie is mislukt, het bestand is waarschijnlijk beschadigd! "
-#~ "Weet u zeker dat u dit image wil schrijven naar het flash geheugen? Dit "
-#~ "is op uw eigen risico!"
-
-#~ msgid ""
-#~ "The md5sum validation failed, the file may be downloaded incompletely or "
-#~ "be corrupted!"
-#~ msgstr ""
-#~ "De md5 validatie is mislukt, het bestand is niet compleet of beschadigd!"
-
-#~ msgid "The pin code has been changed successfully."
-#~ msgstr "De PINcode is succesvol gewijzigd."
-
-#~ msgid "The pin codes you entered are different."
-#~ msgstr "De ingevoerde PINcodes komen niet overeen."
-
-#~ msgid "There is nothing to be done."
-#~ msgstr "Er is niets te doen."
-
-#~ msgid "This .NFI file does not contain a valid %s image!"
-#~ msgstr "Dit .NFI bestand bevat geen geldig %s image!"
-
-#~ msgid ""
-#~ "This .NFI file does not have a md5sum signature and is not guaranteed to "
-#~ "work. Do you really want to burn this image to flash memory?"
-#~ msgstr ""
-#~ "Dit .NFI bestand bevat geen geldige md5 signatuur en is niet gegarandeerd "
-#~ "om te werken. Wilt u echt dit image in het flash geheugen schrijven?"
-
-#~ msgid ""
-#~ "This .NFI file has a valid md5 signature. Continue programming this image "
-#~ "to flash memory?"
-#~ msgstr ""
-#~ "Dit .NFI bestand heeft een geldige md5 signatuur. Wilt u dit image in het "
-#~ "flash geheugen schrijven?"
-
-#~ msgid "This Dreambox can't decode %s video streams!"
-#~ msgstr "Deze Dreambox kan volgende %s video niet decoderen!"
-
-#~ msgid "This is unsupported at the moment."
-#~ msgstr "Dit wordt nog niet ondersteund op dit ogenblik."
-
-#~ msgid "Timer"
-#~ msgstr "Timer"
-
-#~ msgid "Timeshift Settings..."
-#~ msgstr "Timeshift Settings..."
-
-#~ msgid "Timeshift path..."
-#~ msgstr "Timeshift pad..."
-
-#~ msgid ""
-#~ "To update your Dreambox firmware, please follow these steps:\n"
-#~ "1) Turn off your box with the rear power switch and plug in the bootable "
-#~ "USB stick.\n"
-#~ "2) Turn mains back on and hold the DOWN button on the front panel pressed "
-#~ "for 10 seconds.\n"
-#~ "3) Wait for bootup and follow instructions of the wizard."
-#~ msgstr ""
-#~ "Om de firmware van de Dreambox te upgraden, gaat u als volgt te werk :\n"
-#~ "1)Zet uw box af via de knop achteraan het toestel en plaats een "
-#~ "opstartbare USB stick.\n"
-#~ "2)Zet de box aan via dezelfde knop en druk op de DOWN toets gedurende 10 "
-#~ "seconden.\n"
-#~ "3)Wacht op het opstarten en volg de instructies van de wizard."
-
-#~ msgid "Turkish"
-#~ msgstr "Turks"
-
-#~ msgid "USB"
-#~ msgstr "USB"
-
-#~ msgid "Ukrainian"
-#~ msgstr "Oekraïens"
-
-#~ msgid ""
-#~ "Unable to complete filesystem check.\n"
-#~ "Error: "
-#~ msgstr ""
-#~ "De bestandssysteemcontrole is mislukt.\n"
-#~ "Foutmelding:"
-
-#~ msgid ""
-#~ "Unable to initialize device.\n"
-#~ "Error: "
-#~ msgstr ""
-#~ "Apparaat kan niet worden geïnitialiseerd.\n"
-#~ "Foutmelding:"
-
-#~ msgid ""
-#~ "Unable to initialize harddisk.\n"
-#~ "Error: "
-#~ msgstr ""
-#~ "Kon de harde schijf niet initialiseren.\n"
-#~ "Foutmelding:"
-
-#~ msgid ""
-#~ "Undo\n"
-#~ "Install"
-#~ msgstr ""
-#~ "Ongedaan maken\n"
-#~ "Installeer"
-
-#~ msgid ""
-#~ "Undo\n"
-#~ "Remove"
-#~ msgstr ""
-#~ "Ongedaan maken\n"
-#~ "Verwijder"
-
-#~ msgid "Use non-smooth winding at speeds above"
-#~ msgstr "Gebruik sprongsgewijs spoelen bij snelheden boven"
-
-#~ msgid "VIX"
-#~ msgstr "VIX"
-
-#~ msgid "Video enhancement settings"
-#~ msgstr "Videoverbetering instellingen..."
-
-#~ msgid "View list of available Satteliteequipment extensions."
-#~ msgstr "Bekijk de lijst met beschikbare sattelietapparatuur extensies."
-
-#~ msgid ""
-#~ "We will now test if your TV can also display this resolution at 50hz. If "
-#~ "your screen goes black, wait 20 seconds and it will switch back to 60hz.\n"
-#~ "Please press OK to begin."
-#~ msgstr ""
-#~ "Er zal nu worden getest of uw TV deze resolutie ook bij 50Hz kan "
-#~ "weergeven.Indien u nu zwart beeld krijgt, dient u 20 seconden te wachten, "
-#~ "waarna er teruggeschakeld wordt naar 60Hz.\n"
-#~ "Druk nu op OK om met de test te beginnen."
-
-#~ msgid "What to do with sent crashlogs:"
-#~ msgstr "Wat te doen met verzonden crashlogs:"
-
-#~ msgid "Wireless"
-#~ msgstr "Draadloos"
-
-#~ msgid "Writing NFI image file to flash completed"
-#~ msgstr "Schrijven NFI image naar flash is voltooid"
-
-#~ msgid "Yes, and don't ask again."
-#~ msgstr "Ja, en niet meer vragen."
-
-#~ msgid ""
-#~ "You do not seem to have a harddisk in your Dreambox. So backing up to a "
-#~ "harddisk is not an option for you."
-#~ msgstr ""
-#~ "Er bevind zich waarschijnlijk geen harde schijf in uw Dreambox. U kunt de "
-#~ "instellingen in dit geval niet naar de harde schijf opslaan."
-
-#~ msgid ""
-#~ "You have chosen to backup to a compact flash card. The card must be in "
-#~ "the slot. We do not verify if it is really used at the moment. So better "
-#~ "backup to the harddisk!\n"
-#~ "Please press OK to start the backup now."
-#~ msgstr ""
-#~ "U heeft gekozen om de instellingen op een compact flash kaart op te "
-#~ "slaan. De kaart moet in het slot zitten. De inhoud van de kaart wordt "
-#~ "overschreven. Mogelijk is het beter de instellingen op de harde schijf op "
-#~ "te slaan!\n"
-#~ "Druk op OK om de back-up te starten."
-
-#~ msgid ""
-#~ "You have chosen to backup to an usb drive. Better backup to the "
-#~ "harddisk!\n"
-#~ "Please press OK to start the backup now."
-#~ msgstr ""
-#~ "U heeft gekozen uw instellingen op een USB stick op te slaan. Gebruik van "
-#~ "een harde schijf voor dit doel wordt aangeraden!\n"
-#~ "Druk op OK om de back-up te starten."
-
-#~ msgid ""
-#~ "You have chosen to backup to your harddisk. Please press OK to start the "
-#~ "backup now."
-#~ msgstr ""
-#~ "U heeft gekozen uw instellingen op de harde schijf op te slaan. Druk op "
-#~ "OK om de back-up te starten."
-
-#~ msgid ""
-#~ "You need to set a pin code and hide it from your children.\n"
-#~ "\n"
-#~ "Do you want to set the pin now?"
-#~ msgstr ""
-#~ "Voer nu een PINcode in en verberg die voor uw kinderen.\n"
-#~ "\n"
-#~ "Wilt u nu een PINcode instellen?"
-
-#~ msgid "Your TV works with 50 Hz. Good!"
-#~ msgstr "Uw TV werkt prima op 50Hz!"
-
-#~ msgid ""
-#~ "Your network configuration has been activated.\n"
-#~ "A second configured interface has been found.\n"
-#~ "\n"
-#~ "Do you want to disable the second network interface?"
-#~ msgstr ""
-#~ "Configuratie van uw netwerk is geactiveerd.\n"
-#~ "Een tweede reeds geconfigureerde interface is gevonden.\n"
-#~ "\n"
-#~ "Wilt u de tweede netwerk interface deactiveren?"
-
-#~ msgid "assigned CAIds"
-#~ msgstr "Toegewezen CAids:"
-
-#~ msgid "assigned Services/Provider"
-#~ msgstr "Toegewezen Zenders/Provider:"
-
-#~ msgid "choose destination directory"
-#~ msgstr "Kies doelmap"
-
-#~ msgid "custom TXT subtitle position"
-#~ msgstr "aangepaste positie van TT-ondertitels"
-
-#~ msgid "disable parental locking"
-#~ msgstr "kinderslot uitschakelen"
-
-#~ msgid "exceeds dual layer medium!"
-#~ msgstr "overschrijdt dubbellaags medium!"
-
-#~ msgid "exit network adapter setup menu"
-#~ msgstr "verlaat netwerkadapter instellingen menu"
-
-#~ msgid "failed"
-#~ msgstr "mislukt"
-
-#~ msgid "hidden network"
-#~ msgstr "verborgen netwerk"
-
-#~ msgid "hidden..."
-#~ msgstr "verborgen..."
-
-#~ msgid "hide extended description"
-#~ msgstr "Weergave: Zonder uitgebreide informatie"
-
-#~ msgid "high"
-#~ msgstr "hoog"
-
-#~ msgid ""
-#~ "incoming call!\n"
-#~ "%s calls on %s!"
-#~ msgstr ""
-#~ "inkomend gesprek!\n"
-#~ "%s gesprek met %s!"
-
-#~ msgid "low"
-#~ msgstr "laag"
-
-#~ msgid "menulist"
-#~ msgstr "menulijst"
-
-#~ msgid "no HDD found"
-#~ msgstr "geen harde schijf gevonden"
-
-#~ msgid "no module"
-#~ msgstr "geen module"
-
-#~ msgid "open virtual keyboard input help"
-#~ msgstr "open virtueel toetsenbord hulp"
-
-#~ msgid "re-activate parental locking"
-#~ msgstr "Her-activeer kinderslot"
-
-#~ msgid "select .NFI flash file"
-#~ msgstr "selecteer .NFI flash bestand"
-
-#~ msgid "select image from server"
-#~ msgstr "Selecteer image van server"
-
-#~ msgid "service pin"
-#~ msgstr "zender pincode"
-
-#~ msgid "setup pin"
-#~ msgstr "menu PINcode"
-
-#~ msgid "show EPG..."
-#~ msgstr "EPG weergeven..."
-
-#~ msgid "show all"
-#~ msgstr "alles weergeven"
-
-#~ msgid "show first selected tag"
-#~ msgstr "toon eerste geselecteerde markering"
-
-#~ msgid "show second selected tag"
-#~ msgstr "toon tweede gesecteerde markering"
-
-#~ msgid "show single service EPG..."
-#~ msgstr "Zender EPG weergeven..."
-
-#~ msgid "until restart"
-#~ msgstr "tot herstart"
-
-#~ msgid "use original TXT colors"
-#~ msgstr "gebruik standaard TXT kleuren"
-
-#~ msgid "use original TXT position"
-#~ msgstr "gebruik standaard TXT positie"
-
-#~ msgid "zap in pip window..."
-#~ msgstr "zap in PiP venster..."
