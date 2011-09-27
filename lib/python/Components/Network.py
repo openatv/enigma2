@@ -46,7 +46,7 @@ class Network:
 		return self.remoteRootFS
 
 	def isBlacklisted(self, iface):
-		return iface in ('lo', 'wifi0', 'wmaster0')
+		return iface in ('lo', 'wifi0', 'wmaster0', 'sit0')
 
 	def getInterfaces(self, callback = None):
 		self.configuredInterfaces = []
