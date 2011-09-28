@@ -12,7 +12,7 @@ if [ -d /home/root ]; then
 fi
 
 if [ $(grep config.crash.enabledebug /etc/enigma2/settings) == "config.crash.enabledebug=true" ]; then
- 	LD_PRELOAD=@libdir@/libopen.so.0.0.0 @bindir@/enigma2 &> $(grep config.crash.debug_path= /etc/enigma2/settings | grep -v config.crash.debug_path=)Enigma2-$(date +%d-%m-%Y_%H-%M-%S).log
+ 	LD_PRELOAD=@libdir@/libopen.so.0.0.0 @bindir@/enigma2 &> $(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')Enigma2-$(date +%d-%m-%Y_%H-%M-%S).log
 else
  	LD_PRELOAD=@libdir@/libopen.so.0.0.0 @bindir@/enigma2
 fi
