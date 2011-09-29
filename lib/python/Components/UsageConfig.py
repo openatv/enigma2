@@ -501,6 +501,7 @@ def InitUsageConfig():
 	config.imagemanager.backupretry = ConfigNumber(default = 30)
 	config.imagemanager.backupretrycount = NoSave(ConfigNumber(default = 0))
 	config.imagemanager.nextscheduletime = NoSave(ConfigNumber(default = 0))
+	config.imagemanager.restoreimage = NoSave(ConfigText(default=folderprefix, fixed_size=False))
 
 	config.backupmanager = ConfigSubsection()
 	config.backupmanager.folderprefix = ConfigText(default=folderprefix, fixed_size=False)
