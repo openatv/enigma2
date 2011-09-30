@@ -33,7 +33,7 @@ class DebugLogCheckPoller:
 
 	def createCheckJob(self):
 		job = Components.Task.Job(_("SoftcamCheck"))
-		task = Components.Task.PythonTask(job, _("Checking softcams..."))
+		task = Components.Task.PythonTask(job, _("Checking Log Size..."))
 		task.work = self.JobStart
 		task.weighting = 1
 		return job
