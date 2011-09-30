@@ -35,7 +35,7 @@ class DebugLogCheckPoller:
 		now = int(time())
 		if config.crash.enabledebug.value:
 			filename = ""
-			for filename in glob('/home/root/*.log') :
+			for filename in glob(config.crash.debug_path.value + '*.log'):
 				if path.getsize(filename) > (config.crash.debugloglimit.value * 1024 * 1024):
 					fh = open(filename, 'rb+')
 					fh.seek(-(config.crash.debugloglimit.value * 1024 * 1024), 2)
