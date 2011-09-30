@@ -70,14 +70,9 @@ class Navigation:
 					signal = 1
 				else:
 					signal = 0
-				file = open("/proc/stb/lcd/symbol_signal", "w")
-				file.write('%d' % int(signal))
-				file.close()
+				open("/proc/stb/lcd/symbol_signal", "w").write(str(signal))
 			except:
-				signal = 0
-				file = open("/proc/stb/lcd/symbol_signal", "w")
-				file.write('%d' % int(signal))
-				file.close()
+				open("/proc/stb/lcd/symbol_signal", "w").write("0")
 		
 		if ref is None:
 			self.stopService()
@@ -139,10 +134,7 @@ class Navigation:
 		if self.pnav:
 			self.pnav.stopService()
 		if path.exists("/proc/stb/lcd/symbol_signal"):
-			signal = 0
-			file = open("/proc/stb/lcd/symbol_signal", "w")
-			file.write('%d' % int(signal))
-			file.close()
+			open("/proc/stb/lcd/symbol_signal", "w").write("0")
 
 	def pause(self, p):
 		return self.pnav and self.pnav.pause(p)
