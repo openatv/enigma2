@@ -1,9 +1,7 @@
 import Components.Task
 from Components.Console import Console
 from config import config
-from time import localtime, time, strftime
 from enigma import eTimer
-from os import path, remove
 
 _session = None
 
@@ -30,8 +28,17 @@ class NTPSyncPoller:
 		self.timer.stop()
 
 	def ntp_sync(self):
+		Components.Task.job_manager.AddJob(self.createCheckJob())
+
+	def createCheckJob(self):
+		job = Components.Task.Job(_("NTPSync"))
+		task = Components.Task.PythonTask(job, _("Checking Time..."))
+		task.work = self.JobStart
+		task.weighting = 1
+		return job
+
+	def JobStart(self):
 		print '[NTPSync] Poll Started'
-		now = int(time())
 		if config.misc.SyncTimeUsing.value == "NTP":
 			self.Console.ePopen('/usr/bin/ntpdate -s -u pool.ntp.org')
 		self.timer.startLongTimer(int(config.misc.useNTPminutes.value) * 60)
