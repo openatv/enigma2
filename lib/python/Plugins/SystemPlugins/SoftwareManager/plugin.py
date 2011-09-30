@@ -24,10 +24,11 @@ from Components.About import about
 from Components.DreamInfoHandler import DreamInfoHandler
 from Components.Language import language
 from Components.AVSwitch import AVSwitch
+from Components.Task import job_manager
 from Tools.Directories import pathExists, fileExists, resolveFilename, SCOPE_PLUGINS, SCOPE_CURRENT_PLUGIN, SCOPE_CURRENT_SKIN, SCOPE_METADIR
 from Tools.LoadPixmap import LoadPixmap
 from Tools.NumericalTextInput import NumericalTextInput
-from enigma import eTimer, quitMainloop, RT_HALIGN_LEFT, RT_VALIGN_CENTER, eListboxPythonMultiContent, eListbox, gFont, getDesktop, ePicLoad, eRCInput, getPrevAsciiCode, eEnv
+from enigma import eTimer, quitMainloop, RT_HALIGN_LEFT, RT_VALIGN_CENTER, eListboxPythonMultiContent, eListbox, gFont, getDesktop, ePicLoad, eRCInput, getPrevAsciiCode, eEnv, iRecordableService
 from cPickle import dump, load
 from os import path as os_path, system as os_system, unlink, stat, mkdir, popen, makedirs, listdir, access, rename, remove, W_OK, R_OK, F_OK
 from time import time, gmtime, strftime, localtime
@@ -250,14 +251,26 @@ class UpdatePluginMenu(Screen):
 		default = True
 		try:
 			if 'title="Errors reported - see forum thread"' in urlopen("http://openpli.org").read():
-				message = _("The current beta image is not stable")+"\n"+_("For more information see www.pli-images.org")+"\n"
+				message = _("The current beta image is not stable") + "\n" + _("For more information see www.pli-images.org") + "\n"
 				picon = MessageBox.TYPE_ERROR
 				default = False
 		except:
-			message = _("The status of the current beta image could not be checked")+"\n"+_("probably www.pli-images.org is offline")+"\n"
+			message = _("The status of the current beta image could not be checked") + "\n"+_("probably www.pli-images.org is offline") + "\n"
 			picon = MessageBox.TYPE_ERROR
 			default = False
 		socket.setdefaulttimeout(currentTimeoutDefault)
+		
+		recordings = self.session.nav.getRecordings()
+		jobs = len(job_manager.getPendingJobs())
+		next_rec_time = -1
+		if not recordings:
+			next_rec_time = self.session.nav.RecordTimer.getNextRecordingTime()	
+		if recordings or (next_rec_time > 0 and (next_rec_time - time()) < 360):
+			message += _("Recording(s) are in progress or coming up in few seconds!") + "\n"
+			default = False
+		if jobs:
+			reason += (_("%d jobs are running in the background!") % jobs) + "\n"
+			default = False
 		if offline:
 			message += _("Do you want to update your Dreambox?")+"\n"+_("The screen will go blank while upgrading, be patient and wait for the reboot.")
 			self.session.openWithCallback(self.runUpgradeOffline, MessageBox, message, default = default, picon = picon)
