@@ -2947,6 +2947,7 @@ class InfoBarExtensions:
 			}, 1) # lower priority
 
 		self.addExtension(extension = self.getLogManager, type = InfoBarExtensions.EXTENSION_LIST)
+		self.addExtension(extension = self.getOsd3DSetup, type = InfoBarExtensions.EXTENSION_LIST)
 		self.addExtension(extension = self.getCCcamInfo, type = InfoBarExtensions.EXTENSION_LIST)
 		self.addExtension(extension = self.getOScamInfo, type = InfoBarExtensions.EXTENSION_LIST)
 
@@ -2956,6 +2957,15 @@ class InfoBarExtensions:
 	def getLogManager(self):
 		if config.logmanager.showinextensions.value:
 			return [((boundFunction(self.getLMname), boundFunction(self.openLogManager), lambda: True), None)]
+		else:
+			return []
+
+	def get3DSetupname(self):
+		return _("OSD 3D Setup")
+
+	def getOsd3DSetup(self):
+		if config.osd.show3dextensions .value:
+			return [((boundFunction(self.get3DSetupname), boundFunction(self.openOSD3DSetup), lambda: True), None)]
 		else:
 			return []
 
@@ -3065,6 +3075,10 @@ class InfoBarExtensions:
 	def openLogManager(self):
 		from Screens.LogManager import LogManager
 		self.session.open(LogManager)
+
+	def openOSD3DSetup(self):
+		from Screens.OSD import OSD3DSetupScreen
+		self.session.open(OSD3DSetupScreen)
 
 	def showAutoTimerList(self):
 		if Directories.fileExists("/usr/lib/enigma2/python/Plugins/Extensions/AutoTimer/plugin.pyo"):
