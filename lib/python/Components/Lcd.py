@@ -36,9 +36,7 @@ class IconCheckPoller:
 				if LinkState != 'down':
 					LinkState = open('/sys/class/net/eth0/carrier').read()
 			LinkState = LinkState[:1]
-			file = open("/proc/stb/lcd/symbol_network", "w")
-			file.write('%d' % int(LinkState))
-			file.close()
+			open("/proc/stb/lcd/symbol_network", "w").write(LinkState)
 		if path.exists("/proc/stb/lcd/symbol_usb"):
 			USBState = 0
 			busses = usb.busses()
@@ -46,15 +44,13 @@ class IconCheckPoller:
 				devices = bus.devices
 				for dev in devices:
 					if dev.deviceClass != 9 and dev.deviceClass != 2 and dev.idVendor > 0:
-						print ' '
-						print "Device:", dev.filename
-						print "  Number:", dev.deviceClass
-						print "  idVendor: %d (0x%04x)" % (dev.idVendor, dev.idVendor)
-						print "  idProduct: %d (0x%04x)" % (dev.idProduct, dev.idProduct)
+# 						print ' '
+# 						print "Device:", dev.filename
+# 						print "  Number:", dev.deviceClass
+# 						print "  idVendor: %d (0x%04x)" % (dev.idVendor, dev.idVendor)
+# 						print "  idProduct: %d (0x%04x)" % (dev.idProduct, dev.idProduct)
 						USBState = 1
-			file = open("/proc/stb/lcd/symbol_usb", "w")
-			file.write('%d' % int(USBState))
-			file.close()
+			open("/proc/stb/lcd/symbol_usb", "w").write(USBState)
 		self.timer.startLongTimer(30)
 
 class LCD:
@@ -84,22 +80,13 @@ class LCD:
 		return eDBoxLCD.getInstance().isOled()
 
 	def setMode(self, value):
-		file = open("/proc/stb/lcd/show_symbols", "w")
-		file.write('%d' % int(value))
-		file.close()
-		print "[LCD] set mode to %d" % int(value)
+		open("/proc/stb/lcd/show_symbols", "w").write(value)
 
 	def setRepeat(self, value):
-		file = open("/proc/stb/lcd/scroll_repeats", "w")
-		file.write('%d' % int(value))
-		file.close()
-		print "[LCD] set repeat to %d" % int(value)
+		open("/proc/stb/lcd/scroll_repeats", "w").write(value)
 
 	def setScrollspeed(self, value):
-		file = open("/proc/stb/lcd/scroll_delay", "w")
-		file.write('%d' % int(value))
-		file.close()
-		print "[LCD] set scrollspeed to %d" % int(value)
+		open("/proc/stb/lcd/scroll_delay", "w").write(value)
 
 def leaveStandby():
 	config.lcd.bright.apply()
