@@ -12,7 +12,7 @@ def AutoDebugLogCheck(session=None, **kwargs):
 	debuglogcheckpoller.start()
 
 class DebugLogCheckPoller:
-	"""Automatically Poll SoftCam"""
+	"""Automatically Poll DebugLogCheck"""
 	def __init__(self):
 		# Init Timer
 		self.timer = eTimer()
@@ -32,7 +32,7 @@ class DebugLogCheckPoller:
 		Components.Task.job_manager.AddJob(self.createCheckJob())
 
 	def createCheckJob(self):
-		job = Components.Task.Job(_("SoftcamCheck"))
+		job = Components.Task.Job(_("DebugLogCheck"))
 		task = Components.Task.PythonTask(job, _("Checking Log Size..."))
 		task.work = self.JobStart
 		task.weighting = 1
