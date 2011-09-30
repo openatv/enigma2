@@ -1,14 +1,4 @@
 <setupxml>
-	<setup key="rc" title="RC Menu">
-		<item level="0" text="Repeat">config.inputDevices.repeat</item>
-		<item level="0" text="Delay">config.inputDevices.delay</item>
-		<item level="0" text="Keymap">config.rc.map</item>
-	</setup>
-	<setup key="time" title="Time">
-		<item level="0" text="Timezone">config.timezone.val</item>
-		<item level="0" text="Sync time using">config.misc.SyncTimeUsing</item>
-		<item level="0" text="Sync NTP every (minutes)">config.misc.useNTPminutes</item>
-	</setup>
 	<setup key="avsetup" title="A/V Settings">
 		<item level="0" text="Color Format">config.av.colorformat</item>
 		<item level="0" text="Aspect Ratio">config.av.aspectratio</item>
@@ -18,7 +8,6 @@
 		<item level="1" text="General PCM delay (ms)">config.av.generalPCMdelay</item>
 		<item level="1" text="Digital downmix" requires="CanDownmixAC3">config.av.downmix_ac3</item>
 		<item level="1" text="Auto scart switching" requires="ScartSwitch">config.av.vcrswitch</item>
-		<item level="0" text="Menu Overscan amount">config.vixsettings.overscanamount</item>
 	</setup>
 	<setup key="usage" title="Customize">
 		<item level="0" text="Setup Mode">config.usage.setup_level</item>
@@ -56,6 +45,16 @@
 		<item level="2" text="Preferred tuner">config.usage.frontend_priority</item>
 		<item level="2" text="Disable background scanning">config.misc.disable_background_scan</item>
 		<item level="2" text="Show background in Radio Mode">config.misc.showradiopic</item>
+	</setup>
+	<setup key="rc" title="RC Menu">
+		<item level="0" text="Repeat">config.inputDevices.repeat</item>
+		<item level="0" text="Delay">config.inputDevices.delay</item>
+		<item level="0" text="Keymap">config.rc.map</item>
+	</setup>
+	<setup key="time" title="Time">
+		<item level="0" text="Timezone">config.timezone.val</item>
+		<item level="0" text="Sync time using">config.misc.SyncTimeUsing</item>
+		<item level="0" text="Sync NTP every (minutes)">config.misc.useNTPminutes</item>
 	</setup>
 	<setup key="remotesetup" title="Button Setup">
 		<item level="0" text="EPG buton mode">config.vixsettings.ViXEPG_mode</item>
@@ -184,11 +183,6 @@
 	<setup key="keyboard" title="Keyboard Setup">
 		<item level="0" text="Keyboard Map">config.keyboard.keymap</item>
 	</setup>
-	<setup key="osd" title="OSD Settings">
-		<item text="Alpha">config.osd.alpha</item>
-		<item text="Brightness">config.osd.bright</item>
-		<item text="Contrast">config.osd.contrast</item>
-	</setup>
 	<setup key="lcd" title="Display Setup" requires="FrontpanelDisplay">
 		<item level="0" text="Brightness">config.lcd.bright</item>
 		<item level="0" text="Contrast">config.lcd.contrast</item>
@@ -204,6 +198,5 @@
 		<item text="Longitude">config.sat.diseqca</item>
 		<item text="Latitude">config.sat.diseqcb</item>
 		<item text="Use power measurement" >config.sat.diseqcc</item>
-		<!--<item text="DiSEqC D">config.sat.diseqcd</item>-->
 	</setup>
 </setupxml>

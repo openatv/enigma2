@@ -6,7 +6,7 @@ SUBDIRS = PositionerSetup Satfinder \
 	VideoEnhancement WirelessLan NetworkWizard
 
 if XTREND
-SUBDIRS += SatelliteEquipmentControl DiseqcTester FastScan OSD3DSetup OSDPositionSetup FanSetupXtrend Blindscan
+SUBDIRS += SatelliteEquipmentControl DiseqcTester FastScan OSD3DSetup FanSetupXtrend Blindscan
 endif
 
 if VUUNO
@@ -26,7 +26,7 @@ SUBDIRS += TempFanControl
 endif
 
 if DREAMBOX
-SUBDIRS += FrontprocessorUpgrade NFIFlash SatelliteEquipmentControl DiseqcTester CableScan FastScan OSDPositionSetup OSD3DSetup
+SUBDIRS += FrontprocessorUpgrade NFIFlash SatelliteEquipmentControl DiseqcTester CableScan FastScan OSD3DSetup
 endif
 
 install_PYTHON =	\
