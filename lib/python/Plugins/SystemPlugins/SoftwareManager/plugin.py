@@ -269,7 +269,7 @@ class UpdatePluginMenu(Screen):
 			message += _("Recording(s) are in progress or coming up in few seconds!") + "\n"
 			default = False
 		if jobs:
-			reason += (_("%d jobs are running in the background!") % jobs) + "\n"
+			message += (_("%d jobs are running in the background!") % jobs) + "\n"
 			default = False
 		if offline:
 			message += _("Do you want to update your Dreambox?")+"\n"+_("The screen will go blank while upgrading, be patient and wait for the reboot.")
