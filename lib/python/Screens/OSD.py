@@ -2,6 +2,7 @@ from Screens.Screen import Screen
 from Components.config import configfile , config, getConfigListEntry
 from Components.ConfigList import ConfigListScreen
 from Components.SystemInfo import SystemInfo
+from Components.Sources.StaticText import StaticText
 from os import path
 
 class OSDSetup(Screen, ConfigListScreen):
@@ -12,6 +13,8 @@ class OSDSetup(Screen, ConfigListScreen):
 		<ePixmap pixmap="skin_default/buttons/red.png" position="c+5,e-100" zPosition="0" size="140,40" alphatest="on" />
 		<widget name="ok" position="c-145,e-100" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;20" transparent="1" backgroundColor="green" />
 		<widget name="cancel" position="c+5,e-100" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;20" transparent="1" backgroundColor="red" />
+		<ePixmap pixmap="skin_default/div-h.png" position="c-200,e-150" zPosition="1" size="400,2" />
+		<widget source="satus" render="Label" position="c-200,e-140" size="400,30" zPosition="10" font="Regular;21" halign="center" valign="center" foregroundColor="black" backgroundColor="blue" transparent="1" />
 	</screen>"""
 
 	def __init__(self, session):
@@ -24,6 +27,7 @@ class OSDSetup(Screen, ConfigListScreen):
 
 		self["ok"] = Button(_("OK"))
 		self["cancel"] = Button(_("Cancel"))
+		self["satus"] = StaticText()
 
 		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
 		{
@@ -46,11 +50,18 @@ class OSDSetup(Screen, ConfigListScreen):
 			self.list.append(getConfigListEntry(_("height"), config.osd.dst_height))
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
+		if not self.selectionChanged in self["config"].onSelectionChanged:
+			self["config"].onSelectionChanged.append(self.selectionChanged)
+		self.selectionChanged()
+
+	def selectionChanged(self):
+		self["satus"].setText(_("Current value: ") + self.getCurrentValue())
 
 	# for summary:
 	def changedEntry(self):
 		for x in self.onChangedEntry:
 			x()
+		self.selectionChanged()
 
 	def getCurrentEntry(self):
 		return self["config"].getCurrent()[0]
