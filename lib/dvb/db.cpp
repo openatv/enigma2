@@ -470,20 +470,25 @@ void eDVBDB::loadServicelist(const char *file)
 						eServiceID(service_id),
 						service_type);
 		count++;
-		fgets(line, 256, f);
-		if (strlen(line))
-			line[strlen(line)-1]=0;
-
-		s->m_service_name = line;
+		if (fgets(line, 256, f))
+		{
+			/* strip newline */
+			int len = strlen(line);
+			line[--len] = 0;
+			s->m_service_name = line;
+		}
 		s->genSortName();
 
-		fgets(line, 256, f);
-		if (strlen(line))
-			line[strlen(line)-1]=0;
-		if (line[1]!=':')	// old ... (only service_provider)
-			s->m_provider_name=line;
-		else
-			parseServiceData(s, line);
+		if (fgets(line, 256, f))
+		{
+			/* strip newline */
+			int len = strlen(line);
+			line[--len] = 0;
+			if (line[1]!=':')	// old ... (only service_provider)
+				s->m_provider_name=line;
+			else
+				parseServiceData(s, line);
+		}
 		addService(ref, s);
 	}
 
@@ -646,13 +651,14 @@ void eDVBDB::loadBouquet(const char *path)
 	eServiceReference *e = NULL;
 	while (1)
 	{
-		if (!fgets(line, 256, fp))
-			break;
-		line[strlen(line)-1]=0;
-		if (strlen(line) && line[strlen(line)-1]=='\r')
-			line[strlen(line)-1]=0;
-		if (!line[0])
-			break;
+		int len;
+		if (!fgets(line, 256, fp)) break;
+		len = strlen(line);
+		if (len < 2) break;
+		/* strip newline */
+		line[--len] = 0;
+		/* strip carriage return (when found) */
+		if (line[len - 1] == '\r') line[--len] = 0;
 		if (line[0]=='#')
 		{
 			if (!strncmp(line, "#SERVICE", 8))
