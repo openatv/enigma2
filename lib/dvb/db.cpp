@@ -126,14 +126,22 @@ eDVBService &eDVBService::operator=(const eDVBService &s)
 
 void eDVBService::genSortName()
 {
-	m_service_name_sort = removeDVBChars(m_service_name);
-	makeUpper(m_service_name_sort);
-	while ((!m_service_name_sort.empty()) && m_service_name_sort[0] == ' ')
-		m_service_name_sort.erase(0, 1);
+	size_t start = m_service_name.find_first_not_of(' ');
+	if (start != std::string::npos)
+	{
+		/* strip leading spaces */
+		m_service_name_sort = m_service_name.substr(start);
+		/* remove UTF-8 */
+		m_service_name_sort = removeDVBChars(m_service_name_sort);
+		/* convert to uppercase */
+		makeUpper(m_service_name_sort);
+	}
 
-		/* put unnamed services at the end, not at the beginning. */
 	if (m_service_name_sort.empty())
+	{
+		/* put unnamed services at the end, not at the beginning. */
 		m_service_name_sort = "\xFF";
+	}
 }
 
 RESULT eDVBService::getName(const eServiceReference &ref, std::string &name)
