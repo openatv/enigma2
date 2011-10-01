@@ -127,7 +127,6 @@ class UpdatePluginMenu(Screen):
 			print "building menu entries"
 			self.list.append(("install-extensions", _("Manage extensions"), _("\nManage extensions or plugins for your Dreambox" ) + self.oktext, None))
 			self.list.append(("software-update", _("Software update"), _("\nOnline update of your Dreambox software." ) + self.oktext, None))
-			self.list.append(("software-update-offline", _("Software update") + " (Offline)", _("\nOnline update of your Dreambox software." ) + _("\nShut down upgrade and reboot") + self.oktext, None))
 			self.list.append(("software-restore", _("Software restore"), _("\nRestore your Dreambox with a new firmware." ) + self.oktext, None))
 			self.list.append(("system-backup", _("Backup system settings"), _("\nBackup your Dreambox settings." ) + self.oktext + "\n\n" + self.infotext, None))
 			self.list.append(("system-restore",_("Restore system settings"), _("\nRestore your Dreambox settings." ) + self.oktext, None))
@@ -241,7 +240,7 @@ class UpdatePluginMenu(Screen):
 			if currentEntry in ("system-backup","backupfiles"):
 				self.session.open(SoftwareManagerInfo, mode = "backupinfo")
 
-	def checkTraficLight(self, offline):
+	def checkTraficLight(self):
 		from urllib import urlopen
 		import socket
 		currentTimeoutDefault = socket.getdefaulttimeout()
@@ -249,6 +248,8 @@ class UpdatePluginMenu(Screen):
 		message = ""
 		picon = None
 		default = True
+		# TODO: Use Twisted's URL fetcher, urlopen is evil. And it can
+		# run in parallel to the package update.
 		try:
 			if 'title="Errors reported - see forum thread"' in urlopen("http://openpli.org").read():
 				message = _("The current beta image is not stable") + "\n" + _("For more information see www.pli-images.org") + "\n"
@@ -271,9 +272,9 @@ class UpdatePluginMenu(Screen):
 		if jobs:
 			message += (_("%d jobs are running in the background!") % jobs) + "\n"
 			default = False
-		if offline:
-			message += _("Do you want to update your Dreambox?")+"\n"+_("The screen will go blank while upgrading, be patient and wait for the reboot.")
-			self.session.openWithCallback(self.runUpgradeOffline, MessageBox, message, default = default, picon = picon)
+		if default:
+		        # We'll ask later
+		        self.runUpgrade(True)
 		else:
 			message += _("Do you want to update your Dreambox?")+"\n"+_("After pressing OK, please wait!")
 			self.session.openWithCallback(self.runUpgrade, MessageBox, message, default = default, picon = picon)
@@ -284,9 +285,7 @@ class UpdatePluginMenu(Screen):
 			currentEntry = current[0]
 			if self.menu == 0:
 				if (currentEntry == "software-update"):
-					self.checkTraficLight(False)
-				if (currentEntry == "software-update-offline"):
-					self.checkTraficLight(True)
+					self.checkTraficLight()
 				elif (currentEntry == "software-restore"):
 					self.session.open(ImageWizard)
 				elif (currentEntry == "install-extensions"):
@@ -349,10 +348,6 @@ class UpdatePluginMenu(Screen):
 	def runUpgrade(self, result):
 		if result:
 			self.session.open(UpdatePlugin, self.skin_path)
-
-	def runUpgradeOffline(self, result):
-		if result:
-			self.session.open(UpdatePlugin, self.skin_path, 'offline')
 
 	def createBackupfolders(self):
 		print "Creating backup folder if not already there..."
@@ -1422,6 +1417,7 @@ class UpdatePlugin(Screen):
 		self.packages = 0
 		self.error = 0
 		self.processed_packages = []
+		self.total_packages = None
 
 		self.activity = 0
 		self.activityTimer = eTimer()
@@ -1430,7 +1426,6 @@ class UpdatePlugin(Screen):
 		self.ipkg = IpkgComponent()
 		self.ipkg.addCallback(self.ipkgCallback)
 
-		self.offline = "offline" in args
 		self.updating = False
 
 		self["actions"] = ActionMap(["WizardActions"], 
@@ -1456,7 +1451,7 @@ class UpdatePlugin(Screen):
 			if self.sliderPackages.has_key(param):
 				self.slider.setValue(self.sliderPackages[param])
 			self.package.setText(param)
-			self.status.setText(_("Upgrading"))
+			self.status.setText(_("Upgrading") + ": %s/%s" % (self.packages, self.total_packages))
 			if not param in self.processed_packages:
 				self.processed_packages.append(param)
 				self.packages += 1
@@ -1490,23 +1485,21 @@ class UpdatePlugin(Screen):
 		elif event == IpkgComponent.EVENT_DONE:
 			if self.updating:
 				self.updating = False
-				if self.offline:
-					from enigma import gMainDC, getDesktop, eSize
-					self.session.nav.stopService()
-					desktop = getDesktop(0)
-					if desktop.size() != eSize(720,576):
-						gMainDC.getInstance().setResolution(720,576)
-						desktop.resize(eSize(720,576))
-					self.session.open(OfflineUpgradeMessageBox)
-					quitMainloop(42)
+				self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE_LIST)
+			elif self.ipkg.currentCommand == IpkgComponent.CMD_UPGRADE_LIST:
+			        self.total_packages = len(self.ipkg.getFetchedList())
+			        if self.total_packages:
+					message = _("Do you want to update your Dreambox?") + "\n(%s " % self.total_packages + _("Packages") + ")"
+					choices = [(_("Unattended upgrade without GUI and reboot system"), "cold"),
+						(_("Upgrade and ask to reboot"), "hot"),
+						(_("Cancel"), "")]
+					self.session.openWithCallback(self.startActualUpgrade, ChoiceBox, title=message, list=choices)
 				else:
-					self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE, args = {'test_only': False})
+				        self.session.openWithCallback(self.close, MessageBox, _("Nothing to upgrade"), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 			elif self.error == 0:
 				self.slider.setValue(4)
-				
 				self.activityTimer.stop()
 				self.activityslider.setValue(0)
-				
 				self.package.setText(_("Done - Installed or upgraded %d packages") % self.packages)
 				self.status.setText(self.oktext)
 			else:
@@ -1520,6 +1513,22 @@ class UpdatePlugin(Screen):
 				self.status.setText(_("Error") +  " - " + error)
 		#print event, "-", param
 		pass
+
+	def startActualUpgrade(self, answer):
+	        if not answer or not answer[1]:
+	                self.close()
+	                return
+		if answer[1] == "cold":
+			from enigma import gMainDC, getDesktop, eSize
+			self.session.nav.stopService()
+			desktop = getDesktop(0)
+			if desktop.size() != eSize(720,576):
+				gMainDC.getInstance().setResolution(720,576)
+				desktop.resize(eSize(720,576))
+			self.session.open(OfflineUpgradeMessageBox)
+			quitMainloop(42)
+		else:
+			self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE, args = {'test_only': False})
 
 	def modificationCallback(self, res):
 		self.ipkg.write(res and "N" or "Y")
