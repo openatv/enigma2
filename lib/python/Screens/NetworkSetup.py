@@ -1425,14 +1425,14 @@ class NetworkAfp(Screen):
 		self['lab2'] = Label(_("Current Status:"))
 		self['labstop'] = Label(_("Stopped"))
 		self['labrun'] = Label(_("Running"))
-		self['key_red'] = Label(_("Start"))
-		self['key_green'] = Label(_("Stop"))
+		self['key_red'] = Label(_("Stop"))
+		self['key_green'] = Label(_("Start"))
 		self['key_yellow'] = Label(_("Autostart"))
 		self['key_blue'] = Label()
 		self.Console = Console()
 		self.my_Samba_active = False
 		self.my_Samba_run = False
-		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.AfpStart, 'green': self.AfpStop, 'yellow': self.activateAfp})
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.AfpStop, 'green': self.AfpStart, 'yellow': self.activateAfp})
 		self.onLayoutFinish.append(self.updateAfp)
 
 	def AfpStart(self):
@@ -1524,12 +1524,12 @@ class NetworkAfp(Screen):
 			self['labstop'].hide()
 			self['labactive'].show()
 			self['labrun'].show()
-			self['key_red'].setText(_("Restart"))
+			self['key_green'].setText(_("Restart"))
 		else:
 			self['labrun'].hide()
 			self['labstop'].show()
 			self['labactive'].show()
-			self['key_red'].setText(_("Start"))
+			self['key_green'].setText(_("Start"))
 
 class NetworkFtp(Screen):
 	skin = """
@@ -1551,11 +1551,11 @@ class NetworkFtp(Screen):
 		self['lab2'] = Label(_("Current Status:"))
 		self['labstop'] = Label(_("Stopped"))
 		self['labrun'] = Label(_("Running"))
-		self['key_red'] = Label(_("Enable"))
-		self['key_green'] = Label(_("Disable"))
+		self['key_green'] = Label(_("Enable"))
+		self['key_red'] = Label(_("Disable"))
 		self.my_ftp_active = False
 		self.Console = Console()
-		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.FtpStart, 'green': self.FtpStop})
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.FtpStop, 'green': self.FtpStart})
 		self.onLayoutFinish.append(self.updateFtp)
 
 	def FtpStart(self):
@@ -1640,13 +1640,13 @@ class NetworkNfs(Screen):
 		self['lab2'] = Label(_("Current Status:"))
 		self['labstop'] = Label(_("Stopped"))
 		self['labrun'] = Label(_("Running"))
-		self['key_red'] = Label(_("Start"))
-		self['key_green'] = Label(_("Stop"))
+		self['key_green'] = Label(_("Start"))
+		self['key_red'] = Label(_("Stop"))
 		self['key_yellow'] = Label(_("Autostart"))
 		self.Console = Console()
 		self.my_nfs_active = False
 		self.my_nfs_run = False
-		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.NfsStart, 'green': self.NfsStop, 'yellow': self.Nfsset})
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.NfsStop, 'green': self.NfsStart, 'yellow': self.Nfsset})
 		self.onLayoutFinish.append(self.updateNfs)
 
 	def NfsStart(self):
@@ -1737,11 +1737,11 @@ class NetworkNfs(Screen):
 		if self.my_nfs_run == True:
 			self['labstop'].hide()
 			self['labrun'].show()
-			self['key_red'].setText(_("Restart"))
+			self['key_green'].setText(_("Restart"))
 		else:
 			self['labstop'].show()
 			self['labrun'].hide()
-			self['key_red'].setText(_("Start"))
+			self['key_green'].setText(_("Start"))
 
 class NetworkOpenvpn(Screen):
 	skin = """
@@ -1770,14 +1770,14 @@ class NetworkOpenvpn(Screen):
 		self['lab2'] = Label(_("Current Status:"))
 		self['labstop'] = Label(_("Stopped"))
 		self['labrun'] = Label(_("Running"))
-		self['key_red'] = Label(_("Start"))
-		self['key_green'] = Label(_("Stop"))
+		self['key_green'] = Label(_("Start"))
+		self['key_red'] = Label(_("Stop"))
 		self['key_yellow'] = Label(_("Autostart"))
 		self['key_blue'] = Label(_("Show Log"))
 		self.Console = Console()
 		self.my_vpn_active = False
 		self.my_vpn_run = False
-		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.VpnStart, 'green': self.VpnStop, 'yellow': self.activateVpn, 'blue': self.Vpnshowlog})
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.VpnStop, 'green': self.VpnStart, 'yellow': self.activateVpn, 'blue': self.Vpnshowlog})
 		self.onLayoutFinish.append(self.updateVpn)
 
 	def Vpnshowlog(self):
@@ -1871,11 +1871,11 @@ class NetworkOpenvpn(Screen):
 		if self.my_vpn_run == True:
 			self['labstop'].hide()
 			self['labrun'].show()
-			self['key_red'].setText(_("Restart"))
+			self['key_green'].setText(_("Restart"))
 		else:
 			self['labstop'].show()
 			self['labrun'].hide()
-			self['key_red'].setText(_("Start"))
+			self['key_green'].setText(_("Start"))
 
 class NetworkVpnLog(Screen):
 	skin = """
@@ -1927,14 +1927,14 @@ class NetworkSamba(Screen):
 		self['lab2'] = Label(_("Current Status:"))
 		self['labstop'] = Label(_("Stopped"))
 		self['labrun'] = Label(_("Running"))
-		self['key_red'] = Label(_("Start"))
-		self['key_green'] = Label(_("Stop"))
+		self['key_green'] = Label(_("Start"))
+		self['key_red'] = Label(_("Stop"))
 		self['key_yellow'] = Label(_("Autostart"))
 		self['key_blue'] = Label(_("Show Log"))
 		self.Console = Console()
 		self.my_Samba_active = False
 		self.my_Samba_run = False
-		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.SambaStart, 'green': self.SambaStop, 'yellow': self.activateSamba, 'blue': self.Sambashowlog})
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.SambaStop, 'green': self.SambaStart, 'yellow': self.activateSamba, 'blue': self.Sambashowlog})
 		self.onLayoutFinish.append(self.updateSamba)
 
 	def Sambashowlog(self):
@@ -2029,12 +2029,12 @@ class NetworkSamba(Screen):
 			self['labstop'].hide()
 			self['labactive'].show()
 			self['labrun'].show()
-			self['key_red'].setText(_("Restart"))
+			self['key_green'].setText(_("Restart"))
 		else:
 			self['labrun'].hide()
 			self['labstop'].show()
 			self['labactive'].show()
-			self['key_red'].setText(_("Start"))
+			self['key_green'].setText(_("Start"))
 
 class NetworkSambaLog(Screen):
 	skin = """
@@ -2079,11 +2079,11 @@ class NetworkTelnet(Screen):
 		self['lab2'] = Label(_("Current Status:"))
 		self['labstop'] = Label(_("Stopped"))
 		self['labrun'] = Label(_("Running"))
-		self['key_red'] = Label(_("Enable"))
-		self['key_green'] = Label(_("Disable"))
+		self['key_green'] = Label(_("Enable"))
+		self['key_red'] = Label(_("Disable"))
 		self.Console = Console()
 		self.my_telnet_active = False
-		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.TelnetStart, 'green': self.TelnetStop})
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.TelnetStop, 'green': self.TelnetStart})
 		self.onLayoutFinish.append(self.updateTelnet)
 
 	def TelnetStart(self):
@@ -2196,10 +2196,10 @@ class NetworkInadyn(Screen):
 		self['system'] = Label(_("System") + ":")
 		self['labsys'] = Label()
 		self['key_red'] = Label(_("Setup"))
-		self['key_green'] = Label(_("Show Log"))
-		self['key_yellow'] = Label(_("Start"))
-		self['key_blue'] = Label(_("Autostart"))
-		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.setupin, 'back': self.close, 'red': self.setupin, 'green': self.inaLog, 'yellow': self.InadynStart, 'blue': self.autostart})
+		self['key_green'] = Label(_("Start"))
+		self['key_yellow'] = Label(_("Autostart"))
+		self['key_blue'] = Label(_("Show Log"))
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.setupin, 'back': self.close, 'red': self.setupin, 'green': self.InadynStart, 'yellow': self.autostart, 'blue': self.inaLog})
 		self.Console = Console()
 		self.onLayoutFinish.append(self.updateIna)
 
@@ -2290,11 +2290,11 @@ class NetworkInadyn(Screen):
 		if self.my_inadyn_run == True:
 			self['labstop'].hide()
 			self['labrun'].show()
-			self['key_yellow'].setText(_("Stop"))
+			self['key_green'].setText(_("Stop"))
 		else:
 			self['labstop'].show()
 			self['labrun'].hide()
-			self['key_yellow'].setText(_("Start"))
+			self['key_green'].setText(_("Start"))
 
 		#self.my_nabina_state = False
 		if fileExists('/etc/inadyn.conf'):
@@ -2554,10 +2554,10 @@ class NetworkuShare(Screen):
 		self['dlnainactive'] = Pixmap()
 
 		self['key_red'] = Label(_("Setup"))
-		self['key_green'] = Label('')
-		self['key_yellow'] = Label(_("Start"))
-		self['key_blue'] = Label(_("Autostart"))
-		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.setupin, 'back': self.close, 'red': self.setupin, 'yellow': self.uShareStart, 'blue': self.autostart})
+		self['key_green'] = Label(_("Start"))
+		self['key_yellow'] = Label(_("Autostart"))
+		self['key_blue'] = Label('')
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.setupin, 'back': self.close, 'red': self.setupin, 'green': self.uShareStart, 'yellow': self.autostart})
 		self.Console = Console()
 		self.onLayoutFinish.append(self.updateuShare)
 
@@ -2647,11 +2647,11 @@ class NetworkuShare(Screen):
 		if self.my_ushare_run == True:
 			self['labstop'].hide()
 			self['labrun'].show()
-			self['key_yellow'].setText(_("Stop"))
+			self['key_green'].setText(_("Stop"))
 		else:
 			self['labstop'].show()
 			self['labrun'].hide()
-			self['key_yellow'].setText(_("Start"))
+			self['key_green'].setText(_("Start"))
 
 		if fileExists('/etc/ushare.conf'):
 			f = open('/etc/ushare.conf', 'r')
