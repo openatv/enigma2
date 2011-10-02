@@ -76,8 +76,10 @@ class PluginDescriptor:
 
 		if icon is None or isinstance(icon, str):
 			self.iconstr = icon
+			self._icon = None
 		else:
-			self.icon = icon
+			self.iconstr = None
+			self._icon = icon
 
 		self.weight = weight
 
@@ -91,16 +93,13 @@ class PluginDescriptor:
 	def getWakeupTime(self):
 		return self.wakeupfnc and self.wakeupfnc() or -1
 
-	def __getattr__(self, name):
-		if name == 'icon':
-			if isinstance(self.iconstr, str):
-				from Tools.LoadPixmap import LoadPixmap
-				icon = LoadPixmap(os.path.join(self.path, self.iconstr))
-			else:
-				icon = None
-			self.icon = icon
-			return icon
-		raise AttributeError
+	@property
+	def icon(self):
+		if self.iconstr:
+			from Tools.LoadPixmap import LoadPixmap
+			return LoadPixmap(os.path.join(self.path, self.iconstr))
+		else:
+			return self._icon
 
 	def __eq__(self, other):
 		return self.__call__ == other.__call__
