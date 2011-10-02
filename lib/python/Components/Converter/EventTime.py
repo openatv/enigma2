@@ -2,6 +2,7 @@ from Converter import Converter
 from Poll import Poll
 from time import time
 from Components.Element import cached, ElementError
+from Components.config import config
 
 class EventTime(Poll, Converter, object):
 	STARTTIME = 0
@@ -9,6 +10,7 @@ class EventTime(Poll, Converter, object):
 	REMAINING = 2
 	PROGRESS = 3
 	DURATION = 4
+	ELAPSED = 5
 
 	def __init__(self, type):
 		Converter.__init__(self, type)
@@ -27,8 +29,12 @@ class EventTime(Poll, Converter, object):
 			self.type = self.PROGRESS
 			self.poll_interval = 30*1000
 			self.poll_enabled = True
+		elif type == "Elapsed":
+			self.type = self.ELAPSED
+			self.poll_interval = 60*1000
+			self.poll_enabled = True
 		else:
-			raise ElementError("'%s' is not <StartTime|EndTime|Remaining|Duration|Progress> for EventTime converter" % type)
+			raise ElementError("'%s' is not <StartTime|EndTime|Remaining|Elapsed|Duration|Progress> for EventTime converter" % type)
 
 	@cached
 	def getTime(self):
@@ -45,14 +51,45 @@ class EventTime(Poll, Converter, object):
 		elif self.type == self.DURATION:
 			return event.getDuration()
 		elif self.type == self.REMAINING:
-			now = int(time())
-			start_time = event.getBeginTime()
-			duration = event.getDuration()
-			end_time = start_time + duration
-			if start_time <= now <= end_time:
-				return (duration, end_time - now)
+			if not config.usage.swap_time_remaining_on_osd.value:
+				now = int(time())
+				start_time = event.getBeginTime()
+				duration = event.getDuration()
+				end_time = start_time + duration
+				if start_time <= now <= end_time:
+					return (duration, end_time - now)
+				else:
+					return (duration, None)
 			else:
-				return (duration, None)
+				now = int(time())
+				start_time = event.getBeginTime()
+				duration = event.getDuration()
+				end_time = start_time + duration
+				elapsed = now - start_time
+				if start_time <= now <= end_time:
+					return (duration, elapsed)
+				else:
+					return (duration, None)
+		elif self.type == self.ELAPSED:
+			if not config.usage.swap_time_remaining_on_osd.value:
+				now = int(time())
+				start_time = event.getBeginTime()
+				duration = event.getDuration()
+				end_time = start_time + duration
+				elapsed = now - start_time
+				if start_time <= now <= end_time:
+					return (duration, elapsed)
+				else:
+					return (duration, None)
+			else:
+				now = int(time())
+				start_time = event.getBeginTime()
+				duration = event.getDuration()
+				end_time = start_time + duration
+				if start_time <= now <= end_time:
+					return (duration, end_time - now)
+				else:
+					return (duration, None)
 
 	@cached
 	def getValue(self):
