@@ -950,15 +950,15 @@ class ChannelSelectionBase(Screen):
 					end_ref = self.servicePath[Len-1]
 				else:
 					end_ref = None
-				nameStr = self.getServiceName(base_ref)
-				titleStr += ' ' + nameStr
+# 				nameStr = self.getServiceName(base_ref)
+# 				titleStr += ' ' + nameStr
 				if end_ref is not None:
-					if Len > 2:
-						titleStr += '/../'
-					else:
-						titleStr += '/'
+# 					if Len > 2:
+# 						titleStr += '/../'
+# 					else:
+# 						titleStr += '/'
 					nameStr = self.getServiceName(end_ref)
-					titleStr += nameStr
+					titleStr += ' ' + nameStr
 				self.setTitle(titleStr)
 
 	def moveUp(self):
