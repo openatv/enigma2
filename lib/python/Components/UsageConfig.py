@@ -6,7 +6,6 @@ from enigma import Misc_Options, eEnv;
 from Components.NimManager import nimmanager
 from SystemInfo import SystemInfo
 import os
-from glob import glob
 import enigma
 from time import time
 
