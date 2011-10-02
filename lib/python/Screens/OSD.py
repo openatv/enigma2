@@ -4,10 +4,11 @@ from Components.ConfigList import ConfigListScreen
 from Components.SystemInfo import SystemInfo
 from Components.Sources.StaticText import StaticText
 from os import path
+from enigma import getDesktop
 
 class OSDSetup(Screen, ConfigListScreen):
 	skin = """
-	<screen position="0,0" size="e,e" backgroundColor="blue">
+	<screen name="OSDSetup" position="0,0" size="e,e" backgroundColor="blue">
 		<widget name="config" position="c-175,c-75" size="350,150" foregroundColor="black" backgroundColor="blue" />
 		<ePixmap pixmap="skin_default/buttons/green.png" position="c-145,e-100" zPosition="0" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/red.png" position="c+5,e-100" zPosition="0" size="140,40" alphatest="on" />
@@ -20,7 +21,7 @@ class OSDSetup(Screen, ConfigListScreen):
 	def __init__(self, session):
 		self.skin = OSDSetup.skin
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("OSD Setup"))
+		self.setup_title = _("OSD Setup")
 
 		from Components.ActionMap import ActionMap
 		from Components.Button import Button
@@ -44,12 +45,14 @@ class OSDSetup(Screen, ConfigListScreen):
 		if SystemInfo["CanChangeOsdAlpha"] == True:
 			self.list.append(getConfigListEntry(_("OSD visibility"), config.osd.alpha))
 		if SystemInfo["CanChangeOsdPosition"] == True:
-			self.list.append(getConfigListEntry(_("left"), config.osd.dst_left))
-			self.list.append(getConfigListEntry(_("width"), config.osd.dst_width))
-			self.list.append(getConfigListEntry(_("top"), config.osd.dst_top))
-			self.list.append(getConfigListEntry(_("height"), config.osd.dst_height))
+			self.list.append(getConfigListEntry(_("Move Left/Right"), config.osd.dst_left))
+			self.list.append(getConfigListEntry(_("Width"), config.osd.dst_width))
+			self.list.append(getConfigListEntry(_("Move Up/Down"), config.osd.dst_top))
+			self.list.append(getConfigListEntry(_("Height"), config.osd.dst_height))
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
+
+		self.onLayoutFinish.append(self.layoutFinished)
 		if not self.selectionChanged in self["config"].onSelectionChanged:
 			self["config"].onSelectionChanged.append(self.selectionChanged)
 		self.selectionChanged()
@@ -57,11 +60,18 @@ class OSDSetup(Screen, ConfigListScreen):
 	def selectionChanged(self):
 		self["satus"].setText(_("Current value: ") + self.getCurrentValue())
 
+	def layoutFinished(self):
+		self.setTitle(_(self.setup_title))
+
+	def createSummary(self):
+		from Screens.Setup import SetupSummary
+		return SetupSummary
+
 	# for summary:
 	def changedEntry(self):
 		for x in self.onChangedEntry:
 			x()
-		self.selectionChanged()
+ 		self.selectionChanged()
 
 	def getCurrentEntry(self):
 		return self["config"].getCurrent()[0]
@@ -78,6 +88,19 @@ class OSDSetup(Screen, ConfigListScreen):
 		self.setPreviewPosition()
 
 	def setPreviewPosition(self):
+		size_w = getDesktop(0).size().width()
+		size_h = getDesktop(0).size().height()
+		dsk_w = int(float(size_w)) / float(720)
+		dsk_h = int(float(size_h)) / float(576)
+		while config.osd.dst_width.value + (int(config.osd.dst_left.value) / float(dsk_w)) >= 720.5:
+			config.osd.dst_width.value = int(config.osd.dst_width.value) - 1
+			config.osd.dst_width.save()
+			configfile.save()
+		while config.osd.dst_height.value + (int(config.osd.dst_top.value) / float(dsk_h)) >= 576.5:
+			config.osd.dst_height.value = int(config.osd.dst_height.value) - 1
+			config.osd.dst_height.save()
+			configfile.save()
+	
 		setPosition(int(config.osd.dst_left.value), int(config.osd.dst_width.value), int(config.osd.dst_top.value), int(config.osd.dst_height.value))
 
 	def saveAll(self):
@@ -108,19 +131,15 @@ class OSDSetup(Screen, ConfigListScreen):
 			self.close()
 
 def setPosition(dst_left, dst_width, dst_top, dst_height):
-	if dst_left + dst_width > 720:
-		dst_width = 720 - dst_left
-	if dst_top + dst_height > 576:
-		dst_height = 576 - dst_top
 	try:
 		file = open("/proc/stb/fb/dst_left", "w")
 		file.write('%X' % dst_left)
 		file.close()
-		file = open("/proc/stb/fb/dst_width", "w")
-		file.write('%X' % dst_width)
-		file.close()
 		file = open("/proc/stb/fb/dst_top", "w")
 		file.write('%X' % dst_top)
+		file.close()
+		file = open("/proc/stb/fb/dst_width", "w")
+		file.write('%X' % dst_width)
 		file.close()
 		file = open("/proc/stb/fb/dst_height", "w")
 		file.write('%X' % dst_height)
