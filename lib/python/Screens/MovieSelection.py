@@ -440,6 +440,9 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.movemode = False
 		self.bouquet_mark_edit = False
 
+		self.listTimer = eTimer()
+		self.listTimer.timeout.get().append(self.updateHDDData)
+
 		self.activityTimer = eTimer()
 		self.activityTimer.timeout.get().append(self.hidewaitingtext)
 
@@ -529,7 +532,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				"seekdef:7": (ssback, tBack),
 				"seekdef:9": (ssfwd, tFwd),
 			}, prio=5)
-		self.onShown.append(self.updateHDDData)
+		self.onShown.append(self.timerHDDData)
 		self.onLayoutFinish.append(self.saveListsize)
 		self.list.connectSelChanged(self.updateButtons)
 		self.inited = False
@@ -659,10 +662,14 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			self.updateDescription()
 
 	def updateHDDData(self):
+		self.listTimer.stop()
 		if not self.inited:
 			self.reloadList(self.selectedmovie, home=True)
-			self.activityTimer.start(500)
+			self.activityTimer.start(100)
 			self.inited=True
+
+	def timerHDDData(self):
+		self.listTimer.start(10)
 
 	def hidewaitingtext(self):
 		self.activityTimer.stop()
