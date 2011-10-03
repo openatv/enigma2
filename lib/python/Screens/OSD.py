@@ -26,8 +26,8 @@ class OSDSetup(Screen, ConfigListScreen):
 		from Components.ActionMap import ActionMap
 		from Components.Button import Button
 
-		self["ok"] = Button(_("OK"))
-		self["cancel"] = Button(_("Cancel"))
+		self["ok"] = Button(_("Cancel"))
+		self["cancel"] = Button(_("OK"))
 		self["satus"] = StaticText()
 
 		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
