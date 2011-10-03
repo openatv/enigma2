@@ -13,6 +13,7 @@ class PluginComponent:
 	def __init__(self):
 		self.plugins = {}
 		self.pluginList = [ ]
+		self.installedPluginList = [ ]
 		self.setPluginPrefix("Plugins.")
 		self.resetWarnings()
 
@@ -72,6 +73,7 @@ class PluginComponent:
 							plugins = [ plugins ]
 
 						for p in plugins:
+							p.path = path
 							p.updateIcon(path)
 							new_plugins.append(p)
 
@@ -91,17 +93,25 @@ class PluginComponent:
 		#ignore already installed but reloaded plugins
 		for p in plugins_removed: 
 			for pa in plugins_added:
-				if pa.name == p.name and pa.where == p.where:
+				if pa.path == p.path and pa.where == p.where:
 					pa.needsRestart = False
 
 		for p in plugins_removed:
 			self.removePlugin(p)
 
 		for p in plugins_added:
-			self.addPlugin(p)
-		
+			if self.firstRun or p.needsRestart is False:
+				self.addPlugin(p)
+			else:
+				for installed_plugin in self.installedPluginList:
+					if installed_plugin.path == p.path:
+						if installed_plugin.where == p.where:
+							p.needsRestart = False
+				self.addPlugin(p)
+						
 		if self.firstRun:
 			self.firstRun = False
+			self.installedPluginList = self.pluginList
 
 	def getPlugins(self, where):
 		"""Get list of plugins in a specific category"""
@@ -126,8 +136,6 @@ class PluginComponent:
 	def clearPluginList(self):
 		self.pluginList = []
 		self.plugins = {}
-		self.firstRun = True
-		self.restartRequired = False
 
 	def shutdown(self):
 		for p in self.pluginList[:]:

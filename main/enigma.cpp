@@ -179,14 +179,6 @@ int main(int argc, char **argv)
 	dsk.setDC(my_dc);
 	dsk_lcd.setDC(my_lcd_dc);
 
-	ePtr<gPixmap> m_pm;
-	loadPNG(m_pm, eEnv::resolve("${datadir}/enigma2/skin_default/pal.png").c_str());
-	if (!m_pm)
-	{
-		eFatal("pal.png not found!");
-	} else
-		dsk.setPalette(*m_pm);
-
 	dsk.setBackgroundColor(gRGB(0,0,0,0xFF));
 #endif
 
@@ -251,8 +243,9 @@ int main(int argc, char **argv)
 
 	{
 		gPainter p(my_lcd_dc);
-		p.resetClip(eRect(0, 0, 132, 64));
+		p.resetClip(eRect(ePoint(0, 0), my_lcd_dc->size()));
 		p.clear();
+		p.flush();
 	}
 
 	return exit_code;

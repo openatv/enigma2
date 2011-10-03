@@ -16,9 +16,8 @@ from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_SKIN_IMAGE
 from Tools.LoadPixmap import LoadPixmap
 from Tools.HardwareInfo import HardwareInfo
 from Wlan import iWlan, wpaSupplicant, iStatus, getWlanConfigName
-import hashlib
 from time import time
-from os import urandom, system
+from os import system
 from re import escape as re_escape
 
 plugin_path = eEnv.resolve("${libdir}/enigma2/python/Plugins/SystemPlugins/WirelessLan")
@@ -383,47 +382,6 @@ class WlanScan(Screen):
 		return self.WlanList
 
 
-def bin2long(s):
-	return reduce( lambda x,y:(x<<8L)+y, map(ord, s))
-
-def long2bin(l):
-	res = ""
-	for byte in range(128):
-		res += chr((l >> (1024 - (byte + 1) * 8)) & 0xff)
-	return res
-
-def rsa_pub1024(src, mod):
-	return long2bin(pow(bin2long(src), 65537, bin2long(mod)))
-	
-def decrypt_block(src, mod):
-	if len(src) != 128 and len(src) != 202:
-		return None
-	dest = rsa_pub1024(src[:128], mod)
-	hash = hashlib.sha1(dest[1:107])
-	if len(src) == 202:
-		hash.update(src[131:192])	
-	result = hash.digest()
-	if result == dest[107:127]:
-		return dest
-	return None
-
-def validate_certificate(cert, key):
-	buf = decrypt_block(cert[8:], key) 
-	if buf is None:
-		return None
-	return buf[36:107] + cert[139:196]
-
-def get_random():
-	try:
-		xor = lambda a,b: ''.join(chr(ord(c)^ord(d)) for c,d in zip(a,b*100))
-		random = urandom(8)
-		x = str(time())[-8:]
-		result = xor(random, x)
-				
-		return result
-	except:
-		return None
-
 def WlanStatusScreenMain(session, iface):
 	session.open(WlanStatus, iface)
 
@@ -438,7 +396,6 @@ def callFunction(iface):
 
 def configStrings(iface):
 	driver = iNetwork.detectWlanModule(iface)
-	print 'Using "%s" as wpa-supplicant driver' % (driver)
 	ret = ""
 	if driver == 'madwifi' and config.plugins.wlan.hiddenessid.value:
 		ret += "\tpre-up iwconfig " + iface + " essid \"" + re_escape(config.plugins.wlan.essid.value) + "\" || true\n"

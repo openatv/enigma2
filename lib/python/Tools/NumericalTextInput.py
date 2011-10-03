@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# -*- coding: UTF-8 -*-
 from enigma import eTimer
 from Components.Language import language
 
@@ -63,6 +63,17 @@ class NumericalTextInput:
 			self.mapping.append (u"pqrs7PQRS") # 7
 			self.mapping.append (u"tuv8TUV") # 8
 			self.mapping.append (u"wxyz9WXYZ") # 9
+		elif self.lang in ('cs_CZ', 'sk_SK'):
+			self.mapping.append (u"0,?'+\"()@$!=&*") # 0
+			self.mapping.append (u" 1.:/-_") # 1
+			self.mapping.append (u"abc2áäčABCÁÄČ") # 2
+			self.mapping.append (u"def3ďéěDEFĎÉĚ") # 3
+			self.mapping.append (u"ghi4íGHIÍ") # 4
+			self.mapping.append (u"jkl5ľĺJKLĽĹ") # 5
+			self.mapping.append (u"mno6ňóöôMNOŇÓÖÔ") # 6
+			self.mapping.append (u"pqrs7řŕšPQRSŘŔŠ") # 7
+			self.mapping.append (u"tuv8ťúůüTUVŤÚŮÜ") # 8
+			self.mapping.append (u"wxyz9ýžWXYZÝŽ") # 9
 		else:
 			self.mapping.append (u"0,?!&@=*'+\"()$~") # 0
 			self.mapping.append (u" 1.:/-_") # 1
@@ -76,7 +87,8 @@ class NumericalTextInput:
 			self.mapping.append (u"wxyz9WXYZ") # 9
 
 	def setUseableChars(self, useable):
-		self.useableChars = useable
+		self.useableChars = unicode(useable)
+		
 
 	def getKey(self, num):
 		cnt=0

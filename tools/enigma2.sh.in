@@ -2,13 +2,26 @@
 
 prefix=@prefix@
 exec_prefix=@exec_prefix@
+datarootdir=@datarootdir@
 
-if [ -x @bindir@/showiframe -a -f /usr/share/backdrop.mvi ]; then
-	@bindir@/showiframe /usr/share/backdrop.mvi
+if [ -x @bindir@/showiframe -a -f @datadir@/backdrop.mvi ]; then
+	@bindir@/showiframe @datadir@/backdrop.mvi
+fi
+
+# hook to execute scripts always before enigma2 start
+if [ -x @bindir@/enigma2_pre_start.sh ]; then
+	@bindir@/enigma2_pre_start.sh
 fi
 
 if [ -d /home/root ]; then
 	cd /home/root
+fi
+
+LIBS=@libdir@/libopen.so.0.0.0
+
+#check for dreambox specific passthrough helper lib
+if [ -e @libdir@/libpassthrough.so ]; then
+	LIBS="$LIBS @libdir@/libpassthrough.so"
 fi
 
 if [ $(grep config.crash.enabledebug /etc/enigma2/settings) == "config.crash.enabledebug=true" ]; then

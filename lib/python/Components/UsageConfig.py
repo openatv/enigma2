@@ -30,6 +30,8 @@ def InitUsageConfig():
 	config.usage.showdish = ConfigYesNo(default = True)
 	config.usage.multibouquet = ConfigYesNo(default = True)
 	config.usage.panicbutton = ConfigYesNo(default = True)
+	config.usage.multiepg_ask_bouquet = ConfigYesNo(default = False)
+
 	config.usage.quickzap_bouquet_change = ConfigYesNo(default = False)
 	config.usage.e1like_radio_mode = ConfigYesNo(default = True)
 	config.usage.infobar_onlinechecktimer = ConfigInteger(default=6, limits=(0, 48))

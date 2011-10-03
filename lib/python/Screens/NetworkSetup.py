@@ -1129,7 +1129,7 @@ class NetworkAdapterTest(Screen):
 
 	def doStep1(self):
 		self.steptimer = True
-		self.nextStepTimer.start(3000)
+		self.nextStepTimer.start(300)
 		self["key_yellow"].setText(_("Stop test"))
 
 	def doStep2(self):
@@ -1139,7 +1139,7 @@ class NetworkAdapterTest(Screen):
 		self["AdapterInfo_Text"].setForegroundColorNum(1)
 		self["AdapterInfo_OK"].show()
 		self.steptimer = True
-		self.nextStepTimer.start(3000)
+		self.nextStepTimer.start(300)
 
 	def doStep3(self):
 		self["Networktext"].setForegroundColorNum(1)
@@ -1147,7 +1147,7 @@ class NetworkAdapterTest(Screen):
 		self.getLinkState(self.iface)
 		self["NetworkInfo_Text"].setForegroundColorNum(1)
 		self.steptimer = True
-		self.nextStepTimer.start(3000)
+		self.nextStepTimer.start(1000)
 
 	def doStep4(self):
 		self["Dhcptext"].setForegroundColorNum(1)
@@ -1162,7 +1162,7 @@ class NetworkAdapterTest(Screen):
 		self["DhcpInfo_Check"].show()
 		self["DhcpInfo_Text"].setForegroundColorNum(1)
 		self.steptimer = True
-		self.nextStepTimer.start(3000)
+		self.nextStepTimer.start(1000)
 
 	def doStep5(self):
 		self["IPtext"].setForegroundColorNum(1)
@@ -1348,7 +1348,7 @@ class NetworkAdapterTest(Screen):
 		self["IPInfo_Check"].show()
 		self["IPInfo_Text"].setForegroundColorNum(1)		
 		self.steptimer = True
-		self.nextStepTimer.start(3000)		
+		self.nextStepTimer.start(300)		
 		
 	def DNSLookupdataAvail(self,data):
 		if data <= 2:

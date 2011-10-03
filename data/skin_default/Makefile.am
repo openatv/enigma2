@@ -38,7 +38,6 @@ dist_install_DATA = \
 	nim_active.png \
 	no_coverArt.png \
 	noprev.png \
-	pal.png \
 	picon_default.png \
 	position_arrow.png \
 	position_pointer.png \

@@ -219,6 +219,7 @@ class Session:
 			self.summary.show()
 			c.addSummary(self.summary)
 
+		c.saveKeyboardMode()
 		c.execBegin()
 
 		# when execBegin opened a new dialog, don't bother showing the old one.
@@ -230,6 +231,7 @@ class Session:
 		self.in_exec = False
 
 		self.current_dialog.execEnd()
+		self.current_dialog.restoreKeyboardMode()
 		self.current_dialog.hide()
 
 		if last:
