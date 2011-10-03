@@ -126,14 +126,22 @@ eDVBService &eDVBService::operator=(const eDVBService &s)
 
 void eDVBService::genSortName()
 {
-	m_service_name_sort = removeDVBChars(m_service_name);
-	makeUpper(m_service_name_sort);
-	while ((!m_service_name_sort.empty()) && m_service_name_sort[0] == ' ')
-		m_service_name_sort.erase(0, 1);
+	size_t start = m_service_name.find_first_not_of(' ');
+	if (start != std::string::npos)
+	{
+		/* strip leading spaces */
+		m_service_name_sort = m_service_name.substr(start);
+		/* remove UTF-8 */
+		m_service_name_sort = removeDVBChars(m_service_name_sort);
+		/* convert to uppercase */
+		makeUpper(m_service_name_sort);
+	}
 
-		/* put unnamed services at the end, not at the beginning. */
 	if (m_service_name_sort.empty())
+	{
+		/* put unnamed services at the end, not at the beginning. */
 		m_service_name_sort = "\xFF";
+	}
 }
 
 RESULT eDVBService::getName(const eServiceReference &ref, std::string &name)
@@ -325,19 +333,11 @@ void eDVBDB::loadServicelist(const char *file)
 {
 	eDebug("---- opening lame channel db");
 	FILE *f=fopen(file, "rt");
-	if (!f && strcmp(file, eEnv::resolve("${sysconfdir}/enigma2/lamedb").c_str()) == 0)
-	{
-		struct stat s;
-		if ( !stat("lamedb", &s) )
-		{
-			if ( !stat(eEnv::resolve("${sysconfdir}/enigma2").c_str(), &s) )
-			{
-				rename("lamedb", eEnv::resolve("${sysconfdir}/enigma2/lamedb").c_str());
-				reloadServicelist();
-			}
-		}
+	if (!f) {
+		eDebug("can't open %s: %m", file);
 		return;
 	}
+
 	char line[256];
 	int version=3;
 	if ((!fgets(line, 256, f)) || sscanf(line, "eDVB services /%d/", &version) != 1)
@@ -470,20 +470,25 @@ void eDVBDB::loadServicelist(const char *file)
 						eServiceID(service_id),
 						service_type);
 		count++;
-		fgets(line, 256, f);
-		if (strlen(line))
-			line[strlen(line)-1]=0;
-
-		s->m_service_name = line;
+		if (fgets(line, 256, f))
+		{
+			/* strip newline */
+			int len = strlen(line);
+			line[--len] = 0;
+			s->m_service_name = line;
+		}
 		s->genSortName();
 
-		fgets(line, 256, f);
-		if (strlen(line))
-			line[strlen(line)-1]=0;
-		if (line[1]!=':')	// old ... (only service_provider)
-			s->m_provider_name=line;
-		else
-			parseServiceData(s, line);
+		if (fgets(line, 256, f))
+		{
+			/* strip newline */
+			int len = strlen(line);
+			line[--len] = 0;
+			if (line[1]!=':')	// old ... (only service_provider)
+				s->m_provider_name=line;
+			else
+				parseServiceData(s, line);
+		}
 		addService(ref, s);
 	}
 
@@ -646,13 +651,14 @@ void eDVBDB::loadBouquet(const char *path)
 	eServiceReference *e = NULL;
 	while (1)
 	{
-		if (!fgets(line, 256, fp))
-			break;
-		line[strlen(line)-1]=0;
-		if (strlen(line) && line[strlen(line)-1]=='\r')
-			line[strlen(line)-1]=0;
-		if (!line[0])
-			break;
+		int len;
+		if (!fgets(line, 256, fp)) break;
+		len = strlen(line);
+		if (len < 2) break;
+		/* strip newline */
+		line[--len] = 0;
+		/* strip carriage return (when found) */
+		if (line[len - 1] == '\r') line[--len] = 0;
 		if (line[0]=='#')
 		{
 			if (!strncmp(line, "#SERVICE", 8))

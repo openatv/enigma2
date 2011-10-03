@@ -4,6 +4,7 @@
 #include <errno.h>
 #include <fcntl.h>
 #include <sys/ioctl.h>
+#include <sys/mman.h>
 
 //#define SHOW_WRITE_TIME
 
@@ -45,9 +46,11 @@ eFilePushThread::eFilePushThread(int io_prio_class, int io_prio_level, int block
 	 m_stream_mode(0),
 	 m_blocksize(blocksize),
 	 m_buffersize(buffersize),
-	 m_buffer((unsigned char*)malloc(buffersize)),
+	 m_buffer((unsigned char*) mmap(NULL, buffersize, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, /*ignored*/-1, 0)),
 	 m_messagepump(eApp, 0)
 {
+	if (m_buffer == MAP_FAILED)
+		eFatal("Failed to allocate filepush buffer, contact MiLo\n");
 	flush();
 	enablePVRCommit(0);
 	CONNECT(m_messagepump.recv_msg, eFilePushThread::recvEvent);
@@ -55,7 +58,7 @@ eFilePushThread::eFilePushThread(int io_prio_class, int io_prio_level, int block
 
 eFilePushThread::~eFilePushThread()
 {
-	free(m_buffer);
+	munmap(m_buffer, m_buffersize);
 }
 
 static void signal_handler(int x)

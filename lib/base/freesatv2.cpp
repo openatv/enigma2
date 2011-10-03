@@ -19,14 +19,7 @@ GNU General Public License for more details.
 
 freesatHuffmanDecoder::freesatHuffmanDecoder() : m_tablesLoaded(false)
 {
-	int	i;
-
-	eDebug("[FREESAT] Init tables");
-	for ( i = 0 ; i < 256; i++ ) 
-	{
-		m_tables[0][i] = NULL;
-		m_tables[1][i] = NULL;
-	}
+	memset(m_tables, 0, sizeof(m_tables));
 }
 
 freesatHuffmanDecoder::~freesatHuffmanDecoder()

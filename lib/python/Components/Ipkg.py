@@ -19,7 +19,7 @@ class IpkgComponent:
 	CMD_UPDATE = 3
 	CMD_UPGRADE = 4
 	CMD_UPGRADE_LIST = 5
-       
+	
 	def __init__(self, ipkg = 'opkg'):
 		self.ipkg = ipkg
 		self.cmd = eConsoleAppContainer()
@@ -56,8 +56,8 @@ class IpkgComponent:
 		elif cmd == self.CMD_REMOVE:
 			self.runCmd("remove " + args['package'])
 		elif cmd == self.CMD_UPGRADE_LIST:
-		   self.fetchedList = []
-		   self.runCmd("list-upgradable")
+			self.fetchedList = []
+			self.runCmd("list-upgradable")
 		self.setCurrentCommand(cmd)
 	
 	def cmdFinished(self, retval):
