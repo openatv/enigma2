@@ -167,7 +167,8 @@ def InitUsageConfig():
 	config.usage.movielist_unseen = ConfigYesNo(default = True)
 
 	config.usage.swap_snr_on_osd = ConfigYesNo(default = False)
-	config.usage.swap_time_remaining_on_osd = ConfigYesNo(default = False)
+	config.usage.swap_time_remaining_on_osd = ConfigSelection(default = "0", choices = [("0", _("Remanining")), ("1", _("Elapsed")), ("2", _("Elapsed & Remanining")), ("3", _("Remanining & Elapsed"))])
+	config.usage.swap_time_display_on_osd = ConfigSelection(default = "0", choices = [("0", _("Skin Setting")), ("1", _("Mins")), ("2", _("Hours Mins")), ("3", _("Percentage"))])
 
 	def SpinnerOnOffChanged(configElement):
 		setSpinnerOnOff(int(configElement.value))

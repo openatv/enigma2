@@ -51,45 +51,39 @@ class EventTime(Poll, Converter, object):
 		elif self.type == self.DURATION:
 			return event.getDuration()
 		elif self.type == self.REMAINING:
-			if not config.usage.swap_time_remaining_on_osd.value:
-				now = int(time())
-				start_time = event.getBeginTime()
-				duration = event.getDuration()
-				end_time = start_time + duration
-				if start_time <= now <= end_time:
-					return (duration, end_time - now)
-				else:
-					return (duration, None)
-			else:
-				now = int(time())
-				start_time = event.getBeginTime()
-				duration = event.getDuration()
-				end_time = start_time + duration
-				elapsed = now - start_time
-				if start_time <= now <= end_time:
+			now = int(time())
+			start_time = event.getBeginTime()
+			duration = event.getDuration()
+			end_time = start_time + duration
+			elapsed = now - start_time
+			if start_time <= now <= end_time:
+				if config.usage.swap_time_remaining_on_osd.value == "1":
 					return (duration, elapsed)
+				elif config.usage.swap_time_remaining_on_osd.value == "2":
+					return (duration, elapsed, end_time - now)
+				elif config.usage.swap_time_remaining_on_osd.value == "3":
+					return (duration, end_time - now, elapsed)
 				else:
-					return (duration, None)
+					return (duration, end_time - now)
+			else:
+				return (duration, None)
 		elif self.type == self.ELAPSED:
-			if not config.usage.swap_time_remaining_on_osd.value:
-				now = int(time())
-				start_time = event.getBeginTime()
-				duration = event.getDuration()
-				end_time = start_time + duration
-				elapsed = now - start_time
-				if start_time <= now <= end_time:
-					return (duration, elapsed)
-				else:
-					return (duration, None)
-			else:
-				now = int(time())
-				start_time = event.getBeginTime()
-				duration = event.getDuration()
-				end_time = start_time + duration
-				if start_time <= now <= end_time:
+			now = int(time())
+			start_time = event.getBeginTime()
+			duration = event.getDuration()
+			end_time = start_time + duration
+			elapsed = now - start_time
+			if start_time <= now <= end_time:
+				if config.usage.swap_time_remaining_on_osd.value == "1":
 					return (duration, end_time - now)
+				elif config.usage.swap_time_remaining_on_osd.value == "2":
+					return (duration, elapsed, end_time - now)
+				elif config.usage.swap_time_remaining_on_osd.value == "3":
+					return (duration, end_time - now, elapsed)
 				else:
-					return (duration, None)
+					return (duration, elapsed)
+			else:
+				return (duration, None)
 
 	@cached
 	def getValue(self):
