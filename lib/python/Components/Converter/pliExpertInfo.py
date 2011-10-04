@@ -92,7 +92,7 @@ class pliExpertInfo(Poll, Converter, object):
 					fec_inner = frontendData.get("fec_inner")
 					if (frontendDataOrg.get("tuner_type") == "DVB-S"):
 						Ret_Text += sep + frontendData.get("system")
-						orbital_pos = int(frontendData["orbital_position"])
+						orbital_pos = int(frontendDataOrg["orbital_position"])
 						if orbital_pos > 1800:
 							if orbital_pos == 3590:
 								orb_pos = 'Thor/Intelsat'
