@@ -24,7 +24,7 @@ if [ -e @libdir@/libpassthrough.so ]; then
 	LIBS="$LIBS @libdir@/libpassthrough.so"
 fi
 
-if [ $(grep config.crash.enabledebug /etc/enigma2/settings) == "config.crash.enabledebug=true" ]; then
+if [ "$(grep config.crash.enabledebug /etc/enigma2/settings)" == "config.crash.enabledebug=true" ]; then
 	if [ -d $(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g') ]; then
 	 	LD_PRELOAD=@libdir@/libopen.so.0.0.0 @bindir@/enigma2 &> $(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')Enigma2-$(date +%d-%m-%Y_%H-%M-%S).log
 	else
