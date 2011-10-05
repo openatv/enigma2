@@ -741,6 +741,7 @@ int eTextPara::renderString(const char *string, int rflags, int border)
 								ng.w = 0;
 								glyphs.push_back(ng);
 								i += 1 + codeidx;
+								nextflags = flags;
 								continue;
 							}
 							break;
@@ -752,21 +753,21 @@ int eTextPara::renderString(const char *string, int rflags, int border)
 				break;
 			}
 			case '\t':
-tab:		isprintable=0;
+tab:				isprintable=0;
 				cursor+=ePoint(current_font->tabwidth, 0);
 				cursor-=ePoint(cursor.x()%current_font->tabwidth, 0);
 				break;
 			case 0x8A:
 			case 0xE08A:
 			case '\n':
-newline:isprintable=0;
+newline:			isprintable=0;
 				newLine(rflags);
 				nextflags|=GS_ISFIRST;
 				break;
 			case '\r':
 			case 0x86: case 0xE086:
 			case 0x87: case 0xE087:
-nprint:	isprintable=0;
+nprint:				isprintable=0;
 				break;
 			case 0xAD: // soft-hyphen
 				flags |= GS_SOFTHYPHEN;
