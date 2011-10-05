@@ -518,7 +518,7 @@ def InitUsageConfig():
 	config.plisettings.overscanamount = ConfigNumber(default = 32)
 	config.plisettings.Subservice = ConfigYesNo(default = False)
 	config.plisettings.ColouredButtons = ConfigYesNo(default = True)
-	config.plisettings.ViXEPG_mode = ConfigSelection(default="pliepg", choices = [
+	config.plisettings.PLIEPG_mode = ConfigSelection(default="cooltvguide", choices = [
 					("pliepg", _("Show Graphical EPG")),
 					("single", _("Show Single EPG")),
 					("multi", _("Show Multi EPG")),

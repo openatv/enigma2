@@ -907,13 +907,13 @@ class InfoBarEPG:
 			self.EPGPressed()
 
 	def EPGPressed(self):
-		if config.plisettings.ViXEPG_mode.value == "pliepg":
+		if config.plisettings.PLIEPG_mode.value == "pliepg":
 			self.openGraphEPG()
-		elif config.plisettings.ViXEPG_mode.value == "multi":
+		elif config.plisettings.PLIEPG_mode.value == "multi":
 			self.openMultiServiceEPG()
-		elif config.plisettings.ViXEPG_mode.value == "single":
+		elif config.plisettings.PLIEPG_mode.value == "single":
 			self.openSingleServiceEPG()
-		elif config.plisettings.ViXEPG_mode.value == "cooltvguide":
+		elif config.plisettings.PLIEPG_mode.value == "cooltvguide":
 			self.showCoolTVGuide()
 
 	def showEventInfoWhenNotVisible(self):
@@ -3024,7 +3024,7 @@ class InfoBarExtensions:
 
 	def RedPressed(self):
 		if isinstance(self, InfoBarEPG):
-			if config.plisettings.ViXEPG_mode.value == "pliepg":
+			if config.plisettings.PLIEPG_mode.value == "pliepg":
 				self.openSingleServiceEPG()
 			else:
 				self.openGraphEPG()

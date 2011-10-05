@@ -58,7 +58,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 				"openIMDB": (self.openIMDB, _("Show the tv player...")),
 			}, prio=2)
 		
-		if config.plisettings.ViXEPG_mode.value == "pliepg":
+		if config.plisettings.PLIEPG_mode.value == "pliepg":
 			self["key_red"] = Label("Single EPG")
 		else:
 			self["key_red"] = Label("PLI EPG")
