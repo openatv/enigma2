@@ -20,7 +20,6 @@ typedef FTC_SBitCache FTC_SBit_Cache;
 #include <lib/gdi/erect.h>
 #include <string>
 #include <lib/base/object.h> 
-#include <list>
 
 #include <set>
 
