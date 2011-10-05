@@ -137,6 +137,10 @@ class eTextPara: public iObject
 	eSize maximum;
 	int left;
 	glyphString glyphs;
+	std::list<int> lineOffsets;
+	std::list<int> lineChars;
+	int charCount;
+	bool doTopBottomReordering;	
 	int totalheight;
 
 	int appendGlyph(Font *current_font, FT_Face current_face, FT_UInt glyphIndex, int flags, int rflags, int border);
@@ -148,7 +152,8 @@ class eTextPara: public iObject
 public:
 	eTextPara(eRect area, ePoint start=ePoint(-1, -1))
 		: current_font(0), replacement_font(0), current_face(0), replacement_face(0),
-		area(area), cursor(start), maximum(0, 0), left(start.x()), totalheight(0), bboxValid(0)
+		area(area), cursor(start), maximum(0, 0), left(start.x()), totalheight(0), charCount(0),
+		doTopBottomReordering(false), bboxValid(0)
 	{
 	}
 	virtual ~eTextPara();
