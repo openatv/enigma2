@@ -42,12 +42,16 @@ class About(Screen):
 			AboutText = _("Hardware:") + " Vu+ Duo\n"
 		elif config.misc.boxtype.value == 'et5x00':
 			self["lab3"] = StaticText(_("Support at") + " www.xtrend-support.co.uk")
-			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET5000")
-			AboutText = _("Hardware:") + " Xtrend ET5000\n"
+			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET5x00 Series")
+			AboutText = _("Hardware:") + "  Xtrend ET5x00 Series\n"
+		elif config.misc.boxtype.value == 'et6x00':
+			self["lab3"] = StaticText(_("Support at") + " www.xtrend-support.co.uk")
+			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET6x00 Series")
+			AboutText = _("Hardware:") + "  Xtrend ET6x00 Series\n"
 		elif config.misc.boxtype.value == 'et9x00':
 			self["lab3"] = StaticText(_("Support at") + " www.xtrend-support.co.uk")
-			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET9000")
-			AboutText = _("Hardware:") + " Xtrend ET9000\n"
+			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET9x00 Series")
+			AboutText = _("Hardware:") + " Xtrend ET6x00 Series\n"
 		else:
 			self["lab3"] = StaticText(_("Support at") + " www.world-of-satellite.co.uk")
 			self["BoxType"] = StaticText(_("Hardware:") + " " + config.misc.boxtype.value)
