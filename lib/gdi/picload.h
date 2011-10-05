@@ -12,6 +12,9 @@ struct Cfilepara
 {
 	char *file;
 	unsigned char *pic_buffer;
+	gRGB *palette;
+	int palette_size;
+	int bits;
 	int id;
 	int max_x;
 	int max_y;
@@ -23,6 +26,9 @@ struct Cfilepara
 	Cfilepara(const char *mfile, int mid, std::string size):
 		file(strdup(mfile)),
 		pic_buffer(NULL),
+		palette(NULL),
+		palette_size(0),
+		bits(24),
 		id(mid),
 		picinfo(mfile),
 		callback(true)
@@ -33,6 +39,7 @@ struct Cfilepara
 	~Cfilepara()
 	{
 		if (pic_buffer != NULL)	delete pic_buffer;
+		if (palette != NULL) delete palette;
 		free(file);
 	}
 	

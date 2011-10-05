@@ -2,6 +2,14 @@ from Plugins.Plugin import PluginDescriptor
 
 #------------------------------------------------------------------------------------------
 
+def Pic_Thumb(*args, **kwa):
+	import ui
+	return ui.Pic_Thumb(*args, **kwa)
+
+def picshow(*args, **kwa):
+	import ui
+	return ui.picshow(*args, **kwa)
+
 def main(session, **kwargs):
 	from ui import picshow
 	session.open(picshow)
@@ -14,11 +22,12 @@ def filescan_open(list, session, **kwargs):
 
 def filescan(**kwargs):
 	from Components.Scanner import Scanner, ScanPath
+	import os
 
 	# Overwrite checkFile to only detect local
 	class LocalScanner(Scanner):
 		def checkFile(self, file):
-			return fileExists(file.path)
+			return os.path.exists(file.path)
 
 	return \
 		LocalScanner(mimetypes = ["image/jpeg", "image/png", "image/gif", "image/bmp"],

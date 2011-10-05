@@ -1,7 +1,7 @@
 from enigma import ePicLoad, eTimer, getDesktop
 
 from Screens.Screen import Screen
-from Tools.Directories import resolveFilename, pathExists, fileExists, SCOPE_MEDIA
+from Tools.Directories import resolveFilename, pathExists, SCOPE_MEDIA
 
 from Components.Pixmap import Pixmap, MovingPixmap
 from Components.ActionMap import ActionMap, NumberActionMap

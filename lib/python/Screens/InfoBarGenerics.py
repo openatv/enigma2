@@ -1,4 +1,4 @@
-from ChannelSelection import ChannelSelection, BouquetSelector, VIXBouquetSelector
+from ChannelSelection import ChannelSelection, BouquetSelector, SilentBouquetSelector, VIXBouquetSelector
 from Components.ActionMap import ActionMap, HelpableActionMap
 from Components.ActionMap import NumberActionMap
 from Components.Harddisk import harddiskmanager
@@ -901,7 +901,7 @@ class InfoBarEPG:
 			})
 
 	def InfoPressed(self):
-		if self.box_type == 'et9000' or self.box_type == 'et5000':
+		if self.box_type == 'et9x00' or self.box_type == 'et5x00':
 			self.openEventView()
 		else:
 			self.EPGPressed()
@@ -999,6 +999,12 @@ class InfoBarEPG:
 			cnt = 0
 		else:
 			cnt = len(bouquets)
+		if config.usage.multiepg_ask_bouquet.value:
+			self.openMultiServiceEPGAskBouquet(bouquets, cnt, withCallback)
+		else:
+			self.openMultiServiceEPGSilent(bouquets, cnt, withCallback)
+
+	def openMultiServiceEPGAskBouquet(self, bouquets, cnt, withCallback):
 		if cnt > 1: # show bouquet list
 			if withCallback:
 				self.bouquetSel = self.session.openWithCallback(self.closed, BouquetSelector, bouquets, self.openBouquetEPG, enableWrapAround=True)
@@ -1007,6 +1013,21 @@ class InfoBarEPG:
 				self.bouquetSel = self.session.open(BouquetSelector, bouquets, self.openBouquetEPG, enableWrapAround=True)
 		elif cnt == 1:
 			self.openBouquetEPG(bouquets[0][1], withCallback)
+
+	def openMultiServiceEPGSilent(self, bouquets, cnt, withCallback):
+		root = self.servicelist.getRoot()
+		rootstr = root.toCompareString()
+		current = 0
+		for bouquet in bouquets:
+			if bouquet[1].toCompareString() == rootstr:
+				break
+			current += 1
+		if current >= cnt:
+			current = 0
+		if cnt > 1: # create bouquet list for bouq+/-
+			self.bouquetSel = SilentBouquetSelector(bouquets, True, self.servicelist.getBouquetNumOffset(root))
+		if cnt >= 1:
+			self.openBouquetEPG(root, withCallback)
 
 	def changeServiceCB(self, direction, epg):
 		if self.serviceSel:
@@ -2986,6 +3007,7 @@ class InfoBarExtensions:
 			}, 1) # lower priority
 
 		self.addExtension(extension = self.getLogManager, type = InfoBarExtensions.EXTENSION_LIST)
+		self.addExtension(extension = self.getOsd3DSetup, type = InfoBarExtensions.EXTENSION_LIST)
 		self.addExtension(extension = self.getCCcamInfo, type = InfoBarExtensions.EXTENSION_LIST)
 		self.addExtension(extension = self.getOScamInfo, type = InfoBarExtensions.EXTENSION_LIST)
 
@@ -2995,6 +3017,15 @@ class InfoBarExtensions:
 	def getLogManager(self):
 		if config.logmanager.showinextensions.value:
 			return [((boundFunction(self.getLMname), boundFunction(self.openLogManager), lambda: True), None)]
+		else:
+			return []
+
+	def get3DSetupname(self):
+		return _("OSD 3D Setup")
+
+	def getOsd3DSetup(self):
+		if config.osd.show3dextensions .value:
+			return [((boundFunction(self.get3DSetupname), boundFunction(self.openOSD3DSetup), lambda: True), None)]
 		else:
 			return []
 
@@ -3105,6 +3136,10 @@ class InfoBarExtensions:
 		from Screens.LogManager import LogManager
 		self.session.open(LogManager)
 
+	def openOSD3DSetup(self):
+		from Screens.OSD import OSD3DSetupScreen
+		self.session.open(OSD3DSetupScreen)
+
 	def showAutoTimerList(self):
 		if Directories.fileExists("/usr/lib/enigma2/python/Plugins/Extensions/AutoTimer/plugin.pyo"):
 			from Plugins.Extensions.AutoTimer.plugin import main, autostart
@@ -3198,6 +3233,7 @@ class InfoBarExtensions:
 					self.session.open(MessageBox, _("The MediaPlayer plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
 from Tools.BoundFunction import boundFunction
+import inspect
 
 # depends on InfoBarExtensions
 
@@ -3209,9 +3245,13 @@ class InfoBarPlugins:
 		return name
 
 	def getPluginList(self):
-		list = [((boundFunction(self.getPluginName, p.name), boundFunction(self.runPlugin, p), lambda: True), None, p.name) for p in plugins.getPlugins(where = PluginDescriptor.WHERE_EXTENSIONSMENU)]
-		list.sort(key = lambda e: e[2]) # sort by name
-		return list
+		l = []
+		for p in plugins.getPlugins(where = PluginDescriptor.WHERE_EXTENSIONSMENU):
+		  args = inspect.getargspec(p.__call__)[0]
+		  if len(args) == 1 or len(args) == 2 and isinstance(self, InfoBarChannelSelection):
+			  l.append(((boundFunction(self.getPluginName, p.name), boundFunction(self.runPlugin, p), lambda: True), None, p.name))
+		l.sort(key = lambda e: e[2]) # sort by name
+		return l
 
 	def runPlugin(self, plugin):
 		if isinstance(self, InfoBarChannelSelection):
@@ -3395,28 +3435,30 @@ class InfoBarInstantRecord:
 
 		recording = RecordTimerEntry(serviceref, begin, end, name, description, eventid, dirname = preferredInstantRecordPath())
 		recording.dontSave = True
-		
+
 		if event is None or limitEvent == False:
 			recording.autoincrease = True
-			if recording.setAutoincreaseEnd():
-				self.session.nav.RecordTimer.record(recording)
-				self.recording.append(recording)
+			recording.setAutoincreaseEnd()
+
+		simulTimerList = self.session.nav.RecordTimer.record(recording)
+
+		if simulTimerList is None:	# no conflict
+			self.recording.append(recording)
 		else:
-				simulTimerList = self.session.nav.RecordTimer.record(recording)
-				if simulTimerList is not None:	# conflict with other recording
-					name = simulTimerList[1].name
-					name_date = ' '.join((name, strftime('%c', localtime(simulTimerList[1].begin))))
-					print "[TIMER] conflicts with", name_date
-					recording.autoincrease = True	# start with max available length, then increment
-					if recording.setAutoincreaseEnd():
-						self.session.nav.RecordTimer.record(recording)
-						self.recording.append(recording)
-						self.session.open(MessageBox, _("Record time limited due to conflicting timer %s") % name_date, MessageBox.TYPE_INFO)
-					else:
-						self.session.open(MessageBox, _("Couldn't record due to conflicting timer %s") % name, MessageBox.TYPE_INFO)
-					recording.autoincrease = False
-				else:
+			if len(simulTimerList) > 1: # with other recording
+				name = simulTimerList[1].name
+				name_date = ' '.join((name, strftime('%c', localtime(simulTimerList[1].begin))))
+				print "[TIMER] conflicts with", name_date
+				recording.autoincrease = True	# start with max available length, then increment
+				if recording.setAutoincreaseEnd():
+					self.session.nav.RecordTimer.record(recording)
 					self.recording.append(recording)
+					self.session.open(MessageBox, _("Record time limited due to conflicting timer %s") % name_date, MessageBox.TYPE_INFO)
+				else:
+					self.session.open(MessageBox, _("Couldn't record due to conflicting timer %s") % name, MessageBox.TYPE_INFO)
+			else:
+				self.session.open(MessageBox, _("Couldn't record due to invalid service %s") % serviceref, MessageBox.TYPE_INFO)
+			recording.autoincrease = False
 
 	def isInstantRecordRunning(self):
 		print "self.recording:", self.recording

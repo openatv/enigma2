@@ -1,13 +1,11 @@
 from Components.Harddisk import harddiskmanager
-from config import config, ConfigSubsection, ConfigYesNo, ConfigSelection, ConfigText, ConfigNumber, ConfigSet, ConfigLocations, NoSave, ConfigClock, ConfigInteger, ConfigBoolean, ConfigPassword, ConfigIP
+from config import config, ConfigSubsection, ConfigYesNo, ConfigSelection, ConfigText, ConfigNumber, ConfigSet, ConfigLocations, NoSave, ConfigClock, ConfigInteger, ConfigBoolean, ConfigPassword, ConfigIP, ConfigSlider
 from Tools.Directories import resolveFilename, SCOPE_HDD, SCOPE_TIMESHIFT
 from enigma import setTunerTypePriorityOrder, setPreferredTuner, setSpinnerOnOff, setEnableTtCachingOnOff;
 from enigma import Misc_Options, eEnv;
 from Components.NimManager import nimmanager
 from SystemInfo import SystemInfo
-from Tools.Directories import pathExists
 import os
-from glob import glob
 import enigma
 from time import time
 
@@ -25,13 +23,15 @@ def InitUsageConfig():
 		folderprefix=""
 		boxtype="not detected"
 	config.misc.boxtype = ConfigText(default = boxtype)
-
-	config.usage = ConfigSubsection();
 	config.misc.useNTPminutes = ConfigSelection(default = "30", choices = [("30", "30 Minutes"), ("60", _("Hour")), ("1440", _("Once per day"))])
 
+
+	config.usage = ConfigSubsection();
 	config.usage.showdish = ConfigYesNo(default = True)
 	config.usage.multibouquet = ConfigYesNo(default = True)
 	config.usage.panicbutton = ConfigYesNo(default = True)
+	config.usage.multiepg_ask_bouquet = ConfigYesNo(default = False)
+
 	config.usage.quickzap_bouquet_change = ConfigYesNo(default = False)
 	config.usage.e1like_radio_mode = ConfigYesNo(default = True)
 	config.usage.infobar_onlinechecktimer = ConfigInteger(default=6, limits=(0, 48))
@@ -60,7 +60,7 @@ def InitUsageConfig():
 		("standard", _("standard")), ("swap", _("swap PiP and main picture")),
 		("swapstop", _("move PiP to main picture")), ("stop", _("stop PiP")) ])
 
-	if not pathExists(resolveFilename(SCOPE_HDD)):
+	if not os.path.exists(resolveFilename(SCOPE_HDD)):
 		try:
 			os.mkdir(resolveFilename(SCOPE_HDD),0755)
 		except OSError:
@@ -80,7 +80,7 @@ def InitUsageConfig():
 	config.usage.timer_path = ConfigText(default = "<default>")
 	config.usage.instantrec_path = ConfigText(default = "<default>")
 	
-	if not pathExists(resolveFilename(SCOPE_TIMESHIFT)):
+	if not os.path.exists(resolveFilename(SCOPE_TIMESHIFT)):
 		try:
 			os.mkdir(resolveFilename(SCOPE_TIMESHIFT),0755)
 		except OSError:
@@ -169,6 +169,8 @@ def InitUsageConfig():
 	config.usage.movielist_unseen = ConfigYesNo(default = True)
 
 	config.usage.swap_snr_on_osd = ConfigYesNo(default = False)
+	config.usage.swap_time_remaining_on_osd = ConfigSelection(default = "0", choices = [("0", _("Remanining")), ("1", _("Elapsed")), ("2", _("Elapsed & Remanining")), ("3", _("Remanining & Elapsed"))])
+	config.usage.swap_time_display_on_osd = ConfigSelection(default = "0", choices = [("0", _("Skin Setting")), ("1", _("Mins")), ("2", _("Hours Mins")), ("3", _("Percentage"))])
 
 	def SpinnerOnOffChanged(configElement):
 		setSpinnerOnOff(int(configElement.value))
@@ -191,6 +193,20 @@ def InitUsageConfig():
 	config.usage.show_cryptoinfo = ConfigYesNo(default = True)
 	config.usage.show_eit_nownext = ConfigYesNo(default = True)
 
+	config.osd = ConfigSubsection()
+	config.osd.dst_left = ConfigSlider(default = 0, increment = 1, limits = (0, 720))
+	config.osd.dst_width = ConfigSlider(default = 720, increment = 1, limits = (0, 720))
+	config.osd.dst_top = ConfigSlider(default = 0, increment = 1, limits = (0, 576))
+	config.osd.dst_height = ConfigSlider(default = 576, increment = 1, limits = (0, 576))
+	config.osd.alpha = ConfigSlider(default=255, limits=(0,255))
+	if config.misc.boxtype.value.startswith('vu'):
+		choiceoptions = [("0", _("Off")), ("1", _("Side by Side")),("2", _("Top and Bottom")), ("3", _("Auto"))]
+	elif config.misc.boxtype.value.startswith('et'):
+		choiceoptions = [("off", _("Off")), ("auto", _("Auto")), ("sidebyside", _("Side by Side")),("topandbottom", _("Top and Bottom"))]
+ 	config.osd.threeDmode = ConfigSelection(default = 'auto', choices = choiceoptions )
+	config.osd.threeDznorm = ConfigSlider(default = 50, increment = 1, limits = (0, 100))
+	config.osd.show3dextensions = ConfigYesNo(default = False)
+	
 	config.epg = ConfigSubsection()
 	config.epg.eit = ConfigYesNo(default = True)
 	config.epg.mhw = ConfigYesNo(default = False)
@@ -221,7 +237,7 @@ def InitUsageConfig():
 	hddchoises = []
 	for p in harddiskmanager.getMountedPartitions():
 		d = os.path.normpath(p.mountpoint)
-		if pathExists(p.mountpoint):
+		if os.path.exists(p.mountpoint):
 			if p.mountpoint != '/':
 				hddchoises.append((d + '/', p.mountpoint))
 	if not hddchoises:
@@ -294,7 +310,7 @@ def InitUsageConfig():
 	debugpath = [('/home/root/', '/home/root/')]
 	for p in harddiskmanager.getMountedPartitions():
 		d = os.path.normpath(p.mountpoint)
-		if pathExists(p.mountpoint):
+		if os.path.exists(p.mountpoint):
 			if p.mountpoint != '/':
 				debugpath.append((d + '/', p.mountpoint))
 	config.crash.debug_path = ConfigSelection(default = "/home/root/", choices = debugpath)
@@ -501,6 +517,7 @@ def InitUsageConfig():
 	config.imagemanager.backupretry = ConfigNumber(default = 30)
 	config.imagemanager.backupretrycount = NoSave(ConfigNumber(default = 0))
 	config.imagemanager.nextscheduletime = NoSave(ConfigNumber(default = 0))
+	config.imagemanager.restoreimage = NoSave(ConfigText(default=folderprefix, fixed_size=False))
 
 	config.backupmanager = ConfigSubsection()
 	config.backupmanager.folderprefix = ConfigText(default=folderprefix, fixed_size=False)
@@ -515,7 +532,6 @@ def InitUsageConfig():
 	config.backupmanager.lastlog = ConfigText(default=' ', fixed_size=False)
 
 	config.plisettings = ConfigSubsection()
-	config.plisettings.overscanamount = ConfigNumber(default = 32)
 	config.plisettings.Subservice = ConfigYesNo(default = False)
 	config.plisettings.ColouredButtons = ConfigYesNo(default = True)
 	config.plisettings.PLIEPG_mode = ConfigSelection(default="cooltvguide", choices = [
@@ -553,7 +569,7 @@ def InitUsageConfig():
 	config.GraphEPG.overjump = ConfigYesNo(default = False)
 	config.GraphEPG.PIG = ConfigYesNo(default = False)
 
-	if not pathExists('/usr/softcams/'):
+	if not os.path.exists('/usr/softcams/'):
 		os.mkdir('/usr/softcams/',0755)
 	softcams = os.listdir('/usr/softcams/')
 	config.oscaminfo = ConfigSubsection()

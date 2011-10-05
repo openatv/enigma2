@@ -39,12 +39,6 @@ from Components.config import config, configfile, ConfigText, ConfigYesNo, Confi
 InitFallbackFiles()
 
 profile("UsageConfig")
-from os import rename, path
-if path.exists('/etc/enigma2/settings'):
-	data = file('/etc/enigma2/settings').read()
-	if data.find('epgcache_filename') >= 0:
-		file('/etc/enigma2/settings.tmp', 'w').writelines([l for l in file('/etc/enigma2/settings').readlines() if 'epgcache_filename' not in l])
-		rename('/etc/enigma2/settings.tmp','/etc/enigma2/settings')
 import Components.UsageConfig
 Components.UsageConfig.InitUsageConfig()
 
@@ -225,6 +219,7 @@ class Session:
 			self.summary.show()
 			c.addSummary(self.summary)
 
+		c.saveKeyboardMode()
 		c.execBegin()
 
 		# when execBegin opened a new dialog, don't bother showing the old one.
@@ -236,6 +231,7 @@ class Session:
 		self.in_exec = False
 
 		self.current_dialog.execEnd()
+		self.current_dialog.restoreKeyboardMode()
 		self.current_dialog.hide()
 
 		if last:
@@ -593,6 +589,11 @@ profile("LCD")
 import Components.Lcd
 Components.Lcd.InitLcd()
 Components.Lcd.IconCheck()
+
+profile("OSD")
+import Screens.OSD
+Screens.OSD.setConfiguredPosition()
+Screens.OSD.setConfiguredSettings()
 
 profile("SetupDevices")
 import Components.SetupDevices

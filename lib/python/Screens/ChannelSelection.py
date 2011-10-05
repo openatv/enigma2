@@ -112,6 +112,24 @@ class VIXBouquetSelector(Screen):
 	def cancelClick(self):
 		self.close(None)
 
+class SilentBouquetSelector:
+	def __init__(self, bouquets, enableWrapAround=False, current=0):
+		self.bouquets = [b[1] for b in bouquets]
+		self.pos = current
+		self.count = len(bouquets)
+		self.enableWrapAround = enableWrapAround
+
+	def up(self):
+		if self.pos > 0 or self.enableWrapAround:
+			self.pos = (self.pos - 1) % self.count
+
+	def down(self):
+		if self.pos < (self.count - 1) or self.enableWrapAround:
+			self.pos = (self.pos + 1) % self.count
+
+	def getCurrent(self):
+		return self.bouquets[self.pos]
+
 # csel.bouquet_mark_edit values
 OFF = 0
 EDIT_BOUQUET = 1
@@ -950,15 +968,15 @@ class ChannelSelectionBase(Screen):
 					end_ref = self.servicePath[Len-1]
 				else:
 					end_ref = None
-				nameStr = self.getServiceName(base_ref)
-				titleStr += ' ' + nameStr
+# 				nameStr = self.getServiceName(base_ref)
+# 				titleStr += ' ' + nameStr
 				if end_ref is not None:
-					if Len > 2:
-						titleStr += '/../'
-					else:
-						titleStr += '/'
+# 					if Len > 2:
+# 						titleStr += '/../'
+# 					else:
+# 						titleStr += '/'
 					nameStr = self.getServiceName(end_ref)
-					titleStr += nameStr
+					titleStr += ' ' + nameStr
 				self.setTitle(titleStr)
 
 	def moveUp(self):

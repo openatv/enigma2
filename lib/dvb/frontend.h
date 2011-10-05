@@ -72,6 +72,7 @@ private:
 	bool m_simulate;
 	bool m_enabled;
 	int m_type;
+	eDVBFrontend *m_simulate_fe; // only used to set frontend type in dvb.cpp
 	int m_dvbid;
 	int m_slotid;
 	int m_fd;
@@ -116,7 +117,7 @@ private:
 	static int PriorityOrder;
 	static int PreferredFrontendIndex;
 public:
-	eDVBFrontend(int adap, int fe, int &ok, bool simulate=false);
+	eDVBFrontend(int adap, int fe, int &ok, bool simulate=false, eDVBFrontend *simulate_fe=NULL);
 	virtual ~eDVBFrontend();
 
 	int readInputpower();

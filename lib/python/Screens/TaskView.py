@@ -2,6 +2,7 @@ from Screen import Screen
 from Components.ConfigList import ConfigListScreen
 from Components.config import config, ConfigSubsection, ConfigSelection, getConfigListEntry
 from Components.SystemInfo import SystemInfo
+from Components.Task import job_manager
 from InfoBarGenerics import InfoBarNotifications
 import Screens.Standby
 from Tools import Notifications
@@ -108,10 +109,13 @@ class JobView(InfoBarNotifications, Screen, ConfigListScreen):
 			self.close(False)
 
 	def abort(self):
-		if self.job.status in (self.job.FINISHED, self.job.FAILED):
+		if self.job.status == self.job.NOT_STARTED:
+			job_manager.active_jobs.remove(self.job)
 			self.close(False)
-		if self["cancelable"].boolean == True:
+		elif self.job.status == self.job.IN_PROGRESS and self["cancelable"].boolean == True:
 			self.job.cancel()
+		else:
+			self.close(False)
 
 	def performAfterEvent(self):
 		self["config"].hide()

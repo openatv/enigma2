@@ -40,11 +40,15 @@ class About(Screen):
 			self["lab3"] = StaticText(_("Support at") + " www.aaf-digital.info")
 			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Duo")
 			AboutText = _("Hardware:") + " Vu+ Duo\n"
-		elif config.misc.boxtype.value == 'et5000':
+		elif config.misc.boxtype.value == 'et5x00':
 			self["lab3"] = StaticText(_("Support at") + " www.aaf-digital.info")
 			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET5000")
 			AboutText = _("Hardware:") + " Xtrend ET5000\n"
-		elif config.misc.boxtype.value == 'et9000':
+		elif config.misc.boxtype.value == 'et6x00':
+			self["lab3"] = StaticText(_("Support at") + " www.aaf-digital.info")
+			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET6000")
+			AboutText = _("Hardware:") + " Xtrend ET6000\n"	
+		elif config.misc.boxtype.value == 'et9x00':
 			self["lab3"] = StaticText(_("Support at") + " www.aaf-digital.info")
 			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET9000")
 			AboutText = _("Hardware:") + " Xtrend ET9000\n"

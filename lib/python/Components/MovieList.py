@@ -479,8 +479,8 @@ class MovieList(GUIComponent):
 		realtags = set()
 		tags = {}
 		rootPath = os.path.normpath(root.getPath());
-		# skip '/'
-		if len(rootPath) > 1:
+		# Don't navigate above the "root"
+		if len(rootPath) > 1 and (os.path.realpath(rootPath) != config.movielist.root.value):
 			parent = os.path.split(os.path.normpath(rootPath))[0]
 			currentfolder = os.path.normpath(rootPath) + '/'
 			if parent and (parent not in defaultInhibitDirs) and not currentfolder.endswith(config.usage.default_path.value):

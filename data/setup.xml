@@ -1,14 +1,4 @@
 <setupxml>
-	<setup key="rc" title="RC Menu">
-		<item level="0" text="Repeat">config.inputDevices.repeat</item>
-		<item level="0" text="Delay">config.inputDevices.delay</item>
-		<item level="0" text="Keymap">config.rc.map</item>
-	</setup>
-	<setup key="time" title="Time">
-		<item level="0" text="Timezone">config.timezone.val</item>
-		<item level="0" text="Sync time using">config.misc.SyncTimeUsing</item>
-		<item level="0" text="Sync NTP every (minutes)">config.misc.useNTPminutes</item>
-	</setup>
 	<setup key="avsetup" title="A/V Settings">
 		<item level="0" text="Color Format">config.av.colorformat</item>
 		<item level="0" text="Aspect Ratio">config.av.aspectratio</item>
@@ -18,7 +8,6 @@
 		<item level="1" text="General PCM delay (ms)">config.av.generalPCMdelay</item>
 		<item level="1" text="Digital downmix" requires="CanDownmixAC3">config.av.downmix_ac3</item>
 		<item level="1" text="Auto scart switching" requires="ScartSwitch">config.av.vcrswitch</item>
-		<item level="0" text="Menu Overscan amount">config.plisettings.overscanamount</item>
 	</setup>
 	<setup key="usage" title="Customize">
 		<item level="0" text="Setup Mode">config.usage.setup_level</item>
@@ -30,6 +19,7 @@
 		<item level="1" text="Enable teletext caching">config.usage.enable_tt_caching</item>
 		<item level="1" text="Show positioner movement">config.usage.showdish</item>
 		<item level="1" text="Enable multiple bouquets">config.usage.multibouquet</item>
+		<item level="1" text="Multi-EPG bouquet selection">config.usage.multiepg_ask_bouquet</item>
 		<item level="1" text="Change bouquets in quickzap">config.usage.quickzap_bouquet_change</item>
 		<item level="1" text="Alternative radio mode">config.usage.e1like_radio_mode</item>
 		<item level="1" text="Action on long powerbutton press">config.usage.on_long_powerpress</item>
@@ -49,6 +39,8 @@
 		<item level="2" text="Show infobar on event change">config.usage.show_infobar_on_event_change</item>
 		<item level="2" text="Show crypto info in infobar">config.usage.show_cryptoinfo</item>
 		<item level="2" text="Swap SNR in db with SNR in percentage on OSD">config.usage.swap_snr_on_osd</item>
+		<item level="2" text="Time Remaning/Elapsed on OSD">config.usage.swap_time_remaining_on_osd</item>
+		<item level="2" text="Remaning/Elapsed shown as on OSD">config.usage.swap_time_display_on_osd</item>
 		<item level="2" text="Hide zap errors">config.usage.hide_zap_errors</item>
 		<item level="2" text="Hide CI messages">config.usage.hide_ci_messages</item>
 		<item level="2" text="Behavior of 0 key in PiP-mode">config.usage.pip_zero_button</item>
@@ -57,13 +49,23 @@
 		<item level="2" text="Disable background scanning">config.misc.disable_background_scan</item>
 		<item level="2" text="Show background in Radio Mode">config.misc.showradiopic</item>
 	</setup>
+	<setup key="rc" title="RC Menu">
+		<item level="0" text="Repeat">config.inputDevices.repeat</item>
+		<item level="0" text="Delay">config.inputDevices.delay</item>
+		<item level="0" text="Keymap">config.rc.map</item>
+	</setup>
+	<setup key="time" title="Time">
+		<item level="0" text="Timezone">config.timezone.val</item>
+		<item level="0" text="Sync time using">config.misc.SyncTimeUsing</item>
+		<item level="0" text="Sync NTP every (minutes)">config.misc.useNTPminutes</item>
+	</setup>
 	<setup key="remotesetup" title="Button Setup">
 		<item level="0" text="EPG buton mode">config.plisettings.ViXEPG_mode</item>
-		<item level="0" text="Subservice mode">config.plisettings.Subservice</item>
+		<item level="0" text="Subservice mode">config.vixsettings.Subservice</item>
 		<item level="0" text="QuickEPG mode">config.plisettings.QuickEPG_mode</item>
 		<item level="0" text="TV button mode">config.usage.tvradiobutton_mode</item>
 		<item level="0" text="Channel +/- button mode">config.usage.channelbutton_mode</item>
-		<item level="0" text="Use PLI Coloured Butons">config.plisettings.ColouredButtons</item>
+		<item level="0" text="Use ViX Coloured Butons">config.plisettings.ColouredButtons</item>
 	</setup>
 	<setup key="sofcamsetup" title="Settings...">
 		<item level="2" text="Show CCcam in extensions ?">config.cccaminfo.showInExtensions</item>
@@ -184,11 +186,6 @@
 	<setup key="keyboard" title="Keyboard Setup">
 		<item level="0" text="Keyboard Map">config.keyboard.keymap</item>
 	</setup>
-	<setup key="osd" title="OSD Settings">
-		<item text="Alpha">config.osd.alpha</item>
-		<item text="Brightness">config.osd.bright</item>
-		<item text="Contrast">config.osd.contrast</item>
-	</setup>
 	<setup key="lcd" title="Display Setup" requires="FrontpanelDisplay">
 		<item level="0" text="Brightness">config.lcd.bright</item>
 		<item level="0" text="Contrast">config.lcd.contrast</item>
@@ -204,6 +201,5 @@
 		<item text="Longitude">config.sat.diseqca</item>
 		<item text="Latitude">config.sat.diseqcb</item>
 		<item text="Use power measurement" >config.sat.diseqcc</item>
-		<!--<item text="DiSEqC D">config.sat.diseqcd</item>-->
 	</setup>
 </setupxml>

@@ -41,9 +41,11 @@ class InputBox(Screen):
 			"9": self.keyNumberGlobal,
 			"0": self.keyNumberGlobal
 		}, -1)
+
 		if self["input"].type == Input.TEXT:
-			rcinput = eRCInput.getInstance()
-			rcinput.setKeyboardMode(rcinput.kmAscii)
+			self.onExecBegin.append(self.setKeyboardModeAscii)
+		else:
+			self.onExecBegin.append(self.setKeyboardModeNone)
 
 	def gotAsciiCode(self):
 		self["input"].handleAscii(getPrevAsciiCode())
@@ -61,13 +63,9 @@ class InputBox(Screen):
 		self["input"].delete()
 
 	def go(self):
-		rcinput = eRCInput.getInstance()
-		rcinput.setKeyboardMode(rcinput.kmNone)
 		self.close(self["input"].getText())
 
 	def cancel(self):
-		rcinput = eRCInput.getInstance()
-		rcinput.setKeyboardMode(rcinput.kmNone)
 		self.close(None)
 
 	def keyHome(self):
@@ -142,19 +140,13 @@ class PinInput(InputBox):
 				pass
 	
 	def closePinWrong(self, *args):
-		rcinput = eRCInput.getInstance()
-		rcinput.setKeyboardMode(rcinput.kmNone)
 		print "args:", args
 		self.close(False)
 		
 	def closePinCorrect(self, *args):
-		rcinput = eRCInput.getInstance()
-		rcinput.setKeyboardMode(rcinput.kmNone)
 		self.close(True)
 		
 	def closePinCancel(self, *args):
-		rcinput = eRCInput.getInstance()
-		rcinput.setKeyboardMode(rcinput.kmNone)
 		self.close(None)
 			
 	def cancel(self):

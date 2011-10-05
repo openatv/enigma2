@@ -100,8 +100,6 @@ self.session.open(HdmiCECSetupScreen)
 </code>
 				</item>
 				<!--<item text="Remote Control"><setup id="rc" /></item>-->
-				<!--<item text="OSD"><setup id="osd" /></item>-->
-<!--				<item level="0" text="Network" entryID="network_setup"><screen module="NetworkSetup" screen="NetworkAdapterSelection" /></item>-->
 				<item level="1" text="Input devices" entryID="input_device_setup"><screen module="InputDeviceSetup" screen="InputDeviceSelection" /></item>
 				<item text="Keyboard"><setup id="keyboard" /></item>
 				<item level="0" text="Language" entryID="language_setup"><screen module="LanguageSelection" /></item>
@@ -121,7 +119,11 @@ self.session.open(HdmiCECSetupScreen)
 					<item level="2" text="Samba Setup" entryID="netsmba_setup"><screen module="NetworkSetup" screen="NetworkSamba"/></item>
 					<item level="2" text="Telnet Setup" entryID="nettelnet_setup"><screen module="NetworkSetup" screen="NetworkTelnet"/></item>
 					<item level="2" text="uShare Setup" entryID="netushare_setup"><screen module="NetworkSetup" screen="NetworkuShare"/></item>
-<!--					<item level="1" text="Nameserver Setup..." entryID="dns_setup"><screen module="NetworkSetup" screen="NameserverSetup"/></item>-->
+				</menu>
+				<menu level="2" text="OSD" entryID="osd_setup" requires="OsdMenu">
+					<id val="osd_menu" />
+					<item level="2" text="OSD Setup" entryID="osdsetup" requires="OsdSetup"><screen module="OSD" screen="OSDSetup"/></item>
+					<item level="2" text="OSD 3D Setup" entryID="osd3dsetup" requires="CanChange3DOsd"><screen module="OSD" screen="OSD3DSetupScreen"/></item>
 				</menu>
 				<item level="0" entryID="recording_setup"><setup id="recording" /></item>
 				<item level="2" text="Recording Paths" entryID="RecordPaths"><screen module="RecordPaths" screen="RecordPathsSettings" /></item>

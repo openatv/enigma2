@@ -341,6 +341,7 @@ class EPGSelection(Screen):
 				self.oldService = self.session.nav.getCurrentlyPlayingServiceReference()
 			else:
 				self.type = EPG_TYPE_MULTI
+				self.skinName = "EPGSelectionMulti"
 				self["key_yellow"] = Button(_("Prev"))
 				self["key_blue"] = Button(_("Next"))
 				self["key_red"] = Button(_("IMDb Search"))
