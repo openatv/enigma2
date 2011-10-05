@@ -862,7 +862,7 @@ class InfoBarEPG:
 			})
 
 	def InfoPressed(self):
-		if self.box_type == 'et9000' or self.box_type == 'et5000':
+		if self.box_type == 'et9x00' or self.box_type == 'et5x00':
 			self.openEventView()
 		else:
 			self.EPGPressed()
