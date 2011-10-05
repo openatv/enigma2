@@ -430,8 +430,6 @@ int eTextPara::appendGlyph(Font *current_font, FT_Face current_face, FT_UInt gly
 				i->x-=offset.x();
 				i->y-=offset.y();
 				i->bbox.moveBy(-offset.x(), -offset.y());
-				--lineChars.back();
-				++charCount;
 			} while (i-- != glyphs.rbegin()); // rearrange them into the next line
 			cursor+=ePoint(linelength, 0);  // put the cursor after that line
 		} else
@@ -468,7 +466,6 @@ int eTextPara::appendGlyph(Font *current_font, FT_Face current_face, FT_UInt gly
 	ng.glyph_index = glyphIndex;
 	ng.flags = flags;
 	glyphs.push_back(ng);
-	++charCount;
 
 		/* when we have a SHY, don't xadvance. It will either be the last in the line (when used for breaking), or not displayed. */
 	if (!(flags & GS_SOFTHYPHEN))
@@ -525,10 +522,6 @@ void eTextPara::newLine(int flags)
 		maximum.setHeight(cursor.y());
 	previous=0;
 	totalheight += height;
-	
-	lineOffsets.push_back(cursor.y());
-	lineChars.push_back(charCount);
-	charCount=0;
 }
 
 eTextPara::~eTextPara()
@@ -688,16 +681,18 @@ int eTextPara::renderString(const char *string, int rflags, int border)
 	shape(uc_shape, uc_string);
 	
 		// now do the usual logical->visual reordering
-	int size=uc_shape.size();
 	FriBidiCharType dir=FRIBIDI_TYPE_ON;
-	uc_visual.resize(size);
+	{
+		int size=uc_shape.size();
+		uc_visual.resize(size);
 		// gaaanz lahm, aber anders geht das leider nicht, sorry.
-	FriBidiChar array[size], target[size];
-	std::copy(uc_shape.begin(), uc_shape.end(), array);
-	fribidi_log2vis(array, size, &dir, target, 0, 0, 0);
-	uc_visual.assign(target, target+size);
-	
-	glyphs.reserve(size);
+		FriBidiChar array[size], target[size];
+		std::copy(uc_shape.begin(), uc_shape.end(), array);
+		fribidi_log2vis(array, size, &dir, target, 0, 0, 0);
+		uc_visual.assign(target, target+size);
+	}
+
+	glyphs.reserve(uc_visual.size());
 	
 	int nextflags = 0;
 	
@@ -746,7 +741,6 @@ int eTextPara::renderString(const char *string, int rflags, int border)
 								ng.w = 0;
 								glyphs.push_back(ng);
 								i += 1 + codeidx;
-								nextflags = flags;
 								continue;
 							}
 							break;
@@ -758,21 +752,21 @@ int eTextPara::renderString(const char *string, int rflags, int border)
 				break;
 			}
 			case '\t':
-tab:				isprintable=0;
+tab:		isprintable=0;
 				cursor+=ePoint(current_font->tabwidth, 0);
 				cursor-=ePoint(cursor.x()%current_font->tabwidth, 0);
 				break;
 			case 0x8A:
 			case 0xE08A:
 			case '\n':
-newline:			isprintable=0;
+newline:isprintable=0;
 				newLine(rflags);
 				nextflags|=GS_ISFIRST;
 				break;
 			case '\r':
 			case 0x86: case 0xE086:
 			case 0x87: case 0xE087:
-nprint:				isprintable=0;
+nprint:	isprintable=0;
 				break;
 			case 0xAD: // soft-hyphen
 				flags |= GS_SOFTHYPHEN;
@@ -816,13 +810,6 @@ nprint:				isprintable=0;
 	calc_bbox();
 	if (dir & FRIBIDI_MASK_RTL)
 		realign(dirRight);
-		doTopBottomReordering=true;
-	if (charCount)
-	{
-		lineOffsets.push_back(cursor.y());
-		lineChars.push_back(charCount);
-		charCount=0;
-	}
 	return 0;
 }
 
@@ -870,17 +857,8 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &background, cons
 	int buffer_stride=surface->stride;
 
 	bool setcolor = true;
-	std::list<int>::reverse_iterator line_offs_it(lineOffsets.rbegin());
-	std::list<int>::iterator line_chars_it(lineChars.begin());
-	int line_offs=0;
-	int line_chars=0;
-	for (glyphString::iterator i(glyphs.begin()); i != glyphs.end(); ++i, --line_chars)
+	for (glyphString::iterator i(glyphs.begin()); i != glyphs.end(); ++i)
 	{
-		while(!line_chars)
-		{
-			line_offs = *(line_offs_it++);
-			line_chars = *(line_chars_it++);
-		}
 		if (setcolor)
 		{
 			setcolor = false;
@@ -998,7 +976,7 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &background, cons
 			if (fontRenderClass::instance->getGlyphBitmap(&i->font->font, i->glyph_index, &glyph_bitmap))
 				continue;
 			rxbase=i->x+glyph_bitmap->left + offset.x();
-			rybase=(doTopBottomReordering ? line_offs : i->y) - glyph_bitmap->top + offset.y();
+			rybase=i->y-glyph_bitmap->top  + offset.y();
 
 			sbase=glyph_bitmap->buffer;
 			sxbase=glyph_bitmap->width;
