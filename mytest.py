@@ -51,9 +51,6 @@ config.misc.SyncTimeUsing = ConfigSelection(default = "Transponder", choices = [
 config.misc.startCounter = ConfigInteger(default=0) # number of e2 starts...
 config.misc.standbyCounter = NoSave(ConfigInteger(default=0)) # number of standby
 
-def setEPGCachePath(configElement):
-	enigma.eEPGCache.getInstance().setCacheFile(configElement.value)
-
 #demo code for use of standby enter leave callbacks
 #def leaveStandby():
 #	print "!!!!!!!!!!!!!!!!!leave standby"
@@ -472,7 +469,7 @@ def runScreenTest():
 #			["PREMIERE"], #provider_list,
 #			[] #caid_list
 #		));
-
+	print '!!!!!!!!!!!!!!SCREENS TO RUN:',screensToRun
 	def runNextScreen(session, screensToRun, *result):
 		if result:
 			enigma.quitMainloop(*result)
@@ -480,13 +477,13 @@ def runScreenTest():
 
 		screen = screensToRun[0][1]
 		args = screensToRun[0][2:]
+		print '!!!!!!!!!!!!!!SCREEN:',screen
+		print '!!!!!!!!!!!!!!args:',args
 
 		if screensToRun:
 			session.openWithCallback(boundFunction(runNextScreen, session, screensToRun[1:]), screen, *args)
 		else:
 			session.open(screen, *args)
-
-	config.misc.epgcache_filename.addNotifier(setEPGCachePath)
 
 	runNextScreen(session, screensToRun)
 
@@ -509,6 +506,7 @@ def runScreenTest():
 	config.misc.startCounter.save()
 
 	profile("wakeup")
+
 	from time import time, strftime, localtime
 	from Tools.DreamboxHardware import setFPWakeuptime, getFPWakeuptime, setRTCtime
 	#get currentTime

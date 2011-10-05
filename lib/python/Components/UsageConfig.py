@@ -240,9 +240,10 @@ def InitUsageConfig():
 		if os.path.exists(p.mountpoint):
 			if p.mountpoint != '/':
 				hddchoises.append((d + '/', p.mountpoint))
-	if not hddchoises:
-		hddchoises.append(('/etc/enigma2/', 'Internal Flash'))
-	config.misc.epgcachepath = ConfigSelection(choices = hddchoises)
+	if hddchoises:
+		config.misc.epgcachepath = ConfigSelection(default = hddchoises[1],choices = hddchoises)
+	else:	
+		config.misc.epgcachepath = ConfigSelection([('/etc/enigma2/', 'Internal Flash')],'/etc/enigma2/')
 	config.misc.epgcachefilename = ConfigText(default='epg', fixed_size=False)
 	config.misc.epgcache_filename = ConfigText(default = (config.misc.epgcachepath.value + config.misc.epgcachefilename.value.replace('.dat','') + '.dat'))
 	def EpgCacheChanged(configElement):
