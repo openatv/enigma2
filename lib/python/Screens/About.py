@@ -202,7 +202,7 @@ class SystemInfo(Screen):
 			})
 
 	def populate(self):
-		out_lines = popen("cat /proc/meminfo").readlines()
+		out_lines = file("/proc/meminfo").readlines()
 		for lidx in range(len(out_lines)-1):
 			tstLine = out_lines[lidx].split()
 			if "MemTotal:" in tstLine:
