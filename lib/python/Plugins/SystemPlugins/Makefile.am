@@ -1,12 +1,12 @@
 installdir = $(pkglibdir)/python/Plugins/SystemPlugins
 
-SUBDIRS = PositionerSetup Satfinder \
+SUBDIRS = PositionerSetup Satfinder SoftwareManager SkinSelector \
 	Videomode VideoTune Hotplug HdmiCEC \
 	DefaultServicesScanner CommonInterfaceAssignment \
 	VideoEnhancement WirelessLan NetworkWizard
 
 if XTREND
-SUBDIRS += SatelliteEquipmentControl DiseqcTester FastScan FanSetupXtrend Blindscan
+SUBDIRS += SatelliteEquipmentControl DiseqcTester choiceRC FastScan FanSetupXtrend Blindscan
 endif
 
 if VUUNO
