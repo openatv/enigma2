@@ -92,11 +92,11 @@ class OSDSetup(Screen, ConfigListScreen):
 		size_h = getDesktop(0).size().height()
 		dsk_w = int(float(size_w)) / float(720)
 		dsk_h = int(float(size_h)) / float(576)
-		while config.osd.dst_width.value + (int(config.osd.dst_left.value) / float(dsk_w)) >= 720.5:
+		while config.osd.dst_width.value + (int(config.osd.dst_left.value) / float(dsk_w)) >= 720.5 or config.osd.dst_width.value + config.osd.dst_left.value > 720:
 			config.osd.dst_width.value = int(config.osd.dst_width.value) - 1
 			config.osd.dst_width.save()
 			configfile.save()
-		while config.osd.dst_height.value + (int(config.osd.dst_top.value) / float(dsk_h)) >= 576.5:
+		while config.osd.dst_height.value + (int(config.osd.dst_top.value) / float(dsk_h)) >= 576.5 or config.osd.dst_height.value + config.osd.dst_top.value > 576:
 			config.osd.dst_height.value = int(config.osd.dst_height.value) - 1
 			config.osd.dst_height.save()
 			configfile.save()

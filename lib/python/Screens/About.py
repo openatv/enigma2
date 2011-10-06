@@ -42,16 +42,16 @@ class About(Screen):
 			AboutText = _("Hardware:") + " Vu+ Duo\n"
 		elif config.misc.boxtype.value == 'et5x00':
 			self["lab3"] = StaticText(_("Support at") + " www.aaf-digital.info")
-			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET5000")
-			AboutText = _("Hardware:") + " Xtrend ET5000\n"
+			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET5x00 Series")
+			AboutText = _("Hardware:") + "  Xtrend ET5x00 Series\n"
 		elif config.misc.boxtype.value == 'et6x00':
-			self["lab3"] = StaticText(_("Support at") + " www.aaf-digital.info")
-			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET6000")
-			AboutText = _("Hardware:") + " Xtrend ET6000\n"	
+			self["lab3"] = StaticText(_("Support at") + " www.aaf-digital.info)
+			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET6x00 Series")
+			AboutText = _("Hardware:") + "  Xtrend ET6x00 Series\n"
 		elif config.misc.boxtype.value == 'et9x00':
 			self["lab3"] = StaticText(_("Support at") + " www.aaf-digital.info")
-			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET9000")
-			AboutText = _("Hardware:") + " Xtrend ET9000\n"
+			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET9x00 Series")
+			AboutText = _("Hardware:") + " Xtrend ET9x00 Series\n"
 		else:
 			self["lab3"] = StaticText(_("Support at") + " www.aaf-digital.info")
 			self["BoxType"] = StaticText(_("Hardware:") + " " + config.misc.boxtype.value)
@@ -202,7 +202,7 @@ class SystemInfo(Screen):
 			})
 
 	def populate(self):
-		out_lines = popen("cat /proc/meminfo").readlines()
+		out_lines = file("/proc/meminfo").readlines()
 		for lidx in range(len(out_lines)-1):
 			tstLine = out_lines[lidx].split()
 			if "MemTotal:" in tstLine:
