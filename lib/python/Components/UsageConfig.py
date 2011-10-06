@@ -241,7 +241,9 @@ def InitUsageConfig():
 			if p.mountpoint != '/':
 				hddchoises.append((d + '/', p.mountpoint))
 	if hddchoises:
-		config.misc.epgcachepath = ConfigSelection(default = hddchoises[1],choices = hddchoises)
+		for defaulthdd in hddchoises:
+ 			config.misc.epgcachepath = ConfigSelection(default = defaulthdd[1] ,choices = hddchoises)
+ 			continue
 	else:	
 		config.misc.epgcachepath = ConfigSelection([('/etc/enigma2/', 'Internal Flash')],'/etc/enigma2/')
 	config.misc.epgcachefilename = ConfigText(default='epg', fixed_size=False)
@@ -255,7 +257,6 @@ def InitUsageConfig():
 		epgcache.save()
 	config.misc.epgcachepath.addNotifier(EpgCacheChanged, immediate_feedback = False)
 	config.misc.epgcachefilename.addNotifier(EpgCacheChanged, immediate_feedback = False)
-
 
 	def setHDDStandby(configElement):
 		for hdd in harddiskmanager.HDDList():
