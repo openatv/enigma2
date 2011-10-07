@@ -348,7 +348,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			w = width/10*5;
 			self.descr_rect = Rect(xpos, 0, width, height)
 		elif self.type == EPG_TYPE_GRAPH:
-			global VIXEPGNoPicon
+			global PLIEPGNoPicon
 			global ItemHeight
 			#esize = self.l.getItemSize()
 			#width = esize.width()
@@ -357,14 +357,14 @@ class EPGList(HTMLComponent, GUIComponent):
 			if self.coolheight >=54 and config.GraphEPG.UsePicon.value:
 				w = config.GraphEPG.left8.value;
 				ItemHeight = height;
-				VIXEPGNoPicon = 1;
+				PLIEPGNoPicon = 1;
 			elif self.coolheight >=54 and not config.GraphEPG.UsePicon.value:
 				w = config.GraphEPG.left16.value;
 				ItemHeight = height;
-				VIXEPGNoPicon = 1;
+				PLIEPGNoPicon = 1;
 			if self.coolheight <54:
 				w = config.GraphEPG.left16.value;
-				VIXEPGNoPicon = 2;
+				PLIEPGNoPicon = 2;
 			self.service_rect = Rect(xpos, 0, w, height)
 			xpos += w;
 			w = width - xpos;
@@ -507,7 +507,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		borderColor = self.borderColor
 		backColorService = self.backColorService
 		backColorOrig = self.backColor # normale Eventsfarbe
-#		VIXEPGEvent = 1
+#		PLIEPGEvent = 1
 		if self.curr_refcool.toString() == service:
 #			backColor = 0x516b96
 #			backColorOrig = 0x516b96
@@ -603,7 +603,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		return res
 
 	def findPicon(self, service = None, serviceName = None):
-		if config.GraphEPG.UsePicon.value and VIXEPGNoPicon == 1:
+		if config.GraphEPG.UsePicon.value and PLIPGNoPicon == 1:
 			service_refstr = None
 			serviceName_ref = None
 			if service is not None:
