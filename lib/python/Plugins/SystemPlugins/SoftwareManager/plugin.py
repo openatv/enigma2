@@ -37,6 +37,7 @@ from datetime import date
 from twisted.web import client
 from twisted.internet import reactor
 
+from ImageBackup import ImageBackup
 from ImageWizard import ImageWizard
 from BackupRestore import BackupSelection, RestoreMenu, BackupScreen, RestoreScreen, getBackupPath, getBackupFilename
 from SoftwareTools import iSoftwareTools
