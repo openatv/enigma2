@@ -224,6 +224,11 @@ class InfoBarShowHide:
 				iPlayableService.evStart: self.serviceStarted,
 			})
 
+		self["key_red"] = Label()
+		self["key_yellow"] = Label()
+		self["key_blue"] = Label()
+		self["key_green"] = Label()
+
 		self.systemCaids = {
 			"06" : "irdeto",
 			"01" : "seca",
@@ -253,6 +258,21 @@ class InfoBarShowHide:
 		self.onShow.append(self.__onShow)
 		self.onHide.append(self.__onHide)
 
+	def doButtonsCheck(self):
+		if config.vixsettings.ColouredButtons.value:
+			self["key_yellow"].setText(_("Search"))
+
+			if config.vixsettings.ViXEPG_mode.value == "vixepg":
+				self["key_red"].setText(_("Single EPG"))
+			else:
+				self["key_red"].setText(_("ViX EPG"))
+
+			if not config.vixsettings.Subservice.value:
+				self["key_green"].setText(_("Timers"))
+			else:
+				self["key_green"].setText(_("Subservices"))
+		self["key_blue"].setText(_("Extensions"))
+
 	def LongOKPressed(self):
 		if isinstance(self, InfoBarEPG):
 			if config.vixsettings.QuickEPG_mode.value == "1":
@@ -277,7 +297,7 @@ class InfoBarShowHide:
 
 	def __onShow(self):
 		self.__state = self.STATE_SHOWN
-		self.ecmTimer.start(1000, False)
+		self.doButtonsCheck()
 		self.startHideTimer()
 
 	def startHideTimer(self):
@@ -451,7 +471,7 @@ class InfoBarShowHide:
 				self.dlg_stack.append(self.eventView)
 			else:
 				print "no epg for the service avail.. so we show multiepg instead of eventinfo"
-				self.openMultiServiceEPG(False)
+# 				self.openMultiServiceEPG(False)
 		else:
 			epglist = [ ]
 			self.epglist = epglist
@@ -3627,10 +3647,6 @@ class InfoBarSubserviceSelection:
 			{
 				"GreenPressed": (self.GreenPressed),
 			})
-		if not config.vixsettings.Subservice.value:
-			self["key_green"] = Label("Timers")
-		else:
-			self["key_green"] = Label("Subservices")
 
 		self["SubserviceQuickzapAction"] = HelpableActionMap(self, "InfobarSubserviceQuickzapActions",
 			{

@@ -57,17 +57,6 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 				"openEPGSearch": (self.openEPGSearch, _("Show the tv player...")),
 				"openIMDB": (self.openIMDB, _("Show the tv player...")),
 			}, prio=2)
-		
-		if config.vixsettings.ViXEPG_mode.value == "vixepg":
-			self["key_red"] = Label("Single EPG")
-		else:
-			self["key_red"] = Label("ViX EPG")
-		self["key_yellow"] = Label("Search")
-		self["key_blue"] = Label("Extensions")
-		if not config.vixsettings.Subservice.value:
-			self["key_green"] = Label("Timers")
-		else:
-			self["key_green"] = Label("Subservices")
 
 		self.allowPiP = True
 		
@@ -227,11 +216,6 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 			{
 				"leavePlayer": (self.leavePlayer, _("leave movie player..."))
 			})
-
-		self["key_red"] = Label("")
-		self["key_green"] = Label("Timers")
-		self["key_yellow"] = Label("Search")
-		self["key_blue"] = Label("Extensions")
 
 		self.allowPiP = True
 		
