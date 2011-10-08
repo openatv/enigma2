@@ -97,6 +97,7 @@ int eDVBTSTools::getPTS(off_t &offset, pts_t &pts, int fixed)
 	offset -= offset % 188;
 
 	int left = m_maxrange;
+	int resync_failed_counter = 64;
 	
 	while (left >= 188)
 	{
@@ -104,21 +105,28 @@ int eDVBTSTools::getPTS(off_t &offset, pts_t &pts, int fixed)
 		if (m_source->read(offset, packet, 188) != 188)
 		{
 			eDebug("read error");
-			break;
+			return -1;
 		}
 		left -= 188;
 		offset += 188;
 
 		if (packet[0] != 0x47)
 		{
-			eDebug("resync");
-			int i = 0;
-			while (i < 188)
+			const unsigned char* match = memchr(packet+1, 0x47, 188-1);
+			if (match != NULL)
 			{
-				if (packet[i] == 0x47)
-					break;
-				++i;
-				--offset;
+				eDebug("resync %d", match - packet);
+				offset += (match - packet) - 188;
+			}
+			else
+			{
+				eDebug("resync failed");
+				if (resync_failed_counter == 0)
+				{
+					eDebug("Too many resync failures, probably not a valid stream");
+					return -1;
+				}
+				--resync_failed_counter;
 			}
 			continue;
 		}
