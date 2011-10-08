@@ -1,7 +1,6 @@
-import struct
-import os
+import struct, os, time
 from config import config, ConfigSelection, ConfigYesNo, ConfigSubsection, ConfigText
-from enigma import eHdmiCEC, eRCInput
+from enigma import eHdmiCEC, eActionMap
 from Tools.StbHardware import getFPWasTimerWakeup
 from enigma import eTimer
 
@@ -34,7 +33,6 @@ for i in (10, 50, 100, 150, 250):
 config.hdmicec.minimum_send_interval = ConfigSelection(default = "0", choices = [("0", _("Disabled"))] + choicelist)
 
 class HdmiCec:
-	instance = None
 
 	def __init__(self):
 		assert not HdmiCec.instance, "only one HdmiCec instance is allowed!"
@@ -51,8 +49,9 @@ class HdmiCec:
 
 		self.volumeForwardingEnabled = False
 		self.volumeForwardingDestination = 0
-		eRCInput.getInstance().pyKeyEvent.get().append(self.keyEvent)
+		eActionMap.getInstance().bindAction('', -0x7FFFFFF, self.keyEvent)
 		config.hdmicec.volume_forwarding.addNotifier(self.configVolumeForwarding)
+		config.hdmicec.enabled.addNotifier(self.configVolumeForwarding)
 		if config.hdmicec.handle_deepstandby_events.value:
 			if not getFPWasTimerWakeup():
 				self.wakeupMessages()
@@ -270,7 +269,7 @@ class HdmiCec:
 					self.wakeup()
 
 	def configVolumeForwarding(self, configElement):
-		if configElement.value:
+		if config.hdmicec.enabled.value and config.hdmicec.volume_forwarding.value:
 			self.volumeForwardingEnabled = True
 			self.sendMessage(0x05, 'givesystemaudiostatus')
 		else:
@@ -280,7 +279,6 @@ class HdmiCec:
 		if not self.volumeForwardingEnabled: return
 		cmd = 0
 		data = ''
-		print "keyEvent hdmi: %d %d"%(keyCode, keyEvent)
 		if keyEvent == 0:
 			if keyCode == 115:
 				cmd = 0x44
@@ -298,10 +296,16 @@ class HdmiCec:
 			if keyCode == 114:
 				cmd = 0x44
 				data = str(struct.pack('B', 0x42))
+			if keyCode == 113:
+				cmd = 0x44
+				data = str(struct.pack('B', 0x43))
 		if keyEvent == 1:
 			if keyCode == 115 or keyCode == 114 or keyCode == 113:
 				cmd = 0x45
 		if cmd:
 			eHdmiCEC.getInstance().sendMessage(self.volumeForwardingDestination, cmd, data, len(data))
+			return 1
+		else:
+			return 0
 
 hdmi_cec = HdmiCec()

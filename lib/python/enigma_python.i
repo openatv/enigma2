@@ -176,7 +176,6 @@ typedef long time_t;
 %immutable eDVBResourceManager::frontendUseMaskChanged;
 %immutable eAVSwitch::vcr_sb_notifier;
 %immutable eHdmiCEC::messageReceived;
-%immutable eRCInput::pyKeyEvent;
 %immutable eHdmiCEC::addressChanged;
 %immutable ePythonMessagePump::recv_msg;
 %immutable eDVBLocalTimeHandler::m_timeUpdated;
