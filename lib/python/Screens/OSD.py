@@ -178,7 +178,7 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session = self.session)
-		self.list.append(getConfigListEntry(_("3d mode"), config.osd.threeDmode))
+		self.list.append(getConfigListEntry(_("3D Mode"), config.osd.threeDmode))
 		self.list.append(getConfigListEntry(_("Depth"), config.osd.threeDznorm))
 		self.list.append(getConfigListEntry(_("Show in extensions list ?"), config.osd.show3dextensions))
 		self["config"].list = self.list
