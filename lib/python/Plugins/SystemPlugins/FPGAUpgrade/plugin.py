@@ -99,10 +99,10 @@ class UpgradeStatus(Screen):
 class FPGAUpgrade(Screen):
 	skin = 	"""
 		<screen position="center,center" size="560,440" title="FPGA Upgrade" >
-			<ePixmap pixmap="ViX_HD/buttons/red.png" position="0,7" size="140,40" alphatest="blend" />
-			<ePixmap pixmap="ViX_HD/buttons/green.png" position="140,7" size="140,40" alphatest="blend" />
-			<ePixmap pixmap="ViX_HD/buttons/yellow.png" position="280,7" size="140,40" alphatest="blend" />
-			<ePixmap pixmap="ViX_HD/buttons/blue.png" position="420,7" size="140,40" alphatest="blend" />
+			<ePixmap pixmap="ViX_Day_HD/buttons/red.png" position="0,7" size="140,40" alphatest="blend" />
+			<ePixmap pixmap="ViX_Day_HD/buttons/green.png" position="140,7" size="140,40" alphatest="blend" />
+			<ePixmap pixmap="ViX_Day_HD/buttons/yellow.png" position="280,7" size="140,40" alphatest="blend" />
+			<ePixmap pixmap="ViX_Day_HD/buttons/blue.png" position="420,7" size="140,40" alphatest="blend" />
 
 			<widget source="key_red" render="Label" position="30,3" zPosition="1" size="115,40" font="Regular;20" halign="left" valign="center" transparent="1" />
 			<widget source="key_green" render="Label" position="170,3" zPosition="1" size="115,40" font="Regular;20" halign="left" valign="center" transparent="1" />
