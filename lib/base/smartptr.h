@@ -34,13 +34,11 @@ public:
 	{
 		if (c)
 			c->AddRef();
-		updatePtrStr();
 	}
 	ePtr(const ePtr &c): ptr(c.ptr)
 	{
 		if (ptr)
 			ptr->AddRef();
-		updatePtrStr();
 	}
 	ePtr &operator=(T *c)
 	{
@@ -49,7 +47,6 @@ public:
 		if (ptr)
 			ptr->Release();
 		ptr=c;
-		updatePtrStr();
 		return *this;
 	}
 	ePtr &operator=(ePtr<T> &c)
@@ -59,7 +56,6 @@ public:
 		if (ptr)
 			ptr->Release();
 		ptr=c.ptr;
-		updatePtrStr();
 		return *this;
 	}
 	~ePtr()
@@ -69,6 +65,7 @@ public:
 	}
 	char *getPtrString()
 	{
+		updatePtrStr();
 		return m_ptrStr;
 	}
 #ifndef SWIG
