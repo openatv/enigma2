@@ -304,6 +304,18 @@ class AttributeParser:
 		self.guiObject.setForegroundColor(parseColor(value))
 	def foregroundColorSelected(self, value):
 		self.guiObject.setForegroundColorSelected(parseColor(value))
+	def foregroundNotCrypted(self, value):
+		self.guiObject.setForegroundColor(parseColor(value))
+	def backgroundNotCrypted(self, value):
+		self.guiObject.setBackgroundColor(parseColor(value))
+	def foregroundCrypted(self, value):
+		self.guiObject.setForegroundColor(parseColor(value))
+	def backgroundCrypted(self, value):
+		self.guiObject.setBackgroundColor(parseColor(value))
+	def foregroundEncrypted(self, value):
+		self.guiObject.setForegroundColor(parseColor(value))
+	def backgroundEncrypted(self, value):
+		self.guiObject.setBackgroundColor(parseColor(value))
 	def shadowColor(self, value):
 		self.guiObject.setShadowColor(parseColor(value))
 	def selectionDisabled(self, value):
