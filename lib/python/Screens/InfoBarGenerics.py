@@ -165,18 +165,42 @@ class EcmInfoLabel(Label):
 		self.visible = config.usage.show_cryptoinfo.value
 
 	def notCrypted(self):
-		self.instance.setForegroundColor(parseColor("#595959")),
-		self.instance.setBackgroundColor(parseColor("#aeaeae"))
+		if self.skinAttributes is not None:
+			attribs = [ ]
+			for (attrib, value) in self.skinAttributes:
+				if attrib == "foregroundNotCrypted":
+					self.instance.setForegroundColor(parseColor(value)),
+				elif attrib == "backgroundNotCrypted":
+			 		self.instance.setBackgroundColor(parseColor(value)),
+		else:
+			self.instance.setForegroundColor(parseColor("#595959")),
+			self.instance.setBackgroundColor(parseColor("#aeaeae")),
 		self.instance.setTransparent(1)
 
 	def crypted(self):
-		self.instance.setForegroundColor(parseColor("#aeaeae")),
-		self.instance.setBackgroundColor(parseColor("#868686"))
+		if self.skinAttributes is not None:
+			attribs = [ ]
+			for (attrib, value) in self.skinAttributes:
+				if attrib == "foregroundCrypted":
+					self.instance.setForegroundColor(parseColor(value)),
+				elif attrib == "backgroundCrypted":
+			 		self.instance.setBackgroundColor(parseColor(value)),
+		else:
+			self.instance.setForegroundColor(parseColor("#aeaeae")),
+			self.instance.setBackgroundColor(parseColor("#868686")),
 		self.instance.setTransparent(0)
 
 	def encrypted(self):
-		self.instance.setForegroundColor(parseColor("#aeaeae")),
-		self.instance.setBackgroundColor(parseColor("#595959"))
+		if self.skinAttributes is not None:
+			attribs = [ ]
+			for (attrib, value) in self.skinAttributes:
+				if attrib == "foregroundEncrypted":
+					self.instance.setForegroundColor(parseColor(value)),
+				elif attrib == "backgroundEncrypted":
+			 		self.instance.setBackgroundColor(parseColor(value)),
+		else:
+			self.instance.setForegroundColor(parseColor("#aeaeae")),
+			self.instance.setBackgroundColor(parseColor("#595959")),
 		self.instance.setTransparent(0)
 
 class InfoBarShowHide:
@@ -225,6 +249,7 @@ class InfoBarShowHide:
 		self.ecmTimer = eTimer()
 		self.ecmTimer.timeout.get().append(self.parseEcmInfo)
 
+		self.onShow.append(self.__onShowEcm)
 		self.onShow.append(self.__onShow)
 		self.onHide.append(self.__onHide)
 
@@ -246,6 +271,9 @@ class InfoBarShowHide:
 		if self.execing:
 			if config.usage.show_infobar_on_zap.value:
 				self.doShow()
+
+	def __onShowEcm(self):
+		self.ecmTimer.start(1000, False)
 
 	def __onShow(self):
 		self.__state = self.STATE_SHOWN
