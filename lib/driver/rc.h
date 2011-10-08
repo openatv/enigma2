@@ -232,7 +232,6 @@ public:
 
 	void keyPressed(const eRCKey &key)
 	{
-		/*emit*/ pyKeyEvent(key.code, key.flags);
 		/*emit*/ keyEvent(key);
 	}
 	
@@ -247,7 +246,6 @@ public:
 	void setKeyboardMode(int mode) { keyboardMode = mode; }
 	int  getKeyboardMode() { return keyboardMode; }
 	static eRCInput *getInstance() { return instance; }
-	PSignal2<void, int, int> pyKeyEvent;
 	void lock();
 	void unlock();
 	int islocked() { return locked; }
