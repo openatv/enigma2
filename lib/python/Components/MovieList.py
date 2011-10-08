@@ -87,6 +87,8 @@ def moviePlayState(cutsFileName, ref, length):
 			if not length or (length<0):
 				length = cutPTS[2]
 			if length:
+			        if cutPTS[1] >= length:
+			                return 100
 				return (100 * cutPTS[1]) // length
 			else:
 				return 50
