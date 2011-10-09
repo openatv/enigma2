@@ -42,6 +42,7 @@ from enigma import eBackgroundFileEraser, eTimer, eServiceCenter, eDVBServicePMT
 from time import time, localtime, strftime
 from os import stat as os_stat, listdir as os_listdir, link as os_link, path as os_path, system as os_system, statvfs, remove as os_remove
 from bisect import insort
+from random import randint
 
 # hack alert!
 from Menu import MainMenu, mdom
