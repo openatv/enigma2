@@ -1,0 +1,26 @@
+<default>
+	  <prerequisites>
+                    <tag type="Network" />
+	  </prerequisites>
+          <info>
+                    <author>kos</author>
+                    <name>WebBrowser</name>
+                    <packagename>enigma2-plugin-extensions-webbrowser</packagename>
+                    <shortdescription>webbrowser launcher</shortdescription>
+                    <description>webbrowser launcher</description>
+          </info>
+	  <files type="package"> <!-- without version, without .ipk -->
+		<file type="package" name="enigma2-plugin-extensions-webbrowser" />
+                <file type="package" name="python-gdata" />
+                <file type="package" name="libqtwebkite4" />
+                <file type="package" name="vuplus-webbrowser-utils" />
+                <file type="package" name="qt4-embedded-fonts" />
+                <file type="package" name="qt4-embedded-plugin-imageformat-gif" />
+                <file type="package" name="qt4-embedded-plugin-imageformat-ico" /> 
+                <file type="package" name="qt4-embedded-plugin-imageformat-jpeg" />
+                <file type="package" name="qt4-embedded-plugin-imageformat-mng" />
+                <file type="package" name="qt4-embedded-plugin-imageformat-svg" />
+                <file type="package" name="qt4-embedded-plugin-imageformat-tiff" />
+                <file type="package" name="qt4-embedded-plugin-iconengine-svgicon" />
+  	  </files>
+</default>

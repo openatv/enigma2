@@ -262,6 +262,8 @@ lib/python/Plugins/Extensions/Aafpanel/icons/Makefile
 lib/python/Plugins/Extensions/Aafpanel/Extra/Makefile
 lib/python/Plugins/Extensions/GraphMultiEPG/Makefile
 lib/python/Plugins/Extensions/GraphMultiEPG/meta/Makefile
+lib/python/Plugins/Extensions/WebBrowser/Makefile
+lib/python/Plugins/Extensions/WebBrowser/meta/Makefile
 lib/python/Plugins/PLi/Makefile
 lib/python/Plugins/SystemPlugins/CleanupWizard/Makefile
 lib/python/Plugins/SystemPlugins/CleanupWizard/meta/Makefile
