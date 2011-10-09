@@ -19,6 +19,7 @@ typedef FTC_SBitCache FTC_SBit_Cache;
 #include <lib/gdi/epoint.h>
 #include <lib/gdi/erect.h>
 #include <string>
+#include <list> 
 #include <lib/base/object.h> 
 
 #include <set>
@@ -46,9 +47,9 @@ class fontRenderClass
 	} *font;
 
 	FT_Library library;
-	FTC_Manager			cacheManager;				/* the cache manager							 */
+	FTC_Manager cacheManager;				/* the cache manager							 */
 	FTC_Image_Cache	imageCache;					/* the glyph image cache					 */
-	FTC_SBit_Cache	 sbitsCache;				/* the glyph small bitmaps cache	 */
+	FTC_SBit_Cache sbitsCache;				/* the glyph small bitmaps cache	 */
 	FT_Stroker stroker;
 	int strokerRadius;
 
@@ -137,6 +138,10 @@ class eTextPara: public iObject
 	eSize maximum;
 	int left;
 	glyphString glyphs;
+	std::list<int> lineOffsets;
+	std::list<int> lineChars;
+	int charCount;
+	bool doTopBottomReordering;	
 	int totalheight;
 
 	int appendGlyph(Font *current_font, FT_Face current_face, FT_UInt glyphIndex, int flags, int rflags, int border);
@@ -148,7 +153,8 @@ class eTextPara: public iObject
 public:
 	eTextPara(eRect area, ePoint start=ePoint(-1, -1))
 		: current_font(0), replacement_font(0), current_face(0), replacement_face(0),
-		area(area), cursor(start), maximum(0, 0), left(start.x()), totalheight(0), bboxValid(0)
+		area(area), cursor(start), maximum(0, 0), left(start.x()), totalheight(0), charCount(0),
+		doTopBottomReordering(false), bboxValid(0)
 	{
 	}
 	virtual ~eTextPara();
