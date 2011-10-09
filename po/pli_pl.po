@@ -305,6 +305,10 @@ msgstr ""
 "Po naciśnięciu OK czekaj!"
 
 #
+msgid "After pressing OK, please wait!"
+msgstr "Po naciśnięciu OK czekaj!"
+
+#
 msgid "After a reboot or power outage, StartupToStandby will bring your Dreambox to standby-mode."
 msgstr "Po restarcie lub zaniku zasilania StartupToStandby przełączy odbiornik w tryb czuwania."
 
@@ -326,7 +330,7 @@ msgstr "Wyświetlaj napisy dla niesłyszących"
 
 #
 msgid "Prefer hearing impaired subtitles"
-msgstr "Preferuj ścieżkę audio zapamiętaną dla kanału"
+msgstr "Preferuj napisy dla niesłyszących"
 
 #
 msgid "Allow zapping via Webinterface"
@@ -652,19 +656,19 @@ msgid "Change hostname"
 msgstr "Zmiana nazwy hosta"
 
 #
-msgid "Change pin code"
+msgid "Change PIN code"
 msgstr "Zmień kod PIN"
 
 #
-msgid "Change service pin"
+msgid "Change service PIN"
 msgstr "Zmien PIN kanału"
 
 #
-msgid "Change service pins"
+msgid "Change service PINs"
 msgstr "Zmień PIN kanałów"
 
 #
-msgid "Change setup pin"
+msgid "Change setup PIN"
 msgstr "Zmień PIN ustawień"
 
 #
@@ -1795,7 +1799,7 @@ msgid "Enter password:"
 msgstr "Wpisz hasło:"
 
 #
-msgid "Enter pin code"
+msgid "Enter PIN code"
 msgstr "Wpisz PIN"
 
 #
@@ -1807,7 +1811,7 @@ msgid "Enter share name:"
 msgstr "Wpisz nazwę udziału sieciowego:"
 
 #
-msgid "Enter the service pin"
+msgid "Enter the service PIN"
 msgstr "Wpisz PIN kanału"
 
 #
@@ -2086,6 +2090,10 @@ msgstr "Flashowanie nie powiodło się"
 #
 msgid "Following tasks will be done after you press OK!"
 msgstr "Poniższe zadania będą wykonane po wciśnięciu OK!"
+
+#
+msgid "For more information see www.pli-images.org"
+msgstr "Więcej informacji na www.pli-images.org"
 
 #
 msgid "Format"
@@ -3193,6 +3201,9 @@ msgstr "Menu listy nagrań"
 msgid "Multi EPG"
 msgstr "Multi EPG"
 
+msgid "Multi-EPG bouquet selection"
+msgstr "Wybór bukietów w Multi EPG"
+
 #
 msgid "Multimedia"
 msgstr "Multimedia"
@@ -3382,8 +3393,8 @@ msgid "New Zealand"
 msgstr "Nowa Zelandia"
 
 #
-msgid "New pin"
-msgstr "Nowy pin"
+msgid "New PIN"
+msgstr "Nowy PIN"
 
 #
 msgid "New Search"
@@ -3708,6 +3719,20 @@ msgid "Off"
 msgstr "Wyłącz"
 
 #
+msgid "Offline Upgrade"
+msgstr "Aktualizacja"
+
+#
+msgid ""
+"Offline upgrade in progress\n"
+"Please wait until your box reboots\n"
+"This may take a few minutes"
+msgstr ""
+"Trwa aktualizacja\n"
+"Czekaj aż nastąpi restart odbiornika\n"
+"To może potrwać kilka minut"
+
+#
 msgid "Offset after recording (in m)"
 msgstr "Offset po nagraniu (w min.)"
 
@@ -4015,11 +4040,11 @@ msgid "Please enter name of the new directory"
 msgstr "Podaj nazwę dla nowego katalogu"
 
 #
-msgid "Please enter the correct pin code"
+msgid "Please enter the correct PIN code"
 msgstr "Wpisz poprawny kod PIN"
 
 #
-msgid "Please enter the old pin code"
+msgid "Please enter the old PIN code"
 msgstr "Wpisz poprzedni kod PIN"
 
 #
@@ -4317,7 +4342,7 @@ msgstr "Przygotuj inny pen USB do flash'owania"
 
 #
 msgid "Prefer audio stream stored by service"
-msgstr "Preferuj napisy dla niesłyszących"
+msgstr "Preferuj ścieżkę audio zapamiętaną dla kanału"
 
 #
 msgid "Prefer AC3"
@@ -4326,6 +4351,10 @@ msgstr "Preferuj AC3"
 #
 msgid "Prefer DVB-grafical subtitles"
 msgstr "Preferuj napisy DVB"
+
+#
+msgid "Prefered EPG Language"
+msgstr "Preferowany język EPG"
 
 #
 msgid "Prefer subtitle stored by service"
@@ -4447,6 +4476,10 @@ msgstr "Pierwszy DNS"
 #
 msgid "Priority"
 msgstr "Priorytet konwertera"
+
+#
+msgid "probably www.pli-images.org is offline"
+msgstr "prawdopodobnie strona www.pli-images.org jest niedostępna"
 
 #
 msgid "Process"
@@ -4593,6 +4626,14 @@ msgid "Record time limited due to conflicting timer %s"
 msgstr "Czas nagrywania ograniczony z powodu konfliktu timera %s"
 
 #
+msgid "Recording data sync size"
+msgstr "Rozmiar 'data sync' dla nagrywania"
+
+#
+msgid "Recording demux buffer size"
+msgstr "Rozmiar bufora demux dla nagrywania"
+
+#
 msgid "Recorded files..."
 msgstr "Nagrane pliki..."
 
@@ -4617,8 +4658,8 @@ msgid "Recordings always have priority"
 msgstr "Nagrywanie zawsze ma priorytet"
 
 #
-msgid "Reenter new pin"
-msgstr "Wpisz ponownie nowy pin"
+msgid "Reenter new PIN"
+msgstr "Wpisz ponownie nowy PIN"
 
 #
 msgid "Refresh Rate"
@@ -4648,11 +4689,11 @@ msgid "Reloading bouquets and services..."
 msgstr "Przeładowanie bukietów i kanałów"
 
 #
-msgid "Remember service pin"
+msgid "Remember service PIN"
 msgstr "Pamiętaj PIN kanału"
 
 #
-msgid "Remember service pin cancel"
+msgid "Remember service PIN cancel"
 msgstr "Anuluj 'pamiętanie' PINu kanału"
 
 #
@@ -6027,7 +6068,7 @@ msgid "Subtitle language selection 4"
 msgstr "Preferowany język napisów 4"
 
 #
-msgid "Allow Subtiles equals Audio mask"
+msgid "Allow Subtitle equals Audio mask"
 msgstr "Napisy jak ścieżka audio:"
 
 #
@@ -6214,6 +6255,10 @@ msgstr ""
 "Wciśnij OK aby kontynuować."
 
 #
+msgid "The current beta image is not stable"
+msgstr "Aktualne 'beta image' nie jest stabilne"
+
+#
 msgid "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to create a Dreambox format data DVD (which will not play in stand-alone DVD players) instead?"
 msgstr "Standard DVD nie wspiera strumienia video H.264 (HDTV). Czy zamiast tego nagrać dane w formacie data DVD? Dane nie będą czytane w stacjonarnych odtwarzaczach DVD."
 
@@ -6341,15 +6386,15 @@ msgid "The path %s already exists."
 msgstr "Ścieżka %s już istnieje."
 
 #
-msgid "The pin code has been changed successfully."
+msgid "The PIN code has been changed successfully."
 msgstr "Kod PIN został zmieniony pomyślnie."
 
 #
-msgid "The pin code you entered is wrong."
+msgid "The PIN code you entered is wrong."
 msgstr "Wpisany kod PIN jest niepoprawny."
 
 #
-msgid "The pin codes you entered are different."
+msgid "The PIN codes you entered are different."
 msgstr "Kody PIN które wpisałeś różnią się."
 
 #
@@ -6358,12 +6403,17 @@ msgid "The results have been written to %s."
 msgstr "Wyniki zostały zapisane w %s."
 
 #
+#
 msgid "The sleep timer has been activated."
 msgstr "Wyłącznik czasowy został aktywowany."
 
 #
 msgid "The sleep timer has been disabled."
 msgstr "Wyłącznik czasowy został wyłączony."
+
+#
+msgid "The status of the current beta image could not be checked"
+msgstr "Status aktualnego beta image nie może zostać sprawdzony"
 
 #
 msgid "The timer file (timers.xml) is corrupt and could not be loaded."
@@ -6893,6 +6943,10 @@ msgstr ""
 "Błąd: "
 
 #
+msgid "Unattended upgrade without GUI and reboot system"
+msgstr "Aktualizuj 'bezobsługowo' (bez GUI; automatyczny restart)"
+
+#
 msgid "Uncommitted DiSEqC command"
 msgstr "Uncommitted DiSEqC command"
 
@@ -6978,6 +7032,10 @@ msgstr "Aktualizowanie, proszę czekać..."
 #
 msgid "Updating... Please wait... This can take some minutes..."
 msgstr "Aktualizowanie... Proszę czekać... To może potrwać kilka minut..."
+
+#
+msgid "Upgrade and ask to reboot"
+msgstr "Aktualizuj i zapytaj o restart"
 
 #
 msgid "Upgrade finished."
@@ -7527,6 +7585,10 @@ msgid "Where to save temporary timeshift recordings?"
 msgstr "Gdzie zapisywać tymczasowe nagrania timeshift?"
 
 #
+msgid "width"
+msgstr "Szerokość"
+
+#
 msgid "Wireless"
 msgstr "Bezprzewodowy"
 
@@ -7739,9 +7801,9 @@ msgstr ""
 
 #
 msgid ""
-"You need to set a pin code and hide it from your children.\n"
+"You need to set a PIN code and hide it from your children.\n"
 "\n"
-"Do you want to set the pin now?"
+"Do you want to set the PIN now?"
 msgstr ""
 "Ustaw kod PIN i ukryj przed dziećmi.\n"
 "\n"
@@ -8416,6 +8478,10 @@ msgid "hear radio..."
 msgstr "Słuchaj radia..."
 
 #
+msgid "height"
+msgstr "Wysokość"
+
+#
 msgid "help..."
 msgstr "Pomoc..."
 
@@ -8657,6 +8723,10 @@ msgstr "Nie użyty"
 #
 msgid "nothing connected"
 msgstr "Nic nie podłączono"
+
+#
+msgid "Nothing to upgrade"
+msgstr "Brak aktualizacji"
 
 #
 msgid "of a DUAL layer medium used."
@@ -8903,7 +8973,7 @@ msgid "select the movie path"
 msgstr "Wybierz ścieżkę filmu"
 
 #
-msgid "service pin"
+msgid "service PIN"
 msgstr "PIN kanału"
 
 #
@@ -8911,7 +8981,7 @@ msgid "sets the Audio Delay (LipSync)"
 msgstr "Ustawia opóźnienie Audio (LipSync)"
 
 #
-msgid "setup pin"
+msgid "setup PIN"
 msgstr "PIN ustawień"
 
 #
@@ -9095,8 +9165,12 @@ msgid "this recording"
 msgstr "To nagranie"
 
 #
-msgid "this service is protected by a parental control pin"
+msgid "this service is protected by a parental control PIN"
 msgstr "Ten kanał jest chroniony kodem blokady rodzicielskiej"
+
+#
+msgid "top"
+msgstr "Góra"
 
 #
 msgid "toggle a cut mark at the current position"
