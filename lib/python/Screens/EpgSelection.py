@@ -42,7 +42,7 @@ class EPGSelection(Screen):
 	if data.find('xres="1280"') >= 0:
 		QuickEPG = """
 			<screen name="QuickEPG" position="0,505" size="1280,215" title="QuickEPG" backgroundColor="transparent" flags="wfNoBorder">
-				<ePixmap alphatest="off" pixmap="Magic/infobar/infobar-hd.png" position="0,0" size="1280,220" zPosition="0"/>
+				<ePixmap alphatest="off" pixmap="DMConcinnity-HD/infobar.png" position="0,0" size="1280,220" zPosition="0"/>
 				<widget source="Service" render="Picon" position="60,75" size="100,60" transparent="1" zPosition="2" alphatest="blend">
 					<convert type="ServiceName">Reference</convert>
 				</widget>
@@ -153,7 +153,7 @@ class EPGSelection(Screen):
 	else:
 		QuickEPG = """
 			<screen name="QuickEPG" position="0,325" size="720,276" title="QuickEPG" backgroundColor="transparent" flags="wfNoBorder" >
-				<ePixmap alphatest="off" pixmap="Magic/infobar/infobar.png" position="0,0" size="720,156" zPosition="1"/>
+				<ePixmap alphatest="off" pixmap="DMConcinnity-HD/infobar.png" position="0,0" size="720,156" zPosition="1"/>
 				<eLabel backgroundColor="#41080808" position="0,156" size="720,110" zPosition="2"/>
 				<widget borderColor="#0f0f0f" borderWidth="1" backgroundColor="#16000000" font="Enigma;24" foregroundColor="#00f0f0f0" halign="left" noWrap="1" position="88,120" render="Label" size="68,28" source="global.CurrentTime" transparent="1" zPosition="3">
 					<convert type="ClockToText">Default</convert>

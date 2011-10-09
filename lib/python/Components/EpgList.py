@@ -603,7 +603,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		return res
 
 	def findPicon(self, service = None, serviceName = None):
-		if config.GraphEPG.UsePicon.value and PLIPGNoPicon == 1:
+		if config.GraphEPG.UsePicon.value and PLIEPGNoPicon == 1:
 			service_refstr = None
 			serviceName_ref = None
 			if service is not None:
