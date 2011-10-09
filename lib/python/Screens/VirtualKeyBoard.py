@@ -296,7 +296,6 @@ class VirtualKeyBoard(Screen):
 			self.shiftMode = False
 		else:
 			self.shiftMode = True
-		
 		self.buildVirtualKeyBoard(self.selectedKey)
 			
 	def backClicked(self):

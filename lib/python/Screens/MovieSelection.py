@@ -51,6 +51,7 @@ last_selected_dest = []
 
 AUDIO_EXTENSIONS = frozenset((".mp3", ".wav", ".ogg", ".flac", ".m4a", ".mp2", ".m2a"))
 DVD_EXTENSIONS = ('.iso', '.img')
+IMAGE_EXTENSIONS = frozenset((".jpg", ".png", ".gif", ".bmp"))
 preferredTagEditor = None
 
 def defaultMoviePath():
@@ -457,7 +458,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		if not os.path.isdir(config.movielist.last_videodir.value):
 			config.movielist.last_videodir.value = defaultMoviePath()
 			config.movielist.last_videodir.save()
-		self.current_ref = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + config.movielist.last_videodir.value)
+		self.setCurrentRef(config.movielist.last_videodir.value)
 
 		self.settings = {\
 			"listtype": config.movielist.listtype.value,
@@ -830,6 +831,22 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				if ext in DVD_EXTENSIONS:
 					if self.playAsDVD(path):
 						return
+				if ext in IMAGE_EXTENSIONS:
+				        try:
+				                from Plugins.Extensions.PicturePlayer import ui
+				                # Build the list for the PicturePlayer UI
+						filelist = []
+						index = 0
+						for item in self.list.list:
+							p = item[0].getPath()
+							if p == path:
+							        index = len(filelist)
+							if os.path.splitext(p)[1].lower() in IMAGE_EXTENSIONS:
+							        filelist.append(((p,False), None))
+				                self.session.open(ui.Pic_Full_View, filelist, index, path)
+					except Exception, ex:
+					        print "[ML] Cannot display", str(ex)
+					return
 				self.movieSelected()
 
 	# Note: DVDBurn overrides this method, hence the itemSelected indirection.
@@ -949,12 +966,17 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 	def setSortType(self, type):
 		self["list"].setSortType(type)
 
+	def setCurrentRef(self, path):
+		self.current_ref = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + path)
+		# Magic: this sets extra things to show
+		self.current_ref.setName('8192:jpg 8192:png 8192:gif 8192:bmp')
+
 	def reloadList(self, sel = None, home = False):
 		if not os.path.isdir(config.movielist.last_videodir.value):
 			path = defaultMoviePath()
 			config.movielist.last_videodir.value = path
 			config.movielist.last_videodir.save()
-			self.current_ref = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + path)
+			self.setCurrentRef(path)
 			self["freeDiskSpace"].path = path
 		if sel is None:
 			sel = self.getCurrent()
@@ -991,7 +1013,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			if os.path.isdir(res):
 				config.movielist.last_videodir.value = res
 				config.movielist.last_videodir.save()
-				self.current_ref = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + res)
+				self.setCurrentRef(res)
 				self["freeDiskSpace"].path = res
 				self.reloadList(home = True)
 			else:

@@ -576,11 +576,6 @@ RESULT eDVBResourceManager::getChannelList(ePtr<iDVBChannelList> &list)
 		if (!simulate) \
 			eDebug(x); \
 	} while(0)
-//		else \
-//		{ \
-//			eDebugNoNewLine("SIMULATE:"); \
-//			eDebug(x); \
-//		} \
 
 
 RESULT eDVBResourceManager::allocateChannel(const eDVBChannelID &channelid, eUsePtr<iDVBChannel> &channel, bool simulate)
@@ -1294,34 +1289,31 @@ void eDVBChannel::cueSheetEvent(int event)
 	/* align toward zero */
 static inline long long align(long long x, int align)
 {
-	int sign = x < 0;
-
-	if (sign)
-		x = -x;
-
-	x -= x % align;
-
-	if (sign)
-		x = -x;
-
-	return x;
+	if (x < 0)
+	{
+		return x - (x % (-align));
+	}
+	else
+	{
+		return x - (x % align);
+	}
 }
 
 	/* align toward zero */
 static inline long long align_with_len(long long x, int align, size_t &len)
 {
-	int sign = x < 0;
-
-	if (sign)
-		x = -x;
-
-	x -= x % align;
-	len += x % align;
-
-	if (sign)
-		x = -x;
-
-	return x;
+	if (x < 0)
+	{
+		int res = x % (-align);
+		len -= res;
+		return x - res;
+	}
+	else
+	{
+		int res = x % align;
+		len += res;
+		return x - res;
+	}
 }
 
 	/* remember, this gets called from another thread. */
