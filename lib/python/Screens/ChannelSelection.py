@@ -1377,14 +1377,19 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			root = self.getRoot()
 			if not root or not (root.flags & eServiceReference.isGroup):
 				if config.usage.servicelistpreview_mode.value:
-					self.preview(enable_pipzap = True)
-					self.asciiOff()
-					if ref == curref:
-						self.startref = None
-						self.saveRoot()
-						self.saveChannel(ref)
-						config.servicelist.lastmode.save()
-						self.addToHistory(ref)
+					try:
+						self.preview(enable_pipzap = True)
+						self.asciiOff()
+						if ref == curref:
+							self.startref = None
+							self.saveRoot()
+							self.saveChannel(ref)
+							config.servicelist.lastmode.save()
+							self.addToHistory(ref)
+							self.close(ref)
+					except:
+						self.zap(enable_pipzap = True)
+						self.asciiOff()
 						self.close(ref)
 				else:
 					self.zap(enable_pipzap = True)

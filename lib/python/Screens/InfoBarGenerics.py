@@ -42,6 +42,7 @@ from enigma import eBackgroundFileEraser, eTimer, eServiceCenter, eDVBServicePMT
 from time import time, localtime, strftime
 from os import stat as os_stat, listdir as os_listdir, link as os_link, path as os_path, system as os_system, statvfs, remove as os_remove
 from bisect import insort
+from random import randint
 
 # hack alert!
 from Menu import MainMenu, mdom
@@ -165,18 +166,42 @@ class EcmInfoLabel(Label):
 		self.visible = config.usage.show_cryptoinfo.value
 
 	def notCrypted(self):
-		self.instance.setForegroundColor(parseColor("#595959")),
-		self.instance.setBackgroundColor(parseColor("#aeaeae"))
+		if self.skinAttributes is not None:
+			attribs = [ ]
+			for (attrib, value) in self.skinAttributes:
+				if attrib == "foregroundNotCrypted":
+					self.instance.setForegroundColor(parseColor(value)),
+				elif attrib == "backgroundNotCrypted":
+			 		self.instance.setBackgroundColor(parseColor(value)),
+		else:
+			self.instance.setForegroundColor(parseColor("#595959")),
+			self.instance.setBackgroundColor(parseColor("#aeaeae")),
 		self.instance.setTransparent(1)
 
 	def crypted(self):
-		self.instance.setForegroundColor(parseColor("#aeaeae")),
-		self.instance.setBackgroundColor(parseColor("#868686"))
+		if self.skinAttributes is not None:
+			attribs = [ ]
+			for (attrib, value) in self.skinAttributes:
+				if attrib == "foregroundCrypted":
+					self.instance.setForegroundColor(parseColor(value)),
+				elif attrib == "backgroundCrypted":
+			 		self.instance.setBackgroundColor(parseColor(value)),
+		else:
+			self.instance.setForegroundColor(parseColor("#aeaeae")),
+			self.instance.setBackgroundColor(parseColor("#868686")),
 		self.instance.setTransparent(0)
 
 	def encrypted(self):
-		self.instance.setForegroundColor(parseColor("#aeaeae")),
-		self.instance.setBackgroundColor(parseColor("#595959"))
+		if self.skinAttributes is not None:
+			attribs = [ ]
+			for (attrib, value) in self.skinAttributes:
+				if attrib == "foregroundEncrypted":
+					self.instance.setForegroundColor(parseColor(value)),
+				elif attrib == "backgroundEncrypted":
+			 		self.instance.setBackgroundColor(parseColor(value)),
+		else:
+			self.instance.setForegroundColor(parseColor("#aeaeae")),
+			self.instance.setBackgroundColor(parseColor("#595959")),
 		self.instance.setTransparent(0)
 
 class InfoBarShowHide:
@@ -199,6 +224,11 @@ class InfoBarShowHide:
 			{
 				iPlayableService.evStart: self.serviceStarted,
 			})
+
+		self["key_red"] = Label()
+		self["key_yellow"] = Label()
+		self["key_blue"] = Label()
+		self["key_green"] = Label()
 
 		self.systemCaids = {
 			"06" : "irdeto",
@@ -225,8 +255,24 @@ class InfoBarShowHide:
 		self.ecmTimer = eTimer()
 		self.ecmTimer.timeout.get().append(self.parseEcmInfo)
 
+		self.onShow.append(self.__onShowEcm)
 		self.onShow.append(self.__onShow)
 		self.onHide.append(self.__onHide)
+
+	def doButtonsCheck(self):
+		if config.plisettings.ColouredButtons.value:
+			self["key_yellow"].setText(_("Search"))
+
+			if config.plisettings.PLIEPG_mode.value == "pliepg":
+				self["key_red"].setText(_("Single EPG"))
+			else:
+				self["key_red"].setText(_("PLI EPG"))
+
+			if not config.plisettings.Subservice.value:
+				self["key_green"].setText(_("Timers"))
+			else:
+				self["key_green"].setText(_("Subservices"))
+		self["key_blue"].setText(_("Extensions"))
 
 	def LongOKPressed(self):
 		if isinstance(self, InfoBarEPG):
@@ -247,9 +293,12 @@ class InfoBarShowHide:
 			if config.usage.show_infobar_on_zap.value:
 				self.doShow()
 
+	def __onShowEcm(self):
+		self.ecmTimer.start(1000, False)
+
 	def __onShow(self):
 		self.__state = self.STATE_SHOWN
-		self.ecmTimer.start(1000, False)
+		self.doButtonsCheck()
 		self.startHideTimer()
 
 	def startHideTimer(self):
@@ -423,7 +472,7 @@ class InfoBarShowHide:
 				self.dlg_stack.append(self.eventView)
 			else:
 				print "no epg for the service avail.. so we show multiepg instead of eventinfo"
-				self.openMultiServiceEPG(False)
+# 				self.openMultiServiceEPG(False)
 		else:
 			epglist = [ ]
 			self.epglist = epglist
@@ -869,7 +918,6 @@ class SimpleServicelist:
 		if not self.length or self.current >= self.length:
 			return None
 		return self.services[self.current]
-
 class InfoBarEPG:
 	""" EPG - Opens an EPG list when the showEPGList action fires """
 	def __init__(self):
@@ -3638,10 +3686,6 @@ class InfoBarSubserviceSelection:
 			{
 				"GreenPressed": (self.GreenPressed),
 			})
-		if not config.plisettings.Subservice.value:
-			self["key_green"] = Label("Timers")
-		else:
-			self["key_green"] = Label("Subservices")
 
 		self["SubserviceQuickzapAction"] = HelpableActionMap(self, "InfobarSubserviceQuickzapActions",
 			{

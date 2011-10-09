@@ -42,7 +42,7 @@ class EPGSelection(Screen):
 	if data.find('xres="1280"') >= 0:
 		QuickEPG = """
 			<screen name="QuickEPG" position="0,505" size="1280,215" title="QuickEPG" backgroundColor="transparent" flags="wfNoBorder">
-				<ePixmap alphatest="off" pixmap="DMConcinnity-HD/infobar.png" position="0,0" size="1280,220" zPosition="0"/>
+				<ePixmap alphatest="off" pixmap="DMConcinnity-HD/infobar-hd.png" position="0,0" size="1280,220" zPosition="0"/>
 				<widget source="Service" render="Picon" position="60,75" size="100,60" transparent="1" zPosition="2" alphatest="blend">
 					<convert type="ServiceName">Reference</convert>
 				</widget>
