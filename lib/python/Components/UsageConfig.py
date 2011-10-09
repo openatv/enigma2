@@ -203,6 +203,8 @@ def InitUsageConfig():
 		choiceoptions = [("0", _("Off")), ("1", _("Side by Side")),("2", _("Top and Bottom")), ("3", _("Auto"))]
 	elif config.misc.boxtype.value.startswith('et'):
 		choiceoptions = [("off", _("Off")), ("auto", _("Auto")), ("sidebyside", _("Side by Side")),("topandbottom", _("Top and Bottom"))]
+	elif config.misc.boxtype.value.startswith('dm'):
+		choiceoptions = [("0", _("Off")), ("1", _("Side by Side")),("2", _("Top and Bottom")), ("3", _("Auto"))]
  	config.osd.threeDmode = ConfigSelection(default = 'auto', choices = choiceoptions )
 	config.osd.threeDznorm = ConfigSlider(default = 50, increment = 1, limits = (0, 100))
 	config.osd.show3dextensions = ConfigYesNo(default = False)
