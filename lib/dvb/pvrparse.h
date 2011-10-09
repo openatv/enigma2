@@ -25,7 +25,7 @@ public:
 		/* these are non-fixed up pts value (like m_access_points), just used to accelerate stuff. */
 	std::multimap<pts_t, off_t> m_pts_to_offset; 
 
-	int startSave(const char *filename);
+	int startSave(const std::string& filename);
 	int stopSave(void);
 	int load(const char *filename);
 	
