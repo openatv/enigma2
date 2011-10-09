@@ -31,6 +31,138 @@ public:
 };
 
 #ifndef SWIG
+
+/* atomic inc/dec, borrowed from boost::smart_ptr */
+#if defined(__mips__)
+inline void atomic_increment(int * pw)
+{
+	/* ++*pw; */
+
+	int tmp;
+
+	__asm__ __volatile__
+	(
+		"0:\n\t"
+		".set push\n\t"
+		".set mips2\n\t"
+		"ll %0, %1\n\t"
+		"addiu %0, 1\n\t"
+		"sc %0, %1\n\t"
+		".set pop\n\t"
+		"beqz %0, 0b":
+		"=&r"(tmp), "=m"(*pw):
+		"m"(*pw)
+	);
+}
+
+inline int atomic_decrement(int * pw)
+{
+	/* return --*pw; */
+
+	int rv, tmp;
+
+	__asm__ __volatile__
+	(
+		"0:\n\t"
+		".set push\n\t"
+		".set mips2\n\t"
+		"ll %1, %2\n\t"
+		"addiu %0, %1, -1\n\t"
+		"sc %0, %2\n\t"
+		".set pop\n\t"
+		"beqz %0, 0b\n\t"
+		"addiu %0, %1, -1":
+		"=&r"(rv), "=&r"(tmp), "=m"(*pw):
+		"m"(*pw):
+		"memory"
+	);
+	return rv;
+}
+#elif defined(__ppc__) || defined(__powerpc__)
+inline void atomic_increment(int * pw)
+{
+	/* ++*pw; */
+
+	int tmp;
+
+	__asm__
+	(
+		"0:\n\t"
+		"lwarx %1, 0, %2\n\t"
+		"addi %1, %1, 1\n\t"
+		"stwcx. %1, 0, %2\n\t"
+		"bne- 0b":
+
+		"=m"(*pw), "=&b"(tmp):
+		"r"(pw), "m"(*pw):
+		"cc"
+	);
+}
+
+inline int atomic_decrement(int * pw)
+{
+	/* return --*pw; */
+
+	int rv;
+
+	__asm__ __volatile__
+	(
+		"sync\n\t"
+		"0:\n\t"
+		"lwarx %1, 0, %2\n\t"
+		"addi %1, %1, -1\n\t"
+		"stwcx. %1, 0, %2\n\t"
+		"bne- 0b\n\t"
+		"isync":
+
+		"=m"(*pw), "=&b"(rv):
+		"r"(pw), "m"(*pw):
+		"memory", "cc"
+	);
+	return rv;
+}
+#elif defined(__i386__) || defined(__x86_64__)
+inline int atomic_exchange_and_add(int * pw, int dv)
+{
+	/* 
+	 * int r = *pw;
+	 * *pw += dv;
+	 * return r;
+	 */
+
+	int r;
+
+	__asm__ __volatile__
+	(
+		"lock\n\t"
+		"xadd %1, %0":
+		"=m"(*pw), "=r"(r): // outputs (%0, %1)
+		"m"(*pw), "1"(dv): // inputs (%2, %3 == %1)
+		"memory", "cc" // clobbers
+	);
+	return r;
+}
+
+inline void atomic_increment(int * pw)
+{
+	/* atomic_exchange_and_add(pw, 1); */
+
+	__asm__
+	(
+		"lock\n\t"
+		"incl %0":
+		"=m"(*pw): // output (%0)
+		"m"(*pw): // input (%1)
+		"cc" // clobbers
+	);
+}
+
+inline int atomic_decrement(int * pw)
+{
+	return atomic_exchange_and_add(pw, -1) - 1;
+}
+#endif
+
 	struct oRefCount
 	{
 		volatile int count;
@@ -71,7 +203,7 @@ public:
 				if (!ref) \
 					delete this; \
 			}
-	#elif 0 && defined(__mips__)
+	#elif defined(__mips__) || defined(__ppc__) || defined(__powerpc__) || defined(__i386__) || defined(__x86_64__)
 		#define DECLARE_REF(x) 			\
 			public: void AddRef(); 		\
 					void Release();		\
@@ -79,92 +211,11 @@ public:
 		#define DEFINE_REF(c) \
 			void c::AddRef() \
 			{ \
-				unsigned long temp; \
-				__asm__ __volatile__( \
-				"		.set	mips3											\n" \
-				"1:		ll		%0, %1	# load counter							\n" \
-				"		.set	mips0											\n" \
-				"		addu	%0, 1	# increment								\n" \
-				"		.set	mips3											\n" \
-				"		sc		%0, %1	# try to store, checking for atomicity	\n" \
-				"		.set	mips0											\n" \
-				"		beqz	%0, 1b	# if not atomic (0), try again			\n" \
-				: "=&r" (temp), "=m" (ref.count) \
-				: "m" (ref.count) \
-				: ); \
+				atomic_increment(&ref.count); \
 			} \
 			void c::Release() \
 			{ \
-				unsigned long temp; \
-				__asm__ __volatile__( \
-				"		.set	mips3				\n" \
-				"1:		ll		%0, %1				\n" \
-				"		.set	mips0				\n" \
-				"		subu	%0, 1	# decrement	\n" \
-				"		.set	mips3				\n" \
-				"		sc		%0, %1				\n" \
-				"		.set	mips0				\n" \
-				"		beqz	%0, 1b				\n" \
-				: "=&r" (temp), "=m" (ref.count) \
-				: "m" (ref.count) \
-				: ); \
-				if (!ref) \
-					delete this; \
-			}
-	#elif 0 && (defined(__ppc__) || defined(__powerpc__))
-		#define DECLARE_REF(x) 			\
-			public: void AddRef(); 		\
-					void Release();		\
-			private: oRefCount ref;
-		#define DEFINE_REF(c) \
-			void c::AddRef() \
-			{ \
-				int temp; \
-				__asm__ __volatile__( \
-				"1:		lwarx	%0, 0, %3	\n" \
-				"		add		%0, %2, %0	\n" \
-				"		dcbt	0, %3		# workaround for PPC405CR Errata\n" \
-				"		stwcx.	%0, 0, %3	\n" \
-				"		bne-	1b			\n" \
-				: "=&r" (temp), "=m" (ref.count) \
-				: "r" (1), "r" (&ref.count), "m" (ref.count) \
-				: "cc"); \
-			} \
-			void c::Release() \
-			{ \
-				int temp; \
-				__asm__ __volatile__( \
-				"1:		lwarx	%0, 0, %3	\n" \
-				"		subf	%0, %2, %0	\n" \
-				"		dcbt	0, %3		# workaround for PPC405CR Errata\n" \
-				"		stwcx.	%0, 0, %3	\n" \
-				"		bne-	1b			\n" \
-				: "=&r" (temp), "=m" (ref.count) \
-				: "r" (1), "r" (&ref.count), "m" (ref.count) \
-				: "cc"); \
-				if (!ref) \
-					delete this; \
-			}
-	#elif defined(__i386__) || defined(__x86_64__)
-		#define DECLARE_REF(x) 			\
-			public: void AddRef(); 		\
-					void Release();		\
-			private: oRefCount ref;
-		#define DEFINE_REF(c) \
-			void c::AddRef() \
-			{ \
-				__asm__ __volatile__( \
-				"		lock ; incl	%0	\n" \
-				: "=m" (ref.count) \
-				: "m" (ref.count)); \
-			} \
-			void c::Release() \
-			{ \
-				__asm__ __volatile__( \
-				"		lock ; decl	%0	\n" \
-				: "=m" (ref.count) \
-				: "m" (ref.count)); \
-				if (!ref) \
+				if (!atomic_decrement(&ref.count)) \
 					delete this; \
 			}
 	#else
