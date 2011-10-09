@@ -64,16 +64,14 @@ public:
 			} \
 			void c::Release() \
 			{ \
-				{ \
-					eSingleLocker l(ref_lock); \
-					--object_total_remaining; \
-					--ref; \
-					eDebug("OBJECT_DEBUG " #c "-%p now %d", this, (int)ref); \
-				} \
+				eSingleLocker l(ref_lock); \
+				--object_total_remaining; \
+				--ref; \
+				eDebug("OBJECT_DEBUG " #c "-%p now %d", this, (int)ref); \
 				if (!ref) \
 					delete this; \
 			}
-	#elif defined(__mips__)
+	#elif 0 && defined(__mips__)
 		#define DECLARE_REF(x) 			\
 			public: void AddRef(); 		\
 					void Release();		\
@@ -113,7 +111,7 @@ public:
 				if (!ref) \
 					delete this; \
 			}
-	#elif defined(__ppc__) || defined(__powerpc__)
+	#elif 0 && (defined(__ppc__) || defined(__powerpc__))
 		#define DECLARE_REF(x) 			\
 			public: void AddRef(); 		\
 					void Release();		\
@@ -184,10 +182,8 @@ public:
 			} \
 			void c::Release() \
 	 		{ \
-				{ \
-					eSingleLocker l(ref_lock); \
-					--ref; \
-				} \
+				eSingleLocker l(ref_lock); \
+				--ref; \
 				if (!ref) \
 					delete this; \
 			}
