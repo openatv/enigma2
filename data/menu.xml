@@ -125,12 +125,11 @@ self.session.open(HdmiCECSetupScreen)
 					<item level="2" text="OSD Setup" entryID="osdsetup" requires="OsdSetup"><screen module="OSD" screen="OSDSetup"/></item>
 					<item level="2" text="OSD 3D Setup" entryID="osd3dsetup" requires="CanChange3DOsd"><screen module="OSD" screen="OSD3DSetupScreen"/></item>
 				</menu>
-				<item level="0" entryID="recording_setup"><setup id="recording" /></item>
-				<item level="2" text="Recording Paths" entryID="RecordPaths"><screen module="RecordPaths" screen="RecordPathsSettings" /></item>
+				<item level="0" text="Recording Settings" entryID="recording_setup"><screen module="Recordings_Timershift" screen="RecordingSettings" /></item>
 				<item level="1" entryID="rfmod_setup" requires="RfModulator"><setup id="RFmod"/></item>
 				<item level="0" text="Skin Setup" entryID="skin_setup"><screen module="SkinSelector" screen="SkinSelector"/></item>
 				<item level="2" entryID="subtitle_setup"><setup id="subtitlesetup" /></item>
-				<item level="2" entryID="timshift_setup"><setup id="timeshiftsetup" /></item>
+				<item level="0" text="Timeshift Settings" entryID="timshift_setup"><screen module="Recordings_Timershift" screen="TimeshiftSettings" /></item>
 				<item level="0" entryID="time_setup"><setup id="time"/></item>
 				<!--<item level="0" text="Video Setup" entryID="video_setup"><screen module="VideoSetup" /></item>-->
 			</menu>
