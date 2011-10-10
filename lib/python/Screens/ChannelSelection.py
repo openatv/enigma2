@@ -67,7 +67,7 @@ class BouquetSelector(Screen):
 	def cancelClick(self):
 		self.close(False)
 
-class VIXBouquetSelector(Screen):
+class PLIBouquetSelector(Screen):
 	def __init__(self, session, bouquets, curbouquet, direction, enableWrapAround=True):
 		Screen.__init__(self, session)
 		self.skinName = "BouquetSelector"

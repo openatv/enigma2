@@ -1,4 +1,4 @@
-from ChannelSelection import ChannelSelection, BouquetSelector, SilentBouquetSelector, VIXBouquetSelector
+from ChannelSelection import ChannelSelection, BouquetSelector, SilentBouquetSelector, PLIBouquetSelector
 from Components.ActionMap import ActionMap, HelpableActionMap
 from Components.ActionMap import NumberActionMap
 from Components.Harddisk import harddiskmanager
@@ -1020,7 +1020,7 @@ class InfoBarEPG:
 	def GraphEPG_CB(self, direction, epgcall):
 		bouquets = self.servicelist.getBouquetList()
 		self.epg = epgcall
-		self.session.openWithCallback(self.onBouquetSelectorClose, VIXBouquetSelector, self.bouquets, self.epg_bouquet, direction)
+		self.session.openWithCallback(self.onBouquetSelectorClose, PLIBouquetSelector, self.bouquets, self.epg_bouquet, direction)
 
 	def onBouquetSelectorClose(self, bouquet):
 		if bouquet:
