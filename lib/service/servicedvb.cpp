@@ -2254,7 +2254,7 @@ RESULT eDVBServicePlay::startTimeshift()
 		eDebug("could not query ts path");
 		return -5;
 	}
-	tspath.append("/timeshift.XXXXXX");
+	tspath.append("timeshift.XXXXXX");
 	char* templ;
 	templ = new char[tspath.length() + 1];
 	strcpy(templ, tspath.c_str());

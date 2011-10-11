@@ -1944,7 +1944,10 @@ class InfoBarTimeshift:
 		self.pts_seekpointer_MaxX = 396 # make sure you can divide this through 2
 
 	def __evStart(self):
-		print "!!!!!!!!!!!!!! PTS-Plugin: __evStart"
+		print "[TimeShift] - __evStart"
+		if not config.usage.timeshift_path.value.endswith('/'):
+			print "No trailing '/' in config.usage.timeshift_path.value, adding it"
+			config.usage.timeshift_path.value += '/'
 		self.service_changed = 1
 		self.pts_delay_timer.stop()
 		self.pts_service_changed = True
@@ -1954,7 +1957,7 @@ class InfoBarTimeshift:
 		if not config.timeshift.isRecording.value:
 			self.timeshift_enabled = 0
 			self.__seekableStatusChanged()
-		print "!!!!!!!!!!!!!! PTS-Plugin: __evEnd"
+		print "[TimeShift] - __evEnd"
 
 	def __evSOF(self):
 		if not config.timeshift.enabled.value or not self.timeshift_enabled:
@@ -2180,7 +2183,7 @@ class InfoBarTimeshift:
 
 	def restartTimeshift(self):
 		self.ActivatePermanentTimeshift()
-		Notifications.AddNotification(MessageBox, _("PTS-Plugin: Restarting Timeshift!"), MessageBox.TYPE_INFO, timeout=5)
+		Notifications.AddNotification(MessageBox, _("[TimeShift] - Restarting Timeshift!"), MessageBox.TYPE_INFO, timeout=5)
 
 	def saveTimeshiftPopup(self):
 		self.session.openWithCallback(self.saveTimeshiftPopupCallback, ChoiceBox, \
@@ -2323,7 +2326,7 @@ class InfoBarTimeshift:
 							elif config.recording.filename_composition.value == "short":
 								ptsfilename = "%s - %s" % (strftime("%Y%m%d",localtime(self.pts_starttime)),self.pts_curevent_name)
 					except Exception, errormsg:
-						print "PTS-Plugin: Using default filename"
+						print "[TimeShift] - Using default filename"
 
 					if config.recording.ascii_filenames.value:
 						ptsfilename = ASCIItranslit.legacyEncode(ptsfilename)
@@ -2351,7 +2354,7 @@ class InfoBarTimeshift:
 							elif config.recording.filename_composition.value == "short":
 								ptsfilename = "%s - %s" % (strftime("%Y%m%d",localtime(int(begintime))),eventname)
 					except Exception, errormsg:
-						print "PTS-Plugin: Using default filename"
+						print "[TimeShift] - Using default filename"
 
 					if config.recording.ascii_filenames.value:
 						ptsfilename = ASCIItranslit.legacyEncode(ptsfilename)
@@ -2456,7 +2459,7 @@ class InfoBarTimeshift:
 					statinfo = os_stat("%s%s" % (config.usage.timeshift_path.value,filename))
 					# if no write for 5 sec = stranded timeshift
 					if statinfo.st_mtime < (time()-5.0):
-						print "PTS-Plugin: Erasing stranded timeshift %s" % filename
+						print "[TimeShift] - Erasing stranded timeshift %s" % filename
 						self.BgFileEraser.erase("%s%s" % (config.usage.timeshift_path.value,filename))
 
 						# Delete Meta and EIT File too
@@ -2633,7 +2636,7 @@ class InfoBarTimeshift:
 
 		# Merging failed :(
 		if not ptsfilemerged and ptsgetnextfile:
-			Notifications.AddNotification(MessageBox,_("PTS-Plugin: Merging records failed!"), MessageBox.TYPE_ERROR)
+			Notifications.AddNotification(MessageBox,_("[TimeShift] - Merging records failed!"), MessageBox.TYPE_ERROR)
 
 	def ptsCreateAPSCFiles(self, filename):
 		if Directories.fileExists(filename, 'r'):
@@ -2900,7 +2903,7 @@ class InfoBarTimeshift:
 		try:
 			ts.setNextPlaybackFile("%s%s" % (config.usage.timeshift_path.value,nexttsfile))
 		except:
-			print "PTS-Plugin: setNextPlaybackFile() not supported by OE. Enigma2 too old !?"
+			print "[TimeShift] - setNextPlaybackFile() not supported by OE. Enigma2 too old !?"
 
 	def ptsSeekBackHack(self):
 		if not config.timeshift.enabled.value or not self.timeshift_enabled:
