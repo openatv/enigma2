@@ -161,7 +161,7 @@ class TryQuitMainloop(MessageBox):
 				self.onShow.append(self.__onShow)
 				self.onHide.append(self.__onHide)
 		else:
-			self.skin = """<screen position="0,0" size="0,0"/>"""
+			self.skin = """<screen position="1310,0" size="0,0"/>"""
 			Screen.__init__(self, session)
 			self.close(True)
 
