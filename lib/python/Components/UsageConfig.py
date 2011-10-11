@@ -536,7 +536,7 @@ def InitUsageConfig():
 	config.backupmanager.lastlog = ConfigText(default=' ', fixed_size=False)
 
 	config.plisettings = ConfigSubsection()
-	config.plisettings.Subservice = ConfigYesNo(default = False)
+	config.plisettings.Subservice = ConfigYesNo(default = True)
 	config.plisettings.ColouredButtons = ConfigYesNo(default = True)
 	config.plisettings.PLIEPG_mode = ConfigSelection(default="cooltvguide", choices = [
 					("pliepg", _("Show Graphical EPG")),
