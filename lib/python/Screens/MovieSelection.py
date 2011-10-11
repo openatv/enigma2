@@ -1461,19 +1461,19 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			return
 		serviceHandler = eServiceCenter.getInstance()
 		offline = serviceHandler.offlineOperations(current)
-		result = False
-		if offline is not None:
-			# really delete!
-			if not offline.deleteFromDisk(0):
-				result = True
-		if result == False:
-			self.session.open(MessageBox, _("Delete failed!"), MessageBox.TYPE_ERROR)
-		else:
+		try:
+			if offline is None:
+			        from enigma import eBackgroundFileEraser
+			        eBackgroundFileEraser.getInstance().erase(current.getPath())
+			else:
+				if offline.deleteFromDisk(0):
+					raise Exception, "Offline delete failed"
 			self["list"].removeService(current)
 			from Screens.InfoBarGenerics import delResumePoint
 			delResumePoint(current)
-			# Todo: This is pointless, delete is not finished yet.
-			self["freeDiskSpace"].update()
+		except Exception, ex:
+			self.session.open(MessageBox, _("Delete failed!") + "\n" + str(ex), MessageBox.TYPE_ERROR)
+
 
 	def purgeAll(self):
 		recordings = self.session.nav.getRecordings()
