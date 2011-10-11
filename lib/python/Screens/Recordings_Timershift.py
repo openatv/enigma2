@@ -352,7 +352,7 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 			self.entrydirname.value = res
 			if config.usage.allowed_timeshift_paths.value != self.lasttimeshiftdirs:
 				tmp = config.usage.allowed_timeshift_paths.value
-				default = self.instantrec_dirname.value
+				default = self.timeshift_dirname.value
 				if default not in tmp:
 					tmp = tmp[:]
 					tmp.append(default)
