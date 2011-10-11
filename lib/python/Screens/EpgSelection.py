@@ -179,7 +179,7 @@ class EPGSelection(Screen):
 			</screen>"""
 		GraphEPG = """
 			<screen name="GraphicalEPG" position="center,center" size="720,576" backgroundColor="#000000" title="Programme Guide">
-				<eLabel text="Programme Guide" position="200,18" size="380,28" font="Regular;22" foregroundColor="#FFFFFF" backgroundColor="#000000" shadowColor="#000000" halign="center" transparent="1" />
+				<widget source="Title" render="Label" position="200,18" size="380,28" font="Regular;22" foregroundColor="#FFFFFF" backgroundColor="#000000" shadowColor="#000000" halign="center" transparent="1" />
 				<widget name="date" position="30,18" size="180,24" font="Regular;20" halign="left"  foregroundColor="#00e5b243" backgroundColor="#000000" transparent="1" />
 				<widget source="global.CurrentTime" render="Label" position="140, 18" size="90,24" font="Regular;20" foregroundColor="#FFFFFF" backgroundColor="#000000" shadowColor="#000000" halign="right" transparent="1">
 						<convert type="ClockToText">Default</convert>
@@ -223,7 +223,7 @@ class EPGSelection(Screen):
 			"""
 		GraphEPGPIG = """
 			<screen name="GraphicalEPG" position="center,center" size="720,576" backgroundColor="#000000" title="Programme Guide" flags="wfNoBorder">
-				<eLabel text="Programme Guide" position="200,18" size="380,28" font="Regular;22" foregroundColor="#FFFFFF" backgroundColor="#000000" shadowColor="#000000" halign="center" transparent="1" />
+				<widget source="Title" render="Label" position="200,18" size="380,28" font="Regular;22" foregroundColor="#FFFFFF" backgroundColor="#000000" shadowColor="#000000" halign="center" transparent="1" />
 				<widget name="date" position="30,18" size="180,24" font="Regular;20" halign="left" foregroundColor="#00e5b243" backgroundColor="#000000" transparent="1" />
 				<widget source="global.CurrentTime" render="Label" position="140, 18" size="90,24" font="Regular;20" foregroundColor="#FFFFFF" backgroundColor="#000000" shadowColor="#000000" halign="right" transparent="1">
 					<convert type="ClockToText">Default</convert>
@@ -312,6 +312,7 @@ class EPGSelection(Screen):
 				else:
 					self.skin = self.GraphEPGPIG
 					self.skinName = "GraphicalEPGPIG"
+					Screen.setTitle(self, _("Programme Guide"))
 				now = time()
 				tmp = now % 900
 				self.ask_time = now - tmp
@@ -329,10 +330,10 @@ class EPGSelection(Screen):
 					self.time_lines.append(pm)
 					self["timeline%d"%(x)] = pm
 				self["timeline_now"] = Pixmap()
-				self["key_red"] = Button("IMDb Search")
-				self["key_green"] = Button("Add Timer")
-				self["key_yellow"] = Button("EPG Search")
-				self["key_blue"] = Button("Add AutoTimer")
+				self["key_red"] = Button(_("Zap"))
+				self["key_green"] = Button(_("Add Timer"))
+				self["key_yellow"] = Button(_("EPG Search"))
+				self["key_blue"] = Button(_("Add AutoTimer"))
 				self["date"] = Label()
 				self.services = service
 				self.zapFunc = zapFunc
@@ -345,7 +346,7 @@ class EPGSelection(Screen):
 				self["key_yellow"] = Button(_("Prev"))
 				self["key_blue"] = Button(_("Next"))
 				self["key_red"] = Button(_("IMDb Search"))
-				self["key_green"] = Button(_("Add timer"))
+				self["key_green"] = Button(_("Add Timer"))
 				self["now_button"] = Pixmap()
 				self["next_button"] = Pixmap()
 				self["more_button"] = Pixmap()
@@ -363,7 +364,7 @@ class EPGSelection(Screen):
 			self["key_red"] = Button(_("IMDb Search"))
 			self["key_yellow"] = Button(_("EPG Search"))
 			self["key_blue"] = Button(_("Add AutoTimer"))
-			self["key_green"] = Button(_("Add timer"))
+			self["key_green"] = Button(_("Add Timer"))
 			self.type = EPG_TYPE_SINGLE
 			self.currentService=ServiceReference(service)
 			self.zapFunc = None
@@ -377,7 +378,7 @@ class EPGSelection(Screen):
 			self["key_red"] = Button(_("IMDb Search"))
 			self["key_yellow"] = Button(_("EPG Search"))
 			self["key_blue"] = Button(_("Add AutoTimer"))
-			self["key_green"] = Button(_("Add timer"))
+			self["key_green"] = Button(_("Add Timer"))
 			self.list = []
 			self.oldService = self.session.nav.getCurrentlyPlayingServiceReference()
 			self.currentService=self.session.nav.getCurrentlyPlayingServiceReference()
@@ -561,7 +562,7 @@ class EPGSelection(Screen):
 			l.sortSingleEPG(self.sort_type)
 
 	def updateList(self):
-		scanning = 'Wait please while gathering data...'
+		scanning = _('Wait please while gathering data...')
 		self['lab1'].setText(scanning)
 		self.activityTimer.start(750)
 
@@ -894,7 +895,7 @@ class EPGSelection(Screen):
 	def removeTimer(self, timer):
 		timer.afterEvent = AFTEREVENT.NONE
 		self.session.nav.RecordTimer.removeEntry(timer)
-		self["key_green"].setText(_("Add timer"))
+		self["key_green"].setText(_("Add Timer"))
 		self.key_green_choice = self.ADD_TIMER
 
 	def timerAdd(self):
@@ -929,7 +930,7 @@ class EPGSelection(Screen):
 			self["key_green"].setText(_("Remove timer"))
 			self.key_green_choice = self.REMOVE_TIMER
 		else:
-			self["key_green"].setText(_("Add timer"))
+			self["key_green"].setText(_("Add Timer"))
 			self.key_green_choice = self.ADD_TIMER
 			print "Timeredit aborted"
 	
@@ -937,7 +938,6 @@ class EPGSelection(Screen):
 		self.finishedAdd(answer)
 
 	def doRecordTimer(self):
-		print 'SETUP RECORD TIMER'
 		zap = False
 		cur = self["list"].getCurrent()
 		event = cur[0]
@@ -956,7 +956,6 @@ class EPGSelection(Screen):
 			self.session.openWithCallback(self.finishedAdd, RecordSetup, newEntry, zap)
 
 	def doZapTimer(self):
-		print 'SETUP ZAP TIMER'
 		zap = True
 		cur = self["list"].getCurrent()
 		event = cur[0]
@@ -1171,7 +1170,7 @@ class EPGSelection(Screen):
 				self.key_red_choice = self.EMPTY
 			return
 		elif self.key_red_choice != self.ZAP and  self.type == EPG_TYPE_MULTI:
-				self["key_red"].setText("Zap")
+				self["key_red"].setText_(("Zap"))
 				self.key_red_choice = self.ZAP
 
 		if event is None:
@@ -1192,7 +1191,7 @@ class EPGSelection(Screen):
 			self["key_green"].setText(_("Remove timer"))
 			self.key_green_choice = self.REMOVE_TIMER
 		elif not isRecordEvent and self.key_green_choice != self.ADD_TIMER:
-			self["key_green"].setText(_("Add timer"))
+			self["key_green"].setText(_("Add Timer"))
 			self.key_green_choice = self.ADD_TIMER
 
 	def moveTimeLines(self, force=False):
