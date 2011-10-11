@@ -46,7 +46,7 @@ profile("config.misc")
 config.misc.radiopic = ConfigText(default = resolveFilename(SCOPE_CURRENT_SKIN, "radio.mvi"))
 config.misc.blackradiopic = ConfigText(default = resolveFilename(SCOPE_CURRENT_SKIN, "black.mvi"))
 config.misc.isNextRecordTimerAfterEventActionAuto = ConfigYesNo(default=False)
-config.misc.SyncTimeUsing = ConfigSelection(default = "Transponder", choices = [("Transponder", "Transponder Time"), ("NTP", _("NTP"))])
+config.misc.SyncTimeUsing = ConfigSelection(default = "0", choices = [("0", "Transponder Time"), ("1", _("NTP"))])
 
 config.misc.startCounter = ConfigInteger(default=0) # number of e2 starts...
 config.misc.standbyCounter = NoSave(ConfigInteger(default=0)) # number of standby
@@ -65,11 +65,13 @@ config.misc.standbyCounter = NoSave(ConfigInteger(default=0)) # number of standb
 
 def useSyncUsingChanged(configElement):
 	print 'SyncTimeUsing',config.misc.SyncTimeUsing.value
-	if config.misc.SyncTimeUsing.value == "Transponder":
-		value = True
+	if config.misc.SyncTimeUsing.value == "0":
+		print "[Time By]: Transponder"
+ 		value = True
 		enigma.eDVBLocalTimeHandler.getInstance().setUseDVBTime(value)
 	else:
-		value = False
+		print "[Time By]: NTP"
+ 		value = False
 		enigma.eDVBLocalTimeHandler.getInstance().setUseDVBTime(value)
 		from Components.Console import Console
 		Console = Console()
