@@ -7,7 +7,7 @@
 	<setup key="time" title="Time Settings">
 		<item level="0" text="Timezone">config.timezone.val</item>
 		<item level="0" text="Sync time using">config.misc.SyncTimeUsing</item>
-		<item level="0" text="Sync NTP every (minutes)">config.misc.useNTPminutes</item>
+		<item level="0" text="Sync NTP every (minutes)" requires="config.misc.SyncTimeUsing">config.misc.useNTPminutes</item>
 	</setup>
 	<setup key="avsetup" title="A/V Settings">
 		<item level="0" text="Color Format">config.av.colorformat</item>
