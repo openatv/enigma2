@@ -537,7 +537,7 @@ def InitUsageConfig():
 
 	config.plisettings = ConfigSubsection()
 	config.plisettings.Subservice = ConfigYesNo(default = True)
-	config.plisettings.ColouredButtons = ConfigYesNo(default = True)
+	config.plisettings.ColouredButtons = ConfigYesNo(default = False)
 	config.plisettings.PLIEPG_mode = ConfigSelection(default="cooltvguide", choices = [
 					("pliepg", _("Show Graphical EPG")),
 					("single", _("Show Single EPG")),
