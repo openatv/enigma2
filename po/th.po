@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1-En-Th\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-30 18:21+0100\n"
+"POT-Creation-Date: 2011-10-11 14:12+0100\n"
 "PO-Revision-Date: 2010-04-08 18:13+0700\n"
 "Last-Translator: Tony - Thaidreambox\n"
 "Language-Team: Tony @ Thai Dreambox <tonyboyth@gmail.com>\n"
@@ -110,11 +110,6 @@ msgstr ""
 "\n"
 "เลือกอุปกรณ์\n"
 "อุปกรณ์ปัจจุบันคือ: "
-
-msgid ""
-"\n"
-"Shut down upgrade and reboot"
-msgstr ""
 
 msgid ""
 "\n"
@@ -307,6 +302,9 @@ msgstr ""
 
 msgid "30 minutes"
 msgstr "30 นาที"
+
+msgid "3D Mode"
+msgstr ""
 
 msgid "3X"
 msgstr ""
@@ -529,6 +527,9 @@ msgstr ""
 msgid "Add Bookmark"
 msgstr "เพิ่มบุ๊คมาร์ค"
 
+msgid "Add Timer"
+msgstr ""
+
 msgid "Add WLAN configuration?"
 msgstr "ตั้งค่า WLAN หรือไม่?"
 
@@ -605,6 +606,9 @@ msgstr "นำข้อมูลกลับมาใช้แบบขั้น
 
 msgid "After event"
 msgstr "หลังจากจบรายการ"
+
+msgid "After pressing OK, please wait!"
+msgstr ""
 
 msgid ""
 "After the start wizard is completed, you need to protect single services. "
@@ -735,6 +739,9 @@ msgstr "เสียง"
 
 msgid "Audio Options..."
 msgstr "ตั้งค่าเสียง..."
+
+msgid "Audio PID"
+msgstr ""
 
 msgid "Audio language selection 1"
 msgstr ""
@@ -1085,7 +1092,7 @@ msgstr ""
 msgid "Checking USB devices..."
 msgstr ""
 
-msgid "Checking Version..."
+msgid "Checking for Updates..."
 msgstr ""
 
 msgid "Choose Tuner"
@@ -1151,16 +1158,10 @@ msgstr "ปิด"
 msgid "Close title selection"
 msgstr "ปิดหน้าเลือกชื่อเรื่อง"
 
-msgid "Code rate high"
-msgstr "Code rate high"
-
-msgid "Code rate low"
-msgstr "Code rate low"
-
-msgid "CodeRateHP"
+msgid "Code rate HP"
 msgstr ""
 
-msgid "CodeRateLP"
+msgid "Code rate LP"
 msgstr ""
 
 msgid "Coderate HP"
@@ -1322,6 +1323,10 @@ msgstr ""
 msgid "Couldn't record due to conflicting timer %s"
 msgstr "ไม่สามารถบันทึกได้ เนื่องจากเวลาซ้อนกับรายการ %s"
 
+#, python-format
+msgid "Couldn't record due to invalid service %s"
+msgstr ""
+
 msgid "Crash Logs"
 msgstr ""
 
@@ -1458,6 +1463,9 @@ msgstr "เครื่องเล่นดีวีดี"
 
 msgid "DVD Titlelist"
 msgstr "รายการบนแผ่นดีวีดี"
+
+msgid "DVD data format"
+msgstr ""
 
 msgid "DVD media toolbox"
 msgstr "เครื่องมือจัดการดีวีดี"
@@ -1830,9 +1838,6 @@ msgstr ""
 msgid "Downloading"
 msgstr "กำลังดาวน์โหลด"
 
-msgid "Downloading file..."
-msgstr ""
-
 msgid "Downloading plugin information. Please wait..."
 msgstr "กำลังดาวน์โหลดข้อมูล Plugin กรุณารอสักครู่..."
 
@@ -1932,6 +1937,12 @@ msgstr "แก้ไขชื่อเรื่อง"
 
 msgid "Edit upgrade source url."
 msgstr "แก้ไข URL ของเซอร์พเวอร์เพื่อปรับปรุง"
+
+msgid "Elapsed"
+msgstr ""
+
+msgid "Elapsed & Remanining"
+msgstr ""
 
 msgid "Electronic Program Guide"
 msgstr "ผังรายการ (EPG)"
@@ -2146,9 +2157,6 @@ msgstr ""
 msgid "FEC"
 msgstr "FEC"
 
-msgid "FEC inner"
-msgstr ""
-
 msgid "FPGA Upgrade"
 msgstr ""
 
@@ -2251,6 +2259,9 @@ msgid "Flashing failed"
 msgstr "การลงอิมเมจล้มเหลว"
 
 msgid "Following tasks will be done after you press OK!"
+msgstr ""
+
+msgid "For more information see www.pli-images.org"
 msgstr ""
 
 msgid "Format"
@@ -2381,8 +2392,8 @@ msgstr "Green boost"
 msgid "Guard Interval"
 msgstr "Guard Interval"
 
-msgid "Guard interval mode"
-msgstr "โหมด Guard interval"
+msgid "Guard interval"
+msgstr ""
 
 msgid "HD list"
 msgstr ""
@@ -2411,6 +2422,9 @@ msgstr "ให้ฮาร์ดดิสก์ standby หลังจาก"
 msgid "Hardware:"
 msgstr ""
 
+msgid "Height"
+msgstr ""
+
 msgid "Hidden network"
 msgstr ""
 
@@ -2420,14 +2434,11 @@ msgstr ""
 msgid "Hide zap errors"
 msgstr ""
 
-msgid "Hierarchy Inform."
-msgstr ""
-
 msgid "Hierarchy Information"
 msgstr "ข้อมูลลำดับชั้น"
 
-msgid "Hierarchy mode"
-msgstr "โหมดลำดับชั้น"
+msgid "Hierarchy info"
+msgstr ""
 
 msgid "High bitrate support"
 msgstr "รองรับข้อมูลขนาดใหญ่"
@@ -2436,6 +2447,9 @@ msgid "Hold screen"
 msgstr ""
 
 msgid "Hold till locked"
+msgstr ""
+
+msgid "Home"
 msgstr ""
 
 msgid "Hops:"
@@ -2448,6 +2462,9 @@ msgid "Hostname: "
 msgstr ""
 
 msgid "Hour"
+msgstr ""
+
+msgid "Hours Mins"
 msgstr ""
 
 msgid "How many minutes do you want to record?"
@@ -2569,9 +2586,6 @@ msgstr ""
 msgid "Initial Rewind speed"
 msgstr ""
 
-msgid "Initial location in new timers"
-msgstr ""
-
 msgid "Initialization"
 msgstr ""
 
@@ -2636,6 +2650,9 @@ msgid "Instant Record..."
 msgstr "บันทึกรายการ..."
 
 msgid "Instant record location"
+msgstr ""
+
+msgid "Instant recordings location"
 msgstr ""
 
 msgid "Interface"
@@ -2809,6 +2826,9 @@ msgstr "เชื่อมต่อ:"
 msgid "Linked titles with a DVD menu"
 msgstr "เชื่อมโดยชื่อเรื่องกับเมนูดีวีดี"
 
+msgid "List available networks"
+msgstr ""
+
 msgid "List of Storage Devices"
 msgstr "อุปกรณ์สำหรับบันทึก"
 
@@ -2836,9 +2856,6 @@ msgstr ""
 
 msgid "Location"
 msgstr "สถานที่"
-
-msgid "Location for instant recordings"
-msgstr ""
 
 msgid "Lock:"
 msgstr "Lock:"
@@ -2911,6 +2928,9 @@ msgstr "จัดการซอพท์แวร์เครื่องรั
 msgid "Manual Scan"
 msgstr "ค้นหาเอง"
 
+msgid "Manual configuration"
+msgstr ""
+
 msgid "Manual transponder"
 msgstr "ป้อนทรานสปอนเดอร์เอง"
 
@@ -2973,6 +2993,9 @@ msgstr "ข้อความ"
 msgid "Message..."
 msgstr "ข้อความ..."
 
+msgid "Mins"
+msgstr ""
+
 msgid "Missing "
 msgstr ""
 
@@ -3012,8 +3035,14 @@ msgstr "Mount failed"
 msgid "Move"
 msgstr ""
 
+msgid "Move Left/Right"
+msgstr ""
+
 msgid "Move Picture in Picture"
 msgstr "ย้ายภาพซ้อนภาพ"
+
+msgid "Move Up/Down"
+msgstr ""
 
 msgid "Move east"
 msgstr "เคลื่อนไปทางทิศตะวันออก"
@@ -3042,11 +3071,17 @@ msgstr "ผังรายการแบบหลากหลาย"
 msgid "Multi EPG..."
 msgstr ""
 
+msgid "Multi-EPG bouquet selection"
+msgstr ""
+
 msgid "Multimedia"
 msgstr "มัลติมีเดีย"
 
 msgid "Multiple service support"
 msgstr "รองรับ Multiple service"
+
+msgid "Multiplex"
+msgstr ""
 
 msgid "Multisat"
 msgstr "Multisat"
@@ -3158,6 +3193,9 @@ msgid "New PIN"
 msgstr ""
 
 msgid "New profile: "
+msgstr ""
+
+msgid "New timers location"
 msgstr ""
 
 msgid "New version:"
@@ -3376,6 +3414,9 @@ msgstr ""
 "ไม่มีรายการให้ค้นหา\n"
 "กรุณาตั้งค่า Tuner ก่อนการค้นหาช่องรายการใหม่"
 
+msgid "Nothing to upgrade"
+msgstr ""
+
 msgid "November"
 msgstr ""
 
@@ -3404,6 +3445,9 @@ msgstr "ตกลง - ลบส่วนเพิ่มเติมอื่น
 
 msgid "OK, remove some extensions"
 msgstr "ตกลง - ลบส่วนเพิ่มเติมอื่นด้วย"
+
+msgid "ONID"
+msgstr ""
 
 msgid "OSD"
 msgstr ""
@@ -3480,6 +3524,9 @@ msgstr "ป้อนชื่อของท่าน (ไม่บังคั�
 msgid "Orbital Position"
 msgstr "ตำแหน่งโคจร"
 
+msgid "Orbital position"
+msgstr ""
+
 msgid "Oscam Info - Configuration"
 msgstr ""
 
@@ -3487,6 +3534,9 @@ msgid "Oscam Info - Main Menu"
 msgstr ""
 
 msgid "Other"
+msgstr ""
+
+msgid "Output"
 msgstr ""
 
 msgid "Overwrite configuration files ?"
@@ -3498,8 +3548,14 @@ msgstr ""
 msgid "PAL"
 msgstr "PAL"
 
+msgid "PCR PID"
+msgstr ""
+
 msgid "PIDs"
 msgstr "PIDs"
+
+msgid "PMT PID"
+msgstr ""
 
 #, python-format
 msgid "PTS Plugin Error: %s"
@@ -3519,6 +3575,9 @@ msgstr "ไม่สามารถลบส่วนประกอบที่
 
 msgid "Package removed successfully.\n"
 msgstr "ลบส่วนประกอบที่เลือกเรียบร้อยแล้ว\n"
+
+msgid "Packages"
+msgstr ""
 
 msgid "Packet management"
 msgstr "จัดการส่วนประกอบ"
@@ -3558,6 +3617,9 @@ msgid "Pause movie at end"
 msgstr "หยุดการเล่นชั่วคราว (Pause) เมื่อเล่นจบ"
 
 msgid "Peak load (max queued requests per workerthread)"
+msgstr ""
+
+msgid "Percentage"
 msgstr ""
 
 msgid "Permanent Timeshift Enable"
@@ -4008,6 +4070,9 @@ msgstr "โพรเซส"
 msgid "Profile: Local box"
 msgstr ""
 
+msgid "Programme Guide"
+msgstr ""
+
 msgid "Progress"
 msgstr ""
 
@@ -4119,9 +4184,6 @@ msgstr "ตั้งค่าการรับ"
 msgid "Record"
 msgstr "บันทึก"
 
-msgid "Record Settings"
-msgstr ""
-
 msgid "Record started! Stopping timeshift now ..."
 msgstr ""
 
@@ -4135,7 +4197,7 @@ msgstr "ชื่อไฟล์ที่บันทึก..."
 msgid "Recording"
 msgstr "กำลังบันทึกรายการ"
 
-msgid "Recording Paths"
+msgid "Recording Settings"
 msgstr ""
 
 msgid "Recording data sync size"
@@ -4175,6 +4237,15 @@ msgid "Reload Black-/Whitelists"
 msgstr ""
 
 msgid "Reloading bouquets and services..."
+msgstr ""
+
+msgid "Remaning/Elapsed shown as on OSD"
+msgstr ""
+
+msgid "Remanining"
+msgstr ""
+
+msgid "Remanining & Elapsed"
 msgstr ""
 
 msgid "Remember service PIN"
@@ -4358,8 +4429,14 @@ msgstr ""
 msgid "Right"
 msgstr "ขวา"
 
+msgid "Roll-off"
+msgstr ""
+
 msgid "Rolloff"
 msgstr "Rolloff"
+
+msgid "Root directory"
+msgstr ""
 
 msgid "Rotor turning speed"
 msgstr "ความเร็วในการหมุนของ Rotor"
@@ -4369,6 +4446,9 @@ msgstr "กำลังทำงาน"
 
 msgid "S-Video"
 msgstr "S-Video"
+
+msgid "SID"
+msgstr ""
 
 msgid "SINGLE LAYER DVD"
 msgstr ""
@@ -4555,6 +4635,9 @@ msgid ""
 "Scans default lamedbs sorted by satellite with a connected dish positioner"
 msgstr "ค้นหาจาก Lamedbs และโดยเรียงดาวเทียมตามที่ต่อไว้กับตัวขับจาน"
 
+msgid "Search"
+msgstr ""
+
 msgid "Search east"
 msgstr "ค้นหาทางทิศตะวันออก"
 
@@ -4690,9 +4773,6 @@ msgstr "บริการ"
 msgid "Service Information"
 msgstr ""
 
-msgid "Service Reference"
-msgstr ""
-
 msgid "Service Scan"
 msgstr "ค้นหาบริการ"
 
@@ -4718,6 +4798,9 @@ msgid ""
 msgstr ""
 "ไม่พบบริการใดๆ !\n"
 "(ไม่พบ SID ใน PAT)"
+
+msgid "Service reference"
+msgstr ""
 
 msgid "Service scan"
 msgstr "ค้นหาบริการ"
@@ -4947,6 +5030,9 @@ msgstr "Singlestep (GOP)"
 
 msgid "Skin"
 msgstr "สกิน"
+
+msgid "Skin Setting"
+msgstr ""
 
 msgid "Skin Setup"
 msgstr ""
@@ -5228,6 +5314,9 @@ msgstr ""
 msgid "Symbol Rate"
 msgstr "Symbol Rate"
 
+msgid "Symbol rate"
+msgstr ""
+
 msgid "Symbolrate"
 msgstr "Symbolrate"
 
@@ -5256,10 +5345,16 @@ msgstr "TRANSLATOR_INFO"
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "ชื่อไฟล์ TS ยาวเกินไปสำหรับ ISO9660 level 1!"
 
+msgid "TSID"
+msgstr ""
+
 msgid "TV System"
 msgstr "ระบบโทรทัศน์"
 
 msgid "TV button mode"
+msgstr ""
+
+msgid "TXT PID"
 msgstr ""
 
 msgid "Table of content for collection"
@@ -5397,6 +5492,9 @@ msgstr ""
 msgid "The backup failed. Please choose a different backup location."
 msgstr "การสำรองข้อมูลล้มเหลว กรุณาเลือกแหล่งจัดเก็บข้อมูลอื่น"
 
+msgid "The current beta image is not stable"
+msgstr ""
+
 #, python-format
 msgid ""
 "The directory %s is not writable.\n"
@@ -5458,15 +5556,14 @@ msgstr "รหัสที่ป้อนผิด"
 msgid "The results have been written to %s."
 msgstr "ผลลัพธ์ถูกเขียนลง %s."
 
-msgid ""
-"The screen will go blank while upgrading, be patient and wait for the reboot."
-msgstr ""
-
 msgid "The sleep timer has been activated."
 msgstr "เวลาปิดเครื่องเริ่มทำงานแล้ว"
 
 msgid "The sleep timer has been disabled."
 msgstr "เวลาปิดเครื่องถูกยกเลิกแล้ว"
+
+msgid "The status of the current beta image could not be checked"
+msgstr ""
 
 msgid "The timer file (timers.xml) is corrupt and could not be loaded."
 msgstr "ไฟล์ข้อมูลการตารางเวลา (timers.xml) เสียหาย ไม่โหลดได้"
@@ -5636,7 +5733,13 @@ msgstr "วันพฤหัสบดี"
 msgid "Time"
 msgstr "เวลา"
 
+msgid "Time Remaning/Elapsed on OSD"
+msgstr ""
+
 msgid "Time Scale"
+msgstr ""
+
+msgid "Time Settings"
 msgstr ""
 
 msgid "Time Update in Minutes"
@@ -5717,6 +5820,9 @@ msgstr ""
 
 msgid "Timezone"
 msgstr "เส้นแบ่งเวลา"
+
+msgid "Timshift Settings"
+msgstr ""
 
 msgid "Title"
 msgstr "ชื่อเรื่อง"
@@ -5871,6 +5977,9 @@ msgstr "USB เมมโมรี่"
 msgid "USB stick wizard"
 msgstr "ตัวช่วยสำหรับ USB"
 
+msgid "Unattended upgrade without GUI and reboot system"
+msgstr ""
+
 msgid "Uncommitted DiSEqC command"
 msgstr "คำสั่ง Uncommitted DiSEqC"
 
@@ -5935,6 +6044,9 @@ msgid "Updating... Please wait... This can take some minutes..."
 msgstr "กำลังอัพเกรด... กรุณารอสักครู่... อาจใช้เวลาหลายนาที"
 
 msgid "Upgrade"
+msgstr ""
+
+msgid "Upgrade and ask to reboot"
 msgstr ""
 
 msgid "Upgrade finished."
@@ -6089,6 +6201,9 @@ msgstr ""
 msgid "Vertical"
 msgstr "แนวตั้ง (V)"
 
+msgid "ViX EPG"
+msgstr ""
+
 msgid "Video Enhancement Settings"
 msgstr ""
 
@@ -6100,6 +6215,9 @@ msgstr "ตัวช่วยปรับวิดีโอแบบละเอ
 
 msgid "Video Output"
 msgstr "ช่องวีดีโอ"
+
+msgid "Video PID"
+msgstr ""
 
 msgid "Video Setup"
 msgstr "ตั้งค่าวีดีโอ"
@@ -6241,6 +6359,9 @@ msgstr ""
 msgid "Wait for partition"
 msgstr ""
 
+msgid "Wait please while gathering data..."
+msgstr ""
+
 msgid "Waiting"
 msgstr "กำลังคอย..."
 
@@ -6372,11 +6493,20 @@ msgstr "ท่านต้องบันทึกไฟล์สำหรับ
 msgid "Which event do you want to save permanently?"
 msgstr ""
 
+msgid "Width"
+msgstr ""
+
 msgid "Wireless LAN"
 msgstr "แลนแบบไร้สาย"
 
 msgid "Wireless Network"
 msgstr "เครือข่ายไร้สาย"
+
+msgid "Wireless network connection setup"
+msgstr ""
+
+msgid "Wireless network connection setup."
+msgstr ""
 
 msgid "Wireless network state"
 msgstr ""
@@ -6978,9 +7108,6 @@ msgstr "จบรายการโปรด"
 msgid "enigma2 and network"
 msgstr "Enigma 2 และเครือข่าย"
 
-msgid "enter hidden network SSID"
-msgstr "เชื่อมต่อเครือข่าย SSID ที่ถูกซ่อน"
-
 msgid "equal to"
 msgstr "เท่ากับ"
 
@@ -7320,6 +7447,9 @@ msgstr "ช่องรายการก่อนหน้า"
 msgid "previous channel in history"
 msgstr "รายการก่อนหน้าที่จำไว้"
 
+msgid "probably www.pli-images.org is offline"
+msgstr ""
+
 msgid "provid:"
 msgstr ""
 
@@ -7576,6 +7706,9 @@ msgstr "โฟล์เดอร์เริ่มต้น"
 msgid "start timeshift"
 msgstr "เริ่มควบคุมรายการสด"
 
+msgid "stepsize"
+msgstr ""
+
 msgid "stereo"
 msgstr "สเตอริโอ"
 
@@ -7653,9 +7786,6 @@ msgstr ""
 
 msgid "uShare Setup"
 msgstr ""
-
-msgid "unavailable"
-msgstr "ไม่สามารถใช้ได้"
 
 msgid "unconfirmed"
 msgstr "ยังไม่ยืนยัน"
@@ -7742,6 +7872,3 @@ msgstr "เปลี่ยนช่อง"
 
 msgid "zapped"
 msgstr "เปลี่ยนช่องแล้ว"
-
-#~ msgid "Alpha"
-#~ msgstr "อัลฟ่า"
