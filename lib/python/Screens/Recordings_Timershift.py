@@ -8,6 +8,7 @@ from Components.ActionMap import ActionMap
 from Components.Pixmap import Pixmap
 from Tools.Directories import fileExists
 from Components.UsageConfig import preferredPath
+from Components.Sources.Boolean import Boolean
 
 class RecordingSettings(Screen,ConfigListScreen):
 	skin = """
@@ -23,9 +24,11 @@ class RecordingSettings(Screen,ConfigListScreen):
 		from Components.Sources.StaticText import StaticText
 		Screen.__init__(self, session)
 		self.skinName = "Setup"
-		Screen.setTitle(self, _("Recording Settings"))
+		self.setup_title = _("Recording Settings")
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
+		self["VKeyIcon"] = Boolean(False)
+
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("Save"))
 
@@ -36,9 +39,9 @@ class RecordingSettings(Screen,ConfigListScreen):
 
 		self["setupActions"] = ActionMap(["SetupActions", "ColorActions"],
 		{
-		    "green": self.save,
-		    "red": self.cancel,
-		    "cancel": self.cancel,
+		    "green": self.keySave,
+		    "red": self.keyCancel,
+		    "cancel": self.keyCancel,
 		    "ok": self.ok,
 		}, -2)
 
@@ -235,19 +238,10 @@ class RecordingSettings(Screen,ConfigListScreen):
 			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"))
 		else:
 			self.close()
-	def save(self):
-		currentry = self["config"].getCurrent()
-		if self.checkReadWriteDir(currentry[1]):
-			config.usage.default_path.value = self.default_dirname.value
-			config.usage.timer_path.value = self.timer_dirname.value
-			config.usage.instantrec_path.value = self.instantrec_dirname.value 
-			config.usage.default_path.save()
-			config.usage.timer_path.save()
-			config.usage.instantrec_path.save()
-			self.close()
 
-	def cancel(self):
-		self.close()
+	def createSummary(self):
+		from Screens.Setup import SetupSummary
+		return SetupSummary
 
 class TimeshiftSettings(Screen,ConfigListScreen):
 	skin = """
@@ -263,9 +257,11 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 		from Components.Sources.StaticText import StaticText
 		Screen.__init__(self, session)
 		self.skinName = "Setup"
-		Screen.setTitle(self, _("Timshift Settings"))
+		self.setup_title = _("Timshift Settings")
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
+		self["VKeyIcon"] = Boolean(False)
+
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("Save"))
 
@@ -295,7 +291,7 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 		return self["config"].getCurrent()[0]
 
 	def getCurrentValue(self):
-		return str(self["config"].getCurrent()[1].getText())
+		return self["config"].getCurrent()[0]
 
 
 	def checkReadWriteDir(self, configele):
@@ -385,3 +381,7 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"))
 		else:
 			self.close()
+
+	def createSummary(self):
+		from Screens.Setup import SetupSummary
+		return SetupSummary
