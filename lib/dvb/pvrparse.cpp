@@ -19,7 +19,7 @@ eMPEGStreamInformation::~eMPEGStreamInformation()
 		fclose(m_structure_write);
 }
 
-int eMPEGStreamInformation::startSave(const char *filename)
+int eMPEGStreamInformation::startSave(const std::string& filename)
 {
 	m_filename = filename;
 	m_structure_write = fopen((m_filename + ".sc").c_str(), "wb");
@@ -33,7 +33,7 @@ int eMPEGStreamInformation::stopSave(void)
 		fclose(m_structure_write);
 		m_structure_write = 0;
 	}
-	if (m_filename == "")
+	if (m_filename.empty())
 		return -1;
 	FILE *f = fopen((m_filename + ".ap").c_str(), "wb");
 	if (!f)
