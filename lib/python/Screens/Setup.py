@@ -1,6 +1,6 @@
 from Screen import Screen
 from Components.ActionMap import NumberActionMap, ActionMap
-from Components.config import config, ConfigNothing
+from Components.config import config, ConfigNothing, ConfigText
 from Components.SystemInfo import SystemInfo
 from Components.ConfigList import ConfigListScreen
 from Components.Pixmap import Pixmap,MultiPixmap
@@ -159,7 +159,8 @@ class Setup(ConfigListScreen, Screen):
 	def changedEntry(self):
 		for x in self.onChangedEntry:
 			x()
-		self.createSetup()
+		if not isinstance(self["config"].getCurrent()[1], ConfigText):
+			self.createSetup()
 
 	def getCurrentEntry(self):
 		return self["config"].getCurrent()[0]
