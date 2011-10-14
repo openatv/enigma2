@@ -185,21 +185,24 @@ class Setup(ConfigListScreen, Screen):
 				if item_level > config.usage.setup_level.index:
 					continue
 
+				requires = x.get("requires")
+				if requires and requires.startswith('config.'):
+					item = eval(x.text or "");
+					if item.value and not item.value == "0":
+						SystemInfo[x.text] = True
+					else:
+						SystemInfo[x.text] = False
+
+				if requires and not SystemInfo.get(requires, False):
+					continue;
+
 				item_text = _(x.get("text", "??").encode("UTF-8"))
 				b = eval(x.text or "");
 				if b == "":
 					continue
 				#add to configlist
 				item = b
-
-				requires = x.get("requires")
-				if item.value and not item.value == "0":
-					SystemInfo[x.text] = True
-				else:
-					SystemInfo[x.text] = False
-						
-				if requires and not SystemInfo.get(requires, False):
-					continue;
+					
 				# the first b is the item itself, ignored by the configList.
 				# the second one is converted to string.
 				if not isinstance(item, ConfigNothing):
