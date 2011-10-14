@@ -1318,18 +1318,19 @@ class NetworkAdapterTest(Screen):
 			iNetwork.getLinkState(iface,self.LinkStatedataAvail)
 
 	def LinkStatedataAvail(self,data):
-		self.output = data.strip()
-		result = self.output.splitlines()
-		pattern = re_compile("Link detected: yes")
-		for item in result:
-			if re_search(pattern, item):
-				self["Network"].setForegroundColorNum(2)
-				self["Network"].setText(_("connected"))
-				self["NetworkInfo_Check"].setPixmapNum(0)
-			else:
-				self["Network"].setForegroundColorNum(1)
-				self["Network"].setText(_("disconnected"))
-				self["NetworkInfo_Check"].setPixmapNum(1)
+		for item in data.splitlines():
+			if "Link detected:" in item:
+			        if "yes" in item:
+					self["Network"].setForegroundColorNum(2)
+					self["Network"].setText(_("connected"))
+					self["NetworkInfo_Check"].setPixmapNum(0)
+				else:
+					self["Network"].setForegroundColorNum(1)
+					self["Network"].setText(_("disconnected"))
+					self["NetworkInfo_Check"].setPixmapNum(1)
+				break
+		else:
+			self["Network"].setText(_("unknown"))
 		self["NetworkInfo_Check"].show()
 
 	def NetworkStatedataAvail(self,data):
