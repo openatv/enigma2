@@ -2052,7 +2052,7 @@ class NetworkSambaLog(Screen):
 		self.Console.ePopen('tail /tmp/smb.log > /tmp/tmp.log')
 		time.sleep(1)
 		if fileExists('/tmp/tmp.log'):
-			f = open('//tmp/tmp.log', 'r')
+			f = open('/tmp/tmp.log', 'r')
 			for line in f.readlines():
 				strview += line
 			f.close()
@@ -2556,18 +2556,18 @@ class NetworkuShare(Screen):
 		self['key_red'] = Label(_("Setup"))
 		self['key_green'] = Label(_("Start"))
 		self['key_yellow'] = Label(_("Autostart"))
-		self['key_blue'] = Label('')
-		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.setupin, 'back': self.close, 'red': self.setupin, 'green': self.uShareStart, 'yellow': self.autostart})
+		self['key_blue'] = Label(_("Show Log"))
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.setupin, 'back': self.close, 'red': self.setupin, 'green': self.uShareStart, 'yellow': self.autostart, 'blue': self.ushareLog})
 		self.Console = Console()
 		self.onLayoutFinish.append(self.updateuShare)
 
 	def uShareStart(self):
 		if self.my_ushare_run == False:
-			self.Console.ePopen('/etc/init.d/ushare start')
+			self.Console.ePopen('/etc/init.d/ushare start >> /tmp/uShare.log')
 			time.sleep(3)
 			self.updateuShare()
 		elif self.my_ushare_run == True:
-			self.Console.ePopen('/etc/init.d/ushare stop')
+			self.Console.ePopen('/etc/init.d/ushare stop >> /tmp/uShare.log')
 			time.sleep(3)
 			self.updateuShare()
 
@@ -2621,6 +2621,7 @@ class NetworkuShare(Screen):
 			symlink('/etc/init.d/ushare', '/etc/rc6.d/K20ushare')
 			mymess = _("Autostart Enabled.")
 
+		open('/tmp/uShare.log', "a").write(mymess + '\n')
 		mybox = self.session.open(MessageBox, mymess, MessageBox.TYPE_INFO, timeout = 10)
 		mybox.setTitle(_("Info"))
 		self.updateuShare()
@@ -2635,6 +2636,8 @@ class NetworkuShare(Screen):
 		self['labdisabled'].hide()
 		self.my_ushare_active = False
 		self.my_ushare_run = False
+		if not fileExists('/tmp/uShare.log'):
+			open('/tmp/uShare.log', "w").write("")
 		if fileExists('/etc/rc3.d/S20ushare'):
 			self['labdisabled'].hide()
 			self['labactive'].show()
@@ -2705,6 +2708,9 @@ class NetworkuShare(Screen):
 
 	def setupin(self):
 		self.session.openWithCallback(self.updateuShare, NetworkuShareSetup)
+
+	def ushareLog(self):
+		self.session.open(NetworkuShareLog)
 
 class NetworkuShareSetup(Screen, ConfigListScreen):
 	skin = """
@@ -2860,6 +2866,7 @@ class NetworkuShareSetup(Screen, ConfigListScreen):
 			out.close()
 			inme.close()
 		else:
+			open('/tmp/uShare.log', "a").write(_("Sorry uShare Config is Missing") + '\n')
 			self.session.open(MessageBox, _("Sorry uShare Config is Missing"), MessageBox.TYPE_INFO)
 			self.close()
 		if fileExists('/etc/ushare.conf.tmp'):
@@ -2958,3 +2965,27 @@ class uShareSelection(Screen):
 	def okClicked(self):
 		if self.filelist.canDescent():
 			self.filelist.descent()
+
+class NetworkuShareLog(Screen):
+	skin = """
+		<screen position="80,100" size="560,400" title="Samba Log">
+				<widget name="infotext" position="10,10" size="540,380" font="Regular;18" />
+		</screen>"""
+
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		self.skinName = "NetworkInadynLog"
+		Screen.setTitle(self, _("uShare Log"))
+		self['infotext'] = ScrollLabel('')
+		self.Console = Console()
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'up': self['infotext'].pageUp, 'down': self['infotext'].pageDown})
+		strview = ''
+		self.Console.ePopen('tail /tmp/uShare.log > /tmp/tmp.log')
+		time.sleep(1)
+		if fileExists('/tmp/tmp.log'):
+			f = open('/tmp/tmp.log', 'r')
+			for line in f.readlines():
+				strview += line
+			f.close()
+			remove('/tmp/tmp.log')
+		self['infotext'].setText(strview)
