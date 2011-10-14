@@ -2055,6 +2055,11 @@ class InfoBarTimeshift:
 		self.stopTimeshiftConfirmed(True, switchToLive)
 		ts = self.getTimeshift()
 		if ts and not ts.startTimeshift():
+			if self.session.nav.RecordTimer.isRecording():
+				print 'RECORDING IN PROGRESS'
+				if Directories.fileExists("/proc/stb/lcd/symbol_timeshift"):
+					print 'PROC EXISTS'
+					open("/proc/stb/lcd/symbol_timeshift", "w").write("0")
 			self.pts_starttime = time()
 			self.pts_LengthCheck_timer.start(120000)
 			self.timeshift_enabled = 1
@@ -2392,7 +2397,7 @@ class InfoBarTimeshift:
 						else:
 							eventname = "";
 
-						JobManager.AddJob(CopyTimeshiftJob(self, "cp \"%s%s.copy\" \"%s.ts\"" % (config.usage.timeshift_path.value,copy_file,fullname), copy_file, fullname, eventname))
+						JobManager.AddJob(CopyTimeshiftJob(self, "mv \"%s%s.copy\" \"%s.ts\"" % (config.usage.timeshift_path.value,copy_file,fullname), copy_file, fullname, eventname))
 						if not Screens.Standby.inTryQuitMainloop and not Screens.Standby.inStandby and not mergelater and self.save_timeshift_postaction != "standby":
 							Notifications.AddNotification(MessageBox, _("Saving timeshift as movie now. This might take a while!"), MessageBox.TYPE_INFO, timeout=5)
 					else:
@@ -4246,8 +4251,6 @@ class CopyTimeshiftJob(Job):
 class AddCopyTimeshiftTask(Task):
 	def __init__(self, job, cmdline, srcfile, destfile, eventname):
 		Task.__init__(self, job, eventname)
-		if config.usage.timeshift_path.value[-1:] == '/':
-			config.usage.timeshift_path.value = config.usage.timeshift_path.value[:-1]
 		self.toolbox = job.toolbox
 		self.setCmdline(cmdline)
 		self.srcfile = config.usage.timeshift_path.value + srcfile + ".copy"
