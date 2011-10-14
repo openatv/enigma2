@@ -252,11 +252,11 @@ class UpdatePluginMenu(Screen):
 		# run in parallel to the package update.
 		try:
 			if 'title="Errors reported - see forum thread"' in urlopen("http://openpli.org").read():
-				message = _("The current beta image is not stable") + "\n" + _("For more information see www.pli-images.org") + "\n"
+				message = _("The current beta image could not be stable") + "\n" + _("For more information see www.openpli.org") + "\n"
 				picon = MessageBox.TYPE_ERROR
 				default = False
 		except:
-			message = _("The status of the current beta image could not be checked") + "\n"+_("probably www.pli-images.org is offline") + "\n"
+			message = _("The status of the current beta image could not be checked because www.openpli.org could not be reached for some reason") + "\n"
 			picon = MessageBox.TYPE_ERROR
 			default = False
 		socket.setdefaulttimeout(currentTimeoutDefault)
@@ -1377,18 +1377,17 @@ class PluginDetails(Screen, DreamInfoHandler):
 		self.setThumbnail(noScreenshot = True)
 		print "[PluginDetails] fetch failed " + string.getErrorMessage()
 
-class OfflineUpgradeMessageBox(Screen):
-	skin = """
-		<screen position="110,258" size="500,150" title="Offline Upgrade">
-			<ePixmap pixmap="skin_default/icons/input_info.png" position="5,5" size="53,53" alphatest="on" />
-			<widget name="text" position="65,8" size="520,200" font="Regular;22" />
-		</screen>"""
+class UnattendedUpgradeMessageBox(Screen):
 
 	def __init__(self, session, args = None):
-		self.skin = OfflineUpgradeMessageBox.skin
+		self.skin = """
+			<screen position="110,258" size="500,150" title="Unattended Upgrade">
+				<ePixmap pixmap="skin_default/icons/input_info.png" position="5,5" size="53,53" alphatest="on" />
+				<widget name="text" position="65,8" size="520,200" font="Regular;22" />
+			</screen>"""
 		Screen.__init__(self, session)
 		from Components.Label import Label
-		self["text"] = Label(_("Offline upgrade in progress\nPlease wait until your box reboots\nThis may take a few minutes"))
+		self["text"] = Label(_("Unattended upgrade in progress\nPlease wait until your receiver reboots\nThis may take a few minutes"))
 
 class UpdatePlugin(Screen):
 	skin = """
@@ -1525,7 +1524,7 @@ class UpdatePlugin(Screen):
 			if desktop.size() != eSize(720,576):
 				gMainDC.getInstance().setResolution(720,576)
 				desktop.resize(eSize(720,576))
-			self.session.open(OfflineUpgradeMessageBox)
+			self.session.open(UnattendedUpgradeMessageBox)
 			quitMainloop(42)
 		else:
 			self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE, args = {'test_only': False})
