@@ -330,7 +330,7 @@ class EPGSelection(Screen):
 					self.time_lines.append(pm)
 					self["timeline%d"%(x)] = pm
 				self["timeline_now"] = Pixmap()
-				self["key_red"] = Button(_("Zap"))
+				self["key_red"] = Button(_("IMDb Search"))
 				self["key_green"] = Button(_("Add Timer"))
 				self["key_yellow"] = Button(_("EPG Search"))
 				self["key_blue"] = Button(_("Add AutoTimer"))
