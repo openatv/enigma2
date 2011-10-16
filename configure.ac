@@ -263,10 +263,6 @@ lib/python/Plugins/SystemPlugins/DefaultServicesScanner/Makefile
 lib/python/Plugins/SystemPlugins/DefaultServicesScanner/meta/Makefile
 lib/python/Plugins/SystemPlugins/DiseqcTester/Makefile
 lib/python/Plugins/SystemPlugins/DiseqcTester/meta/Makefile
-lib/python/Plugins/SystemPlugins/FanSetupVuPlus/Makefile
-lib/python/Plugins/SystemPlugins/FanSetupVuPlus/meta/Makefile
-lib/python/Plugins/SystemPlugins/FanSetupXtrend/Makefile
-lib/python/Plugins/SystemPlugins/FanSetupXtrend/meta/Makefile
 lib/python/Plugins/SystemPlugins/FPGAUpgrade/Makefile
 lib/python/Plugins/SystemPlugins/FPGAUpgrade/meta/Makefile
 lib/python/Plugins/SystemPlugins/FrontprocessorUpgrade/Makefile
@@ -286,6 +282,10 @@ lib/python/Plugins/SystemPlugins/SatelliteEquipmentControl/Makefile
 lib/python/Plugins/SystemPlugins/SatelliteEquipmentControl/meta/Makefile
 lib/python/Plugins/SystemPlugins/Satfinder/Makefile
 lib/python/Plugins/SystemPlugins/Satfinder/meta/Makefile
+lib/python/Plugins/SystemPlugins/VuDuoFancontrol/Makefile
+lib/python/Plugins/SystemPlugins/VuDuoFancontrol/meta/Makefile
+lib/python/Plugins/SystemPlugins/VuUnoFancontrol/Makefile
+lib/python/Plugins/SystemPlugins/VuUnoFancontrol/meta/Makefile
 lib/python/Plugins/SystemPlugins/VideoEnhancement/Makefile
 lib/python/Plugins/SystemPlugins/VideoEnhancement/meta/Makefile
 lib/python/Plugins/SystemPlugins/VideoTune/Makefile
@@ -294,6 +294,8 @@ lib/python/Plugins/SystemPlugins/Videomode/Makefile
 lib/python/Plugins/SystemPlugins/Videomode/meta/Makefile
 lib/python/Plugins/SystemPlugins/WirelessLan/Makefile
 lib/python/Plugins/SystemPlugins/WirelessLan/meta/Makefile
+lib/python/Plugins/SystemPlugins/XtrendFancontrol/Makefile
+lib/python/Plugins/SystemPlugins/XtrendFancontrol/meta/Makefile
 lib/python/Tools/Makefile
 lib/service/Makefile
 lib/components/Makefile
