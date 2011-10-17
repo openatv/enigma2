@@ -91,7 +91,7 @@ class EventViewBase:
 		self.onShown.append(self.onCreate)
 
 	def onCreate(self):
-		self.setService(self.currentService)
+# 		self.setService(self.currentService)
 		self.setEvent(self.event)
 
 	def prevEvent(self):
@@ -171,15 +171,15 @@ class EventViewBase:
 		self.event = event
 		if event is None:
 			return
-		text = event.getEventName()
+		name = event.getEventName()
+		self["channel"].setText(name)
+# 		text = event.getEventName()
 		short = event.getShortDescription()
 		ext = event.getExtendedDescription()
-		if short and short != text:
-			text += '\n\n' + short
-		if ext:
-			if text:
-				text += '\n\n'
-			text += ext
+		if short:
+			text = short
+		elif ext:
+			text = ext
 
 		self.setTitle(event.getEventName())
 		self["epg_description"].setText(text)
