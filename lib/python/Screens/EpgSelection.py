@@ -294,6 +294,7 @@ class EPGSelection(Screen):
 		self.saved_title = None
 		self["Service"] = ServiceEvent()
 		self["Event"] = Event()
+		Screen.setTitle(self, _("Programme Guide"))
 		if isinstance(service, str) and eventid != None:
 			self.type = EPG_TYPE_SIMILAR
 			self["key_yellow"] = Button()
@@ -312,7 +313,6 @@ class EPGSelection(Screen):
 				else:
 					self.skin = self.GraphEPGPIG
 					self.skinName = "GraphicalEPGPIG"
-					Screen.setTitle(self, _("Programme Guide"))
 				now = time()
 				tmp = now % 900
 				self.ask_time = now - tmp
