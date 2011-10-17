@@ -2055,10 +2055,8 @@ class InfoBarTimeshift:
 		self.stopTimeshiftConfirmed(True, switchToLive)
 		ts = self.getTimeshift()
 		if ts and not ts.startTimeshift():
-			if self.session.nav.RecordTimer.isRecording():
-				print 'RECORDING IN PROGRESS'
-				if Directories.fileExists("/proc/stb/lcd/symbol_timeshift"):
-					print 'PROC EXISTS'
+			if (config.misc.boxtype.value == 'vuuno' or config.misc.boxtype.value == 'vuduo') and Directories.fileExists("/proc/stb/lcd/symbol_timeshift"):
+				if self.session.nav.RecordTimer.isRecording():
 					open("/proc/stb/lcd/symbol_timeshift", "w").write("0")
 			self.pts_starttime = time()
 			self.pts_LengthCheck_timer.start(120000)
