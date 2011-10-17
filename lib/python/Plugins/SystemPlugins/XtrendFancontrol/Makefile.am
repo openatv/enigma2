@@ -1,4 +1,4 @@
-installdir = $(pkglibdir)/python/Plugins/SystemPlugins/FanSetup
+installdir = $(pkglibdir)/python/Plugins/SystemPlugins/FanControl
 
 SUBDIRS = meta
 
