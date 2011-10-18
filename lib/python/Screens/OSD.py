@@ -160,12 +160,13 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 	def __init__(self, session):
 		self.skin = OSD3DSetupScreen.skin
 		Screen.__init__(self, session)
+		self.setup_title = _("OSD 3D Setup")
 
 		from Components.ActionMap import ActionMap
 		from Components.Button import Button
 
-		self["ok"] = Button(_("OK"))
-		self["cancel"] = Button(_("Cancel"))
+		self["ok"] = Button(_("Cancel"))
+		self["cancel"] = Button(_("OK"))
 
 		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
 		{
