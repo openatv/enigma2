@@ -599,6 +599,10 @@ profile("SetupDevices")
 import Components.SetupDevices
 Components.SetupDevices.InitSetupDevices()
 
+profile("EpgCacheSched")
+import Screens.EpgLoadSave
+Screens.EpgLoadSave.EpgCacheCheck()
+
 profile("RFMod")
 import Components.RFmod
 Components.RFmod.InitRFmod()
