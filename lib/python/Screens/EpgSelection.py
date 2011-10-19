@@ -343,10 +343,10 @@ class EPGSelection(Screen):
 			else:
 				self.type = EPG_TYPE_MULTI
 				self.skinName = "EPGSelectionMulti"
-				self["key_yellow"] = Button(_("Prev"))
-				self["key_blue"] = Button(_("Next"))
 				self["key_red"] = Button(_("IMDb Search"))
 				self["key_green"] = Button(_("Add Timer"))
+				self["key_yellow"] = Button(_("EPG Search"))
+				self["key_blue"] = Button(_("Add AutoTimer"))
 				self["now_button"] = Pixmap()
 				self["next_button"] = Pixmap()
 				self["more_button"] = Pixmap()
@@ -520,26 +520,30 @@ class EPGSelection(Screen):
 		else:
 			self["actions"] = ActionMap(["EPGSelectActions", "OkCancelActions", "ColorActions"],
 			{
-				"cancel": self.closeScreen,
-				"ok": self.eventSelected,
+				"ok": self.ZapTo,
+				"cancel": self.closing,
 				"red": self.redButtonPressed,
 				"timerAdd": self.timerAdd,
 				"yellow": self.yellowButtonPressed,
 				"blue": self.blueButtonPressed,
 				"info": self.infoKeyPressed,
 				"input_date_time": self.enterDateTime,
-				"nextBouquet": self.nextBouquet, # just used in multi epg yet
-				"prevBouquet": self.prevBouquet, # just used in multi epg yet
-				"nextService": self.nextService, # just used in single epg yet
-				"prevService": self.prevService, # just used in single epg yet
+				"nextBouquet": self.nextBouquet,
+				"prevBouquet": self.prevBouquet,
+				"nextService": self.nextPage,
+				"prevService": self.prevPage,
 			})
 			self["MenuActions"] = HelpableActionMap(self, "MenuActions",
 				{
 					"menu": (self.createSetup, _("Open Context Menu"))
 				}
 			)
-			self["actions"].csel = self
-			self.onLayoutFinish.append(self.onCreate)
+			self["input_actions"] = ActionMap(["InputActions"],
+				{
+					"left": self.leftPressed,
+					"right": self.rightPressed,
+				},-1)
+			self.onLayoutFinish.append(self.onStartup)
 
 	def createSetup(self):
 		self.session.openWithCallback(self.onSetupClose, EPGSelectionSetup, self.type)
@@ -572,12 +576,42 @@ class EPGSelection(Screen):
 			self["list"].curr_refcool = self.session.nav.getCurrentlyPlayingServiceReference()
 			self["list"].fillGraphEPG(self.services, self.ask_time)
 			self["list"].moveToService(self.session.nav.getCurrentlyPlayingServiceReference())
-			self.curRef = self["list"].getCurrent()[1]
 			self.startRef = self["list"].getCurrent()[1]
 			self.moveTimeLines()
 			if config.GraphEPG.channel1.value:
 				self["list"].instance.moveSelectionTo(0)
 			self['lab1'].hide()
+		elif self.type == EPG_TYPE_MULTI:
+			l = self["list"]
+			l.recalcEntrySize()
+			if self.type == EPG_TYPE_MULTI or self.type == EPG_TYPE_GRAPH:
+				l.fillMultiEPG(self.services, self.ask_time)
+				l.moveToService(self.session.nav.getCurrentlyPlayingServiceReference())
+			elif self.type == EPG_TYPE_SINGLE:
+				service = self.currentService
+				self["Service"].newService(service.ref)
+				if self.saved_title is None:
+					self.saved_title = self.instance.getTitle()
+				title = self.saved_title + ' - ' + service.getServiceName()
+				self.instance.setTitle(title)
+				l.fillSingleEPG(service)
+			elif self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
+				service = ServiceReference(self.servicelist.getCurrentSelection())
+				self["Service"].newService(service.ref)
+				if self.saved_title is None:
+					self.saved_title = self.instance.getTitle()
+				title = self.saved_title + ' - ' + service.getServiceName()
+				self.instance.setTitle(title)
+				l.fillSingleEPG(service)
+			else:
+				l.fillSimilarList(self.currentService, self.eventid)
+			if self.type == EPG_TYPE_SINGLE or self.type == EPG_TYPE_ENHANCED:
+				if config.misc.EPGSort.value == "Time":
+					self.sort_type = 0
+				else:
+					self.sort_type = 1
+				l.sortSingleEPG(self.sort_type)
+			self.startRef = self["list"].getCurrent()[1]
 
 	def onCreate(self):
 		if self.type == EPG_TYPE_GRAPH:
@@ -585,7 +619,6 @@ class EPGSelection(Screen):
 			self["list"].curr_refcool = self.session.nav.getCurrentlyPlayingServiceReference()
 			self["list"].fillGraphEPG(self.services, self.ask_time)
 			self["list"].moveToService(self.session.nav.getCurrentlyPlayingServiceReference())
-			self.curRef = self["list"].getCurrent()[1]
 			self.moveTimeLines()
 			if config.GraphEPG.channel1.value:
 				self["list"].instance.moveSelectionTo(0)
@@ -628,10 +661,16 @@ class EPGSelection(Screen):
 		self["list"].instance.moveSelection(self["list"].instance.pageDown)
 
 	def leftPressed(self):
-		self.updEvent(-1)
+		if self.type == EPG_TYPE_MULTI:
+			self["list"].updateMultiEPG(-1)
+		else:
+			self.updEvent(-1)
 
 	def rightPressed(self):
-		self.updEvent(+1)
+		if self.type == EPG_TYPE_MULTI:
+			self["list"].updateMultiEPG(1)
+		else:
+			self.updEvent(+1)
 		
 	def nextBouquet(self):
 		if (self.type != EPG_TYPE_ENHANCED or self.type == EPG_TYPE_GRAPH) and self.bouquetChangeCB:
@@ -761,7 +800,7 @@ class EPGSelection(Screen):
 					self.moveTimeLines(True)
 
 	def closing(self):
-		if self.type != EPG_TYPE_GRAPH:
+		if self.type != EPG_TYPE_GRAPH and self.type != EPG_TYPE_MULTI:
 			if self.oldService:
 				self.session.nav.playService(self.oldService)
 			self.setServicelistSelection(self.curBouquet, self.curRef.ref)
@@ -841,56 +880,41 @@ class EPGSelection(Screen):
 			self.session.open(SingleEPG, refstr)		
 
 	def redButtonPressed(self):
-		if self.type == EPG_TYPE_MULTI:
-			if self.zapFunc and self.key_red_choice == self.ZAP:
-				lst = self["list"]
-				count = lst.getCurrentChangeCount()
-				if count == 0:
-					self.closeRecursive = True
-					ref = lst.getCurrent()[1]
-					self.zapFunc(ref.ref)
-		elif self.type == EPG_TYPE_SINGLE or self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_GRAPH:
+		try:
+			from Plugins.Extensions.IMDb.plugin import IMDB, IMDBEPGSelection
 			try:
-				from Plugins.Extensions.IMDb.plugin import IMDB, IMDBEPGSelection
-				try:
-					cur = self["list"].getCurrent()
-					event = cur[0]
-					name = event.getEventName()
-				except:
-					name = ''
-				self.session.open(IMDB, name, False)
-			except ImportError:
-				self.session.open(MessageBox, _("The IMDb plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
-
-	def yellowButtonPressed(self):
-		if self.type == EPG_TYPE_MULTI:
-			self["list"].updateMultiEPG(-1)
-		elif self.type == EPG_TYPE_SINGLE or self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_GRAPH:
-			try:
-				from Plugins.Extensions.EPGSearch.EPGSearch import EPGSearch
-				try:
-					cur = self["list"].getCurrent()
-					event = cur[0]
-					name = event.getEventName()
-				except:
-					name = ''
-				self.session.open(EPGSearch, name, False)
-			except ImportError:
-				self.session.open(MessageBox, _("The EPGSearch plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
-
-	def blueButtonPressed(self):
-		if self.type == EPG_TYPE_MULTI:
-			self["list"].updateMultiEPG(1)
-		elif self.type == EPG_TYPE_SINGLE or self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_GRAPH:
-			try:
-				from Plugins.Extensions.AutoTimer.AutoTimerEditor import addAutotimerFromEvent
 				cur = self["list"].getCurrent()
 				event = cur[0]
-				if not event: return
-				serviceref = cur[1]
-				addAutotimerFromEvent(self.session, evt = event, service = serviceref)
-			except ImportError:
-				self.session.open(MessageBox, _("The AutoTimer plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+				name = event.getEventName()
+			except:
+				name = ''
+			self.session.open(IMDB, name, False)
+		except ImportError:
+			self.session.open(MessageBox, _("The IMDb plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+
+	def yellowButtonPressed(self):
+		try:
+			from Plugins.Extensions.EPGSearch.EPGSearch import EPGSearch
+			try:
+				cur = self["list"].getCurrent()
+				event = cur[0]
+				name = event.getEventName()
+			except:
+				name = ''
+			self.session.open(EPGSearch, name, False)
+		except ImportError:
+			self.session.open(MessageBox, _("The EPGSearch plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+
+	def blueButtonPressed(self):
+		try:
+			from Plugins.Extensions.AutoTimer.AutoTimerEditor import addAutotimerFromEvent
+			cur = self["list"].getCurrent()
+			event = cur[0]
+			if not event: return
+			serviceref = cur[1]
+			addAutotimerFromEvent(self.session, evt = event, service = serviceref)
+		except ImportError:
+			self.session.open(MessageBox, _("The AutoTimer plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
 	def removeTimer(self, timer):
 		timer.afterEvent = AFTEREVENT.NONE
@@ -1169,9 +1193,6 @@ class EPGSelection(Screen):
 				self["key_red"].setText("")
 				self.key_red_choice = self.EMPTY
 			return
-		elif self.key_red_choice != self.ZAP and  self.type == EPG_TYPE_MULTI:
-				self["key_red"].setText_(("Zap"))
-				self.key_red_choice = self.ZAP
 
 		if event is None:
 			if self.key_green_choice != self.EMPTY:
@@ -1272,6 +1293,18 @@ class EPGSelection(Screen):
 				ref = self["list"].getCurrent()[1]
 				self["list"].curr_refcool = ref.ref
 				self["list"].fillGraphEPG(None)
+				switchto = ServiceReference(ref.ref)
+				switchto = str(switchto)
+				if not switchto == currch:
+					if ref:
+						self.zapFunc(ref.ref)
+				else:
+					self.close(True)
+		elif self.type == EPG_TYPE_MULTI:
+			if self.zapFunc:
+				currch = self.session.nav.getCurrentlyPlayingServiceReference()
+				currch = currch.toString()
+				ref = self["list"].getCurrent()[1]
 				switchto = ServiceReference(ref.ref)
 				switchto = str(switchto)
 				if not switchto == currch:

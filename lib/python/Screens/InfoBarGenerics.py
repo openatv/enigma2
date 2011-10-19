@@ -962,10 +962,11 @@ class InfoBarEPG:
 		services = self.getBouquetServices(bouquet)
 		if services:
 			self.epg_bouquet = bouquet
+			self.StartBouquet = bouquet
 			if withCallback:
-				self.dlg_stack.append(self.session.openWithCallback(self.closed, EPGSelection, services, self.zapToService, None, self.changeBouquetCB))
+				self.dlg_stack.append(self.session.openWithCallback(self.closed, EPGSelection, services, self.zapToService, None, self.changeBouquetCB, None, self.StartBouquet))
 			else:
-				self.session.open(EPGSelection, services, self.zapToService, None, self.changeBouquetCB)
+				self.session.open(EPGSelection, services, self.zapToService, None, self.changeBouquetCB, None, self.StartBouquet)
 
 	def changeBouquetCB(self, direction, epg):
 		if self.bouquetSel:
