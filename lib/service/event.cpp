@@ -14,7 +14,8 @@
 #include <fcntl.h>
 
 // static members / methods
-std::string eServiceEvent::m_language = "de_DE";
+std::string eServiceEvent::m_language = "---";
+std::string eServiceEvent::m_language_alternative = "---";
 
 ///////////////////////////
 
@@ -145,7 +146,9 @@ RESULT eServiceEvent::parseFrom(Event *evt, int tsidonid)
 	);
 	m_event_id = evt->getEventId();
 	m_duration = fromBCD(duration>>16)*3600+fromBCD(duration>>8)*60+fromBCD(duration);
-	if (loadLanguage(evt, m_language, tsidonid))
+	if (m_language != "---" && loadLanguage(evt, m_language, tsidonid))
+		return 0;
+	if (m_language_alternative != "---" && loadLanguage(evt, m_language_alternative, tsidonid))
 		return 0;
 	if (loadLanguage(evt, "eng", tsidonid))
 		return 0;
