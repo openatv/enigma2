@@ -1,5 +1,36 @@
-from enigma import eConsoleAppContainer
 import os
+from enigma import eConsoleAppContainer
+from Components.Harddisk import harddiskmanager
+
+opkgDestinations = []
+
+def opkgExtraDestinations():
+	global opkgDestinations
+	return ''.join([" --add-dest %s:%s" % (i,i) for i in opkgDestinations])
+
+def opkgAddDestination(mountpoint):
+	global opkgDestinations
+	if mountpoint not in opkgDestinations:
+		opkgDestinations.append(mountpoint)
+		print "[Ipkg] Added to OPKG destinations:", mountpoint
+
+def onPartitionChange(why, part):
+	global opkgDestinations
+	mountpoint = os.path.normpath(part.mountpoint)
+	if mountpoint and mountpoint != '/':
+		if why == 'add':
+			if os.path.exists(os.path.join(mountpoint, 'usr/lib/opkg/status')):
+				opkgAddDestination(mountpoint)
+		elif why == 'remove':
+			try:
+				opkgDestinations.remove(mountpoint)
+				print "[Ipkg] Removed from OPKG destinations:", mountpoint
+			except:
+				pass
+
+harddiskmanager.on_partition_list_change.append(onPartitionChange)
+for part in harddiskmanager.getMountedPartitions():
+	onPartitionChange('add', part)
 
 class IpkgComponent:
 	EVENT_INSTALL = 0
@@ -30,6 +61,9 @@ class IpkgComponent:
 	def setCurrentCommand(self, command = None):
 		self.currentCommand = command
 		
+	def runCmdEx(self, cmd):
+	        self.runCmd(opkgExtraDestinations() + ' ' + cmd)
+
 	def runCmd(self, cmd):
 		print "executing", self.ipkg, cmd
 		self.cmd.appClosed.append(self.cmdFinished)
@@ -39,16 +73,16 @@ class IpkgComponent:
 
 	def startCmd(self, cmd, args = None):
 		if cmd == self.CMD_UPDATE:
-			self.runCmd("update")
+			self.runCmdEx("update")
 		elif cmd == self.CMD_UPGRADE:
 			append = ""
 			if args["test_only"]:
 				append = " -test"
-			self.runCmd("upgrade" + append)
+			self.runCmdEx("upgrade" + append)
 		elif cmd == self.CMD_LIST:
 			self.fetchedList = []
 			if args['installed_only']:
-				self.runCmd("list_installed")
+				self.runCmdEx("list_installed")
 			else:
 				self.runCmd("list")
 		elif cmd == self.CMD_INSTALL:
@@ -57,7 +91,7 @@ class IpkgComponent:
 			self.runCmd("remove " + args['package'])
 		elif cmd == self.CMD_UPGRADE_LIST:
 		        self.fetchedList = []
-		        self.runCmd("list-upgradable")
+		        self.runCmdEx("list-upgradable")
 		self.setCurrentCommand(cmd)
 	
 	def cmdFinished(self, retval):
