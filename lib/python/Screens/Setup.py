@@ -187,11 +187,11 @@ class Setup(ConfigListScreen, Screen):
 
 				requires = x.get("requires")
 				if requires and requires.startswith('config.'):
-					item = eval(x.text or "");
+					item = eval(requires or "");
 					if item.value and not item.value == "0":
-						SystemInfo[x.text] = True
+						SystemInfo[requires] = True
 					else:
-						SystemInfo[x.text] = False
+						SystemInfo[requires] = False
 
 				if requires and not SystemInfo.get(requires, False):
 					continue;
