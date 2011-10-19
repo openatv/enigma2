@@ -343,6 +343,11 @@ def InitUsageConfig():
 	config.autolanguage.audio_epglanguage = ConfigSelection(audio_language_choices[:1] + audio_language_choices [2:], default="---")
 	config.autolanguage.audio_epglanguage.addNotifier(setEpgLanguage)
 
+	def setEpgLanguageAlternative(configElement):
+		enigma.eServiceEvent.setEPGLanguageAlternative(configElement.value)
+	config.autolanguage.audio_epglanguage_alternative = ConfigSelection(audio_language_choices[:1] + audio_language_choices [2:], default="---")
+	config.autolanguage.audio_epglanguage_alternative.addNotifier(setEpgLanguageAlternative)
+
 	config.autolanguage.audio_autoselect1 = ConfigSelection(choices=audio_language_choices, default="---")
 	config.autolanguage.audio_autoselect2 = ConfigSelection(choices=audio_language_choices, default="---")
 	config.autolanguage.audio_autoselect3 = ConfigSelection(choices=audio_language_choices, default="---")
