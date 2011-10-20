@@ -6,7 +6,6 @@ from enigma import eTimer
 def EpgCacheCheck(session=None, **kwargs):
 	global epgcachecheckpoller
 	epgcachecheckpoller = EpgCacheCheckPoller()
-	print 'config.epg.cachesched.value',config.epg.cachesched.value
 	if config.epg.cachesched.value:
 		epgcachecheckpoller.start()
 	else:
