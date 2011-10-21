@@ -292,6 +292,7 @@ class EPGSelection(Screen):
 		self.ask_time = -1 #now
 		self.closeRecursive = False
 		self.saved_title = None
+		self.oldService = ""
 		self["Service"] = ServiceEvent()
 		self["Event"] = Event()
 		Screen.setTitle(self, _("Programme Guide"))
@@ -339,7 +340,6 @@ class EPGSelection(Screen):
 				self.zapFunc = zapFunc
 				if bouquetname != "":
 					Screen.setTitle(self, bouquetname)
-				self.oldService = self.session.nav.getCurrentlyPlayingServiceReference()
 			else:
 				self.type = EPG_TYPE_MULTI
 				self.skinName = "EPGSelectionMulti"
@@ -581,7 +581,7 @@ class EPGSelection(Screen):
 			if config.GraphEPG.channel1.value:
 				self["list"].instance.moveSelectionTo(0)
 			self['lab1'].hide()
-		elif self.type == EPG_TYPE_MULTI:
+		else:
 			l = self["list"]
 			l.recalcEntrySize()
 			if self.type == EPG_TYPE_MULTI or self.type == EPG_TYPE_GRAPH:
@@ -801,9 +801,12 @@ class EPGSelection(Screen):
 
 	def closing(self):
 		if self.type != EPG_TYPE_GRAPH and self.type != EPG_TYPE_MULTI:
-			if self.oldService:
-				self.session.nav.playService(self.oldService)
-			self.setServicelistSelection(self.curBouquet, self.curRef.ref)
+			try:
+				if self.oldService:
+					self.session.nav.playService(self.oldService)
+				self.setServicelistSelection(self.curBouquet, self.curRef.ref)
+			except:
+				pass
 		else:
 			try:
 				self.zapFunc(self.startRef.ref, self.StartBouquet)
