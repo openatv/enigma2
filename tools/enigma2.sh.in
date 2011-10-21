@@ -51,7 +51,7 @@ case $ret in
 		/sbin/reboot
 		;;
 	42)
-		opkg upgrade 2>&1 > /home/root/ipkgupgrade.log
+		opkg upgrade 2>&1 | tee /home/root/ipkgupgrade.log
 		/sbin/reboot
 		;;
 	*)
