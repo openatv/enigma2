@@ -1381,7 +1381,7 @@ class UnattendedUpgradeMessageBox(Screen):
 
 	def __init__(self, session, args = None):
 		self.skin = """
-			<screen position="110,258" size="500,150" title="Unattended Upgrade">
+			<screen position="center,center" size="600,150" title="Unattended Upgrade">
 				<ePixmap pixmap="skin_default/icons/input_info.png" position="5,5" size="53,53" alphatest="on" />
 				<widget name="text" position="65,8" size="520,200" font="Regular;22" />
 			</screen>"""
