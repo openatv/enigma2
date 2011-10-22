@@ -44,6 +44,8 @@ from RecordTimer import RecordTimerEntry, RecordTimer
 # hack alert!
 from Menu import MainMenu, mdom
 
+InitFirstInfoBar = True
+
 def setResumePoint(session):
 	global resumePointCache, resumePointCacheLast
 	service = session.nav.getCurrentService()
@@ -150,6 +152,15 @@ class InfoBarUnhandledKey:
 			self.unhandledKeyDialog.show()
 			self.hideUnhandledKeySymbolTimer.start(2000, True)
 
+class SecondInfoBar(Screen):
+	skin = """
+		<screen flags="wfNoBorder" name="SecondInfoBar" position="center,350" size="720,200" title="Second Infobar">
+			<eLabel text="Your skin do not support SecondInfoBar !!!" position="0,0" size="720,200" font="Regular;22" halign="center" valign="center"/>
+		</screen>"""
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		self.skin = SecondInfoBar.skin
+
 class InfoBarShowHide:
 	""" InfoBar show/hide control, accepts toggleShow and hide actions, might start
 	fancy animations. """
@@ -179,7 +190,16 @@ class InfoBarShowHide:
 
 		self.onShow.append(self.__onShow)
 		self.onHide.append(self.__onHide)
-
+		
+		global InitFirstInfoBar
+		self.secondInfoBarScreen = None
+		if InitFirstInfoBar == True:
+			InitFirstInfoBar = False
+			# Only add second infobar in the fist declared InfoBox - probably find a better way later
+			# But the second infobar plugin is using the same method
+			self.secondInfoBarScreen = self.session.instantiateDialog(SecondInfoBar)
+		self.secondInfoBarWasShown = False
+		
 	def serviceStarted(self):
 		if self.execing:
 			if config.usage.show_infobar_on_zap.value:
@@ -187,6 +207,8 @@ class InfoBarShowHide:
 
 	def __onShow(self):
 		self.__state = self.STATE_SHOWN
+		if config.usage.show_second_infobar.value and self.secondInfoBarWasShown and self.secondInfoBarScreen:
+			self.secondInfoBarScreen.show()
 		self.startHideTimer()
 
 	def startHideTimer(self):
@@ -197,6 +219,8 @@ class InfoBarShowHide:
 
 	def __onHide(self):
 		self.__state = self.STATE_HIDDEN
+		if self.secondInfoBarScreen:
+			self.secondInfoBarScreen.hide()
 
 	def doShow(self):
 		self.show()
@@ -208,11 +232,21 @@ class InfoBarShowHide:
 			self.hide()
 
 	def toggleShow(self):
-		if self.__state == self.STATE_SHOWN:
+		if self.__state == self.STATE_SHOWN and (self.secondInfoBarScreen and config.usage.show_second_infobar.value and not self.secondInfoBarScreen.shown):
+			self.secondInfoBarScreen.show()
+			self.secondInfoBarWasShown = True
+			self.startHideTimer()
+		elif self.__state == self.STATE_SHOWN and (not config.usage.show_second_infobar.value or not self.secondInfoBarScreen or self.secondInfoBarScreen.shown):
 			self.hide()
+			if self.secondInfoBarScreen:
+				self.secondInfoBarScreen.hide()
+			self.secondInfoBarWasShown = False
 			self.hideTimer.stop()
 		elif self.__state == self.STATE_HIDDEN:
 			self.show()
+			if self.secondInfoBarScreen:
+				self.secondInfoBarScreen.hide()
+			self.secondInfoBarWasShown = False
 
 	def lockShow(self):
 		self.__locked = self.__locked + 1
