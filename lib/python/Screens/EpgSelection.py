@@ -515,9 +515,7 @@ class EPGSelection(Screen):
 			self.activityTimer = eTimer()
 			self.activityTimer.timeout.get().append(self.onStartup)
 			self.updateList()
-	#		self.onLayoutFinish.append(self.updateList)
-
-		else:
+		elif self.type == EPG_TYPE_MULTI:
 			self["actions"] = ActionMap(["EPGSelectActions", "OkCancelActions", "ColorActions"],
 			{
 				"ok": self.ZapTo,
@@ -543,6 +541,28 @@ class EPGSelection(Screen):
 					"left": self.leftPressed,
 					"right": self.rightPressed,
 				},-1)
+			self.onLayoutFinish.append(self.onStartup)
+		else:
+			self["actions"] = ActionMap(["EPGSelectActions", "OkCancelActions", "ColorActions"],
+			{
+				"ok": self.ZapTo,
+				"cancel": self.closing,
+				"red": self.redButtonPressed,
+				"timerAdd": self.timerAdd,
+				"yellow": self.yellowButtonPressed,
+				"blue": self.blueButtonPressed,
+				"info": self.infoKeyPressed,
+				"input_date_time": self.enterDateTime,
+				"nextBouquet": self.nextBouquet,
+				"prevBouquet": self.prevBouquet,
+				"nextService": self.nextPage,
+				"prevService": self.prevPage,
+			})
+			self["MenuActions"] = HelpableActionMap(self, "MenuActions",
+				{
+					"menu": (self.createSetup, _("Open Context Menu"))
+				}
+			)
 			self.onLayoutFinish.append(self.onStartup)
 
 	def createSetup(self):
