@@ -150,6 +150,16 @@ class InfoBarUnhandledKey:
 			self.unhandledKeyDialog.show()
 			self.hideUnhandledKeySymbolTimer.start(2000, True)
 
+class SecondInfoBar(Screen):
+	skin = """
+		<screen flags="wfNoBorder" name="SecondInfoBar" position="center,350" size="720,200" title="Second Infobar">
+			<eLabel text="Your skin do not support SecondInfoBar !!!" position="0,0" size="720,200" font="Regular;22" halign="center" valign="center"/>
+		</screen>"""
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		self.session = session
+		self.skin = SecondInfoBar.skin
+		
 class InfoBarShowHide:
 	""" InfoBar show/hide control, accepts toggleShow and hide actions, might start
 	fancy animations. """
@@ -179,6 +189,9 @@ class InfoBarShowHide:
 
 		self.onShow.append(self.__onShow)
 		self.onHide.append(self.__onHide)
+		
+		self.secondInfoBar = self.session.instantiateDialog(SecondInfoBar)
+		self.secondInfoBarWasShown = False
 
 	def serviceStarted(self):
 		if self.execing:
@@ -187,6 +200,8 @@ class InfoBarShowHide:
 
 	def __onShow(self):
 		self.__state = self.STATE_SHOWN
+		if config.usage.show_second_infobar.value and self.secondInfoBarWasShown:
+			self.secondInfoBar.show()
 		self.startHideTimer()
 
 	def startHideTimer(self):
@@ -206,13 +221,22 @@ class InfoBarShowHide:
 		self.hideTimer.stop()
 		if self.__state == self.STATE_SHOWN:
 			self.hide()
+		if config.usage.timeout_second_infobar.value:
+			self.secondInfoBar.hide()
 
 	def toggleShow(self):
-		if self.__state == self.STATE_SHOWN:
+		if self.__state == self.STATE_SHOWN and (config.usage.show_second_infobar.value and not self.secondInfoBar.shown):
+			self.secondInfoBar.show()
+			self.secondInfoBarWasShown = True
+			self.startHideTimer()
+		elif self.__state == self.STATE_SHOWN and (not config.usage.show_second_infobar.value or self.secondInfoBar.shown):
 			self.hide()
+			self.secondInfoBar.hide()
+			self.secondInfoBarWasShown = False
 			self.hideTimer.stop()
 		elif self.__state == self.STATE_HIDDEN:
 			self.show()
+			self.secondInfoBarWasShown = False
 
 	def lockShow(self):
 		self.__locked = self.__locked + 1
