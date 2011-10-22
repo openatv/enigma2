@@ -524,7 +524,7 @@ class EPGSelection(Screen):
 				"timerAdd": self.timerAdd,
 				"yellow": self.yellowButtonPressed,
 				"blue": self.blueButtonPressed,
-				"info": self.infoKeyPressed,
+				"Info": self.infoKeyPressed,
 				"input_date_time": self.enterDateTime,
 				"nextBouquet": self.nextBouquet,
 				"prevBouquet": self.prevBouquet,
@@ -551,7 +551,7 @@ class EPGSelection(Screen):
 				"timerAdd": self.timerAdd,
 				"yellow": self.yellowButtonPressed,
 				"blue": self.blueButtonPressed,
-				"info": self.infoKeyPressed,
+				"Info": self.infoKeyPressed,
 				"input_date_time": self.enterDateTime,
 				"nextBouquet": self.nextBouquet,
 				"prevBouquet": self.prevBouquet,
@@ -1309,29 +1309,21 @@ class EPGSelection(Screen):
 				self.closeScreen()
 
 	def ZapTo(self):
-		if self.type == EPG_TYPE_GRAPH:
+		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_MULTI:
 			if self.zapFunc:
 				currch = self.session.nav.getCurrentlyPlayingServiceReference()
 				currch = currch.toString()
 				ref = self["list"].getCurrent()[1]
-				self["list"].curr_refcool = ref.ref
-				self["list"].fillGraphEPG(None)
+				if self.type == EPG_TYPE_GRAPH:
+					self["list"].curr_refcool = ref.ref
+					self["list"].fillGraphEPG(None)
 				switchto = ServiceReference(ref.ref)
 				switchto = str(switchto)
 				if not switchto == currch:
-					if ref:
+					if ref and switchto.find('alternatives') != -1:
 						self.zapFunc(ref.ref)
-				else:
-					self.close(True)
-		elif self.type == EPG_TYPE_MULTI:
-			if self.zapFunc:
-				currch = self.session.nav.getCurrentlyPlayingServiceReference()
-				currch = currch.toString()
-				ref = self["list"].getCurrent()[1]
-				switchto = ServiceReference(ref.ref)
-				switchto = str(switchto)
-				if not switchto == currch:
-					if ref:
+						self.close(True)
+					else:
 						self.zapFunc(ref.ref)
 				else:
 					self.close(True)
