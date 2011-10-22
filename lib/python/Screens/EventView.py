@@ -173,7 +173,7 @@ class EventViewBase:
 			return
 		name = event.getEventName()
 		self["channel"].setText(name)
-# 		text = event.getEventName()
+ 		text = ""
 		short = event.getShortDescription()
 		ext = event.getExtendedDescription()
 		if short:
