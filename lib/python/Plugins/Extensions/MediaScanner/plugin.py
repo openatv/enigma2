@@ -37,8 +37,8 @@ def mountpoint_choosen(option):
 
 def scan(session):
 	from Screens.ChoiceBox import ChoiceBox
-	parts = [ (r.description, r.mountpoint, session) for r in harddiskmanager.getMountedPartitions(onlyhotplug = False) if os.access(r.mountpoint, os.F_OK|os.R_OK) ]
-	parts.append( (_("Memory"), "/tmp", session) )
+	parts = [ (r.tabbedDescription(), r.mountpoint, session) for r in harddiskmanager.getMountedPartitions(onlyhotplug = False) if os.access(r.mountpoint, os.F_OK|os.R_OK) ]
+	parts.append( (_("Memory") + "\t/tmp", "/tmp", session) )
 	session.openWithCallback(mountpoint_choosen, ChoiceBox, title = _("Please Select Medium to be Scanned"), list = parts)
 
 def main(session, **kwargs):
