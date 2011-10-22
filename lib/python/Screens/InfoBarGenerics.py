@@ -190,7 +190,7 @@ class InfoBarShowHide:
 
 		self.onShow.append(self.__onShow)
 		self.onHide.append(self.__onHide)
-		
+
 		global InitFirstInfoBar
 		self.secondInfoBarScreen = None
 		if InitFirstInfoBar == True:
