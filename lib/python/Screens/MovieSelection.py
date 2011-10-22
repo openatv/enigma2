@@ -1060,7 +1060,11 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			inlist.append(d)
 		for p in Components.Harddisk.harddiskmanager.getMountedPartitions():
 			d = os.path.normpath(p.mountpoint)
-			bookmarks.append((p.description, d))
+			if d in inlist:
+				# improve shortcuts to mountpoints
+				bookmarks[bookmarks.index((d,d))] = (p.tabbedDescription(), d)
+			else:
+				bookmarks.append((p.tabbedDescription(), d))
 			inlist.append(d)
 		for d in last_selected_dest:
 			if d not in inlist:
