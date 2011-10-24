@@ -8,6 +8,7 @@ from Components.PluginList import *
 from Components.Label import Label
 from Components.Harddisk import harddiskmanager
 from Components.Sources.StaticText import StaticText
+from Components import Ipkg
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
 from Screens.Console import Console
@@ -17,18 +18,6 @@ from Tools.LoadPixmap import LoadPixmap
 
 from time import time
 import os
-
-opkgDestinations = []
-
-def opkgExtraDestinations():
-	global opkgDestinations
-	return ''.join([" --add-dest %s:%s" % (i,i) for i in opkgDestinations])
-
-def opkgAddDestination(mountpoint):
-	global opkgDestinations
-	if mountpoint not in opkgDestinations: 
-		opkgDestinations.append(mountpoint)
-		print "[Plugin] Added to OPKG destinations:", mountpoint 
 
 def languageChanged():
 	plugins.clearPluginList()
@@ -234,7 +223,7 @@ class PluginDownloadBrowser(Screen):
 				# Custom install path, add it to the list too
 				dest = os.path.normpath(dest)
 				extra = '--add-dest %s:%s -d %s' % (dest,dest,dest)
-				opkgAddDestination(dest)
+				Ipkg.opkgAddDestination(dest)
 			else:
 				extra = '-d ' + dest
 			self.session.openWithCallback(self.installFinished, Console, cmdlist = [self.ipkg_install + " enigma2-plugin-" + self["list"].l.getCurrentSelection()[0].name + ' ' + extra], closeOnSuccess = True)
@@ -259,7 +248,7 @@ class PluginDownloadBrowser(Screen):
 					return
 				self.session.openWithCallback(self.installFinished, Console, cmdlist = [self.ipkg_install + " enigma2-plugin-" + self["list"].l.getCurrentSelection()[0].name], closeOnSuccess = True)
 			elif self.type == self.REMOVE:
-				self.session.openWithCallback(self.installFinished, Console, cmdlist = [self.ipkg_remove + opkgExtraDestinations() + " enigma2-plugin-" + self["list"].l.getCurrentSelection()[0].name], closeOnSuccess = True)
+				self.session.openWithCallback(self.installFinished, Console, cmdlist = [self.ipkg_remove + Ipkg.opkgExtraDestinations() + " enigma2-plugin-" + self["list"].l.getCurrentSelection()[0].name], closeOnSuccess = True)
 
 	def setWindowTitle(self):
 		if self.type == self.DOWNLOAD:
@@ -268,10 +257,10 @@ class PluginDownloadBrowser(Screen):
 			self.setTitle(_("Remove plugins"))
 
 	def startIpkgListInstalled(self):
-		self.container.execute(self.ipkg + opkgExtraDestinations() + " list_installed 'enigma2-plugin-*'")
+		self.container.execute(self.ipkg + Ipkg.opkgExtraDestinations() + " list_installed 'enigma2-plugin-*'")
 
 	def startIpkgListAvailable(self):
-		self.container.execute(self.ipkg + opkgExtraDestinations() + " list 'enigma2-plugin-*'")
+		self.container.execute(self.ipkg + Ipkg.opkgExtraDestinations() + " list 'enigma2-plugin-*'")
 
 	def startRun(self):
 		listsize = self["list"].instance.size()
@@ -384,22 +373,3 @@ class PluginDownloadBrowser(Screen):
 		self["list"].l.setList(list)
 
 language.addCallback(languageChanged)
-
-def onPartitionChange(why, part):
-	global opkgDestinations
-	mountpoint = os.path.normpath(part.mountpoint)
-	if mountpoint and mountpoint != '/':
-		if why == 'add':
-			if os.path.exists(os.path.join(mountpoint, 'usr/lib/opkg/status')):
-				opkgAddDestination(mountpoint)
-		elif why == 'remove':
-			try:
-				opkgDestinations.remove(mountpoint)
-				print "[Plugin] Removed from OPKG destinations:", mountpoint 
-			except:
-				pass
-
-from Components.Harddisk import harddiskmanager
-harddiskmanager.on_partition_list_change.append(onPartitionChange)
-for part in harddiskmanager.getMountedPartitions():
-	onPartitionChange('add', part)
