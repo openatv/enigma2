@@ -509,6 +509,12 @@ class Partition:
 		except OSError:
 			return None
 
+	def tabbedDescription(self):
+		if self.mountpoint.startswith('/media/net'):
+			# Network devices have a user defined name
+			return self.description
+		return self.description + '\t' + self.mountpoint
+
 	def mounted(self, mounts = None):
 		# THANK YOU PYTHON FOR STRIPPING AWAY f_fsid.
 		# TODO: can os.path.ismount be used?
