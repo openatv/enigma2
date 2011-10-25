@@ -74,6 +74,16 @@ if test x"$withtextlcd" != xno ; then
 fi
 AM_CONDITIONAL(HAVE_TEXTLCD, test x"$withtextlcd" != xno)
 
+AC_ARG_WITH(graphiclcd,
+	AC_HELP_STRING([--with-graphiclcd], [use graphic based lcd, yes or no]),
+	[[withgraphiclcd=$withval]],
+	[[withgraphiclcd=no]]
+)
+if test x"$withgraphiclcd" != xno ; then
+	AC_DEFINE(HAVE_GRAPHICLCD, 1,[Define when using an graphic based vfd device])
+fi
+AM_CONDITIONAL(HAVE_GRAPHICLCD, test x"$withgraphiclcd != xno")
+
 AC_ARG_WITH(colorlcd,
 	AC_HELP_STRING([--with-colorlcd], [use 96x64 16bpp color display, yes or no]),
 	[[withcolorlcd=$withval]],
