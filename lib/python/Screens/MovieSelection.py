@@ -445,6 +445,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 
 		self.listTimer = eTimer()
 		self.listTimer.timeout.get().append(self.updateHDDData)
+		self.feedbackTimer = None
 
 		self.activityTimer = eTimer()
 		self.activityTimer.timeout.get().append(self.hidewaitingtext)
@@ -1079,7 +1080,11 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			inlist.append(d)
 		for p in Components.Harddisk.harddiskmanager.getMountedPartitions():
 			d = os.path.normpath(p.mountpoint)
-			bookmarks.append((p.description, d))
+			if d in inlist:
+				# improve shortcuts to mountpoints
+				bookmarks[bookmarks.index((d,d))] = (p.tabbedDescription(), d)
+			else:
+				bookmarks.append((p.tabbedDescription(), d))
 			inlist.append(d)
 		for d in last_selected_dest:
 			if d not in inlist:
@@ -1400,6 +1405,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 								os.rmdir(os.path.join(root, dn))
 						os.rmdir(cur_path)
 						self["list"].removeService(current)
+						self.showActionFeedback(_("Deleted") + " " + name)
 						# Files were moved to .Trash, ok.
 						return
 					except OSError, e:
@@ -1429,6 +1435,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			else:
 				os.rmdir(cur_path)
 				self["list"].removeService(current)
+				self.showActionFeedback(_("Deleted") + " " + name)
 		else:
 			if not args:
 				rec_filename = os.path.split(current.getPath())[1]
@@ -1457,6 +1464,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 						# Files were moved to .Trash, ok.
 						from Screens.InfoBarGenerics import delResumePoint
 						delResumePoint(current)
+						self.showActionFeedback(_("Deleted") + " " + name)
 						return
 				except OSError, e:
 					print "[MovieSelection] Cannot move to trash", e
@@ -1476,25 +1484,28 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 	def deleteConfirmed(self, confirmed):
 		if not confirmed:
 			return
-		current = self.getCurrent()
-		if current is None:
-			# huh?
-			return
+		item = self.getCurrentSelection()
+		if item is None:
+			return # huh?
+		current = item[0]
+		info = item[1]
+		name = info and info.getName(current) or _("this recording")
 		serviceHandler = eServiceCenter.getInstance()
 		offline = serviceHandler.offlineOperations(current)
-		result = False
-		if offline is not None:
-			# really delete!
-			if not offline.deleteFromDisk(0):
-				result = True
-		if result == False:
-			self.session.open(MessageBox, _("Delete failed!"), MessageBox.TYPE_ERROR)
-		else:
+		try:
+			if offline is None:
+			        from enigma import eBackgroundFileEraser
+			        eBackgroundFileEraser.getInstance().erase(os.path.realpath(current.getPath()))
+			else:
+				if offline.deleteFromDisk(0):
+					raise Exception, "Offline delete failed"
 			self["list"].removeService(current)
 			from Screens.InfoBarGenerics import delResumePoint
 			delResumePoint(current)
-			# Todo: This is pointless, delete is not finished yet.
-			self["freeDiskSpace"].update()
+			self.showActionFeedback(_("Deleted") + " " + name)
+		except Exception, ex:
+			self.session.open(MessageBox, _("Delete failed!") + "\n" + name + "\n" + str(ex), MessageBox.TYPE_ERROR)
+
 
 	def purgeAll(self):
 		recordings = self.session.nav.getRecordings()
@@ -1515,6 +1526,19 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 	def showNetworkSetup(self):
 		import NetworkSetup
 		self.session.open(NetworkSetup.NetworkAdapterSelection)
+
+	def showActionFeedback(self, text):
+		if self.feedbackTimer is None:
+			self.feedbackTimer = eTimer()
+			self.feedbackTimer.callback.append(self.hideActionFeedback)
+		else:
+			self.feedbackTimer.stop()
+		self.feedbackTimer.start(3000, 1)
+		self.diskinfo.setText(text)
+
+	def hideActionFeedback(self):
+		print "[ML] hide feedback"
+		self.diskinfo.update()
 
 	def can_gohome(self, item):
 	        return True

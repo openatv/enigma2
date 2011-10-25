@@ -97,6 +97,6 @@ def Plugins(**kwargs):
 	from os import path
 	if path.exists("/proc/stb/fp/fan"):
 		from Plugins.Plugin import PluginDescriptor
-		return [PluginDescriptor(name = "Fan Setup", description = _("switch Fan On/Off"), where = PluginDescriptor.WHERE_PLUGINMENU, fnc = main),
-					PluginDescriptor(name = "Fan Setup", description = "", where = PluginDescriptor.WHERE_SESSIONSTART, fnc = startup)]
+		return [PluginDescriptor(name = "Fan Control", description = _("switch Fan On/Off"), where = PluginDescriptor.WHERE_PLUGINMENU, fnc = main),
+					PluginDescriptor(name = "Fan Control", description = "", where = PluginDescriptor.WHERE_SESSIONSTART, fnc = startup)]
 	return []

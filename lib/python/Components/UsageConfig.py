@@ -25,7 +25,6 @@ def InitUsageConfig():
 	config.misc.boxtype = ConfigText(default = boxtype)
 	config.misc.useNTPminutes = ConfigSelection(default = "30", choices = [("30", "30 Minutes"), ("60", _("Hour")), ("1440", _("Once per day"))])
 
-
 	config.usage = ConfigSubsection();
 	config.usage.showdish = ConfigYesNo(default = True)
 	config.usage.multibouquet = ConfigYesNo(default = True)
@@ -44,7 +43,7 @@ def InitUsageConfig():
 	config.usage.show_infobar_on_zap = ConfigYesNo(default = True)
 	config.usage.show_infobar_on_skip = ConfigYesNo(default = True)
 	config.usage.show_infobar_on_event_change = ConfigYesNo(default = False)
-	config.usage.show_infobar_eventinfo = ConfigYesNo(default = True)
+	config.usage.show_second_infobar = ConfigSelection(default = "1", choices = [("0", _("Off")), ("1", _("Event Info")), ("2", _("2nd Infobar"))])
 	config.usage.show_spinner = ConfigYesNo(default = True)
 	config.usage.enable_tt_caching = ConfigYesNo(default = True)
 	config.usage.hdd_standby = ConfigSelection(default = "300", choices = [
@@ -101,7 +100,7 @@ def InitUsageConfig():
 	config.usage.movielist_trashcan = ConfigYesNo(default=True)
 	config.usage.movielist_trashcan_days = ConfigNumber(default=8)
 	config.usage.movielist_trashcan_reserve = ConfigNumber(default=40)
-	config.usage.on_movie_start = ConfigSelection(default = "resume", choices = [
+	config.usage.on_movie_start = ConfigSelection(default = "ask", choices = [
 		("ask", _("Ask user")), ("resume", _("Resume from last position")), ("beginning", _("Start from the beginning")) ])
 	config.usage.on_movie_stop = ConfigSelection(default = "movielist", choices = [
 		("ask", _("Ask user")), ("movielist", _("Return to movie list")), ("quit", _("Return to previous service")) ])
@@ -235,6 +234,15 @@ def InitUsageConfig():
 	config.epg.freesat.addNotifier(EpgSettingsChanged)
 	config.epg.viasat.addNotifier(EpgSettingsChanged)
 	config.epg.netmed.addNotifier(EpgSettingsChanged)
+	config.epg.cachesched = ConfigYesNo(default = False)
+	config.epg.cachetimer = ConfigSelection(default = 24, choices = [
+		("1", "1"),("2", "2"),("3", "3"),("4", "4"),("5", "5"),("6", "6"),("7", "7"),("8", "8"),("9", "9"),("10", "10"),
+		("11", "11"),("12", "12"),("13", "13"),("14", "14"),("15", "15"),("16", "16"),("17", "17"),("18", "18"),("19", "19"),("20", "20"),
+		("21", "21"),("22", "22"),("23", "23"),("24", "24")])
+	def EpgCacheSchedChanged(configElement):
+		import Screens.EpgLoadSave
+		Screens.EpgLoadSave.EpgCacheCheck()
+ 	config.epg.cachesched.addNotifier(EpgCacheSchedChanged, immediate_feedback = False)
 
 	hddchoises = []
 	for p in harddiskmanager.getMountedPartitions():
@@ -257,7 +265,7 @@ def InitUsageConfig():
 		from enigma import eEPGCache
 		epgcache = eEPGCache.getInstance()
 		epgcache.save()
-	config.misc.epgcachepath.addNotifier(EpgCacheChanged, immediate_feedback = False)
+ 	config.misc.epgcachepath.addNotifier(EpgCacheChanged, immediate_feedback = False)
 	config.misc.epgcachefilename.addNotifier(EpgCacheChanged, immediate_feedback = False)
 
 	def setHDDStandby(configElement):
@@ -473,6 +481,11 @@ def InitUsageConfig():
 		enigma.eServiceEvent.setEPGLanguage(configElement.value)
 	config.autolanguage.audio_epglanguage = ConfigSelection(audio_language_choices[:1] + audio_language_choices [2:], default="---")
 	config.autolanguage.audio_epglanguage.addNotifier(setEpgLanguage)
+
+	def setEpgLanguageAlternative(configElement):
+		enigma.eServiceEvent.setEPGLanguageAlternative(configElement.value)
+	config.autolanguage.audio_epglanguage_alternative = ConfigSelection(audio_language_choices[:1] + audio_language_choices [2:], default="---")
+	config.autolanguage.audio_epglanguage_alternative.addNotifier(setEpgLanguageAlternative)
 
 	config.autolanguage.audio_autoselect1 = ConfigSelection(choices=audio_language_choices, default="---")
 	config.autolanguage.audio_autoselect2 = ConfigSelection(choices=audio_language_choices, default="---")

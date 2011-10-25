@@ -501,7 +501,7 @@ void eDVBRecordFileThread::setTimingPID(int pid, int type)
 
 void eDVBRecordFileThread::startSaveMetaInformation(const std::string &filename)
 {
-	m_stream_info.startSave(filename.c_str());
+	m_stream_info.startSave(filename);
 }
 
 void eDVBRecordFileThread::stopSaveMetaInformation()
@@ -610,7 +610,7 @@ RESULT eDVBTSRecorder::start()
 	
 #endif
 
-	if (m_target_filename != "")
+	if (!m_target_filename.empty())
 		m_thread->startSaveMetaInformation(m_target_filename);
 	
 	m_thread->start(m_source_fd, m_target_fd);

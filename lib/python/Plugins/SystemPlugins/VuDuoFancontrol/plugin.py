@@ -168,5 +168,5 @@ def setfansetup(reason, **kwargs):
 		print 'Error to set fan control'
 
 def Plugins(**kwargs):
-	return [PluginDescriptor(name = "FanSetups", description = "check Fan Control settings", where = PluginDescriptor.WHERE_AUTOSTART, fnc = setfansetup),
-	PluginDescriptor(name=_("Fan control"), description="Fan Control", where = PluginDescriptor.WHERE_MENU, fnc=selSetup)]
+	return [PluginDescriptor(name = "Fan Control", description = "check Fan Control settings", where = PluginDescriptor.WHERE_AUTOSTART, fnc = setfansetup),
+	PluginDescriptor(name=_("Fan Control"), description="Fan Control", where = PluginDescriptor.WHERE_MENU, fnc=selSetup)]

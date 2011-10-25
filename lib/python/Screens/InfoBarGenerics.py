@@ -50,6 +50,8 @@ import Screens.Standby
 
 SYSTEMS = ["irdeto", "seca", "nagra", "via", "conax", "betacrypt", "crypto", "dreamcrypt", "nds"]
 
+InitFirstInfoBar = True
+
 def setResumePoint(session):
 	global resumePointCache, resumePointCacheLast
 	service = session.nav.getCurrentService()
@@ -204,6 +206,15 @@ class EcmInfoLabel(Label):
 			self.instance.setBackgroundColor(parseColor("#595959")),
 		self.instance.setTransparent(0)
 
+class SecondInfoBar(Screen):
+	skin = """
+		<screen flags="wfNoBorder" name="SecondInfoBar" position="center,100" size="720,200" title="Second Infobar">
+			<eLabel text="Your skin do not support SecondInfoBar !!!" position="0,0" size="720,200" font="Regular;22" halign="center" valign="center"/>
+		</screen>"""
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		self.skin = SecondInfoBar.skin
+
 class InfoBarShowHide:
 	""" InfoBar show/hide control, accepts toggleShow and hide actions, might start
 	fancy animations. """
@@ -259,6 +270,15 @@ class InfoBarShowHide:
 		self.onShow.append(self.__onShow)
 		self.onHide.append(self.__onHide)
 
+		global InitFirstInfoBar
+		self.secondInfoBarScreen = None
+		if InitFirstInfoBar == True:
+			InitFirstInfoBar = False
+			# Only add second infobar in the fist declared InfoBox - probably find a better way later
+			# But the second infobar plugin is using the same method
+			self.secondInfoBarScreen = self.session.instantiateDialog(SecondInfoBar)
+		self.secondInfoBarWasShown = False
+
 	def doButtonsCheck(self):
 		if config.plisettings.ColouredButtons.value:
 			self["key_yellow"].setText(_("Search"))
@@ -298,6 +318,8 @@ class InfoBarShowHide:
 
 	def __onShow(self):
 		self.__state = self.STATE_SHOWN
+		if config.usage.show_second_infobar.value == "2" and self.secondInfoBarWasShown and self.secondInfoBarScreen:
+			self.secondInfoBarScreen.show()
 		self.doButtonsCheck()
 		self.startHideTimer()
 
@@ -309,6 +331,8 @@ class InfoBarShowHide:
 
 	def __onHide(self):
 		self.__state = self.STATE_HIDDEN
+		if self.secondInfoBarScreen:
+			self.secondInfoBarScreen.hide()
 
 	def doShow(self):
 		self.show()
@@ -320,16 +344,25 @@ class InfoBarShowHide:
 			self.hide()
 
 	def toggleShow(self):
-		if self.__state == self.STATE_SHOWN:
-			if config.usage.show_infobar_eventinfo.value:
-				self.hide()
-				self.hideTimer.stop()
+		if self.__state == self.STATE_HIDDEN:
+			if not self.secondInfoBarScreen.shown:
+				self.show()
+			if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+				self.secondInfoBarScreen.hide()
+			self.secondInfoBarWasShown = False
+		elif self.__state == self.STATE_SHOWN and (self.secondInfoBarScreen and config.usage.show_second_infobar.value == "2" and not self.secondInfoBarScreen.shown):
+			self.hide()
+			self.secondInfoBarScreen.show()
+			self.secondInfoBarWasShown = True
+			self.startHideTimer()
+		elif self.__state == self.STATE_SHOWN:
+			self.hide()
+			if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+				self.secondInfoBarScreen.hide()
+			self.secondInfoBarWasShown = False
+			self.hideTimer.stop()
+			if config.usage.show_second_infobar.value == "1":
 				self.openEventView()
-			else:
-				self.hide()
-				self.hideTimer.stop()
-		elif self.__state == self.STATE_HIDDEN:
-			self.show()
 
 	def lockShow(self):
 		self.__locked = self.__locked + 1
@@ -1000,10 +1033,11 @@ class InfoBarEPG:
 		services = self.getBouquetServices(bouquet)
 		if services:
 			self.epg_bouquet = bouquet
+			self.StartBouquet = bouquet
 			if withCallback:
-				self.dlg_stack.append(self.session.openWithCallback(self.closed, EPGSelection, services, self.zapToService, None, self.changeBouquetCB))
+				self.dlg_stack.append(self.session.openWithCallback(self.closed, EPGSelection, services, self.zapToService, None, self.changeBouquetCB, None, self.StartBouquet))
 			else:
-				self.session.open(EPGSelection, services, self.zapToService, None, self.changeBouquetCB)
+				self.session.open(EPGSelection, services, self.zapToService, None, self.changeBouquetCB, None, self.StartBouquet)
 
 	def changeBouquetCB(self, direction, epg):
 		if self.bouquetSel:
@@ -2093,6 +2127,9 @@ class InfoBarTimeshift:
 		self.stopTimeshiftConfirmed(True, switchToLive)
 		ts = self.getTimeshift()
 		if ts and not ts.startTimeshift():
+			if (config.misc.boxtype.value == 'vuuno' or config.misc.boxtype.value == 'vuduo') and Directories.fileExists("/proc/stb/lcd/symbol_timeshift"):
+				if self.session.nav.RecordTimer.isRecording():
+					open("/proc/stb/lcd/symbol_timeshift", "w").write("0")
 			self.pts_starttime = time()
 			self.pts_LengthCheck_timer.start(120000)
 			self.timeshift_enabled = 1
@@ -2430,7 +2467,7 @@ class InfoBarTimeshift:
 						else:
 							eventname = "";
 
-						JobManager.AddJob(CopyTimeshiftJob(self, "cp \"%s%s.copy\" \"%s.ts\"" % (config.usage.timeshift_path.value,copy_file,fullname), copy_file, fullname, eventname))
+						JobManager.AddJob(CopyTimeshiftJob(self, "mv \"%s%s.copy\" \"%s.ts\"" % (config.usage.timeshift_path.value,copy_file,fullname), copy_file, fullname, eventname))
 						if not Screens.Standby.inTryQuitMainloop and not Screens.Standby.inStandby and not mergelater and self.save_timeshift_postaction != "standby":
 							Notifications.AddNotification(MessageBox, _("Saving timeshift as movie now. This might take a while!"), MessageBox.TYPE_INFO, timeout=5)
 					else:
@@ -4284,8 +4321,6 @@ class CopyTimeshiftJob(Job):
 class AddCopyTimeshiftTask(Task):
 	def __init__(self, job, cmdline, srcfile, destfile, eventname):
 		Task.__init__(self, job, eventname)
-		if config.usage.timeshift_path.value[-1:] == '/':
-			config.usage.timeshift_path.value = config.usage.timeshift_path.value[:-1]
 		self.toolbox = job.toolbox
 		self.setCmdline(cmdline)
 		self.srcfile = config.usage.timeshift_path.value + srcfile + ".copy"

@@ -74,6 +74,16 @@ if test x"$withtextlcd" != xno ; then
 fi
 AM_CONDITIONAL(HAVE_TEXTLCD, test x"$withtextlcd" != xno)
 
+AC_ARG_WITH(graphiclcd,
+	AC_HELP_STRING([--with-graphiclcd], [use graphic based lcd, yes or no]),
+	[[withgraphiclcd=$withval]],
+	[[withgraphiclcd=no]]
+)
+if test x"$withgraphiclcd" != xno ; then
+	AC_DEFINE(HAVE_GRAPHICLCD, 1,[Define when using an graphic based vfd device])
+fi
+AM_CONDITIONAL(HAVE_GRAPHICLCD, test x"$withgraphiclcd != xno")
+
 AC_ARG_WITH(colorlcd,
 	AC_HELP_STRING([--with-colorlcd], [use 96x64 16bpp color display, yes or no]),
 	[[withcolorlcd=$withval]],
@@ -273,10 +283,6 @@ lib/python/Plugins/SystemPlugins/DefaultServicesScanner/Makefile
 lib/python/Plugins/SystemPlugins/DefaultServicesScanner/meta/Makefile
 lib/python/Plugins/SystemPlugins/DiseqcTester/Makefile
 lib/python/Plugins/SystemPlugins/DiseqcTester/meta/Makefile
-lib/python/Plugins/SystemPlugins/FanSetupVuPlus/Makefile
-lib/python/Plugins/SystemPlugins/FanSetupVuPlus/meta/Makefile
-lib/python/Plugins/SystemPlugins/FanSetupXtrend/Makefile
-lib/python/Plugins/SystemPlugins/FanSetupXtrend/meta/Makefile
 lib/python/Plugins/SystemPlugins/FPGAUpgrade/Makefile
 lib/python/Plugins/SystemPlugins/FPGAUpgrade/meta/Makefile
 lib/python/Plugins/SystemPlugins/FrontprocessorUpgrade/Makefile
@@ -292,10 +298,16 @@ lib/python/Plugins/SystemPlugins/NFIFlash/Makefile
 lib/python/Plugins/SystemPlugins/NFIFlash/meta/Makefile
 lib/python/Plugins/SystemPlugins/PositionerSetup/Makefile
 lib/python/Plugins/SystemPlugins/PositionerSetup/meta/Makefile
+lib/python/Plugins/SystemPlugins/RemoteControlCode/Makefile
+lib/python/Plugins/SystemPlugins/RemoteControlCode/meta/Makefile
 lib/python/Plugins/SystemPlugins/SatelliteEquipmentControl/Makefile
 lib/python/Plugins/SystemPlugins/SatelliteEquipmentControl/meta/Makefile
 lib/python/Plugins/SystemPlugins/Satfinder/Makefile
 lib/python/Plugins/SystemPlugins/Satfinder/meta/Makefile
+lib/python/Plugins/SystemPlugins/VuDuoFancontrol/Makefile
+lib/python/Plugins/SystemPlugins/VuDuoFancontrol/meta/Makefile
+lib/python/Plugins/SystemPlugins/VuUnoFancontrol/Makefile
+lib/python/Plugins/SystemPlugins/VuUnoFancontrol/meta/Makefile
 lib/python/Plugins/SystemPlugins/VideoEnhancement/Makefile
 lib/python/Plugins/SystemPlugins/VideoEnhancement/meta/Makefile
 lib/python/Plugins/SystemPlugins/VideoTune/Makefile
@@ -304,6 +316,8 @@ lib/python/Plugins/SystemPlugins/Videomode/Makefile
 lib/python/Plugins/SystemPlugins/Videomode/meta/Makefile
 lib/python/Plugins/SystemPlugins/WirelessLan/Makefile
 lib/python/Plugins/SystemPlugins/WirelessLan/meta/Makefile
+lib/python/Plugins/SystemPlugins/XtrendFancontrol/Makefile
+lib/python/Plugins/SystemPlugins/XtrendFancontrol/meta/Makefile
 lib/python/Plugins/SystemPlugins/SkinSelector/Makefile
 lib/python/Plugins/SystemPlugins/SkinSelector/meta/Makefile
 lib/python/Plugins/SystemPlugins/SoftwareManager/Makefile
