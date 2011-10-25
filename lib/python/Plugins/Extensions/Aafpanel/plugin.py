@@ -34,36 +34,7 @@ import ServiceReference
 import time
 inAAFPanel = None
 
-if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/SIB/plugin.pyo") is True:
-	try:
-		from Plugins.Extensions.SIB.plugin import *
-	except:
-		pass
-		
-if os.path.isfile("/usr/lib/enigma2/python/Plugins/SystemPlugins/FanSetup/plugin.pyo") is True:
-	try:
-		from Plugins.SystemPlugins.FanSetup.plugin import *
-	except:
-		pass		
-		
-if os.path.isfile("/usr/lib/enigma2/python/Plugins/SystemPlugins/HdmiCEC/plugin.pyo") is True:
-	try:
-		from Plugins.SystemPlugins.HdmiCEC.plugin import *
-	except:
-		pass		
-
-if os.path.isfile("/usr/lib/enigma2/python/Plugins/SystemPlugins/SoftwareManager/plugin.pyo") is True:
-	try:
-		from Plugins.SystemPlugins.SoftwareManager.plugin import *
-	except:
-		pass
-		
-if os.path.isfile("/usr/lib/enigma2/python/Plugins/SystemPlugins/VFDSetup/plugin.pyo") is True:
-	try:
-		from Plugins.SystemPlugins.VFDSetup.plugin import *
-	except:
-		pass	
-		
+	
 if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/plugin.pyo") is True:
 	try:
 		from Plugins.Extensions.MultiQuickButton.plugin import *
@@ -76,7 +47,7 @@ if os.path.isfile("/usr/lib/enigma2/python/Plugins/SystemPlugins/choiceRC/plugin
 	except:
 		pass		
 
-#from Plugins.Extensions.Aafpanel.DaemonsList import *
+
 from Plugins.Extensions.Aafpanel.CronManager import *
 from Plugins.Extensions.Aafpanel.About import *
 from Plugins.Extensions.Aafpanel.ScriptRunner import *
@@ -84,7 +55,7 @@ from Plugins.Extensions.Aafpanel.HddSetup import *
 from Plugins.Extensions.Aafpanel.SoftcamPanel import *
 from Plugins.Extensions.Aafpanel.CamStart import *
 from Plugins.Extensions.Aafpanel.sundtek import *
-from Plugins.Extensions.Aafpanel.AddOnBrowser import *					
+					
 		
 # edit bb , touch commands.getouput with this def #
 
@@ -147,11 +118,11 @@ def Plugins(**kwargs):
 	return [
 
 	#// show Aafpanel in Main Menu
-	PluginDescriptor(name="AAF-Panel", description="OpenAAF panel AAF-GUI 01/09/2011", where = PluginDescriptor.WHERE_MENU, fnc = Apanel),
+	PluginDescriptor(name="AAF-Panel", description="OpenAAF panel AAF-GUI 25/10/2011", where = PluginDescriptor.WHERE_MENU, fnc = Apanel),
 	#// autostart
 	PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART,PluginDescriptor.WHERE_AUTOSTART],fnc = autostart),
 	#// show Aafpanel in EXTENSIONS Menu
-	PluginDescriptor(name="AAF-Panel", description="OpenAAAF panel AAF-GUI 10/05/2011", where = PluginDescriptor.WHERE_EXTENSIONSMENU, fnc = main) ]
+	PluginDescriptor(name="AAF-Panel", description="OpenAAAF panel AAF-GUI 25/010/2011", where = PluginDescriptor.WHERE_EXTENSIONSMENU, fnc = main) ]
 
 
 
@@ -374,12 +345,8 @@ class Aafpanel(Screen, InfoBarPiP):
 			self.session.open(Info, "Swap")
 		elif menu == "System_Info":
 			self.System()
-		elif menu == "SoftwareManager":
-			self.session.open(UpdatePluginMenu)
 		elif menu == "CronManager":
 			self.session.open(CronManager)	
-		#elif menu == "DaemonManager":
-		#	self.session.open(DaemonsList)
 		elif menu == "About":
 			self.session.open(AboutTeam)
 		elif menu == "JobManager":
@@ -390,20 +357,10 @@ class Aafpanel(Screen, InfoBarPiP):
 			self.session.open(MultiQuickButton)
 		elif menu == "Remote_setup":
 			self.session.open(RCSetupScreen)
-		elif menu == "FanSetup":
-			self.session.open(FanSetupScreen)
-		elif menu == "VFDSetup":
-			self.session.open(VFDSetupScreen)	
 		elif menu == "Device_Manager":
 			self.session.open(HddSetup)
 		elif menu == "SundtekControlCenter":
 			self.session.open(SundtekControlCenter)
-		elif menu == "HdmiCECSetup":
-			self.session.open(HdmiCECSetupScreen)
-		elif menu == "AddOnBrowser":
-			self.session.open(DownloadBrowser)	
-		elif menu == "SecondInfoBar":
-			self.session.open(SIBsetupScreen)			
 		else:
 			pass
 
@@ -417,18 +374,10 @@ class Aafpanel(Screen, InfoBarPiP):
 		self.oldmlist = self.Mlist
 		self.tlist.append(MenuEntryItem((AafEntryComponent('Networksetup'), _("Networksetup"), 'Networksetup')))
 		self.tlist.append(MenuEntryItem((AafEntryComponent('SundtekControlCenter'), _("SundtekControlCenter"), 'SundtekControlCenter')))
-		if os.path.isfile("/usr/lib/enigma2/python/Plugins/SystemPlugins/VFDSetup/plugin.pyo") is True:
-			self.tlist.append(MenuEntryItem((AafEntryComponent('VFDSetup'), _("VFDSetup"), 'VFDSetup')))
 		if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/plugin.pyo") is True:
 			self.tlist.append(MenuEntryItem((AafEntryComponent('MultiQuickButton'), _("MultiQuickButton"), 'MultiQuickButton')))	
 		if os.path.isfile("/usr/lib/enigma2/python/Plugins/SystemPlugins/choiceRC/plugin.pyo") is True:
 			self.tlist.append(MenuEntryItem((AafEntryComponent('Remote_setup'), _("Remote_setup"), 'Remote_setup')))
-		if os.path.isfile("/usr/lib/enigma2/python/Plugins/SystemPlugins/FanSetup/plugin.pyo") is True:
-			self.tlist.append(MenuEntryItem((AafEntryComponent('FanSetup'), _("FanSetup"), 'FanSetup')))
-		if os.path.isfile("/usr/lib/enigma2/python/Plugins/SystemPlugins/HdmiCEC/plugin.pyo") is True:
-			self.tlist.append(MenuEntryItem((AafEntryComponent('HdmiCECSetup'), _("HdmiCECSetup"), 'HdmiCECSetup')))
-		if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/SIB/plugin.pyo") is True:
-			self.tlist.append(MenuEntryItem((AafEntryComponent('SecondInfoBar'), _("SecondInfoBar"), 'SecondInfoBar')))			
 		self["Mlist"].moveToIndex(0)
 		self["Mlist"].l.setList(self.tlist)
 		self.oldmlist1 = self.tlist
@@ -441,14 +390,9 @@ class Aafpanel(Screen, InfoBarPiP):
 		self.tlist = []
 		self.oldmlist = []
 		self.oldmlist = self.Mlist
-		#self.tlist.append(MenuEntryItem((AafEntryComponent('Pluginbrowser'), _("Pluginbrowser"), 'Pluginbrowser')))
-		self.tlist.append(MenuEntryItem((AafEntryComponent('AddOnBrowser'), _("AddOnBrowser"), 'AddOnBrowser')))
 		self.tlist.append(MenuEntryItem((AafEntryComponent('Device_Manager'), _("Device_Manager"), 'Device_Manager')))
 		self.tlist.append(MenuEntryItem((AafEntryComponent('CronManager'), _("CronManager"), 'CronManager')))
 		self.tlist.append(MenuEntryItem((AafEntryComponent('JobManager'), _("JobManager"), 'JobManager')))
-		#self.tlist.append(MenuEntryItem((AafEntryComponent('DaemonManager'), _("DaemonManager"), 'DaemonManager')))
-		if os.path.isfile("/usr/lib/enigma2/python/Plugins/SystemPlugins/SoftwareManager/plugin.pyo") is True:
-			self.tlist.append(MenuEntryItem((AafEntryComponent('SoftwareManager'), _("SoftwareManager"), 'SoftwareManager')))
 		self["Mlist"].moveToIndex(0)
 		self["Mlist"].l.setList(self.tlist)
 

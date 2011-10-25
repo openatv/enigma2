@@ -13,17 +13,23 @@ class AboutTeam(Screen):
 	def __init__(self, session, args = 0):
 		Screen.__init__(self, session)
 		
-		abouttxt = """andy-1 (manager)
-Babsy98 (developer & coder)
-Black64 (developer & coder)		
-obiwatn76 (developer & coder)
-neipe (quality)
-janojano (translator)
-rangerm (Plugins)
-matze70(Settings Chief)
-XuP (designer)
-husky (betaster)
-Kleanthis (betatester)"""
+		abouttxt = """
+special thanks to
+babsy98
+black 64
+andy-1
+obi
+AFF BETA Team
+openembedded team
+openVIX team
+openPLI team
+opendreambox team
+opensif team
+coolman
+kerni
+
+and all plugin Developers 
+for the great job"""
 		
 		self["about"] = Label(abouttxt)
 		self["key_green"] = Button("")
