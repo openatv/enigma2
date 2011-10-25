@@ -138,7 +138,7 @@ def autostart(reason, **kwargs):
 	try:
 		if timerInstance is None:
 			timerInstance = CamStart(None)
-		timerInstance.startTimer()
+		#timerInstance.startTimer()
 		timerInstance.timerEvent()
 	except:
 		pass
