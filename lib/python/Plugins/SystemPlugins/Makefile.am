@@ -6,11 +6,7 @@ SUBDIRS = PositionerSetup Satfinder SoftwareManager SkinSelector \
 	VideoEnhancement WirelessLan NetworkWizard
 
 if XTREND
-<<<<<<< HEAD
-SUBDIRS += SatelliteEquipmentControl DiseqcTester choiceRC FastScan FanSetupXtrend Blindscan
-=======
-SUBDIRS += XtrendFancontrol SatelliteEquipmentControl DiseqcTester FastScan Blindscan
->>>>>>> 168da7001e1f7050dd3c4efef7c00c00932751b7
+SUBDIRS += SatelliteEquipmentControl DiseqcTester choiceRC FastScan XtrendFancontrol Blindscan
 endif
 
 if VUUNO
