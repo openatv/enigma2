@@ -5,7 +5,6 @@ from Components.ActionMap import ActionMap
 from Screens.MessageBox import MessageBox
 from Components.Sources.StaticText import StaticText
 from Components.SystemInfo import SystemInfo
-from Plugins.Plugin import PluginDescriptor
 from Tools.Directories import fileExists
 from enigma import eTimer
 
@@ -188,3 +187,6 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		self.close(False)
 
 remotecontrolcodeinit = RemoteControlCodeInit()
+
+def Plugins(**kwargs):
+	return []

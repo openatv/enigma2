@@ -345,12 +345,12 @@ class InfoBarShowHide:
 
 	def toggleShow(self):
 		if self.__state == self.STATE_HIDDEN:
-			if not self.secondInfoBarScreen.shown:
+			if not self.secondInfoBarWasShown:
 				self.show()
-			if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+			if self.secondInfoBarScreen and self.secondInfoBarWasShown:
 				self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
-		elif self.__state == self.STATE_SHOWN and (self.secondInfoBarScreen and config.usage.show_second_infobar.value == "2" and not self.secondInfoBarScreen.shown):
+		elif self.__state == self.STATE_SHOWN and (self.secondInfoBarScreen and config.usage.show_second_infobar.value == "2" and not self.secondInfoBarWasShown):
 			self.hide()
 			self.secondInfoBarScreen.show()
 			self.secondInfoBarWasShown = True
