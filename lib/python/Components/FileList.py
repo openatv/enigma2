@@ -62,7 +62,7 @@ class FileList(MenuList):
 		# example: matching .nfi and .ts files: "^.*\.(nfi|ts)"
 		if matchingPattern:
 			self.matchingPattern = re.compile(matchingPattern)
-		else
+		else:
 		        self.matchingPattern = None
 		self.inhibitDirs = inhibitDirs or []
 		self.inhibitMounts = inhibitMounts or []
