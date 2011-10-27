@@ -253,12 +253,12 @@ class UpdatePluginMenu(Screen):
 		# TODO: Use Twisted's URL fetcher, urlopen is evil. And it can
 		# run in parallel to the package update.
 		try:
-			if 'title="Errors reported - see forum thread"' in urlopen("http://openpli.org").read():
-				message = _("The current beta image could not be stable") + "\n" + _("For more information see www.openpli.org") + "\n"
+			if 'title="Errors reported - see forum thread"' in urlopen("http://http://www.aaf-digital.info").read():
+				message = _("The current beta image could not be stable") + "\n" + _("For more information see http://www.aaf-digital.info") + "\n"
 				picon = MessageBox.TYPE_ERROR
 				default = False
 		except:
-			message = _("The status of the current beta image could not be checked because www.openpli.org could not be reached for some reason") + "\n"
+			message = _("The status of the current beta image could not be checked because http://www.aaf-digital.info could not be reached for some reason") + "\n"
 			picon = MessageBox.TYPE_ERROR
 			default = False
 		socket.setdefaulttimeout(currentTimeoutDefault)
