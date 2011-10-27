@@ -514,7 +514,7 @@ class Info(Screen):
 				info1 = info1.replace('|','')
 			else:
 				info1 = info1[info1.find('AAF'):len(info1)] + "\n"
-			info2 = self.Do_cmd("cat", "/etc/imageinfo", None)
+			info2 = self.Do_cmd("cat", "/etc/image-version", None)
 			info3 = self.Do_cut(info1 + info2)
 			self["label1"].setText(info3)
 		except:
@@ -539,12 +539,8 @@ class Info(Screen):
 			info3 = self.Do_cmd("uptime", None, None)
 			tmp = info3.split(",")
 			info3 = 'Uptime = ' + tmp[0].lstrip() + "\n"
-			info4 = self.Do_cmd("cat", "/proc/boxtype", None)
-			info4 = info4[0]
-			if info4 == "F":
-				info4 = info4 + ' (VU+ Duo)'
-			else:
-				info4 = info4 + ' (unknown)'
+			info4 = self.Do_cmd("cat", "/etc/image-version", " | head -n 1")
+			info4 = info4[9:]
 			info4 = 'Boxtype = ' + info4 + "\n"
 			info5 = 'Load = ' + self.Do_cmd("cat", "/proc/loadavg", None)
 			info6 = self.Do_cut(info1 + info2 + info3 + info4 + info5)
