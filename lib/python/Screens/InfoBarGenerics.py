@@ -1520,9 +1520,9 @@ class InfoBarSeek:
 			if self.activity >= 100:
 				self.activity = 0
 		else:
- 			self.activityTimer.stop()
- 			self.activity = 0
- 			hdd = 0
+			self.activityTimer.stop()
+			self.activity = 0
+			hdd = 0
 		if os_path.exists("/proc/stb/lcd/symbol_hdd"):
 			file = open("/proc/stb/lcd/symbol_hdd", "w")
 			file.write('%d' % int(hdd))
@@ -1562,10 +1562,10 @@ class InfoBarSeek:
 				pauseable.pause()
 			elif self.seekstate[1]:
 				print "resolved to FAST FORWARD"
- 				pauseable.setFastForward(self.seekstate[1])
+				pauseable.setFastForward(self.seekstate[1])
 			elif self.seekstate[2]:
 				print "resolved to SLOW MOTION"
- 				pauseable.setSlowMotion(self.seekstate[2])
+				pauseable.setSlowMotion(self.seekstate[2])
 			else:
 				print "resolved to PLAY"
 				self.activityTimer.start(200, False)
@@ -3467,6 +3467,24 @@ class InfoBarPiP:
 			self.showPiP()
 		elif "stop" == use:
 			self.showPiP()
+
+class InfoBarAAFpanel:
+	"""AAF-Panel - handles the aafPanel action"""
+	def __init__(self):
+		self["AAFpanelActions"] = HelpableActionMap(self, "InfoBarAAFpanel",
+			{
+				"aafPanel": (self.selectRedKeytask, _("AAF-Panel...")),
+			})
+
+	def selectRedKeytask(self):
+		if config.plugins.aafpanel_redpanel.enabled.value == True:
+			try:
+				from Plugins.Extensions.Aafpanel.plugin import Aafpanel
+				self.session.open(Aafpanel, services = self.servicelist)
+			except:
+				pass
+		else:
+			pass
 
 from RecordTimer import parseEvent, RecordTimerEntry
 
