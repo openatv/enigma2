@@ -34,6 +34,8 @@ import ServiceReference
 import time
 inAAFPanel = None
 
+config.plugins.aafpanel_redpanel = ConfigSubsection()
+config.plugins.aafpanel_redpanel.enabled = ConfigYesNo(default=True)
 	
 if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/plugin.pyo") is True:
 	try:
@@ -118,11 +120,11 @@ def Plugins(**kwargs):
 	return [
 
 	#// show Aafpanel in Main Menu
-	PluginDescriptor(name="AAF-Panel", description="OpenAAF panel AAF-GUI 25/10/2011", where = PluginDescriptor.WHERE_MENU, fnc = Apanel),
+	PluginDescriptor(name="AAF-Panel", description="OpenAAF panel AAF-GUI 27/10/2011", where = PluginDescriptor.WHERE_MENU, fnc = Apanel),
 	#// autostart
 	PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART,PluginDescriptor.WHERE_AUTOSTART],fnc = autostart),
 	#// show Aafpanel in EXTENSIONS Menu
-	PluginDescriptor(name="AAF-Panel", description="OpenAAAF panel AAF-GUI 25/010/2011", where = PluginDescriptor.WHERE_EXTENSIONSMENU, fnc = main) ]
+	PluginDescriptor(name="AAF-Panel", description="OpenAAAF panel AAF-GUI 27/010/2011", where = PluginDescriptor.WHERE_EXTENSIONSMENU, fnc = main) ]
 
 
 
@@ -361,11 +363,13 @@ class Aafpanel(Screen, InfoBarPiP):
 			self.session.open(HddSetup)
 		elif menu == "SundtekControlCenter":
 			self.session.open(SundtekControlCenter)
+		elif menu == "RedPanel":
+			self.session.open(RedPanel)
 		else:
 			pass
 
 	def Setup(self):
-	    #// Create Setup Menu
+		#// Create Setup Menu
 		global menu
 		menu = 1
 		self["label1"].setText("Setup")
@@ -374,6 +378,7 @@ class Aafpanel(Screen, InfoBarPiP):
 		self.oldmlist = self.Mlist
 		self.tlist.append(MenuEntryItem((AafEntryComponent('Networksetup'), _("Networksetup"), 'Networksetup')))
 		self.tlist.append(MenuEntryItem((AafEntryComponent('SundtekControlCenter'), _("SundtekControlCenter"), 'SundtekControlCenter')))
+		self.tlist.append(MenuEntryItem((AafEntryComponent('RedPanel'), _("RedPanel"), 'RedPanel')))
 		if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/plugin.pyo") is True:
 			self.tlist.append(MenuEntryItem((AafEntryComponent('MultiQuickButton'), _("MultiQuickButton"), 'MultiQuickButton')))	
 		if os.path.isfile("/usr/lib/enigma2/python/Plugins/SystemPlugins/choiceRC/plugin.pyo") is True:
@@ -444,6 +449,44 @@ class Aafpanel(Screen, InfoBarPiP):
 		self.tlist.append(MenuEntryItem((AafEntryComponent('Info'), _("Info"), 'Info')))
 		self["Mlist"].moveToIndex(0)
 		self["Mlist"].l.setList(self.tlist)
+
+class RedPanel(ConfigListScreen,Screen):
+	def __init__(self, session):
+		self.service = None
+		Screen.__init__(self, session)
+
+		self.skin = CONFIG_SKIN
+		self.onShown.append(self.setWindowTitle)
+
+		self["labelExitsave"] = Label(ExitSave)
+
+		self.Clist = []
+		self.Clist.append(getConfigListEntry(_("RedPanel"), config.plugins.aafpanel_redpanel.enabled))
+		ConfigListScreen.__init__(self, self.Clist)
+
+		self["actions"] = ActionMap(["OkCancelActions", "DirectionActions", "ColorActions", "SetupActions"],
+		{
+			"cancel": self.Exit,
+			"ok": self.ok,
+			"left": self.keyLeft,
+			"right": self.keyRight,
+		}, -2)
+
+	def setWindowTitle(self):
+		self.setTitle(_("RedPanel"))
+
+	def Exit(self):
+		self.close()
+
+	def keyLeft(self):
+		ConfigListScreen.keyLeft(self)
+	
+	def keyRight(self):
+		ConfigListScreen.keyRight(self)
+
+	def ok(self):
+		config.plugins.aafpanel_redpanel.save()
+		self.close()
 
 class Info(Screen):
 	def __init__(self, session, info):
