@@ -102,7 +102,7 @@ def main(session, **kwargs):
 
 def Apanel(menuid, **kwargs):
 	if menuid == "mainmenu":
-		return [("AAF-Panel", main, "Aafpanel", 11)]
+		return [("OpenAAF Panel", main, "Aafpanel", 11)]
 	else:
 		return []
 
@@ -120,11 +120,11 @@ def Plugins(**kwargs):
 	return [
 
 	#// show Aafpanel in Main Menu
-	PluginDescriptor(name="AAF-Panel", description="OpenAAF panel AAF-GUI 27/10/2011", where = PluginDescriptor.WHERE_MENU, fnc = Apanel),
+	PluginDescriptor(name="OpenAAF Panel", description="OpenAAF panel AAF-GUI 28/10/2011", where = PluginDescriptor.WHERE_MENU, fnc = Apanel),
 	#// autostart
 	PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART,PluginDescriptor.WHERE_AUTOSTART],fnc = autostart),
 	#// show Aafpanel in EXTENSIONS Menu
-	PluginDescriptor(name="AAF-Panel", description="OpenAAAF panel AAF-GUI 27/010/2011", where = PluginDescriptor.WHERE_EXTENSIONSMENU, fnc = main) ]
+	PluginDescriptor(name="OpenAAF Panel", description="OpenAAAF panel AAF-GUI 28/010/2011", where = PluginDescriptor.WHERE_EXTENSIONSMENU, fnc = main) ]
 
 
 
