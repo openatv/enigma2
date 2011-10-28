@@ -360,6 +360,8 @@ public:
 
 		sTransferBPS,
 
+		sHBBTVUrl,
+
 		sUser = 0x100
 	};
 	enum {
@@ -837,6 +839,8 @@ public:
 		evBuffering,
 
 		evStopped,
+
+		evHBBTVInfo,
 
 		evUser = 0x100
 	};
