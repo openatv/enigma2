@@ -291,7 +291,7 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 		return self["config"].getCurrent()[0]
 
 	def getCurrentValue(self):
-		return self["config"].getCurrent()[0]
+		return str(self["config"].getCurrent()[1].getText())
 
 
 	def checkReadWriteDir(self, configele):
