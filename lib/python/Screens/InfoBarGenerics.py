@@ -44,8 +44,6 @@ from RecordTimer import RecordTimerEntry, RecordTimer
 # hack alert!
 from Menu import MainMenu, mdom
 
-InitFirstInfoBar = True
-
 def setResumePoint(session):
 	global resumePointCache, resumePointCacheLast
 	service = session.nav.getCurrentService()
@@ -191,14 +189,12 @@ class InfoBarShowHide:
 		self.onShow.append(self.__onShow)
 		self.onHide.append(self.__onHide)
 
-		global InitFirstInfoBar
 		self.secondInfoBarScreen = None
-		if InitFirstInfoBar == True:
-			InitFirstInfoBar = False
-			# Only add second infobar in the fist declared InfoBox - probably find a better way later
-			# But the second infobar plugin is using the same method
+		if "<class 'Screens.InfoBar.InfoBar'>" == str(self):
 			self.secondInfoBarScreen = self.session.instantiateDialog(SecondInfoBar)
-		self.secondInfoBarWasShown = False
+			self.twiceToggleTimer = eTimer()
+			self.twiceToggleTimer.callback.append(self.doTwiceToggleToLate)
+			self.twiceToggle = False
 		
 	def serviceStarted(self):
 		if self.execing:
@@ -207,15 +203,21 @@ class InfoBarShowHide:
 
 	def __onShow(self):
 		self.__state = self.STATE_SHOWN
-		if config.usage.show_second_infobar.value and self.secondInfoBarWasShown and self.secondInfoBarScreen:
-			self.secondInfoBarScreen.show()
 		self.startHideTimer()
 
 	def startHideTimer(self):
 		if self.__state == self.STATE_SHOWN and not self.__locked:
-			idx = config.usage.infobar_timeout.index
+			self.hideTimer.stop()
+			if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+				idx = config.usage.show_second_infobar.index - 1
+			else:
+				idx = config.usage.infobar_timeout.index
 			if idx:
 				self.hideTimer.start(idx*1000, True)
+
+	def doTwiceToggleToLate(self):
+		self.twiceToggleTimer.stop()
+		self.twiceToggle = False
 
 	def __onHide(self):
 		self.__state = self.STATE_HIDDEN
@@ -232,21 +234,21 @@ class InfoBarShowHide:
 			self.hide()
 
 	def toggleShow(self):
-		if self.__state == self.STATE_SHOWN and (self.secondInfoBarScreen and config.usage.show_second_infobar.value and not self.secondInfoBarScreen.shown):
-			self.secondInfoBarScreen.show()
-			self.secondInfoBarWasShown = True
-			self.startHideTimer()
-		elif self.__state == self.STATE_SHOWN and (not config.usage.show_second_infobar.value or not self.secondInfoBarScreen or self.secondInfoBarScreen.shown):
-			self.hide()
-			if self.secondInfoBarScreen:
-				self.secondInfoBarScreen.hide()
-			self.secondInfoBarWasShown = False
-			self.hideTimer.stop()
-		elif self.__state == self.STATE_HIDDEN:
+		if self.__state == self.STATE_HIDDEN:
 			self.show()
 			if self.secondInfoBarScreen:
 				self.secondInfoBarScreen.hide()
-			self.secondInfoBarWasShown = False
+			if self.secondInfoBarScreen and config.usage.show_second_infobar.value:	
+				self.twiceToggle = True
+				self.twiceToggleTimer.start(750, True)			
+		elif self.secondInfoBarScreen and config.usage.show_second_infobar.value and self.twiceToggle and not self.secondInfoBarScreen.shown:
+			self.secondInfoBarScreen.show()
+			self.startHideTimer()
+		else:
+			self.hide()
+			if self.secondInfoBarScreen:
+				self.secondInfoBarScreen.hide()
+			self.hideTimer.stop()
 
 	def lockShow(self):
 		self.__locked = self.__locked + 1
