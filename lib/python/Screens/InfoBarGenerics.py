@@ -3769,7 +3769,19 @@ class InfoBarSubserviceSelection:
 		if not config.plisettings.Subservice.value:
 			self.openTimerList()
 		else:
-			self.subserviceSelection()
+			#self.subserviceSelection()
+			service = self.session.nav.getCurrentService()
+			subservices = service and service.subServices()
+			if not subservices or subservices.getNumberOfSubservices() == 0:
+				print '[GREEN_BUTTON] Show PluginBrowser'
+				try:
+					from Screens.PluginBrowser import PluginBrowser
+					self.session.open(PluginBrowser)
+				except:
+					pass
+			else:
+				print '[GREEN_BUTTON] Show SubserviceSelection'
+				self.subserviceSelection()
 
 	def __removeNotifications(self):
 		self.session.nav.event.remove(self.checkSubservicesAvail)
@@ -3882,58 +3894,85 @@ class InfoBarSubserviceSelection:
 	def openTimerList(self):
 		self.session.open(TimerEditList)
 
-class InfoBarResolutionSelection: 
+class InfoBarAspectSelection: 
+	STATE_HIDDEN = 0 
+	STATE_ASPECT = 1 
+	STATE_RESOLUTION = 2 
 	def __init__(self): 
+		self["AspectSelectionAction"] = HelpableActionMap(self, "InfobarAspectSelectionActions", 
+			{ 
+				"aspectSelection": (self.ExGreen_toggleGreen, _("Aspect list...")), 
+			}) 
+
+		self.__ExGreen_state = self.STATE_HIDDEN
+
+	def ExGreen_doAspect(self):
+		self.__ExGreen_state = self.STATE_ASPECT
+		self.aspectSelection() 
+
+	def ExGreen_doResolution(self):
+		self.__ExGreen_state = self.STATE_RESOLUTION
+		self.resolutionSelection()
+
+	def ExGreen_doHide(self):
+		self.__ExGreen_state = self.STATE_HIDDEN 
+
+	def ExGreen_toggleGreen(self, arg=""):
+		print self.__ExGreen_state
+		if self.__ExGreen_state == self.STATE_HIDDEN:
+			print "self.STATE_HIDDEN"
+			self.ExGreen_doAspect()
+		elif self.__ExGreen_state == self.STATE_ASPECT:
+			print "self.STATE_ASPECT"
+			self.ExGreen_doResolution()
+		elif self.__ExGreen_state == self.STATE_RESOLUTION:
+			print "self.STATE_RESOLUTION"
+			self.ExGreen_doHide()
+
+	def aspectSelection(self):
+		selection = 0
+		tlist = []
+		tlist.append((_("Resolution"), "resolution"))
+		tlist.append(("", ""))
+		tlist.append(("Letterbox", "letterbox"))
+		tlist.append(("PanScan", "panscan"))
+		tlist.append(("Non Linear", "non"))
+		tlist.append(("Bestfit", "bestfit"))
+
+		mode = open("/proc/stb/video/policy").read()[:-1]
+		print mode
+		for x in range(len(tlist)):
+			if tlist[x][1] == mode:
+				selection = x
+
+		keys = ["green", "",  "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+
+
+		self.session.openWithCallback(self.aspectSelected, ChoiceBox, title=_("Please select an aspect ratio..."), list = tlist, selection = selection, keys = keys)
+	def aspectSelected(self, aspect):
+		if not aspect is None:
+			if isinstance(aspect[1], str):
+				if aspect[1] == "resolution":
+					self.ExGreen_toggleGreen()
+				else:
+					open("/proc/stb/video/policy", "w").write(aspect[1])
+					self.ExGreen_doHide()
 		return
 
-	def resolutionSelection(self): 
+class InfoBarResolutionSelection:
 
-		xresString = open("/proc/stb/vmpeg/0/xres", "r").read()
-		yresString = open("/proc/stb/vmpeg/0/yres", "r").read()
-		fpsString = open("/proc/stb/vmpeg/0/framerate", "r").read()
-		xres = int(xresString, 16)
-		yres = int(yresString, 16)
-		fps = int(fpsString, 16)
-		fpsFloat = float(fps)
-		fpsFloat = fpsFloat/1000
+	def __init__(self):
+		self["ResolutionSelection"] = HelpableActionMap(self, "InfobarResolutionSelection",
+			{
+				"resolutionSelection": (self.resolutionSelection, _("Resolution Selection ...")),
+			})
 
-
-		selection = 0 
-		tlist = [] 
-		tlist.append((_("Exit"), "exit")) 
-		tlist.append((_("Auto(not available)"), "auto")) 
-		tlist.append(("Video: " + str(xres) + "x" + str(yres) + "@" + str(fpsFloat) + "hz", "")) 
-		tlist.append(("--", "")) 
-		tlist.append(("576i", "576i50")) 
-		tlist.append(("576p", "576p50")) 
-		tlist.append(("720p", "720p50")) 
-		tlist.append(("1080i", "1080i50")) 
-		tlist.append(("1080p@23.976hz", "1080p23")) 
-		tlist.append(("1080p@24hz", "1080p24")) 
-		tlist.append(("1080p@25hz", "1080p25")) 
+	def resolutionSelection(self):
+		from Screens.ResolutionSelection import ResolutionSelection
+		self.session.openWithCallback(self.resolutionSelected, ResolutionSelection, infobar=self)
 		
-
-		keys = ["green", "yellow", "blue", "", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" ] 
-
-		mode = open("/proc/stb/video/videomode").read()[:-1] 
-		print mode 
-		for x in range(len(tlist)): 
-			if tlist[x][1] == mode: 
-				selection = x 
-
-		self.session.openWithCallback(self.ResolutionSelected, ChoiceBox, title=_("Please select a resolution..."), list = tlist, selection = selection, keys = keys) 
-
-	def ResolutionSelected(self, Resolution): 
-		if not Resolution is None: 
-			if isinstance(Resolution[1], str): 
-				if Resolution[1] == "exit":
-					self.ExGreen_toggleGreen()
-				elif Resolution[1] != "auto":
-					open("/proc/stb/video/videomode", "w").write(Resolution[1]) 
-					from enigma import gFBDC
-					gFBDC.getInstance().setResolution(-1, -1)
-					self.ExGreen_toggleGreen()
-		return
+	def resolutionSelected(self, ret=None):
+		print "[infobar::resolutionSelection]", ret
 
 class InfoBarAdditionalInfo:
 	def __init__(self):
