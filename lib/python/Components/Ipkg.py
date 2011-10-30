@@ -1,6 +1,7 @@
 import os
 from enigma import eConsoleAppContainer
 from Components.Harddisk import harddiskmanager
+from Components.config import config
 
 opkgDestinations = []
 
@@ -78,9 +79,14 @@ class IpkgComponent:
 			append = ""
 			if args["test_only"]:
 				append = " -test"
+			if not config.plugins.softwaremanager.overwriteSettingsFiles.value:
+				for x in self.excludeList:
+					print"[IPKG] exclude Package: '%s'" % x[0]
+					os.system("opkg flag hold " + x[0])
 			self.runCmdEx("upgrade" + append)
 		elif cmd == self.CMD_LIST:
 			self.fetchedList = []
+			self.excludeList = []
 			if args['installed_only']:
 				self.runCmdEx("list_installed")
 			else:
@@ -91,6 +97,7 @@ class IpkgComponent:
 			self.runCmd("remove " + args['package'])
 		elif cmd == self.CMD_UPGRADE_LIST:
 			self.fetchedList = []
+			self.excludeList = []
 			self.runCmd("list-upgradable")
 		self.setCurrentCommand(cmd)
 	
@@ -121,8 +128,16 @@ class IpkgComponent:
 	def parseLine(self, data):
 		if self.currentCommand in (self.CMD_LIST, self.CMD_UPGRADE_LIST):
 			item = data.split(' - ', 2)
-			self.fetchedList.append(item)
-			self.callCallbacks(self.EVENT_LISTITEM, item)
+			if config.plugins.softwaremanager.overwriteSettingsFiles.value:
+				self.excludeList = []
+				self.fetchedList.append(item)
+				self.callCallbacks(self.EVENT_LISTITEM, item)
+			else:
+				if item[0].find('-settings-') == -1:
+					self.fetchedList.append(item)
+					self.callCallbacks(self.EVENT_LISTITEM, item)
+				else:
+					self.excludeList.append(item)
 			return
 		try:
 			if data.startswith('Downloading'):

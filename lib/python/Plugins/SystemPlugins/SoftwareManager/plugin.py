@@ -47,6 +47,7 @@ config.plugins.configurationbackup.backuplocation = ConfigText(default = '/media
 config.plugins.configurationbackup.backupdirs = ConfigLocations(default=[eEnv.resolve('${sysconfdir}/enigma2/'), '/etc/CCcam.cfg', '/etc/network/interfaces', '/etc/wpa_supplicant.conf', '/etc/wpa_supplicant.ath0.conf', '/etc/wpa_supplicant.wlan0.conf', '/etc/resolv.conf', '/etc/default_gw', '/etc/hostname'])
 
 config.plugins.softwaremanager = ConfigSubsection()
+config.plugins.softwaremanager.overwriteSettingsFiles = ConfigYesNo(default=False)
 config.plugins.softwaremanager.overwriteConfigFiles = ConfigSelection(
 				[
 				 ("Y", _("Yes, always")),
@@ -253,12 +254,12 @@ class UpdatePluginMenu(Screen):
 		# TODO: Use Twisted's URL fetcher, urlopen is evil. And it can
 		# run in parallel to the package update.
 		try:
-			if 'title="Errors reported - see forum thread"' in urlopen("http://openpli.org").read():
-				message = _("The current beta image could not be stable") + "\n" + _("For more information see www.openpli.org") + "\n"
+			if 'title="Errors reported - see forum thread"' in urlopen("http://http://www.aaf-digital.info").read():
+				message = _("The current beta image could not be stable") + "\n" + _("For more information see http://www.aaf-digital.info") + "\n"
 				picon = MessageBox.TYPE_ERROR
 				default = False
 		except:
-			message = _("The status of the current beta image could not be checked because www.openpli.org could not be reached for some reason") + "\n"
+			message = _("The status of the current beta image could not be checked because http://www.aaf-digital.info could not be reached for some reason") + "\n"
 			picon = MessageBox.TYPE_ERROR
 			default = False
 		socket.setdefaulttimeout(currentTimeoutDefault)
@@ -400,6 +401,7 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 		self.onChangedEntry = [ ]
 		self.setup_title = _("Software manager setup")
 		self.overwriteConfigfilesEntry = None
+		self.overwriteSettingsfilesEntry = None
 
 		self.list = [ ]
 		ConfigListScreen.__init__(self, self.list, session = session, on_change = self.changedEntry)
@@ -425,7 +427,9 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 	def createSetup(self):
 		self.list = [ ]
 		self.overwriteConfigfilesEntry = getConfigListEntry(_("Overwrite configuration files ?"), config.plugins.softwaremanager.overwriteConfigFiles)
-		self.list.append(self.overwriteConfigfilesEntry)	
+		self.list.append(self.overwriteConfigfilesEntry)
+		self.overwriteSettingsfilesEntry = getConfigListEntry(_("Overwrite settings files ?"), config.plugins.softwaremanager.overwriteSettingsFiles)
+		self.list.append(self.overwriteSettingsfilesEntry)
 		self["config"].list = self.list
 		self["config"].l.setSeperation(400)
 		self["config"].l.setList(self.list)
@@ -436,6 +440,8 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 	def selectionChanged(self):
 		if self["config"].getCurrent() == self.overwriteConfigfilesEntry:
 			self["introduction"].setText(_("Overwrite configuration files during software upgrade?"))
+		elif self["config"].getCurrent() == self.overwriteSettingsfilesEntry:
+			self["introduction"].setText(_("Overwrite setting files (channellist) during software upgrade?"))
 		else:
 			self["introduction"].setText("")
 
@@ -1490,15 +1496,15 @@ class UpdatePlugin(Screen):
 				self.updating = False
 				self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE_LIST)
 			elif self.ipkg.currentCommand == IpkgComponent.CMD_UPGRADE_LIST:
-			        self.total_packages = len(self.ipkg.getFetchedList())
-			        if self.total_packages:
+				self.total_packages = len(self.ipkg.getFetchedList())
+				if self.total_packages:
 					message = _("Do you want to update your Dreambox?") + "\n(%s " % self.total_packages + _("Packages") + ")"
 					choices = [(_("Unattended upgrade without GUI and reboot system"), "cold"),
 						(_("Upgrade and ask to reboot"), "hot"),
 						(_("Cancel"), "")]
 					self.session.openWithCallback(self.startActualUpgrade, ChoiceBox, title=message, list=choices)
 				else:
-				        self.session.openWithCallback(self.close, MessageBox, _("Nothing to upgrade"), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+					self.session.openWithCallback(self.close, MessageBox, _("Nothing to upgrade"), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 			elif self.error == 0:
 				self.slider.setValue(4)
 				self.activityTimer.stop()
@@ -1518,9 +1524,9 @@ class UpdatePlugin(Screen):
 		pass
 
 	def startActualUpgrade(self, answer):
-	        if not answer or not answer[1]:
-	                self.close()
-	                return
+		if not answer or not answer[1]:
+			self.close()
+			return
 		if answer[1] == "cold":
 			from enigma import gMainDC, getDesktop, eSize
 			self.session.nav.stopService()
