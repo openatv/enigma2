@@ -151,13 +151,10 @@ class InfoBarUnhandledKey:
 			self.hideUnhandledKeySymbolTimer.start(2000, True)
 
 class SecondInfoBar(Screen):
-	skin = """
-		<screen flags="wfNoBorder" name="SecondInfoBar" position="center,350" size="720,200" title="Second Infobar">
-			<eLabel text="Your skin do not support SecondInfoBar !!!" position="0,0" size="720,200" font="Regular;22" halign="center" valign="center"/>
-		</screen>"""
+
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		self.skin = SecondInfoBar.skin
+		self.skin = None
 
 class InfoBarShowHide:
 	""" InfoBar show/hide control, accepts toggleShow and hide actions, might start
