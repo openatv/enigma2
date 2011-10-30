@@ -138,9 +138,9 @@
 	</screen>
 <!-- Plugin browser -->
 	<screen name="PluginBrowserSummary" position="0,0" size="132,64">
-		<widget source="parent.Title" render="Label" position="6,4" size="120,16" font="FdLcD;12"  noWrap="1" />
-		<widget source="entry" render="Label" position="6,16" size="120,20" font="FdLcD;18" noWrap="1" />
-		<widget source="desc" render="Label" position="6,36" size="120,28" font="FdLcD;12" valign="top" />
+		<widget source="parent.Title" render="Label" position="4,0" size="124,16" font="FdLcD;14" halign="center" valign="top" noWrap="1" />
+		<widget source="entry" render="Label" position="4,16" size="124,18" font="FdLcD;16" halign="left" valign="top" />
+		<widget source="desc" render="Label" position="6,30" size="120,34" font="FdLcD;12" valign="top" />
 	</screen>
 
 <!-- JobView Summary -->
