@@ -189,10 +189,7 @@ class InfoBarShowHide:
 		self.secondInfoBarScreen = None
 		if "<class 'Screens.InfoBar.InfoBar'>" == str(self):
 			self.secondInfoBarScreen = self.session.instantiateDialog(SecondInfoBar)
-			self.twiceToggleTimer = eTimer()
-			self.twiceToggleTimer.callback.append(self.doTwiceToggleToLate)
-			self.twiceToggle = False
-		
+
 	def serviceStarted(self):
 		if self.execing:
 			if config.usage.show_infobar_on_zap.value:
@@ -211,10 +208,6 @@ class InfoBarShowHide:
 				idx = config.usage.infobar_timeout.index
 			if idx:
 				self.hideTimer.start(idx*1000, True)
-
-	def doTwiceToggleToLate(self):
-		self.twiceToggleTimer.stop()
-		self.twiceToggle = False
 
 	def __onHide(self):
 		self.__state = self.STATE_HIDDEN
@@ -235,10 +228,7 @@ class InfoBarShowHide:
 			self.show()
 			if self.secondInfoBarScreen:
 				self.secondInfoBarScreen.hide()
-			if self.secondInfoBarScreen and config.usage.show_second_infobar.value:	
-				self.twiceToggle = True
-				self.twiceToggleTimer.start(750, True)			
-		elif self.secondInfoBarScreen and config.usage.show_second_infobar.value and self.twiceToggle and not self.secondInfoBarScreen.shown:
+		elif self.secondInfoBarScreen and config.usage.show_second_infobar.value and not self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.show()
 			self.startHideTimer()
 		else:
