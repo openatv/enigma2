@@ -32,6 +32,7 @@ import re
 font = "Regular;16"
 import ServiceReference
 import time
+import datetime
 inAAFPanel = None
 
 config.plugins.aafpanel_redpanel = ConfigSubsection()
@@ -573,12 +574,12 @@ class Info(Screen):
 			self["label1"].setText(_("an internal error has occur"))
 
 	def Default(self):
+
 		try:
 			self["label2"].setText(_("Default"))
-			info1 = self.Do_cmd('date', None, '+"%d %B %Y"')
-			info1 = 'Date = ' + info1[1:len(info1)-2] + "\n"
-			info2 = self.Do_cmd('date', None, '+"%H.%M.%S"')
-			info2 = 'Time = ' + info2[1:len(info2)-2] + "\n"
+			now = datetime.datetime.now()
+			info1 = 'Date = ' + now.strftime("%d-%B-%Y") + "\n"
+			info2 = 'Time = ' + now.strftime("%H:%M:%S") + "\n"
 			info3 = self.Do_cmd("uptime", None, None)
 			tmp = info3.split(",")
 			info3 = 'Uptime = ' + tmp[0].lstrip() + "\n"

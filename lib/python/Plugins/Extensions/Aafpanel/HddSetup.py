@@ -54,6 +54,7 @@ class HddSetup(Screen):
 		self.session = session
 		
 		Screen.__init__(self, session)
+		Screen.setTitle(self, _("Device Manager "))
 		self.disks = list ()
 		
 		self.mdisks = Disks()
