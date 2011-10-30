@@ -244,25 +244,25 @@ class UpdatePluginMenu(Screen):
 				self.session.open(SoftwareManagerInfo, mode = "backupinfo")
 
 	def checkTraficLight(self):
-		from urllib import urlopen
-		import socket
-		currentTimeoutDefault = socket.getdefaulttimeout()
-		socket.setdefaulttimeout(3)
+		#from urllib import urlopen
+		#import socket
+		#currentTimeoutDefault = socket.getdefaulttimeout()
+		#socket.setdefaulttimeout(3)
 		message = ""
 		picon = None
 		default = True
 		# TODO: Use Twisted's URL fetcher, urlopen is evil. And it can
 		# run in parallel to the package update.
-		try:
-			if 'title="Errors reported - see forum thread"' in urlopen("http://http://www.aaf-digital.info").read():
-				message = _("The current beta image could not be stable") + "\n" + _("For more information see http://www.aaf-digital.info") + "\n"
-				picon = MessageBox.TYPE_ERROR
-				default = False
-		except:
-			message = _("The status of the current beta image could not be checked because http://www.aaf-digital.info could not be reached for some reason") + "\n"
-			picon = MessageBox.TYPE_ERROR
-			default = False
-		socket.setdefaulttimeout(currentTimeoutDefault)
+		#try:
+			#if 'title="Errors reported - see forum thread"' in urlopen("http://http://www.aaf-digital.info").read():
+				#message = _("The current beta image could not be stable") + "\n" + _("For more information see http://www.aaf-digital.info") + "\n"
+				#picon = MessageBox.TYPE_ERROR
+				#default = False
+		#except:
+			#message = _("The status of the current beta image could not be checked because http://www.aaf-digital.info could not be reached for some reason") + "\n"
+			#picon = MessageBox.TYPE_ERROR
+			#default = False
+		#socket.setdefaulttimeout(currentTimeoutDefault)
 		
 		recordings = self.session.nav.getRecordings()
 		jobs = len(job_manager.getPendingJobs())
@@ -1499,9 +1499,7 @@ class UpdatePlugin(Screen):
 				self.total_packages = len(self.ipkg.getFetchedList())
 				if self.total_packages:
 					message = _("Do you want to update your Dreambox?") + "\n(%s " % self.total_packages + _("Packages") + ")"
-					choices = [(_("Unattended upgrade without GUI and reboot system"), "cold"),
-						(_("Upgrade and ask to reboot"), "hot"),
-						(_("Cancel"), "")]
+					choices = [(_("Upgrade and ask to reboot"), "hot"),	(_("Cancel"), "")]
 					self.session.openWithCallback(self.startActualUpgrade, ChoiceBox, title=message, list=choices)
 				else:
 					self.session.openWithCallback(self.close, MessageBox, _("Nothing to upgrade"), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
