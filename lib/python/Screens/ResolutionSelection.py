@@ -1,11 +1,11 @@
 from Screen import Screen
+from Screens.ChoiceBox import ChoiceBox
 
 class ResolutionSelection(Screen):
-	def __init__(self):
-		return
-
-	def resolutionSelection(self): 
-
+	def __init__(self, session, infobar=None):
+		Screen.__init__(self, session)
+		self.session = session
+		
 		xresString = open("/proc/stb/vmpeg/0/xres", "r").read()
 		yresString = open("/proc/stb/vmpeg/0/yres", "r").read()
 		fpsString = open("/proc/stb/vmpeg/0/framerate", "r").read()
@@ -39,6 +39,7 @@ class ResolutionSelection(Screen):
 				selection = x
 
 		self.session.openWithCallback(self.ResolutionSelected, ChoiceBox, title=_("Please select a resolution..."), list = tlist, selection = selection, keys = keys)
+		#return
 
 	def ResolutionSelected(self, Resolution):
 		if not Resolution is None:
