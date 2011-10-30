@@ -16,7 +16,7 @@ config.plugins.fansetups.usetimer = ConfigSelection(default = "off", choices = [
 	("off", _("no")), ("on", _("yes"))])
 config.plugins.fansetups.fanontime = ConfigInteger(default = 5, limits = (1, 100))
 config.plugins.fansetups.fanofftime = ConfigInteger(default = 60, limits = (1, 100))
-FanSetupScreen
+#FanSetupScreen
 class FanSetupScreen(Screen, ConfigListScreen):
 	skin = """
 		<screen name="FanSetupScreen" position="center,center" size="560,300" title="Standbymode FanSetup settings" >
