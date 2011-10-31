@@ -233,8 +233,6 @@ class InfoBarShowHide:
 			self.startHideTimer()
 		else:
 			self.hide()
-			if self.secondInfoBarScreen:
-				self.secondInfoBarScreen.hide()
 			self.hideTimer.stop()
 
 	def lockShow(self):
