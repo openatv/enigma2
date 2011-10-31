@@ -189,6 +189,7 @@ class InfoBarShowHide:
 		self.secondInfoBarScreen = "" 
 		if ".InfoBar'>" in str(self):
 			self.secondInfoBarScreen = self.session.instantiateDialog(SecondInfoBar)
+			self.secondInfoBarScreen.hide()
 
 	def serviceStarted(self):
 		if self.execing:
