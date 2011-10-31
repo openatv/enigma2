@@ -48,6 +48,9 @@ config.plugins.configurationbackup.backupdirs = ConfigLocations(default=[eEnv.re
 
 config.plugins.softwaremanager = ConfigSubsection()
 config.plugins.softwaremanager.overwriteSettingsFiles = ConfigYesNo(default=False)
+config.plugins.softwaremanager.overwriteDriversFiles = ConfigYesNo(default=False)
+config.plugins.softwaremanager.overwriteEmusFiles = ConfigYesNo(default=False)
+config.plugins.softwaremanager.overwritePiconsFiles = ConfigYesNo(default=False)
 config.plugins.softwaremanager.overwriteConfigFiles = ConfigSelection(
 				[
 				 ("Y", _("Yes, always")),
@@ -386,9 +389,9 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 			<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
 			<widget source="key_yellow" render="Label" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
 			<widget source="key_blue" render="Label" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
-			<widget name="config" position="5,50" size="550,350" scrollbarMode="showOnDemand" />
-			<ePixmap pixmap="skin_default/div-h.png" position="0,400" zPosition="1" size="560,2" />
-			<widget source="introduction" render="Label" position="5,410" size="550,30" zPosition="10" font="Regular;21" halign="center" valign="center" backgroundColor="#25062748" transparent="1" />
+			<widget name="config" position="5,50" size="550,290" scrollbarMode="showOnDemand" />
+			<ePixmap pixmap="skin_default/div-h.png" position="0,300" zPosition="1" size="560,2" />
+			<widget source="introduction" render="Label" position="5,310" size="550,80" zPosition="10" font="Regular;21" halign="center" valign="center" backgroundColor="#25062748" transparent="1" />
 		</screen>"""
 
 	def __init__(self, session, skin_path = None):
@@ -402,6 +405,9 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 		self.setup_title = _("Software manager setup")
 		self.overwriteConfigfilesEntry = None
 		self.overwriteSettingsfilesEntry = None
+		self.overwriteDriversfilesEntry = None
+		self.overwriteEmusfilesEntry = None
+		self.overwritePiconsfilesEntry = None
 
 		self.list = [ ]
 		ConfigListScreen.__init__(self, self.list, session = session, on_change = self.changedEntry)
@@ -426,10 +432,16 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 
 	def createSetup(self):
 		self.list = [ ]
-		self.overwriteConfigfilesEntry = getConfigListEntry(_("Overwrite configuration files ?"), config.plugins.softwaremanager.overwriteConfigFiles)
+		self.overwriteConfigfilesEntry = getConfigListEntry(_("Overwrite Configuration Files ?"), config.plugins.softwaremanager.overwriteConfigFiles)
+		self.overwriteSettingsfilesEntry = getConfigListEntry(_("Overwrite Setting Files ?"), config.plugins.softwaremanager.overwriteSettingsFiles)
+		self.overwriteDriversfilesEntry = getConfigListEntry(_("Overwrite Driver Files ?"), config.plugins.softwaremanager.overwriteDriversFiles)
+		self.overwriteEmusfilesEntry = getConfigListEntry(_("Overwrite Emu Files ?"), config.plugins.softwaremanager.overwriteEmusFiles)
+		self.overwritePiconsfilesEntry = getConfigListEntry(_("Overwrite Picon Files ?"), config.plugins.softwaremanager.overwritePiconsFiles)
 		self.list.append(self.overwriteConfigfilesEntry)
-		self.overwriteSettingsfilesEntry = getConfigListEntry(_("Overwrite settings files ?"), config.plugins.softwaremanager.overwriteSettingsFiles)
 		self.list.append(self.overwriteSettingsfilesEntry)
+		self.list.append(self.overwriteDriversfilesEntry)
+		self.list.append(self.overwriteEmusfilesEntry)
+		self.list.append(self.overwritePiconsfilesEntry)
 		self["config"].list = self.list
 		self["config"].l.setSeperation(400)
 		self["config"].l.setList(self.list)
@@ -442,6 +454,12 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 			self["introduction"].setText(_("Overwrite configuration files during software upgrade?"))
 		elif self["config"].getCurrent() == self.overwriteSettingsfilesEntry:
 			self["introduction"].setText(_("Overwrite setting files (channellist) during software upgrade?"))
+		elif self["config"].getCurrent() == self.overwriteDriversfilesEntry:
+			self["introduction"].setText(_("Overwrite driver files during software upgrade?"))
+		elif self["config"].getCurrent() == self.overwriteEmusfilesEntry:
+			self["introduction"].setText(_("Overwrite emu files during software upgrade?"))
+		elif self["config"].getCurrent() == self.overwritePiconsfilesEntry:
+			self["introduction"].setText(_("Overwrite picon files during software upgrade?"))
 		else:
 			self["introduction"].setText("")
 
@@ -1427,6 +1445,7 @@ class UpdatePlugin(Screen):
 		self.error = 0
 		self.processed_packages = []
 		self.total_packages = None
+		self.skin_path = plugin_path
 
 		self.activity = 0
 		self.activityTimer = eTimer()
@@ -1499,7 +1518,7 @@ class UpdatePlugin(Screen):
 				self.total_packages = len(self.ipkg.getFetchedList())
 				if self.total_packages:
 					message = _("Do you want to update your Dreambox?") + "\n(%s " % self.total_packages + _("Packages") + ")"
-					choices = [(_("Upgrade and ask to reboot"), "hot"),	(_("Cancel"), "")]
+					choices = [(_("Show new Packages"), "show"), (_("Upgrade and ask to reboot"), "hot"), (_("Cancel"), "")]
 					self.session.openWithCallback(self.startActualUpgrade, ChoiceBox, title=message, list=choices)
 				else:
 					self.session.openWithCallback(self.close, MessageBox, _("Nothing to upgrade"), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
@@ -1525,15 +1544,9 @@ class UpdatePlugin(Screen):
 		if not answer or not answer[1]:
 			self.close()
 			return
-		if answer[1] == "cold":
-			from enigma import gMainDC, getDesktop, eSize
-			self.session.nav.stopService()
-			desktop = getDesktop(0)
-			if desktop.size() != eSize(720,576):
-				gMainDC.getInstance().setResolution(720,576)
-				desktop.resize(eSize(720,576))
-			self.session.open(UnattendedUpgradeMessageBox)
-			quitMainloop(42)
+		if answer[1] == "show":
+			global plugin_path
+			self.session.openWithCallback(self.ipkgCallback(IpkgComponent.EVENT_DONE, None), ShowUpdatePackages, plugin_path)
 		else:
 			self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE, args = {'test_only': False})
 
@@ -2112,7 +2125,259 @@ def filescan(**kwargs):
 			description = _("Install extensions."),
 			openfnc = filescan_open, )
 
+class ShowUpdatePackages(Screen, NumericalTextInput):
+	skin = """
+		<screen name="ShowUpdatePackages" position="center,center" size="530,420" title="New Packages" >
+			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
+			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+			<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+			<widget source="list" render="Listbox" position="5,50" size="520,365" scrollbarMode="showOnDemand">
+				<convert type="TemplatedMultiContent">
+					{"template": [
+							MultiContentEntryText(pos = (5, 1), size = (440, 28), font=0, flags = RT_HALIGN_LEFT, text = 0), # index 0 is the name
+							MultiContentEntryText(pos = (5, 26), size = (440, 20), font=1, flags = RT_HALIGN_LEFT, text = 2), # index 2 is the description
+							MultiContentEntryPixmapAlphaTest(pos = (445, 2), size = (48, 48), png = 4), # index 4 is the status pixmap
+							MultiContentEntryPixmapAlphaTest(pos = (5, 50), size = (510, 2), png = 5), # index 4 is the div pixmap
+						],
+					"fonts": [gFont("Regular", 22),gFont("Regular", 14)],
+					"itemHeight": 52
+					}
+				</convert>
+			</widget>
+		</screen>"""
+		
+	def __init__(self, session, plugin_path, args = None):
+		Screen.__init__(self, session)
+		NumericalTextInput.__init__(self)
+		self.session = session
+		self.skin_path = plugin_path
 
+		self.setUseableChars(u'1234567890abcdefghijklmnopqrstuvwxyz')
+
+		self["shortcuts"] = NumberActionMap(["ShortcutActions", "WizardActions", "NumberActions", "InputActions", "InputAsciiActions", "KeyboardInputActions" ],
+		{
+			"back": self.exit,
+			"red": self.exit,
+			"green": self.reload,
+			"gotAsciiCode": self.keyGotAscii,
+			"1": self.keyNumberGlobal,
+			"2": self.keyNumberGlobal,
+			"3": self.keyNumberGlobal,
+			"4": self.keyNumberGlobal,
+			"5": self.keyNumberGlobal,
+			"6": self.keyNumberGlobal,
+			"7": self.keyNumberGlobal,
+			"8": self.keyNumberGlobal,
+			"9": self.keyNumberGlobal,
+			"0": self.keyNumberGlobal
+		}, -1)
+		
+		self.list = []
+		self.statuslist = []
+		self["list"] = List(self.list)
+		self["key_red"] = StaticText(_("Close"))
+		self["key_green"] = StaticText(_("Reload"))
+
+		self.list_updating = True
+		self.packetlist = []
+		self.installed_packetlist = {}
+		self.upgradeable_packages = {}
+		self.Console = Console()
+		self.cmdList = []
+		self.cachelist = []
+		self.cache_ttl = 86400  #600 is default, 0 disables, Seconds cache is considered valid (24h should be ok for caching ipkgs)
+		self.cache_file = eEnv.resolve('${libdir}/enigma2/python/Plugins/SystemPlugins/SoftwareManager/packetmanager.cache') #Path to cache directory
+		self.oktext = _("\nAfter pressing OK, please wait!")
+		self.unwanted_extensions = ('-dbg', '-dev', '-doc', 'busybox')
+
+		self.ipkg = IpkgComponent()
+		self.ipkg.addCallback(self.ipkgCallback)
+		self.onShown.append(self.setWindowTitle)
+		if (os_path.exists(self.cache_file) == True):
+			remove(self.cache_file)
+			self.list_updating = True
+		self.onLayoutFinish.append(self.rebuildList)
+
+		rcinput = eRCInput.getInstance()
+		rcinput.setKeyboardMode(rcinput.kmAscii)		
+
+	def keyNumberGlobal(self, val):
+		key = self.getKey(val)
+		if key is not None:
+			keyvalue = key.encode("utf-8")
+			if len(keyvalue) == 1:
+				self.setNextIdx(keyvalue[0])
+		
+	def keyGotAscii(self):
+		keyvalue = unichr(getPrevAsciiCode()).encode("utf-8")
+		if len(keyvalue) == 1:
+			self.setNextIdx(keyvalue[0])
+		
+	def setNextIdx(self,char):
+		if char in ("0", "1", "a"):
+			self["list"].setIndex(0)
+		else:
+			idx = self.getNextIdx(char)
+			if idx and idx <= self["list"].count:
+				self["list"].setIndex(idx)
+
+	def getNextIdx(self,char):
+		for idx, i in enumerate(self["list"].list):
+			if i[0] and (i[0][0] == char):
+				return idx
+
+	def exit(self):
+		self.ipkg.stop()
+		if self.Console is not None:
+			if len(self.Console.appContainers):
+				for name in self.Console.appContainers.keys():
+					self.Console.kill(name)
+		rcinput = eRCInput.getInstance()
+		rcinput.setKeyboardMode(rcinput.kmNone)
+		self.close()
+
+	def reload(self):
+		if (os_path.exists(self.cache_file) == True):
+			remove(self.cache_file)
+			self.list_updating = True
+			self.rebuildList()
+			
+	def setWindowTitle(self):
+		self.setTitle(_("New Packages"))
+
+	def setStatus(self,status = None):
+		if status:
+			self.statuslist = []
+			divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/div-h.png"))
+			if status == 'update':
+				statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/upgrade.png"))
+				self.statuslist.append(( _("Package list update"), '', _("Trying to download a new updatelist. Please wait..." ),'',statuspng, divpng ))
+				self['list'].setList(self.statuslist)	
+			elif status == 'error':
+				statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/remove.png"))
+				self.statuslist.append(( _("Error"), '', _("There was an error downloading the updatelist. Please try again." ),'',statuspng, divpng ))
+				self['list'].setList(self.statuslist)				
+
+	def rebuildList(self):
+		self.setStatus('update')
+		self.inv_cache = 0
+		self.vc = valid_cache(self.cache_file, self.cache_ttl)
+		if self.cache_ttl == 0 or self.inv_cache == 1 or self.vc == 0:
+			self.run = 0
+			self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE_LIST)
+
+	def ipkgCallback(self, event, param):
+		if event == IpkgComponent.EVENT_ERROR:
+			self.list_updating = False
+			self.setStatus('error')
+		elif event == IpkgComponent.EVENT_DONE:
+			if self.list_updating:
+				self.list_updating = False
+				if not self.Console:
+					self.Console = Console()
+				cmd = self.ipkg.ipkg + " list-upgradable"
+				self.Console.ePopen(cmd, self.IpkgList_Finished)
+
+		pass
+
+	def IpkgList_Finished(self, result, retval, extra_args = None):
+		if result:
+			self.packetlist = []
+			last_name = ""
+			for x in result.splitlines():
+				tokens = x.split(' - ') 
+				name = tokens[0].strip()
+				if not any(name.endswith(x) for x in self.unwanted_extensions):
+					l = len(tokens)
+					version = l > 1 and tokens[1].strip() or ""
+					descr = l > 2 and tokens[2].strip() or ""
+					if name == last_name:
+						continue
+					last_name = name 
+					self.packetlist.append([name, version, descr])
+
+		if not self.Console:
+			self.Console = Console()
+		cmd = self.ipkg.ipkg + " list_installed"
+		self.Console.ePopen(cmd, self.IpkgListInstalled_Finished)
+
+	def IpkgListInstalled_Finished(self, result, retval, extra_args = None):
+		if result:
+			self.installed_packetlist = {}
+			for x in result.splitlines():
+				tokens = x.split(' - ')
+				name = tokens[0].strip()
+				if not any(name.endswith(x) for x in self.unwanted_extensions):
+					l = len(tokens)
+					version = l > 1 and tokens[1].strip() or ""
+					self.installed_packetlist[name] = version
+		if not self.Console:
+			self.Console = Console()
+		cmd = "opkg list-upgradable"
+		self.Console.ePopen(cmd, self.OpkgListUpgradeable_Finished)
+
+	def OpkgListUpgradeable_Finished(self, result, retval, extra_args = None):
+		if result:
+			self.upgradeable_packages = {}
+			for x in result.splitlines():
+				tokens = x.split(' - ')
+				name = tokens[0].strip()
+				if not any(name.endswith(x) for x in self.unwanted_extensions):
+					l = len(tokens)
+					version = l > 2 and tokens[2].strip() or ""
+					self.upgradeable_packages[name] = version
+		self.buildPacketList()
+	
+	def buildEntryComponent(self, name, version, description, state):
+		divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/div-h.png"))
+		if not description:
+			description = "No description available."
+		if state == 'installed':
+			installedpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/installed.png"))
+			return((name, version, _(description), state, installedpng, divpng))	
+		elif state == 'upgradeable':
+			upgradeablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/upgradeable.png"))
+			return((name, version, _(description), state, upgradeablepng, divpng))	
+		else:
+			installablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/installable.png"))
+			return((name, version, _(description), state, installablepng, divpng))
+
+	def buildPacketList(self):
+		self.list = []
+		self.cachelist = []
+		if self.cache_ttl > 0 and self.vc != 0:
+			try:
+				self.cachelist = load_cache(self.cache_file)
+				if len(self.cachelist) > 0:
+					for x in self.cachelist:
+						self.list.append(self.buildEntryComponent(x[0], x[1], x[2], x[3]))
+					self['list'].setList(self.list)
+			except:
+				self.inv_cache = 1
+
+		if self.cache_ttl == 0 or self.inv_cache == 1 or self.vc == 0:
+			for x in self.packetlist:
+				status = ""
+				if self.upgradeable_packages.has_key(x[0]) and self.CheckExcludeList(x):
+					status = "upgradeable"
+				else:
+					status = "installable"
+				self.list.append(self.buildEntryComponent(x[0], x[1], x[2], status))	
+				self.cachelist.append([x[0], x[1], x[2], status])
+			write_cache(self.cache_file, self.cachelist)
+			self['list'].setList(self.list)
+
+	def CheckExcludeList(self, package):
+		excludeList = self.ipkg.getExcludeList()
+		if not len(excludeList) > 0:
+			return True
+
+		for x in excludeList:
+			if x == package:
+				return False
+
+		return True
 
 def UpgradeMain(session, **kwargs):
 	session.open(UpdatePluginMenu)
