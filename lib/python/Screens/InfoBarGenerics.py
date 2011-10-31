@@ -44,8 +44,6 @@ from RecordTimer import RecordTimerEntry, RecordTimer
 # hack alert!
 from Menu import MainMenu, mdom
 
-InitFirstInfoBar = True
-
 def setResumePoint(session):
 	global resumePointCache, resumePointCacheLast
 	service = session.nav.getCurrentService()
@@ -188,10 +186,8 @@ class InfoBarShowHide:
 		self.onShow.append(self.__onShow)
 		self.onHide.append(self.__onHide)
 
-		global InitFirstInfoBar
-		self.secondInfoBarScreen = None
-		if InitFirstInfoBar == True:
-			InitFirstInfoBar = False
+		self.secondInfoBarScreen = "" 
+		if ".InfoBar'>" in str(self):
 			self.secondInfoBarScreen = self.session.instantiateDialog(SecondInfoBar)
 
 	def serviceStarted(self):
