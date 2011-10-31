@@ -57,6 +57,7 @@ class IpkgComponent:
 		self.cmd = eConsoleAppContainer()
 		self.cache = None
 		self.callbackList = []
+		self.excludeList = []
 		self.setCurrentCommand()
 
 	def setCurrentCommand(self, command = None):
@@ -81,7 +82,7 @@ class IpkgComponent:
 				append = " -test"
 			if not config.plugins.softwaremanager.overwriteSettingsFiles.value:
 				for x in self.excludeList:
-					print"[IPKG] exclude Package: '%s'" % x[0]
+					print"[IPKG] exclude Package (hold): '%s'" % x[0]
 					os.system("opkg flag hold " + x[0])
 			self.runCmdEx("upgrade" + append)
 		elif cmd == self.CMD_LIST:
@@ -105,6 +106,11 @@ class IpkgComponent:
 		self.callCallbacks(self.EVENT_DONE)
 		self.cmd.appClosed.remove(self.cmdFinished)
 		self.cmd.dataAvail.remove(self.cmdData)
+		if not config.plugins.softwaremanager.overwriteSettingsFiles.value:
+			if len(self.excludeList) > 0:
+				for x in self.excludeList:
+					print"[IPKG] restore Package flag (unhold): '%s'" % x[0]
+					os.system("opkg flag ok " + x[0])
 
 	def cmdData(self, data):
 		print "data:", data
