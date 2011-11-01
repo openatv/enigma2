@@ -57,6 +57,7 @@ class IpkgComponent:
 		self.cmd = eConsoleAppContainer()
 		self.cache = None
 		self.callbackList = []
+		self.fetchedList = []
 		self.excludeList = []
 		self.setCurrentCommand()
 

@@ -2159,7 +2159,7 @@ class ShowUpdatePackages(Screen, NumericalTextInput):
 		{
 			"back": self.exit,
 			"red": self.exit,
-			"green": self.reload,
+			"green": self.rebuildList,
 			"gotAsciiCode": self.keyGotAscii,
 			"1": self.keyNumberGlobal,
 			"2": self.keyNumberGlobal,
@@ -2179,24 +2179,9 @@ class ShowUpdatePackages(Screen, NumericalTextInput):
 		self["key_red"] = StaticText(_("Close"))
 		self["key_green"] = StaticText(_("Reload"))
 
-		self.list_updating = True
-		self.packetlist = []
-		self.installed_packetlist = {}
-		self.upgradeable_packages = {}
-		self.Console = Console()
-		self.cmdList = []
-		self.cachelist = []
-		self.cache_ttl = 86400  #600 is default, 0 disables, Seconds cache is considered valid (24h should be ok for caching ipkgs)
-		self.cache_file = eEnv.resolve('${libdir}/enigma2/python/Plugins/SystemPlugins/SoftwareManager/packetmanager.cache') #Path to cache directory
-		self.oktext = _("\nAfter pressing OK, please wait!")
-		self.unwanted_extensions = ('-dbg', '-dev', '-doc', 'busybox')
-
 		self.ipkg = IpkgComponent()
 		self.ipkg.addCallback(self.ipkgCallback)
 		self.onShown.append(self.setWindowTitle)
-		if (os_path.exists(self.cache_file) == True):
-			remove(self.cache_file)
-			self.list_updating = True
 		self.onLayoutFinish.append(self.rebuildList)
 
 		rcinput = eRCInput.getInstance()
@@ -2229,19 +2214,9 @@ class ShowUpdatePackages(Screen, NumericalTextInput):
 
 	def exit(self):
 		self.ipkg.stop()
-		if self.Console is not None:
-			if len(self.Console.appContainers):
-				for name in self.Console.appContainers.keys():
-					self.Console.kill(name)
 		rcinput = eRCInput.getInstance()
 		rcinput.setKeyboardMode(rcinput.kmNone)
 		self.close()
-
-	def reload(self):
-		if (os_path.exists(self.cache_file) == True):
-			remove(self.cache_file)
-			self.list_updating = True
-			self.rebuildList()
 			
 	def setWindowTitle(self):
 		self.setTitle(_("New Packages"))
@@ -2261,73 +2236,15 @@ class ShowUpdatePackages(Screen, NumericalTextInput):
 
 	def rebuildList(self):
 		self.setStatus('update')
-		self.inv_cache = 0
-		self.vc = valid_cache(self.cache_file, self.cache_ttl)
-		if self.cache_ttl == 0 or self.inv_cache == 1 or self.vc == 0:
-			self.run = 0
-			self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE_LIST)
+		self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE_LIST)
 
 	def ipkgCallback(self, event, param):
 		if event == IpkgComponent.EVENT_ERROR:
-			self.list_updating = False
 			self.setStatus('error')
 		elif event == IpkgComponent.EVENT_DONE:
-			if self.list_updating:
-				self.list_updating = False
-				if not self.Console:
-					self.Console = Console()
-				cmd = self.ipkg.ipkg + " list-upgradable"
-				self.Console.ePopen(cmd, self.IpkgList_Finished)
+			self.buildPacketList()
 
 		pass
-
-	def IpkgList_Finished(self, result, retval, extra_args = None):
-		if result:
-			self.packetlist = []
-			last_name = ""
-			for x in result.splitlines():
-				tokens = x.split(' - ') 
-				name = tokens[0].strip()
-				if not any(name.endswith(x) for x in self.unwanted_extensions):
-					l = len(tokens)
-					version = l > 1 and tokens[1].strip() or ""
-					descr = l > 2 and tokens[2].strip() or ""
-					if name == last_name:
-						continue
-					last_name = name 
-					self.packetlist.append([name, version, descr])
-
-		if not self.Console:
-			self.Console = Console()
-		cmd = self.ipkg.ipkg + " list_installed"
-		self.Console.ePopen(cmd, self.IpkgListInstalled_Finished)
-
-	def IpkgListInstalled_Finished(self, result, retval, extra_args = None):
-		if result:
-			self.installed_packetlist = {}
-			for x in result.splitlines():
-				tokens = x.split(' - ')
-				name = tokens[0].strip()
-				if not any(name.endswith(x) for x in self.unwanted_extensions):
-					l = len(tokens)
-					version = l > 1 and tokens[1].strip() or ""
-					self.installed_packetlist[name] = version
-		if not self.Console:
-			self.Console = Console()
-		cmd = "opkg list-upgradable"
-		self.Console.ePopen(cmd, self.OpkgListUpgradeable_Finished)
-
-	def OpkgListUpgradeable_Finished(self, result, retval, extra_args = None):
-		if result:
-			self.upgradeable_packages = {}
-			for x in result.splitlines():
-				tokens = x.split(' - ')
-				name = tokens[0].strip()
-				if not any(name.endswith(x) for x in self.unwanted_extensions):
-					l = len(tokens)
-					version = l > 2 and tokens[2].strip() or ""
-					self.upgradeable_packages[name] = version
-		self.buildPacketList()
 	
 	def buildEntryComponent(self, name, version, description, state):
 		divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/div-h.png"))
@@ -2345,39 +2262,20 @@ class ShowUpdatePackages(Screen, NumericalTextInput):
 
 	def buildPacketList(self):
 		self.list = []
-		self.cachelist = []
-		if self.cache_ttl > 0 and self.vc != 0:
-			try:
-				self.cachelist = load_cache(self.cache_file)
-				if len(self.cachelist) > 0:
-					for x in self.cachelist:
-						self.list.append(self.buildEntryComponent(x[0], x[1], x[2], x[3]))
-					self['list'].setList(self.list)
-			except:
-				self.inv_cache = 1
+		fetchedList = self.ipkg.getFetchedList()
+		excludeList = self.ipkg.getExcludeList()
 
-		if self.cache_ttl == 0 or self.inv_cache == 1 or self.vc == 0:
-			for x in self.packetlist:
-				status = ""
-				if self.upgradeable_packages.has_key(x[0]) and self.CheckExcludeList(x):
-					status = "upgradeable"
-				else:
-					status = "installable"
-				self.list.append(self.buildEntryComponent(x[0], x[1], x[2], status))	
-				self.cachelist.append([x[0], x[1], x[2], status])
-			write_cache(self.cache_file, self.cachelist)
+		if len(fetchedList) > 0:
+			for x in fetchedList:
+				self.list.append(self.buildEntryComponent(x[0], x[1], x[2], "upgradeable"))
+			if len(excludeList) > 0:
+				for x in excludeList:
+					self.list.append(self.buildEntryComponent(x[0], x[1], x[2], "installable"))
+
 			self['list'].setList(self.list)
 
-	def CheckExcludeList(self, package):
-		excludeList = self.ipkg.getExcludeList()
-		if not len(excludeList) > 0:
-			return True
-
-		for x in excludeList:
-			if x == package:
-				return False
-
-		return True
+		else:
+			self.setStatus('error')
 
 def UpgradeMain(session, **kwargs):
 	session.open(UpdatePluginMenu)

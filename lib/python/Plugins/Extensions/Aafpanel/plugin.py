@@ -121,11 +121,11 @@ def Plugins(**kwargs):
 	return [
 
 	#// show Aafpanel in Main Menu
-	PluginDescriptor(name="OpenAAF Panel", description="OpenAAF panel AAF-GUI 28/10/2011", where = PluginDescriptor.WHERE_MENU, fnc = Apanel),
+	PluginDescriptor(name="OpenAAF Panel", description="OpenAAF panel AAF-GUI 01/11/2011", where = PluginDescriptor.WHERE_MENU, fnc = Apanel),
 	#// autostart
 	PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART,PluginDescriptor.WHERE_AUTOSTART],fnc = autostart),
 	#// show Aafpanel in EXTENSIONS Menu
-	PluginDescriptor(name="OpenAAF Panel", description="OpenAAAF panel AAF-GUI 28/010/2011", where = PluginDescriptor.WHERE_EXTENSIONSMENU, fnc = main) ]
+	PluginDescriptor(name="OpenAAF Panel", description="OpenAAAF panel AAF-GUI 01/11/2011", where = PluginDescriptor.WHERE_EXTENSIONSMENU, fnc = main) ]
 
 
 
@@ -221,7 +221,8 @@ class Aafpanel(Screen, InfoBarPiP):
 		self["label1"] = Label(AAF_Panel_Version)
 
 		self.Mlist = []
-		self.Mlist.append(MenuEntryItem((AafEntryComponent('SoftcamPanel'), _("SoftcamPanel"), 'SoftcamPanel')))
+		if self.Check_Softcam():
+			self.Mlist.append(MenuEntryItem((AafEntryComponent('SoftcamPanel'), _("SoftcamPanel"), 'SoftcamPanel')))
 		self.Mlist.append(MenuEntryItem((AafEntryComponent('Setup'), _("Setup"), 'Setup')))
 		self.Mlist.append(MenuEntryItem((AafEntryComponent('Plugins'), _("Plugins"), 'Plugins')))
 		self.Mlist.append(MenuEntryItem((AafEntryComponent('Infos'), _("Infos"), 'Infos')))
@@ -450,6 +451,14 @@ class Aafpanel(Screen, InfoBarPiP):
 		self.tlist.append(MenuEntryItem((AafEntryComponent('Info'), _("Info"), 'Info')))
 		self["Mlist"].moveToIndex(0)
 		self["Mlist"].l.setList(self.tlist)
+
+	def Check_Softcam(self):
+		found = False
+		for x in os.listdir('/etc'):
+			if x.find('.emu') > -1:
+				found = True
+				break;
+		return found
 
 class RedPanel(ConfigListScreen,Screen):
 	def __init__(self, session):
