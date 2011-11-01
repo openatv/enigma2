@@ -1,4 +1,5 @@
 from ChannelSelection import ChannelSelection, BouquetSelector, SilentBouquetSelector, VIXBouquetSelector
+
 from Components.ActionMap import ActionMap, HelpableActionMap
 from Components.ActionMap import NumberActionMap
 from Components.Harddisk import harddiskmanager
@@ -14,6 +15,7 @@ from Components.Task import Task, Job, job_manager as JobManager
 from Components.Pixmap import MovingPixmap
 from EpgSelection import EPGSelection
 from Plugins.Plugin import PluginDescriptor
+
 from Screen import Screen
 from Screens.ChoiceBox import ChoiceBox
 from Screens.Dish import Dish
@@ -49,8 +51,6 @@ from Menu import MainMenu, mdom
 import Screens.Standby
 
 SYSTEMS = ["irdeto", "seca", "nagra", "via", "conax", "betacrypt", "crypto", "dreamcrypt", "nds"]
-
-InitFirstInfoBar = True
 
 def setResumePoint(session):
 	global resumePointCache, resumePointCacheLast
@@ -207,13 +207,10 @@ class EcmInfoLabel(Label):
 		self.instance.setTransparent(0)
 
 class SecondInfoBar(Screen):
-	skin = """
-		<screen flags="wfNoBorder" name="SecondInfoBar" position="center,100" size="720,200" title="Second Infobar">
-			<eLabel text="Your skin do not support SecondInfoBar !!!" position="0,0" size="720,200" font="Regular;22" halign="center" valign="center"/>
-		</screen>"""
+
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		self.skin = SecondInfoBar.skin
+		self.skin = None
 
 class InfoBarShowHide:
 	""" InfoBar show/hide control, accepts toggleShow and hide actions, might start
@@ -270,14 +267,82 @@ class InfoBarShowHide:
 		self.onShow.append(self.__onShow)
 		self.onHide.append(self.__onHide)
 
-		global InitFirstInfoBar
 		self.secondInfoBarScreen = None
-		if InitFirstInfoBar == True:
-			InitFirstInfoBar = False
-			# Only add second infobar in the fist declared InfoBox - probably find a better way later
-			# But the second infobar plugin is using the same method
+		if "<class 'Screens.InfoBar.InfoBar'>" == str(self):
 			self.secondInfoBarScreen = self.session.instantiateDialog(SecondInfoBar)
-		self.secondInfoBarWasShown = False
+		
+	def serviceStarted(self):
+		if self.execing:
+			if config.usage.show_infobar_on_zap.value:
+				self.doShow()
+
+	def __onShowEcm(self):
+		self.ecmTimer.start(1000, False)
+
+	def __onShow(self):
+		self.__state = self.STATE_SHOWN
+		self.doButtonsCheck()
+		self.startHideTimer()
+
+	def startHideTimer(self):
+		if self.__state == self.STATE_SHOWN and not self.__locked:
+			self.hideTimer.stop()
+			if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+				idx = config.usage.second_infobar_timeout.index
+			else:
+				idx = config.usage.infobar_timeout.index
+			if idx:
+				self.hideTimer.start(idx*1000, True)
+
+	def __onHide(self):
+		self.__state = self.STATE_HIDDEN
+		if self.secondInfoBarScreen:
+			self.secondInfoBarScreen.hide()
+
+	def doShow(self):
+		self.show()
+		self.startHideTimer()
+
+	def doTimerHide(self):
+		self.hideTimer.stop()
+		if self.__state == self.STATE_SHOWN:
+			self.hide()
+
+	def toggleShow(self):
+		if self.__state == self.STATE_HIDDEN:
+			self.show()
+			if self.secondInfoBarScreen:
+				self.secondInfoBarScreen.hide()
+		elif self.secondInfoBarScreen and config.usage.show_second_infobar.value == "2" and not self.secondInfoBarScreen.shown:
+			self.hide()
+			self.secondInfoBarScreen.show()
+			self.startHideTimer()
+		else:
+			self.hide()
+			if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+				self.secondInfoBarScreen.hide()
+			if config.usage.show_second_infobar.value == "1":
+				self.openEventView()
+			self.hideTimer.stop()
+
+	def lockShow(self):
+		self.__locked = self.__locked + 1
+		if self.execing:
+			self.show()
+			self.hideTimer.stop()
+
+	def unlockShow(self):
+		self.__locked = self.__locked - 1
+		if self.execing:
+			self.startHideTimer()
+
+#	def startShow(self):
+#		self.instance.m_animation.startMoveAnimation(ePoint(0, 600), ePoint(0, 380), 100)
+#		self.__state = self.STATE_SHOWN
+#
+#	def startHide(self):
+#		self.instance.m_animation.startMoveAnimation(ePoint(0, 380), ePoint(0, 600), 100)
+#		self.__state = self.STATE_HIDDEN
 
 	def doButtonsCheck(self):
 		if config.vixsettings.ColouredButtons.value:
@@ -307,81 +372,6 @@ class InfoBarShowHide:
 				self.hide()
 		else:
 			self.hide()
-
-	def serviceStarted(self):
-		if self.execing:
-			if config.usage.show_infobar_on_zap.value:
-				self.doShow()
-
-	def __onShowEcm(self):
-		self.ecmTimer.start(1000, False)
-
-	def __onShow(self):
-		self.__state = self.STATE_SHOWN
-		if config.usage.show_second_infobar.value == "2" and self.secondInfoBarWasShown and self.secondInfoBarScreen:
-			self.secondInfoBarScreen.show()
-		self.doButtonsCheck()
-		self.startHideTimer()
-
-	def startHideTimer(self):
-		if self.__state == self.STATE_SHOWN and not self.__locked:
-			idx = config.usage.infobar_timeout.index
-			if idx:
-				self.hideTimer.start(idx*1000, True)
-
-	def __onHide(self):
-		self.__state = self.STATE_HIDDEN
-		if self.secondInfoBarScreen:
-			self.secondInfoBarScreen.hide()
-
-	def doShow(self):
-		self.show()
-		self.startHideTimer()
-
-	def doTimerHide(self):
-		self.hideTimer.stop()
-		if self.__state == self.STATE_SHOWN:
-			self.hide()
-
-	def toggleShow(self):
-		if self.__state == self.STATE_HIDDEN:
-			if not self.secondInfoBarWasShown:
-				self.show()
-			if self.secondInfoBarScreen and self.secondInfoBarWasShown:
-				self.secondInfoBarScreen.hide()
-			self.secondInfoBarWasShown = False
-		elif self.__state == self.STATE_SHOWN and (self.secondInfoBarScreen and config.usage.show_second_infobar.value == "2" and not self.secondInfoBarWasShown):
-			self.hide()
-			self.secondInfoBarScreen.show()
-			self.secondInfoBarWasShown = True
-			self.startHideTimer()
-		elif self.__state == self.STATE_SHOWN:
-			self.hide()
-			if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
-				self.secondInfoBarScreen.hide()
-			self.secondInfoBarWasShown = False
-			self.hideTimer.stop()
-			if config.usage.show_second_infobar.value == "1":
-				self.openEventView()
-
-	def lockShow(self):
-		self.__locked = self.__locked + 1
-		if self.execing:
-			self.show()
-			self.hideTimer.stop()
-
-	def unlockShow(self):
-		self.__locked = self.__locked - 1
-		if self.execing:
-			self.startHideTimer()
-
-#	def startShow(self):
-#		self.instance.m_animation.startMoveAnimation(ePoint(0, 600), ePoint(0, 380), 100)
-#		self.__state = self.STATE_SHOWN
-#
-#	def startHide(self):
-#		self.instance.m_animation.startMoveAnimation(ePoint(0, 380), ePoint(0, 600), 100)
-#		self.__state = self.STATE_HIDDEN
 
 	def int2hex(self, int):
 		return "%x" % int

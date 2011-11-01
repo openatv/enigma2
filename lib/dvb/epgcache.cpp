@@ -611,7 +611,7 @@ void eEPGCache::sectionRead(const __u8 *data, int source, channel_data *channel)
 
 		if ( (TM != 3599) &&		// NVOD Service
 		     (now <= (TM+duration)) &&	// skip old events
-		     (TM < (now+14*24*60*60)) &&	// no more than 2 weeks in future
+		     (TM < (now+28*24*60*60)) &&	// no more than 4 weeks in future
 		     ( (onid != 1714) || (duration != (24*3600-1)) )	// PlatformaHD invalid event
 		   )
 		{
