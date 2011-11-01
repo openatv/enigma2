@@ -210,9 +210,10 @@ class EcmInfoLabel(Label):
 		self.instance.setTransparent(0)
 
 class SecondInfoBar(Screen):
+
 	def __init__(self, session):
 		Screen.__init__(self, session)
-        self.skin = None
+		self.skin = None
 
 class InfoBarShowHide:
 	""" InfoBar show/hide control, accepts toggleShow and hide actions, might start
