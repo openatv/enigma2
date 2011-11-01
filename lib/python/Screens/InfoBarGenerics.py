@@ -267,10 +267,11 @@ class InfoBarShowHide:
 		self.onShow.append(self.__onShow)
 		self.onHide.append(self.__onHide)
 
-		self.secondInfoBarScreen = None
-		if "<class 'Screens.InfoBar.InfoBar'>" == str(self):
+		self.secondInfoBarScreen = "" 
+		if ".InfoBar'>" in str(self):
 			self.secondInfoBarScreen = self.session.instantiateDialog(SecondInfoBar)
-		
+			self.secondInfoBarScreen.hide()
+
 	def serviceStarted(self):
 		if self.execing:
 			if config.usage.show_infobar_on_zap.value:

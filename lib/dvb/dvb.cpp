@@ -1299,22 +1299,6 @@ static inline long long align(long long x, int align)
 	}
 }
 
-	/* align toward zero */
-static inline long long align_with_len(long long x, int align, size_t &len)
-{
-	if (x < 0)
-	{
-		int res = x % (-align);
-		len -= res;
-		return x - res;
-	}
-	else
-	{
-		int res = x % align;
-		len += res;
-		return x - res;
-	}
-}
 
 	/* remember, this gets called from another thread. */
 void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off_t &start, size_t &size)
@@ -1337,21 +1321,21 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 		max = align(m_skipmode_n, blocksize);
 	}
 
-	eDebug("getNextSourceSpan, current offset is %08llx, m_skipmode_m = %d!", current_offset, m_skipmode_m);
+	//eDebug("getNextSourceSpan, current offset is %08llx, m_skipmode_m = %d!", current_offset, m_skipmode_m);
 	int frame_skip_success = 0;
 
 	if (m_skipmode_m)
 	{
 		int frames_to_skip = m_skipmode_frames + m_skipmode_frames_remainder;
-		eDebug("we are at %llx, and we try to skip %d+%d frames from here", current_offset, m_skipmode_frames, m_skipmode_frames_remainder);
+		//eDebug("we are at %llx, and we try to skip %d+%d frames from here", current_offset, m_skipmode_frames, m_skipmode_frames_remainder);
 		size_t iframe_len;
 		off_t iframe_start = current_offset;
 		int frames_skipped = frames_to_skip;
 		if (!m_tstools.findNextPicture(iframe_start, iframe_len, frames_skipped))
 		{
 			m_skipmode_frames_remainder = frames_to_skip - frames_skipped;
-			eDebug("successfully skipped %d (out of %d, rem now %d) frames.", frames_skipped, frames_to_skip, m_skipmode_frames_remainder);
-			current_offset = align_with_len(iframe_start, blocksize, iframe_len);
+			//eDebug("successfully skipped %d (out of %d, rem now %d) frames.", frames_skipped, frames_to_skip, m_skipmode_frames_remainder);
+			current_offset = align(iframe_start, blocksize);
 			max = align(iframe_len + 187, blocksize);
 			frame_skip_success = 1;
 		} else
@@ -1376,7 +1360,7 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 				eDebug("failed");
 			else
 			{
-				current_offset = align_with_len(iframe_start, blocksize, iframe_len);
+				current_offset = align(iframe_start, blocksize);
 				max = align(iframe_len, blocksize);
 			}
 		}
@@ -1394,7 +1378,6 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 		m_cue->m_lock.RdLock();
 		int relative = seek.first;
 		pts_t pts = seek.second;
-
 		pts_t now = 0;
 		if (relative)
 		{
