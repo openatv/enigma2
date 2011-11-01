@@ -9,6 +9,7 @@
 #include <dvbsi++/bouquet_association_section.h>
 #include <dvbsi++/program_association_section.h>
 #include <dvbsi++/event_information_section.h>
+#include <dvbsi++/application_information_section.h>
 
 struct eDVBPMTSpec
 {
@@ -166,6 +167,44 @@ public:
 		m_spec.flags   = eDVBTableSpec::tfAnyVersion |
 			eDVBTableSpec::tfHaveTID | eDVBTableSpec::tfHaveTIDExt |
 			eDVBTableSpec::tfCheckCRC | eDVBTableSpec::tfHaveTimeout;
+	}
+	operator eDVBTableSpec &()
+	{
+		return m_spec;
+	}
+};
+
+struct eDVBAITSpec
+{
+	eDVBTableSpec m_spec;
+public:
+	eDVBAITSpec(int pid)
+	{
+		m_spec.pid     = pid;
+		m_spec.tid     = ApplicationInformationSection::TID;
+		m_spec.timeout = ApplicationInformationSection::TIMEOUT;
+		m_spec.flags   = eDVBTableSpec::tfAnyVersion |
+			eDVBTableSpec::tfHaveTID | eDVBTableSpec::tfCheckCRC |
+			eDVBTableSpec::tfHaveTimeout;
+	}
+	operator eDVBTableSpec &()
+	{
+		return m_spec;
+	}
+};
+
+struct eDVBDSMCCDLDataSpec
+{
+	eDVBTableSpec m_spec;
+public:
+	eDVBDSMCCDLDataSpec(int pid)
+	{
+		m_spec.pid     = pid;
+		m_spec.tid     = TID_DSMCC_DL_DATA;
+		m_spec.timeout = 20000;
+		m_spec.flags   = eDVBTableSpec::tfAnyVersion |
+			eDVBTableSpec::tfHaveTID | eDVBTableSpec::tfCheckCRC |
+			eDVBTableSpec::tfHaveTimeout;
 	}
 	operator eDVBTableSpec &()
 	{
