@@ -13,12 +13,12 @@ config.plugins.UI3DSetup.setmode = ConfigSelection(choices = setmodelist, defaul
 
 class UI3DSetupScreen(Screen, ConfigListScreen):
 	skin = """
-		<screen position="center,center" size="560,300" title="UI 3D setup" >
-			<ePixmap pixmap="skin_default/buttons/red.png" position="10,10" size="25,25" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/green.png" position="290,10" size="25,25" alphatest="on" />
-			<widget source="key_red" render="Label" position="40,10" zPosition="1" size="140,25" font="Regular;20" halign="center" valign="center" transparent="1" />
-			<widget source="key_green" render="Label" position="320,10" zPosition="1" size="140,25" font="Regular;20" halign="center" valign="center" transparent="1" />
-			<widget name="config" zPosition="2" position="5,50" size="550,200" scrollbarMode="showOnDemand" transparent="1" />
+		<screen position="center,center" size="440,300" title="UI 3D setup" >
+			<ePixmap pixmap="skin_default/buttons/red.png" position="10,10" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/green.png" position="290,10" size="140,40" alphatest="on" />
+			<widget source="key_red" render="Label" position="10,10" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" transparent="1" />
+			<widget source="key_green" render="Label" position="290,10" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" transparent="1" />
+			<widget name="config" zPosition="2" position="10,70" size="410,200" scrollbarMode="showOnDemand" transparent="1" />
 		</screen>"""
 
 	def __init__(self, session):
@@ -101,7 +101,7 @@ def applySettings(mode, znorm, setmode):
 		return
 
 def setConfiguredSettings():
-	applySettings(config.plugins.UI3DSetup.mode.value, 
+	applySettings(config.plugins.UI3DSetup.mode.value,
 		int(config.plugins.UI3DSetup.znorm.value), config.plugins.UI3DSetup.setmode.value)
 
 def main(session, **kwargs):
