@@ -12,6 +12,7 @@
 #include <lib/python/python.h>
 #include <dvbsi++/program_map_section.h>
 #include <dvbsi++/program_association_section.h>
+#include <dvbsi++/application_information_section.h>
 
 #include <sys/socket.h>
 #include <sys/types.h>
@@ -22,6 +23,25 @@
 class eDVBScan;
 
 #endif
+
+class OCSection : public LongCrcSection
+{
+	protected:
+		void *data;
+
+	public:
+		OCSection(const uint8_t * const buffer)
+		: LongCrcSection(buffer)
+		{
+			data = malloc(getSectionLength());
+			memcpy(data, buffer, getSectionLength());
+		}
+		~OCSection()
+		{
+			free(data);
+		}
+		void *getData() { return data; }
+};
 
 class eDVBServicePMTHandler: public Object
 {
@@ -36,6 +56,8 @@ class eDVBServicePMTHandler: public Object
 
 	eAUTable<eTable<ProgramMapSection> > m_PMT;
 	eAUTable<eTable<ProgramAssociationSection> > m_PAT;
+	eAUTable<eTable<ApplicationInformationSection> > m_AIT;
+	eAUTable<eTable<OCSection> > m_OC;
 
 	eUsePtr<iDVBChannel> m_channel;
 	eUsePtr<iDVBPVRChannel> m_pvr_channel;
@@ -51,9 +73,13 @@ class eDVBServicePMTHandler: public Object
 
 	void PMTready(int error);
 	void PATready(int error);
-	
+	void AITready(int error);
+	void OCready(int error);
+
 	int m_pmt_pid;
-	
+	int m_dsmcc_pid;
+	std::string m_HBBTVUrl;
+
 	int m_use_decode_demux;
 	uint8_t m_decode_demux_num;
 	ePtr<eTimer> m_no_pat_entry_delay;
@@ -83,6 +109,8 @@ public:
 		eventEOF,          // a file playback did end
 		
 		eventMisconfiguration, // a channel was not found in any list, or no frontend was found which could provide this channel
+
+		eventHBBTVInfo, /* HBBTV information was detected in the AIT */
 	};
 #ifndef SWIG
 	Signal1<void,int> serviceEvent;
@@ -167,6 +195,7 @@ public:
 	int getChannel(eUsePtr<iDVBChannel> &channel);
 	void resetCachedProgram() { m_have_cached_program = false; }
 	void sendEventNoPatEntry();
+	void getHBBTVUrl(std::string &ret) { ret = m_HBBTVUrl; }
 
 	/* deprecated interface */
 	int tune(eServiceReferenceDVB &ref, int use_decode_demux, eCueSheet *sg=0, bool simulate=false, eDVBService *service = 0);
