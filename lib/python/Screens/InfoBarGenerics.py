@@ -3123,6 +3123,7 @@ class InfoBarExtensions:
 		self.addExtension(extension = self.getOsd3DSetup, type = InfoBarExtensions.EXTENSION_LIST)
 		self.addExtension(extension = self.getCCcamInfo, type = InfoBarExtensions.EXTENSION_LIST)
 		self.addExtension(extension = self.getOScamInfo, type = InfoBarExtensions.EXTENSION_LIST)
+		self.addExtension(extension = self.getSoftcamPanel, type = InfoBarExtensions.EXTENSION_LIST)
 
 	def getLMname(self):
 		return _("Log Manager")
@@ -3133,6 +3134,15 @@ class InfoBarExtensions:
 		else:
 			return []
 
+	def getSoftcamPanelname(self):
+		return _("Softcam-Panel")
+
+	def getSoftcamPanel(self):
+		if config.plugins.showaafpanelextensions.value:
+			return [((boundFunction(self.getSoftcamPanelname), boundFunction(self.openSoftcamPanel), lambda: True), None)]
+		else:
+			return []
+	
 	def get3DSetupname(self):
 		return _("OSD 3D Setup")
 
@@ -3252,6 +3262,10 @@ class InfoBarExtensions:
 	def openOSD3DSetup(self):
 		from Screens.OSD import OSD3DSetupScreen
 		self.session.open(OSD3DSetupScreen)
+
+	def openSoftcamPanel(self):
+		from Plugins.Extensions.Aafpanel.SoftcamPanel import SoftcamPanel
+		self.session.open(SoftcamPanel)
 
 	def showAutoTimerList(self):
 		if Directories.fileExists("/usr/lib/enigma2/python/Plugins/Extensions/AutoTimer/plugin.pyo"):
@@ -3499,6 +3513,7 @@ class InfoBarAAFpanel:
 		self["AAFpanelActions"] = HelpableActionMap(self, "InfoBarAAFpanel",
 			{
 				"aafPanel": (self.selectRedKeytask, _("AAF-Panel...")),
+				"softcamPanel": (self.softcamPanel, _("Softcam-Panel...")),
 			})
 
 	def selectRedKeytask(self):
@@ -3506,6 +3521,16 @@ class InfoBarAAFpanel:
 			try:
 				from Plugins.Extensions.Aafpanel.plugin import Aafpanel
 				self.session.open(Aafpanel, services = self.servicelist)
+			except:
+				pass
+		else:
+			pass
+		
+	def softcamPanel(self):
+		if config.plugins.aafpanel_redpanel.enabledlong.value == True:
+			try:
+				from Plugins.Extensions.Aafpanel.SoftcamPanel import SoftcamPanel
+				self.session.open(SoftcamPanel)
 			except:
 				pass
 		else:

@@ -37,6 +37,9 @@ inAAFPanel = None
 
 config.plugins.aafpanel_redpanel = ConfigSubsection()
 config.plugins.aafpanel_redpanel.enabled = ConfigYesNo(default=True)
+config.plugins.aafpanel_redpanel.enabledlong = ConfigYesNo(default=False)
+config.plugins.showaafpanelextensions = ConfigYesNo(default=False)
+
 	
 if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/plugin.pyo") is True:
 	try:
@@ -58,11 +61,23 @@ from Plugins.Extensions.Aafpanel.HddSetup import *
 from Plugins.Extensions.Aafpanel.SoftcamPanel import *
 from Plugins.Extensions.Aafpanel.CamStart import *
 from Plugins.Extensions.Aafpanel.sundtek import *
-					
-		
+
+def Check_Softcam():
+	found = False
+	for x in os.listdir('/etc'):
+		if x.find('.emu') > -1:
+			found = True
+			break;
+	return found
+
+# Hide Softcam-Panel Setup when no softcams installed
+if not Check_Softcam() and config.plugins.showaafpanelextensions.value:
+	config.plugins.showaafpanelextensions.value = False
+	config.plugins.aafpanel_redpanel.enabledlong.value = False
+	config.plugins.showaafpanelextensions.save()
+	config.plugins.aafpanel_redpanel.save()
+
 # edit bb , touch commands.getouput with this def #
-
-
 def command(comandline, strip=1):
   comandline = comandline + " >/tmp/command.txt"
   os.system(comandline)
@@ -221,7 +236,7 @@ class Aafpanel(Screen, InfoBarPiP):
 		self["label1"] = Label(AAF_Panel_Version)
 
 		self.Mlist = []
-		if self.Check_Softcam():
+		if Check_Softcam():
 			self.Mlist.append(MenuEntryItem((AafEntryComponent('SoftcamPanel'), _("SoftcamPanel"), 'SoftcamPanel')))
 		self.Mlist.append(MenuEntryItem((AafEntryComponent('Setup'), _("Setup"), 'Setup')))
 		self.Mlist.append(MenuEntryItem((AafEntryComponent('Plugins'), _("Plugins"), 'Plugins')))
@@ -367,6 +382,8 @@ class Aafpanel(Screen, InfoBarPiP):
 			self.session.open(SundtekControlCenter)
 		elif menu == "RedPanel":
 			self.session.open(RedPanel)
+		elif menu == "Softcam-Panel Setup":
+			self.session.open(ShowSoftcamPanelExtensions)
 		else:
 			pass
 
@@ -381,6 +398,8 @@ class Aafpanel(Screen, InfoBarPiP):
 		self.tlist.append(MenuEntryItem((AafEntryComponent('Networksetup'), _("Networksetup"), 'Networksetup')))
 		self.tlist.append(MenuEntryItem((AafEntryComponent('SundtekControlCenter'), _("SundtekControlCenter"), 'SundtekControlCenter')))
 		self.tlist.append(MenuEntryItem((AafEntryComponent('RedPanel'), _("RedPanel"), 'RedPanel')))
+		if Check_Softcam():
+			self.tlist.append(MenuEntryItem((AafEntryComponent('Softcam-Panel Setup'), _("Softcam-Panel Setup"), 'Softcam-Panel Setup')))
 		if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/plugin.pyo") is True:
 			self.tlist.append(MenuEntryItem((AafEntryComponent('MultiQuickButton'), _("MultiQuickButton"), 'MultiQuickButton')))	
 		if os.path.isfile("/usr/lib/enigma2/python/Plugins/SystemPlugins/choiceRC/plugin.pyo") is True:
@@ -452,14 +471,6 @@ class Aafpanel(Screen, InfoBarPiP):
 		self["Mlist"].moveToIndex(0)
 		self["Mlist"].l.setList(self.tlist)
 
-	def Check_Softcam(self):
-		found = False
-		for x in os.listdir('/etc'):
-			if x.find('.emu') > -1:
-				found = True
-				break;
-		return found
-
 class RedPanel(ConfigListScreen,Screen):
 	def __init__(self, session):
 		self.service = None
@@ -471,7 +482,8 @@ class RedPanel(ConfigListScreen,Screen):
 		self["labelExitsave"] = Label(ExitSave)
 
 		self.Clist = []
-		self.Clist.append(getConfigListEntry(_("RedPanel"), config.plugins.aafpanel_redpanel.enabled))
+		self.Clist.append(getConfigListEntry(_("Show AAF-Panel Red-key"), config.plugins.aafpanel_redpanel.enabled))
+		self.Clist.append(getConfigListEntry(_("Show Softcam-Panel Red-key long"), config.plugins.aafpanel_redpanel.enabledlong))
 		ConfigListScreen.__init__(self, self.Clist)
 
 		self["actions"] = ActionMap(["OkCancelActions", "DirectionActions", "ColorActions", "SetupActions"],
@@ -496,6 +508,44 @@ class RedPanel(ConfigListScreen,Screen):
 
 	def ok(self):
 		config.plugins.aafpanel_redpanel.save()
+		self.close()
+
+class ShowSoftcamPanelExtensions(ConfigListScreen,Screen):
+	def __init__(self, session):
+		self.service = None
+		Screen.__init__(self, session)
+
+		self.skin = CONFIG_SKIN
+		self.onShown.append(self.setWindowTitle)
+
+		self["labelExitsave"] = Label(ExitSave)
+
+		self.Clist = []
+		self.Clist.append(getConfigListEntry(_("Show Softcam-Panel in Extensions Menu"), config.plugins.showaafpanelextensions))
+		ConfigListScreen.__init__(self, self.Clist)
+
+		self["actions"] = ActionMap(["OkCancelActions", "DirectionActions", "ColorActions", "SetupActions"],
+		{
+			"cancel": self.Exit,
+			"ok": self.ok,
+			"left": self.keyLeft,
+			"right": self.keyRight,
+		}, -2)
+
+	def setWindowTitle(self):
+		self.setTitle(_("Softcam-Panel Setup"))
+
+	def Exit(self):
+		self.close()
+
+	def keyLeft(self):
+		ConfigListScreen.keyLeft(self)
+	
+	def keyRight(self):
+		ConfigListScreen.keyRight(self)
+
+	def ok(self):
+		config.plugins.showaafpanelextensions.save()
 		self.close()
 
 class Info(Screen):
