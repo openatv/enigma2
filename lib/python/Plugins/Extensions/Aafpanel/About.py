@@ -19,7 +19,7 @@ babsy98
 black 64
 andy-1
 obi
-AFF BETA Team
+AAF BETA Team
 openembedded team
 openVIX team
 openPLI team
