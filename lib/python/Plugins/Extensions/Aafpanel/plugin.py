@@ -84,7 +84,7 @@ def command(comandline, strip=1):
   return comandline
 
 AAF_Panel_Version = 'OpenAAF-Panel V1.0'
-boxversion = command('cat /etc/model')
+boxversion = command('cat /etc/image-version | grep box_type | cut -d = -f2')
 print "[Aaf-Panel] boxversion: %s"  % (boxversion)
 panel = open("/tmp/aafpanel.ver", "w")
 panel.write(AAF_Panel_Version + '\n')
