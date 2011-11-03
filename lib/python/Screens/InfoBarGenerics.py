@@ -290,11 +290,13 @@ class InfoBarShowHide:
 		if self.__state == self.STATE_SHOWN and not self.__locked:
 			self.hideTimer.stop()
 			idx = config.usage.infobar_timeout.index
+			if idx:
+				self.hideTimer.start(idx*1000, True)
 		elif self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.hideTimer.stop()
 			idx = config.usage.second_infobar_timeout.index
-		if idx:
-			self.hideTimer.start(idx*1000, True)
+			if idx:
+				self.hideTimer.start(idx*1000, True)
 
 	def __onHide(self):
 		self.__state = self.STATE_HIDDEN
