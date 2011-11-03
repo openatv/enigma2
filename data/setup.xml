@@ -63,8 +63,10 @@
 	<setup key="epgsetup" title="Settings...">
 		<item level="2" text="EPG location">config.misc.epgcachepath</item>
 		<item level="2" text="EPG filename">config.misc.epgcachefilename</item>
-		<item level="2" text="Automatic refresh">config.epg.cachesched</item>
-		<item level="2" text="Refresh every (in hours)" requires="config.epg.cachesched">config.epg.cachetimer</item>
+		<item level="2" text="Automatic refresh">config.epg.cacheloadsched</item>
+		<item level="2" text="Refresh every (in hours)" requires="config.epg.cacheloadsched">config.epg.cacheloadtimer</item>
+		<item level="2" text="Automatic save">config.epg.cachesavesched</item>
+		<item level="2" text="Save every (in hours)" requires="config.epg.cachesavesched">config.epg.cachesavetimer</item>
 		<item level="2" text="Show EIT now/next in infobar">config.usage.show_eit_nownext</item>
 		<item level="2" text="Enable EIT EPG">config.epg.eit</item>
 		<item level="2" text="Enable MHW EPG">config.epg.mhw</item>
