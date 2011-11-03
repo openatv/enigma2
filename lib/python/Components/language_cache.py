@@ -12,6 +12,10 @@ LANG_TEXT = {
 	"T1": "Please use the UP and DOWN keys to select your language. Afterwards press the OK button.",
 	"T2": "إختيار اللغه",
 },
+"bg_BU": {
+	"T1": "Моля, използвайте бутоните НАГОРЕ и НАДОЛУ за избор на език. След това натиснете бутона ОК.",
+	"T2": "Изберете Език",
+},
 "ca_AD": {
 	"T1": "Please use the UP and DOWN keys to select your language. Afterwards press the OK button.",
 	"T2": "Selecció d'idioma",
