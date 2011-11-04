@@ -384,6 +384,8 @@ class Aafpanel(Screen, InfoBarPiP):
 			self.session.open(RedPanel)
 		elif menu == "Softcam-Panel Setup":
 			self.session.open(ShowSoftcamPanelExtensions)
+		elif menu == "KeymapSel":
+			self.session.open(KeymapSel)
 		else:
 			pass
 
@@ -398,6 +400,11 @@ class Aafpanel(Screen, InfoBarPiP):
 		self.tlist.append(MenuEntryItem((AafEntryComponent('Networksetup'), _("Networksetup"), 'Networksetup')))
 		self.tlist.append(MenuEntryItem((AafEntryComponent('SundtekControlCenter'), _("SundtekControlCenter"), 'SundtekControlCenter')))
 		self.tlist.append(MenuEntryItem((AafEntryComponent('RedPanel'), _("RedPanel"), 'RedPanel')))
+		if os.path.isfile("/usr/share/enigma2/keymap.usr"):
+			self.tlist.append(MenuEntryItem((AafEntryComponent('KeymapSel'), _("Keymap Selection"), 'KeymapSel')))
+		else:
+			config.usage.keymap.value = eEnv.resolve("${datadir}/enigma2/keymap.xml")
+			config.save()
 		if Check_Softcam():
 			self.tlist.append(MenuEntryItem((AafEntryComponent('Softcam-Panel Setup'), _("Softcam-Panel Setup"), 'Softcam-Panel Setup')))
 		if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/plugin.pyo") is True:
@@ -471,6 +478,66 @@ class Aafpanel(Screen, InfoBarPiP):
 		self["Mlist"].moveToIndex(0)
 		self["Mlist"].l.setList(self.tlist)
 
+class KeymapSel(ConfigListScreen,Screen):
+	def __init__(self, session):
+		self.service = None
+		Screen.__init__(self, session)
+
+		self.skin = CONFIG_SKIN
+		self.onShown.append(self.setWindowTitle)
+
+		self["labelExitsave"] = Label(ExitSave)
+
+		keySel = [ ('keymap.xml',_("Default  (keymap.xml)")),('keymap.usr',_("User  (keymap.usr)"))]
+		self.keyshow = ConfigSelection(keySel)
+		self.actkeymap = self.getKeymap(config.usage.keymap.value)
+		self.keyshow.value = self.actkeymap
+
+		self.Clist = []
+		self.Clist.append(getConfigListEntry(_("Use Keymap"), self.keyshow))
+		ConfigListScreen.__init__(self, self.Clist)
+
+		self["actions"] = ActionMap(["OkCancelActions", "DirectionActions", "ColorActions", "SetupActions"],
+		{
+			"cancel": self.Exit,
+			"ok": self.ok,
+			"left": self.keyLeft,
+			"right": self.keyRight,
+		}, -2)
+
+	def setWindowTitle(self):
+		self.setTitle(_("Keymap Selection"))
+
+	def Exit(self):
+		self.close()
+
+	def keyLeft(self):
+		ConfigListScreen.keyLeft(self)
+	
+	def keyRight(self):
+		ConfigListScreen.keyRight(self)
+
+	def ok(self):
+		config.usage.keymap.value = eEnv.resolve("${datadir}/enigma2/" + self.keyshow.value)
+		config.save()
+		if self.actkeymap != self.keyshow.value:
+			self.changedFinished()
+		else:
+			self.close()
+	
+	def changedFinished(self):
+		self.session.openWithCallback(self.ExecuteRestart, MessageBox, _("Keymap changed, you need to restart the Enigma2. ") +" "+_("Do you want to restart now?"), MessageBox.TYPE_YESNO)
+		self.close()
+
+	def ExecuteRestart(self, result):
+		if result:
+			quitMainloop(3)
+		else:
+			self.close()
+
+	def getKeymap(self, file):
+		return file[file.rfind('/') +1:]
+
 class RedPanel(ConfigListScreen,Screen):
 	def __init__(self, session):
 		self.service = None
@@ -483,7 +550,6 @@ class RedPanel(ConfigListScreen,Screen):
 
 		self.Clist = []
 		self.Clist.append(getConfigListEntry(_("Show AAF-Panel Red-key"), config.plugins.aafpanel_redpanel.enabled))
-		self.Clist.append(getConfigListEntry(_("Show Softcam-Panel Red-key long"), config.plugins.aafpanel_redpanel.enabledlong))
 		ConfigListScreen.__init__(self, self.Clist)
 
 		self["actions"] = ActionMap(["OkCancelActions", "DirectionActions", "ColorActions", "SetupActions"],
