@@ -413,7 +413,7 @@ class Network:
 		self.NetworkState = 0
 		cmd1 = "ping -c 1 82.149.226.170"
 		cmd2 = "ping -c 1 193.99.144.85"
-		cmd3 = "ping -c 1 209.85.135.103"
+		cmd3 = "ping -c 1 209.85.148.99"
 		self.PingConsole = Console()
 		self.PingConsole.ePopen(cmd1, self.checkNetworkStateFinished,statecallback)
 		self.PingConsole.ePopen(cmd2, self.checkNetworkStateFinished,statecallback)
