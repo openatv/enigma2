@@ -274,6 +274,7 @@ class InfoBarShowHide:
 		if ".InfoBar'>" in str(self):
 			self.secondInfoBarScreen = self.session.instantiateDialog(SecondInfoBar)
 			self.secondInfoBarScreen.hide()
+		self.secondInfoBarWasShown = False
 
 	def serviceStarted(self):
 		if self.execing:
@@ -379,6 +380,8 @@ class InfoBarShowHide:
 				self.openInfoBarEPG()
 			else:
 				self.hide()
+				if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+					self.secondInfoBarScreen.hide()
 		else:
 			self.hide()
 
