@@ -302,13 +302,14 @@ class Harddisk:
 		task.weighting = 5
 		task.setTool('sfdisk')
 		task.args.append('-f')
+		task.args.append('-uS')
 		task.args.append(self.disk_path)
-		if size > 200000:
+		if size > 128000:
 			# Start at sector 8 to better support 4k aligned disks
-			print "[HD] Detected >200GB disk, using 4k alignment"
+			print "[HD] Detected >128GB disk, using 4k alignment"
 			task.initial_input = "8,\n;0,0\n;0,0\n;0,0\ny\n"
 		else:
-			# Smaller disks don't need that
+			# Smaller disks (CF cards, sticks etc) don't need that
 			task.initial_input = "0,\n;\n;\n;\ny\n"
 
 		task = Task.ConditionTask(job, _("Wait for partition"))
