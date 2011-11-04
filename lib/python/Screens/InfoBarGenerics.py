@@ -1429,7 +1429,7 @@ class InfoBarSeek:
 				"SeekbarFwd": self.seekFwdSeekbar,
 				"SeekbarBack": self.seekBackSeekbar
 			}, prio=-1)
-			# give them a little more priority to win over color buttons
+			# give them a little more priority to win over color buttons					
 		self["SeekActionsPTS"] = InfoBarSeekActionMap(self, "InfobarSeekActionsPTS",
 			{
 				"playpauseService": self.playpauseService,
@@ -1447,6 +1447,7 @@ class InfoBarSeek:
 			# give them a little more priority to win over color buttons
 
 		self["SeekActions"].setEnabled(False)
+		self["SeekActionsPTS"].setEnabled(False)
 
 		self.activity = 0
 		self.activityTimer = eTimer()
@@ -1909,7 +1910,7 @@ class InfoBarTimeshift:
 		self["TimeshiftSeekPointerActions"] = ActionMap(["InfobarTimeshiftSeekPointerActions"],
 			{
 				"SeekPointerOK": self.ptsSeekPointerOK, 
-				"SeekPointerPlay": self.ptsSeekPointerPlay, 
+				#"SeekPointerPlay": self.ptsSeekPointerPlay, 
 				"SeekPointerLeft": self.ptsSeekPointerLeft, 
 				"SeekPointerRight": self.ptsSeekPointerRight
 			},-2)
@@ -2100,6 +2101,8 @@ class InfoBarTimeshift:
 		elif not config.timeshift.enabled.value and self.timeshift_enabled and self.isSeekable():
 			enabled = True
 		self["TimeshiftSeekPointerActions"].setEnabled(enabled)
+		# test
+		#self["SeekActions"].setEnabled(enabled)
 
 		# Reset Seek Pointer And Eventname in InfoBar
 		if config.timeshift.enabled.value and self.timeshift_enabled and not self.isSeekable():
