@@ -291,17 +291,17 @@ class InfoBarShowHide:
 	def startHideTimer(self):
 		if self.__state == self.STATE_SHOWN and not self.__locked:
 			self.hideTimer.stop()
-			if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
-				idx = config.usage.second_infobar_timeout.index
-			else:
-				idx = config.usage.infobar_timeout.index
+			idx = config.usage.infobar_timeout.index
+			if idx:
+				self.hideTimer.start(idx*1000, True)
+		elif self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+			self.hideTimer.stop()
+			idx = config.usage.second_infobar_timeout.index
 			if idx:
 				self.hideTimer.start(idx*1000, True)
 
 	def __onHide(self):
 		self.__state = self.STATE_HIDDEN
-		if self.secondInfoBarScreen:
-			self.secondInfoBarScreen.hide()
 
 	def doShow(self):
 		self.show()
@@ -311,15 +311,21 @@ class InfoBarShowHide:
 		self.hideTimer.stop()
 		if self.__state == self.STATE_SHOWN:
 			self.hide()
+		elif self.__state == self.STATE_HIDDEN and self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+			self.secondInfoBarScreen.hide()
+			self.secondInfoBarWasShown = False
 
 	def toggleShow(self):
 		if self.__state == self.STATE_HIDDEN:
-			self.show()
+			if not self.secondInfoBarWasShown:
+				self.show()
 			if self.secondInfoBarScreen:
 				self.secondInfoBarScreen.hide()
+			self.secondInfoBarWasShown = False
 		elif self.secondInfoBarScreen and config.usage.show_second_infobar.value == "2" and not self.secondInfoBarScreen.shown:
 			self.hide()
 			self.secondInfoBarScreen.show()
+			self.secondInfoBarWasShown = True
 			self.startHideTimer()
 		else:
 			self.hide()

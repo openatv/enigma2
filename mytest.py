@@ -471,7 +471,6 @@ def runScreenTest():
 #			["PREMIERE"], #provider_list,
 #			[] #caid_list
 #		));
-	print '!!!!!!!!!!!!!!SCREENS TO RUN:',screensToRun
 	def runNextScreen(session, screensToRun, *result):
 		if result:
 			enigma.quitMainloop(*result)
@@ -479,9 +478,6 @@ def runScreenTest():
 
 		screen = screensToRun[0][1]
 		args = screensToRun[0][2:]
-		print '!!!!!!!!!!!!!!SCREEN:',screen
-		print '!!!!!!!!!!!!!!args:',args
-
 		if screensToRun:
 			session.openWithCallback(boundFunction(runNextScreen, session, screensToRun[1:]), screen, *args)
 		else:
@@ -601,7 +597,8 @@ Components.SetupDevices.InitSetupDevices()
 
 profile("EpgCacheSched")
 import Screens.EpgLoadSave
-Screens.EpgLoadSave.EpgCacheCheck()
+Screens.EpgLoadSave.EpgCacheSaveCheck()
+Screens.EpgLoadSave.EpgCacheLoadCheck()
 
 profile("RFMod")
 import Components.RFmod
