@@ -550,6 +550,7 @@ class RedPanel(ConfigListScreen,Screen):
 
 		self.Clist = []
 		self.Clist.append(getConfigListEntry(_("Show AAF-Panel Red-key"), config.plugins.aafpanel_redpanel.enabled))
+		self.Clist.append(getConfigListEntry(_("Show Softcam-Panel Red-key long"), config.plugins.aafpanel_redpanel.enabledlong))
 		ConfigListScreen.__init__(self, self.Clist)
 
 		self["actions"] = ActionMap(["OkCancelActions", "DirectionActions", "ColorActions", "SetupActions"],
