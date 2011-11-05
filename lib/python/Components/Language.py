@@ -15,7 +15,7 @@ class Language:
 		self.addLanguage("English", "en", "EN")
 		self.addLanguage("Deutsch", "de", "DE")
 		self.addLanguage("Arabic", "ar", "AE")
-		self.addLanguage("Български", "bg", "BU")
+		self.addLanguage("Български", "bg", "BG")
 		self.addLanguage("Català", "ca", "AD")
 		self.addLanguage("Hrvatski", "hr", "HR")
 		self.addLanguage("Česky", "cs", "CZ")
