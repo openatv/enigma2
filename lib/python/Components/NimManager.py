@@ -646,13 +646,11 @@ class NimManager:
 			#print "SATS", self.satellites
 			#print "TRANSPONDERS", self.transponders
 
-		if self.hasNimType("DVB-C"):
+		if self.hasNimType("DVB-C") or self.hasNimType("DVB-T"):
 			print "Reading cables.xml"
 			db.readCables(self.cablesList, self.transponderscable)
 #			print "CABLIST", self.cablesList
 #			print "TRANSPONDERS", self.transponders
-
-		if self.hasNimType("DVB-T"):
 			print "Reading terrestrial.xml"
 			db.readTerrestrials(self.terrestrialsList, self.transpondersterrestrial)
 #			print "TERLIST", self.terrestrialsList
@@ -1496,7 +1494,7 @@ def InitNimManager(nimmgr):
 			for x in nimmgr.terrestrialsList:
 				list.append((str(n), x[0]))
 				n += 1
-			nim.terrestrial = ConfigSelection(choices = list)
+			nim.terrestrial = ConfigSelection(default = "2", choices = list)
 			nim.terrestrial_5V = ConfigOnOff()
 		else:
 			empty_slots += 1
