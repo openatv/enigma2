@@ -61,7 +61,7 @@ class CamStart:
 			print "[CAMSTARTER] No Cam to Start, Exit"
 		else:
 			self.count += 1
-			print '[CAMSTARTER] Start attempts: ' + str(self.count)
+			print '[CAMSTARTER] Start/Check: ' + str(self.count)
 			#// check emu dir for config files
 			for x in self.emuDirlist:
 				#// if file contains the string "emu" (then this is a emu config file)
@@ -90,28 +90,22 @@ class CamStart:
 			camfound = 0
 			tel = 0
 			for x in self.mlist:
-				print '[CAMSTARTER] searching active cam: ' + x
+				#print '[CAMSTARTER] searching active cam: ' + x
 				if x == cam_name:
 					camfound = 1
 					cam_bin = self.emuBin[tel]
 					p = command('pidof %s |wc -w' % cam_bin)
-					print '[CAMSTARTER] binname : ' + cam_bin
+					#print '[CAMSTARTER] binname : ' + cam_bin
 					import time
 					time.sleep(2)
-					print '[CAMSTARTER] cam pid found: ' + str(p)
-					#if not p.isdigit(): p=0
+					#print '[CAMSTARTER] cam pid found: ' + str(p)
 					if int(p) > 0:
 						actcam = self.mlist[tel]
-						print '[CAMSTARTER] active cam: ' + actcam
+						print '[CAMSTARTER] CAM is Running, active cam: ' + actcam
 						if cam_bin.find('camd3')>-1 and self.count == 1:
 							print '[CAMSTARTER] stop ' + cam_bin
 							os.system('killall -9 '  + cam_bin)
 						camrunning = 1
-					#if int(p) > 1:
-						#actcam = self.mlist[tel]
-						#print '[CAMSTARTER] cam is running two times !!! ' + actcam
-						#print '[CAMSTARTER] stop ' + cam_bin
-						#os.system('killall -9 '  + cam_bin)
 					break
 				else:
 					tel +=1
@@ -121,7 +115,7 @@ class CamStart:
 					#// AND CAM IN LIST
 					if camfound == 1:
 						start = self.emuStart[tel]
-						print "[CAMSTARTER] no CAM active, start " + start
+						print "[CAMSTARTER] no CAM active, starting " + start
 						os.system("echo Start attempts: " + str(self.count) + " > " + "/tmp/camstarter.txt")
 						self.container = eConsoleAppContainer()
 						self.container.execute(start)
