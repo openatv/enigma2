@@ -48,9 +48,9 @@ config.plugins.configurationbackup.backupdirs = ConfigLocations(default=[eEnv.re
 
 config.plugins.softwaremanager = ConfigSubsection()
 config.plugins.softwaremanager.overwriteSettingsFiles = ConfigYesNo(default=False)
-config.plugins.softwaremanager.overwriteDriversFiles = ConfigYesNo(default=False)
-config.plugins.softwaremanager.overwriteEmusFiles = ConfigYesNo(default=False)
-config.plugins.softwaremanager.overwritePiconsFiles = ConfigYesNo(default=False)
+config.plugins.softwaremanager.overwriteDriversFiles = ConfigYesNo(default=True)
+config.plugins.softwaremanager.overwriteEmusFiles = ConfigYesNo(default=True)
+config.plugins.softwaremanager.overwritePiconsFiles = ConfigYesNo(default=True)
 config.plugins.softwaremanager.overwriteConfigFiles = ConfigSelection(
 				[
 				 ("Y", _("Yes, always")),
@@ -457,7 +457,7 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 		elif self["config"].getCurrent() == self.overwriteDriversfilesEntry:
 			self["introduction"].setText(_("Overwrite driver files during software upgrade?"))
 		elif self["config"].getCurrent() == self.overwriteEmusfilesEntry:
-			self["introduction"].setText(_("Overwrite emu files during software upgrade?"))
+			self["introduction"].setText(_("Overwrite softcam files during software upgrade?"))
 		elif self["config"].getCurrent() == self.overwritePiconsfilesEntry:
 			self["introduction"].setText(_("Overwrite picon files during software upgrade?"))
 		else:
