@@ -77,6 +77,18 @@ if not Check_Softcam() and config.plugins.showaafpanelextensions.value:
 	config.plugins.showaafpanelextensions.save()
 	config.plugins.aafpanel_redpanel.save()
 
+# Hide Keymap selection when no other keymaps installed.
+if config.usage.keymap.value != eEnv.resolve("${datadir}/enigma2/keymap.xml"):
+	if not os.path.isfile(eEnv.resolve("${datadir}/enigma2/keymap.usr")) and config.usage.keymap.value == eEnv.resolve("${datadir}/enigma2/keymap.usr"):
+		setDefaultKeymap()
+	if not os.path.isfile(eEnv.resolve("${datadir}/enigma2/keymap.ntr")) and config.usage.keymap.value == eEnv.resolve("${datadir}/enigma2/keymap.ntr"):
+		setDefaultKeymap()
+		
+def setDefaultKeymap():
+	print "[Aaf-Panel] Set Keymap to Default"
+	config.usage.keymap.value = eEnv.resolve("${datadir}/enigma2/keymap.xml")
+	config.save()
+
 # edit bb , touch commands.getouput with this def #
 def command(comandline, strip=1):
   comandline = comandline + " >/tmp/command.txt"
@@ -103,7 +115,9 @@ boxversion = command('cat /etc/image-version | grep box_type | cut -d = -f2')
 print "[Aaf-Panel] boxversion: %s"  % (boxversion)
 panel = open("/tmp/aafpanel.ver", "w")
 panel.write(AAF_Panel_Version + '\n')
-panel.write("boxversion: %s " % (boxversion)+ '\n')
+panel.write("Boxversion: %s " % (boxversion)+ '\n')
+panel.write("Keymap: %s " % (config.usage.keymap.value)+ '\n')
+
 panel.close()
 
 ExitSave = "[Exit] = " +_("Cancel") +"              [Ok] =" +_("Save")
@@ -146,7 +160,7 @@ def Plugins(**kwargs):
 
 #############------- SKINS --------############################
 
-MENU_SKIN = """<screen position="center,center" size="500,370" title="OpenAAF Panel" backgroundColor="#251e1f20">
+MENU_SKIN = """<screen position="center,center" size="500,370" title="OpenAAF Panel" >
 	<widget source="global.CurrentTime" render="Label" position="0, 340" size="500,24" font="Regular;20" foregroundColor="#FFFFFF" halign="right" transparent="1" zPosition="5">
 		<convert type="ClockToText">>Format%H:%M:%S</convert>
 	</widget>
@@ -157,6 +171,14 @@ MENU_SKIN = """<screen position="center,center" size="500,370" title="OpenAAF Pa
 
 CONFIG_SKIN = """<screen position="center,center" size="600,440" title="AAF Config" >
 	<widget name="config" position="10,10" size="580,377" enableWrapAround="1" scrollbarMode="showOnDemand" />
+	<widget name="labelExitsave" position="90,410" size="420,25" halign="center" font="Regular;20" transparent="1" foregroundColor="#f2e000" />
+</screen>"""
+
+CONFIG_SKIN_INFO = """<screen position="center,center" size="600,440" title="AAF Config" >
+	<widget name="config" position="10,10" size="580,300" enableWrapAround="1" scrollbarMode="showOnDemand" />
+	<eLabel backgroundColor="#56C856" position="0,300" size="600,1" zPosition="0" />
+	<widget name="labelInfo" position="10,320" size="600,50" halign="center" font="Regular;20" transparent="1" foregroundColor="white" />
+	<eLabel backgroundColor="#56C856" position="0,380" size="600,1" zPosition="0" />
 	<widget name="labelExitsave" position="90,410" size="420,25" halign="center" font="Regular;20" transparent="1" foregroundColor="#f2e000" />
 </screen>"""
 
@@ -400,11 +422,7 @@ class Aafpanel(Screen, InfoBarPiP):
 		self.tlist.append(MenuEntryItem((AafEntryComponent('Networksetup'), _("Networksetup"), 'Networksetup')))
 		self.tlist.append(MenuEntryItem((AafEntryComponent('SundtekControlCenter'), _("SundtekControlCenter"), 'SundtekControlCenter')))
 		self.tlist.append(MenuEntryItem((AafEntryComponent('RedPanel'), _("RedPanel"), 'RedPanel')))
-		if os.path.isfile("/usr/share/enigma2/keymap.usr"):
-			self.tlist.append(MenuEntryItem((AafEntryComponent('KeymapSel'), _("Keymap Selection"), 'KeymapSel')))
-		else:
-			config.usage.keymap.value = eEnv.resolve("${datadir}/enigma2/keymap.xml")
-			config.save()
+		self.tlist.append(MenuEntryItem((AafEntryComponent('KeymapSel'), _("Keymap Selection"), 'KeymapSel')))
 		if Check_Softcam():
 			self.tlist.append(MenuEntryItem((AafEntryComponent('Softcam-Panel Setup'), _("Softcam-Panel Setup"), 'Softcam-Panel Setup')))
 		if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/plugin.pyo") is True:
@@ -483,12 +501,23 @@ class KeymapSel(ConfigListScreen,Screen):
 		self.service = None
 		Screen.__init__(self, session)
 
-		self.skin = CONFIG_SKIN
+		self.skin = CONFIG_SKIN_INFO
 		self.onShown.append(self.setWindowTitle)
 
 		self["labelExitsave"] = Label(ExitSave)
+		self["labelInfo"] = Label(_("Copy your keymap to\n/usr/share/enigma2/keymap.usr"))
 
-		keySel = [ ('keymap.xml',_("Default  (keymap.xml)")),('keymap.usr',_("User  (keymap.usr)"))]
+		
+		#keySel = [ ('keymap.xml',_("Default  (keymap.xml)")),('keymap.usr',_("User  (keymap.usr)"))]
+		keySel = [ ('keymap.xml',_("Default  (keymap.xml)"))]
+		if os.path.isfile(eEnv.resolve("${datadir}/enigma2/keymap.usr")):
+			keySel.append(('keymap.usr',_("User  (keymap.usr)")))
+		else:
+			setDefaultKeymap()
+		if os.path.isfile(eEnv.resolve("${datadir}/enigma2/keymap.ntr")):
+			keySel.append(('keymap.ntr',_("Neutrino  (keymap.ntr)")))
+		else:
+			setDefaultKeymap()
 		self.keyshow = ConfigSelection(keySel)
 		self.actkeymap = self.getKeymap(config.usage.keymap.value)
 		self.keyshow.value = self.actkeymap
@@ -526,7 +555,7 @@ class KeymapSel(ConfigListScreen,Screen):
 			self.close()
 	
 	def changedFinished(self):
-		self.session.openWithCallback(self.ExecuteRestart, MessageBox, _("Keymap changed, you need to restart the Enigma2. ") +" "+_("Do you want to restart now?"), MessageBox.TYPE_YESNO)
+		self.session.openWithCallback(self.ExecuteRestart, MessageBox, _("Keymap changed, you need to restart the GUI") +"\n"+_("Do you want to restart now?"), MessageBox.TYPE_YESNO)
 		self.close()
 
 	def ExecuteRestart(self, result):
@@ -534,7 +563,6 @@ class KeymapSel(ConfigListScreen,Screen):
 			quitMainloop(3)
 		else:
 			self.close()
-
 	def getKeymap(self, file):
 		return file[file.rfind('/') +1:]
 
