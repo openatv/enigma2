@@ -169,7 +169,6 @@ int gAccel::fill(gSurface *dst, const eRect &area, unsigned long col)
 
 int gAccel::accelAlloc(void *&addr, int &phys_addr, int size)
 {
-	eDebug("accel %d bytes", size);
 	if ((!size) || (!m_accel_allocation))
 	{
 		eDebug("size: %d, alloc %p", size, m_accel_allocation);
@@ -178,11 +177,8 @@ int gAccel::accelAlloc(void *&addr, int &phys_addr, int size)
 		return -1;
 	}
 	
-	size += 4095; size >>= 12;
-	int i;
-	
 	int used = 0, free = 0, s = 0;
-	for (i=0; i < m_accel_size; ++i)
+	for (int i=0; i < m_accel_size; ++i)
 	{
 		if (m_accel_allocation[i] == 0)
 			free++;
@@ -194,9 +190,11 @@ int gAccel::accelAlloc(void *&addr, int &phys_addr, int size)
 			s += m_accel_allocation[i];
 		}
 	}
-	eDebug("accel memstat: used=%d kB, free %d kB, s %d kB", used * 4, free * 4, s * 4);
+	eDebug("accel memstat: alloc=%d B used=%d kB, free %d kB, s %d kB", size, used * 4, free * 4, s * 4);
 
-	for (i = m_accel_size - size; i >= 0 ; --i)
+	size += 4095;
+	size >>= 12;
+	for (int i = m_accel_size - size; i >= 0 ; --i)
 	{
 		int a;
 		for (a=0; a<size; ++a)
