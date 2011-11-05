@@ -26,10 +26,6 @@ enigma2.pot: enigma2-py.pot enigma2-xml.pot
 endif
 
 .po.mo:
-	if [ -f pli_$< ] ; then \
-		mv $< dmm_$< ; \
-		msgcat --use-first -o $< pli_$< dmm_$< ; \
-	fi
 	$(MSGFMT) -o $@ $<
 
 BUILT_SOURCES = $(LANGMO)
