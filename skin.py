@@ -589,12 +589,9 @@ def readSkin(screen, skin, names, desktop):
 			myscreen = xml.etree.cElementTree.fromstring(skin)
 		if myscreen:
 			screen.parsedSkin = myscreen
-
-	#assert myscreen is not None, "no skin for screen '" + repr(names) + "' found!"
 	if myscreen is None:
 		print "[SKIN] No skin to read..."
-		emptySkin = "<screen></screen>"
-		myscreen = screen.parsedSkin = xml.etree.cElementTree.fromstring(emptySkin)
+		myscreen = screen.parsedSkin = xml.etree.cElementTree.fromstring("<screen></screen>")
 
 	screen.skinAttributes = [ ]
 
@@ -716,10 +713,21 @@ def readSkin(screen, skin, names, desktop):
 		collectAttributes(w.skinAttributes, widget, skin_path_prefix, ignore=['name'])
 		screen.additionalWidgets.append(w)
 
-	def process_panel(widget):
+	def process_screen(widget):
 	        for w in widget.getchildren():
 	                p = processors.get(w.tag, process_none)
 	                p(w)
+
+	def process_panel(widget):
+	        n = widget.attrib.get('name')
+		if n:
+			try:
+				s = dom_screens.get(n, None)
+			except KeyError:
+				print "[SKIN] Unable to find screen '%s' referred in screen '%s'" % (n, name)
+			else:
+				process_screen(s[0])
+		process_screen(widget)
 
 	processors = {
 	        None: process_none,
@@ -731,7 +739,7 @@ def readSkin(screen, skin, names, desktop):
 	}
 
 	try:
-		process_panel(myscreen)
+		process_screen(myscreen)
 	except SkinError, e:
 		print "[Skin] SKIN ERROR:", e
 		raise
