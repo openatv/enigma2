@@ -690,10 +690,10 @@ def readSkin(screen, skin, names, desktop):
 	def process_applet(widget):
 		try:
 			codeText = widget.text.strip()
-		except:
-			codeText = ""
-		widgetType = widget.attrib.get('type')
-		code = compile(codeText, "skin applet", "exec")
+			widgetType = widget.attrib.get('type')
+			code = compile(codeText, "skin applet", "exec")
+		except Exception, ex:
+			raise SkinError("applet failed to compile: " + str(ex))
 		if widgetType == "onLayoutFinish":
 			screen.onLayoutFinish.append(code)
 		else:
@@ -716,13 +716,16 @@ def readSkin(screen, skin, names, desktop):
 	def process_screen(widget):
 	        for w in widget.getchildren():
 	                p = processors.get(w.tag, process_none)
-	                p(w)
+			try:
+		                p(w)
+			except SkinError, e:
+				print "[Skin] SKIN ERROR in screen '%s' widget '%s':" % (name, w.tag), e
 
 	def process_panel(widget):
 	        n = widget.attrib.get('name')
 		if n:
 			try:
-				s = dom_screens.get(n, None)
+				s = dom_screens[n]
 			except KeyError:
 				print "[SKIN] Unable to find screen '%s' referred in screen '%s'" % (n, name)
 			else:
@@ -742,7 +745,7 @@ def readSkin(screen, skin, names, desktop):
 		process_screen(myscreen)
 	except SkinError, e:
 		print "[Skin] SKIN ERROR:", e
-		raise
+
 	from Components.GUIComponent import GUIComponent
 	nonvisited_components = [x for x in set(screen.keys()) - visited_components if isinstance(x, GUIComponent)]
 	assert not nonvisited_components, "the following components in %s don't have a skin entry: %s" % (name, ', '.join(nonvisited_components))
