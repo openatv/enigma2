@@ -258,6 +258,7 @@ class TimerSanityCheck:
 								break
 
 		if len(self.simultimer) < 2:
-			print "Bug: unknown Conflict!"
+			print "Possible Bug: unknown Conflict!"
+			return True;
 
 		return False # conflict detected!
