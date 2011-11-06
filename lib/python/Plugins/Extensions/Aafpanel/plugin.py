@@ -116,8 +116,10 @@ print "[Aaf-Panel] boxversion: %s"  % (boxversion)
 panel = open("/tmp/aafpanel.ver", "w")
 panel.write(AAF_Panel_Version + '\n')
 panel.write("Boxversion: %s " % (boxversion)+ '\n')
-panel.write("Keymap: %s " % (config.usage.keymap.value)+ '\n')
-
+try:
+	panel.write("Keymap: %s " % (config.usage.keymap.value)+ '\n')
+except:
+	panel.write("Keymap: keymap file not found !!" + '\n')
 panel.close()
 
 ExitSave = "[Exit] = " +_("Cancel") +"              [Ok] =" +_("Save")
@@ -150,11 +152,11 @@ def Plugins(**kwargs):
 	return [
 
 	#// show Aafpanel in Main Menu
-	PluginDescriptor(name="OpenAAF Panel", description="OpenAAF panel AAF-GUI 01/11/2011", where = PluginDescriptor.WHERE_MENU, fnc = Apanel),
+	PluginDescriptor(name="OpenAAF Panel", description="OpenAAF panel AAF-GUI 06/11/2011", where = PluginDescriptor.WHERE_MENU, fnc = Apanel),
 	#// autostart
 	PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART,PluginDescriptor.WHERE_AUTOSTART],fnc = autostart),
 	#// show Aafpanel in EXTENSIONS Menu
-	PluginDescriptor(name="OpenAAF Panel", description="OpenAAAF panel AAF-GUI 01/11/2011", where = PluginDescriptor.WHERE_EXTENSIONSMENU, fnc = main) ]
+	PluginDescriptor(name="OpenAAF Panel", description="OpenAAAF panel AAF-GUI 06/11/2011", where = PluginDescriptor.WHERE_EXTENSIONSMENU, fnc = main) ]
 
 
 
@@ -781,12 +783,8 @@ class Info(Screen):
 			info = info0.split('(')
 			info1 = "Name = " + info[0] + "\n"
 			info2 =  "Owner = " + info[1].replace(')','') + "\n"
-			if boxversion.upper() == 'BM750' or boxversion.upper() == 'VUSOLO':
-				info3 =  "Mainimage = " + info[2][0:info[2].find(')')] + "\n"
-				info4 = "Date = " + info[2][info[2].find('SMP')+8:len(info[2])]
-			else:
-				info3 =  "Mainimage = " + info[3][0:info[3].find('))')] + "\n"
-				info4 = "Date = " + info[3][info[3].find('PREEMPT')+8:len(info[3])]
+			info3 =  "Mainimage = " + info[2][0:info[2].find(')')] + "\n"
+			info4 = "Date = " + info[2][info[2].find('SMP')+8:len(info[2])]
 			info5 = self.Do_cut(info1 + info2 + info3 + info4)
 			self["label1"].setText(info5)
 		except:
