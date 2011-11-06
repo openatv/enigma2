@@ -104,7 +104,7 @@ gSurface::gSurface(eSize size, int _bpp, int accel)
 		{
 			stride += 63;
 			stride &= ~63;
-			int pal_size = (bpp == 8) ? 0 : 256 * 4;
+			int pal_size = (bpp == 8) ? 256 * 4 : 0;
 			if (gAccel::getInstance()->accelAlloc(data, data_phys, y * stride + pal_size) != 0)
 				eDebug("ERROR: accelAlloc failed");
 		}
