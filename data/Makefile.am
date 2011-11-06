@@ -7,6 +7,7 @@ dist_pkgdata_DATA = \
 	encoding.conf \
 	keymap.xml \
 	menu.xml \
+	radio.mvi \
 	prev.png \
 	black.mvi \
 	rcpositions.xml \
