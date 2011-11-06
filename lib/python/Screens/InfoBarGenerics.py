@@ -374,18 +374,13 @@ class InfoBarShowHide:
 
 	def ExitPressed(self):
 		if self.__state == self.STATE_HIDDEN:
-			print 'TEST1'
 			if config.vixsettings.QuickEPG_mode.value == "2":
-				print 'TEST2'
 				self.openInfoBarEPG()
 			else:
-				print 'TEST3'
 				self.hide()
 				if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
-					print 'TEST4'
 					self.secondInfoBarScreen.hide()
 		else:
-			print 'TEST5'
 			self.hide()
 
 	def int2hex(self, int):
