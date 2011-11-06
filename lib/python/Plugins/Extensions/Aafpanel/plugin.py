@@ -784,7 +784,7 @@ class Info(Screen):
 			info1 = "Name = " + info[0] + "\n"
 			info2 =  "Owner = " + info[1].replace(')','') + "\n"
 			info3 =  "Mainimage = " + info[2][0:info[2].find(')')] + "\n"
-			info4 = "Date = " + info[2][info[2].find('SMP')+8:len(info[2])]
+			info4 = "Date = " + info[3][info[3].find('SMP')+4:len(info[3])]
 			info5 = self.Do_cut(info1 + info2 + info3 + info4)
 			self["label1"].setText(info5)
 		except:
