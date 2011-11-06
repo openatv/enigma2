@@ -41,10 +41,15 @@ from ImageBackup import ImageBackup
 from ImageWizard import ImageWizard
 from BackupRestore import BackupSelection, RestoreMenu, BackupScreen, RestoreScreen, getBackupPath, getBackupFilename
 from SoftwareTools import iSoftwareTools
+import os
 
 config.plugins.configurationbackup = ConfigSubsection()
 config.plugins.configurationbackup.backuplocation = ConfigText(default = '/media/hdd/', visible_width = 50, fixed_size = False)
-config.plugins.configurationbackup.backupdirs = ConfigLocations(default=[eEnv.resolve('${sysconfdir}/enigma2/'), '/etc/CCcam.cfg', '/etc/network/interfaces', '/etc/wpa_supplicant.conf', '/etc/wpa_supplicant.ath0.conf', '/etc/wpa_supplicant.wlan0.conf', '/etc/resolv.conf', '/etc/default_gw', '/etc/hostname'])
+config.plugins.configurationbackup.backupdirs = ConfigLocations(default=[eEnv.resolve('${sysconfdir}/enigma2/'), '/etc/CCcam.cfg', '/usr/keys/CCcam.cfg',
+																		 '/etc/network/interfaces', '/etc/wpa_supplicant.conf', '/etc/wpa_supplicant.ath0.conf',
+																		 '/etc/wpa_supplicant.wlan0.conf', '/etc/resolv.conf', '/etc/default_gw', '/etc/hostname',
+																		 eEnv.resolve("${datadir}/enigma2/keymap.usr"), eEnv.resolve("${datadir}/enigma2/keymap.ntr")])
+
 
 config.plugins.softwaremanager = ConfigSubsection()
 config.plugins.softwaremanager.overwriteSettingsFiles = ConfigYesNo(default=False)
@@ -57,6 +62,12 @@ config.plugins.softwaremanager.overwriteConfigFiles = ConfigSelection(
 				 ("N", _("No, never")),				 
 				 ("ask", _("Always ask"))
 				], "Y")
+
+config.plugins.softwaremanager.updatetype = ConfigSelection(
+				[
+					("hot", _("Upgrade with GUI")),
+					("cold", _("Unattended upgrade without GUI")),
+				], "hot")
 
 def write_cache(cache_file, cache_data):
 	#Does a cPickle dump
@@ -400,6 +411,10 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 		self.skin_path = skin_path
 		if self.skin_path == None:
 			self.skin_path = resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager")
+		try:
+			self.boxversion = tmp = open('/etc/image-version').readline()[9:-1]
+		except:
+			self.boxversion = 'Unknown'
 
 		self.onChangedEntry = [ ]
 		self.setup_title = _("Software manager setup")
@@ -408,6 +423,7 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 		self.overwriteDriversfilesEntry = None
 		self.overwriteEmusfilesEntry = None
 		self.overwritePiconsfilesEntry = None
+		self.updatetypeEntry = None
 
 		self.list = [ ]
 		ConfigListScreen.__init__(self, self.list, session = session, on_change = self.changedEntry)
@@ -437,6 +453,9 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 		self.overwriteDriversfilesEntry = getConfigListEntry(_("Overwrite Driver Files ?"), config.plugins.softwaremanager.overwriteDriversFiles)
 		self.overwriteEmusfilesEntry = getConfigListEntry(_("Overwrite Emu Files ?"), config.plugins.softwaremanager.overwriteEmusFiles)
 		self.overwritePiconsfilesEntry = getConfigListEntry(_("Overwrite Picon Files ?"), config.plugins.softwaremanager.overwritePiconsFiles)
+		self.updatetypeEntry  = getConfigListEntry(_("Select Software Update"), config.plugins.softwaremanager.updatetype)
+		if self.boxversion.upper()[:2] == 'ET': 
+			self.list.append(self.updatetypeEntry)
 		self.list.append(self.overwriteConfigfilesEntry)
 		self.list.append(self.overwriteSettingsfilesEntry)
 		self.list.append(self.overwriteDriversfilesEntry)
@@ -460,6 +479,8 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 			self["introduction"].setText(_("Overwrite softcam files during software upgrade?"))
 		elif self["config"].getCurrent() == self.overwritePiconsfilesEntry:
 			self["introduction"].setText(_("Overwrite picon files during software upgrade?"))
+		elif self["config"].getCurrent() == self.updatetypeEntry:
+			self["introduction"].setText(_("Select how your box will upgrade."))
 		else:
 			self["introduction"].setText("")
 
@@ -1516,9 +1537,12 @@ class UpdatePlugin(Screen):
 				self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE_LIST)
 			elif self.ipkg.currentCommand == IpkgComponent.CMD_UPGRADE_LIST:
 				self.total_packages = len(self.ipkg.getFetchedList())
-				if self.total_packages:
+				if self.total_packages or True:
 					message = _("Do you want to update your Dreambox?") + "\n(%s " % self.total_packages + _("Packages") + ")"
-					choices = [(_("Show new Packages"), "show"), (_("Upgrade and ask to reboot"), "hot"), (_("Cancel"), "")]
+					if config.plugins.softwaremanager.updatetype.value == "cold":
+						choices = [(_("Show new Packages"), "show"), (_("Unattended upgrade without GUI and reboot system"), "cold"), (_("Cancel"), "")]
+					else:
+						choices = [(_("Show new Packages"), "show"), (_("Upgrade and ask to reboot"), "hot"), (_("Cancel"), "")]
 					self.session.openWithCallback(self.startActualUpgrade, ChoiceBox, title=message, list=choices)
 				else:
 					self.session.openWithCallback(self.close, MessageBox, _("Nothing to upgrade"), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
@@ -1544,7 +1568,16 @@ class UpdatePlugin(Screen):
 		if not answer or not answer[1]:
 			self.close()
 			return
-		if answer[1] == "show":
+		if answer[1] == "cold":
+			from enigma import gMainDC, getDesktop, eSize
+			self.session.nav.stopService()
+			desktop = getDesktop(0)
+			if desktop.size() != eSize(720,576):
+				gMainDC.getInstance().setResolution(720,576)
+				desktop.resize(eSize(720,576))
+			self.session.open(UnattendedUpgradeMessageBox)
+			quitMainloop(42)
+		elif answer[1] == "show":
 			global plugin_path
 			self.session.openWithCallback(self.ipkgCallback(IpkgComponent.EVENT_DONE, None), ShowUpdatePackages, plugin_path)
 		else:
