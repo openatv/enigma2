@@ -8,7 +8,6 @@ dist_pkgdata_DATA = \
 	keymap.xml \
 	menu.xml \
 	prev.png \
-	radio.mvi \
 	black.mvi \
 	rcpositions.xml \
 	setup.xml \
