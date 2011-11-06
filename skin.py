@@ -163,17 +163,13 @@ def parseColor(str):
 			raise SkinError("color '%s' must be #aarrggbb or valid named color" % (str))
 	return gRGB(int(str[1:], 0x10))
 
-def collectAttributes(skinAttributes, node, skin_path_prefix=None, ignore=[]):
+def collectAttributes(skinAttributes, node, skin_path_prefix=None, ignore=(), filenames=frozenset(("pixmap", "pointer", "seek_pointer", "backgroundPixmap", "selectionPixmap", "sliderPixmap", "scrollbarbackgroundPixmap"))):
 	# walk all attributes
-	for a in node.items():
-		#print a
-		attrib = a[0]
-		value = a[1]
-
-		if attrib in ("pixmap", "pointer", "seek_pointer", "backgroundPixmap", "selectionPixmap", "sliderPixmap", "scrollbarbackgroundPixmap"):
-			value = resolveFilename(SCOPE_SKIN_IMAGE, value, path_prefix=skin_path_prefix)
-
+	for attrib, value in node.items():
+		size = None
 		if attrib not in ignore:
+			if attrib in filenames:
+				value = resolveFilename(SCOPE_SKIN_IMAGE, value, path_prefix=skin_path_prefix)
 			# Bit of a hack this, really. When a window has a flag (e.g. wfNoBorder)
 			# it needs to be set at least before the size is set, in order for the
 			# window dimensions to be calculated correctly in all situations.
@@ -181,9 +177,11 @@ def collectAttributes(skinAttributes, node, skin_path_prefix=None, ignore=[]):
 			# Similar situation for a scrollbar in a listbox; when the scrollbar setting is applied after
 			# the size, a scrollbar will not be shown until the selection moves for the first time
 			if attrib == 'size':
-				skinAttributes.append((attrib, value.encode("utf-8")))
+			        size = value.encode("utf-8")
 			else:
-				skinAttributes.insert(0, (attrib, value.encode("utf-8")))
+				skinAttributes.append((attrib, value.encode("utf-8")))
+		if size is not None:
+			skinAttributes.append(('size', size))
 
 
 def loadPixmap(path, desktop):
@@ -597,7 +595,7 @@ def readSkin(screen, skin, names, desktop):
 
 	skin_path_prefix = getattr(screen, "skin_path", path)
 
-	collectAttributes(screen.skinAttributes, myscreen, skin_path_prefix, ignore=["name"])
+	collectAttributes(screen.skinAttributes, myscreen, skin_path_prefix, ignore=("name",))
 
 	screen.additionalWidgets = [ ]
 	screen.renderer = [ ]
@@ -625,7 +623,7 @@ def readSkin(screen, skin, names, desktop):
 			except:
 				raise SkinError("component with name '" + wname + "' was not found in skin of screen '" + name + "'!")
 			# assert screen[wname] is not Source
-			collectAttributes(attributes, widget, skin_path_prefix, ignore=['name'])
+			collectAttributes(attributes, widget, skin_path_prefix, ignore=('name',))
 		elif wsource:
 			# get corresponding source
 			#print "Widget source=", wsource
@@ -684,7 +682,7 @@ def readSkin(screen, skin, names, desktop):
 			renderer = renderer_class() # instantiate renderer
 			renderer.connect(source) # connect to source
 			attributes = renderer.skinAttributes = [ ]
-			collectAttributes(attributes, widget, skin_path_prefix, ignore=['render', 'source'])
+			collectAttributes(attributes, widget, skin_path_prefix, ignore=('render', 'source'))
 			screen.renderer.append(renderer)
 
 	def process_applet(widget):
@@ -703,14 +701,14 @@ def readSkin(screen, skin, names, desktop):
 		w = additionalWidget()
 		w.widget = eLabel
 		w.skinAttributes = [ ]
-		collectAttributes(w.skinAttributes, widget, skin_path_prefix, ignore=['name'])
+		collectAttributes(w.skinAttributes, widget, skin_path_prefix, ignore=('name',))
 		screen.additionalWidgets.append(w)
 
 	def process_epixmap(widget):
 		w = additionalWidget()
 		w.widget = ePixmap
 		w.skinAttributes = [ ]
-		collectAttributes(w.skinAttributes, widget, skin_path_prefix, ignore=['name'])
+		collectAttributes(w.skinAttributes, widget, skin_path_prefix, ignore=('name',))
 		screen.additionalWidgets.append(w)
 
 	def process_screen(widget):
