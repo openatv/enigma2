@@ -165,8 +165,8 @@ def parseColor(str):
 
 def collectAttributes(skinAttributes, node, skin_path_prefix=None, ignore=(), filenames=frozenset(("pixmap", "pointer", "seek_pointer", "backgroundPixmap", "selectionPixmap", "sliderPixmap", "scrollbarbackgroundPixmap"))):
 	# walk all attributes
+	size = None
 	for attrib, value in node.items():
-		size = None
 		if attrib not in ignore:
 			if attrib in filenames:
 				value = resolveFilename(SCOPE_SKIN_IMAGE, value, path_prefix=skin_path_prefix)
@@ -180,8 +180,8 @@ def collectAttributes(skinAttributes, node, skin_path_prefix=None, ignore=(), fi
 			        size = value.encode("utf-8")
 			else:
 				skinAttributes.append((attrib, value.encode("utf-8")))
-		if size is not None:
-			skinAttributes.append(('size', size))
+	if size is not None:
+		skinAttributes.append(('size', size))
 
 
 def loadPixmap(path, desktop):
