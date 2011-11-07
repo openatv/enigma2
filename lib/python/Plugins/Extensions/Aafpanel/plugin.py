@@ -510,18 +510,19 @@ class KeymapSel(ConfigListScreen,Screen):
 		self["labelInfo"] = Label(_("Copy your keymap to\n/usr/share/enigma2/keymap.usr"))
 
 		
-		#keySel = [ ('keymap.xml',_("Default  (keymap.xml)")),('keymap.usr',_("User  (keymap.usr)"))]
+		usrkey = eEnv.resolve("${datadir}/enigma2/keymap.usr")
+		ntrkey = eEnv.resolve("${datadir}/enigma2/keymap.ntr")
+		self.actkeymap = self.getKeymap(config.usage.keymap.value)
 		keySel = [ ('keymap.xml',_("Default  (keymap.xml)"))]
-		if os.path.isfile(eEnv.resolve("${datadir}/enigma2/keymap.usr")):
+		if os.path.isfile(usrkey):
 			keySel.append(('keymap.usr',_("User  (keymap.usr)")))
-		else:
-			setDefaultKeymap()
-		if os.path.isfile(eEnv.resolve("${datadir}/enigma2/keymap.ntr")):
+		if os.path.isfile(ntrkey):
 			keySel.append(('keymap.ntr',_("Neutrino  (keymap.ntr)")))
-		else:
+		if self.actkeymap == usrkey and not os.path.isfile(usrkey):
+			setDefaultKeymap()
+		if self.actkeymap == ntrkey and not os.path.isfile(ntrkey):
 			setDefaultKeymap()
 		self.keyshow = ConfigSelection(keySel)
-		self.actkeymap = self.getKeymap(config.usage.keymap.value)
 		self.keyshow.value = self.actkeymap
 
 		self.Clist = []
