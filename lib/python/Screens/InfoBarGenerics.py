@@ -1910,10 +1910,11 @@ class InfoBarTimeshift:
 		self["TimeshiftSeekPointerActions"] = ActionMap(["InfobarTimeshiftSeekPointerActions"],
 			{
 				"SeekPointerOK": self.ptsSeekPointerOK, 
-				#"SeekPointerPlay": self.ptsSeekPointerPlay, 
+				"SeekPointerPlay": self.ptsSeekPointerPlay, 
 				"SeekPointerLeft": self.ptsSeekPointerLeft, 
 				"SeekPointerRight": self.ptsSeekPointerRight
 			},-2)
+		self["TimeshiftActivateActions"].setEnabled(False)
 		self["TimeshiftSeekPointerActions"].setEnabled(False)
 		self.timeshift_enabled = 0
 		self.timeshift_state = 0
@@ -2090,19 +2091,13 @@ class InfoBarTimeshift:
 						self.pts_delay_timer.start(1000, True)
 
 	def __seekableStatusChanged(self):
-		enabled = False
-		if not self.isSeekable() and self.timeshift_enabled:
-			enabled = True
-		self["TimeshiftActivateActions"].setEnabled(enabled)
-
-		enabled = False
-		if config.timeshift.enabled.value and self.timeshift_enabled and self.isSeekable():
-			enabled = True
-		elif not config.timeshift.enabled.value and self.timeshift_enabled and self.isSeekable():
-			enabled = True
-		self["TimeshiftSeekPointerActions"].setEnabled(enabled)
-		# test
-		#self["SeekActions"].setEnabled(enabled)
+		if config.timeshift.enabled.value:
+			self["TimeshiftActivateActions"].setEnabled(True)
+			if self.timeshift_enabled and self.isSeekable():
+				self["TimeshiftSeekPointerActions"].setEnabled(True)
+		else:
+			self["TimeshiftActivateActions"].setEnabled(False)
+			self["TimeshiftSeekPointerActions"].setEnabled(False)
 
 		# Reset Seek Pointer And Eventname in InfoBar
 		if config.timeshift.enabled.value and self.timeshift_enabled and not self.isSeekable():
@@ -2825,7 +2820,7 @@ class InfoBarTimeshift:
 	def ptsSeekPointerPlay(self):
 		if self.pts_pvrStateDialog == "Screens.PVRState.PTSTimeshiftState" and self.timeshift_enabled and self.isSeekable():
 			if not self.pvrstate_hide_timer.isActive():
-				if self.seekstate != self.SEEK_STATE_PLAY:
+				if self.seekstate != self.SEEK_STATE_PLAY or self.seekstate == self.SEEK_STATE_PAUSE:
 					self.setSeekState(self.SEEK_STATE_PLAY)
 				else:
 					self.setSeekState(self.SEEK_STATE_PAUSE)
