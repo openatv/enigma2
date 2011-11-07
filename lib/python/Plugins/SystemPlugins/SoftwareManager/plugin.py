@@ -1537,7 +1537,7 @@ class UpdatePlugin(Screen):
 				self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE_LIST)
 			elif self.ipkg.currentCommand == IpkgComponent.CMD_UPGRADE_LIST:
 				self.total_packages = len(self.ipkg.getFetchedList())
-				if self.total_packages or True:
+				if self.total_packages:
 					message = _("Do you want to update your Dreambox?") + "\n(%s " % self.total_packages + _("Packages") + ")"
 					if config.plugins.softwaremanager.updatetype.value == "cold":
 						choices = [(_("Show new Packages"), "show"), (_("Unattended upgrade without GUI and reboot system"), "cold"), (_("Cancel"), "")]
