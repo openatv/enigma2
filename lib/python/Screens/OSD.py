@@ -10,10 +10,10 @@ class OSDSetup(Screen, ConfigListScreen):
 	skin = """
 	<screen name="OSDSetup" position="0,0" size="e,e" backgroundColor="blue">
 		<widget name="config" position="c-175,c-75" size="350,150" foregroundColor="black" backgroundColor="blue" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="c-145,e-100" zPosition="0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/red.png" position="c+5,e-100" zPosition="0" size="140,40" alphatest="on" />
-		<widget name="ok" position="c-145,e-100" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;20" transparent="1" backgroundColor="green" />
-		<widget name="cancel" position="c+5,e-100" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;20" transparent="1" backgroundColor="red" />
+		<ePixmap pixmap="skin_default/buttons/red.png" position="c-145,e-100" zPosition="0" size="140,40" alphatest="on" />
+		<ePixmap pixmap="skin_default/buttons/green.png" position="c+5,e-100" zPosition="0" size="140,40" alphatest="on" />
+		<widget name="cancel" position="c-145,e-100" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;20" transparent="1" backgroundColor="red" />
+		<widget name="ok" position="c+5,e-100" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;20" transparent="1" backgroundColor="green" />
 		<ePixmap pixmap="skin_default/div-h.png" position="c-200,e-150" zPosition="1" size="400,2" />
 		<widget source="satus" render="Label" position="c-200,e-140" size="400,30" zPosition="10" font="Regular;21" halign="center" valign="center" foregroundColor="black" backgroundColor="blue" transparent="1" />
 	</screen>"""
@@ -26,8 +26,8 @@ class OSDSetup(Screen, ConfigListScreen):
 		from Components.ActionMap import ActionMap
 		from Components.Button import Button
 
-		self["ok"] = Button(_("Cancel"))
-		self["cancel"] = Button(_("OK"))
+		self["ok"] = Button(_("OK"))
+		self["cancel"] = Button(_("Cancel"))
 		self["satus"] = StaticText()
 
 		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
@@ -151,10 +151,10 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 	skin = """
 	<screen position="c-200,c-100" size="400,200" title="OSD 3D setup">
 		<widget name="config" position="c-175,c-75" size="350,150" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="c-145,e-45" zPosition="0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/red.png" position="c+5,e-45" zPosition="0" size="140,40" alphatest="on" />
-		<widget name="ok" position="c-145,e-45" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;20" transparent="1" backgroundColor="green" />
-		<widget name="cancel" position="c+5,e-45" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;20" transparent="1" backgroundColor="red" />
+		<ePixmap pixmap="skin_default/buttons/red.png" position="c-145,e-45" zPosition="0" size="140,40" alphatest="on" />
+		<ePixmap pixmap="skin_default/buttons/green.png" position="c+5,e-45" zPosition="0" size="140,40" alphatest="on" />
+		<widget name="cancel" position="c-145,e-45" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;20" transparent="1" backgroundColor="red" />
+		<widget name="ok" position="c+5,e-45" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;20" transparent="1" backgroundColor="green" />
 	</screen>"""
 
 	def __init__(self, session):
@@ -165,8 +165,8 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 		from Components.ActionMap import ActionMap
 		from Components.Button import Button
 
-		self["ok"] = Button(_("Cancel"))
-		self["cancel"] = Button(_("OK"))
+		self["ok"] = Button(_("OK"))
+		self["cancel"] = Button(_("Cancel"))
 
 		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
 		{
