@@ -198,7 +198,7 @@ eDBoxLCD *eDBoxLCD::getInstance()
 
 void eDBoxLCD::update()
 {
-#if defined(HAVE_GRAPHICLCD) && !defined(HAVE_TEXTLCD)
+#if defined(HAVE_GRAPHICLCD) || defined(HAVE_COLORLCD)
 	if (lcdfd >= 0)
 	{
 		if (!is_oled || is_oled == 2)
