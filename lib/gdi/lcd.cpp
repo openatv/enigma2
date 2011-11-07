@@ -75,9 +75,14 @@ eDBoxLCD::eDBoxLCD()
 	lcdfd = open("/dev/dbox/oled0", O_RDWR);
 	if (lcdfd < 0)
 	{
-		if (!access("/proc/stb/lcd/oled_brightness", W_OK) ||
-		    !access("/proc/stb/fp/oled_brightness", W_OK) )
+		FILE *f=fopen("/proc/stb/lcd/oled_brightness", "w");
+		if (!f)
+			f = fopen("/proc/stb/fp/oled_brightness", "w");
+		if (f)
+		{
 			is_oled = 2;
+			fclose(f);
+		}
 		lcdfd = open("/dev/dbox/lcd0", O_RDWR);
 	} else
 	{
