@@ -10,10 +10,10 @@ class OSDSetup(Screen, ConfigListScreen):
 	skin = """
 	<screen name="OSDSetup" position="0,0" size="e,e" backgroundColor="blue">
 		<widget name="config" position="c-175,c-75" size="350,150" foregroundColor="black" backgroundColor="blue" />
-		<ePixmap pixmap="skin_default/buttons/red.png" position="c-145,e-100" zPosition="0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="c+5,e-100" zPosition="0" size="140,40" alphatest="on" />
-		<widget name="cancel" position="c-145,e-100" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;20" transparent="1" backgroundColor="red" />
-		<widget name="ok" position="c+5,e-100" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;20" transparent="1" backgroundColor="green" />
+		<ePixmap pixmap="skin_default/buttons/green.png" position="c-145,e-100" zPosition="0" size="140,40" alphatest="on" />
+		<ePixmap pixmap="skin_default/buttons/red.png" position="c+5,e-100" zPosition="0" size="140,40" alphatest="on" />
+		<widget source="key_geen" render="Label" position="c-145,e-100" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;20" transparent="1" backgroundColor="green" />
+		<widget source="key_red" render="Label" position="c+5,e-100" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;20" transparent="1" backgroundColor="red" />
 		<ePixmap pixmap="skin_default/div-h.png" position="c-200,e-150" zPosition="1" size="400,2" />
 		<widget source="satus" render="Label" position="c-200,e-140" size="400,30" zPosition="10" font="Regular;21" halign="center" valign="center" foregroundColor="black" backgroundColor="blue" transparent="1" />
 	</screen>"""
@@ -24,20 +24,17 @@ class OSDSetup(Screen, ConfigListScreen):
 		self.setup_title = _("OSD Setup")
 
 		from Components.ActionMap import ActionMap
-		from Components.Button import Button
+		from Components.Sources.StaticText import StaticText
 
-		self["ok"] = Button(_("OK"))
-		self["cancel"] = Button(_("Cancel"))
 		self["satus"] = StaticText()
+		self["key_red"] = StaticText(_("Cancel"))
+		self["key_green"] = StaticText(_("OK"))
 
-		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
-		{
-			"ok": self.keySave,
-			"save": self.keySave,
-			"cancel": self.keyCancel,
-			"green": self.keySave,
-			"red": self.keyCancel,
-		}, -2)
+		self["actions"] = ActionMap(["SetupActions"], 
+			{
+				"cancel": self.keyCancel,
+				"save": self.keySave,
+			}, -2)
 
 		self.onChangedEntry = [ ]
 		self.list = []
@@ -151,10 +148,10 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 	skin = """
 	<screen position="c-200,c-100" size="400,200" title="OSD 3D setup">
 		<widget name="config" position="c-175,c-75" size="350,150" />
-		<ePixmap pixmap="skin_default/buttons/red.png" position="c-145,e-45" zPosition="0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="c+5,e-45" zPosition="0" size="140,40" alphatest="on" />
-		<widget name="cancel" position="c-145,e-45" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;20" transparent="1" backgroundColor="red" />
-		<widget name="ok" position="c+5,e-45" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;20" transparent="1" backgroundColor="green" />
+		<ePixmap pixmap="skin_default/buttons/green.png" position="c-145,e-45" zPosition="0" size="140,40" alphatest="on" />
+		<ePixmap pixmap="skin_default/buttons/red.png" position="c+5,e-45" zPosition="0" size="140,40" alphatest="on" />
+		<widget source="key_green" render="Label" position="c-145,e-45" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;20" transparent="1" backgroundColor="green" />
+		<widget source="key_red" render="Label" position="c+5,e-45" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;20" transparent="1" backgroundColor="red" />
 	</screen>"""
 
 	def __init__(self, session):
@@ -163,27 +160,46 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 		self.setup_title = _("OSD 3D Setup")
 
 		from Components.ActionMap import ActionMap
-		from Components.Button import Button
+		from Components.Sources.StaticText import StaticText
 
-		self["ok"] = Button(_("OK"))
-		self["cancel"] = Button(_("Cancel"))
+		self["satus"] = StaticText()
+		self["key_red"] = StaticText(_("Cancel"))
+		self["key_green"] = StaticText(_("OK"))
 
-		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
-		{
-			"ok": self.keySave,
-			"save": self.keySave,
-			"cancel": self.keyCancel,
-			"green": self.keySave,
-			"red": self.keyCancel,
-		}, -2)
+		self["actions"] = ActionMap(["SetupActions"], 
+			{
+				"cancel": self.keyCancel,
+				"save": self.keySave,
+			}, -2)
 
+		self.onChangedEntry = [ ]
 		self.list = []
-		ConfigListScreen.__init__(self, self.list, session = self.session)
+		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
 		self.list.append(getConfigListEntry(_("3D Mode"), config.osd.threeDmode))
 		self.list.append(getConfigListEntry(_("Depth"), config.osd.threeDznorm))
 		self.list.append(getConfigListEntry(_("Show in extensions list ?"), config.osd.show3dextensions))
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
+
+		self.onLayoutFinish.append(self.layoutFinished)
+
+	def layoutFinished(self):
+		self.setTitle(_(self.setup_title))
+
+	def createSummary(self):
+		from Screens.Setup import SetupSummary
+		return SetupSummary
+
+	# for summary:
+	def changedEntry(self):
+		for x in self.onChangedEntry:
+			x()
+
+	def getCurrentEntry(self):
+		return self["config"].getCurrent()[0]
+
+	def getCurrentValue(self):
+		return str(self["config"].getCurrent()[1].getText())
 
 	def keyLeft(self):
 		ConfigListScreen.keyLeft(self)
