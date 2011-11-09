@@ -68,7 +68,7 @@ class OSDSetup(Screen, ConfigListScreen):
 	def changedEntry(self):
 		for x in self.onChangedEntry:
 			x()
- 		self.selectionChanged()
+		self.selectionChanged()
 
 	def getCurrentEntry(self):
 		return self["config"].getCurrent()[0]
@@ -85,6 +85,7 @@ class OSDSetup(Screen, ConfigListScreen):
 		self.setPreviewPosition()
 
 	def setPreviewPosition(self):
+		open("/proc/stb/video/alpha", "w").write(str(config.osd.alpha.value))
 		size_w = getDesktop(0).size().width()
 		size_h = getDesktop(0).size().height()
 		dsk_w = int(float(size_w)) / float(720)
