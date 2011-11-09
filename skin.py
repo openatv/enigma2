@@ -562,6 +562,14 @@ def loadSkinData(desktop):
 class additionalWidget:
 	pass
 
+# Class that makes a tuple look like something else. Some plugins just assume
+# that size is a string and try to parse it. This class makes that work.
+class SizeTuple(tuple):
+	def split(self, *args):
+		return (str(self[0]), str(self[1]))
+	def __str__(self):
+		return '%s,%s' % self
+
 class SkinContext:
 	def __init__(self, parent=None, pos=None, size=None):
 	        if parent is not None:
@@ -613,7 +621,7 @@ class SkinContext:
 			size = (parseCoordinate(size[0], self.w), parseCoordinate(size[1], self.h)) 
 			pos = pos.split(',')
 			pos = (self.x + parseCoordinate(pos[0], self.w, size[0]), self.y + parseCoordinate(pos[1], self.h, size[1])) 		
-		return (pos, size)
+		return SizeTuple((pos, size))
 
 def readSkin(screen, skin, names, desktop):
 	if not isinstance(names, list):
