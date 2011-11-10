@@ -567,6 +567,8 @@ class additionalWidget:
 class SizeTuple(tuple):
 	def split(self, *args):
 		return (str(self[0]), str(self[1]))
+	def strip(self, *args):
+		return '%s,%s' % self
 	def __str__(self):
 		return '%s,%s' % self
 
@@ -621,7 +623,7 @@ class SkinContext:
 			size = (parseCoordinate(size[0], self.w), parseCoordinate(size[1], self.h)) 
 			pos = pos.split(',')
 			pos = (self.x + parseCoordinate(pos[0], self.w, size[0]), self.y + parseCoordinate(pos[1], self.h, size[1])) 		
-		return SizeTuple((pos, size))
+		return (SizeTuple(pos), SizeTuple(size))
 
 def readSkin(screen, skin, names, desktop):
 	if not isinstance(names, list):
