@@ -466,8 +466,17 @@ class Harddisk:
 			self.is_sleeping = True
 
 	def setSleep(self):
-		Console().ePopen(("hdparm", "hdparm", "-y", self.disk_path))
-
+		for disc in listdir("/sys/block"):
+			if disc[0:2] == 'sd':
+				try:
+					f = open("/sys/block/" + disc + "/size", "r")
+					size = int(f.read().strip()) / 1024 / 1024
+					f.close()
+				except:
+					size = 0
+				if size > 50:
+					system("hdparm -y /dev/" + disc) 
+					system("/sbin/sdparm -C stop /dev/" + disc)
 	def setIdleTime(self, idle):
 		self.max_idle_time = idle
 		if self.idle_running:
