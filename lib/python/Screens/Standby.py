@@ -161,6 +161,8 @@ class TryQuitMainloop(MessageBox):
 			self.conntected=False
 			self.session.nav.record_event.remove(self.getRecordEvent)
 		if value:
+			if self.retval == 1:
+				config.misc.DeepStandby.value = True
 			quitMainloop(self.retval)
 		else:
 			MessageBox.close(self, True)
