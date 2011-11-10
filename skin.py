@@ -675,6 +675,7 @@ def readSkin(screen, skin, names, desktop):
 	context.y = 0
 	context.w = s.width()
 	context.h = s.height()
+	del s
 	collectAttributes(screen.skinAttributes, myscreen, context, skin_path_prefix, ignore=("name",))
 	context = SkinContext(context, myscreen.attrib.get('position'), myscreen.attrib.get('size'))
 
@@ -831,3 +832,8 @@ def readSkin(screen, skin, names, desktop):
 	from Components.GUIComponent import GUIComponent
 	nonvisited_components = [x for x in set(screen.keys()) - visited_components if isinstance(x, GUIComponent)]
 	assert not nonvisited_components, "the following components in %s don't have a skin entry: %s" % (name, ', '.join(nonvisited_components))
+	# This may look pointless, but it unbinds 'screen' from the nested scope. A better
+	# solution is to avoid the nested scope above and use the context object to pass
+	# things around.
+	screen = None
+	visited_components = None
