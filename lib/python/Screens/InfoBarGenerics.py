@@ -1873,7 +1873,6 @@ class InfoBarTimeshift:
 		self["TimeshiftSeekPointerActions"] = ActionMap(["InfobarTimeshiftSeekPointerActions"],
 			{
 				"SeekPointerOK": self.ptsSeekPointerOK, 
-				"SeekPointerPlay": self.ptsSeekPointerPlay, 
 				"SeekPointerLeft": self.ptsSeekPointerLeft, 
 				"SeekPointerRight": self.ptsSeekPointerRight
 			},-2)
@@ -2057,6 +2056,7 @@ class InfoBarTimeshift:
 		if config.timeshift.enabled.value:
 			self["TimeshiftActivateActions"].setEnabled(True)
 			if self.timeshift_enabled and self.isSeekable():
+				self["TimeshiftActivateActions"].setEnabled(False)
 				self["TimeshiftSeekPointerActions"].setEnabled(True)
 		else:
 			self["TimeshiftActivateActions"].setEnabled(False)
