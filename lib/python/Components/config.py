@@ -1671,9 +1671,13 @@ class Config(ConfigSubsection):
 	def saveToFile(self, filename):
 		text = self.pickle()
 		try:
-			f = open(filename, "w")
+			import os
+			f = open(filename + ".writing", "w")
 			f.write(text)
+			f.flush()
+			os.fsync(f.fileno())
 			f.close()
+			os.rename(filename + ".writing", filename)
 		except IOError:
 			print "Config: Couldn't write %s" % filename
 
