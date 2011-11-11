@@ -24,6 +24,7 @@ if [ -e @libdir@/libpassthrough.so ]; then
 	LIBS="$LIBS @libdir@/libpassthrough.so"
 fi
 
+sync
 LD_PRELOAD=$LIBS @bindir@/enigma2
 
 # enigma2 exit codes:
