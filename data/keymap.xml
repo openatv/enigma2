@@ -123,12 +123,7 @@
 	</map>
 
 	<map context="InputAsciiActions">
-		<device name="Console">
-			<key id="KEY_ASCII" mapto="gotAsciiCode" flags="mr" />
-		</device>
-		<device name="SDL">
-			<key id="KEY_ASCII" mapto="gotAsciiCode" flags="mr" />
-		</device>
+		<key id="KEY_ASCII" mapto="gotAsciiCode" flags="mr" />
 	</map>
 
 	<map context="InputBoxActions">
