@@ -625,6 +625,39 @@ class SkinContext:
 			pos = (self.x + parseCoordinate(pos[0], self.w, size[0]), self.y + parseCoordinate(pos[1], self.h, size[1])) 		
 		return (SizeTuple(pos), SizeTuple(size))
 
+class SkinContextStack(SkinContext):
+	# A context that stacks things instead of aligning them
+	def parse(self, pos, size):
+	        if pos == "fill":
+	                pos = (self.x, self.y)
+	                size = (self.w, self.h)
+		elif pos == "bottom":
+			w,h = size.split(',')
+			h = int(h)
+		        pos = (self.x, self.y + self.h - h)
+		        size = (self.w, h)
+		elif pos == "top":
+			w,h = size.split(',')
+			h = int(h)
+		        pos = (self.x, self.y)
+		        size = (self.w, h)
+		elif pos == "left":
+			w,h = size.split(',')
+			w = int(w)
+			pos = (self.x, self.y)
+			size = (w, self.h)
+		elif pos == "right":
+			w,h = size.split(',')
+			w = int(w)
+			pos = (self.x + self.w - w, self.y)
+			size = (w, self.h)
+		else:
+			size = size.split(',')
+			size = (parseCoordinate(size[0], self.w), parseCoordinate(size[1], self.h))
+			pos = pos.split(',')
+			pos = (self.x + parseCoordinate(pos[0], self.w, size[0]), self.y + parseCoordinate(pos[1], self.h, size[1]))
+		return (SizeTuple(pos), SizeTuple(size))
+
 def readSkin(screen, skin, names, desktop):
 	if not isinstance(names, list):
 		names = [names]
@@ -810,7 +843,15 @@ def readSkin(screen, skin, names, desktop):
 				print "[SKIN] Unable to find screen '%s' referred in screen '%s'" % (n, name)
 			else:
 				process_screen(s[0], context)
-	        c = SkinContext(context, widget.attrib.get('position'), widget.attrib.get('size'))
+		layout = widget.attrib.get('layout')
+		if layout == 'stack':
+			cc = SkinContextStack
+		else:
+		        cc = SkinContext
+		try:
+			c = cc(context, widget.attrib.get('position'), widget.attrib.get('size'))
+		except Exception, ex:
+		        raise SkinError("Failed to create skincontext (%s,%s) in %s: %s" % (widget.attrib.get('position'), widget.attrib.get('size'), context, ex) )
 		process_screen(widget, c)
 
 	processors = {
@@ -826,7 +867,7 @@ def readSkin(screen, skin, names, desktop):
 		context.x = 0 # reset offsets, all components are relative to screen
 		context.y = 0 # coordinates.
 		process_screen(myscreen, context)
-	except SkinError, e:
+	except Exception, e:
 		print "[Skin] SKIN ERROR in %s:" % name, e
 
 	from Components.GUIComponent import GUIComponent
