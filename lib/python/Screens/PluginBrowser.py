@@ -225,7 +225,7 @@ class PluginDownloadBrowser(Screen):
 				Ipkg.opkgAddDestination(dest)
 			else:
 				extra = '-d ' + dest
-			self.session.openWithCallback(self.installFinished, Console, cmdlist = [self.ipkg_install + " enigma2-plugin-" + self["list"].l.getCurrentSelection()[0].name + ' ' + extra], closeOnSuccess = True)
+			self.session.openWithCallback(self.installFinished, Console, cmdlist = [self.ipkg_install + " enigma2-plugin-" + self["list"].l.getCurrentSelection()[0].name + ' ' + extra, "sync"], closeOnSuccess = True)
 		else:
 			self.resetPostInstall()
 				
@@ -245,9 +245,9 @@ class PluginDownloadBrowser(Screen):
 						self.postInstallCall = Picon.initPiconPaths
 						self.session.openWithCallback(self.installDestinationCallback, ChoiceBox, title=_("Install picons on"), list=candidates)
 					return
-				self.session.openWithCallback(self.installFinished, Console, cmdlist = [self.ipkg_install + " enigma2-plugin-" + self["list"].l.getCurrentSelection()[0].name], closeOnSuccess = True)
+				self.session.openWithCallback(self.installFinished, Console, cmdlist = [self.ipkg_install + " enigma2-plugin-" + self["list"].l.getCurrentSelection()[0].name, "sync"], closeOnSuccess = True)
 			elif self.type == self.REMOVE:
-				self.session.openWithCallback(self.installFinished, Console, cmdlist = [self.ipkg_remove + Ipkg.opkgExtraDestinations() + " enigma2-plugin-" + self["list"].l.getCurrentSelection()[0].name], closeOnSuccess = True)
+				self.session.openWithCallback(self.installFinished, Console, cmdlist = [self.ipkg_remove + Ipkg.opkgExtraDestinations() + " enigma2-plugin-" + self["list"].l.getCurrentSelection()[0].name, "sync"], closeOnSuccess = True)
 
 	def setWindowTitle(self):
 		if self.type == self.DOWNLOAD:
