@@ -8,14 +8,16 @@ from enigma import getDesktop
 
 class OSDSetup(Screen, ConfigListScreen):
 	skin = """
-	<screen name="OSDSetup" position="0,0" size="e,e" backgroundColor="blue">
-		<widget name="config" position="c-175,c-75" size="350,150" foregroundColor="black" backgroundColor="blue" />
-		<ePixmap pixmap="skin_default/buttons/red.png" position="c-145,e-100" zPosition="0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="c+5,e-100" zPosition="0" size="140,40" alphatest="on" />
-		<widget source="key_red" render="Label" position="c-145,e-100" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;20" transparent="1" backgroundColor="red" />
-		<widget source="key_green" render="Label" position="c+5,e-100" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;20" transparent="1" backgroundColor="green" />
-		<ePixmap pixmap="skin_default/div-h.png" position="c-200,e-150" zPosition="1" size="400,2" />
-		<widget source="satus" render="Label" position="c-200,e-140" size="400,30" zPosition="10" font="Regular;21" halign="center" valign="center" foregroundColor="black" backgroundColor="blue" transparent="1" />
+	<screen name="OSDSetup" position="c-250,c-200" size="500,400">
+		<widget name="config" position="c-175,30" size="350,150" foregroundColor="white" />
+		<ePixmap pixmap="skin_default/buttons/red.png" position="c-230,e-50" zPosition="0" size="140,40" alphatest="on" />
+		<ePixmap pixmap="skin_default/buttons/green.png" position="c-70,e-50" zPosition="0" size="140,40" alphatest="on" />
+		<ePixmap pixmap="skin_default/buttons/yellow.png" position="c+90,e-50" zPosition="0" size="140,40" alphatest="on" />
+		<widget source="key_red" render="Label" position="c-230,e-50" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;20" transparent="1" backgroundColor="red" />
+		<widget source="key_green" render="Label" position="c-70,e-50" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;20" transparent="1" backgroundColor="green" />
+		<widget source="key_yellow" render="Label" position="c+90,e-50" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;20" transparent="1" backgroundColor="yellow" />
+		<ePixmap pixmap="skin_default/div-h.png" position="c-250,e-100" zPosition="1" size="500,2" />
+		<widget source="satus" render="Label" position="c-200,e-90" size="400,30" zPosition="10" font="Regular;21" halign="center" valign="center" foregroundColor="white" transparent="1" />
 	</screen>"""
 
 	def __init__(self, session):
@@ -29,11 +31,13 @@ class OSDSetup(Screen, ConfigListScreen):
 		self["satus"] = StaticText()
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
+		self["key_yellow"] = StaticText(_("Default"))
 
-		self["actions"] = ActionMap(["SetupActions"], 
+		self["actions"] = ActionMap(["ColorActions","SetupActions"],
 			{
 				"cancel": self.keyCancel,
 				"save": self.keySave,
+				"yellow": self.keydefaults,
 			}, -2)
 
 		self.onChangedEntry = [ ]
@@ -84,6 +88,11 @@ class OSDSetup(Screen, ConfigListScreen):
 		ConfigListScreen.keyRight(self)
 		self.setPreviewPosition()
 
+	def keydefaults(self):
+		setDefaults()
+		self.setPreviewPosition()
+		self["config"].l.setList(self.list)
+
 	def setPreviewPosition(self):
 		open("/proc/stb/video/alpha", "w").write(str(config.osd.alpha.value))
 		size_w = getDesktop(0).size().width()
@@ -98,7 +107,7 @@ class OSDSetup(Screen, ConfigListScreen):
 			config.osd.dst_height.value = int(config.osd.dst_height.value) - 1
 			config.osd.dst_height.save()
 			configfile.save()
-	
+
 		setPosition(int(config.osd.dst_left.value), int(config.osd.dst_width.value), int(config.osd.dst_top.value), int(config.osd.dst_height.value))
 
 	def saveAll(self):
@@ -111,7 +120,7 @@ class OSDSetup(Screen, ConfigListScreen):
 	def keySave(self):
 		self.saveAll()
 		self.close()
-	
+
 	def cancelConfirm(self, result):
 		if not result:
 			return
@@ -145,6 +154,14 @@ def setPosition(dst_left, dst_width, dst_top, dst_height):
 	except:
 		return
 
+def setDefaults():
+	print'[OSD Setup] Set Defaults'
+	config.osd.dst_left.value = 0
+	config.osd.dst_width.value = 720
+	config.osd.dst_top.value = 0
+	config.osd.dst_height.value = 576
+	config.osd.alpha.value = 255
+
 class OSD3DSetupScreen(Screen, ConfigListScreen):
 	skin = """
 	<screen position="c-200,c-100" size="400,200" title="OSD 3D setup">
@@ -167,7 +184,7 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
 
-		self["actions"] = ActionMap(["SetupActions"], 
+		self["actions"] = ActionMap(["SetupActions"],
 			{
 				"cancel": self.keyCancel,
 				"save": self.keySave,
@@ -223,7 +240,7 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 	def keySave(self):
 		self.saveAll()
 		self.close()
-	
+
 	def cancelConfirm(self, result):
 		if not result:
 			return

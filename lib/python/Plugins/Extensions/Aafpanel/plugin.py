@@ -141,6 +141,7 @@ def Apanel(menuid, **kwargs):
 def autostart(reason, **kwargs):
 	global timerInstance
 	try:
+		open("/proc/stb/video/alpha", "w").write(str(config.osd.alpha.value))
 		if timerInstance is None:
 			timerInstance = CamStart(None)
 		#timerInstance.startTimer()
