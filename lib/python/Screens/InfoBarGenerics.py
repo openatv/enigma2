@@ -2484,7 +2484,7 @@ class InfoBarTimeshift:
 					# if no write for 5 sec = stranded timeshift
 					if statinfo.st_mtime < (time()-5.0):
 						print "[TimeShift] - Erasing stranded timeshift %s" % filename
-						self.BgFileEraser.erase("%s%s" % (config.usage.timeshift_path.value,filename))
+						os_remove("%s%s" % (config.usage.timeshift_path.value,filename))
 
 						# Delete Meta and EIT File too
 						if filename.startswith("pts_livebuffer.") is True:
@@ -2552,12 +2552,28 @@ class InfoBarTimeshift:
 							if Directories.fileExists(config.usage.timeshift_path.value + "/pts_livebuffer." + str(self.pts_eventcount) + ".meta"):
 								os_remove("%spts_livebuffer.%s.meta" % (config.usage.timeshift_path.value,self.pts_eventcount))
 							if Directories.fileExists(config.usage.timeshift_path.value + "/pts_livebuffer." + str(self.pts_eventcount)):
-								self.BgFileEraser.erase("%spts_livebuffer.%s" % (config.usage.timeshift_path.value,self.pts_eventcount))
+								os_remove("%spts_livebuffer.%s" % (config.usage.timeshift_path.value,self.pts_eventcount))
 						except Exception, errormsg:
 							print "PTS Plugin: %s" % (errormsg)
 
 						try:
 							# Create link to pts_livebuffer file
+							print 'config.usage.timeshift_path',config.usage.timeshift_path.value
+							print 'filename',filename
+							print 'self.pts_eventcount',self.pts_eventcount
+							if os_path.exists(config.usage.timeshift_path.value):
+								print 'config.usage.timeshift_path EXISTS = TRUE:'
+							else:
+								print 'config.usage.timeshift_path EXISTS = FALSE:'
+							if os_path.exists(config.usage.timeshift_path.value + filename):
+								print 'config.usage.timeshift_path + filename EXISTS = TRUE:'
+							else:
+								print 'config.usage.timeshift_path + filename EXISTS = FALSE:'
+							if os_path.exists(config.usage.timeshift_path.value + 'pts_livebuffer.' + str(self.pts_eventcount)):
+								print 'config.usage.timeshift_path.value + pts_livebuffer. + self.pts_eventcount EXISTS = TRUE:'
+							else:
+								print 'config.usage.timeshift_path.value + pts_livebuffer. + self.pts_eventcount EXISTS = FALSE:'
+								
 							os_link("%s%s" % (config.usage.timeshift_path.value,filename), "%spts_livebuffer.%s" % (config.usage.timeshift_path.value,self.pts_eventcount))
 
 							# Create a Meta File
@@ -2687,7 +2703,7 @@ class InfoBarTimeshift:
 	def ptsCopyFilefinished(self, srcfile, destfile):
 		# Erase Source File
 		if Directories.fileExists(srcfile):
-				self.BgFileEraser.erase(srcfile)
+				os_remove(srcfile)
 
 		# Restart Merge Timer
 		if self.pts_mergeRecords_timer.isActive():
@@ -2704,12 +2720,12 @@ class InfoBarTimeshift:
 			os_system("echo \"\" > \"%s.pts.del\"" % (srcfile[0:-3]))
 		else:
 			# Delete Instant Record permanently now ... R.I.P.
-			self.BgFileEraser.erase("%s" % (srcfile))
-			self.BgFileEraser.erase("%s.ap" % (srcfile))
-			self.BgFileEraser.erase("%s.sc" % (srcfile))
-			self.BgFileEraser.erase("%s.meta" % (srcfile))
-			self.BgFileEraser.erase("%s.cuts" % (srcfile))
-			self.BgFileEraser.erase("%s.eit" % (srcfile[0:-3]))
+			os_remove("%s" % (srcfile))
+			os_remove("%s.ap" % (srcfile))
+			os_remove("%s.sc" % (srcfile))
+			os_remove("%s.meta" % (srcfile))
+			os_remove("%s.cuts" % (srcfile))
+			os_remove("%s.eit" % (srcfile[0:-3]))
 
 		# Create AP and SC Files
 		self.ptsCreateAPSCFiles(destfile)
@@ -2740,13 +2756,13 @@ class InfoBarTimeshift:
 		for filename in filelist:
 			if filename.endswith(".pts.del"):
 				srcfile = config.usage.default_path.value + "/" + filename[0:-8] + ".ts"
-				self.BgFileEraser.erase("%s" % (srcfile))
-				self.BgFileEraser.erase("%s.ap" % (srcfile))
-				self.BgFileEraser.erase("%s.sc" % (srcfile))
-				self.BgFileEraser.erase("%s.meta" % (srcfile))
-				self.BgFileEraser.erase("%s.cuts" % (srcfile))
-				self.BgFileEraser.erase("%s.eit" % (srcfile[0:-3]))
-				self.BgFileEraser.erase("%s.pts.del" % (srcfile[0:-3]))
+				os_remove("%s" % (srcfile))
+				os_remove("%s.ap" % (srcfile))
+				os_remove("%s.sc" % (srcfile))
+				os_remove("%s.meta" % (srcfile))
+				os_remove("%s.cuts" % (srcfile))
+				os_remove("%s.eit" % (srcfile[0:-3]))
+				os_remove("%s.pts.del" % (srcfile[0:-3]))
 				
 				# Restart QuitMainloop Timer to give BgFileEraser enough time
 				if Screens.Standby.inTryQuitMainloop and self.pts_QuitMainloop_timer.isActive():
