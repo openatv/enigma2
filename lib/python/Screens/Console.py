@@ -15,6 +15,7 @@ class Console(Screen):
 
 		self.finishedCallback = finishedCallback
 		self.closeOnSuccess = closeOnSuccess
+		self.errorOcurred = False
 
 		self["text"] = ScrollLabel("")
 		self["actions"] = ActionMap(["WizardActions", "DirectionActions"], 
@@ -46,6 +47,8 @@ class Console(Screen):
 			self.runFinished(-1) # so we must call runFinished manual
 
 	def runFinished(self, retval):
+		if retval:
+			self.errorOcurred = True
 		self.run += 1
 		if self.run != len(self.cmdlist):
 			if self.container.execute(self.cmdlist[self.run]): #start of container application failed...
@@ -59,7 +62,7 @@ class Console(Screen):
 				self["text"].lastPage()
 			if self.finishedCallback is not None:
 				self.finishedCallback()
-			if not retval and self.closeOnSuccess:
+			if not self.errorOcurred and self.closeOnSuccess:
 				self.cancel()
 
 	def cancel(self):
