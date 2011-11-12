@@ -1828,8 +1828,9 @@ class InfoBarTimeshiftState(InfoBarPVRState):
 	def _mayShow(self):
 		if self.execing and self.timeshift_enabled and self.isSeekable():
 			InfoBarTimeshift.ptsSeekPointerSetCurrentPos(self)
-			self["SeekActions"].setEnabled(False)
-			self["SeekActionsPTS"].setEnabled(True)
+			if config.timeshift.enabled.value:
+				self["SeekActions"].setEnabled(False)
+				self["SeekActionsPTS"].setEnabled(True)
 
 			self.pvrStateDialog.show()
 
@@ -1844,11 +1845,13 @@ class InfoBarTimeshiftState(InfoBarPVRState):
 			else:
 				self.pvrstate_hide_timer.stop()
 		elif self.execing and self.timeshift_enabled and not self.isSeekable():
-			self["SeekActionsPTS"].setEnabled(False)
+			if config.timeshift.enabled.value:
+				self["SeekActionsPTS"].setEnabled(False)
 			self.pvrStateDialog.hide()
 
 	def __hideTimeshiftState(self):
-		self["SeekActionsPTS"].setEnabled(False)
+		if config.timeshift.enabled.value:
+			self["SeekActionsPTS"].setEnabled(False)
 		self.pvrStateDialog.hide()
 
 class InfoBarShowMovies:
@@ -1910,7 +1913,6 @@ class InfoBarTimeshift:
 		self["TimeshiftSeekPointerActions"] = ActionMap(["InfobarTimeshiftSeekPointerActions"],
 			{
 				"SeekPointerOK": self.ptsSeekPointerOK, 
-				"SeekPointerPlay": self.ptsSeekPointerPlay, 
 				"SeekPointerLeft": self.ptsSeekPointerLeft, 
 				"SeekPointerRight": self.ptsSeekPointerRight
 			},-2)
@@ -2094,10 +2096,15 @@ class InfoBarTimeshift:
 		if config.timeshift.enabled.value:
 			self["TimeshiftActivateActions"].setEnabled(True)
 			if self.timeshift_enabled and self.isSeekable():
+				self["TimeshiftActivateActions"].setEnabled(False)
 				self["TimeshiftSeekPointerActions"].setEnabled(True)
 		else:
 			self["TimeshiftActivateActions"].setEnabled(False)
-			self["TimeshiftSeekPointerActions"].setEnabled(False)
+			if self.timeshift_enabled and self.isSeekable():
+				self["TimeshiftSeekPointerActions"].setEnabled(False)
+			elif self.timeshift_enabled and not self.isSeekable():
+				self["SeekActions"].setEnabled(True)
+				self["TimeshiftActivateActions"].setEnabled(True)
 
 		# Reset Seek Pointer And Eventname in InfoBar
 		if config.timeshift.enabled.value and self.timeshift_enabled and not self.isSeekable():
