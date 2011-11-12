@@ -135,6 +135,7 @@ class PluginBrowser(Screen):
 class PluginDownloadBrowser(Screen):
 	DOWNLOAD = 0
 	REMOVE = 1
+	PLUGIN_PREFIX = 'enigma2-plugin-'
 	lastDownloadDate = None
 
 	def __init__(self, session, type = 0, needupdate = True):
@@ -156,6 +157,9 @@ class PluginDownloadBrowser(Screen):
 		self.installedplugins = []
 		self.plugins_changed = False
 		self.reload_settings = False
+		self.check_settings = False
+		self.install_settings_name = ''
+		self.remove_settings_name = ''
 		
 		if self.type == self.DOWNLOAD:
 			self["text"] = Label(_("Downloading plugin information. Please wait..."))
@@ -225,14 +229,14 @@ class PluginDownloadBrowser(Screen):
 				Ipkg.opkgAddDestination(dest)
 			else:
 				extra = '-d ' + dest
-			self.session.openWithCallback(self.installFinished, Console, cmdlist = [self.ipkg_install + " enigma2-plugin-" + self["list"].l.getCurrentSelection()[0].name + ' ' + extra, "sync"], closeOnSuccess = True)
+			self.doInstall(self.installFinished, self["list"].l.getCurrentSelection()[0].name + ' ' + extra)
 		else:
 			self.resetPostInstall()
 				
 	def runInstall(self, val):
 		if val:
 			if self.type == self.DOWNLOAD:
-				if self["list"].l.getCurrentSelection()[0].name[0:7] == "picons-":
+				if self["list"].l.getCurrentSelection()[0].name.startswith("picons-"):
 					supported_filesystems = frozenset(('ext4', 'ext3', 'ext2', 'reiser', 'reiser4', 'jffs2', 'ubifs', 'rootfs'))
 					candidates = []
 					import Components.Harddisk
@@ -245,9 +249,27 @@ class PluginDownloadBrowser(Screen):
 						self.postInstallCall = Picon.initPiconPaths
 						self.session.openWithCallback(self.installDestinationCallback, ChoiceBox, title=_("Install picons on"), list=candidates)
 					return
-				self.session.openWithCallback(self.installFinished, Console, cmdlist = [self.ipkg_install + " enigma2-plugin-" + self["list"].l.getCurrentSelection()[0].name, "sync"], closeOnSuccess = True)
+				self.install_settings_name = self["list"].l.getCurrentSelection()[0].name
+				if self["list"].l.getCurrentSelection()[0].name.startswith('settings-'):
+					self.check_settings = True
+					self.startIpkgListInstalled(self.PLUGIN_PREFIX + 'settings-*')
+				else:
+					self.runSettingsInstall()
 			elif self.type == self.REMOVE:
-				self.session.openWithCallback(self.installFinished, Console, cmdlist = [self.ipkg_remove + Ipkg.opkgExtraDestinations() + " enigma2-plugin-" + self["list"].l.getCurrentSelection()[0].name, "sync"], closeOnSuccess = True)
+				self.doRemove(self.installFinished, self["list"].l.getCurrentSelection()[0].name)
+
+	def doRemove(self, callback, pkgname):
+		self.session.openWithCallback(callback, Console, cmdlist = [self.ipkg_remove + Ipkg.opkgExtraDestinations() + " " + self.PLUGIN_PREFIX + pkgname, "sync"], closeOnSuccess = True)
+
+	def doInstall(self, callback, pkgname):
+		self.session.openWithCallback(callback, Console, cmdlist = [self.ipkg_install + " " + self.PLUGIN_PREFIX + pkgname, "sync"], closeOnSuccess = True)
+
+	def runSettingsRemove(self, val):
+		if val:
+			self.doRemove(self.runSettingsInstall, self.remove_settings_name)
+
+	def runSettingsInstall(self):
+		self.doInstall(self.installFinished, self.install_settings_name)
 
 	def setWindowTitle(self):
 		if self.type == self.DOWNLOAD:
@@ -255,11 +277,11 @@ class PluginDownloadBrowser(Screen):
 		elif self.type == self.REMOVE:
 			self.setTitle(_("Remove plugins"))
 
-	def startIpkgListInstalled(self):
-		self.container.execute(self.ipkg + Ipkg.opkgExtraDestinations() + " list_installed 'enigma2-plugin-*'")
+	def startIpkgListInstalled(self, pkgname = PLUGIN_PREFIX + '*'):
+		self.container.execute(self.ipkg + Ipkg.opkgExtraDestinations() + " list_installed '%s'" % pkgname)
 
 	def startIpkgListAvailable(self):
-		self.container.execute(self.ipkg + Ipkg.opkgExtraDestinations() + " list 'enigma2-plugin-*'")
+		self.container.execute(self.ipkg + Ipkg.opkgExtraDestinations() + " list '" + self.PLUGIN_PREFIX + "*'")
 
 	def startRun(self):
 		listsize = self["list"].instance.size()
@@ -294,13 +316,17 @@ class PluginDownloadBrowser(Screen):
 				self.pluginlist.remove(plugin)
 				break
 		self.plugins_changed = True
-		if self["list"].l.getCurrentSelection()[0].name[0:9] == "settings-":
+		if self["list"].l.getCurrentSelection()[0].name.startswith("settings-"):
 			self.reload_settings = True
 		self.expanded = []
 		self.updateList()
 		self["list"].moveToIndex(0)
 
 	def runFinished(self, retval):
+		if self.check_settings:
+			self.check_settings = False
+			self.runSettingsInstall()
+			return
 		self.remainingdata = ""
 		if self.run == 0:
 			self.run = 1
@@ -328,6 +354,12 @@ class PluginDownloadBrowser(Screen):
 			lines = lines[0:-1]
 		else:
 			self.remainingdata = ""
+
+		if self.check_settings:
+			self.check_settings = False
+			self.remove_settings_name = str.split(' - ')[0].replace(self.PLUGIN_PREFIX, '')
+			self.session.openWithCallback(self.runSettingsRemove, MessageBox, _('You already have a channel list installed,\nwould you like to remove\n"%s"?') % self.remove_settings_name)
+			return
 
 		for x in lines:
 			plugin = x.split(" - ", 2)
