@@ -241,20 +241,20 @@ void eConsoleAppContainer::readyRead(int what)
 	if (hungup)
 	{
 		eDebug("child has terminated");
-		closePipes();
 		int childstatus;
 		int retval = killstate;
 		/*
 		 * We have to call 'wait' on the child process, in order to avoid zombies.
 		 * Also, this gives us the chance to provide better exit status info to appClosed.
 		 */
-		if (::waitpid(pid, &childstatus, 0) > 0)
+		if (::waitpid(-pid, &childstatus, 0) > 0)
 		{
 			if (WIFEXITED(childstatus))
 			{
 				retval = WEXITSTATUS(childstatus);
 			}
 		}
+		closePipes();
 		/*emit*/ appClosed(retval);
 	}
 }
