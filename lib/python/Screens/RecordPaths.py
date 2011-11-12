@@ -81,10 +81,15 @@ class RecordPathsSettings(Screen,ConfigListScreen):
 			tmp.append(default)
 		print "TimeshiftPath: ", default, tmp
 		self.timeshift_dirname = ConfigSelection(default = default, choices = tmp)
+		self.timeshift_dirname.last_value = self.timeshift_dirname.value
 		self.default_dirname.addNotifier(self.checkReadWriteDir, initial_call=False, immediate_feedback=False)
+		self.default_dirname.last_value = self.default_dirname.value
 		self.timer_dirname.addNotifier(self.checkReadWriteDir, initial_call=False, immediate_feedback=False)
+		self.timer_dirname.last_value = self.timer_dirname.value
 		self.instantrec_dirname.addNotifier(self.checkReadWriteDir, initial_call=False, immediate_feedback=False)
+		self.instantrec_dirname.last_value = self.instantrec_dirname.value
 		self.timeshift_dirname.addNotifier(self.checkReadWriteDir, initial_call=False, immediate_feedback=False)
+		self.timeshift_dirname.last_value = self.timeshift_dirname.value
 
 		self.list = []
 		if config.usage.setup_level.index >= 2:
