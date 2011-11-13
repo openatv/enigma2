@@ -61,6 +61,7 @@ from Plugins.Extensions.Aafpanel.HddSetup import *
 from Plugins.Extensions.Aafpanel.SoftcamPanel import *
 from Plugins.Extensions.Aafpanel.CamStart import *
 from Plugins.Extensions.Aafpanel.sundtek import *
+from Plugins.Extensions.Aafpanel.SwapManager import Swap, SwapAutostart
 
 def Check_Softcam():
 	found = False
@@ -156,6 +157,8 @@ def Plugins(**kwargs):
 	PluginDescriptor(name="OpenAAF Panel", description="OpenAAF panel AAF-GUI 06/11/2011", where = PluginDescriptor.WHERE_MENU, fnc = Apanel),
 	#// autostart
 	PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART,PluginDescriptor.WHERE_AUTOSTART],fnc = autostart),
+	#// SwapAutostart
+	PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART,PluginDescriptor.WHERE_AUTOSTART],fnc = SwapAutostart),
 	#// show Aafpanel in EXTENSIONS Menu
 	PluginDescriptor(name="OpenAAF Panel", description="OpenAAAF panel AAF-GUI 06/11/2011", where = PluginDescriptor.WHERE_EXTENSIONSMENU, fnc = main) ]
 
@@ -405,6 +408,8 @@ class Aafpanel(Screen, InfoBarPiP):
 			self.session.open(HddSetup)
 		elif menu == "SundtekControlCenter":
 			self.session.open(SundtekControlCenter)
+		elif menu == "SwapManager":
+			self.session.open(Swap)
 		elif menu == "RedPanel":
 			self.session.open(RedPanel)
 		elif menu == "Softcam-Panel Setup":
@@ -447,6 +452,7 @@ class Aafpanel(Screen, InfoBarPiP):
 		self.tlist.append(MenuEntryItem((AafEntryComponent('Device_Manager'), _("Device_Manager"), 'Device_Manager')))
 		self.tlist.append(MenuEntryItem((AafEntryComponent('CronManager'), _("CronManager"), 'CronManager')))
 		self.tlist.append(MenuEntryItem((AafEntryComponent('JobManager'), _("JobManager"), 'JobManager')))
+		self.tlist.append(MenuEntryItem((AafEntryComponent('SwapManager'), _("SwapManager"), 'SwapManager')))
 		self["Mlist"].moveToIndex(0)
 		self["Mlist"].l.setList(self.tlist)
 
