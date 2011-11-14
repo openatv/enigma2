@@ -81,7 +81,7 @@ class pliExpertInfo(Poll, Converter, object):
 					fec_inner = frontendData.get("fec_inner")
 					if (frontendDataOrg.get("tuner_type") == "DVB-S"):
 						Ret_Text += sep + frontendData.get("system")
-						Ret_Text += sep + frequency + frontendData.get("polarization")[:1]
+						Ret_Text += sep + frequency + frontendData.get("polarization_abbreviation")
 						Ret_Text += sep + symbolrate
 						Ret_Text += sep + frontendData.get("modulation") + "-" + fec_inner
 						orbital_pos = int(frontendDataOrg["orbital_position"])
