@@ -567,6 +567,10 @@ def InitUsageConfig():
 					("single", _("Show Single EPG")),
 					("multi", _("Show Multi EPG")),
 					("cooltvguide", _("Show CoolTVGuide"))])
+	config.plisettings.PLIINFO_mode = ConfigSelection(default="coolinfoguide", choices = [
+					("eventview", _("Show Eventview")),
+					("epgpress", _("Show EPG")),
+					("coolinfoguide", _("Show CoolInfoGuide"))])				
 	config.plisettings.QuickEPG_mode = ConfigSelection(default="3", choices = [
 					("0", _("as plugin in extended bar")),
 					("1", _("with long OK press")),

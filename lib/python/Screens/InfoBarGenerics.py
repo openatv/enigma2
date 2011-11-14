@@ -984,10 +984,12 @@ class InfoBarEPG:
 			})
 
 	def InfoPressed(self):
-		if self.box_type == 'et5x00' or self.box_type == 'et6x00' or self.box_type == 'et9x00':
+		if config.plisettings.PLIINFO_mode.value == "eventview":
 			self.openEventView()
-		else:
+		elif config.plisettings.PLIINFO_mode.value == "epgpress":
 			self.EPGPressed()
+		elif config.plisettings.PLIINFO_mode.value == "coolinfoguide":
+			self.showCoolInfoGuide()	
 
 	def EPGPressed(self):
 		if config.plisettings.PLIEPG_mode.value == "pliepg":
@@ -1181,6 +1183,15 @@ class InfoBarEPG:
 		if Directories.fileExists("/usr/lib/enigma2/python/Plugins/Extensions/CoolTVGuide/plugin.pyo"):
 			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
 				if plugin.name == _("Cool TV Guide"):
+					self.runPlugin(plugin)
+					break
+		else:
+			self.session.open(MessageBox, _("The Cool TV Guide plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+	
+	def showCoolInfoGuide(self):
+		if Directories.fileExists("/usr/lib/enigma2/python/Plugins/Extensions/CoolTVGuide/CoolInfoGuide.pyo"):
+			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
+				if plugin.name == _("Cool Info Guide"):
 					self.runPlugin(plugin)
 					break
 		else:
