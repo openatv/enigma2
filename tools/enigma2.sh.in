@@ -4,8 +4,12 @@ prefix=@prefix@
 exec_prefix=@exec_prefix@
 datarootdir=@datarootdir@
 
-if [ -x @bindir@/showiframe -a -f @datadir@/backdrop.mvi ]; then
-	@bindir@/showiframe @datadir@/backdrop.mvi
+if [ -x @bindir@/showiframe ]; then
+	if [ -f @sysconfdir@/enigma2/bootlogo.mvi ]; then
+		@bindir@/showiframe @sysconfdir@/enigma2/bootlogo.mvi
+	elif [ -f @datadir@/bootlogo.mvi ]; then
+		@bindir@/showiframe @datadir@/bootlogo.mvi
+	fi
 fi
 
 # hook to execute scripts always before enigma2 start
