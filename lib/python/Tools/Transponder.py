@@ -34,6 +34,11 @@ def ConvertToHumanReadable(tp, type = None):
 			eDVBFrontendParametersSatellite.Polarisation_Vertical : _("Vertical"),
 			eDVBFrontendParametersSatellite.Polarisation_CircularLeft : _("Circular left"),
 			eDVBFrontendParametersSatellite.Polarisation_CircularRight : _("Circular right")}[tp["polarization"]]
+		ret["polarization_abbreviation"] = {
+			eDVBFrontendParametersSatellite.Polarisation_Horizontal : "H",
+			eDVBFrontendParametersSatellite.Polarisation_Vertical : "V",
+			eDVBFrontendParametersSatellite.Polarisation_CircularLeft : "L",
+			eDVBFrontendParametersSatellite.Polarisation_CircularRight : "R"}[tp["polarization"]]
 		ret["system"] = {
 			eDVBFrontendParametersSatellite.System_DVB_S : "DVB-S",
 			eDVBFrontendParametersSatellite.System_DVB_S2 : "DVB-S2"}[tp["system"]]
