@@ -28,6 +28,7 @@ class FanSetupConfiguration(Screen, ConfigListScreen):
 		</screen>"""
 	def __init__(self, session):
 		Screen.__init__(self, session)
+		Screen.setTitle(self, _("Fan Control"))
 		self.session = session
 		self.standbyEntry = None
 		self.usetimerEntry = None

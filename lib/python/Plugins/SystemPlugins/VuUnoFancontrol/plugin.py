@@ -11,17 +11,18 @@ import NavigationInstance
 class ManualFancontrol(Screen,ConfigListScreen):
 	skin = """
 			<screen name="ManualFancontrol" position="center,center" size="560,300" title="Fancontrol Settings in Standby mode" >
-			<ePixmap pixmap="ViX_Day_HD/buttons/red.png" position="10,10" size="25,25" alphatest="blend" />
-			<ePixmap pixmap="ViX_Day_HD/buttons/green.png" position="290,10" size="25,25" alphatest="blend" />
-			<widget source="key_red" render="Label" position="45,13" zPosition="1" size="140,25" font="Regular;20" halign="left" valign="center" transparent="1" />
-			<widget source="key_green" render="Label" position="325,13" zPosition="1" size="140,25" font="Regular;20" halign="left" valign="center" transparent="1" />
 			<widget name="config" zPosition="2" position="5,50" size="550,200" scrollbarMode="showOnDemand" transparent="1" />
-			<widget source="current" render="Label" position="150,270" zPosition="1" size="280,30" font="Regular;20" halign="center" valign="center" transparent="1" />
+			<widget source="current" render="Label" position="150,270" zPosition="1" size="280,30" font="Regular;18" halign="left" valign="center" transparent="1" />
+			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
+			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+			<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
 			</screen>"""
 
 	def __init__(self,session):
 		Screen.__init__(self,session)
 		self.session = session
+		Screen.setTitle(self, _("Fan Control"))
 		self["shortcuts"] = ActionMap(["ShortcutActions", "SetupActions" ],
 		{
 			"ok": self.keySave,
