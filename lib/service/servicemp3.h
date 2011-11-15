@@ -165,10 +165,10 @@ public:
 	};
 	struct bufferInfo
 	{
-		int bufferPercent;
-		int avgInRate;
-		int avgOutRate;
-		int64_t bufferingLeft;
+		gint bufferPercent;
+		gint avgInRate;
+		gint avgOutRate;
+		gint64 bufferingLeft;
 		bufferInfo()
 			:bufferPercent(0), avgInRate(0), avgOutRate(0), bufferingLeft(-1)
 		{

@@ -646,13 +646,11 @@ class NimManager:
 			#print "SATS", self.satellites
 			#print "TRANSPONDERS", self.transponders
 
-		if self.hasNimType("DVB-C"):
+		if self.hasNimType("DVB-C") or self.hasNimType("DVB-T"):
 			print "Reading cables.xml"
 			db.readCables(self.cablesList, self.transponderscable)
 #			print "CABLIST", self.cablesList
 #			print "TRANSPONDERS", self.transponders
-
-		if self.hasNimType("DVB-T"):
 			print "Reading terrestrial.xml"
 			db.readTerrestrials(self.terrestrialsList, self.transpondersterrestrial)
 #			print "TERLIST", self.terrestrialsList
@@ -1354,25 +1352,32 @@ def InitNimManager(nimmgr):
 		slot_id = configElement.slot_id
 		if nimmgr.nim_slots[slot_id].description == 'Alps BSBE2':
 			open("/proc/stb/frontend/%d/tone_amplitude" %(fe_id), "w").write(configElement.value)
-			
+
 	def tunerTypeChanged(nimmgr, configElement):
 		fe_id = configElement.fe_id
-		print "tunerTypeChanged feid %d to mode %s" % (fe_id, configElement.value)
-		try:
-			oldvalue = open("/sys/module/dvb_core/parameters/dvb_shutdown_timeout", "r").readline()
-			open("/sys/module/dvb_core/parameters/dvb_shutdown_timeout", "w").write("0")
-		except:
-			print "[info] no /sys/module/dvb_core/parameters/dvb_shutdown_timeout available"
-		frontend = eDVBResourceManager.getInstance().allocateRawChannel(fe_id).getFrontend()
-		frontend.closeFrontend()
-		open("/proc/stb/frontend/%d/mode" % (fe_id), "w").write(configElement.value)
-		frontend.reopenFrontend()
-		try:
-			open("/sys/module/dvb_core/parameters/dvb_shutdown_timeout", "w").write(oldvalue)
-		except:
-			print "[info] no /sys/module/dvb_core/parameters/dvb_shutdown_timeout available"
-		nimmgr.enumerateNIMs()
-	
+
+		cur_type = int(open("/proc/stb/frontend/%d/mode" % (fe_id), "r").read())
+		if cur_type != int(configElement.value):
+			print "tunerTypeChanged feid %d from %d to mode %d" % (fe_id, cur_type, int(configElement.value))
+
+			try:
+				oldvalue = open("/sys/module/dvb_core/parameters/dvb_shutdown_timeout", "r").readline()
+				open("/sys/module/dvb_core/parameters/dvb_shutdown_timeout", "w").write("0")
+			except:
+				print "[info] no /sys/module/dvb_core/parameters/dvb_shutdown_timeout available"
+
+			frontend = eDVBResourceManager.getInstance().allocateRawChannel(fe_id).getFrontend()
+			frontend.closeFrontend()
+			open("/proc/stb/frontend/%d/mode" % (fe_id), "w").write(configElement.value)
+			frontend.reopenFrontend()
+			try:
+				open("/sys/module/dvb_core/parameters/dvb_shutdown_timeout", "w").write(oldvalue)
+			except:
+				print "[info] no /sys/module/dvb_core/parameters/dvb_shutdown_timeout available"
+			nimmgr.enumerateNIMs()
+		else:
+			print "tuner type is already already %d" %cur_type
+
 	empty_slots = 0
 	for slot in nimmgr.nim_slots:
 		x = slot.slot
@@ -1489,7 +1494,7 @@ def InitNimManager(nimmgr):
 			for x in nimmgr.terrestrialsList:
 				list.append((str(n), x[0]))
 				n += 1
-			nim.terrestrial = ConfigSelection(choices = list)
+			nim.terrestrial = ConfigSelection(default = "2", choices = list)
 			nim.terrestrial_5V = ConfigOnOff()
 		else:
 			empty_slots += 1

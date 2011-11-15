@@ -50,13 +50,13 @@ class EPGSelection(Screen):
 					<convert type="ServiceName">Name</convert>
 				</widget>
 				<widget name="list" position="340,80" size="640,54" backgroundColor="#101214" foregroundColor="#cccccc" transparent="1" itemHeight="27" zPosition="2"/>
-				<ePixmap pixmap="ViX_HD/buttons/red.png" position="260,160" size="25,25" alphatest="blend" />
+				<ePixmap pixmap="ViX_HD_Common/buttons/red.png" position="260,160" size="25,25" alphatest="blend" />
 				<widget name="key_red" position="300,164" zPosition="1" size="130,20" font="Regular; 20" backgroundColor="#101214" foregroundColor="#cccccc" transparent="1" />
-				<ePixmap pixmap="ViX_HD/buttons/green.png" position="450,160" size="25,25" alphatest="blend" />
+				<ePixmap pixmap="ViX_HD_Common/buttons/green.png" position="450,160" size="25,25" alphatest="blend" />
 				<widget name="key_green" position="490,164" zPosition="1" size="130,20" font="Regular; 20" backgroundColor="#101214" foregroundColor="#cccccc" transparent="1" />
-				<ePixmap pixmap="ViX_HD/buttons/yellow.png" position="640,160" size="25,25" alphatest="blend" />
+				<ePixmap pixmap="ViX_HD_Common/buttons/yellow.png" position="640,160" size="25,25" alphatest="blend" />
 				<widget name="key_yellow" position="680,164" zPosition="1" size="130,20" font="Regular; 20" backgroundColor="#101214" foregroundColor="#cccccc" transparent="1" />
-				<ePixmap pixmap="ViX_HD/buttons/blue.png" position="830,160" size="25,25" alphatest="blend" />
+				<ePixmap pixmap="ViX_HD_Common/buttons/blue.png" position="830,160" size="25,25" alphatest="blend" />
 				<widget name="key_blue" position="870,164" zPosition="1" size="150,20" font="Regular; 20" backgroundColor="#101214" foregroundColor="#cccccc" transparent="1" />
 			</screen>"""
 		GraphEPG = """
@@ -168,18 +168,18 @@ class EPGSelection(Screen):
 					<convert type="ServiceName">Name</convert>
 				</widget>
 				<widget name="list" position="160,160" size="500,45" backgroundColor="#41080808" foregroundColor="#cccccc" transparent="1" itemHeight="22" zPosition="4"/>
-				<ePixmap pixmap="ViX_HD/buttons/red.png" position="80,210" size="25,25" alphatest="blend" zPosition="4" />
+				<ePixmap pixmap="ViX_HD_Common/buttons/red.png" position="80,210" size="25,25" alphatest="blend" zPosition="4" />
 				<widget name="key_red" position="110,213" size="100,20" font="Regular; 17" halign="left" backgroundColor="#101214" foregroundColor="#cccccc" transparent="1" zPosition="4" />
-				<ePixmap pixmap="ViX_HD/buttons/green.png" position="210,210" size="25,25" alphatest="blend" zPosition="4" />
+				<ePixmap pixmap="ViX_HD_Common/buttons/green.png" position="210,210" size="25,25" alphatest="blend" zPosition="4" />
 				<widget name="key_green" position="240,213" size="100,20" font="Regular; 17" halign="left" backgroundColor="#101214" foregroundColor="#cccccc" transparent="1" zPosition="4" />
-				<ePixmap pixmap="ViX_HD/buttons/yellow.png" position="340,210" size="25,25" alphatest="blend" zPosition="4" />
+				<ePixmap pixmap="ViX_HD_Common/buttons/yellow.png" position="340,210" size="25,25" alphatest="blend" zPosition="4" />
 				<widget name="key_yellow" position="370,213" size="100,20" font="Regular; 17" halign="left" backgroundColor="#101214" foregroundColor="#cccccc" transparent="1" zPosition="4" />
-				<ePixmap pixmap="ViX_HD/buttons/blue.png" position="470,210" size="25,25" alphatest="blend" zPosition="4" />
+				<ePixmap pixmap="ViX_HD_Common/buttons/blue.png" position="470,210" size="25,25" alphatest="blend" zPosition="4" />
 				<widget name="key_blue" position="500,213" size="150,20" font="Regular; 17" halign="left" backgroundColor="#101214" foregroundColor="#cccccc" transparent="1" zPosition="4" />
 			</screen>"""
 		GraphEPG = """
 			<screen name="GraphicalEPG" position="center,center" size="720,576" backgroundColor="#000000" title="Programme Guide">
-				<eLabel text="Programme Guide" position="200,18" size="380,28" font="Regular;22" foregroundColor="#FFFFFF" backgroundColor="#000000" shadowColor="#000000" halign="center" transparent="1" />
+				<widget source="Title" render="Label" position="200,18" size="380,28" font="Regular;22" foregroundColor="#FFFFFF" backgroundColor="#000000" shadowColor="#000000" halign="center" transparent="1" />
 				<widget name="date" position="30,18" size="180,24" font="Regular;20" halign="left"  foregroundColor="#00e5b243" backgroundColor="#000000" transparent="1" />
 				<widget source="global.CurrentTime" render="Label" position="140, 18" size="90,24" font="Regular;20" foregroundColor="#FFFFFF" backgroundColor="#000000" shadowColor="#000000" halign="right" transparent="1">
 						<convert type="ClockToText">Default</convert>
@@ -223,7 +223,7 @@ class EPGSelection(Screen):
 			"""
 		GraphEPGPIG = """
 			<screen name="GraphicalEPG" position="center,center" size="720,576" backgroundColor="#000000" title="Programme Guide" flags="wfNoBorder">
-				<eLabel text="Programme Guide" position="200,18" size="380,28" font="Regular;22" foregroundColor="#FFFFFF" backgroundColor="#000000" shadowColor="#000000" halign="center" transparent="1" />
+				<widget source="Title" render="Label" position="200,18" size="380,28" font="Regular;22" foregroundColor="#FFFFFF" backgroundColor="#000000" shadowColor="#000000" halign="center" transparent="1" />
 				<widget name="date" position="30,18" size="180,24" font="Regular;20" halign="left" foregroundColor="#00e5b243" backgroundColor="#000000" transparent="1" />
 				<widget source="global.CurrentTime" render="Label" position="140, 18" size="90,24" font="Regular;20" foregroundColor="#FFFFFF" backgroundColor="#000000" shadowColor="#000000" halign="right" transparent="1">
 					<convert type="ClockToText">Default</convert>
@@ -292,8 +292,10 @@ class EPGSelection(Screen):
 		self.ask_time = -1 #now
 		self.closeRecursive = False
 		self.saved_title = None
+		self.oldService = ""
 		self["Service"] = ServiceEvent()
 		self["Event"] = Event()
+		Screen.setTitle(self, _("Programme Guide"))
 		if isinstance(service, str) and eventid != None:
 			self.type = EPG_TYPE_SIMILAR
 			self["key_yellow"] = Button()
@@ -329,22 +331,22 @@ class EPGSelection(Screen):
 					self.time_lines.append(pm)
 					self["timeline%d"%(x)] = pm
 				self["timeline_now"] = Pixmap()
-				self["key_red"] = Button("IMDb Search")
-				self["key_green"] = Button("Add Timer")
-				self["key_yellow"] = Button("EPG Search")
-				self["key_blue"] = Button("Add AutoTimer")
+				self["key_red"] = Button(_("IMDb Search"))
+				self["key_green"] = Button(_("Add Timer"))
+				self["key_yellow"] = Button(_("EPG Search"))
+				self["key_blue"] = Button(_("Add AutoTimer"))
 				self["date"] = Label()
 				self.services = service
 				self.zapFunc = zapFunc
 				if bouquetname != "":
 					Screen.setTitle(self, bouquetname)
-				self.oldService = self.session.nav.getCurrentlyPlayingServiceReference()
 			else:
 				self.type = EPG_TYPE_MULTI
-				self["key_yellow"] = Button(_("Prev"))
-				self["key_blue"] = Button(_("Next"))
+				self.skinName = "EPGSelectionMulti"
 				self["key_red"] = Button(_("IMDb Search"))
-				self["key_green"] = Button(_("Add timer"))
+				self["key_green"] = Button(_("Add Timer"))
+				self["key_yellow"] = Button(_("EPG Search"))
+				self["key_blue"] = Button(_("Add AutoTimer"))
 				self["now_button"] = Pixmap()
 				self["next_button"] = Pixmap()
 				self["more_button"] = Pixmap()
@@ -362,7 +364,7 @@ class EPGSelection(Screen):
 			self["key_red"] = Button(_("IMDb Search"))
 			self["key_yellow"] = Button(_("EPG Search"))
 			self["key_blue"] = Button(_("Add AutoTimer"))
-			self["key_green"] = Button(_("Add timer"))
+			self["key_green"] = Button(_("Add Timer"))
 			self.type = EPG_TYPE_SINGLE
 			self.currentService=ServiceReference(service)
 			self.zapFunc = None
@@ -376,7 +378,7 @@ class EPGSelection(Screen):
 			self["key_red"] = Button(_("IMDb Search"))
 			self["key_yellow"] = Button(_("EPG Search"))
 			self["key_blue"] = Button(_("Add AutoTimer"))
-			self["key_green"] = Button(_("Add timer"))
+			self["key_green"] = Button(_("Add Timer"))
 			self.list = []
 			self.oldService = self.session.nav.getCurrentlyPlayingServiceReference()
 			self.currentService=self.session.nav.getCurrentlyPlayingServiceReference()
@@ -467,7 +469,6 @@ class EPGSelection(Screen):
 			self.curRef = ServiceReference(self.servicelist.getCurrentSelection())
 			self.curBouquet = self.servicelist.getRoot()
 			self.startRef = ServiceReference(self.servicelist.getCurrentSelection())
-			self.startBouquet = self.servicelist.getRoot()
 			self.onClose.append(self.__onClose)
 		elif self.type == EPG_TYPE_GRAPH:
 			self["actions"] = ActionMap(["OkCancelActions", "InfobarInstantRecord", "EPGSelectActions", "ChannelSelectBaseActions", "ColorActions", "DirectionActions", "HelpActions"],
@@ -514,31 +515,55 @@ class EPGSelection(Screen):
 			self.activityTimer = eTimer()
 			self.activityTimer.timeout.get().append(self.onStartup)
 			self.updateList()
-	#		self.onLayoutFinish.append(self.updateList)
-
-		else:
+		elif self.type == EPG_TYPE_MULTI:
 			self["actions"] = ActionMap(["EPGSelectActions", "OkCancelActions", "ColorActions"],
 			{
-				"cancel": self.closeScreen,
-				"ok": self.eventSelected,
+				"ok": self.ZapTo,
+				"cancel": self.closing,
 				"red": self.redButtonPressed,
 				"timerAdd": self.timerAdd,
 				"yellow": self.yellowButtonPressed,
 				"blue": self.blueButtonPressed,
-				"info": self.infoKeyPressed,
+				"Info": self.infoKeyPressed,
 				"input_date_time": self.enterDateTime,
-				"nextBouquet": self.nextBouquet, # just used in multi epg yet
-				"prevBouquet": self.prevBouquet, # just used in multi epg yet
-				"nextService": self.nextService, # just used in single epg yet
-				"prevService": self.prevService, # just used in single epg yet
+				"nextBouquet": self.nextBouquet,
+				"prevBouquet": self.prevBouquet,
+				"nextService": self.nextPage,
+				"prevService": self.prevPage,
 			})
 			self["MenuActions"] = HelpableActionMap(self, "MenuActions",
 				{
 					"menu": (self.createSetup, _("Open Context Menu"))
 				}
 			)
-			self["actions"].csel = self
-			self.onLayoutFinish.append(self.onCreate)
+			self["input_actions"] = ActionMap(["InputActions"],
+				{
+					"left": self.leftPressed,
+					"right": self.rightPressed,
+				},-1)
+			self.onLayoutFinish.append(self.onStartup)
+		else:
+			self["actions"] = ActionMap(["EPGSelectActions", "OkCancelActions", "ColorActions"],
+			{
+				"ok": self.ZapTo,
+				"cancel": self.closing,
+				"red": self.redButtonPressed,
+				"timerAdd": self.timerAdd,
+				"yellow": self.yellowButtonPressed,
+				"blue": self.blueButtonPressed,
+				"Info": self.infoKeyPressed,
+				"input_date_time": self.enterDateTime,
+				"nextBouquet": self.nextBouquet,
+				"prevBouquet": self.prevBouquet,
+				"nextService": self.nextPage,
+				"prevService": self.prevPage,
+			})
+			self["MenuActions"] = HelpableActionMap(self, "MenuActions",
+				{
+					"menu": (self.createSetup, _("Open Context Menu"))
+				}
+			)
+			self.onLayoutFinish.append(self.onStartup)
 
 	def createSetup(self):
 		self.session.openWithCallback(self.onSetupClose, EPGSelectionSetup, self.type)
@@ -561,7 +586,7 @@ class EPGSelection(Screen):
 			l.sortSingleEPG(self.sort_type)
 
 	def updateList(self):
-		scanning = 'Wait please while gathering data...'
+		scanning = _('Wait please while gathering data...')
 		self['lab1'].setText(scanning)
 		self.activityTimer.start(750)
 
@@ -571,12 +596,42 @@ class EPGSelection(Screen):
 			self["list"].curr_refcool = self.session.nav.getCurrentlyPlayingServiceReference()
 			self["list"].fillGraphEPG(self.services, self.ask_time)
 			self["list"].moveToService(self.session.nav.getCurrentlyPlayingServiceReference())
-			self.curRef = self["list"].getCurrent()[1]
 			self.startRef = self["list"].getCurrent()[1]
 			self.moveTimeLines()
 			if config.GraphEPG.channel1.value:
 				self["list"].instance.moveSelectionTo(0)
 			self['lab1'].hide()
+		else:
+			l = self["list"]
+			l.recalcEntrySize()
+			if self.type == EPG_TYPE_MULTI or self.type == EPG_TYPE_GRAPH:
+				l.fillMultiEPG(self.services, self.ask_time)
+				l.moveToService(self.session.nav.getCurrentlyPlayingServiceReference())
+			elif self.type == EPG_TYPE_SINGLE:
+				service = self.currentService
+				self["Service"].newService(service.ref)
+				if self.saved_title is None:
+					self.saved_title = self.instance.getTitle()
+				title = self.saved_title + ' - ' + service.getServiceName()
+				self.instance.setTitle(title)
+				l.fillSingleEPG(service)
+			elif self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
+				service = ServiceReference(self.servicelist.getCurrentSelection())
+				self["Service"].newService(service.ref)
+				if self.saved_title is None:
+					self.saved_title = self.instance.getTitle()
+				title = self.saved_title + ' - ' + service.getServiceName()
+				self.instance.setTitle(title)
+				l.fillSingleEPG(service)
+			else:
+				l.fillSimilarList(self.currentService, self.eventid)
+			if self.type == EPG_TYPE_SINGLE or self.type == EPG_TYPE_ENHANCED:
+				if config.misc.EPGSort.value == "Time":
+					self.sort_type = 0
+				else:
+					self.sort_type = 1
+				l.sortSingleEPG(self.sort_type)
+			self.startRef = self["list"].getCurrent()[1]
 
 	def onCreate(self):
 		if self.type == EPG_TYPE_GRAPH:
@@ -584,7 +639,6 @@ class EPGSelection(Screen):
 			self["list"].curr_refcool = self.session.nav.getCurrentlyPlayingServiceReference()
 			self["list"].fillGraphEPG(self.services, self.ask_time)
 			self["list"].moveToService(self.session.nav.getCurrentlyPlayingServiceReference())
-			self.curRef = self["list"].getCurrent()[1]
 			self.moveTimeLines()
 			if config.GraphEPG.channel1.value:
 				self["list"].instance.moveSelectionTo(0)
@@ -627,10 +681,16 @@ class EPGSelection(Screen):
 		self["list"].instance.moveSelection(self["list"].instance.pageDown)
 
 	def leftPressed(self):
-		self.updEvent(-1)
+		if self.type == EPG_TYPE_MULTI:
+			self["list"].updateMultiEPG(-1)
+		else:
+			self.updEvent(-1)
 
 	def rightPressed(self):
-		self.updEvent(+1)
+		if self.type == EPG_TYPE_MULTI:
+			self["list"].updateMultiEPG(1)
+		else:
+			self.updEvent(+1)
 		
 	def nextBouquet(self):
 		if (self.type != EPG_TYPE_ENHANCED or self.type == EPG_TYPE_GRAPH) and self.bouquetChangeCB:
@@ -760,12 +820,18 @@ class EPGSelection(Screen):
 					self.moveTimeLines(True)
 
 	def closing(self):
-		if self.type != EPG_TYPE_GRAPH:
-			if self.oldService:
-				self.session.nav.playService(self.oldService)
-			self.setServicelistSelection(self.curBouquet, self.curRef.ref)
+		if self.type != EPG_TYPE_GRAPH and self.type != EPG_TYPE_MULTI:
+			try:
+				if self.oldService:
+					self.session.nav.playService(self.oldService)
+				self.setServicelistSelection(self.curBouquet, self.curRef.ref)
+			except:
+				pass
 		else:
-			self.zapFunc(self.startRef.ref, self.StartBouquet)
+			try:
+				self.zapFunc(self.startRef.ref, self.StartBouquet)
+			except:
+				pass
 		self.close(self.closeRecursive)
 
 	def GraphEPGClose(self):
@@ -837,61 +903,46 @@ class EPGSelection(Screen):
 			self.session.open(SingleEPG, refstr)		
 
 	def redButtonPressed(self):
-		if self.type == EPG_TYPE_MULTI:
-			if self.zapFunc and self.key_red_choice == self.ZAP:
-				lst = self["list"]
-				count = lst.getCurrentChangeCount()
-				if count == 0:
-					self.closeRecursive = True
-					ref = lst.getCurrent()[1]
-					self.zapFunc(ref.ref)
-		elif self.type == EPG_TYPE_SINGLE or self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_GRAPH:
+		try:
+			from Plugins.Extensions.IMDb.plugin import IMDB, IMDBEPGSelection
 			try:
-				from Plugins.Extensions.IMDb.plugin import IMDB, IMDBEPGSelection
-				try:
-					cur = self["list"].getCurrent()
-					event = cur[0]
-					name = event.getEventName()
-				except:
-					name = ''
-				self.session.open(IMDB, name, False)
-			except ImportError:
-				self.session.open(MessageBox, _("The IMDb plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
-
-	def yellowButtonPressed(self):
-		if self.type == EPG_TYPE_MULTI:
-			self["list"].updateMultiEPG(-1)
-		elif self.type == EPG_TYPE_SINGLE or self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_GRAPH:
-			try:
-				from Plugins.Extensions.EPGSearch.EPGSearch import EPGSearch
-				try:
-					cur = self["list"].getCurrent()
-					event = cur[0]
-					name = event.getEventName()
-				except:
-					name = ''
-				self.session.open(EPGSearch, name, False)
-			except ImportError:
-				self.session.open(MessageBox, _("The EPGSearch plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
-
-	def blueButtonPressed(self):
-		if self.type == EPG_TYPE_MULTI:
-			self["list"].updateMultiEPG(1)
-		elif self.type == EPG_TYPE_SINGLE or self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_GRAPH:
-			try:
-				from Plugins.Extensions.AutoTimer.AutoTimerEditor import addAutotimerFromEvent
 				cur = self["list"].getCurrent()
 				event = cur[0]
-				if not event: return
-				serviceref = cur[1]
-				addAutotimerFromEvent(self.session, evt = event, service = serviceref)
-			except ImportError:
-				self.session.open(MessageBox, _("The AutoTimer plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+				name = event.getEventName()
+			except:
+				name = ''
+			self.session.open(IMDB, name, False)
+		except ImportError:
+			self.session.open(MessageBox, _("The IMDb plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+
+	def yellowButtonPressed(self):
+		try:
+			from Plugins.Extensions.EPGSearch.EPGSearch import EPGSearch
+			try:
+				cur = self["list"].getCurrent()
+				event = cur[0]
+				name = event.getEventName()
+			except:
+				name = ''
+			self.session.open(EPGSearch, name, False)
+		except ImportError:
+			self.session.open(MessageBox, _("The EPGSearch plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+
+	def blueButtonPressed(self):
+		try:
+			from Plugins.Extensions.AutoTimer.AutoTimerEditor import addAutotimerFromEvent
+			cur = self["list"].getCurrent()
+			event = cur[0]
+			if not event: return
+			serviceref = cur[1]
+			addAutotimerFromEvent(self.session, evt = event, service = serviceref)
+		except ImportError:
+			self.session.open(MessageBox, _("The AutoTimer plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
 	def removeTimer(self, timer):
 		timer.afterEvent = AFTEREVENT.NONE
 		self.session.nav.RecordTimer.removeEntry(timer)
-		self["key_green"].setText(_("Add timer"))
+		self["key_green"].setText(_("Add Timer"))
 		self.key_green_choice = self.ADD_TIMER
 
 	def timerAdd(self):
@@ -926,7 +977,7 @@ class EPGSelection(Screen):
 			self["key_green"].setText(_("Remove timer"))
 			self.key_green_choice = self.REMOVE_TIMER
 		else:
-			self["key_green"].setText(_("Add timer"))
+			self["key_green"].setText(_("Add Timer"))
 			self.key_green_choice = self.ADD_TIMER
 			print "Timeredit aborted"
 	
@@ -934,7 +985,6 @@ class EPGSelection(Screen):
 		self.finishedAdd(answer)
 
 	def doRecordTimer(self):
-		print 'SETUP RECORD TIMER'
 		zap = False
 		cur = self["list"].getCurrent()
 		event = cur[0]
@@ -953,7 +1003,6 @@ class EPGSelection(Screen):
 			self.session.openWithCallback(self.finishedAdd, RecordSetup, newEntry, zap)
 
 	def doZapTimer(self):
-		print 'SETUP ZAP TIMER'
 		zap = True
 		cur = self["list"].getCurrent()
 		event = cur[0]
@@ -1167,9 +1216,6 @@ class EPGSelection(Screen):
 				self["key_red"].setText("")
 				self.key_red_choice = self.EMPTY
 			return
-		elif self.key_red_choice != self.ZAP and  self.type == EPG_TYPE_MULTI:
-				self["key_red"].setText("Zap")
-				self.key_red_choice = self.ZAP
 
 		if event is None:
 			if self.key_green_choice != self.EMPTY:
@@ -1189,7 +1235,7 @@ class EPGSelection(Screen):
 			self["key_green"].setText(_("Remove timer"))
 			self.key_green_choice = self.REMOVE_TIMER
 		elif not isRecordEvent and self.key_green_choice != self.ADD_TIMER:
-			self["key_green"].setText(_("Add timer"))
+			self["key_green"].setText(_("Add Timer"))
 			self.key_green_choice = self.ADD_TIMER
 
 	def moveTimeLines(self, force=False):
@@ -1263,17 +1309,21 @@ class EPGSelection(Screen):
 				self.closeScreen()
 
 	def ZapTo(self):
-		if self.type == EPG_TYPE_GRAPH:
+		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_MULTI:
 			if self.zapFunc:
 				currch = self.session.nav.getCurrentlyPlayingServiceReference()
 				currch = currch.toString()
 				ref = self["list"].getCurrent()[1]
-				self["list"].curr_refcool = ref.ref
-				self["list"].fillGraphEPG(None)
+				if self.type == EPG_TYPE_GRAPH:
+					self["list"].curr_refcool = ref.ref
+					self["list"].fillGraphEPG(None)
 				switchto = ServiceReference(ref.ref)
 				switchto = str(switchto)
 				if not switchto == currch:
-					if ref:
+					if ref and switchto.find('alternatives') != -1:
+						self.zapFunc(ref.ref)
+						self.close(True)
+					else:
 						self.zapFunc(ref.ref)
 				else:
 					self.close(True)

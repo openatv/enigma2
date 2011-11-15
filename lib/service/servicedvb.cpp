@@ -28,6 +28,10 @@
 #include <byteswap.h>
 #include <netinet/in.h>
 
+#include <iostream>
+#include <fstream>
+using namespace std;
+
 #ifndef BYTE_ORDER
 #error no byte order defined!
 #endif
@@ -958,6 +962,7 @@ eDVBServicePlay::eDVBServicePlay(const eServiceReference &ref, eDVBService *serv
 	m_tune_state(-1),
 	m_is_stream(ref.path.substr(0, 7) == "http://"),
 	m_is_pvr(!ref.path.empty() && !m_is_stream),
+	m_is_paused(0),
 	m_timeshift_enabled(0),
 	m_timeshift_active(0),
 	m_timeshift_changed(0),
@@ -968,7 +973,6 @@ eDVBServicePlay::eDVBServicePlay(const eServiceReference &ref, eDVBService *serv
 	m_cuesheet_changed(0),
 	m_cutlist_enabled(1),
 	m_subtitle_widget(0),
-	m_is_paused(0),
 	m_subtitle_sync_timer(eTimer::create(eApp)),
 	m_nownext_timer(eTimer::create(eApp))
 {
@@ -1139,6 +1143,9 @@ void eDVBServicePlay::serviceEvent(int event)
 		break;
 	case eDVBServicePMTHandler::eventSOF:
 		m_event((iPlayableService*)this, evSOF);
+		break;
+	case eDVBServicePMTHandler::eventHBBTVInfo:
+		m_event((iPlayableService*)this, evHBBTVInfo);
 		break;
 	}
 }
@@ -1832,6 +1839,13 @@ std::string eDVBServicePlay::getInfoString(int w)
 		return m_dvb_service->m_provider_name;
 	case sServiceref:
 		return m_reference.toString();
+	case sHBBTVUrl:
+	{
+		std::string url;
+		eDVBServicePMTHandler &h = m_timeshift_active ? m_service_handler_timeshift : m_service_handler;
+		h.getHBBTVUrl(url);
+		return url;
+	}
 	default:
 		break;
 	}
@@ -2250,7 +2264,7 @@ RESULT eDVBServicePlay::startTimeshift()
 		eDebug("could not query ts path");
 		return -5;
 	}
-	tspath.append("/timeshift.XXXXXX");
+	tspath.append("timeshift.XXXXXX");
 	char* templ;
 	templ = new char[tspath.length() + 1];
 	strcpy(templ, tspath.c_str());
@@ -2259,6 +2273,13 @@ RESULT eDVBServicePlay::startTimeshift()
 	m_timeshift_file = std::string(templ);
 
 	eDebug("recording to %s", templ);
+
+    ofstream fileout;
+    fileout.open("/proc/stb/lcd/symbol_timeshift");
+    if(fileout.is_open())
+    {
+        fileout << "1";
+    }
 
 	delete [] templ;
 
@@ -2296,6 +2317,14 @@ RESULT eDVBServicePlay::stopTimeshift(bool swToLive)
 		close(m_timeshift_fd);
 		m_timeshift_fd = -1;
 	}
+    
+    ofstream fileout;
+    fileout.open("/proc/stb/lcd/symbol_timeshift");
+    if(fileout.is_open())
+    {
+        fileout << "0";
+    }
+	
 	eDebug("remove timeshift file");
 	eBackgroundFileEraser::getInstance()->erase(m_timeshift_file);
 	
@@ -3299,9 +3328,11 @@ PyObject *eDVBServicePlay::getStreamingData()
 	ePtr<iDVBDemux> demux;
 	if (!m_service_handler.getDataDemux(demux))
 	{
-		uint8_t demux_id;
+		uint8_t demux_id, adapter_id;
 		if (!demux->getCADemuxID(demux_id))
 			PutToDict(r, "demux", demux_id);
+		if (!demux->getCAAdapterID(adapter_id))
+			PutToDict(r, "adapter", adapter_id);
 	}
 
 	return r;

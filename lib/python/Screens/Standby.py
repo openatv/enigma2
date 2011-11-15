@@ -161,7 +161,7 @@ class TryQuitMainloop(MessageBox):
 				self.onShow.append(self.__onShow)
 				self.onHide.append(self.__onHide)
 		else:
-			self.skin = """<screen position="0,0" size="0,0"/>"""
+			self.skin = """<screen position="1310,0" size="0,0"/>"""
 			Screen.__init__(self, session)
 			self.close(True)
 
@@ -186,14 +186,9 @@ class TryQuitMainloop(MessageBox):
 			self.conntected=False
 			self.session.nav.record_event.remove(self.getRecordEvent)
 		if value:
-			# hack .. we dont like to show any other screens when this screen has closed
-			self.onClose = [self.__closed]
-			self.session.dialog_stack = []
-			self.session.summary_stack = [None]
-		MessageBox.close(self, True)
-
-	def __closed(self):
-		quitMainloop(self.retval)
+			quitMainloop(self.retval)
+		else:
+			MessageBox.close(self, True)
 
 	def __onShow(self):
 		global inTryQuitMainloop

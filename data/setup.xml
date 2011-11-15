@@ -4,10 +4,10 @@
 		<item level="0" text="Delay">config.inputDevices.delay</item>
 		<item level="0" text="Keymap">config.rc.map</item>
 	</setup>
-	<setup key="time" title="Time">
+	<setup key="time" title="Time Settings">
 		<item level="0" text="Timezone">config.timezone.val</item>
 		<item level="0" text="Sync time using">config.misc.SyncTimeUsing</item>
-		<item level="0" text="Sync NTP every (minutes)">config.misc.useNTPminutes</item>
+		<item level="0" text="Sync NTP every (minutes)" requires="config.misc.SyncTimeUsing">config.misc.useNTPminutes</item>
 	</setup>
 	<setup key="avsetup" title="A/V Settings">
 		<item level="0" text="Color Format">config.av.colorformat</item>
@@ -18,7 +18,6 @@
 		<item level="1" text="General PCM delay (ms)">config.av.generalPCMdelay</item>
 		<item level="1" text="Digital downmix" requires="CanDownmixAC3">config.av.downmix_ac3</item>
 		<item level="1" text="Auto scart switching" requires="ScartSwitch">config.av.vcrswitch</item>
-		<item level="0" text="Menu Overscan amount">config.vixsettings.overscanamount</item>
 	</setup>
 	<setup key="usage" title="Customize">
 		<item level="0" text="Setup Mode">config.usage.setup_level</item>
@@ -30,25 +29,29 @@
 		<item level="1" text="Enable teletext caching">config.usage.enable_tt_caching</item>
 		<item level="1" text="Show positioner movement">config.usage.showdish</item>
 		<item level="1" text="Enable multiple bouquets">config.usage.multibouquet</item>
+		<item level="1" text="Multi-EPG bouquet selection">config.usage.multiepg_ask_bouquet</item>
 		<item level="1" text="Change bouquets in quickzap">config.usage.quickzap_bouquet_change</item>
 		<item level="1" text="Alternative radio mode">config.usage.e1like_radio_mode</item>
 		<item level="1" text="Action on long powerbutton press">config.usage.on_long_powerpress</item>
 		<item level="1" text="Action on short powerbutton press">config.usage.on_short_powerpress</item>
 		<item level="1" text="Position of finished Timers in Timerlist">config.usage.timerlist_finished_timer_position</item>
 		<item level="1" text="12V output" requires="12V_Output">config.usage.output_12V</item>
-		<item level="0" text="Channel list service mode">config.usage.servicelist_mode</item>
+		<item level="0" text="Channel list service mode (requires restart)">config.usage.servicelist_mode</item>
 		<item level="0" text="Channel list preview mode">config.usage.servicelistpreview_mode</item>
 		<item level="0" text="Always show bouquets">config.usage.show_bouquetalways</item>
 		<item level="0" text="Show channel selection on mode change">config.usage.show_servicelist</item>
 		<item level="0" text="Show event-progress in channel selection">config.usage.show_event_progress_in_servicelist</item>
 		<item level="0" text="Show channel numbers in channel selection">config.usage.show_channel_numbers_in_servicelist</item>
 		<item level="0" text="Infobar timeout">config.usage.infobar_timeout</item>
-		<item level="2" text='Show event info on 2nd OK'>config.usage.show_infobar_eventinfo</item>
 		<item level="2" text="Show infobar on channel change">config.usage.show_infobar_on_zap</item>
 		<item level="2" text="Show infobar on skip forward/backward">config.usage.show_infobar_on_skip</item>
 		<item level="2" text="Show infobar on event change">config.usage.show_infobar_on_event_change</item>
+		<item level="2" text="Show second infobar">config.usage.show_second_infobar</item>
+		<item level="0" text="2nd Infobar timeout">config.usage.second_infobar_timeout</item>
 		<item level="2" text="Show crypto info in infobar">config.usage.show_cryptoinfo</item>
 		<item level="2" text="Swap SNR in db with SNR in percentage on OSD">config.usage.swap_snr_on_osd</item>
+		<item level="2" text="Time Remaning/Elapsed on OSD">config.usage.swap_time_remaining_on_osd</item>
+		<item level="2" text="Remaning/Elapsed shown as on OSD">config.usage.swap_time_display_on_osd</item>
 		<item level="2" text="Hide zap errors">config.usage.hide_zap_errors</item>
 		<item level="2" text="Hide CI messages">config.usage.hide_ci_messages</item>
 		<item level="2" text="Behavior of 0 key in PiP-mode">config.usage.pip_zero_button</item>
@@ -57,27 +60,13 @@
 		<item level="2" text="Disable background scanning">config.misc.disable_background_scan</item>
 		<item level="2" text="Show background in Radio Mode">config.misc.showradiopic</item>
 	</setup>
-	<setup key="remotesetup" title="Button Setup">
-		<item level="0" text="EPG buton mode">config.vixsettings.ViXEPG_mode</item>
-		<item level="0" text="Subservice mode">config.vixsettings.Subservice</item>
-		<item level="0" text="QuickEPG mode">config.vixsettings.QuickEPG_mode</item>
-		<item level="0" text="TV button mode">config.usage.tvradiobutton_mode</item>
-		<item level="0" text="Channel +/- button mode">config.usage.channelbutton_mode</item>
-		<item level="0" text="Use ViX Coloured Butons">config.vixsettings.ColouredButtons</item>
-	</setup>
-	<setup key="sofcamsetup" title="Settings...">
-		<item level="2" text="Show CCcam in extensions ?">config.cccaminfo.showInExtensions</item>
-		<item level="2" text="Show OScam in extensions ?">config.oscaminfo.showInExtensions</item>
-	</setup>
-	<setup key="logs" title="Settings...">
-		<item level="2" text="Create more detailed crash log">config.crash.details</item>
-		<item level="2" text="Enable Debug log">config.crash.enabledebug</item>
-		<item level="2" text="Limit Debug log size (MB)">config.crash.debugloglimit</item>
-		<item level="2" text="Debug Log location">config.crash.debug_path</item>
-	</setup>
 	<setup key="epgsetup" title="Settings...">
 		<item level="2" text="EPG location">config.misc.epgcachepath</item>
 		<item level="2" text="EPG filename">config.misc.epgcachefilename</item>
+		<item level="2" text="Automatic refresh">config.epg.cacheloadsched</item>
+		<item level="2" text="Refresh every (in hours)" requires="config.epg.cacheloadsched">config.epg.cacheloadtimer</item>
+		<item level="2" text="Automatic save">config.epg.cachesavesched</item>
+		<item level="2" text="Save every (in hours)" requires="config.epg.cachesavesched">config.epg.cachesavetimer</item>
 		<item level="2" text="Show EIT now/next in infobar">config.usage.show_eit_nownext</item>
 		<item level="2" text="Enable EIT EPG">config.epg.eit</item>
 		<item level="2" text="Enable MHW EPG">config.epg.mhw</item>
@@ -85,17 +74,6 @@
 		<item level="2" text="Enable ViaSat EPG">config.epg.viasat</item>
 		<item level="2" text="Enable Netmed EPG">config.epg.netmed</item>
 	</setup>
-
-	<setup key="timeshiftsetup" title="Timeshift Settings">
-		<item level="0" text="Permanent Timeshift Enable">config.timeshift.enabled</item>
-		<item level="2" text="Permanent Timeshift Max Events">config.timeshift.maxevents</item>
-		<item level="2" text="Permanent Timeshift Max Length">config.timeshift.maxlength</item>
-		<item level="2" text="Permanent Timeshift Start Delay">config.timeshift.startdelay</item>
-		<item level="2" text="Timeshift-Save Action on zap">config.timeshift.favoriteSaveAction</item>
-		<item level="2" text="Stop timeshift while recording?">config.timeshift.stopwhilerecording</item>
-		<item level="2" text="Show PTS Infobar while timeshifting?">config.timeshift.showinfobar</item>
-	</setup>
-
 	<setup key="subtitlesetup" title="Subtitle Settings">
 		<item level="2" text="Teletext subtitle color">config.subtitles.ttx_subtitle_colors</item>
 		<item level="2" text="Use original teletext position">config.subtitles.ttx_subtitle_original_position</item>
@@ -121,44 +99,14 @@
 		<item level="1" text="Subtitle language selection 2">config.autolanguage.subtitle_autoselect2</item>
 		<item level="1" text="Subtitle language selection 3">config.autolanguage.subtitle_autoselect3</item>
 		<item level="1" text="Subtitle language selection 4">config.autolanguage.subtitle_autoselect4</item>
-		<item level="1" text="Allow Subtiles equals Audio mask">config.autolanguage.equal_languages</item>
+		<item level="1" text="Allow Subtitle equals Audio mask">config.autolanguage.equal_languages</item>
 		<item level="1" text="Allow hearing impaired subtitles">config.autolanguage.subtitle_hearingimpaired</item>
 		<item level="1" text="Prefer hearing impaired subtitles">config.autolanguage.subtitle_defaultimpaired</item>
 		<item level="1" text="Prefer DVB-grafical subtitles">config.autolanguage.subtitle_defaultdvb</item>
 		<item level="1" text="Prefer subtitle stored by service">config.autolanguage.subtitle_usecache</item>
-	</setup>                
-	<setup key="recording" title="Record Settings">
-		<item level="1" text="Recordings always have priority">config.recording.asktozap</item>
-		<item level="0" text="Margin before record (minutes)">config.recording.margin_before</item>
-		<item level="0" text="Margin after record">config.recording.margin_after</item>
-		<item level="2" text="Show Message when Recording starts">config.usage.show_message_when_recording_starts</item>
-		<item level="2" text="Load Length of Movies in Movielist">config.usage.load_length_of_movies_in_moviellist</item>
-		<item level="2" text="Show status icons in Movielist">config.usage.show_icons_in_movielist</item>
-		<item level="2" text="Behavior when a movie is started">config.usage.on_movie_start</item>
-		<item level="2" text="Behavior when a movie is stopped">config.usage.on_movie_stop</item>
-		<item level="2" text="Behavior when a movie reaches the end">config.usage.on_movie_eof</item>
-		<item level="2" text="Behavior of 'pause' when paused">config.seek.on_pause</item>
-		<item level="2" text="Custom skip time for '1'/'3'-keys">config.seek.selfdefined_13</item>
-		<item level="2" text="Custom skip time for '4'/'6'-keys">config.seek.selfdefined_46</item>
-		<item level="2" text="Custom skip time for '7'/'9'-keys">config.seek.selfdefined_79</item>
-		<item level="2" text="Fast Forward speeds">config.seek.speeds_forward</item>
-		<item level="2" text="Rewind speeds">config.seek.speeds_backward</item>
-		<item level="2" text="Slow Motion speeds">config.seek.speeds_slowmotion</item>
-		<!-- TRANSLATORS: The following is the speed you get on the first press on fast-forward.
-		It was previously called "enter fast forward at speed" which was easily misunderstood. -->  
-		<item level="2" text="Initial Fast Forward speed">config.seek.enter_forward</item>
-		<item level="2" text="Initial Rewind speed">config.seek.enter_backward</item>
-		<item level="2" text="Limited character set for recording filenames">config.recording.ascii_filenames</item>
-		<item level="2" text="Composition of the recording filenames">config.recording.filename_composition</item>
-		<item level="2" text="Keep old timers for how many days">config.recording.keep_timers</item>
-		<item level="1" text="Use trashcan in movielist">config.usage.movielist_trashcan</item>
-		<item level="1" text="Remove items from trash after (days)">config.usage.movielist_trashcan_days</item>
-		<item level="1" text="Disk space to reserve for recordings (in GB)">config.usage.movielist_trashcan_reserve</item>
-		<item level="2" text="Recording data sync size">config.misc.flush_size</item>
-		<item level="2" text="Recording demux buffer size">config.misc.demux_size</item>
-		<item level="2" text="Background delete option">config.misc.erase_flags</item>
-		<item level="2" text="Background delete speed">config.misc.erase_speed</item>
-	</setup>        
+		<item level="1" text="EPG language selection 1">config.autolanguage.audio_epglanguage</item>
+		<item level="1" text="EPG language selection 2">config.autolanguage.audio_epglanguage_alternative</item>
+	</setup>
 	<setup key="harddisk" title="Harddisk setup" >
 		<item level="0" text="Harddisk standby after">config.usage.hdd_standby</item>
 	</setup>
@@ -168,7 +116,7 @@
 		<item text="Netmask">config.network.netmask</item>
 		<item text="Gateway">config.network.gateway</item>
 		<item text="Nameserver">config.network.dns</item>
-		<!--                    <item text="MAC Address">config.network.mac</item>-->
+<!--			<item text="MAC Address">config.network.mac</item>-->
 		<item text="Activate network settings">config.network.activate</item>
 	</setup>
 	<setup key="RFmod" title="RF output">
@@ -182,15 +130,13 @@
 	<setup key="keyboard" title="Keyboard Setup">
 		<item level="0" text="Keyboard Map">config.keyboard.keymap</item>
 	</setup>
-	<setup key="osd" title="OSD Settings">
-		<item text="Alpha">config.osd.alpha</item>
-		<item text="Brightness">config.osd.bright</item>
-		<item text="Contrast">config.osd.contrast</item>
-	</setup>
 	<setup key="lcd" title="Display Setup" requires="FrontpanelDisplay">
 		<item level="0" text="Brightness">config.lcd.bright</item>
 		<item level="0" text="Contrast">config.lcd.contrast</item>
 		<item level="0" text="Standby">config.lcd.standby</item>
+		<item level="0" text="Show Display Icons">config.lcd.mode</item>
+		<item level="0" text="Repeat Display Message">config.lcd.repeat</item>
+		<item level="0" text="scrolling Speed">config.lcd.scrollspeed</item>
 	</setup>
 	<setup key="satconfig" title="Sat / Dish Setup">
 		<item text="Tuner Slot">config.sat.tunerslot</item>
@@ -199,6 +145,23 @@
 		<item text="Longitude">config.sat.diseqca</item>
 		<item text="Latitude">config.sat.diseqcb</item>
 		<item text="Use power measurement" >config.sat.diseqcc</item>
-		<!--<item text="DiSEqC D">config.sat.diseqcd</item>-->
+	</setup>
+	<setup key="remotesetup" title="Button Setup">
+		<item level="0" text="EPG buton mode">config.vixsettings.ViXEPG_mode</item>
+		<item level="0" text="Subservice mode">config.vixsettings.Subservice</item>
+		<item level="0" text="QuickEPG mode">config.vixsettings.QuickEPG_mode</item>
+		<item level="0" text="TV button mode">config.usage.tvradiobutton_mode</item>
+		<item level="0" text="Channel +/- button mode">config.usage.channelbutton_mode</item>
+		<item level="0" text="Use ViX Coloured Butons">config.vixsettings.ColouredButtons</item>
+	</setup>
+	<setup key="sofcamsetup" title="Settings...">
+		<item level="2" text="Show CCcam in extensions ?">config.cccaminfo.showInExtensions</item>
+		<item level="2" text="Show OScam in extensions ?">config.oscaminfo.showInExtensions</item>
+	</setup>
+	<setup key="logs" title="Settings...">
+		<item level="2" text="Create more detailed crash log">config.crash.details</item>
+		<item level="2" text="Enable Debug log">config.crash.enabledebug</item>
+		<item level="2" text="Limit Debug log size (MB)">config.crash.debugloglimit</item>
+		<item level="2" text="Debug Log location">config.crash.debug_path</item>
 	</setup>
 </setupxml>

@@ -183,28 +183,14 @@ void bsodFatal(const char *component)
 
 		xml.string("skin", getConfigString("config.skin.primary_skin", "Default Skin"));
 		xml.string("sourcedate", enigma2_date);
-		xml.string("branch", enigma2_branch);
-		xml.string("rev", enigma2_rev);
 		xml.string("version", PACKAGE_VERSION);
 		xml.close();
 
 		xml.open("image");
-		xml.stringFromFile("dreamboxmodel", "/proc/stb/info/model");
+		xml.stringFromFile("receivermodel", "/proc/stb/info/model");
 		xml.stringFromFile("kernelcmdline", "/proc/cmdline");
 		xml.stringFromFile("nimsockets", "/proc/bus/nim_sockets");
-		if (!getConfigBool("config.plugins.crashlogautosubmit.sendAnonCrashlog", true)) {
-			xml.cDataFromFile("dreamboxca", "/proc/stb/info/ca");
-			xml.cDataFromFile("enigma2settings", eEnv::resolve("${sysconfdir}/enigma2/settings"), ".password=");
-		}
-		if (getConfigBool("config.plugins.crashlogautosubmit.addNetwork", false)) {
-			xml.cDataFromFile("networkinterfaces", "/etc/network/interfaces");
-			xml.cDataFromFile("dns", "/etc/resolv.conf");
-			xml.cDataFromFile("defaultgateway", "/etc/default_gw");
-		}
-		if (getConfigBool("config.plugins.crashlogautosubmit.addWlan", false))
-			xml.cDataFromFile("wpasupplicant", "/etc/wpa_supplicant.conf");
 		xml.cDataFromFile("imageversion", "/etc/image-version");
-		xml.cDataFromFile("imageissue", "/etc/issue.net");
 		xml.close();
 
 		if (detailedCrash)
@@ -232,7 +218,7 @@ void bsodFatal(const char *component)
 	gPainter p(my_dc);
 	p.resetOffset();
 	p.resetClip(eRect(ePoint(0, 0), my_dc->size()));
-	p.setBackgroundColor(gRGB(0x008000));
+	p.setBackgroundColor(gRGB(0x010000));
 	p.setForegroundColor(gRGB(0xFFFFFF));
 
 	ePtr<gFont> font = new gFont("Regular", 20);
@@ -241,10 +227,10 @@ void bsodFatal(const char *component)
 
 	eRect usable_area = eRect(100, 70, my_dc->size().width() - 150, 100);
 	
-	std::string text("We are really sorry. Your Dreambox encountered "
+	std::string text("We are really sorry. Your receiver encountered "
 		"a software problem, and needs to be restarted. "
 		"Please send the logfile created in /hdd/ to " + crash_emailaddr + ".\n"
-		"Your Dreambox restarts in 10 seconds!\n"
+		"Your receiver restarts in 10 seconds!\n"
 		"Component: " + crash_component);
 
 	p.renderText(usable_area, text.c_str(), gPainter::RT_WRAP|gPainter::RT_HALIGN_LEFT);

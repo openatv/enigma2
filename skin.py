@@ -50,46 +50,9 @@ def addSkin(name, scope = SCOPE_SKIN):
 # are applied one-after-each, in order of ascending priority.
 # the dom_skin will keep all screens in descending priority,
 # so the first screen found will be used.
-from Components.config import ConfigSubsection, config, ConfigNumber
-from Tools.Directories import pathExists
-import os
-config.vixsettings = ConfigSubsection()
-config.vixsettings.overscanamount = ConfigNumber(default = 32)
-if config.vixsettings.overscanamount.value <= "0":
-	inputfile = "/usr/share/enigma2/ViX_HD/skin.xml"
-	outputfile = inputfile+'.tmp'
-	skinposinputfile = '/usr/share/enigma2/ViX_HD/skinpos.loc'
-	skinposoutputfile = '/usr/share/enigma2/ViX_HD/skinpos.tmp'
-	if pathExists(skinposinputfile):
-		skinposinput = open(skinposinputfile,'r')
-		stext = skinposinput.readline()
-	else:
-		stext = "nothing to find"
-	rtext = 'position="' + str(config.vixsettings.overscanamount.value) + ',0" size="541,720"'
-
-	input = open(inputfile)
-	output = open(outputfile,'w')
-	for s in input:
-		if s.find('position="32,0" size="541,720"') != -1:
-			output.write(s.replace('position="32,0" size="541,720"',rtext))
-		else:
-			output.write(s.replace(stext,rtext))
-	print '[REPLACE] ' + rtext
-	output.close()
-	input.close()
-	os.remove(inputfile)
-	os.rename(outputfile,inputfile)
-	skinposoutput = open(skinposoutputfile,'w')
-	skinposoutput.write(rtext)
-	skinposoutput.close()
-	if pathExists(skinposinputfile):
-		skinposinput.close()
-		os.remove(skinposinputfile)
-	os.rename(skinposoutputfile,skinposinputfile)
-
 # example: loadSkin("nemesis_greenline/skin.xml")
 config.skin = ConfigSubsection()
-DEFAULT_SKIN = "ViX_HD/skin.xml"
+DEFAULT_SKIN = "ViX_Day_HD/skin.xml"
 config.skin.primary_skin = ConfigText(default=DEFAULT_SKIN)
 
 profile("LoadSkin")
@@ -111,7 +74,7 @@ addSkin('skin_subtitles.xml')
 try:
 	if not addSkin(config.skin.primary_skin.value):
 		raise SkinError, "primary skin not found"
-except (SkinError, IOError, AssertionError), err:
+except Exception, err:
 	print "SKIN ERROR:", err
 	skin = DEFAULT_SKIN
 	if config.skin.primary_skin.value == skin:
@@ -341,6 +304,18 @@ class AttributeParser:
 		self.guiObject.setForegroundColor(parseColor(value))
 	def foregroundColorSelected(self, value):
 		self.guiObject.setForegroundColorSelected(parseColor(value))
+	def foregroundNotCrypted(self, value):
+		self.guiObject.setForegroundColor(parseColor(value))
+	def backgroundNotCrypted(self, value):
+		self.guiObject.setBackgroundColor(parseColor(value))
+	def foregroundCrypted(self, value):
+		self.guiObject.setForegroundColor(parseColor(value))
+	def backgroundCrypted(self, value):
+		self.guiObject.setBackgroundColor(parseColor(value))
+	def foregroundEncrypted(self, value):
+		self.guiObject.setForegroundColor(parseColor(value))
+	def backgroundEncrypted(self, value):
+		self.guiObject.setBackgroundColor(parseColor(value))
 	def shadowColor(self, value):
 		self.guiObject.setShadowColor(parseColor(value))
 	def selectionDisabled(self, value):

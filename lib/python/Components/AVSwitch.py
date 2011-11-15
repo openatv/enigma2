@@ -165,20 +165,6 @@ def InitAVSwitch():
 		config.av.downmix_dts = ConfigYesNo(default = False)
 		config.av.downmix_dts.addNotifier(setDTSDownmix)
 
-	try:
-		can_osd_alpha = open("/proc/stb/video/alpha", "r") and True or False
-	except:
-		can_osd_alpha = False
-
-	SystemInfo["CanChangeOsdAlpha"] = can_osd_alpha
-
-	def setAlpha(config):
-		open("/proc/stb/video/alpha", "w").write(str(config.value))
-
-	if can_osd_alpha:
-		config.av.osd_alpha = ConfigSlider(default=255, limits=(0,255))
-		config.av.osd_alpha.addNotifier(setAlpha)
-
 	if os.path.exists("/proc/stb/vmpeg/0/pep_scaler_sharpness"):
 		def setScaler_sharpness(config):
 			myval = int(config.value)

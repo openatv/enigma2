@@ -1,9 +1,10 @@
+# Russian translations for Enigma2.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: tuxbox-enigma 0.0.1\n"
+"Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-02 16:10+0100\n"
+"POT-Creation-Date: 2011-11-05 14:38+0000\n"
 "PO-Revision-Date: 2010-05-18 18:10+0200\n"
 "Last-Translator: peter <peter@dreambox.org.ua>\n"
 "Language-Team: Russian / enigma(c) Ukraine, Kiev>\n"
@@ -124,11 +125,6 @@ msgstr ""
 "Выберите устройство для резервного копирования.\n"
 "Текущее устройство: "
 
-msgid ""
-"\n"
-"Shut down upgrade and reboot"
-msgstr ""
-
 #
 msgid ""
 "\n"
@@ -210,6 +206,10 @@ msgstr "#ffffffff"
 msgid "%H:%M"
 msgstr "%H:%M"
 
+#, python-format
+msgid "%d / 100"
+msgstr ""
+
 #
 #, python-format
 msgid "%d jobs are running in the background!"
@@ -236,12 +236,6 @@ msgstr "%s (%s)\n"
 msgid "( All readers)"
 msgstr ""
 
-msgid "(Beta)"
-msgstr ""
-
-msgid "(Release)"
-msgstr ""
-
 msgid "(Show only reader:"
 msgstr ""
 
@@ -261,13 +255,11 @@ msgstr "(показать опцион. DVD аудио меню)"
 msgid "* Only available if more than one interface is active."
 msgstr "* Доступно если активно более одного интерфейса."
 
-#
 msgid "/usr/share/enigma2 directory"
-msgstr "каталог /usr/share/enigma2"
+msgstr ""
 
-#
 msgid "/var directory"
-msgstr "каталог /var"
+msgstr ""
 
 msgid "0"
 msgstr "0"
@@ -338,6 +330,12 @@ msgstr "2"
 msgid "2X"
 msgstr ""
 
+msgid "2nd Infobar"
+msgstr ""
+
+msgid "2nd Infobar timeout"
+msgstr ""
+
 msgid "3"
 msgstr "3"
 
@@ -347,6 +345,9 @@ msgstr ""
 #
 msgid "30 minutes"
 msgstr "30 минут"
+
+msgid "3D Mode"
+msgstr ""
 
 msgid "3X"
 msgstr ""
@@ -368,6 +369,9 @@ msgstr "4:3 Letterbox"
 #
 msgid "4:3 PanScan"
 msgstr "4:3 PanScan"
+
+msgid "4X"
+msgstr ""
 
 msgid "5"
 msgstr "5"
@@ -448,14 +452,11 @@ msgstr ""
 msgid "A graphical EPG for all services of an specific bouquet"
 msgstr "Графический телегид для всех сервисов в избранном"
 
-#
 #, python-format
 msgid ""
 "A recording has been started:\n"
 "%s"
 msgstr ""
-"Запись начата:\n"
-"%s"
 
 #
 msgid ""
@@ -549,9 +550,6 @@ msgstr "AC3 микширование"
 msgid "AFP Setup"
 msgstr ""
 
-msgid "AVL Xtrend blindscan running... please wait"
-msgstr ""
-
 msgid "Abort"
 msgstr "Прервать"
 
@@ -610,6 +608,9 @@ msgstr ""
 msgid "Add Bookmark"
 msgstr "Добавить Закладку"
 
+msgid "Add Timer"
+msgstr ""
+
 msgid "Add WLAN configuration?"
 msgstr "Добавить конфигурацию WLAN?"
 
@@ -640,6 +641,9 @@ msgstr "Добавить в пакет"
 msgid "Add to favourites"
 msgstr "Добавить в избранное"
 
+msgid "Adding schedule..."
+msgstr ""
+
 msgid "Address"
 msgstr ""
 
@@ -660,9 +664,6 @@ msgid "Addtional Info"
 msgstr ""
 
 msgid "Adjust 3D settings"
-msgstr ""
-
-msgid "Adjust display scrolling and symbols"
 msgstr ""
 
 #
@@ -705,6 +706,9 @@ msgstr "Расширенное восстановление"
 msgid "After event"
 msgstr "После события"
 
+msgid "After pressing OK, please wait!"
+msgstr ""
+
 #
 msgid ""
 "After the start wizard is completed, you need to protect single services. "
@@ -720,9 +724,6 @@ msgstr "Альбом"
 msgid "Alias"
 msgstr ""
 
-msgid "Alias:"
-msgstr ""
-
 #
 msgid "All"
 msgstr "Все"
@@ -731,15 +732,11 @@ msgstr "Все"
 msgid "All Satellites"
 msgstr "Все Спутники"
 
-msgid "Allow Subtiles equals Audio mask"
+msgid "Allow Subtitle equals Audio mask"
 msgstr ""
 
 msgid "Allow hearing impaired subtitles"
 msgstr ""
-
-#
-msgid "Alpha"
-msgstr "Прозрачность"
 
 msgid "Alphanumeric"
 msgstr ""
@@ -771,6 +768,9 @@ msgstr "Неизвестная ошибка!"
 
 #
 msgid "Anonymize crashlog?"
+msgstr ""
+
+msgid "Any activity"
 msgstr ""
 
 msgid "April"
@@ -849,9 +849,6 @@ msgstr "Спросить пользователя"
 msgid "Aspect Ratio"
 msgstr "Сотношение сторон"
 
-msgid "Atheros"
-msgstr ""
-
 msgid "Attach a file"
 msgstr ""
 
@@ -862,6 +859,9 @@ msgstr "Аудио"
 #
 msgid "Audio Options..."
 msgstr "Аудио опции..."
+
+msgid "Audio PID"
+msgstr ""
 
 msgid "Audio language selection 1"
 msgstr ""
@@ -915,6 +915,12 @@ msgstr "Автоматически"
 #
 msgid "Automatic Scan"
 msgstr "Автоматический поиск"
+
+msgid "Automatic refresh"
+msgstr ""
+
+msgid "Automatic save"
+msgstr ""
 
 msgid "Automatically update Client/Server View?"
 msgstr ""
@@ -972,17 +978,14 @@ msgstr ""
 msgid "Background delete speed"
 msgstr ""
 
-#
 msgid "Backup"
-msgstr "Сохранение"
+msgstr ""
 
-#
 msgid "Backup Location"
-msgstr "Место сохранения"
+msgstr ""
 
-#
 msgid "Backup Mode"
-msgstr "Режим сохранения"
+msgstr ""
 
 #
 msgid "Backup done."
@@ -1042,7 +1045,10 @@ msgstr ""
 msgid "Black screen till locked"
 msgstr ""
 
-msgid "Blindscan"
+msgid "Blind Scan"
+msgstr ""
+
+msgid "Blindscan was canceled by the user."
 msgstr ""
 
 #
@@ -1118,9 +1124,8 @@ msgid ""
 "This plugin shows you the status of your CCcam."
 msgstr ""
 
-#
 msgid "CF Drive"
-msgstr "CF карта"
+msgstr ""
 
 #
 msgid "CI assignment"
@@ -1143,6 +1148,9 @@ msgstr ""
 #
 msgid "Cache Thumbnails"
 msgstr "Кешировать Эскизы"
+
+msgid "Can't cancel during upgrade!!"
+msgstr ""
 
 #
 msgid "Cancel"
@@ -1223,7 +1231,7 @@ msgstr "Выбор канала"
 msgid "Channel list preview mode"
 msgstr ""
 
-msgid "Channel list service mode"
+msgid "Channel list service mode (requires restart)"
 msgstr ""
 
 #
@@ -1258,7 +1266,19 @@ msgstr "Проверить"
 msgid "Checking Filesystem..."
 msgstr "Файловая система..."
 
-msgid "Checking Version..."
+msgid "Checking Log Size..."
+msgstr ""
+
+msgid "Checking Network..."
+msgstr ""
+
+msgid "Checking Time..."
+msgstr ""
+
+msgid "Checking USB devices..."
+msgstr ""
+
+msgid "Checking for Updates..."
 msgstr ""
 
 #
@@ -1324,6 +1344,9 @@ msgstr ""
 msgid "Clear before scan"
 msgstr "Очистить перед сканированием"
 
+msgid "Clear fixed"
+msgstr ""
+
 #
 msgid "Clear log"
 msgstr "Очистить лог"
@@ -1339,27 +1362,17 @@ msgstr "Закрыть"
 msgid "Close title selection"
 msgstr ""
 
-#
-msgid "Code rate high"
-msgstr "Скорость кодирования высокая "
-
-#
-msgid "Code rate low"
-msgstr "Скорость кодирования низкая"
-
-msgid "CodeRateHP"
+msgid "Code rate HP"
 msgstr ""
 
-msgid "CodeRateLP"
+msgid "Code rate LP"
 msgstr ""
 
-#
 msgid "Coderate HP"
-msgstr "Скорость кодирования HP"
+msgstr ""
 
-#
 msgid "Coderate LP"
-msgstr "Скорость кодирования LP"
+msgstr ""
 
 #
 msgid "Collection name"
@@ -1547,6 +1560,10 @@ msgstr ""
 msgid "Couldn't record due to conflicting timer %s"
 msgstr "Запись невозможна - конфликт таймеров %s"
 
+#, python-format
+msgid "Couldn't record due to invalid service %s"
+msgstr ""
+
 msgid "Crash Logs"
 msgstr ""
 
@@ -1606,6 +1623,9 @@ msgstr "Не удалось создать каталог %s"
 #
 msgid "Creating partition failed"
 msgstr "Не удалось создать раздел"
+
+msgid "Current CEC address"
+msgstr ""
 
 msgid "Current Event:"
 msgstr ""
@@ -1676,6 +1696,9 @@ msgstr "D"
 msgid "DHCP"
 msgstr "DHCP"
 
+msgid "DLNA support"
+msgstr ""
+
 #
 msgid "DUAL LAYER DVD"
 msgstr ""
@@ -1703,6 +1726,9 @@ msgstr "DVD плеер"
 msgid "DVD Titlelist"
 msgstr ""
 
+msgid "DVD data format"
+msgstr ""
+
 #
 msgid "DVD media toolbox"
 msgstr "DVD медиа-инструменты"
@@ -1718,6 +1744,9 @@ msgid "Debug Log location"
 msgstr ""
 
 msgid "Debug Logs"
+msgstr ""
+
+msgid "DebugLogCheck"
 msgstr ""
 
 msgid "December"
@@ -1787,6 +1816,9 @@ msgstr ""
 "Удалить не настроенный спутник\n"
 "%s?"
 
+msgid "Deleted"
+msgstr ""
+
 #, python-format
 msgid "Deleted %s!"
 msgstr ""
@@ -1815,7 +1847,13 @@ msgstr ""
 msgid "Detected NIMs:"
 msgstr "Найден тюнер:"
 
+msgid "Device Information"
+msgstr ""
+
 msgid "Device Setup"
+msgstr ""
+
+msgid "Devices"
 msgstr ""
 
 #
@@ -1867,6 +1905,10 @@ msgstr "Каталог %s отсутствует."
 
 #
 msgid "Directory browser"
+msgstr ""
+
+#, python-format
+msgid "Directory contains %d file(s) and %d sub-directories.\n"
 msgstr ""
 
 #
@@ -1986,13 +2028,10 @@ msgid ""
 "(choose 'No' to type message using virtual keyboard.)"
 msgstr ""
 
-#
 msgid ""
 "Do you want to backup now?\n"
 "After pressing OK, please wait!"
 msgstr ""
-"Вы хотите создать резервную копию?\n"
-"После нажатия OK, пожалуйста, ждите!"
 
 #
 msgid "Do you want to burn this collection to DVD medium?"
@@ -2136,9 +2175,6 @@ msgstr ""
 msgid "Downloading"
 msgstr "Загрузка"
 
-msgid "Downloading file..."
-msgstr ""
-
 #
 msgid "Downloading plugin information. Please wait..."
 msgstr "Загрузка информации о плагинах. Ждите..."
@@ -2180,6 +2216,9 @@ msgstr ""
 msgid "EPG"
 msgstr ""
 
+msgid "EPG Cache Check"
+msgstr ""
+
 msgid "EPG Search"
 msgstr ""
 
@@ -2194,6 +2233,12 @@ msgid "EPG buton mode"
 msgstr ""
 
 msgid "EPG filename"
+msgstr ""
+
+msgid "EPG language selection 1"
+msgstr ""
+
+msgid "EPG language selection 2"
 msgstr ""
 
 msgid "EPG location"
@@ -2256,6 +2301,12 @@ msgstr "Изменить заголовок"
 
 #
 msgid "Edit upgrade source url."
+msgstr ""
+
+msgid "Elapsed"
+msgstr ""
+
+msgid "Elapsed & Remanining"
 msgstr ""
 
 #
@@ -2334,10 +2385,6 @@ msgid "Encryption Keytype"
 msgstr "Тип ключа шифрования"
 
 #
-msgid "Encryption Type"
-msgstr "Тип шифрования"
-
-#
 msgid "Encryption:"
 msgstr ""
 
@@ -2407,7 +2454,17 @@ msgstr ""
 "Ошибка: %s\n"
 "Повторить?"
 
+#, python-format
+msgid "Error[%d]. Press Cancel to exit."
+msgstr ""
+
+msgid "Ethernet network interface"
+msgstr ""
+
 msgid "Event Fontsize"
+msgstr ""
+
+msgid "Event Info"
 msgstr ""
 
 #
@@ -2506,7 +2563,7 @@ msgstr ""
 msgid "FEC"
 msgstr "FEC"
 
-msgid "FEC inner"
+msgid "FILE NOT EXIST : /proc/stb/fp/remote_code"
 msgstr ""
 
 msgid "FPGA Upgrade"
@@ -2521,11 +2578,6 @@ msgstr ""
 #
 msgid "Factory reset"
 msgstr "Заводские установки"
-
-msgid ""
-"Fail to upgrade.\n"
-"Cause : "
-msgstr ""
 
 #
 msgid "Failed"
@@ -2552,9 +2604,6 @@ msgstr ""
 msgid "Fan basic action"
 msgstr ""
 
-msgid "Fan control"
-msgstr ""
-
 msgid "Fan mode"
 msgstr ""
 
@@ -2562,6 +2611,9 @@ msgid "Fan off duration time"
 msgstr ""
 
 msgid "Fan on duration time"
+msgstr ""
+
+msgid "FanOFF InStanby"
 msgstr ""
 
 #
@@ -2637,13 +2689,25 @@ msgstr "Прошивка не удалась"
 msgid "Following tasks will be done after you press OK!"
 msgstr ""
 
+msgid "For more information see www.openpli.org"
+msgstr ""
+
 #
 msgid "Format"
 msgstr "Формат"
 
+msgid "Forward volume keys"
+msgstr ""
+
 #
 msgid "Frame size in full view"
 msgstr "Размер рамки при просмотре во весь экран"
+
+msgid "Free Memory:"
+msgstr ""
+
+msgid "Free Swap:"
+msgstr ""
 
 msgid "Free memory"
 msgstr ""
@@ -2697,9 +2761,6 @@ msgid "Ftp service Enabled."
 msgstr ""
 
 msgid "Ftpd service type: Vsftpd server"
-msgstr ""
-
-msgid "GB"
 msgstr ""
 
 #
@@ -2778,15 +2839,25 @@ msgstr "Графический телегид"
 msgid "Green boost"
 msgstr ""
 
-#
 msgid "Guard Interval"
-msgstr "Интервал защиты"
+msgstr ""
 
-#
-msgid "Guard interval mode"
-msgstr "Guard interval mode"
+msgid "Guard interval"
+msgstr ""
 
 msgid "HD list"
+msgstr ""
+
+msgid "HDMI CEC"
+msgstr ""
+
+msgid "Handle deepstandby events"
+msgstr ""
+
+msgid "Handle standby from TV"
+msgstr ""
+
+msgid "Handle wakeup from TV"
 msgstr ""
 
 #
@@ -2804,12 +2875,10 @@ msgstr "Отключение HDD через"
 msgid "Hardware:"
 msgstr ""
 
-#
-msgid "Hidden network SSID"
-msgstr "Скрытый SSID сети"
+msgid "Height"
+msgstr ""
 
-#
-msgid "Hidden networkname"
+msgid "Hidden network"
 msgstr ""
 
 msgid "Hide CI messages"
@@ -2818,16 +2887,11 @@ msgstr ""
 msgid "Hide zap errors"
 msgstr ""
 
-msgid "Hierarchy Inform."
+msgid "Hierarchy Information"
 msgstr ""
 
-#
-msgid "Hierarchy Information"
-msgstr "Иерархия информации"
-
-#
-msgid "Hierarchy mode"
-msgstr "Режим иерархии"
+msgid "Hierarchy info"
+msgstr ""
 
 #
 msgid "High bitrate support"
@@ -2837,6 +2901,9 @@ msgid "Hold screen"
 msgstr ""
 
 msgid "Hold till locked"
+msgstr ""
+
+msgid "Home"
 msgstr ""
 
 msgid "Hops:"
@@ -2850,6 +2917,9 @@ msgid "Hostname: "
 msgstr ""
 
 msgid "Hour"
+msgstr ""
+
+msgid "Hours Mins"
 msgstr ""
 
 #
@@ -2928,6 +2998,9 @@ msgstr ""
 "Не беспокойтесь о ярких оттенках, они будут настроены на следующем этапе.\n"
 "Если Вас устраивает результат, нажмите OK."
 
+msgid "Image Information"
+msgstr ""
+
 msgid "Image:"
 msgstr ""
 
@@ -2941,9 +3014,6 @@ msgid ""
 msgstr "Таймер переключил телевизор на записываемый канал!\n"
 
 msgid "Inadyn Log"
-msgstr ""
-
-msgid "Inadyn Manager"
 msgstr ""
 
 msgid "Inadyn Setup"
@@ -2994,10 +3064,6 @@ msgid "Initial Rewind speed"
 msgstr ""
 
 #
-msgid "Initial location in new timers"
-msgstr ""
-
-#
 msgid "Initialization"
 msgstr ""
 
@@ -3013,6 +3079,9 @@ msgid "Input"
 msgstr "Вход"
 
 msgid "Input device setup"
+msgstr ""
+
+msgid "Input devices"
 msgstr ""
 
 #
@@ -3078,6 +3147,12 @@ msgstr "Немедленная запись..."
 msgid "Instant record location"
 msgstr ""
 
+msgid "Instant recordings location"
+msgstr ""
+
+msgid "Interface"
+msgstr ""
+
 #
 msgid "Interface: "
 msgstr ""
@@ -3089,9 +3164,6 @@ msgstr "Промежуточный"
 #
 msgid "Internal Flash"
 msgstr "Внутренняя флешь"
-
-msgid "Internal LAN adapter."
-msgstr ""
 
 msgid "Internal hdd only"
 msgstr ""
@@ -3145,6 +3217,9 @@ msgid "Just Scale"
 msgstr "Just Scale"
 
 msgid "Just change channels"
+msgstr ""
+
+msgid "Keep"
 msgstr ""
 
 msgid "Keep old timers for how many days"
@@ -3284,6 +3359,9 @@ msgstr "Ссылка:"
 msgid "Linked titles with a DVD menu"
 msgstr "Заголовки связанные с DVD меню"
 
+msgid "List available networks"
+msgstr ""
+
 #
 msgid "List of Storage Devices"
 msgstr "Список устройств хранения"
@@ -3316,10 +3394,6 @@ msgstr ""
 #
 msgid "Location"
 msgstr "Расположение"
-
-#
-msgid "Location for instant recordings"
-msgstr ""
 
 #
 msgid "Lock:"
@@ -3355,7 +3429,15 @@ msgstr ""
 msgid "Longitude"
 msgstr "Долгота"
 
-msgid "MB"
+#, python-format
+msgid ""
+"Looking for available transponders.\n"
+"This will take several minutes.\n"
+"\n"
+"   Current Status : %d/%d\n"
+"   Orbital Positions : %s\n"
+"   Polarization : %s\n"
+"   Bandwidth : %s"
 msgstr ""
 
 #
@@ -3396,6 +3478,9 @@ msgstr "Менеджер ПО ресивера"
 #
 msgid "Manual Scan"
 msgstr "Ручной поиск"
+
+msgid "Manual configuration"
+msgstr ""
 
 #
 msgid "Manual transponder"
@@ -3453,12 +3538,12 @@ msgstr "Носитель не записываемый DVD!"
 msgid "Medium is not empty!"
 msgstr "Носитель не пустой!"
 
+msgid "Memory"
+msgstr ""
+
 #
 msgid "Menu"
 msgstr "Меню"
-
-msgid "Menu Overscan amount"
-msgstr ""
 
 msgid "Menu config"
 msgstr ""
@@ -3473,6 +3558,9 @@ msgstr "Сообщение"
 #
 msgid "Message..."
 msgstr "Сообщение..."
+
+msgid "Mins"
+msgstr ""
 
 msgid "Missing "
 msgstr ""
@@ -3523,9 +3611,15 @@ msgstr "Ошибка подключения"
 msgid "Move"
 msgstr ""
 
+msgid "Move Left/Right"
+msgstr ""
+
 #
 msgid "Move Picture in Picture"
 msgstr "Переместить PiP"
+
+msgid "Move Up/Down"
+msgstr ""
 
 #
 msgid "Move east"
@@ -3559,6 +3653,9 @@ msgstr "Граф. EPG"
 msgid "Multi EPG..."
 msgstr ""
 
+msgid "Multi-EPG bouquet selection"
+msgstr ""
+
 #
 msgid "Multimedia"
 msgstr ""
@@ -3566,6 +3663,9 @@ msgstr ""
 #
 msgid "Multiple service support"
 msgstr "Поддержка мультисервисов"
+
+msgid "Multiplex"
+msgstr ""
 
 #
 msgid "Multisat"
@@ -3597,14 +3697,14 @@ msgstr ""
 msgid "NIM"
 msgstr ""
 
-msgid "NOT"
-msgstr ""
-
 #
 msgid "NOW"
 msgstr "СЕЙЧАС"
 
 msgid "NTP"
+msgstr ""
+
+msgid "NTPSync"
 msgstr ""
 
 #
@@ -3653,9 +3753,8 @@ msgstr "Конфигурация сети..."
 msgid "Network ID"
 msgstr ""
 
-#
-msgid "Network SSID"
-msgstr "SSID сети"
+msgid "Network Servers:"
+msgstr ""
 
 #
 msgid "Network Setup"
@@ -3692,6 +3791,9 @@ msgstr "Сеть:"
 msgid "NetworkWizard"
 msgstr "Мастер настройки сети"
 
+msgid "Networkname (SSID)"
+msgstr ""
+
 #
 msgid "New"
 msgstr "Новые"
@@ -3702,13 +3804,12 @@ msgstr ""
 msgid "New profile: "
 msgstr ""
 
+msgid "New timers location"
+msgstr ""
+
 #
 msgid "New version:"
 msgstr "Новая версия:"
-
-#
-msgid "Next"
-msgstr "Следующий"
 
 #
 msgid "No"
@@ -3727,10 +3828,6 @@ msgid "No HDD found or HDD not initialized!"
 msgstr ""
 "HDD не найден или \n"
 "не установлен."
-
-#
-msgid "No Networks found"
-msgstr "Сети не найдены"
 
 msgid "No Timeshift found to save as recording!"
 msgstr ""
@@ -3773,6 +3870,11 @@ msgstr "Информация о событиях не найдена, запис
 msgid ""
 "No fast winding possible yet.. but you can use the number buttons to skip "
 "forward/backward!"
+msgstr ""
+
+msgid ""
+"No found transponders!!\n"
+"Please check the satellite connection, or scan other search condition."
 msgstr ""
 
 #
@@ -3858,8 +3960,7 @@ msgstr ""
 "Если вы ответите 'НЕТ', то защита настроек \n"
 "не будет включена!"
 
-#
-msgid "No wireless networks found! Please refresh."
+msgid "No wireless networks found! Searching..."
 msgstr ""
 
 #
@@ -3956,7 +4057,7 @@ msgid ""
 "Path: %s"
 msgstr ""
 
-msgid "Nothing"
+msgid "Not-Associated"
 msgstr ""
 
 #
@@ -3966,6 +4067,9 @@ msgid ""
 msgstr ""
 "Нечего искать!\n"
 "Пожалуйста, настройте Ваш тюнер перед началом поиска."
+
+msgid "Nothing to upgrade"
+msgstr ""
 
 msgid "November"
 msgstr ""
@@ -4004,9 +4108,24 @@ msgstr ""
 msgid "OK, remove some extensions"
 msgstr ""
 
+msgid "ONID"
+msgstr ""
+
+msgid "OSD"
+msgstr ""
+
+msgid "OSD 3D Setup"
+msgstr ""
+
 #
 msgid "OSD Settings"
 msgstr "OSD установки"
+
+msgid "OSD Setup"
+msgstr ""
+
+msgid "OSD name request"
+msgstr ""
 
 #
 msgid "OSD visibility"
@@ -4054,12 +4173,6 @@ msgstr ""
 msgid "Open Context Menu"
 msgstr ""
 
-msgid "Open bouquet selection"
-msgstr ""
-
-msgid "Open channel selection"
-msgstr ""
-
 msgid "OpenVPN Setup"
 msgstr ""
 
@@ -4073,9 +4186,11 @@ msgstr ""
 msgid "Optionally enter your name if you want to."
 msgstr ""
 
-#
 msgid "Orbital Position"
-msgstr "Орбитальная позиция"
+msgstr ""
+
+msgid "Orbital position"
+msgstr ""
 
 msgid "Oscam Info - Configuration"
 msgstr ""
@@ -4084,6 +4199,9 @@ msgid "Oscam Info - Main Menu"
 msgstr ""
 
 msgid "Other"
+msgstr ""
+
+msgid "Output"
 msgstr ""
 
 msgid "Overwrite configuration files ?"
@@ -4096,18 +4214,21 @@ msgstr ""
 msgid "PAL"
 msgstr "PAL"
 
+msgid "PCR PID"
+msgstr ""
+
 #
 msgid "PIDs"
 msgstr "ПИДы"
+
+msgid "PMT PID"
+msgstr ""
 
 #, python-format
 msgid "PTS Plugin Error: %s"
 msgstr ""
 
-msgid "PTS-Plugin: Merging records failed!"
-msgstr ""
-
-msgid "PTS-Plugin: Restarting Timeshift!"
+msgid "PWM value"
 msgstr ""
 
 #
@@ -4120,6 +4241,9 @@ msgstr ""
 
 #
 msgid "Package removed successfully.\n"
+msgstr ""
+
+msgid "Packages"
 msgstr ""
 
 #
@@ -4170,6 +4294,9 @@ msgid "Pause movie at end"
 msgstr "Пауза в конце фильма"
 
 msgid "Peak load (max queued requests per workerthread)"
+msgstr ""
+
+msgid "Percentage"
 msgstr ""
 
 msgid "Permanent Timeshift Enable"
@@ -4261,6 +4388,39 @@ msgstr ""
 #
 msgid "Please change recording endtime"
 msgstr "Пожалуйста, измените время окончания записи"
+
+msgid "Please change your remote mode"
+msgstr ""
+
+msgid ""
+"Please check again.\n"
+"Frequency : start value is larger than stop value."
+msgstr ""
+
+msgid ""
+"Please check again.\n"
+"Start frequency must be between 950 and 2150."
+msgstr ""
+
+msgid ""
+"Please check again.\n"
+"Start symbolrate must be between 2MHz and 45MHz."
+msgstr ""
+
+msgid ""
+"Please check again.\n"
+"Stop frequency must be between 950 and 2150."
+msgstr ""
+
+msgid ""
+"Please check again.\n"
+"Stop symbolrate must be between 2MHz and 45MHz."
+msgstr ""
+
+msgid ""
+"Please check again.\n"
+"Symbolrate : start value is larger than stop value."
+msgstr ""
 
 #
 msgid "Please check your network settings!"
@@ -4436,6 +4596,9 @@ msgstr "Пожалуйста, настройте тюнер C"
 msgid "Please set up tuner D"
 msgstr "Пожалуйста, настройте тюнер D"
 
+msgid "Please setup your tuner configuration."
+msgstr ""
+
 #
 msgid ""
 "Please use direction keys to move the PiP window.\n"
@@ -4513,9 +4676,8 @@ msgstr ""
 msgid "Plugins"
 msgstr "Плагины"
 
-#
 msgid "Polarity"
-msgstr "Поляризация"
+msgstr ""
 
 #
 msgid "Polarization"
@@ -4599,6 +4761,9 @@ msgstr "Подготовка ... Пожалуйста, подождите"
 msgid "Press '0' to toggle internal/external PiP."
 msgstr ""
 
+msgid "Press Green/OK to start the scan"
+msgstr ""
+
 msgid "Press INFO on your remote control for additional information."
 msgstr ""
 
@@ -4646,13 +4811,14 @@ msgstr "Нажмите OK для начала поиска."
 msgid "Press OK to toggle the selection."
 msgstr ""
 
-#
-msgid "Press yellow to set this interface as default interface."
+msgid ""
+"Press and hold '2' & '7' until red LED is solid, then press 'Help', then "
+"press '000"
 msgstr ""
 
 #
-msgid "Prev"
-msgstr "Пред."
+msgid "Press yellow to set this interface as default interface."
+msgstr ""
 
 #
 msgid "Preview"
@@ -4681,6 +4847,9 @@ msgid "Process"
 msgstr ""
 
 msgid "Profile: Local box"
+msgstr ""
+
+msgid "Programme Guide"
 msgstr ""
 
 msgid "Progress"
@@ -4728,6 +4897,12 @@ msgstr ""
 msgid "Providers: "
 msgstr ""
 
+msgid "Put TV in standby"
+msgstr ""
+
+msgid "Put receiver in standby"
+msgstr ""
+
 #
 msgid "Python frontend for /tmp/mmi.socket"
 msgstr "Python интерфейс для /tmp/mmi.socket"
@@ -4758,9 +4933,6 @@ msgstr "RGB"
 #
 msgid "Radio"
 msgstr "Радио"
-
-msgid "Ralink"
-msgstr ""
 
 #
 msgid "Random"
@@ -4814,9 +4986,6 @@ msgstr "Параметры приема"
 msgid "Record"
 msgstr "Записать"
 
-msgid "Record Settings"
-msgstr ""
-
 msgid "Record started! Stopping timeshift now ..."
 msgstr ""
 
@@ -4833,7 +5002,7 @@ msgstr "Записанные файлы..."
 msgid "Recording"
 msgstr "Запись"
 
-msgid "Recording Paths"
+msgid "Recording Settings"
 msgstr ""
 
 msgid "Recording data sync size"
@@ -4864,6 +5033,9 @@ msgstr ""
 msgid "Refresh Rate"
 msgstr "Частота обновления"
 
+msgid "Refresh every (in hours)"
+msgstr ""
+
 #
 msgid "Refresh rate selection."
 msgstr "Выбор частоты обновления"
@@ -4879,7 +5051,19 @@ msgstr "Обновить"
 msgid "Reload Black-/Whitelists"
 msgstr ""
 
+msgid "Reloading EPG Cache..."
+msgstr ""
+
 msgid "Reloading bouquets and services..."
+msgstr ""
+
+msgid "Remaning/Elapsed shown as on OSD"
+msgstr ""
+
+msgid "Remanining"
+msgstr ""
+
+msgid "Remanining & Elapsed"
 msgstr ""
 
 msgid "Remember service PIN"
@@ -4889,6 +5073,12 @@ msgid "Remember service PIN cancel"
 msgstr ""
 
 msgid "Remember these settings for each folder"
+msgstr ""
+
+msgid "Remote Control Code"
+msgstr ""
+
+msgid "Remote Control System Code"
 msgstr ""
 
 msgid "Remote box"
@@ -5106,9 +5296,14 @@ msgstr ""
 msgid "Right"
 msgstr "Правый"
 
-#
+msgid "Roll-off"
+msgstr ""
+
 msgid "Rolloff"
-msgstr "Rolloff"
+msgstr ""
+
+msgid "Root directory"
+msgstr ""
 
 #
 msgid "Rotor turning speed"
@@ -5121,6 +5316,9 @@ msgstr "Запущено"
 #
 msgid "S-Video"
 msgstr "S-Video"
+
+msgid "SID"
+msgstr ""
 
 #
 msgid "SINGLE LAYER DVD"
@@ -5202,6 +5400,12 @@ msgid "Save and record"
 msgstr ""
 
 msgid "Save and stop"
+msgstr ""
+
+msgid "Save every (in hours)"
+msgstr ""
+
+msgid "Saving EPG Cache..."
 msgstr ""
 
 msgid "Saving Timeshift files"
@@ -5349,6 +5553,9 @@ msgid ""
 "Scans default lamedbs sorted by satellite with a connected dish positioner"
 msgstr "Сканировать lamedb по спутникам с подключенным мотоподвесом"
 
+msgid "Search"
+msgstr ""
+
 #
 msgid "Search east"
 msgstr "Поиск восток"
@@ -5372,6 +5579,9 @@ msgstr "Вторичный DNS"
 #
 msgid "Seek"
 msgstr "Искать"
+
+msgid "Seekbar sensibility"
+msgstr ""
 
 #
 msgid "Select"
@@ -5415,6 +5625,9 @@ msgstr ""
 
 #
 msgid "Select files/folders to backup"
+msgstr ""
+
+msgid "Select folders"
 msgstr ""
 
 msgid "Select input device"
@@ -5506,9 +5719,6 @@ msgstr "О сервисе"
 msgid "Service Information"
 msgstr ""
 
-msgid "Service Reference"
-msgstr ""
-
 #
 msgid "Service Scan"
 msgstr "Поиск сервисов"
@@ -5540,6 +5750,9 @@ msgid ""
 msgstr ""
 "Сервис не найден!\n"
 "(SID не найден в PAT)"
+
+msgid "Service reference"
+msgstr ""
 
 #
 msgid "Service scan"
@@ -5576,6 +5789,9 @@ msgstr "Установить напряжение и 22КГц"
 msgid "Set available internal memory threshold for the warning."
 msgstr ""
 
+msgid "Set fixed"
+msgstr ""
+
 #
 msgid "Set interface as default Interface"
 msgstr "Установить интерфейс по умолчанию"
@@ -5604,6 +5820,9 @@ msgstr "Режим настроек"
 msgid ""
 "Shall the USB stick wizard proceed and program the image file %s into flash "
 "memory?"
+msgstr ""
+
+msgid "Share Folder's"
 msgstr ""
 
 msgid "Share View"
@@ -5692,9 +5911,6 @@ msgstr ""
 msgid "Show crypto info in infobar"
 msgstr ""
 
-msgid "Show event info on 2nd OK"
-msgstr ""
-
 #
 msgid "Show event-progress in channel selection"
 msgstr ""
@@ -5720,6 +5936,9 @@ msgstr "Показать инфопанель при навигации"
 #
 msgid "Show positioner movement"
 msgstr "Показать движение позиционера"
+
+msgid "Show second infobar"
+msgstr ""
 
 #
 msgid "Show services beginning with"
@@ -5805,6 +6024,9 @@ msgstr "Один шаг (GOP)"
 msgid "Skin"
 msgstr ""
 
+msgid "Skin Setting"
+msgstr ""
+
 msgid "Skin Setup"
 msgstr ""
 
@@ -5883,15 +6105,14 @@ msgstr "Извините, Медиа Сканер не установлен!"
 msgid "Sorry no backups found!"
 msgstr "Не найдены резервные копии!"
 
-#
+msgid "Sorry uShare Config is Missing"
+msgstr ""
+
 msgid ""
 "Sorry your Backup destination does not exist\n"
 "\n"
 "Please choose an other one."
 msgstr ""
-"Указанное место сохнанения не существует.\n"
-"\n"
-"Пожалуйста, выберите другое!"
 
 #
 msgid ""
@@ -5928,10 +6149,7 @@ msgstr "Звук"
 msgid "Soundcarrier"
 msgstr "Несущая"
 
-msgid "Source active"
-msgstr ""
-
-msgid "Source inactive"
+msgid "Source request"
 msgstr ""
 
 #
@@ -5963,9 +6181,8 @@ msgstr ""
 msgid "Standby Fan %d Voltage"
 msgstr ""
 
-#
 msgid "Start"
-msgstr "Старт"
+msgstr ""
 
 #
 msgid "Start from the beginning"
@@ -5991,6 +6208,12 @@ msgid "Starting on"
 msgstr "Начиная с"
 
 msgid "Status"
+msgstr ""
+
+msgid "Status : 0%"
+msgstr ""
+
+msgid "Status Check Period"
 msgstr ""
 
 #
@@ -6053,6 +6276,9 @@ msgstr "Сохранить положение"
 msgid "Stored position"
 msgstr "Сохраненное положение"
 
+msgid "Stream request"
+msgstr ""
+
 msgid "Subservice mode"
 msgstr ""
 
@@ -6089,7 +6315,7 @@ msgstr ""
 msgid "Subtitles"
 msgstr "Субтитры"
 
-msgid "Success!!"
+msgid "Success. Press OK to exit."
 msgstr ""
 
 #
@@ -6110,6 +6336,9 @@ msgstr ""
 msgid "Swap Services"
 msgstr "Поменять местами"
 
+msgid "Switch TV to correct input"
+msgstr ""
+
 msgid "Switch config"
 msgstr ""
 
@@ -6125,13 +6354,14 @@ msgstr "Переключиться на предыдущий подсервис"
 msgid "Switchable tuner types:"
 msgstr ""
 
-#
 msgid "Symbol Rate"
-msgstr "Символьная скорость"
+msgstr ""
 
-#
+msgid "Symbol rate"
+msgstr ""
+
 msgid "Symbolrate"
-msgstr "Символьная скорость"
+msgstr ""
 
 msgid "Sync NTP every (minutes)"
 msgstr ""
@@ -6143,10 +6373,10 @@ msgstr ""
 msgid "System"
 msgstr "Система"
 
-msgid "System Information"
+msgid "System Infomation"
 msgstr ""
 
-msgid "System:"
+msgid "System Information"
 msgstr ""
 
 msgid "System: "
@@ -6161,6 +6391,9 @@ msgstr "TRANSLATOR_INFO"
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл слишком большой для ISO9660 level 1!"
 
+msgid "TSID"
+msgstr ""
+
 #
 msgid "TV System"
 msgstr "TV система"
@@ -6168,10 +6401,7 @@ msgstr "TV система"
 msgid "TV button mode"
 msgstr ""
 
-msgid "TV standby"
-msgstr ""
-
-msgid "TV wakeup"
+msgid "TXT PID"
 msgstr ""
 
 #
@@ -6183,6 +6413,12 @@ msgid "Tags"
 msgstr "Теги"
 
 msgid "Teletext subtitle color"
+msgstr ""
+
+msgid "Telnet Interface"
+msgstr ""
+
+msgid "Telnet Port"
 msgstr ""
 
 msgid "Telnet Setup"
@@ -6320,6 +6556,9 @@ msgstr ""
 msgid "The backup failed. Please choose a different backup location."
 msgstr "Сохранение не выполнено. Выберите другое место ресположения. "
 
+msgid "The current beta image could not be stable"
+msgstr ""
+
 #
 #, python-format
 msgid ""
@@ -6393,10 +6632,6 @@ msgstr "Введенный PIN код не верный"
 msgid "The results have been written to %s."
 msgstr "Результаты были записаны в %s."
 
-msgid ""
-"The screen will go blank while upgrading, be patient and wait for the reboot."
-msgstr ""
-
 #
 msgid "The sleep timer has been activated."
 msgstr "Таймер сна был включен."
@@ -6404,6 +6639,11 @@ msgstr "Таймер сна был включен."
 #
 msgid "The sleep timer has been disabled."
 msgstr "Таймер сна был выключен."
+
+msgid ""
+"The status of the current beta image could not be checked because www."
+"openpli.org could not be reached for some reason"
+msgstr ""
 
 #
 msgid "The timer file (timers.xml) is corrupt and could not be loaded."
@@ -6440,6 +6680,9 @@ msgstr ""
 #
 msgid "The wizard is finished now."
 msgstr "Мастер закончил работу."
+
+msgid "Then choose 'Keep' within seconds"
+msgstr ""
 
 #
 msgid "There are at least "
@@ -6496,6 +6739,9 @@ msgstr ""
 #, python-format
 msgid "This Dreambox can't decode %s streams!"
 msgstr "Этот Dreambox не может декодировать %s потоки!"
+
+msgid "This Plugin only support for UNO/ULTIMO"
+msgstr ""
 
 #
 msgid "This is step number 2."
@@ -6615,7 +6861,13 @@ msgstr "Четверг"
 msgid "Time"
 msgstr "Время"
 
+msgid "Time Remaning/Elapsed on OSD"
+msgstr ""
+
 msgid "Time Scale"
+msgstr ""
+
+msgid "Time Settings"
 msgstr ""
 
 msgid "Time Update in Minutes"
@@ -6712,6 +6964,9 @@ msgstr ""
 msgid "Timezone"
 msgstr "Часовой пояс"
 
+msgid "Timshift Settings"
+msgstr ""
+
 #
 msgid "Title"
 msgstr "Название"
@@ -6765,6 +7020,12 @@ msgstr ""
 msgid "Total"
 msgstr ""
 
+msgid "Total Memory:"
+msgstr ""
+
+msgid "Total Swap:"
+msgstr ""
+
 msgid "Total cards:"
 msgstr ""
 
@@ -6789,9 +7050,8 @@ msgstr "Перевод"
 msgid "Translation:"
 msgstr "Перевод:"
 
-#
 msgid "Transmission Mode"
-msgstr "Режим передачи"
+msgstr ""
 
 #
 msgid "Transmission mode"
@@ -6801,9 +7061,8 @@ msgstr "Режим передачи"
 msgid "Transponder"
 msgstr "Транспондер"
 
-#
 msgid "Transponder Type"
-msgstr "Тип транспондера"
+msgstr ""
 
 msgid "Trashcan"
 msgstr ""
@@ -6898,6 +7157,15 @@ msgstr "USB флешь"
 msgid "USB stick wizard"
 msgstr "Мастер USB"
 
+msgid ""
+"Unattended upgrade in progress\n"
+"Please wait until your receiver reboots\n"
+"This may take a few minutes"
+msgstr ""
+
+msgid "Unattended upgrade without GUI and reboot system"
+msgstr ""
+
 #
 msgid "Uncommitted DiSEqC command"
 msgstr "Команда переключения DiSEqC"
@@ -6908,6 +7176,9 @@ msgstr ""
 
 #
 msgid "Undo uninstall"
+msgstr ""
+
+msgid "Unencrypted"
 msgstr ""
 
 #
@@ -6934,7 +7205,7 @@ msgstr ""
 msgid "Universal LNB"
 msgstr "универсальный-LNB"
 
-msgid "Unknown network adapter."
+msgid "Unknown"
 msgstr ""
 
 msgid "Unmount"
@@ -6959,9 +7230,8 @@ msgstr ""
 msgid "Updatefeed not available."
 msgstr ""
 
-#
 msgid "Updates your receiver's software"
-msgstr "Обновление программы вашего ресивера"
+msgstr ""
 
 #
 msgid "Updating finished. Here is the result:"
@@ -6978,17 +7248,14 @@ msgstr "Обновление... Пожалуйста ждите... Это мож
 msgid "Upgrade"
 msgstr ""
 
+msgid "Upgrade and ask to reboot"
+msgstr ""
+
 #
 msgid "Upgrade finished."
 msgstr "Обновление завершено"
 
-#
 msgid "Upgrade finished. Do you want to reboot your Dreambox?"
-msgstr "Обновление завершено. Вы хотите перезагрузить Dreambox?"
-
-msgid ""
-"Upgrade will take about 5 minutes to finish.\n"
-"Do you want to upgrade?"
 msgstr ""
 
 #
@@ -7029,6 +7296,9 @@ msgstr "Использовать интерфейс"
 #
 msgid "Use Power Measurement"
 msgstr "Использовать измерение мощности"
+
+msgid "Use TV remote control"
+msgstr ""
 
 msgid "Use ViX Coloured Butons"
 msgstr ""
@@ -7131,6 +7401,9 @@ msgstr ""
 msgid "Username:"
 msgstr ""
 
+msgid "Using fixed address"
+msgstr ""
+
 msgid "Using old profile: "
 msgstr ""
 
@@ -7138,7 +7411,7 @@ msgstr ""
 msgid "VCR scart"
 msgstr "Видеомагнитофон"
 
-msgid "VFD Setup"
+msgid "VFD Checker"
 msgstr ""
 
 #
@@ -7155,7 +7428,7 @@ msgstr ""
 msgid "Vertical"
 msgstr "Вартикальная"
 
-msgid "ViX HD Overscan amount"
+msgid "ViX EPG"
 msgstr ""
 
 msgid "Video Enhancement Settings"
@@ -7172,6 +7445,9 @@ msgstr "Мастер точной настройки видео"
 #
 msgid "Video Output"
 msgstr "Видеовыход"
+
+msgid "Video PID"
+msgstr ""
 
 #
 msgid "Video Setup"
@@ -7324,9 +7600,6 @@ msgstr "W"
 msgid "WEP"
 msgstr "WEP"
 
-msgid "WLAN adapter."
-msgstr ""
-
 msgid "WLAN connection"
 msgstr ""
 
@@ -7352,12 +7625,30 @@ msgstr ""
 msgid "Wait for partition"
 msgstr ""
 
+msgid "Wait please while gathering data..."
+msgstr ""
+
 #
 msgid "Waiting"
 msgstr "Ожидание"
 
+msgid "Wakeup"
+msgstr ""
+
+msgid "Wakeup TV from standby"
+msgstr ""
+
+msgid "Wakeup receiver from standby"
+msgstr ""
+
+msgid "Wakeup signal from TV"
+msgstr ""
+
 #
 msgid "Warn if free space drops below (kB):"
+msgstr ""
+
+msgid "Web Interface"
 msgstr ""
 
 #
@@ -7482,6 +7773,9 @@ msgstr "Куда сохранить временные файлы отложен
 msgid "Which event do you want to save permanently?"
 msgstr ""
 
+msgid "Width"
+msgstr ""
+
 #
 msgid "Wireless LAN"
 msgstr ""
@@ -7490,8 +7784,13 @@ msgstr ""
 msgid "Wireless Network"
 msgstr "Беспроводная сеть"
 
-#
-msgid "Wireless Network State"
+msgid "Wireless network connection setup"
+msgstr ""
+
+msgid "Wireless network connection setup."
+msgstr ""
+
+msgid "Wireless network state"
 msgstr ""
 
 #
@@ -7501,6 +7800,9 @@ msgstr "Ошибка во время записи. Диск переполнен
 #
 msgid "Write failed!"
 msgstr "Запись неудачна!"
+
+msgid "XBox 360 support"
+msgstr ""
 
 #
 msgid "YPbPr"
@@ -7660,6 +7962,11 @@ msgstr ""
 "Вы выбрали восстановление настроек. Enigma2 будет перезапущена сразу после "
 "восстановления. Нажмите ОК для восстановления."
 
+msgid ""
+"You have not setup your user info in the setup screen\n"
+"Press MENU, and enter your info, then try again"
+msgstr ""
+
 msgid "You have selected no logs to delete."
 msgstr ""
 
@@ -7716,9 +8023,8 @@ msgstr ""
 "\n"
 "Нажмите ОК для продолжения."
 
-#
-msgid "Your Dreambox will restart after pressing OK on your remote control."
-msgstr "Ваш Dreambox будет перезагружен после нажатия кнопки OK на пульте."
+msgid "Your STB will restart after pressing OK on your remote control."
+msgstr ""
 
 #
 msgid ""
@@ -7733,6 +8039,13 @@ msgid ""
 msgstr ""
 "Ваша коллекция превышает размер однослойного диска. Вам нужен чистый "
 "двухслойный DVD!"
+
+#
+#, python-format
+msgid ""
+"Your config file is not well-formed:\n"
+"%s"
+msgstr ""
 
 #
 msgid "Your current collection will get lost!"
@@ -7821,7 +8134,10 @@ msgstr ""
 msgid "Zap mode"
 msgstr ""
 
-msgid "Zydas"
+msgid "[TimeShift] - Merging records failed!"
+msgstr ""
+
+msgid "[TimeShift] - Restarting Timeshift!"
 msgstr ""
 
 #
@@ -7950,17 +8266,17 @@ msgstr ""
 msgid "advanced"
 msgstr "Расширенный"
 
+msgid "alphabetic reverse"
+msgstr ""
+
 #
 msgid "alphabetic sort"
 msgstr "сортировать по алфавиту"
 
-#
 msgid ""
 "are you sure you want to restore\n"
 "following backup:\n"
 msgstr ""
-"Вы действительно хотите восстановить\n"
-"следующий б:\n"
 
 msgid "as plugin in extended bar"
 msgstr ""
@@ -8229,13 +8545,8 @@ msgstr "конец редактирования"
 msgid "end favourites edit"
 msgstr "конец редактирования избранного"
 
-#
 msgid "enigma2 and network"
-msgstr "enigma2 и сеть"
-
-#
-msgid "enter hidden network SSID"
-msgstr "введите SSID скрытой сети"
+msgstr ""
 
 #
 msgid "equal to"
@@ -8332,6 +8643,9 @@ msgstr ""
 msgid "help..."
 msgstr "помощь..."
 
+msgid "hi_low"
+msgstr ""
+
 #
 msgid "hide player"
 msgstr "скрыть проигрыватель"
@@ -8345,6 +8659,9 @@ msgstr ""
 #
 msgid "horizontal"
 msgstr "горизонтальная"
+
+msgid "horizontal_vertical"
+msgstr ""
 
 #
 msgid "hour"
@@ -8549,6 +8866,10 @@ msgid "no transparency"
 msgstr ""
 
 #
+msgid "none"
+msgstr "никакой"
+
+#
 msgid "not configured"
 msgstr ""
 
@@ -8734,6 +9055,9 @@ msgstr "повторить плейлист"
 #
 msgid "repeated"
 msgstr "повторный"
+
+msgid "reverse by date"
+msgstr ""
 
 #
 msgid "rewind to the previous chapter"
@@ -8970,6 +9294,9 @@ msgstr "начальный каталог"
 msgid "start timeshift"
 msgstr "таймшифт"
 
+msgid "stepsize"
+msgstr ""
+
 #
 msgid "stereo"
 msgstr "стерео"
@@ -9057,9 +9384,17 @@ msgstr ""
 msgid "tuner is not supported"
 msgstr ""
 
-#
-msgid "unavailable"
-msgstr "недоступен"
+msgid "uShare Log"
+msgstr ""
+
+msgid "uShare Name"
+msgstr ""
+
+msgid "uShare Port"
+msgstr ""
+
+msgid "uShare Setup"
+msgstr ""
 
 #
 msgid "unconfirmed"
@@ -9126,6 +9461,9 @@ msgstr "белый список"
 msgid "width"
 msgstr ""
 
+msgid "wireless network interface"
+msgstr ""
+
 msgid "with exit button"
 msgstr ""
 
@@ -9168,1038 +9506,9 @@ msgid "zapped"
 msgstr "переключено"
 
 #
-#~ msgid ""
-#~ "\n"
-#~ "Enigma2 will restart after the restore"
-#~ msgstr ""
-#~ "\n"
-#~ "Enigma2 будет запущена после восстановления."
+#~ msgid "Next"
+#~ msgstr "Следующий"
 
 #
-#~ msgid ""
-#~ "\n"
-#~ "Scan for local packages and install them."
-#~ msgstr ""
-#~ "\n"
-#~ "Сканирование и установка локальных пакетов."
-
-#~ msgid " Results"
-#~ msgstr " Результаты"
-
-#
-#~ msgid "\"?"
-#~ msgstr "\"?"
-
-#~ msgid "%i ms"
-#~ msgstr "%i ms"
-
-#
-#~ msgid ""
-#~ "%s\n"
-#~ "(%s, %d MB free)"
-#~ msgstr ""
-#~ "%s\n"
-#~ "(%s, %d MB свободно)"
-
-#
-#~ msgid "* Only available when entering hidden SSID or network key"
-#~ msgstr "* Доступно только при введенном скрытом SSID или ключе сети"
-
-#
-#~ msgid ".NFI Download failed:"
-#~ msgstr ".NFI Download failed:"
-
-#~ msgid ""
-#~ ".NFI file passed md5sum signature check. You can safely flash this image!"
-#~ msgstr ""
-#~ ".NFI md5 сигнатура проверена. Вы можете безопасно прошить этот имидж!"
-
-#
-#~ msgid "50 Hz"
-#~ msgstr "50 Гц"
-
-#~ msgid ""
-#~ "A mount entry with this name already exists!\n"
-#~ "Update existing entry and continue?\n"
-#~ msgstr ""
-#~ "Точка монтирования с таким именем уже существует!\n"
-#~ "Обновить существующую запись и продолжить?\n"
-
-#
-#~ msgid "AC3 default"
-#~ msgstr "AC3 по умолчанию"
-
-#
-#~ msgid "AGC:"
-#~ msgstr "AGC:"
-
-#~ msgid "Abort this Wizard."
-#~ msgstr "Прервать работу мастера."
-
-#~ msgid ""
-#~ "Active/\n"
-#~ "Inactive"
-#~ msgstr ""
-#~ "Активный/\n"
-#~ "Не активный"
-
-#~ msgid "Add a new NFS or CIFS mount point to your Dreambox."
-#~ msgstr "Добавить новую точку монтирования NFS или CIFS к вашему Dreambox."
-
-#
-#~ msgid "Add files to playlist"
-#~ msgstr "Добавить файлы к списку воспроизведения"
-
-#~ msgid "Add new AutoTimer"
-#~ msgstr "Добавить новый Авто Таймер"
-
-#~ msgid "Add new network mount point"
-#~ msgstr "Добавить новую точку подключения сети"
-
-#~ msgid "Add zap timer instead of record timer?"
-#~ msgstr "Добавить таймер переключения вместо таймера записи?"
-
-#~ msgid "Added: "
-#~ msgstr "Добавлено: "
-
-#
-#~ msgid "Advanced"
-#~ msgstr "Расширенный"
-
-#~ msgid "All Time"
-#~ msgstr "Все Время"
-
-#~ msgid "All non-repeating timers"
-#~ msgstr "Все не повторяющиеся таймеры"
-
-#~ msgid "Allow zapping via Webinterface"
-#~ msgstr "Разрешить переключение через Веб-интерфейс"
-
-#, fuzzy
-#~ msgid "Ammount of recordings left"
-#~ msgstr "Количество записей осталось"
-
-#~ msgid "An error occured."
-#~ msgstr "Произошла ошибка."
-
-#
-#~ msgid "Arabic"
-#~ msgstr "Арабский"
-
-#
-#~ msgid "Backup is done. Please press OK to see the result."
-#~ msgstr "Сохранено. Пожалуйста, нажмите OK для просмотра результата"
-
-#
-#~ msgid "Backup running"
-#~ msgstr "Идет сохранение"
-
-#
-#~ msgid "Backup running..."
-#~ msgstr "Идет сохранение..."
-
-#, fuzzy
-#~ msgid "CDInfo"
-#~ msgstr "ИнфоПанель"
-
-#
-#~ msgid "Call monitoring"
-#~ msgstr "Мониторинг звонка"
-
-#, fuzzy
-#~ msgid "Can't connect to server. Please check your network!"
-#~ msgstr "Пожалуйста, проверьте настройки сети!"
-
-#
-#~ msgid "Cannot parse feed directory"
-#~ msgstr "Невозможно разобрать каталог с пакетами"
-
-#
-#~ msgid "Card"
-#~ msgstr "Карта"
-
-#
-#~ msgid "Catalan"
-#~ msgstr "Каталонский"
-
-#
-#~ msgid "Change dir."
-#~ msgstr "Изменить каталог."
-
-#
-#~ msgid "Change service pin"
-#~ msgstr "Изменить PIN сервиса"
-
-#
-#~ msgid "Change service pins"
-#~ msgstr "Измененить PINs сервиса"
-
-#
-#~ msgid "Change setup pin"
-#~ msgstr "Изменить  PIN настроек"
-
-#
-#~ msgid "Choose source"
-#~ msgstr "Выберите иточник"
-
-#
-#~ msgid "Compact Flash"
-#~ msgstr "Compact Flash"
-
-#
-#~ msgid "Compact flash card"
-#~ msgstr "Compact Flash карта"
-
-#
-#~ msgid "Connected to Fritz!Box!"
-#~ msgstr "Подключен к Fritz!Box!"
-
-#
-#~ msgid "Connecting to Fritz!Box..."
-#~ msgstr "Подключение к Fritz!Box!..."
-
-#
-#~ msgid ""
-#~ "Connection to Fritz!Box\n"
-#~ "failed! (%s)\n"
-#~ "retrying..."
-#~ msgstr ""
-#~ "Подключение к  Fritz!Box\n"
-#~ "неудалось! (%s)\n"
-#~ "повтор..."
-
-#
-#~ msgid "Croatian"
-#~ msgstr "Хорватский"
-
-#
-#~ msgid "Czech"
-#~ msgstr "Чешский"
-
-#
-#~ msgid "Danish"
-#~ msgstr "Датский"
-
-#
-#~ msgid "Default services lists"
-#~ msgstr "Сервисы по умолчанию"
-
-#
-#~ msgid "Default settings"
-#~ msgstr "Настройки по умолчанию"
-
-#
-#, fuzzy
-#~ msgid "Defaults"
-#~ msgstr "Настройки по умолчанию"
-
-#
-#~ msgid "Destination directory"
-#~ msgstr "Каталог назначения"
-
-#
-#~ msgid "Detected HDD:"
-#~ msgstr "Найден HDD:"
-
-#
-#~ msgid "Disable Subtitles"
-#~ msgstr "Отключить субтитры"
-
-#
-#~ msgid ""
-#~ "Disconnected from\n"
-#~ "Fritz!Box! (%s)\n"
-#~ "retrying..."
-#~ msgstr ""
-#~ "Отключен от\n"
-#~ "Fritz!Box! (%s)\n"
-#~ "повтор..."
-
-#
-#~ msgid ""
-#~ "Do you really want to REMOVE\n"
-#~ "the plugin \""
-#~ msgstr ""
-#~ "Вы действительно хотите удалить\n"
-#~ "плагин \""
-
-#
-#~ msgid ""
-#~ "Do you really want to download\n"
-#~ "the plugin \""
-#~ msgstr ""
-#~ "Вы действительно хотите скачать\n"
-#~ "плагин \""
-
-#
-#~ msgid ""
-#~ "Do you really want to initialize the harddisk?\n"
-#~ "All data on the disk will be lost!"
-#~ msgstr ""
-#~ "Вы действительно хотите форматировать жесткий диск?\n"
-#~ "Все  данные на данном диске будут удалены!"
-
-#
-#~ msgid "Do you want to install default sat lists?"
-#~ msgstr "Вы хотите установить спутники по умолчанию?"
-
-#
-#~ msgid "Done - Installed or upgraded %d packages with %d errors"
-#~ msgstr "Выполнено - Установлено или обновлено %d пакетов с %d ошибками"
-
-#
-#~ msgid "Download of USB flasher boot image failed: "
-#~ msgstr "Не удалось скачать загрузочный имидж:"
-
-#
-#~ msgid "Dutch"
-#~ msgstr "Нидерландский"
-
-#
-#~ msgid "Edit IPKG source URL..."
-#~ msgstr "Редактировать "
-
-#
-#~ msgid "End"
-#~ msgstr "Конец"
-
-#
-#~ msgid "English"
-#~ msgstr "Английский"
-
-#
-#~ msgid ""
-#~ "Enigma2 Skinselector v0.5 BETA\n"
-#~ "\n"
-#~ "If you experience any problems please contact\n"
-#~ "stephan@reichholf.net\n"
-#~ "\n"
-#~ "© 2006 - Stephan Reichholf"
-#~ msgstr ""
-#~ "Enigma2 Skinselector v0.5 BETA\n"
-#~ "\n"
-#~ "Если у вас возникли проблемы пишите\n"
-#~ "stephan@reichholf.net\n"
-#~ "\n"
-#~ "© 2006 - Stephan Reichholf"
-
-#
-#~ msgid "Enter Fast Forward at speed"
-#~ msgstr "Скорость перемотки вперед"
-
-#
-#~ msgid "Enter Rewind at speed"
-#~ msgstr "Скорость перемотки назад"
-
-#
-#~ msgid "Enter WLAN network name/SSID:"
-#~ msgstr "Введите имя беспроводной сети/SSID:"
-
-#
-#~ msgid "Enter WLAN passphrase/key:"
-#~ msgstr "Введите ключ сети"
-
-#
-#~ msgid "Filesystem Check..."
-#~ msgstr "Файловая система..."
-
-#
-#~ msgid "Finnish"
-#~ msgstr "Финский"
-
-#
-#~ msgid ""
-#~ "First we need to download the latest boot environment for the USB flasher."
-#~ msgstr "Сначала нужно скачать загрузочную среду для USB flasher."
-
-#
-#~ msgid "Frame repeat count during non-smooth winding"
-#~ msgstr "Расчет повтора кадров для покадрового воспроизведения"
-
-#
-#~ msgid "French"
-#~ msgstr "Французский"
-
-#
-#~ msgid "Frisian"
-#~ msgstr "Фризский"
-
-#
-#~ msgid "Fritz!Box FON IP address"
-#~ msgstr "Fritz!Box FON IP адрес"
-
-#
-#~ msgid "Function not yet implemented"
-#~ msgstr "Функция не реализована"
-
-#
-#~ msgid "Games / Plugins"
-#~ msgstr "Игры / Плагины"
-
-#
-#~ msgid "German"
-#~ msgstr "Немецкий"
-
-#
-#~ msgid "Greek"
-#~ msgstr "Греческий"
-
-#
-#~ msgid "Hungarian"
-#~ msgstr "Венгерский"
-
-#
-#~ msgid "Icelandic"
-#~ msgstr "Исландский"
-
-#
-#~ msgid "If you can see this page, please press OK."
-#~ msgstr "Если вы видите эту страницу нажмите ОК."
-
-#
-#~ msgid "Image flash utility"
-#~ msgstr "Утилита прошивки имиджа"
-
-#
-#~ msgid "Image-Upgrade"
-#~ msgstr "Обновление имиджа"
-
-#
-#~ msgid "Initialization..."
-#~ msgstr "Инициализация..."
-
-#
-#~ msgid "Initializing Harddisk..."
-#~ msgstr "Инициализация жесткого диска..."
-
-#
-#~ msgid "Install local IPKG"
-#~ msgstr "Установить локальный IPKG"
-
-#
-#~ msgid "Install software updates..."
-#~ msgstr "Установить обновления..."
-
-#
-#~ msgid "Integrated Ethernet"
-#~ msgstr "Адаптер локальной сети"
-
-#
-#~ msgid "Integrated Wireless"
-#~ msgstr "Адаптер беспроводной сети"
-
-#
-#~ msgid "Invert display"
-#~ msgstr "Инверсия экрана"
-
-#
-#~ msgid "Italian"
-#~ msgstr "Итальянский"
-
-#
-#~ msgid "Language..."
-#~ msgstr "Язык..."
-
-#
-#~ msgid "Latvian"
-#~ msgstr "Латвийский"
-
-#
-#~ msgid "Lets you view/edit files in your Dreambox"
-#~ msgstr "Позволяет просматривать и редактировать файлы на Dreambox"
-
-#
-#~ msgid "Lithuanian"
-#~ msgstr "Литовский"
-
-#
-#~ msgid "MMC Card"
-#~ msgstr "MMC карта"
-
-#
-#~ msgid "Movie Menu"
-#~ msgstr "Меню видеопрограмм"
-
-#
-#~ msgid "Network Mount"
-#~ msgstr "Сетевые подключения"
-
-#
-#~ msgid "Network..."
-#~ msgstr "Сеть..."
-
-#
-#~ msgid "New pin"
-#~ msgstr "Новый PIN"
-
-#
-#~ msgid "No 50 Hz, sorry. :("
-#~ msgstr "Нет 50 Hz, извините. :("
-
-#
-#~ msgid "No useable USB stick found"
-#~ msgstr "Не найден пригодный USB стик"
-
-#
-#~ msgid "Norwegian"
-#~ msgstr "Норвежский"
-
-#
-#~ msgid "Online-Upgrade"
-#~ msgstr "Online-обновление"
-
-#
-#~ msgid "Output"
-#~ msgstr "Действие"
-
-#
-#~ msgid "Page"
-#~ msgstr "Страница"
-
-#
-#~ msgid "Please choose .NFI image file from feed server to download"
-#~ msgstr "Пожалуйста, выберите .NFI имидж на сервере для загрузки"
-
-#
-#~ msgid ""
-#~ "Please disconnect all USB devices from your Dreambox and (re-)attach the "
-#~ "target USB stick (minimum size is 64 MB) now!"
-#~ msgstr ""
-#~ "Пожалуйста, отключите все USB устройства от ресивера и (пере-)подключите "
-#~ "USB-стик (минимальный размер 64Мб) сейчас!"
-
-#
-#~ msgid "Please enter the old pin code"
-#~ msgstr "Введите старый PIN"
-
-#
-#~ msgid "Please select .NFI flash image file from medium"
-#~ msgstr "Пожалуйста, выберите .NFI имидж с носителя"
-
-#
-#~ msgid "Please select target directory or medium"
-#~ msgstr "Пожалуйста, выберите целевой каталог или носитель"
-
-#
-#, fuzzy
-#~ msgid "Please wait (Step 2)"
-#~ msgstr "Пожалуйста, подождите..."
-
-#
-#~ msgid "Polish"
-#~ msgstr "Польский"
-
-#
-#~ msgid "Portuguese"
-#~ msgstr "Португальский"
-
-#
-#~ msgid "RSS Feed URI"
-#~ msgstr "RSS Feed URI"
-
-#
-#~ msgid "Ram Disk"
-#~ msgstr "Ram Disk"
-
-#
-#~ msgid "Really delete this timer?"
-#~ msgstr "Действительно удалить данный таймер?"
-
-#
-#~ msgid "Reenter new pin"
-#~ msgstr "Повторите новый PIN"
-
-#
-#~ msgid "Remove the broken .NFI file?"
-#~ msgstr "Удалить поврежденный .NFI файл?"
-
-#
-#~ msgid "Remove the incomplete .NFI file?"
-#~ msgstr "Удалить неполный .NFI файл?"
-
-#
-#~ msgid "Replace current playlist"
-#~ msgstr "Переместить текущий список воспроизведения"
-
-#
-#~ msgid "Restart GUI"
-#~ msgstr "Перезагрузить GUI"
-
-#
-#~ msgid "Restore backups..."
-#~ msgstr "Востановление резервной копии"
-
-#
-#~ msgid "Restore running..."
-#~ msgstr "Выполняется восстановление..."
-
-#
-#~ msgid ""
-#~ "Restoring the settings is done. Please press OK to activate the restored "
-#~ "settings now."
-#~ msgstr ""
-#~ "Восстановление установок завершено. Пожалуйста, нажмите OK для активации."
-
-#
-#~ msgid "Russian"
-#~ msgstr "Русский"
-
-#
-#~ msgid ""
-#~ "Scan your network for wireless Access Points and connect to them using "
-#~ "your WLAN USB Stick\n"
-#~ msgstr ""
-#~ "Поиск и подключение беспроводных точек доступа в вашей сети используя "
-#~ "беспроводный USB адаптер\n"
-
-#
-#~ msgid "Select IPKG source to edit..."
-#~ msgstr "Выберите IPKG источник для редактирования..."
-
-#
-#~ msgid "Select audio mode"
-#~ msgstr "Выбрать аудио режим"
-
-#
-#~ msgid "Select files for backup. Currently selected:\n"
-#~ msgstr "Выбор файлов для резервной копии. Выбрано:\n"
-
-#
-#~ msgid "Select files/folders to backup..."
-#~ msgstr "Выбор файлов/папок для сохранения"
-
-#
-#~ msgid "Select image"
-#~ msgstr "Выбор имиджа"
-
-#
-#~ msgid "Select video input"
-#~ msgstr "Выбор видео входа"
-
-#
-#~ msgid "Selected source image"
-#~ msgstr "Выбранный имидж"
-
-#
-#~ msgid "Set as default Interface"
-#~ msgstr "Установить как интерфейс по умолчанию"
-
-#
-#~ msgid "Skin..."
-#~ msgstr "Скин..."
-
-#
-#~ msgid "Software manager"
-#~ msgstr "Менеджер ПО"
-
-#
-#~ msgid "Software manager..."
-#~ msgstr "Менеджер ПО..."
-
-#
-#~ msgid "Somewhere else"
-#~ msgstr "где-нибудь еще"
-
-#
-#~ msgid "Sort A-Z"
-#~ msgstr "Сортировать A-Z"
-
-#
-#~ msgid "Sort Time"
-#~ msgstr "По времени"
-
-#
-#~ msgid "Spanish"
-#~ msgstr "Испанский"
-
-#
-#~ msgid "Startwizard"
-#~ msgstr "Мастер настройки"
-
-#
-#~ msgid "Step "
-#~ msgstr "Шаг "
-
-#
-#~ msgid "Stereo"
-#~ msgstr "Стерео"
-
-#
-#~ msgid "Subservice list..."
-#~ msgstr "Список подсервисов..."
-
-#
-#~ msgid "Swedish"
-#~ msgstr "Шведский"
-
-#
-#~ msgid "Tag 1"
-#~ msgstr "Тэг 1"
-
-#
-#~ msgid "Tag 2"
-#~ msgstr "Тэг 2"
-
-#
-#~ msgid ""
-#~ "The USB stick is now bootable. Do you want to download the latest image "
-#~ "from the feed server and save it on the stick?"
-#~ msgstr ""
-#~ "USB стик теперь загрузочный. Вы хотите загрузить последний имидж с "
-#~ "сервера и сохранить его на стик?"
-
-#
-#~ msgid ""
-#~ "The md5sum validation failed, the file may be corrupted! Are you sure "
-#~ "that you want to burn this image to flash memory? You are doing this at "
-#~ "your own risk!"
-#~ msgstr ""
-#~ "Md5sum проверка неудачна, файл может быть поврежден! Вы уверены, что вы "
-#~ "хотите записать этот образ во флэш-память? Вы делаете это на свой страх и "
-#~ "риск!"
-
-#
-#~ msgid ""
-#~ "The md5sum validation failed, the file may be downloaded incompletely or "
-#~ "be corrupted!"
-#~ msgstr ""
-#~ "Md5sum проверка неудачна, файл может быть загружен не полностью или "
-#~ "поврежден!"
-
-#
-#~ msgid "The pin code has been changed successfully."
-#~ msgstr "PIN код удачно изменен."
-
-#
-#~ msgid "The pin codes you entered are different."
-#~ msgstr "Введенный PIN код отличается."
-
-#
-#~ msgid "This .NFI file does not contain a valid %s image!"
-#~ msgstr "Этот .NFI файл не содержит валидный %s имидж!"
-
-#
-#~ msgid ""
-#~ "This .NFI file does not have a md5sum signature and is not guaranteed to "
-#~ "work. Do you really want to burn this image to flash memory?"
-#~ msgstr ""
-#~ "Этот .NFI файл не имеет md5sum сигнатуры и это не гарантирует его работу. "
-#~ "Вы действительно хотите записать этот образ во флэш-память?"
-
-#
-#~ msgid ""
-#~ "This .NFI file has a valid md5 signature. Continue programming this image "
-#~ "to flash memory?"
-#~ msgstr ""
-#~ "Этот .NFI файл имеет действительную md5 подпись. Продолжить запись образа "
-#~ "во флэш-память?"
-
-#
-#~ msgid "This Dreambox can't decode %s video streams!"
-#~ msgstr "Этот Dreambox не может декодировать %s видео потоки!"
-
-#
-#~ msgid "This is unsupported at the moment."
-#~ msgstr "Это не поддерживается в данный момент."
-
-#
-#~ msgid "Timer"
-#~ msgstr "Таймер"
-
-#
-#~ msgid "Timeshift path..."
-#~ msgstr "Таймшифт файл..."
-
-#
-#~ msgid ""
-#~ "To update your Dreambox firmware, please follow these steps:\n"
-#~ "1) Turn off your box with the rear power switch and plug in the bootable "
-#~ "USB stick.\n"
-#~ "2) Turn mains back on and hold the DOWN button on the front panel pressed "
-#~ "for 10 seconds.\n"
-#~ "3) Wait for bootup and follow instructions of the wizard."
-#~ msgstr ""
-#~ "Для обновления микропрограммы Dreambox, выполните следующие действия:\n"
-#~ "1) Выключите Dreambox кнопкой на задней панели и вставьте загрузочный USB "
-#~ "стик.\n"
-#~ "2) Включите ресивер и удерживайте кнопку ВНИЗ на передней панели около 10 "
-#~ "секунд.\n"
-#~ "3) Дождитесь загрузки и следуйте инструкциям мастера."
-
-#
-#~ msgid "Turkish"
-#~ msgstr "Турецкий"
-
-#
-#~ msgid "USB"
-#~ msgstr "USB"
-
-#
-#~ msgid "Ukrainian"
-#~ msgstr "Украинский"
-
-#
-#~ msgid ""
-#~ "Unable to complete filesystem check.\n"
-#~ "Error: "
-#~ msgstr ""
-#~ "Невозможно проверить файловую систему.\n"
-#~ "Ошибка:"
-
-#
-#~ msgid ""
-#~ "Unable to initialize harddisk.\n"
-#~ "Error: "
-#~ msgstr ""
-#~ "Невозможно отформатировать жесткий диск:\n"
-#~ "Ошибка:"
-
-#
-#~ msgid ""
-#~ "Unable to initialize harddisk.\n"
-#~ "Please refer to the user manual.\n"
-#~ "Error: "
-#~ msgstr ""
-#~ "Невозможно инициализировать жесткий диск.\n"
-#~ "Пожалуйста, обратитесь к инструкции пользователя.\n"
-#~ "Ошибка: "
-
-#
-#, fuzzy
-#~ msgid "Update done..."
-#~ msgstr "Обновление"
-
-#
-#, fuzzy
-#~ msgid "Updating, please wait..."
-#~ msgstr "Пожалуйста, подождите..."
-
-#
-#~ msgid "Use non-smooth winding at speeds above"
-#~ msgstr "Использовать прерывистую перемотку на скоростях выше"
-
-#
-#~ msgid "VCR Switch"
-#~ msgstr "VCR переключатель"
-
-#
-#~ msgid ""
-#~ "We will now test if your TV can also display this resolution at 50hz. If "
-#~ "your screen goes black, wait 20 seconds and it will switch back to 60hz.\n"
-#~ "Please press OK to begin."
-#~ msgstr ""
-#~ "Сейчас мы проверим, может ли ваш ТВ работать в этом разрешении на частоте "
-#~ "50 Гц. Если ваш экран станет черным, подождите 20 секунд, и он будет "
-#~ "переключен на 60 Гц.\n"
-#~ "Пожалуйста, нажмите кнопку \"ОК\", чтобы начать."
-
-#
-#~ msgid "Wireless"
-#~ msgstr "Беспроводный"
-
-#
-#~ msgid "Writing NFI image file to flash completed"
-#~ msgstr "Запись NFI образа во влешь-память завершена"
-
-#
-#~ msgid ""
-#~ "You do not seem to have a harddisk in your Dreambox. So backing up to a "
-#~ "harddisk is not an option for you."
-#~ msgstr ""
-#~ "Возможно не установлен жесткий диск. Поэтому вы не можете выбрать "
-#~ "сохранение на HDD."
-
-#
-#~ msgid ""
-#~ "You have chosen to backup to a compact flash card. The card must be in "
-#~ "the slot. We do not verify if it is really used at the moment. So better "
-#~ "backup to the harddisk!\n"
-#~ "Please press OK to start the backup now."
-#~ msgstr ""
-#~ "Вы  выбрали сохранение на CF карту. Карта должна быть в слоте. Мы не "
-#~ "можем проверить, есть действительно карта в данный момент. Лучше провести "
-#~ "сохранение на жесткий диск!\n"
-#~ "Пожалуйста, нажмите OK для начала сохранения."
-
-#
-#~ msgid ""
-#~ "You have chosen to backup to an usb drive. Better backup to the "
-#~ "harddisk!\n"
-#~ "Please press OK to start the backup now."
-#~ msgstr ""
-#~ "Вы выбрали сохранение на USB устройство. Лучше провести запись на жесткий "
-#~ "диск Пожалуйста, нажмите OK для начала сохранения."
-
-#
-#~ msgid ""
-#~ "You have chosen to backup to your harddisk. Please press OK to start the "
-#~ "backup now."
-#~ msgstr ""
-#~ "Вы выбрали сохранение на Ваш жесткий диск. Пожалуйста, нажмите OK для "
-#~ "начала сохранения."
-
-#
-#~ msgid ""
-#~ "You need to set a pin code and hide it from your children.\n"
-#~ "\n"
-#~ "Do you want to set the pin now?"
-#~ msgstr ""
-#~ "Вы можете задать PIN код и скрыть его от детей.\n"
-#~ "\n"
-#~ "Вы хотите установить PIN сейчас?"
-
-#
-#~ msgid "You selected a playlist"
-#~ msgstr "Вы выбрали список воспроизведения"
-
-#
-#~ msgid "Your TV works with 50 Hz. Good!"
-#~ msgstr "Ваш ТВ поддерживает 50 Гц. Отлично!"
-
-#
-#~ msgid ""
-#~ "Your network configuration has been activated.\n"
-#~ "A second configured interface has been found.\n"
-#~ "\n"
-#~ "Do you want to disable the second network interface?"
-#~ msgstr ""
-#~ "Ваши сетевые настройки активированы.\n"
-#~ "В системе найден второй сетевой интерфейс.\n"
-#~ "\n"
-#~ "Вы желаете отключить второй интерфейс?"
-
-#
-#~ msgid "choose destination directory"
-#~ msgstr "выберите каталог назначения"
-
-#
-#~ msgid "exceeds dual layer medium!"
-#~ msgstr "превышает двухслойный носитель"
-
-#
-#~ msgid "exit network adapter setup menu"
-#~ msgstr "закрыть настройки сетевого адаптера"
-
-#
-#~ msgid "failed"
-#~ msgstr "ошибка"
-
-#
-#~ msgid "full /etc directory"
-#~ msgstr "всю папку /etc"
-
-#
-#~ msgid "hidden network"
-#~ msgstr "скрытая сеть"
-
-#
-#~ msgid "hidden..."
-#~ msgstr "скрытый..."
-
-#
-#~ msgid "hide extended description"
-#~ msgstr "скрыть расширенное описание"
-
-#
-#~ msgid ""
-#~ "incoming call!\n"
-#~ "%s calls on %s!"
-#~ msgstr ""
-#~ "входящий звонок!\n"
-#~ "%sзвонок на %s!"
-
-#
-#~ msgid "menulist"
-#~ msgstr "список меню"
-
-#
-#~ msgid "no HDD found"
-#~ msgstr "не найден HDD"
-
-#
-#~ msgid "no Picture found"
-#~ msgstr "Изображение не найдено"
-
-#
-#~ msgid "none"
-#~ msgstr "никакой"
-
-#
-#~ msgid "open virtual keyboard input help"
-#~ msgstr "показать помошь к вирт. клавиатуре"
-
-#
-#~ msgid ""
-#~ "scan done!\n"
-#~ "%d services found!"
-#~ msgstr ""
-#~ "поиск завершен.\n"
-#~ "%d сервисов найдено."
-
-#
-#~ msgid ""
-#~ "scan done!\n"
-#~ "No service found!"
-#~ msgstr ""
-#~ "поиск завершен.\n"
-#~ "сервис не найден."
-
-#
-#~ msgid ""
-#~ "scan done!\n"
-#~ "One service found!"
-#~ msgstr ""
-#~ "поиск завершен.\n"
-#~ "Один сервис найден."
-
-#
-#~ msgid ""
-#~ "scan in progress - %d %% done!\n"
-#~ "%d services found!"
-#~ msgstr ""
-#~ "идет поиск- %d %% выполнено!\n"
-#~ "%d сервисов найдено!"
-
-#
-#~ msgid "select .NFI flash file"
-#~ msgstr "выбрать .NFI имидж"
-
-#
-#~ msgid "select image from server"
-#~ msgstr "выбрать имидж с сервера"
-
-#
-#~ msgid "service pin"
-#~ msgstr "pin сервиса"
-
-#
-#~ msgid "setup pin"
-#~ msgstr "pin настроек"
-
-#
-#~ msgid "show EPG..."
-#~ msgstr "Показать EPG..."
-
-#
-#~ msgid "show all"
-#~ msgstr "показать все"
-
-#
-#~ msgid "show first selected tag"
-#~ msgstr "показать первую выбранную метку"
-
-#
-#~ msgid "show second selected tag"
-#~ msgstr "показать вторую выбранную метку"
-
-#
-#~ msgid "show single service EPG..."
-#~ msgstr "показать телегид"
-
-#
-#~ msgid "text"
-#~ msgstr "текст"
-
-#
-#~ msgid "until restart"
-#~ msgstr "во время перезагрузки"
+#~ msgid "Prev"
+#~ msgstr "Пред."

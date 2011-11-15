@@ -132,6 +132,8 @@ class Harddisk:
 		cap = self.diskSize()
 		if cap == 0:
 			return ""
+		if cap < 1000:
+			return "%03d MB" % cap
 		return "%d.%03d GB" % (cap/1000, cap%1000)
 
 	def model(self):
@@ -300,13 +302,14 @@ class Harddisk:
 		task.weighting = 5
 		task.setTool('sfdisk')
 		task.args.append('-f')
+		task.args.append('-uS')
 		task.args.append(self.disk_path)
-		if size > 200000:
+		if size > 128000:
 			# Start at sector 8 to better support 4k aligned disks
-			print "[HD] Detected >200GB disk, using 4k alignment"
+			print "[HD] Detected >128GB disk, using 4k alignment"
 			task.initial_input = "8,\n;0,0\n;0,0\n;0,0\ny\n"
 		else:
-			# Smaller disks don't need that
+			# Smaller disks (CF cards, sticks etc) don't need that
 			task.initial_input = "0,\n;\n;\n;\ny\n"
 
 		task = Task.ConditionTask(job, _("Wait for partition"))
@@ -319,10 +322,14 @@ class Harddisk:
 		else:
 			cmd = "mkfs.ext3"
 		task.setTool(cmd)
-
-		if size > 16 * 1024:
+		if size > 250000:
+			# No more than 256k i-nodes (prevent problems with fsck memory requirements)
+			task.args += ["-T", "largefile", "-O", "sparse_super", "-N", "262144"]
+		elif size > 16384:
+			# between 16GB and 250GB: 1 i-node per megabyte
 			task.args += ["-T", "largefile", "-O", "sparse_super"]
-		elif size > 2 * 1024:
+		elif size > 2048:
+			# Over 2GB: 32 i-nodes per megabyte
 			task.args += ["-T", "largefile", "-N", str(size * 32)]
 		task.args += ["-m0", "-O", "dir_index", self.partitionPath("1")]
 
@@ -503,6 +510,12 @@ class Partition:
 		except OSError:
 			return None
 
+	def tabbedDescription(self):
+		if self.mountpoint.startswith('/media/net'):
+			# Network devices have a user defined name
+			return self.description
+		return self.description + '\t' + self.mountpoint
+
 	def mounted(self, mounts = None):
 		# THANK YOU PYTHON FOR STRIPPING AWAY f_fsid.
 		# TODO: can os.path.ismount be used?
@@ -521,7 +534,7 @@ class Partition:
 			if mounts is None:
 				mounts = getProcMounts()
 			for fields in mounts:
-				if self.mountpoint.endswith('/'):
+				if self.mountpoint.endswith('/') and not self.mountpoint == '/':
 					if fields[1] + '/' == self.mountpoint:
 						return fields[2]
 				else:
@@ -741,6 +754,18 @@ class HarddiskManager:
 				self.partitions.remove(x)
 				self.on_partition_list_change("remove", x)
 
+	def setDVDSpeed(self, device, speed = 0):
+		ioctl_flag=int(0x5322)
+		if not device.startswith('/'):
+			device = "/dev/" + device
+		try:
+			from fcntl import ioctl
+			cd = open(device)
+			ioctl(cd.fileno(), ioctl_flag, speed) 
+			cd.close()
+		except Exception, ex:
+			print "[Harddisk] Failed to set %s speed to %s" % (device, speed), ex
+
 class UnmountTask(Task.LoggingTask):
 	def __init__(self, job, hdd):
 		Task.LoggingTask.__init__(self, job, _("Unmount"))
@@ -816,3 +841,4 @@ class MkfsTask(Task.LoggingTask):
 
 
 harddiskmanager = HarddiskManager()
+SystemInfo["ext4"] = isFileSystemSupported("ext4")

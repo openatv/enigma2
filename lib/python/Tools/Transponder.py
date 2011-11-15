@@ -1,4 +1,5 @@
 from enigma import eDVBFrontendParametersSatellite, eDVBFrontendParametersCable, eDVBFrontendParametersTerrestrial
+from Components.NimManager import nimmanager
 
 def ConvertToHumanReadable(tp, type = None):
 	ret = { }
@@ -27,6 +28,7 @@ def ConvertToHumanReadable(tp, type = None):
 			eDVBFrontendParametersSatellite.Modulation_QPSK : "QPSK",
 			eDVBFrontendParametersSatellite.Modulation_QAM16 : "QAM16",
 			eDVBFrontendParametersSatellite.Modulation_8PSK : "8PSK"}[tp["modulation"]]
+		ret["orbital_position"] = nimmanager.getSatName(int(tp["orbital_position"]))
 		ret["polarization"] = {
 			eDVBFrontendParametersSatellite.Polarisation_Horizontal : _("Horizontal"),
 			eDVBFrontendParametersSatellite.Polarisation_Vertical : _("Vertical"),
@@ -113,8 +115,8 @@ def ConvertToHumanReadable(tp, type = None):
 			eDVBFrontendParametersTerrestrial.Inversion_On : _("On"),
 			eDVBFrontendParametersTerrestrial.Inversion_Off : _("Off")}[tp["inversion"]]
 	else:
-		print "ConvertToHumanReadable: no or unknown type in tpdata dict!"
-	for x in tp.keys():
-		if not ret.has_key(x):
-			ret[x] = tp[x]
+		print "ConvertToHumanReadable: no or unknown type in tpdata dict for type:", type
+	for k,v in tp.items():
+		if k not in ret:
+			ret[k] = v
 	return ret

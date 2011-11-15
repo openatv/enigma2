@@ -43,6 +43,7 @@ config.movielist.videodirs = ConfigLocations(default=[resolveFilename(SCOPE_HDD)
 config.movielist.last_selected_tags = ConfigSet([], default=[])
 config.movielist.play_audio_internal = ConfigYesNo(default=True)
 config.movielist.settings_per_directory = ConfigYesNo(default=True)
+config.movielist.root = ConfigSelection(default="/media", choices=["/","/media","/media/hdd","/media/hdd/movie"])
 
 userDefinedButtons = None
 
@@ -50,6 +51,7 @@ last_selected_dest = []
 
 AUDIO_EXTENSIONS = frozenset((".mp3", ".wav", ".ogg", ".flac", ".m4a", ".mp2", ".m2a"))
 DVD_EXTENSIONS = ('.iso', '.img')
+IMAGE_EXTENSIONS = frozenset((".jpg", ".png", ".gif", ".bmp"))
 preferredTagEditor = None
 
 def defaultMoviePath():
@@ -94,7 +96,6 @@ def isFolder(item):
 		return False
 	return (item[0].flags & eServiceReference.mustDescent) != 0
 
-canDelete = isSimpleFile
 
 def canMove(item):
 	if not item:
@@ -104,6 +105,8 @@ def canMove(item):
 	if item[0].flags & eServiceReference.mustDescent:
 		return not isTrashFolder(item[0])
 	return True
+
+canDelete = canMove
 
 def canCopy(item):
 	if not item:
@@ -224,7 +227,9 @@ class MovieBrowserConfig(ConfigListScreen,Screen):
 		cfg.moviesort = ConfigSelection(default=str(config.movielist.moviesort.value), choices = [
 			(str(MovieList.SORT_RECORDED), _("sort by date")),
 			(str(MovieList.SORT_ALPHANUMERIC), _("alphabetic sort")),
-			(str(MovieList.SHUFFLE), _("shuffle"))])
+			(str(MovieList.SHUFFLE), _("shuffle")),
+			(str(MovieList.SORT_RECORDED_REVERSE), _("reverse by date")),
+			(str(MovieList.SORT_ALPHANUMERIC_REVERSE), _("alphabetic reverse"))])
 		cfg.listtype = ConfigSelection(default=str(config.movielist.listtype.value), choices = [
 			(str(MovieList.LISTTYPE_ORIGINAL), _("list style default")),
 			(str(MovieList.LISTTYPE_COMPACT_DESCRIPTION), _("list style compact with description")),
@@ -241,9 +246,10 @@ class MovieBrowserConfig(ConfigListScreen,Screen):
 			getConfigListEntry(_("Show status icons in Movielist"), config.usage.show_icons_in_movielist),
 			getConfigListEntry(_("Show icon for new/unseen items"), config.usage.movielist_unseen),
 			getConfigListEntry(_("Play audio in background"), config.movielist.play_audio_internal),
+			getConfigListEntry(_("Root directory"), config.movielist.root),
 			]
-		for k,v in userDefinedButtons.items():
-			configList.append(getConfigListEntry(_(k), v))
+		for btn in ('red', 'green', 'yellow', 'blue', 'tv', 'radio'):
+			configList.append(getConfigListEntry(_(btn), userDefinedButtons[btn]))
 		ConfigListScreen.__init__(self, configList, session=session, on_change = self.changedEntry)
 		self["key_red"] = Button(_("Cancel"))
 		self["key_green"] = Button(_("Ok"))
@@ -437,6 +443,10 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.movemode = False
 		self.bouquet_mark_edit = False
 
+		self.listTimer = eTimer()
+		self.listTimer.timeout.get().append(self.updateHDDData)
+		self.feedbackTimer = None
+
 		self.activityTimer = eTimer()
 		self.activityTimer.timeout.get().append(self.hidewaitingtext)
 
@@ -449,7 +459,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		if not os.path.isdir(config.movielist.last_videodir.value):
 			config.movielist.last_videodir.value = defaultMoviePath()
 			config.movielist.last_videodir.save()
-		self.current_ref = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + config.movielist.last_videodir.value)
+		self.setCurrentRef(config.movielist.last_videodir.value)
 
 		self.settings = {\
 			"listtype": config.movielist.listtype.value,
@@ -475,11 +485,13 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self["InfobarActions"] = HelpableActionMap(self, "InfobarActions", 
 			{
 				"showMovies": (self.doPathSelect, _("select the movie path")),
+				"showRadio": (self.btn_radio, "?"),
+				"showTv": (self.btn_tv, _("Home")),
 			})
 
 		self["NumberActions"] =  HelpableActionMap(self, "NumberActions", 
 			{
-				"1": (self.preview, _("Preview")),
+				"0": (self.preview, _("Preview")),
 				"2": (self.list.moveToFirst, _("Go to top of list")),
 				"5": (self.list.moveToFirstMovie, _("Go to first movie")),
 				"8": (self.list.moveToLast, _("Go to last item")),
@@ -506,8 +518,28 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				"cancel": (self.abort, _("exit movielist")),
 				"ok": (self.itemSelected, _("select movie")),
 			})
-
-		self.onShown.append(self.updateHDDData)
+		tPreview = _("Preview")
+		tFwd = _("skip forward") + " (" + tPreview +")"
+		tBack= _("skip backward") + " (" + tPreview +")"
+		sfwd = lambda: self.seekRelative(1, config.seek.selfdefined_46.value * 90000)
+		ssfwd = lambda: self.seekRelative(1, config.seek.selfdefined_79.value * 90000)
+		sback = lambda: self.seekRelative(-1, config.seek.selfdefined_46.value * 90000)
+		ssback = lambda: self.seekRelative(-1, config.seek.selfdefined_79.value * 90000)
+		self["SeekActions"] = HelpableActionMap(self, "InfobarSeekActions",
+			{
+				"playpauseService": (self.preview, _("Preview")),
+				"seekFwd": (sfwd, tFwd),
+				"seekFwdManual": (ssfwd, tFwd),
+				"seekBack": (sback, tBack),
+				"seekBackManual": (ssback, tBack),
+				"seekdef:1": (lambda: self.seekRelative(-1, config.seek.selfdefined_13.value*90000), tFwd),
+				"seekdef:3": (lambda: self.seekRelative(1, config.seek.selfdefined_13.value*90000), tFwd),
+				"seekdef:4": (sback, tBack),
+				"seekdef:6": (sfwd, tFwd),
+				"seekdef:7": (ssback, tBack),
+				"seekdef:9": (ssfwd, tFwd),
+			}, prio=5)
+		self.onShown.append(self.timerHDDData)
 		self.onLayoutFinish.append(self.saveListsize)
 		self.list.connectSelChanged(self.updateButtons)
 		self.inited = False
@@ -533,20 +565,24 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				'tags': _("Tags"),
 				'addbookmark': _("Add Bookmark"),
 				'bookmarks': _("Location"),
-				'rename': _("Rename")
+				'rename': _("Rename"),
+				'gohome': _("Home"),
 			}
 			for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST):
-				print "Plugin:", p.description, p.name
 				userDefinedActions['@' + p.name] = p.description
 			config.movielist.btn_red = ConfigSelection(default='delete', choices=userDefinedActions)
 			config.movielist.btn_green = ConfigSelection(default='move', choices=userDefinedActions)
 			config.movielist.btn_yellow = ConfigSelection(default='bookmarks', choices=userDefinedActions)
 			config.movielist.btn_blue = ConfigSelection(default='tags', choices=userDefinedActions)
+			config.movielist.btn_radio = ConfigSelection(default='bookmarks', choices=userDefinedActions)
+			config.movielist.btn_tv = ConfigSelection(default='gohome', choices=userDefinedActions)
 			userDefinedButtons ={
 				'red': config.movielist.btn_red,
 				'green': config.movielist.btn_green,
 				'yellow': config.movielist.btn_yellow,
-				'blue': config.movielist.btn_blue
+				'blue': config.movielist.btn_blue,
+				'radio': config.movielist.btn_radio,
+				'tv': config.movielist.btn_tv,
 			}
 
 	def _callButton(self, name):
@@ -573,7 +609,11 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self._callButton(config.movielist.btn_yellow.value)
 	def btn_blue(self):
 		self._callButton(config.movielist.btn_blue.value)
-		
+	def btn_radio(self):
+		self._callButton(config.movielist.btn_radio.value)
+	def btn_tv(self):
+		self._callButton(config.movielist.btn_tv.value)
+
 	def __onClose(self):
 		try:
 			NavigationInstance.instance.RecordTimer.on_state_change.remove(self.list.updateRecordings)
@@ -608,8 +648,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 
 	def updateButtons(self):
 		item = self.getCurrentSelection()
-		for name,cfg in userDefinedButtons.items():
-			action = cfg.value
+		for name in ('red', 'green', 'yellow', 'blue'):
+		        action = userDefinedButtons[name].value
 			if action.startswith('@'):
 				check = self.can_default
 			else:
@@ -637,10 +677,14 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			self.updateDescription()
 
 	def updateHDDData(self):
+		self.listTimer.stop()
 		if not self.inited:
 			self.reloadList(self.selectedmovie, home=True)
-			self.activityTimer.start(500)
+			self.activityTimer.start(100)
 			self.inited=True
+
+	def timerHDDData(self):
+		self.listTimer.start(10)
 
 	def hidewaitingtext(self):
 		self.activityTimer.stop()
@@ -753,6 +797,13 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 					self.playInBackground = current
 					self.session.nav.playService(current)
 
+	def seekRelative(self, direction, amount):
+		if self.playInBackground:
+			seekable = self.getSeek()
+			if seekable is None:
+				return
+			seekable.seekRelative(direction, amount)
+
 	def playbackStop(self):
 		if self.playInBackground:
 			self.playInBackground = None
@@ -781,6 +832,22 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				if ext in DVD_EXTENSIONS:
 					if self.playAsDVD(path):
 						return
+				if ext in IMAGE_EXTENSIONS:
+				        try:
+				                from Plugins.Extensions.PicturePlayer import ui
+				                # Build the list for the PicturePlayer UI
+						filelist = []
+						index = 0
+						for item in self.list.list:
+							p = item[0].getPath()
+							if p == path:
+							        index = len(filelist)
+							if os.path.splitext(p)[1].lower() in IMAGE_EXTENSIONS:
+							        filelist.append(((p,False), None))
+				                self.session.open(ui.Pic_Full_View, filelist, index, path)
+					except Exception, ex:
+					        print "[ML] Cannot display", str(ex)
+					return
 				self.movieSelected()
 
 	# Note: DVDBurn overrides this method, hence the itemSelected indirection.
@@ -900,12 +967,17 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 	def setSortType(self, type):
 		self["list"].setSortType(type)
 
+	def setCurrentRef(self, path):
+		self.current_ref = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + path)
+		# Magic: this sets extra things to show
+		self.current_ref.setName('8192:jpg 8192:png 8192:gif 8192:bmp')
+
 	def reloadList(self, sel = None, home = False):
 		if not os.path.isdir(config.movielist.last_videodir.value):
 			path = defaultMoviePath()
 			config.movielist.last_videodir.value = path
 			config.movielist.last_videodir.save()
-			self.current_ref = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + path)
+			self.setCurrentRef(path)
 			self["freeDiskSpace"].path = path
 		if sel is None:
 			sel = self.getCurrent()
@@ -942,7 +1014,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			if os.path.isdir(res):
 				config.movielist.last_videodir.value = res
 				config.movielist.last_videodir.save()
-				self.current_ref = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + res)
+				self.setCurrentRef(res)
 				self["freeDiskSpace"].path = res
 				self.reloadList(home = True)
 			else:
@@ -1008,7 +1080,11 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			inlist.append(d)
 		for p in Components.Harddisk.harddiskmanager.getMountedPartitions():
 			d = os.path.normpath(p.mountpoint)
-			bookmarks.append((p.description, d))
+			if d in inlist:
+				# improve shortcuts to mountpoints
+				bookmarks[bookmarks.index((d,d))] = (p.tabbedDescription(), d)
+			else:
+				bookmarks.append((p.tabbedDescription(), d))
 			inlist.append(d)
 		for d in last_selected_dest:
 			if d not in inlist:
@@ -1295,11 +1371,72 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			return
 		current = item[0]
 		info = item[1]
-		if current and (not current.flags & eServiceReference.mustDescent):
-			cur_path = os.path.realpath(current.getPath())
-			st = os.stat(cur_path)
-			name = info and info.getName(current) or _("this recording")
-			are_you_sure = _("Do you really want to delete %s?") % (name)
+		cur_path = os.path.realpath(current.getPath())
+		st = os.stat(cur_path)
+		name = info and info.getName(current) or _("this recording")
+		are_you_sure = _("Do you really want to delete %s?") % (name)
+		if current.flags & eServiceReference.mustDescent:
+			files = 0
+			subdirs = 0
+			if args:
+				# already confirmed...
+				# but not implemented yet...
+				msg = ''
+				if config.usage.movielist_trashcan.value:
+					try:
+						# Move the files to the trash can in a way that their CTIME is
+						# set to "now". A simple move would not correctly update the
+						# ctime, and hence trigger a very early purge.
+						trash = Tools.Trashcan.createTrashFolder()
+						trash = os.path.join(trash, os.path.split(cur_path)[1])
+						os.mkdir(trash)
+						for root, dirnames, filenames in os.walk(cur_path):
+							trashroot = os.path.join(trash, root[len(cur_path)+1:])
+							for fn in filenames:
+								print "Move %s -> %s" % (os.path.join(root, fn), os.path.join(trashroot, fn))
+								os.rename(os.path.join(root, fn), os.path.join(trashroot, fn))
+							for dn in dirnames:
+								print "MkDir", os.path.join(trashroot, dn)
+								os.mkdir(os.path.join(trashroot, dn))
+						# second pass to remove the empty directories
+						for root, dirnames, filenames in os.walk(cur_path, topdown=False):
+							for dn in dirnames:
+								print "rmdir", os.path.join(trashroot, dn)
+								os.rmdir(os.path.join(root, dn))
+						os.rmdir(cur_path)
+						self["list"].removeService(current)
+						self.showActionFeedback(_("Deleted") + " " + name)
+						# Files were moved to .Trash, ok.
+						return
+					except OSError, e:
+						print "[MovieSelection] Cannot move to trash", e
+						if e.errno == 18:
+							# This occurs when moving across devices
+							msg = _("Cannot move files on a different disk or system to the trash can") + ". "
+						else:
+							msg = _("Cannot move to trash can") + ".\n" + str(e) + "\n"
+					except Exception, e:
+						print "[MovieSelection] Weird error moving to trash", e
+						# Failed to create trash or move files.
+						msg = _("Cannot move to trash can") + "\n" + str(e) + "\n"
+				msg += "Sorry, deleting directories can (for now) only be done through the trash can."
+				self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR)
+				return
+			for fn in os.listdir(cur_path):
+				if (fn != '.') and (fn != '..'):
+					ffn = os.path.join(cur_path, fn)
+					if os.path.isdir(ffn):
+						subdirs += 1
+					else:
+						files += 1
+			if files or subdirs:
+				self.session.openWithCallback(self.delete, MessageBox, _("Directory contains %d file(s) and %d sub-directories.\n") % (files,subdirs) + are_you_sure)
+				return
+			else:
+				os.rmdir(cur_path)
+				self["list"].removeService(current)
+				self.showActionFeedback(_("Deleted") + " " + name)
+		else:
 			if not args:
 				rec_filename = os.path.split(current.getPath())[1]
 				if rec_filename.endswith(".ts"): rec_filename = rec_filename[:-3]
@@ -1322,11 +1459,12 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 					if cur_path.startswith(trash):
 						msg = _("Deleted items") + "\n"
 					else:
-						moveServiceFiles(self.getCurrent(), trash, name, allowCopy=False)
+						moveServiceFiles(current, trash, name, allowCopy=False)
 						self["list"].removeService(current)
 						# Files were moved to .Trash, ok.
 						from Screens.InfoBarGenerics import delResumePoint
 						delResumePoint(current)
+						self.showActionFeedback(_("Deleted") + " " + name)
 						return
 				except OSError, e:
 					print "[MovieSelection] Cannot move to trash", e
@@ -1334,7 +1472,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 						# This occurs when moving across devices
 						msg = _("Cannot move files on a different disk or system to the trash can") + ". "
 					else:
-						msg = _("Cannot move to trash can") + ".\n" + e.message + "\n"
+						msg = _("Cannot move to trash can") + ".\n" + str(e) + "\n"
 				except Exception, e:
 					print "[MovieSelection] Weird error moving to trash", e
 					# Failed to create trash or move files.
@@ -1346,25 +1484,28 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 	def deleteConfirmed(self, confirmed):
 		if not confirmed:
 			return
-		current = self.getCurrent()
-		if current is None:
-			# huh?
-			return
+		item = self.getCurrentSelection()
+		if item is None:
+			return # huh?
+		current = item[0]
+		info = item[1]
+		name = info and info.getName(current) or _("this recording")
 		serviceHandler = eServiceCenter.getInstance()
 		offline = serviceHandler.offlineOperations(current)
-		result = False
-		if offline is not None:
-			# really delete!
-			if not offline.deleteFromDisk(0):
-				result = True
-		if result == False:
-			self.session.open(MessageBox, _("Delete failed!"), MessageBox.TYPE_ERROR)
-		else:
+		try:
+			if offline is None:
+			        from enigma import eBackgroundFileEraser
+			        eBackgroundFileEraser.getInstance().erase(os.path.realpath(current.getPath()))
+			else:
+				if offline.deleteFromDisk(0):
+					raise Exception, "Offline delete failed"
 			self["list"].removeService(current)
 			from Screens.InfoBarGenerics import delResumePoint
 			delResumePoint(current)
-			# Todo: This is pointless, delete is not finished yet.
-			self["freeDiskSpace"].update()
+			self.showActionFeedback(_("Deleted") + " " + name)
+		except Exception, ex:
+			self.session.open(MessageBox, _("Delete failed!") + "\n" + name + "\n" + str(ex), MessageBox.TYPE_ERROR)
+
 
 	def purgeAll(self):
 		recordings = self.session.nav.getRecordings()
@@ -1385,3 +1526,22 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 	def showNetworkSetup(self):
 		import NetworkSetup
 		self.session.open(NetworkSetup.NetworkAdapterSelection)
+
+	def showActionFeedback(self, text):
+		if self.feedbackTimer is None:
+			self.feedbackTimer = eTimer()
+			self.feedbackTimer.callback.append(self.hideActionFeedback)
+		else:
+			self.feedbackTimer.stop()
+		self.feedbackTimer.start(3000, 1)
+		self.diskinfo.setText(text)
+
+	def hideActionFeedback(self):
+		print "[ML] hide feedback"
+		self.diskinfo.update()
+
+	def can_gohome(self, item):
+	        return True
+
+	def do_gohome(self):
+	        self.gotFilename(defaultMoviePath())

@@ -5,6 +5,8 @@
 #include <lib/base/init_num.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 #include <unistd.h>
 #include <errno.h>
 
@@ -13,8 +15,8 @@ eBackgroundFileEraser *eBackgroundFileEraser::instance;
 eBackgroundFileEraser::eBackgroundFileEraser():
 	messages(this,1),
 	stop_thread_timer(eTimer::create(this)),
-	erase_flags(ERASE_FLAG_HDD),
-	erase_speed(20 << 20)
+	erase_speed(20 << 20),
+	erase_flags(ERASE_FLAG_HDD)
 {
 	if (!instance)
 		instance=this;
@@ -78,36 +80,59 @@ void eBackgroundFileEraser::gotMessage(const Message &msg )
 	else
 	{
 		const char* c_filename = msg.filename.c_str();
+		bool unlinked = false;
 		eDebug("[eBackgroundFileEraser] deleting '%s'", c_filename);
 		if ((((erase_flags & ERASE_FLAG_HDD) != 0) && (strncmp(c_filename, "/media/hdd/", 11) == 0)) ||
 		    ((erase_flags & ERASE_FLAG_OTHER) != 0))
 		{
 			struct stat st;
 			int i = ::stat(c_filename, &st);
-			// truncate only if file exists and does not have any hard links
-			if (i == 0 && st.st_nlink == 1 )
+			// truncate only if the file exists and does not have any hard links
+			if ((i == 0) && (st.st_nlink == 1))
 			{
-				while (st.st_size > erase_speed)
+				if (st.st_size > erase_speed)
 				{
-					st.st_size -= erase_speed;
-					if (::truncate(c_filename, st.st_size) != 0)
+					int fd = ::open(c_filename, O_WRONLY|O_SYNC);
+					if (fd == -1)
 					{
-						eDebug("Failed to truncate %s", c_filename);
-						break; // don't try again, just unlink
+						eDebug("File %s cannot be opened for writing", c_filename);
 					}
-					usleep(500000); // wait half a second
+					else
+					{
+						// Remove directory entry (file still open, so not erased yet)
+						if (::unlink(c_filename) == 0)
+							unlinked = true;
+						st.st_size -= st.st_size % erase_speed; // align on erase_speed
+						::ftruncate(fd, st.st_size);
+						usleep(500000); // even if truncate fails, wait a moment
+						while (st.st_size > erase_speed)
+						{
+							st.st_size -= erase_speed;
+							if (::ftruncate(fd, st.st_size) != 0)
+							{
+								eDebug("Failed to truncate %s (%m)", c_filename);
+								break; // don't try again
+							}
+							usleep(500000); // wait half a second
+						}
+						::close(fd);
+					}
 				}
 			}
 		}
-		if ( ::unlink(c_filename) < 0 )
-			eDebug("remove file %s failed (%m)", c_filename);
+		if (!unlinked)
+		{
+			if ( ::unlink(c_filename) < 0 )
+				eDebug("remove file %s failed (%m)", c_filename);
+		}
 		stop_thread_timer->start(1000, true); // stop thread in one seconds
 	}
 }
+
 void eBackgroundFileEraser::setEraseSpeed(int inMBperSecond)
 {
 	off_t value = inMBperSecond;
-	value = value << 19; // erase_speed is in MB per half second
+	value <<= 19; // erase_speed is in MB per half second
 	erase_speed = value;
 }
 

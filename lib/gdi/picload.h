@@ -8,35 +8,39 @@
 #include <lib/base/ebase.h>
 
 #ifndef SWIG
-class Cfilepara
+struct Cfilepara
 {
-public:
+	char *file;
+	unsigned char *pic_buffer;
+	gRGB *palette;
+	int palette_size;
+	int bits;
+	int id;
 	int max_x;
 	int max_y;
-	bool callback;
-	
-	const char *file;
-	int id;
 	int ox;
 	int oy;
-	unsigned char *pic_buffer;
 	std::string picinfo;
-	int test;
+	bool callback;
 	
-	Cfilepara(const char *mfile, int mid, std::string size)
+	Cfilepara(const char *mfile, int mid, std::string size):
+		file(strdup(mfile)),
+		pic_buffer(NULL),
+		palette(NULL),
+		palette_size(0),
+		bits(24),
+		id(mid),
+		picinfo(mfile),
+		callback(true)
 	{
-		file = strdup(mfile);
-		id = mid;
-		pic_buffer = NULL;
-		callback = true;
-		picinfo = mfile;
-		picinfo += + "\n" + size + "\n";
+		picinfo += "\n" + size + "\n";
 	}
 	
 	~Cfilepara()
 	{
-		if(pic_buffer != NULL)	delete pic_buffer;
-		picinfo.clear();
+		if (pic_buffer != NULL)	delete pic_buffer;
+		if (palette != NULL) delete palette;
+		free(file);
 	}
 	
 	void addExifInfo(std::string val) { picinfo += val + "\n"; }
@@ -61,11 +65,12 @@ class ePicLoad: public eMainloop, public eThread, public Object, public iObject
 		int max_x;
 		int max_y;
 		double aspect_ratio;
-		unsigned char background[4];
+		int background;
 		bool resizetype;
 		bool usecache;
 		int thumbnailsize;
 		int test;
+		PConf();
 	} m_conf;
 	
 	struct Message

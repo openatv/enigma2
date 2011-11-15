@@ -1,13 +1,11 @@
 from Components.Harddisk import harddiskmanager
-from config import config, ConfigSubsection, ConfigYesNo, ConfigSelection, ConfigText, ConfigNumber, ConfigSet, ConfigLocations, NoSave, ConfigClock, ConfigInteger, ConfigBoolean, ConfigPassword, ConfigIP
+from config import config, ConfigSubsection, ConfigYesNo, ConfigSelection, ConfigText, ConfigNumber, ConfigSet, ConfigLocations, NoSave, ConfigClock, ConfigInteger, ConfigBoolean, ConfigPassword, ConfigIP, ConfigSlider
 from Tools.Directories import resolveFilename, SCOPE_HDD, SCOPE_TIMESHIFT
 from enigma import setTunerTypePriorityOrder, setPreferredTuner, setSpinnerOnOff, setEnableTtCachingOnOff;
 from enigma import Misc_Options, eEnv;
 from Components.NimManager import nimmanager
 from SystemInfo import SystemInfo
-from Tools.Directories import pathExists
 import os
-from glob import glob
 import enigma
 from time import time
 
@@ -25,13 +23,14 @@ def InitUsageConfig():
 		folderprefix=""
 		boxtype="not detected"
 	config.misc.boxtype = ConfigText(default = boxtype)
-
-	config.usage = ConfigSubsection();
 	config.misc.useNTPminutes = ConfigSelection(default = "30", choices = [("30", "30 Minutes"), ("60", _("Hour")), ("1440", _("Once per day"))])
 
+	config.usage = ConfigSubsection();
 	config.usage.showdish = ConfigYesNo(default = True)
 	config.usage.multibouquet = ConfigYesNo(default = True)
 	config.usage.panicbutton = ConfigYesNo(default = True)
+	config.usage.multiepg_ask_bouquet = ConfigYesNo(default = False)
+
 	config.usage.quickzap_bouquet_change = ConfigYesNo(default = False)
 	config.usage.e1like_radio_mode = ConfigYesNo(default = True)
 	config.usage.infobar_onlinechecktimer = ConfigInteger(default=6, limits=(0, 48))
@@ -44,7 +43,11 @@ def InitUsageConfig():
 	config.usage.show_infobar_on_zap = ConfigYesNo(default = True)
 	config.usage.show_infobar_on_skip = ConfigYesNo(default = True)
 	config.usage.show_infobar_on_event_change = ConfigYesNo(default = False)
-	config.usage.show_infobar_eventinfo = ConfigYesNo(default = True)
+	config.usage.show_second_infobar = ConfigSelection(default = "1", choices = [("0", _("Off")), ("1", _("Event Info")), ("2", _("2nd Infobar"))])
+	config.usage.second_infobar_timeout = ConfigSelection(default = "5", choices = [
+		("0", _("no timeout")), ("1", "1 " + _("second")), ("2", "2 " + _("seconds")),
+		("3", "3 " + _("seconds")), ("4", "4 " + _("seconds")), ("5", "5 " + _("seconds")), ("6", "6 " + _("seconds")),
+		("7", "7 " + _("seconds")), ("8", "8 " + _("seconds")), ("9", "9 " + _("seconds")), ("10", "10 " + _("seconds"))])
 	config.usage.show_spinner = ConfigYesNo(default = True)
 	config.usage.enable_tt_caching = ConfigYesNo(default = True)
 	config.usage.hdd_standby = ConfigSelection(default = "300", choices = [
@@ -60,7 +63,7 @@ def InitUsageConfig():
 		("standard", _("standard")), ("swap", _("swap PiP and main picture")),
 		("swapstop", _("move PiP to main picture")), ("stop", _("stop PiP")) ])
 
-	if not pathExists(resolveFilename(SCOPE_HDD)):
+	if not os.path.exists(resolveFilename(SCOPE_HDD)):
 		try:
 			os.mkdir(resolveFilename(SCOPE_HDD),0755)
 		except OSError:
@@ -80,7 +83,7 @@ def InitUsageConfig():
 	config.usage.timer_path = ConfigText(default = "<default>")
 	config.usage.instantrec_path = ConfigText(default = "<default>")
 	
-	if not pathExists(resolveFilename(SCOPE_TIMESHIFT)):
+	if not os.path.exists(resolveFilename(SCOPE_TIMESHIFT)):
 		try:
 			os.mkdir(resolveFilename(SCOPE_TIMESHIFT),0755)
 		except OSError:
@@ -101,7 +104,7 @@ def InitUsageConfig():
 	config.usage.movielist_trashcan = ConfigYesNo(default=True)
 	config.usage.movielist_trashcan_days = ConfigNumber(default=8)
 	config.usage.movielist_trashcan_reserve = ConfigNumber(default=40)
-	config.usage.on_movie_start = ConfigSelection(default = "resume", choices = [
+	config.usage.on_movie_start = ConfigSelection(default = "ask", choices = [
 		("ask", _("Ask user")), ("resume", _("Resume from last position")), ("beginning", _("Start from the beginning")) ])
 	config.usage.on_movie_stop = ConfigSelection(default = "movielist", choices = [
 		("ask", _("Ask user")), ("movielist", _("Return to movie list")), ("quit", _("Return to previous service")) ])
@@ -149,8 +152,8 @@ def InitUsageConfig():
 					("MovieList", _("Movie List"))])
 	config.usage.channelbutton_mode = ConfigSelection(default="0", choices = [
 					("0", _("Just change channels")),
-					("1", _("Open channel selection")),
-					("2", _("Open bouquet selection"))])
+					("1", _("Channel List")),
+					("2", _("Bouquet List"))])
 	config.usage.show_bouquetalways = ConfigYesNo(default = False)
 	config.usage.show_event_progress_in_servicelist = ConfigYesNo(default = True)
 	config.usage.show_channel_numbers_in_servicelist = ConfigYesNo(default = True)
@@ -169,6 +172,8 @@ def InitUsageConfig():
 	config.usage.movielist_unseen = ConfigYesNo(default = True)
 
 	config.usage.swap_snr_on_osd = ConfigYesNo(default = False)
+	config.usage.swap_time_remaining_on_osd = ConfigSelection(default = "0", choices = [("0", _("Remanining")), ("1", _("Elapsed")), ("2", _("Elapsed & Remanining")), ("3", _("Remanining & Elapsed"))])
+	config.usage.swap_time_display_on_osd = ConfigSelection(default = "0", choices = [("0", _("Skin Setting")), ("1", _("Mins")), ("2", _("Hours Mins")), ("3", _("Percentage"))])
 
 	def SpinnerOnOffChanged(configElement):
 		setSpinnerOnOff(int(configElement.value))
@@ -191,6 +196,24 @@ def InitUsageConfig():
 	config.usage.show_cryptoinfo = ConfigYesNo(default = True)
 	config.usage.show_eit_nownext = ConfigYesNo(default = True)
 
+	config.osd = ConfigSubsection()
+	config.osd.dst_left = ConfigSlider(default = 0, increment = 1, limits = (0, 720))
+	config.osd.dst_width = ConfigSlider(default = 720, increment = 1, limits = (0, 720))
+	config.osd.dst_top = ConfigSlider(default = 0, increment = 1, limits = (0, 576))
+	config.osd.dst_height = ConfigSlider(default = 576, increment = 1, limits = (0, 576))
+	config.osd.alpha = ConfigSlider(default=255, limits=(0,255))
+	if config.misc.boxtype.value.startswith('vu'):
+		choiceoptions = [("0", _("Off")), ("1", _("Side by Side")),("2", _("Top and Bottom")), ("3", _("Auto"))]
+		config.osd.threeDmode = ConfigSelection(default = 'auto', choices = choiceoptions )
+	elif config.misc.boxtype.value.startswith('et'):
+		choiceoptions = [("off", _("Off")), ("auto", _("Auto")), ("sidebyside", _("Side by Side")),("topandbottom", _("Top and Bottom"))]
+		config.osd.threeDmode = ConfigSelection(default = 'auto', choices = choiceoptions )
+	else:
+		choiceoptions = [("off", _("Off"))]
+		config.osd.threeDmode = ConfigSelection(default = 'off', choices = choiceoptions )
+	config.osd.threeDznorm = ConfigSlider(default = 50, increment = 1, limits = (0, 100))
+	config.osd.show3dextensions = ConfigYesNo(default = False)
+	
 	config.epg = ConfigSubsection()
 	config.epg.eit = ConfigYesNo(default = True)
 	config.epg.mhw = ConfigYesNo(default = False)
@@ -217,28 +240,43 @@ def InitUsageConfig():
 	config.epg.freesat.addNotifier(EpgSettingsChanged)
 	config.epg.viasat.addNotifier(EpgSettingsChanged)
 	config.epg.netmed.addNotifier(EpgSettingsChanged)
+	config.epg.cacheloadsched = ConfigYesNo(default = False)
+	config.epg.cachesavesched = ConfigYesNo(default = False)
+	def EpgCacheLoadSchedChanged(configElement):
+		import Screens.EpgLoadSave
+		Screens.EpgLoadSave.EpgCacheLoadCheck()
+	def EpgCacheSaveSchedChanged(configElement):
+		import Screens.EpgLoadSave
+		Screens.EpgLoadSave.EpgCacheSaveCheck()
+ 	config.epg.cacheloadsched.addNotifier(EpgCacheLoadSchedChanged, immediate_feedback = False)
+ 	config.epg.cachesavesched.addNotifier(EpgCacheSaveSchedChanged, immediate_feedback = False)
+	config.epg.cacheloadtimer = ConfigSelection(default = 24, choices = [
+		("1", "1"),("2", "2"),("3", "3"),("4", "4"),("5", "5"),("6", "6"),("7", "7"),("8", "8"),("9", "9"),("10", "10"),
+		("11", "11"),("12", "12"),("13", "13"),("14", "14"),("15", "15"),("16", "16"),("17", "17"),("18", "18"),("19", "19"),("20", "20"),
+		("21", "21"),("22", "22"),("23", "23"),("24", "24")])
+	config.epg.cachesavetimer = ConfigSelection(default = 24, choices = [
+		("1", "1"),("2", "2"),("3", "3"),("4", "4"),("5", "5"),("6", "6"),("7", "7"),("8", "8"),("9", "9"),("10", "10"),
+		("11", "11"),("12", "12"),("13", "13"),("14", "14"),("15", "15"),("16", "16"),("17", "17"),("18", "18"),("19", "19"),("20", "20"),
+		("21", "21"),("22", "22"),("23", "23"),("24", "24")])
 
-	hddchoises = []
+	hddchoises = [('/etc/enigma2/', 'Internal Flash')]
 	for p in harddiskmanager.getMountedPartitions():
 		d = os.path.normpath(p.mountpoint)
-		if pathExists(p.mountpoint):
+		if os.path.exists(p.mountpoint):
 			if p.mountpoint != '/':
 				hddchoises.append((d + '/', p.mountpoint))
-	if not hddchoises:
-		hddchoises.append(('/etc/enigma2/', 'Internal Flash'))
-	config.misc.epgcachepath = ConfigSelection(choices = hddchoises)
+	config.misc.epgcachepath = ConfigSelection(default = '/etc/enigma2/', choices = hddchoises)
 	config.misc.epgcachefilename = ConfigText(default='epg', fixed_size=False)
 	config.misc.epgcache_filename = ConfigText(default = (config.misc.epgcachepath.value + config.misc.epgcachefilename.value.replace('.dat','') + '.dat'))
 	def EpgCacheChanged(configElement):
-		config.misc.epgcache_filename.setValue(config.misc.epgcachepath.value + config.misc.epgcachefilename.value.replace('.dat','') + '.dat')
+		config.misc.epgcache_filename.setValue(os.path.join(config.misc.epgcachepath.value, config.misc.epgcachefilename.value.replace('.dat','') + '.dat'))
 		config.misc.epgcache_filename.save()
-		enigma.eEPGCache.getInstance().setCacheFile(config.misc.epgcachepath.value + config.misc.epgcachefilename.value.replace('.dat','') + '.dat')
+		enigma.eEPGCache.getInstance().setCacheFile(config.misc.epgcache_filename.value)
 		from enigma import eEPGCache
 		epgcache = eEPGCache.getInstance()
 		epgcache.save()
-	config.misc.epgcachepath.addNotifier(EpgCacheChanged, immediate_feedback = False)
+ 	config.misc.epgcachepath.addNotifier(EpgCacheChanged, immediate_feedback = False)
 	config.misc.epgcachefilename.addNotifier(EpgCacheChanged, immediate_feedback = False)
-
 
 	def setHDDStandby(configElement):
 		for hdd in harddiskmanager.HDDList():
@@ -256,6 +294,14 @@ def InitUsageConfig():
 
 	config.usage.keymap = ConfigText(default = eEnv.resolve("${datadir}/enigma2/keymap.xml"))
 
+	config.network = ConfigSubsection()
+	config.network.AFP_autostart = ConfigYesNo(default = True)
+	config.network.NFS_autostart = ConfigYesNo(default = True)
+	config.network.OpenVPN_autostart = ConfigYesNo(default = True)
+	config.network.Samba_autostart = ConfigYesNo(default = True)
+	config.network.Inadyn_autostart = ConfigYesNo(default = True)
+	config.network.uShare_autostart = ConfigYesNo(default = True)
+
 	config.timeshift = ConfigSubsection()
 	config.timeshift.enabled = ConfigYesNo(default = False)
 	config.timeshift.maxevents = ConfigInteger(default=5, limits=(1, 99))
@@ -268,6 +314,7 @@ def InitUsageConfig():
 	config.timeshift.isRecording = NoSave(ConfigYesNo(default = False))
 
 	config.seek = ConfigSubsection()
+	config.seek.sensibility = ConfigInteger(default=10, limits=(1, 10))
 	config.seek.selfdefined_13 = ConfigNumber(default=15)
 	config.seek.selfdefined_46 = ConfigNumber(default=60)
 	config.seek.selfdefined_79 = ConfigNumber(default=300)
@@ -293,7 +340,7 @@ def InitUsageConfig():
 	debugpath = [('/home/root/', '/home/root/')]
 	for p in harddiskmanager.getMountedPartitions():
 		d = os.path.normpath(p.mountpoint)
-		if pathExists(p.mountpoint):
+		if os.path.exists(p.mountpoint):
 			if p.mountpoint != '/':
 				debugpath.append((d + '/', p.mountpoint))
 	config.crash.debug_path = ConfigSelection(default = "/home/root/", choices = debugpath)
@@ -416,6 +463,7 @@ def InitUsageConfig():
 	config.autolanguage = ConfigSubsection()
 	audio_language_choices=[	
 		("---", "None"),
+		("und", "Undetermined"),
 		("orj dos ory org esl qaa und mis mul ORY", "Original"),
 		("ara", "Arabic"),
 		("eus baq", "Basque"),
@@ -424,7 +472,7 @@ def InitUsageConfig():
 		("ces cze", "Czech"),
 		("dan", "Danish"),
 		("dut ndl", "Dutch"),
-		("eng", "English"),
+		("eng qaa", "English"),
 		("est", "Estonian"),
 		("fin", "Finnish"),
 		("fra fre", "French"),
@@ -436,7 +484,7 @@ def InitUsageConfig():
 		("lat", "Latvian"),
 		("lit", "Lithuanian"),
 		("ltz", "Letzeburgesch"),
-		("nob", "Norwegian"),
+		("nor", "Norwegian"),
 		("pol", "Polish"),
 		("por", "Portuguese"),
 		("fas per", "Persian"),
@@ -448,6 +496,17 @@ def InitUsageConfig():
 		("spa", "Spanish"),
 		("swe", "Swedish"),
 		("tur", "Turkish")]
+
+	def setEpgLanguage(configElement):
+		enigma.eServiceEvent.setEPGLanguage(configElement.value)
+	config.autolanguage.audio_epglanguage = ConfigSelection(audio_language_choices[:1] + audio_language_choices [2:], default="---")
+	config.autolanguage.audio_epglanguage.addNotifier(setEpgLanguage)
+
+	def setEpgLanguageAlternative(configElement):
+		enigma.eServiceEvent.setEPGLanguageAlternative(configElement.value)
+	config.autolanguage.audio_epglanguage_alternative = ConfigSelection(audio_language_choices[:1] + audio_language_choices [2:], default="---")
+	config.autolanguage.audio_epglanguage_alternative.addNotifier(setEpgLanguageAlternative)
+
 	config.autolanguage.audio_autoselect1 = ConfigSelection(choices=audio_language_choices, default="---")
 	config.autolanguage.audio_autoselect2 = ConfigSelection(choices=audio_language_choices, default="---")
 	config.autolanguage.audio_autoselect3 = ConfigSelection(choices=audio_language_choices, default="---")
@@ -493,6 +552,7 @@ def InitUsageConfig():
 	config.imagemanager.backupretry = ConfigNumber(default = 30)
 	config.imagemanager.backupretrycount = NoSave(ConfigNumber(default = 0))
 	config.imagemanager.nextscheduletime = NoSave(ConfigNumber(default = 0))
+	config.imagemanager.restoreimage = NoSave(ConfigText(default=folderprefix, fixed_size=False))
 
 	config.backupmanager = ConfigSubsection()
 	config.backupmanager.folderprefix = ConfigText(default=folderprefix, fixed_size=False)
@@ -503,11 +563,10 @@ def InitUsageConfig():
 	config.backupmanager.backupretry = ConfigNumber(default = 30)
 	config.backupmanager.backupretrycount = NoSave(ConfigNumber(default = 0))
 	config.backupmanager.nextscheduletime = NoSave(ConfigNumber(default = 0))
-	config.backupmanager.backupdirs = ConfigLocations(default=[eEnv.resolve('${sysconfdir}/CCcam.cfg'), eEnv.resolve('${sysconfdir}/CCcam.channelinfo'), eEnv.resolve('${sysconfdir}/CCcam.providers'), eEnv.resolve('${sysconfdir}/enigma2/'), eEnv.resolve('${sysconfdir}/fstab'), eEnv.resolve('${sysconfdir}/hostname'), eEnv.resolve('${sysconfdir}/network/interfaces'), eEnv.resolve('${sysconfdir}/passwd'), eEnv.resolve('${sysconfdir}/resolv.conf'), eEnv.resolve('${sysconfdir}/inadyn.conf'), eEnv.resolve('${sysconfdir}/tuxbox/config/'), eEnv.resolve('${sysconfdir}/wpa_supplicant.conf'), '/usr/crossepg/crossepg.config', '/usr/softcams/'])
+	config.backupmanager.backupdirs = ConfigLocations(default=[eEnv.resolve('${sysconfdir}/enigma2/'), eEnv.resolve('${sysconfdir}/fstab'), eEnv.resolve('${sysconfdir}/hostname'), eEnv.resolve('${sysconfdir}/network/interfaces'), eEnv.resolve('${sysconfdir}/passwd'), eEnv.resolve('${sysconfdir}/resolv.conf'), eEnv.resolve('${sysconfdir}/ushare.conf'), eEnv.resolve('${sysconfdir}/inadyn.conf'), eEnv.resolve('${sysconfdir}/tuxbox/config/'), eEnv.resolve('${sysconfdir}/wpa_supplicant.conf'), '/usr/softcams/'])
 	config.backupmanager.lastlog = ConfigText(default=' ', fixed_size=False)
 
 	config.vixsettings = ConfigSubsection()
-	config.vixsettings.overscanamount = ConfigNumber(default = 32)
 	config.vixsettings.Subservice = ConfigYesNo(default = False)
 	config.vixsettings.ColouredButtons = ConfigYesNo(default = True)
 	config.vixsettings.ViXEPG_mode = ConfigSelection(default="vixepg", choices = [
@@ -545,7 +604,7 @@ def InitUsageConfig():
 	config.GraphEPG.overjump = ConfigYesNo(default = False)
 	config.GraphEPG.PIG = ConfigYesNo(default = False)
 
-	if not pathExists('/usr/softcams/'):
+	if not os.path.exists('/usr/softcams/'):
 		os.mkdir('/usr/softcams/',0755)
 	softcams = os.listdir('/usr/softcams/')
 	config.oscaminfo = ConfigSubsection()
@@ -588,19 +647,6 @@ def updateChoices(sel, choices):
 	if choices:
 		defval = None
 		val = int(sel.value)
-		if not val in choices:
-			tmp = choices[:]
-			tmp.reverse()
-			for x in tmp:
-				if x < val:
-					defval = str(x)
-					break
-		sel.setChoices(map(str, choices), defval)
-
-def updateChoices2(sel, choices):
-	if choices:
-		defval = None
-		val = sel.value
 		if not val in choices:
 			tmp = choices[:]
 			tmp.reverse()

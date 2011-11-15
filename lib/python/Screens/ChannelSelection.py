@@ -7,6 +7,7 @@ from Components.ActionMap import NumberActionMap, ActionMap, HelpableActionMap
 from Components.MenuList import MenuList
 from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
 from Components.SystemInfo import SystemInfo
+from Tools.HardwareInfo import HardwareInfo
 profile("ChannelSelection.py 1")
 from EpgSelection import EPGSelection
 from enigma import eServiceReference, eEPGCache, eServiceCenter, eRCInput, eTimer, eDVBDB, iPlayableService, iServiceInformation, getPrevAsciiCode, eEnv
@@ -111,6 +112,24 @@ class VIXBouquetSelector(Screen):
 
 	def cancelClick(self):
 		self.close(None)
+
+class SilentBouquetSelector:
+	def __init__(self, bouquets, enableWrapAround=False, current=0):
+		self.bouquets = [b[1] for b in bouquets]
+		self.pos = current
+		self.count = len(bouquets)
+		self.enableWrapAround = enableWrapAround
+
+	def up(self):
+		if self.pos > 0 or self.enableWrapAround:
+			self.pos = (self.pos - 1) % self.count
+
+	def down(self):
+		if self.pos < (self.count - 1) or self.enableWrapAround:
+			self.pos = (self.pos + 1) % self.count
+
+	def getCurrent(self):
+		return self.bouquets[self.pos]
 
 # csel.bouquet_mark_edit values
 OFF = 0
@@ -784,6 +803,8 @@ MODE_RADIO = 1
 # type 10 = advanced codec digital radio sound service
 
 service_types_tv = '1:7:1:0:0:0:0:0:0:0:(type == 1) || (type == 17) || (type == 22) || (type == 25) || (type == 134) || (type == 195)'
+service_types_tv_sd = '1:7:1:0:0:0:0:0:0:0:(type == 1) || (type == 22)'
+service_types_tv_hd = '1:7:1:0:0:0:0:0:0:0:(type == 17) || (type == 25) || (type == 134) || (type == 195)'
 service_types_radio = '1:7:2:0:0:0:0:0:0:0:(type == 2) || (type == 10)'
 
 class ChannelSelectionBase(Screen):
@@ -950,15 +971,15 @@ class ChannelSelectionBase(Screen):
 					end_ref = self.servicePath[Len-1]
 				else:
 					end_ref = None
-				nameStr = self.getServiceName(base_ref)
-				titleStr += ' ' + nameStr
+# 				nameStr = self.getServiceName(base_ref)
+# 				titleStr += ' ' + nameStr
 				if end_ref is not None:
-					if Len > 2:
-						titleStr += '/../'
-					else:
-						titleStr += '/'
+# 					if Len > 2:
+# 						titleStr += '/../'
+# 					else:
+# 						titleStr += '/'
 					nameStr = self.getServiceName(end_ref)
-					titleStr += nameStr
+					titleStr += ' ' + nameStr
 				self.setTitle(titleStr)
 
 	def moveUp(self):
@@ -1027,53 +1048,68 @@ class ChannelSelectionBase(Screen):
 						self.enterPath(ref, True)
 				if justSet:
 					serviceHandler = eServiceCenter.getInstance()
-					servicelist = serviceHandler.list(ref)
-					if not servicelist is None:
-						while True:
-							service = servicelist.getNext()
-							if not service.valid(): #check if end of list
-								break
-							unsigned_orbpos = service.getUnsignedData(4) >> 16
-							orbpos = service.getData(4) >> 16
-							if orbpos < 0:
-								orbpos += 3600
-							if service.getPath().find("FROM PROVIDER") != -1:
-								service_type = _("Providers")
-							elif service.getPath().find("flags == %d" %(FLAG_SERVICE_NEW_FOUND)) != -1:
-								service_type = _("New")
-							else:
-								service_type = _("Services")
-							try:
-								# why we need this cast?
-								service_name = str(nimmanager.getSatDescription(orbpos))
-							except:
-								if unsigned_orbpos == 0xFFFF: #Cable
-									service_name = _("Cable")
-								elif unsigned_orbpos == 0xEEEE: #Terrestrial
-									service_name = _("Terrestrial")
-								else:
-									if orbpos > 1800: # west
-										orbpos = 3600 - orbpos
-										h = _("W")
-									else:
-										h = _("E")
-									service_name = ("%d.%d" + h) % (orbpos / 10, orbpos % 10)
-							service.setName("%s - %s" % (service_name, service_type))
-							self.servicelist.addService(service)
-						cur_ref = self.session.nav.getCurrentlyPlayingServiceReference()
-						if cur_ref:
-							pos = self.service_types.rfind(':')
-							refstr = '%s (channelID == %08x%04x%04x) && %s ORDER BY name' %(self.service_types[:pos+1],
-								cur_ref.getUnsignedData(4), # NAMESPACE
-								cur_ref.getUnsignedData(2), # TSID
-								cur_ref.getUnsignedData(3), # ONID
-								self.service_types[pos+1:])
+					counter = i = 0
+					if config.servicelist.lastmode.value == "tv" and HardwareInfo().get_device_name() != "dm7025":
+						counter = 1
+					while i <= counter:
+						if i:
+							refstr ='%s FROM SATELLITES ORDER BY satellitePosition'%(service_types_tv_hd)
 							ref = eServiceReference(refstr)
-							ref.setName(_("Current Transponder"))
-							self.servicelist.addService(ref)
-						self.servicelist.finishFill()
-						if prev is not None:
-							self.setCurrentSelection(prev)
+						else:
+							refstr ='%s FROM SATELLITES ORDER BY satellitePosition'%(service_types_tv_sd)
+							ref = eServiceReference(refstr)
+						servicelist = serviceHandler.list(ref)
+						if not servicelist is None:
+							while True:
+								service = servicelist.getNext()
+								if not service.valid(): #check if end of list
+									break
+								unsigned_orbpos = service.getUnsignedData(4) >> 16
+								orbpos = service.getData(4) >> 16
+								if orbpos < 0:
+									orbpos += 3600
+								if service.getPath().find("FROM PROVIDER") != -1:
+									service_type = _("Providers")
+								elif service.getPath().find("flags == %d" %(FLAG_SERVICE_NEW_FOUND)) != -1:
+									service_type = _("New")
+								else:
+									service_type = _("Services")
+								try:
+									# why we need this cast?
+									service_name = str(nimmanager.getSatDescription(orbpos))
+								except:
+									if unsigned_orbpos == 0xFFFF: #Cable
+										service_name = _("Cable")
+									elif unsigned_orbpos == 0xEEEE: #Terrestrial
+										service_name = _("Terrestrial")
+									else:
+										if orbpos > 1800: # west
+											orbpos = 3600 - orbpos
+											h = _("W")
+										else:
+											h = _("E")
+										service_name = ("%d.%d" + h) % (orbpos / 10, orbpos % 10)
+								if i:
+									service_type = "HD %s" % service_type
+								else:
+									service_type = "SD %s" % service_type
+								service.setName("%s - %s" % (service_name, service_type))
+								self.servicelist.addService(service)
+						i += 1
+					cur_ref = self.session.nav.getCurrentlyPlayingServiceReference()
+					if cur_ref:
+						pos = self.service_types.rfind(':')
+						refstr = '%s (channelID == %08x%04x%04x) && %s ORDER BY name' %(self.service_types[:pos+1],
+							cur_ref.getUnsignedData(4), # NAMESPACE
+							cur_ref.getUnsignedData(2), # TSID
+							cur_ref.getUnsignedData(3), # ONID
+							self.service_types[pos+1:])
+						ref = eServiceReference(refstr)
+						ref.setName(_("Current Transponder"))
+						self.servicelist.addService(ref)
+					self.servicelist.finishFill()
+					if prev is not None:
+						self.setCurrentSelection(prev)
 
 	def showProviders(self):
 		if not self.pathChangeDisabled:
@@ -1231,6 +1267,15 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		ChannelSelectionEPG.__init__(self)
 		SelectionEventInfo.__init__(self)
 
+		if config.usage.servicelist_mode.value == "simple":
+			data = resolveFilename(SCOPE_CURRENT_SKIN,"skin.xml")
+			data = data.replace('/ skin.xml','/skin.xml')
+			data = file(resolveFilename(SCOPE_CURRENT_SKIN,"skin.xml")).read()
+			if data.find('SlimChannelSelection') >= 0:
+				self.skinName = "SlimChannelSelection"
+			else:
+				self.skinName = "SimpleChannelSelection"
+
 		self["actions"] = ActionMap(["OkCancelActions", "TvRadioActions"],
 			{
 				"cancel": self.cancel,
@@ -1349,18 +1394,32 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		elif not (ref.flags & eServiceReference.isMarker): # no marker
 			root = self.getRoot()
 			if not root or not (root.flags & eServiceReference.isGroup):
-				self.zap(enable_pipzap = True)
-				self.asciiOff()
 				if config.usage.servicelistpreview_mode.value:
-					if ref == curref:
-						self.startref = None
-						self.saveRoot()
-						self.saveChannel(ref)
-						config.servicelist.lastmode.save()
-						self.addToHistory(ref)
+					try:
+						self.preview(enable_pipzap = True)
+						self.asciiOff()
+						if ref == curref:
+							self.startref = None
+							self.saveRoot()
+							self.saveChannel(ref)
+							config.servicelist.lastmode.save()
+							self.addToHistory(ref)
+							self.close(ref)
+						elif str(ref.toString()).find('alternatives') != -1:
+							self.startref = None
+							self.saveRoot()
+							self.saveChannel(ref)
+							config.servicelist.lastmode.save()
+							self.addToHistory(ref)
+							self.close(ref)
+					except:
+						self.zap(enable_pipzap = True)
+						self.asciiOff()
 						self.close(ref)
 				else:
-						self.close(ref)
+					self.zap(enable_pipzap = True)
+					self.asciiOff()
+					self.close(ref)
 
 	def togglePipzap(self):
 		assert(self.session.pip)
@@ -1397,6 +1456,22 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		self.buildTitleString()
 
 	#called from infoBar and channelSelected
+	def preview(self, enable_pipzap = False):
+		self.revertMode=None
+		nref = self.getCurrentSelection()
+		if enable_pipzap and self.dopipzap:
+			ref = self.session.pip.getCurrentService()
+			if ref is None or ref != nref:
+				if not self.session.pip.playService(nref):
+					# XXX: Make sure we set an invalid ref
+					self.session.pip.playService(None)
+		else:
+			ref = self.session.nav.getCurrentlyPlayingServiceReference()
+			if ref is None or ref != nref:
+				self.new_service_played = True
+				self.session.nav.playService(nref)
+
+	#called from infoBar and channelSelected
 	def zap(self, enable_pipzap = False):
 		self.revertMode=None
 		nref = self.getCurrentSelection()
@@ -1411,363 +1486,10 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			if ref is None or ref != nref:
 				self.new_service_played = True
 				self.session.nav.playService(nref)
-				if not config.usage.servicelistpreview_mode.value:
-					self.saveRoot()
-					self.saveChannel(nref)
-					config.servicelist.lastmode.save()
-					self.addToHistory(nref)
-
-			# Yes, we might double-check this, but we need to re-select pipservice if pipzap is active
-			# and we just wanted to zap in mainwindow once
-			# XXX: do we really want this? this also resets the service when zapping from context menu
-			#      which is irritating
-			if self.dopipzap:
-				# This unfortunately won't work with subservices
-				self.setCurrentSelection(self.session.pip.getCurrentService())
-
-	def newServicePlayed(self):
-		ret = self.new_service_played
-		self.new_service_played = False
-		return ret
-
-	def addToHistory(self, ref):
-		if self.servicePath is not None:
-			tmp=self.servicePath[:]
-			tmp.append(ref)
-			try:
-				del self.history[self.history_pos+1:]
-			except:
-				pass
-			self.history.append(tmp)
-			hlen = len(self.history)
-			if hlen > HISTORYSIZE:
-				del self.history[0]
-				hlen -= 1
-			self.history_pos = hlen-1
-
-	def historyBack(self):
-		hlen = len(self.history)
-		if hlen > 1 and self.history_pos > 0:
-			self.history_pos -= 1
-			self.setHistoryPath()
-
-	def historyNext(self):
-		hlen = len(self.history)
-		if hlen > 1 and self.history_pos < (hlen-1):
-			self.history_pos += 1
-			self.setHistoryPath()
-
-	def setHistoryPath(self):
-		path = self.history[self.history_pos][:]
-		ref = path.pop()
-		del self.servicePath[:]
-		self.servicePath += path
-		self.saveRoot()
-		root = path[-1]
-		cur_root = self.getRoot()
-		if cur_root and cur_root != root:
-			self.setRoot(root)
-		self.session.nav.playService(ref)
-		if self.dopipzap:
-			self.setCurrentSelection(self.session.pip.getCurrentService())
-		else:
-			self.setCurrentSelection(ref)
-		self.saveChannel(ref)
-
-	def saveRoot(self):
-		path = ''
-		for i in self.servicePath:
-			path += i.toString()
-			path += ';'
-		if path and path != self.lastroot.value:
-			self.lastroot.value = path
-			self.lastroot.save()
-
-	def restoreRoot(self):
-		tmp = [x for x in self.lastroot.value.split(';') if x != '']
-		current = [x.toString() for x in self.servicePath]
-		if tmp != current or self.rootChanged:
-			self.clearPath()
-			cnt = 0
-			for i in tmp:
-				self.servicePath.append(eServiceReference(i))
-				cnt += 1
-			if cnt:
-				path = self.servicePath.pop()
-				self.enterPath(path)
-			else:
-				self.showFavourites()
 				self.saveRoot()
-			self.rootChanged = False
-
-	def preEnterPath(self, refstr):
-		if self.servicePath and self.servicePath[0] != eServiceReference(refstr):
-			pathstr = self.lastroot.value
-			if pathstr is not None and pathstr.find(refstr) == 0:
-				self.restoreRoot()
-				lastservice=eServiceReference(self.lastservice.value)
-				if lastservice.valid():
-					self.setCurrentSelection(lastservice)
-				return True
-		return False
-
-	def saveChannel(self, ref):
-		if ref is not None:
-			refstr = ref.toString()
-		else:
-			refstr = ""
-		if refstr != self.lastservice.value:
-			self.lastservice.value = refstr
-			self.lastservice.save()
-
-	def setCurrentServicePath(self, path):
-		if self.history:
-			self.history[self.history_pos] = path
-		else:
-			self.history.append(path)
-		self.setHistoryPath()
-
-	def getCurrentServicePath(self):
-		if self.history:
-			return self.history[self.history_pos]
-		return None
-
-	def recallPrevService(self):
-		hlen = len(self.history)
-		if hlen > 1:
-			if self.history_pos == hlen-1:
-				tmp = self.history[self.history_pos]
-				self.history[self.history_pos] = self.history[self.history_pos-1]
-				self.history[self.history_pos-1] = tmp
-			else:
-				tmp = self.history[self.history_pos+1]
-				self.history[self.history_pos+1] = self.history[self.history_pos]
-				self.history[self.history_pos] = tmp
-			self.setHistoryPath()
-
-	def cancel(self):
-		curref = self.session.nav.getCurrentlyPlayingServiceReference()
-		if self.revertMode is None:
-			if self.dopipzap:
-				# This unfortunately won't work with subservices
-				self.setCurrentSelection(self.session.pip.getCurrentService())
-			else:
-				self.restoreRoot()
-				lastservice=eServiceReference(self.lastservice.value)
-				if lastservice.valid() and self.getCurrentSelection() != lastservice:
-					self.setCurrentSelection(lastservice)
-		elif self.revertMode == MODE_TV:
-			self.setModeTv()
-		elif self.revertMode == MODE_RADIO:
-			self.setModeRadio()
-		self.revertMode = None
-		self.asciiOff()
-		if config.usage.servicelistpreview_mode.value:
-			if self.startref and (curref != self.startref):
-				self.new_service_played = True
-				self.session.nav.playService(self.startref)
-		self.startref = None
-		self.close(None)
-
-class SlimChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelectionEPG, SelectionEventInfo):
-	def __init__(self, session):
-		ChannelSelectionBase.__init__(self,session)
-		ChannelSelectionEdit.__init__(self)
-		ChannelSelectionEPG.__init__(self)
-		SelectionEventInfo.__init__(self)
-		data = resolveFilename(SCOPE_CURRENT_SKIN,"skin.xml")
-		data = data.replace('/ skin.xml','/skin.xml')
-		data = file(resolveFilename(SCOPE_CURRENT_SKIN,"skin.xml")).read()
-		if data.find('SlimChannelSelection') >= 0:
-			self.skinName = "SlimChannelSelection"
-		else:
-			self.skinName = "SimpleChannelSelection"
-
-		self["actions"] = ActionMap(["OkCancelActions", "TvRadioActions"],
-			{
-				"cancel": self.cancel,
-				"ok": self.channelSelected,
-				"keyRadio": self.setModeRadio,
-				"keyTV": self.setModeTv,
-			})
-
-		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
-			{
-				iPlayableService.evStart: self.__evServiceStart,
-				iPlayableService.evEnd: self.__evServiceEnd
-			})
-
-		self.startref = None
-		self.history_tv = [ ]
-		self.history_radio = [ ]
-		self.history = self.history_tv
-		self.history_pos = 0
-
-		if config.servicelist.startupservice.value and config.servicelist.startuproot.value:
-			config.servicelist.lastmode.value = config.servicelist.startupmode.value
-			if config.servicelist.lastmode.value == "tv":
-				config.tv.lastservice.value = config.servicelist.startupservice.value
-				config.tv.lastroot.value = config.servicelist.startuproot.value
-			elif config.servicelist.lastmode.value == "radio":
-				config.radio.lastservice.value = config.servicelist.startupservice.value
-				config.radio.lastroot.value = config.servicelist.startuproot.value
-
-		self.lastservice = config.tv.lastservice
-		self.lastroot = config.tv.lastroot
-		self.revertMode = None
-		config.usage.multibouquet.addNotifier(self.multibouquet_config_changed)
-		self.new_service_played = False
-		self.dopipzap = False
-		self.onExecBegin.append(self.asciiOn)
-
-		self.lastChannelRootTimer = eTimer()
-		self.lastChannelRootTimer.callback.append(self.__onCreate)
-		self.lastChannelRootTimer.start(100,True)
-
-	def asciiOn(self):
-		rcinput = eRCInput.getInstance()
-		rcinput.setKeyboardMode(rcinput.kmAscii)
-
-	def asciiOff(self):
-		rcinput = eRCInput.getInstance()
-		rcinput.setKeyboardMode(rcinput.kmNone)
-
-	def multibouquet_config_changed(self, val):
-		self.recallBouquetMode()
-
-	def __evServiceStart(self):
-		service = self.session.nav.getCurrentService()
-		if service:
-			info = service.info()
-			if info:
-				refstr = info.getInfoString(iServiceInformation.sServiceref)
-				self.servicelist.setPlayableIgnoreService(eServiceReference(refstr))
-
-	def __evServiceEnd(self):
-		self.servicelist.setPlayableIgnoreService(eServiceReference())
-
-	def setMode(self):
-		self.rootChanged = True
-		self.restoreRoot()
-		lastservice=eServiceReference(self.lastservice.value)
-		if lastservice.valid():
-			self.setCurrentSelection(lastservice)
-
-	def setModeTv(self):
-		if self.revertMode is None and config.servicelist.lastmode.value == "radio":
-			self.revertMode = MODE_RADIO
-		self.history = self.history_tv
-		self.lastservice = config.tv.lastservice
-		self.lastroot = config.tv.lastroot
-		config.servicelist.lastmode.value = "tv"
-		self.setTvMode()
-		self.setMode()
-
-	def setModeRadio(self):
-		if self.revertMode is None and config.servicelist.lastmode.value == "tv":
-			self.revertMode = MODE_TV
-		if config.usage.e1like_radio_mode.value:
-			self.history = self.history_radio
-			self.lastservice = config.radio.lastservice
-			self.lastroot = config.radio.lastroot
-			config.servicelist.lastmode.value = "radio"
-			self.setRadioMode()
-			self.setMode()
-
-	def __onCreate(self):
-		if config.usage.e1like_radio_mode.value:
-			if config.servicelist.lastmode.value == "tv":
-				self.setModeTv()
-			else:
-				self.setModeRadio()
-		else:
-			self.setModeTv()
-		lastservice=eServiceReference(self.lastservice.value)
-		if lastservice.valid():
-			self.zap()
-
-	def channelSelected(self):
-		if not self.startref:
-			self.startref = self.session.nav.getCurrentlyPlayingServiceReference()
-		curref = self.session.nav.getCurrentlyPlayingServiceReference()
-		ref = self.getCurrentSelection()
-		if self.movemode:
-			self.toggleMoveMarked()
-		elif (ref.flags & 7) == 7:
-			self.enterPath(ref)
-		elif self.bouquet_mark_edit != OFF:
-			if not (self.bouquet_mark_edit == EDIT_ALTERNATIVES and ref.flags & eServiceReference.isGroup):
-				self.doMark()
-		elif not (ref.flags & eServiceReference.isMarker): # no marker
-			root = self.getRoot()
-			if not root or not (root.flags & eServiceReference.isGroup):
-				self.zap(enable_pipzap = True)
-				self.asciiOff()
-				if config.usage.servicelistpreview_mode.value:
-					if ref == curref:
-						self.startref = None
-						self.saveRoot()
-						self.saveChannel(ref)
-						config.servicelist.lastmode.save()
-						self.addToHistory(ref)
-						self.close(ref)
-				else:
-						self.close(ref)
-
-	def togglePipzap(self):
-		assert(self.session.pip)
-		title = self.instance.getTitle()
-		pos = title.find(" (")
-		if pos != -1:
-			title = title[:pos]
-		if self.dopipzap:
-			# Mark PiP as inactive and effectively deactivate pipzap
-			self.session.pip.inactive()
-			self.dopipzap = False
-
-			# Disable PiP if not playing a service
-			if self.session.pip.pipservice is None:
-				self.session.pipshown = False
-				del self.session.pip
-
-			# Move to playing service
-			lastservice = eServiceReference(self.lastservice.value)      
-			if lastservice.valid() and self.getCurrentSelection() != lastservice:                        
-				self.setCurrentSelection(lastservice)
-
-			title += " (TV)"
-		else:
-			# Mark PiP as active and effectively active pipzap
-			self.session.pip.active()
-			self.dopipzap = True
-
-			# Move to service playing in pip (will not work with subservices)
-			self.setCurrentSelection(self.session.pip.getCurrentService())
-
-			title += " (PiP)"
-		self.setTitle(title)
-		self.buildTitleString()
-
-	#called from infoBar and channelSelected
-	def zap(self, enable_pipzap = False):
-		self.revertMode=None
-		nref = self.getCurrentSelection()
-		if enable_pipzap and self.dopipzap:
-			ref = self.session.pip.getCurrentService()
-			if ref is None or ref != nref:
-				if not self.session.pip.playService(nref):
-					# XXX: Make sure we set an invalid ref
-					self.session.pip.playService(None)
-		else:
-			ref = self.session.nav.getCurrentlyPlayingServiceReference()
-			if ref is None or ref != nref:
-				self.new_service_played = True
-				self.session.nav.playService(nref)
-				if not config.usage.servicelistpreview_mode.value:
-					self.saveRoot()
-					self.saveChannel(nref)
-					config.servicelist.lastmode.save()
-					self.addToHistory(nref)
+				self.saveChannel(nref)
+				config.servicelist.lastmode.save()
+				self.addToHistory(nref)
 
 			# Yes, we might double-check this, but we need to re-select pipservice if pipzap is active
 			# and we just wanted to zap in mainwindow once

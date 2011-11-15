@@ -143,19 +143,20 @@ eDVBAdapterLinux::eDVBAdapterLinux(int nr): m_nr(nr)
 #endif
 		if (stat(filename, &s))
 			break;
-		ePtr<eDVBFrontend> fe;
+		eDVBFrontend *fe;
 
-		{
-			int ok = 0;
-			fe = new eDVBFrontend(m_nr, num_fe, ok);
-			if (ok)
-				m_frontend.push_back(fe);
-		}
 		{
 			int ok = 0;
 			fe = new eDVBFrontend(m_nr, num_fe, ok, true);
 			if (ok)
-				m_simulate_frontend.push_back(fe);
+				m_simulate_frontend.push_back(ePtr<eDVBFrontend>(fe));
+		}
+
+		{
+			int ok = 0;
+			fe = new eDVBFrontend(m_nr, num_fe, ok, false, fe);
+			if (ok)
+				m_frontend.push_back(ePtr<eDVBFrontend>(fe));
 		}
 		++num_fe;
 	}
@@ -575,11 +576,6 @@ RESULT eDVBResourceManager::getChannelList(ePtr<iDVBChannelList> &list)
 		if (!simulate) \
 			eDebug(x); \
 	} while(0)
-//		else \
-//		{ \
-//			eDebugNoNewLine("SIMULATE:"); \
-//			eDebug(x); \
-//		} \
 
 
 RESULT eDVBResourceManager::allocateChannel(const eDVBChannelID &channelid, eUsePtr<iDVBChannel> &channel, bool simulate)
@@ -1293,35 +1289,16 @@ void eDVBChannel::cueSheetEvent(int event)
 	/* align toward zero */
 static inline long long align(long long x, int align)
 {
-	int sign = x < 0;
-
-	if (sign)
-		x = -x;
-
-	x -= x % align;
-
-	if (sign)
-		x = -x;
-
-	return x;
+	if (x < 0)
+	{
+		return x - (x % (-align));
+	}
+	else
+	{
+		return x - (x % align);
+	}
 }
 
-	/* align toward zero */
-static inline long long align_with_len(long long x, int align, size_t &len)
-{
-	int sign = x < 0;
-
-	if (sign)
-		x = -x;
-
-	x -= x % align;
-	len += x % align;
-
-	if (sign)
-		x = -x;
-
-	return x;
-}
 
 	/* remember, this gets called from another thread. */
 void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off_t &start, size_t &size)
@@ -1344,21 +1321,21 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 		max = align(m_skipmode_n, blocksize);
 	}
 
-	eDebug("getNextSourceSpan, current offset is %08llx, m_skipmode_m = %d!", current_offset, m_skipmode_m);
+	//eDebug("getNextSourceSpan, current offset is %08llx, m_skipmode_m = %d!", current_offset, m_skipmode_m);
 	int frame_skip_success = 0;
 
 	if (m_skipmode_m)
 	{
 		int frames_to_skip = m_skipmode_frames + m_skipmode_frames_remainder;
-		eDebug("we are at %llx, and we try to skip %d+%d frames from here", current_offset, m_skipmode_frames, m_skipmode_frames_remainder);
+		//eDebug("we are at %llx, and we try to skip %d+%d frames from here", current_offset, m_skipmode_frames, m_skipmode_frames_remainder);
 		size_t iframe_len;
 		off_t iframe_start = current_offset;
 		int frames_skipped = frames_to_skip;
 		if (!m_tstools.findNextPicture(iframe_start, iframe_len, frames_skipped))
 		{
 			m_skipmode_frames_remainder = frames_to_skip - frames_skipped;
-			eDebug("successfully skipped %d (out of %d, rem now %d) frames.", frames_skipped, frames_to_skip, m_skipmode_frames_remainder);
-			current_offset = align_with_len(iframe_start, blocksize, iframe_len);
+			//eDebug("successfully skipped %d (out of %d, rem now %d) frames.", frames_skipped, frames_to_skip, m_skipmode_frames_remainder);
+			current_offset = align(iframe_start, blocksize);
 			max = align(iframe_len + 187, blocksize);
 			frame_skip_success = 1;
 		} else
@@ -1383,7 +1360,7 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 				eDebug("failed");
 			else
 			{
-				current_offset = align_with_len(iframe_start, blocksize, iframe_len);
+				current_offset = align(iframe_start, blocksize);
 				max = align(iframe_len, blocksize);
 			}
 		}
@@ -1401,7 +1378,6 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 		m_cue->m_lock.RdLock();
 		int relative = seek.first;
 		pts_t pts = seek.second;
-
 		pts_t now = 0;
 		if (relative)
 		{

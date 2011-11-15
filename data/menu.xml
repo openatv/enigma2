@@ -25,8 +25,10 @@
 
 		<menu level="0" text="Information" entryID="info_screen">
 			<id val="information" />
-			<item level="0" text="About" entryID="about_screen"><screen module="About" /></item>
+			<item level="0" text="About" entryID="about_screen"><screen module="About" screen="About"/></item>
+			<item level="0" text="Devices" entryID="device_screen"><screen module="About" screen="Devices"/></item>
 			<item level="1" text="Service" entryID="service_info_screen"><screen module="ServiceInfo" screen="ServiceInfo"/></item>
+			<item level="0" text="System Infomation" entryID="device_screen"><screen module="About" screen="SystemInfo"/></item>
 		</menu>
 
 		<item level="1" text="Plugins" entryID="plugin_selection"><screen module="PluginBrowser" screen="PluginBrowser" /></item>
@@ -39,11 +41,11 @@
 			</menu>-->
 			<menu weight="7" level="0" text="Service Searching" entryID="service_searching_selection">
 				<id val="scan" />
-				<item text="Tuner configuration" entryID="tuner_setup"><screen module="Satconfig" screen="NimSelection" /></item>
+				<item weight="10" text="Tuner configuration" entryID="tuner_setup"><screen module="Satconfig" screen="NimSelection" /></item>
 				<!--<item text="Default services lists" entryID="default_lists"><screen module="ScanSetup" screen="DefaultSatLists" /></item>-->
-				<item text="Automatic Scan" entryID="auto_scan"><screen module="ScanSetup" screen="ScanSimple" /></item>
+				<item weight="20" text="Automatic Scan" entryID="auto_scan"><screen module="ScanSetup" screen="ScanSimple" /></item>
 				<!--<item text="Automatic Scan"><screen module="ServiceScan" /></item>-->
-				<item text="Manual Scan" entryID="manual_scan"><screen module="ScanSetup" /></item>
+				<item weight="30" text="Manual Scan" entryID="manual_scan"><screen module="ScanSetup" /></item>
 				<!--<item text="Rotor Control"></item>
 				<item text="Edit Transponder"></item>
 				<item text="Satfinder"></item>-->
@@ -52,6 +54,7 @@
 				<id val="system" />
 				<item level="1" entryID="autolanguage_setup"><setup id="autolanguagesetup" /></item>
 				<item level="0" entryID="av_setup"><setup id="avsetup"/></item>
+				<item level="0" entryID="remote_setup"><setup id="remotesetup"/></item>
 				<item level="0" entryID="usage_setup"><setup id="usage" /></item>
 				<item requires="Display"><setup level="1" id="lcd" /></item>
 				<menu level="2" text="EPG" entryID="epg_menu">
@@ -88,12 +91,16 @@ self.session.openWithCallback(msgClosed, EpgLoadMsg)
 					<item level="1" entryID="harddisk_setup"><setup id="harddisk"/></item>
 					<item level="0" text="Initialization" entryID="harddisk_init"><screen module="HarddiskSetup" screen="HarddiskSelection"/></item>
 					<item level="0" text="Filesystem Check" entryID="harddisk_check"><screen module="HarddiskSetup" screen="HarddiskFsckSelection"/></item>
-					<item level="0" text="Convert filesystem ext3 to ext4" entryID="harddisk_convert"><screen module="HarddiskSetup" screen="HarddiskConvertExt4Selection"/></item>
+					<item level="0" text="Convert filesystem ext3 to ext4" entryID="harddisk_convert" requires="ext4"><screen module="HarddiskSetup" screen="HarddiskConvertExt4Selection"/></item>
 				</menu>
+				<item level="0" text="HDMI CEC" entryID="hdmicec" requires="HDMICEC">
+<code>
+from Plugins.SystemPlugins.HdmiCEC.plugin import HdmiCECSetupScreen
+self.session.open(HdmiCECSetupScreen)
+</code>
+				</item>
 				<!--<item text="Remote Control"><setup id="rc" /></item>-->
-				<!--<item text="OSD"><setup id="osd" /></item>-->
-<!--				<item level="0" text="Network" entryID="network_setup"><screen module="NetworkSetup" screen="NetworkAdapterSelection" /></item>-->
-<!--				<item level="1" text="Input devices" entryID="input_device_setup"><screen module="InputDeviceSetup" screen="InputDeviceSelection" /></item>-->
+				<item level="1" text="Input devices" entryID="input_device_setup"><screen module="InputDeviceSetup" screen="InputDeviceSelection" /></item>
 				<item text="Keyboard"><setup id="keyboard" /></item>
 				<item level="0" text="Language" entryID="language_setup"><screen module="LanguageSelection" /></item>
 				<menu level="2" text="Logs" entryID="logs_setup">
@@ -104,21 +111,31 @@ self.session.openWithCallback(msgClosed, EpgLoadMsg)
 				<menu level="0" text="Network" entryID="network_menu">
 					<id val="network" />
 					<item level="0" text="Device Setup" entryID="device_setup"><screen module="NetworkSetup" screen="NetworkAdapterSelection"/></item>
+					<item level="2" text="AFP Setup" entryID="netafp_setup"><screen module="NetworkSetup" screen="NetworkAfp"/></item>
 					<item level="2" text="FTP Setup" entryID="netftp_setup"><screen module="NetworkSetup" screen="NetworkFtp"/></item>
 					<item level="2" text="Inadyn Setup" entryID="Inadyn_setup"><screen module="NetworkSetup" screen="NetworkInadyn"/></item>
 					<item level="2" text="NFS Setup" entryID="netnfs_setup"><screen module="NetworkSetup" screen="NetworkNfs"/></item>
 					<item level="2" text="OpenVPN Setup" entryID="netvpn_setup"><screen module="NetworkSetup" screen="NetworkOpenvpn"/></item>
 					<item level="2" text="Samba Setup" entryID="netsmba_setup"><screen module="NetworkSetup" screen="NetworkSamba"/></item>
 					<item level="2" text="Telnet Setup" entryID="nettelnet_setup"><screen module="NetworkSetup" screen="NetworkTelnet"/></item>
-<!--					<item level="1" text="Nameserver Setup..." entryID="dns_setup"><screen module="NetworkSetup" screen="NameserverSetup"/></item>-->
+					<item level="2" text="uShare Setup" entryID="netushare_setup"><screen module="NetworkSetup" screen="NetworkuShare"/></item>
 				</menu>
-				<item level="0" entryID="recording_setup"><setup id="recording" /></item>
-				<item level="2" text="Recording Paths" entryID="RecordPaths"><screen module="RecordPaths" screen="RecordPathsSettings" /></item>
-				<item level="0" entryID="remote_setup"><setup id="remotesetup"/></item>
+				<menu level="2" text="OSD" entryID="osd_setup" requires="OsdMenu">
+					<id val="osd_menu" />
+					<item level="2" text="OSD Setup" entryID="osdsetup" requires="OsdSetup"><screen module="OSD" screen="OSDSetup"/></item>
+					<item level="2" text="OSD 3D Setup" entryID="osd3dsetup" requires="CanChange3DOsd"><screen module="OSD" screen="OSD3DSetupScreen"/></item>
+				</menu>
+				<item level="0" text="Recording Settings" entryID="recording_setup"><screen module="Recordings_Timershift" screen="RecordingSettings" /></item>
 				<item level="1" entryID="rfmod_setup" requires="RfModulator"><setup id="RFmod"/></item>
+				<item level="1" text="Remote Control Code" entryID="remotecode" requires="RemoteCode">
+<code>
+from Plugins.SystemPlugins.RemoteControlCode.plugin import RemoteControlCode
+self.session.open(RemoteControlCode)
+</code>
+				</item>
 				<item level="0" text="Skin Setup" entryID="skin_setup"><screen module="SkinSelector" screen="SkinSelector"/></item>
 				<item level="2" entryID="subtitle_setup"><setup id="subtitlesetup" /></item>
-				<item level="2" entryID="timshift_setup"><setup id="timeshiftsetup" /></item>
+				<item level="0" text="Timeshift Settings" entryID="timshift_setup"><screen module="Recordings_Timershift" screen="TimeshiftSettings" /></item>
 				<item level="0" entryID="time_setup"><setup id="time"/></item>
 				<!--<item level="0" text="Video Setup" entryID="video_setup"><screen module="VideoSetup" /></item>-->
 			</menu>

@@ -149,7 +149,7 @@ class ProjectSettings(Screen,ConfigListScreen):
 		self.list = []
 		self.list.append(getConfigListEntry(_("Collection name"), self.settings.name))
 		self.list.append(getConfigListEntry(_("Authoring mode"), self.settings.authormode))
-		self.list.append(getConfigListEntry(("Output"), self.settings.output))
+		self.list.append(getConfigListEntry(_("Output"), self.settings.output))
 		if output == "iso":
 			self.list.append(getConfigListEntry(_("ISO path"), self.settings.isopath))
 		if authormode.startswith("menu"):
@@ -172,7 +172,7 @@ class ProjectSettings(Screen,ConfigListScreen):
 				if self.settings.titlesetmode.getValue() == "single" or authormode == "just_linked":
 					self.list.append(getConfigListEntry(_("VMGM (intro trailer)"), self.settings.vmgm))
 			else:
-				self.list.append(getConfigListEntry(("DVD data format"), self.settings.dataformat))
+				self.list.append(getConfigListEntry(_("DVD data format"), self.settings.dataformat))
 		
 		self["config"].setList(self.list)
 		self.keydict = {}

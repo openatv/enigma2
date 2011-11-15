@@ -33,12 +33,10 @@ eThread::eThread()
 
 int eThread::runAsync(int prio, int policy)
 {
-	eDebug("before: %d", m_state.value());
 		/* the thread might already run. */
 	if (sync())
 		return -1;
 	
-	eDebug("after: %d", m_state.value());
 	ASSERT(m_state.value() == 1); /* sync postconditions */
 	ASSERT(!m_alive);
 	m_state.down();
@@ -58,7 +56,12 @@ int eThread::runAsync(int prio, int policy)
 		pthread_attr_setschedpolicy(&attr, policy);
 		pthread_attr_setschedparam(&attr, &p);
 	}
-	
+
+	if (the_thread) {
+		eDebug("old thread joined %d", pthread_join(the_thread, 0));
+		the_thread = 0;
+	}
+
 	if (pthread_create(&the_thread, &attr, wrapper, this))
 	{
 		pthread_attr_destroy(&attr);
@@ -69,7 +72,7 @@ int eThread::runAsync(int prio, int policy)
 	
 	pthread_attr_destroy(&attr);
 	return 0;
-}                     
+}
 
 int eThread::run(int prio, int policy)
 {

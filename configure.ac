@@ -59,8 +59,9 @@ AM_CONDITIONAL(VUUNO, test "$BOXTYPE" == vuuno)
 AM_CONDITIONAL(VUULTIMO, test "$BOXTYPE" == vuultimo)
 AM_CONDITIONAL(VUSOLO, test "$BOXTYPE" == vusolo)
 AM_CONDITIONAL(VUDUO, test "$BOXTYPE" == vuduo)
-AM_CONDITIONAL(ET5000, test "$BOXTYPE" == et5000)
-AM_CONDITIONAL(ET9000, test "$BOXTYPE" == et9000)
+AM_CONDITIONAL(ET5X00, test "$BOXTYPE" == et5x00)
+AM_CONDITIONAL(ET6X00, test "$BOXTYPE" == et6x00)
+AM_CONDITIONAL(ET9X00, test "$BOXTYPE" == et9x00)
 AM_CONDITIONAL(HAVE_TEMPFANCONTROL, test "$BOXTYPE" == dm8000 -o "$BOXTYPE" == dm800se -o "$BOXTYPE" == dm500hd)
 
 AC_ARG_WITH(textlcd,
@@ -72,6 +73,16 @@ if test x"$withtextlcd" != xno ; then
 	AC_DEFINE(HAVE_TEXTLCD, 1,[Define when using an ascii based lcd device])
 fi
 AM_CONDITIONAL(HAVE_TEXTLCD, test x"$withtextlcd" != xno)
+
+AC_ARG_WITH(graphiclcd,
+	AC_HELP_STRING([--with-graphiclcd], [use graphic based lcd, yes or no]),
+	[[withgraphiclcd=$withval]],
+	[[withgraphiclcd=no]]
+)
+if test x"$withgraphiclcd" != xno ; then
+	AC_DEFINE(HAVE_GRAPHICLCD, 1,[Define when using an graphic based vfd device])
+fi
+AM_CONDITIONAL(HAVE_GRAPHICLCD, test x"$withgraphiclcd != xno")
 
 AC_ARG_WITH(colorlcd,
 	AC_HELP_STRING([--with-colorlcd], [use 96x64 16bpp color display, yes or no]),
@@ -98,12 +109,18 @@ if test x"$BOXTYPE" == "xdm8000" ; then
 	AC_DEFINE(KEY_PLAY_ACTUALLY_IS_KEY_PLAYPAUSE, 1,[define when rc sends a KEY_PLAY event for its KEY_PLAYPAUSE key])
 fi
 
-if test x"$BOXTYPE" == "xet5000" ; then
+if test x"$BOXTYPE" == "xet5x00" ; then
 	AC_DEFINE(FORCE_ADVANCED_REMOTE, 1,[define to fixup the input device identification when the remote control is actually an 'advanced' remote (with play/forward/rewind keys)])
 	AC_DEFINE(KEY_PLAY_ACTUALLY_IS_KEY_PLAYPAUSE, 1,[define when rc sends a KEY_PLAY event for its KEY_PLAYPAUSE key])
 fi
 
-if test x"$BOXTYPE" == "xet9000" ; then
+if test x"$BOXTYPE" == "xet6x00" ; then
+	AC_DEFINE(FORCE_ADVANCED_REMOTE, 1,[define to fixup the input device identification when the remote control is actually an 'advanced' remote (with play/forward/rewind keys)])
+	AC_DEFINE(KEY_PLAY_ACTUALLY_IS_KEY_PLAYPAUSE, 1,[define when rc sends a KEY_PLAY event for its KEY_PLAYPAUSE key])
+fi
+
+if test x"$BOXTYPE" == "xet9x00" ; then
+	AC_DEFINE(FORCE_ADVANCED_REMOTE, 1,[define to fixup the input device identification when the remote control is actually an 'advanced' remote (with play/forward/rewind keys)])
 	AC_DEFINE(KEY_PLAY_ACTUALLY_IS_KEY_PLAYPAUSE, 1,[define when rc sends a KEY_PLAY event for its KEY_PLAYPAUSE key])
 fi
 
@@ -218,10 +235,12 @@ lib/python/Components/Renderer/Makefile
 lib/python/Components/Sources/Makefile
 lib/python/Screens/Makefile
 lib/python/Plugins/Makefile
+lib/python/Plugins/SystemPlugins/Blindscan/Makefile
+lib/python/Plugins/SystemPlugins/Blindscan/meta/Makefile
 lib/python/Plugins/SystemPlugins/CableScan/Makefile
 lib/python/Plugins/SystemPlugins/FastScan/Makefile
-lib/python/Plugins/SystemPlugins/OSDPositionSetup/Makefile
-lib/python/Plugins/SystemPlugins/OSD3DSetup/Makefile
+lib/python/Plugins/SystemPlugins/HdmiCEC/Makefile
+lib/python/Plugins/SystemPlugins/VideoClippingSetup/Makefile
 lib/python/Plugins/DemoPlugins/Makefile
 lib/python/Plugins/DemoPlugins/TPMDemo/Makefile
 lib/python/Plugins/DemoPlugins/TestPlugin/Makefile
@@ -254,10 +273,6 @@ lib/python/Plugins/SystemPlugins/DefaultServicesScanner/Makefile
 lib/python/Plugins/SystemPlugins/DefaultServicesScanner/meta/Makefile
 lib/python/Plugins/SystemPlugins/DiseqcTester/Makefile
 lib/python/Plugins/SystemPlugins/DiseqcTester/meta/Makefile
-lib/python/Plugins/SystemPlugins/FanSetupVuPlus/Makefile
-lib/python/Plugins/SystemPlugins/FanSetupVuPlus/meta/Makefile
-lib/python/Plugins/SystemPlugins/FanSetupXtrend/Makefile
-lib/python/Plugins/SystemPlugins/FanSetupXtrend/meta/Makefile
 lib/python/Plugins/SystemPlugins/FPGAUpgrade/Makefile
 lib/python/Plugins/SystemPlugins/FPGAUpgrade/meta/Makefile
 lib/python/Plugins/SystemPlugins/FrontprocessorUpgrade/Makefile
@@ -273,12 +288,16 @@ lib/python/Plugins/SystemPlugins/NFIFlash/Makefile
 lib/python/Plugins/SystemPlugins/NFIFlash/meta/Makefile
 lib/python/Plugins/SystemPlugins/PositionerSetup/Makefile
 lib/python/Plugins/SystemPlugins/PositionerSetup/meta/Makefile
+lib/python/Plugins/SystemPlugins/RemoteControlCode/Makefile
+lib/python/Plugins/SystemPlugins/RemoteControlCode/meta/Makefile
 lib/python/Plugins/SystemPlugins/SatelliteEquipmentControl/Makefile
 lib/python/Plugins/SystemPlugins/SatelliteEquipmentControl/meta/Makefile
 lib/python/Plugins/SystemPlugins/Satfinder/Makefile
 lib/python/Plugins/SystemPlugins/Satfinder/meta/Makefile
-lib/python/Plugins/SystemPlugins/VFDSetupXtrend/Makefile
-lib/python/Plugins/SystemPlugins/VFDSetupXtrend/meta/Makefile
+lib/python/Plugins/SystemPlugins/VuDuoFancontrol/Makefile
+lib/python/Plugins/SystemPlugins/VuDuoFancontrol/meta/Makefile
+lib/python/Plugins/SystemPlugins/VuUnoFancontrol/Makefile
+lib/python/Plugins/SystemPlugins/VuUnoFancontrol/meta/Makefile
 lib/python/Plugins/SystemPlugins/VideoEnhancement/Makefile
 lib/python/Plugins/SystemPlugins/VideoEnhancement/meta/Makefile
 lib/python/Plugins/SystemPlugins/VideoTune/Makefile
@@ -287,6 +306,8 @@ lib/python/Plugins/SystemPlugins/Videomode/Makefile
 lib/python/Plugins/SystemPlugins/Videomode/meta/Makefile
 lib/python/Plugins/SystemPlugins/WirelessLan/Makefile
 lib/python/Plugins/SystemPlugins/WirelessLan/meta/Makefile
+lib/python/Plugins/SystemPlugins/XtrendFancontrol/Makefile
+lib/python/Plugins/SystemPlugins/XtrendFancontrol/meta/Makefile
 lib/python/Tools/Makefile
 lib/service/Makefile
 lib/components/Makefile

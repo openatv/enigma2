@@ -1,13 +1,14 @@
 from enigma import eServiceCenter, eServiceReference, eTimer, pNavigation, getBestPlayableServiceReference, iPlayableService
 from Components.ParentalControl import parentalControl
 from Tools.BoundFunction import boundFunction
-from Tools.DreamboxHardware import setFPWakeuptime, getFPWakeuptime, getFPWasTimerWakeup, clearFPWasTimerWakeup
+from Tools.DreamboxHardware import setFPWakeuptime, getFPWakeuptime, getFPWasTimerWakeup
 from time import time
 import RecordTimer
 import SleepTimer
 import Screens.Standby
 import NavigationInstance
 import ServiceReference
+from os import path
 
 # TODO: remove pNavgation, eNavigation and rewrite this stuff in python.
 class Navigation:
@@ -30,10 +31,7 @@ class Navigation:
 		self.currentlyPlayingService = None
 		self.RecordTimer = RecordTimer.RecordTimer()
 		if getFPWasTimerWakeup():
-			clearFPWasTimerWakeup()
-			if getFPWasTimerWakeup(): # sanity check to detect if the FP driver is working correct!
-				print "buggy fp driver detected!!! please update drivers.... ignore timer wakeup!"
-			elif nextRecordTimerAfterEventActionAuto:
+			if nextRecordTimerAfterEventActionAuto:
 				# We need to give the systemclock the chance to sync with the transponder time, 
 				# before we will make the decision about whether or not we need to shutdown 
 				# after the upcoming recording has completed
@@ -66,6 +64,16 @@ class Navigation:
 			print "ignore request to play already running service(1)"
 			return 0
 		print "playing", ref and ref.toString()
+		if path.exists("/proc/stb/lcd/symbol_signal"):
+			try:
+				if not ref.toString().startswith('1:0:0:0:0:0:0:0:0:0:'):
+					signal = 1
+				else:
+					signal = 0
+				open("/proc/stb/lcd/symbol_signal", "w").write(str(signal))
+			except:
+				open("/proc/stb/lcd/symbol_signal", "w").write("0")
+		
 		if ref is None:
 			self.stopService()
 			return 0
@@ -125,6 +133,8 @@ class Navigation:
 	def stopService(self):
 		if self.pnav:
 			self.pnav.stopService()
+		if path.exists("/proc/stb/lcd/symbol_signal"):
+			open("/proc/stb/lcd/symbol_signal", "w").write("0")
 
 	def pause(self, p):
 		return self.pnav and self.pnav.pause(p)

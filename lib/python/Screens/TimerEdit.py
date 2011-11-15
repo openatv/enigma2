@@ -84,7 +84,9 @@ class TimerEditList(Screen):
 				if not timersanitycheck.check():
 					t.disable()
 					print "Sanity check failed"
-					self.session.openWithCallback(self.finishedEdit, TimerSanityConflict, timersanitycheck.getSimulTimerList())
+					simulTimerList = timersanitycheck.getSimulTimerList()
+					if simulTimerList is not None:
+						self.session.openWithCallback(self.finishedEdit, TimerSanityConflict, simulTimerList)
 				else:
 					print "Sanity check passed"
 					if timersanitycheck.doubleCheck():

@@ -19,7 +19,7 @@ eMPEGStreamInformation::~eMPEGStreamInformation()
 		fclose(m_structure_write);
 }
 
-int eMPEGStreamInformation::startSave(const char *filename)
+int eMPEGStreamInformation::startSave(const std::string& filename)
 {
 	m_filename = filename;
 	m_structure_write = fopen((m_filename + ".sc").c_str(), "wb");
@@ -33,7 +33,7 @@ int eMPEGStreamInformation::stopSave(void)
 		fclose(m_structure_write);
 		m_structure_write = 0;
 	}
-	if (m_filename == "")
+	if (m_filename.empty())
 		return -1;
 	FILE *f = fopen((m_filename + ".ap").c_str(), "wb");
 	if (!f)
@@ -508,8 +508,11 @@ int eMPEGStreamParserTS::processPacket(const unsigned char *pkt, off_t offset)
 			{
 				if ((sc == 0x00) || (sc == 0xb3) || (sc == 0xb8)) /* picture, sequence, group start code */
 				{
-					unsigned long long data = sc | (pkt[4] << 8) | (pkt[5] << 16) | (pkt[6] << 24);
-					m_streaminfo.writeStructureEntry(offset + pkt_offset, data  & 0xFFFFFFFFULL);
+					if (pkt < (end - 6))
+					{
+						unsigned long long data = sc | (pkt[4] << 8) | (pkt[5] << 16) | (pkt[6] << 24);
+						m_streaminfo.writeStructureEntry(offset + pkt_offset, data  & 0xFFFFFFFFULL);
+					}
 				}
 				if (pkt[3] == 0xb3) /* sequence header */
 				{
