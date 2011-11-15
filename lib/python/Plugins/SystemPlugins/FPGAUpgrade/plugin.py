@@ -99,16 +99,14 @@ class UpgradeStatus(Screen):
 class FPGAUpgrade(Screen):
 	skin = 	"""
 		<screen position="center,center" size="560,440" title="FPGA Upgrade" >
-			<ePixmap pixmap="ViX_Day_HD/buttons/red.png" position="0,7" size="140,40" alphatest="blend" />
-			<ePixmap pixmap="ViX_Day_HD/buttons/green.png" position="140,7" size="140,40" alphatest="blend" />
-			<ePixmap pixmap="ViX_Day_HD/buttons/yellow.png" position="280,7" size="140,40" alphatest="blend" />
-			<ePixmap pixmap="ViX_Day_HD/buttons/blue.png" position="420,7" size="140,40" alphatest="blend" />
-
-			<widget source="key_red" render="Label" position="30,3" zPosition="1" size="115,40" font="Regular;20" halign="left" valign="center" transparent="1" />
-			<widget source="key_green" render="Label" position="170,3" zPosition="1" size="115,40" font="Regular;20" halign="left" valign="center" transparent="1" />
-			<widget source="key_yellow" render="Label" position="310,3" zPosition="1" size="115,40" font="Regular;20" halign="left" valign="center" transparent="1" />
-			<widget source="key_blue" render="Label" position="450,3" zPosition="1" size="115,40" font="Regular;20" halign="left" valign="center" transparent="1" />
-
+			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
+			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+			<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+			<widget source="key_yellow" render="Label" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
+			<widget source="key_blue" render="Label" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
 			<widget source="status" render="Label" position="15,45" zPosition="1" size="540,40" font="Regular;18" halign="left" valign="center" transparent="1" />
 			<widget name="file_list" position="0,100" size="555,325" scrollbarMode="showOnDemand" />
                 </screen>
@@ -116,7 +114,8 @@ class FPGAUpgrade(Screen):
 
 	def __init__(self, session): 
 		Screen.__init__(self, session)
-                self.session = session 
+		self.session = session 
+		Screen.setTitle(self, _("FPGA Upgrade"))
 
 		self["key_red"] = StaticText(_("Close"))
 		self["key_green"] = StaticText(_("Upgrade"))
