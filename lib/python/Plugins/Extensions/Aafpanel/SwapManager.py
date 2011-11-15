@@ -269,7 +269,7 @@ class Swap(Screen):
 		if name:
 			name
 			self.new_place = name[1]
-			myoptions = [[_("8 Mb"), '8192'], [_("16 Mb"), '16384'], [_("32 Mb"), '32768'], [_("64 Mb"), '65536'], [_("96 Mb"), '98304']]
+			myoptions = [[_("32 Mb"), '32768'], [_("64 Mb"), '65536'], [_("128 Mb"), '131072'], [_("256 Mb"), '262144'], [_("512 Mb"), '524288']]
 			self.session.openWithCallback(self.doCSsize, ChoiceBox, title=_("Select the Swap File Size:"), list=myoptions)
 		else:
 			name
