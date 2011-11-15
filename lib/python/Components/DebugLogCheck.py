@@ -1,8 +1,5 @@
 import Components.Task
 from config import config
-from Tools.Directories import pathExists
-from twisted.internet import reactor, threads, task
-from time import localtime, time, strftime
 from enigma import eTimer
 from os import path, remove
 from glob import glob
@@ -15,7 +12,7 @@ def AutoDebugLogCheck(session=None, **kwargs):
 	debuglogcheckpoller.start()
 
 class DebugLogCheckPoller:
-	"""Automatically Poll SoftCam"""
+	"""Automatically Poll DebugLogCheck"""
 	def __init__(self):
 		# Init Timer
 		self.timer = eTimer()
@@ -32,10 +29,19 @@ class DebugLogCheckPoller:
 
 	def debug_check(self):
 		print '[DebugLogCheck] Poll Started'
-		now = int(time())
+		Components.Task.job_manager.AddJob(self.createCheckJob())
+
+	def createCheckJob(self):
+		job = Components.Task.Job(_("DebugLogCheck"))
+		task = Components.Task.PythonTask(job, _("Checking Log Size..."))
+		task.work = self.JobStart
+		task.weighting = 1
+		return job
+
+	def JobStart(self):
+		filename = ""
 		if config.crash.enabledebug.value:
-			filename = ""
-			for filename in glob('/home/root/*.log') :
+			for filename in glob(config.crash.debug_path.value + '*.log'):
 				if path.getsize(filename) > (config.crash.debugloglimit.value * 1024 * 1024):
 					fh = open(filename, 'rb+')
 					fh.seek(-(config.crash.debugloglimit.value * 1024 * 1024), 2)
@@ -45,7 +51,6 @@ class DebugLogCheckPoller:
 					fh.truncate()
 					fh.close()
 		elif not config.crash.enabledebug.value:
-			filename = ""
-			for filename in glob('/home/root/*.log') :
+			for filename in glob(config.crash.debug_path.value + '*.log'):
 				remove(filename)
 		self.timer.startLongTimer(43200) #twice a day

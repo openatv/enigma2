@@ -31,7 +31,7 @@ except IOError:
 def profile(id):
 	now = time.time() - profile_start
 	if profile_file:
-		profile_file.write("%.2f\t%s\n" % (now, id))
+		profile_file.write("%7.3f\t%s\n" % (now, id))
 
 		if id in profile_data:
 			t = profile_data[id]

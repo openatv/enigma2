@@ -62,6 +62,9 @@ public:
 	void setInverted( unsigned char );
 	bool isOled() const { return !!is_oled; }
 	void update();
+#if defined(HAVE_TEXTLCD)
+	void updates(ePoint start,char *text);
+#endif /*defined(HAVE_TEXTLCD)*/
 };
 
 #endif

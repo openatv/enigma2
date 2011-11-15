@@ -13,18 +13,9 @@ enigma.eTimer = eBaseImpl.eTimer
 enigma.eSocketNotifier = eBaseImpl.eSocketNotifier
 enigma.eConsoleAppContainer = eConsoleImpl.eConsoleAppContainer
 
-profile("LANGUAGE")
-from Components.Language import language
-
-def setEPGLanguage():
-	print "language set to", language.getLanguage()
-	enigma.eServiceEvent.setEPGLanguage(language.getLanguage())
-
-language.addCallback(setEPGLanguage)
-
 from traceback import print_exc
-profile("LOAD:InfoBar")
-import Screens.InfoBar
+profile("SimpleSummary")
+from Screens import InfoBar
 from Screens.SimpleSummary import SimpleSummary
 
 from sys import stdout, exc_info
@@ -48,12 +39,6 @@ from Components.config import config, configfile, ConfigText, ConfigYesNo, Confi
 InitFallbackFiles()
 
 profile("UsageConfig")
-from os import rename, path
-if path.exists('/etc/enigma2/settings'):
-	data = file('/etc/enigma2/settings').read()
-	if data.find('epgcache_filename') >= 0:
-		file('/etc/enigma2/settings.tmp', 'w').writelines([l for l in file('/etc/enigma2/settings').readlines() if 'epgcache_filename' not in l])
-		rename('/etc/enigma2/settings.tmp','/etc/enigma2/settings')
 import Components.UsageConfig
 Components.UsageConfig.InitUsageConfig()
 
@@ -61,13 +46,10 @@ profile("config.misc")
 config.misc.radiopic = ConfigText(default = resolveFilename(SCOPE_CURRENT_SKIN, "radio.mvi"))
 config.misc.blackradiopic = ConfigText(default = resolveFilename(SCOPE_CURRENT_SKIN, "black.mvi"))
 config.misc.isNextRecordTimerAfterEventActionAuto = ConfigYesNo(default=False)
-config.misc.SyncTimeUsing = ConfigSelection(default = "Transponder", choices = [("Transponder", "Transponder Time"), ("NTP", _("NTP"))])
+config.misc.SyncTimeUsing = ConfigSelection(default = "0", choices = [("0", "Transponder Time"), ("1", _("NTP"))])
 
 config.misc.startCounter = ConfigInteger(default=0) # number of e2 starts...
 config.misc.standbyCounter = NoSave(ConfigInteger(default=0)) # number of standby
-
-def setEPGCachePath(configElement):
-	enigma.eEPGCache.getInstance().setCacheFile(configElement.value)
 
 #demo code for use of standby enter leave callbacks
 #def leaveStandby():
@@ -83,11 +65,13 @@ def setEPGCachePath(configElement):
 
 def useSyncUsingChanged(configElement):
 	print 'SyncTimeUsing',config.misc.SyncTimeUsing.value
-	if config.misc.SyncTimeUsing.value == "Transponder":
-		value = True
+	if config.misc.SyncTimeUsing.value == "0":
+		print "[Time By]: Transponder"
+ 		value = True
 		enigma.eDVBLocalTimeHandler.getInstance().setUseDVBTime(value)
 	else:
-		value = False
+		print "[Time By]: NTP"
+ 		value = False
 		enigma.eDVBLocalTimeHandler.getInstance().setUseDVBTime(value)
 		from Components.Console import Console
 		Console = Console()
@@ -197,7 +181,12 @@ class Session:
 		self.screen = SessionGlobals(self)
 
 		for p in plugins.getPlugins(PluginDescriptor.WHERE_SESSIONSTART):
-			p(reason=0, session=self)
+			try:
+				p(reason=0, session=self)
+			except:
+				print "Plugin raised exception at WHERE_SESSIONSTART"
+				import traceback
+				traceback.print_exc()
 
 	def processDelay(self):
 		callback = self.current_dialog.callback
@@ -229,6 +218,7 @@ class Session:
 			self.summary.show()
 			c.addSummary(self.summary)
 
+		c.saveKeyboardMode()
 		c.execBegin()
 
 		# when execBegin opened a new dialog, don't bother showing the old one.
@@ -240,6 +230,7 @@ class Session:
 		self.in_exec = False
 
 		self.current_dialog.execEnd()
+		self.current_dialog.restoreKeyboardMode()
 		self.current_dialog.hide()
 
 		if last:
@@ -469,7 +460,7 @@ def runScreenTest():
 	profile("wizards")
 	screensToRun += wizardManager.getWizards()
 
-	screensToRun.append((100, Screens.InfoBar.InfoBar))
+	screensToRun.append((100, InfoBar.InfoBar))
 
 	screensToRun.sort()
 
@@ -480,7 +471,6 @@ def runScreenTest():
 #			["PREMIERE"], #provider_list,
 #			[] #caid_list
 #		));
-
 	def runNextScreen(session, screensToRun, *result):
 		if result:
 			enigma.quitMainloop(*result)
@@ -488,13 +478,10 @@ def runScreenTest():
 
 		screen = screensToRun[0][1]
 		args = screensToRun[0][2:]
-
 		if screensToRun:
 			session.openWithCallback(boundFunction(runNextScreen, session, screensToRun[1:]), screen, *args)
 		else:
 			session.open(screen, *args)
-
-	config.misc.epgcache_filename.addNotifier(setEPGCachePath)
 
 	runNextScreen(session, screensToRun)
 
@@ -517,6 +504,7 @@ def runScreenTest():
 	config.misc.startCounter.save()
 
 	profile("wakeup")
+
 	from time import time, strftime, localtime
 	from Tools.DreamboxHardware import setFPWakeuptime, getFPWakeuptime, setRTCtime
 	#get currentTime
@@ -552,7 +540,9 @@ def runScreenTest():
 
 	profile("configfile.save")
 	configfile.save()
-
+	from Screens import InfoBarGenerics
+	InfoBarGenerics.saveResumePoints()
+	
 	return 0
 
 profile("Init:skin")
@@ -594,10 +584,21 @@ Components.Network.InitNetwork()
 profile("LCD")
 import Components.Lcd
 Components.Lcd.InitLcd()
+Components.Lcd.IconCheck()
+
+profile("OSD")
+import Screens.OSD
+Screens.OSD.setConfiguredPosition()
+Screens.OSD.setConfiguredSettings()
 
 profile("SetupDevices")
 import Components.SetupDevices
 Components.SetupDevices.InitSetupDevices()
+
+profile("EpgCacheSched")
+import Screens.EpgLoadSave
+Screens.EpgLoadSave.EpgCacheSaveCheck()
+Screens.EpgLoadSave.EpgCacheLoadCheck()
 
 profile("RFMod")
 import Components.RFmod

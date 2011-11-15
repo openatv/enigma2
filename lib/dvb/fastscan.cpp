@@ -362,12 +362,22 @@ void eFastScan::start(int frontendid)
 	m_channel->getDemux(m_demux);
 
 	eDVBFrontendParametersSatellite fesat;
-	fesat.frequency = 12515000;
-	fesat.symbol_rate = 22000000;
+	if (m_pid >= 900)
+	{
+		fesat.frequency = 12515000;
+		fesat.symbol_rate = 22000000;
+		fesat.fec = eDVBFrontendParametersSatellite::FEC_5_6;
+		fesat.orbital_position = 192;
+	}
+	else
+	{
+		fesat.frequency = 12070000;
+		fesat.symbol_rate = 27500000;
+		fesat.fec = eDVBFrontendParametersSatellite::FEC_3_4;
+		fesat.orbital_position = 235;
+	}
 	fesat.polarisation = eDVBFrontendParametersSatellite::Polarisation_Horizontal;
-	fesat.fec = eDVBFrontendParametersSatellite::FEC_5_6;
 	fesat.inversion = eDVBFrontendParametersSatellite::Inversion_Unknown;
-	fesat.orbital_position = 192;
 	fesat.system = eDVBFrontendParametersSatellite::System_DVB_S;
 	fesat.modulation = eDVBFrontendParametersSatellite::Modulation_QPSK;
 	fesat.rolloff = eDVBFrontendParametersSatellite::RollOff_alpha_0_35;

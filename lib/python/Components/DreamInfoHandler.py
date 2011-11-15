@@ -84,6 +84,8 @@ class InfoHandler(xml.sax.ContentHandler):
 				self.attributes["packagename"] = str(attrs["packagename"])
 			if attrs.has_key("packagetype"):
 				self.attributes["packagetype"] = str(attrs["packagetype"])
+			if attrs.has_key("needsRestart"):
+				self.attributes["needsRestart"] = str(attrs["needsRestart"])
 			if attrs.has_key("shortdescription"):
 				self.attributes["shortdescription"] = str(attrs["shortdescription"])
 
@@ -120,6 +122,8 @@ class InfoHandler(xml.sax.ContentHandler):
 			self.attributes["name"] = str(data)
 		if self.elements[-1] == "packagename":
 			self.attributes["packagename"] = str(data)
+		if self.elements[-1] == "needsRestart":
+			self.attributes["needsRestart"] = str(data)
 		if self.elements[-1] == "shortdescription":
 			self.attributes["shortdescription"] = str(data)
 		if self.elements[-1] == "description":

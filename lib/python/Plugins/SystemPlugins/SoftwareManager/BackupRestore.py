@@ -17,10 +17,9 @@ from os import popen, path, makedirs, listdir, access, stat, rename, remove, W_O
 from time import gmtime, strftime, localtime
 from datetime import date
 
-
 config.plugins.configurationbackup = ConfigSubsection()
 config.plugins.configurationbackup.backuplocation = ConfigText(default = '/media/hdd/', visible_width = 50, fixed_size = False)
-config.plugins.configurationbackup.backupdirs = ConfigLocations(default=[eEnv.resolve('${sysconfdir}/enigma2/'), '/etc/network/interfaces', '/etc/wpa_supplicant.conf', '/etc/resolv.conf', '/etc/default_gw', '/etc/hostname'])
+config.plugins.configurationbackup.backupdirs = ConfigLocations(default=[eEnv.resolve('${sysconfdir}/enigma2/'), '/etc/network/interfaces', '/etc/wpa_supplicant.conf', '/etc/wpa_supplicant.ath0.conf', '/etc/wpa_supplicant.wlan0.conf', '/etc/resolv.conf', '/etc/default_gw', '/etc/hostname'])
 
 def getBackupPath():
 	backuppath = config.plugins.configurationbackup.backuplocation.value
@@ -268,7 +267,7 @@ class RestoreMenu(Screen):
 			self.sel = self["filelist"].getCurrent()
 			if self.sel:
 				self.val = self.path + "/" + self.sel
-				self.session.openWithCallback(self.startDelete, MessageBox, _("Are you sure you want to delete\nfollowing backup:\n") + self.sel )
+				self.session.openWithCallback(self.startDelete, MessageBox, _("Are you sure you want to delete\nfollowing backup:\n") + self.sel)
 
 	def startDelete(self, ret = False):
 		if (ret == True):

@@ -1,6 +1,6 @@
 from Screen import Screen
 from Components.ActionMap import NumberActionMap, ActionMap
-from Components.config import config, ConfigNothing
+from Components.config import config, ConfigNothing, ConfigText
 from Components.SystemInfo import SystemInfo
 from Components.ConfigList import ConfigListScreen
 from Components.Pixmap import Pixmap,MultiPixmap
@@ -85,10 +85,10 @@ class Setup(ConfigListScreen, Screen):
 		self["VKeyIcon"] = Boolean(False)
 
 		self.onChangedEntry = [ ]
-
 		self.setup = setup
 		list = []
-		self.refill(list)
+		ConfigListScreen.__init__(self, list, session = session, on_change = self.changedEntry)
+		self.createSetup()
 
 		#check for list.entries > 0 else self.close
 		self["key_red"] = StaticText(_("Cancel"))
@@ -106,12 +106,16 @@ class Setup(ConfigListScreen, Screen):
 		}, -2)
 		self["VirtualKB"].setEnabled(False)
 		
-		ConfigListScreen.__init__(self, list, session = session, on_change = self.changedEntry)
 
 		if not self.handleInputHelpers in self["config"].onSelectionChanged:
 			self["config"].onSelectionChanged.append(self.handleInputHelpers)
 		self.changedEntry()
 		self.onLayoutFinish.append(self.layoutFinished)
+
+	def createSetup(self):
+		list = []
+		self.refill(list)
+ 		self["config"].setList(list)
 
 	def handleInputHelpers(self):
 		if self["config"].getCurrent() is not None:
@@ -155,6 +159,8 @@ class Setup(ConfigListScreen, Screen):
 	def changedEntry(self):
 		for x in self.onChangedEntry:
 			x()
+		if not isinstance(self["config"].getCurrent()[1], ConfigText):
+			self.createSetup()
 
 	def getCurrentEntry(self):
 		return self["config"].getCurrent()[0]
@@ -180,6 +186,13 @@ class Setup(ConfigListScreen, Screen):
 					continue
 
 				requires = x.get("requires")
+				if requires and requires.startswith('config.'):
+					item = eval(requires or "");
+					if item.value and not item.value == "0":
+						SystemInfo[requires] = True
+					else:
+						SystemInfo[requires] = False
+
 				if requires and not SystemInfo.get(requires, False):
 					continue;
 
@@ -189,6 +202,7 @@ class Setup(ConfigListScreen, Screen):
 					continue
 				#add to configlist
 				item = b
+					
 				# the first b is the item itself, ignored by the configList.
 				# the second one is converted to string.
 				if not isinstance(item, ConfigNothing):

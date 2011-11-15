@@ -207,8 +207,11 @@ class choicesList(object): # XXX: we might want a better name for this
 			return self.__list__().index(value)
 		except IndexError:
 			print "[config.py] Index Error"
+			return 0
 		except ValueError:
 			print "[config.py] Index Error"
+			# occurs e.g. when default is not in list
+			return 0
 
 	def __setitem__(self, index, value):
 		if self.type == choicesList.LIST_TYPE_LIST:

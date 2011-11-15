@@ -205,7 +205,6 @@ class LogManager(Screen):
 		self.selectedFiles = self["list"].getSelectedList()
 		self.resend = False
 		for send in self.previouslySent:
-			print 'SEND',send
 			if send in self.selectedFiles:
 				self.selectedFiles.remove(send)
 			if send == (self.defaultDir + self.sel):
@@ -267,66 +266,66 @@ class LogManager(Screen):
 		msg = MIMEMultipart()
 		if config.logmanager.user.value != '' and config.logmanager.useremail.value != '':
 			fromlogman = config.logmanager.user.value + '  <' + config.logmanager.useremail.value + '>'
-		else:
-			fromlogman = 'ViX Log Manager <vixlogs@world-of-satellite.com>'
-		tovixlogs = 'vixlogs@world-of-satellite.com'
-		msg['From'] = fromlogman
-		msg['To'] = tovixlogs
-		msg['Cc'] = fromlogman
-		msg['Date'] = formatdate(localtime=True)
-		msg['Subject'] = 'Ref: ' + ref
-		if additonalinfo != "":
-			msg.attach(MIMEText(additonalinfo, 'plain'))
-		else:
-			msg.attach(MIMEText(config.logmanager.additionalinfo.value, 'plain'))
-		if self.sendallfiles:
-			self.selectedFiles = self["list"].getSelectedList()
-			for send in self.previouslySent:
-				if send in self.selectedFiles:
-					self.selectedFiles.remove(send)
-			self.sel = ",".join(self.selectedFiles).replace(",", " ")
-			self["list"].instance.moveSelectionTo(0)
-			for f in self.selectedFiles:
-				self.previouslySent.append(f)
-				fp = open(f, 'rb')
+			tovixlogs = 'vixlogs@world-of-satellite.com'
+			msg['From'] = fromlogman
+			msg['To'] = tovixlogs
+			msg['Cc'] = fromlogman
+			msg['Date'] = formatdate(localtime=True)
+			msg['Subject'] = 'Ref: ' + ref
+			if additonalinfo != "":
+				msg.attach(MIMEText(additonalinfo, 'plain'))
+			else:
+				msg.attach(MIMEText(config.logmanager.additionalinfo.value, 'plain'))
+			if self.sendallfiles:
+				self.selectedFiles = self["list"].getSelectedList()
+				for send in self.previouslySent:
+					if send in self.selectedFiles:
+						self.selectedFiles.remove(send)
+				self.sel = ",".join(self.selectedFiles).replace(",", " ")
+				self["list"].instance.moveSelectionTo(0)
+				for f in self.selectedFiles:
+					self.previouslySent.append(f)
+					fp = open(f, 'rb')
+					data = MIMEText(fp.read())
+					fp.close()
+					msg.attach(data)
+					self.saveSelection()
+			else:
+				self.sel = self["list"].getCurrent()[0]
+				self.sel = str(self.sel[0])
+				if self.logtype == 'crashlogs':
+					self.defaultDir = '/media/hdd/'
+				else:
+					self.defaultDir = config.crash.debug_path.value
+				fp = open((self.defaultDir + self.sel), 'rb')
 				data = MIMEText(fp.read())
 				fp.close()
 				msg.attach(data)
+				self.sentsingle = self.defaultDir + self.sel
+				self.changeSelectionState()
 				self.saveSelection()
+	
+			# Send the email via our own SMTP server.
+			wos_user = 'vixlogs@world-of-satellite.com'
+			wos_pwd = base64.b64decode('NDJJWnojMEpldUxX')
+	
+			try:
+				print "connecting to server: mail.world-of-satellite.com"
+				#socket.setdefaulttimeout(30)
+				s = smtplib.SMTP("mail.world-of-satellite.com",26)
+				s.login(wos_user, wos_pwd)
+				if config.logmanager.usersendcopy.value:
+					s.sendmail(fromlogman, [tovixlogs, fromlogman], msg.as_string())
+					s.quit()
+					self.session.open(MessageBox, _(self.sel + ' has been sent to the ViX beta team.\nplease quote ' + ref + ' when asking question about this log\n\nA copy has been sent to yourself.'), MessageBox.TYPE_INFO)
+				else:
+					s.sendmail(fromlogman, tovixlogs, msg.as_string())
+					s.quit()
+					self.session.open(MessageBox, _(self.sel + ' has been sent to the ViX beta team.\nplease quote ' + ref + ' when asking question about this log'), MessageBox.TYPE_INFO)
+			except Exception,e:
+				self.session.open(MessageBox, _("Error:\n%s" % e), MessageBox.TYPE_INFO, timeout = 10)
 		else:
-			self.sel = self["list"].getCurrent()[0]
-			self.sel = str(self.sel[0])
-			if self.logtype == 'crashlogs':
-				self.defaultDir = '/media/hdd/'
-			else:
-				self.defaultDir = config.crash.debug_path.value
-			fp = open((self.defaultDir + self.sel), 'rb')
-			data = MIMEText(fp.read())
-			fp.close()
-			msg.attach(data)
-			self.sentsingle = self.defaultDir + self.sel
-			self.changeSelectionState()
-			self.saveSelection()
-
-		# Send the email via our own SMTP server.
-		wos_user = 'vixlogs@world-of-satellite.com'
-		wos_pwd = base64.b64decode('NDJJWnojMEpldUxX')
-
-		try:
-			print "connecting to server: mail.world-of-satellite.com"
-			#socket.setdefaulttimeout(30)
-			s = smtplib.SMTP("mail.world-of-satellite.com",26)
-			s.login(wos_user, wos_pwd)
-			if config.logmanager.usersendcopy.value:
-				s.sendmail(fromlogman, [tovixlogs, fromlogman], msg.as_string())
-				s.quit()
-				self.session.open(MessageBox, _(self.sel + ' has been sent to the ViX beta team.\nplease quote ' + ref + ' when asking question about this log\n\nA copy has been sent to yourself.'), MessageBox.TYPE_INFO)
-			else:
-				s.sendmail(fromlogman, tovixlogs, msg.as_string())
-				s.quit()
-				self.session.open(MessageBox, _(self.sel + ' has been sent to the ViX beta team.\nplease quote ' + ref + ' when asking question about this log'), MessageBox.TYPE_INFO)
-		except Exception,e:
-			self.session.open(MessageBox, _("Error:\n%s" % e), MessageBox.TYPE_INFO, timeout = 10)
+			self.session.open(MessageBox, _('You have not setup your user info in the setup screen\nPress MENU, and enter your info, then try again'), MessageBox.TYPE_INFO, timeout = 10)
 		
 	def myclose(self):
 		self.close()

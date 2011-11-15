@@ -1,7 +1,7 @@
 from Plugins.Plugin import PluginDescriptor
 from Components.Scanner import scanDevice
 from Screens.InfoBar import InfoBar
-from os import access, F_OK, R_OK
+import os
 
 def execute(option):
 	print "execute", option
@@ -25,7 +25,7 @@ def mountpoint_choosen(option):
 
 	if not list:
 		from Screens.MessageBox import MessageBox
-		if access(mountpoint, F_OK|R_OK):
+		if os.access(mountpoint, os.F_OK|os.R_OK):
 			session.open(MessageBox, _("No displayable files on this medium found!"), MessageBox.TYPE_ERROR)
 		else:
 			print "ignore", mountpoint, "because its not accessible"
@@ -37,15 +37,9 @@ def mountpoint_choosen(option):
 
 def scan(session):
 	from Screens.ChoiceBox import ChoiceBox
-
-	from Components.Harddisk import harddiskmanager
-
-	parts = [ (r.description, r.mountpoint, session) for r in harddiskmanager.getMountedPartitions(onlyhotplug = False)]
-	if parts:
-		for x in parts:
-			if not access(x[1], F_OK|R_OK):
-				parts.remove(x)	
-		session.openWithCallback(mountpoint_choosen, ChoiceBox, title = _("Please Select Medium to be Scanned"), list = parts)
+	parts = [ (r.tabbedDescription(), r.mountpoint, session) for r in harddiskmanager.getMountedPartitions(onlyhotplug = False) if os.access(r.mountpoint, os.F_OK|os.R_OK) ]
+	parts.append( (_("Memory") + "\t/tmp", "/tmp", session) )
+	session.openWithCallback(mountpoint_choosen, ChoiceBox, title = _("Please Select Medium to be Scanned"), list = parts)
 
 def main(session, **kwargs):
 	scan(session)
@@ -58,7 +52,6 @@ from Components.Harddisk import harddiskmanager
 def menuHook(menuid):
 	if menuid != "mainmenu": 
 		return [ ]
-
 	from Tools.BoundFunction import boundFunction
 	return [(("%s (files)") % r.description, boundFunction(menuEntry, r.description, r.mountpoint), "hotplug_%s" % r.mountpoint, None) for r in harddiskmanager.getMountedPartitions(onlyhotplug = True)]
 

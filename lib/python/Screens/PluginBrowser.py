@@ -8,6 +8,7 @@ from Components.PluginList import *
 from Components.Label import Label
 from Components.Harddisk import harddiskmanager
 from Components.Sources.StaticText import StaticText
+from Components import Ipkg
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
 from Screens.Console import Console
@@ -219,14 +220,10 @@ class PluginDownloadBrowser(Screen):
 		if result is not None:
 			dest = result[1]
 			if dest.startswith('/'):
-				# Custom install path, create temp opkg.conf to do it
-				tmp = open('/tmp/opkg.conf', 'w')
-				for line in open('/etc/opkg/opkg.conf', 'r'):
-					if line.strip().split(' ', 2)[0] in ('option', 'lists_dir'):
-						tmp.write(line)
-				tmp.write('dest %s %s\n' % (dest,dest))
-				tmp.close()
-				extra = '-f /tmp/opkg.conf -d ' + dest
+				# Custom install path, add it to the list too
+				dest = os.path.normpath(dest)
+				extra = '--add-dest %s:%s -d %s' % (dest,dest,dest)
+				Ipkg.opkgAddDestination(dest)
 			else:
 				extra = '-d ' + dest
 			self.session.openWithCallback(self.installFinished, Console, cmdlist = [self.ipkg_install + " enigma2-plugin-" + self["list"].l.getCurrentSelection()[0].name + ' ' + extra], closeOnSuccess = True)
@@ -237,7 +234,7 @@ class PluginDownloadBrowser(Screen):
 		if val:
 			if self.type == self.DOWNLOAD:
 				if self["list"].l.getCurrentSelection()[0].name[0:7] == "picons-":
-					supported_filesystems = frozenset(('ext4', 'ext3', 'ext2', 'reiser', 'reiser4', 'jffs2', 'ubifs', 'rootfs'))
+					supported_filesystems = frozenset(('ext4', 'ext3', 'ext2', 'reiser', 'reiser4', 'jffs2', 'ubifs', 'rootfs', 'nfs'))
 					candidates = []
 					import Components.Harddisk
 					mounts = Components.Harddisk.getProcMounts() 
@@ -251,7 +248,7 @@ class PluginDownloadBrowser(Screen):
 					return
 				self.session.openWithCallback(self.installFinished, Console, cmdlist = [self.ipkg_install + " enigma2-plugin-" + self["list"].l.getCurrentSelection()[0].name], closeOnSuccess = True)
 			elif self.type == self.REMOVE:
-				self.session.openWithCallback(self.installFinished, Console, cmdlist = [self.ipkg_remove + " enigma2-plugin-" + self["list"].l.getCurrentSelection()[0].name], closeOnSuccess = True)
+				self.session.openWithCallback(self.installFinished, Console, cmdlist = [self.ipkg_remove + Ipkg.opkgExtraDestinations() + " enigma2-plugin-" + self["list"].l.getCurrentSelection()[0].name], closeOnSuccess = True)
 
 	def setWindowTitle(self):
 		if self.type == self.DOWNLOAD:
@@ -260,10 +257,10 @@ class PluginDownloadBrowser(Screen):
 			self.setTitle(_("Remove plugins"))
 
 	def startIpkgListInstalled(self):
-		self.container.execute(self.ipkg + " list_installed 'enigma2-plugin-*'")
+		self.container.execute(self.ipkg + Ipkg.opkgExtraDestinations() + " list_installed 'enigma2-plugin-*'")
 
 	def startIpkgListAvailable(self):
-		self.container.execute(self.ipkg + " list 'enigma2-plugin-*'")
+		self.container.execute(self.ipkg + Ipkg.opkgExtraDestinations() + " list 'enigma2-plugin-*'")
 
 	def startRun(self):
 		listsize = self["list"].instance.size()

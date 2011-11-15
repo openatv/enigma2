@@ -87,6 +87,8 @@ def moviePlayState(cutsFileName, ref, length):
 			if not length or (length<0):
 				length = cutPTS[2]
 			if length:
+			        if cutPTS[1] >= length:
+			                return 100
 				return (100 * cutPTS[1]) // length
 			else:
 				return 50
@@ -120,6 +122,8 @@ class MovieList(GUIComponent):
 	SORT_ALPHANUMERIC = 1
 	SORT_RECORDED = 2
 	SHUFFLE = 3
+	SORT_ALPHANUMERIC_REVERSE = 4
+	SORT_RECORDED_REVERSE = 5
 
 	LISTTYPE_ORIGINAL = 1
 	LISTTYPE_COMPACT_DESCRIPTION = 2
@@ -477,10 +481,11 @@ class MovieList(GUIComponent):
 		realtags = set()
 		tags = {}
 		rootPath = os.path.normpath(root.getPath());
-		# skip '/'
-		if len(rootPath) > 1:
+		# Don't navigate above the "root"
+		if len(rootPath) > 1 and (os.path.realpath(rootPath) != config.movielist.root.value):
 			parent = os.path.split(os.path.normpath(rootPath))[0]
-			if parent and (parent not in defaultInhibitDirs):
+			currentfolder = os.path.normpath(rootPath) + '/'
+			if parent and (parent not in defaultInhibitDirs) and not currentfolder.endswith(config.usage.default_path.value):
 				# enigma wants an extra '/' appended
 				if not parent.endswith('/'):
 					parent += '/'
@@ -497,8 +502,10 @@ class MovieList(GUIComponent):
 				info = justStubInfo 
 			begin = info.getInfo(serviceref, iServiceInformation.sTimeCreate)
 			if serviceref.flags & eServiceReference.mustDescent:
-				self.list.append((serviceref, info, begin, -1))
-				numberOfDirs += 1
+				dirname = info.getName(serviceref)
+				if not dirname.endswith('.AppleDouble/') and not dirname.endswith('.AppleDesktop/') and not dirname.endswith('.AppleDB/') and not dirname.endswith('Network Trash Folder/') and not dirname.endswith('Temporary Items/'):
+					self.list.append((serviceref, info, begin, -1))
+					numberOfDirs += 1
 				continue
 			# convert space-seperated list of tags into a set
 			this_tags = info.getInfoString(serviceref, iServiceInformation.sTags).split(' ')
@@ -528,14 +535,18 @@ class MovieList(GUIComponent):
 		if self.sort_type == MovieList.SORT_ALPHANUMERIC:
 			self.list.sort(key=self.buildAlphaNumericSortKey)
 		else:
-			# sort: key is 'begin'
+			#always sort first always this way to avoid shuffle and reverse-sort directories
 			self.list.sort(key=self.buildBeginTimeSortKey)
 		if self.sort_type == MovieList.SHUFFLE:
-			dirlist=self.list[:numberOfDirs]
-			shufflelist=self.list[numberOfDirs:]
+			dirlist = self.list[:numberOfDirs]
+			shufflelist = self.list[numberOfDirs:]
 			random.shuffle(shufflelist)
-			self.list=dirlist+shufflelist
-		
+			self.list = dirlist + shufflelist
+		elif self.sort_type == MovieList.SORT_ALPHANUMERIC_REVERSE:
+			self.list = self.list[:numberOfDirs] + sorted(self.list[numberOfDirs:], key=self.buildAlphaNumericSortKey, reverse = True)
+		elif self.sort_type == MovieList.SORT_RECORDED_REVERSE:
+			self.list = self.list[:numberOfDirs] + sorted(self.list[numberOfDirs:], key=self.buildBeginTimeSortKey, reverse = True)
+	
 		# finally, store a list of all tags which were found. these can be presented
 		# to the user to filter the list
 		# ML: Only use the tags that occur more than once in the list OR that were

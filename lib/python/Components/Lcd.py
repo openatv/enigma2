@@ -1,6 +1,78 @@
-from config import config, ConfigSubsection, ConfigSlider, ConfigYesNo, ConfigNothing
-from enigma import eDBoxLCD
+import Components.Task
+from config import config, ConfigSubsection, ConfigSelection, ConfigSlider, ConfigYesNo, ConfigNothing
+from enigma import eDBoxLCD, eTimer
 from Components.SystemInfo import SystemInfo
+from os import path
+import usb
+
+def IconCheck(session=None, **kwargs):
+	if path.exists("/proc/stb/lcd/symbol_network") or path.exists("/proc/stb/lcd/symbol_usb"):
+		global networklinkpoller
+		networklinkpoller = IconCheckPoller()
+		networklinkpoller.start()
+
+class IconCheckPoller:
+	def __init__(self):
+		self.timer = eTimer()
+
+	def start(self):
+		if self.iconcheck not in self.timer.callback:
+			self.timer.callback.append(self.iconcheck)
+		self.timer.startLongTimer(0)
+
+	def stop(self):
+		if self.iconcheck in self.timer.callback:
+			self.timer.callback.remove(self.iconcheck)
+		self.timer.stop()
+
+	def iconcheck(self):
+		Components.Task.job_manager.AddJob(self.createCheckJob())
+
+	def createCheckJob(self):
+		job = Components.Task.Job(_("VFD Checker"))
+		if path.exists("/proc/stb/lcd/symbol_network"):
+			task = Components.Task.PythonTask(job, _("Checking Network..."))
+			task.work = self.JobNetwork
+			task.weighting = 1
+		if path.exists("/proc/stb/lcd/symbol_usb"):
+			task = Components.Task.PythonTask(job, _("Checking USB devices..."))
+			task.work = self.JobUSB
+			task.weighting = 1
+		task = Components.Task.PythonTask(job, _("Adding schedule..."))
+		task.work = self.JobSched
+		task.weighting = 1
+		return job
+
+	def JobNetwork(self):
+		LinkState = 0
+		if path.exists('/sys/class/net/wlan0/operstate'):
+			LinkState = open('/sys/class/net/wlan0/operstate').read()
+			if LinkState != 'down':
+				LinkState = open('/sys/class/net/wlan0/operstate').read()
+		elif path.exists('/sys/class/net/eth0/operstate'):
+			LinkState = open('/sys/class/net/eth0/operstate').read()
+			if LinkState != 'down':
+				LinkState = open('/sys/class/net/eth0/carrier').read()
+		LinkState = LinkState[:1]
+		open("/proc/stb/lcd/symbol_network", "w").write(str(LinkState))
+
+	def JobUSB(self):
+		USBState = 0
+		busses = usb.busses()
+		for bus in busses:
+			devices = bus.devices
+			for dev in devices:
+				if dev.deviceClass != 9 and dev.deviceClass != 2 and dev.idVendor > 0:
+# 						print ' '
+# 						print "Device:", dev.filename
+# 						print "  Number:", dev.deviceClass
+# 						print "  idVendor: %d (0x%04x)" % (dev.idVendor, dev.idVendor)
+# 						print "  idProduct: %d (0x%04x)" % (dev.idProduct, dev.idProduct)
+					USBState = 1
+		open("/proc/stb/lcd/symbol_usb", "w").write(str(USBState))
+
+	def JobSched(self):
+		self.timer.startLongTimer(30)
 
 class LCD:
 	def __init__(self):
@@ -28,6 +100,15 @@ class LCD:
 	def isOled(self):
 		return eDBoxLCD.getInstance().isOled()
 
+	def setMode(self, value):
+		open("/proc/stb/lcd/show_symbols", "w").write(value)
+
+	def setRepeat(self, value):
+		open("/proc/stb/lcd/scroll_repeats", "w").write(value)
+
+	def setScrollspeed(self, value):
+		open("/proc/stb/lcd/scroll_delay", "w").write(str(value))
+
 def leaveStandby():
 	config.lcd.bright.apply()
 
@@ -49,6 +130,15 @@ def InitLcd():
 
 		def setLCDinverted(configElement):
 			ilcd.setInverted(configElement.value);
+
+		def setLCDmode(configElement):
+			ilcd.setMode(configElement.value);
+
+		def setLCDrepeat(configElement):
+			ilcd.setRepeat(configElement.value);
+
+		def setLCDscrollspeed(configElement):
+			ilcd.setScrollspeed(configElement.value);
 
 		standby_default = 0
 
@@ -72,6 +162,19 @@ def InitLcd():
 
 		config.lcd.invert = ConfigYesNo(default=False)
 		config.lcd.invert.addNotifier(setLCDinverted);
+
+		if path.exists("/proc/stb/lcd/scroll_delay"):
+			config.lcd.mode = ConfigSelection([("0", _("No")), ("1", _("Yes"))], "1")
+			config.lcd.mode.addNotifier(setLCDmode);
+			config.lcd.repeat = ConfigSelection([("0", _("None")), ("1", _("1X")), ("2", _("2X")), ("3", _("3X")), ("4", _("4X")), ("500", _("Continues"))], "3")
+			config.lcd.repeat.addNotifier(setLCDrepeat);
+			config.lcd.scrollspeed = ConfigSlider(default = 150, increment = 10, limits = (0, 500))
+			config.lcd.scrollspeed.addNotifier(setLCDscrollspeed);
+		else:
+			config.lcd.mode = ConfigNothing()
+			config.lcd.repeat = ConfigNothing()
+			config.lcd.scrollspeed = ConfigNothing()
+
 	else:
 		def doNothing():
 			pass
@@ -80,6 +183,9 @@ def InitLcd():
 		config.lcd.standby = ConfigNothing()
 		config.lcd.bright.apply = lambda : doNothing()
 		config.lcd.standby.apply = lambda : doNothing()
+		config.lcd.mode = ConfigNothing()
+		config.lcd.repeat = ConfigNothing()
+		config.lcd.scrollspeed = ConfigNothing()
 
 	config.misc.standbyCounter.addNotifier(standbyCounterChanged, initial_call = False)
 

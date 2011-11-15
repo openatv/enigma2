@@ -24,10 +24,11 @@ from Components.About import about
 from Components.DreamInfoHandler import DreamInfoHandler
 from Components.Language import language
 from Components.AVSwitch import AVSwitch
+from Components.Task import job_manager
 from Tools.Directories import pathExists, fileExists, resolveFilename, SCOPE_PLUGINS, SCOPE_CURRENT_PLUGIN, SCOPE_CURRENT_SKIN, SCOPE_METADIR
 from Tools.LoadPixmap import LoadPixmap
 from Tools.NumericalTextInput import NumericalTextInput
-from enigma import eTimer, quitMainloop, RT_HALIGN_LEFT, RT_VALIGN_CENTER, eListboxPythonMultiContent, eListbox, gFont, getDesktop, ePicLoad, eRCInput, getPrevAsciiCode, eEnv
+from enigma import eTimer, quitMainloop, RT_HALIGN_LEFT, RT_VALIGN_CENTER, eListboxPythonMultiContent, eListbox, gFont, getDesktop, ePicLoad, eRCInput, getPrevAsciiCode, eEnv, iRecordableService
 from cPickle import dump, load
 from os import path as os_path, system as os_system, unlink, stat, mkdir, popen, makedirs, listdir, access, rename, remove, W_OK, R_OK, F_OK
 from time import time, gmtime, strftime, localtime
@@ -42,10 +43,10 @@ from SoftwareTools import iSoftwareTools
 
 config.plugins.configurationbackup = ConfigSubsection()
 config.plugins.configurationbackup.backuplocation = ConfigText(default = '/media/hdd/', visible_width = 50, fixed_size = False)
-config.plugins.configurationbackup.backupdirs = ConfigLocations(default=[eEnv.resolve('${sysconfdir}/enigma2/'), '/etc/network/interfaces', '/etc/wpa_supplicant.conf', '/etc/resolv.conf', '/etc/default_gw', '/etc/hostname'])
+config.plugins.configurationbackup.backupdirs = ConfigLocations(default=[eEnv.resolve('${sysconfdir}/enigma2/'), '/etc/network/interfaces', '/etc/wpa_supplicant.conf', '/etc/wpa_supplicant.ath0.conf', '/etc/wpa_supplicant.wlan0.conf', '/etc/resolv.conf', '/etc/default_gw', '/etc/hostname'])
 
-config.plugins.SoftwareManager = ConfigSubsection()
-config.plugins.SoftwareManager.overwriteConfigFiles = ConfigSelection(
+config.plugins.softwaremanager = ConfigSubsection()
+config.plugins.softwaremanager.overwriteConfigFiles = ConfigSelection(
 				[
 				 ("Y", _("Yes, always")),
 				 ("N", _("No, never")),				 
@@ -126,7 +127,6 @@ class UpdatePluginMenu(Screen):
 			print "building menu entries"
 			self.list.append(("install-extensions", _("Manage extensions"), _("\nManage extensions or plugins for your Dreambox" ) + self.oktext, None))
 			self.list.append(("software-update", _("Software update"), _("\nOnline update of your Dreambox software." ) + self.oktext, None))
-			self.list.append(("software-update-offline", _("Software update") + " (Offline)", _("\nOnline update of your Dreambox software." ) + _("\nShut down upgrade and reboot") + self.oktext, None))
 			self.list.append(("software-restore", _("Software restore"), _("\nRestore your Dreambox with a new firmware." ) + self.oktext, None))
 			self.list.append(("system-backup", _("Backup system settings"), _("\nBackup your Dreambox settings." ) + self.oktext + "\n\n" + self.infotext, None))
 			self.list.append(("system-restore",_("Restore system settings"), _("\nRestore your Dreambox settings." ) + self.oktext, None))
@@ -240,15 +240,59 @@ class UpdatePluginMenu(Screen):
 			if currentEntry in ("system-backup","backupfiles"):
 				self.session.open(SoftwareManagerInfo, mode = "backupinfo")
 
+	def checkTraficLight(self):
+		from urllib import urlopen
+		import socket
+		import os
+		currentTimeoutDefault = socket.getdefaulttimeout()
+		socket.setdefaulttimeout(3)
+		message = ""
+		picon = None
+		default = True
+		try:
+			if os.path.isfile("/proc/stb/info/boxtype"):
+				boxType = open("/proc/stb/info/boxtype").read().strip().lower()
+			elif os.path.isfile("/proc/stb/info/vumodel"):
+				boxType = "vu" + open("/proc/stb/info/vumodel").read().strip().lower()
+			elif os.path.isfile("/proc/stb/info/model"):
+				boxType = open("/proc/stb/info/model").read().strip().lower()
+			# TODO: Use Twisted's URL fetcher, urlopen is evil. And it can
+			# run in parallel to the package update.
+			if boxType in urlopen("http://openpli.org/status").read():
+				message = _("The current beta image could not be stable") + "\n" + _("For more information see www.openpli.org") + "\n"
+				picon = MessageBox.TYPE_ERROR
+				default = False
+		except:
+			message = _("The status of the current beta image could not be checked because www.openpli.org could not be reached for some reason") + "\n"
+			picon = MessageBox.TYPE_ERROR
+			default = False
+		socket.setdefaulttimeout(currentTimeoutDefault)
+		
+		recordings = self.session.nav.getRecordings()
+		jobs = len(job_manager.getPendingJobs())
+		next_rec_time = -1
+		if not recordings:
+			next_rec_time = self.session.nav.RecordTimer.getNextRecordingTime()	
+		if recordings or (next_rec_time > 0 and (next_rec_time - time()) < 360):
+			message += _("Recording(s) are in progress or coming up in few seconds!") + "\n"
+			default = False
+		if jobs:
+			message += (_("%d jobs are running in the background!") % jobs) + "\n"
+			default = False
+		if default:
+		        # We'll ask later
+		        self.runUpgrade(True)
+		else:
+			message += _("Do you want to update your Dreambox?")+"\n"+_("After pressing OK, please wait!")
+			self.session.openWithCallback(self.runUpgrade, MessageBox, message, default = default, picon = picon)
+
 	def go(self):
 		current = self["menu"].getCurrent()
 		if current:
 			currentEntry = current[0]
 			if self.menu == 0:
 				if (currentEntry == "software-update"):
-					self.session.openWithCallback(self.runUpgrade, MessageBox, _("Do you want to update your Dreambox?")+"\n"+_("\nAfter pressing OK, please wait!"))
-				if (currentEntry == "software-update-offline"):
-					self.session.openWithCallback(self.runUpgradeOffline, MessageBox, _("Do you want to update your Dreambox?")+"\n"+_("The screen will go blank while upgrading, be patient and wait for the reboot."))
+					self.checkTraficLight()
 				elif (currentEntry == "software-restore"):
 					self.session.open(ImageWizard)
 				elif (currentEntry == "install-extensions"):
@@ -311,10 +355,6 @@ class UpdatePluginMenu(Screen):
 	def runUpgrade(self, result):
 		if result:
 			self.session.open(UpdatePlugin, self.skin_path)
-
-	def runUpgradeOffline(self, result):
-		if result:
-			self.session.open(UpdatePlugin, self.skin_path, 'offline')
 
 	def createBackupfolders(self):
 		print "Creating backup folder if not already there..."
@@ -387,7 +427,7 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 
 	def createSetup(self):
 		self.list = [ ]
-		self.overwriteConfigfilesEntry = getConfigListEntry(_("Overwrite configuration files ?"), config.plugins.SoftwareManager.overwriteConfigFiles)
+		self.overwriteConfigfilesEntry = getConfigListEntry(_("Overwrite configuration files ?"), config.plugins.softwaremanager.overwriteConfigFiles)
 		self.list.append(self.overwriteConfigfilesEntry)	
 		self["config"].list = self.list
 		self["config"].l.setSeperation(400)
@@ -511,7 +551,6 @@ class SoftwareManagerInfo(Screen):
 			self.list = []
 			backupfiles = config.plugins.configurationbackup.backupdirs.value
 			for entry in backupfiles:
-				print entry
 				self.list.append((entry,))
 			self['list'].setList(self.list)
 			
@@ -591,6 +630,7 @@ class PluginManager(Screen, DreamInfoHandler):
 		self.currentSelectedIndex = None
 		self.currentSelectedPackage = None
 		self.saved_currentSelectedPackage = None
+		self.restartRequired = False
 		
 		self.onShown.append(self.setWindowTitle)
 		self.onLayoutFinish.append(self.getUpdateInfos)
@@ -914,6 +954,8 @@ class PluginManager(Screen, DreamInfoHandler):
 					self.package = iSoftwareTools.packageDetails[0]
 					if self.package[0].has_key("attributes"):
 						self.attributes = self.package[0]["attributes"]
+						if self.attributes.has_key("needsRestart"):
+							self.restartRequired = True
 					if self.attributes.has_key("package"):
 						self.packagefiles = self.attributes["package"]
 					if plugin[1] == 'installed':
@@ -946,11 +988,11 @@ class PluginManager(Screen, DreamInfoHandler):
 
 	def runExecuteFinished(self):
 		self.reloadPluginlist()
-		restartRequired = plugins.restartRequired
-		if restartRequired:
+		if plugins.restartRequired or self.restartRequired:
 			self.session.openWithCallback(self.ExecuteReboot, MessageBox, _("Install or remove finished.") +" "+_("Do you want to reboot your Dreambox?"), MessageBox.TYPE_YESNO)
 		else:
 			self.selectedFiles = []
+			self.restartRequired = False
 			self.detailsClosed(True)
 
 	def ExecuteReboot(self, result):
@@ -958,6 +1000,7 @@ class PluginManager(Screen, DreamInfoHandler):
 			quitMainloop(3)
 		else:
 			self.selectedFiles = []
+			self.restartRequired = False
 			self.detailsClosed(True)
 
 	def reloadPluginlist(self):
@@ -1170,7 +1213,7 @@ class PluginDetails(Screen, DreamInfoHandler):
 
 		self.thumbnail = ""
 
-		self["shortcuts"] = ActionMap(["ShortcutActions", "WizardActions", "DirectionActions"],
+		self["shortcuts"] = ActionMap(["ShortcutActions", "WizardActions"],
 		{
 			"back": self.exit,
 			"red": self.exit,
@@ -1196,7 +1239,7 @@ class PluginDetails(Screen, DreamInfoHandler):
 		self.package = self.packageDetails[0]
 		if self.package[0].has_key("attributes"):
 			self.attributes = self.package[0]["attributes"]
-
+		self.restartRequired = False
 		self.cmdList = []
 		self.oktext = _("\nAfter pressing OK, please wait!")
 		self.picload = ePicLoad()
@@ -1294,6 +1337,8 @@ class PluginDetails(Screen, DreamInfoHandler):
 	def go(self):
 		if self.attributes.has_key("package"):
 			self.packagefiles = self.attributes["package"]
+		if self.attributes.has_key("needsRestart"):
+			self.restartRequired = True
 		self.cmdList = []
 		if self.pluginstate in ('installed', 'remove'):
 			if self.packagefiles:
@@ -1315,8 +1360,7 @@ class PluginDetails(Screen, DreamInfoHandler):
 
 	def runUpgradeFinished(self):
 		self.reloadPluginlist()
-		restartRequired = plugins.restartRequired
-		if restartRequired:
+		if plugins.restartRequired or self.restartRequired:
 			self.session.openWithCallback(self.UpgradeReboot, MessageBox, _("Installation finished.") +" "+_("Do you want to reboot your Dreambox?"), MessageBox.TYPE_YESNO)
 		else:
 			self.close(True)
@@ -1340,6 +1384,17 @@ class PluginDetails(Screen, DreamInfoHandler):
 		self.setThumbnail(noScreenshot = True)
 		print "[PluginDetails] fetch failed " + string.getErrorMessage()
 
+class UnattendedUpgradeMessageBox(Screen):
+
+	def __init__(self, session, args = None):
+		self.skin = """
+			<screen position="center,center" size="600,150" title="Unattended Upgrade">
+				<ePixmap pixmap="skin_default/icons/input_info.png" position="5,5" size="53,53" alphatest="on" />
+				<widget name="text" position="65,8" size="520,200" font="Regular;22" />
+			</screen>"""
+		Screen.__init__(self, session)
+		from Components.Label import Label
+		self["text"] = Label(_("Unattended upgrade in progress\nPlease wait until your receiver reboots\nThis may take a few minutes"))
 
 class UpdatePlugin(Screen):
 	skin = """
@@ -1352,18 +1407,6 @@ class UpdatePlugin(Screen):
 
 	def __init__(self, session, *args):
 		Screen.__init__(self, session)
-
-		try:
-			memcheck_stdout = popen('free | grep Total | tr -s " " | cut -d " " -f 4', "r")
-			memcheck = memcheck_stdout.read()
-			if int(memcheck) < 61440:
-				os_system("dd if=/dev/zero of=" + config.plugins.configurationbackup.backuplocation.value + "swapfile_upgrade bs=1024 count=16440")
-				os_system("mkswap " + config.plugins.configurationbackup.backuplocation.value + "swapfile_upgrade")
-				os_system("swapon " + config.plugins.configurationbackup.backuplocation.value + "swapfile_upgrade")
-		except:
-			os_system("dd if=/dev/zero of=" + config.plugins.configurationbackup.backuplocation.value + "swapfile_upgrade bs=1024 count=16440")
-			os_system("mkswap " + config.plugins.configurationbackup.backuplocation.value + "swapfile_upgrade")
-			os_system("swapon " + config.plugins.configurationbackup.backuplocation.value + "swapfile_upgrade")
 
 		self.sliderPackages = { "dreambox-dvb-modules": 1, "enigma2": 2, "tuxbox-image-info": 3 }
 
@@ -1380,6 +1423,7 @@ class UpdatePlugin(Screen):
 		self.packages = 0
 		self.error = 0
 		self.processed_packages = []
+		self.total_packages = None
 
 		self.activity = 0
 		self.activityTimer = eTimer()
@@ -1388,7 +1432,6 @@ class UpdatePlugin(Screen):
 		self.ipkg = IpkgComponent()
 		self.ipkg.addCallback(self.ipkgCallback)
 
-		self.offline = "offline" in args
 		self.updating = False
 
 		self["actions"] = ActionMap(["WizardActions"], 
@@ -1414,7 +1457,7 @@ class UpdatePlugin(Screen):
 			if self.sliderPackages.has_key(param):
 				self.slider.setValue(self.sliderPackages[param])
 			self.package.setText(param)
-			self.status.setText(_("Upgrading"))
+			self.status.setText(_("Upgrading") + ": %s/%s" % (self.packages, self.total_packages))
 			if not param in self.processed_packages:
 				self.processed_packages.append(param)
 				self.packages += 1
@@ -1435,8 +1478,8 @@ class UpdatePlugin(Screen):
 			self.status.setText(_("Configuring"))
 			
 		elif event == IpkgComponent.EVENT_MODIFIED:
-			if config.plugins.SoftwareManager.overwriteConfigFiles.value in ("N", "Y"):
-				self.ipkg.write(True and config.plugins.SoftwareManager.overwriteConfigFiles.value)
+			if config.plugins.softwaremanager.overwriteConfigFiles.value in ("N", "Y"):
+				self.ipkg.write(True and config.plugins.softwaremanager.overwriteConfigFiles.value)
 			else:
 				self.session.openWithCallback(
 					self.modificationCallback,
@@ -1448,20 +1491,21 @@ class UpdatePlugin(Screen):
 		elif event == IpkgComponent.EVENT_DONE:
 			if self.updating:
 				self.updating = False
-				if self.offline:
-					quitMainloop(42)
+				self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE_LIST)
+			elif self.ipkg.currentCommand == IpkgComponent.CMD_UPGRADE_LIST:
+			        self.total_packages = len(self.ipkg.getFetchedList())
+			        if self.total_packages:
+					message = _("Do you want to update your Dreambox?") + "\n(%s " % self.total_packages + _("Packages") + ")"
+					choices = [(_("Unattended upgrade without GUI and reboot system"), "cold"),
+						(_("Upgrade and ask to reboot"), "hot"),
+						(_("Cancel"), "")]
+					self.session.openWithCallback(self.startActualUpgrade, ChoiceBox, title=message, list=choices)
 				else:
-					self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE, args = {'test_only': False})
+				        self.session.openWithCallback(self.close, MessageBox, _("Nothing to upgrade"), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 			elif self.error == 0:
 				self.slider.setValue(4)
-				
 				self.activityTimer.stop()
 				self.activityslider.setValue(0)
-				
-				if os_path.exists(config.plugins.configurationbackup.backuplocation.value + 'swapfile_upgrade'):
-					popen("swapoff " + config.plugins.configurationbackup.backuplocation.value + "swapfile_upgrade")
-					remove(config.plugins.configurationbackup.backuplocation.value + 'swapfile_upgrade')
-
 				self.package.setText(_("Done - Installed or upgraded %d packages") % self.packages)
 				self.status.setText(self.oktext)
 			else:
@@ -1475,6 +1519,22 @@ class UpdatePlugin(Screen):
 				self.status.setText(_("Error") +  " - " + error)
 		#print event, "-", param
 		pass
+
+	def startActualUpgrade(self, answer):
+	        if not answer or not answer[1]:
+	                self.close()
+	                return
+		if answer[1] == "cold":
+			from enigma import gMainDC, getDesktop, eSize
+			self.session.nav.stopService()
+			desktop = getDesktop(0)
+			if desktop.size() != eSize(720,576):
+				gMainDC.getInstance().setResolution(720,576)
+				desktop.resize(eSize(720,576))
+			self.session.open(UnattendedUpgradeMessageBox)
+			quitMainloop(42)
+		else:
+			self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE, args = {'test_only': False})
 
 	def modificationCallback(self, res):
 		self.ipkg.write(res and "N" or "Y")
@@ -1605,7 +1665,7 @@ class IPKGSource(Screen):
 		else:
 			self["text"] = Input(text, maxSize=False, visible_width = 55, type=Input.TEXT)
 
-		self["actions"] = NumberActionMap(["WizardActions", "DirectionActions", "InputActions", "TextEntryActions", "KeyboardInputActions","ShortcutActions"], 
+		self["actions"] = NumberActionMap(["WizardActions", "InputActions", "TextEntryActions", "KeyboardInputActions","ShortcutActions"], 
 		{
 			"ok": self.go,
 			"back": self.close,

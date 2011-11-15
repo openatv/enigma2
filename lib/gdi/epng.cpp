@@ -1,4 +1,5 @@
 #define PNG_SKIP_SETJMP_CHECK
+#include <zlib.h>
 #include <png.h>
 #include <stdio.h>
 #include <lib/gdi/epng.h>
@@ -52,7 +53,7 @@ int loadPNG(ePtr<gPixmap> &result, const char *filename, int accel)
 		fclose(fp);
 		return 0;
 	 }
-	if (setjmp(png_ptr->jmpbuf))
+	if (setjmp(png_jmpbuf(png_ptr)))
 	{
 		eDebug("das war wohl nix");
 		png_destroy_read_struct(&png_ptr, &info_ptr, &end_info);
@@ -73,6 +74,12 @@ int loadPNG(ePtr<gPixmap> &result, const char *filename, int accel)
 	
 	if (color_type == PNG_COLOR_TYPE_GRAY || color_type & PNG_COLOR_MASK_PALETTE)
 	{
+		if (bit_depth < 8)
+		{
+			png_set_packing(png_ptr);
+			bit_depth = 8;
+		}
+
 		result=new gPixmap(eSize(width, height), bit_depth, accel);
 		gSurface *surface = result->surface;
 	
@@ -262,7 +269,7 @@ int savePNG(const char *filename, gPixmap *pixmap)
 		PNG_COLOR_TYPE_RGB_ALPHA, 
 		PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_DEFAULT, PNG_FILTER_TYPE_DEFAULT);
 
-	if (setjmp(png_ptr->jmpbuf))
+	if (setjmp(png_jmpbuf(png_ptr)))
 	{
 		eDebug("error :/");
 		png_destroy_write_struct(&png_ptr, &info_ptr);
