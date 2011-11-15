@@ -570,6 +570,7 @@ def InitUsageConfig():
 	config.plisettings.PLIINFO_mode = ConfigSelection(default="coolinfoguide", choices = [
 					("eventview", _("Show Eventview")),
 					("epgpress", _("Show EPG")),
+					("coolsingleguide", _("Show CoolSingleGuide")),
 					("coolinfoguide", _("Show CoolInfoGuide"))])				
 	config.plisettings.QuickEPG_mode = ConfigSelection(default="3", choices = [
 					("0", _("as plugin in extended bar")),

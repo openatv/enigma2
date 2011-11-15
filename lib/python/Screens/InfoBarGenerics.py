@@ -989,7 +989,9 @@ class InfoBarEPG:
 		elif config.plisettings.PLIINFO_mode.value == "epgpress":
 			self.EPGPressed()
 		elif config.plisettings.PLIINFO_mode.value == "coolinfoguide":
-			self.showCoolInfoGuide()	
+			self.showCoolInfoGuide()
+		elif config.plisettings.PLIINFO_mode.value == "coolsingleguide":
+			self.showCoolSingleGuide()			
 
 	def EPGPressed(self):
 		if config.plisettings.PLIEPG_mode.value == "pliepg":
@@ -1196,6 +1198,15 @@ class InfoBarEPG:
 					break
 		else:
 			self.session.open(MessageBox, _("The Cool TV Guide plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+	
+	def showCoolSingleGuide(self):
+		if Directories.fileExists("/usr/lib/enigma2/python/Plugins/Extensions/CoolTVGuide/CoolSingleGuide.pyo"):
+			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
+				if plugin.name == _("Cool Single Guide"):
+					self.runPlugin(plugin)
+					break
+		else:
+			self.session.open(MessageBox, _("The Cool TV Guide plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )	
 
 	def showEventInfoPlugins(self):
 		list = [(p.name, boundFunction(self.runPlugin, p)) for p in plugins.getPlugins(where = PluginDescriptor.WHERE_EVENTINFO)]
