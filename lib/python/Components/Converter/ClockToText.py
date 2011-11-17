@@ -29,6 +29,7 @@ class ClockToText(Converter, object):
 	SHORT_DATE = 8
 	LONG_DATE = 9
 	VFD = 10
+	FULL_DATE = 11
 	
 	# add: date, date as string, weekday, ... 
 	# (whatever you need!)
@@ -51,6 +52,8 @@ class ClockToText(Converter, object):
 			self.type = self.SHORT_DATE
 		elif type == "LongDate":
 			self.type = self.LONG_DATE
+		elif type == "FullDate":
+			self.type = self.FULL_DATE
 		elif type == "VFD":
 			self.type = self.VFD
 		elif "Format" in type:
@@ -89,6 +92,8 @@ class ClockToText(Converter, object):
 			return dayOfWeek[t[6]] + " %d/%d" % (t[2], t[1])
 		elif self.type == self.LONG_DATE:
 			return dayOfWeek[t[6]] + " " + str(t[2]) + " " + MONTHS[t[1]-1]  
+		elif self.type == self.FULL_DATE:
+			return dayOfWeek[t[6]] + " " + str(t[2]) + " " + MONTHS[t[1]-1] + " " + str(t[0])
 		elif self.type == self.VFD:
 			return "%2d:%02d %d/%d" % (t.tm_hour, t.tm_min, t[2], t[1])
 		elif self.type == self.FORMAT:

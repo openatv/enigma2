@@ -5,6 +5,7 @@ from Components.AVSwitch import AVSwitch
 from Components.SystemInfo import SystemInfo
 from GlobalActions import globalActionMap
 from enigma import eDVBVolumecontrol
+from os import path
 import Screens.InfoBar
 
 inStandby = None
@@ -17,6 +18,7 @@ class Standby2(Screen):
 		#restart last played service
 		#unmute adc
 		self.leaveMute()
+		self.leaveLCD()
 		#kill me
 		self.close(True)
 
@@ -31,6 +33,14 @@ class Standby2(Screen):
 	def leaveMute(self):
 		if self.wasMuted == 0:
 			eDVBVolumecontrol.getInstance().volumeToggleMute()
+
+	def setLCD(self):
+		if path.exists('/proc/stb/lcd/right_half'):
+			open("/proc/stb/lcd/right_half", "w").write('skin')
+
+	def leaveLCD(self):
+		if path.exists('/proc/stb/lcd/right_half'):
+			open("/proc/stb/lcd/right_half", "w").write('driver')
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -49,6 +59,7 @@ class Standby2(Screen):
 
 		#mute adc
 		self.setMute()
+		self.setLCD()
 
 		self.paused_service = None
 		self.prev_running_service = None
