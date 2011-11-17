@@ -206,7 +206,9 @@
 	</map>
 
 	<map context="InfobarRedButtonActions">
-		<key id="KEY_RED" mapto="activateRedButton" flags="b" />
+		<device name="dreambox advanced remote control (native)">
+			<key id="KEY_RED" mapto="activateRedButton" flags="b" />
+		</device>
 	</map>
 
 	<map context="InfobarPiPActions">
