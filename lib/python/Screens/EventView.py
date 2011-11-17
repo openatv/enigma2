@@ -176,10 +176,11 @@ class EventViewBase:
  		text = ""
 		short = event.getShortDescription()
 		ext = event.getExtendedDescription()
-		if short:
-			text = short
-		elif ext:
-			text = ext
+		text = short + "\n" +ext
+#		if short:
+#			text = short
+#		elif ext:
+#			text = ext
 
 		self.setTitle(event.getEventName())
 		self["epg_description"].setText(text)
