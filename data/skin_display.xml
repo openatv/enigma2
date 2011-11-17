@@ -31,9 +31,6 @@
 		<widget source="session.Event_Now" render="Progress" position="3,36" size="127,4" borderWidth="1" >
 			<convert type="EventTime">Progress</convert>
 		</widget>
-		<widget source="session.RecordState" render="FixedLabel" text="Rec" position="4,52" size="24,12" font="FdLcD;12" zPosition="1" noWrap="1">
-			<convert type="ConditionalShowHide">Blink</convert>
-		</widget>
 		<widget source="session.Event_Now" render="Label" position="4,40" size="40,12" font="FdLcD;12" halign="left" noWrap="1">
 			<convert type="EventTime">Remaining</convert>
 			<convert type="RemainingToText">NoSeconds</convert>
@@ -58,9 +55,6 @@
 		<widget source="global.CurrentTime" render="Label" position="68,40" size="60,24" font="FdLcD;24" halign="right" valign="top" noWrap="1">
 			<convert type="ClockToText"></convert>
 		</widget>
-		<widget source="session.RecordState" render="FixedLabel" text="Rec" position="3,52" size="24,12" font="FdLcD;12" zPosition="1" noWrap="1">
-			<convert type="ConditionalShowHide">Blink</convert>
-		</widget>
 	</screen>
   
 <!-- menus-->
@@ -81,9 +75,6 @@
 		</widget>
 		<widget source="session.CurrentService" render="Label" position="4,40" size="42,12" font="FdLcD;12" halign="left" noWrap="1">
 			<convert type="ServicePosition">Position</convert>
-		</widget>
-		<widget source="session.RecordState" render="FixedLabel" text="Rec" position="3,52" size="24,12" font="FdLcD;12" zPosition="1" noWrap="1">
-			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
 		<widget source="global.CurrentTime" render="Label" position="68,40" size="60,24" font="FdLcD;24" halign="right" valign="top" noWrap="1">
 			<convert type="ClockToText"></convert>
@@ -119,24 +110,22 @@
 <!-- misc-->
 	<screen name="SimpleSummary" position="0,0" size="132,64">
 		<widget source="parent.Title" render="Label" position="4,0" size="124,40" font="FdLcD;16" halign="center" valign="center" />
-	    	<widget source="session.RecordState" render="FixedLabel" text="Rec" position="3,52" size="36,12" font="FdLcD;12" zPosition="1">
-			<convert type="ConditionalShowHide">Blink</convert>
-		</widget>
 		<widget source="global.CurrentTime" render="Label" position="68,40" size="60,24" font="FdLcD;24" halign="right" valign="top" noWrap="1">
 			<convert type="ClockToText"></convert>
 		</widget>
 	</screen>
 
 <!-- standby -->
-	<screen name="StandbySummary" position="0,0" size="132,64">
-		<widget source="global.CurrentTime" render="Label" position="6,0" size="120,24" font="FdLcD;24" halign="left"  noWrap="1">
-			<convert type="ClockToText">Format:%d/%b %Y</convert>
+	<screen name="StandbySummary" position="0,0" size="255,70">
+		<widget source="global.CurrentTime" render="Label" position="0,0" size="255,24" font="FdLcD;24" halign="left"  noWrap="1">
+			<convert type="ClockToText">FullDate</convert>
 		</widget>
-		<widget source="global.CurrentTime" render="Label" position="6,25" size="120,44" font="FdLcD;38" halign="left" noWrap="1">
+		<widget source="global.CurrentTime" render="Label" position="0,22" size="120,45" font="FdLcD;50" halign="left" noWrap="1">
 			<convert type="ClockToText">Format:%H:%M</convert>
 		</widget>
-		<widget source="session.RecordState" render="FixedLabel" text="Recording" position="4,50" size="120,12" font="FdLcD;12" zPosition="2" valign="bottom" halign="left" noWrap="1">
-			<convert type="ConditionalShowHide"></convert>
+		<widget source="session.RecordState" render="FixedLabel" text="Rec" position="224,55" size="30,14" font="FdLcD;14" zPosition="2" valign="bottom" halign="right" noWrap="1">
+			<convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,True,CheckSourceBoolean</convert>
+			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
 	</screen>
 <!-- Plugin browser -->

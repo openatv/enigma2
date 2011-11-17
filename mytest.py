@@ -582,6 +582,8 @@ import Components.Network
 Components.Network.InitNetwork()
 
 profile("LCD")
+if os.path.exists('/proc/stb/lcd/right_half'):
+	open("/proc/stb/lcd/right_half", "w").write('driver')
 import Components.Lcd
 Components.Lcd.InitLcd()
 Components.Lcd.IconCheck()
