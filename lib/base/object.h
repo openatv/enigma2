@@ -163,14 +163,12 @@ inline int atomic_decrement(int * pw)
 }
 #endif
 
-#ifndef OBJECT_DEBUG
-	typedef int oRefCount;
-#else
 	struct oRefCount
 	{
 		int count;
 		oRefCount(): count(0) { }
 		operator int&() { return count; }
+#ifndef OBJECT_DEBUG
 		~oRefCount()
 		{ 
 			if (count)
@@ -178,8 +176,8 @@ inline int atomic_decrement(int * pw)
 			else
 				eDebug("OBJECT_DEBUG refcount ok! (%p)", this); 
 		}
-	};
 #endif
+	};
 
 	#if defined(OBJECT_DEBUG)
 		extern int object_total_remaining;
@@ -213,11 +211,11 @@ inline int atomic_decrement(int * pw)
 		#define DEFINE_REF(c) \
 			void c::AddRef() \
 			{ \
-				atomic_increment(&ref); \
+				atomic_increment(&ref.count); \
 			} \
 			void c::Release() \
 			{ \
-				if (!atomic_decrement(&ref)) \
+				if (!atomic_decrement(&ref.count)) \
 					delete this; \
 			}
 	#else
