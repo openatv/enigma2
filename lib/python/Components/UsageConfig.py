@@ -259,18 +259,13 @@ def InitUsageConfig():
 		("11", "11"),("12", "12"),("13", "13"),("14", "14"),("15", "15"),("16", "16"),("17", "17"),("18", "18"),("19", "19"),("20", "20"),
 		("21", "21"),("22", "22"),("23", "23"),("24", "24")])
 
-	hddchoises = []
+	hddchoises = [('/etc/enigma2/', 'Internal Flash')]
 	for p in harddiskmanager.getMountedPartitions():
 		d = os.path.normpath(p.mountpoint)
 		if os.path.exists(p.mountpoint):
 			if p.mountpoint != '/':
 				hddchoises.append((d + '/', p.mountpoint))
-	if hddchoises:
-		for defaulthdd in hddchoises:
- 			config.misc.epgcachepath = ConfigSelection(default = defaulthdd[1] ,choices = hddchoises)
- 			continue
-	else:	
-		config.misc.epgcachepath = ConfigSelection([('/etc/enigma2/', 'Internal Flash')],'/etc/enigma2/')
+	config.misc.epgcachepath = ConfigSelection(default = '/etc/enigma2/', choices = hddchoises)
 	config.misc.epgcachefilename = ConfigText(default='epg', fixed_size=False)
 	config.misc.epgcache_filename = ConfigText(default = (config.misc.epgcachepath.value + config.misc.epgcachefilename.value.replace('.dat','') + '.dat'))
 	def EpgCacheChanged(configElement):
@@ -298,6 +293,14 @@ def InitUsageConfig():
 	SystemInfo["12V_Output"] = enigma.Misc_Options.getInstance().detected_12V_output()
 
 	config.usage.keymap = ConfigText(default = eEnv.resolve("${datadir}/enigma2/keymap.xml"))
+
+	config.network = ConfigSubsection()
+	config.network.AFP_autostart = ConfigYesNo(default = True)
+	config.network.NFS_autostart = ConfigYesNo(default = True)
+	config.network.OpenVPN_autostart = ConfigYesNo(default = True)
+	config.network.Samba_autostart = ConfigYesNo(default = True)
+	config.network.Inadyn_autostart = ConfigYesNo(default = True)
+	config.network.uShare_autostart = ConfigYesNo(default = True)
 
 	config.timeshift = ConfigSubsection()
 	config.timeshift.enabled = ConfigYesNo(default = False)
