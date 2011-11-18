@@ -2055,6 +2055,7 @@ class InfoBarTimeshift:
 	def __seekableStatusChanged(self):
 		if config.timeshift.enabled.value:
 			self["TimeshiftActivateActions"].setEnabled(True)
+			self["TimeshiftSeekPointerActions"].setEnabled(False)
 			if self.timeshift_enabled and self.isSeekable():
 				self["TimeshiftActivateActions"].setEnabled(False)
 				self["TimeshiftSeekPointerActions"].setEnabled(True)
