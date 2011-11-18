@@ -213,11 +213,11 @@ inline int atomic_decrement(int * pw)
 		#define DEFINE_REF(c) \
 			void c::AddRef() \
 			{ \
-				atomic_increment(&ref.count); \
+				atomic_increment(&ref); \
 			} \
 			void c::Release() \
 			{ \
-				if (!atomic_decrement(&ref.count)) \
+				if (!atomic_decrement(&ref)) \
 					delete this; \
 			}
 	#else
