@@ -124,8 +124,7 @@
 			<convert type="ClockToText">Format:%H:%M</convert>
 		</widget>
 		<widget source="session.RecordState" render="FixedLabel" text="Rec" position="224,55" size="30,14" font="FdLcD;14" zPosition="2" valign="bottom" halign="right" noWrap="1">
-			<convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,True,CheckSourceBoolean</convert>
-			<convert type="ConditionalShowHide">Blink</convert>
+			<convert type="ConditionalShowHide"></convert>
 		</widget>
 	</screen>
 <!-- Plugin browser -->
