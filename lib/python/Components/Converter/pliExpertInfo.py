@@ -51,6 +51,7 @@ class pliExpertInfo(Poll, Converter, object):
 		Ret_Text = ""
 		Sec_Text = ""
 		Res_Text = ""
+		showCryptoInfo = False
 
 		if (self.type == self.SMART_INFO_H or self.type == self.SERVICE_INFO or self.type == self.CRYPTO_INFO): # HORIZONTAL
 			sep = "  "
@@ -107,6 +108,7 @@ class pliExpertInfo(Poll, Converter, object):
 			if (info.getInfo(iServiceInformation.sIsCrypted) == 1):
 				data = self.ecmdata.getEcmData()
 				if not config.usage.show_cryptoinfo.value:
+					showCryptoInfo = True
 					Sec_Text = data[0] + "\n"
 				decCI = data[1]
 				provid = data[2]
@@ -146,7 +148,7 @@ class pliExpertInfo(Poll, Converter, object):
 			Ret_Text += res + "\c00?????? " + Sec_Text
 		
 		if Res_Text != "":
-			if not config.usage.show_cryptoinfo.value:
+			if showCryptoInfo:
 				Ret_Text += sep + Res_Text
 			else:
 				Ret_Text += "\n" + Res_Text
