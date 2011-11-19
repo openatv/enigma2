@@ -46,9 +46,9 @@ class HddInfo(ConfigListScreen, Screen):
 		
 		ConfigListScreen.__init__(self, self.list)
 		
-		self["key_green"] = Button("")
-		self["key_red"] = Button(_("Ok"))
-		self["key_blue"] = Button(_("Exit"))
+		self["key_green"] = Button("OK")
+		self["key_red"] = Button(_("Exit"))
+		self["key_blue"] = Button(_(""))
 		self["key_yellow"] = Button("")
 		self["model"] = Label("Model: unknow")
 		self["serial"] = Label("Serial: unknow")
@@ -61,9 +61,9 @@ class HddInfo(ConfigListScreen, Screen):
 		self["temp"] = Label("Disk temperature: unknow")
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
 		{
-			"blue": self.keyCancel,
+			"red": self.keyCancel,
 			#"yellow": self.yellow,
-			"red": self.keySave,
+			"green": self.keySave,
 			"cancel": self.keyCancel,
 		}, -2)
 		

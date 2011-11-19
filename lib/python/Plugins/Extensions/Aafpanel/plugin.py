@@ -11,6 +11,7 @@ from Screens.Screen import Screen
 from Screens.ChoiceBox import ChoiceBox
 from Tools.BoundFunction import boundFunction
 from Tools.LoadPixmap import LoadPixmap
+from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN, SCOPE_PLUGINS
 from Components.MenuList import MenuList
 from Components.FileList import FileList
 from Components.Label import Label
@@ -46,13 +47,6 @@ if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/p
 		from Plugins.Extensions.MultiQuickButton.plugin import *
 	except:
 		pass
-
-if os.path.isfile("/usr/lib/enigma2/python/Plugins/SystemPlugins/choiceRC/plugin.pyo") is True:
-	try:
-		from Plugins.SystemPlugins.choiceRC.plugin import *
-	except:
-		pass		
-
 
 from Plugins.Extensions.Aafpanel.CronManager import *
 from Plugins.Extensions.Aafpanel.About import *
@@ -219,9 +213,13 @@ from Screens.InfoBarGenerics import InfoBarPiP
 #g
 
 def AafEntryComponent(file):
-	png = LoadPixmap("/usr/lib/enigma2/python/Plugins/Extensions/Aafpanel/pics/" + file + ".png")
+	png = LoadPixmap(cached = True, path = resolveFilename(SCOPE_CURRENT_SKIN, "pics/" + file + ".png"));
 	if png == None:
-		png = LoadPixmap("/usr/lib/enigma2/python/Plugins/Extensions/Aafpanel/pics/default.png")
+		png = LoadPixmap("/usr/lib/enigma2/python/Plugins/Extensions/Aafpanel/pics/" + file + ".png")
+		if png == None:
+			png = LoadPixmap(cached = True, path = resolveFilename(SCOPE_CURRENT_SKIN, "pics/default.png"));
+			if png == None:
+				png = LoadPixmap("/usr/lib/enigma2/python/Plugins/Extensions/Aafpanel/pics/default.png")
 	res = (png)
 	return res
 
@@ -266,10 +264,11 @@ class Aafpanel(Screen, InfoBarPiP):
 		self.Mlist = []
 		if Check_Softcam():
 			self.Mlist.append(MenuEntryItem((AafEntryComponent('SoftcamPanel'), _("SoftcamPanel"), 'SoftcamPanel')))
-		self.Mlist.append(MenuEntryItem((AafEntryComponent('Setup'), _("Setup"), 'Setup')))
+			self.Mlist.append(MenuEntryItem((AafEntryComponent('Softcam-Panel Setup'), _("Softcam-Panel Setup"), 'Softcam-Panel Setup')))
+		self.Mlist.append(MenuEntryItem((AafEntryComponent('RedPanel'), _("RedPanel"), 'RedPanel')))	
+		self.Mlist.append(MenuEntryItem((AafEntryComponent('KeymapSel'), _("Keymap Selection"), 'KeymapSel')))	
 		self.Mlist.append(MenuEntryItem((AafEntryComponent('Plugins'), _("Plugins"), 'Plugins')))
 		self.Mlist.append(MenuEntryItem((AafEntryComponent('Infos'), _("Infos"), 'Infos')))
-		self.Mlist.append(MenuEntryItem((AafEntryComponent('About'), _("About"), 'About')))
 		self.onChangedEntry = []
 		if (getDesktop(0).size().width() == 1280):
 			self["Mlist"] = PanelList([])
@@ -350,14 +349,10 @@ class Aafpanel(Screen, InfoBarPiP):
 		global AAFCONF
 		menu = self['Mlist'].l.getCurrentSelection()[0][2]
 		print '[AAF-Panel] MenuItem: ' + menu
-		if menu == "Setup":
-			self.Setup()
-		elif menu == "Networksetup":
-			self.session.open(NetworkAdapterSelection)
 		elif menu == "Plugins":
 			self.Plugins()
-		#elif menu == "Pluginbrowser":
-		#	self.session.open(PluginBrowser)
+		elif menu == "Pluginbrowser":
+			self.session.open(PluginBrowser)
 		elif menu == "Infos":
 			self.Infos()
 		elif menu == "OpenAAF":
@@ -394,17 +389,13 @@ class Aafpanel(Screen, InfoBarPiP):
 			self.System()
 		elif menu == "CronManager":
 			self.session.open(CronManager)	
-		elif menu == "About":
-			self.session.open(AboutTeam)
 		elif menu == "JobManager":
 			self.session.open(ScriptRunner)
 		elif menu == "SoftcamPanel":
 			self.session.open(SoftcamPanel)
 		elif menu == "MultiQuickButton":
 			self.session.open(MultiQuickButton)
-		elif menu == "Remote_setup":
-			self.session.open(RCSetupScreen)
-		elif menu == "Device_Manager":
+		elif menu == "DeviceManager":
 			self.session.open(HddSetup)
 		elif menu == "SundtekControlCenter":
 			self.session.open(SundtekControlCenter)
@@ -419,28 +410,6 @@ class Aafpanel(Screen, InfoBarPiP):
 		else:
 			pass
 
-	def Setup(self):
-		#// Create Setup Menu
-		global menu
-		menu = 1
-		self["label1"].setText("Setup")
-		self.tlist = []
-		self.oldmlist = []
-		self.oldmlist = self.Mlist
-		self.tlist.append(MenuEntryItem((AafEntryComponent('Networksetup'), _("Networksetup"), 'Networksetup')))
-		self.tlist.append(MenuEntryItem((AafEntryComponent('SundtekControlCenter'), _("SundtekControlCenter"), 'SundtekControlCenter')))
-		self.tlist.append(MenuEntryItem((AafEntryComponent('RedPanel'), _("RedPanel"), 'RedPanel')))
-		self.tlist.append(MenuEntryItem((AafEntryComponent('KeymapSel'), _("Keymap Selection"), 'KeymapSel')))
-		if Check_Softcam():
-			self.tlist.append(MenuEntryItem((AafEntryComponent('Softcam-Panel Setup'), _("Softcam-Panel Setup"), 'Softcam-Panel Setup')))
-		if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/plugin.pyo") is True:
-			self.tlist.append(MenuEntryItem((AafEntryComponent('MultiQuickButton'), _("MultiQuickButton"), 'MultiQuickButton')))	
-		if os.path.isfile("/usr/lib/enigma2/python/Plugins/SystemPlugins/choiceRC/plugin.pyo") is True:
-			self.tlist.append(MenuEntryItem((AafEntryComponent('Remote_setup'), _("Remote_setup"), 'Remote_setup')))
-		self["Mlist"].moveToIndex(0)
-		self["Mlist"].l.setList(self.tlist)
-		self.oldmlist1 = self.tlist
-
 	def Plugins(self):
 		#// Create Plugin Menu
 		global menu
@@ -449,10 +418,13 @@ class Aafpanel(Screen, InfoBarPiP):
 		self.tlist = []
 		self.oldmlist = []
 		self.oldmlist = self.Mlist
-		self.tlist.append(MenuEntryItem((AafEntryComponent('Device_Manager'), _("Device_Manager"), 'Device_Manager')))
+		self.tlist.append(MenuEntryItem((AafEntryComponent('DeviceManager'), _("DeviceManager"), 'DeviceManager')))
 		self.tlist.append(MenuEntryItem((AafEntryComponent('CronManager'), _("CronManager"), 'CronManager')))
 		self.tlist.append(MenuEntryItem((AafEntryComponent('JobManager'), _("JobManager"), 'JobManager')))
 		self.tlist.append(MenuEntryItem((AafEntryComponent('SwapManager'), _("SwapManager"), 'SwapManager')))
+		self.tlist.append(MenuEntryItem((AafEntryComponent('SundtekControlCenter'), _("SundtekControlCenter"), 'SundtekControlCenter')))
+		if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/plugin.pyo") is True:
+			self.tlist.append(MenuEntryItem((AafEntryComponent('MultiQuickButton'), _("MultiQuickButton"), 'MultiQuickButton')))
 		self["Mlist"].moveToIndex(0)
 		self["Mlist"].l.setList(self.tlist)
 

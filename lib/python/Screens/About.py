@@ -11,9 +11,26 @@ from Tools.DreamboxHardware import getFPVersion
 from os import path, popen
 
 class About(Screen):
+	skin = """
+        <screen name="AboutTeam" position="center,center" size="800,470" title="About">
+            <ePixmap position="0,0" size="800,470" pixmap="/usr/share/enigma2/DMConcinnity-HD/menu/openaaf_info.png" transparent="1" alphatest="on" />
+        </screen>"""
+		
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Image Information"))
+
+		
+		self["actions"] = ActionMap(["SetupActions", "ColorActions"], 
+			{
+				"cancel": self.close,
+				"ok": self.close,
+			})
+
+class SystemInfo(Screen):
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		Screen.setTitle(self, _("System Information"))
 		self.populate()
 		
 		self["actions"] = ActionMap(["SetupActions", "ColorActions", "TimerEditActions"], 
@@ -26,34 +43,25 @@ class About(Screen):
 			})
 
 	def populate(self):
-		self["lab1"] = StaticText(_("openAAF"))
-		self["lab2"] = StaticText(_("By AAF Team"))
 		if config.misc.boxtype.value == 'vuuno':
-			self["lab3"] = StaticText(_("Support at") + " www.aaf-digital.info")
 			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Uno")
 			AboutText = _("Hardware:") + " Vu+ Uno\n"
 		elif config.misc.boxtype.value == 'vusolo':
-			self["lab3"] = StaticText(_("Support at") + " www.aaf-digital.info")
 			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Solo")
 			AboutText = _("Hardware:") + " Vu+ Solo\n"
 		elif config.misc.boxtype.value == 'vuduo':
-			self["lab3"] = StaticText(_("Support at") + " www.aaf-digital.info")
 			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Duo")
 			AboutText = _("Hardware:") + " Vu+ Duo\n"
 		elif config.misc.boxtype.value == 'et5x00':
-			self["lab3"] = StaticText(_("Support at") + " www.aaf-digital.info")
 			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET5x00 Series")
 			AboutText = _("Hardware:") + "  Xtrend ET5x00 Series\n"
 		elif config.misc.boxtype.value == 'et6x00':
-			self["lab3"] = StaticText(_("Support at") + " www.aaf-digital.info")
 			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET6x00 Series")
 			AboutText = _("Hardware:") + "  Xtrend ET6x00 Series\n"
 		elif config.misc.boxtype.value == 'et9x00':
-			self["lab3"] = StaticText(_("Support at") + " www.aaf-digital.info")
 			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET9x00 Series")
 			AboutText = _("Hardware:") + " Xtrend ET9x00 Series\n"
 		else:
-			self["lab3"] = StaticText(_("Support at") + " www.aaf-digital.info")
 			self["BoxType"] = StaticText(_("Hardware:") + " " + config.misc.boxtype.value)
 			AboutText = _("Hardware:") + " " + config.misc.boxtype.value + "\n"
 
@@ -105,109 +113,13 @@ class About(Screen):
 
 		self["TranslationInfo"] = StaticText(info)
 		AboutText += info
-
-		self["AboutScrollLabel"] = ScrollLabel(AboutText)
-
-	def showAboutReleaseNotes(self):
-		self.session.open(AboutReleaseNotes)
-
-	def createSummary(self):
-		return AboutSummary
-
-class Devices(Screen):
-	def __init__(self, session):
-		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Device Information"))
-		self.populate()
 		
-		self["actions"] = ActionMap(["SetupActions", "ColorActions", "TimerEditActions"], 
-			{
-				"cancel": self.close,
-				"ok": self.close,
-			})
-
-	def populate(self):
-		self["TunerHeader"] = StaticText(_("Detected NIMs:"))
-		niminfo = ""
-		nims = nimmanager.nimList()
-		for count in range(len(nims)):
-			if niminfo:
-				niminfo += "\n"
-			niminfo += nims[count]
-		self["nims"] = StaticText(niminfo)
-
-		self["HDDHeader"] = StaticText(_("Detected Devices:"))
-		hddlist = harddiskmanager.HDDList()
-		hddinfo = ""
-		if hddlist:
-			for count in range(len(hddlist)):
-				if hddinfo:
-					hddinfo += "\n"
-				hdd = hddlist[count][1]
-				if int(hdd.free()) > 1024:
-					hddinfo += "%s (%s, %d GB %s)" % (hdd.model(), hdd.capacity(), hdd.free()/1024, _("free"))
-				else:
-					hddinfo += "%s (%s, %d MB %s)" % (hdd.model(), hdd.capacity(), hdd.free(), _("free"))
-		else:
-			hddinfo = _("none")
-		self["hdd"] = StaticText(hddinfo)
-
-		self["MountsHeader"] = StaticText(_("Network Servers:"))
-		mountinfo = ""
-		f = open('/proc/mounts', 'r')
-		for line in f.readlines():
-			if mountinfo:
-				mountinfo += "\n"
-			parts = line.strip().split()
-			if parts[0].startswith('192') or parts[0].startswith('//192'):
-				mounttmp = popen("df -m " + parts[1] + " | grep -v '^Filesystem'")
-				mount = mounttmp.read()
-				mounttmp.close()
-				mount = str(mount).replace('\n','')
-				mount = mount.split()
-				if int(mount[1]) > 1024 and int(mount[3]) > 1024:
-					mounttotal = int(mount[1])/1024
-					mountfree = int(mount[3])/1024
-					mountinfo += "%s (%s GB, %d GB %s)" % (parts[0], mounttotal, mountfree, _("free")) 
-				elif int(mount[1]) < 1025 and int(mount[3]) > 1024:
-					mounttotal = int(mount[1])/1024
-					mountfree = int(mount[3])/1024
-					mountinfo += "%s (%s MB, %d GB %s)" % (parts[0], mounttotal, mountfree, _("free")) 
-				elif int(mount[1]) > 1024 and int(mount[3]) < 1025:
-					mounttotal = int(mount[1])/1024
-					mountfree = int(mount[3])/1024
-					mountinfo += "%s (%s GB, %d MB %s)" % (parts[0], mounttotal, mountfree, _("free")) 
-				else:
-					mounttotal = int(mount[1])
-					mountfree = int(mount[3])
-					mountinfo += "%s (%s MB, %d MB %s)" % (parts[0], mounttotal, mountfree, _("free")) 
-
-		f.close()
-		self["mounts"] = StaticText(mountinfo)
-
-	def createSummary(self):
-		return AboutSummary
-
-class SystemInfo(Screen):
-	def __init__(self, session):
-		Screen.__init__(self, session)
-		Screen.setTitle(self, _("System Information"))
-		self.skinName = "About"
-		self.populate()
-		
-		self["actions"] = ActionMap(["SetupActions", "ColorActions", "TimerEditActions"], 
-			{
-				"cancel": self.close,
-				"ok": self.close,
-			})
-
-	def populate(self):
 		out_lines = file("/proc/meminfo").readlines()
 		for lidx in range(len(out_lines)-1):
 			tstLine = out_lines[lidx].split()
 			if "MemTotal:" in tstLine:
 				MemTotal = out_lines[lidx].split()
-				AboutText = _("Total Memory:") + " " + MemTotal[1] + "\n"
+				AboutText += _("Total Memory:") + " " + MemTotal[1] + "\n"
 			if "MemFree:" in tstLine:
 				MemFree = out_lines[lidx].split()
 				AboutText += _("Free Memory:") + " " + MemFree[1] + "\n"
@@ -219,7 +131,10 @@ class SystemInfo(Screen):
 				AboutText += _("Free Swap:") + " " + SwapFree[1] + "\n"
 
 		self["AboutScrollLabel"] = ScrollLabel(AboutText)
-
+		
+	def showAboutReleaseNotes(self):
+		self.session.open(AboutReleaseNotes)
+	
 	def createSummary(self):
 		return AboutSummary
 
