@@ -27,10 +27,8 @@ class pliExpertInfo(Poll, Converter, object):
 				"ServiceInfo": self.SERVICE_INFO,
 				"CryptoInfo": self.CRYPTO_INFO
 			}[type]
-		try:
-			self.poll_interval = config.plugins.ValiKSSetup.pollTime.value*1000
-		except:
-			self.poll_interval = 1000
+
+		self.poll_interval = 1000
 		self.poll_enabled = True
 		self.idnames = (
 			( "0x100", "0x1FF","Seca"   ,"S" ),
@@ -108,7 +106,8 @@ class pliExpertInfo(Poll, Converter, object):
 			Sec_Text = ""
 			if (info.getInfo(iServiceInformation.sIsCrypted) == 1):
 				data = self.ecmdata.getEcmData()
-				Sec_Text = data[0]	
+				if not config.usage.show_cryptoinfo.value:
+					Sec_Text = data[0] + "\n"
 				decCI = data[1]
 				provid = data[2]
 				pid = data[3]	
@@ -119,7 +118,7 @@ class pliExpertInfo(Poll, Converter, object):
 						if int(decCI, 16) >= int(idline[0], 16) and int(decCI, 16) <= int(idline[1], 16):
 							decCIfull = idline[2] + ":" + decCIfull
 							break
-					Sec_Text += "\n" + decCIfull
+					Sec_Text += decCIfull
 					if provid != '0':
 						Sec_Text += ":%04x" % int(provid, 16)
 					if pid != '0':
@@ -147,7 +146,10 @@ class pliExpertInfo(Poll, Converter, object):
 			Ret_Text += res + "\c00?????? " + Sec_Text
 		
 		if Res_Text != "":
-			Ret_Text += sep + Res_Text
+			if not config.usage.show_cryptoinfo.value:
+				Ret_Text += sep + Res_Text
+			else:
+				Ret_Text += "\n" + Res_Text
 
 		return Ret_Text
 
