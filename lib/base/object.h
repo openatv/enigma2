@@ -168,7 +168,7 @@ inline int atomic_decrement(int * pw)
 		int count;
 		oRefCount(): count(0) { }
 		operator int&() { return count; }
-#ifndef OBJECT_DEBUG
+#ifdef OBJECT_DEBUG
 		~oRefCount()
 		{ 
 			if (count)
