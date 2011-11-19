@@ -293,12 +293,12 @@ def InitUsageConfig():
 	config.usage.keymap = ConfigText(default = eEnv.resolve("${datadir}/enigma2/keymap.xml"))
 
 	config.network = ConfigSubsection()
-	config.network.AFP_autostart = ConfigYesNo(default = True)
-	config.network.NFS_autostart = ConfigYesNo(default = True)
-	config.network.OpenVPN_autostart = ConfigYesNo(default = True)
-	config.network.Samba_autostart = ConfigYesNo(default = True)
-	config.network.Inadyn_autostart = ConfigYesNo(default = True)
-	config.network.uShare_autostart = ConfigYesNo(default = True)
+	config.network.AFP_autostart = ConfigYesNo(default = False)
+	config.network.NFS_autostart = ConfigYesNo(default = False)
+	config.network.OpenVPN_autostart = ConfigYesNo(default = False)
+	config.network.Samba_autostart = ConfigYesNo(default = False)
+	config.network.Inadyn_autostart = ConfigYesNo(default = False)
+	config.network.uShare_autostart = ConfigYesNo(default = False)
 
 	config.timeshift = ConfigSubsection()
 	config.timeshift.enabled = ConfigYesNo(default = False)
