@@ -49,7 +49,6 @@ if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/p
 		pass
 
 from Plugins.Extensions.Aafpanel.CronManager import *
-from Plugins.Extensions.Aafpanel.About import *
 from Plugins.Extensions.Aafpanel.ScriptRunner import *
 from Plugins.Extensions.Aafpanel.HddSetup import *
 from Plugins.Extensions.Aafpanel.SoftcamPanel import *
@@ -349,7 +348,7 @@ class Aafpanel(Screen, InfoBarPiP):
 		global AAFCONF
 		menu = self['Mlist'].l.getCurrentSelection()[0][2]
 		print '[AAF-Panel] MenuItem: ' + menu
-		elif menu == "Plugins":
+		if menu == "Plugins":
 			self.Plugins()
 		elif menu == "Pluginbrowser":
 			self.session.open(PluginBrowser)
