@@ -55,16 +55,17 @@ class RemoteControlCodeInit:
 class RemoteControlCode(Screen,ConfigListScreen,RemoteControlCodeInit):
 	skin = """
 			<screen name="RemoteControlCode" position="center,center" size="560,300" title="Remote Control System Code Setting" >
-			<ePixmap pixmap="Vu_HD/buttons/red.png" position="10,10" size="25,25" alphatest="on" />
-			<ePixmap pixmap="Vu_HD/buttons/green.png" position="290,10" size="25,25" alphatest="on" />
-			<widget source="key_red" render="Label" position="40,10" zPosition="1" size="140,25" font="Regular;20" halign="center" valign="center" transparent="1" />
-			<widget source="key_green" render="Label" position="320,10" zPosition="1" size="140,25" font="Regular;20" halign="center" valign="center" transparent="1" />
+			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
+			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+			<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
 			<widget name="config" zPosition="2" position="5,50" size="550,200" scrollbarMode="showOnDemand" transparent="1" />
 			</screen>"""
 
 	def __init__(self,session):
 		Screen.__init__(self,session)
 		self.session = session
+		Screen.setTitle(self, _("Remote Control Setup"))
 		self["shortcuts"] = ActionMap(["ShortcutActions", "SetupActions" ],
 		{
 			"ok": self.keySave,
@@ -119,9 +120,9 @@ class MessageBoxConfirmCode(MessageBox):
 	skin = """
 		<screen position="center,center" size="600,10" title="Message">
 		<widget name="text" position="65,8" size="420,0" font="Regular;22" />
-		<widget name="ErrorPixmap" pixmap="Vu_HD/icons/input_error.png" position="5,5" size="53,53" alphatest="blend" />
-		<widget name="QuestionPixmap" pixmap="Vu_HD/icons/input_question.png" position="5,5" size="53,53" alphatest="blend" />
-		<widget name="InfoPixmap" pixmap="Vu_HD/icons/input_info.png" position="5,5" size="53,53" alphatest="blend" />
+		<widget name="ErrorPixmap" pixmap="ViX_HD_Common/icons/input_error.png" position="5,5" size="53,53" alphatest="blend" />
+		<widget name="QuestionPixmap" pixmap="ViX_HD_Common/icons/input_question.png" position="5,5" size="53,53" alphatest="blend" />
+		<widget name="InfoPixmap" pixmap="ViX_HD_Common/icons/input_info.png" position="5,5" size="53,53" alphatest="blend" />
 		<widget name="list" position="100,100" size="380,375" transparent="1" backgroundColor="darkgrey" />
 		<applet type="onLayoutFinish">
 # this should be factored out into some helper code, but currently demonstrates applets.
