@@ -13,7 +13,8 @@ from Tools.Directories import resolveFilename, SCOPE_SKIN, SCOPE_SKIN_IMAGE, SCO
 from Tools.Import import my_import
 from Tools.LoadPixmap import LoadPixmap
 
-colorNames = dict()
+colorNames = {}
+fonts = {}
 
 def dump(x, i=0):
 	print " " * i + str(x)
@@ -70,7 +71,7 @@ except (SkinError, IOError, AssertionError), err:
 display_skin_id = 1
 addSkin('skin_display.xml')
 if addSkin('skin_display96.xml'):
-	print "[SKIN] Color OLED"
+	# Color OLED
 	display_skin_id = 2
 addSkin('skin_text.xml')
 
@@ -92,27 +93,24 @@ except Exception, err:
 addSkin('skin_default.xml')
 profile("LoadSkinDefaultDone")
 
-def parseCoordinate(str, e, size = 0):
-	str = str.strip()
-	if str == "center":
+def parseCoordinate(s, e, size = 0):
+	s = s.strip()
+	if s == "center":
 		val = (e - size)/2
 	else:
-		sl = len(str)
 		l = 1
-
-		if str[0] is 'e':
+		if s[0] is 'e':
 			val = e
-		elif str[0] is 'c':
+		elif s[0] is 'c':
 			val = e/2
 		else:
 			val = 0;
 			l = 0
-
-		if sl - l > 0:
-			if str[sl-1] is '%':
-				val += e * int(str[l:sl-1]) / 100
+		if len(s) > l:
+			if s[-1] is '%':
+				val += e * int(s[l:-1]) / 100
 			else:
-				val += int(str[l:sl])
+				val += int(s[l:])
 	if val < 0:
 		val = 0
 	return val
@@ -137,8 +135,8 @@ def getParentSize(object, desktop):
 			size = desktop.size()
 	return size
 
-def parsePosition(str, scale, object = None, desktop = None, size = None):
-	x, y = str.split(',')
+def parsePosition(s, scale, object = None, desktop = None, size = None):
+	x, y = s.split(',')
 	parentsize = eSize()
 	if object and (x[0] in ('c', 'e') or y[0] in ('c', 'e')):
 		parentsize = getParentSize(object, desktop)
@@ -146,8 +144,8 @@ def parsePosition(str, scale, object = None, desktop = None, size = None):
 	yval = parseCoordinate(y, parentsize.height(), size and size.height())
 	return ePoint(xval * scale[0][0] / scale[0][1], yval * scale[1][0] / scale[1][1])
 
-def parseSize(str, scale, object = None, desktop = None):
-	x, y = str.split(',')
+def parseSize(s, scale, object = None, desktop = None):
+	x, y = s.split(',')
 	parentsize = eSize()
 	if object and (x[0] in ('c', 'e') or y[0] in ('c', 'e')):
 		parentsize = getParentSize(object, desktop)
@@ -155,17 +153,22 @@ def parseSize(str, scale, object = None, desktop = None):
 	yval = parseCoordinate(y, parentsize.height())
 	return eSize(xval * scale[0][0] / scale[0][1], yval * scale[1][0] / scale[1][1])
 
-def parseFont(str, scale):
-	name, size = str.split(';')
+def parseFont(s, scale):
+	try:
+		f = fonts[s]
+		name = f[0]
+		size = f[1]
+	except:
+		name, size = s.split(';')
 	return gFont(name, int(size) * scale[0][0] / scale[0][1])
 
-def parseColor(str):
-	if str[0] != '#':
+def parseColor(s):
+	if s[0] != '#':
 		try:
-			return colorNames[str]
+			return colorNames[s]
 		except:
-			raise SkinError("color '%s' must be #aarrggbb or valid named color" % (str))
-	return gRGB(int(str[1:], 0x10))
+			raise SkinError("color '%s' must be #aarrggbb or valid named color" % (s))
+	return gRGB(int(s[1:], 0x10))
 
 def collectAttributes(skinAttributes, node, context, skin_path_prefix=None, ignore=(), filenames=frozenset(("pixmap", "pointer", "seek_pointer", "backgroundPixmap", "selectionPixmap", "sliderPixmap", "scrollbarbackgroundPixmap"))):
 	# walk all attributes
@@ -431,6 +434,19 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 					resolved_font = skin_path
 			addFont(resolved_font, name, scale, is_replacement, render)
 			#print "Font: ", resolved_font, name, scale, is_replacement
+		for alias in c.findall("alias"):
+		        get = alias.attrib.get
+		        try:
+				name = get("name")
+				font = get("font")
+				size = int(get("size"))
+				height = int(get("height", size)) # to be calculated some day
+				width = int(get("width", size))
+				global fonts
+				fonts[name] = (font, size, height, width)
+			except Exception, ex:
+				print "[SKIN] bad font alias", ex
+
 
 	for c in skin.findall("subtitles"):
 		from enigma import eWidget, eSubtitleWidget
@@ -467,11 +483,9 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 		else:
 			id = 0
 		#print "windowstyle:", id
-
 		# defaults
 		font = gFont("Regular", 20)
 		offset = eSize(20, 5)
-
 		for title in windowstyle.findall("title"):
 			get_attr = title.attrib.get
 			offset = parseSize(get_attr("offset"), ((1,1),(1,1)))
@@ -480,7 +494,6 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 		style.setTitleFont(font);
 		style.setTitleOffset(offset)
 		#print "  ", font, offset
-
 		for borderset in windowstyle.findall("borderset"):
 			bsName = str(borderset.attrib.get("name"))
 			for pixmap in borderset.findall("pixmap"):
@@ -491,7 +504,6 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 					png = loadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, filename, path_prefix=path_prefix), desktop)
 					style.setPixmap(eWindowStyleSkinned.__dict__[bsName], eWindowStyleSkinned.__dict__[bpName], png)
 				#print "  borderset:", bpName, filename
-
 		for color in windowstyle.findall("color"):
 			get_attr = color.attrib.get
 			colorType = get_attr("name")
@@ -501,9 +513,7 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 			except:
 				raise SkinError("Unknown color %s" % (colorType))
 				#pass
-
 			#print "  color:", type, color
-
 		x = eWindowStyleManager.getInstance()
 		x.setStyle(id, style)
 
