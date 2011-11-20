@@ -65,7 +65,7 @@ class RemoteControlCode(Screen,ConfigListScreen,RemoteControlCodeInit):
 	def __init__(self,session):
 		Screen.__init__(self,session)
 		self.session = session
-		Screen.setTitle(self, _("Remote Control Setup"))
+		Screen.setTitle(self, _("Remote Control Code"))
 		self["shortcuts"] = ActionMap(["ShortcutActions", "SetupActions" ],
 		{
 			"ok": self.keySave,
