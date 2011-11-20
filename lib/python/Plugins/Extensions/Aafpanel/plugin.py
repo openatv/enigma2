@@ -513,6 +513,8 @@ class KeymapSel(ConfigListScreen,Screen):
 			"ok": self.ok,
 			"left": self.keyLeft,
 			"right": self.keyRight,
+			"green": self.ok,
+			"red": self.Exit,
 		}, -2)
 
 	def setWindowTitle(self):
@@ -568,6 +570,8 @@ class RedPanel(ConfigListScreen,Screen):
 			"ok": self.ok,
 			"left": self.keyLeft,
 			"right": self.keyRight,
+			"green": self.ok,
+			"red": self.Exit,
 		}, -2)
 
 	def setWindowTitle(self):
