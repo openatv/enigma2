@@ -99,6 +99,7 @@ class OSDSetup(Screen, ConfigListScreen):
 			configfile.save()
 	
 		setPosition(int(config.osd.dst_left.value), int(config.osd.dst_width.value), int(config.osd.dst_top.value), int(config.osd.dst_height.value))
+		setAlpha(int(config.osd.alpha.value))
 
 	def saveAll(self):
 		for x in self["config"].list:
@@ -143,6 +144,9 @@ def setPosition(dst_left, dst_width, dst_top, dst_height):
 		file.close()
 	except:
 		return
+
+def setAlpha(alpha_value):
+		open("/proc/stb/video/alpha", "w").write(str(alpha_value))
 
 class OSD3DSetupScreen(Screen, ConfigListScreen):
 	skin = """
@@ -254,6 +258,9 @@ def applySettings(mode, znorm):
 def setConfiguredPosition():
 	setPosition(int(config.osd.dst_left.value), int(config.osd.dst_width.value), int(config.osd.dst_top.value), int(config.osd.dst_height.value))
 
+def setConfiguredAplha():
+	setAlpha(int(config.osd.alpha.value))
+
 def setConfiguredSettings():
 	applySettings(config.osd.threeDmode.value, int(config.osd.threeDznorm.value))
 
@@ -263,9 +270,11 @@ def isCanChangeOsdPositionSupported():
 	return False
 
 def isCanChangeOsdAlphaSupported():
-	if path.exists("/proc/stb/video/alpha"):
-		return True
-	return False
+	try:
+		can_osd_alpha = open("/proc/stb/video/alpha", "r") and True or False
+	except:
+		can_osd_alpha = False
+	return can_osd_alpha
 
 def isCanChange3DOsdSupported():
 	if path.exists("/proc/stb/fb/3dmode"):
