@@ -17,13 +17,16 @@ eRCConsoleDriver::eRCConsoleDriver(const char *filename): eRCDriver(eRCInput::ge
 		sn=eSocketNotifier::create(eApp, handle, eSocketNotifier::Read);
 		CONNECT(sn->activated, eRCConsoleDriver::keyPressed);
 	}
-	
-		/* set console mode */
-	struct termios t;
-	tcgetattr(handle, &t);
-	ot = t;
-	t.c_lflag &= ~(ECHO | ICANON | ECHOK | ECHOE | ECHONL);
-	tcsetattr(handle, TCSANOW,&t);
+
+	if (handle >= 0)
+	{
+			/* set console mode */
+		struct termios t;
+		tcgetattr(handle, &t);
+		ot = t;
+		t.c_lflag &= ~(ECHO | ICANON | ECHOK | ECHOE | ECHONL);
+		tcsetattr(handle, TCSANOW,&t);
+	}
 }
 
 eRCConsoleDriver::~eRCConsoleDriver()
@@ -45,7 +48,7 @@ void eRCConsoleDriver::keyPressed(int)
 	if (km == eRCInput::kmNone)
 		return;
 
-	while (num--)
+	while (num-- > 0)
 	{
 		code = *d++;
 //		eDebug("console code %02x\n", code);

@@ -24,6 +24,7 @@
 #include <lib/gui/ewidget.h>
 #include <lib/gui/ewidgetdesktop.h>
 #include <lib/gui/ewindow.h>
+#include <lib/gui/evideo.h>
 #include <lib/python/connections.h>
 #include <lib/python/python.h>
 
@@ -229,8 +230,8 @@ int main(int argc, char **argv)
 //	python.execute("mytest", "__main__");
 	python.execFile(eEnv::resolve("${libdir}/enigma2/python/mytest.py").c_str());
 
-	extern void setFullsize(); // definend in lib/gui/evideo.cpp
-	setFullsize();
+	/* restore both decoders to full size */
+	eVideoWidget::setFullsize();
 
 	if (exit_code == 5) /* python crash */
 	{

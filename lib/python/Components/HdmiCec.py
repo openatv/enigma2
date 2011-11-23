@@ -7,6 +7,7 @@ from Tools.DreamboxHardware import getFPWasTimerWakeup
 config.hdmicec = ConfigSubsection()
 config.hdmicec.enabled = ConfigYesNo(default = True)
 config.hdmicec.control_tv_standby = ConfigYesNo(default = True)
+config.hdmicec.control_tv_deepstandby = ConfigYesNo(default = False)
 config.hdmicec.control_tv_wakeup = ConfigYesNo(default = True)
 config.hdmicec.report_active_source = ConfigYesNo(default = True)
 config.hdmicec.report_active_menu = ConfigYesNo(default = True)
@@ -36,6 +37,7 @@ class HdmiCec:
 
 		eHdmiCEC.getInstance().messageReceived.get().append(self.messageReceived)
 		config.misc.standbyCounter.addNotifier(self.onEnterStandby, initial_call = False)
+		config.misc.DeepStandby.addNotifier(self.onEnterDeepStandby, initial_call = False)
 		self.setFixedPhysicalAddress(config.hdmicec.fixed_physical_address.value)
 		
 		self.volumeForwardingEnabled = False
@@ -153,6 +155,11 @@ class HdmiCec:
 		from Screens.Standby import inStandby
 		inStandby.onClose.append(self.onLeaveStandby)
 		self.standbyMessages()
+
+	def onEnterDeepStandby(self, configElement):
+		if config.hdmicec.enabled.value:
+			if config.hdmicec.control_tv_deepstandby.value:
+				self.sendMessage(0, "standby")
 
 	def standby(self):
 		from Screens.Standby import Standby, inStandby

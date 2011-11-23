@@ -4,7 +4,9 @@
 
 #include <sys/ioctl.h>
 #include <linux/input.h>
+#include <linux/kd.h>
 #include <sys/stat.h>
+#include <fcntl.h>
 
 #include <lib/base/ebase.h>
 #include <lib/base/init.h>
@@ -17,43 +19,72 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	if (ev->type!=EV_KEY)
 		return;
 
-//	eDebug("%x %x %x", ev->value, ev->code, ev->type);
-
 	if (ev->type!=EV_KEY)
 		return;
 
 	int km = iskeyboard ? input->getKeyboardMode() : eRCInput::kmNone;
 
-//	eDebug("keyboard mode %d", km);
-	
+	switch (ev->code)
+	{
+	case KEY_LEFTSHIFT:
+	case KEY_RIGHTSHIFT:
+		shiftState = ev->value;
+		break;
+	case KEY_CAPSLOCK:
+		if (ev->value == 1) capsState = !capsState;
+		break;
+	}
+
 	if (km == eRCInput::kmAll)
 		return;
 
 	if (km == eRCInput::kmAscii)
 	{
-//		eDebug("filtering.. %d", ev->code);
-		bool filtered = ( ev->code > 0 && ev->code < 61 );
+		bool ignore = false;
+		bool ascii = (ev->code > 0 && ev->code < 61);
 		switch (ev->code)
 		{
+			case KEY_LEFTCTRL:
+			case KEY_RIGHTCTRL:
+			case KEY_LEFTSHIFT:
+			case KEY_RIGHTSHIFT:
+			case KEY_LEFTALT:
+			case KEY_RIGHTALT:
+			case KEY_CAPSLOCK:
+				ignore = true;
+				break;
 			case KEY_RESERVED:
 			case KEY_ESC:
 			case KEY_TAB:
 			case KEY_BACKSPACE:
 			case KEY_ENTER:
-			case KEY_LEFTCTRL:
-			case KEY_RIGHTSHIFT:
-			case KEY_LEFTALT:
-			case KEY_CAPSLOCK:
 			case KEY_INSERT:
 			case KEY_DELETE:
 			case KEY_MUTE:
-				filtered=false;
+				ascii = false;
 			default:
 				break;
 		}
-		if (filtered)
+		if (ignore) return;
+		if (ascii)
+		{
+			if (ev->value)
+			{
+				if (consoleFd >= 0)
+				{
+					struct kbentry ke;
+					/* off course caps is not the same as shift, but this will have to do for now */
+					ke.kb_table = (shiftState || capsState) ? K_SHIFTTAB : K_NORMTAB;
+					ke.kb_index = ev->code;
+					::ioctl(consoleFd, KDGKBENT, &ke);
+					if (ke.kb_value)
+					{
+						/* emit */ input->keyPressed(eRCKey(this, ke.kb_value & 0xff, eRCKey::flagAscii));
+					}
+				}
+			}
 			return;
-//		eDebug("passed!");
+		}
 	}
 
 #if KEY_PLAY_ACTUALLY_IS_KEY_PLAYPAUSE
@@ -81,8 +112,9 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	}
 }
 
-eRCDeviceInputDev::eRCDeviceInputDev(eRCInputEventDriver *driver)
-	:eRCDevice(driver->getDeviceName(), driver), iskeyboard(false)
+eRCDeviceInputDev::eRCDeviceInputDev(eRCInputEventDriver *driver, int consolefd)
+	:eRCDevice(driver->getDeviceName(), driver), iskeyboard(false),
+	consoleFd(consolefd), shiftState(false), capsState(false)
 {
 	if (strcasestr(id.c_str(), "keyboard") != NULL)
 		iskeyboard = true;
@@ -105,10 +137,14 @@ class eInputDeviceInit
 {
 	ePtrList<eRCInputEventDriver> m_drivers;
 	ePtrList<eRCDeviceInputDev> m_devices;
+
+	int consoleFd;
+
 public:
 	eInputDeviceInit()
 	{
 		int i = 0;
+		consoleFd = ::open("/dev/tty0", O_RDWR);
 		while (1)
 		{
 			struct stat s;
@@ -118,7 +154,7 @@ public:
 				break;
 			eRCInputEventDriver *p;
 			m_drivers.push_back(p = new eRCInputEventDriver(filename));
-			m_devices.push_back(new eRCDeviceInputDev(p));
+			m_devices.push_back(new eRCDeviceInputDev(p, consoleFd));
 			++i;
 		}
 		eDebug("Found %d input devices!", i);
@@ -132,6 +168,10 @@ public:
 			m_devices.pop_back();
 			delete m_drivers.back();
 			m_drivers.pop_back();
+		}
+		if (consoleFd >= 0)
+		{
+			::close(consoleFd);
 		}
 	}
 };

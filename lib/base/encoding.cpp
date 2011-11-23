@@ -56,7 +56,7 @@ eDVBTextEncodingHandler::eDVBTextEncodingHandler()
 					||(sscanf( line, "%d %d", &tsid, &onid ) == 2 ) )
 				m_TransponderUseTwoCharMapping.insert((tsid<<16)|onid);
 			else
-				eDebug("couldn't parse %s", line);
+				eDebug("encoding.conf: couldn't parse %s", line);
 		}
 		fclose(f);
 		free(line);

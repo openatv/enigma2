@@ -8,17 +8,10 @@
 
 #ifndef SWIG
 
-/* Test for gcc >= maj.min, as per __GNUC_PREREQ in glibc */
-#if defined (__GNUC__) && defined (__GNUC_MINOR__)
-#define __GNUC_PREREQ(maj, min) \
-	  ((__GNUC__ << 16) + __GNUC_MINOR__ >= ((maj) << 16) + (min))
-#else
-#define __GNUC_PREREQ(maj, min)  0
-#endif
-
 #include <vector>
 #include <list>
-#if 0 && __GNUC_PREREQ(4,3)
+// unordered_map unordered_set aren't there yet?
+#if 0
 #include <unordered_map>
 #include <unordered_set>
 #else
@@ -115,26 +108,19 @@ struct hash_uniqueEPGKey
 };
 
 #define tidMap std::set<__u32>
-#if 0 && __GNUC_PREREQ(4,3)
-	#define eventCache std::unordered_map<uniqueEPGKey, std::pair<eventMap, timeMap>, hash_uniqueEPGKey, uniqueEPGKey::equal>
+#if 0 
+	typedef std::unordered_map<uniqueEPGKey, std::pair<eventMap, timeMap>, hash_uniqueEPGKey, uniqueEPGKey::equal> eventCache;
 	#ifdef ENABLE_PRIVATE_EPG
-		#define contentTimeMap std::unordered_map<time_t, std::pair<time_t, __u16> >
-		#define contentMap std::unordered_map<int, contentTimeMap >
-		#define contentMaps std::unordered_map<uniqueEPGKey, contentMap, hash_uniqueEPGKey, uniqueEPGKey::equal >
+		typedef std::unordered_map<time_t, std::pair<time_t, __u16> > contentTimeMap;
+		typedef std::unordered_map<int, contentTimeMap > contentMap;
+		typedef std::unordered_map<uniqueEPGKey, contentMap, hash_uniqueEPGKey, uniqueEPGKey::equal > contentMaps;
 	#endif
-#elif __GNUC_PREREQ(3,1)
-	#define eventCache __gnu_cxx::hash_map<uniqueEPGKey, std::pair<eventMap, timeMap>, hash_uniqueEPGKey, uniqueEPGKey::equal>
+#else
+	typedef __gnu_cxx::hash_map<uniqueEPGKey, std::pair<eventMap, timeMap>, hash_uniqueEPGKey, uniqueEPGKey::equal> eventCache;
 	#ifdef ENABLE_PRIVATE_EPG
-		#define contentTimeMap __gnu_cxx::hash_map<time_t, std::pair<time_t, __u16> >
-		#define contentMap __gnu_cxx::hash_map<int, contentTimeMap >
-		#define contentMaps __gnu_cxx::hash_map<uniqueEPGKey, contentMap, hash_uniqueEPGKey, uniqueEPGKey::equal >
-	#endif
-#else // for older gcc use following
-	#define eventCache std::hash_map<uniqueEPGKey, std::pair<eventMap, timeMap>, hash_uniqueEPGKey, uniqueEPGKey::equal >
-	#ifdef ENABLE_PRIVATE_EPG
-		#define contentTimeMap std::hash_map<time_t, std::pair<time_t, __u16> >
-		#define contentMap std::hash_map<int, contentTimeMap >
-		#define contentMaps std::hash_map<uniqueEPGKey, contentMap, hash_uniqueEPGKey, uniqueEPGKey::equal>
+		typedef __gnu_cxx::hash_map<time_t, std::pair<time_t, __u16> > contentTimeMap;
+		typedef __gnu_cxx::hash_map<int, contentTimeMap > contentMap;
+		typedef __gnu_cxx::hash_map<uniqueEPGKey, contentMap, hash_uniqueEPGKey, uniqueEPGKey::equal > contentMaps;
 	#endif
 #endif
 
