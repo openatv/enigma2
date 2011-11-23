@@ -1591,8 +1591,7 @@ class IPKGMenu(Screen):
 			"red": self.keyCancel,
 			"green": self.KeyOk,
 		})
-		self.flist = []
-		self["filelist"] = MenuList(self.flist)
+		self["filelist"] = MenuList([])
 		self.fill_list()
 		self.onLayoutFinish.append(self.layoutFinished)
 
@@ -1603,17 +1602,17 @@ class IPKGMenu(Screen):
 		self.setTitle(_("Select upgrade source to edit."))
 
 	def fill_list(self):
-		self.flist = []
+		flist = []
 		self.path = '/etc/opkg/'
 		if (os_path.exists(self.path) == False):
 			self.entry = False
 			return
 		for file in listdir(self.path):
-			if (file.endswith(".conf")):
-				if file != 'arch.conf':
-					self.flist.append((file))
+			if file.endswith(".conf"):
+				if file not in ('arch.conf', 'opkg.conf'):
+					flist.append((file))
 					self.entry = True
-					self["filelist"].l.setList(self.flist)
+		self["filelist"].l.setList(flist)
 
 	def KeyOk(self):
 		if (self.exe == False) and (self.entry == True):

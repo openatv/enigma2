@@ -50,6 +50,7 @@ config.misc.SyncTimeUsing = ConfigSelection(default = "0", choices = [("0", "Tra
 
 config.misc.startCounter = ConfigInteger(default=0) # number of e2 starts...
 config.misc.standbyCounter = NoSave(ConfigInteger(default=0)) # number of standby
+config.misc.DeepStandby = NoSave(ConfigYesNo(default=False)) # detect deepstandby
 
 #demo code for use of standby enter leave callbacks
 #def leaveStandby():

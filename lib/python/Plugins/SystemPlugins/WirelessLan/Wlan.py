@@ -142,15 +142,14 @@ class wpaSupplicant:
 		fp.write('#WPA Supplicant Configuration by enigma2\n')
 		fp.write('ctrl_interface=/var/run/wpa_supplicant\n')
 		fp.write('eapol_version=1\n')
-		fp.write('fast_reauth=1\n')	
-
-		if hiddenessid:
-			fp.write('ap_scan=2\n')
-		else:
-			fp.write('ap_scan=1\n')
+		fp.write('fast_reauth=1\n')
+		fp.write('ap_scan=1\n')
 		fp.write('network={\n')
 		fp.write('\tssid="'+essid+'"\n')
-		fp.write('\tscan_ssid=0\n')			
+		if hiddenessid:
+			fp.write('\tscan_ssid=1\n')
+		else:
+			fp.write('\tscan_ssid=0\n')
 		if encryption in ('WPA', 'WPA2', 'WPA/WPA2'):
 			fp.write('\tkey_mgmt=WPA-PSK\n')
 			if encryption == 'WPA':
@@ -194,8 +193,8 @@ class wpaSupplicant:
 
 			for s in supplicant:
 				split = s.strip().split('=',1)
-				if split[0] == 'ap_scan':
-					if split[1] == '2':
+				if split[0] == 'scan_ssid':
+					if split[1] == '1':
 						config.plugins.wlan.hiddenessid.value = True
 					else:
 						config.plugins.wlan.hiddenessid.value = False

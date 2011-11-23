@@ -140,7 +140,7 @@ eMainloop::~eMainloop()
 void eMainloop::addSocketNotifier(eSocketNotifier *sn)
 {
 	int fd = sn->getFD();
-	if (m_inActivate && m_inActivate->ref.count == 1)
+	if (m_inActivate && m_inActivate->ref == 1)
 	{
 		/*  when the current active SocketNotifier's refcount is one,
 			then no more external references are existing.

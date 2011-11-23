@@ -3875,6 +3875,25 @@ class InfoBarSubserviceSelection:
 	def openTimerList(self):
 		self.session.open(TimerEditList)
 
+class InfoBarRedButton:
+	def __init__(self):
+		self["RedButtonActions"] = HelpableActionMap(self, "InfobarRedButtonActions",
+			{
+				"activateRedButton": (self.activateRedButton, _("Red button...")),
+			})
+		self.onHBBTVActivation = [ ]
+		self.onRedButtonActivation = [ ]
+
+	def activateRedButton(self):
+		service = self.session.nav.getCurrentService()
+		info = service and service.info()
+		if info and info.getInfoString(iServiceInformation.sHBBTVUrl) != "":
+			for x in self.onHBBTVActivation:
+				x()
+		elif False: # TODO: other red button services
+			for x in self.onRedButtonActivation:
+				x()
+
 class InfoBarAdditionalInfo:
 	def __init__(self):
 
