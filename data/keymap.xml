@@ -133,7 +133,6 @@
 
 	<map context="InfobarExtensions">
 		<key id="KEY_RED" mapto="RedPressed" flags="b" />
-		<key id="KEY_RED" mapto="showEventInfo" flags="l" />
 		<key id="KEY_GREEN" mapto="openTimerList" flags="b" />
 		<key id="KEY_GREEN" mapto="openAutoTimerList" flags="l" />
 		<key id="KEY_YELLOW" mapto="openEPGSearch" flags="b" />
@@ -171,12 +170,7 @@
 	</map>
 
 	<map context="InputAsciiActions">
-		<device name="Console">
-			<key id="KEY_ASCII" mapto="gotAsciiCode" flags="mr" />
-		</device>
-		<device name="SDL">
-			<key id="KEY_ASCII" mapto="gotAsciiCode" flags="mr" />
-		</device>
+		<key id="KEY_ASCII" mapto="gotAsciiCode" flags="mr" />
 	</map>
 
 	<map context="InputBoxActions">
@@ -255,6 +249,12 @@
 
 	<map context="InfobarSubserviceSelectionActions">
 		<key id="KEY_GREEN" mapto="GreenPressed" flags="b" />
+	</map>
+
+	<map context="InfobarRedButtonActions">
+		<device name="dreambox advanced remote control (native)">
+			<key id="KEY_RED" mapto="activateRedButton" flags="l" />
+		</device>
 	</map>
 
 	<map context="InfobarPiPActions">

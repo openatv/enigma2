@@ -19,8 +19,10 @@ class CryptoInfo(Poll, Converter, object):
 		
 	@cached
 	def getText(self):
-		if not self.visible:
+		if not config.usage.show_cryptoinfo.value:
+			self.visible = False
 			return ''
+		self.visible = True
 		data = self.ecmdata.getEcmData()
 		return data[0]
 	text = property(getText)

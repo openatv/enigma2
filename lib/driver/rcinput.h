@@ -6,9 +6,11 @@
 class eRCDeviceInputDev: public eRCDevice
 {
 	int iskeyboard;
+	int consoleFd;
+	bool shiftState, capsState;
 public:
 	void handleCode(long code);
-	eRCDeviceInputDev(eRCInputEventDriver *driver);
+	eRCDeviceInputDev(eRCInputEventDriver *driver, int consolefd);
 	const char *getDescription() const;
 	void setExclusive(bool);
 };

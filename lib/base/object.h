@@ -165,18 +165,18 @@ inline int atomic_decrement(int * pw)
 
 	struct oRefCount
 	{
-		volatile int count;
+		int count;
 		oRefCount(): count(0) { }
-		operator volatile int&() { return count; }
+		operator int&() { return count; }
+#ifdef OBJECT_DEBUG
 		~oRefCount()
 		{ 
-	#ifdef OBJECT_DEBUG
 			if (count)
 				eDebug("OBJECT_DEBUG FATAL: %p has %d references!", this, count);
 			else
 				eDebug("OBJECT_DEBUG refcount ok! (%p)", this); 
-	#endif
 		}
+#endif
 	};
 
 	#if defined(OBJECT_DEBUG)

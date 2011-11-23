@@ -1,6 +1,6 @@
 dist_noinst_SCRIPTS = xml2po.py
 
-LANGS = en de ar ca hr cs da nl et fi fr el hu lt lv is it no pl pt ru sr sk sl es sv th tr uk fy
+LANGS = ar bg ca cs da de el en es et fi fr fy hr hu is it lt lv nl no pl pt ru sv sk sl sr th tr uk
 LANGMO = $(LANGS:=.mo)
 LANGPO = $(LANGS:=.po)
 

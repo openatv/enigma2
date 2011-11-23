@@ -8,7 +8,7 @@
 
 #define MAX_LAYER 16
 
-class eWidgetDesktop;class eWidgetDesktop;
+class eWidgetDesktop;
 
 class eWidget
 {
