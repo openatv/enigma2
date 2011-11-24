@@ -32,6 +32,7 @@ from Screens.UnhandledKey import UnhandledKey
 from ServiceReference import ServiceReference
 from Screens.SecondInfobar import SecondInfobar
 from skin import parseColor
+import os
 
 from RecordTimer import RecordTimer, RecordTimerEntry, parseEvent
 from timer import TimerEntry
@@ -3572,11 +3573,22 @@ class InfoBarAAFpanel:
 		self.onRedButtonActivation = [ ]	
 
 	def selectRedKeytask(self):
-		service = self.session.nav.getCurrentService()
-		info = service and service.info()
-		if info and info.getInfoString(iServiceInformation.sHBBTVUrl) != "":
-			for x in self.onHBBTVActivation:
-				x()
+		if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/WebBrowser/browser.pyo") is True:
+			service = self.session.nav.getCurrentService()
+			info = service and service.info()
+			if info and info.getInfoString(iServiceInformation.sHBBTVUrl) != "":
+				for x in self.onHBBTVActivation:
+					x()
+					
+			elif config.plugins.aafpanel_redpanel.enabled.value == True:
+				try:
+					from Plugins.Extensions.Aafpanel.plugin import Aafpanel
+					self.session.open(Aafpanel, services = self.servicelist)
+				except:
+					pass
+			else:
+				pass		
+		
 		elif config.plugins.aafpanel_redpanel.enabled.value == True:
 			try:
 				from Plugins.Extensions.Aafpanel.plugin import Aafpanel
