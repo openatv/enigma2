@@ -3568,9 +3568,16 @@ class InfoBarAAFpanel:
 				"aafPanel": (self.selectRedKeytask, _("AAF-Panel...")),
 				"softcamPanel": (self.softcamPanel, _("Softcam-Panel...")),
 			})
+		self.onHBBTVActivation = [ ]
+		self.onRedButtonActivation = [ ]	
 
 	def selectRedKeytask(self):
-		if config.plugins.aafpanel_redpanel.enabled.value == True:
+		service = self.session.nav.getCurrentService()
+		info = service and service.info()
+		if info and info.getInfoString(iServiceInformation.sHBBTVUrl) != "":
+			for x in self.onHBBTVActivation:
+				x()
+		elif config.plugins.aafpanel_redpanel.enabled.value == True:
 			try:
 				from Plugins.Extensions.Aafpanel.plugin import Aafpanel
 				self.session.open(Aafpanel, services = self.servicelist)
@@ -3588,7 +3595,7 @@ class InfoBarAAFpanel:
 				pass
 		else:
 			pass
-
+		
 from RecordTimer import parseEvent, RecordTimerEntry
 
 class InfoBarInstantRecord:
