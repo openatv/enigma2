@@ -8,10 +8,8 @@ logpath = $(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.
 if [ -x @bindir@/showiframe ]; then
 	if [ -f @sysconfdir@/enigma2/backdrop.mvi ]; then
 		@bindir@/showiframe @sysconfdir@/enigma2/backdrop.mvi
-	elif [ -f @sysconfdir@/enigma2/bootlogo.mvi ]; then
-		@bindir@/showiframe @sysconfdir@/enigma2/bootlogo.mvi
-	elif [ -f @datadir@/bootlogo.mvi ]; then
-		@bindir@/showiframe @datadir@/bootlogo.mvi
+	elif [ -f @datadir@/backdrop.mvi ]; then
+		@bindir@/showiframe @datadir@/backdrop.mvi
 	fi
 fi
 
