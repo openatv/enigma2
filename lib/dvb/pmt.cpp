@@ -207,50 +207,53 @@ void eDVBServicePMTHandler::AITready(int error)
 		{
 			for (std::list<ApplicationInformation *>::const_iterator i = (*it)->getApplicationInformation()->begin(); i != (*it)->getApplicationInformation()->end(); ++i)
 			{
-				for (DescriptorConstIterator desc = (*i)->getDescriptors()->begin();
-					desc != (*i)->getDescriptors()->end(); ++desc)
+				if ((*i)->getApplicationControlCode() == 0x01) /* AUTOSTART */
 				{
-					switch ((*desc)->getTag())
+					for (DescriptorConstIterator desc = (*i)->getDescriptors()->begin();
+						desc != (*i)->getDescriptors()->end(); ++desc)
 					{
-					case APPLICATION_DESCRIPTOR:
-						break;
-					case APPLICATION_NAME_DESCRIPTOR:
-						break;
-					case TRANSPORT_PROTOCOL_DESCRIPTOR:
-					{
-						TransportProtocolDescriptor *transport = (TransportProtocolDescriptor*)(*desc);
-						switch (transport->getProtocolId())
+						switch ((*desc)->getTag())
 						{
-						case 1: /* object carousel */
-							if (m_dsmcc_pid >= 0)
-							{
-								m_OC.begin(eApp, eDVBDSMCCDLDataSpec(m_dsmcc_pid), m_demux);
-							}
+						case APPLICATION_DESCRIPTOR:
 							break;
-						case 2: /* ip */
+						case APPLICATION_NAME_DESCRIPTOR:
 							break;
-						case 3: /* interaction */
-							for (InterActionTransportConstIterator interactionit = transport->getInteractionTransports()->begin(); interactionit != transport->getInteractionTransports()->end(); ++interactionit)
+						case TRANSPORT_PROTOCOL_DESCRIPTOR:
+						{
+							TransportProtocolDescriptor *transport = (TransportProtocolDescriptor*)(*desc);
+							switch (transport->getProtocolId())
 							{
-								m_HBBTVUrl = (*interactionit)->getUrlBase()->getUrl();
+							case 1: /* object carousel */
+								if (m_dsmcc_pid >= 0)
+								{
+									m_OC.begin(eApp, eDVBDSMCCDLDataSpec(m_dsmcc_pid), m_demux);
+								}
+								break;
+							case 2: /* ip */
+								break;
+							case 3: /* interaction */
+								for (InterActionTransportConstIterator interactionit = transport->getInteractionTransports()->begin(); interactionit != transport->getInteractionTransports()->end(); ++interactionit)
+								{
+									m_HBBTVUrl = (*interactionit)->getUrlBase()->getUrl();
+									break;
+								}
 								break;
 							}
 							break;
 						}
-						break;
-					}
-					case GRAPHICS_CONSTRAINTS_DESCRIPTOR:
-						break;
-					case SIMPLE_APPLICATION_LOCATION_DESCRIPTOR:
-					{
-						SimpleApplicationLocationDescriptor *applicationlocation = (SimpleApplicationLocationDescriptor*)(*desc);
-						m_HBBTVUrl += applicationlocation->getInitialPath();
-						break;
-					}
-					case APPLICATION_USAGE_DESCRIPTOR:
-						break;
-					case SIMPLE_APPLICATION_BOUNDARY_DESCRIPTOR:
-						break;
+						case GRAPHICS_CONSTRAINTS_DESCRIPTOR:
+							break;
+						case SIMPLE_APPLICATION_LOCATION_DESCRIPTOR:
+						{
+							SimpleApplicationLocationDescriptor *applicationlocation = (SimpleApplicationLocationDescriptor*)(*desc);
+							m_HBBTVUrl += applicationlocation->getInitialPath();
+							break;
+						}
+						case APPLICATION_USAGE_DESCRIPTOR:
+							break;
+						case SIMPLE_APPLICATION_BOUNDARY_DESCRIPTOR:
+							break;
+						}
 					}
 				}
 			}
