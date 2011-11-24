@@ -621,7 +621,8 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 			self.scan_sat.rolloff = ConfigSelection(default = defaultSat.get("rolloff", eDVBFrontendParametersSatellite.RollOff_alpha_0_35), choices = [
 				(eDVBFrontendParametersSatellite.RollOff_alpha_0_35, "0.35"),
 				(eDVBFrontendParametersSatellite.RollOff_alpha_0_25, "0.25"),
-				(eDVBFrontendParametersSatellite.RollOff_alpha_0_20, "0.20")])
+				(eDVBFrontendParametersSatellite.RollOff_alpha_0_20, "0.20"),
+				(eDVBFrontendParametersSatellite.RollOff_auto, _("Auto"))])
 			self.scan_sat.pilot = ConfigSelection(default = defaultSat.get("pilot", eDVBFrontendParametersSatellite.Pilot_Unknown), choices = [
 				(eDVBFrontendParametersSatellite.Pilot_Off, _("Off")),
 				(eDVBFrontendParametersSatellite.Pilot_On, _("On")),
