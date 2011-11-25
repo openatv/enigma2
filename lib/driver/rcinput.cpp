@@ -114,15 +114,16 @@ void eRCDeviceInputDev::handleCode(long rccode)
 
 eRCDeviceInputDev::eRCDeviceInputDev(eRCInputEventDriver *driver, int consolefd)
 	:eRCDevice(driver->getDeviceName(), driver), iskeyboard(driver->isKeyboard()),
+	ismouse(driver->isPointerDevice()),
 	consoleFd(consolefd), shiftState(false), capsState(false)
 {
 	setExclusive(true);
-	eDebug("Input device \"%s\" is %sa keyboard.", id.c_str(), iskeyboard ? "" : "not ");
+	eDebug("Input device \"%s\" is a %s", id.c_str(), iskeyboard ? "keyboard" : (ismouse ? "mouse" : "remotecontrol"));
 }
 
 void eRCDeviceInputDev::setExclusive(bool b)
 {
-	if (!iskeyboard)
+	if (!iskeyboard && !ismouse)
 		driver->setExclusive(b);
 }
 

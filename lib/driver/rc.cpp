@@ -115,6 +115,8 @@ eRCInputEventDriver::eRCInputEventDriver(const char *filename): eRCDriver(eRCInp
 		CONNECT(sn->activated, eRCInputEventDriver::keyPressed);
 		memset(keyCaps, 0, sizeof(keyCaps));
 		::ioctl(handle, EVIOCGBIT(EV_KEY, sizeof(keyCaps)), keyCaps);
+		memset(evCaps, 0, sizeof(evCaps));
+		::ioctl(handle, EVIOCGBIT(0, sizeof(evCaps)), evCaps);
 	}
 }
 
@@ -139,15 +141,20 @@ void eRCInputEventDriver::setExclusive(bool b)
 	}
 }
 
-bool eRCInputEventDriver::hasKey(int keycode)
+bool eRCInputEventDriver::hasCap(unsigned char *caps, int bit)
 {
-	return (keyCaps[keycode / 8] & (1 << (keycode % 8)));
+	return (caps[bit / 8] & (1 << (bit % 8)));
 }
 
 bool eRCInputEventDriver::isKeyboard()
 {
 	/* check whether the input device has KEY_A, in which case we assume it is a keyboard */
-	return hasKey(KEY_A);
+	return hasCap(keyCaps, KEY_A);
+}
+
+bool eRCInputEventDriver::isPointerDevice()
+{
+	return hasCap(evCaps, EV_REL) || hasCap(evCaps, EV_ABS);
 }
 
 eRCInputEventDriver::~eRCInputEventDriver()
