@@ -1455,55 +1455,32 @@ class NetworkAfp(Screen):
 	def activateAfp(self):
 		if fileExists('/etc/rc0.d/K20atalk'):
 			unlink('/etc/rc0.d/K20atalk')
-			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/samba', '/etc/rc0.d/K20atalk')
-			mymess = _("Autostart Enabled.")
-
 		if fileExists('/etc/rc1.d/K20atalk'):
 			unlink('/etc/rc1.d/K20atalk')
-			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/samba', '/etc/rc1.d/K20atalk')
-			mymess = _("Autostart Enabled.")
-
 		if fileExists('/etc/rc2.d/S20atalk'):
 			unlink('/etc/rc2.d/S20atalk')
-			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/samba', '/etc/rc2.d/S20atalk')
-			mymess = _("Autostart Enabled.")
-
 		if fileExists('/etc/rc3.d/S20atalk'):
 			unlink('/etc/rc3.d/S20atalk')
-			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/samba', '/etc/rc3.d/S20atalk')
-			mymess = _("Autostart Enabled.")
-
 		if fileExists('/etc/rc4.d/S20atalk'):
 			unlink('/etc/rc4.d/S20atalk')
-			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/samba', '/etc/rc4.d/S20atalk')
-			mymess = _("Autostart Enabled.")
-
 		if fileExists('/etc/rc5.d/S20atalk'):
 			unlink('/etc/rc5.d/S20atalk')
-			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/samba', '/etc/rc5.d/S20atalk')
-			mymess = _("Autostart Enabled.")
-
 		if fileExists('/etc/rc6.d/K20atalk'):
 			unlink('/etc/rc6.d/K20atalk')
-			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/samba', '/etc/rc6.d/K20atalk')
-			mymess = _("Autostart Enabled.")
-
-		mybox = self.session.open(MessageBox, mymess, MessageBox.TYPE_INFO,timeout = 10)
-		mybox.setTitle(_("Info"))
 		self.updateAfp()
 
 	def updateAfp(self):
@@ -1669,55 +1646,32 @@ class NetworkNfs(Screen):
 	def Nfsset(self):
 		if fileExists('/etc/rc0.d/K20nfsserver'):
 			unlink('/etc/rc0.d/K20nfsserver')
-			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/nfsserver', '/etc/rc0.d/K20nfsserver')
-			mymess = _("Autostart Enabled.")
-
 		if fileExists('/etc/rc1.d/K20nfsserver'):
 			unlink('/etc/rc1.d/K20nfsserver')
-			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/nfsserver', '/etc/rc1.d/K20nfsserver')
-			mymess = _("Autostart Enabled.")
-
 		if fileExists('/etc/rc2.d/S20nfsserver'):
 			unlink('/etc/rc2.d/S20nfsserver')
-			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/nfsserver', '/etc/rc2.d/S20nfsserver')
-			mymess = _("Autostart Enabled.")
-
 		if fileExists('/etc/rc3.d/S20nfsserver'):
 			unlink('/etc/rc3.d/S20nfsserver')
-			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/nfsserver', '/etc/rc3.d/S20nfsserver')
-			mymess = _("Autostart Enabled.")
-
 		if fileExists('/etc/rc4.d/S20nfsserver'):
 			unlink('/etc/rc4.d/S20nfsserver')
-			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/nfsserver', '/etc/rc4.d/S20nfsserver')
-			mymess = _("Autostart Enabled.")
-
 		if fileExists('/etc/rc5.d/S20nfsserver'):
 			unlink('/etc/rc5.d/S20nfsserver')
-			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/nfsserver', '/etc/rc5.d/S20nfsserver')
-			mymess = _("Autostart Enabled.")
-
 		if fileExists('/etc/rc6.d/K20nfsserver'):
 			unlink('/etc/rc6.d/K20nfsserver')
-			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/nfsserver', '/etc/rc6.d/K20nfsserver')
-			mymess = _("Autostart Enabled.")
-
-		mybox = self.session.open(MessageBox, mymess, MessageBox.TYPE_INFO,timeout = 10)
-		mybox.setTitle(_("Info"))
 		self.updateNfs()
 
 	def updateNfs(self):
@@ -1803,55 +1757,32 @@ class NetworkOpenvpn(Screen):
 	def activateVpn(self):
 		if fileExists('/etc/rc0.d/K20openvpn'):
 			unlink('/etc/rc0.d/K20openvpn')
-			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/openvpn', '/etc/rc0.d/K20openvpn')
-			mymess = _("Autostart Enabled.")
-
 		if fileExists('/etc/rc1.d/K20openvpn'):
 			unlink('/etc/rc1.d/K20openvpn')
-			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/openvpn', '/etc/rc1.d/K20openvpn')
-			mymess = _("Autostart Enabled.")
-
 		if fileExists('/etc/rc2.d/S20openvpn'):
 			unlink('/etc/rc2.d/S20openvpn')
-			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/openvpn', '/etc/rc2.d/S20openvpn')
-			mymess = _("Autostart Enabled.")
-
 		if fileExists('/etc/rc3.d/S20openvpn'):
 			unlink('/etc/rc3.d/S20openvpn')
-			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/openvpn', '/etc/rc3.d/S20openvpn')
-			mymess = _("Autostart Enabled.")
-
 		if fileExists('/etc/rc4.d/S20openvpn'):
 			unlink('/etc/rc4.d/S20openvpn')
-			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/openvpn', '/etc/rc4.d/S20openvpn')
-			mymess = _("Autostart Enabled.")
-
 		if fileExists('/etc/rc5.d/S20openvpn'):
 			unlink('/etc/rc5.d/S20openvpn')
-			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/openvpn', '/etc/rc5.d/S20openvpn')
-			mymess = _("Autostart Enabled.")
-
 		if fileExists('/etc/rc6.d/K20openvpn'):
 			unlink('/etc/rc6.d/K20openvpn')
-			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/openvpn', '/etc/rc6.d/K20openvpn')
-			mymess = _("Autostart Enabled.")
-
-		mybox = self.session.open(MessageBox, mymess, MessageBox.TYPE_INFO,timeout = 10)
-		mybox.setTitle(_("Info"))
 		self.updateVpn()
 
 	def updateVpn(self):
@@ -1960,55 +1891,32 @@ class NetworkSamba(Screen):
 	def activateSamba(self):
 		if fileExists('/etc/rc0.d/K20samba'):
 			unlink('/etc/rc0.d/K20samba')
-			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/samba', '/etc/rc0.d/K20samba')
-			mymess = _("Autostart Enabled.")
-
 		if fileExists('/etc/rc1.d/K20samba'):
 			unlink('/etc/rc1.d/K20samba')
-			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/samba', '/etc/rc1.d/K20samba')
-			mymess = _("Autostart Enabled.")
-
 		if fileExists('/etc/rc2.d/S20samba'):
 			unlink('/etc/rc2.d/S20samba')
-			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/samba', '/etc/rc2.d/S20samba')
-			mymess = _("Autostart Enabled.")
-
 		if fileExists('/etc/rc3.d/S20samba'):
 			unlink('/etc/rc3.d/S20samba')
-			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/samba', '/etc/rc3.d/S20samba')
-			mymess = _("Autostart Enabled.")
-
 		if fileExists('/etc/rc4.d/S20samba'):
 			unlink('/etc/rc4.d/S20samba')
-			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/samba', '/etc/rc4.d/S20samba')
-			mymess = _("Autostart Enabled.")
-
 		if fileExists('/etc/rc5.d/S20samba'):
 			unlink('/etc/rc5.d/S20samba')
-			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/samba', '/etc/rc5.d/S20samba')
-			mymess = _("Autostart Enabled.")
-
 		if fileExists('/etc/rc6.d/K20samba'):
 			unlink('/etc/rc6.d/K20samba')
-			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/samba', '/etc/rc6.d/K20samba')
-			mymess = _("Autostart Enabled.")
-
-		mybox = self.session.open(MessageBox, mymess, MessageBox.TYPE_INFO,timeout = 10)
-		mybox.setTitle(_("Info"))
 		self.updateSamba()
 
 	def updateSamba(self):
@@ -2217,55 +2125,33 @@ class NetworkInadyn(Screen):
 	def autostart(self):
 		if fileExists('/etc/rc0.d/K20inadyn-daemon'):
 			unlink('/etc/rc0.d/K20inadyn-daemon')
-			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/inadyn-daemon', '/etc/rc0.d/K20inadyn-daemon')
-			mymess = _("Autostart Enabled.")
-
 		if fileExists('/etc/rc1.d/K20inadyn-daemon'):
 			unlink('/etc/rc1.d/K20inadyn-daemon')
-			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/inadyn-daemon', '/etc/rc1.d/K20inadyn-daemon')
-			mymess = _("Autostart Enabled.")
-
 		if fileExists('/etc/rc2.d/S20inadyn-daemon'):
 			unlink('/etc/rc2.d/S20inadyn-daemon')
-			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/inadyn-daemon', '/etc/rc2.d/S20inadyn-daemon')
-			mymess = _("Autostart Enabled.")
-
 		if fileExists('/etc/rc3.d/S20inadyn-daemon'):
 			unlink('/etc/rc3.d/S20inadyn-daemon')
-			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/inadyn-daemon', '/etc/rc3.d/S20inadyn-daemon')
-			mymess = _("Autostart Enabled.")
-
 		if fileExists('/etc/rc4.d/S20inadyn-daemon'):
 			unlink('/etc/rc4.d/S20inadyn-daemon')
-			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/inadyn-daemon', '/etc/rc4.d/S20inadyn-daemon')
-			mymess = _("Autostart Enabled.")
-
 		if fileExists('/etc/rc5.d/S20inadyn-daemon'):
 			unlink('/etc/rc5.d/S20inadyn-daemon')
-			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/inadyn-daemon', '/etc/rc5.d/S20inadyn-daemon')
-			mymess = _("Autostart Enabled.")
-
 		if fileExists('/etc/rc6.d/K20inadyn-daemon'):
 			unlink('/etc/rc6.d/K20inadyn-daemon')
-			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/inadyn-daemon', '/etc/rc6.d/K20inadyn-daemon')
-			mymess = _("Autostart Enabled.")
 
-		mybox = self.session.open(MessageBox, mymess, MessageBox.TYPE_INFO, timeout = 10)
-		mybox.setTitle(_("Info"))
 		self.updateIna()
 
 	def updateIna(self):
@@ -2575,56 +2461,32 @@ class NetworkuShare(Screen):
 	def autostart(self):
 		if fileExists('/etc/rc0.d/K20ushare'):
 			unlink('/etc/rc0.d/K20ushare')
-			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/ushare', '/etc/rc0.d/K20ushare')
-			mymess = _("Autostart Enabled.")
-
 		if fileExists('/etc/rc1.d/K20ushare'):
 			unlink('/etc/rc1.d/K20ushare')
-			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/ushare', '/etc/rc1.d/K20ushare')
-			mymess = _("Autostart Enabled.")
-
 		if fileExists('/etc/rc2.d/S20ushare'):
 			unlink('/etc/rc2.d/S20ushare')
-			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/ushare', '/etc/rc2.d/S20ushare')
-			mymess = _("Autostart Enabled.")
-
 		if fileExists('/etc/rc3.d/S20ushare'):
 			unlink('/etc/rc3.d/S20ushare')
-			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/ushare', '/etc/rc3.d/S20ushare')
-			mymess = _("Autostart Enabled.")
-
 		if fileExists('/etc/rc4.d/S20ushare'):
 			unlink('/etc/rc4.d/S20ushare')
-			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/ushare', '/etc/rc4.d/S20ushare')
-			mymess = _("Autostart Enabled.")
-
 		if fileExists('/etc/rc5.d/S20ushare'):
 			unlink('/etc/rc5.d/S20ushare')
-			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/ushare', '/etc/rc5.d/S20ushare')
-			mymess = _("Autostart Enabled.")
-
 		if fileExists('/etc/rc6.d/K20ushare'):
 			unlink('/etc/rc6.d/K20ushare')
-			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/ushare', '/etc/rc6.d/K20ushare')
-			mymess = _("Autostart Enabled.")
-
-		open('/tmp/uShare.log', "a").write(mymess + '\n')
-		mybox = self.session.open(MessageBox, mymess, MessageBox.TYPE_INFO, timeout = 10)
-		mybox.setTitle(_("Info"))
 		self.updateuShare()
 
 	def updateuShare(self):
@@ -3081,56 +2943,32 @@ class NetworkMiniDLNA(Screen):
 	def autostart(self):
 		if fileExists('/etc/rc0.d/K20minidlna'):
 			unlink('/etc/rc0.d/K20minidlna')
-			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/minidlna', '/etc/rc0.d/K20minidlna')
-			mymess = _("Autostart Enabled.")
-
 		if fileExists('/etc/rc1.d/K20minidlna'):
 			unlink('/etc/rc1.d/K20minidlna')
-			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/minidlna', '/etc/rc1.d/K20minidlna')
-			mymess = _("Autostart Enabled.")
-
 		if fileExists('/etc/rc2.d/S20minidlna'):
 			unlink('/etc/rc2.d/S20minidlna')
-			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/minidlna', '/etc/rc2.d/S20minidlna')
-			mymess = _("Autostart Enabled.")
-
 		if fileExists('/etc/rc3.d/S20minidlna'):
 			unlink('/etc/rc3.d/S20minidlna')
-			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/minidlna', '/etc/rc3.d/S20minidlna')
-			mymess = _("Autostart Enabled.")
-
 		if fileExists('/etc/rc4.d/S20minidlna'):
 			unlink('/etc/rc4.d/S20minidlna')
-			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/minidlna', '/etc/rc4.d/S20minidlna')
-			mymess = _("Autostart Enabled.")
-
 		if fileExists('/etc/rc5.d/S20minidlna'):
 			unlink('/etc/rc5.d/S20minidlna')
-			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/minidlna', '/etc/rc5.d/S20minidlna')
-			mymess = _("Autostart Enabled.")
-
 		if fileExists('/etc/rc6.d/K20minidlna'):
 			unlink('/etc/rc6.d/K20minidlna')
-			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/minidlna', '/etc/rc6.d/K20minidlna')
-			mymess = _("Autostart Enabled.")
-
-		open('/tmp/MiniDLNA.log', "a").write(mymess + '\n')
-		mybox = self.session.open(MessageBox, mymess, MessageBox.TYPE_INFO, timeout = 10)
-		mybox.setTitle(_("Info"))
 		self.updateMiniDLNA()
 
 	def updateMiniDLNA(self):
