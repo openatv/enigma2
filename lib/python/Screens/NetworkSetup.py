@@ -3145,7 +3145,7 @@ class NetworkMiniDLNASetup(Screen, ConfigListScreen):
 		sel = self['config'].getCurrent()
 		if sel:
 			self.vkvar = sel[0]
-			if self.vkvar == _("MiniDLNA Name") + ":" or self.vkvar == _("Share Folder's") + ":":
+			if self.vkvar == _("Name") + ":" or self.vkvar == _("Share Folder's") + ":":
 				from Screens.VirtualKeyBoard import VirtualKeyBoard
 				self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title = self["config"].getCurrent()[0], text = self["config"].getCurrent()[1].getValue())
 
