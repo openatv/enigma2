@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-05 14:38+0000\n"
+"POT-Creation-Date: 2011-11-26 13:42+0000\n"
 "PO-Revision-Date: 2011-07-26 13:37+0100\n"
 "Last-Translator: Andy Blackburn\n"
 "Language-Team: none\n"
@@ -982,12 +982,6 @@ msgstr "Automatically update Client/Server View?"
 msgid "Autostart"
 msgstr "Autostart"
 
-msgid "Autostart Disabled."
-msgstr "Autostart Disabled."
-
-msgid "Autostart Enabled."
-msgstr "Autostart Enabled."
-
 msgid "Autostart:"
 msgstr "Autostart:"
 
@@ -1103,6 +1097,9 @@ msgid "Black screen till locked"
 msgstr "Black screen till locked"
 
 msgid "Blind Scan"
+msgstr ""
+
+msgid "Blindscan"
 msgstr ""
 
 msgid "Blindscan was canceled by the user."
@@ -2946,9 +2943,6 @@ msgstr "HD list"
 msgid "HDMI CEC"
 msgstr ""
 
-msgid "Handle deepstandby events"
-msgstr ""
-
 msgid "Handle standby from TV"
 msgstr ""
 
@@ -3171,6 +3165,9 @@ msgstr "Initialize"
 msgid "Initializing storage device..."
 msgstr "Initializing storage device..."
 
+msgid "Inotify Monitoring"
+msgstr ""
+
 #
 msgid "Input"
 msgstr "Input"
@@ -3196,6 +3193,9 @@ msgstr "Install a new image with your web browser"
 #
 msgid "Install extensions."
 msgstr "Install extensions."
+
+msgid "Install lcd picons on"
+msgstr ""
 
 #
 msgid "Install local extension"
@@ -3657,6 +3657,12 @@ msgstr "Message"
 #
 msgid "Message..."
 msgstr "Message..."
+
+msgid "MiniDLNA Log"
+msgstr ""
+
+msgid "MiniDLNA Setup"
+msgstr ""
 
 msgid "Mins"
 msgstr ""
@@ -4789,6 +4795,9 @@ msgstr "Polarity"
 msgid "Polarization"
 msgstr "Polarization"
 
+msgid "Port"
+msgstr ""
+
 #
 msgid "Port A"
 msgstr "Port A"
@@ -5006,6 +5015,9 @@ msgstr "Providers: "
 msgid "Put TV in standby"
 msgstr ""
 
+msgid "Put TV in standby when deepstandby"
+msgstr ""
+
 msgid "Put receiver in standby"
 msgstr ""
 
@@ -5101,10 +5113,6 @@ msgid "Record time limited due to conflicting timer %s"
 msgstr "Record time limited due to conflicting timer %s"
 
 #
-msgid "Recorded files..."
-msgstr "Recorded files..."
-
-#
 msgid "Recording"
 msgstr "Recording"
 
@@ -5131,6 +5139,9 @@ msgstr "Recordings"
 #
 msgid "Recordings always have priority"
 msgstr "Recordings always have priority"
+
+msgid "Red button..."
+msgstr ""
 
 msgid "Reenter new PIN"
 msgstr "Reenter new PIN"
@@ -5810,6 +5821,9 @@ msgstr "September"
 msgid "Sequence repeat"
 msgstr "Sequence repeat"
 
+msgid "Serial No"
+msgstr ""
+
 msgid "Serv.Name"
 msgstr "Serv.Name"
 
@@ -6213,6 +6227,9 @@ msgstr ""
 msgid "Sorry MediaScanner is not installed!"
 msgstr "Sorry MediaScanner is not installed!"
 
+msgid "Sorry MiniDLNA Config is Missing"
+msgstr ""
+
 #
 msgid "Sorry no backups found!"
 msgstr "Sorry no backups found!"
@@ -6396,6 +6413,9 @@ msgstr "Stored position"
 msgid "Stream request"
 msgstr ""
 
+msgid "Strict DLNA"
+msgstr ""
+
 msgid "Subservice mode"
 msgstr "Subservice mode"
 
@@ -6491,9 +6511,6 @@ msgstr "Sync time using"
 #
 msgid "System"
 msgstr "System"
-
-msgid "System Infomation"
-msgstr ""
 
 msgid "System Information"
 msgstr ""
@@ -7004,6 +7021,9 @@ msgstr "Thumbnails"
 #
 msgid "Thursday"
 msgstr "Thursday"
+
+msgid "TiVo support"
+msgstr ""
 
 #
 msgid "Time"
@@ -7782,11 +7802,17 @@ msgstr "Wait for partition"
 msgid "Wait please while gathering data..."
 msgstr ""
 
+msgid "Wait please while scanning for devices..."
+msgstr ""
+
 #
 msgid "Waiting"
 msgstr "Waiting"
 
 msgid "Wakeup"
+msgstr ""
+
+msgid "Wakeup TV after deepstandby"
 msgstr ""
 
 msgid "Wakeup TV from standby"
@@ -8031,6 +8057,13 @@ msgstr "Yes, view the tutorial"
 
 msgid "Yesterday"
 msgstr "Yesterday"
+
+#, python-format
+msgid ""
+"You already have a channel list installed,\n"
+"would you like to remove\n"
+"\"%s\"?"
+msgstr ""
 
 #
 msgid "You can cancel the installation."
@@ -9678,6 +9711,12 @@ msgstr "zap"
 msgid "zapped"
 msgstr "zapped"
 
+#~ msgid "Autostart Disabled."
+#~ msgstr "Autostart Disabled."
+
+#~ msgid "Autostart Enabled."
+#~ msgstr "Autostart Enabled."
+
 #~ msgid "Fan control"
 #~ msgstr "Fan control"
 
@@ -9694,6 +9733,10 @@ msgstr "zapped"
 #
 #~ msgid "Prev"
 #~ msgstr "Prev"
+
+#
+#~ msgid "Recorded files..."
+#~ msgstr "Recorded files..."
 
 #~ msgid "Show event info on 2nd OK"
 #~ msgstr "Show event info on 2nd OK"

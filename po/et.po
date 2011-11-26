@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-05 14:38+0000\n"
+"POT-Creation-Date: 2011-11-26 13:42+0000\n"
 "PO-Revision-Date: 2011-04-26 15:47+0200\n"
 "Last-Translator: Arvo <arvo@softshark.ee>\n"
 "Language-Team: none\n"
@@ -907,12 +907,6 @@ msgstr ""
 msgid "Autostart"
 msgstr ""
 
-msgid "Autostart Disabled."
-msgstr ""
-
-msgid "Autostart Enabled."
-msgstr ""
-
 msgid "Autostart:"
 msgstr ""
 
@@ -1024,6 +1018,9 @@ msgid "Black screen till locked"
 msgstr ""
 
 msgid "Blind Scan"
+msgstr ""
+
+msgid "Blindscan"
 msgstr ""
 
 msgid "Blindscan was canceled by the user."
@@ -2768,9 +2765,6 @@ msgstr ""
 msgid "HDMI CEC"
 msgstr ""
 
-msgid "Handle deepstandby events"
-msgstr ""
-
 msgid "Handle standby from TV"
 msgstr ""
 
@@ -2984,6 +2978,9 @@ msgstr "Formaadi"
 msgid "Initializing storage device..."
 msgstr ""
 
+msgid "Inotify Monitoring"
+msgstr ""
+
 msgid "Input"
 msgstr "Sisend"
 
@@ -3004,6 +3001,9 @@ msgstr "Seadista uus image oma veebisirvijaga"
 
 msgid "Install extensions."
 msgstr "Installi laiendused."
+
+msgid "Install lcd picons on"
+msgstr ""
 
 msgid "Install local extension"
 msgstr "Installi kohalik laiendus"
@@ -3442,6 +3442,12 @@ msgstr "Teade"
 
 msgid "Message..."
 msgstr "Teade..."
+
+msgid "MiniDLNA Log"
+msgstr ""
+
+msgid "MiniDLNA Setup"
+msgstr ""
 
 msgid "Mins"
 msgstr ""
@@ -4489,6 +4495,9 @@ msgstr ""
 msgid "Polarization"
 msgstr "Polarisatsioon"
 
+msgid "Port"
+msgstr ""
+
 msgid "Port A"
 msgstr "Port A"
 
@@ -4694,6 +4703,9 @@ msgstr ""
 msgid "Put TV in standby"
 msgstr ""
 
+msgid "Put TV in standby when deepstandby"
+msgstr ""
+
 msgid "Put receiver in standby"
 msgstr ""
 
@@ -4784,9 +4796,6 @@ msgstr ""
 msgid "Record time limited due to conflicting timer %s"
 msgstr "Salvestusaeg on piiratud teise taimeri %s tõttu"
 
-msgid "Recorded files..."
-msgstr "Salvestised..."
-
 #
 msgid "Recording"
 msgstr "Salvestab"
@@ -4813,6 +4822,9 @@ msgstr "Salvestised"
 #
 msgid "Recordings always have priority"
 msgstr "Salvestused omavad alati eelist"
+
+msgid "Red button..."
+msgstr ""
 
 msgid "Reenter new PIN"
 msgstr "Korda uut PIN-i"
@@ -5460,6 +5472,9 @@ msgstr ""
 msgid "Sequence repeat"
 msgstr "Järjekorra kordus"
 
+msgid "Serial No"
+msgstr ""
+
 msgid "Serv.Name"
 msgstr ""
 
@@ -5844,6 +5859,9 @@ msgstr ""
 msgid "Sorry MediaScanner is not installed!"
 msgstr "Kahjuks MediaScanner ei ole seadistatud!"
 
+msgid "Sorry MiniDLNA Config is Missing"
+msgstr ""
+
 msgid "Sorry no backups found!"
 msgstr "Ei leidnud varukoopiat!"
 
@@ -6017,6 +6035,9 @@ msgstr "Salvestatud asukoht"
 msgid "Stream request"
 msgstr ""
 
+msgid "Strict DLNA"
+msgstr ""
+
 msgid "Subservice mode"
 msgstr ""
 
@@ -6106,9 +6127,6 @@ msgstr ""
 
 msgid "System"
 msgstr "Süsteem"
-
-msgid "System Infomation"
-msgstr ""
 
 msgid "System Information"
 msgstr ""
@@ -6573,6 +6591,9 @@ msgstr "Salvesta Thumbnail-d"
 #
 msgid "Thursday"
 msgstr "Neljapäev"
+
+msgid "TiVo support"
+msgstr ""
 
 #
 msgid "Time"
@@ -7311,11 +7332,17 @@ msgstr ""
 msgid "Wait please while gathering data..."
 msgstr ""
 
+msgid "Wait please while scanning for devices..."
+msgstr ""
+
 #
 msgid "Waiting"
 msgstr "Ootan"
 
 msgid "Wakeup"
+msgstr ""
+
+msgid "Wakeup TV after deepstandby"
 msgstr ""
 
 msgid "Wakeup TV from standby"
@@ -7546,6 +7573,13 @@ msgid "Yes, view the tutorial"
 msgstr "Jah, vaata juhendit"
 
 msgid "Yesterday"
+msgstr ""
+
+#, python-format
+msgid ""
+"You already have a channel list installed,\n"
+"would you like to remove\n"
+"\"%s\"?"
 msgstr ""
 
 msgid "You can cancel the installation."
@@ -9016,3 +9050,6 @@ msgstr "vahetatud"
 #
 #~ msgid "Prev"
 #~ msgstr "Eelmine"
+
+#~ msgid "Recorded files..."
+#~ msgstr "Salvestised..."
