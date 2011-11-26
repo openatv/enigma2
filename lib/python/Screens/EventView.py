@@ -171,15 +171,17 @@ class EventViewBase:
 		self.event = event
 		if event is None:
 			return
-		name = event.getEventName()
-		self["channel"].setText(name)
+		try:
+			name = event.getEventName()
+			self["channel"].setText(name)
+		except:
+			pass
  		text = ""
-		short = event.getShortDescription()
-		ext = event.getExtendedDescription()
-		if ext:
-			text = ext
-		elif short:
-			text = short
+		description = event.getShortDescription()
+		extended = event.getExtendedDescription()
+		if description and extended:
+			description += '\n'
+		text = description + extended
 		self.setTitle(event.getEventName())
 		self["epg_description"].setText(text)
 		self["datetime"].setText(event.getBeginTimeString())
