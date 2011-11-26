@@ -2114,50 +2114,50 @@ class NetworkInadyn(Screen):
 
 	def InadynStart(self):
 		if self.my_inadyn_run == False:
-			self.Console.ePopen('/etc/init.d/inadyn-daemon start')
+			self.Console.ePopen('/etc/init.d/inadyn-mt start')
 			time.sleep(3)
 			self.updateIna()
 		elif self.my_inadyn_run == True:
-			self.Console.ePopen('/etc/init.d/inadyn-daemon stop')
+			self.Console.ePopen('/etc/init.d/inadyn-mt stop')
 			time.sleep(3)
 			self.updateIna()
 
 	def autostart(self):
-		if fileExists('/etc/rc0.d/K20inadyn-daemon'):
-			unlink('/etc/rc0.d/K20inadyn-daemon')
+		if fileExists('/etc/rc0.d/K20inadyn-mt'):
+			unlink('/etc/rc0.d/K20inadyn-mt')
 		else:
-			symlink('/etc/init.d/inadyn-daemon', '/etc/rc0.d/K20inadyn-daemon')
-		if fileExists('/etc/rc1.d/K20inadyn-daemon'):
-			unlink('/etc/rc1.d/K20inadyn-daemon')
+			symlink('/etc/init.d/inadyn-mt', '/etc/rc0.d/K20inadyn-mt')
+		if fileExists('/etc/rc1.d/K20inadyn-mt'):
+			unlink('/etc/rc1.d/K20inadyn-mt')
 		else:
-			symlink('/etc/init.d/inadyn-daemon', '/etc/rc1.d/K20inadyn-daemon')
-		if fileExists('/etc/rc2.d/S20inadyn-daemon'):
-			unlink('/etc/rc2.d/S20inadyn-daemon')
+			symlink('/etc/init.d/inadyn-mt', '/etc/rc1.d/K20inadyn-mt')
+		if fileExists('/etc/rc2.d/S20inadyn-mt'):
+			unlink('/etc/rc2.d/S20inadyn-mt')
 		else:
-			symlink('/etc/init.d/inadyn-daemon', '/etc/rc2.d/S20inadyn-daemon')
-		if fileExists('/etc/rc3.d/S20inadyn-daemon'):
-			unlink('/etc/rc3.d/S20inadyn-daemon')
+			symlink('/etc/init.d/inadyn-mt', '/etc/rc2.d/S20inadyn-mt')
+		if fileExists('/etc/rc3.d/S20inadyn-mt'):
+			unlink('/etc/rc3.d/S20inadyn-mt')
 		else:
-			symlink('/etc/init.d/inadyn-daemon', '/etc/rc3.d/S20inadyn-daemon')
-		if fileExists('/etc/rc4.d/S20inadyn-daemon'):
-			unlink('/etc/rc4.d/S20inadyn-daemon')
+			symlink('/etc/init.d/inadyn-mt', '/etc/rc3.d/S20inadyn-mt')
+		if fileExists('/etc/rc4.d/S20inadyn-mt'):
+			unlink('/etc/rc4.d/S20inadyn-mt')
 		else:
-			symlink('/etc/init.d/inadyn-daemon', '/etc/rc4.d/S20inadyn-daemon')
-		if fileExists('/etc/rc5.d/S20inadyn-daemon'):
-			unlink('/etc/rc5.d/S20inadyn-daemon')
+			symlink('/etc/init.d/inadyn-mt', '/etc/rc4.d/S20inadyn-mt')
+		if fileExists('/etc/rc5.d/S20inadyn-mt'):
+			unlink('/etc/rc5.d/S20inadyn-mt')
 		else:
-			symlink('/etc/init.d/inadyn-daemon', '/etc/rc5.d/S20inadyn-daemon')
-		if fileExists('/etc/rc6.d/K20inadyn-daemon'):
-			unlink('/etc/rc6.d/K20inadyn-daemon')
+			symlink('/etc/init.d/inadyn-mt', '/etc/rc5.d/S20inadyn-mt')
+		if fileExists('/etc/rc6.d/K20inadyn-mt'):
+			unlink('/etc/rc6.d/K20inadyn-mt')
 		else:
-			symlink('/etc/init.d/inadyn-daemon', '/etc/rc6.d/K20inadyn-daemon')
+			symlink('/etc/init.d/inadyn-mt', '/etc/rc6.d/K20inadyn-mt')
 
 		self.updateIna()
 
 	def updateIna(self):
 		import process
 		p = process.ProcessList()
-		inadyn_process = str(p.named('inadyn')).strip('[]')
+		inadyn_process = str(p.named('inadyn-mt')).strip('[]')
 		self['labrun'].hide()
 		self['labstop'].hide()
 		self['labactive'].hide()
@@ -2165,7 +2165,7 @@ class NetworkInadyn(Screen):
 		self['sactive'].hide()
 		self.my_inadyn_active = False
 		self.my_inadyn_run = False
-		if fileExists('/etc/rc3.d/S20inadyn-daemon'):
+		if fileExists('/etc/rc3.d/S20inadyn-mt'):
 			self['labdisabled'].hide()
 			self['labactive'].show()
 			self.my_inadyn_active = True
