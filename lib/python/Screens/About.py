@@ -6,6 +6,8 @@ from Components.NimManager import nimmanager
 from Components.About import about
 from Components.config import config
 from Components.ScrollLabel import ScrollLabel
+from Components.Console import Console
+from enigma import eTimer
 
 from Tools.DreamboxHardware import getFPVersion
 from os import path, popen
@@ -118,6 +120,14 @@ class Devices(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Device Information"))
+		self["TunerHeader"] = StaticText(_("Detected NIMs:"))
+		self["HDDHeader"] = StaticText(_("Detected Devices:"))
+		self["MountsHeader"] = StaticText(_("Network Servers:"))
+		self["nims"] = StaticText()
+		self["hdd"] = StaticText()
+		self["mounts"] = StaticText()
+		self.activityTimer = eTimer()
+		self.activityTimer.timeout.get().append(self.populate2)
 		self.populate()
 		
 		self["actions"] = ActionMap(["SetupActions", "ColorActions", "TimerEditActions"], 
@@ -127,16 +137,23 @@ class Devices(Screen):
 			})
 
 	def populate(self):
-		self["TunerHeader"] = StaticText(_("Detected NIMs:"))
+		scanning = _("Wait please while scanning for devices...")
+		self["nims"].setText(scanning)
+		self["hdd"].setText(scanning)
+		self['mounts'].setText(scanning)
+		self.activityTimer.start(10)
+
+	def populate2(self):
+		self.activityTimer.stop()
+		self.Console = Console()
 		niminfo = ""
 		nims = nimmanager.nimList()
 		for count in range(len(nims)):
 			if niminfo:
 				niminfo += "\n"
 			niminfo += nims[count]
-		self["nims"] = StaticText(niminfo)
+		self["nims"].setText(niminfo)
 
-		self["HDDHeader"] = StaticText(_("Detected Devices:"))
 		hddlist = harddiskmanager.HDDList()
 		hddinfo = ""
 		if hddlist:
@@ -150,40 +167,27 @@ class Devices(Screen):
 					hddinfo += "%s (%s, %d MB %s)" % (hdd.model(), hdd.capacity(), hdd.free(), _("free"))
 		else:
 			hddinfo = _("none")
-		self["hdd"] = StaticText(hddinfo)
+		self["hdd"].setText(hddinfo)
 
-		self["MountsHeader"] = StaticText(_("Network Servers:"))
-		mountinfo = ""
+		self.mountinfo = ""
 		f = open('/proc/mounts', 'r')
 		for line in f.readlines():
-			if mountinfo:
-				mountinfo += "\n"
-			parts = line.strip().split()
-			if parts[0].startswith('192') or parts[0].startswith('//192'):
-				mounttmp = popen("df -m " + parts[1] + " | grep -v '^Filesystem'")
-				mount = mounttmp.read()
-				mounttmp.close()
-				mount = str(mount).replace('\n','')
-				mount = mount.split()
-				if int(mount[1]) > 1024 and int(mount[3]) > 1024:
-					mounttotal = int(mount[1])/1024
-					mountfree = int(mount[3])/1024
-					mountinfo += "%s (%s GB, %d GB %s)" % (parts[0], mounttotal, mountfree, _("free")) 
-				elif int(mount[1]) < 1025 and int(mount[3]) > 1024:
-					mounttotal = int(mount[1])/1024
-					mountfree = int(mount[3])/1024
-					mountinfo += "%s (%s MB, %d GB %s)" % (parts[0], mounttotal, mountfree, _("free")) 
-				elif int(mount[1]) > 1024 and int(mount[3]) < 1025:
-					mounttotal = int(mount[1])/1024
-					mountfree = int(mount[3])/1024
-					mountinfo += "%s (%s GB, %d MB %s)" % (parts[0], mounttotal, mountfree, _("free")) 
-				else:
-					mounttotal = int(mount[1])
-					mountfree = int(mount[3])
-					mountinfo += "%s (%s MB, %d MB %s)" % (parts[0], mounttotal, mountfree, _("free")) 
-
+			self.parts = line.strip().split()
+			if self.parts[0].startswith('192') or self.parts[0].startswith('//192'):
+				self.Console.ePopen("df -mh " + self.parts[1] + " | grep -v '^Filesystem'", self.Stage1Complete)
 		f.close()
-		self["mounts"] = StaticText(mountinfo)
+
+	def Stage1Complete(self,result, retval, extra_args = None):
+		mount = str(result).replace('\n','')
+		mount = mount.split()
+		ipaddress = mount[0]
+		mounttotal = mount[1]
+		mountfree = mount[3]
+		if self.mountinfo:
+			self.mountinfo += "\n"
+		self.mountinfo += "%s (%sB, %sB %s)" % (ipaddress, mounttotal, mountfree, _("free")) 
+		print 'mountinfo:',self.mountinfo
+		self["mounts"].setText(self.mountinfo)
 
 	def createSummary(self):
 		return AboutSummary
@@ -225,7 +229,7 @@ class SystemInfo(Screen):
 
 class AboutSummary(Screen):
 	skin = """
-	<screen position="0,0" size="132,64">
+	<screen name="AboutSummary" position="0,0" size="132,64">
 		<widget source="selected" render="Label" position="0,0" size="124,32" font="Regular;16" />
 	</screen>"""
 
@@ -235,6 +239,24 @@ class AboutSummary(Screen):
 			self["selected"] = StaticText("ViX:" + about.getImageVersionString() + ' (R)')
 		elif about.getImageTypeString() == 'Experimental':
 			self["selected"] = StaticText("ViX:" + about.getImageVersionString() + ' (B)')
+		if config.misc.boxtype.value == 'vuuno':
+			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Uno")
+		elif config.misc.boxtype.value == 'vusolo':
+			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Solo")
+		elif config.misc.boxtype.value == 'vuduo':
+			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Duo")
+		elif config.misc.boxtype.value == 'et5x00':
+			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET5x00 Series")
+		elif config.misc.boxtype.value == 'et6x00':
+			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET6x00 Series")
+		elif config.misc.boxtype.value == 'et9x00':
+			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET9x00 Series")
+		else:
+			self["BoxType"] = StaticText(_("Hardware:") + " " + config.misc.boxtype.value)
+		self["KernelVersion"] = StaticText(_("Kernel:") + " " + about.getKernelVersionString())
+		self["ImageType"] = StaticText(_("Image:") + " " + about.getImageTypeString())
+		self["ImageVersion"] = StaticText(_("Version:") + " " + about.getImageVersionString() + "   " + _("Build:") + " " + about.getBuildVersionString())
+		self["EnigmaVersion"] = StaticText(_("Last Update:") + " " + about.getLastUpdateString())
 
 class AboutReleaseNotes(Screen):
 	skin = """

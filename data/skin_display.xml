@@ -226,4 +226,13 @@
 			<convert type="ClockToText"></convert>
 		</widget>
 	</screen>
+
+	<screen name="AboutSummary" position="0,0" size="255,64">
+		<widget source="BoxType" render="Label" position="0,0" size="255,14" font="FdLcD;14" />
+		<widget source="KernelVersion" render="Label" position="0,13" size="255,13" font="FdLcD;13" />
+		<widget source="ImageType" render="Label" position="0,26" size="255,13" font="FdLcD;13" />
+		<widget source="ImageVersion" render="Label" position="0,39" size="255,13" font="FdLcD;13" />
+		<widget source="EnigmaVersion" render="Label" position="0,52" size="255,13" font="FdLcD;13" />
+	</screen>
+
 </skin>
