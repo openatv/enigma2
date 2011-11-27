@@ -146,7 +146,7 @@ class eTextPara: public iObject
 	eRect boundBox;
 	bool doTopBottomReordering;	
 
-	int appendGlyph(Font *current_font, FT_Face current_face, FT_UInt glyphIndex, int flags, int rflags, int border);
+	int appendGlyph(Font *current_font, FT_Face current_face, FT_UInt glyphIndex, int flags, int rflags, int border, bool last);
 	void newLine(int flags);
 	void setFont(Font *font, Font *replacement_font);
 	void calc_bbox();
