@@ -14,7 +14,12 @@ from Tools.Import import my_import
 from Tools.LoadPixmap import LoadPixmap
 
 colorNames = {}
-fonts = {}
+# Predefined fonts, typically used in built-in screens and for components like
+# the movie list and so.
+fonts = {
+	"Body": ("Regular", 18, 22, 16),
+	"ChoiceList": ("Regular", 20, 24, 18),
+}
 
 def dump(x, i=0):
 	print " " * i + str(x)
