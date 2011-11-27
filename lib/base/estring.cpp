@@ -428,8 +428,7 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 				unsigned char *temp = (unsigned char *) huffmanDecoder.decode(data, len);
 				if (temp)
 				{
-					int newlen = strlen((char*) temp);
-					std::string decoded_string = convertDVBUTF8(temp, newlen, table, tsidonid);
+					std::string decoded_string = std::string((char*)temp);
 					free(temp);
 					return decoded_string;
 				}
