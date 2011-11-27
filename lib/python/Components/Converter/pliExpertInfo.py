@@ -82,7 +82,7 @@ class pliExpertInfo(Poll, Converter, object):
 						Ret_Text += sep + frontendData.get("system")
 						Ret_Text += sep + frequency + frontendData.get("polarization_abbreviation")
 						Ret_Text += sep + symbolrate
-						Ret_Text += sep + frontendData.get("modulation") + "-" + fec_inner
+						Ret_Text += sep + fec_inner + " " + frontendData.get("modulation")
 						orbital_pos = int(frontendDataOrg["orbital_position"])
 						if orbital_pos > 1800:
 							orb_pos = str((float(3600 - orbital_pos)) / 10.0) + "W"
@@ -126,7 +126,8 @@ class pliExpertInfo(Poll, Converter, object):
 					if pid != '0':
 						Sec_Text += sep + "pid:%04x" % int(pid, 16)
 			
-			else:
+			elif not config.usage.show_cryptoinfo.value:
+				showCryptoInfo = True
 				Sec_Text = "FTA"
 			res = ""			
 			searchIDs = (info.getInfoObject(iServiceInformation.sCAIDs))
