@@ -3,6 +3,7 @@ from Components.ActionMap import NumberActionMap
 from Components.Label import Label
 from Components.ChoiceList import ChoiceEntryComponent, ChoiceList
 from Components.Sources.StaticText import StaticText
+import enigma
 
 class ChoiceBox(Screen):
 	def __init__(self, session, title = "", list = [], keys = None, selection = 0, skin_name = []):
@@ -55,7 +56,32 @@ class ChoiceBox(Screen):
 			"up": self.up,
 			"down": self.down
 		}, -1)
-		
+
+	def autoResize(self):
+		orgwidth = self.instance.size().width()
+		orgpos = self.instance.position()
+		textsize = self["text"].getSize()
+		count = len(self.list)
+		if count > 10:
+			count = 10
+		offset = 25 * count
+		wsizex = textsize[0] + 60
+		wsizey = textsize[1] + offset
+		if (520 > wsizex):
+			wsizex = 520
+		wsize = (wsizex, wsizey)
+		# resize
+		self.instance.resize(enigma.eSize(*wsize))
+		# resize label
+		self["text"].instance.resize(enigma.eSize(*textsize))
+		# move list
+		listsize = (wsizex, 25 * count)
+		self["list"].instance.move(enigma.ePoint(0, textsize[1]))
+		self["list"].instance.resize(enigma.eSize(*listsize))
+		# center window
+		newwidth = wsize[0]
+		self.instance.move(enigma.ePoint((720-wsizex)/2, (576-wsizey)/(count > 7 and 2 or 3)))
+
 	def keyLeft(self):
 		pass
 	
