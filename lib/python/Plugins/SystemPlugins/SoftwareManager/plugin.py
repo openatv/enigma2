@@ -2187,10 +2187,11 @@ class ShowUpdatePackages(Screen, NumericalTextInput):
 
 		self.setUseableChars(u'1234567890abcdefghijklmnopqrstuvwxyz')
 
-		self["shortcuts"] = NumberActionMap(["ShortcutActions", "WizardActions", "NumberActions", "InputActions", "InputAsciiActions", "KeyboardInputActions" ],
+		self["shortcuts"] = NumberActionMap(["ShortcutActions", "WizardActions", "NumberActions", "InputActions", "InputAsciiActions", "KeyboardInputActions"],
 		{
 			"back": self.exit,
 			"red": self.exit,
+			"ok": self.exit,
 			"green": self.rebuildList,
 			"gotAsciiCode": self.keyGotAscii,
 			"1": self.keyNumberGlobal,
@@ -2297,16 +2298,20 @@ class ShowUpdatePackages(Screen, NumericalTextInput):
 		fetchedList = self.ipkg.getFetchedList()
 		excludeList = self.ipkg.getExcludeList()
 
-		if len(fetchedList) > 0:
-			for x in fetchedList:
-				self.list.append(self.buildEntryComponent(x[0], x[1], x[2], "upgradeable"))
-			if len(excludeList) > 0:
-				for x in excludeList:
-					self.list.append(self.buildEntryComponent(x[0], x[1], x[2], "installable"))
-
-			self['list'].setList(self.list)
-
-		else:
+		try:
+			if len(fetchedList) > 0:
+				print"[SOFTWAREMANAGER] length fetchedList %i" % len(fetchedList)
+				for x in fetchedList:
+					self.list.append(self.buildEntryComponent(x[0], x[1], x[2], "upgradeable"))
+				if len(excludeList) > 0:
+					for x in excludeList:
+						self.list.append(self.buildEntryComponent(x[0], x[1], x[2], "installable"))
+	
+				self['list'].setList(self.list)
+	
+			else:
+				self.setStatus('error')
+		except:
 			self.setStatus('error')
 
 def UpgradeMain(session, **kwargs):
