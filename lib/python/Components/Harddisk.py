@@ -476,7 +476,7 @@ class Harddisk:
 					size = 0
 				if size > 50:
 					system("hdparm -y /dev/" + disc) 
-					system("/sbin/sdparm -C stop /dev/" + disc)
+					system("/usr/bin/sdparm -C stop /dev/" + disc)
 	def setIdleTime(self, idle):
 		self.max_idle_time = idle
 		if self.idle_running:
