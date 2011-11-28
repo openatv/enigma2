@@ -2187,10 +2187,11 @@ class ShowUpdatePackages(Screen, NumericalTextInput):
 
 		self.setUseableChars(u'1234567890abcdefghijklmnopqrstuvwxyz')
 
-		self["shortcuts"] = NumberActionMap(["ShortcutActions", "WizardActions", "NumberActions", "InputActions", "InputAsciiActions", "KeyboardInputActions" ],
+		self["shortcuts"] = NumberActionMap(["ShortcutActions", "WizardActions", "NumberActions", "InputActions", "InputAsciiActions", "KeyboardInputActions"],
 		{
 			"back": self.exit,
 			"red": self.exit,
+			"ok": self.exit,
 			"green": self.rebuildList,
 			"gotAsciiCode": self.keyGotAscii,
 			"1": self.keyNumberGlobal,
@@ -2299,13 +2300,19 @@ class ShowUpdatePackages(Screen, NumericalTextInput):
 
 		if len(fetchedList) > 0:
 			for x in fetchedList:
-				self.list.append(self.buildEntryComponent(x[0], x[1], x[2], "upgradeable"))
+				try:
+					self.list.append(self.buildEntryComponent(x[0], x[1], x[2], "upgradeable"))
+				except:
+					self.list.append(self.buildEntryComponent(x[0], '', 'no valid architecture, ignoring !!', "installable"))
 			if len(excludeList) > 0:
 				for x in excludeList:
-					self.list.append(self.buildEntryComponent(x[0], x[1], x[2], "installable"))
+					try:
+						self.list.append(self.buildEntryComponent(x[0], x[1], x[2], "installable"))
+					except:
+						self.list.append(self.buildEntryComponent(x[0], '', 'no valid architecture, ignoring !!', "installable"))
 
 			self['list'].setList(self.list)
-
+	
 		else:
 			self.setStatus('error')
 
