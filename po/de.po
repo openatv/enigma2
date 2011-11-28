@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-05 14:38+0000\n"
-"PO-Revision-Date: 2011-11-05 18:48+0100\n"
-"Last-Translator: belierzz <belierzz@gmx.net>\n"
+"PO-Revision-Date: 2011-11-28 17:41+0100\n"
+"Last-Translator: \n"
 "Language-Team: AAF\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -349,12 +349,33 @@ msgstr "18V"
 msgid "1X"
 msgstr "1x"
 
+msgid "1 hour"
+msgstr "1 Stunde"
+
+msgid "1 minute"
+msgstr "1 Minute"
+
+msgid "10 minutes"
+msgstr "10 Minuten"
+
+msgid "10 seconds"
+msgstr "10 Sekunden"
+
 #
 msgid "2"
 msgstr "2"
 
+msgid "20 minutes"
+msgstr "20 Minuten"
+
+msgid "2 hours"
+msgstr "2 Stunden"
+
 msgid "2X"
 msgstr "2x"
+
+msgid "2 minutes"
+msgstr "2 Minuten"
 
 msgid "2nd Infobar"
 msgstr "2nd Infobar"
@@ -372,6 +393,9 @@ msgstr "30 Tage"
 #
 msgid "30 minutes"
 msgstr "30 Minuten"
+
+msgid "30 seconds"
+msgstr "30 Sekunden"
 
 msgid "3D Mode"
 msgstr "3D Mode"
@@ -400,6 +424,9 @@ msgstr "4:3 PanScan"
 
 msgid "4X"
 msgstr "4X"
+
+msgid "4 hours"
+msgstr "4 Stunden"
 
 #
 msgid "5"
@@ -4116,9 +4143,7 @@ msgstr ""
 "Bitte den Tuner vor dem Suchelauf einstellen."
 
 msgid "Nothing to upgrade"
-
 msgstr "Keine Updates vorhanden"
-
 
 msgid "November"
 msgstr "November"
@@ -4159,19 +4184,12 @@ msgstr "TV Menu Einstellungen"
 msgid "OSD 3D Setup"
 msgstr "3D Konfiguration"
 
-
-
-
 #
 msgid "OSD Settings"
 msgstr "OSD-Einstellungen"
 
 msgid "OSD Setup"
-
 msgstr "Menu Anpassungen"
-
-
-
 
 msgid "OSD name request"
 msgstr "OSD Spracheinstellung"
@@ -5047,9 +5065,7 @@ msgid "Recording"
 msgstr "Aufnahme"
 
 msgid "Recording Settings"
-
 msgstr "Aufnahmeeinstellungen"
-
 
 msgid "Recording data sync size"
 msgstr "Sync-Speicher-Größe für Aufnahmedaten"
@@ -7473,10 +7489,8 @@ msgstr "Version: "
 msgid "Vertical"
 msgstr "Vertikal"
 
-
 msgid "PLI EPG"
 msgstr "PLI EPG"
-
 
 msgid "Video Enhancement Settings"
 msgstr "Video-Optimierungs-Einstellungen"
@@ -7812,8 +7826,6 @@ msgstr "Welches Event soll dauerhaft gespeichert werden?"
 
 msgid "Width"
 msgstr "Breite"
-
-
 
 #
 msgid "Wireless LAN"
@@ -9513,7 +9525,6 @@ msgstr "Zap"
 msgid "zapped"
 msgstr "Umgeschaltet"
 
-
 msgid "PTS-Plugin: Merging records failed!"
 msgstr "PTS-Plugin: Zusammenführen der Aufnahmen fehlgeschlagen!"
 
@@ -9782,7 +9793,6 @@ msgstr "über USB"
 msgid "via Network"
 msgstr "über netzwerk"
 
-
 #
 msgid "OK/ green = activate settings"
 msgstr "OK/grün = aktivire Einstellungen"
@@ -9982,8 +9992,14 @@ msgid "Check disk terminated with success"
 msgstr "Überprüfung Erfolgreich"
 
 #
-msgid "Cannot umount current drive.\nA record in progress, timeshit or some external tools (like samba and nfsd) may cause this problem.\nPlease stop this actions/applications and try again"
-msgstr "Unmount nicht möglich.\nEine Aufnahme ist Aktive, Timeshift oder ein Server Dienst wie SAMBA oder NFS,\nBitte zu erst den Festplatten zugriff stoppen und noch mal Probieren"
+msgid ""
+"Cannot umount current drive.\n"
+"A record in progress, timeshit or some external tools (like samba and nfsd) may cause this problem.\n"
+"Please stop this actions/applications and try again"
+msgstr ""
+"Unmount nicht möglich.\n"
+"Eine Aufnahme ist Aktive, Timeshift oder ein Server Dienst wie SAMBA oder NFS,\n"
+"Bitte zu erst den Festplatten zugriff stoppen und noch mal Probieren"
 
 #
 msgid "Error checking disk. The disk may be damaged"
@@ -9994,8 +10010,14 @@ msgid "Format terminated with success"
 msgstr "Formatierung Erfolgreich"
 
 #
-msgid "Cannot format current drive.\nA record in progress, timeshit or some external tools (like samba and nfsd) may cause this problem.\nPlease stop this actions/applications and try again"
-msgstr "Formatieren nicht möglich.\nEine Aufnahme ist Aktive, Timeshift oder ein Server Dienst wie SAMBA oder NFS,\nBitte zu erst den Festplatten zugriff stoppen und noch mal Probieren"
+msgid ""
+"Cannot format current drive.\n"
+"A record in progress, timeshit or some external tools (like samba and nfsd) may cause this problem.\n"
+"Please stop this actions/applications and try again"
+msgstr ""
+"Formatieren nicht möglich.\n"
+"Eine Aufnahme ist Aktive, Timeshift oder ein Server Dienst wie SAMBA oder NFS,\n"
+"Bitte zu erst den Festplatten zugriff stoppen und noch mal Probieren"
 
 #
 msgid "Error formatting disk. The disk may be damaged"
@@ -10018,8 +10040,14 @@ msgid "Formatting disk"
 msgstr "Formatiere Disk"
 
 #
-msgid "Cannot umount device.\nA record in progress, timeshit or some external tools (like samba and nfsd) may cause this problem.\nPlease stop this actions/applications and try again"
-msgstr "Unmount nicht möglich.\nEine Aufnahme ist Aktive, Timeshift oder ein Server Dienst wie SAMBA oder NFS,\nBitte zu erst den Festplatten zugriff stoppen und noch mal Probieren"
+msgid ""
+"Cannot umount device.\n"
+"A record in progress, timeshit or some external tools (like samba and nfsd) may cause this problem.\n"
+"Please stop this actions/applications and try again"
+msgstr ""
+"Unmount nicht möglich.\n"
+"Eine Aufnahme ist Aktive, Timeshift oder ein Server Dienst wie SAMBA oder NFS,\n"
+"Bitte zu erst den Festplatten zugriff stoppen und noch mal Probieren"
 
 #
 msgid "Show history"
@@ -10028,3 +10056,4 @@ msgstr "Zeige Historie"
 #
 msgid "Select a script to run:"
 msgstr "Script wählen zum starten:"
+
