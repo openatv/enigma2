@@ -2298,20 +2298,22 @@ class ShowUpdatePackages(Screen, NumericalTextInput):
 		fetchedList = self.ipkg.getFetchedList()
 		excludeList = self.ipkg.getExcludeList()
 
-		try:
-			if len(fetchedList) > 0:
-				print"[SOFTWAREMANAGER] length fetchedList %i" % len(fetchedList)
-				for x in fetchedList:
+		if len(fetchedList) > 0:
+			for x in fetchedList:
+				try:
 					self.list.append(self.buildEntryComponent(x[0], x[1], x[2], "upgradeable"))
-				if len(excludeList) > 0:
-					for x in excludeList:
+				except:
+					self.list.append(self.buildEntryComponent(x[0], '', 'no valid architecture, ignoring !!', "installable"))
+			if len(excludeList) > 0:
+				for x in excludeList:
+					try:
 						self.list.append(self.buildEntryComponent(x[0], x[1], x[2], "installable"))
+					except:
+						self.list.append(self.buildEntryComponent(x[0], '', 'no valid architecture, ignoring !!', "installable"))
+
+			self['list'].setList(self.list)
 	
-				self['list'].setList(self.list)
-	
-			else:
-				self.setStatus('error')
-		except:
+		else:
 			self.setStatus('error')
 
 def UpgradeMain(session, **kwargs):
