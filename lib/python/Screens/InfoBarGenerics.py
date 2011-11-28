@@ -33,6 +33,7 @@ from ServiceReference import ServiceReference
 from Screens.SecondInfobar import SecondInfobar
 from skin import parseColor
 import os
+from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN
 
 from RecordTimer import RecordTimer, RecordTimerEntry, parseEvent
 from timer import TimerEntry
@@ -215,7 +216,13 @@ class SecondInfoBar(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.skin = None
+		
+class SecondInfoBarECM(Screen):
 
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		self.skin = None		
+		
 class InfoBarShowHide:
 	""" InfoBar show/hide control, accepts toggleShow and hide actions, might start
 	fancy animations. """
@@ -273,7 +280,10 @@ class InfoBarShowHide:
 
 		self.secondInfoBarScreen = ""
 		if ".InfoBar'>" in str(self):
-			self.secondInfoBarScreen = self.session.instantiateDialog(SecondInfoBar)
+			if config.usage.show_second_infobar.value == "3" and config.skin.primary_skin.value == "DMConcinnity-HD/skin.xml":
+				self.secondInfoBarScreen = self.session.instantiateDialog(SecondInfoBarECM)
+			else:
+				self.secondInfoBarScreen = self.session.instantiateDialog(SecondInfoBar)
 			self.secondInfoBarScreen.hide()
 		self.secondInfoBarWasShown = False
 
@@ -329,6 +339,11 @@ class InfoBarShowHide:
 			self.secondInfoBarScreen.show()
 			self.secondInfoBarWasShown = True
 			self.startHideTimer()
+		elif self.secondInfoBarScreen and config.usage.show_second_infobar.value == "3" and not self.secondInfoBarScreen.shown:
+			self.hide()
+			self.secondInfoBarScreen.show()
+			self.secondInfoBarWasShown = True
+			self.startHideTimer()	
 		else:
 			self.hide()
 			if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
