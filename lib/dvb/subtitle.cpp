@@ -73,6 +73,15 @@ void eDVBSubtitleParser::subtitle_process_line(subtitle_region *region, subtitle
 //		eDebug("[SUB] !!!! YCLIP %d >= %d", y, region->height);
 		return;
 	}
+	if( subcentered && region->region_id && line < 3 ) 
+	{
+		for (int i = 0; i < len; i++ )
+			if( data[i] <= 8)
+			{
+//				eDebug("[SUB] !!!! Clearing rest of last region");
+				data[i] = 0;
+			}
+	}
 //	eDebug("inserting %d bytes (into region %d)", len, region->region_id);
 //	eDebug("put data to buffer %p", &(*region->buffer));
 	memcpy((__u8*)region->buffer->surface->data + region->buffer->surface->stride * y + x, data, len);

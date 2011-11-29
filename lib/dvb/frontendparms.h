@@ -34,7 +34,7 @@ struct eDVBFrontendParametersSatellite
 
 	// dvb-s2
 	enum {
-		RollOff_alpha_0_35, RollOff_alpha_0_25, RollOff_alpha_0_20
+		RollOff_alpha_0_35, RollOff_alpha_0_25, RollOff_alpha_0_20, RollOff_auto
 	};
 
 	enum {
