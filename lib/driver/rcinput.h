@@ -5,7 +5,7 @@
 
 class eRCDeviceInputDev: public eRCDevice
 {
-	int iskeyboard;
+	int iskeyboard, ismouse;
 	int consoleFd;
 	bool shiftState, capsState;
 public:

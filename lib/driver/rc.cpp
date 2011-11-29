@@ -4,7 +4,6 @@
 #include <stdio.h>
 #include <fcntl.h>
 #include <unistd.h>
-#include <linux/input.h>
 
 #include <lib/base/init.h>
 #include <lib/base/init_num.h>
@@ -114,6 +113,10 @@ eRCInputEventDriver::eRCInputEventDriver(const char *filename): eRCDriver(eRCInp
 	{
 		sn=eSocketNotifier::create(eApp, handle, eSocketNotifier::Read);
 		CONNECT(sn->activated, eRCInputEventDriver::keyPressed);
+		memset(keyCaps, 0, sizeof(keyCaps));
+		::ioctl(handle, EVIOCGBIT(EV_KEY, sizeof(keyCaps)), keyCaps);
+		memset(evCaps, 0, sizeof(evCaps));
+		::ioctl(handle, EVIOCGBIT(0, sizeof(evCaps)), evCaps);
 	}
 }
 
@@ -136,6 +139,22 @@ void eRCInputEventDriver::setExclusive(bool b)
 		if (::ioctl(handle, EVIOCGRAB, grab) < 0)
 			perror("EVIOCGRAB");
 	}
+}
+
+bool eRCInputEventDriver::hasCap(unsigned char *caps, int bit)
+{
+	return (caps[bit / 8] & (1 << (bit % 8)));
+}
+
+bool eRCInputEventDriver::isKeyboard()
+{
+	/* check whether the input device has KEY_A, in which case we assume it is a keyboard */
+	return hasCap(keyCaps, KEY_A);
+}
+
+bool eRCInputEventDriver::isPointerDevice()
+{
+	return hasCap(evCaps, EV_REL) || hasCap(evCaps, EV_ABS);
 }
 
 eRCInputEventDriver::~eRCInputEventDriver()
