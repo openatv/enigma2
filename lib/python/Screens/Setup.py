@@ -160,7 +160,10 @@ class Setup(ConfigListScreen, Screen):
 		for x in self.onChangedEntry:
 			x()
 		if not isinstance(self["config"].getCurrent()[1], ConfigText):
-			self.createSetup()
+			try:
+				self.createSetup()
+			except:
+				pass
 
 	def getCurrentEntry(self):
 		return self["config"].getCurrent()[0]
