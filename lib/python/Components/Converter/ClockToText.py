@@ -2,20 +2,20 @@ from Converter import Converter
 from time import localtime, strftime
 from Components.Element import cached
 
-MONTHS = (_("Januar"),
-          _("Februar"),
-          _("Maerz"),
+MONTHS = (_("January"),
+          _("February"),
+          _("March"),
           _("April"),
-          _("Mai"),
-          _("Juni"),
-          _("Juli"),
+          _("May"),
+          _("June"),
+          _("July"),
           _("August"),
           _("September"),
-          _("Oktober"),
+          _("October"),
           _("November"),
-          _("Dezember"))
+          _("December"))
 
-dayOfWeek = (_("Mon"), _("Die"), _("Mit"), _("Don"), _("Fre"), _("Sam"), _("Son"))
+dayOfWeek = (_("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun"))
 
 class ClockToText(Converter, object):
 	DEFAULT = 0
@@ -81,7 +81,7 @@ class ClockToText(Converter, object):
 		t = localtime(time)
 		
 		if self.type == self.WITH_SECONDS:
-			return "%2d:%02d:%02d" % (t.tm_hour, t.tm_min, t.tm_sec)
+			return "%02d:%02d:%02d" % (t.tm_hour, t.tm_min, t.tm_sec)
 		elif self.type == self.DEFAULT:
 			return "%02d:%02d" % (t.tm_hour, t.tm_min)
 		elif self.type == self.DATE:
