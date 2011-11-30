@@ -58,6 +58,8 @@ class ChoiceBox(Screen):
 		}, -1)
 
 	def autoResize(self):
+		desktop_w = enigma.getDesktop(0).size().width()
+		desktop_h = enigma.getDesktop(0).size().height()
 		orgwidth = self.instance.size().width()
 		orgpos = self.instance.position()
 		textsize = self["text"].getSize()
@@ -80,7 +82,7 @@ class ChoiceBox(Screen):
 		self["list"].instance.resize(enigma.eSize(*listsize))
 		# center window
 		newwidth = wsize[0]
-		self.instance.move(enigma.ePoint((720-wsizex)/2, (576-wsizey)/(count > 7 and 2 or 3)))
+		self.instance.move(enigma.ePoint((desktop_w-wsizex)/2, (desktop_h-wsizey)/2))		
 
 	def keyLeft(self):
 		pass
