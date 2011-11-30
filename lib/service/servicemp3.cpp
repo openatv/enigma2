@@ -1349,7 +1349,7 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 				m_subtitleStreams.push_back(subs);
 				g_free (g_lang);
 			}
-			m_event((iPlayableService*)this, evUpdatedEventInfo);
+			m_event((iPlayableService*)this, evUpdatedInfo);
 
 			if ( m_errorInfo.missing_codec != "" )
 			{
