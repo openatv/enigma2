@@ -3050,14 +3050,14 @@ class NetworkMiniDLNA(Screen):
 
 class NetworkMiniDLNASetup(Screen, ConfigListScreen):
 	skin = """
-		<screen name="MiniDLNASetup" position="center,center" size="440,400">
-			<widget name="config" position="10,10" size="420,240" scrollbarMode="showOnDemand" />
-			<widget name="HelpWindow" pixmap="skin_default/vkey_icon.png" position="440,390" size="440,350" transparent="1" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/red.png" position="0,360" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/green.png" position="150,360" size="140,40" alphatest="on" />
-			<widget name="key_red" position="0,360" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-			<widget name="key_green" position="150,360" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-			<ePixmap pixmap="skin_default/buttons/key_text.png" position="320,366" zPosition="4" size="35,25" alphatest="on" transparent="1" />
+		<screen name="MiniDLNASetup" position="center,center" size="642,409">
+			<widget name="config" position="10,10" size="623,240" scrollbarMode="showOnDemand" />
+			<widget name="HelpWindow" pixmap="skin_default/vkey_icon.png" position="340,380" size="1,1" transparent="1" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/red.png" position="95,360" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/green.png" position="410,360" size="140,40" alphatest="on" />
+			<widget name="key_red" position="95,360" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="EMCRecording" transparent="1" />
+			<widget name="key_green" position="410,360" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="un1f771f" transparent="1" />
+			<ePixmap pixmap="skin_default/buttons/key_text.png" position="313,369" zPosition="4" size="35,25" alphatest="on" transparent="1" />
 		</screen>"""
 
 	def __init__(self, session):
