@@ -219,7 +219,7 @@
 	</screen>
 	<!-- Choice box -->
 	<screen name="ChoiceBox" position="center,center" size="550,400" title="Input">
-		<widget name="text" position="top" size="*,48h" font="TextNormal" />
+		<widget name="text" position="top" size="*,2h" font="TextNormal" />
 		<widget name="list" position="fill" scrollbarMode="showOnDemand" />
 		<applet type="onLayoutFinish">
 self.autoResize()
