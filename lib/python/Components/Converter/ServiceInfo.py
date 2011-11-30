@@ -26,7 +26,7 @@ class ServiceInfo(Converter, object):
 		Converter.__init__(self, type)
 		self.type, self.interesting_events = {
 				"HasTelext": (self.HAS_TELETEXT, (iPlayableService.evUpdatedInfo,)),
-				"IsMultichannel": (self.IS_MULTICHANNEL, (iPlayableService.evUpdatedInfo,)),
+				"IsMultichannel": (self.IS_MULTICHANNEL, (iPlayableService.evVideoSizeChanged,iPlayableService.evUpdatedInfo,)),
 				"IsCrypted": (self.IS_CRYPTED, (iPlayableService.evUpdatedInfo,)),
 				"IsWidescreen": (self.IS_WIDESCREEN, (iPlayableService.evVideoSizeChanged,)),
 				"SubservicesAvailable": (self.SUBSERVICES_AVAILABLE, (iPlayableService.evUpdatedEventInfo,)),
@@ -72,7 +72,7 @@ class ServiceInfo(Converter, object):
 				while idx < n:
 					i = audio.getTrackInfo(idx)
 					description = i.getDescription();
-					if "AC3" in description or "DTS" in description:
+					if "AC3" in description or "AC-3" in description or "DTS" in description:
 						return True
 					idx += 1
 			return False
