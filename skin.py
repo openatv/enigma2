@@ -14,7 +14,12 @@ from Tools.Import import my_import
 from Tools.LoadPixmap import LoadPixmap
 
 colorNames = {}
-fonts = {}
+# Predefined fonts, typically used in built-in screens and for components like
+# the movie list and so.
+fonts = {
+	"Body": ("Regular", 18, 22, 16),
+	"ChoiceList": ("Regular", 20, 24, 18),
+}
 
 def dump(x, i=0):
 	print " " * i + str(x)
@@ -93,27 +98,34 @@ except Exception, err:
 addSkin('skin_default.xml')
 profile("LoadSkinDefaultDone")
 
-def parseCoordinate(s, e, size = 0):
+def parseCoordinate(s, e, size=0, font=None):
 	s = s.strip()
 	if s == "center":
 		val = (e - size)/2
+	elif s == '*':
+	        return None
 	else:
-		l = 1
 		if s[0] is 'e':
 			val = e
+			s = s[1:]
 		elif s[0] is 'c':
 			val = e/2
+			s = s[1:]
 		else:
 			val = 0;
-			l = 0
-		if len(s) > l:
+		if s:
 			if s[-1] is '%':
-				val += e * int(s[l:-1]) / 100
+				val += e * int(s[:-1]) / 100
+			elif s[-1] is 'w':
+			        val += fonts[font][3] * int(s[:-1]) / 24;
+			elif s[-1] is 'h':
+			        val += fonts[font][2] * int(s[:-1]) / 24;
 			else:
-				val += int(s[l:])
+				val += int(s)
 	if val < 0:
 		val = 0
 	return val
+	        
 
 def getParentSize(object, desktop):
 	size = eSize()
@@ -174,6 +186,7 @@ def collectAttributes(skinAttributes, node, context, skin_path_prefix=None, igno
 	# walk all attributes
 	size = None
 	pos = None
+	font = None
 	for attrib, value in node.items():
 		if attrib not in ignore:
 			if attrib in filenames:
@@ -188,10 +201,13 @@ def collectAttributes(skinAttributes, node, context, skin_path_prefix=None, igno
 			        size = value.encode("utf-8")
 			elif attrib == 'position':
 			        pos = value.encode("utf-8")
+			elif attrib == 'font':
+			        font = value.encode("utf-8")
+			        skinAttributes.append((attrib, font))
 			else:
 				skinAttributes.append((attrib, value.encode("utf-8")))
 	if pos is not None:
-		pos, size = context.parse(pos, size)
+		pos, size = context.parse(pos, size, font)
 	        skinAttributes.append(('position', pos))
 	if size is not None:
 		skinAttributes.append(('size', size))
@@ -599,10 +615,10 @@ class SizeTuple(tuple):
 		return '%s,%s' % self
 
 class SkinContext:
-	def __init__(self, parent=None, pos=None, size=None):
+	def __init__(self, parent=None, pos=None, size=None, font=None):
 	        if parent is not None:
 			if pos is not None:
-				pos, size = parent.parse(pos, size)
+				pos, size = parent.parse(pos, size, font)
 				self.x, self.y = pos
 				self.w, self.h = size
 			else:
@@ -612,76 +628,66 @@ class SkinContext:
 				self.h = None
 	def __str__(self):
 	        return "Context (%s,%s)+(%s,%s) " % (self.x, self.y, self.w, self.h)
-	def parse(self, pos, size):
+	def parse(self, pos, size, font):
 	        if pos == "fill":
 	                pos = (self.x, self.y)
 	                size = (self.w, self.h)
 	                self.w = 0
 	                self.h = 0
-		elif pos == "bottom":
-			w,h = size.split(',')
-			h = int(h)
-		        pos = (self.x, self.y + self.h - h)
-		        size = (self.w, h)
-		        self.h -= h
-		elif pos == "top":
-			w,h = size.split(',')
-			h = int(h)
-		        pos = (self.x, self.y)
-		        size = (self.w, h)
-		        self.h -= h
-		        self.y += h
-		elif pos == "left":
-			w,h = size.split(',')
-			w = int(w)
-			pos = (self.x, self.y)
-			size = (w, self.h)
-			self.x += w
-			self.w -= w
-		elif pos == "right":
-			w,h = size.split(',')
-			w = int(w)
-			pos = (self.x + self.w - w, self.y)
-			size = (w, self.h)
-			self.w -= w
 		else:
-			size = size.split(',')
-			size = (parseCoordinate(size[0], self.w), parseCoordinate(size[1], self.h)) 
-			pos = pos.split(',')
-			pos = (self.x + parseCoordinate(pos[0], self.w, size[0]), self.y + parseCoordinate(pos[1], self.h, size[1])) 		
+			w,h = size.split(',')
+			w = parseCoordinate(w, self.w, 0, font)
+			h = parseCoordinate(h, self.h, 0, font)
+			if pos == "bottom":
+			        pos = (self.x, self.y + self.h - h)
+			        size = (self.w, h)
+			        self.h -= h
+			elif pos == "top":
+			        pos = (self.x, self.y)
+			        size = (self.w, h)
+			        self.h -= h
+			        self.y += h
+			elif pos == "left":
+				pos = (self.x, self.y)
+				size = (w, self.h)
+				self.x += w
+				self.w -= w
+			elif pos == "right":
+				pos = (self.x + self.w - w, self.y)
+				size = (w, self.h)
+				self.w -= w
+			else:
+				size = (w, h)
+				pos = pos.split(',')
+				pos = (self.x + parseCoordinate(pos[0], self.w, size[0], font), self.y + parseCoordinate(pos[1], self.h, size[1], font))
 		return (SizeTuple(pos), SizeTuple(size))
 
 class SkinContextStack(SkinContext):
 	# A context that stacks things instead of aligning them
-	def parse(self, pos, size):
+	def parse(self, pos, size, font):
 	        if pos == "fill":
 	                pos = (self.x, self.y)
 	                size = (self.w, self.h)
-		elif pos == "bottom":
-			w,h = size.split(',')
-			h = int(h)
-		        pos = (self.x, self.y + self.h - h)
-		        size = (self.w, h)
-		elif pos == "top":
-			w,h = size.split(',')
-			h = int(h)
-		        pos = (self.x, self.y)
-		        size = (self.w, h)
-		elif pos == "left":
-			w,h = size.split(',')
-			w = int(w)
-			pos = (self.x, self.y)
-			size = (w, self.h)
-		elif pos == "right":
-			w,h = size.split(',')
-			w = int(w)
-			pos = (self.x + self.w - w, self.y)
-			size = (w, self.h)
 		else:
-			size = size.split(',')
-			size = (parseCoordinate(size[0], self.w), parseCoordinate(size[1], self.h))
-			pos = pos.split(',')
-			pos = (self.x + parseCoordinate(pos[0], self.w, size[0]), self.y + parseCoordinate(pos[1], self.h, size[1]))
+			w,h = size.split(',')
+			w = parseCoordinate(w, self.w, 0, font)
+			h = parseCoordinate(h, self.h, 0, font)
+			if pos == "bottom":
+			        pos = (self.x, self.y + self.h - h)
+			        size = (self.w, h)
+			elif pos == "top":
+			        pos = (self.x, self.y)
+			        size = (self.w, h)
+			elif pos == "left":
+				pos = (self.x, self.y)
+				size = (w, self.h)
+			elif pos == "right":
+				pos = (self.x + self.w - w, self.y)
+				size = (w, self.h)
+			else:
+				size = (w, h)
+				pos = pos.split(',')
+				pos = (self.x + parseCoordinate(pos[0], self.w, size[0], font), self.y + parseCoordinate(pos[1], self.h, size[1], font))
 		return (SizeTuple(pos), SizeTuple(size))
 
 def readSkin(screen, skin, names, desktop):
@@ -875,9 +881,9 @@ def readSkin(screen, skin, names, desktop):
 		else:
 		        cc = SkinContext
 		try:
-			c = cc(context, widget.attrib.get('position'), widget.attrib.get('size'))
+			c = cc(context, widget.attrib.get('position'), widget.attrib.get('size'), widget.attrib.get('font'))
 		except Exception, ex:
-		        raise SkinError("Failed to create skincontext (%s,%s) in %s: %s" % (widget.attrib.get('position'), widget.attrib.get('size'), context, ex) )
+		        raise SkinError("Failed to create skincontext (%s,%s,%s) in %s: %s" % (widget.attrib.get('position'), widget.attrib.get('size'), widget.attrib.get('font'), context, ex) )
 		process_screen(widget, c)
 
 	processors = {

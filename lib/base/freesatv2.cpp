@@ -168,18 +168,16 @@ void freesatHuffmanDecoder::loadFile(int tableid, char *filename)
 *  \retval NULL - Can't decode
 *  \return A decoded string
 */
-char  *freesatHuffmanDecoder::decode( const unsigned char *src, size_t size)
+std::string freesatHuffmanDecoder::decode(const unsigned char *src, size_t size)
 {
+	std::string uncompressed;
 	int tableid;
 
 	loadTables();
 
 	if (src[0] == 0x1f && (src[1] == 1 || src[1] == 2))
 	{
-		int    uncompressed_len = 30;
-		char * uncompressed = (char *)calloc(1,uncompressed_len + 1);
 		unsigned value = 0, byte = 2, bit = 0;
-		int p = 0;
 		int lastch = START;
 
 		tableid = src[1] - 1;
@@ -202,13 +200,7 @@ char  *freesatHuffmanDecoder::decode( const unsigned char *src, size_t size)
 				bitShift = 8;
 				if ((nextCh & 0x80) == 0)
 					lastch = nextCh;
-				if (p >= uncompressed_len)
-				{
-					uncompressed_len += 10;
-					uncompressed = (char *)realloc(uncompressed, uncompressed_len + 1);
-				}
-				uncompressed[p++] = nextCh;
-				uncompressed[p] = 0;
+				uncompressed.append(&nextCh, 1);
 			}
 			else
 			{
@@ -228,13 +220,7 @@ char  *freesatHuffmanDecoder::decode( const unsigned char *src, size_t size)
 						bitShift = currentEntry->bits;
 						if (nextCh != STOP && nextCh != ESCAPE)
 						{
-							if (p >= uncompressed_len)
-							{
-								uncompressed_len += 10;
-								uncompressed = (char *)realloc(uncompressed, uncompressed_len + 1);
-							}
-							uncompressed[p++] = nextCh;
-							uncompressed[p] = 0;
+							uncompressed.append(&nextCh, 1);
 						}
 						found = 1;
 						lastch = nextCh;
@@ -262,12 +248,10 @@ char  *freesatHuffmanDecoder::decode( const unsigned char *src, size_t size)
 			}
 			else
 			{
-				eDebug("[FREESAT] Missing table %d entry: <%s>", tableid + 1, uncompressed);
+				eDebug("[FREESAT] Missing table %d entry: <%s>", tableid + 1, uncompressed.c_str());
 				return uncompressed;
 			}
 		} while (lastch != STOP && value != 0);
-
-		return uncompressed;
 	}
-	return NULL;
+	return uncompressed;
 }
