@@ -21,12 +21,14 @@ class ServiceInfo(Converter, object):
 	FRAMERATE = 15
 	TRANSFERBPS = 16
 	HAS_HBBTV = 17
+	AUDIOTRACKS_AVAILABLE = 18
+	SUBTITLES_AVAILABLE = 19
 
 	def __init__(self, type):
 		Converter.__init__(self, type)
 		self.type, self.interesting_events = {
 				"HasTelext": (self.HAS_TELETEXT, (iPlayableService.evUpdatedInfo,)),
-				"IsMultichannel": (self.IS_MULTICHANNEL, (iPlayableService.evVideoSizeChanged,iPlayableService.evUpdatedInfo,)),
+				"IsMultichannel": (self.IS_MULTICHANNEL, (iPlayableService.evUpdatedInfo,)),
 				"IsCrypted": (self.IS_CRYPTED, (iPlayableService.evUpdatedInfo,)),
 				"IsWidescreen": (self.IS_WIDESCREEN, (iPlayableService.evVideoSizeChanged,)),
 				"SubservicesAvailable": (self.SUBSERVICES_AVAILABLE, (iPlayableService.evUpdatedEventInfo,)),
@@ -43,6 +45,8 @@ class ServiceInfo(Converter, object):
 				"Framerate": (self.FRAMERATE, (iPlayableService.evVideoSizeChanged,iPlayableService.evUpdatedInfo,)),
 				"TransferBPS": (self.TRANSFERBPS, (iPlayableService.evUpdatedInfo,)),
 				"HasHBBTV": (self.HAS_HBBTV, (iPlayableService.evUpdatedInfo,iPlayableService.evHBBTVInfo,)),
+				"AudioTracksAvailable": (self.AUDIOTRACKS_AVAILABLE, (iPlayableService.evUpdatedInfo,)),
+				"SubtitlesAvailable": (self.SUBTITLES_AVAILABLE, (iPlayableService.evUpdatedInfo,)),
 			}[type]
 
 	def getServiceInfoString(self, info, what, convert = lambda x: "%d" % x):
@@ -85,6 +89,12 @@ class ServiceInfo(Converter, object):
 			return subservices and subservices.getNumberOfSubservices() > 0
 		elif self.type == self.HAS_HBBTV:
 			return info.getInfoString(iServiceInformation.sHBBTVUrl) != ""
+		elif self.type == self.AUDIOTRACKS_AVAILABLE:
+			audio = service.audioTracks()
+			return audio and audio.getNumberOfTracks() > 1
+		elif self.type == self.SUBTITLES_AVAILABLE:
+			subtitle = service and service.subtitle()
+			return subtitle and subtitle.getSubtitleList()
 
 	boolean = property(getBoolean)
 	
