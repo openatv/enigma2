@@ -120,7 +120,7 @@ def ConvertToHumanReadable(tp, type = None):
 			eDVBFrontendParametersTerrestrial.Inversion_Unknown : _("Auto"),
 			eDVBFrontendParametersTerrestrial.Inversion_On : _("On"),
 			eDVBFrontendParametersTerrestrial.Inversion_Off : _("Off")}[tp["inversion"]]
-	else:
+	elif type != "None":
 		print "ConvertToHumanReadable: no or unknown type in tpdata dict for type:", type
 	for k,v in tp.items():
 		if k not in ret:

@@ -117,9 +117,9 @@ def parseCoordinate(s, e, size=0, font=None):
 			if s[-1] is '%':
 				val += e * int(s[:-1]) / 100
 			elif s[-1] is 'w':
-			        val += fonts[font][3] * int(s[:-1]) / 24;
+			        val += fonts[font][3] * int(s[:-1]);
 			elif s[-1] is 'h':
-			        val += fonts[font][2] * int(s[:-1]) / 24;
+			        val += fonts[font][2] * int(s[:-1]);
 			else:
 				val += int(s)
 	if val < 0:
