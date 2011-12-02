@@ -18,7 +18,9 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 
 	def execBegin(self):
 		rcinput = eRCInput.getInstance()
-		rcinput.setKeyboardMode(rcinput.kmAscii)
+#		Temporarily disable keyboards in ConfigList untill i get help from PLi to fix it.
+#		rcinput.setKeyboardMode(rcinput.kmAscii)
+		rcinput.setKeyboardMode(rcinput.kmNone)
 		self.timer.callback.append(self.timeout)
 
 	def execEnd(self):
