@@ -1,4 +1,4 @@
-from os import path as os_path, remove as os_remove, listdir as os_listdir
+import os
 from time import strftime
 from enigma import iPlayableService, eTimer, eServiceCenter, iServiceInformation, ePicLoad
 from ServiceReference import ServiceReference
@@ -452,7 +452,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 				if r is None:
 					return
 				text = r.getPath()
-				self["currenttext"].setText(os_path.basename(text))
+				self["currenttext"].setText(os.path.basename(text))
 
 		if self.currList == "playlist":
 			t = self.playlist.getSelection()
@@ -529,7 +529,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 			self.stopEntry()
 			self.playlist.clear()
 			self.isAudioCD = False
-			self.copyDirectory(os_path.dirname(self.filelist.getSelection()[0].getPath()) + "/", recursive = False)
+			self.copyDirectory(os.path.dirname(self.filelist.getSelection()[0].getPath()) + "/", recursive = False)
 			self.playServiceRefEntry(self.filelist.getServiceRef())
 		elif choice[1] == "playlist":
 			self.switchToPlayList()
@@ -632,7 +632,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 		listpath = []
 		playlistdir = resolveFilename(SCOPE_PLAYLIST)
 		try:
-			for i in os_listdir(playlistdir):
+			for i in os.listdir(playlistdir):
 				listpath.append((i,playlistdir + i))
 		except IOError,e:
 			print "Error while scanning subdirs ",e
@@ -656,7 +656,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 		listpath = []
 		playlistdir = resolveFilename(SCOPE_PLAYLIST)
 		try:
-			for i in os_listdir(playlistdir):
+			for i in os.listdir(playlistdir):
 				listpath.append((i,playlistdir + i))
 		except IOError,e:
 			print "Error while scanning subdirs ",e
@@ -672,7 +672,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 	def deleteConfirmed(self, confirmed):
 		if confirmed:
 			try:
-				os_remove(self.delname)
+				os.remove(self.delname)
 			except OSError,e:
 				print "delete failed:", e
 				self.session.open(MessageBox, _("Delete failed!"), MessageBox.TYPE_ERROR)
@@ -829,13 +829,12 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 					self.copyDirectory(sel[0])
 				else:
 					# add files to playlist
-					self.copyDirectory(os_path.dirname(sel[0].getPath()) + "/", recursive = False)
+					self.copyDirectory(os.path.dirname(sel[0].getPath()) + "/", recursive = False)
 			if len(self.playlist) > 0:
 				self.changeEntry(0)
 	
-	def playEntry(self):
+	def playEntry(self, audio_extensions = frozenset((".mp2", ".mp3", ".wav", ".ogg", ".flac", ".m4a"))):
 		if len(self.playlist.getServiceRefList()):
-			audio_extensions = (".mp2", ".mp3", ".wav", ".ogg", "flac", "m4a")
 			needsInfoUpdate = False
 			currref = self.playlist.getServiceRefList()[self.playlist.getCurrentIndex()]
 			if self.session.nav.getCurrentlyPlayingServiceReference() is None or currref != self.session.nav.getCurrentlyPlayingServiceReference():
@@ -847,9 +846,8 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 				idx = self.playlist.getCurrentIndex()
 				currref = self.playlist.getServiceRefList()[idx]
 				text = self.getIdentifier(currref)
+				ext = os.path.splitext(text)[1].lower()
 				text = ">"+text
-				ext = text[-4:].lower()
-
 				# FIXME: the information if the service contains video (and we should hide our window) should com from the service instead 
 				if ext not in audio_extensions and not self.isAudioCD:
 					self.hide()
@@ -877,7 +875,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 				idx = self.playlist.getCurrentIndex()
 				currref = self.playlist.getServiceRefList()[idx]
 				text = currref.getPath()
-				ext = text[-4:].lower()
+				ext = os.path.splitext(text)[1].lower()
 				if ext not in audio_extensions and not self.isAudioCD:
 					self.hide()
 				else:
@@ -1016,7 +1014,7 @@ def movielist_open(list, session, **kwargs):
 	else:
 		stype = 4097
 	if InfoBar.instance:
-		path = os_path.split(f.path)[0]
+		path = os.path.split(f.path)[0]
 		if not path.endswith('/'):
 			path += '/'
 		config.movielist.last_videodir.value = path
