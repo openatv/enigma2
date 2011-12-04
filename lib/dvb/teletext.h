@@ -42,6 +42,7 @@ public:
 	int start(int pid);
 	void setPageAndMagazine(int page, int magazine);
 	void setMagazine(int magazine);
+	void connectNewStream(const Slot0<void> &slot, ePtr<eConnection> &connection);
 	void connectNewPage(const Slot1<void,const eDVBTeletextSubtitlePage &> &slot, ePtr<eConnection> &connection);
 	std::set<eDVBServicePMTHandler::subtitleStream> m_found_subtitle_pages;
 private:
@@ -63,6 +64,7 @@ private:
 	
 	void addSubtitleString(int color, std::string string, int source_line);
 
+	Signal0<void> m_new_subtitle_stream;
 	Signal1<void,const eDVBTeletextSubtitlePage&> m_new_subtitle_page;
 };
 
