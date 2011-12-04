@@ -1753,6 +1753,8 @@ RESULT eServiceMP3::enableSubtitles(eWidget *parent, ePyObject tuple)
 
 	m_event((iPlayableService*)this, evUpdatedInfo);
 
+	seekRelative(-1, 90000);
+
 	return 0;
 
 error_out:
