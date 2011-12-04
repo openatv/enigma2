@@ -1173,6 +1173,17 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 					GstElement *subsink = gst_bin_get_by_name(GST_BIN(m_gst_playbin), "subtitle_sink");
 					if (subsink)
 					{
+						/* 
+						 * HACK: disable sync mode for now, gstreamer suffers from a bug causing sparse streams to loose sync, after pause/resume / skip
+						 * see: https://bugzilla.gnome.org/show_bug.cgi?id=619434
+						 * Sideeffect of using sync=false is that we receive subtitle buffers (far) ahead of their
+						 * display time.
+						 * Not too far ahead for subtitles contained in the media container.
+						 * But for external srt files, we could receive all subtitles at once.
+						 * And not just once, but after each pause/resume / skip.
+						 * So as soon as gstreamer has been fixed to keep sync in sparse streams, sync needs to be re-enabled.
+						 */
+						g_object_set (G_OBJECT (subsink), "sync", FALSE, NULL);
 #if 0
 						/* we should not use ts-offset to sync with the decoder time, we have to do our own decoder timekeeping */
 						g_object_set (G_OBJECT (subsink), "ts-offset", -2L * GST_SECOND, NULL);
