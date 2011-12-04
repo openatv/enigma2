@@ -95,7 +95,9 @@ class ServiceInfo(Converter, object):
 		elif self.type == self.SUBTITLES_AVAILABLE:
 			subtitle = service and service.subtitle()
 			subtitlelist = subtitle and subtitle.getSubtitleList()
-			return subtitlelist and len(subtitlelist) > 0
+			if subtitlelist:
+				return len(subtitlelist) > 0
+			return False
 
 	boolean = property(getBoolean)
 	
