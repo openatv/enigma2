@@ -138,12 +138,13 @@ class TryQuitMainloop(MessageBox):
 		if recordings or (next_rec_time > 0 and (next_rec_time - time()) < 360):
 			reason = _("Recording(s) are in progress or coming up in few seconds!") + '\n'
 		if jobs:
+			reason = _("Job task(s) are in progress!") + '\n'
 			if jobs == 1:
 				job = job_manager.getPendingJobs()[0]
 				reason += "%s: %s (%d%%)\n" % (job.getStatustext(), job.name, int(100*job.progress/float(job.end)))
 			else:
 				reason += (_("%d jobs are running in the background!") % jobs) + '\n'
-		if reason:
+		if reason and not inStandby:
 			if retvalue == 5:
 				retvalue = 1
 				session.nav.record_event.append(self.getRecordEvent)
