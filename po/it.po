@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-05 14:38+0000\n"
+"POT-Creation-Date: 2011-12-05 11:09+0000\n"
 "PO-Revision-Date: 2011-04-24 02:17+0200\n"
 "Last-Translator: spaeleus <spaeleus@croci.org>\n"
 "Language-Team: WWW.LINSAT.NET <spaeleus@croci.org>\n"
@@ -965,12 +965,6 @@ msgstr ""
 msgid "Autostart"
 msgstr ""
 
-msgid "Autostart Disabled."
-msgstr ""
-
-msgid "Autostart Enabled."
-msgstr ""
-
 msgid "Autostart:"
 msgstr ""
 
@@ -1081,6 +1075,9 @@ msgid "Black screen till locked"
 msgstr ""
 
 msgid "Blind Scan"
+msgstr ""
+
+msgid "Blindscan"
 msgstr ""
 
 msgid "Blindscan was canceled by the user."
@@ -1648,6 +1645,9 @@ msgid "Creating AP and SC Files"
 msgstr ""
 
 msgid "Creating Hardlink to Timeshift file failed!"
+msgstr ""
+
+msgid "Creating a Meta File failed!"
 msgstr ""
 
 #
@@ -2330,7 +2330,7 @@ msgstr "Modificare URL sorgenti aggiornamento."
 msgid "Elapsed"
 msgstr ""
 
-msgid "Elapsed & Remanining"
+msgid "Elapsed & Remaining"
 msgstr ""
 
 #
@@ -2610,6 +2610,9 @@ msgstr "Reset configurazioni di fabbrica"
 msgid "Failed"
 msgstr "Fallito"
 
+msgid "Failed to remove old files."
+msgstr ""
+
 #
 #, python-format
 msgid "Fan %d"
@@ -2872,9 +2875,6 @@ msgstr ""
 msgid "HDMI CEC"
 msgstr ""
 
-msgid "Handle deepstandby events"
-msgstr ""
-
 msgid "Handle standby from TV"
 msgstr ""
 
@@ -3094,6 +3094,9 @@ msgstr "Formattare"
 msgid "Initializing storage device..."
 msgstr ""
 
+msgid "Inotify Monitoring"
+msgstr ""
+
 #
 msgid "Input"
 msgstr "Input"
@@ -3119,6 +3122,9 @@ msgstr "Installare nuova immagine tramite web browser"
 #
 msgid "Install extensions."
 msgstr "Installare estensioni"
+
+msgid "Install lcd picons on"
+msgstr ""
 
 #
 msgid "Install local extension"
@@ -3574,6 +3580,15 @@ msgstr "Messaggio"
 #
 msgid "Message..."
 msgstr "Messaggio..."
+
+msgid "MiniDLNA Log"
+msgstr ""
+
+msgid "MiniDLNA Setup"
+msgstr ""
+
+msgid "MiniDNLA Setup"
+msgstr ""
 
 msgid "Mins"
 msgstr ""
@@ -4693,6 +4708,9 @@ msgstr ""
 msgid "Polarization"
 msgstr "Polarizzazione"
 
+msgid "Port"
+msgstr ""
+
 #
 msgid "Port A"
 msgstr "Porta A"
@@ -4910,6 +4928,9 @@ msgstr ""
 msgid "Put TV in standby"
 msgstr ""
 
+msgid "Put TV in standby when deepstandby"
+msgstr ""
+
 msgid "Put receiver in standby"
 msgstr ""
 
@@ -5003,10 +5024,6 @@ msgid "Record time limited due to conflicting timer %s"
 msgstr "Tempo di registrazione limitato: timer %s in conflitto!"
 
 #
-msgid "Recorded files..."
-msgstr "Registrazioni..."
-
-#
 msgid "Recording"
 msgstr "Registrazione..."
 
@@ -5033,6 +5050,9 @@ msgstr "Registrazioni"
 #
 msgid "Recordings always have priority"
 msgstr "Le registrazioni hanno sempre la priorità"
+
+msgid "Red button..."
+msgstr ""
 
 msgid "Reenter new PIN"
 msgstr "Ripetere il nuovo PIN"
@@ -5064,13 +5084,13 @@ msgstr ""
 msgid "Reloading bouquets and services..."
 msgstr ""
 
-msgid "Remaning/Elapsed shown as on OSD"
+msgid "Remaining"
 msgstr ""
 
-msgid "Remanining"
+msgid "Remaining & Elapsed"
 msgstr ""
 
-msgid "Remanining & Elapsed"
+msgid "Remaining/Elapsed shown as on OSD"
 msgstr ""
 
 msgid "Remember service PIN"
@@ -5708,6 +5728,9 @@ msgstr ""
 msgid "Sequence repeat"
 msgstr "Ripetizione sequenza"
 
+msgid "Serial No"
+msgstr ""
+
 msgid "Serv.Name"
 msgstr ""
 
@@ -6104,6 +6127,9 @@ msgstr ""
 msgid "Sorry MediaScanner is not installed!"
 msgstr "MediaScanner non installato!"
 
+msgid "Sorry MiniDLNA Config is Missing"
+msgstr ""
+
 #
 msgid "Sorry no backups found!"
 msgstr "Nessun backup trovato!"
@@ -6277,6 +6303,9 @@ msgstr "Posizione memorizzata"
 msgid "Stream request"
 msgstr ""
 
+msgid "Strict DLNA"
+msgstr ""
+
 msgid "Subservice mode"
 msgstr ""
 
@@ -6368,9 +6397,6 @@ msgstr ""
 #
 msgid "System"
 msgstr "Sistema"
-
-msgid "System Infomation"
-msgstr ""
 
 msgid "System Information"
 msgstr ""
@@ -6870,11 +6896,14 @@ msgstr "Miniature"
 msgid "Thursday"
 msgstr "Giovedì"
 
+msgid "TiVo support"
+msgstr ""
+
 #
 msgid "Time"
 msgstr "Ora"
 
-msgid "Time Remaning/Elapsed on OSD"
+msgid "Time Remaining/Elapsed on OSD"
 msgstr ""
 
 msgid "Time Scale"
@@ -7635,11 +7664,17 @@ msgstr ""
 msgid "Wait please while gathering data..."
 msgstr ""
 
+msgid "Wait please while scanning for devices..."
+msgstr ""
+
 #
 msgid "Waiting"
 msgstr "In attesa"
 
 msgid "Wakeup"
+msgstr ""
+
+msgid "Wakeup TV after deepstandby"
 msgstr ""
 
 msgid "Wakeup TV from standby"
@@ -7882,6 +7917,13 @@ msgid "Yes, view the tutorial"
 msgstr "Sì, visualizzare la guida"
 
 msgid "Yesterday"
+msgstr ""
+
+#, python-format
+msgid ""
+"You already have a channel list installed,\n"
+"would you like to remove\n"
+"\"%s\"?"
 msgstr ""
 
 #
@@ -9509,11 +9551,3 @@ msgstr "Zap"
 #
 msgid "zapped"
 msgstr "Zap es"
-
-#
-#~ msgid "Next"
-#~ msgstr "Succ."
-
-#
-#~ msgid "Prev"
-#~ msgstr "Prec."

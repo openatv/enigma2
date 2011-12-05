@@ -28,7 +28,7 @@
 			<item level="0" text="About" entryID="about_screen"><screen module="About" screen="About"/></item>
 			<item level="0" text="Devices" entryID="device_screen"><screen module="About" screen="Devices"/></item>
 			<item level="1" text="Service" entryID="service_info_screen"><screen module="ServiceInfo" screen="ServiceInfo"/></item>
-			<item level="0" text="System Infomation" entryID="device_screen"><screen module="About" screen="SystemInfo"/></item>
+			<item level="0" text="System Information" entryID="device_screen"><screen module="About" screen="SystemInfo"/></item>
 		</menu>
 
 		<item level="1" text="Plugins" entryID="plugin_selection"><screen module="PluginBrowser" screen="PluginBrowser" /></item>
@@ -114,6 +114,7 @@ self.session.open(HdmiCECSetupScreen)
 					<item level="2" text="AFP Setup" entryID="netafp_setup"><screen module="NetworkSetup" screen="NetworkAfp"/></item>
 					<item level="2" text="FTP Setup" entryID="netftp_setup"><screen module="NetworkSetup" screen="NetworkFtp"/></item>
 					<item level="2" text="Inadyn Setup" entryID="Inadyn_setup"><screen module="NetworkSetup" screen="NetworkInadyn"/></item>
+					<item level="2" text="MiniDNLA Setup" entryID="netushare_setup"><screen module="NetworkSetup" screen="NetworkMiniDLNA"/></item>
 					<item level="2" text="NFS Setup" entryID="netnfs_setup"><screen module="NetworkSetup" screen="NetworkNfs"/></item>
 					<item level="2" text="OpenVPN Setup" entryID="netvpn_setup"><screen module="NetworkSetup" screen="NetworkOpenvpn"/></item>
 					<item level="2" text="Samba Setup" entryID="netsmba_setup"><screen module="NetworkSetup" screen="NetworkSamba"/></item>

@@ -2,6 +2,7 @@ from MenuList import MenuList
 from Tools.Directories import SCOPE_CURRENT_SKIN, resolveFilename
 from enigma import RT_HALIGN_LEFT, eListboxPythonMultiContent, gFont
 from Tools.LoadPixmap import LoadPixmap
+import skin
 
 def ChoiceEntryComponent(key = "", text = ["--"]):
 	res = [ text ]
@@ -19,8 +20,9 @@ def ChoiceEntryComponent(key = "", text = ["--"]):
 class ChoiceList(MenuList):
 	def __init__(self, list, selection = 0, enableWrapAround=False):
 		MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent)
-		self.l.setFont(0, gFont("Regular", 20))
-		self.l.setItemHeight(25)
+		font = skin.fonts["ChoiceList"]
+		self.l.setFont(0, gFont(font[0], font[1]))
+		self.l.setItemHeight(font[2])
 		self.selection = selection
 
 	def postWidgetCreate(self, instance):

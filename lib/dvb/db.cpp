@@ -1,4 +1,5 @@
 #include <errno.h>
+#include <unistd.h>
 #include <lib/dvb/db.h>
 #include <lib/dvb/dvb.h>
 #include <lib/dvb/frontend.h>
@@ -74,7 +75,8 @@ RESULT eBouquet::moveService(const eServiceReference &ref, unsigned int pos)
 
 RESULT eBouquet::flushChanges()
 {
-	FILE *f=fopen(eEnv::resolve("${sysconfdir}/enigma2/" + m_filename).c_str(), "w");
+	std::string filename = eEnv::resolve("${sysconfdir}/enigma2/" + m_filename);
+	FILE *f = fopen((filename + ".writing").c_str(), "w");
 	if (!f)
 		return -1;
 	if ( fprintf(f, "#NAME %s\r\n", m_bouquet_name.c_str()) < 0 )
@@ -89,7 +91,9 @@ RESULT eBouquet::flushChanges()
 			if ( fprintf(f, "#DESCRIPTION %s\r\n", i->name.c_str()) < 0 )
 				goto err;
 	}
+	fsync(fileno(f));
 	fclose(f);
+	rename((filename + ".writing").c_str(), filename.c_str());
 	return 0;
 err:
 	fclose(f);
@@ -500,7 +504,8 @@ void eDVBDB::loadServicelist(const char *file)
 void eDVBDB::saveServicelist(const char *file)
 {
 	eDebug("---- saving lame channel db");
-	FILE *f=fopen(file, "w");
+	std::string filename = file;
+	FILE *f = fopen((filename + ".writing").c_str(), "w");
 	int channels=0, services=0;
 	if (!f)
 		eFatal("couldn't save lame channel db!");
@@ -595,7 +600,9 @@ void eDVBDB::saveServicelist(const char *file)
 	}
 	fprintf(f, "end\nHave a lot of bugs!\n");
 	eDebug("saved %d channels and %d services!", channels, services);
+	fsync(fileno(f));
 	fclose(f);
+	rename((filename + ".writing").c_str(), filename.c_str());
 }
 
 void eDVBDB::saveServicelist()

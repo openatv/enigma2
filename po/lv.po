@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-05 14:38+0000\n"
+"POT-Creation-Date: 2011-12-05 11:09+0000\n"
 "PO-Revision-Date: 2009-02-25 20:35+0200\n"
 "Last-Translator: Ivo Grinbergs <ivog@apollo.lv>\n"
 "Language-Team: Ivo / enigma2 (c) <ivog@apolllo.lv>\n"
@@ -968,12 +968,6 @@ msgstr ""
 msgid "Autostart"
 msgstr ""
 
-msgid "Autostart Disabled."
-msgstr ""
-
-msgid "Autostart Enabled."
-msgstr ""
-
 msgid "Autostart:"
 msgstr ""
 
@@ -1088,6 +1082,9 @@ msgid "Black screen till locked"
 msgstr ""
 
 msgid "Blind Scan"
+msgstr ""
+
+msgid "Blindscan"
 msgstr ""
 
 msgid "Blindscan was canceled by the user."
@@ -1658,6 +1655,9 @@ msgid "Creating AP and SC Files"
 msgstr ""
 
 msgid "Creating Hardlink to Timeshift file failed!"
+msgstr ""
+
+msgid "Creating a Meta File failed!"
 msgstr ""
 
 #
@@ -2358,7 +2358,7 @@ msgstr ""
 msgid "Elapsed"
 msgstr ""
 
-msgid "Elapsed & Remanining"
+msgid "Elapsed & Remaining"
 msgstr ""
 
 #
@@ -2635,6 +2635,9 @@ msgstr "Rūpnīcas uzstādījumi"
 msgid "Failed"
 msgstr "Neizdevās"
 
+msgid "Failed to remove old files."
+msgstr ""
+
 #
 #, python-format
 msgid "Fan %d"
@@ -2904,9 +2907,6 @@ msgstr ""
 msgid "HDMI CEC"
 msgstr ""
 
-msgid "Handle deepstandby events"
-msgstr ""
-
 msgid "Handle standby from TV"
 msgstr ""
 
@@ -3128,6 +3128,9 @@ msgstr "Inicializēt"
 msgid "Initializing storage device..."
 msgstr ""
 
+msgid "Inotify Monitoring"
+msgstr ""
+
 #
 msgid "Input"
 msgstr "Ievade"
@@ -3152,6 +3155,9 @@ msgstr "Uzstādīt jaunu imidžu no tīmekļa pārlūka"
 
 #
 msgid "Install extensions."
+msgstr ""
+
+msgid "Install lcd picons on"
 msgstr ""
 
 #
@@ -3612,6 +3618,15 @@ msgstr "Paziņojums"
 #
 msgid "Message..."
 msgstr "Paziņojums..."
+
+msgid "MiniDLNA Log"
+msgstr ""
+
+msgid "MiniDLNA Setup"
+msgstr ""
+
+msgid "MiniDNLA Setup"
+msgstr ""
 
 msgid "Mins"
 msgstr ""
@@ -4721,6 +4736,9 @@ msgstr ""
 msgid "Polarization"
 msgstr "Polarizācija"
 
+msgid "Port"
+msgstr ""
+
 #
 msgid "Port A"
 msgstr "Pieslēgvieta A"
@@ -4939,6 +4957,9 @@ msgstr ""
 msgid "Put TV in standby"
 msgstr ""
 
+msgid "Put TV in standby when deepstandby"
+msgstr ""
+
 msgid "Put receiver in standby"
 msgstr ""
 
@@ -5034,10 +5055,6 @@ msgid "Record time limited due to conflicting timer %s"
 msgstr "Ierobežots ieraksta laiks dēļ taimeru konflikta %s"
 
 #
-msgid "Recorded files..."
-msgstr "Ierakstītās datnes..."
-
-#
 msgid "Recording"
 msgstr "Ieraksta"
 
@@ -5064,6 +5081,9 @@ msgstr ""
 #
 msgid "Recordings always have priority"
 msgstr "Ierakstiem vienmēr ir prioritāte"
+
+msgid "Red button..."
+msgstr ""
 
 msgid "Reenter new PIN"
 msgstr ""
@@ -5096,13 +5116,13 @@ msgstr ""
 msgid "Reloading bouquets and services..."
 msgstr ""
 
-msgid "Remaning/Elapsed shown as on OSD"
+msgid "Remaining"
 msgstr ""
 
-msgid "Remanining"
+msgid "Remaining & Elapsed"
 msgstr ""
 
-msgid "Remanining & Elapsed"
+msgid "Remaining/Elapsed shown as on OSD"
 msgstr ""
 
 msgid "Remember service PIN"
@@ -5742,6 +5762,9 @@ msgstr ""
 msgid "Sequence repeat"
 msgstr "Secības atkārtojums"
 
+msgid "Serial No"
+msgstr ""
+
 msgid "Serv.Name"
 msgstr ""
 
@@ -6146,6 +6169,9 @@ msgstr ""
 msgid "Sorry MediaScanner is not installed!"
 msgstr "Atvainojiet, MediaScanner nav uzstādīts!"
 
+msgid "Sorry MiniDLNA Config is Missing"
+msgstr ""
+
 #
 msgid "Sorry no backups found!"
 msgstr "Atvainojiet, dublējumkopijas nav atrastas!"
@@ -6322,6 +6348,9 @@ msgstr "Saglabātā pozīcija"
 msgid "Stream request"
 msgstr ""
 
+msgid "Strict DLNA"
+msgstr ""
+
 msgid "Subservice mode"
 msgstr ""
 
@@ -6415,9 +6444,6 @@ msgstr ""
 #
 msgid "System"
 msgstr "Sistēma"
-
-msgid "System Infomation"
-msgstr ""
 
 msgid "System Information"
 msgstr ""
@@ -6897,11 +6923,14 @@ msgstr "Sīktēli"
 msgid "Thursday"
 msgstr "Ceturtdiena"
 
+msgid "TiVo support"
+msgstr ""
+
 #
 msgid "Time"
 msgstr "Laiks"
 
-msgid "Time Remaning/Elapsed on OSD"
+msgid "Time Remaining/Elapsed on OSD"
 msgstr ""
 
 msgid "Time Scale"
@@ -7666,11 +7695,17 @@ msgstr ""
 msgid "Wait please while gathering data..."
 msgstr ""
 
+msgid "Wait please while scanning for devices..."
+msgstr ""
+
 #
 msgid "Waiting"
 msgstr "Gaida"
 
 msgid "Wakeup"
+msgstr ""
+
+msgid "Wakeup TV after deepstandby"
 msgstr ""
 
 msgid "Wakeup TV from standby"
@@ -7903,6 +7938,13 @@ msgid "Yes, view the tutorial"
 msgstr "Jā, skatīt pamācību"
 
 msgid "Yesterday"
+msgstr ""
+
+#, python-format
+msgid ""
+"You already have a channel list installed,\n"
+"would you like to remove\n"
+"\"%s\"?"
 msgstr ""
 
 #
@@ -9531,11 +9573,3 @@ msgstr "pārslēgt"
 #
 msgid "zapped"
 msgstr "pārslēgts"
-
-#
-#~ msgid "Next"
-#~ msgstr "Nākamais"
-
-#
-#~ msgid "Prev"
-#~ msgstr "Iepriekšējais"

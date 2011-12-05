@@ -1,4 +1,4 @@
-from Screen import Screen
+from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.InputBox import InputBox
 from Screens.Standby import *
@@ -13,7 +13,7 @@ from Components.Label import Label,MultiColorLabel
 from Components.ScrollLabel import ScrollLabel
 from Components.Pixmap import Pixmap,MultiPixmap
 from Components.MenuList import MenuList
-from Components.config import config, configfile, ConfigSubsection, ConfigYesNo, ConfigIP, NoSave, ConfigText, ConfigPassword, ConfigSelection, getConfigListEntry, ConfigNothing, ConfigNumber, ConfigLocations, NoSave
+from Components.config import config, ConfigSubsection, ConfigYesNo, ConfigIP, NoSave, ConfigText, ConfigPassword, ConfigSelection, getConfigListEntry, ConfigNothing, ConfigNumber, ConfigLocations, NoSave
 from Components.ConfigList import ConfigListScreen
 from Components.PluginComponent import plugins
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
@@ -1399,6 +1399,116 @@ class NetworkAdapterTest(Screen):
 		else:
 			iStatus.stopWlanConsole()
 
+class NetworkAfp(Screen):
+	skin = """
+		<screen position="center,center" size="560,310" title="Samba Setup">
+			<widget name="lab1" position="20,90" size="150,30" font="Regular;20" valign="center" transparent="0"/>
+			<widget name="labactive" position="180,90" size="250,30" font="Regular;20" valign="center" transparent="0"/>
+			<widget name="lab2" position="20,160" size="150,30" font="Regular;20" valign="center" transparent="0"/>
+			<widget name="labstop" position="180,160" size="100,30" font="Regular;20" valign="center" halign="center" backgroundColor="red"/>
+			<widget name="labrun" position="180,160" size="100,30" zPosition="1" font="Regular;20" valign="center"  halign="center" backgroundColor="green"/>
+			<ePixmap pixmap="skin_default/buttons/red.png" position="0,260" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/green.png" position="140,260" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,260" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/blue.png" position="420,260" size="140,40" alphatest="on" />
+			<widget name="key_red" position="0,260" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+			<widget name="key_green" position="140,260" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+			<widget name="key_yellow" position="280,260" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
+			<widget name="key_blue" position="420,260" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
+		</screen>"""
+
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		Screen.setTitle(self, _("AFP Setup"))
+		self.skinName = "NetworkServiceSetup"
+		self['lab1'] = Label(_("Autostart:"))
+		self['labactive'] = Label(_(_("Disabled")))
+		self['lab2'] = Label(_("Current Status:"))
+		self['labstop'] = Label(_("Stopped"))
+		self['labrun'] = Label(_("Running"))
+		self['key_red'] = Label(_("Stop"))
+		self['key_green'] = Label(_("Start"))
+		self['key_yellow'] = Label(_("Autostart"))
+		self['key_blue'] = Label()
+		self.Console = Console()
+		self.my_Samba_active = False
+		self.my_Samba_run = False
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.AfpStop, 'green': self.AfpStart, 'yellow': self.activateAfp})
+		self.onLayoutFinish.append(self.updateAfp)
+
+	def AfpStart(self):
+		if self.my_afp_run == False:
+			self.Console.ePopen('/etc/init.d/atalk start')
+			time.sleep(3)
+			self.updateAfp()
+		elif self.my_afp_run == True:
+			self.Console.ePopen('/etc/init.d/atalk restart')
+			time.sleep(3)
+			self.updateAfp()
+
+	def AfpStop(self):
+		if self.my_afp_run == True:
+			self.Console.ePopen('/etc/init.d/atalk stop')
+			time.sleep(3)
+			self.updateAfp()
+
+	def activateAfp(self):
+		if fileExists('/etc/rc0.d/K20atalk'):
+			unlink('/etc/rc0.d/K20atalk')
+		else:
+			symlink('/etc/init.d/samba', '/etc/rc0.d/K20atalk')
+		if fileExists('/etc/rc1.d/K20atalk'):
+			unlink('/etc/rc1.d/K20atalk')
+		else:
+			symlink('/etc/init.d/samba', '/etc/rc1.d/K20atalk')
+		if fileExists('/etc/rc2.d/S20atalk'):
+			unlink('/etc/rc2.d/S20atalk')
+		else:
+			symlink('/etc/init.d/samba', '/etc/rc2.d/S20atalk')
+		if fileExists('/etc/rc3.d/S20atalk'):
+			unlink('/etc/rc3.d/S20atalk')
+		else:
+			symlink('/etc/init.d/samba', '/etc/rc3.d/S20atalk')
+		if fileExists('/etc/rc4.d/S20atalk'):
+			unlink('/etc/rc4.d/S20atalk')
+		else:
+			symlink('/etc/init.d/samba', '/etc/rc4.d/S20atalk')
+		if fileExists('/etc/rc5.d/S20atalk'):
+			unlink('/etc/rc5.d/S20atalk')
+		else:
+			symlink('/etc/init.d/samba', '/etc/rc5.d/S20atalk')
+		if fileExists('/etc/rc6.d/K20atalk'):
+			unlink('/etc/rc6.d/K20atalk')
+		else:
+			symlink('/etc/init.d/samba', '/etc/rc6.d/K20atalk')
+		self.updateAfp()
+
+	def updateAfp(self):
+		import process
+		p = process.ProcessList()
+		afp_process = str(p.named('afpd')).strip('[]')
+ 		self['labrun'].hide()
+		self['labstop'].hide()
+		self['labactive'].setText(_("Disabled"))
+		self.my_afp_active = False
+		self.my_afp_run = False
+		if fileExists('/etc/rc3.d/S20atalk'):
+			self['labactive'].setText(_("Enabled"))
+			self['labactive'].show()
+			self.my_afp_active = True
+		if afp_process:
+			self.my_afp_run = True
+		if self.my_afp_run == True:
+			self['labstop'].hide()
+			self['labactive'].show()
+			self['labrun'].show()
+			self['key_green'].setText(_("Restart"))
+		else:
+			self['labrun'].hide()
+			self['labstop'].show()
+			self['labactive'].show()
+			self['key_green'].setText(_("Start"))
+
 class NetworkFtp(Screen):
 	skin = """
 		<screen position="center,center" size="340,310" title="Ftp Setup">
@@ -1483,198 +1593,6 @@ class NetworkFtp(Screen):
 			self['labstop'].show()
 			self['labrun'].hide()
 
-class NetworkTelnet(Screen):
-	skin = """
-		<screen position="center,center" size="340,310" title="Telnet Setup">
-			<widget name="lab1" position="20,30" size="300,80" font="Regular;20" valign="center" transparent="1"/>
-			<widget name="lab2" position="20,150" size="150,30" font="Regular;20" valign="center" transparent="1"/>
-			<widget name="labstop" position="170,150" size="100,30" font="Regular;20" valign="center"  halign="center" backgroundColor="red"/>
-			<widget name="labrun" position="170,150" size="100,30" zPosition="1" font="Regular;20" valign="center"  halign="center" backgroundColor="green"/>
-			<ePixmap pixmap="skin_default/buttons/red.png" position="20,260" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/green.png" position="180,260" size="140,40" alphatest="on" />
-			<widget name="key_red" position="20,260" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-			<widget name="key_green" position="180,260" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-		</screen>"""
-
-	def __init__(self, session):
-		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Telnet Setup"))
-		self['lab1'] = Label(_("You can disable Telnet Server and use ssh to login."))
-		self['lab2'] = Label(_("Current Status:"))
-		self['labstop'] = Label(_("Stopped"))
-		self['labrun'] = Label(_("Running"))
-		self['key_green'] = Label(_("Enable"))
-		self['key_red'] = Label(_("Disable"))
-		self.Console = Console()
-		self.my_telnet_active = False
-		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.TelnetStop, 'green': self.TelnetStart})
-		self.onLayoutFinish.append(self.updateTelnet)
-
-	def TelnetStart(self):
-		if self.my_telnet_active == False:
-			if fileExists('/etc/inetd.conf'):
-				inme = open('/etc/inetd.conf', 'r')
-				out = open('/etc/inetd.tmp', 'w')
-				for line in inme.readlines():
-					if line.find('telnetd') != -1:
-						line = line.replace('#', '')
-					out.write(line)
-				out.close()
-				inme.close()
-			if fileExists('/etc/inetd.tmp'):
-				move('/etc/inetd.tmp', '/etc/inetd.conf')
-				self.Console.ePopen('killall -HUP inetd')
-				self.Console.ePopen('ps')
-				mybox = self.session.open(MessageBox, _("Telnet service Enabled."), MessageBox.TYPE_INFO)
-				mybox.setTitle(_("Info"))
-				self.updateTelnet()
-
-	def TelnetStop(self):
-		if self.my_telnet_active == True:
-			if fileExists('/etc/inetd.conf'):
-				inme = open('/etc/inetd.conf', 'r')
-				out = open('/etc/inetd.tmp', 'w')
-				for line in inme.readlines():
-					if line.find('telnetd') != -1:
-						line = '#' + line
-					out.write(line)
-				out.close()
-				inme.close()
-			if fileExists('/etc/inetd.tmp'):
-				move('/etc/inetd.tmp', '/etc/inetd.conf')
-				self.Console.ePopen('killall -HUP inetd')
-				self.Console.ePopen('ps')
-				mybox = self.session.open(MessageBox, _("Telnet service Disabled."), MessageBox.TYPE_INFO)
-				mybox.setTitle(_("Info"))
-				self.updateTelnet()
-
-	def updateTelnet(self):
-		self['labrun'].hide()
-		self['labstop'].hide()
-		self.my_telnet_active = False
-		if fileExists('/etc/inetd.conf'):
-			f = open('/etc/inetd.conf', 'r')
-			for line in f.readlines():
-				parts = line.strip().split()
-				if parts[0] == 'telnet':
-					self.my_telnet_active = True
-					continue
-			f.close()
-		if self.my_telnet_active == True:
-			self['labstop'].hide()
-			self['labrun'].show()
-		else:
-			self['labstop'].show()
-			self['labrun'].hide()
-
-class NetworkAfp(Screen):
-	skin = """
-		<screen position="center,center" size="560,310" title="Samba Setup">
-			<widget name="lab1" position="20,90" size="150,30" font="Regular;20" valign="center" transparent="0"/>
-			<widget name="labactive" position="180,90" size="250,30" font="Regular;20" valign="center" transparent="0"/>
-			<widget name="lab2" position="20,160" size="150,30" font="Regular;20" valign="center" transparent="0"/>
-			<widget name="labstop" position="180,160" size="100,30" font="Regular;20" valign="center" halign="center" backgroundColor="red"/>
-			<widget name="labrun" position="180,160" size="100,30" zPosition="1" font="Regular;20" valign="center"  halign="center" backgroundColor="green"/>
-			<ePixmap pixmap="skin_default/buttons/red.png" position="0,260" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/green.png" position="140,260" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,260" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/blue.png" position="420,260" size="140,40" alphatest="on" />
-			<widget name="key_red" position="0,260" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-			<widget name="key_green" position="140,260" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-			<widget name="key_yellow" position="280,260" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-			<widget name="key_blue" position="420,260" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
-		</screen>"""
-
-	def __init__(self, session):
-		Screen.__init__(self, session)
-		Screen.setTitle(self, _("AFP Setup"))
-		self.skinName = "NetworkServiceSetup"
-		self['lab1'] = Label(_("Autostart:"))
-		self['labactive'] = Label(_(_("Disabled")))
-		self['lab2'] = Label(_("Current Status:"))
-		self['labstop'] = Label(_("Stopped"))
-		self['labrun'] = Label(_("Running"))
-		self['key_red'] = Label(_("Stop"))
-		self['key_green'] = Label(_("Start"))
-		self['key_yellow'] = Label(_("Autostart"))
-		self['key_blue'] = Label()
-		self.Console = Console()
-		self.my_Samba_active = False
-		self.my_Samba_run = False
-		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.AfpStop, 'green': self.AfpStart, 'yellow': self.activateAfp})
-		self.onLayoutFinish.append(self.updateAfp)
-
-	def AfpStart(self):
-		if self.my_afp_run == False:
-			self.Console.ePopen('/etc/init.d/atalk start')
-			time.sleep(3)
-			self.updateAfp()
-		elif self.my_afp_run == True:
-			self.Console.ePopen('/etc/init.d/atalk restart')
-			time.sleep(3)
-			self.updateAfp()
-
-	def AfpStop(self):
-		if self.my_afp_run == True:
-			self.Console.ePopen('/etc/init.d/atalk stop')
-			time.sleep(3)
-			self.updateAfp()
-
-	def activateAfp(self):
-		if config.network.AFP_autostart.value:
-			config.network.AFP_autostart.setValue(False)
-		else:
-			config.network.AFP_autostart.setValue(True)
-		config.network.AFP_autostart.save()
-		configfile.save()
-		self.updateAfp()
-
-	def updateAfp(self):
-		import process
-		p = process.ProcessList()
-		afp_process = str(p.named('afpd')).strip('[]')
- 		self['labrun'].hide()
-		self['labstop'].hide()
-		self.my_afp_run = False
-		if config.network.AFP_autostart.value:
-			self['labactive'].setText(_("Enabled"))
-			self['labactive'].show()
-			try:
-				symlink('/etc/init.d/samba', '/etc/rc0.d/K20atalk')
-				symlink('/etc/init.d/samba', '/etc/rc1.d/K20atalk')
-				symlink('/etc/init.d/samba', '/etc/rc2.d/S20atalk')
-				symlink('/etc/init.d/samba', '/etc/rc3.d/S20atalk')
-				symlink('/etc/init.d/samba', '/etc/rc4.d/S20atalk')
-				symlink('/etc/init.d/samba', '/etc/rc5.d/S20atalk')
-				symlink('/etc/init.d/samba', '/etc/rc6.d/K20atalk')
-			except:
-				pass
-		elif not config.network.AFP_autostart.value:
-			self['labactive'].setText(_("Disabled"))
-			self['labactive'].show()
-			try:
-				unlink('/etc/rc0.d/K20atalk')
-				unlink('/etc/rc1.d/K20atalk')
-				unlink('/etc/rc2.d/S20atalk')
-				unlink('/etc/rc3.d/S20atalk')
-				unlink('/etc/rc4.d/S20atalk')
-				unlink('/etc/rc5.d/S20atalk')
-				unlink('/etc/rc6.d/K20atalk')
-			except:
-				pass
-		if afp_process:
-			self.my_afp_run = True
-		if self.my_afp_run == True:
-			self['labstop'].hide()
-			self['labactive'].show()
-			self['labrun'].show()
-			self['key_green'].setText(_("Restart"))
-		else:
-			self['labrun'].hide()
-			self['labstop'].show()
-			self['labactive'].show()
-			self['key_green'].setText(_("Start"))
-
 class NetworkNfs(Screen):
 	skin = """
 		<screen position="center,center" size="420,310" title="NFS Setup">
@@ -1726,32 +1644,34 @@ class NetworkNfs(Screen):
 			self.updateNfs()
 
 	def Nfsset(self):
-		if config.network.NFS_autostart.value:
-			config.network.NFS_autostart.setValue(False)
-			try:
-				unlink('/etc/rc0.d/K20nfsserver')
-				unlink('/etc/rc1.d/K20nfsserver')
-				unlink('/etc/rc2.d/S20nfsserver')
-				unlink('/etc/rc3.d/S20nfsserver')
-				unlink('/etc/rc4.d/S20nfsserver')
-				unlink('/etc/rc5.d/S20nfsserver')
-				unlink('/etc/rc6.d/K20nfsserver')
-			except:
-				pass
+		if fileExists('/etc/rc0.d/K20nfsserver'):
+			unlink('/etc/rc0.d/K20nfsserver')
 		else:
-			config.network.NFS_autostart.setValue(True)
-			try:
-				symlink('/etc/init.d/samba', '/etc/rc0.d/K20nfsserver')
-				symlink('/etc/init.d/samba', '/etc/rc1.d/K20nfsserver')
-				symlink('/etc/init.d/samba', '/etc/rc2.d/S20nfsserver')
-				symlink('/etc/init.d/samba', '/etc/rc3.d/S20nfsserver')
-				symlink('/etc/init.d/samba', '/etc/rc4.d/S20nfsserver')
-				symlink('/etc/init.d/samba', '/etc/rc5.d/S20nfsserver')
-				symlink('/etc/init.d/samba', '/etc/rc6.d/K20nfsserver')
-			except:
-				pass
-		config.network.NFS_autostart.save()
-		configfile.save()
+			symlink('/etc/init.d/nfsserver', '/etc/rc0.d/K20nfsserver')
+		if fileExists('/etc/rc1.d/K20nfsserver'):
+			unlink('/etc/rc1.d/K20nfsserver')
+		else:
+			symlink('/etc/init.d/nfsserver', '/etc/rc1.d/K20nfsserver')
+		if fileExists('/etc/rc2.d/S20nfsserver'):
+			unlink('/etc/rc2.d/S20nfsserver')
+		else:
+			symlink('/etc/init.d/nfsserver', '/etc/rc2.d/S20nfsserver')
+		if fileExists('/etc/rc3.d/S20nfsserver'):
+			unlink('/etc/rc3.d/S20nfsserver')
+		else:
+			symlink('/etc/init.d/nfsserver', '/etc/rc3.d/S20nfsserver')
+		if fileExists('/etc/rc4.d/S20nfsserver'):
+			unlink('/etc/rc4.d/S20nfsserver')
+		else:
+			symlink('/etc/init.d/nfsserver', '/etc/rc4.d/S20nfsserver')
+		if fileExists('/etc/rc5.d/S20nfsserver'):
+			unlink('/etc/rc5.d/S20nfsserver')
+		else:
+			symlink('/etc/init.d/nfsserver', '/etc/rc5.d/S20nfsserver')
+		if fileExists('/etc/rc6.d/K20nfsserver'):
+			unlink('/etc/rc6.d/K20nfsserver')
+		else:
+			symlink('/etc/init.d/nfsserver', '/etc/rc6.d/K20nfsserver')
 		self.updateNfs()
 
 	def updateNfs(self):
@@ -1835,32 +1755,34 @@ class NetworkOpenvpn(Screen):
 			self.updatemy_Vpn()
 
 	def activateVpn(self):
-		if config.network.OpenVPN_autostart.value:
-			config.network.OpenVPN_autostart.setValue(False)
-			try:
-				unlink('/etc/rc0.d/K20openvpn')
-				unlink('/etc/rc1.d/K20openvpn')
-				unlink('/etc/rc2.d/S20openvpn')
-				unlink('/etc/rc3.d/S20openvpn')
-				unlink('/etc/rc4.d/S20openvpn')
-				unlink('/etc/rc5.d/S20openvpn')
-				unlink('/etc/rc6.d/K20openvpn')
-			except:
-				pass
+		if fileExists('/etc/rc0.d/K20openvpn'):
+			unlink('/etc/rc0.d/K20openvpn')
 		else:
-			config.network.OpenVPN_autostart.setValue(True)
-			try:
-				symlink('/etc/init.d/samba', '/etc/rc0.d/K20openvpn')
-				symlink('/etc/init.d/samba', '/etc/rc1.d/K20openvpn')
-				symlink('/etc/init.d/samba', '/etc/rc2.d/S20openvpn')
-				symlink('/etc/init.d/samba', '/etc/rc3.d/S20openvpn')
-				symlink('/etc/init.d/samba', '/etc/rc4.d/S20openvpn')
-				symlink('/etc/init.d/samba', '/etc/rc5.d/S20openvpn')
-				symlink('/etc/init.d/samba', '/etc/rc6.d/K20openvpn')
-			except:
-				pass
-		config.network.OpenVPN_autostart.save()
-		configfile.save()
+			symlink('/etc/init.d/openvpn', '/etc/rc0.d/K20openvpn')
+		if fileExists('/etc/rc1.d/K20openvpn'):
+			unlink('/etc/rc1.d/K20openvpn')
+		else:
+			symlink('/etc/init.d/openvpn', '/etc/rc1.d/K20openvpn')
+		if fileExists('/etc/rc2.d/S20openvpn'):
+			unlink('/etc/rc2.d/S20openvpn')
+		else:
+			symlink('/etc/init.d/openvpn', '/etc/rc2.d/S20openvpn')
+		if fileExists('/etc/rc3.d/S20openvpn'):
+			unlink('/etc/rc3.d/S20openvpn')
+		else:
+			symlink('/etc/init.d/openvpn', '/etc/rc3.d/S20openvpn')
+		if fileExists('/etc/rc4.d/S20openvpn'):
+			unlink('/etc/rc4.d/S20openvpn')
+		else:
+			symlink('/etc/init.d/openvpn', '/etc/rc4.d/S20openvpn')
+		if fileExists('/etc/rc5.d/S20openvpn'):
+			unlink('/etc/rc5.d/S20openvpn')
+		else:
+			symlink('/etc/init.d/openvpn', '/etc/rc5.d/S20openvpn')
+		if fileExists('/etc/rc6.d/K20openvpn'):
+			unlink('/etc/rc6.d/K20openvpn')
+		else:
+			symlink('/etc/init.d/openvpn', '/etc/rc6.d/K20openvpn')
 		self.updateVpn()
 
 	def updateVpn(self):
@@ -1967,32 +1889,34 @@ class NetworkSamba(Screen):
 			self.updateSamba()
 
 	def activateSamba(self):
-		if config.network.Samba_autostart.value:
-			config.network.Samba_autostart.setValue(False)
-			try:
-				unlink('/etc/rc0.d/K20samba')
-				unlink('/etc/rc1.d/K20samba')
-				unlink('/etc/rc2.d/S20samba')
-				unlink('/etc/rc3.d/S20samba')
-				unlink('/etc/rc4.d/S20samba')
-				unlink('/etc/rc5.d/S20samba')
-				unlink('/etc/rc6.d/K20samba')
-			except:
-				pass
+		if fileExists('/etc/rc0.d/K20samba'):
+			unlink('/etc/rc0.d/K20samba')
 		else:
-			config.network.Samba_autostart.setValue(True)
-			try:
-				symlink('/etc/init.d/samba', '/etc/rc0.d/K20samba')
-				symlink('/etc/init.d/samba', '/etc/rc1.d/K20samba')
-				symlink('/etc/init.d/samba', '/etc/rc2.d/S20samba')
-				symlink('/etc/init.d/samba', '/etc/rc3.d/S20samba')
-				symlink('/etc/init.d/samba', '/etc/rc4.d/S20samba')
-				symlink('/etc/init.d/samba', '/etc/rc5.d/S20samba')
-				symlink('/etc/init.d/samba', '/etc/rc6.d/K20samba')
-			except:
-				pass
-		config.network.Samba_autostart.save()
-		configfile.save()
+			symlink('/etc/init.d/samba', '/etc/rc0.d/K20samba')
+		if fileExists('/etc/rc1.d/K20samba'):
+			unlink('/etc/rc1.d/K20samba')
+		else:
+			symlink('/etc/init.d/samba', '/etc/rc1.d/K20samba')
+		if fileExists('/etc/rc2.d/S20samba'):
+			unlink('/etc/rc2.d/S20samba')
+		else:
+			symlink('/etc/init.d/samba', '/etc/rc2.d/S20samba')
+		if fileExists('/etc/rc3.d/S20samba'):
+			unlink('/etc/rc3.d/S20samba')
+		else:
+			symlink('/etc/init.d/samba', '/etc/rc3.d/S20samba')
+		if fileExists('/etc/rc4.d/S20samba'):
+			unlink('/etc/rc4.d/S20samba')
+		else:
+			symlink('/etc/init.d/samba', '/etc/rc4.d/S20samba')
+		if fileExists('/etc/rc5.d/S20samba'):
+			unlink('/etc/rc5.d/S20samba')
+		else:
+			symlink('/etc/init.d/samba', '/etc/rc5.d/S20samba')
+		if fileExists('/etc/rc6.d/K20samba'):
+			unlink('/etc/rc6.d/K20samba')
+		else:
+			symlink('/etc/init.d/samba', '/etc/rc6.d/K20samba')
 		self.updateSamba()
 
 	def updateSamba(self):
@@ -2043,6 +1967,90 @@ class NetworkSambaLog(Screen):
 			f.close()
 			remove('/tmp/tmp.log')
 		self['infotext'].setText(strview)
+
+class NetworkTelnet(Screen):
+	skin = """
+		<screen position="center,center" size="340,310" title="Telnet Setup">
+			<widget name="lab1" position="20,30" size="300,80" font="Regular;20" valign="center" transparent="1"/>
+			<widget name="lab2" position="20,150" size="150,30" font="Regular;20" valign="center" transparent="1"/>
+			<widget name="labstop" position="170,150" size="100,30" font="Regular;20" valign="center"  halign="center" backgroundColor="red"/>
+			<widget name="labrun" position="170,150" size="100,30" zPosition="1" font="Regular;20" valign="center"  halign="center" backgroundColor="green"/>
+			<ePixmap pixmap="skin_default/buttons/red.png" position="20,260" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/green.png" position="180,260" size="140,40" alphatest="on" />
+			<widget name="key_red" position="20,260" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+			<widget name="key_green" position="180,260" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+		</screen>"""
+
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		Screen.setTitle(self, _("Telnet Setup"))
+		self['lab1'] = Label(_("You can disable Telnet Server and use ssh to login."))
+		self['lab2'] = Label(_("Current Status:"))
+		self['labstop'] = Label(_("Stopped"))
+		self['labrun'] = Label(_("Running"))
+		self['key_green'] = Label(_("Enable"))
+		self['key_red'] = Label(_("Disable"))
+		self.Console = Console()
+		self.my_telnet_active = False
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.TelnetStop, 'green': self.TelnetStart})
+		self.onLayoutFinish.append(self.updateTelnet)
+
+	def TelnetStart(self):
+		if self.my_telnet_active == False:
+			if fileExists('/etc/inetd.conf'):
+				inme = open('/etc/inetd.conf', 'r')
+				out = open('/etc/inetd.tmp', 'w')
+				for line in inme.readlines():
+					if line.find('telnetd') != -1:
+						line = line.replace('#', '')
+					out.write(line)
+				out.close()
+				inme.close()
+			if fileExists('/etc/inetd.tmp'):
+				move('/etc/inetd.tmp', '/etc/inetd.conf')
+				self.Console.ePopen('killall -HUP inetd')
+				self.Console.ePopen('ps')
+				mybox = self.session.open(MessageBox, _("Telnet service Enabled."), MessageBox.TYPE_INFO)
+				mybox.setTitle(_("Info"))
+				self.updateTelnet()
+
+	def TelnetStop(self):
+		if self.my_telnet_active == True:
+			if fileExists('/etc/inetd.conf'):
+				inme = open('/etc/inetd.conf', 'r')
+				out = open('/etc/inetd.tmp', 'w')
+				for line in inme.readlines():
+					if line.find('telnetd') != -1:
+						line = '#' + line
+					out.write(line)
+				out.close()
+				inme.close()
+			if fileExists('/etc/inetd.tmp'):
+				move('/etc/inetd.tmp', '/etc/inetd.conf')
+				self.Console.ePopen('killall -HUP inetd')
+				self.Console.ePopen('ps')
+				mybox = self.session.open(MessageBox, _("Telnet service Disabled."), MessageBox.TYPE_INFO)
+				mybox.setTitle(_("Info"))
+				self.updateTelnet()
+
+	def updateTelnet(self):
+		self['labrun'].hide()
+		self['labstop'].hide()
+		self.my_telnet_active = False
+		if fileExists('/etc/inetd.conf'):
+			f = open('/etc/inetd.conf', 'r')
+			for line in f.readlines():
+				parts = line.strip().split()
+				if parts[0] == 'telnet':
+					self.my_telnet_active = True
+					continue
+			f.close()
+		if self.my_telnet_active == True:
+			self['labstop'].hide()
+			self['labrun'].show()
+		else:
+			self['labstop'].show()
+			self['labrun'].hide()
 
 class NetworkInadyn(Screen):
 	skin = """
@@ -2106,47 +2114,50 @@ class NetworkInadyn(Screen):
 
 	def InadynStart(self):
 		if self.my_inadyn_run == False:
-			self.Console.ePopen('/etc/init.d/inadyn-daemon start')
+			self.Console.ePopen('/etc/init.d/inadyn-mt start')
 			time.sleep(3)
 			self.updateIna()
 		elif self.my_inadyn_run == True:
-			self.Console.ePopen('/etc/init.d/inadyn-daemon stop')
+			self.Console.ePopen('/etc/init.d/inadyn-mt stop')
 			time.sleep(3)
 			self.updateIna()
 
 	def autostart(self):
-		if config.network.Inadyn_autostart.value:
-			config.network.Inadyn_autostart.setValue(False)
-			try:
-				unlink('/etc/rc0.d/K20inadyn-daemon')
-				unlink('/etc/rc1.d/K20inadyn-daemon')
-				unlink('/etc/rc2.d/S20inadyn-daemon')
-				unlink('/etc/rc3.d/S20inadyn-daemon')
-				unlink('/etc/rc4.d/S20inadyn-daemon')
-				unlink('/etc/rc5.d/S20inadyn-daemon')
-				unlink('/etc/rc6.d/K20inadyn-daemon')
-			except:
-				pass
+		if fileExists('/etc/rc0.d/K20inadyn-mt'):
+			unlink('/etc/rc0.d/K20inadyn-mt')
 		else:
-			config.network.Inadyn_autostart.setValue(True)
-			try:
-				symlink('/etc/init.d/samba', '/etc/rc0.d/K20inadyn-daemon')
-				symlink('/etc/init.d/samba', '/etc/rc1.d/K20inadyn-daemon')
-				symlink('/etc/init.d/samba', '/etc/rc2.d/S20inadyn-daemon')
-				symlink('/etc/init.d/samba', '/etc/rc3.d/S20inadyn-daemon')
-				symlink('/etc/init.d/samba', '/etc/rc4.d/S20inadyn-daemon')
-				symlink('/etc/init.d/samba', '/etc/rc5.d/S20inadyn-daemon')
-				symlink('/etc/init.d/samba', '/etc/rc6.d/K20inadyn-daemon')
-			except:
-				pass
-		config.network.Inadyn_autostart.save()
-		configfile.save()
+			symlink('/etc/init.d/inadyn-mt', '/etc/rc0.d/K20inadyn-mt')
+		if fileExists('/etc/rc1.d/K20inadyn-mt'):
+			unlink('/etc/rc1.d/K20inadyn-mt')
+		else:
+			symlink('/etc/init.d/inadyn-mt', '/etc/rc1.d/K20inadyn-mt')
+		if fileExists('/etc/rc2.d/S20inadyn-mt'):
+			unlink('/etc/rc2.d/S20inadyn-mt')
+		else:
+			symlink('/etc/init.d/inadyn-mt', '/etc/rc2.d/S20inadyn-mt')
+		if fileExists('/etc/rc3.d/S20inadyn-mt'):
+			unlink('/etc/rc3.d/S20inadyn-mt')
+		else:
+			symlink('/etc/init.d/inadyn-mt', '/etc/rc3.d/S20inadyn-mt')
+		if fileExists('/etc/rc4.d/S20inadyn-mt'):
+			unlink('/etc/rc4.d/S20inadyn-mt')
+		else:
+			symlink('/etc/init.d/inadyn-mt', '/etc/rc4.d/S20inadyn-mt')
+		if fileExists('/etc/rc5.d/S20inadyn-mt'):
+			unlink('/etc/rc5.d/S20inadyn-mt')
+		else:
+			symlink('/etc/init.d/inadyn-mt', '/etc/rc5.d/S20inadyn-mt')
+		if fileExists('/etc/rc6.d/K20inadyn-mt'):
+			unlink('/etc/rc6.d/K20inadyn-mt')
+		else:
+			symlink('/etc/init.d/inadyn-mt', '/etc/rc6.d/K20inadyn-mt')
+
 		self.updateIna()
 
 	def updateIna(self):
 		import process
 		p = process.ProcessList()
-		inadyn_process = str(p.named('inadyn')).strip('[]')
+		inadyn_process = str(p.named('inadyn-mt')).strip('[]')
 		self['labrun'].hide()
 		self['labstop'].hide()
 		self['labactive'].hide()
@@ -2154,7 +2165,7 @@ class NetworkInadyn(Screen):
 		self['sactive'].hide()
 		self.my_inadyn_active = False
 		self.my_inadyn_run = False
-		if fileExists('/etc/rc3.d/S20inadyn-daemon'):
+		if fileExists('/etc/rc3.d/S20inadyn-mt'):
 			self['labdisabled'].hide()
 			self['labactive'].show()
 			self.my_inadyn_active = True
@@ -2448,86 +2459,34 @@ class NetworkuShare(Screen):
 			self.updateuShare()
 
 	def autostart(self):
-		if config.network.uShare_autostart.value:
-			config.network.uShare_autostart.setValue(False)
-			try:
-				unlink('/etc/rc0.d/K20ushare')
-				unlink('/etc/rc1.d/K20ushare')
-				unlink('/etc/rc2.d/S20ushare')
-				unlink('/etc/rc3.d/S20ushare')
-				unlink('/etc/rc4.d/S20ushare')
-				unlink('/etc/rc5.d/S20ushare')
-				unlink('/etc/rc6.d/K20ushare')
-			except:
-				pass
-		else:
-			config.network.uShare_autostart.setValue(True)
-			try:
-				symlink('/etc/init.d/samba', '/etc/rc0.d/K20ushare')
-				symlink('/etc/init.d/samba', '/etc/rc1.d/K20ushare')
-				symlink('/etc/init.d/samba', '/etc/rc2.d/S20ushare')
-				symlink('/etc/init.d/samba', '/etc/rc3.d/S20ushare')
-				symlink('/etc/init.d/samba', '/etc/rc4.d/S20ushare')
-				symlink('/etc/init.d/samba', '/etc/rc5.d/S20ushare')
-				symlink('/etc/init.d/samba', '/etc/rc6.d/K20ushare')
-			except:
-				pass
-		config.network.uShare_autostart.save()
-		configfile.save()
-
-
 		if fileExists('/etc/rc0.d/K20ushare'):
 			unlink('/etc/rc0.d/K20ushare')
-			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/ushare', '/etc/rc0.d/K20ushare')
-			mymess = _("Autostart Enabled.")
-
 		if fileExists('/etc/rc1.d/K20ushare'):
 			unlink('/etc/rc1.d/K20ushare')
-			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/ushare', '/etc/rc1.d/K20ushare')
-			mymess = _("Autostart Enabled.")
-
 		if fileExists('/etc/rc2.d/S20ushare'):
 			unlink('/etc/rc2.d/S20ushare')
-			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/ushare', '/etc/rc2.d/S20ushare')
-			mymess = _("Autostart Enabled.")
-
 		if fileExists('/etc/rc3.d/S20ushare'):
 			unlink('/etc/rc3.d/S20ushare')
-			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/ushare', '/etc/rc3.d/S20ushare')
-			mymess = _("Autostart Enabled.")
-
 		if fileExists('/etc/rc4.d/S20ushare'):
 			unlink('/etc/rc4.d/S20ushare')
-			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/ushare', '/etc/rc4.d/S20ushare')
-			mymess = _("Autostart Enabled.")
-
 		if fileExists('/etc/rc5.d/S20ushare'):
 			unlink('/etc/rc5.d/S20ushare')
-			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/ushare', '/etc/rc5.d/S20ushare')
-			mymess = _("Autostart Enabled.")
-
 		if fileExists('/etc/rc6.d/K20ushare'):
 			unlink('/etc/rc6.d/K20ushare')
-			mymess = _("Autostart Disabled.")
 		else:
 			symlink('/etc/init.d/ushare', '/etc/rc6.d/K20ushare')
-			mymess = _("Autostart Enabled.")
-
-		open('/tmp/uShare.log', "a").write(mymess + '\n')
-		mybox = self.session.open(MessageBox, mymess, MessageBox.TYPE_INFO, timeout = 10)
-		mybox.setTitle(_("Info"))
 		self.updateuShare()
 
 	def updateuShare(self):
@@ -2637,7 +2596,7 @@ class NetworkuShareSetup(Screen, ConfigListScreen):
 		Screen.setTitle(self, _("uShare Setup"))
 		self['key_red'] = Label(_("Save"))
 		self['key_green'] = Label(_("Shares"))
-		self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'VirtualKeyboardActions'], {'red': self.saveIna, 'green': self.selectfolders, 'back': self.close, 'showVirtualKeyboard': self.KeyText})
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'VirtualKeyboardActions'], {'red': self.saveuShare, 'green': self.selectfolders, 'back': self.close, 'showVirtualKeyboard': self.KeyText})
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self.updateList()
@@ -2730,7 +2689,7 @@ class NetworkuShareSetup(Screen, ConfigListScreen):
 			self["config"].getCurrent()[1].setValue(callback)
 			self["config"].invalidate(self["config"].getCurrent())
 
-	def saveIna(self):
+	def saveuShare(self):
 		if fileExists('/etc/ushare.conf'):
 			inme = open('/etc/ushare.conf', 'r')
 			out = open('/etc/ushare.conf.tmp', 'w')
@@ -2770,6 +2729,7 @@ class NetworkuShareSetup(Screen, ConfigListScreen):
 			out.close()
 			inme.close()
 		else:
+			open('/tmp/uShare.log', "a").write(_("Sorry uShare Config is Missing") + '\n')
 			self.session.open(MessageBox, _("Sorry uShare Config is Missing"), MessageBox.TYPE_INFO)
 			self.close()
 		if fileExists('/etc/ushare.conf.tmp'):
@@ -2871,7 +2831,7 @@ class uShareSelection(Screen):
 
 class NetworkuShareLog(Screen):
 	skin = """
-		<screen position="80,100" size="560,400" title="Samba Log">
+		<screen position="80,100" size="560,400">
 				<widget name="infotext" position="10,10" size="540,380" font="Regular;18" />
 		</screen>"""
 
@@ -2884,6 +2844,465 @@ class NetworkuShareLog(Screen):
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'up': self['infotext'].pageUp, 'down': self['infotext'].pageDown})
 		strview = ''
 		self.Console.ePopen('tail /tmp/uShare.log > /tmp/tmp.log')
+		time.sleep(1)
+		if fileExists('/tmp/tmp.log'):
+			f = open('/tmp/tmp.log', 'r')
+			for line in f.readlines():
+				strview += line
+			f.close()
+			remove('/tmp/tmp.log')
+		self['infotext'].setText(strview)
+
+config.networkminidlna = ConfigSubsection();
+config.networkminidlna.mediafolders = NoSave(ConfigLocations(default=""))
+class NetworkMiniDLNA(Screen):
+	skin = """
+		<screen position="center,center" size="590,410" title="MiniDLNA Manager">
+			<widget name="autostart" position="10,0" size="100,24" font="Regular;20" valign="center" transparent="0" />
+			<widget name="labdisabled" position="110,0" size="100,24" font="Regular;20" valign="center" halign="center" backgroundColor="red" zPosition="1" />
+			<widget name="labactive" position="110,0" size="100,24" font="Regular;20" valign="center" halign="center" backgroundColor="green" zPosition="2" />
+			<widget name="status" position="240,0" size="150,24" font="Regular;20" valign="center" transparent="0" />
+			<widget name="labstop" position="390,0" size="100,24" font="Regular;20" valign="center" halign="center" backgroundColor="red" zPosition="1" />
+			<widget name="labrun" position="390,0" size="100,24" font="Regular;20" valign="center" halign="center" backgroundColor="green" zPosition="2"/>
+			<widget name="username" position="10,50" size="150,30" font="Regular;20" valign="center" transparent="1"/>
+			<widget name="labuser" position="160,50" size="310,30" font="Regular;20" valign="center" backgroundColor="#4D5375"/>
+			<widget name="iface" position="10,90" size="150,30" font="Regular;20" valign="center" transparent="1"/>
+			<widget name="labiface" position="160,90" size="310,30" font="Regular;20" valign="center" backgroundColor="#4D5375"/>
+			<widget name="port" position="10,130" size="150,30" font="Regular;20" valign="center" transparent="1"/>
+			<widget name="labport" position="160,130" size="310,30" font="Regular;20" valign="center" backgroundColor="#4D5375"/>
+			<widget name="serialno" position="10,170" size="150,30" font="Regular;20" valign="center" transparent="1"/>
+			<widget name="labserialno" position="160,170" size="310,30" font="Regular;20" valign="center" backgroundColor="#4D5375"/>
+			<widget name="sharedir" position="10,210" size="150,30" font="Regular;20" valign="center" transparent="1"/>
+			<widget name="labsharedir" position="160,210" size="310,90" font="Regular;20" valign="top" backgroundColor="#4D5375"/>
+			<widget name="inotify" position="10,300" size="180,30" font="Regular;20" valign="center" transparent="1"/>
+			<widget name="inotifyinactive" position="200,300" zPosition="1" pixmap="skin_default/icons/lock_off.png" size="32,32"  alphatest="on" />
+			<widget name="inotifyactive" position="200,300" zPosition="2" pixmap="skin_default/icons/lock_on.png" size="32,32"  alphatest="on" />
+			<widget name="tivo" position="10,330" size="180,30" font="Regular;20" valign="center" transparent="1"/>
+			<widget name="tivoinactive" position="200,330" zPosition="1" pixmap="skin_default/icons/lock_off.png" size="32,32"  alphatest="on" />
+			<widget name="tivoactive" position="200,330" zPosition="2" pixmap="skin_default/icons/lock_on.png" size="32,32"  alphatest="on" />
+			<widget name="dlna" position="250,300" size="200,30" font="Regular;20" valign="center" transparent="1"/>
+			<widget name="dlnainactive" position="470,300" zPosition="1" pixmap="skin_default/icons/lock_off.png" size="32,32"  alphatest="on" />
+			<widget name="dlnaactive" position="470,300" zPosition="2" pixmap="skin_default/icons/lock_on.png" size="32,32"  alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/red.png" position="0,360" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/green.png" position="150,360" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/yellow.png" position="300,360" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/blue.png" position="450,360" size="140,40" alphatest="on" />
+			<widget name="key_red" position="0,360" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+			<widget name="key_green" position="150,360" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+			<widget name="key_yellow" position="300,360" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
+			<widget name="key_blue" position="450,360" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
+		</screen>"""
+
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		Screen.setTitle(self, _("MiniDLNA Setup"))
+		self['autostart'] = Label(_("Autostart:"))
+		self['labactive'] = Label(_(_("Active")))
+		self['labdisabled'] = Label(_(_("Disabled")))
+		self['status'] = Label(_("Current Status:"))
+		self['labstop'] = Label(_("Stopped"))
+		self['labrun'] = Label(_("Running"))
+		self['username'] = Label(_("Name") + ":")
+		self['labuser'] = Label()
+		self['iface'] = Label(_("Interface") + ":")
+		self['labiface'] = Label()
+		self['port'] = Label(_("Port") + ":")
+		self['labport'] = Label()
+		self['serialno'] = Label(_("Serial No") + ":")
+		self['labserialno'] = Label()
+		self['sharedir'] = Label(_("Share Folder's") + ":")
+		self['labsharedir'] = Label()
+		self['inotify'] = Label(_("Inotify Monitoring") + ":")
+		self['inotifyactive'] = Pixmap()
+		self['inotifyinactive'] = Pixmap()
+		self['tivo'] = Label(_("TiVo support") + ":")
+		self['tivoactive'] = Pixmap()
+		self['tivoinactive'] = Pixmap()
+		self['dlna'] = Label(_("Strict DLNA") + ":")
+		self['dlnaactive'] = Pixmap()
+		self['dlnainactive'] = Pixmap()
+
+		self['key_red'] = Label(_("Setup"))
+		self['key_green'] = Label(_("Start"))
+		self['key_yellow'] = Label(_("Autostart"))
+		self['key_blue'] = Label(_("Show Log"))
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.setupin, 'back': self.close, 'red': self.setupin, 'green': self.MiniDLNAStart, 'yellow': self.autostart, 'blue': self.minidlnaLog})
+		self.Console = Console()
+		self.onLayoutFinish.append(self.updateMiniDLNA)
+
+	def MiniDLNAStart(self):
+		if self.my_minidlna_run == False:
+			self.Console.ePopen('/etc/init.d/minidlna start')
+			time.sleep(3)
+			self.updateMiniDLNA()
+		elif self.my_minidlna_run == True:
+			self.Console.ePopen('/etc/init.d/minidlna stop')
+			time.sleep(3)
+			self.updateMiniDLNA()
+
+	def autostart(self):
+		if fileExists('/etc/rc0.d/K20minidlna'):
+			unlink('/etc/rc0.d/K20minidlna')
+		else:
+			symlink('/etc/init.d/minidlna', '/etc/rc0.d/K20minidlna')
+		if fileExists('/etc/rc1.d/K20minidlna'):
+			unlink('/etc/rc1.d/K20minidlna')
+		else:
+			symlink('/etc/init.d/minidlna', '/etc/rc1.d/K20minidlna')
+		if fileExists('/etc/rc2.d/S20minidlna'):
+			unlink('/etc/rc2.d/S20minidlna')
+		else:
+			symlink('/etc/init.d/minidlna', '/etc/rc2.d/S20minidlna')
+		if fileExists('/etc/rc3.d/S20minidlna'):
+			unlink('/etc/rc3.d/S20minidlna')
+		else:
+			symlink('/etc/init.d/minidlna', '/etc/rc3.d/S20minidlna')
+		if fileExists('/etc/rc4.d/S20minidlna'):
+			unlink('/etc/rc4.d/S20minidlna')
+		else:
+			symlink('/etc/init.d/minidlna', '/etc/rc4.d/S20minidlna')
+		if fileExists('/etc/rc5.d/S20minidlna'):
+			unlink('/etc/rc5.d/S20minidlna')
+		else:
+			symlink('/etc/init.d/minidlna', '/etc/rc5.d/S20minidlna')
+		if fileExists('/etc/rc6.d/K20minidlna'):
+			unlink('/etc/rc6.d/K20minidlna')
+		else:
+			symlink('/etc/init.d/minidlna', '/etc/rc6.d/K20minidlna')
+		self.updateMiniDLNA()
+
+	def updateMiniDLNA(self):
+		import process
+		p = process.ProcessList()
+		minidlna_process = str(p.named('minidlna')).strip('[]')
+		self['labrun'].hide()
+		self['labstop'].hide()
+		self['labactive'].hide()
+		self['labdisabled'].hide()
+		self.my_minidlna_active = False
+		self.my_minidlna_run = False
+		if fileExists('/etc/rc3.d/S20minidlna'):
+			self['labdisabled'].hide()
+			self['labactive'].show()
+			self.my_minidlna_active = True
+		else:
+			self['labactive'].hide()
+			self['labdisabled'].show()
+		if minidlna_process:
+			self.my_minidlna_run = True
+		if self.my_minidlna_run == True:
+			self['labstop'].hide()
+			self['labrun'].show()
+			self['key_green'].setText(_("Stop"))
+		else:
+			self['labstop'].show()
+			self['labrun'].hide()
+			self['key_green'].setText(_("Start"))
+
+		if fileExists('/etc/minidlna.conf'):
+			f = open('/etc/minidlna.conf', 'r')
+			for line in f.readlines():
+				line = line.strip()
+				if line.startswith('friendly_name='):
+					line = line[14:]
+					self['labuser'].setText(line)
+				elif line.startswith('network_interface='):
+					line = line[18:]
+					self['labiface'].setText(line)
+				elif line.startswith('port='):
+					line = line[5:]
+					self['labport'].setText(line)
+				elif line.startswith('serial='):
+					line = line[7:]
+					self['labserialno'].setText(line)
+				elif line.startswith('media_dir='):
+					line = line[10:]
+					self.mediafolders = line
+					self['labsharedir'].setText(line)
+				elif line.startswith('inotify='):
+					if line[8:] == 'no':
+						self['inotifyactive'].hide()
+						self['inotifyinactive'].show()
+					else:
+						self['inotifyactive'].show()
+						self['inotifyinactive'].hide()
+				elif line.startswith('enable_tivo='):
+					if line[12:] == 'no':
+						self['tivoactive'].hide()
+						self['tivoinactive'].show()
+					else:
+						self['tivoactive'].show()
+						self['tivoinactive'].hide()
+				elif line.startswith('strict_dlna='):
+					if line[12:] == 'no':
+						self['dlnaactive'].hide()
+						self['dlnainactive'].show()
+					else:
+						self['dlnaactive'].show()
+						self['dlnainactive'].hide()
+			f.close()
+
+	def setupin(self):
+		self.session.openWithCallback(self.updateMiniDLNA, NetworkMiniDLNASetup)
+
+	def minidlnaLog(self):
+		self.session.open(NetworkMiniDLNALog)
+
+class NetworkMiniDLNASetup(Screen, ConfigListScreen):
+	skin = """
+		<screen name="MiniDLNASetup" position="center,center" size="440,400">
+			<widget name="config" position="10,10" size="420,240" scrollbarMode="showOnDemand" />
+			<widget name="HelpWindow" pixmap="skin_default/vkey_icon.png" position="440,390" size="440,350" transparent="1" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/red.png" position="0,360" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/green.png" position="150,360" size="140,40" alphatest="on" />
+			<widget name="key_red" position="0,360" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+			<widget name="key_green" position="150,360" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+			<ePixmap pixmap="skin_default/buttons/key_text.png" position="320,366" zPosition="4" size="35,25" alphatest="on" transparent="1" />
+		</screen>"""
+
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		Screen.setTitle(self, _("MiniDLNA Setup"))
+		self.onChangedEntry = [ ]
+		self.list = []
+		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
+		Screen.setTitle(self, _("MiniDLNA Setup"))
+		self['key_red'] = Label(_("Save"))
+		self['key_green'] = Label(_("Shares"))
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'VirtualKeyboardActions'], {'red': self.saveMinidlna, 'green': self.selectfolders, 'back': self.close, 'showVirtualKeyboard': self.KeyText})
+		self["HelpWindow"] = Pixmap()
+		self["HelpWindow"].hide()
+		self.updateList()
+
+	def updateList(self, ret=None):
+		self.list = []
+		self.minidlna_name = NoSave(ConfigText(default=config.misc.boxtype.value,fixed_size=False))
+		self.minidlna_iface = NoSave(ConfigText(fixed_size=False))
+		self.minidlna_port = NoSave(ConfigNumber())
+		self.minidlna_serialno = NoSave(ConfigNumber())
+		self.minidlna_web = NoSave(ConfigYesNo(default='True'))
+		self.minidlna_inotify = NoSave(ConfigYesNo(default='True'))
+		self.minidlna_tivo= NoSave(ConfigYesNo(default='True'))
+		self.minidlna_strictdlna= NoSave(ConfigYesNo(default='True'))
+
+		if fileExists('/etc/minidlna.conf'):
+			f = open('/etc/minidlna.conf', 'r')
+			for line in f.readlines():
+				line = line.strip()
+				if line.startswith('friendly_name='):
+					line = line[14:]
+					self.minidlna_name.value = line
+					minidlna_name1 = getConfigListEntry(_("Name") + ":", self.minidlna_name)
+					self.list.append(minidlna_name1)
+				elif line.startswith('network_interface='):
+					line = line[18:]
+					self.minidlna_iface.value = line
+					minidlna_iface1 = getConfigListEntry(_("Interface") + ":", self.minidlna_iface)
+					self.list.append(minidlna_iface1)
+				elif line.startswith('port='):
+					line = line[5:]
+					self.minidlna_port.value = line
+					minidlna_port1 = getConfigListEntry(_("Port") + ":", self.minidlna_port)
+					self.list.append(minidlna_port1)
+				elif line.startswith('serial='):
+					line = line[7:]
+					self.minidlna_serialno.value = line
+					minidlna_serialno1 = getConfigListEntry(_("Serial No") + ":", self.minidlna_serialno)
+					self.list.append(minidlna_serialno1)
+				elif line.startswith('inotify='):
+					if line[8:] == 'no':
+						self.minidlna_inotify.value = False
+					else:
+						self.minidlna_inotify.value = True
+					minidlna_inotify1 = getConfigListEntry(_("Inotify Monitoring") + ":", self.minidlna_inotify)
+					self.list.append(minidlna_inotify1)
+				elif line.startswith('enable_tivo='):
+					if line[12:] == 'no':
+						self.minidlna_tivo.value = False
+					else:
+						self.minidlna_tivo.value = True
+					minidlna_tivo1 = getConfigListEntry(_("TiVo support") + ":", self.minidlna_tivo)
+					self.list.append(minidlna_tivo1)
+				elif line.startswith('strict_dlna='):
+					if line[12:] == 'no':
+						self.minidlna_strictdlna.value = False
+					else:
+						self.minidlna_strictdlna.value = True
+					minidlna_strictdlna1 = getConfigListEntry(_("Strict DLNA") + ":", self.minidlna_strictdlna)
+					self.list.append(minidlna_strictdlna1)
+			f.close()
+		self['config'].list = self.list
+		self['config'].l.setList(self.list)
+
+	def changedEntry(self):
+		for x in self.onChangedEntry:
+			x()
+
+	def getCurrentEntry(self):
+		return self["config"].getCurrent()[0]
+
+	def KeyText(self):
+		sel = self['config'].getCurrent()
+		if sel:
+			self.vkvar = sel[0]
+			if self.vkvar == _("Name") + ":" or self.vkvar == _("Share Folder's") + ":":
+				from Screens.VirtualKeyBoard import VirtualKeyBoard
+				self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title = self["config"].getCurrent()[0], text = self["config"].getCurrent()[1].getValue())
+
+	def VirtualKeyBoardCallback(self, callback = None):
+		if callback is not None and len(callback):
+			self["config"].getCurrent()[1].setValue(callback)
+			self["config"].invalidate(self["config"].getCurrent())
+
+	def saveMinidlna(self):
+		if fileExists('/etc/minidlna.conf'):
+			inme = open('/etc/minidlna.conf', 'r')
+			out = open('/etc/minidlna.conf.tmp', 'w')
+			for line in inme.readlines():
+				line = line.replace('\n', '')
+				if line.startswith('friendly_name='):
+					line = ('friendly_name=' + self.minidlna_name.value.strip())
+				elif line.startswith('network_interface='):
+					line = ('network_interface=' + self.minidlna_iface.value.strip())
+				elif line.startswith('port='):
+					line = ('port=' + str(self.minidlna_port.value))
+				elif line.startswith('serial='):
+					line = ('serial=' + str(self.minidlna_serialno.value))
+				elif line.startswith('media_dir='):
+					line = ('media_dir=' + ', '.join( config.networkminidlna.mediafolders.value ))
+				elif line.startswith('inotify='):
+					if not self.minidlna_inotify.value:
+						line = 'inotify=no'
+					else:
+						line = 'inotify=yes'
+				elif line.startswith('enable_tivo='):
+					if not self.minidlna_tivo.value:
+						line = 'enable_tivo=no'
+					else:
+						line = 'enable_tivo=yes'
+				elif line.startswith('strict_dlna='):
+					if not self.minidlna_strictdlna.value:
+						line = 'strict_dlna=no'
+					else:
+						line = 'strict_dlna=yes'
+				out.write((line + '\n'))
+			out.close()
+			inme.close()
+		else:
+			self.session.open(MessageBox, _("Sorry MiniDLNA Config is Missing"), MessageBox.TYPE_INFO)
+			self.close()
+		if fileExists('/etc/minidlna.conf.tmp'):
+			rename('/etc/minidlna.conf.tmp', '/etc/minidlna.conf')
+		self.myStop()
+
+	def myStop(self):
+		self.close()
+
+	def selectfolders(self):
+		self.session.openWithCallback(self.updateList,MiniDLNASelection)
+
+class MiniDLNASelection(Screen):
+	skin = """
+		<screen name="MiniDLNASelection" position="center,center" size="560,400" zPosition="3" >
+			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
+			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+			<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+			<widget source="key_yellow" render="Label" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
+			<widget name="checkList" position="5,50" size="550,350" transparent="1" scrollbarMode="showOnDemand" />
+		</screen>"""
+
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		Screen.setTitle(self, _("Select folders"))
+		self["key_red"] = StaticText(_("Cancel"))
+		self["key_green"] = StaticText(_("Save"))
+		self["key_yellow"] = StaticText()
+		
+		if fileExists('/etc/minidlna.conf'):
+			f = open('/etc/minidlna.conf', 'r')
+			for line in f.readlines():
+				line = line.strip()
+				if line.startswith('media_dir='):
+					line = line[11:]
+					self.mediafolders = line
+		self.selectedFiles = [str(n) for n in self.mediafolders.split(', ')]
+		defaultDir = '/media/'
+		self.filelist = MultiFileSelectList(self.selectedFiles, defaultDir,showFiles = False )
+		self["checkList"] = self.filelist
+		
+		self["actions"] = ActionMap(["DirectionActions", "OkCancelActions", "ShortcutActions"],
+		{
+			"cancel": self.exit,
+			"red": self.exit,
+			"yellow": self.changeSelectionState,
+			"green": self.saveSelection,
+			"ok": self.okClicked,
+			"left": self.left,
+			"right": self.right,
+			"down": self.down,
+			"up": self.up
+		}, -1)
+		if not self.selectionChanged in self["checkList"].onSelectionChanged:
+			self["checkList"].onSelectionChanged.append(self.selectionChanged)
+		self.onLayoutFinish.append(self.layoutFinished)
+
+	def layoutFinished(self):
+		idx = 0
+		self["checkList"].moveToIndex(idx)
+		self.selectionChanged()
+
+	def selectionChanged(self):
+		current = self["checkList"].getCurrent()[0]
+		if current[2] is True:
+			self["key_yellow"].setText(_("Deselect"))
+		else:
+			self["key_yellow"].setText(_("Select"))
+		
+	def up(self):
+		self["checkList"].up()
+
+	def down(self):
+		self["checkList"].down()
+
+	def left(self):
+		self["checkList"].pageUp()
+
+	def right(self):
+		self["checkList"].pageDown()
+
+	def changeSelectionState(self):
+		self["checkList"].changeSelectionState()
+		self.selectedFiles = self["checkList"].getSelectedList()
+
+	def saveSelection(self):
+		self.selectedFiles = self["checkList"].getSelectedList()
+		config.networkminidlna.mediafolders.value = self.selectedFiles
+		self.close(None)
+
+	def exit(self):
+		self.close(None)
+
+	def okClicked(self):
+		if self.filelist.canDescent():
+			self.filelist.descent()
+
+class NetworkMiniDLNALog(Screen):
+	skin = """
+		<screen position="80,100" size="560,400">
+				<widget name="infotext" position="10,10" size="540,380" font="Regular;18" />
+		</screen>"""
+
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		self.skinName = "NetworkInadynLog"
+		Screen.setTitle(self, _("MiniDLNA Log"))
+		self['infotext'] = ScrollLabel('')
+		self.Console = Console()
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'up': self['infotext'].pageUp, 'down': self['infotext'].pageDown})
+		strview = ''
+		self.Console.ePopen('tail /var/volatile/log/minidlna.log > /tmp/tmp.log')
 		time.sleep(1)
 		if fileExists('/tmp/tmp.log'):
 			f = open('/tmp/tmp.log', 'r')

@@ -26,93 +26,91 @@ static std::string getSize(const char* file)
 
 static unsigned char *simple_resize_24(unsigned char *orgin, int ox, int oy, int dx, int dy)
 {
-	unsigned char *cr, *p, *l;
-	int i, j, k, ip;
-	cr = new unsigned char[dx * dy * 3];
+	unsigned char *cr = new unsigned char[dx * dy * 3];
 	if (cr == NULL)
 	{
 		eDebug("[Picload] Error malloc");
-		return(orgin);
+		return orgin;
 	}
-	l = cr;
-
-	for (j = 0; j < dy; j++,l += dx * 3)
+	unsigned char* k = cr;
+	for (int j = 0; j < dy; ++j)
 	{
-		p = orgin + (j * oy / dy * ox * 3);
-		for (i = 0, k = 0; i < dx; i++, k += 3)
+		const unsigned char* p = orgin + (j * oy / dy * ox) * 3;
+		for (int i = 0; i < dx; i++)
 		{
-			ip = i * ox / dx * 3;
-			l[k] = p[ip];
-			l[k+1] = p[ip + 1];
-			l[k+2] = p[ip + 2];
+			const unsigned char* ip = p + (i * ox / dx) * 3;
+			*k++ = ip[0];
+			*k++ = ip[1];
+			*k++ = ip[2];
 		}
 	}
 	delete [] orgin;
-	return(cr);
+	return cr;
 }
+
 static unsigned char *simple_resize_8(unsigned char *orgin, int ox, int oy, int dx, int dy)
 {
-	unsigned char *cr, *p, *l;
-	int i, j, k, ip;
-	cr = new unsigned char[dx * dy];
+	unsigned char* cr = new unsigned char[dx * dy];
 	if (cr == NULL)
 	{
 		eDebug("[Picload] Error malloc");
 		return(orgin);
 	}
-	l = cr;
-
-	for (j = 0; j < dy; j++,l += dx)
+	unsigned char* k = cr;
+	for (int j = 0; j < dy; ++j)
 	{
-		p = orgin + (j * oy / dy * ox);
-		for (i = 0, k = 0; i < dx; i++, k++)
+		const unsigned char* p = orgin + (j * oy / dy * ox);
+		for (int i = 0; i < dx; i++)
 		{
-			ip = i * ox / dx;
-			l[k] = p[ip];
+			*k++ = p[i * ox / dx];
 		}
 	}
 	delete [] orgin;
-	return(cr);
+	return cr;
 }
 
 static unsigned char *color_resize(unsigned char * orgin, int ox, int oy, int dx, int dy)
 {
-	unsigned char *cr, *p, *q;
-	int i, j, k, l, xa, xb, ya, yb;
-	int sq, r, g, b;
-	cr = new unsigned char[dx * dy * 3];
+	unsigned char* cr = new unsigned char[dx * dy * 3];
 	if (cr == NULL)
 	{
 		eDebug("[Picload] Error malloc");
-		return(orgin);
+		return orgin;
 	}
-	p = cr;
-
-	for (j = 0; j < dy; j++)
+	unsigned char* p = cr;
+	for (int j = 0; j < dy; j++)
 	{
-		for (i = 0; i < dx; i++, p += 3)
+		int ya = j * oy / dy;
+		int yb = (j + 1) * oy / dy; 
+		if (yb >= oy)
+			yb = oy - 1;
+		for (int i = 0; i < dx; i++, p += 3)
 		{
-			xa = i * ox / dx;
-			ya = j * oy / dy;
-			xb = (i + 1) * ox / dx; 
+			int xa = i * ox / dx;
+			int xb = (i + 1) * ox / dx; 
 			if (xb >= ox)
 				xb = ox - 1;
-			yb = (j + 1) * oy / dy; 
-			if (yb >= oy)
-				yb = oy - 1;
-			for (l = ya, r = 0, g = 0, b = 0, sq = 0; l <= yb; l++)
+			int r = 0;
+			int g = 0;
+			int b = 0;
+			int sq = 0;
+			for (int l = ya; l <= yb; l++)
 			{
-				q = orgin + ((l * ox + xa) * 3);
-				for (k = xa; k <= xb; k++, q += 3, sq++)
+				const unsigned char* q = orgin + ((l * ox + xa) * 3);
+				for (int k = xa; k <= xb; k++, q += 3, sq++)
 				{
-					r += q[0]; g += q[1]; b += q[2];
+					r += q[0];
+					g += q[1];
+					b += q[2];
 				}
 			}
-			p[0] = r / sq; p[1] = g / sq; p[2] = b / sq;
+			p[0] = r / sq;
+			p[1] = g / sq;
+			p[2] = b / sq;
 		}
 	}
 	delete [] orgin;
-	return(cr);
+	return cr;
 }
 
 //---------------------------------------------------------------------------------------------

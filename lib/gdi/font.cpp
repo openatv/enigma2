@@ -333,7 +333,7 @@ Font::~Font()
 }
 
 DEFINE_REF(eTextPara);
-int eTextPara::appendGlyph(Font *current_font, FT_Face current_face, FT_UInt glyphIndex, int flags, int rflags, int border)
+int eTextPara::appendGlyph(Font *current_font, FT_Face current_face, FT_UInt glyphIndex, int flags, int rflags, int border, bool last)
 {
 	int xadvance, top, left, width, height;
 	pGlyph ng;
@@ -357,6 +357,25 @@ int eTextPara::appendGlyph(Font *current_font, FT_Face current_face, FT_UInt gly
 		if (ng.borderimage)
 		{
 			xadvance = ng.borderimage->advance.x;
+			/* 
+			 * NOTE: our boundingbox calculation uses xadvance, and ignores glyph width.
+			 * This is fine for all glyphs, except the last one (i.e. rightmost, for left-to-right rendering)
+			 * For border glyphs, xadvance is significantly smaller than the glyph width.
+			 * In fact, border glyphs often have the same xadvance as normal glyphs, borders
+			 * are allowed to overlap.
+			 * As a result, the boundingbox is calculated too small, the actual glyphs won't
+			 * fit into it, and depending on the alignment, one of the borders on the sides 
+			 * will be cut off.
+			 * Ideally, the boundingbox calculation should be rewritten, to use both advance and glyph dimensions.
+			 * However, for now we adjust xadvance of the last glyph, so the current calculation will produce
+			 * a better fitting boundingbox for border glyphs.
+			 *
+			 * The compensation equals half of the difference between 'normal' glyph width, 
+			 * and border glyph width. (half the width difference is on the left, and half on the right 
+			 * of the glyph, we only need to compensate for the part on the right)
+			 * And since xadvance is in 16.16 units, we use (dW/2) << 16 = dW << 15
+			 */
+			if (last) xadvance += (((FT_BitmapGlyph)ng.borderimage)->bitmap.width - ((FT_BitmapGlyph)ng.image)->bitmap.width) << 15;
 			glyph = (FT_BitmapGlyph)ng.borderimage;
 		}
 		else if (ng.image)
@@ -808,9 +827,9 @@ nprint:				isprintable=0;
 				if (!index)
 					eDebug("unicode U+%4lx not present", chr);
 				else
-					appendGlyph(replacement_font, replacement_face, index, flags, rflags, border);
+					appendGlyph(replacement_font, replacement_face, index, flags, rflags, border, i == uc_visual.end() - 1);
 			} else
-				appendGlyph(current_font, current_face, index, flags, rflags, border);
+				appendGlyph(current_font, current_face, index, flags, rflags, border, i == uc_visual.end() - 1);
 		}
 	}
 	bboxValid=false;

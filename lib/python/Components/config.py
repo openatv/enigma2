@@ -205,11 +205,7 @@ class choicesList(object): # XXX: we might want a better name for this
 	def index(self, value):
 		try:
 			return self.__list__().index(value)
-		except IndexError:
-			print "[config.py] Index Error"
-			return 0
-		except ValueError:
-			print "[config.py] Index Error"
+		except (ValueError, IndexError):
 			# occurs e.g. when default is not in list
 			return 0
 
@@ -1675,9 +1671,13 @@ class Config(ConfigSubsection):
 	def saveToFile(self, filename):
 		text = self.pickle()
 		try:
-			f = open(filename, "w")
+			import os
+			f = open(filename + ".writing", "w")
 			f.write(text)
+			f.flush()
+			os.fsync(f.fileno())
 			f.close()
+			os.rename(filename + ".writing", filename)
 		except IOError:
 			print "Config: Couldn't write %s" % filename
 

@@ -21,6 +21,8 @@ class ServiceInfo(Converter, object):
 	FRAMERATE = 15
 	TRANSFERBPS = 16
 	HAS_HBBTV = 17
+	AUDIOTRACKS_AVAILABLE = 18
+	SUBTITLES_AVAILABLE = 19
 
 	def __init__(self, type):
 		Converter.__init__(self, type)
@@ -43,6 +45,8 @@ class ServiceInfo(Converter, object):
 				"Framerate": (self.FRAMERATE, (iPlayableService.evVideoSizeChanged,iPlayableService.evUpdatedInfo,)),
 				"TransferBPS": (self.TRANSFERBPS, (iPlayableService.evUpdatedInfo,)),
 				"HasHBBTV": (self.HAS_HBBTV, (iPlayableService.evUpdatedInfo,iPlayableService.evHBBTVInfo,)),
+				"AudioTracksAvailable": (self.AUDIOTRACKS_AVAILABLE, (iPlayableService.evUpdatedInfo,)),
+				"SubtitlesAvailable": (self.SUBTITLES_AVAILABLE, (iPlayableService.evUpdatedInfo,)),
 			}[type]
 
 	def getServiceInfoString(self, info, what, convert = lambda x: "%d" % x):
@@ -72,7 +76,7 @@ class ServiceInfo(Converter, object):
 				while idx < n:
 					i = audio.getTrackInfo(idx)
 					description = i.getDescription();
-					if "AC3" in description or "DTS" in description:
+					if "AC3" in description or "AC-3" in description or "DTS" in description:
 						return True
 					idx += 1
 			return False
@@ -85,6 +89,15 @@ class ServiceInfo(Converter, object):
 			return subservices and subservices.getNumberOfSubservices() > 0
 		elif self.type == self.HAS_HBBTV:
 			return info.getInfoString(iServiceInformation.sHBBTVUrl) != ""
+		elif self.type == self.AUDIOTRACKS_AVAILABLE:
+			audio = service.audioTracks()
+			return audio and audio.getNumberOfTracks() > 1
+		elif self.type == self.SUBTITLES_AVAILABLE:
+			subtitle = service and service.subtitle()
+			subtitlelist = subtitle and subtitle.getSubtitleList()
+			if subtitlelist:
+				return len(subtitlelist) > 0
+			return False
 
 	boolean = property(getBoolean)
 	

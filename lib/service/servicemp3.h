@@ -210,23 +210,27 @@ private:
 		DECLARE_REF(GstMessageContainer);
 		GstMessage *messagePointer;
 		GstPad *messagePad;
+		GstBuffer *messageBuffer;
 		int messageType;
 
 	public:
-		GstMessageContainer(int type, GstMessage *msg, GstPad *pad)
+		GstMessageContainer(int type, GstMessage *msg, GstPad *pad, GstBuffer *buffer)
 		{
 			messagePointer = msg;
 			messagePad = pad;
+			messageBuffer = buffer;
 			messageType = type;
 		}
 		~GstMessageContainer()
 		{
 			if (messagePointer) gst_message_unref(messagePointer);
 			if (messagePad) gst_object_unref(messagePad);
+			if (messageBuffer) gst_buffer_unref(messageBuffer);
 		}
 		int getType() { return messageType; }
 		operator GstMessage *() { return messagePointer; }
 		operator GstPad *() { return messagePad; }
+		operator GstBuffer *() { return messageBuffer; }
 	};
 	eFixedMessagePump<ePtr<GstMessageContainer> > m_pump;
 
@@ -236,7 +240,7 @@ private:
 	static GstBusSyncReply gstBusSyncHandler(GstBus *bus, GstMessage *message, gpointer user_data);
 	static void gstTextpadHasCAPS(GstPad *pad, GParamSpec * unused, gpointer user_data);
 	void gstTextpadHasCAPS_synced(GstPad *pad);
-	static void gstCBsubtitleAvail(GstElement *element, gpointer user_data);
+	static void gstCBsubtitleAvail(GstElement *element, GstBuffer *buffer, gpointer user_data);
 	GstPad* gstCreateSubtitleSink(eServiceMP3* _this, subtype_t type);
 	void gstPoll(ePtr<GstMessageContainer> const &);
 	static void gstHTTPSourceSetAgent(GObject *source, GParamSpec *unused, gpointer user_data);
@@ -256,11 +260,9 @@ private:
 	int m_decoder_time_valid_state;
 
 	void pushSubtitles();
-	void pullSubtitle();
+	void pullSubtitle(GstBuffer *buffer);
 	void sourceTimeout();
-	int m_subs_to_pull;
 	sourceStream m_sourceinfo;
-	eSingleLock m_subs_to_pull_lock;
 	gulong m_subs_to_pull_handler_id;
 
 	RESULT seekToImpl(pts_t to);

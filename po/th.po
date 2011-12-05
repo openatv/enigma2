@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1-En-Th\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-05 14:38+0000\n"
+"POT-Creation-Date: 2011-12-05 11:09+0000\n"
 "PO-Revision-Date: 2010-04-08 18:13+0700\n"
 "Last-Translator: Tony - Thaidreambox\n"
 "Language-Team: Tony @ Thai Dreambox <tonyboyth@gmail.com>\n"
@@ -806,12 +806,6 @@ msgstr ""
 msgid "Autostart"
 msgstr ""
 
-msgid "Autostart Disabled."
-msgstr ""
-
-msgid "Autostart Enabled."
-msgstr ""
-
 msgid "Autostart:"
 msgstr ""
 
@@ -903,6 +897,9 @@ msgid "Black screen till locked"
 msgstr ""
 
 msgid "Blind Scan"
+msgstr ""
+
+msgid "Blindscan"
 msgstr ""
 
 msgid "Blindscan was canceled by the user."
@@ -1383,6 +1380,9 @@ msgid "Creating AP and SC Files"
 msgstr ""
 
 msgid "Creating Hardlink to Timeshift file failed!"
+msgstr ""
+
+msgid "Creating a Meta File failed!"
 msgstr ""
 
 #, python-format
@@ -1965,7 +1965,7 @@ msgstr "แก้ไข URL ของเซอร์พเวอร์เพื�
 msgid "Elapsed"
 msgstr ""
 
-msgid "Elapsed & Remanining"
+msgid "Elapsed & Remaining"
 msgstr ""
 
 msgid "Electronic Program Guide"
@@ -2202,6 +2202,9 @@ msgstr "ตั้งค่าจากโรงงาน"
 msgid "Failed"
 msgstr "ล้มเหลว"
 
+msgid "Failed to remove old files."
+msgstr ""
+
 #, python-format
 msgid "Fan %d"
 msgstr ""
@@ -2431,9 +2434,6 @@ msgstr ""
 msgid "HDMI CEC"
 msgstr ""
 
-msgid "Handle deepstandby events"
-msgstr ""
-
 msgid "Handle standby from TV"
 msgstr ""
 
@@ -2625,6 +2625,9 @@ msgstr "เตรียมการ"
 msgid "Initializing storage device..."
 msgstr ""
 
+msgid "Inotify Monitoring"
+msgstr ""
+
 msgid "Input"
 msgstr "นำเข้า (Input)"
 
@@ -2645,6 +2648,9 @@ msgstr "ติดตั้งอิมเมจผ่านเวบ"
 
 msgid "Install extensions."
 msgstr "ติดตั้งส่วนเพิ่มเติม"
+
+msgid "Install lcd picons on"
+msgstr ""
 
 msgid "Install local extension"
 msgstr "ติดตั้งส่วนเพิ่มเติมจากในเครื่อง"
@@ -3028,6 +3034,15 @@ msgstr "ข้อความ"
 
 msgid "Message..."
 msgstr "ข้อความ..."
+
+msgid "MiniDLNA Log"
+msgstr ""
+
+msgid "MiniDLNA Setup"
+msgstr ""
+
+msgid "MiniDNLA Setup"
+msgstr ""
 
 msgid "Mins"
 msgstr ""
@@ -3958,6 +3973,9 @@ msgstr "ขั่ว"
 msgid "Polarization"
 msgstr "ค่าทิศทาง"
 
+msgid "Port"
+msgstr ""
+
 msgid "Port A"
 msgstr "พอร์ต A"
 
@@ -4141,6 +4159,9 @@ msgstr ""
 msgid "Put TV in standby"
 msgstr ""
 
+msgid "Put TV in standby when deepstandby"
+msgstr ""
+
 msgid "Put receiver in standby"
 msgstr ""
 
@@ -4217,9 +4238,6 @@ msgstr ""
 msgid "Record time limited due to conflicting timer %s"
 msgstr "การบันทึกถูกจำกัด เนื่องจากซ้ำซ้อนกับ %s"
 
-msgid "Recorded files..."
-msgstr "ชื่อไฟล์ที่บันทึก..."
-
 msgid "Recording"
 msgstr "กำลังบันทึกรายการ"
 
@@ -4243,6 +4261,9 @@ msgstr "กำลังบันทึกรายการ"
 
 msgid "Recordings always have priority"
 msgstr "บันทึกรายการสำคัญมากกว่า"
+
+msgid "Red button..."
+msgstr ""
 
 msgid "Reenter new PIN"
 msgstr ""
@@ -4271,13 +4292,13 @@ msgstr ""
 msgid "Reloading bouquets and services..."
 msgstr ""
 
-msgid "Remaning/Elapsed shown as on OSD"
+msgid "Remaining"
 msgstr ""
 
-msgid "Remanining"
+msgid "Remaining & Elapsed"
 msgstr ""
 
-msgid "Remanining & Elapsed"
+msgid "Remaining/Elapsed shown as on OSD"
 msgstr ""
 
 msgid "Remember service PIN"
@@ -4799,6 +4820,9 @@ msgstr ""
 msgid "Sequence repeat"
 msgstr "Sequence repeat"
 
+msgid "Serial No"
+msgstr ""
+
 msgid "Serv.Name"
 msgstr ""
 
@@ -5139,6 +5163,9 @@ msgstr ""
 msgid "Sorry MediaScanner is not installed!"
 msgstr "ท่านยังไม่ได้ติดตั้งตัว MediaScanner!"
 
+msgid "Sorry MiniDLNA Config is Missing"
+msgstr ""
+
 msgid "Sorry no backups found!"
 msgstr "ไม่พบชุดสำรองข้อมูล"
 
@@ -5292,6 +5319,9 @@ msgstr "บันทึกตำแหน่งแล้ว"
 msgid "Stream request"
 msgstr ""
 
+msgid "Strict DLNA"
+msgstr ""
+
 msgid "Subservice mode"
 msgstr ""
 
@@ -5375,9 +5405,6 @@ msgstr ""
 
 msgid "System"
 msgstr "ระบบ"
-
-msgid "System Infomation"
-msgstr ""
 
 msgid "System Information"
 msgstr ""
@@ -5785,10 +5812,13 @@ msgstr "ภาพเล็ก"
 msgid "Thursday"
 msgstr "วันพฤหัสบดี"
 
+msgid "TiVo support"
+msgstr ""
+
 msgid "Time"
 msgstr "เวลา"
 
-msgid "Time Remaning/Elapsed on OSD"
+msgid "Time Remaining/Elapsed on OSD"
 msgstr ""
 
 msgid "Time Scale"
@@ -6423,10 +6453,16 @@ msgstr ""
 msgid "Wait please while gathering data..."
 msgstr ""
 
+msgid "Wait please while scanning for devices..."
+msgstr ""
+
 msgid "Waiting"
 msgstr "กำลังคอย..."
 
 msgid "Wakeup"
+msgstr ""
+
+msgid "Wakeup TV after deepstandby"
 msgstr ""
 
 msgid "Wakeup TV from standby"
@@ -6633,6 +6669,13 @@ msgid "Yes, view the tutorial"
 msgstr "ใช่ - ต้องการดูคำแนะนำ"
 
 msgid "Yesterday"
+msgstr ""
+
+#, python-format
+msgid ""
+"You already have a channel list installed,\n"
+"would you like to remove\n"
+"\"%s\"?"
 msgstr ""
 
 msgid "You can cancel the installation."
@@ -7939,9 +7982,3 @@ msgstr "เปลี่ยนช่อง"
 
 msgid "zapped"
 msgstr "เปลี่ยนช่องแล้ว"
-
-#~ msgid "Next"
-#~ msgstr "ต่อไป"
-
-#~ msgid "Prev"
-#~ msgstr "ก่อน"
