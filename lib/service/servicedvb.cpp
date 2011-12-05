@@ -2497,6 +2497,7 @@ void eDVBServicePlay::resetTimeshift(int start)
 	m_teletext_parser = 0;
 	m_rds_decoder = 0;
 	m_subtitle_parser = 0;
+	m_new_subtitle_stream_connection = 0;
 	m_new_subtitle_page_connection = 0;
 	m_new_dvb_subtitle_page_connection = 0;
 	m_rds_decoder_event_connection = 0;
@@ -2613,6 +2614,7 @@ void eDVBServicePlay::updateDecoder(bool sendSeekableStateChanged)
 			if (m_is_primary)
 			{
 				m_teletext_parser = new eDVBTeletextParser(m_decode_demux);
+				m_teletext_parser->connectNewStream(slot(*this, &eDVBServicePlay::newSubtitleStream), m_new_subtitle_stream_connection);
 				m_teletext_parser->connectNewPage(slot(*this, &eDVBServicePlay::newSubtitlePage), m_new_subtitle_page_connection);
 				m_subtitle_parser = new eDVBSubtitleParser(m_decode_demux);
 				m_subtitle_parser->connectNewPage(slot(*this, &eDVBServicePlay::newDVBSubtitlePage), m_new_dvb_subtitle_page_connection);
@@ -3125,6 +3127,11 @@ PyObject *eDVBServicePlay::getSubtitleList()
 	}
 
 	return l;
+}
+
+void eDVBServicePlay::newSubtitleStream()
+{
+	m_event((iPlayableService*)this, evUpdatedInfo);
 }
 
 void eDVBServicePlay::newSubtitlePage(const eDVBTeletextSubtitlePage &page)
