@@ -88,9 +88,13 @@ class MMIDialog(Screen):
 			else:
 				# unmasked pins:
 				x = ConfigPIN(0, len = pinlength)
+			x.addEndNotifier(self.pinEntered)
 			self["subtitle"].setText(entry[2])
 			list.append( getConfigListEntry("", x) )
 			self["bottom"].setText(_("please press OK when ready"))
+
+	def pinEntered(self, value):
+		self.okbuttonClick()
 
 	def okbuttonClick(self):
 		self.timer.stop()

@@ -985,9 +985,9 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			self.loadLocalSettings()
 		self["list"].reload(self.current_ref, self.selected_tags)
 		self.updateTags()
-		title = _("Recorded files...")
+		title = ""
 		if config.usage.setup_level.index >= 2: # expert+
-			title += "  " + config.movielist.last_videodir.value
+			title += config.movielist.last_videodir.value
 		if self.selected_tags is not None:
 			title += " - " + ','.join(self.selected_tags)
 		self.setTitle(title)

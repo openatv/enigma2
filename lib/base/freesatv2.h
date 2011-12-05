@@ -44,7 +44,7 @@ private:
 public:
 	freesatHuffmanDecoder();
 	~freesatHuffmanDecoder();
-	char		*decode( const unsigned char *src, size_t size);
+	std::string decode(const unsigned char *src, size_t size);
 };
 #endif
 

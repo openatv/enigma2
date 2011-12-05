@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-05 14:38+0000\n"
+"POT-Creation-Date: 2011-12-05 11:09+0000\n"
 "PO-Revision-Date: 2008-01-27 23:38+0100\n"
 "Last-Translator: Jurica <jurica@clarkdigital.com>\n"
 "Language-Team:  <jurica@dream-multimedia.eu>\n"
@@ -923,12 +923,6 @@ msgstr ""
 msgid "Autostart"
 msgstr ""
 
-msgid "Autostart Disabled."
-msgstr ""
-
-msgid "Autostart Enabled."
-msgstr ""
-
 msgid "Autostart:"
 msgstr ""
 
@@ -1041,6 +1035,9 @@ msgid "Black screen till locked"
 msgstr ""
 
 msgid "Blind Scan"
+msgstr ""
+
+msgid "Blindscan"
 msgstr ""
 
 msgid "Blindscan was canceled by the user."
@@ -1609,6 +1606,9 @@ msgid "Creating AP and SC Files"
 msgstr ""
 
 msgid "Creating Hardlink to Timeshift file failed!"
+msgstr ""
+
+msgid "Creating a Meta File failed!"
 msgstr ""
 
 #
@@ -2294,7 +2294,7 @@ msgstr ""
 msgid "Elapsed"
 msgstr ""
 
-msgid "Elapsed & Remanining"
+msgid "Elapsed & Remaining"
 msgstr ""
 
 #
@@ -2568,6 +2568,9 @@ msgstr ""
 msgid "Failed"
 msgstr ""
 
+msgid "Failed to remove old files."
+msgstr ""
+
 #
 #, python-format
 msgid "Fan %d"
@@ -2836,9 +2839,6 @@ msgstr ""
 msgid "HDMI CEC"
 msgstr ""
 
-msgid "Handle deepstandby events"
-msgstr ""
-
 msgid "Handle standby from TV"
 msgstr ""
 
@@ -3052,6 +3052,9 @@ msgstr "Inicijaliziraj"
 msgid "Initializing storage device..."
 msgstr ""
 
+msgid "Inotify Monitoring"
+msgstr ""
+
 #
 msgid "Input"
 msgstr "Ulaz "
@@ -3076,6 +3079,9 @@ msgstr ""
 
 #
 msgid "Install extensions."
+msgstr ""
+
+msgid "Install lcd picons on"
 msgstr ""
 
 #
@@ -3535,6 +3541,15 @@ msgstr "Poruka"
 
 #
 msgid "Message..."
+msgstr ""
+
+msgid "MiniDLNA Log"
+msgstr ""
+
+msgid "MiniDLNA Setup"
+msgstr ""
+
+msgid "MiniDNLA Setup"
 msgstr ""
 
 msgid "Mins"
@@ -4627,6 +4642,9 @@ msgstr ""
 msgid "Polarization"
 msgstr "Polarizacija"
 
+msgid "Port"
+msgstr ""
+
 #
 msgid "Port A"
 msgstr "Port A"
@@ -4844,6 +4862,9 @@ msgstr ""
 msgid "Put TV in standby"
 msgstr ""
 
+msgid "Put TV in standby when deepstandby"
+msgstr ""
+
 msgid "Put receiver in standby"
 msgstr ""
 
@@ -4939,10 +4960,6 @@ msgid "Record time limited due to conflicting timer %s"
 msgstr ""
 
 #
-msgid "Recorded files..."
-msgstr "Snimljene datoteke..."
-
-#
 msgid "Recording"
 msgstr "Snimanje"
 
@@ -4969,6 +4986,9 @@ msgstr ""
 #
 msgid "Recordings always have priority"
 msgstr "Snimanje uvijek ima prioritet"
+
+msgid "Red button..."
+msgstr ""
 
 msgid "Reenter new PIN"
 msgstr ""
@@ -5001,13 +5021,13 @@ msgstr ""
 msgid "Reloading bouquets and services..."
 msgstr ""
 
-msgid "Remaning/Elapsed shown as on OSD"
+msgid "Remaining"
 msgstr ""
 
-msgid "Remanining"
+msgid "Remaining & Elapsed"
 msgstr ""
 
-msgid "Remanining & Elapsed"
+msgid "Remaining/Elapsed shown as on OSD"
 msgstr ""
 
 msgid "Remember service PIN"
@@ -5644,6 +5664,9 @@ msgstr ""
 msgid "Sequence repeat"
 msgstr "Ponovi slijed"
 
+msgid "Serial No"
+msgstr ""
+
 msgid "Serv.Name"
 msgstr ""
 
@@ -6045,6 +6068,9 @@ msgstr ""
 msgid "Sorry MediaScanner is not installed!"
 msgstr ""
 
+msgid "Sorry MiniDLNA Config is Missing"
+msgstr ""
+
 #
 msgid "Sorry no backups found!"
 msgstr ""
@@ -6219,6 +6245,9 @@ msgstr "Pohranjene pozicije"
 msgid "Stream request"
 msgstr ""
 
+msgid "Strict DLNA"
+msgstr ""
+
 msgid "Subservice mode"
 msgstr ""
 
@@ -6312,9 +6341,6 @@ msgstr ""
 #
 msgid "System"
 msgstr "Sistem "
-
-msgid "System Infomation"
-msgstr ""
 
 msgid "System Information"
 msgstr ""
@@ -6753,11 +6779,14 @@ msgstr ""
 msgid "Thursday"
 msgstr "Četvrtak"
 
+msgid "TiVo support"
+msgstr ""
+
 #
 msgid "Time"
 msgstr "Vrijeme"
 
-msgid "Time Remaning/Elapsed on OSD"
+msgid "Time Remaining/Elapsed on OSD"
 msgstr ""
 
 msgid "Time Scale"
@@ -7517,11 +7546,17 @@ msgstr ""
 msgid "Wait please while gathering data..."
 msgstr ""
 
+msgid "Wait please while scanning for devices..."
+msgstr ""
+
 #
 msgid "Waiting"
 msgstr ""
 
 msgid "Wakeup"
+msgstr ""
+
+msgid "Wakeup TV after deepstandby"
 msgstr ""
 
 msgid "Wakeup TV from standby"
@@ -7744,6 +7779,13 @@ msgid "Yes, view the tutorial"
 msgstr "Da, prikaži vodič"
 
 msgid "Yesterday"
+msgstr ""
+
+#, python-format
+msgid ""
+"You already have a channel list installed,\n"
+"would you like to remove\n"
+"\"%s\"?"
 msgstr ""
 
 #
@@ -9357,11 +9399,3 @@ msgstr "zap"
 #
 msgid "zapped"
 msgstr "prebačen"
-
-#
-#~ msgid "Next"
-#~ msgstr "Sljed."
-
-#
-#~ msgid "Prev"
-#~ msgstr "Pred"

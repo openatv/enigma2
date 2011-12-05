@@ -34,6 +34,11 @@ def ConvertToHumanReadable(tp, type = None):
 			eDVBFrontendParametersSatellite.Polarisation_Vertical : _("Vertical"),
 			eDVBFrontendParametersSatellite.Polarisation_CircularLeft : _("Circular left"),
 			eDVBFrontendParametersSatellite.Polarisation_CircularRight : _("Circular right")}[tp["polarization"]]
+		ret["polarization_abbreviation"] = {
+			eDVBFrontendParametersSatellite.Polarisation_Horizontal : "H",
+			eDVBFrontendParametersSatellite.Polarisation_Vertical : "V",
+			eDVBFrontendParametersSatellite.Polarisation_CircularLeft : "L",
+			eDVBFrontendParametersSatellite.Polarisation_CircularRight : "R"}[tp["polarization"]]
 		ret["system"] = {
 			eDVBFrontendParametersSatellite.System_DVB_S : "DVB-S",
 			eDVBFrontendParametersSatellite.System_DVB_S2 : "DVB-S2"}[tp["system"]]
@@ -41,7 +46,8 @@ def ConvertToHumanReadable(tp, type = None):
 			ret["rolloff"] = {
 				eDVBFrontendParametersSatellite.RollOff_alpha_0_35 : "0.35",
 				eDVBFrontendParametersSatellite.RollOff_alpha_0_25 : "0.25",
-				eDVBFrontendParametersSatellite.RollOff_alpha_0_20 : "0.20"}[tp["rolloff"]]
+				eDVBFrontendParametersSatellite.RollOff_alpha_0_20 : "0.20",
+				eDVBFrontendParametersSatellite.RollOff_auto : _("Auto")}[tp["rolloff"]]
 			ret["pilot"] = {
 				eDVBFrontendParametersSatellite.Pilot_Unknown : _("Auto"),
 				eDVBFrontendParametersSatellite.Pilot_On : _("On"),
@@ -114,7 +120,7 @@ def ConvertToHumanReadable(tp, type = None):
 			eDVBFrontendParametersTerrestrial.Inversion_Unknown : _("Auto"),
 			eDVBFrontendParametersTerrestrial.Inversion_On : _("On"),
 			eDVBFrontendParametersTerrestrial.Inversion_Off : _("Off")}[tp["inversion"]]
-	else:
+	elif type != "None":
 		print "ConvertToHumanReadable: no or unknown type in tpdata dict for type:", type
 	for k,v in tp.items():
 		if k not in ret:

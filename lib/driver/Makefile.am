@@ -14,7 +14,6 @@ libenigma_driver_a_SOURCES = \
 	etimezone.cpp \
 	misc_options.cpp \
 	rc.cpp \
-	rcconsole.cpp \
 	rcinput.cpp \
 	rfmod.cpp \
 	hdmi_cec.cpp

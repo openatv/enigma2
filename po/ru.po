@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-05 14:38+0000\n"
+"POT-Creation-Date: 2011-12-05 11:09+0000\n"
 "PO-Revision-Date: 2010-05-18 18:10+0200\n"
 "Last-Translator: peter <peter@dreambox.org.ua>\n"
 "Language-Team: Russian / enigma(c) Ukraine, Kiev>\n"
@@ -928,12 +928,6 @@ msgstr ""
 msgid "Autostart"
 msgstr ""
 
-msgid "Autostart Disabled."
-msgstr ""
-
-msgid "Autostart Enabled."
-msgstr ""
-
 msgid "Autostart:"
 msgstr ""
 
@@ -1046,6 +1040,9 @@ msgid "Black screen till locked"
 msgstr ""
 
 msgid "Blind Scan"
+msgstr ""
+
+msgid "Blindscan"
 msgstr ""
 
 msgid "Blindscan was canceled by the user."
@@ -1613,6 +1610,9 @@ msgid "Creating AP and SC Files"
 msgstr ""
 
 msgid "Creating Hardlink to Timeshift file failed!"
+msgstr ""
+
+msgid "Creating a Meta File failed!"
 msgstr ""
 
 #
@@ -2306,7 +2306,7 @@ msgstr ""
 msgid "Elapsed"
 msgstr ""
 
-msgid "Elapsed & Remanining"
+msgid "Elapsed & Remaining"
 msgstr ""
 
 #
@@ -2583,6 +2583,9 @@ msgstr "Заводские установки"
 msgid "Failed"
 msgstr "Неудачный"
 
+msgid "Failed to remove old files."
+msgstr ""
+
 #
 #, python-format
 msgid "Fan %d"
@@ -2851,9 +2854,6 @@ msgstr ""
 msgid "HDMI CEC"
 msgstr ""
 
-msgid "Handle deepstandby events"
-msgstr ""
-
 msgid "Handle standby from TV"
 msgstr ""
 
@@ -3074,6 +3074,9 @@ msgstr "Инициализация"
 msgid "Initializing storage device..."
 msgstr ""
 
+msgid "Inotify Monitoring"
+msgstr ""
+
 #
 msgid "Input"
 msgstr "Вход"
@@ -3098,6 +3101,9 @@ msgstr "Установить новый имидж через web браузер
 
 #
 msgid "Install extensions."
+msgstr ""
+
+msgid "Install lcd picons on"
 msgstr ""
 
 #
@@ -3558,6 +3564,15 @@ msgstr "Сообщение"
 #
 msgid "Message..."
 msgstr "Сообщение..."
+
+msgid "MiniDLNA Log"
+msgstr ""
+
+msgid "MiniDLNA Setup"
+msgstr ""
+
+msgid "MiniDNLA Setup"
+msgstr ""
 
 msgid "Mins"
 msgstr ""
@@ -4683,6 +4698,9 @@ msgstr ""
 msgid "Polarization"
 msgstr "Поляризация"
 
+msgid "Port"
+msgstr ""
+
 #
 msgid "Port A"
 msgstr "Port A"
@@ -4900,6 +4918,9 @@ msgstr ""
 msgid "Put TV in standby"
 msgstr ""
 
+msgid "Put TV in standby when deepstandby"
+msgstr ""
+
 msgid "Put receiver in standby"
 msgstr ""
 
@@ -4995,10 +5016,6 @@ msgid "Record time limited due to conflicting timer %s"
 msgstr "Время записи ограничено ввиду конфликта таймера %s"
 
 #
-msgid "Recorded files..."
-msgstr "Записанные файлы..."
-
-#
 msgid "Recording"
 msgstr "Запись"
 
@@ -5025,6 +5042,9 @@ msgstr ""
 #
 msgid "Recordings always have priority"
 msgstr "Записи всегда имеют приоритет"
+
+msgid "Red button..."
+msgstr ""
 
 msgid "Reenter new PIN"
 msgstr ""
@@ -5057,13 +5077,13 @@ msgstr ""
 msgid "Reloading bouquets and services..."
 msgstr ""
 
-msgid "Remaning/Elapsed shown as on OSD"
+msgid "Remaining"
 msgstr ""
 
-msgid "Remanining"
+msgid "Remaining & Elapsed"
 msgstr ""
 
-msgid "Remanining & Elapsed"
+msgid "Remaining/Elapsed shown as on OSD"
 msgstr ""
 
 msgid "Remember service PIN"
@@ -5700,6 +5720,9 @@ msgstr ""
 msgid "Sequence repeat"
 msgstr "Последовательность повторения"
 
+msgid "Serial No"
+msgstr ""
+
 msgid "Serv.Name"
 msgstr ""
 
@@ -6101,6 +6124,9 @@ msgstr ""
 msgid "Sorry MediaScanner is not installed!"
 msgstr "Извините, Медиа Сканер не установлен!"
 
+msgid "Sorry MiniDLNA Config is Missing"
+msgstr ""
+
 #
 msgid "Sorry no backups found!"
 msgstr "Не найдены резервные копии!"
@@ -6279,6 +6305,9 @@ msgstr "Сохраненное положение"
 msgid "Stream request"
 msgstr ""
 
+msgid "Strict DLNA"
+msgstr ""
+
 msgid "Subservice mode"
 msgstr ""
 
@@ -6372,9 +6401,6 @@ msgstr ""
 #
 msgid "System"
 msgstr "Система"
-
-msgid "System Infomation"
-msgstr ""
 
 msgid "System Information"
 msgstr ""
@@ -6857,11 +6883,14 @@ msgstr "Эскизы"
 msgid "Thursday"
 msgstr "Четверг"
 
+msgid "TiVo support"
+msgstr ""
+
 #
 msgid "Time"
 msgstr "Время"
 
-msgid "Time Remaning/Elapsed on OSD"
+msgid "Time Remaining/Elapsed on OSD"
 msgstr ""
 
 msgid "Time Scale"
@@ -7628,11 +7657,17 @@ msgstr ""
 msgid "Wait please while gathering data..."
 msgstr ""
 
+msgid "Wait please while scanning for devices..."
+msgstr ""
+
 #
 msgid "Waiting"
 msgstr "Ожидание"
 
 msgid "Wakeup"
+msgstr ""
+
+msgid "Wakeup TV after deepstandby"
 msgstr ""
 
 msgid "Wakeup TV from standby"
@@ -7870,6 +7905,13 @@ msgid "Yes, view the tutorial"
 msgstr "Да, смотреть инструкцию "
 
 msgid "Yesterday"
+msgstr ""
+
+#, python-format
+msgid ""
+"You already have a channel list installed,\n"
+"would you like to remove\n"
+"\"%s\"?"
 msgstr ""
 
 #
@@ -9504,11 +9546,3 @@ msgstr "переключить"
 #
 msgid "zapped"
 msgstr "переключено"
-
-#
-#~ msgid "Next"
-#~ msgstr "Следующий"
-
-#
-#~ msgid "Prev"
-#~ msgstr "Пред."

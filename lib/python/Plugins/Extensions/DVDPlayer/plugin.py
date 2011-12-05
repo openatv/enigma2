@@ -75,6 +75,11 @@ class FileBrowser(Screen):
 			if self["filelist"].canDescent(): # isDir
 				self["filelist"].descent()
 				pathname = self["filelist"].getCurrentDirectory() or ""
+				if fileExists(pathname+"VIDEO_TS.ISO"):
+					print "dvd structure found, trying to open..."
+					lastpath = (pathname.rstrip("/").rsplit("/",1))[0]
+					print "lastpath video_ts.ifo=", lastpath
+					self.close(pathname)
 				if fileExists(pathname+"VIDEO_TS.IFO"):
 					print "dvd structure found, trying to open..."
 					lastpath = (pathname.rstrip("/").rsplit("/",1))[0]
@@ -138,9 +143,13 @@ class DVDSummary(Screen):
 		self["Title"].setText(title)
 
 class DVDOverlay(Screen):
-	def __init__(self, session, args = None):
+	def __init__(self, session, args = None, height = None):
 		desktop_size = getDesktop(0).size()
-		DVDOverlay.skin = """<screen name="DVDOverlay" position="0,0" size="%d,%d" flags="wfNoBorder" zPosition="-1" backgroundColor="transparent" />""" %(desktop_size.width(), desktop_size.height())
+		w = desktop_size.width()
+		h = desktop_size.height()
+		if height is not None:
+			h = height
+		DVDOverlay.skin = """<screen name="DVDOverlay" position="0,0" size="%d,%d" flags="wfNoBorder" zPosition="-1" backgroundColor="transparent" />""" %(w, h)
 		Screen.__init__(self, session)
 
 class ChapterZap(Screen):
@@ -274,7 +283,6 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		self.change_infobar_seek_config()
 		InfoBarSeek.__init__(self)
 		InfoBarPVRState.__init__(self)
-		self.dvdScreen = self.session.instantiateDialog(DVDOverlay)
 
 		self.oldService = self.session.nav.getCurrentlyPlayingServiceReference()
 		self.session.nav.stopService()
@@ -636,6 +644,9 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		if val is None:
 			self.askLeavePlayer()
 		else:
+			isopathname = "/VIDEO_TS.ISO"
+			if os_path.exists(val + isopathname):
+				val += isopathname
 			newref = eServiceReference(4369, 0, val)
 			print "play", newref.toString()
 			if curref is None or curref != newref:
@@ -647,6 +658,29 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 						name = names[2]
 					print "setting name to: ", self.service
 					newref.setName(str(name))
+
+#				Construct a path for the IFO header assuming it exists
+				ifofilename = val
+				if not ifofilename.upper().endswith("/VIDEO_TS"):
+					ifofilename += "/VIDEO_TS"
+				ifofilename += "/VIDEO_TS.IFO"
+				ifofile = None
+				try:
+#					Try to read the IFO header to determine PAL/NTSC format
+					ifofile = open(ifofilename, "r")
+					ifofile.seek(256)
+					video_attr = ord(ifofile.read(1))
+					isNTSC = (video_attr & 1 == 0)
+				except:
+#					If the service is an .iso or .img file we assume it is PAL
+					isNTSC = False
+				finally:
+					if ifofile is not None:
+						ifofile.close()
+				height = getDesktop(0).size().height()
+				if isNTSC:
+					height = height * 576 / 480
+				self.dvdScreen = self.session.instantiateDialog(DVDOverlay, height=height)
 				self.session.nav.playService(newref)
 				self.service = self.session.nav.getCurrentService()
 				print "self.service", self.service
