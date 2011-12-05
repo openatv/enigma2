@@ -1096,7 +1096,7 @@ subtype_t getSubtitleType(GstPad* pad, gchar *g_codec=NULL)
 		if ( !strcmp(g_type, "video/x-dvd-subpicture") )
 			type = stVOB;
 		else if ( !strcmp(g_type, "text/x-pango-markup") )
-			type = stSSA;
+			type = stSRT;
 		else if ( !strcmp(g_type, "text/plain") )
 			type = stPlainText;
 		else if ( !strcmp(g_type, "subpicture/x-pgs") )
@@ -1113,6 +1113,8 @@ subtype_t getSubtitleType(GstPad* pad, gchar *g_codec=NULL)
 			type = stSSA;
 		else if ( !strcmp(g_codec, "ASS") )
 			type = stASS;
+		else if ( !strcmp(g_codec, "SRT") )
+			type = stSRT;
 		else if ( !strcmp(g_codec, "UTF-8 plain text") )
 			type = stPlainText;
 		else
