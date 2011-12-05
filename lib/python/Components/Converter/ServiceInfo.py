@@ -94,7 +94,10 @@ class ServiceInfo(Converter, object):
 			return audio and audio.getNumberOfTracks() > 1
 		elif self.type == self.SUBTITLES_AVAILABLE:
 			subtitle = service and service.subtitle()
-			return subtitle and subtitle.getSubtitleList()
+			subtitlelist = subtitle and subtitle.getSubtitleList()
+			if subtitlelist:
+				return len(subtitlelist) > 0
+			return False
 
 	boolean = property(getBoolean)
 	

@@ -298,7 +298,11 @@ void eDVBTeletextParser::processPESPacket(__u8 *pkt, int len)
 				s.subtitling_type = 0x01; // ebu teletext subtitle
 				s.teletext_page_number = X & 0xFF;
 				s.teletext_magazine_number = M & 7;
-				m_found_subtitle_pages.insert(s);
+				if (m_found_subtitle_pages.find(s) == m_found_subtitle_pages.end())
+				{
+					m_found_subtitle_pages.insert(s);
+					m_new_subtitle_stream();
+				}
 			}
 
 				/* correct page on correct magazine? open page. */
@@ -646,6 +650,11 @@ void eDVBTeletextParser::setPageAndMagazine(int page, int magazine)
 	m_page_X = page;  /* page number */
 	if (page != -1)
 		m_page_X &= 0xFF;
+}
+
+void eDVBTeletextParser::connectNewStream(const Slot0<void> &slot, ePtr<eConnection> &connection)
+{
+	connection = new eConnection(this, m_new_subtitle_stream.connect(slot));
 }
 
 void eDVBTeletextParser::connectNewPage(const Slot1<void, const eDVBTeletextSubtitlePage&> &slot, ePtr<eConnection> &connection)
