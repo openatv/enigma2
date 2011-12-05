@@ -679,16 +679,8 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 						ifofile.close()
 				height = getDesktop(0).size().height()
 				if isNTSC:
-#					mode = "480p"
-#					keep pal mode since ntsc image does not start spontaneously
-					mode = "576p"
 					height = height * 576 / 480
-				else:
-					mode = "576p"
 				self.dvdScreen = self.session.instantiateDialog(DVDOverlay, height=height)
-				with open('/proc/stb/video/videomode' , "w") as v:
-					v.write("%s\n" % mode)
-				
 				self.session.nav.playService(newref)
 				self.service = self.session.nav.getCurrentService()
 				print "self.service", self.service

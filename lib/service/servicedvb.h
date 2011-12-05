@@ -271,6 +271,8 @@ protected:
 	
 		/* teletext subtitles */
 	ePtr<eDVBTeletextParser> m_teletext_parser;
+	void newSubtitleStream();
+	ePtr<eConnection> m_new_subtitle_stream_connection;
 	void newSubtitlePage(const eDVBTeletextSubtitlePage &p);
 	ePtr<eConnection> m_new_subtitle_page_connection;
 	std::list<eDVBTeletextSubtitlePage> m_subtitle_pages;
