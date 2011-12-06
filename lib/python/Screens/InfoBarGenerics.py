@@ -1016,6 +1016,8 @@ class InfoBarEPG:
 			self.openMultiServiceEPG()
 		elif config.plisettings.PLIEPG_mode.value == "single":
 			self.openSingleServiceEPG()
+		elif config.plisettings.PLIEPG_mode.value == "merlinepgcenter":
+			self.openMerlinEPGCenter()	
 		elif config.plisettings.PLIEPG_mode.value == "cooltvguide":
 			self.showCoolTVGuide()
 
@@ -1197,6 +1199,15 @@ class InfoBarEPG:
 		global epg
 		epg = None
 
+	def openMerlinEPGCenter(self):
+		if Directories.fileExists("/usr/lib/enigma2/python/Plugins/Extensions/MerlinEPGCenter/plugin.pyo"):
+			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
+				if plugin.name == _("Merlin EPG Center"):
+					self.runPlugin(plugin)
+					break
+		else:
+			self.session.open(MessageBox, _("The Merlin EPG Center plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )		
+		
 	def showCoolTVGuide(self):
 		if Directories.fileExists("/usr/lib/enigma2/python/Plugins/Extensions/CoolTVGuide/plugin.pyo"):
 			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):

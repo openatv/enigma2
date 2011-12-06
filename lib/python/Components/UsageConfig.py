@@ -572,6 +572,7 @@ def InitUsageConfig():
 					("pliepg", _("Show Graphical EPG")),
 					("single", _("Show Single EPG")),
 					("multi", _("Show Multi EPG")),
+					("merlinepgcenter", _("Show Merlin EPG Center")),
 					("cooltvguide", _("Show CoolTVGuide"))])
 	config.plisettings.PLIINFO_mode = ConfigSelection(default="coolinfoguide", choices = [
 					("eventview", _("Show Eventview")),
