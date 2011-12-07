@@ -135,8 +135,9 @@
 		<item level="0" text="Contrast">config.lcd.contrast</item>
 		<item level="0" text="Standby">config.lcd.standby</item>
 		<item level="0" text="Show Display Icons">config.lcd.mode</item>
+		<item level="0" text="Show Picons (requires a restart)" requires="OledDisplay">config.skin.display_skin</item>
 		<item level="0" text="Repeat Display Message">config.lcd.repeat</item>
-		<item level="0" text="scrolling Speed">config.lcd.scrollspeed</item>
+		<item level="0" text="Scrolling Speed">config.lcd.scrollspeed</item>
 	</setup>
 	<setup key="satconfig" title="Sat / Dish Setup">
 		<item text="Tuner Slot">config.sat.tunerslot</item>
