@@ -23,5 +23,5 @@ class VideoSize(Renderer, VariableText):
 		if (xresol>0):
 			self.text = str(xresol)+'x'+str(yresol)
 		else:
-			self.text = '---'
+			self.text = ''
 
