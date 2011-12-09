@@ -855,6 +855,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		current = self.getCurrent()
 		if current is not None:
 			self.saveconfig()
+			self.playbackStop()
 			self.close(current)
 
 	def doContext(self):
