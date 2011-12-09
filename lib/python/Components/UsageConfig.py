@@ -266,7 +266,7 @@ def InitUsageConfig():
 	config.subtitles.subtitle_alignment = ConfigSelection(choices = ["left", "center", "right"], default = "center")
 	config.subtitles.subtitle_rewrap = ConfigYesNo(default = False)
 	config.subtitles.subtitle_borderwidth = ConfigSelection(choices = ["1", "2", "3", "4", "5"], default = "3")
-	config.subtitles.subtitle_fontsize  = ConfigSelection(choices = ["16", "18", "20", "22", "24", "26", "28", "30", "32", "34", "36", "38", "40", "42", "44", "46", "48"], default = "34")
+	config.subtitles.subtitle_fontsize  = ConfigSelection(choices = ["16", "18", "20", "22", "24", "26", "28", "30", "32", "34", "36", "38", "40", "42", "44", "46", "48", "50", "52", "54"], default = "34")
 	config.subtitles.subtitle_noPTSrecordingdelay  = ConfigSelection(default = "315000", choices = [
 		("0", "No Delay"),
 		("45000", "0.5 sec"),
