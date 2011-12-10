@@ -1743,10 +1743,11 @@ RESULT eServiceMP3::enableSubtitles(eWidget *parent, ePyObject tuple)
 
 	if (m_currentSubtitleStream != pid)
 	{
-		g_object_set (G_OBJECT (m_gst_playbin), "current-text", pid, NULL);
-		m_currentSubtitleStream = pid;
-		m_prev_decoder_time = -1;
+		g_object_set (G_OBJECT (m_gst_playbin), "current-text", -1, NULL);
 		m_subtitle_pages.clear();
+		m_prev_decoder_time = -1;
+		m_currentSubtitleStream = pid;
+		g_object_set (G_OBJECT (m_gst_playbin), "current-text", pid, NULL);
 	}
 
 	m_subtitle_widget = 0;
