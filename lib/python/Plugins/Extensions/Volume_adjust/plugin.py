@@ -61,7 +61,7 @@ class Volume_adjust(Screen):
 		self["press_menu"] = StaticText(_("press the menu button to set a general AC3/Dolby offset"))
 		self["ServiceList.desc"] = Label(_("Channel \t\t\tVolume +"))
 
-		self["actions"] = ActionMap(["ColorActions","SetupActions","MenuActions"],
+		self["actions"] = ActionMap(["ColorActions","OkCancelActions","MenuActions"],
 			{
 				"green": self.greenPressed,
 				"red": self.redPressed,
