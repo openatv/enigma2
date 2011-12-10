@@ -1747,17 +1747,17 @@ RESULT eServiceMP3::enableSubtitles(eWidget *parent, ePyObject tuple)
 		m_decoder_time_valid_state = 0;
 		m_currentSubtitleStream = pid;
 		g_object_set (G_OBJECT (m_gst_playbin), "current-text", m_currentSubtitleStream, NULL);
+
+		m_subtitle_widget = 0;
+		m_subtitle_widget = new eSubtitleWidget(parent);
+		m_subtitle_widget->resize(parent->size()); /* full size */
+
+		eDebug ("eServiceMP3::switched to subtitle stream %i", m_currentSubtitleStream);
+
+		m_event((iPlayableService*)this, evUpdatedInfo);
+
+		seekRelative(-1, 90000);
 	}
-
-	m_subtitle_widget = 0;
-	m_subtitle_widget = new eSubtitleWidget(parent);
-	m_subtitle_widget->resize(parent->size()); /* full size */
-
-	eDebug ("eServiceMP3::switched to subtitle stream %i", m_currentSubtitleStream);
-
-	m_event((iPlayableService*)this, evUpdatedInfo);
-
-	seekRelative(-1, 90000);
 
 	return 0;
 
