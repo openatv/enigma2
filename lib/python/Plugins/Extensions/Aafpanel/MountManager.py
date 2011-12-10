@@ -173,7 +173,6 @@ class HddMount(Screen):
 		for line in f.readlines():
 			if line.find(device) != -1:
 				parts = line.strip().split()
-				print "[******  parts]", parts
 				size = int(parts[2])
 				if ((size / 1024) / 1024) > 1:
 					des = _("Size: ") + str((size / 1024) / 1024) + _("GB")
