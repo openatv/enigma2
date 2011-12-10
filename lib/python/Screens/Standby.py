@@ -144,6 +144,8 @@ class TryQuitMainloop(MessageBox):
 				reason += "%s: %s (%d%%)\n" % (job.getStatustext(), job.name, int(100*job.progress/float(job.end)))
 			else:
 				reason += (_("%d jobs are running in the background!") % jobs) + '\n'
+			if job.name == "VFD Checker":		
+				reason = ""
 		if reason and not inStandby:
 			if retvalue == 5:
 				retvalue = 1

@@ -50,7 +50,7 @@ if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/p
 
 from Plugins.Extensions.Aafpanel.CronManager import *
 from Plugins.Extensions.Aafpanel.ScriptRunner import *
-from Plugins.Extensions.Aafpanel.HddSetup import *
+from Plugins.Extensions.Aafpanel.MountManager import *
 from Plugins.Extensions.Aafpanel.SoftcamPanel import *
 from Plugins.Extensions.Aafpanel.CamStart import *
 from Plugins.Extensions.Aafpanel.sundtek import *
@@ -394,8 +394,8 @@ class Aafpanel(Screen, InfoBarPiP):
 			self.session.open(SoftcamPanel)
 		elif menu == "MultiQuickButton":
 			self.session.open(MultiQuickButton)
-		elif menu == "DeviceManager":
-			self.session.open(HddSetup)
+		elif menu == "MountManager":
+			self.session.open(HddMount)
 		elif menu == "SundtekControlCenter":
 			self.session.open(SundtekControlCenter)
 		elif menu == "SwapManager":
@@ -417,7 +417,7 @@ class Aafpanel(Screen, InfoBarPiP):
 		self.tlist = []
 		self.oldmlist = []
 		self.oldmlist = self.Mlist
-		self.tlist.append(MenuEntryItem((AafEntryComponent('DeviceManager'), _("DeviceManager"), 'DeviceManager')))
+		self.tlist.append(MenuEntryItem((AafEntryComponent('MountManager'), _("MountManager"), 'MountManager')))
 		self.tlist.append(MenuEntryItem((AafEntryComponent('CronManager'), _("CronManager"), 'CronManager')))
 		self.tlist.append(MenuEntryItem((AafEntryComponent('JobManager'), _("JobManager"), 'JobManager')))
 		self.tlist.append(MenuEntryItem((AafEntryComponent('SwapManager'), _("SwapManager"), 'SwapManager')))
