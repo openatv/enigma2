@@ -599,6 +599,8 @@ RESULT eServiceMP3::trickSeek(gdouble ratio)
 	}
 
 	m_subtitle_pages.clear();
+	m_prev_decoder_time = -1;
+	m_decoder_time_valid_state = 0;
 	return 0;
 }
 
@@ -1746,6 +1748,7 @@ RESULT eServiceMP3::enableSubtitles(eWidget *parent, ePyObject tuple)
 		g_object_set (G_OBJECT (m_gst_playbin), "current-text", -1, NULL);
 		m_subtitle_pages.clear();
 		m_prev_decoder_time = -1;
+		m_decoder_time_valid_state = 0;
 		m_currentSubtitleStream = pid;
 		g_object_set (G_OBJECT (m_gst_playbin), "current-text", pid, NULL);
 	}
@@ -1774,6 +1777,8 @@ RESULT eServiceMP3::disableSubtitles(eWidget *parent)
 {
 	eDebug("eServiceMP3::disableSubtitles");
 	m_subtitle_pages.clear();
+	m_prev_decoder_time = -1;
+	m_decoder_time_valid_state = 0;
 	delete m_subtitle_widget;
 	m_subtitle_widget = 0;
 	return 0;
