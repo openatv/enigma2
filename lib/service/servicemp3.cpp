@@ -1697,7 +1697,7 @@ void eServiceMP3::pushSubtitles()
 			if (m_prev_decoder_time == running_pts)
 				m_decoder_time_valid_state = 0;
 			if (m_decoder_time_valid_state < 4) {
-				m_subtitle_sync_timer->start(25, true);
+				m_subtitle_sync_timer->start(50, true);
 				m_prev_decoder_time = running_pts;
 				break;
 			}
