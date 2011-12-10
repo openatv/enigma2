@@ -1727,7 +1727,7 @@ RESULT eServiceMP3::enableSubtitles(eWidget *parent, ePyObject tuple)
 {
 	ePyObject entry;
 	int tuplesize = PyTuple_Size(tuple);
-	int pid, type;
+	int pid;
 
 	if (!PyTuple_Check(tuple))
 		goto error_out;
@@ -1737,10 +1737,6 @@ RESULT eServiceMP3::enableSubtitles(eWidget *parent, ePyObject tuple)
 	if (!PyInt_Check(entry))
 		goto error_out;
 	pid = PyInt_AsLong(entry);
-	entry = PyTuple_GET_ITEM(tuple, 2);
-	if (!PyInt_Check(entry))
-		goto error_out;
-	type = PyInt_AsLong(entry);
 
 	if (m_currentSubtitleStream != pid)
 	{
