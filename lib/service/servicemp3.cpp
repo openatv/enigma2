@@ -23,6 +23,14 @@
 
 // eServiceFactoryMP3
 
+/*
+ * gstreamer suffers from a bug causing sparse streams to loose sync, after pause/resume / skip
+ * see: https://bugzilla.gnome.org/show_bug.cgi?id=619434
+ * As a workaround, we run the subsink in sync=false mode
+ */
+#define GSTREAMER_SUBTITLE_SYNC_MODE_BUG
+/**/
+
 eServiceFactoryMP3::eServiceFactoryMP3()
 {
 	ePtr<eServiceCenter> sc;
@@ -1182,6 +1190,7 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 					GstElement *subsink = gst_bin_get_by_name(GST_BIN(m_gst_playbin), "subtitle_sink");
 					if (subsink)
 					{
+#ifdef GSTREAMER_SUBTITLE_SYNC_MODE_BUG
 						/* 
 						 * HACK: disable sync mode for now, gstreamer suffers from a bug causing sparse streams to loose sync, after pause/resume / skip
 						 * see: https://bugzilla.gnome.org/show_bug.cgi?id=619434
@@ -1193,6 +1202,7 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 						 * So as soon as gstreamer has been fixed to keep sync in sparse streams, sync needs to be re-enabled.
 						 */
 						g_object_set (G_OBJECT (subsink), "sync", FALSE, NULL);
+#endif
 #if 0
 						/* we should not use ts-offset to sync with the decoder time, we have to do our own decoder timekeeping */
 						g_object_set (G_OBJECT (subsink), "ts-offset", -2L * GST_SECOND, NULL);
@@ -1756,7 +1766,13 @@ RESULT eServiceMP3::enableSubtitles(eWidget *parent, ePyObject tuple)
 
 		m_event((iPlayableService*)this, evUpdatedInfo);
 
+#ifdef GSTREAMER_SUBTITLE_SYNC_MODE_BUG
+		/* 
+		 * when we're running the subsink in sync=false mode, 
+		 * we have to force a seek, before the new subtitle stream will start
+		 */
 		seekRelative(-1, 90000);
+#endif
 	}
 
 	return 0;
