@@ -236,7 +236,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 	m_streamingsrc_timeout = 0;
 	m_stream_tags = 0;
 	m_currentAudioStream = -1;
-	m_currentSubtitleStream = 0;
+	m_currentSubtitleStream = -1;
 	m_subtitle_widget = 0;
 	m_currentTrickRatio = 1.0;
 	m_buffer_size = 1*1024*1024;
@@ -358,6 +358,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 		m_subs_to_pull_handler_id = g_signal_connect (subsink, "new-buffer", G_CALLBACK (gstCBsubtitleAvail), this);
 		g_object_set (G_OBJECT (subsink), "caps", gst_caps_from_string("text/plain; text/x-plain; text/x-pango-markup; video/x-dvd-subpicture; subpicture/x-pgs"), NULL);
 		g_object_set (G_OBJECT (m_gst_playbin), "text-sink", subsink, NULL);
+		g_object_set (G_OBJECT (m_gst_playbin), "current-text", m_currentSubtitleStream, NULL);
 	}
 
 	if ( m_gst_playbin )
@@ -1600,7 +1601,7 @@ void eServiceMP3::gstTextpadHasCAPS_synced(GstPad *pad)
 
 //		eDebug("gstGhostpadHasCAPS_synced %p %d", pad, m_subtitleStreams.size());
 
-		if (!m_subtitleStreams.empty())
+		if (m_currentSubtitleStream >= 0 && m_currentSubtitleStream < m_subtitleStreams.size())
 			subs = m_subtitleStreams[m_currentSubtitleStream];
 		else {
 			subs.type = stUnknown;
@@ -1622,7 +1623,7 @@ void eServiceMP3::gstTextpadHasCAPS_synced(GstPad *pad)
 			subs.language_code = std::string(g_lang);
 			subs.type = getSubtitleType(pad);
 
-			if (!m_subtitleStreams.empty())
+			if (m_currentSubtitleStream >= 0 && m_currentSubtitleStream < m_subtitleStreams.size())
 				m_subtitleStreams[m_currentSubtitleStream] = subs;
 			else
 				m_subtitleStreams.push_back(subs);
@@ -1638,7 +1639,7 @@ void eServiceMP3::gstTextpadHasCAPS_synced(GstPad *pad)
 
 void eServiceMP3::pullSubtitle(GstBuffer *buffer)
 {
-	if (buffer)
+	if (buffer && m_currentSubtitleStream >= 0 && m_currentSubtitleStream < m_subtitleStreams.size())
 	{
 		gint64 buf_pos = GST_BUFFER_TIMESTAMP(buffer);
 		gint64 duration_ns = GST_BUFFER_DURATION(buffer);
@@ -1745,7 +1746,7 @@ RESULT eServiceMP3::enableSubtitles(eWidget *parent, ePyObject tuple)
 		m_prev_decoder_time = -1;
 		m_decoder_time_valid_state = 0;
 		m_currentSubtitleStream = pid;
-		g_object_set (G_OBJECT (m_gst_playbin), "current-text", pid, NULL);
+		g_object_set (G_OBJECT (m_gst_playbin), "current-text", m_currentSubtitleStream, NULL);
 	}
 
 	m_subtitle_widget = 0;
@@ -1769,6 +1770,8 @@ error_out:
 RESULT eServiceMP3::disableSubtitles(eWidget *parent)
 {
 	eDebug("eServiceMP3::disableSubtitles");
+	m_currentSubtitleStream = -1;
+	g_object_set (G_OBJECT (m_gst_playbin), "current-text", m_currentSubtitleStream, NULL);
 	m_subtitle_pages.clear();
 	m_prev_decoder_time = -1;
 	m_decoder_time_valid_state = 0;
