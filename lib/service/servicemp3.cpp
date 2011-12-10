@@ -1728,7 +1728,6 @@ RESULT eServiceMP3::enableSubtitles(eWidget *parent, ePyObject tuple)
 	ePyObject entry;
 	int tuplesize = PyTuple_Size(tuple);
 	int pid, type;
-	gint text_pid = 0;
 
 	if (!PyTuple_Check(tuple))
 		goto error_out;
@@ -1757,9 +1756,7 @@ RESULT eServiceMP3::enableSubtitles(eWidget *parent, ePyObject tuple)
 	m_subtitle_widget = new eSubtitleWidget(parent);
 	m_subtitle_widget->resize(parent->size()); /* full size */
 
-	g_object_get (G_OBJECT (m_gst_playbin), "current-text", &text_pid, NULL);
-
-	eDebug ("eServiceMP3::switched to subtitle stream %i", text_pid);
+	eDebug ("eServiceMP3::switched to subtitle stream %i", m_currentSubtitleStream);
 
 	m_event((iPlayableService*)this, evUpdatedInfo);
 
