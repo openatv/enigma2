@@ -1086,6 +1086,10 @@ subtype_t getSubtitleType(GstPad* pad, gchar *g_codec=NULL)
 {
 	subtype_t type = stUnknown;
 	GstCaps* caps = gst_pad_get_negotiated_caps(pad);
+	if (!caps && !g_codec)
+	{
+		caps = gst_pad_get_allowed_caps(pad);
+	}
 
 	if ( caps )
 	{
