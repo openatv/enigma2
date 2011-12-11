@@ -23,6 +23,14 @@
 
 // eServiceFactoryMP3
 
+/*
+ * gstreamer suffers from a bug causing sparse streams to loose sync, after pause/resume / skip
+ * see: https://bugzilla.gnome.org/show_bug.cgi?id=619434
+ * As a workaround, we run the subsink in sync=false mode
+ */
+#define GSTREAMER_SUBTITLE_SYNC_MODE_BUG
+/**/
+
 eServiceFactoryMP3::eServiceFactoryMP3()
 {
 	ePtr<eServiceCenter> sc;
@@ -236,7 +244,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 	m_streamingsrc_timeout = 0;
 	m_stream_tags = 0;
 	m_currentAudioStream = -1;
-	m_currentSubtitleStream = 0;
+	m_currentSubtitleStream = -1;
 	m_subtitle_widget = 0;
 	m_currentTrickRatio = 1.0;
 	m_buffer_size = 1*1024*1024;
@@ -358,6 +366,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 		m_subs_to_pull_handler_id = g_signal_connect (subsink, "new-buffer", G_CALLBACK (gstCBsubtitleAvail), this);
 		g_object_set (G_OBJECT (subsink), "caps", gst_caps_from_string("text/plain; text/x-plain; text/x-pango-markup; video/x-dvd-subpicture; subpicture/x-pgs"), NULL);
 		g_object_set (G_OBJECT (m_gst_playbin), "text-sink", subsink, NULL);
+		g_object_set (G_OBJECT (m_gst_playbin), "current-text", m_currentSubtitleStream, NULL);
 	}
 
 	if ( m_gst_playbin )
@@ -599,6 +608,8 @@ RESULT eServiceMP3::trickSeek(gdouble ratio)
 	}
 
 	m_subtitle_pages.clear();
+	m_prev_decoder_time = -1;
+	m_decoder_time_valid_state = 0;
 	return 0;
 }
 
@@ -1086,6 +1097,10 @@ subtype_t getSubtitleType(GstPad* pad, gchar *g_codec=NULL)
 {
 	subtype_t type = stUnknown;
 	GstCaps* caps = gst_pad_get_negotiated_caps(pad);
+	if (!caps && !g_codec)
+	{
+		caps = gst_pad_get_allowed_caps(pad);
+	}
 
 	if ( caps )
 	{
@@ -1175,6 +1190,7 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 					GstElement *subsink = gst_bin_get_by_name(GST_BIN(m_gst_playbin), "subtitle_sink");
 					if (subsink)
 					{
+#ifdef GSTREAMER_SUBTITLE_SYNC_MODE_BUG
 						/* 
 						 * HACK: disable sync mode for now, gstreamer suffers from a bug causing sparse streams to loose sync, after pause/resume / skip
 						 * see: https://bugzilla.gnome.org/show_bug.cgi?id=619434
@@ -1186,6 +1202,7 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 						 * So as soon as gstreamer has been fixed to keep sync in sparse streams, sync needs to be re-enabled.
 						 */
 						g_object_set (G_OBJECT (subsink), "sync", FALSE, NULL);
+#endif
 #if 0
 						/* we should not use ts-offset to sync with the decoder time, we have to do our own decoder timekeeping */
 						g_object_set (G_OBJECT (subsink), "ts-offset", -2L * GST_SECOND, NULL);
@@ -1567,6 +1584,11 @@ eAutoInitPtr<eServiceFactoryMP3> init_eServiceFactoryMP3(eAutoInitNumbers::servi
 void eServiceMP3::gstCBsubtitleAvail(GstElement *subsink, GstBuffer *buffer, gpointer user_data)
 {
 	eServiceMP3 *_this = (eServiceMP3*)user_data;
+	if (_this->m_currentSubtitleStream < 0) 
+	{
+		if (buffer) gst_buffer_unref(buffer);
+		return;
+	}
 	eDebug("gstCBsubtitleAvail: %s", GST_BUFFER_DATA(buffer));
 	_this->m_pump.send(new GstMessageContainer(2, NULL, NULL, buffer));
 }
@@ -1594,7 +1616,7 @@ void eServiceMP3::gstTextpadHasCAPS_synced(GstPad *pad)
 
 //		eDebug("gstGhostpadHasCAPS_synced %p %d", pad, m_subtitleStreams.size());
 
-		if (!m_subtitleStreams.empty())
+		if (m_currentSubtitleStream >= 0 && m_currentSubtitleStream < m_subtitleStreams.size())
 			subs = m_subtitleStreams[m_currentSubtitleStream];
 		else {
 			subs.type = stUnknown;
@@ -1616,7 +1638,7 @@ void eServiceMP3::gstTextpadHasCAPS_synced(GstPad *pad)
 			subs.language_code = std::string(g_lang);
 			subs.type = getSubtitleType(pad);
 
-			if (!m_subtitleStreams.empty())
+			if (m_currentSubtitleStream >= 0 && m_currentSubtitleStream < m_subtitleStreams.size())
 				m_subtitleStreams[m_currentSubtitleStream] = subs;
 			else
 				m_subtitleStreams.push_back(subs);
@@ -1632,7 +1654,7 @@ void eServiceMP3::gstTextpadHasCAPS_synced(GstPad *pad)
 
 void eServiceMP3::pullSubtitle(GstBuffer *buffer)
 {
-	if (buffer)
+	if (buffer && m_currentSubtitleStream >= 0 && m_currentSubtitleStream < m_subtitleStreams.size())
 	{
 		gint64 buf_pos = GST_BUFFER_TIMESTAMP(buffer);
 		gint64 duration_ns = GST_BUFFER_DURATION(buffer);
@@ -1680,7 +1702,7 @@ void eServiceMP3::pushSubtitles()
 			if (m_prev_decoder_time == running_pts)
 				m_decoder_time_valid_state = 0;
 			if (m_decoder_time_valid_state < 4) {
-				m_subtitle_sync_timer->start(25, true);
+				m_subtitle_sync_timer->start(50, true);
 				m_prev_decoder_time = running_pts;
 				break;
 			}
@@ -1721,8 +1743,7 @@ RESULT eServiceMP3::enableSubtitles(eWidget *parent, ePyObject tuple)
 {
 	ePyObject entry;
 	int tuplesize = PyTuple_Size(tuple);
-	int pid, type;
-	gint text_pid = 0;
+	int pid;
 
 	if (!PyTuple_Check(tuple))
 		goto error_out;
@@ -1732,30 +1753,32 @@ RESULT eServiceMP3::enableSubtitles(eWidget *parent, ePyObject tuple)
 	if (!PyInt_Check(entry))
 		goto error_out;
 	pid = PyInt_AsLong(entry);
-	entry = PyTuple_GET_ITEM(tuple, 2);
-	if (!PyInt_Check(entry))
-		goto error_out;
-	type = PyInt_AsLong(entry);
 
 	if (m_currentSubtitleStream != pid)
 	{
-		g_object_set (G_OBJECT (m_gst_playbin), "current-text", pid, NULL);
-		m_currentSubtitleStream = pid;
-		m_prev_decoder_time = -1;
+		g_object_set (G_OBJECT (m_gst_playbin), "current-text", -1, NULL);
 		m_subtitle_pages.clear();
+		m_prev_decoder_time = -1;
+		m_decoder_time_valid_state = 0;
+		m_currentSubtitleStream = pid;
+		g_object_set (G_OBJECT (m_gst_playbin), "current-text", m_currentSubtitleStream, NULL);
+
+		m_subtitle_widget = 0;
+		m_subtitle_widget = new eSubtitleWidget(parent);
+		m_subtitle_widget->resize(parent->size()); /* full size */
+
+		eDebug ("eServiceMP3::switched to subtitle stream %i", m_currentSubtitleStream);
+
+		m_event((iPlayableService*)this, evUpdatedInfo);
+
+#ifdef GSTREAMER_SUBTITLE_SYNC_MODE_BUG
+		/* 
+		 * when we're running the subsink in sync=false mode, 
+		 * we have to force a seek, before the new subtitle stream will start
+		 */
+		seekRelative(-1, 90000);
+#endif
 	}
-
-	m_subtitle_widget = 0;
-	m_subtitle_widget = new eSubtitleWidget(parent);
-	m_subtitle_widget->resize(parent->size()); /* full size */
-
-	g_object_get (G_OBJECT (m_gst_playbin), "current-text", &text_pid, NULL);
-
-	eDebug ("eServiceMP3::switched to subtitle stream %i", text_pid);
-
-	m_event((iPlayableService*)this, evUpdatedInfo);
-
-	seekRelative(-1, 90000);
 
 	return 0;
 
@@ -1768,7 +1791,11 @@ error_out:
 RESULT eServiceMP3::disableSubtitles(eWidget *parent)
 {
 	eDebug("eServiceMP3::disableSubtitles");
+	m_currentSubtitleStream = -1;
+	g_object_set (G_OBJECT (m_gst_playbin), "current-text", m_currentSubtitleStream, NULL);
 	m_subtitle_pages.clear();
+	m_prev_decoder_time = -1;
+	m_decoder_time_valid_state = 0;
 	delete m_subtitle_widget;
 	m_subtitle_widget = 0;
 	return 0;
