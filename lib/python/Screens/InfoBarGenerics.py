@@ -4295,7 +4295,7 @@ class InfoBarSubtitleSupport(object):
 					self.subtitle_window.show()
 					self.__subtitles_enabled = True
 		else:
-			if subtitle:
+			if subtitle and self.__subtitles_enabled:
 				subtitle.disableSubtitles(self.subtitle_window.instance)
 			self.__selected_subtitle = False
 			self.__subtitles_enabled = False
