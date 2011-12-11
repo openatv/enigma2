@@ -395,28 +395,27 @@ int eMPEGStreamInformation::getStructureEntry(off_t &offset, unsigned long long 
 		}
 		m_structure_cache_valid = 1;
 	}
-	
-	int i = 0;
-	while ((off_t)m_structure_cache[i * 2] <= offset)
-	{
-		// TODO: Why don't we do a binary search here?
-		++i;
-		if (i == struture_cache_entries)
-		{
-			eDebug("structure data consistency fail!, we are looking for %llx, but last entry is %llx", offset, m_structure_cache[i*2-2]);
-			return -1;
-		}
-	}
-	if (!i)
-	{
-		eDebug("structure data (first entry) consistency fail!");
-		return -1;
-	}
-	
-	if (!get_next)
-		--i;
 
-//	eDebug("[%d] looked for %llx, found %llx=%llx", sizeof offset, offset, m_structure_cache[i * 2], m_structure_cache[i * 2 + 1]);
+	// Binary search for offset
+	int i = 0;
+	int low = 0;
+	int high = struture_cache_entries - 1;
+	while (low <= high)
+	{
+		int mid = (low + high) / 2;
+		off_t value = m_structure_cache[mid * 2];
+		if (value <= offset)
+			low = mid + 1;
+		else
+			high = mid - 1;
+	}
+	// Note that low > high
+	if (get_next)
+		i = low;
+	else
+		i = high;
+
+	//	eDebug("[%d] looked for %llx, found %llx=%llx", sizeof offset, offset, m_structure_cache[i * 2], m_structure_cache[i * 2 + 1]);
 	offset = m_structure_cache[i * 2];
 	data = m_structure_cache[i * 2 + 1];
 	return 0;
