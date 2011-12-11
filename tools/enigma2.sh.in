@@ -5,6 +5,11 @@ exec_prefix=@exec_prefix@
 datarootdir=@datarootdir@
 logpath=$(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')
 
+# update NTP time if NTP Time Enabled
+if [ "$(grep config.misc.SyncTimeUsing /etc/enigma2/settings)" == "config.misc.SyncTimeUsing=1" ]; then
+	/usr/bin/ntpdate -s -u pool.ntp.org &
+fi
+
 if [ -x @bindir@/showiframe ]; then
 	if [ -f @sysconfdir@/enigma2/backdrop.mvi ]; then
 		@bindir@/showiframe @sysconfdir@/enigma2/backdrop.mvi
