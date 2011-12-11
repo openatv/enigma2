@@ -508,40 +508,54 @@ int eMPEGStreamParserTS::processPacket(const unsigned char *pkt, off_t offset)
 			{
 				if ((sc == 0x00) || (sc == 0xb3) || (sc == 0xb8)) /* picture, sequence, group start code */
 				{
+					if (sc == 0xb3) /* sequence header */
+					{
+						if (ptsvalid)
+						{
+							m_streaminfo.m_access_points[offset] = pts;
+							//eDebug("Sequence header at %llx, pts %llx", offset, pts);
+						}
+					}
 					if (pkt < (end - 6))
 					{
 						unsigned long long data = sc | (pkt[4] << 8) | (pkt[5] << 16) | (pkt[6] << 24);
-						m_streaminfo.writeStructureEntry(offset + pkt_offset, data  & 0xFFFFFFFFULL);
+						m_streaminfo.writeStructureEntry(offset + pkt_offset, data & 0xFFFFFFFFULL);
+					}
+					else
+					{
+						if (pkt == end-6)
+						{
+							// This happens when recording VOX, why???
+							// Just ignore that last byte? Would that work?
+							unsigned long long data = sc | (pkt[4] << 8) | (pkt[5] << 16);
+							m_streaminfo.writeStructureEntry(offset + pkt_offset, data & 0xFFFFFFFFULL);
+						}
+						else
+						{
+							// Returning non-zero suggests we need more data. This does not
+							// work, and never has, so we should make this a void function
+							// or fix that...
+							return 1;
+						}
 					}
 				}
-				if (pkt[3] == 0xb3) /* sequence header */
-				{
-					if (ptsvalid)
-					{
-						m_streaminfo.m_access_points[offset] = pts;
-	//					eDebug("Sequence header at %llx, pts %llx", offset, pts);
-					} else
-						/*eDebug("Sequence header but no valid PTS value.")*/;
-				}
 			}
-
-			if (m_streamtype == 1) /* H.264 */
+			else if (m_streamtype == 1) /* H.264 */
 			{
 				if (sc == 0x09)
 				{
-						/* store image type */
+					/* store image type */
 					unsigned long long data = sc | (pkt[4] << 8);
 					m_streaminfo.writeStructureEntry(offset + pkt_offset, data);
-				}
-				if (pkt[3] == 0x09 &&   /* MPEG4 AVC NAL unit access delimiter */
-					 (pkt[4] >> 5) == 0) /* and I-frame */
-				{
-					if (ptsvalid)
+					if ( //pkt[3] == 0x09 &&   /* MPEG4 AVC NAL unit access delimiter */
+						 (pkt[4] >> 5) == 0) /* and I-frame */
 					{
-						m_streaminfo.m_access_points[offset] = pts;
-	//				eDebug("MPEG4 AVC UAD at %llx, pts %llx", offset, pts);
-					} else
-						/*eDebug("MPEG4 AVC UAD but no valid PTS value.")*/;
+						if (ptsvalid)
+						{
+							m_streaminfo.m_access_points[offset] = pts;
+							// eDebug("MPEG4 AVC UAD at %llx, pts %llx", offset, pts);
+						}
+					}
 				}
 			}
 		}
