@@ -1594,16 +1594,17 @@ class InfoBarSeek:
 		else:
 			self.activityTimer.stop()
 			self.activity = 0
-			hdd = 0
-		if config.lcd.hdd.value == "1":
+			hdd = 0	
 			if os_path.exists("/proc/stb/lcd/symbol_hdd"):
-				file = open("/proc/stb/lcd/symbol_hdd", "w")
-				file.write('%d' % int(hdd))
-				file.close()
+				if config.lcd.hdd.value == "1":
+					file = open("/proc/stb/lcd/symbol_hdd", "w")
+					file.write('%d' % int(hdd))
+					file.close()
 			if os_path.exists("/proc/stb/lcd/symbol_hddprogress"):
-				file = open("/proc/stb/lcd/symbol_hddprogress", "w")
-				file.write('%d' % int(self.activity))
-				file.close()
+				if config.lcd.hdd.value == "1":
+					file = open("/proc/stb/lcd/symbol_hddprogress", "w")
+					file.write('%d' % int(self.activity))
+					file.close()
 
 	def __serviceStarted(self):
 		self.fast_winding_hint_message_showed = False

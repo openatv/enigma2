@@ -107,11 +107,11 @@ class LCD:
 		if config.lcd.mode.value == "0":
 			if path.exists("/proc/stb/lcd/symbol_hdd"):	
 				open("/proc/stb/lcd/symbol_hdd", "w").write("0")
-			if path.exists("/proc/stb/lcd/hddprogress"):	
+			if path.exists("/proc/stb/lcd/symbol_hddprogress"):	
 				open("/proc/stb/lcd/symbol_hddprogress", "w").write("0")
-			if path.exists("/proc/stb/lcd/_network"):	
+			if path.exists("/proc/stb/lcd/symbol__network"):	
 				open("/proc/stb/lcd/symbol_network", "w").write("0")
-			if path.exists("/proc/stb/lcd/_signal"):	
+			if path.exists("/proc/stb/lcd/symbol__signal"):	
 				open("/proc/stb/lcd/symbol_signal", "w").write("0")
 			if path.exists("/proc/stb/lcd/symbol_timeshift"):		
 				open("/proc/stb/lcd/symbol_timeshift", "w").write("0")
@@ -229,6 +229,7 @@ def InitLcd():
 			config.lcd.mode = ConfigNothing()
 			config.lcd.repeat = ConfigNothing()
 			config.lcd.scrollspeed = ConfigNothing()
+			config.lcd.hdd = ConfigNothing()
 
 	else:
 		def doNothing():
