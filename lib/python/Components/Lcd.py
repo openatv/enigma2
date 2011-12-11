@@ -5,6 +5,7 @@ from Components.SystemInfo import SystemInfo
 from os import path
 import usb
 
+
 def IconCheck(session=None, **kwargs):
 	if path.exists("/proc/stb/lcd/symbol_network") or path.exists("/proc/stb/lcd/symbol_usb"):
 		global networklinkpoller
@@ -26,7 +27,8 @@ class IconCheckPoller:
 		self.timer.stop()
 
 	def iconcheck(self):
-		Components.Task.job_manager.AddJob(self.createCheckJob())
+		if config.lcd.mode.value == "1":
+			Components.Task.job_manager.AddJob(self.createCheckJob())
 
 	def createCheckJob(self):
 		job = Components.Task.Job(_("VFD Checker"))
@@ -102,7 +104,55 @@ class LCD:
 
 	def setMode(self, value):
 		open("/proc/stb/lcd/show_symbols", "w").write(value)
+		if config.lcd.mode.value == "0":
+			if path.exists("/proc/stb/lcd/symbol_hdd"):	
+				open("/proc/stb/lcd/symbol_hdd", "w").write("0")
+			if path.exists("/proc/stb/lcd/hddprogress"):	
+				open("/proc/stb/lcd/symbol_hddprogress", "w").write("0")
+			if path.exists("/proc/stb/lcd/_network"):	
+				open("/proc/stb/lcd/symbol_network", "w").write("0")
+			if path.exists("/proc/stb/lcd/_signal"):	
+				open("/proc/stb/lcd/symbol_signal", "w").write("0")
+			if path.exists("/proc/stb/lcd/symbol_timeshift"):		
+				open("/proc/stb/lcd/symbol_timeshift", "w").write("0")
+			if path.exists("/proc/stb/lcd/symbol_tv"):	
+				open("/proc/stb/lcd/symbol_tv", "w").write("0")
+			if path.exists("/proc/stb/lcd/symbol_usb"):	
+				open("/proc/stb/lcd/symbol_usb", "w").write("0")
+		else:
+			self.JobNetwork()
+			self.JobUSB()
 
+	def JobNetwork(self):
+		LinkState = 0
+		if path.exists('/sys/class/net/wlan0/operstate'):
+			LinkState = open('/sys/class/net/wlan0/operstate').read()
+			if LinkState != 'down':
+				LinkState = open('/sys/class/net/wlan0/operstate').read()
+		elif path.exists('/sys/class/net/eth0/operstate'):
+			LinkState = open('/sys/class/net/eth0/operstate').read()
+			if LinkState != 'down':
+				LinkState = open('/sys/class/net/eth0/carrier').read()
+		LinkState = LinkState[:1]
+		open("/proc/stb/lcd/symbol_network", "w").write(str(LinkState))
+
+	def JobUSB(self):
+		USBState = 0
+		busses = usb.busses()
+		for bus in busses:
+			devices = bus.devices
+			for dev in devices:
+				if dev.deviceClass != 9 and dev.deviceClass != 2 and dev.idVendor > 0:
+# 						print ' '
+# 						print "Device:", dev.filename
+# 						print "  Number:", dev.deviceClass
+# 						print "  idVendor: %d (0x%04x)" % (dev.idVendor, dev.idVendor)
+# 						print "  idProduct: %d (0x%04x)" % (dev.idProduct, dev.idProduct)
+					USBState = 1
+		open("/proc/stb/lcd/symbol_usb", "w").write(str(USBState))
+
+		
+			
 	def setRepeat(self, value):
 		open("/proc/stb/lcd/scroll_repeats", "w").write(value)
 
@@ -139,7 +189,11 @@ def InitLcd():
 
 		def setLCDscrollspeed(configElement):
 			ilcd.setScrollspeed(configElement.value);
-
+		
+		if path.exists("/proc/stb/lcd/symbol_hdd"):
+			open("/proc/stb/lcd/symbol_hdd", "w").write("0")
+		if path.exists("/proc/stb/lcd/symbol_hddprogress"):	
+			open("/proc/stb/lcd/symbol_hddprogress", "w").write("0")
 		standby_default = 0
 
 		ilcd = LCD()
@@ -165,6 +219,7 @@ def InitLcd():
 
 		if path.exists("/proc/stb/lcd/scroll_delay"):
 			config.lcd.mode = ConfigSelection([("0", _("No")), ("1", _("Yes"))], "1")
+			config.lcd.hdd = ConfigSelection([("0", _("No")), ("1", _("Yes"))], "1")
 			config.lcd.mode.addNotifier(setLCDmode);
 			config.lcd.repeat = ConfigSelection([("0", _("None")), ("1", _("1X")), ("2", _("2X")), ("3", _("3X")), ("4", _("4X")), ("500", _("Continues"))], "3")
 			config.lcd.repeat.addNotifier(setLCDrepeat);

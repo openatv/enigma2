@@ -1572,9 +1572,14 @@ class InfoBarSeek:
 	def __seekableStatusChanged(self):
 #		print "seekable status changed!"
 		if not self.isSeekable():
+			if os_path.exists("/proc/stb/lcd/symbol_hdd"):
+				open("/proc/stb/lcd/symbol_hdd", "w").write("0")
+			if os_path.exists("/proc/stb/lcd/symbol_hddprogress"):	
+				open("/proc/stb/lcd/symbol_hddprogress", "w").write("0")
 			self["SeekActions"].setEnabled(False)
 #			print "not seekable, return to play"
 			self.setSeekState(self.SEEK_STATE_PLAY)
+			
 		else:
 			self["SeekActions"].setEnabled(True)
 			self.activityTimer.start(200, False)
@@ -1590,14 +1595,15 @@ class InfoBarSeek:
 			self.activityTimer.stop()
 			self.activity = 0
 			hdd = 0
-		if os_path.exists("/proc/stb/lcd/symbol_hdd"):
-			file = open("/proc/stb/lcd/symbol_hdd", "w")
-			file.write('%d' % int(hdd))
-			file.close()
-		if os_path.exists("/proc/stb/lcd/symbol_hddprogress"):
-			file = open("/proc/stb/lcd/symbol_hddprogress", "w")
-			file.write('%d' % int(self.activity))
-			file.close()
+		if config.lcd.hdd.value == "1":
+			if os_path.exists("/proc/stb/lcd/symbol_hdd"):
+				file = open("/proc/stb/lcd/symbol_hdd", "w")
+				file.write('%d' % int(hdd))
+				file.close()
+			if os_path.exists("/proc/stb/lcd/symbol_hddprogress"):
+				file = open("/proc/stb/lcd/symbol_hddprogress", "w")
+				file.write('%d' % int(self.activity))
+				file.close()
 
 	def __serviceStarted(self):
 		self.fast_winding_hint_message_showed = False
