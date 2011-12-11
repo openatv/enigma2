@@ -109,9 +109,9 @@ class LCD:
 				open("/proc/stb/lcd/symbol_hdd", "w").write("0")
 			if path.exists("/proc/stb/lcd/symbol_hddprogress"):	
 				open("/proc/stb/lcd/symbol_hddprogress", "w").write("0")
-			if path.exists("/proc/stb/lcd/symbol__network"):	
+			if path.exists("/proc/stb/lcd/symbol_network"):	
 				open("/proc/stb/lcd/symbol_network", "w").write("0")
-			if path.exists("/proc/stb/lcd/symbol__signal"):	
+			if path.exists("/proc/stb/lcd/symbol_signal"):	
 				open("/proc/stb/lcd/symbol_signal", "w").write("0")
 			if path.exists("/proc/stb/lcd/symbol_timeshift"):		
 				open("/proc/stb/lcd/symbol_timeshift", "w").write("0")
