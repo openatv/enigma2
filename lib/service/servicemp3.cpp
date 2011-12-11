@@ -1584,6 +1584,11 @@ eAutoInitPtr<eServiceFactoryMP3> init_eServiceFactoryMP3(eAutoInitNumbers::servi
 void eServiceMP3::gstCBsubtitleAvail(GstElement *subsink, GstBuffer *buffer, gpointer user_data)
 {
 	eServiceMP3 *_this = (eServiceMP3*)user_data;
+	if (_this->m_currentSubtitleStream < 0) 
+	{
+		if (buffer) gst_buffer_unref(buffer);
+		return;
+	}
 	eDebug("gstCBsubtitleAvail: %s", GST_BUFFER_DATA(buffer));
 	_this->m_pump.send(new GstMessageContainer(2, NULL, NULL, buffer));
 }
