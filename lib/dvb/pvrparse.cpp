@@ -360,13 +360,11 @@ int eMPEGStreamInformation::getStructureEntry(off_t &offset, unsigned long long 
 				eDebug("read error at entry %d", i);
 				return -1;
 			}
-			
 #if BYTE_ORDER != BIG_ENDIAN
 			d[0] = bswap_64(d[0]);
-			d[1] = bswap_64(d[1]);
+//			d[1] = bswap_64(d[1]);
 #endif
 //			eDebug("%d: %08llx > %llx", i, d[0], d[1]);
-			
 			if (d[0] < (unsigned long long)offset)
 			{
 				i += step + 1;
@@ -375,29 +373,25 @@ int eMPEGStreamInformation::getStructureEntry(off_t &offset, unsigned long long 
 				count = step;
 		}
 		
-		eDebug("found %d", i);
-		
-			/* put that in the middle */
+		eDebug("[eMPEGStreamInformation] found %d get_next=%d", i, get_next);
+		// Put the cache in the center
 		i -= struture_cache_entries / 2;
 		if (i < 0)
 			i = 0;
-		eDebug("cache starts at %d", i);
 		fseek(m_structure_read, i * entry_size, SEEK_SET);
 		int num = fread(m_structure_cache, entry_size, struture_cache_entries, m_structure_read);
-		eDebug("%d entries", num);
-		for (i = 0; i < struture_cache_entries; ++i)
+		eDebug("[eMPEGStreamInformation] cache starts at %d entries: %d", i, num);
+		for (i = 0; i < num; ++i)
 		{
-			if (i < num)
-			{
 #if BYTE_ORDER != BIG_ENDIAN
-				m_structure_cache[i * 2] = bswap_64(m_structure_cache[i * 2]);
-				m_structure_cache[i * 2 + 1] = bswap_64(m_structure_cache[i * 2 + 1]);
+			m_structure_cache[i * 2] = bswap_64(m_structure_cache[i * 2]);
+			m_structure_cache[i * 2 + 1] = bswap_64(m_structure_cache[i * 2 + 1]);
 #endif
-			} else
-			{
-				m_structure_cache[i * 2] = 0x7fffffffffffffffULL; /* fill with harmless content */
-				m_structure_cache[i * 2 + 1] = 0;
-			}
+		}
+		for (i = num; i < struture_cache_entries; ++i)
+		{
+			m_structure_cache[i * 2] = 0x7fffffffffffffffULL; /* fill with harmless content */
+			m_structure_cache[i * 2 + 1] = 0;
 		}
 		m_structure_cache_valid = 1;
 	}
@@ -405,6 +399,7 @@ int eMPEGStreamInformation::getStructureEntry(off_t &offset, unsigned long long 
 	int i = 0;
 	while ((off_t)m_structure_cache[i * 2] <= offset)
 	{
+		// TODO: Why don't we do a binary search here?
 		++i;
 		if (i == struture_cache_entries)
 		{
