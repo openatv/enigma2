@@ -298,7 +298,6 @@ lib/python/Plugins/Extensions/auraWebBrowser/Makefile
 lib/python/Plugins/Extensions/auraWebBrowser/meta/Makefile
 lib/python/Plugins/Extensions/auraWebBrowser/keymap/Makefile
 lib/python/Plugins/Extensions/Volume_adjust/Makefile
-lib/python/Plugins/Extensions/Volume_adjust/de/Makefile
 lib/python/Plugins/Extensions/Volume_adjust/nl/Makefile
 lib/python/Plugins/PLi/Makefile
 lib/python/Plugins/SystemPlugins/CleanupWizard/Makefile
