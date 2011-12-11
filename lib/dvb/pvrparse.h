@@ -14,23 +14,10 @@ class eMPEGStreamInformation
 public:
 	eMPEGStreamInformation();
 	~eMPEGStreamInformation();
-		/* we order by off_t here, since the timestamp may */
-		/* wrap around. */
-		/* we only record sequence start's pts values here. */
-	std::map<off_t, pts_t> m_access_points;
-		/* timestampDelta is in fact the difference between */
-		/* the PTS in the stream and a real PTS from 0..max */
-	std::map<off_t, pts_t> m_timestamp_deltas;
-
-		/* these are non-fixed up pts value (like m_access_points), just used to accelerate stuff. */
-	std::multimap<pts_t, off_t> m_pts_to_offset; 
 
 	int startSave(const std::string& filename);
 	int stopSave(void);
 	int load(const char *filename);
-	
-		/* recalculates timestampDeltas */
-	void fixupDiscontinuties();
 	
 		/* get delta at specific offset */
 	pts_t getDelta(off_t offset);
@@ -50,17 +37,26 @@ public:
 	
 	bool empty();
 	
-	typedef unsigned long long structure_data;
-		/* this is usually:
-			sc | (other_information << 8)
-			but is really specific to the used video encoder.
-		*/
-	void writeStructureEntry(off_t offset, structure_data data);
-
 		/* get a structure entry at given offset (or previous one, if no exact match was found).
 		   optionall, return next element. Offset will be returned. this allows you to easily 
 		   get previous and next structure elements. */
 	int getStructureEntry(off_t &offset, unsigned long long &data, int get_next);
+
+	/* Used by parser */
+	void addAccessPoint(off_t offset, pts_t pts) { m_access_points[offset] = pts; }
+	void writeStructureEntry(off_t offset, unsigned long long data);
+private:
+	/* recalculates timestampDeltas */
+	void fixupDiscontinuties();
+	/* we order by off_t here, since the timestamp may */
+	/* wrap around. */
+	/* we only record sequence start's pts values here. */
+	std::map<off_t, pts_t> m_access_points;
+	/* timestampDelta is in fact the difference between */
+	/* the PTS in the stream and a real PTS from 0..max */
+	std::map<off_t, pts_t> m_timestamp_deltas;
+	/* these are non-fixed up pts value (like m_access_points), just used to accelerate stuff. */
+	std::multimap<pts_t, off_t> m_pts_to_offset;
 
 	std::string m_filename;
 	int m_structure_cache_valid;

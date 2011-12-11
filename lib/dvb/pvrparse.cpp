@@ -316,7 +316,7 @@ int eMPEGStreamInformation::getNextAccessPoint(pts_t &ts, const pts_t &start, in
 	return 0;
 }
 
-void eMPEGStreamInformation::writeStructureEntry(off_t offset, structure_data data)
+void eMPEGStreamInformation::writeStructureEntry(off_t offset, unsigned long long data)
 {
 	unsigned long long d[2];
 #if BYTE_ORDER == BIG_ENDIAN
@@ -512,7 +512,7 @@ int eMPEGStreamParserTS::processPacket(const unsigned char *pkt, off_t offset)
 					{
 						if (ptsvalid)
 						{
-							m_streaminfo.m_access_points[offset] = pts;
+							m_streaminfo.addAccessPoint(offset, pts);
 							//eDebug("Sequence header at %llx, pts %llx", offset, pts);
 						}
 					}
@@ -552,7 +552,7 @@ int eMPEGStreamParserTS::processPacket(const unsigned char *pkt, off_t offset)
 					{
 						if (ptsvalid)
 						{
-							m_streaminfo.m_access_points[offset] = pts;
+							m_streaminfo.addAccessPoint(offset, pts);
 							// eDebug("MPEG4 AVC UAD at %llx, pts %llx", offset, pts);
 						}
 					}
