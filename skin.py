@@ -6,7 +6,7 @@ import os
 profile("LOAD:enigma_skin")
 from enigma import eSize, ePoint, gFont, eWindow, eLabel, ePixmap, eWindowStyleManager, \
 	addFont, gRGB, eWindowStyleSkinned
-from Components.config import ConfigSubsection, ConfigText, config, ConfigYesNo, ConfigSelection
+from Components.config import ConfigSubsection, ConfigText, config, ConfigYesNo, ConfigSelection, ConfigNothing
 from Components.Converter.Converter import Converter
 from Components.Sources.Source import Source, ObsoleteSource
 from Tools.Directories import resolveFilename, SCOPE_SKIN, SCOPE_SKIN_IMAGE, SCOPE_FONTS, SCOPE_CURRENT_SKIN, SCOPE_CONFIG, fileExists
@@ -15,6 +15,8 @@ from Tools.LoadPixmap import LoadPixmap
 
 config.vfd = ConfigSubsection()
 config.vfd.show = ConfigSelection([("skin_text.xml", _("Channel Name")), ("skin_text_clock.xml", _("Clock"))], "skin_text.xml")
+if not os.path.exists("/usr/share/enigma2/skin_text.xml"):
+	config.vfd.show = ConfigNothing()
 
 colorNames = {}
 # Predefined fonts, typically used in built-in screens and for components like
