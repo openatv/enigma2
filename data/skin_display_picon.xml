@@ -38,34 +38,21 @@
 		<widget source="global.CurrentTime" render="Label" position="119,48" size="60,22" font="FdLcD;24" halign="right" valign="bottom" noWrap="1">
 			<convert type="ClockToText"></convert>
 		</widget>
-		<widget source="session.RecordState" render="Pixmap" pixmap="ViX_HD_Common/lcd/rec.png" position="175,0" size="26,10" >
+		<widget source="session.OnlineCheckState" render="Pixmap" pixmap="ViX_HD_Common/lcd/update.png" position="178,0" size="12,10" >
 			<convert type="ConditionalShowHide"></convert>
 		</widget>
-		<widget source="session.CurrentService" render="Pixmap" pixmap="ViX_HD_Common/lcd/hd.png" position="203,0" size="18,10" >
+		<widget source="session.RecordState" render="Pixmap" pixmap="ViX_HD_Common/lcd/rec.png" position="191,0" size="26,10" >
+			<convert type="ConditionalShowHide"></convert>
+		</widget>
+		<widget source="session.CurrentService" render="Pixmap" pixmap="ViX_HD_Common/lcd/hd.png" position="218,0" size="18,10" >
 			<convert type="ServiceInfo">VideoWidth</convert>
 			<convert type="ValueRange">721,1980</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.CurrentService" render="Pixmap" pixmap="ViX_HD_Common/lcd/dolby.png" position="223,0" size="18,10" >
+		<widget source="session.CurrentService" render="Pixmap" pixmap="ViX_HD_Common/lcd/dolby.png" position="237,0" size="18,10" >
 			<convert type="ServiceInfo">IsMultichannel</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.OnlineCheckState" render="Pixmap" pixmap="ViX_HD_Common/lcd/update.png" position="243,0" size="12,10" >
-			<convert type="ConditionalShowHide"></convert>
-		</widget>
-<!-- 
-		<widget source="session.CurrentService" render="Pixmap" pixmap="ViX_HD_Common/lcd/crypt.png" position=",0" size="11,15" >
-			<convert type="ServiceInfo">IsCrypted</convert>
-			<convert type="ConditionalShowHide" />
-		</widget>
-		<widget source="session.CurrentService" render="Pixmap" pixmap="ViX_HD_Common/lcd/txt.png" position="780,14" size="18,15" >
-			<convert type="ServiceInfo">HasTelext</convert>
-			<convert type="ConditionalShowHide" />
-		</widget>
- -->
-        <widget source="session.CurrentService" render="LcdPicon" position="179,17" size="76,45" >
-            <convert type="ServiceName">Reference</convert>
-        </widget>    
 	</screen>
     
   
@@ -86,6 +73,21 @@
         <widget source="parent.ServiceEvent" render="LcdPicon" position="179,17" size="76,45" >
             <convert type="ServiceName">Reference</convert>
         </widget>    
+		<widget source="session.OnlineCheckState" render="Pixmap" pixmap="ViX_HD_Common/lcd/update.png" position="178,0" size="12,10" >
+			<convert type="ConditionalShowHide"></convert>
+		</widget>
+		<widget source="session.RecordState" render="Pixmap" pixmap="ViX_HD_Common/lcd/rec.png" position="191,0" size="26,10" >
+			<convert type="ConditionalShowHide"></convert>
+		</widget>
+		<widget source="session.CurrentService" render="Pixmap" pixmap="ViX_HD_Common/lcd/hd.png" position="218,0" size="18,10" >
+			<convert type="ServiceInfo">VideoWidth</convert>
+			<convert type="ValueRange">721,1980</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.CurrentService" render="Pixmap" pixmap="ViX_HD_Common/lcd/dolby.png" position="237,0" size="18,10" >
+			<convert type="ServiceInfo">IsMultichannel</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
 	</screen>
   
 <!-- menus-->
@@ -121,20 +123,20 @@
 		<widget source="session.CurrentService" render="Label" position="0,44" size="40,16" font="FdLcD;16" halign="left" valign="bottom" noWrap="1">
 			<convert type="ServicePosition">Position</convert>
 		</widget>
-		<widget source="session.RecordState" render="Pixmap" pixmap="ViX_HD_Common/lcd/rec.png" position="175,0" size="26,10" >
+		<widget source="session.OnlineCheckState" render="Pixmap" pixmap="ViX_HD_Common/lcd/update.png" position="178,0" size="12,10" >
 			<convert type="ConditionalShowHide"></convert>
 		</widget>
-		<widget source="session.CurrentService" render="Pixmap" pixmap="ViX_HD_Common/lcd/hd.png" position="203,0" size="18,10" >
+		<widget source="session.RecordState" render="Pixmap" pixmap="ViX_HD_Common/lcd/rec.png" position="191,0" size="26,10" >
+			<convert type="ConditionalShowHide"></convert>
+		</widget>
+		<widget source="session.CurrentService" render="Pixmap" pixmap="ViX_HD_Common/lcd/hd.png" position="218,0" size="18,10" >
 			<convert type="ServiceInfo">VideoWidth</convert>
 			<convert type="ValueRange">721,1980</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.CurrentService" render="Pixmap" pixmap="ViX_HD_Common/lcd/dolby.png" position="223,0" size="18,10" >
+		<widget source="session.CurrentService" render="Pixmap" pixmap="ViX_HD_Common/lcd/dolby.png" position="237,0" size="18,10" >
 			<convert type="ServiceInfo">IsMultichannel</convert>
 			<convert type="ConditionalShowHide" />
-		</widget>
-		<widget source="session.OnlineCheckState" render="Pixmap" pixmap="ViX_HD_Common/lcd/update.png" position="243,0" size="12,10" >
-			<convert type="ConditionalShowHide"></convert>
 		</widget>
 		<widget source="global.CurrentTime" render="Label" position="195,48" size="60,22" font="FdLcD;24" halign="right" valign="bottom" noWrap="1">
 			<convert type="ClockToText"></convert>
@@ -187,12 +189,9 @@
 
 <!-- Plugin browser -->
 	<screen name="PluginBrowserSummary" position="0,0" size="255,64">
-		<widget source="parent.Title" render="Label" position="4,0" size="170,16" font="FdLcD;14" halign="center" valign="top" noWrap="1" />
-		<widget source="entry" render="Label" position="0,16" size="170,18" font="FdLcD;17" halign="left" valign="top" />
-		<widget source="desc" render="Label" position="0,36" size="170,34" font="FdLcD;14" valign="top" />
-		<widget source="global.CurrentTime" render="Label" position="195,48" size="60,22" font="FdLcD;24" halign="right" valign="bottom" noWrap="1">
-			<convert type="ClockToText"></convert>
-		</widget>
+		<widget source="parent.Title" render="Label" position="4,0" size="255,16" font="FdLcD;14" halign="center" valign="top" noWrap="1" />
+		<widget source="entry" render="Label" position="0,16" size="255,18" font="FdLcD;17" halign="left" valign="top" />
+		<widget source="desc" render="Label" position="0,36" size="255,34" font="FdLcD;14" valign="top" />
 	</screen>
 
 <!-- JobView Summary -->
@@ -216,11 +215,8 @@
 	</screen>	
 
 	<screen name="MessageBox_summary" position="0,0" size="255,64">
-		<widget source="parent.Text" render="Label" position="0,0" size="132,52" font="FdLcD;13" halign="center" valign="center" />
-		<widget source="parent.selectedChoice" render="Label" position="0,50" size="120,14" font="FdLcD;14" halign="center" valign="center" />
-		<widget source="global.CurrentTime" render="Label" position="195,48" size="60,22" font="FdLcD;24" halign="right" valign="bottom" noWrap="1">
-			<convert type="ClockToText"></convert>
-		</widget>
+		<widget source="parent.Text" render="Label" position="0,0" size="255,52" font="FdLcD;13" halign="center" valign="center" />
+		<widget source="parent.selectedChoice" render="Label" position="0,50" size="255,14" font="FdLcD;14" halign="center" valign="center" />
 	</screen>
 
 	<screen name="AboutSummary" position="0,0" size="255,64">
