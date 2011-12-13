@@ -241,7 +241,7 @@ class ServiceList(HTMLComponent, GUIComponent):
 			channelNumberWidth = 0
 			channelNumberSpace = 0
 		else:
-			channelNumberWidth = 50
+			channelNumberWidth = 55
 			channelNumberSpace = 10
 
 		if config.usage.show_event_progress_in_servicelist.value:
