@@ -525,11 +525,12 @@ int eDVBRecordFileThread::filterRecordData(const unsigned char *data, int len, s
 
 DEFINE_REF(eDVBTSRecorder);
 
-eDVBTSRecorder::eDVBTSRecorder(eDVBDemux *demux): m_demux(demux)
+eDVBTSRecorder::eDVBTSRecorder(eDVBDemux *demux):
+	m_demux(demux),
+	m_running(0),
+	m_target_fd(-1),
+	m_thread(new eDVBRecordFileThread())
 {
-	m_running = 0;
-	m_target_fd = -1;
-	m_thread = new eDVBRecordFileThread();
 	CONNECT(m_thread->m_event, eDVBTSRecorder::filepushEvent);
 #ifndef HAVE_ADD_PID
 	m_demux->m_dvr_busy = 1;
