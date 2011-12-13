@@ -392,7 +392,7 @@ int eMPEGStreamInformationWriter::stopSave(void)
 	if (m_structure_write)
 	{
 		fclose(m_structure_write);
-		m_structure_write = 0;
+		m_structure_write = NULL;
 	}
 	if (m_filename.empty())
 		return -1;
@@ -400,15 +400,15 @@ int eMPEGStreamInformationWriter::stopSave(void)
 	if (!f)
 		return -1;
 
-	for (std::map<off_t, pts_t>::const_iterator i(m_access_points.begin()); i != m_access_points.end(); ++i)
+	for (std::deque<AccessPoint>::const_iterator i(m_access_points.begin()); i != m_access_points.end(); ++i)
 	{
 		unsigned long long d[2];
 #if BYTE_ORDER == BIG_ENDIAN
-		d[0] = i->first;
-		d[1] = i->second;
+		d[0] = i->off;
+		d[1] = i->pts;
 #else
-		d[0] = bswap_64(i->first);
-		d[1] = bswap_64(i->second);
+		d[0] = bswap_64(i->off);
+		d[1] = bswap_64(i->pts);
 #endif
 		fwrite(d, sizeof(d), 1, f);
 	}
