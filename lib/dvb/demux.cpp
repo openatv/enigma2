@@ -480,8 +480,8 @@ public:
 protected:
 	int filterRecordData(const unsigned char *data, int len, size_t &current_span_remaining);
 private:
+	eMPEGStreamInformationWriter m_stream_info;
 	eMPEGStreamParserTS m_ts_parser;
-	eMPEGStreamInformation m_stream_info;
 	off_t m_current_offset;
 	pts_t m_last_pcr; /* very approximate.. */
 	int m_pid;

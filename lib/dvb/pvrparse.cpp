@@ -6,8 +6,9 @@
 #error no byte order defined!
 #endif
 
-eMPEGStreamInformation::eMPEGStreamInformation()
-	: m_structure_cache_valid(0), m_structure_read(0), m_structure_write(0)
+eMPEGStreamInformation::eMPEGStreamInformation():
+	m_structure_cache_valid(0),
+	m_structure_read(NULL)
 {
 }
 
@@ -15,45 +16,6 @@ eMPEGStreamInformation::~eMPEGStreamInformation()
 {
 	if (m_structure_read)
 		fclose(m_structure_read);
-	if (m_structure_write)
-		fclose(m_structure_write);
-}
-
-int eMPEGStreamInformation::startSave(const std::string& filename)
-{
-	m_filename = filename;
-	m_structure_write = fopen((m_filename + ".sc").c_str(), "wb");
-	return 0;
-}
-
-int eMPEGStreamInformation::stopSave(void)
-{
-	if (m_structure_write)
-	{
-		fclose(m_structure_write);
-		m_structure_write = 0;
-	}
-	if (m_filename.empty())
-		return -1;
-	FILE *f = fopen((m_filename + ".ap").c_str(), "wb");
-	if (!f)
-		return -1;
-	
-	for (std::map<off_t, pts_t>::const_iterator i(m_access_points.begin()); i != m_access_points.end(); ++i)
-	{
-		unsigned long long d[2];
-#if BYTE_ORDER == BIG_ENDIAN
-		d[0] = i->first;
-		d[1] = i->second;
-#else
-		d[0] = bswap_64(i->first);
-		d[1] = bswap_64(i->second);
-#endif
-		fwrite(d, sizeof(d), 1, f);
-	}
-	fclose(f);
-	
-	return 0;
 }
 
 int eMPEGStreamInformation::load(const char *filename)
@@ -316,20 +278,6 @@ int eMPEGStreamInformation::getNextAccessPoint(pts_t &ts, const pts_t &start, in
 	return 0;
 }
 
-void eMPEGStreamInformation::writeStructureEntry(off_t offset, unsigned long long data)
-{
-	unsigned long long d[2];
-#if BYTE_ORDER == BIG_ENDIAN
-	d[0] = offset;
-	d[1] = data;
-#else
-	d[0] = bswap_64(offset);
-	d[1] = bswap_64(data);
-#endif
-	if (m_structure_write)
-		fwrite(d, sizeof(d), 1, m_structure_write);
-}
-
 int eMPEGStreamInformation::getStructureEntry(off_t &offset, unsigned long long &data, int get_next)
 {
 	if (!m_structure_read)
@@ -421,7 +369,78 @@ int eMPEGStreamInformation::getStructureEntry(off_t &offset, unsigned long long 
 	return 0;
 }
 
-eMPEGStreamParserTS::eMPEGStreamParserTS(eMPEGStreamInformation &streaminfo): m_streaminfo(streaminfo), m_pktptr(0), m_pid(-1), m_need_next_packet(0), m_skip(0), m_last_pts_valid(0)
+
+eMPEGStreamInformationWriter::eMPEGStreamInformationWriter():
+	m_structure_write(NULL)
+{}
+
+eMPEGStreamInformationWriter::~eMPEGStreamInformationWriter()
+{
+	if (m_structure_write)
+		fclose(m_structure_write);
+}
+
+int eMPEGStreamInformationWriter::startSave(const std::string& filename)
+{
+	m_filename = filename;
+	m_structure_write = fopen((m_filename + ".sc").c_str(), "wb");
+	return 0;
+}
+
+int eMPEGStreamInformationWriter::stopSave(void)
+{
+	if (m_structure_write)
+	{
+		fclose(m_structure_write);
+		m_structure_write = 0;
+	}
+	if (m_filename.empty())
+		return -1;
+	FILE *f = fopen((m_filename + ".ap").c_str(), "wb");
+	if (!f)
+		return -1;
+
+	for (std::map<off_t, pts_t>::const_iterator i(m_access_points.begin()); i != m_access_points.end(); ++i)
+	{
+		unsigned long long d[2];
+#if BYTE_ORDER == BIG_ENDIAN
+		d[0] = i->first;
+		d[1] = i->second;
+#else
+		d[0] = bswap_64(i->first);
+		d[1] = bswap_64(i->second);
+#endif
+		fwrite(d, sizeof(d), 1, f);
+	}
+	fclose(f);
+
+	return 0;
+}
+
+
+void eMPEGStreamInformationWriter::writeStructureEntry(off_t offset, unsigned long long data)
+{
+	unsigned long long d[2];
+#if BYTE_ORDER == BIG_ENDIAN
+	d[0] = offset;
+	d[1] = data;
+#else
+	d[0] = bswap_64(offset);
+	d[1] = bswap_64(data);
+#endif
+	if (m_structure_write)
+		fwrite(d, sizeof(d), 1, m_structure_write);
+}
+
+
+
+eMPEGStreamParserTS::eMPEGStreamParserTS(eMPEGStreamInformationWriter &streaminfo):
+	m_streaminfo(streaminfo),
+	m_pktptr(0),
+	m_pid(-1),
+	m_need_next_packet(0),
+	m_skip(0),
+	m_last_pts_valid(0)
 {
 }
 
