@@ -4,6 +4,7 @@
 #include <lib/dvb/idvb.h>
 #include <map>
 #include <set>
+#include <deque>
 
 	/* This module parses TS data and collects valuable information  */
 	/* about it, like PTS<->offset correlations and sequence starts. */
@@ -56,7 +57,7 @@ private:
 	std::string m_filename;
 	int m_structure_cache_valid;
 	unsigned long long m_structure_cache[1024];
-	FILE *m_structure_read, *m_structure_write;
+	FILE *m_structure_read;
 };
 
 class eMPEGStreamInformationWriter
@@ -67,10 +68,16 @@ public:
 	/* Used by parser */
 	int startSave(const std::string& filename);
 	int stopSave(void);
-	void addAccessPoint(off_t offset, pts_t pts) { m_access_points[offset] = pts; }
+	void addAccessPoint(off_t offset, pts_t pts) { m_access_points.push_back(AccessPoint(offset, pts)); }
 	void writeStructureEntry(off_t offset, unsigned long long data);
 private:
-	std::map<off_t, pts_t> m_access_points;
+	struct AccessPoint
+	{
+		off_t off;
+		pts_t pts;
+		AccessPoint(off_t o, pts_t p): off(o), pts(p) {}
+	};
+	std::deque<AccessPoint> m_access_points;
 	std::string m_filename;
 	FILE *m_structure_write;
 };
