@@ -288,8 +288,6 @@ void eFilePushThread::thread()
 		}
 //		printf("FILEPUSH: read %d bytes\n", m_buf_end);
 	}
-	fdatasync(m_fd_dest);
-
 	eDebug("FILEPUSH THREAD STOP");
 }
 
