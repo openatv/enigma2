@@ -230,7 +230,7 @@ class ConfigListScreen:
 			
 	def doRestartGui(self, restart):
 		if restart:
-				self.session.openWithCallback(self.ExecuteRestart, MessageBox, _("Restart GUI now?"), MessageBox.TYPE_YESNO)
+			self.session.openWithCallback(self.ExecuteRestart, MessageBox, _("Restart GUI now?"), MessageBox.TYPE_YESNO)
 
 	def ExecuteRestart(self, result):
 		if result:
