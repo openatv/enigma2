@@ -2,7 +2,7 @@ from HTMLComponent import HTMLComponent
 from GUIComponent import GUIComponent
 from config import KEY_LEFT, KEY_RIGHT, KEY_HOME, KEY_END, KEY_0, KEY_DELETE, KEY_BACKSPACE, KEY_OK, KEY_TOGGLEOW, KEY_ASCII, KEY_TIMEOUT, KEY_NUMBERS, ConfigElement, ConfigText, ConfigPassword
 from Components.ActionMap import NumberActionMap, ActionMap
-from enigma import eListbox, eListboxPythonConfigContent, eRCInput, eTimer
+from enigma import eListbox, eListboxPythonConfigContent, eRCInput, eTimer, quitMainloop
 from Screens.MessageBox import MessageBox
 
 class ConfigList(HTMLComponent, GUIComponent, object):
@@ -220,8 +220,21 @@ class ConfigListScreen:
 		self.__changed()
 		
 	def saveAll(self):
+		restartgui = False
 		for x in self["config"].list:
+			if x[1].isChanged():
+				if x[0] == _('Show on Display'): 
+					restartgui = True
 			x[1].save()
+		self.doRestartGui(restartgui)
+			
+	def doRestartGui(self, restart):
+		if restart:
+				self.session.openWithCallback(self.ExecuteRestart, MessageBox, _("Restart GUI now?"), MessageBox.TYPE_YESNO)
+
+	def ExecuteRestart(self, result):
+		if result:
+			quitMainloop(3)
 
 	# keySave and keyCancel are just provided in case you need them.
 	# you have to call them by yourself.
