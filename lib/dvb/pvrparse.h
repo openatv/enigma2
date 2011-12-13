@@ -15,8 +15,6 @@ public:
 	eMPEGStreamInformation();
 	~eMPEGStreamInformation();
 
-	int startSave(const std::string& filename);
-	int stopSave(void);
 	int load(const char *filename);
 	
 		/* get delta at specific offset */
@@ -42,9 +40,6 @@ public:
 		   get previous and next structure elements. */
 	int getStructureEntry(off_t &offset, unsigned long long &data, int get_next);
 
-	/* Used by parser */
-	void addAccessPoint(off_t offset, pts_t pts) { m_access_points[offset] = pts; }
-	void writeStructureEntry(off_t offset, unsigned long long data);
 private:
 	/* recalculates timestampDeltas */
 	void fixupDiscontinuties();
@@ -64,16 +59,32 @@ private:
 	FILE *m_structure_read, *m_structure_write;
 };
 
+class eMPEGStreamInformationWriter
+{
+public:
+	eMPEGStreamInformationWriter();
+	~eMPEGStreamInformationWriter();
+	/* Used by parser */
+	int startSave(const std::string& filename);
+	int stopSave(void);
+	void addAccessPoint(off_t offset, pts_t pts) { m_access_points[offset] = pts; }
+	void writeStructureEntry(off_t offset, unsigned long long data);
+private:
+	std::map<off_t, pts_t> m_access_points;
+	std::string m_filename;
+	FILE *m_structure_write;
+};
+
 	/* Now we define the parser's state: */
 class eMPEGStreamParserTS
 {
 public:
-	eMPEGStreamParserTS(eMPEGStreamInformation &streaminfo);
+	eMPEGStreamParserTS(eMPEGStreamInformationWriter &streaminfo);
 	void parseData(off_t offset, const void *data, unsigned int len);
 	void setPid(int pid, int streamtype);
 	int getLastPTS(pts_t &last_pts);
 private:
-	eMPEGStreamInformation &m_streaminfo;
+	eMPEGStreamInformationWriter &m_streaminfo;
 	unsigned char m_pkt[188];
 	int m_pktptr;
 	int processPacket(const unsigned char *pkt, off_t offset);

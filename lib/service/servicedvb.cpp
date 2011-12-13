@@ -532,7 +532,7 @@ RESULT eDVBPVRServiceOfflineOperations::reindex()
 	const char *filename = m_ref.path.c_str();
 	eDebug("reindexing %s...", filename);
 
-	eMPEGStreamInformation info;
+	eMPEGStreamInformationWriter info;
 	eMPEGStreamParserTS parser(info);
 	
 	info.startSave(filename);
