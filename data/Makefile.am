@@ -22,7 +22,7 @@ dist_pkgdata_DATA = \
 	unicable.xml
 
 if HAVE_TEXTLCD
-dist_pkgdata_DATA += skin_text.xml
+dist_pkgdata_DATA += skin_text.xml skin_text_clock.xml
 else
 if HAVE_COLORLCD
 dist_pkgdata_DATA += skin_display96.xml
