@@ -205,7 +205,6 @@ off_t eMPEGStreamInformation::getAccessPoint(pts_t ts, int marg)
 		/* FIXME: more efficient implementation */
 	off_t last = 0;
 	off_t last2 = 0;
-	pts_t lastc = 0;
 	ts += 1; // Add rounding error margin
 	for (std::map<off_t, pts_t>::const_iterator i(m_access_points.begin()); i != m_access_points.end(); ++i)
 	{
@@ -219,7 +218,6 @@ off_t eMPEGStreamInformation::getAccessPoint(pts_t ts, int marg)
 			else
 				return last;
 		}
-		lastc = c;
 		last2 = last;
 		last = i->first;
 	}
@@ -232,22 +230,21 @@ off_t eMPEGStreamInformation::getAccessPoint(pts_t ts, int marg)
 int eMPEGStreamInformation::getNextAccessPoint(pts_t &ts, const pts_t &start, int direction)
 {
 	off_t offset = getAccessPoint(start);
-	pts_t c1, c2;
 	std::map<off_t, pts_t>::const_iterator i = m_access_points.find(offset);
 	if (i == m_access_points.end())
 	{
 		eDebug("getNextAccessPoint: initial AP not found");
 		return -1;
 	}
-	c1 = i->second - getDelta(i->first);
+	pts_t c1 = i->second - getDelta(i->first);
 	while (direction)
 	{
-		if (direction > 0)
+		while (direction > 0)
 		{
 			if (i == m_access_points.end())
 				return -1;
 			++i;
-			c2 = i->second - getDelta(i->first);
+			pts_t c2 = i->second - getDelta(i->first);
 			if (c1 == c2) { // Discontinuity
 				++i;
 				c2 = i->second - getDelta(i->first);
@@ -255,15 +252,15 @@ int eMPEGStreamInformation::getNextAccessPoint(pts_t &ts, const pts_t &start, in
 			c1 = c2;
 			direction--;
 		}
-		if (direction < 0)
+		while (direction < 0)
 		{
 			if (i == m_access_points.begin())
 			{
-				eDebug("at start");
+				eDebug("getNextAccessPoint at start");
 				return -1;
 			}
 			--i;
-			c2 = i->second - getDelta(i->first);
+			pts_t c2 = i->second - getDelta(i->first);
 			if (c1 == c2) { // Discontinuity
 				--i;
 				c2 = i->second - getDelta(i->first);
@@ -273,8 +270,7 @@ int eMPEGStreamInformation::getNextAccessPoint(pts_t &ts, const pts_t &start, in
 		}
 	}
 	ts = i->second - getDelta(i->first);
-	eDebug("fine, at %llx - %llx = %llx", ts, i->second, getDelta(i->first));
-	eDebug("fine, at %lld - %lld = %lld", ts, i->second, getDelta(i->first));
+	eDebug("getNextAccessPoint fine, at %lld - %lld = %lld", ts, i->second, getDelta(i->first));
 	return 0;
 }
 
