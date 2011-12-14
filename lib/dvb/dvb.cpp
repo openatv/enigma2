@@ -1525,14 +1525,13 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 		m_pvr_thread->sendEvent(eFilePushThread::evtUser);
 	}
 
+	start = current_offset;
 	if (m_source_span.empty())
 	{
-		start = current_offset;
 		size = max;
-		eDebug("NO CUESHEET. (%08llx, %zd)", start, size);
+		// eDebug("NO CUESHEET. (%08llx, %zd)", start, size);
 	} else
 	{
-		start = current_offset;
 		size = 0;
 	}
 	return;
