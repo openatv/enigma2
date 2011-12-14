@@ -1,0 +1,16 @@
+<default>
+	  <prerequisites>
+                    <tag type="System" />
+	  </prerequisites>
+          <info>
+                    <author>oskwon</author>
+                    <name>FirmwareUpgrade</name>
+                    <packagename>enigma2-plugin-systemplugins-firmwareupgrade</packagename>
+                    <shortdescription>Upgrade your system Firmware</shortdescription>
+                    <description>Upgrade your internal system Firmware.</description>
+          </info>
+
+	  <files type="package"> <!-- without version, without .ipk -->
+		<file type="package" name="enigma2-plugin-systemplugins-firmwareupgrade" />
+	</files>
+</default>
