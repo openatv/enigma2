@@ -43,6 +43,8 @@ class Blindscan(ConfigListScreen, Screen):
 		for slot in nimmanager.nim_slots:
 			if slot.isCompatible("DVB-S"):
 				self.satList.append(nimmanager.getSatListForNim(slot.slot))
+			else:
+				self.satList.append(None)
 
 		# make config
 		self.createConfig()
@@ -61,7 +63,7 @@ class Blindscan(ConfigListScreen, Screen):
 				"cancel": self.keyCancel,
 			}, -2)
 			self["key_red"] = StaticText(_("Exit"))
-			self["key_green"] = StaticText("Start")
+			self["key_green"] = StaticText("Scan")
 			self["key_blue"] = StaticText("Scan All")
 			self["introduction"] = Label(_("Press Green/OK to start the scan"))
 			self.createSetup()
@@ -78,6 +80,17 @@ class Blindscan(ConfigListScreen, Screen):
 			self["key_green"] = StaticText(" ")
 			self["key_blue"] = StaticText(" ")
 			self["introduction"] = Label(_("Please setup your tuner configuration."))
+
+		self.i2c_mapping_table = None
+		self.makeNimSocket()
+
+	def makeNimSocket(self):
+		self.i2c_mapping_table = {0:2, 1:3, 2:1, 3:0}
+
+	def getNimSocket(self, slot_number):
+		if slot_number < 0 or slot_number > 3:
+			return -1
+		return self.i2c_mapping_table[slot_number]
 
 	def keyNone(self):
 		None
@@ -150,6 +163,8 @@ class Blindscan(ConfigListScreen, Screen):
 		self.blindscan_stop_frequency = ConfigInteger(default = 2150*1000000)
 		self.blindscan_start_symbol = ConfigInteger(default = 2*1000000)
 		self.blindscan_stop_symbol = ConfigInteger(default = 45*1000000)
+		self.scan_clearallservices = ConfigYesNo(default = False)
+		self.scan_onlyfree = ConfigYesNo(default = False)
 
 		# collect all nims which are *not* set to "nothing"
 		nim_list = []
@@ -162,8 +177,8 @@ class Blindscan(ConfigListScreen, Screen):
 				root_id = nimmanager.sec.getRoot(n.slot_id, int(n.config.connectedTo.value))
 				if n.type == nimmanager.nim_slots[root_id].type: # check if connected from a DVB-S to DVB-S2 Nim or vice versa
 					continue
-			nim_list.append((str(n.slot), n.friendly_full_description))
-
+			if n.isCompatible("DVB-S"):
+				nim_list.append((str(n.slot), n.friendly_full_description))
 		self.scan_nims = ConfigSelection(choices = nim_list)
 
 		# sat
@@ -185,6 +200,17 @@ class Blindscan(ConfigListScreen, Screen):
 				self.scan_satselection.append(getConfigSatlist(defaultSat["orbpos"], self.satList[slot.slot]))
 		return True
 
+	def getSelectedSatIndex(self, v):
+		index    = 0
+		none_cnt = 0
+		for n in self.satList:
+			if self.satList[index] == None:
+				none_cnt = none_cnt + 1
+			if index == int(v):
+				return (index-none_cnt)
+			index = index + 1
+		return -1
+
 	def createSetup(self):
 		self.list = []
 		self.multiscanlist = []
@@ -203,13 +229,15 @@ class Blindscan(ConfigListScreen, Screen):
 
 		self.scan_networkScan.value = False
 		if nim.isCompatible("DVB-S") :
-			self.list.append(getConfigListEntry(_('Satellite'), self.scan_satselection[index_to_scan]))
+			self.list.append(getConfigListEntry(_('Satellite'), self.scan_satselection[self.getSelectedSatIndex(index_to_scan)]))
 			self.list.append(getConfigListEntry(_('Scan start frequency'), self.blindscan_start_frequency))
 			self.list.append(getConfigListEntry(_('Scan stop frequency'), self.blindscan_stop_frequency))
 			self.list.append(getConfigListEntry(_("Polarity"), self.scan_sat.polarization))
 			self.list.append(getConfigListEntry(_("Scan band"), self.blindscan_hi))
 			self.list.append(getConfigListEntry(_('Scan start symbolrate'), self.blindscan_start_symbol))
 			self.list.append(getConfigListEntry(_('Scan stop symbolrate'), self.blindscan_stop_symbol))
+			self.list.append(getConfigListEntry(_("Clear before scan"), self.scan_clearallservices))
+			self.list.append(getConfigListEntry(_("Only Free scan"), self.scan_onlyfree))
 			self["config"].list = self.list
 			self["config"].l.setList(self.list)
 			
@@ -271,8 +299,9 @@ class Blindscan(ConfigListScreen, Screen):
 		self.tmp_tplist=[]
 		tmp_pol = []
 		tmp_band = []
-		tmp_list=[self.satList[0][self.scan_satselection[0].index]]
-		
+		idx_selected_sat = int(self.getSelectedSatIndex(self.scan_nims.value))
+		tmp_list=[self.satList[int(self.scan_nims.value)][self.scan_satselection[idx_selected_sat].index]]
+
 		if self.blindscan_hi.value == "hi_low" :
 			tmp_band=["low","high"]
 		else:
@@ -288,16 +317,16 @@ class Blindscan(ConfigListScreen, Screen):
 	def keyGoAll(self):
 		if self.checkSettings() == False:
 			return
-
 		self.tmp_tplist=[]
 		tmp_list=[]
 		tmp_band=["low","high"]
 		tmp_pol=["horizontal","vertical"]
+		
 		for slot in nimmanager.nim_slots:
-			if slot.isCompatible("DVB-S"):
-			 	for s in self.satList[slot.slot]:
+			device_name = "/dev/dvb/adapter0/frontend%d" % (slot.slot)
+			if slot.isCompatible("DVB-S") and int(self.scan_nims.value) == slot.slot:
+				for s in self.satList[slot.slot]:
 					tmp_list.append(s)
-
 		self.doRun(tmp_list, tmp_pol, tmp_band)
 		
 	def doRun(self, tmp_list, tmp_pol, tmp_band):
@@ -375,10 +404,14 @@ class Blindscan(ConfigListScreen, Screen):
 					 0)
 		self.tuner.tune(returnvalue)
 
+		if self.getNimSocket(self.feid) < 0:
+			print "can't find i2c number!!"
+			return
+
 		if config.misc.boxtype.value.startswith('vu'):
-			cmd = "vuplus_blindscan %d %d %d %d %d %d %d" % (self.blindscan_start_frequency.value/1000000, self.blindscan_stop_frequency.value/1000000, self.blindscan_start_symbol.value/1000000, self.blindscan_stop_symbol.value/1000000, tab_pol[pol], tab_hilow[band], self.feid)
+			cmd = "vuplus_blindscan %d %d %d %d %d %d %d %d" % (self.blindscan_start_frequency.value/1000000, self.blindscan_stop_frequency.value/1000000, self.blindscan_start_symbol.value/1000000, self.blindscan_stop_symbol.value/1000000, tab_pol[pol], tab_hilow[band], self.feid, self.getNimSocket(self.feid))
 		elif config.misc.boxtype.value.startswith('et'):
-			cmd = "avl_xtrend_blindscan %d %d %d %d %d %d %d" % (self.blindscan_start_frequency.value/1000000, self.blindscan_stop_frequency.value/1000000, self.blindscan_start_symbol.value/1000000, self.blindscan_stop_symbol.value/1000000, tab_pol[pol], tab_hilow[band], self.feid)
+			cmd = "avl_xtrend_blindscan %d %d %d %d %d %d %d %d" % (self.blindscan_start_frequency.value/1000000, self.blindscan_stop_frequency.value/1000000, self.blindscan_start_symbol.value/1000000, self.blindscan_stop_symbol.value/1000000, tab_pol[pol], tab_hilow[band], self.feid, self.getNimSocket(self.feid))
 		print "prepared command : [%s]" % (cmd)
 		self.blindscan_container = eConsoleAppContainer()
 		self.blindscan_container.appClosed.append(self.blindscanContainerClose)
@@ -437,6 +470,8 @@ class Blindscan(ConfigListScreen, Screen):
 		self.blindscan_session.close(True)
 
 	def blindscanContainerAvail(self, str):
+		print str
+		#if str.startswith("OK"):
 		self.full_data = self.full_data + str
 
 	def blindscanSessionNone(self, *val):
@@ -472,7 +507,15 @@ class Blindscan(ConfigListScreen, Screen):
 
 	def startScan(self, tlist, feid, networkid = 0):
 		self.scan_session = None
-		self.session.open(ServiceScan, [{"transponders": tlist, "feid": feid, "flags": 0, "networkid": networkid}])
+
+		flags = 0
+		if self.scan_clearallservices.value:
+			flags |= eComponentScan.scanRemoveServices
+		else:
+			flags |= eComponentScan.scanDontRemoveUnscanned
+		if self.scan_onlyfree.value:
+			flags |= eComponentScan.scanOnlyFree
+		self.session.open(ServiceScan, [{"transponders": tlist, "feid": feid, "flags": flags, "networkid": networkid}])
 
 def Plugins(path, **kwargs):
 	plist = [PluginDescriptor(name=_("Blind Scan"), where=PluginDescriptor.WHERE_MENU, needsRestart = False, fnc=BlindscanSetup)]
