@@ -91,7 +91,6 @@ private:
 	int m_samples_taken;
 	
 	eMPEGStreamInformation m_streaminfo;
-	int m_use_streaminfo;
 	off_t m_last_filelength;
 	int m_futile;
 };

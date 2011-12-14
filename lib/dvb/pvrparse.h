@@ -9,7 +9,6 @@
 	/* This module parses TS data and collects valuable information  */
 	/* about it, like PTS<->offset correlations and sequence starts. */
 
-	/* At first, we define the collector class: */
 class eMPEGStreamInformation
 {
 public:
@@ -34,10 +33,11 @@ public:
 	
 	int getNextAccessPoint(pts_t &ts, const pts_t &start, int direction);
 	
-	bool empty();
+	bool hasAccessPoints() { return !m_access_points.empty(); }
+	bool hasStructure() { return m_structure_read != NULL; }
 	
 		/* get a structure entry at given offset (or previous one, if no exact match was found).
-		   optionall, return next element. Offset will be returned. this allows you to easily 
+		   optionally, return next element. Offset will be returned. this allows you to easily 
 		   get previous and next structure elements. */
 	int getStructureEntry(off_t &offset, unsigned long long &data, int get_next);
 
@@ -81,7 +81,7 @@ private:
 	FILE *m_structure_write;
 };
 
-	/* Now we define the parser's state: */
+
 class eMPEGStreamParserTS
 {
 public:
