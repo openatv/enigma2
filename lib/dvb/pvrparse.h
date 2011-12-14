@@ -54,8 +54,7 @@ private:
 	/* these are non-fixed up pts value (like m_access_points), just used to accelerate stuff. */
 	std::multimap<pts_t, off_t> m_pts_to_offset;
 
-	std::string m_filename;
-	int m_structure_cache_valid;
+	int m_structure_cache_entries;
 	unsigned long long m_structure_cache[1024];
 	FILE *m_structure_read;
 };
