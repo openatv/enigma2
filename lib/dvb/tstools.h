@@ -50,6 +50,7 @@ public:
 	
 	void calcBegin();
 	void calcEnd();
+	void calcBeginAndEnd();
 	
 	int calcLen(pts_t &len);
 	

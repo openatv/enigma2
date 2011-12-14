@@ -292,8 +292,7 @@ int eDVBTSTools::getOffset(off_t &offset, pts_t &pts, int marg)
 	}
 	else
 	{
-		calcBegin(); calcEnd();
-		
+		calcBeginAndEnd();
 		if (!m_begin_valid)
 			return -1;
 		if (!m_end_valid)
@@ -430,7 +429,6 @@ void eDVBTSTools::calcEnd()
 	{
 		m_last_filelength = end;
 		m_end_valid = 0;
-		
 		m_futile = 0;
 //		eDebug("file size changed, recalc length");
 	}
@@ -467,10 +465,15 @@ void eDVBTSTools::calcEnd()
 	}
 }
 
-int eDVBTSTools::calcLen(pts_t &len)
+void eDVBTSTools::calcBeginAndEnd()
 {
 	calcBegin();
 	calcEnd();
+}
+
+int eDVBTSTools::calcLen(pts_t &len)
+{
+	calcBeginAndEnd();
 	if (!(m_begin_valid && m_end_valid))
 		return -1;
 	len = m_pts_end - m_pts_begin;
@@ -482,8 +485,7 @@ int eDVBTSTools::calcLen(pts_t &len)
 
 int eDVBTSTools::calcBitrate()
 {
-	calcBegin();
-	calcEnd();
+	calcBeginAndEnd();
 	if (!(m_begin_valid && m_end_valid))
 		return -1;
 
@@ -584,9 +586,7 @@ int eDVBTSTools::findPMT(int &pmt_pid, int &service_id)
 
 	off_t position=0;
 
-	int left = 5*1024*1024;
-	
-	while (left >= 188)
+	for (int attempts_left = (5*1024*1024)/188; attempts_left != 0; --attempts_left)
 	{
 		unsigned char packet[188];
 		int ret = m_source->read(position, packet, 188);
@@ -595,7 +595,6 @@ int eDVBTSTools::findPMT(int &pmt_pid, int &service_id)
 			eDebug("read error");
 			break;
 		}
-		left -= 188;
 		position += 188;
 
 		if (packet[0] != 0x47)
@@ -645,15 +644,15 @@ int eDVBTSTools::findPMT(int &pmt_pid, int &service_id)
 
 int eDVBTSTools::findFrame(off_t &_offset, size_t &len, int &direction, int frame_types)
 {
-	off_t offset = _offset;
-	int nr_frames = 0;
 //	eDebug("trying to find iFrame at %llx", offset);
-
 	if (!m_streaminfo.hasStructure())
 	{
 //		eDebug("can't get next iframe without streaminfo");
 		return -1;
 	}
+
+	off_t offset = _offset;
+	int nr_frames = 0;
 
 		/* let's find the iframe before the given offset */
 	unsigned long long data;
@@ -777,7 +776,8 @@ int eDVBTSTools::findNextPicture(off_t &offset, size_t &len, int &distance, int 
 			len = new_len;
 			nr_frames += abs(dir);
 		} 
-		else if (first) {
+		else if (first)
+		{
 			first = 0;
 			offset = new_offset;
 			len = new_len;
