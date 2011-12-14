@@ -138,6 +138,10 @@
 		<item level="0" text="Show Picons (requires a restart)" requires="OledDisplay">config.skin.display_skin</item>
 		<item level="0" text="Repeat Display Message">config.lcd.repeat</item>
 		<item level="0" text="Scrolling Speed">config.lcd.scrollspeed</item>
+		<item level="0" text="Scrolling Speed">config.lcd.ledbrightness</item>
+		<item level="0" text="Touch LED Brightness at Normal state">config.lcd.ledbrightnessstandby</item>
+		<item level="0" text="Touch LED Brightness at Deep Standby">config.lcd.ledbrightnessdeepstandby</item>
+		<item level="0" text="Touch LED Blinking time">config.lcd.ledblinkingtime</item>
 	</setup>
 	<setup key="satconfig" title="Sat / Dish Setup">
 		<item text="Tuner Slot">config.sat.tunerslot</item>

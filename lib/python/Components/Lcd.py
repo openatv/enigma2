@@ -2,11 +2,11 @@ import Components.Task
 from config import config, ConfigSubsection, ConfigSelection, ConfigSlider, ConfigYesNo, ConfigNothing
 from enigma import eDBoxLCD, eTimer
 from Components.SystemInfo import SystemInfo
-from os import path
+from Tools.Directories import fileExists
 import usb
 
 def IconCheck(session=None, **kwargs):
-	if path.exists("/proc/stb/lcd/symbol_network") or path.exists("/proc/stb/lcd/symbol_usb"):
+	if fileExists("/proc/stb/lcd/symbol_network") or fileExists("/proc/stb/lcd/symbol_usb"):
 		global networklinkpoller
 		networklinkpoller = IconCheckPoller()
 		networklinkpoller.start()
@@ -30,11 +30,11 @@ class IconCheckPoller:
 
 	def createCheckJob(self):
 		job = Components.Task.Job(_("VFD Checker"))
-		if path.exists("/proc/stb/lcd/symbol_network"):
+		if fileExists("/proc/stb/lcd/symbol_network"):
 			task = Components.Task.PythonTask(job, _("Checking Network..."))
 			task.work = self.JobNetwork
 			task.weighting = 1
-		if path.exists("/proc/stb/lcd/symbol_usb"):
+		if fileExists("/proc/stb/lcd/symbol_usb"):
 			task = Components.Task.PythonTask(job, _("Checking USB devices..."))
 			task.work = self.JobUSB
 			task.weighting = 1
@@ -45,11 +45,11 @@ class IconCheckPoller:
 
 	def JobNetwork(self):
 		LinkState = 0
-		if path.exists('/sys/class/net/wlan0/operstate'):
+		if fileExists('/sys/class/net/wlan0/operstate'):
 			LinkState = open('/sys/class/net/wlan0/operstate').read()
 			if LinkState != 'down':
 				LinkState = open('/sys/class/net/wlan0/operstate').read()
-		elif path.exists('/sys/class/net/eth0/operstate'):
+		elif fileExists('/sys/class/net/eth0/operstate'):
 			LinkState = open('/sys/class/net/eth0/operstate').read()
 			if LinkState != 'down':
 				LinkState = open('/sys/class/net/eth0/carrier').read()
@@ -109,6 +109,15 @@ class LCD:
 	def setScrollspeed(self, value):
 		open("/proc/stb/lcd/scroll_delay", "w").write(str(value))
 
+	def setNormalstate(self, value):
+		eDBoxLCD.getInstance().setLED(value ,0)
+
+	def setDeepStandby(self, value):
+		eDBoxLCD.getInstance().setLED(value ,1)
+
+	def setBlinkingtime(self, value):
+		eDBoxLCD.getInstance().setLED(value ,2)
+
 def leaveStandby():
 	config.lcd.bright.apply()
 
@@ -140,6 +149,15 @@ def InitLcd():
 		def setLCDscrollspeed(configElement):
 			ilcd.setScrollspeed(configElement.value);
 
+		def setLEDnormalstate(configElement):
+			ilcd.setNormalstate(configElement.value);
+
+		def setLEDdeepstandby(configElement):
+			ilcd.setDeepStandby(configElement.value);
+
+		def setLEDblinkingtime(configElement):
+			ilcd.setBlinkingtime(configElement.value);
+
 		standby_default = 0
 
 		ilcd = LCD()
@@ -163,7 +181,7 @@ def InitLcd():
 		config.lcd.invert = ConfigYesNo(default=False)
 		config.lcd.invert.addNotifier(setLCDinverted);
 
-		if path.exists("/proc/stb/lcd/scroll_delay"):
+		if fileExists("/proc/stb/lcd/scroll_delay"):
 			config.lcd.mode = ConfigSelection([("0", _("No")), ("1", _("Yes"))], "1")
 			config.lcd.mode.addNotifier(setLCDmode);
 			config.lcd.repeat = ConfigSelection([("0", _("None")), ("1", _("1X")), ("2", _("2X")), ("3", _("3X")), ("4", _("4X")), ("500", _("Continues"))], "3")
@@ -174,6 +192,23 @@ def InitLcd():
 			config.lcd.mode = ConfigNothing()
 			config.lcd.repeat = ConfigNothing()
 			config.lcd.scrollspeed = ConfigNothing()
+
+		if config.misc.boxtype.value == 'vuultimo':
+			config.lcd.ledbrightness = ConfigSlider(default = 1, increment = 1, limits = (0,15))
+			config.lcd.ledbrightness.addNotifier(setLEDnormalstate);
+			config.lcd.ledbrightness.apply = lambda : setLCDbright(config.lcd.ledbrightnessstandby)
+			config.lcd.ledbrightnessstandby = ConfigSlider(default = 5, increment = 1, limits = (0,15))
+			config.lcd.ledbrightnessstandby.addNotifier(setLEDnormalstate);
+			config.lcd.ledbrightnessstandby.apply = lambda : setLCDbright(config.lcd.ledbrightnessstandby)
+			config.lcd.ledbrightnessdeepstandby = ConfigSlider(default = 5, increment = 1, limits = (0,15))
+			config.lcd.ledbrightnessdeepstandby.addNotifier(setLEDdeepstandby);
+			config.lcd.ledblinkingtime = ConfigSlider(default = 5, increment = 1, limits = (0,15))
+			config.lcd.ledblinkingtime.addNotifier(setLEDblinkingtime);
+		else:
+			config.lcd.ledbrightness = ConfigNothing()
+			config.lcd.ledbrightnessstandby = ConfigNothing()
+			config.lcd.ledbrightnessdeepstandby = ConfigNothing()
+			config.lcd.ledblinkingtime = ConfigNothing()
 
 	else:
 		def doNothing():
