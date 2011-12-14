@@ -47,11 +47,6 @@ int eMPEGStreamInformation::load(const char *filename)
 	return 0;
 }
 
-bool eMPEGStreamInformation::empty()
-{
-	return m_access_points.empty();
-}
-
 void eMPEGStreamInformation::fixupDiscontinuties()
 {
 	m_timestamp_deltas.clear();
