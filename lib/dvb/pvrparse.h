@@ -55,7 +55,7 @@ private:
 	std::multimap<pts_t, off_t> m_pts_to_offset;
 
 	int m_structure_cache_entries;
-	unsigned long long m_structure_cache[1024];
+	unsigned long long m_structure_cache[2048];
 	FILE *m_structure_read;
 };
 
