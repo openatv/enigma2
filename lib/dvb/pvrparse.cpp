@@ -7,7 +7,7 @@
 #endif
 
 eMPEGStreamInformation::eMPEGStreamInformation():
-	m_structure_cache_valid(0),
+	m_structure_cache_entries(0),
 	m_structure_read(NULL)
 {
 }
@@ -20,11 +20,11 @@ eMPEGStreamInformation::~eMPEGStreamInformation()
 
 int eMPEGStreamInformation::load(const char *filename)
 {
-	m_filename = filename;
+	std::string s_filename(filename);
 	if (m_structure_read)
 		fclose(m_structure_read);
-	m_structure_read = fopen((std::string(m_filename) + ".sc").c_str(), "rb");
-	FILE *f = fopen((std::string(m_filename) + ".ap").c_str(), "rb");
+	m_structure_read = fopen((s_filename + ".sc").c_str(), "rb");
+	FILE *f = fopen((s_filename + ".ap").c_str(), "rb");
 	if (!f)
 		return -1;
 	m_access_points.clear();
@@ -124,7 +124,7 @@ pts_t eMPEGStreamInformation::getDelta(off_t offset)
 
 int eMPEGStreamInformation::fixupPTS(const off_t &offset, pts_t &ts)
 {
-	if (!m_timestamp_deltas.size())
+	if (m_timestamp_deltas.empty())
 		return -1;
 
 	std::multimap<pts_t, off_t>::const_iterator 
@@ -282,8 +282,10 @@ int eMPEGStreamInformation::getStructureEntry(off_t &offset, unsigned long long 
 		return -1;
 	}
 
-	const int struture_cache_entries = sizeof(m_structure_cache) / 16;
-	if ((!m_structure_cache_valid) || ((off_t)m_structure_cache[0] > offset) || ((off_t)m_structure_cache[(struture_cache_entries - (get_next ? 2 : 1)) * 2] <= offset))
+	const int structure_cache_size = sizeof(m_structure_cache) / 16;
+	if ((m_structure_cache_entries == 0) ||
+	    ((off_t)m_structure_cache[0] > offset) ||
+	    ((off_t)m_structure_cache[(m_structure_cache_entries - (get_next ? 2 : 1)) * 2] <= offset))
 	{
 		fseek(m_structure_read, 0, SEEK_END);
 		int l = ftell(m_structure_read);
@@ -319,11 +321,11 @@ int eMPEGStreamInformation::getStructureEntry(off_t &offset, unsigned long long 
 		
 		eDebug("[eMPEGStreamInformation] found %d get_next=%d", i, get_next);
 		// Put the cache in the center
-		i -= struture_cache_entries / 2;
+		i -= structure_cache_size / 2;
 		if (i < 0)
 			i = 0;
 		fseek(m_structure_read, i * entry_size, SEEK_SET);
-		int num = fread(m_structure_cache, entry_size, struture_cache_entries, m_structure_read);
+		int num = fread(m_structure_cache, entry_size, structure_cache_size, m_structure_read);
 		eDebug("[eMPEGStreamInformation] cache starts at %d entries: %d", i, num);
 		for (i = 0; i < num; ++i)
 		{
@@ -332,18 +334,19 @@ int eMPEGStreamInformation::getStructureEntry(off_t &offset, unsigned long long 
 			m_structure_cache[i * 2 + 1] = bswap_64(m_structure_cache[i * 2 + 1]);
 #endif
 		}
-		for (i = num; i < struture_cache_entries; ++i)
+		// TODO: This loop should not be needed any longer
+		for (i = num; i < structure_cache_size; ++i)
 		{
 			m_structure_cache[i * 2] = 0x7fffffffffffffffULL; /* fill with harmless content */
 			m_structure_cache[i * 2 + 1] = 0;
 		}
-		m_structure_cache_valid = 1;
+		m_structure_cache_entries = num;
 	}
 
 	// Binary search for offset
 	int i = 0;
 	int low = 0;
-	int high = struture_cache_entries - 1;
+	int high = m_structure_cache_entries - 1;
 	while (low <= high)
 	{
 		int mid = (low + high) / 2;
