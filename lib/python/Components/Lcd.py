@@ -120,11 +120,13 @@ class LCD:
 
 def leaveStandby():
 	config.lcd.bright.apply()
+	config.lcd.ledbrightness.apply()
 
 def standbyCounterChanged(configElement):
 	from Screens.Standby import inStandby
 	inStandby.onClose.append(leaveStandby)
 	config.lcd.standby.apply()
+	config.lcd.ledbrightnessstandby.apply()
 
 def InitLcd():
 	detected = eDBoxLCD.getInstance().detected()
@@ -196,10 +198,11 @@ def InitLcd():
 		if config.misc.boxtype.value == 'vuultimo':
 			config.lcd.ledbrightness = ConfigSlider(default = 1, increment = 1, limits = (0,15))
 			config.lcd.ledbrightness.addNotifier(setLEDnormalstate);
-			config.lcd.ledbrightness.apply = lambda : setLCDbright(config.lcd.ledbrightnessstandby)
+			config.lcd.ledbrightness.apply = lambda : setLEDnormalstate(config.lcd.ledbrightness)
+			config.lcd.ledbrightness.callNotifiersOnSaveAndCancel = True
 			config.lcd.ledbrightnessstandby = ConfigSlider(default = 5, increment = 1, limits = (0,15))
 			config.lcd.ledbrightnessstandby.addNotifier(setLEDnormalstate);
-			config.lcd.ledbrightnessstandby.apply = lambda : setLCDbright(config.lcd.ledbrightnessstandby)
+			config.lcd.ledbrightnessstandby.apply = lambda : setLEDnormalstate(config.lcd.ledbrightnessstandby)
 			config.lcd.ledbrightnessdeepstandby = ConfigSlider(default = 5, increment = 1, limits = (0,15))
 			config.lcd.ledbrightnessdeepstandby.addNotifier(setLEDdeepstandby);
 			config.lcd.ledblinkingtime = ConfigSlider(default = 5, increment = 1, limits = (0,15))
