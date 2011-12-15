@@ -1,9 +1,4 @@
 <setupxml>
-	<setup key="rc" title="RC Menu">
-		<item level="0" text="Repeat">config.inputDevices.repeat</item>
-		<item level="0" text="Delay">config.inputDevices.delay</item>
-		<item level="0" text="Keymap">config.rc.map</item>
-	</setup>
 	<setup key="time" title="Time Settings">
 		<item level="0" text="Timezone">config.timezone.val</item>
 		<item level="0" text="Sync time using">config.misc.SyncTimeUsing</item>
@@ -24,7 +19,6 @@
 		<item level="1" text="Online version check every (hours) 0 = Disable">config.usage.infobar_onlinechecktimer</item>
 		<item level="1" text="Zap mode" requires="ZapMode">config.misc.zapmode</item>
 		<item level="2" text="Enable panic button">config.usage.panicbutton</item>
-		<item level="0" text="Show blinking clock in display during recording">config.usage.blinking_display_clock_during_recording</item>
 		<item level="0" text="Show animation while busy">config.usage.show_spinner</item>
 		<item level="1" text="Enable teletext caching">config.usage.enable_tt_caching</item>
 		<item level="1" text="Show positioner movement">config.usage.showdish</item>

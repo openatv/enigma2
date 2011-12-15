@@ -50,6 +50,7 @@ public:
 	
 	void calcBegin();
 	void calcEnd();
+	void calcBeginAndEnd();
 	
 	int calcLen(pts_t &len);
 	
@@ -91,7 +92,6 @@ private:
 	int m_samples_taken;
 	
 	eMPEGStreamInformation m_streaminfo;
-	int m_use_streaminfo;
 	off_t m_last_filelength;
 	int m_futile;
 };
