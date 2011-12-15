@@ -2,6 +2,7 @@ from enigma import eServiceCenter, eServiceReference, eTimer, pNavigation, getBe
 from Components.ParentalControl import parentalControl
 from Tools.BoundFunction import boundFunction
 from Tools.DreamboxHardware import setFPWakeuptime, getFPWakeuptime, getFPWasTimerWakeup
+from config import config, ConfigSubsection, ConfigSelection, ConfigSlider, ConfigYesNo, ConfigNothing
 from time import time
 import RecordTimer
 import SleepTimer
@@ -65,14 +66,15 @@ class Navigation:
 			return 0
 		print "playing", ref and ref.toString()
 		if path.exists("/proc/stb/lcd/symbol_signal"):
-			try:
-				if not ref.toString().startswith('1:0:0:0:0:0:0:0:0:0:'):
-					signal = 1
-				else:
-					signal = 0
-				open("/proc/stb/lcd/symbol_signal", "w").write(str(signal))
-			except:
-				open("/proc/stb/lcd/symbol_signal", "w").write("0")
+			if config.lcd.mode.value == "0":
+				try:
+					if not ref.toString().startswith('1:0:0:0:0:0:0:0:0:0:'):
+						signal = 1
+					else:
+						signal = 0
+					open("/proc/stb/lcd/symbol_signal", "w").write(str(signal))
+				except:
+					open("/proc/stb/lcd/symbol_signal", "w").write("0")
 		
 		if ref is None:
 			self.stopService()

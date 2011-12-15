@@ -10,11 +10,11 @@ SUBDIRS += SatelliteEquipmentControl DiseqcTester choiceRC FastScan XtrendFancon
 endif
 
 if VUUNO
-SUBDIRS += VuUnoFancontrol SatelliteEquipmentControl DiseqcTester CableScan FastScan FPGAUpgrade RemoteControlCode
+SUBDIRS += VuUnoFancontrol SatelliteEquipmentControl DiseqcTester CableScan FastScan FirmwareUpgrade RemoteControlCode
 endif
 
 if VUULTIMO
-SUBDIRS += VuUnoFancontrol SatelliteEquipmentControl DiseqcTester CableScan FastScan FPGAUpgrade  RemoteControlCode
+SUBDIRS += VuUnoFancontrol SatelliteEquipmentControl DiseqcTester CableScan FastScan FirmwareUpgrade  RemoteControlCode
 endif
 
 if VUDUO

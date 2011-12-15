@@ -543,7 +543,7 @@ class EPGSelection(Screen):
 				},-1)
 			self.onLayoutFinish.append(self.onStartup)
 		else:
-			self["actions"] = ActionMap(["EPGSelectActions", "OkCancelActions", "ColorActions"],
+			self["actions"] = ActionMap(["EPGSelectActions", "InfobarInstantRecord", "OkCancelActions", "ColorActions"],
 			{
 				"ok": self.ZapTo,
 				"cancel": self.closing,
@@ -557,6 +557,8 @@ class EPGSelection(Screen):
 				"prevBouquet": self.prevBouquet,
 				"nextService": self.nextPage,
 				"prevService": self.prevPage,
+				"ShortRecord": self.doRecordTimer,
+				"LongRecord": self.doZapTimer,
 			})
 			self["MenuActions"] = HelpableActionMap(self, "MenuActions",
 				{

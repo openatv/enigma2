@@ -2,12 +2,12 @@ import Components.Task
 from config import config, ConfigSubsection, ConfigSelection, ConfigSlider, ConfigYesNo, ConfigNothing
 from enigma import eDBoxLCD, eTimer
 from Components.SystemInfo import SystemInfo
-from os import path
+from Tools.Directories import fileExists
+
 import usb
 
-
 def IconCheck(session=None, **kwargs):
-	if path.exists("/proc/stb/lcd/symbol_network") or path.exists("/proc/stb/lcd/symbol_usb"):
+	if fileExists("/proc/stb/lcd/symbol_network") or fileExists("/proc/stb/lcd/symbol_usb"):
 		global networklinkpoller
 		networklinkpoller = IconCheckPoller()
 		networklinkpoller.start()
@@ -32,11 +32,11 @@ class IconCheckPoller:
 
 	def createCheckJob(self):
 		job = Components.Task.Job(_("VFD Checker"))
-		if path.exists("/proc/stb/lcd/symbol_network"):
+		if fileExists("/proc/stb/lcd/symbol_network"):
 			task = Components.Task.PythonTask(job, _("Checking Network..."))
 			task.work = self.JobNetwork
 			task.weighting = 1
-		if path.exists("/proc/stb/lcd/symbol_usb"):
+		if fileExists("/proc/stb/lcd/symbol_usb"):
 			task = Components.Task.PythonTask(job, _("Checking USB devices..."))
 			task.work = self.JobUSB
 			task.weighting = 1
@@ -47,11 +47,11 @@ class IconCheckPoller:
 
 	def JobNetwork(self):
 		LinkState = 0
-		if path.exists('/sys/class/net/wlan0/operstate'):
+		if fileExists('/sys/class/net/wlan0/operstate'):
 			LinkState = open('/sys/class/net/wlan0/operstate').read()
 			if LinkState != 'down':
 				LinkState = open('/sys/class/net/wlan0/operstate').read()
-		elif path.exists('/sys/class/net/eth0/operstate'):
+		elif fileExists('/sys/class/net/eth0/operstate'):
 			LinkState = open('/sys/class/net/eth0/operstate').read()
 			if LinkState != 'down':
 				LinkState = open('/sys/class/net/eth0/carrier').read()
@@ -105,19 +105,19 @@ class LCD:
 	def setMode(self, value):
 		open("/proc/stb/lcd/show_symbols", "w").write(value)
 		if config.lcd.mode.value == "0":
-			if path.exists("/proc/stb/lcd/symbol_hdd"):	
+			if fileExists("/proc/stb/lcd/symbol_hdd"):	
 				open("/proc/stb/lcd/symbol_hdd", "w").write("0")
-			if path.exists("/proc/stb/lcd/symbol_hddprogress"):	
+			if fileExists("/proc/stb/lcd/symbol_hddprogress"):	
 				open("/proc/stb/lcd/symbol_hddprogress", "w").write("0")
-			if path.exists("/proc/stb/lcd/symbol_network"):	
+			if fileExists("/proc/stb/lcd/symbol_network"):	
 				open("/proc/stb/lcd/symbol_network", "w").write("0")
-			if path.exists("/proc/stb/lcd/symbol_signal"):	
+			if fileExists("/proc/stb/lcd/symbol_signal"):	
 				open("/proc/stb/lcd/symbol_signal", "w").write("0")
-			if path.exists("/proc/stb/lcd/symbol_timeshift"):		
+			if fileExists("/proc/stb/lcd/symbol_timeshift"):		
 				open("/proc/stb/lcd/symbol_timeshift", "w").write("0")
-			if path.exists("/proc/stb/lcd/symbol_tv"):	
+			if fileExists("/proc/stb/lcd/symbol_tv"):	
 				open("/proc/stb/lcd/symbol_tv", "w").write("0")
-			if path.exists("/proc/stb/lcd/symbol_usb"):	
+			if fileExists("/proc/stb/lcd/symbol_usb"):	
 				open("/proc/stb/lcd/symbol_usb", "w").write("0")
 		else:
 			self.JobNetwork()
@@ -125,11 +125,11 @@ class LCD:
 
 	def JobNetwork(self):
 		LinkState = 0
-		if path.exists('/sys/class/net/wlan0/operstate'):
+		if fileExists('/sys/class/net/wlan0/operstate'):
 			LinkState = open('/sys/class/net/wlan0/operstate').read()
 			if LinkState != 'down':
 				LinkState = open('/sys/class/net/wlan0/operstate').read()
-		elif path.exists('/sys/class/net/eth0/operstate'):
+		elif fileExists('/sys/class/net/eth0/operstate'):
 			LinkState = open('/sys/class/net/eth0/operstate').read()
 			if LinkState != 'down':
 				LinkState = open('/sys/class/net/eth0/carrier').read()
@@ -217,7 +217,7 @@ def InitLcd():
 		config.lcd.invert = ConfigYesNo(default=False)
 		config.lcd.invert.addNotifier(setLCDinverted);
 
-		if path.exists("/proc/stb/lcd/scroll_delay"):
+		if fileExists("/proc/stb/lcd/scroll_delay"):
 			config.lcd.mode = ConfigSelection([("0", _("No")), ("1", _("Yes"))], "1")
 			config.lcd.hdd = ConfigSelection([("0", _("No")), ("1", _("Yes"))], "1")
 			config.lcd.mode.addNotifier(setLCDmode);
@@ -231,6 +231,29 @@ def InitLcd():
 			config.lcd.scrollspeed = ConfigNothing()
 			config.lcd.hdd = ConfigNothing()
 
+
+		if config.misc.boxtype.value == 'vuultimo':
+			config.lcd.ledbrightness = ConfigSlider(default = 1, increment = 1, limits = (0,15))
+			config.lcd.ledbrightness.addNotifier(setLEDnormalstate);
+			config.lcd.ledbrightness.apply = lambda : setLEDnormalstate(config.lcd.ledbrightness)
+			config.lcd.ledbrightness.callNotifiersOnSaveAndCancel = True
+			config.lcd.ledbrightnessstandby = ConfigSlider(default = 5, increment = 1, limits = (0,15))
+			config.lcd.ledbrightnessstandby.addNotifier(setLEDnormalstate);
+			config.lcd.ledbrightnessstandby.apply = lambda : setLEDnormalstate(config.lcd.ledbrightnessstandby)
+			config.lcd.ledbrightnessdeepstandby = ConfigSlider(default = 5, increment = 1, limits = (0,15))
+			config.lcd.ledbrightnessdeepstandby.addNotifier(setLEDdeepstandby);
+			config.lcd.ledblinkingtime = ConfigSlider(default = 5, increment = 1, limits = (0,15))
+			config.lcd.ledblinkingtime.addNotifier(setLEDblinkingtime);
+		else:
+			def doNothing():
+				pass
+			config.lcd.ledbrightness = ConfigNothing()
+			config.lcd.ledbrightness.apply = lambda : doNothing()
+			config.lcd.ledbrightnessstandby = ConfigNothing()
+			config.lcd.ledbrightnessstandby.apply = lambda : doNothing()
+			config.lcd.ledbrightnessdeepstandby = ConfigNothing()
+			config.lcd.ledblinkingtime = ConfigNothing()			
+			
 	else:
 		def doNothing():
 			pass
