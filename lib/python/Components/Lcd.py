@@ -208,8 +208,12 @@ def InitLcd():
 			config.lcd.ledblinkingtime = ConfigSlider(default = 5, increment = 1, limits = (0,15))
 			config.lcd.ledblinkingtime.addNotifier(setLEDblinkingtime);
 		else:
+			def doNothing():
+				pass
 			config.lcd.ledbrightness = ConfigNothing()
+			config.lcd.ledbrightness.apply = lambda : doNothing()
 			config.lcd.ledbrightnessstandby = ConfigNothing()
+			config.lcd.ledbrightnessstandby.apply = lambda : doNothing()
 			config.lcd.ledbrightnessdeepstandby = ConfigNothing()
 			config.lcd.ledblinkingtime = ConfigNothing()
 
