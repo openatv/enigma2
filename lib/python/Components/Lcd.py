@@ -190,9 +190,9 @@ def InitLcd():
 		def setLCDscrollspeed(configElement):
 			ilcd.setScrollspeed(configElement.value);
 		
-		if path.exists("/proc/stb/lcd/symbol_hdd"):
+		if fileExists("/proc/stb/lcd/symbol_hdd"):
 			open("/proc/stb/lcd/symbol_hdd", "w").write("0")
-		if path.exists("/proc/stb/lcd/symbol_hddprogress"):	
+		if fileExists("/proc/stb/lcd/symbol_hddprogress"):	
 			open("/proc/stb/lcd/symbol_hddprogress", "w").write("0")
 		standby_default = 0
 
