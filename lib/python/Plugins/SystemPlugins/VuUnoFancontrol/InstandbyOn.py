@@ -8,7 +8,12 @@ from Components.Harddisk import harddiskmanager
 config.plugins.manualfancontrols = ConfigSubsection()
 config.plugins.manualfancontrols.standbymode = ConfigSelection(default = "yes", choices = [
 	("no", _("no")), ("yes", _("yes"))])
-config.plugins.manualfancontrols.pwmvalue = ConfigSlider(default = 10, increment = 5, limits = (0, 255))
+
+if config.misc.boxtype.value == 'vuultimo':
+	config.plugins.manualfancontrols.pwmvalue = ConfigSlider(default = 100, increment = 5, limits = (0, 255))
+else:
+	config.plugins.manualfancontrols.pwmvalue = ConfigSlider(default = 10, increment = 5, limits = (0, 255))
+
 config.plugins.manualfancontrols.checkperiod = ConfigSelection(default = "10", choices = [
 		("5", "5 " + _("seconds")), ("10", "10 " + _("seconds")), ("30", "30 " + _("seconds")),
 		("60", "1 " + _("minute")), ("120", "2 " + _("minutes")),
