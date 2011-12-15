@@ -480,8 +480,8 @@ public:
 protected:
 	int filterRecordData(const unsigned char *data, int len, size_t &current_span_remaining);
 private:
+	eMPEGStreamInformationWriter m_stream_info;
 	eMPEGStreamParserTS m_ts_parser;
-	eMPEGStreamInformation m_stream_info;
 	off_t m_current_offset;
 	pts_t m_last_pcr; /* very approximate.. */
 	int m_pid;
@@ -525,11 +525,12 @@ int eDVBRecordFileThread::filterRecordData(const unsigned char *data, int len, s
 
 DEFINE_REF(eDVBTSRecorder);
 
-eDVBTSRecorder::eDVBTSRecorder(eDVBDemux *demux): m_demux(demux)
+eDVBTSRecorder::eDVBTSRecorder(eDVBDemux *demux):
+	m_demux(demux),
+	m_running(0),
+	m_target_fd(-1),
+	m_thread(new eDVBRecordFileThread())
 {
-	m_running = 0;
-	m_target_fd = -1;
-	m_thread = new eDVBRecordFileThread();
 	CONNECT(m_thread->m_event, eDVBTSRecorder::filepushEvent);
 #ifndef HAVE_ADD_PID
 	m_demux->m_dvr_busy = 1;
