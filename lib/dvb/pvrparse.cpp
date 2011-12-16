@@ -24,11 +24,12 @@ int eMPEGStreamInformation::load(const char *filename)
 	if (m_structure_read)
 		fclose(m_structure_read);
 	m_structure_read = fopen((s_filename + ".sc").c_str(), "rb");
+	m_access_points.clear();
+	m_pts_to_offset.clear();
+	m_timestamp_deltas.clear();
 	FILE *f = fopen((s_filename + ".ap").c_str(), "rb");
 	if (!f)
 		return -1;
-	m_access_points.clear();
-	m_pts_to_offset.clear();
 	while (1)
 	{
 		unsigned long long d[2];
@@ -49,13 +50,9 @@ int eMPEGStreamInformation::load(const char *filename)
 
 void eMPEGStreamInformation::fixupDiscontinuties()
 {
-	m_timestamp_deltas.clear();
 	if (m_access_points.empty())
 		return;
-		
-//	eDebug("Fixing discontinuities ...");
-
-			/* if we have no delta at the beginning, extrapolate it */
+		/* if we have no delta at the beginning, extrapolate it */
 	if ((m_access_points.find(0) == m_access_points.end()) && (m_access_points.size() > 1))
 	{
 		std::map<off_t,pts_t>::const_iterator second = m_access_points.begin();
@@ -89,19 +86,6 @@ void eMPEGStreamInformation::fixupDiscontinuties()
 		}
 		lastpts_t = i->second - currentDelta;
 	}
-	
-	
-//	eDebug("ok, found %d disconts.", m_timestamp_deltas.size());
-
-#if 0	
-	for (off_t x=0x25807E34ULL; x < 0x25B3CF70; x+= 100000)
-	{
-		off_t o = x;
-		pts_t p;
-		int r = getPTS(o, p);
-		eDebug("%08llx -> %08llx | %08llx, %d, %08llx %08llx", x, getDelta(x), getInterpolated(x), r, o, p);
-	}
-#endif
 }
 
 pts_t eMPEGStreamInformation::getDelta(off_t offset)
@@ -109,14 +93,13 @@ pts_t eMPEGStreamInformation::getDelta(off_t offset)
 	if (!m_timestamp_deltas.size())
 		return 0;
 	std::map<off_t,pts_t>::iterator i = m_timestamp_deltas.upper_bound(offset);
-
-		/* i can be the first when you query for something before the first PTS */
+	/* i can be the first when you query for something before the first PTS */
 	if (i != m_timestamp_deltas.begin())
 		--i;
-
 	return i->second;
 }
 
+// fixupPTS is apparently called to get UI time information and such
 int eMPEGStreamInformation::fixupPTS(const off_t &offset, pts_t &ts)
 {
 	if (m_timestamp_deltas.empty())
@@ -141,6 +124,7 @@ int eMPEGStreamInformation::fixupPTS(const off_t &offset, pts_t &ts)
 	return 0;
 }
 
+// getPTS is typically called when you "jump" in a file.
 int eMPEGStreamInformation::getPTS(off_t &offset, pts_t &pts)
 {
 	std::map<off_t,pts_t>::iterator before = m_access_points.lower_bound(offset);
