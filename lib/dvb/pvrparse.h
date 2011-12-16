@@ -17,9 +17,6 @@ public:
 
 	int load(const char *filename);
 	
-		/* get delta at specific offset */
-	pts_t getDelta(off_t offset);
-	
 		/* fixup timestamp near offset, i.e. convert to zero-based */
 	int fixupPTS(const off_t &offset, pts_t &ts);
 
@@ -42,6 +39,8 @@ public:
 	int getStructureEntry(off_t &offset, unsigned long long &data, int get_next);
 
 private:
+	/* get delta at specific offset */
+	pts_t getDelta(off_t offset);
 	/* recalculates timestampDeltas */
 	void fixupDiscontinuties();
 	/* we order by off_t here, since the timestamp may */
