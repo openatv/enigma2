@@ -253,6 +253,14 @@ int eMPEGStreamInformation::getNextAccessPoint(pts_t &ts, const pts_t &start, in
 	return 0;
 }
 
+#if BYTE_ORDER != BIG_ENDIAN
+#	define structureCacheOffset(i) ((off_t)bswap_64(m_structure_cache[(i)*2]))
+#	define structureCacheData(i) ((off_t)bswap_64(m_structure_cache[(i)*2+1]))
+#else
+#	define structureCacheOffset(i) ((off_t)m_structure_cache[(i)*2])
+#	define structureCacheData(i) ((off_t)m_structure_cache[(i)*2+1])
+#endif
+
 int eMPEGStreamInformation::getStructureEntry(off_t &offset, unsigned long long &data, int get_next)
 {
 	if (!m_structure_read)
@@ -261,44 +269,40 @@ int eMPEGStreamInformation::getStructureEntry(off_t &offset, unsigned long long 
 		return -1;
 	}
 
-	const int structure_cache_size = sizeof(m_structure_cache) / 16;
+	const int entry_size = 16;
+	const int structure_cache_size = sizeof(m_structure_cache) / entry_size;
 	if ((m_structure_cache_entries == 0) ||
-	    ((off_t)m_structure_cache[0] > offset) ||
-	    ((off_t)m_structure_cache[(m_structure_cache_entries - (get_next ? 2 : 1)) * 2] <= offset))
+	    (structureCacheOffset(0) > offset) ||
+	    (structureCacheOffset(m_structure_cache_entries - (get_next ? 2 : 1)) <= offset))
 	{
 		fseek(m_structure_read, 0, SEEK_END);
 		int l = ftell(m_structure_read);
-		unsigned long long d[2];
-		const int entry_size = sizeof d;
 
-			/* do a binary search */
+		/* do a binary search */
 		int count = l / entry_size;
 		int i = 0;
-		
 		while (count)
 		{
 			int step = count >> 1;
-			
 			fseek(m_structure_read, (i + step) * entry_size, SEEK_SET);
-			if (!fread(d, 1, entry_size, m_structure_read))
+			unsigned long long d;
+			if (!fread(&d, 1, sizeof(d), m_structure_read))
 			{
 				eDebug("read error at entry %d", i);
 				return -1;
 			}
 #if BYTE_ORDER != BIG_ENDIAN
-			d[0] = bswap_64(d[0]);
-//			d[1] = bswap_64(d[1]);
+			d = bswap_64(d);
 #endif
-//			eDebug("%d: %08llx > %llx", i, d[0], d[1]);
-			if (d[0] < (unsigned long long)offset)
+			if (d < (unsigned long long)offset)
 			{
 				i += step + 1;
 				count -= step + 1;
 			} else
 				count = step;
 		}
-		
-		eDebug("[eMPEGStreamInformation] found %d get_next=%d", i, get_next);
+		//eDebug("[eMPEGStreamInformation] found i=%d size=%d get_next=%d", i, l / entry_size, get_next);
+
 		// Put the cache in the center
 		i -= structure_cache_size / 2;
 		if (i < 0)
@@ -306,20 +310,14 @@ int eMPEGStreamInformation::getStructureEntry(off_t &offset, unsigned long long 
 		fseek(m_structure_read, i * entry_size, SEEK_SET);
 		int num = fread(m_structure_cache, entry_size, structure_cache_size, m_structure_read);
 		eDebug("[eMPEGStreamInformation] cache starts at %d entries: %d", i, num);
-		for (i = 0; i < num; ++i)
-		{
-#if BYTE_ORDER != BIG_ENDIAN
-			m_structure_cache[i * 2] = bswap_64(m_structure_cache[i * 2]);
-			m_structure_cache[i * 2 + 1] = bswap_64(m_structure_cache[i * 2 + 1]);
-#endif
-		}
-		// TODO: This loop should not be needed any longer
-		for (i = num; i < structure_cache_size; ++i)
-		{
-			m_structure_cache[i * 2] = 0x7fffffffffffffffULL; /* fill with harmless content */
-			m_structure_cache[i * 2 + 1] = 0;
-		}
 		m_structure_cache_entries = num;
+		if ((num < structure_cache_size) && (structureCacheOffset(num - 1) <= offset))
+		{
+			eDebug("[eMPEGStreamInformation] offset %lld is past EOF", offset);
+			offset = 0x7fffffffffffffffULL;
+			data = 0;
+			return 0;
+		}
 	}
 
 	// Binary search for offset
@@ -329,7 +327,7 @@ int eMPEGStreamInformation::getStructureEntry(off_t &offset, unsigned long long 
 	while (low <= high)
 	{
 		int mid = (low + high) / 2;
-		off_t value = m_structure_cache[mid * 2];
+		off_t value = structureCacheOffset(mid);
 		if (value <= offset)
 			low = mid + 1;
 		else
@@ -342,8 +340,8 @@ int eMPEGStreamInformation::getStructureEntry(off_t &offset, unsigned long long 
 		i = high;
 
 	//	eDebug("[%d] looked for %llx, found %llx=%llx", sizeof offset, offset, m_structure_cache[i * 2], m_structure_cache[i * 2 + 1]);
-	offset = m_structure_cache[i * 2];
-	data = m_structure_cache[i * 2 + 1];
+	offset = structureCacheOffset(i);
+	data = structureCacheData(i);
 	return 0;
 }
 
