@@ -58,7 +58,12 @@ class EventName(Converter, object):
 			if nextEvent:
 				if self.type == self.NEXT_NAME and nextEvent[0][4]:
 					return nextEvent[0][4]
-				elif self.type == self.NEXT_DESCRIPTION and nextEvent[0][6]:
-					return nextEvent[0][6]
+				elif self.type == self.NEXT_DESCRIPTION and nextEvent[0][4]:
+					if nextEvent[0][6] != "":
+						return nextEvent[0][6]
+					elif nextEvent[0][5] != "":
+						return nextEvent[0][5]
+					else:
+						return ""
 		
 	text = property(getText)
