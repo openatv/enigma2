@@ -480,7 +480,6 @@ public:
 protected:
 	int filterRecordData(const unsigned char *data, int len, size_t &current_span_remaining);
 private:
-	eMPEGStreamInformationWriter m_stream_info;
 	eMPEGStreamParserTS m_ts_parser;
 	off_t m_current_offset;
 	pts_t m_last_pcr; /* very approximate.. */
@@ -489,7 +488,7 @@ private:
 
 eDVBRecordFileThread::eDVBRecordFileThread()
 	:eFilePushThread(IOPRIO_CLASS_RT, 7, /*blocksize*/ 188, /*buffersize*/ 188 * 1024),
-	 m_ts_parser(m_stream_info),
+	 m_ts_parser(),
 	 m_current_offset(0)
 {
 }
@@ -501,12 +500,12 @@ void eDVBRecordFileThread::setTimingPID(int pid, int type)
 
 void eDVBRecordFileThread::startSaveMetaInformation(const std::string &filename)
 {
-	m_stream_info.startSave(filename);
+	m_ts_parser.startSave(filename);
 }
 
 void eDVBRecordFileThread::stopSaveMetaInformation()
 {
-	m_stream_info.stopSave();
+	m_ts_parser.stopSave();
 }
 
 int eDVBRecordFileThread::getLastPTS(pts_t &pts)
@@ -517,9 +516,7 @@ int eDVBRecordFileThread::getLastPTS(pts_t &pts)
 int eDVBRecordFileThread::filterRecordData(const unsigned char *data, int len, size_t &current_span_remaining)
 {
 	m_ts_parser.parseData(m_current_offset, data, len);
-	
 	m_current_offset += len;
-	
 	return len;
 }
 

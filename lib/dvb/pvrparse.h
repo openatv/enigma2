@@ -54,7 +54,7 @@ private:
 	std::multimap<pts_t, off_t> m_pts_to_offset;
 
 	int m_structure_cache_entries;
-	unsigned long long m_structure_cache[2048];
+	unsigned long long m_structure_cache[4096];
 	FILE *m_structure_read;
 };
 
@@ -81,15 +81,14 @@ private:
 };
 
 
-class eMPEGStreamParserTS
+class eMPEGStreamParserTS: public eMPEGStreamInformationWriter
 {
 public:
-	eMPEGStreamParserTS(eMPEGStreamInformationWriter &streaminfo);
+	eMPEGStreamParserTS();
 	void parseData(off_t offset, const void *data, unsigned int len);
 	void setPid(int pid, int streamtype);
 	int getLastPTS(pts_t &last_pts);
 private:
-	eMPEGStreamInformationWriter &m_streaminfo;
 	unsigned char m_pkt[188];
 	int m_pktptr;
 	int processPacket(const unsigned char *pkt, off_t offset);

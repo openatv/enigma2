@@ -410,8 +410,7 @@ void eMPEGStreamInformationWriter::writeStructureEntry(off_t offset, unsigned lo
 
 
 
-eMPEGStreamParserTS::eMPEGStreamParserTS(eMPEGStreamInformationWriter &streaminfo):
-	m_streaminfo(streaminfo),
+eMPEGStreamParserTS::eMPEGStreamParserTS():
 	m_pktptr(0),
 	m_pid(-1),
 	m_need_next_packet(0),
@@ -501,14 +500,14 @@ int eMPEGStreamParserTS::processPacket(const unsigned char *pkt, off_t offset)
 					{
 						if (ptsvalid)
 						{
-							m_streaminfo.addAccessPoint(offset, pts);
+							addAccessPoint(offset, pts);
 							//eDebug("Sequence header at %llx, pts %llx", offset, pts);
 						}
 					}
 					if (pkt < (end - 6))
 					{
 						unsigned long long data = sc | (pkt[4] << 8) | (pkt[5] << 16) | (pkt[6] << 24);
-						m_streaminfo.writeStructureEntry(offset + pkt_offset, data & 0xFFFFFFFFULL);
+						writeStructureEntry(offset + pkt_offset, data & 0xFFFFFFFFULL);
 					}
 					else
 					{
@@ -517,7 +516,7 @@ int eMPEGStreamParserTS::processPacket(const unsigned char *pkt, off_t offset)
 							// This happens when recording VOX, why???
 							// Just ignore that last byte? Would that work?
 							unsigned long long data = sc | (pkt[4] << 8) | (pkt[5] << 16);
-							m_streaminfo.writeStructureEntry(offset + pkt_offset, data & 0xFFFFFFFFULL);
+							writeStructureEntry(offset + pkt_offset, data & 0xFFFFFFFFULL);
 						}
 						else
 						{
@@ -535,13 +534,13 @@ int eMPEGStreamParserTS::processPacket(const unsigned char *pkt, off_t offset)
 				{
 					/* store image type */
 					unsigned long long data = sc | (pkt[4] << 8);
-					m_streaminfo.writeStructureEntry(offset + pkt_offset, data);
+					writeStructureEntry(offset + pkt_offset, data);
 					if ( //pkt[3] == 0x09 &&   /* MPEG4 AVC NAL unit access delimiter */
 						 (pkt[4] >> 5) == 0) /* and I-frame */
 					{
 						if (ptsvalid)
 						{
-							m_streaminfo.addAccessPoint(offset, pts);
+							addAccessPoint(offset, pts);
 							// eDebug("MPEG4 AVC UAD at %llx, pts %llx", offset, pts);
 						}
 					}
