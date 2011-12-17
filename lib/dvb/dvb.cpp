@@ -1317,7 +1317,6 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 
 	if (m_skipmode_n)
 	{
-		eDebug("skipmode %d:%d (x%d)", m_skipmode_m, m_skipmode_n, m_skipmode_frames);
 		max = align(m_skipmode_n, blocksize);
 	}
 
