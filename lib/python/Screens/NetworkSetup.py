@@ -1401,7 +1401,7 @@ class NetworkAdapterTest(Screen):
 
 class NetworkAfp(Screen):
 	skin = """
-		<screen position="center,center" size="560,310" title="Samba Setup">
+		<screen position="center,center" size="560,310" title="AFP Setup">
 			<widget name="lab1" position="20,90" size="150,30" font="Regular;20" valign="center" transparent="0"/>
 			<widget name="labactive" position="180,90" size="250,30" font="Regular;20" valign="center" transparent="0"/>
 			<widget name="lab2" position="20,160" size="150,30" font="Regular;20" valign="center" transparent="0"/>
