@@ -47,6 +47,7 @@ class inputDevices:
 			
 			if self.name:
 				self.Devices[evdev] = {'name': self.name, 'type': self.getInputDeviceType(self.name),'enabled': False, 'configuredName': None }
+				self.setDefaults(evdev) # hack for etxxx setting defaults to input devices
 	
 
 	def getInputDeviceType(self,name):
