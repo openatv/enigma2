@@ -66,7 +66,7 @@ class Navigation:
 			return 0
 		print "playing", ref and ref.toString()
 		if path.exists("/proc/stb/lcd/symbol_signal"):
-			if config.lcd.mode.value == "0":
+			if config.lcd.mode.value == "1":
 				try:
 					if not ref.toString().startswith('1:0:0:0:0:0:0:0:0:0:'):
 						signal = 1
