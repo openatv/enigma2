@@ -72,15 +72,37 @@ eServiceReference::eServiceReference(const std::string &string)
 		const char *namestr = strchr(pathstr, ':');
 		if (namestr)
 		{
-			if (pathstr != namestr)
-				path.assign(pathstr, namestr-pathstr);
-			if (*(namestr+1))
-				name=namestr+1;
+			if (!strncmp(namestr, "://", 3))
+			{
+				/* 
+				 * The path is a url (e.g. "http://...")
+				 * We can expect more colons to be present 
+				 * in a url, so instead of a colon, we look 
+				 * for a space instead as url delimiter, 
+				 * after which a name may be present.
+				 */
+				namestr = strchr(namestr, ' ');
+				if (namestr)
+				{
+					path.assign(pathstr, namestr - pathstr);
+					if (*(namestr + 1))
+						name = namestr + 1;
+				}
+			}
+			else
+			{
+				if (pathstr != namestr)
+					path.assign(pathstr, namestr-pathstr);
+				if (*(namestr+1))
+					name=namestr+1;
+			}
 		}
 		else
+		{
 			path=pathstr;
+		}
 	}
-	
+
 	path = decode(path);
 	name = decode(name);
 }

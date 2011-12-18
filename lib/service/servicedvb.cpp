@@ -536,10 +536,9 @@ RESULT eDVBPVRServiceOfflineOperations::reindex()
 	const char *filename = m_ref.path.c_str();
 	eDebug("reindexing %s...", filename);
 
-	eMPEGStreamInformationWriter info;
-	eMPEGStreamParserTS parser(info);
+	eMPEGStreamParserTS parser;
 	
-	info.startSave(filename);
+	parser.startSave(filename);
 	
 	eRawFile f;
 	
@@ -562,7 +561,7 @@ RESULT eDVBPVRServiceOfflineOperations::reindex()
 		parser.parseData(offset, buffer, r);
 	}
 	
-	info.stopSave();
+	parser.stopSave();
 	f.close();
 	
 	return 0;

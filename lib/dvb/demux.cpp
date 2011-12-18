@@ -468,19 +468,17 @@ RESULT eDVBPESReader::connectRead(const Slot2<void,const __u8*,int> &r, ePtr<eCo
 	return 0;
 }
 
-class eDVBRecordFileThread: public eFilePushThread
+class eDVBRecordFileThread: public eFilePushThreadRecorder
 {
 public:
 	eDVBRecordFileThread();
 	void setTimingPID(int pid, int type);
-	
 	void startSaveMetaInformation(const std::string &filename);
 	void stopSaveMetaInformation();
 	int getLastPTS(pts_t &pts);
 protected:
-	int filterRecordData(const unsigned char *data, int len, size_t &current_span_remaining);
+	/* override */ void filterRecordData(const unsigned char *data, int len);
 private:
-	eMPEGStreamInformationWriter m_stream_info;
 	eMPEGStreamParserTS m_ts_parser;
 	off_t m_current_offset;
 	pts_t m_last_pcr; /* very approximate.. */
@@ -488,8 +486,8 @@ private:
 };
 
 eDVBRecordFileThread::eDVBRecordFileThread()
-	:eFilePushThread(IOPRIO_CLASS_RT, 7, /*blocksize*/ 188, /*buffersize*/ 188 * 1024),
-	 m_ts_parser(m_stream_info),
+	:eFilePushThreadRecorder(IOPRIO_CLASS_RT, 7, /*blocksize*/ 188, /*buffersize*/ 188 * 1024),
+	 m_ts_parser(),
 	 m_current_offset(0)
 {
 }
@@ -501,12 +499,12 @@ void eDVBRecordFileThread::setTimingPID(int pid, int type)
 
 void eDVBRecordFileThread::startSaveMetaInformation(const std::string &filename)
 {
-	m_stream_info.startSave(filename);
+	m_ts_parser.startSave(filename);
 }
 
 void eDVBRecordFileThread::stopSaveMetaInformation()
 {
-	m_stream_info.stopSave();
+	m_ts_parser.stopSave();
 }
 
 int eDVBRecordFileThread::getLastPTS(pts_t &pts)
@@ -514,13 +512,10 @@ int eDVBRecordFileThread::getLastPTS(pts_t &pts)
 	return m_ts_parser.getLastPTS(pts);
 }
 
-int eDVBRecordFileThread::filterRecordData(const unsigned char *data, int len, size_t &current_span_remaining)
+void eDVBRecordFileThread::filterRecordData(const unsigned char *data, int len)
 {
 	m_ts_parser.parseData(m_current_offset, data, len);
-	
 	m_current_offset += len;
-	
-	return len;
 }
 
 DEFINE_REF(eDVBTSRecorder);

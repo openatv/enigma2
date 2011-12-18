@@ -458,9 +458,11 @@ PyObject *eDVBServiceRecord::getStreamingData()
 	ePtr<iDVBDemux> demux;
 	if (!m_service_handler.getDataDemux(demux))
 	{
-		uint8_t demux_id;
+		uint8_t demux_id, adapter_id;
 		if (!demux->getCADemuxID(demux_id))
 			PutToDict(r, "demux", demux_id);
+		if (!demux->getCAAdapterID(adapter_id))
+			PutToDict(r, "adapter", adapter_id);
 	}
 
 	return r;
