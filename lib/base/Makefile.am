@@ -26,7 +26,8 @@ libenigma_base_a_SOURCES = \
 	rawfile.cpp \
 	smartptr.cpp \
 	thread.cpp \
-	httpstream.cpp
+	httpstream.cpp \
+	socketbase.cpp
 
 EXTRA_DIST = \
 	eenv.cpp.in
@@ -57,4 +58,5 @@ baseinclude_HEADERS = \
 	ringbuffer.h \
 	smartptr.h \
 	thread.h \
-	httpstream.h
+	httpstream.h \
+	socketbase.h
