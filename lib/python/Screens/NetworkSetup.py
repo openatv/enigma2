@@ -1953,7 +1953,7 @@ class NetworkSambaLog(Screen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("OpenVpn Log"))
+		Screen.setTitle(self, _("Samba Log"))
 		self['infotext'] = ScrollLabel('')
 		self.Console = Console()
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'up': self['infotext'].pageUp, 'down': self['infotext'].pageDown})
