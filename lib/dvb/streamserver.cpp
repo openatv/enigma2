@@ -89,7 +89,7 @@ void eStreamClient::tuneFailed()
 DEFINE_REF(eStreamServer);
 
 eStreamServer::eStreamServer()
- : eServerSocket(8002, eApp)
+ : eServerSocket(8001, eApp)
 {
 }
 
