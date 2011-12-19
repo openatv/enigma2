@@ -120,9 +120,9 @@ class MessageBoxConfirmCode(MessageBox):
 	skin = """
 		<screen position="center,center" size="600,10" title="Message">
 		<widget name="text" position="65,8" size="420,0" font="Regular;22" />
-		<widget name="ErrorPixmap" pixmap="ViX_HD_Common/icons/input_error.png" position="5,5" size="53,53" alphatest="blend" />
-		<widget name="QuestionPixmap" pixmap="ViX_HD_Common/icons/input_question.png" position="5,5" size="53,53" alphatest="blend" />
-		<widget name="InfoPixmap" pixmap="ViX_HD_Common/icons/input_info.png" position="5,5" size="53,53" alphatest="blend" />
+		<widget name="ErrorPixmap" pixmap="skin_default/icons/input_error.png" position="5,5" size="53,53" alphatest="blend" />
+		<widget name="QuestionPixmap" pixmap="skin_default/icons/input_question.png" position="5,5" size="53,53" alphatest="blend" />
+		<widget name="InfoPixmap" pixmap="skin_default/icons/input_info.png" position="5,5" size="53,53" alphatest="blend" />
 		<widget name="list" position="100,100" size="380,375" transparent="1" backgroundColor="darkgrey" />
 		<applet type="onLayoutFinish">
 # this should be factored out into some helper code, but currently demonstrates applets.

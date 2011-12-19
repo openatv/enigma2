@@ -213,6 +213,7 @@ AC_CONFIG_FILES([
 Makefile
 data/Makefile
 data/fonts/Makefile
+data/lcd/Makefile
 data/countries/Makefile
 data/defaults/Makefile
 data/defaults/Dream/Makefile
@@ -226,6 +227,7 @@ data/skin_default/icons/Makefile
 data/skin_default/buttons/Makefile
 data/skin_default/spinner/Makefile
 data/skin_default/GraphEPG/Makefile
+data/skin_default/lcd/Makefile
 include/Makefile
 lib/Makefile
 lib/actions/Makefile
