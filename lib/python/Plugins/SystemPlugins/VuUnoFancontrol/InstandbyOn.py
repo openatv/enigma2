@@ -8,7 +8,12 @@ from Components.Harddisk import harddiskmanager
 config.plugins.manualfancontrols = ConfigSubsection()
 config.plugins.manualfancontrols.standbymode = ConfigSelection(default = "yes", choices = [
 	("no", _("no")), ("yes", _("yes"))])
-config.plugins.manualfancontrols.pwmvalue = ConfigSlider(default = 10, increment = 5, limits = (0, 255))
+
+if config.misc.boxtype.value == 'vuultimo':
+	config.plugins.manualfancontrols.pwmvalue = ConfigSlider(default = 100, increment = 5, limits = (0, 255))
+else:
+	config.plugins.manualfancontrols.pwmvalue = ConfigSlider(default = 10, increment = 5, limits = (0, 255))
+
 config.plugins.manualfancontrols.checkperiod = ConfigSelection(default = "10", choices = [
 		("5", "5 " + _("seconds")), ("10", "10 " + _("seconds")), ("30", "30 " + _("seconds")),
 		("60", "1 " + _("minute")), ("120", "2 " + _("minutes")),
@@ -29,20 +34,20 @@ class instandbyOn:
 			self.checkStatusLoopStart()
 
 		config.misc.standbyCounter.addNotifier(self.standbyBegin, initial_call = False)
-		print "<ManualFancontrol> init :  self.fanoffmode : ", self.fanoffmode
-		print "<ManualFancontrol> init :  config.plugins.manualfancontrols.pwmvalue.value : ", config.plugins.manualfancontrols.pwmvalue.value
+# 		print "<ManualFancontrol> init :  self.fanoffmode : ", self.fanoffmode
+# 		print "<ManualFancontrol> init :  config.plugins.manualfancontrols.pwmvalue.value : ", config.plugins.manualfancontrols.pwmvalue.value
 
 	def checkStatusLoopStart(self):
-		print "<ManualFancontrol> checkStatusLoopStart"
+# 		print "<ManualFancontrol> checkStatusLoopStart"
 		self.checkStstusTimer.start(int(config.plugins.manualfancontrols.checkperiod.value) * 1000)
 
 	def checkStatusLoopStop(self):
-		print "<ManualFancontrol> checkStatusLoopStop"
+# 		print "<ManualFancontrol> checkStatusLoopStop"
 		self.checkStstusTimer.stop()
 
 	def checkStstus(self):
 		from Screens.Standby import inStandby
-		print "<ManualFancontrol> checkStstus, fanoffmode : %s, "%self.fanoffmode,"inStandby : ",inStandby and True or False
+# 		print "<ManualFancontrol> checkStstus, fanoffmode : %s, "%self.fanoffmode,"inStandby : ",inStandby and True or False
 		if self.fanoffmode is 'ON' : # pwmvalue is '0'
 			if self.isRecording() or self.isHDDActive():
 				self.setPWM(self.minimum_pwm)
@@ -57,7 +62,7 @@ class instandbyOn:
 			self.setPWM(config.plugins.manualfancontrols.pwmvalue.value)
 
 	def standbyBegin(self, configElement):
-		print "<ManualFancontrol> Standby Begin"
+# 		print "<ManualFancontrol> Standby Begin"
 		if config.plugins.manualfancontrols.standbymode.value == "yes" and self.fanoffmode is "OFF":
 			from Screens.Standby import inStandby
 			inStandby.onClose.append(self.StandbyEnd)
@@ -66,19 +71,19 @@ class instandbyOn:
 			self.checkStstus()
 
 	def StandbyEnd(self):
-		print "<ManualFancontrol> Standby End"
+# 		print "<ManualFancontrol> Standby End"
 		if self.fanoffmode is "OFF":
 			self.removeRecordEventCB()
 			self.checkStatusLoopStop()
 		self.checkStstus()
 
 	def addRecordEventCB(self):
-		print "<ManualFancontrol> addRecordEventCB"
+# 		print "<ManualFancontrol> addRecordEventCB"
 		if self.getRecordEvent not in NavigationInstance.instance.record_event:
 			NavigationInstance.instance.record_event.append(self.getRecordEvent)
 
 	def removeRecordEventCB(self):
-		print "<ManualFancontrol> removeRecordEventCB"
+# 		print "<ManualFancontrol> removeRecordEventCB"
 		if self.getRecordEvent in NavigationInstance.instance.record_event:
 			NavigationInstance.instance.record_event.remove(self.getRecordEvent)
 
@@ -88,7 +93,7 @@ class instandbyOn:
 
 	def isRecording(self):
 		recordings = NavigationInstance.instance.getRecordings()
-		print "<ManualFancontrol_> recordings : ",len(recordings)
+# 		print "<ManualFancontrol_> recordings : ",len(recordings)
 		if recordings :
 			return True
 		else:
@@ -97,20 +102,20 @@ class instandbyOn:
 	def isHDDActive(self): # remake certainly
 		for hdd in harddiskmanager.HDDList():
 			if not hdd[1].isSleeping():
-				print "<ManualFancontrol_> %s is not Sleeping"%hdd[0]
+# 				print "<ManualFancontrol_> %s is not Sleeping"%hdd[0]
 				return True
-		print "<ManualFancontrol_> All HDDs are Sleeping"
+# 		print "<ManualFancontrol_> All HDDs are Sleeping"
 		return False
 
 	def getPWM(self):
 		f = open("/proc/stb/fp/fan_pwm", "r")
 		value = int(f.readline().strip(), 16)
 		f.close()
-		print "<ManualFancontrol> getPWM : %d "%value
+# 		print "<ManualFancontrol> getPWM : %d "%value
 		return value
 
 	def setPWM(self, value):
-		print "<ManualFancontrol> setPWM to : %d"%value
+# 		print "<ManualFancontrol> setPWM to : %d"%value
 		f = open("/proc/stb/fp/fan_pwm", "w")
 		f.write("%x" % value)
 		f.close()
