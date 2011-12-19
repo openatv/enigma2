@@ -17,7 +17,8 @@ libenigma_service_a_SOURCES = \
 	servicedvbrecord.cpp \
 	servicefs.cpp \
 	servicemp3.cpp \
-	servicem2ts.cpp
+	servicem2ts.cpp \
+	servicedvbstream.cpp
 
 serviceincludedir = $(pkgincludedir)/lib/service
 serviceinclude_HEADERS = \
@@ -29,7 +30,8 @@ serviceinclude_HEADERS = \
 	servicedvbrecord.h \
 	servicefs.h \
 	servicemp3.h \
-	servicem2ts.h
+	servicem2ts.h \
+	servicedvbstream.h
 
 if HAVE_LIBXINE
 libenigma_service_a_SOURCES += \

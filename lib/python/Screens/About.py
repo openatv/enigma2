@@ -61,6 +61,8 @@ class About(Screen):
 
 		self["KernelVersion"] = StaticText(_("Kernel:") + " " + about.getKernelVersionString())
 		AboutText += _("Kernel:") + " " + about.getKernelVersionString() + "\n"
+		self["DriversVersion"] = StaticText(_("Drivers:") + " " + about.getDriversString())
+		AboutText += _("Drivers:") + " " + about.getDriversString() + "\n"
 		self["ImageType"] = StaticText(_("Image:") + " " + about.getImageTypeString())
 		AboutText += _("Image:") + " " + about.getImageTypeString() + "\n"
 		self["ImageVersion"] = StaticText(_("Version:") + " " + about.getImageVersionString())
@@ -71,7 +73,6 @@ class About(Screen):
 		AboutText += _("Last Update:") + " " + about.getLastUpdateString() + "\n\n"
 
 		fp_version = getFPVersion()
-		print 'FP:',fp_version
 		if fp_version is None:
 			fp_version = ""
 		elif fp_version != 0:

@@ -99,7 +99,6 @@ from Plugins.SystemPlugins.HdmiCEC.plugin import HdmiCECSetupScreen
 self.session.open(HdmiCECSetupScreen)
 </code>
 				</item>
-				<!--<item text="Remote Control"><setup id="rc" /></item>-->
 				<item level="1" text="Input devices" entryID="input_device_setup"><screen module="InputDeviceSetup" screen="InputDeviceSelection" /></item>
 				<item text="Keyboard"><setup id="keyboard" /></item>
 				<item level="0" text="Language" entryID="language_setup"><screen module="LanguageSelection" /></item>

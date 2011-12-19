@@ -288,8 +288,6 @@ void eFilePushThread::thread()
 		}
 //		printf("FILEPUSH: read %d bytes\n", m_buf_end);
 	}
-	fdatasync(m_fd_dest);
-
 	eDebug("FILEPUSH THREAD STOP");
 }
 
@@ -376,4 +374,169 @@ void eFilePushThread::recvEvent(const int &evt)
 int eFilePushThread::filterRecordData(const unsigned char *data, int len, size_t &current_span_remaining)
 {
 	return len;
+}
+
+
+
+
+eFilePushThreadRecorder::eFilePushThreadRecorder(int io_prio_class, int io_prio_level, int blocksize, size_t buffersize)
+	:prio_class(io_prio_class),
+	 prio(io_prio_level),
+	 m_stop(0),
+	 m_fd_dest(-1),
+	 m_fd_source(-1),
+	 m_blocksize(blocksize),
+	 m_buffersize(buffersize),
+	 m_buffer((unsigned char*) mmap(NULL, buffersize, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, /*ignored*/-1, 0)),
+	 m_messagepump(eApp, 0)
+{
+	if (m_buffer == MAP_FAILED)
+		eFatal("Failed to allocate filepush buffer, contact MiLo\n");
+	CONNECT(m_messagepump.recv_msg, eFilePushThreadRecorder::recvEvent);
+}
+
+eFilePushThreadRecorder::~eFilePushThreadRecorder()
+{
+	munmap(m_buffer, m_buffersize);
+}
+
+void eFilePushThreadRecorder::thread()
+{
+	setIoPrio(prio_class, prio);
+
+	eDebug("[eFilePushThreadRecorder] THREAD START");
+
+	/* we set the signal to not restart syscalls, so we can detect our signal. */
+	struct sigaction act;
+	act.sa_handler = signal_handler; // no, SIG_IGN doesn't do it. we want to receive the -EINTR
+	act.sa_flags = 0;
+	sigaction(SIGUSR1, &act, 0);
+
+	hasStarted();
+
+	off_t offset_last_sync = 0;
+	size_t written_since_last_sync = 0;
+
+	/* m_stop must be evaluated after each syscall. */
+	while (!m_stop)
+	{
+		ssize_t bytes = ::read(m_fd_source, m_buffer, m_buffersize);
+		if (bytes < 0)
+		{
+			bytes = 0;
+			if (errno == EINTR || errno == EBUSY || errno == EAGAIN)
+				continue;
+			if (errno == EOVERFLOW)
+			{
+				eWarning("[eFilePushThreadRecorder] OVERFLOW while recording");
+				continue;
+			}
+			eDebug("[eFilePushThreadRecorder] *read error* (%m) - aborting thread because i don't know what else to do.");
+			sendEvent(evtReadError);
+			break;
+		}
+		// Give parser a peek at the data
+		filterRecordData(m_buffer, bytes);
+
+#ifdef SHOW_WRITE_TIME
+		struct timeval starttime;
+		struct timeval now;
+		gettimeofday(&starttime, NULL);
+#endif
+		const unsigned char* buffer = m_buffer;
+		size_t total_written = 0;
+		do
+		{
+			int w = write(m_fd_dest, buffer, bytes - total_written);
+			if (w < 0)
+			{
+				if (errno == EINTR || errno == EAGAIN || errno == EBUSY)
+				{
+					eDebug("[eFilePushThreadRecorder] interrupted write");
+				}
+				else
+				{
+					eDebug("[eFilePushThreadRecorder] WRITE ERROR");
+					sendEvent(evtWriteError);
+					break;
+					// ... we would stop the thread
+				}
+			}
+			else
+			{
+				total_written += w;
+				buffer += w;
+			}
+		}
+		while (total_written != bytes);
+
+#ifdef SHOW_WRITE_TIME
+		gettimeofday(&now, NULL);
+		suseconds_t elapsed = (now.tv_sec - starttime.tv_sec) * 1000000;
+		elapsed += now.tv_usec;
+		elapsed -= starttime.tv_usec;
+		if (elapsed > 30000)
+			eDebug("[filepush] LONG WRITE (>30ms): %u us", elapsed);
+#endif
+		if (flushSize != 0)
+		{
+			written_since_last_sync += bytes;
+			if (written_since_last_sync > flushSize)
+			{
+#ifdef SHOW_WRITE_TIME
+				gettimeofday(&starttime, NULL);
+#endif
+				int pr;
+				pr = syscall(SYS_fadvise64, m_fd_dest, offset_last_sync, 0, 0, 0, POSIX_FADV_DONTNEED);
+				if (pr != 0)
+				{
+					eDebug("[filepush] POSIX_FADV_DONTNEED returned %d", pr);
+				}
+#ifdef SHOW_WRITE_TIME
+				else
+				{
+						gettimeofday(&now, NULL);
+						suseconds_t elapsed = (now.tv_sec - starttime.tv_sec) * 1000000;
+						elapsed += now.tv_usec;
+						elapsed -= starttime.tv_usec;
+						if (elapsed > 20000)
+						eDebug("[filepush] POSIX_FADV_DONTNEED (%u) (>20ms): %u us", (unsigned int)offset_last_sync, (unsigned int)elapsed);
+				}
+#endif
+				offset_last_sync += written_since_last_sync;
+				written_since_last_sync = 0;
+			}
+		}
+	}
+	eDebug("[eFilePushThreadRecorder] THREAD STOP");
+}
+
+void eFilePushThreadRecorder::start(int fd, int fd_dest)
+{
+	m_fd_source = fd;
+	m_fd_dest = fd_dest;
+	m_current_position = 0;
+	m_stop = 0;
+	run();
+}
+
+void eFilePushThreadRecorder::stop()
+{
+	/* if we aren't running, don't bother stopping. */
+	if (!sync())
+		return;
+	m_stop = 1;
+	eDebug("stopping thread."); /* just do it ONCE. it won't help to do this more than once. */
+	sendSignal(SIGUSR1);
+	kill(0);
+}
+
+void eFilePushThreadRecorder::sendEvent(int evt)
+{
+	m_messagepump.send(evt);
+}
+
+void eFilePushThreadRecorder::recvEvent(const int &evt)
+{
+	m_event(evt);
 }

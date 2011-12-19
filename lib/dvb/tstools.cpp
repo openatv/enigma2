@@ -6,20 +6,15 @@
 
 #include <stdio.h>
 
-eDVBTSTools::eDVBTSTools()
+eDVBTSTools::eDVBTSTools():
+	m_pid(-1),
+	m_maxrange(256*1024),
+	m_begin_valid (0),
+	m_end_valid(0),
+	m_samples_taken(0),
+	m_last_filelength(0),
+	m_futile(0)
 {
-	m_pid = -1;
-	m_maxrange = 256*1024;
-	
-	m_begin_valid = 0;
-	m_end_valid = 0;
-	
-	m_use_streaminfo = 0;
-	m_samples_taken = 0;
-	
-	m_last_filelength = 0;
-	
-	m_futile = 0;
 }
 
 void eDVBTSTools::closeSource()
@@ -48,23 +43,12 @@ int eDVBTSTools::openFile(const char *filename, int nostreaminfo)
 void eDVBTSTools::setSource(ePtr<iTsSource> &source, const char *stream_info_filename)
 {
 	closeFile();
-
 	m_source = source;
-
 	if (stream_info_filename)
 	{
 		eDebug("loading streaminfo for %s", stream_info_filename);
 		m_streaminfo.load(stream_info_filename);
 	}
-	
-	if (!m_streaminfo.empty())
-		m_use_streaminfo = 1;
-	else
-	{
-//		eDebug("no recorded stream information available");
-		m_use_streaminfo = 0;
-	}
-
 	m_samples_taken = 0;
 }
 
@@ -87,10 +71,9 @@ void eDVBTSTools::setSearchRange(int maxrange)
 	/* getPTS extracts a pts value from any PID at a given offset. */
 int eDVBTSTools::getPTS(off_t &offset, pts_t &pts, int fixed)
 {
-	if (m_use_streaminfo)
-		if (!m_streaminfo.getPTS(offset, pts))
-			return 0;
-	
+	if (m_streaminfo.getPTS(offset, pts) == 0)
+		return 0; // Okay, the cache had it
+
 	if (!m_source || !m_source->valid())
 		return -1;
 
@@ -265,11 +248,11 @@ int eDVBTSTools::getPTS(off_t &offset, pts_t &pts, int fixed)
 
 int eDVBTSTools::fixupPTS(const off_t &offset, pts_t &now)
 {
-	if (m_use_streaminfo)
+	if (m_streaminfo.fixupPTS(offset, now) == 0)
 	{
-		if (!m_streaminfo.fixupPTS(offset, now))
-			return 0;
-	} else
+		return 0;
+	}
+	else
 	{
 			/* for the simple case, we assume one epoch, with up to one wrap around in the middle. */
 		calcBegin();
@@ -299,17 +282,17 @@ int eDVBTSTools::fixupPTS(const off_t &offset, pts_t &now)
 int eDVBTSTools::getOffset(off_t &offset, pts_t &pts, int marg)
 {
 	eDebug("getOffset for pts 0x%llx", pts);
-	if (m_use_streaminfo)
+	if (m_streaminfo.hasAccessPoints())
 	{
-		if (pts >= m_pts_end && marg > 0 && m_end_valid)
+		if ((pts >= m_pts_end) && (marg > 0) && m_end_valid)
 			offset = m_offset_end;
 		else
 			offset = m_streaminfo.getAccessPoint(pts, marg);
 		return 0;
-	} else
+	}
+	else
 	{
-		calcBegin(); calcEnd();
-		
+		calcBeginAndEnd();
 		if (!m_begin_valid)
 			return -1;
 		if (!m_end_valid)
@@ -403,15 +386,16 @@ int eDVBTSTools::getOffset(off_t &offset, pts_t &pts, int marg)
 		offset = pts * (pts_t)bitrate / 8ULL / 90000ULL;
 		eDebug("fallback, bitrate=%d, results in %016llx", bitrate, offset);
 		offset -= offset % 188;
-		
 		return 0;
 	}
 }
 
 int eDVBTSTools::getNextAccessPoint(pts_t &ts, const pts_t &start, int direction)
 {
-	if (m_use_streaminfo)
+	if (m_streaminfo.hasAccessPoints())
+	{
 		return m_streaminfo.getNextAccessPoint(ts, start, direction);
+	}
 	else
 	{
 		eDebug("can't get next access point without streaminfo");
@@ -445,7 +429,6 @@ void eDVBTSTools::calcEnd()
 	{
 		m_last_filelength = end;
 		m_end_valid = 0;
-		
 		m_futile = 0;
 //		eDebug("file size changed, recalc length");
 	}
@@ -482,9 +465,15 @@ void eDVBTSTools::calcEnd()
 	}
 }
 
+void eDVBTSTools::calcBeginAndEnd()
+{
+	calcBegin();
+	calcEnd();
+}
+
 int eDVBTSTools::calcLen(pts_t &len)
 {
-	calcBegin(); calcEnd();
+	calcBeginAndEnd();
 	if (!(m_begin_valid && m_end_valid))
 		return -1;
 	len = m_pts_end - m_pts_begin;
@@ -496,7 +485,7 @@ int eDVBTSTools::calcLen(pts_t &len)
 
 int eDVBTSTools::calcBitrate()
 {
-	calcBegin(); calcEnd();
+	calcBeginAndEnd();
 	if (!(m_begin_valid && m_end_valid))
 		return -1;
 
@@ -597,9 +586,7 @@ int eDVBTSTools::findPMT(int &pmt_pid, int &service_id)
 
 	off_t position=0;
 
-	int left = 5*1024*1024;
-	
-	while (left >= 188)
+	for (int attempts_left = (5*1024*1024)/188; attempts_left != 0; --attempts_left)
 	{
 		unsigned char packet[188];
 		int ret = m_source->read(position, packet, 188);
@@ -608,7 +595,6 @@ int eDVBTSTools::findPMT(int &pmt_pid, int &service_id)
 			eDebug("read error");
 			break;
 		}
-		left -= 188;
 		position += 188;
 
 		if (packet[0] != 0x47)
@@ -658,17 +644,17 @@ int eDVBTSTools::findPMT(int &pmt_pid, int &service_id)
 
 int eDVBTSTools::findFrame(off_t &_offset, size_t &len, int &direction, int frame_types)
 {
-	off_t offset = _offset;
-	int nr_frames = 0;
 //	eDebug("trying to find iFrame at %llx", offset);
-
-	if (!m_use_streaminfo)
+	if (!m_streaminfo.hasStructure())
 	{
 //		eDebug("can't get next iframe without streaminfo");
 		return -1;
 	}
 
-				/* let's find the iframe before the given offset */
+	off_t offset = _offset;
+	int nr_frames = 0;
+
+		/* let's find the iframe before the given offset */
 	unsigned long long data;
 	
 	if (direction < 0)
@@ -744,12 +730,6 @@ int eDVBTSTools::findFrame(off_t &_offset, size_t &len, int &direction, int fram
 //		eDebug("%08llx@%llx (next)", data, offset);
 	} while (((data & 0xFF) != 9) && ((data & 0xFF) != 0x00)); /* next frame */
 
-#if 0
-			/* align to TS pkt start */
-	start = start - (start % 188);
-	offset = offset - (offset % 188);
-#endif
-
 	len = offset - start;
 	_offset = start;
 	direction = nr_frames;
@@ -796,7 +776,8 @@ int eDVBTSTools::findNextPicture(off_t &offset, size_t &len, int &distance, int 
 			len = new_len;
 			nr_frames += abs(dir);
 		} 
-		else if (first) {
+		else if (first)
+		{
 			first = 0;
 			offset = new_offset;
 			len = new_len;

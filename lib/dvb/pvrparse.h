@@ -4,36 +4,18 @@
 #include <lib/dvb/idvb.h>
 #include <map>
 #include <set>
+#include <deque>
 
 	/* This module parses TS data and collects valuable information  */
 	/* about it, like PTS<->offset correlations and sequence starts. */
 
-	/* At first, we define the collector class: */
 class eMPEGStreamInformation
 {
 public:
 	eMPEGStreamInformation();
 	~eMPEGStreamInformation();
-		/* we order by off_t here, since the timestamp may */
-		/* wrap around. */
-		/* we only record sequence start's pts values here. */
-	std::map<off_t, pts_t> m_access_points;
-		/* timestampDelta is in fact the difference between */
-		/* the PTS in the stream and a real PTS from 0..max */
-	std::map<off_t, pts_t> m_timestamp_deltas;
 
-		/* these are non-fixed up pts value (like m_access_points), just used to accelerate stuff. */
-	std::multimap<pts_t, off_t> m_pts_to_offset; 
-
-	int startSave(const std::string& filename);
-	int stopSave(void);
 	int load(const char *filename);
-	
-		/* recalculates timestampDeltas */
-	void fixupDiscontinuties();
-	
-		/* get delta at specific offset */
-	pts_t getDelta(off_t offset);
 	
 		/* fixup timestamp near offset, i.e. convert to zero-based */
 	int fixupPTS(const off_t &offset, pts_t &ts);
@@ -48,36 +30,65 @@ public:
 	
 	int getNextAccessPoint(pts_t &ts, const pts_t &start, int direction);
 	
-	bool empty();
+	bool hasAccessPoints() { return !m_access_points.empty(); }
+	bool hasStructure() { return m_structure_read != NULL; }
 	
-	typedef unsigned long long structure_data;
-		/* this is usually:
-			sc | (other_information << 8)
-			but is really specific to the used video encoder.
-		*/
-	void writeStructureEntry(off_t offset, structure_data data);
-
 		/* get a structure entry at given offset (or previous one, if no exact match was found).
-		   optionall, return next element. Offset will be returned. this allows you to easily 
+		   optionally, return next element. Offset will be returned. this allows you to easily 
 		   get previous and next structure elements. */
 	int getStructureEntry(off_t &offset, unsigned long long &data, int get_next);
 
-	std::string m_filename;
-	int m_structure_cache_valid;
-	unsigned long long m_structure_cache[1024];
-	FILE *m_structure_read, *m_structure_write;
+private:
+	/* get delta at specific offset */
+	pts_t getDelta(off_t offset);
+	/* recalculates timestampDeltas */
+	void fixupDiscontinuties();
+	/* we order by off_t here, since the timestamp may */
+	/* wrap around. */
+	/* we only record sequence start's pts values here. */
+	std::map<off_t, pts_t> m_access_points;
+	/* timestampDelta is in fact the difference between */
+	/* the PTS in the stream and a real PTS from 0..max */
+	std::map<off_t, pts_t> m_timestamp_deltas;
+	/* these are non-fixed up pts value (like m_access_points), just used to accelerate stuff. */
+	std::multimap<pts_t, off_t> m_pts_to_offset;
+
+	int m_structure_cache_entries;
+	unsigned long long m_structure_cache[4096];
+	FILE *m_structure_read;
 };
 
-	/* Now we define the parser's state: */
-class eMPEGStreamParserTS
+class eMPEGStreamInformationWriter
 {
 public:
-	eMPEGStreamParserTS(eMPEGStreamInformation &streaminfo);
+	eMPEGStreamInformationWriter();
+	~eMPEGStreamInformationWriter();
+	/* Used by parser */
+	int startSave(const std::string& filename);
+	int stopSave(void);
+	void addAccessPoint(off_t offset, pts_t pts) { m_access_points.push_back(AccessPoint(offset, pts)); }
+	void writeStructureEntry(off_t offset, unsigned long long data);
+private:
+	struct AccessPoint
+	{
+		off_t off;
+		pts_t pts;
+		AccessPoint(off_t o, pts_t p): off(o), pts(p) {}
+	};
+	std::deque<AccessPoint> m_access_points;
+	std::string m_filename;
+	FILE *m_structure_write;
+};
+
+
+class eMPEGStreamParserTS: public eMPEGStreamInformationWriter
+{
+public:
+	eMPEGStreamParserTS();
 	void parseData(off_t offset, const void *data, unsigned int len);
 	void setPid(int pid, int streamtype);
 	int getLastPTS(pts_t &last_pts);
 private:
-	eMPEGStreamInformation &m_streaminfo;
 	unsigned char m_pkt[188];
 	int m_pktptr;
 	int processPacket(const unsigned char *pkt, off_t offset);
