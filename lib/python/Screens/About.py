@@ -67,8 +67,6 @@ class SystemInfo(Screen):
 
 		self["KernelVersion"] = StaticText(_("Kernel:") + " " + about.getKernelVersionString())
 		AboutText += _("Kernel:") + " " + about.getKernelVersionString() + "\n"
-		self["DriversVersion"] = StaticText(_("Drivers:") + " " + about.getDriversString())
-		AboutText += _("Drivers:") + " " + about.getDriversString() + "\n"
 		self["ImageType"] = StaticText(_("Image:") + " " + about.getImageTypeString())
 		AboutText += _("Image:") + " " + about.getImageTypeString() + "\n"
 		self["ImageVersion"] = StaticText(_("Version:") + " " + about.getImageVersionString())

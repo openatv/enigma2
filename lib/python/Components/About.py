@@ -62,25 +62,6 @@ def getLastUpdateString():
 	except IOError:
 		return "unavailable"
 
-def getDriversString():
-	try:
-		file = open(resolveFilename(SCOPE_SYSETC, 'image-version'), 'r')
-		lines = file.readlines()
-		for x in lines:
-			splitted = x.split('=')
-			if splitted[0] == "drivers":
-				#YYYY MM DD hh mm
-				#2005 11 29 01 16
-				string = splitted[1].replace('\n','')
-				year = string[0:4]
-				month = string[4:6]
-				day = string[6:8]
-				date = '-'.join((year, month, day))
-		file.close()
-		return date
-	except IOError:
-		return "unavailable"
-
 def getImageTypeString():
 	try:
 		file = open(resolveFilename(SCOPE_SYSETC, 'image-version'), 'r')
