@@ -31,6 +31,7 @@ void eBackgroundFileEraser::idle()
 
 eBackgroundFileEraser::~eBackgroundFileEraser()
 {
+	erase_flags = 0; // Stop erasing in background, do it ASAP
 	messages.send(Message());
 	if (instance==this)
 		instance=0;
@@ -105,7 +106,7 @@ void eBackgroundFileEraser::gotMessage(const Message &msg )
 						st.st_size -= st.st_size % erase_speed; // align on erase_speed
 						::ftruncate(fd, st.st_size);
 						usleep(500000); // even if truncate fails, wait a moment
-						while (st.st_size > erase_speed)
+						while ((st.st_size > erase_speed) && (erase_flags != 0))
 						{
 							st.st_size -= erase_speed;
 							if (::ftruncate(fd, st.st_size) != 0)
