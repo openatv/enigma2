@@ -102,7 +102,7 @@ public:
 	RESULT setTimingPID(int pid, int type);
 	
 	RESULT setTargetFD(int fd);
-	RESULT setTargetFilename(const char *filename);
+	RESULT setTargetFilename(const std::string& filename);
 	RESULT setBoundary(off_t max);
 	
 	RESULT stop();

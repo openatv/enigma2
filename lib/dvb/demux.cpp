@@ -663,7 +663,7 @@ RESULT eDVBTSRecorder::setTargetFD(int fd)
 	return 0;
 }
 
-RESULT eDVBTSRecorder::setTargetFilename(const char *filename)
+RESULT eDVBTSRecorder::setTargetFilename(const std::string& filename)
 {
 	m_target_filename = filename;
 	return 0;
