@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-05 11:09+0000\n"
+"POT-Creation-Date: 2011-12-20 11:09+0000\n"
 "PO-Revision-Date: 2011-07-26 13:37+0100\n"
 "Last-Translator: Andy Blackburn\n"
 "Language-Team: none\n"
@@ -1212,6 +1212,21 @@ msgstr "Cache Thumbnails"
 msgid "Can't cancel during upgrade!!"
 msgstr ""
 
+msgid "Can't find /usr/bin/md5sum"
+msgstr ""
+
+msgid "Can't found MD5 file."
+msgstr ""
+
+msgid "Can't found binary file."
+msgstr ""
+
+msgid "Can't found device file!!"
+msgstr ""
+
+msgid "Can't found model name."
+msgstr ""
+
 #
 msgid "Cancel"
 msgstr "Cancel"
@@ -1851,10 +1866,6 @@ msgid "Default movie location"
 msgstr "Default movie location"
 
 #
-msgid "Delay"
-msgstr "Delay"
-
-#
 msgid "Delete"
 msgstr "Delete"
 
@@ -2155,6 +2166,9 @@ msgstr "Do you want to preview this DVD before burning?"
 msgid "Do you want to reboot your Dreambox?"
 msgstr "Do you want to reboot your Dreambox?"
 
+msgid "Do you want to remove binary data?"
+msgstr ""
+
 #
 msgid "Do you want to remove the package:\n"
 msgstr "Do you want to remove the package:\n"
@@ -2274,6 +2288,9 @@ msgstr "Dreambox format data DVD (HDTV compatible)"
 #
 msgid "Dreambox software because updates are available."
 msgstr "Dreambox software because updates are available."
+
+msgid "Drivers:"
+msgstr ""
 
 #
 msgid "Dynamic contrast"
@@ -2658,6 +2675,9 @@ msgstr "FEC"
 msgid "FILE NOT EXIST : /proc/stb/fp/remote_code"
 msgstr ""
 
+msgid "FPGA"
+msgstr ""
+
 msgid "FPGA Upgrade"
 msgstr "FPGA Upgrade"
 
@@ -2670,6 +2690,16 @@ msgstr "FTP Setup"
 #
 msgid "Factory reset"
 msgstr "Factory reset"
+
+msgid "Fail to upgrade!! Retry!!"
+msgstr ""
+
+#, python-format
+msgid ""
+"Fail to verify data file. \n"
+"file[%s]\n"
+"md5[%s]"
+msgstr ""
 
 #
 msgid "Failed"
@@ -2743,6 +2773,12 @@ msgstr "File appears to be busy.\n"
 msgid "File not found"
 msgstr "File not found"
 
+#, python-format
+msgid ""
+"File not found in this URL:\n"
+"%s"
+msgstr ""
+
 msgid ""
 "File oscam.conf not found.\n"
 "Please enter username/password manually."
@@ -2773,6 +2809,15 @@ msgstr "Finished configuring your network"
 #
 msgid "Finished restarting your network"
 msgstr "Finished restarting your network"
+
+msgid "Firmware"
+msgstr ""
+
+msgid "Firmware Upgrade"
+msgstr ""
+
+msgid "Firmware does not exist."
+msgstr ""
 
 #
 msgid "Flash"
@@ -2841,6 +2886,9 @@ msgstr "Fri"
 #
 msgid "Friday"
 msgstr "Friday"
+
+msgid "Front Processor"
+msgstr ""
 
 #
 #, python-format
@@ -3308,6 +3356,9 @@ msgstr "January"
 msgid "Job View"
 msgstr "Job View"
 
+msgid "Job task(s) are in progress!"
+msgstr ""
+
 msgid "July"
 msgstr "July"
 
@@ -3343,10 +3394,6 @@ msgstr "Keyboard Map"
 msgid "Keyboard Setup"
 msgstr "Keyboard Setup"
 
-#
-msgid "Keymap"
-msgstr "Keymap"
-
 msgid "Kill partition table"
 msgstr "Kill partition table"
 
@@ -3356,6 +3403,18 @@ msgstr "LAN Adapter"
 
 msgid "LAN connection"
 msgstr "LAN connection"
+
+msgid "LED Blinking"
+msgstr ""
+
+msgid "LED Deep Standby"
+msgstr ""
+
+msgid "LED Normal"
+msgstr ""
+
+msgid "LED Standby"
+msgstr ""
 
 #
 msgid "LNB"
@@ -3668,9 +3727,6 @@ msgid "MiniDLNA Log"
 msgstr ""
 
 msgid "MiniDLNA Setup"
-msgstr ""
-
-msgid "MiniDNLA Setup"
 msgstr ""
 
 msgid "Mins"
@@ -4032,6 +4088,9 @@ msgstr "No sat tuner found!"
 #
 msgid "No satellite frontend found!!"
 msgstr "No satellite frontend found!!"
+
+msgid "No selected binary data!!"
+msgstr ""
 
 #
 msgid "No tags are set on these movies."
@@ -5046,10 +5105,6 @@ msgid "Quickzap"
 msgstr "Quickzap"
 
 #
-msgid "RC Menu"
-msgstr "RC Menu"
-
-#
 msgid "RF output"
 msgstr "RF output"
 
@@ -5283,10 +5338,6 @@ msgstr "Rename to:"
 #, python-format
 msgid "Renamed %s!"
 msgstr "Renamed %s!"
-
-#
-msgid "Repeat"
-msgstr "Repeat"
 
 msgid "Repeat Display Message"
 msgstr "Repeat Display Message"
@@ -5683,6 +5734,9 @@ msgid ""
 msgstr ""
 "Scans default lamedbs sorted by satellite with a connected dish positioner"
 
+msgid "Scrolling Speed"
+msgstr ""
+
 msgid "Search"
 msgstr ""
 
@@ -6014,6 +6068,9 @@ msgstr "Show OScam in extensions ?"
 msgid "Show PTS Infobar while timeshifting?"
 msgstr "Show PTS Infobar while timeshifting?"
 
+msgid "Show Picons (requires a restart)"
+msgstr ""
+
 msgid "Show Readers/Proxies"
 msgstr "Show Readers/Proxies"
 
@@ -6029,10 +6086,6 @@ msgstr "Show animation while busy"
 
 msgid "Show background in Radio Mode"
 msgstr "Show background in Radio Mode"
-
-#
-msgid "Show blinking clock in display during recording"
-msgstr "Show blinking clock in display during recording"
 
 msgid "Show bouquet on launch"
 msgstr "Show bouquet on launch"
@@ -6940,6 +6993,9 @@ msgstr "This plugin is installed."
 #
 msgid "This plugin is not installed."
 msgstr "This plugin is not installed."
+
+msgid "This plugin is supported only the Ultimo/Uno."
+msgstr ""
 
 #
 msgid "This plugin will be installed."
@@ -8134,6 +8190,9 @@ msgid ""
 msgstr ""
 "You chose not to install anything. Please press OK finish the install wizard."
 
+msgid "You chose the incorrect file."
+msgstr ""
+
 msgid "You didn't select a channel to record from."
 msgstr "You didn't select a channel to record from."
 
@@ -9313,9 +9372,6 @@ msgstr "scan in progress - %d%% done!"
 msgid "scan state"
 msgstr "scan state"
 
-msgid "scrolling Speed"
-msgstr "scrolling Speed"
-
 #
 msgid "second"
 msgstr "second"
@@ -9719,3 +9775,26 @@ msgstr "zap"
 #
 msgid "zapped"
 msgstr "zapped"
+
+#
+#~ msgid "Delay"
+#~ msgstr "Delay"
+
+#
+#~ msgid "Keymap"
+#~ msgstr "Keymap"
+
+#
+#~ msgid "RC Menu"
+#~ msgstr "RC Menu"
+
+#
+#~ msgid "Repeat"
+#~ msgstr "Repeat"
+
+#
+#~ msgid "Show blinking clock in display during recording"
+#~ msgstr "Show blinking clock in display during recording"
+
+#~ msgid "scrolling Speed"
+#~ msgstr "scrolling Speed"
