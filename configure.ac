@@ -213,7 +213,6 @@ AC_CONFIG_FILES([
 Makefile
 data/Makefile
 data/fonts/Makefile
-data/lcd/Makefile
 data/countries/Makefile
 data/defaults/Makefile
 data/defaults/Dream/Makefile
