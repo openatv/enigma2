@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-05 11:09+0000\n"
-"PO-Revision-Date: 2011-12-05 12:15+0100\n"
+"POT-Creation-Date: 2011-12-20 11:09+0000\n"
+"PO-Revision-Date: 2011-12-20 12:22+0100\n"
 "Last-Translator: R.L. van der Does\n"
 "Language-Team: Andy Blackburn, Rob van der Does\n"
 "Language: Nederlands\n"
@@ -992,6 +992,21 @@ msgstr "Miniatuurafbeeldingen cachen"
 msgid "Can't cancel during upgrade!!"
 msgstr "Kan tijdens de upgrade niet annuleren!"
 
+msgid "Can't find /usr/bin/md5sum"
+msgstr "Kan  /usr/bin/md5sum  niet vinden"
+
+msgid "Can't found MD5 file."
+msgstr "Kan MD5 bestand niet vinden."
+
+msgid "Can't found binary file."
+msgstr "Kan binary bestand niet vinden."
+
+msgid "Can't found device file!!"
+msgstr "Kan device bestand niet vinden!!"
+
+msgid "Can't found model name."
+msgstr "Kan model naam niet vinden."
+
 msgid "Cancel"
 msgstr "Annuleren"
 
@@ -1526,9 +1541,6 @@ msgstr "Standaard instellingen"
 msgid "Default movie location"
 msgstr "Standaard opnamelocatie"
 
-msgid "Delay"
-msgstr "Vertraging"
-
 msgid "Delete"
 msgstr "Verwijderen"
 
@@ -1784,6 +1796,9 @@ msgstr "Wilt u de DVD bekijken alvorens te schrijven?"
 msgid "Do you want to reboot your Dreambox?"
 msgstr "Wilt u uw Dreambox opnieuw opstarten?"
 
+msgid "Do you want to remove binary data?"
+msgstr "Wilt u de binary gegevens verwijderen?"
+
 msgid "Do you want to remove the package:\n"
 msgstr "Wilt u het volgende pakket verwijderen:\n"
 
@@ -1878,6 +1893,9 @@ msgstr "Dreambox formaat data DVD (HDTV compatibel)"
 
 msgid "Dreambox software because updates are available."
 msgstr "Dreambox software want er zijn updates beschikbaar."
+
+msgid "Drivers:"
+msgstr "Drivers:"
 
 msgid "Dynamic contrast"
 msgstr "Dynamisch contrast"
@@ -2205,6 +2223,9 @@ msgstr "FEC"
 msgid "FILE NOT EXIST : /proc/stb/fp/remote_code"
 msgstr "BESTAND BESTAAT NIET: /proc/stb/fp/remote_code"
 
+msgid "FPGA"
+msgstr "FPGA"
+
 msgid "FPGA Upgrade"
 msgstr "FPGA Upgrade"
 
@@ -2216,6 +2237,19 @@ msgstr "FTP Instellingen"
 
 msgid "Factory reset"
 msgstr "Fabrieksinstellingen"
+
+msgid "Fail to upgrade!! Retry!!"
+msgstr "Upgrade mislukt!! Probeer het opnieuw!!"
+
+#, python-format
+msgid ""
+"Fail to verify data file. \n"
+"file[%s]\n"
+"md5[%s]"
+msgstr ""
+"Verifieren data bestand mislukt. \n"
+"file[%s]\n"
+"md5[%s]"
 
 msgid "Failed"
 msgstr "Mislukt"
@@ -2283,6 +2317,14 @@ msgstr "Bestand lijkt in gebruik te zijn.\n"
 msgid "File not found"
 msgstr "Bestand niet gevonden"
 
+#, python-format
+msgid ""
+"File not found in this URL:\n"
+"%s"
+msgstr ""
+"Bestand niet gevonden in deze URL:\n"
+"%s"
+
 msgid ""
 "File oscam.conf not found.\n"
 "Please enter username/password manually."
@@ -2307,6 +2349,15 @@ msgstr "Klaar met het configureren van uw netwerk"
 
 msgid "Finished restarting your network"
 msgstr "Herstarten van uw netwerk is voltooid"
+
+msgid "Firmware"
+msgstr "Firmware"
+
+msgid "Firmware Upgrade"
+msgstr "Firmware Upgrade"
+
+msgid "Firmware does not exist."
+msgstr "Firmware bestaat niet."
 
 msgid "Flash"
 msgstr "Flash"
@@ -2364,6 +2415,9 @@ msgstr "Vr"
 
 msgid "Friday"
 msgstr "Vrijdag"
+
+msgid "Front Processor"
+msgstr "Front Processor"
 
 #, python-format
 msgid "Frontprocessor version: %d"
@@ -2755,6 +2809,9 @@ msgstr "Januari"
 msgid "Job View"
 msgstr "Voortgang"
 
+msgid "Job task(s) are in progress!"
+msgstr "Taak (taken) in uitvoering!"
+
 msgid "July"
 msgstr "Juli"
 
@@ -2786,9 +2843,6 @@ msgstr "Toetsenbord layout"
 msgid "Keyboard Setup"
 msgstr "Toetsenbord instelling"
 
-msgid "Keymap"
-msgstr "Toetsenbord layout"
-
 msgid "Kill partition table"
 msgstr "Vernietig partitietabel"
 
@@ -2797,6 +2851,18 @@ msgstr "LAN adapter"
 
 msgid "LAN connection"
 msgstr "LAN verbinding"
+
+msgid "LED Blinking"
+msgstr "LED knipperen"
+
+msgid "LED Deep Standby"
+msgstr "LED Deep Standby"
+
+msgid "LED Normal"
+msgstr "LED Normaal"
+
+msgid "LED Standby"
+msgstr "LED Standby"
 
 msgid "LNB"
 msgstr "LNB"
@@ -3067,9 +3133,6 @@ msgstr "MiniDLNA Log"
 
 msgid "MiniDLNA Setup"
 msgstr "MiniDLNA installingen"
-
-msgid "MiniDNLA Setup"
-msgstr "MiniDNLA instellingen"
 
 msgid "Mins"
 msgstr "min"
@@ -3364,6 +3427,9 @@ msgstr "Geen vrije tuner"
 
 msgid "No satellite frontend found!!"
 msgstr "Geen satelliettuner gevonden!"
+
+msgid "No selected binary data!!"
+msgstr "Geen binary data geselecteerd!!"
 
 msgid "No tags are set on these movies."
 msgstr "Geen markeringen geplaatst op deze opnames."
@@ -4203,9 +4269,6 @@ msgstr "QuickEPG modus"
 msgid "Quickzap"
 msgstr "Snelzap"
 
-msgid "RC Menu"
-msgstr "Afstandsbediening menu"
-
 msgid "RF output"
 msgstr "RF modulator"
 
@@ -4403,9 +4466,6 @@ msgstr "Hernoem in:"
 #, python-format
 msgid "Renamed %s!"
 msgstr "Hernoemd in %s!"
-
-msgid "Repeat"
-msgstr "Herhaling"
 
 msgid "Repeat Display Message"
 msgstr "Herhaal OSD-bericht"
@@ -4726,6 +4786,9 @@ msgstr "Zoeken..."
 msgid "Scans default lamedbs sorted by satellite with a connected dish positioner"
 msgstr "Doorzoekt standaard lamedbs gesorteerd op satelliet middels een verbonden DiSEqC rotor"
 
+msgid "Scrolling Speed"
+msgstr "Sroll snelheid"
+
 msgid "Search"
 msgstr "Zoek"
 
@@ -5006,6 +5069,9 @@ msgstr "Toon OScam in extensie menu ?"
 msgid "Show PTS Infobar while timeshifting?"
 msgstr "Toon PTS Infobar tijdens timeshiften?"
 
+msgid "Show Picons (requires a restart)"
+msgstr "Toon Picons (herstart nodig)"
+
 msgid "Show Readers/Proxies"
 msgstr "Toon lezers/Proxies"
 
@@ -5020,9 +5086,6 @@ msgstr "Laat animatie zien wanneer bezig"
 
 msgid "Show background in Radio Mode"
 msgstr "Radio achtergrond weergeven"
-
-msgid "Show blinking clock in display during recording"
-msgstr "Knipperende klok gedurende opname"
 
 msgid "Show bouquet on launch"
 msgstr "Toon favorieten na opstarten"
@@ -5778,6 +5841,9 @@ msgstr "Deze plugin is geïnstalleerd."
 
 msgid "This plugin is not installed."
 msgstr "Deze plugin is niet geïnstalleerd."
+
+msgid "This plugin is supported only the Ultimo/Uno."
+msgstr "Deze plugin is uitsluitend voor de Ultimo/Uno."
 
 msgid "This plugin will be installed."
 msgstr "Deze plugin wordt geïnstalleerd."
@@ -6758,6 +6824,9 @@ msgstr "U heeft er voor gekozen om standaard instellingen niet te gebruiken. U k
 msgid "You chose not to install anything. Please press OK finish the install wizard."
 msgstr "U heeft er voor gekozen om niets te installeren. Druk op OK om de wizard af te sluiten. "
 
+msgid "You chose the incorrect file."
+msgstr "U heeft een verkeerd bestand gekozen."
+
 msgid "You didn't select a channel to record from."
 msgstr "U heeft geen kanaal geselecteerd om op te nemen."
 
@@ -7685,9 +7754,6 @@ msgstr "Bezig met zoeken - %d%% voltooid."
 
 msgid "scan state"
 msgstr "status"
-
-msgid "scrolling Speed"
-msgstr "scroll snelheid"
 
 msgid "second"
 msgstr "seconde"

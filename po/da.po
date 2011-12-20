@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-05 11:09+0000\n"
+"POT-Creation-Date: 2011-12-20 11:09+0000\n"
 "PO-Revision-Date: 2010-04-13 21:10+0200\n"
 "Last-Translator: Ingmar <dreambox@ingmar.dk>\n"
 "Language-Team: jazzydane <dreambox@ingmar.dk>\n"
@@ -1177,6 +1177,21 @@ msgstr "Hente Oversigt"
 msgid "Can't cancel during upgrade!!"
 msgstr ""
 
+msgid "Can't find /usr/bin/md5sum"
+msgstr ""
+
+msgid "Can't found MD5 file."
+msgstr ""
+
+msgid "Can't found binary file."
+msgstr ""
+
+msgid "Can't found device file!!"
+msgstr ""
+
+msgid "Can't found model name."
+msgstr ""
+
 #
 msgid "Cancel"
 msgstr "Fortryd"
@@ -1812,10 +1827,6 @@ msgid "Default movie location"
 msgstr "Standardplacering af film"
 
 #
-msgid "Delay"
-msgstr "Forsinkelse"
-
-#
 msgid "Delete"
 msgstr "Slet"
 
@@ -2105,6 +2116,9 @@ msgstr "Vil du gennemse denne DVD inden brænding?"
 msgid "Do you want to reboot your Dreambox?"
 msgstr "Vil du genstarte din Dreambox?"
 
+msgid "Do you want to remove binary data?"
+msgstr ""
+
 #
 msgid "Do you want to remove the package:\n"
 msgstr "Vil du fjerne pakken:\n"
@@ -2222,6 +2236,9 @@ msgstr "Dreambox format data DVD (HDTV kompatibel)"
 #
 msgid "Dreambox software because updates are available."
 msgstr "Dreambox software fordi der er tilgængelige opdateringer."
+
+msgid "Drivers:"
+msgstr ""
 
 #
 msgid "Dynamic contrast"
@@ -2605,6 +2622,9 @@ msgstr "FEC"
 msgid "FILE NOT EXIST : /proc/stb/fp/remote_code"
 msgstr ""
 
+msgid "FPGA"
+msgstr ""
+
 msgid "FPGA Upgrade"
 msgstr ""
 
@@ -2617,6 +2637,16 @@ msgstr ""
 #
 msgid "Factory reset"
 msgstr "Gendan fabriksindstilling"
+
+msgid "Fail to upgrade!! Retry!!"
+msgstr ""
+
+#, python-format
+msgid ""
+"Fail to verify data file. \n"
+"file[%s]\n"
+"md5[%s]"
+msgstr ""
 
 #
 msgid "Failed"
@@ -2690,6 +2720,12 @@ msgstr ""
 msgid "File not found"
 msgstr ""
 
+#, python-format
+msgid ""
+"File not found in this URL:\n"
+"%s"
+msgstr ""
+
 msgid ""
 "File oscam.conf not found.\n"
 "Please enter username/password manually."
@@ -2718,6 +2754,15 @@ msgstr "Afsluttede opsætning af dit netværk"
 #
 msgid "Finished restarting your network"
 msgstr "Afsluttede genstart af dit netværk"
+
+msgid "Firmware"
+msgstr ""
+
+msgid "Firmware Upgrade"
+msgstr ""
+
+msgid "Firmware does not exist."
+msgstr ""
 
 #
 msgid "Flash"
@@ -2786,6 +2831,9 @@ msgstr "Fre"
 #
 msgid "Friday"
 msgstr "Fredag"
+
+msgid "Front Processor"
+msgstr ""
 
 #
 #, python-format
@@ -3249,6 +3297,9 @@ msgstr ""
 msgid "Job View"
 msgstr "Job oversigt"
 
+msgid "Job task(s) are in progress!"
+msgstr ""
+
 msgid "July"
 msgstr ""
 
@@ -3284,10 +3335,6 @@ msgstr "Tastatur layout"
 msgid "Keyboard Setup"
 msgstr "Tastatur indstilling"
 
-#
-msgid "Keymap"
-msgstr "Tastelayout"
-
 msgid "Kill partition table"
 msgstr ""
 
@@ -3296,6 +3343,18 @@ msgid "LAN Adapter"
 msgstr "LAN adapter"
 
 msgid "LAN connection"
+msgstr ""
+
+msgid "LED Blinking"
+msgstr ""
+
+msgid "LED Deep Standby"
+msgstr ""
+
+msgid "LED Normal"
+msgstr ""
+
+msgid "LED Standby"
 msgstr ""
 
 #
@@ -3607,9 +3666,6 @@ msgid "MiniDLNA Log"
 msgstr ""
 
 msgid "MiniDLNA Setup"
-msgstr ""
-
-msgid "MiniDNLA Setup"
 msgstr ""
 
 msgid "Mins"
@@ -3973,6 +4029,9 @@ msgstr ""
 #
 msgid "No satellite frontend found!!"
 msgstr "Ingen satellit frontend fundet!!"
+
+msgid "No selected binary data!!"
+msgstr ""
 
 #
 msgid "No tags are set on these movies."
@@ -4977,10 +5036,6 @@ msgid "Quickzap"
 msgstr "Hurtigskift"
 
 #
-msgid "RC Menu"
-msgstr "Fjernbetjenings menu"
-
-#
 msgid "RF output"
 msgstr "RF Udgang"
 
@@ -5214,10 +5269,6 @@ msgstr ""
 #, python-format
 msgid "Renamed %s!"
 msgstr ""
-
-#
-msgid "Repeat"
-msgstr "Gentag"
 
 msgid "Repeat Display Message"
 msgstr ""
@@ -5611,6 +5662,9 @@ msgid ""
 msgstr ""
 "Søge standard lamedbs sorteret efter satellit med tilsluttet Parabol Motor"
 
+msgid "Scrolling Speed"
+msgstr ""
+
 msgid "Search"
 msgstr ""
 
@@ -5940,6 +5994,9 @@ msgstr ""
 msgid "Show PTS Infobar while timeshifting?"
 msgstr ""
 
+msgid "Show Picons (requires a restart)"
+msgstr ""
+
 msgid "Show Readers/Proxies"
 msgstr ""
 
@@ -5955,10 +6012,6 @@ msgstr ""
 
 msgid "Show background in Radio Mode"
 msgstr ""
-
-#
-msgid "Show blinking clock in display during recording"
-msgstr "Vis blinkende klokke i display under optagelse"
 
 msgid "Show bouquet on launch"
 msgstr ""
@@ -6839,6 +6892,9 @@ msgstr "Dette plugin er installeret"
 #
 msgid "This plugin is not installed."
 msgstr "Dette plugin er ikke installeret"
+
+msgid "This plugin is supported only the Ultimo/Uno."
+msgstr ""
 
 #
 msgid "This plugin will be installed."
@@ -8026,6 +8082,9 @@ msgstr ""
 "Du valgte ikke at installere noget. Venligst tryk OK for at afslutte "
 "installations assistenten."
 
+msgid "You chose the incorrect file."
+msgstr ""
+
 msgid "You didn't select a channel to record from."
 msgstr ""
 
@@ -9200,9 +9259,6 @@ msgstr "søgning igang - %d%% søgt!"
 msgid "scan state"
 msgstr "søge status"
 
-msgid "scrolling Speed"
-msgstr ""
-
 #
 msgid "second"
 msgstr "sekund"
@@ -9606,3 +9662,23 @@ msgstr "zap"
 #
 msgid "zapped"
 msgstr "zappet"
+
+#
+#~ msgid "Delay"
+#~ msgstr "Forsinkelse"
+
+#
+#~ msgid "Keymap"
+#~ msgstr "Tastelayout"
+
+#
+#~ msgid "RC Menu"
+#~ msgstr "Fjernbetjenings menu"
+
+#
+#~ msgid "Repeat"
+#~ msgstr "Gentag"
+
+#
+#~ msgid "Show blinking clock in display during recording"
+#~ msgstr "Vis blinkende klokke i display under optagelse"

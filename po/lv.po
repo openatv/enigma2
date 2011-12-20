@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-05 11:09+0000\n"
+"POT-Creation-Date: 2011-12-20 11:09+0000\n"
 "PO-Revision-Date: 2009-02-25 20:35+0200\n"
 "Last-Translator: Ivo Grinbergs <ivog@apollo.lv>\n"
 "Language-Team: Ivo / enigma2 (c) <ivog@apolllo.lv>\n"
@@ -1192,6 +1192,21 @@ msgstr "Kešatmiņas sīktēli"
 msgid "Can't cancel during upgrade!!"
 msgstr ""
 
+msgid "Can't find /usr/bin/md5sum"
+msgstr ""
+
+msgid "Can't found MD5 file."
+msgstr ""
+
+msgid "Can't found binary file."
+msgstr ""
+
+msgid "Can't found device file!!"
+msgstr ""
+
+msgid "Can't found model name."
+msgstr ""
+
 #
 msgid "Cancel"
 msgstr "Atcelt"
@@ -1826,10 +1841,6 @@ msgid "Default movie location"
 msgstr ""
 
 #
-msgid "Delay"
-msgstr "Aizkave"
-
-#
 msgid "Delete"
 msgstr "Dzēst"
 
@@ -2124,6 +2135,9 @@ msgstr "Vai vēleties skatīt šo DVD pirms rakstīšanas?"
 msgid "Do you want to reboot your Dreambox?"
 msgstr "Vai vēlaties atsāknēt Dreambox?"
 
+msgid "Do you want to remove binary data?"
+msgstr ""
+
 #
 msgid "Do you want to remove the package:\n"
 msgstr "Vai vēleties dzēst pakotni:\n"
@@ -2239,6 +2253,9 @@ msgstr "Dreambox formāta datu DVD (savietojams ar HDTV)"
 
 #
 msgid "Dreambox software because updates are available."
+msgstr ""
+
+msgid "Drivers:"
 msgstr ""
 
 #
@@ -2618,6 +2635,9 @@ msgstr "FEC"
 msgid "FILE NOT EXIST : /proc/stb/fp/remote_code"
 msgstr ""
 
+msgid "FPGA"
+msgstr ""
+
 msgid "FPGA Upgrade"
 msgstr ""
 
@@ -2630,6 +2650,16 @@ msgstr ""
 #
 msgid "Factory reset"
 msgstr "Rūpnīcas uzstādījumi"
+
+msgid "Fail to upgrade!! Retry!!"
+msgstr ""
+
+#, python-format
+msgid ""
+"Fail to verify data file. \n"
+"file[%s]\n"
+"md5[%s]"
+msgstr ""
 
 #
 msgid "Failed"
@@ -2703,6 +2733,12 @@ msgstr ""
 msgid "File not found"
 msgstr ""
 
+#, python-format
+msgid ""
+"File not found in this URL:\n"
+"%s"
+msgstr ""
+
 msgid ""
 "File oscam.conf not found.\n"
 "Please enter username/password manually."
@@ -2731,6 +2767,15 @@ msgstr "Tīkla konfigurēšana pabeigta"
 #
 msgid "Finished restarting your network"
 msgstr "Tīkla restartēšana pabeigta"
+
+msgid "Firmware"
+msgstr ""
+
+msgid "Firmware Upgrade"
+msgstr ""
+
+msgid "Firmware does not exist."
+msgstr ""
 
 #
 msgid "Flash"
@@ -2800,6 +2845,9 @@ msgstr "Pk"
 #
 msgid "Friday"
 msgstr "Piektdiena"
+
+msgid "Front Processor"
+msgstr ""
 
 #
 #, python-format
@@ -3265,6 +3313,9 @@ msgstr ""
 msgid "Job View"
 msgstr "Darbu skats"
 
+msgid "Job task(s) are in progress!"
+msgstr ""
+
 msgid "July"
 msgstr ""
 
@@ -3300,10 +3351,6 @@ msgstr "Klaviatūras izkārtojums"
 msgid "Keyboard Setup"
 msgstr "Klaviatūras iestatne"
 
-#
-msgid "Keymap"
-msgstr "Taustiņu izkārtojums"
-
 msgid "Kill partition table"
 msgstr ""
 
@@ -3312,6 +3359,18 @@ msgid "LAN Adapter"
 msgstr "Tīkla adapteris"
 
 msgid "LAN connection"
+msgstr ""
+
+msgid "LED Blinking"
+msgstr ""
+
+msgid "LED Deep Standby"
+msgstr ""
+
+msgid "LED Normal"
+msgstr ""
+
+msgid "LED Standby"
 msgstr ""
 
 #
@@ -3623,9 +3682,6 @@ msgid "MiniDLNA Log"
 msgstr ""
 
 msgid "MiniDLNA Setup"
-msgstr ""
-
-msgid "MiniDNLA Setup"
 msgstr ""
 
 msgid "Mins"
@@ -3984,6 +4040,9 @@ msgstr ""
 #
 msgid "No satellite frontend found!!"
 msgstr "Nav atrasts pavadonis!!"
+
+msgid "No selected binary data!!"
+msgstr ""
 
 #
 msgid "No tags are set on these movies."
@@ -4979,10 +5038,6 @@ msgid "Quickzap"
 msgstr "Ātrā pārslēgšana"
 
 #
-msgid "RC Menu"
-msgstr "Tālvadības pults izvēlne"
-
-#
 msgid "RF output"
 msgstr "RF izeja"
 
@@ -5216,10 +5271,6 @@ msgstr ""
 #, python-format
 msgid "Renamed %s!"
 msgstr ""
-
-#
-msgid "Repeat"
-msgstr "Atkārtot"
 
 msgid "Repeat Display Message"
 msgstr ""
@@ -5614,6 +5665,9 @@ msgstr ""
 "Meklē noklusētos lamedbs, sakārtotus pēc pavadoņiem ar pievienotu "
 "pozicioniera antenu"
 
+msgid "Scrolling Speed"
+msgstr ""
+
 msgid "Search"
 msgstr ""
 
@@ -5944,6 +5998,9 @@ msgstr ""
 msgid "Show PTS Infobar while timeshifting?"
 msgstr ""
 
+msgid "Show Picons (requires a restart)"
+msgstr ""
+
 msgid "Show Readers/Proxies"
 msgstr ""
 
@@ -5959,10 +6016,6 @@ msgstr ""
 
 msgid "Show background in Radio Mode"
 msgstr ""
-
-#
-msgid "Show blinking clock in display during recording"
-msgstr "Ieraksta laikā displejā rādīt mirgojošu pulksteni"
 
 msgid "Show bouquet on launch"
 msgstr ""
@@ -6831,6 +6884,9 @@ msgstr ""
 
 #
 msgid "This plugin is not installed."
+msgstr ""
+
+msgid "This plugin is supported only the Ultimo/Uno."
 msgstr ""
 
 #
@@ -8008,6 +8064,9 @@ msgstr ""
 "Jūs izvēlējāties neko neuzstādīt. Lūdzu spiediet OK, lai pabeigtu "
 "uzstādīšanas vedni."
 
+msgid "You chose the incorrect file."
+msgstr ""
+
 msgid "You didn't select a channel to record from."
 msgstr ""
 
@@ -9167,9 +9226,6 @@ msgstr "notiek meklēšana - %d%% pabeigts!"
 msgid "scan state"
 msgstr "meklēšanas statuss"
 
-msgid "scrolling Speed"
-msgstr ""
-
 #
 msgid "second"
 msgstr "sekunde"
@@ -9573,3 +9629,23 @@ msgstr "pārslēgt"
 #
 msgid "zapped"
 msgstr "pārslēgts"
+
+#
+#~ msgid "Delay"
+#~ msgstr "Aizkave"
+
+#
+#~ msgid "Keymap"
+#~ msgstr "Taustiņu izkārtojums"
+
+#
+#~ msgid "RC Menu"
+#~ msgstr "Tālvadības pults izvēlne"
+
+#
+#~ msgid "Repeat"
+#~ msgstr "Atkārtot"
+
+#
+#~ msgid "Show blinking clock in display during recording"
+#~ msgstr "Ieraksta laikā displejā rādīt mirgojošu pulksteni"

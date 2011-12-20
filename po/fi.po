@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-05 11:09+0000\n"
+"POT-Creation-Date: 2011-12-20 11:09+0000\n"
 "PO-Revision-Date: 2011-08-07 17:04+0200\n"
 "Last-Translator: Timo <timojarvenpaa@hotmail.com>\n"
 "Language-Team: none\n"
@@ -1155,6 +1155,21 @@ msgstr "Tallenna esikatselukuvat välimuistiin"
 msgid "Can't cancel during upgrade!!"
 msgstr ""
 
+msgid "Can't find /usr/bin/md5sum"
+msgstr ""
+
+msgid "Can't found MD5 file."
+msgstr ""
+
+msgid "Can't found binary file."
+msgstr ""
+
+msgid "Can't found device file!!"
+msgstr ""
+
+msgid "Can't found model name."
+msgstr ""
+
 #
 msgid "Cancel"
 msgstr "Peruuta"
@@ -1783,10 +1798,6 @@ msgid "Default movie location"
 msgstr "Oletushakemisto tallennuksille"
 
 #
-msgid "Delay"
-msgstr "Viive"
-
-#
 msgid "Delete"
 msgstr "Poista"
 
@@ -2084,6 +2095,9 @@ msgstr "Haluatko esikatsella tämän DVD:n ennen polttoa?"
 msgid "Do you want to reboot your Dreambox?"
 msgstr "Haluatko käynnistää Dreamboxin uudelleen?"
 
+msgid "Do you want to remove binary data?"
+msgstr ""
+
 #
 msgid "Do you want to remove the package:\n"
 msgstr "Haluatko poistaa ohjelmapaketin:\n"
@@ -2202,6 +2216,9 @@ msgstr "DB-tiedostomuotoinen DVD (HDTV-yht.sopiva)"
 
 msgid "Dreambox software because updates are available."
 msgstr "Dreamboxin ohjelmistoa koska päivityksiä on saatavilla."
+
+msgid "Drivers:"
+msgstr ""
 
 #
 msgid "Dynamic contrast"
@@ -2581,6 +2598,9 @@ msgstr "FEC"
 msgid "FILE NOT EXIST : /proc/stb/fp/remote_code"
 msgstr ""
 
+msgid "FPGA"
+msgstr ""
+
 msgid "FPGA Upgrade"
 msgstr ""
 
@@ -2593,6 +2613,16 @@ msgstr ""
 #
 msgid "Factory reset"
 msgstr "Palauta tehdasasetukset"
+
+msgid "Fail to upgrade!! Retry!!"
+msgstr ""
+
+#, python-format
+msgid ""
+"Fail to verify data file. \n"
+"file[%s]\n"
+"md5[%s]"
+msgstr ""
 
 #
 msgid "Failed"
@@ -2663,6 +2693,12 @@ msgstr ""
 msgid "File not found"
 msgstr ""
 
+#, python-format
+msgid ""
+"File not found in this URL:\n"
+"%s"
+msgstr ""
+
 msgid ""
 "File oscam.conf not found.\n"
 "Please enter username/password manually."
@@ -2690,6 +2726,15 @@ msgstr "Verkon määritys suoritettu"
 #
 msgid "Finished restarting your network"
 msgstr "Verkko käynnistyi uudelleen"
+
+msgid "Firmware"
+msgstr ""
+
+msgid "Firmware Upgrade"
+msgstr ""
+
+msgid "Firmware does not exist."
+msgstr ""
 
 msgid "Flash"
 msgstr "Päivitä"
@@ -2756,6 +2801,9 @@ msgstr "pe"
 #
 msgid "Friday"
 msgstr "Perjantai"
+
+msgid "Front Processor"
+msgstr ""
 
 #, python-format
 msgid "Frontprocessor version: %d"
@@ -3215,6 +3263,9 @@ msgstr ""
 msgid "Job View"
 msgstr "Työnäkymä"
 
+msgid "Job task(s) are in progress!"
+msgstr ""
+
 msgid "July"
 msgstr ""
 
@@ -3249,10 +3300,6 @@ msgstr "Näppäinasettelu"
 msgid "Keyboard Setup"
 msgstr "Näppäimistön asetukset"
 
-#
-msgid "Keymap"
-msgstr "Näppäinasettelu"
-
 msgid "Kill partition table"
 msgstr ""
 
@@ -3262,6 +3309,18 @@ msgstr "Verkkosovitin"
 
 msgid "LAN connection"
 msgstr "LAN-yhteys"
+
+msgid "LED Blinking"
+msgstr ""
+
+msgid "LED Deep Standby"
+msgstr ""
+
+msgid "LED Normal"
+msgstr ""
+
+msgid "LED Standby"
+msgstr ""
 
 #
 msgid "LNB"
@@ -3567,9 +3626,6 @@ msgid "MiniDLNA Log"
 msgstr ""
 
 msgid "MiniDLNA Setup"
-msgstr ""
-
-msgid "MiniDNLA Setup"
 msgstr ""
 
 msgid "Mins"
@@ -3934,6 +3990,9 @@ msgstr ""
 #
 msgid "No satellite frontend found!!"
 msgstr "Dreamboxissasi ei ole satelliittiviritintä."
+
+msgid "No selected binary data!!"
+msgstr ""
 
 #
 msgid "No tags are set on these movies."
@@ -4928,10 +4987,6 @@ msgid "Quickzap"
 msgstr "Pikavaihto"
 
 #
-msgid "RC Menu"
-msgstr "Kauko-ohjaimen asetukset"
-
-#
 msgid "RF output"
 msgstr "RF-ulostulo"
 
@@ -5163,10 +5218,6 @@ msgstr ""
 #, python-format
 msgid "Renamed %s!"
 msgstr ""
-
-#
-msgid "Repeat"
-msgstr "Toista"
 
 msgid "Repeat Display Message"
 msgstr ""
@@ -5556,6 +5607,9 @@ msgstr ""
 "Hakee oletuskanavalistan satelliittijärjestyksessä käyttäen kytkettyä "
 "antennimoottoria"
 
+msgid "Scrolling Speed"
+msgstr ""
+
 msgid "Search"
 msgstr ""
 
@@ -5886,6 +5940,9 @@ msgstr ""
 msgid "Show PTS Infobar while timeshifting?"
 msgstr ""
 
+msgid "Show Picons (requires a restart)"
+msgstr ""
+
 msgid "Show Readers/Proxies"
 msgstr ""
 
@@ -5901,10 +5958,6 @@ msgstr ""
 
 msgid "Show background in Radio Mode"
 msgstr ""
-
-#
-msgid "Show blinking clock in display during recording"
-msgstr "Näytä vilkkuva kello tallennusten aikana"
 
 msgid "Show bouquet on launch"
 msgstr ""
@@ -6792,6 +6845,9 @@ msgstr "Tämä lisäosa on asennettu."
 #
 msgid "This plugin is not installed."
 msgstr "Tätä lisäosaa ei ole asennettu."
+
+msgid "This plugin is supported only the Ultimo/Uno."
+msgstr ""
 
 #
 msgid "This plugin will be installed."
@@ -7990,6 +8046,9 @@ msgid ""
 "You chose not to install anything. Please press OK finish the install wizard."
 msgstr "Et valinnut mitään asennettavaksi. Poistu painamalla OK."
 
+msgid "You chose the incorrect file."
+msgstr ""
+
 msgid "You didn't select a channel to record from."
 msgstr "Et valinnut tallennuskanavaa."
 
@@ -9164,9 +9223,6 @@ msgstr "Haku käynnissä - %d%% tehty!"
 msgid "scan state"
 msgstr "haun tila"
 
-msgid "scrolling Speed"
-msgstr ""
-
 #
 msgid "second"
 msgstr "sekunti"
@@ -9571,3 +9627,23 @@ msgstr "kanavanvaihto"
 #
 msgid "zapped"
 msgstr "vaihdettu"
+
+#
+#~ msgid "Delay"
+#~ msgstr "Viive"
+
+#
+#~ msgid "Keymap"
+#~ msgstr "Näppäinasettelu"
+
+#
+#~ msgid "RC Menu"
+#~ msgstr "Kauko-ohjaimen asetukset"
+
+#
+#~ msgid "Repeat"
+#~ msgstr "Toista"
+
+#
+#~ msgid "Show blinking clock in display during recording"
+#~ msgstr "Näytä vilkkuva kello tallennusten aikana"
