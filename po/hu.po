@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-05 11:09+0000\n"
+"POT-Creation-Date: 2011-12-20 11:09+0000\n"
 "PO-Revision-Date: 2011-09-01 15:22+0100\n"
 "Last-Translator: \n"
 "Language-Team: Mediavox, robertut <info@mediavox.hu, robertut@yahoo.com>\n"
@@ -1193,6 +1193,21 @@ msgstr "Cache ikonok"
 msgid "Can't cancel during upgrade!!"
 msgstr ""
 
+msgid "Can't find /usr/bin/md5sum"
+msgstr ""
+
+msgid "Can't found MD5 file."
+msgstr ""
+
+msgid "Can't found binary file."
+msgstr ""
+
+msgid "Can't found device file!!"
+msgstr ""
+
+msgid "Can't found model name."
+msgstr ""
+
 #
 msgid "Cancel"
 msgstr "Mégse"
@@ -1829,10 +1844,6 @@ msgid "Default movie location"
 msgstr "Felvételek tárhelye"
 
 #
-msgid "Delay"
-msgstr "Késleltetés"
-
-#
 msgid "Delete"
 msgstr "Törlés"
 
@@ -2129,6 +2140,9 @@ msgstr "Kiírás előtt meg szeretné tekinteni a DVD tartalmat?"
 msgid "Do you want to reboot your Dreambox?"
 msgstr "Újra szeretné indítani a készüléket?"
 
+msgid "Do you want to remove binary data?"
+msgstr ""
+
 #
 msgid "Do you want to remove the package:\n"
 msgstr "Biztos benne, hogy eltávolítja ezt a csomagot:\n"
@@ -2248,6 +2262,9 @@ msgstr "Dreambox formátumú adat DVD (HDTV kompatibilis)"
 #
 msgid "Dreambox software because updates are available."
 msgstr "(a készülék szoftverének frissítése)"
+
+msgid "Drivers:"
+msgstr ""
 
 #
 msgid "Dynamic contrast"
@@ -2624,6 +2641,9 @@ msgstr "FEC"
 msgid "FILE NOT EXIST : /proc/stb/fp/remote_code"
 msgstr ""
 
+msgid "FPGA"
+msgstr ""
+
 msgid "FPGA Upgrade"
 msgstr ""
 
@@ -2636,6 +2656,16 @@ msgstr ""
 #
 msgid "Factory reset"
 msgstr "Gyári alapbeállítások"
+
+msgid "Fail to upgrade!! Retry!!"
+msgstr ""
+
+#, python-format
+msgid ""
+"Fail to verify data file. \n"
+"file[%s]\n"
+"md5[%s]"
+msgstr ""
 
 #
 msgid "Failed"
@@ -2709,6 +2739,12 @@ msgstr ""
 msgid "File not found"
 msgstr ""
 
+#, python-format
+msgid ""
+"File not found in this URL:\n"
+"%s"
+msgstr ""
+
 msgid ""
 "File oscam.conf not found.\n"
 "Please enter username/password manually."
@@ -2737,6 +2773,15 @@ msgstr "A hálózati beállítás befejeződött"
 #
 msgid "Finished restarting your network"
 msgstr "A hálózati kapcsolat újraindítása befejeződött"
+
+msgid "Firmware"
+msgstr ""
+
+msgid "Firmware Upgrade"
+msgstr ""
+
+msgid "Firmware does not exist."
+msgstr ""
 
 #
 msgid "Flash"
@@ -2805,6 +2850,9 @@ msgstr "Pén"
 #
 msgid "Friday"
 msgstr "Péntek"
+
+msgid "Front Processor"
+msgstr ""
 
 #
 #, python-format
@@ -3272,6 +3320,9 @@ msgstr ""
 msgid "Job View"
 msgstr "Folyamat nézet"
 
+msgid "Job task(s) are in progress!"
+msgstr ""
+
 msgid "July"
 msgstr ""
 
@@ -3307,10 +3358,6 @@ msgstr "Billentyűkiozsztás"
 msgid "Keyboard Setup"
 msgstr "Billentyűzet beállítása"
 
-#
-msgid "Keymap"
-msgstr "Bill. kiosztás"
-
 msgid "Kill partition table"
 msgstr ""
 
@@ -3320,6 +3367,18 @@ msgstr "Helyi hálózati adapter"
 
 msgid "LAN connection"
 msgstr "Helyi kapcsolat"
+
+msgid "LED Blinking"
+msgstr ""
+
+msgid "LED Deep Standby"
+msgstr ""
+
+msgid "LED Normal"
+msgstr ""
+
+msgid "LED Standby"
+msgstr ""
 
 #
 msgid "LNB"
@@ -3630,9 +3689,6 @@ msgid "MiniDLNA Log"
 msgstr ""
 
 msgid "MiniDLNA Setup"
-msgstr ""
-
-msgid "MiniDNLA Setup"
 msgstr ""
 
 msgid "Mins"
@@ -3996,6 +4052,9 @@ msgstr ""
 #
 msgid "No satellite frontend found!!"
 msgstr "Nem találtam műholdas tunert!!"
+
+msgid "No selected binary data!!"
+msgstr ""
 
 #
 msgid "No tags are set on these movies."
@@ -5001,10 +5060,6 @@ msgid "Quickzap"
 msgstr "GyorsUGRÁS"
 
 #
-msgid "RC Menu"
-msgstr "RC menü"
-
-#
 msgid "RF output"
 msgstr "RF kimenet"
 
@@ -5238,10 +5293,6 @@ msgstr ""
 #, python-format
 msgid "Renamed %s!"
 msgstr ""
-
-#
-msgid "Repeat"
-msgstr "Ismétlés"
 
 msgid "Repeat Display Message"
 msgstr ""
@@ -5636,6 +5687,9 @@ msgid ""
 "Scans default lamedbs sorted by satellite with a connected dish positioner"
 msgstr "Műholdanként rendezett Lamedb keresése csatlakoztatott pozícionerhez"
 
+msgid "Scrolling Speed"
+msgstr ""
+
 msgid "Search"
 msgstr ""
 
@@ -5965,6 +6019,9 @@ msgstr ""
 msgid "Show PTS Infobar while timeshifting?"
 msgstr ""
 
+msgid "Show Picons (requires a restart)"
+msgstr ""
+
 msgid "Show Readers/Proxies"
 msgstr ""
 
@@ -5980,10 +6037,6 @@ msgstr "Animáció megjelenítése amikor a szoftver foglalt"
 
 msgid "Show background in Radio Mode"
 msgstr "Rádió módban háttérkép megjelenítése"
-
-#
-msgid "Show blinking clock in display during recording"
-msgstr "Felvétel közben a kis kijelző órája villogjon"
 
 msgid "Show bouquet on launch"
 msgstr ""
@@ -6857,6 +6910,9 @@ msgstr "A plugin telepítve van."
 #
 msgid "This plugin is not installed."
 msgstr "A plugin nincs telepítve."
+
+msgid "This plugin is supported only the Ultimo/Uno."
+msgstr ""
 
 #
 msgid "This plugin will be installed."
@@ -8050,6 +8106,9 @@ msgstr ""
 "Úgy döntött, hogy nem telepít semmit. Az OK gomb megnyomásával bezárhatja a "
 "varázslót."
 
+msgid "You chose the incorrect file."
+msgstr ""
+
 msgid "You didn't select a channel to record from."
 msgstr "Nem választott ki csatornát, ahonnan történjen a felvétel."
 
@@ -9228,9 +9287,6 @@ msgstr "keresés folyamatban - %d%% kész!"
 msgid "scan state"
 msgstr "keresési állapot"
 
-msgid "scrolling Speed"
-msgstr ""
-
 #
 msgid "second"
 msgstr "másodperc"
@@ -9633,3 +9689,23 @@ msgstr "ugrás"
 #
 msgid "zapped"
 msgstr "ugrott"
+
+#
+#~ msgid "Delay"
+#~ msgstr "Késleltetés"
+
+#
+#~ msgid "Keymap"
+#~ msgstr "Bill. kiosztás"
+
+#
+#~ msgid "RC Menu"
+#~ msgstr "RC menü"
+
+#
+#~ msgid "Repeat"
+#~ msgstr "Ismétlés"
+
+#
+#~ msgid "Show blinking clock in display during recording"
+#~ msgstr "Felvétel közben a kis kijelző órája villogjon"

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-05 11:09+0000\n"
+"POT-Creation-Date: 2011-12-20 11:09+0000\n"
 "PO-Revision-Date: 2011-09-07 11:13+0200\n"
 "Last-Translator: Zulfikar <zveyis@gmail.com>\n"
 "Language-Team: http://hobiagaci.com <z.veyisoglu@hobiagaci.com>\n"
@@ -1184,6 +1184,21 @@ msgstr "Küçük resimleri önbelleğe al"
 msgid "Can't cancel during upgrade!!"
 msgstr ""
 
+msgid "Can't find /usr/bin/md5sum"
+msgstr ""
+
+msgid "Can't found MD5 file."
+msgstr ""
+
+msgid "Can't found binary file."
+msgstr ""
+
+msgid "Can't found device file!!"
+msgstr ""
+
+msgid "Can't found model name."
+msgstr ""
+
 #
 msgid "Cancel"
 msgstr "Vazgeç"
@@ -1820,10 +1835,6 @@ msgid "Default movie location"
 msgstr "Varsayılan film konumu"
 
 #
-msgid "Delay"
-msgstr "Gecikme"
-
-#
 msgid "Delete"
 msgstr "Sil"
 
@@ -2113,6 +2124,9 @@ msgstr "DVD'yi yazmadan önce önizleme yapmak istiyor musunuz?"
 msgid "Do you want to reboot your Dreambox?"
 msgstr "Dreambox'ı yeniden başlatmak istiyor musunuz?"
 
+msgid "Do you want to remove binary data?"
+msgstr ""
+
 #
 msgid "Do you want to remove the package:\n"
 msgstr "Seçilen paketi kaldırmak istiyor musunuz?:\n"
@@ -2232,6 +2246,9 @@ msgstr "Dreambox DVD biçimi (HDTV uyumlu)"
 #
 msgid "Dreambox software because updates are available."
 msgstr "Dreambox güncellemelerini yükleyin"
+
+msgid "Drivers:"
+msgstr ""
 
 #
 msgid "Dynamic contrast"
@@ -2615,6 +2632,9 @@ msgstr "FEC"
 msgid "FILE NOT EXIST : /proc/stb/fp/remote_code"
 msgstr ""
 
+msgid "FPGA"
+msgstr ""
+
 msgid "FPGA Upgrade"
 msgstr ""
 
@@ -2627,6 +2647,16 @@ msgstr ""
 #
 msgid "Factory reset"
 msgstr "Fabrika ayarlarına dön"
+
+msgid "Fail to upgrade!! Retry!!"
+msgstr ""
+
+#, python-format
+msgid ""
+"Fail to verify data file. \n"
+"file[%s]\n"
+"md5[%s]"
+msgstr ""
 
 #
 msgid "Failed"
@@ -2700,6 +2730,12 @@ msgstr ""
 msgid "File not found"
 msgstr ""
 
+#, python-format
+msgid ""
+"File not found in this URL:\n"
+"%s"
+msgstr ""
+
 msgid ""
 "File oscam.conf not found.\n"
 "Please enter username/password manually."
@@ -2727,6 +2763,15 @@ msgstr "Ağ yapılandırması tamamlandı."
 #
 msgid "Finished restarting your network"
 msgstr "Ağ yeniden başlatıldı"
+
+msgid "Firmware"
+msgstr ""
+
+msgid "Firmware Upgrade"
+msgstr ""
+
+msgid "Firmware does not exist."
+msgstr ""
 
 #
 msgid "Flash"
@@ -2795,6 +2840,9 @@ msgstr "Cuma"
 #
 msgid "Friday"
 msgstr "Cuma"
+
+msgid "Front Processor"
+msgstr ""
 
 #
 #, python-format
@@ -3261,6 +3309,9 @@ msgstr ""
 msgid "Job View"
 msgstr "Görev Göster"
 
+msgid "Job task(s) are in progress!"
+msgstr ""
+
 msgid "July"
 msgstr ""
 
@@ -3296,10 +3347,6 @@ msgstr "Klavye dizilimi"
 msgid "Keyboard Setup"
 msgstr "Klavye Kurulumu"
 
-#
-msgid "Keymap"
-msgstr "Tuş dizilimi (keymap)"
-
 msgid "Kill partition table"
 msgstr ""
 
@@ -3309,6 +3356,18 @@ msgstr "LAN Donanımı"
 
 msgid "LAN connection"
 msgstr "Yerel ağ bağlantısı"
+
+msgid "LED Blinking"
+msgstr ""
+
+msgid "LED Deep Standby"
+msgstr ""
+
+msgid "LED Normal"
+msgstr ""
+
+msgid "LED Standby"
+msgstr ""
 
 #
 msgid "LNB"
@@ -3619,9 +3678,6 @@ msgid "MiniDLNA Log"
 msgstr ""
 
 msgid "MiniDLNA Setup"
-msgstr ""
-
-msgid "MiniDNLA Setup"
 msgstr ""
 
 msgid "Mins"
@@ -3982,6 +4038,9 @@ msgstr ""
 #
 msgid "No satellite frontend found!!"
 msgstr "Uydu uç ekipmanı (frontend) bulunamadı!!"
+
+msgid "No selected binary data!!"
+msgstr ""
 
 #
 msgid "No tags are set on these movies."
@@ -4983,10 +5042,6 @@ msgid "Quickzap"
 msgstr "Hızlızap"
 
 #
-msgid "RC Menu"
-msgstr "UK Menüsü"
-
-#
 msgid "RF output"
 msgstr "RF çıkışı"
 
@@ -5219,10 +5274,6 @@ msgstr ""
 #, python-format
 msgid "Renamed %s!"
 msgstr ""
-
-#
-msgid "Repeat"
-msgstr "Tekrarla"
 
 msgid "Repeat Display Message"
 msgstr ""
@@ -5615,6 +5666,9 @@ msgstr ""
 "Bağlı pozisyoner üzerinden varsayılan lamedb dosyasıyla uydu sıralı arama "
 "yapar"
 
+msgid "Scrolling Speed"
+msgstr ""
+
 msgid "Search"
 msgstr ""
 
@@ -5946,6 +6000,9 @@ msgstr ""
 msgid "Show PTS Infobar while timeshifting?"
 msgstr ""
 
+msgid "Show Picons (requires a restart)"
+msgstr ""
+
 msgid "Show Readers/Proxies"
 msgstr ""
 
@@ -5961,10 +6018,6 @@ msgstr ""
 
 msgid "Show background in Radio Mode"
 msgstr ""
-
-#
-msgid "Show blinking clock in display during recording"
-msgstr "OLED, kayıt esnasında yanıp sönsün"
 
 msgid "Show bouquet on launch"
 msgstr ""
@@ -6838,6 +6891,9 @@ msgstr "Bu eklenti yüklü."
 #
 msgid "This plugin is not installed."
 msgstr "Bu eklenti yüklü değil."
+
+msgid "This plugin is supported only the Ultimo/Uno."
+msgstr ""
 
 msgid "This plugin will be installed."
 msgstr "Bu eklenti yüklenebilir."
@@ -8023,6 +8079,9 @@ msgstr ""
 "Yüklemek üzere hiçbirşey seçmediniz. Sihirbazı sonlandırmak için OK tuşuna "
 "basın."
 
+msgid "You chose the incorrect file."
+msgstr ""
+
 msgid "You didn't select a channel to record from."
 msgstr ""
 
@@ -9199,9 +9258,6 @@ msgstr "kanal araması devam ediyor - %d %% tamamlandı!"
 msgid "scan state"
 msgstr "kanal arama durumu"
 
-msgid "scrolling Speed"
-msgstr ""
-
 #
 msgid "second"
 msgstr "saniye"
@@ -9603,3 +9659,23 @@ msgstr "değiştir"
 #
 msgid "zapped"
 msgstr "kanal değiştirildi"
+
+#
+#~ msgid "Delay"
+#~ msgstr "Gecikme"
+
+#
+#~ msgid "Keymap"
+#~ msgstr "Tuş dizilimi (keymap)"
+
+#
+#~ msgid "RC Menu"
+#~ msgstr "UK Menüsü"
+
+#
+#~ msgid "Repeat"
+#~ msgstr "Tekrarla"
+
+#
+#~ msgid "Show blinking clock in display during recording"
+#~ msgstr "OLED, kayıt esnasında yanıp sönsün"
