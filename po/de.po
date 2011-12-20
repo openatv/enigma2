@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-05 11:09+0000\n"
+"POT-Creation-Date: 2011-12-20 11:09+0000\n"
 "PO-Revision-Date: 2011-11-06 07:17+0100\n"
 "Last-Translator: belierzz <belierzz@gmx.net>\n"
 "Language-Team: ViX\n"
@@ -1207,6 +1207,21 @@ msgstr "Vorschaubilder zwischenspeichern"
 msgid "Can't cancel during upgrade!!"
 msgstr "Kein Abbruch während Upgrade möglich!"
 
+msgid "Can't find /usr/bin/md5sum"
+msgstr ""
+
+msgid "Can't found MD5 file."
+msgstr ""
+
+msgid "Can't found binary file."
+msgstr ""
+
+msgid "Can't found device file!!"
+msgstr ""
+
+msgid "Can't found model name."
+msgstr ""
+
 #
 msgid "Cancel"
 msgstr "Abbrechen"
@@ -1846,10 +1861,6 @@ msgid "Default movie location"
 msgstr "Standard-Filmverzeichnis"
 
 #
-msgid "Delay"
-msgstr "Verzögerung"
-
-#
 msgid "Delete"
 msgstr "Löschen"
 
@@ -2146,6 +2157,9 @@ msgstr "Vor dem Brennen eine Vorschau der DVD ansehen?"
 msgid "Do you want to reboot your Dreambox?"
 msgstr "Die Dreambox neu starten?"
 
+msgid "Do you want to remove binary data?"
+msgstr ""
+
 #
 msgid "Do you want to remove the package:\n"
 msgstr "Wollen Sie das Paket entfernen:\n"
@@ -2266,6 +2280,9 @@ msgstr "Daten-DVD im Dreambox-Format (HDTV-kompatibel)"
 #
 msgid "Dreambox software because updates are available."
 msgstr "Dreambox Software, da Updates verfügbar sind."
+
+msgid "Drivers:"
+msgstr ""
 
 #
 msgid "Dynamic contrast"
@@ -2650,6 +2667,9 @@ msgstr "FEC"
 msgid "FILE NOT EXIST : /proc/stb/fp/remote_code"
 msgstr "DATEI EXISTIERT NICHT: /proc/stb/fp/remote_code"
 
+msgid "FPGA"
+msgstr ""
+
 msgid "FPGA Upgrade"
 msgstr "FPGA Upgrade"
 
@@ -2662,6 +2682,16 @@ msgstr "FTP-Einstellungen"
 #
 msgid "Factory reset"
 msgstr "Werkseinstellungen"
+
+msgid "Fail to upgrade!! Retry!!"
+msgstr ""
+
+#, python-format
+msgid ""
+"Fail to verify data file. \n"
+"file[%s]\n"
+"md5[%s]"
+msgstr ""
 
 #
 msgid "Failed"
@@ -2735,6 +2765,12 @@ msgstr "Datei scheint in Benutzung zu sein.\n"
 msgid "File not found"
 msgstr "Datei nicht gefunden"
 
+#, python-format
+msgid ""
+"File not found in this URL:\n"
+"%s"
+msgstr ""
+
 msgid ""
 "File oscam.conf not found.\n"
 "Please enter username/password manually."
@@ -2765,6 +2801,15 @@ msgstr "Netzwerk-Konfiguration abgeschlossen"
 #
 msgid "Finished restarting your network"
 msgstr "Netzwerkneustart abgeschlossen"
+
+msgid "Firmware"
+msgstr ""
+
+msgid "Firmware Upgrade"
+msgstr ""
+
+msgid "Firmware does not exist."
+msgstr ""
 
 #
 msgid "Flash"
@@ -2833,6 +2878,9 @@ msgstr "Fr."
 #
 msgid "Friday"
 msgstr "Freitag"
+
+msgid "Front Processor"
+msgstr ""
 
 #
 #, python-format
@@ -3302,6 +3350,9 @@ msgstr "Januar"
 msgid "Job View"
 msgstr "Jobansicht"
 
+msgid "Job task(s) are in progress!"
+msgstr ""
+
 msgid "July"
 msgstr "Juli"
 
@@ -3337,10 +3388,6 @@ msgstr "Tastaturlayout"
 msgid "Keyboard Setup"
 msgstr "Tastatur-Einstellungen"
 
-#
-msgid "Keymap"
-msgstr "Tastaturlayout"
-
 msgid "Kill partition table"
 msgstr "Partitionstabelle löschen"
 
@@ -3350,6 +3397,18 @@ msgstr "LAN-Adapter"
 
 msgid "LAN connection"
 msgstr "LAN-Verbindung"
+
+msgid "LED Blinking"
+msgstr ""
+
+msgid "LED Deep Standby"
+msgstr ""
+
+msgid "LED Normal"
+msgstr ""
+
+msgid "LED Standby"
+msgstr ""
 
 #
 msgid "LNB"
@@ -3669,9 +3728,6 @@ msgid "MiniDLNA Log"
 msgstr ""
 
 msgid "MiniDLNA Setup"
-msgstr ""
-
-msgid "MiniDNLA Setup"
 msgstr ""
 
 msgid "Mins"
@@ -4040,6 +4096,9 @@ msgstr "Keinen Satellitentuner gefunden!"
 #
 msgid "No satellite frontend found!!"
 msgstr "Keinen Satellitentuner gefunden"
+
+msgid "No selected binary data!!"
+msgstr ""
 
 #
 msgid "No tags are set on these movies."
@@ -5064,10 +5123,6 @@ msgid "Quickzap"
 msgstr "Quickzap"
 
 #
-msgid "RC Menu"
-msgstr "Fernbedienung"
-
-#
 msgid "RF output"
 msgstr "RF-Ausgang"
 
@@ -5301,10 +5356,6 @@ msgstr "Umbenennen zu:"
 #, python-format
 msgid "Renamed %s!"
 msgstr "Umbenannt %s!"
-
-#
-msgid "Repeat"
-msgstr "Wiederholen"
 
 msgid "Repeat Display Message"
 msgstr "Display-Nachricht wiederholen"
@@ -5705,6 +5756,9 @@ msgstr ""
 "DefaultServiceScanner führt eine Sendersuche über alle Satelliten durch, "
 "wenn Sie einen Rotor an Ihre Satellitenschüssel angeschlossen haben."
 
+msgid "Scrolling Speed"
+msgstr ""
+
 msgid "Search"
 msgstr "Suche"
 
@@ -6037,6 +6091,9 @@ msgstr "OScam in Erweiterungen anzeigen?"
 msgid "Show PTS Infobar while timeshifting?"
 msgstr "Zeige PTS-Infoleiste während Timeshift?"
 
+msgid "Show Picons (requires a restart)"
+msgstr ""
+
 msgid "Show Readers/Proxies"
 msgstr "Zeige Reader/Proxies"
 
@@ -6052,10 +6109,6 @@ msgstr "Zeige Animation solange beschäftigt"
 
 msgid "Show background in Radio Mode"
 msgstr "Hintergrund im Radio-Modus anzeigen"
-
-#
-msgid "Show blinking clock in display during recording"
-msgstr "Blinkende Uhr im Display während Aufnahme"
 
 msgid "Show bouquet on launch"
 msgstr "Zeige Bouquet beim Start"
@@ -6973,6 +7026,9 @@ msgstr "Dieses Plugin ist installiert."
 #
 msgid "This plugin is not installed."
 msgstr "Dieses Plugin ist nicht installiert."
+
+msgid "This plugin is supported only the Ultimo/Uno."
+msgstr ""
 
 #
 msgid "This plugin will be installed."
@@ -8181,6 +8237,9 @@ msgstr ""
 "Sie haben nichts zum Installieren ausgewählt. Bitte drücken Sie OK, um den "
 "Installations-Assistenten zu beenden."
 
+msgid "You chose the incorrect file."
+msgstr ""
+
 msgid "You didn't select a channel to record from."
 msgstr "Sie haben keinen Sender zum Aufnehmen ausgewählt."
 
@@ -9368,9 +9427,6 @@ msgstr "Suchlauf wird durchgeführt - %d%% erledigt!"
 msgid "scan state"
 msgstr "Status Suchlauf"
 
-msgid "scrolling Speed"
-msgstr "Bildlauf-Geschwindigkeit"
-
 #
 msgid "second"
 msgstr "Sekunde"
@@ -9775,8 +9831,20 @@ msgstr "Zap"
 msgid "zapped"
 msgstr "Umgeschaltet"
 
+#
+#~ msgid "Delay"
+#~ msgstr "Verzögerung"
+
 #~ msgid "Elapsed & Remanining"
 #~ msgstr "Verstrichen & Verbleibend"
+
+#
+#~ msgid "Keymap"
+#~ msgstr "Tastaturlayout"
+
+#
+#~ msgid "RC Menu"
+#~ msgstr "Fernbedienung"
 
 #~ msgid "Remaning/Elapsed shown as on OSD"
 #~ msgstr "Verbleibend / verstrichen im OSD anzeigen "
@@ -9787,5 +9855,16 @@ msgstr "Umgeschaltet"
 #~ msgid "Remanining & Elapsed"
 #~ msgstr "Verbleibend & verstrichen"
 
+#
+#~ msgid "Repeat"
+#~ msgstr "Wiederholen"
+
+#
+#~ msgid "Show blinking clock in display during recording"
+#~ msgstr "Blinkende Uhr im Display während Aufnahme"
+
 #~ msgid "Time Remaning/Elapsed on OSD"
 #~ msgstr "Verbleibende / Verstrichene Zeit in OSD"
+
+#~ msgid "scrolling Speed"
+#~ msgstr "Bildlauf-Geschwindigkeit"
