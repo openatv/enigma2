@@ -1561,27 +1561,26 @@ class InfoBarSeek:
 		return True
 
 	def playpauseService(self):
-		if self.seekstate != self.SEEK_STATE_PLAY:
-			self.unPauseService()
-		else:
+		if self.seekstate == self.SEEK_STATE_PLAY:
 			self.pauseService()
+		else:
+			if self.seekstate == self.SEEK_STATE_PAUSE:
+				if config.seek.on_pause.value == "play":
+					self.unPauseService()
+				elif config.seek.on_pause.value == "step":
+					self.doSeekRelative(1)
+				elif config.seek.on_pause.value == "last":
+					self.setSeekState(self.lastseekstate)
+					self.lastseekstate = self.SEEK_STATE_PLAY
+			else:
+				self.pauseService()
 
 	def pauseService(self):
-		if self.seekstate == self.SEEK_STATE_PAUSE:
-			if config.seek.on_pause.value == "play":
-				self.unPauseService()
-			elif config.seek.on_pause.value == "step":
-				self.doSeekRelative(1)
-			elif config.seek.on_pause.value == "last":
-				self.setSeekState(self.lastseekstate)
-				self.lastseekstate = self.SEEK_STATE_PLAY
-		else:
-			if self.seekstate != self.SEEK_STATE_EOF:
-				self.lastseekstate = self.seekstate
-			self.setSeekState(self.SEEK_STATE_PAUSE);
+		if self.seekstate != self.SEEK_STATE_EOF:
+			self.lastseekstate = self.seekstate
+		self.setSeekState(self.SEEK_STATE_PAUSE);
 
 	def unPauseService(self):
-		print "unpause"
 		if self.seekstate == self.SEEK_STATE_PLAY:
 			return 0
 		self.setSeekState(self.SEEK_STATE_PLAY)
