@@ -23,8 +23,6 @@ public:
 		/* get PTS before offset */	
 	int getPTS(off_t &offset, pts_t &pts);
 	
-		/* inter/extrapolate timestamp from offset */
-	pts_t getInterpolated(off_t offset);
 	
 	off_t getAccessPoint(pts_t ts, int marg=0);
 	
@@ -39,6 +37,8 @@ public:
 	int getStructureEntry(off_t &offset, unsigned long long &data, int get_next);
 
 private:
+	/* inter/extrapolate timestamp from offset */
+	pts_t getInterpolated(off_t offset);
 	/* get delta at specific offset */
 	pts_t getDelta(off_t offset);
 	/* recalculates timestampDeltas */
