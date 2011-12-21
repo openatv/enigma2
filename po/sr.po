@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-05 11:09+0000\n"
+"POT-Creation-Date: 2011-12-20 11:09+0000\n"
 "PO-Revision-Date: 2011-04-14 00:02+0200\n"
 "Last-Translator: majevica <jovanovic@gmx.ch>\n"
 "Language-Team: veselin & majevica CRNABERZA <jovanovic@gmx.ch>\n"
@@ -1194,6 +1194,21 @@ msgstr "Učitaj sličice"
 msgid "Can't cancel during upgrade!!"
 msgstr ""
 
+msgid "Can't find /usr/bin/md5sum"
+msgstr ""
+
+msgid "Can't found MD5 file."
+msgstr ""
+
+msgid "Can't found binary file."
+msgstr ""
+
+msgid "Can't found device file!!"
+msgstr ""
+
+msgid "Can't found model name."
+msgstr ""
+
 #
 msgid "Cancel"
 msgstr "Odustani"
@@ -1828,10 +1843,6 @@ msgid "Default movie location"
 msgstr "Standardna lokacija filmova"
 
 #
-msgid "Delay"
-msgstr "Kašnjenje"
-
-#
 msgid "Delete"
 msgstr "Obriši"
 
@@ -2121,6 +2132,9 @@ msgstr "Da li želite da pregledate ovaj DVD pre rezanja?"
 msgid "Do you want to reboot your Dreambox?"
 msgstr "Da li želite da restartujete vaš drimbox?"
 
+msgid "Do you want to remove binary data?"
+msgstr ""
+
 #
 msgid "Do you want to remove the package:\n"
 msgstr "Da li želite da uklonite paket:\n"
@@ -2238,6 +2252,9 @@ msgstr "Drimbox oblik podataka DVD (HDTV kompatibilan)"
 #
 msgid "Dreambox software because updates are available."
 msgstr "Drimboks softver zato što su ažuriranja dostupna."
+
+msgid "Drivers:"
+msgstr ""
 
 #
 msgid "Dynamic contrast"
@@ -2621,6 +2638,9 @@ msgstr "FEC"
 msgid "FILE NOT EXIST : /proc/stb/fp/remote_code"
 msgstr ""
 
+msgid "FPGA"
+msgstr ""
+
 msgid "FPGA Upgrade"
 msgstr ""
 
@@ -2633,6 +2653,16 @@ msgstr ""
 #
 msgid "Factory reset"
 msgstr "Fabrički reset"
+
+msgid "Fail to upgrade!! Retry!!"
+msgstr ""
+
+#, python-format
+msgid ""
+"Fail to verify data file. \n"
+"file[%s]\n"
+"md5[%s]"
+msgstr ""
 
 #
 msgid "Failed"
@@ -2706,6 +2736,12 @@ msgstr ""
 msgid "File not found"
 msgstr ""
 
+#, python-format
+msgid ""
+"File not found in this URL:\n"
+"%s"
+msgstr ""
+
 msgid ""
 "File oscam.conf not found.\n"
 "Please enter username/password manually."
@@ -2734,6 +2770,15 @@ msgstr "Završena konfiguracija vaše mreže"
 #
 msgid "Finished restarting your network"
 msgstr "Završeno je restartovanje vaše mreže"
+
+msgid "Firmware"
+msgstr ""
+
+msgid "Firmware Upgrade"
+msgstr ""
+
+msgid "Firmware does not exist."
+msgstr ""
 
 #
 msgid "Flash"
@@ -2802,6 +2847,9 @@ msgstr "Pet"
 #
 msgid "Friday"
 msgstr "Petak"
+
+msgid "Front Processor"
+msgstr ""
 
 #
 #, python-format
@@ -3266,6 +3314,9 @@ msgstr ""
 msgid "Job View"
 msgstr "Pregled poslova"
 
+msgid "Job task(s) are in progress!"
+msgstr ""
+
 msgid "July"
 msgstr ""
 
@@ -3301,10 +3352,6 @@ msgstr "Mapa tastature"
 msgid "Keyboard Setup"
 msgstr "Postavke tastature"
 
-#
-msgid "Keymap"
-msgstr "Mapa ključa"
-
 msgid "Kill partition table"
 msgstr ""
 
@@ -3314,6 +3361,18 @@ msgstr "LAN adapter"
 
 msgid "LAN connection"
 msgstr "LAN veza"
+
+msgid "LED Blinking"
+msgstr ""
+
+msgid "LED Deep Standby"
+msgstr ""
+
+msgid "LED Normal"
+msgstr ""
+
+msgid "LED Standby"
+msgstr ""
 
 #
 msgid "LNB"
@@ -3624,9 +3683,6 @@ msgid "MiniDLNA Log"
 msgstr ""
 
 msgid "MiniDLNA Setup"
-msgstr ""
-
-msgid "MiniDNLA Setup"
 msgstr ""
 
 msgid "Mins"
@@ -3989,6 +4045,9 @@ msgstr ""
 #
 msgid "No satellite frontend found!!"
 msgstr "Nije pronađen čeoni satelit!!"
+
+msgid "No selected binary data!!"
+msgstr ""
 
 #
 msgid "No tags are set on these movies."
@@ -4995,10 +5054,6 @@ msgid "Quickzap"
 msgstr "Brzizap"
 
 #
-msgid "RC Menu"
-msgstr "RC meni"
-
-#
 msgid "RF output"
 msgstr "RF Izlaz"
 
@@ -5231,10 +5286,6 @@ msgstr ""
 #, python-format
 msgid "Renamed %s!"
 msgstr ""
-
-#
-msgid "Repeat"
-msgstr "Ponoviti"
 
 msgid "Repeat Display Message"
 msgstr ""
@@ -5631,6 +5682,9 @@ msgstr ""
 "Pretražuje osnovne lamedbs razvrstane po satelitima sa povezanim antenskim "
 "pozicionerom"
 
+msgid "Scrolling Speed"
+msgstr ""
+
 msgid "Search"
 msgstr ""
 
@@ -5962,6 +6016,9 @@ msgstr ""
 msgid "Show PTS Infobar while timeshifting?"
 msgstr ""
 
+msgid "Show Picons (requires a restart)"
+msgstr ""
+
 msgid "Show Readers/Proxies"
 msgstr ""
 
@@ -5977,10 +6034,6 @@ msgstr ""
 
 msgid "Show background in Radio Mode"
 msgstr ""
-
-#
-msgid "Show blinking clock in display during recording"
-msgstr "Prikaži trepćući sat na displeju tokom snimanja"
 
 msgid "Show bouquet on launch"
 msgstr ""
@@ -6870,6 +6923,9 @@ msgstr "Ovaj dodatak je instaliran."
 #
 msgid "This plugin is not installed."
 msgstr "Ovaj dodatak nije instaliran."
+
+msgid "This plugin is supported only the Ultimo/Uno."
+msgstr ""
 
 #
 msgid "This plugin will be installed."
@@ -8067,6 +8123,9 @@ msgstr ""
 "Izabrali ste da ništa ne instalirate.Molimo pritisnite OK da završite "
 "čarobnjaka za instalaciju."
 
+msgid "You chose the incorrect file."
+msgstr ""
+
 msgid "You didn't select a channel to record from."
 msgstr "Niste odabrali kanal sa koga ćete snimati."
 
@@ -9245,9 +9304,6 @@ msgstr "pretraživanje u toku - %d%% gotovo!"
 msgid "scan state"
 msgstr "status skeniranja"
 
-msgid "scrolling Speed"
-msgstr ""
-
 #
 msgid "second"
 msgstr "drugi"
@@ -9650,3 +9706,23 @@ msgstr "zap"
 #
 msgid "zapped"
 msgstr "prebačen"
+
+#
+#~ msgid "Delay"
+#~ msgstr "Kašnjenje"
+
+#
+#~ msgid "Keymap"
+#~ msgstr "Mapa ključa"
+
+#
+#~ msgid "RC Menu"
+#~ msgstr "RC meni"
+
+#
+#~ msgid "Repeat"
+#~ msgstr "Ponoviti"
+
+#
+#~ msgid "Show blinking clock in display during recording"
+#~ msgstr "Prikaži trepćući sat na displeju tokom snimanja"

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-05 11:09+0000\n"
+"POT-Creation-Date: 2011-12-20 11:09+0000\n"
 "PO-Revision-Date: 2010-08-20 00:08+0200\n"
 "Last-Translator: Hazem <moustafagamal@hotmail.com>\n"
 "Language-Team: Arabic <moustafagamal@hotmail.com>\n"
@@ -1103,6 +1103,21 @@ msgstr ""
 msgid "Can't cancel during upgrade!!"
 msgstr ""
 
+msgid "Can't find /usr/bin/md5sum"
+msgstr ""
+
+msgid "Can't found MD5 file."
+msgstr ""
+
+msgid "Can't found binary file."
+msgstr ""
+
+msgid "Can't found device file!!"
+msgstr ""
+
+msgid "Can't found model name."
+msgstr ""
+
 #
 msgid "Cancel"
 msgstr "إلغاء"
@@ -1666,10 +1681,6 @@ msgid "Default movie location"
 msgstr "المكان الافتراضى للفيلم"
 
 #
-msgid "Delay"
-msgstr "تأخير"
-
-#
 msgid "Delete"
 msgstr "أمسح"
 
@@ -1933,6 +1944,9 @@ msgstr "هل تريد معاينة هذا الدى فى دى قبل الحرق؟
 msgid "Do you want to reboot your Dreambox?"
 msgstr "هل تريد إعادة تشغيل الدريم بوكس ؟"
 
+msgid "Do you want to remove binary data?"
+msgstr ""
+
 msgid "Do you want to remove the package:\n"
 msgstr "هل تريد فعلا حذف الرزمه:\n"
 
@@ -2033,6 +2047,9 @@ msgstr ""
 
 msgid "Dreambox software because updates are available."
 msgstr "البرنامج التشغيلى للدريم بوكس لتوافر تحديثات"
+
+msgid "Drivers:"
+msgstr ""
 
 msgid "Dynamic contrast"
 msgstr "تباين ديناميكى"
@@ -2374,6 +2391,9 @@ msgstr "FEC"
 msgid "FILE NOT EXIST : /proc/stb/fp/remote_code"
 msgstr ""
 
+msgid "FPGA"
+msgstr ""
+
 msgid "FPGA Upgrade"
 msgstr ""
 
@@ -2385,6 +2405,16 @@ msgstr ""
 
 msgid "Factory reset"
 msgstr "العوده الى إعدادات المصنع"
+
+msgid "Fail to upgrade!! Retry!!"
+msgstr ""
+
+#, python-format
+msgid ""
+"Fail to verify data file. \n"
+"file[%s]\n"
+"md5[%s]"
+msgstr ""
 
 msgid "Failed"
 msgstr "فشل"
@@ -2456,6 +2486,12 @@ msgstr ""
 msgid "File not found"
 msgstr ""
 
+#, python-format
+msgid ""
+"File not found in this URL:\n"
+"%s"
+msgstr ""
+
 msgid ""
 "File oscam.conf not found.\n"
 "Please enter username/password manually."
@@ -2479,6 +2515,15 @@ msgstr "تم الانتهاء من تكوين شبكتك"
 
 msgid "Finished restarting your network"
 msgstr "تم النتهاء من إعادة تشغيل الشبكه"
+
+msgid "Firmware"
+msgstr ""
+
+msgid "Firmware Upgrade"
+msgstr ""
+
+msgid "Firmware does not exist."
+msgstr ""
 
 msgid "Flash"
 msgstr "شحن"
@@ -2542,6 +2587,9 @@ msgstr "الجمعه"
 #
 msgid "Friday"
 msgstr "الجمعه"
+
+msgid "Front Processor"
+msgstr ""
 
 #
 #, python-format
@@ -2969,6 +3017,9 @@ msgstr ""
 msgid "Job View"
 msgstr ""
 
+msgid "Job task(s) are in progress!"
+msgstr ""
+
 msgid "July"
 msgstr ""
 
@@ -3003,10 +3054,6 @@ msgstr "خريطه لوحه المفاتيح"
 msgid "Keyboard Setup"
 msgstr "ضبط لوحه المفاتيح"
 
-#
-msgid "Keymap"
-msgstr "خريطه المفاتيح"
-
 msgid "Kill partition table"
 msgstr ""
 
@@ -3016,6 +3063,18 @@ msgstr "محول شبكه محليه"
 
 msgid "LAN connection"
 msgstr "أتصال شبكه محليه"
+
+msgid "LED Blinking"
+msgstr ""
+
+msgid "LED Deep Standby"
+msgstr ""
+
+msgid "LED Normal"
+msgstr ""
+
+msgid "LED Standby"
+msgstr ""
 
 #
 msgid "LNB"
@@ -3315,9 +3374,6 @@ msgid "MiniDLNA Log"
 msgstr ""
 
 msgid "MiniDLNA Setup"
-msgstr ""
-
-msgid "MiniDNLA Setup"
 msgstr ""
 
 msgid "Mins"
@@ -3652,6 +3708,9 @@ msgstr ""
 
 msgid "No satellite frontend found!!"
 msgstr "لم يتم العثور على أقمار موجهه !!"
+
+msgid "No selected binary data!!"
+msgstr ""
 
 #
 msgid "No tags are set on these movies."
@@ -4548,10 +4607,6 @@ msgstr ""
 msgid "Quickzap"
 msgstr "انتقال سريع"
 
-#
-msgid "RC Menu"
-msgstr "قائمه الريموت كونترول"
-
 msgid "RF output"
 msgstr "مخرج RF"
 
@@ -4756,10 +4811,6 @@ msgstr ""
 #, python-format
 msgid "Renamed %s!"
 msgstr ""
-
-#
-msgid "Repeat"
-msgstr "إعاده"
 
 msgid "Repeat Display Message"
 msgstr ""
@@ -5117,6 +5168,9 @@ msgid ""
 "Scans default lamedbs sorted by satellite with a connected dish positioner"
 msgstr ""
 
+msgid "Scrolling Speed"
+msgstr ""
+
 msgid "Search"
 msgstr ""
 
@@ -5415,6 +5469,9 @@ msgstr ""
 msgid "Show PTS Infobar while timeshifting?"
 msgstr ""
 
+msgid "Show Picons (requires a restart)"
+msgstr ""
+
 msgid "Show Readers/Proxies"
 msgstr ""
 
@@ -5430,10 +5487,6 @@ msgstr ""
 
 msgid "Show background in Radio Mode"
 msgstr ""
-
-#
-msgid "Show blinking clock in display during recording"
-msgstr "أظهار ساعه تومض عند التسجيل"
 
 msgid "Show bouquet on launch"
 msgstr ""
@@ -6250,6 +6303,9 @@ msgstr "هذا البلج إن مثبت ."
 
 msgid "This plugin is not installed."
 msgstr "هذا البلج إن غير مثبت ."
+
+msgid "This plugin is supported only the Ultimo/Uno."
+msgstr ""
 
 msgid "This plugin will be installed."
 msgstr "سيتم تثبيت هذا البلج إن ."
@@ -7321,6 +7377,9 @@ msgid ""
 "You chose not to install anything. Please press OK finish the install wizard."
 msgstr "لقد أخترت عدم تثبيت أى شيئ ، من فضلك أغط موافق لأغلاق نافذة التثبيت"
 
+msgid "You chose the incorrect file."
+msgstr ""
+
 msgid "You didn't select a channel to record from."
 msgstr ""
 
@@ -8345,9 +8404,6 @@ msgstr "بتم البحث الان %d %%"
 msgid "scan state"
 msgstr "حاله البحث"
 
-msgid "scrolling Speed"
-msgstr ""
-
 msgid "second"
 msgstr "ثانوى"
 
@@ -8699,3 +8755,23 @@ msgstr "الانتقال"
 
 msgid "zapped"
 msgstr "تم الانتقال"
+
+#
+#~ msgid "Delay"
+#~ msgstr "تأخير"
+
+#
+#~ msgid "Keymap"
+#~ msgstr "خريطه المفاتيح"
+
+#
+#~ msgid "RC Menu"
+#~ msgstr "قائمه الريموت كونترول"
+
+#
+#~ msgid "Repeat"
+#~ msgstr "إعاده"
+
+#
+#~ msgid "Show blinking clock in display during recording"
+#~ msgstr "أظهار ساعه تومض عند التسجيل"

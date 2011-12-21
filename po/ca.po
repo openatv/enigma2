@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-05 11:09+0000\n"
+"POT-Creation-Date: 2011-12-20 11:09+0000\n"
 "PO-Revision-Date: 2007-08-14 10:23+0200\n"
 "Last-Translator: Oriol Pellicer <oriol@elsud.org>\n"
 "Language-Team: \n"
@@ -1150,6 +1150,21 @@ msgstr "Cache de les miniatures"
 msgid "Can't cancel during upgrade!!"
 msgstr ""
 
+msgid "Can't find /usr/bin/md5sum"
+msgstr ""
+
+msgid "Can't found MD5 file."
+msgstr ""
+
+msgid "Can't found binary file."
+msgstr ""
+
+msgid "Can't found device file!!"
+msgstr ""
+
+msgid "Can't found model name."
+msgstr ""
+
 #
 msgid "Cancel"
 msgstr "Cancel·lar"
@@ -1782,10 +1797,6 @@ msgid "Default movie location"
 msgstr ""
 
 #
-msgid "Delay"
-msgstr "Retard"
-
-#
 msgid "Delete"
 msgstr "Esborrar"
 
@@ -2067,6 +2078,9 @@ msgstr ""
 msgid "Do you want to reboot your Dreambox?"
 msgstr ""
 
+msgid "Do you want to remove binary data?"
+msgstr ""
+
 #
 msgid "Do you want to remove the package:\n"
 msgstr ""
@@ -2181,6 +2195,9 @@ msgstr ""
 
 #
 msgid "Dreambox software because updates are available."
+msgstr ""
+
+msgid "Drivers:"
 msgstr ""
 
 #
@@ -2556,6 +2573,9 @@ msgstr "FEC"
 msgid "FILE NOT EXIST : /proc/stb/fp/remote_code"
 msgstr ""
 
+msgid "FPGA"
+msgstr ""
+
 msgid "FPGA Upgrade"
 msgstr ""
 
@@ -2567,6 +2587,16 @@ msgstr ""
 
 #
 msgid "Factory reset"
+msgstr ""
+
+msgid "Fail to upgrade!! Retry!!"
+msgstr ""
+
+#, python-format
+msgid ""
+"Fail to verify data file. \n"
+"file[%s]\n"
+"md5[%s]"
 msgstr ""
 
 #
@@ -2642,6 +2672,12 @@ msgstr ""
 msgid "File not found"
 msgstr ""
 
+#, python-format
+msgid ""
+"File not found in this URL:\n"
+"%s"
+msgstr ""
+
 msgid ""
 "File oscam.conf not found.\n"
 "Please enter username/password manually."
@@ -2669,6 +2705,15 @@ msgstr ""
 
 #
 msgid "Finished restarting your network"
+msgstr ""
+
+msgid "Firmware"
+msgstr ""
+
+msgid "Firmware Upgrade"
+msgstr ""
+
+msgid "Firmware does not exist."
 msgstr ""
 
 #
@@ -2739,6 +2784,9 @@ msgstr "Div"
 #
 msgid "Friday"
 msgstr "Divendres"
+
+msgid "Front Processor"
+msgstr ""
 
 #
 #, python-format
@@ -3195,6 +3243,9 @@ msgstr ""
 msgid "Job View"
 msgstr ""
 
+msgid "Job task(s) are in progress!"
+msgstr ""
+
 msgid "July"
 msgstr ""
 
@@ -3230,10 +3281,6 @@ msgstr "Mapa del teclat"
 msgid "Keyboard Setup"
 msgstr "Configuració teclat"
 
-#
-msgid "Keymap"
-msgstr "Mapa de teclat"
-
 msgid "Kill partition table"
 msgstr ""
 
@@ -3242,6 +3289,18 @@ msgid "LAN Adapter"
 msgstr ""
 
 msgid "LAN connection"
+msgstr ""
+
+msgid "LED Blinking"
+msgstr ""
+
+msgid "LED Deep Standby"
+msgstr ""
+
+msgid "LED Normal"
+msgstr ""
+
+msgid "LED Standby"
 msgstr ""
 
 #
@@ -3554,9 +3613,6 @@ msgid "MiniDLNA Log"
 msgstr ""
 
 msgid "MiniDLNA Setup"
-msgstr ""
-
-msgid "MiniDNLA Setup"
 msgstr ""
 
 msgid "Mins"
@@ -3916,6 +3972,9 @@ msgstr ""
 #
 msgid "No satellite frontend found!!"
 msgstr "No s'ha trobat cap sintonitzador de satèŀlit!!"
+
+msgid "No selected binary data!!"
+msgstr ""
 
 #
 msgid "No tags are set on these movies."
@@ -4892,10 +4951,6 @@ msgid "Quickzap"
 msgstr "Zappeig ràpid"
 
 #
-msgid "RC Menu"
-msgstr "Menú RC"
-
-#
 msgid "RF output"
 msgstr "Sortida RF"
 
@@ -5129,10 +5184,6 @@ msgstr ""
 #, python-format
 msgid "Renamed %s!"
 msgstr ""
-
-#
-msgid "Repeat"
-msgstr "Repetir"
 
 msgid "Repeat Display Message"
 msgstr ""
@@ -5525,6 +5576,9 @@ msgid ""
 "Scans default lamedbs sorted by satellite with a connected dish positioner"
 msgstr ""
 
+msgid "Scrolling Speed"
+msgstr ""
+
 msgid "Search"
 msgstr ""
 
@@ -5854,6 +5908,9 @@ msgstr ""
 msgid "Show PTS Infobar while timeshifting?"
 msgstr ""
 
+msgid "Show Picons (requires a restart)"
+msgstr ""
+
 msgid "Show Readers/Proxies"
 msgstr ""
 
@@ -5868,10 +5925,6 @@ msgid "Show animation while busy"
 msgstr ""
 
 msgid "Show background in Radio Mode"
-msgstr ""
-
-#
-msgid "Show blinking clock in display during recording"
 msgstr ""
 
 msgid "Show bouquet on launch"
@@ -6717,6 +6770,9 @@ msgstr ""
 
 #
 msgid "This plugin is not installed."
+msgstr ""
+
+msgid "This plugin is supported only the Ultimo/Uno."
 msgstr ""
 
 #
@@ -7850,6 +7906,9 @@ msgstr ""
 #
 msgid ""
 "You chose not to install anything. Please press OK finish the install wizard."
+msgstr ""
+
+msgid "You chose the incorrect file."
 msgstr ""
 
 msgid "You didn't select a channel to record from."
@@ -9004,9 +9063,6 @@ msgstr ""
 msgid "scan state"
 msgstr "estat de la recerca"
 
-msgid "scrolling Speed"
-msgstr ""
-
 #
 msgid "second"
 msgstr "segon"
@@ -9410,3 +9466,19 @@ msgstr "zappejar"
 #
 msgid "zapped"
 msgstr "zappejat"
+
+#
+#~ msgid "Delay"
+#~ msgstr "Retard"
+
+#
+#~ msgid "Keymap"
+#~ msgstr "Mapa de teclat"
+
+#
+#~ msgid "RC Menu"
+#~ msgstr "Menú RC"
+
+#
+#~ msgid "Repeat"
+#~ msgstr "Repetir"

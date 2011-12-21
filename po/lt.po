@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-05 11:09+0000\n"
+"POT-Creation-Date: 2011-12-20 11:09+0000\n"
 "PO-Revision-Date: 2010-04-03 17:28+0200\n"
 "Last-Translator: Audronis Grincevicius <audrgrin@takas.lt>\n"
 "Language-Team: \n"
@@ -1002,6 +1002,21 @@ msgstr "Slėpti nedidelius"
 msgid "Can't cancel during upgrade!!"
 msgstr ""
 
+msgid "Can't find /usr/bin/md5sum"
+msgstr ""
+
+msgid "Can't found MD5 file."
+msgstr ""
+
+msgid "Can't found binary file."
+msgstr ""
+
+msgid "Can't found device file!!"
+msgstr ""
+
+msgid "Can't found model name."
+msgstr ""
+
 msgid "Cancel"
 msgstr "Atšaukti"
 
@@ -1533,9 +1548,6 @@ msgstr "Numatytieji nustatymai"
 msgid "Default movie location"
 msgstr "Numatyta filmų vieta"
 
-msgid "Delay"
-msgstr "Užlaikymas"
-
 msgid "Delete"
 msgstr "Trinti"
 
@@ -1784,6 +1796,9 @@ msgstr "Jūs norite peržiūrėti šį DVD prieš įrašymą?"
 msgid "Do you want to reboot your Dreambox?"
 msgstr "Jūs norite perjungti savo Dreambox?"
 
+msgid "Do you want to remove binary data?"
+msgstr ""
+
 msgid "Do you want to remove the package:\n"
 msgstr "Jūs norite pašalinti paketą:\n"
 
@@ -1881,6 +1896,9 @@ msgstr "Dreambox formatuoja DVD duomenis (suderinama su HDTV)"
 
 msgid "Dreambox software because updates are available."
 msgstr "Dreambox programinės įrangos atnaujinimas, nes yra pasiekiamas."
+
+msgid "Drivers:"
+msgstr ""
 
 msgid "Dynamic contrast"
 msgstr "Dinamiškas kontrastas"
@@ -2206,6 +2224,9 @@ msgstr "FEC"
 msgid "FILE NOT EXIST : /proc/stb/fp/remote_code"
 msgstr ""
 
+msgid "FPGA"
+msgstr ""
+
 msgid "FPGA Upgrade"
 msgstr ""
 
@@ -2217,6 +2238,16 @@ msgstr ""
 
 msgid "Factory reset"
 msgstr "Gamykliniai nustatymai"
+
+msgid "Fail to upgrade!! Retry!!"
+msgstr ""
+
+#, python-format
+msgid ""
+"Fail to verify data file. \n"
+"file[%s]\n"
+"md5[%s]"
+msgstr ""
 
 msgid "Failed"
 msgstr "Klaidingas"
@@ -2281,6 +2312,12 @@ msgstr ""
 msgid "File not found"
 msgstr ""
 
+#, python-format
+msgid ""
+"File not found in this URL:\n"
+"%s"
+msgstr ""
+
 msgid ""
 "File oscam.conf not found.\n"
 "Please enter username/password manually."
@@ -2303,6 +2340,15 @@ msgstr "Baigtas jūsų tinklo konfigūravimas"
 
 msgid "Finished restarting your network"
 msgstr "Baigtas jūsų tinklo paleidimas iš naujo"
+
+msgid "Firmware"
+msgstr ""
+
+msgid "Firmware Upgrade"
+msgstr ""
+
+msgid "Firmware does not exist."
+msgstr ""
 
 msgid "Flash"
 msgstr "Vidinė atmintis"
@@ -2360,6 +2406,9 @@ msgstr "Pen"
 
 msgid "Friday"
 msgstr "Penktadienis"
+
+msgid "Front Processor"
+msgstr ""
 
 #, python-format
 msgid "Frontprocessor version: %d"
@@ -2763,6 +2812,9 @@ msgstr ""
 msgid "Job View"
 msgstr "Darbo vaizdas"
 
+msgid "Job task(s) are in progress!"
+msgstr ""
+
 msgid "July"
 msgstr ""
 
@@ -2794,9 +2846,6 @@ msgstr "Klaviatūros išdėstymas"
 msgid "Keyboard Setup"
 msgstr "Klaviatūros nustatymas"
 
-msgid "Keymap"
-msgstr "Mygtukų išdėstymas"
-
 msgid "Kill partition table"
 msgstr ""
 
@@ -2805,6 +2854,18 @@ msgstr "Tinklo adapteris"
 
 msgid "LAN connection"
 msgstr "LAN prisijungimas"
+
+msgid "LED Blinking"
+msgstr ""
+
+msgid "LED Deep Standby"
+msgstr ""
+
+msgid "LED Normal"
+msgstr ""
+
+msgid "LED Standby"
+msgstr ""
 
 msgid "LNB"
 msgstr "LNB konverteris"
@@ -3065,9 +3126,6 @@ msgid "MiniDLNA Log"
 msgstr ""
 
 msgid "MiniDLNA Setup"
-msgstr ""
-
-msgid "MiniDNLA Setup"
 msgstr ""
 
 msgid "Mins"
@@ -3371,6 +3429,9 @@ msgstr ""
 
 msgid "No satellite frontend found!!"
 msgstr "Nerastas palydovas!!"
+
+msgid "No selected binary data!!"
+msgstr ""
 
 msgid "No tags are set on these movies."
 msgstr "Jokios kortelės su užrašu nėra nustatytos šiems kino filmams"
@@ -4231,9 +4292,6 @@ msgstr ""
 msgid "Quickzap"
 msgstr "Greitas perjungimas"
 
-msgid "RC Menu"
-msgstr "Valdymo pulto meniu"
-
 msgid "RF output"
 msgstr "RF išėjimas"
 
@@ -4431,9 +4489,6 @@ msgstr ""
 #, python-format
 msgid "Renamed %s!"
 msgstr ""
-
-msgid "Repeat"
-msgstr "Pakartoti"
 
 msgid "Repeat Display Message"
 msgstr ""
@@ -4759,6 +4814,9 @@ msgstr ""
 "Skanuokite numatytą lamedbs, surūšiuotą pagal palydovą su prijungta prie "
 "pozicionieriaus antena"
 
+msgid "Scrolling Speed"
+msgstr ""
+
 msgid "Search"
 msgstr ""
 
@@ -5040,6 +5098,9 @@ msgstr ""
 msgid "Show PTS Infobar while timeshifting?"
 msgstr ""
 
+msgid "Show Picons (requires a restart)"
+msgstr ""
+
 msgid "Show Readers/Proxies"
 msgstr ""
 
@@ -5054,9 +5115,6 @@ msgstr "Rodyti animaciją tuo metu, kai užimta"
 
 msgid "Show background in Radio Mode"
 msgstr ""
-
-msgid "Show blinking clock in display during recording"
-msgstr "Rodyti mirksintį laikrodį monitoriuje, įrašymo metu"
 
 msgid "Show bouquet on launch"
 msgstr ""
@@ -5824,6 +5882,9 @@ msgstr "Ši papildoma programa yra įdiegta."
 
 msgid "This plugin is not installed."
 msgstr "Ši papildoma programa nėra įdiegta."
+
+msgid "This plugin is supported only the Ultimo/Uno."
+msgstr ""
 
 msgid "This plugin will be installed."
 msgstr "Ši papildoma programa bus įdiegta."
@@ -6840,6 +6901,9 @@ msgstr ""
 "Jūs nusprendėte neįdiegti nieko. Prašome spausti OK, kad išjungti nustatymų "
 "vedlį."
 
+msgid "You chose the incorrect file."
+msgstr ""
+
 msgid "You didn't select a channel to record from."
 msgstr "Jūs nepasirinkote kanalo, kad įrašyti."
 
@@ -7790,9 +7854,6 @@ msgstr "vyksta skanavimas - %d %% baigta!"
 msgid "scan state"
 msgstr "paieškos eiga"
 
-msgid "scrolling Speed"
-msgstr ""
-
 msgid "second"
 msgstr "sekundė"
 
@@ -8123,3 +8184,18 @@ msgstr "jungti"
 
 msgid "zapped"
 msgstr "įjungta"
+
+#~ msgid "Delay"
+#~ msgstr "Užlaikymas"
+
+#~ msgid "Keymap"
+#~ msgstr "Mygtukų išdėstymas"
+
+#~ msgid "RC Menu"
+#~ msgstr "Valdymo pulto meniu"
+
+#~ msgid "Repeat"
+#~ msgstr "Pakartoti"
+
+#~ msgid "Show blinking clock in display during recording"
+#~ msgstr "Rodyti mirksintį laikrodį monitoriuje, įrašymo metu"

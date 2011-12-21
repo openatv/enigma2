@@ -104,7 +104,7 @@ def saveResumePoints():
 	global resumePointCache, resumePointCacheLast
 	import cPickle
 	try:
-		f = open('/home/root/resumepoints.pkl', 'wb')
+		f = open('/etc/enigma2/resumepoints.pkl', 'wb')
 		cPickle.dump(resumePointCache, f, cPickle.HIGHEST_PROTOCOL)
 	except Exception, ex:
 		print "[InfoBar] Failed to write resumepoints:", ex
@@ -113,7 +113,7 @@ def saveResumePoints():
 def loadResumePoints():
 	import cPickle
 	try:
-		return cPickle.load(open('/home/root/resumepoints.pkl', 'rb'))
+		return cPickle.load(open('/etc/enigma2/resumepoints.pkl', 'rb'))
 	except Exception, ex:
 		print "[InfoBar] Failed to load resumepoints:", ex
 		return {}
@@ -1630,10 +1630,14 @@ class InfoBarSeek:
 		self.seekstate = state
 
 		if pauseable is not None:
-			if self.seekstate[0]:
+			if self.seekstate[0] and self.seekstate[3] == '||':
 				print "resolved to PAUSE"
 				self.activityTimer.stop()
 				pauseable.pause()
+			elif self.seekstate[0] and self.seekstate[3] == 'END':
+				print "resolved to STOP"
+				self.activityTimer.stop()
+				service.stop()
 			elif self.seekstate[1]:
 				print "resolved to FAST FORWARD"
 				pauseable.setFastForward(self.seekstate[1])
@@ -1653,27 +1657,26 @@ class InfoBarSeek:
 		return True
 
 	def playpauseService(self):
-		if self.seekstate != self.SEEK_STATE_PLAY:
-			self.unPauseService()
-		else:
+		if self.seekstate == self.SEEK_STATE_PLAY:
 			self.pauseService()
+		else:
+			if self.seekstate == self.SEEK_STATE_PAUSE:
+				if config.seek.on_pause.value == "play":
+					self.unPauseService()
+				elif config.seek.on_pause.value == "step":
+					self.doSeekRelative(1)
+				elif config.seek.on_pause.value == "last":
+					self.setSeekState(self.lastseekstate)
+					self.lastseekstate = self.SEEK_STATE_PLAY
+			else:
+				self.pauseService()
 
 	def pauseService(self):
-		if self.seekstate == self.SEEK_STATE_PAUSE:
-			if config.seek.on_pause.value == "play":
-				self.unPauseService()
-			elif config.seek.on_pause.value == "step":
-				self.doSeekRelative(1)
-			elif config.seek.on_pause.value == "last":
-				self.setSeekState(self.lastseekstate)
-				self.lastseekstate = self.SEEK_STATE_PLAY
-		else:
-			if self.seekstate != self.SEEK_STATE_EOF:
-				self.lastseekstate = self.seekstate
-			self.setSeekState(self.SEEK_STATE_PAUSE);
+		if self.seekstate != self.SEEK_STATE_EOF:
+			self.lastseekstate = self.seekstate
+		self.setSeekState(self.SEEK_STATE_PAUSE);
 
 	def unPauseService(self):
-		print "unpause"
 		if self.seekstate == self.SEEK_STATE_PLAY:
 			return 0
 		self.setSeekState(self.SEEK_STATE_PLAY)
@@ -1862,7 +1865,7 @@ class InfoBarPVRState:
 		self.force_show = force_show
 
 	def _mayShow(self):
-		if self.execing and self.seekstate != self.SEEK_STATE_PLAY:
+		if self.execing and self.seekstate != self.SEEK_STATE_PLAY and self.seekstate != self.SEEK_STATE_EOF:
 			self.pvrStateDialog.show()
 
 	def __playStateChanged(self, state):

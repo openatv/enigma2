@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1-En-Th\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-05 11:09+0000\n"
+"POT-Creation-Date: 2011-12-20 11:09+0000\n"
 "PO-Revision-Date: 2010-04-08 18:13+0700\n"
 "Last-Translator: Tony - Thaidreambox\n"
 "Language-Team: Tony @ Thai Dreambox <tonyboyth@gmail.com>\n"
@@ -990,6 +990,21 @@ msgstr "เก็บภาพเล็กแคช"
 msgid "Can't cancel during upgrade!!"
 msgstr ""
 
+msgid "Can't find /usr/bin/md5sum"
+msgstr ""
+
+msgid "Can't found MD5 file."
+msgstr ""
+
+msgid "Can't found binary file."
+msgstr ""
+
+msgid "Can't found device file!!"
+msgstr ""
+
+msgid "Can't found model name."
+msgstr ""
+
 msgid "Cancel"
 msgstr "ยกเลิก"
 
@@ -1521,9 +1536,6 @@ msgstr "ตั้งค่าเริ่มต้น"
 msgid "Default movie location"
 msgstr ""
 
-msgid "Delay"
-msgstr "ชะลอ"
-
 msgid "Delete"
 msgstr "ลบ"
 
@@ -1770,6 +1782,9 @@ msgstr "ดูเนื้อหาดีวีดีก่อนเขียน
 msgid "Do you want to reboot your Dreambox?"
 msgstr "จะให้เครื่อดรีมบอกซ์ จะเริ่มระบบใหม่ (Reboot) หรือไม่?"
 
+msgid "Do you want to remove binary data?"
+msgstr ""
+
 msgid "Do you want to remove the package:\n"
 msgstr "ท่านต้องการที่จะลบส่วนประกอบนี้:\n"
 
@@ -1864,6 +1879,9 @@ msgstr "ฟอร์เมตดีวีดีแบบข้อมูล (ใ�
 
 msgid "Dreambox software because updates are available."
 msgstr "มีซอพท์แวร์สำหรับปรับปรุงเครื่องดรีมบอกซ์"
+
+msgid "Drivers:"
+msgstr ""
 
 msgid "Dynamic contrast"
 msgstr "Dynamic contrast"
@@ -2187,6 +2205,9 @@ msgstr "FEC"
 msgid "FILE NOT EXIST : /proc/stb/fp/remote_code"
 msgstr ""
 
+msgid "FPGA"
+msgstr ""
+
 msgid "FPGA Upgrade"
 msgstr ""
 
@@ -2198,6 +2219,16 @@ msgstr ""
 
 msgid "Factory reset"
 msgstr "ตั้งค่าจากโรงงาน"
+
+msgid "Fail to upgrade!! Retry!!"
+msgstr ""
+
+#, python-format
+msgid ""
+"Fail to verify data file. \n"
+"file[%s]\n"
+"md5[%s]"
+msgstr ""
 
 msgid "Failed"
 msgstr "ล้มเหลว"
@@ -2262,6 +2293,12 @@ msgstr ""
 msgid "File not found"
 msgstr ""
 
+#, python-format
+msgid ""
+"File not found in this URL:\n"
+"%s"
+msgstr ""
+
 msgid ""
 "File oscam.conf not found.\n"
 "Please enter username/password manually."
@@ -2284,6 +2321,15 @@ msgstr "จบการตั้งค่าเครือข่าย"
 
 msgid "Finished restarting your network"
 msgstr "ระบบเครือข่ายพร้อมใช้งานแล้ว"
+
+msgid "Firmware"
+msgstr ""
+
+msgid "Firmware Upgrade"
+msgstr ""
+
+msgid "Firmware does not exist."
+msgstr ""
 
 msgid "Flash"
 msgstr "แฟรช"
@@ -2341,6 +2387,9 @@ msgstr "ศุก."
 
 msgid "Friday"
 msgstr "วันศุกร์"
+
+msgid "Front Processor"
+msgstr ""
 
 #, python-format
 msgid "Frontprocessor version: %d"
@@ -2737,6 +2786,9 @@ msgstr ""
 msgid "Job View"
 msgstr "ดูงาน"
 
+msgid "Job task(s) are in progress!"
+msgstr ""
+
 msgid "July"
 msgstr ""
 
@@ -2768,9 +2820,6 @@ msgstr "การวางแป้นพิมพ์"
 msgid "Keyboard Setup"
 msgstr "ตั้งค่าแป้นพิมพ์"
 
-msgid "Keymap"
-msgstr "Keymap"
-
 msgid "Kill partition table"
 msgstr ""
 
@@ -2778,6 +2827,18 @@ msgid "LAN Adapter"
 msgstr "แลนอะแด๊ปเตอร์"
 
 msgid "LAN connection"
+msgstr ""
+
+msgid "LED Blinking"
+msgstr ""
+
+msgid "LED Deep Standby"
+msgstr ""
+
+msgid "LED Normal"
+msgstr ""
+
+msgid "LED Standby"
 msgstr ""
 
 msgid "LNB"
@@ -3039,9 +3100,6 @@ msgid "MiniDLNA Log"
 msgstr ""
 
 msgid "MiniDLNA Setup"
-msgstr ""
-
-msgid "MiniDNLA Setup"
 msgstr ""
 
 msgid "Mins"
@@ -3338,6 +3396,9 @@ msgstr ""
 
 msgid "No satellite frontend found!!"
 msgstr "ไม่พบอุปกรณ์ดาวเทียม"
+
+msgid "No selected binary data!!"
+msgstr ""
 
 msgid "No tags are set on these movies."
 msgstr "ไม่พบป้ายใดๆ กับภาพยนต์ชุดนี้"
@@ -4177,9 +4238,6 @@ msgstr ""
 msgid "Quickzap"
 msgstr "เปลี่ยนช่องเร็ว (Quickzap)"
 
-msgid "RC Menu"
-msgstr "RC Menu"
-
 msgid "RF output"
 msgstr "RF output"
 
@@ -4377,9 +4435,6 @@ msgstr ""
 #, python-format
 msgid "Renamed %s!"
 msgstr ""
-
-msgid "Repeat"
-msgstr "ซ้ำ"
 
 msgid "Repeat Display Message"
 msgstr ""
@@ -4700,6 +4755,9 @@ msgid ""
 "Scans default lamedbs sorted by satellite with a connected dish positioner"
 msgstr "ค้นหาจาก Lamedbs และโดยเรียงดาวเทียมตามที่ต่อไว้กับตัวขับจาน"
 
+msgid "Scrolling Speed"
+msgstr ""
+
 msgid "Search"
 msgstr ""
 
@@ -4979,6 +5037,9 @@ msgstr ""
 msgid "Show PTS Infobar while timeshifting?"
 msgstr ""
 
+msgid "Show Picons (requires a restart)"
+msgstr ""
+
 msgid "Show Readers/Proxies"
 msgstr ""
 
@@ -4993,9 +5054,6 @@ msgstr ""
 
 msgid "Show background in Radio Mode"
 msgstr ""
-
-msgid "Show blinking clock in display during recording"
-msgstr "นาฬิกากระพริบเมื่อบันทึกรายการ"
 
 msgid "Show bouquet on launch"
 msgstr ""
@@ -5736,6 +5794,9 @@ msgstr "ปลั๊กอินตัวนี้ได้ติดตั้ง
 
 msgid "This plugin is not installed."
 msgstr "ปลั๊กอินตัวนี้ยังไม่ได้ติดตั้ง"
+
+msgid "This plugin is supported only the Ultimo/Uno."
+msgstr ""
 
 msgid "This plugin will be installed."
 msgstr "ปลั๊กอินตัวนี้จะถูกติดตั้ง"
@@ -6722,6 +6783,9 @@ msgid ""
 "You chose not to install anything. Please press OK finish the install wizard."
 msgstr "ท่านเลือกที่จะไม่ทำการติดตั้งไฟล์ใดๆ เลย กรุณากดปุ่ม OK เพื่อจบการทำงานของตัวช่วย"
 
+msgid "You chose the incorrect file."
+msgstr ""
+
 msgid "You didn't select a channel to record from."
 msgstr ""
 
@@ -7651,9 +7715,6 @@ msgstr "กำลังค้นหา - %d%% !"
 msgid "scan state"
 msgstr "สถานะการค้นหา"
 
-msgid "scrolling Speed"
-msgstr ""
-
 msgid "second"
 msgstr "วินาที"
 
@@ -7982,3 +8043,18 @@ msgstr "เปลี่ยนช่อง"
 
 msgid "zapped"
 msgstr "เปลี่ยนช่องแล้ว"
+
+#~ msgid "Delay"
+#~ msgstr "ชะลอ"
+
+#~ msgid "Keymap"
+#~ msgstr "Keymap"
+
+#~ msgid "RC Menu"
+#~ msgstr "RC Menu"
+
+#~ msgid "Repeat"
+#~ msgstr "ซ้ำ"
+
+#~ msgid "Show blinking clock in display during recording"
+#~ msgstr "นาฬิกากระพริบเมื่อบันทึกรายการ"

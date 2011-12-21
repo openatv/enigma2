@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-05 11:09+0000\n"
+"POT-Creation-Date: 2011-12-20 11:09+0000\n"
 "PO-Revision-Date: 20111017\n"
 "Last-Translator: blzr <blzr@o2.pl>\n"
 "Language-Team: \n"
@@ -1192,6 +1192,21 @@ msgstr "Przechowuj miniatury"
 msgid "Can't cancel during upgrade!!"
 msgstr ""
 
+msgid "Can't find /usr/bin/md5sum"
+msgstr ""
+
+msgid "Can't found MD5 file."
+msgstr ""
+
+msgid "Can't found binary file."
+msgstr ""
+
+msgid "Can't found device file!!"
+msgstr ""
+
+msgid "Can't found model name."
+msgstr ""
+
 #
 msgid "Cancel"
 msgstr "Anuluj"
@@ -1848,10 +1863,6 @@ msgid "Default movie location"
 msgstr "Domyślna lokalizacja nagrań"
 
 #
-msgid "Delay"
-msgstr "Opóźnienie"
-
-#
 msgid "Delete"
 msgstr "Usuń"
 
@@ -2151,6 +2162,9 @@ msgstr "Czy chcesz obejrzeć DVD przed jego nagraniem?"
 msgid "Do you want to reboot your Dreambox?"
 msgstr "Chcesz uruchomić ponownie odbiornik?"
 
+msgid "Do you want to remove binary data?"
+msgstr ""
+
 #
 msgid "Do you want to remove the package:\n"
 msgstr "Chcesz usunąć pakiet:\n"
@@ -2270,6 +2284,9 @@ msgstr "Format danych DVD (kompatybilny z HDTV)"
 #
 msgid "Dreambox software because updates are available."
 msgstr "Oprogramowanie odbiornika ponieważ aktualizacje są dostępne"
+
+msgid "Drivers:"
+msgstr ""
 
 #
 msgid "Dynamic contrast"
@@ -2659,6 +2676,9 @@ msgstr "FEC"
 msgid "FILE NOT EXIST : /proc/stb/fp/remote_code"
 msgstr ""
 
+msgid "FPGA"
+msgstr ""
+
 msgid "FPGA Upgrade"
 msgstr ""
 
@@ -2671,6 +2691,16 @@ msgstr ""
 #
 msgid "Factory reset"
 msgstr "Ustawienia fabryczne"
+
+msgid "Fail to upgrade!! Retry!!"
+msgstr ""
+
+#, python-format
+msgid ""
+"Fail to verify data file. \n"
+"file[%s]\n"
+"md5[%s]"
+msgstr ""
 
 #
 msgid "Failed"
@@ -2746,6 +2776,12 @@ msgstr ""
 msgid "File not found"
 msgstr ""
 
+#, python-format
+msgid ""
+"File not found in this URL:\n"
+"%s"
+msgstr ""
+
 msgid ""
 "File oscam.conf not found.\n"
 "Please enter username/password manually."
@@ -2774,6 +2810,15 @@ msgstr "Zakończono konfigurowanie sieci"
 #
 msgid "Finished restarting your network"
 msgstr "Zakończono restartowanie sieci"
+
+msgid "Firmware"
+msgstr ""
+
+msgid "Firmware Upgrade"
+msgstr ""
+
+msgid "Firmware does not exist."
+msgstr ""
 
 #
 msgid "Flash"
@@ -2843,6 +2888,9 @@ msgstr "Pią"
 #
 msgid "Friday"
 msgstr "Piątek"
+
+msgid "Front Processor"
+msgstr ""
 
 #
 #, python-format
@@ -3319,6 +3367,9 @@ msgstr "Styczeń"
 msgid "Job View"
 msgstr "Podgląd zadań"
 
+msgid "Job task(s) are in progress!"
+msgstr ""
+
 #
 msgid "July"
 msgstr "Lipiec"
@@ -3357,10 +3408,6 @@ msgstr "Układ klawiatury"
 msgid "Keyboard Setup"
 msgstr "Ustawienia klawiatury"
 
-#
-msgid "Keymap"
-msgstr "Układ klawiszy"
-
 msgid "Kill partition table"
 msgstr ""
 
@@ -3370,6 +3417,18 @@ msgstr "Adapter LAN"
 
 msgid "LAN connection"
 msgstr "Połączenie LAN"
+
+msgid "LED Blinking"
+msgstr ""
+
+msgid "LED Deep Standby"
+msgstr ""
+
+msgid "LED Normal"
+msgstr ""
+
+msgid "LED Standby"
+msgstr ""
 
 #
 msgid "LNB"
@@ -3683,9 +3742,6 @@ msgid "MiniDLNA Log"
 msgstr ""
 
 msgid "MiniDLNA Setup"
-msgstr ""
-
-msgid "MiniDNLA Setup"
 msgstr ""
 
 msgid "Mins"
@@ -4056,6 +4112,9 @@ msgstr "Nie znaleziono głowicy sat!!!"
 #
 msgid "No satellite frontend found!!"
 msgstr "Nie znaleziono tunera!!!"
+
+msgid "No selected binary data!!"
+msgstr ""
 
 #
 msgid "No tags are set on these movies."
@@ -5085,10 +5144,6 @@ msgid "Quickzap"
 msgstr "Szybkie przełączanie"
 
 #
-msgid "RC Menu"
-msgstr "Menu RC"
-
-#
 msgid "RF output"
 msgstr "Wyjście RF"
 
@@ -5329,10 +5384,6 @@ msgstr ""
 #, python-format
 msgid "Renamed %s!"
 msgstr ""
-
-#
-msgid "Repeat"
-msgstr "Powtórz"
 
 msgid "Repeat Display Message"
 msgstr ""
@@ -5734,6 +5785,9 @@ msgid ""
 "Scans default lamedbs sorted by satellite with a connected dish positioner"
 msgstr "Domyślne skanuje lamedbs wg satelit z podłączonym pozycjonerem"
 
+msgid "Scrolling Speed"
+msgstr ""
+
 msgid "Search"
 msgstr ""
 
@@ -6072,6 +6126,9 @@ msgstr ""
 msgid "Show PTS Infobar while timeshifting?"
 msgstr ""
 
+msgid "Show Picons (requires a restart)"
+msgstr ""
+
 msgid "Show Readers/Proxies"
 msgstr ""
 
@@ -6089,10 +6146,6 @@ msgstr "Pokazuj 'trybiki' gdy zajęty"
 #
 msgid "Show background in Radio Mode"
 msgstr "Wyświetlaj tapetę w trybie radio"
-
-#
-msgid "Show blinking clock in display during recording"
-msgstr "Pokaż migający zegar na wyświetlaczu gdy nagrywa"
 
 msgid "Show bouquet on launch"
 msgstr ""
@@ -7010,6 +7063,9 @@ msgstr "Plugin zainstalowany"
 #
 msgid "This plugin is not installed."
 msgstr "Plugin nie zainstalowany"
+
+msgid "This plugin is supported only the Ultimo/Uno."
+msgstr ""
 
 #
 msgid "This plugin will be installed."
@@ -8222,6 +8278,9 @@ msgstr ""
 "Nie wybrałeś niczego do zainstalowania. W celu zakończenia kreatora wciśnij "
 "przycisk OK."
 
+msgid "You chose the incorrect file."
+msgstr ""
+
 msgid "You didn't select a channel to record from."
 msgstr "Nie wybrałeś kanału z którego nagrywać"
 
@@ -9412,9 +9471,6 @@ msgstr "Skanowanie w toku - %d%% skończone!"
 msgid "scan state"
 msgstr "Status skanowania"
 
-msgid "scrolling Speed"
-msgstr ""
-
 #
 msgid "second"
 msgstr "sekunda"
@@ -9824,3 +9880,23 @@ msgstr "Przełącz"
 #
 msgid "zapped"
 msgstr "Przełączony"
+
+#
+#~ msgid "Delay"
+#~ msgstr "Opóźnienie"
+
+#
+#~ msgid "Keymap"
+#~ msgstr "Układ klawiszy"
+
+#
+#~ msgid "RC Menu"
+#~ msgstr "Menu RC"
+
+#
+#~ msgid "Repeat"
+#~ msgstr "Powtórz"
+
+#
+#~ msgid "Show blinking clock in display during recording"
+#~ msgstr "Pokaż migający zegar na wyświetlaczu gdy nagrywa"

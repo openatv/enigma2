@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-05 11:09+0000\n"
+"POT-Creation-Date: 2011-12-20 11:09+0000\n"
 "PO-Revision-Date: 2010-05-12 13:09+0200\n"
 "Last-Translator: acid-burn <>\n"
 "Language-Team: none\n"
@@ -1009,6 +1009,21 @@ msgstr "Uchovať zmenšeniny"
 msgid "Can't cancel during upgrade!!"
 msgstr ""
 
+msgid "Can't find /usr/bin/md5sum"
+msgstr ""
+
+msgid "Can't found MD5 file."
+msgstr ""
+
+msgid "Can't found binary file."
+msgstr ""
+
+msgid "Can't found device file!!"
+msgstr ""
+
+msgid "Can't found model name."
+msgstr ""
+
 msgid "Cancel"
 msgstr "Zrušiť"
 
@@ -1540,9 +1555,6 @@ msgstr "Predvolené nastavenia"
 msgid "Default movie location"
 msgstr "Predvolené umiestnenie filmov"
 
-msgid "Delay"
-msgstr "Oneskorenie"
-
 msgid "Delete"
 msgstr "Vymazať"
 
@@ -1787,6 +1799,9 @@ msgstr "Chcete si toto DVD prezrieť pred napálením?"
 msgid "Do you want to reboot your Dreambox?"
 msgstr "Chcete reštartovať Dreambox?"
 
+msgid "Do you want to remove binary data?"
+msgstr ""
+
 msgid "Do you want to remove the package:\n"
 msgstr "Chcete odstrániť balíček:\n"
 
@@ -1885,6 +1900,9 @@ msgstr "Dátové DVD vo formáte Dreambox (vyhovuje HDTV)"
 
 msgid "Dreambox software because updates are available."
 msgstr "Softvér Dreamboxa, lebo sú k dispozícii aktualizácie."
+
+msgid "Drivers:"
+msgstr ""
 
 msgid "Dynamic contrast"
 msgstr "Dynamický kontrast"
@@ -2209,6 +2227,9 @@ msgstr "FEC"
 msgid "FILE NOT EXIST : /proc/stb/fp/remote_code"
 msgstr ""
 
+msgid "FPGA"
+msgstr ""
+
 msgid "FPGA Upgrade"
 msgstr ""
 
@@ -2220,6 +2241,16 @@ msgstr ""
 
 msgid "Factory reset"
 msgstr "Továrenské nastavenia"
+
+msgid "Fail to upgrade!! Retry!!"
+msgstr ""
+
+#, python-format
+msgid ""
+"Fail to verify data file. \n"
+"file[%s]\n"
+"md5[%s]"
+msgstr ""
 
 msgid "Failed"
 msgstr "Zlyhalo"
@@ -2284,6 +2315,12 @@ msgstr ""
 msgid "File not found"
 msgstr ""
 
+#, python-format
+msgid ""
+"File not found in this URL:\n"
+"%s"
+msgstr ""
+
 msgid ""
 "File oscam.conf not found.\n"
 "Please enter username/password manually."
@@ -2306,6 +2343,15 @@ msgstr "Nastavenie siete je skončené"
 
 msgid "Finished restarting your network"
 msgstr "Reštartovanie siete je skončené"
+
+msgid "Firmware"
+msgstr ""
+
+msgid "Firmware Upgrade"
+msgstr ""
+
+msgid "Firmware does not exist."
+msgstr ""
 
 msgid "Flash"
 msgstr "Flešovať"
@@ -2363,6 +2409,9 @@ msgstr "Pi"
 
 msgid "Friday"
 msgstr "Piatok"
+
+msgid "Front Processor"
+msgstr ""
 
 #, python-format
 msgid "Frontprocessor version: %d"
@@ -2763,6 +2812,9 @@ msgstr ""
 msgid "Job View"
 msgstr "Prehľad úloh"
 
+msgid "Job task(s) are in progress!"
+msgstr ""
+
 msgid "July"
 msgstr ""
 
@@ -2794,9 +2846,6 @@ msgstr "Rozloženie klávesov"
 msgid "Keyboard Setup"
 msgstr "Nastavenie klávesnice"
 
-msgid "Keymap"
-msgstr "Rozloženie klávesov"
-
 msgid "Kill partition table"
 msgstr ""
 
@@ -2805,6 +2854,18 @@ msgstr "Adaptér LAN"
 
 msgid "LAN connection"
 msgstr "Pripojenie LAN"
+
+msgid "LED Blinking"
+msgstr ""
+
+msgid "LED Deep Standby"
+msgstr ""
+
+msgid "LED Normal"
+msgstr ""
+
+msgid "LED Standby"
+msgstr ""
 
 msgid "LNB"
 msgstr "LNB"
@@ -3065,9 +3126,6 @@ msgid "MiniDLNA Log"
 msgstr ""
 
 msgid "MiniDLNA Setup"
-msgstr ""
-
-msgid "MiniDNLA Setup"
 msgstr ""
 
 msgid "Mins"
@@ -3367,6 +3425,9 @@ msgstr ""
 
 msgid "No satellite frontend found!!"
 msgstr "Nebol nájdený satelitný tuner!"
+
+msgid "No selected binary data!!"
+msgstr ""
 
 msgid "No tags are set on these movies."
 msgstr "Na týchto filmoch nie sú nastavené žiadne štítky."
@@ -4215,9 +4276,6 @@ msgstr ""
 msgid "Quickzap"
 msgstr "Rýchle prepínanie"
 
-msgid "RC Menu"
-msgstr "Menu RC"
-
 msgid "RF output"
 msgstr "VF výstup"
 
@@ -4415,9 +4473,6 @@ msgstr ""
 #, python-format
 msgid "Renamed %s!"
 msgstr ""
-
-msgid "Repeat"
-msgstr "Opakovať"
 
 msgid "Repeat Display Message"
 msgstr ""
@@ -4741,6 +4796,9 @@ msgid ""
 msgstr ""
 "Prehľadať predvolené lamedb zotriedené podľa satelitov a pripojeného motora"
 
+msgid "Scrolling Speed"
+msgstr ""
+
 msgid "Search"
 msgstr ""
 
@@ -5022,6 +5080,9 @@ msgstr ""
 msgid "Show PTS Infobar while timeshifting?"
 msgstr ""
 
+msgid "Show Picons (requires a restart)"
+msgstr ""
+
 msgid "Show Readers/Proxies"
 msgstr ""
 
@@ -5036,9 +5097,6 @@ msgstr ""
 
 msgid "Show background in Radio Mode"
 msgstr ""
-
-msgid "Show blinking clock in display during recording"
-msgstr "Počas nahrávania zobrazovať blikajúce hodiny"
 
 msgid "Show bouquet on launch"
 msgstr ""
@@ -5797,6 +5855,9 @@ msgstr "Tento modul je nainštalovaný."
 
 msgid "This plugin is not installed."
 msgstr "Tento modul nie je nainštalovaný."
+
+msgid "This plugin is supported only the Ultimo/Uno."
+msgstr ""
 
 msgid "This plugin will be installed."
 msgstr "Tento modul sa nainštaluje."
@@ -6805,6 +6866,9 @@ msgstr ""
 "Vybrali ste si nenainštalovať nič. Stlačením tlačidla OK ukončíte sprievodcu "
 "inštaláciou."
 
+msgid "You chose the incorrect file."
+msgstr ""
+
 msgid "You didn't select a channel to record from."
 msgstr "Nezvolili ste stanicu, z ktorej sa má nahrávať."
 
@@ -7754,9 +7818,6 @@ msgstr "Hľadám - %d%% hotových!"
 msgid "scan state"
 msgstr "stav vyhľadávania"
 
-msgid "scrolling Speed"
-msgstr ""
-
 msgid "second"
 msgstr "sekunda"
 
@@ -8087,3 +8148,18 @@ msgstr "prepnúť"
 
 msgid "zapped"
 msgstr "prepnuté"
+
+#~ msgid "Delay"
+#~ msgstr "Oneskorenie"
+
+#~ msgid "Keymap"
+#~ msgstr "Rozloženie klávesov"
+
+#~ msgid "RC Menu"
+#~ msgstr "Menu RC"
+
+#~ msgid "Repeat"
+#~ msgstr "Opakovať"
+
+#~ msgid "Show blinking clock in display during recording"
+#~ msgstr "Počas nahrávania zobrazovať blikajúce hodiny"
