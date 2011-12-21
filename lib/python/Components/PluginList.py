@@ -6,7 +6,7 @@ from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixm
 from enigma import eListboxPythonMultiContent, gFont
 from Tools.LoadPixmap import LoadPixmap
 
-def PluginEntryComponent(plugin, width=440):
+def PluginEntryComponent(plugin, width=540):
 	if plugin.icon is None:
 		png = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/plugin.png"))
 	else:
