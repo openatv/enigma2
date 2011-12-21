@@ -1534,16 +1534,20 @@ class InfoBarSeek:
 		self.seekstate = state
 
 		if pauseable is not None:
-			if self.seekstate[0]:
+			if self.seekstate[0] and self.seekstate[3] == '||':
 				print "resolved to PAUSE"
 				self.activityTimer.stop()
 				pauseable.pause()
+			elif self.seekstate[0] and self.seekstate[3] == 'END':
+				print "resolved to STOP"
+				self.activityTimer.stop()
+				service.stop()
 			elif self.seekstate[1]:
 				print "resolved to FAST FORWARD"
- 				pauseable.setFastForward(self.seekstate[1])
+				pauseable.setFastForward(self.seekstate[1])
 			elif self.seekstate[2]:
 				print "resolved to SLOW MOTION"
- 				pauseable.setSlowMotion(self.seekstate[2])
+				pauseable.setSlowMotion(self.seekstate[2])
 			else:
 				print "resolved to PLAY"
 				self.activityTimer.start(200, False)
@@ -1766,7 +1770,7 @@ class InfoBarPVRState:
 		self.force_show = force_show
 
 	def _mayShow(self):
-		if self.execing and self.seekstate != self.SEEK_STATE_PLAY:
+		if self.execing and self.seekstate != self.SEEK_STATE_PLAY and self.seekstate != self.SEEK_STATE_EOF:
 			self.pvrStateDialog.show()
 
 	def __playStateChanged(self, state):
