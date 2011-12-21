@@ -123,8 +123,10 @@ class pliExpertInfo(Poll, Converter, object):
 					Sec_Text += decCIfull
 					if provid != '0':
 						Sec_Text += ":%04x" % int(provid, 16)
+					else:
+						Sec_Text += ":"
 					if pid != '0':
-						Sec_Text += sep + "pid:%04x" % int(pid, 16)
+						Sec_Text += ":%04x:%04x" % (info.getInfo(iServiceInformation.sSID),int(pid, 16))
 			
 			elif not config.usage.show_cryptoinfo.value:
 				showCryptoInfo = True
