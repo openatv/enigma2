@@ -490,7 +490,7 @@ int eMPEGStreamParserTS::processPacket(const unsigned char *pkt, off_t offset)
 		if (!(pkt[0] || pkt[1] || (pkt[2] != 1)))
 		{
 //			eDebug("SC %02x %02x %02x %02x, %02x", pkt[0], pkt[1], pkt[2], pkt[3], pkt[4]);
-			int sc = pkt[3];
+			unsigned int sc = pkt[3];
 			
 			if (m_streamtype == 0) /* mpeg2 */
 			{
@@ -504,27 +504,19 @@ int eMPEGStreamParserTS::processPacket(const unsigned char *pkt, off_t offset)
 							//eDebug("Sequence header at %llx, pts %llx", offset, pts);
 						}
 					}
-					if (pkt < (end - 6))
+					if (pkt <= (end - 6))
 					{
-						unsigned long long data = sc | (pkt[4] << 8) | (pkt[5] << 16) | (pkt[6] << 24);
-						writeStructureEntry(offset + pkt_offset, data & 0xFFFFFFFFULL);
+						unsigned long long data = sc | ((unsigned)pkt[4] << 8) | ((unsigned)pkt[5] << 16);
+						if (ptsvalid) // If available, add timestamp data as well. PTS = 33 bits
+							data |= (pts << 31) | 0x1000000;
+						writeStructureEntry(offset + pkt_offset, data);
 					}
 					else
 					{
-						if (pkt == end-6)
-						{
-							// This happens when recording VOX, why???
-							// Just ignore that last byte? Would that work?
-							unsigned long long data = sc | (pkt[4] << 8) | (pkt[5] << 16);
-							writeStructureEntry(offset + pkt_offset, data & 0xFFFFFFFFULL);
-						}
-						else
-						{
-							// Returning non-zero suggests we need more data. This does not
-							// work, and never has, so we should make this a void function
-							// or fix that...
-							return 1;
-						}
+						// Returning non-zero suggests we need more data. This does not
+						// work, and never has, so we should make this a void function
+						// or fix that...
+						return 1;
 					}
 				}
 			}
@@ -534,6 +526,8 @@ int eMPEGStreamParserTS::processPacket(const unsigned char *pkt, off_t offset)
 				{
 					/* store image type */
 					unsigned long long data = sc | (pkt[4] << 8);
+					if (ptsvalid) // If available, add timestamp data as well. PTS = 33 bits
+						data |= (pts << 31) | 0x1000000;
 					writeStructureEntry(offset + pkt_offset, data);
 					if ( //pkt[3] == 0x09 &&   /* MPEG4 AVC NAL unit access delimiter */
 						 (pkt[4] >> 5) == 0) /* and I-frame */
