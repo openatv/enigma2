@@ -18,6 +18,7 @@ class About(Screen):
 		
 	def __init__(self, session):
 		Screen.__init__(self, session)
+		self.skinName = "AboutAAF"
 		Screen.setTitle(self, _("Image Information"))
 
 		
@@ -28,6 +29,11 @@ class About(Screen):
 			})
 
 class SystemInfo(Screen):
+	skin = """
+		<screen name="SystemInfo" position="center,center" size="800,470" title="SystemInfo">
+		<eLabel text="Systeminformation" position="28,15" size="540,43" font="Regular;35" halign="left"  transparent="1" />
+		<widget name="AboutScrollLabel" position="28,74" size="780,484" font="Regular; 20" transparent="0" zPosition="1" scrollbarMode="showOnDemand" />
+	</screen>"""	
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("System Information"))
