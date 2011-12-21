@@ -1956,6 +1956,7 @@ class InfoBarTimeshift:
 		self["TimeshiftActions"] = HelpableActionMap(self, "InfobarTimeshiftActions",
 			{
 				"timeshiftStart": (self.startTimeshift, _("start timeshift")),  # the "yellow key"
+				"timeshiftStartY": (self.selectYellowkeyAction, _("Yellow Key")),  # the "yellow key"
 				"timeshiftStop": (self.stopTimeshift, _("stop timeshift")),      # currently undefined :), probably 'TV'
 				"instantRecord": self.instantRecord,
 				"restartTimeshift": self.restartTimeshift
@@ -2223,6 +2224,16 @@ class InfoBarTimeshift:
 			self.__seekableStatusChanged()
 		else:
 			self.pts_eventcount = 0
+
+	def selectYellowkeyAction(self):
+		if config.plugins.aafpanel_yellowkey.list.value == '0':
+			self.audioSelection()
+		else:
+			self.startTimeshift()
+
+	def audioSelection(self):
+		from Screens.AudioSelection import AudioSelection
+		self.session.openWithCallback(self.audioSelected, AudioSelection, infobar=self)
 
 	def startTimeshift(self):
 		if config.timeshift.enabled.value:

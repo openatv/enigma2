@@ -39,6 +39,8 @@ inAAFPanel = None
 config.plugins.aafpanel_redpanel = ConfigSubsection()
 config.plugins.aafpanel_redpanel.enabled = ConfigYesNo(default=True)
 config.plugins.aafpanel_redpanel.enabledlong = ConfigYesNo(default=False)
+config.plugins.aafpanel_yellowkey = ConfigSubsection()
+config.plugins.aafpanel_yellowkey.list = ConfigSelection([('0',_("Audio Selection")),('1',_("Default (Timeshift)"))])
 config.plugins.showaafpanelextensions = ConfigYesNo(default=False)
 
 	
@@ -264,7 +266,8 @@ class Aafpanel(Screen, InfoBarPiP):
 		if Check_Softcam():
 			self.Mlist.append(MenuEntryItem((AafEntryComponent('SoftcamPanel'), _("SoftcamPanel"), 'SoftcamPanel')))
 			self.Mlist.append(MenuEntryItem((AafEntryComponent('Softcam-Panel Setup'), _("Softcam-Panel Setup"), 'Softcam-Panel Setup')))
-		self.Mlist.append(MenuEntryItem((AafEntryComponent('RedPanel'), _("RedPanel"), 'RedPanel')))	
+		self.Mlist.append(MenuEntryItem((AafEntryComponent('RedPanel'), _("RedPanel"), 'RedPanel')))
+		self.Mlist.append(MenuEntryItem((AafEntryComponent('Yellow-Key-Action'), _("Yellow-Key-Action"), 'Yellow-Key-Action')))
 		self.Mlist.append(MenuEntryItem((AafEntryComponent('KeymapSel'), _("Keymap Selection"), 'KeymapSel')))	
 		self.Mlist.append(MenuEntryItem((AafEntryComponent('Plugins'), _("Plugins"), 'Plugins')))
 		self.Mlist.append(MenuEntryItem((AafEntryComponent('Infos'), _("Infos"), 'Infos')))
@@ -402,6 +405,8 @@ class Aafpanel(Screen, InfoBarPiP):
 			self.session.open(Swap)
 		elif menu == "RedPanel":
 			self.session.open(RedPanel)
+		elif menu == "Yellow-Key-Action":
+			self.session.open(YellowPanel)
 		elif menu == "Softcam-Panel Setup":
 			self.session.open(ShowSoftcamPanelExtensions)
 		elif menu == "KeymapSel":
@@ -588,6 +593,46 @@ class RedPanel(ConfigListScreen,Screen):
 
 	def ok(self):
 		config.plugins.aafpanel_redpanel.save()
+		self.close()
+
+class YellowPanel(ConfigListScreen,Screen):
+	def __init__(self, session):
+		self.service = None
+		Screen.__init__(self, session)
+
+		self.skin = CONFIG_SKIN
+		self.onShown.append(self.setWindowTitle)
+
+		self["labelExitsave"] = Label(ExitSave)
+
+		self.Clist = []
+		self.Clist.append(getConfigListEntry(_("Yellow Key Action"), config.plugins.aafpanel_yellowkey.list))
+		ConfigListScreen.__init__(self, self.Clist)
+
+		self["actions"] = ActionMap(["OkCancelActions", "DirectionActions", "ColorActions", "SetupActions"],
+		{
+			"cancel": self.Exit,
+			"ok": self.ok,
+			"left": self.keyLeft,
+			"right": self.keyRight,
+			"green": self.ok,
+			"red": self.Exit,
+		}, -2)
+
+	def setWindowTitle(self):
+		self.setTitle(_("Yellow Key Action"))
+
+	def Exit(self):
+		self.close()
+
+	def keyLeft(self):
+		ConfigListScreen.keyLeft(self)
+	def keyRight(self):
+		ConfigListScreen.keyRight(self)
+
+	def ok(self):
+		#// save and exit
+		config.plugins.aafpanel_yellowkey.save()
 		self.close()
 
 class ShowSoftcamPanelExtensions(ConfigListScreen,Screen):
