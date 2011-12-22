@@ -518,7 +518,10 @@ class Pic_Full_View(Screen):
 	def ShowPicture(self):
 		if self.shownow and len(self.currPic):
 			self.shownow = False
-			self["file"].setText(self.currPic[0])
+			if config.pic.infoline.value:
+				self["file"].setText(self.currPic[0])
+			else:
+				self["file"].setText("")
 			self.lastindex = self.currPic[1]
 			self["pic"].instance.setPixmap(self.currPic[2].__deref__())
 			self.currPic = []

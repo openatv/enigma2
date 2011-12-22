@@ -6,34 +6,8 @@
 #include <sys/ioctl.h>
 #include <sys/mman.h>
 
-//#define SHOW_WRITE_TIME
-
-#ifdef SHOW_WRITE_TIME
-#	include <sys/types.h>
-#	include <sys/stat.h>
-#	include <sys/time.h>
-#endif
-
-// For SYS_ stuff
-#include <syscall.h>
-
 #define PVR_COMMIT 1
 
-static size_t flushSize = 512 * 1024;
-
-// Defined and exported to SWIG in systemsettings.h
-int getFlushSize(void)
-{
-	return (int)flushSize;
-}
-
-void setFlushSize(int size)
-{
-	if (size >= 0)
-	{
-		flushSize = (size_t)size;
-	}
-}
 
 
 eFilePushThread::eFilePushThread(int io_prio_class, int io_prio_level, int blocksize, size_t buffersize)
@@ -72,9 +46,6 @@ void eFilePushThread::thread()
 	size_t bytes_read = 0;
 	off_t current_span_offset = 0;
 	size_t current_span_remaining = 0;
-	off_t offset_last_sync = 0;
-	size_t written_since_last_sync = 0;
-
 	eDebug("FILEPUSH THREAD START");
 	
 		/* we set the signal to not restart syscalls, so we can detect our signal. */
@@ -136,11 +107,6 @@ void eFilePushThread::thread()
 			if (m_buf_start == m_buf_end)
 				continue;
 
-#ifdef SHOW_WRITE_TIME
-			struct timeval starttime;
-			struct timeval now;
-			gettimeofday(&starttime, NULL);
-#endif
 			/* now write out data. it will be 'aligned' (according to filterRecordData). 
 			   absolutely forbidden is to return EINTR and consume a non-aligned number of bytes. 
 			*/
@@ -154,45 +120,6 @@ void eFilePushThread::thread()
 				sendEvent(evtWriteError);
 				break;
 				// ... we would stop the thread
-			}
-
-#ifdef SHOW_WRITE_TIME
-			gettimeofday(&now, NULL);
-			suseconds_t elapsed = (now.tv_sec - starttime.tv_sec) * 1000000;
-			elapsed += now.tv_usec;
-			elapsed -= starttime.tv_usec;
-			if (elapsed > 30000)
-				eDebug("[filepush] LONG WRITE (>30ms): %u us", elapsed);
-#endif
-			if (!m_send_pvr_commit && (flushSize != 0))
-			{
-				written_since_last_sync += w;
-				if (written_since_last_sync > flushSize)
-				{
-#ifdef SHOW_WRITE_TIME
-					 gettimeofday(&starttime, NULL);
-#endif
-
-					int pr;
-					pr = syscall(SYS_fadvise64, m_fd_dest, offset_last_sync, 0, 0, 0, POSIX_FADV_DONTNEED);
-					if (pr != 0)
-					{
-						eDebug("[filepush] POSIX_FADV_DONTNEED returned %d", pr);
-					}
-#ifdef SHOW_WRITE_TIME
-					else
-					{
-						 gettimeofday(&now, NULL);
-						 suseconds_t elapsed = (now.tv_sec - starttime.tv_sec) * 1000000;
-						 elapsed += now.tv_usec;
-						 elapsed -= starttime.tv_usec;
-						 if (elapsed > 20000)
-						    eDebug("[filepush] POSIX_FADV_DONTNEED (%u) (>20ms): %u us", (unsigned int)offset_last_sync, (unsigned int)elapsed);
-					}
-#endif
-					offset_last_sync += written_since_last_sync;
-					written_since_last_sync = 0;
-				}
 			}
 
 //			printf("FILEPUSH: wrote %d bytes\n", w);
@@ -383,7 +310,6 @@ eFilePushThreadRecorder::eFilePushThreadRecorder(int io_prio_class, int io_prio_
 	:prio_class(io_prio_class),
 	 prio(io_prio_level),
 	 m_stop(0),
-	 m_fd_dest(-1),
 	 m_fd_source(-1),
 	 m_blocksize(blocksize),
 	 m_buffersize(buffersize),
@@ -414,9 +340,6 @@ void eFilePushThreadRecorder::thread()
 
 	hasStarted();
 
-	off_t offset_last_sync = 0;
-	size_t written_since_last_sync = 0;
-
 	/* m_stop must be evaluated after each syscall. */
 	while (!m_stop)
 	{
@@ -435,87 +358,26 @@ void eFilePushThreadRecorder::thread()
 			sendEvent(evtReadError);
 			break;
 		}
-		// Give parser a peek at the data
-		filterRecordData(m_buffer, bytes);
 
 #ifdef SHOW_WRITE_TIME
 		struct timeval starttime;
 		struct timeval now;
 		gettimeofday(&starttime, NULL);
 #endif
-		const unsigned char* buffer = m_buffer;
-		size_t total_written = 0;
-		do
+		int w = writeData(m_buffer, bytes);
+		if (w < 0)
 		{
-			int w = write(m_fd_dest, buffer, bytes - total_written);
-			if (w < 0)
-			{
-				if (errno == EINTR || errno == EAGAIN || errno == EBUSY)
-				{
-					eDebug("[eFilePushThreadRecorder] interrupted write");
-				}
-				else
-				{
-					eDebug("[eFilePushThreadRecorder] WRITE ERROR");
-					sendEvent(evtWriteError);
-					break;
-					// ... we would stop the thread
-				}
-			}
-			else
-			{
-				total_written += w;
-				buffer += w;
-			}
-		}
-		while (total_written != bytes);
-
-#ifdef SHOW_WRITE_TIME
-		gettimeofday(&now, NULL);
-		suseconds_t elapsed = (now.tv_sec - starttime.tv_sec) * 1000000;
-		elapsed += now.tv_usec;
-		elapsed -= starttime.tv_usec;
-		if (elapsed > 30000)
-			eDebug("[filepush] LONG WRITE (>30ms): %u us", elapsed);
-#endif
-		if (flushSize != 0)
-		{
-			written_since_last_sync += bytes;
-			if (written_since_last_sync > flushSize)
-			{
-#ifdef SHOW_WRITE_TIME
-				gettimeofday(&starttime, NULL);
-#endif
-				int pr;
-				pr = syscall(SYS_fadvise64, m_fd_dest, offset_last_sync, 0, 0, 0, POSIX_FADV_DONTNEED);
-				if (pr != 0)
-				{
-					eDebug("[filepush] POSIX_FADV_DONTNEED returned %d", pr);
-				}
-#ifdef SHOW_WRITE_TIME
-				else
-				{
-						gettimeofday(&now, NULL);
-						suseconds_t elapsed = (now.tv_sec - starttime.tv_sec) * 1000000;
-						elapsed += now.tv_usec;
-						elapsed -= starttime.tv_usec;
-						if (elapsed > 20000)
-						eDebug("[filepush] POSIX_FADV_DONTNEED (%u) (>20ms): %u us", (unsigned int)offset_last_sync, (unsigned int)elapsed);
-				}
-#endif
-				offset_last_sync += written_since_last_sync;
-				written_since_last_sync = 0;
-			}
+			eDebug("[eFilePushThreadRecorder] WRITE ERROR, aborting thread");
+			sendEvent(evtWriteError);
+			break;
 		}
 	}
 	eDebug("[eFilePushThreadRecorder] THREAD STOP");
 }
 
-void eFilePushThreadRecorder::start(int fd, int fd_dest)
+void eFilePushThreadRecorder::start(int fd)
 {
 	m_fd_source = fd;
-	m_fd_dest = fd_dest;
-	m_current_position = 0;
 	m_stop = 0;
 	run();
 }
