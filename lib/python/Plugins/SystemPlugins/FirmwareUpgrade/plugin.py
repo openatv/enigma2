@@ -28,12 +28,12 @@ if os.path.exists("/proc/stb/info/vumodel"):
 
 	if info == "ultimo":
 		fwlist= [
-			 ("fp", _("Front Processor"))
-			,("fpga", _("FPGA"))
+			 ("fpga", _("FPGA"))
+			,("fp", _("Front Processor"))
 			]
 		fwdata= { 
-			 "fp"   : ["http://archive.vuplus.com/download/fp", "fp.files", "/dev/bcm_mu;"]
-			,"fpga" : ["http://archive.vuplus.com/download/fpga", "fpga.files", "/dev/fpga_dp;/dev/misc/dp;"]
+			 "fpga" : ["http://archive.vuplus.com/download/fpga", "fpga.files", "/dev/fpga_dp;/dev/misc/dp;"]
+			,"fp"   : ["http://archive.vuplus.com/download/fp", "fp.files", "/dev/bcm_mu;"]
 			}
 	elif info == "uno":
 		fwlist= [
