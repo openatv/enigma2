@@ -5,6 +5,15 @@
 #include <unistd.h>
 #include <signal.h>
 #include <lib/base/systemsettings.h>
+// For SYS_ stuff
+#include <syscall.h>
+//#define SHOW_WRITE_TIME
+#ifdef SHOW_WRITE_TIME
+#	include <sys/types.h>
+#	include <sys/stat.h>
+#	include <sys/time.h>
+#endif
+
 
 
 static int demuxSize = 8 * 188 * 1024;
@@ -21,6 +30,21 @@ void setDemuxSize(int size)
 	}
 }
 
+static size_t flushSize = 0;
+
+// Defined and exported to SWIG in systemsettings.h
+int getFlushSize(void)
+{
+	return (int)flushSize;
+}
+
+void setFlushSize(int size)
+{
+	if (size >= 0)
+	{
+		flushSize = (size_t)size;
+	}
+}
 
 // #define FUZZING 1
 
@@ -476,19 +500,26 @@ public:
 	void startSaveMetaInformation(const std::string &filename);
 	void stopSaveMetaInformation();
 	int getLastPTS(pts_t &pts);
+	void setTargetFD(int fd) { m_fd_dest = fd; }
 protected:
-	/* override */ void filterRecordData(const unsigned char *data, int len);
+	/* override */ int writeData(const unsigned char *data, int len);
 private:
 	eMPEGStreamParserTS m_ts_parser;
 	off_t m_current_offset;
 	pts_t m_last_pcr; /* very approximate.. */
 	int m_pid;
+	int m_fd_dest;
+	off_t offset_last_sync;
+	size_t written_since_last_sync;
 };
 
 eDVBRecordFileThread::eDVBRecordFileThread()
 	:eFilePushThreadRecorder(IOPRIO_CLASS_RT, 7, /*blocksize*/ 188, /*buffersize*/ 188 * 1024),
 	 m_ts_parser(),
-	 m_current_offset(0)
+	 m_current_offset(0),
+	 m_fd_dest(-1),
+	 offset_last_sync(0),
+	 written_since_last_sync(0)
 {
 }
 
@@ -512,10 +543,49 @@ int eDVBRecordFileThread::getLastPTS(pts_t &pts)
 	return m_ts_parser.getLastPTS(pts);
 }
 
-void eDVBRecordFileThread::filterRecordData(const unsigned char *data, int len)
+int eDVBRecordFileThread::writeData(const unsigned char *data, int len)
 {
 	m_ts_parser.parseData(m_current_offset, data, len);
-	m_current_offset += len;
+	size_t total_written = 0;
+	do
+	{
+		int w = ::write(m_fd_dest, data, len);
+		if (w < 0)
+		{
+			if (errno == EINTR || errno == EAGAIN || errno == EBUSY)
+			{
+				eDebug("[eFilePushThreadRecorder] interrupted write");
+			}
+			else
+			{
+				return -1;
+			}
+		}
+		else
+		{
+			len -= w;
+			m_current_offset += w;
+			total_written += w;
+			data += w;
+		}
+	}
+	while (len != 0);
+	// do the flush thing if the user wanted it
+	if (flushSize != 0)
+	{
+		written_since_last_sync += total_written;
+		if (written_since_last_sync > flushSize)
+		{
+			int pr;
+			pr = syscall(SYS_fadvise64, m_fd_dest, offset_last_sync, 0, 0, 0, POSIX_FADV_DONTNEED);
+			if (pr != 0)
+			{
+				eDebug("[filepush] POSIX_FADV_DONTNEED returned %d", pr);
+			}
+			offset_last_sync += written_since_last_sync;
+			written_since_last_sync = 0;
+		}
+	}
 }
 
 DEFINE_REF(eDVBTSRecorder);
@@ -609,7 +679,7 @@ RESULT eDVBTSRecorder::start()
 	if (!m_target_filename.empty())
 		m_thread->startSaveMetaInformation(m_target_filename);
 	
-	m_thread->start(m_source_fd, m_target_fd);
+	m_thread->start(m_source_fd);
 	m_running = 1;
 
 	while (i != m_pids.end()) {
@@ -660,10 +730,11 @@ RESULT eDVBTSRecorder::setTimingPID(int pid, int type)
 RESULT eDVBTSRecorder::setTargetFD(int fd)
 {
 	m_target_fd = fd;
+	m_thread->setTargetFD(fd);
 	return 0;
 }
 
-RESULT eDVBTSRecorder::setTargetFilename(const char *filename)
+RESULT eDVBTSRecorder::setTargetFilename(const std::string& filename)
 {
 	m_target_filename = filename;
 	return 0;
