@@ -1,4 +1,4 @@
-import os
+﻿import os
 import time
 from os import system, listdir, statvfs, popen, makedirs, stat, major, minor, path, access
 from Tools.Directories import SCOPE_HDD, SCOPE_TIMESHIFT, resolveFilename, pathExists
@@ -443,7 +443,8 @@ class Harddisk:
 		self.timer = eTimer()
 		self.timer.callback.append(self.runIdle)
 		self.idle_running = True
-		self.setIdleTime(self.max_idle_time) # kick the idle polling loop
+		self.hdd_timer = False
+		self.setIdleTime(self.max_idle_time, self.hdd_timer) # kick the idle polling loop
 
 	def runIdle(self):
 		if not self.max_idle_time:
@@ -477,8 +478,23 @@ class Harddisk:
 				if size > 50:
 					system("hdparm -y /dev/" + disc) 
 					system("/usr/bin/sdparm -C stop /dev/" + disc)
-	def setIdleTime(self, idle):
-		self.max_idle_time = idle
+	def setIdleTime(self, idle, hddtimer):
+		# use hardwaretimer if asked to
+		if hddtimer:
+			self.timer.stop()
+			idle_parm = 0
+			# calculate the complicated timeout needed by hdparm
+			if idle < 1200:
+				idle_parm = idle / 5
+			else:
+				if idle >= 1800:
+					idle_parm = 240 + idle / 1800
+					if idle_parm > 251:
+						idle_parm = 251
+			# don't support timeouts of more than 5.5 hours
+			system("hdparm -S " + `idle_parm` + ' ' + self.disk_path)
+			return
+		self.max_idle_time = idle # make it by hand
 		if self.idle_running:
 			if not idle:
 				self.timer.stop()

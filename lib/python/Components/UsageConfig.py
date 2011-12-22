@@ -58,6 +58,7 @@ def InitUsageConfig():
 		("300", "5 " + _("minutes")), ("600", "10 " + _("minutes")), ("1200", "20 " + _("minutes")),
 		("1800", "30 " + _("minutes")), ("3600", "1 " + _("hour")), ("7200", "2 " + _("hours")),
 		("14400", "4 " + _("hours")) ])
+	config.usage.hdd_timer = ConfigYesNo(default = False)	
 	config.usage.output_12V = ConfigSelection(default = "do not change", choices = [
 		("do not change", _("do not change")), ("off", _("off")), ("on", _("on")) ])
 
@@ -282,7 +283,7 @@ def InitUsageConfig():
 
 	def setHDDStandby(configElement):
 		for hdd in harddiskmanager.HDDList():
-			hdd[1].setIdleTime(int(configElement.value))
+			hdd[1].setIdleTime(int(configElement.value),config.usage.hdd_timer.value)
 	config.usage.hdd_standby.addNotifier(setHDDStandby, immediate_feedback=False)
 
 	def set12VOutput(configElement):
