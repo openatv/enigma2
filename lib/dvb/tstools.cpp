@@ -74,6 +74,43 @@ int eDVBTSTools::getPTS(off_t &offset, pts_t &pts, int fixed)
 	if (m_streaminfo.getPTS(offset, pts) == 0)
 		return 0; // Okay, the cache had it
 
+	if (m_streaminfo.hasStructure())
+	{
+		off_t local_offset = offset;
+		unsigned long long data;
+		if (m_streaminfo.getStructureEntry(local_offset, data, 0) == 0)
+		{
+			for(;;)
+			{
+				if (local_offset == 0x7fffffffffffffffULL) // EOF
+				{
+					eDebug("eDVBTSTools::getPTS EOF");
+					break;
+				}
+				if ((data & 0x1000000) != 0)
+				{
+					pts = data >> 31;
+					eDebug("eDVBTSTools::getPTS got it from sc file offset=%llu pts=%llu", local_offset, pts);
+					if (fixed && fixupPTS(local_offset, pts))
+					{
+						eDebug("But failed to fixup!");
+						break;
+					}
+					offset = local_offset;
+					return 0;
+				}
+				else
+				{
+					eDebug("No PTS, try next");
+				}
+				if (m_streaminfo.getStructureEntry(local_offset, data, 1) != 0)
+				{
+					eDebug("Cannot find next structure entry");
+					break;
+				}
+			}
+		}
+	}
 	if (!m_source || !m_source->valid())
 		return -1;
 

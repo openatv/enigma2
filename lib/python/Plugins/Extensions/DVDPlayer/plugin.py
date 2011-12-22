@@ -667,19 +667,26 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 				ifofile = None
 				try:
 #					Try to read the IFO header to determine PAL/NTSC format
+#					and the resolution
 					ifofile = open(ifofilename, "r")
-					ifofile.seek(256)
-					video_attr = ord(ifofile.read(1))
-					isNTSC = (video_attr & 1 == 0)
+					ifofile.seek(0x100)
+					video_attr_high = ord(ifofile.read(1))
+					video_attr_low = ord(ifofile.read(1))
+					isNTSC = (video_attr_high & 0x10 == 0)
+					isLowResolution = (video_attr_low & 0x30 == 30)
 				except:
 #					If the service is an .iso or .img file we assume it is PAL
+#					Sorry we cannot open image files here.
 					isNTSC = False
+					isLowResolution = False
 				finally:
 					if ifofile is not None:
 						ifofile.close()
 				height = getDesktop(0).size().height()
 				if isNTSC:
 					height = height * 576 / 480
+				if isLowResolution:
+					height *= 2
 				self.dvdScreen = self.session.instantiateDialog(DVDOverlay, height=height)
 				self.session.nav.playService(newref)
 				self.service = self.session.nav.getCurrentService()
