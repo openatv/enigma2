@@ -323,7 +323,7 @@ int eDVBTSTools::fixupPTS(const off_t &offset, pts_t &now)
 
 int eDVBTSTools::getOffset(off_t &offset, pts_t &pts, int marg)
 {
-	eDebug("getOffset for pts 0x%llx", pts);
+	eDebug("getOffset for pts %llu", pts);
 	if (m_streaminfo.hasAccessPoints())
 	{
 		if ((pts >= m_pts_end) && (marg > 0) && m_end_valid)
@@ -383,7 +383,7 @@ int eDVBTSTools::getOffset(off_t &offset, pts_t &pts, int marg)
 					continue;
 				}
 
-				eDebug("using: %llx:%llx -> %llx:%llx", l->first, u->first, l->second, u->second);
+				eDebug("using: %llu:%llu -> %llu:%llu", l->first, u->first, l->second, u->second);
 
 				int bitrate;
 				
@@ -452,11 +452,20 @@ void eDVBTSTools::calcBegin()
 
 	if (!(m_begin_valid || m_futile))
 	{
-		m_offset_begin = 0;
-		if (!getPTS(m_offset_begin, m_pts_begin))
+		// Just ask streaminfo
+		if (m_streaminfo.getFirstFrame(m_offset_begin, m_pts_begin) == 0)
+		{
+			eDebug("[@ML] m_streaminfo.getFirstFrame returned %llu, %llu", m_offset_begin, m_pts_begin);
 			m_begin_valid = 1;
+		}
 		else
-			m_futile = 1;
+		{
+			m_offset_begin = 0;
+			if (!getPTS(m_offset_begin, m_pts_begin))
+				m_begin_valid = 1;
+			else
+				m_futile = 1;
+		}
 	}
 }
 
@@ -478,31 +487,42 @@ void eDVBTSTools::calcEnd()
 	int maxiter = 10;
 	
 	m_offset_end = m_last_filelength;
-	
-	while (!(m_end_valid || m_futile))
+
+	if (!m_end_valid)
 	{
-		if (!--maxiter)
+		if (m_streaminfo.getLastFrame(m_offset_end, m_pts_end) == 0)
 		{
-			m_futile = 1;
-			return;
-		}
-
-		m_offset_end -= m_maxrange;
-		if (m_offset_end < 0)
-			m_offset_end = 0;
-
-			/* restore offset if getpts fails */
-		off_t off = m_offset_end;
-
-		if (!getPTS(m_offset_end, m_pts_end))
+			eDebug("[@ML] m_streaminfo.getLastFrame returned %llu, %llu", m_offset_end, m_pts_end);
 			m_end_valid = 1;
+		}
 		else
-			m_offset_end = off;
-
-		if (!m_offset_end)
 		{
-			m_futile = 1;
-			break;
+			while (!(m_end_valid || m_futile))
+			{
+				if (!--maxiter)
+				{
+					m_futile = 1;
+					return;
+				}
+
+				m_offset_end -= m_maxrange;
+				if (m_offset_end < 0)
+					m_offset_end = 0;
+
+					/* restore offset if getpts fails */
+				off_t off = m_offset_end;
+
+				if (!getPTS(m_offset_end, m_pts_end))
+					m_end_valid = 1;
+				else
+					m_offset_end = off;
+
+				if (!m_offset_end)
+				{
+					m_futile = 1;
+					break;
+				}
+			}
 		}
 	}
 }

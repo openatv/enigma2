@@ -263,6 +263,17 @@ int eMPEGStreamInformation::getNextAccessPoint(pts_t &ts, const pts_t &start, in
 #	define structureCacheOffset(i) ((off_t)m_structure_cache[(i)*2])
 #	define structureCacheData(i) ((off_t)m_structure_cache[(i)*2+1])
 #endif
+static const int entry_size = 16;
+
+int eMPEGStreamInformation::loadCache(int index)
+{
+	const int structure_cache_size = sizeof(m_structure_cache) / entry_size;
+	fseek(m_structure_read, index * entry_size, SEEK_SET);
+	int num = fread(m_structure_cache, entry_size, structure_cache_size, m_structure_read);
+	eDebug("[eMPEGStreamInformation] cache starts at %d entries: %d", index, num);
+	m_structure_cache_entries = num;
+	return num;
+}
 
 int eMPEGStreamInformation::getStructureEntry(off_t &offset, unsigned long long &data, int get_next)
 {
@@ -273,7 +284,6 @@ int eMPEGStreamInformation::getStructureEntry(off_t &offset, unsigned long long 
 		return -1;
 	}
 
-	const int entry_size = 16;
 	const int structure_cache_size = sizeof(m_structure_cache) / entry_size;
 	if ((m_structure_cache_entries == 0) ||
 	    (structureCacheOffset(0) > offset) ||
@@ -318,10 +328,7 @@ int eMPEGStreamInformation::getStructureEntry(off_t &offset, unsigned long long 
 		}
 		if (i < 0)
 			i = 0;
-		fseek(m_structure_read, i * entry_size, SEEK_SET);
-		int num = fread(m_structure_cache, entry_size, structure_cache_size, m_structure_read);
-		eDebug("[eMPEGStreamInformation] cache starts at %d entries: %d", i, num);
-		m_structure_cache_entries = num;
+		int num = loadCache(i);
 		if ((num < structure_cache_size) && (structureCacheOffset(num - 1) <= offset))
 		{
 			eDebug("[eMPEGStreamInformation] offset %lld is past EOF", offset);
@@ -347,7 +354,10 @@ int eMPEGStreamInformation::getStructureEntry(off_t &offset, unsigned long long 
 	// Note that low > high
 	if (get_next)
 	{
-		i = low;
+		if (i >= m_structure_cache_entries)
+			i = m_structure_cache_entries-1;
+		else
+			i = low;
 	}
 	else
 	{
@@ -357,10 +367,76 @@ int eMPEGStreamInformation::getStructureEntry(off_t &offset, unsigned long long 
 			i = 0;
 	}
 
-	// eDebug("[eMPEGStreamInformation] search %llu, found %llu=%llu at %d", offset, structureCacheOffset(i), structureCacheData(i), i);
+	// eDebug("[eMPEGStreamInformation] search %llu (get_next=%d), found %llu: %llu at %d", offset, get_next, structureCacheOffset(i), structureCacheData(i), i);
 	offset = structureCacheOffset(i);
 	data = structureCacheData(i);
 	return 0;
+}
+
+
+// Get first or last PTS value and offset.
+int eMPEGStreamInformation::getFirstFrame(off_t &offset, pts_t& pts)
+{
+	std::map<off_t,pts_t>::const_iterator entry = m_access_points.begin();
+	if (entry != m_access_points.end())
+	{
+		offset = entry->first;
+		pts = entry->second;
+		return 0;
+	}
+	// No access points (yet?) use the .sc data instead
+	if (m_structure_read != NULL)
+	{
+		int num = loadCache(0);
+		if (num > 20) num = 20; // We don't need to look that hard, it may be an old file without PTS data
+		for (int i = 0; i < num; ++i)
+		{
+			unsigned long long data = structureCacheData(i);
+			if ((data & 0x1000000) != 0)
+			{
+				pts = data >> 31;
+				offset = structureCacheOffset(i);
+				return 0;
+			}
+		}
+	}
+	return -1;
+}
+int eMPEGStreamInformation::getLastFrame(off_t &offset, pts_t& pts)
+{
+	std::map<off_t,pts_t>::const_reverse_iterator entry = m_access_points.rbegin();
+	if (entry != m_access_points.rend())
+	{
+		offset = entry->first;
+		pts = entry->second;
+		return 0;
+	}
+	// No access points (yet?) use the .sc data instead
+	if (m_structure_read != NULL)
+	{
+		fseek(m_structure_read, 0, SEEK_END);
+		int l = ftell(m_structure_read) / entry_size;
+		const int structure_cache_size = sizeof(m_structure_cache) / entry_size;
+		int index = l - structure_cache_size;
+		if (index < 0)
+			index = 0;
+		int num = loadCache(index);
+		if (num > 10)
+			index = num - 10;
+		else
+			index = 0;
+		for (int i = num-1; i >= index; --i)
+		{
+			unsigned long long data = structureCacheData(i);
+			if ((data & 0x1000000) != 0)
+			{
+				pts = data >> 31;
+				offset = structureCacheOffset(i);
+				return 0;
+			}
+		}
+	}
+	return -1;
 }
 
 
