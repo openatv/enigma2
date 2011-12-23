@@ -65,7 +65,7 @@ case $ret in
 		;;
 	42)
 		# bind the console (when available)
-		[ -f /sys/class/vtconsole/vtcon1/bind ] && echo 1 > /sys/class/vtconsole/vtcon1/bind
+# 		[ -f /sys/class/vtconsole/vtcon1/bind ] && echo 1 > /sys/class/vtconsole/vtcon1/bind
 		opkg upgrade 2>&1 | tee /home/root/ipkgupgrade.log
 		/sbin/reboot
 		;;
