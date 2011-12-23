@@ -80,7 +80,7 @@ int eDVBTSTools::getPTS(off_t &offset, pts_t &pts, int fixed)
 		unsigned long long data;
 		if (m_streaminfo.getStructureEntry(local_offset, data, 0) == 0)
 		{
-			for(;;)
+			for(int retries = 8; retries != 0; --retries)
 			{
 				if (local_offset == 0x7fffffffffffffffULL) // EOF
 				{
@@ -90,6 +90,11 @@ int eDVBTSTools::getPTS(off_t &offset, pts_t &pts, int fixed)
 				if ((data & 0x1000000) != 0)
 				{
 					pts = data >> 31;
+					if (pts == 0)
+					{
+						// obsolete data that happens to have a '1' there
+						continue;
+					}
 					eDebug("eDVBTSTools::getPTS got it from sc file offset=%llu pts=%llu", local_offset, pts);
 					if (fixed && fixupPTS(local_offset, pts))
 					{
@@ -132,7 +137,7 @@ int eDVBTSTools::getPTS(off_t &offset, pts_t &pts, int fixed)
 
 		if (packet[0] != 0x47)
 		{
-			const unsigned char* match = memchr(packet+1, 0x47, 188-1);
+			const unsigned char* match = (const unsigned char*)memchr(packet+1, 0x47, 188-1);
 			if (match != NULL)
 			{
 				eDebug("resync %d", match - packet);

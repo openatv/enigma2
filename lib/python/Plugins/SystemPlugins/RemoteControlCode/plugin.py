@@ -13,11 +13,11 @@ if fileExists("/proc/stb/info/vumodel"):
 	vumodel = open("/proc/stb/info/vumodel")
 	info=vumodel.read().strip()
 	vumodel.close()
-	if info == "uno":
+	if info == "uno" or info == "ultimo":
 		config.plugins.remotecontrolcode.systemcode = ConfigSelection(default = "2", choices = 
 			[ ("1", "1 "), ("2", "2 "), ("3", "3 "), ("4", "4 ") ] )
-	elif info == "ultimo":
-		config.plugins.remotecontrolcode.systemcode = ConfigSelection(default = "3", choices = 
+	elif info == "solo" or info == "duo":
+		config.plugins.remotecontrolcode.systemcode = ConfigSelection(default = "1", choices = 
 			[ ("1", "1 "), ("2", "2 "), ("3", "3 "), ("4", "4 ") ] )
 
 def isRemoteCodeSupported():
