@@ -36,7 +36,12 @@ public:
 		   get previous and next structure elements. */
 	int getStructureEntry(off_t &offset, unsigned long long &data, int get_next);
 
+	// Get first or last PTS value and offset.
+	int getFirstFrame(off_t &offset, pts_t& pts);
+	int getLastFrame(off_t &offset, pts_t& pts);
+	
 private:
+	int loadCache(int index);
 	/* inter/extrapolate timestamp from offset */
 	pts_t getInterpolated(off_t offset);
 	/* get delta at specific offset */
