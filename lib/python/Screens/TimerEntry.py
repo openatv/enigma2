@@ -1,7 +1,7 @@
 from Screen import Screen
 import ChannelSelection
 from ServiceReference import ServiceReference
-from Components.config import config, ConfigSelection, ConfigText, ConfigSubList, ConfigDateTime, ConfigClock, ConfigYesNo, getConfigListEntry
+from Components.config import config, ConfigSelection, ConfigText, ConfigSubList, ConfigDateTime, ConfigClock, ConfigYesNo, getConfigListEntry, KEY_ASCII
 from Components.ActionMap import NumberActionMap
 from Components.ConfigList import ConfigListScreen
 from Components.MenuList import MenuList
@@ -34,8 +34,9 @@ class TimerEntry(Screen, ConfigListScreen):
 
 		self.createConfig()
 
-		self["actions"] = NumberActionMap(["SetupActions", "GlobalActions", "PiPSetupActions"],
+		self["actions"] = NumberActionMap(["SetupActions", "GlobalActions", "PiPSetupActions", "InputAsciiActions"],
 		{
+			"gotAsciiCode": self.keyGotAscii,
 			"ok": self.keySelect,
 			"save": self.keyGo,
 			"cancel": self.keyCancel,
@@ -240,6 +241,10 @@ class TimerEntry(Screen, ConfigListScreen):
 			)
 		else:
 			self.keyGo()
+
+	def keyGotAscii(self):
+		self["config"].handleKey(KEY_ASCII)
+		self.update()
 
 	def finishedChannelSelection(self, *args):
 		if args:
