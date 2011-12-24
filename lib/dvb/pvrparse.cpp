@@ -211,6 +211,11 @@ off_t eMPEGStreamInformation::getAccessPoint(pts_t ts, int marg)
 
 int eMPEGStreamInformation::getNextAccessPoint(pts_t &ts, const pts_t &start, int direction)
 {
+	if (m_access_points.empty())
+	{
+		eDebug("can't get next access point without streaminfo (yet)");
+		return -1;
+	}
 	off_t offset = getAccessPoint(start);
 	std::map<off_t, pts_t>::const_iterator i = m_access_points.find(offset);
 	if (i == m_access_points.end())
