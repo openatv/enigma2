@@ -74,24 +74,24 @@ public:
 	~eFilePushThreadRecorder();
 	void thread();
 	void stop();
-	void start(int sourcefd, int destfd);
+	void start(int sourcefd);
 
 	enum { evtEOF, evtReadError, evtWriteError, evtUser };
 	Signal1<void,int> m_event;
 
 	void sendEvent(int evt);
 protected:
-	virtual void filterRecordData(const unsigned char *data, int len) = 0;
+	// This method should write the data out and return the number of bytes written.
+	// If result <0, set 'errno'. The simplest implementation is just "::write(...)"
+	virtual int writeData(const unsigned char *data, int len) = 0;
 private:
 	int prio_class;
 	int prio;
 	int m_stop;
-	int m_fd_dest;
 	int m_fd_source;
 	int m_blocksize;
 	size_t m_buffersize;
 	unsigned char* m_buffer;
-	off_t m_current_position;
 	eFixedMessagePump<int> m_messagepump;
 	void recvEvent(const int &evt);
 };

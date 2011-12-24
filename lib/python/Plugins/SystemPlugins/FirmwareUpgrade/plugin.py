@@ -28,19 +28,19 @@ if os.path.exists("/proc/stb/info/vumodel"):
 
 	if info == "ultimo":
 		fwlist= [
-			 ("fp", _("Front Processor"))
-			,("fpga", _("FPGA"))
+			 ("fpga", _("FPGA"))
+			,("fp", _("Front Processor"))
 			]
 		fwdata= { 
-			 "fp"   : ["http://archive.vuplus.com/download/fp", "fp.files", "/dev/bcm_mu;"]
-			,"fpga" : ["http://archive.vuplus.com/download/fpga", "fpga.files", "/dev/fpga_dp;/dev/misc/dp;"]
+			 "fpga" : ["http://archive.vuplus.com/download/fpga", "fpga.files", "/dev/fpga_dp;/dev/misc/dp;"]
+			,"fp"   : ["http://archive.vuplus.com/download/fp", "fp.files", "/dev/bcm_mu;"]
 			}
 	elif info == "uno":
 		fwlist= [
 			("fpga", _("FPGA"))
 			]
 		fwdata= { 
-			"fpga" : ["http://archive.vuplus.com/download/fpga", "fpga.file", "/dev/fpga_dp;/dev/misc/dp;"]
+			"fpga" : ["http://archive.vuplus.com/download/fpga", "fpga.files", "/dev/fpga_dp;/dev/misc/dp;"]
 			}
 
 class UpgradeStatus(Screen):
@@ -142,7 +142,7 @@ class UpgradeStatus(Screen):
 class Filebrowser(Screen):
 	skin = 	"""
 		<screen position="center,center" size="500,260" title="File Browser" >
-			<ePixmap pixmap="Vu_HD/buttons/blue.png" position="5,7" size="80,40" alphatest="blend" />
+			<ePixmap pixmap="ViX_HD_Common/buttons/blue.png" position="5,7" size="80,40" alphatest="blend" />
 			<widget source="key_blue" render="Label" position="40,0" zPosition="1" size="180,40" font="Regular;20" halign="left" valign="center" transparent="1"/>
 			<widget name="file_list" position="0,50" size="500,160" scrollbarMode="showOnDemand" />
 
@@ -298,10 +298,10 @@ class Filebrowser(Screen):
 		os.system("rm -f /tmp/" + root_file)
 
 		# md5
-		if not self.doDownload(self.guri+".md5", self.gbin+".md5", cbfunc=cbDownloadDone):
-			self.resetGUI()
-			self.downloadLock = False
-			return
+# 		if not self.doDownload(self.guri+".md5", self.gbin+".md5", cbfunc=cbDownloadDone):
+# 			self.resetGUI()
+# 			self.downloadLock = False
+# 			return
 		# data
 		if not self.doDownload(self.guri, self.gbin, cbfunc=cbDownloadDone):
 			self.resetGUI()
@@ -364,8 +364,8 @@ class Filebrowser(Screen):
 class FirmwareUpgrade(Screen, ConfigListScreen):
 	skin = 	"""
 		<screen position="center,center" size="560,175" title="Firmware Upgrade" >
-			<ePixmap pixmap="Vu_HD/buttons/red.png" position="125,7" size="80,40" alphatest="blend" />
-			<ePixmap pixmap="Vu_HD/buttons/green.png" position="330,7" size="80,40" alphatest="blend" />
+			<ePixmap pixmap="ViX_HD_Common/buttons/red.png" position="125,7" size="80,40" alphatest="blend" />
+			<ePixmap pixmap="ViX_HD_Common/buttons/green.png" position="330,7" size="80,40" alphatest="blend" />
 
 			<widget source="key_red" render="Label" position="160,0" zPosition="1" size="155,40" font="Regular;20" halign="left" valign="center" transparent="1" />
 			<widget source="key_green" render="Label" position="365,0" zPosition="1" size="155,40" font="Regular;20" halign="left" valign="center" transparent="1" />

@@ -44,6 +44,7 @@ config.movielist.last_selected_tags = ConfigSet([], default=[])
 config.movielist.play_audio_internal = ConfigYesNo(default=True)
 config.movielist.settings_per_directory = ConfigYesNo(default=True)
 config.movielist.root = ConfigSelection(default="/media", choices=["/","/media","/media/hdd","/media/hdd/movie"])
+config.movielist.curentlyplayingservice = ConfigText()
 
 userDefinedButtons = None
 
@@ -443,6 +444,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.movemode = False
 		self.bouquet_mark_edit = False
 
+		self.playInBackground = None
+
 		self.listTimer = eTimer()
 		self.listTimer.timeout.get().append(self.updateHDDData)
 		self.feedbackTimer = None
@@ -545,7 +548,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.inited = False
 		self.onClose.append(self.__onClose)
 		NavigationInstance.instance.RecordTimer.on_state_change.append(self.list.updateRecordings)
-		self.playInBackground = None
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
 				#iPlayableService.evSeekableStatusChanged: self.__seekableStatusChanged,
@@ -689,6 +691,15 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 	def hidewaitingtext(self):
 		self.activityTimer.stop()
 		self["waitingtext"].hide()
+		if not self.playInBackground:
+			if self.session.nav.getCurrentlyPlayingServiceReference():
+				if not self.session.nav.getCurrentlyPlayingServiceReference().toString().startswith('1:0:0:0:0:0:0:0:0:0'):
+					config.movielist.curentlyplayingservice.setValue(self.session.nav.getCurrentlyPlayingServiceReference().toString())
+		checkplaying = self.session.nav.getCurrentlyPlayingServiceReference()
+		if checkplaying:
+			checkplaying = checkplaying.toString()
+		if checkplaying is None or (config.movielist.curentlyplayingservice.value != checkplaying and not self.session.nav.getCurrentlyPlayingServiceReference().toString().startswith('1:0:0:0:0:0:0:0:0:0')):
+			self.session.nav.playService(eServiceReference(config.movielist.curentlyplayingservice.value))
 
 	def moveTo(self):
 		self["list"].moveTo(self.selectedmovie)
@@ -778,6 +789,14 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				print "Next up:", path
 				if ext in AUDIO_EXTENSIONS:
 					self.callLater(self.preview)
+		if not self.playInBackground:
+			if self.session.nav.getCurrentlyPlayingServiceReference():
+				config.movielist.curentlyplayingservice.setValue(self.session.nav.getCurrentlyPlayingServiceReference().toString())
+		checkplaying = self.session.nav.getCurrentlyPlayingServiceReference()
+		if checkplaying:
+			checkplaying = checkplaying.toString()
+		if checkplaying is None or config.movielist.curentlyplayingservice.value != checkplaying:
+			self.session.nav.playService(eServiceReference(config.movielist.curentlyplayingservice.value))
 
 	def preview(self):
 		current = self.getCurrent()
@@ -808,6 +827,14 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		if self.playInBackground:
 			self.playInBackground = None
 			self.session.nav.stopService()
+		if not self.playInBackground:
+			if self.session.nav.getCurrentlyPlayingServiceReference():
+				config.movielist.curentlyplayingservice.setValue(self.session.nav.getCurrentlyPlayingServiceReference().toString())
+		checkplaying = self.session.nav.getCurrentlyPlayingServiceReference()
+		if checkplaying:
+			checkplaying = checkplaying.toString()
+		if checkplaying is None or config.movielist.curentlyplayingservice.value != checkplaying:
+			self.session.nav.playService(eServiceReference(config.movielist.curentlyplayingservice.value))
 
 	def itemSelected(self):
 		current = self.getCurrent()
@@ -855,7 +882,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		current = self.getCurrent()
 		if current is not None:
 			self.saveconfig()
-			self.playbackStop()
 			self.close(current)
 
 	def doContext(self):

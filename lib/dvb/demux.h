@@ -102,7 +102,7 @@ public:
 	RESULT setTimingPID(int pid, int type);
 	
 	RESULT setTargetFD(int fd);
-	RESULT setTargetFilename(const char *filename);
+	RESULT setTargetFilename(const std::string& filename);
 	RESULT setBoundary(off_t max);
 	
 	RESULT stop();
@@ -114,7 +114,6 @@ private:
 	RESULT startPID(int pid);
 	void stopPID(int pid);
 	
-	eDVBRecordFileThread *m_thread;
 	void filepushEvent(int event);
 	
 	std::map<int,int> m_pids;
@@ -122,7 +121,10 @@ private:
 	
 	ePtr<eDVBDemux> m_demux;
 	
-	int m_running, m_target_fd, m_source_fd;
+	int m_running;
+	int m_target_fd;
+	int m_source_fd;
+	eDVBRecordFileThread *m_thread;
 	std::string m_target_filename;
 };
 
