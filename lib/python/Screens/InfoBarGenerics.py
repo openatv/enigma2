@@ -341,6 +341,8 @@ class InfoBarShowHide:
 
 	def unlockShow(self):
 		self.__locked = self.__locked - 1
+		if self.__locked  <0:
+			self.__locked = 0
 		if self.execing:
 			self.startHideTimer()
 
@@ -1534,16 +1536,20 @@ class InfoBarSeek:
 		self.seekstate = state
 
 		if pauseable is not None:
-			if self.seekstate[0]:
+			if self.seekstate[0] and self.seekstate[3] == '||':
 				print "resolved to PAUSE"
 				self.activityTimer.stop()
 				pauseable.pause()
+			elif self.seekstate[0] and self.seekstate[3] == 'END':
+				print "resolved to STOP"
+				self.activityTimer.stop()
+				service.stop()
 			elif self.seekstate[1]:
 				print "resolved to FAST FORWARD"
- 				pauseable.setFastForward(self.seekstate[1])
+				pauseable.setFastForward(self.seekstate[1])
 			elif self.seekstate[2]:
 				print "resolved to SLOW MOTION"
- 				pauseable.setSlowMotion(self.seekstate[2])
+				pauseable.setSlowMotion(self.seekstate[2])
 			else:
 				print "resolved to PLAY"
 				self.activityTimer.start(200, False)
@@ -1557,27 +1563,26 @@ class InfoBarSeek:
 		return True
 
 	def playpauseService(self):
-		if self.seekstate != self.SEEK_STATE_PLAY:
-			self.unPauseService()
-		else:
+		if self.seekstate == self.SEEK_STATE_PLAY:
 			self.pauseService()
+		else:
+			if self.seekstate == self.SEEK_STATE_PAUSE:
+				if config.seek.on_pause.value == "play":
+					self.unPauseService()
+				elif config.seek.on_pause.value == "step":
+					self.doSeekRelative(1)
+				elif config.seek.on_pause.value == "last":
+					self.setSeekState(self.lastseekstate)
+					self.lastseekstate = self.SEEK_STATE_PLAY
+			else:
+				self.pauseService()
 
 	def pauseService(self):
-		if self.seekstate == self.SEEK_STATE_PAUSE:
-			if config.seek.on_pause.value == "play":
-				self.unPauseService()
-			elif config.seek.on_pause.value == "step":
-				self.doSeekRelative(1)
-			elif config.seek.on_pause.value == "last":
-				self.setSeekState(self.lastseekstate)
-				self.lastseekstate = self.SEEK_STATE_PLAY
-		else:
-			if self.seekstate != self.SEEK_STATE_EOF:
-				self.lastseekstate = self.seekstate
-			self.setSeekState(self.SEEK_STATE_PAUSE);
+		if self.seekstate != self.SEEK_STATE_EOF:
+			self.lastseekstate = self.seekstate
+		self.setSeekState(self.SEEK_STATE_PAUSE);
 
 	def unPauseService(self):
-		print "unpause"
 		if self.seekstate == self.SEEK_STATE_PLAY:
 			return 0
 		self.setSeekState(self.SEEK_STATE_PLAY)
@@ -1699,16 +1704,19 @@ class InfoBarSeek:
 		self.doSeekRelative(-minutes * 60 * 90000)
 
 	def checkSkipShowHideLock(self):
-		wantlock = self.seekstate != self.SEEK_STATE_PLAY
-
-		if config.usage.show_infobar_on_skip.value:
-			if self.lockedBecauseOfSkipping and not wantlock:
-				self.unlockShow()
-				self.lockedBecauseOfSkipping = False
-
-			if wantlock and not self.lockedBecauseOfSkipping:
-				self.lockShow()
-				self.lockedBecauseOfSkipping = True
+		if self.seekstate == self.SEEK_STATE_PLAY or self.seekstate == self.SEEK_STATE_EOF:
+			self.lockedBecauseOfSkipping = False
+ 			self.unlockShow()
+		else:
+			wantlock = self.seekstate != self.SEEK_STATE_PLAY
+			if config.usage.show_infobar_on_skip.value:
+				if self.lockedBecauseOfSkipping and not wantlock:
+					self.unlockShow()
+					self.lockedBecauseOfSkipping = False
+	
+				if wantlock and not self.lockedBecauseOfSkipping:
+					self.lockShow()
+					self.lockedBecauseOfSkipping = True
 
 	def calcRemainingTime(self):
 		seekable = self.getSeek()
@@ -1743,6 +1751,7 @@ class InfoBarSeek:
 			seekable = self.getSeek()
 			if seekable is not None:
 				seekable.seekTo(-1)
+				self.doEofInternal(True)
 		if seekstate == self.SEEK_STATE_PLAY: # regular EOF
 			self.doEofInternal(True)
 		else:
@@ -1766,7 +1775,7 @@ class InfoBarPVRState:
 		self.force_show = force_show
 
 	def _mayShow(self):
-		if self.execing and self.seekstate != self.SEEK_STATE_PLAY:
+		if self.execing and self.seekstate != self.SEEK_STATE_PLAY and self.seekstate != self.SEEK_STATE_EOF:
 			self.pvrStateDialog.show()
 
 	def __playStateChanged(self, state):
@@ -1965,7 +1974,7 @@ class InfoBarTimeshift:
 		self.pts_seekpointer_MaxX = 396 # make sure you can divide this through 2
 
 	def __evStart(self):
-		print "[TimeShift] - __evStart"
+		print "[TimeShift] __evStart"
 		if not config.usage.timeshift_path.value.endswith('/'):
 			print "No trailing '/' in config.usage.timeshift_path.value, adding it"
 			config.usage.timeshift_path.value += '/'
@@ -1978,7 +1987,7 @@ class InfoBarTimeshift:
 		if not config.timeshift.isRecording.value:
 			self.timeshift_enabled = 0
 			self.__seekableStatusChanged()
-		print "[TimeShift] - __evEnd"
+		print "[TimeShift] __evEnd"
 
 	def __evSOF(self):
 		if not config.timeshift.enabled.value or not self.timeshift_enabled:
@@ -2208,7 +2217,7 @@ class InfoBarTimeshift:
 
 	def restartTimeshift(self):
 		self.ActivatePermanentTimeshift()
-		Notifications.AddNotification(MessageBox, _("[TimeShift] - Restarting Timeshift!"), MessageBox.TYPE_INFO, timeout=5)
+		Notifications.AddNotification(MessageBox, _("[TimeShift] Restarting Timeshift!"), MessageBox.TYPE_INFO, timeout=5)
 
 	def saveTimeshiftPopup(self):
 		self.session.openWithCallback(self.saveTimeshiftPopupCallback, ChoiceBox, \
@@ -2351,7 +2360,7 @@ class InfoBarTimeshift:
 							elif config.recording.filename_composition.value == "short":
 								ptsfilename = "%s - %s" % (strftime("%Y%m%d",localtime(self.pts_starttime)),self.pts_curevent_name)
 					except Exception, errormsg:
-						print "[TimeShift] - Using default filename"
+						print "[TimeShift] Using default filename"
 
 					if config.recording.ascii_filenames.value:
 						ptsfilename = ASCIItranslit.legacyEncode(ptsfilename)
@@ -2379,7 +2388,7 @@ class InfoBarTimeshift:
 							elif config.recording.filename_composition.value == "short":
 								ptsfilename = "%s - %s" % (strftime("%Y%m%d",localtime(int(begintime))),eventname)
 					except Exception, errormsg:
-						print "[TimeShift] - Using default filename"
+						print "[TimeShift] Using default filename"
 
 					if config.recording.ascii_filenames.value:
 						ptsfilename = ASCIItranslit.legacyEncode(ptsfilename)
@@ -2484,7 +2493,7 @@ class InfoBarTimeshift:
 					statinfo = os_stat("%s%s" % (config.usage.timeshift_path.value,filename))
 					# if no write for 5 sec = stranded timeshift
 					if statinfo.st_mtime < (time()-5.0):
-						print "[TimeShift] - Erasing stranded timeshift %s" % filename
+						print "[TimeShift] Erasing stranded timeshift %s" % filename
 						self.BgFileEraser.erase("%s%s" % (config.usage.timeshift_path.value,filename))
 
 						# Delete Meta and EIT File too
@@ -2684,7 +2693,7 @@ class InfoBarTimeshift:
 
 		# Merging failed :(
 		if not ptsfilemerged and ptsgetnextfile:
-			Notifications.AddNotification(MessageBox,_("[TimeShift] - Merging records failed!"), MessageBox.TYPE_ERROR)
+			Notifications.AddNotification(MessageBox,_("[TimeShift] Merging records failed!"), MessageBox.TYPE_ERROR)
 
 	def ptsCreateAPSCFiles(self, filename):
 		if Directories.fileExists(filename, 'r'):
@@ -2963,7 +2972,7 @@ class InfoBarTimeshift:
 		try:
 			ts.setNextPlaybackFile("%s%s" % (config.usage.timeshift_path.value,nexttsfile))
 		except:
-			print "[TimeShift] - setNextPlaybackFile() not supported by OE. Enigma2 too old !?"
+			print "[TimeShift] setNextPlaybackFile() not supported by OE. Enigma2 too old !?"
 
 	def ptsSeekBackHack(self):
 		if not config.timeshift.enabled.value or not self.timeshift_enabled:

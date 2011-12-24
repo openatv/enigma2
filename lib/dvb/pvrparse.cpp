@@ -102,6 +102,7 @@ pts_t eMPEGStreamInformation::getDelta(off_t offset)
 // fixupPTS is apparently called to get UI time information and such
 int eMPEGStreamInformation::fixupPTS(const off_t &offset, pts_t &ts)
 {
+	//eDebug("eMPEGStreamInformation::fixupPTS(offset=%llu pts=%llu)", offset, ts);
 	if (m_timestamp_deltas.empty())
 		return -1;
 
@@ -127,6 +128,7 @@ int eMPEGStreamInformation::fixupPTS(const off_t &offset, pts_t &ts)
 // getPTS is typically called when you "jump" in a file.
 int eMPEGStreamInformation::getPTS(off_t &offset, pts_t &pts)
 {
+	//eDebug("eMPEGStreamInformation::getPTS(offset=%llu, pts=%llu)", offset, pts);
 	std::map<off_t,pts_t>::iterator before = m_access_points.lower_bound(offset);
 
 		/* usually, we prefer the AP before the given offset. however if there is none, we take any. */
@@ -181,6 +183,7 @@ pts_t eMPEGStreamInformation::getInterpolated(off_t offset)
  
 off_t eMPEGStreamInformation::getAccessPoint(pts_t ts, int marg)
 {
+	//eDebug("eMPEGStreamInformation::getAccessPoint(ts=%llu, marg=%d)", ts, marg);
 		/* FIXME: more efficient implementation */
 	off_t last = 0;
 	off_t last2 = 0;
@@ -263,6 +266,7 @@ int eMPEGStreamInformation::getNextAccessPoint(pts_t &ts, const pts_t &start, in
 
 int eMPEGStreamInformation::getStructureEntry(off_t &offset, unsigned long long &data, int get_next)
 {
+	//eDebug("[eMPEGStreamInformation] getStructureEntry(offset=%llu, get_next=%d)", offset, get_next);
 	if (!m_structure_read)
 	{
 		eDebug("getStructureEntry failed because of no m_structure_read");
@@ -276,10 +280,10 @@ int eMPEGStreamInformation::getStructureEntry(off_t &offset, unsigned long long 
 	    (structureCacheOffset(m_structure_cache_entries - (get_next ? 2 : 1)) <= offset))
 	{
 		fseek(m_structure_read, 0, SEEK_END);
-		int l = ftell(m_structure_read);
+		int l = ftell(m_structure_read) / entry_size;
 
 		/* do a binary search */
-		int count = l / entry_size;
+		int count = l;
 		int i = 0;
 		while (count)
 		{
@@ -304,7 +308,14 @@ int eMPEGStreamInformation::getStructureEntry(off_t &offset, unsigned long long 
 		//eDebug("[eMPEGStreamInformation] found i=%d size=%d get_next=%d", i, l / entry_size, get_next);
 
 		// Put the cache in the center
-		i -= structure_cache_size / 2;
+		if (i + structure_cache_size > l)
+		{
+			i = l - structure_cache_size; // Near end of file, just fetch the last
+		}
+		else
+		{
+			i -= structure_cache_size / 2;
+		}
 		if (i < 0)
 			i = 0;
 		fseek(m_structure_read, i * entry_size, SEEK_SET);
@@ -335,11 +346,18 @@ int eMPEGStreamInformation::getStructureEntry(off_t &offset, unsigned long long 
 	}
 	// Note that low > high
 	if (get_next)
+	{
 		i = low;
+	}
 	else
-		i = high;
+	{
+		if (high >= 0)
+			i = high;
+		else
+			i = 0;
+	}
 
-	//	eDebug("[%d] looked for %llx, found %llx=%llx", sizeof offset, offset, m_structure_cache[i * 2], m_structure_cache[i * 2 + 1]);
+	// eDebug("[eMPEGStreamInformation] search %llu, found %llu=%llu at %d", offset, structureCacheOffset(i), structureCacheData(i), i);
 	offset = structureCacheOffset(i);
 	data = structureCacheData(i);
 	return 0;
@@ -490,7 +508,7 @@ int eMPEGStreamParserTS::processPacket(const unsigned char *pkt, off_t offset)
 		if (!(pkt[0] || pkt[1] || (pkt[2] != 1)))
 		{
 //			eDebug("SC %02x %02x %02x %02x, %02x", pkt[0], pkt[1], pkt[2], pkt[3], pkt[4]);
-			int sc = pkt[3];
+			unsigned int sc = pkt[3];
 			
 			if (m_streamtype == 0) /* mpeg2 */
 			{
@@ -504,27 +522,19 @@ int eMPEGStreamParserTS::processPacket(const unsigned char *pkt, off_t offset)
 							//eDebug("Sequence header at %llx, pts %llx", offset, pts);
 						}
 					}
-					if (pkt < (end - 6))
+					if (pkt <= (end - 6))
 					{
-						unsigned long long data = sc | (pkt[4] << 8) | (pkt[5] << 16) | (pkt[6] << 24);
-						writeStructureEntry(offset + pkt_offset, data & 0xFFFFFFFFULL);
+						unsigned long long data = sc | ((unsigned)pkt[4] << 8) | ((unsigned)pkt[5] << 16);
+						if (ptsvalid) // If available, add timestamp data as well. PTS = 33 bits
+							data |= (pts << 31) | 0x1000000;
+						writeStructureEntry(offset + pkt_offset, data);
 					}
 					else
 					{
-						if (pkt == end-6)
-						{
-							// This happens when recording VOX, why???
-							// Just ignore that last byte? Would that work?
-							unsigned long long data = sc | (pkt[4] << 8) | (pkt[5] << 16);
-							writeStructureEntry(offset + pkt_offset, data & 0xFFFFFFFFULL);
-						}
-						else
-						{
-							// Returning non-zero suggests we need more data. This does not
-							// work, and never has, so we should make this a void function
-							// or fix that...
-							return 1;
-						}
+						// Returning non-zero suggests we need more data. This does not
+						// work, and never has, so we should make this a void function
+						// or fix that...
+						return 1;
 					}
 				}
 			}
@@ -534,6 +544,8 @@ int eMPEGStreamParserTS::processPacket(const unsigned char *pkt, off_t offset)
 				{
 					/* store image type */
 					unsigned long long data = sc | (pkt[4] << 8);
+					if (ptsvalid) // If available, add timestamp data as well. PTS = 33 bits
+						data |= (pts << 31) | 0x1000000;
 					writeStructureEntry(offset + pkt_offset, data);
 					if ( //pkt[3] == 0x09 &&   /* MPEG4 AVC NAL unit access delimiter */
 						 (pkt[4] >> 5) == 0) /* and I-frame */
