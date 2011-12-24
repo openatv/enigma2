@@ -353,13 +353,19 @@ class InfoBarShowHide:
 			self.hideTimer.stop()
 
 	def lockShow(self):
-		self.__locked = self.__locked + 1
+		try:
+			self.__locked = self.__locked + 1
+		except:
+			self.__locked = 0
 		if self.execing:
 			self.show()
 			self.hideTimer.stop()
 
 	def unlockShow(self):
-		self.__locked = self.__locked - 1
+		try:
+			self.__locked = self.__locked - 1
+		except:
+			self.__locked = 0
 		if self.__locked  <0:
 			self.__locked = 0
 		if self.execing:
@@ -1802,7 +1808,7 @@ class InfoBarSeek:
 	def checkSkipShowHideLock(self):
 		if self.seekstate == self.SEEK_STATE_PLAY or self.seekstate == self.SEEK_STATE_EOF:
 			self.lockedBecauseOfSkipping = False
- 			self.unlockShow()
+			self.unlockShow()
 		else:
 			wantlock = self.seekstate != self.SEEK_STATE_PLAY
 			if config.usage.show_infobar_on_skip.value:
