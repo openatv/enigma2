@@ -120,7 +120,7 @@ class SundtekControlCenter(Screen, ConfigListScreen):
 
 	def disclaimer(self, result): 
 		if result:
-			self.prompt("/usr/lib/enigma2/python/Plugins/Extensions/SundtekControlCenter/sundtekinstall.sh")
+			self.prompt("/usr/lib/enigma2/python/Plugins/Extensions/Aafpanel/sundtekinstall.sh")
 
 	def save(self):
 		for x in self["config"].list:
