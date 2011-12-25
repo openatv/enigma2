@@ -98,7 +98,8 @@ private:
 	int m_pktptr;
 	int processPacket(const unsigned char *pkt, off_t offset);
 	inline int wantPacket(const unsigned char *hdr) const;
-	int m_pid, m_streamtype;
+	int m_pid;
+	int m_streamtype;
 	int m_need_next_packet;
 	int m_skip;
 	int m_last_pts_valid;
