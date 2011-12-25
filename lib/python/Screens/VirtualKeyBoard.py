@@ -109,6 +109,7 @@ class VirtualKeyBoard(Screen):
 				"red": self.backClicked,
 				"green": self.ok,
 				"yellow": self.switchLang,
+				"blue": self.shiftClicked,
 				"deleteBackward": self.backClicked,
 				"back": self.exit				
 			}, -2)
@@ -248,6 +249,13 @@ class VirtualKeyBoard(Screen):
 		
 		self["list"].setList(list)
 	
+	def shiftClicked(self):
+		if self.shiftMode:
+			self.shiftMode = False
+		else:
+			self.shiftMode = True
+		self.buildVirtualKeyBoard(self.selectedKey)
+
 	def backClicked(self):
 		self.text = self.text[:-1]
 		self["text"].setText(self.text.encode("utf-8"))
