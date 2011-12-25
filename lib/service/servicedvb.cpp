@@ -2255,20 +2255,24 @@ RESULT eDVBServicePlay::startTimeshift()
 		return -3;
 
 	std::string tspath;
-	if(ePythonConfigQuery::getConfigValue("config.usage.timeshift_path", tspath) == -1){ 
+	if(ePythonConfigQuery::getConfigValue("config.usage.timeshift_path", tspath) == -1)
+	{
 		eDebug("could not query ts path");
 		return -5;
 	}
-	tspath.append("/timeshift.XXXXXX");
-	char* templ;
-	templ = new char[tspath.length() + 1];
+	if (tspath.empty())
+	{
+		eDebug("TS path is empty");
+		return -5;
+	}
+	if (tspath[tspath.length()-1] != '/')
+		tspath.append("/");
+	tspath.append("timeshift.XXXXXX");
+	char* templ = new char[tspath.length() + 1];
 	strcpy(templ, tspath.c_str());
-
 	m_timeshift_fd = mkstemp(templ);
 	m_timeshift_file = std::string(templ);
-
 	eDebug("recording to %s", templ);
-
 	delete [] templ;
 
 	if (m_timeshift_fd < 0)
@@ -2278,7 +2282,7 @@ RESULT eDVBServicePlay::startTimeshift()
 	}
 		
 	m_record->setTargetFD(m_timeshift_fd);
-
+	m_record->setTargetFilename(m_timeshift_file);
 	m_timeshift_enabled = 1;
 	
 	updateTimeshiftPids();
@@ -2305,9 +2309,10 @@ RESULT eDVBServicePlay::stopTimeshift(bool swToLive)
 		close(m_timeshift_fd);
 		m_timeshift_fd = -1;
 	}
-	eDebug("remove timeshift file");
+	eDebug("remove timeshift files");
 	eBackgroundFileEraser::getInstance()->erase(m_timeshift_file);
-	
+	eBackgroundFileEraser::getInstance()->erase(m_timeshift_file + ".sc");
+	eBackgroundFileEraser::getInstance()->erase(m_timeshift_file + ".ap");
 	return 0;
 }
 
@@ -2403,6 +2408,8 @@ void eDVBServicePlay::updateTimeshiftPids()
 		return;
 	else
 	{
+		int timing_pid = -1;
+		int timing_pid_type = -1;
 		std::set<int> pids_to_record;
 		pids_to_record.insert(0); // PAT
 		if (program.pmtPid != -1)
@@ -2414,12 +2421,26 @@ void eDVBServicePlay::updateTimeshiftPids()
 		for (std::vector<eDVBServicePMTHandler::videoStream>::const_iterator
 			i(program.videoStreams.begin()); 
 			i != program.videoStreams.end(); ++i)
+		{
+			if (timing_pid == -1)
+			{
+				timing_pid = i->pid;
+				timing_pid_type = i->type;
+			}
 			pids_to_record.insert(i->pid);
+		}
 
 		for (std::vector<eDVBServicePMTHandler::audioStream>::const_iterator
 			i(program.audioStreams.begin()); 
 			i != program.audioStreams.end(); ++i)
-				pids_to_record.insert(i->pid);
+		{
+			if (timing_pid == -1)
+			{
+				timing_pid = i->pid;
+				timing_pid_type = i->type;
+			}
+			pids_to_record.insert(i->pid);
+		}
 
 		for (std::vector<eDVBServicePMTHandler::subtitleStream>::const_iterator
 			i(program.subtitleStreams.begin());
@@ -2443,6 +2464,9 @@ void eDVBServicePlay::updateTimeshiftPids()
 
 		for (std::set<int>::iterator i(obsolete_pids.begin()); i != obsolete_pids.end(); ++i)
 			m_record->removePID(*i);
+
+		if (timing_pid != -1)
+			m_record->setTimingPID(timing_pid, timing_pid_type);
 	}
 }
 
