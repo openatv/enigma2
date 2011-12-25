@@ -5,5 +5,4 @@ dist_install_DATA = \
 	andale.ttf \
 	lcd.ttf \
 	md_khmurabi_10.ttf \
-	time.ttf \
 	nmsbd.ttf
