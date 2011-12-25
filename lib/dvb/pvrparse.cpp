@@ -296,6 +296,11 @@ int eMPEGStreamInformation::getStructureEntry(off_t &offset, unsigned long long 
 	{
 		fseek(m_structure_read, 0, SEEK_END);
 		int l = ftell(m_structure_read) / entry_size;
+		if (l == 0)
+		{
+			eDebug("getStructureEntry failed because file size is zero");
+			return -1;
+		}
 
 		/* do a binary search */
 		int count = l;
@@ -512,6 +517,7 @@ void eMPEGStreamInformationWriter::writeStructureEntry(off_t offset, unsigned lo
 eMPEGStreamParserTS::eMPEGStreamParserTS():
 	m_pktptr(0),
 	m_pid(-1),
+	m_streamtype(-1),
 	m_need_next_packet(0),
 	m_skip(0),
 	m_last_pts_valid(0)
