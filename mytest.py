@@ -591,6 +591,7 @@ profile("OSD")
 import Screens.OSD
 Screens.OSD.setConfiguredPosition()
 Screens.OSD.setConfiguredSettings()
+Screens.OSD.setConfiguredAplha()
 
 profile("SetupDevices")
 import Components.SetupDevices
