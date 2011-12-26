@@ -36,7 +36,12 @@ public:
 		   get previous and next structure elements. */
 	int getStructureEntry(off_t &offset, unsigned long long &data, int get_next);
 
+	// Get first or last PTS value and offset.
+	int getFirstFrame(off_t &offset, pts_t& pts);
+	int getLastFrame(off_t &offset, pts_t& pts);
+	
 private:
+	int loadCache(int index);
 	/* inter/extrapolate timestamp from offset */
 	pts_t getInterpolated(off_t offset);
 	/* get delta at specific offset */
@@ -93,7 +98,8 @@ private:
 	int m_pktptr;
 	int processPacket(const unsigned char *pkt, off_t offset);
 	inline int wantPacket(const unsigned char *hdr) const;
-	int m_pid, m_streamtype;
+	int m_pid;
+	int m_streamtype;
 	int m_need_next_packet;
 	int m_skip;
 	int m_last_pts_valid;
