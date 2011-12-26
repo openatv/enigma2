@@ -3653,7 +3653,7 @@ class InfoBarAAFpanel:
 				except:
 					pass
 			else:
-				pass		
+				self.instantRecord()		
 		
 		elif config.plugins.aafpanel_redpanel.enabled.value == True:
 			try:
@@ -3662,7 +3662,7 @@ class InfoBarAAFpanel:
 			except:
 				pass
 		else:
-			pass
+			self.instantRecord()
 		
 	def softcamPanel(self):
 		if config.plugins.aafpanel_redpanel.enabledlong.value == True:
