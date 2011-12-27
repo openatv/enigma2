@@ -4,7 +4,6 @@ from Tools.Directories import resolveFilename, SCOPE_HDD, SCOPE_TIMESHIFT
 from enigma import setTunerTypePriorityOrder, setPreferredTuner, setSpinnerOnOff, setEnableTtCachingOnOff;
 from enigma import Misc_Options, eEnv;
 from Components.NimManager import nimmanager
-from Components.Console import Console
 from SystemInfo import SystemInfo
 import os
 import enigma
