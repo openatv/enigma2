@@ -4,6 +4,7 @@ from Tools.Directories import resolveFilename, SCOPE_HDD, SCOPE_TIMESHIFT
 from enigma import setTunerTypePriorityOrder, setPreferredTuner, setSpinnerOnOff, setEnableTtCachingOnOff;
 from enigma import Misc_Options, eEnv;
 from Components.NimManager import nimmanager
+from Components.Console import Console
 from SystemInfo import SystemInfo
 import os
 import enigma
@@ -24,6 +25,7 @@ def InitUsageConfig():
 		boxtype="not detected"
 	config.misc.boxtype = ConfigText(default = boxtype)
 	config.misc.useNTPminutes = ConfigSelection(default = "30", choices = [("30", "30 Minutes"), ("60", _("Hour")), ("1440", _("Once per day"))])
+	config.misc.remotecontrol_harmony = ConfigYesNo(default = False)
 
 	config.usage = ConfigSubsection();
 	config.usage.showdish = ConfigYesNo(default = True)
