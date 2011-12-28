@@ -1,2 +1,4 @@
 keymapsdir = $(datadir)/keymaps
-keymaps_DATA = *.info *.kmap
+keymaps_DATA = \
+	*.info \
+	*.kmap

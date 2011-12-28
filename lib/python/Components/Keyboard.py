@@ -26,9 +26,6 @@ class Keyboard:
 						    self.keyboardmaps.append(( mapfile,mapname))
 				f.close()
 
-		if len(self.keyboardmaps) == 0:
-			self.keyboardmaps = [('usb-us.kmap', 'USB Keyboard English (QWERTY-Layout)'), ('dream-de.kmap', 'Dreambox Keyboard Deutsch'), ('eng.kmap', 'Keyboard English'),('usb-de.kmap', 'USB Keyboard Deutsch (QWERTZ-Layout)')]
-
 	def activateKeyboardMap(self, index):
 		try:
 			keymap = self.keyboardmaps[index]
@@ -43,6 +40,6 @@ class Keyboard:
 		return self.keyboardmaps
 
 	def getDefaultKeyboardMap(self):
-		return 'usb-de.kmap'
+		return 'default.kmap'
 
 keyboard = Keyboard()

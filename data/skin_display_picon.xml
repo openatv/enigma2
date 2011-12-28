@@ -53,6 +53,9 @@
 			<convert type="ServiceInfo">IsMultichannel</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
+        <widget source="session.CurrentService" render="LcdPicon" position="179,17" size="76,45" >
+            <convert type="ServiceName">Reference</convert>
+        </widget>    
 	</screen>
     
   

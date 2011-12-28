@@ -233,17 +233,18 @@ def InitLcd():
 
 
 		if config.misc.boxtype.value == 'vuultimo':
+			config.lcd.ledblinkingtime = ConfigSlider(default = 5, increment = 1, limits = (0,15))
+			config.lcd.ledblinkingtime.addNotifier(setLEDblinkingtime);
+			config.lcd.ledbrightnessdeepstandby = ConfigSlider(default = 5, increment = 1, limits = (0,15))
+			config.lcd.ledbrightnessdeepstandby.addNotifier(setLEDdeepstandby);
+			config.lcd.ledbrightnessdeepstandby.apply = lambda : setLEDnormalstate(config.lcd.ledbrightnessdeepstandby)
+			config.lcd.ledbrightnessstandby = ConfigSlider(default = 5, increment = 1, limits = (0,15))
+			config.lcd.ledbrightnessstandby.addNotifier(setLEDnormalstate);
+			config.lcd.ledbrightnessstandby.apply = lambda : setLEDnormalstate(config.lcd.ledbrightnessstandby)
 			config.lcd.ledbrightness = ConfigSlider(default = 1, increment = 1, limits = (0,15))
 			config.lcd.ledbrightness.addNotifier(setLEDnormalstate);
 			config.lcd.ledbrightness.apply = lambda : setLEDnormalstate(config.lcd.ledbrightness)
 			config.lcd.ledbrightness.callNotifiersOnSaveAndCancel = True
-			config.lcd.ledbrightnessstandby = ConfigSlider(default = 5, increment = 1, limits = (0,15))
-			config.lcd.ledbrightnessstandby.addNotifier(setLEDnormalstate);
-			config.lcd.ledbrightnessstandby.apply = lambda : setLEDnormalstate(config.lcd.ledbrightnessstandby)
-			config.lcd.ledbrightnessdeepstandby = ConfigSlider(default = 5, increment = 1, limits = (0,15))
-			config.lcd.ledbrightnessdeepstandby.addNotifier(setLEDdeepstandby);
-			config.lcd.ledblinkingtime = ConfigSlider(default = 5, increment = 1, limits = (0,15))
-			config.lcd.ledblinkingtime.addNotifier(setLEDblinkingtime);
 		else:
 			def doNothing():
 				pass
