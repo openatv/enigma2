@@ -258,25 +258,37 @@ class UpdatePluginMenu(Screen):
 				self.session.open(SoftwareManagerInfo, mode = "backupinfo")
 
 	def checkTraficLight(self):
-		#from urllib import urlopen
-		#import socket
-		#currentTimeoutDefault = socket.getdefaulttimeout()
-		#socket.setdefaulttimeout(3)
+		from urllib import urlopen
+		import socket
+		currentTimeoutDefault = socket.getdefaulttimeout()
+		socket.setdefaulttimeout(3)
 		message = ""
 		picon = None
 		default = True
+		doUpdate = True
 		# TODO: Use Twisted's URL fetcher, urlopen is evil. And it can
 		# run in parallel to the package update.
-		#try:
-			#if 'title="Errors reported - see forum thread"' in urlopen("http://http://www.aaf-digital.info").read():
-				#message = _("The current beta image could not be stable") + "\n" + _("For more information see http://www.aaf-digital.info") + "\n"
-				#picon = MessageBox.TYPE_ERROR
-				#default = False
-		#except:
-			#message = _("The status of the current beta image could not be checked because http://www.aaf-digital.info could not be reached for some reason") + "\n"
-			#picon = MessageBox.TYPE_ERROR
-			#default = False
-		#socket.setdefaulttimeout(currentTimeoutDefault)
+		try:
+			urlopenAAF = "http://mipsel-ipk-update.aaf-board.com/Ampel/index.php"
+			#statusDate = "n/a"
+			d = urlopen(urlopenAAF)
+			tmpStatus = d.read()
+			#if 'Last-Modified' in str(d.info()):
+				#statusDate = str(d.info()['Last-Modified'])
+			if 'rot.png' in tmpStatus:
+				message = _("Update is reported as faulty !!") + "\n" + _("Aborting updateprogress") + "\n\n" + _("For more information see http://www.aaf-digital.info")# + "\n\n" + _("Last Status Date") + ": " + statusDate
+				picon = MessageBox.TYPE_ERROR
+				default = False
+				doUpdate = False
+			elif 'gelb.png' in tmpStatus:
+				message = _("Caution update not yet tested !!") + "\n" + _("Update at your own risk") + "\n\n" + _("For more information see http://www.aaf-digital.info") + "\n\n"# + _("Last Status Date") + ": "  + statusDate + "\n\n"
+				picon = MessageBox.TYPE_ERROR
+				default = False
+		except:
+			message = _("The status of the current update could not be checked because http://www.aaf-digital.info could not be reached for some reason") + "\n"
+			picon = MessageBox.TYPE_ERROR
+			default = False
+		socket.setdefaulttimeout(currentTimeoutDefault)
 		
 		recordings = self.session.nav.getRecordings()
 		jobs = len(job_manager.getPendingJobs())
@@ -293,8 +305,13 @@ class UpdatePluginMenu(Screen):
 		        # We'll ask later
 		        self.runUpgrade(True)
 		else:
-			message += _("Do you want to update your Dreambox?")+"\n"+_("After pressing OK, please wait!")
-			self.session.openWithCallback(self.runUpgrade, MessageBox, message, default = default, picon = picon)
+			if doUpdate:
+				# Ask for Update, 
+				message += _("Do you want to update your box?")+"\n"+_("After pressing OK, please wait!")
+				self.session.openWithCallback(self.runUpgrade, MessageBox, message, default = default, picon = picon)
+			else:
+				# Don't Update RED LIGHT !!
+				self.session.open(MessageBox, message, picon, timeout = 20)
 
 	def go(self):
 		current = self["menu"].getCurrent()
