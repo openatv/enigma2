@@ -45,7 +45,7 @@ class UpgradeStatus(Screen):
 		self.title_str = "FPGA Upgrade"
 
 		#self["name"] = Label(_("Upgrade status"))
-		self["name"] = Label(_(" "))
+		self["name"] = Label(" ")
 		self["info"] = StaticText(_("Can't cancel during upgrade!!"))
 
 		self["status"] = Label(_("Status : 0%"))
@@ -131,7 +131,7 @@ class FPGAUpgrade(Screen):
 		self["key_yellow"] = StaticText(" ")
 		self["key_blue"] = StaticText(_("Download"))
 
-		self["status"] = StaticText(_(" "))
+		self["status"] = StaticText(" ")
 		self["file_list"] = FileList("/", matchingPattern = "^.*")
 
 		self["actions"] = ActionMap(["OkCancelActions", "ShortcutActions", "WizardActions", "ColorActions", ],
