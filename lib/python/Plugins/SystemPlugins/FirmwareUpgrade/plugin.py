@@ -66,7 +66,7 @@ class UpgradeStatus(Screen):
 		self.datafile = datafile
 		#print "[FirmwareUpgrade] - [%s][%s][%s]" % (self.datafile, firmware, device)
 
-		self["name"] = Label(_(" "))
+		self["name"] = Label(" ")
 		self["info"] = StaticText(_("Can't cancel during upgrade!!"))
 
 		self["status"] = Label(_("Status : 0%"))
@@ -156,7 +156,7 @@ class Filebrowser(Screen):
 		
 		self["key_blue"] = StaticText(_("Download the firmware (latest)"))
 
-		self["status"]    = StaticText(_(" "))
+		self["status"]    = StaticText(" ")
 		self["file_list"] = FileList("/", matchingPattern = "^.*")
 
 		self["actions"] = ActionMap(["OkCancelActions", "ShortcutActions", "WizardActions", "ColorActions", ],
@@ -410,11 +410,11 @@ class FirmwareUpgrade(Screen, ConfigListScreen):
 
 		global fwlist
 		if fwlist is None:
-			self["key_green"] = StaticText(_(" "))
+			self["key_green"] = StaticText(" ")
 			self["status"] = StaticText(_("This plugin is supported only the Ultimo/Uno."))
 		else:
 			self["key_green"] = StaticText(_("Upgrade"))
-			self["status"] = StaticText(_(" "))
+			self["status"] = StaticText(" ")
 			self.setupUI()
 
 	def setupUI(self):
