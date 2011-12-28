@@ -37,7 +37,7 @@ class UpgradeStatus(Screen):
 		self["actions"] = ActionMap(["OkCancelActions"],
                 {
 			"ok": self.keyExit,
-                }, -1)
+                }, -2)
 
 		self.is_done = 0
 		self.exit_count = 0
@@ -59,6 +59,7 @@ class UpgradeStatus(Screen):
 		self.timer_check_progress.callback.append(self.callbackDoCheckProgress)
 		interval = self.parent.FPGA.get_interval()
 		self.timer_check_progress.start(interval)
+		self.need_restart = False
 
 	def callbackDoCheckProgress(self):
 		self.status = self.parent.FPGA.get_status()
@@ -76,9 +77,13 @@ class UpgradeStatus(Screen):
 			self.timer_exit = eTimer()
 			self.timer_exit.callback.append(self.callbackExit)
 			self.timer_exit.start(1000)
-		elif self.status == -1 or self.status == -2:
+		elif self.status < 0:#elif self.status == -1 or self.status == -2:
 			#print "fpga-upgrade error >> errno : [%d]" % (self.status)
-			self.status_bar.setText(_("Error[%d]. Press Cancel to exit." % (self.status)))
+			ERROR_MSG = ''
+			ERROR_CODE = int(self.status) * -1
+			ERROR_MSG = self.parent.FPGA.get_error_msg(ERROR_CODE, ERROR_MSG)
+			self.status_bar.setText("Fail to update!!")
+			self["info"].setText(_("Error[%d] : %s.\nPress OK to exit." % (self.status, ERROR_MSG)))
 			self.timer_check_progress.stop()
 			self.is_done = 1
 		else:
@@ -86,6 +91,7 @@ class UpgradeStatus(Screen):
 			self.status_bar.setText(_("%d / 100" % (self.status)))
 
 	def callbackExit(self):
+		self.need_restart = True
 		if self.exit_count == self.timeout:
 			self.timer_exit.stop()
 			self.keyExit()
@@ -93,6 +99,9 @@ class UpgradeStatus(Screen):
 		self.instance.setTitle("%s (%d)" % (self.title_str, (self.timeout-self.exit_count)))
 
 	def keyExit(self):
+		if self.need_restart:
+			from Screens.Standby import TryQuitMainloop
+			self.session.open(TryQuitMainloop, 2)
 		if self.is_done :
 			self.close()
 		
@@ -119,9 +128,9 @@ class FPGAUpgrade(Screen):
 
 		self["key_red"] = StaticText(_("Close"))
 		self["key_green"] = StaticText(_("Upgrade"))
-		self["key_yellow"] = StaticText(_(" "))
+		self["key_yellow"] = StaticText(" ")
 		self["key_blue"] = StaticText(_("Download"))
-		#self["key_blue"] = StaticText(_(" "))
+
 		self["status"] = StaticText(_(" "))
 		self["file_list"] = FileList("/", matchingPattern = "^.*")
 
