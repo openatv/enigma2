@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-27 14:16+0000\n"
-"PO-Revision-Date: 2011-12-28 12:45+0100\n"
+"POT-Creation-Date: 2011-12-28 13:28+0000\n"
+"PO-Revision-Date: 2011-12-28 14:30+0100\n"
 "Last-Translator: R.L. van der Does\n"
 "Language-Team: Andy Blackburn, Rob van der Does\n"
 "Language: Nederlands\n"
@@ -130,9 +130,6 @@ msgid ""
 msgstr ""
 "\n"
 "Bekijk, installeer en verwijder beschikbare of geïnstalleerde pakketten."
-
-msgid " "
-msgstr " "
 
 msgid " and"
 msgstr "en"
@@ -1877,6 +1874,9 @@ msgstr "Download .NFI-Bestanden naar USB-Flasher"
 msgid "Download Plugins"
 msgstr "Downloaden plugins"
 
+msgid "Download the firmware (latest)"
+msgstr "Download de laatste firmware"
+
 msgid "Downloadable new plugins"
 msgstr "Beschikbare nieuwe plugins"
 
@@ -2138,8 +2138,12 @@ msgstr ""
 "Opnieuw?"
 
 #, python-format
-msgid "Error[%d]. Press Cancel to exit."
-msgstr "Fout[%d]. Druk op Cancel om af te sluiten."
+msgid ""
+"Error[%d] : %s.\n"
+"Press OK to exit."
+msgstr ""
+"Foutr[%d] : %s.\n"
+"Druk op OK om af te sluiten."
 
 msgid "Ethernet network interface"
 msgstr "Ethernet network interface"
@@ -2323,14 +2327,6 @@ msgstr "Bestand lijkt in gebruik te zijn.\n"
 
 msgid "File not found"
 msgstr "Bestand niet gevonden"
-
-#, python-format
-msgid ""
-"File not found in this URL:\n"
-"%s"
-msgstr ""
-"Bestand niet gevonden in deze URL:\n"
-"%s"
 
 msgid ""
 "File oscam.conf not found.\n"
@@ -8091,9 +8087,3 @@ msgstr "zap"
 
 msgid "zapped"
 msgstr "zapte"
-
-#~ msgid "[TimeShift] - Merging records failed!"
-#~ msgstr "[TimeShift] - Samenvoegen opnames mislukt!"
-
-#~ msgid "[TimeShift] - Restarting Timeshift!"
-#~ msgstr "[TimeShift] - Herstart Timeshift!"
