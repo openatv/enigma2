@@ -395,6 +395,8 @@ class FirmwareUpgrade(Screen, ConfigListScreen):
 		self.list = []
 		self.updateFilePath = ""
 
+		self.finishedExit = False
+
 		self.rebootLock = False
 		self.rebootMessage = ""
 		self.cbRebootCallCount = 0;
@@ -436,18 +438,24 @@ class FirmwareUpgrade(Screen, ConfigListScreen):
 				self.rebootMessage = message
 				self.reboot_timer = eTimer()
 				self.reboot_timer.callback.append(self.cbReboot)
-				self.reboot_timer.start(500)
+				self.reboot_timer.start(1000)
 			return
 		if not self.rebootLock:
 			self["status"].setText("Press the Green/OK button")
 
-	def cbReboot(self):
-		if self.cbRebootCallCount < 6:
-			self.cbRebootCallCount = self.cbRebootCallCount + 1
-			self["status"].setText("%s (%d)"%(self.rebootMessage, 6-self.cbRebootCallCount))
-			return
+	def doReboot(self):
 		from Screens.Standby import TryQuitMainloop
 		self.session.open(TryQuitMainloop, 2)
+
+	def cbReboot(self):
+		max_call_count = 20
+		self.finishedExit = True
+		if self.cbRebootCallCount < max_call_count:
+			self.cbRebootCallCount = self.cbRebootCallCount + 1
+			#self["status"].setText("%s (%d)"%(self.rebootMessage, max_call_count-self.cbRebootCallCount))
+			self["status"].setText("Reboot after %d seconds. Press the OK to reboot now."%(max_call_count-self.cbRebootCallCount))
+			return
+		self.doReboot()
 
 	# filebrowser window callback function
 	def cbSetStatus(self, data=None):
@@ -499,6 +507,9 @@ class FirmwareUpgrade(Screen, ConfigListScreen):
 		self.setupStatus()
 
 	def keyGreen(self):
+		if self.finishedExit:
+			self.doReboot()
+			return
 		self.upgrade_auto_run_timer.stop()
 		if self.rebootLock:
 			return

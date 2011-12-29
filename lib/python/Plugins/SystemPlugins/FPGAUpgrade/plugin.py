@@ -30,7 +30,7 @@ class UpgradeStatus(Screen):
 			<widget source="info" render="Label" position="10,70" zPosition="1" size="430,30" font="Regular;22" halign="center" valign="center" backgroundColor="black" transparent="1"/>
 		</screen>
 		"""
-	def __init__(self, session, parent, timeout = 10):
+	def __init__(self, session, parent, timeout = 20):
 		Screen.__init__(self,session)
 		self.session = session
 
@@ -41,7 +41,7 @@ class UpgradeStatus(Screen):
 
 		self.is_done = 0
 		self.exit_count = 0
-		self.timeout = timeout
+		self.timeout = 20
 		self.title_str = "FPGA Upgrade"
 
 		#self["name"] = Label(_("Upgrade status"))
@@ -69,14 +69,14 @@ class UpgradeStatus(Screen):
 
 		if self.status == 100:
 			#print "fpga-upgrade done!!"
-			self.status_bar.setText(_("Success. Press OK to exit."))
+			self.status_bar.setText(_("Succeed"))
 			#self.status_bar.setText(_("%d / 100" % (self.status)))
 			self.timer_check_progress.stop()
 			self.is_done = 1
-
 			self.timer_exit = eTimer()
 			self.timer_exit.callback.append(self.callbackExit)
 			self.timer_exit.start(1000)
+
 		elif self.status < 0:#elif self.status == -1 or self.status == -2:
 			#print "fpga-upgrade error >> errno : [%d]" % (self.status)
 			ERROR_MSG = ''
@@ -86,6 +86,7 @@ class UpgradeStatus(Screen):
 			self["info"].setText(_("Error[%d] : %s.\nPress OK to exit." % (self.status, ERROR_MSG)))
 			self.timer_check_progress.stop()
 			self.is_done = 1
+
 		else:
 			#print "fpga-upgrade status : %d" % self.status
 			self.status_bar.setText(_("%d / 100" % (self.status)))
@@ -96,7 +97,8 @@ class UpgradeStatus(Screen):
 			self.timer_exit.stop()
 			self.keyExit()
 		self.exit_count = self.exit_count + 1
-		self.instance.setTitle("%s (%d)" % (self.title_str, (self.timeout-self.exit_count)))
+		#self.instance.setTitle("%s (%d)" % (self.title_str, (self.timeout-self.exit_count)))
+		self["info"].setText("Reboot after %d seconds.\nPress the OK to reboot now." %(self.timeout-self.exit_count)) 
 
 	def keyExit(self):
 		if self.need_restart:
@@ -223,7 +225,7 @@ class FPGAUpgrade(Screen):
 			print "FILE : ", path
 		else:
 			#self.session.open(MessageBox, _("Success!!"), MessageBox.TYPE_INFO, timeout = 5)
-			self.session.open(UpgradeStatus, self, timeout = 10)			
+			self.session.open(UpgradeStatus, self, timeout = 20)			
 
 	def onClickRed(self):
 		self.doExit()
