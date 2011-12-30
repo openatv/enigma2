@@ -67,7 +67,7 @@ def Check_Softcam():
 	return found
 
 # Hide Softcam-Panel Setup when no softcams installed
-if not Check_Softcam() and config.plugins.showaafpanelextensions.value:
+if not Check_Softcam() and (config.plugins.showaafpanelextensions.value or config.plugins.aafpanel_redpanel.enabledlong.value):
 	config.plugins.showaafpanelextensions.value = False
 	config.plugins.aafpanel_redpanel.enabledlong.value = False
 	config.plugins.showaafpanelextensions.save()
