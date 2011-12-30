@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-20 11:09+0000\n"
-"PO-Revision-Date: 2011-12-20 12:22+0100\n"
+"POT-Creation-Date: 2011-12-28 13:28+0000\n"
+"PO-Revision-Date: 2011-12-28 14:30+0100\n"
 "Last-Translator: R.L. van der Does\n"
 "Language-Team: Andy Blackburn, Rob van der Does\n"
 "Language: Nederlands\n"
@@ -130,9 +130,6 @@ msgid ""
 msgstr ""
 "\n"
 "Bekijk, installeer en verwijder beschikbare of geïnstalleerde pakketten."
-
-msgid " "
-msgstr " "
 
 msgid " and"
 msgstr "en"
@@ -475,6 +472,13 @@ msgid ""
 msgstr ""
 "Timer opname mislukt!\n"
 "Verander van zender en probeer het opnieuw.\n"
+
+msgid ""
+"A timer failed to record!\n"
+"Not Enough freespace\n"
+msgstr ""
+"Een timer kon niet opnemen!\n"
+"Niet genoeg vrije ruimte\n"
 
 msgid "A/V Settings"
 msgstr "A/V Instellingen"
@@ -1870,6 +1874,9 @@ msgstr "Download .NFI-Bestanden naar USB-Flasher"
 msgid "Download Plugins"
 msgstr "Downloaden plugins"
 
+msgid "Download the firmware (latest)"
+msgstr "Download de laatste firmware"
+
 msgid "Downloadable new plugins"
 msgstr "Beschikbare nieuwe plugins"
 
@@ -2131,8 +2138,12 @@ msgstr ""
 "Opnieuw?"
 
 #, python-format
-msgid "Error[%d]. Press Cancel to exit."
-msgstr "Fout[%d]. Druk op Cancel om af te sluiten."
+msgid ""
+"Error[%d] : %s.\n"
+"Press OK to exit."
+msgstr ""
+"Foutr[%d] : %s.\n"
+"Druk op OK om af te sluiten."
 
 msgid "Ethernet network interface"
 msgstr "Ethernet network interface"
@@ -2316,14 +2327,6 @@ msgstr "Bestand lijkt in gebruik te zijn.\n"
 
 msgid "File not found"
 msgstr "Bestand niet gevonden"
-
-#, python-format
-msgid ""
-"File not found in this URL:\n"
-"%s"
-msgstr ""
-"Bestand niet gevonden in deze URL:\n"
-"%s"
 
 msgid ""
 "File oscam.conf not found.\n"
@@ -2528,6 +2531,9 @@ msgstr "Harde schijf standby na"
 
 msgid "Hardware:"
 msgstr "Hardware:"
+
+msgid "Harmony support"
+msgstr "Harmony ondersteuning"
 
 msgid "Height"
 msgstr "Hoogte"
@@ -6991,11 +6997,11 @@ msgstr "Zappen in hoofdscherm"
 msgid "Zap mode"
 msgstr "Zap modus"
 
-msgid "[TimeShift] - Merging records failed!"
-msgstr "[TimeShift] - Samenvoegen opnames mislukt!"
+msgid "[TimeShift] Merging records failed!"
+msgstr "[TimeShift] Samenvoegen van opnames mislukt!"
 
-msgid "[TimeShift] - Restarting Timeshift!"
-msgstr "[TimeShift] - Herstart Timeshift!"
+msgid "[TimeShift] Restarting Timeshift!"
+msgstr "[TimeShift] Timeshift wordt herstart!"
 
 msgid "[alternative edit]"
 msgstr "[alternatieven bewerken]"

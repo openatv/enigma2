@@ -392,7 +392,8 @@ class EPGSelection(Screen):
 			if self.type == EPG_TYPE_ENHANCED:
 				self["actions"] = ActionMap(["OkCancelActions", "InfobarInstantRecord", "EPGSelectActions", "ChannelSelectBaseActions", "ColorActions", "DirectionActions", "HelpActions"], 
 				{
-					"ok": self.ZapTo, 
+					"OK": self.OK,
+					"OKLong": self.OKLong,
 					"cancel": self.closing,
 					"nextBouquet": self.nextBouquet,
 					"prevBouquet": self.prevBouquet,
@@ -423,7 +424,8 @@ class EPGSelection(Screen):
 			elif self.type == EPG_TYPE_INFOBAR:
 				self["actions"] = ActionMap(["OkCancelActions", "InfobarInstantRecord", "EPGSelectActions", "ChannelSelectBaseActions", "ColorActions", "DirectionActions", "HelpActions"], 
 				{
-					"ok": self.ZapTo, 
+					"OK": self.OK,
+					"OKLong": self.OKLong,
 					"cancel": self.closing,
 					"right": self.nextService,
 					"left": self.prevService,
@@ -518,7 +520,8 @@ class EPGSelection(Screen):
 		elif self.type == EPG_TYPE_MULTI:
 			self["actions"] = ActionMap(["EPGSelectActions", "OkCancelActions", "ColorActions"],
 			{
-				"ok": self.ZapTo,
+				"OK": self.OK,
+				"OKLong": self.OKLong,
 				"cancel": self.closing,
 				"red": self.redButtonPressed,
 				"timerAdd": self.timerAdd,
@@ -545,7 +548,8 @@ class EPGSelection(Screen):
 		else:
 			self["actions"] = ActionMap(["EPGSelectActions", "InfobarInstantRecord", "OkCancelActions", "ColorActions"],
 			{
-				"ok": self.ZapTo,
+				"OK": self.OK,
+				"OKLong": self.OKLong,
 				"cancel": self.closing,
 				"red": self.redButtonPressed,
 				"timerAdd": self.timerAdd,
@@ -1104,15 +1108,15 @@ class EPGSelection(Screen):
 		self.moveTimeLines(True)
 
 	def OK(self):
-		if config.GraphEPG.OK.value == "Zap":
+		if config.GraphEPG.OK_vixepg.value == "Zap" or config.GraphEPG.OK_enhanced.value == "Zap" or config.GraphEPG.OK_infobar.value == "Zap":
 			self.ZapTo()
-		if config.GraphEPG.OK.value == "Zap + Exit":
+		if config.GraphEPG.OK_vixepg.value == "Zap + Exit" or config.GraphEPG.OK_enhanced.value == "Zap + Exit" or config.GraphEPG.OK_infobar.value == "Zap + Exit":
 			self.zap()
 
 	def OKLong(self):
-		if config.GraphEPG.OKLong.value == "Zap":
+		if config.GraphEPG.OKLong_vixepg.value == "Zap" or config.GraphEPG.OKLong_enhanced.value == "Zap" or config.GraphEPG.OKLong_infobar.value == "Zap":
 			self.ZapTo()
-		if config.GraphEPG.OKLong.value == "Zap + Exit":
+		if config.GraphEPG.OKLong_vixepg.value == "Zap + Exit" or config.GraphEPG.OKLong_enhanced.value == "Zap + Exit" or config.GraphEPG.OKLong_infobar.value == "Zap + Exit":
 			self.zap()
 
 	def Info(self):
@@ -1303,12 +1307,28 @@ class EPGSelection(Screen):
 		self.servicelist.setCurrentSelection(service) #select the service in servicelist
 
 	def zap(self):
-		if self.zapFunc :
-			self.closeRecursive = True
-			ref = self["list"].getCurrent()[1]
-			if ref:
-				self.zapFunc(ref.ref)
-				self.closeScreen()
+		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_MULTI:
+			if self.zapFunc :
+				self.closeRecursive = True
+				ref = self["list"].getCurrent()[1]
+				if ref:
+					self.zapFunc(ref.ref)
+					self.closeScreen()
+				else:
+					self.closeScreen()
+		else:
+			try:
+				currch = self.session.nav.getCurrentlyPlayingServiceReference()
+				currch = currch.toString()
+				switchto = ServiceReference(self.servicelist.getCurrentSelection())
+				switchto = str(switchto)
+				if not switchto == currch:
+					self.servicelist_orig_zap()
+					self.close()
+				else:
+					self.close()
+			except:
+				self.close()
 
 	def ZapTo(self):
 		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_MULTI:
@@ -1560,8 +1580,8 @@ class EPGSelectionSetup(Screen, ConfigListScreen):
 			self.list.append(getConfigListEntry(_("Enable Picon"), config.GraphEPG.UsePicon))
 			self.list.append(getConfigListEntry(_("Info Button"), config.GraphEPG.Info))
 			self.list.append(getConfigListEntry(_("Long Info Button"), config.GraphEPG.InfoLong))
-			self.list.append(getConfigListEntry(_("OK Button"), config.GraphEPG.OK))
-			self.list.append(getConfigListEntry(_("LongOK Button"), config.GraphEPG.OKLong))
+			self.list.append(getConfigListEntry(_("OK Button"), config.GraphEPG.OK_vixepg))
+			self.list.append(getConfigListEntry(_("LongOK Button"), config.GraphEPG.OKLong_vixepg))
 			self.list.append(getConfigListEntry(_("Primetime hour"), config.GraphEPG.Primetime1))
 			self.list.append(getConfigListEntry(_("Primetime minute"), config.GraphEPG.Primetime2))
 			self.list.append(getConfigListEntry(_("Channel 1 at Start"), config.GraphEPG.channel1))
@@ -1574,8 +1594,18 @@ class EPGSelectionSetup(Screen, ConfigListScreen):
 			self.list.append(getConfigListEntry(_("Left width Text"), config.GraphEPG.left16))
 			self.list.append(getConfigListEntry(_("Time Scale"), config.GraphEPG.prev_time_period))
 			self.list.append(getConfigListEntry(_("Skip Empty Services (restart plugin)"), config.GraphEPG.overjump))
+		elif self.type == 4:
+			self.list.append(getConfigListEntry(_("Sort List by"), config.misc.EPGSort))
+			self.list.append(getConfigListEntry(_("OK Button"), config.GraphEPG.OK_infobar))
+			self.list.append(getConfigListEntry(_("LongOK Button"), config.GraphEPG.OKLong_infobar))
+		elif self.type == 3:
+			self.list.append(getConfigListEntry(_("Sort List by"), config.misc.EPGSort))
+			self.list.append(getConfigListEntry(_("OK Button"), config.GraphEPG.OK_enhanced))
+			self.list.append(getConfigListEntry(_("LongOK Button"), config.GraphEPG.OKLong_enhanced))
 		else:
 			self.list.append(getConfigListEntry(_("Sort List by"), config.misc.EPGSort))
+			self.list.append(getConfigListEntry(_("OK Button"), config.GraphEPG.OK))
+			self.list.append(getConfigListEntry(_("LongOK Button"), config.GraphEPG.OKLong))
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
 	# for summary:

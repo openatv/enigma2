@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-20 11:09+0000\n"
+"POT-Creation-Date: 2011-12-28 13:28+0000\n"
 "PO-Revision-Date: 2008-03-30 18:45-0000\n"
 "Last-Translator: Muaitai <muaitai@gmail.com>\n"
 "Language-Team: Muaitai <muaitai@gmail.com>\n"
@@ -109,10 +109,6 @@ msgstr ""
 msgid ""
 "\n"
 "View, install and remove available or installed packages."
-msgstr ""
-
-#
-msgid " "
 msgstr ""
 
 msgid " and"
@@ -531,6 +527,11 @@ msgid ""
 msgstr ""
 "O temporizador falhou a gravação!\n"
 "Tentar de novo?\n"
+
+msgid ""
+"A timer failed to record!\n"
+"Not Enough freespace\n"
+msgstr ""
 
 #
 msgid "A/V Settings"
@@ -2167,6 +2168,9 @@ msgstr ""
 msgid "Download Plugins"
 msgstr "Descarregar Plugins"
 
+msgid "Download the firmware (latest)"
+msgstr ""
+
 #
 msgid "Downloadable new plugins"
 msgstr "Novos plugins para descarregar"
@@ -2463,7 +2467,9 @@ msgid ""
 msgstr ""
 
 #, python-format
-msgid "Error[%d]. Press Cancel to exit."
+msgid ""
+"Error[%d] : %s.\n"
+"Press OK to exit."
 msgstr ""
 
 msgid "Ethernet network interface"
@@ -2669,12 +2675,6 @@ msgid "File appears to be busy.\n"
 msgstr ""
 
 msgid "File not found"
-msgstr ""
-
-#, python-format
-msgid ""
-"File not found in this URL:\n"
-"%s"
 msgstr ""
 
 msgid ""
@@ -2911,6 +2911,9 @@ msgid "Harddisk standby after"
 msgstr "Disco rigido suspenso após "
 
 msgid "Hardware:"
+msgstr ""
+
+msgid "Harmony support"
 msgstr ""
 
 msgid "Height"
@@ -8099,10 +8102,10 @@ msgstr ""
 msgid "Zap mode"
 msgstr ""
 
-msgid "[TimeShift] - Merging records failed!"
+msgid "[TimeShift] Merging records failed!"
 msgstr ""
 
-msgid "[TimeShift] - Restarting Timeshift!"
+msgid "[TimeShift] Restarting Timeshift!"
 msgstr ""
 
 #
@@ -9466,23 +9469,3 @@ msgstr "zap"
 #
 msgid "zapped"
 msgstr "zapped"
-
-#
-#~ msgid "Delay"
-#~ msgstr "Atraso"
-
-#
-#~ msgid "Keymap"
-#~ msgstr "Mapa das teclas"
-
-#
-#~ msgid "RC Menu"
-#~ msgstr "Menu RC"
-
-#
-#~ msgid "Repeat"
-#~ msgstr "Repetir"
-
-#
-#~ msgid "Show blinking clock in display during recording"
-#~ msgstr "Mostrar o relogio a piscar durante a gravação"

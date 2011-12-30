@@ -1,5 +1,6 @@
 from enigma import eServiceCenter, eServiceReference, eTimer, pNavigation, getBestPlayableServiceReference, iPlayableService
 from Components.ParentalControl import parentalControl
+from Components.config import config
 from Tools.BoundFunction import boundFunction
 from Tools.DreamboxHardware import setFPWakeuptime, getFPWakeuptime, getFPWasTimerWakeup
 from time import time
@@ -64,7 +65,7 @@ class Navigation:
 			print "ignore request to play already running service(1)"
 			return 0
 		print "playing", ref and ref.toString()
-		if path.exists("/proc/stb/lcd/symbol_signal"):
+		if path.exists("/proc/stb/lcd/symbol_signal") and config.lcd.mode.value == '1':
 			try:
 				if not ref.toString().startswith('1:0:0:0:0:0:0:0:0:0:'):
 					signal = 1
@@ -73,6 +74,8 @@ class Navigation:
 				open("/proc/stb/lcd/symbol_signal", "w").write(str(signal))
 			except:
 				open("/proc/stb/lcd/symbol_signal", "w").write("0")
+		elif path.exists("/proc/stb/lcd/symbol_signal") and config.lcd.mode.value == '0':
+			open("/proc/stb/lcd/symbol_signal", "w").write("0")
 		
 		if ref is None:
 			self.stopService()

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-20 11:09+0000\n"
+"POT-Creation-Date: 2011-12-28 13:28+0000\n"
 "PO-Revision-Date: 2011-04-12 22:26+0200\n"
 "Last-Translator: Jose Juan <jzapater@gmail.com>\n"
 "Language-Team: none\n"
@@ -141,10 +141,6 @@ msgid ""
 msgstr ""
 "\n"
 "Ver, instalar y eliminar paquetes disponibles o instalados."
-
-#
-msgid " "
-msgstr " "
 
 msgid " and"
 msgstr ""
@@ -565,6 +561,11 @@ msgid ""
 msgstr ""
 "¡Ha fallado la grabación!\n"
 "¿Desactivar TV y probar otra vez?\n"
+
+msgid ""
+"A timer failed to record!\n"
+"Not Enough freespace\n"
+msgstr ""
 
 #
 msgid "A/V Settings"
@@ -2221,6 +2222,9 @@ msgstr "Descargar ficheros .NFI para el USB-Flasher"
 msgid "Download Plugins"
 msgstr "Descargar Plugins"
 
+msgid "Download the firmware (latest)"
+msgstr ""
+
 #
 msgid "Downloadable new plugins"
 msgstr "Nuevos plugins descargables"
@@ -2523,7 +2527,9 @@ msgstr ""
 "Reintentar?"
 
 #, python-format
-msgid "Error[%d]. Press Cancel to exit."
+msgid ""
+"Error[%d] : %s.\n"
+"Press OK to exit."
 msgstr ""
 
 msgid "Ethernet network interface"
@@ -2728,12 +2734,6 @@ msgid "File appears to be busy.\n"
 msgstr ""
 
 msgid "File not found"
-msgstr ""
-
-#, python-format
-msgid ""
-"File not found in this URL:\n"
-"%s"
 msgstr ""
 
 msgid ""
@@ -2969,6 +2969,9 @@ msgid "Harddisk standby after"
 msgstr "Disco duro en reposo después"
 
 msgid "Hardware:"
+msgstr ""
+
+msgid "Harmony support"
 msgstr ""
 
 msgid "Height"
@@ -8314,10 +8317,10 @@ msgstr ""
 msgid "Zap mode"
 msgstr ""
 
-msgid "[TimeShift] - Merging records failed!"
+msgid "[TimeShift] Merging records failed!"
 msgstr ""
 
-msgid "[TimeShift] - Restarting Timeshift!"
+msgid "[TimeShift] Restarting Timeshift!"
 msgstr ""
 
 #
@@ -9679,23 +9682,3 @@ msgstr "zapear"
 #
 msgid "zapped"
 msgstr "zapeado"
-
-#
-#~ msgid "Delay"
-#~ msgstr "Retardo"
-
-#
-#~ msgid "Keymap"
-#~ msgstr "Mapa de teclado"
-
-#
-#~ msgid "RC Menu"
-#~ msgstr "Menú RC"
-
-#
-#~ msgid "Repeat"
-#~ msgstr "Repetir"
-
-#
-#~ msgid "Show blinking clock in display during recording"
-#~ msgstr "Muestra parpadeo en el reloj mientras graba"

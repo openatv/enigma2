@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-20 11:09+0000\n"
+"POT-Creation-Date: 2011-12-28 13:28+0000\n"
 "PO-Revision-Date: 2010-04-13 21:10+0200\n"
 "Last-Translator: Ingmar <dreambox@ingmar.dk>\n"
 "Language-Team: jazzydane <dreambox@ingmar.dk>\n"
@@ -141,10 +141,6 @@ msgid ""
 msgstr ""
 "\n"
 "Se, installer og fjern nuværende eller installerede pakker."
-
-#
-msgid " "
-msgstr " "
 
 msgid " and"
 msgstr ""
@@ -548,6 +544,11 @@ msgid ""
 msgstr ""
 "Timeroptagelse slået fejl.\n"
 "Skift kanal og prøv igen?\n"
+
+msgid ""
+"A timer failed to record!\n"
+"Not Enough freespace\n"
+msgstr ""
 
 #
 msgid "A/V Settings"
@@ -2207,6 +2208,9 @@ msgstr "Download .NFI-filer til USB flash"
 msgid "Download Plugins"
 msgstr "Hente Plugins"
 
+msgid "Download the firmware (latest)"
+msgstr ""
+
 #
 msgid "Downloadable new plugins"
 msgstr "Hente nye Plugins"
@@ -2511,7 +2515,9 @@ msgstr ""
 "Prøve igen?"
 
 #, python-format
-msgid "Error[%d]. Press Cancel to exit."
+msgid ""
+"Error[%d] : %s.\n"
+"Press OK to exit."
 msgstr ""
 
 msgid "Ethernet network interface"
@@ -2718,12 +2724,6 @@ msgid "File appears to be busy.\n"
 msgstr ""
 
 msgid "File not found"
-msgstr ""
-
-#, python-format
-msgid ""
-"File not found in this URL:\n"
-"%s"
 msgstr ""
 
 msgid ""
@@ -2960,6 +2960,9 @@ msgid "Harddisk standby after"
 msgstr "Harddisk slumre efter:"
 
 msgid "Hardware:"
+msgstr ""
+
+msgid "Harmony support"
 msgstr ""
 
 msgid "Height"
@@ -8294,10 +8297,10 @@ msgstr ""
 msgid "Zap mode"
 msgstr ""
 
-msgid "[TimeShift] - Merging records failed!"
+msgid "[TimeShift] Merging records failed!"
 msgstr ""
 
-msgid "[TimeShift] - Restarting Timeshift!"
+msgid "[TimeShift] Restarting Timeshift!"
 msgstr ""
 
 #
@@ -9662,23 +9665,3 @@ msgstr "zap"
 #
 msgid "zapped"
 msgstr "zappet"
-
-#
-#~ msgid "Delay"
-#~ msgstr "Forsinkelse"
-
-#
-#~ msgid "Keymap"
-#~ msgstr "Tastelayout"
-
-#
-#~ msgid "RC Menu"
-#~ msgstr "Fjernbetjenings menu"
-
-#
-#~ msgid "Repeat"
-#~ msgstr "Gentag"
-
-#
-#~ msgid "Show blinking clock in display during recording"
-#~ msgstr "Vis blinkende klokke i display under optagelse"

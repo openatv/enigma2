@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-20 11:09+0000\n"
+"POT-Creation-Date: 2011-12-28 13:28+0000\n"
 "PO-Revision-Date: 2011-02-09 20:34+0200\n"
 "Last-Translator: Remi <remi.jarrige0293@orange.fr>\n"
 "Language-Team: french\n"
@@ -137,9 +137,6 @@ msgid ""
 msgstr ""
 "\n"
 "Visualiser, installer et retirer paquets disponibles ou installés."
-
-msgid " "
-msgstr " "
 
 msgid " and"
 msgstr ""
@@ -506,6 +503,11 @@ msgid ""
 msgstr ""
 "Un programme n'a pas pu s'enregistrer!\n"
 "Désactiver la TV et réessayer?\n"
+
+msgid ""
+"A timer failed to record!\n"
+"Not Enough freespace\n"
+msgstr ""
 
 #
 msgid "A/V Settings"
@@ -2154,6 +2156,9 @@ msgstr "Téléchargement fichiers .NFI pour USB-flasheur"
 msgid "Download Plugins"
 msgstr "Téléchargement Plugins"
 
+msgid "Download the firmware (latest)"
+msgstr ""
+
 #
 msgid "Downloadable new plugins"
 msgstr "Nouvelles extensions téléchargables"
@@ -2455,7 +2460,9 @@ msgstr ""
 "Réessayer?"
 
 #, python-format
-msgid "Error[%d]. Press Cancel to exit."
+msgid ""
+"Error[%d] : %s.\n"
+"Press OK to exit."
 msgstr ""
 
 msgid "Ethernet network interface"
@@ -2661,12 +2668,6 @@ msgid "File appears to be busy.\n"
 msgstr ""
 
 msgid "File not found"
-msgstr ""
-
-#, python-format
-msgid ""
-"File not found in this URL:\n"
-"%s"
 msgstr ""
 
 msgid ""
@@ -2901,6 +2902,9 @@ msgid "Harddisk standby after"
 msgstr "Disque dur en veille après"
 
 msgid "Hardware:"
+msgstr ""
+
+msgid "Harmony support"
 msgstr ""
 
 msgid "Height"
@@ -8236,10 +8240,10 @@ msgstr ""
 msgid "Zap mode"
 msgstr ""
 
-msgid "[TimeShift] - Merging records failed!"
+msgid "[TimeShift] Merging records failed!"
 msgstr ""
 
-msgid "[TimeShift] - Restarting Timeshift!"
+msgid "[TimeShift] Restarting Timeshift!"
 msgstr ""
 
 #
@@ -9592,22 +9596,3 @@ msgstr "zap"
 #
 msgid "zapped"
 msgstr "zappé"
-
-#~ msgid "Delay"
-#~ msgstr "Délai"
-
-#
-#~ msgid "Keymap"
-#~ msgstr "Agencement touches"
-
-#
-#~ msgid "RC Menu"
-#~ msgstr "Menu télécommande"
-
-#
-#~ msgid "Repeat"
-#~ msgstr "Répéter"
-
-#
-#~ msgid "Show blinking clock in display during recording"
-#~ msgstr "Montrer clignotement horloge en enregistrement"

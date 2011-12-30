@@ -144,6 +144,22 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		self.log_entries.append((int(time()), code, msg))
 		print "[TIMER]", msg
 
+	def freespace(self):
+		if not self.dirname or not Directories.fileExists(self.dirname, 'w'):
+			if self.dirname:
+				self.dirnameHadToFallback = True
+			dirname = defaultMoviePath()
+		else:
+			dirname = self.dirname
+		import os
+		s = os.statvfs(dirname)
+		if (s.f_bavail * s.f_bsize) / 1000000 < 1024:
+			self.log(0, "Not enough free space to record")
+			return False
+		else:
+			self.log(0, "Found enough free space to record")
+			return True
+
 	def calculateFilename(self):
 		service_name = self.service_ref.getServiceName()
 		begin_date = strftime("%Y%m%d %H%M", localtime(self.begin))
@@ -244,6 +260,11 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		self.log(5, "activating state %d" % next_state)
 
 		if next_state == self.StatePrepared:
+			if not self.freespace():
+				Notifications.AddNotification(MessageBox, _("A timer failed to record!\nNot Enough freespace\n"), timeout=20)
+				self.cancelled = True
+				return True
+			
 			if self.tryPrepare():
 				self.log(6, "prepare ok, waiting for begin")
 				# create file to "reserve" the filename
