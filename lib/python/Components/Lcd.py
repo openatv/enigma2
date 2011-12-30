@@ -237,7 +237,7 @@ def InitLcd():
 			config.lcd.ledblinkingtime.addNotifier(setLEDblinkingtime);
 			config.lcd.ledbrightnessdeepstandby = ConfigSlider(default = 5, increment = 1, limits = (0,15))
 			config.lcd.ledbrightnessdeepstandby.addNotifier(setLEDdeepstandby);
-			config.lcd.ledbrightnessdeepstandby.apply = lambda : setLEDnormalstate(config.lcd.ledbrightnessdeepstandby)
+			config.lcd.ledbrightnessdeepstandby.apply = lambda : setLEDdeepstandby(config.lcd.ledbrightnessdeepstandby)
 			config.lcd.ledbrightnessstandby = ConfigSlider(default = 5, increment = 1, limits = (0,15))
 			config.lcd.ledbrightnessstandby.addNotifier(setLEDnormalstate);
 			config.lcd.ledbrightnessstandby.apply = lambda : setLEDnormalstate(config.lcd.ledbrightnessstandby)
