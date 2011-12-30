@@ -285,9 +285,9 @@ lib/python/Plugins/Extensions/Aafpanel/icons/Makefile
 lib/python/Plugins/Extensions/Aafpanel/Extra/Makefile
 lib/python/Plugins/Extensions/GraphMultiEPG/Makefile
 lib/python/Plugins/Extensions/GraphMultiEPG/meta/Makefile
-lib/python/Plugins/Extensions/auraWebBrowser/Makefile
-lib/python/Plugins/Extensions/auraWebBrowser/meta/Makefile
-lib/python/Plugins/Extensions/auraWebBrowser/keymap/Makefile
+lib/python/Plugins/Extensions/vuWebBrowser/Makefile
+lib/python/Plugins/Extensions/vuWebBrowser/meta/Makefile
+lib/python/Plugins/Extensions/vuWebBrowser/keymap/Makefile
 lib/python/Plugins/Extensions/Volume_adjust/Makefile
 lib/python/Plugins/Extensions/Volume_adjust/nl/Makefile
 lib/python/Plugins/PLi/Makefile
