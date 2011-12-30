@@ -66,7 +66,7 @@ class UpgradeStatus(Screen):
 		self.datafile = datafile
 		#print "[FirmwareUpgrade] - [%s][%s][%s]" % (self.datafile, firmware, device)
 
-		self["name"] = Label(_(" "))
+		self["name"] = Label(" ")
 		self["info"] = StaticText(_("Can't cancel during upgrade!!"))
 
 		self["status"] = Label(_("Status : 0%"))
@@ -102,7 +102,7 @@ class UpgradeStatus(Screen):
 			self.cbConfirmExit(False)
 			return
 		status = self.FU.getStatus()
-		if self.old_status > status:
+		if self.old_status > status and status != -1:
 			self.session.open(MessageBox, _("Fail to upgrade!! Retry!!"), MessageBox.TYPE_INFO, timeout = 10)
 		self.slider.setValue(status)
 		self["status"].setText(_("%d / 100" % (status)))
@@ -154,9 +154,9 @@ class Filebrowser(Screen):
 		Screen.__init__(self, session)
                 self.session = session 
 		
-		self["key_blue"] = StaticText(_("Download"))
+		self["key_blue"] = StaticText(_("Download the firmware (latest)"))
 
-		self["status"]    = StaticText(_(" "))
+		self["status"]    = StaticText(" ")
 		self["file_list"] = FileList("/", matchingPattern = "^.*")
 
 		self["actions"] = ActionMap(["OkCancelActions", "ShortcutActions", "WizardActions", "ColorActions", ],
@@ -237,7 +237,7 @@ class Filebrowser(Screen):
 	# tf  : target file name(string)
 	# bd  : target base directory(string)
 	# cbfunc(string) : callback function(function)
-	def doDownload(self, uri, tf, bd='/tmp', cbfunc=None):
+	def doDownload(self, uri, tf, bd='/tmp', cbfunc=None, errmsg="Fail to download."):
 		tar = bd + "/" + tf
 		#print "[FirmwareUpgrade] - Download Info : [%s][%s]" % (uri, tar)
 		def doHook(blockNumber, blockSize, totalSize) :
@@ -247,13 +247,17 @@ class Filebrowser(Screen):
 		try:
 			opener.open(uri)
 		except:
-			self.session.open(MessageBox, _("File not found in this URL:\n%s"%(uri)), MessageBox.TYPE_INFO, timeout = 10)
+			#self.session.open(MessageBox, _("File not found in this URL:\n%s"%(uri)), MessageBox.TYPE_INFO, timeout = 10)
+			print "[FirmwareUpgrade] - Fail to download. URL :",uri
+			self.session.open(MessageBox, _(errmsg), MessageBox.TYPE_INFO, timeout = 10)
 			del opener
 			return False
 		try :
 			f, h = urlretrieve(uri, tar, doHook)
 		except IOError, msg:
-			self.session.open(MessageBox, _(str(msg)), MessageBox.TYPE_INFO, timeout = 10)
+			#self.session.open(MessageBox, _(str(msg)), MessageBox.TYPE_INFO, timeout = 10)
+			print "[FirmwareUpgrade] - Fail to download. ERR_MSG :",str(msg)
+			self.session.open(MessageBox, _(errmsg), MessageBox.TYPE_INFO, timeout = 10)
 			del opener
 			return False
 		del opener
@@ -298,12 +302,12 @@ class Filebrowser(Screen):
 		os.system("rm -f /tmp/" + root_file)
 
 		# md5
-# 		if not self.doDownload(self.guri+".md5", self.gbin+".md5", cbfunc=cbDownloadDone):
-# 			self.resetGUI()
-# 			self.downloadLock = False
-# 			return
+		if not self.doDownload(self.guri+".md5", self.gbin+".md5", cbfunc=cbDownloadDone, errmsg="Can't download the checksum file."):
+			self.resetGUI()
+			self.downloadLock = False
+			return
 		# data
-		if not self.doDownload(self.guri, self.gbin, cbfunc=cbDownloadDone):
+		if not self.doDownload(self.guri, self.gbin, cbfunc=cbDownloadDone, errmsg="Can't download the firmware file."):
 			self.resetGUI()
 			self.downloadLock = False
 			return
@@ -391,6 +395,8 @@ class FirmwareUpgrade(Screen, ConfigListScreen):
 		self.list = []
 		self.updateFilePath = ""
 
+		self.finishedExit = False
+
 		self.rebootLock = False
 		self.rebootMessage = ""
 		self.cbRebootCallCount = 0;
@@ -406,11 +412,11 @@ class FirmwareUpgrade(Screen, ConfigListScreen):
 
 		global fwlist
 		if fwlist is None:
-			self["key_green"] = StaticText(_(" "))
+			self["key_green"] = StaticText(" ")
 			self["status"] = StaticText(_("This plugin is supported only the Ultimo/Uno."))
 		else:
 			self["key_green"] = StaticText(_("Upgrade"))
-			self["status"] = StaticText(_(" "))
+			self["status"] = StaticText(" ")
 			self.setupUI()
 
 	def setupUI(self):
@@ -432,18 +438,24 @@ class FirmwareUpgrade(Screen, ConfigListScreen):
 				self.rebootMessage = message
 				self.reboot_timer = eTimer()
 				self.reboot_timer.callback.append(self.cbReboot)
-				self.reboot_timer.start(500)
+				self.reboot_timer.start(1000)
 			return
 		if not self.rebootLock:
 			self["status"].setText("Press the Green/OK button")
 
-	def cbReboot(self):
-		if self.cbRebootCallCount < 6:
-			self.cbRebootCallCount = self.cbRebootCallCount + 1
-			self["status"].setText("%s (%d)"%(self.rebootMessage, 6-self.cbRebootCallCount))
-			return
+	def doReboot(self):
 		from Screens.Standby import TryQuitMainloop
 		self.session.open(TryQuitMainloop, 2)
+
+	def cbReboot(self):
+		max_call_count = 20
+		self.finishedExit = True
+		if self.cbRebootCallCount < max_call_count:
+			self.cbRebootCallCount = self.cbRebootCallCount + 1
+			#self["status"].setText("%s (%d)"%(self.rebootMessage, max_call_count-self.cbRebootCallCount))
+			self["status"].setText("Reboot after %d seconds. Press the OK to reboot now."%(max_call_count-self.cbRebootCallCount))
+			return
+		self.doReboot()
 
 	# filebrowser window callback function
 	def cbSetStatus(self, data=None):
@@ -495,6 +507,9 @@ class FirmwareUpgrade(Screen, ConfigListScreen):
 		self.setupStatus()
 
 	def keyGreen(self):
+		if self.finishedExit:
+			self.doReboot()
+			return
 		self.upgrade_auto_run_timer.stop()
 		if self.rebootLock:
 			return

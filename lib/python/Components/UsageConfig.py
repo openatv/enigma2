@@ -208,13 +208,16 @@ def InitUsageConfig():
 	config.osd.alpha = ConfigSlider(default=255, limits=(0,255))
 	if config.misc.boxtype.value.startswith('vu'):
 		choiceoptions = [("0", _("Off")), ("1", _("Side by Side")),("2", _("Top and Bottom")), ("3", _("Auto"))]
+		config.osd.threeDmode = ConfigSelection(default = 'auto', choices = choiceoptions )
 	elif config.misc.boxtype.value.startswith('et'):
 		choiceoptions = [("off", _("Off")), ("auto", _("Auto")), ("sidebyside", _("Side by Side")),("topandbottom", _("Top and Bottom"))]
-	elif config.misc.boxtype.value.startswith('dm'):
-		choiceoptions = [("0", _("Off")), ("1", _("Side by Side")),("2", _("Top and Bottom")), ("3", _("Auto"))]
+		config.osd.threeDmode = ConfigSelection(default = 'auto', choices = choiceoptions )
 	elif config.misc.boxtype.value.startswith('gb'):
-		choiceoptions = [("0", _("Off")), ("1", _("Side by Side")),("2", _("Top and Bottom")), ("3", _("Auto"))]	
- 	config.osd.threeDmode = ConfigSelection(default = 'off', choices = choiceoptions )
+		choiceoptions = [("off", _("Off")), ("auto", _("Auto")), ("sidebyside", _("Side by Side")),("topandbottom", _("Top and Bottom"))]
+		config.osd.threeDmode = ConfigSelection(default = 'auto', choices = choiceoptions )
+	else:
+		choiceoptions = [("off", _("Off"))]
+		config.osd.threeDmode = ConfigSelection(default = 'off', choices = choiceoptions )
 	config.osd.threeDznorm = ConfigSlider(default = 50, increment = 1, limits = (0, 100))
 	config.osd.show3dextensions = ConfigYesNo(default = False)
 	
@@ -590,6 +593,8 @@ def InitUsageConfig():
 
 	config.GraphEPG = ConfigSubsection()
 	config.GraphEPG.ShowBouquet = ConfigYesNo(default = False)
+	config.GraphEPG.OK = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap")
+	config.GraphEPG.OKLong = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap + Exit")
 	config.GraphEPG.OK_pliepg = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap")
 	config.GraphEPG.OKLong_pliepg = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap + Exit")
 	config.GraphEPG.OK_enhanced = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap")

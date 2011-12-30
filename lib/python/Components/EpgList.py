@@ -1,9 +1,10 @@
 from HTMLComponent import HTMLComponent
 from GUIComponent import GUIComponent
+from Components.AVSwitch import AVSwitch
 from Components.config import config
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 
-from enigma import eEPGCache, eListbox, eListboxPythonMultiContent, gFont, eRect, \
+from enigma import eEPGCache, eListbox, eListboxPythonMultiContent, ePicLoad, gFont, eRect, \
 	RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, RT_VALIGN_CENTER, RT_WRAP
 
 from Tools.LoadPixmap import LoadPixmap
@@ -101,6 +102,8 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.nowBackColorSelected = 0x4800FF
 		self.foreColorService = 0xffffff
 		self.backColorService = 0x000000
+		self.picload = ePicLoad()
+		self.frameBufferScale = AVSwitch().getFramebufferScale()
 
 
 	def applySkin(self, desktop, screen):
@@ -348,23 +351,17 @@ class EPGList(HTMLComponent, GUIComponent):
 			w = width/10*5;
 			self.descr_rect = Rect(xpos, 0, width, height)
 		elif self.type == EPG_TYPE_GRAPH:
-			global PLIEPGNoPicon
 			global ItemHeight
 			#esize = self.l.getItemSize()
 			#width = esize.width()
 			#height = esize.height()
 			xpos = 0;
-			if self.coolheight >=54 and config.GraphEPG.UsePicon.value:
+			if config.GraphEPG.UsePicon.value:
 				w = config.GraphEPG.left8.value;
 				ItemHeight = height;
-				PLIEPGNoPicon = 1;
-			elif self.coolheight >=54 and not config.GraphEPG.UsePicon.value:
+			elif not config.GraphEPG.UsePicon.value:
 				w = config.GraphEPG.left16.value;
 				ItemHeight = height;
-				PLIEPGNoPicon = 1;
-			if self.coolheight <54:
-				w = config.GraphEPG.left16.value;
-				PLIEPGNoPicon = 2;
 			self.service_rect = Rect(xpos, 0, w, height)
 			xpos += w;
 			w = width - xpos;
@@ -507,7 +504,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		borderColor = self.borderColor
 		backColorService = self.backColorService
 		backColorOrig = self.backColor # normale Eventsfarbe
-#		PLIEPGEvent = 1
+#		VIXEPGEvent = 1
 		if self.curr_refcool.toString() == service:
 #			backColor = 0x516b96
 #			backColorOrig = 0x516b96
@@ -515,8 +512,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		res = [ None ]
 		picon = self.findPicon(service, service_name)
 
-
-		if picon is None or self.coolheight <54:
+		if picon is None:
 			res.append(MultiContentEntryText(
 			pos = (r1.left(),r1.top()),
 			size = (r1.width(), r1.height()),
@@ -526,11 +522,15 @@ class EPGList(HTMLComponent, GUIComponent):
 				border_width = 1, border_color = borderColor,
 				backcolor = backColorService, backcolor_sel = backColorService)) #backcolor_sel= Event left select
 
-		elif self.coolheight >=54:
+		else:
+			piconHeight = r1.height()-2
+			piconWidth = r1.width()-2
+			self.picload.setPara((piconWidth, piconHeight, self.frameBufferScale[0], self.frameBufferScale[1], 1, 1, "#FF000000"))
+			self.picload.startDecode(picon, piconWidth, piconHeight, False)
 			res.append(MultiContentEntryPixmapAlphaTest(
 				pos = (r1.left(),r1.top()),
 				size = (r1.width(), r1.height()),
-				png = LoadPixmap(picon),
+				png = self.picload.getData(),
 				backcolor = piconbkcolor,
 				backcolor_sel = 0))
 
@@ -603,7 +603,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		return res
 
 	def findPicon(self, service = None, serviceName = None):
-		if config.GraphEPG.UsePicon.value and PLIEPGNoPicon == 1:
+		if config.GraphEPG.UsePicon.value:
 			service_refstr = None
 			serviceName_ref = None
 			if service is not None:
@@ -612,31 +612,8 @@ class EPGList(HTMLComponent, GUIComponent):
 				pos = service.rfind(':')
 				if pos != -1:
 					service_refstr = service[:pos].rstrip(':').replace(':','_')
-				pngname = "/tmp/gmepgpicon/" + service_refstr + ".png"
-				if pathExists(pngname):
-					return pngname
-			if serviceName is not None:
-				pngname = "/tmp/gmepgpicon/" + serviceName + ".png"
-				if pathExists(pngname):
-					return pngname
-			if serviceName_ref is not None:
-				pngname = "/tmp/gmepgpicon/" + serviceName_ref + ".png"
-				if pathExists(pngname):
-					return pngname
-			if service_refstr is not None:
 				for path in self.searchPiconPaths:
 					pngname = path + service_refstr + ".png"
-					if pathExists(pngname):
-						return pngname
-			if serviceName is not None:
-				for path in self.searchPiconPaths:
-					pngname = path + serviceName + ".png"
-					if pathExists(pngname):
-						print"picon found"
-						return pngname
-			if serviceName_ref is not None:
-				for path in self.searchPiconPaths:
-					pngname = path + serviceName_ref + ".png"
 					if pathExists(pngname):
 						print"picon found"
 						return pngname

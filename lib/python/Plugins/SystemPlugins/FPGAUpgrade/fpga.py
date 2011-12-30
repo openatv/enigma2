@@ -77,6 +77,9 @@ NO_TAR_DEVICE_PATH = _fpga.NO_TAR_DEVICE_PATH
 FAIL_OPEN_SRC_FILE = _fpga.FAIL_OPEN_SRC_FILE
 ZERO_SRC_FILE_SIZE = _fpga.ZERO_SRC_FILE_SIZE
 FAIL_OPEN_DEVICE = _fpga.FAIL_OPEN_DEVICE
+ERROR_FILE_SIZE = _fpga.ERROR_FILE_SIZE
+ERROR_SET_ACTION_CODE = _fpga.ERROR_SET_ACTION_CODE
+ERROR_PROGRAMMING = _fpga.ERROR_PROGRAMMING
 class Fpga(_object):
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, Fpga, name, value)

@@ -1597,7 +1597,7 @@ class EPGSelectionSetup(Screen, ConfigListScreen):
 		elif self.type == 4:
 			self.list.append(getConfigListEntry(_("Sort List by"), config.misc.EPGSort))
 			self.list.append(getConfigListEntry(_("OK Button"), config.GraphEPG.OK_infobar))
-			self.list.append(getConfigListEntry(_("LongOK Button"), config.GraphEPG.OKLongOK_infobar))
+			self.list.append(getConfigListEntry(_("LongOK Button"), config.GraphEPG.OKLong_infobar))
 		elif self.type == 3:
 			self.list.append(getConfigListEntry(_("Sort List by"), config.misc.EPGSort))
 			self.list.append(getConfigListEntry(_("OK Button"), config.GraphEPG.OK_enhanced))

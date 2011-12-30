@@ -52,11 +52,14 @@ void eStreamClient::notifier(int what)
 					if (pos != std::string::npos)
 					{
 						serviceref = request.substr(5, pos - 5);
-						const char *reply = "HTTP/1.0 200 OK\r\nConnection: Close\r\nContent-Type: video/mpeg\r\nServer: streamserver\r\n\r\n";
-						writeAll(streamFd, reply, strlen(reply));
-						if (eDVBServiceStream::start(serviceref.c_str(), streamFd) >= 0)
+						if (!serviceref.empty())
 						{
-							running = true;
+							const char *reply = "HTTP/1.0 200 OK\r\nConnection: Close\r\nContent-Type: video/mpeg\r\nServer: streamserver\r\n\r\n";
+							writeAll(streamFd, reply, strlen(reply));
+							if (eDVBServiceStream::start(serviceref.c_str(), streamFd) >= 0)
+							{
+								running = true;
+							}
 						}
 					}
 				}
