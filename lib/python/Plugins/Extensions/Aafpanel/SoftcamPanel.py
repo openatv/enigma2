@@ -13,6 +13,14 @@ from Screens.Console import Console
 from enigma import *
 import os
 
+def Check_Softcam():
+	found = False
+	for x in os.listdir('/etc'):
+		if x.find('.emu') > -1:
+			found = True
+			break;
+	return found
+
 def command(comandline, strip=1):
   comandline = comandline + " >/tmp/command.txt"
   os.system(comandline)
@@ -223,6 +231,8 @@ class SoftcamPanel(Screen):
 
 	def layoutFinished(self):
 		self.Timer.stop()
+		if not Check_Softcam():
+			self.Exit()
 		#// check for active cam
 		try:
 			global oldcamIndex
@@ -418,7 +428,7 @@ class SoftcamPanel(Screen):
 		
 	def Blue(self):
 		if not self.partyfeed:
-			self.exit()
+			self.Exit()
 		else:
 			self.Timer.stop()
 			self.session.openWithCallback(self.ShowSoftcamCallback, ShowSoftcamPackages)

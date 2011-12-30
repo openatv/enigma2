@@ -275,15 +275,15 @@ class UpdatePluginMenu(Screen):
 			tmpStatus = d.read()
 			#if 'Last-Modified' in str(d.info()):
 				#statusDate = str(d.info()['Last-Modified'])
-			if 'rot.png' in tmpStatus:
+			if os.path.exists("/etc/.beta") or 'gelb.png' in tmpStatus:
+				message = _("Caution update not yet tested !!") + "\n" + _("Update at your own risk") + "\n\n" + _("For more information see http://www.aaf-digital.info") + "\n\n"# + _("Last Status Date") + ": "  + statusDate + "\n\n"
+				picon = MessageBox.TYPE_ERROR
+				default = False
+			elif 'rot.png' in tmpStatus:
 				message = _("Update is reported as faulty !!") + "\n" + _("Aborting updateprogress") + "\n\n" + _("For more information see http://www.aaf-digital.info")# + "\n\n" + _("Last Status Date") + ": " + statusDate
 				picon = MessageBox.TYPE_ERROR
 				default = False
 				doUpdate = False
-			elif 'gelb.png' in tmpStatus:
-				message = _("Caution update not yet tested !!") + "\n" + _("Update at your own risk") + "\n\n" + _("For more information see http://www.aaf-digital.info") + "\n\n"# + _("Last Status Date") + ": "  + statusDate + "\n\n"
-				picon = MessageBox.TYPE_ERROR
-				default = False
 		except:
 			message = _("The status of the current update could not be checked because http://www.aaf-digital.info could not be reached for some reason") + "\n"
 			picon = MessageBox.TYPE_ERROR
