@@ -1,6 +1,6 @@
 from Screens.Screen import Screen
 from Components.ConfigList import ConfigListScreen
-from Components.config import config, getConfigListEntry, ConfigSubsection, ConfigSelection
+from Components.config import config, configfile, getConfigListEntry, ConfigSubsection, ConfigSelection
 from Components.ActionMap import ActionMap
 from Screens.MessageBox import MessageBox
 from Components.Sources.StaticText import StaticText
@@ -73,6 +73,7 @@ class RemoteControlCode(Screen,ConfigListScreen,RemoteControlCodeInit):
 			"red": self.keyCancel,
 			"green": self.keySave,
 		}, -2)
+		self.codestartup = config.plugins.remotecontrolcode.systemcode.value
 		self.list = []
 		ConfigListScreen.__init__(self, self.list,session = self.session)
 		self["key_red"] = StaticText(_("Cancel"))
@@ -93,21 +94,28 @@ class RemoteControlCode(Screen,ConfigListScreen,RemoteControlCodeInit):
 		self.list = []
 		self.rcsctype = getConfigListEntry(_("Remote Control System Code"), config.plugins.remotecontrolcode.systemcode)
 		self.list.append( self.rcsctype )
+		self.list.append(getConfigListEntry(_("Harmony support"), config.misc.remotecontrol_harmony))
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
 
 	def keySave(self):
-		print "<RemoteControlCode> Selected System Code : ",config.plugins.remotecontrolcode.systemcode.value
-		ret = self.setSystemCode(int(config.plugins.remotecontrolcode.systemcode.value))
-		if ret == -1:
-			self.restoreCode()
-			self.session.openWithCallback(self.close, MessageBox, _("FILE NOT EXIST : /proc/stb/fp/remote_code"), MessageBox.TYPE_ERROR)
+		config.misc.remotecontrol_harmony.save()
+		configfile.save()
+		if self.codestartup != config.plugins.remotecontrolcode.systemcode.value:
+			print "<RemoteControlCode> Selected System Code : ",config.plugins.remotecontrolcode.systemcode.value
+			ret = self.setSystemCode(int(config.plugins.remotecontrolcode.systemcode.value))
+			if ret == -1:
+				self.restoreCode()
+				self.session.openWithCallback(self.close, MessageBox, _("FILE NOT EXIST : /proc/stb/fp/remote_code"), MessageBox.TYPE_ERROR)
+			else:
+				self.session.openWithCallback(self.MessageBoxConfirmCodeCallback, MessageBoxConfirmCode, _("Please change your remote mode") + '\n' + _("Press and hold '2' & '7' until red LED is solid, then press 'Help', then press '000") + config.plugins.remotecontrolcode.systemcode.value + "'\n" + _("Then choose 'Keep' within seconds"), MessageBox.TYPE_YESNO, timeout = 60, default = False)
 		else:
-			self.session.openWithCallback(self.MessageBoxConfirmCodeCallback, MessageBoxConfirmCode, _("Please change your remote mode") + '\n' + _("Press and hold '2' & '7' until red LED is solid, then press 'Help', then press '000") + config.plugins.remotecontrolcode.systemcode.value + "'\n" + _("Then choose 'Keep' within seconds"), MessageBox.TYPE_YESNO, timeout = 60, default = False)
+			self.close()
 
 	def restoreCode(self):
 		for x in self["config"].list:
 			x[1].cancel()
+		self.close()
 
 	def MessageBoxConfirmCodeCallback(self,ret):
 		if ret:

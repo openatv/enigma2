@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-20 11:09+0000\n"
+"POT-Creation-Date: 2011-12-28 13:28+0000\n"
 "PO-Revision-Date: 2011-11-06 07:17+0100\n"
 "Last-Translator: belierzz <belierzz@gmx.net>\n"
 "Language-Team: ViX\n"
@@ -145,9 +145,6 @@ msgid ""
 msgstr ""
 "\n"
 "Anzeigen, installieren und entfernen verfügbarer oder installierter Pakete."
-
-msgid " "
-msgstr " "
 
 msgid " and"
 msgstr "und"
@@ -572,6 +569,11 @@ msgid ""
 msgstr ""
 "Timeraufnahme fehlgeschlagen.\n"
 "Fernsehprogramm ändern und erneut versuchen?\n"
+
+msgid ""
+"A timer failed to record!\n"
+"Not Enough freespace\n"
+msgstr ""
 
 #
 msgid "A/V Settings"
@@ -2251,6 +2253,9 @@ msgstr ".NFI-Files für USB-Flasher herunterladen"
 msgid "Download Plugins"
 msgstr "Plugins herunterladen"
 
+msgid "Download the firmware (latest)"
+msgstr ""
+
 #
 msgid "Downloadable new plugins"
 msgstr "Herunterladbare neue Plugins"
@@ -2557,8 +2562,10 @@ msgstr ""
 "Erneut versuchen?"
 
 #, python-format
-msgid "Error[%d]. Press Cancel to exit."
-msgstr "Error[%d]. Cancel drücken zum Verlassen."
+msgid ""
+"Error[%d] : %s.\n"
+"Press OK to exit."
+msgstr ""
 
 msgid "Ethernet network interface"
 msgstr "Ethernet Netzwerk-Schnittstelle"
@@ -2764,12 +2771,6 @@ msgstr "Datei scheint in Benutzung zu sein.\n"
 
 msgid "File not found"
 msgstr "Datei nicht gefunden"
-
-#, python-format
-msgid ""
-"File not found in this URL:\n"
-"%s"
-msgstr ""
 
 msgid ""
 "File oscam.conf not found.\n"
@@ -3009,6 +3010,9 @@ msgstr "Festplatten-Standby nach"
 
 msgid "Hardware:"
 msgstr "Hardware:"
+
+msgid "Harmony support"
+msgstr ""
 
 msgid "Height"
 msgstr "Höhe"
@@ -8462,11 +8466,11 @@ msgstr "Fokus umschalten zum Hauptbildschirm"
 msgid "Zap mode"
 msgstr "Umschalte-Modus"
 
-msgid "[TimeShift] - Merging records failed!"
-msgstr "[TimeShift] - Zusammenführen der Aufnahmen fehlgeschlagen!"
+msgid "[TimeShift] Merging records failed!"
+msgstr ""
 
-msgid "[TimeShift] - Restarting Timeshift!"
-msgstr "[TimeShift] - Timeshift-Neustart!"
+msgid "[TimeShift] Restarting Timeshift!"
+msgstr ""
 
 #
 msgid "[alternative edit]"
@@ -9830,41 +9834,3 @@ msgstr "Zap"
 #
 msgid "zapped"
 msgstr "Umgeschaltet"
-
-#
-#~ msgid "Delay"
-#~ msgstr "Verzögerung"
-
-#~ msgid "Elapsed & Remanining"
-#~ msgstr "Verstrichen & Verbleibend"
-
-#
-#~ msgid "Keymap"
-#~ msgstr "Tastaturlayout"
-
-#
-#~ msgid "RC Menu"
-#~ msgstr "Fernbedienung"
-
-#~ msgid "Remaning/Elapsed shown as on OSD"
-#~ msgstr "Verbleibend / verstrichen im OSD anzeigen "
-
-#~ msgid "Remanining"
-#~ msgstr "Verbleibend"
-
-#~ msgid "Remanining & Elapsed"
-#~ msgstr "Verbleibend & verstrichen"
-
-#
-#~ msgid "Repeat"
-#~ msgstr "Wiederholen"
-
-#
-#~ msgid "Show blinking clock in display during recording"
-#~ msgstr "Blinkende Uhr im Display während Aufnahme"
-
-#~ msgid "Time Remaning/Elapsed on OSD"
-#~ msgstr "Verbleibende / Verstrichene Zeit in OSD"
-
-#~ msgid "scrolling Speed"
-#~ msgstr "Bildlauf-Geschwindigkeit"

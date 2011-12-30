@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-20 11:09+0000\n"
+"POT-Creation-Date: 2011-12-28 13:28+0000\n"
 "PO-Revision-Date: 2010-08-20 00:08+0200\n"
 "Last-Translator: Hazem <moustafagamal@hotmail.com>\n"
 "Language-Team: Arabic <moustafagamal@hotmail.com>\n"
@@ -137,10 +137,6 @@ msgid ""
 msgstr ""
 "\n"
 "مشاهده،تنصيب أو إزالة الباقات."
-
-#
-msgid " "
-msgstr ""
 
 msgid " and"
 msgstr ""
@@ -511,6 +507,11 @@ msgid ""
 msgstr ""
 "فشل عمليه التسجيل بالمؤقت\n"
 "قم بتعطيل التليفزيون وحاول مره ثانيه؟\n"
+
+msgid ""
+"A timer failed to record!\n"
+"Not Enough freespace\n"
+msgstr ""
 
 #
 msgid "A/V Settings"
@@ -2023,6 +2024,9 @@ msgstr ""
 msgid "Download Plugins"
 msgstr "تحميل بلج إنز"
 
+msgid "Download the firmware (latest)"
+msgstr ""
+
 msgid "Downloadable new plugins"
 msgstr "بلج أنز جديده متاحه للتحميل"
 
@@ -2299,7 +2303,9 @@ msgstr ""
 "إعادة المحاوله ؟"
 
 #, python-format
-msgid "Error[%d]. Press Cancel to exit."
+msgid ""
+"Error[%d] : %s.\n"
+"Press OK to exit."
 msgstr ""
 
 msgid "Ethernet network interface"
@@ -2484,12 +2490,6 @@ msgid "File appears to be busy.\n"
 msgstr ""
 
 msgid "File not found"
-msgstr ""
-
-#, python-format
-msgid ""
-"File not found in this URL:\n"
-"%s"
 msgstr ""
 
 msgid ""
@@ -2711,6 +2711,9 @@ msgid "Harddisk standby after"
 msgstr "القرص الصلب فى وضع الاستعداد بعد"
 
 msgid "Hardware:"
+msgstr ""
+
+msgid "Harmony support"
 msgstr ""
 
 msgid "Height"
@@ -7563,10 +7566,10 @@ msgstr ""
 msgid "Zap mode"
 msgstr ""
 
-msgid "[TimeShift] - Merging records failed!"
+msgid "[TimeShift] Merging records failed!"
 msgstr ""
 
-msgid "[TimeShift] - Restarting Timeshift!"
+msgid "[TimeShift] Restarting Timeshift!"
 msgstr ""
 
 msgid "[alternative edit]"
@@ -8755,23 +8758,3 @@ msgstr "الانتقال"
 
 msgid "zapped"
 msgstr "تم الانتقال"
-
-#
-#~ msgid "Delay"
-#~ msgstr "تأخير"
-
-#
-#~ msgid "Keymap"
-#~ msgstr "خريطه المفاتيح"
-
-#
-#~ msgid "RC Menu"
-#~ msgstr "قائمه الريموت كونترول"
-
-#
-#~ msgid "Repeat"
-#~ msgstr "إعاده"
-
-#
-#~ msgid "Show blinking clock in display during recording"
-#~ msgstr "أظهار ساعه تومض عند التسجيل"

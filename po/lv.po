@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-20 11:09+0000\n"
+"POT-Creation-Date: 2011-12-28 13:28+0000\n"
 "PO-Revision-Date: 2009-02-25 20:35+0200\n"
 "Last-Translator: Ivo Grinbergs <ivog@apollo.lv>\n"
 "Language-Team: Ivo / enigma2 (c) <ivog@apolllo.lv>\n"
@@ -135,10 +135,6 @@ msgid ""
 msgstr ""
 "\n"
 "Skatīt, uzstādīt un dzēst pieejamās vai uzstādītās pakotnes."
-
-#
-msgid " "
-msgstr " "
 
 msgid " and"
 msgstr ""
@@ -559,6 +555,11 @@ msgid ""
 msgstr ""
 "Taimerim neizdevās uzsākt ierakstu!\n"
 "Izslēgt TV un mēģināt vēl?\n"
+
+msgid ""
+"A timer failed to record!\n"
+"Not Enough freespace\n"
+msgstr ""
 
 #
 msgid "A/V Settings"
@@ -2225,6 +2226,9 @@ msgstr "Lejuplādēt .NFI-datnes priekš USB-ielādes"
 msgid "Download Plugins"
 msgstr "Lejuplādēt spraudņus"
 
+msgid "Download the firmware (latest)"
+msgstr ""
+
 #
 msgid "Downloadable new plugins"
 msgstr "Lejuplādējamie jaunie spraudņi"
@@ -2524,7 +2528,9 @@ msgstr ""
 "Atkārtot??"
 
 #, python-format
-msgid "Error[%d]. Press Cancel to exit."
+msgid ""
+"Error[%d] : %s.\n"
+"Press OK to exit."
 msgstr ""
 
 msgid "Ethernet network interface"
@@ -2731,12 +2737,6 @@ msgid "File appears to be busy.\n"
 msgstr ""
 
 msgid "File not found"
-msgstr ""
-
-#, python-format
-msgid ""
-"File not found in this URL:\n"
-"%s"
 msgstr ""
 
 msgid ""
@@ -2974,6 +2974,9 @@ msgid "Harddisk standby after"
 msgstr "Cietā diska gaidstāve pēc"
 
 msgid "Hardware:"
+msgstr ""
+
+msgid "Harmony support"
 msgstr ""
 
 msgid "Height"
@@ -8259,10 +8262,10 @@ msgstr ""
 msgid "Zap mode"
 msgstr ""
 
-msgid "[TimeShift] - Merging records failed!"
+msgid "[TimeShift] Merging records failed!"
 msgstr ""
 
-msgid "[TimeShift] - Restarting Timeshift!"
+msgid "[TimeShift] Restarting Timeshift!"
 msgstr ""
 
 #
@@ -9629,23 +9632,3 @@ msgstr "pārslēgt"
 #
 msgid "zapped"
 msgstr "pārslēgts"
-
-#
-#~ msgid "Delay"
-#~ msgstr "Aizkave"
-
-#
-#~ msgid "Keymap"
-#~ msgstr "Taustiņu izkārtojums"
-
-#
-#~ msgid "RC Menu"
-#~ msgstr "Tālvadības pults izvēlne"
-
-#
-#~ msgid "Repeat"
-#~ msgstr "Atkārtot"
-
-#
-#~ msgid "Show blinking clock in display during recording"
-#~ msgstr "Ieraksta laikā displejā rādīt mirgojošu pulksteni"

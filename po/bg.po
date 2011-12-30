@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-20 11:09+0000\n"
+"POT-Creation-Date: 2011-12-28 13:28+0000\n"
 "PO-Revision-Date: 2011-11-26 15:19+0100\n"
 "Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
 "Language-Team: Bulgarian\n"
@@ -117,9 +117,6 @@ msgid ""
 msgstr ""
 "\n"
 "Преглед, инсталиране и премахване на налични или инсталирани пакети."
-
-msgid " "
-msgstr ""
 
 msgid " and"
 msgstr ""
@@ -464,6 +461,11 @@ msgid ""
 msgstr ""
 "Провален планиран запис!\n"
 "Спиране на ТВ и опит отново?\n"
+
+msgid ""
+"A timer failed to record!\n"
+"Not Enough freespace\n"
+msgstr ""
 
 msgid "A/V Settings"
 msgstr "A/V Настройки"
@@ -1853,6 +1855,9 @@ msgstr "Изтегли .NFI-Файлове за USB-флашка"
 msgid "Download Plugins"
 msgstr "Изтегли Плъгини"
 
+msgid "Download the firmware (latest)"
+msgstr ""
+
 msgid "Downloadable new plugins"
 msgstr "Има нови плъгини за теглене"
 
@@ -2106,7 +2111,9 @@ msgstr ""
 "Да опитам отново?"
 
 #, python-format
-msgid "Error[%d]. Press Cancel to exit."
+msgid ""
+"Error[%d] : %s.\n"
+"Press OK to exit."
 msgstr ""
 
 msgid "Ethernet network interface"
@@ -2282,12 +2289,6 @@ msgid "File appears to be busy.\n"
 msgstr ""
 
 msgid "File not found"
-msgstr ""
-
-#, python-format
-msgid ""
-"File not found in this URL:\n"
-"%s"
 msgstr ""
 
 msgid ""
@@ -2490,6 +2491,9 @@ msgid "Harddisk standby after"
 msgstr "HDD в готовност след"
 
 msgid "Hardware:"
+msgstr ""
+
+msgid "Harmony support"
 msgstr ""
 
 msgid "Height"
@@ -6957,10 +6961,10 @@ msgstr ""
 msgid "Zap mode"
 msgstr ""
 
-msgid "[TimeShift] - Merging records failed!"
+msgid "[TimeShift] Merging records failed!"
 msgstr ""
 
-msgid "[TimeShift] - Restarting Timeshift!"
+msgid "[TimeShift] Restarting Timeshift!"
 msgstr ""
 
 msgid "[alternative edit]"
@@ -8047,15 +8051,3 @@ msgstr "превключи"
 
 msgid "zapped"
 msgstr "превключен"
-
-#~ msgid "Delay"
-#~ msgstr "Забавяне"
-
-#~ msgid "RC Menu"
-#~ msgstr "RC Меню"
-
-#~ msgid "Repeat"
-#~ msgstr "Повтори"
-
-#~ msgid "Show blinking clock in display during recording"
-#~ msgstr "Показвай мигащ часовник на дисплея по време на запис"

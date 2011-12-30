@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-20 11:09+0000\n"
+"POT-Creation-Date: 2011-12-28 13:28+0000\n"
 "PO-Revision-Date: 2011-04-14 00:02+0200\n"
 "Last-Translator: majevica <jovanovic@gmx.ch>\n"
 "Language-Team: veselin & majevica CRNABERZA <jovanovic@gmx.ch>\n"
@@ -142,10 +142,6 @@ msgid ""
 msgstr ""
 "\n"
 "Pogledaj,instaliraj i ukloni pristupačne ili instalirane pakete"
-
-#
-msgid " "
-msgstr " "
 
 msgid " and"
 msgstr ""
@@ -565,6 +561,11 @@ msgid ""
 msgstr ""
 "Tajmer je neuspešno pokušao snimiti!\n"
 "Onemogućite TV i pokušajte ponovo?\n"
+
+msgid ""
+"A timer failed to record!\n"
+"Not Enough freespace\n"
+msgstr ""
 
 #
 msgid "A/V Settings"
@@ -2223,6 +2224,9 @@ msgstr "Skidanje .NFI datoteka za USB-Flešer"
 msgid "Download Plugins"
 msgstr "Skini dodatke"
 
+msgid "Download the firmware (latest)"
+msgstr ""
+
 #
 msgid "Downloadable new plugins"
 msgstr "Novi dodaci za skidanje"
@@ -2528,7 +2532,9 @@ msgstr ""
 "Pokušati ponovo?"
 
 #, python-format
-msgid "Error[%d]. Press Cancel to exit."
+msgid ""
+"Error[%d] : %s.\n"
+"Press OK to exit."
 msgstr ""
 
 msgid "Ethernet network interface"
@@ -2734,12 +2740,6 @@ msgid "File appears to be busy.\n"
 msgstr ""
 
 msgid "File not found"
-msgstr ""
-
-#, python-format
-msgid ""
-"File not found in this URL:\n"
-"%s"
 msgstr ""
 
 msgid ""
@@ -2976,6 +2976,9 @@ msgid "Harddisk standby after"
 msgstr "Isključi hard disk posle"
 
 msgid "Hardware:"
+msgstr ""
+
+msgid "Harmony support"
 msgstr ""
 
 msgid "Height"
@@ -8340,10 +8343,10 @@ msgstr ""
 msgid "Zap mode"
 msgstr ""
 
-msgid "[TimeShift] - Merging records failed!"
+msgid "[TimeShift] Merging records failed!"
 msgstr ""
 
-msgid "[TimeShift] - Restarting Timeshift!"
+msgid "[TimeShift] Restarting Timeshift!"
 msgstr ""
 
 #
@@ -9706,23 +9709,3 @@ msgstr "zap"
 #
 msgid "zapped"
 msgstr "prebačen"
-
-#
-#~ msgid "Delay"
-#~ msgstr "Kašnjenje"
-
-#
-#~ msgid "Keymap"
-#~ msgstr "Mapa ključa"
-
-#
-#~ msgid "RC Menu"
-#~ msgstr "RC meni"
-
-#
-#~ msgid "Repeat"
-#~ msgstr "Ponoviti"
-
-#
-#~ msgid "Show blinking clock in display during recording"
-#~ msgstr "Prikaži trepćući sat na displeju tokom snimanja"

@@ -34,7 +34,7 @@ class ManualFancontrol(Screen,ConfigListScreen):
 		ConfigListScreen.__init__(self, self.list,session = self.session)
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("Save"))
-		self["current"] = StaticText(_(" "))
+		self["current"] = StaticText(" ")
 		self.configSetup()
 		self.oldfanoffmode = instandbyon.fanoffmode
 		if instandbyon.fanoffmode is 'ON' :
