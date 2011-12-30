@@ -21,6 +21,10 @@ if VUDUO
 SUBDIRS += VuDuoFancontrol
 endif
 
+if TMTWIN
+SUBDIRS += VuDuoFancontrol
+endif
+
 if HAVE_TEMPFANCONTROL
 SUBDIRS += TempFanControl
 endif
