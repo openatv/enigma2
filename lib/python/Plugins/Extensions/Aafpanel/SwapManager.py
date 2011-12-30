@@ -22,6 +22,7 @@ config.plugins.aafpanel.swapautostart = ConfigYesNo(default = False)
 
 def SwapAutostart(reason, session = None):
 	if reason == 0:
+		global device
 		print "[SwapManager] autostart"
 		f = open('/etc/fstab', 'r')
 		for line in f.readlines():
@@ -220,6 +221,7 @@ class Swap(Screen):
 		self['lab1'].show()
 
 	def actDeact(self):
+		global device
 		if device == "":
 			if self.swap_active == True:
 				self.Console.ePopen('swapoff ' + self.swap_place, self.updateSwap)
@@ -239,6 +241,7 @@ class Swap(Screen):
 				self.Console.ePopen('swapon ' + device, self.updateSwap)
 
 	def createDel(self):
+		global device
 		if device == "":
 			if self.swap_place != '':
 				if self.swap_active == True:
@@ -297,6 +300,7 @@ class Swap(Screen):
 		self.updateSwap()
 		
 	def autoSsWap(self):
+		global device
 		if device == "":
 			if config.plugins.aafpanel.swapautostart.value:
 				config.plugins.aafpanel.swapautostart.value = False
