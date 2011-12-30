@@ -82,11 +82,6 @@ int eDVBTSTools::getPTS(off_t &offset, pts_t &pts, int fixed)
 		{
 			for(int retries = 8; retries != 0; --retries)
 			{
-				if (local_offset == 0x7fffffffffffffffULL) // EOF
-				{
-					eDebug("eDVBTSTools::getPTS EOF");
-					break;
-				}
 				if ((data & 0x1000000) != 0)
 				{
 					pts = data >> 31;
@@ -721,11 +716,6 @@ int eDVBTSTools::findFrame(off_t &_offset, size_t &len, int &direction, int fram
 			eDebug("getting structure info for origin offset failed.");
 			return -1;
 		}
-		if (offset == 0x7fffffffffffffffLL) /* eof */
-		{
-			eDebug("reached eof");
-			return -1;
-		}
 			/* data is usually the start code in the lower 8 bit, and the next byte <<8. we extract the picture type from there */
 			/* we know that we aren't recording startcode 0x09 for mpeg2, so this is safe */
 			/* TODO: check frame_types */
@@ -774,11 +764,6 @@ int eDVBTSTools::findFrame(off_t &_offset, size_t &len, int &direction, int fram
 		if (m_streaminfo.getStructureEntry(offset, data, 1))
 		{
 			eDebug("get next failed");
-			return -1;
-		}
-		if (offset == 0x7fffffffffffffffLL) /* eof */
-		{
-			eDebug("reached eof (while looking for end of iframe)");
 			return -1;
 		}
 //		eDebug("%08llx@%llu (next)", data, offset);
