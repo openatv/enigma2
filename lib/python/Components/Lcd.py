@@ -232,7 +232,7 @@ def InitLcd():
 			config.lcd.hdd = ConfigNothing()
 
 
-		if config.misc.boxtype.value == 'vuultimo':
+		if config.misc.boxtype.value == 'vuultimo' and False:
 			config.lcd.ledblinkingtime = ConfigSlider(default = 5, increment = 1, limits = (0,15))
 			config.lcd.ledblinkingtime.addNotifier(setLEDblinkingtime);
 			config.lcd.ledbrightnessdeepstandby = ConfigSlider(default = 5, increment = 1, limits = (0,15))
