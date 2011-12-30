@@ -672,9 +672,9 @@ void eDVBDB::loadBouquet(const char *path)
 			{
 				int offs = line[8] == ':' ? 10 : 9;
 				eServiceReference tmp(line+offs);
-				if ((tmp.type != 1) && (tmp.type != 4097))
+				if (tmp.type != eServiceReference::idDVB)
 				{
-					eDebug("only servicedvb and servicemp3 bouquets are supported");
+					eDebug("only DVB Bouquets supported");
 					continue;
 				}
 				if ( tmp.flags&eServiceReference::canDescent )
