@@ -613,7 +613,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 				}
 				case celServiceInfo:
 				{
-					if ( isPlayable && !service_info->getEvent(*m_cursor, evt) )
+					if ( isPlayable && service_info && !service_info->getEvent(*m_cursor, evt) )
 					{
 						std::string name = evt->getEventName();
 						if (name.empty())
