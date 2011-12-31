@@ -443,6 +443,7 @@
 	<map context="MoviePlayerActions">
 		<key id="KEY_TV" mapto="leavePlayer" flags="m" />
 		<key id="KEY_STOP" mapto="leavePlayer" flags="m" />
+		<key id="KEY_BACK" mapto="leavePlayer" flags="m" />
 	</map>
 	
 	<map context="InfobarCueSheetActions">
@@ -677,6 +678,7 @@
 		<key id="KEY_PLAY" mapto="play" flags="m" />
 		<key id="KEY_STOP" mapto="stop" flags="b" />
 		<key id="KEY_STOP" mapto="shift_stop" flags="l" />
+		<key id="KEY_BACK" mapto="stop" flags="m" />
 		<key id="KEY_TV" mapto="stop" flags="b" />
 		<key id="KEY_TV" mapto="shift_stop" flags="l" />
 
