@@ -149,13 +149,13 @@ def Plugins(**kwargs):
 	return [
 
 	#// show Aafpanel in Main Menu
-	PluginDescriptor(name="OpenAAF Panel", description="OpenAAF panel AAF-GUI 06/11/2011", where = PluginDescriptor.WHERE_MENU, fnc = Apanel),
+	PluginDescriptor(name="OpenAAF Panel", description="OpenAAF panel AAF-GUI 31/12/2011", where = PluginDescriptor.WHERE_MENU, fnc = Apanel),
 	#// autostart
 	PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART,PluginDescriptor.WHERE_AUTOSTART],fnc = autostart),
 	#// SwapAutostart
 	PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART,PluginDescriptor.WHERE_AUTOSTART],fnc = SwapAutostart),
 	#// show Aafpanel in EXTENSIONS Menu
-	PluginDescriptor(name="OpenAAF Panel", description="OpenAAAF panel AAF-GUI 06/11/2011", where = PluginDescriptor.WHERE_EXTENSIONSMENU, fnc = main) ]
+	PluginDescriptor(name="OpenAAF Panel", description="OpenAAAF panel AAF-GUI 31/12/2011", where = PluginDescriptor.WHERE_EXTENSIONSMENU, fnc = main) ]
 
 
 
@@ -655,6 +655,8 @@ class ShowSoftcamPanelExtensions(ConfigListScreen,Screen):
 			"ok": self.ok,
 			"left": self.keyLeft,
 			"right": self.keyRight,
+			"green": self.ok,
+			"red": self.Exit,
 		}, -2)
 
 	def setWindowTitle(self):
