@@ -157,9 +157,7 @@ class HdmiCec:
 		self.standbyMessages()
 
 	def onEnterDeepStandby(self, configElement):
-		if config.hdmicec.enabled.value:
-			if config.hdmicec.control_tv_deepstandby.value:
-				self.sendMessage(0, "standby")
+		self.standbyMessages()
 
 	def standby(self):
 		from Screens.Standby import Standby, inStandby
