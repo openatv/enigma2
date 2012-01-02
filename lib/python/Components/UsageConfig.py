@@ -35,7 +35,7 @@ def InitUsageConfig():
 	
 	config.usage.quickzap_bouquet_change = ConfigYesNo(default = False)
 	config.usage.e1like_radio_mode = ConfigYesNo(default = True)
-	config.usage.infobar_onlinechecktimer = ConfigInteger(default=6, limits=(0, 48))
+	config.usage.infobar_onlinechecktimer = ConfigInteger(default=0, limits=(0, 48))
 	config.usage.infobar_onlineupdatelastcheck = ConfigInteger(default=0)
 	config.usage.infobar_onlineupdatefound = NoSave(ConfigBoolean(default = False))
 	config.usage.infobar_timeout = ConfigSelection(default = "5", choices = [
@@ -255,8 +255,8 @@ def InitUsageConfig():
 	def EpgCacheSaveSchedChanged(configElement):
 		import Screens.EpgLoadSave
 		Screens.EpgLoadSave.EpgCacheSaveCheck()
- 	config.epg.cacheloadsched.addNotifier(EpgCacheLoadSchedChanged, immediate_feedback = False)
- 	config.epg.cachesavesched.addNotifier(EpgCacheSaveSchedChanged, immediate_feedback = False)
+	config.epg.cacheloadsched.addNotifier(EpgCacheLoadSchedChanged, immediate_feedback = False)
+	config.epg.cachesavesched.addNotifier(EpgCacheSaveSchedChanged, immediate_feedback = False)
 	config.epg.cacheloadtimer = ConfigSelection(default = 24, choices = [
 		("1", "1"),("2", "2"),("3", "3"),("4", "4"),("5", "5"),("6", "6"),("7", "7"),("8", "8"),("9", "9"),("10", "10"),
 		("11", "11"),("12", "12"),("13", "13"),("14", "14"),("15", "15"),("16", "16"),("17", "17"),("18", "18"),("19", "19"),("20", "20"),
@@ -282,7 +282,7 @@ def InitUsageConfig():
 		from enigma import eEPGCache
 		epgcache = eEPGCache.getInstance()
 		epgcache.save()
- 	config.misc.epgcachepath.addNotifier(EpgCacheChanged, immediate_feedback = False)
+	config.misc.epgcachepath.addNotifier(EpgCacheChanged, immediate_feedback = False)
 	config.misc.epgcachefilename.addNotifier(EpgCacheChanged, immediate_feedback = False)
 
 	def setHDDStandby(configElement):
