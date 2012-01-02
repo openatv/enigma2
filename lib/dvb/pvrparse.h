@@ -74,6 +74,8 @@ public:
 	void addAccessPoint(off_t offset, pts_t pts) { m_access_points.push_back(AccessPoint(offset, pts)); }
 	void writeStructureEntry(off_t offset, unsigned long long data);
 private:
+	void close();
+	void flush();
 	struct AccessPoint
 	{
 		off_t off;
@@ -82,7 +84,9 @@ private:
 	};
 	std::deque<AccessPoint> m_access_points;
 	std::string m_filename;
-	FILE *m_structure_write;
+	int m_structure_write_fd;
+	void* m_write_buffer;
+	size_t m_buffer_filled;
 };
 
 
