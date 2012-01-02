@@ -291,6 +291,7 @@ def InitUsageConfig():
 		("900000", "10.0 sec")])
 
 	config.subtitles.dvb_subtitles_yellow = ConfigYesNo(default = False)
+	config.subtitles.dvb_subtitles_original_position = ConfigYesNo(default = False)
 	config.subtitles.dvb_subtitles_centered = ConfigYesNo(default = False)
 	config.subtitles.dvb_subtitles_backtrans = ConfigSelection(default = "0", choices = [
 		("0", _("no transparency")),
