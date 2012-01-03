@@ -704,37 +704,35 @@ int eDVBTSTools::findFrame(off_t &_offset, size_t &len, int &direction, int fram
 	int nr_frames = 0;
 
 		/* let's find the iframe before the given offset */
-	unsigned long long data;
-	
 	if (direction < 0)
 		offset--;
 
 	while (1)
 	{
-		if (m_streaminfo.getStructureEntry(offset, data, (direction == 0) ? 1 : 0))
+		unsigned long long longdata;
+		if (m_streaminfo.getStructureEntry(offset, longdata, (direction == 0) ? 1 : 0))
 		{
 			eDebug("getting structure info for origin offset failed.");
 			return -1;
 		}
+		unsigned int data = (unsigned int)longdata; // only the lower bits are interesting
 			/* data is usually the start code in the lower 8 bit, and the next byte <<8. we extract the picture type from there */
 			/* we know that we aren't recording startcode 0x09 for mpeg2, so this is safe */
 			/* TODO: check frame_types */
-		int is_start = (data & 0xE0FF) == 0x0009; /* H.264 NAL unit access delimiter with I-frame*/
-		is_start |= (data & 0x3800FF) == 0x080000; /* MPEG2 picture start code with I-frame */
-		
-		int is_frame = ((data & 0xFF) == 0x0009) || ((data & 0xFF) == 0x00); /* H.264 UAD or MPEG2 start code */
-		
-		if (is_frame)
+		// is_frame
+		if (((data & 0xFF) == 0x0009) || ((data & 0xFF) == 0x00)) /* H.264 UAD or MPEG2 start code */
 		{
 			if (direction < 0)
 				--nr_frames;
 			else
 				++nr_frames;
+			if ( // is start
+				((data & 0xE0FF) == 0x0009) ||		/* H.264 NAL unit access delimiter with I-frame*/
+				((data & 0x3800FF) == 0x080000))	/* MPEG2 picture start code with I-frame */
+			{
+				break;
+			}
 		}
-//		eDebug("%08llx@%llu -> %d, %d", data, offset, is_start, nr_frames);
-		if (is_start)
-			break;
-
 		if (direction == -1)
 			--offset; /* move to previous entry */
 		else if (direction == +1)
@@ -756,18 +754,20 @@ int eDVBTSTools::findFrame(off_t &_offset, size_t &len, int &direction, int fram
 		if ((data & 0xFF) != 0xB3)
 			start = offset;  /* Failed to find corresponding sequence start, so never mind */
 	}
-
 #endif
-
-			/* let's find the next frame after the given offset */
-	do {
-		if (m_streaminfo.getStructureEntry(offset, data, 1))
+		/* let's find the next frame after the given offset */
+	unsigned int data;
+	do
+	{
+		unsigned long long longdata;
+		if (m_streaminfo.getStructureEntry(offset, longdata, 1))
 		{
 			eDebug("get next failed");
 			return -1;
 		}
-//		eDebug("%08llx@%llu (next)", data, offset);
-	} while (((data & 0xFF) != 9) && ((data & 0xFF) != 0x00)); /* next frame */
+		data = (unsigned int)longdata;
+	}
+	while (((data & 0xFF) != 9) && ((data & 0xFF) != 0x00)); /* next frame */
 
 	len = offset - start;
 	_offset = start;

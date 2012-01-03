@@ -704,8 +704,6 @@ def readSkin(screen, skin, names, desktop):
 	if not isinstance(names, list):
 		names = [names]
 
-	name = "<embedded-in-'%s'>" % screen.__class__.__name__
-
 	# try all skins, first existing one have priority
 	global dom_screens
 	for n in names:
@@ -714,6 +712,8 @@ def readSkin(screen, skin, names, desktop):
 			# use this name for debug output
 			name = n
 			break
+	else:
+		name = "<embedded-in-'%s'>" % screen.__class__.__name__
 
 	# otherwise try embedded skin
 	if myscreen is None:
@@ -744,7 +744,7 @@ def readSkin(screen, skin, names, desktop):
 	screen.skinAttributes = [ ]
 	skin_path_prefix = getattr(screen, "skin_path", path)
 
-	context = SkinContext()
+	context = SkinContextStack()
 	s = desktop.size()
 	context.x = 0
 	context.y = 0

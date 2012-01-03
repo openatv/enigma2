@@ -132,8 +132,26 @@ void eSubtitleWidget::setPage(const eDVBSubtitlePage &p)
 	m_dvb_page = p;
 	invalidate(m_visible_region);  // invalidate old visible regions
 	m_visible_region.rects.clear();
+	int line = 0;
+	int original_position = 0;
+	std::string configvalue;
+	if (!ePythonConfigQuery::getConfigValue("config.subtitles.dvb_subtitles_original_position", configvalue))
+		original_position = atoi(configvalue.c_str());
 	for (std::list<eDVBSubtitleRegion>::iterator it(m_dvb_page.m_regions.begin()); it != m_dvb_page.m_regions.end(); ++it)
 	{
+		if (original_position)
+		{
+			int lines = m_dvb_page.m_regions.size();
+			if (!ePythonConfigQuery::getConfigValue("config.subtitles.subtitle_position", configvalue))
+			{
+				int lowerborder = atoi(configvalue.c_str());
+				if (original_position == 1)
+					it->m_position=ePoint(it->m_position.x(), p.m_display_size.height() - (lines - line) * it->m_pixmap->size().height() - lowerborder);
+				else
+					it->m_position=ePoint(it->m_position.x(), it->m_position.y() + 55 - lowerborder);
+			}
+			line++;
+		}
 		eDebug("add %d %d %d %d", it->m_position.x(), it->m_position.y(), it->m_pixmap->size().width(), it->m_pixmap->size().height());
 		eDebug("disp width %d, disp height %d", p.m_display_size.width(), p.m_display_size.height());
 		eRect r = eRect(it->m_position, it->m_pixmap->size());
