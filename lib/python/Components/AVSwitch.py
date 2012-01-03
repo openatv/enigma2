@@ -84,31 +84,36 @@ def InitAVSwitch():
 			"16_10_panscan": _("16:10 PanScan"), 
 			"16_9_letterbox": _("16:9 Letterbox")}, 
 			default = "16_9")
-
 	config.av.aspect = ConfigSelection(choices={
 			"4_3": _("4:3"),
 			"16_9": _("16:9"), 
 			"16_10": _("16:10"),
 			"auto": _("Automatic")},
 			default = "auto")
-	config.av.policy_169 = ConfigSelection(choices={
-				# TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
-			"letterbox": _("Letterbox"), 
-				# TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
-			"panscan": _("Pan&Scan"),  
-				# TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
-			"scale": _("Just Scale")},
-			default = "letterbox")
-	config.av.policy_43 = ConfigSelection(choices={
-				# TRANSLATORS: (aspect ratio policy: black bars on left/right) in doubt, keep english term.
-			"pillarbox": _("Pillarbox"), 
-				# TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
-			"panscan": _("Pan&Scan"),  
-				# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right)
-			"nonlinear": _("Nonlinear"),  
-				# TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
-			"scale": _("Just Scale")},
-			default = "pillarbox")
+	policy2_choices = {
+	# TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
+	"letterbox": _("Letterbox"),
+	# TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
+	"panscan": _("Pan&Scan"),
+	# TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
+	"scale": _("Just Scale")}
+	if os.path.exists("/proc/stb/video/policy2_choices") and "auto" in open("/proc/stb/video/policy2_choices").readline():
+		# TRANSLATORS: (aspect ratio policy: always try to display as fullscreen, when there is no content (black bars) on left/right, even if this breaks the aspect.
+		policy2_choices.update({"auto": _("Auto")})
+	config.av.policy_169 = ConfigSelection(choices=policy2_choices, default = "letterbox")
+	policy_choices = {
+	# TRANSLATORS: (aspect ratio policy: black bars on left/right) in doubt, keep english term.
+	"pillarbox": _("Pillarbox"),
+	# TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
+	"panscan": _("Pan&Scan"),
+	# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right)
+	"nonlinear": _("Nonlinear"),
+	# TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
+	"scale": _("Just Scale")}
+	if os.path.exists("/proc/stb/video/policy_choices") and "auto" in open("/proc/stb/video/policy_choices").readline():
+		# TRANSLATORS: (aspect ratio policy: always try to display as fullscreen, when there is no content (black bars) on left/right, even if this breaks the aspect.
+		policy_choices.update({"auto": _("Auto")})
+	config.av.policy_43 = ConfigSelection(choices=policy_choices, default = "pillarbox")
 	config.av.tvsystem = ConfigSelection(choices = {"pal": _("PAL"), "ntsc": _("NTSC"), "multinorm": _("multinorm")}, default="pal")
 	config.av.wss = ConfigEnableDisable(default = True)
 	config.av.generalAC3delay = ConfigSelectionNumber(-1000, 1000, 25, default = 0)
