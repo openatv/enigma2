@@ -464,6 +464,7 @@ eMPEGStreamInformationWriter::eMPEGStreamInformationWriter():
 eMPEGStreamInformationWriter::~eMPEGStreamInformationWriter()
 {
 	close();
+	free(m_write_buffer);
 }
 
 int eMPEGStreamInformationWriter::startSave(const std::string& filename)
