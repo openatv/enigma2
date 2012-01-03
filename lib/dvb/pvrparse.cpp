@@ -279,29 +279,30 @@ int eMPEGStreamInformation::loadCache(int index)
 	fseek(m_structure_read, index * entry_size, SEEK_SET);
 	int num = fread(m_structure_cache, entry_size, structure_cache_size, m_structure_read);
 	eDebug("[eMPEGStreamInformation] cache starts at %d entries: %d", index, num);
+	m_cache_index = index;
 	m_structure_cache_entries = num;
 	return num;
 }
 
-int eMPEGStreamInformation::getStructureEntry(off_t &offset, unsigned long long &data, int get_next)
+int eMPEGStreamInformation::getStructureEntryFirst(off_t &offset, unsigned long long &data)
 {
 	//eDebug("[eMPEGStreamInformation] getStructureEntry(offset=%llu, get_next=%d)", offset, get_next);
 	if (!m_structure_read)
 	{
-		eDebug("getStructureEntry failed because of no m_structure_read");
+		eDebug("getStructureEntryFirst failed because of no m_structure_read");
 		return -1;
 	}
 
 	const int structure_cache_size = sizeof(m_structure_cache) / entry_size;
 	if ((m_structure_cache_entries == 0) ||
 	    (structureCacheOffset(0) > offset) ||
-	    (structureCacheOffset(m_structure_cache_entries - (get_next ? 2 : 1)) <= offset))
+	    (structureCacheOffset(m_structure_cache_entries - 1) <= offset))
 	{
 		fseek(m_structure_read, 0, SEEK_END);
 		int l = ftell(m_structure_read) / entry_size;
 		if (l == 0)
 		{
-			eDebug("getStructureEntry failed because file size is zero");
+			eDebug("getStructureEntryFirst failed because file size is zero");
 			return -1;
 		}
 
@@ -364,27 +365,56 @@ int eMPEGStreamInformation::getStructureEntry(off_t &offset, unsigned long long 
 			high = mid - 1;
 	}
 	// Note that low > high
-	if (get_next)
-	{
-		if (i >= m_structure_cache_entries)
-			i = m_structure_cache_entries-1;
-		else
-			i = low;
-	}
+	if (high >= 0)
+		i = high;
 	else
-	{
-		if (high >= 0)
-			i = high;
-		else
-			i = 0;
-	}
-
-	// eDebug("[eMPEGStreamInformation] search %llu (get_next=%d), found %llu: %llu at %d", offset, get_next, structureCacheOffset(i), structureCacheData(i), i);
+		i = 0;
 	offset = structureCacheOffset(i);
 	data = structureCacheData(i);
+	m_current_entry = m_cache_index + i;
+	//eDebug("[eMPEGStreamInformation] first index=%d (%d); %llu: %llu", m_current_entry, i, offset, data);
 	return 0;
 }
 
+int eMPEGStreamInformation::getStructureEntryNext(off_t &offset, unsigned long long &data, int delta)
+{
+	int next = m_current_entry + delta;
+	if (next < 0)
+	{
+		eDebug("getStructureEntryNext before start-of-file");
+		return -1;
+	}
+	int index = next - m_cache_index;
+	if ((index < 0) || (index >= m_structure_cache_entries))
+	{
+		// Moved outsize cache range, fetch a new array
+		int where;
+		if (delta < 0)
+		{
+			// When moving backwards, take a bigger step back (but we will probably be moving forward later...)
+			const int structure_cache_size = sizeof(m_structure_cache) / entry_size;
+			where = next - structure_cache_size/2;
+			if (where < 0)
+				where = 0;
+		}
+		else
+		{
+			where = next;
+		}
+		int num = loadCache(where);
+		if (num <= 0)
+		{
+			eDebug("getStructureEntryNext failed, no data");
+			return -1;
+		}
+		index = next - m_cache_index;
+	}
+	offset = structureCacheOffset(index);
+	data = structureCacheData(index);
+	m_current_entry = m_cache_index + index;
+	//eDebug("[eMPEGStreamInformation] next index=%d (%d); %llu: %llu", m_current_entry, index, offset, data);
+	return 0;
+}
 
 // Get first or last PTS value and offset.
 int eMPEGStreamInformation::getFirstFrame(off_t &offset, pts_t& pts)
