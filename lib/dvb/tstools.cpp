@@ -78,7 +78,7 @@ int eDVBTSTools::getPTS(off_t &offset, pts_t &pts, int fixed)
 	{
 		off_t local_offset = offset;
 		unsigned long long data;
-		if (m_streaminfo.getStructureEntry(local_offset, data, 0) == 0)
+		if (m_streaminfo.getStructureEntryFirst(local_offset, data) == 0)
 		{
 			for(int retries = 8; retries != 0; --retries)
 			{
@@ -103,7 +103,7 @@ int eDVBTSTools::getPTS(off_t &offset, pts_t &pts, int fixed)
 				{
 					eDebug("No PTS, try next");
 				}
-				if (m_streaminfo.getStructureEntry(local_offset, data, 1) != 0)
+				if (m_streaminfo.getStructureEntryNext(local_offset, data, 1) != 0)
 				{
 					eDebug("Cannot find next structure entry");
 					break;
@@ -707,14 +707,21 @@ int eDVBTSTools::findFrame(off_t &_offset, size_t &len, int &direction, int fram
 	if (direction < 0)
 		offset--;
 
+	unsigned long long longdata;
+	if (m_streaminfo.getStructureEntryFirst(offset, longdata) != 0)
+	{
+		eDebug("findFrame: getStructureEntryFirst failed");
+		return -1;
+	}
+	if (direction == 0)
+	{
+		// Special case, move an extra frame ahead
+		if (m_streaminfo.getStructureEntryNext(offset, longdata, 1) != 0)
+			return -1;
+		direction = 1;
+	}
 	while (1)
 	{
-		unsigned long long longdata;
-		if (m_streaminfo.getStructureEntry(offset, longdata, (direction == 0) ? 1 : 0))
-		{
-			eDebug("getting structure info for origin offset failed.");
-			return -1;
-		}
 		unsigned int data = (unsigned int)longdata; // only the lower bits are interesting
 			/* data is usually the start code in the lower 8 bit, and the next byte <<8. we extract the picture type from there */
 			/* we know that we aren't recording startcode 0x09 for mpeg2, so this is safe */
@@ -733,10 +740,8 @@ int eDVBTSTools::findFrame(off_t &_offset, size_t &len, int &direction, int fram
 				break;
 			}
 		}
-		if (direction == -1)
-			--offset; /* move to previous entry */
-		else if (direction == +1)
-			direction = 0;
+		if (m_streaminfo.getStructureEntryNext(offset, longdata, direction) != 0)
+			return -1;
 	}
 	off_t start = offset;
 
@@ -759,8 +764,7 @@ int eDVBTSTools::findFrame(off_t &_offset, size_t &len, int &direction, int fram
 	unsigned int data;
 	do
 	{
-		unsigned long long longdata;
-		if (m_streaminfo.getStructureEntry(offset, longdata, 1))
+		if (m_streaminfo.getStructureEntryNext(offset, longdata, 1))
 		{
 			eDebug("get next failed");
 			return -1;
