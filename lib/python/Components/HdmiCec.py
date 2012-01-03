@@ -7,7 +7,6 @@ from Tools.DreamboxHardware import getFPWasTimerWakeup
 config.hdmicec = ConfigSubsection()
 config.hdmicec.enabled = ConfigYesNo(default = True)
 config.hdmicec.control_tv_standby = ConfigYesNo(default = True)
-config.hdmicec.control_tv_deepstandby = ConfigYesNo(default = False)
 config.hdmicec.control_tv_wakeup = ConfigYesNo(default = True)
 config.hdmicec.report_active_source = ConfigYesNo(default = True)
 config.hdmicec.report_active_menu = ConfigYesNo(default = True)
@@ -157,9 +156,8 @@ class HdmiCec:
 		self.standbyMessages()
 
 	def onEnterDeepStandby(self, configElement):
-		if config.hdmicec.enabled.value:
-			if config.hdmicec.control_tv_deepstandby.value:
-				self.sendMessage(0, "standby")
+		if config.hdmicec.handle_deepstandby_events.value:
+			self.standbyMessages()
 
 	def standby(self):
 		from Screens.Standby import Standby, inStandby

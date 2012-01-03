@@ -182,7 +182,7 @@
 		<widget source="global.CurrentTime" render="Label" position="0,22" size="120,45" font="FdLcD;50" halign="left" noWrap="1">
 			<convert type="ClockToText">Format:%H:%M</convert>
 		</widget>
-		<widget source="session.RecordState" render="FixedLabel" text="Rec" position="024,55" size="30,14" font="FdLcD;14" zposition="0" valign="bottom" halign="right" noWrap="1">
+		<widget source="session.RecordState" render="FixedLabel" text="Rec" position="224,55" size="30,14" font="FdLcD;14" zposition="0" valign="bottom" halign="right" noWrap="1">
 			<convert type="ConditionalShowHide"></convert>
 		</widget>
 	</screen>

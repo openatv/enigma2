@@ -1,9 +1,12 @@
 #include <lib/dvb/pvrparse.h>
 #include <lib/base/eerror.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 #include <byteswap.h>
 
 #ifndef BYTE_ORDER
-#error no byte order defined!
+#	error no byte order defined!
 #endif
 
 eMPEGStreamInformation::eMPEGStreamInformation():
@@ -448,31 +451,33 @@ int eMPEGStreamInformation::getLastFrame(off_t &offset, pts_t& pts)
 	return -1;
 }
 
+#ifndef PAGESIZE
+#	define PAGESIZE 4096
+#endif
 
 eMPEGStreamInformationWriter::eMPEGStreamInformationWriter():
-	m_structure_write(NULL)
+	m_structure_write_fd(-1),
+	m_write_buffer(malloc(PAGESIZE)),
+	m_buffer_filled(0)
 {}
 
 eMPEGStreamInformationWriter::~eMPEGStreamInformationWriter()
 {
-	if (m_structure_write)
-		fclose(m_structure_write);
+	close();
+	free(m_write_buffer);
 }
 
 int eMPEGStreamInformationWriter::startSave(const std::string& filename)
 {
 	m_filename = filename;
-	m_structure_write = fopen((m_filename + ".sc").c_str(), "wb");
+	m_structure_write_fd = ::open((m_filename + ".sc").c_str(), O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	m_buffer_filled = 0;
 	return 0;
 }
 
 int eMPEGStreamInformationWriter::stopSave(void)
 {
-	if (m_structure_write)
-	{
-		fclose(m_structure_write);
-		m_structure_write = NULL;
-	}
+	close();
 	if (m_filename.empty())
 		return -1;
 	FILE *f = fopen((m_filename + ".ap").c_str(), "wb");
@@ -499,7 +504,7 @@ int eMPEGStreamInformationWriter::stopSave(void)
 
 void eMPEGStreamInformationWriter::writeStructureEntry(off_t offset, unsigned long long data)
 {
-	unsigned long long d[2];
+	unsigned long long *d = (unsigned long long*)((char*)m_write_buffer + m_buffer_filled);
 #if BYTE_ORDER == BIG_ENDIAN
 	d[0] = offset;
 	d[1] = data;
@@ -507,10 +512,33 @@ void eMPEGStreamInformationWriter::writeStructureEntry(off_t offset, unsigned lo
 	d[0] = bswap_64(offset);
 	d[1] = bswap_64(data);
 #endif
-	if (m_structure_write)
-		fwrite(d, sizeof(d), 1, m_structure_write);
+	m_buffer_filled += 16;
+	if (m_buffer_filled == PAGESIZE)
+		flush();
 }
 
+void eMPEGStreamInformationWriter::flush()
+{
+	ssize_t written = ::write(m_structure_write_fd, m_write_buffer, m_buffer_filled);
+	if (written != m_buffer_filled)
+	{
+		eWarning("Failed to write TS file");
+	}
+	m_buffer_filled = 0;
+}
+
+void eMPEGStreamInformationWriter::close()
+{
+	if (m_structure_write_fd != -1)
+	{
+		if (m_buffer_filled != 0)
+		{
+			flush();
+		}
+		::close(m_structure_write_fd);
+		m_structure_write_fd = -1;
+	}
+}
 
 
 eMPEGStreamParserTS::eMPEGStreamParserTS():

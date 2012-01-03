@@ -4,6 +4,7 @@ from enigma import eDBoxLCD, eTimer
 from Components.SystemInfo import SystemInfo
 from Tools.Directories import fileExists
 import usb
+import fcntl
 
 def IconCheck(session=None, **kwargs):
 	if fileExists("/proc/stb/lcd/symbol_network") or fileExists("/proc/stb/lcd/symbol_usb"):
@@ -81,8 +82,16 @@ class IconCheckPoller:
 		self.timer.startLongTimer(30)
 
 class LCD:
+	LED_IOCTL_BRIGHTNESS_NORMAL = 0X10
+	LED_IOCTL_BRIGHTNESS_DEEPSTANDBY = 0X11
+	LED_IOCTL_BLINKING_TIME = 0X12
+	LED_IOCTL_SET_DEFAULT = 0X13
+
 	def __init__(self):
-		pass
+		self.led_fd = open("/dev/dbox/oled0",'rw')
+
+	def __del__(self):
+		self.led_fd.close()
 
 	def setBright(self, value):
 		value *= 255
@@ -135,25 +144,27 @@ class LCD:
 
 	def setNormalstate(self, value):
 		print 'setLEDNormal',value
-		eDBoxLCD.getInstance().setLED(value ,0)
+		fcntl.ioctl(self.led_fd, self.LED_IOCTL_BRIGHTNESS_NORMAL, value)
 
 	def setDeepStandby(self, value):
 		print 'setLEDSeepStandby',value
-		eDBoxLCD.getInstance().setLED(value ,1)
+		fcntl.ioctl(self.led_fd, self.LED_IOCTL_BRIGHTNESS_DEEPSTANDBY, value)
 
 	def setBlinkingtime(self, value):
 		print 'setBlinking',value
-		eDBoxLCD.getInstance().setLED(value ,2)
+		fcntl.ioctl(self.led_fd, self.LED_IOCTL_BLINKING_TIME, value)
 
 def leaveStandby():
 	config.lcd.bright.apply()
 	config.lcd.ledbrightness.apply()
+	config.lcd.ledbrightnessdeepstandby.apply()
 
 def standbyCounterChanged(configElement):
 	from Screens.Standby import inStandby
 	inStandby.onClose.append(leaveStandby)
 	config.lcd.standby.apply()
 	config.lcd.ledbrightnessstandby.apply()
+	config.lcd.ledbrightnessdeepstandby.apply()
 
 def InitLcd():
 	detected = eDBoxLCD.getInstance().detected()
@@ -232,13 +243,13 @@ def InitLcd():
 		if config.misc.boxtype.value == 'vuultimo':
 			config.lcd.ledblinkingtime = ConfigSlider(default = 5, increment = 1, limits = (0,15))
 			config.lcd.ledblinkingtime.addNotifier(setLEDblinkingtime);
-			config.lcd.ledbrightnessdeepstandby = ConfigSlider(default = 5, increment = 1, limits = (0,15))
-			config.lcd.ledbrightnessdeepstandby.addNotifier(setLEDdeepstandby);
-			config.lcd.ledbrightnessdeepstandby.apply = lambda : setLEDnormalstate(config.lcd.ledbrightnessdeepstandby)
-			config.lcd.ledbrightnessstandby = ConfigSlider(default = 5, increment = 1, limits = (0,15))
+			config.lcd.ledbrightnessdeepstandby = ConfigSlider(default = 1, increment = 1, limits = (0,15))
+			config.lcd.ledbrightnessdeepstandby.addNotifier(setLEDnormalstate);
+			config.lcd.ledbrightnessdeepstandby.apply = lambda : setLEDdeepstandby(config.lcd.ledbrightnessdeepstandby)
+			config.lcd.ledbrightnessstandby = ConfigSlider(default = 1, increment = 1, limits = (0,15))
 			config.lcd.ledbrightnessstandby.addNotifier(setLEDnormalstate);
 			config.lcd.ledbrightnessstandby.apply = lambda : setLEDnormalstate(config.lcd.ledbrightnessstandby)
-			config.lcd.ledbrightness = ConfigSlider(default = 1, increment = 1, limits = (0,15))
+			config.lcd.ledbrightness = ConfigSlider(default = 3, increment = 1, limits = (0,15))
 			config.lcd.ledbrightness.addNotifier(setLEDnormalstate);
 			config.lcd.ledbrightness.apply = lambda : setLEDnormalstate(config.lcd.ledbrightness)
 			config.lcd.ledbrightness.callNotifiersOnSaveAndCancel = True
