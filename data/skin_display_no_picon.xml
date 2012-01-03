@@ -35,24 +35,66 @@
 			<convert type="EventTime">Remaining</convert>
 			<convert type="RemainingToText">NoSeconds</convert>
 		</widget>
-		<widget source="session.OnlineCheckState" render="Pixmap" pixmap="ViX_HD_Common/lcd/update.png" position="178,0" size="12,10" >
+		<widget source="session.OnlineCheckState" render="Pixmap" pixmap="lcd/update.png" position="178,0" size="12,10" >
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
-		<widget source="session.RecordState" render="Pixmap" pixmap="ViX_HD_Common/lcd/rec.png" position="191,0" size="26,10" >
+		<widget source="session.RecordState" render="Pixmap" pixmap="lcd/rec.png" position="191,0" size="26,10" >
 			<convert type="ConditionalShowHide"></convert>
 		</widget>
-		<widget source="session.CurrentService" render="Pixmap" pixmap="ViX_HD_Common/lcd/hd.png" position="218,0" size="18,10" >
+		<widget source="session.CurrentService" render="Pixmap" pixmap="lcd/hd.png" position="218,0" size="18,10" >
 			<convert type="ServiceInfo">VideoWidth</convert>
 			<convert type="ValueRange">721,1980</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.CurrentService" render="Pixmap" pixmap="ViX_HD_Common/lcd/dolby.png" position="237,0" size="18,10" >
+		<widget source="session.CurrentService" render="Pixmap" pixmap="lcd/dolby.png" position="237,0" size="18,10" >
 			<convert type="ServiceInfo">IsMultichannel</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
 		<widget source="global.CurrentTime" render="Label" position="195,48" size="60,22" font="FdLcD;24" halign="right" valign="bottom" noWrap="1">
 			<convert type="ClockToText"></convert>
 		</widget>
+
+		<widget source="session.TunerInfo" render="Pixmap" pixmap="lcd/tuner-a.png" position="160,49" size="9,15" >
+			<convert type="TunerInfo">TunerUseMask</convert>
+			<convert type="ValueBitTest">1</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.TunerInfo" render="Pixmap" pixmap="lcd/tuner-b.png" position="169,49" size="9,15" >
+			<convert type="TunerInfo">TunerUseMask</convert>
+			<convert type="ValueBitTest">2</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.TunerInfo" render="Pixmap" pixmap="lcd/tuner-c.png" position="178,49" size="9,15" >
+			<convert type="TunerInfo">TunerUseMask</convert>
+			<convert type="ValueBitTest">4</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.TunerInfo" render="Pixmap" pixmap="lcd/tuner-d.png" position="187,49" size="9,15" >
+			<convert type="TunerInfo">TunerUseMask</convert>
+			<convert type="ValueBitTest">8</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.FrontendInfo" render="Pixmap" pixmap="lcd/tuner-a-act.png"  position="160,49" size="9,15" >
+			<convert type="FrontendInfo">NUMBER</convert>
+			<convert type="ValueRange">0,0</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.FrontendInfo" render="Pixmap" pixmap="lcd/tuner-b-act.png" position="169,49" size="9,15" >
+			<convert type="FrontendInfo">NUMBER</convert>
+			<convert type="ValueRange">1,1</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.FrontendInfo" render="Pixmap" pixmap="lcd/tuner-c-act.png" osition="178,49" size="9,15" >
+			<convert type="FrontendInfo">NUMBER</convert>
+			<convert type="ValueRange">2,2</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.FrontendInfo" render="Pixmap" pixmap="lcd/tuner-c-act.png" position="187,49" size="9,15" >
+			<convert type="FrontendInfo">NUMBER</convert>
+			<convert type="ValueRange">3,3</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+
 	</screen>
     
 <!-- movieplayer-->
@@ -66,18 +108,18 @@
 		<widget source="session.CurrentService" render="Label" position="0,50" size="110,19" font="FdLcD;19" halign="left" valign="bottom" noWrap="1">
 			<convert type="ServicePosition">Position</convert>
 		</widget>
-		<widget source="session.OnlineCheckState" render="Pixmap" pixmap="ViX_HD_Common/lcd/update.png" position="178,0" size="12,10" >
+		<widget source="session.OnlineCheckState" render="Pixmap" pixmap="lcd/update.png" position="178,0" size="12,10" >
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
-		<widget source="session.RecordState" render="Pixmap" pixmap="ViX_HD_Common/lcd/rec.png" position="191,0" size="26,10" >
+		<widget source="session.RecordState" render="Pixmap" pixmap="lcd/rec.png" position="191,0" size="26,10" >
 			<convert type="ConditionalShowHide"></convert>
 		</widget>
-		<widget source="session.CurrentService" render="Pixmap" pixmap="ViX_HD_Common/lcd/hd.png" position="218,0" size="18,10" >
+		<widget source="session.CurrentService" render="Pixmap" pixmap="lcd/hd.png" position="218,0" size="18,10" >
 			<convert type="ServiceInfo">VideoWidth</convert>
 			<convert type="ValueRange">721,1980</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.CurrentService" render="Pixmap" pixmap="ViX_HD_Common/lcd/dolby.png" position="237,0" size="18,10" >
+		<widget source="session.CurrentService" render="Pixmap" pixmap="lcd/dolby.png" position="237,0" size="18,10" >
 			<convert type="ServiceInfo">IsMultichannel</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
@@ -124,18 +166,18 @@
 			<convert type="EventTime">Remaining</convert>
 			<convert type="RemainingToText">NoSeconds</convert>
 		</widget>
-		<widget source="session.OnlineCheckState" render="Pixmap" pixmap="ViX_HD_Common/lcd/update.png" position="178,0" size="12,10" >
+		<widget source="session.OnlineCheckState" render="Pixmap" pixmap="lcd/update.png" position="178,0" size="12,10" >
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
-		<widget source="session.RecordState" render="Pixmap" pixmap="ViX_HD_Common/lcd/rec.png" position="191,0" size="26,10" >
+		<widget source="session.RecordState" render="Pixmap" pixmap="lcd/rec.png" position="191,0" size="26,10" >
 			<convert type="ConditionalShowHide"></convert>
 		</widget>
-		<widget source="session.CurrentService" render="Pixmap" pixmap="ViX_HD_Common/lcd/hd.png" position="218,0" size="18,10" >
+		<widget source="session.CurrentService" render="Pixmap" pixmap="lcd/hd.png" position="218,0" size="18,10" >
 			<convert type="ServiceInfo">VideoWidth</convert>
 			<convert type="ValueRange">721,1980</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.CurrentService" render="Pixmap" pixmap="ViX_HD_Common/lcd/dolby.png" position="237,0" size="18,10" >
+		<widget source="session.CurrentService" render="Pixmap" pixmap="lcd/dolby.png" position="237,0" size="18,10" >
 			<convert type="ServiceInfo">IsMultichannel</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
@@ -182,7 +224,7 @@
 		<widget source="global.CurrentTime" render="Label" position="0,22" size="120,45" font="FdLcD;50" halign="left" noWrap="1">
 			<convert type="ClockToText">Format:%H:%M</convert>
 		</widget>
-		<widget source="session.RecordState" render="FixedLabel" text="Rec" position="224,55" size="30,14" font="FdLcD;14" zposition="0" valign="bottom" halign="right" noWrap="1">
+		<widget source="session.RecordState" render="FixedLabel" text="Rec" position="024,55" size="30,14" font="FdLcD;14" zposition="0" valign="bottom" halign="right" noWrap="1">
 			<convert type="ConditionalShowHide"></convert>
 		</widget>
 	</screen>
