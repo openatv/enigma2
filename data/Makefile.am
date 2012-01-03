@@ -26,7 +26,7 @@ else
 if HAVE_COLORLCD
 dist_pkgdata_DATA += skin_display96.xml
 else
-SUBDIRS = lcd
+SUBDIRS += lcd
 dist_pkgdata_DATA += skin_display_picon.xml skin_display_no_picon.xml
 endif
 endif
