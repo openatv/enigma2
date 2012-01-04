@@ -221,6 +221,7 @@ data/defaults/Dream/hdbouquets/Makefile
 data/defaults/Dream/sdbouquets/Makefile
 data/extensions/Makefile
 data/keymaps/Makefile
+data/lcd/Makefile
 data/skin_default/Makefile
 data/skin_default/menu/Makefile
 data/skin_default/icons/Makefile
@@ -278,6 +279,9 @@ lib/python/Plugins/Extensions/SocketMMI/meta/Makefile
 lib/python/Plugins/Extensions/SocketMMI/src/Makefile
 lib/python/Plugins/Extensions/TuxboxPlugins/Makefile
 lib/python/Plugins/Extensions/TuxboxPlugins/meta/Makefile
+lib/python/Plugins/Extensions/WebBrowser/Makefile
+lib/python/Plugins/Extensions/WebBrowser/meta/Makefile
+lib/python/Plugins/Extensions/WebBrowser/keymap/Makefile
 lib/python/Plugins/Extensions/Aafpanel/Makefile
 lib/python/Plugins/Extensions/Aafpanel/meta/Makefile
 lib/python/Plugins/Extensions/Aafpanel/pics/Makefile

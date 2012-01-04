@@ -34,7 +34,8 @@ public:
 		/* get a structure entry at given offset (or previous one, if no exact match was found).
 		   optionally, return next element. Offset will be returned. this allows you to easily 
 		   get previous and next structure elements. */
-	int getStructureEntry(off_t &offset, unsigned long long &data, int get_next);
+	int getStructureEntryFirst(off_t &offset, unsigned long long &data);
+	int getStructureEntryNext(off_t &offset, unsigned long long &data, int delta);
 
 	// Get first or last PTS value and offset.
 	int getFirstFrame(off_t &offset, pts_t& pts);
@@ -61,6 +62,9 @@ private:
 	int m_structure_cache_entries;
 	unsigned long long m_structure_cache[4096];
 	FILE *m_structure_read;
+
+	int m_cache_index;   // Location of cache
+	int m_current_entry; // For getStructureEntryNext
 };
 
 class eMPEGStreamInformationWriter
