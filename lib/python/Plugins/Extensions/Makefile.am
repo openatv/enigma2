@@ -10,13 +10,5 @@ if VUPLUS
 SUBDIRS += GenuineVuplus
 endif
 
-if VUUNO
-SUBDIRS += WebBrowser
-endif
-
-if VUULTIMO
-SUBDIRS += WebBrowser
-endif
-
 install_PYTHON =	\
 	__init__.py
