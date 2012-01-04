@@ -95,6 +95,7 @@ self.rateSelect("50Hz")
 self.hw.saveMode(self.port, self.mode, self.rate)
 from Components.config import configfile
 configfile.save() 
+self.markDone()
 self.close()
 		</code>
 <!-- 
