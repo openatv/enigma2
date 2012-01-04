@@ -6,6 +6,10 @@ if HAVE_LIBDDVD
 SUBDIRS += DVDPlayer
 endif
 
+if VUPLUS
+SUBDIRS += GenuineVuplus
+endif
+
 if VUUNO
 SUBDIRS += WebBrowser
 endif
