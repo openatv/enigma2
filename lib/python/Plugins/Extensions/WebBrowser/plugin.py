@@ -124,7 +124,7 @@ class VuPlayer(Screen, InfoBarNotifications):
 			"stop": self.doExit,
 			"playpauseService": self.playpauseService,
 		}, -2)
-		self["sidebar"] = Label(_("/"))
+		self["sidebar"] = Label("/")
 
 		self.__event_tracker = ServiceEventTracker(screen = self, eventmap =
 		{
