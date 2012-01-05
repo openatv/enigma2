@@ -256,6 +256,7 @@ def InitLcd():
 		config.lcd.ledbrightnessstandby = ConfigNothing()
 		config.lcd.ledbrightnessstandby.apply = lambda : doNothing()
 		config.lcd.ledbrightnessdeepstandby = ConfigNothing()
+		config.lcd.ledbrightnessdeepstandby.apply = lambda : doNothing()
 		config.lcd.ledblinkingtime = ConfigNothing()
 
 	config.misc.standbyCounter.addNotifier(standbyCounterChanged, initial_call = False)
