@@ -41,10 +41,10 @@ eDVBTextEncodingHandler::eDVBTextEncodingHandler()
 				countrycode[2]=toupper(countrycode[2]);
 				m_CountryCodeDefaultMapping[countrycode]=encoding;
 			}
-			else if ( (sscanf( line, "0x%x 0x%x ISO%d", &tsid, &onid, &encoding ) == 3 && encoding == 6397 )
-					||(sscanf( line, "%d %d ISO%d", &tsid, &onid, &encoding ) == 3 && encoding == 6397 ) )
+			else if ( (sscanf( line, "0x%x 0x%x ISO%d", &tsid, &onid, &encoding ) == 3 && encoding == 6937 )
+					||(sscanf( line, "%d %d ISO%d", &tsid, &onid, &encoding ) == 3 && encoding == 6937 ) )
 				m_TransponderDefaultMapping[(tsid<<16)|onid]=0;
-			else if ( sscanf( line, "%s ISO%d", countrycode, &encoding ) == 2 && encoding == 6397 )
+			else if ( sscanf( line, "%s ISO%d", countrycode, &encoding ) == 2 && encoding == 6937 )
 			{
 				m_CountryCodeDefaultMapping[countrycode]=0;
 				countrycode[0]=toupper(countrycode[0]);
