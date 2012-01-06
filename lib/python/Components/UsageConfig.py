@@ -375,6 +375,9 @@ def InitUsageConfig():
 		("8", "4"),("9", "1,4"),("10", "2,4"),("11", "1,2,4"),
 		("12", "3,4"),("13", "1,3,4"),("14", "2,3,4"),("15", "All")])
 
+	config.streaming = ConfigSubsection()
+	config.streaming.stream_ecm = ConfigYesNo(default = False)
+
 def updateChoices(sel, choices):
 	if choices:
 		defval = None
