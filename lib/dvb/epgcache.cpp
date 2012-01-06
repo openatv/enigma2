@@ -1387,7 +1387,7 @@ void eEPGCache::channel_data::startEPG()
 	{
 		mask.data[0] = 0x4E;
 		mask.mask[0] = 0xFE;
-		m_NowNextReader->connectRead(slot(*this, &eEPGCache::channel_data::readData), m_NowNextConn);
+		m_NowNextReader->connectRead(bind(slot(*this, &eEPGCache::channel_data::readData), (int)eEPGCache::NOWNEXT), m_NowNextConn);
 		m_NowNextReader->start(mask);
 		isRunning |= NOWNEXT;
 	}
@@ -1396,7 +1396,7 @@ void eEPGCache::channel_data::startEPG()
 	{
 		mask.data[0] = 0x50;
 		mask.mask[0] = 0xF0;
-		m_ScheduleReader->connectRead(slot(*this, &eEPGCache::channel_data::readData), m_ScheduleConn);
+		m_ScheduleReader->connectRead(bind(slot(*this, &eEPGCache::channel_data::readData), (int)eEPGCache::SCHEDULE), m_ScheduleConn);
 		m_ScheduleReader->start(mask);
 		isRunning |= SCHEDULE;
 	}
@@ -1405,7 +1405,7 @@ void eEPGCache::channel_data::startEPG()
 	{
 		mask.data[0] = 0x60;
 		mask.mask[0] = 0xF0;
-		m_ScheduleOtherReader->connectRead(slot(*this, &eEPGCache::channel_data::readData), m_ScheduleOtherConn);
+		m_ScheduleOtherReader->connectRead(bind(slot(*this, &eEPGCache::channel_data::readData), (int)eEPGCache::SCHEDULE_OTHER), m_ScheduleOtherConn);
 		m_ScheduleOtherReader->start(mask);
 		isRunning |= SCHEDULE_OTHER;
 	}
@@ -1416,7 +1416,7 @@ void eEPGCache::channel_data::startEPG()
 		mask.pid = 0x1388;
 		mask.data[0] = 0x50;
 		mask.mask[0] = 0xF0;
-		m_NetmedScheduleReader->connectRead(slot(*this, &eEPGCache::channel_data::readDataNetmed), m_NetmedScheduleConn);
+		m_NetmedScheduleReader->connectRead(bind(slot(*this, &eEPGCache::channel_data::readData), (int)eEPGCache::NETMED_SCHEDULE), m_NetmedScheduleConn);
 		m_NetmedScheduleReader->start(mask);
 		isRunning |= NETMED_SCHEDULE;
 	}
@@ -1426,7 +1426,7 @@ void eEPGCache::channel_data::startEPG()
 		mask.pid = 0x1388;
 		mask.data[0] = 0x60;
 		mask.mask[0] = 0xF0;
-		m_NetmedScheduleOtherReader->connectRead(slot(*this, &eEPGCache::channel_data::readDataNetmed), m_NetmedScheduleOtherConn);
+		m_NetmedScheduleOtherReader->connectRead(bind(slot(*this, &eEPGCache::channel_data::readData), (int)eEPGCache::NETMED_SCHEDULE_OTHER), m_NetmedScheduleOtherConn);
 		m_NetmedScheduleOtherReader->start(mask);
 		isRunning |= NETMED_SCHEDULE_OTHER;
 	}
@@ -1437,7 +1437,7 @@ void eEPGCache::channel_data::startEPG()
 
 		mask.data[0] = 0x40;
 		mask.mask[0] = 0x40;
-		m_ViasatReader->connectRead(slot(*this, &eEPGCache::channel_data::readDataViasat), m_ViasatConn);
+		m_ViasatReader->connectRead(bind(slot(*this, &eEPGCache::channel_data::readData), (int)eEPGCache::VIASAT), m_ViasatConn);
 		m_ViasatReader->start(mask);
 		isRunning |= VIASAT;
 	}
@@ -1642,124 +1642,40 @@ void eEPGCache::channel_data::abortEPG()
 	pthread_mutex_unlock(&channel_active);
 }
 
-
-void eEPGCache::channel_data::readDataViasat( const __u8 *data)
+void eEPGCache::channel_data::readData( const __u8 *data, int source)
 {
-	__u8 *d=0;
-	memcpy(&d, &data, sizeof(__u8*));
-	d[0] |= 0x80;
-	readData(data);
-}
-
+	int map;
+	iDVBSectionReader *reader = NULL;
+	switch (source)
+	{
+		case NOWNEXT:
+			reader = m_NowNextReader;
+			map = 0;
+			break;
+		case SCHEDULE:
+			reader = m_ScheduleReader;
+			map = 1;
+			break;
+		case SCHEDULE_OTHER:
+			reader = m_ScheduleOtherReader;
+			map = 2;
+			break;
+		case VIASAT:
+			reader = m_ViasatReader;
+			map = 3;
+			break;
 #ifdef ENABLE_NETMED
-void eEPGCache::channel_data::readDataNetmed( const __u8 *data)
-{
-	int source;
-	int map;
-	iDVBSectionReader *reader=NULL;
-	switch(data[0])
-	{
-		case 0x50 ... 0x5F:
-			reader=m_NetmedScheduleReader;
-			source=NETMED_SCHEDULE;
-			map=1;
+		case NETMED_SCHEDULE:
+			reader = m_NetmedScheduleReader;
+			map = 1;
 			break;
-		case 0x60 ... 0x6F:
-			reader=m_NetmedScheduleOtherReader;
-			source=NETMED_SCHEDULE_OTHER;
-			map=2;
+		case NETMED_SCHEDULE_OTHER:
+			reader = m_NetmedScheduleOtherReader;
+			map = 2;
 			break;
-		default:
-			eDebug("[EPGC] unknown table_id !!!");
-			return;
-	}
-	tidMap &seenSections = this->seenSections[map];
-	tidMap &calcedSections = this->calcedSections[map];
-	if ( (state == 1 && calcedSections == seenSections) || state > 1 )
-	{
-		eDebugNoNewLine("[EPGC] ");
-		switch (source)
-		{
-			case NETMED_SCHEDULE:
-				m_NetmedScheduleConn=0;
-				eDebugNoNewLine("netmed schedule");
-				break;
-			case NETMED_SCHEDULE_OTHER:
-				m_NetmedScheduleOtherConn=0;
-				eDebugNoNewLine("netmed schedule other");
-				break;
-			default: eDebugNoNewLine("unknown");break;
-		}
-		eDebug(" finished(%ld)", ::time(0));
-		if ( reader )
-			reader->stop();
-		isRunning &= ~source;
-		if (!isRunning)
-			finishEPG();
-	}
-	else
-	{
-		eit_t *eit = (eit_t*) data;
-		__u32 sectionNo = data[0] << 24;
-		sectionNo |= data[3] << 16;
-		sectionNo |= data[4] << 8;
-		sectionNo |= eit->section_number;
-
-		tidMap::iterator it =
-			seenSections.find(sectionNo);
-
-		if ( it == seenSections.end() )
-		{
-			seenSections.insert(sectionNo);
-			calcedSections.insert(sectionNo);
-			__u32 tmpval = sectionNo & 0xFFFFFF00;
-			__u8 incr = source == NOWNEXT ? 1 : 8;
-			for ( int i = 0; i <= eit->last_section_number; i+=incr )
-			{
-				if ( i == eit->section_number )
-				{
-					for (int x=i; x <= eit->segment_last_section_number; ++x)
-						calcedSections.insert(tmpval|(x&0xFF));
-				}
-				else
-					calcedSections.insert(tmpval|(i&0xFF));
-			}
-			cache->sectionRead(data, source, this);
-		}
-	}
-}
 #endif
-
-void eEPGCache::channel_data::readData( const __u8 *data)
-{
-	int source;
-	int map;
-	iDVBSectionReader *reader=NULL;
-	switch(data[0])
-	{
-		case 0x4E ... 0x4F:
-			reader=m_NowNextReader;
-			source=NOWNEXT;
-			map=0;
-			break;
-		case 0x50 ... 0x5F:
-			reader=m_ScheduleReader;
-			source=SCHEDULE;
-			map=1;
-			break;
-		case 0x60 ... 0x6F:
-			reader=m_ScheduleOtherReader;
-			source=SCHEDULE_OTHER;
-			map=2;
-			break;
-		case 0xD0 ... 0xDF:
-		case 0xE0 ... 0xEF:
-			reader=m_ViasatReader;
-			source=VIASAT;
-			map=3;
-			break;
 		default:
-			eDebug("[EPGC] unknown table_id !!!");
+			eDebug("[EPGC] unknown source");
 			return;
 	}
 	tidMap &seenSections = this->seenSections[map];
@@ -1785,6 +1701,16 @@ void eEPGCache::channel_data::readData( const __u8 *data)
 				m_ViasatConn=0;
 				eDebugNoNewLine("viasat");
 				break;
+#ifdef ENABLE_NETMED
+			case NETMED_SCHEDULE:
+				m_NetmedScheduleConn=0;
+				eDebugNoNewLine("netmed schedule");
+				break;
+			case NETMED_SCHEDULE_OTHER:
+				m_NetmedScheduleOtherConn=0;
+				eDebugNoNewLine("netmed schedule other");
+				break;
+#endif
 			default: eDebugNoNewLine("unknown");break;
 		}
 		eDebug(" finished(%ld)", ::time(0));
