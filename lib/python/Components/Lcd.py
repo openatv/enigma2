@@ -214,15 +214,20 @@ def InitLcd():
 			config.lcd.contrast = ConfigNothing()
 			standby_default = 1
 
-		config.lcd.standby = ConfigSlider(default=standby_default, limits=(0, 10))
-		config.lcd.standby.addNotifier(setLCDbright);
-		config.lcd.standby.apply = lambda : setLCDbright(config.lcd.standby)
-
-		config.lcd.bright = ConfigSlider(default=5, limits=(0, 10))
-		config.lcd.bright.addNotifier(setLCDbright);
-		config.lcd.bright.apply = lambda : setLCDbright(config.lcd.bright)
-		config.lcd.bright.callNotifiersOnSaveAndCancel = True
-
+		if not config.misc.boxtype.value == 'gb800se' and not config.misc.boxtype.value == 'gb800solo':	
+			config.lcd.standby = ConfigSlider(default=standby_default, limits=(0, 10))
+			config.lcd.standby.addNotifier(setLCDbright);
+			config.lcd.standby.apply = lambda : setLCDbright(config.lcd.standby)
+			config.lcd.bright = ConfigSlider(default=5, limits=(0, 10))
+			config.lcd.bright.addNotifier(setLCDbright);
+			config.lcd.bright.apply = lambda : setLCDbright(config.lcd.bright)
+			config.lcd.bright.callNotifiersOnSaveAndCancel = True
+		else:
+			config.lcd.bright = ConfigNothing()
+			config.lcd.standby = ConfigNothing()
+			config.lcd.bright.apply = lambda : doNothing()
+			config.lcd.standby.apply = lambda : doNothing()
+			
 		config.lcd.invert = ConfigYesNo(default=False)
 		config.lcd.invert.addNotifier(setLCDinverted);
 
@@ -263,6 +268,19 @@ def InitLcd():
 			config.lcd.ledbrightnessdeepstandby = ConfigNothing()
 			config.lcd.ledbrightnessdeepstandby.apply = lambda : doNothing()
 			config.lcd.ledblinkingtime = ConfigNothing()
+
+		if config.misc.boxtype.value == 'gb800se' or config.misc.boxtype.value == 'gb800solo':
+			config.lcd.led_on = ConfigYesNo(default=True)
+			config.lcd.led_run = ConfigSelection([("0", _("Off")), ("1", _("blue")), ("2", _("red")), ("3", _("purple"))], "1")
+			config.lcd.led_stb = ConfigSelection([("0", _("Off")), ("1", _("blue")), ("2", _("red")), ("3", _("purple"))], "2")
+			config.lcd.led_rec = ConfigSelection([("0", _("Off")), ("1", _("blue")), ("2", _("red")), ("3", _("purple"))], "3")
+		else:
+			def doNothing():
+				pass
+			config.lcd.led_on =	ConfigNothing()
+			config.lcd.led_run = ConfigNothing()
+			config.lcd.led_stb = ConfigNothing()
+			config.lcd.led_rec = ConfigNothing()			
 
 	else:
 		def doNothing():

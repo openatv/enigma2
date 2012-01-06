@@ -118,6 +118,10 @@ if test x"$witholdpvr" != xno ; then
 fi
 AM_CONDITIONAL(HAVE_OLDPVR, test x"$witholdpvr" != xno)
 
+if test x"$BOXTYPE" == "xgb800se" -o x"$BOXTYPE" == "xgb800solo" ; then
+	AC_DEFINE(KEY_PLAY_ACTUALLY_IS_KEY_PLAYPAUSE, 1,[define when rc sends a KEY_PLAY event for its KEY_PLAYPAUSE key])
+fi
+
 if test x"$BOXTYPE" == "xdm8000" -o x"$BOXTYPE" == "xdm7020hd" ; then
 	AC_DEFINE(KEY_PLAY_ACTUALLY_IS_KEY_PLAYPAUSE, 1,[define when rc sends a KEY_PLAY event for its KEY_PLAYPAUSE key])
 fi
@@ -349,6 +353,7 @@ lib/python/Plugins/SystemPlugins/SoftwareManager/Makefile
 lib/python/Plugins/SystemPlugins/SoftwareManager/meta/Makefile
 lib/python/Plugins/SystemPlugins/choiceRC/Makefile
 lib/python/Plugins/SystemPlugins/choiceRC/meta/Makefile
+lib/python/Plugins/SystemPlugins/GBVFD/Makefile
 lib/python/Tools/Makefile
 lib/service/Makefile
 lib/components/Makefile

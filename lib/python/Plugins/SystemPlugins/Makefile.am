@@ -33,5 +33,9 @@ if DREAMBOX
 SUBDIRS += FrontprocessorUpgrade NFIFlash SatelliteEquipmentControl DiseqcTester CableScan FastScan 
 endif
 
+if GIGABLUE
+SUBDIRS += GBVFD SatelliteEquipmentControl DiseqcTester CableScan FastScan
+endif
+
 install_PYTHON =	\
 	__init__.py

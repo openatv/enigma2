@@ -20,6 +20,8 @@ class Standby2(Screen):
 		self.leaveMute()
 		#kill me
 		self.close(True)
+		if config.misc.boxtype.value == 'gb800se' or config.misc.boxtype.value == 'gb800solo':
+			open("/proc/stb/fp/led0_pattern", "w").write(config.lcd.led_run.value)
 
 	def setMute(self):
 		if (eDVBVolumecontrol.getInstance().isMuted()):
@@ -70,6 +72,8 @@ class Standby2(Screen):
 			self.avswitch.setInput("AUX")
 		self.onFirstExecBegin.append(self.__onFirstExecBegin)
 		self.onClose.append(self.__onClose)
+		if config.misc.boxtype.value == 'gb800se' or config.misc.boxtype.value == 'gb800solo':
+			open("/proc/stb/fp/led0_pattern", "w").write(config.lcd.led_stb.value)
 
 	def __onClose(self):
 		global inStandby
