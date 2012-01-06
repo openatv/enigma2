@@ -75,7 +75,7 @@ class ChoiceBox(Screen):
 		# resize
 		self.instance.resize(enigma.eSize(*wsize))
 		# resize label
-		self["text"].instance.resize(enigma.eSize(*textsize))
+		self["text"].instance.resize(enigma.eSize(*wsizex))
 		# move list
 		listsize = (wsizex, 25 * count)
 		self["list"].instance.move(enigma.ePoint(0, textsize[1]))
