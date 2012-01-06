@@ -1874,7 +1874,6 @@ RESULT eDVBChannel::getCurrentPosition(iDVBDemux *decoding_demux, pts_t &pos, in
 	r = m_tstools.fixupPTS(off, now);
 	if (r)
 	{
-		eDebug("fixup PTS failed");
 		return -1;
 	}
 
