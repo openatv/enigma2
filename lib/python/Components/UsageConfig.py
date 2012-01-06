@@ -404,6 +404,7 @@ def InitUsageConfig():
 		("3", _("Everywhere"))])
 	config.misc.erase_flags.addNotifier(updateEraseFlags, immediate_feedback = False)
 
+	SystemInfo["ZapMode"] = os.path.exists("/proc/stb/video/zapmode")
 	def setZapmode(el):
 		try:
 			file = open("/proc/stb/video/zapmode", "w")
