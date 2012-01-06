@@ -583,26 +583,32 @@ void eMPEGStreamInformationWriter::close()
 }
 
 
-eMPEGStreamParserTS::eMPEGStreamParserTS():
+eMPEGStreamParserTS::eMPEGStreamParserTS(int packetsize):
 	m_pktptr(0),
 	m_pid(-1),
 	m_streamtype(-1),
 	m_need_next_packet(0),
 	m_skip(0),
-	m_last_pts_valid(0)
+	m_last_pts_valid(0),
+	m_packetsize(packetsize),
+	m_header_offset(packetsize - 188)
 {
 }
 
 int eMPEGStreamParserTS::processPacket(const unsigned char *pkt, off_t offset)
 {
+	const unsigned char *end, *begin;
+	int pusi = 0;
 	if (!wantPacket(pkt))
 		eWarning("something's wrong.");
 
-	if (pkt[3] & 0xc0) return 0; /* do not process scrambled packets */
-	if (!(pkt[3] & 0x10)) return 0; /* do not process packets without payload */
+	if (!(pkt[m_header_offset + 3] & 0x10)) return 0; /* do not process packets without payload */
+	pusi = !!(pkt[m_header_offset + 1] & 0x40);
+	if (pkt[m_header_offset + 3] & 0xc0) return 0; /* do not process scrambled packets */
 
-	const unsigned char *end = pkt + 188, *begin = pkt;
-	int pusi = !!(pkt[1] & 0x40);
+	pkt += m_header_offset;
+	end = pkt + 188;
+	begin = pkt;
 
 	if (pkt[3] & 0x20) // adaptation field present?
 		pkt += pkt[4] + 4 + 1;  /* skip adaptation field and header */
@@ -719,8 +725,9 @@ int eMPEGStreamParserTS::processPacket(const unsigned char *pkt, off_t offset)
 	return 0;
 }
 
-inline int eMPEGStreamParserTS::wantPacket(const unsigned char *hdr) const
+inline int eMPEGStreamParserTS::wantPacket(const unsigned char *pkt) const
 {
+	const unsigned char *hdr = pkt + m_header_offset;
 	if (hdr[0] != 0x47)
 	{
 		eDebug("missing sync!");
@@ -759,7 +766,7 @@ void eMPEGStreamParserTS::parseData(off_t offset, const void *data, unsigned int
 		int skipped = 0;
 		while (!m_pktptr && len)
 		{
-			if (packet[0] == 0x47)
+			if (packet[m_header_offset] == 0x47)
 				break;
 			len--;
 			packet++;
@@ -784,9 +791,9 @@ void eMPEGStreamParserTS::parseData(off_t offset, const void *data, unsigned int
 				len -= skiplen;
 				m_pktptr += skiplen;
 				continue;
-			} else if (m_pktptr < 4) /* header not complete, thus we don't know if we want this packet */
+			} else if (m_pktptr < m_header_offset + 4) /* header not complete, thus we don't know if we want this packet */
 			{
-				unsigned int storelen = 4 - m_pktptr;
+				unsigned int storelen = m_header_offset + 4 - m_pktptr;
 				if (storelen > len)
 					storelen = len;
 				memcpy(m_pkt + m_pktptr, packet,  storelen);
@@ -795,18 +802,18 @@ void eMPEGStreamParserTS::parseData(off_t offset, const void *data, unsigned int
 				len -= storelen;
 				packet += storelen;
 				
-				if (m_pktptr == 4)
+				if (m_pktptr == m_header_offset + 4)
 					if (!wantPacket(m_pkt))
 					{
 							/* skip packet */
-						packet += 184;
-						len -= 184;
+						packet += 184 + m_header_offset;
+						len -= 184 + m_header_offset;
 						m_pktptr = 0;
 						continue;
 					}
 			}
 				/* otherwise we complete up to the full packet */
-			unsigned int storelen = 188 - m_pktptr;
+			unsigned int storelen = m_packetsize - m_pktptr;
 			if (storelen > len)
 				storelen = len;
 			memcpy(m_pkt + m_pktptr, packet,  storelen);
@@ -814,16 +821,16 @@ void eMPEGStreamParserTS::parseData(off_t offset, const void *data, unsigned int
 			len -= storelen;
 			packet += storelen;
 			
-			if (m_pktptr == 188)
+			if (m_pktptr == m_packetsize)
 			{
 				m_need_next_packet = processPacket(m_pkt, offset + (packet - packet_start));
 				m_pktptr = 0;
 			}
-		} else if (len >= 4)  /* if we have a full header... */
+		} else if (len >= m_header_offset + 4)  /* if we have a full header... */
 		{
 			if (wantPacket(packet))  /* decide wheter we need it ... */
 			{
-				if (len >= 188)          /* packet complete? */
+				if (len >= m_packetsize)          /* packet complete? */
 				{
 					m_need_next_packet = processPacket(packet, offset + (packet - packet_start)); /* process it now. */
 				} else
@@ -835,10 +842,10 @@ void eMPEGStreamParserTS::parseData(off_t offset, const void *data, unsigned int
 
 				/* skip packet */
 			int sk = len;
-			if (sk >= 188)
-				sk = 188;
+			if (sk >= m_packetsize)
+				sk = m_packetsize;
 			else if (!m_pktptr) /* we dont want this packet, otherwise m_pktptr = sk (=len) > 4 */
-				m_pktptr = sk - 188;
+				m_pktptr = sk - m_packetsize;
 
 			len -= sk;
 			packet += sk;

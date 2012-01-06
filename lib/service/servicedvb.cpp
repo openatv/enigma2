@@ -576,6 +576,13 @@ eServiceFactoryDVB::eServiceFactoryDVB()
 		extensions.push_back("ts");
 		extensions.push_back("trp");
 		sc->addServiceFactory(eServiceFactoryDVB::id, this, extensions);
+		/* 
+		 * User can indicate that a ts stream is scrambled, by using servicetype id + 0x100
+		 * This only works by specifying the servicetype, we won't allow file extension
+		 * lookup, as we cannot map the same extensions to several service types.
+		 */
+		extensions.clear();
+		sc->addServiceFactory(eServiceFactoryDVB::id + 0x100, this, extensions);
 	}
 
 	m_StaticServiceDVBInfo = new eStaticServiceDVBInformation;
@@ -1197,7 +1204,7 @@ void eDVBServicePlay::serviceEventTimeshift(int event)
 			if (m_skipmode < 0)
 				m_cue->seekTo(0, -1000);
 			ePtr<iTsSource> source = createTsSource(r);
-			m_service_handler_timeshift.tuneExt(r, 1, source, r.path.c_str(), m_cue, 0, m_dvb_service); /* use the decoder demux for everything */
+			m_service_handler_timeshift.tuneExt(r, 1, source, r.path.c_str(), m_cue, 0, m_dvb_service, false); /* use the decoder demux for everything */
 
 			m_event((iPlayableService*)this, evUser+1);
 		}
@@ -1227,7 +1234,7 @@ void eDVBServicePlay::serviceEventTimeshift(int event)
 				resetTimeshift(1);
 
 				ePtr<iTsSource> source = createTsSource(r);
-				m_service_handler_timeshift.tuneExt(r, 1, source, m_timeshift_file_next.c_str(), m_cue, 0, m_dvb_service); /* use the decoder demux for everything */
+				m_service_handler_timeshift.tuneExt(r, 1, source, m_timeshift_file_next.c_str(), m_cue, 0, m_dvb_service, false); /* use the decoder demux for everything */
 
 				m_event((iPlayableService*)this, evUser+1);
 			}
@@ -1239,6 +1246,8 @@ void eDVBServicePlay::serviceEventTimeshift(int event)
 RESULT eDVBServicePlay::start()
 {
 	eServiceReferenceDVB service = (eServiceReferenceDVB&)m_reference;
+	bool scrambled = true;
+	int packetsize = 188;
 
 		/* in pvr mode, we only want to use one demux. in tv mode, we're using 
 		   two (one for decoding, one for data source), as we must be prepared
@@ -1250,15 +1259,26 @@ RESULT eDVBServicePlay::start()
 		{
 			service = meta.m_ref;
 			service.path = m_reference.path;
+			packetsize = meta.m_packet_size;
+			scrambled = meta.m_scrambled;
 		}
 		m_cue = new eCueSheet();
 	}
 	else
 		m_event(this, evStart);
 
+	if (m_is_stream)
+	{
+		/* 
+		 * streams are considered to be descrambled by default;
+		 * user can indicate a stream is scrambled, by using servicetype id + 0x100
+		 */
+		scrambled = (m_reference.type == eServiceFactoryDVB::id + 0x100);
+	}
+
 	m_first_program_info = 1;
-	ePtr<iTsSource> source = createTsSource(service);
-	m_service_handler.tuneExt(service, m_is_pvr, source, service.path.c_str(), m_cue, false, m_dvb_service);
+	ePtr<iTsSource> source = createTsSource(service, packetsize);
+	m_service_handler.tuneExt(service, m_is_pvr, source, service.path.c_str(), m_cue, false, m_dvb_service, scrambled);
 
 	if (m_is_pvr)
 	{
@@ -2518,7 +2538,7 @@ void eDVBServicePlay::resetTimeshift(int start)
 		m_timeshift_active = 0;
 }
 
-ePtr<iTsSource> eDVBServicePlay::createTsSource(eServiceReferenceDVB &ref)
+ePtr<iTsSource> eDVBServicePlay::createTsSource(eServiceReferenceDVB &ref, int packetsize)
 {
 	if (m_is_stream)
 	{
@@ -2528,7 +2548,7 @@ ePtr<iTsSource> eDVBServicePlay::createTsSource(eServiceReferenceDVB &ref)
 	}
 	else
 	{
-		eRawFile *f = new eRawFile();
+		eRawFile *f = new eRawFile(packetsize);
 		f->open(ref.path.c_str());
 		return ePtr<iTsSource>(f);
 	}
@@ -2547,7 +2567,7 @@ void eDVBServicePlay::switchToTimeshift()
 	m_cue->seekTo(0, -1000);
 
 	ePtr<iTsSource> source = createTsSource(r);
-	m_service_handler_timeshift.tuneExt(r, 1, source, m_timeshift_file.c_str(), m_cue, 0, m_dvb_service); /* use the decoder demux for everything */
+	m_service_handler_timeshift.tuneExt(r, 1, source, m_timeshift_file.c_str(), m_cue, 0, m_dvb_service, false); /* use the decoder demux for everything */
 
 	eDebug("eDVBServicePlay::switchToTimeshift, in pause mode now.");
 	pause();

@@ -297,7 +297,7 @@ protected:
 	ePtr<eConnection> m_video_event_connection;
 	void video_event(struct iTSMPEGDecoder::videoEvent);
 
-	virtual ePtr<iTsSource> createTsSource(eServiceReferenceDVB &ref);
+	virtual ePtr<iTsSource> createTsSource(eServiceReferenceDVB &ref, int packetsize = 188);
 };
 
 class eStaticServiceDVBBouquetInformation: public iStaticServiceInformation

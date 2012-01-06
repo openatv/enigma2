@@ -5,7 +5,11 @@
 
 class iTsSource: public iObject
 {
+protected:
+	int packetSize;
+
 public:
+	iTsSource(int packetsize = 188) : packetSize(packetsize) {}
 	 /* NOTE: should only be used to get current position or filelength */
 	virtual off_t lseek(off_t offset, int whence)=0;
 	
@@ -14,6 +18,7 @@ public:
 
 	virtual off_t length()=0;
 	virtual int valid()=0;
+	int getPacketSize() { return packetSize; }
 };
 
 #endif

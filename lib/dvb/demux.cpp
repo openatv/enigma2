@@ -190,11 +190,11 @@ RESULT eDVBDemux::createPESReader(eMainloop *context, ePtr<iDVBPESReader> &reade
 	return res;
 }
 
-RESULT eDVBDemux::createTSRecorder(ePtr<iDVBTSRecorder> &recorder)
+RESULT eDVBDemux::createTSRecorder(ePtr<iDVBTSRecorder> &recorder, int packetsize)
 {
 	if (m_dvr_busy)
 		return -EBUSY;
-	recorder = new eDVBTSRecorder(this);
+	recorder = new eDVBTSRecorder(this, packetsize);
 	return 0;
 }
 
@@ -495,7 +495,7 @@ RESULT eDVBPESReader::connectRead(const Slot2<void,const __u8*,int> &r, ePtr<eCo
 class eDVBRecordFileThread: public eFilePushThreadRecorder
 {
 public:
-	eDVBRecordFileThread();
+	eDVBRecordFileThread(int packetsize = 188);
 	void setTimingPID(int pid, int type);
 	void startSaveMetaInformation(const std::string &filename);
 	void stopSaveMetaInformation();
@@ -511,11 +511,12 @@ private:
 	int m_fd_dest;
 	off_t offset_last_sync;
 	size_t written_since_last_sync;
+	int m_packetsize;
 };
 
-eDVBRecordFileThread::eDVBRecordFileThread()
-	:eFilePushThreadRecorder(IOPRIO_CLASS_RT, 7, /*blocksize*/ 188, /*buffersize*/ 188 * 1024),
-	 m_ts_parser(),
+eDVBRecordFileThread::eDVBRecordFileThread(int packetsize)
+	:eFilePushThreadRecorder(IOPRIO_CLASS_RT, 7, /*blocksize*/ packetsize, /*buffersize*/ packetsize * 1024),
+	 m_ts_parser(packetsize),
 	 m_current_offset(0),
 	 m_fd_dest(-1),
 	 offset_last_sync(0),
@@ -590,11 +591,12 @@ int eDVBRecordFileThread::writeData(const unsigned char *data, int len)
 
 DEFINE_REF(eDVBTSRecorder);
 
-eDVBTSRecorder::eDVBTSRecorder(eDVBDemux *demux):
+eDVBTSRecorder::eDVBTSRecorder(eDVBDemux *demux, int packetsize):
 	m_demux(demux),
 	m_running(0),
 	m_target_fd(-1),
-	m_thread(new eDVBRecordFileThread())
+	m_thread(new eDVBRecordFileThread(packetsize)),
+	m_packetsize(packetsize)
 {
 	CONNECT(m_thread->m_event, eDVBTSRecorder::filepushEvent);
 #ifndef HAVE_ADD_PID
@@ -648,8 +650,16 @@ RESULT eDVBTSRecorder::start()
 		eDebug("FAILED to open demux (%s) in ts recoder (%m)", filename);
 		return -3;
 	}
-	
-	setBufferSize(demuxSize);
+
+	{
+		int size = demuxSize;
+		if (m_packetsize != 188)
+		{
+			size /= 188;
+			size *= m_packetsize;
+		}
+		setBufferSize(size);
+	}
 
 	dmx_pes_filter_params flt;
 #if HAVE_DVB_API_VERSION > 3
