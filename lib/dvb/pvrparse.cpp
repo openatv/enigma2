@@ -11,22 +11,29 @@
 
 eMPEGStreamInformation::eMPEGStreamInformation():
 	m_structure_cache_entries(0),
-	m_structure_read(NULL)
+	m_structure_read_fd(-1)
 {
 }
 
 eMPEGStreamInformation::~eMPEGStreamInformation()
 {
-	if (m_structure_read)
-		fclose(m_structure_read);
+	close();
+}
+
+void eMPEGStreamInformation::close()
+{
+	if (m_structure_read_fd >= 0)
+	{
+		::close(m_structure_read_fd);
+		m_structure_read_fd = -1;
+	}
 }
 
 int eMPEGStreamInformation::load(const char *filename)
 {
+	close();
 	std::string s_filename(filename);
-	if (m_structure_read)
-		fclose(m_structure_read);
-	m_structure_read = fopen((s_filename + ".sc").c_str(), "rb");
+	m_structure_read_fd = ::open((s_filename + ".sc").c_str(), O_RDONLY);
 	m_access_points.clear();
 	m_pts_to_offset.clear();
 	m_timestamp_deltas.clear();
@@ -275,11 +282,18 @@ static const int entry_size = 16;
 
 int eMPEGStreamInformation::loadCache(int index)
 {
-	const int structure_cache_size = sizeof(m_structure_cache) / entry_size;
-	fseek(m_structure_read, index * entry_size, SEEK_SET);
-	int num = fread(m_structure_cache, entry_size, structure_cache_size, m_structure_read);
-	eDebug("[eMPEGStreamInformation] cache starts at %d entries: %d", index, num);
+	const size_t structure_cache_size = sizeof(m_structure_cache);
+	::lseek(m_structure_read_fd, index * entry_size, SEEK_SET);
+	ssize_t bytes = ::read(m_structure_read_fd, m_structure_cache, structure_cache_size);
+	if (bytes < 0)
+	{
+		eDebug("[eMPEGStreamInformation] failed to read cache");
+		m_structure_cache_entries = 0;
+		return -1;
+	}
+	eDebug("[eMPEGStreamInformation] cache starts at %d bytes: %d", index, bytes);
 	m_cache_index = index;
+	int num = bytes / entry_size;
 	m_structure_cache_entries = num;
 	return num;
 }
@@ -287,9 +301,9 @@ int eMPEGStreamInformation::loadCache(int index)
 int eMPEGStreamInformation::getStructureEntryFirst(off_t &offset, unsigned long long &data)
 {
 	//eDebug("[eMPEGStreamInformation] getStructureEntry(offset=%llu, get_next=%d)", offset, get_next);
-	if (!m_structure_read)
+	if (m_structure_read_fd < 0)
 	{
-		eDebug("getStructureEntryFirst failed because of no m_structure_read");
+		eDebug("getStructureEntryFirst failed because of no m_structure_read_fd");
 		return -1;
 	}
 
@@ -298,8 +312,7 @@ int eMPEGStreamInformation::getStructureEntryFirst(off_t &offset, unsigned long 
 	    (structureCacheOffset(0) > offset) ||
 	    (structureCacheOffset(m_structure_cache_entries - 1) <= offset))
 	{
-		fseek(m_structure_read, 0, SEEK_END);
-		int l = ftell(m_structure_read) / entry_size;
+		int l = ::lseek(m_structure_read_fd, 0, SEEK_END) / entry_size;
 		if (l == 0)
 		{
 			eDebug("getStructureEntryFirst failed because file size is zero");
@@ -309,14 +322,14 @@ int eMPEGStreamInformation::getStructureEntryFirst(off_t &offset, unsigned long 
 		/* do a binary search */
 		int count = l;
 		int i = 0;
-		while (count)
+		while (count > (m_structure_cache_entries/4))
 		{
 			int step = count >> 1;
-			fseek(m_structure_read, (i + step) * entry_size, SEEK_SET);
+			::lseek(m_structure_read_fd, (i + step) * entry_size, SEEK_SET);
 			unsigned long long d;
-			if (!fread(&d, 1, sizeof(d), m_structure_read))
+			if (::read(m_structure_read_fd, &d, sizeof(d)) < (ssize_t)sizeof(d))
 			{
-				eDebug("read error at entry %d", i);
+				eDebug("read error at entry %d", i+step);
 				return -1;
 			}
 #if BYTE_ORDER != BIG_ENDIAN
@@ -427,7 +440,7 @@ int eMPEGStreamInformation::getFirstFrame(off_t &offset, pts_t& pts)
 		return 0;
 	}
 	// No access points (yet?) use the .sc data instead
-	if (m_structure_read != NULL)
+	if (m_structure_read_fd >= 0)
 	{
 		int num = loadCache(0);
 		if (num > 20) num = 20; // We don't need to look that hard, it may be an old file without PTS data
@@ -454,10 +467,9 @@ int eMPEGStreamInformation::getLastFrame(off_t &offset, pts_t& pts)
 		return 0;
 	}
 	// No access points (yet?) use the .sc data instead
-	if (m_structure_read != NULL)
+	if (m_structure_read_fd >= 0)
 	{
-		fseek(m_structure_read, 0, SEEK_END);
-		int l = ftell(m_structure_read) / entry_size;
+		int l = ::lseek(m_structure_read_fd, 0, SEEK_END) / entry_size;
 		const int structure_cache_size = sizeof(m_structure_cache) / entry_size;
 		int index = l - structure_cache_size;
 		if (index < 0)
@@ -550,7 +562,7 @@ void eMPEGStreamInformationWriter::writeStructureEntry(off_t offset, unsigned lo
 void eMPEGStreamInformationWriter::flush()
 {
 	ssize_t written = ::write(m_structure_write_fd, m_write_buffer, m_buffer_filled);
-	if (written != m_buffer_filled)
+	if (written != (ssize_t)m_buffer_filled)
 	{
 		eWarning("Failed to write TS file");
 	}
