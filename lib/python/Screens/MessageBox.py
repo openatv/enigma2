@@ -4,7 +4,7 @@ from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Components.Sources.StaticText import StaticText
 from Components.MenuList import MenuList
-from enigma import eTimer
+import enigma
 
 class MessageBox(Screen):
 	TYPE_YESNO = 0
@@ -73,10 +73,35 @@ class MessageBox(Screen):
 					"rightRepeated": self.right
 				}, -1)
 
+	def autoResize(self):
+		desktop_w = enigma.getDesktop(0).size().width()
+		desktop_h = enigma.getDesktop(0).size().height()
+		orgwidth = self.instance.size().width()
+		orgpos = self.instance.position()
+		textsize = self["text"].getSize()
+		textsize = (textsize[0] + 60, textsize[1] + 25)
+		wsizex = textsize[0] + 60
+		wsizey = textsize[1] + 50
+		if (520 > wsizex):
+			wsizex = 520
+		wsize = (wsizex, wsizey)
+		# resize
+		self.instance.resize(enigma.eSize(*wsize))
+		# resize label
+		self["text"].instance.resize(enigma.eSize(*textsize))
+		self["text"].instance.move(enigma.ePoint(60, 0))
+		# move list
+		listsize = (wsizex,50)
+		self["list"].instance.move(enigma.ePoint(0, textsize[1]))
+		self["list"].instance.resize(enigma.eSize(*listsize))
+		# center window
+		newwidth = wsize[0]
+		self.instance.move(enigma.ePoint((desktop_w-wsizex)/2, (desktop_h-wsizey)/2))		
+
 	def initTimeout(self, timeout):
 		self.timeout = timeout
 		if timeout > 0:
-			self.timer = eTimer()
+			self.timer = enigma.eTimer()
 			self.timer.callback.append(self.timerTick)
 			self.onExecBegin.append(self.startTimer)
 			self.origTitle = None

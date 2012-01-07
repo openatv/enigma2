@@ -43,6 +43,172 @@ if os.path.exists("/proc/stb/info/vumodel"):
 			"fpga" : ["http://archive.vuplus.com/download/fpga", "fpga.files", "/dev/fpga_dp;/dev/misc/dp;"]
 			}
 
+import os, fcntl, thread
+STATUS_READY 		= 0
+STATUS_DONE 		= 1
+STATUS_ERROR		= 2
+STATUS_PREPARED		= 3
+STATUS_PROGRAMMING 	= 4
+STATUS_RETRY_UPGRADE 	= 5
+
+class FPUpgradeCore() :
+	status = STATUS_READY
+	errmsg = ''
+	MAX_CALL_COUNT = 120
+	def __init__(self, firmwarefile, devicefile):
+		self.devicefile = devicefile
+		self.firmwarefile = firmwarefile
+
+	def doUpgrade(self):
+		firmware,device = None,None
+		def closefpga(fp, fd):
+			if fd is not None: os.close(fd)
+			if fp is not None: fp.close()
+		try:
+			size = os.path.getsize(self.firmwarefile)
+			if size == 0: raise Exception, 'data_size is zero'
+			#print '[FPUpgradeCore] data_size :',size
+
+			for xx in range(3):
+				self.callcount = 0
+				self.status = STATUS_READY
+
+				firmware = open(self.firmwarefile, 'rb')
+				device = os.open(self.devicefile, os.O_RDWR)
+				#print '[FPUpgradeCore] open >> [ok]'
+
+				rc = fcntl.ioctl(device, 0, size)
+				if rc < 0: raise Exception, 'fail to set size : %d'%(rc)
+				#print '[FPUpgradeCore] set size >> [ok]'
+				self.status = STATUS_PREPARED
+
+				while True:
+					data = firmware.read(1024)
+					if data == '': break
+					os.write(device, data)
+				#print '[FPUpgradeCore] write data >> [ok]'
+
+				self.status = STATUS_PROGRAMMING
+				rc = fcntl.ioctl(device, 1, 0)
+				if rc == 0: break
+				if xx == 2: raise Exception, 'fail to upgrade : %d'%(rc)
+				self.errmsg = 'fail to upgrade, retry..'
+				self.status = STATUS_RETRY_UPGRADE
+				closefpga(firmware, device)
+			#print '[FPUpgradeCore] upgrade done.'
+			if self.callcount < 20: raise Exception, 'wrong fpga file.'
+		except Exception, msg:
+			self.errmsg = msg
+			print '[FPUpgradeCore] ERROR >>',msg
+			closefpga(firmware, device)
+			return STATUS_ERROR
+		return STATUS_DONE
+
+	def upgradeMain(self):
+		self.status = STATUS_READY
+		self.status = self.doUpgrade()
+		if self.status == STATUS_DONE:
+			print 'upgrade done.'
+		elif self.status == STATUS_ERROR:
+			print 'error!!'
+		else:	print 'unknown.'
+
+class FPGAUpgradeCore() :
+	status = STATUS_READY
+	errmsg = ''
+	callcount 	= 0
+	MAX_CALL_COUNT 	= 1500
+	def __init__(self, firmwarefile, devicefile):
+		print '[FPGAUpgrade]'
+		self.devicefile = devicefile
+		self.firmwarefile = firmwarefile
+
+	def doUpgrade(self):
+		firmware,device = None,None
+		def closefpga(fp, fd):
+			if fd is not None: os.close(fd)
+			if fp is not None: fp.close()
+		try:
+			size = os.path.getsize(self.firmwarefile)
+			if size == 0: raise Exception, 'data_size is zero'
+			#print '[FPGAUpgradeCore] data_size :',size
+
+			firmware = open(self.firmwarefile, 'rb')
+			device = os.open(self.devicefile, os.O_RDWR)
+			#print '[FPGAUpgradeCore] open >> [ok]'
+
+			rc = fcntl.ioctl(device, 0, size)
+			if rc < 0: raise Exception, 'fail to set size : %d'%(rc)
+			#print '[FPGAUpgradeCore] set size >> [ok]'
+
+			rc = fcntl.ioctl(device, 2, 5)
+			if rc < 0: raise Exception, 'fail to set programming mode : %d'%(rc)
+			#print '[FPGAUpgradeCore] programming mode >> [ok]'
+			self.status = STATUS_PREPARED
+
+			while True:
+				data = firmware.read(1024)
+				if data == '': break
+				os.write(device, data)
+			#print '[FPGAUpgradeCore] write data >> [ok]'
+
+			self.status = STATUS_PROGRAMMING
+			rc = fcntl.ioctl(device, 1, 0)
+			if rc < 0: raise Exception, 'fail to programming : %d'%(rc)
+			#print '[FPGAUpgradeCore] upgrade done.'
+			if self.callcount < 20: raise Exception, 'wrong fpga file.'
+		except Exception, msg:
+			self.errmsg = msg
+			print '[FPGAUpgradeCore] ERROR >>',msg
+			closefpga(firmware, device)
+			return STATUS_ERROR
+		closefpga(firmware, device)
+		return STATUS_DONE
+
+	def upgradeMain(self):
+		self.status = STATUS_READY
+		self.status = self.doUpgrade()
+		if self.status == STATUS_DONE:
+			print '[FPGAUpgrade] upgrade done.'
+		elif self.status == STATUS_ERROR:
+			print '[FPGAUpgrade] occur error.'
+		else:	print '[FPGAUpgrade] occur unknown error.'
+
+class FirmwareUpgradeManager:
+	fu = None
+	def getInterval(self):
+		return 200
+
+	def startUpgrade(self, datafile, device, firmware):
+		if firmware == 'fpga':
+			self.fu = FPGAUpgradeCore(firmwarefile=datafile, devicefile=device)
+		elif firmware == 'fp':
+			self.fu = FPUpgradeCore(firmwarefile=datafile, devicefile=device)
+		thread.start_new_thread(self.fu.upgradeMain, ())
+
+	def checkError(self):
+		if self.fu.status == STATUS_ERROR:
+			self.fu.callcount = 0
+			return True
+		return False
+
+	def getStatus(self):
+		if self.fu.status in (STATUS_READY, STATUS_ERROR):
+			return 0
+		elif self.fu.status == STATUS_PREPARED:
+			return 2
+		elif self.fu.status == STATUS_PROGRAMMING:
+			self.fu.callcount += 1
+			ret = (self.fu.callcount * 100) / self.fu.MAX_CALL_COUNT + 2
+			if ret >= 100: ret = 99
+			#print "callcount : [%d]"%(self.fu.callcount);
+			return ret
+		elif self.fu.status == STATUS_DONE:
+			return 100
+
+	def getErrorMessage(self, errno, errmsg):
+		return str(self.fu.errmsg)
+
 class UpgradeStatus(Screen):
 	skin = 	"""
 		<screen position="center,center" size="450,100" title=" ">
@@ -78,8 +244,7 @@ class UpgradeStatus(Screen):
 
 		self.setTitle(firmware.upper() + " Upgrade Status")
 
-		import fu
-		self.FU = fu.FU()
+		self.FU = FirmwareUpgradeManager()
 
 		self.old_status   = 0
 		self.status_exit  = None
