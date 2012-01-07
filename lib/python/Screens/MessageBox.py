@@ -47,6 +47,7 @@ class MessageBox(Screen):
 		if picon != self.TYPE_INFO:
 			self["InfoPixmap"].hide()
 
+		self.messtype = type
 		if type == self.TYPE_YESNO:
 			if default == True:
 				self.list = [ (_("yes"), 0), (_("no"), 1) ]
@@ -81,7 +82,10 @@ class MessageBox(Screen):
 		textsize = self["text"].getSize()
 		textsize = (textsize[0] + 60, textsize[1] + 25)
 		wsizex = textsize[0] + 60
-		wsizey = textsize[1] + 50
+		if self.messtype == self.TYPE_YESNO:
+			wsizey = textsize[1] + 50
+		else:
+			wsizey = textsize[1]
 		if (520 > wsizex):
 			wsizex = 520
 		wsize = (wsizex, wsizey)
