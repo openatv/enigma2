@@ -63,6 +63,7 @@ class ChoiceBox(Screen):
 		orgwidth = self.instance.size().width()
 		orgpos = self.instance.position()
 		textsize = self["text"].getSize()
+		textsize = (textsize[0] + 60, textsize[1])
 		count = len(self.list)
 		if count > 10:
 			count = 10
@@ -75,7 +76,7 @@ class ChoiceBox(Screen):
 		# resize
 		self.instance.resize(enigma.eSize(*wsize))
 		# resize label
-		self["text"].instance.resize(enigma.eSize(*wsizex))
+		self["text"].instance.resize(enigma.eSize(*textsize))
 		# move list
 		listsize = (wsizex, 25 * count)
 		self["list"].instance.move(enigma.ePoint(0, textsize[1]))
