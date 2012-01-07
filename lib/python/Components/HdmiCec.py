@@ -3,6 +3,7 @@ import os
 from config import config, ConfigSelection, ConfigYesNo, ConfigSubsection, ConfigText
 from enigma import eHdmiCEC, eRCInput
 from Tools.DreamboxHardware import getFPWasTimerWakeup
+from Tools.Directories import fileExists
 
 config.hdmicec = ConfigSubsection()
 config.hdmicec.enabled = ConfigYesNo(default = True)
@@ -26,6 +27,7 @@ config.hdmicec.volume_forwarding = ConfigYesNo(default = False)
 config.hdmicec.control_receiver_wakeup = ConfigYesNo(default = False)
 config.hdmicec.control_receiver_standby = ConfigYesNo(default = False)
 config.hdmicec.handle_deepstandby_events = ConfigYesNo(default = False)
+config.hdmicec.preemphasis = ConfigYesNo(default = False)	
 
 class HdmiCec:
 	instance = None
@@ -46,6 +48,8 @@ class HdmiCec:
 		if config.hdmicec.handle_deepstandby_events.value:
 			if not getFPWasTimerWakeup():
 				self.wakeupMessages()
+		if fileExists("/proc/stb/hdmi/preemphasis"):		
+			self.sethdmipreemphasis()		
 
 	def getPhysicalAddress(self):
 		physicaladdress = eHdmiCEC.getInstance().getPhysicalAddress()
@@ -272,5 +276,18 @@ class HdmiCec:
 				cmd = 0x45
 		if cmd:
 			eHdmiCEC.getInstance().sendMessage(self.volumeForwardingDestination, cmd, data, len(data))
+			
+	def sethdmipreemphasis():
+		try:
+			if config.hdmicec.preemphasis.value == True:
+				file = open("/proc/stb/hdmi/preemphasis", "w")
+				file.write('on')
+				file.close()
+			else:
+				file = open("/proc/stb/hdmi/preemphasis", "w")
+				file.write('off')
+				file.close()
+		except:
+			return		
 
 hdmi_cec = HdmiCec()
