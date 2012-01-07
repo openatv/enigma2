@@ -243,9 +243,7 @@ class VideoHardware:
 		portlist = self.getPortList()
 		for port in portlist:
 			descr = port
-			if config.misc.boxtype.value == 'gb800se' and not config.misc.boxtype.value == 'gb800solo':
-				descr = 'HDMI'
-			elif descr == 'DVI' and has_hdmi:
+			if descr == 'DVI' and has_hdmi:
 				descr = 'HDMI'
 			elif descr == 'DVI-PC' and has_hdmi:
 				descr = 'HDMI-PC'
