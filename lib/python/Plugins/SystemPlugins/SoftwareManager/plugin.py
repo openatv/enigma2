@@ -257,69 +257,14 @@ class UpdatePluginMenu(Screen):
 			if currentEntry in ("system-backup","backupfiles"):
 				self.session.open(SoftwareManagerInfo, mode = "backupinfo")
 
-	def checkTraficLight(self):
-		from urllib import urlopen
-		import socket
-		currentTimeoutDefault = socket.getdefaulttimeout()
-		socket.setdefaulttimeout(3)
-		message = ""
-		picon = None
-		default = True
-		doUpdate = True
-		# TODO: Use Twisted's URL fetcher, urlopen is evil. And it can
-		# run in parallel to the package update.
-		try:
-			urlopenAAF = "http://mipsel-ipk-update.aaf-board.com/Ampel/index.php"
-			#statusDate = "n/a"
-			d = urlopen(urlopenAAF)
-			tmpStatus = d.read()
-			#if 'Last-Modified' in str(d.info()):
-				#statusDate = str(d.info()['Last-Modified'])
-			if (os.path.exists("/etc/.beta") and 'rot.png' in tmpStatus) or 'gelb.png' in tmpStatus:
-				message = _("Caution update not yet tested !!") + "\n" + _("Update at your own risk") + "\n\n" + _("For more information see http://www.aaf-digital.info") + "\n\n"# + _("Last Status Date") + ": "  + statusDate + "\n\n"
-				picon = MessageBox.TYPE_ERROR
-				default = False
-			elif 'rot.png' in tmpStatus:
-				message = _("Update is reported as faulty !!") + "\n" + _("Aborting updateprogress") + "\n\n" + _("For more information see http://www.aaf-digital.info")# + "\n\n" + _("Last Status Date") + ": " + statusDate
-				picon = MessageBox.TYPE_ERROR
-				default = False
-				doUpdate = False
-		except:
-			message = _("The status of the current update could not be checked because http://www.aaf-digital.info could not be reached for some reason") + "\n"
-			picon = MessageBox.TYPE_ERROR
-			default = False
-		socket.setdefaulttimeout(currentTimeoutDefault)
-		
-		recordings = self.session.nav.getRecordings()
-		jobs = len(job_manager.getPendingJobs())
-		next_rec_time = -1
-		if not recordings:
-			next_rec_time = self.session.nav.RecordTimer.getNextRecordingTime()	
-		if recordings or (next_rec_time > 0 and (next_rec_time - time()) < 360):
-			message += _("Recording(s) are in progress or coming up in few seconds!") + "\n"
-			default = False
-		if jobs:
-			message += (_("%d jobs are running in the background!") % jobs) + "\n"
-			default = False
-		if default:
-		        # We'll ask later
-		        self.runUpgrade(True)
-		else:
-			if doUpdate:
-				# Ask for Update, 
-				message += _("Do you want to update your box?")+"\n"+_("After pressing OK, please wait!")
-				self.session.openWithCallback(self.runUpgrade, MessageBox, message, default = default, picon = picon)
-			else:
-				# Don't Update RED LIGHT !!
-				self.session.open(MessageBox, message, picon, timeout = 20)
-
 	def go(self):
 		current = self["menu"].getCurrent()
 		if current:
 			currentEntry = current[0]
 			if self.menu == 0:
 				if (currentEntry == "software-update"):
-					self.checkTraficLight()
+					self.session.open(UpdatePlugin, self.skin_path)
+					#self.checkTraficLight()
 				elif (currentEntry == "software-restore"):
 					self.session.open(ImageWizard)
 				elif (currentEntry == "install-extensions"):
@@ -380,10 +325,6 @@ class UpdatePluginMenu(Screen):
 		newpath = config.plugins.configurationbackup.backuplocation.getValue()
 		if newpath != oldpath:
 			self.createBackupfolders()
-
-	def runUpgrade(self, result):
-		if result:
-			self.session.open(UpdatePlugin, self.skin_path)
 
 	def createBackupfolders(self):
 		print "Creating backup folder if not already there..."
@@ -1504,6 +1445,71 @@ class UpdatePlugin(Screen):
 		self.activityTimer.start(100, False)
 		self.ipkg.startCmd(IpkgComponent.CMD_UPDATE)
 
+	def checkTraficLight(self):
+		from urllib import urlopen
+		import socket
+		currentTimeoutDefault = socket.getdefaulttimeout()
+		socket.setdefaulttimeout(3)
+		message = ""
+		picon = None
+		default = True
+		doUpdate = True
+		# TODO: Use Twisted's URL fetcher, urlopen is evil. And it can
+		# run in parallel to the package update.
+		try:
+			urlopenAAF = "http://mipsel-ipk-update.aaf-board.com/Ampel/index.php"
+			#statusDate = "n/a"
+			d = urlopen(urlopenAAF)
+			tmpStatus = d.read()
+			#if 'Last-Modified' in str(d.info()):
+				#statusDate = str(d.info()['Last-Modified'])
+			if (os.path.exists("/etc/.beta") and 'rot.png' in tmpStatus) or 'gelb.png' in tmpStatus:
+				message = _("Caution update not yet tested !!") + "\n" + _("Update at your own risk") + "\n\n" + _("For more information see http://www.aaf-digital.info") + "\n\n"# + _("Last Status Date") + ": "  + statusDate + "\n\n"
+				picon = MessageBox.TYPE_ERROR
+				default = False
+			elif 'rot.png' in tmpStatus:
+				message = _("Update is reported as faulty !!") + "\n" + _("Aborting updateprogress") + "\n\n" + _("For more information see http://www.aaf-digital.info")# + "\n\n" + _("Last Status Date") + ": " + statusDate
+				picon = MessageBox.TYPE_ERROR
+				default = False
+				doUpdate = False
+		except:
+			message = _("The status of the current update could not be checked because http://www.aaf-digital.info could not be reached for some reason") + "\n"
+			picon = MessageBox.TYPE_ERROR
+			default = False
+		socket.setdefaulttimeout(currentTimeoutDefault)
+		
+		recordings = self.session.nav.getRecordings()
+		jobs = len(job_manager.getPendingJobs())
+		next_rec_time = -1
+		if not recordings:
+			next_rec_time = self.session.nav.RecordTimer.getNextRecordingTime()	
+		if recordings or (next_rec_time > 0 and (next_rec_time - time()) < 360):
+			message += _("Recording(s) are in progress or coming up in few seconds!") + "\n"
+			default = False
+		if jobs:
+			message += (_("%d jobs are running in the background!") % jobs) + "\n"
+			default = False
+		if default:
+		        # We'll ask later
+		        self.runUpgrade(True)
+		else:
+			if doUpdate:
+				# Ask for Update, 
+				message += _("Do you want to update your box?")+"\n"+_("After pressing OK, please wait!")
+				self.session.openWithCallback(self.runUpgrade, MessageBox, message, default = default, picon = picon)
+			else:
+				# Don't Update RED LIGHT !!
+				self.session.open(MessageBox, message, picon, timeout = 20)
+				self.runUpgrade(False)
+
+	def runUpgrade(self, result):
+		if result:
+			self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE_LIST)
+		else:
+			self.activityTimer.stop()
+			self.activityslider.setValue(0)
+			self.exit()
+
 	def doActivityTimer(self):
 		self.activity += 1
 		if self.activity == 100:
@@ -1551,7 +1557,11 @@ class UpdatePlugin(Screen):
 		elif event == IpkgComponent.EVENT_DONE:
 			if self.updating:
 				self.updating = False
-				self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE_LIST)
+				self.total_packages = len(self.ipkg.getFetchedList())
+				if self.total_packages:
+					self.checkTraficLight()
+				else:
+					self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE_LIST)
 			elif self.ipkg.currentCommand == IpkgComponent.CMD_UPGRADE_LIST:
 				self.total_packages = len(self.ipkg.getFetchedList())
 				if self.total_packages:
