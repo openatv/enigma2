@@ -135,6 +135,14 @@ class LCD:
 				open("/proc/stb/lcd/symbol_tv", "w").write("0")
 			if fileExists("/proc/stb/lcd/symbol_usb"):	
 				open("/proc/stb/lcd/symbol_usb", "w").write("0")
+				
+	def setPower(self, value):
+		print 'setLCDPower',value
+		open("/proc/stb/power/vfd", "w").write(value)
+
+	def setShowoutputresolution(self, value):
+		print 'setLCDShowoutputresolution',value
+		open("/proc/stb/lcd/show_outputresolution", "w").write(value)		
 
 	def setRepeat(self, value):
 		print 'setLCDRepeat',value
@@ -184,6 +192,12 @@ def InitLcd():
 
 		def setLCDmode(configElement):
 			ilcd.setMode(configElement.value);
+			
+		def setLCDpower(configElement):
+			ilcd.setPower(configElement.value);	
+			
+		def setLCDshowoutputresolution(configElement):
+			ilcd.setShowoutputresolution(configElement.value);	
 
 		def setLCDrepeat(configElement):
 			ilcd.setRepeat(configElement.value);
@@ -246,6 +260,18 @@ def InitLcd():
 			config.lcd.repeat = ConfigNothing()
 			config.lcd.scrollspeed = ConfigNothing()
 			config.lcd.hdd = ConfigNothing()
+			
+		if fileExists("/proc/stb/power/vfd"):
+			config.lcd.power = ConfigSelection([("0", _("No")), ("1" _("Yes"))], "1")
+			config.lcd.power.addNotifier(setLCDpower);
+		else:
+			config.lcd.power = ConfigNothing()
+
+		if fileExists("/proc/stb/lcd/show_outputresolution"):
+			config.lcd.showoutputresolution = ConfigSelection([("0", _("No")), ("1" _("Yes"))], "1")
+			config.lcd.showoutputresolution.addNotifier(setLCDshowoutputresolution);
+		else:
+			config.lcd.showoutputresolution = ConfigNothing()			
 
 		if config.misc.boxtype.value == 'vuultimo':
 			config.lcd.ledblinkingtime = ConfigSlider(default = 5, increment = 1, limits = (0,15))
@@ -292,9 +318,11 @@ def InitLcd():
 		config.lcd.standby = ConfigNothing()
 		config.lcd.bright.apply = lambda : doNothing()
 		config.lcd.standby.apply = lambda : doNothing()
+		config.lcd.power = ConfigNothing()
 		config.lcd.mode = ConfigNothing()
 		config.lcd.repeat = ConfigNothing()
 		config.lcd.scrollspeed = ConfigNothing()
+		config.lcd.showoutputresolution = ConfigNothing()
 		config.lcd.ledbrightness = ConfigNothing()
 		config.lcd.ledbrightness.apply = lambda : doNothing()
 		config.lcd.ledbrightnessstandby = ConfigNothing()
