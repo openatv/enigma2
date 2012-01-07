@@ -154,7 +154,7 @@ static unsigned long c885916[96]={
 
 static freesatHuffmanDecoder huffmanDecoder;
 
-static unsigned long iso6397[96]={
+static unsigned long iso6937[96]={
 0x00A0, 0x00A1, 0x00A2, 0x00A3, 0x20AC, 0x00A5, 0x0000, 0x00A7, 0x00A4, 0x2018, 0x201C, 0x00AB, 0x2190, 0x2191, 0x2192, 0x2193,
 0x00B0, 0x00B1, 0x00B2, 0x00B3, 0x00D7, 0x00B5, 0x00B6, 0x00B7, 0x00F7, 0x2019, 0x201D, 0x00BB, 0x00BC, 0x00BD, 0x00BE, 0x00BF,
 0x0000, 0xE002, 0xE003, 0xE004, 0xE005, 0xE006, 0xE007, 0xE008, 0xE009, 0xE00C, 0xE00A, 0xE00B, 0x0000, 0xE00D, 0xE00E, 0xE00F,
@@ -162,7 +162,7 @@ static unsigned long iso6397[96]={
 0x2126, 0x00C6, 0x0110, 0x00AA, 0x0126, 0x0000, 0x0132, 0x013F, 0x0141, 0x00D8, 0x0152, 0x00BA, 0x00DE, 0x0166, 0x014A, 0x0149,
 0x0138, 0x00E6, 0x0111, 0x00F0, 0x0127, 0x0131, 0x0133, 0x0140, 0x0142, 0x00F8, 0x0153, 0x00DF, 0x00FE, 0x0167, 0x014B, 0x00AD};
 
-// Two Char Mapping (aka ISO6397) ( many polish services and UPC Direct/HBO services)
+// Two Char Mapping (aka ISO6937) ( many polish services and UPC Direct/HBO services)
 // get from http://mitglied.lycos.de/buran/charsets/videotex-suppl.html
 static inline unsigned int doVideoTexSuppl(int c1, int c2)
 {
@@ -328,8 +328,8 @@ static inline unsigned int recode(unsigned char d, int cp)
 		return d;
 	switch (cp)
 	{
-	case 0:		// ISO6397
-		return iso6397[d-0xA0];
+	case 0:		// ISO6937
+		return iso6937[d-0xA0];
 	case 1:		// 8859-1 <-> unicode mapping
 		return d;
 	case 2:		// 8859-2 -> unicode mapping
@@ -442,7 +442,7 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 	bool useTwoCharMapping = !table || (tsidonid && encodingHandler.getTransponderUseTwoCharMapping(tsidonid));
 
 	if (useTwoCharMapping && table == 5) { // i hope this dont break other transponders which realy use ISO8859-5 and two char byte mapping...
-//		eDebug("Cyfra / Cyfrowy Polsat HACK... override given ISO8859-5 with ISO6397");
+//		eDebug("Cyfra / Cyfrowy Polsat HACK... override given ISO8859-5 with ISO6937");
 		table = 0;
 	}
 

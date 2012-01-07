@@ -29,7 +29,7 @@ public:
 	int getNextAccessPoint(pts_t &ts, const pts_t &start, int direction);
 	
 	bool hasAccessPoints() { return !m_access_points.empty(); }
-	bool hasStructure() { return m_structure_read != NULL; }
+	bool hasStructure() { return m_structure_read_fd >= 0; }
 	
 		/* get a structure entry at given offset (or previous one, if no exact match was found).
 		   optionally, return next element. Offset will be returned. this allows you to easily 
@@ -42,6 +42,7 @@ public:
 	int getLastFrame(off_t &offset, pts_t& pts);
 	
 private:
+	void close();
 	int loadCache(int index);
 	/* inter/extrapolate timestamp from offset */
 	pts_t getInterpolated(off_t offset);
@@ -60,8 +61,8 @@ private:
 	std::multimap<pts_t, off_t> m_pts_to_offset;
 
 	int m_structure_cache_entries;
-	unsigned long long m_structure_cache[4096];
-	FILE *m_structure_read;
+	unsigned long long m_structure_cache[2048];
+	int m_structure_read_fd;
 
 	int m_cache_index;   // Location of cache
 	int m_current_entry; // For getStructureEntryNext
