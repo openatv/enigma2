@@ -1440,14 +1440,14 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 			} else
 			{
 				pts = nextap;
-				eDebug("next ap is %llx\n", pts);
+				eDebug("next ap is %llu\n", pts);
 			}
 		}
 
 		off_t offset = 0;
 		if (m_tstools.getOffset(offset, pts, -1))
 		{
-			eDebug("get offset for pts=%lld failed!", pts);
+			eDebug("get offset for pts=%llu failed!", pts);
 			continue;
 		}
 		

@@ -20,6 +20,9 @@ def AddNotificationWithCallback(fnc, screen, *args, **kwargs):
 def AddNotificationWithID(id, screen, *args, **kwargs):
 	__AddNotification(None, screen, id, *args, **kwargs)
 
+def AddNotificationWithIDCallback(fnc, id, screen, *args, **kwargs):
+	__AddNotification(fnc, screen, id, *args, **kwargs)
+
 # we don't support notifications with callback and ID as this
 # would require manually calling the callback on cancelled popups.
 
@@ -43,3 +46,9 @@ def AddPopup(text, type, timeout, id = None):
 		RemovePopup(id)
 	print "AddPopup, id =", id
 	AddNotificationWithID(id, MessageBox, text = text, type = type, timeout = timeout, close_on_any_key = True)
+
+def AddPopupWithCallback(fnc, text, type, timeout, id = None):
+	if id is not None:
+		RemovePopup(id)
+	print "AddPopup, id =", id
+	AddNotificationWithIDCallback(fnc, id, MessageBox, text = text, type = type, timeout = timeout, close_on_any_key = False)
