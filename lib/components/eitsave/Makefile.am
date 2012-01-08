@@ -1,6 +1,10 @@
-include $(top_srcdir)/Rules-cpp.mak
-
 plugindir = $(libdir)/enigma2/python/Components
+
+AM_CPPFLAGS = \
+	-I$(top_srcdir) \
+	-I$(top_srcdir)/include \
+	-include Python.h \
+	-include $(top_builddir)/enigma2_config.h
 
 plugin_LTLIBRARIES = eitsave.la
 
