@@ -328,6 +328,8 @@ lib/python/Plugins/SystemPlugins/XtrendFancontrol/meta/Makefile
 lib/python/Tools/Makefile
 lib/service/Makefile
 lib/components/Makefile
+lib/components/eitsave/Makefile
+lib/components/createapscfiles/Makefile
 po/Makefile
 main/Makefile
 tools/Makefile
