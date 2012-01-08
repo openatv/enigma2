@@ -49,7 +49,7 @@ class HdmiCec:
 			if not getFPWasTimerWakeup():
 				self.wakeupMessages()
 		if fileExists("/proc/stb/hdmi/preemphasis"):		
-			self.sethdmipreemphasis()		
+			self.sethdmipreemphasis()
 
 	def getPhysicalAddress(self):
 		physicaladdress = eHdmiCEC.getInstance().getPhysicalAddress()
@@ -277,7 +277,7 @@ class HdmiCec:
 		if cmd:
 			eHdmiCEC.getInstance().sendMessage(self.volumeForwardingDestination, cmd, data, len(data))
 			
-	def sethdmipreemphasis():
+	def sethdmipreemphasis(self):
 		try:
 			if config.hdmicec.preemphasis.value == True:
 				file = open("/proc/stb/hdmi/preemphasis", "w")

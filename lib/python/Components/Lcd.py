@@ -262,13 +262,13 @@ def InitLcd():
 			config.lcd.hdd = ConfigNothing()
 			
 		if fileExists("/proc/stb/power/vfd"):
-			config.lcd.power = ConfigSelection([("0", _("No")), ("1" _("Yes"))], "1")
+			config.lcd.power = ConfigSelection([("0", _("No")), ("1", _("Yes"))], "1")
 			config.lcd.power.addNotifier(setLCDpower);
 		else:
 			config.lcd.power = ConfigNothing()
 
 		if fileExists("/proc/stb/lcd/show_outputresolution"):
-			config.lcd.showoutputresolution = ConfigSelection([("0", _("No")), ("1" _("Yes"))], "1")
+			config.lcd.showoutputresolution = ConfigSelection([("0", _("No")), ("1", _("Yes"))], "1")
 			config.lcd.showoutputresolution.addNotifier(setLCDshowoutputresolution);
 		else:
 			config.lcd.showoutputresolution = ConfigNothing()			
