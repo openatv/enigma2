@@ -23,11 +23,6 @@ enigma2.pot: enigma2-py.pot enigma2-xml.pot
 	else \
 		$(MSGINIT) -l $@ -o $@ -i $< --no-translator; \
 	fi
-#	if [ -f $@.pre ]; then \
-#		$(MSGMERGE) --backup=none --no-location -s -N -U $@.pre $< && touch $@.pre; \
-#	else \
-#		$(MSGINIT) -l $@ -o $@.pre -i $< --no-translator; \
-#	fi
 endif
 
 .po.mo:
@@ -42,7 +37,6 @@ install-data-local: $(LANGMO)
 	for lang in $(LANGS); do \
 		$(mkinstalldirs) $(DESTDIR)$(pkgdatadir)/po/$$lang/LC_MESSAGES; \
 		$(INSTALL_DATA) $$lang.mo $(DESTDIR)$(pkgdatadir)/po/$$lang/LC_MESSAGES/@PACKAGE_NAME@.mo; \
-#		$(INSTALL_DATA) $$lang.po.pre $(DESTDIR)$(pkgdatadir)/po/$$lang.po; \
 	done
 
 uninstall-local:
