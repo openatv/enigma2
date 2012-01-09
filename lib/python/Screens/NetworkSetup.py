@@ -2247,7 +2247,7 @@ class NetworkInadynSetup(Screen, ConfigListScreen):
 		self.ina_alias = NoSave(ConfigText(fixed_size=False))
 		self.ina_period = NoSave(ConfigNumber())
 		self.ina_sysactive = NoSave(ConfigYesNo(default='False'))
-		self.ina_system = NoSave(ConfigSelection(default = "dyndns@dyndns.org", choices = [("dyndns@dyndns.org", "dyndns@dyndns.org"), ("statdns@dyndns.org", "statdns@dyndns.org"), ("custom@dyndns.org", "custom@dyndns.org")]))
+		self.ina_system = NoSave(ConfigSelection(default = "dyndns@dyndns.org", choices = [("dyndns@dyndns.org", "dyndns@dyndns.org"), ("statdns@dyndns.org", "statdns@dyndns.org"), ("custom@dyndns.org", "custom@dyndns.org"), ("default@no-ip.com", "default@no-ip.com")]))
 
 		if fileExists('/etc/inadyn.conf'):
 			f = open('/etc/inadyn.conf', 'r')
