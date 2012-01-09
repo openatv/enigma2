@@ -4,6 +4,7 @@ from Screens.MessageBox import MessageBox
 from Components.ActionMap import ActionMap
 from Components.Button import Button
 from Components.Label import Label
+from Components.Sources.StaticText import StaticText
 from Components.ScrollLabel import ScrollLabel
 from Components.PluginComponent import plugins
 from Components.MenuList import MenuList
@@ -60,6 +61,7 @@ class EventViewBase:
 		self.isRecording = (not Ref.ref.flags & eServiceReference.isGroup) and Ref.ref.getPath()
 		self.event = Event
 		self["epg_description"] = ScrollLabel()
+		self["summary_description"] = StaticText()
 		self["datetime"] = Label()
 		self["channel"] = Label()
 		self["duration"] = Label()
@@ -184,6 +186,7 @@ class EventViewBase:
 		text = description + extended
 		self.setTitle(event.getEventName())
 		self["epg_description"].setText(text)
+		self["summary_description"].setText(text)
 		self["datetime"].setText(event.getBeginTimeString())
 		self["duration"].setText(_("%d min")%(event.getDuration()/60))
 		self["key_red"].setText("")
