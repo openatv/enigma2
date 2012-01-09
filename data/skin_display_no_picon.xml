@@ -99,13 +99,13 @@
     
 <!-- movieplayer-->
 	<screen name="InfoBarMoviePlayerSummary" position="0,0" size="255,64">
-		<widget source="session.CurrentService" render="Label" position="0,14" size="255,24" font="FdLcD;20" halign="left">
+		<widget source="session.CurrentService" render="Label" position="0,21" size="255,22" font="FdLcD;18" halign="left" noWrap="1" >
 			<convert type="ServiceName">Name</convert>
 		</widget>
 		<widget source="session.CurrentService" render="Progress" position="0,43" size="160,5" borderWidth="1" >
 			<convert type="ServicePosition">Position</convert>
 		</widget>
-		<widget source="session.CurrentService" render="Label" position="0,50" size="110,19" font="FdLcD;19" halign="left" valign="bottom" noWrap="1">
+		<widget source="session.CurrentService" render="Label" position="0,50" size="200,19" font="FdLcD;19" halign="left" valign="bottom" noWrap="1" >
 			<convert type="ServicePosition">Position</convert>
 		</widget>
 		<widget source="session.OnlineCheckState" render="Pixmap" pixmap="lcd/update.png" position="178,0" size="12,10" >
