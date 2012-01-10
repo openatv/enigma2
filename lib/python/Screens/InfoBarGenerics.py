@@ -779,7 +779,7 @@ class InfoBarChannelSelection:
 			InfoBarTimeshift.saveTimeshiftActions(self, postaction="switchChannelUp")
 		else:
 			if not config.usage.show_bouquetalways.value:
-				self.servicelist.moveUp()
+ # 				self.servicelist.moveUp()
 				self.session.execDialog(self.servicelist)
 			else:
 				self.servicelist.showFavourites()
@@ -790,7 +790,7 @@ class InfoBarChannelSelection:
 			InfoBarTimeshift.saveTimeshiftActions(self, postaction="switchChannelDown")
 		else:
 			if not config.usage.show_bouquetalways.value:
-				self.servicelist.moveDown()
+#  				self.servicelist.moveDown()
 				self.session.execDialog(self.servicelist)
 			else:
 				self.servicelist.showFavourites()
