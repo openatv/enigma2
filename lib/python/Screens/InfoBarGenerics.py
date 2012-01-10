@@ -1028,6 +1028,8 @@ class InfoBarEPG:
 			self.openMerlinEPGCenter()	
 		elif config.plisettings.PLIEPG_mode.value == "cooltvguide":
 			self.showCoolTVGuide()
+		elif config.plisettings.PLIEPG_mode.value == "eventview":
+			self.openEventView()
 
 	def showEventInfoWhenNotVisible(self):
 		if self.shown:
