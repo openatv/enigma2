@@ -803,7 +803,7 @@ class InfoBarChannelSelection:
 			InfoBarTimeshift.saveTimeshiftActions(self, postaction="switchChannelUp")
 		else:
 			if not config.usage.show_bouquetalways.value:
-				self.servicelist.moveUp()
+ # 				self.servicelist.moveUp()
 				self.session.execDialog(self.servicelist)
 			else:
 				self.servicelist.showFavourites()
@@ -814,7 +814,7 @@ class InfoBarChannelSelection:
 			InfoBarTimeshift.saveTimeshiftActions(self, postaction="switchChannelDown")
 		else:
 			if not config.usage.show_bouquetalways.value:
-				self.servicelist.moveDown()
+#  				self.servicelist.moveDown()
 				self.session.execDialog(self.servicelist)
 			else:
 				self.servicelist.showFavourites()
@@ -1677,7 +1677,7 @@ class InfoBarSeek:
 					self.setSeekState(self.lastseekstate)
 					self.lastseekstate = self.SEEK_STATE_PLAY
 			else:
-				self.pauseService()
+				self.unPauseService()
 
 	def pauseService(self):
 		if self.seekstate != self.SEEK_STATE_EOF:
@@ -2078,9 +2078,9 @@ class InfoBarTimeshift:
 
 	def __evStart(self):
 		print "[TimeShift] __evStart"
-		if not config.usage.timeshift_path.value.endswith('/'):
-			print "No trailing '/' in config.usage.timeshift_path.value, adding it"
-			config.usage.timeshift_path.value += '/'
+# 		if not config.usage.timeshift_path.value.endswith('/'):
+# 			print "No trailing '/' in config.usage.timeshift_path.value, adding it"
+# 			config.usage.timeshift_path.value += '/'
 		self.service_changed = 1
 		self.pts_delay_timer.stop()
 		self.pts_service_changed = True
@@ -3207,7 +3207,10 @@ class InfoBarTimeshift:
 			self.setSeekState(self.SEEK_STATE_PAUSE)
 
 		if back:
-			self.ts_rewind_timer.start(500, 1)
+			if config.misc.boxtype.value.startswith('et'):
+					self.ts_rewind_timer.start(1000, 1)
+			else:
+					self.ts_rewind_timer.start(100, 1)
 
 	def rewindService(self):
 		self.setSeekState(self.makeStateBackward(int(config.seek.enter_backward.value)))

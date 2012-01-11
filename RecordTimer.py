@@ -92,17 +92,6 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			# send normal notification for the case the user leave the standby now..
 			Notifications.AddNotification(Screens.Standby.TryQuitMainloop, 1, onSessionOpenCallback=RecordTimerEntry.stopTryQuitMainloop, default_yes = default_yes)
 
-	@staticmethod
-	def TryQuitMainloopDeepsleep(default_yes = False):
-		if not RecordTimerEntry.receiveRecordEvents:
-			print "RecordTimer.TryQuitMainloopDeepsleep"
-			NavigationInstance.instance.record_event.append(RecordTimerEntry.staticGotRecordEvent)
-			RecordTimerEntry.receiveRecordEvents = True
-			# send fake event.. to check if another recordings are running or
-			# other timers start in a few seconds
-			RecordTimerEntry.staticGotRecordEvent(None, iRecordableService.evEnd)
-			# send normal notification for the case the user leave the standby now..
-			Notifications.AddNotification(Screens.Standby.TryQuitMainloop, 5, onSessionOpenCallback=RecordTimerEntry.stopTryQuitMainloop, default_yes = default_yes)
 #################################################################
 
 	def __init__(self, serviceref, begin, end, name, description, eit, disabled = False, justplay = False, afterEvent = AFTEREVENT.AUTO, checkOldTimers = False, dirname = None, tags = None):
