@@ -15,10 +15,10 @@ class PTSTimeshiftState(Screen):
 	skin = """
 		<screen position="center,40" zPosition="2" size="420,70" backgroundColor="transpBlack" flags="wfNoBorder">
 			<widget name="state" position="10,3" size="80,27" font="Regular;20" halign="center" backgroundColor="transpBlack" />
-			<widget source="session.CurrentService" render="Label" position="95,5" size="120,27" font="Regular;20" halign="left" foregroundColor="white" backgroundColor="transpBlack">
+			<widget source="session.CurrentService" render="Label" position="95,5" size="200,27" font="Regular;20" halign="left" foregroundColor="white" backgroundColor="transpBlack">
 				<convert type="ServicePosition">Position</convert>
 			</widget>
-			<widget source="session.CurrentService" render="Label" position="345,5" size="60,27" font="Regular;20" halign="left" foregroundColor="white" backgroundColor="transpBlack">
+			<widget source="session.CurrentService" render="Label" position="280,5" size="120,27" font="Regular;20" halign="right" foregroundColor="white" backgroundColor="transpBlack">
 				<convert type="ServicePosition">Length</convert>
 			</widget>
 			<widget name="PTSSeekPointer" position="0,30" zPosition="3" size="19,20" pixmap="/usr/share/enigma2/skin_default/timeline-now.png" alphatest="on" />
