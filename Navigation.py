@@ -33,6 +33,11 @@ class Navigation:
 		self.RecordTimer = RecordTimer.RecordTimer()
 		if getFPWasTimerWakeup():
 			if nextRecordTimerAfterEventActionAuto:
+				# We need to give the system the chance to fully startup, 
+				# before we initiate the standby command.
+				self.standbytimer = eTimer()
+				self.standbytimer.callback.append(self.gotostandby)
+				self.standbytimer.start(10000, True)
 				# We need to give the systemclock the chance to sync with the transponder time, 
 				# before we will make the decision about whether or not we need to shutdown 
 				# after the upcoming recording has completed
@@ -41,10 +46,13 @@ class Navigation:
 				self.recordshutdowntimer.start(30000, True)
 		self.SleepTimer = SleepTimer.SleepTimer()
 
+	def gotostandby(self):
+		from Tools import Notifications
+		Notifications.AddNotification(Screens.Standby.Standby)
+
 	def checkShutdownAfterRecording(self):
 		if len(self.getRecordings()) or abs(self.RecordTimer.getNextRecordingTime() - time()) <= 360:
 			if not Screens.Standby.inTryQuitMainloop: # not a shutdown messagebox is open
-				#Notifications.AddNotification(Screens.Standby.Standby)
 				RecordTimer.RecordTimerEntry.TryQuitMainloop(False) # start shutdown handling
 
 	def dispatchEvent(self, i):
