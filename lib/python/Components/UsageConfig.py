@@ -467,7 +467,7 @@ def InitUsageConfig():
 	audio_language_choices=[	
 		("---", "None"),
 		("und", "Undetermined"),
-		("orj dos ory org esl qaa und mis mul ORY", "Original"),
+		("orj dos ory org esl qaa und mis mul ORY Audio_ORJ", "Original"),
 		("ara", "Arabic"),
 		("eus baq", "Basque"),
 		("bul", "Bulgarian"), 
@@ -498,7 +498,7 @@ def InitUsageConfig():
 		("slv", "Slovenian"),
 		("spa", "Spanish"),
 		("swe", "Swedish"),
-		("tur", "Turkish")]
+		("tur Audio_TUR", "Turkish")]
 
 	def setEpgLanguage(configElement):
 		enigma.eServiceEvent.setEPGLanguage(configElement.value)
