@@ -581,6 +581,7 @@ def InitUsageConfig():
 					("pliepg", _("Show Graphical EPG")),
 					("single", _("Show Single EPG")),
 					("multi", _("Show Multi EPG")),
+					("eventview", _("Show Eventview")),
 					("merlinepgcenter", _("Show Merlin EPG Center")),
 					("cooltvguide", _("Show CoolTVGuide"))])
 	config.plisettings.PLIINFO_mode = ConfigSelection(default="coolinfoguide", choices = [
@@ -624,9 +625,6 @@ def InitUsageConfig():
 	config.GraphEPG.overjump = ConfigYesNo(default = False)
 	config.GraphEPG.PIG = ConfigYesNo(default = False)
 
-	if not os.path.exists('/usr/softcams/'):
-		os.mkdir('/usr/softcams/',0755)
-	softcams = os.listdir('/usr/softcams/')
 	config.oscaminfo = ConfigSubsection()
 	config.oscaminfo.showInExtensions = ConfigYesNo(default=False)
 	config.oscaminfo.userdatafromconf = ConfigYesNo(default = False)
@@ -654,14 +652,7 @@ def InitUsageConfig():
 	config.cccaminfo.ecmInfoPositionY = ConfigInteger(default=50)
 	config.cccaminfo.blacklist = ConfigText(default="/media/cf/CCcamInfo.blacklisted", fixed_size=False)
 	config.cccaminfo.profiles = ConfigText(default="/media/cf/CCcamInfo.profiles", fixed_size=False)
-	SystemInfo["CCcamInstalled"] = False
-	for softcam in softcams:
-		if softcam.lower().startswith('cccam'):
-			config.cccaminfo.showInExtensions = ConfigYesNo(default=True)
-			SystemInfo["CCcamInstalled"] = True
-		elif softcam.lower().startswith('oscam'):
-			config.oscaminfo.showInExtensions = ConfigYesNo(default=True)
-			SystemInfo["OScamInstalled"] = True
+
 
 def updateChoices(sel, choices):
 	if choices:

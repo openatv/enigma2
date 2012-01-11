@@ -1028,6 +1028,8 @@ class InfoBarEPG:
 			self.openMerlinEPGCenter()	
 		elif config.plisettings.PLIEPG_mode.value == "cooltvguide":
 			self.showCoolTVGuide()
+		elif config.plisettings.PLIEPG_mode.value == "eventview":
+			self.openEventView()
 
 	def showEventInfoWhenNotVisible(self):
 		if self.shown:
@@ -3247,6 +3249,7 @@ class InfoBarExtensions:
 		self.addExtension(extension = self.getCCcamInfo, type = InfoBarExtensions.EXTENSION_LIST)
 		self.addExtension(extension = self.getOScamInfo, type = InfoBarExtensions.EXTENSION_LIST)
 		self.addExtension(extension = self.getSoftcamPanel, type = InfoBarExtensions.EXTENSION_LIST)
+		self.addExtension(extension = self.getRestartNetwork, type = InfoBarExtensions.EXTENSION_LIST)
 
 	def getLMname(self):
 		return _("Log Manager")
@@ -3265,7 +3268,13 @@ class InfoBarExtensions:
 			return [((boundFunction(self.getSoftcamPanelname), boundFunction(self.openSoftcamPanel), lambda: True), None)]
 		else:
 			return []
-	
+
+	def getRestartNetworkname(self):
+		return _("Restart Network")
+
+	def getRestartNetwork(self):
+			return [((boundFunction(self.getRestartNetworkname), boundFunction(self.openRestartNetwork), lambda: True), None)]
+
 	def get3DSetupname(self):
 		return _("OSD 3D Setup")
 
@@ -3389,6 +3398,13 @@ class InfoBarExtensions:
 	def openSoftcamPanel(self):
 		from Plugins.Extensions.Aafpanel.SoftcamPanel import SoftcamPanel
 		self.session.open(SoftcamPanel)
+
+	def openRestartNetwork(self):
+		try:
+			from Plugins.Extensions.Aafpanel.RestartNetwork import RestartNetwork
+			self.session.open(RestartNetwork)
+		except:
+			print'[INFOBARGENERICS] failed to restart newwork'
 
 	def showAutoTimerList(self):
 		if os_path.exists("/usr/lib/enigma2/python/Plugins/Extensions/AutoTimer/plugin.pyo"):
