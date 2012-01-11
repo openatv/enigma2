@@ -683,11 +683,11 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 
 	def playAsDVD(self, path):
 		try:
-			from Plugins.Extensions.DVDPlayer import plugin as dvdplugin
+			from Screens import DVD
 			if path.endswith('VIDEO_TS/'):
 				# strip away VIDEO_TS/ part
 				path = os.path.split(path.rstrip('/'))[0]
-			self.session.open(dvdplugin.DVDPlayer, dvd_filelist=[path])
+			self.session.open(DVD.DVDPlayer, dvd_filelist=[path])
 			return True
 		except Exception, e:
 			print "[ML] DVD Player not installed:", e
