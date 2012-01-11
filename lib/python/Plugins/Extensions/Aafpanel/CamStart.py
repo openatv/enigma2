@@ -99,14 +99,15 @@ class CamStart:
 					import time
 					time.sleep(2)
 					#print '[CAMSTARTER] cam pid found: ' + str(p)
-					if int(p) > 0:
-						actcam = self.mlist[tel]
-						print '[CAMSTARTER] CAM is Running, active cam: ' + actcam
-						if cam_bin.find('camd3')>-1 and self.count == 1:
-							print '[CAMSTARTER] stop ' + cam_bin
-							os.system('killall -9 '  + cam_bin)
-						camrunning = 1
-					break
+					if p != '':
+						if int(p) > 0:
+							actcam = self.mlist[tel]
+							print '[CAMSTARTER] CAM is Running, active cam: ' + actcam
+							if cam_bin.find('camd3')>-1 and self.count == 1:
+								print '[CAMSTARTER] stop ' + cam_bin
+								os.system('killall -9 '  + cam_bin)
+							camrunning = 1
+						break
 				else:
 					tel +=1
 			try:
