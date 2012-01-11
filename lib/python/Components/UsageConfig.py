@@ -652,14 +652,7 @@ def InitUsageConfig():
 	config.cccaminfo.ecmInfoPositionY = ConfigInteger(default=50)
 	config.cccaminfo.blacklist = ConfigText(default="/media/cf/CCcamInfo.blacklisted", fixed_size=False)
 	config.cccaminfo.profiles = ConfigText(default="/media/cf/CCcamInfo.profiles", fixed_size=False)
-	SystemInfo["CCcamInstalled"] = False
-	for softcam in softcams:
-		if softcam.lower().startswith('cccam'):
-			config.cccaminfo.showInExtensions = ConfigYesNo(default=True)
-			SystemInfo["CCcamInstalled"] = True
-		elif softcam.lower().startswith('oscam'):
-			config.oscaminfo.showInExtensions = ConfigYesNo(default=True)
-			SystemInfo["OScamInstalled"] = True
+
 
 def updateChoices(sel, choices):
 	if choices:
