@@ -452,7 +452,7 @@ class PreviewTask(Task):
 			Task.processFinished(self, 1)
 
 	def previewProject(self):
-		from Plugins.Extensions.DVDPlayer.plugin import DVDPlayer
+		from Screens.DVD import DVDPlayer
 		self.job.project.session.openWithCallback(self.playerClosed, DVDPlayer, dvd_filelist= [ self.path ])
 
 class PreviewTaskPostcondition(Condition):
