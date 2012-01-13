@@ -153,11 +153,12 @@ class Pic_Setup(Screen, ConfigListScreen):
 		self.onChangedEntry = [ ]
 		self.session = session
 
-		self["actions"] = ActionMap(["SetupActions"],
+		self["actions"] = ActionMap(["SetupActions", "MenuActions"],
 			{
 				"cancel": self.keyCancel,
 				"save": self.keySave,
 				"ok": self.keySave,
+				"menu": self.closeRecursive,
 			}, -2)
 
 		self["key_red"] = StaticText(_("Cancel"))
