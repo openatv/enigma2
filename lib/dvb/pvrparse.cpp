@@ -546,25 +546,31 @@ int eMPEGStreamInformationWriter::stopSave(void)
 
 void eMPEGStreamInformationWriter::writeStructureEntry(off_t offset, unsigned long long data)
 {
-	unsigned long long *d = (unsigned long long*)((char*)m_write_buffer + m_buffer_filled);
+	if (m_structure_write_fd >= 0)
+	{
+		unsigned long long *d = (unsigned long long*)((char*)m_write_buffer + m_buffer_filled);
 #if BYTE_ORDER == BIG_ENDIAN
-	d[0] = offset;
-	d[1] = data;
+		d[0] = offset;
+		d[1] = data;
 #else
-	d[0] = bswap_64(offset);
-	d[1] = bswap_64(data);
+		d[0] = bswap_64(offset);
+		d[1] = bswap_64(data);
 #endif
-	m_buffer_filled += 16;
-	if (m_buffer_filled == PAGESIZE)
-		flush();
+		m_buffer_filled += 16;
+		if (m_buffer_filled == PAGESIZE)
+			flush();
+	}
 }
 
 void eMPEGStreamInformationWriter::flush()
 {
-	ssize_t written = ::write(m_structure_write_fd, m_write_buffer, m_buffer_filled);
-	if (written != (ssize_t)m_buffer_filled)
+	if (m_structure_write_fd >= 0)
 	{
-		eWarning("Failed to write TS file");
+		ssize_t written = ::write(m_structure_write_fd, m_write_buffer, m_buffer_filled);
+		if (written != (ssize_t)m_buffer_filled)
+		{
+			eWarning("Failed to write TS file");
+		}
 	}
 	m_buffer_filled = 0;
 }
