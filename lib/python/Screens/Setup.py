@@ -107,10 +107,10 @@ class Setup(ConfigListScreen, Screen):
 			x()
 
 	def getCurrentEntry(self):
-		return self["config"].getCurrent()[0]
+		return self["config"].getCurrent() and self["config"].getCurrent()[0] or ""
 
 	def getCurrentValue(self):
-		return str(self["config"].getCurrent()[1].getText())
+		return self["config"].getCurrent() and str(self["config"].getCurrent()[1].getText()) or ""
 
 	def createSummary(self):
 		return SetupSummary
