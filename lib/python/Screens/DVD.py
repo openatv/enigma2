@@ -574,30 +574,24 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 				ifofilename = val
 				if not ifofilename.upper().endswith("/VIDEO_TS"):
 					ifofilename += "/VIDEO_TS"
-				ifofilename += "/VIDEO_TS.IFO"
-				ifofile = None
-				try:
-#					Try to read the IFO header to determine PAL/NTSC format
-#					and the resolution
-					ifofile = open(ifofilename, "r")
-					ifofile.seek(0x100)
-					video_attr_high = ord(ifofile.read(1))
-					video_attr_low = ord(ifofile.read(1))
-					isNTSC = (video_attr_high & 0x10 == 0)
-					isLowResolution = (video_attr_low & 0x30 == 0x30)
-				except:
-#					If the service is an .iso or .img file we assume it is PAL
-#					Sorry we cannot open image files here.
-					isNTSC = False
-					isLowResolution = False
-				finally:
-					if ifofile is not None:
-						ifofile.close()
+
+				name = "/VIDEO_TS.IFO"
+				offset = 0x100
+				(status, isNTSC, isLowResolution) = self.readVideoAtributes( offset, ifofilename, name )
+				if not status:
+					name = "/VTS_01_0.IFO"
+					(status, isNTSC, isLowResolution) = self.readVideoAtributes( offset, ifofilename, name )
+					if not status:
+						offset = 0x200
+						(status, isNTSC, isLowResolution) = self.readVideoAtributes( offset, ifofilename, name )
 				height = getDesktop(0).size().height()
+				print "[DVD] height:", height
 				if isNTSC:
 					height = height * 576 / 480
+					print "[DVD] NTSC height:", height
 				if isLowResolution:
 					height *= 2
+					print "[DVD] LowResolution:", height
 				self.dvdScreen = self.session.instantiateDialog(DVDOverlay, height=height)
 				self.session.nav.playService(newref)
 				self.service = self.session.nav.getCurrentService()
@@ -606,6 +600,36 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 				subs = self.getServiceInterface("subtitle")
 				if subs:
 					subs.enableSubtitles(self.dvdScreen.instance, None)
+
+	def readVideoAtributes(self, offset, isofilename, name):
+		print "[DVD] file", name
+
+		status = False
+		isNTSC = False
+
+		ifofile = None
+		isLowResolution = False
+
+		isofilename += name
+		try:
+#			Try to read the IFO header to determine PAL/NTSC format and the resolution
+			ifofile = open(isofilename, "r")
+			ifofile.seek(offset)
+			video_attr_high = ord(ifofile.read(1))
+			if video_attr_high != 0:
+				status = True
+			video_attr_low = ord(ifofile.read(1))
+			print "[DVD] %s: video_attr_high = %x" % ( name, video_attr_high ), "video_attr_low = %x" % ( video_attr_low )
+			isNTSC = (video_attr_high & 0x10 == 0)
+			isLowResolution = (video_attr_low & 0x30 == 0x30)
+		except:
+#			If the service is an .iso or .img file we assume it is PAL
+#			Sorry we cannot open image files here.
+			print "[DVD] Cannot read file or ISO/IMG"
+		finally:
+			if ifofile is not None:
+				ifofile.close()
+		return ( status, isNTSC, isLowResolution )
 
 	def exitCB(self, answer):
 		if answer is not None:
