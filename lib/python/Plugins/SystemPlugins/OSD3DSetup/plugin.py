@@ -28,13 +28,14 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 		self["ok"] = Button(_("OK"))
 		self["cancel"] = Button(_("Cancel"))
 
-		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
+		self["actions"] = ActionMap(["SetupActions", "ColorActions", "MenuActions"],
 		{
 			"ok": self.keyGo,
 			"save": self.keyGo,
 			"cancel": self.keyCancel,
 			"green": self.keyGo,
 			"red": self.keyCancel,
+			"menu": self.closeRecursive,
 		}, -2)
 
 		self.list = []

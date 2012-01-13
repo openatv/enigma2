@@ -86,10 +86,11 @@ class Setup(ConfigListScreen, Screen):
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
 
-		self["actions"] = NumberActionMap(["SetupActions"], 
+		self["actions"] = NumberActionMap(["SetupActions", "MenuActions"], 
 			{
 				"cancel": self.keyCancel,
 				"save": self.keySave,
+				"menu": self.closeRecursive,
 			}, -2)
 
 		ConfigListScreen.__init__(self, list, session = session, on_change = self.changedEntry)

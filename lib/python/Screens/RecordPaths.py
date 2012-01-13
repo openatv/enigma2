@@ -27,12 +27,13 @@ class RecordPathsSettings(Screen,ConfigListScreen):
 		ConfigListScreen.__init__(self, [])
 		self.initConfigList()
 
-		self["setupActions"] = ActionMap(["SetupActions", "ColorActions"],
+		self["setupActions"] = ActionMap(["SetupActions", "ColorActions", "MenuActions"],
 		{
 		    "green": self.save,
-		    "red": self.cancel,
-		    "cancel": self.cancel,
+		    "red": self.keyCancel,
+		    "cancel": self.keyCancel,
 		    "ok": self.ok,
+		    "menu": self.closeRecursive,
 		}, -2)
 
 	def checkReadWriteDir(self, configele):
@@ -188,7 +189,3 @@ class RecordPathsSettings(Screen,ConfigListScreen):
 			config.usage.instantrec_path.save()
 			config.usage.timeshift_path.save()
 			self.close()
-
-	def cancel(self):
-		self.close()
-
