@@ -28,9 +28,12 @@ class NTPSyncPoller:
 		self.timer.stop()
 
 	def ntp_sync(self):
-		Components.Task.job_manager.AddJob(self.createCheckJob())
+		if config.misc.SyncTimeUsing.value == "1":
+			Components.Task.job_manager.AddJob(self.createCheckJob())
+		self.timer.startLongTimer(int(config.misc.useNTPminutes.value) * 60)
 
 	def createCheckJob(self):
+		print '[NTPSync] Poll Started'
 		job = Components.Task.Job(_("NTPSync"))
 		task = Components.Task.PythonTask(job, _("Checking Time..."))
 		task.work = self.JobStart
@@ -38,7 +41,4 @@ class NTPSyncPoller:
 		return job
 
 	def JobStart(self):
-		print '[NTPSync] Poll Started'
-		if config.misc.SyncTimeUsing.value == "NTP":
-			self.Console.ePopen('/usr/bin/ntpdate -s -u pool.ntp.org')
-		self.timer.startLongTimer(int(config.misc.useNTPminutes.value) * 60)
+		self.Console.ePopen('/usr/bin/ntpdate -s -u pool.ntp.org')

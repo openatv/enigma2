@@ -472,7 +472,7 @@ def InitUsageConfig():
 	audio_language_choices=[	
 		("---", "None"),
 		("und", "Undetermined"),
-		("orj dos ory org esl qaa und mis mul ORY", "Original"),
+		("orj dos ory org esl qaa und mis mul ORY Audio_ORJ", "Original"),
 		("ara", "Arabic"),
 		("eus baq", "Basque"),
 		("bul", "Bulgarian"), 
@@ -503,7 +503,7 @@ def InitUsageConfig():
 		("slv", "Slovenian"),
 		("spa", "Spanish"),
 		("swe", "Swedish"),
-		("tur", "Turkish")]
+		("tur Audio_TUR", "Turkish")]
 
 	def setEpgLanguage(configElement):
 		enigma.eServiceEvent.setEPGLanguage(configElement.value)
@@ -652,14 +652,7 @@ def InitUsageConfig():
 	config.cccaminfo.ecmInfoPositionY = ConfigInteger(default=50)
 	config.cccaminfo.blacklist = ConfigText(default="/media/cf/CCcamInfo.blacklisted", fixed_size=False)
 	config.cccaminfo.profiles = ConfigText(default="/media/cf/CCcamInfo.profiles", fixed_size=False)
-	SystemInfo["CCcamInstalled"] = False
-	for softcam in softcams:
-		if softcam.lower().startswith('cccam'):
-			config.cccaminfo.showInExtensions = ConfigYesNo(default=True)
-			SystemInfo["CCcamInstalled"] = True
-		elif softcam.lower().startswith('oscam'):
-			config.oscaminfo.showInExtensions = ConfigYesNo(default=True)
-			SystemInfo["OScamInstalled"] = True
+
 
 def updateChoices(sel, choices):
 	if choices:

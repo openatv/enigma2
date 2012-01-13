@@ -139,8 +139,6 @@ class TryQuitMainloop(MessageBox):
 		next_rec_time = -1
 		if not recordings:
 			next_rec_time = session.nav.RecordTimer.getNextRecordingTime()	
-		if recordings or (next_rec_time > 0 and (next_rec_time - time()) < 360):
-			reason = _("Recording(s) are in progress or coming up in few seconds!") + '\n'
 		if jobs:
 			reason = _("Job task(s) are in progress!") + '\n'
 			if jobs == 1:
@@ -149,25 +147,25 @@ class TryQuitMainloop(MessageBox):
 			else:
 				reason += (_("%d jobs are running in the background!") % jobs) + '\n'
 			if job.name == "VFD Checker":		
-				reason = ""
-		if reason and not inStandby:
-			if retvalue == 5:
-				retvalue = 1
-				session.nav.record_event.append(self.getRecordEvent)
+				reason = ""	
+		if recordings or (next_rec_time > 0 and (next_rec_time - time()) < 360):
+			reason = _("Recording(s) are in progress or coming up in few seconds!") + '\n'
+		if reason and inStandby:
+			session.nav.record_event.append(self.getRecordEvent)
+		elif reason and not inStandby:
+			if retvalue == 1:
+				MessageBox.__init__(self, session, reason+_("Really shutdown now?"), type = MessageBox.TYPE_YESNO, timeout = timeout, default = default_yes)
+			elif retvalue == 2:
+				MessageBox.__init__(self, session, reason+_("Really reboot now?"), type = MessageBox.TYPE_YESNO, timeout = timeout, default = default_yes)
+			elif retvalue == 4:
+				pass
 			else:
-				if retvalue == 1:
-					MessageBox.__init__(self, session, reason+_("Really shutdown now?"), type = MessageBox.TYPE_YESNO, timeout = timeout, default = default_yes)
-				elif retvalue == 2:
-					MessageBox.__init__(self, session, reason+_("Really reboot now?"), type = MessageBox.TYPE_YESNO, timeout = timeout, default = default_yes)
-				elif retvalue == 4:
-					pass
-				else:
-					MessageBox.__init__(self, session, reason+_("Really restart now?"), type = MessageBox.TYPE_YESNO, timeout = timeout, default = default_yes)
-				self.skinName = "MessageBox"
-				session.nav.record_event.append(self.getRecordEvent)
-				self.connected = True
-				self.onShow.append(self.__onShow)
-				self.onHide.append(self.__onHide)
+				MessageBox.__init__(self, session, reason+_("Really restart now?"), type = MessageBox.TYPE_YESNO, timeout = timeout, default = default_yes)
+			self.skinName = "MessageBox"
+			session.nav.record_event.append(self.getRecordEvent)
+			self.connected = True
+			self.onShow.append(self.__onShow)
+			self.onHide.append(self.__onHide)
 		else:
 			self.skin = """<screen position="1310,0" size="0,0"/>"""
 			Screen.__init__(self, session)

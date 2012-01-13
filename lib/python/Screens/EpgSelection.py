@@ -493,6 +493,8 @@ class EPGSelection(Screen):
 					"ShortRecord": self.doRecordTimer,
 					"LongRecord": self.doZapTimer,
 					"Menu": self.createSetup,
+					"up": self.moveUp,
+					"down": self.moveDown,
 				},-1)
 
 			self["input_actions"] = ActionMap(["InputActions"],
@@ -1208,11 +1210,10 @@ class EPGSelection(Screen):
 						datestr = '%s'%(_("Today"))
 
 			self["date"].setText(datestr)
-			if self.type != EPG_TYPE_GRAPH:
-				if cur[1] is None:
-					self["Service"].newService(None)
-				else:
-					self["Service"].newService(cur[1].ref)
+			if cur[1] is None:
+				self["Service"].newService(None)
+			else:
+				self["Service"].newService(cur[1].ref)
 
 		if cur[1] is None or cur[1].getServiceName() == "":
 			if self.key_green_choice != self.EMPTY:
