@@ -584,7 +584,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 					video_attr_high = ord(ifofile.read(1))
 					video_attr_low = ord(ifofile.read(1))
 					isNTSC = (video_attr_high & 0x10 == 0)
-					isLowResolution = (video_attr_low & 0x30 == 30)
+					isLowResolution = (video_attr_low & 0x30 == 0x30)
 				except:
 #					If the service is an .iso or .img file we assume it is PAL
 #					Sorry we cannot open image files here.
