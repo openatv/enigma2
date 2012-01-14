@@ -817,7 +817,11 @@ class ChannelSelectionBase(Screen):
 		self.servicelist = self["list"]
 
 		self.numericalTextInput = NumericalTextInput()
-		self.numericalTextInput.setUseableChars(u'abcdefghijklmnopqrstuvwxyz1234567890')
+		if config.usage.show_channel_jump_in_servicelist.value == "alpha":
+			self.numericalTextInput.setUseableChars(u'abcdefghijklmnopqrstuvwxyz1234567890')
+		else:
+			self.numericalTextInput.setUseableChars(u'1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ')
+
 
 		self.servicePathTV = [ ]
 		self.servicePathRadio = [ ]
@@ -851,7 +855,7 @@ class ChannelSelectionBase(Screen):
 				"7": self.keyNumberGlobal,
 				"8": self.keyNumberGlobal,
 				"9": self.keyNumberGlobal,
-				"0": self.keyNumber0
+				"0": self.keyNumberGlobal
 			})
 		self.recallBouquetMode()
 
@@ -1293,7 +1297,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		config.usage.multibouquet.addNotifier(self.multibouquet_config_changed)
 		self.new_service_played = False
 		self.dopipzap = False
-		if config.misc.remotecontrol_harmony.value:
+		if config.misc.remotecontrol_text_support.value:
 			self.onExecBegin.append(self.asciiOff)
 		else:
 			self.onExecBegin.append(self.asciiOn)

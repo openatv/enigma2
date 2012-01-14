@@ -24,7 +24,7 @@ def InitUsageConfig():
 		boxtype="not detected"
 	config.misc.boxtype = ConfigText(default = boxtype)
 	config.misc.useNTPminutes = ConfigSelection(default = "30", choices = [("30", "30 Minutes"), ("60", _("Hour")), ("1440", _("Once per day"))])
-	config.misc.remotecontrol_harmony = ConfigYesNo(default = False)
+	config.misc.remotecontrol_text_support = ConfigYesNo(default = False)
 
 	config.usage = ConfigSubsection();
 	config.usage.showdish = ConfigYesNo(default = True)
@@ -158,6 +158,9 @@ def InitUsageConfig():
 	config.usage.show_bouquetalways = ConfigYesNo(default = False)
 	config.usage.show_event_progress_in_servicelist = ConfigYesNo(default = True)
 	config.usage.show_channel_numbers_in_servicelist = ConfigYesNo(default = True)
+	config.usage.show_channel_jump_in_servicelist = ConfigSelection(default="alpha", choices = [
+					("alpha", _("Alpha")),
+					("number", _("Number"))])
 
 	config.usage.blinking_display_clock_during_recording = ConfigYesNo(default = False)
 
