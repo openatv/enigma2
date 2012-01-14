@@ -21,7 +21,7 @@ from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT
 from ServiceReference import ServiceReference
 from Tools.LoadPixmap import LoadPixmap
 from enigma import eEPGCache, eListbox, gFont, eListboxPythonMultiContent, \
-	RT_HALIGN_LEFT, RT_HALIGN_CENTER, RT_VALIGN_CENTER, RT_WRAP, eRect, eTimer
+	RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, RT_VALIGN_CENTER, RT_WRAP, eRect, eTimer
 from GraphMultiEpgSetup import GraphMultiEpgSetup
 
 from time import localtime, time, strftime
@@ -49,14 +49,18 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.time_epoch = time_epoch
 		self.list = None
 		self.event_rect = None
+		self.currentlyPlaying = None
 
-		self.foreColor = None
-		self.foreColorSelected = None
-		self.borderColor = None
-		self.backColor = 0x586d88
+		self.foreColor = 0xffffff
+		self.foreColorSelected = 0xffc000
+		self.borderColor = 0x464445
+		self.backColor = 0x595959
 		self.backColorSelected = 0x808080
-		self.foreColorService = None
-		self.backColorService = None
+		self.foreColorService = 0xffffff
+		self.foreColorServiceSelected = 0x000000
+		self.backColorService = 0x000000
+		self.backColorServiceSelected = 0xffffff
+		self.borderColorService = 0x000000
 
 	def applySkin(self, desktop, screen):
 		if self.skinAttributes is not None:
@@ -66,16 +70,22 @@ class EPGList(HTMLComponent, GUIComponent):
 					self.foreColor = parseColor(value).argb()
 				elif attrib == "EntryForegroundColorSelected":
 					self.foreColorSelected = parseColor(value).argb()
-				elif attrib == "EntryBorderColor":
-					self.borderColor = parseColor(value).argb()
 				elif attrib == "EntryBackgroundColor":
 					self.backColor = parseColor(value).argb()
 				elif attrib == "EntryBackgroundColorSelected":
 					self.backColorSelected = parseColor(value).argb()
-				elif attrib == "ServiceNameForegroundColor":
+				elif attrib == "EntryBorderColor":
+					self.borderColor = parseColor(value).argb()
+				elif attrib == "ServiceForegroundColor" or attrib == "ServiceNameForegroundColor":
 					self.foreColorService = parseColor(value).argb()
-				elif attrib == "ServiceNameBackgroundColor":
+				elif attrib == "ServiceForegroundColorSelected":
+					self.foreColorServiceSelected = parseColor(value).argb()
+				elif attrib == "ServiceBackgroundColor" or attrib == "ServiceNameBackgroundColor":
 					self.backColorService = parseColor(value).argb()
+				elif attrib == "ServiceBackgroundColorSelected":
+					self.backColorServiceSelected = parseColor(value).argb()
+				elif attrib == "ServiceBorderColor":
+					self.borderColorService = parseColor(value).argb()
 				else:
 					attribs.append((attrib,value))
 			self.skinAttributes = attribs
@@ -96,6 +106,9 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.offs = 0
 		self.time_epoch = epoch
 		self.fillMultiEPG(None) # refill
+
+	def setCurrentlyPlaying(self, serviceref):
+		self.currentlyPlaying = serviceref
 
 	def getEventFromId(self, service, eventid):
 		event = None
@@ -242,16 +255,23 @@ class EPGList(HTMLComponent, GUIComponent):
 		return xpos+event_rect.left(), width
 
 	def buildEntry(self, service, service_name, events):
-		r1=self.service_rect
-		r2=self.event_rect
+		r1 = self.service_rect
+		r2 = self.event_rect
+		nowPlaying = self.currentlyPlaying.toString()
+		serviceForeColor = self.foreColorService
+		serviceBackColor = self.backColorService
+		if nowPlaying is not None and nowPlaying == service:
+			serviceForeColor = self.foreColorServiceSelected
+			serviceBackColor = self.backColorServiceSelected
+
 		res = [ None, MultiContentEntryText(
 						pos = (r1.x, r1.y),
 						size = (r1.w, r1.h),
 						font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER,
 						text = service_name,
-						color = self.foreColorService,
-						backcolor = self.backColorService,
-						border_width = 1, border_color = self.backColor) ]
+						color = serviceForeColor, color_sel = serviceForeColor,
+						backcolor = serviceBackColor, backcolor_sel = serviceBackColor,
+						border_width = 1, border_color = self.borderColorService) ]
 
 		if events:
 			start = self.time_base+self.offs*self.time_epoch*60
@@ -273,7 +293,8 @@ class EPGList(HTMLComponent, GUIComponent):
 					pos = (left+xpos, top), size = (ewidth, height),
 					font = 1, flags = RT_HALIGN_CENTER | RT_VALIGN_CENTER | RT_WRAP,
 					text = ev[1], color = foreColor, color_sel = foreColorSelected,
-					backcolor = backColor, backcolor_sel = backColorSelected, border_width = 1, border_color = borderColor))
+					backcolor = backColor, backcolor_sel = backColorSelected,
+					border_width = 1, border_color = borderColor))
 				if rec and ewidth > 23:
 					res.append(MultiContentEntryPixmapAlphaTest(
 						pos = (left+xpos+ewidth-22, top+height-22), size = (21, 21),
@@ -602,7 +623,9 @@ class GraphMultiEPG(Screen):
 
 	def onCreate(self):
 		self["list"].fillMultiEPG(self.services, self.ask_time)
-		self["list"].moveToService(self.session.nav.getCurrentlyPlayingServiceReference())
+		serviceref = self.session.nav.getCurrentlyPlayingServiceReference()
+		self["list"].moveToService(serviceref)
+		self["list"].setCurrentlyPlaying(serviceref)
 		self.moveTimeLines()
 
 	def eventViewCallback(self, setEvent, setService, val):
@@ -622,6 +645,8 @@ class GraphMultiEPG(Screen):
 			ref = self["list"].getCurrent()[1]
 			if ref:
 				self.zapFunc(ref.ref)
+				self["list"].setCurrentlyPlaying(ref.ref)
+				self["list"].l.invalidate()
 
 	def eventSelected(self):
 		self.infoKeyPressed()
