@@ -431,7 +431,10 @@ class Harddisk:
 		from enigma import eTimer
 
 		# disable HDD standby timer
-		Console().ePopen(("hdparm", "hdparm", "-S0", self.disk_path))
+		if self.bus() == "External":
+			Console().ePopen(("sdparm", "sdparm", "--set=SCT=0", self.disk_path))
+		else:
+			Console().ePopen(("hdparm", "hdparm", "-S0", self.disk_path))
 		self.timer = eTimer()
 		self.timer.callback.append(self.runIdle)
 		self.idle_running = True
@@ -458,7 +461,10 @@ class Harddisk:
 			self.is_sleeping = True
 
 	def setSleep(self):
-		Console().ePopen(("hdparm", "hdparm", "-y", self.disk_path))
+		if self.bus() == "External":
+			Console().ePopen(("sdparm", "sdparm", "--flexible", "--readonly", "--command=stop", self.disk_path))
+		else:
+			Console().ePopen(("hdparm", "hdparm", "-y", self.disk_path))
 
 	def setIdleTime(self, idle):
 		self.max_idle_time = idle
