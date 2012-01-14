@@ -81,7 +81,7 @@ def getPreferredTagEditor():
 def isTrashFolder(ref):
 	if not ref.flags & eServiceReference.mustDescent:
 		return False
-	return os.path.realpath(ref.getPath()).startswith(Tools.Trashcan.getTrashFolder())
+	return os.path.realpath(ref.getPath()).endswith('.Trash') or os.path.realpath(ref.getPath()).endswith('.Trash/')
 
 def isSimpleFile(item):
 	if not item:
@@ -97,14 +97,11 @@ def isFolder(item):
 		return False
 	return (item[0].flags & eServiceReference.mustDescent) != 0
 
-
 def canMove(item):
 	if not item:
 		return False
 	if not item[0] or not item[1]:
 		return False
-	if item[0].flags & eServiceReference.mustDescent:
-		return not isTrashFolder(item[0])
 	return True
 
 canDelete = canMove
@@ -113,8 +110,6 @@ def canCopy(item):
 	if not item:
 		return False
 	if not item[0] or not item[1]:
-		return False
-	if item[0].flags & eServiceReference.mustDescent:
 		return False
 	return True
 
@@ -146,29 +141,15 @@ def moveServiceFiles(serviceref, dest, name=None, allowCopy=True):
 	# Try to "atomically" move these files
 	movedList = []
 	try:
-		try:
-			for item in moveList:
-				os.rename(item[0], item[1])
-				movedList.append(item)
-		except OSError, e:
-			if e.errno == 18 and allowCopy:
-				print "[MovieSelection] cannot rename across devices, trying slow move"
-				import CopyFiles
-				# start with the smaller files, do the big one later.
-				moveList.reverse()
-				if name is None:
-					name = os.path.split(moveList[-1][0])[1]
-				CopyFiles.moveFiles(moveList, name)
-				print "[MovieSelection] Moving in background..."
-			else:
-				raise
+		print "[MovieSelection] Moving in background..."
+		import CopyFiles
+		# start with the smaller files, do the big one later.
+		moveList.reverse()
+		if name is None:
+			name = os.path.split(moveList[-1][0])[1]
+		CopyFiles.moveFiles(moveList, name)
 	except Exception, e:
 		print "[MovieSelection] Failed move:", e
-		for item in movedList:
-			try:
-				os.rename(item[1], item[0])
-			except:
-				print "[MovieSelection] Failed to undo move:", item
 		# rethrow exception
 		raise
 
@@ -178,26 +159,17 @@ def copyServiceFiles(serviceref, dest, name=None):
 	# Try to "atomically" move these files
 	movedList = []
 	try:
-		for item in moveList:
-			os.link(item[0], item[1])
-			movedList.append(item)
-		# this worked, we're done
-		return
+		print "[MovieSelection] Copying in background..."
+		import CopyFiles
+		# start with the smaller files, do the big one later.
+		moveList.reverse()
+		if name is None:
+			name = os.path.split(moveList[-1][0])[1]
+		CopyFiles.copyFiles(moveList, name)
 	except Exception, e:
-		print "[MovieSelection] Failed copy using link:", e
-		for item in movedList:
-			try:
-				os.unlink(item[1])
-			except:
-				print "[MovieSelection] Failed to undo copy:", item
-	#Link failed, really copy.
-	import CopyFiles
-	# start with the smaller files, do the big one later.
-	moveList.reverse()
-	if name is None:
-		name = os.path.split(moveList[-1][0])[1]
-	CopyFiles.copyFiles(moveList, name)
-	print "[MovieSelection] Copying in background..."
+		print "[MovieSelection] Failed copy:", e
+		# rethrow exception
+		raise
 
 class MovieBrowserConfig(ConfigListScreen,Screen):
 	skin = """
@@ -1336,6 +1308,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 
 	def can_copy(self, item):
 		return canCopy(item)
+
 	def do_copy(self):
 		item = self.getCurrentSelection() 
 		if canMove(item):
@@ -1391,64 +1364,48 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			# cancelled by user (passing any arg means it's a dialog return)
 			return
 		item = self.getCurrentSelection()
-		if not canDelete(item):
-			if item and isTrashFolder(item[0]):
-				# Red button to empty trashcan...
-				self.purgeAll()
-			return
 		current = item[0]
 		info = item[1]
 		cur_path = os.path.realpath(current.getPath())
 		st = os.stat(cur_path)
 		name = info and info.getName(current) or _("this recording")
-		are_you_sure = _("Do you really want to delete %s?") % (name)
+		if item and isTrashFolder(item[0]):
+			# Red button to empty trashcan...
+			self.purgeAll()
+			return
 		if current.flags & eServiceReference.mustDescent:
-			files = 0
-			subdirs = 0
-			if args:
-				# already confirmed...
-				# but not implemented yet...
-				msg = ''
-				if config.usage.movielist_trashcan.value:
-					try:
-						# Move the files to the trash can in a way that their CTIME is
-						# set to "now". A simple move would not correctly update the
-						# ctime, and hence trigger a very early purge.
-						trash = Tools.Trashcan.createTrashFolder()
-						trash = os.path.join(trash, os.path.split(cur_path)[1])
-						os.mkdir(trash)
-						for root, dirnames, filenames in os.walk(cur_path):
-							trashroot = os.path.join(trash, root[len(cur_path)+1:])
-							for fn in filenames:
-								print "Move %s -> %s" % (os.path.join(root, fn), os.path.join(trashroot, fn))
-								os.rename(os.path.join(root, fn), os.path.join(trashroot, fn))
-							for dn in dirnames:
-								print "MkDir", os.path.join(trashroot, dn)
-								os.mkdir(os.path.join(trashroot, dn))
-						# second pass to remove the empty directories
-						for root, dirnames, filenames in os.walk(cur_path, topdown=False):
-							for dn in dirnames:
-								print "rmdir", os.path.join(trashroot, dn)
-								os.rmdir(os.path.join(root, dn))
-						os.rmdir(cur_path)
-						self["list"].removeService(current)
-						self.showActionFeedback(_("Deleted") + " " + name)
-						# Files were moved to .Trash, ok.
-						return
-					except OSError, e:
-						print "[MovieSelection] Cannot move to trash", e
-						if e.errno == 18:
-							# This occurs when moving across devices
-							msg = _("Cannot move files on a different disk or system to the trash can") + ". "
-						else:
-							msg = _("Cannot move to trash can") + ".\n" + str(e) + "\n"
-					except Exception, e:
-						print "[MovieSelection] Weird error moving to trash", e
-						# Failed to create trash or move files.
-						msg = _("Cannot move to trash can") + "\n" + str(e) + "\n"
-				msg += "Sorry, deleting directories can (for now) only be done through the trash can."
-				self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR)
-				return
+			import CopyFiles
+			if cur_path.find('.Trash') == -1 and config.usage.movielist_trashcan.value:
+				try:
+					# Move the files to the trash can in a way that their CTIME is
+					# set to "now". A simple move would not correctly update the
+					# ctime, and hence trigger a very early purge.
+					trash = Tools.Trashcan.createTrashFolder(cur_path)
+					moveServiceFiles(current, trash, name, allowCopy=True)
+					self["list"].removeService(current)
+					self.showActionFeedback(_("Deleted") + " " + name)
+					# Files were moved to .Trash, ok.
+					return
+				except Exception, e:
+					print "[MovieSelection] Weird error moving to trash", e
+					# Failed to create trash or move files.
+					msg = _("Cannot move to trash can") + "\n" + str(e) + "\n"
+					return
+			else:
+				files = 0
+				subdirs = 0
+				if cur_path.find('.Trash') != -1:
+					are_you_sure = _("Do you really want to permamently remove from trash can ?")
+				else:
+					are_you_sure = _("Do you really want to delete ?")
+				if args:
+					# already confirmed...
+					# but not implemented yet...
+					msg = ''
+					CopyFiles.deleteFiles(cur_path, name)
+					self["list"].removeService(current)
+					self.showActionFeedback(_("Deleted") + " " + name)
+					return
 			for fn in os.listdir(cur_path):
 				if (fn != '.') and (fn != '..'):
 					ffn = os.path.join(cur_path, fn)
@@ -1457,7 +1414,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 					else:
 						files += 1
 			if files or subdirs:
-				self.session.openWithCallback(self.delete, MessageBox, _("Directory contains %d file(s) and %d sub-directories.\n") % (files,subdirs) + are_you_sure)
+				folder_filename = os.path.split(os.path.split(name)[0])[1]
+				self.session.openWithCallback(self.delete, MessageBox, _("'%s' contains %d file(s) and %d sub-directories.\n") % (folder_filename,files,subdirs) + are_you_sure)
 				return
 			else:
 				os.rmdir(cur_path)
@@ -1479,32 +1437,25 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 					if not args:
 						self.session.openWithCallback(self.delete, MessageBox, _("File appears to be busy.\n") + are_you_sure)
 						return
-			if config.usage.movielist_trashcan.value:
+			if cur_path.find('.Trash') == -1 and config.usage.movielist_trashcan.value:
 				try:
-					trash = Tools.Trashcan.createTrashFolder()
-					# Also check whether we're INSIDE the trash, then it's a purge.
-					if cur_path.startswith(trash):
-						msg = _("Deleted items") + "\n"
-					else:
-						moveServiceFiles(current, trash, name, allowCopy=False)
-						self["list"].removeService(current)
-						# Files were moved to .Trash, ok.
-						from Screens.InfoBarGenerics import delResumePoint
-						delResumePoint(current)
-						self.showActionFeedback(_("Deleted") + " " + name)
-						return
-				except OSError, e:
-					print "[MovieSelection] Cannot move to trash", e
-					if e.errno == 18:
-						# This occurs when moving across devices
-						msg = _("Cannot move files on a different disk or system to the trash can") + ". "
-					else:
-						msg = _("Cannot move to trash can") + ".\n" + str(e) + "\n"
+					trash = Tools.Trashcan.createTrashFolder(cur_path)
+					moveServiceFiles(current, trash, name, allowCopy=True)
+					self["list"].removeService(current)
+					# Files were moved to .Trash, ok.
+					from Screens.InfoBarGenerics import delResumePoint
+					delResumePoint(current)
+					self.showActionFeedback(_("Deleted") + " " + name)
+					return
 				except Exception, e:
 					print "[MovieSelection] Weird error moving to trash", e
 					# Failed to create trash or move files.
 					msg = _("Cannot move to trash can") + "\n" + str(e) + "\n"
 			else:
+				if cur_path.find('.Trash') != -1:
+					are_you_sure = _("Do you really want to permamently remove '%s' from trash can ?") % (name)
+				else:
+					are_you_sure = _("Do you really want to delete %s ?") % (name)
 				msg = ''
 			self.session.openWithCallback(self.deleteConfirmed, MessageBox, msg + are_you_sure)
 
@@ -1548,7 +1499,9 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 	def purgeConfirmed(self, confirmed):
 		if not confirmed:
 			return
-		Tools.Trashcan.cleanAll()
+		item = self.getCurrentSelection()
+		current = item[0]
+		Tools.Trashcan.cleanAll(os.path.split(current.getPath())[0])
 
 	def showNetworkSetup(self):
 		import NetworkSetup

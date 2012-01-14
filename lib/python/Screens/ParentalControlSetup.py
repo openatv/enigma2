@@ -49,10 +49,11 @@ class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
 		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
 		self.createSetup()
 		
-		self["actions"] = NumberActionMap(["SetupActions"],
+		self["actions"] = NumberActionMap(["SetupActions", "MenuActions"],
 		{
 		  "cancel": self.keyCancel,
-		  "save": self.keyCancel
+		  "save": self.keyCancel,
+		  "menu": self.closeRecursive,
 		}, -2)
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
@@ -329,11 +330,12 @@ class ParentalControlChangePin(Screen, ConfigListScreen, ProtectedScreen):
 			#self.onFirstExecBegin.append(boundFunction(self.session.openWithCallback, self.pinEntered, PinInput, pinList = [self.pin.value], title = _("please enter the old pin"), windowTitle = _("Change pin code")))
 		ProtectedScreen.__init__(self)
 		
-		self["actions"] = NumberActionMap(["DirectionActions", "ColorActions", "OkCancelActions"],
+		self["actions"] = NumberActionMap(["DirectionActions", "ColorActions", "OkCancelActions", "MenuActions"],
 		{
-			"cancel": self.cancel,
-			"red": self.cancel,
+			"cancel": self.keyCancel,
+			"red": self.keyCancel,
 			"save": self.keyOK,
+			"menu": self.closeRecursive,
 		}, -1)
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
@@ -371,9 +373,6 @@ class ParentalControlChangePin(Screen, ConfigListScreen, ProtectedScreen):
 			self.session.openWithCallback(self.close, MessageBox, _("The PIN code has been changed successfully."), MessageBox.TYPE_INFO)
 		else:
 			self.session.open(MessageBox, _("The PIN codes you entered are different."), MessageBox.TYPE_ERROR)
-
-	def cancel(self):
-		self.close(None)
 
 	def keyNumberGlobal(self, number):
 		ConfigListScreen.keyNumberGlobal(self, number)

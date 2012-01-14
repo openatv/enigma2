@@ -38,6 +38,7 @@ private:
 	enum { stateIdle, statePrepared, stateRecording };
 	bool m_simulate;
 	int m_state, m_want_record;
+	bool m_record_ecm;
 	friend class eServiceFactoryDVB;
 	eDVBServiceRecord(const eServiceReferenceDVB &ref);
 	

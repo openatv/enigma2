@@ -654,6 +654,9 @@ def InitUsageConfig():
 	config.cccaminfo.profiles = ConfigText(default="/media/cf/CCcamInfo.profiles", fixed_size=False)
 
 
+	config.streaming = ConfigSubsection()
+	config.streaming.stream_ecm = ConfigYesNo(default = False)
+
 def updateChoices(sel, choices):
 	if choices:
 		defval = None
