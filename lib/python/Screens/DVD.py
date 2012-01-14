@@ -574,16 +574,11 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 				ifofilename = val
 				if not ifofilename.upper().endswith("/VIDEO_TS"):
 					ifofilename += "/VIDEO_TS"
-
-				name = "/VIDEO_TS.IFO"
-				offset = 0x100
-				(status, isNTSC, isLowResolution) = self.readVideoAtributes( offset, ifofilename, name )
-				if not status:
-					name = "/VTS_01_0.IFO"
-					(status, isNTSC, isLowResolution) = self.readVideoAtributes( offset, ifofilename, name )
-					if not status:
-						offset = 0x200
-						(status, isNTSC, isLowResolution) = self.readVideoAtributes( offset, ifofilename, name )
+				files = [("/VIDEO_TS.IFO", 0x100), ("/VTS_01_0.IFO", 0x100), ("/VTS_01_0.IFO", 0x200)] # ( filename, offset )
+				for name in files:
+					(status, isNTSC, isLowResolution) = self.readVideoAtributes( ifofilename, name )
+					if status:
+						 break
 				height = getDesktop(0).size().height()
 				print "[DVD] height:", height
 				if isNTSC:
@@ -601,16 +596,17 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 				if subs:
 					subs.enableSubtitles(self.dvdScreen.instance, None)
 
-	def readVideoAtributes(self, offset, isofilename, name):
+	def readVideoAtributes(self, isofilename, checked_file):
+		(name, offset) = checked_file
+		isofilename += name
+
 		print "[DVD] file", name
 
 		status = False
 		isNTSC = False
-
-		ifofile = None
 		isLowResolution = False
 
-		isofilename += name
+		ifofile = None
 		try:
 #			Try to read the IFO header to determine PAL/NTSC format and the resolution
 			ifofile = open(isofilename, "r")
@@ -621,11 +617,11 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 			video_attr_low = ord(ifofile.read(1))
 			print "[DVD] %s: video_attr_high = %x" % ( name, video_attr_high ), "video_attr_low = %x" % ( video_attr_low )
 			isNTSC = (video_attr_high & 0x10 == 0)
-			isLowResolution = (video_attr_low & 0x30 == 0x30)
+			isLowResolution = (video_attr_low & 0x18 == 0x18)
 		except:
 #			If the service is an .iso or .img file we assume it is PAL
 #			Sorry we cannot open image files here.
-			print "[DVD] Cannot read file or ISO/IMG"
+			print "[DVD] Cannot read file or is ISO/IMG"
 		finally:
 			if ifofile is not None:
 				ifofile.close()
