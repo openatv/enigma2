@@ -52,6 +52,7 @@ class eDVBServicePMTHandler: public Object
 
 	int m_last_channel_state;
 	eDVBCAService *m_ca_servicePtr;
+	bool doDescramble;
 	ePtr<eDVBScan> m_dvb_scan; // for sdt scan
 
 	eAUTable<eTable<ProgramMapSection> > m_PMT;
@@ -198,10 +199,10 @@ public:
 	void getHBBTVUrl(std::string &ret) { ret = m_HBBTVUrl; }
 
 	/* deprecated interface */
-	int tune(eServiceReferenceDVB &ref, int use_decode_demux, eCueSheet *sg=0, bool simulate=false, eDVBService *service = 0);
+	int tune(eServiceReferenceDVB &ref, int use_decode_demux, eCueSheet *sg=0, bool simulate=false, eDVBService *service = 0, bool descramble = true);
 
 	/* new interface */
-	int tuneExt(eServiceReferenceDVB &ref, int use_decode_demux, ePtr<iTsSource> &, const char *streaminfo_file, eCueSheet *sg=0, bool simulate=false, eDVBService *service = 0);
+	int tuneExt(eServiceReferenceDVB &ref, int use_decode_demux, ePtr<iTsSource> &, const char *streaminfo_file, eCueSheet *sg=0, bool simulate=false, eDVBService *service = 0, bool descramble = true);
 
 	void free();
 private:

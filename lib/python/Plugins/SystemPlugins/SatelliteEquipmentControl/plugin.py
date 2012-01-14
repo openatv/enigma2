@@ -15,10 +15,11 @@ class SecParameterSetup(Screen, ConfigListScreen):
 	def __init__(self, session):
 		self.skin = SecParameterSetup.skin
 
-		self["actions"] = ActionMap(["SetupActions"],
+		self["actions"] = ActionMap(["SetupActions", "MenuActions"],
 		{
 			"ok": self.keySave,
 			"cancel": self.keyCancel,
+			"menu": self.closeRecursive,
 		}, -2)
 
 		Screen.__init__(self, session)

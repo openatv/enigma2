@@ -38,7 +38,7 @@ class HdmiCECSetupScreen(Screen, ConfigListScreen):
 		self["current_address"] = StaticText()
 		self["fixed_address"] = StaticText()
 
-		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
+		self["actions"] = ActionMap(["SetupActions", "ColorActions", "MenuActions"],
 		{
 			"ok": self.keyGo,
 			"save": self.keyGo,
@@ -47,6 +47,7 @@ class HdmiCECSetupScreen(Screen, ConfigListScreen):
 			"red": self.keyCancel,
 			"yellow": self.setFixedAddress,
 			"blue": self.clearFixedAddress,
+			"menu": self.closeRecursive,
 		}, -2)
 
 		self.list = []
