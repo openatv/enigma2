@@ -434,7 +434,6 @@ config.misc.graph_mepg=ConfigSubsection()
 config.misc.graph_mepg.prev_time=ConfigClock(default = time())
 config.misc.graph_mepg.prev_time_period=ConfigInteger(default=120, limits=(60,300))
 config.misc.graph_mepg.ev_fontsize = ConfigInteger(default=14, limits=(10, 25))
-config.misc.graph_mepg.itemheight = ConfigInteger(default=54, limits=(27, 90))
 config.misc.graph_mepg.items_per_page = ConfigInteger(default=5, limits=(3, 10))
 config.misc.graph_mepg.overjump = ConfigBoolean(default=True)
 
