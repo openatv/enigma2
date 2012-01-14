@@ -295,7 +295,7 @@ int eDVBTSTools::fixupPTS(const off_t &offset, pts_t &now)
 		calcBegin();
 		if (!m_begin_valid)
 		{	
-			eDebug("begin not valid, can't fixup");
+			eDebug("eDVBTSTools::fixupPTS begin not valid, can't fixup");
 			return -1;
 		}
 		

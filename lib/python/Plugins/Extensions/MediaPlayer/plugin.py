@@ -1070,6 +1070,6 @@ def filescan(**kwargs):
 from Plugins.Plugin import PluginDescriptor
 def Plugins(**kwargs):
 	return [
-		PluginDescriptor(name = "MediaPlayer", description = "Play back media files", where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc = menu),
+		PluginDescriptor(name = "MediaPlayer", description = "Play back media files", where = PluginDescriptor.WHERE_PLUGINMENU, needsRestart = False, fnc = main),
 		PluginDescriptor(name = "MediaPlayer", where = PluginDescriptor.WHERE_FILESCAN, needsRestart = False, fnc = filescan)
 	]

@@ -652,6 +652,9 @@ def InitUsageConfig():
 			config.oscaminfo.showInExtensions = ConfigYesNo(default=True)
 			SystemInfo["OScamInstalled"] = True
 
+	config.streaming = ConfigSubsection()
+	config.streaming.stream_ecm = ConfigYesNo(default = False)
+
 def updateChoices(sel, choices):
 	if choices:
 		defval = None
