@@ -94,12 +94,12 @@ class RemoteControlCode(Screen,ConfigListScreen,RemoteControlCodeInit):
 		self.list = []
 		self.rcsctype = getConfigListEntry(_("Remote Control System Code"), config.plugins.remotecontrolcode.systemcode)
 		self.list.append( self.rcsctype )
-		self.list.append(getConfigListEntry(_("Harmony support"), config.misc.remotecontrol_harmony))
+		self.list.append(getConfigListEntry(_("Text support"), config.misc.remotecontrol_text_support))
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
 
 	def keySave(self):
-		config.misc.remotecontrol_harmony.save()
+		config.misc.remotecontrol_text_support.save()
 		configfile.save()
 		if self.codestartup != config.plugins.remotecontrolcode.systemcode.value:
 			print "<RemoteControlCode> Selected System Code : ",config.plugins.remotecontrolcode.systemcode.value

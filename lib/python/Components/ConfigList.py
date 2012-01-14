@@ -18,7 +18,7 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 
 	def execBegin(self):
 		rcinput = eRCInput.getInstance()
-		if not config.misc.remotecontrol_harmony.value:
+		if not config.misc.remotecontrol_text_support.value:
 			rcinput.setKeyboardMode(rcinput.kmAscii)
 		else:
 			rcinput.setKeyboardMode(rcinput.kmNone)
