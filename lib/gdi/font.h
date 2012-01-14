@@ -96,12 +96,8 @@ public:
 
 struct pGlyph
 {
-	union
-	{
-		int y;
-		unsigned long newcolor;
-	};
-	int x, w;
+	int x, y, w;
+	unsigned long newcolor;
 	ePtr<Font> font;
 #ifdef HAVE_FREETYPE2
 	FT_UInt glyph_index;
@@ -146,7 +142,8 @@ class eTextPara: public iObject
 	eRect boundBox;
 	bool doTopBottomReordering;	
 
-	int appendGlyph(Font *current_font, FT_Face current_face, FT_UInt glyphIndex, int flags, int rflags, int border, bool last);
+	int appendGlyph(Font *current_font, FT_Face current_face, FT_UInt glyphIndex, int flags, int rflags, int border, bool last,
+			bool activate_newcolor, unsigned long newcolor);
 	void newLine(int flags);
 	void setFont(Font *font, Font *replacement_font);
 	void calc_bbox();
