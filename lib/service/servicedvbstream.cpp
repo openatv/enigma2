@@ -2,6 +2,7 @@
 #include <lib/base/eerror.h>
 #include <lib/dvb/epgcache.h>
 #include <lib/dvb/metaparser.h>
+#include <lib/base/nconfig.h> 
 #include <fcntl.h>
 
 DEFINE_REF(eDVBServiceStream);
@@ -12,6 +13,7 @@ eDVBServiceStream::eDVBServiceStream()
 	CONNECT(m_event_handler.m_eit_changed, eDVBServiceStream::gotNewEvent);
 	m_state = stateIdle;
 	m_want_record = 0;
+	m_stream_ecm = false;
 	m_tuned = 0;
 	m_target_fd = -1;
 }
@@ -103,9 +105,11 @@ int eDVBServiceStream::doPrepare()
 		/* allocate a ts recorder if we don't already have one. */
 	if (m_state == stateIdle)
 	{
+		std::string stream_ecm;
+		m_stream_ecm = (ePythonConfigQuery::getConfigValue("config.streaming.stream_ecm", stream_ecm) >= 0 && stream_ecm == "True");
 		m_pids_active.clear();
 		m_state = statePrepared;
-		return m_service_handler.tune(m_ref, 0, 0, 0);
+		return m_service_handler.tune(m_ref, 0, 0, 0, NULL, !m_stream_ecm);
 	}
 	return 0;
 }
@@ -222,6 +226,15 @@ int eDVBServiceStream::doRecord()
 		eDebug(", and the text pid is %04x", program.textPid);
 		if (program.textPid != -1)
 			pids_to_record.insert(program.textPid); // Videotext
+
+		if (m_stream_ecm)
+		{
+			for (std::list<eDVBServicePMTHandler::program::capid_pair>::const_iterator i(program.caids.begin()); 
+						i != program.caids.end(); ++i)
+			{
+				if (i->capid >= 0) pids_to_record.insert(i->capid);
+			}
+		}
 
 			/* find out which pids are NEW and which pids are obsolete.. */
 		std::set<int> new_pids, obsolete_pids;

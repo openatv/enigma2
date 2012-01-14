@@ -133,12 +133,13 @@ class TempFanControl(Screen, ConfigListScreen):
 		#self["config"].setList(self.list)
 		self["config"].l.setSeperation(300)
 		
-		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"], 
+		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "MenuActions"], 
 		{
 			"ok": self.save,
 			"cancel": self.revert,
 			"red": self.revert,
-			"green": self.save
+			"green": self.save,
+			"menu": self.closeRecursive,
 		}, -1)
 
 	def save(self):

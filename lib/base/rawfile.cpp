@@ -6,8 +6,8 @@
 
 DEFINE_REF(eRawFile);
 
-eRawFile::eRawFile()
-	:m_lock(false)
+eRawFile::eRawFile(int packetsize)
+	: iTsSource(packetsize), m_lock(false)
 {
 	m_fd = -1;
 	m_file = 0;
