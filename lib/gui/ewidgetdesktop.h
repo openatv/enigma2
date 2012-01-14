@@ -73,6 +73,9 @@ public:
 	
 	void resize(eSize size);
 	eSize size() const { return m_screen.m_screen_size; }
+	eRect bounds() const; // returns area inside margins
+	eRect margins() const { return m_margins; }
+	void setMargins(const eRect& value) { m_margins = value; }
 private:
 	ePtrList<eWidget> m_root;
 	void calcWidgetClipRegion(eWidget *widget, gRegion &parent_visible);
@@ -95,6 +98,7 @@ private:
 	void clearVisibility(eWidget *widget);
 	
 	int m_style_id;
+	eRect m_margins;
 };
 
 #endif
