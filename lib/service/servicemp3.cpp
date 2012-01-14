@@ -285,7 +285,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 		m_sourceinfo.containertype = ctAVI;
 		m_sourceinfo.is_video = TRUE;
 	}
-	else if ( strcasecmp(ext, ".mp4") == 0 || strcasecmp(ext, ".mov") == 0 || strcasecmp(ext, ".m4v") == 0)
+	else if ( strcasecmp(ext, ".mp4") == 0 || strcasecmp(ext, ".mov") == 0 || strcasecmp(ext, ".m4v") == 0 || strcasecmp(ext, ".3gp") == 0)
 	{
 		m_sourceinfo.containertype = ctMP4;
 		m_sourceinfo.is_video = TRUE;
