@@ -1121,6 +1121,8 @@ class EPGSelection(Screen):
 		self.moveTimeLines(True)
 
 	def OK(self):
+		if config.GraphEPG.OK_pliepg.value == "EventView" or config.GraphEPG.OK_enhanced.value == "EventView" or config.GraphEPG.OK_infobar.value == "EventView":
+			self.infoKeyPressed()
 		if config.GraphEPG.OK_pliepg.value == "Zap" or config.GraphEPG.OK_enhanced.value == "Zap" or config.GraphEPG.OK_infobar.value == "Zap":
 			self.ZapTo()
 		if config.GraphEPG.OK_pliepg.value == "Zap + Exit" or config.GraphEPG.OK_enhanced.value == "Zap + Exit" or config.GraphEPG.OK_infobar.value == "Zap + Exit":
