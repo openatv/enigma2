@@ -43,6 +43,13 @@
 		<widget source="name" render="Label" position="0,0" size="124,32" font="Regular;16" halign="left" valign="top" />
 	</screen>
 
+<!-- DVD -->
+	<screen name="DVDSummary" position="0,0" size="132,1">
+		<widget source="session.CurrentService" render="Label" position="0,0" size="60,1" font="Regular;16">
+			<convert type="ServicePosition">Position</convert>
+		</widget>
+	</screen>
+
 <!-- setup-->
 	<screen name="SetupSummary" position="0,0" size="132,64">
 		<widget source="SetupEntry" render="Label" position="0,0" size="120,40" font="Regular;12" halign="left" />

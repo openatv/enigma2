@@ -18,38 +18,8 @@ from Components.Harddisk import harddiskmanager
 lastpath = ""
 
 class DVDSummary(Screen):
-	skin = (
-	"""<screen name="DVDSummary" position="0,0" size="132,64" id="1">
-		<widget source="session.CurrentService" render="Label" position="5,4" size="120,28" font="Regular;12" transparent="1" >
-			<convert type="ServiceName">Name</convert>
-		</widget>
-		<widget name="DVDPlayer" position="5,30" size="66,16" font="Regular;11" transparent="1" />
-		<widget name="Chapter" position="72,30" size="54,16" font="Regular;12" transparent="1" halign="right" />
-		<widget source="session.CurrentService" render="Label" position="66,46" size="60,18" font="Regular;16" transparent="1" halign="right" >
-			<convert type="ServicePosition">Position</convert>
-		</widget>
-		<widget source="session.CurrentService" render="Progress" position="6,46" size="60,18" borderWidth="1" >
-			<convert type="ServicePosition">Position</convert>
-		</widget>
-	</screen>""",
-	"""<screen name="DVDSummary" position="0,0" size="96,64" id="2">
-		<widget source="session.CurrentService" render="Label" position="0,0" size="96,25" font="Regular;12" transparent="1" >
-			<convert type="ServiceName">Name</convert>
-		</widget>
-		<widget name="DVDPlayer" position="0,26" size="96,12" font="Regular;10" transparent="1" />
-		<widget name="Chapter" position="0,40" size="66,12" font="Regular;10" transparent="1" halign="left" />
-		<widget source="session.CurrentService" render="Label" position="66,40" size="30,12" font="Regular;10" transparent="1" halign="right" >
-			<convert type="ServicePosition">Position</convert>
-		</widget>
-		<widget source="session.CurrentService" render="Progress" position="0,52" size="96,12" borderWidth="1" >
-			<convert type="ServicePosition">Position</convert>
-		</widget>
-	</screen>""")
-
 	def __init__(self, session, parent):
 		Screen.__init__(self, session, parent)
-
-		self["DVDPlayer"] = Label("DVD Player")
 		self["Title"] = Label("")
 		self["Time"] = Label("")
 		self["Chapter"] = Label("")
