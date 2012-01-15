@@ -11,6 +11,7 @@ from Components.HTMLComponent import HTMLComponent
 from Components.Pixmap import Pixmap
 from Components.Sources.ServiceEvent import ServiceEvent
 from Components.Sources.Event import Event
+from Components.Sources.StaticText import StaticText
 from Components.SystemInfo import SystemInfo
 from Components.TimerSanityCheck import TimerSanityCheck
 from Components.UsageConfig import preferredTimerPath, defaultMoviePath
@@ -578,6 +579,10 @@ class EPGSelection(Screen):
 
 	def onSetupClose(self):
 		if self.type == EPG_TYPE_GRAPH:
+			if config.GraphEPG.heightswitch.value:
+				config.GraphEPG.heightswitch.setValue(False)
+			else:
+				config.GraphEPG.heightswitch.setValue(True)
 			l = self["list"]
 			l.setItemsPerPage()
 			l.setEventFontsize()
@@ -601,8 +606,10 @@ class EPGSelection(Screen):
 	def onStartup(self):
 		if self.type == EPG_TYPE_GRAPH:
 			self.activityTimer.stop()
-			self["list"].curr_refcool = self.session.nav.getCurrentlyPlayingServiceReference()
 			self["list"].fillGraphEPG(self.services, self.ask_time)
+			serviceref = self.session.nav.getCurrentlyPlayingServiceReference()
+			self["list"].moveToService(serviceref)
+			self["list"].setCurrentlyPlaying(serviceref)
 			self["list"].moveToService(self.session.nav.getCurrentlyPlayingServiceReference())
 			self.startRef = self["list"].getCurrent()[1]
 			self.moveTimeLines()
@@ -644,9 +651,10 @@ class EPGSelection(Screen):
 	def onCreate(self):
 		if self.type == EPG_TYPE_GRAPH:
 			self.activityTimer.stop()
-			self["list"].curr_refcool = self.session.nav.getCurrentlyPlayingServiceReference()
 			self["list"].fillGraphEPG(self.services, self.ask_time)
-			self["list"].moveToService(self.session.nav.getCurrentlyPlayingServiceReference())
+			serviceref = self.session.nav.getCurrentlyPlayingServiceReference()
+			self["list"].moveToService(serviceref)
+			self["list"].setCurrentlyPlaying(serviceref)
 			self.moveTimeLines()
 			if config.GraphEPG.channel1.value:
 				self["list"].instance.moveSelectionTo(0)
@@ -1077,13 +1085,11 @@ class EPGSelection(Screen):
 		self.updEvent(+2)
 
 	def key7(self):
-		EPGheight = getDesktop(0).size().height()
-		GraphEPGman = (config.GraphEPG.item_hight.value / config.GraphEPG.items_per_page.value)
-		if self["list"].coolheight == config.GraphEPG.item_hight16.value:
-			self["list"].coolheight = GraphEPGman
+		if config.GraphEPG.heightswitch.value:
+			config.GraphEPG.heightswitch.setValue(False)
 		else:
-			self["list"].coolheight = config.GraphEPG.item_hight16.value
-		self["list"].l.setItemHeight(int(self["list"].coolheight))
+			config.GraphEPG.heightswitch.setValue(True)
+		self["list"].setItemsPerPage()
 		self["list"].fillGraphEPG(None)
 		self.moveTimeLines()
 
@@ -1099,7 +1105,7 @@ class EPGSelection(Screen):
 		self.moveTimeLines(True)		
 
 	def key0(self):
-		self["list"].setEpoch2(180)
+		self["list"].setEpoch(180)
 		config.GraphEPG.prev_time_period.value = 180
 		self["list"].instance.moveSelectionTo(0)	
 		now = time()
@@ -1314,6 +1320,8 @@ class EPGSelection(Screen):
 				ref = self["list"].getCurrent()[1]
 				if ref:
 					self.zapFunc(ref.ref)
+					self["list"].setCurrentlyPlaying(ref.ref)
+					self["list"].l.invalidate()
 					self.closeScreen()
 				else:
 					self.closeScreen()
@@ -1541,6 +1549,7 @@ class EPGSelectionSetup(Screen, ConfigListScreen):
 		self.type=type
 		self.skinName = "EPGSelectionSetup"
 		Screen.setTitle(self, _("EPG Setup"))
+		self["satus"] = StaticText()
 		self.onChangedEntry = [ ]
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
@@ -1568,6 +1577,9 @@ class EPGSelectionSetup(Screen, ConfigListScreen):
 
 		self["key_red"] = Button(_("Cancel"))
 		self["key_green"] = Button(_("Save"))
+		if not self.selectionChanged in self["config"].onSelectionChanged:
+			self["config"].onSelectionChanged.append(self.selectionChanged)
+		self.selectionChanged()
 
 	def myhelp(self):
 		self.session.open(GraphEPGHelp, "/usr/share/enigma2/skin_default/GraphEPG/help.jpg")
@@ -1586,7 +1598,7 @@ class EPGSelectionSetup(Screen, ConfigListScreen):
 			self.list.append(getConfigListEntry(_("Primetime hour"), config.GraphEPG.Primetime1))
 			self.list.append(getConfigListEntry(_("Primetime minute"), config.GraphEPG.Primetime2))
 			self.list.append(getConfigListEntry(_("Channel 1 at Start"), config.GraphEPG.channel1))
-			self.list.append(getConfigListEntry(_("Start-Items 7-8 , 14-16"), config.GraphEPG.coolswitch))
+			self.list.append(getConfigListEntry(_("Item height switch"), config.GraphEPG.heightswitch))
 			self.list.append(getConfigListEntry(_("Items per Page"), config.GraphEPG.items_per_page))
 			self.list.append(getConfigListEntry(_("Event Fontsize"), config.GraphEPG.Fontsize))
 			self.list.append(getConfigListEntry(_("Left Fontsize"), config.GraphEPG.Left_Fontsize))
@@ -1609,10 +1621,15 @@ class EPGSelectionSetup(Screen, ConfigListScreen):
 			self.list.append(getConfigListEntry(_("LongOK Button"), config.GraphEPG.OKLong))
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
+
+	def selectionChanged(self):
+		self["satus"].setText(_("Current value: ") + self.getCurrentValue())
+
 	# for summary:
 	def changedEntry(self):
 		for x in self.onChangedEntry:
 			x()
+ 		self.selectionChanged()
 
 	def getCurrentEntry(self):
 		return self["config"].getCurrent()[0]
