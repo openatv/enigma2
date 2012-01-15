@@ -1426,6 +1426,8 @@ class UpdatePlugin(Screen):
 		self.processed_packages = []
 		self.total_packages = None
 		self.skin_path = plugin_path
+		self.TraficCheck = False
+		self.TraficResult = False
 
 		self.activity = 0
 		self.activityTimer = eTimer()
@@ -1504,9 +1506,12 @@ class UpdatePlugin(Screen):
 				self.runUpgrade(False)
 
 	def runUpgrade(self, result):
+		self.TraficResult = result
 		if result:
+			self.TraficCheck = True
 			self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE_LIST)
 		else:
+			self.TraficCheck = False
 			self.activityTimer.stop()
 			self.activityslider.setValue(0)
 			self.exit()
@@ -1558,14 +1563,13 @@ class UpdatePlugin(Screen):
 		elif event == IpkgComponent.EVENT_DONE:
 			if self.updating:
 				self.updating = False
-				self.total_packages = len(self.ipkg.getFetchedList())
-				if self.total_packages:
-					self.checkTraficLight()
-				else:
-					self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE_LIST)
+				self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE_LIST)
 			elif self.ipkg.currentCommand == IpkgComponent.CMD_UPGRADE_LIST:
 				self.total_packages = len(self.ipkg.getFetchedList())
-				if self.total_packages:
+				if self.total_packages and not self.TraficCheck:
+					self.checkTraficLight()
+					return
+				if self.total_packages and self.TraficCheck and self.TraficResult:
 					message = _("Do you want to update your Dreambox?") + "\n(%s " % self.total_packages + _("Packages") + ")"
 					if config.plugins.softwaremanager.updatetype.value == "cold":
 						choices = [(_("Show new Packages"), "show"), (_("Unattended upgrade without GUI and reboot system"), "cold"), (_("Cancel"), "")]
