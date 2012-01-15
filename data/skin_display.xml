@@ -98,20 +98,20 @@
 	</screen>
 
 	<screen name="MovieSelectionSummary" position="fill">
-		<widget source="parent.Title" render="Label" position="4,0" size="124,14" font="FdLcD;12" halign="left" valign="top" noWrap="1" />
-		<widget source="name" render="Label" position="4,14" size="124,32" font="FdLcD;16" halign="left" valign="top" />
-		<widget source="parent.Service" render="Label" position="4,46" size="74,18" font="FdLcD;14" halign="left" noWrap="1">
-			<convert type="MovieInfo">RecordServiceName</convert>
-		</widget>
-		<widget source="parent.Service" render="Label" position="78,46" size="46,18" font="FdLcD;14" halign="left" noWrap="1">
-			<convert type="MovieInfo">FileSize</convert>
-		</widget>
+		<widget source="parent.Title" render="Label" position="top" size="*,14" font="FdLcD;12" halign="left" valign="top" noWrap="1" />
+		<widget source="name" render="Label" position="top" size="*,32" font="FdLcD;16" halign="left" valign="top" />
+		<panel position="bottom" size="*,18">
+			<widget source="parent.Service" render="Label" position="right" size="46,*" font="FdLcD;14" halign="left" noWrap="1">
+				<convert type="MovieInfo">FileSize</convert>
+			</widget>
+			<widget source="parent.Service" render="Label" position="fill" font="FdLcD;14" halign="left" noWrap="1">
+				<convert type="MovieInfo">RecordServiceName</convert>
+			</widget>
+		</panel>
 	</screen>
 
 <!-- setup-->
 	<screen name="SetupSummary" position="fill">
-		<panel position="left" size="4,*" /> <!-- Margins for some boxes -->
-		<panel position="right" size="4,*" />
 		<widget source="SetupTitle" render="Label" position="top" size="*,12" font="FdLcD;12" halign="left" />
 		<widget source="SetupEntry" render="Label" position="top" size="*,40" font="FdLcD;12" halign="left" />
 		<widget source="SetupValue" render="Label" position="top" size="*,12" font="FdLcD;12" halign="left" />
@@ -136,7 +136,7 @@
 	<screen name="PluginBrowserSummary" position="fill">
 		<widget source="parent.Title" render="Label" position="top" size="*,16" font="FdLcD;12"  noWrap="1" />
 		<widget source="entry" render="Label" position="top" size="*,20" font="FdLcD;18" noWrap="1" />
-		<widget source="desc" render="Label" position="top" size="*,28" font="FdLcD;12" valign="top" />
+		<widget source="desc" render="Label" position="fill" font="FdLcD;12" valign="top" />
 	</screen>
 
 <!-- JobView Summary -->
