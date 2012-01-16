@@ -29,6 +29,7 @@ eDVBServicePMTHandler::eDVBServicePMTHandler()
 	m_use_decode_demux = 0;
 	m_pmt_pid = -1;
 	m_dsmcc_pid = -1;
+	m_service_type = livetv;
 	eDVBResourceManager::getInstance(m_resourceManager);
 	CONNECT(m_PMT.tableReady, eDVBServicePMTHandler::PMTready);
 	CONNECT(m_PAT.tableReady, eDVBServicePMTHandler::PATready);
@@ -130,7 +131,7 @@ void eDVBServicePMTHandler::PMTready(int error)
 					demuxes[1]=m_decode_demux_num;
 				else
 					demuxes[1]=demuxes[0];
-				eDVBCAHandler::getInstance()->registerService(m_reference, adapterid, demuxes, m_ca_servicePtr);
+				eDVBCAHandler::getInstance()->registerService(m_reference, adapterid, demuxes, (int)m_service_type, m_ca_servicePtr);
 				eDVBCIInterfaces::getInstance()->recheckPMTHandlers();
 			}
 			eDVBCIInterfaces::getInstance()->gotPMT(this);
@@ -1039,18 +1040,19 @@ void eDVBServicePMTHandler::SDTScanEvent(int event)
 	}
 }
 
-int eDVBServicePMTHandler::tune(eServiceReferenceDVB &ref, int use_decode_demux, eCueSheet *cue, bool simulate, eDVBService *service, bool descramble)
+int eDVBServicePMTHandler::tune(eServiceReferenceDVB &ref, int use_decode_demux, eCueSheet *cue, bool simulate, eDVBService *service, serviceType type, bool descramble)
 {
 	ePtr<iTsSource> s;
-	return tuneExt(ref, use_decode_demux, s, NULL, cue, simulate, service, descramble);
+	return tuneExt(ref, use_decode_demux, s, NULL, cue, simulate, service, type, descramble);
 }
 
-int eDVBServicePMTHandler::tuneExt(eServiceReferenceDVB &ref, int use_decode_demux, ePtr<iTsSource> &source, const char *streaminfo_file, eCueSheet *cue, bool simulate, eDVBService *service, bool descramble)
+int eDVBServicePMTHandler::tuneExt(eServiceReferenceDVB &ref, int use_decode_demux, ePtr<iTsSource> &source, const char *streaminfo_file, eCueSheet *cue, bool simulate, eDVBService *service, serviceType type, bool descramble)
 {
 	RESULT res=0;
 	m_reference = ref;
 	m_use_decode_demux = use_decode_demux;
 	m_no_pat_entry_delay->stop();
+	m_service_type = type;
 
 	doDescramble = descramble;
 
