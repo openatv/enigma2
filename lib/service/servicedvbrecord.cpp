@@ -239,21 +239,24 @@ int eDVBServiceRecord::doPrepare()
 	if (m_state == stateIdle)
 	{
 		eDVBServicePMTHandler::serviceType servicetype;
+		bool descramble;
 		if (m_streaming)
 		{
-			std::string stream_ecm;
+			std::string stream_ecm, descramble_setting;
 			m_record_ecm = (ePythonConfigQuery::getConfigValue("config.streaming.stream_ecm", stream_ecm) >= 0 && stream_ecm == "True");
+			descramble = (ePythonConfigQuery::getConfigValue("config.streaming.descramble", descramble_setting) < 0 || descramble_setting != "False");
 			servicetype = m_record_ecm ? eDVBServicePMTHandler::scrambled_streamserver : eDVBServicePMTHandler::streamserver;
 		}
 		else
 		{
-			std::string record_ecm;
+			std::string record_ecm, descramble_setting;
 			m_record_ecm = (ePythonConfigQuery::getConfigValue("config.recording.record_ecm", record_ecm) >= 0 && record_ecm == "True");
+			descramble = (ePythonConfigQuery::getConfigValue("config.recording.descramble", descramble_setting) < 0 || descramble_setting != "False");
 			servicetype = m_record_ecm ? eDVBServicePMTHandler::scrambled_recording : eDVBServicePMTHandler::recording;
 		}
 		m_pids_active.clear();
 		m_state = statePrepared;
-		return m_service_handler.tune(m_ref, 0, 0, m_simulate, NULL, servicetype, !m_record_ecm);
+		return m_service_handler.tune(m_ref, 0, 0, m_simulate, NULL, servicetype, descramble);
 	}
 	return 0;
 }
