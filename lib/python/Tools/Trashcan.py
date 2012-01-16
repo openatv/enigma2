@@ -68,7 +68,7 @@ class Trashcan:
 			print "[Trashcan] Weirdness:", e
 
 def clean(ctimeLimit, reserveBytes):
-	name = _("Cleaing Trashes")
+	name = _("Cleaning Trashes")
 	job = Components.Task.Job(name)
 	task = CleanTrashTask(job, name)
 	task.openFiles(ctimeLimit, reserveBytes)
