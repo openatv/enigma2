@@ -238,19 +238,22 @@ int eDVBServiceRecord::doPrepare()
 		/* allocate a ts recorder if we don't already have one. */
 	if (m_state == stateIdle)
 	{
+		eDVBServicePMTHandler::serviceType servicetype;
 		if (m_streaming)
 		{
 			std::string stream_ecm;
 			m_record_ecm = (ePythonConfigQuery::getConfigValue("config.streaming.stream_ecm", stream_ecm) >= 0 && stream_ecm == "True");
+			servicetype = m_record_ecm ? eDVBServicePMTHandler::scrambled_streamserver : eDVBServicePMTHandler::streamserver;
 		}
 		else
 		{
 			std::string record_ecm;
 			m_record_ecm = (ePythonConfigQuery::getConfigValue("config.recording.record_ecm", record_ecm) >= 0 && record_ecm == "True");
+			servicetype = m_record_ecm ? eDVBServicePMTHandler::scrambled_recording : eDVBServicePMTHandler::recording;
 		}
 		m_pids_active.clear();
 		m_state = statePrepared;
-		return m_service_handler.tune(m_ref, 0, 0, m_simulate, NULL, !m_record_ecm);
+		return m_service_handler.tune(m_ref, 0, 0, m_simulate, NULL, servicetype, !m_record_ecm);
 	}
 	return 0;
 }

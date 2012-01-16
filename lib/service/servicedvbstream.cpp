@@ -113,7 +113,8 @@ int eDVBServiceStream::doPrepare()
 		m_stream_ait = (ePythonConfigQuery::getConfigValue("config.streaming.stream_ait", stream_ait) >= 0 && stream_ait == "True");
 		m_pids_active.clear();
 		m_state = statePrepared;
-		return m_service_handler.tune(m_ref, 0, 0, 0, NULL, !m_stream_ecm);
+		eDVBServicePMTHandler::serviceType servicetype = m_stream_ecm ? eDVBServicePMTHandler::scrambled_streamserver : eDVBServicePMTHandler::streamserver;
+		return m_service_handler.tune(m_ref, 0, 0, 0, NULL, servicetype, !m_stream_ecm);
 	}
 	return 0;
 }

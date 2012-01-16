@@ -1234,7 +1234,7 @@ void eDVBServicePlay::serviceEventTimeshift(int event)
 				resetTimeshift(1);
 
 				ePtr<iTsSource> source = createTsSource(r);
-				m_service_handler_timeshift.tuneExt(r, 1, source, m_timeshift_file_next.c_str(), m_cue, 0, m_dvb_service, false); /* use the decoder demux for everything */
+				m_service_handler_timeshift.tuneExt(r, 1, source, m_timeshift_file_next.c_str(), m_cue, 0, m_dvb_service, eDVBServicePMTHandler::timeshift_playback, false); /* use the decoder demux for everything */
 
 				m_event((iPlayableService*)this, evUser+1);
 			}
@@ -1248,6 +1248,7 @@ RESULT eDVBServicePlay::start()
 	eServiceReferenceDVB service = (eServiceReferenceDVB&)m_reference;
 	bool scrambled = true;
 	int packetsize = 188;
+	eDVBServicePMTHandler::serviceType type = eDVBServicePMTHandler::livetv;
 
 		/* in pvr mode, we only want to use one demux. in tv mode, we're using 
 		   two (one for decoding, one for data source), as we must be prepared
@@ -1263,6 +1264,7 @@ RESULT eDVBServicePlay::start()
 			scrambled = meta.m_scrambled;
 		}
 		m_cue = new eCueSheet();
+		type = eDVBServicePMTHandler::playback;
 	}
 	else
 		m_event(this, evStart);
@@ -1274,11 +1276,12 @@ RESULT eDVBServicePlay::start()
 		 * user can indicate a stream is scrambled, by using servicetype id + 0x100
 		 */
 		scrambled = (m_reference.type == eServiceFactoryDVB::id + 0x100);
+		type = eDVBServicePMTHandler::streamclient;
 	}
 
 	m_first_program_info = 1;
 	ePtr<iTsSource> source = createTsSource(service, packetsize);
-	m_service_handler.tuneExt(service, m_is_pvr, source, service.path.c_str(), m_cue, false, m_dvb_service, scrambled);
+	m_service_handler.tuneExt(service, m_is_pvr, source, service.path.c_str(), m_cue, false, m_dvb_service, type, scrambled);
 
 	if (m_is_pvr)
 	{
@@ -2567,7 +2570,7 @@ void eDVBServicePlay::switchToTimeshift()
 	m_cue->seekTo(0, -1000);
 
 	ePtr<iTsSource> source = createTsSource(r);
-	m_service_handler_timeshift.tuneExt(r, 1, source, m_timeshift_file.c_str(), m_cue, 0, m_dvb_service, false); /* use the decoder demux for everything */
+	m_service_handler_timeshift.tuneExt(r, 1, source, m_timeshift_file.c_str(), m_cue, 0, m_dvb_service, eDVBServicePMTHandler::timeshift_playback, false); /* use the decoder demux for everything */
 
 	eDebug("eDVBServicePlay::switchToTimeshift, in pause mode now.");
 	pause();
