@@ -402,9 +402,11 @@ class EPGSelection(Screen):
 					"prevService": self.prevService,
 		#			"prevBouquet": self.openServiceList,
 					"red": self.redButtonPressed,
-					"timerAdd": self.timerAdd,
+					"green": self.timerAdd,
+					"greenlong": self.showTimerList,
 					"yellow": self.yellowButtonPressed,
 					"blue": self.blueButtonPressed,
+					"bluelong": self.showAutoTimerList,
 					"Info": self.infoKeyPressed,
 					"ShortRecord": self.doRecordTimer,
 					"LongRecord": self.doZapTimer,
@@ -436,9 +438,11 @@ class EPGSelection(Screen):
 					"prevService": self.prevPage,
 		#			"prevBouquet": self.openServiceList,
 					"red": self.redButtonPressed,
-					"timerAdd": self.timerAdd,
+					"green": self.timerAdd,
+					"greenlong": self.showTimerList,
 					"yellow": self.yellowButtonPressed,
 					"blue": self.blueButtonPressed,
+					"bluelong": self.showAutoTimerList,
 					"Info": self.infoKeyPressed,
 					"ShortRecord": self.doRecordTimer,
 					"LongRecord": self.doZapTimer,
@@ -484,9 +488,11 @@ class EPGSelection(Screen):
 					"nextService": self.nextBouquet,
 					"input_date_time": self.enterDateTime,
 					"red": self.redButtonPressed,
-					"timerAdd": self.timerAdd,
+					"green": self.timerAdd,
+					"greenlong": self.showTimerList,
 					"yellow": self.yellowButtonPressed,
 					"blue": self.blueButtonPressed,
+					"bluelong": self.showAutoTimerList,
 					"OK": self.OK,
 					"OKLong": self.OKLong,
 					"Info": self.Info,
@@ -527,9 +533,11 @@ class EPGSelection(Screen):
 				"OKLong": self.OKLong,
 				"cancel": self.closing,
 				"red": self.redButtonPressed,
-				"timerAdd": self.timerAdd,
+				"green": self.timerAdd,
+				"greenlong": self.showTimerList,
 				"yellow": self.yellowButtonPressed,
 				"blue": self.blueButtonPressed,
+				"bluelong": self.showAutoTimerList,
 				"Info": self.infoKeyPressed,
 				"input_date_time": self.enterDateTime,
 				"nextBouquet": self.nextBouquet,
@@ -555,9 +563,11 @@ class EPGSelection(Screen):
 				"OKLong": self.OKLong,
 				"cancel": self.closing,
 				"red": self.redButtonPressed,
-				"timerAdd": self.timerAdd,
+				"green": self.timerAdd,
+				"greenlong": self.showTimerList,
 				"yellow": self.yellowButtonPressed,
 				"blue": self.blueButtonPressed,
+				"bluelong": self.showAutoTimerList,
 				"Info": self.infoKeyPressed,
 				"input_date_time": self.enterDateTime,
 				"nextBouquet": self.nextBouquet,
@@ -955,6 +965,68 @@ class EPGSelection(Screen):
 		except ImportError:
 			self.session.open(MessageBox, _("The AutoTimer plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
+	def showTimerList(self):
+		from Screens.TimerEdit import TimerEditList
+		self.session.open(TimerEditList)
+
+	def showAutoTimerList(self):
+		try:
+			from Plugins.Extensions.AutoTimer.plugin import main, autostart
+			from Plugins.Extensions.AutoTimer.AutoTimer import AutoTimer
+			from Plugins.Extensions.AutoTimer.AutoPoller import AutoPoller
+			autopoller = AutoPoller()
+			autotimer = AutoTimer()
+			global autotimer
+			global autopoller
+		
+			try:
+				autotimer.readXml()
+			except SyntaxError as se:
+				self.session.open(
+					MessageBox,
+					_("Your config file is not well-formed:\n%s") % (str(se)),
+					type = MessageBox.TYPE_ERROR,
+					timeout = 10
+				)
+				return
+		
+			# Do not run in background while editing, this might screw things up
+			if autopoller is not None:
+				autopoller.stop()
+		
+			from Plugins.Extensions.AutoTimer.AutoTimerOverview import AutoTimerOverview
+			self.session.openWithCallback(
+				self.editCallback,
+				AutoTimerOverview,
+				autotimer
+			)
+		except ImportError:
+			self.session.open(MessageBox, _("The AutoTimer plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+
+	def editCallback(self, session):
+		global autotimer
+		global autopoller
+	
+		# XXX: canceling of GUI (Overview) won't affect config values which might have been changed - is this intended?
+	
+		# Don't parse EPG if editing was canceled
+		if session is not None:
+			# Save xml
+			autotimer.writeXml()
+			# Poll EPGCache
+			autotimer.parseEPG()
+	
+		# Start autopoller again if wanted
+		if config.plugins.autotimer.autopoll.value:
+			if autopoller is None:
+				from Plugins.Extensions.AutoTimer.AutoPoller import AutoPoller
+				autopoller = AutoPoller()
+			autopoller.start()
+		# Remove instance if not running in background
+		else:
+			autopoller = None
+			autotimer = None
+	
 	def removeTimer(self, timer):
 		timer.afterEvent = AFTEREVENT.NONE
 		self.session.nav.RecordTimer.removeEntry(timer)
