@@ -180,6 +180,7 @@ public:
 		int pcrPid;
 		int pmtPid;
 		int textPid;
+		int aitPid;
 		bool isCrypted() { return !caids.empty(); }
 		PyObject *createPythonObject();
 	};

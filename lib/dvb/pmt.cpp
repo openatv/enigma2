@@ -337,6 +337,7 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 	program.pcrPid = -1;
 	program.pmtPid = -1;
 	program.textPid = -1;
+	program.aitPid = -1;
 
 	int first_ac3 = -1;
 	int audio_cached = -1;
@@ -760,7 +761,8 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 							switch ((*desc)->getTag())
 							{
 							case APPLICATION_SIGNALLING_DESCRIPTOR:
-								m_AIT.begin(eApp, eDVBAITSpec((*es)->getPid()), m_demux);
+								program.aitPid = (*es)->getPid();
+								m_AIT.begin(eApp, eDVBAITSpec(program.aitPid), m_demux);
 								break;
 							}
 						}
