@@ -113,9 +113,21 @@ void eDVBServicePMTHandler::PMTready(int error)
 	{
 		m_have_cached_program = false;
 		serviceEvent(eventNewProgramInfo);
-		if (!m_pvr_channel)
+		switch (m_service_type)
 		{
+		case livetv:
+		case recording:
+		case scrambled_recording:
+		case timeshift_recording:
+		case scrambled_timeshift_recording:
+		case streamserver:
+		case scrambled_streamserver:
+		case streamclient:
 			eEPGCache::getInstance()->PMTready(this);
+			break;
+		default:
+			/* do not start epg caching for other types of services */
+			break;
 		}
 		if (doDescramble)
 		{
