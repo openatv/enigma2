@@ -53,6 +53,7 @@
 			<item level="2" text="Include EIT in http streams">config.streaming.stream_eit</item>
 			<item level="2" text="Include AIT in http streams">config.streaming.stream_ait</item>
 			<item level="2" text="Include ECM in http streams">config.streaming.stream_ecm</item>
+			<item level="2" text="Descramble http streams">config.streaming.descramble</item>
 		</setup>
 		<setup key="subtitlesetup" title="Subtitle settings">
 			<item level="2" text="Teletext subtitle color">config.subtitles.ttx_subtitle_colors</item>
@@ -120,6 +121,7 @@
 			<item level="2" text="Background delete option">config.misc.erase_flags</item>
 			<item level="2" text="Background delete speed">config.misc.erase_speed</item>
 			<item level="2" text="Record ECM">config.recording.record_ecm</item>
+			<item level="2" text="Descramble recordings">config.recording.descramble</item>
 		</setup>	
 		<setup key="harddisk" title="Harddisk setup" >
 			<item level="0" text="Harddisk standby after">config.usage.hdd_standby</item>

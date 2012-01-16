@@ -107,14 +107,15 @@ int eDVBServiceStream::doPrepare()
 		/* allocate a ts recorder if we don't already have one. */
 	if (m_state == stateIdle)
 	{
-		std::string stream_ecm, stream_eit, stream_ait;
+		std::string stream_ecm, stream_eit, stream_ait, descramble_setting;
 		m_stream_ecm = (ePythonConfigQuery::getConfigValue("config.streaming.stream_ecm", stream_ecm) >= 0 && stream_ecm == "True");
 		m_stream_eit = (ePythonConfigQuery::getConfigValue("config.streaming.stream_eit", stream_eit) >= 0 && stream_eit == "True");
 		m_stream_ait = (ePythonConfigQuery::getConfigValue("config.streaming.stream_ait", stream_ait) >= 0 && stream_ait == "True");
 		m_pids_active.clear();
 		m_state = statePrepared;
 		eDVBServicePMTHandler::serviceType servicetype = m_stream_ecm ? eDVBServicePMTHandler::scrambled_streamserver : eDVBServicePMTHandler::streamserver;
-		return m_service_handler.tune(m_ref, 0, 0, 0, NULL, servicetype, !m_stream_ecm);
+		bool descramble = (ePythonConfigQuery::getConfigValue("config.streaming.descramble", descramble_setting) < 0 || descramble_setting != "False");
+		return m_service_handler.tune(m_ref, 0, 0, 0, NULL, servicetype, descramble);
 	}
 	return 0;
 }
