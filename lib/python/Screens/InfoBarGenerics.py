@@ -314,7 +314,10 @@ class InfoBarShowHide:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
 		elif self.__state == self.STATE_HIDDEN and self.EventViewIsShown:
-			self.eventView.close()
+			try:
+				self.eventView.close()
+			except:
+				pass
 			self.EventViewIsShown = False
 
 	def toggleShow(self):
@@ -324,19 +327,24 @@ class InfoBarShowHide:
 			if self.secondInfoBarScreen:
 				self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
+			self.EventViewIsShown = False
 		elif self.secondInfoBarScreen and config.usage.show_second_infobar.value == "2" and not self.secondInfoBarScreen.shown:
 			self.hide()
 			self.secondInfoBarScreen.show()
 			self.secondInfoBarWasShown = True
 			self.startHideTimer()
+		elif config.usage.show_second_infobar.value == "1" and not self.EventViewIsShown:
+			self.hide()
+			self.openEventView()
+			self.EventViewIsShown = True
+			self.startHideTimer()
 		else:
 			self.hide()
 			if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 				self.secondInfoBarScreen.hide()
-			elif config.usage.show_second_infobar.value == "1" and not self.EventViewIsShown:
-				self.openEventView()
-				self.EventViewIsShown = True
-				self.startHideTimer()
+			elif self.EventViewIsShown:
+				self.eventView.close()
+				self.EventViewIsShown = False
 
 	def lockShow(self):
 		self.__locked = self.__locked + 1
