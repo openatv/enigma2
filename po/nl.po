@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-05 20:13+0000\n"
-"PO-Revision-Date: 2012-01-07 17:08+0100\n"
+"POT-Creation-Date: 2012-01-16 16:44+0000\n"
+"PO-Revision-Date: 2012-01-17 11:06+0100\n"
 "Last-Translator: R.L. van der Does\n"
 "Language-Team: Andy Blackburn, Rob van der Does\n"
 "Language: Nederlands\n"
@@ -221,6 +221,10 @@ msgstr "%d-%m-%Y"
 msgid "%s (%s)\n"
 msgstr "%s (%s)\n"
 
+#, python-format
+msgid "'%s' contains %d file(s) and %d sub-directories.\n"
+msgstr "'%s' bevat  %d bestand(en) en %d sub-mappen.\n"
+
 msgid "( All readers)"
 msgstr "(Alle lezers)"
 
@@ -274,9 +278,6 @@ msgstr "12V Uitgang"
 
 msgid "13 V"
 msgstr "13 V"
-
-msgid "14-16"
-msgstr "14-16"
 
 msgid "16:10"
 msgstr "16:10"
@@ -364,9 +365,6 @@ msgstr "60 minuten"
 
 msgid "7"
 msgstr "7"
-
-msgid "7-8"
-msgstr "7-8"
 
 msgid "8"
 msgstr "8"
@@ -653,6 +651,9 @@ msgstr "Subtitel taal mag gelijk zijn aan audiotaal"
 
 msgid "Allow hearing impaired subtitles"
 msgstr "Gebruik ondertitels voor slechthorenden"
+
+msgid "Alpha"
+msgstr "Alpha"
 
 msgid "Alpha Value"
 msgstr "Alpha waarde"
@@ -1030,9 +1031,6 @@ msgstr "Kan model naam niet vinden."
 msgid "Cancel"
 msgstr "Annuleren"
 
-msgid "Cannot move files on a different disk or system to the trash can"
-msgstr "Kan bestanden niet van een ander apparaat naar de prullenbak verplaatsen"
-
 msgid "Cannot move to trash can"
 msgstr "Kan bestanden niet naar de prullenbak verplaatsen"
 
@@ -1099,8 +1097,8 @@ msgstr "Zenderkeuze"
 msgid "Channel list preview mode"
 msgstr "Kanaallijst preview modus"
 
-msgid "Channel list service mode (requires restart)"
-msgstr "Kanaal lijst service modus (vereist herstart)"
+msgid "Channel list service mode*"
+msgstr "Kanaallijst service modus*"
 
 msgid "Channel not in services list"
 msgstr "Kanaal niet in zenderlijst"
@@ -1173,6 +1171,9 @@ msgstr "Circulaire links"
 
 msgid "Circular right"
 msgstr "Circulaire rechts"
+
+msgid "Cleaning Trashes"
+msgstr "maakt prullenbakken leeg "
 
 msgid "Cleanup"
 msgstr "Opruimen"
@@ -1510,9 +1511,6 @@ msgstr "DVB-S2"
 msgid "DVD File Browser"
 msgstr "DvD bestands verkenner"
 
-msgid "DVD Player"
-msgstr "DVD-speler"
-
 msgid "DVD Titlelist"
 msgstr "DvD titellijst"
 
@@ -1665,10 +1663,6 @@ msgstr "Map %s bestaat niet."
 msgid "Directory browser"
 msgstr "Bestands verkenner"
 
-#, python-format
-msgid "Directory contains %d file(s) and %d sub-directories.\n"
-msgstr "Map bevat %d bestand(en) en %d sub-mappen.\n"
-
 msgid "Disable"
 msgstr "Uit"
 
@@ -1734,8 +1728,15 @@ msgstr ""
 "U kunt het niet meer ongedaan maken!"
 
 #, python-format
+msgid "Do you really want to delete %s ?"
+msgstr "Wilt u echt %s verwijderen?"
+
+#, python-format
 msgid "Do you really want to delete %s?"
 msgstr "Wilt u %s echt wissen?"
+
+msgid "Do you really want to delete ?"
+msgstr "Echt verwijderen?"
 
 #, python-format
 msgid ""
@@ -1755,6 +1756,13 @@ msgid ""
 msgstr ""
 "Wilt u het apparaat echt initialiseren?\n"
 "Alle gegevens worden dan verwijderd!"
+
+#, python-format
+msgid "Do you really want to permamently remove '%s' from trash can ?"
+msgstr "Wilt u '%s' permanent verwijderen uit de prullenbak?"
+
+msgid "Do you really want to permamently remove from trash can ?"
+msgstr "Wilt u echt permanent verwijderen uit de prullenbak?"
 
 #, python-format
 msgid "Do you really want to remove directory %s from the disk?"
@@ -1910,9 +1918,6 @@ msgstr "Ophalen informatie. Een ogenblik a.u.b..."
 
 msgid "Downloading..."
 msgstr "Aan het downloaden....."
-
-msgid "Dreambox software because updates are available."
-msgstr "Dreambox software want er zijn updates beschikbaar."
 
 msgid "Drivers:"
 msgstr "Drivers:"
@@ -2554,9 +2559,6 @@ msgstr "Harde schijf standby na"
 msgid "Hardware:"
 msgstr "Hardware:"
 
-msgid "Harmony support"
-msgstr "Harmony ondersteuning"
-
 msgid "Height"
 msgstr "Hoogte"
 
@@ -2601,6 +2603,9 @@ msgstr "Uur"
 
 msgid "Hours Mins"
 msgstr "Uren minuten"
+
+msgid "Hours Mins Secs"
+msgstr "Uren Minuten Seconden"
 
 msgid "How many minutes do you want to record?"
 msgstr "Hoeveel minuten wilt u opnemen?"
@@ -2685,6 +2690,9 @@ msgstr "Inadyn Log"
 
 msgid "Inadyn Setup"
 msgstr "Inadyn Instellingen"
+
+msgid "Include ECM in http streams"
+msgstr "Voeg ECM toe aan http streams"
 
 msgid "Include your email and name (optional) in the mail?"
 msgstr "Uw e-mailadres en naam (optioneel) in de mail?"
@@ -2832,6 +2840,9 @@ msgstr "Ipkg"
 msgid "Is this videomode ok?"
 msgstr "Is deze videomode goed?"
 
+msgid "Item height switch"
+msgstr "Item hoogte"
+
 msgid "Items per Page"
 msgstr "Onderdelen per pagina"
 
@@ -2849,6 +2860,9 @@ msgstr "Taak (taken) in uitvoering!"
 
 msgid "July"
 msgstr "Juli"
+
+msgid "Jump first press in channel selection*"
+msgstr "Springt is kanaallijst als eerste *"
 
 msgid "June"
 msgstr "Juni"
@@ -3157,6 +3171,9 @@ msgstr ""
 msgid "May"
 msgstr "Mei"
 
+msgid "Media playback Remaining/Elapsed as"
+msgstr "Media afspelen Resterende/Verstreken als"
+
 msgid "Media player"
 msgstr "Mediaspeler"
 
@@ -3195,6 +3212,9 @@ msgstr "MiniDLNA installingen"
 
 msgid "Mins"
 msgstr "min"
+
+msgid "Mins Secs"
+msgstr "Minuten Seconden"
 
 msgid "Missing "
 msgstr "Ontbrekend"
@@ -3629,6 +3649,9 @@ msgid "Now, use the contrast setting to turn up the brightness of the background
 msgstr ""
 "Gebruik nu 'contrast' om de helderheid van de achtergrond zo hoog mogelijk in te stellen, maar zorg er voor dat u nog steeds de helderste grijze vlakken van elkaar kunt onderscheiden.\n"
 "Indien het resultaat goed is, drukt u op OK."
+
+msgid "Number"
+msgstr "Nummer"
 
 msgid "OK"
 msgstr "OK"
@@ -4379,6 +4402,9 @@ msgstr "Ontvangstinstellingen"
 msgid "Record"
 msgstr "Opname"
 
+msgid "Record ECM"
+msgstr "Neem ECM op"
+
 msgid "Record started! Stopping timeshift now ..."
 msgstr "Opname begonnen! Timeshift stopt nu....."
 
@@ -4448,9 +4474,6 @@ msgstr "Resterend"
 
 msgid "Remaining & Elapsed"
 msgstr "Resterend en verstreken"
-
-msgid "Remaining/Elapsed shown as on OSD"
-msgstr "Resterend/Verstreken vertoond als in OSD"
 
 msgid "Remember service PIN"
 msgstr "Onthoud zender pincode"
@@ -4620,9 +4643,6 @@ msgstr "Hervat positie op %s"
 msgid "Resuming playback"
 msgstr "Afspelen wordt hervat"
 
-msgid "Return to file browser"
-msgstr "Terug naar de bestandslijst"
-
 msgid "Return to movie list"
 msgstr "Terug naar de opnamelijst"
 
@@ -4671,6 +4691,9 @@ msgstr "SNR:"
 
 msgid "SSID:"
 msgstr "SSID:"
+
+msgid "Samba Log"
+msgstr "Samba Log"
 
 msgid "Samba Setup"
 msgstr "Samba Instellingen"
@@ -5409,9 +5432,6 @@ msgstr "Start opname?"
 msgid "Start test"
 msgstr "Start test"
 
-msgid "Start-Items 7-8 , 14-16"
-msgstr "Start-Items 7-8 , 14-16"
-
 msgid "StartTime"
 msgstr "Starttijd"
 
@@ -5650,6 +5670,9 @@ msgstr "Tekst randbreedte"
 
 msgid "Text font size"
 msgstr "Tekst lettergrootte"
+
+msgid "Text support"
+msgstr "Tekst ondersteuning"
 
 msgid ""
 "Thank you for using the wizard.\n"
@@ -5984,8 +6007,8 @@ msgstr "TiVo support"
 msgid "Time"
 msgstr "Tijd"
 
-msgid "Time Remaining/Elapsed on OSD"
-msgstr "Resterende/Vertsreken tijd in OSD"
+msgid "Time Remaining/Elapsed"
+msgstr "Resterende/Verstreken tijd"
 
 msgid "Time Scale"
 msgstr "Tijdschaal"
@@ -6158,6 +6181,9 @@ msgstr "Transmissie modus"
 
 msgid "Transponder"
 msgstr "Transponder"
+
+msgid "Transponder Remaining/Elapsed as"
+msgstr "Transponder Resterende/Verstreken als"
 
 msgid "Transponder Type"
 msgstr "Transponder type"
@@ -6603,6 +6629,9 @@ msgstr "Volume"
 msgid "Dreambox format data DVD (HDTV compatible)"
 msgstr "Dreambox format data DVD (HDTV compatible)"
 
+msgid "Dreambox software because updates are available."
+msgstr "Dreambox software want er zijn updates beschikbaar."
+
 msgid "W"
 msgstr "W"
 
@@ -6990,12 +7019,6 @@ msgstr ""
 msgid "Your current collection will get lost!"
 msgstr "Uw huidige collectie zal verloren gaan!"
 
-msgid "Your dreambox is shutting down. Please stand by..."
-msgstr "Uw Dreambox wordt nu afgesloten. Een ogenblik a.u.b..."
-
-msgid "Your dreambox isn't connected to the internet properly. Please check it and try again."
-msgstr "Uw Dreambox heeft geen verbinding met het internet kunnen maken. Controleer instellingen en kabels en probeer opnieuw."
-
 msgid "Your email address:"
 msgstr "Uw e-mailadres:"
 
@@ -7018,6 +7041,12 @@ msgstr "Uw naam (optioneel):"
 
 msgid "Your network configuration has been activated."
 msgstr "Configuratie van uw netwerk is geactiveerd."
+
+msgid "Your dreambox is shutting down. Please stand by..."
+msgstr "Uw Dreambox wordt nu afgesloten. Een ogenblik a.u.b..."
+
+msgid "Your dreambox isn't connected to the internet properly. Please check it and try again."
+msgstr "Uw Dreambox heeft geen verbinding met het internet kunnen maken. Controleer instellingen en kabels en probeer opnieuw."
 
 msgid ""
 "Your wireless LAN internet connection could not be started!\n"
@@ -8147,6 +8176,9 @@ msgstr "ja"
 
 msgid "yes (keep feeds)"
 msgstr "ja (bewaar feeds)"
+
+msgid "your dreambox might be unusable now. Please consult the manual for further assistance before rebooting your Dreambox."
+msgstr "Uw dreambox kan nu onbruikbaar zijn. Raadpleeg uw handleiding alvorens uw Dreambox opnieuw te starten."
 
 msgid "your dreambox might be unusable now. Please consult the manual for further assistance before rebooting your dreambox."
 msgstr "uw Dreambox is nu mogelijk onbruikbaar. Raadpleeg de handleiding voordat u de Dreambox herstart."
