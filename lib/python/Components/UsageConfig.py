@@ -588,6 +588,10 @@ def InitUsageConfig():
 
 	config.GraphEPG = ConfigSubsection()
 	config.GraphEPG.ShowBouquet = ConfigYesNo(default = False)
+	config.GraphEPG.preview_mode_vixepg = ConfigYesNo(default = True)
+	config.GraphEPG.preview_mode_enhanced = ConfigYesNo(default = True)
+	config.GraphEPG.preview_mode_infobar = ConfigYesNo(default = True)
+	config.GraphEPG.preview_mode = ConfigYesNo(default = True)
 	config.GraphEPG.OK = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap")
 	config.GraphEPG.OKLong = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap + Exit")
 	config.GraphEPG.OK_vixepg = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap")
