@@ -846,18 +846,19 @@ class EPGSelection(Screen):
 					self.moveTimeLines(True)
 
 	def closing(self):
-		if self.type != EPG_TYPE_GRAPH and self.type != EPG_TYPE_MULTI:
-			try:
-				if self.oldService:
-					self.session.nav.playService(self.oldService)
-				self.setServicelistSelection(self.curBouquet, self.curRef.ref)
-			except:
-				pass
-		else:
-			try:
-				self.zapFunc(self.startRef.ref, self.StartBouquet)
-			except:
-				pass
+		if (self.type == 5 and config.GraphEPG.preview_mode_vixepg.value) or (self.type == 4 and config.GraphEPG.preview_mode_infobar.value) or (self.type == 3 and config.GraphEPG.preview_mode_enhanced.value) or (self.type != 5 and self.type != 4 and self.type != 3 and config.GraphEPG.preview_mode.value):
+			if self.type != EPG_TYPE_GRAPH and self.type != EPG_TYPE_MULTI:
+				try:
+					if self.oldService:
+						self.session.nav.playService(self.oldService)
+					self.setServicelistSelection(self.curBouquet, self.curRef.ref)
+				except:
+					pass
+			else:
+				try:
+					self.zapFunc(self.startRef.ref, self.StartBouquet)
+				except:
+					pass
 		self.close(self.closeRecursive)
 
 	def GraphEPGClose(self):
@@ -1660,6 +1661,7 @@ class EPGSelectionSetup(Screen, ConfigListScreen):
 		self.editListEntry = None
 		self.list = [ ]
 		if self.type == 5:
+			self.list.append(getConfigListEntry(_("Channel preview mode"), config.GraphEPG.preview_mode_vixepg))
 			self.list.append(getConfigListEntry(_("Show bouquet on launch"), config.GraphEPG.ShowBouquet))
 			self.list.append(getConfigListEntry(_("Picture In Graphics (close EPG)"), config.GraphEPG.PIG))
 			self.list.append(getConfigListEntry(_("Enable Picon"), config.GraphEPG.UsePicon))
@@ -1680,14 +1682,17 @@ class EPGSelectionSetup(Screen, ConfigListScreen):
 			self.list.append(getConfigListEntry(_("Time Scale"), config.GraphEPG.prev_time_period))
 			self.list.append(getConfigListEntry(_("Skip Empty Services (restart plugin)"), config.GraphEPG.overjump))
 		elif self.type == 4:
+			self.list.append(getConfigListEntry(_("Channel preview mode"), config.GraphEPG.preview_mode_infobar))
 			self.list.append(getConfigListEntry(_("Sort List by"), config.misc.EPGSort))
 			self.list.append(getConfigListEntry(_("OK Button"), config.GraphEPG.OK_infobar))
 			self.list.append(getConfigListEntry(_("LongOK Button"), config.GraphEPG.OKLong_infobar))
 		elif self.type == 3:
+			self.list.append(getConfigListEntry(_("Channel preview mode"), config.GraphEPG.preview_mode_enhanced))
 			self.list.append(getConfigListEntry(_("Sort List by"), config.misc.EPGSort))
 			self.list.append(getConfigListEntry(_("OK Button"), config.GraphEPG.OK_enhanced))
 			self.list.append(getConfigListEntry(_("LongOK Button"), config.GraphEPG.OKLong_enhanced))
 		else:
+			self.list.append(getConfigListEntry(_("Channel preview mode"), config.GraphEPG.preview_mode))
 			self.list.append(getConfigListEntry(_("Sort List by"), config.misc.EPGSort))
 			self.list.append(getConfigListEntry(_("OK Button"), config.GraphEPG.OK))
 			self.list.append(getConfigListEntry(_("LongOK Button"), config.GraphEPG.OKLong))
