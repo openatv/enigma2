@@ -272,6 +272,7 @@ class InfoBarShowHide:
 			self.secondInfoBarScreen = self.session.instantiateDialog(SecondInfoBar)
 			self.secondInfoBarScreen.hide()
 		self.secondInfoBarWasShown = False
+		self.EventViewIsShown = False
 
 	def serviceStarted(self):
 		if self.execing:
@@ -312,12 +313,13 @@ class InfoBarShowHide:
 		elif self.__state == self.STATE_HIDDEN and self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
-		elif config.usage.show_second_infobar.value == "1":
+		elif self.__state == self.STATE_HIDDEN and self.EventViewIsShown:
 			self.eventView.close()
+			self.EventViewIsShown = False
 
 	def toggleShow(self):
 		if self.__state == self.STATE_HIDDEN:
-			if not self.secondInfoBarWasShown:
+			if not self.secondInfoBarWasShown or not self.EventViewWasShown:
 				self.show()
 			if self.secondInfoBarScreen:
 				self.secondInfoBarScreen.hide()
@@ -331,8 +333,9 @@ class InfoBarShowHide:
 			self.hide()
 			if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 				self.secondInfoBarScreen.hide()
-			if config.usage.show_second_infobar.value == "1":
+			elif config.usage.show_second_infobar.value == "1" and not self.EventViewIsShown:
 				self.openEventView()
+				self.EventViewIsShown = True
 				self.startHideTimer()
 
 	def lockShow(self):
