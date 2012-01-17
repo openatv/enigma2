@@ -292,7 +292,7 @@ class InfoBarShowHide:
 			idx = config.usage.infobar_timeout.index
 			if idx:
 				self.hideTimer.start(idx*1000, True)
-		elif self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+		elif (self.secondInfoBarScreen and self.secondInfoBarScreen.shown) or config.usage.show_second_infobar.value == "1":
 			self.hideTimer.stop()
 			idx = config.usage.second_infobar_timeout.index
 			if idx:
@@ -312,6 +312,8 @@ class InfoBarShowHide:
 		elif self.__state == self.STATE_HIDDEN and self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
+		elif config.usage.show_second_infobar.value == "1":
+			self.eventView.close()
 
 	def toggleShow(self):
 		if self.__state == self.STATE_HIDDEN:
@@ -331,7 +333,7 @@ class InfoBarShowHide:
 				self.secondInfoBarScreen.hide()
 			if config.usage.show_second_infobar.value == "1":
 				self.openEventView()
-			self.hideTimer.stop()
+				self.startHideTimer()
 
 	def lockShow(self):
 		self.__locked = self.__locked + 1
@@ -345,14 +347,6 @@ class InfoBarShowHide:
 			self.__locked = 0
 		if self.execing:
 			self.startHideTimer()
-
-#	def startShow(self):
-#		self.instance.m_animation.startMoveAnimation(ePoint(0, 600), ePoint(0, 380), 100)
-#		self.__state = self.STATE_SHOWN
-#
-#	def startHide(self):
-#		self.instance.m_animation.startMoveAnimation(ePoint(0, 380), ePoint(0, 600), 100)
-#		self.__state = self.STATE_HIDDEN
 
 	def doButtonsCheck(self):
 		if config.vixsettings.ColouredButtons.value:
