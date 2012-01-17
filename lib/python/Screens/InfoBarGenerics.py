@@ -4145,11 +4145,16 @@ class InfoBarAspectSelection:
 		selection = 0
 		tlist = []
 		tlist.append((_("Resolution"), "resolution"))
-		tlist.append(("", ""))
-		tlist.append(("Letterbox", "letterbox"))
-		tlist.append(("PanScan", "panscan"))
-		tlist.append(("Non Linear", "non"))
-		tlist.append(("Bestfit", "bestfit"))
+		tlist.append(("--", ""))
+		try:
+			policy = open("/proc/stb/video/policy_choices").read()[:-1]
+		except IOError:
+			print "couldn't read available policymodes."
+			policy_available = [ ]
+			return
+		policy_available = policy.split(' ')
+		for x in policy_available:
+			tlist.append((x[0].upper() + x[1:], _(x)))
 
 		mode = open("/proc/stb/video/policy").read()[:-1]
 		print mode
