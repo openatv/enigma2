@@ -96,7 +96,6 @@ class RecordTimerEntry(timer.TimerEntry, object):
 
 	def __init__(self, serviceref, begin, end, name, description, eit, disabled = False, justplay = False, afterEvent = AFTEREVENT.AUTO, checkOldTimers = False, dirname = None, tags = None):
 		timer.TimerEntry.__init__(self, int(begin), int(end))
-
 		if checkOldTimers == True:
 			if self.begin < time() - 1209600:
 				self.begin = int(time())
@@ -249,11 +248,6 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		self.log(5, "activating state %d" % next_state)
 
 		if next_state == self.StatePrepared:
-			if not self.freespace():
-				Notifications.AddNotification(MessageBox, _("A timer failed to record!\nNot Enough freespace\n"), timeout=20)
-				self.cancelled = True
-				return True
-			
 			if self.tryPrepare():
 				self.log(6, "prepare ok, waiting for begin")
 				# create file to "reserve" the filename
@@ -485,10 +479,24 @@ class RecordTimer(timer.Timer):
 		except IOError:
 			print "unable to load timers from file!"
 
+	def freespace(self):
+		import os
+		s = os.statvfs(self.Filename)
+		if (s.f_bavail * s.f_bsize) / 1000000 < 1024:
+			print "[TIMER] Not enough free space to record:"
+			return False
+		else:
+			return True
+
 	def doActivate(self, w):
 		# when activating a timer which has already passed,
 		# simply abort the timer. don't run trough all the stages.
-		if w.shouldSkip():
+		if not self.freespace():
+			Notifications.AddPopup(text = _("Write error while recording. Disk full?\n"), type = MessageBox.TYPE_ERROR, timeout = 5, id = "DiskFullMessage")
+			w.state = RecordTimerEntry.StateFailed
+			w.disabled = True
+			w.failed = True
+		elif w.shouldSkip():
 			w.state = RecordTimerEntry.StateEnded
 		else:
 			# when active returns true, this means "accepted".

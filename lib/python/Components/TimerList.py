@@ -64,11 +64,14 @@ class TimerList(HTMLComponent, GUIComponent, object):
 		else:
 			state = _("done!")
 			icon = self.iconDone
-		if timer.disabled:
-			icon = self.iconDisabled
 
 		if timer.disabled:
 			state = _("disabled")
+			icon = self.iconDisabled
+
+		if timer.failed:
+			state = _("failed")
+			icon = self.iconFailed
 
 		res.append((eListboxPythonMultiContent.TYPE_TEXT, 26, 25, 126, 20, 1, RT_HALIGN_LEFT|RT_VALIGN_TOP, state))
 		if icon:
@@ -90,6 +93,7 @@ class TimerList(HTMLComponent, GUIComponent, object):
 		self.iconRepeat = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/timer_rep.png"))
 		self.iconZapped = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/timer_zap.png"))
 		self.iconDisabled = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/timer_off.png"))
+		self.iconFailed = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/timer_failed.png"))
 	
 	def getCurrent(self):
 		cur = self.l.getCurrentSelection()
