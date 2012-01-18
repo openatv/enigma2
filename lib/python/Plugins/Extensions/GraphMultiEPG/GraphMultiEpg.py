@@ -63,6 +63,8 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.backColorService = 0x000000
 		self.backColorServiceSelected = 0xffffff
 		self.borderColorService = 0x000000
+		self.foreColorNow = 0xffc000
+		self.backColorNow = 0x508050
 
 	def applySkin(self, desktop, screen):
 		if self.skinAttributes is not None:
@@ -88,6 +90,10 @@ class EPGList(HTMLComponent, GUIComponent):
 					self.backColorServiceSelected = parseColor(value).argb()
 				elif attrib == "ServiceBorderColor":
 					self.borderColorService = parseColor(value).argb()
+				elif attrib == "EntryBackgroundColorNow":
+					self.backColorNow = parseColor(value).argb()
+				elif attrib == "EntryForegroundColorNow":
+					self.foreColorNow = parseColor(value).argb()
 				else:
 					attribs.append((attrib,value))
 			self.skinAttributes = attribs
@@ -282,27 +288,32 @@ class EPGList(HTMLComponent, GUIComponent):
 			top = r2.y
 			width = r2.w
 			height = r2.h
-			foreColor = self.foreColor
-			foreColorSelected = self.foreColorSelected
-			backColor = self.backColor
-			backColorSelected = self.backColorSelected
-			borderColor = self.borderColor
 
+			now = time()
 			for ev in events:  #(event_id, event_title, begin_time, duration)
-				rec=ev[2] and self.timer.isInTimer(ev[0], ev[2], ev[3], service)
-				xpos, ewidth = self.calcEntryPosAndWidthHelper(ev[2], ev[3], start, end, width)
+				stime = ev[2]
+				duration = ev[3]
+				rec = stime and self.timer.isInTimer(ev[0], stime, duration, service)
+				xpos, ewidth = self.calcEntryPosAndWidthHelper(stime, duration, start, end, width)
+				if stime <= now and now < stime + duration:
+					backColor = self.backColorNow
+					foreColor = self.foreColorNow
+				else:
+					backColor = self.backColor
+					foreColor = self.foreColor
+
 				res.append(MultiContentEntryText(
 					pos = (left+xpos, top), size = (ewidth, height),
 					font = 1, flags = RT_HALIGN_CENTER | RT_VALIGN_CENTER | RT_WRAP,
-					text = ev[1], color = foreColor, color_sel = foreColorSelected,
-					backcolor = backColor, backcolor_sel = backColorSelected,
-					border_width = 1, border_color = borderColor))
+					text = ev[1],
+					color = foreColor, color_sel = self.foreColorSelected,
+					backcolor = backColor, backcolor_sel = self.backColorSelected,
+					border_width = 1, border_color = self.borderColor))
 				if rec and ewidth > 23:
 					res.append(MultiContentEntryPixmapAlphaTest(
 						pos = (left+xpos+ewidth-22, top+height-22), size = (21, 21),
-						png = self.getClockPixmap(service, ev[2], ev[3], ev[0]),
-						backcolor = backColor,
-						backcolor_sel = backColorSelected))
+						png = self.getClockPixmap(service, stime, duration, ev[0]),
+						backcolor = backColor, backcolor_sel = self.backColorSelected))
 		return res
 
 	def selEntry(self, dir, visible=True):
@@ -821,4 +832,5 @@ class GraphMultiEPG(Screen):
 	
 	def moveTimeLines(self, force=False):
 		self.updateTimelineTimer.start((60 - (int(time()) % 60)) * 1000)	#keep syncronised
+		self["list"].l.invalidate() # not needed when the zPosition in the skin is correct! ?????
 		self["timeline_text"].setEntries(self["list"], self["timeline_now"], self.time_lines)
