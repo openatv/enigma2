@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-16 16:44+0000\n"
-"PO-Revision-Date: 2012-01-17 11:06+0100\n"
+"POT-Creation-Date: 2012-01-17 22:10+0000\n"
+"PO-Revision-Date: 2012-01-18 06:49+0100\n"
 "Last-Translator: R.L. van der Does\n"
 "Language-Team: Andy Blackburn, Rob van der Does\n"
 "Language: Nederlands\n"
@@ -482,13 +482,6 @@ msgid ""
 msgstr ""
 "Timer opname mislukt!\n"
 "Verander van zender en probeer het opnieuw.\n"
-
-msgid ""
-"A timer failed to record!\n"
-"Not Enough freespace\n"
-msgstr ""
-"Een timer kon niet opnemen!\n"
-"Niet genoeg vrije ruimte\n"
 
 msgid "A/V Settings"
 msgstr "A/V Instellingen"
@@ -1102,6 +1095,9 @@ msgstr "Kanaallijst service modus*"
 
 msgid "Channel not in services list"
 msgstr "Kanaal niet in zenderlijst"
+
+msgid "Channel preview mode"
+msgstr "Kanaal preview modus"
 
 msgid "Channel:"
 msgstr "Zender:"
@@ -6810,6 +6806,14 @@ msgstr "Status draadloos netwerk"
 msgid "Write error while recording. Disk full?\n"
 msgstr "Schrijffout tijdens opname. Harde schijf vol?\n"
 
+#, python-format
+msgid ""
+"Write error while recording. Disk full?\n"
+"%s"
+msgstr ""
+"Schrijffout tijdens opname. Is de schijf vol?\n"
+"%s"
+
 msgid "Write failed!"
 msgstr "Schrijven mislukt!"
 
@@ -7441,6 +7445,9 @@ msgstr "verlaat netwerkinterface lijst"
 
 msgid "exit networkadapter setup menu"
 msgstr "verlaat netwerkadapter instellingen menu"
+
+msgid "failed"
+msgstr "mislukt"
 
 msgid "file oscam.conf could not be found"
 msgstr "bestand oscam.conf niet gevonden"
