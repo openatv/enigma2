@@ -932,12 +932,13 @@ bool eDVBResourceManager::canMeasureFrontendInputPower()
 class eDVBChannelFilePush: public eFilePushThread
 {
 public:
-	eDVBChannelFilePush():
-		eFilePushThread(IOPRIO_CLASS_BE, 0, 188, 65536), // 64k buffer for playback
+	eDVBChannelFilePush(int packetsize = 188):
+		eFilePushThread(IOPRIO_CLASS_BE, 0, packetsize, 65536), // 64k buffer for playback
 		m_iframe_search(0),
 		m_iframe_state(0),
 		m_pid(0),
-		m_timebase_change(0)
+		m_timebase_change(0),
+		m_packet_size(packetsize)
 	{}
 	void setIFrameSearch(int enabled) { m_iframe_search = enabled; m_iframe_state = 0; }
 
@@ -947,6 +948,7 @@ public:
 protected:
 	int m_iframe_search, m_iframe_state, m_pid;
 	int m_timebase_change;
+	int m_packet_size;
 	int filterRecordData(const unsigned char *data, int len, size_t &current_span_remaining);
 };
 
@@ -1438,14 +1440,14 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 			} else
 			{
 				pts = nextap;
-				eDebug("next ap is %llx\n", pts);
+				eDebug("next ap is %llu\n", pts);
 			}
 		}
 
 		off_t offset = 0;
 		if (m_tstools.getOffset(offset, pts, -1))
 		{
-			eDebug("get offset for pts=%lld failed!", pts);
+			eDebug("get offset for pts=%llu failed!", pts);
 			continue;
 		}
 		
@@ -1802,7 +1804,7 @@ RESULT eDVBChannel::playSource(ePtr<iTsSource> &source, const char *streaminfo_f
 #endif
 	}
 
-	m_pvr_thread = new eDVBChannelFilePush();
+	m_pvr_thread = new eDVBChannelFilePush(source->getPacketSize());
 	m_pvr_thread->enablePVRCommit(1);
 	m_pvr_thread->setStreamMode(1);
 	m_pvr_thread->setScatterGather(this);
@@ -1874,7 +1876,6 @@ RESULT eDVBChannel::getCurrentPosition(iDVBDemux *decoding_demux, pts_t &pos, in
 	r = m_tstools.fixupPTS(off, now);
 	if (r)
 	{
-		eDebug("fixup PTS failed");
 		return -1;
 	}
 

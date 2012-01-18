@@ -1,4 +1,5 @@
 from Screens.Screen import Screen
+from Components.ActionMap import ActionMap
 from Components.config import configfile , config, getConfigListEntry
 from Components.ConfigList import ConfigListScreen
 from Components.SystemInfo import SystemInfo
@@ -22,10 +23,6 @@ class OSDSetup(Screen, ConfigListScreen):
 		self.skin = OSDSetup.skin
 		Screen.__init__(self, session)
 		self.setup_title = _("OSD Setup")
-
-		from Components.ActionMap import ActionMap
-		from Components.Sources.StaticText import StaticText
-
 		self["satus"] = StaticText()
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
@@ -89,17 +86,22 @@ class OSDSetup(Screen, ConfigListScreen):
 		size_h = getDesktop(0).size().height()
 		dsk_w = int(float(size_w)) / float(720)
 		dsk_h = int(float(size_h)) / float(576)
-		while config.osd.dst_width.value + (int(config.osd.dst_left.value) / float(dsk_w)) >= 720.5 or config.osd.dst_width.value + config.osd.dst_left.value > 720:
-			config.osd.dst_width.value = int(config.osd.dst_width.value) - 1
-			config.osd.dst_width.save()
-			configfile.save()
-		while config.osd.dst_height.value + (int(config.osd.dst_top.value) / float(dsk_h)) >= 576.5 or config.osd.dst_height.value + config.osd.dst_top.value > 576:
-			config.osd.dst_height.value = int(config.osd.dst_height.value) - 1
-			config.osd.dst_height.save()
-			configfile.save()
-	
-		setPosition(int(config.osd.dst_left.value), int(config.osd.dst_width.value), int(config.osd.dst_top.value), int(config.osd.dst_height.value))
-		setAlpha(int(config.osd.alpha.value))
+		dst_left = int(config.osd.dst_left.value)
+		dst_width = int(config.osd.dst_width.value)
+		dst_top = int(config.osd.dst_top.value)
+		dst_height = int(config.osd.dst_height.value)
+		while dst_width + (dst_left / float(dsk_w)) >= 720.5 or dst_width + dst_left > 720:
+			dst_width = int(dst_width) - 1
+		while dst_height + (dst_top / float(dsk_h)) >= 576.5 or dst_height + dst_top > 576:
+			dst_height = int(dst_height) - 1
+
+		config.osd.dst_left.setValue(dst_left)
+		config.osd.dst_width.setValue(dst_width)
+		config.osd.dst_top.setValue(dst_top)
+		config.osd.dst_height.setValue(dst_height)
+
+		setPosition(config.osd.dst_left.value, config.osd.dst_width.value, config.osd.dst_top.value, config.osd.dst_height.value)
+		setAlpha(config.osd.alpha.value)
 
 	def saveAll(self):
 		for x in self["config"].list:
@@ -129,24 +131,15 @@ class OSDSetup(Screen, ConfigListScreen):
 			self.close()
 
 def setPosition(dst_left, dst_width, dst_top, dst_height):
-	try:
-		file = open("/proc/stb/fb/dst_left", "w")
-		file.write('%X' % dst_left)
-		file.close()
-		file = open("/proc/stb/fb/dst_top", "w")
-		file.write('%X' % dst_top)
-		file.close()
-		file = open("/proc/stb/fb/dst_width", "w")
-		file.write('%X' % dst_width)
-		file.close()
-		file = open("/proc/stb/fb/dst_height", "w")
-		file.write('%X' % dst_height)
-		file.close()
-	except:
-		return
+	print 'Setting OSD position:' + str(dst_left) + " " + str(dst_width) + " " + str(dst_top) + " " + str(dst_height)
+	open("/proc/stb/fb/dst_left", "w").write('%X' % dst_left)
+	open("/proc/stb/fb/dst_width", "w").write('%X' % dst_width)
+	open("/proc/stb/fb/dst_top", "w").write('%X' % dst_top)
+	open("/proc/stb/fb/dst_height", "w").write('%X' % dst_height)
 
 def setAlpha(alpha_value):
-		open("/proc/stb/video/alpha", "w").write(str(alpha_value))
+	print 'Setting OSD alpha:', str(alpha_value)
+	open("/proc/stb/video/alpha", "w").write(str(alpha_value))
 
 class OSD3DSetupScreen(Screen, ConfigListScreen):
 	skin = """
@@ -162,10 +155,6 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 		self.skin = OSD3DSetupScreen.skin
 		Screen.__init__(self, session)
 		self.setup_title = _("OSD 3D Setup")
-
-		from Components.ActionMap import ActionMap
-		from Components.Sources.StaticText import StaticText
-
 		self["satus"] = StaticText()
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
@@ -243,17 +232,11 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 		else:
 			self.close()
 
-
 def applySettings(mode, znorm):
-	try:
-		file = open("/proc/stb/fb/3dmode", "w")
-		file.write(mode)
-		file.close()
-		file = open("/proc/stb/fb/znorm", "w")
-		file.write('%d' % znorm)
-		file.close()
-	except:
-		return
+	print 'Setting 3D mode:',mode
+	open("/proc/stb/fb/3dmode", "w").write(mode)
+	print 'Setting 3D depth:',znorm
+	open("/proc/stb/fb/znorm", "w").write('%d' % znorm)
 
 def setConfiguredPosition():
 	setPosition(int(config.osd.dst_left.value), int(config.osd.dst_width.value), int(config.osd.dst_top.value), int(config.osd.dst_height.value))
@@ -264,22 +247,26 @@ def setConfiguredAplha():
 def setConfiguredSettings():
 	applySettings(config.osd.threeDmode.value, int(config.osd.threeDznorm.value))
 
-def isCanChangeOsdPositionSupported():
-	if path.exists("/proc/stb/fb/dst_left"):
-		return True
-	return False
+def isChangeOsdPositionSupported():
+	try:
+		can_osd_position = open("/proc/stb/fb/dst_left", "r") and True or False
+	except:
+		can_osd_position = False
+	return can_osd_position
 
-def isCanChangeOsdAlphaSupported():
+def isChangeOsdAlphaSupported():
 	try:
 		can_osd_alpha = open("/proc/stb/video/alpha", "r") and True or False
 	except:
 		can_osd_alpha = False
 	return can_osd_alpha
 
-def isCanChange3DOsdSupported():
-	if path.exists("/proc/stb/fb/3dmode"):
-		return True
-	return False
+def isChange3DOsdSupported():
+	try:
+		can_osd_3dmode = open("/proc/stb/fb/3dmode", "r") and True or False
+	except:
+		can_osd_3dmode = False
+	return can_osd_3dmode
 
 def isOsdSetupSupported():
 	if SystemInfo["CanChangeOsdAlpha"] == True or SystemInfo["CanChangeOsdPosition"] == True:
@@ -291,8 +278,8 @@ def isOsdMenuSupported():
 		return True
 	return False
 
-SystemInfo["CanChange3DOsd"] = isCanChange3DOsdSupported()
-SystemInfo["CanChangeOsdAlpha"] = isCanChangeOsdAlphaSupported()
-SystemInfo["CanChangeOsdPosition"] = isCanChangeOsdPositionSupported()
+SystemInfo["CanChange3DOsd"] = isChange3DOsdSupported()
+SystemInfo["CanChangeOsdAlpha"] = isChangeOsdAlphaSupported()
+SystemInfo["CanChangeOsdPosition"] = isChangeOsdPositionSupported()
 SystemInfo["OsdSetup"] = isOsdSetupSupported()
 SystemInfo["OsdMenu"] = isOsdMenuSupported()

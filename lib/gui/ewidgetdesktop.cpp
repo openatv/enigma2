@@ -408,12 +408,14 @@ void eWidgetDesktop::setCompositionMode(int mode)
 				removeBufferForWidget(*i, l);
 }
 
-eWidgetDesktop::eWidgetDesktop(eSize size): m_mainloop(0)
+eWidgetDesktop::eWidgetDesktop(eSize size):
+	m_mainloop(0),
+	m_require_redraw(0),
+	m_style_id(0),
+	m_margins(0,0,0,0)
 {
 	m_screen.m_dirty_region = gRegion(eRect(ePoint(0, 0), size));
 	m_screen.m_screen_size = size;
-	m_require_redraw = 0;
-	m_style_id = 0;
 
 	CONNECT(gRC::getInstance()->notify, eWidgetDesktop::notify);
 	setCompositionMode(cmImmediate);
@@ -521,4 +523,15 @@ void eWidgetDesktop::resize(eSize size)
 {
 	m_screen.m_dirty_region = gRegion(eRect(ePoint(0, 0), size));
 	m_screen.m_screen_size = size;
+}
+
+eRect eWidgetDesktop::bounds() const
+{
+	const eSize size = m_screen.m_screen_size;
+	return eRect(
+			m_margins.left(),
+			m_margins.top(),
+			size.width() - m_margins.left() - m_margins.right(), // width
+			size.height() - m_margins.top() - m_margins.bottom() // height
+		);
 }

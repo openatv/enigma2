@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-28 13:28+0000\n"
-"PO-Revision-Date: 2011-12-28 14:30+0100\n"
+"POT-Creation-Date: 2012-01-17 22:10+0000\n"
+"PO-Revision-Date: 2012-01-18 06:49+0100\n"
 "Last-Translator: R.L. van der Does\n"
 "Language-Team: Andy Blackburn, Rob van der Does\n"
 "Language: Nederlands\n"
@@ -131,6 +131,9 @@ msgstr ""
 "\n"
 "Bekijk, installeer en verwijder beschikbare of geïnstalleerde pakketten."
 
+msgid "    - Type"
+msgstr "    - Type"
+
 msgid " and"
 msgstr "en"
 
@@ -218,6 +221,10 @@ msgstr "%d-%m-%Y"
 msgid "%s (%s)\n"
 msgstr "%s (%s)\n"
 
+#, python-format
+msgid "'%s' contains %d file(s) and %d sub-directories.\n"
+msgstr "'%s' bevat  %d bestand(en) en %d sub-mappen.\n"
+
 msgid "( All readers)"
 msgstr "(Alle lezers)"
 
@@ -251,6 +258,12 @@ msgstr "1"
 msgid "1 wireless network found!"
 msgstr "1 draadloos netwerk gevonden!"
 
+msgid "1-1. Serial Number (The first two letters of SN)"
+msgstr "1-1. Serie nummer (De eerste twee letters van SN)"
+
+msgid "1-2. Serial Number (The remaining numbers of SN)"
+msgstr "1-2. Serie nummer (de resterende cijfers van SN)"
+
 msgid "1.0"
 msgstr "1.0"
 
@@ -265,9 +278,6 @@ msgstr "12V Uitgang"
 
 msgid "13 V"
 msgstr "13 V"
-
-msgid "14-16"
-msgstr "14-16"
 
 msgid "16:10"
 msgstr "16:10"
@@ -295,6 +305,9 @@ msgstr "1X"
 
 msgid "2"
 msgstr "2"
+
+msgid "2. Contact"
+msgstr "2. Contact"
 
 msgid "2X"
 msgstr "2X"
@@ -353,9 +366,6 @@ msgstr "60 minuten"
 msgid "7"
 msgstr "7"
 
-msgid "7-8"
-msgstr "7-8"
-
 msgid "8"
 msgstr "8"
 
@@ -395,15 +405,15 @@ msgid ""
 "A finished record timer wants to set your\n"
 "Dreambox to standby. Do that now?"
 msgstr ""
-"Een afgelopen timer opname wil uw Dreambox\n"
-"in standby-stand schakelen. Wilt u dit toestaan?"
+"Een afgewerkte timer wil uw ontvanger\n"
+"in standby zetten. Dat nu doen?"
 
 msgid ""
 "A finished record timer wants to shut down\n"
 "your Dreambox. Shutdown now?"
 msgstr ""
-"Een afgelopen timer wil uw Dreambox uit schakelen\n"
-"Wilt u dit toestaan?"
+"Een afgewerkte timer wil uw\n"
+"ontvanger uitschakelen. Dat nu doen?"
 
 msgid "A graphical EPG for all services of an specific bouquet"
 msgstr "Grafische EPG voor alle zenders uit een specifiek boeket"
@@ -453,15 +463,15 @@ msgid ""
 "A sleep timer wants to set your\n"
 "Dreambox to standby. Do that now?"
 msgstr ""
-"De slaaptimer wil uw Dreambox in standby\n"
-"schakelen. Wilt u dit toestaan?"
+"Een slaap-timer wil uw\n"
+"ontvanger in standby zetten. Dat nu doen?"
 
 msgid ""
 "A sleep timer wants to shut down\n"
 "your Dreambox. Shutdown now?"
 msgstr ""
-"De slaaptimer wil uw Dreambox uit-\n"
-"schakelen. Wilt u dit toestaan?"
+"Een slaap-timer wil uw\n"
+"ontvanger uitschakelen. Dat nu doen?"
 
 msgid "A small overview of the available icon states and actions."
 msgstr "Een klein overzicht van gebruikte icon-statussen en acties."
@@ -472,13 +482,6 @@ msgid ""
 msgstr ""
 "Timer opname mislukt!\n"
 "Verander van zender en probeer het opnieuw.\n"
-
-msgid ""
-"A timer failed to record!\n"
-"Not Enough freespace\n"
-msgstr ""
-"Een timer kon niet opnemen!\n"
-"Niet genoeg vrije ruimte\n"
 
 msgid "A/V Settings"
 msgstr "A/V Instellingen"
@@ -622,7 +625,7 @@ msgid "After pressing OK, please wait!"
 msgstr "Druk op OK en wacht."
 
 msgid "After the start wizard is completed, you need to protect single services. Refer to your dreambox's manual on how to do that."
-msgstr "Zodra de installatiewizard gereed is, kunt u een zender beveiligen. Raadpleeg de handleiding voor aanwijzigingen."
+msgstr "Nadat de wizard is uitgevoerd, moet u enkele services beveiligen. Kijk in de handleiding van uw ontvanger hoe dat te doen."
 
 msgid "Album"
 msgstr "Album"
@@ -641,6 +644,12 @@ msgstr "Subtitel taal mag gelijk zijn aan audiotaal"
 
 msgid "Allow hearing impaired subtitles"
 msgstr "Gebruik ondertitels voor slechthorenden"
+
+msgid "Alpha"
+msgstr "Alpha"
+
+msgid "Alpha Value"
+msgstr "Alpha waarde"
 
 msgid "Alphanumeric"
 msgstr "Alfanumeriek"
@@ -773,6 +782,7 @@ msgstr "Auteur:"
 msgid "Authoring mode"
 msgstr "Creatie wijze"
 
+#. TRANSLATORS: (aspect ratio policy: always try to display as fullscreen, when there is no content (black bars) on left/right, even if this breaks the aspect.
 msgid "Auto"
 msgstr "Auto"
 
@@ -1014,9 +1024,6 @@ msgstr "Kan model naam niet vinden."
 msgid "Cancel"
 msgstr "Annuleren"
 
-msgid "Cannot move files on a different disk or system to the trash can"
-msgstr "Kan bestanden niet van een ander apparaat naar de prullenbak verplaatsen"
-
 msgid "Cannot move to trash can"
 msgstr "Kan bestanden niet naar de prullenbak verplaatsen"
 
@@ -1083,11 +1090,14 @@ msgstr "Zenderkeuze"
 msgid "Channel list preview mode"
 msgstr "Kanaallijst preview modus"
 
-msgid "Channel list service mode (requires restart)"
-msgstr "Kanaal lijst service modus (vereist herstart)"
+msgid "Channel list service mode*"
+msgstr "Kanaallijst service modus*"
 
 msgid "Channel not in services list"
 msgstr "Kanaal niet in zenderlijst"
+
+msgid "Channel preview mode"
+msgstr "Kanaal preview modus"
 
 msgid "Channel:"
 msgstr "Zender:"
@@ -1157,6 +1167,9 @@ msgstr "Circulaire links"
 
 msgid "Circular right"
 msgstr "Circulaire rechts"
+
+msgid "Cleaning Trashes"
+msgstr "maakt prullenbakken leeg "
 
 msgid "Cleanup"
 msgstr "Opruimen"
@@ -1494,9 +1507,6 @@ msgstr "DVB-S2"
 msgid "DVD File Browser"
 msgstr "DvD bestands verkenner"
 
-msgid "DVD Player"
-msgstr "DVD-speler"
-
 msgid "DVD Titlelist"
 msgstr "DvD titellijst"
 
@@ -1649,10 +1659,6 @@ msgstr "Map %s bestaat niet."
 msgid "Directory browser"
 msgstr "Bestands verkenner"
 
-#, python-format
-msgid "Directory contains %d file(s) and %d sub-directories.\n"
-msgstr "Map bevat %d bestand(en) en %d sub-mappen.\n"
-
 msgid "Disable"
 msgstr "Uit"
 
@@ -1718,8 +1724,15 @@ msgstr ""
 "U kunt het niet meer ongedaan maken!"
 
 #, python-format
+msgid "Do you really want to delete %s ?"
+msgstr "Wilt u echt %s verwijderen?"
+
+#, python-format
 msgid "Do you really want to delete %s?"
 msgstr "Wilt u %s echt wissen?"
+
+msgid "Do you really want to delete ?"
+msgstr "Echt verwijderen?"
 
 #, python-format
 msgid ""
@@ -1739,6 +1752,13 @@ msgid ""
 msgstr ""
 "Wilt u het apparaat echt initialiseren?\n"
 "Alle gegevens worden dan verwijderd!"
+
+#, python-format
+msgid "Do you really want to permamently remove '%s' from trash can ?"
+msgstr "Wilt u '%s' permanent verwijderen uit de prullenbak?"
+
+msgid "Do you really want to permamently remove from trash can ?"
+msgstr "Wilt u echt permanent verwijderen uit de prullenbak?"
 
 #, python-format
 msgid "Do you really want to remove directory %s from the disk?"
@@ -1786,7 +1806,7 @@ msgid "Do you want to download the image to %s ?"
 msgstr "Wilt u het image downloaden naar %s ?"
 
 msgid "Do you want to enable the parental control feature on your dreambox?"
-msgstr "Wilt u het kinderslot van uw Dreambox activeren?"
+msgstr "Wilt u het kinderslot van uw ontvanger inschakelen?"
 
 msgid "Do you want to install the package:\n"
 msgstr "Wilt u het volgende pakket installeren:\n"
@@ -1829,8 +1849,8 @@ msgid ""
 "Do you want to update your Dreambox?\n"
 "After pressing OK, please wait!"
 msgstr ""
-"Wilt u de Dreambox software vernieuwen?\n"
-"Druk op OK en wacht!"
+"Wilt u uw ontvanger updaten?\n"
+"Wacht nadat u op OK hebt gedrukt!"
 
 msgid "Do you want to upgrade the package:\n"
 msgstr "Wilt u een upgrade van het volgende pakket:\n"
@@ -1894,12 +1914,6 @@ msgstr "Ophalen informatie. Een ogenblik a.u.b..."
 
 msgid "Downloading..."
 msgstr "Aan het downloaden....."
-
-msgid "Dreambox format data DVD (HDTV compatible)"
-msgstr "Dreambox formaat data DVD (HDTV compatibel)"
-
-msgid "Dreambox software because updates are available."
-msgstr "Dreambox software want er zijn updates beschikbaar."
 
 msgid "Drivers:"
 msgstr "Drivers:"
@@ -1990,10 +2004,10 @@ msgid "Edit settings"
 msgstr "Instellingen wijzigen"
 
 msgid "Edit the Nameserver configuration of your Dreambox.\n"
-msgstr "De nameserver configuaratie van uw Dreambox wijzigen.\n"
+msgstr "Pas de naamserver configuratie van uw ontvanger aan.\n"
 
 msgid "Edit the network configuration of your Dreambox.\n"
-msgstr "De netwerk configuratie van uw Dreambox wijzigen.\n"
+msgstr "Bewerk de netwerkinstellingen van uw ontvanger.\n"
 
 msgid "Edit title"
 msgstr "Wijzig titel"
@@ -2105,6 +2119,9 @@ msgstr "Voer de zender PINcode in"
 
 msgid "Enter your email address so that we can contact you if needed."
 msgstr "Vul uw e-mailadres in, zodat wij contact met u kunnen opnemen indien nodig."
+
+msgid "Enter your input data"
+msgstr "Geef uw invoer"
 
 msgid "Entitlements"
 msgstr "Benaming"
@@ -2374,6 +2391,9 @@ msgstr "Nadat u op OK drukt worden de volgende taken uitgevoerd!"
 msgid "For more information see www.openpli.org"
 msgstr "Voor meer informatie zie: www.openpli.org"
 
+msgid "For use this plugin, you must update the kernel version to 3.1 or later"
+msgstr "Om deze plugin te gebruiken moet u updaten naar kernel versie 3.1 of jonger."
+
 msgid "Format"
 msgstr "Formaat"
 
@@ -2466,6 +2486,9 @@ msgstr "Algemene PCM vertraging (ms)"
 msgid "Genre"
 msgstr "Genre"
 
+msgid "Genuine Vuplus"
+msgstr "authentiek Vuplus"
+
 msgid "Get latest experimental image"
 msgstr "Ontvang het laatste experimentele image"
 
@@ -2532,9 +2555,6 @@ msgstr "Harde schijf standby na"
 msgid "Hardware:"
 msgstr "Hardware:"
 
-msgid "Harmony support"
-msgstr "Harmony ondersteuning"
-
 msgid "Height"
 msgstr "Hoogte"
 
@@ -2579,6 +2599,9 @@ msgstr "Uur"
 
 msgid "Hours Mins"
 msgstr "Uren minuten"
+
+msgid "Hours Mins Secs"
+msgstr "Uren Minuten Seconden"
 
 msgid "How many minutes do you want to record?"
 msgstr "Hoeveel minuten wilt u opnemen?"
@@ -2628,6 +2651,13 @@ msgstr ""
 "scart aansluiting. Druk op OK om terug te keren."
 
 msgid ""
+"If you want to quit the Browser,\n"
+"Press RED -> EXIT."
+msgstr ""
+"Om de browser te verlaten,\n"
+"Druk op Rood -> Exit."
+
+msgid ""
 "If your TV has a brightness or contrast enhancement, disable it. If there is something called \"dynamic\", set it to standard. Adjust the backlight level to a value suiting your taste. Turn down contrast on your TV as much as possible.\n"
 "Then turn the brightness setting as low as possible, but make sure that the two lowermost shades of gray stay distinguishable.\n"
 "Do not care about the bright shades now. They will be set up in the next step.\n"
@@ -2656,6 +2686,9 @@ msgstr "Inadyn Log"
 
 msgid "Inadyn Setup"
 msgstr "Inadyn Instellingen"
+
+msgid "Include ECM in http streams"
+msgstr "Voeg ECM toe aan http streams"
 
 msgid "Include your email and name (optional) in the mail?"
 msgstr "Uw e-mailadres en naam (optioneel) in de mail?"
@@ -2803,6 +2836,9 @@ msgstr "Ipkg"
 msgid "Is this videomode ok?"
 msgstr "Is deze videomode goed?"
 
+msgid "Item height switch"
+msgstr "Item hoogte"
+
 msgid "Items per Page"
 msgstr "Onderdelen per pagina"
 
@@ -2820,6 +2856,9 @@ msgstr "Taak (taken) in uitvoering!"
 
 msgid "July"
 msgstr "Juli"
+
+msgid "Jump first press in channel selection*"
+msgstr "Springt is kanaallijst als eerste *"
 
 msgid "June"
 msgstr "Juni"
@@ -3034,6 +3073,30 @@ msgstr ""
 "   Polarisatie : %s\n"
 "   Bandbreedte : %s"
 
+msgid "MA"
+msgstr "MA"
+
+msgid "MB"
+msgstr "MB"
+
+msgid "MC"
+msgstr "MC"
+
+msgid "MD"
+msgstr "MD"
+
+msgid "ME"
+msgstr "ME"
+
+msgid "MF"
+msgstr "MF"
+
+msgid "MG"
+msgstr "MG"
+
+msgid "MH"
+msgstr "MH"
+
 msgid "MORE"
 msgstr "MEER"
 
@@ -3104,6 +3167,9 @@ msgstr ""
 msgid "May"
 msgstr "Mei"
 
+msgid "Media playback Remaining/Elapsed as"
+msgstr "Media afspelen Resterende/Verstreken als"
+
 msgid "Media player"
 msgstr "Mediaspeler"
 
@@ -3143,6 +3209,9 @@ msgstr "MiniDLNA installingen"
 msgid "Mins"
 msgstr "min"
 
+msgid "Mins Secs"
+msgstr "Minuten Seconden"
+
 msgid "Missing "
 msgstr "Ontbrekend"
 
@@ -3178,6 +3247,9 @@ msgstr "Mount"
 
 msgid "Mount failed"
 msgstr "Verbinding mislukt"
+
+msgid "Mouse"
+msgstr "Muis"
 
 msgid "Move"
 msgstr "Verplaats"
@@ -3422,9 +3494,6 @@ msgstr "Geen netwerken gevonden"
 msgid "No packages were upgraded yet. So you can check your network and try again."
 msgstr "Er zijn geen softwarepakketten gevonden. Controleer uw netwerk en probeer het opnieuw."
 
-msgid "No picture on TV? Press EXIT and retry."
-msgstr "Geen beeld op uw TV? Druk op exit en probeer opnieuw."
-
 msgid "No positioner capable frontend found."
 msgstr "Geen geschikte positioner gevonden."
 
@@ -3494,6 +3563,9 @@ msgid ""
 msgstr ""
 "Geen werkende draadloze netwerk interface gevonden.\n"
 "Controleer of er een compatibel WLAN apparaat is geplaatst of activeer uw lokale netwerk interface."
+
+msgid "No, but play video again"
+msgstr "Nee, maar speel de video opnieuw"
 
 msgid "No, but restart from begin"
 msgstr "Nee, vanaf begin herstarten"
@@ -3573,6 +3645,9 @@ msgid "Now, use the contrast setting to turn up the brightness of the background
 msgstr ""
 "Gebruik nu 'contrast' om de helderheid van de achtergrond zo hoog mogelijk in te stellen, maar zorg er voor dat u nog steeds de helderste grijze vlakken van elkaar kunt onderscheiden.\n"
 "Indien het resultaat goed is, drukt u op OK."
+
+msgid "Number"
+msgstr "Nummer"
 
 msgid "OK"
 msgstr "OK"
@@ -4257,9 +4332,6 @@ msgstr "Providers: "
 msgid "Put TV in standby"
 msgstr "Zet TV in standby"
 
-msgid "Put TV in standby when deepstandby"
-msgstr "Zet TV in stand-by wanneer in deep stand-by"
-
 msgid "Put receiver in standby"
 msgstr "Zet ontvanger in standby"
 
@@ -4326,6 +4398,9 @@ msgstr "Ontvangstinstellingen"
 msgid "Record"
 msgstr "Opname"
 
+msgid "Record ECM"
+msgstr "Neem ECM op"
+
 msgid "Record started! Stopping timeshift now ..."
 msgstr "Opname begonnen! Timeshift stopt nu....."
 
@@ -4372,6 +4447,9 @@ msgstr "Ververs elke X uur"
 msgid "Refresh rate selection."
 msgstr "Herhalingsfrequentie selectie"
 
+msgid "Regard deep standby as standby"
+msgstr "Beschouw deep standby als standby"
+
 msgid "Release"
 msgstr "Release"
 
@@ -4392,9 +4470,6 @@ msgstr "Resterend"
 
 msgid "Remaining & Elapsed"
 msgstr "Resterend en verstreken"
-
-msgid "Remaining/Elapsed shown as on OSD"
-msgstr "Resterend/Verstreken vertoond als in OSD"
 
 msgid "Remember service PIN"
 msgstr "Onthoud zender pincode"
@@ -4564,9 +4639,6 @@ msgstr "Hervat positie op %s"
 msgid "Resuming playback"
 msgstr "Afspelen wordt hervat"
 
-msgid "Return to file browser"
-msgstr "Terug naar de bestandslijst"
-
 msgid "Return to movie list"
 msgstr "Terug naar de opnamelijst"
 
@@ -4615,6 +4687,9 @@ msgstr "SNR:"
 
 msgid "SSID:"
 msgstr "SSID:"
+
+msgid "Samba Log"
+msgstr "Samba Log"
 
 msgid "Samba Setup"
 msgstr "Samba Instellingen"
@@ -5152,7 +5227,7 @@ msgid "Shutdown"
 msgstr "Afsluiten"
 
 msgid "Shutdown Dreambox after"
-msgstr "Slaaptimer activeren na"
+msgstr "Schakel de ontvanger uit na"
 
 msgid "Side by Side"
 msgstr "Naast elkaar"
@@ -5289,6 +5364,9 @@ msgstr ""
 msgid "Sorry, no Details available!"
 msgstr "Sorry, geen detail gegevens beschikbaar!"
 
+msgid "Sorry, video is not available!"
+msgstr "Excuses, video is niet beschikbaar!"
+
 msgid ""
 "Sorry, your backup destination is not writeable.\n"
 "\n"
@@ -5349,9 +5427,6 @@ msgstr "Start opname?"
 
 msgid "Start test"
 msgstr "Start test"
-
-msgid "Start-Items 7-8 , 14-16"
-msgstr "Start-Items 7-8 , 14-16"
 
 msgid "StartTime"
 msgstr "Starttijd"
@@ -5454,6 +5529,9 @@ msgstr "Ondertitel selectie..."
 
 msgid "Subtitles"
 msgstr "Ondertitels"
+
+msgid "Succeed"
+msgstr "Gelukt"
 
 msgid "Success. Press OK to exit."
 msgstr "Geslaagd. Druk op OK om af te sluiten."
@@ -5578,7 +5656,7 @@ msgid "Test mode"
 msgstr "Test modus"
 
 msgid "Test the network configuration of your Dreambox.\n"
-msgstr "Test de netwerk configuratie van uw Dreambox.\n"
+msgstr "Test de netwerkconfiguratie van uw ontvanger.\n"
 
 msgid "Test-Messagebox?"
 msgstr "Test-berichtbox?"
@@ -5588,6 +5666,9 @@ msgstr "Tekst randbreedte"
 
 msgid "Text font size"
 msgstr "Tekst lettergrootte"
+
+msgid "Text support"
+msgstr "Tekst ondersteuning"
 
 msgid ""
 "Thank you for using the wizard.\n"
@@ -5600,8 +5681,8 @@ msgid ""
 "Thank you for using the wizard. Your box is now ready to use.\n"
 "Please press OK to start using your Dreambox."
 msgstr ""
-"Bedankt voor het gebruik van deze wizard. Uw Dreambox is klaar voor gebruik.\n"
-"Druk op OK om verder te gaan."
+"Dank voor het gebruik van de wizard. Uw ontvanger is nu gereed voor gebruik.\n"
+"Druk op OK om uw Dreambox te gebruiken."
 
 msgid ""
 "The AutoTimer plugin is not installed!\n"
@@ -5714,18 +5795,11 @@ msgstr ""
 msgid "The following files were found..."
 msgstr "De volgende bestanden werden gevonden..."
 
-msgid ""
-"The input port should be configured now.\n"
-"You can now configure the screen by displaying some test pictures. Do you want to do that now?"
-msgstr ""
-"De video ingang van uw TV kan nu worden ingesteld.\n"
-"U kunt uw TV instellen door een aantal testbeelden weer te geven. Wilt u dat nu doen?"
-
 msgid "The installation of the default services lists is finished."
 msgstr "De installatie van de standaard zenderlijst is voltooid."
 
 msgid "The installation of the default settings is finished. You can now continue configuring your Dreambox by pressing the OK button on the remote control."
-msgstr "De installatie van de standaard zenderlijst is voltooid. U kunt nu uw Dreambox verder configureren door op OK te drukken."
+msgstr "Het instellen van de standaard instellingen is gereed. U kunt nu doorgaan met de configuratie door op OK te drukken."
 
 msgid "The md5sum validation failed, the file may be corrupted!"
 msgstr "De md5sum validatie is mislukt, het bestand is misschien beschadigd!"
@@ -5821,12 +5895,12 @@ msgstr "Er is een fout. Het pakket:"
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr "Dit DVD-RW medium is reeds geformatteerd - herformatteren zal alles wissen op deze disk."
 
-#, python-format
-msgid "This Dreambox can't decode %s streams!"
-msgstr "Deze Dreambox kan geen %s decoderen!"
-
 msgid "This Plugin only support for UNO/ULTIMO"
 msgstr "Deze plugin is uitsluitend bestemd voor de UNO/ULTIMO"
+
+#, python-format
+msgid "This Dreambox can't decode %s streams!"
+msgstr "De Dreambox kan %s streams niet decoderen!"
 
 msgid "This is step number 2."
 msgstr "Dit is stap nummer 2."
@@ -5929,8 +6003,8 @@ msgstr "TiVo support"
 msgid "Time"
 msgstr "Tijd"
 
-msgid "Time Remaining/Elapsed on OSD"
-msgstr "Resterende/Vertsreken tijd in OSD"
+msgid "Time Remaining/Elapsed"
+msgstr "Resterende/Verstreken tijd"
 
 msgid "Time Scale"
 msgstr "Tijdschaal"
@@ -6103,6 +6177,9 @@ msgstr "Transmissie modus"
 
 msgid "Transponder"
 msgstr "Transponder"
+
+msgid "Transponder Remaining/Elapsed as"
+msgstr "Transponder Resterende/Verstreken als"
 
 msgid "Transponder Type"
 msgstr "Transponder type"
@@ -6291,6 +6368,9 @@ msgstr "Gebruik"
 
 msgid "Use DHCP"
 msgstr "Automatisch IP verkrijgen (DHCP)"
+
+msgid "Use DVB subtitles position"
+msgstr "Gebruik DVB ondertitel positie"
 
 msgid "Use Fan timer"
 msgstr "Gebruik Fan timer"
@@ -6542,6 +6622,12 @@ msgstr "Spanningsmodus"
 msgid "Volume"
 msgstr "Volume"
 
+msgid "Dreambox format data DVD (HDTV compatible)"
+msgstr "Dreambox format data DVD (HDTV compatible)"
+
+msgid "Dreambox software because updates are available."
+msgstr "Dreambox software want er zijn updates beschikbaar."
+
 msgid "W"
 msgstr "W"
 
@@ -6581,9 +6667,6 @@ msgstr "Wacht..."
 msgid "Wakeup"
 msgstr "Wakeup"
 
-msgid "Wakeup TV after deepstandby"
-msgstr "Zet TV aan na deep stand-by"
-
 msgid "Wakeup TV from standby"
 msgstr "Wakeup TV vanuit standby"
 
@@ -6595,6 +6678,9 @@ msgstr "Wakeup signaal van TV"
 
 msgid "Warn if free space drops below (kB):"
 msgstr "Meldt als het vrij geheugen minder wordt dan (kB):"
+
+msgid "Web Browser"
+msgstr "Webbrowser"
 
 msgid "Web Interface"
 msgstr "Web Interface"
@@ -6636,9 +6722,9 @@ msgid ""
 msgstr ""
 "Welkom bij de cleanup wizard.\n"
 "\n"
-"De beschikbare hoeveelheid intern geheugen is minder dan 2 MB.\n"
-"Om een stabiele werking van uw Dreambox te garanderen zou er meer geheugen vrijgemaakt moeten worden.\n"
-"Deze wizard kan u hierbij helpen.\n"
+"Het beschikbare geheugen van uw Dreambox is minder dan 2MB.\n"
+"Om de stabiliteit van uw Dreambox te garanderen, moet het interne geheugen worden opgeruimd.\n"
+"U kunt deze wizard gebruiken om extensies te verwijderen.\n"
 
 msgid ""
 "Welcome.\n"
@@ -6649,9 +6735,9 @@ msgid ""
 msgstr ""
 "Welkom.\n"
 "\n"
-"Als u uw Dreambox wenst te verbinden met het internet, kan deze wizard u helpen bij de basis netwerkinstellingen van uw Dreambox .\n"
+"Om uw Dreambox met het internet te verbinden, leidt deze wizard u door de basisiinstellingen.\n"
 "\n"
-"Druk op  OK om uw netwerk te configureren."
+"Druk op OK om te beginnen met het configureren van uw netwerk."
 
 msgid ""
 "Welcome.\n"
@@ -6661,8 +6747,8 @@ msgid ""
 msgstr ""
 "Welkom.\n"
 "\n"
-"De installatiewizard biedt u hulp bij de basisinstellingen van uw Dreambox.\n"
-"Druk op de OK toets om door te gaan."
+"Deze wizard leidt u door de basisinstellingen van uw Dreambox.\n"
+"Druk op OK om door te gaan naar de volgende stap."
 
 msgid "Welcome..."
 msgstr "Welkom..."
@@ -6719,6 +6805,14 @@ msgstr "Status draadloos netwerk"
 
 msgid "Write error while recording. Disk full?\n"
 msgstr "Schrijffout tijdens opname. Harde schijf vol?\n"
+
+#, python-format
+msgid ""
+"Write error while recording. Disk full?\n"
+"%s"
+msgstr ""
+"Schrijffout tijdens opname. Is de schijf vol?\n"
+"%s"
 
 msgid "Write failed!"
 msgstr "Schrijven mislukt!"
@@ -6884,16 +6978,18 @@ msgstr ""
 msgid "You system does not support ext4"
 msgstr "Uw systeem ondersteunt geen ext4"
 
-#
+msgid "Your STB will restart after pressing OK on your remote control."
+msgstr "Als u op OK drukt zal uw ontvanger opnieuw opstarten."
+
 msgid ""
 "Your Dreambox is now ready to use.\n"
 "\n"
 "Your internet connection is working now.\n"
 "\n"
 msgstr ""
-"Uw Dreambox is nu klaar voor gebruik.\n"
+"Uw Dreambox is nu gereed voor gebruik.\n"
 "\n"
-"Uw internet verbinding werkt nu.\n"
+"Uw internetverbinding werkt.\n"
 "\n"
 
 msgid ""
@@ -6903,14 +6999,11 @@ msgid ""
 "\n"
 "Please press OK to continue."
 msgstr ""
-"Uw Dreambox is klaar voor gebruik.\n"
+"Uw Dreambox is nu gereed voor gebruik.\n"
 "\n"
-"Uw internetverbinding is in orde.\n"
+"Uw internet verbinding werkt.\n"
 "\n"
-"Druk op OK om verder te gaan."
-
-msgid "Your STB will restart after pressing OK on your remote control."
-msgstr "Als u op OK drukt zal uw ontvanger opnieuw opstarten."
+"Druk op OK om door te gaan."
 
 msgid "Your backup succeeded. We will now continue to explain the further upgrade process."
 msgstr "De back-up is geslaagd. U krijgt nu een korte uitleg over het vervolg van het update proces."
@@ -6929,12 +7022,6 @@ msgstr ""
 #
 msgid "Your current collection will get lost!"
 msgstr "Uw huidige collectie zal verloren gaan!"
-
-msgid "Your dreambox is shutting down. Please stand by..."
-msgstr "Uw Dreambox wordt nu afgesloten. Een ogenblik a.u.b..."
-
-msgid "Your dreambox isn't connected to the internet properly. Please check it and try again."
-msgstr "Uw Dreambox heeft geen verbinding met het internet kunnen maken. Controleer instellingen en kabels en probeer opnieuw."
 
 msgid "Your email address:"
 msgstr "Uw e-mailadres:"
@@ -6958,6 +7045,12 @@ msgstr "Uw naam (optioneel):"
 
 msgid "Your network configuration has been activated."
 msgstr "Configuratie van uw netwerk is geactiveerd."
+
+msgid "Your dreambox is shutting down. Please stand by..."
+msgstr "Uw Dreambox wordt nu afgesloten. Een ogenblik a.u.b..."
+
+msgid "Your dreambox isn't connected to the internet properly. Please check it and try again."
+msgstr "Uw Dreambox heeft geen verbinding met het internet kunnen maken. Controleer instellingen en kabels en probeer opnieuw."
 
 msgid ""
 "Your wireless LAN internet connection could not be started!\n"
@@ -7178,6 +7271,9 @@ msgstr "kaart"
 msgid "card reader"
 msgstr "kaartlezer"
 
+msgid "cat /proc/bus/input/devices"
+msgstr "cat /proc/bus/input/devices"
+
 msgid "change recording (duration)"
 msgstr "Wijzig opnameduur"
 
@@ -7350,6 +7446,9 @@ msgstr "verlaat netwerkinterface lijst"
 msgid "exit networkadapter setup menu"
 msgstr "verlaat netwerkadapter instellingen menu"
 
+msgid "failed"
+msgstr "mislukt"
+
 msgid "file oscam.conf could not be found"
 msgstr "bestand oscam.conf niet gevonden"
 
@@ -7361,6 +7460,9 @@ msgstr "bestandnaam"
 
 msgid "fine-tune your display"
 msgstr "Uw scherm fijn-afstellen"
+
+msgid "fixed"
+msgstr "vast"
 
 msgid "forward to the next chapter"
 msgstr "Vooruit naar volgend hoofdstuk"
@@ -7681,6 +7783,9 @@ msgstr "opnemen..."
 
 msgid "red"
 msgstr "rood"
+
+msgid "relative"
+msgstr "relatief"
 
 msgid "remove a nameserver entry"
 msgstr "verwijder een nameserver "

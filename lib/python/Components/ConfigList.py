@@ -9,7 +9,7 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 	def __init__(self, list, session = None):
 		GUIComponent.__init__(self)
 		self.l = eListboxPythonConfigContent()
-		self.l.setSeperation(200)
+		self.l.setSeperation(350)
 		self.timer = eTimer()
 		self.list = list
 		self.onSelectionChanged = [ ]
@@ -18,7 +18,7 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 
 	def execBegin(self):
 		rcinput = eRCInput.getInstance()
-		if not config.misc.remotecontrol_harmony.value:
+		if not config.misc.remotecontrol_text_support.value:
 			rcinput.setKeyboardMode(rcinput.kmAscii)
 		else:
 			rcinput.setKeyboardMode(rcinput.kmNone)
@@ -240,8 +240,14 @@ class ConfigListScreen:
 			x[1].cancel()
 		self.close()
 
-	def keyCancel(self):
+	def closeMenuList(self, recursive = False):
 		if self["config"].isChanged():
 			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"))
 		else:
-			self.close()
+			self.close(recursive)
+
+	def keyCancel(self):
+		self.closeMenuList()
+	
+	def closeRecursive(self):
+		self.closeMenuList(True)

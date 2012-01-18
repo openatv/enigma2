@@ -5,6 +5,4 @@ SUBDIRS = meta
 install_PYTHON =	 \
 	__init__.py \
 	plugin.py \
-	fpga.py \
-	fpga.conf \
-	_fpga.so
+	fpga.conf 

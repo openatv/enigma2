@@ -94,10 +94,11 @@ class Setup(ConfigListScreen, Screen):
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
 
-		self["actions"] = NumberActionMap(["SetupActions"], 
+		self["actions"] = NumberActionMap(["SetupActions", "MenuActions"], 
 			{
 				"cancel": self.keyCancel,
 				"save": self.keySave,
+				"menu": self.closeRecursive,
 			}, -2)
 
 		self["VirtualKB"] = ActionMap(["VirtualKeyboardActions"],
@@ -166,10 +167,10 @@ class Setup(ConfigListScreen, Screen):
 			pass
 
 	def getCurrentEntry(self):
-		return self["config"].getCurrent()[0]
+		return self["config"].getCurrent() and self["config"].getCurrent()[0] or ""
 
 	def getCurrentValue(self):
-		return str(self["config"].getCurrent()[1].getText())
+		return self["config"].getCurrent() and str(self["config"].getCurrent()[1].getText()) or ""
 
 	def createSummary(self):
 		return SetupSummary

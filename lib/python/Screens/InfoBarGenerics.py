@@ -272,6 +272,7 @@ class InfoBarShowHide:
 			self.secondInfoBarScreen = self.session.instantiateDialog(SecondInfoBar)
 			self.secondInfoBarScreen.hide()
 		self.secondInfoBarWasShown = False
+		self.EventViewIsShown = False
 
 	def serviceStarted(self):
 		if self.execing:
@@ -292,7 +293,7 @@ class InfoBarShowHide:
 			idx = config.usage.infobar_timeout.index
 			if idx:
 				self.hideTimer.start(idx*1000, True)
-		elif self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+		elif (self.secondInfoBarScreen and self.secondInfoBarScreen.shown) or config.usage.show_second_infobar.value == "1":
 			self.hideTimer.stop()
 			idx = config.usage.second_infobar_timeout.index
 			if idx:
@@ -312,26 +313,38 @@ class InfoBarShowHide:
 		elif self.__state == self.STATE_HIDDEN and self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
+		elif self.__state == self.STATE_HIDDEN and self.EventViewIsShown:
+			try:
+				self.eventView.close()
+			except:
+				pass
+			self.EventViewIsShown = False
 
 	def toggleShow(self):
 		if self.__state == self.STATE_HIDDEN:
-			if not self.secondInfoBarWasShown:
+			if not self.secondInfoBarWasShown or not self.EventViewIsShown:
 				self.show()
 			if self.secondInfoBarScreen:
 				self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
+			self.EventViewIsShown = False
 		elif self.secondInfoBarScreen and config.usage.show_second_infobar.value == "2" and not self.secondInfoBarScreen.shown:
 			self.hide()
 			self.secondInfoBarScreen.show()
 			self.secondInfoBarWasShown = True
 			self.startHideTimer()
+		elif config.usage.show_second_infobar.value == "1" and not self.EventViewIsShown:
+			self.hide()
+			self.openEventView()
+			self.EventViewIsShown = True
+			self.startHideTimer()
 		else:
 			self.hide()
 			if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 				self.secondInfoBarScreen.hide()
-			if config.usage.show_second_infobar.value == "1":
-				self.openEventView()
-			self.hideTimer.stop()
+			elif self.EventViewIsShown:
+				self.eventView.close()
+				self.EventViewIsShown = False
 
 	def lockShow(self):
 		self.__locked = self.__locked + 1
@@ -345,14 +358,6 @@ class InfoBarShowHide:
 			self.__locked = 0
 		if self.execing:
 			self.startHideTimer()
-
-#	def startShow(self):
-#		self.instance.m_animation.startMoveAnimation(ePoint(0, 600), ePoint(0, 380), 100)
-#		self.__state = self.STATE_SHOWN
-#
-#	def startHide(self):
-#		self.instance.m_animation.startMoveAnimation(ePoint(0, 380), ePoint(0, 600), 100)
-#		self.__state = self.STATE_HIDDEN
 
 	def doButtonsCheck(self):
 		if config.vixsettings.ColouredButtons.value:
@@ -779,7 +784,7 @@ class InfoBarChannelSelection:
 			InfoBarTimeshift.saveTimeshiftActions(self, postaction="switchChannelUp")
 		else:
 			if not config.usage.show_bouquetalways.value:
-				self.servicelist.moveUp()
+ # 				self.servicelist.moveUp()
 				self.session.execDialog(self.servicelist)
 			else:
 				self.servicelist.showFavourites()
@@ -790,7 +795,7 @@ class InfoBarChannelSelection:
 			InfoBarTimeshift.saveTimeshiftActions(self, postaction="switchChannelDown")
 		else:
 			if not config.usage.show_bouquetalways.value:
-				self.servicelist.moveDown()
+#  				self.servicelist.moveDown()
 				self.session.execDialog(self.servicelist)
 			else:
 				self.servicelist.showFavourites()
@@ -1575,7 +1580,7 @@ class InfoBarSeek:
 					self.setSeekState(self.lastseekstate)
 					self.lastseekstate = self.SEEK_STATE_PLAY
 			else:
-				self.pauseService()
+				self.unPauseService()
 
 	def pauseService(self):
 		if self.seekstate != self.SEEK_STATE_EOF:
@@ -1975,9 +1980,9 @@ class InfoBarTimeshift:
 
 	def __evStart(self):
 		print "[TimeShift] __evStart"
-		if not config.usage.timeshift_path.value.endswith('/'):
-			print "No trailing '/' in config.usage.timeshift_path.value, adding it"
-			config.usage.timeshift_path.value += '/'
+# 		if not config.usage.timeshift_path.value.endswith('/'):
+# 			print "No trailing '/' in config.usage.timeshift_path.value, adding it"
+# 			config.usage.timeshift_path.value += '/'
 		self.service_changed = 1
 		self.pts_delay_timer.stop()
 		self.pts_service_changed = True
@@ -3094,7 +3099,10 @@ class InfoBarTimeshift:
 			self.setSeekState(self.SEEK_STATE_PAUSE)
 
 		if back:
-			self.ts_rewind_timer.start(500, 1)
+			if config.misc.boxtype.value.startswith('et'):
+					self.ts_rewind_timer.start(1000, 1)
+			else:
+					self.ts_rewind_timer.start(100, 1)
 
 	def rewindService(self):
 		self.setSeekState(self.makeStateBackward(int(config.seek.enter_backward.value)))

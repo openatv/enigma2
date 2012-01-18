@@ -63,6 +63,7 @@ class ChoiceBox(Screen):
 		orgwidth = self.instance.size().width()
 		orgpos = self.instance.position()
 		textsize = self["text"].getSize()
+		textsize = (textsize[0] + 60, textsize[1])
 		count = len(self.list)
 		if count > 10:
 			count = 10

@@ -37,12 +37,13 @@ class RecordingSettings(Screen,ConfigListScreen):
 		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
 		self.createSetup()
 
-		self["setupActions"] = ActionMap(["SetupActions", "ColorActions"],
+		self["setupActions"] = ActionMap(["SetupActions", "ColorActions", "MenuActions"],
 		{
 		    "green": self.keySave,
 		    "red": self.keyCancel,
 		    "cancel": self.keyCancel,
 		    "ok": self.ok,
+			"menu": self.closeRecursive,
 		}, -2)
 
 	def checkReadWriteDir(self, configele):
@@ -133,6 +134,7 @@ class RecordingSettings(Screen,ConfigListScreen):
 			self.list.append(getConfigListEntry(_("Recording demux buffer size"), config.misc.demux_size))
 			self.list.append(getConfigListEntry(_("Background delete option"), config.misc.erase_flags))
 			self.list.append(getConfigListEntry(_("Background delete speed"), config.misc.erase_speed))
+			self.list.append(getConfigListEntry(_("Record ECM"), config.recording.record_ecm))
 		self["config"].setList(self.list)
 
 	# for summary:

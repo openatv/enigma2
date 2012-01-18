@@ -4,8 +4,8 @@ import xml.etree.cElementTree
 import os
 
 profile("LOAD:enigma_skin")
-from enigma import eSize, ePoint, gFont, eWindow, eLabel, ePixmap, eWindowStyleManager, \
-	addFont, gRGB, eWindowStyleSkinned
+from enigma import eSize, ePoint, eRect, gFont, eWindow, eLabel, ePixmap, eWindowStyleManager, \
+	addFont, gRGB, eWindowStyleSkinned, getDesktop
 from Components.config import ConfigSubsection, ConfigText, config, ConfigYesNo
 from Components.Converter.Converter import Converter
 from Components.Sources.Source import Source, ObsoleteSource
@@ -72,6 +72,8 @@ try:
 except (SkinError, IOError, AssertionError), err:
 	print "not loading user skin: ", err
 
+# some boxes lie about their dimensions
+addSkin('skin_box.xml')
 # Only one of these is present, compliments of AM_CONDITIONAL
 config.skin.display_skin = ConfigYesNo(default = False)
 display_skin_id = 1
@@ -515,12 +517,11 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 
 	for windowstyle in skin.findall("windowstyle"):
 		style = eWindowStyleSkinned()
-		id = windowstyle.attrib.get("id")
-		if id:
-			id = int(id)
+		style_id = windowstyle.attrib.get("id")
+		if style_id:
+			style_id = int(style_id)
 		else:
-			id = 0
-		#print "windowstyle:", id
+			style_id = 0
 		# defaults
 		font = gFont("Regular", 20)
 		offset = eSize(20, 5)
@@ -553,7 +554,29 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 				#pass
 			#print "  color:", type, color
 		x = eWindowStyleManager.getInstance()
-		x.setStyle(id, style)
+		x.setStyle(style_id, style)
+	for margin in skin.findall("margin"):
+		style_id = margin.attrib.get("id")
+		if style_id:
+			style_id = int(style_id)
+		else:
+			style_id = 0
+		r = eRect(0,0,0,0)
+		v = margin.attrib.get("left")
+		if v:
+			r.setLeft(int(v))
+		v = margin.attrib.get("top")
+		if v:
+			r.setTop(int(v))
+		v = margin.attrib.get("right")
+		if v:
+			r.setRight(int(v))
+		v = margin.attrib.get("bottom")
+		if v:
+			r.setBottom(int(v))
+		# the "desktop" parameter is hardcoded to the UI screen, so we must ask
+		# for the one that this actually applies to.
+		getDesktop(style_id).setMargins(r)
 
 dom_screens = {}
 
@@ -704,8 +727,6 @@ def readSkin(screen, skin, names, desktop):
 	if not isinstance(names, list):
 		names = [names]
 
-	name = "<embedded-in-'%s'>" % screen.__class__.__name__
-
 	# try all skins, first existing one have priority
 	global dom_screens
 	for n in names:
@@ -714,6 +735,8 @@ def readSkin(screen, skin, names, desktop):
 			# use this name for debug output
 			name = n
 			break
+	else:
+		name = "<embedded-in-'%s'>" % screen.__class__.__name__
 
 	# otherwise try embedded skin
 	if myscreen is None:
@@ -722,7 +745,7 @@ def readSkin(screen, skin, names, desktop):
 	# try uncompiled embedded skin
 	if myscreen is None and getattr(screen, "skin", None):
 		skin = screen.skin
-		print "[SKIN] Parsing embedded skin"
+		print "[SKIN] Parsing embedded skin", name
 		if (isinstance(skin, tuple)):
 			for s in skin:
 				candidate = xml.etree.cElementTree.fromstring(s)
@@ -744,10 +767,10 @@ def readSkin(screen, skin, names, desktop):
 	screen.skinAttributes = [ ]
 	skin_path_prefix = getattr(screen, "skin_path", path)
 
-	context = SkinContext()
-	s = desktop.size()
-	context.x = 0
-	context.y = 0
+	context = SkinContextStack()
+	s = desktop.bounds()
+	context.x = s.left()
+	context.y = s.top()
 	context.w = s.width()
 	context.h = s.height()
 	del s

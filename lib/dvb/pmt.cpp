@@ -112,10 +112,13 @@ void eDVBServicePMTHandler::PMTready(int error)
 	{
 		m_have_cached_program = false;
 		serviceEvent(eventNewProgramInfo);
-		if (!m_pvr_channel) // don't send campmt to camd.socket for playbacked services
+		if (!m_pvr_channel)
 		{
 			eEPGCache::getInstance()->PMTready(this);
-			if(!m_ca_servicePtr)
+		}
+		if (doDescramble)
+		{
+			if (!m_ca_servicePtr)
 			{
 				int demuxes[2] = {0,0};
 				uint8_t demuxid;
@@ -1034,18 +1037,20 @@ void eDVBServicePMTHandler::SDTScanEvent(int event)
 	}
 }
 
-int eDVBServicePMTHandler::tune(eServiceReferenceDVB &ref, int use_decode_demux, eCueSheet *cue, bool simulate, eDVBService *service)
+int eDVBServicePMTHandler::tune(eServiceReferenceDVB &ref, int use_decode_demux, eCueSheet *cue, bool simulate, eDVBService *service, bool descramble)
 {
 	ePtr<iTsSource> s;
-	return tuneExt(ref, use_decode_demux, s, NULL, cue, simulate, service);
+	return tuneExt(ref, use_decode_demux, s, NULL, cue, simulate, service, descramble);
 }
 
-int eDVBServicePMTHandler::tuneExt(eServiceReferenceDVB &ref, int use_decode_demux, ePtr<iTsSource> &source, const char *streaminfo_file, eCueSheet *cue, bool simulate, eDVBService *service)
+int eDVBServicePMTHandler::tuneExt(eServiceReferenceDVB &ref, int use_decode_demux, ePtr<iTsSource> &source, const char *streaminfo_file, eCueSheet *cue, bool simulate, eDVBService *service, bool descramble)
 {
 	RESULT res=0;
 	m_reference = ref;
 	m_use_decode_demux = use_decode_demux;
 	m_no_pat_entry_delay->stop();
+
+	doDescramble = descramble;
 
 		/* use given service as backup. This is used for timeshift where we want to clone the live stream using the cache, but in fact have a PVR channel */
 	m_service = service;
