@@ -147,6 +147,7 @@ class MovieList(GUIComponent):
 		self.reloadDelayTimer = None
 		self.l = eListboxPythonMultiContent()
 		self.tags = set()
+		self.root = None
 		
 		if root is not None:
 			self.reload(root)
@@ -469,7 +470,6 @@ class MovieList(GUIComponent):
 		serviceHandler = eServiceCenter.getInstance()
 		numberOfDirs = 0
 		
-		self.root = root
 		reflist = serviceHandler.list(root)
 		if reflist is None:
 			print "listing of movies failed"
@@ -477,6 +477,7 @@ class MovieList(GUIComponent):
 		realtags = set()
 		tags = {}
 		rootPath = os.path.normpath(root.getPath());
+		parent = None
 		# Don't navigate above the "root"
 		if len(rootPath) > 1 and (os.path.realpath(rootPath) != config.movielist.root.value):
 			parent = os.path.split(os.path.normpath(rootPath))[0]
@@ -540,6 +541,20 @@ class MovieList(GUIComponent):
 		elif self.sort_type == MovieList.SORT_RECORDED_REVERSE:
 			self.list = self.list[:numberOfDirs] + sorted(self.list[numberOfDirs:], key=self.buildBeginTimeSortKey, reverse = True)
 	
+		if self.root and numberOfDirs > 0:				
+			rootPath = os.path.normpath(self.root.getPath())
+			if not rootPath.endswith('/'):
+				rootPath += '/'
+			if rootPath != parent:
+				dirlist = self.list[:numberOfDirs]
+				for index, item in enumerate(dirlist):
+					itempath = os.path.normpath(item[0].getPath())
+					if not itempath.endswith('/'):
+						itempath += '/'
+					if itempath == rootPath: 
+						self.firstFileEntry = index
+						break
+		self.root = root
 		# finally, store a list of all tags which were found. these can be presented
 		# to the user to filter the list
 		# ML: Only use the tags that occur more than once in the list OR that were
