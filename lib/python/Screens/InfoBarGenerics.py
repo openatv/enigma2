@@ -286,11 +286,12 @@ class InfoBarShowHide:
 				self.secondInfoBarScreen = self.session.instantiateDialog(SecondInfoBar)
 			self.secondInfoBarScreen.hide()
 		self.secondInfoBarWasShown = False
+		self.EventViewIsShown = False
 
 	def serviceStarted(self):
 		if self.execing:
 			if config.usage.show_infobar_on_zap.value:
-				self.doShow()	
+				self.doShow()
 
 	def __onShowEcm(self):
 		self.ecmTimer.start(1000, False)
@@ -306,7 +307,7 @@ class InfoBarShowHide:
 			idx = config.usage.infobar_timeout.index
 			if idx:
 				self.hideTimer.start(idx*1000, True)
-		elif self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+		elif (self.secondInfoBarScreen and self.secondInfoBarScreen.shown) or config.usage.show_second_infobar.value == "1":
 			self.hideTimer.stop()
 			idx = config.usage.second_infobar_timeout.index
 			if idx:
@@ -326,14 +327,21 @@ class InfoBarShowHide:
 		elif self.__state == self.STATE_HIDDEN and self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
+		elif self.__state == self.STATE_HIDDEN and self.EventViewIsShown:
+			try:
+				self.eventView.close()
+			except:
+				pass
+			self.EventViewIsShown = False
 
 	def toggleShow(self):
 		if self.__state == self.STATE_HIDDEN:
-			if not self.secondInfoBarWasShown:
+			if not self.secondInfoBarWasShown or not self.EventViewIsShown:
 				self.show()
 			if self.secondInfoBarScreen:
 				self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
+			self.EventViewIsShown = False
 		elif self.secondInfoBarScreen and config.usage.show_second_infobar.value == "2" and not self.secondInfoBarScreen.shown:
 			self.hide()
 			self.secondInfoBarScreen.show()
@@ -343,14 +351,19 @@ class InfoBarShowHide:
 			self.hide()
 			self.secondInfoBarScreen.show()
 			self.secondInfoBarWasShown = True
+			self.startHideTimer()
+		elif config.usage.show_second_infobar.value == "1" and not self.EventViewIsShown:
+			self.hide()
+			self.openEventView()
+			self.EventViewIsShown = True
 			self.startHideTimer()	
 		else:
 			self.hide()
 			if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 				self.secondInfoBarScreen.hide()
-			if config.usage.show_second_infobar.value == "1":
-				self.openEventView()
-			self.hideTimer.stop()
+			elif self.EventViewIsShown:
+				self.eventView.close()
+				self.EventViewIsShown = False
 
 	def lockShow(self):
 		try:
@@ -1488,7 +1501,7 @@ class InfoBarSeek:
 				"SeekbarFwd": self.seekFwdSeekbar,
 				"SeekbarBack": self.seekBackSeekbar
 			}, prio=-1)
-			# give them a little more priority to win over color buttons					
+			# give them a little more priority to win over color buttons
 		self["SeekActionsPTS"] = InfoBarSeekActionMap(self, "InfobarSeekActionsPTS",
 			{
 				"playpauseService": self.playpauseService,
@@ -4101,7 +4114,7 @@ class InfoBarRedButton:
 				x()
 		elif False: # TODO: other red button services
 			for x in self.onRedButtonActivation:
-				x()		
+				x()
 
 class InfoBarAspectSelection: 
 	STATE_HIDDEN = 0 

@@ -333,7 +333,8 @@ Font::~Font()
 }
 
 DEFINE_REF(eTextPara);
-int eTextPara::appendGlyph(Font *current_font, FT_Face current_face, FT_UInt glyphIndex, int flags, int rflags, int border, bool last)
+int eTextPara::appendGlyph(Font *current_font, FT_Face current_face, FT_UInt glyphIndex, int flags, int rflags, int border, bool last,
+		bool activate_newcolor, unsigned long newcolor)
 {
 	int xadvance, top, left, width, height;
 	pGlyph ng;
@@ -486,6 +487,13 @@ int eTextPara::appendGlyph(Font *current_font, FT_Face current_face, FT_UInt gly
 	ng.font = current_font;
 	ng.glyph_index = glyphIndex;
 	ng.flags = flags;
+
+	if (activate_newcolor)
+	{
+		ng.flags |= GS_COLORCHANGE;
+		ng.newcolor = newcolor;
+	}
+
 	glyphs.push_back(ng);
 	++charCount;
 
@@ -719,6 +727,8 @@ int eTextPara::renderString(const char *string, int rflags, int border)
 	
 	glyphs.reserve(size);
 	
+	unsigned long newcolor = 0;
+	bool activate_newcolor = false;
 	int nextflags = 0;
 	
 	for (std::vector<unsigned long>::const_iterator i(uc_visual.begin());
@@ -760,14 +770,10 @@ int eTextPara::renderString(const char *string, int rflags, int border)
 							}
 							if (codeidx == 8)
 							{
-								pGlyph ng;
-								ng.newcolor = gRGB(color).argb();
-								ng.flags = GS_COLORCHANGE;
-								ng.w = 0;
-								glyphs.push_back(ng);
+								newcolor = gRGB(color).argb();
+								activate_newcolor = true;
+								isprintable = 0;
 								i += 1 + codeidx;
-								nextflags = flags;
-								continue;
 							}
 							break;
 						}
@@ -827,9 +833,11 @@ nprint:				isprintable=0;
 				if (!index)
 					eDebug("unicode U+%4lx not present", chr);
 				else
-					appendGlyph(replacement_font, replacement_face, index, flags, rflags, border, i == uc_visual.end() - 1);
+					appendGlyph(replacement_font, replacement_face, index, flags, rflags, border, i == uc_visual.end() - 1, activate_newcolor, newcolor);
 			} else
-				appendGlyph(current_font, current_face, index, flags, rflags, border, i == uc_visual.end() - 1);
+				appendGlyph(current_font, current_face, index, flags, rflags, border, i == uc_visual.end() - 1, activate_newcolor, newcolor);
+
+			activate_newcolor = false;
 		}
 	}
 	bboxValid=false;
@@ -903,6 +911,15 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &background, cons
 			line_offs = *(line_offs_it++);
 			line_chars = *(line_chars_it++);
 		}
+		if (i->flags & GS_COLORCHANGE)
+		{
+			/* don't do colorchanges in borders */
+			if (!border)
+			{
+				currentforeground = i->newcolor;
+				setcolor = true;
+			}
+		}
 		if (setcolor)
 		{
 			setcolor = false;
@@ -971,16 +988,6 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &background, cons
 				eWarning("can't render to %dbpp", surface->bpp);
 				return;
 			}
-		}
-		if (i->flags & GS_COLORCHANGE)
-		{
-			/* don't do colorchanges in borders */
-			if (!border)
-			{
-				currentforeground = i->newcolor;
-				setcolor = true;
-			}
-			continue;
 		}
 		if (i->flags & GS_SOFTHYPHEN)
 			continue;

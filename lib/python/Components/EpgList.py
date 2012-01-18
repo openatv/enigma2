@@ -13,6 +13,7 @@ from time import localtime, time
 from ServiceReference import ServiceReference
 from Tools.Directories import pathExists, resolveFilename, SCOPE_CURRENT_SKIN
 from os import listdir, path
+from enigma import eSize
 
 EPG_TYPE_SINGLE = 0
 EPG_TYPE_MULTI = 1
@@ -56,10 +57,11 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.cur_service = None
 		self.offs = 0
 		self.curr_refcool = None	
-		self.coolheight = 54
+		self.rowheight = 54
 		self.time_base = None
 		self.time_epoch = time_epoch
 		self.event_rect = None
+		self.currentlyPlaying = None
 
 		self.timer = timer
 		self.onSelChanged = [ ]
@@ -101,7 +103,11 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.nowBackColor = 0x00825F
 		self.nowBackColorSelected = 0x4800FF
 		self.foreColorService = 0xffffff
+		self.foreColorServiceSelected = 0x000000
 		self.backColorService = 0x000000
+		self.backColorServiceSelected = 0xffffff
+		self.borderColorService = 0x000000
+
 		self.picload = ePicLoad()
 		self.frameBufferScale = AVSwitch().getFramebufferScale()
 
@@ -129,10 +135,16 @@ class EPGList(HTMLComponent, GUIComponent):
 						self.backColorSelected = parseColor(value).argb()
 					elif attrib == "EntryNowBackgroundColorSelected":
 						self.nowBackColorSelected = parseColor(value).argb()
-					elif attrib == "ServiceNameForegroundColor":
+					elif attrib == "ServiceForegroundColor" or attrib == "ServiceNameForegroundColor":
 						self.foreColorService = parseColor(value).argb()
-					elif attrib == "ServiceNameBackgroundColor":
+					elif attrib == "ServiceForegroundColorSelected":
+						self.foreColorServiceSelected = parseColor(value).argb()
+					elif attrib == "ServiceBackgroundColor" or attrib == "ServiceNameBackgroundColor":
 						self.backColorService = parseColor(value).argb()
+					elif attrib == "ServiceBackgroundColorSelected":
+						self.backColorServiceSelected = parseColor(value).argb()
+					elif attrib == "ServiceBorderColor":
+						self.borderColorService = parseColor(value).argb()
 					else:
 						attribs.append((attrib,value))
 				self.skinAttributes = attribs
@@ -142,7 +154,6 @@ class EPGList(HTMLComponent, GUIComponent):
 		else:
 			rc = GUIComponent.applySkin(self, desktop, screen)
 			return rc
-
 
 	def isSelectable(self, service, sname, event_list):
 		return (event_list and len(event_list) and True) or False
@@ -156,9 +167,8 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.time_epoch = epoch
 		self.fillGraphEPG(None)
 
-	def setEpoch2(self, epoch):
-		self.offs = 0
-		self.time_epoch = epoch
+	def setCurrentlyPlaying(self, serviceref):
+		self.currentlyPlaying = serviceref
 
 	def getEventFromId(self, service, eventid):
 		event = None
@@ -280,21 +290,29 @@ class EPGList(HTMLComponent, GUIComponent):
 	GUI_WIDGET = eListbox
 
 	def setItemsPerPage(self):
-#		ItemHeight = None
 		config.GraphEPG.item_hight.value = self.instance.size().height()
-		if not config.GraphEPG.coolswitch.value == "14-16":
-			self.l.setItemHeight(config.GraphEPG.item_hight.value / config.GraphEPG.items_per_page.value)
-			self.coolheight = (config.GraphEPG.item_hight.value / config.GraphEPG.items_per_page.value)
-		if ((config.GraphEPG.item_hight.value / config.GraphEPG.items_per_page.value) / 3) > 27:
-			config.GraphEPG.item_hight16.value = ((config.GraphEPG.item_hight.value / config.GraphEPG.items_per_page.value) / 3)
-		elif ((config.GraphEPG.item_hight.value / config.GraphEPG.items_per_page.value) / 2) > 27:
-			config.GraphEPG.item_hight16.value = ((config.GraphEPG.item_hight.value / config.GraphEPG.items_per_page.value) / 2)
-		else:
-			config.GraphEPG.item_hight16.value = 27
-		if config.GraphEPG.coolswitch.value == "14-16":
-			self.coolheight = config.GraphEPG.item_hight16.value
-			self.l.setItemHeight(config.GraphEPG.item_hight16.value)
-
+		config.GraphEPG.item_width.value = self.instance.size().width()
+		config.GraphEPG.item_rowhight.value = (config.GraphEPG.item_hight.value/config.GraphEPG.items_per_page.value)
+		if config.GraphEPG.heightswitch.value:
+			if ((config.GraphEPG.item_hight.value / config.GraphEPG.items_per_page.value) / 3) > 27:
+				tmp_rowheight = ((config.GraphEPG.item_hight.value / config.GraphEPG.items_per_page.value) / 3)
+			elif ((config.GraphEPG.item_hight.value / config.GraphEPG.items_per_page.value) / 2) > 27:
+				tmp_rowheight = ((config.GraphEPG.item_hight.value / config.GraphEPG.items_per_page.value) / 2)
+			else:
+				tmp_rowheight = 27		
+			if tmp_rowheight < config.GraphEPG.item_rowhight.value:
+				config.GraphEPG.item_rowhight.value = tmp_rowheight
+			else:
+				if ((config.GraphEPG.item_hight.value / config.GraphEPG.items_per_page.value) * 3) < 54:
+					tmp_rowheight = ((config.GraphEPG.item_hight.value / config.GraphEPG.items_per_page.value) * 3)
+				elif ((config.GraphEPG.item_hight.value / config.GraphEPG.items_per_page.value) * 2) < 54:
+					tmp_rowheight = ((config.GraphEPG.item_hight.value / config.GraphEPG.items_per_page.value) * 2)
+				else:
+					tmp_rowheight = 54
+				config.GraphEPG.item_rowhight.value = tmp_rowheight
+		self.l.setItemHeight(config.GraphEPG.item_rowhight.value)
+#   		self.instance.resize(eSize(config.GraphEPG.item_width.value,config.GraphEPG.items_per_page.value*config.GraphEPG.item_rowhight.value))
+		
 	def setServiceFontsize(self):
 		self.l.setFont(0, gFont("Regular", config.GraphEPG.Left_Fontsize.value))
 
@@ -505,7 +523,8 @@ class EPGList(HTMLComponent, GUIComponent):
 		backColorService = self.backColorService
 		backColorOrig = self.backColor # normale Eventsfarbe
 #		VIXEPGEvent = 1
-		if self.curr_refcool.toString() == service:
+		nowPlaying = self.currentlyPlaying.toString()
+		if nowPlaying is not None and nowPlaying == service:
 #			backColor = 0x516b96
 #			backColorOrig = 0x516b96
 			backColorService = 0x516b96
@@ -544,7 +563,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			coolflags = RT_HALIGN_LEFT | RT_VALIGN_CENTER
 			thepraefix = " "
 
-			if self.coolheight > 30:
+			if self.rowheight > 30:
 				coolflags = RT_HALIGN_CENTER | RT_VALIGN_CENTER | RT_WRAP
 				thepraefix = ""
 #				if service == self.cur_service[0]:
@@ -554,7 +573,7 @@ class EPGList(HTMLComponent, GUIComponent):
 				rec=ev[2] and self.timer.isInTimer(ev[0], ev[2], ev[3], service)
 				xpos, ewidth = self.calcEntryPosAndWidthHelper(ev[2], ev[3], start, end, width)
 
-				if self.curr_refcool.toString() == service:
+				if nowPlaying is not None and nowPlaying == service:
 					backColorOrig = 0x516b96
 
 				if ev[2] <= now and (ev[2] + ev[3]) > now:
