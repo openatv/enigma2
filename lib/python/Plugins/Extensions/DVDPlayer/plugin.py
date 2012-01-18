@@ -11,6 +11,11 @@ def DVDPlayer(*args, **kwargs):
 	from Screens import DVD
 	return DVD.DVDPlayer(*args, **kwargs)
 
+def DVDOverlay(*args, **kwargs):
+	# for backward compatibility with plugins that do "from DVDPlayer.plugin import DVDOverlay"
+	from Screens import DVD
+	return DVD.DVDOverlay(*args, **kwargs)
+
 def filescan_open(list, session, **kwargs):
 	from Screens import DVD
 	if len(list) == 1 and list[0].mimetype == "video/x-dvd":
