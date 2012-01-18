@@ -671,7 +671,7 @@ class GraphMultiEPG(Screen):
 	def showSetup(self):
 		self.session.openWithCallback(self.onSetupClose, GraphMultiEpgSetup )
 
-	def onSetupClose(self):
+	def onSetupClose(self, ignore=-1):
 		l = self["list"]
 		l.setItemsPerPage()
 		l.setEventFontsize()
