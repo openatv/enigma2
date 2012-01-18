@@ -50,19 +50,9 @@ class MenuUpdater:
 menuupdater = MenuUpdater()
 
 class MenuSummary(Screen):
-	skin = """
-	<screen position="0,0" size="132,64">
-		<widget source="parent.title" render="Label" position="6,4" size="120,21" font="Regular;18" />
-		<widget source="parent.menu" render="Label" position="6,25" size="120,21" font="Regular;16">
-			<convert type="StringListSelection" />
-		</widget>
-		<widget source="global.CurrentTime" render="Label" position="56,46" size="82,18" font="Regular;16" >
-			<convert type="ClockToText">WithSeconds</convert>
-		</widget>
-	</screen>"""
+	pass
 
 class Menu(Screen):
-
 	ALLOW_SUSPEND = True
 
 	def okbuttonClick(self):
