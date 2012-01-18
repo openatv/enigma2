@@ -322,7 +322,7 @@ class InfoBarShowHide:
 
 	def toggleShow(self):
 		if self.__state == self.STATE_HIDDEN:
-			if not self.secondInfoBarWasShown or not self.EventViewWasShown:
+			if not self.secondInfoBarWasShown or not self.EventViewIsShown:
 				self.show()
 			if self.secondInfoBarScreen:
 				self.secondInfoBarScreen.hide()
