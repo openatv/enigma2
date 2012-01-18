@@ -143,6 +143,7 @@ private:
 	static void cacheCorrupt(const char* context);
 public:
 	eventData(const eit_event_struct* e=NULL, int size=0, int type=0);
+	eventData(const eit_event_struct* e, int size, int type, int tsidonid);
 	~eventData();
 	const eit_event_struct* get() const;
 	operator const eit_event_struct*() const
@@ -248,11 +249,7 @@ class eEPGCache: public eMainloop, private eThread, public Object
 		void timeMHW2DVB( u_char day, u_char hours, u_char minutes, u_char *return_time);
 		void storeMHWTitle(std::map<__u32, mhw_title_t>::iterator itTitle, std::string sumText, const __u8 *data);
 #endif
-		void readData(const __u8 *data);
-		void readDataViasat(const __u8 *data);
-#ifdef ENABLE_NETMED
-		void readDataNetmed(const __u8 *data);
-#endif
+		void readData(const __u8 *data, int source);
 		void startChannel();
 		void startEPG();
 		bool finishEPG();

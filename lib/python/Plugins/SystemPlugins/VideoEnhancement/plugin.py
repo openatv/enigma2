@@ -36,12 +36,13 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 		self.xtdlist = [ ]
 		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
 
-		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
+		self["actions"] = ActionMap(["SetupActions", "ColorActions", "MenuActions"],
 			{
 				"cancel": self.keyCancel,
 				"save": self.apply,
 				"yellow": self.keyYellow,
 				"blue": self.keyBlue,
+				"menu": self.closeRecursive,
 			}, -2)
 
 		self["key_red"] = StaticText(_("Cancel"))

@@ -524,7 +524,14 @@ def Plugins(path, **kwargs):
 def main(session, **kwargs):
 	session.open(Blindscan)
                                                            
-def BlindscanSetup(menuid):
+def BlindscanSetup(menuid, **kwargs):
 	if menuid == "scan":
 		return [(_("Blind Scan"), main, "blinscan", 25)]
-	return []
+	else:
+		return []
+
+def Plugins(**kwargs):
+	if (nimmanager.hasNimType("DVB-S")):
+		return PluginDescriptor(name=_("Blind Scan"), description="Scan cable provider channels", where = PluginDescriptor.WHERE_MENU, fnc=BlindscanSetup)
+	else:
+		return []

@@ -321,10 +321,11 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		del self.feinfo
 		del self.service
 
-		self["actions"] = NumberActionMap(["SetupActions"],
+		self["actions"] = NumberActionMap(["SetupActions", "MenuActions"],
 		{
 			"ok": self.keyGo,
 			"cancel": self.keyCancel,
+			"menu": self.closeRecursive,
 		}, -2)
 
 		self.statusTimer = eTimer()
@@ -906,10 +907,11 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Automatic Scan"))
 
-		self["actions"] = ActionMap(["SetupActions"],
+		self["actions"] = ActionMap(["SetupActions", "MenuActions"],
 		{
 			"ok": self.keyGo,
 			"cancel": self.keyCancel,
+			"menu": self.closeRecursive,
 		}, -2)
 
 		self.list = []

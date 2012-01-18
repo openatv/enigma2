@@ -92,22 +92,10 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			# send normal notification for the case the user leave the standby now..
 			Notifications.AddNotification(Screens.Standby.TryQuitMainloop, 1, onSessionOpenCallback=RecordTimerEntry.stopTryQuitMainloop, default_yes = default_yes)
 
-	@staticmethod
-	def TryQuitMainloopDeepsleep(default_yes = False):
-		if not RecordTimerEntry.receiveRecordEvents:
-			print "RecordTimer.TryQuitMainloopDeepsleep"
-			NavigationInstance.instance.record_event.append(RecordTimerEntry.staticGotRecordEvent)
-			RecordTimerEntry.receiveRecordEvents = True
-			# send fake event.. to check if another recordings are running or
-			# other timers start in a few seconds
-			RecordTimerEntry.staticGotRecordEvent(None, iRecordableService.evEnd)
-			# send normal notification for the case the user leave the standby now..
-			Notifications.AddNotification(Screens.Standby.TryQuitMainloop, 5, onSessionOpenCallback=RecordTimerEntry.stopTryQuitMainloop, default_yes = default_yes)
 #################################################################
 
 	def __init__(self, serviceref, begin, end, name, description, eit, disabled = False, justplay = False, afterEvent = AFTEREVENT.AUTO, checkOldTimers = False, dirname = None, tags = None):
 		timer.TimerEntry.__init__(self, int(begin), int(end))
-
 		if checkOldTimers == True:
 			if self.begin < time() - 1209600:
 				self.begin = int(time())
@@ -200,6 +188,8 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			return True
 		else:
 			self.calculateFilename()
+			if not self.freespace():
+				return False
 			rec_ref = self.service_ref and self.service_ref.ref
 			if rec_ref and rec_ref.flags & eServiceReference.isGroup:
 				rec_ref = getBestPlayableServiceReference(rec_ref, eServiceReference())
@@ -260,11 +250,6 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		self.log(5, "activating state %d" % next_state)
 
 		if next_state == self.StatePrepared:
-			if not self.freespace():
-				Notifications.AddNotification(MessageBox, _("A timer failed to record!\nNot Enough freespace\n"), timeout=20)
-				self.cancelled = True
-				return True
-			
 			if self.tryPrepare():
 				self.log(6, "prepare ok, waiting for begin")
 				# create file to "reserve" the filename
@@ -283,7 +268,13 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				self.next_activation = self.begin
 				self.backoff = 0
 				return True
-
+			if not self.freespace():
+				Notifications.AddPopup(text = _("Write error while recording. Disk full?\n%s") % self.name, type = MessageBox.TYPE_ERROR, timeout = 5, id = "DiskFullMessage")
+				self.state = 4
+# 				self.disabled = True
+				self.failed = True
+				return False
+				
 			self.log(7, "prepare failed")
 			if self.first_try_prepare:
 				self.first_try_prepare = False
@@ -301,9 +292,13 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				else:
 					self.log(8, "currently no service running... so we dont need to stop it")
 			return False
+
 		elif next_state == self.StateRunning:
 			# if this timer has been cancelled, just go to "end" state.
 			if self.cancelled:
+				return True
+
+			if self.failed:
 				return True
 
 			if self.justplay:
@@ -327,8 +322,8 @@ class RecordTimerEntry(timer.TimerEntry, object):
 					# retry
 					self.begin = time() + self.backoff
 					return False
-
 				return True
+
 		elif next_state == self.StateEnded:
 			old_end = self.end
 			if self.setAutoincreaseEnd():

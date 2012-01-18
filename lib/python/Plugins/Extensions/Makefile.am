@@ -6,5 +6,9 @@ if HAVE_LIBDDVD
 SUBDIRS += DVDPlayer
 endif
 
+if VUPLUS
+SUBDIRS += GenuineVuplus
+endif
+
 install_PYTHON =	\
 	__init__.py

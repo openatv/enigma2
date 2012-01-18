@@ -29,11 +29,12 @@ class GraphMultiEpgSetup(Screen, ConfigListScreen):
 		self["oktext"] = Label(_("OK"))
 		self["canceltext"] = Label(_("Cancel"))
 		
-		self["actions"] = ActionMap(["SetupActions"],
+		self["actions"] = ActionMap(["SetupActions", "MenuActions"],
 		{
 			"ok": self.keySave,
 			"save": self.keySave,
 			"cancel": self.keyCancel,
+			"menu": self.closeRecursive,
 		}, -1)
 		
 		self.onChangedEntry = [ ]

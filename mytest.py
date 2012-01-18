@@ -65,14 +65,13 @@ config.misc.DeepStandby = NoSave(ConfigYesNo(default=False)) # detect deepstandb
 ####################################################
 
 def useSyncUsingChanged(configElement):
-	print 'SyncTimeUsing',config.misc.SyncTimeUsing.value
 	if config.misc.SyncTimeUsing.value == "0":
 		print "[Time By]: Transponder"
- 		value = True
+		value = True
 		enigma.eDVBLocalTimeHandler.getInstance().setUseDVBTime(value)
 	else:
 		print "[Time By]: NTP"
- 		value = False
+		value = False
 		enigma.eDVBLocalTimeHandler.getInstance().setUseDVBTime(value)
 		from Components.Console import Console
 		Console = Console()
@@ -525,7 +524,7 @@ def runScreenTest():
 			wptime = nowTime + 30  # so switch back on in 30 seconds
 		else:
 			wptime = startTime[0] - 240
-		if not config.misc.SyncTimeUsing.value == "Transponder":
+		if not config.misc.SyncTimeUsing.value == "0":
 			print "dvb time sync disabled... so set RTC now to current linux time!", strftime("%Y/%m/%d %H:%M", localtime(nowTime))
 			setRTCtime(nowTime)
 		print "set wakeup time to", strftime("%Y/%m/%d %H:%M", localtime(wptime))

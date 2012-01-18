@@ -12,6 +12,7 @@
 #include <sys/vfs.h> // for statfs
 // #include <libmd5sum.h>
 #include <lib/base/eerror.h>
+#include <lib/base/encoding.h>
 #include <lib/base/estring.h>
 #include <lib/dvb/pmt.h>
 #include <lib/dvb/db.h>
@@ -92,6 +93,120 @@ eventData::eventData(const eit_event_struct* e, int size, int type)
 					else
 						++it->second.first;
 					*pdescr++=crc;
+					break;
+				}
+				default: // do not cache all other descriptors
+					ptr += descr_len;
+					break;
+			}
+			size -= descr_len;
+		}
+		else
+			break;
+	}
+	ASSERT(pdescr <= &descr[65]);
+	ByteSize = 10+((pdescr-descr)*4);
+	EITdata = new __u8[ByteSize];
+	CacheSize+=ByteSize;
+	memcpy(EITdata, (__u8*) e, 10);
+	memcpy(EITdata+10, descr, ByteSize-10);
+}
+
+eventData::eventData(const eit_event_struct* e, int size, int type, int tsidonid)
+	:ByteSize(size&0xFF), type(type&0xFF)
+{
+	if (!e)
+		return;
+
+	__u32 descr[65];
+	__u32 *pdescr=descr;
+
+	__u8 *data = (__u8*)e;
+	int ptr=12;
+	size -= 12;
+
+	while(size > 1)
+	{
+		__u8 *descr = data+ptr;
+		int descr_len = descr[1];
+		descr_len += 2;
+		if (size >= descr_len)
+		{
+			switch (descr[0])
+			{
+				case EXTENDED_EVENT_DESCRIPTOR:
+				case LINKAGE_DESCRIPTOR:
+				case COMPONENT_DESCRIPTOR:
+				{
+					__u32 crc = 0;
+					int cnt=0;
+					while(cnt++ < descr_len)
+						crc = (crc << 8) ^ crc32_table[((crc >> 24) ^ data[ptr++]) & 0xFF];
+
+					descriptorMap::iterator it = descriptors.find(crc);
+					if ( it == descriptors.end() )
+					{
+						CacheSize+=descr_len;
+						__u8 *d = new __u8[descr_len];
+						memcpy(d, descr, descr_len);
+						descriptors[crc] = descriptorPair(1, d);
+					}
+					else
+						++it->second.first;
+					*pdescr++=crc;
+					break;
+				}
+				case SHORT_EVENT_DESCRIPTOR:
+				{
+					//parse the data out from the short event descriptor
+					//get the country code, which will be used for converting to UTF8
+					std::string cc( (const char*)&descr[2], 3);
+					std::transform(cc.begin(), cc.end(), cc.begin(), tolower);
+					int table = encodingHandler.getCountryCodeDefaultMapping(cc);
+
+					int eventNameLen = descr[5];
+					int eventTextLen = descr[6 + eventNameLen];
+
+					//convert our strings to UTF8
+					std::string eventNameUTF8 = replace_all(replace_all(convertDVBUTF8((const char*)&descr[6], eventNameLen, table, tsidonid), "\n", " "), "\t", " ");
+					std::string textUTF8 = convertDVBUTF8((const char*)&descr[7 + eventNameLen], eventTextLen, table, tsidonid);
+
+					//Rebuild the short event descriptor with UTF-8 strings
+					int eventNameUTF8len = eventNameUTF8.length();
+					int textUTF8len = textUTF8.length();
+					int len = 7 + eventNameUTF8len + textUTF8len; //header, 3 byte cc, 1 byte event name len, 1 byte text len, 1 byte UTF-8 ident for event name, 1 byte UTF-8 ident for text, UTF-8 string lens
+
+					__u8 *d = new __u8[len + 2];
+					d[0] = SHORT_EVENT_DESCRIPTOR;
+					d[1] = len;
+					d[2] = descr[2];
+					d[3] = descr[3];
+					d[4] = descr[4];
+					d[5] = eventNameUTF8len + 1;
+					d[6] = 0x15; //identify event name as UTF-8
+					memcpy(&d[7], eventNameUTF8.c_str(), eventNameUTF8len);
+					d[7 + eventNameUTF8len] = textUTF8len + 1;
+					d[8 + eventNameUTF8len] = 0x15; //identify text as UTF-8
+					memcpy(&d[9 + eventNameUTF8len], textUTF8.c_str(), textUTF8len);
+
+					//Calculate the CRC, based on our new data
+					__u32 crc = 0;
+					int cnt=0;
+					int tmpPtr = 0;
+					len += 2; //add 2 the lenght to include the 2 bytes in the header
+					while(cnt++ < len)
+						crc = (crc << 8) ^ crc32_table[((crc >> 24) ^ d[tmpPtr++]) & 0xFF];
+
+					descriptorMap::iterator it = descriptors.find(crc);
+					if ( it == descriptors.end() )
+					{
+						CacheSize+=len;
+						descriptors[crc] = descriptorPair(1, d);
+					}
+					else
+						++it->second.first;
+					*pdescr++=crc;
+					ptr += descr_len;
 					break;
 				}
 				default: // do not cache all other descriptors
@@ -651,7 +766,7 @@ void eEPGCache::sectionRead(const __u8 *data, int source, channel_data *channel)
 						// exempt memory
 						eventData *tmp = ev_it->second;
 						ev_it->second = tm_it_tmp->second =
-							new eventData(eit_event, eit_event_size, source);
+							new eventData(eit_event, eit_event_size, source, (tsid<<16)|onid);
 						if (FixOverlapping(servicemap, TM, duration, tm_it_tmp, service))
 						{
 							prevEventIt = servicemap.first.end();
@@ -694,7 +809,7 @@ void eEPGCache::sectionRead(const __u8 *data, int source, channel_data *channel)
 					prevEventIt=servicemap.first.end();
 				}
 			}
-			evt = new eventData(eit_event, eit_event_size, source);
+			evt = new eventData(eit_event, eit_event_size, source, (tsid<<16)|onid);
 #ifdef EPG_DEBUG
 			bool consistencyCheck=true;
 #endif
@@ -1387,7 +1502,7 @@ void eEPGCache::channel_data::startEPG()
 	{
 		mask.data[0] = 0x4E;
 		mask.mask[0] = 0xFE;
-		m_NowNextReader->connectRead(slot(*this, &eEPGCache::channel_data::readData), m_NowNextConn);
+		m_NowNextReader->connectRead(bind(slot(*this, &eEPGCache::channel_data::readData), (int)eEPGCache::NOWNEXT), m_NowNextConn);
 		m_NowNextReader->start(mask);
 		isRunning |= NOWNEXT;
 	}
@@ -1396,7 +1511,7 @@ void eEPGCache::channel_data::startEPG()
 	{
 		mask.data[0] = 0x50;
 		mask.mask[0] = 0xF0;
-		m_ScheduleReader->connectRead(slot(*this, &eEPGCache::channel_data::readData), m_ScheduleConn);
+		m_ScheduleReader->connectRead(bind(slot(*this, &eEPGCache::channel_data::readData), (int)eEPGCache::SCHEDULE), m_ScheduleConn);
 		m_ScheduleReader->start(mask);
 		isRunning |= SCHEDULE;
 	}
@@ -1405,7 +1520,7 @@ void eEPGCache::channel_data::startEPG()
 	{
 		mask.data[0] = 0x60;
 		mask.mask[0] = 0xF0;
-		m_ScheduleOtherReader->connectRead(slot(*this, &eEPGCache::channel_data::readData), m_ScheduleOtherConn);
+		m_ScheduleOtherReader->connectRead(bind(slot(*this, &eEPGCache::channel_data::readData), (int)eEPGCache::SCHEDULE_OTHER), m_ScheduleOtherConn);
 		m_ScheduleOtherReader->start(mask);
 		isRunning |= SCHEDULE_OTHER;
 	}
@@ -1416,7 +1531,7 @@ void eEPGCache::channel_data::startEPG()
 		mask.pid = 0x1388;
 		mask.data[0] = 0x50;
 		mask.mask[0] = 0xF0;
-		m_NetmedScheduleReader->connectRead(slot(*this, &eEPGCache::channel_data::readDataNetmed), m_NetmedScheduleConn);
+		m_NetmedScheduleReader->connectRead(bind(slot(*this, &eEPGCache::channel_data::readData), (int)eEPGCache::NETMED_SCHEDULE), m_NetmedScheduleConn);
 		m_NetmedScheduleReader->start(mask);
 		isRunning |= NETMED_SCHEDULE;
 	}
@@ -1426,7 +1541,7 @@ void eEPGCache::channel_data::startEPG()
 		mask.pid = 0x1388;
 		mask.data[0] = 0x60;
 		mask.mask[0] = 0xF0;
-		m_NetmedScheduleOtherReader->connectRead(slot(*this, &eEPGCache::channel_data::readDataNetmed), m_NetmedScheduleOtherConn);
+		m_NetmedScheduleOtherReader->connectRead(bind(slot(*this, &eEPGCache::channel_data::readData), (int)eEPGCache::NETMED_SCHEDULE_OTHER), m_NetmedScheduleOtherConn);
 		m_NetmedScheduleOtherReader->start(mask);
 		isRunning |= NETMED_SCHEDULE_OTHER;
 	}
@@ -1437,7 +1552,7 @@ void eEPGCache::channel_data::startEPG()
 
 		mask.data[0] = 0x40;
 		mask.mask[0] = 0x40;
-		m_ViasatReader->connectRead(slot(*this, &eEPGCache::channel_data::readDataViasat), m_ViasatConn);
+		m_ViasatReader->connectRead(bind(slot(*this, &eEPGCache::channel_data::readData), (int)eEPGCache::VIASAT), m_ViasatConn);
 		m_ViasatReader->start(mask);
 		isRunning |= VIASAT;
 	}
@@ -1642,124 +1757,40 @@ void eEPGCache::channel_data::abortEPG()
 	pthread_mutex_unlock(&channel_active);
 }
 
-
-void eEPGCache::channel_data::readDataViasat( const __u8 *data)
+void eEPGCache::channel_data::readData( const __u8 *data, int source)
 {
-	__u8 *d=0;
-	memcpy(&d, &data, sizeof(__u8*));
-	d[0] |= 0x80;
-	readData(data);
-}
-
+	int map;
+	iDVBSectionReader *reader = NULL;
+	switch (source)
+	{
+		case NOWNEXT:
+			reader = m_NowNextReader;
+			map = 0;
+			break;
+		case SCHEDULE:
+			reader = m_ScheduleReader;
+			map = 1;
+			break;
+		case SCHEDULE_OTHER:
+			reader = m_ScheduleOtherReader;
+			map = 2;
+			break;
+		case VIASAT:
+			reader = m_ViasatReader;
+			map = 3;
+			break;
 #ifdef ENABLE_NETMED
-void eEPGCache::channel_data::readDataNetmed( const __u8 *data)
-{
-	int source;
-	int map;
-	iDVBSectionReader *reader=NULL;
-	switch(data[0])
-	{
-		case 0x50 ... 0x5F:
-			reader=m_NetmedScheduleReader;
-			source=NETMED_SCHEDULE;
-			map=1;
+		case NETMED_SCHEDULE:
+			reader = m_NetmedScheduleReader;
+			map = 1;
 			break;
-		case 0x60 ... 0x6F:
-			reader=m_NetmedScheduleOtherReader;
-			source=NETMED_SCHEDULE_OTHER;
-			map=2;
+		case NETMED_SCHEDULE_OTHER:
+			reader = m_NetmedScheduleOtherReader;
+			map = 2;
 			break;
-		default:
-			eDebug("[EPGC] unknown table_id !!!");
-			return;
-	}
-	tidMap &seenSections = this->seenSections[map];
-	tidMap &calcedSections = this->calcedSections[map];
-	if ( (state == 1 && calcedSections == seenSections) || state > 1 )
-	{
-		eDebugNoNewLine("[EPGC] ");
-		switch (source)
-		{
-			case NETMED_SCHEDULE:
-				m_NetmedScheduleConn=0;
-				eDebugNoNewLine("netmed schedule");
-				break;
-			case NETMED_SCHEDULE_OTHER:
-				m_NetmedScheduleOtherConn=0;
-				eDebugNoNewLine("netmed schedule other");
-				break;
-			default: eDebugNoNewLine("unknown");break;
-		}
-		eDebug(" finished(%ld)", ::time(0));
-		if ( reader )
-			reader->stop();
-		isRunning &= ~source;
-		if (!isRunning)
-			finishEPG();
-	}
-	else
-	{
-		eit_t *eit = (eit_t*) data;
-		__u32 sectionNo = data[0] << 24;
-		sectionNo |= data[3] << 16;
-		sectionNo |= data[4] << 8;
-		sectionNo |= eit->section_number;
-
-		tidMap::iterator it =
-			seenSections.find(sectionNo);
-
-		if ( it == seenSections.end() )
-		{
-			seenSections.insert(sectionNo);
-			calcedSections.insert(sectionNo);
-			__u32 tmpval = sectionNo & 0xFFFFFF00;
-			__u8 incr = source == NOWNEXT ? 1 : 8;
-			for ( int i = 0; i <= eit->last_section_number; i+=incr )
-			{
-				if ( i == eit->section_number )
-				{
-					for (int x=i; x <= eit->segment_last_section_number; ++x)
-						calcedSections.insert(tmpval|(x&0xFF));
-				}
-				else
-					calcedSections.insert(tmpval|(i&0xFF));
-			}
-			cache->sectionRead(data, source, this);
-		}
-	}
-}
 #endif
-
-void eEPGCache::channel_data::readData( const __u8 *data)
-{
-	int source;
-	int map;
-	iDVBSectionReader *reader=NULL;
-	switch(data[0])
-	{
-		case 0x4E ... 0x4F:
-			reader=m_NowNextReader;
-			source=NOWNEXT;
-			map=0;
-			break;
-		case 0x50 ... 0x5F:
-			reader=m_ScheduleReader;
-			source=SCHEDULE;
-			map=1;
-			break;
-		case 0x60 ... 0x6F:
-			reader=m_ScheduleOtherReader;
-			source=SCHEDULE_OTHER;
-			map=2;
-			break;
-		case 0xD0 ... 0xDF:
-		case 0xE0 ... 0xEF:
-			reader=m_ViasatReader;
-			source=VIASAT;
-			map=3;
-			break;
 		default:
-			eDebug("[EPGC] unknown table_id !!!");
+			eDebug("[EPGC] unknown source");
 			return;
 	}
 	tidMap &seenSections = this->seenSections[map];
@@ -1785,6 +1816,16 @@ void eEPGCache::channel_data::readData( const __u8 *data)
 				m_ViasatConn=0;
 				eDebugNoNewLine("viasat");
 				break;
+#ifdef ENABLE_NETMED
+			case NETMED_SCHEDULE:
+				m_NetmedScheduleConn=0;
+				eDebugNoNewLine("netmed schedule");
+				break;
+			case NETMED_SCHEDULE_OTHER:
+				m_NetmedScheduleOtherConn=0;
+				eDebugNoNewLine("netmed schedule other");
+				break;
+#endif
 			default: eDebugNoNewLine("unknown");break;
 		}
 		eDebug(" finished(%ld)", ::time(0));

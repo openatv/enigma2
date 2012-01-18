@@ -24,7 +24,7 @@ def InitUsageConfig():
 		boxtype="not detected"
 	config.misc.boxtype = ConfigText(default = boxtype)
 	config.misc.useNTPminutes = ConfigSelection(default = "30", choices = [("30", "30 Minutes"), ("60", _("Hour")), ("1440", _("Once per day"))])
-	config.misc.remotecontrol_harmony = ConfigYesNo(default = False)
+	config.misc.remotecontrol_text_support = ConfigYesNo(default = False)
 
 	config.usage = ConfigSubsection();
 	config.usage.showdish = ConfigYesNo(default = True)
@@ -158,6 +158,9 @@ def InitUsageConfig():
 	config.usage.show_bouquetalways = ConfigYesNo(default = False)
 	config.usage.show_event_progress_in_servicelist = ConfigYesNo(default = True)
 	config.usage.show_channel_numbers_in_servicelist = ConfigYesNo(default = True)
+	config.usage.show_channel_jump_in_servicelist = ConfigSelection(default="alpha", choices = [
+					("alpha", _("Alpha")),
+					("number", _("Number"))])
 
 	config.usage.blinking_display_clock_during_recording = ConfigYesNo(default = False)
 
@@ -173,8 +176,9 @@ def InitUsageConfig():
 	config.usage.movielist_unseen = ConfigYesNo(default = True)
 
 	config.usage.swap_snr_on_osd = ConfigYesNo(default = False)
-	config.usage.swap_time_remaining_on_osd = ConfigSelection(default = "0", choices = [("0", _("Remaining")), ("1", _("Elapsed")), ("2", _("Elapsed & Remaining")), ("3", _("Remaining & Elapsed"))])
 	config.usage.swap_time_display_on_osd = ConfigSelection(default = "0", choices = [("0", _("Skin Setting")), ("1", _("Mins")), ("2", _("Hours Mins")), ("3", _("Percentage"))])
+	config.usage.swap_media_time_display_on_osd = ConfigSelection(default = "0", choices = [("0", _("Skin Setting")), ("1", _("Mins")), ("2", _("Mins Secs")), ("3", _("Hours Mins")), ("4", _("Hours Mins Secs")), ("5", _("Percentage"))])
+	config.usage.swap_time_remaining_on_osd = ConfigSelection(default = "0", choices = [("0", _("Remaining")), ("1", _("Elapsed")), ("2", _("Elapsed & Remaining")), ("3", _("Remaining & Elapsed"))])
 
 	def SpinnerOnOffChanged(configElement):
 		setSpinnerOnOff(int(configElement.value))
@@ -446,6 +450,7 @@ def InitUsageConfig():
 		("900000", "10.0 sec")])
 
 	config.subtitles.dvb_subtitles_yellow = ConfigYesNo(default = False)
+	config.subtitles.dvb_subtitles_original_position = ConfigSelection(default = "0", choices = [("0", _("original")), ("1", _("fixed")), ("2", _("relative"))])
 	config.subtitles.dvb_subtitles_centered = ConfigYesNo(default = False)
 	config.subtitles.dvb_subtitles_backtrans = ConfigSelection(default = "0", choices = [
 		("0", _("no transparency")),
@@ -465,7 +470,7 @@ def InitUsageConfig():
 	audio_language_choices=[	
 		("---", "None"),
 		("und", "Undetermined"),
-		("orj dos ory org esl qaa und mis mul ORY", "Original"),
+		("orj dos ory org esl qaa und mis mul ORY Audio_ORJ", "Original"),
 		("ara", "Arabic"),
 		("eus baq", "Basque"),
 		("bul", "Bulgarian"), 
@@ -496,7 +501,7 @@ def InitUsageConfig():
 		("slv", "Slovenian"),
 		("spa", "Spanish"),
 		("swe", "Swedish"),
-		("tur", "Turkish")]
+		("tur Audio_TUR", "Turkish")]
 
 	def setEpgLanguage(configElement):
 		enigma.eServiceEvent.setEPGLanguage(configElement.value)
@@ -524,7 +529,7 @@ def InitUsageConfig():
 	config.autolanguage.subtitle_defaultimpaired = ConfigYesNo(default = False)
 	config.autolanguage.subtitle_defaultdvb = ConfigYesNo(default = False)
 	config.autolanguage.subtitle_usecache = ConfigYesNo(default = True)
-	config.autolanguage.equal_languages = ConfigSelection(default = "0", choices = [
+	config.autolanguage.equal_languages = ConfigSelection(default = "15", choices = [
 		("0", "None"),("1", "1"),("2", "2"),("3", "1,2"),
 		("4", "3"),("5", "1,3"),("6", "2,3"),("7", "1,2,3"),
 		("8", "4"),("9", "1,4"),("10", "2,4"),("11", "1,2,4"),
@@ -583,6 +588,10 @@ def InitUsageConfig():
 
 	config.GraphEPG = ConfigSubsection()
 	config.GraphEPG.ShowBouquet = ConfigYesNo(default = False)
+	config.GraphEPG.preview_mode_vixepg = ConfigYesNo(default = True)
+	config.GraphEPG.preview_mode_enhanced = ConfigYesNo(default = True)
+	config.GraphEPG.preview_mode_infobar = ConfigYesNo(default = True)
+	config.GraphEPG.preview_mode = ConfigYesNo(default = True)
 	config.GraphEPG.OK = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap")
 	config.GraphEPG.OKLong = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap + Exit")
 	config.GraphEPG.OK_vixepg = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap")
@@ -594,22 +603,23 @@ def InitUsageConfig():
 	config.GraphEPG.Info = ConfigSelection(choices = [("Channel Info", _("Channel Info")), ("Single EPG", _("Single EPG"))], default = "Channel Info")
 	config.GraphEPG.InfoLong = ConfigSelection(choices = [("Channel Info", _("Channel Info")), ("Single EPG", _("Single EPG"))], default = "Single EPG")
 	config.GraphEPG.prev_time=ConfigClock(default = time())
-	config.GraphEPG.Primetime1 = ConfigInteger(default=20, limits=(0, 23))
-	config.GraphEPG.Primetime2 = ConfigInteger(default=0, limits=(0, 59))
+	config.GraphEPG.Primetime1 = ConfigSlider(default = 20, increment = 1, limits=(0, 23))
+	config.GraphEPG.Primetime2 = ConfigSlider(default = 0, increment = 1, limits=(0, 59))
 	config.GraphEPG.UsePicon = ConfigYesNo(default = True)
 	config.GraphEPG.channel1 = ConfigYesNo(default = False)
-	config.GraphEPG.coolswitch = ConfigSelection(choices = [("7-8", _("7-8")), ("14-16", _("14-16"))], default = "7-8")
-	config.GraphEPG.prev_time_period=ConfigInteger(default=180, limits=(60,300))
-	config.GraphEPG.Fontsize = ConfigInteger(default=18, limits=(10, 30))
-	config.GraphEPG.Left_Fontsize = ConfigInteger(default=22, limits=(10, 30))
-	config.GraphEPG.Timeline = ConfigInteger(default=20, limits=(10, 30))
-	config.GraphEPG.items_per_page = ConfigInteger(default=11, limits=(3, 16))
-	config.GraphEPG.item_hight = NoSave(ConfigInteger(default=0))
-	config.GraphEPG.item_hight16 = NoSave(ConfigInteger(default=0))
-	config.GraphEPG.left8 = ConfigInteger(default=110, limits=(70, 250))
-	config.GraphEPG.left16 = ConfigInteger(default=190, limits=(70, 250))
+	config.GraphEPG.prev_time_period = ConfigInteger(default=180, limits=(60,300))
+	config.GraphEPG.Fontsize = ConfigSlider(default = 18, increment = 1, limits=(10, 30))
+	config.GraphEPG.Left_Fontsize = ConfigSlider(default = 22, increment = 1, limits=(10, 30))
+	config.GraphEPG.Timeline = ConfigSlider(default = 20, increment = 1, limits=(10, 30))
+	config.GraphEPG.items_per_page = ConfigSlider(default = 11, increment = 1, limits=(3, 16))
+	config.GraphEPG.left8 = ConfigSlider(default = 110, increment = 1, limits=(70, 250))
+	config.GraphEPG.left16 = ConfigSlider(default = 190, increment = 1, limits=(70, 250))
 	config.GraphEPG.overjump = ConfigYesNo(default = False)
 	config.GraphEPG.PIG = ConfigYesNo(default = False)
+	config.GraphEPG.item_hight = NoSave(ConfigInteger(default=0))
+	config.GraphEPG.item_width = NoSave(ConfigInteger(default=0))
+	config.GraphEPG.item_rowhight = NoSave(ConfigInteger(default=0))
+	config.GraphEPG.heightswitch = NoSave(ConfigYesNo(default = False))
 
 	if not os.path.exists('/usr/softcams/'):
 		os.mkdir('/usr/softcams/',0755)
@@ -649,6 +659,9 @@ def InitUsageConfig():
 		elif softcam.lower().startswith('oscam'):
 			config.oscaminfo.showInExtensions = ConfigYesNo(default=True)
 			SystemInfo["OScamInstalled"] = True
+
+	config.streaming = ConfigSubsection()
+	config.streaming.stream_ecm = ConfigYesNo(default = False)
 
 def updateChoices(sel, choices):
 	if choices:
