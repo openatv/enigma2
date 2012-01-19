@@ -5,6 +5,7 @@ from Components.SystemInfo import SystemInfo
 from Components.ConfigList import ConfigListScreen
 from Components.Pixmap import Pixmap,MultiPixmap
 from Components.Sources.StaticText import StaticText
+from Components.Label import Label
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Components.Sources.Boolean import Boolean
 
@@ -80,6 +81,7 @@ class Setup(ConfigListScreen, Screen):
 		# for the skin: first try a setup_<setupID>, then Setup
 		self.skinName = ["setup_" + setup, "Setup" ]
 
+		self['footnote'] = Label(_("* = Restart Required"))
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self["VKeyIcon"] = Boolean(False)
