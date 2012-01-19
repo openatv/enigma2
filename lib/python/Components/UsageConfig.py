@@ -619,7 +619,7 @@ def InitUsageConfig():
 	config.GraphEPG.Primetime2 = ConfigSlider(default = 0, increment = 1, limits=(0, 59))
 	config.GraphEPG.UsePicon = ConfigYesNo(default = True)
 	config.GraphEPG.channel1 = ConfigYesNo(default = False)
-	config.GraphEPG.prev_time_period = ConfigInteger(default=180, limits=(60,300))
+	config.GraphEPG.prev_time_period = ConfigSlider(default = 180, increment = 1, limits=(60,300))
 	config.GraphEPG.Fontsize = ConfigSlider(default = 18, increment = 1, limits=(10, 30))
 	config.GraphEPG.Left_Fontsize = ConfigSlider(default = 22, increment = 1, limits=(10, 30))
 	config.GraphEPG.Timeline = ConfigSlider(default = 20, increment = 1, limits=(10, 30))
