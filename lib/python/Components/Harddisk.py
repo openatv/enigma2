@@ -481,13 +481,15 @@ class Harddisk:
 			self.timer.stop()
 			idle_parm = 0
 			# calculate the complicated timeout needed by hdparm
-			if idle < 1200:
+			if idle <= 1200:
 				idle_parm = idle / 5
 			else:
-				if idle >= 1800:
-					idle_parm = 240 + idle / 1800
-					if idle_parm > 251:
-						idle_parm = 251
+				# values between 20 and 30 minutes are treated as 30 minutes
+				if idle < 1800: 
+					idle = 1800
+				idle_parm = 240 + idle / 1800
+				if idle_parm > 251:
+					idle_parm = 251
 			# don't support timeouts of more than 5.5 hours
 			system("hdparm -S " + `idle_parm` + ' ' + self.disk_path)
 			return
