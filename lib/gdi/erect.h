@@ -136,13 +136,12 @@ bool operator!=( const eRect &, const eRect & );
   eRect inline member functions
  *****************************************************************************/
 
-inline eRect::eRect( int left, int top, int width, int height )
-{
-	x1 = left;
-	y1 = top;
-	x2 = left+width;
-	y2 = top+height;
-}
+inline eRect::eRect( int left, int top, int width, int height ):
+	x1(left),
+	y1(top),
+	x2(left+width),
+	y2(top+height)
+{}
 
 inline bool eRect::empty() const
 { return x1 >= x2 || y1 >= y2; }

@@ -8,6 +8,7 @@ class TimerEntry:
 	StatePrepared = 1
 	StateRunning  = 2
 	StateEnded    = 3
+	StateFailed   = 4
 	
 	def __init__(self, begin, end):
 		self.begin = begin
@@ -21,6 +22,7 @@ class TimerEntry:
 		self.backoff = 0
 		
 		self.disabled = False
+		self.failed = False
 
 	def resetState(self):
 		self.state = self.StateWaiting
@@ -107,6 +109,9 @@ class TimerEntry:
 	# must be overridden!
 	def getNextActivation():
 		pass
+
+	def fail(self):
+		self.faileded = True
 
 	def disable(self):
 		self.disabled = True

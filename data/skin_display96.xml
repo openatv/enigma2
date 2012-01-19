@@ -120,6 +120,20 @@
 		</widget>
 	</screen>
 
+<!-- DVD Player -->
+	<screen name="DVDSummary" position="0,0" size="96,64">
+		<widget source="session.CurrentService" render="Label" position="0,0" size="96,25" font="FdLcD;12" transparent="1" >
+			<convert type="ServiceName">Name</convert>
+		</widget>
+		<widget name="Chapter" position="0,40" size="66,12" font="FdLcD;10" transparent="1" halign="left" />
+		<widget source="session.CurrentService" render="Label" position="66,40" size="30,12" font="FdLcD;10" transparent="1" halign="right" >
+			<convert type="ServicePosition">Position</convert>
+		</widget>
+		<widget source="session.CurrentService" render="Progress" position="0,52" size="96,12" borderWidth="1" >
+			<convert type="ServicePosition">Position</convert>
+		</widget>
+	</screen>
+
 <!-- setup-->
 	<screen name="SetupSummary" position="0,0" size="96,64">
 		<widget source="SetupTitle" render="Label" position="0,0" size="96,12" font="FdLcD;12" halign="left" foregroundColor="lightyellow" />
