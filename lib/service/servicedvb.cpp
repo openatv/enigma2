@@ -853,9 +853,10 @@ RESULT eServiceFactoryDVB::play(const eServiceReference &ref, ePtr<iPlayableServ
 
 RESULT eServiceFactoryDVB::record(const eServiceReference &ref, ePtr<iRecordableService> &ptr)
 {
-	if (ref.path.empty())
+	bool isstream = ref.path.substr(0, 7) == "http://";
+	if (isstream || ref.path.empty())
 	{
-		ptr = new eDVBServiceRecord((eServiceReferenceDVB&)ref);
+		ptr = new eDVBServiceRecord((eServiceReferenceDVB&)ref, isstream);
 		return 0;
 	} else
 	{
