@@ -4,16 +4,15 @@ from Components.AVSwitch import AVSwitch
 from Components.config import config
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 
-from enigma import eEPGCache, eListbox, eListboxPythonMultiContent, ePicLoad, gFont, eRect, \
-	RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, RT_VALIGN_CENTER, RT_WRAP
+from skin import parseColor, parseFont
+from enigma import eEPGCache, eListbox, eListboxPythonMultiContent, ePicLoad, gFont, eRect, eSize, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, RT_VALIGN_CENTER, RT_VALIGN_TOP, RT_WRAP
 
 from Tools.LoadPixmap import LoadPixmap
 
-from time import localtime, time
+from time import localtime, time, strftime
 from ServiceReference import ServiceReference
 from Tools.Directories import pathExists, resolveFilename, SCOPE_CURRENT_SKIN
 from os import listdir, path
-from enigma import eSize
 
 EPG_TYPE_SINGLE = 0
 EPG_TYPE_MULTI = 1
@@ -21,6 +20,8 @@ EPG_TYPE_SIMILAR = 2
 EPG_TYPE_ENHANCED = 3
 EPG_TYPE_INFOBAR = 4
 EPG_TYPE_GRAPH = 5
+
+MAX_TIMELINES = 6
 
 class Rect:
 	def __init__(self, x, y, width, height):
@@ -62,7 +63,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.time_epoch = time_epoch
 		self.event_rect = None
 		self.currentlyPlaying = None
-
+		self.overjump_empty = overjump_empty
 		self.timer = timer
 		self.onSelChanged = [ ]
 		if selChangedCB is not None:
@@ -91,8 +92,6 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.clock_pre_pixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_pre.png'))
 		self.clock_post_pixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_post.png'))
 		self.clock_prepost_pixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_prepost.png'))
-		if type == EPG_TYPE_GRAPH:
-			self.setOverjump_Empty(overjump_empty)
 		self.nowForeColor = 0xffffff
 		self.nowForeColorSelected = 0x000000
 		self.foreColor = 0xffffff
@@ -155,13 +154,6 @@ class EPGList(HTMLComponent, GUIComponent):
 			rc = GUIComponent.applySkin(self, desktop, screen)
 			return rc
 
-	def isSelectable(self, service, sname, event_list):
-		return (event_list and len(event_list) and True) or False
-
-	def setOverjump_Empty(self, overjump_empty):
-		if overjump_empty:
-			self.l.setSelectableFunc(self.isSelectable)
-		
 	def setEpoch(self, epoch):
 		self.offs = 0
 		self.time_epoch = epoch
@@ -281,11 +273,6 @@ class EPGList(HTMLComponent, GUIComponent):
 		for x in self.onSelChanged:
 			if x is not None:
 				x()
-#				try:
-#					x()
-#				except: # FIXME!!!
-#					print "FIXME in EPGList.selectionChanged"
-#					pass
 
 	GUI_WIDGET = eListbox
 
@@ -294,24 +281,31 @@ class EPGList(HTMLComponent, GUIComponent):
 		config.GraphEPG.item_width.value = self.instance.size().width()
 		config.GraphEPG.item_rowhight.value = (config.GraphEPG.item_hight.value/config.GraphEPG.items_per_page.value)
 		if config.GraphEPG.heightswitch.value:
-			if ((config.GraphEPG.item_hight.value / config.GraphEPG.items_per_page.value) / 3) > 27:
+			if ((config.GraphEPG.item_hight.value / config.GraphEPG.items_per_page.value) / 3) >= 27:
 				tmp_rowheight = ((config.GraphEPG.item_hight.value / config.GraphEPG.items_per_page.value) / 3)
-			elif ((config.GraphEPG.item_hight.value / config.GraphEPG.items_per_page.value) / 2) > 27:
+			elif ((config.GraphEPG.item_hight.value / config.GraphEPG.items_per_page.value) / 2) >= 27:
 				tmp_rowheight = ((config.GraphEPG.item_hight.value / config.GraphEPG.items_per_page.value) / 2)
 			else:
 				tmp_rowheight = 27		
 			if tmp_rowheight < config.GraphEPG.item_rowhight.value:
 				config.GraphEPG.item_rowhight.value = tmp_rowheight
 			else:
-				if ((config.GraphEPG.item_hight.value / config.GraphEPG.items_per_page.value) * 3) < 54:
+				if ((config.GraphEPG.item_hight.value / config.GraphEPG.items_per_page.value) * 3) <= 45:
 					tmp_rowheight = ((config.GraphEPG.item_hight.value / config.GraphEPG.items_per_page.value) * 3)
-				elif ((config.GraphEPG.item_hight.value / config.GraphEPG.items_per_page.value) * 2) < 54:
+				elif ((config.GraphEPG.item_hight.value / config.GraphEPG.items_per_page.value) * 2) <= 45:
 					tmp_rowheight = ((config.GraphEPG.item_hight.value / config.GraphEPG.items_per_page.value) * 2)
 				else:
-					tmp_rowheight = 54
+					tmp_rowheight = 45
 				config.GraphEPG.item_rowhight.value = tmp_rowheight
 		self.l.setItemHeight(config.GraphEPG.item_rowhight.value)
 #   		self.instance.resize(eSize(config.GraphEPG.item_width.value,config.GraphEPG.items_per_page.value*config.GraphEPG.item_rowhight.value))
+		
+	def isSelectable(self, service, sname, event_list):
+		return (event_list and len(event_list) and True) or False
+
+	def setOverjump_Empty(self, overjump_empty):
+		if overjump_empty:
+			self.l.setSelectableFunc(self.isSelectable)
 		
 	def setServiceFontsize(self):
 		self.l.setFont(0, gFont("Regular", config.GraphEPG.Left_Fontsize.value))
@@ -321,6 +315,7 @@ class EPGList(HTMLComponent, GUIComponent):
 
 	def postWidgetCreate(self, instance):
 		if self.type == EPG_TYPE_GRAPH:
+			self.setOverjump_Empty(self.overjump_empty)
 			instance.setWrapAround(True)
 			instance.selectionChanged.get().append(self.serviceChanged)
 			instance.setContent(self.l)
@@ -563,11 +558,6 @@ class EPGList(HTMLComponent, GUIComponent):
 			coolflags = RT_HALIGN_LEFT | RT_VALIGN_CENTER
 			thepraefix = " "
 
-			if self.rowheight > 30:
-				coolflags = RT_HALIGN_CENTER | RT_VALIGN_CENTER | RT_WRAP
-				thepraefix = ""
-#				if service == self.cur_service[0]:
-#					backColorSelected = self.backColorSelected
 			now = int(time())
 			for ev in events:  #(event_id, event_title, begin_time, duration)
 				rec=ev[2] and self.timer.isInTimer(ev[0], ev[2], ev[3], service)
@@ -804,6 +794,10 @@ class EPGList(HTMLComponent, GUIComponent):
 		rc = self.event_rect
 		return Rect( rc.left() + (self.instance and self.instance.position().x() or 0), rc.top(), rc.width(), rc.height() )
 
+	def getServiceRect(self):
+		rc = self.service_rect
+		return Rect( rc.left() + (self.instance and self.instance.position().x() or 0), rc.top(), rc.width(), rc.height() )
+
 	def getTimeEpoch(self):
 		return self.time_epoch
 
@@ -844,3 +838,108 @@ class EPGList(HTMLComponent, GUIComponent):
 			return "nichts"
 		else:
 			return "nichts"
+
+class TimelineText(HTMLComponent, GUIComponent):
+	def __init__(self):
+		GUIComponent.__init__(self)
+		self.l = eListboxPythonMultiContent()
+		self.l.setSelectionClip(eRect(0,0,0,0))
+		self.l.setItemHeight(30);
+		self.foreColor = 0xffc000
+		self.borderColor = 0x000000
+		self.backColor = 0x000000
+		self.borderWidth = 1
+
+	GUI_WIDGET = eListbox
+
+	def applySkin(self, desktop, screen):
+		if self.skinAttributes is not None:
+			attribs = [ ]
+			for (attrib, value) in self.skinAttributes:
+				if   attrib == "foregroundColor":
+					self.foreColor = parseColor(value).argb()
+				elif attrib == "borderColor":
+					self.borderColor = parseColor(value).argb()
+				elif attrib == "backgroundColor":
+					self.backColor = parseColor(value).argb()
+				elif attrib == "font":
+					self.l.setFont(0, parseFont(value,  ((1,1),(1,1)) ))
+				elif attrib == "borderWidth":
+					self.borderWidth = int(value)
+				else:
+					attribs.append((attrib,value))
+			self.skinAttributes = attribs
+		return GUIComponent.applySkin(self, desktop, screen)
+
+	def setTimeLineFontsize(self):
+		self.l.setFont(0, gFont("Regular", config.GraphEPG.Timeline.value))
+
+	def postWidgetCreate(self, instance):
+		self.setTimeLineFontsize()
+		instance.setContent(self.l)
+
+	def setEntries(self, l, timeline_now, time_lines):
+		service_rect = l.getServiceRect()
+		event_rect = l.getEventRect()
+		time_epoch = l.getTimeEpoch()
+		time_base = l.getTimeBase()
+		itemHeight = self.l.getItemSize().height()
+
+		if event_rect is None or time_epoch is None or time_base is None:
+			return
+		time_steps = 60 if time_epoch > 180 else 30
+
+		num_lines = time_epoch/time_steps
+		incWidth = event_rect.width()/num_lines
+		eventLeft = event_rect.left()
+		timeStepsCalc = time_steps * 60
+
+		res = [ None ]
+
+		nowTime = localtime(time())
+		begTime = localtime(time_base)
+		if nowTime[2] != begTime[2]:
+			datestr = '%s'%(days[begTime[6]])
+		else:
+			datestr = '%s'%(_("Today"))
+		# Note: event_rect and service_rect are relative to the timeline_text position
+		#       while the time lines are relative to the GraphEPG screen position!
+		res.append( MultiContentEntryText(
+						pos = (0, 0),
+						size = (service_rect.width(), itemHeight),
+						font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_TOP,
+						text = datestr,
+						color = self.foreColor, color_sel = self.foreColor,
+						backcolor = self.backColor, backcolor_sel = self.backColor,
+						border_width = self.borderWidth, border_color = self.borderColor))
+
+		xpos = 0 # eventLeft
+		for x in range(0, num_lines):
+			res.append( MultiContentEntryText(
+				pos = (service_rect.width() + xpos, 0),
+				size = (incWidth, itemHeight),
+				font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_TOP,
+				text = strftime("%H:%M", localtime( time_base + x*timeStepsCalc )),
+				color = self.foreColor, color_sel = self.foreColor,
+				backcolor = self.backColor, backcolor_sel = self.backColor,
+				border_width = self.borderWidth, border_color = self.borderColor) )
+			line = time_lines[x]
+			old_pos = line.position
+			#if (old_pos[0] != xpos + eventLeft):
+			line.setPosition(xpos + eventLeft, old_pos[1])
+			line.visible = True
+			xpos += incWidth
+		for x in range(num_lines, MAX_TIMELINES):
+			time_lines[x].visible = False
+
+		now = time()
+		if now >= time_base and now < (time_base + time_epoch * 60):
+			xpos = int((((now - time_base) * event_rect.width()) / (time_epoch * 60))-(timeline_now.instance.size().width()/2))
+			old_pos = timeline_now.position
+			new_pos = (xpos + eventLeft, old_pos[1])
+			if old_pos != new_pos:
+				timeline_now.setPosition(new_pos[0], new_pos[1])
+			timeline_now.visible = True
+		else:
+			timeline_now.visible = False
+		self.l.setList([res])
