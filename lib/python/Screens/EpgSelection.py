@@ -4,7 +4,7 @@ from Components.ActionMap import ActionMap, NumberActionMap, HelpableActionMap
 from Components.Button import Button
 from Components.config import config, ConfigClock, NoSave, ConfigSelection, getConfigListEntry, ConfigText, ConfigDateTime, ConfigSubList, ConfigYesNo
 from Components.ConfigList import ConfigListScreen
-from Components.EpgList import EPGList, EPG_TYPE_SINGLE, EPG_TYPE_SIMILAR, EPG_TYPE_MULTI, EPG_TYPE_ENHANCED, EPG_TYPE_INFOBAR, EPG_TYPE_GRAPH
+from Components.EpgList import EPGList, TimelineText, EPG_TYPE_SINGLE, EPG_TYPE_SIMILAR, EPG_TYPE_MULTI, EPG_TYPE_ENHANCED, EPG_TYPE_INFOBAR, EPG_TYPE_GRAPH, MAX_TIMELINES
 from Components.Label import Label
 from Components.GUIComponent import GUIComponent
 from Components.HTMLComponent import HTMLComponent
@@ -327,7 +327,7 @@ class EPGSelection(Screen):
 				self["timeline_text"] = TimelineText()
 				self["Event"] = Event()
 				self.time_lines = [ ]
-				for x in (0,1,2,3,4,5):
+				for x in range(0, MAX_TIMELINES):
 					pm = Pixmap()
 					self.time_lines.append(pm)
 					self["timeline%d"%(x)] = pm
@@ -589,14 +589,11 @@ class EPGSelection(Screen):
 
 	def onSetupClose(self):
 		if self.type == EPG_TYPE_GRAPH:
-			if config.GraphEPG.heightswitch.value:
-				config.GraphEPG.heightswitch.setValue(False)
-			else:
-				config.GraphEPG.heightswitch.setValue(True)
 			l = self["list"]
 			l.setItemsPerPage()
 			l.setEventFontsize()
 			l.setServiceFontsize()
+			self["timeline_text"].setTimeLineFontsize()
 			l.setEpoch(config.GraphEPG.prev_time_period.value)
 			l.setOverjump_Empty(config.GraphEPG.overjump.value)
 			self.moveTimeLines()
@@ -1269,26 +1266,20 @@ class EPGSelection(Screen):
 					self.applyButtonState(2)
 				else:
 					self.applyButtonState(1)
-			days = [ _("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun") ]
-			datestr = ""
-			if event is not None:
-				now = time()
-				beg = event.getBeginTime()
-				nowTime = localtime(now)
-				begTime = localtime(beg)
-				if nowTime[2] != begTime[2]:
-					if self.type != EPG_TYPE_GRAPH:
-						datestr = '%s %d.%d.'%(days[begTime[6]], begTime[2], begTime[1])
+				days = [ _("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun") ]
+				datestr = ""
+				if event is not None:
+					now = time()
+					beg = event.getBeginTime()
+					nowTime = localtime(now)
+					begTime = localtime(beg)
+					if nowTime[2] != begTime[2]:
+							datestr = '%s %d.%d.'%(days[begTime[6]], begTime[2], begTime[1])
 					else:
-						datestr = '%s'%(days[begTime[6]])
+							datestr = '%s %d.%d.'%(_("Today"), begTime[2], begTime[1])
+	
+				self["date"].setText(datestr)
 
-				else:
-					if self.type != EPG_TYPE_GRAPH:
-						datestr = '%s %d.%d.'%(_("Today"), begTime[2], begTime[1])
-					else:
-						datestr = '%s'%(_("Today"))
-
-			self["date"].setText(datestr)
 			if cur[1] is None:
 				self["Service"].newService(None)
 			else:
@@ -1325,53 +1316,8 @@ class EPGSelection(Screen):
 			self.key_green_choice = self.ADD_TIMER
 
 	def moveTimeLines(self, force=False):
-		self.updateTimelineTimer.start((60-(int(time())%60))*1000)	#keep syncronised
-		l = self["list"]
-		event_rect = l.getEventRect()
-		time_epoch = l.getTimeEpoch()
-		time_base = l.getTimeBase()
-		if event_rect is None or time_epoch is None or time_base is None:
-			return
-		time_steps = time_epoch > 180 and 60 or 30
-		
-		num_lines = time_epoch/time_steps
-		incWidth=event_rect.width()/num_lines
-		pos=event_rect.left()
-		timeline_entries = [ ]
-		x = 0
-		changecount = 0
-
-		for line in self.time_lines:
-			old_pos = line.position
-			new_pos = (x == num_lines and event_rect.left()+event_rect.width() or pos, old_pos[1])
-			if not x or x >= num_lines:
-				line.visible = False
-			else:
-				if old_pos != new_pos:
-					line.setPosition(new_pos[0], new_pos[1])
-					changecount += 1
-				line.visible = True
-			if not x or line.visible:
-				timeline_entries.append((time_base + x * time_steps * 60, new_pos[0]))
-			x += 1
-			pos += incWidth
-
-		if changecount or force:
-			self["timeline_text"].setEntries(timeline_entries)
-
-		now=time()
-		timeline_now = self["timeline_now"]
-		if now >= time_base and now < (time_base + time_epoch * 60):
-			xpos = int((((now - time_base) * event_rect.width()) / (time_epoch * 60))-(timeline_now.instance.size().width()/2))
-			old_pos = timeline_now.position
-			new_pos = (xpos+event_rect.left(), old_pos[1])
-			if old_pos != new_pos:
-				timeline_now.setPosition(new_pos[0], new_pos[1])
-			timeline_now.visible = True
-		else:
-			timeline_now.visible = False
-
-		l.l.invalidate()
+		self.updateTimelineTimer.start((60 - (int(time()) % 60)) * 1000)        #keep syncronised
+		self["timeline_text"].setEntries(self["list"], self["timeline_now"], self.time_lines)
 
 	def isPlayable(self):
 		# check if service is playable
@@ -1566,38 +1512,6 @@ class RecordSetup(TimerEntry):
 	def saveTimer(self):
 		self.session.nav.RecordTimer.saveTimer()
 				
-class TimelineText(HTMLComponent, GUIComponent):
-	def __init__(self):
-		GUIComponent.__init__(self)
-		self.l = eListboxPythonMultiContent()
-		self.l.setSelectionClip(eRect(0,0,0,0))
-		self.l.setItemHeight(25);
-		self.l.setFont(0, gFont("Regular", config.GraphEPG.Timeline.value))
-
-	GUI_WIDGET = eListbox
-
-	def postWidgetCreate(self, instance):
-		instance.setContent(self.l)
-
-	def setEntries(self, entries):
-		res = [ None ] # no private data needed
-		hilfheute = localtime()
-		hilfentry = localtime(entries[0][0])
-#		if hilfheute[0] == hilfentry[0] and hilfheute[1] == hilfentry[1] and hilfheute[2] == hilfentry[2]:
-#			hilf3 = ""
-#		else:
-#			hilf = hilfentry[6]
-#			hilf3 = (_("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun"))[hilf]
-#		
-#		res.append((eListboxPythonMultiContent.TYPE_TEXT, 30, 0, 60, 25, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, hilf3))
-
-		for x in entries:
-			tm = x[0]
-			xpos = x[1]
-			str = strftime("%H:%M", localtime(tm))
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, xpos-30, 0, 60, 25, 0, RT_HALIGN_CENTER|RT_VALIGN_CENTER, str))
-		self.l.setList([res])
-
 class SingleEPG(EPGSelection):
 	def __init__(self, session, service, zapFunc=None, bouquetChangeCB=None, serviceChangeCB=None):
 		EPGSelection.__init__(self, session, service, zapFunc, bouquetChangeCB, serviceChangeCB)
@@ -1623,6 +1537,7 @@ class EPGSelectionSetup(Screen, ConfigListScreen):
 		self.skinName = "EPGSelectionSetup"
 		Screen.setTitle(self, _("EPG Setup"))
 		self["satus"] = StaticText()
+		self['footnote'] = Label(_("* = Close EPG Required"))
 		self.onChangedEntry = [ ]
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
@@ -1663,7 +1578,7 @@ class EPGSelectionSetup(Screen, ConfigListScreen):
 		if self.type == 5:
 			self.list.append(getConfigListEntry(_("Channel preview mode"), config.GraphEPG.preview_mode_vixepg))
 			self.list.append(getConfigListEntry(_("Show bouquet on launch"), config.GraphEPG.ShowBouquet))
-			self.list.append(getConfigListEntry(_("Picture In Graphics (close EPG)"), config.GraphEPG.PIG))
+			self.list.append(getConfigListEntry(_("Picture In Graphics*"), config.GraphEPG.PIG))
 			self.list.append(getConfigListEntry(_("Enable Picon"), config.GraphEPG.UsePicon))
 			self.list.append(getConfigListEntry(_("Info Button"), config.GraphEPG.Info))
 			self.list.append(getConfigListEntry(_("Long Info Button"), config.GraphEPG.InfoLong))
@@ -1672,15 +1587,14 @@ class EPGSelectionSetup(Screen, ConfigListScreen):
 			self.list.append(getConfigListEntry(_("Primetime hour"), config.GraphEPG.Primetime1))
 			self.list.append(getConfigListEntry(_("Primetime minute"), config.GraphEPG.Primetime2))
 			self.list.append(getConfigListEntry(_("Channel 1 at Start"), config.GraphEPG.channel1))
-			self.list.append(getConfigListEntry(_("Item height switch"), config.GraphEPG.heightswitch))
 			self.list.append(getConfigListEntry(_("Items per Page"), config.GraphEPG.items_per_page))
 			self.list.append(getConfigListEntry(_("Event Fontsize"), config.GraphEPG.Fontsize))
 			self.list.append(getConfigListEntry(_("Left Fontsize"), config.GraphEPG.Left_Fontsize))
-			self.list.append(getConfigListEntry(_("Timeline Fontsize (restart plugin)"), config.GraphEPG.Timeline))
+			self.list.append(getConfigListEntry(_("Timeline Fontsize"), config.GraphEPG.Timeline))
 			self.list.append(getConfigListEntry(_("Left width Picon"), config.GraphEPG.left8))
 			self.list.append(getConfigListEntry(_("Left width Text"), config.GraphEPG.left16))
 			self.list.append(getConfigListEntry(_("Time Scale"), config.GraphEPG.prev_time_period))
-			self.list.append(getConfigListEntry(_("Skip Empty Services (restart plugin)"), config.GraphEPG.overjump))
+			self.list.append(getConfigListEntry(_("Skip Empty Services"), config.GraphEPG.overjump))
 		elif self.type == 4:
 			self.list.append(getConfigListEntry(_("Channel preview mode"), config.GraphEPG.preview_mode_infobar))
 			self.list.append(getConfigListEntry(_("Sort List by"), config.misc.EPGSort))
