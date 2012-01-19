@@ -148,8 +148,9 @@ class CleanTrashTask(Components.Task.PythonTask):
 	def work(self):
 		matches = []
 		for root, dirnames, filenames in os.walk('/media/'):
-		  for filename in fnmatch.filter(dirnames, '.Trash'):
-			  matches.append(os.path.join(root, filename))
+			for filename in fnmatch.filter(dirnames, '.Trash'):
+				if os.path.join(root, filename) != '/media/.Trash':
+					matches.append(os.path.join(root, filename))
 
 		for trashfolder in matches:
 			trash = getTrashFolder(trashfolder)
