@@ -441,14 +441,25 @@ RESULT eStaticServiceDVBPVRInformation::getEvent(const eServiceReference &ref, e
 {
 	if (!ref.path.empty())
 	{
-		ePtr<eServiceEvent> event = new eServiceEvent;
-		std::string filename = ref.path;
-		filename.erase(filename.length()-2, 2);
-		filename+="eit";
-		if (!event->parseFrom(filename, (m_parser.m_ref.getTransportStreamID().get()<<16)|m_parser.m_ref.getOriginalNetworkID().get()))
+		if (ref.path.substr(0, 7) == "http://")
 		{
-			evt = event;
-			return 0;
+			eServiceReference equivalentref(ref);
+			/* this might be a scrambled stream (id + 0x100), force equivalent dvb type */
+			equivalentref.type = eServiceFactoryDVB::id;
+			equivalentref.path.clear();
+			return eEPGCache::getInstance()->lookupEventTime(equivalentref, start_time, evt);
+		}
+		else
+		{
+			ePtr<eServiceEvent> event = new eServiceEvent;
+			std::string filename = ref.path;
+			filename.erase(filename.length()-2, 2);
+			filename+="eit";
+			if (!event->parseFrom(filename, (m_parser.m_ref.getTransportStreamID().get()<<16)|m_parser.m_ref.getOriginalNetworkID().get()))
+			{
+				evt = event;
+				return 0;
+			}
 		}
 	}
 	evt = 0;
