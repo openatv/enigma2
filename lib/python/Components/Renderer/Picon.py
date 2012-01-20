@@ -79,11 +79,8 @@ class Picon(Renderer):
 		if self.instance:
 			pngname = ""
 			if what[0] != self.CHANGED_CLEAR:
-				sname = self.source.text
-				# strip all after last :
-				pos = sname.rfind(':')
-				if pos != -1:
-					sname = sname[:pos].rstrip(':').replace(':','_')
+				#remove the path and name fields, and replace ':' by '_'
+				sname = '_'.join(self.source.text.split(':', 10)[:10])
 				pngname = self.findPicon(sname)
 				if not pngname:
 					fields = sname.split('_', 3)
