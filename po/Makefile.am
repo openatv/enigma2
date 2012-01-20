@@ -37,7 +37,6 @@ install-data-local: $(LANGMO)
 	for lang in $(LANGS); do \
 		$(mkinstalldirs) $(DESTDIR)$(pkgdatadir)/po/$$lang/LC_MESSAGES; \
 		$(INSTALL_DATA) $$lang.mo $(DESTDIR)$(pkgdatadir)/po/$$lang/LC_MESSAGES/@PACKAGE_NAME@.mo; \
-		$(INSTALL_DATA) $$lang.po $(DESTDIR)$(pkgdatadir)/po/Enigma2-$$lang.po; \
 	done
 
 uninstall-local:
