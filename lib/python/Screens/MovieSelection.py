@@ -990,13 +990,14 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		# serviceref must end with /
 		if not res.endswith('/'):
 			res += '/'
-		if res is not config.movielist.last_videodir.value:
+		currentDir = config.movielist.last_videodir.value
+		if res != currentDir:
 			if os.path.isdir(res):
 				config.movielist.last_videodir.value = res
 				config.movielist.last_videodir.save()
 				self.setCurrentRef(res)
 				self["freeDiskSpace"].path = res
-				self.reloadList(home = True)
+				self.reloadList(home = True, sel = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + currentDir))
 			else:
 				self.session.open(
 					MessageBox,
