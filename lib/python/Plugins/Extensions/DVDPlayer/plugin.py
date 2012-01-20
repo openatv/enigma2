@@ -775,10 +775,13 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 
 def main(session, **kwargs):
 	session.open(DVDPlayer)
-
+#config.usage.show_dvdplayer
 def menu(menuid, **kwargs):
 	if menuid == "mainmenu":
-		return [(_("DVD Player"), main, "dvd_player", 46)]
+		if os_path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/BMediaCenter/plugin.pyo") and not config.usage.show_dvdplayer.value:
+			return []
+		else:
+			return [(_("DVD Player"), main, "dvd_player", 46)]
 	return []
 
 from Plugins.Plugin import PluginDescriptor

@@ -1,7 +1,7 @@
 <menu text="Mainmenu" title="Main menu">
 	<id val="mainmenu" />
 <!-- the following types are allowed:
-	<screen [module="mod"] [screen="classname"]>[arguments]</screen> 
+	<screen [module="mod"] [screen="classname"]>[arguments]</screen>
 		executes Screen called "classname" from module "Screen.mod"
 		if no module is given, Screen must be globally available.
 		if no screen is given, module is used as screen class name.
@@ -74,7 +74,7 @@
 					<item level="0" text="Initialization" entryID="harddisk_init"><screen module="HarddiskSetup" screen="HarddiskSelection"/></item>
 					<item level="0" text="Filesystem Check" entryID="harddisk_check"><screen module="HarddiskSetup" screen="HarddiskFsckSelection"/></item>
 					<item level="0" text="Convert filesystem ext3 to ext4" entryID="harddisk_convert" requires="ext4"><screen module="HarddiskSetup" screen="HarddiskConvertExt4Selection"/></item>
-				</menu>				
+				</menu>
 				<menu level="2" text="EPG" entryID="epg_menu">
 					<id val="epg" />
 					<item level="0" entryID="epg_setup"><setup id="epgsetup" /></item>
@@ -118,6 +118,7 @@ from Plugins.SystemPlugins.RemoteControlCode.plugin import RemoteControlCode
 self.session.open(RemoteControlCode)
 </code>
 				</item>
+				<item level="0" entryID="dvdplayer_setup"><setup id="dvdplayer" /></item>
 				</menu>
 				<item level="0" text="Language" entryID="language_setup"><screen module="LanguageSelection" /></item>
 				<!--menu level="2" text="Logs" entryID="logs_setup">
