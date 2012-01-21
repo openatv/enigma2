@@ -49,69 +49,6 @@ const eServiceReference &handleGroup(const eServiceReference &ref)
 	return ref;
 }
 
-eventData::eventData(const eit_event_struct* e, int size, int type)
-	:ByteSize(size&0xFF), type(type&0xFF)
-{
-	if (!e)
-		return;
-
-	__u32 descr[65];
-	__u32 *pdescr=descr;
-
-	__u8 *data = (__u8*)e;
-	int ptr=12;
-	size -= 12;
-
-	while(size > 1)
-	{
-		__u8 *descr = data+ptr;
-		int descr_len = descr[1];
-		descr_len += 2;
-		if (size >= descr_len)
-		{
-			switch (descr[0])
-			{
-				case EXTENDED_EVENT_DESCRIPTOR:
-				case SHORT_EVENT_DESCRIPTOR:
-				case LINKAGE_DESCRIPTOR:
-				case COMPONENT_DESCRIPTOR:
-				{
-					__u32 crc = 0;
-					int cnt=0;
-					while(cnt++ < descr_len)
-						crc = (crc << 8) ^ crc32_table[((crc >> 24) ^ data[ptr++]) & 0xFF];
-	
-					descriptorMap::iterator it =
-						descriptors.find(crc);
-					if ( it == descriptors.end() )
-					{
-						CacheSize+=descr_len;
-						__u8 *d = new __u8[descr_len];
-						memcpy(d, descr, descr_len);
-						descriptors[crc] = descriptorPair(1, d);
-					}
-					else
-						++it->second.first;
-					*pdescr++=crc;
-					break;
-				}
-				default: // do not cache all other descriptors
-					ptr += descr_len;
-					break;
-			}
-			size -= descr_len;
-		}
-		else
-			break;
-	}
-	ASSERT(pdescr <= &descr[65]);
-	ByteSize = 10+((pdescr-descr)*4);
-	EITdata = new __u8[ByteSize];
-	CacheSize+=ByteSize;
-	memcpy(EITdata, (__u8*) e, 10);
-	memcpy(EITdata+10, descr, ByteSize-10);
-}
-
 eventData::eventData(const eit_event_struct* e, int size, int type, int tsidonid)
 	:ByteSize(size&0xFF), type(type&0xFF)
 {
