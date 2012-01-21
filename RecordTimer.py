@@ -680,7 +680,7 @@ class RecordTimer(timer.Timer):
 
 	def getNextRecordingTime(self):
 		nextrectime = self.getNextRecordingTimeOld()
-		faketime = time()+300
+		faketime = time()+400
 
 		if config.timeshift.isRecording.value or len(JobManager.getPendingJobs()) >= 1:
 			if nextrectime > 0 and nextrectime < faketime:
