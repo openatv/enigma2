@@ -5,9 +5,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-25 23:14+0100\n"
-"PO-Revision-Date: 2012-01-01 13:15+0100\n"
-"Last-Translator: j-ot\n"
+"POT-Creation-Date: 2012-01-20 14:59+0100\n"
+"PO-Revision-Date: 2012-01-20 16:03+0100\n"
+"Last-Translator: \n"
 "Language-Team: Deutsch <>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -804,6 +804,7 @@ msgid "Authoring mode"
 msgstr "Autorenmodus"
 
 #
+#. TRANSLATORS: (aspect ratio policy: always try to display as fullscreen, when there is no content (black bars) on left/right, even if this breaks the aspect.
 msgid "Auto"
 msgstr "Auto"
 
@@ -1484,10 +1485,6 @@ msgid "DVD File Browser"
 msgstr "DVD Datei Browser"
 
 #
-msgid "DVD Player"
-msgstr "DVD Player"
-
-#
 msgid "DVD Titlelist"
 msgstr "DVD Titelliste"
 
@@ -1565,6 +1562,12 @@ msgstr "Gelöschte Objekte"
 
 msgid "Depth"
 msgstr "Tiefe"
+
+msgid "Descramble http streams"
+msgstr "Entschlüssele HTTP-Streams"
+
+msgid "Descramble recordings"
+msgstr "Entschlüssele Aufnahmen"
 
 #
 msgid "Description"
@@ -2525,6 +2528,15 @@ msgstr "In Bearbeitung"
 #
 msgid "In order to record a timer, the TV was switched to the recording service!\n"
 msgstr "Um die Timeraufnahme durchführen zu können, wurde auf den aufzunehmenden Sender umgeschaltet!\n"
+
+msgid "Include AIT in http streams"
+msgstr "Integriere AIT in HTTP-Streams"
+
+msgid "Include ECM in http streams"
+msgstr "Integriere ECM in HTTP-Streams"
+
+msgid "Include EIT in http streams"
+msgstr "Integriere EIT in HTTP-Streams"
 
 #
 msgid "Include your email and name (optional) in the mail?"
@@ -4062,11 +4074,8 @@ msgstr "Anbieter"
 msgid "Put TV in standby"
 msgstr "Fernseher in den Standby versetzen"
 
-msgid "Put TV in standby when deepstandby"
-msgstr "Fernseher bei Deepstandby in den Standby versetzen"
-
 msgid "Put receiver in standby"
-msgstr "STB in den Standby versetzen"
+msgstr "A/V-Receiver in den Standby versetzen"
 
 #
 msgid "Python frontend for /tmp/mmi.socket"
@@ -4139,6 +4148,9 @@ msgstr "Empfangseinstellungen"
 msgid "Record"
 msgstr "Aufnahme"
 
+msgid "Record ECM"
+msgstr "Aufnahme ECM"
+
 #
 #, python-format
 msgid "Record time limited due to conflicting timer %s"
@@ -4192,6 +4204,9 @@ msgstr "Bildwiederholrate"
 #
 msgid "Refresh rate selection."
 msgstr "Auswahl der Bildwiederholungsrate."
+
+msgid "Regard deep standby as standby"
+msgstr "Deep-Standby wie Standby behandeln"
 
 #
 msgid "Reload"
@@ -4385,10 +4400,6 @@ msgstr "Wiedergabestart ab %s"
 #. TRANSLATORS: question or a choice, but it is a statement.)
 msgid "Resuming playback"
 msgstr "Setze Wiedergabe fort"
-
-#
-msgid "Return to file browser"
-msgstr "Zurück zum Dateimanager"
 
 #
 msgid "Return to movie list"
@@ -6044,6 +6055,9 @@ msgstr "Benutzen"
 msgid "Use DHCP"
 msgstr "Adresse automatisch beziehen (DHCP)"
 
+msgid "Use DVB subtitles position"
+msgstr "Nutze DVB-Untertitel Position"
+
 #
 msgid "Use Interface"
 msgstr "Netzwerkadapter aktivieren"
@@ -6344,14 +6358,11 @@ msgstr "Warte"
 msgid "Wakeup"
 msgstr "Anschalten"
 
-msgid "Wakeup TV after deepstandby"
-msgstr "Fernseher bei Einschalten aus Deepstandby anschalten"
-
 msgid "Wakeup TV from standby"
 msgstr "Fernseher aus Standby anschalten"
 
 msgid "Wakeup receiver from standby"
-msgstr "STB aus Standby anschalten"
+msgstr "A/V-Receiver aus Standby anschalten"
 
 msgid "Wakeup signal from TV"
 msgstr "Anschaltsignal vom Fernseher"
@@ -7191,6 +7202,9 @@ msgstr "Dateiname"
 msgid "fine-tune your display"
 msgstr "Ändern Sie die Feineinstellungen Ihres Bildschirms"
 
+msgid "fixed"
+msgstr "fixiert"
+
 #
 msgid "forward to the next chapter"
 msgstr "Weiter zum nächsten Kapitel"
@@ -7550,6 +7564,9 @@ msgstr "nimmt auf..."
 #
 msgid "red"
 msgstr "rot"
+
+msgid "relative"
+msgstr "relativ"
 
 #
 msgid "remove a nameserver entry"
@@ -7981,34 +7998,6 @@ msgstr "umschalten"
 #
 msgid "zapped"
 msgstr "umgeschaltet"
-
-#
-msgid "Use original teletext subtitles"
-msgstr "Verwende originale Teletext-Untertitel"
-
-#
-msgid "center"
-msgstr "zentriert"
-
-#
-msgid "Timer List"
-msgstr "Timer-Liste"
-
-#
-msgid "Huge 2 MB"
-msgstr "Riesig (2 MB)"
-
-#
-msgid "Large 1.5MB"
-msgstr "Groß (1.5 MB)"
-
-#
-msgid "Normal 1 MB"
-msgstr "Normal (1 MB)"
-
-#
-msgid "Small 0.7 MB"
-msgstr "Klein (0.7 MB)"
 
 #~ msgid " "
 #~ msgstr " "
