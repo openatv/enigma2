@@ -584,7 +584,7 @@ int eDVBCAService::buildCAPMT(eTable<ProgramMapSection> *ptr)
 			tmp[0] = 0x83; /* adapter */
 			tmp[1] = 0x01;
 			tmp[2] = m_adapter;
-			capmt.injectDescriptor(tmp, false);
+			capmt.injectDescriptor(tmp, true);
 		}
 
 		tmp[0] = 0x82; // demux
@@ -611,7 +611,7 @@ int eDVBCAService::buildCAPMT(eTable<ProgramMapSection> *ptr)
 		tmp[3] = (m_service_type_mask >> 16) & 0xff;
 		tmp[4] = (m_service_type_mask >> 8) & 0xff;
 		tmp[5] = m_service_type_mask & 0xff;
-		capmt.injectDescriptor(tmp, false);
+		capmt.injectDescriptor(tmp, true);
 
 		capmt.writeToBuffer(m_capmt);
 	}
