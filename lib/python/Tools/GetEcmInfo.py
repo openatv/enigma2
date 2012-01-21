@@ -95,7 +95,7 @@ class GetEcmInfo:
 								hops = ''
 							self.textvalue = reader + hops + " (%ss)" % info.get('ecm time', '?')
 						else:
-							self.textvalue = "Cannot Parse this emu"
+							self.textvalue = ""
 			decCI = info.get('caid', '0')
 			provid = info.get('provid', '0')
 			if provid == '0':

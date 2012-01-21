@@ -662,6 +662,9 @@ def InitUsageConfig():
 
 	config.streaming = ConfigSubsection()
 	config.streaming.stream_ecm = ConfigYesNo(default = False)
+	config.streaming.descramble = ConfigYesNo(default = True)
+	config.streaming.stream_eit = ConfigYesNo(default = True)
+	config.streaming.stream_ait = ConfigYesNo(default = True)
 
 def updateChoices(sel, choices):
 	if choices:

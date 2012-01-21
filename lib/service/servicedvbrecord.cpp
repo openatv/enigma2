@@ -3,6 +3,7 @@
 #include <lib/dvb/epgcache.h>
 #include <lib/dvb/metaparser.h>
 #include <lib/base/nconfig.h> 
+#include <lib/base/httpstream.h>
 #include <fcntl.h>
 
 	/* for cutlist */
@@ -18,13 +19,14 @@
 
 DEFINE_REF(eDVBServiceRecord);
 
-eDVBServiceRecord::eDVBServiceRecord(const eServiceReferenceDVB &ref): m_ref(ref)
+eDVBServiceRecord::eDVBServiceRecord(const eServiceReferenceDVB &ref, bool isstreamclient): m_ref(ref)
 {
 	CONNECT(m_service_handler.serviceEvent, eDVBServiceRecord::serviceEvent);
 	CONNECT(m_event_handler.m_eit_changed, eDVBServiceRecord::gotNewEvent);
 	m_state = stateIdle;
 	m_want_record = 0;
 	m_record_ecm = false;
+	m_is_stream_client = isstreamclient;
 	m_tuned = 0;
 	m_target_fd = -1;
 	m_error = 0;
@@ -238,19 +240,38 @@ int eDVBServiceRecord::doPrepare()
 		/* allocate a ts recorder if we don't already have one. */
 	if (m_state == stateIdle)
 	{
+		eDVBServicePMTHandler::serviceType servicetype;
+		bool descramble;
 		if (m_streaming)
 		{
-			std::string stream_ecm;
+			std::string stream_ecm, descramble_setting;
 			m_record_ecm = (ePythonConfigQuery::getConfigValue("config.streaming.stream_ecm", stream_ecm) >= 0 && stream_ecm == "True");
+			descramble = (ePythonConfigQuery::getConfigValue("config.streaming.descramble", descramble_setting) < 0 || descramble_setting != "False");
+			servicetype = m_record_ecm ? eDVBServicePMTHandler::scrambled_streamserver : eDVBServicePMTHandler::streamserver;
 		}
 		else
 		{
-			std::string record_ecm;
+			std::string record_ecm, descramble_setting;
 			m_record_ecm = (ePythonConfigQuery::getConfigValue("config.recording.record_ecm", record_ecm) >= 0 && record_ecm == "True");
+			descramble = (ePythonConfigQuery::getConfigValue("config.recording.descramble", descramble_setting) < 0 || descramble_setting != "False");
+			servicetype = m_record_ecm ? eDVBServicePMTHandler::scrambled_recording : eDVBServicePMTHandler::recording;
 		}
 		m_pids_active.clear();
 		m_state = statePrepared;
-		return m_service_handler.tune(m_ref, 0, 0, m_simulate, NULL, !m_record_ecm);
+		ePtr<iTsSource> source;
+		if (m_is_stream_client)
+		{
+			/* 
+			 * streams are considered to be descrambled by default;
+			 * user can indicate a stream is scrambled, by using servicetype id + 0x100
+			 */
+			descramble = (m_ref.type == eServiceFactoryDVB::id + 0x100);
+			servicetype = eDVBServicePMTHandler::streamclient;
+			eHttpStream *f = new eHttpStream();
+			f->open(m_ref.path.c_str());
+			source = ePtr<iTsSource>(f);
+		}
+		return m_service_handler.tuneExt(m_ref, 0, source, m_ref.path.c_str(), 0, m_simulate, NULL, servicetype, descramble);
 	}
 	return 0;
 }
