@@ -560,8 +560,6 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 
 	def playAudioCD(self):
 		from enigma import eServiceReference
-		from Plugins.Extensions.CDInfo.plugin import Query
-
 		if len(self.cdAudioTrackFiles):
 			self.playlist.clear()
 			self.savePlaylistOnExit = False
@@ -569,8 +567,12 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 			for file in self.cdAudioTrackFiles:
 				ref = eServiceReference(4097, 0, file)
 				self.playlist.addFile(ref)
-			cdinfo = Query(self)
-			cdinfo.scan()
+			try:
+				from Plugins.Extensions.CDInfo.plugin import Query
+				cdinfo = Query(self)
+				cdinfo.scan()
+			except ImportError:
+				pass # we can live without CDInfo
 			self.changeEntry(0)
 			self.switchToPlayList()
 
@@ -1022,7 +1024,7 @@ def movielist_open(list, session, **kwargs):
 
 def filescan(**kwargs):
 	from Components.Scanner import Scanner, ScanPath
-	mediatypes = [
+	return [
 		Scanner(mimetypes = ["video/mpeg", "video/MP2T", "video/x-msvideo", "video/mkv"],
 			paths_to_scan =
 				[
@@ -1050,10 +1052,7 @@ def filescan(**kwargs):
 			name = "Music",
 			description = _("Play Music..."),
 			openfnc = filescan_open,
-		)]
-	try:
-		from Plugins.Extensions.CDInfo.plugin import Query
-		mediatypes.append(
+		),
 		Scanner(mimetypes = ["audio/x-cda"],
 			paths_to_scan =
 				[
@@ -1062,10 +1061,8 @@ def filescan(**kwargs):
 			name = "Audio-CD",
 			description = _("Play Audio-CD..."),
 			openfnc = audioCD_open,
-		))
-		return mediatypes
-	except ImportError:
-		return mediatypes
+		),
+		]
 
 from Plugins.Plugin import PluginDescriptor
 def Plugins(**kwargs):
