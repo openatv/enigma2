@@ -20,7 +20,7 @@ public:
 private:
 	enum { stateIdle, statePrepared, stateRecording };
 	int m_state, m_want_record;
-	bool m_stream_ecm;
+	bool m_stream_ecm, m_stream_eit, m_stream_ait;
 
 	eDVBServiceEITHandler m_event_handler;
 

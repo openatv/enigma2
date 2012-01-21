@@ -786,6 +786,11 @@ def menu(menuid, **kwargs):
 
 from Plugins.Plugin import PluginDescriptor
 
+def DVDOverlay(*args, **kwargs):
+	# for backward compatibility with plugins that do "from DVDPlayer.plugin import DVDOverlay"
+	from Screens import DVD
+	return DVD.DVDOverlay(*args, **kwargs)
+
 def filescan_open(list, session, **kwargs):
 	if len(list) == 1 and list[0].mimetype == "video/x-dvd":
 		splitted = list[0].path.split('/')

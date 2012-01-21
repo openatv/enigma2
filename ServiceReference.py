@@ -34,4 +34,4 @@ class ServiceReference(eServiceReference):
 
 	def isRecordable(self):
 		ref = self.ref
-		return ref.flags & eServiceReference.isGroup or (ref.type == eServiceReference.idDVB and ref.getPath() == "")
+		return ref.flags & eServiceReference.isGroup or ((ref.type == eServiceReference.idDVB or ref.type == eServiceReference.idDVB + 0x100) and (ref.getPath() == "" or ref.getPath().startswith("http://")))
