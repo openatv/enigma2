@@ -32,6 +32,7 @@ def InitUsageConfig():
 	config.usage.panicbutton = ConfigYesNo(default = False)
 	config.usage.multiepg_ask_bouquet = ConfigYesNo(default = False)
 	config.usage.showpicon = ConfigYesNo(default = True)
+	config.usage.show_dvdplayer = ConfigYesNo(default = False)
 	
 	config.usage.quickzap_bouquet_change = ConfigYesNo(default = False)
 	config.usage.e1like_radio_mode = ConfigYesNo(default = True)
@@ -664,6 +665,9 @@ def InitUsageConfig():
 
 	config.streaming = ConfigSubsection()
 	config.streaming.stream_ecm = ConfigYesNo(default = False)
+	config.streaming.descramble = ConfigYesNo(default = True)
+	config.streaming.stream_eit = ConfigYesNo(default = True)
+	config.streaming.stream_ait = ConfigYesNo(default = True)
 
 def updateChoices(sel, choices):
 	if choices:

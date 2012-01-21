@@ -356,7 +356,7 @@ class InfoBarShowHide:
 			self.hide()
 			self.openEventView()
 			self.EventViewIsShown = True
-			self.startHideTimer()	
+			self.hideTimer.stop()	
 		else:
 			self.hide()
 			if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:

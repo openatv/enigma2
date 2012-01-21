@@ -135,6 +135,7 @@ class RecordingSettings(Screen,ConfigListScreen):
 			self.list.append(getConfigListEntry(_("Background delete option"), config.misc.erase_flags))
 			self.list.append(getConfigListEntry(_("Background delete speed"), config.misc.erase_speed))
 			self.list.append(getConfigListEntry(_("Record ECM"), config.recording.record_ecm))
+			self.list.append(getConfigListEntry(_("Descramble recordings"), config.recording.descramble))
 		self["config"].setList(self.list)
 
 	# for summary:

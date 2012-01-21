@@ -121,6 +121,8 @@ class ConfigListScreen:
 			"deleteForward": self.keyDelete,
 			"deleteBackward": self.keyBackspace,
 			"toggleOverwrite": self.keyToggleOW,
+			"pageUp": self.keyPageUp,
+			"pageDown": self.keyPageDown,
 			"1": self.keyNumberGlobal,
 			"2": self.keyNumberGlobal,
 			"3": self.keyNumberGlobal,
@@ -221,7 +223,19 @@ class ConfigListScreen:
 	def keyNumberGlobal(self, number):
 		self["config"].handleKey(KEY_0 + number)
 		self.__changed()
-		
+
+	def keyPageDown(self):
+		if self["config"].getCurrentIndex() + 10 <= (len(self["config"].getList()) - 1):
+			self["config"].setCurrentIndex(self["config"].getCurrentIndex() + 10)   
+		else:
+			self["config"].setCurrentIndex((len(self["config"].getList()) - 1))
+
+	def keyPageUp(self):
+		if self["config"].getCurrentIndex() - 10 > 0:
+			self["config"].setCurrentIndex(self["config"].getCurrentIndex() - 10)
+		else:
+			self["config"].setCurrentIndex(0)
+
 	def saveAll(self):
 		restartgui = False
 		for x in self["config"].list:
