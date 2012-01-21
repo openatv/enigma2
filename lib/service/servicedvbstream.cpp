@@ -14,6 +14,8 @@ eDVBServiceStream::eDVBServiceStream()
 	m_state = stateIdle;
 	m_want_record = 0;
 	m_stream_ecm = false;
+	m_stream_eit = false;
+	m_stream_ait = false;
 	m_tuned = 0;
 	m_target_fd = -1;
 }
@@ -105,11 +107,15 @@ int eDVBServiceStream::doPrepare()
 		/* allocate a ts recorder if we don't already have one. */
 	if (m_state == stateIdle)
 	{
-		std::string stream_ecm;
+		std::string stream_ecm, stream_eit, stream_ait, descramble_setting;
 		m_stream_ecm = (ePythonConfigQuery::getConfigValue("config.streaming.stream_ecm", stream_ecm) >= 0 && stream_ecm == "True");
+		m_stream_eit = (ePythonConfigQuery::getConfigValue("config.streaming.stream_eit", stream_eit) >= 0 && stream_eit == "True");
+		m_stream_ait = (ePythonConfigQuery::getConfigValue("config.streaming.stream_ait", stream_ait) >= 0 && stream_ait == "True");
 		m_pids_active.clear();
 		m_state = statePrepared;
-		return m_service_handler.tune(m_ref, 0, 0, 0, NULL, !m_stream_ecm);
+		eDVBServicePMTHandler::serviceType servicetype = m_stream_ecm ? eDVBServicePMTHandler::scrambled_streamserver : eDVBServicePMTHandler::streamserver;
+		bool descramble = (ePythonConfigQuery::getConfigValue("config.streaming.descramble", descramble_setting) < 0 || descramble_setting != "False");
+		return m_service_handler.tune(m_ref, 0, 0, 0, NULL, servicetype, descramble);
 	}
 	return 0;
 }
@@ -234,6 +240,16 @@ int eDVBServiceStream::doRecord()
 			{
 				if (i->capid >= 0) pids_to_record.insert(i->capid);
 			}
+		}
+
+		if (m_stream_ait)
+		{
+			if (program.aitPid >= 0) pids_to_record.insert(program.aitPid);
+		}
+
+		if (m_stream_eit)
+		{
+			pids_to_record.insert(0x12);
 		}
 
 			/* find out which pids are NEW and which pids are obsolete.. */
