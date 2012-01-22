@@ -4188,7 +4188,12 @@ class InfoBarAspectSelection:
 				elif aspect[1] == "resolution":
 					self.ExGreen_toggleGreen()
 				else:
-					open("/proc/stb/video/policy", "w").write(aspect[1])
+					if aspect[1] == "letterbox":
+						open("/proc/stb/video/policy", "w").write("panscan")
+					elif aspect[1] == "panscan":
+						open("/proc/stb/video/policy", "w").write("letterbox")
+					else:
+						open("/proc/stb/video/policy", "w").write(aspect[1])
 					self.ExGreen_doHide()
 		else:
 			self.ExGreen_doHide()
