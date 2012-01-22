@@ -1437,6 +1437,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 						return
 				if time.time() - st.st_mtime < 5:
 					if not args:
+						are_you_sure = _("Do you really want to delete ?")
 						self.session.openWithCallback(self.delete, MessageBox, _("File appears to be busy.\n") + are_you_sure)
 						return
 			if cur_path.find('.Trash') == -1 and config.usage.movielist_trashcan.value:
