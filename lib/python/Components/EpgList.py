@@ -92,24 +92,23 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.clock_pre_pixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_pre.png'))
 		self.clock_post_pixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_post.png'))
 		self.clock_prepost_pixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_prepost.png'))
-		self.nowForeColor = 0xffffff
-		self.nowForeColorSelected = 0x000000
 		self.foreColor = 0xffffff
-		self.foreColorSelected = 0x000000
+		self.foreColorSelected = 0xffffff
 		self.borderColor = 0xC0C0C0
 		self.backColor = 0x2D455E
-		self.backColorSelected = 0xC0C0C0
-		self.nowBackColor = 0x00825F
-		self.nowBackColorSelected = 0x4800FF
+		self.backColorSelected = 0x0D253E
 		self.foreColorService = 0xffffff
-		self.foreColorServiceSelected = 0x000000
-		self.backColorService = 0x000000
-		self.backColorServiceSelected = 0xffffff
-		self.borderColorService = 0x000000
+		self.foreColorServiceSelected = 0xffffff
+		self.backColorService = 0x2D455E
+		self.backColorServiceSelected = 0x0D253E
+		self.borderColorService = 0xC0C0C0
+		self.foreColorNow = 0xffffff
+		self.foreColorNowSelected = 0x000000
+		self.backColorNow = 0x00825F
+		self.backColorNowSelected = 0x004f3a
 
 		self.picload = ePicLoad()
 		self.frameBufferScale = AVSwitch().getFramebufferScale()
-
 
 	def applySkin(self, desktop, screen):
 		if self.type == EPG_TYPE_GRAPH:
@@ -120,20 +119,12 @@ class EPGList(HTMLComponent, GUIComponent):
 						self.foreColor = parseColor(value).argb()
 					elif attrib == "EntryForegroundColorSelected":
 						self.foreColorSelected = parseColor(value).argb()
-					elif attrib == "EntryNowForegroundColorSelected":
-						self.nowForeColorSelected = parseColor(value).argb()
-					elif attrib == "EntryNowForegroundColor":
-						self.nowForeColor = parseColor(value).argb()
 					elif attrib == "EntryBorderColor":
 						self.borderColor = parseColor(value).argb()
 					elif attrib == "EntryBackgroundColor":
 						self.backColor = parseColor(value).argb()
-					elif attrib == "EntryNowBackgroundColor":
-						self.nowBackColor = parseColor(value).argb()
 					elif attrib == "EntryBackgroundColorSelected":
 						self.backColorSelected = parseColor(value).argb()
-					elif attrib == "EntryNowBackgroundColorSelected":
-						self.nowBackColorSelected = parseColor(value).argb()
 					elif attrib == "ServiceForegroundColor" or attrib == "ServiceNameForegroundColor":
 						self.foreColorService = parseColor(value).argb()
 					elif attrib == "ServiceForegroundColorSelected":
@@ -144,6 +135,14 @@ class EPGList(HTMLComponent, GUIComponent):
 						self.backColorServiceSelected = parseColor(value).argb()
 					elif attrib == "ServiceBorderColor":
 						self.borderColorService = parseColor(value).argb()
+					elif attrib == "EntryBackgroundColorNow":
+						self.backColorNow = parseColor(value).argb()
+					elif attrib == "EntryBackgroundColorNowSelected":
+						self.backColorNowSelected = parseColor(value).argb()
+					elif attrib == "EntryForegroundColorNow":
+						self.foreColorNow = parseColor(value).argb()
+					elif attrib == "EntryNowForegroundColorSelected":
+						self.foreColorNowSelected = parseColor(value).argb()
 					else:
 						attribs.append((attrib,value))
 				self.skinAttributes = attribs
@@ -503,32 +502,28 @@ class EPGList(HTMLComponent, GUIComponent):
 			piconbkcolor = 0x909090
 		r1=self.service_rect
 		r2=self.event_rect
-		foreColor = self.foreColor
-		foreColorSelected = self.foreColorSelected
-		backColor = self.backColor
-		backColorSelected = self.backColorSelected
-		borderColor = self.borderColor
-		backColorService = self.backColorService
-		backColorOrig = self.backColor # normale Eventsfarbe
-#		VIXEPGEvent = 1
+
 		nowPlaying = self.currentlyPlaying.toString()
+		serviceForeColor = self.foreColorService
+		serviceBackColor = self.backColorService
+ 		backColorOrig = self.backColor # normale Eventsfarbe
 		if nowPlaying is not None and nowPlaying == service:
-#			backColor = 0x516b96
-#			backColorOrig = 0x516b96
-			backColorService = 0x516b96
+			 serviceForeColor = self.foreColorServiceSelected
+			 serviceBackColor = self.backColorServiceSelected
+ 
 		res = [ None ]
 		picon = self.findPicon(service, service_name)
 
 		if picon is None:
 			res.append(MultiContentEntryText(
-			pos = (r1.left(),r1.top()),
-			size = (r1.width(), r1.height()),
-				font = 0, flags = RT_HALIGN_CENTER | RT_VALIGN_CENTER,
-			text = service_name,
-				color = self.foreColorService,
-				border_width = 1, border_color = borderColor,
-				backcolor = backColorService, backcolor_sel = backColorService)) #backcolor_sel= Event left select
-
+				pos = (r1.x, r1.y),
+				size = (r1.w, r1.h),
+				font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER,
+				text = service_name,
+				color = serviceForeColor, color_sel = serviceForeColor,
+				backcolor = serviceBackColor, backcolor_sel = serviceBackColor,
+				border_width = 1, border_color = self.borderColorService))
+ 
 		else:
 			piconHeight = r1.height()-2
 			piconWidth = r1.width()-2
@@ -544,41 +539,39 @@ class EPGList(HTMLComponent, GUIComponent):
 		if events:
 			start = self.time_base+self.offs*self.time_epoch*60
 			end = start + self.time_epoch * 60
-			left = r2.left()
-			top = r2.top()
-			width = r2.width()
-			height = r2.height()
-			coolflags = RT_HALIGN_LEFT | RT_VALIGN_CENTER
-			thepraefix = " "
-
-			now = int(time())
+			left = r2.x
+			top = r2.y
+			width = r2.w
+			height = r2.h
+			
+			now = time()
 			for ev in events:  #(event_id, event_title, begin_time, duration)
-				rec=ev[2] and self.timer.isInTimer(ev[0], ev[2], ev[3], service)
-				xpos, ewidth = self.calcEntryPosAndWidthHelper(ev[2], ev[3], start, end, width)
+				stime = ev[2]
+				duration = ev[3]
+				rec = stime and self.timer.isInTimer(ev[0], stime, duration, service)
+				xpos, ewidth = self.calcEntryPosAndWidthHelper(stime, duration, start, end, width)
+				if stime <= now and now < stime + duration:
+					backColor = self.backColorNow
+					foreColor = self.foreColorNow
+					foreColorSelected = self.foreColorNowSelected
+ 					backColorSelected = self.backColorNowSelected
+				else:
+					backColor = self.backColor
+					foreColor = self.foreColor
+ 					foreColorSelected = self.foreColorSelected
+ 					backColorSelected = self.backColorSelected
 
 				if nowPlaying is not None and nowPlaying == service:
 					backColorOrig = 0x516b96
 
-				if ev[2] <= now and (ev[2] + ev[3]) > now:
-					foreColor = self.nowForeColor
-					foreColorSelected = self.nowForeColorSelected
-					backColor = self.nowBackColor
-#						backColorSelected = self.backColorSelected # Event Selected
-				else:
-					backColor = backColorOrig 
-#						backColorSelected = self.backColorSelected
-
-					foreColor = self.foreColor
-					foreColorSelected = self.foreColorSelected
-
 				if rec:
 					cooltyp = self.GraphEPGRecRed(service, ev[2], ev[3], ev[0])
 					if cooltyp == "record":
-						backColor = 0xcf5353 
-						backColorSelected = 0xf7664b
+						backColor = 0xd13333 
+						backColorSelected = 0x9e2626
 					elif cooltyp == "justplay":						
 						backColor = 0x669466
-						backColorSelected = 0x61a161
+						backColorSelected = 0x436143
 #					elif cooltyp == "nichts" and cooltyp != "record":						
 #						backColor = 0xB6FF00
 #						backColorSelected = 0xC0FF23
@@ -588,10 +581,17 @@ class EPGList(HTMLComponent, GUIComponent):
 
 				res.append(MultiContentEntryText(
 					pos = (left+xpos, top), size = (ewidth, height),
-					font = 1, flags = coolflags,
-					text = thepraefix + ev[1], color = foreColor, color_sel = foreColorSelected,
-					backcolor = backColor, backcolor_sel = backColorSelected, border_width = 1, border_color = borderColor)) # Color select Event
+					font = 1, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER,
+					text = " " + ev[1],
+					color = foreColor, color_sel = self.foreColorSelected,
+					backcolor = backColor, backcolor_sel = backColorSelected,
+					border_width = 1, border_color = self.borderColor))
 
+				if rec:
+					res.append(MultiContentEntryPixmapAlphaTest(
+						pos = (left+xpos+ewidth-22, top+height-22), size = (21, 21),
+						png = self.getClockPixmap(service, stime, duration, ev[0]),
+						backcolor = backColor, backcolor_sel = backColorSelected))
 		else:
 			left = r2.left()
 			top = r2.top()

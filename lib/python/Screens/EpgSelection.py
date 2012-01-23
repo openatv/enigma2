@@ -1278,6 +1278,7 @@ class EPGSelection(Screen):
 
 	def moveTimeLines(self, force=False):
 		self.updateTimelineTimer.start((60 - (int(time()) % 60)) * 1000)        #keep syncronised
+		self["list"].l.invalidate() # not needed when the zPosition in the skin is correct! ?????
 		self["timeline_text"].setEntries(self["list"], self["timeline_now"], self.time_lines)
 
 	def isPlayable(self):
