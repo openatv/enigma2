@@ -6,7 +6,7 @@ from Components.ConfigList import ConfigListScreen
 from Components.config import config, ConfigSubsection, ConfigInteger, ConfigSelection, ConfigSlider, getConfigListEntry
 from os import path as os_path, chmod as os_chmod, unlink as os_unlink, system as os_system
 
-modelist = {"5": _("ET9000"), "4": _("DMM"), "4": _("DMM ADV"), "7": _("ET5000")}
+modelist = {"5": _("ET9000/ET9100"), "4": _("DMM/DMM ADV"), "7": _("ET5000/ET6000"), "11": _("ET9200/ET9500") }
 
 config.plugins.RCSetup = ConfigSubsection()
 from os import system as os_system
@@ -14,7 +14,9 @@ file = open("/proc/stb/ir/rc/type", "r")
 text=file.read()
 file.close()
 temp = int(text)
-if temp == 7:
+if temp == 11:
+	config.plugins.RCSetup.mode = ConfigSelection(choices = modelist, default = "11")
+elif temp == 7:
 	config.plugins.RCSetup.mode = ConfigSelection(choices = modelist, default = "7")
 elif temp == 5:
 	config.plugins.RCSetup.mode = ConfigSelection(choices = modelist, default = "5")
@@ -96,6 +98,8 @@ class RCSetupScreen(Screen, ConfigListScreen):
 		elif tmp == 6:
 			self.createFile()
 		elif tmp == 7:
+			self.createFile()
+		elif tmp == 11:
 			self.createFile()
 
 	def createFile(self):

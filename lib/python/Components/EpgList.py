@@ -896,6 +896,7 @@ class TimelineText(HTMLComponent, GUIComponent):
 
 		res = [ None ]
 
+		days = [ _("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun") ]
 		nowTime = localtime(time())
 		begTime = localtime(time_base)
 		if nowTime[2] != begTime[2]:

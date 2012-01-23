@@ -149,12 +149,21 @@ class CleanTrashTask(Components.Task.PythonTask):
 		self.reserveBytes = reserveBytes
 
 	def work(self):
+		mounts=[]
 		matches = []
 		print "[Trashcan] probing folders"
-		for root, dirnames, filenames in os.walk('/media/'):
-			for filename in fnmatch.filter(dirnames, '.Trash'):
-				if os.path.join(root, filename) != '/media/.Trash':
-					matches.append(os.path.join(root, filename))
+		f = open('/proc/mounts', 'r')
+		for line in f.readlines():
+			parts = line.strip().split()
+			mounts.append(parts[1])
+		f.close()
+
+ 		for mount in mounts:
+			if os.path.isdir(os.path.join(mount,'.Trash')):
+				matches.append(os.path.join(mount,'.Trash'))
+			elif os.path.isdir(os.path.join(mount,'movie/.Trash')):
+				matches.append(os.path.join(mount,'movie/.Trash'))
+				
 		print "[Trashcan] found following trashcan's:",matches
 		if len(matches):
 			for trashfolder in matches:
