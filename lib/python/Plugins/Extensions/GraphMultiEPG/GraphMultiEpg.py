@@ -65,6 +65,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.borderColorService = 0x000000
 		self.foreColorNow = 0xffc000
 		self.backColorNow = 0x508050
+		self.entryFont = "Regular"
 
 	def applySkin(self, desktop, screen):
 		if self.skinAttributes is not None:
@@ -80,6 +81,9 @@ class EPGList(HTMLComponent, GUIComponent):
 					self.backColorSelected = parseColor(value).argb()
 				elif attrib == "EntryBorderColor":
 					self.borderColor = parseColor(value).argb()
+				elif attrib == "EntryFont":
+					self.entryFont = parseFont(value, ((1,1),(1,1)) ).family # only take name. Size is set in config menu
+					self.setEventFontsize()
 				elif attrib == "ServiceForegroundColor" or attrib == "ServiceNameForegroundColor":
 					self.foreColorService = parseColor(value).argb()
 				elif attrib == "ServiceForegroundColorSelected":
@@ -90,6 +94,8 @@ class EPGList(HTMLComponent, GUIComponent):
 					self.backColorServiceSelected = parseColor(value).argb()
 				elif attrib == "ServiceBorderColor":
 					self.borderColorService = parseColor(value).argb()
+				elif attrib == "ServiceFont":
+					self.l.setFont(0, parseFont(value, ((1,1),(1,1)) ))
 				elif attrib == "EntryBackgroundColorNow":
 					self.backColorNow = parseColor(value).argb()
 				elif attrib == "EntryForegroundColorNow":
@@ -220,7 +226,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.l.setItemHeight(54) # some default (270/5)
 
 	def setEventFontsize(self):
-		self.l.setFont(1, gFont("Regular", config.misc.graph_mepg.ev_fontsize.value))
+		self.l.setFont(1, gFont(self.entryFont, config.misc.graph_mepg.ev_fontsize.value))
 
 	def postWidgetCreate(self, instance):
 		instance.setWrapAround(True)
