@@ -107,8 +107,8 @@ eventData::eventData(const eit_event_struct* e, int size, int type, int tsidonid
 					//convert our strings to UTF8
 					std::string eventNameUTF8 = convertDVBUTF8((const unsigned char*)&descr[6], eventNameLen, table, tsidonid);
 					std::string textUTF8 = convertDVBUTF8((const unsigned char*)&descr[7 + eventNameLen], eventTextLen, table, tsidonid);
-					int eventNameUTF8len = eventNameUTF8.length();
-					int textUTF8len = textUTF8.length();
+					unsigned int eventNameUTF8len = eventNameUTF8.length();
+					unsigned int textUTF8len = textUTF8.length();
 
 					//Rebuild the short event descriptor with UTF-8 strings
 
@@ -119,8 +119,7 @@ eventData::eventData(const eit_event_struct* e, int size, int type, int tsidonid
 						 previously some descriptors didnt match because there text was different and titles the same.
 						 Now that we store them seperatly we can save some space on title data some rough calculation show anywhere from 20 - 40% savings
 						*/
-						if( eventNameUTF8len > (255 - 6) ) //hack to show some information ( all of this storage in epgcache should be fixed, to use a proper structure )
-							eventNameUTF8len = 255 - 6; //this may leave some strange data at the end of the text
+						eventNameUTF8len = truncateUTF8(textUTF8, 255 - 6);
 						int title_len = 6 + eventNameUTF8len;
 						__u8 *title_data = new __u8[title_len + 2];
 						title_data[0] = SHORT_EVENT_DESCRIPTOR;
@@ -158,8 +157,7 @@ eventData::eventData(const eit_event_struct* e, int size, int type, int tsidonid
 					//save the text
 					if( textUTF8len > 0 ) //only store the data if there is something to store
 					{
-						if( textUTF8len > (255 - 6) ) //hack to show some information ( all of this storage in epgcache should be fixed, to use a proper structure )
-							textUTF8len = 255 - 6; //this may leave some strange data at the end of the text
+						textUTF8len = truncateUTF8(textUTF8, 255 - 6);
 						int text_len = 6 + textUTF8len;
 						__u8 *text_data = new __u8[text_len + 2];
 						text_data[0] = SHORT_EVENT_DESCRIPTOR;
