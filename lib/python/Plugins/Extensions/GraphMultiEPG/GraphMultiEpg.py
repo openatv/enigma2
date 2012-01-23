@@ -21,7 +21,8 @@ from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT
 from ServiceReference import ServiceReference
 from Tools.LoadPixmap import LoadPixmap
 from enigma import eEPGCache, eListbox, gFont, eListboxPythonMultiContent, \
-	RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, RT_VALIGN_CENTER, RT_WRAP, eRect, eTimer
+	RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, RT_VALIGN_CENTER, RT_WRAP, \
+	eSize, eRect, eTimer
 from GraphMultiEpgSetup import GraphMultiEpgSetup
 
 from time import localtime, time, strftime
@@ -67,6 +68,9 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.backColorNow = 0x508050
 		self.entryFont = "Regular"
 
+		self.listHeight = None
+		self.listWidth = None
+
 	def applySkin(self, desktop, screen):
 		if self.skinAttributes is not None:
 			attribs = [ ]
@@ -105,6 +109,8 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.skinAttributes = attribs
 		rc = GUIComponent.applySkin(self, desktop, screen)
 		# now we know our size and can savely set items per page
+		self.listHeight = self.instance.size().height()
+		self.listWidth = self.instance.size().width()
 		self.setItemsPerPage()
 		return rc
 
@@ -219,11 +225,12 @@ class EPGList(HTMLComponent, GUIComponent):
 	GUI_WIDGET = eListbox
 
 	def setItemsPerPage(self):
-		h = self.instance.size().height()
-		if h > 0:
-			self.l.setItemHeight(h / config.misc.graph_mepg.items_per_page.value)
+		if self.listHeight > 0:
+			itemHeight = self.listHeight / config.misc.graph_mepg.items_per_page.value
 		else:
-			self.l.setItemHeight(54) # some default (270/5)
+			itemHeight = 54 # some default (270/5)
+		self.instance.resize(eSize(self.listWidth, itemHeight * config.misc.graph_mepg.items_per_page.value))
+		self.l.setItemHeight(itemHeight)
 
 	def setEventFontsize(self):
 		self.l.setFont(1, gFont(self.entryFont, config.misc.graph_mepg.ev_fontsize.value))
