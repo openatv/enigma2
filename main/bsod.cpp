@@ -118,7 +118,8 @@ void bsodFatal(const char *component)
 	bsodhandled = true;
 
 	std::ostringstream os;
-	os << "/media/hdd/enigma2_crash_";
+	os << getConfigString("config.crash.debug_path", "/home/root");
+	os << "enigma2_crash_";
 	os << time(0);
 	os << ".log";
 
