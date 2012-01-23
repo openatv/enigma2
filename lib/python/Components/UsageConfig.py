@@ -587,7 +587,8 @@ def InitUsageConfig():
 					("3", _("with left/right buttons"))])
 
 	config.GraphEPG = ConfigSubsection()
-	config.GraphEPG.ShowBouquet = ConfigYesNo(default = False)
+	config.GraphEPG.ShowBouquet_vixepg = ConfigYesNo(default = False)
+	config.GraphEPG.ShowBouquet_multi = ConfigYesNo(default = False)
 	config.GraphEPG.preview_mode_vixepg = ConfigYesNo(default = True)
 	config.GraphEPG.preview_mode_enhanced = ConfigYesNo(default = True)
 	config.GraphEPG.preview_mode_infobar = ConfigYesNo(default = True)
