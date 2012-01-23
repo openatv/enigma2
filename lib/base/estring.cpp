@@ -652,6 +652,27 @@ int isUTF8(const std::string &string)
 	return 1; // can be UTF8 (or pure ASCII, at least no non-UTF-8 8bit characters)
 }
 
+unsigned int truncateUTF8(const std::string &s, unsigned int newsize)
+{
+	unsigned int length = s.size();
+
+	while (length > newsize)
+	{
+		if ((unsigned char)s[length - 1] > 0x7F)
+		{
+			do
+			{
+				/* remove all UTF data bytes, not including the start byte, which is {0xC0 <= startbyte <= 0xFD} */
+				length--;
+			} while (length > 0 && (unsigned char)s[length - 1] <= 0xBF); /* remove only databytes */
+		}
+		/* remove the UTF startbyte, or normal ascii character */
+		if (length > 0) length--;
+	}
+	s.resize(length);
+	return length;
+}
+
 std::string removeDVBChars(const std::string &s)
 {
 	std::string res;
