@@ -119,7 +119,7 @@ eventData::eventData(const eit_event_struct* e, int size, int type, int tsidonid
 						 previously some descriptors didnt match because there text was different and titles the same.
 						 Now that we store them seperatly we can save some space on title data some rough calculation show anywhere from 20 - 40% savings
 						*/
-						eventNameUTF8len = truncateUTF8(textUTF8, 255 - 6);
+						eventNameUTF8len = truncateUTF8(eventNameUTF8, 255 - 6);
 						int title_len = 6 + eventNameUTF8len;
 						__u8 *title_data = new __u8[title_len + 2];
 						title_data[0] = SHORT_EVENT_DESCRIPTOR;
