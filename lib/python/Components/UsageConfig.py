@@ -349,14 +349,18 @@ def InitUsageConfig():
 	config.crash.enabledebug = ConfigYesNo(default = False)
 	config.crash.debugloglimit = ConfigNumber(default=4)
 
-	debugpath = [('/home/root/', '/home/root/')]
+	debugpath = [('/home/root/logs/', '/home/root/')]
 	for p in harddiskmanager.getMountedPartitions():
 		d = os.path.normpath(p.mountpoint)
 		if os.path.exists(p.mountpoint):
 			if p.mountpoint != '/':
-				debugpath.append((d + '/', p.mountpoint))
-	config.crash.debug_path = ConfigSelection(default = "/home/root/", choices = debugpath)
+				debugpath.append((d + '/logs/', p.mountpoint))
+	config.crash.debug_path = ConfigSelection(default = "/home/root/logs/", choices = debugpath)
 
+	def updatedebug_path(configElement):
+		if not os.path.exists(config.crash.debug_path.value):
+			os.mkdir(config.crash.debug_path.value,0755)
+	config.crash.debug_path.addNotifier(updatedebug_path, immediate_feedback = False)
 	config.usage.timerlist_finished_timer_position = ConfigSelection(default = "end", choices = [("beginning", _("at beginning")), ("end", _("at end"))])
 
 	def updateEnterForward(configElement):
