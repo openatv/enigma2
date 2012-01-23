@@ -1127,9 +1127,10 @@ class InfoBarEPG:
 		list = [(p.name, boundFunction(self.runPlugin, p)) for p in plugins.getPlugins(where = PluginDescriptor.WHERE_EVENTINFO)]
 
 		if list:
+			list.append((_("Event Info..."), self.openEventView))
 			list.append((_("Infobar EPG..."), self.openInfoBarEPG))
-			list.append((_("Single EPG..."), self.openSingleServiceEPG))
 			list.append((_("Multi EPG..."), self.openMultiServiceEPG))
+			list.append((_("Single EPG..."), self.openSingleServiceEPG))
 			self.session.openWithCallback(self.EventInfoPluginChosen, ChoiceBox, title=_("Please choose an extension..."), list = list, skin_name = "EPGExtensionsList")
 		else:
 			self.openSingleServiceEPG()
