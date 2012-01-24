@@ -362,7 +362,10 @@ class InfoBarShowHide:
 			if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 				self.secondInfoBarScreen.hide()
 			elif self.EventViewIsShown:
-				self.eventView.close()
+				try:
+					self.eventView.close()
+				except:
+					pass
 				self.EventViewIsShown = False
 
 	def lockShow(self):
