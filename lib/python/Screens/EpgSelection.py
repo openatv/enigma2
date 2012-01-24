@@ -2,7 +2,7 @@ from Screen import Screen
 from Components.AVSwitch import AVSwitch
 from Components.ActionMap import ActionMap, NumberActionMap, HelpableActionMap
 from Components.Button import Button
-from Components.config import config, ConfigClock, NoSave, ConfigSelection, getConfigListEntry, ConfigText, ConfigDateTime, ConfigSubList, ConfigYesNo
+from Components.config import config, configfile, ConfigClock, NoSave, ConfigSelection, getConfigListEntry, ConfigText, ConfigDateTime, ConfigSubList, ConfigYesNo
 from Components.ConfigList import ConfigListScreen
 from Components.EpgList import EPGList, TimelineText, EPG_TYPE_SINGLE, EPG_TYPE_SIMILAR, EPG_TYPE_MULTI, EPG_TYPE_ENHANCED, EPG_TYPE_INFOBAR, EPG_TYPE_GRAPH, MAX_TIMELINES
 from Components.Label import Label
@@ -561,6 +561,7 @@ class EPGSelection(Screen):
 					"left": self.leftPressed,
 					"right": self.rightPressed,
 				},-1)
+			self.curBouquet = bouquetChangeCB
 			self.onLayoutFinish.append(self.onStartup)
 		else:
 			self["actions"] = ActionMap(["EPGSelectActions", "InfobarInstantRecord", "OkCancelActions", "ColorActions"],
@@ -617,91 +618,50 @@ class EPGSelection(Screen):
 		self.activityTimer.start(750)
 
 	def onStartup(self):
-		if self.type == EPG_TYPE_GRAPH:
-			self.activityTimer.stop()
-			self["list"].fillGraphEPG(self.services, self.ask_time)
-			serviceref = self.session.nav.getCurrentlyPlayingServiceReference()
-			self["list"].moveToService(serviceref)
-			self["list"].setCurrentlyPlaying(serviceref)
-			self["list"].moveToService(self.session.nav.getCurrentlyPlayingServiceReference())
-			self.startRef = self["list"].getCurrent()[1]
-			self.moveTimeLines()
-			if config.GraphEPG.channel1.value:
-				self["list"].instance.moveSelectionTo(0)
-			self['lab1'].hide()
-		else:
-			l = self["list"]
-			l.recalcEntrySize()
-			if self.type == EPG_TYPE_MULTI or self.type == EPG_TYPE_GRAPH:
-				l.fillMultiEPG(self.services, self.ask_time)
-				l.moveToService(self.session.nav.getCurrentlyPlayingServiceReference())
-			elif self.type == EPG_TYPE_SINGLE:
-				service = self.currentService
-				self["Service"].newService(service.ref)
-				if self.saved_title is None:
-					self.saved_title = self.instance.getTitle()
-				title = self.saved_title + ' - ' + service.getServiceName()
-				self.instance.setTitle(title)
-				l.fillSingleEPG(service)
-			elif self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
-				service = ServiceReference(self.servicelist.getCurrentSelection())
-				self["Service"].newService(service.ref)
-				if self.saved_title is None:
-					self.saved_title = self.instance.getTitle()
-				title = self.saved_title + ' - ' + service.getServiceName()
-				self.instance.setTitle(title)
-				l.fillSingleEPG(service)
-			else:
-				l.fillSimilarList(self.currentService, self.eventid)
-			if self.type == EPG_TYPE_SINGLE or self.type == EPG_TYPE_ENHANCED:
-				if config.misc.EPGSort.value == "Time":
-					self.sort_type = 0
-				else:
-					self.sort_type = 1
-				l.sortSingleEPG(self.sort_type)
-			self.startRef = self["list"].getCurrent()[1]
+		self.onCreate()
+		self.startRef = self.session.nav.getCurrentlyPlayingServiceReference()
 
 	def onCreate(self):
+		l = self["list"]
+		l.recalcEntrySize()
+		serviceref = self.session.nav.getCurrentlyPlayingServiceReference()
 		if self.type == EPG_TYPE_GRAPH:
 			self.activityTimer.stop()
-			self["list"].fillGraphEPG(self.services, self.ask_time)
-			serviceref = self.session.nav.getCurrentlyPlayingServiceReference()
-			self["list"].moveToService(serviceref)
-			self["list"].setCurrentlyPlaying(serviceref)
+			l.fillGraphEPG(self.services, self.ask_time)
+			l.moveToService(serviceref)
+			l.setCurrentlyPlaying(serviceref)
 			self.moveTimeLines()
 			if config.GraphEPG.channel1.value:
-				self["list"].instance.moveSelectionTo(0)
+				l.instance.moveSelectionTo(0)
 			self['lab1'].hide()
+		elif self.type == EPG_TYPE_MULTI:
+			l.fillMultiEPG(self.services, self.ask_time)
+			l.moveToService(serviceref)
+			l.setCurrentlyPlaying(serviceref)
+		elif self.type == EPG_TYPE_SINGLE:
+			service = self.currentService
+			self["Service"].newService(service.ref)
+			if self.saved_title is None:
+				self.saved_title = self.instance.getTitle()
+			title = self.saved_title + ' - ' + service.getServiceName()
+			self.instance.setTitle(title)
+			l.fillSingleEPG(service)
+		elif self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
+			service = ServiceReference(self.servicelist.getCurrentSelection())
+			self["Service"].newService(service.ref)
+			if self.saved_title is None:
+				self.saved_title = self.instance.getTitle()
+			title = self.saved_title + ' - ' + service.getServiceName()
+			self.instance.setTitle(title)
+			l.fillSingleEPG(service)
 		else:
-			l = self["list"]
-			l.recalcEntrySize()
-			if self.type == EPG_TYPE_MULTI or self.type == EPG_TYPE_GRAPH:
-				l.fillMultiEPG(self.services, self.ask_time)
-				l.moveToService(self.session.nav.getCurrentlyPlayingServiceReference())
-			elif self.type == EPG_TYPE_SINGLE:
-				service = self.currentService
-				self["Service"].newService(service.ref)
-				if self.saved_title is None:
-					self.saved_title = self.instance.getTitle()
-				title = self.saved_title + ' - ' + service.getServiceName()
-				self.instance.setTitle(title)
-				l.fillSingleEPG(service)
-			elif self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
-				service = ServiceReference(self.servicelist.getCurrentSelection())
-				self["Service"].newService(service.ref)
-				if self.saved_title is None:
-					self.saved_title = self.instance.getTitle()
-				title = self.saved_title + ' - ' + service.getServiceName()
-				self.instance.setTitle(title)
-				l.fillSingleEPG(service)
+			l.fillSimilarList(self.currentService, self.eventid)
+		if self.type == EPG_TYPE_SINGLE or self.type == EPG_TYPE_ENHANCED:
+			if config.misc.EPGSort.value == "Time":
+				self.sort_type = 0
 			else:
-				l.fillSimilarList(self.currentService, self.eventid)
-			if self.type == EPG_TYPE_SINGLE or self.type == EPG_TYPE_ENHANCED:
-				if config.misc.EPGSort.value == "Time":
-					self.sort_type = 0
-				else:
-					self.sort_type = 1
-				l.sortSingleEPG(self.sort_type)
+				self.sort_type = 1
+			l.sortSingleEPG(self.sort_type)
 
 	def nextPage(self):
 		self["list"].instance.moveSelection(self["list"].instance.pageUp)
@@ -859,7 +819,9 @@ class EPGSelection(Screen):
 					pass
 			else:
 				try:
-					self.zapFunc(self.startRef.ref, self.StartBouquet)
+					print 'self.startRef',self.startRef.toString
+					print 'self.StartBouquet',self.StartBouquet
+					self.zapFunc(self.startRef, self.StartBouquet)
 				except:
 					pass
 		self.close(self.closeRecursive)
@@ -921,7 +883,6 @@ class EPGSelection(Screen):
 			self.sort_type = 1
 		else:
 			self.sort_type = 0
-		print 'SORT',config.misc.EPGSort.value
 		self["list"].sortSingleEPG(self.sort_type)
 
 	def OpenSingleEPG(self):
@@ -1590,7 +1551,7 @@ class EPGSelectionSetup(Screen, ConfigListScreen):
 		self.list = [ ]
 		if self.type == 5:
 			self.list.append(getConfigListEntry(_("Channel preview mode"), config.GraphEPG.preview_mode_vixepg))
-			self.list.append(getConfigListEntry(_("Show bouquet on launch"), config.GraphEPG.ShowBouquet))
+			self.list.append(getConfigListEntry(_("Show bouquet on launch"), config.GraphEPG.ShowBouquet_vixepg))
 			self.list.append(getConfigListEntry(_("Picture In Graphics*"), config.GraphEPG.PIG))
 			self.list.append(getConfigListEntry(_("Enable Picon"), config.GraphEPG.UsePicon))
 			self.list.append(getConfigListEntry(_("Info Button"), config.GraphEPG.Info))
@@ -1618,11 +1579,14 @@ class EPGSelectionSetup(Screen, ConfigListScreen):
 			self.list.append(getConfigListEntry(_("Sort List by"), config.misc.EPGSort))
 			self.list.append(getConfigListEntry(_("OK Button"), config.GraphEPG.OK_enhanced))
 			self.list.append(getConfigListEntry(_("LongOK Button"), config.GraphEPG.OKLong_enhanced))
-		else:
+		elif self.type == 1:
 			self.list.append(getConfigListEntry(_("Channel preview mode"), config.GraphEPG.preview_mode))
+			self.list.append(getConfigListEntry(_("Show bouquet on launch"), config.GraphEPG.ShowBouquet_multi))
 			self.list.append(getConfigListEntry(_("Sort List by"), config.misc.EPGSort))
 			self.list.append(getConfigListEntry(_("OK Button"), config.GraphEPG.OK))
 			self.list.append(getConfigListEntry(_("LongOK Button"), config.GraphEPG.OKLong))
+		else:
+			self.list.append(getConfigListEntry(_("Sort List by"), config.misc.EPGSort))
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
 
@@ -1644,6 +1608,7 @@ class EPGSelectionSetup(Screen, ConfigListScreen):
 	def saveAll(self):
 		for x in self["config"].list:
 			x[1].save()
+		configfile.save()
 
 	# keySave and keyCancel are just provided in case you need them.
 	# you have to call them by yourself.

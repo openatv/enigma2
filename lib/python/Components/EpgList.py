@@ -168,13 +168,6 @@ class EPGList(HTMLComponent, GUIComponent):
 			event = self.epgcache.lookupEventId(service.ref, eventid)
 		return event
 
-	def moveToService(self,serviceref):
-		if serviceref is not None:
-			for x in range(len(self.list)):
-				if self.list[x][0] == serviceref.toString():
-					self.instance.moveSelectionTo(x)
-					break
-	
 	def getIndexFromService(self, serviceref):
 		if serviceref is not None:
 			for x in range(len(self.list)):
@@ -712,18 +705,6 @@ class EPGList(HTMLComponent, GUIComponent):
 		#print time() - t
 		self.selectionChanged()
 
-	def sortSingleEPG(self, type):
-		list = self.list
-		if list:
-			event_id = self.getSelectedEventId()
-			if type == 1:
-				list.sort(key=lambda x: (x[4] and x[4].lower(), x[2]))
-			else:
-				assert(type == 0)
-				list.sort(key=lambda x: x[2])
-			self.l.invalidate()
-			self.moveToEventId(event_id)
-
 	def fillGraphEPG(self, services, stime=-1):
 		if services is None:
 			time_base = self.time_base+self.offs*self.time_epoch*60
@@ -752,6 +733,18 @@ class EPGList(HTMLComponent, GUIComponent):
 
 		self.l.setList(self.list)
 		self.findBestEvent()
+
+	def sortSingleEPG(self, type):
+		list = self.list
+		if list:
+			event_id = self.getSelectedEventId()
+			if type == 1:
+				list.sort(key=lambda x: (x[4] and x[4].lower(), x[2]))
+			else:
+				assert(type == 0)
+				list.sort(key=lambda x: x[2])
+			self.l.invalidate()
+			self.moveToEventId(event_id)
 
 	def getSelectedEventId(self):
 		x = self.l.getCurrentSelection()
@@ -896,6 +889,7 @@ class TimelineText(HTMLComponent, GUIComponent):
 
 		res = [ None ]
 
+		days = [ _("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun") ]
 		nowTime = localtime(time())
 		begTime = localtime(time_base)
 		if nowTime[2] != begTime[2]:
