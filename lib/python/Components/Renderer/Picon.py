@@ -5,6 +5,7 @@ from Tools.Directories import pathExists, SCOPE_SKIN_IMAGE, SCOPE_CURRENT_SKIN, 
 from Components.Harddisk import harddiskmanager
 
 searchPaths = []
+lastPiconPath = None
 
 def initPiconPaths():
 	global searchPaths
@@ -42,12 +43,39 @@ def onPartitionChange(why, part):
 	elif why == 'remove':
 		onMountpointRemoved(part.mountpoint)
 
+def findPicon(serviceName):
+	global lastPiconPath
+	if lastPiconPath is not None:
+		pngname = lastPiconPath + serviceName + ".png"
+		if pathExists(pngname):
+			return pngname
+	global searchPaths
+	for path in searchPaths:
+		if pathExists(path):
+			pngname = path + serviceName + ".png"
+			if pathExists(pngname):
+				lastPiconPath = path
+				return pngname
+	return ""
+
+def getPiconName(serviceName):
+	#remove the path and name fields, and replace ':' by '_'
+	sname = '_'.join(serviceName.split(':', 10)[:10])
+	pngname = findPicon(sname)
+	if not pngname:
+		fields = sname.split('_', 3)
+		if len(fields) > 2 and fields[2] != '2':
+			#fallback to 1 for tv services with nonstandard servicetypes
+			fields[2] = '1'
+			pngname = findPicon('_'.join(fields))
+	return pngname
+
 class Picon(Renderer):
 	def __init__(self):
 		Renderer.__init__(self)
 		self.pngname = ""
 		self.lastPath = None
-		pngname = self.findPicon("picon_default")
+		pngname = findPicon("picon_default")
 		if not pngname:
 			tmp = resolveFilename(SCOPE_CURRENT_SKIN, "picon_default.png")
 			if pathExists(tmp):
@@ -79,35 +107,13 @@ class Picon(Renderer):
 		if self.instance:
 			pngname = ""
 			if what[0] != self.CHANGED_CLEAR:
-				#remove the path and name fields, and replace ':' by '_'
-				sname = '_'.join(self.source.text.split(':', 10)[:10])
-				pngname = self.findPicon(sname)
-				if not pngname:
-					fields = sname.split('_', 3)
-					if len(fields) > 2 and fields[2] != '2':
-						#fallback to 1 for tv services with nonstandard servicetypes
-						fields[2] = '1'
-						pngname = self.findPicon('_'.join(fields))
+				pngname = getPiconName(self.source.text)
 			if not pngname: # no picon for service found
 				pngname = self.defaultpngname
 			if self.pngname != pngname:
 				self.instance.setScale(1)
 				self.instance.setPixmapFromFile(pngname)
 				self.pngname = pngname
-
-	def findPicon(self, serviceName):
-		if self.lastPath:
-			pngname = self.lastPath + serviceName + ".png"
-			if pathExists(pngname):
-				return pngname
-		global searchPaths
-		for path in searchPaths:
-			if pathExists(path):
-				pngname = path + serviceName + ".png"
-				if pathExists(pngname):
-					self.lastPath = path
-					return pngname
-		return ""
 
 harddiskmanager.on_partition_list_change.append(onPartitionChange)
 initPiconPaths()
