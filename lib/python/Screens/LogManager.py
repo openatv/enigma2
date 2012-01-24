@@ -6,7 +6,7 @@ from Components.FileList import FileList
 from Components.Scanner import openFile
 from Components.ScrollLabel import ScrollLabel
 from Components.MenuList import MenuList
-from Components.config import getConfigListEntry, config, ConfigText, ConfigYesNo, NoSave
+from Components.config import getConfigListEntry, config, configfile, ConfigText, ConfigYesNo, NoSave
 from Components.ConfigList import ConfigListScreen, ConfigList
 from Components.FileList import MultiFileSelectList
 from Components.Pixmap import Pixmap,MultiPixmap
@@ -69,11 +69,10 @@ class LogManager(Screen):
 		self.sentsingle = ""
 		self.selectedFiles = config.logmanager.sentfiles.value
 		self.previouslySent = config.logmanager.sentfiles.value
-		self.defaultDir = '/media/hdd/'
-		self.filelist = MultiFileSelectList(self.selectedFiles, self.defaultDir, showDirectories = False, matchingPattern = '.log' )
+		self.defaultDir = config.crash.debug_path.value
+		self.matchingPattern = 'enigma2_crash_' 
+		self.filelist = MultiFileSelectList(self.selectedFiles, self.defaultDir, showDirectories = False, matchingPattern = self.matchingPattern )
 		self["list"] = self.filelist
-		#if not self.selectionChanged in self["list"].onSelectionChanged:
-			#self["list"].onSelectionChanged.append(self.selectionChanged)
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def layoutFinished(self):
@@ -82,7 +81,7 @@ class LogManager(Screen):
 		self.setWindowTitle()
 
 	def setWindowTitle(self):
-		self.setTitle(_("Select files/folders to backup"))
+		self.setTitle(self.defaultDir)
 
 	def up(self):
 		self["list"].up()
@@ -101,8 +100,7 @@ class LogManager(Screen):
 		self.previouslySent = self["list"].getSelectedList()
 		config.logmanager.sentfiles.value = self.selectedFiles
 		config.logmanager.sentfiles.save()
-		config.logmanager.save()
-		config.save()
+		configfile.save()
 
 	def exit(self):
 		self.close(None)
@@ -115,33 +113,31 @@ class LogManager(Screen):
 		self.selectedFiles = self["list"].getSelectedList()
 
 	def changelogtype(self):
+		import re
 		if self.logtype == 'crashlogs':
 			self["key_red"].setText(_("Crash Logs"))
 			self.logtype = 'debuglogs'
-			self["list"].changeDir(config.crash.debug_path.value)
+			self.matchingPattern = 'Enigma2' 
 		else:
 			self["key_red"].setText(_("Debug Logs"))
 			self.logtype = 'crashlogs'
-			self["list"].changeDir('/media/hdd/')
+			self.matchingPattern = 'enigma2_crash_' 
+		self["list"].matchingPattern=re.compile(self.matchingPattern)
+		self["list"].changeDir(self.defaultDir)
 
 	def showLog(self):
-		if self.logtype == 'crashlogs':
-			self.defaultDir = '/media/hdd/'
-		else:
-			self.defaultDir = config.crash.debug_path.value
-		listtest = listdir(self.defaultDir)
-		loglist = []
-		if listtest:
-			for l in listtest:
-				if l.endswith('log'):
-					loglist.append(l)
-		if loglist:
+		try:
 			self.sel = self["list"].getCurrent()[0]
-			if self.sel:
-				self.session.open(LogManagerViewLog, self.sel[0], self.logtype)
+		except:
+			self.sel = None
+		if self.sel:
+			self.session.open(LogManagerViewLog, self.sel[0], self.logtype)
 
 	def deletelog(self):
-		self.sel = self["list"].getCurrent()[0]
+		try:
+			self.sel = self["list"].getCurrent()[0]
+		except:
+			self.sel = None
 		self.selectedFiles = self["list"].getSelectedList()
 		if self.selectedFiles:
 			message = _("Do you want to delete all selected files:\n(choose 'No' to only delete the currently selected file.)")
@@ -171,36 +167,23 @@ class LogManager(Screen):
 		if answer is True:
 			self.selectedFiles = self["list"].getSelectedList()
 			self["list"].instance.moveSelectionTo(0)
-			if self.logtype == 'crashlogs':
-				self.defaultDir = '/media/hdd/'
-			else:
-				self.defaultDir = config.crash.debug_path.value
 			for f in self.selectedFiles:
 				remove(f)
 			config.logmanager.sentfiles.value = ""
 			config.logmanager.sentfiles.save()
-			config.logmanager.save()
-			config.save()
+			configfile.save()
 			self["list"].changeDir(self.defaultDir)
 
 	def doDelete3(self, answer):
 		if answer is True:
 			self.sel = self["list"].getCurrent()[0]
 			self["list"].instance.moveSelectionTo(0)
-			if self.logtype == 'crashlogs':
-				self.defaultDir = '/media/hdd/'
-			else:
-				self.defaultDir = config.crash.debug_path.value
 			remove(self.defaultDir + self.sel[0])
 			self["list"].changeDir(self.defaultDir)
 
 	def sendlog(self, addtionalinfo = None):
 		self.sel = self["list"].getCurrent()[0]
 		self.sel = str(self.sel[0])
-		if self.logtype == 'crashlogs':
-			self.defaultDir = '/media/hdd/'
-		else:
-			self.defaultDir = config.crash.debug_path.value
 		self.selectedFiles = self["list"].getSelectedList()
 		self.resend = False
 		for send in self.previouslySent:
@@ -292,10 +275,6 @@ class LogManager(Screen):
 			else:
 				self.sel = self["list"].getCurrent()[0]
 				self.sel = str(self.sel[0])
-				if self.logtype == 'crashlogs':
-					self.defaultDir = '/media/hdd/'
-				else:
-					self.defaultDir = config.crash.debug_path.value
 				fp = open((self.defaultDir + self.sel), 'rb')
 				data = MIMEText(fp.read())
 				fp.close()
