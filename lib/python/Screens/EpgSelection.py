@@ -63,8 +63,6 @@ class EPGSelection(Screen):
 		GraphEPG = """
 			<screen name="GraphicalEPG" position="center,center" size="1280,720" backgroundColor="#000000" title="Programme Guide">
 				<eLabel text="Programme Guide" position="460,20" size="480,30" font="Regular;26" foregroundColor="#FFFFFF" backgroundColor="#000000" shadowColor="#000000" halign="center" transparent="1" />
-				<widget name="date" position="40,20" size="180,30" font="Regular;26" halign="left"  foregroundColor="#00e5b243" backgroundColor="#000000" transparent="1" />
-
 				<widget source="global.CurrentTime" render="Label" position="283, 20" size="90,30" font="Regular;26" foregroundColor="#FFFFFF" backgroundColor="#000000" shadowColor="#000000" halign="right" transparent="1">
 					<convert type="ClockToText">Default</convert>
 				</widget>
@@ -108,7 +106,6 @@ class EPGSelection(Screen):
 		GraphEPGPIG = """
 			<screen name="GraphicalEPGPIG" position="center,center" size="1280,720" backgroundColor="#000000" title="Programme Guide" flags="wfNoBorder">
 				<eLabel text="Programme Guide" position="460,20" size="480,30" font="Regular;26" foregroundColor="#FFFFFF" backgroundColor="#000000" shadowColor="#000000" halign="center" transparent="1" />
-				<widget name="date" position="40,20" size="180,30" font="Regular;26" halign="left" foregroundColor="#00e5b243" backgroundColor="#000000" transparent="1" />
 				<widget source="global.CurrentTime" render="Label" position="283, 20" size="90,30" font="Regular;26" foregroundColor="#FFFFFF" backgroundColor="#000000" shadowColor="#000000" halign="right" transparent="1">
 					<convert type="ClockToText">Default</convert>
 				</widget>
@@ -181,7 +178,6 @@ class EPGSelection(Screen):
 		GraphEPG = """
 			<screen name="GraphicalEPG" position="center,center" size="720,576" backgroundColor="#000000" title="Programme Guide">
 				<widget source="Title" render="Label" position="200,18" size="380,28" font="Regular;22" foregroundColor="#FFFFFF" backgroundColor="#000000" shadowColor="#000000" halign="center" transparent="1" />
-				<widget name="date" position="30,18" size="180,24" font="Regular;20" halign="left"  foregroundColor="#00e5b243" backgroundColor="#000000" transparent="1" />
 				<widget source="global.CurrentTime" render="Label" position="140, 18" size="90,24" font="Regular;20" foregroundColor="#FFFFFF" backgroundColor="#000000" shadowColor="#000000" halign="right" transparent="1">
 						<convert type="ClockToText">Default</convert>
 				</widget>
@@ -225,7 +221,6 @@ class EPGSelection(Screen):
 		GraphEPGPIG = """
 			<screen name="GraphicalEPG" position="center,center" size="720,576" backgroundColor="#000000" title="Programme Guide" flags="wfNoBorder">
 				<widget source="Title" render="Label" position="200,18" size="380,28" font="Regular;22" foregroundColor="#FFFFFF" backgroundColor="#000000" shadowColor="#000000" halign="center" transparent="1" />
-				<widget name="date" position="30,18" size="180,24" font="Regular;20" halign="left" foregroundColor="#00e5b243" backgroundColor="#000000" transparent="1" />
 				<widget source="global.CurrentTime" render="Label" position="140, 18" size="90,24" font="Regular;20" foregroundColor="#FFFFFF" backgroundColor="#000000" shadowColor="#000000" halign="right" transparent="1">
 					<convert type="ClockToText">Default</convert>
 				</widget>
@@ -336,7 +331,6 @@ class EPGSelection(Screen):
 				self["key_green"] = Button(_("Add Timer"))
 				self["key_yellow"] = Button(_("EPG Search"))
 				self["key_blue"] = Button(_("Add AutoTimer"))
-				self["date"] = Label()
 				self.services = service
 				self.zapFunc = zapFunc
 				if bouquetname != "":
@@ -813,8 +807,6 @@ class EPGSelection(Screen):
 					pass
 			else:
 				try:
-					print 'self.startRef',self.startRef.toString
-					print 'self.StartBouquet',self.StartBouquet
 					self.zapFunc(self.startRef, self.StartBouquet)
 				except:
 					pass
