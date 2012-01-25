@@ -803,7 +803,7 @@ class EPGSelection(Screen):
 					self.moveTimeLines(True)
 
 	def closing(self):
-		if (self.type == 5 and config.GraphEPG.preview_mode_vixepg.value) or (self.type == 4 and config.GraphEPG.preview_mode_infobar.value) or (self.type == 3 and config.GraphEPG.preview_mode_enhanced.value) or (self.type != 5 and self.type != 4 and self.type != 3 and config.GraphEPG.preview_mode.value):
+		if (self.type == 5 and config.GraphEPG.preview_mode_pliepg.value) or (self.type == 4 and config.GraphEPG.preview_mode_infobar.value) or (self.type == 3 and config.GraphEPG.preview_mode_enhanced.value) or (self.type != 5 and self.type != 4 and self.type != 3 and config.GraphEPG.preview_mode.value):
 			if self.type != EPG_TYPE_GRAPH and self.type != EPG_TYPE_MULTI:
 				try:
 					if self.oldService:
@@ -1543,8 +1543,8 @@ class EPGSelectionSetup(Screen, ConfigListScreen):
 		self.editListEntry = None
 		self.list = [ ]
 		if self.type == 5:
-			self.list.append(getConfigListEntry(_("Channel preview mode"), config.GraphEPG.preview_mode_vixepg))
-			self.list.append(getConfigListEntry(_("Show bouquet on launch"), config.GraphEPG.ShowBouquet_vixepg))
+			self.list.append(getConfigListEntry(_("Channel preview mode"), config.GraphEPG.preview_mode_pliepg))
+			self.list.append(getConfigListEntry(_("Show bouquet on launch"), config.GraphEPG.ShowBouquet_pliepg))
 			self.list.append(getConfigListEntry(_("Picture In Graphics*"), config.GraphEPG.PIG))
 			self.list.append(getConfigListEntry(_("Enable Picon"), config.GraphEPG.UsePicon))
 			self.list.append(getConfigListEntry(_("Info Button"), config.GraphEPG.Info))
