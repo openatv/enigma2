@@ -605,6 +605,8 @@ def InitUsageConfig():
 
 	config.GraphEPG = ConfigSubsection()
 	config.GraphEPG.ShowBouquet = ConfigYesNo(default = False)
+	config.GraphEPG.ShowBouquet_pliepg = ConfigYesNo(default = False)
+	config.GraphEPG.ShowBouquet_multi = ConfigYesNo(default = False)
 	config.GraphEPG.preview_mode_pliepg = ConfigYesNo(default = True)
 	config.GraphEPG.preview_mode_enhanced = ConfigYesNo(default = True)
 	config.GraphEPG.preview_mode_infobar = ConfigYesNo(default = True)

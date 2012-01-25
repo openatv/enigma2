@@ -327,12 +327,6 @@ class InfoBarShowHide:
 		elif self.__state == self.STATE_HIDDEN and self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
-		elif self.__state == self.STATE_HIDDEN and self.EventViewIsShown:
-			try:
-				self.eventView.close()
-			except:
-				pass
-			self.EventViewIsShown = False
 
 	def toggleShow(self):
 		if self.__state == self.STATE_HIDDEN:
@@ -361,12 +355,6 @@ class InfoBarShowHide:
 			self.hide()
 			if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 				self.secondInfoBarScreen.hide()
-			elif self.EventViewIsShown:
-				try:
-					self.eventView.close()
-				except:
-					pass
-				self.EventViewIsShown = False
 
 	def lockShow(self):
 		try:
@@ -543,7 +531,7 @@ class InfoBarShowHide:
 			else:
 				self.is_now_next = True
 			if epglist:
-				self.eventView = self.session.openWithCallback(self.closed, EventViewEPGSelect, self.epglist[0], ServiceReference(ref), self.eventViewCallback, self.openSingleServiceEPG, self.openMultiServiceEPG, self.openSimilarList)
+				self.eventView = self.session.openWithCallback(self.closeEventView, EventViewEPGSelect, self.epglist[0], ServiceReference(ref), self.eventViewCallback, self.openSingleServiceEPG, self.openMultiServiceEPG, self.openSimilarList)
 				self.dlg_stack.append(self.eventView)
 			else:
 				print "no epg for the service avail.. so we show multiepg instead of eventinfo"
@@ -571,6 +559,15 @@ class InfoBarShowHide:
 			epglist[1]=tmp
 			setEvent(epglist[0])
 
+	def closeEventView(self, ret=False):
+		closedScreen = self.dlg_stack.pop()
+		if ret:
+			dlgs=len(self.dlg_stack)
+			if dlgs > 0:
+				self.dlg_stack[dlgs-1].close(dlgs > 1)
+		if self.EventViewIsShown:
+			self.EventViewIsShown = False
+		
 class NumberZap(Screen):
 	def quit(self):
 		self.Timer.stop()
