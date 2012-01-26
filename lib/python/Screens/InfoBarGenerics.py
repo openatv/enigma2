@@ -1035,7 +1035,7 @@ class InfoBarEPG:
 		self.EPGtype = "multi"
 		Servicelist = self.servicelist
 		self.StartBouquet = Servicelist and Servicelist.getRoot()
-		if config.GraphEPG.ShowBouquet_multi.value:
+		if config.epgselction.ShowBouquet_multi.value:
 			self.bouquets = self.servicelist.getBouquetList()
 			if self.bouquets is None:
 				cnt = 0
@@ -1082,7 +1082,7 @@ class InfoBarEPG:
 		self.EPGtype = "graph"
 		Servicelist = self.servicelist
 		self.StartBouquet = Servicelist and Servicelist.getRoot()
-		if config.GraphEPG.ShowBouquet_vixepg.value:
+		if config.epgselction.ShowBouquet_vixepg.value:
 			self.bouquets = self.servicelist.getBouquetList()
 			if self.bouquets is None:
 				cnt = 0
