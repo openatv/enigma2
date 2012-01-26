@@ -4,7 +4,7 @@ from Components.ActionMap import ActionMap, NumberActionMap, HelpableActionMap
 from Components.Button import Button
 from Components.config import config, configfile, ConfigClock, NoSave, ConfigSelection, getConfigListEntry, ConfigText, ConfigDateTime, ConfigSubList, ConfigYesNo
 from Components.ConfigList import ConfigListScreen
-from Components.EpgList import EPGList, TimelineText, EPG_TYPE_SINGLE, EPG_TYPE_SIMILAR, EPG_TYPE_MULTI, EPG_TYPE_ENHANCED, EPG_TYPE_INFOBAR, EPG_TYPE_GRAPH, MAX_TIMELINES
+from Components.EpgList import EPGList, TimelineText, getPiconName, EPG_TYPE_SINGLE, EPG_TYPE_SIMILAR, EPG_TYPE_MULTI, EPG_TYPE_ENHANCED, EPG_TYPE_INFOBAR, EPG_TYPE_GRAPH, MAX_TIMELINES
 from Components.Label import Label
 from Components.GUIComponent import GUIComponent
 from Components.HTMLComponent import HTMLComponent
@@ -304,7 +304,7 @@ class EPGSelection(Screen):
 		elif isinstance(service, list):
 			if self.GraphicalEPG:
 				self.type = EPG_TYPE_GRAPH
-				if not config.GraphEPG.PIG.value:
+				if not config.epgselction.PIG.value:
 					self.skin = self.GraphEPG
 					self.skinName = "GraphicalEPG"
 				else:
@@ -381,7 +381,7 @@ class EPGSelection(Screen):
 
 		self.key_green_choice = self.ADD_TIMER
 		self.key_red_choice = self.EMPTY
-		self["list"] = EPGList(type = self.type, selChangedCB = self.onSelectionChanged, timer = session.nav.RecordTimer, time_epoch = config.GraphEPG.prev_time_period.value, overjump_empty = config.GraphEPG.overjump.value)
+		self["list"] = EPGList(type = self.type, selChangedCB = self.onSelectionChanged, timer = session.nav.RecordTimer, time_epoch = config.epgselction.prev_time_period.value, overjump_empty = config.epgselction.overjump.value)
 
 		if self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
 			if self.type == EPG_TYPE_ENHANCED:
@@ -589,8 +589,10 @@ class EPGSelection(Screen):
 			l.setEventFontsize()
 			l.setServiceFontsize()
 			self["timeline_text"].setTimeLineFontsize()
-			l.setEpoch(config.GraphEPG.prev_time_period.value)
-			l.setOverjump_Empty(config.GraphEPG.overjump.value)
+			l.setEpoch(config.epgselction.prev_time_period.value)
+			l.setOverjump_Empty(config.epgselction.overjump.value)
+			l.setShowPicon(config.epgselction.UsePicon.value)
+			l.setShowServiceTitle(config.epgselction.showservicetitle.value)
 			self.moveTimeLines()
 		else:
 			if config.misc.EPGSort.value == "Time":
@@ -615,11 +617,14 @@ class EPGSelection(Screen):
 		serviceref = self.session.nav.getCurrentlyPlayingServiceReference()
 		if self.type == EPG_TYPE_GRAPH:
 			self.activityTimer.stop()
+			self.services = self.generateList(self.services)
 			l.fillGraphEPG(self.services, self.ask_time)
 			l.moveToService(serviceref)
 			l.setCurrentlyPlaying(serviceref)
+			l.setShowPicon(config.epgselction.UsePicon.value)
+			l.setShowServiceTitle(config.epgselction.showservicetitle.value)
 			self.moveTimeLines()
-			if config.GraphEPG.channel1.value:
+			if config.epgselction.channel1.value:
 				l.instance.moveSelectionTo(0)
 			self['lab1'].hide()
 		elif self.type == EPG_TYPE_MULTI:
@@ -709,7 +714,7 @@ class EPGSelection(Screen):
 			else:
 				self.nextService()
 		elif self.type == EPG_TYPE_GRAPH:
-			coolhilf = config.GraphEPG.prev_time_period.value	
+			coolhilf = config.epgselction.prev_time_period.value	
 			if coolhilf == 60:
 				for i in range(24):
 					self.updEvent(+2)
@@ -751,7 +756,7 @@ class EPGSelection(Screen):
 			else:
 				self.prevService()
 		elif self.type == EPG_TYPE_GRAPH:
-			coolhilf = config.GraphEPG.prev_time_period.value
+			coolhilf = config.epgselction.prev_time_period.value
 			if coolhilf == 60:
 				for i in range(24):
 					self.updEvent(-2)
@@ -779,7 +784,7 @@ class EPGSelection(Screen):
 				mepg_config_initialized = True
 			self.session.openWithCallback(self.onDateTimeInputClosed, TimeDateInput, config.misc.prev_mepg_time )
 		elif self.type == EPG_TYPE_GRAPH:
-			self.session.openWithCallback(self.onDateTimeInputClosed, TimeDateInput, config.GraphEPG.prev_time)
+			self.session.openWithCallback(self.onDateTimeInputClosed, TimeDateInput, config.epgselction.prev_time)
 
 	def onDateTimeInputClosed(self, ret):
 		if self.type == EPG_TYPE_MULTI:
@@ -797,7 +802,7 @@ class EPGSelection(Screen):
 					self.moveTimeLines(True)
 
 	def closing(self):
-		if (self.type == 5 and config.GraphEPG.preview_mode_vixepg.value) or (self.type == 4 and config.GraphEPG.preview_mode_infobar.value) or (self.type == 3 and config.GraphEPG.preview_mode_enhanced.value) or (self.type != 5 and self.type != 4 and self.type != 3 and config.GraphEPG.preview_mode.value):
+		if (self.type == 5 and config.epgselction.preview_mode_vixepg.value) or (self.type == 4 and config.epgselction.preview_mode_infobar.value) or (self.type == 3 and config.epgselction.preview_mode_enhanced.value) or (self.type != 5 and self.type != 4 and self.type != 3 and config.epgselction.preview_mode.value):
 			if self.type != EPG_TYPE_GRAPH and self.type != EPG_TYPE_MULTI:
 				try:
 					if self.oldService:
@@ -820,7 +825,7 @@ class EPGSelection(Screen):
 
 	def closeScreen(self):
 		if self.type == EPG_TYPE_GRAPH:
-			config.GraphEPG.save()
+			config.epgselction.save()
 		self.close(self.closeRecursive)
 
 	def infoKeyPressed(self):
@@ -1074,22 +1079,22 @@ class EPGSelection(Screen):
 		self.session.open(GraphEPGHelp, "/usr/share/enigma2/skin_default/GraphEPG/help.jpg")
 
 	def key1(self):
-		hilf = config.GraphEPG.prev_time_period.value	
+		hilf = config.epgselction.prev_time_period.value	
 		if hilf > 60:
 			hilf = hilf - 60
 			self["list"].setEpoch(hilf)
-			config.GraphEPG.prev_time_period.value = hilf
+			config.epgselction.prev_time_period.value = hilf
 			self.moveTimeLines()
 
 	def key2(self):
 		self["list"].instance.moveSelection(self["list"].instance.pageUp)
 
 	def key3(self):
-		hilf = config.GraphEPG.prev_time_period.value	
+		hilf = config.epgselction.prev_time_period.value	
 		if hilf < 300:
 			hilf = hilf + 60
 			self["list"].setEpoch(hilf)
-			config.GraphEPG.prev_time_period.value = hilf
+			config.epgselction.prev_time_period.value = hilf
 			self.moveTimeLines()
 
 	def key4(self):
@@ -1108,10 +1113,10 @@ class EPGSelection(Screen):
 		self.updEvent(+2)
 
 	def key7(self):
-		if config.GraphEPG.heightswitch.value:
-			config.GraphEPG.heightswitch.setValue(False)
+		if config.epgselction.heightswitch.value:
+			config.epgselction.heightswitch.setValue(False)
 		else:
-			config.GraphEPG.heightswitch.setValue(True)
+			config.epgselction.heightswitch.setValue(True)
 		self["list"].setItemsPerPage()
 		self["list"].fillGraphEPG(None)
 		self.moveTimeLines()
@@ -1121,7 +1126,7 @@ class EPGSelection(Screen):
 
 	def key9(self):
 		cooltime = localtime(self["list"].getTimeBase())
-		hilf = (cooltime[0], cooltime[1], cooltime[2], config.GraphEPG.Primetime1.value, config.GraphEPG.Primetime2.value,0, cooltime[6], cooltime[7], cooltime[8])
+		hilf = (cooltime[0], cooltime[1], cooltime[2], config.epgselction.Primetime1.value, config.epgselction.Primetime2.value,0, cooltime[6], cooltime[7], cooltime[8])
 		cooltime = mktime(hilf)
 		self["list"].resetOffset()
 		self["list"].fillGraphEPG(self.services, cooltime)
@@ -1129,7 +1134,7 @@ class EPGSelection(Screen):
 
 	def key0(self):
 		self["list"].setEpoch(180)
-		config.GraphEPG.prev_time_period.value = 180
+		config.epgselction.prev_time_period.value = 180
 		self["list"].instance.moveSelectionTo(0)	
 		now = time()
 		tmp = now % 900
@@ -1139,27 +1144,27 @@ class EPGSelection(Screen):
 		self.moveTimeLines(True)
 
 	def OK(self):
-		if config.GraphEPG.OK_vixepg.value == "Zap" or config.GraphEPG.OK_enhanced.value == "Zap" or config.GraphEPG.OK_infobar.value == "Zap":
+		if config.epgselction.OK_vixepg.value == "Zap" or config.epgselction.OK_enhanced.value == "Zap" or config.epgselction.OK_infobar.value == "Zap":
 			self.ZapTo()
-		if config.GraphEPG.OK_vixepg.value == "Zap + Exit" or config.GraphEPG.OK_enhanced.value == "Zap + Exit" or config.GraphEPG.OK_infobar.value == "Zap + Exit":
+		if config.epgselction.OK_vixepg.value == "Zap + Exit" or config.epgselction.OK_enhanced.value == "Zap + Exit" or config.epgselction.OK_infobar.value == "Zap + Exit":
 			self.zap()
 
 	def OKLong(self):
-		if config.GraphEPG.OKLong_vixepg.value == "Zap" or config.GraphEPG.OKLong_enhanced.value == "Zap" or config.GraphEPG.OKLong_infobar.value == "Zap":
+		if config.epgselction.OKLong_vixepg.value == "Zap" or config.epgselction.OKLong_enhanced.value == "Zap" or config.epgselction.OKLong_infobar.value == "Zap":
 			self.ZapTo()
-		if config.GraphEPG.OKLong_vixepg.value == "Zap + Exit" or config.GraphEPG.OKLong_enhanced.value == "Zap + Exit" or config.GraphEPG.OKLong_infobar.value == "Zap + Exit":
+		if config.epgselction.OKLong_vixepg.value == "Zap + Exit" or config.epgselction.OKLong_enhanced.value == "Zap + Exit" or config.epgselction.OKLong_infobar.value == "Zap + Exit":
 			self.zap()
 
 	def Info(self):
-		if config.GraphEPG.Info.value == "Channel Info":
+		if config.epgselction.Info.value == "Channel Info":
 			self.infoKeyPressed()
-		if config.GraphEPG.Info.value == "Single EPG":
+		if config.epgselction.Info.value == "Single EPG":
 			self.OpenSingleEPG()
 
 	def InfoLong(self):
-		if config.GraphEPG.InfoLong.value == "Channel Info":
+		if config.epgselction.InfoLong.value == "Channel Info":
 			self.infoKeyPressed()
-		if config.GraphEPG.InfoLong.value == "Single EPG":
+		if config.epgselction.InfoLong.value == "Single EPG":
 			self.OpenSingleEPG()
 
 	def applyButtonState(self, state):
@@ -1270,8 +1275,14 @@ class EPGSelection(Screen):
 
 	def moveTimeLines(self, force=False):
 		self.updateTimelineTimer.start((60 - (int(time()) % 60)) * 1000)        #keep syncronised
-		self["list"].l.invalidate() # not needed when the zPosition in the skin is correct! ?????
 		self["timeline_text"].setEntries(self["list"], self["timeline_now"], self.time_lines)
+		self["list"].l.invalidate() # not needed when the zPosition in the skin is correct! ?????
+	
+	def generateList(self, services):
+		res = [ ]
+		for service in services:
+			res.append( (service, getPiconName(service.ref.toString())) )
+		return res
 
 	def isPlayable(self):
 		# check if service is playable
@@ -1458,6 +1469,7 @@ class RecordSetup(TimerEntry):
 
 	def keyGo(self, result = None):
 		if self.timer.justplay:
+			self.timer.begin += (config.recording.margin_before.value * 60)
 			self.timer.end = self.timer.begin
 		self.timer.resetRepeated()
 		self.saveTimer()
@@ -1530,41 +1542,41 @@ class EPGSelectionSetup(Screen, ConfigListScreen):
 		self.editListEntry = None
 		self.list = [ ]
 		if self.type == 5:
-			self.list.append(getConfigListEntry(_("Channel preview mode"), config.GraphEPG.preview_mode_vixepg))
-			self.list.append(getConfigListEntry(_("Show bouquet on launch"), config.GraphEPG.ShowBouquet_vixepg))
-			self.list.append(getConfigListEntry(_("Picture In Graphics*"), config.GraphEPG.PIG))
-			self.list.append(getConfigListEntry(_("Enable Picon"), config.GraphEPG.UsePicon))
-			self.list.append(getConfigListEntry(_("Info Button"), config.GraphEPG.Info))
-			self.list.append(getConfigListEntry(_("Long Info Button"), config.GraphEPG.InfoLong))
-			self.list.append(getConfigListEntry(_("OK Button"), config.GraphEPG.OK_vixepg))
-			self.list.append(getConfigListEntry(_("LongOK Button"), config.GraphEPG.OKLong_vixepg))
-			self.list.append(getConfigListEntry(_("Primetime hour"), config.GraphEPG.Primetime1))
-			self.list.append(getConfigListEntry(_("Primetime minute"), config.GraphEPG.Primetime2))
-			self.list.append(getConfigListEntry(_("Channel 1 at Start"), config.GraphEPG.channel1))
-			self.list.append(getConfigListEntry(_("Items per Page"), config.GraphEPG.items_per_page))
-			self.list.append(getConfigListEntry(_("Event Fontsize"), config.GraphEPG.Fontsize))
-			self.list.append(getConfigListEntry(_("Left Fontsize"), config.GraphEPG.Left_Fontsize))
-			self.list.append(getConfigListEntry(_("Timeline Fontsize"), config.GraphEPG.Timeline))
-			self.list.append(getConfigListEntry(_("Left width Picon"), config.GraphEPG.left8))
-			self.list.append(getConfigListEntry(_("Left width Text"), config.GraphEPG.left16))
-			self.list.append(getConfigListEntry(_("Time Scale"), config.GraphEPG.prev_time_period))
-			self.list.append(getConfigListEntry(_("Skip Empty Services"), config.GraphEPG.overjump))
+			self.list.append(getConfigListEntry(_("Channel preview mode"), config.epgselction.preview_mode_vixepg))
+			self.list.append(getConfigListEntry(_("Show bouquet on launch"), config.epgselction.ShowBouquet_vixepg))
+			self.list.append(getConfigListEntry(_("Picture In Graphics*"), config.epgselction.PIG))
+			self.list.append(getConfigListEntry(_("Show Picons"), config.epgselction.UsePicon))
+			self.list.append(getConfigListEntry(_("Show Service names "), config.epgselction.showservicetitle))
+			self.list.append(getConfigListEntry(_("Info Button"), config.epgselction.Info))
+			self.list.append(getConfigListEntry(_("Long Info Button"), config.epgselction.InfoLong))
+			self.list.append(getConfigListEntry(_("OK Button"), config.epgselction.OK_vixepg))
+			self.list.append(getConfigListEntry(_("LongOK Button"), config.epgselction.OKLong_vixepg))
+			self.list.append(getConfigListEntry(_("Primetime hour"), config.epgselction.Primetime1))
+			self.list.append(getConfigListEntry(_("Primetime minute"), config.epgselction.Primetime2))
+			self.list.append(getConfigListEntry(_("Channel 1 at Start"), config.epgselction.channel1))
+			self.list.append(getConfigListEntry(_("Items per Page"), config.epgselction.items_per_page))
+			self.list.append(getConfigListEntry(_("Event Fontsize"), config.epgselction.eventfontsize))
+			self.list.append(getConfigListEntry(_("Service Fontsize"), config.epgselction.servicefontsize))
+			self.list.append(getConfigListEntry(_("Service width"), config.epgselction.servicewidth))
+			self.list.append(getConfigListEntry(_("Timeline Fontsize"), config.epgselction.Timeline))
+			self.list.append(getConfigListEntry(_("Time Scale"), config.epgselction.prev_time_period))
+			self.list.append(getConfigListEntry(_("Skip Empty Services"), config.epgselction.overjump))
 		elif self.type == 4:
-			self.list.append(getConfigListEntry(_("Channel preview mode"), config.GraphEPG.preview_mode_infobar))
+			self.list.append(getConfigListEntry(_("Channel preview mode"), config.epgselction.preview_mode_infobar))
 			self.list.append(getConfigListEntry(_("Sort List by"), config.misc.EPGSort))
-			self.list.append(getConfigListEntry(_("OK Button"), config.GraphEPG.OK_infobar))
-			self.list.append(getConfigListEntry(_("LongOK Button"), config.GraphEPG.OKLong_infobar))
+			self.list.append(getConfigListEntry(_("OK Button"), config.epgselction.OK_infobar))
+			self.list.append(getConfigListEntry(_("LongOK Button"), config.epgselction.OKLong_infobar))
 		elif self.type == 3:
-			self.list.append(getConfigListEntry(_("Channel preview mode"), config.GraphEPG.preview_mode_enhanced))
+			self.list.append(getConfigListEntry(_("Channel preview mode"), config.epgselction.preview_mode_enhanced))
 			self.list.append(getConfigListEntry(_("Sort List by"), config.misc.EPGSort))
-			self.list.append(getConfigListEntry(_("OK Button"), config.GraphEPG.OK_enhanced))
-			self.list.append(getConfigListEntry(_("LongOK Button"), config.GraphEPG.OKLong_enhanced))
+			self.list.append(getConfigListEntry(_("OK Button"), config.epgselction.OK_enhanced))
+			self.list.append(getConfigListEntry(_("LongOK Button"), config.epgselction.OKLong_enhanced))
 		elif self.type == 1:
-			self.list.append(getConfigListEntry(_("Channel preview mode"), config.GraphEPG.preview_mode))
-			self.list.append(getConfigListEntry(_("Show bouquet on launch"), config.GraphEPG.ShowBouquet_multi))
+			self.list.append(getConfigListEntry(_("Channel preview mode"), config.epgselction.preview_mode))
+			self.list.append(getConfigListEntry(_("Show bouquet on launch"), config.epgselction.ShowBouquet_multi))
 			self.list.append(getConfigListEntry(_("Sort List by"), config.misc.EPGSort))
-			self.list.append(getConfigListEntry(_("OK Button"), config.GraphEPG.OK))
-			self.list.append(getConfigListEntry(_("LongOK Button"), config.GraphEPG.OKLong))
+			self.list.append(getConfigListEntry(_("OK Button"), config.epgselction.OK))
+			self.list.append(getConfigListEntry(_("LongOK Button"), config.epgselction.OKLong))
 		else:
 			self.list.append(getConfigListEntry(_("Sort List by"), config.misc.EPGSort))
 		self["config"].list = self.list
