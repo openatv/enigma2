@@ -1,10 +1,16 @@
+import os
 from Components.config import config
 from Tools.Directories import pathExists, fileExists
 from Plugins.Plugin import PluginDescriptor
+from Components.Harddisk import harddiskmanager
 
 def main(session, **kwargs):
 	from Screens import DVD
 	session.open(DVD.DVDPlayer)
+
+def play(session, **kwargs):
+	from Screens import DVD
+	session.open(DVD.DVDPlayer, dvd_device=harddiskmanager.getAutofsMountpoint(harddiskmanager.getCD()))
 
 def DVDPlayer(*args, **kwargs):
 	# for backward compatibility with plugins that do "from DVDPlayer.plugin import DVDPlayer"
@@ -55,7 +61,15 @@ def filescan(**kwargs):
 			name = "DVD",
 			description = _("Play DVD"),
 			openfnc = filescan_open,
-		)]		
+		)]
+
+def menu(menuid, **kwargs):
+	if menuid == "mainmenu":
+		cd = harddiskmanager.getCD()
+		if cd and os.path.exists(os.path.join(harddiskmanager.getAutofsMountpoint(harddiskmanager.getCD()), "VIDEO_TS")):
+			return [(_("DVD Player"), play, "dvd_player", 46)]
+	return []
 
 def Plugins(**kwargs):
-	return [PluginDescriptor(where = PluginDescriptor.WHERE_FILESCAN, needsRestart = False, fnc = filescan)]
+	return [PluginDescriptor(where = PluginDescriptor.WHERE_FILESCAN, needsRestart = False, fnc = filescan),
+		PluginDescriptor(name = "DVDPlayer", description = "Play DVDs", where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc = menu)]

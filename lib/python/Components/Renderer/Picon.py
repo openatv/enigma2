@@ -46,16 +46,16 @@ def onPartitionChange(why, part):
 def findPicon(serviceName):
 	global lastPiconPath
 	if lastPiconPath is not None:
-			pngname = lastPiconPath + serviceName + ".png"
-			if pathExists(pngname):
-					return pngname
+		pngname = lastPiconPath + serviceName + ".png"
+		if pathExists(pngname):
+			return pngname
 	global searchPaths
 	for path in searchPaths:
-			if pathExists(path):
-					pngname = path + serviceName + ".png"
-					if pathExists(pngname):
-							lastPiconPath = path
-							return pngname
+		if pathExists(path):
+			pngname = path + serviceName + ".png"
+			if pathExists(pngname):
+				lastPiconPath = path
+				return pngname
 	return ""
 
 def getPiconName(serviceName):
@@ -63,11 +63,11 @@ def getPiconName(serviceName):
 	sname = '_'.join(serviceName.split(':', 10)[:10])
 	pngname = findPicon(sname)
 	if not pngname:
-			fields = sname.split('_', 3)
-			if len(fields) > 2 and fields[2] != '2':
-					#fallback to 1 for tv services with nonstandard servicetypes
-					fields[2] = '1'
-					pngname = findPicon('_'.join(fields))
+		fields = sname.split('_', 3)
+		if len(fields) > 2 and fields[2] != '2':
+			#fallback to 1 for tv services with nonstandard servicetypes
+			fields[2] = '1'
+			pngname = findPicon('_'.join(fields))
 	return pngname
 
 class Picon(Renderer):
