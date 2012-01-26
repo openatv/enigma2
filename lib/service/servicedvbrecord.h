@@ -39,8 +39,9 @@ private:
 	bool m_simulate;
 	int m_state, m_want_record;
 	bool m_record_ecm;
+	bool m_is_stream_client;
 	friend class eServiceFactoryDVB;
-	eDVBServiceRecord(const eServiceReferenceDVB &ref);
+	eDVBServiceRecord(const eServiceReferenceDVB &ref, bool isstreamclient = false);
 	
 	eDVBServiceEITHandler m_event_handler;
 	

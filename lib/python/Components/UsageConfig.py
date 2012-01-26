@@ -342,13 +342,18 @@ def InitUsageConfig():
 	config.crash.enabledebug = ConfigYesNo(default = False)
 	config.crash.debugloglimit = ConfigNumber(default=4)
 
-	debugpath = [('/home/root/', '/home/root/')]
+	debugpath = [('/home/root/logs/', '/home/root/')]
 	for p in harddiskmanager.getMountedPartitions():
 		d = os.path.normpath(p.mountpoint)
 		if os.path.exists(p.mountpoint):
 			if p.mountpoint != '/':
-				debugpath.append((d + '/', p.mountpoint))
-	config.crash.debug_path = ConfigSelection(default = "/home/root/", choices = debugpath)
+				debugpath.append((d + '/logs/', p.mountpoint))
+	config.crash.debug_path = ConfigSelection(default = "/home/root/logs/", choices = debugpath)
+
+	def updatedebug_path(configElement):
+		if not os.path.exists(config.crash.debug_path.value):
+			os.mkdir(config.crash.debug_path.value,0755)
+	config.crash.debug_path.addNotifier(updatedebug_path, immediate_feedback = False)
 
 	config.usage.timerlist_finished_timer_position = ConfigSelection(default = "end", choices = [("beginning", _("at beginning")), ("end", _("at end"))])
 
@@ -587,7 +592,8 @@ def InitUsageConfig():
 					("3", _("with left/right buttons"))])
 
 	config.GraphEPG = ConfigSubsection()
-	config.GraphEPG.ShowBouquet = ConfigYesNo(default = False)
+	config.GraphEPG.ShowBouquet_vixepg = ConfigYesNo(default = False)
+	config.GraphEPG.ShowBouquet_multi = ConfigYesNo(default = False)
 	config.GraphEPG.preview_mode_vixepg = ConfigYesNo(default = True)
 	config.GraphEPG.preview_mode_enhanced = ConfigYesNo(default = True)
 	config.GraphEPG.preview_mode_infobar = ConfigYesNo(default = True)
@@ -607,7 +613,7 @@ def InitUsageConfig():
 	config.GraphEPG.Primetime2 = ConfigSlider(default = 0, increment = 1, limits=(0, 59))
 	config.GraphEPG.UsePicon = ConfigYesNo(default = True)
 	config.GraphEPG.channel1 = ConfigYesNo(default = False)
-	config.GraphEPG.prev_time_period = ConfigInteger(default=180, limits=(60,300))
+	config.GraphEPG.prev_time_period = ConfigSlider(default = 180, increment = 1, limits=(60,300))
 	config.GraphEPG.Fontsize = ConfigSlider(default = 18, increment = 1, limits=(10, 30))
 	config.GraphEPG.Left_Fontsize = ConfigSlider(default = 22, increment = 1, limits=(10, 30))
 	config.GraphEPG.Timeline = ConfigSlider(default = 20, increment = 1, limits=(10, 30))
@@ -662,6 +668,9 @@ def InitUsageConfig():
 
 	config.streaming = ConfigSubsection()
 	config.streaming.stream_ecm = ConfigYesNo(default = False)
+	config.streaming.descramble = ConfigYesNo(default = True)
+	config.streaming.stream_eit = ConfigYesNo(default = True)
+	config.streaming.stream_ait = ConfigYesNo(default = True)
 
 def updateChoices(sel, choices):
 	if choices:

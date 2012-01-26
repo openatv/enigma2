@@ -2195,8 +2195,9 @@ RESULT eEPGCache::getNextTimeEntry(ePtr<eServiceEvent> &result)
 	return -1;
 }
 
-void fillTuple(ePyObject tuple, const char *argstring, int argcount, ePyObject service, eServiceEvent *ptr, ePyObject nowTime, ePyObject service_name )
+void fillTuple(ePyObject tuple, const char *argstring, int argcount, ePyObject service_reference, eServiceEvent *ptr, ePyObject service_name, ePyObject nowTime, eventData *evData )
 {
+	// eDebug("[EPGC] fillTuple arg=%s argcnt=%d, ptr=%d evData=%d", argstring, argcount, ptr ? 1 : 0, evData ? 1 : 0);
 	ePyObject tmp;
 	int spos=0, tpos=0;
 	char c;
@@ -2209,13 +2210,13 @@ void fillTuple(ePyObject tuple, const char *argstring, int argcount, ePyObject s
 				tmp = PyLong_FromLong(0);
 				break;
 			case 'I': // Event Id
-				tmp = ptr ? PyLong_FromLong(ptr->getEventId()) : ePyObject();
+				tmp = evData ? PyLong_FromLong(evData->getEventID()) : (ptr ? PyLong_FromLong(ptr->getEventId()) : ePyObject());
 				break;
 			case 'B': // Event Begin Time
-				tmp = ptr ? PyLong_FromLong(ptr->getBeginTime()) : ePyObject();
+				tmp = ptr ? PyLong_FromLong(ptr->getBeginTime()) : (evData ? PyLong_FromLong(evData->getStartTime()) : ePyObject());
 				break;
 			case 'D': // Event Duration
-				tmp = ptr ? PyLong_FromLong(ptr->getDuration()) : ePyObject();
+				tmp = ptr ? PyLong_FromLong(ptr->getDuration()) : (evData ? PyLong_FromLong(evData->getDuration()) : ePyObject());
 				break;
 			case 'T': // Event Title
 				tmp = ptr ? PyString_FromString(ptr->getEventName().c_str()) : ePyObject();
@@ -2231,7 +2232,7 @@ void fillTuple(ePyObject tuple, const char *argstring, int argcount, ePyObject s
 				inc_refcount = true;
 				break;
 			case 'R': // service reference string
-				tmp = service;
+				tmp = service_reference;
 				inc_refcount = true;
 				break;
 			case 'n': // short service name
@@ -2261,7 +2262,7 @@ int handleEvent(eServiceEvent *ptr, ePyObject dest_list, const char* argstring, 
 {
 	if (convertFunc)
 	{
-		fillTuple(convertFuncArgs, argstring, argcount, service, ptr, nowTime, service_name);
+		fillTuple(convertFuncArgs, argstring, argcount, service, ptr, service_name, nowTime, 0);
 		ePyObject result = PyObject_CallObject(convertFunc, convertFuncArgs);
 		if (!result)
 		{
@@ -2282,7 +2283,7 @@ int handleEvent(eServiceEvent *ptr, ePyObject dest_list, const char* argstring, 
 	else
 	{
 		ePyObject tuple = PyTuple_New(argcount);
-		fillTuple(tuple, argstring, argcount, service, ptr, nowTime, service_name);
+		fillTuple(tuple, argstring, argcount, service, ptr, service_name, nowTime, 0);
 		PyList_Append(dest_list, tuple);
 		Py_DECREF(tuple);
 	}
@@ -2540,66 +2541,6 @@ skip_entry:
 	if (nowTime)
 		Py_DECREF(nowTime);
 	return dest_list;
-}
-
-void fillTuple2(ePyObject tuple, const char *argstring, int argcount, eventData *evData, eServiceEvent *ptr, ePyObject service_name, ePyObject service_reference)
-{
-	ePyObject tmp;
-	int pos=0;
-	while(pos < argcount)
-	{
-		bool inc_refcount=false;
-		switch(argstring[pos])
-		{
-			case '0': // PyLong 0
-				tmp = PyLong_FromLong(0);
-				break;
-			case 'I': // Event Id
-				tmp = PyLong_FromLong(evData->getEventID());
-				break;
-			case 'B': // Event Begin Time
-				if (ptr)
-					tmp = ptr ? PyLong_FromLong(ptr->getBeginTime()) : ePyObject();
-				else
-					tmp = PyLong_FromLong(evData->getStartTime());
-				break;
-			case 'D': // Event Duration
-				if (ptr)
-					tmp = ptr ? PyLong_FromLong(ptr->getDuration()) : ePyObject();
-				else
-					tmp = PyLong_FromLong(evData->getDuration());
-				break;
-			case 'T': // Event Title
-				tmp = ptr ? PyString_FromString(ptr->getEventName().c_str()) : ePyObject();
-				break;
-			case 'S': // Event Short Description
-				tmp = ptr ? PyString_FromString(ptr->getShortDescription().c_str()) : ePyObject();
-				break;
-			case 'E': // Event Extended Description
-				tmp = ptr ? PyString_FromString(ptr->getExtendedDescription().c_str()) : ePyObject();
-				break;
-			case 'R': // service reference string
-				tmp = service_reference;
-				inc_refcount = true;
-				break;
-			case 'n': // short service name
-			case 'N': // service name
-				tmp = service_name;
-				inc_refcount = true;
-				break;
-			default:  // ignore unknown
-				tmp = ePyObject();
-				eDebug("fillTuple2 unknown '%c'... insert None in Result", argstring[pos]);
-		}
-		if (!tmp)
-		{
-			tmp = Py_None;
-			inc_refcount = true;
-		}
-		if (inc_refcount)
-			Py_INCREF(tmp);
-		PyTuple_SET_ITEM(tuple, pos++, tmp);
-	}
 }
 
 static void fill_eit_start(eit_event_struct *evt, time_t t)
@@ -3238,7 +3179,8 @@ PyObject *eEPGCache::search(ePyObject arg)
 						// create tuple
 							ePyObject tuple = PyTuple_New(argcount);
 						// fill tuple
-							fillTuple2(tuple, argstring, argcount, evit->second, ev_data ? &ptr : 0, service_name, service_reference);
+							ePyObject tmp = ePyObject();
+							fillTuple(tuple, argstring, argcount, service_reference, ev_data ? &ptr : 0, service_name, tmp, evit->second);
 							PyList_Append(ret, tuple);
 							Py_DECREF(tuple);
 							if (service_name)
