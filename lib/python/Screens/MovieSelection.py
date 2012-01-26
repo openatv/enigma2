@@ -1009,13 +1009,14 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		# serviceref must end with /
 		if not res.endswith('/'):
 			res += '/'
-		if res is not config.movielist.last_videodir.value:
+		currentDir = config.movielist.last_videodir.value
+		if res != currentDir:
 			if os.path.isdir(res):
 				config.movielist.last_videodir.value = res
 				config.movielist.last_videodir.save()
 				self.setCurrentRef(res)
 				self["freeDiskSpace"].path = res
-				self.reloadList(home = True)
+				self.reloadList(home = True, sel = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + currentDir))
 			else:
 				self.session.open(
 					MessageBox,
@@ -1436,6 +1437,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 						return
 				if time.time() - st.st_mtime < 5:
 					if not args:
+						are_you_sure = _("Do you really want to delete ?")
 						self.session.openWithCallback(self.delete, MessageBox, _("File appears to be busy.\n") + are_you_sure)
 						return
 			if cur_path.find('.Trash') == -1 and config.usage.movielist_trashcan.value:

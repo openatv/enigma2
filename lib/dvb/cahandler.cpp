@@ -250,7 +250,7 @@ void eDVBCAHandler::connectionLost(ePMTClient *client)
 	}
 }
 
-int eDVBCAHandler::registerService(const eServiceReferenceDVB &ref, int adapter, int demux_nums[2], eDVBCAService *&caservice)
+int eDVBCAHandler::registerService(const eServiceReferenceDVB &ref, int adapter, int demux_nums[2], int servicetype, eDVBCAService *&caservice)
 {
 	CAServiceMap::iterator it = services.find(ref);
 	if (it != services.end())
@@ -263,6 +263,7 @@ int eDVBCAHandler::registerService(const eServiceReferenceDVB &ref, int adapter,
 		caservice->setAdapter(adapter);
 		eDebug("[eDVBCAService] new service %s", ref.toString().c_str() );
 	}
+	caservice->addServiceType(servicetype);
 
 	int loops = demux_nums[0] != demux_nums[1] ? 2 : 1;
 	for (int i = 0; i < loops; ++i)
@@ -444,7 +445,7 @@ void eDVBCAHandler::handlePMT(const eServiceReferenceDVB &ref, eTable<ProgramMap
 }
 
 eDVBCAService::eDVBCAService(const eServiceReferenceDVB &service)
-	: eUnixDomainSocket(eApp), m_service(service), m_prev_build_hash(0), m_version(-1), m_retryTimer(eTimer::create(eApp))
+	: eUnixDomainSocket(eApp), m_service(service), m_adapter(0), m_service_type_mask(0), m_prev_build_hash(0), m_version(-1), m_retryTimer(eTimer::create(eApp))
 {
 	memset(m_used_demux, 0xFF, sizeof(m_used_demux));
 	CONNECT(connectionClosed_, eDVBCAService::connectionLost);
@@ -493,6 +494,11 @@ void eDVBCAService::setAdapter(uint8_t value)
 	m_adapter = value;
 }
 
+void eDVBCAService::addServiceType(int type)
+{
+	m_service_type_mask |= (1 << type);
+}
+
 void eDVBCAService::connectionLost()
 {
 	/* reconnect in 1s */
@@ -533,12 +539,19 @@ int eDVBCAService::buildCAPMT(eTable<ProgramMapSection> *ptr)
 		return -1;
 	}
 
-	eDebug("demux %d mask %02x prevhash %08x", data_demux, demux_mask, m_prev_build_hash);
+	eDebug("demux %d mask %02x prevhash %llx", data_demux, demux_mask, m_prev_build_hash);
 
-	unsigned int build_hash = (data_demux << 24);
-	build_hash |= (pmtpid << 16);
-	build_hash |= (demux_mask << 8);
-	build_hash |= (pmt_version&0xFF);
+	uint64_t build_hash = m_adapter;
+	build_hash <<= 8;
+	build_hash |= data_demux;
+	build_hash <<= 16;
+	build_hash |= pmtpid;
+	build_hash <<= 8;
+	build_hash |= demux_mask;
+	build_hash <<= 8;
+	build_hash |= (pmt_version & 0xff);
+	build_hash <<= 16;
+	build_hash |= (m_service_type_mask & 0xffff);
 
 	if ( build_hash == m_prev_build_hash )
 	{
@@ -571,7 +584,7 @@ int eDVBCAService::buildCAPMT(eTable<ProgramMapSection> *ptr)
 			tmp[0] = 0x83; /* adapter */
 			tmp[1] = 0x01;
 			tmp[2] = m_adapter;
-			capmt.injectDescriptor(tmp, false);
+			capmt.injectDescriptor(tmp, true);
 		}
 
 		tmp[0] = 0x82; // demux
@@ -591,6 +604,14 @@ int eDVBCAService::buildCAPMT(eTable<ProgramMapSection> *ptr)
 		tmp[8]=m_service.getOriginalNetworkID().get()>>8;
 		tmp[9]=m_service.getOriginalNetworkID().get()&0xFF;
 		capmt.injectDescriptor(tmp, false);
+
+		tmp[0] = 0x85;  /* service type mask */
+		tmp[1] = 0x04;
+		tmp[2] = (m_service_type_mask >> 24) & 0xff;
+		tmp[3] = (m_service_type_mask >> 16) & 0xff;
+		tmp[4] = (m_service_type_mask >> 8) & 0xff;
+		tmp[5] = m_service_type_mask & 0xff;
+		capmt.injectDescriptor(tmp, true);
 
 		capmt.writeToBuffer(m_capmt);
 	}

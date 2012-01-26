@@ -1,4 +1,4 @@
-from skin import parseColor
+from skin import parseColor, parseFont
 from Components.config import config, ConfigClock, ConfigInteger, ConfigSubsection, ConfigBoolean
 from Components.Pixmap import Pixmap
 from Components.Button import Button
@@ -25,6 +25,8 @@ from enigma import eEPGCache, eListbox, gFont, eListboxPythonMultiContent, \
 from GraphMultiEpgSetup import GraphMultiEpgSetup
 
 from time import localtime, time, strftime
+
+MAX_TIMELINES = 6
 
 class EPGList(HTMLComponent, GUIComponent):
 	def __init__(self, selChangedCB=None, timer = None, time_epoch = 120, overjump_empty=True):
@@ -392,6 +394,10 @@ class EPGList(HTMLComponent, GUIComponent):
 		rc = self.event_rect
 		return Rect( rc.left() + (self.instance and self.instance.position().x() or 0), rc.top(), rc.width(), rc.height() )
 
+	def getServiceRect(self):
+		rc = self.service_rect
+		return Rect( rc.left() + (self.instance and self.instance.position().x() or 0), rc.top(), rc.width(), rc.height() )
+
 	def getTimeEpoch(self):
 		return self.time_epoch
 
@@ -431,24 +437,94 @@ class TimelineText(HTMLComponent, GUIComponent):
 		self.l = eListboxPythonMultiContent()
 		self.l.setSelectionClip(eRect(0,0,0,0))
 		self.l.setItemHeight(25);
-		self.l.setFont(0, gFont("Regular", 20))
+		self.foreColor = 0xffc000
+		self.borderColor = 0x000000
+		self.backColor = 0x000000
+		self.borderWidth = 1
 
 	GUI_WIDGET = eListbox
 
+	def applySkin(self, desktop, screen):
+		if self.skinAttributes is not None:
+			attribs = [ ]
+			for (attrib, value) in self.skinAttributes:
+				if   attrib == "foregroundColor":
+					self.foreColor = parseColor(value).argb()
+				elif attrib == "borderColor":
+					self.borderColor = parseColor(value).argb()
+				elif attrib == "backgroundColor":
+					self.backColor = parseColor(value).argb()
+				elif attrib == "font":
+					self.l.setFont(0, parseFont(value,  ((1,1),(1,1)) ))
+				elif attrib == "borderWidth":
+					self.borderWidth = int(value)
+				else:
+					attribs.append((attrib,value))
+			self.skinAttributes = attribs
+		return GUIComponent.applySkin(self, desktop, screen)
+
 	def postWidgetCreate(self, instance):
 		instance.setContent(self.l)
+		self.l.setFont(0, gFont("Regular", 20))
 
-	def setEntries(self, entries):
-		res = [ None ] # no private data needed
-		tm = entries[0][0]
-		width = entries[0][1]
-		str = strftime("%A %d %B", localtime(tm))
-		res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 0, width, 25, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, str))
-		for x in entries:
-			tm = x[0]
-			xpos = x[1]
-			str = strftime("%H:%M", localtime(tm))
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, xpos-30, 0, 60, 25, 0, RT_HALIGN_CENTER|RT_VALIGN_CENTER, str))
+	def setEntries(self, l, timeline_now, time_lines):
+		service_rect = l.getServiceRect()
+		event_rect = l.getEventRect()
+		time_epoch = l.getTimeEpoch()
+		time_base = l.getTimeBase()
+		itemHeight = self.l.getItemSize().height()
+
+		if event_rect is None or time_epoch is None or time_base is None:
+			return
+		time_steps = 60 if time_epoch > 180 else 30
+
+		num_lines = time_epoch/time_steps
+		incWidth = event_rect.width()/num_lines
+		eventLeft = event_rect.left()
+		timeStepsCalc = time_steps * 60
+
+		res = [ None ]
+
+		# Note: event_rect and service_rect are relative to the timeline_text position
+		#       while the time lines are relative to the GraphEPG screen position!
+		res.append( MultiContentEntryText(
+						pos = (0, 0),
+						size = (service_rect.width(), itemHeight),
+						font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER,
+						text = strftime("%A %d %B", localtime(time_base)),
+						color = self.foreColor, color_sel = self.foreColor,
+						backcolor = self.backColor, backcolor_sel = self.backColor,
+						border_width = self.borderWidth, border_color = self.borderColor))
+
+		xpos = 0 # eventLeft
+		for x in range(0, num_lines):
+			res.append( MultiContentEntryText(
+				pos = (service_rect.width() + xpos, 0),
+				size = (incWidth, itemHeight),
+				font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER,
+				text = strftime("%H:%M", localtime( time_base + x*timeStepsCalc )),
+				color = self.foreColor, color_sel = self.foreColor,
+				backcolor = self.backColor, backcolor_sel = self.backColor,
+				border_width = self.borderWidth, border_color = self.borderColor) )
+			line = time_lines[x]
+			old_pos = line.position
+			#if (old_pos[0] != xpos + eventLeft):
+			line.setPosition(xpos + eventLeft, old_pos[1])
+			line.visible = True
+			xpos += incWidth
+		for x in range(num_lines, MAX_TIMELINES):
+			time_lines[x].visible = False
+
+		now = time()
+		if now >= time_base and now < (time_base + time_epoch * 60):
+			xpos = int((((now - time_base) * event_rect.width()) / (time_epoch * 60))-(timeline_now.instance.size().width()/2))
+			old_pos = timeline_now.position
+			new_pos = (xpos + eventLeft, old_pos[1])
+			if old_pos != new_pos:
+				timeline_now.setPosition(new_pos[0], new_pos[1])
+			timeline_now.visible = True
+		else:
+			timeline_now.visible = False
 		self.l.setList([res])
 
 config.misc.graph_mepg=ConfigSubsection()
@@ -481,7 +557,7 @@ class GraphMultiEPG(Screen):
 		self["timeline_text"] = TimelineText()
 		self["Event"] = Event()
 		self.time_lines = [ ]
-		for x in (0,1,2,3,4,5):
+		for x in range(0, MAX_TIMELINES):
 			pm = Pixmap()
 			self.time_lines.append(pm)
 			self["timeline%d"%(x)] = pm
@@ -595,7 +671,7 @@ class GraphMultiEPG(Screen):
 	def showSetup(self):
 		self.session.openWithCallback(self.onSetupClose, GraphMultiEpgSetup )
 
-	def onSetupClose(self):
+	def onSetupClose(self, ignore=-1):
 		l = self["list"]
 		l.setItemsPerPage()
 		l.setEventFontsize()
@@ -744,50 +820,5 @@ class GraphMultiEPG(Screen):
 			self.key_green_choice = self.ADD_TIMER
 	
 	def moveTimeLines(self, force=False):
-		self.updateTimelineTimer.start((60-(int(time())%60))*1000)	#keep syncronised
-		l = self["list"]
-		event_rect = l.getEventRect()
-		time_epoch = l.getTimeEpoch()
-		time_base = l.getTimeBase()
-		if event_rect is None or time_epoch is None or time_base is None:
-			return
-		time_steps = time_epoch > 180 and 60 or 30
-		
-		num_lines = time_epoch/time_steps
-		incWidth=event_rect.width()/num_lines
-		pos=event_rect.left()
-		timeline_entries = [ ]
-		x = 0
-		changecount = 0
-		for line in self.time_lines:
-			old_pos = line.position
-			new_pos = (x == num_lines and event_rect.left()+event_rect.width() or pos, old_pos[1])
-			if not x or x >= num_lines:
-				line.visible = False
-			else:
-				if old_pos != new_pos:
-					line.setPosition(new_pos[0], new_pos[1])
-					changecount += 1
-				line.visible = True
-			if not x or line.visible:
-				timeline_entries.append((time_base + x * time_steps * 60, new_pos[0]))
-			x += 1
-			pos += incWidth
-
-		if changecount or force:
-			self["timeline_text"].setEntries(timeline_entries)
-
-		now=time()
-		timeline_now = self["timeline_now"]
-		if now >= time_base and now < (time_base + time_epoch * 60):
-			xpos = int((((now - time_base) * event_rect.width()) / (time_epoch * 60))-(timeline_now.instance.size().width()/2))
-			old_pos = timeline_now.position
-			new_pos = (xpos+event_rect.left(), old_pos[1])
-			if old_pos != new_pos:
-				timeline_now.setPosition(new_pos[0], new_pos[1])
-			timeline_now.visible = True
-		else:
-			timeline_now.visible = False
-		# here no l.l.invalidate() is needed when the zPosition in the skin is correct!
-
-
+		self.updateTimelineTimer.start((60 - (int(time()) % 60)) * 1000)	#keep syncronised
+		self["timeline_text"].setEntries(self["list"], self["timeline_now"], self.time_lines)

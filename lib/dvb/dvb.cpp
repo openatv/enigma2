@@ -519,13 +519,8 @@ RESULT eDVBResourceManager::allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBA
 				else
 				{
 					/* demux is in use, see if we can share it */
-					if (i->m_demux->getSource() == source)
+					if (source >= 0 && i->m_demux->getSource() == source)
 					{
-						/*
-						 * TODO: when allocating a dvr demux, we cannot share a used demux.
-						 * We should probably always pick a free demux, to start a new pvr playback.
-						 * Each demux is fed by its own dvr device, so each has a different memory source
-						 */
 						demux = new eDVBAllocatedDemux(i);
 						return 0;
 					}
@@ -1686,6 +1681,12 @@ RESULT eDVBChannel::requestTsidOnid(ePyObject callback)
 RESULT eDVBChannel::getDemux(ePtr<iDVBDemux> &demux, int cap)
 {
 	ePtr<eDVBAllocatedDemux> &our_demux = (cap & capDecode) ? m_decoder_demux : m_demux;
+
+	if (m_frontend == NULL)
+	{
+		/* in dvr mode, we have to stick to a single demux (the one connected to our dvr device) */
+		our_demux = m_decoder_demux ? m_decoder_demux : m_demux;
+	}
 
 	if (!our_demux)
 	{
