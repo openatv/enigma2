@@ -298,6 +298,11 @@ class EPGList(HTMLComponent, GUIComponent):
 	def buildEntry(self, service, service_name, events, picon):
 		r1 = self.service_rect
 		r2 = self.event_rect
+		if picon is None: # go find picon and cache its location
+			curIdx = self.l.getCurrentSelectionIndex()
+			picon = getPiconName(service)
+			self.list[curIdx] = (service, service_name, events, picon)
+
 		nowPlaying = self.currentlyPlaying.toString()
 		serviceForeColor = self.foreColorService
 		serviceBackColor = self.backColorService
@@ -440,9 +445,9 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.cur_event = None
 			self.cur_service = None
 			self.time_base = int(stime)
-			test = [ (service[0].ref.toString(), 0, self.time_base, self.time_epoch) for service in services ]
+			test = [ (service.ref.toString(), 0, self.time_base, self.time_epoch) for service in services ]
 			serviceList = services
-			piconIdx = 1
+			piconIdx = 0
 
 		test.insert(0, 'XRnITBD')
 		epg_data = self.queryEPG(test)
@@ -455,14 +460,16 @@ class EPGList(HTMLComponent, GUIComponent):
 		for x in epg_data:
 			if service != x[0]:
 				if tmp_list is not None:
-					self.list.append((service, sname, tmp_list[0][0] is not None and tmp_list or None, serviceList[serviceIdx][piconIdx]))
+					picon = None if piconIdx == 0 else serviceList[serviceIdx][piconIdx]
+					self.list.append((service, sname, tmp_list[0][0] is not None and tmp_list or None, picon))
 					serviceIdx += 1
 				service = x[0]
 				sname = x[1]
 				tmp_list = [ ]
-			tmp_list.append((x[2], x[3], x[4], x[5]))
+			tmp_list.append((x[2], x[3], x[4], x[5])) #(event_id, event_title, begin_time, duration)
 		if tmp_list and len(tmp_list):
-			self.list.append((service, sname, tmp_list[0][0] is not None and tmp_list or None, serviceList[serviceIdx][piconIdx]))
+			picon = None if piconIdx == 0 else serviceList[serviceIdx][piconIdx]
+			self.list.append((service, sname, tmp_list[0][0] is not None and tmp_list or None, picon))
 			serviceIdx += 1
 
 		self.l.setList(self.list)
@@ -778,7 +785,6 @@ class GraphMultiEPG(Screen):
 	def onCreate(self):
 		serviceref = self.session.nav.getCurrentlyPlayingServiceReference()
 		l = self["list"]
-		self.services = self.generateList(self.services)
 		l.fillMultiEPG(self.services, self.ask_time)
 		l.moveToService(serviceref)
 		l.setCurrentlyPlaying(serviceref)
@@ -905,9 +911,3 @@ class GraphMultiEPG(Screen):
 		self.updateTimelineTimer.start((60 - (int(time()) % 60)) * 1000)	#keep syncronised
 		self["timeline_text"].setEntries(self["list"], self["timeline_now"], self.time_lines)
 		self["list"].l.invalidate() # not needed when the zPosition in the skin is correct! ?????
-
-	def generateList(self, services):
-		res = [ ]
-		for service in services:
-			res.append( (service, getPiconName(service.ref.toString())) )
-		return res
