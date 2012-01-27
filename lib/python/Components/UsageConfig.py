@@ -224,7 +224,9 @@ def InitUsageConfig():
 		("770048", "Small 0.7 MB"),
 		("962560", "Normal 1 MB"),
 		("1540096", "Large 1.5MB"),
-		("1925120", "Huge 2 MB")])
+		("1925120", "Huge 2 MB"),
+		("3850240", "Ginormous 4 MB"),
+		])
 	config.misc.demux_size.addNotifier(updateDemuxSize, immediate_feedback = False)
 	
 	def updateEraseSpeed(el):
