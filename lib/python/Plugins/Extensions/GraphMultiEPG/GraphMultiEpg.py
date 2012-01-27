@@ -1,5 +1,5 @@
 from skin import parseColor, parseFont, parseSize
-from Components.config import config, ConfigClock, ConfigInteger, ConfigSubsection, ConfigBoolean
+from Components.config import config, ConfigClock, ConfigInteger, ConfigSubsection, ConfigBoolean, ConfigSelection
 from Components.Pixmap import Pixmap
 from Components.Button import Button
 from Components.ActionMap import ActionMap
@@ -435,7 +435,9 @@ class EPGList(HTMLComponent, GUIComponent):
 				return self.epgcache.lookupEvent(list)
 		return [ ]
 
-	def fillMultiEPG(self, services, stime = -1):
+	def fillMultiEPG(self, services, stime = None):
+		if stime is not None:
+			self.time_base = int(stime)
 		if services is None:
 			time_base = self.time_base + self.offs * self.time_epoch * 60
 			test = [ (service[0], 0, time_base, self.time_epoch) for service in self.list ]
@@ -444,7 +446,6 @@ class EPGList(HTMLComponent, GUIComponent):
 		else:
 			self.cur_event = None
 			self.cur_service = None
-			self.time_base = int(stime)
 			test = [ (service.ref.toString(), 0, self.time_base, self.time_epoch) for service in services ]
 			serviceList = services
 			piconIdx = 0
@@ -620,6 +621,7 @@ config.misc.graph_mepg.items_per_page = ConfigInteger(default = 5, limits = (3, 
 config.misc.graph_mepg.overjump = ConfigBoolean(default = True)
 config.misc.graph_mepg.showpicon = ConfigBoolean(default=False)
 config.misc.graph_mepg.showservicetitle = ConfigBoolean(default=True)
+config.misc.graph_mepg.roundTo = ConfigSelection(default = 15, choices = [(15, _("15 minutes")), (30, _("30 minutes")), (60, _("60 minutes"))])
 
 
 class GraphMultiEPG(Screen):
@@ -633,7 +635,7 @@ class GraphMultiEPG(Screen):
 		Screen.__init__(self, session)
 		self.bouquetChangeCB = bouquetChangeCB
 		now = time()
-		self.ask_time = now - now % 900
+		self.ask_time = now - now % (config.misc.graph_mepg.roundTo.getValue() * 60)
 		self.closeRecursive = False
 		self["key_red"] = Button("")
 		self["key_green"] = Button("")
@@ -745,7 +747,7 @@ class GraphMultiEPG(Screen):
 	def onDateTimeInputClosed(self, ret):
 		if len(ret) > 1:
 			if ret[0]:
-				self.ask_time = ret[1] - ret[1] % 900
+				self.ask_time = ret[1] - ret[1] % (config.misc.graph_mepg.roundTo.getValue() * 60)
 				l = self["list"]
 				l.resetOffset()
 				l.fillMultiEPG(None, self.ask_time)
@@ -762,6 +764,9 @@ class GraphMultiEPG(Screen):
 		l.setOverjump_Empty(config.misc.graph_mepg.overjump.value)
 		l.setShowPicon(config.misc.graph_mepg.showpicon.value)
 		l.setShowServiceTitle(config.misc.graph_mepg.showservicetitle.value)
+		now = time()
+		self.ask_time = now - now % (config.misc.graph_mepg.roundTo.getValue() * 60)
+		l.fillMultiEPG(None, self.ask_time)
 		self.moveTimeLines()
 		
 	def closeScreen(self):
