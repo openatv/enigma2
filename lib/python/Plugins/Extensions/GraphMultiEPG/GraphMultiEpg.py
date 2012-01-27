@@ -142,6 +142,8 @@ class EPGList(HTMLComponent, GUIComponent):
 	def setOverjump_Empty(self, overjump_empty):
 		if overjump_empty:
 			self.l.setSelectableFunc(self.isSelectable)
+		else:
+			self.l.setSelectableFunc(None)
 
 	def setEpoch(self, epoch):
 		self.offs = 0
