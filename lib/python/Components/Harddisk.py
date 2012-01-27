@@ -392,6 +392,8 @@ class Harddisk:
 		task.setTool('tune2fs')
 		task.args.append('-O')
 		task.args.append('extents,uninit_bg,dir_index')
+		task.args.append('-o')
+		task.args.append('journal_data_writeback')
 		task.args.append(dev)
 		task = Task.LoggingTask(job, "fsck")
 		task.setTool('fsck.ext4')
