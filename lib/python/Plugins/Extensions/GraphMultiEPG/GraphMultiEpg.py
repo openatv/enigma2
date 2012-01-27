@@ -748,7 +748,7 @@ class GraphMultiEPG(Screen):
 				self.ask_time = ret[1] - ret[1] % 900
 				l = self["list"]
 				l.resetOffset()
-				l.fillMultiEPG(self.services, self.ask_time)
+				l.fillMultiEPG(None, self.ask_time)
 				self.moveTimeLines(True)
 
 	def showSetup(self):
