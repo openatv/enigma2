@@ -86,7 +86,7 @@ class EPGSelection(Screen):
 				"blue": self.blueButtonPressed,
 				"info": self.infoKeyPressed,
 				"red": self.zapTo,
-				"input_date_time": self.enterDateTime,
+				"menu": self.enterDateTime,
 				"nextBouquet": self.nextBouquet, # just used in multi epg yet
 				"prevBouquet": self.prevBouquet, # just used in multi epg yet
 				"nextService": self.nextService, # just used in single epg yet
