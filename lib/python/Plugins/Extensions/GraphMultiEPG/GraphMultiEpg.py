@@ -630,7 +630,8 @@ class GraphMultiEPG(Screen):
 		self.closeRecursive = False
 		self["key_red"] = Button("")
 		self["key_green"] = Button("")
-		self["key_blue"] = Button(_("Setup"))
+		self["key_yellow"] = Button("")
+		self["key_blue"] = Button(_("Goto"))
 
 		self.key_green_choice = self.EMPTY
 		self.key_red_choice = self.EMPTY
@@ -659,8 +660,8 @@ class GraphMultiEPG(Screen):
 				"timerAdd": self.timerAdd,
 				"info": self.infoKeyPressed,
 				"red": self.zapTo,
-				"blue": self.showSetup,
-				"input_date_time": self.enterDateTime,
+				"blue": self.enterDateTime,
+				"menu": self.showSetup,
 				"nextBouquet": self.nextBouquet,
 				"prevBouquet": self.prevBouquet,
 				"nextService": self.nextPressed,
