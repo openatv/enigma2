@@ -207,35 +207,32 @@ class EPGList(HTMLComponent, GUIComponent):
 	def findBestEvent(self):
 		old_service = self.cur_service  #(service, service_name, events, picon)
 		cur_service = self.cur_service = self.l.getCurrentSelection()
-		last_time = 0;
 		time_base = self.getTimeBase()
+		last_time = time()
 		if old_service and self.cur_event is not None:
 			events = old_service[2]
 			cur_event = events[self.cur_event] #(event_id, event_title, begin_time, duration)
-			last_time = cur_event[2]
-			if last_time < time_base:
-				last_time = time_base
+			if cur_event[2] > last_time:
+				last_time = cur_event[2]
 		if cur_service:
 			self.cur_event = 0
 			events = cur_service[2]
+			best = None
 			if events and len(events):
-				if last_time:
-					best_diff = 0
-					best = len(events) #set invalid
-					idx = 0
-					for event in events: #iterate all events
-						ev_time = event[2]
-						if ev_time < time_base:
-							ev_time = time_base
-						diff = abs(ev_time-last_time)
-						if (best == len(events)) or (diff < best_diff):
-							best = idx
-							best_diff = diff
-						idx += 1
-					if best != len(events):
-						self.cur_event = best
-			else:
-				self.cur_event = None
+				best_diff = 0
+				idx = 0
+				for event in events: #iterate all events
+					ev_time = event[2]
+					if ev_time < time_base:
+						ev_time = time_base
+					diff = abs(ev_time - last_time)
+					if best is None or (diff < best_diff):
+						best = idx
+						best_diff = diff
+					if best is not None and ev_time > last_time:
+						break
+					idx += 1
+			self.cur_event = best
 		self.selEntry(0)
 
 	def selectionChanged(self):
