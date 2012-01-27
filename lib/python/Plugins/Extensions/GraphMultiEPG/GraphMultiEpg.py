@@ -2,7 +2,7 @@ from skin import parseColor, parseFont, parseSize
 from Components.config import config, ConfigClock, ConfigInteger, ConfigSubsection, ConfigBoolean, ConfigSelection
 from Components.Pixmap import Pixmap
 from Components.Button import Button
-from Components.ActionMap import ActionMap
+from Components.ActionMap import HelpableActionMap
 from Components.HTMLComponent import HTMLComponent
 from Components.GUIComponent import GUIComponent
 from Components.EpgList import Rect
@@ -11,6 +11,7 @@ from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixm
 from Components.TimerList import TimerList
 from Components.Renderer.Picon import getPiconName
 from Screens.Screen import Screen
+from Screens.HelpMenu import HelpableScreen
 from Screens.EventView import EventViewSimple
 from Screens.TimeDateInput import TimeDateInput
 from Screens.TimerEntry import TimerEntry
@@ -625,7 +626,7 @@ config.misc.graph_mepg.showservicetitle = ConfigBoolean(default=True)
 config.misc.graph_mepg.roundTo = ConfigSelection(default = 15, choices = [(15, _("15 minutes")), (30, _("30 minutes")), (60, _("60 minutes"))])
 
 
-class GraphMultiEPG(Screen):
+class GraphMultiEPG(Screen, HelpableScreen):
 	EMPTY = 0
 	ADD_TIMER = 1
 	REMOVE_TIMER = 2
@@ -663,32 +664,38 @@ class GraphMultiEPG(Screen):
 					time_epoch = config.misc.graph_mepg.prev_time_period.value,
 					overjump_empty = config.misc.graph_mepg.overjump.value)
 
-		self["actions"] = ActionMap(["EPGSelectActions", "OkCancelActions"],
+		HelpableScreen.__init__(self)
+		self["okactions"] = HelpableActionMap(self, "OkCancelActions",
 			{
-				"cancel": self.closeScreen,
-				"ok": self.eventSelected,
-				"timerAdd": self.timerAdd,
-				"info": self.infoKeyPressed,
-				"red": self.zapTo,
-				"blue": self.enterDateTime,
-				"menu": self.showSetup,
-				"nextBouquet": self.nextBouquet,
-				"prevBouquet": self.prevBouquet,
-				"nextService": self.nextPressed,
-				"prevService": self.prevPressed,
-			})
-		self["actions"].csel = self
+				"cancel": (self.closeScreen,   _("Exit EPG")),
+				"ok":	  (self.eventSelected, _("Show detailed event info"))
+			}, -1)
+		self["okactions"].csel = self
+		self["epgactions"] = HelpableActionMap(self, "EPGSelectActions",
+			{
+				"timerAdd":    (self.timerAdd,       _("Add/Remove timer for current event")),
+				"info":        (self.infoKeyPressed, _("Show detailed event info")),
+				"red":         (self.zapTo,          _("Zap to selected channel")),
+				"blue":        (self.enterDateTime,  _("Goto specific data/time")),
+				"menu":        (self.showSetup,      _("Setup menu")),
+				"nextBouquet": (self.nextBouquet,    _("Show bouquet selection menu")),
+				"prevBouquet": (self.prevBouquet,    _("Show bouquet selection menu")),
+				"nextService": (self.nextPressed,    _("Goto next page of events")),
+				"prevService": (self.prevPressed,    _("Goto previous page of events"))
+			}, -1)
+		self["epgactions"].csel = self
 
-		self["input_actions"] = ActionMap(["InputActions"],
+		self["inputactions"] = HelpableActionMap(self, "InputActions",
 			{
-				"left": self.leftPressed,
-				"right": self.rightPressed,
-				"1": self.key1,
-				"2": self.key2,
-				"3": self.key3,
-				"4": self.key4,
-				"5": self.key5,
-			},-1)
+				"left":  (self.leftPressed,  _("Goto previous event")),
+				"right": (self.rightPressed, _("Goto next event")),
+				"1":     (self.key1,         _("Set time window to 1 hour")),
+				"2":     (self.key2,         _("Set time window to 2 hours")),
+				"3":     (self.key3,         _("Set time window to 3 hours")),
+				"4":     (self.key4,         _("Set time window to 4 hours")),
+				"5":     (self.key5,         _("Set time window to 5 hours"))
+			}, -1)
+		self["inputactions"].csel = self
 
 		self.updateTimelineTimer = eTimer()
 		self.updateTimelineTimer.callback.append(self.moveTimeLines)
