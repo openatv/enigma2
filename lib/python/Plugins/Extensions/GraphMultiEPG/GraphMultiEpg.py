@@ -157,12 +157,14 @@ class EPGList(HTMLComponent, GUIComponent):
 			event = self.epgcache.lookupEventId(service.ref, eventid)
 		return event
 
-	def moveToService(self,serviceref):
+	def moveToService(self, serviceref):
+		newIdx = 0
 		if serviceref is not None:
 			for x in range(len(self.list)):
 				if self.list[x][0] == serviceref.toString():
-					self.instance.moveSelectionTo(x)
+					newIdx = x
 					break
+		self.instance.moveSelectionTo(newIdx)
 	
 	def getIndexFromService(self, serviceref):
 		if serviceref is not None:
