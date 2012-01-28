@@ -87,10 +87,19 @@ void eRCDeviceInputDev::handleCode(long rccode)
 		}
 	}
 
+#if KEY_GUIDE_TO_KEY_EPG
+	if (ev->code == KEY_HELP)
+	{
+		/* GB800 rc has a KEY_GUIDE key, which sends KEY_HELP events. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_EPG;
+		
+	}
+#endif
+
 #if KEY_PLAY_ACTUALLY_IS_KEY_PLAYPAUSE
 	if (ev->code == KEY_PLAY)
 	{
-		if (id == "dreambox advanced remote control (native)")
+		if ((id == "dreambox advanced remote control (native)")  || (id == "bcm7325 remote control"))
 		{
 			/* 8k rc has a KEY_PLAYPAUSE key, which sends KEY_PLAY events. Correct this, so we do not have to place hacks in the keymaps. */
 			ev->code = KEY_PLAYPAUSE;

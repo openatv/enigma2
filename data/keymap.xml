@@ -98,6 +98,14 @@
 		<key id="KEY_YELLOW" mapto="openEPGSearch" flags="b" />
 		<key id="KEY_YELLOW" mapto="openIMDB" flags="l" />
 		<key id="KEY_BLUE" mapto="showPluginBrowser" flags="l" /-->
+		<key id="KEY_F1" mapto="RedPressed" flags="b" />
+		<key id="KEY_F1" mapto="showEventInfo" flags="l" />
+		<key id="KEY_F2" mapto="openTimerList" flags="b" />
+		<key id="KEY_F2" mapto="openAutoTimerList" flags="l" />
+		<key id="KEY_F3" mapto="openEPGSearch" flags="b" />
+		<key id="KEY_F3" mapto="openIMDB" flags="l" />
+		<key id="KEY_F4" mapto="showPluginBrowser" flags="l" />
+		<key id="KEY_F4" mapto="extensions" flags="b" />
 		<key id="KEY_BLUE" mapto="extensions" flags="b" />
 	</map>
 
@@ -185,13 +193,14 @@
 		<key id="KEY_VIDEO" mapto="showMovies" flags="b" />
 		<key id="KEY_VIDEO" mapto="showMediaPlayer" flags="l" />
 		<key id="KEY_PLAY" mapto="showMovies" flags="m" />
-		<key id="KEY_RADIO" mapto="showRadio" flags="b" />
+		<key id="KEY_RADIO" mapto="toogleTvRadio" flags="b" />
 		<key id="KEY_RADIO" mapto="openBouquetList" flags="l" />
 		<key id="KEY_TV" mapto="showTv" flags="b" />
 		<key id="KEY_TV" mapto="openBouquetList" flags="l" />
 		<key id="KEY_FILE" mapto="showMovies" flags="m" />
 		<key id="KEY_LIST" mapto="showMediaPlayer" flags="b" />
 		<key id="KEY_PROGRAM" mapto="openTimerList" flags="b" />
+		<key id="KEY_F5" mapto="openTimerList" flags="b" />
 		<key id="KEY_PROGRAM" mapto="openAutoTimerList" flags="l" />
 		<key id="KEY_SEARCH" mapto="openEPGSearch" flags="b" />
 		<key id="KEY_SEARCH" mapto="openIMDB" flags="l" />
@@ -224,6 +233,7 @@
 
 	<map context="InfobarPiPActions">
 		<key id="KEY_SCREEN" mapto="activatePiP" flags="b" />
+		<key id="KEY_F6" mapto="activatePiP" flags="b" />
 	</map>
 
 	<map context="InfobarSubserviceQuickzapActions">
