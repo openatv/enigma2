@@ -179,6 +179,10 @@ class EPGList(HTMLComponent, GUIComponent):
 		if self.instance is not None:
 			self.instance.moveSelectionTo(index)
 	
+	def moveTo(self, dir):
+		if self.instance is not None:
+			self.instance.moveSelection(dir)
+
 	def getCurrent(self):
 		if self.cur_service is None:
 			return ( None, None )
@@ -693,7 +697,11 @@ class GraphMultiEPG(Screen, HelpableScreen):
 				"2":     (self.key2,         _("Set time window to 2 hours")),
 				"3":     (self.key3,         _("Set time window to 3 hours")),
 				"4":     (self.key4,         _("Set time window to 4 hours")),
-				"5":     (self.key5,         _("Set time window to 5 hours"))
+				"5":     (self.key5,         _("Set time window to 5 hours")),
+				"7":     (self.prevPage,     _("Goto previous page of service")),
+				"9":     (self.nextPage,     _("Goto next page of service")),
+				"8":     (self.toTop,        _("Goto first service")),
+				"0":     (self.toEnd,        _("Goto last service"))
 			}, -1)
 		self["inputactions"].csel = self
 
@@ -701,6 +709,18 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		self.updateTimelineTimer.callback.append(self.moveTimeLines)
 		self.updateTimelineTimer.start(60 * 1000)
 		self.onLayoutFinish.append(self.onCreate)
+
+	def prevPage(self):
+		self["list"].moveTo(eListbox.pageUp)
+
+	def nextPage(self):
+		self["list"].moveTo(eListbox.pageDown)
+
+	def toTop(self):
+		self["list"].moveTo(eListbox.moveTop)
+
+	def toEnd(self):
+		self["list"].moveTo(eListbox.moveEnd)
 
 	def prevPressed(self):
 		self.updEvent(-2)
