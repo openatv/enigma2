@@ -195,6 +195,8 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
 		self.list.append(getConfigListEntry(_("3D Mode"), config.osd.threeDmode))
 		self.list.append(getConfigListEntry(_("Depth"), config.osd.threeDznorm))
+		if config.misc.boxtype.value == 'gb800se' or config.misc.boxtype.value == 'gb800solo':
+			self.list.append(getConfigListEntry(_("Set Mode"), config.osd.threeDsetmode))
 		self.list.append(getConfigListEntry(_("Show in extensions list ?"), config.osd.show3dextensions))
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
@@ -268,12 +270,38 @@ def applySettings(mode, znorm):
 		file.close()
 	except:
 		return
+		
+def applySettings2(mode, znorm, setmode):
+	try:
+		if setmode == "mode1":
+			file = open("/proc/stb/fb/3dmode", "w")
+			file.write(mode)
+			file.close()
+			file = open("/proc/stb/fb/znorm", "w")
+			file.write('%d' % znorm)
+			file.close()
+		elif setmode == "mode2":
+			file = open("/proc/stb/fb/primary/3d","w")
+			if mode == "sidebyside" :
+				mode = "sbs"
+			elif mode == "topandbottom":
+				mode = "tab"
+			file.write(mode)
+			file.close()
+			file = open("/proc/stb/fb/primary/zoffset","w")
+			file.write('%d' % znorm)
+			file.close()
+	except:
+		return		
 
 def setConfiguredPosition():
 	setPosition(int(config.osd.dst_left.value), int(config.osd.dst_width.value), int(config.osd.dst_top.value), int(config.osd.dst_height.value))
 
 def setConfiguredSettings():
-	applySettings(config.osd.threeDmode.value, int(config.osd.threeDznorm.value))
+	if config.misc.boxtype.value == 'gb800se' or config.misc.boxtype.value == 'gb800solo':
+		applySettings2(config.osd.threeDmode.value, int(config.osd.threeDznorm.value), config.osd.threeDsetmode.value)
+	else:
+		applySettings(config.osd.threeDmode.value, int(config.osd.threeDznorm.value))
 
 def isCanChangeOsdPositionSupported():
 	if path.exists("/proc/stb/fb/dst_left"):

@@ -34,7 +34,7 @@ SUBDIRS += FrontprocessorUpgrade NFIFlash SatelliteEquipmentControl DiseqcTester
 endif
 
 if GIGABLUE
-SUBDIRS += GBVFD SatelliteEquipmentControl DiseqcTester CableScan FastScan
+SUBDIRS += GBVFD SatelliteEquipmentControl DiseqcTester FastScan
 endif
 
 install_PYTHON =	\
