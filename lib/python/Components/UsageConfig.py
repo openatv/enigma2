@@ -608,6 +608,7 @@ def InitUsageConfig():
 	config.epgselction.OKLong_infobar = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap + Exit")
 	config.epgselction.Info = ConfigSelection(choices = [("Channel Info", _("Channel Info")), ("Single EPG", _("Single EPG"))], default = "Channel Info")
 	config.epgselction.InfoLong = ConfigSelection(choices = [("Channel Info", _("Channel Info")), ("Single EPG", _("Single EPG"))], default = "Single EPG")
+	config.epgselction.roundTo = ConfigSelection(default = "15", choices = [("15", _("15 minutes")), ("30", _("30 minutes")), ("60", _("60 minutes"))])
 	config.epgselction.prev_time=ConfigClock(default = time())
 	config.epgselction.Primetime1 = ConfigSlider(default = 20, increment = 1, limits=(0, 23))
 	config.epgselction.Primetime2 = ConfigSlider(default = 0, increment = 1, limits=(0, 59))
