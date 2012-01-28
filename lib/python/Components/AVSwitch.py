@@ -158,18 +158,6 @@ def InitAVSwitch():
 		config.av.downmix_ac3 = ConfigYesNo(default = True)
 		config.av.downmix_ac3.addNotifier(setAC3Downmix)
 
-	can_downmix = os.path.exists("/usr/lib/gstreamer-0.10/libgstdtsdec.so")
-	SystemInfo["CanDownmixDTS"] = can_downmix
-	if can_downmix:
-		def setDTSDownmix(configElement):
-			open("/var/run/dts_mode", "w").write(configElement.value and "downmix" or "passthrough")
-			try:
-				os.unlink('/home/root/.gstreamer-0.10/registry.mipsel.bin')
-			except:
-				pass
-		config.av.downmix_dts = ConfigYesNo(default = False)
-		config.av.downmix_dts.addNotifier(setDTSDownmix)
-
 	try:
 		can_osd_alpha = open("/proc/stb/video/alpha", "r") and True or False
 	except:
