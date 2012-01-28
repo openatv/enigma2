@@ -10,7 +10,7 @@ from Plugins.Plugin import PluginDescriptor
 from Screen import Screen
 
 profile("LOAD:enigma")
-from enigma import iPlayableService
+from enigma import iServiceInformation, iPlayableService
 
 profile("LOAD:InfoBarGenerics")
 from Screens.InfoBarGenerics import InfoBarShowHide, \
@@ -53,6 +53,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 				"showMovies": (self.showMovies, _("Play recorded movies...")),
 				"showRadio": (self.showRadio, _("Show the radio player...")),
 				"showTv": (self.showTv, _("Show the tv player...")),
+				"toogleTvRadio": (self.toogleTvRadio, _("toggels betwenn tv and radio...")),
 				"openBouquetList": (self.openBouquetList, _("open bouquetlist")),
 				"showMediaPlayer": (self.showMediaPlayer, _("Show the media player...")),
 				"openTimerList": (self.openTimerList, _("Show the tv player...")),
@@ -146,6 +147,32 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			self.rds_display.hide() # in InfoBarRdsDecoder
 			from Screens.ChannelSelection import ChannelSelectionRadio
 			self.session.openWithCallback(self.ChannelSelectionRadioClosed, ChannelSelectionRadio, self)
+	
+	def toogleTvRadio(self): 
+		service = self.session.nav.getCurrentService()
+		if service is not None: # workaround to avoid an error when service is None
+			info = service.info()
+			AudioPID = info.getInfo(iServiceInformation.sAudioPID)
+			VideoPID = info.getInfo(iServiceInformation.sVideoPID)
+		else:
+			AudioPID = 1
+			VideoPID = 1
+               
+		if VideoPID == -1: 
+			self.showTv2() 
+		else: 
+			self.showRadio2()
+
+	def showTv2(self):
+		self.showTvChannelList(False)
+
+	def showRadio2(self):
+		if config.usage.e1like_radio_mode.value:
+			self.showRadioChannelList(False)
+		else:
+			self.rds_display.hide() # in InfoBarRdsDecoder
+			from Screens.ChannelSelection import ChannelSelectionRadio
+			self.session.openWithCallback(self.ChannelSelectionRadioClosed, ChannelSelectionRadio, self)	
 
 	def ChannelSelectionRadioClosed(self, *arg):
 		self.rds_display.show()  # in InfoBarRdsDecoder

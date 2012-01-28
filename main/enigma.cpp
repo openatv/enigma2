@@ -60,6 +60,7 @@ void keyEvent(const eRCKey &key)
 
 	ePtr<eActionMap> ptr;
 	eActionMap::getInstance(ptr);
+	/*eDebug("key.code : %02x \n", key.code);*/
 
 	if ((key.code == last.code) && (key.producer == last.producer) && key.flags & eRCKey::flagRepeat)
 		num_repeat++;
