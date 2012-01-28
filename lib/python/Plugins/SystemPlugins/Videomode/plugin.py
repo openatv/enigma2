@@ -97,9 +97,7 @@ class VideoSetup(Screen, ConfigListScreen):
 
 		if level >= 1:
 			if SystemInfo["CanDownmixAC3"]:
-				self.list.append(getConfigListEntry(_("AC3 downmix"), config.av.downmix_ac3))
-			if SystemInfo["CanDownmixDTS"]:
-				self.list.append(getConfigListEntry(_("DTS downmix"), config.av.downmix_dts))
+				self.list.append(getConfigListEntry(_("AC3/DTS downmix"), config.av.downmix_ac3))
 			self.list.extend((
 				getConfigListEntry(_("General AC3 Delay"), config.av.generalAC3delay),
 				getConfigListEntry(_("General PCM Delay"), config.av.generalPCMdelay)
