@@ -129,11 +129,10 @@ class CableScanScreen(ConfigListScreen, Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 
-		self["actions"] = ActionMap(["SetupActions", "MenuActions"],
+		self["actions"] = ActionMap(["OkCancelActions"],
 		{
 			"ok": self.keyGo,
 			"cancel": self.keyCancel,
-			"menu": self.closeRecursive,
 		}, -2)
 
 		nimlist = nimmanager.getNimListOfType("DVB-C")
