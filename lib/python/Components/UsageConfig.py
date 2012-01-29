@@ -1,5 +1,5 @@
 from Components.Harddisk import harddiskmanager
-from config import ConfigSubsection, ConfigYesNo, config, ConfigSelection, ConfigText, ConfigNumber, ConfigSet, ConfigLocations
+from config import ConfigSubsection, ConfigYesNo, config, ConfigSelection, ConfigText, ConfigNumber, ConfigSet, ConfigLocations, ConfigSelectionNumber
 from Tools.Directories import resolveFilename, SCOPE_HDD
 from enigma import setTunerTypePriorityOrder, setPreferredTuner, setSpinnerOnOff, setEnableTtCachingOnOff;
 from enigma import Misc_Options, eEnv;
@@ -154,6 +154,12 @@ def InitUsageConfig():
 	config.epg.freesat.addNotifier(EpgSettingsChanged)
 	config.epg.viasat.addNotifier(EpgSettingsChanged)
 	config.epg.netmed.addNotifier(EpgSettingsChanged)
+
+	config.epg.histminutes = ConfigSelectionNumber(min = 0, max = 120, stepwidth = 15, default = 0, wraparound = True)
+	def EpgHistorySecondsChanged(configElement):
+		from enigma import eEPGCache
+		eEPGCache.getInstance().setEpgHistorySeconds(config.epg.histminutes.getValue()*60)
+	config.epg.histminutes.addNotifier(EpgHistorySecondsChanged)
 
 	def setHDDStandby(configElement):
 		for hdd in harddiskmanager.HDDList():
