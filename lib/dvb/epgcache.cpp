@@ -337,6 +337,7 @@ eEPGCache::eEPGCache()
 	eDebug("[EPGC] Initialized EPGCache (wait for setCacheFile call now)");
 
 	enabledSources = 0;
+	historySeconds = 0;
 
 	CONNECT(messages.recv_msg, eEPGCache::gotMessage);
 	CONNECT(eDVBLocalTimeHandler::getInstance()->m_timeUpdated, eEPGCache::timeUpdated);
@@ -941,7 +942,7 @@ void eEPGCache::cleanLoop()
 	singleLock s(cache_lock);
 	if (!eventDB.empty())
 	{
-		time_t now = ::time(0);
+		time_t now = ::time(0) - historySeconds;
 
 		for (eventCache::iterator DBIt = eventDB.begin(); DBIt != eventDB.end(); DBIt++)
 		{
@@ -2700,6 +2701,11 @@ void eEPGCache::submitEventData(const std::vector<eServiceReferenceDVB>& service
 }
 #undef SET_HILO
 
+
+void eEPGCache::setEpgHistorySeconds(time_t seconds)
+{
+	historySeconds = seconds;
+}
 
 void eEPGCache::setEpgSources(unsigned int mask)
 {
