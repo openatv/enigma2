@@ -1,8 +1,8 @@
 from skin import parseColor, parseFont, parseSize
-from Components.config import config, ConfigClock, ConfigInteger, ConfigSubsection, ConfigBoolean
+from Components.config import config, ConfigClock, ConfigInteger, ConfigSubsection, ConfigBoolean, ConfigSelection
 from Components.Pixmap import Pixmap
 from Components.Button import Button
-from Components.ActionMap import ActionMap
+from Components.ActionMap import HelpableActionMap
 from Components.HTMLComponent import HTMLComponent
 from Components.GUIComponent import GUIComponent
 from Components.EpgList import Rect
@@ -11,6 +11,7 @@ from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixm
 from Components.TimerList import TimerList
 from Components.Renderer.Picon import getPiconName
 from Screens.Screen import Screen
+from Screens.HelpMenu import HelpableScreen
 from Screens.EventView import EventViewSimple
 from Screens.TimeDateInput import TimeDateInput
 from Screens.TimerEntry import TimerEntry
@@ -142,6 +143,8 @@ class EPGList(HTMLComponent, GUIComponent):
 	def setOverjump_Empty(self, overjump_empty):
 		if overjump_empty:
 			self.l.setSelectableFunc(self.isSelectable)
+		else:
+			self.l.setSelectableFunc(None)
 
 	def setEpoch(self, epoch):
 		self.offs = 0
@@ -157,12 +160,14 @@ class EPGList(HTMLComponent, GUIComponent):
 			event = self.epgcache.lookupEventId(service.ref, eventid)
 		return event
 
-	def moveToService(self,serviceref):
+	def moveToService(self, serviceref):
+		newIdx = 0
 		if serviceref is not None:
 			for x in range(len(self.list)):
 				if self.list[x][0] == serviceref.toString():
-					self.instance.moveSelectionTo(x)
+					newIdx = x
 					break
+		self.instance.moveSelectionTo(newIdx)
 	
 	def getIndexFromService(self, serviceref):
 		if serviceref is not None:
@@ -174,6 +179,10 @@ class EPGList(HTMLComponent, GUIComponent):
 		if self.instance is not None:
 			self.instance.moveSelectionTo(index)
 	
+	def moveTo(self, dir):
+		if self.instance is not None:
+			self.instance.moveSelection(dir)
+
 	def getCurrent(self):
 		if self.cur_service is None:
 			return ( None, None )
@@ -203,35 +212,32 @@ class EPGList(HTMLComponent, GUIComponent):
 	def findBestEvent(self):
 		old_service = self.cur_service  #(service, service_name, events, picon)
 		cur_service = self.cur_service = self.l.getCurrentSelection()
-		last_time = 0;
 		time_base = self.getTimeBase()
+		last_time = time()
 		if old_service and self.cur_event is not None:
 			events = old_service[2]
 			cur_event = events[self.cur_event] #(event_id, event_title, begin_time, duration)
-			last_time = cur_event[2]
-			if last_time < time_base:
-				last_time = time_base
+			if cur_event[2] > last_time:
+				last_time = cur_event[2]
 		if cur_service:
 			self.cur_event = 0
 			events = cur_service[2]
+			best = None
 			if events and len(events):
-				if last_time:
-					best_diff = 0
-					best = len(events) #set invalid
-					idx = 0
-					for event in events: #iterate all events
-						ev_time = event[2]
-						if ev_time < time_base:
-							ev_time = time_base
-						diff = abs(ev_time-last_time)
-						if (best == len(events)) or (diff < best_diff):
-							best = idx
-							best_diff = diff
-						idx += 1
-					if best != len(events):
-						self.cur_event = best
-			else:
-				self.cur_event = None
+				best_diff = 0
+				idx = 0
+				for event in events: #iterate all events
+					ev_time = event[2]
+					if ev_time < time_base:
+						ev_time = time_base
+					diff = abs(ev_time - last_time)
+					if best is None or (diff < best_diff):
+						best = idx
+						best_diff = diff
+					if best is not None and ev_time > last_time:
+						break
+					idx += 1
+			self.cur_event = best
 		self.selEntry(0)
 
 	def selectionChanged(self):
@@ -298,6 +304,11 @@ class EPGList(HTMLComponent, GUIComponent):
 	def buildEntry(self, service, service_name, events, picon):
 		r1 = self.service_rect
 		r2 = self.event_rect
+		if picon is None: # go find picon and cache its location
+			curIdx = self.l.getCurrentSelectionIndex()
+			picon = getPiconName(service)
+			self.list[curIdx] = (service, service_name, events, picon)
+
 		nowPlaying = self.currentlyPlaying.toString()
 		serviceForeColor = self.foreColorService
 		serviceBackColor = self.backColorService
@@ -430,7 +441,9 @@ class EPGList(HTMLComponent, GUIComponent):
 				return self.epgcache.lookupEvent(list)
 		return [ ]
 
-	def fillMultiEPG(self, services, stime = -1):
+	def fillMultiEPG(self, services, stime = None):
+		if stime is not None:
+			self.time_base = int(stime)
 		if services is None:
 			time_base = self.time_base + self.offs * self.time_epoch * 60
 			test = [ (service[0], 0, time_base, self.time_epoch) for service in self.list ]
@@ -439,10 +452,9 @@ class EPGList(HTMLComponent, GUIComponent):
 		else:
 			self.cur_event = None
 			self.cur_service = None
-			self.time_base = int(stime)
-			test = [ (service[0].ref.toString(), 0, self.time_base, self.time_epoch) for service in services ]
+			test = [ (service.ref.toString(), 0, self.time_base, self.time_epoch) for service in services ]
 			serviceList = services
-			piconIdx = 1
+			piconIdx = 0
 
 		test.insert(0, 'XRnITBD')
 		epg_data = self.queryEPG(test)
@@ -455,14 +467,16 @@ class EPGList(HTMLComponent, GUIComponent):
 		for x in epg_data:
 			if service != x[0]:
 				if tmp_list is not None:
-					self.list.append((service, sname, tmp_list[0][0] is not None and tmp_list or None, serviceList[serviceIdx][piconIdx]))
+					picon = None if piconIdx == 0 else serviceList[serviceIdx][piconIdx]
+					self.list.append((service, sname, tmp_list[0][0] is not None and tmp_list or None, picon))
 					serviceIdx += 1
 				service = x[0]
 				sname = x[1]
 				tmp_list = [ ]
-			tmp_list.append((x[2], x[3], x[4], x[5]))
+			tmp_list.append((x[2], x[3], x[4], x[5])) #(event_id, event_title, begin_time, duration)
 		if tmp_list and len(tmp_list):
-			self.list.append((service, sname, tmp_list[0][0] is not None and tmp_list or None, serviceList[serviceIdx][piconIdx]))
+			picon = None if piconIdx == 0 else serviceList[serviceIdx][piconIdx]
+			self.list.append((service, sname, tmp_list[0][0] is not None and tmp_list or None, picon))
 			serviceIdx += 1
 
 		self.l.setList(self.list)
@@ -613,9 +627,10 @@ config.misc.graph_mepg.items_per_page = ConfigInteger(default = 5, limits = (3, 
 config.misc.graph_mepg.overjump = ConfigBoolean(default = True)
 config.misc.graph_mepg.showpicon = ConfigBoolean(default=False)
 config.misc.graph_mepg.showservicetitle = ConfigBoolean(default=True)
+config.misc.graph_mepg.roundTo = ConfigSelection(default = 15, choices = [(15, _("15 minutes")), (30, _("30 minutes")), (60, _("60 minutes"))])
 
 
-class GraphMultiEPG(Screen):
+class GraphMultiEPG(Screen, HelpableScreen):
 	EMPTY = 0
 	ADD_TIMER = 1
 	REMOVE_TIMER = 2
@@ -626,11 +641,12 @@ class GraphMultiEPG(Screen):
 		Screen.__init__(self, session)
 		self.bouquetChangeCB = bouquetChangeCB
 		now = time()
-		self.ask_time = now - now % 900
+		self.ask_time = now - now % (config.misc.graph_mepg.roundTo.getValue() * 60)
 		self.closeRecursive = False
 		self["key_red"] = Button("")
 		self["key_green"] = Button("")
-		self["key_blue"] = Button(_("Setup"))
+		self["key_yellow"] = Button("")
+		self["key_blue"] = Button(_("Goto"))
 
 		self.key_green_choice = self.EMPTY
 		self.key_red_choice = self.EMPTY
@@ -652,37 +668,59 @@ class GraphMultiEPG(Screen):
 					time_epoch = config.misc.graph_mepg.prev_time_period.value,
 					overjump_empty = config.misc.graph_mepg.overjump.value)
 
-		self["actions"] = ActionMap(["EPGSelectActions", "OkCancelActions"],
+		HelpableScreen.__init__(self)
+		self["okactions"] = HelpableActionMap(self, "OkCancelActions",
 			{
-				"cancel": self.closeScreen,
-				"ok": self.eventSelected,
-				"timerAdd": self.timerAdd,
-				"info": self.infoKeyPressed,
-				"red": self.zapTo,
-				"blue": self.showSetup,
-				"input_date_time": self.enterDateTime,
-				"nextBouquet": self.nextBouquet,
-				"prevBouquet": self.prevBouquet,
-				"nextService": self.nextPressed,
-				"prevService": self.prevPressed,
-			})
-		self["actions"].csel = self
+				"cancel": (self.closeScreen,   _("Exit EPG")),
+				"ok":	  (self.eventSelected, _("Show detailed event info"))
+			}, -1)
+		self["okactions"].csel = self
+		self["epgactions"] = HelpableActionMap(self, "EPGSelectActions",
+			{
+				"timerAdd":    (self.timerAdd,       _("Add/Remove timer for current event")),
+				"info":        (self.infoKeyPressed, _("Show detailed event info")),
+				"red":         (self.zapTo,          _("Zap to selected channel")),
+				"blue":        (self.enterDateTime,  _("Goto specific data/time")),
+				"menu":        (self.showSetup,      _("Setup menu")),
+				"nextBouquet": (self.nextBouquet,    _("Show bouquet selection menu")),
+				"prevBouquet": (self.prevBouquet,    _("Show bouquet selection menu")),
+				"nextService": (self.nextPressed,    _("Goto next page of events")),
+				"prevService": (self.prevPressed,    _("Goto previous page of events"))
+			}, -1)
+		self["epgactions"].csel = self
 
-		self["input_actions"] = ActionMap(["InputActions"],
+		self["inputactions"] = HelpableActionMap(self, "InputActions",
 			{
-				"left": self.leftPressed,
-				"right": self.rightPressed,
-				"1": self.key1,
-				"2": self.key2,
-				"3": self.key3,
-				"4": self.key4,
-				"5": self.key5,
-			},-1)
+				"left":  (self.leftPressed,  _("Goto previous event")),
+				"right": (self.rightPressed, _("Goto next event")),
+				"1":     (self.key1,         _("Set time window to 1 hour")),
+				"2":     (self.key2,         _("Set time window to 2 hours")),
+				"3":     (self.key3,         _("Set time window to 3 hours")),
+				"4":     (self.key4,         _("Set time window to 4 hours")),
+				"5":     (self.key5,         _("Set time window to 5 hours")),
+				"7":     (self.prevPage,     _("Goto previous page of service")),
+				"9":     (self.nextPage,     _("Goto next page of service")),
+				"8":     (self.toTop,        _("Goto first service")),
+				"0":     (self.toEnd,        _("Goto last service"))
+			}, -1)
+		self["inputactions"].csel = self
 
 		self.updateTimelineTimer = eTimer()
 		self.updateTimelineTimer.callback.append(self.moveTimeLines)
 		self.updateTimelineTimer.start(60 * 1000)
 		self.onLayoutFinish.append(self.onCreate)
+
+	def prevPage(self):
+		self["list"].moveTo(eListbox.pageUp)
+
+	def nextPage(self):
+		self["list"].moveTo(eListbox.pageDown)
+
+	def toTop(self):
+		self["list"].moveTo(eListbox.moveTop)
+
+	def toEnd(self):
+		self["list"].moveTo(eListbox.moveEnd)
 
 	def prevPressed(self):
 		self.updEvent(-2)
@@ -737,10 +775,10 @@ class GraphMultiEPG(Screen):
 	def onDateTimeInputClosed(self, ret):
 		if len(ret) > 1:
 			if ret[0]:
-				self.ask_time = ret[1] - ret[1] % 900
+				self.ask_time = ret[1] - ret[1] % (config.misc.graph_mepg.roundTo.getValue() * 60)
 				l = self["list"]
 				l.resetOffset()
-				l.fillMultiEPG(self.services, self.ask_time)
+				l.fillMultiEPG(None, self.ask_time)
 				self.moveTimeLines(True)
 
 	def showSetup(self):
@@ -754,6 +792,9 @@ class GraphMultiEPG(Screen):
 		l.setOverjump_Empty(config.misc.graph_mepg.overjump.value)
 		l.setShowPicon(config.misc.graph_mepg.showpicon.value)
 		l.setShowServiceTitle(config.misc.graph_mepg.showservicetitle.value)
+		now = time()
+		self.ask_time = now - now % (config.misc.graph_mepg.roundTo.getValue() * 60)
+		l.fillMultiEPG(None, self.ask_time)
 		self.moveTimeLines()
 		
 	def closeScreen(self):
@@ -777,7 +818,6 @@ class GraphMultiEPG(Screen):
 	def onCreate(self):
 		serviceref = self.session.nav.getCurrentlyPlayingServiceReference()
 		l = self["list"]
-		self.services = self.generateList(self.services)
 		l.fillMultiEPG(self.services, self.ask_time)
 		l.moveToService(serviceref)
 		l.setCurrentlyPlaying(serviceref)
@@ -904,9 +944,3 @@ class GraphMultiEPG(Screen):
 		self.updateTimelineTimer.start((60 - (int(time()) % 60)) * 1000)	#keep syncronised
 		self["timeline_text"].setEntries(self["list"], self["timeline_now"], self.time_lines)
 		self["list"].l.invalidate() # not needed when the zPosition in the skin is correct! ?????
-
-	def generateList(self, services):
-		res = [ ]
-		for service in services:
-			res.append( (service, getPiconName(service.ref.toString())) )
-		return res
