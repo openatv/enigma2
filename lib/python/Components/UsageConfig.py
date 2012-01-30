@@ -1,5 +1,5 @@
 from Components.Harddisk import harddiskmanager
-from config import config, ConfigSubsection, ConfigYesNo, ConfigSelection, ConfigText, ConfigNumber, ConfigSet, ConfigLocations, NoSave, ConfigClock, ConfigInteger, ConfigBoolean, ConfigPassword, ConfigIP, ConfigSlider
+from config import config, ConfigSubsection, ConfigYesNo, ConfigSelection, ConfigText, ConfigNumber, ConfigSet, ConfigLocations, NoSave, ConfigClock, ConfigInteger, ConfigBoolean, ConfigPassword, ConfigIP, ConfigSlider, ConfigSelectionNumber
 from Tools.Directories import resolveFilename, SCOPE_HDD, SCOPE_TIMESHIFT
 from enigma import setTunerTypePriorityOrder, setPreferredTuner, setSpinnerOnOff, setEnableTtCachingOnOff;
 from enigma import Misc_Options, eEnv;
@@ -229,7 +229,7 @@ def InitUsageConfig():
 	config.epg.freesat = ConfigYesNo(default = True)
 	config.epg.viasat = ConfigYesNo(default = True)
 	config.epg.netmed = ConfigYesNo(default = True)
-	config.misc.showradiopic = ConfigYesNo(default = True)
+
 	def EpgSettingsChanged(configElement):
 		from enigma import eEPGCache
 		mask = 0xffffffff
@@ -249,6 +249,13 @@ def InitUsageConfig():
 	config.epg.freesat.addNotifier(EpgSettingsChanged)
 	config.epg.viasat.addNotifier(EpgSettingsChanged)
 	config.epg.netmed.addNotifier(EpgSettingsChanged)
+
+	config.epg.histminutes = ConfigSelectionNumber(min = 0, max = 120, stepwidth = 15, default = 0, wraparound = True)
+	def EpgHistorySecondsChanged(configElement):
+		from enigma import eEPGCache
+		eEPGCache.getInstance().setEpgHistorySeconds(config.epg.histminutes.getValue()*60)
+	config.epg.histminutes.addNotifier(EpgHistorySecondsChanged)
+
 	config.epg.cacheloadsched = ConfigYesNo(default = False)
 	config.epg.cachesavesched = ConfigYesNo(default = False)
 	def EpgCacheLoadSchedChanged(configElement):
@@ -286,6 +293,8 @@ def InitUsageConfig():
 		epgcache.save()
  	config.misc.epgcachepath.addNotifier(EpgCacheChanged, immediate_feedback = False)
 	config.misc.epgcachefilename.addNotifier(EpgCacheChanged, immediate_feedback = False)
+
+	config.misc.showradiopic = ConfigYesNo(default = True)
 
 	def setHDDStandby(configElement):
 		for hdd in harddiskmanager.HDDList():
@@ -392,7 +401,9 @@ def InitUsageConfig():
 		("770048", "Small 0.7 MB"),
 		("962560", "Normal 1 MB"),
 		("1540096", "Large 1.5MB"),
-		("1925120", "Huge 2 MB")])
+		("1925120", "Huge 2 MB"),
+		("3850240", "Ginormous 4 MB"),
+		])
 	config.misc.demux_size.addNotifier(updateDemuxSize, immediate_feedback = False)
 	
 	def updateEraseSpeed(el):

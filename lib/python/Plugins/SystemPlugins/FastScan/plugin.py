@@ -183,8 +183,6 @@ class FastScanScreen(ConfigListScreen, Screen):
 
 		self.finished_cb = None
 
-		ConfigListScreen.__init__(self, self.list)
-
 		self["introduction"] = Label(_("Select your provider, and press OK to start the scan"))
 
 	def keyGo(self):

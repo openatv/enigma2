@@ -368,7 +368,7 @@ eServiceM2TS::eServiceM2TS(const eServiceReference &ref)
 {
 }
 
-ePtr<iTsSource> eServiceM2TS::createTsSource(eServiceReferenceDVB &ref)
+ePtr<iTsSource> eServiceM2TS::createTsSource(eServiceReferenceDVB &ref, int packetsize)
 {
 	ePtr<iTsSource> source = new eM2TSFile(ref.path.c_str());
 	return source;

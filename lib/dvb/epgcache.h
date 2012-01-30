@@ -304,6 +304,7 @@ private:
 	ePtr<eConnection> m_chanAddedConn;
 
 	unsigned int enabledSources;
+	unsigned int historySeconds;
 
 	eventCache eventDB;
 	updateMap channelLastUpdated;
@@ -419,6 +420,7 @@ public:
 #endif
 	,EPG_IMPORT=0x80000000
 	};
+	void setEpgHistorySeconds(time_t seconds);
 	void setEpgSources(unsigned int mask);
 	unsigned int getEpgSources();
 
