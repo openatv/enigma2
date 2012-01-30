@@ -74,6 +74,7 @@
 		<item level="2" text="Enable freesat EPG">config.epg.freesat</item>
 		<item level="2" text="Enable ViaSat EPG">config.epg.viasat</item>
 		<item level="2" text="Enable Netmed EPG">config.epg.netmed</item>
+		<item level="2" text="Maintain old EPG data for">config.epg.histminutes</item>
 	</setup>
 	<setup key="subtitlesetup" title="Subtitle Settings">
 		<item level="2" text="Teletext subtitle color">config.subtitles.ttx_subtitle_colors</item>
@@ -178,7 +179,7 @@
 		<item level="2" text="Create more detailed crash log">config.crash.details</item>
 		<item level="2" text="Enable Debug log">config.crash.enabledebug</item>
 		<item level="2" text="Limit Debug log size (MB)">config.crash.debugloglimit</item>
-		<item level="2" text="Debug Log location">config.crash.debug_path</item>
+		<item level="2" text="Logs location">config.crash.debug_path</item>
 	</setup>
 	<setup key="dvdplayer" title="DVD-Player Setup">
 		<item level="0" text="Show DVD-Player in Mainmenu when BMC is installed ?">config.usage.show_dvdplayer</item>

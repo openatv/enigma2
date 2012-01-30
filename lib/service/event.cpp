@@ -41,8 +41,8 @@ bool eServiceEvent::loadLanguage(Event *evt, std::string lang, int tsidonid)
 				int table=encodingHandler.getCountryCodeDefaultMapping(cc);
 				if ( lang == "---" || lang.find(cc) != -1)
 				{
-					m_event_name = replace_all(replace_all(convertDVBUTF8(sed->getEventName(), table, tsidonid), "\n", " "), "\t", " ");
-					m_short_description = convertDVBUTF8(sed->getText(), table, tsidonid);
+					m_event_name += replace_all(replace_all(convertDVBUTF8(sed->getEventName(), table, tsidonid), "\n", " "), "\t", " ");
+					m_short_description += convertDVBUTF8(sed->getText(), table, tsidonid);
 					retval=1;
 				}
 				break;

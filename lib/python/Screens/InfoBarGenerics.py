@@ -71,13 +71,16 @@ def setResumePoint(session):
 				else:
 					l = None 
 				resumePointCache[key] = [lru, pos[1], l]
+				print '[ResumePionts] lenth',len(resumePointCache)
 				if len(resumePointCache) > 50:
 					candidate = key
 					for k,v in resumePointCache.items():
 						if v[0] < lru:
 							candidate = k
 					del resumePointCache[candidate]
+				print '[ResumePionts] lenth',len(resumePointCache)
 				if lru - resumePointCacheLast > 3600:
+					print '[ResumePionts] saving'
 					saveResumePoints()
 
 def delResumePoint(ref):
@@ -327,6 +330,12 @@ class InfoBarShowHide:
 		elif self.__state == self.STATE_HIDDEN and self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
+		elif self.__state == self.STATE_HIDDEN and self.EventViewIsShown:
+			try:
+				self.eventView.close()
+			except:
+				pass
+			self.EventViewIsShown = False
 
 	def toggleShow(self):
 		if self.__state == self.STATE_HIDDEN:
@@ -350,12 +359,18 @@ class InfoBarShowHide:
 			self.hide()
 			self.openEventView()
 			self.EventViewIsShown = True
-			self.hideTimer.stop()	
+			self.hideTimer.stop()
+			
 		else:
 			self.hide()
 			if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 				self.secondInfoBarScreen.hide()
-
+			elif self.EventViewIsShown:
+				try:
+					self.eventView.close()
+				except:
+					pass
+				self.EventViewIsShown = False
 	def lockShow(self):
 		try:
 			self.__locked = self.__locked + 1
@@ -531,7 +546,7 @@ class InfoBarShowHide:
 			else:
 				self.is_now_next = True
 			if epglist:
-				self.eventView = self.session.openWithCallback(self.closeEventView, EventViewEPGSelect, self.epglist[0], ServiceReference(ref), self.eventViewCallback, self.openSingleServiceEPG, self.openMultiServiceEPG, self.openSimilarList)
+				self.eventView = self.session.openWithCallback(self.close, EventViewEPGSelect, self.epglist[0], ServiceReference(ref), self.eventViewCallback, self.openSingleServiceEPG, self.openMultiServiceEPG, self.openSimilarList)
 				self.dlg_stack.append(self.eventView)
 			else:
 				print "no epg for the service avail.. so we show multiepg instead of eventinfo"
@@ -1113,7 +1128,7 @@ class InfoBarEPG:
 		self.EPGtype = "multi"
 		Servicelist = self.servicelist
 		self.StartBouquet = Servicelist and Servicelist.getRoot()
-		if config.GraphEPG.ShowBouquet_multi.value:
+		if config.epgselction.ShowBouquet_multi.value:
 			self.bouquets = self.servicelist.getBouquetList()
 			if self.bouquets is None:
 				cnt = 0
@@ -1160,7 +1175,7 @@ class InfoBarEPG:
 		self.EPGtype = "graph"
 		Servicelist = self.servicelist
 		self.StartBouquet = Servicelist and Servicelist.getRoot()
-		if config.GraphEPG.ShowBouquet_pliepg.value:
+		if config.epgselction.showbouquet_pliepg.value:
 			self.bouquets = self.servicelist.getBouquetList()
 			if self.bouquets is None:
 				cnt = 0

@@ -1,5 +1,5 @@
 from Components.Harddisk import harddiskmanager
-from config import config, ConfigSubsection, ConfigYesNo, ConfigSelection, ConfigText, ConfigNumber, ConfigSet, ConfigLocations, NoSave, ConfigClock, ConfigInteger, ConfigBoolean, ConfigPassword, ConfigIP, ConfigSlider
+from config import config, ConfigSubsection, ConfigYesNo, ConfigSelection, ConfigText, ConfigNumber, ConfigSet, ConfigLocations, NoSave, ConfigClock, ConfigInteger, ConfigBoolean, ConfigPassword, ConfigIP, ConfigSlider, ConfigSelectionNumber
 from Tools.Directories import resolveFilename, SCOPE_HDD, SCOPE_TIMESHIFT
 from enigma import setTunerTypePriorityOrder, setPreferredTuner, setSpinnerOnOff, setEnableTtCachingOnOff;
 from enigma import Misc_Options, eEnv;
@@ -146,6 +146,10 @@ def InitUsageConfig():
 	config.usage.frontend_priority = ConfigSelection(default = "-1", choices = nims)
 	config.misc.disable_background_scan = ConfigYesNo(default = False)
 
+	config.usage.servicenumfontsize = ConfigSlider(default = 22, increment = 1, limits=(16, 40))
+	config.usage.servicenamefontsize = ConfigSlider(default = 22, increment = 1, limits=(16, 40))
+	config.usage.serviceinfofontsize = ConfigSlider(default = 22, increment = 1, limits=(16, 40))
+	config.usage.serviceitems_per_page = ConfigSlider(default = 16, increment = 1, limits=(3, 30))
 	config.usage.show_servicelist = ConfigYesNo(default = True)
 	config.usage.servicelist_mode = ConfigSelection(default = "standard", choices = [
 		("standard", _("Standard")),
@@ -254,6 +258,13 @@ def InitUsageConfig():
 	config.epg.freesat.addNotifier(EpgSettingsChanged)
 	config.epg.viasat.addNotifier(EpgSettingsChanged)
 	config.epg.netmed.addNotifier(EpgSettingsChanged)
+
+	config.epg.histminutes = ConfigSelectionNumber(min = 0, max = 120, stepwidth = 15, default = 0, wraparound = True)
+	def EpgHistorySecondsChanged(configElement):
+		from enigma import eEPGCache
+		eEPGCache.getInstance().setEpgHistorySeconds(config.epg.histminutes.getValue()*60)
+	config.epg.histminutes.addNotifier(EpgHistorySecondsChanged)
+
 	config.epg.cacheloadsched = ConfigYesNo(default = False)
 	config.epg.cachesavesched = ConfigYesNo(default = False)
 	def EpgCacheLoadSchedChanged(configElement):
@@ -312,7 +323,7 @@ def InitUsageConfig():
 	config.network.AFP_autostart = ConfigYesNo(default = False)
 	config.network.NFS_autostart = ConfigYesNo(default = False)
 	config.network.OpenVPN_autostart = ConfigYesNo(default = False)
-	config.network.Samba_autostart = ConfigYesNo(default = False)
+	config.network.Samba_autostart = ConfigYesNo(default = Truw)
 	config.network.Inadyn_autostart = ConfigYesNo(default = False)
 	config.network.uShare_autostart = ConfigYesNo(default = False)
 
@@ -396,7 +407,9 @@ def InitUsageConfig():
 		("770048", "Small 0.7 MB"),
 		("962560", "Normal 1 MB"),
 		("1540096", "Large 1.5MB"),
-		("1925120", "Huge 2 MB")])
+		("1925120", "Huge 2 MB"),
+		("3850240", "Ginormous 4 MB"),
+		])
 	config.misc.demux_size.addNotifier(updateDemuxSize, immediate_feedback = False)
 	
 	def updateEraseSpeed(el):
@@ -605,42 +618,46 @@ def InitUsageConfig():
 					("2", _("with exit button")),
 					("3", _("with left/right buttons"))])
 
-	config.GraphEPG = ConfigSubsection()
-	config.GraphEPG.ShowBouquet = ConfigYesNo(default = False)
-	config.GraphEPG.ShowBouquet_pliepg = ConfigYesNo(default = False)
-	config.GraphEPG.ShowBouquet_multi = ConfigYesNo(default = False)
-	config.GraphEPG.preview_mode_pliepg = ConfigYesNo(default = True)
-	config.GraphEPG.preview_mode_enhanced = ConfigYesNo(default = True)
-	config.GraphEPG.preview_mode_infobar = ConfigYesNo(default = True)
-	config.GraphEPG.preview_mode = ConfigYesNo(default = True)
-	config.GraphEPG.OK = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap")
-	config.GraphEPG.OKLong = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap + Exit")
-	config.GraphEPG.OK_pliepg = ConfigSelection(choices = [("EventView",_("EventView")), ("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap")
-	config.GraphEPG.OKLong_pliepg = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap + Exit")
-	config.GraphEPG.OK_enhanced = ConfigSelection(choices = [("EventView",_("EventView")), ("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap")
-	config.GraphEPG.OKLong_enhanced = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap + Exit")
-	config.GraphEPG.OK_infobar = ConfigSelection(choices = [("EventView",_("EventView")), ("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap")
-	config.GraphEPG.OKLong_infobar = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap + Exit")
-	config.GraphEPG.Info = ConfigSelection(choices = [("Channel Info", _("Channel Info")), ("Single EPG", _("Single EPG"))], default = "Channel Info")
-	config.GraphEPG.InfoLong = ConfigSelection(choices = [("Channel Info", _("Channel Info")), ("Single EPG", _("Single EPG"))], default = "Single EPG")
-	config.GraphEPG.prev_time=ConfigClock(default = time())
-	config.GraphEPG.Primetime1 = ConfigSlider(default = 20, increment = 1, limits=(0, 23))
-	config.GraphEPG.Primetime2 = ConfigSlider(default = 0, increment = 1, limits=(0, 59))
-	config.GraphEPG.UsePicon = ConfigYesNo(default = True)
-	config.GraphEPG.channel1 = ConfigYesNo(default = False)
-	config.GraphEPG.prev_time_period = ConfigSlider(default = 180, increment = 1, limits=(60,300))
-	config.GraphEPG.Fontsize = ConfigSlider(default = 18, increment = 1, limits=(10, 30))
-	config.GraphEPG.Left_Fontsize = ConfigSlider(default = 22, increment = 1, limits=(10, 30))
-	config.GraphEPG.Timeline = ConfigSlider(default = 20, increment = 1, limits=(10, 30))
-	config.GraphEPG.items_per_page = ConfigSlider(default = 11, increment = 1, limits=(3, 16))
-	config.GraphEPG.left8 = ConfigSlider(default = 110, increment = 1, limits=(70, 250))
-	config.GraphEPG.left16 = ConfigSlider(default = 190, increment = 1, limits=(70, 250))
-	config.GraphEPG.overjump = ConfigYesNo(default = False)
-	config.GraphEPG.PIG = ConfigYesNo(default = False)
-	config.GraphEPG.item_hight = NoSave(ConfigInteger(default=0))
-	config.GraphEPG.item_width = NoSave(ConfigInteger(default=0))
-	config.GraphEPG.item_rowhight = NoSave(ConfigInteger(default=0))
-	config.GraphEPG.heightswitch = NoSave(ConfigYesNo(default = False))
+	config.epgselction = ConfigSubsection()
+	config.epgselction.showbouquet_pliepg = ConfigYesNo(default = False)
+	config.epgselction.showbouquet_multi = ConfigYesNo(default = False)
+	config.epgselction.preview_mode_pliepg = ConfigYesNo(default = True)
+	config.epgselction.preview_mode_enhanced = ConfigYesNo(default = True)
+	config.epgselction.preview_mode_infobar = ConfigYesNo(default = True)
+	config.epgselction.preview_mode = ConfigYesNo(default = True)
+	config.epgselction.OK = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap")
+	config.epgselction.OKLong = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap + Exit")
+	config.epgselction.OK_pliepg = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap")
+	config.epgselction.OKLong_pliepg = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap + Exit")
+	config.epgselction.OK_enhanced = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap")
+	config.epgselction.OKLong_enhanced = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap + Exit")
+	config.epgselction.OK_infobar = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap")
+	config.epgselction.OKLong_infobar = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap + Exit")
+	config.epgselction.Info = ConfigSelection(choices = [("Channel Info", _("Channel Info")), ("Single EPG", _("Single EPG"))], default = "Channel Info")
+	config.epgselction.InfoLong = ConfigSelection(choices = [("Channel Info", _("Channel Info")), ("Single EPG", _("Single EPG"))], default = "Single EPG")
+	config.epgselction.roundTo = ConfigSelection(default = "15", choices = [("15", _("15 minutes")), ("30", _("30 minutes")), ("60", _("60 minutes"))])
+	config.epgselction.sort = ConfigSelection(default="Time", choices = [("Time", _("Time")),("AZ", _("Alphanumeric"))])
+	config.epgselction.prev_time=ConfigClock(default = time())
+	config.epgselction.primetimehour = ConfigSlider(default = 20, increment = 1, limits=(0, 23))
+	config.epgselction.primetimemins = ConfigSlider(default = 0, increment = 1, limits=(0, 59))
+	config.epgselction.showpicon = ConfigYesNo(default = True)
+	config.epgselction.showservicetitle = ConfigBoolean(default=True)
+	config.epgselction.channel1 = ConfigYesNo(default = False)
+	config.epgselction.prev_time_period = ConfigSlider(default = 180, increment = 1, limits=(60,300))
+	config.epgselction.servicefontsize_pliepg = ConfigSlider(default = 22, increment = 1, limits=(16, 30))
+	config.epgselction.eventfontsize_pliepg = ConfigSlider(default = 18, increment = 1, limits=(16, 30))
+	config.epgselction.eventfontsize_enhanced = ConfigSlider(default = 24, increment = 1, limits=(16, 36))
+	config.epgselction.eventfontsize_infobar = ConfigSlider(default = 22, increment = 1, limits=(16, 36))
+	config.epgselction.eventfontsize_single = ConfigSlider(default = 24, increment = 1, limits=(16, 36))
+	config.epgselction.timelinefontsize = ConfigSlider(default = 20, increment = 1, limits=(10, 30))
+	config.epgselction.itemsperpage_pliepg = ConfigSlider(default = 11, increment = 1, limits=(3, 16))
+	config.epgselction.itemsperpage_enhanced = ConfigSlider(default = 18, increment = 1, limits=(16, 40))
+	config.epgselction.itemsperpage_infobar = ConfigSlider(default = 2, increment = 1, limits=(2, 4))
+	config.epgselction.itemsperpage_single = ConfigSlider(default = 18, increment = 1, limits=(2, 40))
+	config.epgselction.servicewidth = ConfigSlider(default = 190, increment = 1, limits=(70, 250))
+	config.epgselction.overjump = ConfigYesNo(default = False)
+	config.epgselction.pictureingraphics = ConfigYesNo(default = False)
+	config.epgselction.heightswitch = NoSave(ConfigYesNo(default = False))
 
 	config.oscaminfo = ConfigSubsection()
 	config.oscaminfo.showInExtensions = ConfigYesNo(default=False)
