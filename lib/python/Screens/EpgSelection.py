@@ -32,11 +32,6 @@ from datetime import datetime
 
 mepg_config_initialized = False
 
-config.misc.EPGSort = ConfigSelection(default="Time", choices = [
-				("Time", _("Time")),
-				("AZ", _("Alphanumeric"))
-				])
-
 class EPGSelection(Screen, HelpableScreen):
 	data = resolveFilename(SCOPE_CURRENT_SKIN,"skin.xml")
 	data = data.replace('/ skin.xml','/skin.xml')
@@ -304,7 +299,7 @@ class EPGSelection(Screen, HelpableScreen):
 		elif isinstance(service, list):
 			if self.GraphicalEPG:
 				self.type = EPG_TYPE_GRAPH
-				if not config.epgselction.PIG.value:
+				if not config.epgselction.pictureingraphics.value:
 					self.skin = self.GraphEPG
 					self.skinName = "GraphicalEPG"
 				else:
@@ -540,10 +535,14 @@ class EPGSelection(Screen, HelpableScreen):
 					"down":		(self.moveDown, _("Goto next channel")),
 				},-1)
 			self["cursoractions"].csel = self
+		else:
+			self["epgactions"] = HelpableActionMap(self, "EPGSelectActions",
+				{
+					"Menu":				(self.createSetup, _("Setup menu")),
+				},-1)
+			self["epgactions"].csel = self
 	
-		if self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
- 			self.onLayoutFinish.append(self.onStartup)
-		elif self.type == EPG_TYPE_GRAPH:
+		if self.type == EPG_TYPE_GRAPH:
 			self.curBouquet = bouquetChangeCB
 			self.updateTimelineTimer = eTimer()
 			self.updateTimelineTimer.callback.append(self.moveTimeLines)
@@ -569,18 +568,23 @@ class EPGSelection(Screen, HelpableScreen):
 			self["timeline_text"].setTimeLineFontsize()
 			l.setEpoch(config.epgselction.prev_time_period.value)
 			l.setOverjump_Empty(config.epgselction.overjump.value)
-			l.setShowPicon(config.epgselction.UsePicon.value)
+			l.setShowPicon(config.epgselction.showpicon.value)
 			l.setShowServiceTitle(config.epgselction.showservicetitle.value)
 			now = time()
 			self.ask_time = now - now % (int(config.epgselction.roundTo.getValue()) * 60)
 			l.fillGraphEPG(None, self.ask_time)
 			self.moveTimeLines()
 		else:
-			if config.misc.EPGSort.value == "Time":
+			if config.epgselction.sort.value == "Time":
 				self.sort_type = 0
 			else:
 				self.sort_type = 1
 			l = self["list"]
+			if self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_SINGLE:
+				l.setItemsPerPage()
+				l.setEventFontsize()
+			l.setOverjump_Empty(config.epgselction.overjump.value)
+			l.recalcEntrySize()
 			l.sortSingleEPG(self.sort_type)
 
 	def updateList(self):
@@ -604,7 +608,7 @@ class EPGSelection(Screen, HelpableScreen):
 			l.fillGraphEPG(self.services, self.ask_time)
 			l.moveToService(serviceref)
 			l.setCurrentlyPlaying(serviceref)
-			l.setShowPicon(config.epgselction.UsePicon.value)
+			l.setShowPicon(config.epgselction.showpicon.value)
 			l.setShowServiceTitle(config.epgselction.showservicetitle.value)
 			self.moveTimeLines()
 			if config.epgselction.channel1.value:
@@ -633,17 +637,17 @@ class EPGSelection(Screen, HelpableScreen):
 		else:
 			l.fillSimilarList(self.currentService, self.eventid)
 		if self.type == EPG_TYPE_SINGLE or self.type == EPG_TYPE_ENHANCED:
-			if config.misc.EPGSort.value == "Time":
+			if config.epgselction.sort.value == "Time":
 				self.sort_type = 0
 			else:
 				self.sort_type = 1
 			l.sortSingleEPG(self.sort_type)
 
 	def nextPage(self):
-		self["list"].instance.moveSelection(self["list"].instance.pageUp)
+		self["list"].instance.moveSelection(self["list"].instance.pageDown)
 
 	def prevPage(self):
-		self["list"].instance.moveSelection(self["list"].instance.pageDown)
+		self["list"].instance.moveSelection(self["list"].instance.pageUp)
 
 	def leftPressed(self):
 		if self.type == EPG_TYPE_MULTI:
@@ -851,7 +855,7 @@ class EPGSelection(Screen, HelpableScreen):
 		self.infoKeyPressed()
 
 	def setSortDescription(self):
-		if config.misc.EPGSort.value == "Time":
+		if config.epgselction.sort.value == "Time":
 			self.sort_type = 1
 		else:
 			self.sort_type = 0
@@ -1056,9 +1060,6 @@ class EPGSelection(Screen, HelpableScreen):
 		if ret:
 			self.moveTimeLines(True)		
 
-	def myhelp(self):
-		self.session.open(GraphEPGHelp, "/usr/share/enigma2/skin_default/GraphEPG/help.jpg")
-
 	def key1(self):
 		hilf = config.epgselction.prev_time_period.value	
 		if hilf > 60:
@@ -1106,7 +1107,7 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def key9(self):
 		cooltime = localtime(self["list"].getTimeBase())
-		hilf = (cooltime[0], cooltime[1], cooltime[2], config.epgselction.Primetime1.value, config.epgselction.Primetime2.value,0, cooltime[6], cooltime[7], cooltime[8])
+		hilf = (cooltime[0], cooltime[1], cooltime[2], config.epgselction.primetimehour.value, config.epgselction.primetimemins.value,0, cooltime[6], cooltime[7], cooltime[8])
 		cooltime = mktime(hilf)
 		self["list"].resetOffset()
 		self["list"].fillGraphEPG(self.services, cooltime)
@@ -1497,7 +1498,6 @@ class EPGSelectionSetup(Screen, ConfigListScreen):
 				"cancel": self.keyCancel,
 				"red": self.keyCancel,
 				"green": self.keySave,
-				"displayHelp": self.myhelp,
 			}, -1)
 		else:
 			self["actions"] = ActionMap(["SetupActions", 'ColorActions'],
@@ -1515,51 +1515,57 @@ class EPGSelectionSetup(Screen, ConfigListScreen):
 			self["config"].onSelectionChanged.append(self.selectionChanged)
 		self.selectionChanged()
 
-	def myhelp(self):
-		self.session.open(GraphEPGHelp, "/usr/share/enigma2/skin_default/GraphEPG/help.jpg")
-
 	def createSetup(self):
 		self.editListEntry = None
 		self.list = [ ]
 		if self.type == 5:
 			self.list.append(getConfigListEntry(_("Channel preview mode"), config.epgselction.preview_mode_vixepg))
-			self.list.append(getConfigListEntry(_("Show bouquet on launch"), config.epgselction.ShowBouquet_vixepg))
-			self.list.append(getConfigListEntry(_("Picture In Graphics*"), config.epgselction.PIG))
-			self.list.append(getConfigListEntry(_("Show Picons"), config.epgselction.UsePicon))
+			self.list.append(getConfigListEntry(_("Show bouquet on launch"), config.epgselction.showbouquet_vixepg))
+			self.list.append(getConfigListEntry(_("Picture In Graphics*"), config.epgselction.pictureingraphics))
+			self.list.append(getConfigListEntry(_("Show Picons"), config.epgselction.showpicon))
 			self.list.append(getConfigListEntry(_("Show Service names "), config.epgselction.showservicetitle))
 			self.list.append(getConfigListEntry(_("Info Button"), config.epgselction.Info))
 			self.list.append(getConfigListEntry(_("Long Info Button"), config.epgselction.InfoLong))
 			self.list.append(getConfigListEntry(_("OK Button"), config.epgselction.OK_vixepg))
 			self.list.append(getConfigListEntry(_("LongOK Button"), config.epgselction.OKLong_vixepg))
-			self.list.append(getConfigListEntry(_("Base Time"), config.epgselction.roundTo))
-			self.list.append(getConfigListEntry(_("Primetime hour"), config.epgselction.Primetime1))
-			self.list.append(getConfigListEntry(_("Primetime minute"), config.epgselction.Primetime2))
 			self.list.append(getConfigListEntry(_("Channel 1 at Start"), config.epgselction.channel1))
-			self.list.append(getConfigListEntry(_("Items per Page"), config.epgselction.items_per_page))
-			self.list.append(getConfigListEntry(_("Event Fontsize"), config.epgselction.eventfontsize))
-			self.list.append(getConfigListEntry(_("Service Fontsize"), config.epgselction.servicefontsize))
-			self.list.append(getConfigListEntry(_("Service width"), config.epgselction.servicewidth))
-			self.list.append(getConfigListEntry(_("Timeline Fontsize"), config.epgselction.Timeline))
-			self.list.append(getConfigListEntry(_("Time Scale"), config.epgselction.prev_time_period))
 			self.list.append(getConfigListEntry(_("Skip Empty Services"), config.epgselction.overjump))
+			self.list.append(getConfigListEntry(_("Base Time"), config.epgselction.roundTo))
+			self.list.append(getConfigListEntry(_("Primetime hour"), config.epgselction.primetimehour))
+			self.list.append(getConfigListEntry(_("Primetime minute"), config.epgselction.primetimemins))
+			self.list.append(getConfigListEntry(_("Items per Page"), config.epgselction.itemsperpage_vixepg))
+			self.list.append(getConfigListEntry(_("Event Fontsize"), config.epgselction.eventfontsize_vixepg))
+			self.list.append(getConfigListEntry(_("Service Fontsize"), config.epgselction.servicefontsize_vixepg))
+			self.list.append(getConfigListEntry(_("Service width"), config.epgselction.servicewidth))
+			self.list.append(getConfigListEntry(_("Timeline Fontsize"), config.epgselction.timelinefontsize))
+			self.list.append(getConfigListEntry(_("Time Scale"), config.epgselction.prev_time_period))
 		elif self.type == 4:
 			self.list.append(getConfigListEntry(_("Channel preview mode"), config.epgselction.preview_mode_infobar))
-			self.list.append(getConfigListEntry(_("Sort List by"), config.misc.EPGSort))
+			self.list.append(getConfigListEntry(_("Skip Empty Services"), config.epgselction.overjump))
+			self.list.append(getConfigListEntry(_("Sort List by"), config.epgselction.sort))
 			self.list.append(getConfigListEntry(_("OK Button"), config.epgselction.OK_infobar))
 			self.list.append(getConfigListEntry(_("LongOK Button"), config.epgselction.OKLong_infobar))
+			self.list.append(getConfigListEntry(_("Items per Page"), config.epgselction.itemsperpage_infobar))
+			self.list.append(getConfigListEntry(_("Event Fontsize"), config.epgselction.eventfontsize_infobar))
 		elif self.type == 3:
 			self.list.append(getConfigListEntry(_("Channel preview mode"), config.epgselction.preview_mode_enhanced))
-			self.list.append(getConfigListEntry(_("Sort List by"), config.misc.EPGSort))
+			self.list.append(getConfigListEntry(_("Skip Empty Services"), config.epgselction.overjump))
+			self.list.append(getConfigListEntry(_("Sort List by"), config.epgselction.sort))
 			self.list.append(getConfigListEntry(_("OK Button"), config.epgselction.OK_enhanced))
 			self.list.append(getConfigListEntry(_("LongOK Button"), config.epgselction.OKLong_enhanced))
+			self.list.append(getConfigListEntry(_("Items per Page"), config.epgselction.itemsperpage_enhanced))
+			self.list.append(getConfigListEntry(_("Event Fontsize"), config.epgselction.eventfontsize_enhanced))
 		elif self.type == 1:
 			self.list.append(getConfigListEntry(_("Channel preview mode"), config.epgselction.preview_mode))
-			self.list.append(getConfigListEntry(_("Show bouquet on launch"), config.epgselction.ShowBouquet_multi))
-			self.list.append(getConfigListEntry(_("Sort List by"), config.misc.EPGSort))
+			self.list.append(getConfigListEntry(_("Show bouquet on launch"), config.epgselction.showbouquet_multi))
+			self.list.append(getConfigListEntry(_("Skip Empty Services"), config.epgselction.overjump))
+			self.list.append(getConfigListEntry(_("Sort List by"), config.epgselction.sort))
 			self.list.append(getConfigListEntry(_("OK Button"), config.epgselction.OK))
 			self.list.append(getConfigListEntry(_("LongOK Button"), config.epgselction.OKLong))
 		else:
-			self.list.append(getConfigListEntry(_("Sort List by"), config.misc.EPGSort))
+			self.list.append(getConfigListEntry(_("Sort List by"), config.epgselction.sort))
+			self.list.append(getConfigListEntry(_("Items per Page"), config.epgselction.itemsperpage_single))
+			self.list.append(getConfigListEntry(_("Event Fontsize"), config.epgselction.eventfontsize_single))
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
 
@@ -1604,50 +1610,3 @@ class EPGSelectionSetup(Screen, ConfigListScreen):
 			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"))
 		else:
 			self.close()
-
-class GraphEPGHelp(Screen):
-	if (getDesktop(0).size().width()) == 720:
-		skin="""
-			<screen flags="wfNoBorder" position="0,0" size="720,576" title="..Help.." backgroundColor="#ffffffff">
-				<widget name="Picture" position="0,0" size="720,576" zPosition="1"/>
-			</screen>"""	
-	elif (getDesktop(0).size().width()) == 1024:
-		skin="""
-			<screen flags="wfNoBorder" position="0,0" size="1024,576" title="..Help.." backgroundColor="#ffffffff">
-				<widget name="Picture" position="0,0" size="1024,576" zPosition="1"/>
-			</screen>"""
-	else:
-		skin="""
-			<screen flags="wfNoBorder" position="0,0" size="1280,720" title="..Help.." backgroundColor="#ffffffff">
-				<widget name="Picture" position="0,0" size="1280,720" zPosition="1"/>
-			</screen>"""
-
-	def __init__(self, session, whatPic = None):
-		self.skin = GraphEPGHelp.skin
-		Screen.__init__(self, session)
-		self.whatPic = whatPic
-		self.EXscale = (AVSwitch().getFramebufferScale())
-		self.EXpicload = ePicLoad()
-		self["Picture"] = Pixmap()
-		self["actions"] = ActionMap(["WizardActions", "ColorActions"],
-		{
-			"ok": self.close,
-			"back": self.close,
-			"red": self.close,
-			"green": self.close
-		}, -1)
-
-		self["key_red"] = Button(_("Cancel"))
-		self["key_green"] = Button(_("Save"))
-		self.EXpicload.PictureData.get().append(self.DecodeAction)
-		self.onLayoutFinish.append(self.Help_Picture)
-
-	def Help_Picture(self):
-		if self.whatPic is not None:
-			self.EXpicload.setPara([self["Picture"].instance.size().width(), self["Picture"].instance.size().height(), self.EXscale[0], self.EXscale[1], 0, 1, "#121214"])
-			self.EXpicload.startDecode(self.whatPic)
-
-	def DecodeAction(self, pictureInfo=" "):
-		if self.whatPic is not None:
-			ptr = self.EXpicload.getData()
-			self["Picture"].instance.setPixmap(ptr)

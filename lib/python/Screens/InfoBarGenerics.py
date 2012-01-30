@@ -70,13 +70,16 @@ def setResumePoint(session):
 				else:
 					l = None 
 				resumePointCache[key] = [lru, pos[1], l]
+				print '[ResumePionts] lenth',len(resumePointCache)
 				if len(resumePointCache) > 50:
 					candidate = key
 					for k,v in resumePointCache.items():
 						if v[0] < lru:
 							candidate = k
 					del resumePointCache[candidate]
+				print '[ResumePionts] test',(lru - resumePointCacheLast)
 				if lru - resumePointCacheLast > 3600:
+					print '[ResumePionts] saving'
 					saveResumePoints()
 
 def delResumePoint(ref):
@@ -1038,7 +1041,7 @@ class InfoBarEPG:
 		self.EPGtype = "multi"
 		Servicelist = self.servicelist
 		self.StartBouquet = Servicelist and Servicelist.getRoot()
-		if config.epgselction.ShowBouquet_multi.value:
+		if config.epgselction.showbouquet_multi.value:
 			self.bouquets = self.servicelist.getBouquetList()
 			if self.bouquets is None:
 				cnt = 0
@@ -1085,7 +1088,7 @@ class InfoBarEPG:
 		self.EPGtype = "graph"
 		Servicelist = self.servicelist
 		self.StartBouquet = Servicelist and Servicelist.getRoot()
-		if config.epgselction.ShowBouquet_vixepg.value:
+		if config.epgselction.showbouquet_vixepg.value:
 			self.bouquets = self.servicelist.getBouquetList()
 			if self.bouquets is None:
 				cnt = 0
