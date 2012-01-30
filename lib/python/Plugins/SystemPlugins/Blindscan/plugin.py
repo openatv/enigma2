@@ -23,11 +23,8 @@ class Blindscan(ConfigListScreen, Screen):
 		<screen name="Blindscan" position="center,center" size="560,290" title="Blindscan">
 			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
 			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
 			<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-			<widget source="key_blue" render="Label" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
 			<widget name="config" position="5,50" size="550,200" scrollbarMode="showOnDemand" />
 			<widget name="introduction" position="0,265" size="560,20" font="Regular;20" halign="center" />
 		</screen>
@@ -58,13 +55,11 @@ class Blindscan(ConfigListScreen, Screen):
 			{
 				"red": self.keyCancel,
 				"green": self.keyGo,
-				"blue":self.keyGoAll,
 				"ok": self.keyGo,
 				"cancel": self.keyCancel,
 			}, -2)
 			self["key_red"] = StaticText(_("Exit"))
 			self["key_green"] = StaticText("Scan")
-			self["key_blue"] = StaticText("Scan All")
 			self["introduction"] = Label(_("Press Green/OK to start the scan"))
 			self.createSetup()
 		else :
@@ -72,13 +67,11 @@ class Blindscan(ConfigListScreen, Screen):
 			{
 				"red": self.keyCancel,
 				"green": self.keyNone,
-				"blue":self.keyNone,
 				"ok": self.keyNone,
 				"cancel": self.keyCancel,
 			}, -2)
 			self["key_red"] = StaticText(_("Exit"))
 			self["key_green"] = StaticText(" ")
-			self["key_blue"] = StaticText(" ")
 			self["introduction"] = Label(_("Please setup your tuner configuration."))
 
 		self.i2c_mapping_table = None
@@ -94,6 +87,7 @@ class Blindscan(ConfigListScreen, Screen):
 
 	def keyNone(self):
 		None
+	
 	def callbackNone(self, *retval):
 		None
 
@@ -155,14 +149,11 @@ class Blindscan(ConfigListScreen, Screen):
 		self.scan_sat = ConfigSubsection()
 		self.scan_networkScan = ConfigYesNo(default = False)
 		
-		# blindscan add
-		self.blindscan_hi = ConfigSelection(default = "hi_low", choices = [("low", _("low")), ("high", _("high")), ("hi_low", _("hi_low"))])
-
 		#ConfigYesNo(default = True)
-		self.blindscan_start_frequency = ConfigInteger(default = 950*1000000)
-		self.blindscan_stop_frequency = ConfigInteger(default = 2150*1000000)
-		self.blindscan_start_symbol = ConfigInteger(default = 2*1000000)
-		self.blindscan_stop_symbol = ConfigInteger(default = 45*1000000)
+		self.blindscan_start_frequency = ConfigInteger(default = 10700, limits = (1, 99999))
+		self.blindscan_stop_frequency = ConfigInteger(default = 12750, limits = (1, 99999))
+		self.blindscan_start_symbol = ConfigInteger(default = 2, limits = (1, 99))
+		self.blindscan_stop_symbol = ConfigInteger(default = 45, limits = (1, 99))
 		self.scan_clearallservices = ConfigYesNo(default = False)
 		self.scan_onlyfree = ConfigYesNo(default = False)
 
@@ -183,11 +174,11 @@ class Blindscan(ConfigListScreen, Screen):
 
 		# sat
 		self.scan_sat.frequency = ConfigInteger(default = defaultSat["frequency"], limits = (1, 99999))
-		#self.scan_sat.polarization = ConfigSelection(default = defaultSat["polarization"], choices = [
 		self.scan_sat.polarization = ConfigSelection(default = eDVBFrontendParametersSatellite.Polarisation_CircularRight + 1, choices = [
-			(eDVBFrontendParametersSatellite.Polarisation_CircularRight + 1, _("horizontal_vertical")),
+			(eDVBFrontendParametersSatellite.Polarisation_CircularRight + 1, _("horizontal and vertical")),
 			(eDVBFrontendParametersSatellite.Polarisation_Horizontal, _("horizontal")),
 			(eDVBFrontendParametersSatellite.Polarisation_Vertical, _("vertical")),
+			(eDVBFrontendParametersSatellite.Polarisation_CircularRight + 2, _("circular left and circular right")),
 			(eDVBFrontendParametersSatellite.Polarisation_CircularLeft, _("circular left")),
 			(eDVBFrontendParametersSatellite.Polarisation_CircularRight, _("circular right"))])
 		self.scan_scansat = {}
@@ -232,8 +223,7 @@ class Blindscan(ConfigListScreen, Screen):
 			self.list.append(getConfigListEntry(_('Satellite'), self.scan_satselection[self.getSelectedSatIndex(index_to_scan)]))
 			self.list.append(getConfigListEntry(_('Scan start frequency'), self.blindscan_start_frequency))
 			self.list.append(getConfigListEntry(_('Scan stop frequency'), self.blindscan_stop_frequency))
-			self.list.append(getConfigListEntry(_("Polarity"), self.scan_sat.polarization))
-			self.list.append(getConfigListEntry(_("Scan band"), self.blindscan_hi))
+			self.list.append(getConfigListEntry(_("Polarisation"), self.scan_sat.polarization))
 			self.list.append(getConfigListEntry(_('Scan start symbolrate'), self.blindscan_start_symbol))
 			self.list.append(getConfigListEntry(_('Scan stop symbolrate'), self.blindscan_stop_symbol))
 			self.list.append(getConfigListEntry(_("Clear before scan"), self.scan_clearallservices))
@@ -250,23 +240,35 @@ class Blindscan(ConfigListScreen, Screen):
 			self.createSetup()
 
 	def checkSettings(self):
-		if self.blindscan_start_frequency.value < 950*1000000 or self.blindscan_start_frequency.value > 2150*1000000 :
-			self.session.open(MessageBox, _("Please check again.\nStart frequency must be between 950 and 2150."), MessageBox.TYPE_ERROR)
+		self.ku_band_lower_limit = 10700
+		self.is_c_band_scan = False
+		if self.blindscan_start_frequency.value < 4200 :
+			self.is_c_band_scan = True
+		if self.blindscan_start_symbol.value < 1 or self.blindscan_start_symbol.value > 45 :
+			self.session.open(MessageBox, _("Please check again.\nStart symbolrate must be between 1MHz and 44MHz."), MessageBox.TYPE_ERROR)
 			return False
-		if self.blindscan_stop_frequency.value < 950*1000000 or self.blindscan_stop_frequency.value > 2150*1000000 :
-			self.session.open(MessageBox, _("Please check again.\nStop frequency must be between 950 and 2150."), MessageBox.TYPE_ERROR)
-			return False
-		if self.blindscan_start_frequency.value > self.blindscan_stop_frequency.value :
-			self.session.open(MessageBox, _("Please check again.\nFrequency : start value is larger than stop value."), MessageBox.TYPE_ERROR)
-			return False
-		if self.blindscan_start_symbol.value < 2*1000000 or self.blindscan_start_symbol.value > 45*1000000 :
-			self.session.open(MessageBox, _("Please check again.\nStart symbolrate must be between 2MHz and 45MHz."), MessageBox.TYPE_ERROR)
-			return False
-		if self.blindscan_stop_symbol.value < 2*1000000 or self.blindscan_stop_symbol.value > 45*1000000 :
+		if self.blindscan_stop_symbol.value < 1 or self.blindscan_stop_symbol.value > 45 :
 			self.session.open(MessageBox, _("Please check again.\nStop symbolrate must be between 2MHz and 45MHz."), MessageBox.TYPE_ERROR)
 			return False
 		if self.blindscan_start_symbol.value > self.blindscan_stop_symbol.value :
 			self.session.open(MessageBox, _("Please check again.\nSymbolrate : start value is larger than stop value."), MessageBox.TYPE_ERROR)
+			return False
+		if self.blindscan_start_frequency.value > self.blindscan_stop_frequency.value :
+			self.session.open(MessageBox, _("Please check again.\nFrequency : start value is larger than stop value."), MessageBox.TYPE_ERROR)
+			return False
+		if self.is_c_band_scan :
+			if self.blindscan_start_frequency.value < 3000 :
+				self.session.open(MessageBox, _("Please check again.\nStart frequency must be between 10700MHz and 12750MHz.\n(Or 3000MHz and 4200MHz in the case of c-band)."), MessageBox.TYPE_ERROR)
+				return False
+			if self.blindscan_stop_frequency.value > 4200 :
+				self.session.open(MessageBox, _("Please check again.\nFor C-band searches stop frequency must be between 3000MHz and 4200MHz."), MessageBox.TYPE_ERROR)
+				return False
+			return True			
+		if self.blindscan_start_frequency.value < 10700 or self.blindscan_start_frequency.value > 12750 :
+			self.session.open(MessageBox, _("Please check again.\nStart frequency must be between 10700MHz and 12750MHz.\n(Or 3000MHz and 4200MHz in the case of c-band)."), MessageBox.TYPE_ERROR)
+			return False
+		if self.blindscan_stop_frequency.value < 10700 or self.blindscan_stop_frequency.value > 12750 :
+			self.session.open(MessageBox, _("Please check again.\nStop frequency must be between 10700MHz and 12750MHz.\n(Or 3000MHz and 4200MHz in the case of c-band)."), MessageBox.TYPE_ERROR)
 			return False
 		return True
 
@@ -293,7 +295,8 @@ class Blindscan(ConfigListScreen, Screen):
 			eDVBFrontendParametersSatellite.Polarisation_Vertical : "vertical",
 			eDVBFrontendParametersSatellite.Polarisation_CircularLeft : "circular left",
 			eDVBFrontendParametersSatellite.Polarisation_CircularRight : "circular right",
-			eDVBFrontendParametersSatellite.Polarisation_CircularRight + 1 : "horizontal_vertical"
+			eDVBFrontendParametersSatellite.Polarisation_CircularRight + 1 : "horizontal and vertical",
+			eDVBFrontendParametersSatellite.Polarisation_CircularRight + 2 : "circular left and circular right"
 		}
 
 		self.tmp_tplist=[]
@@ -302,33 +305,26 @@ class Blindscan(ConfigListScreen, Screen):
 		idx_selected_sat = int(self.getSelectedSatIndex(self.scan_nims.value))
 		tmp_list=[self.satList[int(self.scan_nims.value)][self.scan_satselection[idx_selected_sat].index]]
 
-		if self.blindscan_hi.value == "hi_low" :
+		uni_lnb_cutoff = 11700
+		if self.blindscan_start_frequency.value < uni_lnb_cutoff and self.blindscan_stop_frequency.value > uni_lnb_cutoff :
 			tmp_band=["low","high"]
-		else:
-			tmp_band=[self.blindscan_hi.value]
+		elif self.blindscan_start_frequency.value < uni_lnb_cutoff :
+			tmp_band=["low"]
+		else :
+			tmp_band=["high"]
 			
-		if self.scan_sat.polarization.value ==  eDVBFrontendParametersSatellite.Polarisation_CircularRight + 1 : 
-			tmp_pol=["horizontal","vertical"]
+		if self.scan_sat.polarization.value >  eDVBFrontendParametersSatellite.Polarisation_CircularRight : # must be searching both polarisations, either V and H, or R and L
+			tmp_pol=["vertical", "horizontal"]
+		elif self.scan_sat.polarization.value ==  eDVBFrontendParametersSatellite.Polarisation_CircularRight :
+			tmp_pol=["vertical"]
+		elif self.scan_sat.polarization.value ==  eDVBFrontendParametersSatellite.Polarisation_CircularLeft :
+			tmp_pol=["horizontal"]
 		else:
 			tmp_pol=[tab_pol[self.scan_sat.polarization.value]]
 
 		self.doRun(tmp_list, tmp_pol, tmp_band)
 		
-	def keyGoAll(self):
-		if self.checkSettings() == False:
-			return
-		self.tmp_tplist=[]
-		tmp_list=[]
-		tmp_band=["low","high"]
-		tmp_pol=["horizontal","vertical"]
-		
-		for slot in nimmanager.nim_slots:
-			device_name = "/dev/dvb/adapter0/frontend%d" % (slot.slot)
-			if slot.isCompatible("DVB-S") and int(self.scan_nims.value) == slot.slot:
-				for s in self.satList[slot.slot]:
-					tmp_list.append(s)
-		self.doRun(tmp_list, tmp_pol, tmp_band)
-		
+	
 	def doRun(self, tmp_list, tmp_pol, tmp_band):
 		self.full_data = ""
 		self.total_list=[]
@@ -388,10 +384,13 @@ class Blindscan(ConfigListScreen, Screen):
 						self.frontend = None
 		self.tuner = Tuner(self.frontend)
 
-		if tab_hilow[band]:
-			self.scan_sat.frequency.value = 12515
+		if self.is_c_band_scan : 
+			self.scan_sat.frequency.value = 3600
 		else:
-			self.scan_sat.frequency.value = 11015
+			if tab_hilow[band]:
+				self.scan_sat.frequency.value = 12515
+			else:
+				self.scan_sat.frequency.value = 11015
 		returnvalue = (self.scan_sat.frequency.value,
 					 0,
 					 tab_pol[pol],
@@ -408,17 +407,53 @@ class Blindscan(ConfigListScreen, Screen):
 			print "can't find i2c number!!"
 			return
 
+		c_band_loc_osc = 5150
+		uni_lnb_loc_osc = {"high" : 10600, "low" : 9750}
+		uni_lnb_cutoff = 11700
+		if self.is_c_band_scan : 
+			temp_start_int_freq = c_band_loc_osc - self.blindscan_stop_frequency.value
+			temp_end_int_freq = c_band_loc_osc - self.blindscan_start_frequency.value
+			status_box_start_freq = c_band_loc_osc - temp_end_int_freq
+			status_box_end_freq = c_band_loc_osc - temp_start_int_freq
+			
+		else:
+			if tab_hilow[band] :
+				if self.blindscan_start_frequency.value < uni_lnb_cutoff :
+					temp_start_int_freq = uni_lnb_cutoff - uni_lnb_loc_osc[band]
+				else:
+					temp_start_int_freq = self.blindscan_start_frequency.value - uni_lnb_loc_osc[band]
+				temp_end_int_freq = self.blindscan_stop_frequency.value - uni_lnb_loc_osc[band]
+			else:
+				if self.blindscan_stop_frequency.value > uni_lnb_cutoff :
+					temp_end_int_freq = uni_lnb_cutoff - uni_lnb_loc_osc[band]
+				else:
+					temp_end_int_freq = self.blindscan_stop_frequency.value - uni_lnb_loc_osc[band]
+				temp_start_int_freq = self.blindscan_start_frequency.value - uni_lnb_loc_osc[band]
+			status_box_start_freq = temp_start_int_freq + uni_lnb_loc_osc[band]
+			status_box_end_freq = temp_end_int_freq + uni_lnb_loc_osc[band]
+			
 		if config.misc.boxtype.value.startswith('vu'):
-			cmd = "vuplus_blindscan %d %d %d %d %d %d %d %d" % (self.blindscan_start_frequency.value/1000000, self.blindscan_stop_frequency.value/1000000, self.blindscan_start_symbol.value/1000000, self.blindscan_stop_symbol.value/1000000, tab_pol[pol], tab_hilow[band], self.feid, self.getNimSocket(self.feid))
+			cmd = "vuplus_blindscan %d %d %d %d %d %d %d %d" % (temp_start_int_freq, temp_end_int_freq, self.blindscan_start_symbol.value, self.blindscan_stop_symbol.value, tab_pol[pol], tab_hilow[band], self.feid, self.getNimSocket(self.feid)) # commented out by Huevos cmd = "vuplus_blindscan %d %d %d %d %d %d %d %d" % (self.blindscan_start_frequency.value/1000000, self.blindscan_stop_frequency.value/1000000, self.blindscan_start_symbol.value, self.blindscan_stop_symbol.value, tab_pol[pol], tab_hilow[band], self.feid, self.getNimSocket(self.feid))
 		elif config.misc.boxtype.value.startswith('et'):
-			cmd = "avl_xtrend_blindscan %d %d %d %d %d %d %d %d" % (self.blindscan_start_frequency.value/1000000, self.blindscan_stop_frequency.value/1000000, self.blindscan_start_symbol.value/1000000, self.blindscan_stop_symbol.value/1000000, tab_pol[pol], tab_hilow[band], self.feid, self.getNimSocket(self.feid))
+			cmd = "avl_xtrend_blindscan %d %d %d %d %d %d %d %d" % (temp_start_int_freq, temp_end_int_freq, self.blindscan_start_symbol.value, self.blindscan_stop_symbol.value, tab_pol[pol], tab_hilow[band], self.feid, self.getNimSocket(self.feid)) # commented out by Huevos cmd = "avl_xtrend_blindscan %d %d %d %d %d %d %d %d" % (self.blindscan_start_frequency.value/1000000, self.blindscan_stop_frequency.value/1000000, self.blindscan_start_symbol.value, self.blindscan_stop_symbol.value, tab_pol[pol], tab_hilow[band], self.feid, self.getNimSocket(self.feid))
 		print "prepared command : [%s]" % (cmd)
 		self.blindscan_container = eConsoleAppContainer()
 		self.blindscan_container.appClosed.append(self.blindscanContainerClose)
 		self.blindscan_container.dataAvail.append(self.blindscanContainerAvail)
 		self.blindscan_container.execute(cmd)
-
-		tmpstr = _("Looking for available transponders.\nThis will take several minutes.\n\n   Current Status : %d/%d\n   Orbital Positions : %s\n   Polarization : %s\n   Bandwidth : %s") %(self.running_count, self.max_count, orb[1], pol, band)
+		
+		display_pol = pol # Display the correct polarisation in the MessageBox below
+		if self.scan_sat.polarization.value == eDVBFrontendParametersSatellite.Polarisation_CircularRight : 
+			display_pol = _("circular right")
+		elif self.scan_sat.polarization.value == eDVBFrontendParametersSatellite.Polarisation_CircularLeft : 
+			display_pol = _("circular left")
+		elif  self.scan_sat.polarization.value == eDVBFrontendParametersSatellite.Polarisation_CircularRight + 2 : 
+			if pol == "horizontal" :
+				display_pol = _("circular left")
+			else:
+				display_pol = _("circular right")
+		
+		tmpstr = _("Looking for available transponders.\nThis will take a short while.\n\n   Current Status : %d/%d\n   Orbital Position : %s\n   Polarization : %s\n   Frequency range : %d - %d") %(self.running_count, self.max_count, orb[1], display_pol, status_box_start_freq, status_box_end_freq)
 		if is_scan :
 			self.blindscan_session = self.session.openWithCallback(self.blindscanSessionClose, MessageBox, tmpstr, MessageBox.TYPE_INFO)
 		else:
@@ -494,14 +529,36 @@ class Blindscan(ConfigListScreen, Screen):
 		self.blindscanSessionNone(val[0])
 
 		if self.tmp_tplist != None and self.tmp_tplist != []:
+			if self.is_c_band_scan : # for some reason a c-band scan (with a Vu+) returns the transponder frequencies in Ku band format so they have to be converted back to c-band numbers before the subsequent service search
+				x = 0
+				for transponders in self.tmp_tplist :
+					if self.tmp_tplist[x].frequency > (4200*1000) :
+						self.tmp_tplist[x].frequency = (5150*1000) - (self.tmp_tplist[x].frequency - (9750*1000))
+					x += 1
+			
+			x = 0
+			for transponders in self.tmp_tplist : 
+				if self.tmp_tplist[x].system == 0 : # convert DVB-S transponders to auto fec as for some reason the tuner incorrectly returns 3/4 FEC for all transmissions
+					self.tmp_tplist[x].fec = 0
+				if self.scan_sat.polarization.value == eDVBFrontendParametersSatellite.Polarisation_CircularRight : # Return circular transponders to correct polarisation
+					self.tmp_tplist[x].polarisation = eDVBFrontendParametersSatellite.Polarisation_CircularRight
+				elif self.scan_sat.polarization.value == eDVBFrontendParametersSatellite.Polarisation_CircularLeft : # Return circular transponders to correct polarisation
+					self.tmp_tplist[x].polarisation = eDVBFrontendParametersSatellite.Polarisation_CircularLeft
+				elif self.scan_sat.polarization.value == eDVBFrontendParametersSatellite.Polarisation_CircularRight + 2: # Return circular transponders to correct polarisation
+					if self.tmp_tplist[x].polarisation == eDVBFrontendParametersSatellite.Polarisation_Horizontal : # Return circular transponders to correct polarisation
+						self.tmp_tplist[x].polarisation = eDVBFrontendParametersSatellite.Polarisation_CircularLeft
+					else:
+						self.tmp_tplist[x].polarisation = eDVBFrontendParametersSatellite.Polarisation_CircularRight
+				x += 1
+					
 			for p in self.tmp_tplist:
 				print "data : [%d][%d][%d][%d][%d][%d][%d][%d][%d][%d]" % (p.orbital_position, p.polarisation, p.frequency, p.symbol_rate, p.system, p.inversion, p.pilot, p.fec, p.modulation, p.modulation)
-
+							
 			self.startScan(self.tmp_tplist, self.feid)
 		else:
-			msg = _("No found transponders!!\nPlease check the satellite connection, or scan other search condition.")
+			msg = _("No transponders were found for those search parameters!")
 			if val[0] == False:
-				msg = _("Blindscan was canceled by the user.")
+				msg = _("The blindscan run was cancelled by the user.")
 			self.session.openWithCallback(self.callbackNone, MessageBox, msg, MessageBox.TYPE_INFO, timeout=10)
 			self.tmp_tplist = []
 
