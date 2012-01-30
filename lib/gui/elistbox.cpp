@@ -189,10 +189,10 @@ void eListbox::moveSelection(long dir)
 	case pageDown:
 		newsel = oldsel - (oldsel % m_items_per_page); // get top of page index
 		m_content->cursorSet(newsel); // go to top of current page so we play it per page
+		m_content->cursorMove(m_items_per_page);
+		newsel = m_content->cursorGet();
 		do
 		{
-			m_content->cursorMove(m_items_per_page);
-			newsel = m_content->cursorGet();
 			prevsel = newsel;
 			// find first selectable entry in new page
 			while (newsel != prevsel + m_items_per_page && m_content->cursorValid() && !m_content->currentCursorSelectable())
@@ -202,11 +202,16 @@ void eListbox::moveSelection(long dir)
 			}
 			if (!m_content->cursorValid())
 			{
-				m_content->cursorSet(oldsel);
+				// we reached the end of the list
+				// Back up till something selectable or we reach oldsel again
+				do
+				{
+					m_content->cursorMove(-1);
+					newsel = m_content->cursorGet();
+				}
+				while (newsel != oldsel && !m_content->currentCursorSelectable());
 				break;
 			}
-			if (newsel == prevsel + m_items_per_page)
-				m_content->cursorSet(prevsel);
 		}
 		while (newsel == prevsel + m_items_per_page);
 		break;
