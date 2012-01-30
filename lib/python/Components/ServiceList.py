@@ -43,10 +43,11 @@ class ServiceList(HTMLComponent, GUIComponent):
 
 		self.root = None
 		self.mode = self.MODE_NORMAL
-		self.ItemHeight = 28
+		self.listHeight = None
+		self.listWidth = None
+		self.ServiceNumberFont = parseFont("Regular;20", ((1,1),(1,1)))
 		self.ServiceNameFont = parseFont("Regular;22", ((1,1),(1,1)))
 		self.ServiceInfoFont = parseFont("Regular;18", ((1,1),(1,1)))
-		self.ServiceNumberFont = parseFont("Regular;20", ((1,1),(1,1)))
 		self.onSelectionChanged = [ ]
 
 	def applySkin(self, desktop, parent):
@@ -94,8 +95,13 @@ class ServiceList(HTMLComponent, GUIComponent):
 					self.ServiceNumberFont = parseFont(value, ((1,1),(1,1)))
 				else:
 					attribs.append((attrib, value))
-		self.skinAttributes = attribs
-		return GUIComponent.applySkin(self, desktop, parent)
+			self.skinAttributes = attribs
+			self.setServiceFontsize()
+		rc = GUIComponent.applySkin(self, desktop, parent)
+		self.listHeight = self.instance.size().height()
+		self.listWidth = self.instance.size().width()
+		self.setItemsPerPage()
+		return rc
 
 	def connectSelChanged(self, fnc):
 		if not fnc in self.onSelectionChanged:
@@ -157,10 +163,30 @@ class ServiceList(HTMLComponent, GUIComponent):
 
 	GUI_WIDGET = eListbox
 	
+	def setItemsPerPage(self):
+ 		if self.listHeight > 0:
+			itemHeight = self.listHeight / config.usage.serviceitems_per_page.value
+		else:
+			itemHeight = 28
+		self.ItemHeight = itemHeight
+		self.l.setItemHeight(itemHeight)
+
+	def setServiceFontsize(self):
+		servicenumfont = self.ServiceNameFont.family+";"+str(config.usage.servicenumfontsize.value)
+		self.ServiceNumberFont = parseFont(servicenumfont, ((1,1),(1,1)))
+		servicenamefont = self.ServiceNameFont.family+";"+str(config.usage.servicenamefontsize.value)
+		self.ServiceNameFont = parseFont(servicenamefont, ((1,1),(1,1)))
+		serviceinfofont = self.ServiceInfoFont.family+";"+str(config.usage.serviceinfofontsize.value)
+		self.ServiceInfoFont = parseFont(serviceinfofont, ((1,1),(1,1)))
+		self.l.setElementFont(self.l.celServiceName, self.ServiceNameFont)
+		self.l.setElementFont(self.l.celServiceNumber, self.ServiceNumberFont)
+		self.l.setElementFont(self.l.celServiceInfo, self.ServiceInfoFont)
+
 	def postWidgetCreate(self, instance):
 		instance.setWrapAround(True)
 		instance.setContent(self.l)
 		instance.selectionChanged.get().append(self.selectionChanged)
+		self.setServiceFontsize()
 		self.setMode(self.mode)
 
 	def preWidgetRemove(self, instance):
@@ -235,8 +261,12 @@ class ServiceList(HTMLComponent, GUIComponent):
 
 	def setMode(self, mode):
 		self.mode = mode
+		self.setItemsPerPage()
 		self.l.setItemHeight(self.ItemHeight)
 		self.l.setVisualMode(eListboxServiceContent.visModeComplex)
+		self.l.setElementFont(self.l.celServiceName, self.ServiceNameFont)
+		self.l.setElementFont(self.l.celServiceNumber, self.ServiceNumberFont)
+		self.l.setElementFont(self.l.celServiceInfo, self.ServiceInfoFont)
 		if mode == self.MODE_NORMAL or not config.usage.show_channel_numbers_in_servicelist.value:
 			channelNumberWidth = 0
 			channelNumberSpace = 0
@@ -248,9 +278,6 @@ class ServiceList(HTMLComponent, GUIComponent):
 			self.l.setElementPosition(self.l.celServiceEventProgressbar, eRect(channelNumberWidth+channelNumberSpace, 0, 52, self.ItemHeight))
 		else:
 			self.l.setElementPosition(self.l.celServiceEventProgressbar, eRect(channelNumberWidth+channelNumberSpace, 0, 0, 0))
-		self.l.setElementFont(self.l.celServiceName, self.ServiceNameFont)
-		self.l.setElementFont(self.l.celServiceNumber, self.ServiceNumberFont)
 		self.l.setElementPosition(self.l.celServiceNumber, eRect(0, 0, channelNumberWidth, self.ItemHeight))
 		self.l.setElementPosition(self.l.celServiceName, eRect(channelNumberWidth+channelNumberSpace, 0, self.instance.size().width() - (channelNumberWidth+channelNumberSpace), self.ItemHeight))
-		self.l.setElementFont(self.l.celServiceInfo, self.ServiceInfoFont)
 
