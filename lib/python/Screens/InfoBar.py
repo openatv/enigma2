@@ -159,20 +159,9 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			VideoPID = 1
                
 		if VideoPID == -1: 
-			self.showTv2() 
+			self.showTv() 
 		else: 
-			self.showRadio2()
-
-	def showTv2(self):
-		self.showTvChannelList(False)
-
-	def showRadio2(self):
-		if config.usage.e1like_radio_mode.value:
-			self.showRadioChannelList(False)
-		else:
-			self.rds_display.hide() # in InfoBarRdsDecoder
-			from Screens.ChannelSelection import ChannelSelectionRadio
-			self.session.openWithCallback(self.ChannelSelectionRadioClosed, ChannelSelectionRadio, self)	
+			self.showRadio()
 
 	def ChannelSelectionRadioClosed(self, *arg):
 		self.rds_display.show()  # in InfoBarRdsDecoder
