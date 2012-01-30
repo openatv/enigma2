@@ -643,7 +643,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 	def __init__(self, session, services, zapFunc=None, bouquetChangeCB=None, bouquetname=""):
 		Screen.__init__(self, session)
 		self.bouquetChangeCB = bouquetChangeCB
-		now = time()
+		now = time() - config.epg.histminutes.value * 60
 		self.ask_time = now - now % (config.misc.graph_mepg.roundTo.getValue() * 60)
 		self.closeRecursive = False
 		self["key_red"] = Button("")
@@ -778,7 +778,9 @@ class GraphMultiEPG(Screen, HelpableScreen):
 	def onDateTimeInputClosed(self, ret):
 		if len(ret) > 1:
 			if ret[0]:
-				self.ask_time = ret[1] - ret[1] % (config.misc.graph_mepg.roundTo.getValue() * 60)
+				now = time() - config.epg.histminutes.value * 60
+				seld.ask_time = ret[1] if ret[1] >= now else now
+				self.ask_time = self.ask_time - self.ask_time % (config.misc.graph_mepg.roundTo.getValue() * 60)
 				l = self["list"]
 				l.resetOffset()
 				l.fillMultiEPG(None, self.ask_time)
@@ -795,7 +797,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		l.setOverjump_Empty(config.misc.graph_mepg.overjump.value)
 		l.setShowPicon(config.misc.graph_mepg.showpicon.value)
 		l.setShowServiceTitle(config.misc.graph_mepg.showservicetitle.value)
-		now = time()
+		now = time() - config.epg.histminutes.value * 60
 		self.ask_time = now - now % (config.misc.graph_mepg.roundTo.getValue() * 60)
 		l.fillMultiEPG(None, self.ask_time)
 		self.moveTimeLines()
