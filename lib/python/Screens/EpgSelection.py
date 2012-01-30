@@ -583,7 +583,6 @@ class EPGSelection(Screen, HelpableScreen):
 			if self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_SINGLE:
 				l.setItemsPerPage()
 				l.setEventFontsize()
-			l.setOverjump_Empty(config.epgselction.overjump.value)
 			l.recalcEntrySize()
 			l.sortSingleEPG(self.sort_type)
 
@@ -698,6 +697,8 @@ class EPGSelection(Screen, HelpableScreen):
 				self.servicelist.moveDown()
 			if self.isPlayable():
 				self.onCreate()
+				if not self["list"].getCurrent()[1] and config.epgselction.overjump.value:
+					self.nextService()
 			else:
 				self.nextService()
 		elif self.type == EPG_TYPE_GRAPH:
@@ -740,6 +741,8 @@ class EPGSelection(Screen, HelpableScreen):
 				self.servicelist.moveUp()
 			if self.isPlayable():
 				self.onCreate()
+				if not self["list"].getCurrent()[1] and config.epgselction.overjump.value:
+					self.prevService()
 			else:
 				self.prevService()
 		elif self.type == EPG_TYPE_GRAPH:
