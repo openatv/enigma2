@@ -1,34 +1,27 @@
 from Screen import Screen
 from Screens.HelpMenu import HelpableScreen
-from Components.AVSwitch import AVSwitch
 from Components.ActionMap import ActionMap, NumberActionMap, HelpableActionMap
 from Components.Button import Button
-from Components.config import config, configfile, ConfigClock, NoSave, ConfigSelection, getConfigListEntry, ConfigText, ConfigDateTime, ConfigSubList, ConfigYesNo
+from Components.config import config, configfile, ConfigClock, getConfigListEntry
 from Components.ConfigList import ConfigListScreen
 from Components.EpgList import EPGList, TimelineText, getPiconName, EPG_TYPE_SINGLE, EPG_TYPE_SIMILAR, EPG_TYPE_MULTI, EPG_TYPE_ENHANCED, EPG_TYPE_INFOBAR, EPG_TYPE_GRAPH, MAX_TIMELINES
 from Components.Label import Label
-from Components.GUIComponent import GUIComponent
-from Components.HTMLComponent import HTMLComponent
 from Components.Pixmap import Pixmap
 from Components.Sources.ServiceEvent import ServiceEvent
 from Components.Sources.Event import Event
 from Components.Sources.StaticText import StaticText
-from Components.SystemInfo import SystemInfo
-from Components.TimerSanityCheck import TimerSanityCheck
-from Components.UsageConfig import preferredTimerPath, defaultMoviePath
-from Screens.MovieSelection import getPreferredTagEditor
+from Components.UsageConfig import preferredTimerPath
 from Screens.TimerEdit import TimerSanityConflict
 from Screens.EventView import EventViewSimple
 from Screens.MessageBox import MessageBox
-from Tools.Directories import pathExists, resolveFilename, SCOPE_CURRENT_SKIN, SCOPE_LANGUAGE, SCOPE_PLUGINS
-from Tools.LoadPixmap import LoadPixmap
+from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN
+# from Tools.LoadPixmap import LoadPixmap
 from TimeDateInput import TimeDateInput
-from enigma import eServiceReference, getDesktop, eEPGCache, eTimer, eServiceCenter, eListbox, eListboxPythonMultiContent, eRect, ePicLoad, gFont, RT_HALIGN_LEFT, RT_HALIGN_CENTER, RT_VALIGN_CENTER, RT_WRAP
+from enigma import eServiceReference, eTimer, eServiceCenter
 from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT
 from TimerEntry import TimerEntry
 from ServiceReference import ServiceReference
-from time import time, strftime, localtime, mktime
-from datetime import datetime
+from time import time, localtime, mktime
 
 mepg_config_initialized = False
 try:
@@ -310,7 +303,7 @@ class EPGSelection(Screen, HelpableScreen):
 				else:
 					self.skin = self.GraphEPGPIG
 					self.skinName = "GraphicalEPGPIG"
-				now = time()
+				now = time() - int(config.epg.histminutes.getValue()) * 60
 				self.ask_time = self.ask_time = now - now % (int(config.epgselction.roundTo.getValue()) * 60)
 				self.closeRecursive = False
 				self.key_red_choice = self.EMPTY
@@ -380,7 +373,7 @@ class EPGSelection(Screen, HelpableScreen):
 
 		self.key_green_choice = self.ADD_TIMER
 		self.key_red_choice = self.EMPTY
-		self["list"] = EPGList(type = self.type, selChangedCB = self.onSelectionChanged, timer = session.nav.RecordTimer, time_epoch = config.epgselction.prev_time_period.value, overjump_empty = config.epgselction.overjump.value)
+		self["list"] = EPGList(type = self.type, selChangedCB = self.onSelectionChanged, timer = session.nav.RecordTimer, time_epoch = config.epgselction.prev_time_period.getValue(), overjump_empty = config.epgselction.overjump.value)
 
 		HelpableScreen.__init__(self)
 		self["okactions"] = HelpableActionMap(self, "OkCancelActions",
@@ -571,11 +564,11 @@ class EPGSelection(Screen, HelpableScreen):
 			l.setEventFontsize()
 			l.setServiceFontsize()
 			self["timeline_text"].setTimeLineFontsize()
-			l.setEpoch(config.epgselction.prev_time_period.value)
+			l.setEpoch(config.epgselction.prev_time_period.getValue())
 			l.setOverjump_Empty(config.epgselction.overjump.value)
 			l.setShowPicon(config.epgselction.showpicon.value)
 			l.setShowServiceTitle(config.epgselction.showservicetitle.value)
-			now = time()
+			now = time() - int(config.epg.histminutes.getValue()) * 60
 			self.ask_time = now - now % (int(config.epgselction.roundTo.getValue()) * 60)
 			l.fillGraphEPG(None, self.ask_time)
 			self.moveTimeLines()
@@ -707,7 +700,7 @@ class EPGSelection(Screen, HelpableScreen):
 			else:
 				self.nextService()
 		elif self.type == EPG_TYPE_GRAPH:
-			coolhilf = config.epgselction.prev_time_period.value	
+			coolhilf = config.epgselction.prev_time_period.getValue()
 			if coolhilf == 60:
 				for i in range(24):
 					self.updEvent(+2)
@@ -751,7 +744,7 @@ class EPGSelection(Screen, HelpableScreen):
 			else:
 				self.prevService()
 		elif self.type == EPG_TYPE_GRAPH:
-			coolhilf = config.epgselction.prev_time_period.value
+			coolhilf = config.epgselction.prev_time_period.getValue()
 			if coolhilf == 60:
 				for i in range(24):
 					self.updEvent(-2)
@@ -777,7 +770,7 @@ class EPGSelection(Screen, HelpableScreen):
 			if not mepg_config_initialized:
 				config.misc.prev_mepg_time=ConfigClock(default = time())
 				mepg_config_initialized = True
-			self.session.openWithCallback(self.onDateTimeInputClosed, TimeDateInput, config.misc.prev_mepg_time )
+			self.session.openWithCallback(self.onDateTimeInputClosed, TimeDateInput, config.epgselction.prev_time )
 		elif self.type == EPG_TYPE_GRAPH:
 			self.session.openWithCallback(self.onDateTimeInputClosed, TimeDateInput, config.epgselction.prev_time)
 
@@ -788,7 +781,8 @@ class EPGSelection(Screen, HelpableScreen):
 					self.ask_time=ret[1]
 					self["list"].fillMultiEPG(self.services, ret[1])
 				elif self.type == EPG_TYPE_GRAPH:
-					self.ask_time = ret[1] - ret[1] % (int(config.epgselction.roundTo.getValue()) * 60)
+					now = time() - int(config.epg.histminutes.getValue()) * 60
+					self.ask_time = self.ask_time - self.ask_time % (int(config.epgselction.roundTo.getValue()) * 60)
 					l = self["list"]
 					l.resetOffset()
 					l.fillGraphEPG(None, self.ask_time)
@@ -912,13 +906,7 @@ class EPGSelection(Screen, HelpableScreen):
 			serviceref = cur[1]
 			addAutotimerFromEvent(self.session, evt = event, service = serviceref)
 		except ImportError:
-			if self.type == EPG_TYPE_SINGLE or self.type == EPG_TYPE_ENHANCED:
-				if self.sort_type == 0:
-					self.sort_type = 1
-				else: 
-					self.sort_type = 0
-				self["list"].sortSingleEPG(self.sort_type)
-
+			self.session.open(MessageBox, _("The AutoTimer plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
 	def showTimerList(self):
 		from Screens.TimerEdit import TimerEditList
@@ -1075,22 +1063,22 @@ class EPGSelection(Screen, HelpableScreen):
 			self.moveTimeLines(True)		
 
 	def key1(self):
-		hilf = config.epgselction.prev_time_period.value	
+		hilf = config.epgselction.prev_time_period.getValue()	
 		if hilf > 60:
 			hilf = hilf - 60
 			self["list"].setEpoch(hilf)
-			config.epgselction.prev_time_period.value = hilf
+			config.epgselction.prev_time_period.setValue(hilf)
 			self.moveTimeLines()
 
 	def key2(self):
 		self["list"].instance.moveSelection(self["list"].instance.pageUp)
 
 	def key3(self):
-		hilf = config.epgselction.prev_time_period.value	
+		hilf = config.epgselction.prev_time_period.getValue()	
 		if hilf < 300:
 			hilf = hilf + 60
 			self["list"].setEpoch(hilf)
-			config.epgselction.prev_time_period.value = hilf
+			config.epgselction.prev_time_period.setValue(hilf)
 			self.moveTimeLines()
 
 	def key4(self):
@@ -1121,15 +1109,13 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def key9(self):
 		cooltime = localtime(self["list"].getTimeBase())
-		hilf = (cooltime[0], cooltime[1], cooltime[2], config.epgselction.primetimehour.value, config.epgselction.primetimemins.value,0, cooltime[6], cooltime[7], cooltime[8])
+		hilf = (cooltime[0], cooltime[1], cooltime[2], int(config.epgselction.primetimehour.getValue()), int(config.epgselction.primetimemins.getValue()),0, cooltime[6], cooltime[7], cooltime[8])
 		cooltime = mktime(hilf)
 		self["list"].resetOffset()
 		self["list"].fillGraphEPG(self.services, cooltime)
 		self.moveTimeLines(True)		
 
 	def key0(self):
-		self["list"].setEpoch(180)
-		config.epgselction.prev_time_period.value = 180
 		self["list"].instance.moveSelectionTo(0)	
 		now = time()
 		tmp = now % 900
@@ -1547,11 +1533,11 @@ class EPGSelectionSetup(Screen, ConfigListScreen):
 			self.list.append(getConfigListEntry(_("Base Time"), config.epgselction.roundTo))
 			self.list.append(getConfigListEntry(_("Primetime hour"), config.epgselction.primetimehour))
 			self.list.append(getConfigListEntry(_("Primetime minute"), config.epgselction.primetimemins))
-			self.list.append(getConfigListEntry(_("Items per Page"), config.epgselction.itemsperpage_pliepg))
-			self.list.append(getConfigListEntry(_("Event Fontsize"), config.epgselction.eventfontsize_pliepg))
-			self.list.append(getConfigListEntry(_("Service Fontsize"), config.epgselction.servicefontsize_pliepg))
+			self.list.append(getConfigListEntry(_("Items per Page"), config.epgselction.itemsperpage_vixepg))
+			self.list.append(getConfigListEntry(_("Event Fontsize (relative to skin size)"), config.epgselction.ev_fontsize_pliepg))
+			self.list.append(getConfigListEntry(_("Service Fontsize (relative to skin size)"), config.epgselction.serv_fontsize_pliepg))
 			self.list.append(getConfigListEntry(_("Service width"), config.epgselction.servicewidth))
-			self.list.append(getConfigListEntry(_("Timeline Fontsize"), config.epgselction.timelinefontsize))
+			self.list.append(getConfigListEntry(_("Timeline Fontsize"), config.epgselction.tl_fontsize_pliepg))
 			self.list.append(getConfigListEntry(_("Time Scale"), config.epgselction.prev_time_period))
 		elif self.type == 4:
 			self.list.append(getConfigListEntry(_("Channel preview mode"), config.epgselction.preview_mode_infobar))
@@ -1560,7 +1546,7 @@ class EPGSelectionSetup(Screen, ConfigListScreen):
 			self.list.append(getConfigListEntry(_("OK Button"), config.epgselction.OK_infobar))
 			self.list.append(getConfigListEntry(_("LongOK Button"), config.epgselction.OKLong_infobar))
 			self.list.append(getConfigListEntry(_("Items per Page"), config.epgselction.itemsperpage_infobar))
-			self.list.append(getConfigListEntry(_("Event Fontsize"), config.epgselction.eventfontsize_infobar))
+			self.list.append(getConfigListEntry(_("Event Fontsize (relative to skin size)"), config.epgselction.ev_fontsize_infobar))
 		elif self.type == 3:
 			self.list.append(getConfigListEntry(_("Channel preview mode"), config.epgselction.preview_mode_enhanced))
 			self.list.append(getConfigListEntry(_("Skip Empty Services"), config.epgselction.overjump))
@@ -1568,7 +1554,7 @@ class EPGSelectionSetup(Screen, ConfigListScreen):
 			self.list.append(getConfigListEntry(_("OK Button"), config.epgselction.OK_enhanced))
 			self.list.append(getConfigListEntry(_("LongOK Button"), config.epgselction.OKLong_enhanced))
 			self.list.append(getConfigListEntry(_("Items per Page"), config.epgselction.itemsperpage_enhanced))
-			self.list.append(getConfigListEntry(_("Event Fontsize"), config.epgselction.eventfontsize_enhanced))
+			self.list.append(getConfigListEntry(_("Event Fontsize (relative to skin size)"), config.epgselction.ev_fontsize_enhanced))
 		elif self.type == 1:
 			self.list.append(getConfigListEntry(_("Channel preview mode"), config.epgselction.preview_mode))
 			self.list.append(getConfigListEntry(_("Show bouquet on launch"), config.epgselction.showbouquet_multi))
@@ -1579,7 +1565,7 @@ class EPGSelectionSetup(Screen, ConfigListScreen):
 		else:
 			self.list.append(getConfigListEntry(_("Sort List by"), config.epgselction.sort))
 			self.list.append(getConfigListEntry(_("Items per Page"), config.epgselction.itemsperpage_single))
-			self.list.append(getConfigListEntry(_("Event Fontsize"), config.epgselction.eventfontsize_single))
+			self.list.append(getConfigListEntry(_("Event Fontsize (relative to skin size)"), config.epgselction.ev_fontsize_single))
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
 
