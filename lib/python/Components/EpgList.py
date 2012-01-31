@@ -1,7 +1,6 @@
 from HTMLComponent import HTMLComponent
 from GUIComponent import GUIComponent
 from Components.config import config
-from Components.Harddisk import harddiskmanager
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 from Components.Renderer.Picon import getPiconName
 
@@ -45,12 +44,6 @@ class Rect:
 		return self.w
 
 class EPGList(HTMLComponent, GUIComponent):
-	searchPiconPaths = ['/usr/share/enigma2/picon/','/picon/']
-	for p in harddiskmanager.getMountedPartitions():
-		d = path.normpath(p.mountpoint)
-		if path.exists(p.mountpoint):
-			if p.mountpoint != '/':
-				searchPiconPaths.append(d + '/picon/')
 	def __init__(self, type = EPG_TYPE_SINGLE, selChangedCB = None, timer = None, time_epoch = 120, overjump_empty = False):
 		self.days = (_("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun"))
 		self.cur_event = None
@@ -74,7 +67,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.type = type
 		self.l = eListboxPythonMultiContent()
 		self.l.setFont(0, gFont("Regular", 22))
-		self.l.setFont(1, gFont("Regular", 16))
+		self.l.setFont(1, gFont("Regular", 18))
 		if type == EPG_TYPE_SINGLE:
 			self.l.setBuildFunc(self.buildSingleEntry)
 		elif type == EPG_TYPE_ENHANCED:
@@ -105,15 +98,22 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.backColorServiceSelected = 0x0D253E
 		self.borderColorService = 0xC0C0C0
 		self.foreColorNow = 0xffffff
-		self.foreColorNowSelected = 0x000000
+		self.foreColorNowSelected = 0xffffff
 		self.backColorNow = 0x00825F
 		self.backColorNowSelected = 0x004f3a
 		self.foreColorServiceNow = 0xffffff
 		self.backColorServiceNow = 0x00825F
-		self.foreColorServiceNowSelected = 0x000000
+		self.foreColorServiceNowSelected = 0xffffff
 		self.backColorServiceNowSelected = 0x004f3a
-		self.entryFont = "Regular"
-		self.serviceFont = "Regular"
+
+		self.serviceFontNameGraph = "Regular"
+		self.serviceFontSizeGraph = 20
+		self.eventFontNameGraph = "Regular"
+		self.eventFontSizeGraph = 18
+		self.eventFontNameSingle = "Regular"
+		self.eventFontSizeSingle = 22
+		self.eventFontNameInfobar = "Regular"
+		self.eventFontSizeInfobar = 22
 
 		self.listHeight = None
 		self.listWidth = None
@@ -130,9 +130,18 @@ class EPGList(HTMLComponent, GUIComponent):
 					self.foreColorSelected = parseColor(value).argb()
 				elif attrib == "EntryBorderColor":
 					self.borderColor = parseColor(value).argb()
-				elif attrib == "EntryFont":
-					self.entryFont = parseFont(value, ((1,1),(1,1)) ).family # only take name. Size is set in config menu
-					self.setEventFontsize()
+				elif attrib == "EntryFontGraphical":
+					font = parseFont(value, ((1,1),(1,1)) )
+					self.eventFontNameGraph = font.family
+					self.eventFontSize = font.pointSize
+				elif attrib == "EventFontSingle":
+					font = parseFont(value, ((1,1),(1,1)) )
+					self.eventFontNameSingle = font.family
+					self.eventFontSizeSingle = font.pointSize
+				elif attrib == "EventFontInfobar":
+					font = parseFont(value, ((1,1),(1,1)) )
+					self.eventFontNameInfobar = font.family
+					self.eventFontSizeInfobar = font.pointSize
 				elif attrib == "EntryBackgroundColor":
 					self.backColor = parseColor(value).argb()
 				elif attrib == "EntryBackgroundColorSelected":
@@ -156,8 +165,9 @@ class EPGList(HTMLComponent, GUIComponent):
 				elif attrib == "ServiceBorderColor":
 					self.borderColorService = parseColor(value).argb()
 				elif attrib == "ServiceFont":
-					self.serviceFont = parseFont(value, ((1,1),(1,1)) ).family # only take name. Size is set in config menu
-					self.setServiceFontsize()
+					font = parseFont(value, ((1,1),(1,1)) )
+					self.serviceFontNameGraph = font.family
+					self.serviceFontSizeGraph = font.pointSize
 				elif attrib == "EntryBackgroundColorNow":
 					self.backColorNow = parseColor(value).argb()
 				elif attrib == "EntryBackgroundColorNowSelected":
@@ -294,43 +304,40 @@ class EPGList(HTMLComponent, GUIComponent):
 	def setItemsPerPage(self):
  		if self.type == EPG_TYPE_GRAPH:
 			if self.listHeight > 0:
-				itemHeight = self.listHeight / config.epgselction.itemsperpage_vixepg.value
+				itemHeight = self.listHeight / config.epgselction.itemsperpage_vixepg.getValue()
 			else:
 				itemHeight = 54 # some default (270/5)
-			if config.epgselction.heightswitch.value:
-				if ((self.listHeight / config.epgselction.itemsperpage_vixepg.value) / 3) >= 27:
-					tmp_itemHeight = ((self.listHeight / config.epgselction.itemsperpage_vixepg.value) / 3)
-				elif ((self.listHeight / config.epgselction.itemsperpage_vixepg.value) / 2) >= 27:
-					tmp_itemHeight = ((self.listHeight / config.epgselction.itemsperpage_vixepg.value) / 2)
+			if config.epgselction.heightswitch.getValue():
+				if ((self.listHeight / config.epgselction.itemsperpage_vixepg.getValue()) / 3) >= 27:
+					tmp_itemHeight = ((self.listHeight / config.epgselction.itemsperpage_vixepg.getValue()) / 3)
+				elif ((self.listHeight / config.epgselction.itemsperpage_vixepg.getValue()) / 2) >= 27:
+					tmp_itemHeight = ((self.listHeight / config.epgselction.itemsperpage_vixepg.getValue()) / 2)
 				else:
 					tmp_itemHeight = 27		
 				if tmp_itemHeight < itemHeight:
 					itemHeight = tmp_itemHeight
 				else:
-					if ((self.listHeight / config.epgselction.itemsperpage_vixepg.value) * 3) <= 45:
-						itemHeight = ((self.listHeight / config.epgselction.itemsperpage_vixepg.value) * 3)
-					elif ((self.listHeight / config.epgselction.itemsperpage_vixepg.value) * 2) <= 45:
-						itemHeight = ((self.listHeight / config.epgselction.itemsperpage_vixepg.value) * 2)
+					if ((self.listHeight / config.epgselction.itemsperpage_vixepg.getValue()) * 3) <= 45:
+						itemHeight = ((self.listHeight / config.epgselction.itemsperpage_vixepg.getValue()) * 3)
+					elif ((self.listHeight / config.epgselction.itemsperpage_vixepg.getValue()) * 2) <= 45:
+						itemHeight = ((self.listHeight / config.epgselction.itemsperpage_vixepg.getValue()) * 2)
 					else:
 						itemHeight = 45
+			self.l.setItemHeight(itemHeight)
 			self.instance.resize(eSize(self.listWidth, self.listHeight / itemHeight * itemHeight))
-		elif self.type == EPG_TYPE_ENHANCED:
+		elif self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_SINGLE:
 			if self.listHeight > 0:
-				itemHeight = self.listHeight / config.epgselction.itemsperpage_enhanced.value
+				itemHeight = self.listHeight / config.epgselction.itemsperpage_enhanced.getValue()
 			else:
 				itemHeight = 32
+			self.l.setItemHeight(itemHeight)
+			self.instance.resize(eSize(self.listWidth, self.listHeight / itemHeight * itemHeight))
 		elif self.type == EPG_TYPE_INFOBAR:
 			if self.listHeight > 0:
-				itemHeight = self.listHeight / config.epgselction.itemsperpage_infobar.value
+				itemHeight = float(self.listHeight / config.epgselction.itemsperpage_infobar.getValue())
 			else:
 				itemHeight = 32
-		elif self.type == EPG_TYPE_SINGLE:
-			if self.listHeight > 0:
-				itemHeight = self.listHeight / config.epgselction.itemsperpage_single.value
-			else:
-				itemHeight = 32
-		self.l.setItemHeight(itemHeight)
-		self.instance.resize(eSize(self.listWidth, self.listHeight / itemHeight * itemHeight))
+			self.l.setItemHeight(int(itemHeight))
 
 	def isSelectable(self, service, service_name, events, picon):
 		return (events and len(events) and True) or False
@@ -350,17 +357,15 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.l.setSelectableFunc(None)
 		
 	def setServiceFontsize(self):
-		self.l.setFont(0, gFont(self.serviceFont, config.epgselction.servicefontsize_vixepg.value))
+		self.l.setFont(0, gFont(self.serviceFontNameGraph, self.serviceFontSizeGraph + config.epgselction.serv_fontsize_vixepg.getValue()))
 
 	def setEventFontsize(self):
  		if self.type == EPG_TYPE_GRAPH:
-			self.l.setFont(1, gFont(self.entryFont, config.epgselction.eventfontsize_vixepg.value))
-		elif self.type == EPG_TYPE_ENHANCED:
-			self.l.setFont(0, gFont(self.entryFont, config.epgselction.eventfontsize_enhanced.value))
+			self.l.setFont(1, gFont(self.eventFontNameGraph, self.eventFontSizeGraph + config.epgselction.ev_fontsize_vixepg.getValue()))
+		elif self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_SINGLE:
+			self.l.setFont(0, gFont(self.eventFontNameSingle, self.eventFontSizeSingle + config.epgselction.ev_fontsize_enhanced.getValue()))
 		elif self.type == EPG_TYPE_INFOBAR:
-			self.l.setFont(0, gFont(self.entryFont, config.epgselction.eventfontsize_infobar.value))
-		elif EPG_TYPE_SINGLE:
-			self.l.setFont(0, gFont(self.entryFont, config.epgselction.eventfontsize_single.value))
+			self.l.setFont(0, gFont(self.eventFontNameInfobar, self.eventFontSizeInfobar + config.epgselction.ev_fontsize_infobar.getValue()))
 
 	def postWidgetCreate(self, instance):
  		if self.type == EPG_TYPE_GRAPH:
@@ -391,15 +396,13 @@ class EPGList(HTMLComponent, GUIComponent):
 		height = esize.height()
 
 		if self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_SINGLE:
-			if self.type == EPG_TYPE_ENHANCED:
-				fontwdith = (config.epgselction.eventfontsize_enhanced.value - 15)
+			if self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_SINGLE:
+				fontwdith = config.epgselction.ev_fontsize_enhanced.getValue()
 			elif self.type == EPG_TYPE_INFOBAR:
-				fontwdith = (config.epgselction.eventfontsize_infobar.value - 15)
-			elif self.type == EPG_TYPE_SINGLE:
-				fontwdith = (config.epgselction.eventfontsize_single.value - 15)
-			self.weekday_rect = Rect(0, 0, float(width / 100) * (6 + (fontwdith / 2)) , height)
-			self.datetime_rect = Rect(self.weekday_rect.width(), 0, float(width / 100) * (15 + fontwdith), height)
-			self.descr_rect = Rect(self.datetime_rect.left() + self.datetime_rect.width(), 0, float(width / 100) * (50 + fontwdith), height)
+				fontwdith = config.epgselction.ev_fontsize_infobar.getValue()
+			self.weekday_rect = Rect(0, 0, float(width / 100) * (10 + (fontwdith / 2)) , height)
+			self.datetime_rect = Rect(self.weekday_rect.width(), 0, float(width / 100) * (25 + fontwdith), height)
+			self.descr_rect = Rect(self.datetime_rect.left() + self.datetime_rect.width(), 0, float(width / 100) * (70 + fontwdith), height)
 		elif self.type == EPG_TYPE_MULTI:
 			xpos = 0;
 			w = width / 10 * 3;
@@ -412,7 +415,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			w = width / 10 * 5;
 			self.descr_rect = Rect(xpos, 0, width, height)
 		elif self.type == EPG_TYPE_GRAPH:
-			w = config.epgselction.servicewidth.value;
+			w = config.epgselction.servicewidth.getValue();
 			self.service_rect = Rect(0, 0, w, height)
 			self.event_rect = Rect(w, 0, width - w, height)
 		else: # EPG_TYPE_SIMILAR
@@ -554,14 +557,12 @@ class EPGList(HTMLComponent, GUIComponent):
 
 		nowPlaying = self.currentlyPlaying.toString()
  		if service == self.cur_service[0]:
-			piconbkcolor = 0xB5B5B5
 			serviceForeColor = self.foreColorServiceSelected
 			serviceBackColor = self.backColorServiceSelected
 			if nowPlaying is not None and nowPlaying == service:
 				serviceForeColor = self.foreColorServiceNowSelected
 				serviceBackColor = self.backColorServiceNowSelected
 		else:
-			piconbkcolor = 0x909090
 			serviceForeColor = self.foreColorService
 			serviceBackColor = self.backColorService
 			if nowPlaying is not None and nowPlaying == service:
@@ -646,7 +647,7 @@ class EPGList(HTMLComponent, GUIComponent):
 					pos = (left+xpos, top), size = (ewidth, height),
 					font = 1, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER,
 					text = " " + ev[1],
-					color = foreColor, color_sel = self.foreColorSelected,
+					color = foreColor, color_sel = foreColorSelected,
 					backcolor = backColor, backcolor_sel = backColorSelected,
 					border_width = 1, border_color = self.borderColor))
 
@@ -752,7 +753,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		if stime is not None:
 			self.time_base = int(stime)
 		if services is None:
-			time_base = self.time_base+self.offs * self.time_epoch * 60
+			time_base = self.time_base + self.offs * self.time_epoch * 60
 			test = [ (service[0], 0, time_base, self.time_epoch) for service in self.list ]
 			serviceList = self.list
 			piconIdx = 3
@@ -763,7 +764,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			serviceList = services
 			piconIdx = 1
 
-		test.insert(0, 'XRnITBD')
+		test.insert(0, 'XRnITBD') #return record, service ref, service name, event id, event title, begin time, duration
 		epg_data = self.queryEPG(test)
 		self.list = [ ]
 		tmp_list = None
@@ -862,6 +863,9 @@ class TimelineText(HTMLComponent, GUIComponent):
 		self.backColor = 0x000000
 		self.borderWidth = 1
 
+		self.timelineFontName = "Regular"
+		self.timelineFontSize = 20
+
 	GUI_WIDGET = eListbox
 
 	def applySkin(self, desktop, screen):
@@ -878,13 +882,17 @@ class TimelineText(HTMLComponent, GUIComponent):
 					self.l.setFont(0, parseFont(value,  ((1,1),(1,1)) ))
 				elif attrib == "borderWidth":
 					self.borderWidth = int(value)
+				elif attrib == "TimelineFont":
+					font = parseFont(value, ((1,1),(1,1)) )
+					self.timelineFontName = font.family
+					self.timelineFontSize = font.pointSize
 				else:
 					attribs.append((attrib,value))
 			self.skinAttributes = attribs
 		return GUIComponent.applySkin(self, desktop, screen)
 
 	def setTimeLineFontsize(self):
-		self.l.setFont(0, gFont("Regular", config.epgselction.timelinefontsize.value))
+		self.l.setFont(0, gFont(self.timelineFontName, self.timelineFontSize + config.epgselction.tl_fontsize_vixepg.getValue()))
 
 	def postWidgetCreate(self, instance):
 		self.setTimeLineFontsize()
