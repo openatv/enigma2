@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-19 13:24+0000\n"
-"PO-Revision-Date: 2012-01-19 14:29+0100\n"
+"POT-Creation-Date: 2012-01-30 16:43+0000\n"
+"PO-Revision-Date: 2012-01-31 14:06+0100\n"
 "Last-Translator: R.L. van der Does\n"
 "Language-Team: Andy Blackburn, Rob van der Does\n"
 "Language: Nederlands\n"
@@ -285,6 +285,9 @@ msgstr "12V Uitgang"
 msgid "13 V"
 msgstr "13 V"
 
+msgid "15 minutes"
+msgstr "15 minuten"
+
 msgid "16:10"
 msgstr "16:10"
 
@@ -498,9 +501,6 @@ msgstr "AA"
 msgid "AB"
 msgstr "AB"
 
-msgid "AC3 downmix"
-msgstr "AC3 downmix"
-
 msgid "AFP Setup"
 msgstr "AFP-instellingen"
 
@@ -560,11 +560,20 @@ msgstr "Voeg timer toe"
 msgid "Add WLAN configuration?"
 msgstr "WLAN-configuratie toevoegen?"
 
+msgid "Add a auto timer for current event"
+msgstr "Voeg auto timer toe voor huidig event"
+
 msgid "Add a mark"
 msgstr "Plaats markering"
 
 msgid "Add a new title"
-msgstr " Voeg een nieuwe titel toe"
+msgstr "Voeg een nieuwe titel toe"
+
+msgid "Add a record timer for current event"
+msgstr "Voeg opname timer toe voor huidig event"
+
+msgid "Add a zap timer for current event"
+msgstr "Voeg zap timer toe voor huidig event"
 
 msgid "Add network configuration?"
 msgstr "Netwerkconfiguratie toevoegen?"
@@ -580,6 +589,9 @@ msgstr "Voeg aan boeket toe"
 
 msgid "Add to favourites"
 msgstr "Voeg aan favorieten toe"
+
+msgid "Add/Remove timer for current event"
+msgstr "Ttimer voor huidig event toevoegen/verwijderen"
 
 msgid "Adding schedule..."
 msgstr "Voegt dchema toe..."
@@ -888,6 +900,9 @@ msgstr "Band"
 msgid "Bandwidth"
 msgstr "Bandbreedte"
 
+msgid "Base Time"
+msgstr "Basis timer"
+
 msgid "Begin time"
 msgstr "Starttijd"
 
@@ -920,9 +935,6 @@ msgstr "Blind Scan"
 
 msgid "Blindscan"
 msgstr "Blindscan"
-
-msgid "Blindscan was canceled by the user."
-msgstr "Blindscan is door de gebruiker geannuleerd."
 
 msgid "Block noise reduction"
 msgstr "Blok ruis vermindering"
@@ -1513,6 +1525,9 @@ msgstr "DVB-S2"
 msgid "DVD File Browser"
 msgstr "DvD bestands verkenner"
 
+msgid "DVD Player"
+msgstr "DVD Speler"
+
 msgid "DVD Titlelist"
 msgstr "DvD titellijst"
 
@@ -1527,9 +1542,6 @@ msgstr "Dagelijks"
 
 msgid "Date"
 msgstr "Datum"
-
-msgid "Debug Log location"
-msgstr "Debug Log locatie"
 
 msgid "Debug Logs"
 msgstr "Debug Logs"
@@ -1600,6 +1612,12 @@ msgstr "Verwijderde bestanden"
 
 msgid "Depth"
 msgstr "Diepte"
+
+msgid "Descramble http streams"
+msgstr "Decodeer http streams"
+
+msgid "Descramble recordings"
+msgstr "Decodeer opnames"
 
 msgid "Description"
 msgstr "Beschrijving"
@@ -2051,9 +2069,6 @@ msgstr "MHW EPG inschakelen"
 msgid "Enable Netmed EPG"
 msgstr "Netmed EPG inschakelen"
 
-msgid "Enable Picon"
-msgstr "Picons gebruiken"
-
 msgid "Enable ViaSat EPG"
 msgstr "Viasat EPG inschakelen"
 
@@ -2177,6 +2192,9 @@ msgstr "Event lettergrootte"
 msgid "Event Info"
 msgstr "Event Info"
 
+msgid "Event Info..."
+msgstr "Event Info..."
+
 msgid "Eventview"
 msgstr "Programmaoverzicht"
 
@@ -2203,6 +2221,9 @@ msgstr "Exif"
 
 msgid "Exit"
 msgstr "Afsluiten"
+
+msgid "Exit EPG"
+msgstr "Verlaat EPG"
 
 msgid "Exit editor"
 msgstr "Editor afsluiten"
@@ -2516,11 +2537,47 @@ msgstr "Ga naar het laatste item"
 msgid "Go to top of list"
 msgstr "Ga naar bovenkant lijst"
 
+msgid "Goto"
+msgstr "Ga naar"
+
 msgid "Goto 0"
 msgstr "Naar 0 positie"
 
+msgid "Goto first service"
+msgstr "Ga naar eerste kanaal"
+
+msgid "Goto last service"
+msgstr "Ga naar laatste kanaal"
+
+msgid "Goto next channel"
+msgstr "Ga naar volgende kanaal"
+
+msgid "Goto next event"
+msgstr "Ga naar volgende event"
+
+msgid "Goto next page of events"
+msgstr "Ga naar volgende event pagina "
+
+msgid "Goto next page of service"
+msgstr "Ga naar volgende kanaal pagina "
+
 msgid "Goto position"
 msgstr "Naar positie draaien"
+
+msgid "Goto previous channel"
+msgstr "Ga naar vorige kanaal"
+
+msgid "Goto previous event"
+msgstr "Ga naar vorige event"
+
+msgid "Goto previous page of events"
+msgstr "Ga naar vorige event pagina"
+
+msgid "Goto previous page of service"
+msgstr "Ga naar volgende kanaal pagina"
+
+msgid "Goto specific data/time"
+msgstr "Ga naar specifieke datum/tijd"
 
 msgid "Graph MEpg Settings"
 msgstr "Graph MEpg Instellingen"
@@ -2618,6 +2675,9 @@ msgstr "Hoe om te gaan met gevonden crashlogs?"
 msgid "Hue"
 msgstr "Tint"
 
+msgid "IMDB serach for current event"
+msgstr "IMDB zoekslag naar huidig event"
+
 msgid "IMDb Details"
 msgstr "IMDb Details"
 
@@ -2693,11 +2753,20 @@ msgstr "Inadyn Log"
 msgid "Inadyn Setup"
 msgstr "Inadyn Instellingen"
 
+msgid "Include AIT in http streams"
+msgstr "Neem AIT op in http streams"
+
 msgid "Include ECM in http streams"
 msgstr "Voeg ECM toe aan http streams"
 
+msgid "Include EIT in http streams"
+msgstr "Neem EIT op in http streams"
+
 msgid "Include your email and name (optional) in the mail?"
 msgstr "Uw e-mailadres en naam (optioneel) in de mail?"
+
+msgid "Increase time scale"
+msgstr "Vergroot tijdschaal"
 
 msgid "Increased voltage"
 msgstr "Verhoogd voltage"
@@ -2860,8 +2929,20 @@ msgstr "Taak (taken) in uitvoering!"
 msgid "July"
 msgstr "Juli"
 
+msgid "Jump back 24 hours"
+msgstr "Spring 24 uur terug"
+
 msgid "Jump first press in channel selection*"
 msgstr "Springt is kanaallijst als eerste *"
+
+msgid "Jump forward 24 hours"
+msgstr "Spring 24 uur vooruit"
+
+msgid "Jump to current time"
+msgstr "Spring naar actuele tijd"
+
+msgid "Jump to prime time"
+msgstr "Spring naar prime time"
 
 msgid "June"
 msgstr "Juni"
@@ -2957,15 +3038,6 @@ msgstr "DVD-speler afsluiten?"
 msgid "Left"
 msgstr "Links"
 
-msgid "Left Fontsize"
-msgstr "Lettergrootte links"
-
-msgid "Left width Picon"
-msgstr "Breedte links met picons"
-
-msgid "Left width Text"
-msgstr "Breedte links met tekst"
-
 #. TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
 msgid "Letterbox"
 msgstr "Letterbox"
@@ -3043,6 +3115,9 @@ msgstr "Logs"
 msgid "Logs Manager"
 msgstr "Logs Manager"
 
+msgid "Logs location"
+msgstr "Log lokatie"
+
 msgid "Long Info Button"
 msgstr "Info toets lang"
 
@@ -3061,20 +3136,20 @@ msgstr "Lengtegraad"
 #, python-format
 msgid ""
 "Looking for available transponders.\n"
-"This will take several minutes.\n"
+"This will take a short while.\n"
 "\n"
 "   Current Status : %d/%d\n"
-"   Orbital Positions : %s\n"
+"   Orbital Position : %s\n"
 "   Polarization : %s\n"
-"   Bandwidth : %s"
+"   Frequency range : %d - %d"
 msgstr ""
 "Zoekt naar beschikbare transponders.\n"
-"Dit zal enkele minuten duren.\n"
+"Dit zal even duren.\n"
 "\n"
 "   Huidige Status : %d/%d\n"
-"   Orbitale Posities : %s\n"
+"   Omloop positie : %s\n"
 "   Polarisatie : %s\n"
-"   Bandbreedte : %s"
+"   Frequentie band : %d - %d"
 
 msgid "MA"
 msgstr "MA"
@@ -3111,6 +3186,9 @@ msgstr "Hoofdmenu"
 
 msgid "Mainmenu"
 msgstr "Hoofdmenu"
+
+msgid "Maintain old EPG data for"
+msgstr "Bewaar oude EPG-data voor"
 
 msgid "Make this mark an 'in' point"
 msgstr "Markeer dit als 'in' punt"
@@ -3266,11 +3344,20 @@ msgstr "Verplaats Picture In Picture"
 msgid "Move Up/Down"
 msgstr "Beweeg Op/Neer"
 
+msgid "Move down a page"
+msgstr "Ga een pagina naar beneden"
+
 msgid "Move east"
 msgstr "Draai oost"
 
+msgid "Move to home of list"
+msgstr "Ga naar begin van de lijst"
+
 msgid "Move to other directory"
 msgstr "Verplaats naar andere directory"
+
+msgid "Move up a page"
+msgstr "Ga een pagina omhoog"
 
 msgid "Move west"
 msgstr "Draai west"
@@ -3469,13 +3556,6 @@ msgstr "Geen EPG gegevens gevonden. Opname voor onbepaalde tijd."
 msgid "No fast winding possible yet.. but you can use the number buttons to skip forward/backward!"
 msgstr "Snel spoelen is nog niet mogelijk....maar u kunt de cijfertoetsengebruiken om te springen"
 
-msgid ""
-"No found transponders!!\n"
-"Please check the satellite connection, or scan other search condition."
-msgstr ""
-"Geen transponders gevonden!!\n"
-"Controleer uw antenne(aansluiting) of voer een andere scan uit."
-
 msgid "No free tuner!"
 msgstr "Geen vrije tuner!"
 
@@ -3493,6 +3573,9 @@ msgstr "Geen netwerkverbinding beschikbaar"
 
 msgid "No networks found"
 msgstr "Geen netwerken gevonden"
+
+msgid "No of items switch (increase or reduced)"
+msgstr "Aantal onderdelen (verklein of vergroot)"
 
 msgid "No packages were upgraded yet. So you can check your network and try again."
 msgstr "Er zijn geen softwarepakketten gevonden. Controleer uw netwerk en probeer het opnieuw."
@@ -3514,6 +3597,9 @@ msgstr "Geen markeringen geplaatst op deze opnames."
 
 msgid "No to all"
 msgstr "Nee op alles"
+
+msgid "No transponders were found for those search parameters!"
+msgstr "Met deze zoek parameters zijn geen transponders gevonden!"
 
 msgid "No tuner is configured for use with a diseqc positioner!"
 msgstr "Er is geen tuner ingesteld voor gebruik van een DiSEqC motor!"
@@ -3652,6 +3738,9 @@ msgstr ""
 msgid "Number"
 msgstr "Nummer"
 
+msgid "Number of items"
+msgstr "Aantal onderdelen"
+
 msgid "OK"
 msgstr "OK"
 
@@ -3720,10 +3809,6 @@ msgstr "Alleen ongecodeerde zenders scannen"
 
 msgid "Only extensions."
 msgstr "Alleen extensions"
-
-#
-msgid "Open Context Menu"
-msgstr "Open context menu"
 
 msgid "OpenVPN Setup"
 msgstr "OpenVPN instellingen"
@@ -3797,6 +3882,15 @@ msgstr "Pakket beheer"
 
 msgid "Packet manager"
 msgstr "Pakket beheer"
+
+msgid "Page down"
+msgstr "Pagina naar beneden"
+
+msgid "Page right"
+msgstr "Pagina naar rechts"
+
+msgid "Page up"
+msgstr "Pagina omhoog"
 
 #. TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
 msgid "Pan&Scan"
@@ -3914,6 +4008,13 @@ msgstr "Verander nu de mode van uw AB"
 
 msgid ""
 "Please check again.\n"
+"For C-band searches stop frequency must be between 3000MHz and 4200MHz."
+msgstr ""
+"Controleer.\n"
+"Voor zoeken in de C-band moet de eind frequentie liggen tussen 3000MHz en 4200MHz."
+
+msgid ""
+"Please check again.\n"
 "Frequency : start value is larger than stop value."
 msgstr ""
 "Controleer opnieuw.\n"
@@ -3921,24 +4022,28 @@ msgstr ""
 
 msgid ""
 "Please check again.\n"
-"Start frequency must be between 950 and 2150."
+"Start frequency must be between 10700MHz and 12750MHz.\n"
+"(Or 3000MHz and 4200MHz in the case of c-band)."
 msgstr ""
-"Controleer opnieuw.\n"
-"De beginwaarde voor de frequentie moet tussen 950 en 2150 liggen."
+"Controleer.\n"
+"Voor zoeken moet de frequentie liggen tussen de 10700MHz en 12750MHz.\n"
+"(of tussen 3000MHz en 4200MHz voor de C-band)."
 
 msgid ""
 "Please check again.\n"
-"Start symbolrate must be between 2MHz and 45MHz."
+"Start symbolrate must be between 1MHz and 44MHz."
 msgstr ""
-"Controleer opnieuw.\n"
-"De beginwaarde voor symbolrate moet tussen 2MHz en 45MHz liggen."
+"Controleer.\n"
+"De begin symbolrate moet tussen de 1MHz en 44MHz liggen."
 
 msgid ""
 "Please check again.\n"
-"Stop frequency must be between 950 and 2150."
+"Stop frequency must be between 10700MHz and 12750MHz.\n"
+"(Or 3000MHz and 4200MHz in the case of c-band)."
 msgstr ""
-"Controleer opnieuw.\n"
-"De eindwaarde boor de frequentie moet tussen 950 en 2150 liggen."
+"Controleer.\n"
+"De eindfrequentie moet liggen tussen  10700MHz en 12750MHz.\n"
+"(Of 3000MHz en 4200MHz in geval van de C-band)."
 
 msgid ""
 "Please check again.\n"
@@ -4145,8 +4250,8 @@ msgstr "Plugin manager helpfunctie"
 msgid "Plugins"
 msgstr "Applicaties"
 
-msgid "Polarity"
-msgstr "Polariteit"
+msgid "Polarisation"
+msgstr "Polarisatie"
 
 msgid "Polarization"
 msgstr "Polarisatie"
@@ -4437,6 +4542,9 @@ msgstr "Een opname heeft altijd voorrang"
 
 msgid "Red button..."
 msgstr "Rode toets..."
+
+msgid "Reduce time scale"
+msgstr "Verklein tijdschaal"
 
 msgid "Reenter new PIN"
 msgstr "Voer nieuwe pincode nogmaals in"
@@ -4799,9 +4907,6 @@ msgstr "WiFi netwerken zoeken"
 msgid "Scan additional SR"
 msgstr "Zoek ook op SR"
 
-msgid "Scan band"
-msgstr "Scan band"
-
 msgid "Scan band EU HYPER"
 msgstr "Zoek band EU HYPER"
 
@@ -4994,6 +5099,9 @@ msgstr "September"
 msgid "Sequence repeat"
 msgstr "Herhaal sequence"
 
+msgid "Serach for similar events"
+msgstr "Zoek soortgelijke gebeurtenissen"
+
 msgid "Serial No"
 msgstr "Serie nummer"
 
@@ -5012,6 +5120,9 @@ msgstr "Servers:"
 msgid "Service"
 msgstr "Stream informatie"
 
+msgid "Service Fontsize"
+msgstr "Kanaal lettergrootte"
+
 msgid "Service Information"
 msgstr "Service Informatie"
 
@@ -5027,6 +5138,9 @@ msgstr "De zender is toegevoegd aan de favorieten."
 msgid "Service has been added to the selected bouquet."
 msgstr "De zender is toegevoegd aan het geselecteerde boeket."
 
+msgid "Service info font size"
+msgstr "Kanaalinfo lettergrootte"
+
 msgid ""
 "Service invalid!\n"
 "(Timeout reading PMT)"
@@ -5034,12 +5148,18 @@ msgstr ""
 "Zender ongeldig!\n"
 "(Timeout reading PMT)"
 
+msgid "Service name font size"
+msgstr "Kanaalnaam lettergrootte"
+
 msgid ""
 "Service not found!\n"
 "(SID not found in PAT)"
 msgstr ""
 "Zender niet gevonden!\n"
 "(SID not found in PAT)"
+
+msgid "Service number font size"
+msgstr "Kanaalnummer lettergrootte"
 
 msgid "Service reference"
 msgstr "Service referentie"
@@ -5053,6 +5173,9 @@ msgid ""
 msgstr ""
 "Zender niet beschikbaar\n"
 "Controleer uw tuner configuratie!"
+
+msgid "Service width"
+msgstr "Service breedte"
 
 msgid "Serviceinfo"
 msgstr "Kanaalinfo"
@@ -5082,6 +5205,24 @@ msgstr "Stel deze interface in als standaard"
 msgid "Set limits"
 msgstr "Limieten instellen"
 
+msgid "Set time window to 1 hour"
+msgstr "Stel tijdvenster in op 1 uur"
+
+msgid "Set time window to 2 hours"
+msgstr "Stel tijdvenster in op 2 uur"
+
+msgid "Set time window to 3 hours"
+msgstr "Stel tijdvenster in op 3 uur"
+
+msgid "Set time window to 4 hours"
+msgstr "Stel tijdvenster in op 4 uur"
+
+msgid "Set time window to 5 hours"
+msgstr "Stel tijdvenster in op 5 uur"
+
+msgid "Setings..."
+msgstr "Instellingen..."
+
 msgid "Settings"
 msgstr "Instellingen"
 
@@ -5093,6 +5234,9 @@ msgstr "Instellingen"
 
 msgid "Setup Mode"
 msgstr "Menu modus"
+
+msgid "Setup menu"
+msgstr "Instellingen menu"
 
 #
 #, python-format
@@ -5116,6 +5260,9 @@ msgstr "Korte naam"
 
 msgid "Show /tmp/ecm.info"
 msgstr "Toon /tmp/ecm.info"
+
+msgid "Show AutoTimer List"
+msgstr "Toon AutoTimers"
 
 msgid "Show CCcam in extensions ?"
 msgstr "Toon CCcam in extensie menu?"
@@ -5153,14 +5300,23 @@ msgstr "Toon OScam in extensie menu ?"
 msgid "Show PTS Infobar while timeshifting?"
 msgstr "Toon PTS Infobar tijdens timeshiften?"
 
+msgid "Show Picons"
+msgstr "Toon Picons"
+
 msgid "Show Picons (requires a restart)"
 msgstr "Toon Picons (herstart nodig)"
 
 msgid "Show Readers/Proxies"
 msgstr "Toon lezers/Proxies"
 
+msgid "Show Service names "
+msgstr "Toon zender namen"
+
 msgid "Show Single EPG"
 msgstr "Toon Single EPG"
+
+msgid "Show Timer List"
+msgstr "Toon timers"
 
 msgid "Show WLAN Status"
 msgstr "WLAN status weergeven"
@@ -5174,6 +5330,9 @@ msgstr "Radio achtergrond weergeven"
 msgid "Show bouquet on launch"
 msgstr "Toon favorieten na opstarten"
 
+msgid "Show bouquet selection menu"
+msgstr "Toon menu 'favorieten selectie'"
+
 msgid "Show channel numbers in channel selection"
 msgstr "Toon kanaalnummers in kanaallijst"
 
@@ -5182,6 +5341,9 @@ msgstr "Toon kanaal selectie bij verandering van modus"
 
 msgid "Show crypto info in infobar"
 msgstr "Laat crypto informatie zien in infobar"
+
+msgid "Show detailed event info"
+msgstr "Toon gedetaileerde event info"
 
 #
 msgid "Show event-progress in channel selection"
@@ -5210,6 +5372,9 @@ msgstr "Toon second infobar"
 
 msgid "Show services beginning with"
 msgstr "Laat zenders zien die beginnen met"
+
+msgid "Show single epg for current channel"
+msgstr "Toon single EPG voor huidige kanaal"
 
 msgid "Show status icons in Movielist"
 msgstr "Laat status-iconen zien in movielijst"
@@ -5285,9 +5450,6 @@ msgstr "Skins"
 
 msgid "Skip Empty Services"
 msgstr "Sla lege zenders over"
-
-msgid "Skip Empty Services (may need restart)"
-msgstr "Sla lege Services over (kan herstart benodigen)"
 
 msgid "Sleep Timer"
 msgstr "Slaaptimer"
@@ -5768,6 +5930,9 @@ msgstr ""
 
 msgid "The backup failed. Please choose a different backup location."
 msgstr "Back-up is mislukt. Kies een andere back-up locatie a.u.b."
+
+msgid "The blindscan run was cancelled by the user."
+msgstr "De blindscan is door d egebruiker geannuleerd"
 
 msgid "The current beta image could not be stable"
 msgstr "The current beta image could not be stable"
@@ -7093,6 +7258,15 @@ msgstr "Zappen in hoofdscherm"
 msgid "Zap mode"
 msgstr "Zap modus"
 
+msgid "Zap to channel (setup in menu)"
+msgstr "Zap naar kanaal (stel in in menu)"
+
+msgid "Zap to channel and close (setup in menu)"
+msgstr "Zap naar kanaal en sluit (stel in in menu)"
+
+msgid "Zap to selected channel"
+msgstr "Zap naar geselecteerde kanaal"
+
 msgid "[TimeShift] Merging records failed!"
 msgstr "[TimeShift] Samenvoegen van opnames mislukt!"
 
@@ -7288,6 +7462,9 @@ msgstr "hoofdstukken"
 
 msgid "circular left"
 msgstr "circular links"
+
+msgid "circular left and circular right"
+msgstr "circulair links en circulair rechts"
 
 msgid "circular right"
 msgstr "circular rechts"
@@ -7506,14 +7683,8 @@ msgstr "hoogte"
 msgid "help..."
 msgstr "Help..."
 
-msgid "hi_low"
-msgstr "hoog-laag"
-
 msgid "hide player"
 msgstr "Afspelen op de achtergrond"
-
-msgid "high"
-msgstr "hoog"
 
 msgid "hops:"
 msgstr "hops:"
@@ -7521,8 +7692,8 @@ msgstr "hops:"
 msgid "horizontal"
 msgstr "horizontaal"
 
-msgid "horizontal_vertical"
-msgstr "horizontaal-vertikaal"
+msgid "horizontal and vertical"
+msgstr "horizontaal and vertikaal"
 
 msgid "hour"
 msgstr "uur"
@@ -7596,9 +7767,6 @@ msgstr "Ja"
 
 msgid "loopthrough to"
 msgstr "Doorlus naar"
-
-msgid "low"
-msgstr "laag"
 
 msgid "manual"
 msgstr "handmatig"
@@ -7735,6 +7903,9 @@ msgstr "Open zenderlijst (omhoog)"
 
 msgid "original"
 msgstr "origineel"
+
+msgid "page left"
+msgstr "Pagina links"
 
 msgid "pass"
 msgstr "passage"
