@@ -546,7 +546,7 @@ class InfoBarShowHide:
 			else:
 				self.is_now_next = True
 			if epglist:
-				self.eventView = self.session.openWithCallback(self.close, EventViewEPGSelect, self.epglist[0], ServiceReference(ref), self.eventViewCallback, self.openSingleServiceEPG, self.openMultiServiceEPG, self.openSimilarList)
+				self.eventView = self.session.openWithCallback(self.closeEventView, EventViewEPGSelect, self.epglist[0], ServiceReference(ref), self.eventViewCallback, self.openSingleServiceEPG, self.openMultiServiceEPG, self.openSimilarList)
 				self.dlg_stack.append(self.eventView)
 			else:
 				print "no epg for the service avail.. so we show multiepg instead of eventinfo"
