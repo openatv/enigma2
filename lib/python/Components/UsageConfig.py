@@ -142,9 +142,9 @@ def InitUsageConfig():
 	config.usage.frontend_priority = ConfigSelection(default = "-1", choices = nims)
 	config.misc.disable_background_scan = ConfigYesNo(default = False)
 
-	config.usage.servicenumfontsize = ConfigSlider(default = 22, increment = 1, limits=(16, 40))
-	config.usage.servicenamefontsize = ConfigSlider(default = 22, increment = 1, limits=(16, 40))
-	config.usage.serviceinfofontsize = ConfigSlider(default = 22, increment = 1, limits=(16, 40))
+	config.usage.servicenum_fontsize = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
+	config.usage.servicename_fontsize = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
+	config.usage.serviceinfo_fontsize = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
 	config.usage.serviceitems_per_page = ConfigSlider(default = 16, increment = 1, limits=(3, 30))
 	config.usage.show_servicelist = ConfigYesNo(default = True)
 	config.usage.servicelist_mode = ConfigSelection(default = "standard", choices = [

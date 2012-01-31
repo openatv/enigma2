@@ -45,9 +45,12 @@ class ServiceList(HTMLComponent, GUIComponent):
 		self.mode = self.MODE_NORMAL
 		self.listHeight = None
 		self.listWidth = None
-		self.ServiceNumberFont = parseFont("Regular;20", ((1,1),(1,1)))
-		self.ServiceNameFont = parseFont("Regular;22", ((1,1),(1,1)))
-		self.ServiceInfoFont = parseFont("Regular;18", ((1,1),(1,1)))
+		self.ServiceNumberFontName = "Regular"
+		self.ServiceNumberFontSize = 20
+		self.ServiceNameFontName = "Regular"
+		self.ServiceNameFontSize = 22
+		self.ServiceInfoFontName = "Regular"
+		self.ServiceInfoFontSize = 18
 		self.onSelectionChanged = [ ]
 
 	def applySkin(self, desktop, parent):
@@ -88,11 +91,17 @@ class ServiceList(HTMLComponent, GUIComponent):
 				elif attrib == "serviceItemHeight":
 					self.ItemHeight = int(value)
 				elif attrib == "serviceNameFont":
-					self.ServiceNameFont = parseFont(value, ((1,1),(1,1)))
+					font = parseFont(value, ((1,1),(1,1)) )
+					self.ServiceNameFontName = font.family
+					self.ServiceNameFontSize = font.pointSize
 				elif attrib == "serviceInfoFont":
-					self.ServiceInfoFont = parseFont(value, ((1,1),(1,1)))
+					font = parseFont(value, ((1,1),(1,1)) )
+					self.ServiceInfoFontName = font.family
+					self.ServiceInfoFontSize = font.pointSize
 				elif attrib == "serviceNumberFont":
-					self.ServiceNumberFont = parseFont(value, ((1,1),(1,1)))
+					font = parseFont(value, ((1,1),(1,1)) )
+					self.ServiceNumberFontName = font.family
+					self.ServiceNumberFontSize = font.pointSize
 				else:
 					attribs.append((attrib, value))
 			self.skinAttributes = attribs
@@ -165,7 +174,7 @@ class ServiceList(HTMLComponent, GUIComponent):
 	
 	def setItemsPerPage(self):
  		if self.listHeight > 0:
-			itemHeight = self.listHeight / config.usage.serviceitems_per_page.value
+			itemHeight = self.listHeight / config.usage.serviceitems_per_page.getValue()
 		else:
 			itemHeight = 28
 		self.ItemHeight = itemHeight
@@ -174,12 +183,9 @@ class ServiceList(HTMLComponent, GUIComponent):
 			self.instance.resize(eSize(self.listWidth, self.listHeight / itemHeight * itemHeight))
 
 	def setServiceFontsize(self):
-		servicenumfont = self.ServiceNameFont.family+";"+str(config.usage.servicenumfontsize.value)
-		self.ServiceNumberFont = parseFont(servicenumfont, ((1,1),(1,1)))
-		servicenamefont = self.ServiceNameFont.family+";"+str(config.usage.servicenamefontsize.value)
-		self.ServiceNameFont = parseFont(servicenamefont, ((1,1),(1,1)))
-		serviceinfofont = self.ServiceInfoFont.family+";"+str(config.usage.serviceinfofontsize.value)
-		self.ServiceInfoFont = parseFont(serviceinfofont, ((1,1),(1,1)))
+		self.ServiceNumberFont = gFont(self.ServiceNameFontName, self.ServiceNameFontSize + config.usage.servicenum_fontsize.getValue())
+		self.ServiceNameFont = gFont(self.ServiceNameFontName, self.ServiceNameFontSize + config.usage.servicename_fontsize.getValue())
+		self.ServiceInfoFont = gFont(self.ServiceInfoFontName, self.ServiceInfoFontSize + config.usage.serviceinfo_fontsize.getValue())
 		self.l.setElementFont(self.l.celServiceName, self.ServiceNameFont)
 		self.l.setElementFont(self.l.celServiceNumber, self.ServiceNumberFont)
 		self.l.setElementFont(self.l.celServiceInfo, self.ServiceInfoFont)
@@ -269,14 +275,14 @@ class ServiceList(HTMLComponent, GUIComponent):
 		self.l.setElementFont(self.l.celServiceName, self.ServiceNameFont)
 		self.l.setElementFont(self.l.celServiceNumber, self.ServiceNumberFont)
 		self.l.setElementFont(self.l.celServiceInfo, self.ServiceInfoFont)
-		if mode == self.MODE_NORMAL or not config.usage.show_channel_numbers_in_servicelist.value:
+		if mode == self.MODE_NORMAL or not config.usage.show_channel_numbers_in_servicelist.getValue():
 			channelNumberWidth = 0
 			channelNumberSpace = 0
 		else:
 			channelNumberWidth = 55
 			channelNumberSpace = 10
 
-		if config.usage.show_event_progress_in_servicelist.value:
+		if config.usage.show_event_progress_in_servicelist.getValue():
 			self.l.setElementPosition(self.l.celServiceEventProgressbar, eRect(channelNumberWidth+channelNumberSpace, 0, 52, self.ItemHeight))
 		else:
 			self.l.setElementPosition(self.l.celServiceEventProgressbar, eRect(channelNumberWidth+channelNumberSpace, 0, 0, 0))
