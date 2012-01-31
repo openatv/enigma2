@@ -257,10 +257,10 @@ class EPGList(HTMLComponent, GUIComponent):
 
 	def setItemsPerPage(self):
 		if self.listHeight > 0:
-			itemHeight = self.listHeight / config.misc.graph_mepg.items_per_page.value
+			itemHeight = self.listHeight / config.misc.graph_mepg.items_per_page.getValue()
 		else:
 			itemHeight = 54 # some default (270/5)
-		self.instance.resize(eSize(self.listWidth, itemHeight * config.misc.graph_mepg.items_per_page.value))
+		self.instance.resize(eSize(self.listWidth, itemHeight * config.misc.graph_mepg.items_per_page.getValue()))
 		self.l.setItemHeight(itemHeight)
 
 	def setEventFontsize(self):
@@ -626,7 +626,7 @@ config.misc.graph_mepg = ConfigSubsection()
 config.misc.graph_mepg.prev_time = ConfigClock(default = time())
 config.misc.graph_mepg.prev_time_period = ConfigInteger(default = 120, limits = (60, 300))
 config.misc.graph_mepg.ev_fontsize = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 8, wraparound = True)
-config.misc.graph_mepg.items_per_page = ConfigInteger(default = 5, limits = (3, 10))
+config.misc.graph_mepg.items_per_page = ConfigSelectionNumber(min = 3, max = 10, stepwidth = 1, default=5, wraparound = True)
 config.misc.graph_mepg.overjump = ConfigBoolean(default = True)
 config.misc.graph_mepg.showpicon = ConfigBoolean(default=False)
 config.misc.graph_mepg.showservicetitle = ConfigBoolean(default=True)
