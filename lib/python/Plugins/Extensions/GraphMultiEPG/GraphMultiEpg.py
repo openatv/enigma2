@@ -1,5 +1,5 @@
 from skin import parseColor, parseFont, parseSize
-from Components.config import config, ConfigClock, ConfigInteger, ConfigSubsection, ConfigBoolean, ConfigSelection
+from Components.config import config, ConfigClock, ConfigInteger, ConfigSubsection, ConfigBoolean, ConfigSelection, ConfigSelectionNumber
 from Components.Pixmap import Pixmap
 from Components.Button import Button
 from Components.ActionMap import HelpableActionMap
@@ -73,7 +73,9 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.borderColorService = 0x000000
 		self.foreColorNow = 0xffc000
 		self.backColorNow = 0x508050
-		self.entryFont = "Regular"
+		self.serviceFont = gFont("Regular", 20)
+		self.entryFontName = "Regular"
+		self.entryFontSize = 18
 
 		self.listHeight = None
 		self.listWidth = None
@@ -95,8 +97,9 @@ class EPGList(HTMLComponent, GUIComponent):
 				elif attrib == "EntryBorderColor":
 					self.borderColor = parseColor(value).argb()
 				elif attrib == "EntryFont":
-					self.entryFont = parseFont(value, ((1,1),(1,1)) ).family # only take name. Size is set in config menu
-					self.setEventFontsize()
+					font = parseFont(value, ((1,1),(1,1)) )
+					self.entryFontName = font.family
+					self.entryFontSize = font.pointSize
 				elif attrib == "ServiceForegroundColor" or attrib == "ServiceNameForegroundColor":
 					self.foreColorService = parseColor(value).argb()
 				elif attrib == "ServiceForegroundColorSelected":
@@ -108,7 +111,7 @@ class EPGList(HTMLComponent, GUIComponent):
 				elif attrib == "ServiceBorderColor":
 					self.borderColorService = parseColor(value).argb()
 				elif attrib == "ServiceFont":
-					self.l.setFont(0, parseFont(value, ((1,1),(1,1)) ))
+					self.serviceFont = parseFont(value, ((1,1),(1,1)) )
 				elif attrib == "EntryBackgroundColorNow":
 					self.backColorNow = parseColor(value).argb()
 				elif attrib == "EntryForegroundColorNow":
@@ -261,14 +264,14 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.l.setItemHeight(itemHeight)
 
 	def setEventFontsize(self):
-		self.l.setFont(1, gFont(self.entryFont, config.misc.graph_mepg.ev_fontsize.value))
+		self.l.setFont(1, gFont(self.entryFontName, self.entryFontSize + config.misc.graph_mepg.ev_fontsize.getValue()))
 
 	def postWidgetCreate(self, instance):
 		instance.setWrapAround(True)
 		instance.selectionChanged.get().append(self.serviceChanged)
 		instance.setContent(self.l)
 		self.l.setSelectionClip(eRect(0, 0, 0, 0), False)
-		self.l.setFont(0, gFont("Regular", 20))
+		self.l.setFont(0, self.serviceFont)
 		self.setEventFontsize()
 
 	def preWidgetRemove(self, instance):
@@ -456,7 +459,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			serviceList = services
 			piconIdx = 0
 
-		test.insert(0, 'XRnITBD')
+		test.insert(0, 'XRnITBD') #return record, service ref, service name, event id, event title, begin time, duration
 		epg_data = self.queryEPG(test)
 		self.list = [ ]
 		tmp_list = None
@@ -622,7 +625,7 @@ class TimelineText(HTMLComponent, GUIComponent):
 config.misc.graph_mepg = ConfigSubsection()
 config.misc.graph_mepg.prev_time = ConfigClock(default = time())
 config.misc.graph_mepg.prev_time_period = ConfigInteger(default = 120, limits = (60, 300))
-config.misc.graph_mepg.ev_fontsize = ConfigInteger(default = 14, limits = (10, 25))
+config.misc.graph_mepg.ev_fontsize = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 8, wraparound = True)
 config.misc.graph_mepg.items_per_page = ConfigInteger(default = 5, limits = (3, 10))
 config.misc.graph_mepg.overjump = ConfigBoolean(default = True)
 config.misc.graph_mepg.showpicon = ConfigBoolean(default=False)
@@ -640,7 +643,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 	def __init__(self, session, services, zapFunc=None, bouquetChangeCB=None, bouquetname=""):
 		Screen.__init__(self, session)
 		self.bouquetChangeCB = bouquetChangeCB
-		now = time()
+		now = time() - config.epg.histminutes.value * 60
 		self.ask_time = now - now % (config.misc.graph_mepg.roundTo.getValue() * 60)
 		self.closeRecursive = False
 		self["key_red"] = Button("")
@@ -775,7 +778,9 @@ class GraphMultiEPG(Screen, HelpableScreen):
 	def onDateTimeInputClosed(self, ret):
 		if len(ret) > 1:
 			if ret[0]:
-				self.ask_time = ret[1] - ret[1] % (config.misc.graph_mepg.roundTo.getValue() * 60)
+				now = time() - config.epg.histminutes.value * 60
+				seld.ask_time = ret[1] if ret[1] >= now else now
+				self.ask_time = self.ask_time - self.ask_time % (config.misc.graph_mepg.roundTo.getValue() * 60)
 				l = self["list"]
 				l.resetOffset()
 				l.fillMultiEPG(None, self.ask_time)
@@ -792,7 +797,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		l.setOverjump_Empty(config.misc.graph_mepg.overjump.value)
 		l.setShowPicon(config.misc.graph_mepg.showpicon.value)
 		l.setShowServiceTitle(config.misc.graph_mepg.showservicetitle.value)
-		now = time()
+		now = time() - config.epg.histminutes.value * 60
 		self.ask_time = now - now % (config.misc.graph_mepg.roundTo.getValue() * 60)
 		l.fillMultiEPG(None, self.ask_time)
 		self.moveTimeLines()
