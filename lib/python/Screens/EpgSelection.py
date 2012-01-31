@@ -31,6 +31,11 @@ from time import time, strftime, localtime, mktime
 from datetime import datetime
 
 mepg_config_initialized = False
+try:
+	from Plugins.Extensions.AutoTimer.AutoTimerEditor import addAutotimerFromEvent
+	BlueText = _("Add AutoTimer")
+except:
+	BlueText = _("Toggle Sort")
 
 class EPGSelection(Screen, HelpableScreen):
 	data = resolveFilename(SCOPE_CURRENT_SKIN,"skin.xml")
@@ -324,7 +329,7 @@ class EPGSelection(Screen, HelpableScreen):
 				self["key_red"] = Button(_("IMDb Search"))
 				self["key_green"] = Button(_("Add Timer"))
 				self["key_yellow"] = Button(_("EPG Search"))
-				self["key_blue"] = Button(_("Add AutoTimer"))
+				self["key_blue"] = Button(BlueText)
 				self.services = service
 				self.zapFunc = zapFunc
 				if bouquetname != "":
@@ -335,7 +340,7 @@ class EPGSelection(Screen, HelpableScreen):
 				self["key_red"] = Button(_("IMDb Search"))
 				self["key_green"] = Button(_("Add Timer"))
 				self["key_yellow"] = Button(_("EPG Search"))
-				self["key_blue"] = Button(_("Add AutoTimer"))
+				self["key_blue"] = Button(BlueText)
 				self["now_button"] = Pixmap()
 				self["next_button"] = Pixmap()
 				self["more_button"] = Pixmap()
@@ -352,7 +357,7 @@ class EPGSelection(Screen, HelpableScreen):
 		elif isinstance(service, eServiceReference) or isinstance(service, str):
 			self["key_red"] = Button(_("IMDb Search"))
 			self["key_yellow"] = Button(_("EPG Search"))
-			self["key_blue"] = Button(_("Add AutoTimer"))
+			self["key_blue"] = Button(BlueText)
 			self["key_green"] = Button(_("Add Timer"))
 			self.type = EPG_TYPE_SINGLE
 			self.currentService=ServiceReference(service)
@@ -366,7 +371,7 @@ class EPGSelection(Screen, HelpableScreen):
 				self.type = EPG_TYPE_ENHANCED
 			self["key_red"] = Button(_("IMDb Search"))
 			self["key_yellow"] = Button(_("EPG Search"))
-			self["key_blue"] = Button(_("Add AutoTimer"))
+			self["key_blue"] = Button(BlueText)
 			self["key_green"] = Button(_("Add Timer"))
 			self.list = []
 			self.servicelist = service
@@ -907,7 +912,13 @@ class EPGSelection(Screen, HelpableScreen):
 			serviceref = cur[1]
 			addAutotimerFromEvent(self.session, evt = event, service = serviceref)
 		except ImportError:
-			self.session.open(MessageBox, _("The AutoTimer plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			if self.type == EPG_TYPE_SINGLE or self.type == EPG_TYPE_ENHANCED:
+				if self.sort_type == 0:
+					self.sort_type = 1
+				else: 
+					self.sort_type = 0
+				self["list"].sortSingleEPG(self.sort_type)
+
 
 	def showTimerList(self):
 		from Screens.TimerEdit import TimerEditList
