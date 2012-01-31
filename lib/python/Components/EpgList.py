@@ -330,6 +330,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			else:
 				itemHeight = 32
 		self.l.setItemHeight(itemHeight)
+		self.instance.resize(eSize(self.listWidth, self.listHeight / itemHeight * itemHeight))
 
 	def isSelectable(self, service, service_name, events, picon):
 		return (events and len(events) and True) or False
