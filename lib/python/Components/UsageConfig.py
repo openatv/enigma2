@@ -216,9 +216,6 @@ def InitUsageConfig():
 	def updateFlushSize(el):
 		enigma.setFlushSize(int(el.value))
 		print "[SETTING] getFlushSize=", enigma.getFlushSize()
-	def updateDemuxSize(el):
-		enigma.setDemuxSize(int(el.value))
-		print "[SETTING] getDemuxSize=", enigma.getDemuxSize()
 	config.misc.flush_size = ConfigSelection(default = "0", choices = [
 		("0", "Off"),
 		("524288", "512kB"),
@@ -226,14 +223,6 @@ def InitUsageConfig():
 		("2097152", "2 MB"),
 		("4194304", "4 MB")])
 	config.misc.flush_size.addNotifier(updateFlushSize, immediate_feedback = False)
-	config.misc.demux_size = ConfigSelection(default = "1540096", choices = [
-		("770048", "Small 0.7 MB"),
-		("962560", "Normal 1 MB"),
-		("1540096", "Large 1.5MB"),
-		("1925120", "Huge 2 MB"),
-		("3850240", "Ginormous 4 MB"),
-		])
-	config.misc.demux_size.addNotifier(updateDemuxSize, immediate_feedback = False)
 	
 	def updateEraseSpeed(el):
 		enigma.eBackgroundFileEraser.getInstance().setEraseSpeed(int(el.value))
