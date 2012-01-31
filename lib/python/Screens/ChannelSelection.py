@@ -167,9 +167,9 @@ class SettingsMenu(ConfigListScreen, Screen):
 	def createSetup(self):
 		self.editListEntry = None
 		self.list = []
-		self.list.append(getConfigListEntry(_("Service number font size"), config.usage.servicenumfontsize))
-		self.list.append(getConfigListEntry(_("Service name font size"), config.usage.servicenamefontsize))
-		self.list.append(getConfigListEntry(_("Service info font size"), config.usage.serviceinfofontsize))
+		self.list.append(getConfigListEntry(_("Service number font size"), config.usage.servicenum_fontsize))
+		self.list.append(getConfigListEntry(_("Service name font size"), config.usage.servicename_fontsize))
+		self.list.append(getConfigListEntry(_("Service info font size"), config.usage.serviceinfo_fontsize))
 		self.list.append(getConfigListEntry(_("Number of items"), config.usage.serviceitems_per_page))
 		self["config"].list = self.list
 		self["config"].setList(self.list)
