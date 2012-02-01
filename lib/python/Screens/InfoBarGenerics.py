@@ -1,4 +1,4 @@
-from ChannelSelection import ChannelSelection, BouquetSelector, SilentBouquetSelector, VIXBouquetSelector
+from ChannelSelection import ChannelSelection, BouquetSelector, SilentBouquetSelector, EPGBouquetSelector
 
 from Components.ActionMap import ActionMap, HelpableActionMap
 from Components.ActionMap import NumberActionMap
@@ -1013,10 +1013,10 @@ class InfoBarEPG:
 			else:
 				self.session.open(EPGSelection, services, self.zapToService, None, self.changeBouquetCB, self.EPGtype, self.StartBouquet)
 
-	def changeBouquetCB(self, direction, epgcall):
+	def changeBouquetCB(self, epgcall):
 		bouquets = self.servicelist.getBouquetList()
 		self.epg = epgcall
-		self.session.openWithCallback(self.onBouquetSelectorClose, VIXBouquetSelector, self.bouquets, self.epg_bouquet, direction)
+		self.session.openWithCallback(self.onBouquetSelectorClose, EPGBouquetSelector, self.bouquets, self.epg_bouquet)
 
 	def onBouquetSelectorClose(self, bouquet):
 		if bouquet:

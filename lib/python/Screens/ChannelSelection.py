@@ -71,8 +71,8 @@ class BouquetSelector(Screen):
 	def cancelClick(self):
 		self.close(False)
 
-class VIXBouquetSelector(Screen):
-	def __init__(self, session, bouquets, curbouquet, direction, enableWrapAround=True):
+class EPGBouquetSelector(Screen):
+	def __init__(self, session, bouquets, curbouquet, enableWrapAround=True):
 		Screen.__init__(self, session)
 		self.skinName = "BouquetSelector"
 		self["actions"] = ActionMap(["OkCancelActions", "EPGSelectActions"],
@@ -84,21 +84,10 @@ class VIXBouquetSelector(Screen):
 			})
 		entrys = [ (x[0], x[1]) for x in bouquets ]
 		self["menu"] = MenuList(entrys, enableWrapAround)
-		idx = 0
-		for x in bouquets:
-			if x[1] == curbouquet:
-				break
-			idx += 1
-		self.idx = idx
-		self.dir = direction
 		self.onShow.append(self.__onShow)
 
 	def __onShow(self):
-		self["menu"].moveToIndex(self.idx)
-		if self.dir == -1:
-			self.down()
-		else:
-			self.up()
+		self["menu"].moveToIndex(0)
 
 	def getCurrent(self):
 		cur = self["menu"].getCurrent()
