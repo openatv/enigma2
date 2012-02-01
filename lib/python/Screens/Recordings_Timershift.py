@@ -131,7 +131,6 @@ class RecordingSettings(Screen,ConfigListScreen):
 			self.list.append(getConfigListEntry(_("Disk space to reserve for recordings (in GB)"), config.usage.movielist_trashcan_reserve))
 		if config.usage.setup_level.index >= 2:
 			self.list.append(getConfigListEntry(_("Recording data sync size"), config.misc.flush_size))
-			self.list.append(getConfigListEntry(_("Recording demux buffer size"), config.misc.demux_size))
 			self.list.append(getConfigListEntry(_("Background delete option"), config.misc.erase_flags))
 			self.list.append(getConfigListEntry(_("Background delete speed"), config.misc.erase_speed))
 			self.list.append(getConfigListEntry(_("Record ECM"), config.recording.record_ecm))
