@@ -906,7 +906,12 @@ class EPGSelection(Screen, HelpableScreen):
 			serviceref = cur[1]
 			addAutotimerFromEvent(self.session, evt = event, service = serviceref)
 		except ImportError:
-			self.session.open(MessageBox, _("The AutoTimer plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			if self.type == EPG_TYPE_SINGLE or self.type == EPG_TYPE_ENHANCED:
+				if self.sort_type == 0:
+					self.sort_type = 1
+				else: 
+					self.sort_type = 0
+				self["list"].sortSingleEPG(self.sort_type)
 
 	def showTimerList(self):
 		from Screens.TimerEdit import TimerEditList
