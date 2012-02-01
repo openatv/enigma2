@@ -21,6 +21,10 @@ if VUDUO
 SUBDIRS += VuDuoFancontrol HdmiCEC
 endif
 
+if VUSOLO
+SUBDIRS += HdmiCEC
+endif
+
 if TMTWIN
 SUBDIRS += VuDuoFancontrol HdmiCEC
 endif
