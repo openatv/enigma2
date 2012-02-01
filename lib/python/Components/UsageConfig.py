@@ -149,7 +149,7 @@ def InitUsageConfig():
 	config.usage.servicenum_fontsize = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
 	config.usage.servicename_fontsize = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
 	config.usage.serviceinfo_fontsize = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
-	config.usage.serviceitems_per_page = ConfigSlider(default = 16, increment = 1, limits=(3, 30))
+	config.usage.serviceitems_per_page = ConfigSelectionNumber(default = 16, stepwidth = 1, min = 3, max = 40, wraparound = True)
 	config.usage.show_servicelist = ConfigYesNo(default = True)
 	config.usage.servicelist_mode = ConfigSelection(default = "standard", choices = [
 		("standard", _("Standard")),
@@ -393,9 +393,6 @@ def InitUsageConfig():
 	def updateFlushSize(el):
 		enigma.setFlushSize(int(el.value))
 		print "[SETTING] getFlushSize=", enigma.getFlushSize()
-	def updateDemuxSize(el):
-		enigma.setDemuxSize(int(el.value))
-		print "[SETTING] getDemuxSize=", enigma.getDemuxSize()
 	config.misc.flush_size = ConfigSelection(default = "0", choices = [
 		("0", "Off"),
 		("524288", "512kB"),
@@ -403,14 +400,6 @@ def InitUsageConfig():
 		("2097152", "2 MB"),
 		("4194304", "4 MB")])
 	config.misc.flush_size.addNotifier(updateFlushSize, immediate_feedback = False)
-	config.misc.demux_size = ConfigSelection(default = "1540096", choices = [
-		("770048", "Small 0.7 MB"),
-		("962560", "Normal 1 MB"),
-		("1540096", "Large 1.5MB"),
-		("1925120", "Huge 2 MB"),
-		("3850240", "Ginormous 4 MB"),
-		])
-	config.misc.demux_size.addNotifier(updateDemuxSize, immediate_feedback = False)
 	
 	def updateEraseSpeed(el):
 		enigma.eBackgroundFileEraser.getInstance().setEraseSpeed(int(el.value))
@@ -650,9 +639,11 @@ def InitUsageConfig():
 	config.epgselction.ev_fontsize_pliepg = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
 	config.epgselction.tl_fontsize_pliepg = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
 	config.epgselction.ev_fontsize_enhanced = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
+	config.epgselction.ev_fontsize_multi = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
 	config.epgselction.ev_fontsize_infobar = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
 	config.epgselction.itemsperpage_pliepg = ConfigSelectionNumber(default = 11, stepwidth = 1, min = 3, max = 16, wraparound = True)
 	config.epgselction.itemsperpage_enhanced = ConfigSelectionNumber(default = 18, stepwidth = 1, min = 12, max = 40, wraparound = True)
+	config.epgselction.itemsperpage_multi = ConfigSelectionNumber(default = 18, stepwidth = 1, min = 12, max = 40, wraparound = True)
 	config.epgselction.itemsperpage_infobar = ConfigSelectionNumber(default = 2, stepwidth = 1, min = 2, max = 4, wraparound = True)
 
 	config.epgselction.servicewidth = ConfigSelectionNumber(default = 190, stepwidth = 1, min = 70, max = 250, wraparound = True)

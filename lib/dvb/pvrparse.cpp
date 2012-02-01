@@ -603,18 +603,17 @@ eMPEGStreamParserTS::eMPEGStreamParserTS(int packetsize):
 
 int eMPEGStreamParserTS::processPacket(const unsigned char *pkt, off_t offset)
 {
-	const unsigned char *end, *begin;
-	int pusi = 0;
 	if (!wantPacket(pkt))
 		eWarning("something's wrong.");
 
-	if (!(pkt[m_header_offset + 3] & 0x10)) return 0; /* do not process packets without payload */
-	pusi = !!(pkt[m_header_offset + 1] & 0x40);
-	if (pkt[m_header_offset + 3] & 0xc0) return 0; /* do not process scrambled packets */
-
 	pkt += m_header_offset;
-	end = pkt + 188;
-	begin = pkt;
+
+	if (!(pkt[3] & 0x10)) return 0; /* do not process packets without payload */
+	if (pkt[3] & 0xc0) return 0; /* do not process scrambled packets */
+
+	bool pusi = (pkt[1] & 0x40) != 0;
+	const unsigned char *end = pkt + 188;
+	const unsigned char *begin = pkt;
 
 	if (pkt[3] & 0x20) // adaptation field present?
 		pkt += pkt[4] + 4 + 1;  /* skip adaptation field and header */
@@ -650,19 +649,6 @@ int eMPEGStreamParserTS::processPacket(const unsigned char *pkt, off_t offset)
 			
 			m_last_pts = pts;
 			m_last_pts_valid = 1;
-
-	#if 0		
-			int sec = pts / 90000;
-			int frm = pts % 90000;
-			int min = sec / 60;
-			sec %= 60;
-			int hr = min / 60;
-			min %= 60;
-			int d = hr / 24;
-			hr %= 24;
-			
-			eDebug("pts: %016llx %d:%02d:%02d:%02d:%05d", pts, d, hr, min, sec, frm);
-	#endif
 		}
 		
 			/* advance to payload */

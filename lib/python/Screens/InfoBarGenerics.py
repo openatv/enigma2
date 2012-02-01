@@ -78,7 +78,7 @@ def setResumePoint(session):
 						if v[0] < lru:
 							candidate = k
 					del resumePointCache[candidate]
-				print '[ResumePionts] lenth',len(resumePointCache)
+				print '[ResumePionts] test',(lru - resumePointCacheLast)
 				if lru - resumePointCacheLast > 3600:
 					print '[ResumePionts] saving'
 					saveResumePoints()
@@ -1100,10 +1100,10 @@ class InfoBarEPG:
 			else:
 				self.session.open(EPGSelection, services, self.zapToService, None, self.changeBouquetCB, self.EPGtype, self.StartBouquet)
 
-	def changeBouquetCB(self, direction, epgcall):
+	def changeBouquetCB(self, epgcall):
 		bouquets = self.servicelist.getBouquetList()
 		self.epg = epgcall
-		self.session.openWithCallback(self.onBouquetSelectorClose, PLIBouquetSelector, self.bouquets, self.epg_bouquet, direction)
+		self.session.openWithCallback(self.onBouquetSelectorClose, EPGBouquetSelector, self.bouquets, self.epg_bouquet)
 
 	def onBouquetSelectorClose(self, bouquet):
 		if bouquet:
@@ -1128,7 +1128,7 @@ class InfoBarEPG:
 		self.EPGtype = "multi"
 		Servicelist = self.servicelist
 		self.StartBouquet = Servicelist and Servicelist.getRoot()
-		if config.epgselction.ShowBouquet_multi.value:
+		if config.epgselction.showbouquet_multi.value:
 			self.bouquets = self.servicelist.getBouquetList()
 			if self.bouquets is None:
 				cnt = 0

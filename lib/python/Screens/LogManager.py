@@ -131,7 +131,7 @@ class LogManager(Screen):
 		except:
 			self.sel = None
 		if self.sel:
-			self.session.open(LogManagerViewLog, self.sel[0], self.logtype)
+			self.session.open(LogManagerViewLog, self.sel[0])
 
 	def deletelog(self):
 		try:
@@ -313,17 +313,13 @@ class LogManagerViewLog(Screen):
 		<screen name="LogManagerViewLog" position="center,center" size="700,400" title="Log Manager" >
 			<widget name="list" position="0,0" size="700,400" font="Console;14" />
 		</screen>"""
-	def __init__(self, session, selected, logtype):
+	def __init__(self, session, selected):
 		self.session = session
 		Screen.__init__(self, session)
 		self.setTitle(selected)
 		self.skinName = "LogManagerViewLog"
-		if logtype == 'crashlogs':
-			selected = '/media/hdd/' + selected
-		else:
-			selected = config.crash.debug_path.value + selected
-		if path.exists(selected):
-			log = file(selected).read()
+		if path.exists(config.crash.debug_path.value + selected):
+			log = file(config.crash.debug_path.value + selected).read()
 		else:
 			log = ""
 		self["list"] = ScrollLabel(str(log))
