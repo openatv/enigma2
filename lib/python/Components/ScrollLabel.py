@@ -35,8 +35,8 @@ class ScrollLabel(HTMLComponent, GUIComponent):
 		lines = (int)(s.height() / lineheight)
 		self.pageHeight = (int)(lines * lineheight)
 		self.instance.resize(eSize(s.width(), self.pageHeight+(int)(lineheight/6)))
-		self.scrollbar.move(ePoint(s.width()-20,0))
-		self.scrollbar.resize(eSize(20,self.pageHeight+(int)(lineheight/6)))
+		self.scrollbar.move(ePoint(s.width()-10,0))
+		self.scrollbar.resize(eSize(10,self.pageHeight+(int)(lineheight/6)))
 		self.scrollbar.setOrientation(eSlider.orVertical);
 		self.scrollbar.setRange(0,100)
 		self.scrollbar.setBorderWidth(1)
