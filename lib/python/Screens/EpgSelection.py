@@ -31,7 +31,7 @@ class EPGSelection(Screen, HelpableScreen):
 	data = file(resolveFilename(SCOPE_CURRENT_SKIN,"skin.xml")).read()
 	if data.find('xres="1280"') >= 0:
 		QuickEPG = """
-			<screen name="QuickEPG" position="0,505" size="1280,215" title="QuickEPG" backgroundColor="transparent" flags="wfNoBorder">
+			<screen name="QuickEPG" position="0,505" size="1280,215" backgroundColor="transparent" flags="wfNoBorder">
 				<ePixmap alphatest="off" pixmap="Magic/infobar/infobar-hd.png" position="0,0" size="1280,220" zPosition="0"/>
 				<widget source="Service" render="Picon" position="60,75" size="100,60" transparent="1" zPosition="2" alphatest="blend">
 					<convert type="ServiceName">Reference</convert>
@@ -50,7 +50,7 @@ class EPGSelection(Screen, HelpableScreen):
 				<widget name="key_blue" position="870,164" zPosition="1" size="150,20" font="Regular; 20" backgroundColor="#101214" foregroundColor="#cccccc" transparent="1" />
 			</screen>"""
 		GraphEPG = """
-			<screen name="GraphicalEPG" position="center,center" size="1280,720" backgroundColor="#000000" title="Programme Guide">
+			<screen name="GraphicalEPG" position="center,center" size="1280,720" backgroundColor="#000000" >
 				<eLabel text="Programme Guide" position="460,20" size="480,30" font="Regular;26" foregroundColor="#FFFFFF" backgroundColor="#000000" shadowColor="#000000" halign="center" transparent="1" />
 				<widget source="global.CurrentTime" render="Label" position="283, 20" size="90,30" font="Regular;26" foregroundColor="#FFFFFF" backgroundColor="#000000" shadowColor="#000000" halign="right" transparent="1">
 					<convert type="ClockToText">Default</convert>
@@ -93,7 +93,7 @@ class EPGSelection(Screen, HelpableScreen):
 				<widget name="key_blue" position="895, 679" size="150, 24" font="Regular;20" foregroundColor="#1E28B6" backgroundColor="#000000" shadowColor="#000000" halign="left" valign="top" transparent="1" />
 			</screen>"""
 		GraphEPGPIG = """
-			<screen name="GraphicalEPGPIG" position="center,center" size="1280,720" backgroundColor="#000000" title="Programme Guide" flags="wfNoBorder">
+			<screen name="GraphicalEPGPIG" position="center,center" size="1280,720" backgroundColor="#000000" flags="wfNoBorder">
 				<eLabel text="Programme Guide" position="460,20" size="480,30" font="Regular;26" foregroundColor="#FFFFFF" backgroundColor="#000000" shadowColor="#000000" halign="center" transparent="1" />
 				<widget source="global.CurrentTime" render="Label" position="283, 20" size="90,30" font="Regular;26" foregroundColor="#FFFFFF" backgroundColor="#000000" shadowColor="#000000" halign="right" transparent="1">
 					<convert type="ClockToText">Default</convert>
@@ -139,7 +139,7 @@ class EPGSelection(Screen, HelpableScreen):
 
 	else:
 		QuickEPG = """
-			<screen name="QuickEPG" position="0,325" size="720,276" title="QuickEPG" backgroundColor="transparent" flags="wfNoBorder" >
+			<screen name="QuickEPG" position="0,325" size="720,276" backgroundColor="transparent" flags="wfNoBorder" >
 				<ePixmap alphatest="off" pixmap="Magic/infobar/infobar.png" position="0,0" size="720,156" zPosition="1"/>
 				<eLabel backgroundColor="#41080808" position="0,156" size="720,110" zPosition="2"/>
 				<widget borderColor="#0f0f0f" borderWidth="1" backgroundColor="#16000000" font="Enigma;24" foregroundColor="#00f0f0f0" halign="left" noWrap="1" position="88,120" render="Label" size="68,28" source="global.CurrentTime" transparent="1" zPosition="3">
@@ -165,7 +165,7 @@ class EPGSelection(Screen, HelpableScreen):
 				<widget name="key_blue" position="500,213" size="150,20" font="Regular; 17" halign="left" backgroundColor="#101214" foregroundColor="#cccccc" transparent="1" zPosition="4" />
 			</screen>"""
 		GraphEPG = """
-			<screen name="GraphicalEPG" position="center,center" size="720,576" backgroundColor="#000000" title="Programme Guide">
+			<screen name="GraphicalEPG" position="center,center" size="720,576" backgroundColor="#000000" >
 				<widget source="Title" render="Label" position="200,18" size="380,28" font="Regular;22" foregroundColor="#FFFFFF" backgroundColor="#000000" shadowColor="#000000" halign="center" transparent="1" />
 				<widget source="global.CurrentTime" render="Label" position="140, 18" size="90,24" font="Regular;20" foregroundColor="#FFFFFF" backgroundColor="#000000" shadowColor="#000000" halign="right" transparent="1">
 						<convert type="ClockToText">Default</convert>
@@ -208,7 +208,7 @@ class EPGSelection(Screen, HelpableScreen):
 			</screen>
 			"""
 		GraphEPGPIG = """
-			<screen name="GraphicalEPG" position="center,center" size="720,576" backgroundColor="#000000" title="Programme Guide" flags="wfNoBorder">
+			<screen name="GraphicalEPG" position="center,center" size="720,576" backgroundColor="#000000" flags="wfNoBorder">
 				<widget source="Title" render="Label" position="200,18" size="380,28" font="Regular;22" foregroundColor="#FFFFFF" backgroundColor="#000000" shadowColor="#000000" halign="center" transparent="1" />
 				<widget source="global.CurrentTime" render="Label" position="140, 18" size="90,24" font="Regular;20" foregroundColor="#FFFFFF" backgroundColor="#000000" shadowColor="#000000" halign="right" transparent="1">
 					<convert type="ClockToText">Default</convert>
@@ -276,10 +276,9 @@ class EPGSelection(Screen, HelpableScreen):
 		self.serviceChangeCB = serviceChangeCB
 		self.ask_time = -1 #now
 		self.closeRecursive = False
-		self.saved_title = None
 		self["Service"] = ServiceEvent()
 		self["Event"] = Event()
-		Screen.setTitle(self, _("Programme Guide"))
+ 		Screen.setTitle(self, _("Programme Guide"))
 		if isinstance(service, str) and eventid != None:
 			self.type = EPG_TYPE_SIMILAR
 			self["key_yellow"] = Button()
@@ -320,8 +319,8 @@ class EPGSelection(Screen, HelpableScreen):
 				self["key_blue"] = Button(_("Add AutoTimer"))
 				self.services = service
 				self.zapFunc = zapFunc
-				if bouquetname != "":
-					Screen.setTitle(self, bouquetname)
+# 				if bouquetname != "":
+# 					Screen.setTitle(self, bouquetname)
 			else:
 				self.type = EPG_TYPE_MULTI
 				self.skinName = "EPGSelectionMulti"
@@ -400,8 +399,8 @@ class EPGSelection(Screen, HelpableScreen):
 		if  self.type == EPG_TYPE_INFOBAR:
 			self["epgactions"] = HelpableActionMap(self, "EPGSelectActions",
 				{
-					"nextBouquet":		(self.nextBouquet, _("Show bouquet selection menu")),
-					"prevBouquet":		(self.prevBouquet, _("Show bouquet selection menu")),
+					"nextBouquet":		(self.nextBouquet, _("Goto next bouquet")),
+					"prevBouquet":		(self.prevBouquet, _("Goto previous bouquet")),
 					"nextService":		(self.nextPage, _("Move down a page")),
 					"prevService":		(self.prevPage, _("Move up a page")),
 					"input_date_time":	(self.enterDateTime, _("Goto specific data/time")),
@@ -437,8 +436,8 @@ class EPGSelection(Screen, HelpableScreen):
 		elif self.type == EPG_TYPE_ENHANCED:
 			self["epgactions"] = HelpableActionMap(self, "EPGSelectActions",
 				{
-					"nextBouquet":		(self.nextBouquet, _("Show bouquet selection menu")),
-					"prevBouquet":		(self.prevBouquet, _("Show bouquet selection menu")),
+					"nextBouquet":		(self.nextBouquet, _("Goto next bouquet")),
+					"prevBouquet":		(self.prevBouquet, _("Goto previous bouquet")),
 					"nextService":		(self.nextService, _("Goto next channel")),
 					"prevService": 		(self.prevService, _("Goto previous channel")),
 					"input_date_time":	(self.enterDateTime, _("Goto specific data/time")),
@@ -475,8 +474,8 @@ class EPGSelection(Screen, HelpableScreen):
 				{
 					"nextBouquet":		(self.nextService, _("Jump forward 24 hours")),
 					"prevBouquet":		(self.prevService, _("Jump back 24 hours")),
-					"prevService":		(self.prevBouquet, _("Show bouquet selection menu")),
-					"nextService": 		(self.nextBouquet, _("Show bouquet selection menu")),
+					"prevService":		(self.Bouquetlist, _("Show bouquet selection menu")),
+					"nextService": 		(self.Bouquetlist, _("Show bouquet selection menu")),
 					"input_date_time":	(self.enterDateTime, _("Goto specific data/time")),
 					"Info":				(self.Info, _("Show detailed event info")),
 					"InfoLong":			(self.InfoLong, _("Show single epg for current channel")),
@@ -509,10 +508,10 @@ class EPGSelection(Screen, HelpableScreen):
 		elif self.type == EPG_TYPE_MULTI:
 			self["epgactions"] = HelpableActionMap(self, "EPGSelectActions",
 				{
-					"nextBouquet":		(self.nextBouquet, _("Show bouquet selection menu")),
-					"prevBouquet":		(self.prevBouquet, _("Show bouquet selection menu")),
-					"nextService":		(self.nextService, _("Goto next channel")),
-					"prevService": 		(self.prevService, _("Goto previous channel")),
+					"nextBouquet":		(self.Bouquetlist, _("Show bouquet selection menu")),
+					"prevBouquet":		(self.Bouquetlist, _("Show bouquet selection menu")),
+					"nextService":		(self.nextPage, _("Move down a page")),
+					"prevService":		(self.prevPage, _("Move up a page")),
 					"input_date_time":	(self.enterDateTime, _("Goto specific data/time")),
 					"Info":				(self.Info, _("Show detailed event info")),
 					"InfoLong":			(self.InfoLong, _("Show single epg for current channel")),
@@ -528,13 +527,7 @@ class EPGSelection(Screen, HelpableScreen):
 					"down":		(self.moveDown, _("Goto next channel")),
 				},-1)
 			self["cursoractions"].csel = self
-		else:
-			self["epgactions"] = HelpableActionMap(self, "EPGSelectActions",
-				{
-					"Menu":				(self.createSetup, _("Setup menu")),
-				},-1)
-			self["epgactions"].csel = self
-	
+
 		if self.type == EPG_TYPE_GRAPH:
 			self.curBouquet = bouquetChangeCB
 			self.updateTimelineTimer = eTimer()
@@ -573,9 +566,8 @@ class EPGSelection(Screen, HelpableScreen):
 			else:
 				self.sort_type = 1
 			l = self["list"]
-			if self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_SINGLE:
-				l.setItemsPerPage()
-				l.setEventFontsize()
+			l.setItemsPerPage()
+			l.setEventFontsize()
 			l.recalcEntrySize()
 			l.sortSingleEPG(self.sort_type)
 
@@ -606,25 +598,23 @@ class EPGSelection(Screen, HelpableScreen):
 			if config.epgselction.channel1.value:
 				l.instance.moveSelectionTo(0)
 			self['lab1'].hide()
+			self.setTitle(ServiceReference(self.StartBouquet).getServiceName())
 		elif self.type == EPG_TYPE_MULTI:
 			l.fillMultiEPG(self.services, self.ask_time)
 			l.moveToService(serviceref)
 			l.setCurrentlyPlaying(serviceref)
+			self.setTitle(ServiceReference(self.StartBouquet).getServiceName())
 		elif self.type == EPG_TYPE_SINGLE:
 			service = self.currentService
 			self["Service"].newService(service.ref)
-			if self.saved_title is None:
-				self.saved_title = self.instance.getTitle()
-			title = self.saved_title + ' - ' + service.getServiceName()
-			self.instance.setTitle(title)
+			title = service.getServiceName()
+			self.setTitle(title)
 			l.fillSingleEPG(service)
 		elif self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
 			service = ServiceReference(self.servicelist.getCurrentSelection())
 			self["Service"].newService(service.ref)
-			if self.saved_title is None:
-				self.saved_title = self.instance.getTitle()
-			title = self.saved_title + ' - ' + service.getServiceName()
-			self.instance.setTitle(title)
+			title = service.getServiceName()
+			self.setTitle(title)
 			l.fillSingleEPG(service)
 		else:
 			l.fillSimilarList(self.currentService, self.eventid)
@@ -654,22 +644,22 @@ class EPGSelection(Screen, HelpableScreen):
 			self.updEvent(+1)
 		
 	def nextBouquet(self):
-		if (self.type != EPG_TYPE_ENHANCED or self.type == EPG_TYPE_GRAPH) and self.bouquetChangeCB:
-			self.bouquetChangeCB(1, self)
-		elif self.type == EPG_TYPE_ENHANCED and config.usage.multibouquet.value:
+		if (self.type == EPG_TYPE_MULTI or self.type == EPG_TYPE_GRAPH) and self.bouquetChangeCB:
+			self.bouquetChangeCB(self)
+		elif (self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR) and config.usage.multibouquet.value:
 			self.servicelist.nextBouquet()
 			self.onCreate()
 
 	def prevBouquet(self):
-		if (self.type != EPG_TYPE_ENHANCED or self.type == EPG_TYPE_GRAPH) and self.bouquetChangeCB:
-			self.bouquetChangeCB(-1, self)
-		elif self.type == EPG_TYPE_ENHANCED and config.usage.multibouquet.value:
+		if (self.type == EPG_TYPE_MULTI or self.type == EPG_TYPE_GRAPH) and self.bouquetChangeCB:
+			self.bouquetChangeCB(self)
+		elif (self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR) and config.usage.multibouquet.value:
 			self.servicelist.prevBouquet()
 			self.onCreate()
 
 	def Bouquetlist(self):
 		if self.bouquetChangeCB:
-			self.bouquetChangeCB(0, self)
+			self.bouquetChangeCB(self)
 
 	def nextService(self):
 		if self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
@@ -1557,10 +1547,8 @@ class EPGSelectionSetup(Screen, ConfigListScreen):
 			self.list.append(getConfigListEntry(_("Sort List by"), config.epgselction.sort))
 			self.list.append(getConfigListEntry(_("OK Button"), config.epgselction.OK))
 			self.list.append(getConfigListEntry(_("LongOK Button"), config.epgselction.OKLong))
-		else:
-			self.list.append(getConfigListEntry(_("Sort List by"), config.epgselction.sort))
-			self.list.append(getConfigListEntry(_("Items per Page"), config.epgselction.itemsperpage_single))
-			self.list.append(getConfigListEntry(_("Event Fontsize (relative to skin size)"), config.epgselction.ev_fontsize_single))
+			self.list.append(getConfigListEntry(_("Items per Page"), config.epgselction.itemsperpage_multi))
+			self.list.append(getConfigListEntry(_("Event Fontsize (relative to skin size)"), config.epgselction.ev_fontsize_multi))
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
 
