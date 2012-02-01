@@ -5,6 +5,7 @@
 #include <unistd.h>
 #include <signal.h>
 #include <lib/base/systemsettings.h>
+#include <sys/sysinfo.h>
 // For SYS_ stuff
 #include <syscall.h>
 //#define SHOW_WRITE_TIME
@@ -15,20 +16,24 @@
 #endif
 
 
-
-static int demuxSize = 8 * 188 * 1024;
-// exported to SWIG in lib/base/systemsettings.h
-int getDemuxSize(void)
+static int determineDemuxSize()
 {
-	return demuxSize;
-}
-void setDemuxSize(int size)
-{
-	if ((size >= 2*188*1024) && (size <= 16*188*1024))
+	struct sysinfo si;
+	if (sysinfo(&si) != 0)
 	{
-		demuxSize = size;
+		return 8*188*1024;
 	}
+	unsigned int megabytes = si.totalram >> 20;
+	int result;
+	if (megabytes > 200)
+		result = 20*188*1024; // 512MB systems: Use 4MB demux buffer (et9x00, vuultimo, ...)
+	else if (megabytes > 100)
+		result = 10*188*1024; // 256MB systems: Use <2MB demux buffer (dm8000, et5x00, vuduo)
+	else
+		result = 6*188*1024; // Smaller boxes: Use 1MB buffer (dm7025)
+	return result;
 }
+static int demuxSize = determineDemuxSize();
 
 static size_t flushSize = 0;
 
@@ -658,6 +663,7 @@ RESULT eDVBTSRecorder::start()
 			size /= 188;
 			size *= m_packetsize;
 		}
+		eDebug("Demux size: %d", size);
 		setBufferSize(size);
 	}
 

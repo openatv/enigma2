@@ -257,10 +257,10 @@ class EPGList(HTMLComponent, GUIComponent):
 
 	def setItemsPerPage(self):
 		if self.listHeight > 0:
-			itemHeight = self.listHeight / config.misc.graph_mepg.items_per_page.value
+			itemHeight = self.listHeight / config.misc.graph_mepg.items_per_page.getValue()
 		else:
 			itemHeight = 54 # some default (270/5)
-		self.instance.resize(eSize(self.listWidth, itemHeight * config.misc.graph_mepg.items_per_page.value))
+		self.instance.resize(eSize(self.listWidth, itemHeight * config.misc.graph_mepg.items_per_page.getValue()))
 		self.l.setItemHeight(itemHeight)
 
 	def setEventFontsize(self):
@@ -626,7 +626,7 @@ config.misc.graph_mepg = ConfigSubsection()
 config.misc.graph_mepg.prev_time = ConfigClock(default = time())
 config.misc.graph_mepg.prev_time_period = ConfigInteger(default = 120, limits = (60, 300))
 config.misc.graph_mepg.ev_fontsize = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 8, wraparound = True)
-config.misc.graph_mepg.items_per_page = ConfigInteger(default = 5, limits = (3, 10))
+config.misc.graph_mepg.items_per_page = ConfigSelectionNumber(min = 3, max = 10, stepwidth = 1, default=5, wraparound = True)
 config.misc.graph_mepg.overjump = ConfigBoolean(default = True)
 config.misc.graph_mepg.showpicon = ConfigBoolean(default=False)
 config.misc.graph_mepg.showservicetitle = ConfigBoolean(default=True)
@@ -643,7 +643,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 	def __init__(self, session, services, zapFunc=None, bouquetChangeCB=None, bouquetname=""):
 		Screen.__init__(self, session)
 		self.bouquetChangeCB = bouquetChangeCB
-		now = time() - config.epg.histminutes.value * 60
+		now = time() - config.epg.histminutes.getValue() * 60
 		self.ask_time = now - now % (config.misc.graph_mepg.roundTo.getValue() * 60)
 		self.closeRecursive = False
 		self["key_red"] = Button("")
@@ -778,7 +778,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 	def onDateTimeInputClosed(self, ret):
 		if len(ret) > 1:
 			if ret[0]:
-				now = time() - config.epg.histminutes.value * 60
+				now = time() - config.epg.histminutes.getValue() * 60
 				seld.ask_time = ret[1] if ret[1] >= now else now
 				self.ask_time = self.ask_time - self.ask_time % (config.misc.graph_mepg.roundTo.getValue() * 60)
 				l = self["list"]
@@ -797,7 +797,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		l.setOverjump_Empty(config.misc.graph_mepg.overjump.value)
 		l.setShowPicon(config.misc.graph_mepg.showpicon.value)
 		l.setShowServiceTitle(config.misc.graph_mepg.showservicetitle.value)
-		now = time() - config.epg.histminutes.value * 60
+		now = time() - config.epg.histminutes.getValue() * 60
 		self.ask_time = now - now % (config.misc.graph_mepg.roundTo.getValue() * 60)
 		l.fillMultiEPG(None, self.ask_time)
 		self.moveTimeLines()
