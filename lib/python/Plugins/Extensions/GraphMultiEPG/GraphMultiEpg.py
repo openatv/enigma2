@@ -779,7 +779,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		if len(ret) > 1:
 			if ret[0]:
 				now = time() - config.epg.histminutes.getValue() * 60
-				seld.ask_time = ret[1] if ret[1] >= now else now
+				self.ask_time = ret[1] if ret[1] >= now else now
 				self.ask_time = self.ask_time - self.ask_time % (config.misc.graph_mepg.roundTo.getValue() * 60)
 				l = self["list"]
 				l.resetOffset()
