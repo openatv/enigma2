@@ -77,10 +77,9 @@ def setResumePoint(session):
 						if v[0] < lru:
 							candidate = k
 					del resumePointCache[candidate]
-				print '[ResumePionts] test',(lru - resumePointCacheLast)
-				if lru - resumePointCacheLast > 3600:
-					print '[ResumePionts] saving'
-					saveResumePoints()
+# 				print '[ResumePionts] test',(lru - resumePointCacheLast)
+# 				if lru - resumePointCacheLast > 3600:
+				saveResumePoints()
 
 def delResumePoint(ref):
 	global resumePointCache, resumePointCacheLast
@@ -88,7 +87,7 @@ def delResumePoint(ref):
 		del resumePointCache[ref.toString()]
 	except KeyError:
 		pass
-	if int(time()) - resumePointCacheLast > 3600:
+# 	if int(time()) - resumePointCacheLast > 3600:
 		saveResumePoints()
 
 def getResumePoint(session):
@@ -103,6 +102,7 @@ def getResumePoint(session):
 			return None
 
 def saveResumePoints():
+	print '[ResumePionts] saving'
 	global resumePointCache, resumePointCacheLast
 	import cPickle
 	try:
