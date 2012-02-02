@@ -1464,24 +1464,10 @@ class SingleEPG(EPGSelection):
 		EPGSelection.__init__(self, session, service, zapFunc, bouquetChangeCB, serviceChangeCB)
 		self.skinName = "EPGSelection"
 
-class EPGSelectionSetup(Screen, ConfigListScreen):
-	skin = """
-		<screen name="EPGSelectionSetup" position="center,center" size="680,480" title="EPG Setup">
-			<ePixmap pixmap="skin_default/buttons/red.png" position="20,5" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/green.png" position="185,5" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/yellow.png" position="350,5" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/blue.png" position="515,5" size="140,40" alphatest="on" />
-			<widget name="key_red" position="20,5" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-			<widget name="key_green" position="185,5" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-			<eLabel text="press ( left OK right ) to change your Buttons !!!" position="15,455" size="650,60" font="Regular;20" foregroundColor="#9f1313" backgroundColor="#000000" shadowColor="#000000" halign="center" transparent="1" />
-			<widget name="config" position="20,60" size="640,370" />
-		</screen>"""
-
+class EPGSelectionSetup(Screen, ConfigListScreen):	
 	def __init__(self, session, type):
 		Screen.__init__(self, session)
-		self.skinName = "EPGSelectionSetup"
 		self.type=type
-		self.skinName = "EPGSelectionSetup"
 		Screen.setTitle(self, _("EPG Setup"))
 		self["satus"] = StaticText()
 		self['footnote'] = Label(_("* = Close EPG Required"))
@@ -1489,6 +1475,7 @@ class EPGSelectionSetup(Screen, ConfigListScreen):
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
 		self.createSetup()
+		self.skinName = "Setup"
 		
 		if self.type == 5:
 			self["actions"] = ActionMap(["SetupActions", 'ColorActions', "HelpActions"],
@@ -1509,8 +1496,8 @@ class EPGSelectionSetup(Screen, ConfigListScreen):
 				"green": self.keySave,
 			}, -1)
 
-		self["key_red"] = Button(_("Cancel"))
-		self["key_green"] = Button(_("Save"))
+		self["key_red"] = StaticText(_("Cancel"))
+		self["key_green"] = StaticText(_("OK"))
 		if not self.selectionChanged in self["config"].onSelectionChanged:
 			self["config"].onSelectionChanged.append(self.selectionChanged)
 		self.selectionChanged()
@@ -1592,13 +1579,10 @@ class EPGSelectionSetup(Screen, ConfigListScreen):
 	def keySave(self):
 		self.saveAll()
 		self.close()
-		config.plisettings.save()
-		config.save()
 	
 	def cancelConfirm(self, result):
 		if not result:
 			return
-
 		for x in self["config"].list:
 			x[1].cancel()
 		self.close()
