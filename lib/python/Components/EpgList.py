@@ -1,7 +1,7 @@
 from HTMLComponent import HTMLComponent
 from GUIComponent import GUIComponent
 from Components.config import config
-from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
+from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaBlend
 from Components.Renderer.Picon import getPiconName
 
 from skin import parseColor, parseFont
@@ -600,11 +600,11 @@ class EPGList(HTMLComponent, GUIComponent):
 				displayPicon = self.picload.getData()
 				
 				if displayPicon is not None:
-					res.append(MultiContentEntryPixmapAlphaTest(
+					res.append(MultiContentEntryPixmapAlphaBlend(
 						pos = (r1.x + self.serviceBorderWidth, r1.y + self.serviceBorderWidth),
 						size = (piconWidth, piconHeight),
 						png = displayPicon,
-						backcolor = None, backcolor_sel = None) )
+						backcolor = serviceBackColor, backcolor_sel = serviceBackColor) )
 		else:
 			piconWidth = 0
 
@@ -662,7 +662,7 @@ class EPGList(HTMLComponent, GUIComponent):
 					border_width = 1, border_color = self.borderColor))
 
 				if rec:
-					res.append(MultiContentEntryPixmapAlphaTest(
+					res.append(MultiContentEntryPixmapAlphaBlend(
 						pos = (left+xpos+ewidth-22, top+height-22), size = (21, 21),
 						png = self.getClockPixmap(service, stime, duration, ev[0]),
 						backcolor = backColor, backcolor_sel = backColorSelected))
