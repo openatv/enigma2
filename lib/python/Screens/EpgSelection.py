@@ -386,13 +386,18 @@ class EPGSelection(Screen, HelpableScreen):
 		self["colouractions"] = HelpableActionMap(self, "ColorActions",
 			{
 				"red":				(self.redButtonPressed, _("IMDB serach for current event")),
-				"green":			(self.timerAdd, _("Add/Remove timer for current event")),
 				"greenlong":		(self.showTimerList, _("Show Timer List")),
 				"yellow":			(self.yellowButtonPressed, _("Search for similar events")),
 				"blue":				(self.blueButtonPressed, _("Add a auto timer for current event")),
 				"bluelong":			(self.showAutoTimerList, _("Show AutoTimer List")),
 			},-1)
 		self["colouractions"].csel = self
+
+		self["addtimer"] = HelpableActionMap(self, "EPGSelectActions",
+			{
+				"timerAdd":			(self.timerAdd, _("Add/Remove timer for current event")),
+			},-1)
+		self["addtimer"].csel = self
 
 		self["recordingactions"] = HelpableActionMap(self, "InfobarInstantRecord",
 			{
