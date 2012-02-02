@@ -562,8 +562,8 @@ import Components.RecordingConfig
 Components.RecordingConfig.InitRecordingConfig()
 
 profile("Init:DebugLogCheck")
-import Components.DebugLogCheck
-Components.DebugLogCheck.AutoDebugLogCheck()
+import Screens.LogManager
+Screens.LogManager.AutoDebugLogCheck()
 
 profile("Init:OnlineCheckState")
 import Components.OnlineUpdateCheck
