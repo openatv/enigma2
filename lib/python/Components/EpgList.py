@@ -69,11 +69,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.type = type
 		self.l = eListboxPythonMultiContent()
 
-		if type == EPG_TYPE_SINGLE:
-			self.l.setBuildFunc(self.buildSingleEntry)
-		elif type == EPG_TYPE_ENHANCED:
-			self.l.setBuildFunc(self.buildSingleEntry)
-		elif type == EPG_TYPE_INFOBAR:
+		if type == EPG_TYPE_SINGLE or type == EPG_TYPE_ENHANCED or type == EPG_TYPE_INFOBAR:
 			self.l.setBuildFunc(self.buildSingleEntry)
 		elif type == EPG_TYPE_MULTI:
 			self.l.setBuildFunc(self.buildMultiEntry)
@@ -327,7 +323,7 @@ class EPGList(HTMLComponent, GUIComponent):
 						itemHeight = 45
 			self.l.setItemHeight(itemHeight)
 			self.instance.resize(eSize(self.listWidth, self.listHeight / itemHeight * itemHeight))
-		elif self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_SINGLE:
+		elif self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_SINGLE or self.type == EPG_TYPE_SIMILAR:
 			if self.listHeight > 0:
 				itemHeight = self.listHeight / config.epgselction.itemsperpage_enhanced.getValue()
 			else:
@@ -371,7 +367,7 @@ class EPGList(HTMLComponent, GUIComponent):
 	def setEventFontsize(self):
  		if self.type == EPG_TYPE_GRAPH:
 			self.l.setFont(1, gFont(self.eventFontNameGraph, self.eventFontSizeGraph + config.epgselction.ev_fontsize_vixepg.getValue()))
-		elif self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_SINGLE:
+		elif self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_SINGLE or self.type == EPG_TYPE_SIMILAR:
 			self.l.setFont(0, gFont(self.eventFontNameSingle, self.eventFontSizeSingle + config.epgselction.ev_fontsize_enhanced.getValue()))
 		elif self.type == EPG_TYPE_MULTI:
 			self.l.setFont(0, gFont(self.eventFontNameMulti, self.eventFontSizeMulti + config.epgselction.ev_fontsize_multi.getValue()))
@@ -431,9 +427,10 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.service_rect = Rect(0, 0, w, height)
 			self.event_rect = Rect(w, 0, width - w, height)
 		else: # EPG_TYPE_SIMILAR
-			self.weekday_rect = Rect(0, 0, width / 20 * 2-10, height)
-			self.datetime_rect = Rect(width / 20 * 2, 0, width / 20 * 5-15, height)
-			self.service_rect = Rect(width / 20 * 7, 0, width / 20 * 13, height)
+			fontwdith = config.epgselction.ev_fontsize_enhanced.getValue()
+			self.weekday_rect = Rect(0, 0, float(width / 100) * (10 + (fontwdith / 2)) , height)
+			self.datetime_rect = Rect(self.weekday_rect.width(), 0, float(width / 100) * (25 + fontwdith), height)
+			self.service_rect = Rect(self.datetime_rect.left() + self.datetime_rect.width(), 0, float(width / 100) * (70 + fontwdith), height)
 
 	def calcEntryPosAndWidthHelper(self, stime, duration, start, end, width):
 		xpos = (stime - start) * width / (end - start)
@@ -734,6 +731,18 @@ class EPGList(HTMLComponent, GUIComponent):
 				return self.epgcache.lookupEvent(list)
 		return [ ]
 
+	def fillSimilarList(self, refstr, event_id):
+		t = time()
+	 # search similar broadcastings
+		if event_id is None:
+			return
+		l = self.epgcache.search(('RIBND', 1024, eEPGCache.SIMILAR_BROADCASTINGS_SEARCH, refstr, event_id))
+		if l and len(l):
+			l.sort(key=lambda x: x[2])
+		self.l.setList(l)
+		self.selectionChanged()
+		print time() - t
+
 	def fillMultiEPG(self, services, stime=None):
 		test = [ (service.ref.toString(), 0, stime) for service in services ]
 		test.insert(0, 'X0RIBDTCn')
@@ -834,18 +843,6 @@ class EPGList(HTMLComponent, GUIComponent):
 				self.instance.moveSelectionTo(index)
 				break
 			index += 1
-
-	def fillSimilarList(self, refstr, event_id):
-		t = time()
-	 # search similar broadcastings
-		if event_id is None:
-			return
-		l = self.epgcache.search(('RIBND', 1024, eEPGCache.SIMILAR_BROADCASTINGS_SEARCH, refstr, event_id))
-		if l and len(l):
-			l.sort(key=lambda x: x[2])
-		self.l.setList(l)
-		self.selectionChanged()
-		print time() - t
 
 	def getEventRect(self):
 		rc = self.event_rect
