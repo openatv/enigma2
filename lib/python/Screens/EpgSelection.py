@@ -4,7 +4,7 @@ from Components.ActionMap import ActionMap, NumberActionMap, HelpableActionMap
 from Components.Button import Button
 from Components.config import config, configfile, ConfigClock, getConfigListEntry
 from Components.ConfigList import ConfigListScreen
-from Components.EpgList import EPGList, TimelineText, getPiconName, EPG_TYPE_SINGLE, EPG_TYPE_SIMILAR, EPG_TYPE_MULTI, EPG_TYPE_ENHANCED, EPG_TYPE_INFOBAR, EPG_TYPE_GRAPH, MAX_TIMELINES
+from Components.EpgList import EPGList, TimelineText, getPiconName, EPG_TYPE_SINGLE, EPG_TYPE_SIMILAR, EPG_TYPE_MULTI, EPG_TYPE_ENHANCED, EPG_TYPE_INFOBAR, EPG_TYPE_GRAPH, MAX_TIMELINES, days, dayslong
 from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Components.Sources.ServiceEvent import ServiceEvent
@@ -309,7 +309,7 @@ class EPGSelection(Screen, HelpableScreen):
 				self.key_green_choice = self.EMPTY
 				self.key_yellow_choice = self.EMPTY
 				self.key_blue_choice = self.EMPTY
-				self['lab1'] = Label()
+				self['lab1'] = Label(_('Wait please while gathering data...'))
 				self["timeline_text"] = TimelineText()
 				self["Event"] = Event()
 				self.time_lines = [ ]
@@ -500,7 +500,7 @@ class EPGSelection(Screen, HelpableScreen):
 					"down":		(self.moveDown, _("Goto next channel")),
 				},-1)
 			self["cursoractions"].csel = self
-			self["input_actions"] = HelpableActionMap(self, "InputActions",
+			self["input_actions"] = HelpableActionMap(self, "NumberActions",
 				{
 					"1":		(self.key1, _("Reduce time scale")),
 					"2":		(self.key2, _("Page up")),
@@ -582,15 +582,15 @@ class EPGSelection(Screen, HelpableScreen):
 			l.sortSingleEPG(self.sort_type)
 
 	def updateList(self):
-		scanning = _('Wait please while gathering data...')
-		self['lab1'].setText(scanning)
-		self.activityTimer.start(750)
+		self.activityTimer.start(10)
 
 	def onStartup(self):
 		self.onCreate()
 		if self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
 			self.startBouquet = self.servicelist.getRoot()
 		self.startRef = self.session.nav.getCurrentlyPlayingServiceReference()
+		if self.type == EPG_TYPE_GRAPH:
+			self['lab1'].hide()
 
 	def onCreate(self):
 		serviceref = self.session.nav.getCurrentlyPlayingServiceReference()
@@ -607,7 +607,6 @@ class EPGSelection(Screen, HelpableScreen):
 			self.moveTimeLines()
 			if config.epgselction.channel1.value:
 				l.instance.moveSelectionTo(0)
-			self['lab1'].hide()
 			self.setTitle(ServiceReference(self.StartBouquet).getServiceName())
 		elif self.type == EPG_TYPE_MULTI:
 			l.fillMultiEPG(self.services, self.ask_time)
@@ -1085,11 +1084,10 @@ class EPGSelection(Screen, HelpableScreen):
 		self.updEvent(-2)
 
 	def key5(self):
-		self["list"].instance.moveSelectionTo(0)
-		self.ask_time = ret[1] - ret[1] % (int(config.epgselction.roundTo.getValue()) * 60)
-		l = self["list"]
-		l.resetOffset()
-		l.fillGraphEPG(None, self.ask_time)
+		now = time() - int(config.epg.histminutes.getValue()) * 60
+		self.ask_time = now - now % (int(config.epgselction.roundTo.getValue()) * 60)
+		self["list"].resetOffset()
+		self["list"].fillGraphEPG(None, self.ask_time)
 		self.moveTimeLines(True)
 
 	def key6(self):
@@ -1112,16 +1110,15 @@ class EPGSelection(Screen, HelpableScreen):
 		hilf = (cooltime[0], cooltime[1], cooltime[2], int(config.epgselction.primetimehour.getValue()), int(config.epgselction.primetimemins.getValue()),0, cooltime[6], cooltime[7], cooltime[8])
 		cooltime = mktime(hilf)
 		self["list"].resetOffset()
-		self["list"].fillGraphEPG(self.services, cooltime)
+		self["list"].fillGraphEPG(None, cooltime)
 		self.moveTimeLines(True)		
 
 	def key0(self):
 		self["list"].instance.moveSelectionTo(0)	
-		now = time()
-		tmp = now % 900
-		cooltime = now - tmp
+		now = time() - int(config.epg.histminutes.getValue()) * 60
+		self.ask_time = now - now % (int(config.epgselction.roundTo.getValue()) * 60)
 		self["list"].resetOffset()
-		self["list"].fillGraphEPG(self.services, cooltime)
+		self["list"].fillGraphEPG(None, self.ask_time)
 		self.moveTimeLines(True)
 
 	def OK(self):
@@ -1205,7 +1202,6 @@ class EPGSelection(Screen, HelpableScreen):
 					self.applyButtonState(2)
 				else:
 					self.applyButtonState(1)
-				days = [ _("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun") ]
 				datestr = ""
 				if event is not None:
 					now = time()
@@ -1213,10 +1209,9 @@ class EPGSelection(Screen, HelpableScreen):
 					nowTime = localtime(now)
 					begTime = localtime(beg)
 					if nowTime[2] != begTime[2]:
-							datestr = '%s %d.%d.'%(days[begTime[6]], begTime[2], begTime[1])
+							datestr = '%s'%(dayslong[begTime[6]])
 					else:
-							datestr = '%s %d.%d.'%(_("Today"), begTime[2], begTime[1])
-	
+							datestr = '%s'%(_("Today"))
 				self["date"].setText(datestr)
 
 			if cur[1] is None:
