@@ -102,6 +102,10 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.backColorServiceNow = 0x00825F
 		self.foreColorServiceNowSelected = 0xffffff
 		self.backColorServiceNowSelected = 0x004f3a
+		self.backColorRecord = 0xd13333
+		self.backColorRecordSelected = 0x9e2626
+		self.backColorZap = 0x669466
+		self.backColorZapSelected = 0x436143
 
 		self.serviceFontNameGraph = "Regular"
 		self.serviceFontSizeGraph = 20
@@ -179,6 +183,14 @@ class EPGList(HTMLComponent, GUIComponent):
 					self.serviceBorderWidth = int(value)
 				elif attrib == "ServiceNamePadding":
 					self.serviceNamePadding = int(value)
+				elif attrib == "RecordBackgroundColor":
+					self.foreColorRecord = parseColor(value).argb()
+				elif attrib == "RecordBackgroundColorSelected":
+					self.backColorRecordSelected = parseColor(value).argb()
+				elif attrib == "ZapBackgroundColor":
+					self.backColorZap = parseColor(value).argb()
+				elif attrib == "ZapBackgroundColorSelected":
+					self.backColorZapSelected = parseColor(value).argb()
 				else:
 					attribs.append((attrib,value))
 			self.skinAttributes = attribs
@@ -646,11 +658,11 @@ class EPGList(HTMLComponent, GUIComponent):
 				if rec:
 					cooltyp = self.GraphEPGRecRed(service, ev[2], ev[3], ev[0])
 					if cooltyp == "record":
-						backColor = 0xd13333 
-						backColorSelected = 0x9e2626
+						backColor = self.backColorRecord 
+						backColorSelected = self.backColorRecordSelected
 					elif cooltyp == "justplay":						
-						backColor = 0x669466
-						backColorSelected = 0x436143
+						backColor = self.backColorZap
+						backColorSelected = self.backColorZapSelected
 
 				res.append(MultiContentEntryText(
 					pos = (left+xpos, top), size = (ewidth, height),
