@@ -15,6 +15,7 @@ config.mediaplayer.defaultDir = ConfigDirectory()
 config.mediaplayer.useAlternateUserAgent = ConfigYesNo(default=False)
 config.mediaplayer.alternateUserAgent = ConfigText(default="")
 config.mediaplayer.sortPlaylists = ConfigYesNo(default=False)
+config.mediaplayer.onMainMenu = ConfigYesNo(default=False)
 
 class DirectoryBrowser(Screen, HelpableScreen):
 
@@ -96,6 +97,7 @@ class MediaPlayerSettings(Screen,ConfigListScreen):
 			if not config.mediaplayer.saveDirOnExit.getValue():
 				self.list.append(getConfigListEntry(_("start directory"), config.mediaplayer.defaultDir))
 			self.list.append(getConfigListEntry(_("sorting of playlists"), config.mediaplayer.sortPlaylists))
+			self.list.append(getConfigListEntry(_("show mediaplayer on mainmenu"), config.mediaplayer.onMainMenu))
 			self["config"].setList(self.list)
 		except KeyError:
 			print "keyError"
