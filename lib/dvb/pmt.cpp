@@ -1110,7 +1110,9 @@ int eDVBServicePMTHandler::tuneExt(eServiceReferenceDVB &ref, int use_decode_dem
 		}
 		eDebug("alloc PVR");
 			/* allocate PVR */
-		res = m_resourceManager->allocatePVRChannel(m_pvr_channel);
+		eDVBChannelID chid;
+		if (m_service_type == streamclient) ref.getChannelID(chid);
+		res = m_resourceManager->allocatePVRChannel(chid, m_pvr_channel);
 		if (res)
 			eDebug("allocatePVRChannel failed!\n");
 		m_channel = m_pvr_channel;
