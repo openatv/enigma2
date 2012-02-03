@@ -69,11 +69,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.type = type
 		self.l = eListboxPythonMultiContent()
 
-		if type == EPG_TYPE_SINGLE:
-			self.l.setBuildFunc(self.buildSingleEntry)
-		elif type == EPG_TYPE_ENHANCED:
-			self.l.setBuildFunc(self.buildSingleEntry)
-		elif type == EPG_TYPE_INFOBAR:
+		if type == EPG_TYPE_SINGLE or type == EPG_TYPE_ENHANCED or type == EPG_TYPE_INFOBAR:
 			self.l.setBuildFunc(self.buildSingleEntry)
 		elif type == EPG_TYPE_MULTI:
 			self.l.setBuildFunc(self.buildMultiEntry)
@@ -106,6 +102,10 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.backColorServiceNow = 0x00825F
 		self.foreColorServiceNowSelected = 0xffffff
 		self.backColorServiceNowSelected = 0x004f3a
+		self.backColorRecord = 0xd13333
+		self.backColorRecordSelected = 0x9e2626
+		self.backColorZap = 0x669466
+		self.backColorZapSelected = 0x436143
 
 		self.serviceFontNameGraph = "Regular"
 		self.serviceFontSizeGraph = 20
@@ -183,6 +183,14 @@ class EPGList(HTMLComponent, GUIComponent):
 					self.serviceBorderWidth = int(value)
 				elif attrib == "ServiceNamePadding":
 					self.serviceNamePadding = int(value)
+				elif attrib == "RecordBackgroundColor":
+					self.foreColorRecord = parseColor(value).argb()
+				elif attrib == "RecordBackgroundColorSelected":
+					self.backColorRecordSelected = parseColor(value).argb()
+				elif attrib == "ZapBackgroundColor":
+					self.backColorZap = parseColor(value).argb()
+				elif attrib == "ZapBackgroundColorSelected":
+					self.backColorZapSelected = parseColor(value).argb()
 				else:
 					attribs.append((attrib,value))
 			self.skinAttributes = attribs
@@ -327,7 +335,7 @@ class EPGList(HTMLComponent, GUIComponent):
 						itemHeight = 45
 			self.l.setItemHeight(itemHeight)
 			self.instance.resize(eSize(self.listWidth, self.listHeight / itemHeight * itemHeight))
-		elif self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_SINGLE:
+		elif self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_SINGLE or self.type == EPG_TYPE_SIMILAR:
 			if self.listHeight > 0:
 				itemHeight = self.listHeight / config.epgselction.itemsperpage_enhanced.getValue()
 			else:
@@ -371,7 +379,7 @@ class EPGList(HTMLComponent, GUIComponent):
 	def setEventFontsize(self):
  		if self.type == EPG_TYPE_GRAPH:
 			self.l.setFont(1, gFont(self.eventFontNameGraph, self.eventFontSizeGraph + config.epgselction.ev_fontsize_pliepg.getValue()))
-		elif self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_SINGLE:
+		elif self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_SINGLE or self.type == EPG_TYPE_SIMILAR:
 			self.l.setFont(0, gFont(self.eventFontNameSingle, self.eventFontSizeSingle + config.epgselction.ev_fontsize_enhanced.getValue()))
 		elif self.type == EPG_TYPE_MULTI:
 			self.l.setFont(0, gFont(self.eventFontNameMulti, self.eventFontSizeMulti + config.epgselction.ev_fontsize_multi.getValue()))
@@ -431,9 +439,10 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.service_rect = Rect(0, 0, w, height)
 			self.event_rect = Rect(w, 0, width - w, height)
 		else: # EPG_TYPE_SIMILAR
-			self.weekday_rect = Rect(0, 0, width / 20 * 2-10, height)
-			self.datetime_rect = Rect(width / 20 * 2, 0, width / 20 * 5-15, height)
-			self.service_rect = Rect(width / 20 * 7, 0, width / 20 * 13, height)
+			fontwdith = config.epgselction.ev_fontsize_enhanced.getValue()
+			self.weekday_rect = Rect(0, 0, float(width / 100) * (10 + (fontwdith / 2)) , height)
+			self.datetime_rect = Rect(self.weekday_rect.width(), 0, float(width / 100) * (25 + fontwdith), height)
+			self.service_rect = Rect(self.datetime_rect.left() + self.datetime_rect.width(), 0, float(width / 100) * (70 + fontwdith), height)
 
 	def calcEntryPosAndWidthHelper(self, stime, duration, start, end, width):
 		xpos = (stime - start) * width / (end - start)
@@ -649,11 +658,11 @@ class EPGList(HTMLComponent, GUIComponent):
 				if rec:
 					cooltyp = self.GraphEPGRecRed(service, ev[2], ev[3], ev[0])
 					if cooltyp == "record":
-						backColor = 0xd13333 
-						backColorSelected = 0x9e2626
+						backColor = self.backColorRecord 
+						backColorSelected = self.backColorRecordSelected
 					elif cooltyp == "justplay":						
-						backColor = 0x669466
-						backColorSelected = 0x436143
+						backColor = self.backColorZap
+						backColorSelected = self.backColorZapSelected
 
 				res.append(MultiContentEntryText(
 					pos = (left+xpos, top), size = (ewidth, height),
@@ -734,6 +743,18 @@ class EPGList(HTMLComponent, GUIComponent):
 				return self.epgcache.lookupEvent(list)
 		return [ ]
 
+	def fillSimilarList(self, refstr, event_id):
+		t = time()
+	 # search similar broadcastings
+		if event_id is None:
+			return
+		l = self.epgcache.search(('RIBND', 1024, eEPGCache.SIMILAR_BROADCASTINGS_SEARCH, refstr, event_id))
+		if l and len(l):
+			l.sort(key=lambda x: x[2])
+		self.l.setList(l)
+		self.selectionChanged()
+		print time() - t
+		
 	def fillMultiEPG(self, services, stime=None):
 		test = [ (service.ref.toString(), 0, stime) for service in services ]
 		test.insert(0, 'X0RIBDTCn')
@@ -835,18 +856,6 @@ class EPGList(HTMLComponent, GUIComponent):
 				break
 			index += 1
 
-	def fillSimilarList(self, refstr, event_id):
-		t = time()
-	 # search similar broadcastings
-		if event_id is None:
-			return
-		l = self.epgcache.search(('RIBND', 1024, eEPGCache.SIMILAR_BROADCASTINGS_SEARCH, refstr, event_id))
-		if l and len(l):
-			l.sort(key=lambda x: x[2])
-		self.l.setList(l)
-		self.selectionChanged()
-		print time() - t
-
 	def getEventRect(self):
 		rc = self.event_rect
 		return Rect( rc.left() + (self.instance and self.instance.position().x() or 0), rc.top(), rc.width(), rc.height() )
@@ -874,6 +883,7 @@ class TimelineText(HTMLComponent, GUIComponent):
 		self.borderColor = 0x000000
 		self.backColor = 0x000000
 		self.borderWidth = 1
+		self.time_base = 0
 		self.timelineFontName = "Regular"
 		self.timelineFontSize = 20
 
@@ -939,7 +949,8 @@ class TimelineText(HTMLComponent, GUIComponent):
 			datestr = '%s'%(_("Today"))
 		# Note: event_rect and service_rect are relative to the timeline_text position
 		# while the time lines are relative to the GraphEPG screen position!
-		res.append( MultiContentEntryText(
+		if self.time_base != time_base:
+			res.append( MultiContentEntryText(
 						pos = (0, 0),
 						size = (service_rect.width(), itemHeight),
 						font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_TOP,
@@ -948,24 +959,27 @@ class TimelineText(HTMLComponent, GUIComponent):
 						backcolor = self.backColor, backcolor_sel = self.backColor,
 						border_width = self.borderWidth, border_color = self.borderColor))
 
-		xpos = 0 # eventLeft
-		for x in range(0, num_lines):
-			res.append( MultiContentEntryText(
-				pos = (service_rect.width() + xpos, 0),
-				size = (incWidth, itemHeight),
-				font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_TOP,
-				text = strftime("%H:%M", localtime( time_base + x * timeStepsCalc )),
-				color = self.foreColor, color_sel = self.foreColor,
-				backcolor = self.backColor, backcolor_sel = self.backColor,
-				border_width = self.borderWidth, border_color = self.borderColor) )
-			line = time_lines[x]
-			old_pos = line.position
-			#if (old_pos[0] != xpos + eventLeft):
-			line.setPosition(xpos + eventLeft, old_pos[1])
-			line.visible = True
-			xpos += incWidth
-		for x in range(num_lines, MAX_TIMELINES):
-			time_lines[x].visible = False
+			xpos = 0 # eventLeft
+			for x in range(0, num_lines):
+				res.append( MultiContentEntryText(
+
+					pos = (service_rect.width() + xpos, 0),
+					size = (incWidth, itemHeight),
+					font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_TOP,
+					text = strftime("%H:%M", localtime( time_base + x * timeStepsCalc )),
+					color = self.foreColor, color_sel = self.foreColor,
+					backcolor = self.backColor, backcolor_sel = self.backColor,
+					border_width = self.borderWidth, border_color = self.borderColor) )
+				line = time_lines[x]
+				old_pos = line.position
+				#if (old_pos[0] != xpos + eventLeft):
+				line.setPosition(xpos + eventLeft, old_pos[1])
+				line.visible = True
+				xpos += incWidth
+			for x in range(num_lines, MAX_TIMELINES):
+				time_lines[x].visible = False
+			self.l.setList([res])
+			self.time_base = time_base
 
 		now = time()
 		if now >= time_base and now < (time_base + time_epoch * 60):

@@ -484,7 +484,7 @@ def InitUsageConfig():
 	audio_language_choices=[	
 		("---", "None"),
 		("und", "Undetermined"),
-		("orj dos ory org esl qaa und mis mul ORY Audio_ORJ", "Original"),
+		("orj dos ory org esl qaa und mis mul ORY ORJ Audio_ORJ", "Original"),
 		("ara", "Arabic"),
 		("eus baq", "Basque"),
 		("bul", "Bulgarian"), 
@@ -626,11 +626,11 @@ def InitUsageConfig():
 	config.epgselction.InfoLong = ConfigSelection(choices = [("Channel Info", _("Channel Info")), ("Single EPG", _("Single EPG"))], default = "Single EPG")
 	config.epgselction.roundTo = ConfigSelection(default = "15", choices = [("15", _("15 minutes")), ("30", _("30 minutes")), ("60", _("60 minutes"))])
 	config.epgselction.sort = ConfigSelection(default="Time", choices = [("Time", _("Time")),("AZ", _("Alphanumeric"))])
-	config.epgselction.prev_time=ConfigClock(default = time())
+	config.epgselction.prev_time = ConfigClock(default = time())
 	config.epgselction.primetimehour = ConfigSelectionNumber(default = 20, stepwidth = 1, min = 00, max = 23, wraparound = True)
 	config.epgselction.primetimemins = ConfigSelectionNumber(default = 00, stepwidth = 1, min = 00, max = 59, wraparound = True)
 	config.epgselction.showpicon = ConfigYesNo(default = True)
-	config.epgselction.showservicetitle = ConfigBoolean(default=True)
+	config.epgselction.showservicetitle = ConfigYesNo(default = True)
 	config.epgselction.channel1 = ConfigYesNo(default = False)
 	config.epgselction.prev_time_period = ConfigSelectionNumber(default = 180, stepwidth = 1, min = 60, max = 300, wraparound = True)
 

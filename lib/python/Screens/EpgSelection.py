@@ -10,6 +10,7 @@ from Components.Pixmap import Pixmap
 from Components.Sources.ServiceEvent import ServiceEvent
 from Components.Sources.Event import Event
 from Components.Sources.StaticText import StaticText
+from Components.Sources.Boolean import Boolean
 from Components.UsageConfig import preferredTimerPath
 from Screens.TimerEdit import TimerSanityConflict
 from Screens.EventView import EventViewSimple
@@ -283,13 +284,15 @@ class EPGSelection(Screen, HelpableScreen):
 		self.closeRecursive = False
 		self["Service"] = ServiceEvent()
 		self["Event"] = Event()
-		Screen.setTitle(self, _("Programme Guide"))
+ 		Screen.setTitle(self, _("Programme Guide"))
+		self.key_red_choice = self.EMPTY
+		self.key_green_choice = self.EMPTY
+		self["key_red"] = Button(_("IMDb Search"))
+		self["key_green"] = Button(_("Add Timer"))
+		self["key_yellow"] = Button(_("EPG Search"))
+		self["key_blue"] = Button(_("BlueText"))
 		if isinstance(service, str) and eventid != None:
 			self.type = EPG_TYPE_SIMILAR
-			self["key_yellow"] = Button()
-			self["key_blue"] = Button()
-			self["key_red"] = Button()
-			self["key_green"] = Button()
 			self.currentService=service
 			self.eventid = eventid
 			self.zapFunc = None
@@ -305,10 +308,6 @@ class EPGSelection(Screen, HelpableScreen):
 				now = time() - int(config.epg.histminutes.getValue()) * 60
 				self.ask_time = self.ask_time = now - now % (int(config.epgselction.roundTo.getValue()) * 60)
 				self.closeRecursive = False
-				self.key_red_choice = self.EMPTY
-				self.key_green_choice = self.EMPTY
-				self.key_yellow_choice = self.EMPTY
-				self.key_blue_choice = self.EMPTY
 				self['lab1'] = Label(_('Wait please while gathering data...'))
 				self["timeline_text"] = TimelineText()
 				self["Event"] = Event()
@@ -318,21 +317,11 @@ class EPGSelection(Screen, HelpableScreen):
 					self.time_lines.append(pm)
 					self["timeline%d"%(x)] = pm
 				self["timeline_now"] = Pixmap()
-				self["key_red"] = Button(_("IMDb Search"))
-				self["key_green"] = Button(_("Add Timer"))
-				self["key_yellow"] = Button(_("EPG Search"))
-				self["key_blue"] = Button(BlueText)
 				self.services = service
 				self.zapFunc = zapFunc
-#				if bouquetname != "":
-#					Screen.setTitle(self, bouquetname)
 			else:
 				self.type = EPG_TYPE_MULTI
 				self.skinName = "EPGSelectionMulti"
-				self["key_red"] = Button(_("IMDb Search"))
-				self["key_green"] = Button(_("Add Timer"))
-				self["key_yellow"] = Button(_("EPG Search"))
-				self["key_blue"] = Button(BlueText)
 				self["now_button"] = Pixmap()
 				self["next_button"] = Pixmap()
 				self["more_button"] = Pixmap()
@@ -347,10 +336,6 @@ class EPGSelection(Screen, HelpableScreen):
 				self.zapFunc = zapFunc
 
 		elif isinstance(service, eServiceReference) or isinstance(service, str):
-			self["key_red"] = Button(_("IMDb Search"))
-			self["key_yellow"] = Button(_("EPG Search"))
-			self["key_blue"] = Button(BlueText)
-			self["key_green"] = Button(_("Add Timer"))
 			self.type = EPG_TYPE_SINGLE
 			self.currentService=ServiceReference(service)
 			self.zapFunc = None
@@ -361,17 +346,11 @@ class EPGSelection(Screen, HelpableScreen):
 				self.skinName = "QuickEPG"
 			else:
 				self.type = EPG_TYPE_ENHANCED
-			self["key_red"] = Button(_("IMDb Search"))
-			self["key_yellow"] = Button(_("EPG Search"))
-			self["key_blue"] = Button(BlueText)
-			self["key_green"] = Button(_("Add Timer"))
 			self.list = []
 			self.servicelist = service
 			self.currentService=self.session.nav.getCurrentlyPlayingServiceReference()
 			self.zapFunc = None
 
-		self.key_green_choice = self.ADD_TIMER
-		self.key_red_choice = self.EMPTY
 		self["list"] = EPGList(type = self.type, selChangedCB = self.onSelectionChanged, timer = session.nav.RecordTimer, time_epoch = config.epgselction.prev_time_period.getValue(), overjump_empty = config.epgselction.overjump.value)
 
 		HelpableScreen.__init__(self)
@@ -1466,6 +1445,9 @@ class EPGSelectionSetup(Screen, ConfigListScreen):
 		Screen.setTitle(self, _("EPG Setup"))
 		self["satus"] = StaticText()
 		self['footnote'] = Label(_("* = Close EPG Required"))
+		self["HelpWindow"] = Pixmap()
+		self["HelpWindow"].hide()
+		self["VKeyIcon"] = Boolean(False)
 		self.onChangedEntry = [ ]
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
