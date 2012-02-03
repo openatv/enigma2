@@ -152,6 +152,7 @@ class TryQuitMainloop(MessageBox):
 			reason = _("Recording(s) are in progress or coming up in few seconds!") + '\n'
 		if reason and inStandby:
 			session.nav.record_event.append(self.getRecordEvent)
+			self.skinName = ""
 		elif reason and not inStandby:
 			if retvalue == 1:
 				MessageBox.__init__(self, session, reason+_("Really shutdown now?"), type = MessageBox.TYPE_YESNO, timeout = timeout, default = default_yes)
