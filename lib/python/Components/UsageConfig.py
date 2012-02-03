@@ -307,7 +307,7 @@ def InitUsageConfig():
 	config.autolanguage = ConfigSubsection()
 	audio_language_choices=[	
 		("---", "None"),
-		("orj dos ory org esl qaa und mis mul ORY", "Original"),
+		("orj dos ory org esl qaa und mis mul ORY ORJ", "Original"),
 		("ara", "Arabic"),
 		("eus baq", "Basque"),
 		("bul", "Bulgarian"), 
