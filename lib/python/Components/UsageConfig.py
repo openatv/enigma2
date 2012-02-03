@@ -479,7 +479,7 @@ def InitUsageConfig():
 	audio_language_choices=[	
 		("---", "None"),
 		("und", "Undetermined"),
-		("orj dos ory org esl qaa und mis mul ORY Audio_ORJ", "Original"),
+		("orj dos ory org esl qaa und mis mul ORY ORJ Audio_ORJ", "Original"),
 		("ara", "Arabic"),
 		("eus baq", "Basque"),
 		("bul", "Bulgarian"), 
