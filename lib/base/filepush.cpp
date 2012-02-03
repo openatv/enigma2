@@ -8,7 +8,7 @@
 
 #define PVR_COMMIT 1
 
-
+//#define SHOW_WRITE_TIME 1
 
 eFilePushThread::eFilePushThread(int io_prio_class, int io_prio_level, int blocksize, size_t buffersize)
 	:prio_class(io_prio_class),
@@ -365,6 +365,12 @@ void eFilePushThreadRecorder::thread()
 		gettimeofday(&starttime, NULL);
 #endif
 		int w = writeData(m_buffer, bytes);
+#ifdef SHOW_WRITE_TIME
+		gettimeofday(&now, NULL);
+		suseconds_t diff = (1000000 * (now.tv_sec - starttime.tv_sec)) + now.tv_usec - starttime.tv_usec;
+		if (diff > 10000)
+			eDebug("[eFilePushThreadRecorder] write %d bytes time: %9d us", bytes, diff);
+#endif
 		if (w < 0)
 		{
 			eDebug("[eFilePushThreadRecorder] WRITE ERROR, aborting thread");

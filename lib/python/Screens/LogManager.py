@@ -12,9 +12,12 @@ from Components.FileList import MultiFileSelectList
 from Components.Pixmap import Pixmap,MultiPixmap
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Screens.MessageBox import MessageBox
-from os import path,listdir, remove
-from os.path import isdir as os_path_isdir
+from os import path,listdir, remove, remove, remove
 from time import time, localtime
+from enigma import eTimer
+from glob import glob
+
+import Components.Task
 
 # Import smtplib for the actual sending function
 import smtplib, base64
@@ -24,6 +27,53 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.Utils import formatdate
 from email import encoders
+
+_session = None
+
+def AutoDebugLogCheck(session=None, **kwargs):
+	global debuglogcheckpoller
+	debuglogcheckpoller = DebugLogCheckPoller()
+	debuglogcheckpoller.start()
+
+class DebugLogCheckPoller:
+	"""Automatically Poll DebugLogCheck"""
+	def __init__(self):
+		# Init Timer
+		self.timer = eTimer()
+
+	def start(self):
+		if self.debug_check not in self.timer.callback:
+			self.timer.callback.append(self.debug_check)
+		self.timer.startLongTimer(0)
+
+	def stop(self):
+		if self.version_check in self.timer.callback:
+			self.timer.callback.remove(self.debug_check)
+		self.timer.stop()
+
+	def debug_check(self):
+		print '[DebugLogCheck] Poll Started'
+		Components.Task.job_manager.AddJob(self.createCheckJob())
+
+	def createCheckJob(self):
+		job = Components.Task.Job(_("DebugLogCheck"))
+		task = Components.Task.PythonTask(job, _("Checking Log Size..."))
+		task.work = self.JobStart
+		task.weighting = 1
+		return job
+
+	def JobStart(self):
+		filename = ""
+		for filename in glob(config.crash.debug_path.value + '*.log'):
+			if path.getsize(filename) > (config.crash.debugloglimit.value * 1024 * 1024):
+				fh = open(filename, 'rb+')
+				fh.seek(-(config.crash.debugloglimit.value * 1024 * 1024), 2)
+				data = fh.read()
+				fh.seek(0) # rewind
+				fh.write(data)
+				fh.truncate()
+				fh.close()
+		self.timer.startLongTimer(43200) #twice a day
 
 class LogManager(Screen):
 	skin = """<screen name="LogManager" position="center,center" size="560,400" title="Log Manager" flags="wfBorder">
@@ -131,7 +181,7 @@ class LogManager(Screen):
 		except:
 			self.sel = None
 		if self.sel:
-			self.session.open(LogManagerViewLog, self.sel[0], self.logtype)
+			self.session.open(LogManagerViewLog, self.sel[0])
 
 	def deletelog(self):
 		try:
@@ -182,29 +232,33 @@ class LogManager(Screen):
 			self["list"].changeDir(self.defaultDir)
 
 	def sendlog(self, addtionalinfo = None):
-		self.sel = self["list"].getCurrent()[0]
-		self.sel = str(self.sel[0])
-		self.selectedFiles = self["list"].getSelectedList()
-		self.resend = False
-		for send in self.previouslySent:
-			if send in self.selectedFiles:
-				self.selectedFiles.remove(send)
-			if send == (self.defaultDir + self.sel):
-				self.resend = True
-		if self.selectedFiles:
-			message = _("Do you want to send all selected files:\n(choose 'No' to only send the currently selected file.)")
-			ybox = self.session.openWithCallback(self.sendlog1, MessageBox, message, MessageBox.TYPE_YESNO)
-			ybox.setTitle(_("Delete Confirmation"))
-		elif self.sel and not self.resend:
-			self.sendallfiles = False
-			message = _("Are you sure you want to send this log:\n") + self.sel
-			ybox = self.session.openWithCallback(self.sendlog2, MessageBox, message, MessageBox.TYPE_YESNO)
-			ybox.setTitle(_("Delete Confirmation"))
-		elif self.sel and self.resend:
-			self.sendallfiles = False
-			message = _("You have already sent this log, are you sure you want to resend this log:\n") + self.sel
-			ybox = self.session.openWithCallback(self.sendlog2, MessageBox, message, MessageBox.TYPE_YESNO)
-			ybox.setTitle(_("Delete Confirmation"))
+		try:
+			self.sel = self["list"].getCurrent()[0]
+		except:
+			self.sel = None
+		if self.sel:
+			self.sel = str(self.sel[0])
+			self.selectedFiles = self["list"].getSelectedList()
+			self.resend = False
+			for send in self.previouslySent:
+				if send in self.selectedFiles:
+					self.selectedFiles.remove(send)
+				if send == (self.defaultDir + self.sel):
+					self.resend = True
+			if self.selectedFiles:
+				message = _("Do you want to send all selected files:\n(choose 'No' to only send the currently selected file.)")
+				ybox = self.session.openWithCallback(self.sendlog1, MessageBox, message, MessageBox.TYPE_YESNO)
+				ybox.setTitle(_("Delete Confirmation"))
+			elif self.sel and not self.resend:
+				self.sendallfiles = False
+				message = _("Are you sure you want to send this log:\n") + self.sel
+				ybox = self.session.openWithCallback(self.sendlog2, MessageBox, message, MessageBox.TYPE_YESNO)
+				ybox.setTitle(_("Delete Confirmation"))
+			elif self.sel and self.resend:
+				self.sendallfiles = False
+				message = _("You have already sent this log, are you sure you want to resend this log:\n") + self.sel
+				ybox = self.session.openWithCallback(self.sendlog2, MessageBox, message, MessageBox.TYPE_YESNO)
+				ybox.setTitle(_("Delete Confirmation"))
 		else:
 			self.session.open(MessageBox, _("You have selected no logs to send."), MessageBox.TYPE_INFO, timeout = 10)
 
@@ -313,17 +367,13 @@ class LogManagerViewLog(Screen):
 		<screen name="LogManagerViewLog" position="center,center" size="700,400" title="Log Manager" >
 			<widget name="list" position="0,0" size="700,400" font="Console;14" />
 		</screen>"""
-	def __init__(self, session, selected, logtype):
+	def __init__(self, session, selected):
 		self.session = session
 		Screen.__init__(self, session)
 		self.setTitle(selected)
 		self.skinName = "LogManagerViewLog"
-		if logtype == 'crashlogs':
-			selected = '/media/hdd/' + selected
-		else:
-			selected = config.crash.debug_path.value + selected
-		if path.exists(selected):
-			log = file(selected).read()
+		if path.exists(config.crash.debug_path.value + selected):
+			log = file(config.crash.debug_path.value + selected).read()
 		else:
 			log = ""
 		self["list"] = ScrollLabel(str(log))
@@ -437,7 +487,7 @@ class LogManagerFb(Screen):
 		"""
 	def __init__(self, session,path=None):
 		if path is None:
-			if os_path_isdir(config.logmanager.path.value):
+			if path.isdir(config.logmanager.path.value):
 				path = config.logmanager.path.value
 			else:
 				path = "/"

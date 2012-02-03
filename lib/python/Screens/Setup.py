@@ -85,6 +85,7 @@ class Setup(ConfigListScreen, Screen):
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self["VKeyIcon"] = Boolean(False)
+		self["satus"] = StaticText()
 
 		self.onChangedEntry = [ ]
 		self.setup = setup

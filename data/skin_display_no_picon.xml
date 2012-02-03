@@ -28,7 +28,7 @@
 		<widget source="session.Event_Now" render="Label" position="0,21" size="255,22" font="FdLcD;18" halign="left" noWrap="1" >
 			<convert type="EventName">Name</convert>
 		</widget>
-		<widget source="session.Event_Now" render="Progress" position="0,43" size="160,5" borderWidth="1" >
+		<widget source="session.Event_Now" render="Progress" position="0,43" size="140,5" borderWidth="1" >
 			<convert type="EventTime">Progress</convert>
 		</widget>
 		<widget source="session.Event_Now" render="Label" position="0,50" size="110,19" font="FdLcD;19" halign="left" valign="bottom" noWrap="1">
@@ -100,7 +100,7 @@
 		<widget source="session.CurrentService" render="Label" position="0,21" size="255,22" font="FdLcD;18" halign="left" noWrap="1" >
 			<convert type="ServiceName">Name</convert>
 		</widget>
-		<widget source="session.CurrentService" render="Progress" position="0,43" size="160,5" borderWidth="1" >
+		<widget source="session.CurrentService" render="Progress" position="0,43" size="140,5" borderWidth="1" >
 			<convert type="ServicePosition">Position</convert>
 		</widget>
 		<widget source="session.CurrentService" render="Label" position="0,50" size="200,19" font="FdLcD;19" halign="left" valign="bottom" noWrap="1" >
@@ -157,7 +157,7 @@
 		<widget source="parent.ServiceEvent" render="Label" position="0,21" size="255,22" font="FdLcD;18" halign="left" noWrap="1" >
 			<convert type="EventName">Name</convert>
 		</widget>
-		<widget source="parent.ServiceEvent" render="Progress" position="0,43" size="160,5" borderWidth="1" >
+		<widget source="parent.ServiceEvent" render="Progress" position="0,43" size="140,5" borderWidth="1" >
 			<convert type="EventTime">Progress</convert>
 		</widget>
 		<widget source="parent.ServiceEvent" render="Label" position="0,50" size="110,19" font="FdLcD;19" halign="left" valign="bottom" noWrap="1">
@@ -305,7 +305,7 @@
 		<widget source="parent.Event" render="Label" position="0,21" size="255,22" font="FdLcD;18" halign="left" noWrap="1" >
 			<convert type="EventName">Name</convert>
 		</widget>
-		<widget source="parent.Event" render="Progress" position="0,43" size="160,5" borderWidth="1" >
+		<widget source="parent.Event" render="Progress" position="0,43" size="140,5" borderWidth="1" >
 			<convert type="EventTime">Progress</convert>
 		</widget>
 		<widget source="parent.Event" render="Label" position="0,50" size="110,19" font="FdLcD;19" halign="left" valign="bottom" noWrap="1">
@@ -378,7 +378,7 @@
 		<widget source="parent.Event" render="Label" position="0,21" size="255,22" font="FdLcD;18" halign="left" noWrap="1" >
 			<convert type="EventName">Name</convert>
 		</widget>
-		<widget source="parent.Event" render="Progress" position="0,43" size="160,5" borderWidth="1" >
+		<widget source="parent.Event" render="Progress" position="0,43" size="140,5" borderWidth="1" >
 			<convert type="EventTime">Progress</convert>
 		</widget>
 		<widget source="parent.Event" render="Label" position="0,50" size="110,19" font="FdLcD;19" halign="left" valign="bottom" noWrap="1">
@@ -451,7 +451,7 @@
 		<widget source="parent.Event" render="Label" position="0,21" size="255,22" font="FdLcD;18" halign="left" noWrap="1" >
 			<convert type="EventName">Name</convert>
 		</widget>
-		<widget source="parent.Event" render="Progress" position="0,43" size="160,5" borderWidth="1" >
+		<widget source="parent.Event" render="Progress" position="0,43" size="140,5" borderWidth="1" >
 			<convert type="EventTime">Progress</convert>
 		</widget>
 		<widget source="parent.Event" render="Label" position="0,50" size="110,19" font="FdLcD;19" halign="left" valign="bottom" noWrap="1">
@@ -524,7 +524,7 @@
 		<widget source="parent.Event" render="Label" position="0,21" size="255,22" font="FdLcD;18" halign="left" noWrap="1" >
 			<convert type="EventName">Name</convert>
 		</widget>
-		<widget source="parent.Event" render="Progress" position="0,43" size="160,5" borderWidth="1" >
+		<widget source="parent.Event" render="Progress" position="0,43" size="140,5" borderWidth="1" >
 			<convert type="EventTime">Progress</convert>
 		</widget>
 		<widget source="parent.Event" render="Label" position="0,50" size="110,19" font="FdLcD;19" halign="left" valign="bottom" noWrap="1">

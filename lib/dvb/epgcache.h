@@ -142,8 +142,7 @@ private:
 	static void save(FILE *);
 	static void cacheCorrupt(const char* context);
 public:
-	eventData(const eit_event_struct* e=NULL, int size=0, int type=0);
-	eventData(const eit_event_struct* e, int size, int type, int tsidonid);
+	eventData(const eit_event_struct* e = NULL, int size = 0, int type = 0, int tsidonid = 0);
 	~eventData();
 	const eit_event_struct* get() const;
 	operator const eit_event_struct*() const
@@ -305,6 +304,7 @@ private:
 	ePtr<eConnection> m_chanAddedConn;
 
 	unsigned int enabledSources;
+	unsigned int historySeconds;
 
 	eventCache eventDB;
 	updateMap channelLastUpdated;
@@ -420,6 +420,7 @@ public:
 #endif
 	,EPG_IMPORT=0x80000000
 	};
+	void setEpgHistorySeconds(time_t seconds);
 	void setEpgSources(unsigned int mask);
 	unsigned int getEpgSources();
 

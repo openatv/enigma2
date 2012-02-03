@@ -1458,7 +1458,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				if cur_path.find('.Trash') != -1:
 					are_you_sure = _("Do you really want to permamently remove '%s' from trash can ?") % (name)
 				else:
-					are_you_sure = _("Do you really want to delete %s ?") % (name)
+					are_you_sure = _("Do you really want to delete %s?") % (name)
 				msg = ''
 			self.session.openWithCallback(self.deleteConfirmed, MessageBox, msg + are_you_sure)
 

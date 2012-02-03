@@ -195,7 +195,7 @@ public:
 
 		/* allocate channel... */
 	RESULT allocateChannel(const eDVBChannelID &channelid, eUsePtr<iDVBChannel> &channel, bool simulate=false);
-	RESULT allocatePVRChannel(eUsePtr<iDVBPVRChannel> &channel);
+	RESULT allocatePVRChannel(const eDVBChannelID &channelid, eUsePtr<iDVBPVRChannel> &channel);
 	static RESULT getInstance(ePtr<eDVBResourceManager> &);
 
 			/* allocates a frontend able to tune to frontend paramters 'feperm'.

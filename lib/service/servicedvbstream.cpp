@@ -252,6 +252,9 @@ int eDVBServiceStream::doRecord()
 			pids_to_record.insert(0x12);
 		}
 
+		/* include TDT pid, really low bandwidth, should not hurt anyone */
+		pids_to_record.insert(0x14);
+
 			/* find out which pids are NEW and which pids are obsolete.. */
 		std::set<int> new_pids, obsolete_pids;
 

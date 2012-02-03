@@ -2,11 +2,15 @@ from Tools.Profile import profile
 
 from Screen import Screen
 from Components.Button import Button
+from Components.config import configfile, config, getConfigListEntry
+from Components.ConfigList import ConfigListScreen
 from Components.ServiceList import ServiceList
 from Components.ActionMap import NumberActionMap, ActionMap, HelpableActionMap
 from Components.MenuList import MenuList
 from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
 from Components.SystemInfo import SystemInfo
+from Components.Sources.StaticText import StaticText
+from Components.Pixmap import Pixmap,MultiPixmap
 profile("ChannelSelection.py 1")
 from EpgSelection import EPGSelection
 from enigma import eServiceReference, eEPGCache, eServiceCenter, eRCInput, eTimer, eDVBDB, iPlayableService, iServiceInformation, getPrevAsciiCode, eEnv
@@ -67,8 +71,8 @@ class BouquetSelector(Screen):
 	def cancelClick(self):
 		self.close(False)
 
-class PLIBouquetSelector(Screen):
-	def __init__(self, session, bouquets, curbouquet, direction, enableWrapAround=True):
+class EPGBouquetSelector(Screen):
+	def __init__(self, session, bouquets, curbouquet, enableWrapAround=True):
 		Screen.__init__(self, session)
 		self.skinName = "BouquetSelector"
 		self["actions"] = ActionMap(["OkCancelActions", "EPGSelectActions"],
@@ -80,21 +84,10 @@ class PLIBouquetSelector(Screen):
 			})
 		entrys = [ (x[0], x[1]) for x in bouquets ]
 		self["menu"] = MenuList(entrys, enableWrapAround)
-		idx = 0
-		for x in bouquets:
-			if x[1] == curbouquet:
-				break
-			idx += 1
-		self.idx = idx
-		self.dir = direction
 		self.onShow.append(self.__onShow)
 
 	def __onShow(self):
-		self["menu"].moveToIndex(self.idx)
-		if self.dir == -1:
-			self.down()
-		else:
-			self.up()
+		self["menu"].moveToIndex(0)
 
 	def getCurrent(self):
 		cur = self["menu"].getCurrent()
@@ -130,6 +123,85 @@ class SilentBouquetSelector:
 	def getCurrent(self):
 		return self.bouquets[self.pos]
 
+class SettingsMenu(ConfigListScreen, Screen):
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		self.session = session
+		self.skinName = "Setup"
+		Screen.setTitle(self, _("Setings..."))
+		self["HelpWindow"] = Pixmap()
+		self["HelpWindow"].hide()
+		self["satus"] = StaticText()
+
+		self.onChangedEntry = [ ]
+		self.list = []
+		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
+		self.createSetup()
+		
+		self["actions"] = ActionMap(["SetupActions", 'ColorActions'],
+		{
+			"ok": self.keySave,
+			"cancel": self.keyCancel,
+			"red": self.keyCancel,
+			"green": self.keySave,
+			"menu": self.keyCancel,
+		}, -2)
+
+		self["key_red"] = StaticText(_("Cancel"))
+		self["key_green"] = StaticText(_("OK"))
+		if not self.selectionChanged in self["config"].onSelectionChanged:
+			self["config"].onSelectionChanged.append(self.selectionChanged)
+		self.selectionChanged()
+
+	def createSetup(self):
+		self.editListEntry = None
+		self.list = []
+		self.list.append(getConfigListEntry(_("Service number font size"), config.usage.servicenum_fontsize))
+		self.list.append(getConfigListEntry(_("Service name font size"), config.usage.servicename_fontsize))
+		self.list.append(getConfigListEntry(_("Service info font size"), config.usage.serviceinfo_fontsize))
+		self.list.append(getConfigListEntry(_("Number of items"), config.usage.serviceitems_per_page))
+		self["config"].list = self.list
+		self["config"].setList(self.list)
+
+	def selectionChanged(self):
+		self["satus"].setText(_("Current value: ") + self.getCurrentValue())
+
+	# for summary:
+	def changedEntry(self):
+		for x in self.onChangedEntry:
+			x()
+		self.selectionChanged()
+
+	def getCurrentEntry(self):
+		return self["config"].getCurrent()[0]
+
+	def getCurrentValue(self):
+		return str(self["config"].getCurrent()[1].getText())
+
+	def saveAll(self):
+		for x in self["config"].list:
+			x[1].save()
+		configfile.save()
+
+	# keySave and keyCancel are just provided in case you need them.
+	# you have to call them by yourself.
+	def keySave(self):
+		self.saveAll()
+		self.close()
+	
+	def cancelConfirm(self, result):
+		if not result:
+			return
+		for x in self["config"].list:
+			x[1].cancel()
+		self.close()
+
+	def keyCancel(self):
+		if self["config"].isChanged():
+			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"))
+		else:
+			self.close()
+
 # csel.bouquet_mark_edit values
 OFF = 0
 EDIT_BOUQUET = 1
@@ -164,6 +236,7 @@ class ChannelContextMenu(Screen):
 		inBouquet = csel.getMutableList() is not None
 		haveBouquets = config.usage.multibouquet.value
 
+		menu.append(ChoiceEntryComponent(text = (_("Settings..."), self.createSetup)))
 		if not (current_sel_path or current_sel_flags & (eServiceReference.isDirectory|eServiceReference.isMarker)):
 			append_when_current_valid(current, menu, (_("show transponder info"), self.showServiceInformations), level = 2)
 		if csel.bouquet_mark_edit == OFF and not csel.movemode:
@@ -248,6 +321,9 @@ class ChannelContextMenu(Screen):
 
 		menu.append(ChoiceEntryComponent(text = (_("back"), self.cancelClick)))
 		self["menu"] = ChoiceList(menu)
+
+	def createSetup(self):
+		self.session.open(SettingsMenu)
 
 	def playMain(self):
 		# XXX: we want to keep the current selection
@@ -785,6 +861,10 @@ class ChannelSelectionEdit:
 		self.session.openWithCallback(self.exitContext, ChannelContextMenu, self)
 		
 	def exitContext(self, close = False):
+		l = self["list"]
+		l.setServiceFontsize()
+		l.setItemsPerPage()
+		l.setMode('MODE_TV')
 		if close:
 			self.cancel()
 

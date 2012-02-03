@@ -400,6 +400,8 @@ class Harddisk:
 		task.setTool('tune2fs')
 		task.args.append('-O')
 		task.args.append('extents,uninit_bg,dir_index')
+		task.args.append('-o')
+		task.args.append('journal_data_writeback')
 		task.args.append(dev)
 		task = Task.LoggingTask(job, "fsck")
 		task.setTool('fsck.ext4')
@@ -447,6 +449,9 @@ class Harddisk:
 		self.timer.callback.append(self.runIdle)
 		self.idle_running = True
 		self.hdd_timer = False
+		configsettings = readFile('/etc/enigma2/settings')
+		if "config.usage.hdd_timer" in configsettings:
+			self.hdd_timer = True
 		self.setIdleTime(self.max_idle_time, self.hdd_timer) # kick the idle polling loop
 
 	def runIdle(self):

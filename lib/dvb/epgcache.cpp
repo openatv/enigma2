@@ -49,69 +49,6 @@ const eServiceReference &handleGroup(const eServiceReference &ref)
 	return ref;
 }
 
-eventData::eventData(const eit_event_struct* e, int size, int type)
-	:ByteSize(size&0xFF), type(type&0xFF)
-{
-	if (!e)
-		return;
-
-	__u32 descr[65];
-	__u32 *pdescr=descr;
-
-	__u8 *data = (__u8*)e;
-	int ptr=12;
-	size -= 12;
-
-	while(size > 1)
-	{
-		__u8 *descr = data+ptr;
-		int descr_len = descr[1];
-		descr_len += 2;
-		if (size >= descr_len)
-		{
-			switch (descr[0])
-			{
-				case EXTENDED_EVENT_DESCRIPTOR:
-				case SHORT_EVENT_DESCRIPTOR:
-				case LINKAGE_DESCRIPTOR:
-				case COMPONENT_DESCRIPTOR:
-				{
-					__u32 crc = 0;
-					int cnt=0;
-					while(cnt++ < descr_len)
-						crc = (crc << 8) ^ crc32_table[((crc >> 24) ^ data[ptr++]) & 0xFF];
-	
-					descriptorMap::iterator it =
-						descriptors.find(crc);
-					if ( it == descriptors.end() )
-					{
-						CacheSize+=descr_len;
-						__u8 *d = new __u8[descr_len];
-						memcpy(d, descr, descr_len);
-						descriptors[crc] = descriptorPair(1, d);
-					}
-					else
-						++it->second.first;
-					*pdescr++=crc;
-					break;
-				}
-				default: // do not cache all other descriptors
-					ptr += descr_len;
-					break;
-			}
-			size -= descr_len;
-		}
-		else
-			break;
-	}
-	ASSERT(pdescr <= &descr[65]);
-	ByteSize = 10+((pdescr-descr)*4);
-	EITdata = new __u8[ByteSize];
-	CacheSize+=ByteSize;
-	memcpy(EITdata, (__u8*) e, 10);
-	memcpy(EITdata+10, descr, ByteSize-10);
-}
-
 eventData::eventData(const eit_event_struct* e, int size, int type, int tsidonid)
 	:ByteSize(size&0xFF), type(type&0xFF)
 {
@@ -168,44 +105,92 @@ eventData::eventData(const eit_event_struct* e, int size, int type, int tsidonid
 					int eventTextLen = descr[6 + eventNameLen];
 
 					//convert our strings to UTF8
-					std::string eventNameUTF8 = replace_all(replace_all(convertDVBUTF8((const char*)&descr[6], eventNameLen, table, tsidonid), "\n", " "), "\t", " ");
-					std::string textUTF8 = convertDVBUTF8((const char*)&descr[7 + eventNameLen], eventTextLen, table, tsidonid);
+					std::string eventNameUTF8 = convertDVBUTF8((const unsigned char*)&descr[6], eventNameLen, table, tsidonid);
+					std::string textUTF8 = convertDVBUTF8((const unsigned char*)&descr[7 + eventNameLen], eventTextLen, table, tsidonid);
+					unsigned int eventNameUTF8len = eventNameUTF8.length();
+					unsigned int textUTF8len = textUTF8.length();
 
 					//Rebuild the short event descriptor with UTF-8 strings
-					int eventNameUTF8len = eventNameUTF8.length();
-					int textUTF8len = textUTF8.length();
-					int len = 7 + eventNameUTF8len + textUTF8len; //header, 3 byte cc, 1 byte event name len, 1 byte text len, 1 byte UTF-8 ident for event name, 1 byte UTF-8 ident for text, UTF-8 string lens
 
-					__u8 *d = new __u8[len + 2];
-					d[0] = SHORT_EVENT_DESCRIPTOR;
-					d[1] = len;
-					d[2] = descr[2];
-					d[3] = descr[3];
-					d[4] = descr[4];
-					d[5] = eventNameUTF8len + 1;
-					d[6] = 0x15; //identify event name as UTF-8
-					memcpy(&d[7], eventNameUTF8.c_str(), eventNameUTF8len);
-					d[7 + eventNameUTF8len] = textUTF8len + 1;
-					d[8 + eventNameUTF8len] = 0x15; //identify text as UTF-8
-					memcpy(&d[9 + eventNameUTF8len], textUTF8.c_str(), textUTF8len);
-
-					//Calculate the CRC, based on our new data
-					__u32 crc = 0;
-					int cnt=0;
-					int tmpPtr = 0;
-					len += 2; //add 2 the lenght to include the 2 bytes in the header
-					while(cnt++ < len)
-						crc = (crc << 8) ^ crc32_table[((crc >> 24) ^ d[tmpPtr++]) & 0xFF];
-
-					descriptorMap::iterator it = descriptors.find(crc);
-					if ( it == descriptors.end() )
+					//Save the title first
+					if( eventNameUTF8len > 0 ) //only store the data if there is something to store
 					{
-						CacheSize+=len;
-						descriptors[crc] = descriptorPair(1, d);
+						/*this will actually cause us to save some memory
+						 previously some descriptors didnt match because there text was different and titles the same.
+						 Now that we store them seperatly we can save some space on title data some rough calculation show anywhere from 20 - 40% savings
+						*/
+						eventNameUTF8len = truncateUTF8(eventNameUTF8, 255 - 6);
+						int title_len = 6 + eventNameUTF8len;
+						__u8 *title_data = new __u8[title_len + 2];
+						title_data[0] = SHORT_EVENT_DESCRIPTOR;
+						title_data[1] = title_len;
+						title_data[2] = descr[2];
+						title_data[3] = descr[3];
+						title_data[4] = descr[4];
+						title_data[5] = eventNameUTF8len + 1;
+						title_data[6] = 0x15; //identify event name as UTF-8
+						memcpy(&title_data[7], eventNameUTF8.c_str(), eventNameUTF8len);
+						title_data[7 + eventNameUTF8len] = 0;
+
+						//Calculate the CRC, based on our new data
+						__u32 title_crc = 0;
+						int cnt=0;
+						int tmpPtr = 0;
+						title_len += 2; //add 2 the length to include the 2 bytes in the header
+						while(cnt++ < title_len)
+							title_crc = (title_crc << 8) ^ crc32_table[((title_crc >> 24) ^ title_data[tmpPtr++]) & 0xFF];
+
+						descriptorMap::iterator it = descriptors.find(title_crc);
+						if ( it == descriptors.end() )
+						{
+							CacheSize+=title_len;
+							descriptors[title_crc] = descriptorPair(1, title_data);
+						}
+						else
+						{
+							++it->second.first;
+							delete [] title_data;
+						}
+						*pdescr++=title_crc;
 					}
-					else
-						++it->second.first;
-					*pdescr++=crc;
+
+					//save the text
+					if( textUTF8len > 0 ) //only store the data if there is something to store
+					{
+						textUTF8len = truncateUTF8(textUTF8, 255 - 6);
+						int text_len = 6 + textUTF8len;
+						__u8 *text_data = new __u8[text_len + 2];
+						text_data[0] = SHORT_EVENT_DESCRIPTOR;
+						text_data[1] = text_len;
+						text_data[2] = descr[2];
+						text_data[3] = descr[3];
+						text_data[4] = descr[4];
+						text_data[5] = 0;
+						text_data[6] = textUTF8len + 1; //identify text as UTF-8
+						text_data[7] = 0x15; //identify text as UTF-8
+						memcpy(&text_data[8], textUTF8.c_str(), textUTF8len);
+
+						__u32 text_crc = 0;
+						int cnt=0;
+						int tmpPtr = 0;
+						text_len += 2; //add 2 the length to include the 2 bytes in the header
+						while(cnt++ < text_len)
+							text_crc = (text_crc << 8) ^ crc32_table[((text_crc >> 24) ^ text_data[tmpPtr++]) & 0xFF];
+
+						descriptorMap::iterator it = descriptors.find(text_crc);
+						if ( it == descriptors.end() )
+						{
+							CacheSize+=text_len;
+							descriptors[text_crc] = descriptorPair(1, text_data);
+						}
+						else
+						{
+							++it->second.first;
+							delete [] text_data;
+						}
+						*pdescr++=text_crc;
+					}
+
 					ptr += descr_len;
 					break;
 				}
@@ -352,6 +337,7 @@ eEPGCache::eEPGCache()
 	eDebug("[EPGC] Initialized EPGCache (wait for setCacheFile call now)");
 
 	enabledSources = 0;
+	historySeconds = 0;
 
 	CONNECT(messages.recv_msg, eEPGCache::gotMessage);
 	CONNECT(eDVBLocalTimeHandler::getInstance()->m_timeUpdated, eEPGCache::timeUpdated);
@@ -704,7 +690,7 @@ void eEPGCache::sectionRead(const __u8 *data, int source, channel_data *channel)
 		channel->haveData |= source;
 
 	singleLock s(cache_lock);
-	// hier wird immer eine eventMap zurück gegeben.. entweder eine vorhandene..
+	// hier wird immer eine eventMap zurck gegeben.. entweder eine vorhandene..
 	// oder eine durch [] erzeugte
 	std::pair<eventMap,timeMap> &servicemap = eventDB[service];
 	eventMap::iterator prevEventIt = servicemap.first.end();
@@ -956,7 +942,7 @@ void eEPGCache::cleanLoop()
 	singleLock s(cache_lock);
 	if (!eventDB.empty())
 	{
-		time_t now = ::time(0);
+		time_t now = ::time(0) - historySeconds;
 
 		for (eventCache::iterator DBIt = eventDB.begin(); DBIt != eventDB.end(); DBIt++)
 		{
@@ -2715,6 +2701,11 @@ void eEPGCache::submitEventData(const std::vector<eServiceReferenceDVB>& service
 }
 #undef SET_HILO
 
+
+void eEPGCache::setEpgHistorySeconds(time_t seconds)
+{
+	historySeconds = seconds;
+}
 
 void eEPGCache::setEpgSources(unsigned int mask)
 {

@@ -1453,34 +1453,11 @@ class NetworkAfp(Screen):
 			self.updateAfp()
 
 	def activateAfp(self):
-		if fileExists('/etc/rc0.d/K20atalk'):
-			unlink('/etc/rc0.d/K20atalk')
-		else:
-			symlink('/etc/init.d/samba', '/etc/rc0.d/K20atalk')
-		if fileExists('/etc/rc1.d/K20atalk'):
-			unlink('/etc/rc1.d/K20atalk')
-		else:
-			symlink('/etc/init.d/samba', '/etc/rc1.d/K20atalk')
 		if fileExists('/etc/rc2.d/S20atalk'):
-			unlink('/etc/rc2.d/S20atalk')
+			self.Console.ePopen('update-rc.d -f atalk remove')
 		else:
-			symlink('/etc/init.d/samba', '/etc/rc2.d/S20atalk')
-		if fileExists('/etc/rc3.d/S20atalk'):
-			unlink('/etc/rc3.d/S20atalk')
-		else:
-			symlink('/etc/init.d/samba', '/etc/rc3.d/S20atalk')
-		if fileExists('/etc/rc4.d/S20atalk'):
-			unlink('/etc/rc4.d/S20atalk')
-		else:
-			symlink('/etc/init.d/samba', '/etc/rc4.d/S20atalk')
-		if fileExists('/etc/rc5.d/S20atalk'):
-			unlink('/etc/rc5.d/S20atalk')
-		else:
-			symlink('/etc/init.d/samba', '/etc/rc5.d/S20atalk')
-		if fileExists('/etc/rc6.d/K20atalk'):
-			unlink('/etc/rc6.d/K20atalk')
-		else:
-			symlink('/etc/init.d/samba', '/etc/rc6.d/K20atalk')
+			self.Console.ePopen('update-rc.d -f atalk defaults')
+		time.sleep(3)
 		self.updateAfp()
 
 	def updateAfp(self):
@@ -1644,34 +1621,11 @@ class NetworkNfs(Screen):
 			self.updateNfs()
 
 	def Nfsset(self):
-		if fileExists('/etc/rc0.d/K20nfsserver'):
-			unlink('/etc/rc0.d/K20nfsserver')
-		else:
-			symlink('/etc/init.d/nfsserver', '/etc/rc0.d/K20nfsserver')
-		if fileExists('/etc/rc1.d/K20nfsserver'):
-			unlink('/etc/rc1.d/K20nfsserver')
-		else:
-			symlink('/etc/init.d/nfsserver', '/etc/rc1.d/K20nfsserver')
 		if fileExists('/etc/rc2.d/S20nfsserver'):
-			unlink('/etc/rc2.d/S20nfsserver')
+			self.Console.ePopen('update-rc.d -f nfsserver remove')
 		else:
-			symlink('/etc/init.d/nfsserver', '/etc/rc2.d/S20nfsserver')
-		if fileExists('/etc/rc3.d/S20nfsserver'):
-			unlink('/etc/rc3.d/S20nfsserver')
-		else:
-			symlink('/etc/init.d/nfsserver', '/etc/rc3.d/S20nfsserver')
-		if fileExists('/etc/rc4.d/S20nfsserver'):
-			unlink('/etc/rc4.d/S20nfsserver')
-		else:
-			symlink('/etc/init.d/nfsserver', '/etc/rc4.d/S20nfsserver')
-		if fileExists('/etc/rc5.d/S20nfsserver'):
-			unlink('/etc/rc5.d/S20nfsserver')
-		else:
-			symlink('/etc/init.d/nfsserver', '/etc/rc5.d/S20nfsserver')
-		if fileExists('/etc/rc6.d/K20nfsserver'):
-			unlink('/etc/rc6.d/K20nfsserver')
-		else:
-			symlink('/etc/init.d/nfsserver', '/etc/rc6.d/K20nfsserver')
+			self.Console.ePopen('update-rc.d -f nfsserver defaults')
+		time.sleep(3)
 		self.updateNfs()
 
 	def updateNfs(self):
@@ -1755,34 +1709,11 @@ class NetworkOpenvpn(Screen):
 			self.updatemy_Vpn()
 
 	def activateVpn(self):
-		if fileExists('/etc/rc0.d/K20openvpn'):
-			unlink('/etc/rc0.d/K20openvpn')
-		else:
-			symlink('/etc/init.d/openvpn', '/etc/rc0.d/K20openvpn')
-		if fileExists('/etc/rc1.d/K20openvpn'):
-			unlink('/etc/rc1.d/K20openvpn')
-		else:
-			symlink('/etc/init.d/openvpn', '/etc/rc1.d/K20openvpn')
 		if fileExists('/etc/rc2.d/S20openvpn'):
-			unlink('/etc/rc2.d/S20openvpn')
+			self.Console.ePopen('update-rc.d -f openvpn remove')
 		else:
-			symlink('/etc/init.d/openvpn', '/etc/rc2.d/S20openvpn')
-		if fileExists('/etc/rc3.d/S20openvpn'):
-			unlink('/etc/rc3.d/S20openvpn')
-		else:
-			symlink('/etc/init.d/openvpn', '/etc/rc3.d/S20openvpn')
-		if fileExists('/etc/rc4.d/S20openvpn'):
-			unlink('/etc/rc4.d/S20openvpn')
-		else:
-			symlink('/etc/init.d/openvpn', '/etc/rc4.d/S20openvpn')
-		if fileExists('/etc/rc5.d/S20openvpn'):
-			unlink('/etc/rc5.d/S20openvpn')
-		else:
-			symlink('/etc/init.d/openvpn', '/etc/rc5.d/S20openvpn')
-		if fileExists('/etc/rc6.d/K20openvpn'):
-			unlink('/etc/rc6.d/K20openvpn')
-		else:
-			symlink('/etc/init.d/openvpn', '/etc/rc6.d/K20openvpn')
+			self.Console.ePopen('update-rc.d -f openvpn defaults')
+		time.sleep(3)
 		self.updateVpn()
 
 	def updateVpn(self):
@@ -1889,34 +1820,11 @@ class NetworkSamba(Screen):
 			self.updateSamba()
 
 	def activateSamba(self):
-		if fileExists('/etc/rc0.d/K20samba'):
-			unlink('/etc/rc0.d/K20samba')
-		else:
-			symlink('/etc/init.d/samba', '/etc/rc0.d/K20samba')
-		if fileExists('/etc/rc1.d/K20samba'):
-			unlink('/etc/rc1.d/K20samba')
-		else:
-			symlink('/etc/init.d/samba', '/etc/rc1.d/K20samba')
 		if fileExists('/etc/rc2.d/S20samba'):
-			unlink('/etc/rc2.d/S20samba')
+			self.Console.ePopen('update-rc.d -f samba remove')
 		else:
-			symlink('/etc/init.d/samba', '/etc/rc2.d/S20samba')
-		if fileExists('/etc/rc3.d/S20samba'):
-			unlink('/etc/rc3.d/S20samba')
-		else:
-			symlink('/etc/init.d/samba', '/etc/rc3.d/S20samba')
-		if fileExists('/etc/rc4.d/S20samba'):
-			unlink('/etc/rc4.d/S20samba')
-		else:
-			symlink('/etc/init.d/samba', '/etc/rc4.d/S20samba')
-		if fileExists('/etc/rc5.d/S20samba'):
-			unlink('/etc/rc5.d/S20samba')
-		else:
-			symlink('/etc/init.d/samba', '/etc/rc5.d/S20samba')
-		if fileExists('/etc/rc6.d/K20samba'):
-			unlink('/etc/rc6.d/K20samba')
-		else:
-			symlink('/etc/init.d/samba', '/etc/rc6.d/K20samba')
+			self.Console.ePopen('update-rc.d -f samba defaults')
+		time.sleep(3)
 		self.updateSamba()
 
 	def updateSamba(self):
@@ -2123,35 +2031,11 @@ class NetworkInadyn(Screen):
 			self.updateIna()
 
 	def autostart(self):
-		if fileExists('/etc/rc0.d/K20inadyn-mt'):
-			unlink('/etc/rc0.d/K20inadyn-mt')
-		else:
-			symlink('/etc/init.d/inadyn-mt', '/etc/rc0.d/K20inadyn-mt')
-		if fileExists('/etc/rc1.d/K20inadyn-mt'):
-			unlink('/etc/rc1.d/K20inadyn-mt')
-		else:
-			symlink('/etc/init.d/inadyn-mt', '/etc/rc1.d/K20inadyn-mt')
 		if fileExists('/etc/rc2.d/S20inadyn-mt'):
-			unlink('/etc/rc2.d/S20inadyn-mt')
+			self.Console.ePopen('update-rc.d -f inadyn-mt remove')
 		else:
-			symlink('/etc/init.d/inadyn-mt', '/etc/rc2.d/S20inadyn-mt')
-		if fileExists('/etc/rc3.d/S20inadyn-mt'):
-			unlink('/etc/rc3.d/S20inadyn-mt')
-		else:
-			symlink('/etc/init.d/inadyn-mt', '/etc/rc3.d/S20inadyn-mt')
-		if fileExists('/etc/rc4.d/S20inadyn-mt'):
-			unlink('/etc/rc4.d/S20inadyn-mt')
-		else:
-			symlink('/etc/init.d/inadyn-mt', '/etc/rc4.d/S20inadyn-mt')
-		if fileExists('/etc/rc5.d/S20inadyn-mt'):
-			unlink('/etc/rc5.d/S20inadyn-mt')
-		else:
-			symlink('/etc/init.d/inadyn-mt', '/etc/rc5.d/S20inadyn-mt')
-		if fileExists('/etc/rc6.d/K20inadyn-mt'):
-			unlink('/etc/rc6.d/K20inadyn-mt')
-		else:
-			symlink('/etc/init.d/inadyn-mt', '/etc/rc6.d/K20inadyn-mt')
-
+			self.Console.ePopen('update-rc.d -f inadyn-mt defaults')
+		time.sleep(3)
 		self.updateIna()
 
 	def updateIna(self):
@@ -2459,34 +2343,11 @@ class NetworkuShare(Screen):
 			self.updateuShare()
 
 	def autostart(self):
-		if fileExists('/etc/rc0.d/K20ushare'):
-			unlink('/etc/rc0.d/K20ushare')
-		else:
-			symlink('/etc/init.d/ushare', '/etc/rc0.d/K20ushare')
-		if fileExists('/etc/rc1.d/K20ushare'):
-			unlink('/etc/rc1.d/K20ushare')
-		else:
-			symlink('/etc/init.d/ushare', '/etc/rc1.d/K20ushare')
 		if fileExists('/etc/rc2.d/S20ushare'):
-			unlink('/etc/rc2.d/S20ushare')
+			self.Console.ePopen('update-rc.d -f ushare remove')
 		else:
-			symlink('/etc/init.d/ushare', '/etc/rc2.d/S20ushare')
-		if fileExists('/etc/rc3.d/S20ushare'):
-			unlink('/etc/rc3.d/S20ushare')
-		else:
-			symlink('/etc/init.d/ushare', '/etc/rc3.d/S20ushare')
-		if fileExists('/etc/rc4.d/S20ushare'):
-			unlink('/etc/rc4.d/S20ushare')
-		else:
-			symlink('/etc/init.d/ushare', '/etc/rc4.d/S20ushare')
-		if fileExists('/etc/rc5.d/S20ushare'):
-			unlink('/etc/rc5.d/S20ushare')
-		else:
-			symlink('/etc/init.d/ushare', '/etc/rc5.d/S20ushare')
-		if fileExists('/etc/rc6.d/K20ushare'):
-			unlink('/etc/rc6.d/K20ushare')
-		else:
-			symlink('/etc/init.d/ushare', '/etc/rc6.d/K20ushare')
+			self.Console.ePopen('update-rc.d -f ushare defaults')
+		time.sleep(3)
 		self.updateuShare()
 
 	def updateuShare(self):
@@ -2941,34 +2802,11 @@ class NetworkMiniDLNA(Screen):
 			self.updateMiniDLNA()
 
 	def autostart(self):
-		if fileExists('/etc/rc0.d/K20minidlna'):
-			unlink('/etc/rc0.d/K20minidlna')
-		else:
-			symlink('/etc/init.d/minidlna', '/etc/rc0.d/K20minidlna')
-		if fileExists('/etc/rc1.d/K20minidlna'):
-			unlink('/etc/rc1.d/K20minidlna')
-		else:
-			symlink('/etc/init.d/minidlna', '/etc/rc1.d/K20minidlna')
 		if fileExists('/etc/rc2.d/S20minidlna'):
-			unlink('/etc/rc2.d/S20minidlna')
+			self.Console.ePopen('update-rc.d -f minidlna remove')
 		else:
-			symlink('/etc/init.d/minidlna', '/etc/rc2.d/S20minidlna')
-		if fileExists('/etc/rc3.d/S20minidlna'):
-			unlink('/etc/rc3.d/S20minidlna')
-		else:
-			symlink('/etc/init.d/minidlna', '/etc/rc3.d/S20minidlna')
-		if fileExists('/etc/rc4.d/S20minidlna'):
-			unlink('/etc/rc4.d/S20minidlna')
-		else:
-			symlink('/etc/init.d/minidlna', '/etc/rc4.d/S20minidlna')
-		if fileExists('/etc/rc5.d/S20minidlna'):
-			unlink('/etc/rc5.d/S20minidlna')
-		else:
-			symlink('/etc/init.d/minidlna', '/etc/rc5.d/S20minidlna')
-		if fileExists('/etc/rc6.d/K20minidlna'):
-			unlink('/etc/rc6.d/K20minidlna')
-		else:
-			symlink('/etc/init.d/minidlna', '/etc/rc6.d/K20minidlna')
+			self.Console.ePopen('update-rc.d -f minidlna defaults')
+		time.sleep(3)
 		self.updateMiniDLNA()
 
 	def updateMiniDLNA(self):

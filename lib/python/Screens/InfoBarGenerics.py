@@ -1,4 +1,4 @@
-from ChannelSelection import ChannelSelection, BouquetSelector, SilentBouquetSelector, PLIBouquetSelector
+from ChannelSelection import ChannelSelection, BouquetSelector, SilentBouquetSelector,  EPGBouquetSelector
 from Components.ActionMap import ActionMap, HelpableActionMap
 from Components.ActionMap import NumberActionMap
 from Components.Harddisk import harddiskmanager
@@ -71,14 +71,16 @@ def setResumePoint(session):
 				else:
 					l = None 
 				resumePointCache[key] = [lru, pos[1], l]
+				print '[ResumePionts] lenth',len(resumePointCache)
 				if len(resumePointCache) > 50:
 					candidate = key
 					for k,v in resumePointCache.items():
 						if v[0] < lru:
 							candidate = k
 					del resumePointCache[candidate]
-				if lru - resumePointCacheLast > 3600:
-					saveResumePoints()
+# 				print '[ResumePionts] test',(lru - resumePointCacheLast)
+# 				if lru - resumePointCacheLast > 3600:
+				saveResumePoints()
 
 def delResumePoint(ref):
 	global resumePointCache, resumePointCacheLast
@@ -86,7 +88,7 @@ def delResumePoint(ref):
 		del resumePointCache[ref.toString()]
 	except KeyError:
 		pass
-	if int(time()) - resumePointCacheLast > 3600:
+# 	if int(time()) - resumePointCacheLast > 3600:
 		saveResumePoints()
 
 def getResumePoint(session):
@@ -101,6 +103,7 @@ def getResumePoint(session):
 			return None
 
 def saveResumePoints():
+	print '[ResumePionts] saving'
 	global resumePointCache, resumePointCacheLast
 	import cPickle
 	try:
@@ -327,6 +330,12 @@ class InfoBarShowHide:
 		elif self.__state == self.STATE_HIDDEN and self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
+		elif self.__state == self.STATE_HIDDEN and self.EventViewIsShown:
+			try:
+				self.eventView.close()
+			except:
+				pass
+			self.EventViewIsShown = False
 
 	def toggleShow(self):
 		if self.__state == self.STATE_HIDDEN:
@@ -350,12 +359,18 @@ class InfoBarShowHide:
 			self.hide()
 			self.openEventView()
 			self.EventViewIsShown = True
-			self.hideTimer.stop()	
+			self.hideTimer.stop()
+			
 		else:
 			self.hide()
 			if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 				self.secondInfoBarScreen.hide()
-
+			elif self.EventViewIsShown:
+				try:
+					self.eventView.close()
+				except:
+					pass
+				self.EventViewIsShown = False
 	def lockShow(self):
 		try:
 			self.__locked = self.__locked + 1
@@ -1085,10 +1100,10 @@ class InfoBarEPG:
 			else:
 				self.session.open(EPGSelection, services, self.zapToService, None, self.changeBouquetCB, self.EPGtype, self.StartBouquet)
 
-	def changeBouquetCB(self, direction, epgcall):
+	def changeBouquetCB(self, epgcall):
 		bouquets = self.servicelist.getBouquetList()
 		self.epg = epgcall
-		self.session.openWithCallback(self.onBouquetSelectorClose, PLIBouquetSelector, self.bouquets, self.epg_bouquet, direction)
+		self.session.openWithCallback(self.onBouquetSelectorClose, EPGBouquetSelector, self.bouquets, self.epg_bouquet)
 
 	def onBouquetSelectorClose(self, bouquet):
 		if bouquet:
@@ -1113,7 +1128,7 @@ class InfoBarEPG:
 		self.EPGtype = "multi"
 		Servicelist = self.servicelist
 		self.StartBouquet = Servicelist and Servicelist.getRoot()
-		if config.GraphEPG.ShowBouquet_multi.value:
+		if config.epgselction.showbouquet_multi.value:
 			self.bouquets = self.servicelist.getBouquetList()
 			if self.bouquets is None:
 				cnt = 0
@@ -1160,7 +1175,7 @@ class InfoBarEPG:
 		self.EPGtype = "graph"
 		Servicelist = self.servicelist
 		self.StartBouquet = Servicelist and Servicelist.getRoot()
-		if config.GraphEPG.ShowBouquet_pliepg.value:
+		if config.epgselction.showbouquet_pliepg.value:
 			self.bouquets = self.servicelist.getBouquetList()
 			if self.bouquets is None:
 				cnt = 0

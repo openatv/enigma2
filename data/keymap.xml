@@ -169,6 +169,10 @@
 		<key id="KEY_EXIT" mapto="back" flags="m" />
 		<key id="KEY_ESC" mapto="back" flags="m" />
 		<key id="KEY_INFO" mapto="info" flags="m" />
+		<key id="KEY_UP" mapto="up" flags="mr" />
+		<key id="KEY_DOWN" mapto="down" flags="mr" />
+		<key id="KEY_LEFT" mapto="left" flags="mr" />
+		<key id="KEY_RIGHT" mapto="right" flags="mr" />
 	</map>
 
 	<map context="InfobarMenuActions">
@@ -506,19 +510,15 @@
 	</map>
 
 	<map context="EPGSelectActions">
+		<key id="KEY_GREEN" mapto="timerAdd" flags="b"/>
 		<key id="KEY_CHANNELUP" mapto="nextService" flags="m" />
 		<key id="KEY_CHANNELDOWN" mapto="prevService" flags="m" />
 		<key id="KEY_NEXT" mapto="nextBouquet" flags="m" />
 		<key id="KEY_PREVIOUS" mapto="prevBouquet" flags="m" />
-		<key id="KEY_PROGRAM" mapto="timerAdd" flags="m" />
 		<key id="KEY_MENU" mapto="Menu" flags="m"/>
 		<key id="KEY_TEXT" mapto="input_date_time" flags="m"/>
-		<key id="KEY_GREEN" mapto="timerAdd" flags="b"/>
-		<key id="KEY_OK" mapto="OK" flags="b"/>
-		<key id="KEY_OK" mapto="OKLong" flags="l"/>
 		<key id="KEY_INFO" mapto="Info" flags="b"/>
 		<key id="KEY_INFO" mapto="InfoLong" flags="l"/>
-		<key id="KEY_RECORD" mapto="Record" flags="m"/>
 	</map>
 
 	<map context="EventViewActions">
@@ -545,6 +545,8 @@
 
 		<!-- use this on rcu, ok? -->
 		<key id="KEY_OK" mapto="ok" flags="m" />
+		<key id="KEY_OK" mapto="OK" flags="b"/>
+		<key id="KEY_OK" mapto="OKLong" flags="l"/>
 		<key id="KEY_EXIT" mapto="cancel" flags="m" />
 
 		<key id="KEY_ENTER" mapto="ok" flags="m" />

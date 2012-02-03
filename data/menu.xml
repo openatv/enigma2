@@ -63,6 +63,7 @@
 				<item level="1" text="Input devices" entryID="input_device_setup"><screen module="InputDeviceSetup" screen="InputDeviceSelection" /></item>
 				<item text="Keyboard"><setup id="keyboard" /></item>
 				<item level="0" entryID="time_setup"><setup id="time"/></item>
+				<item level="0" entryID="logs_setup"><setup id="logs" /></item>
 				<menu level="2" text="OSD" entryID="osd_setup" requires="OsdMenu">
 					<id val="osd_menu" />
 					<item level="2" text="OSD Setup" entryID="osdsetup" requires="OsdSetup"><screen module="OSD" screen="OSDSetup"/></item>

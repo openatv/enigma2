@@ -701,7 +701,7 @@ RESULT eDVBResourceManager::allocateRawChannel(eUsePtr<iDVBChannel> &channel, in
 }
 
 
-RESULT eDVBResourceManager::allocatePVRChannel(eUsePtr<iDVBPVRChannel> &channel)
+RESULT eDVBResourceManager::allocatePVRChannel(const eDVBChannelID &channelid, eUsePtr<iDVBPVRChannel> &channel)
 {
 	ePtr<eDVBAllocatedDemux> demux;
 
@@ -712,48 +712,62 @@ RESULT eDVBResourceManager::allocatePVRChannel(eUsePtr<iDVBPVRChannel> &channel)
 		m_releaseCachedChannelTimer->stop();
 	}
 
-	channel = new eDVBChannel(this, 0);
+	ePtr<eDVBChannel> ch = new eDVBChannel(this, 0);
+	if (channelid)
+	{
+		/* 
+		 * user provided a channelid, with the clear intention for 
+		 * this channel to be registered at the resource manager.
+		 * (allowing e.g. epgcache to be started) 
+		 */
+		ePtr<iDVBFrontendParameters> feparm;
+		ch->setChannel(channelid, feparm);
+	}
+	channel = ch;
 	return 0;
 }
 
 RESULT eDVBResourceManager::addChannel(const eDVBChannelID &chid, eDVBChannel *ch)
 {
+	bool simulate = false;
 	ePtr<iDVBFrontend> fe;
 	if (!ch->getFrontend(fe))
 	{
 		eDVBFrontend *frontend = (eDVBFrontend*)&(*fe);
-		if (frontend->is_simulate())
-			m_active_simulate_channels.push_back(active_channel(chid, ch));
-		else
-		{
-			m_active_channels.push_back(active_channel(chid, ch));
-			/* emit */ m_channelAdded(ch);
-		}
+		simulate = frontend->is_simulate();
+	}
+	std::list<active_channel> &active_channels = simulate ? m_active_simulate_channels : m_active_channels;
+	active_channels.push_back(active_channel(chid, ch));
+	if (!simulate) 
+	{
+		/* emit */ m_channelAdded(ch);
 	}
 	return 0;
 }
 
 RESULT eDVBResourceManager::removeChannel(eDVBChannel *ch)
 {
+	bool simulate = false;
 	ePtr<iDVBFrontend> fe;
 	if (!ch->getFrontend(fe))
 	{
 		eDVBFrontend *frontend = (eDVBFrontend*)&(*fe);
-		std::list<active_channel> &active_channels = frontend->is_simulate() ? m_active_simulate_channels : m_active_channels;
-		int cnt = 0;
-		for (std::list<active_channel>::iterator i(active_channels.begin()); i != active_channels.end();)
-		{
-			if (i->m_channel == ch)
-			{
-				i = active_channels.erase(i);
-				++cnt;
-			} else
-				++i;
-		}
-		ASSERT(cnt == 1);
-		if (cnt == 1)
-			return 0;
+		simulate = frontend->is_simulate();
 	}
+	std::list<active_channel> &active_channels = simulate ? m_active_simulate_channels : m_active_channels;
+	int cnt = 0;
+	for (std::list<active_channel>::iterator i(active_channels.begin()); i != active_channels.end();)
+	{
+		if (i->m_channel == ch)
+		{
+			i = active_channels.erase(i);
+			++cnt;
+		} else
+			++i;
+	}
+	ASSERT(cnt == 1);
+	if (cnt == 1)
+		return 0;
 	return -ENOENT;
 }
 
@@ -1566,14 +1580,15 @@ RESULT eDVBChannel::setChannel(const eDVBChannelID &channelid, ePtr<iDVBFrontend
 	if (!channelid)
 		return 0;
 
-	if (!m_frontend)
-	{
-		eDebug("no frontend to tune!");
-		return -ENODEV;
-	}
-
 	m_channel_id = channelid;
 	m_mgr->addChannel(channelid, this);
+
+	if (!m_frontend)
+	{
+		/* no frontend, no need to tune (must be a streamed service) */
+		return 0;
+	}
+
 	m_state = state_tuning;
 			/* if tuning fails, shutdown the channel immediately. */
 	int res;
