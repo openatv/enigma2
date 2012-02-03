@@ -536,6 +536,7 @@ class TimelineText(HTMLComponent, GUIComponent):
 		self.borderColor = 0x000000
 		self.backColor = 0x000000
 		self.borderWidth = 1
+		self.time_base = 0
 
 	GUI_WIDGET = eListbox
 
@@ -582,7 +583,8 @@ class TimelineText(HTMLComponent, GUIComponent):
 
 		# Note: event_rect and service_rect are relative to the timeline_text position
 		#       while the time lines are relative to the GraphEPG screen position!
-		res.append( MultiContentEntryText(
+		if self.time_base != time_base:
+			res.append( MultiContentEntryText(
 						pos = (0, 0),
 						size = (service_rect.width(), itemHeight),
 						font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER,
@@ -591,23 +593,25 @@ class TimelineText(HTMLComponent, GUIComponent):
 						backcolor = self.backColor, backcolor_sel = self.backColor,
 						border_width = self.borderWidth, border_color = self.borderColor))
 
-		xpos = 0 # eventLeft
-		for x in range(0, num_lines):
-			res.append( MultiContentEntryText(
-				pos = (service_rect.width() + xpos, 0),
-				size = (incWidth, itemHeight),
-				font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER,
-				text = strftime("%H:%M", localtime( time_base + x*timeStepsCalc )),
-				color = self.foreColor, color_sel = self.foreColor,
-				backcolor = self.backColor, backcolor_sel = self.backColor,
-				border_width = self.borderWidth, border_color = self.borderColor) )
-			line = time_lines[x]
-			old_pos = line.position
-			line.setPosition(xpos + eventLeft, old_pos[1])
-			line.visible = True
-			xpos += incWidth
-		for x in range(num_lines, MAX_TIMELINES):
-			time_lines[x].visible = False
+			xpos = 0 # eventLeft
+			for x in range(0, num_lines):
+				res.append( MultiContentEntryText(
+					pos = (service_rect.width() + xpos, 0),
+					size = (incWidth, itemHeight),
+					font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER,
+					text = strftime("%H:%M", localtime( time_base + x*timeStepsCalc )),
+					color = self.foreColor, color_sel = self.foreColor,
+					backcolor = self.backColor, backcolor_sel = self.backColor,
+					border_width = self.borderWidth, border_color = self.borderColor) )
+				line = time_lines[x]
+				old_pos = line.position
+				line.setPosition(xpos + eventLeft, old_pos[1])
+				line.visible = True
+				xpos += incWidth
+			for x in range(num_lines, MAX_TIMELINES):
+				time_lines[x].visible = False
+			self.l.setList([res])
+			self.time_base = time_base
 
 		now = time()
 		if now >= time_base and now < (time_base + time_epoch * 60):
@@ -619,7 +623,6 @@ class TimelineText(HTMLComponent, GUIComponent):
 			timeline_now.visible = True
 		else:
 			timeline_now.visible = False
-		self.l.setList([res])
 
 
 config.misc.graph_mepg = ConfigSubsection()
