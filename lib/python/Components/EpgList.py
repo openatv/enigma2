@@ -24,6 +24,7 @@ EPG_TYPE_GRAPH = 5
 MAX_TIMELINES = 6
 
 days = (_("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun"))
+dayslong = (_("Monday"), _("Tuesday"), _("Wednesday"), _("Thursday"), _("Friday"), _("Saturday"), _("Sunday"))
 
 class Rect:
 	def __init__(self, x, y, width, height):
@@ -497,10 +498,11 @@ class EPGList(HTMLComponent, GUIComponent):
 		r2 = self.datetime_rect
 		r3 = self.descr_rect
 		t = localtime(beginTime)
+		
 		res = [
 			None, # no private data needed
 			(eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, days[t[6]]),
-			(eListboxPythonMultiContent.TYPE_TEXT, r2.x, r2.y, r2.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, "%2d.%02d, %02d:%02d"%(t[2],t[1],t[3],t[4]))
+			(eListboxPythonMultiContent.TYPE_TEXT, r2.x, r2.y, r2.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, "%02d/%02d, %02d:%02d"%(t[2],t[1],t[3],t[4]))
 		]
 		if rec:
 			res.extend((
@@ -519,8 +521,8 @@ class EPGList(HTMLComponent, GUIComponent):
 		t = localtime(beginTime)
 		res = [
 			None,  # no private data needed
-			(eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w, r1.h, 0, RT_HALIGN_RIGHT|RT_VALIGN_CENTER, days[t[6]]),
-			(eListboxPythonMultiContent.TYPE_TEXT, r2.x, r2.y, r2.w, r1.h, 0, RT_HALIGN_RIGHT|RT_VALIGN_CENTER, "%2d.%02d, %02d:%02d"%(t[2],t[1],t[3],t[4]))
+			(eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, days[t[6]]),
+			(eListboxPythonMultiContent.TYPE_TEXT, r2.x, r2.y, r2.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, "%02d/%02d, %02d:%02d"%(t[2],t[1],t[3],t[4]))
 		]
 		if rec:
 			res.extend((
@@ -872,7 +874,6 @@ class TimelineText(HTMLComponent, GUIComponent):
 		self.borderColor = 0x000000
 		self.backColor = 0x000000
 		self.borderWidth = 1
-
 		self.timelineFontName = "Regular"
 		self.timelineFontSize = 20
 
@@ -928,8 +929,12 @@ class TimelineText(HTMLComponent, GUIComponent):
 
 		nowTime = localtime(time())
 		begTime = localtime(time_base)
+		self.ServiceWidth = config.epgselction.servicewidth.getValue()
 		if nowTime[2] != begTime[2]:
-			datestr = '%s'%(days[begTime[6]])
+			if self.ServiceWidth > 109:
+				datestr = '%s'%(dayslong[begTime[6]])
+			else:
+				datestr = '%s'%(days[begTime[6]])
 		else:
 			datestr = '%s'%(_("Today"))
 		# Note: event_rect and service_rect are relative to the timeline_text position
