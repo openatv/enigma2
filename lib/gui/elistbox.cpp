@@ -107,8 +107,8 @@ void eListbox::moveSelection(long dir)
 	/* we need the old top/sel to see what we have to redraw */
 	int oldtop = m_top;
 	int oldsel = m_selected;
-	int newsel = oldsel;
-	int prevsel = newsel;
+	int prevsel = oldsel;
+	int newsel;
 	int step = 1;
 
 	switch (dir)
@@ -160,50 +160,76 @@ void eListbox::moveSelection(long dir)
 		while (newsel != oldsel && !m_content->currentCursorSelectable());
 		break;
 	case pageUp:
-		newsel = oldsel - (oldsel % m_items_per_page); // get top of page index
-		m_content->cursorSet(newsel); // go to top of current page so we play it per page
+	{
+		int pageind;
 		do
 		{
 			m_content->cursorMove(-m_items_per_page);
 			newsel = m_content->cursorGet();
-			prevsel = newsel;
-			// find first selectable entry in new page
-			while (newsel != prevsel + m_items_per_page && !m_content->currentCursorSelectable())
-			{
-				m_content->cursorMove(1);
-				newsel = m_content->cursorGet();
-			}
-			if (newsel == prevsel + m_items_per_page)
-			{
-				if (prevsel == 0) // at top an no selectable item found. Stay where we are
-				{
-					m_content->cursorSet(oldsel);
-					break;
-				}
-				else
-					m_content->cursorSet(prevsel);
-			}
-		}
-		while (newsel == prevsel + m_items_per_page);
-		break;
-	case pageDown:
-		newsel = oldsel - (oldsel % m_items_per_page); // get top of page index
-		m_content->cursorSet(newsel); // go to top of current page so we play it per page
-		m_content->cursorMove(m_items_per_page);
-		newsel = m_content->cursorGet();
-		do
-		{
-			prevsel = newsel;
-			// find first selectable entry in new page
+			pageind = newsel % m_items_per_page; // rememer were we land in thsi page (could be different on topmost page)
+			prevsel = newsel - pageind; // get top of page index
+			// find first selectable entry in new page. First check bottom part, than upper part
 			while (newsel != prevsel + m_items_per_page && m_content->cursorValid() && !m_content->currentCursorSelectable())
 			{
 				m_content->cursorMove(1);
 				newsel = m_content->cursorGet();
 			}
+			if (!m_content->currentCursorSelectable()) // no selectable found in bottom part of page
+			{
+				m_content->cursorSet(prevsel + pageind);
+				while (newsel != prevsel && !m_content->currentCursorSelectable())
+				{
+					m_content->cursorMove(-1);
+					newsel = m_content->cursorGet();
+				}
+			}
+			if (m_content->currentCursorSelectable())
+				break;
+			if (newsel == 0) // at top and nothing found . Go down till someing selectable or old location
+			{
+				while (newsel != oldsel && !m_content->currentCursorSelectable());
+				{
+					m_content->cursorMove(1);
+					newsel = m_content->cursorGet();
+				}
+				break;
+			}
+			m_content->cursorSet(prevsel + pageind);
+		}
+		while (newsel == prevsel);
+		break;
+	}
+	case pageDown:
+	{
+		int pageind;
+		do
+		{
+			m_content->cursorMove(m_items_per_page);
+			if (!m_content->cursorValid())
+				m_content->cursorMove(-1);
+			newsel = m_content->cursorGet();
+			pageind = newsel % m_items_per_page;
+			prevsel = newsel - pageind; // get top of page index
+			// find a selectable entry in the new page. first look up then down from current screenlocation on the page
+			while (newsel != prevsel && !m_content->currentCursorSelectable())
+			{
+				m_content->cursorMove(-1);
+				newsel = m_content->cursorGet();
+			}
+			if (!m_content->currentCursorSelectable()) // no selectable found in top part of page
+			{
+				m_content->cursorSet(prevsel + pageind);
+				do {
+					m_content->cursorMove(1);
+					newsel = m_content->cursorGet();
+				}
+			        while (newsel != prevsel + m_items_per_page && m_content->cursorValid() && !m_content->currentCursorSelectable());
+			}
 			if (!m_content->cursorValid())
 			{
 				// we reached the end of the list
 				// Back up till something selectable or we reach oldsel again
+				// E.g this should bring us back to the last selectable item on the original page
 				do
 				{
 					m_content->cursorMove(-1);
@@ -212,9 +238,13 @@ void eListbox::moveSelection(long dir)
 				while (newsel != oldsel && !m_content->currentCursorSelectable());
 				break;
 			}
+			if (newsel != prevsel + m_items_per_page)
+				break;
+			m_content->cursorSet(prevsel + pageind); // prepare for next page down
 		}
 		while (newsel == prevsel + m_items_per_page);
 		break;
+	}
 	}
 	
 	/* now, look wether the current selection is out of screen */
