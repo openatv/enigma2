@@ -566,8 +566,8 @@ class EPGSelection(Screen, HelpableScreen):
 	def onStartup(self):
 		self.onCreate()
 		if self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
-			self.startBouquet = self.servicelist.getRoot()
-		self.startRef = self.session.nav.getCurrentlyPlayingServiceReference()
+			self.StartBouquet = self.servicelist.getRoot()
+		self.StartRef = self.session.nav.getCurrentlyPlayingServiceReference()
 		if self.type == EPG_TYPE_GRAPH:
 			self['lab1'].hide()
 
@@ -764,17 +764,11 @@ class EPGSelection(Screen, HelpableScreen):
 	def closing(self):
 		if (self.type == 5 and config.epgselction.preview_mode_pliepg.value) or (self.type == 4 and config.epgselction.preview_mode_infobar.value) or (self.type == 3 and config.epgselction.preview_mode_enhanced.value) or (self.type != 5 and self.type != 4 and self.type != 3 and config.epgselction.preview_mode.value):
 			if self.type != EPG_TYPE_GRAPH and self.type != EPG_TYPE_MULTI:
-				try:
-					if self.startRef:
-						self.session.nav.playService(self.startRef)
-					self.setServicelistSelection(self.startBouquet, self.startRef.ref)
-				except:
-					pass
+				self.session.nav.playService(self.StartRef)
 			else:
-				try:
-					self.zapFunc(self.startRef, self.StartBouquet)
-				except:
-					pass
+				self.zapFunc(self.StartRef, self.StartBouquet)
+		if self.type != EPG_TYPE_GRAPH and self.type != EPG_TYPE_MULTI:
+			self.setServicelistSelection(self.StartBouquet, self.StartRef)
 		self.close(self.closeRecursive)
 
 	def GraphEPGClose(self):
@@ -1031,10 +1025,15 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def moveUp(self):
 		self["list"].moveUp()
+		if self.type == EPG_TYPE_GRAPH:
+			self.moveTimeLines()
 
 	def moveDown(self):
 		self["list"].moveDown()
-	
+		if self.type == EPG_TYPE_GRAPH:
+			self.moveTimeLines()
+
+			
 	def updEvent(self, dir, visible=True):
 		ret = self["list"].selEntry(dir, visible)
 		if ret:
@@ -1050,6 +1049,7 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def key2(self):
 		self["list"].instance.moveSelection(self["list"].instance.pageUp)
+		self.moveTimeLines()
 
 	def key3(self):
 		hilf = config.epgselction.prev_time_period.getValue()	
@@ -1083,6 +1083,7 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def key8(self):
 		self["list"].instance.moveSelection(self["list"].instance.pageDown)
+		self.moveTimeLines()
 
 	def key9(self):
 		cooltime = localtime(self["list"].getTimeBase())
@@ -1098,7 +1099,7 @@ class EPGSelection(Screen, HelpableScreen):
 		self.ask_time = now - now % (int(config.epgselction.roundTo.getValue()) * 60)
 		self["list"].resetOffset()
 		self["list"].fillGraphEPG(None, self.ask_time)
-		self.moveTimeLines(True)
+		self.moveTimeLines()
 
 	def OK(self):
 		if config.epgselction.OK_pliepg.value == "Zap" or config.epgselction.OK_enhanced.value == "Zap" or config.epgselction.OK_infobar.value == "Zap":
