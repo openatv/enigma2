@@ -760,9 +760,10 @@ class EPGSelection(Screen, HelpableScreen):
 		if ((self.type == 5 and config.epgselction.preview_mode_vixepg.value) or (self.type == 4 and config.epgselction.preview_mode_infobar.value) or (self.type == 3 and config.epgselction.preview_mode_enhanced.value) or (self.type != 5 and self.type != 4 and self.type != 3 and config.epgselction.preview_mode.value)) and (self.StartRef and self.StartBouquet):
 			if self.type != EPG_TYPE_GRAPH and self.type != EPG_TYPE_MULTI:
 				self.session.nav.playService(self.StartRef)
-				self.setServicelistSelection(self.StartBouquet, self.StartRef)
 			else:
 				self.zapFunc(self.StartRef, self.StartBouquet)
+		if self.type != EPG_TYPE_GRAPH and self.type != EPG_TYPE_MULTI:
+			self.setServicelistSelection(self.StartBouquet, self.StartRef)
 		self.close(self.closeRecursive)
 
 	def GraphEPGClose(self):
@@ -1014,10 +1015,14 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def moveUp(self):
 		self["list"].moveUp()
+		if self.type == EPG_TYPE_GRAPH:
+			self.moveTimeLines()
 
 	def moveDown(self):
 		self["list"].moveDown()
-	
+		if self.type == EPG_TYPE_GRAPH:
+			self.moveTimeLines()
+
 	def updEvent(self, dir, visible=True):
 		ret = self["list"].selEntry(dir, visible)
 		if ret:
@@ -1033,6 +1038,7 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def key2(self):
 		self["list"].instance.moveSelection(self["list"].instance.pageUp)
+		self.moveTimeLines()
 
 	def key3(self):
 		hilf = config.epgselction.prev_time_period.getValue()	
@@ -1066,6 +1072,7 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def key8(self):
 		self["list"].instance.moveSelection(self["list"].instance.pageDown)
+		self.moveTimeLines()
 
 	def key9(self):
 		cooltime = localtime(self["list"].getTimeBase())
@@ -1081,7 +1088,7 @@ class EPGSelection(Screen, HelpableScreen):
 		self.ask_time = now - now % (int(config.epgselction.roundTo.getValue()) * 60)
 		self["list"].resetOffset()
 		self["list"].fillGraphEPG(None, self.ask_time)
-		self.moveTimeLines(True)
+		self.moveTimeLines()
 
 	def OK(self):
 		if config.epgselction.OK_vixepg.value == "Zap" or config.epgselction.OK_enhanced.value == "Zap" or config.epgselction.OK_infobar.value == "Zap":
