@@ -561,8 +561,8 @@ class EPGSelection(Screen, HelpableScreen):
 	def onStartup(self):
 		self.onCreate()
 		if self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
-			self.startBouquet = self.servicelist.getRoot()
-		self.startRef = self.session.nav.getCurrentlyPlayingServiceReference()
+			self.StartBouquet = self.servicelist.getRoot()
+		self.StartRef = self.session.nav.getCurrentlyPlayingServiceReference()
 		if self.type == EPG_TYPE_GRAPH:
 			self['lab1'].hide()
 
@@ -757,19 +757,12 @@ class EPGSelection(Screen, HelpableScreen):
 					self.moveTimeLines(True)
 
 	def closing(self):
-		if (self.type == 5 and config.epgselction.preview_mode_vixepg.value) or (self.type == 4 and config.epgselction.preview_mode_infobar.value) or (self.type == 3 and config.epgselction.preview_mode_enhanced.value) or (self.type != 5 and self.type != 4 and self.type != 3 and config.epgselction.preview_mode.value):
+		if ((self.type == 5 and config.epgselction.preview_mode_vixepg.value) or (self.type == 4 and config.epgselction.preview_mode_infobar.value) or (self.type == 3 and config.epgselction.preview_mode_enhanced.value) or (self.type != 5 and self.type != 4 and self.type != 3 and config.epgselction.preview_mode.value)) and (self.StartRef and self.StartBouquet):
 			if self.type != EPG_TYPE_GRAPH and self.type != EPG_TYPE_MULTI:
-				try:
-					if self.startRef:
-						self.session.nav.playService(self.startRef)
-					self.setServicelistSelection(self.startBouquet, self.startRef.ref)
-				except:
-					pass
+				self.session.nav.playService(self.StartRef)
+				self.setServicelistSelection(self.StartBouquet, self.StartRef)
 			else:
-				try:
-					self.zapFunc(self.startRef, self.StartBouquet)
-				except:
-					pass
+				self.zapFunc(self.StartRef, self.StartBouquet)
 		self.close(self.closeRecursive)
 
 	def GraphEPGClose(self):
