@@ -1,32 +1,47 @@
 import time
 import os
+import enigma
+from Components.config import config
+from Components import Harddisk
+from twisted.internet import threads
 
-try:
-	import enigma
-	from Components.config import config
-except:
-	print "Cannot import enigma"
+def getTrashFolder(path):
+	# Returns trash folder without symlinks. Path may be file or directory or whatever.
+	mountpoint = Harddisk.findMountPoint(os.path.realpath(path))
+	movie = os.path.join(mountpoint, 'movie')
+	if os.path.isdir(movie):
+		mountpoint = movie
+	return os.path.join(mountpoint, ".Trash")
 
-from Directories import resolveFilename, SCOPE_HDD
-
-def getTrashFolder():
-	# Returns trash folder without symlinks
-	return os.path.realpath(os.path.join(resolveFilename(SCOPE_HDD), ".Trash"))
-
-def createTrashFolder():
-	trash = getTrashFolder()
+def createTrashFolder(path):
+	# Create and return trash folder for given file or dir
+	trash = getTrashFolder(path)
 	if not os.path.isdir(trash):
+		print "[Trashcan] create:", trash
 		os.mkdir(trash)
 	return trash
+
+def enumTrashFolders():
+	# Walk through all Trash folders. This may access network
+	# drives and similar, so might block for minutes.
+	for mount in Harddisk.getProcMounts():
+		if mount[1].startswith('/media/'):
+			mountpoint = mount[1]
+			movie = os.path.join(mountpoint, 'movie')
+			if os.path.isdir(movie):
+				mountpoint = movie
+			result = os.path.join(mountpoint, ".Trash")
+			if os.path.isdir(result):
+				yield result
 
 class Trashcan:
 	def __init__(self, session):
 		self.session = session
 		session.nav.record_event.append(self.gotRecordEvent)
+		self.isCleaning = False
 		self.gotRecordEvent(None, None)
 	
 	def gotRecordEvent(self, service, event):
-		print "[Trashcan] gotRecordEvent", service, event
 		self.recordings = len(self.session.nav.getRecordings())
 		if (event == enigma.iRecordableService.evEnd):
 			self.cleanIfIdle()
@@ -45,17 +60,24 @@ class Trashcan:
 		if self.recordings:
 			print "[Trashcan] Recording in progress", self.recordings
 			return
-		try:
-			ctimeLimit = time.time() - (config.usage.movielist_trashcan_days.value * 3600 * 24)
-			reserveBytes = 1024*1024*1024 * int(config.usage.movielist_trashcan_reserve.value) 
-			clean(ctimeLimit, reserveBytes)
-		except Exception, e:
-			print "[Trashcan] Weirdness:", e
+		if self.isCleaning:
+			print "[Trashcan] Cleanup already running"
+		self.isCleaning = True
+		ctimeLimit = time.time() - (config.usage.movielist_trashcan_days.value * 3600 * 24)
+		reserveBytes = 1024*1024*1024 * int(config.usage.movielist_trashcan_reserve.value)
+		threads.deferToThread(clean, ctimeLimit, reserveBytes).addCallbacks(self.cleanReady, self.cleanFail)
+
+	def cleanReady(self, result=None):
+		self.isCleaning = False
+
+	def cleanFail(self, failure):
+		print "[Trashcan] ERROR in clean:", failure
+		self.isCleaning = False
 
 def clean(ctimeLimit, reserveBytes):
-		# Remove expired items from trash, and attempt to have
-		# reserveBytes of free disk space. 
-		trash = getTrashFolder()
+	# Remove expired items from trash, and attempt to have
+	# reserveBytes of free disk space.
+	for trash in enumTrashFolders():
 		if not os.path.isdir(trash):
 			print "[Trashcan] No trash.", trash
 			return 0
@@ -63,7 +85,7 @@ def clean(ctimeLimit, reserveBytes):
 		free = diskstat.f_bfree * diskstat.f_bsize
 		bytesToRemove = reserveBytes - free 
 		candidates = []
-		print "[Trashcan] bytesToRemove", bytesToRemove
+		print "[Trashcan] bytesToRemove", bytesToRemove, trash
 		size = 0
 		for root, dirs, files in os.walk(trash, topdown=False):
 			for name in files:
@@ -96,10 +118,8 @@ def clean(ctimeLimit, reserveBytes):
 			bytesToRemove -= st_size
 			size -= st_size
 		print "[Trashcan] Size now:", size
-		 
-		
-def cleanAll():
-		trash = getTrashFolder()
+ 
+def cleanAll(trash):
 		if not os.path.isdir(trash):
 			print "[Trashcan] No trash.", trash
 			return 0
@@ -116,50 +136,7 @@ def cleanAll():
 					os.rmdir(os.path.join(root, name))
 				except:
 					pass
-		
-	
+
 def init(session):
 	global instance
 	instance = Trashcan(session)
-
-# Unit test
-# (can be run outside enigma. Can be moved somewhere else later on)
-if __name__ == '__main__':
-	class Fake:
-		def __init__(self):
-			self.record_event = []
-			self.nav = self
-			self.RecordTimer = self
-			self.usage = self
-			self.movielist_trashcan_days = self
-			self.movielist_trashcan_reserve = self
-			self.value = 1
-			self.eBackgroundFileEraser = self
-			self.iRecordableService = self
-			self.evEnd = None
-		def getInstance(self):
-			# eBackgroundFileEraser
-			return self
-		def erase(self, fn):
-			print "ERASE", fn 
-		def getNextRecordingTime(self):
-			# RecordTimer
-			return time.time() + 500
-		def getRecordings(self):
-			return []
-		def destroy(self):
-			if self.record_event:
-				raise Exception, "record_event not empty" + str(self.record_event)
-	
-	s = Fake()
-	createTrashFolder()
-	config = s
-	enigma = s
-	init(s)
-	diskstat = os.statvfs('/hdd/movie')
-	free = diskstat.f_bfree * diskstat.f_bsize
-	# Clean up one MB
-	clean(1264606758, free + 1000000)
-	cleanAll()
-	instance.destroy()
-	s.destroy()

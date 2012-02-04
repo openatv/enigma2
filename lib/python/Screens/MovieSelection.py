@@ -79,7 +79,8 @@ def getPreferredTagEditor():
 def isTrashFolder(ref):
 	if not ref.flags & eServiceReference.mustDescent:
 		return False
-	return os.path.realpath(ref.getPath()).startswith(Tools.Trashcan.getTrashFolder())
+	path = os.path.realpath(ref.getPath())
+	return path.endswith('.Trash') and path.startswith(Tools.Trashcan.getTrashFolder(path))
 
 def isSimpleFile(item):
 	if not item:
@@ -1368,7 +1369,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 						# Move the files to the trash can in a way that their CTIME is
 						# set to "now". A simple move would not correctly update the
 						# ctime, and hence trigger a very early purge.
-						trash = Tools.Trashcan.createTrashFolder()
+						trash = Tools.Trashcan.createTrashFolder(cur_path)
 						trash = os.path.join(trash, os.path.split(cur_path)[1])
 						os.mkdir(trash)
 						for root, dirnames, filenames in os.walk(cur_path):
@@ -1435,7 +1436,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 						return
 			if config.usage.movielist_trashcan.value:
 				try:
-					trash = Tools.Trashcan.createTrashFolder()
+					trash = Tools.Trashcan.createTrashFolder(cur_path)
 					# Also check whether we're INSIDE the trash, then it's a purge.
 					if cur_path.startswith(trash):
 						msg = _("Deleted items") + "\n"
@@ -1502,7 +1503,10 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 	def purgeConfirmed(self, confirmed):
 		if not confirmed:
 			return
-		Tools.Trashcan.cleanAll()
+		item = self.getCurrentSelection()
+		current = item[0]
+		cur_path = os.path.realpath(current.getPath())
+		Tools.Trashcan.cleanAll(cur_path)
 
 	def showNetworkSetup(self):
 		import NetworkSetup
