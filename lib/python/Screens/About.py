@@ -187,7 +187,6 @@ class Devices(Screen):
 		if self.mountinfo:
 			self.mountinfo += "\n"
 		self.mountinfo += "%s (%sB, %sB %s)" % (ipaddress, mounttotal, mountfree, _("free")) 
-		print 'mountinfo:',self.mountinfo
 		self["mounts"].setText(self.mountinfo)
 
 	def createSummary(self):
