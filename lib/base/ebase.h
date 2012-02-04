@@ -125,11 +125,12 @@ static inline timespec operator-=( timespec &t1, const long msek )
 
 static inline long timeout_usec ( const timespec & orig )
 {
-	timespec now;
+	timespec now, diff;
 	clock_gettime(CLOCK_MONOTONIC, &now);
-	if ( (orig-now).tv_sec > 2000 )
-		return 2000*1000*1000;
-	return (orig-now).tv_sec*1000000 + (orig-now).tv_nsec/1000;
+	diff = orig - now;
+	if (diff.tv_sec > 2000)
+		return 2000 * 1000 * 1000;
+	return diff.tv_sec * 1000000 + diff.tv_nsec / 1000;
 }
 
 class eMainloop;
@@ -296,6 +297,8 @@ public:
 	bool isActive() { return bActive; }
 
 	timespec &getNextActivation() { return nextActivation; }
+	bool needsActivation(const timespec &now) { return nextActivation <= now; }
+	bool needsActivation() { timespec now; clock_gettime(CLOCK_MONOTONIC, &now); return nextActivation <= now; }
 
 	void start(long msec, bool b=false);
 	void stop();
