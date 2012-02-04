@@ -215,7 +215,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 				if config.usage.movielist_trashcan.value:
 					import Tools.Trashcan
 					try:
-						trash = Tools.Trashcan.createTrashFolder()
+						trash = Tools.Trashcan.createTrashFolder(ref.getPath())
 						Screens.MovieSelection.moveServiceFiles(ref, trash)
 						# Moved to trash, okay
 						self.close()
