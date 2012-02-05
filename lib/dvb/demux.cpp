@@ -543,7 +543,7 @@ int eDVBRecordFileThread::writeData(const unsigned char *data, int len)
 			}
 			else
 			{
-				return -1;
+				return w;
 			}
 		}
 		else
@@ -571,6 +571,7 @@ int eDVBRecordFileThread::writeData(const unsigned char *data, int len)
 			written_since_last_sync = 0;
 		}
 	}
+	return total_written;
 }
 
 DEFINE_REF(eDVBTSRecorder);
