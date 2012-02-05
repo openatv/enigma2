@@ -284,13 +284,13 @@ class EPGSelection(Screen, HelpableScreen):
 		self.closeRecursive = False
 		self["Service"] = ServiceEvent()
 		self["Event"] = Event()
- 		Screen.setTitle(self, _("Programme Guide"))
+		Screen.setTitle(self, _("Programme Guide"))
 		self.key_red_choice = self.EMPTY
 		self.key_green_choice = self.EMPTY
 		self["key_red"] = Button(_("IMDb Search"))
 		self["key_green"] = Button(_("Add Timer"))
 		self["key_yellow"] = Button(_("EPG Search"))
-		self["key_blue"] = Button(_("BlueText"))
+		self["key_blue"] = Button(BlueText)
 		if isinstance(service, str) and eventid != None:
 			self.type = EPG_TYPE_SIMILAR
 			self.currentService=service
@@ -1102,9 +1102,11 @@ class EPGSelection(Screen, HelpableScreen):
 		self.moveTimeLines()
 
 	def OK(self):
-		if config.epgselction.OK_pliepg.value == "Zap" or config.epgselction.OK_enhanced.value == "Zap" or config.epgselction.OK_infobar.value == "Zap":
+		if config.epgselction.OK_pliepg.value == "EventView" or config.epgselction.OK_enhanced.value == "EventView" or config.epgselction.OK_infobar.value == "EventView":
+			self.infoKeyPressed()
+		elif config.epgselction.OK_pliepg.value == "Zap" or config.epgselction.OK_enhanced.value == "Zap" or config.epgselction.OK_infobar.value == "Zap":
 			self.ZapTo()
-		if config.epgselction.OK_pliepg.value == "Zap + Exit" or config.epgselction.OK_enhanced.value == "Zap + Exit" or config.epgselction.OK_infobar.value == "Zap + Exit":
+		elif config.epgselction.OK_pliepg.value == "Zap + Exit" or config.epgselction.OK_enhanced.value == "Zap + Exit" or config.epgselction.OK_infobar.value == "Zap + Exit":
 			self.zap()
 
 	def OKLong(self):
@@ -1539,7 +1541,7 @@ class EPGSelectionSetup(Screen, ConfigListScreen):
 	def changedEntry(self):
 		for x in self.onChangedEntry:
 			x()
- 		self.selectionChanged()
+		self.selectionChanged()
 
 	def getCurrentEntry(self):
 		return self["config"].getCurrent()[0]
