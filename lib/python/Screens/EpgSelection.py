@@ -290,7 +290,7 @@ class EPGSelection(Screen, HelpableScreen):
 		self["key_red"] = Button(_("IMDb Search"))
 		self["key_green"] = Button(_("Add Timer"))
 		self["key_yellow"] = Button(_("EPG Search"))
-		self["key_blue"] = Button(_("BlueText"))
+		self["key_blue"] = Button(BlueText)
 		if isinstance(service, str) and eventid != None:
 			self.type = EPG_TYPE_SIMILAR
 			self.currentService=service
