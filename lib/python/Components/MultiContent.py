@@ -14,6 +14,8 @@ def MultiContentEntryPixmapAlphaTest(pos = (0, 0), size = (0, 0), png = None, ba
 def MultiContentEntryPixmapAlphaBlend(pos = (0, 0), size = (0, 0), png = None, backcolor = None, backcolor_sel = None):
 	return (eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, pos[0], pos[1], size[0], size[1], png, backcolor, backcolor_sel)
 
-def MultiContentEntryProgress(pos = (0, 0), size = (0, 0), percent = None, borderWidth = None, foreColor = None, backColor = None, backColorSelected = None):
-	return (eListboxPythonMultiContent.TYPE_PROGRESS, pos[0], pos[1], size[0], size[1], percent, borderWidth, foreColor, backColor, backColorSelected)
+def MultiContentEntryProgress(pos = (0, 0), size = (0, 0), percent = None, borderWidth = None, foreColor = None, foreColorSelected = None, backColor = None, backColorSelected = None):
+	return (eListboxPythonMultiContent.TYPE_PROGRESS, pos[0], pos[1], size[0], size[1], percent, borderWidth, foreColor, foreColorSelected, backColor, backColorSelected)
 
+def MultiContentEntryProgressPixmap(pos = (0, 0), size = (0, 0), percent = None, pixmap = None, borderWidth = None, foreColor = None, foreColorSelected = None, backColor = None, backColorSelected = None):
+	return (eListboxPythonMultiContent.TYPE_PROGRESS_PIXMAP, pos[0], pos[1], size[0], size[1], percent, pixmap, borderWidth, foreColor, foreColorSelected, backColor, backColorSelected)
