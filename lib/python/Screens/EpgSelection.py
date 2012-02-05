@@ -767,7 +767,7 @@ class EPGSelection(Screen, HelpableScreen):
 				self.session.nav.playService(self.StartRef)
 			else:
 				self.zapFunc(self.StartRef, self.StartBouquet)
-		if self.type != EPG_TYPE_GRAPH and self.type != EPG_TYPE_MULTI:
+		if self.type != EPG_TYPE_GRAPH and self.type != EPG_TYPE_MULTI and self.type != EPG_TYPE_SINGLE:
 			self.setServicelistSelection(self.StartBouquet, self.StartRef)
 		self.close(self.closeRecursive)
 
