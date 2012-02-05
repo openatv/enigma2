@@ -1371,6 +1371,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		cur_path = os.path.realpath(current.getPath())
 		st = os.stat(cur_path)
 		name = info and info.getName(current) or _("this recording")
+		are_you_sure = ""
 		if item and isTrashFolder(item[0]):
 			# Red button to empty trashcan...
 			self.purgeAll()
