@@ -187,45 +187,21 @@ int eMainloop::processOneEvent(unsigned int twisted_timeout, PyObject **res, ePy
 		if (it != m_timer_list.end())
 		{
 			eTimer *tmr = *it;
-			int iterations = m_timer_list.size();
+			timespec now; 
+			clock_gettime(CLOCK_MONOTONIC, &now);
 			/* process all timers which are ready. first remove them out of the list. */
-			while ((poll_timeout = timeout_usec( tmr->getNextActivation() ) ) <= 0 )
+			while (tmr->needsActivation(now))
 			{
 				m_timer_list.erase(it);
 				tmr->AddRef();
 				tmr->activate();
 				tmr->Release();
 				it = m_timer_list.begin();
-				if (it != m_timer_list.end())
-				{
-					tmr = *it;
-					/*
-					 * When a timer constantly reactivates itself with a very
-					 * short interval, and activating all timers in this loop
-					 * takes longer than that interval, the timer could
-					 * effectivly put us in an endless loop.
-					 *
-					 * Limit the number of timer iterations to the number of timers
-					 * that were in the list when we started.
-					 * This is still a high enough number to never hit the limit
-					 * during normal operation.
-					 * But it is low enough to make sure we break out of a
-					 * possibly endless loop, and spare some cpu power to process
-					 * other events.
-					 * Even if we do hit the limit during normal operation, we are
-					 * guaranteed to return here almost immediately, because
-					 * we leave with a poll_timeout of 0.
-					 */
-					if (--iterations < 0)
-					{
-						break;
-					}
-				}
-				else
-				{
-					break;
-				}
+				if (it == m_timer_list.end()) break;
+				tmr = *it;
 			}
+			it = m_timer_list.begin();
+			if (it != m_timer_list.end()) poll_timeout = timeout_usec((*it)->getNextActivation());
 			if (poll_timeout < 0)
 				poll_timeout = 0;
 			else /* convert us to ms */
