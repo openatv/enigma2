@@ -25,11 +25,6 @@ from ServiceReference import ServiceReference
 from time import time, localtime, mktime
 
 mepg_config_initialized = False
-try:
-	from Plugins.Extensions.AutoTimer.AutoTimerEditor import addAutotimerFromEvent
-	BlueText = _("Add AutoTimer")
-except:
-	BlueText = _("Toggle Sort")
 
 class EPGSelection(Screen, HelpableScreen):
 	data = resolveFilename(SCOPE_CURRENT_SKIN,"skin.xml")
@@ -290,7 +285,11 @@ class EPGSelection(Screen, HelpableScreen):
 		self["key_red"] = Button(_("IMDb Search"))
 		self["key_green"] = Button(_("Add Timer"))
 		self["key_yellow"] = Button(_("EPG Search"))
-		self["key_blue"] = Button(BlueText)
+		try:
+			from Plugins.Extensions.AutoTimer.AutoTimerEditor import addAutotimerFromEvent
+			self["key_blue"] = _("Add AutoTimer")
+		except:
+			self["key_blue"] = _("Toggle Sort")
 		if isinstance(service, str) and eventid != None:
 			self.type = EPG_TYPE_SIMILAR
 			self.currentService=service
