@@ -510,16 +510,19 @@ class SecondInfobar(Screen):
 						}[frontendData.get("fec_inner", eDVBFrontendParametersSatellite.FEC_Auto)]
 				self["TunerInfo"].setText( "Frequenz:  " + freq + " MHz " + pol + " " + fec + " " + sr + "    Satellite: " + orb)
 			elif tuner_type == "DVB-C":
-				fec = {
-						eDVBFrontendParametersCable.FEC_None : "None",
-						eDVBFrontendParametersCable.FEC_Auto : "Auto",
-						eDVBFrontendParametersCable.FEC_1_2 : "1/2",
-						eDVBFrontendParametersCable.FEC_2_3 : "2/3",
-						eDVBFrontendParametersCable.FEC_3_4 : "3/4",
-						eDVBFrontendParametersCable.FEC_5_6 : "5/6",
-						eDVBFrontendParametersCable.FEC_7_8 : "7/8",
-						eDVBFrontendParametersCable.FEC_8_9 : "8/9"
-						}[frontendData.get("fec_inner", eDVBFrontendParametersSatellite.FEC_Auto)]
-				self["TunerInfo"].setText( "Freq: " + freq + " MHz, Fec: " + fec + ", SR: " + sr )
+				try:
+					fec = {
+							eDVBFrontendParametersCable.FEC_None : "None",
+							eDVBFrontendParametersCable.FEC_Auto : "Auto",
+							eDVBFrontendParametersCable.FEC_1_2 : "1/2",
+							eDVBFrontendParametersCable.FEC_2_3 : "2/3",
+							eDVBFrontendParametersCable.FEC_3_4 : "3/4",
+							eDVBFrontendParametersCable.FEC_5_6 : "5/6",
+							eDVBFrontendParametersCable.FEC_7_8 : "7/8",
+							eDVBFrontendParametersCable.FEC_8_9 : "8/9"
+							}[frontendData.get("fec_inner", eDVBFrontendParametersSatellite.FEC_Auto)]
+					self["TunerInfo"].setText( "Freq: " + freq + " MHz, Fec: " + fec + ", SR: " + sr )
+				except:
+					pass
 			else:
 				self["TunerInfo"].setText( "Freq: " + freq + " MHz, SR: " + sr )

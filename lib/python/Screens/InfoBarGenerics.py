@@ -1040,6 +1040,8 @@ class InfoBarEPG:
 			self.openEventView()
 		elif config.plisettings.PLIINFO_mode.value == "epgpress":
 			self.EPGPressed()
+		elif config.plisettings.PLIINFO_mode.value == "single":
+			self.openSingleServiceEPG()
 		elif config.plisettings.PLIINFO_mode.value == "coolinfoguide":
 			self.showCoolInfoGuide()
 		elif config.plisettings.PLIINFO_mode.value == "coolsingleguide":

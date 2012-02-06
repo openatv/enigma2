@@ -148,8 +148,10 @@ class Network:
 				self.configuredInterfaces.append(ifacename)
 			if iface['dhcp'] == True:
 				fp.write("iface "+ ifacename +" inet dhcp\n")
+				fp.write("  hostname $(hostname)\n")
 			if iface['dhcp'] == False:
 				fp.write("iface "+ ifacename +" inet static\n")
+				fp.write("  hostname $(hostname)\n")
 				if iface.has_key('ip'):
 					print tuple(iface['ip'])
 					fp.write("	address %d.%d.%d.%d\n" % tuple(iface['ip']))
