@@ -30,7 +30,6 @@ class Trashcan:
 	def __init__(self, session):
 		self.session = session
 		session.nav.record_event.append(self.gotRecordEvent)
-		self.isCleaning = False
 		self.gotRecordEvent(None, None)
 	
 	def gotRecordEvent(self, service, event):
@@ -57,13 +56,20 @@ class Trashcan:
 		clean(ctimeLimit, reserveBytes)
 	
 def clean(ctimeLimit, reserveBytes):
-	if config.usage.movielist_trashcan.value and not self.isCleaning:
+	isCleaning = False
+	for job in Components.Task.job_manager.getPendingJobs():
+		jobname = str(job.name)
+		if jobname.startswith(_("Cleaning Trashes")):
+			isCleaning = True
+			break
+			
+	if config.usage.movielist_trashcan.value and not isCleaning:
 		name = _("Cleaning Trashes")
 		job = Components.Task.Job(name)
 		task = CleanTrashTask(job, name)
 		task.openFiles(ctimeLimit, reserveBytes)
 		Components.Task.job_manager.AddJob(job)
-	elif self.isCleaning:
+	elif isCleaning:
 		print "[Trashcan] Cleanup already running"
 	else:
 		print "[Trashcan] Disabled skipping check."
@@ -97,7 +103,6 @@ class CleanTrashTask(Components.Task.PythonTask):
 		self.reserveBytes = reserveBytes
 
 	def work(self):
-		self.isCleaning = True
 		mounts=[]
 		matches = []
 		print "[Trashcan] probing folders"
@@ -154,4 +159,3 @@ class CleanTrashTask(Components.Task.PythonTask):
 					bytesToRemove -= st_size
 					size -= st_size
 				print "[Trashcan] " + str(trashfolder) + ": Size now:",size
-		self.isCleaning = False
