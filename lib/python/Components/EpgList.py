@@ -84,16 +84,17 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.clock_pre_pixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_pre.png'))
 		self.clock_post_pixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_post.png'))
 		self.clock_prepost_pixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_prepost.png'))
+		self.borderColor = 0xC0C0C0
+		self.borderColorService = 0xC0C0C0
+
 		self.foreColor = 0xffffff
 		self.foreColorSelected = 0xffffff
-		self.borderColor = 0xC0C0C0
 		self.backColor = 0x2D455E
 		self.backColorSelected = 0x0D253E
 		self.foreColorService = 0xffffff
 		self.foreColorServiceSelected = 0xffffff
 		self.backColorService = 0x2D455E
 		self.backColorServiceSelected = 0x0D253E
-		self.borderColorService = 0xC0C0C0
 		self.foreColorNow = 0xffffff
 		self.foreColorNowSelected = 0xffffff
 		self.backColorNow = 0x00825F
@@ -102,9 +103,14 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.backColorServiceNow = 0x00825F
 		self.foreColorServiceNowSelected = 0xffffff
 		self.backColorServiceNowSelected = 0x004f3a
+
+		self.foreColorRecord = 0xffffff
 		self.backColorRecord = 0xd13333
+		self.foreColorRecordSelected = 0xffffff
 		self.backColorRecordSelected = 0x9e2626
+		self.foreColorZap = 0xffffff
 		self.backColorZap = 0x669466
+		self.foreColorZapSelected = 0xffffff
 		self.backColorZapSelected = 0x436143
 
 		self.serviceFontNameGraph = "Regular"
@@ -122,21 +128,24 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.listWidth = None
 		self.serviceBorderWidth = 1
 		self.serviceNamePadding = 0
+		self.eventBorderWidth = 1
+		self.eventNamePadding = 3
+		self.eventNameAlign = 'left'
 
 	def applySkin(self, desktop, screen):
 		if self.skinAttributes is not None:
 			attribs = [ ]
 			for (attrib, value) in self.skinAttributes:
-				if attrib == "EntryForegroundColor":
-					self.foreColor = parseColor(value).argb()
-				elif attrib == "EntryForegroundColorSelected":
-					self.foreColorSelected = parseColor(value).argb()
-				elif attrib == "EntryBorderColor":
-					self.borderColor = parseColor(value).argb()
+				if attrib == "ServiceFont":
+					font = parseFont(value, ((1,1),(1,1)) )
+					self.serviceFontNameGraph = font.family
+					self.serviceFontSizeGraph = font.pointSize
 				elif attrib == "EntryFontGraphical":
 					font = parseFont(value, ((1,1),(1,1)) )
 					self.eventFontNameGraph = font.family
 					self.eventFontSize = font.pointSize
+				elif attrib == "EntryFontAlignment":
+					self.eventNameAlign = value
 				elif attrib == "EventFontSingle":
 					font = parseFont(value, ((1,1),(1,1)) )
 					self.eventFontNameSingle = font.family
@@ -145,11 +154,8 @@ class EPGList(HTMLComponent, GUIComponent):
 					font = parseFont(value, ((1,1),(1,1)) )
 					self.eventFontNameInfobar = font.family
 					self.eventFontSizeInfobar = font.pointSize
-				elif attrib == "EntryBackgroundColor":
-					self.backColor = parseColor(value).argb()
-				elif attrib == "EntryBackgroundColorSelected":
-					self.backColorSelected = parseColor(value).argb()
-				elif attrib == "ServiceForegroundColor" or attrib == "ServiceNameForegroundColor":
+
+				elif attrib == "ServiceForegroundColor":
 					self.foreColorService = parseColor(value).argb()
 				elif attrib == "ServiceForegroundColorSelected":
 					self.foreColorServiceSelected = parseColor(value).argb()
@@ -157,7 +163,7 @@ class EPGList(HTMLComponent, GUIComponent):
 					self.foreColorServiceNow = parseColor(value).argb()
 				elif attrib == "ServiceForegroundColorNowSelected":
 					self.foreColorServiceNowSelected = parseColor(value).argb()
-				elif attrib == "ServiceBackgroundColor" or attrib == "ServiceNameBackgroundColor":
+				elif attrib == "ServiceBackgroundColor":
 					self.backColorService = parseColor(value).argb()
 				elif attrib == "ServiceBackgroundColorSelected":
 					self.backColorServiceSelected = parseColor(value).argb()
@@ -165,12 +171,15 @@ class EPGList(HTMLComponent, GUIComponent):
 					self.backColorServiceNow = parseColor(value).argb()
 				elif attrib == "ServiceBackgroundColorNowSelected":
 					self.backColorServiceNowSelected = parseColor(value).argb()
-				elif attrib == "ServiceBorderColor":
-					self.borderColorService = parseColor(value).argb()
-				elif attrib == "ServiceFont":
-					font = parseFont(value, ((1,1),(1,1)) )
-					self.serviceFontNameGraph = font.family
-					self.serviceFontSizeGraph = font.pointSize
+
+				elif attrib == "EntryForegroundColor":
+					self.foreColor = parseColor(value).argb()
+				elif attrib == "EntryForegroundColorSelected":
+					self.foreColorSelected = parseColor(value).argb()
+				elif attrib == "EntryBackgroundColor":
+					self.backColor = parseColor(value).argb()
+				elif attrib == "EntryBackgroundColorSelected":
+					self.backColorSelected = parseColor(value).argb()
 				elif attrib == "EntryBackgroundColorNow":
 					self.backColorNow = parseColor(value).argb()
 				elif attrib == "EntryBackgroundColorNowSelected":
@@ -179,16 +188,34 @@ class EPGList(HTMLComponent, GUIComponent):
 					self.foreColorNow = parseColor(value).argb()
 				elif attrib == "EntryForegroundColorNowSelected":
 					self.foreColorNowSelected = parseColor(value).argb()
+
+				elif attrib == "ServiceBorderColor":
+					self.borderColorService = parseColor(value).argb()
 				elif attrib == "ServiceBorderWidth":
 					self.serviceBorderWidth = int(value)
 				elif attrib == "ServiceNamePadding":
 					self.serviceNamePadding = int(value)
-				elif attrib == "RecordBackgroundColor":
+				elif attrib == "EntryBorderColor":
+					self.borderColor = parseColor(value).argb()
+				elif attrib == "EventBorderWidth":
+					self.eventBorderWidth = int(value)
+				elif attrib == "EventNamePadding":
+					self.eventNamePadding = int(value)
+
+				elif attrib == "RecordForegroundColor":
 					self.foreColorRecord = parseColor(value).argb()
+				elif attrib == "RecordForegroundColorSelected":
+					self.foreColorRecordSelected = parseColor(value).argb()
+				elif attrib == "RecordBackgroundColor":
+					self.backColorRecord = parseColor(value).argb()
 				elif attrib == "RecordBackgroundColorSelected":
 					self.backColorRecordSelected = parseColor(value).argb()
+				elif attrib == "ZapForegroundColor":
+					self.foreColorZap = parseColor(value).argb()
 				elif attrib == "ZapBackgroundColor":
 					self.backColorZap = parseColor(value).argb()
+				elif attrib == "ZapForegroundColorSelected":
+					self.foreColorZapSelected = parseColor(value).argb()
 				elif attrib == "ZapBackgroundColorSelected":
 					self.backColorZapSelected = parseColor(value).argb()
 				else:
@@ -510,7 +537,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		
 		res = [
 			None, # no private data needed
-			(eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, days[t[6]]),
+			(eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, _(days[t[6]])),
 			(eListboxPythonMultiContent.TYPE_TEXT, r2.x, r2.y, r2.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, "%02d/%02d, %02d:%02d"%(t[2],t[1],t[3],t[4]))
 		]
 		if rec:
@@ -530,7 +557,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		t = localtime(beginTime)
 		res = [
 			None,  # no private data needed
-			(eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, days[t[6]]),
+			(eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, _(days[t[6]])),
 			(eListboxPythonMultiContent.TYPE_TEXT, r2.x, r2.y, r2.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, "%02d/%02d, %02d:%02d"%(t[2],t[1],t[3],t[4]))
 		]
 		if rec:
@@ -591,6 +618,7 @@ class EPGList(HTMLComponent, GUIComponent):
 				serviceBackColor = self.backColorServiceNow
 
 		res = [ None ]
+		# Picon and Service name
 		res.append(MultiContentEntryText(
  			pos = (r1.x, r1.y),
  			size = (r1.w, r1.h),
@@ -602,36 +630,46 @@ class EPGList(HTMLComponent, GUIComponent):
 
 		if self.showPicon:
 			piconHeight = r1.h - 2 * self.serviceBorderWidth
-			piconWidth = 2 * piconHeight
+			piconWidth = 2 * piconHeight  # FIXME: could do better...
 			if piconWidth > r1.w - 2 * self.serviceBorderWidth:
 					piconWidth = r1.w - 2 * self.serviceBorderWidth
 			if picon != "":
 				self.picload.setPara((piconWidth, piconHeight, 1, 1, 1, 1, "#FFFFFFFF"))
 				self.picload.startDecode(picon, piconWidth, piconHeight, False)
 				displayPicon = self.picload.getData()
-				
 				if displayPicon is not None:
 					res.append(MultiContentEntryPixmapAlphaBlend(
 						pos = (r1.x + self.serviceBorderWidth, r1.y + self.serviceBorderWidth),
 						size = (piconWidth, piconHeight),
 						png = displayPicon,
-						backcolor = serviceBackColor, backcolor_sel = serviceBackColor) )
+						backcolor = serviceBackColor, backcolor_sel = serviceBackColor))
 		else:
 			piconWidth = 0
-
 		if self.showServiceTitle or picon == "" or not self.showPicon:
 			if picon == "" or not self.showPicon:
 				piconWidth = 0
 			res.append(MultiContentEntryText(
-					pos = (r1.x + piconWidth + self.serviceBorderWidth + self.serviceNamePadding, r1.y),
-					size = (r1.w - piconWidth - 2 * self.serviceBorderWidth - 2 * self.serviceNamePadding, r1.h),
+					pos = (r1.x + piconWidth + self.serviceBorderWidth + self.serviceNamePadding,
+							r1.y + self.serviceBorderWidth),
+					size = (r1.w - piconWidth - 2 * (self.serviceBorderWidth + self.serviceNamePadding),
+							r1.h - 2 * self.serviceBorderWidth),
 					font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER,
 					text = service_name,
 					color = serviceForeColor, color_sel = serviceForeColor,
-					backcolor = None, backcolor_sel = None, border_width = 0, border_color = None) )
+					backcolor = serviceBackColor, backcolor_sel = serviceBackColor))
+
+		# Events for service
+		res.append(MultiContentEntryText(
+ 			pos = (r2.x, r2.y),
+ 			size = (r2.w, r2.h),
+ 			font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER,
+ 			text = "",
+			color = self.foreColor, color_sel = self.foreColor,
+			backcolor = self.backColor, backcolor_sel = self.backColor,
+			border_width = 1, border_color = self.borderColor))
 
 		if events:
-			start = self.time_base+self.offs * self.time_epoch * 60
+			start = self.time_base + self.offs * self.time_epoch * 60
 			end = start + self.time_epoch * 60
 			left = r2.x
 			top = r2.y
@@ -642,53 +680,60 @@ class EPGList(HTMLComponent, GUIComponent):
 			for ev in events:  #(event_id, event_title, begin_time, duration)
 				stime = ev[2]
 				duration = ev[3]
-				rec = stime and self.timer.isInTimer(ev[0], stime, duration, service)
 				xpos, ewidth = self.calcEntryPosAndWidthHelper(stime, duration, start, end, width)
-				if stime <= now and now < stime + duration:
+				rec = stime and self.timer.isInTimer(ev[0], stime, duration, service)
+				rectype = self.GraphEPGRecRed(service, ev[2], ev[3], ev[0])
+				if self.eventNameAlign.lower() == 'left':
+					alignnment = RT_HALIGN_LEFT | RT_VALIGN_CENTER | RT_WRAP
+				else:
+					alignnment = RT_HALIGN_CENTER | RT_VALIGN_CENTER | RT_WRAP
+				if stime <= now and now < (stime + duration):
 					backColor = self.backColorNow
 					foreColor = self.foreColorNow
 					foreColorSelected = self.foreColorNowSelected
- 					backColorSelected = self.backColorNowSelected
+					backColorSelected = self.backColorNowSelected
 				else:
 					backColor = self.backColor
 					foreColor = self.foreColor
- 					foreColorSelected = self.foreColorSelected
- 					backColorSelected = self.backColorSelected
-
+					foreColorSelected = self.foreColorSelected
+					backColorSelected = self.backColorSelected
 				if rec:
-					cooltyp = self.GraphEPGRecRed(service, ev[2], ev[3], ev[0])
-					if cooltyp == "record":
+					if rectype == "record":
+						foreColor = self.foreColorRecord 
 						backColor = self.backColorRecord 
+						foreColorSelected = self.foreColorRecordSelected
 						backColorSelected = self.backColorRecordSelected
-					elif cooltyp == "justplay":						
+					elif rectype == "justplay":						
+						foreColor = self.foreColorZap
 						backColor = self.backColorZap
+						foreColorSelected = self.foreColorZapSelected
 						backColorSelected = self.backColorZapSelected
 
+				# event box background
 				res.append(MultiContentEntryText(
-					pos = (left+xpos, top), size = (ewidth, height),
+					pos = (left + xpos, top), size = (ewidth, height),
 					font = 1, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER,
-					text = " " + ev[1],
-					color = foreColor, color_sel = foreColorSelected,
+					text = "", color = foreColor, color_sel = foreColorSelected,
 					backcolor = backColor, backcolor_sel = backColorSelected,
-					border_width = 1, border_color = self.borderColor))
-
+					border_width = self.eventBorderWidth, border_color = self.borderColor))
+				# event text
+				evX = left + xpos + self.eventBorderWidth + self.eventNamePadding
+				evY = top + self.eventBorderWidth
+				evW = ewidth - 2 * (self.eventBorderWidth + self.eventNamePadding)
+				evH = height - 2 * self.eventBorderWidth
+				if evW > 0:
+					res.append(MultiContentEntryText(
+						pos = (evX, evY), size = (evW, evH),
+						font = 1, flags = alignnment,
+						text = ev[1],
+						color = foreColor, color_sel = foreColorSelected,
+						backcolor = backColor, backcolor_sel = backColorSelected))
+				# recording icons
 				if rec:
 					res.append(MultiContentEntryPixmapAlphaBlend(
 						pos = (left+xpos+ewidth-22, top+height-22), size = (21, 21),
 						png = self.getClockPixmap(service, stime, duration, ev[0]),
 						backcolor = backColor, backcolor_sel = backColorSelected))
-		else:
-			left = r2.left()
-			top = r2.top()
-			width = r2.width()
-			height = r2.height()
-			res.append(MultiContentEntryText(			
-				pos = (left, top), size = (width, height),
-				font = 1, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER,
-				text = " ", 
-				color = self.foreColor, color_sel = self.foreColorSelected,
-				backcolor = self.backColor, backcolor_sel = self.backColorSelected,
-				border_width = 1, border_color = self.borderColor))
 		return res
 
 	def selEntry(self, dir, visible=True):
@@ -943,9 +988,9 @@ class TimelineText(HTMLComponent, GUIComponent):
 		self.ServiceWidth = config.epgselction.servicewidth.getValue()
 		if nowTime[2] != begTime[2]:
 			if self.ServiceWidth > 109:
-				datestr = '%s'%(dayslong[begTime[6]])
+				datestr = '%s'%(_(dayslong[begTime[6]]))
 			else:
-				datestr = '%s'%(days[begTime[6]])
+				datestr = '%s'%(_(days[begTime[6]]))
 		else:
 			datestr = '%s'%(_("Today"))
 		# Note: event_rect and service_rect are relative to the timeline_text position
