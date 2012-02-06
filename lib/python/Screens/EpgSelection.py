@@ -287,9 +287,9 @@ class EPGSelection(Screen, HelpableScreen):
 		self["key_yellow"] = Button(_("EPG Search"))
 		try:
 			from Plugins.Extensions.AutoTimer.AutoTimerEditor import addAutotimerFromEvent
-			self["key_blue"] = _("Add AutoTimer")
+			self["key_blue"] = Button(_("Add AutoTimer"))
 		except:
-			self["key_blue"] = _("Toggle Sort")
+			self["key_blue"] = Button(_("Toggle Sort"))
 		if isinstance(service, str) and eventid != None:
 			self.type = EPG_TYPE_SIMILAR
 			self.currentService=service
