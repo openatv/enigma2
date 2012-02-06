@@ -81,6 +81,8 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.listWidth = None
 		self.serviceBorderWidth = 1
 		self.serviceNamePadding = 0
+		self.eventBorderWidth = 1
+		self.eventNamePadding = 0
 
 	def applySkin(self, desktop, screen):
 		if self.skinAttributes is not None:
@@ -122,6 +124,10 @@ class EPGList(HTMLComponent, GUIComponent):
 					self.serviceBorderWidth = int(value)
 				elif attrib == "ServiceNamePadding":
 					self.serviceNamePadding = int(value)
+				elif attrib == "EventBorderWidth":
+					self.eventBorderWidth = int(value)
+				elif attrib == "EventNamePadding":
+					self.eventNamePadding = int(value)
 				else:
 					attribs.append((attrib,value))
 			self.skinAttributes = attribs
@@ -320,6 +326,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			serviceBackColor = self.backColorServiceSelected
 
 		res = [ None ]
+		# Picon and Service name
 		res.append(MultiContentEntryText(
 						pos = (r1.x, r1.y),
 						size = (r1.w, r1.h),
@@ -334,7 +341,7 @@ class EPGList(HTMLComponent, GUIComponent):
 				piconWidth = self.piconSize.w - 2 * self.serviceBorderWidth
 			else:
 				piconHeight = r1.h - 2 * self.serviceBorderWidth
-				piconWidth = 2 * piconHeight
+				piconWidth = 2 * piconHeight  # FIXME: could do better...
 				if piconWidth > r1.w - 2 * self.serviceBorderWidth:
 					piconWidth = r1.w - 2 * self.serviceBorderWidth
 			if picon != "":
@@ -352,15 +359,18 @@ class EPGList(HTMLComponent, GUIComponent):
 			piconWidth = 0
 		if self.showServiceTitle or picon == "" or not self.showPicon:
 			res.append(MultiContentEntryText(
-				pos = (r1.x + piconWidth + self.serviceBorderWidth + self.serviceNamePadding, r1.y),
-				size = (r1.w - piconWidth - 2 * self.serviceBorderWidth - 2 * self.serviceNamePadding, r1.h),
+				pos = (r1.x + piconWidth + self.serviceBorderWidth + self.serviceNamePadding,
+					r1.y + self.serviceBorderWidth),
+				size = (r1.w - piconWidth - 2 * (self.serviceBorderWidth + self.serviceNamePadding),
+					r1.h - 2 * self.serviceBorderWidth),
 				font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER,
 				text = service_name,
 				color = serviceForeColor, color_sel = serviceForeColor,
-				backcolor = None, backcolor_sel = None, border_width = 0, border_color = None) )
+				backcolor = None, backcolor_sel = None))
 
+		# Events for service
 		if events:
-			start = self.time_base+self.offs*self.time_epoch * 60
+			start = self.time_base + self.offs * self.time_epoch * 60
 			end = start + self.time_epoch * 60
 			left = r2.x
 			top = r2.y
@@ -371,22 +381,33 @@ class EPGList(HTMLComponent, GUIComponent):
 			for ev in events:  #(event_id, event_title, begin_time, duration)
 				stime = ev[2]
 				duration = ev[3]
-				rec = stime and self.timer.isInTimer(ev[0], stime, duration, service)
-				xpos, ewidth = self.calcEntryPosAndWidthHelper(stime, duration, start, end, width)
 				if stime <= now and now < stime + duration:
 					backColor = self.backColorNow
 					foreColor = self.foreColorNow
 				else:
 					backColor = self.backColor
 					foreColor = self.foreColor
-
+				xpos, ewidth = self.calcEntryPosAndWidthHelper(stime, duration, start, end, width)
+				# event box background
 				res.append(MultiContentEntryText(
 					pos = (left + xpos, top), size = (ewidth, height),
-					font = 1, flags = RT_HALIGN_CENTER | RT_VALIGN_CENTER | RT_WRAP,
-					text = ev[1],
-					color = foreColor, color_sel = self.foreColorSelected,
+					font = 1, flags = RT_HALIGN_CENTER | RT_VALIGN_CENTER,
+					text = "", color = None, color_sel = None,
 					backcolor = backColor, backcolor_sel = self.backColorSelected,
-					border_width = 1, border_color = self.borderColor))
+					border_width = self.eventBorderWidth, border_color = self.borderColor))
+				# event text
+				evX = left + xpos + self.eventBorderWidth + self.eventNamePadding
+				evY = top + self.eventBorderWidth
+				evW = ewidth - 2 * (self.eventBorderWidth + self.eventNamePadding)
+				evH = height - 2 * self.eventBorderWidth
+				if evW > 0:
+					res.append(MultiContentEntryText(
+						pos = (evX, evY), size = (evW, evH),
+						font = 1, flags = RT_HALIGN_CENTER | RT_VALIGN_CENTER | RT_WRAP,
+						text = ev[1],
+						color = foreColor, color_sel = self.foreColorSelected))
+				# recording icons
+				rec = stime and self.timer.isInTimer(ev[0], stime, duration, service)
 				if rec and ewidth > 23:
 					res.append(MultiContentEntryPixmapAlphaTest(
 						pos = (left + xpos + ewidth - 22, top + height - 22), size = (21, 21),

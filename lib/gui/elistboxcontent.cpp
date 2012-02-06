@@ -895,12 +895,12 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 			}
 			case TYPE_PROGRESS_PIXMAP: // Progress
 			/*
-				(1, x, y, width, height, filled_percent, pixmap [, borderWidth, foreColor, backColor, backColorSelected] )
+				(1, x, y, width, height, filled_percent, pixmap [, borderWidth, foreColor, foreColorSelected, backColor, backColorSelected] )
 			*/
 			case TYPE_PROGRESS: // Progress
 			{
 			/*
-				(1, x, y, width, height, filled_percent [, borderWidth, foreColor, backColor, backColorSelected] )
+				(1, x, y, width, height, filled_percent [, borderWidth, foreColor, foreColorSelected, backColor, backColorSelected] )
 			*/
 				ePyObject px = PyTuple_GET_ITEM(item, 1),
 							py = PyTuple_GET_ITEM(item, 2),
@@ -985,17 +985,19 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				}
 
 				// border
-				rect.setRect(x, y, width, bwidth);
-				painter.fill(rect);
+				if (bwidth) {
+					rect.setRect(x, y, width, bwidth);
+					painter.fill(rect);
 
-				rect.setRect(x, y+bwidth, bwidth, height-bwidth);
-				painter.fill(rect);
+					rect.setRect(x, y+bwidth, bwidth, height-bwidth);
+					painter.fill(rect);
 
-				rect.setRect(x+bwidth, y+height-bwidth, width-bwidth, bwidth);
-				painter.fill(rect);
+					rect.setRect(x+bwidth, y+height-bwidth, width-bwidth, bwidth);
+					painter.fill(rect);
 
-				rect.setRect(x+width-bwidth, y+bwidth, bwidth, height-bwidth);
-				painter.fill(rect);
+					rect.setRect(x+width-bwidth, y+bwidth, bwidth, height-bwidth);
+					painter.fill(rect);
+				}
 
 				rect.setRect(x+bwidth, y+bwidth, (width-bwidth*2) * filled / 100, height-bwidth*2);
 
