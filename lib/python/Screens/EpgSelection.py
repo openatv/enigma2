@@ -1180,7 +1180,7 @@ class EPGSelection(Screen, HelpableScreen):
 					nowTime = localtime(now)
 					begTime = localtime(beg)
 					if nowTime[2] != begTime[2]:
-							datestr = '%s'%(dayslong[begTime[6]])
+							datestr = '%s'%(_(dayslong[begTime[6]]))
 					else:
 							datestr = '%s'%(_("Today"))
 				self["date"].setText(datestr)
