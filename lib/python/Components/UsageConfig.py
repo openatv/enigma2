@@ -142,6 +142,8 @@ def InitUsageConfig():
 	config.usage.frontend_priority = ConfigSelection(default = "-1", choices = nims)
 	config.misc.disable_background_scan = ConfigYesNo(default = False)
 
+	config.usage.jobtaksextensions = ConfigYesNo(default = True)
+
 	config.usage.servicenum_fontsize = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
 	config.usage.servicename_fontsize = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
 	config.usage.serviceinfo_fontsize = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)

@@ -3370,7 +3370,10 @@ class InfoBarJobman:
 		self.addExtension(extension = self.getJobList, type = InfoBarExtensions.EXTENSION_LIST)
 
 	def getJobList(self):
-		return [((boundFunction(self.getJobName, job), boundFunction(self.showJobView, job), lambda: True), None) for job in job_manager.getPendingJobs()]
+		if config.usage.jobtaksextensions.getValue():
+			return [((boundFunction(self.getJobName, job), boundFunction(self.showJobView, job), lambda: True), None) for job in job_manager.getPendingJobs()]
+		else:
+			return []
 
 	def getJobName(self, job):
 		return "%s: %s (%d%%)" % (job.getStatustext(), job.name, int(100*job.progress/float(job.end)))
@@ -4453,4 +4456,3 @@ class CreateAPSCFilesTask(Task):
 	def afterRun(self):
 		self.setProgress(100)
 		self.toolbox.ptsSaveTimeshiftFinished()
-

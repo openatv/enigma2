@@ -19,6 +19,7 @@
 		<item level="1" text="Online version check every (hours) 0 = Disable">config.usage.infobar_onlinechecktimer</item>
 		<item level="1" text="Zap mode" requires="ZapMode">config.misc.zapmode</item>
 		<item level="2" text="Enable panic button">config.usage.panicbutton</item>
+		<item level="0" text="Show job tasks in extensions">config.usage.jobtaksextensions</item>
 		<item level="0" text="Show animation while busy">config.usage.show_spinner</item>
 		<item level="1" text="Enable teletext caching">config.usage.enable_tt_caching</item>
 		<item level="1" text="Show positioner movement">config.usage.showdish</item>
@@ -55,8 +56,6 @@
 		<item level="2" text="Preferred tuner">config.usage.frontend_priority</item>
 		<item level="2" text="Disable background scanning">config.misc.disable_background_scan</item>
 		<item level="2" text="Show background in Radio Mode">config.misc.showradiopic</item>
-		<item level="2" text="Include EIT in http streams">config.streaming.stream_eit</item>
-		<item level="2" text="Include AIT in http streams">config.streaming.stream_ait</item>
 		<item level="2" text="Include ECM in http streams">config.streaming.stream_ecm</item>
 		<item level="2" text="Descramble http streams">config.streaming.descramble</item>
 	</setup>
@@ -74,6 +73,8 @@
 		<item level="2" text="Enable ViaSat EPG">config.epg.viasat</item>
 		<item level="2" text="Enable Netmed EPG">config.epg.netmed</item>
 		<item level="2" text="Maintain old EPG data for">config.epg.histminutes</item>
+		<item level="2" text="Include EIT in http streams" requires="config.epg.eit">config.streaming.stream_eit</item>
+		<item level="2" text="Include AIT in http streams">config.streaming.stream_ait</item>
 	</setup>
 	<setup key="subtitlesetup" title="Subtitle Settings">
 		<item level="2" text="Teletext subtitle color">config.subtitles.ttx_subtitle_colors</item>
