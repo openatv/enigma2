@@ -69,7 +69,7 @@ void eVideoWidget::setPosition(int index, int left, int top, int width, int heig
 
 void eVideoWidget::setFullsize(bool force)
 {
-	for (int decoder=0; decoder < 1; ++decoder)
+	for (int decoder=0; decoder < 2; ++decoder)
 	{
 		if (force || (pendingFullsize & (1 << decoder)))
 		{
