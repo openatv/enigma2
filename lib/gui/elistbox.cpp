@@ -109,7 +109,6 @@ void eListbox::moveSelection(long dir)
 	int oldsel = m_selected;
 	int prevsel = oldsel;
 	int newsel;
-	int step = 1;
 
 	switch (dir)
 	{
@@ -142,13 +141,13 @@ void eListbox::moveSelection(long dir)
 		m_content->cursorHome();
 		// falltrough
 	case justCheck:
-		step = 0;
+		if (m_content->cursorValid() && m_content->currentCursorSelectable())
+			break;
 		// falltrough
 	case moveDown:
 		do
 		{
-			m_content->cursorMove(step);
-			step = 1;
+			m_content->cursorMove(1);
 			if (!m_content->cursorValid()) { //cursorMove reached end and left cursor position past the list. Must wrap around ?
 				if (m_enabled_wrap_around)
 					m_content->cursorHome();
