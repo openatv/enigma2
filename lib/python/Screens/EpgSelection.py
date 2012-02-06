@@ -260,6 +260,8 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def __init__(self, session, service, zapFunc=None, eventid=None, bouquetChangeCB=None, serviceChangeCB=None, EPGtype = None,  bouquetname=""):
 		Screen.__init__(self, session)
+		self.StartRef = None
+		self.StartBouquet = None
 		if EPGtype:
 			self.StartBouquet = EPGtype
 			EPGtype = None
@@ -758,11 +760,11 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def closing(self):
 		if ((self.type == 5 and config.epgselction.preview_mode_vixepg.value) or (self.type == 4 and config.epgselction.preview_mode_infobar.value) or (self.type == 3 and config.epgselction.preview_mode_enhanced.value) or (self.type != 5 and self.type != 4 and self.type != 3 and config.epgselction.preview_mode.value)) and (self.StartRef and self.StartBouquet):
-			if self.type != EPG_TYPE_GRAPH and self.type != EPG_TYPE_MULTI:
+			if self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
 				self.session.nav.playService(self.StartRef)
-			else:
+			elif self.type == EPG_TYPE_MULTI or self.type == EPG_TYPE_GRAPH:
 				self.zapFunc(self.StartRef, self.StartBouquet)
-		if self.type != EPG_TYPE_GRAPH and self.type != EPG_TYPE_MULTI:
+		if self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
 			self.setServicelistSelection(self.StartBouquet, self.StartRef)
 		self.close(self.closeRecursive)
 
