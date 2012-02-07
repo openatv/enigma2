@@ -69,7 +69,7 @@ def clean(ctimeLimit, reserveBytes):
 		task = CleanTrashTask(job, name)
 		task.openFiles(ctimeLimit, reserveBytes)
 		Components.Task.job_manager.AddJob(job)
-	elif self.isCleaning:
+	elif isCleaning:
 		print "[Trashcan] Cleanup already running"
 	else:
 		print "[Trashcan] Disabled skipping check."
