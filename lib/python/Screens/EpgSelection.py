@@ -281,8 +281,8 @@ class EPGSelection(Screen, HelpableScreen):
 		self.closeRecursive = False
 		self["Service"] = ServiceEvent()
 		self["Event"] = Event()
+		self['lab1'] = Label(_('Wait please while gathering data...'))
  		Screen.setTitle(self, _("Programme Guide"))
-		self.key_red_choice = self.EMPTY
 		self.key_green_choice = self.EMPTY
 		self["key_red"] = Button(_("IMDb Search"))
 		self["key_green"] = Button(_("Add Timer"))
@@ -305,7 +305,6 @@ class EPGSelection(Screen, HelpableScreen):
 				now = time() - int(config.epg.histminutes.getValue()) * 60
 				self.ask_time = self.ask_time = now - now % (int(config.epgselction.roundTo.getValue()) * 60)
 				self.closeRecursive = False
-				self['lab1'] = Label(_('Wait please while gathering data...'))
 				self["timeline_text"] = TimelineText()
 				self["Event"] = Event()
 				self.time_lines = [ ]
@@ -519,14 +518,18 @@ class EPGSelection(Screen, HelpableScreen):
 			self.updateTimelineTimer = eTimer()
 			self.updateTimelineTimer.callback.append(self.moveTimeLines)
 			self.updateTimelineTimer.start(60*1000)
-			self.activityTimer = eTimer()
-			self.activityTimer.timeout.get().append(self.onStartup)
-			self.updateList()
+
 		elif self.type == EPG_TYPE_MULTI:
 			self.curBouquet = bouquetChangeCB
-			self.onLayoutFinish.append(self.onStartup)
-		else:
-			self.onLayoutFinish.append(self.onStartup)
+
+		self.listTimer = eTimer()
+		self.listTimer.timeout.get().append(self.hidewaitingtext)
+
+		self.activityTimer = eTimer()
+		self.activityTimer.timeout.get().append(self.onCreate)
+		self.activityTimer.start(50)
+
+		self.onShown.append(self.onStartup)
 
 	def createSetup(self):
 		self.session.openWithCallback(self.onSetupClose, EPGSelectionSetup, self.type)
@@ -557,18 +560,18 @@ class EPGSelection(Screen, HelpableScreen):
 			l.recalcEntrySize()
 			l.sortSingleEPG(self.sort_type)
 
-	def updateList(self):
-		self.activityTimer.start(10)
-
+ 	def hidewaitingtext(self):
+		self.listTimer.stop()
+		self['lab1'].hide()
+ 
 	def onStartup(self):
-		self.onCreate()
+		self.activityTimer.start(100)
 		if self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
 			self.StartBouquet = self.servicelist.getRoot()
 		self.StartRef = self.session.nav.getCurrentlyPlayingServiceReference()
-		if self.type == EPG_TYPE_GRAPH:
-			self['lab1'].hide()
 
 	def onCreate(self):
+		self.activityTimer.stop()
 		serviceref = self.session.nav.getCurrentlyPlayingServiceReference()
 		l = self["list"]
 		l.recalcEntrySize()
@@ -609,6 +612,7 @@ class EPGSelection(Screen, HelpableScreen):
 			else:
 				self.sort_type = 1
 			l.sortSingleEPG(self.sort_type)
+		self.listTimer.start(10)
 
 	def nextPage(self):
 		self["list"].instance.moveSelection(self["list"].instance.pageDown)
@@ -1152,14 +1156,6 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def onSelectionChanged(self):
 		cur = self["list"].getCurrent()
-		if cur is None:
-			if self.key_green_choice != self.EMPTY:
-				self["key_green"].setText("")
-				self.key_green_choice = self.EMPTY
-			if self.key_red_choice != self.EMPTY:
-				self["key_red"].setText("")
-				self.key_red_choice = self.EMPTY
-			return
 		event = cur[0]
 		self["Event"].newEvent(event)
 		if self.type == EPG_TYPE_MULTI or self.type == EPG_TYPE_GRAPH:
@@ -1194,9 +1190,6 @@ class EPGSelection(Screen, HelpableScreen):
 			if self.key_green_choice != self.EMPTY:
 				self["key_green"].setText("")
 				self.key_green_choice = self.EMPTY
-			if self.key_red_choice != self.EMPTY:
-				self["key_red"].setText("")
-				self.key_red_choice = self.EMPTY
 			return
 
 		if event is None:
