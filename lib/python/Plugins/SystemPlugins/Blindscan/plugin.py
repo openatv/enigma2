@@ -34,7 +34,7 @@ class Blindscan(ConfigListScreen, Screen):
 		Screen.setTitle(self, _("Blindscan"))
 
 		self.current_play_service = self.session.nav.getCurrentlyPlayingServiceReference()
-
+		
 		# update sat list
 		self.satList = []
 		for slot in nimmanager.nim_slots:
@@ -59,7 +59,7 @@ class Blindscan(ConfigListScreen, Screen):
 				"cancel": self.keyCancel,
 			}, -2)
 			self["key_red"] = StaticText(_("Exit"))
-			self["key_green"] = StaticText("Scan")
+			self["key_green"] = StaticText(_("Scan"))
 			self["introduction"] = Label(_("Press Green/OK to start the scan"))
 			self.createSetup()
 		else :
@@ -156,6 +156,14 @@ class Blindscan(ConfigListScreen, Screen):
 		self.blindscan_stop_symbol = ConfigInteger(default = 45, limits = (1, 99))
 		self.scan_clearallservices = ConfigYesNo(default = False)
 		self.scan_onlyfree = ConfigYesNo(default = False)
+		self.dont_scan_known_tps = ConfigYesNo(default = False)
+		self.filter_off_adjacent_satellites = ConfigSelection(default = 0, choices = [
+			(0, _("no")),
+			(1, _("up to 1 degree")),
+			(2, _("up to 2 degrees")),
+			(3, _("up to 3 degrees"))])
+		self.display_only = ConfigYesNo(default = False)
+		
 
 		# collect all nims which are *not* set to "nothing"
 		nim_list = []
@@ -175,12 +183,12 @@ class Blindscan(ConfigListScreen, Screen):
 		# sat
 		self.scan_sat.frequency = ConfigInteger(default = defaultSat["frequency"], limits = (1, 99999))
 		self.scan_sat.polarization = ConfigSelection(default = eDVBFrontendParametersSatellite.Polarisation_CircularRight + 1, choices = [
-			(eDVBFrontendParametersSatellite.Polarisation_CircularRight + 1, _("horizontal and vertical")),
-			(eDVBFrontendParametersSatellite.Polarisation_Horizontal, _("horizontal")),
+			(eDVBFrontendParametersSatellite.Polarisation_CircularRight + 1, _("vertical and horizontal")),
 			(eDVBFrontendParametersSatellite.Polarisation_Vertical, _("vertical")),
-			(eDVBFrontendParametersSatellite.Polarisation_CircularRight + 2, _("circular left and circular right")),
-			(eDVBFrontendParametersSatellite.Polarisation_CircularLeft, _("circular left")),
-			(eDVBFrontendParametersSatellite.Polarisation_CircularRight, _("circular right"))])
+			(eDVBFrontendParametersSatellite.Polarisation_Horizontal, _("horizontal")),
+			(eDVBFrontendParametersSatellite.Polarisation_CircularRight + 2, _("circular right and circular left")),
+			(eDVBFrontendParametersSatellite.Polarisation_CircularRight, _("circular right")),
+			(eDVBFrontendParametersSatellite.Polarisation_CircularLeft, _("circular left"))])
 		self.scan_scansat = {}
 		for sat in nimmanager.satList:
 			self.scan_scansat[sat[0]] = ConfigYesNo(default = False)
@@ -227,7 +235,10 @@ class Blindscan(ConfigListScreen, Screen):
 			self.list.append(getConfigListEntry(_('Scan start symbolrate'), self.blindscan_start_symbol))
 			self.list.append(getConfigListEntry(_('Scan stop symbolrate'), self.blindscan_stop_symbol))
 			self.list.append(getConfigListEntry(_("Clear before scan"), self.scan_clearallservices))
-			self.list.append(getConfigListEntry(_("Only Free scan"), self.scan_onlyfree))
+			self.list.append(getConfigListEntry(_("Only free scan"), self.scan_onlyfree))
+			self.list.append(getConfigListEntry(_("Only scan unknown transponders"), self.dont_scan_known_tps))
+			self.list.append(getConfigListEntry(_("Filter out adjacent satellites"), self.filter_off_adjacent_satellites))
+			#self.list.append(getConfigListEntry(_("Display only, don't scan"), self.display_only))
 			self["config"].list = self.list
 			self["config"].l.setList(self.list)
 			
@@ -453,7 +464,7 @@ class Blindscan(ConfigListScreen, Screen):
 			else:
 				display_pol = _("circular right")
 		
-		tmpstr = _("Looking for available transponders.\nThis will take a short while.\n\n   Current Status : %d/%d\n   Orbital Position : %s\n   Polarization : %s\n   Frequency range : %d - %d") %(self.running_count, self.max_count, orb[1], display_pol, status_box_start_freq, status_box_end_freq)
+		tmpstr = _("Looking for available transponders.\nThis will take a short while.\n\n   Current Status : %d/%d\n   Satellite : %s\n   Polarization : %s\n   Frequency range : %d - %d MHz\n   Symbol rates : %d - %d MHz") %(self.running_count, self.max_count, orb[1], display_pol, status_box_start_freq, status_box_end_freq, self.blindscan_start_symbol.value, self.blindscan_stop_symbol.value)
 		if is_scan :
 			self.blindscan_session = self.session.openWithCallback(self.blindscanSessionClose, MessageBox, tmpstr, MessageBox.TYPE_INFO)
 		else:
@@ -524,42 +535,45 @@ class Blindscan(ConfigListScreen, Screen):
 			self.running_count = self.max_count
 
 		self.is_runable = True
-
+		
+			
 	def blindscanSessionClose(self, *val):
 		self.blindscanSessionNone(val[0])
 
 		if self.tmp_tplist != None and self.tmp_tplist != []:
-			if self.is_c_band_scan : # for some reason a c-band scan (with a Vu+) returns the transponder frequencies in Ku band format so they have to be converted back to c-band numbers before the subsequent service search
-				x = 0
-				for transponders in self.tmp_tplist :
-					if self.tmp_tplist[x].frequency > (4200*1000) :
-						self.tmp_tplist[x].frequency = (5150*1000) - (self.tmp_tplist[x].frequency - (9750*1000))
-					x += 1
+			self.tmp_tplist = self.correctBugsCausedByDriver(self.tmp_tplist)
 			
-			x = 0
-			for transponders in self.tmp_tplist : 
-				if self.tmp_tplist[x].system == 0 : # convert DVB-S transponders to auto fec as for some reason the tuner incorrectly returns 3/4 FEC for all transmissions
-					self.tmp_tplist[x].fec = 0
-				if self.scan_sat.polarization.value == eDVBFrontendParametersSatellite.Polarisation_CircularRight : # Return circular transponders to correct polarisation
-					self.tmp_tplist[x].polarisation = eDVBFrontendParametersSatellite.Polarisation_CircularRight
-				elif self.scan_sat.polarization.value == eDVBFrontendParametersSatellite.Polarisation_CircularLeft : # Return circular transponders to correct polarisation
-					self.tmp_tplist[x].polarisation = eDVBFrontendParametersSatellite.Polarisation_CircularLeft
-				elif self.scan_sat.polarization.value == eDVBFrontendParametersSatellite.Polarisation_CircularRight + 2: # Return circular transponders to correct polarisation
-					if self.tmp_tplist[x].polarisation == eDVBFrontendParametersSatellite.Polarisation_Horizontal : # Return circular transponders to correct polarisation
-						self.tmp_tplist[x].polarisation = eDVBFrontendParametersSatellite.Polarisation_CircularLeft
-					else:
-						self.tmp_tplist[x].polarisation = eDVBFrontendParametersSatellite.Polarisation_CircularRight
-				x += 1
-					
-			for p in self.tmp_tplist:
-				print "data : [%d][%d][%d][%d][%d][%d][%d][%d][%d][%d]" % (p.orbital_position, p.polarisation, p.frequency, p.symbol_rate, p.system, p.inversion, p.pilot, p.fec, p.modulation, p.modulation)
-							
-			self.startScan(self.tmp_tplist, self.feid)
+			# Sync with or remove transponders that exist in satellites.xml
+			self.known_transponders = self.getKnownTransponders(self.orb_position)
+			if self.dont_scan_known_tps.value :
+				self.tmp_tplist = self.removeKnownTransponders(self.tmp_tplist, self.known_transponders)
+			else:
+				self.tmp_tplist = self.syncWithKnownTransponders(self.tmp_tplist, self.known_transponders)
+				
+			# Filter off transponders on neighbouring satellites
+			if self.filter_off_adjacent_satellites.value :
+				 self.tmp_tplist = self.filterOffAdjacentSatellites(self.tmp_tplist, self.orb_position, self.filter_off_adjacent_satellites.value)
+						
+			if self.tmp_tplist != [] :
+				for p in self.tmp_tplist:
+					print "data : [%d][%d][%d][%d][%d][%d][%d][%d][%d][%d]" % (p.orbital_position, p.polarisation, p.frequency, p.symbol_rate, p.system, p.inversion, p.pilot, p.fec, p.modulation, p.modulation)
+								
+				if self.display_only.value == False:
+					self.startScan(self.tmp_tplist, self.feid)
+				else:
+					msg = _("List of transponders discovered (%d)\n\n")%(len(self.tmp_tplist))
+					for p in self.tmp_tplist:
+						msg += _(" %d %d/%d/%d %d\n")%(p.system, p.frequency, p.polarisation, p.symbol_rate, p.modulation)
+					self.session.openWithCallback(self.callbackNone, MessageBox, msg, MessageBox.TYPE_INFO, timeout=600)
+			else:
+				msg = _("No new transponders found! \n\nOnly transponders already listed in satellites.xml \nhave been found for those search parameters!")
+				self.session.openWithCallback(self.callbackNone, MessageBox, msg, MessageBox.TYPE_INFO, timeout=60)
+				
 		else:
 			msg = _("No transponders were found for those search parameters!")
 			if val[0] == False:
 				msg = _("The blindscan run was cancelled by the user.")
-			self.session.openWithCallback(self.callbackNone, MessageBox, msg, MessageBox.TYPE_INFO, timeout=10)
+			self.session.openWithCallback(self.callbackNone, MessageBox, msg, MessageBox.TYPE_INFO, timeout=60)
 			self.tmp_tplist = []
 
 	def startScan(self, tlist, feid, networkid = 0):
@@ -574,6 +588,97 @@ class Blindscan(ConfigListScreen, Screen):
 			flags |= eComponentScan.scanOnlyFree
 		self.session.open(ServiceScan, [{"transponders": tlist, "feid": feid, "flags": flags, "networkid": networkid}])
 
+	def getKnownTransponders(self, pos):
+		tlist = []
+		list = nimmanager.getTransponders(pos)
+		for x in list:
+			if x[0] == 0:		
+				parm = eDVBFrontendParametersSatellite()
+				parm.frequency = x[1]
+				parm.symbol_rate = x[2]
+				parm.polarisation = x[3]
+				parm.fec = x[4]
+				parm.inversion = x[7]
+				parm.orbital_position = pos
+				parm.system = x[5]
+				parm.modulation = x[6]
+				parm.rolloff = x[8]
+				parm.pilot = x[9]
+				tlist.append(parm)
+		return tlist
+				
+	def syncWithKnownTransponders(self, tplist, knowntp) :
+		tolerance = 5
+		multiplier = 1000 
+		x = 0
+		for t in tplist :
+			for k in knowntp :
+				if (t.polarisation % 2) == (k.polarisation % 2) and \
+					abs(t.frequency - k.frequency) < (tolerance*multiplier) and \
+					abs(t.symbol_rate - k.symbol_rate) < (tolerance*multiplier) :
+					tplist[x] = k
+					break
+			x += 1
+		return tplist
+			
+	def removeKnownTransponders(self, tplist, knowntp) :
+		new_tplist = []
+		tolerance = 5
+		multiplier = 1000
+		x = 0
+		isnt_known = True
+		for t in tplist :
+			for k in knowntp :
+				if (t.polarisation % 2) == (k.polarisation % 2) and \
+					abs(t.frequency - k.frequency) < (tolerance*multiplier) and \
+					abs(t.symbol_rate - k.symbol_rate) < (tolerance*multiplier) :
+					isnt_known = False
+					break
+			x += 1
+			if isnt_known :
+				new_tplist.append(t)
+			else:
+				isnt_known = True
+		return new_tplist
+			
+	def filterOffAdjacentSatellites(self, tplist, pos, degrees) :
+		neighbours = []
+		tenths_of_degrees = degrees * 10
+		for sat in nimmanager.satList :
+			if sat[0] != pos and self.positionDiff(pos, sat[0]) <= tenths_of_degrees :
+				neighbours.append(sat[0])
+		for neighbour in neighbours : 
+			tplist = self.removeKnownTransponders(tplist, self.getKnownTransponders(neighbour))
+		return tplist
+		
+	def correctBugsCausedByDriver(self, tplist) :
+		if self.is_c_band_scan : # for some reason a c-band scan (with a Vu+) returns the transponder frequencies in Ku band format so they have to be converted back to c-band numbers before the subsequent service search
+			x = 0
+			for transponders in tplist :
+				if tplist[x].frequency > (4200*1000) :
+					tplist[x].frequency = (5150*1000) - (tplist[x].frequency - (9750*1000))
+				x += 1
+		
+		x = 0
+		for transponders in tplist : 
+			if tplist[x].system == 0 : # convert DVB-S transponders to auto fec as for some reason the tuner incorrectly returns 3/4 FEC for all transmissions
+				tplist[x].fec = 0
+			if self.scan_sat.polarization.value == eDVBFrontendParametersSatellite.Polarisation_CircularRight : # Return circular transponders to correct polarisation
+				tplist[x].polarisation = eDVBFrontendParametersSatellite.Polarisation_CircularRight
+			elif self.scan_sat.polarization.value == eDVBFrontendParametersSatellite.Polarisation_CircularLeft : # Return circular transponders to correct polarisation
+				tplist[x].polarisation = eDVBFrontendParametersSatellite.Polarisation_CircularLeft
+			elif self.scan_sat.polarization.value == eDVBFrontendParametersSatellite.Polarisation_CircularRight + 2: # Return circular transponders to correct polarisation
+				if tplist[x].polarisation == eDVBFrontendParametersSatellite.Polarisation_Horizontal : # Return circular transponders to correct polarisation
+					tplist[x].polarisation = eDVBFrontendParametersSatellite.Polarisation_CircularLeft
+				else:
+					tplist[x].polarisation = eDVBFrontendParametersSatellite.Polarisation_CircularRight
+			x += 1
+		return tplist
+	
+	def positionDiff(self, pos1, pos2) :
+		diff = pos1 - pos2
+		return min(abs(diff % 3600), 3600 - abs(diff % 3600))
+		
 def Plugins(path, **kwargs):
 	plist = [PluginDescriptor(name=_("Blind Scan"), where=PluginDescriptor.WHERE_MENU, needsRestart = False, fnc=BlindscanSetup)]
 	return plist
