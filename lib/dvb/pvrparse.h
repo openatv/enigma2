@@ -44,6 +44,7 @@ public:
 private:
 	void close();
 	int loadCache(int index);
+	int moveCache(int index);
 	/* inter/extrapolate timestamp from offset */
 	pts_t getInterpolated(off_t offset);
 	/* get delta at specific offset */
@@ -60,12 +61,14 @@ private:
 	/* these are non-fixed up pts value (like m_access_points), just used to accelerate stuff. */
 	std::multimap<pts_t, off_t> m_pts_to_offset;
 
-	int m_structure_cache_entries;
-	unsigned long long m_structure_cache[2048];
 	int m_structure_read_fd;
 
 	int m_cache_index;   // Location of cache
 	int m_current_entry; // For getStructureEntryNext
+	int m_structure_cache_entries;
+	int m_structure_file_entries; // Also to detect changes to file
+
+	unsigned long long m_structure_cache[1024];
 };
 
 class eMPEGStreamInformationWriter
