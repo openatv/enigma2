@@ -125,7 +125,7 @@ class CleanTrashTask(Components.Task.PythonTask):
  		for mount in mounts:
 			if os.path.isdir(os.path.join(mount,'.Trash')):
 				matches.append(os.path.join(mount,'.Trash'))
-			elif os.path.isdir(os.path.join(mount,'movie/.Trash')):
+			if os.path.isdir(os.path.join(mount,'movie/.Trash')):
 				matches.append(os.path.join(mount,'movie/.Trash'))
 				
 		print "[Trashcan] found following trashcan's:",matches
