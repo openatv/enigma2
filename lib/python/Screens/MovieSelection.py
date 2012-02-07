@@ -4,6 +4,7 @@ from Components.ActionMap import HelpableActionMap, ActionMap
 from Components.MenuList import MenuList
 from Components.MovieList import MovieList, resetMoviePlayState
 from Components.DiskInfo import DiskInfo
+from Tools.Trashcan import TrashInfo
 from Components.Pixmap import Pixmap
 from Components.Label import Label
 from Components.PluginComponent import plugins
@@ -456,6 +457,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self._updateButtonTexts()
 
 		self["freeDiskSpace"] = self.diskinfo = DiskInfo(config.movielist.last_videodir.value, DiskInfo.FREE, update=False)
+		self["TrashcanSize"] = self.trashinfo = TrashInfo(config.movielist.last_videodir.value, DiskInfo.USED, update=False)
 
 		self["InfobarActions"] = HelpableActionMap(self, "InfobarActions", 
 			{
@@ -978,6 +980,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			config.movielist.last_videodir.save()
 			self.setCurrentRef(path)
 			self["freeDiskSpace"].path = path
+			self["TrashcanSize"].path = path
 		if sel is None:
 			sel = self.getCurrent()
 		if config.movielist.settings_per_directory.value:
@@ -994,6 +997,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			if home:
 				self["list"].moveToFirstMovie()
 		self["freeDiskSpace"].update()
+		self["TrashcanSize"].update(config.movielist.last_videodir.value)
 
 	def doPathSelect(self):
 		self.session.openWithCallback(
@@ -1016,6 +1020,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				config.movielist.last_videodir.save()
 				self.setCurrentRef(res)
 				self["freeDiskSpace"].path = res
+				self["TrashcanSize"].path = res
+				self["TrashcanSize"].update(res)
 				self.reloadList(home = True, sel = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + currentDir))
 			else:
 				self.session.open(
