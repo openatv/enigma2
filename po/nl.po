@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-06 18:45+0000\n"
-"PO-Revision-Date: 2012-02-07 09:26+0100\n"
+"POT-Creation-Date: 2012-02-07 20:21+0000\n"
+"PO-Revision-Date: 2012-02-08 14:20+0100\n"
 "Last-Translator: R.L. van der Does\n"
 "Language-Team: Andy Blackburn, Rob van der Does\n"
 "Language: Nederlands\n"
@@ -133,6 +133,10 @@ msgstr ""
 
 msgid "    - Type"
 msgstr "    - Type"
+
+#, python-format
+msgid " %d %d/%d/%d %d\n"
+msgstr " %d %d/%d/%d %d\n"
 
 msgid " and"
 msgstr "en"
@@ -2385,6 +2389,9 @@ msgstr "Bestandssysteem controle"
 msgid "Filesystem contains uncorrectable errors"
 msgstr "Bestandssysteem bevat onherstelbare fouten"
 
+msgid "Filter out adjacent satellites"
+msgstr "Filter nabije satellieten uit"
+
 msgid "Finetune"
 msgstr "Fijn afst."
 
@@ -3082,6 +3089,14 @@ msgid "List of Storage Devices"
 msgstr "Lijst van opslagmedia"
 
 #, python-format
+msgid ""
+"List of transponders discovered (%d)\n"
+"\n"
+msgstr ""
+"Lijst van gevonden transponders (%d)\n"
+"\n"
+
+#, python-format
 msgid "List version %d, found %d channels"
 msgstr "Toon verise%d, gevonden %d kanalen"
 
@@ -3145,17 +3160,19 @@ msgid ""
 "This will take a short while.\n"
 "\n"
 "   Current Status : %d/%d\n"
-"   Orbital Position : %s\n"
+"   Satellite : %s\n"
 "   Polarization : %s\n"
-"   Frequency range : %d - %d"
+"   Frequency range : %d - %d MHz\n"
+"   Symbol rates : %d - %d MHz"
 msgstr ""
 "Zoekt naar beschikbare transponders.\n"
-"Dit zal even duren.\n"
+"Dit duurt even.\n"
 "\n"
-"   Huidige Status : %d/%d\n"
-"   Omloop positie : %s\n"
-"   Polarisatie : %s\n"
-"   Frequentie band : %d - %d"
+"   Actuele status: %d/%d\n"
+"   Satelliet: %s\n"
+"   Polarisatie: %s\n"
+"   Frequentie bereik: %d - %d MHz\n"
+"   Symbol rates: %d - %d MHz"
 
 msgid "MA"
 msgstr "MA"
@@ -3580,6 +3597,17 @@ msgstr "Geen netwerkverbinding beschikbaar"
 msgid "No networks found"
 msgstr "Geen netwerken gevonden"
 
+msgid ""
+"No new transponders found! \n"
+"\n"
+"Only transponders already listed in satellites.xml \n"
+"have been found for those search parameters!"
+msgstr ""
+"Geen nieuwe transponders gevonden! \n"
+"\n"
+"Er zijn alleen transponders gevonden \n"
+"die al in de satellites.xml aanwezig waren!"
+
 msgid "No of items switch (increase or reduced)"
 msgstr "Aantal onderdelen (verklein of vergroot)"
 
@@ -3815,6 +3843,12 @@ msgstr "Alleen ongecodeerde zenders scannen"
 
 msgid "Only extensions."
 msgstr "Alleen extensions"
+
+msgid "Only free scan"
+msgstr "Alleen FTA"
+
+msgid "Only scan unknown transponders"
+msgstr "Scan alleen onbekende transponders"
 
 msgid "OpenVPN Setup"
 msgstr "OpenVPN instellingen"
@@ -4876,6 +4910,9 @@ msgstr "Scaler scherpte"
 
 msgid "Scaling Mode"
 msgstr "Schaalmodus"
+
+msgid "Scan"
+msgstr "Scan"
 
 msgid "Scan "
 msgstr "Zoeken"
@@ -6364,6 +6401,9 @@ msgstr "Transponder type"
 msgid "Trashcan"
 msgstr "Prullenbak"
 
+msgid "Trashcan:"
+msgstr "Prullenbak:"
+
 msgid "Tries left:"
 msgstr "Aantal pogingen over:"
 
@@ -7472,11 +7512,11 @@ msgstr "hoofdstukken"
 msgid "circular left"
 msgstr "circular links"
 
-msgid "circular left and circular right"
-msgstr "circulair links en circulair rechts"
-
 msgid "circular right"
 msgstr "circular rechts"
+
+msgid "circular right and circular left"
+msgstr "circulairrechts en links"
 
 msgid "clear playlist"
 msgstr "Afspeellijst leeg maken"
@@ -7700,9 +7740,6 @@ msgstr "hops:"
 
 msgid "horizontal"
 msgstr "horizontaal"
-
-msgid "horizontal and vertical"
-msgstr "horizontaal and vertikaal"
 
 msgid "hour"
 msgstr "uur"
@@ -8307,6 +8344,15 @@ msgstr "onbekende zender"
 msgid "until standby/restart"
 msgstr "tot standby/herstart"
 
+msgid "up to 1 degree"
+msgstr "tot 1 graad"
+
+msgid "up to 2 degrees"
+msgstr "tot 2 graden"
+
+msgid "up to 3 degrees"
+msgstr "tot 3 graden"
+
 msgid "user defined"
 msgstr "door u gedefinieerd"
 
@@ -8315,6 +8361,9 @@ msgstr "gebruikt:"
 
 msgid "vertical"
 msgstr "vertikaal"
+
+msgid "vertical and horizontal"
+msgstr "vertikaal en horizontaal"
 
 msgid "view extensions..."
 msgstr "Applicaties weergeven..."
