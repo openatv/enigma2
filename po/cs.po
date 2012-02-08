@@ -134,12 +134,12 @@ msgstr ""
 "Zobrazit, instalovat a odstranit dostupné nebo instalované balíčky."
 
 #
-msgid " "
-msgstr " "
-
-#
 msgid " Results"
 msgstr "Výsledky"
+
+#
+msgid "Any service/recording"
+msgstr "libovolný program/nahrávání"
 
 #
 msgid " extensions."
@@ -159,46 +159,6 @@ msgstr " dostupných aktualizací."
 #
 msgid " wireless networks found!"
 msgstr "bezdrátové sítě nalezeny!"
-
-#
-msgid "#000000"
-msgstr "#000000"
-
-#
-msgid "#0064c7"
-msgstr "#0064c7"
-
-#
-msgid "#25062748"
-msgstr "#25062748"
-
-#
-msgid "#389416"
-msgstr "#389416"
-
-#
-msgid "#80000000"
-msgstr "#80000000"
-
-#
-msgid "#80ffffff"
-msgstr "#80ffffff"
-
-#
-msgid "#bab329"
-msgstr "#bab329"
-
-#
-msgid "#f23d21"
-msgstr "#f23d21"
-
-#
-msgid "#ffffff"
-msgstr "#ffffff"
-
-#
-msgid "#ffffffff"
-msgstr "#ffffffff"
 
 #
 msgid "%H:%M"
@@ -651,6 +611,10 @@ msgid "Add Bookmark"
 msgstr "Přidat záložku"
 
 #
+msgid "Add similar timer on conflict"
+msgstr "Přidat podobný časovač při konfliktu"
+
+#
 msgid "Add WLAN configuration?"
 msgstr "Přidat WLAN konfiguraci?"
 
@@ -826,7 +790,7 @@ msgid "Always ask before sending"
 msgstr "vždy se ptát před odesláním"
 
 #
-msgid "Ammount of recordings left"
+msgid "Amount of recordings left"
 msgstr "Zbývá nahrávek"
 
 #
@@ -1016,7 +980,7 @@ msgstr "AutoTimer nastavení"
 
 #
 msgid "AutoTimer overview"
-msgstr "AutoTimer přehled"
+msgstr "Přehled AutoTimerů"
 
 msgid "AutoTimer scans the EPG and creates Timers depending on user-defined search  criteria."
 msgstr "AutoTimer prohledává EPG a časovače vytváří v závislosti na uživatelem definovaných vyhledávacích kritériích. "
@@ -1141,7 +1105,7 @@ msgstr "Baskicky"
 
 #
 msgid "Begin of \"after event\" timespan"
-msgstr ""
+msgstr "Začátek časového úseku \"po skončení\""
 
 #
 msgid "Begin of timespan"
@@ -1387,7 +1351,7 @@ msgstr "Kanál není v seznamu služeb"
 
 #
 msgid "Channel:"
-msgstr "Program:"
+msgstr "Kanál:"
 
 #
 msgid "Channellist menu"
@@ -1450,7 +1414,7 @@ msgstr "Zvolte aktualizační zdroje"
 
 #
 msgid "Choose your Skin"
-msgstr "Vyberte vzhled"
+msgstr "Zvolte vzhled"
 
 #
 msgid "Circular left"
@@ -1599,7 +1563,7 @@ msgstr "Konfigurace webového rozhraní"
 
 #
 msgid "Configure AutoTimer behavior"
-msgstr ""
+msgstr "Konfigurace chování AutoTimeru"
 
 #
 msgid "Configure interface"
@@ -1756,7 +1720,7 @@ msgstr "Vytvořit nový AutoTimer."
 
 #
 msgid "Create a new timer using the classic editor"
-msgstr ""
+msgstr "Vytvořit nový časovač pomocí klasického editoru"
 
 #
 msgid "Create a new timer using the wizard"
@@ -1817,7 +1781,7 @@ msgstr "Aktuální nastavení:"
 
 #
 msgid "Current value: "
-msgstr ""
+msgstr "Aktuální hodnota:"
 
 #
 msgid "Current version:"
@@ -1829,11 +1793,11 @@ msgstr ""
 #
 #, python-format
 msgid "Custom (%s)"
-msgstr ""
+msgstr "Vlastní (%s)"
 
 #
 msgid "Custom location"
-msgstr ""
+msgstr "Vlastní umístění"
 
 #
 msgid "Custom offset"
@@ -1889,6 +1853,10 @@ msgstr ""
 "CutListEditor umožňuje upravovat Vaše filmy.\n"
 "Najděte začátek materiálu, který chcete odstranit. Stiskněte OK a vyberte 'začátek střihu'.\n"
 "Poté se přesuňte na konec, stiskněte OK a zvolte 'konec střihu'. To je vše."
+
+#
+msgid "Cutlist editor"
+msgstr "Editor střihu"
 
 #
 msgid "Cutlist editor..."
@@ -2036,12 +2004,12 @@ msgid "Delete mount"
 msgstr "Smazat"
 
 #
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Delete no more configured satellite\n"
 "%s?"
 msgstr ""
-"Smazat dlouho nekonfigurované satelity\n"
+"Odstranit dlouho nekonfigurované satelity\n"
 "%s?"
 
 #
@@ -2463,7 +2431,7 @@ msgstr "Východní"
 
 #
 msgid "EPG Selection"
-msgstr "EPG Výběr"
+msgstr "Výběr EPG"
 
 #
 msgid "EPG encoding"
@@ -2491,15 +2459,15 @@ msgstr "Upravit"
 
 #
 msgid "Edit AutoTimer"
-msgstr "Úpravy AutoTimer"
+msgstr "Upravit AutoTimer"
 
 #
 msgid "Edit AutoTimer filters"
-msgstr "Úpravy filtrů AutoTimeru"
+msgstr "Upravit filtry AutoTimeru"
 
 #
 msgid "Edit AutoTimer services"
-msgstr ""
+msgstr "Upravit programy Autotimeru"
 
 #
 msgid "Edit DNS"
@@ -2507,11 +2475,11 @@ msgstr "Upravit DNS"
 
 #
 msgid "Edit Timers and scan for new Events"
-msgstr ""
+msgstr "Upravit časovače a vyhledat nové události"
 
 #
 msgid "Edit Title"
-msgstr "Editovat titul"
+msgstr "Upravit titul"
 
 #
 msgid "Edit bouquets list"
@@ -2523,11 +2491,11 @@ msgstr "Upravit kapitoly zvoleného titulu"
 
 #
 msgid "Edit new timer defaults"
-msgstr ""
+msgstr "Upravit předvolby nových časovačů"
 
 #
 msgid "Edit selected AutoTimer"
-msgstr ""
+msgstr "Upravit vybrané AutoTimery"
 
 #
 msgid "Edit services list"
@@ -2538,10 +2506,10 @@ msgid "Edit settings"
 msgstr "upravit nastavení"
 
 msgid "Edit tags of recorded movies"
-msgstr "Úprava tagů nahraných filmů"
+msgstr "Upravit tagy nahraných filmů"
 
 msgid "Edit tags of recorded movies."
-msgstr "Úprava tagů nahraných filmů."
+msgstr "Upravit tagy nahraných filmů."
 
 #
 msgid "Edit the Nameserver configuration of your Dreambox.\n"
@@ -2557,15 +2525,15 @@ msgstr "Upravit titul"
 
 #
 msgid "Edit upgrade source url."
-msgstr "Úprava url zdroje aktualizací."
+msgstr "Upravit url zdroje aktualizací."
 
 #
 msgid "Editing"
-msgstr ""
+msgstr "Upravovat"
 
 #
 msgid "Editor for new AutoTimers"
-msgstr ""
+msgstr "Editor pro nové AutoTimery"
 
 #
 msgid "Education"
@@ -2634,7 +2602,7 @@ msgstr "Povolit freesat EPG"
 
 #
 msgid "Enable Service Restriction"
-msgstr ""
+msgstr "Povolit programové omezení"
 
 #
 msgid "Enable Streaming Authentication"
@@ -2653,7 +2621,7 @@ msgstr "Povolit caching teletextu"
 
 #
 msgid "Enable this to be able to access the AutoTimer Overview from within the extension menu."
-msgstr ""
+msgstr "Povolení umožní připojit AutoTimer přehled do Extension menu."
 
 #
 msgid "Enable timer"
@@ -2661,11 +2629,11 @@ msgstr "povolit časovač"
 
 #
 msgid "Enabled"
-msgstr "povolen"
+msgstr "Povolen"
 
 #
 msgid "Encoding the channel uses for it's EPG data. You only need to change this if you're searching for special characters like the german umlauts."
-msgstr ""
+msgstr "Kódování, které kanál používá pro EPG data. Potřebujete nastavit zpravidla jen tehdy, hledáte-li speciální znaky, jako jsou např. přehlásky."
 
 #
 msgid "Encrypted: "
@@ -2693,7 +2661,7 @@ msgstr "Kódování:"
 
 #
 msgid "End of \"after event\" timespan"
-msgstr ""
+msgstr "Konec časového úseku \"po skončení\""
 
 #
 msgid "End of timespan"
@@ -2849,7 +2817,7 @@ msgstr "Kromě"
 
 #
 msgid "Execute \"after event\" during timespan"
-msgstr ""
+msgstr "Provést \"po skončení\" v časovom úseku"
 
 msgid "Execute TuxboxPlugins"
 msgstr "Spouštění TuxboxPluginů"
@@ -3011,6 +2979,8 @@ msgid ""
 "Filters are another powerful tool when matching events. An AutoTimer can be restricted to certain Weekdays or only match an event with a text inside eg it's Description.\n"
 "Press BLUE to add a new restriction and YELLOW to remove the selected one."
 msgstr ""
+"Filtry jsou další silné nástroje na zjišťování odpovídajících událostí. Autotimer lze omezit na určité dny v týdnu nebo na události, které mají určitý text v Popisu.\n"
+"MODRÉ tlačítko přidá nové omezení, ŽLUTÉ odstraní zvolené."
 
 #
 msgid "Finetune"
@@ -3055,8 +3025,10 @@ msgstr "Formát"
 #, python-format
 msgid ""
 "Found a total of %d matching Events.\n"
-"%d Timer were added and %d modified."
+"%d Timer were added and %d modified, %d conflicts encountered, %d similars added."
 msgstr ""
+"Celkem nalezeno %d odpovídajících událostí.\n"
+"Přidáno %d časovačů a %d modifikováno, došlo k %d konfliktům, přidáno %d podobných."
 
 #
 msgid "Frame repeat count during non-smooth winding"
@@ -3222,7 +3194,7 @@ msgid "Goto position"
 msgstr "Jdi na pozici"
 
 msgid "Graph MEpg Settings"
-msgstr ""
+msgstr "Nastavení Graph MEPG"
 
 msgid "GraphMultiEPG shows a graphical timeline EPG"
 msgstr "GraphMultiEPG zobrazuje graficky časovou osu EPG "
@@ -3267,7 +3239,7 @@ msgstr "Mód ochranného intervalu"
 
 #
 msgid "Guess existing timer based on begin/end"
-msgstr ""
+msgstr "Určit existující časovač podle začátku a konce"
 
 msgid "HD list"
 msgstr "Seznam HD"
@@ -3302,7 +3274,7 @@ msgstr "Nápověda"
 
 #
 msgid "Hidden network SSID"
-msgstr ""
+msgstr "Skrytý SSID"
 
 #
 msgid "Hidden networkname"
@@ -3400,9 +3372,13 @@ msgid "Icelandic"
 msgstr "Islandsky"
 
 #
+msgid "If a timer conflict occurs, AutoTimer will search outside the timespan for a similar event and add it."
+msgstr "Pokud dojde ke konfliktu časovače, AutoTimer bude hledat mimo časový interval podobnou událost a přidá ji."
+
+#
 #, python-format
-msgid "If this is enabled an existing timer will also be considered recording an event if it records at least 80% of the it."
-msgstr ""
+msgid "If this is enabled an existing timer will also be considered recording an event if it records at least 80%% of the it."
+msgstr "Při zapnutí této funkce se bude existující časovač považovat za nahrávající, jestliže nahraje aspoň 80%% programu."
 
 #
 msgid ""
@@ -3426,7 +3402,11 @@ msgstr ""
 
 #
 msgid "Import AutoTimer"
-msgstr ""
+msgstr "Importovat AutoTimer"
+
+#
+msgid "Frequently asked questions"
+msgstr "Často kladené otázky"
 
 #
 msgid "Import existing Timer"
@@ -3630,13 +3610,13 @@ msgstr ""
 #
 # File: tmp/enigma2_plugins/genuinedreambox/src/plugin.py, line: 132
 msgid "Invalid response from server."
-msgstr ""
+msgstr "Neplatná odpověď od serveru."
 
 #
 # File: tmp/enigma2_plugins/genuinedreambox/src/plugin.py, line: 177
 #, python-format
 msgid "Invalid response from server. Please report: %s"
-msgstr ""
+msgstr "Neplatná odpověď od serveru. Prosím oznamte: %s"
 
 #
 msgid "Invalid selection"
@@ -3668,6 +3648,9 @@ msgid ""
 "An Event will only match this AutoTimer if it's on a specific and not denied Service (inside a Bouquet).\n"
 "Press BLUE to add a new restriction and YELLOW to remove the selected one."
 msgstr ""
+"AutoTimer je možné omezit na určité programy, přehledy, případně některé vyloučit.\n"
+"Událost bude odpovídat AutoTimeru jen tehdy, jde-li o konkrétní program a není-li zakázán (v rámci přehledu).\n"
+"MODRÉ tlačítko přidá nové omezení, ŽLUTÉ tlačítko odstraní zvolené."
 
 #
 msgid "Italian"
@@ -4024,16 +4007,16 @@ msgstr "Rezerva před nahráváním (minuty)"
 #
 #, python-format
 msgid "Match Timespan: %02d:%02d - %02d:%02d"
-msgstr ""
+msgstr "Najít v časovém úseku: %02d:%02d - %02d:%02d"
 
 #
 msgid "Match title"
-msgstr ""
+msgstr "Hledat v názvu"
 
 #
 #, python-format
 msgid "Match title: %s"
-msgstr ""
+msgstr "Hledat v názvu: %s"
 
 #
 msgid "Max. Bitrate: "
@@ -4041,7 +4024,7 @@ msgstr ""
 
 #
 msgid "Maximum duration (in m)"
-msgstr "Maximální délka trvání (v m)"
+msgstr "Maximální délka trvání (v minutách)"
 
 #
 msgid "Maximum event duration to match. If an event is longer than this ammount of time (without offset) it won't be matched."
@@ -4530,6 +4513,10 @@ msgid "Network Configuration..."
 msgstr "Konfigurace sítě..."
 
 #
+msgid "Network Configuration"
+msgstr "Konfigurace sítě"
+
+#
 msgid "Network ID"
 msgstr "Network ID"
 
@@ -4870,7 +4857,7 @@ msgstr "Nyní použijte nastavení kontrastu pro nastavení světlosti pozadí n
 
 #
 msgid "Number of scheduled recordings left."
-msgstr ""
+msgstr "Počet zbývajících naplánovaných nahrávek."
 
 msgid "Ok"
 msgstr "Ok"
@@ -4905,11 +4892,11 @@ msgstr "Vypnuto"
 
 #
 msgid "Offset after recording (in m)"
-msgstr "Posun po nahrávání (v m)"
+msgstr "Posun po nahrávání (v minutách)"
 
 #
 msgid "Offset before recording (in m)"
-msgstr "Posun před nahráváním (v m)"
+msgstr "Posun před nahráváním (v minutách)"
 
 #
 msgid "On"
@@ -4917,11 +4904,11 @@ msgstr "Zapnuto"
 
 #
 msgid "On any service"
-msgstr ""
+msgstr "na libovolném programu"
 
 #
 msgid "On same service"
-msgstr ""
+msgstr "na stejném programu"
 
 #
 msgid "One"
@@ -4929,7 +4916,7 @@ msgstr "Jeden"
 
 #
 msgid "Only AutoTimers created during this session"
-msgstr ""
+msgstr "Pouze AutoTimery založené v této akci"
 
 #
 msgid "Only Free scan"
@@ -4941,16 +4928,16 @@ msgstr "Pouze rozšíření"
 
 #
 msgid "Only match during timespan"
-msgstr "Pouze odpovídající během časového úseku"
+msgstr "Jen odpovídající časovému úseku"
 
 #
 #, python-format
 msgid "Only on Service: %s"
-msgstr ""
+msgstr "Pouze na programu: %s"
 
 #
 msgid "Open Context Menu"
-msgstr ""
+msgstr "Otevřít kontextové menu"
 
 #
 msgid "Open plugin menu"
@@ -5360,7 +5347,7 @@ msgstr "Čekejte prosím na aktivaci Vaší síťové konfigurace..."
 
 #
 msgid "Please wait for activation of your network mount..."
-msgstr ""
+msgstr "Počkejte na aktivaci Vašeho síťového připojení..."
 
 #
 msgid "Please wait while removing selected package..."
@@ -5448,11 +5435,15 @@ msgstr "Polsky"
 
 #
 msgid "Poll Interval (in h)"
-msgstr ""
+msgstr "Interval zjišťování (v hodinách)"
 
 #
 msgid "Poll automatically"
-msgstr ""
+msgstr "Zjišťovat automaticky"
+
+#
+msgid "Only add timer for next x days"
+msgstr "Časovač přidat pouze na x dní"
 
 #
 msgid "Port A"
@@ -5596,7 +5587,7 @@ msgstr "Stiskněte OK k vybrání providera."
 
 #
 msgid "Press OK to select."
-msgstr ""
+msgstr "Stiskněte OK pro výběr. "
 
 #
 msgid "Press OK to select/deselect a CAId."
@@ -5620,11 +5611,11 @@ msgstr "Předchozí"
 
 #
 msgid "Preview"
-msgstr "náhled"
+msgstr "Prohlížet"
 
 #
 msgid "Preview AutoTimer"
-msgstr ""
+msgstr "Prohlížení AutoTimerů"
 
 #
 msgid "Preview menu"
@@ -5789,7 +5780,7 @@ msgstr "Nahrát maximálně x-krát"
 
 #
 msgid "Record on"
-msgstr ""
+msgstr "Nahrávat z"
 
 #
 #, python-format
@@ -5806,10 +5797,10 @@ msgstr "záznam"
 
 #
 msgid "Recording data sync size"
-msgstr ""
+msgstr "Velikost data sync pro nahrávání"
 
 msgid "Recording demux buffer size"
-msgstr ""
+msgstr "Velikost demux bufferu pro nahrávání"
 
 #
 msgid "Recording in progress"
@@ -5844,7 +5835,7 @@ msgstr "Volba obnovovací rychlosti."
 
 #
 msgid "Related video entries."
-msgstr ""
+msgstr "Odpovídající video položky."
 
 #
 msgid "Relevance"
@@ -5907,7 +5898,7 @@ msgstr "Odstranit pluginy"
 
 #
 msgid "Remove selected AutoTimer"
-msgstr ""
+msgstr "Odstranit vybraný AutoTimer"
 
 #
 msgid "Remove timer"
@@ -5923,7 +5914,7 @@ msgstr "Úspěšně odstraněno."
 
 #
 msgid "Removing"
-msgstr ""
+msgstr "Odstranění"
 
 #
 #, python-format
@@ -5985,7 +5976,7 @@ msgstr ""
 
 #
 msgid "Reset count"
-msgstr ""
+msgstr "Vynulovat počítadlo"
 
 #
 msgid "Reset playback position"
@@ -6063,8 +6054,40 @@ msgid "Restore your Dreambox with a USB stick"
 msgstr ""
 
 #
+msgid "Restrict to events on certain dates"
+msgstr "Omezit události na určité datum"
+
+#
+msgid "By enabling this events will not be matched if they don't occur on certain dates."
+msgstr "Povolením tohoto nebudou události odpovídat, jestliže se nevyskytují v určitých datových termínech"
+
+#
+msgid "By enabling this you will be notified about timer conflicts found during automated polling. There is no intelligence involved, so it might bother you about the same conflict over and over."
+msgstr "Při zapnutí budete při automatickém dotazování dostávat informáce o konfliktech časovače. Nepoužívá se zde žádná logika, takže Vás pak může ten samý konflikt obtěžovat stále dokola."
+
+#
+msgid "By enabling this you will be notified about similar timers added during automated polling. There is no intelligence involved, so it might bother you about the same conflict over and over."
+msgstr "Při zapnutí budete při automatickém dotazování dostávat informáce o podobných časovačích. Nepoužívá se zde žádná logika, takže Vás pak může ten samý konflikt obtěžovat stále dokola"
+
+#
+msgid "Not before"
+msgstr "Ne před"
+
+#
+msgid "First day to match events. No event that begins before this date will be matched."
+msgstr "První den odpovídající události. Událost začínající před tímto datem nevyhoví."
+
+#
+msgid "Not after"
+msgstr "Ne po"
+
+#
+msgid "Last day to match events. Events have to begin before this date to be matched."
+msgstr "Poslední den odpovídající události. Událost musí začínat před tímto datem, jinak nevyhoví."
+
+#
 msgid "Restrict \"after event\" to a certain timespan?"
-msgstr ""
+msgstr "Omezit \"po skončení\" na určitý časový úsek?"
 
 #
 msgid "Resume from last position"
@@ -6210,7 +6233,7 @@ msgstr "Uložit playlist"
 
 #
 msgid "Save current delay to key"
-msgstr "uložit aktuální zpoždění do klíče"
+msgstr "uložit aktuální zpoždění pod tlačítko"
 
 #
 msgid "Save to key"
@@ -6230,7 +6253,7 @@ msgstr "Ostrost škálování"
 
 #
 msgid "Scaling Mode"
-msgstr "Nastavovací mód"
+msgstr "Mód škálování"
 
 #
 msgid "Scan "
@@ -6443,11 +6466,11 @@ msgstr "Zvolit"
 
 #
 msgid "Select \"exact match\" to enforce \"Match title\" to match exactly or \"partial match\" if you only want to search for a part of the event title."
-msgstr "Zvolte \"přesně odpovídá\" pokud chcete, aby \"Odpovídající titul\" odpovídal přesně nebo \"částečná shoda\" , pokud chcete hledat jen části titulu. "
+msgstr "Zvolte \"přesně odpovídá\" pokud chcete, aby odpovídalo přesně \"Hledat v názvu\", nebo \"částečná shoda\" , chcete-li hledat jen část z názvu. "
 
 #
 msgid "Select HDD"
-msgstr "Vyberte HDD"
+msgstr "Zvolte HDD"
 
 #
 msgid "Select Location"
@@ -6463,7 +6486,7 @@ msgstr "Vyberte film"
 
 #
 msgid "Select a timer to import"
-msgstr ""
+msgstr "Vyberte časovač pro import"
 
 #
 msgid "Select audio track"
@@ -6471,7 +6494,7 @@ msgstr "výběr zvukové stopy"
 
 #
 msgid "Select bouquet to record on"
-msgstr ""
+msgstr "Zvolte přehled pro nahrávání"
 
 #
 msgid "Select channel to record from"
@@ -6479,7 +6502,7 @@ msgstr "Vyberte kanál z kterého chcete nahrávat"
 
 #
 msgid "Select channel to record on"
-msgstr ""
+msgstr "Zvolte kanál pro nahrávání"
 
 #
 msgid "Select copy destination for:"
@@ -6507,7 +6530,7 @@ msgstr "Volba vstupního zařízení"
 
 #
 msgid "Select interface"
-msgstr ""
+msgstr "Vyberte interface"
 
 #
 msgid "Select new feed to view."
@@ -6519,7 +6542,7 @@ msgstr "Vyberte balíček"
 
 #
 msgid "Select provider to add..."
-msgstr ""
+msgstr "Vyberte poskytovatele pro přidání..."
 
 #
 msgid "Select refresh rate"
@@ -6527,7 +6550,7 @@ msgstr "Vyberte obnovovací frekvenci"
 
 #
 msgid "Select service to add..."
-msgstr ""
+msgstr "Vyberte program pro přidání..."
 
 #
 #, python-format
@@ -6536,7 +6559,7 @@ msgstr "Vyberte tlačítko, které chcete nastavit na %i ms"
 
 #
 msgid "Select the location to save the recording to."
-msgstr ""
+msgstr "Nastavení umístění pro ukládání nahrávek."
 
 #
 msgid "Select type of Filter"
@@ -6696,7 +6719,7 @@ msgstr "Nastavit maximální délku trvání"
 
 #
 msgid "Set this NO to disable this AutoTimer."
-msgstr ""
+msgstr "Pro zakázání tohoto AutoTimeru nastavte Ne."
 
 msgid "Sets your Dreambox into Deep-Standby"
 msgstr "Nastavuje přijímač do hlubokého spánku"
@@ -6747,7 +6770,7 @@ msgstr "Měl by AutoTimer odpovídat trvání určité události? "
 
 #
 msgid "Should timers created by this AutoTimer be recorded to a custom location?"
-msgstr "Budou vytvořené časovače zaznamenány do vlastního umístění? "
+msgstr "Měly by být časovače vytvořené AutoTimerem zaznamenávány do vlastního umístění? "
 
 msgid "Show EIT now/next in infobar"
 msgstr "Zobrazovat v infobar EIT now/next"
@@ -6787,7 +6810,7 @@ msgstr "Zobrazovat čísla kanálů ve výběru programů"
 
 #
 msgid "Show in extension menu"
-msgstr ""
+msgstr "Zobrazit v Extension menu"
 
 #
 msgid "Show infobar on channel change"
@@ -6957,6 +6980,18 @@ msgstr "Rychlosti zpomaleného přehrávání"
 msgid "SoftCam / CI"
 msgstr "SoftCam / CI"
 
+msgid "SoftCam setup..."
+msgstr "Nastavit softcam..."
+
+msgid "Softcam Setup"
+msgstr "Nastavení SoftCam"
+
+msgid "Select SoftCam"
+msgstr "Zvolte Softcam"
+
+msgid "Restart SoftCam"
+msgstr "Restartovat SoftCam"
+
 #
 msgid "Software"
 msgstr ""
@@ -7042,6 +7077,10 @@ msgstr "Setřídit A-Z"
 #. TRANSLATORS: This must fit into the header button in the EPG-List
 msgid "Sort Time"
 msgstr "Setřídit dle času"
+
+#
+msgid "Sort AutoTimer"
+msgstr "Třídit AutoTimer"
 
 #
 msgid "Sound"
@@ -7213,6 +7252,14 @@ msgid "Subservices"
 msgstr "Podprogramy"
 
 #
+msgid "Support \"Fast Scan\"?"
+msgstr "Podporovat \"Fast Scan\"?"
+
+#
+msgid "When supporting \"Fast Scan\" the service type is ignored. You don't need to enable this unless your Image supports \"Fast Scan\" and you are using it."
+msgstr "Při podpoře \"Fast Scan\" se ignoruje typ programu. Tuto funkci nemusíte zapínat, jestliže máte a používáte image s podporou \"Fast Scan\"."
+
+#
 msgid "Subtitle language selection 1"
 msgstr "Volba jazyka titulků 1"
 
@@ -7292,8 +7339,8 @@ msgstr "Systém"
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
 msgstr ""
-"(# FIRST AUTHOR ws79 <ws79@centrum.cz>, 2006.) \n"
-"(# SECOND AUTOR ims <martin@volyne.cz>, 2011.)"
+"(# FIRST AUTHOR : ws79 <ws79@centrum.cz> 2006) \n"
+"(# SECOND AUTOR: ims <martin@volyne.cz> 2011)"
 
 #
 msgid "TS file is too large for ISO9660 level 1!"
@@ -7401,6 +7448,8 @@ msgid ""
 "Thank you for using the wizard. Your new AutoTimer has been added to the List.\n"
 "Please press OK to continue."
 msgstr ""
+"Děkujeme Vám za použití průvodce. Nový AutoTimer byl přidán do seznamu.\n"
+"Stiskněte OK pro pokračování."
 
 msgid "The CleanupWizard informs you when the internal free memory of your dreambox has dropped below a definable threshold.You can use this wizard to remove some plugins."
 msgstr ""
@@ -7476,7 +7525,7 @@ msgstr ""
 
 #
 msgid "The Timespan of an AutoTimer is the first 'advanced' attribute. If a timespan is specified an event will only match this AutoTimer if it lies inside of this timespan."
-msgstr ""
+msgstr "Časový úsek Autotimeru je první 'pokročilý' parametr. Jestliže je časový úsek specifikován, pak událost vyhoví AutoTimeru pouze tehdy, leží-li v tomto úseku. "
 
 msgid ""
 "The USB stick was prepared to be bootable.\n"
@@ -7507,7 +7556,7 @@ msgstr "Zálohování selhalo. Zvolte jiné umístění zálohy."
 
 #
 msgid "The counter can automatically be reset to the limit at certain intervals."
-msgstr ""
+msgstr "Počítadlo může být automaticky resetováno na limit po určitých intervalech."
 
 #
 #, python-format
@@ -7520,7 +7569,7 @@ msgstr ""
 
 #
 msgid "The editor to be used for new AutoTimers. This can either be the Wizard or the classic editor."
-msgstr ""
+msgstr "Editor použitý pro nové AutoTimery. Může to být Průvodce nebo klasický editor."
 
 #
 #, python-format
@@ -7559,7 +7608,7 @@ msgstr "Standardní nastavení bylo nainstalováno. Nyní můžete pokračovat v
 
 #
 msgid "The match attribute is mandatory."
-msgstr ""
+msgstr "Parametr 'Hledat v názvu' je povinný."
 
 msgid "The md5sum validation failed, the file may be corrupted!"
 msgstr "Ověření md5sum selhalo, soubor může být poškozen!"
@@ -7689,7 +7738,7 @@ msgstr "Tento týden"
 
 #
 msgid "This is a name you can give the AutoTimer. It will be shown in the Overview and the Preview."
-msgstr ""
+msgstr "Pojmenování AutoTimeru, které bude zobrazováno v Náhledu a Přehledu."
 
 #
 msgid "This is step number 2."
@@ -7697,7 +7746,7 @@ msgstr "Toto je 2. krok."
 
 #
 msgid "This is the delay in hours that the AutoTimer will wait after a search to search the EPG again."
-msgstr ""
+msgstr "Toto je zpoždění v hodinách, po které bude AutoTimer po hledání čekat na další prohledání EPG."
 
 #
 msgid "This is the help screen. Feed me with something to display."
@@ -7705,7 +7754,7 @@ msgstr ""
 
 #
 msgid "This is what will be looked for in event titles. Note that looking for e.g. german umlauts can be tricky as you have to know the encoding the channel uses."
-msgstr ""
+msgstr "Tento výraz bude hledán v názvech událostí. Uvědomte si, že pro hledání např. přehlásek musíte znát, jaké kódování kanál používá."
 
 msgid ""
 "This plugin creates a USB stick which can be used to update the firmware of your Dreambox without the need for a network or WLAN connection.\n"
@@ -7736,7 +7785,7 @@ msgstr "Plugin bude odstraněn."
 
 #
 msgid "This setting controls the behavior when a timer matches a found event."
-msgstr ""
+msgstr "Určuje chování v případě, že časovač odpovídá nalezené události."
 
 msgid "This system tool is internally used to program the hardware with firmware updates."
 msgstr ""
@@ -7799,7 +7848,7 @@ msgstr "Tento test detekuje nakonfigurovaný síťový adapter (LAN)."
 
 #
 msgid "This toggles the behavior on timer conflicts. If an AutoTimer matches an event that conflicts with an existing timer it will not ignore this event but add it disabled."
-msgstr ""
+msgstr "Určuje chování při konfliktech časovače. Jestliže se AutoTimer shoduje s událostí, která koliduje s existujícím časovačem, nebude ji ignorovat, ale přidá ji jako zakázaný časovač."
 
 #
 msgid "Three"
@@ -7847,7 +7896,7 @@ msgstr "Časovač"
 
 #
 msgid "Timer Edit"
-msgstr "Úprava časování"
+msgstr "Upravit časovač"
 
 #
 msgid "Timer Editor"
@@ -7859,7 +7908,11 @@ msgstr "Typ časovače"
 
 #
 msgid "Timer entry"
-msgstr "Zápis časovače"
+msgstr "Záznam časovače"
+
+#
+msgid "Timer Overview"
+msgstr "Přehled časovače"
 
 #
 msgid "Timer log"
@@ -8178,7 +8231,7 @@ msgstr "Neznámý síťový adaptér."
 
 #
 msgid "Unless this is enabled AutoTimer will NOT automatically look for events matching your AutoTimers but only when you leave the GUI with the green button."
-msgstr ""
+msgstr "Pokud je povoleno, AutoTimer NEBUDE hledat události odpovídající Vašim AutoTimerům automaticky, ale pouze po ukončení GUI stlačením ZELENÉHO tlačítka."
 
 #
 msgid "Unmount"
@@ -8380,7 +8433,7 @@ msgstr "Správa uživatele"
 
 #
 msgid "Usermanager"
-msgstr "Uživatelská správa"
+msgstr "Správce uživatele"
 
 #
 msgid "Username"
@@ -8773,9 +8826,9 @@ msgid ""
 "\n"
 "This Wizard will help you to create a new AutoTimer by providing descriptions for common settings."
 msgstr ""
-"Vítámě Vás.\n"
+"Vítáme Vás.\n"
 "\n"
-"Tento průvodce pomůže založit nový AutoTimer poskytnutím popisu pro běžné nastavení. "
+"Tento průvodce pomůže založit nový AutoTimer poskytnutím popisu pro společné nastavení. "
 
 #
 msgid ""
@@ -8794,6 +8847,10 @@ msgid "Welcome..."
 msgstr "Vítejte..."
 
 #
+msgid "embedded"
+msgstr "vložené"
+
+#
 msgid "West"
 msgstr "Západní"
 
@@ -8807,7 +8864,7 @@ msgstr "Co dělat s předloženými crashlogy? "
 
 #
 msgid "When this option is enabled the AutoTimer won't match events where another timer with the same description already exists in the timer list."
-msgstr "Když je tato volba povolena, AutoTimer nebude porovnávat události, jestliže již existuje v seznamu časovače jiný časovač se stejným popisem. "
+msgstr "Jestliže je tato volba povolena, AutoTimer nebude porovnávat události, jestliže již existuje v seznamu časovače jiný časovač se stejným popisem."
 
 #
 msgid ""
@@ -8920,12 +8977,20 @@ msgid "With this option enabled the channel to record on can be changed to a alt
 msgstr "Pomocí této volby může být kanál pro záznam změněn na alternativní program. "
 
 #
-msgid "With this option you can restrict the AutoTimer to a certain ammount of scheduled recordings. Set this to 0 to disable this functionality."
-msgstr "Pomocí této volby můžete omezit AutoTimer do uvedeného počtu nahrávek. Nastavte 0 pro vypnutí této funkce. "
+msgid "With this option you can restrict the AutoTimer to a certain amount of scheduled recordings. Set this to 0 to disable this functionality."
+msgstr "Pomocí této volby můžete omezit AutoTimer určitý počet nahrávek. Nastavte 0 pro vypnutí této funkce. "
 
 #
 msgid "Wizard"
-msgstr ""
+msgstr "Průvodce"
+
+#
+msgid "Activate VPS"
+msgstr "Aktivovat VPS"
+
+#
+msgid "Control recording completely by service"
+msgstr "Řídit nahrávání vysíláním"
 
 #
 msgid "Write error while recording. Disk full?\n"
@@ -8988,7 +9053,7 @@ msgstr "Ano, proveď další ruční prohledávání"
 
 #
 msgid "Yes, keep them."
-msgstr ""
+msgstr "Ano, ponechat."
 
 #
 msgid "Yes, perform a shutdown now."
@@ -9042,10 +9107,16 @@ msgid "You can remove this plugin."
 msgstr "Můžete odstranit tento plugin"
 
 #
+msgid "You can control for how many days in the future timers are added. Set this to 0 to disable this feature."
+msgstr "Můžete nastavit, po kolik dnů v budoucnu jsou časovače přidávány. Nastavení 0 zakáže tuto vlastnost."
+
+#
 msgid ""
 "You can set the basic properties of an AutoTimer here.\n"
 "While 'Name' is just a human-readable name displayed in the Overview, 'Match in title' is what is looked for in the EPG."
 msgstr ""
+"Zde můžete nastavit základní vlastnosti pro Autotimer.\n"
+"Zatímco 'Popis' představuje jméno zobrazované v Přehledu, 'Hledat v názvu' je výraz, který se vyhledává v EPG."
 
 #
 msgid "You cannot delete this!"
@@ -9068,6 +9139,8 @@ msgid ""
 "You did not provide a valid 'Match in title' Attribute for your new AutoTimer.\n"
 "As this is a mandatory Attribute you cannot continue without doing so."
 msgstr ""
+"Nezadali jste platný výraz 'Hledat v názvu' pro nový AutoTimer.\n"
+"Bez zadání tohoto parametru nemůžete dál pokračovat."
 
 msgid "You didn't select a channel to record from."
 msgstr "Nezvolili jste kanál pro nahrávání."
@@ -9119,12 +9192,17 @@ msgid ""
 "\n"
 "You can go back a step by pressing EXIT on your remote."
 msgstr ""
+"Úspěšně jste nakonfigurovali nový AutoTimer. Chcete ho přidat do seznamu?\n"
+"\n"
+"Stisknutím EXIT na dálkovém ovladači se můžete vrátit o krok zpět."
 
 #
 msgid ""
 "Your 'Match in title' Attribute ends with a Whitespace.\n"
 "Please confirm if this was intentional, if not they will be removed."
 msgstr ""
+"Váš výraz 'Hledat v názvu' končí mezerou.\n"
+"Podvrďte, zda to byl záměr, jinak bude mezera odstraněna."
 
 #
 msgid ""
@@ -9337,7 +9415,7 @@ msgstr "aktivovat současnou konfiguraci"
 
 #
 msgid "activate network adapter configuration"
-msgstr ""
+msgstr "aktivace nastavení síťového adaptéru"
 
 #
 msgid "add AutoTimer..."
@@ -9720,7 +9798,7 @@ msgstr ""
 
 #
 msgid "exact match"
-msgstr ""
+msgstr "přesně odpovídá"
 
 #
 msgid "exit DVD player or return to file browser"
@@ -9740,15 +9818,15 @@ msgstr "zavřít konfiguraci DNS"
 
 #
 msgid "exit network adapter configuration"
-msgstr ""
+msgstr "zavřít nastavení síťového adaptéru "
 
 #
 msgid "exit network interface list"
-msgstr ""
+msgstr "zavřít seznam síťových rozhraní"
 
 #
 msgid "exit networkadapter setup menu"
-msgstr ""
+msgstr "zavřít menu nastavení sítě"
 
 #
 msgid "fileformats (BMP, PNG, JPG, GIF)"
@@ -10091,7 +10169,7 @@ msgstr "zobrazit seznam služeb (nahoru)"
 
 #
 msgid "partial match"
-msgstr ""
+msgstr "částečná shoda"
 
 #
 msgid "pass"
@@ -10288,7 +10366,7 @@ msgstr ""
 
 #
 msgid "select menu entry"
-msgstr ""
+msgstr "zvolit položku z menu"
 
 #
 msgid "select movie"
@@ -10723,6 +10801,10 @@ msgid "edit tags"
 msgstr "Upravit tagy"
 
 #
+msgid "Edit Tags"
+msgstr "Upravit tagy"
+
+#
 msgid "remove Tag"
 msgstr "odstranit Tag"
 
@@ -10808,7 +10890,7 @@ msgstr "ikony"
 
 #
 msgid "Progress"
-msgstr "pásek"
+msgstr "Průběh"
 
 msgid "Cut source:"
 msgstr "Zdroj pro střih:"
@@ -10819,6 +10901,14 @@ msgstr "Provést střihy..."
 #
 msgid "Show icon for new/unseen items"
 msgstr "Ikona u nových/neshlédnutých položek"
+
+#
+msgid "Show notification on conflicts"
+msgstr "Zobrazovat oznámení při konfliktech"
+
+#
+msgid "Show notification on similars"
+msgstr "Zobrazovat oznámení při podobných"
 
 # LED Manager
 #
@@ -11385,6 +11475,218 @@ msgstr "NÁZEV PŘIPOJENÍ & (popis)"
 #
 msgid "MOUNTPOINT"
 msgstr "NÁZEV PŘIPOJENÍ"
+
+#
+msgid "Partnerbox: RemoteTimer"
+msgstr "Partnerbox: Časovač"
+
+#
+msgid "Remote Player"
+msgstr "Vzdálený přehrávač"
+
+#
+msgid "Edit Entry"
+msgstr "Úprava partnerboxu"
+
+#
+msgid "List of Entries"
+msgstr "Partnerboxy"
+
+#
+msgid "Partnerbox Setup"
+msgstr "Nastavení partnerboxu"
+
+#
+msgid "Partnerbox - RemotePlayer"
+msgstr "Partnerbox - vzdálený přehrávač"
+
+#
+msgid "RemoteTimer Timerlist"
+msgstr "RemoteTimer časovače"
+
+#
+msgid "Bouquet List"
+msgstr "Obsah přehledu"
+
+#
+msgid "Movie Browser Configuration"
+msgstr "Nastavení prohlížeče filmů"
+
+#
+msgid "white"
+msgstr "bílá"
+
+#
+msgid "User"
+msgstr "Uzivatelske"
+
+#
+msgid "bouquets"
+msgstr "prehledy"
+
+#
+msgid "Delay subtitles"
+msgstr "Zpoždění titulků"
+
+#
+msgid "Original position"
+msgstr "Originální pozice"
+
+#
+msgid "Size"
+msgstr "Velikost"
+
+#
+msgid "Color"
+msgstr "Barva"
+
+#
+msgid "Centered"
+msgstr "Vystředit"
+
+#
+msgid "Back Transparency"
+msgstr "Průhlednost"
+
+#
+msgid "Position"
+msgstr "Pozice"
+
+#
+msgid "Alignment"
+msgstr "Zarovnání"
+
+#
+msgid "center"
+msgstr "střed"
+
+#
+msgid "Please wait, restarting softcam and cardserver."
+msgstr "Čekejte, prosím, softcam a cardserver se restartují."
+
+#
+msgid "Please wait, restarting softcam."
+msgstr "Čekejte, prosím, softcam se restaruje."
+
+#
+msgid "Please wait, restarting cardserver."
+msgstr "Čekejte prosím, cardserver se restaruje."
+
+#
+msgid "Restart both"
+msgstr "Restartovat oba"
+
+#
+msgid "Restart cardserver"
+msgstr "Restartovat cardserver"
+
+#
+msgid "Select Card Server"
+msgstr "Zvolte Card Server"
+
+#
+msgid "Delay pango subtitles"
+msgstr "Zpoždění pango titulků"
+
+#
+msgid "Turn off subtitles and close"
+msgstr "vypnout titulky a zavřít"
+
+#
+msgid "No Delay"
+msgstr "žádné"
+
+#
+msgid "true"
+msgstr "ano"
+
+#
+msgid "false"
+msgstr "ne"
+
+#
+msgid "Enable Picon"
+msgstr "Povolit Picon"
+
+#
+msgid "Use Long Title"
+msgstr "Používat dlouhý název"
+
+#
+msgid "Show Service Title"
+msgstr "Zobrazovat název kanálu"
+
+#
+msgid "Merge Short/Long Descriptions"
+msgstr "Sloučit krátký a dlouhý popis"
+
+#
+msgid "Date/Time"
+msgstr "Datum/Čas"
+
+#
+msgid "Scale Picon"
+msgstr "Škálovat Picons"
+
+#
+msgid "Hide Expired Title"
+msgstr "Skrýt staré názvy"
+
+#
+msgid "Round Start Time To"
+msgstr "Zaokrouhlit počáteční čas na"
+
+#
+msgid "Use DVB subtitles position"
+msgstr "Poloha DVB titulků"
+
+#
+msgid "fixed"
+msgstr "pevná"
+
+#
+msgid "relative"
+msgstr "relativní"
+
+#
+msgid "Used position"
+msgstr "Zvolená pozice"
+
+#
+msgid "On Bouquet Switch goto first service"
+msgstr "Při přepnutí přehledu přejít na první službu"
+
+#
+msgid "Compatibilty Mode"
+msgstr "Kompatibilní režim"
+
+#
+msgid "Disable Selecting Expired Events"
+msgstr "Zakázat výběr skončených událostí"
+
+#
+msgid "Include ECM in http streams"
+msgstr "Včetně ECM v http streamech"
+
+#
+msgid "Record ECM"
+msgstr "Nahrávat ECM"
+
+#
+msgid "Include EIT in http streams"
+msgstr "Včetně EIT v http streamech"
+
+#
+msgid "Include AIT in http streams"
+msgstr "Včetně AIT v http streamech"
+
+#
+msgid "Descramble http streams"
+msgstr "Dekódovat http streamy"
+
+#
+msgid "Descramble recordings"
+msgstr "Dekódovat nahrávání"
 
 #
 msgid "original1"
