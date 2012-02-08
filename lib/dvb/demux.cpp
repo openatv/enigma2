@@ -8,13 +8,6 @@
 #include <sys/sysinfo.h>
 // For SYS_ stuff
 #include <syscall.h>
-//#define SHOW_WRITE_TIME
-#ifdef SHOW_WRITE_TIME
-#	include <sys/types.h>
-#	include <sys/stat.h>
-#	include <sys/time.h>
-#endif
-
 
 static int determineDemuxSize()
 {
@@ -50,13 +43,6 @@ void setFlushSize(int size)
 		flushSize = (size_t)size;
 	}
 }
-
-// #define FUZZING 1
-
-#if FUZZING
-		/* change every 1:FUZZING_PROPABILITY byte */
-#define FUZZING_PROPABILITY 100
-#endif
 
 #if HAVE_DVB_API_VERSION < 3
 #include <ost/dmx.h>
@@ -111,9 +97,12 @@ typedef enum {
 #include <lib/dvb/decoder.h>
 #include <lib/dvb/pvrparse.h>
 
-eDVBDemux::eDVBDemux(int adapter, int demux): adapter(adapter), demux(demux)
+eDVBDemux::eDVBDemux(int adapter, int demux):
+	adapter(adapter),
+	demux(demux),
+	source(-1),
+	m_dvr_busy(0)
 {
-	m_dvr_busy = 0;
 }
 
 eDVBDemux::~eDVBDemux()
@@ -254,14 +243,6 @@ void eDVBSectionReader::data(int)
 	__u8 data[4096]; // max. section size
 	int r;
 	r = ::read(fd, data, 4096);
-#if FUZZING
-	int j;
-	for (j = 0; j < r; ++j)
-	{
-		if (!(rand()%FUZZING_PROPABILITY))
-			data[j] ^= rand();
-	}
-#endif	
 	if(r < 0)
 	{
 		eWarning("ERROR reading section - %m\n");
@@ -269,7 +250,7 @@ void eDVBSectionReader::data(int)
 	}
 	if (checkcrc)
 	{
-			// this check should never happen unless the driver is crappy!
+		// this check should never happen unless the driver is crappy!
 		unsigned int c;
 		if ((c = crc32((unsigned)-1, data, r)))
 		{
@@ -335,13 +316,11 @@ RESULT eDVBSectionReader::start(const eDVBSectionFilterMask &mask)
 #else
 	sct.flags   = DMX_IMMEDIATE_START;
 #endif
-#if !FUZZING
 	if (mask.flags & eDVBSectionFilterMask::rfCRC)
 	{
 		sct.flags |= DMX_CHECK_CRC;
 		checkcrc = 1;
 	} else
-#endif
 		checkcrc = 0;
 	
 	memcpy(sct.filter.filter, mask.data, DMX_FILTER_SIZE);
@@ -564,7 +543,7 @@ int eDVBRecordFileThread::writeData(const unsigned char *data, int len)
 			}
 			else
 			{
-				return -1;
+				return w;
 			}
 		}
 		else
@@ -592,6 +571,7 @@ int eDVBRecordFileThread::writeData(const unsigned char *data, int len)
 			written_since_last_sync = 0;
 		}
 	}
+	return total_written;
 }
 
 DEFINE_REF(eDVBTSRecorder);
