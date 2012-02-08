@@ -12,20 +12,20 @@ if version_info >= (2,6,0):
         import imp
         fp = None
         try:
-            fp, pathname, description = imp.find_module('_genuinevuplus', [dirname(__file__)])
+            fp, pathname, description = imp.find_module('_vuplusauthenticity', [dirname(__file__)])
         except ImportError:
-            import _genuinevuplus
-            return _genuinevuplus
+            import _vuplusauthenticity
+            return _vuplusauthenticity
         if fp is not None:
             try:
-                _mod = imp.load_module('_genuinevuplus', fp, pathname, description)
+                _mod = imp.load_module('_vuplusauthenticity', fp, pathname, description)
             finally:
                 fp.close()
                 return _mod
-    _genuinevuplus = swig_import_helper()
+    _vuplusauthenticity = swig_import_helper()
     del swig_import_helper
 else:
-    import _genuinevuplus
+    import _vuplusauthenticity
 del version_info
 try:
     _swig_property = property
@@ -67,8 +67,8 @@ except AttributeError:
 
 
 
-def requestauth():
-  return _genuinevuplus.requestauth()
-requestauth = _genuinevuplus.requestauth
+def requestauth(*args):
+  return _vuplusauthenticity.requestauth(*args)
+requestauth = _vuplusauthenticity.requestauth
 
 
