@@ -92,7 +92,7 @@ class Standby2(Screen):
 
 class Standby(Standby2):
 	def __init__(self, session):
-		if config.timeshift.isRecording.value:
+		if Screens.InfoBar.InfoBar and Screens.InfoBar.InfoBar.instance and Screens.InfoBar.InfoBar.ptsGetSaveTimeshiftStatus(Screens.InfoBar.InfoBar.instance):
 			self.skin = """<screen position="0,0" size="0,0"/>"""
 			Screen.__init__(self, session)
 			self.onFirstExecBegin.append(self.showMessageBox)
