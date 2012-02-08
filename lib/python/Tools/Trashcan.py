@@ -12,15 +12,12 @@ def getTrashFolder(path=None):
 	if path is None:
 		print 'path is none'
 	else:
-		mountpoint = Harddisk.findMountPoint(os.path.realpath(path))
-		movietrash = os.path.join(mountpoint, 'movie')
-		movietrash = os.path.join(movietrash, '.Trash')
-		roottrash = os.path.join(mountpoint, '.Trash')
-		if os.path.isdir(movietrash):
-			   mountpoint = movietrash
-		elif os.path.isdir(roottrash):
-			   mountpoint = roottrash
-	 	return mountpoint
+		if path.find('/movie') >0:
+			mountpoint = Harddisk.findMountPoint(os.path.realpath(path))
+			trashcan = os.path.join(mountpoint, 'movie')
+		else:
+			trashcan = Harddisk.findMountPoint(os.path.realpath(path))
+		return os.path.realpath(os.path.join(trashcan, ".Trash"))
 
 def createTrashFolder(path=None):
 	trash = getTrashFolder(path)
@@ -192,7 +189,6 @@ class TrashInfo(VariableText, GUIComponent):
 		VariableText.__init__(self)
 		self.type = type
 		self.path = getTrashFolder(path)
-		print 'self.path',self.path
 		if update:
 			self.update(path)
 	
@@ -203,7 +199,6 @@ class TrashInfo(VariableText, GUIComponent):
 			return -1
 		
 		if self.type == self.USED:
-			print 'self.path',trashcan
 			try:
 				total_size = 0
 				for dirpath, dirnames, filenames in os.walk(trashcan):
