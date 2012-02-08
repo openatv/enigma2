@@ -227,6 +227,34 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.setItemsPerPage()
 		return rc
 
+	def getCurrentChangeCount(self):
+		if self.type == EPG_TYPE_MULTI and self.l.getCurrentSelection() is not None:
+			return self.l.getCurrentSelection()[0]
+		return 0
+
+	def moveUp(self):
+		self.instance.moveSelection(self.instance.moveUp)
+
+	def moveDown(self):
+		self.instance.moveSelection(self.instance.moveDown)
+
+	def isSelectable(self, service, service_name, events, picon):
+		return (events and len(events) and True) or False
+	
+	def setShowPicon(self, value):
+		self.showPicon = value
+
+	def setShowServiceTitle(self, value):
+		self.showServiceTitle = value
+		self.recalcEntrySize()
+		self.selEntry(0) #Select entry again so that the clipping region gets updated if needed
+	
+	def setOverjump_Empty(self, overjump_empty):
+		if overjump_empty:
+			self.l.setSelectableFunc(self.isSelectable)
+		else:
+			self.l.setSelectableFunc(None)
+		
 	def setEpoch(self, epoch):
 		self.offs = 0
 		self.time_epoch = epoch
@@ -258,10 +286,9 @@ class EPGList(HTMLComponent, GUIComponent):
 		if self.instance is not None:
 			self.instance.moveSelectionTo(index)
 
-	def getCurrentChangeCount(self):
-		if self.type == EPG_TYPE_MULTI and self.l.getCurrentSelection() is not None:
-			return self.l.getCurrentSelection()[0]
-		return 0
+	def moveTo(self, dir):
+		if self.instance is not None:
+			self.instance.moveSelection(dir)
 
 	def getCurrent(self):
 		if self.type == EPG_TYPE_GRAPH:
@@ -288,12 +315,6 @@ class EPGList(HTMLComponent, GUIComponent):
 			service = ServiceReference(tmp[idx])
 			event = self.getEventFromId(service, eventid)
 			return ( event, service )
-
-	def moveUp(self):
-		self.instance.moveSelection(self.instance.moveUp)
-
-	def moveDown(self):
-		self.instance.moveSelection(self.instance.moveDown)
 
 	def connectSelectionChanged(func):
 		if not self.onSelChanged.count(func):
@@ -390,23 +411,6 @@ class EPGList(HTMLComponent, GUIComponent):
 				itemHeight = 32
 			self.l.setItemHeight(int(itemHeight))
 
-	def isSelectable(self, service, service_name, events, picon):
-		return (events and len(events) and True) or False
-	
-	def setShowPicon(self, value):
-		self.showPicon = value
-
-	def setShowServiceTitle(self, value):
-		self.showServiceTitle = value
-		self.recalcEntrySize()
-		self.selEntry(0) #Select entry again so that the clipping region gets updated if needed
-	
-	def setOverjump_Empty(self, overjump_empty):
-		if overjump_empty:
-			self.l.setSelectableFunc(self.isSelectable)
-		else:
-			self.l.setSelectableFunc(None)
-		
 	def setServiceFontsize(self):
 		self.l.setFont(0, gFont(self.serviceFontNameGraph, self.serviceFontSizeGraph + config.epgselction.serv_fontsize_vixepg.getValue()))
 
@@ -493,48 +497,6 @@ class EPGList(HTMLComponent, GUIComponent):
 		xpos, width = self.calcEntryPosAndWidthHelper(ev_start, ev_duration, time_base, time_base + time_epoch * 60, event_rect.width())
 		return xpos + event_rect.left(), width
 
-	def GraphEPGRecRed(self, refstr, beginTime, duration, eventId):
-		for x in self.timer.timer_list:
-			if x.service_ref.ref.toString() == refstr:
-				if x.eit == eventId:
-					if x.justplay:
-						return "justplay"
-					else:
-						return "record"
-		return ""
-
-	def getClockPixmap(self, refstr, beginTime, duration, eventId):
-		pre_clock = 1
-		post_clock = 2
-		clock_type = 0
-		endTime = beginTime + duration
-		for x in self.timer.timer_list:
-			if x.service_ref.ref.toString() == refstr:
-				if x.eit == eventId:
-					return self.clock_pixmap
-				beg = x.begin
-				end = x.end
-				if beginTime > beg and beginTime < end and endTime > end:
-					clock_type |= pre_clock
-				elif beginTime < beg and endTime > beg and endTime < end:
-					clock_type |= post_clock
-		if clock_type == 0:
-			return self.clock_add_pixmap
-		elif clock_type == pre_clock:
-			return self.clock_pre_pixmap
-		elif clock_type == post_clock:
-			return self.clock_post_pixmap
-		else:
-			return self.clock_prepost_pixmap
-		
-	def getPixmapForEntry(self, service, eventId, beginTime, duration):
-		rec = beginTime and (self.timer.isInTimer(eventId, beginTime, duration, service))
-		if rec:
-			clock_pic = self.getClockPixmap(service, beginTime, duration, eventId)
-		else:
-			clock_pic = None
-		return (clock_pic, rec)
-
 	def buildSingleEntry(self, service, eventId, beginTime, duration, EventName):
 		(clock_pic, rec) = self.getPixmapForEntry(service, eventId, beginTime, duration)
 		r1 = self.weekday_rect
@@ -615,18 +577,12 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.list[curIdx] = (service, service_name, events, picon)
 
 		nowPlaying = self.currentlyPlaying.toString()
- 		if service == self.cur_service[0]:
-			serviceForeColor = self.foreColorServiceSelected
-			serviceBackColor = self.backColorServiceSelected
-			if nowPlaying is not None and nowPlaying == service:
-				serviceForeColor = self.foreColorServiceNowSelected
-				serviceBackColor = self.backColorServiceNowSelected
+		if nowPlaying is not None and nowPlaying == service:
+			serviceForeColor = self.foreColorServiceNow
+			serviceBackColor = self.backColorServiceNow
 		else:
 			serviceForeColor = self.foreColorService
 			serviceBackColor = self.backColorService
-			if nowPlaying is not None and nowPlaying == service:
-				serviceForeColor = self.foreColorServiceNow
-				serviceBackColor = self.backColorServiceNow
 
 		res = [ None ]
 		# Picon and Service name
@@ -638,7 +594,6 @@ class EPGList(HTMLComponent, GUIComponent):
  			color = serviceForeColor, color_sel = serviceForeColor,
  			backcolor = serviceBackColor, backcolor_sel = serviceBackColor,
 			border_width = self.serviceBorderWidth, border_color = self.borderColorService) )
-
 		if self.showPicon:
 			piconHeight = r1.h - 2 * self.serviceBorderWidth
 			piconWidth = 2 * piconHeight  # FIXME: could do better...
@@ -648,6 +603,7 @@ class EPGList(HTMLComponent, GUIComponent):
 				self.picload.setPara((piconWidth, piconHeight, 1, 1, 1, 1, "#FFFFFFFF"))
 				self.picload.startDecode(picon, piconWidth, piconHeight, False)
 				displayPicon = self.picload.getData()
+
 				if displayPicon is not None:
 					res.append(MultiContentEntryPixmapAlphaBlend(
 						pos = (r1.x + self.serviceBorderWidth, r1.y + self.serviceBorderWidth),
@@ -669,7 +625,6 @@ class EPGList(HTMLComponent, GUIComponent):
 					color = serviceForeColor, color_sel = serviceForeColor,
 					backcolor = serviceBackColor, backcolor_sel = serviceBackColor))
 
-		# Events for service
 		res.append(MultiContentEntryText(
  			pos = (r2.x, r2.y),
  			size = (r2.w, r2.h),
@@ -679,6 +634,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			backcolor = self.backColor, backcolor_sel = self.backColor,
 			border_width = 1, border_color = self.borderColor))
 
+		# Events for service
 		if events:
 			start = self.time_base + self.offs * self.time_epoch * 60
 			end = start + self.time_epoch * 60
@@ -757,16 +713,16 @@ class EPGList(HTMLComponent, GUIComponent):
 			if dir == 0: #current
 				update = False
 			elif dir == +1: #next
-				if valid_event and self.cur_event+1 < len(entries):
-					self.cur_event+=1
+				if valid_event and self.cur_event + 1 < len(entries):
+					self.cur_event += 1
 				else:
 					self.offs += 1
 					self.fillGraphEPG(None) # refill
 					return True
 			elif dir == -1: #prev
-				if valid_event and self.cur_event-1 >= 0:
-					self.cur_event-=1
-				elif self.offs > 0:				
+				if valid_event and self.cur_event - 1 >= 0:
+					self.cur_event -= 1
+				elif self.offs > 0:
 					self.offs -= 1
 					self.fillGraphEPG(None) # refill
 					return True
@@ -779,21 +735,19 @@ class EPGList(HTMLComponent, GUIComponent):
 					self.offs -= 1
 					self.fillGraphEPG(None) # refill
 					return True
-
-		self.l.setSelectionClip(eRect(self.service_rect.left(), self.service_rect.top(), self.service_rect.width(), self.service_rect.height()), False) # left Picon select
 		if cur_service and valid_event:
 			entry = entries[self.cur_event] #(event_id, event_title, begin_time, duration)
-			time_base = self.time_base+self.offs * self.time_epoch * 60
+			time_base = self.time_base + self.offs*self.time_epoch * 60
 			xpos, width = self.calcEntryPosAndWidth(self.event_rect, time_base, self.time_epoch, entry[2], entry[3])
-			self.l.setSelectionClip(eRect(xpos, 0, width, self.event_rect.height()), visible and update)
+			self.l.setSelectionClip(eRect(xpos, 0, width, self.event_rect.h), visible and update)
 		else:
-			self.l.setSelectionClip(eRect(self.event_rect.left(), self.event_rect.top(), self.event_rect.width(), self.event_rect.height()), False)
+			self.l.setSelectionClip(eRect(self.event_rect.x, self.event_rect.y, self.event_rect.w, self.event_rect.h), False)
 		self.selectionChanged()
 		return False
 
 	def fillSimilarList(self, refstr, event_id):
+		# search similar broadcastings
 		t = time()
-	 # search similar broadcastings
 		if event_id is None:
 			return
 		l = self.epgcache.search(('RIBND', 1024, eEPGCache.SIMILAR_BROADCASTINGS_SEARCH, refstr, event_id))
@@ -841,9 +795,9 @@ class EPGList(HTMLComponent, GUIComponent):
 		else:
 			self.cur_event = None
 			self.cur_service = None
-			test = [ (service[0].ref.toString(), 0, self.time_base, self.time_epoch) for service in services ]
+			test = [ (service.ref.toString(), 0, self.time_base, self.time_epoch) for service in services ]
 			serviceList = services
-			piconIdx = 1
+			piconIdx = 0
 
 		test.insert(0, 'XRnITBD') #return record, service ref, service name, event id, event title, begin time, duration
 		epg_data = [] if self.epgcache is None else self.epgcache.lookupEvent(test)
@@ -856,14 +810,16 @@ class EPGList(HTMLComponent, GUIComponent):
 		for x in epg_data:
 			if service != x[0]:
 				if tmp_list is not None:
-					self.list.append((service, sname, tmp_list[0][0] is not None and tmp_list or None, serviceList[serviceIdx][piconIdx]))
+					picon = None if piconIdx == 0 else serviceList[serviceIdx][piconIdx]
+					self.list.append((service, sname, tmp_list[0][0] is not None and tmp_list or None, picon))
 					serviceIdx += 1
 				service = x[0]
 				sname = x[1]
 				tmp_list = [ ]
-			tmp_list.append((x[2], x[3], x[4], x[5]))
+			tmp_list.append((x[2], x[3], x[4], x[5])) #(event_id, event_title, begin_time, duration)
 		if tmp_list and len(tmp_list):
-			self.list.append((service, sname, tmp_list[0][0] is not None and tmp_list or None, serviceList[serviceIdx][piconIdx]))
+			picon = None if piconIdx == 0 else serviceList[serviceIdx][piconIdx]
+			self.list.append((service, sname, tmp_list[0][0] is not None and tmp_list or None, picon))
 			serviceIdx += 1
 
 		self.l.setList(self.list)
@@ -881,20 +837,6 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.l.invalidate()
 			self.moveToEventId(event_id)
 
-	def getSelectedEventId(self):
-		x = self.l.getCurrentSelection()
-		return x and x[1]
-
-	def moveToEventId(self, eventId):
-		if not eventId:
-			return
-		index = 0
-		for x in self.list:
-			if x[1] == eventId:
-				self.instance.moveSelectionTo(index)
-				break
-			index += 1
-
 	def getEventRect(self):
 		rc = self.event_rect
 		return Rect( rc.left() + (self.instance and self.instance.position().x() or 0), rc.top(), rc.width(), rc.height() )
@@ -911,6 +853,62 @@ class EPGList(HTMLComponent, GUIComponent):
 
 	def resetOffset(self):
 		self.offs = 0
+
+	def getClockPixmap(self, refstr, beginTime, duration, eventId):
+		pre_clock = 1
+		post_clock = 2
+		clock_type = 0
+		endTime = beginTime + duration
+		for x in self.timer.timer_list:
+			if x.service_ref.ref.toString() == refstr:
+				if x.eit == eventId:
+					return self.clock_pixmap
+				beg = x.begin
+				end = x.end
+				if beginTime > beg and beginTime < end and endTime > end:
+					clock_type |= pre_clock
+				elif beginTime < beg and endTime > beg and endTime < end:
+					clock_type |= post_clock
+		if clock_type == 0:
+			return self.clock_add_pixmap
+		elif clock_type == pre_clock:
+			return self.clock_pre_pixmap
+		elif clock_type == post_clock:
+			return self.clock_post_pixmap
+		else:
+			return self.clock_prepost_pixmap
+		
+	def getPixmapForEntry(self, service, eventId, beginTime, duration):
+		rec = beginTime and (self.timer.isInTimer(eventId, beginTime, duration, service))
+		if rec:
+			clock_pic = self.getClockPixmap(service, beginTime, duration, eventId)
+		else:
+			clock_pic = None
+		return (clock_pic, rec)
+
+	def GraphEPGRecRed(self, refstr, beginTime, duration, eventId):
+		for x in self.timer.timer_list:
+			if x.service_ref.ref.toString() == refstr:
+				if x.eit == eventId:
+					if x.justplay:
+						return "justplay"
+					else:
+						return "record"
+		return ""
+
+	def getSelectedEventId(self):
+		x = self.l.getCurrentSelection()
+		return x and x[1]
+
+	def moveToEventId(self, eventId):
+		if not eventId:
+			return
+		index = 0
+		for x in self.list:
+			if x[1] == eventId:
+				self.instance.moveSelectionTo(index)
+				break
+			index += 1
 
 class TimelineText(HTMLComponent, GUIComponent):
 	def __init__(self):
