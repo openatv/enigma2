@@ -336,7 +336,7 @@ class MovieList(GUIComponent):
 			else:
 				iconSize = 22
 			if data.part is not None:
-				res.append(MultiContentEntryProgress(pos=(0,5), size=(iconSize-2,16), percent=data.part, borderWidth=2, foreColor=data.partcol, foreColorSelected=None, backColor=data.partcol, backColorSelected=None))
+				res.append(MultiContentEntryProgress(pos=(0,5), size=(iconSize-2,16), percent=data.part, borderWidth=2, foreColor=data.partcol, foreColorSelected=None, backColor=None, backColorSelected=None))
 		elif switch == 'i':
 			iconSize = 22
 		else:
