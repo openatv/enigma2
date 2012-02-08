@@ -592,11 +592,13 @@ class TimelineText(HTMLComponent, GUIComponent):
 		# Note: event_rect and service_rect are relative to the timeline_text position
 		#       while the time lines are relative to the GraphEPG screen position!
 		if self.time_base != time_base:
+			t = localtime(time_base)
+			txt = _(strftime("%A", t)) + strftime(" %d ", t) + _(strftime("%B", t))
 			res.append( MultiContentEntryText(
 						pos = (0, 0),
 						size = (service_rect.width(), itemHeight),
 						font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER,
-						text = strftime("%A %d %B", localtime(time_base)),
+						text = txt,
 						color = self.foreColor, color_sel = self.foreColor,
 						backcolor = self.backColor, backcolor_sel = self.backColor,
 						border_width = self.borderWidth, border_color = self.borderColor))
