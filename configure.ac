@@ -261,8 +261,6 @@ lib/python/Plugins/Extensions/DVDBurn/Makefile
 lib/python/Plugins/Extensions/DVDBurn/meta/Makefile
 lib/python/Plugins/Extensions/DVDPlayer/Makefile
 lib/python/Plugins/Extensions/DVDPlayer/meta/Makefile
-lib/python/Plugins/Extensions/GenuineVuplus/Makefile
-lib/python/Plugins/Extensions/GenuineVuplus/meta/Makefile
 lib/python/Plugins/Extensions/MediaPlayer/Makefile
 lib/python/Plugins/Extensions/MediaPlayer/meta/Makefile
 lib/python/Plugins/Extensions/MediaScanner/Makefile
@@ -276,6 +274,8 @@ lib/python/Plugins/Extensions/SocketMMI/meta/Makefile
 lib/python/Plugins/Extensions/SocketMMI/src/Makefile
 lib/python/Plugins/Extensions/TuxboxPlugins/Makefile
 lib/python/Plugins/Extensions/TuxboxPlugins/meta/Makefile
+lib/python/Plugins/Extensions/VuplusEvent/Makefile
+lib/python/Plugins/Extensions/VuplusEvent/meta/Makefile
 lib/python/Plugins/Extensions/WebBrowser/Makefile
 lib/python/Plugins/Extensions/WebBrowser/meta/Makefile
 lib/python/Plugins/Extensions/WebBrowser/keymap/Makefile
