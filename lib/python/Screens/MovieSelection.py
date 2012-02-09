@@ -4,6 +4,7 @@ from Components.ActionMap import HelpableActionMap, ActionMap
 from Components.MenuList import MenuList
 from Components.MovieList import MovieList, resetMoviePlayState
 from Components.DiskInfo import DiskInfo
+from Tools.Trashcan import TrashInfo
 from Components.Pixmap import Pixmap
 from Components.Label import Label
 from Components.PluginComponent import plugins
@@ -418,12 +419,13 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 
 		self.playInBackground = None
 
-		self.listTimer = eTimer()
-		self.listTimer.timeout.get().append(self.updateHDDData)
 		self.feedbackTimer = None
 
+		self.listTimer = eTimer()
+		self.listTimer.timeout.get().append(self.hidewaitingtext)
+
 		self.activityTimer = eTimer()
-		self.activityTimer.timeout.get().append(self.hidewaitingtext)
+		self.activityTimer.timeout.get().append(self.timerHDDData)
 
 		self["waitingtext"] = Label(_("Please wait... Loading list..."))
 
@@ -436,7 +438,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			config.movielist.last_videodir.save()
 		self.setCurrentRef(config.movielist.last_videodir.value)
 
-		self.settings = {\
+		self.settings = {
 			"listtype": config.movielist.listtype.value,
 			"moviesort": config.movielist.moviesort.value,
 			"description": config.movielist.description.value
@@ -456,6 +458,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self._updateButtonTexts()
 
 		self["freeDiskSpace"] = self.diskinfo = DiskInfo(config.movielist.last_videodir.value, DiskInfo.FREE, update=False)
+		self["TrashcanSize"] = self.trashinfo = TrashInfo(config.movielist.last_videodir.value, DiskInfo.USED, update=False)
 
 		self["InfobarActions"] = HelpableActionMap(self, "InfobarActions", 
 			{
@@ -514,7 +517,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				"seekdef:7": (ssback, tBack),
 				"seekdef:9": (ssfwd, tFwd),
 			}, prio=5)
-		self.onShown.append(self.timerHDDData)
+		self.onShown.append(self.updateHDDData)
 		self.onLayoutFinish.append(self.saveListsize)
 		self.list.connectSelChanged(self.updateButtons)
 		self.inited = False
@@ -645,24 +648,24 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			self.session.open(EventViewSimple, evt, ServiceReference(self.getCurrent()))
 
 	def saveListsize(self):
-			listsize = self["list"].instance.size()
-			self.listWidth = listsize.width()
-			self.listHeight = listsize.height()
-			self.updateDescription()
+		listsize = self["list"].instance.size()
+		self.listWidth = listsize.width()
+		self.listHeight = listsize.height()
+		self.updateDescription()
 
 	def updateHDDData(self):
-		self.listTimer.stop()
 		if not self.inited:
 			self.reloadList(self.selectedmovie, home=True)
 			self.activityTimer.start(100)
 			self.inited=True
 
-	def timerHDDData(self):
-		self.listTimer.start(10)
-
-	def hidewaitingtext(self):
-		self.activityTimer.stop()
+ 	def hidewaitingtext(self):
+		self.listTimer.stop()
 		self["waitingtext"].hide()
+ 
+	def timerHDDData(self):
+		self.activityTimer.stop()
+		self.listTimer.start(10)
 		if not self.playInBackground:
 			if self.session.nav.getCurrentlyPlayingServiceReference():
 				if not self.session.nav.getCurrentlyPlayingServiceReference().toString().startswith('1:0:0:0:0:0:0:0:0:0'):
@@ -978,6 +981,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			config.movielist.last_videodir.save()
 			self.setCurrentRef(path)
 			self["freeDiskSpace"].path = path
+			self["TrashcanSize"].path = path
 		if sel is None:
 			sel = self.getCurrent()
 		if config.movielist.settings_per_directory.value:
@@ -994,6 +998,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			if home:
 				self["list"].moveToFirstMovie()
 		self["freeDiskSpace"].update()
+		self["TrashcanSize"].update(config.movielist.last_videodir.value)
 
 	def doPathSelect(self):
 		self.session.openWithCallback(
@@ -1016,6 +1021,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				config.movielist.last_videodir.save()
 				self.setCurrentRef(res)
 				self["freeDiskSpace"].path = res
+				self["TrashcanSize"].path = res
+				self["TrashcanSize"].update(res)
 				self.reloadList(home = True, sel = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + currentDir))
 			else:
 				self.session.open(
@@ -1523,6 +1530,10 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 	def hideActionFeedback(self):
 		print "[ML] hide feedback"
 		self.diskinfo.update()
+		item = self.getCurrentSelection()
+		current = item[0]
+		self.diskinfo.update()
+		self.trashinfo.update(current.getPath())
 
 	def can_gohome(self, item):
 	        return True

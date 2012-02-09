@@ -10,8 +10,11 @@
 #endif
 
 eMPEGStreamInformation::eMPEGStreamInformation():
+	m_structure_read_fd(-1),
+	m_cache_index(-1),
+	m_current_entry(-1),
 	m_structure_cache_entries(0),
-	m_structure_read_fd(-1)
+	m_structure_file_entries(0)
 {
 }
 
@@ -37,6 +40,9 @@ int eMPEGStreamInformation::load(const char *filename)
 	m_access_points.clear();
 	m_pts_to_offset.clear();
 	m_timestamp_deltas.clear();
+	m_cache_index = -1;
+	m_structure_cache_entries = 0;
+	m_structure_file_entries = 0;
 	FILE *f = fopen((s_filename + ".ap").c_str(), "rb");
 	if (!f)
 		return -1;
@@ -280,6 +286,32 @@ int eMPEGStreamInformation::getNextAccessPoint(pts_t &ts, const pts_t &start, in
 #endif
 static const int entry_size = 16;
 
+int eMPEGStreamInformation::moveCache(int index)
+{
+	if ((index == m_cache_index) && (m_structure_cache_entries != 0))
+	{
+		// Request for the same data. If the request is at the end of the stream,
+		// check if the file has become larger.
+		if (index + m_structure_cache_entries >= m_structure_file_entries)
+		{
+			int l = ::lseek(m_structure_read_fd, 0, SEEK_END) / entry_size;
+			if (l == m_structure_file_entries)
+			{
+				// No change to file, just return
+				return m_structure_cache_entries;
+			}
+			m_structure_file_entries = l;
+		}
+		else
+		{
+			// Requested same position as last time, just return
+			return m_structure_cache_entries;
+		}
+	}
+	// Really have to re-read the cache now
+	return loadCache(index);
+}
+
 int eMPEGStreamInformation::loadCache(int index)
 {
 	const size_t structure_cache_size = sizeof(m_structure_cache);
@@ -318,6 +350,7 @@ int eMPEGStreamInformation::getStructureEntryFirst(off_t &offset, unsigned long 
 			eDebug("getStructureEntryFirst failed because file size is zero");
 			return -1;
 		}
+		m_structure_file_entries = l;
 
 		/* do a binary search */
 		int count = l;
@@ -442,7 +475,7 @@ int eMPEGStreamInformation::getFirstFrame(off_t &offset, pts_t& pts)
 	// No access points (yet?) use the .sc data instead
 	if (m_structure_read_fd >= 0)
 	{
-		int num = loadCache(0);
+		int num = moveCache(0);
 		if (num > 20) num = 20; // We don't need to look that hard, it may be an old file without PTS data
 		for (int i = 0; i < num; ++i)
 		{
@@ -474,7 +507,7 @@ int eMPEGStreamInformation::getLastFrame(off_t &offset, pts_t& pts)
 		int index = l - structure_cache_size;
 		if (index < 0)
 			index = 0;
-		int num = loadCache(index);
+		int num = moveCache(index);
 		if (num > 10)
 			index = num - 10;
 		else
@@ -818,11 +851,11 @@ void eMPEGStreamParserTS::parseData(off_t offset, const void *data, unsigned int
 				m_need_next_packet = processPacket(m_pkt, offset + (packet - packet_start));
 				m_pktptr = 0;
 			}
-		} else if (len >= m_header_offset + 4)  /* if we have a full header... */
+		} else if (len >= (unsigned int)m_header_offset + 4)  /* if we have a full header... */
 		{
 			if (wantPacket(packet))  /* decide wheter we need it ... */
 			{
-				if (len >= m_packetsize)          /* packet complete? */
+				if (len >= (unsigned int)m_packetsize)          /* packet complete? */
 				{
 					m_need_next_packet = processPacket(packet, offset + (packet - packet_start)); /* process it now. */
 				} else

@@ -462,8 +462,11 @@ void eDVBTSTools::calcEnd()
 		return;
 
 	off_t end = m_source->lseek(0, SEEK_END);
+
+	// If there's a structure file, the calculation is much smarter, so we can try more often
+	off_t threshold = m_streaminfo.hasStructure() ? 400*1024 : 1024*1024;
 	
-	if (llabs(end - m_last_filelength) > 1*1024*1024)
+	if (llabs(end - m_last_filelength) > threshold)
 	{
 		m_last_filelength = end;
 		m_end_valid = 0;

@@ -7,7 +7,7 @@ SUBDIRS += DVDPlayer
 endif
 
 if VUPLUS
-SUBDIRS += GenuineVuplus
+SUBDIRS += VuplusEvent
 endif
 
 install_PYTHON =	\

@@ -369,7 +369,7 @@ void eFilePushThreadRecorder::thread()
 		gettimeofday(&now, NULL);
 		suseconds_t diff = (1000000 * (now.tv_sec - starttime.tv_sec)) + now.tv_usec - starttime.tv_usec;
 		if (diff > 10000)
-			eDebug("[eFilePushThreadRecorder] write %d bytes time: %9d us", bytes, diff);
+			eDebug("[eFilePushThreadRecorder] write %d bytes time: %9u us", bytes, (unsigned int)diff);
 #endif
 		if (w < 0)
 		{
