@@ -11,7 +11,7 @@ MONTHS = (_("January"),
           _("July"),
           _("August"),
           _("September"),
-          _("Oktober"),
+          _("October"),
           _("November"),
           _("December"))
 
