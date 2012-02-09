@@ -1101,20 +1101,22 @@ class EPGSelection(Screen, HelpableScreen):
 	def OK(self):
 		if config.epgselction.OK_vixepg.value == "Zap" or config.epgselction.OK_enhanced.value == "Zap" or config.epgselction.OK_infobar.value == "Zap":
 			self.ZapTo()
-			serviceref = self.session.nav.getCurrentlyPlayingServiceReference()
-			self["list"].setCurrentlyPlaying(serviceref)
-			self["list"].fillGraphEPG(None, self.ask_time)
-			self.moveTimeLines(True)
+		if self.type == EPG_TYPE_GRAPH:
+				serviceref = self.session.nav.getCurrentlyPlayingServiceReference()
+				self["list"].setCurrentlyPlaying(serviceref)
+				self["list"].fillGraphEPG(None, self.ask_time)
+				self.moveTimeLines(True)
 		if config.epgselction.OK_vixepg.value == "Zap + Exit" or config.epgselction.OK_enhanced.value == "Zap + Exit" or config.epgselction.OK_infobar.value == "Zap + Exit":
 			self.zap()
 
 	def OKLong(self):
 		if config.epgselction.OKLong_vixepg.value == "Zap" or config.epgselction.OKLong_enhanced.value == "Zap" or config.epgselction.OKLong_infobar.value == "Zap":
 			self.ZapTo()
-			serviceref = self.session.nav.getCurrentlyPlayingServiceReference()
-			self["list"].setCurrentlyPlaying(serviceref)
-			self["list"].fillGraphEPG(None, self.ask_time)
-			self.moveTimeLines(True)
+		if self.type == EPG_TYPE_GRAPH:
+				serviceref = self.session.nav.getCurrentlyPlayingServiceReference()
+				self["list"].setCurrentlyPlaying(serviceref)
+				self["list"].fillGraphEPG(None, self.ask_time)
+				self.moveTimeLines(True)
 		if config.epgselction.OKLong_vixepg.value == "Zap + Exit" or config.epgselction.OKLong_enhanced.value == "Zap + Exit" or config.epgselction.OKLong_infobar.value == "Zap + Exit":
 			self.zap()
 
