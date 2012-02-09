@@ -1,4 +1,4 @@
-import Components.Task
+from twisted.internet import threads
 from config import config, ConfigSubsection, ConfigSelection, ConfigSlider, ConfigYesNo, ConfigNothing
 from enigma import eDBoxLCD, eTimer
 from Components.SystemInfo import SystemInfo
@@ -27,22 +27,10 @@ class IconCheckPoller:
 		self.timer.stop()
 
 	def iconcheck(self):
-		Components.Task.job_manager.AddJob(self.createCheckJob())
+		threads.deferToThread(self.JobTask)
+		self.timer.startLongTimer(30)
 
-	def createCheckJob(self):
-		job = Components.Task.Job(_("VFD Checker"))
-		task = Components.Task.PythonTask(job, _("Checking Network..."))
-		task.work = self.JobNetwork
-		task.weighting = 1
-		task = Components.Task.PythonTask(job, _("Checking USB devices..."))
-		task.work = self.JobUSB
-		task.weighting = 1
-		task = Components.Task.PythonTask(job, _("Adding schedule..."))
-		task.work = self.JobSched
-		task.weighting = 1
-		return job
-
-	def JobNetwork(self):
+	def JobTask(self):
 		LinkState = 0
 		if fileExists('/sys/class/net/wlan0/operstate'):
 			LinkState = open('/sys/class/net/wlan0/operstate').read()
@@ -58,7 +46,6 @@ class IconCheckPoller:
 		elif fileExists("/proc/stb/lcd/symbol_network") and config.lcd.mode.value == '0':
 			open("/proc/stb/lcd/symbol_network", "w").write('0')
 
-	def JobUSB(self):
 		USBState = 0
 		busses = usb.busses()
 		for bus in busses:
@@ -76,7 +63,6 @@ class IconCheckPoller:
 		elif fileExists("/proc/stb/lcd/symbol_usb") and config.lcd.mode.value == '0':
 			open("/proc/stb/lcd/symbol_usb", "w").write('0')
 
-	def JobSched(self):
 		self.timer.startLongTimer(30)
 
 class LCD:
