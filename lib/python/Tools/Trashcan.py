@@ -179,7 +179,7 @@ class TrashInfo(VariableText, GUIComponent):
 	
 	def update(self, path):
 		try:
-			total_size = getTrashFolder(get_size(path))
+			trashpath = get_size(getTrashFolder(path))
 		except OSError:
 			return -1
 		
