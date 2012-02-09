@@ -25,6 +25,14 @@ def createTrashFolder(path=None):
 		os.mkdir(trash)
 	return trash
 
+def get_size(start_path = '.'):
+	total_size = 0
+	for dirpath, dirnames, filenames in os.walk(start_path):
+		for f in filenames:
+			fp = os.path.join(dirpath, f)
+			total_size += os.path.getsize(fp)
+	return total_size
+
 class Trashcan:
 	def __init__(self, session):
 		self.session = session
@@ -101,14 +109,6 @@ class CleanTrashTask(Components.Task.PythonTask):
 		self.ctimeLimit = ctimeLimit
 		self.reserveBytes = reserveBytes
 
-	def get_size(self, start_path = '.'):
-		total_size = 0
-		for dirpath, dirnames, filenames in os.walk(start_path):
-			for f in filenames:
-				fp = os.path.join(dirpath, f)
-				total_size += os.path.getsize(fp)
-		return total_size
-
 	def work(self):
 		mounts=[]
 		matches = []
@@ -129,15 +129,11 @@ class CleanTrashTask(Components.Task.PythonTask):
 		if len(matches):
 			for trashfolder in matches:
 				print "[Trashcan] looking in trashcan",trashfolder
-				trashsize = self.get_size(trashfolder) 
+				trashsize = get_size(trashfolder) 
 				diskstat = os.statvfs(trashfolder)
 				free = diskstat.f_bfree * diskstat.f_bsize
 				bytesToRemove = self.reserveBytes - free
 				print "[Trashcan] " + str(trashfolder) + ": Size:",trashsize
-				print "[Trashcan] " + str(trashfolder) + ": Free:",free
-				print "[Trashcan] " + str(trashfolder) + ": reserveBytes:",self.reserveBytes
-				print "[Trashcan] " + str(trashfolder) + ": bytesToRemove",bytesToRemove
-
 				candidates = []
 				size = 0
 				for root, dirs, files in os.walk(trashfolder, topdown=False):
@@ -145,12 +141,7 @@ class CleanTrashTask(Components.Task.PythonTask):
 						try:
 							fn = os.path.join(root, name)
 							st = os.stat(fn)
-							print "[Trashcan] " + str(fn) + ": dateOfFile",time.strftime("%c", time.localtime(st.st_ctime))
-							print "[Trashcan] " + str(fn) + ": SizeOfFile:",name, st.st_size
-							print "[Trashcan] " + str(fn) + ": TrashLimitDays",time.strftime("%c", time.localtime(self.ctimeLimit))
-							print "[Trashcan] " + str(fn) + ": FileToOld",st.st_ctime < self.ctimeLimit
 							if st.st_ctime < self.ctimeLimit:
-								print "[Trashcan] " + str(fn) + ": Too old:",name, st.st_ctime
 								enigma.eBackgroundFileEraser.getInstance().erase(fn)
 								bytesToRemove -= st.st_size
 							else:
@@ -158,8 +149,6 @@ class CleanTrashTask(Components.Task.PythonTask):
 								size += st.st_size
 						except Exception, e:
 							print "[Trashcan] Failed to stat %s:"% name, e 
-					print "[Trashcan] " + str(trashfolder) + ": bytesToRemove",bytesToRemove
-					print "[Trashcan] " + str(trashfolder) + ": Size now:",size
 					# Remove empty directories if possible
 					for name in dirs:
 						try:
@@ -169,15 +158,12 @@ class CleanTrashTask(Components.Task.PythonTask):
 					candidates.sort()
 					# Now we have a list of ctime, candidates, size. Sorted by ctime (=deletion time)
 					for st_ctime, fn, st_size in candidates:
-						print "[Trashcan] " + str(trashfolder) + ": bytesToRemove",bytesToRemove
 						if bytesToRemove < 0:
 							break
 						enigma.eBackgroundFileEraser.getInstance().erase(fn)
 						bytesToRemove -= st_size
 						size -= st_size
-					print "[Trashcan] " + str(trashfolder) + ": bytesToRemove",bytesToRemove
 					print "[Trashcan] " + str(trashfolder) + ": Size now:",size
-
 
 class TrashInfo(VariableText, GUIComponent):
 	FREE = 0
@@ -188,23 +174,17 @@ class TrashInfo(VariableText, GUIComponent):
 		GUIComponent.__init__(self)
 		VariableText.__init__(self)
 		self.type = type
-		self.path = getTrashFolder(path)
 		if update:
 			self.update(path)
 	
 	def update(self, path):
 		try:
-			trashcan = getTrashFolder(path)
+			total_size = getTrashFolder(get_size(path))
 		except OSError:
 			return -1
 		
 		if self.type == self.USED:
 			try:
-				total_size = 0
-				for dirpath, dirnames, filenames in os.walk(trashcan):
-					for f in filenames:
-						fp = os.path.join(dirpath, f)
-						total_size += os.path.getsize(fp)
 				if total_size < 10000000:
 					total_size = "%d kB" % (total_size >> 10)
 				elif total_size < 10000000000:

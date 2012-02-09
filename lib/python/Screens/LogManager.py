@@ -659,13 +659,12 @@ class LogInfo(VariableText, GUIComponent):
 	
 	def update(self, path):
 		try:
-			loginfo = get_size(path)
+			total_size = get_size(path)
 		except OSError:
 			return -1
 		
 		if self.type == self.USED:
 			try:
-				total_size = loginfo
 				if total_size < 10000000:
 					total_size = "%d kB" % (total_size >> 10)
 				elif total_size < 10000000000:
