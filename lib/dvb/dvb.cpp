@@ -1777,7 +1777,8 @@ RESULT eDVBChannel::playSource(ePtr<iTsSource> &source, const char *streaminfo_f
 		return -ENOENT;
 	}
 
-	m_tstools.setSource(source, streaminfo_file);
+	m_source = source;
+	m_tstools.setSource(m_source, streaminfo_file);
 
 		/* DON'T EVEN THINK ABOUT FIXING THIS. FIX THE ATI SOURCES FIRST,
 		   THEN DO A REAL FIX HERE! */
@@ -1820,14 +1821,14 @@ RESULT eDVBChannel::playSource(ePtr<iTsSource> &source, const char *streaminfo_f
 #endif
 	}
 
-	m_pvr_thread = new eDVBChannelFilePush(source->getPacketSize());
+	m_pvr_thread = new eDVBChannelFilePush(m_source->getPacketSize());
 	m_pvr_thread->enablePVRCommit(1);
 	m_pvr_thread->setStreamMode(1);
 	m_pvr_thread->setScatterGather(this);
 
 	m_event(this, evtPreStart);
 
-	m_pvr_thread->start(source, m_pvr_fd_dst);
+	m_pvr_thread->start(m_source, m_pvr_fd_dst);
 	CONNECT(m_pvr_thread->m_event, eDVBChannel::pvrEvent);
 
 	m_state = state_ok;
@@ -1846,8 +1847,8 @@ void eDVBChannel::stopSource()
 	}
 	if (m_pvr_fd_dst >= 0)
 		::close(m_pvr_fd_dst);
-	ePtr<iTsSource> d;
-	m_tstools.setSource(d);
+	m_source = NULL;
+	m_tstools.setSource(m_source);
 }
 
 void eDVBChannel::stopFile()
@@ -1888,8 +1889,7 @@ RESULT eDVBChannel::getCurrentPosition(iDVBDemux *decoding_demux, pts_t &pos, in
 	} else
 		now = pos; /* fixup supplied */
 
-	off_t off = 0; /* TODO: fixme */
-	r = m_tstools.fixupPTS(off, now);
+	r = m_tstools.fixupPTS(m_source ? m_source->offset() : 0, now);
 	if (r)
 	{
 		return -1;
