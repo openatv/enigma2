@@ -571,19 +571,19 @@ class LogManagerFb(Screen):
 			<widget name="list" position="0,0" size="265,430" scrollbarMode="showOnDemand" />
 		</screen>
 		"""
-	def __init__(self, session,path=None):
-		if path is None:
+	def __init__(self, session,logpath=None):
+		if logpath is None:
 			if path.isdir(config.logmanager.path.value):
-				path = config.logmanager.path.value
+				logpath = config.logmanager.path.value
 			else:
-				path = "/"
+				logpath = "/"
 
 		self.session = session
 		Screen.__init__(self, session)
 		self.skin = LogManagerFb.skin
 		self.skinName = "LogManagerFb"
 
-		self["list"] = FileList(path, matchingPattern = "^.*")
+		self["list"] = FileList(logpath, matchingPattern = "^.*")
 		self["red"] = Label(_("delete"))
 		self["green"] = Label(_("move"))
 		self["yellow"] = Label(_("copy"))

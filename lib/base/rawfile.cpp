@@ -255,3 +255,8 @@ off_t eRawFile::length()
 {
 	return m_totallength;
 }
+
+off_t eRawFile::offset()
+{
+	return m_last_offset;
+}

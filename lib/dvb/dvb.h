@@ -281,6 +281,7 @@ private:
 	Signal1<void,iDVBChannel*> m_stateChanged;
 	Signal2<void,iDVBChannel*,int> m_event;
 	int m_state;
+	ePtr<iTsSource> m_source;
 
 			/* for channel list */
 	ePtr<eDVBResourceManager> m_mgr;

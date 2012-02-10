@@ -9,15 +9,18 @@ import enigma
 
 def getTrashFolder(path=None):
 	# Returns trash folder without symlinks
-	if path is None:
-		print 'path is none'
-	else:
-		if path.find('/movie') >0:
-			mountpoint = Harddisk.findMountPoint(os.path.realpath(path))
-			trashcan = os.path.join(mountpoint, 'movie')
+	try:
+		if path is None:
+			print 'path is none'
 		else:
-			trashcan = Harddisk.findMountPoint(os.path.realpath(path))
-		return os.path.realpath(os.path.join(trashcan, ".Trash"))
+			if path.find('/movie') >0:
+				mountpoint = Harddisk.findMountPoint(os.path.realpath(path))
+				trashcan = os.path.join(mountpoint, 'movie')
+			else:
+				trashcan = Harddisk.findMountPoint(os.path.realpath(path))
+			return os.path.realpath(os.path.join(trashcan, ".Trash"))
+	except:
+		return ""
 
 def createTrashFolder(path=None):
 	trash = getTrashFolder(path)
@@ -179,7 +182,7 @@ class TrashInfo(VariableText, GUIComponent):
 	
 	def update(self, path):
 		try:
-			total_size = getTrashFolder(get_size(path))
+			total_size = get_size(getTrashFolder(path))
 		except OSError:
 			return -1
 		
