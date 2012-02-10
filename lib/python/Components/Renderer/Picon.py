@@ -111,8 +111,12 @@ class Picon(Renderer):
 			if not pngname: # no picon for service found
 				pngname = self.defaultpngname
 			if self.pngname != pngname:
-				self.instance.setScale(1)
-				self.instance.setPixmapFromFile(pngname)
+				if os.path.getsize(pngname):
+					self.instance.setScale(1)
+					self.instance.setPixmapFromFile(pngname)
+					self.instance.show()
+				else:
+					self.instance.hide()
 				self.pngname = pngname
 
 harddiskmanager.on_partition_list_change.append(onPartitionChange)
