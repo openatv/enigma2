@@ -76,13 +76,15 @@ class Picon(Renderer):
 		self.pngname = ""
 		self.lastPath = None
 		pngname = findPicon("picon_default")
+		self.defaultpngname = None
 		if not pngname:
 			tmp = resolveFilename(SCOPE_CURRENT_SKIN, "picon_default.png")
 			if pathExists(tmp):
 				pngname = tmp
 			else:
 				pngname = resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/picon_default.png")
-		self.defaultpngname = pngname
+		if os.path.getsize(pngname):
+			self.defaultpngname = pngname
 
 	def addPath(self, value):
 		if pathExists(value):
@@ -111,7 +113,7 @@ class Picon(Renderer):
 			if not pngname: # no picon for service found
 				pngname = self.defaultpngname
 			if self.pngname != pngname:
-				if os.path.getsize(pngname):
+				if pngname:
 					self.instance.setScale(1)
 					self.instance.setPixmapFromFile(pngname)
 					self.instance.show()
