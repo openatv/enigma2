@@ -2,7 +2,7 @@ from Screens.Screen import Screen
 from Screens.LocationBox import MovieLocationBox, TimeshiftLocationBox
 from Screens.MessageBox import MessageBox
 from Components.Label import Label
-from Components.config import config, ConfigSelection, getConfigListEntry, configfile
+from Components.config import config, configfile, ConfigSelection, getConfigListEntry
 from Components.ConfigList import ConfigListScreen
 from Components.ActionMap import ActionMap
 from Components.Pixmap import Pixmap
@@ -309,25 +309,30 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 			locations = []
 			for validdevice in candidates:
 				locations.append(validdevice[1])
- 		if Components.Harddisk.findMountPoint(os.path.realpath(configele.value))+'/' in locations:
-			if fileExists(configele.value, "w"):
-				configele.last_value = configele.value
-				return True
+			if Components.Harddisk.findMountPoint(os.path.realpath(configele.value))+'/' in locations:
+				if fileExists(configele.value, "w"):
+					configele.last_value = configele.value
+					return True
+				else:
+					dir = configele.value
+					configele.value = configele.last_value
+					self.session.open(
+						MessageBox,
+						_("The directory %s is not writable.\nMake sure you select a writable directory instead.")%dir,
+						type = MessageBox.TYPE_ERROR
+						)
+					return False
 			else:
-				dir = configele.value
-				configele.value = configele.last_value
 				self.session.open(
 					MessageBox,
-					_("The directory %s is not writable.\nMake sure you select a writable directory instead.")%dir,
+					_("The directory %s is not a EXT2, EXT3 or EXT4 partition.\nMake sure you select a valid partition type.")%res,
 					type = MessageBox.TYPE_ERROR
 					)
 				return False
 		else:
-			dir = configele.value
-			configele.value = configele.last_value
 			self.session.open(
 				MessageBox,
-				_("The directory %s is not a EXT2, EXT3 or EXT4 partition.\nMake sure you select a partition type.")%dir,
+				_("The directory %s is not a EXT2, EXT3 or EXT4 partition.\nMake sure you select a valid partition type.")%res,
 				type = MessageBox.TYPE_ERROR
 				)
 			return False
@@ -380,20 +385,26 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 				locations = []
 				for validdevice in candidates:
 					locations.append(validdevice[1])
-			if Components.Harddisk.findMountPoint(os.path.realpath(res))+'/' in locations:
-				self.entrydirname.value = res
-				if config.usage.allowed_timeshift_paths.value != self.lasttimeshiftdirs:
-					tmp = config.usage.allowed_timeshift_paths.value
-					default = self.timeshift_dirname.value
-					if default not in tmp:
-						tmp = tmp[:]
-						tmp.append(default)
-					self.timeshift_dirname.setChoices(tmp, default=default)
+				if Components.Harddisk.findMountPoint(os.path.realpath(res))+'/' in locations:
 					self.entrydirname.value = res
+					if config.usage.allowed_timeshift_paths.value != self.lasttimeshiftdirs:
+						tmp = config.usage.allowed_timeshift_paths.value
+						default = self.timeshift_dirname.value
+						if default not in tmp:
+							tmp = tmp[:]
+							tmp.append(default)
+						self.timeshift_dirname.setChoices(tmp, default=default)
+						self.entrydirname.value = res
+				else:
+					self.session.open(
+						MessageBox,
+						_("The directory %s is not a EXT2, EXT3 or EXT4 partition.\nMake sure you select a valid partition type.")%res,
+						type = MessageBox.TYPE_ERROR
+						)
 			else:
 				self.session.open(
 					MessageBox,
-					_("The directory %s is not a EXT2, EXT3 or EXT4 partition.\nMake sure you select a partition type.")%res,
+					_("The directory %s is not a EXT2, EXT3 or EXT4 partition.\nMake sure you select a valid partition type.")%res,
 					type = MessageBox.TYPE_ERROR
 					)
 
@@ -405,11 +416,35 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 	# keySave and keyCancel are just provided in case you need them.
 	# you have to call them by yourself.
 	def keySave(self):
-		if config.timeshift.enabled.value:
-			config.usage.timeshift_path.value = self.timeshift_dirname.value
-			config.usage.timeshift_path.save()
-		self.saveAll()
-		self.close()
+		import os.path
+		import Components.Harddisk
+		supported_filesystems = frozenset(('ext4', 'ext3', 'ext2'))
+		candidates = []
+		mounts = Components.Harddisk.getProcMounts() 
+		for partition in Components.Harddisk.harddiskmanager.getMountedPartitions(False, mounts):
+			if partition.filesystem(mounts) in supported_filesystems:
+				candidates.append((partition.description, partition.mountpoint)) 
+		if candidates:
+			locations = []
+			for validdevice in candidates:
+				locations.append(validdevice[1])
+			if Components.Harddisk.findMountPoint(os.path.realpath(config.usage.timeshift_path.value))+'/' in locations:
+				config.usage.timeshift_path.value = self.timeshift_dirname.value
+				config.usage.timeshift_path.save()
+				self.saveAll()
+				self.close()
+			else:
+				self.session.open(
+					MessageBox,
+					_("The directory %s is not a EXT2, EXT3 or EXT4 partition.\nMake sure you select a valid partition type.")%config.usage.timeshift_path.value,
+					type = MessageBox.TYPE_ERROR
+					)
+		else:
+			self.session.open(
+				MessageBox,
+				_("The directory %s is not a EXT2, EXT3 or EXT4 partition.\nMake sure you select a valid partition type.")%config.usage.timeshift_path.value,
+				type = MessageBox.TYPE_ERROR
+				)
 	
 	def cancelConfirm(self, result):
 		if not result:
