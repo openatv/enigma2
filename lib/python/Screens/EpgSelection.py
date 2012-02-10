@@ -786,7 +786,7 @@ class EPGSelection(Screen, HelpableScreen):
 					self.moveTimeLines(True)
 
 	def closing(self):
-		if (self.type == 5 and config.epgselction.preview_mode_pliepg.value) or (self.type == 4 and config.epgselction.preview_mode_infobar.value) or (self.type == 3 and config.epgselction.preview_mode_enhanced.value) or (self.type != 5 and self.type != 4 and self.type != 3 and config.epgselction.preview_mode.value):
+		if ((self.type == 5 and config.epgselction.preview_mode_pliepg.value) or (self.type == 4 and config.epgselction.preview_mode_infobar.value) or (self.type == 3 and config.epgselction.preview_mode_enhanced.value) or (self.type != 5 and self.type != 4 and self.type != 3 and config.epgselction.preview_mode.value)) and (self.StartRef and self.StartBouquet):
 			if self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
 				self.session.nav.playService(self.StartRef)
 			elif self.type == EPG_TYPE_MULTI or self.type == EPG_TYPE_GRAPH:
@@ -1110,6 +1110,7 @@ class EPGSelection(Screen, HelpableScreen):
 	def OK(self):
 		if config.epgselction.OK_pliepg.value == "Zap" or config.epgselction.OK_enhanced.value == "Zap" or config.epgselction.OK_infobar.value == "Zap":
 			self.ZapTo()
+		if self.type == EPG_TYPE_GRAPH:
 			serviceref = self.session.nav.getCurrentlyPlayingServiceReference()
 			self["list"].setCurrentlyPlaying(serviceref)
 			self["list"].fillGraphEPG(None, self.ask_time)
@@ -1120,6 +1121,7 @@ class EPGSelection(Screen, HelpableScreen):
 	def OKLong(self):
 		if config.epgselction.OKLong_pliepg.value == "Zap" or config.epgselction.OKLong_enhanced.value == "Zap" or config.epgselction.OKLong_infobar.value == "Zap":
 			self.ZapTo()
+		if self.type == EPG_TYPE_GRAPH:
 			serviceref = self.session.nav.getCurrentlyPlayingServiceReference()
 			self["list"].setCurrentlyPlaying(serviceref)
 			self["list"].fillGraphEPG(None, self.ask_time)
@@ -1199,6 +1201,7 @@ class EPGSelection(Screen, HelpableScreen):
 						datestr = '%s'%(_("Today"))
 			self["date"].setText(datestr)
 
+		if self.type == EPG_TYPE_MULTI or self.type == EPG_TYPE_GRAPH:
 			if cur[1] is None:
 				self["Service"].newService(None)
 			else:

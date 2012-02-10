@@ -119,6 +119,21 @@ pts_t eMPEGStreamInformation::getDelta(off_t offset)
 int eMPEGStreamInformation::fixupPTS(const off_t &offset, pts_t &ts)
 {
 	//eDebug("eMPEGStreamInformation::fixupPTS(offset=%llu pts=%llu)", offset, ts);
+	if (!m_structure_cache_entries && !m_access_points.empty())
+	{
+		/* 
+		 * We have no structure entry points, only access points. 
+		 * The TS might be scrambled, in which case we would not
+		 * have been able to parse structure entry points, but
+		 * also no pts values.
+		 * That means that the access points are measured in
+		 * stream time, rather than actual mpeg pts.
+		 * Overrule the timestamp with the nearest access point pts. 
+		 */
+		off_t nearestoffset = offset;
+		getPTS(nearestoffset, ts);
+		return 0;
+	}
 	if (m_timestamp_deltas.empty())
 		return -1;
 
@@ -629,9 +644,11 @@ eMPEGStreamParserTS::eMPEGStreamParserTS(int packetsize):
 	m_need_next_packet(0),
 	m_skip(0),
 	m_last_pts_valid(0),
+	m_last_pts(0),
 	m_packetsize(packetsize),
 	m_header_offset(packetsize - 188)
 {
+	m_last_access_point.tv_sec = m_last_access_point.tv_nsec = 0;
 }
 
 int eMPEGStreamParserTS::processPacket(const unsigned char *pkt, off_t offset)
@@ -642,9 +659,29 @@ int eMPEGStreamParserTS::processPacket(const unsigned char *pkt, off_t offset)
 	pkt += m_header_offset;
 
 	if (!(pkt[3] & 0x10)) return 0; /* do not process packets without payload */
-	if (pkt[3] & 0xc0) return 0; /* do not process scrambled packets */
 
 	bool pusi = (pkt[1] & 0x40) != 0;
+
+	if (pkt[3] & 0xc0) 
+	{
+		/* scrambled stream, we cannot parse pts, extrapolate with measured stream time instead */
+		if (pusi)
+		{
+			timespec now, diff;
+			clock_gettime(CLOCK_MONOTONIC, &now);
+			diff = now - m_last_access_point;
+			/* limit the number of extrapolated access points to one per second */
+			if (diff.tv_sec)
+			{
+				m_last_pts += diff.tv_sec * 90000L;
+				m_last_pts += diff.tv_nsec / 11111L;
+				m_last_pts_valid = 1;
+				addAccessPoint(offset, m_last_pts, now);
+			}
+		}
+		return 0;
+	}
+
 	const unsigned char *end = pkt + 188;
 	const unsigned char *begin = pkt;
 
@@ -882,6 +919,19 @@ void eMPEGStreamParserTS::parseData(off_t offset, const void *data, unsigned int
 			len = 0;
 		}
 	}
+}
+
+void eMPEGStreamParserTS::addAccessPoint(off_t offset, pts_t pts)
+{
+	timespec now;
+	clock_gettime(CLOCK_MONOTONIC, &now);
+	addAccessPoint(offset, pts, now);
+}
+
+void eMPEGStreamParserTS::addAccessPoint(off_t offset, pts_t pts, timespec &now)
+{
+	eMPEGStreamInformationWriter::addAccessPoint(offset, pts);
+	m_last_access_point = now;
 }
 
 void eMPEGStreamParserTS::setPid(int _pid, int type)

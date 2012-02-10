@@ -921,6 +921,7 @@ class TimelineText(HTMLComponent, GUIComponent):
 		self.backColor = 0x000000
 		self.borderWidth = 1
 		self.time_base = 0
+		self.time_epoch = 0
 
 		self.timelineFontName = "Regular"
 		self.timelineFontSize = 20
@@ -958,20 +959,14 @@ class TimelineText(HTMLComponent, GUIComponent):
 		instance.setContent(self.l)
 
 	def setEntries(self, l, timeline_now, time_lines):
-		service_rect = l.getServiceRect()
 		event_rect = l.getEventRect()
 		time_epoch = l.getTimeEpoch()
 		time_base = l.getTimeBase()
-		itemHeight = self.l.getItemSize().height()
 
 		if event_rect is None or time_epoch is None or time_base is None:
 			return
-		time_steps = 60 if time_epoch > 180 else 30
 
-		num_lines = time_epoch / time_steps
-		incWidth = event_rect.width() / num_lines
 		eventLeft = event_rect.left()
-		timeStepsCalc = time_steps * 60
 
 		res = [ None ]
 
@@ -987,7 +982,13 @@ class TimelineText(HTMLComponent, GUIComponent):
 			datestr = '%s'%(_("Today"))
 		# Note: event_rect and service_rect are relative to the timeline_text position
 		# while the time lines are relative to the GraphEPG screen position!
-		if self.time_base != time_base:
+		if self.time_base != time_base or self.time_epoch != time_epoch:
+			service_rect = l.getServiceRect()
+			itemHeight = self.l.getItemSize().height()
+			time_steps = 60 if time_epoch > 180 else 30
+			num_lines = time_epoch / time_steps
+			incWidth = event_rect.width() / num_lines
+			timeStepsCalc = time_steps * 60
 			res.append( MultiContentEntryText(
 						pos = (0, 0),
 						size = (service_rect.width(), itemHeight),
@@ -1017,6 +1018,7 @@ class TimelineText(HTMLComponent, GUIComponent):
 				time_lines[x].visible = False
 			self.l.setList([res])
 			self.time_base = time_base
+			self.time_epoch = time_epoch
 
 		now = time()
 		if now >= time_base and now < (time_base + time_epoch * 60):

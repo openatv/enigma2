@@ -458,7 +458,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self._updateButtonTexts()
 
 		self["freeDiskSpace"] = self.diskinfo = DiskInfo(config.movielist.last_videodir.value, DiskInfo.FREE, update=False)
-		self["TrashcanSize"] = self.trashinfo = TrashInfo(config.movielist.last_videodir.value, DiskInfo.USED, update=False)
+		self["TrashcanSize"] = self.trashinfo = TrashInfo(config.movielist.last_videodir.value, TrashInfo.USED, update=False)
 
 		self["InfobarActions"] = HelpableActionMap(self, "InfobarActions", 
 			{

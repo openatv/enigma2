@@ -1,4 +1,6 @@
 from Screens.Screen import Screen
+from Components.GUIComponent import GUIComponent
+from Components.VariableText import VariableText
 from Components.ActionMap import ActionMap
 from Components.Label import Label
 from Components.Button import Button
@@ -12,9 +14,9 @@ from Components.FileList import MultiFileSelectList
 from Components.Pixmap import Pixmap,MultiPixmap
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Screens.MessageBox import MessageBox
-from os import path,listdir, remove, remove, remove
-from time import time, localtime
-from enigma import eTimer
+from os import path, listdir, remove, walk, stat, rmdir
+from time import time, localtime, strftime
+from enigma import eTimer, eBackgroundFileEraser, eLabel
 from glob import glob
 
 import Components.Task
@@ -30,13 +32,21 @@ from email import encoders
 
 _session = None
 
-def AutoDebugLogCheck(session=None, **kwargs):
-	global debuglogcheckpoller
-	debuglogcheckpoller = DebugLogCheckPoller()
-	debuglogcheckpoller.start()
+def get_size(self, start_path = '.'):
+	total_size = 0
+	for dirpath, dirnames, filenames in walk(start_path):
+		for f in filenames:
+			fp = path.join(dirpath, f)
+			total_size += path.getsize(fp)
+	return total_size
 
-class DebugLogCheckPoller:
-	"""Automatically Poll DebugLogCheck"""
+def AutoLogManager(session=None, **kwargs):
+	global debuglogcheckpoller
+	debuglogcheckpoller = LogManagerPoller()
+	debuglogcheckpoller.start()
+	
+class LogManagerPoller:
+	"""Automatically Poll LogManager"""
 	def __init__(self):
 		# Init Timer
 		self.timer = eTimer()
@@ -52,15 +62,19 @@ class DebugLogCheckPoller:
 		self.timer.stop()
 
 	def debug_check(self):
-		print '[DebugLogCheck] Poll Started'
+		print '[LogManager] Poll Started'
 		Components.Task.job_manager.AddJob(self.createCheckJob())
 
 	def createCheckJob(self):
-		job = Components.Task.Job(_("DebugLogCheck"))
-		task = Components.Task.PythonTask(job, _("Checking Log Size..."))
+		job = Components.Task.Job(_("LogManager"))
+		task = Components.Task.PythonTask(job, _("Checking Logs..."))
 		task.work = self.JobStart
 		task.weighting = 1
 		return job
+
+	def openFiles(self, ctimeLimit, allowedBytes):
+		ctimeLimit = ctimeLimit
+		allowedBytes = allowedBytes
 
 	def JobStart(self):
 		filename = ""
@@ -73,6 +87,74 @@ class DebugLogCheckPoller:
 				fh.write(data)
 				fh.truncate()
 				fh.close()
+
+		ctimeLimit = time() - (config.crash.daysloglimit.value * 3600 * 24)
+		allowedBytes = 1024*1024 * int(config.crash.sizeloglimit.value)
+
+		mounts=[]
+		matches = []
+		print "[LogManager] probing folders"
+		f = open('/proc/mounts', 'r')
+		for line in f.readlines():
+			parts = line.strip().split()
+			mounts.append(parts[1])
+		f.close()
+
+ 		for mount in mounts:
+			if path.isdir(path.join(mount,'logs')):
+				matches.append(path.join(mount,'logs'))
+			if path.isdir(path.join(mount,'home/root/logs')):
+				matches.append(path.join(mount,'home/root/logs'))
+				
+		print "[LogManager] found following log's:",matches
+		if len(matches):
+			for logsfolder in matches:
+				print "[LogManager] looking in:",logsfolder
+				logssize = get_size(logsfolder)
+				bytesToRemove = logssize - allowedBytes
+				print "[LogManager] " + str(logsfolder) + ": Space Used:",logssize
+				print "[LogManager] " + str(logsfolder) + ": allowedBytes:",allowedBytes
+				print "[LogManager] " + str(logsfolder) + ": bytesToRemove",bytesToRemove
+
+				candidates = []
+				size = 0
+				for root, dirs, files in walk(logsfolder, topdown=False):
+					for name in files:
+						try:
+							fn = path.join(root, name)
+							st = stat(fn)
+							print "[LogManager] " + str(fn) + ": dateOfFile",strftime("%c", localtime(st.st_ctime))
+							print "[LogManager] " + str(fn) + ": SizeOfFile:",name, st.st_size
+							print "[LogManager] " + str(fn) + ": LimitDays",strftime("%c", localtime(ctimeLimit))
+							if st.st_ctime < ctimeLimit:
+								print "[LogManager] " + str(fn) + ": Too old:",name, st.st_ctime
+								eBackgroundFileEraser.getInstance().erase(fn)
+								bytesToRemove -= st.st_size
+							else:
+								candidates.append((st.st_ctime, fn, st.st_size))
+								size += st.st_size
+						except Exception, e:
+							print "[LogManager] Failed to stat %s:"% name, e 
+					print "[LogManager] " + str(logsfolder) + ": bytesToRemove",bytesToRemove
+					print "[LogManager] " + str(logsfolder) + ": Size now:",size
+					# Remove empty directories if possible
+					for name in dirs:
+						try:
+							rmdir(path.join(root, name))
+						except:
+							pass
+					candidates.sort()
+					# Now we have a list of ctime, candidates, size. Sorted by ctime (=deletion time)
+					for st_ctime, fn, st_size in candidates:
+						print "[LogManager] " + str(logsfolder) + ": bytesToRemove",bytesToRemove
+						if bytesToRemove < 0:
+							break
+						eBackgroundFileEraser.getInstance().erase(fn)
+						bytesToRemove -= st_size
+						size -= st_size
+					print "[LogManager] " + str(logsfolder) + ": bytesToRemove",bytesToRemove
+					print "[LogManager] " + str(logsfolder) + ": Size now:",size
+
 		self.timer.startLongTimer(43200) #twice a day
 
 class LogManager(Screen):
@@ -123,9 +205,11 @@ class LogManager(Screen):
 		self.matchingPattern = 'enigma2_crash_' 
 		self.filelist = MultiFileSelectList(self.selectedFiles, self.defaultDir, showDirectories = False, matchingPattern = self.matchingPattern )
 		self["list"] = self.filelist
+		self["LogsSize"] = self.logsinfo = LogInfo(config.crash.debug_path.value, LogInfo.USED, update=False)
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def layoutFinished(self):
+		self["LogsSize"].update(config.movielist.last_videodir.value)
 		idx = 0
 		self["list"].moveToIndex(idx)
 		self.setWindowTitle()
@@ -163,6 +247,7 @@ class LogManager(Screen):
 		self.selectedFiles = self["list"].getSelectedList()
 
 	def changelogtype(self):
+		self["LogsSize"].update(config.movielist.last_videodir.value)
 		import re
 		if self.logtype == 'crashlogs':
 			self["key_red"].setText(_("Crash Logs"))
@@ -230,6 +315,7 @@ class LogManager(Screen):
 			self["list"].instance.moveSelectionTo(0)
 			remove(self.defaultDir + self.sel[0])
 			self["list"].changeDir(self.defaultDir)
+			self["LogsSize"].update(config.movielist.last_videodir.value)
 
 	def sendlog(self, addtionalinfo = None):
 		try:
@@ -485,19 +571,19 @@ class LogManagerFb(Screen):
 			<widget name="list" position="0,0" size="265,430" scrollbarMode="showOnDemand" />
 		</screen>
 		"""
-	def __init__(self, session,path=None):
-		if path is None:
+	def __init__(self, session,logpath=None):
+		if logpath is None:
 			if path.isdir(config.logmanager.path.value):
-				path = config.logmanager.path.value
+				logpath = config.logmanager.path.value
 			else:
-				path = "/"
+				logpath = "/"
 
 		self.session = session
 		Screen.__init__(self, session)
 		self.skin = LogManagerFb.skin
 		self.skinName = "LogManagerFb"
 
-		self["list"] = FileList(path, matchingPattern = "^.*")
+		self["list"] = FileList(logpath, matchingPattern = "^.*")
 		self["red"] = Label(_("delete"))
 		self["green"] = Label(_("move"))
 		self["yellow"] = Label(_("copy"))
@@ -557,3 +643,37 @@ class LogManagerFb(Screen):
 			config.logmanager.path.value = self["list"].getCurrentDirectory()
 			config.logmanager.path.save()
 		self.close()
+
+class LogInfo(VariableText, GUIComponent):
+	FREE = 0
+	USED = 1
+	SIZE = 2
+	
+	def __init__(self, path, type, update = True):
+		GUIComponent.__init__(self)
+		VariableText.__init__(self)
+		self.type = type
+# 		self.path = config.crash.debug_path.getValue()
+		if update:
+			self.update(path)
+	
+	def update(self, path):
+		try:
+			total_size = get_size(path)
+		except OSError:
+			return -1
+		
+		if self.type == self.USED:
+			try:
+				if total_size < 10000000:
+					total_size = "%d kB" % (total_size >> 10)
+				elif total_size < 10000000000:
+					total_size = "%d MB" % (total_size >> 20)
+				else:
+					total_size = "%d GB" % (total_size >> 30)
+				self.setText(_("Space used:") + " " + total_size)
+			except:
+				# occurs when f_blocks is 0 or a similar error
+				self.setText("-?-")
+
+	GUI_WIDGET = eLabel
