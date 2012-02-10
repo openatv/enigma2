@@ -199,10 +199,10 @@ eDBoxLCD *eDBoxLCD::getInstance()
 
 void eDBoxLCD::update()
 {
-#if defined(HAVE_GRAPHICLCD) && !defined(HAVE_TEXTLCD)
+#ifndef HAVE_TEXTLCD
 	if (lcdfd >= 0)
 	{
-		if (!is_oled || is_oled == 2)
+		if (is_oled == 0 || is_oled == 2)
 		{
 			unsigned char raw[132*8];
 			int x, y, yy;
@@ -222,7 +222,7 @@ void eDBoxLCD::update()
 		}
 		else if (is_oled == 3)
 			write(lcdfd, _buffer, _stride * res.height());
-		else
+		else /* is_oled == 1 */
 		{
 			unsigned char raw[64*64];
 			int x, y;
@@ -241,20 +241,5 @@ void eDBoxLCD::update()
 			write(lcdfd, raw, 64*64);
 		}
 	}
-#endif /*defined(DISPLAY_GRAPHICVFD) && !defined(DISPLAY_TEXTVFD)*/
+#endif
 }
-
-#if defined(HAVE_TEXTLCD)
-void eDBoxLCD::updates(ePoint start,char *text)
-{
-	if((lcdfd >= 0) && (start.y() < 5))
-	{
-		int i = 0, text_len = strlen(text);
-		for(; i<text_len ; i++)
-		{
-					if(text[i]==0x0a) text[i] = 0x20;
-			}
-		write(lcdfd, text, text_len);
-	}
-}
-#endif /*defined(HAVE_TEXTLCD)*/
