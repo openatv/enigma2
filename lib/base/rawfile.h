@@ -19,6 +19,7 @@ public:
 	off_t lseek(off_t offset, int whence);
 	ssize_t read(off_t offset, void *buf, size_t count);
 	off_t length();
+	off_t offset();
 	int valid();
 private:
 	int m_fd;     /* for uncached */

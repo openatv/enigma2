@@ -79,7 +79,7 @@ public:
 	/* Used by parser */
 	int startSave(const std::string& filename);
 	int stopSave(void);
-	void addAccessPoint(off_t offset, pts_t pts) { m_access_points.push_back(AccessPoint(offset, pts)); }
+	virtual void addAccessPoint(off_t offset, pts_t pts) { m_access_points.push_back(AccessPoint(offset, pts)); }
 	void writeStructureEntry(off_t offset, unsigned long long data);
 private:
 	void close();
@@ -110,6 +110,8 @@ private:
 	int m_pktptr;
 	int processPacket(const unsigned char *pkt, off_t offset);
 	inline int wantPacket(const unsigned char *pkt) const;
+	void addAccessPoint(off_t offset, pts_t pts);
+	void addAccessPoint(off_t offset, pts_t pts, timespec &now);
 	int m_pid;
 	int m_streamtype;
 	int m_need_next_packet;
@@ -118,6 +120,7 @@ private:
 	pts_t m_last_pts;
 	int m_packetsize;
 	int m_header_offset;
+	timespec m_last_access_point;
 };
 
 #endif
