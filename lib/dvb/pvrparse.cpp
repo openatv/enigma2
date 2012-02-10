@@ -119,6 +119,21 @@ pts_t eMPEGStreamInformation::getDelta(off_t offset)
 int eMPEGStreamInformation::fixupPTS(const off_t &offset, pts_t &ts)
 {
 	//eDebug("eMPEGStreamInformation::fixupPTS(offset=%llu pts=%llu)", offset, ts);
+	if (!m_structure_cache_entries && !m_access_points.empty())
+	{
+		/* 
+		 * We have no structure entry points, only access points. 
+		 * The TS might be scrambled, in which case we would not
+		 * have been able to parse structure entry points, but
+		 * also no pts values.
+		 * That means that the access points are measured in
+		 * stream time, rather than actual mpeg pts.
+		 * Overrule the timestamp with the nearest access point pts. 
+		 */
+		off_t nearestoffset = offset;
+		getPTS(nearestoffset, ts);
+		return 0;
+	}
 	if (m_timestamp_deltas.empty())
 		return -1;
 
