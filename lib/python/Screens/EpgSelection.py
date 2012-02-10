@@ -1192,6 +1192,7 @@ class EPGSelection(Screen, HelpableScreen):
 						datestr = '%s'%(_("Today"))
 			self["date"].setText(datestr)
 
+		if self.type == EPG_TYPE_MULTI or self.type == EPG_TYPE_GRAPH:
 			if cur[1] is None:
 				self["Service"].newService(None)
 			else:
