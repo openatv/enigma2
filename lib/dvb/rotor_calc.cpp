@@ -140,41 +140,45 @@ double Rev( double number )
 	return number - std::floor( number / 360.0 ) * 360;
 }
 
+#define		f	(1.00 / 298.257) // Earth flattning factor
+#define		r_sat	42164.57 // Distance from earth centre to satellite
+#define		r_eq	6378.14  // Earth radius
+
+#define		a0	 0.58804392
+#define		a1	-0.17941557
+#define		a2	 0.29906946E-1
+#define		a3	-0.25187400E-2
+#define		a4	 0.82622101E-4
+
 double calcElevation( double SatLon, double SiteLat, double SiteLon, int Height_over_ocean = 0 )
 {
-	double  a0=0.58804392,
-			a1=-0.17941557,
-			a2=0.29906946E-1,
-			a3=-0.25187400E-2,
-			a4=0.82622101E-4,
+	double	sinRadSiteLat=SIN(Radians(SiteLat)),
+		cosRadSiteLat=COS(Radians(SiteLat)),
 
-			f = 1.00 / 298.257, // Earth flattning factor
+		Rstation = r_eq / ( std::sqrt( 1.00 - f*(2.00-f)*sinRadSiteLat*sinRadSiteLat ) ),
 
-			r_sat=42164.57, // Distance from earth centre to satellite
+		Ra = (Rstation+Height_over_ocean)*cosRadSiteLat,
+		Rz= Rstation*(1.00-f)*(1.00-f)*sinRadSiteLat,
 
-			r_eq=6378.14,  // Earth radius
+		alfa_rx=r_sat*COS(Radians(SatLon-SiteLon)) - Ra,
+		alfa_ry=r_sat*SIN(Radians(SatLon-SiteLon)),
+		alfa_rz=-Rz,
 
-			sinRadSiteLat=SIN(Radians(SiteLat)),
-			cosRadSiteLat=COS(Radians(SiteLat)),
+		alfa_r_north=-alfa_rx*sinRadSiteLat + alfa_rz*cosRadSiteLat,
+		alfa_r_zenith=alfa_rx*cosRadSiteLat + alfa_rz*sinRadSiteLat,
 
-			Rstation = r_eq / ( std::sqrt( 1.00 - f*(2.00-f)*sinRadSiteLat*sinRadSiteLat ) ),
+		den = alfa_r_north*alfa_r_north+alfa_ry*alfa_ry,
+		El_geometric = 90.0,
 
-			Ra = (Rstation+Height_over_ocean)*cosRadSiteLat,
-			Rz= Rstation*(1.00-f)*(1.00-f)*sinRadSiteLat,
+		x,
+		refraction,
+		El_observed = 0.00;
 
-			alfa_rx=r_sat*COS(Radians(SatLon-SiteLon)) - Ra,
-			alfa_ry=r_sat*SIN(Radians(SatLon-SiteLon)),
-			alfa_rz=-Rz,
+	if (den > 0.0)
+		El_geometric=Deg(ATAN( alfa_r_zenith/std::sqrt(den)));
 
-			alfa_r_north=-alfa_rx*sinRadSiteLat + alfa_rz*cosRadSiteLat,
-			alfa_r_zenith=alfa_rx*cosRadSiteLat + alfa_rz*sinRadSiteLat,
-
-			El_geometric=Deg(ATAN( alfa_r_zenith/std::sqrt(alfa_r_north*alfa_r_north+alfa_ry*alfa_ry))),
-
-			x = std::fabs(El_geometric+0.589),
-			refraction=std::fabs(a0+a1*x+a2*x*x+a3*x*x*x+a4*x*x*x*x),
-
-			El_observed = 0.00;
+	x = std::fabs(El_geometric+0.589);
+	refraction=std::fabs(a0 + (a1 + (a2 + (a3 + a4 * x) * x) * x) * x);
 
 	if (El_geometric > 10.2)
 		El_observed = El_geometric+0.01617*(COS(Radians(std::fabs(El_geometric)))/SIN(Radians(std::fabs(El_geometric))) );
@@ -189,65 +193,54 @@ double calcElevation( double SatLon, double SiteLat, double SiteLon, int Height_
 
 double calcAzimuth(double SatLon, double SiteLat, double SiteLon, int Height_over_ocean=0)
 {
-	double	f = 1.00 / 298.257, // Earth flattning factor
+	double	sinRadSiteLat=SIN(Radians(SiteLat)),
+		cosRadSiteLat=COS(Radians(SiteLat)),
 
-			r_sat=42164.57, // Distance from earth centre to satellite
+		Rstation = r_eq / ( std::sqrt( 1 - f*(2-f)*sinRadSiteLat*sinRadSiteLat ) ),
+		Ra = (Rstation+Height_over_ocean)*cosRadSiteLat,
+		Rz = Rstation*(1-f)*(1-f)*sinRadSiteLat,
 
-			r_eq=6378.14,  // Earth radius
-
-			sinRadSiteLat=SIN(Radians(SiteLat)),
-			cosRadSiteLat=COS(Radians(SiteLat)),
-
-			Rstation = r_eq / ( std::sqrt( 1 - f*(2-f)*sinRadSiteLat*sinRadSiteLat ) ),
-			Ra = (Rstation+Height_over_ocean)*cosRadSiteLat,
-			Rz = Rstation*(1-f)*(1-f)*sinRadSiteLat,
-
-			alfa_rx = r_sat*COS(Radians(SatLon-SiteLon)) - Ra,
-			alfa_ry = r_sat*SIN(Radians(SatLon-SiteLon)),
-			alfa_rz = -Rz,
-
-			alfa_r_north = -alfa_rx*sinRadSiteLat + alfa_rz*cosRadSiteLat,
-
-			Azimuth = 0.00;
+		alfa_rx = r_sat*COS(Radians(SatLon-SiteLon)) - Ra,
+		alfa_ry = r_sat*SIN(Radians(SatLon-SiteLon)),
+		alfa_rz = -Rz,
+		alfa_r_north = -alfa_rx*sinRadSiteLat + alfa_rz*cosRadSiteLat,
+		Azimuth;
 
 	if (alfa_r_north < 0)
 		Azimuth = 180+Deg(ATAN(alfa_ry/alfa_r_north));
-	else
+	else if (alfa_r_north > 0)
 		Azimuth = Rev(360+Deg(ATAN(alfa_ry/alfa_r_north)));
-
+	else
+		Azimuth = 0.00;
 	return Azimuth;
 }
 
 double calcDeclination( double SiteLat, double Azimuth, double Elevation)
 {
-	return Deg( ASIN(SIN(Radians(Elevation)) *
-												SIN(Radians(SiteLat)) +
-												COS(Radians(Elevation)) *
-												COS(Radians(SiteLat)) +
-												COS(Radians(Azimuth))
-												)
-						);
+	return Deg( ASIN( SIN(Radians(Elevation)) * SIN(Radians(SiteLat)) +
+			COS(Radians(Elevation)) * COS(Radians(SiteLat)) +
+			COS(Radians(Azimuth))
+			)
+		);
 }
 
 double calcSatHourangle( double SatLon, double SiteLat, double SiteLon )
 {
 	double	Azimuth=calcAzimuth(SatLon, SiteLat, SiteLon ),
-			Elevation=calcElevation( SatLon, SiteLat, SiteLon ),
+		Elevation=calcElevation( SatLon, SiteLat, SiteLon ),
 
-			a = - COS(Radians(Elevation)) * SIN(Radians(Azimuth)),
-
-			b = SIN(Radians(Elevation)) * COS(Radians(SiteLat))
-				-
-				COS(Radians(Elevation)) * SIN(Radians(SiteLat)) * COS(Radians(Azimuth)),
+		a = - COS(Radians(Elevation)) * SIN(Radians(Azimuth)),
+		b = SIN(Radians(Elevation)) * COS(Radians(SiteLat)) -
+			COS(Radians(Elevation)) * SIN(Radians(SiteLat)) * COS(Radians(Azimuth)),
 
 // Works for all azimuths (northern & southern hemisphere)
-			returnvalue = 180 + Deg(ATAN(a/b));
+		returnvalue = 180 + Deg(ATAN(a/b));
 
 	if ( Azimuth > 270 )
 	{
-		returnvalue = ( (returnvalue-180) + 360 );
+		returnvalue += 180;
 		if (returnvalue>360)
-			returnvalue = 360 - (returnvalue-360);
+			returnvalue = 720 - returnvalue;
 	}
 
 	if ( Azimuth < 90 )
