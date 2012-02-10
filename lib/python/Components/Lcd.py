@@ -25,6 +25,9 @@ class LCD:
 			value = 255
 		eDBoxLCD.getInstance().setInverted(value)
 
+	def setFlipped(self, value):
+		eDBoxLCD.getInstance().setFlipped(value)
+
 	def isOled(self):
 		return eDBoxLCD.getInstance().isOled()
 
@@ -50,6 +53,9 @@ def InitLcd():
 		def setLCDinverted(configElement):
 			ilcd.setInverted(configElement.value);
 
+		def setLCDflipped(configElement):
+			ilcd.setFlipped(configElement.value);
+
 		standby_default = 0
 
 		ilcd = LCD()
@@ -72,6 +78,9 @@ def InitLcd():
 
 		config.lcd.invert = ConfigYesNo(default=False)
 		config.lcd.invert.addNotifier(setLCDinverted);
+
+		config.lcd.flip = ConfigYesNo(default=False)
+		config.lcd.flip.addNotifier(setLCDflipped);
 	else:
 		def doNothing():
 			pass
