@@ -69,6 +69,7 @@ private:
 	int m_structure_file_entries; // Also to detect changes to file
 
 	unsigned long long m_structure_cache[1024];
+	bool m_streamtime_accesspoints;
 };
 
 class eMPEGStreamInformationWriter
@@ -79,7 +80,7 @@ public:
 	/* Used by parser */
 	int startSave(const std::string& filename);
 	int stopSave(void);
-	virtual void addAccessPoint(off_t offset, pts_t pts) { m_access_points.push_back(AccessPoint(offset, pts)); }
+	virtual void addAccessPoint(off_t offset, pts_t pts, bool streamtime);
 	void writeStructureEntry(off_t offset, unsigned long long data);
 private:
 	void close();
@@ -90,7 +91,7 @@ private:
 		pts_t pts;
 		AccessPoint(off_t o, pts_t p): off(o), pts(p) {}
 	};
-	std::deque<AccessPoint> m_access_points;
+	std::deque<AccessPoint> m_access_points, m_streamtime_access_points;
 	std::string m_filename;
 	int m_structure_write_fd;
 	void* m_write_buffer;
@@ -110,17 +111,18 @@ private:
 	int m_pktptr;
 	int processPacket(const unsigned char *pkt, off_t offset);
 	inline int wantPacket(const unsigned char *pkt) const;
-	void addAccessPoint(off_t offset, pts_t pts);
-	void addAccessPoint(off_t offset, pts_t pts, timespec &now);
+	void addAccessPoint(off_t offset, pts_t pts, bool streamtime = false);
+	void addAccessPoint(off_t offset, pts_t pts, timespec &now, bool streamtime = false);
 	int m_pid;
 	int m_streamtype;
 	int m_need_next_packet;
 	int m_skip;
-	int m_last_pts_valid;
-	pts_t m_last_pts;
+	int m_last_pts_valid; /* m_last_pts contains a valid value */
+	pts_t m_last_pts; /* last pts value, either from mpeg stream, or measured in streamtime */
+	bool m_pts_found; /* 'real' mpeg pts has been found, no longer measuring streamtime */
 	int m_packetsize;
 	int m_header_offset;
-	timespec m_last_access_point;
+	timespec m_last_access_point; /* timespec at which the previous access point was reported */
 };
 
 #endif
