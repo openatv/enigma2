@@ -2791,9 +2791,7 @@ void eDVBServicePlay::loadCuesheet()
 			if (!fread(&what, sizeof(what), 1, f))
 				break;
 			
-#if BYTE_ORDER == LITTLE_ENDIAN
-			where = bswap_64(where);
-#endif
+			where = be64toh(where);
 			what = ntohl(what);
 			
 			if (what > 3)
@@ -2824,11 +2822,7 @@ void eDVBServicePlay::saveCuesheet()
 
 		for (std::multiset<cueEntry>::iterator i(m_cue_entries.begin()); i != m_cue_entries.end(); ++i)
 		{
-#if BYTE_ORDER == BIG_ENDIAN
-			where = i->where;
-#else
-			where = bswap_64(i->where);
-#endif
+			where = htobe64(i->where);
 			what = htonl(i->what);
 			fwrite(&where, sizeof(where), 1, f);
 			fwrite(&what, sizeof(what), 1, f);
