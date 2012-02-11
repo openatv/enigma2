@@ -580,7 +580,7 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 										int x = 1;
 										for (std::vector<std::string>::iterator it2 = autosub_languages.begin();x <= autosub_level && it2 != autosub_languages.end();x++,it2++)
 										{
-											if ( (*it2).find(language) != -1 )
+											if ((*it2).find(language) != std::string::npos)
 											{
 												autosub_level = x;
 												if (s.subtitling_type >= 0x20)
@@ -622,7 +622,7 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 												int x = 1;
 												for (std::vector<std::string>::iterator it2 = autosub_languages.begin();x <= autosub_level && it2 != autosub_languages.end();x++,it2++)
 												{
-													if ( (*it2).find(language) != -1 )
+													if ((*it2).find(language) != std::string::npos)
 													{
 														autosub_level = x;
 														if (s.subtitling_type == 0x05)
@@ -730,7 +730,7 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 										int x = 1;
 										for (std::vector<std::string>::iterator it = autoaudio_languages.begin();x <= autoaudio_level && it != autoaudio_languages.end();x++,it++)
 										{
-											if ( (*it).find(language) != -1 )
+											if ((*it).find(language) != std::string::npos)
 											{
 												if (audio.type == audioStream::atMPEG && (autoaudio_level > x || autoaudio_mpeg == -1)) 
 													autoaudio_mpeg = program.audioStreams.size();
