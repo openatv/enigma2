@@ -52,11 +52,8 @@ int eMPEGStreamInformation::load(const char *filename)
 		unsigned long long d[2];
 		if (fread(d, sizeof(d), 1, f) < 1)
 			break;
-		
-#if BYTE_ORDER == LITTLE_ENDIAN
-		d[0] = bswap_64(d[0]);
-		d[1] = bswap_64(d[1]);
-#endif
+		d[0] = be64toh(d[0]);
+		d[1] = be64toh(d[1]);
 		m_access_points[d[0]] = d[1];
 		m_pts_to_offset.insert(std::pair<pts_t,off_t>(d[1], d[0]));
 	}
@@ -290,13 +287,9 @@ int eMPEGStreamInformation::getNextAccessPoint(pts_t &ts, const pts_t &start, in
 	return 0;
 }
 
-#if BYTE_ORDER != BIG_ENDIAN
-#	define structureCacheOffset(i) ((off_t)bswap_64(m_structure_cache[(i)*2]))
-#	define structureCacheData(i) ((off_t)bswap_64(m_structure_cache[(i)*2+1]))
-#else
-#	define structureCacheOffset(i) ((off_t)m_structure_cache[(i)*2])
-#	define structureCacheData(i) ((off_t)m_structure_cache[(i)*2+1])
-#endif
+#define structureCacheOffset(i) ((off_t)be64toh(m_structure_cache[(i)*2]))
+#define structureCacheData(i) ((off_t)be64toh(m_structure_cache[(i)*2+1]))
+
 static const int entry_size = 16;
 
 int eMPEGStreamInformation::moveCache(int index)
@@ -378,9 +371,7 @@ int eMPEGStreamInformation::getStructureEntryFirst(off_t &offset, unsigned long 
 				eDebug("read error at entry %d", i+step);
 				return -1;
 			}
-#if BYTE_ORDER != BIG_ENDIAN
-			d = bswap_64(d);
-#endif
+			d = be64toh(d);
 			if (d < (unsigned long long)offset)
 			{
 				i += step + 1;
@@ -575,25 +566,15 @@ int eMPEGStreamInformationWriter::stopSave(void)
 	for (std::deque<AccessPoint>::const_iterator i(m_streamtime_access_points.begin()); i != m_streamtime_access_points.end(); ++i)
 	{
 		unsigned long long d[2];
-#if BYTE_ORDER == BIG_ENDIAN
-		d[0] = i->off;
-		d[1] = i->pts;
-#else
-		d[0] = bswap_64(i->off);
-		d[1] = bswap_64(i->pts);
-#endif
+		d[0] = htobe64(i->off);
+		d[1] = htobe64(i->pts);
 		fwrite(d, sizeof(d), 1, f);
 	}
 	for (std::deque<AccessPoint>::const_iterator i(m_access_points.begin()); i != m_access_points.end(); ++i)
 	{
 		unsigned long long d[2];
-#if BYTE_ORDER == BIG_ENDIAN
-		d[0] = i->off;
-		d[1] = i->pts;
-#else
-		d[0] = bswap_64(i->off);
-		d[1] = bswap_64(i->pts);
-#endif
+		d[0] = htobe64(i->off);
+		d[1] = htobe64(i->pts);
 		fwrite(d, sizeof(d), 1, f);
 	}
 	fclose(f);
@@ -623,13 +604,8 @@ void eMPEGStreamInformationWriter::writeStructureEntry(off_t offset, unsigned lo
 	if (m_structure_write_fd >= 0)
 	{
 		unsigned long long *d = (unsigned long long*)((char*)m_write_buffer + m_buffer_filled);
-#if BYTE_ORDER == BIG_ENDIAN
-		d[0] = offset;
-		d[1] = data;
-#else
-		d[0] = bswap_64(offset);
-		d[1] = bswap_64(data);
-#endif
+		d[0] = htobe64(offset);
+		d[1] = htobe64(data);
 		m_buffer_filled += 16;
 		if (m_buffer_filled == PAGESIZE)
 			flush();
