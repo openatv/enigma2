@@ -14,7 +14,8 @@ eMPEGStreamInformation::eMPEGStreamInformation():
 	m_cache_index(-1),
 	m_current_entry(-1),
 	m_structure_cache_entries(0),
-	m_structure_file_entries(0)
+	m_structure_file_entries(0),
+	m_streamtime_accesspoints(false)
 {
 }
 
@@ -60,6 +61,8 @@ int eMPEGStreamInformation::load(const char *filename)
 		m_pts_to_offset.insert(std::pair<pts_t,off_t>(d[1], d[0]));
 	}
 	fclose(f);
+	/* assume the accesspoints are in streamtime, if they start with a 0 timestamp */
+	m_streamtime_accesspoints = (!m_access_points.empty() && m_access_points.begin()->second == 0);
 	fixupDiscontinuties();
 	return 0;
 }
@@ -119,23 +122,16 @@ pts_t eMPEGStreamInformation::getDelta(off_t offset)
 int eMPEGStreamInformation::fixupPTS(const off_t &offset, pts_t &ts)
 {
 	//eDebug("eMPEGStreamInformation::fixupPTS(offset=%llu pts=%llu)", offset, ts);
-#if 0
-	if (!m_structure_cache_entries && !m_access_points.empty())
+	if (m_streamtime_accesspoints)
 	{
-		/* 
-		 * We have no structure entry points, only access points. 
-		 * The TS might be scrambled, in which case we would not
-		 * have been able to parse structure entry points, but
-		 * also no pts values.
-		 * That means that the access points are measured in
-		 * stream time, rather than actual mpeg pts.
+		/*
+		 * The access points are measured in stream time, rather than actual mpeg pts.
 		 * Overrule the timestamp with the nearest access point pts. 
 		 */
 		off_t nearestoffset = offset;
 		getPTS(nearestoffset, ts);
 		return 0;
 	}
-#endif
 	if (m_timestamp_deltas.empty())
 		return -1;
 
@@ -576,6 +572,18 @@ int eMPEGStreamInformationWriter::stopSave(void)
 	if (!f)
 		return -1;
 
+	for (std::deque<AccessPoint>::const_iterator i(m_streamtime_access_points.begin()); i != m_streamtime_access_points.end(); ++i)
+	{
+		unsigned long long d[2];
+#if BYTE_ORDER == BIG_ENDIAN
+		d[0] = i->off;
+		d[1] = i->pts;
+#else
+		d[0] = bswap_64(i->off);
+		d[1] = bswap_64(i->pts);
+#endif
+		fwrite(d, sizeof(d), 1, f);
+	}
 	for (std::deque<AccessPoint>::const_iterator i(m_access_points.begin()); i != m_access_points.end(); ++i)
 	{
 		unsigned long long d[2];
@@ -593,6 +601,22 @@ int eMPEGStreamInformationWriter::stopSave(void)
 	return 0;
 }
 
+void eMPEGStreamInformationWriter::addAccessPoint(off_t offset, pts_t pts, bool streamtime)
+{
+	if (streamtime)
+	{
+		m_streamtime_access_points.push_back(AccessPoint(offset, pts));
+	}
+	else
+	{
+		/* 
+		 * We've got real pts now, drop the leading 'extrapolated' accesspoints,
+		 * avoid unnecessary pts discontinuity 
+		 */
+		m_streamtime_access_points.clear();
+		m_access_points.push_back(AccessPoint(offset, pts));
+	}
+}
 
 void eMPEGStreamInformationWriter::writeStructureEntry(off_t offset, unsigned long long data)
 {
@@ -647,14 +671,21 @@ eMPEGStreamParserTS::eMPEGStreamParserTS(int packetsize):
 	m_skip(0),
 	m_last_pts_valid(0),
 	m_last_pts(0),
+	m_pts_found(false),
 	m_packetsize(packetsize),
 	m_header_offset(packetsize - 188)
 {
-	m_last_access_point.tv_sec = m_last_access_point.tv_nsec = 0;
 }
 
 int eMPEGStreamParserTS::processPacket(const unsigned char *pkt, off_t offset)
 {
+	if (!m_last_pts_valid)
+	{
+		/* initial stream time access point: 0,0 */
+		m_last_pts = 0;
+		m_last_pts_valid = 1;
+		addAccessPoint(offset, m_last_pts, !m_pts_found);
+	}
 	if (!wantPacket(pkt))
 		eWarning("something's wrong.");
 
@@ -678,7 +709,7 @@ int eMPEGStreamParserTS::processPacket(const unsigned char *pkt, off_t offset)
 				m_last_pts += diff.tv_sec * 90000L;
 				m_last_pts += diff.tv_nsec / 11111L;
 				m_last_pts_valid = 1;
-				addAccessPoint(offset, m_last_pts, now);
+				addAccessPoint(offset, m_last_pts, now, !m_pts_found);
 			}
 		}
 		return 0;
@@ -721,6 +752,7 @@ int eMPEGStreamParserTS::processPacket(const unsigned char *pkt, off_t offset)
 			
 			m_last_pts = pts;
 			m_last_pts_valid = 1;
+			m_pts_found = true;
 		}
 		
 			/* advance to payload */
@@ -923,16 +955,16 @@ void eMPEGStreamParserTS::parseData(off_t offset, const void *data, unsigned int
 	}
 }
 
-void eMPEGStreamParserTS::addAccessPoint(off_t offset, pts_t pts)
+void eMPEGStreamParserTS::addAccessPoint(off_t offset, pts_t pts, bool streamtime)
 {
 	timespec now;
 	clock_gettime(CLOCK_MONOTONIC, &now);
-	addAccessPoint(offset, pts, now);
+	addAccessPoint(offset, pts, now, streamtime);
 }
 
-void eMPEGStreamParserTS::addAccessPoint(off_t offset, pts_t pts, timespec &now)
+void eMPEGStreamParserTS::addAccessPoint(off_t offset, pts_t pts, timespec &now, bool streamtime)
 {
-	eMPEGStreamInformationWriter::addAccessPoint(offset, pts);
+	eMPEGStreamInformationWriter::addAccessPoint(offset, pts, streamtime);
 	m_last_access_point = now;
 }
 
