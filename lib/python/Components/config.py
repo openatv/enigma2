@@ -383,7 +383,7 @@ class ConfigSelection(ConfigElement):
 # several customized versions exist for different
 # descriptions.
 #
-boolean_descriptions = {False: "false", True: "true"}
+boolean_descriptions = {False: _("false"), True: _("true")}
 class ConfigBoolean(ConfigElement):
 	def __init__(self, default = False, descriptions = boolean_descriptions):
 		ConfigElement.__init__(self)

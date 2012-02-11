@@ -119,6 +119,7 @@ pts_t eMPEGStreamInformation::getDelta(off_t offset)
 int eMPEGStreamInformation::fixupPTS(const off_t &offset, pts_t &ts)
 {
 	//eDebug("eMPEGStreamInformation::fixupPTS(offset=%llu pts=%llu)", offset, ts);
+#if 0
 	if (!m_structure_cache_entries && !m_access_points.empty())
 	{
 		/* 
@@ -134,6 +135,7 @@ int eMPEGStreamInformation::fixupPTS(const off_t &offset, pts_t &ts)
 		getPTS(nearestoffset, ts);
 		return 0;
 	}
+#endif
 	if (m_timestamp_deltas.empty())
 		return -1;
 
