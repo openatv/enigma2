@@ -2774,10 +2774,13 @@ void eDVBServicePlay::updateDecoder(bool sendSeekableStateChanged)
 		if (m_dvb_service)
 		{
 				/* (audio pid will be set in selectAudioTrack */
-			m_dvb_service->setCacheEntry(eDVBService::cVPID, vpid);
-			m_dvb_service->setCacheEntry(eDVBService::cVTYPE, vpidtype == eDVBVideo::MPEG2 ? -1 : vpidtype);
-			m_dvb_service->setCacheEntry(eDVBService::cPCRPID, pcrpid);
-			m_dvb_service->setCacheEntry(eDVBService::cTPID, tpid);
+			if (vpid >= 0) 
+			{
+				m_dvb_service->setCacheEntry(eDVBService::cVPID, vpid);
+				m_dvb_service->setCacheEntry(eDVBService::cVTYPE, vpidtype == eDVBVideo::MPEG2 ? -1 : vpidtype);
+			}
+			if (pcrpid >= 0) m_dvb_service->setCacheEntry(eDVBService::cPCRPID, pcrpid);
+			if (tpid >= 0) m_dvb_service->setCacheEntry(eDVBService::cTPID, tpid);
 		}
 		if (!sendSeekableStateChanged && (m_decoder->getVideoProgressive() != -1) != wasSeekable)
 			sendSeekableStateChanged = true;
