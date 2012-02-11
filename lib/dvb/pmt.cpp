@@ -47,7 +47,7 @@ void eDVBServicePMTHandler::channelStateChanged(iDVBChannel *channel)
 {
 	int state;
 	channel->getState(state);
-	
+
 	if ((m_last_channel_state != iDVBChannel::state_ok)
 		&& (state == iDVBChannel::state_ok) && (!m_demux))
 	{
@@ -61,9 +61,9 @@ void eDVBServicePMTHandler::channelStateChanged(iDVBChannel *channel)
 			else if (m_channel->getDemux(m_demux, (!m_use_decode_demux) ? 0 : iDVBChannel::capDecode))
 				eDebug("Allocating %s-decoding a demux for now tuned-in channel failed.", m_use_decode_demux ? "" : "non-");
 		}
-		
+
 		serviceEvent(eventTuned);
-		
+
 		if (m_demux)
 		{
 			eDebug("ok ... now we start!!");
@@ -400,7 +400,7 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 		int autosub_dvb_normal = -1;
 		int autosub_dvb_hearing = -1;
 		int autosub_level =4;
-		
+
 		std::vector<std::string> autosub_languages;
 		if (!ePythonConfigQuery::getConfigValue("config.autolanguage.subtitle_autoselect1", configvalue) && configvalue != "None")
 			autosub_languages.push_back(configvalue);
@@ -588,9 +588,9 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 												else
 													autosub_dvb_normal = program.subtitleStreams.size();
 												break;
-											}	
+											}
 										}
-									}	
+									}
 									issubtitle = 1;
 									program.subtitleStreams.push_back(s);
 								}
@@ -630,8 +630,8 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 														else
 															autosub_txt_normal = program.subtitleStreams.size();
 														break;
-													}	
-												}	
+													}
+												}
 											}
 											program.subtitleStreams.push_back(s);
 											issubtitle=1;
@@ -738,9 +738,9 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 													autoaudio_ac3 = program.audioStreams.size();
 												autoaudio_level = x;
 												break;
-											}	
+											}
 										}
-									}    
+									}
 								}
 							}
 							break;
@@ -878,7 +878,7 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 		bool default_hearingimpaired = false;
 		bool defaultdvb = false;
 		int equallanguagemask = false;
-		
+
 		if (!ePythonConfigQuery::getConfigValue("config.autolanguage.subtitle_hearingimpaired", configvalue))
 			allow_hearingimpaired = configvalue == "True";
 		if (!ePythonConfigQuery::getConfigValue("config.autolanguage.subtitle_defaultimpaired", configvalue))
@@ -920,7 +920,7 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 		}
 		if (program.defaultSubtitleStream != -1 && (equallanguagemask & (1<<(autosub_level-1))) == 0 && program.subtitleStreams[program.defaultSubtitleStream].language_code.compare(program.audioStreams[program.defaultAudioStream].language_code) == 0 )
 			program.defaultSubtitleStream = -1;
-	} 
+	}
 	else if ( m_service && !m_service->cacheEmpty() )
 	{
 		int cached_pcrpid = m_service->getCacheEntry(eDVBService::cPCRPID),
@@ -1074,7 +1074,7 @@ int eDVBServicePMTHandler::tuneExt(eServiceReferenceDVB &ref, int use_decode_dem
 
 		/* use given service as backup. This is used for timeshift where we want to clone the live stream using the cache, but in fact have a PVR channel */
 	m_service = service;
-	
+
 		/* is this a normal (non PVR) channel? */
 	if (ref.path.empty())
 	{
@@ -1131,7 +1131,7 @@ int eDVBServicePMTHandler::tuneExt(eServiceReferenceDVB &ref, int use_decode_dem
 				m_channelStateChanged_connection);
 			m_last_channel_state = -1;
 			channelStateChanged(m_channel);
-	
+
 			m_channel->connectEvent(
 				slot(*this, &eDVBServicePMTHandler::channelEvent), 
 				m_channelEvent_connection);
