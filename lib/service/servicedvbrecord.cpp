@@ -604,11 +604,7 @@ void eDVBServiceRecord::saveCutlist()
 				continue;
 			}
 			eDebug("fixed up %llx to %llx (offset %llx)", i->second, p, offset);
-#if BYTE_ORDER == BIG_ENDIAN
-			where = p;
-#else
-			where = bswap_64(p);
-#endif
+			where = htobe64(p);
 			what = htonl(2); /* mark */
 			fwrite(&where, sizeof(where), 1, f);
 			fwrite(&what, sizeof(what), 1, f);
