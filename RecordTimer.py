@@ -392,6 +392,8 @@ class RecordTimerEntry(timer.TimerEntry, object):
 
 			if config.usage.show_message_when_recording_starts.value:
 				Notifications.AddPopup(text = text, type = MessageBox.TYPE_INFO, timeout = 3)
+		elif event == iRecordableService.evRecordAborted:
+			NavigationInstance.instance.RecordTimer.removeEntry(self)
 
 	# we have record_service as property to automatically subscribe to record service events
 	def setRecordService(self, service):
