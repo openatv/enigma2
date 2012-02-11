@@ -1981,8 +1981,9 @@ class InfoBarTimeshift:
 			}, prio=1)
 		self["TimeshiftActivateActions"] = ActionMap(["InfobarTimeshiftActivateActions"],
 			{
-				"timeshiftActivateEnd": self.activateTimeshiftEnd, # something like "rewind key"
-				"timeshiftActivateEndAndPause": self.activateTimeshiftEndAndPause  # something like "pause key"
+				"timeshiftActivateEnd": self.selectRedkeyTimeshiftEnd, # something like "rewind key"
+				"timeshiftActivateEndAndPause": self.activateTimeshiftEndAndPause,  # something like "pause key"
+				"timeshiftActivateEndAndPauseY": self.selectYellowkeyTimeshiftEndAndPause  # something like "pause key"
 			}, prio=-1) # priority over record
 
 		self["TimeshiftSeekPointerActions"] = ActionMap(["InfobarTimeshiftSeekPointerActions"],
@@ -2248,6 +2249,19 @@ class InfoBarTimeshift:
 			self.audioSelection()
 		else:
 			self.startTimeshift()
+
+	def selectYellowkeyTimeshiftEndAndPause(self):
+		if config.plugins.aafpanel_yellowkey.list.value == '0':
+			self.audioSelection()
+		else:
+			self.activateTimeshiftEndAndPause()
+
+	def selectRedkeyTimeshiftEnd(self, back = True):
+		if config.plugins.aafpanel_redpanel.enabled.value:
+			from Plugins.Extensions.Aafpanel.plugin import Aafpanel
+			self.session.open(Aafpanel, services = self.servicelist)
+		else:
+			self.activateTimeshiftEnd()
 
 	def audioSelection(self):
 		from Screens.AudioSelection import AudioSelection
@@ -3921,8 +3935,11 @@ class InfoBarAudioSelection:
 			})
 
 	def audioSelection(self):
-		from Screens.AudioSelection import AudioSelection
-		self.session.openWithCallback(self.audioSelected, AudioSelection, infobar=self)
+		if config.plugins.aafpanel_yellowkey.list.value == '0':
+			from Screens.AudioSelection import AudioSelection
+			self.session.openWithCallback(self.audioSelected, AudioSelection, infobar=self)
+		else:
+			self.startTimeshift()
 		
 	def audioSelected(self, ret=None):
 		print "[infobar::audioSelected]", ret
