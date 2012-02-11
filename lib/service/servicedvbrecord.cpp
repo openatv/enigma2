@@ -88,6 +88,11 @@ void eDVBServiceRecord::serviceEvent(int event)
 		m_error = errNoResources;
 		m_event((iRecordableService*)this, evTuneFailed);
 		break;
+	case eDVBServicePMTHandler::eventStopped:
+		/* recording data source has stopped, stop recording */
+		stop();
+		m_event((iRecordableService*)this, evRecordAborted);
+		break;
 	}
 }
 
@@ -259,17 +264,30 @@ int eDVBServiceRecord::doPrepare()
 		m_pids_active.clear();
 		m_state = statePrepared;
 		ePtr<iTsSource> source;
-		if (m_is_stream_client)
+		if (!m_ref.path.empty())
 		{
-			/* 
-			 * streams are considered to be descrambled by default;
-			 * user can indicate a stream is scrambled, by using servicetype id + 0x100
-			 */
-			descramble = (m_ref.type == eServiceFactoryDVB::id + 0x100);
-			servicetype = eDVBServicePMTHandler::streamclient;
-			eHttpStream *f = new eHttpStream();
-			f->open(m_ref.path.c_str());
-			source = ePtr<iTsSource>(f);
+			if (m_is_stream_client)
+			{
+				/* 
+				* streams are considered to be descrambled by default;
+				* user can indicate a stream is scrambled, by using servicetype id + 0x100
+				*/
+				descramble = (m_ref.type == eServiceFactoryDVB::id + 0x100);
+				servicetype = eDVBServicePMTHandler::streamclient;
+				eHttpStream *f = new eHttpStream();
+				f->open(m_ref.path.c_str());
+				source = ePtr<iTsSource>(f);
+			}
+			else
+			{
+				/* descramble and re-record a scrambled recording */
+				descramble = true;
+				servicetype = eDVBServicePMTHandler::offline;
+				m_record_ecm = false;
+				eRawFile *f = new eRawFile();
+				f->open(m_ref.path.c_str());
+				source = ePtr<iTsSource>(f);
+			}
 		}
 		return m_service_handler.tuneExt(m_ref, 0, source, m_ref.path.c_str(), 0, m_simulate, NULL, servicetype, descramble);
 	}
@@ -586,11 +604,7 @@ void eDVBServiceRecord::saveCutlist()
 				continue;
 			}
 			eDebug("fixed up %llx to %llx (offset %llx)", i->second, p, offset);
-#if BYTE_ORDER == BIG_ENDIAN
-			where = p;
-#else
-			where = bswap_64(p);
-#endif
+			where = htobe64(p);
 			what = htonl(2); /* mark */
 			fwrite(&where, sizeof(where), 1, f);
 			fwrite(&what, sizeof(what), 1, f);

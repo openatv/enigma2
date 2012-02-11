@@ -112,6 +112,8 @@ public:
 		eventMisconfiguration, // a channel was not found in any list, or no frontend was found which could provide this channel
 
 		eventHBBTVInfo, /* HBBTV information was detected in the AIT */
+
+		eventStopped,
 	};
 #ifndef SWIG
 	Signal1<void,int> serviceEvent;

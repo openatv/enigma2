@@ -897,7 +897,8 @@ public:
 		evNewProgramInfo,
 		evRecordFailed,
 		evRecordWriteError,
-		evNewEventInfo
+		evNewEventInfo,
+		evRecordAborted,
 	};
 	enum {
 		NoError=0,

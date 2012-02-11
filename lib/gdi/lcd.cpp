@@ -70,6 +70,8 @@ void eLCD::renderText(ePoint start, const char *text)
 eDBoxLCD::eDBoxLCD()
 {
 	int xres=132, yres=64, bpp=8;
+	flipped = false;
+	inverted = 0;
 	is_oled = 0;
 #ifndef NO_LCD
 	lcdfd = open("/dev/dbox/oled0", O_RDWR);
@@ -96,7 +98,6 @@ eDBoxLCD::eDBoxLCD()
 	{
 		int i=LCD_MODE_BIN;
 		ioctl(lcdfd, LCD_IOCTL_ASC_MODE, &i);
-		inverted=0;
 		FILE *f = fopen("/proc/stb/lcd/xres", "r");
 		if (f)
 		{
@@ -136,6 +137,12 @@ eDBoxLCD::eDBoxLCD()
 void eDBoxLCD::setInverted(unsigned char inv)
 {
 	inverted=inv;
+	update();
+}
+
+void eDBoxLCD::setFlipped(bool onoff)
+{
+	flipped = onoff;
 	update();
 }
 
@@ -220,14 +227,48 @@ void eDBoxLCD::update()
 					{
 						pix|=(_buffer[(y*8+yy)*132+x]>=108)<<yy;
 					}
-					raw[y*132+x]=(pix^inverted);
+					if (flipped)
+					{
+						raw[(7 - y) * 132 + (131 - x)] = (pix ^ inverted);
+					}
+					else
+					{
+						raw[y * 132 + x] = (pix ^ inverted);
+					}
 				}
 			}
 			write(lcdfd, raw, 132*8);
 		}
 		else if (is_oled == 3)
-			write(lcdfd, _buffer, _stride * res.height());
-		else
+		{
+			/* for now, only support flipping / inverting for 8bpp displays */
+			if ((flipped || inverted) && _stride == res.width())
+			{
+				unsigned int height = res.height();
+				unsigned int width = res.width();
+				unsigned char raw[_stride * height];
+				for (unsigned int y = 0; y < height; y++)
+				{
+					for (unsigned int x = 0; x < width; x++)
+					{
+						if (flipped)
+						{
+							raw[(height - 1 - y) * width + (width - 1 - x)] = _buffer[y * width + x] ^ inverted;
+						}
+						else
+						{
+							raw[y * width + x] = _buffer[y * width + x] ^ inverted;
+						}
+					}
+				}
+				write(lcdfd, raw, _stride * height);
+			}
+			else
+			{
+				write(lcdfd, _buffer, _stride * res.height());
+			}
+		}
+		else /* is_oled == 1 */
 		{
 			unsigned char raw[64*64];
 			int x, y;
@@ -240,7 +281,14 @@ void eDBoxLCD::update()
 					pix = (_buffer[y*132 + x * 2 + 2] & 0xF0) |(_buffer[y*132 + x * 2 + 1 + 2] >> 4);
 					if (inverted)
 						pix = 0xFF - pix;
-					raw[y*64+x] = pix;
+					if (flipped)
+					{
+						raw[(63 - y) * 64 + (127 - x)] = pix;
+					}
+					else
+					{
+						raw[y * 64 + x] = pix;
+					}
 				}
 			}
 			write(lcdfd, raw, 64*64);

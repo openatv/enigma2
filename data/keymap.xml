@@ -403,7 +403,7 @@
 		</device>
 		<device name="dreambox remote control (native)">
 			<key id="KEY_RED" mapto="timeshiftActivateEnd" flags="b" />
-			<key id="KEY_YELLOW" mapto="timeshiftActivateEndAndPause" flags="b" />
+			<key id="KEY_YELLOW" mapto="timeshiftActivateEndAndPauseY" flags="b" />
 		</device>
 		<key id="KEY_PLAYPAUSE" mapto="timeshiftActivateEndAndPause" flags="m" />
 		<key id="KEY_PAUSE" mapto="timeshiftActivateEndAndPause" flags="m" />
@@ -714,7 +714,7 @@
 		<key id="KEY_RED" mapto="aafPanel" flags="b" />
 		<key id="KEY_RED" mapto="softcamPanel" flags="l" />
 	</map>
-	
+
 		<map context="DVDPlayerActions">
 			<key id="KEY_MENU" mapto="dvdMenu" flags="m" />
 			<key id="KEY_INFO" mapto="toggleInfo" flags="m" />

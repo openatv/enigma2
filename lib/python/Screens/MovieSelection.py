@@ -14,6 +14,7 @@ from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
 from Components.Sources.ServiceEvent import ServiceEvent
 from Components.Sources.StaticText import StaticText
 import Components.Harddisk
+from Components.UsageConfig import preferredTimerPath
 
 from Plugins.Plugin import PluginDescriptor
 
@@ -28,7 +29,7 @@ import Tools.Trashcan
 import NavigationInstance
 import RecordTimer
 
-from enigma import eServiceReference, eServiceCenter, eTimer, eSize, iPlayableService
+from enigma import eServiceReference, eServiceCenter, eTimer, eSize, iPlayableService, iServiceInformation
 import os
 import time
 import cPickle as pickle
@@ -318,6 +319,7 @@ class MovieContextMenu(Screen):
 					(_("Copy"), csel.do_copy),
 					(_("Reset playback position"), csel.do_reset),
 					(_("Rename"), csel.do_rename),
+					(_("Start offline decode"), csel.do_decode),
 					]
 				# Plugins expect a valid selection, so only include them if we selected a non-dir 
 				menu.extend([(p.description, boundFunction(p, session, service)) for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST)])
@@ -1203,6 +1205,19 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.session.openWithCallback(self.renameCallback, InputBox,
 			title = _("Rename"),
 			text = name)
+
+	def do_decode(self):
+		from ServiceReference import ServiceReference
+		item = self.getCurrentSelection()
+		info = item[1]
+		serviceref = ServiceReference(None, reftype = eServiceReference.idDVB, path = item[0].getPath())
+		name = info.getName(item[0]) + ' - decoded'
+		description = info.getInfoString(item[0], iServiceInformation.sDescription)
+		recording = RecordTimer.RecordTimerEntry(serviceref, int(time.time()), int(time.time()) + 3600, name, description, 0, dirname = preferredTimerPath())
+		recording.dontSave = True
+		recording.autoincrease = True
+		recording.setAutoincreaseEnd()
+		self.session.nav.RecordTimer.record(recording, ignoreTSC = True)
 
 	def renameCallback(self, name):
 		if not name:

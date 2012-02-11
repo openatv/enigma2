@@ -264,7 +264,8 @@ public:
 	void stopSource();
 
 	void setCueSheet(eCueSheet *cuesheet);
-	
+	void setOfflineDecodeMode(int parityswitchdelay);
+
 	RESULT getLength(pts_t &len);
 	RESULT getCurrentPosition(iDVBDemux *decoding_demux, pts_t &pos, int mode);
 
