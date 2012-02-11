@@ -223,6 +223,7 @@ void eFilePushThread::thread()
 		}
 //		printf("FILEPUSH: read %d bytes\n", m_buf_end);
 	}
+	sendEvent(evtStopped);
 	eDebug("FILEPUSH THREAD STOP");
 }
 
@@ -386,6 +387,7 @@ void eFilePushThreadRecorder::thread()
 			break;
 		}
 	}
+	sendEvent(evtStopped);
 	eDebug("[eFilePushThreadRecorder] THREAD STOP");
 }
 

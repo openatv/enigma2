@@ -100,6 +100,9 @@ void eDVBServicePMTHandler::channelEvent(iDVBChannel *channel, int event)
 	case iDVBChannel::evtSOF:
 		serviceEvent(eventSOF);
 		break;
+	case iDVBChannel::evtStopped:
+		serviceEvent(eventStopped);
+		break;
 	default:
 		break;
 	}

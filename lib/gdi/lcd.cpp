@@ -71,6 +71,7 @@ eDBoxLCD::eDBoxLCD()
 {
 	int xres=132, yres=64, bpp=8;
 	flipped = false;
+	inverted = 0;
 	is_oled = 0;
 #ifndef NO_LCD
 	lcdfd = open("/dev/dbox/oled0", O_RDWR);
@@ -97,7 +98,6 @@ eDBoxLCD::eDBoxLCD()
 	{
 		int i=LCD_MODE_BIN;
 		ioctl(lcdfd, LCD_IOCTL_ASC_MODE, &i);
-		inverted=0;
 		FILE *f = fopen("/proc/stb/lcd/xres", "r");
 		if (f)
 		{

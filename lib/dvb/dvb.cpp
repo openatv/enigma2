@@ -1222,6 +1222,10 @@ void eDVBChannel::pvrEvent(int event)
 		eDebug("SOF");
 		m_event(this, evtSOF);
 		break;
+	case eFilePushThread::evtStopped:
+		eDebug("eDVBChannel: pvrEvent evtStopped");
+		m_event(this, evtStopped);
+		break;
 	}
 }
 
