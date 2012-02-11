@@ -605,7 +605,8 @@ public:
 	virtual void stopSource() = 0;
 	
 	virtual void setCueSheet(eCueSheet *cuesheet) = 0;
-	
+	virtual void setOfflineDecodeMode(int parityswitchdelay) = 0;
+
 	virtual RESULT getLength(pts_t &pts) = 0;
 	
 		/* we explicitely ask for the decoding demux here because a channel
