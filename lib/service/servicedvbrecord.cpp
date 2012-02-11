@@ -88,6 +88,11 @@ void eDVBServiceRecord::serviceEvent(int event)
 		m_error = errNoResources;
 		m_event((iRecordableService*)this, evTuneFailed);
 		break;
+	case eDVBServicePMTHandler::eventStopped:
+		/* recording data source has stopped, stop recording */
+		stop();
+		m_event((iRecordableService*)this, evRecordAborted);
+		break;
 	}
 }
 
