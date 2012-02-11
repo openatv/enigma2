@@ -644,7 +644,7 @@ config.misc.graph_mepg.items_per_page = ConfigSelectionNumber(min = 3, max = 10,
 config.misc.graph_mepg.overjump = ConfigBoolean(default = True)
 config.misc.graph_mepg.showpicon = ConfigBoolean(default = False)
 config.misc.graph_mepg.showservicetitle = ConfigBoolean(default = True)
-config.misc.graph_mepg.roundTo = ConfigSelection(default = 15, choices = [(15, _("15 minutes")), (30, _("30 minutes")), (60, _("60 minutes"))])
+config.misc.graph_mepg.roundTo = ConfigSelection(default = 15, choices = [(15, _("%d minutes") % 15), (30, _("%d minutes") % 30), (60, _("%d minutes") % 60)])
 
 
 class GraphMultiEPG(Screen, HelpableScreen):

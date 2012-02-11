@@ -18,24 +18,25 @@ def InitUsageConfig():
 	config.usage.quickzap_bouquet_change = ConfigYesNo(default = False)
 	config.usage.e1like_radio_mode = ConfigYesNo(default = True)
 	config.usage.infobar_timeout = ConfigSelection(default = "5", choices = [
-		("0", _("no timeout")), ("1", "1 " + _("second")), ("2", "2 " + _("seconds")), ("3", "3 " + _("seconds")),
-		("4", "4 " + _("seconds")), ("5", "5 " + _("seconds")), ("6", "6 " + _("seconds")), ("7", "7 " + _("seconds")),
-		("8", "8 " + _("seconds")), ("9", "9 " + _("seconds")), ("10", "10 " + _("seconds"))])
+		("0", _("no timeout")), ("1", _("%d second") % 1), ("2", _("%d seconds") % 2), ("3", _("%d seconds") % 3),
+		("4", _("%d seconds") % 4), ("5", _("%d seconds") % 5), ("6", _("%d seconds") % 6), ("7", _("%d seconds") % 7),
+		("8", _("%d seconds") % 8), ("9", _("%d seconds") % 9), ("10", _("%d seconds") % 10)])
 	config.usage.show_infobar_on_zap = ConfigYesNo(default = True)
 	config.usage.show_infobar_on_skip = ConfigYesNo(default = True)
 	config.usage.show_infobar_on_event_change = ConfigYesNo(default = False)
 	config.usage.show_second_infobar = ConfigSelection(default = None, choices = [
-		(None, _("None")), ("0", _("no timeout")), ("1", "1 " + _("second")), ("2", "2 " + _("seconds")),
-		("3", "3 " + _("seconds")), ("4", "4 " + _("seconds")), ("5", "5 " + _("seconds")), ("6", "6 " + _("seconds")),
-		("7", "7 " + _("seconds")), ("8", "8 " + _("seconds")), ("9", "9 " + _("seconds")), ("10", "10 " + _("seconds"))])
+		(None, _("None")), 
+		("0", _("no timeout")), ("1", _("%d second") % 1), ("2", _("%d seconds") % 2), ("3", _("%d seconds") % 3),
+		("4", _("%d seconds") % 4), ("5", _("%d seconds") % 5), ("6", _("%d seconds") % 6), ("7", _("%d seconds") % 7),
+		("8", _("%d seconds") % 8), ("9", _("%d seconds") % 9), ("10", _("%d seconds") % 10)])
 	config.usage.show_spinner = ConfigYesNo(default = True)
 	config.usage.enable_tt_caching = ConfigYesNo(default = True)
 	config.usage.hdd_standby = ConfigSelection(default = "300", choices = [
-		("0", _("no standby")), ("10", "10 " + _("seconds")), ("30", "30 " + _("seconds")),
-		("60", "1 " + _("minute")), ("120", "2 " + _("minutes")),
-		("300", "5 " + _("minutes")), ("600", "10 " + _("minutes")), ("1200", "20 " + _("minutes")),
-		("1800", "30 " + _("minutes")), ("3600", "1 " + _("hour")), ("7200", "2 " + _("hours")),
-		("14400", "4 " + _("hours")) ])
+		("0", _("no standby")), ("10",  _("%d seconds") % 10), ("30", _("%d seconds") % 30),
+		("60", _("%d minute") % 1), ("120", _("%d minutes") % 2),
+		("300", _("%d minutes") % 5), ("600", _("%d minutes") % 10), ("1200", _("%d minutes") % 20),
+		("1800", _("%d minutes") % 30), ("3600", _("%d hour") % 1), ("7200", _("%d hours") % 2),
+		("14400", _("%d hours") % 4) ])
 	config.usage.output_12V = ConfigSelection(default = "do not change", choices = [
 		("do not change", _("do not change")), ("off", _("off")), ("on", _("on")) ])
 
@@ -260,7 +261,8 @@ def InitUsageConfig():
 		("2", _("yellow")) ])
 	config.subtitles.ttx_subtitle_original_position = ConfigYesNo(default = False)
 	config.subtitles.subtitle_position = ConfigSelection( choices = ["0", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100", "150", "200", "250", "300", "350", "400", "450"], default = "50")
-	config.subtitles.subtitle_alignment = ConfigSelection(choices = ["left", "center", "right"], default = "center")
+	config.subtitles.subtitle_alignment = ConfigSelection(choices = [("left", _("left")), ("center", _("center")), ("right", _("right"))],
+default = "center")
 	config.subtitles.subtitle_rewrap = ConfigYesNo(default = False)
 	config.subtitles.subtitle_borderwidth = ConfigSelection(choices = ["1", "2", "3", "4", "5"], default = "3")
 	config.subtitles.subtitle_fontsize  = ConfigSelection(choices = ["16", "18", "20", "22", "24", "26", "28", "30", "32", "34", "36", "38", "40", "42", "44", "46", "48", "50", "52", "54"], default = "34")
