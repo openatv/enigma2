@@ -19,8 +19,8 @@ class eDVBServiceRecord: public eDVBServiceBase,
 	DECLARE_REF(eDVBServiceRecord);
 public:
 	RESULT connectEvent(const Slot2<void,iRecordableService*,int> &event, ePtr<eConnection> &connection);
-	RESULT prepare(const char *filename, time_t begTime, time_t endTime, int eit_event_id, const char *name, const char *descr, const char *tags);
-	RESULT prepareStreaming();
+	RESULT prepare(const char *filename, time_t begTime, time_t endTime, int eit_event_id, const char *name, const char *descr, const char *tags, bool descramble, bool recordecm);
+	RESULT prepareStreaming(bool descramble, bool includeecm);
 	RESULT start(bool simulate=false);
 	RESULT stop();
 	RESULT stream(ePtr<iStreamableService> &ptr);
@@ -39,6 +39,7 @@ private:
 	bool m_simulate;
 	int m_state, m_want_record;
 	bool m_record_ecm;
+	bool m_descramble;
 	bool m_is_stream_client;
 	friend class eServiceFactoryDVB;
 	eDVBServiceRecord(const eServiceReferenceDVB &ref, bool isstreamclient = false);
