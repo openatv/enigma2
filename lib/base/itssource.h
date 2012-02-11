@@ -19,7 +19,7 @@ public:
 	virtual off_t length()=0;
 	virtual int valid()=0;
 	virtual off_t offset() = 0;
-	int getPacketSize() { return packetSize; }
+	int getPacketSize() const { return packetSize; }
 };
 
 #endif
