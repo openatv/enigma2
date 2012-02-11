@@ -200,7 +200,9 @@ eDBoxLCD *eDBoxLCD::getInstance()
 
 void eDBoxLCD::update()
 {
+#undef HAVE_TEXTLCD
 #ifndef HAVE_TEXTLCD
+#define BIT_SWAP(a) (( ((a << 7)&0x80) + ((a << 5)&0x40) + ((a << 3)&0x20) + ((a << 1)&0x10) + ((a >> 1)&0x08) + ((a >> 3)&0x04) + ((a >> 5)&0x02) + ((a >> 7)&0x01) )&0xff)
 	if (lcdfd >= 0)
 	{
 		if (is_oled == 0 || is_oled == 2)
@@ -218,11 +220,11 @@ void eDBoxLCD::update()
 					}
 					if (flipped)
 					{
-						raw[(7 - y) * 132 + (131 - x)] = (pix ^ inverted);
+						raw[(7 - y) * 132 + (131 - x)] = BIT_SWAP(pix ^ inverted);
 					}
 					else
 					{
-						raw[y * 132 + x] = (pix ^ inverted);
+						raw[y * 132 + x] = pix ^ inverted;
 					}
 				}
 			}
@@ -242,7 +244,7 @@ void eDBoxLCD::update()
 					{
 						if (flipped)
 						{
-							raw[(height - 1 - y) * width + (width - 1 - x)] = _buffer[y * width + x] ^ inverted;
+							raw[(height - 1 - y) * width + (width - 1 - x)] = BIT_SWAP(_buffer[y * width + x] ^ inverted);
 						}
 						else
 						{
@@ -272,7 +274,7 @@ void eDBoxLCD::update()
 						pix = 0xFF - pix;
 					if (flipped)
 					{
-						raw[(63 - y) * 64 + (127 - x)] = pix;
+						raw[(63 - y) * 64 + (127 - x)] = BIT_SWAP(pix);
 					}
 					else
 					{
