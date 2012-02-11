@@ -1169,6 +1169,13 @@ int eDVBServicePMTHandler::tuneExt(eServiceReferenceDVB &ref, int use_decode_dem
 				m_pvr_channel->playSource(source, streaminfo_file);
 			else
 				m_pvr_channel->playFile(ref.path.c_str());
+
+			if (m_service_type == offline) 
+			{
+				std::string delay;
+				ePythonConfigQuery::getConfigValue("config.recording.offline_decode_delay", delay);
+				m_pvr_channel->setOfflineDecodeMode(atoi(delay.c_str()));
+			}
 		}
 	}
 
