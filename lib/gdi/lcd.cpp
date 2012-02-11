@@ -274,7 +274,7 @@ void eDBoxLCD::update()
 						pix = 0xFF - pix;
 					if (flipped)
 					{
-						raw[(63 - y) * 64 + (127 - x)] = BIT_SWAP(pix);
+						raw[(63 - y) * 64 + (63 - x)] = BIT_SWAP(pix);
 					}
 					else
 					{
