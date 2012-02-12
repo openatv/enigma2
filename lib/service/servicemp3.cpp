@@ -331,10 +331,14 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 	}
 	else if ( m_sourceinfo.containertype == ctVCD )
 	{
+		int ret = -1;
 		int fd = open(filename,O_RDONLY);
-		char tmp[128*1024];
-		int ret = read(fd, tmp, 128*1024);
-		close(fd);
+		if (fd >= 0)
+		{
+			char tmp[128*1024];
+			ret = read(fd, tmp, 128*1024);
+			close(fd);
+		}
 		if ( ret == -1 ) // this is a "REAL" VCD
 			uri = g_strdup_printf ("vcd://");
 		else
@@ -1287,9 +1291,12 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 				GstBuffer *buf_image;
 				buf_image = gst_value_get_buffer (gv_image);
 				int fd = open("/tmp/.id3coverart", O_CREAT|O_WRONLY|O_TRUNC, 0644);
-				int ret = write(fd, GST_BUFFER_DATA(buf_image), GST_BUFFER_SIZE(buf_image));
-				close(fd);
-				eDebug("eServiceMP3::/tmp/.id3coverart %d bytes written ", ret);
+				if (fd >= 0)
+				{
+					int ret = write(fd, GST_BUFFER_DATA(buf_image), GST_BUFFER_SIZE(buf_image));
+					close(fd);
+					eDebug("eServiceMP3::/tmp/.id3coverart %d bytes written ", ret);
+				}
 				m_event((iPlayableService*)this, evUser+13);
 			}
 			gst_tag_list_free(tags);
