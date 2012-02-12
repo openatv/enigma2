@@ -94,7 +94,7 @@ void eDVBVolumecontrol::closeMixer(int fd)
 #ifdef HAVE_ALSA
 	/* we want to keep the alsa mixer */
 #else
-	close(fd);
+	if (fd >= 0) close(fd);
 #endif
 }
 
@@ -193,10 +193,13 @@ void eDVBVolumecontrol::volumeMute()
 	muted = true;
 #else
 	int fd = openMixer();
+	if (fd >= 0)
+	{
 #ifdef HAVE_DVB_API_VERSION	
-	ioctl(fd, AUDIO_SET_MUTE, true);
+		ioctl(fd, AUDIO_SET_MUTE, true);
 #endif
-	closeMixer(fd);
+		closeMixer(fd);
+	}
 	muted = true;
 
 	//HACK?
@@ -219,10 +222,13 @@ void eDVBVolumecontrol::volumeUnMute()
 	muted = false;
 #else
 	int fd = openMixer();
+	if (fd >= 0)
+	{
 #ifdef HAVE_DVB_API_VERSION
-	ioctl(fd, AUDIO_SET_MUTE, false);
+		ioctl(fd, AUDIO_SET_MUTE, false);
 #endif
-	closeMixer(fd);
+		closeMixer(fd);
+	}
 	muted = false;
 
 	//HACK?

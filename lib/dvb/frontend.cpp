@@ -1878,24 +1878,26 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 						else if (slotid == 3)
 							sprintf(dev, "/dev/i2c-4"); // second nim socket on DM8000 use /dev/i2c-4
 						int fd = ::open(dev, O_RDWR);
-
-						unsigned char data[2];
-						::ioctl(fd, I2C_SLAVE_FORCE, 0x10 >> 1);
-						if(::read(fd, data, 1) != 1)
-							eDebugNoSimulate("[SEC] error read lnbp (%m)");
-						if ( m_sec_sequence.current()->mode == eSecCommand::modeStatic )
+						if (fd >= 0)
 						{
-							data[0] |= 0x80;  // enable static current limiting
-							eDebugNoSimulate("[SEC] set static current limiting");
+							unsigned char data[2];
+							::ioctl(fd, I2C_SLAVE_FORCE, 0x10 >> 1);
+							if(::read(fd, data, 1) != 1)
+								eDebugNoSimulate("[SEC] error read lnbp (%m)");
+							if ( m_sec_sequence.current()->mode == eSecCommand::modeStatic )
+							{
+								data[0] |= 0x80;  // enable static current limiting
+								eDebugNoSimulate("[SEC] set static current limiting");
+							}
+							else
+							{
+								data[0] &= ~0x80;  // enable dynamic current limiting
+								eDebugNoSimulate("[SEC] set dynamic current limiting");
+							}
+							if(::write(fd, data, 1) != 1)
+								eDebugNoSimulate("[SEC] error write lnbp (%m)");
+							::close(fd);
 						}
-						else
-						{
-							data[0] &= ~0x80;  // enable dynamic current limiting
-							eDebugNoSimulate("[SEC] set dynamic current limiting");
-						}
-						if(::write(fd, data, 1) != 1)
-							eDebugNoSimulate("[SEC] error write lnbp (%m)");
-						::close(fd);
 					}
 				}
 				++m_sec_sequence.current();
