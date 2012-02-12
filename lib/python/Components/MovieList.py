@@ -1,4 +1,4 @@
-from GUIComponent import GUIComponent
+﻿from GUIComponent import GUIComponent
 from Tools.FuzzyDate import FuzzyTime
 from ServiceReference import ServiceReference
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest, MultiContentEntryProgress
@@ -529,7 +529,7 @@ class MovieList(GUIComponent):
 		if self.sort_type == MovieList.SORT_ALPHANUMERIC:
 			self.list.sort(key=self.buildAlphaNumericSortKey)
 		else:
-			#always sort first always this way to avoid shuffle and reverse-sort directories
+			#always sort first this way to avoid shuffle and reverse-sort directories
 			self.list.sort(key=self.buildBeginTimeSortKey)
 		if self.sort_type == MovieList.SHUFFLE:
 			dirlist = self.list[:numberOfDirs]
@@ -580,13 +580,13 @@ class MovieList(GUIComponent):
 		ref = x[0]
 		name = x[1] and x[1].getName(ref)
 		if ref.flags & eServiceReference.mustDescent:
-			return (0, name, -x[2])
+			return (0, name and name.lower() or "", -x[2])
 		return (1, name and name.lower() or "", -x[2])
 		
 	def buildBeginTimeSortKey(self, x):
 		ref = x[0]
 		if ref.flags & eServiceReference.mustDescent:
-			return (0, x[1] and x[1].getName(ref))
+			return (0, x[1] and x[1].getName(ref).lower() or "")
 		return (1, -x[2])
 
 	def moveTo(self, serviceref):
@@ -600,3 +600,6 @@ class MovieList(GUIComponent):
 	
 	def moveDown(self):
 		self.instance.moveSelection(self.instance.moveDown)
+
+	def moveUp(self):
+		self.instance.moveSelection(self.instance.moveUp)
