@@ -507,7 +507,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		res = [
 			None, # no private data needed
 			(eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, _(days[t[6]])),
-			(eListboxPythonMultiContent.TYPE_TEXT, r2.x, r2.y, r2.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, "%02d/%02d, %02d:%02d"%(t[2],t[1],t[3],t[4]))
+			(eListboxPythonMultiContent.TYPE_TEXT, r2.x, r2.y, r2.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, _("%02d/%02d, %02d:%02d")%(t[2],t[1],t[3],t[4]))
 		]
 		if rec:
 			res.extend((
