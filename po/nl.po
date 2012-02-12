@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-07 20:21+0000\n"
-"PO-Revision-Date: 2012-02-09 08:07+0100\n"
+"POT-Creation-Date: 2012-02-10 20:15+0000\n"
+"PO-Revision-Date: 2012-02-11 18:26+0100\n"
 "Last-Translator: R.L. van der Does\n"
 "Language-Team: Andy Blackburn, Rob van der Does\n"
 "Language: Nederlands\n"
@@ -30,6 +30,13 @@ msgid ""
 msgstr ""
 "\n"
 "Druk op OK en een ogenblik geduld."
+
+msgid ""
+"\n"
+"An Input/output error usually indicates a corrupted filesystem! Please check the filesystem of your timeshift-device!"
+msgstr ""
+"\n"
+"Een Input/output fout is meestal een teken dat het filesystem corrupt is! Controloeer het filesystem van uw timeshift-partitie!"
 
 msgid ""
 "\n"
@@ -268,8 +275,8 @@ msgstr "1"
 msgid "1 wireless network found!"
 msgstr "1 draadloos netwerk gevonden!"
 
-msgid "1-1. Serial Number (The first two letters of SN)"
-msgstr "1-1. Serie nummer (De eerste twee letters van SN)"
+msgid "1-1. Serial Number (The first two or three letters of SN)"
+msgstr "1-1. Serienummer (de eerste 2 of 3 letters)"
 
 msgid "1-2. Serial Number (The remaining numbers of SN)"
 msgstr "1-2. Serie nummer (de resterende cijfers van SN)"
@@ -649,6 +656,9 @@ msgstr "Druk op OK en wacht."
 msgid "After the start wizard is completed, you need to protect single services. Refer to your dreambox's manual on how to do that."
 msgstr "Nadat de wizard is uitgevoerd, moet u enkele services beveiligen. Kijk in de handleiding van uw ontvanger hoe dat te doen."
 
+msgid "Agree"
+msgstr "Mee eens"
+
 msgid "Album"
 msgstr "Album"
 
@@ -704,7 +714,7 @@ msgid "Any activity"
 msgstr "Elke activiteit"
 
 msgid "April"
-msgstr "April"
+msgstr "april"
 
 msgid ""
 "Are you sure you want to activate this network configuration?\n"
@@ -796,7 +806,7 @@ msgid "Audio language selection 4"
 msgstr "Audio taalkeuze 4"
 
 msgid "August"
-msgstr "Augustus"
+msgstr "augustus"
 
 msgid "Author: "
 msgstr "Auteur:"
@@ -1142,17 +1152,11 @@ msgstr "Controleer"
 msgid "Checking Filesystem..."
 msgstr "Controleert bestandssysteem..."
 
-msgid "Checking Log Size..."
-msgstr "Controleert grootte van log..."
-
-msgid "Checking Network..."
-msgstr "Controlert netwerk..."
+msgid "Checking Logs..."
+msgstr "Controleert logs..."
 
 msgid "Checking Time..."
 msgstr "Controleert tijd..."
-
-msgid "Checking USB devices..."
-msgstr "Controleert USB-apparaten..."
 
 msgid "Checking for Updates..."
 msgstr "Controleert op updates..."
@@ -1209,7 +1213,7 @@ msgid "Clear before scan"
 msgstr "Vóór zoeken alle zenders wissen?"
 
 msgid "Clear fixed"
-msgstr "Verwijder opgeloste"
+msgstr "Verwijder vaste"
 
 msgid "Clear log"
 msgstr "Log wissen"
@@ -1440,9 +1444,6 @@ msgstr "Creëer AP en SC bestanden"
 msgid "Creating Hardlink to Timeshift file failed!"
 msgstr "Creëer hardlink naarTimeshift bestand mislukt!"
 
-msgid "Creating a Meta File failed!"
-msgstr "creëren van meta-bestand is mislukt!"
-
 #, python-format
 msgid "Creating directory %s failed."
 msgstr "Het aanmaken van de map %s is mislukt."
@@ -1550,11 +1551,8 @@ msgstr "Datum"
 msgid "Debug Logs"
 msgstr "Debug Logs"
 
-msgid "DebugLogCheck"
-msgstr "DebugLogControle"
-
 msgid "December"
-msgstr "December"
+msgstr "december"
 
 msgid "Decide if you want to enable or disable the Cleanup Wizard."
 msgstr "Wilt u de cleanup wizard aan of uitschakelen."
@@ -2368,7 +2366,7 @@ msgid "Favourites"
 msgstr "Favorieten"
 
 msgid "February"
-msgstr "Februari"
+msgstr "februari"
 
 msgid "File appears to be busy.\n"
 msgstr "Bestand lijkt in gebruik te zijn.\n"
@@ -2519,9 +2517,6 @@ msgstr "Algemene PCM vertraging (ms)"
 
 msgid "Genre"
 msgstr "Genre"
-
-msgid "Genuine Vuplus"
-msgstr "authentiek Vuplus"
 
 msgid "Get latest experimental image"
 msgstr "Ontvang het laatste experimentele image"
@@ -2931,7 +2926,7 @@ msgid "Items per Page "
 msgstr "Onderdelen per pagina"
 
 msgid "January"
-msgstr "Januari"
+msgstr "januari"
 
 msgid "Job View"
 msgstr "Voortgang"
@@ -2940,7 +2935,7 @@ msgid "Job task(s) are in progress!"
 msgstr "Taak (taken) in uitvoering!"
 
 msgid "July"
-msgstr "Juli"
+msgstr "juli"
 
 msgid "Jump back 24 hours"
 msgstr "Spring 24 uur terug"
@@ -2958,7 +2953,7 @@ msgid "Jump to prime time"
 msgstr "Spring naar prime time"
 
 msgid "June"
-msgstr "Juni"
+msgstr "juni"
 
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
 msgid "Just Scale"
@@ -3130,6 +3125,9 @@ msgstr "Log Manager"
 msgid "Log results to harddisk"
 msgstr "Schrijf resultaten naar de harde schijf"
 
+msgid "LogManager"
+msgstr "LogManager"
+
 msgid "Logs"
 msgstr "Logs"
 
@@ -3201,6 +3199,9 @@ msgstr "MH"
 msgid "MORE"
 msgstr "MEER"
 
+msgid "MSA"
+msgstr "MSA"
+
 msgid "Main Menu"
 msgstr "Hoofd Menu"
 
@@ -3241,7 +3242,7 @@ msgid "Manufacturer"
 msgstr "Fabrikant"
 
 msgid "March"
-msgstr "Maart"
+msgstr "maart"
 
 msgid "Margin after record"
 msgstr "Marge na afloop opname (minuten)"
@@ -3268,8 +3269,14 @@ msgstr ""
 "Maximum Timeshift lengte per Event bereikt!\n"
 "Timeshift wordt nu herstart....."
 
+msgid "Maximum no of days:"
+msgstr "Maximum aantal dagen:"
+
+msgid "Maximum space used (MB):"
+msgstr "Maximale grootte (MB):"
+
 msgid "May"
-msgstr "Mei"
+msgstr "mei"
 
 msgid "Media playback Remaining/Elapsed as"
 msgstr "Media afspelen Resterende/Verstreken als"
@@ -3759,7 +3766,7 @@ msgid "Nothing to upgrade"
 msgstr "Niets te upgraden"
 
 msgid "November"
-msgstr "November"
+msgstr "november"
 
 msgid "Now Playing"
 msgstr "Weergave loopt"
@@ -4787,6 +4794,9 @@ msgstr "Hervat positie op %s"
 msgid "Resuming playback"
 msgstr "Afspelen wordt hervat"
 
+msgid "Return the Love Event"
+msgstr "Keer terug naar het 'Love Event'"
+
 msgid "Return to movie list"
 msgstr "Terug naar de opnamelijst"
 
@@ -4813,6 +4823,9 @@ msgstr "Root "
 
 msgid "Rotor turning speed"
 msgstr "Rotor draaisnelheid"
+
+msgid "Round start time on"
+msgstr "Ronde starttijd om"
 
 msgid "Running"
 msgstr "Actief"
@@ -5137,7 +5150,7 @@ msgid "Seperate titles with a main menu"
 msgstr "Zonder titels af met een hoofdmenu"
 
 msgid "September"
-msgstr "September"
+msgstr "september"
 
 msgid "Sequence repeat"
 msgstr "Herhaal sequence"
@@ -5605,6 +5618,9 @@ msgstr "Source verzoek"
 msgid "South"
 msgstr "Zuid"
 
+msgid "Space used:"
+msgstr "Gebruikte ruimte:"
+
 msgid "Split preview mode"
 msgstr "Split preview-modus"
 
@@ -5982,6 +5998,14 @@ msgstr "De blindscan is door d egebruiker geannuleerd"
 
 msgid "The current beta image could not be stable"
 msgstr "The current beta image could not be stable"
+
+#, python-format
+msgid ""
+"The directory %s is not a EXT2, EXT3 or EXT4 partition.\n"
+"Make sure you select a valid partition type."
+msgstr ""
+"De map %s is geen EXT2, EXT3 of EXT4 partitie.\n"
+"Kies een geldig partitie type."
 
 #
 #, python-format
@@ -6477,12 +6501,12 @@ msgid ""
 "Please wait until your receiver reboots\n"
 "This may take a few minutes"
 msgstr ""
-"Onbewaakte upgrade is bezig.\n"
+"Upgrade zonder statusmelding is bezig.\n"
 "Wacht tot uw ontvanger weer is opgestart.\n"
 "Dit kan een paar minuten duren."
 
 msgid "Unattended upgrade without GUI and reboot system"
-msgstr "Onbewaakte upgrade met automatische reboot zonder GUI"
+msgstr "Upgrade zonder statusmeldingen en vervolgens systeem herstarten"
 
 msgid "Uncommitted DiSEqC command"
 msgstr "Uncommitted DiSEqC commando"
@@ -6693,9 +6717,6 @@ msgstr "Gebruik oud profiel:"
 
 msgid "VCR scart"
 msgstr "VCR scart"
-
-msgid "VFD Checker"
-msgstr "VFD Controler"
 
 msgid "VMGM (intro trailer)"
 msgstr "VMGM (intro trailer)"
@@ -7247,7 +7268,7 @@ msgid ""
 "Your frontprocessor firmware must be upgraded.\n"
 "Press OK to start upgrade."
 msgstr ""
-"De frontprocessor firmware moet vernieuwd worden.\n"
+"De frontprocessor firmware moet bijgewerkt worden.\n"
 "Druk op OK om dit proces te starten."
 
 msgid ""
@@ -7316,11 +7337,11 @@ msgstr "Zap naar kanaal en sluit (stel in in menu)"
 msgid "Zap to selected channel"
 msgstr "Zap naar geselecteerde kanaal"
 
-msgid "[TimeShift] Merging records failed!"
-msgstr "[TimeShift] Samenvoegen van opnames mislukt!"
-
 msgid "[TimeShift] Restarting Timeshift!"
 msgstr "[TimeShift] Timeshift wordt herstart!"
+
+msgid "[Timeshift] Merging records failed!"
+msgstr "[Timeshift] Samenvoegen van opnames is milukt!"
 
 msgid "[alternative edit]"
 msgstr "[alternatieven bewerken]"
@@ -8427,4 +8448,3 @@ msgstr "zap"
 
 msgid "zapped"
 msgstr "zapte"
-
