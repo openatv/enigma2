@@ -103,9 +103,8 @@ class LogManagerPoller:
  		for mount in mounts:
 			if path.isdir(path.join(mount,'logs')):
 				matches.append(path.join(mount,'logs'))
-			if path.isdir(path.join(mount,'home/root/logs')):
-				matches.append(path.join(mount,'home/root/logs'))
-				
+		matches.append('/home/root/logs')
+
 		print "[LogManager] found following log's:",matches
 		if len(matches):
 			for logsfolder in matches:
