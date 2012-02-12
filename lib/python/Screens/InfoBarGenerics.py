@@ -1763,7 +1763,27 @@ class InfoBarPVRState:
 	def __playStateChanged(self, state):
 		playstateString = state[3]
 		self.pvrStateDialog["state"].setText(playstateString)
-		
+		if playstateString == '>':
+			self.pvrStateDialog["satusicon"].setPixmapNum(0)
+			self.pvrStateDialog["speed"].setText("")
+		elif playstateString == '||':
+			self.pvrStateDialog["satusicon"].setPixmapNum(1)
+			self.pvrStateDialog["speed"].setText("")
+		elif playstateString == 'END':
+			self.pvrStateDialog["satusicon"].setPixmapNum(2)
+			self.pvrStateDialog["speed"].setText("")
+		elif playstateString.startswith('>>'):
+			self.pvrStateDialog["satusicon"].setPixmapNum(3)
+			speed = state[3].split()
+			self.pvrStateDialog["speed"].setText(speed[1])
+		elif playstateString.startswith('<<'):
+			self.pvrStateDialog["satusicon"].setPixmapNum(4)
+			speed = state[3].split()
+			self.pvrStateDialog["speed"].setText(speed[1])
+		elif playstateString.startswith('/'):
+			self.pvrStateDialog["satusicon"].setPixmapNum(5)
+			self.pvrStateDialog["speed"].setText(playstateString)
+
 		# if we return into "PLAY" state, ensure that the dialog gets hidden if there will be no infobar displayed
 		if not config.usage.show_infobar_on_skip.value and self.seekstate == self.SEEK_STATE_PLAY and not self.force_show:
 			self.pvrStateDialog.hide()
