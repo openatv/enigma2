@@ -17,26 +17,26 @@ def InitUsageConfig():
 
 	config.usage.quickzap_bouquet_change = ConfigYesNo(default = False)
 	config.usage.e1like_radio_mode = ConfigYesNo(default = True)
-	config.usage.infobar_timeout = ConfigSelection(default = "5", choices = [
-		("0", _("no timeout")), ("1", _("%d second") % 1), ("2", _("%d seconds") % 2), ("3", _("%d seconds") % 3),
-		("4", _("%d seconds") % 4), ("5", _("%d seconds") % 5), ("6", _("%d seconds") % 6), ("7", _("%d seconds") % 7),
-		("8", _("%d seconds") % 8), ("9", _("%d seconds") % 9), ("10", _("%d seconds") % 10)])
+	choicelist = []
+	for i in range(1, 12):
+		choicelist.append(("%d" % i, ngettext("%d second", "%d seconds", i) % i))
+	config.usage.infobar_timeout = ConfigSelection(default = "5", choices = [("0", _("no timeout"))] + choicelist)
 	config.usage.show_infobar_on_zap = ConfigYesNo(default = True)
 	config.usage.show_infobar_on_skip = ConfigYesNo(default = True)
 	config.usage.show_infobar_on_event_change = ConfigYesNo(default = False)
-	config.usage.show_second_infobar = ConfigSelection(default = None, choices = [
-		(None, _("None")), 
-		("0", _("no timeout")), ("1", _("%d second") % 1), ("2", _("%d seconds") % 2), ("3", _("%d seconds") % 3),
-		("4", _("%d seconds") % 4), ("5", _("%d seconds") % 5), ("6", _("%d seconds") % 6), ("7", _("%d seconds") % 7),
-		("8", _("%d seconds") % 8), ("9", _("%d seconds") % 9), ("10", _("%d seconds") % 10)])
+	config.usage.show_second_infobar = ConfigSelection(default = None, choices = [(None, _("None")), ("0", _("no timeout"))] + choicelist) 
 	config.usage.show_spinner = ConfigYesNo(default = True)
 	config.usage.enable_tt_caching = ConfigYesNo(default = True)
-	config.usage.hdd_standby = ConfigSelection(default = "300", choices = [
-		("0", _("no standby")), ("10",  _("%d seconds") % 10), ("30", _("%d seconds") % 30),
-		("60", _("%d minute") % 1), ("120", _("%d minutes") % 2),
-		("300", _("%d minutes") % 5), ("600", _("%d minutes") % 10), ("1200", _("%d minutes") % 20),
-		("1800", _("%d minutes") % 30), ("3600", _("%d hour") % 1), ("7200", _("%d hours") % 2),
-		("14400", _("%d hours") % 4) ])
+	choicelist = []
+	for i in (10, 30):
+		choicelist.append(("%d" % i, ngettext("%d second", "%d seconds", i) % i))
+	for i in (60, 120, 300, 600, 1200, 1800):
+		m = i / 60
+		choicelist.append(("%d" % i, ngettext("%d minute", "%d minutes", m) % m))
+	for i in (3600, 7200, 14400):
+		h = i / 3600
+		choicelist.append(("%d" % i, ngettext("%d hour", "%d hours", h) % h))
+	config.usage.hdd_standby = ConfigSelection(default = "300", choices = [("0", _("no standby"))] + choicelist)
 	config.usage.output_12V = ConfigSelection(default = "do not change", choices = [
 		("do not change", _("do not change")), ("off", _("off")), ("on", _("on")) ])
 
