@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-20 14:59+0100\n"
-"PO-Revision-Date: 2012-01-20 16:03+0100\n"
+"POT-Creation-Date: 2012-02-12 10:31+0100\n"
+"PO-Revision-Date: 2012-02-12 10:48+0100\n"
 "Last-Translator: \n"
 "Language-Team: Deutsch <>\n"
 "Language: de\n"
@@ -201,6 +201,14 @@ msgstr "#ffffffff"
 msgid "%H:%M"
 msgstr "%H:%M"
 
+#, python-format
+msgid "%d hour"
+msgstr "%d Stunde"
+
+#, python-format
+msgid "%d hours"
+msgstr "%d Stunden"
+
 #
 #, python-format
 msgid "%d jobs are running in the background!"
@@ -210,6 +218,22 @@ msgstr "Es laufen noch %d Jobs im Hintergrund!"
 #, python-format
 msgid "%d min"
 msgstr "%d min"
+
+#, python-format
+msgid "%d minute"
+msgstr "%d Minute"
+
+#, python-format
+msgid "%d minutes"
+msgstr "%d Minuten"
+
+#, python-format
+msgid "%d second"
+msgstr "%d Sekunde"
+
+#, python-format
+msgid "%d seconds"
+msgstr "%d Sekunden"
 
 #
 #, python-format
@@ -315,10 +339,6 @@ msgstr "2"
 msgid "3"
 msgstr "3"
 
-#
-msgid "30 minutes"
-msgstr "30 Minuten"
-
 msgid "3d mode"
 msgstr "3D-Modus"
 
@@ -343,16 +363,8 @@ msgid "5"
 msgstr "5"
 
 #
-msgid "5 minutes"
-msgstr "5 Minuten"
-
-#
 msgid "6"
 msgstr "6"
-
-#
-msgid "60 minutes"
-msgstr "60 Minuten"
 
 #
 msgid "7"
@@ -505,9 +517,12 @@ msgstr "AA"
 msgid "AB"
 msgstr "AB"
 
-#
 msgid "AC3 downmix"
-msgstr "AC3 downmix"
+msgstr "AC3 Downmix"
+
+#
+msgid "AC3/DTS downmix"
+msgstr "AC3/DTS downmix"
 
 #
 msgid "Abort"
@@ -588,6 +603,9 @@ msgstr "Zum Bouquet hinzufügen"
 #
 msgid "Add to favourites"
 msgstr "Zu Favoriten hinzufügen"
+
+msgid "Add/Remove timer for current event"
+msgstr "Setze/Entferne Timer für aktuelle Sendung"
 
 #
 msgid "Adds enigma2 settings and dreambox model informations like SN, rev... if enabled."
@@ -1484,6 +1502,9 @@ msgstr "DVB-S2"
 msgid "DVD File Browser"
 msgstr "DVD Datei Browser"
 
+msgid "DVD Player"
+msgstr "DVD Player"
+
 #
 msgid "DVD Titlelist"
 msgstr "DVD Titelliste"
@@ -1565,9 +1586,6 @@ msgstr "Tiefe"
 
 msgid "Descramble http streams"
 msgstr "Entschlüssele HTTP-Streams"
-
-msgid "Descramble recordings"
-msgstr "Entschlüssele Aufnahmen"
 
 #
 msgid "Description"
@@ -2104,8 +2122,8 @@ msgstr ""
 msgid "Ethernet network interface"
 msgstr "Ethernet Netzwerkadapter"
 
-msgid "Event Fontsize"
-msgstr "Schriftgröße"
+msgid "Event Fontsize (relative to skin size)"
+msgstr "Sendung Schriftgröße (relativ zur Skingröße)"
 
 #
 msgid "Eventview"
@@ -2141,6 +2159,9 @@ msgstr "Exif"
 #
 msgid "Exit"
 msgstr "Beenden"
+
+msgid "Exit EPG"
+msgstr "Verlasse EPG"
 
 #
 msgid "Exit editor"
@@ -2387,13 +2408,43 @@ msgstr "Zum Letzten Objekt springen"
 msgid "Go to top of list"
 msgstr "Zum Anfang springen"
 
+msgid "Goto"
+msgstr "Gehe zu"
+
 #
 msgid "Goto 0"
 msgstr "Gehe zu 0"
 
+msgid "Goto first service"
+msgstr "Gehe zum ersten Kanal"
+
+msgid "Goto last service"
+msgstr "Gehe zum letzten Kanal"
+
+msgid "Goto next event"
+msgstr "Gehe zur nächsten Sendung"
+
+msgid "Goto next page of events"
+msgstr "Gehe zur nächsten Seite mit Sendungen"
+
+msgid "Goto next page of service"
+msgstr "Gehe zur nächsten Seite der Kanäle"
+
 #
 msgid "Goto position"
 msgstr "Auf Position drehen"
+
+msgid "Goto previous event"
+msgstr "Gehe zur vorherigen Sendung"
+
+msgid "Goto previous page of events"
+msgstr "Gehe zur vorherigen Seite mit Sendungen"
+
+msgid "Goto previous page of service"
+msgstr "Gehe zur vorherigen Seite der Kanäle"
+
+msgid "Goto specific data/time"
+msgstr "Gehe zum angegebenen Datum/Uhrzeit"
 
 msgid "Graph MEpg Settings"
 msgstr "Graphische MPEG Einstellungen"
@@ -2899,6 +2950,9 @@ msgstr "Hauptmenü"
 #
 msgid "Mainmenu"
 msgstr "Hauptmenü"
+
+msgid "Maintain old EPG data for"
+msgstr "Behalte abgelaufene EPG-Daten (in Minuten)"
 
 #
 msgid "Make this mark an 'in' point"
@@ -3461,15 +3515,18 @@ msgstr "Benutzeroberflächen Anfrage"
 msgid "OSD visibility"
 msgstr "GUI-Deckkraft"
 
+msgid "October"
+msgstr "Oktober"
+
 #
 msgid "Off"
 msgstr "Aus"
 
+msgid "Offline decode delay (ms)"
+msgstr "Offline Entschlüsseln Verzögerung (ms)"
+
 msgid "Ok"
 msgstr "OK"
-
-msgid "Oktober"
-msgstr "Oktober"
 
 #
 msgid "On"
@@ -4148,9 +4205,6 @@ msgstr "Empfangseinstellungen"
 msgid "Record"
 msgstr "Aufnahme"
 
-msgid "Record ECM"
-msgstr "Aufnahme ECM"
-
 #
 #, python-format
 msgid "Record time limited due to conflicting timer %s"
@@ -4168,16 +4222,15 @@ msgstr "Aufnahme"
 msgid "Recording data sync size"
 msgstr "Data Sync-Speicher für das Aufnehmen"
 
-#
-msgid "Recording demux buffer size"
-msgstr "Demux Buffer-Speicher für das Aufnehmen"
-
 msgid "Recording in progress"
 msgstr "Aktive Aufnahmen"
 
 #
 msgid "Recording paths"
 msgstr "Aufnahmepfade"
+
+msgid "Recording type"
+msgstr "Aufnahmetyp"
 
 #
 msgid "Recording(s) are in progress or coming up in few seconds!"
@@ -4433,6 +4486,9 @@ msgstr "Hauptverzeichnis"
 #
 msgid "Rotor turning speed"
 msgstr "Rotor Drehgeschwindigkeit"
+
+msgid "Round start time on"
+msgstr "Runde Startzeit auf"
 
 #
 msgid "S-Video"
@@ -4839,6 +4895,21 @@ msgstr "Setze Netzwerkadapter als Standardd"
 msgid "Set limits"
 msgstr "Limits setzen"
 
+msgid "Set time window to 1 hour"
+msgstr "Setze Zeitfenster auf 1 Stunde"
+
+msgid "Set time window to 2 hours"
+msgstr "Setze Zeitfenster auf 2 Stunden"
+
+msgid "Set time window to 3 hours"
+msgstr "Setze Zeitfenster auf 3 Stunden"
+
+msgid "Set time window to 4 hours"
+msgstr "Setze Zeitfenster auf 4 Stunden"
+
+msgid "Set time window to 5 hours"
+msgstr "Setze Zeitfenster auf 5 Stunden"
+
 #
 msgid "Settings"
 msgstr "Einstellungen"
@@ -4850,6 +4921,9 @@ msgstr "Einstellungen"
 #
 msgid "Setup Mode"
 msgstr "Benutzermodus"
+
+msgid "Setup menu"
+msgstr "Konfiguration"
 
 #, python-format
 msgid "Shall the USB stick wizard proceed and program the image file %s into flash memory?"
@@ -4874,6 +4948,12 @@ msgstr "Zeige Infos"
 msgid "Show Message when Recording starts"
 msgstr "Benachrichtigung anzeigen wenn eine Aufnahme startet"
 
+msgid "Show Picons"
+msgstr "Zeige Senderlogos"
+
+msgid "Show Service Names "
+msgstr "Zeige Sendernamen"
+
 #
 msgid "Show WLAN Status"
 msgstr "Zeige WLAN-Status"
@@ -4886,6 +4966,9 @@ msgstr "Zeige Animation bei Beschäftigung"
 msgid "Show background in Radio Mode"
 msgstr "Zeige Hintergrund im Radio-Modus"
 
+msgid "Show bouquet selection menu"
+msgstr "Zeige Bouquet-Auswahlmenü"
+
 #
 msgid "Show channel numbers in channel selection"
 msgstr "Zeige Kanalnummer in Kanalauswahl"
@@ -4893,6 +4976,9 @@ msgstr "Zeige Kanalnummer in Kanalauswahl"
 #
 msgid "Show crypto info in infobar"
 msgstr "Verschlüsselung in Infobar anzeigen"
+
+msgid "Show detailed event info"
+msgstr "Zeige detailierte Sendungsinformation"
 
 #
 msgid "Show event-progress in channel selection"
@@ -5004,8 +5090,8 @@ msgstr "Skin"
 msgid "Skins"
 msgstr "Skins"
 
-msgid "Skip Empty Services (may need restart)"
-msgstr "Überspringe Leere Kanäle (benötigt evtl. Neustart)"
+msgid "Skip Empty Services"
+msgstr "Überspringe leere Sender"
 
 #
 msgid "Sleep Timer"
@@ -5153,6 +5239,9 @@ msgstr "Standby Lüfter %d Spannung"
 #
 msgid "Start from the beginning"
 msgstr "Am Anfang starten"
+
+msgid "Start offline decode"
+msgstr "Starte offline entschlüsseln"
 
 #
 msgid "Start recording?"
@@ -6789,6 +6878,9 @@ msgstr "Fokus auf Hauptbild legen"
 msgid "Zap mode"
 msgstr "Zap Modus"
 
+msgid "Zap to selected channel"
+msgstr "Schalte zum ausgewählten Sender um"
+
 #
 msgid "[alternative edit]"
 msgstr "[Alternativen-Bearbeitung]"
@@ -6996,6 +7088,10 @@ msgid "burn audio track (%s)"
 msgstr "Brenne die Audiospur (%s)"
 
 #
+msgid "center"
+msgstr "zentriert"
+
+#
 msgid "change recording (duration)"
 msgstr "Aufnahme ändern (Aufnahmelänge)"
 
@@ -7083,6 +7179,9 @@ msgstr "gespeicherte Wiedergabeliste löschen"
 msgid "delete..."
 msgstr "löschen..."
 
+msgid "descramble and record ecm"
+msgstr "Entschlüsseln und Aufnahme ECM"
+
 msgid "disable"
 msgstr "deaktivieren"
 
@@ -7104,6 +7203,9 @@ msgstr "Nicht ändern"
 #
 msgid "do nothing"
 msgstr "nichts"
+
+msgid "don't descramble, record ecm"
+msgstr "Nicht entschlüsseln, Aufnahme ECM"
 
 #
 msgid "don't record"
@@ -7190,6 +7292,9 @@ msgstr "Netzwerkadapterübersicht verlassen"
 msgid "exit networkadapter setup menu"
 msgstr "Netzwerkadaptermenü verlassen"
 
+msgid "false"
+msgstr "nein"
+
 #
 msgid "fileformats (BMP, PNG, JPG, GIF)"
 msgstr "Dateiformate (BMP, PNG, JPG, GIF)"
@@ -7254,14 +7359,6 @@ msgstr "Player ausblenden"
 #
 msgid "horizontal"
 msgstr "horizontal"
-
-#
-msgid "hour"
-msgstr "Stunde"
-
-#
-msgid "hours"
-msgstr "Stunden"
 
 #
 msgid "immediate shutdown"
@@ -7360,10 +7457,6 @@ msgid "mins"
 msgstr "Minuten"
 
 #
-msgid "minute"
-msgstr "Minute"
-
-#
 msgid "minutes"
 msgstr "Minuten"
 
@@ -7448,6 +7541,9 @@ msgstr "keine Transparenz"
 #
 msgid "none"
 msgstr "keine"
+
+msgid "normal"
+msgstr "Normal"
 
 #
 msgid "not configured"
@@ -7661,10 +7757,6 @@ msgid "scan state"
 msgstr "Status"
 
 #
-msgid "second"
-msgstr "Sekunde"
-
-#
 msgid "second cable of motorized LNB"
 msgstr "Zweites Kabel vom Rotor"
 
@@ -7735,6 +7827,9 @@ msgstr "Sendungs-Details anzeigen"
 #
 msgid "show extended description"
 msgstr "zeige erweiterte Beschreibung"
+
+msgid "show mediaplayer on mainmenu"
+msgstr "Zeige Mediaplayer im Hauptmenü"
 
 #
 msgid "show shutdown menu"
@@ -7902,6 +7997,9 @@ msgstr "Schalte zwischen Zeit-, Kapitel-, Audio- und Untertitel-Info um"
 
 msgid "top"
 msgstr "Oben"
+
+msgid "true"
+msgstr "ja"
 
 msgid "tuner is not supported"
 msgstr "nicht unterstützter Tuner"
