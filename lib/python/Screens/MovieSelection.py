@@ -567,7 +567,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			config.movielist.btn_red = ConfigSelection(default='delete', choices=userDefinedActions)
 			config.movielist.btn_green = ConfigSelection(default='move', choices=userDefinedActions)
 			config.movielist.btn_yellow = ConfigSelection(default='bookmarks', choices=userDefinedActions)
-			config.movielist.btn_blue = ConfigSelection(default='tags', choices=userDefinedActions)
+			config.movielist.btn_blue = ConfigSelection(default='sort', choices=userDefinedActions)
 			config.movielist.btn_radio = ConfigSelection(default='bookmarks', choices=userDefinedActions)
 			config.movielist.btn_tv = ConfigSelection(default='gohome', choices=userDefinedActions)
 			userDefinedButtons ={
