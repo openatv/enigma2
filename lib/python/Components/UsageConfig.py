@@ -261,33 +261,14 @@ def InitUsageConfig():
 		("2", _("yellow")) ])
 	config.subtitles.ttx_subtitle_original_position = ConfigYesNo(default = False)
 	config.subtitles.subtitle_position = ConfigSelection( choices = ["0", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100", "150", "200", "250", "300", "350", "400", "450"], default = "50")
-	config.subtitles.subtitle_alignment = ConfigSelection(choices = [("left", _("left")), ("center", _("center")), ("right", _("right"))],
-default = "center")
+	config.subtitles.subtitle_alignment = ConfigSelection(choices = [("left", _("left")), ("center", _("center")), ("right", _("right"))], default = "center")
 	config.subtitles.subtitle_rewrap = ConfigYesNo(default = False)
 	config.subtitles.subtitle_borderwidth = ConfigSelection(choices = ["1", "2", "3", "4", "5"], default = "3")
 	config.subtitles.subtitle_fontsize  = ConfigSelection(choices = ["16", "18", "20", "22", "24", "26", "28", "30", "32", "34", "36", "38", "40", "42", "44", "46", "48", "50", "52", "54"], default = "34")
-	config.subtitles.subtitle_noPTSrecordingdelay  = ConfigSelection(default = "315000", choices = [
-		("0", "No Delay"),
-		("45000", "0.5 sec"),
-		("90000", "1.0 sec"),
-		("135000", "1.5 sec"),
-		("180000", "2.0 sec"),
-		("225000", "2.5 sec"),
-		("270000", "3.0 sec"),
-		("315000", "3.5 sec"),
-		("360000", "4.0 sec"),
-		("405000", "4.5 sec"),
-		("450000", "5.0 sec"),
-		("495000", "5.5 sec"),
-		("540000", "6.0 sec"),
-		("585000", "6.5 sec"),
-		("630000", "7.0 sec"),
-		("475000", "7.5 sec"),
-		("720000", "8.0 sec"),
-		("765000", "8.5 sec"),
-		("810000", "9.0 sec"),
-		("855000", "9.5 sec"),
-		("900000", "10.0 sec")])
+	choicelist = []
+	for i in range(45000, 945000, 45000):
+		choicelist.append(("%d" % i, "%2.1f sec" % (i / 90000.)))
+	config.subtitles.subtitle_noPTSrecordingdelay = ConfigSelection(default = "315000", choices = [("0", _("No Delay"))] + choicelist)
 
 	config.subtitles.dvb_subtitles_yellow = ConfigYesNo(default = False)
 	config.subtitles.dvb_subtitles_original_position = ConfigSelection(default = "0", choices = [("0", _("original")), ("1", _("fixed")), ("2", _("relative"))])
