@@ -350,9 +350,9 @@ class LogManager(Screen):
 	def sendlog1(self,answer):
 		if answer:
 			self.sendallfiles = True
-			message = _("Do you want to add any additional infomation ?")
+			message = _("Do you want to add any additional information ?")
 			ybox = self.session.openWithCallback(self.sendlog3, MessageBox, message, MessageBox.TYPE_YESNO)
-			ybox.setTitle(_("Addtional Info"))
+			ybox.setTitle(_("Additional Info"))
 		else:
 			self.sendallfiles = False
 			message = _("Are you sure you want to send this log:\n") + str(self.sel[0])
@@ -362,9 +362,9 @@ class LogManager(Screen):
 	def sendlog2(self,answer):
 		if answer:
 			self.sendallfiles = False
-			message = _("Do you want to add any additional infomation ?")
+			message = _("Do you want to add any additional information ?")
 			ybox = self.session.openWithCallback(self.sendlog3, MessageBox, message, MessageBox.TYPE_YESNO)
-			ybox.setTitle(_("Addtional Info"))
+			ybox.setTitle(_("Additional Info"))
 
 	def sendlog3(self,answer):
 		if answer:
