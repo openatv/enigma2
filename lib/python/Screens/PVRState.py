@@ -36,3 +36,5 @@ class PTSTimeshiftState(Screen):
 		self["state"] = Label(text="")
 		self["PTSSeekPointer"] = Pixmap()
 		self["eventname"] = Label(text="")
+		self["speed"] = Label(text="")
+		self["satusicon"] = MultiPixmap()
