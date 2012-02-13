@@ -56,11 +56,11 @@ preferredTagEditor = None
 
 # this kludge is needed because ConfigSelection only takes numbers
 # and someone appears to be fascinated by 'enums'.
-l_moviesort = [(str(MovieList.SORT_RECORDED), _("sort by date")),
-	(str(MovieList.SORT_ALPHANUMERIC), _("alphabetic sort")),
-	(str(MovieList.SHUFFLE), _("shuffle")),
-	(str(MovieList.SORT_RECORDED_REVERSE), _("reverse by date")),
-	(str(MovieList.SORT_ALPHANUMERIC_REVERSE), _("alphabetic reverse"))]
+l_moviesort = [(str(MovieList.SORT_RECORDED), _("sort by date"), '01/02/03'),
+	(str(MovieList.SORT_ALPHANUMERIC), _("alphabetic sort"), 'AA-ZZ'),
+	(str(MovieList.SHUFFLE), _("shuffle"), '?'),
+	(str(MovieList.SORT_RECORDED_REVERSE), _("reverse by date"), '03/02/01'),
+	(str(MovieList.SORT_ALPHANUMERIC_REVERSE), _("alphabetic reverse"), 'ZZ-AA')]
 l_listtype = [(str(MovieList.LISTTYPE_ORIGINAL), _("list style default")),
 	(str(MovieList.LISTTYPE_COMPACT_DESCRIPTION), _("list style compact with description")),
 	(str(MovieList.LISTTYPE_COMPACT), _("list style compact")),
@@ -1582,14 +1582,11 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		else:
 			index += 1
 		#descriptions in native languages too long...
-		#if config.movielist.btn_red.value == "sort": self['key_red'].setText(_(l_moviesort[index][1]))
-		#if config.movielist.btn_green.value == "sort": self['key_green'].setText(_(l_moviesort[index][1]))
-		#if config.movielist.btn_yellow.value == "sort": self['key_yellow'].setText(_(l_moviesort[index][1]))
-		#if config.movielist.btn_blue.value == "sort": self['key_blue'].setText(_(l_moviesort[index][1]))
-		if config.movielist.btn_red.value == "sort": self['key_red'].setText(l_moviesort[index][1])
-		if config.movielist.btn_green.value == "sort": self['key_green'].setText(l_moviesort[index][1])
-		if config.movielist.btn_yellow.value == "sort": self['key_yellow'].setText(l_moviesort[index][1])
-		if config.movielist.btn_blue.value == "sort": self['key_blue'].setText(l_moviesort[index][1])
+		sorttext = l_moviesort[index][2]
+		if config.movielist.btn_red.value == "sort": self['key_red'].setText(sorttext)
+		if config.movielist.btn_green.value == "sort": self['key_green'].setText(sorttext)
+		if config.movielist.btn_yellow.value == "sort": self['key_yellow'].setText(sorttext)
+		if config.movielist.btn_blue.value == "sort": self['key_blue'].setText(sorttext)
 		self.sorttimer = eTimer()
 		self.sorttimer.callback.append(self._updateButtonTexts)
 		self.sorttimer.start(1500, True) #time for displaying sorting type just applied
