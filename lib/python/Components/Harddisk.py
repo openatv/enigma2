@@ -497,7 +497,7 @@ class Harddisk:
 			self.timer.stop()
 			idle_parm = 0
 			# calculate the complicated timeout needed by hdparm
-			if idle < 1200:
+			if idle <= 1200:
 				idle_parm = idle / 5
 			else:
 				if idle >= 1800:
