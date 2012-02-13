@@ -564,7 +564,7 @@ class EPGSelection(Screen, HelpableScreen):
 			l.recalcEntrySize()
 			l.sortSingleEPG(self.sort_type)
 
- 	def hidewaitingtext(self):
+	def hidewaitingtext(self):
 		self.listTimer.stop()
 		self['lab1'].hide()
 
@@ -940,7 +940,12 @@ class EPGSelection(Screen, HelpableScreen):
 				autotimer
 			)
 		except ImportError:
-			self.session.open(MessageBox, _("The AutoTimer plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			if self.type == EPG_TYPE_SINGLE or self.type == EPG_TYPE_ENHANCED:
+				if self.sort_type == 0:
+					self.sort_type = 1
+				else: 
+					self.sort_type = 0
+				self["list"].sortSingleEPG(self.sort_type)
 
 	def editCallback(self, session):
 		global autotimer
@@ -1108,15 +1113,17 @@ class EPGSelection(Screen, HelpableScreen):
 		self.moveTimeLines()
 
 	def OK(self):
-		if config.epgselction.OK_pliepg.value == "Zap" or config.epgselction.OK_enhanced.value == "Zap" or config.epgselction.OK_infobar.value == "Zap":
+		if config.epgselction.OK_pliepg.value == "EventView" or config.epgselction.OK_enhanced.value == "EventView" or config.epgselction.OK_infobar.value == "EventView":
+			self.infoKeyPressed()
+		elif config.epgselction.OK_pliepg.value == "Zap" or config.epgselction.OK_enhanced.value == "Zap" or config.epgselction.OK_infobar.value == "Zap":
 			self.ZapTo()
+		elif config.epgselction.OK_pliepg.value == "Zap + Exit" or config.epgselction.OK_enhanced.value == "Zap + Exit" or config.epgselction.OK_infobar.value == "Zap + Exit":
+			self.zap()
 		if self.type == EPG_TYPE_GRAPH:
 			serviceref = self.session.nav.getCurrentlyPlayingServiceReference()
 			self["list"].setCurrentlyPlaying(serviceref)
 			self["list"].fillGraphEPG(None, self.ask_time)
 			self.moveTimeLines(True)
-		if config.epgselction.OK_pliepg.value == "Zap + Exit" or config.epgselction.OK_enhanced.value == "Zap + Exit" or config.epgselction.OK_infobar.value == "Zap + Exit":
-			self.zap()
 
 	def OKLong(self):
 		if config.epgselction.OKLong_pliepg.value == "Zap" or config.epgselction.OKLong_enhanced.value == "Zap" or config.epgselction.OKLong_infobar.value == "Zap":
