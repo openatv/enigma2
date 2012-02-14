@@ -521,7 +521,7 @@ public:
 	virtual RESULT getCurrentFrontendParameters(ePtr<iDVBFrontendParameters> &)=0;
 	enum 
 	{
-		evtPreStart, evtEOF, evtSOF, evtFailed
+		evtPreStart, evtEOF, evtSOF, evtFailed, evtStopped
 	};
 	virtual RESULT connectStateChange(const Slot1<void,iDVBChannel*> &stateChange, ePtr<eConnection> &connection)=0;
 	virtual RESULT connectEvent(const Slot2<void,iDVBChannel*,int> &eventChange, ePtr<eConnection> &connection)=0;
@@ -605,7 +605,8 @@ public:
 	virtual void stopSource() = 0;
 	
 	virtual void setCueSheet(eCueSheet *cuesheet) = 0;
-	
+	virtual void setOfflineDecodeMode(int parityswitchdelay) = 0;
+
 	virtual RESULT getLength(pts_t &pts) = 0;
 	
 		/* we explicitely ask for the decoding demux here because a channel

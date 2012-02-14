@@ -553,6 +553,10 @@ profile("InputDevice")
 import Components.InputDevice
 Components.InputDevice.InitInputDevices()
 
+profile("SetupDevices")
+import Components.SetupDevices
+Components.SetupDevices.InitSetupDevices()
+
 profile("AVSwitch")
 import Components.AVSwitch
 Components.AVSwitch.InitAVSwitch()
@@ -591,10 +595,6 @@ import Screens.OSD
 Screens.OSD.setConfiguredPosition()
 Screens.OSD.setConfiguredSettings()
 Screens.OSD.setConfiguredAplha()
-
-profile("SetupDevices")
-import Components.SetupDevices
-Components.SetupDevices.InitSetupDevices()
 
 profile("EpgCacheSched")
 import Screens.EpgLoadSave

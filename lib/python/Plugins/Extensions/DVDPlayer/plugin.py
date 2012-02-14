@@ -4,6 +4,8 @@ from Tools.Directories import pathExists, fileExists
 from Plugins.Plugin import PluginDescriptor
 from Components.Harddisk import harddiskmanager
 
+detected_DVD = None
+
 def main(session, **kwargs):
 	from Screens import DVD
 	session.open(DVD.DVDPlayer)
@@ -63,10 +65,29 @@ def filescan(**kwargs):
 			openfnc = filescan_open,
 		)]
 
+def onPartitionChange(action, partition):
+	print "[@] onPartitionChange", action, partition
+	if partition != harddiskmanager.getCD():
+		global detected_DVD
+		if action == 'remove':
+			print "[@] DVD removed"
+			detected_DVD = False
+		elif action == 'add':
+			print "[@] DVD Inserted"
+			detected_DVD = None
+		
 def menu(menuid, **kwargs):
 	if menuid == "mainmenu":
-		cd = harddiskmanager.getCD()
-		if cd and os.path.exists(os.path.join(harddiskmanager.getAutofsMountpoint(harddiskmanager.getCD()), "VIDEO_TS")):
+		global detected_DVD
+		if detected_DVD is None:
+			cd = harddiskmanager.getCD()
+			if cd and os.path.exists(os.path.join(harddiskmanager.getAutofsMountpoint(harddiskmanager.getCD()), "VIDEO_TS")):
+				detected_DVD = True
+			else:
+				detected_DVD = False
+			if onPartitionChange not in harddiskmanager.on_partition_list_change:
+				harddiskmanager.on_partition_list_change.append(onPartitionChange)
+		if detected_DVD:
 			return [(_("DVD Player"), play, "dvd_player", 46)]
 	return []
 

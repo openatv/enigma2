@@ -96,6 +96,9 @@ class LCD:
 			value = 255
 		eDBoxLCD.getInstance().setInverted(value)
 
+	def setFlipped(self, value):
+		eDBoxLCD.getInstance().setFlipped(value)
+
 	def isOled(self):
 		return eDBoxLCD.getInstance().isOled()
 
@@ -149,6 +152,9 @@ def InitLcd():
 		def setLCDinverted(configElement):
 			ilcd.setInverted(configElement.value);
 
+		def setLCDflipped(configElement):
+			ilcd.setFlipped(configElement.value);
+
 		def setLCDmode(configElement):
 			ilcd.setMode(configElement.value);
 
@@ -190,6 +196,9 @@ def InitLcd():
 		config.lcd.invert = ConfigYesNo(default=False)
 		config.lcd.invert.addNotifier(setLCDinverted);
 
+		config.lcd.flip = ConfigYesNo(default=False)
+		config.lcd.flip.addNotifier(setLCDflipped);
+
 		if fileExists("/proc/stb/lcd/scroll_delay"):
 			config.lcd.scrollspeed = ConfigSlider(default = 150, increment = 10, limits = (0, 500))
 			config.lcd.scrollspeed.addNotifier(setLCDscrollspeed);
@@ -226,7 +235,6 @@ def InitLcd():
 			config.lcd.ledbrightnessdeepstandby = ConfigNothing()
 			config.lcd.ledbrightnessdeepstandby.apply = lambda : doNothing()
 			config.lcd.ledblinkingtime = ConfigNothing()
-
 	else:
 		def doNothing():
 			pass
