@@ -25,13 +25,13 @@ private:
 	int m_fd;     /* for uncached */
 	FILE *m_file; /* for cached */
 	int m_cached;
-	std::string m_basename;
 	off_t m_splitsize, m_totallength, m_current_offset, m_base_offset, m_last_offset;
 	int m_nrfiles;
-	void scan();
 	int m_current_file;
-	int switchOffset(off_t off);
+	std::string m_basename;
 
+	void scan();
+	int switchOffset(off_t off);
 	off_t lseek_internal(off_t offset, int whence);
 	FILE *openFileCached(int nr);
 	int openFileUncached(int nr);

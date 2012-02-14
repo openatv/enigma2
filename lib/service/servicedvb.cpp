@@ -869,15 +869,8 @@ RESULT eServiceFactoryDVB::play(const eServiceReference &ref, ePtr<iPlayableServ
 RESULT eServiceFactoryDVB::record(const eServiceReference &ref, ePtr<iRecordableService> &ptr)
 {
 	bool isstream = ref.path.substr(0, 7) == "http://";
-	if (isstream || ref.path.empty())
-	{
-		ptr = new eDVBServiceRecord((eServiceReferenceDVB&)ref, isstream);
-		return 0;
-	} else
-	{
-		ptr = 0;
-		return -1;
-	}
+	ptr = new eDVBServiceRecord((eServiceReferenceDVB&)ref, isstream);
+	return 0;
 }
 
 RESULT eServiceFactoryDVB::list(const eServiceReference &ref, ePtr<iListableService> &ptr)
@@ -2781,10 +2774,13 @@ void eDVBServicePlay::updateDecoder(bool sendSeekableStateChanged)
 		if (m_dvb_service)
 		{
 				/* (audio pid will be set in selectAudioTrack */
-			m_dvb_service->setCacheEntry(eDVBService::cVPID, vpid);
-			m_dvb_service->setCacheEntry(eDVBService::cVTYPE, vpidtype == eDVBVideo::MPEG2 ? -1 : vpidtype);
-			m_dvb_service->setCacheEntry(eDVBService::cPCRPID, pcrpid);
-			m_dvb_service->setCacheEntry(eDVBService::cTPID, tpid);
+			if (vpid >= 0) 
+			{
+				m_dvb_service->setCacheEntry(eDVBService::cVPID, vpid);
+				m_dvb_service->setCacheEntry(eDVBService::cVTYPE, vpidtype == eDVBVideo::MPEG2 ? -1 : vpidtype);
+			}
+			if (pcrpid >= 0) m_dvb_service->setCacheEntry(eDVBService::cPCRPID, pcrpid);
+			if (tpid >= 0) m_dvb_service->setCacheEntry(eDVBService::cTPID, tpid);
 		}
 		if (!sendSeekableStateChanged && (m_decoder->getVideoProgressive() != -1) != wasSeekable)
 			sendSeekableStateChanged = true;
@@ -2815,9 +2811,7 @@ void eDVBServicePlay::loadCuesheet()
 			if (!fread(&what, sizeof(what), 1, f))
 				break;
 			
-#if BYTE_ORDER == LITTLE_ENDIAN
-			where = bswap_64(where);
-#endif
+			where = be64toh(where);
 			what = ntohl(what);
 			
 			if (what > 3)
@@ -2848,11 +2842,7 @@ void eDVBServicePlay::saveCuesheet()
 
 		for (std::multiset<cueEntry>::iterator i(m_cue_entries.begin()); i != m_cue_entries.end(); ++i)
 		{
-#if BYTE_ORDER == BIG_ENDIAN
-			where = i->where;
-#else
-			where = bswap_64(i->where);
-#endif
+			where = htobe64(i->where);
 			what = htonl(i->what);
 			fwrite(&where, sizeof(where), 1, f);
 			fwrite(&what, sizeof(what), 1, f);

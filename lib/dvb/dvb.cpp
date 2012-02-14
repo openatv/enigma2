@@ -947,22 +947,48 @@ public:
 		m_iframe_state(0),
 		m_pid(0),
 		m_timebase_change(0),
-		m_packet_size(packetsize)
+		m_packet_size(packetsize),
+		m_parity_switch_delay(0),
+		m_parity(-1)
 	{}
 	void setIFrameSearch(int enabled) { m_iframe_search = enabled; m_iframe_state = 0; }
 
 			/* "timebase change" is for doing trickmode playback at an exact speed, even when pictures are skipped. */
 			/* you need to set it to 1/16 if you want 16x playback, for example. you need video master sync. */
 	void setTimebaseChange(int ratio) { m_timebase_change = ratio; } /* 16bit fixpoint, 0 for disable */
+	void setParitySwitchDelay(int msdelay) { m_parity_switch_delay = msdelay; }
 protected:
 	int m_iframe_search, m_iframe_state, m_pid;
 	int m_timebase_change;
 	int m_packet_size;
+	int m_parity_switch_delay;
+	int m_parity;
 	int filterRecordData(const unsigned char *data, int len, size_t &current_span_remaining);
 };
 
 int eDVBChannelFilePush::filterRecordData(const unsigned char *_data, int len, size_t &current_span_remaining)
 {
+	if (m_parity_switch_delay)
+	{
+		int offset;
+		for (offset = 0; offset < len; offset += m_packet_size)
+		{
+			unsigned char *pkt = (unsigned char*)_data + offset + m_packet_size - 188;
+			if (pkt[3] & 0xc0)
+			{
+				int parity = (pkt[3] & 0x40) ? 1 : 0;
+				if (parity != m_parity)
+				{
+					if (m_parity >= 0)
+					{
+						usleep(m_parity_switch_delay * 1000);
+					}
+					m_parity = parity;
+					break;
+				}
+			}
+		}
+	}
 #if 0
 	if (m_timebase_change)
 	{
@@ -1219,6 +1245,10 @@ void eDVBChannel::pvrEvent(int event)
 	case eFilePushThread::evtUser: /* start */
 		eDebug("SOF");
 		m_event(this, evtSOF);
+		break;
+	case eFilePushThread::evtStopped:
+		eDebug("eDVBChannel: pvrEvent evtStopped");
+		m_event(this, evtStopped);
 		break;
 	}
 }
@@ -1823,7 +1853,8 @@ RESULT eDVBChannel::playSource(ePtr<iTsSource> &source, const char *streaminfo_f
 
 	m_pvr_thread = new eDVBChannelFilePush(m_source->getPacketSize());
 	m_pvr_thread->enablePVRCommit(1);
-	m_pvr_thread->setStreamMode(1);
+	/* If the source specifies a length, it's a file. If not, it's a stream */
+	m_pvr_thread->setStreamMode(m_source->length() <= 0);
 	m_pvr_thread->setScatterGather(this);
 
 	m_event(this, evtPreStart);
@@ -1846,7 +1877,10 @@ void eDVBChannel::stopSource()
 		m_pvr_thread = 0;
 	}
 	if (m_pvr_fd_dst >= 0)
+	{
 		::close(m_pvr_fd_dst);
+		m_pvr_fd_dst = -1;
+	}
 	m_source = NULL;
 	m_tstools.setSource(m_source);
 }
@@ -1862,6 +1896,11 @@ void eDVBChannel::setCueSheet(eCueSheet *cuesheet)
 	m_cue = cuesheet;
 	if (m_cue)
 		m_cue->connectEvent(slot(*this, &eDVBChannel::cueSheetEvent), m_conn_cueSheetEvent);
+}
+
+void eDVBChannel::setOfflineDecodeMode(int parityswitchdelay)
+{
+	if (m_pvr_thread) m_pvr_thread->setParitySwitchDelay(parityswitchdelay);
 }
 
 RESULT eDVBChannel::getLength(pts_t &len)
