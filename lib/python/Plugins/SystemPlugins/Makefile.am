@@ -10,7 +10,7 @@ SUBDIRS += SatelliteEquipmentControl DiseqcTester choiceRC FastScan XtrendFancon
 endif
 
 if MARA
-SUBDIRS += SatelliteEquipmentControl DiseqcTester FastScan Blindscan
+SUBDIRS += SatelliteEquipmentControl DiseqcTester FastScan Blindscan XtrendFancontrol HdmiCEC
 endif
 
 if VUUNO
