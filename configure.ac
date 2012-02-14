@@ -55,6 +55,7 @@ AC_DEFINE_UNQUOTED(BOXTYPE,"$BOXTYPE",[box type])
 AM_CONDITIONAL(DREAMBOX, test `echo "$BOXTYPE" | cut -b 1-2` == "dm")
 AM_CONDITIONAL(VUPLUS, test `echo "$BOXTYPE" | cut -b 1-2` == "vu")
 AM_CONDITIONAL(XTREND, test `echo "$BOXTYPE" | cut -b 1-2` == "et")
+AM_CONDITIONAL(MARA, test `echo "$BOXTYPE" | cut -b 1-2` == "mara")
 AM_CONDITIONAL(VUUNO, test "$BOXTYPE" == vuuno)
 AM_CONDITIONAL(VUULTIMO, test "$BOXTYPE" == vuultimo)
 AM_CONDITIONAL(VUSOLO, test "$BOXTYPE" == vusolo)
@@ -62,6 +63,7 @@ AM_CONDITIONAL(VUDUO, test "$BOXTYPE" == vuduo)
 AM_CONDITIONAL(ET5X00, test "$BOXTYPE" == et5x00)
 AM_CONDITIONAL(ET6X00, test "$BOXTYPE" == et6x00)
 AM_CONDITIONAL(ET9X00, test "$BOXTYPE" == et9x00)
+AM_CONDITIONAL(MARAM9, test "$BOXTYPE" == maram9)
 AM_CONDITIONAL(HAVE_TEMPFANCONTROL, test "$BOXTYPE" == dm8000 -o "$BOXTYPE" == dm800se -o "$BOXTYPE" == dm500hd)
 
 AC_ARG_WITH(textlcd,
@@ -118,17 +120,7 @@ if test x"$BOXTYPE" == "xdm8000" -o x"$BOXTYPE" == "xdm7020hd" ; then
 	AC_DEFINE(KEY_PLAY_ACTUALLY_IS_KEY_PLAYPAUSE, 1,[define when rc sends a KEY_PLAY event for its KEY_PLAYPAUSE key])
 fi
 
-if test x"$BOXTYPE" == "xet5x00" ; then
-# 	AC_DEFINE(FORCE_ADVANCED_REMOTE, 1,[define to fixup the input device identification when the remote control is actually an 'advanced' remote (with play/forward/rewind keys)])
-	AC_DEFINE(KEY_PLAY_ACTUALLY_IS_KEY_PLAYPAUSE, 1,[define when rc sends a KEY_PLAY event for its KEY_PLAYPAUSE key])
-fi
-
-if test x"$BOXTYPE" == "xet6x00" ; then
-# 	AC_DEFINE(FORCE_ADVANCED_REMOTE, 1,[define to fixup the input device identification when the remote control is actually an 'advanced' remote (with play/forward/rewind keys)])
-	AC_DEFINE(KEY_PLAY_ACTUALLY_IS_KEY_PLAYPAUSE, 1,[define when rc sends a KEY_PLAY event for its KEY_PLAYPAUSE key])
-fi
-
-if test x"$BOXTYPE" == "xet9x00" ; then
+if test x"$BOXTYPE" == "xet5x00" -o x"$BOXTYPE" == "xet6x00" -o x"$BOXTYPE" == "xet9x00" -o x"$BOXTYPE" == "xmaram9" ; then
 # 	AC_DEFINE(FORCE_ADVANCED_REMOTE, 1,[define to fixup the input device identification when the remote control is actually an 'advanced' remote (with play/forward/rewind keys)])
 	AC_DEFINE(KEY_PLAY_ACTUALLY_IS_KEY_PLAYPAUSE, 1,[define when rc sends a KEY_PLAY event for its KEY_PLAYPAUSE key])
 fi
