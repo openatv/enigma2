@@ -55,7 +55,7 @@ AC_DEFINE_UNQUOTED(BOXTYPE,"$BOXTYPE",[box type])
 AM_CONDITIONAL(DREAMBOX, test `echo "$BOXTYPE" | cut -b 1-2` == "dm")
 AM_CONDITIONAL(VUPLUS, test `echo "$BOXTYPE" | cut -b 1-2` == "vu")
 AM_CONDITIONAL(XTREND, test `echo "$BOXTYPE" | cut -b 1-2` == "et")
-AM_CONDITIONAL(MARA, test `echo "$BOXTYPE" | cut -b 1-2` == "mara")
+AM_CONDITIONAL(MARA, test `echo "$BOXTYPE" | cut -b 1-4` == "mara")
 AM_CONDITIONAL(VUUNO, test "$BOXTYPE" == vuuno)
 AM_CONDITIONAL(VUULTIMO, test "$BOXTYPE" == vuultimo)
 AM_CONDITIONAL(VUSOLO, test "$BOXTYPE" == vusolo)
@@ -75,16 +75,6 @@ if test x"$withtextlcd" != xno ; then
 	AC_DEFINE(HAVE_TEXTLCD, 1,[Define when using an ascii based lcd device])
 fi
 AM_CONDITIONAL(HAVE_TEXTLCD, test x"$withtextlcd" != xno)
-
-AC_ARG_WITH(graphiclcd,
-	AC_HELP_STRING([--with-graphiclcd], [use graphic based lcd, yes or no]),
-	[[withgraphiclcd=$withval]],
-	[[withgraphiclcd=no]]
-)
-if test x"$withgraphiclcd" != xno ; then
-	AC_DEFINE(HAVE_GRAPHICLCD, 1,[Define when using an graphic based vfd device])
-fi
-AM_CONDITIONAL(HAVE_GRAPHICLCD, test x"$withgraphiclcd != xno")
 
 AC_ARG_WITH(fullgraphiclcd,
         AC_HELP_STRING([--with-fullgraphiclcd], [display right_half_vfd_icons from skin(for ultimo), yes or no]),
