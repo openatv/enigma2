@@ -435,7 +435,10 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.setServiceFontsize()
 			self.setEventFontsize()
 		else:
-			instance.setWrapAround(False)
+ 			if self.type == EPG_TYPE_SINGLE or self.type == EPG_TYPE_ENHANCED:
+				instance.setWrapAround(True)
+			else:
+				instance.setWrapAround(False)
 			instance.selectionChanged.get().append(self.selectionChanged)
 			instance.setContent(self.l)
 			self.setEventFontsize()
