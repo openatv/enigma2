@@ -128,7 +128,7 @@ class SettingsMenu(ConfigListScreen, Screen):
 		Screen.__init__(self, session)
 		self.session = session
 		self.skinName = "Setup"
-		Screen.setTitle(self, _("Setings..."))
+		Screen.setTitle(self, _("Settings..."))
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self["satus"] = StaticText()

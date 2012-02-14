@@ -12,7 +12,8 @@ class Language:
 		# FIXME make list dynamically
 		# name, iso-639 language, iso-3166 country. Please don't mix language&country!
 		# also, see "precalcLanguageList" below on how to re-create the language cache after you added a language
-		self.addLanguage("English", "en", "EN")
+		self.addLanguage("English (UK)", "en_GB", "GB")
+		self.addLanguage("English (US)", "en", "EN")
 		self.addLanguage("Deutsch", "de", "DE")
 		self.addLanguage("Arabic", "ar", "AE")
 		self.addLanguage("Български", "bg", "BG")

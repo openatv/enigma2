@@ -57,11 +57,11 @@ class EventTime(Poll, Converter, object):
 			end_time = start_time + duration
 			elapsed = now - start_time
 			if start_time <= now <= end_time:
-				if config.usage.swap_time_remaining_on_osd.value == "1":
+				if config.usage.swap_time_remaining_on_osd.value == "1" or config.usage.swap_time_remaining_on_vfd.value == "1":
 					return (duration, elapsed)
-				elif config.usage.swap_time_remaining_on_osd.value == "2":
+				elif config.usage.swap_time_remaining_on_osd.value == "2" or config.usage.swap_time_remaining_on_vfd.value == "2":
 					return (duration, elapsed, end_time - now)
-				elif config.usage.swap_time_remaining_on_osd.value == "3":
+				elif config.usage.swap_time_remaining_on_osd.value == "3" or config.usage.swap_time_remaining_on_vfd.value == "3":
 					return (duration, end_time - now, elapsed)
 				else:
 					return (duration, end_time - now)
@@ -74,11 +74,11 @@ class EventTime(Poll, Converter, object):
 			end_time = start_time + duration
 			elapsed = now - start_time
 			if start_time <= now <= end_time:
-				if config.usage.swap_time_remaining_on_osd.value == "1":
+				if config.usage.swap_time_remaining_on_osd.value == "1" or config.usage.swap_time_remaining_on_vfd.value == "1":
 					return (duration, end_time - now)
-				elif config.usage.swap_time_remaining_on_osd.value == "2":
+				elif config.usage.swap_time_remaining_on_osd.value == "2" or config.usage.swap_time_remaining_on_vfd.value == "2":
 					return (duration, elapsed, end_time - now)
-				elif config.usage.swap_time_remaining_on_osd.value == "3":
+				elif config.usage.swap_time_remaining_on_osd.value == "3" or config.usage.swap_time_remaining_on_vfd.value == "3":
 					return (duration, end_time - now, elapsed)
 				else:
 					return (duration, elapsed)

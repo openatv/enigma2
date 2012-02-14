@@ -389,14 +389,7 @@ class InfoBarShowHide:
 			self.__locked = 0
 		if self.execing:
 			self.startHideTimer()
-
-#	def startShow(self):
-#		self.instance.m_animation.startMoveAnimation(ePoint(0, 600), ePoint(0, 380), 100)
-#		self.__state = self.STATE_SHOWN
-#
-#	def startHide(self):
-#		self.instance.m_animation.startMoveAnimation(ePoint(0, 380), ePoint(0, 600), 100)
-#		self.__state = self.STATE_HIDDEN		
+		
 	def doButtonsCheck(self):
 		if config.plisettings.ColouredButtons.value:
 			self["key_yellow"].setText(_("Search"))
@@ -1028,7 +1021,7 @@ class InfoBarEPG:
 
 		self["EPGActions"] = HelpableActionMap(self, "InfobarEPGActions",
 			{
-				"showEventInfo": (self.openEventView, _("show program infomation...")),
+				"showEventInfo": (self.openEventView, _("show program information...")),
 				"showEventInfoPlugin": (self.showEventInfoPlugins, _("list of EPG views...")),
 				"showInfobarOrEpgWhenInfobarAlreadyVisible": self.showEventInfoWhenNotVisible,
 				"InfoPressed": self.InfoPressed,
@@ -1886,6 +1879,26 @@ class InfoBarPVRState:
 	def __playStateChanged(self, state):
 		playstateString = state[3]
 		self.pvrStateDialog["state"].setText(playstateString)
+		if playstateString == '>':
+			self.pvrStateDialog["satusicon"].setPixmapNum(0)
+			self.pvrStateDialog["speed"].setText("")
+		elif playstateString == '||':
+			self.pvrStateDialog["satusicon"].setPixmapNum(1)
+			self.pvrStateDialog["speed"].setText("")
+		elif playstateString == 'END':
+			self.pvrStateDialog["satusicon"].setPixmapNum(2)
+			self.pvrStateDialog["speed"].setText("")
+		elif playstateString.startswith('>>'):
+			self.pvrStateDialog["satusicon"].setPixmapNum(3)
+			speed = state[3].split()
+			self.pvrStateDialog["speed"].setText(speed[1])
+		elif playstateString.startswith('<<'):
+			self.pvrStateDialog["satusicon"].setPixmapNum(4)
+			speed = state[3].split()
+			self.pvrStateDialog["speed"].setText(speed[1])
+		elif playstateString.startswith('/'):
+			self.pvrStateDialog["satusicon"].setPixmapNum(5)
+			self.pvrStateDialog["speed"].setText(playstateString)
 		
 		# if we return into "PLAY" state, ensure that the dialog gets hidden if there will be no infobar displayed
 		if not config.usage.show_infobar_on_skip.value and self.seekstate == self.SEEK_STATE_PLAY and not self.force_show:

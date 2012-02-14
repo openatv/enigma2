@@ -4,6 +4,10 @@ LANG_TEXT = {
 	"T1": "Please use the UP and DOWN keys to select your language. Afterwards press the OK button.",
 	"T2": "Language selection",
 },
+"en_GB_GB": {
+	"T1": "Please use the UP and DOWN keys to select your language. Afterwards press the OK button.",
+	"T2": "Language selection",
+},
 "de_DE": {
 	"T1": "Bitte benutzen Sie die Hoch/Runter-Tasten, um Ihre Sprache auszuwählen. Danach drücken Sie bitte OK.",
 	"T2": "Sprachauswahl",

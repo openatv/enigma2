@@ -1420,7 +1420,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				files = 0
 				subdirs = 0
 				if cur_path.find('.Trash') != -1:
-					are_you_sure = _("Do you really want to permamently remove from trash can ?")
+					are_you_sure = _("Do you really want to permanently remove from trash can ?")
 				else:
 					are_you_sure = _("Do you really want to delete ?")
 				if args:
