@@ -229,10 +229,10 @@
 		<widget source="global.CurrentTime" render="Label" position="0,22" size="120,45" font="FdLcD;46" halign="left" noWrap="1">
 			<convert type="ClockToText">Format:%H:%M</convert>
 		</widget>
-		<widget source="session.OnlineCheckState" render="Pixmap" pixmap="lcd/update.png" position="243,0" size="12,10">
+		<widget source="session.OnlineCheckState" render="Pixmap" pixmap="lcd/update.png" position="241,0" size="14,12">
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
-		<widget source="session.RecordState" render="Pixmap" pixmap="lcd/rec.png" position="225,52"  size="28,12">
+		<widget source="session.RecordState" render="Pixmap" pixmap="lcd/rec.png" position="223,52"  size="32,12">
 			<convert type="ConditionalShowHide" />
 		</widget>	
 		<widget source="session.TunerInfo" render="Pixmap" pixmap="lcd/tuner-a.png" position="188,50" size="9,15">
@@ -259,9 +259,9 @@
 
 <!-- Plugin browser -->
 	<screen name="PluginBrowserSummary" position="0,0" size="255,64">
-		<widget source="parent.Title" render="Label" position="0,0" size="255,16" font="FdLcD;14" halign="center" valign="top" noWrap="1" />
-		<widget source="entry" render="Label" position="0,16" size="255,18" font="FdLcD;17" halign="left" valign="top" />
-		<widget source="desc" render="Label" position="0,36" size="255,34" font="FdLcD;14" valign="top" />
+		<widget source="parent.Title" render="Label" position="0,0" size="255,16" font="FdLcD;16" noWrap="1" />
+		<widget source="entry" render="Label" position="0,16" size="255,18" font="FdLcD;15" noWrap="1" />
+		<widget source="desc" render="Label" position="0,36" size="255,34" font="FdLcD;12" valign="top" />
 	</screen>
 
 <!-- JobView Summary -->
