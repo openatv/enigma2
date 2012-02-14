@@ -53,6 +53,9 @@ class About(Screen):
 		elif config.misc.boxtype.value == 'et9x00':
 			self["lab3"] = StaticText(_("Support at") + " www.xtrend-support.co.uk")
 			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET9x00 Series")
+		elif config.misc.boxtype.value == 'maram9':
+			self["lab3"] = StaticText(_("Support at") + " www.mara-support.co.uk")
+			self["BoxType"] = StaticText(_("Hardware:") + " MarA M9")
 			AboutText = _("Hardware:") + " Xtrend ET9x00 Series\n"
 		else:
 			self["lab3"] = StaticText(_("Support at") + " www.world-of-satellite.co.uk")
@@ -251,6 +254,8 @@ class AboutSummary(Screen):
 			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET6x00 Series")
 		elif config.misc.boxtype.value == 'et9x00':
 			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET9x00 Series")
+		elif config.misc.boxtype.value == 'maram9':
+			self["BoxType"] = StaticText(_("Hardware:") + " MarA M9")
 		else:
 			self["BoxType"] = StaticText(_("Hardware:") + " " + config.misc.boxtype.value)
 		self["KernelVersion"] = StaticText(_("Kernel:") + " " + about.getKernelVersionString())
