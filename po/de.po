@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-12 10:31+0100\n"
-"PO-Revision-Date: 2012-02-12 10:48+0100\n"
+"POT-Creation-Date: 2012-02-14 16:00+0100\n"
+"PO-Revision-Date: 2012-02-14 16:13+0100\n"
 "Last-Translator: \n"
 "Language-Team: Deutsch <>\n"
 "Language: de\n"
@@ -203,11 +203,9 @@ msgstr "%H:%M"
 
 #, python-format
 msgid "%d hour"
-msgstr "%d Stunde"
-
-#, python-format
-msgid "%d hours"
-msgstr "%d Stunden"
+msgid_plural "%d hours"
+msgstr[0] "%d Stunde"
+msgstr[1] "%d Stunden"
 
 #
 #, python-format
@@ -221,7 +219,9 @@ msgstr "%d min"
 
 #, python-format
 msgid "%d minute"
-msgstr "%d Minute"
+msgid_plural "%d minutes"
+msgstr[0] "%d Minute"
+msgstr[1] "%d Minuten"
 
 #, python-format
 msgid "%d minutes"
@@ -229,11 +229,9 @@ msgstr "%d Minuten"
 
 #, python-format
 msgid "%d second"
-msgstr "%d Sekunde"
-
-#, python-format
-msgid "%d seconds"
-msgstr "%d Sekunden"
+msgid_plural "%d seconds"
+msgstr[0] "%d Sekunde"
+msgstr[1] "%d Sekunden"
 
 #
 #, python-format
@@ -2892,6 +2890,9 @@ msgstr "Zeige verfügbare Netzwerke"
 msgid "List of Storage Devices"
 msgstr "Speichergeräteliste"
 
+msgid "List type"
+msgstr "Listen Typ"
+
 #, python-format
 msgid "List version %d, found %d channels"
 msgstr "Listen Version %d, %d gefundene Kanäle"
@@ -3273,6 +3274,9 @@ msgstr "Kein (unterstütztes) DVD-Laufwerk gefunden!"
 #
 msgid "No Connection"
 msgstr "Keine Verbindung"
+
+msgid "No Delay"
+msgstr "Keine Verzögerung"
 
 #
 msgid "No HDD found or HDD not initialized!"
@@ -8097,5 +8101,3 @@ msgstr "umschalten"
 msgid "zapped"
 msgstr "umgeschaltet"
 
-#~ msgid " "
-#~ msgstr " "
