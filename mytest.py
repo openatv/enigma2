@@ -38,10 +38,6 @@ from Tools.Directories import InitFallbackFiles, resolveFilename, SCOPE_PLUGINS,
 from Components.config import config, configfile, ConfigText, ConfigYesNo, ConfigInteger, ConfigSelection, NoSave
 InitFallbackFiles()
 
-profile("UsageConfig")
-import Components.UsageConfig
-Components.UsageConfig.InitUsageConfig()
-
 profile("config.misc")
 config.misc.radiopic = ConfigText(default = resolveFilename(SCOPE_CURRENT_SKIN, "radio.mvi"))
 config.misc.blackradiopic = ConfigText(default = resolveFilename(SCOPE_CURRENT_SKIN, "black.mvi"))
@@ -564,6 +560,10 @@ Components.AVSwitch.InitAVSwitch()
 profile("RecordingConfig")
 import Components.RecordingConfig
 Components.RecordingConfig.InitRecordingConfig()
+
+profile("UsageConfig")
+import Components.UsageConfig
+Components.UsageConfig.InitUsageConfig()
 
 profile("Init:DebugLogCheck")
 import Screens.LogManager
