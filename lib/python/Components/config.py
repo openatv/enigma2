@@ -1635,21 +1635,18 @@ class Config(ConfigSubsection):
 
 	def unpickle(self, lines, base_file=True):
 		tree = { }
+		configbase = tree.setdefault("config", {})
 		for l in lines:
 			if not l or l[0] == '#':
 				continue
 
-			n = l.find('=')
-			name = l[:n]
-			val = l[n+1:].strip()
+			(name, val) = l.split('=', 1)
+			val = val.strip()
 
 			names = name.split('.')
-#			if val.find(' ') != -1:
-#				val = val[:val.find(' ')]
+			base = configbase
 
-			base = tree
-
-			for n in names[:-1]:
+			for n in names[1:-1]:
 				base = base.setdefault(n, {})
 
 			base[names[-1]] = val
