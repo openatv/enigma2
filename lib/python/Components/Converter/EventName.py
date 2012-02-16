@@ -63,21 +63,25 @@ class EventName(Converter, object):
 			test = [ 'ITSECX', (reference.toString(), 1, -1, 400) ]
 			self.list = [] if self.epgcache is None else self.epgcache.lookupEvent(test)
 			if self.list:
-				if self.type == self.NEXT_NAME and self.list[1][1]:
-					return self.list[1][1]
-				elif self.type == self.NEXT_DESCRIPTION and self.list[1][2]:
-					description = self.list[1][2]
-					extended = self.list[1][2]
-					if description and extended:
-						description += '\n'
-					return description + extended
-				elif self.type == self.THIRD_NAME and self.list[2][1]:
-					return self.list[2][1]
-				elif self.type == self.THIRD_DESCRIPTION and self.list[2][2]:
-					description = self.list[2][2]
-					extended = self.list[2][2]
-					if description and extended:
-						description += '\n'
-					return description + extended
+				try:
+					if self.type == self.NEXT_NAME and self.list[1][1]:
+						return self.list[1][1]
+					elif self.type == self.NEXT_DESCRIPTION and self.list[1][2]:
+						description = self.list[1][2]
+						extended = self.list[1][2]
+						if description and extended:
+							description += '\n'
+						return description + extended
+					elif self.type == self.THIRD_NAME and self.list[2][1]:
+						return self.list[2][1]
+					elif self.type == self.THIRD_DESCRIPTION and self.list[2][2]:
+						description = self.list[2][2]
+						extended = self.list[2][2]
+						if description and extended:
+							description += '\n'
+						return description + extended
+				except:
+					# failed to return any epg data.
+					return ""
 	
 	text = property(getText)
