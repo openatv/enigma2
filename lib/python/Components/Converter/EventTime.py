@@ -113,14 +113,19 @@ class EventTime(Poll, Converter, object):
 			test = [ 'IBDCX', (reference.toString(), 1, -1, 400) ]
 			self.list = [] if self.epgcache is None else self.epgcache.lookupEvent(test)
 			if self.list:
-				if self.type == self.NEXT_START_TIME and self.list[1][1]:
-					return self.list[1][1]
-				elif self.type == self.NEXT_END_TIME and self.list[1][1] and self.list[1][2]:
-					return int(self.list[1][1]) + self.list[1][2]
-				elif self.type == self.THIRD_START_TIME and self.list[2][1]:
-					return self.list[2][1]
-				elif self.type == self.THIRD_END_TIME and self.list[2][1] and self.list[2][2]:
-					return int(self.list[2][1]) + self.list[2][2]
+				try:
+					if self.type == self.NEXT_START_TIME and self.list[1][1]:
+						return self.list[1][1]
+					elif self.type == self.NEXT_END_TIME and self.list[1][1] and self.list[1][2]:
+						return int(self.list[1][1]) + self.list[1][2]
+					elif self.type == self.THIRD_START_TIME and self.list[2][1]:
+						return self.list[2][1]
+					elif self.type == self.THIRD_END_TIME and self.list[2][1] and self.list[2][2]:
+						return int(self.list[2][1]) + self.list[2][2]
+				except:
+					# failed to return any epg data.
+					return ""
+
 
 	@cached
 	def getValue(self):
