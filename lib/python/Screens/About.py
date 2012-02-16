@@ -34,6 +34,10 @@ class About(Screen):
 			self["lab3"] = StaticText(_("Support at") + " www.vuplus-support.co.uk")
 			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Uno")
 			AboutText = _("Hardware:") + " Vu+ Uno\n"
+		elif config.misc.boxtype.value == 'vuultimo':
+			self["lab3"] = StaticText(_("Support at") + " www.vuplus-support.co.uk")
+			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Ultimo")
+			AboutText = _("Hardware:") + " Vu+ Ultimo\n"
 		elif config.misc.boxtype.value == 'vusolo':
 			self["lab3"] = StaticText(_("Support at") + " www.vuplus-support.co.uk")
 			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Solo")
@@ -53,10 +57,11 @@ class About(Screen):
 		elif config.misc.boxtype.value == 'et9x00':
 			self["lab3"] = StaticText(_("Support at") + " www.xtrend-support.co.uk")
 			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET9x00 Series")
+			AboutText = _("Hardware:") + " Xtrend ET9x00 Series\n"
 		elif config.misc.boxtype.value == 'maram9':
 			self["lab3"] = StaticText(_("Support at") + " www.mara-support.co.uk")
 			self["BoxType"] = StaticText(_("Hardware:") + " MarA M9")
-			AboutText = _("Hardware:") + " Xtrend ET9x00 Series\n"
+			AboutText = _("Hardware:") + " MarA M9\n"
 		else:
 			self["lab3"] = StaticText(_("Support at") + " www.world-of-satellite.co.uk")
 			self["BoxType"] = StaticText(_("Hardware:") + " " + config.misc.boxtype.value)
@@ -244,6 +249,8 @@ class AboutSummary(Screen):
 			self["selected"] = StaticText("ViX:" + about.getImageVersionString() + ' (B)')
 		if config.misc.boxtype.value == 'vuuno':
 			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Uno")
+		elif config.misc.boxtype.value == 'vuultimo':
+			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Ultimo")
 		elif config.misc.boxtype.value == 'vusolo':
 			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Solo")
 		elif config.misc.boxtype.value == 'vuduo':
