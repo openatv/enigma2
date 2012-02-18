@@ -110,7 +110,7 @@ class EventTime(Poll, Converter, object):
 			info = reference and self.source.info
 			if info is None:	
 				return
-			test = [ 'IBDCX', (reference.toString(), 1, -1, 400) ]
+			test = [ 'IBDCX', (reference.toString(), 1, -1, 1440) ] # search next 24 hours
 			self.list = [] if self.epgcache is None else self.epgcache.lookupEvent(test)
 			if self.list:
 				try:
@@ -124,7 +124,7 @@ class EventTime(Poll, Converter, object):
 						return int(self.list[2][1]) + int(self.list[2][2])
 				except:
 					# failed to return any epg data.
-					return ""
+					return "0"
 
 
 	@cached
