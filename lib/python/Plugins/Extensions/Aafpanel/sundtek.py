@@ -36,7 +36,7 @@ config.plugins.SundtekControlCenter.usbnet.networkip = ConfigText(default="0.0.0
 
 ## version string #########################################################
 
-sundtekcontrolcenter_version = "1.0_r1"
+sundtekcontrolcenter_version = "1.0.r2"
 
 ###########################################################################
 
@@ -137,7 +137,7 @@ class SundtekControlCenter(Screen, ConfigListScreen):
 ####################################################################
 
 	def setsettings(self):
-		if (not os.path.exists("/usr/sundtek/mediasrv")) or (not os.path.exists("/usr/sundtek/mediaclient")) or (not os.path.exists("/usr/sundtek/sun_dvb.sh")):
+		if (not os.path.exists("/usr/sundtek")):
 			#maybe the driver is not or installed incorrect.
 			self.session.openWithCallback(self.installdriverrequest, MessageBox, _("It seems the sundtek driver is not installed or not installed properly. Install the driver now?"), MessageBox.TYPE_YESNO)
 			
