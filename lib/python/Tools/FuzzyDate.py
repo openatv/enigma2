@@ -5,7 +5,7 @@ def FuzzyTime(t, inPast = False):
 	d = localtime(t)
 	nt = time()
 	n = localtime()
-        dayOfWeek = (_("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun"))
+	dayOfWeek = (_("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun"))
 	
 	if d[:3] == n[:3]:
 		# same day
