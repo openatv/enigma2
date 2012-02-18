@@ -2,7 +2,7 @@
 from enigma import eListboxPythonMultiContent, gFont, RT_HALIGN_CENTER, RT_VALIGN_CENTER, getPrevAsciiCode
 from Screen import Screen
 from Components.Language import language
-from Components.ActionMap import ActionMap
+from Components.ActionMap import NumberActionMap
 from Components.Sources.StaticText import StaticText
 from Components.Label import Label
 from Components.Pixmap import Pixmap
@@ -10,6 +10,7 @@ from Components.MenuList import MenuList
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN
 from Tools.LoadPixmap import LoadPixmap
+from Tools.NumericalTextInput import NumericalTextInput
 
 class VirtualKeyBoardList(MenuList):
 	def __init__(self, list, enableWrapAround=False):
@@ -78,13 +79,15 @@ class VirtualKeyBoard(Screen):
 		self.shiftMode = False
 		self.text = text
 		self.selectedKey = 0
+		self.smsChar = None
+		self.sms = NumericalTextInput(self.smsOK)
 		
 		self["country"] = StaticText("")
 		self["header"] = Label(title)
 		self["text"] = Label(self.text)
 		self["list"] = VirtualKeyBoardList([])
 		
-		self["actions"] = ActionMap(["OkCancelActions", "WizardActions", "ColorActions", "KeyboardInputActions", "InputBoxActions", "InputAsciiActions"],
+		self["actions"] = NumberActionMap(["OkCancelActions", "WizardActions", "ColorActions", "KeyboardInputActions", "InputBoxActions", "InputAsciiActions"],
 			{
 				"gotAsciiCode": self.keyGotAscii,
 				"ok": self.okClicked,
@@ -98,7 +101,17 @@ class VirtualKeyBoard(Screen):
 				"yellow": self.switchLang,
 				"blue": self.shiftClicked,
 				"deleteBackward": self.backClicked,
-				"back": self.exit				
+				"back": self.exit,
+				"1": self.keyNumberGlobal,
+				"2": self.keyNumberGlobal,
+				"3": self.keyNumberGlobal,
+				"4": self.keyNumberGlobal,
+				"5": self.keyNumberGlobal,
+				"6": self.keyNumberGlobal,
+				"7": self.keyNumberGlobal,
+				"8": self.keyNumberGlobal,
+				"9": self.keyNumberGlobal,
+				"0": self.keyNumberGlobal,
 			}, -2)
 		self.setLang()
 		self.onExecBegin.append(self.setKeyboardModeAscii)
@@ -237,14 +250,17 @@ class VirtualKeyBoard(Screen):
 		self["list"].setList(list)
 	
 	def backClicked(self):
+		self.smsChar = None
 		self.text = self.text[:-1]
 		self["text"].setText(self.text.encode("utf-8"))
 
 	def shiftClicked(self):
+		self.smsChar = None
 		self.shiftMode = not self.shiftMode
 		self.buildVirtualKeyBoard(self.selectedKey)
 
 	def okClicked(self):
+		self.smsChar = None
 		if self.shiftMode:
 			list = self.shiftkeys_list
 		else:
@@ -299,8 +315,8 @@ class VirtualKeyBoard(Screen):
 		self.close(None)
 
 	def left(self):
+		self.smsChar = None
 		self.selectedKey -= 1
-		
 		if self.selectedKey == -1:
 			self.selectedKey = 11
 		elif self.selectedKey == 11:
@@ -315,8 +331,8 @@ class VirtualKeyBoard(Screen):
 		self.showActiveKey()
 
 	def right(self):
+		self.smsChar = None
 		self.selectedKey += 1
-		
 		if self.selectedKey == 12:
 			self.selectedKey = 0
 		elif self.selectedKey == 24:
@@ -327,34 +343,46 @@ class VirtualKeyBoard(Screen):
 			self.selectedKey = 36
 		elif self.selectedKey > self.max_key:
 			self.selectedKey = 48
-		
 		self.showActiveKey()
 
 	def up(self):
+		self.smsChar = None
 		self.selectedKey -= 12
-		
 		if (self.selectedKey < 0) and (self.selectedKey > (self.max_key-60)):
 			self.selectedKey += 48
 		elif self.selectedKey < 0:
 			self.selectedKey += 60	
-		
 		self.showActiveKey()
 
 	def down(self):
+		self.smsChar = None
 		self.selectedKey += 12
-		
 		if (self.selectedKey > self.max_key) and (self.selectedKey > 59):
 			self.selectedKey -= 60
 		elif self.selectedKey > self.max_key:
 			self.selectedKey -= 48
-		
 		self.showActiveKey()
 
 	def showActiveKey(self):
 		self.buildVirtualKeyBoard(self.selectedKey)
 
+	def keyNumberGlobal(self, number):
+		self.smsChar = self.sms.getKey(number)
+		print "SMS", number, self.smsChar
+		self.selectAsciiKey(self.smsChar)
+
+	def smsOK(self):
+		print "SMS ok", self.smsChar
+		if self.smsChar and self.selectAsciiKey(self.smsChar):
+			print "pressing ok now"
+			self.okClicked()
+
 	def keyGotAscii(self):
-		char = str(unichr(getPrevAsciiCode()).encode('utf-8'))
+		self.smsChar = None
+		if self.selectAsciiKey(str(unichr(getPrevAsciiCode()).encode('utf-8'))):
+			self.okClicked()
+
+	def selectAsciiKey(self, char):
 		if char == " ":
 			char = "SPACE"
 		for keyslist in (self.shiftkeys_list, self.keys_list):
@@ -364,7 +392,7 @@ class VirtualKeyBoard(Screen):
 					if key == char:
 						self.shiftMode = (keyslist is self.shiftkeys_list)
 						self.selectedKey = selkey
-						self.okClicked()
 						self.showActiveKey()
-						return
+						return True
 					selkey += 1
+		return False
