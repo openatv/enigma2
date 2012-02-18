@@ -66,17 +66,17 @@ class EventName(Converter, object):
 				try:
 					if self.type == self.NEXT_NAME and self.list[1][1]:
 						return self.list[1][1]
-					elif self.type == self.NEXT_DESCRIPTION and self.list[1][2]:
+					elif self.type == self.NEXT_DESCRIPTION and (self.list[1][2] or self.list[1][3]):
 						description = self.list[1][2]
-						extended = self.list[1][2]
+						extended = self.list[1][3]
 						if description and extended:
 							description += '\n'
 						return description + extended
 					elif self.type == self.THIRD_NAME and self.list[2][1]:
 						return self.list[2][1]
-					elif self.type == self.THIRD_DESCRIPTION and self.list[2][2]:
+					elif self.type == self.THIRD_DESCRIPTION and (self.list[1][2] or self.list[1][3]):
 						description = self.list[2][2]
-						extended = self.list[2][2]
+						extended = self.list[2][3]
 						if description and extended:
 							description += '\n'
 						return description + extended
