@@ -318,8 +318,8 @@
 	</screen>	
 
 	<screen name="MessageBox_summary" position="0,0" size="255,64">
-		<widget source="parent.Text" render="Label" position="0,0" size="255,52" font="FdLcD;12" halign="center" />
-		<widget source="parent.selectedChoice" render="Label" position="0,46" size="255,14" font="FdLcD;12" halign="center" noWrap="1" />
+		<widget source="parent.Text" render="Label" position="0,0" size="255,64" font="FdLcD;12" halign="center" />
+		<widget source="parent.selectedChoice" render="Label" position="0,50" size="255,14" font="FdLcD;12" halign="center" noWrap="1" />
 	</screen>
 
 	<screen name="AboutSummary" position="0,0" size="255,64">
@@ -376,4 +376,21 @@
 		<widget source="parent.text_summary" render="Label" position="0,16" size="255,54" font="FdLcD;12" halign="left" transparent="1" />
 		<panel name="SummaryIconsPanel" />
 	</screen>	
+<!-- AutoTimerOverview -->
+	<screen name="AutoTimerOverviewSummary" position="0,0" size="255,64">
+		<widget source="parent.Title" render="Label" position="0,0" size="160,22" font="FdLcD;18" halign="left" noWrap="1" />
+		<widget source="entry" render="Label" position="0,21" size="255,18" font="FdLcD;16" halign="left" noWrap="1" />
+		<panel name="SummaryIconsPanel" />
+		<panel name="SummaryTunerSatusPanel" />
+		<panel name="SummaryClockPanel" />
+	</screen>
+
+	<screen name="NetworkServicesSummary" position="0,0" size="255,64">
+		<widget source="title" render="Label" position="0,0" size="160,22" font="FdLcD;18" halign="left" noWrap="1" />
+		<widget source="status_summary" render="Label" position="0,30" size="190,15" font="FdLcD;14" halign="left" transparent="1" />
+		<widget source="autostartstatus_summary" render="Label" position="0,49" size="190,15" font="FdLcD;14" halign="left" transparent="1" />
+		<panel name="SummaryIconsPanel" />
+		<panel name="SummaryClockPanel" />
+	</screen>	
+
 </skin>
