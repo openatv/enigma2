@@ -364,7 +364,7 @@ class EPGSelection(Screen, HelpableScreen):
 
 		self["colouractions"] = HelpableActionMap(self, "ColorActions",
 			{
-				"red":				(self.redButtonPressed, _("IMDB serach for current event")),
+				"red":				(self.redButtonPressed, _("IMDB search for current event")),
 				"greenlong":		(self.showTimerList, _("Show Timer List")),
 				"yellow":			(self.yellowButtonPressed, _("Search for similar events")),
 				"blue":				(self.blueButtonPressed, _("Add a auto timer for current event")),
@@ -421,6 +421,22 @@ class EPGSelection(Screen, HelpableScreen):
 				"9": self.keyNumberGlobal,
 			}, -1)
 			self["inputactions"].csel = self
+
+		elif self.type == EPG_TYPE_SINGLE:
+			self["epgactions"] = HelpableActionMap(self, "EPGSelectActions",
+				{
+					"menu":				(self.createSetup, _("Setup menu")),
+				},-1)
+			self["epgactions"].csel = self
+
+			self["cursoractions"] = HelpableActionMap(self, "DirectionActions",
+				{
+					"left":		(self.prevPage, _("Move up a page")),
+					"right":	(self.nextPage, _("Move down a page")),
+					"up":		(self.moveUp, _("Goto previous channel")),
+					"down":		(self.moveDown, _("Goto next channel")),
+				},-1)
+			self["cursoractions"].csel = self
 
 		elif self.type == EPG_TYPE_ENHANCED:
 			self["epgactions"] = HelpableActionMap(self, "EPGSelectActions",
@@ -564,7 +580,7 @@ class EPGSelection(Screen, HelpableScreen):
 			l.recalcEntrySize()
 			l.sortSingleEPG(self.sort_type)
 
- 	def hidewaitingtext(self):
+	def hidewaitingtext(self):
 		self.listTimer.stop()
 		self['lab1'].hide()
 
@@ -940,7 +956,12 @@ class EPGSelection(Screen, HelpableScreen):
 				autotimer
 			)
 		except ImportError:
-			self.session.open(MessageBox, _("The AutoTimer plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			if self.type == EPG_TYPE_SINGLE or self.type == EPG_TYPE_ENHANCED:
+				if self.sort_type == 0:
+					self.sort_type = 1
+				else: 
+					self.sort_type = 0
+				self["list"].sortSingleEPG(self.sort_type)
 
 	def editCallback(self, session):
 		global autotimer
@@ -1108,15 +1129,17 @@ class EPGSelection(Screen, HelpableScreen):
 		self.moveTimeLines()
 
 	def OK(self):
-		if config.epgselction.OK_pliepg.value == "Zap" or config.epgselction.OK_enhanced.value == "Zap" or config.epgselction.OK_infobar.value == "Zap":
+		if config.epgselction.OK_pliepg.value == "EventView" or config.epgselction.OK_enhanced.value == "EventView" or config.epgselction.OK_infobar.value == "EventView":
+			self.infoKeyPressed()
+		elif config.epgselction.OK_pliepg.value == "Zap" or config.epgselction.OK_enhanced.value == "Zap" or config.epgselction.OK_infobar.value == "Zap":
 			self.ZapTo()
+		elif config.epgselction.OK_pliepg.value == "Zap + Exit" or config.epgselction.OK_enhanced.value == "Zap + Exit" or config.epgselction.OK_infobar.value == "Zap + Exit":
+			self.zap()
 		if self.type == EPG_TYPE_GRAPH:
 			serviceref = self.session.nav.getCurrentlyPlayingServiceReference()
 			self["list"].setCurrentlyPlaying(serviceref)
 			self["list"].fillGraphEPG(None, self.ask_time)
 			self.moveTimeLines(True)
-		if config.epgselction.OK_pliepg.value == "Zap + Exit" or config.epgselction.OK_enhanced.value == "Zap + Exit" or config.epgselction.OK_infobar.value == "Zap + Exit":
-			self.zap()
 
 	def OKLong(self):
 		if config.epgselction.OKLong_pliepg.value == "Zap" or config.epgselction.OKLong_enhanced.value == "Zap" or config.epgselction.OKLong_infobar.value == "Zap":
@@ -1511,12 +1534,14 @@ class EPGSelectionSetup(Screen, ConfigListScreen):
 			self.list.append(getConfigListEntry(_("LongOK Button"), config.epgselction.OKLong_infobar))
 			self.list.append(getConfigListEntry(_("Items per Page"), config.epgselction.itemsperpage_infobar))
 			self.list.append(getConfigListEntry(_("Event Fontsize (relative to skin size)"), config.epgselction.ev_fontsize_infobar))
-		elif self.type == 3:
-			self.list.append(getConfigListEntry(_("Channel preview mode"), config.epgselction.preview_mode_enhanced))
-			self.list.append(getConfigListEntry(_("Skip Empty Services"), config.epgselction.overjump))
+		elif self.type == 3 or self.type == 0:
+			if self.type != 0:
+				self.list.append(getConfigListEntry(_("Channel preview mode"), config.epgselction.preview_mode_enhanced))
+				self.list.append(getConfigListEntry(_("Skip Empty Services"), config.epgselction.overjump))
 			self.list.append(getConfigListEntry(_("Sort List by"), config.epgselction.sort))
-			self.list.append(getConfigListEntry(_("OK Button"), config.epgselction.OK_enhanced))
-			self.list.append(getConfigListEntry(_("LongOK Button"), config.epgselction.OKLong_enhanced))
+			if self.type != 0:
+				self.list.append(getConfigListEntry(_("OK Button"), config.epgselction.OK_enhanced))
+				self.list.append(getConfigListEntry(_("LongOK Button"), config.epgselction.OKLong_enhanced))
 			self.list.append(getConfigListEntry(_("Items per Page"), config.epgselction.itemsperpage_enhanced))
 			self.list.append(getConfigListEntry(_("Event Fontsize (relative to skin size)"), config.epgselction.ev_fontsize_enhanced))
 		elif self.type == 1:

@@ -52,6 +52,9 @@ class SystemInfo(Screen):
 		if config.misc.boxtype.value == 'vuuno':
 			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Uno")
 			AboutText = _("Hardware:") + " Vu+ Uno\n"
+		elif config.misc.boxtype.value == 'vuultimo':
+			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Ultimo")
+			AboutText = _("Hardware:") + " Vu+ Ultimo\n"
 		elif config.misc.boxtype.value == 'vusolo':
 			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Solo")
 			AboutText = _("Hardware:") + " Vu+ Solo\n"
@@ -67,6 +70,15 @@ class SystemInfo(Screen):
 		elif config.misc.boxtype.value == 'et9x00':
 			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET9x00 Series")
 			AboutText = _("Hardware:") + " Xtrend ET9x00 Series\n"
+		elif config.misc.boxtype.value == 'maram9':
+			self["BoxType"] = StaticText(_("Hardware:") + " MarA M9")
+			AboutText = _("Hardware:") + " MarA M9\n"
+		elif config.misc.boxtype.value == 'gb800solo':
+			self["BoxType"] = StaticText(_("Hardware:") + " Gigablue 800 Solo")
+			AboutText = _("Hardware:") + " Gigablue 800 Solo\n"
+		elif config.misc.boxtype.value == 'gb800se':
+			self["BoxType"] = StaticText(_("Hardware:") + " Gigablue 800 SE")
+			AboutText = _("Hardware:") + " Gigablue 800 SE\n"		
 		else:
 			self["BoxType"] = StaticText(_("Hardware:") + " " + config.misc.boxtype.value)
 			AboutText = _("Hardware:") + " " + config.misc.boxtype.value + "\n"

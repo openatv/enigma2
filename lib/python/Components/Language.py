@@ -12,7 +12,8 @@ class Language:
 		# FIXME make list dynamically
 		# name, iso-639 language, iso-3166 country. Please don't mix language&country!
 		# also, see "precalcLanguageList" below on how to re-create the language cache after you added a language
-		self.addLanguage("English", "en", "EN")
+		self.addLanguage("English (UK)", "en_GB", "GB")
+		self.addLanguage("English (US)", "en", "EN")
 		self.addLanguage("Deutsch", "de", "DE")
 		self.addLanguage("Arabic", "ar", "AE")
 		self.addLanguage("Български", "bg", "BG")
@@ -57,7 +58,7 @@ class Language:
 		try:
 			lang = self.lang[index]
 			print "Activating language " + lang[0]
-			gettext.translation('enigma2', resolveFilename(SCOPE_LANGUAGE, ""), languages=[lang[1]]).install()
+			gettext.translation('enigma2', resolveFilename(SCOPE_LANGUAGE, ""), languages=[lang[1]]).install(names=("ngettext"))
 			self.activeLanguage = index
 			for x in self.callbacks:
 				x()

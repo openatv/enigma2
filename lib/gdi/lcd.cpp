@@ -214,7 +214,7 @@ void eDBoxLCD::update()
 #if defined(HAVE_GRAPHICLCD) || defined(HAVE_COLORLCD)
 	if (lcdfd >= 0)
 	{
-		if (!is_oled || is_oled == 2)
+		if (is_oled == 0 || is_oled == 2)
 		{
 			unsigned char raw[132*8];
 			int x, y, yy;
@@ -229,11 +229,13 @@ void eDBoxLCD::update()
 					}
 					if (flipped)
 					{
-						raw[(7 - y) * 132 + (131 - x)] = (pix ^ inverted);
+						/* 8 pixels per byte, swap bits */
+#define BIT_SWAP(a) (( ((a << 7)&0x80) + ((a << 5)&0x40) + ((a << 3)&0x20) + ((a << 1)&0x10) + ((a >> 1)&0x08) + ((a >> 3)&0x04) + ((a >> 5)&0x02) + ((a >> 7)&0x01) )&0xff)
+						raw[(7 - y) * 132 + (131 - x)] = BIT_SWAP(pix ^ inverted);
 					}
 					else
 					{
-						raw[y * 132 + x] = (pix ^ inverted);
+						raw[y * 132 + x] = pix ^ inverted;
 					}
 				}
 			}
@@ -253,6 +255,7 @@ void eDBoxLCD::update()
 					{
 						if (flipped)
 						{
+							/* 8bpp, no bit swapping */
 							raw[(height - 1 - y) * width + (width - 1 - x)] = _buffer[y * width + x] ^ inverted;
 						}
 						else
@@ -283,7 +286,11 @@ void eDBoxLCD::update()
 						pix = 0xFF - pix;
 					if (flipped)
 					{
-						raw[(63 - y) * 64 + (127 - x)] = pix;
+						/* device seems to be 4bpp, swap nibbles */
+						unsigned char byte;
+						byte = (pix >> 4) & 0x0f;
+						byte |= (pix << 4) & 0xf0;
+						raw[(63 - y) * 64 + (63 - x)] = byte;
 					}
 					else
 					{

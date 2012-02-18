@@ -1,7 +1,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Project-Id-Version: ims\n"
 "POT-Creation-Date: \n"
 "PO-Revision-Date: \n"
 "Last-Translator: ims\n"
@@ -11,6 +11,25 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Language: Czech\n"
 "X-Poedit-Country: CZECH REPUBLIC\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+
+msgid "%d second"
+msgid_plural "%d seconds"
+msgstr[0] "%d sekunda"
+msgstr[1] "%d sekundy"
+msgstr[2] "%d sekund"
+
+msgid "%d minute"
+msgid_plural "%d minutes"
+msgstr[0] "%d minuta"
+msgstr[1] "%d minuty"
+msgstr[2] "%d minut"
+
+msgid "%d hour"
+msgid_plural "%d hours"
+msgstr[0] "%d hodina"
+msgstr[1] "%d hodiny"
+msgstr[2] "%d hodin"
 
 #
 msgid ""
@@ -424,14 +443,6 @@ msgstr "Grafické EPG rozhraní"
 msgid "A graphical EPG interface."
 msgstr "Grafické EPG rozhraní."
 
-#
-msgid ""
-"A mount entry with this name already exists!\n"
-"Update existing entry and continue?\n"
-msgstr ""
-"Bod připojení tohoto jména již existuje!\n"
-"Aktualizovat existující údaje a pokračovat?\n"
-
 msgid "A nice looking HD skin from Kerni"
 msgstr ""
 
@@ -587,18 +598,6 @@ msgid "Activate network settings"
 msgstr "Aktivovat nastavení sítě"
 
 #
-msgid "Active"
-msgstr "Aktivní"
-
-#
-msgid ""
-"Active/\n"
-"Inactive"
-msgstr ""
-"aktivní/\n"
-"neaktivní"
-
-#
 msgid "Adapter settings"
 msgstr "Nastavení adaptéru"
 
@@ -623,10 +622,6 @@ msgid "Add a mark"
 msgstr "Přidat značku"
 
 #
-msgid "Add a new NFS or CIFS mount point to your Dreambox."
-msgstr "Přidat nový NFS nebo CIFS připojovací bod."
-
-#
 msgid "Add a new title"
 msgstr "Přidat nový titul"
 
@@ -637,10 +632,6 @@ msgstr "Přidat konfiguraci sítě?"
 #
 msgid "Add new AutoTimer"
 msgstr "Přidat nový AutoTimer"
-
-#
-msgid "Add new network mount point"
-msgstr "Přidat nový připojovací bod"
 
 #
 msgid "Add timer"
@@ -858,14 +849,6 @@ msgstr ""
 "Po obnově bude Enigma2 restartována"
 
 #
-msgid ""
-"Are you sure you want to save this network mount?\n"
-"\n"
-msgstr ""
-"Opravdu chcete uložit tento připojovací bod?\n"
-"\n"
-
-#
 msgid "Artist"
 msgstr "Umělec"
 
@@ -887,10 +870,6 @@ msgstr "Poměr stran"
 
 msgid "Assigning providers/services/caids to a CI module"
 msgstr ""
-
-#
-msgid "Attempt to recover lost mounts (in background)"
-msgstr "Pokus obnovit ztracené připojení (na pozadí)."
 
 msgid "Atheros"
 msgstr ""
@@ -1182,10 +1161,6 @@ msgid "Browse for nfs/cifs shares and connect to them."
 msgstr "Vyhledá nfs/cifs sdílení a připojí se k nim."
 
 #
-msgid "Browse network neighbourhood"
-msgstr "Prohledání síťového okolí"
-
-#
 msgid "Burn DVD"
 msgstr "Vypálit DVD"
 
@@ -1228,10 +1203,6 @@ msgstr "CDInfo umožňuje shromažďovat detaily o albech a skladbách z CDDB a 
 #
 msgid "CI assignment"
 msgstr ""
-
-#
-msgid "CIFS share"
-msgstr "CIFS sdílení"
 
 #
 msgid "CVBS"
@@ -1306,10 +1277,6 @@ msgid "Change default recording offset?"
 msgstr "Změnit standardní posun nahrávání?"
 
 #
-msgid "Change hostname"
-msgstr "Změna názvu v síti"
-
-#
 msgid "Change pin code"
 msgstr "Změnit PIN kód"
 
@@ -1325,10 +1292,6 @@ msgstr "Změnit PIN pro nastavení"
 #
 msgid "Change step size"
 msgstr "Změnit velikost kroku"
-
-#
-msgid "Change the hostname of your Dreambox."
-msgstr "Změna názvu přijímače v síti."
 
 msgid "Changelog"
 msgstr ""
@@ -2000,10 +1963,6 @@ msgid "Delete failed!"
 msgstr "Vymazání selhalo!"
 
 #
-msgid "Delete mount"
-msgstr "Smazat"
-
-#
 #, python-format
 msgid ""
 "Delete no more configured satellite\n"
@@ -2074,10 +2033,6 @@ msgstr "Vytáčení:"
 #
 msgid "Digital contour removal"
 msgstr ""
-
-#
-msgid "Dir:"
-msgstr "adr:"
 
 msgid "Direct playback of Youtube videos"
 msgstr "Přímé přehrávání Youtube videa"
@@ -2259,10 +2214,6 @@ msgstr "Chcete stáhnout image do %s?"
 #
 msgid "Do you want to enable the parental control feature on your dreambox?"
 msgstr "Chcete povolit rodičovskou kontrolu na Vašem přijímači?"
-
-#
-msgid "Do you want to enter a username and password for this host?\n"
-msgstr "Chcete zadat uživatelské jméno a heslo pro tento hostitelský počítač?\n"
 
 #
 msgid "Do you want to install default sat lists?"
@@ -2703,10 +2654,6 @@ msgid "Enter Fast Forward at speed"
 msgstr "Začít přetáčení vpřed na rychlosti"
 
 #
-msgid "Enter IP to scan..."
-msgstr "Zadejte IP pro hledání..."
-
-#
 msgid "Enter Rewind at speed"
 msgstr "Začít přetáčení zpět na rychlosti"
 
@@ -2715,40 +2662,12 @@ msgid "Enter main menu..."
 msgstr "vstoupit do hlavního menu..."
 
 #
-msgid "Enter new hostname for your Dreambox"
-msgstr "Zadejte síťový název Vašeho přijímače"
-
-#
-msgid "Enter options:"
-msgstr "Zadejte možnosti:"
-
-#
-msgid "Enter password:"
-msgstr "Zadejte heslo:"
-
-#
 msgid "Enter pin code"
 msgstr "Zadejte pin kód"
 
 #
-msgid "Enter share directory:"
-msgstr "Zadejte sdílený adresář:"
-
-#
-msgid "Enter share name:"
-msgstr "Zadejte název sdílení:"
-
-#
 msgid "Enter the service pin"
 msgstr "Zadejte programový PIN"
-
-#
-msgid "Enter user and password for host: "
-msgstr "Zadání uživatele a hesla pro: "
-
-#
-msgid "Enter username:"
-msgstr "Zadejte uživatelské jméno:"
 
 #
 msgid "Enter your email address so that we can contact you if needed."
@@ -2860,10 +2779,6 @@ msgstr "Ukončit průvodce"
 #
 msgid "Exit wizard"
 msgstr "Ukončit průvodce"
-
-#
-msgid "Expert"
-msgstr "Expert"
 
 #
 msgid "Extended Networksetup Plugin..."
@@ -2993,10 +2908,6 @@ msgstr "Dokončeno"
 #
 msgid "Finished configuring your network"
 msgstr "Konfigurace sítě dokončena"
-
-#
-msgid "Finished restarting your network"
-msgstr "Dokončen restart sítě"
 
 #
 msgid "Finnish"
@@ -3347,14 +3258,6 @@ msgstr "Maďarsky"
 
 msgid "IMAP4 e-mail viewer for the Dreambox"
 msgstr "IMAP4 e-mailový prohlížeč"
-
-#
-msgid "IP Address"
-msgstr "IP adresa"
-
-#
-msgid "IP:"
-msgstr "IP:"
 
 msgid "IRC Client for Enigma2"
 msgstr "IRC klient pro Enigma2"
@@ -3890,10 +3793,6 @@ msgid "Local Network"
 msgstr "Lokální síť"
 
 #
-msgid "Local share name"
-msgstr "Název pro sdílení"
-
-#
 msgid "Location"
 msgstr "Umístění"
 
@@ -3945,6 +3844,10 @@ msgid "Mainmenu"
 msgstr "Hlavní menu"
 
 #
+msgid "Maintain old EPG data for"
+msgstr "Udržovat stará EPG data"
+
+#
 msgid "Make this mark an 'in' point"
 msgstr "Udělat z této značky 'in' bod"
 
@@ -3969,16 +3872,8 @@ msgstr "Správa log zobrazovaných při startu nebo v režimu rádia. "
 msgid "Manage logos to display at boottime"
 msgstr "Správa log zobrazovaných při startu"
 
-#
-msgid "Manage network shares"
-msgstr ""
-
 msgid "Manage your music files in a database, play it with Merlin Music Player."
 msgstr "Správujte Vaše hudební soubory v databázi, přehrávejte v hudebním přehrávači Merlin. "
-
-#
-msgid "Manage your network shares..."
-msgstr "Správa síťových sdílení..."
 
 #
 msgid "Manage your receiver's software"
@@ -4155,48 +4050,8 @@ msgid "Mount"
 msgstr "Připojit"
 
 #
-msgid "Mount again"
-msgstr "Znovu připojit"
-
-#
 msgid "Mount failed"
 msgstr "Připojení se nezdařilo"
-
-#
-msgid "Mount informations"
-msgstr "informace o připojení"
-
-#
-msgid "Mount options"
-msgstr "Možnosti připojení"
-
-#
-msgid "Mount type"
-msgstr "Typ připojení"
-
-#
-msgid "MountManager"
-msgstr "Síťová připojení"
-
-#
-msgid ""
-"Mounted/\n"
-"Unmounted"
-msgstr ""
-"připojeno/\n"
-"odpojeno"
-
-#
-msgid "Mountpoints management"
-msgstr "Správa připojovacích bodů"
-
-#
-msgid "Mounts editor"
-msgstr "Editor připojení"
-
-#
-msgid "Mounts management"
-msgstr "Správa připojení"
 
 #
 msgid "MountView"
@@ -4366,10 +4221,6 @@ msgstr ""
 #
 msgid "NFI image flashing completed. Press Yellow to Reboot!"
 msgstr ""
-
-#
-msgid "NFS share"
-msgstr "NFS sdílení"
 
 #
 msgid "NOW"
@@ -4560,10 +4411,6 @@ msgid "Network:"
 msgstr "Síť:"
 
 #
-msgid "NetworkBrowser"
-msgstr "Procházet síť"
-
-#
 msgid "NetworkWizard"
 msgstr "Průvodce nastavením sítě"
 
@@ -4661,10 +4508,6 @@ msgstr "Žádný volný tuner!"
 #
 msgid "No network connection available."
 msgstr "Žádné síťové připojení k dispozici."
-
-#
-msgid "No network devices found!"
-msgstr "Nenalezeno žádné síťové zařízení!"
 
 #
 msgid "No networks found"
@@ -5028,10 +4871,6 @@ msgid "Partnerbox allows editing a remote Dreambox's record timers and stream it
 msgstr "Partnerbox umožňuje upravovat časovače a streamovat TV program vzdálených přijímačů."
 
 #
-msgid "Password"
-msgstr "Heslo"
-
-#
 msgid "Pause movie at end"
 msgstr "Zastavit film na konci"
 
@@ -5346,16 +5185,8 @@ msgid "Please wait for activation of your network configuration..."
 msgstr "Čekejte prosím na aktivaci Vaší síťové konfigurace..."
 
 #
-msgid "Please wait for activation of your network mount..."
-msgstr "Počkejte na aktivaci Vašeho síťového připojení..."
-
-#
 msgid "Please wait while removing selected package..."
 msgstr "Čekejte prosím, zatímco se odstraňují vybrané balíčky..."
-
-#
-msgid "Please wait while removing your network mount..."
-msgstr "Čekejte na odstranění Vašeho síťového připojení..."
 
 #
 msgid "Please wait while scanning is in progress..."
@@ -5364,10 +5195,6 @@ msgstr "Čekejte prosím, dokud probíhá vyhledávání..."
 #
 msgid "Please wait while searching for removable packages..."
 msgstr "Čekejte prosím, zatímco se vyhledávají odstranitelné balíčky..."
-
-#
-msgid "Please wait while updating your network mount..."
-msgstr "Čekejte na dokončení aktualizace síťového připojení..."
 
 #
 msgid "Please wait while we configure your network..."
@@ -5380,10 +5207,6 @@ msgstr "Čekejte prosím, zatímco my připravujeme Váš síťový interface...
 #
 msgid "Please wait while we test your network..."
 msgstr "Čekejte prosím, zatímco my testujeme Vaši síť..."
-
-#
-msgid "Please wait while your network is restarting..."
-msgstr "Čekejte prosím, zatímco se síť restartuje..."
 
 #
 msgid "Please wait..."
@@ -5542,40 +5365,12 @@ msgstr "Stiskněte OK pro aktivaci zvoleného skinu."
 
 #
 msgid "Press OK to activate the settings."
-msgstr "Stiskněte OK pro aktivovaní nastavení."
-
-#
-msgid "Press OK to collapse this host"
-msgstr "Stiskněte OK pro sbalení tohoto hostitele"
-
-#
-msgid "Press OK to edit selected settings."
-msgstr "Stiskněte OK pro úpravu vybraného nastavení."
-
-#
-msgid "Press OK to edit the settings."
-msgstr "Stiskněte OK pro úpravu nastavení."
-
-#
-msgid "Press OK to expand this host"
-msgstr "Stiskněte OK pro rozbalení tohoto hostitele"
+msgstr "Stiskněte OK pro aktivaci nastavení."
 
 #
 #, python-format
 msgid "Press OK to get further details for %s"
 msgstr "Stiskněte OK a získejte detaily pro %s "
-
-#
-msgid "Press OK to mount this share!"
-msgstr "Stiskněte OK pro připojení tohoto sdílení!"
-
-#
-msgid "Press OK to mount!"
-msgstr "Stiskněte OK pro připojení!"
-
-#
-msgid "Press OK to save settings."
-msgstr "Stiskněte OK pro uložení nastavení"
 
 #
 msgid "Press OK to scan"
@@ -5584,10 +5379,6 @@ msgstr "Stiskněte OK pro prohledávání"
 #
 msgid "Press OK to select a Provider."
 msgstr "Stiskněte OK k vybrání providera."
-
-#
-msgid "Press OK to select."
-msgstr "Stiskněte OK pro výběr. "
 
 #
 msgid "Press OK to select/deselect a CAId."
@@ -5963,10 +5754,6 @@ msgid "Required medium type:"
 msgstr "Požadovaný typ média:"
 
 #
-msgid "Rescan"
-msgstr ""
-
-#
 msgid "Reset"
 msgstr "Reset"
 
@@ -6264,10 +6051,6 @@ msgid "Scan Files..."
 msgstr "Hledat soubory..."
 
 #
-msgid "Scan NFS share"
-msgstr "Hledat NFS sdílení"
-
-#
 msgid "Scan QAM128"
 msgstr "Prohledat QAM128"
 
@@ -6354,10 +6137,6 @@ msgstr "Prohledat pásmo US SUPER"
 msgid "Scan devices for playable media files"
 msgstr "Vyhledává na zařízeních přehratelné mediální soubory "
 
-#
-msgid "Scan range"
-msgstr "Rozsah hledání"
-
 msgid "Scan your network for wireless access points and connect to them using your selected wireless device.\n"
 msgstr ""
 
@@ -6402,14 +6181,6 @@ msgid "Search east"
 msgstr "Hledej východ"
 
 #
-msgid "Search for network shares"
-msgstr ""
-
-#
-msgid "Search for network shares..."
-msgstr "Vyhledat síťová sdílení..."
-
-#
 msgid "Search region:"
 msgstr "Hledaný region:"
 
@@ -6439,10 +6210,6 @@ msgstr "Vyhledávají se dostupné aktualizace. Prosím, čekejte..."
 #
 msgid "Searching for new installed or removed packages. Please wait..."
 msgstr ""
-
-#
-msgid "Searching your network. Please wait..."
-msgstr "Prohledávám Vaši síť. Čekejte, prosím..."
 
 #
 msgid "Secondary DNS"
@@ -6612,14 +6379,6 @@ msgstr "Opakovat sekvenci"
 #
 msgid "Serbian"
 msgstr "Srbsky"
-
-#
-msgid "Server IP"
-msgstr "IP serveru"
-
-#
-msgid "Server share"
-msgstr "Sdíleno serverem jako"
 
 #
 msgid "Service"
@@ -8428,18 +8187,6 @@ msgid "User defined"
 msgstr "Uživatelsky definované"
 
 #
-msgid "User management"
-msgstr "Správa uživatele"
-
-#
-msgid "Usermanager"
-msgstr "Správce uživatele"
-
-#
-msgid "Username"
-msgstr "Uživatel"
-
-#
 msgid "VCR scart"
 msgstr "VCR scart"
 
@@ -8639,14 +8386,6 @@ msgstr "Prohlížet videoodpovědi"
 #
 msgid "View teletext..."
 msgstr "teletext..."
-
-#
-msgid "View, edit or delete mountpoints on your Dreambox."
-msgstr "Prohlížet, upravit nebo smazat připojovací body Vašeho přijímače."
-
-#
-msgid "View, edit or delete usernames and passwords for your network."
-msgstr "Prohlížet, upravit nebo smazat uživatele a hesla pro Vaši síť"
 
 #
 msgid "Views: "
@@ -9293,18 +9032,6 @@ msgstr "Konfigurace sítě byla aktivována."
 
 msgid "Your network is not working. Please try again."
 msgstr "Síť nepracuje. Prosím, zkuste znovu."
-
-#
-msgid "Your network mount has been activated."
-msgstr "Vaše síťové připojení bylo aktivováno."
-
-#
-msgid "Your network mount has been removed."
-msgstr "Vaše síťové připojení bylo odstraněno."
-
-#
-msgid "Your network mount has been updated."
-msgstr "Bod připojení byl zaktualizován."
 
 #
 msgid ""
@@ -10614,10 +10341,6 @@ msgstr "neznámý program"
 msgid "until standby/restart"
 msgstr "do standby/restartu"
 
-#
-msgid "use as HDD replacement"
-msgstr "Použít místo HDD "
-
 msgid "use your Dreambox as Web proxy"
 msgstr "použijte Váš přijímač jako Web proxy"
 
@@ -11109,82 +10832,6 @@ msgstr "na začátek"
 #
 msgid "at end"
 msgstr "na konec"
-
-#
-msgid "1 second"
-msgstr "1 sekunda"
-
-#
-msgid "2 seconds"
-msgstr "2 sekundy"
-
-#
-msgid "3 seconds"
-msgstr "3 sekundy"
-
-#
-msgid "4 seconds"
-msgstr "4 sekundy"
-
-#
-msgid "5 seconds"
-msgstr "5 sekund"
-
-#
-msgid "6 seconds"
-msgstr "6 sekund"
-
-#
-msgid "7 seconds"
-msgstr "7 sekund"
-
-#
-msgid "8 seconds"
-msgstr "8 sekund"
-
-#
-msgid "9 seconds"
-msgstr "9 sekund"
-
-#
-msgid "10 seconds"
-msgstr "10 sekund"
-
-#
-msgid "20 seconds"
-msgstr "20 sekund"
-
-#
-msgid "30 seconds"
-msgstr "30 sekund"
-
-#
-msgid "1 minute"
-msgstr "1 minuta"
-
-#
-msgid "2 minutes"
-msgstr "2 minuty"
-
-#
-msgid "10 minutes"
-msgstr "10 minut"
-
-#
-msgid "20 minutes"
-msgstr "20 minut"
-
-#
-msgid "1 hour"
-msgstr "1 hodina"
-
-#
-msgid "2 hours"
-msgstr "2 hodiny"
-
-#
-msgid "4 hours"
-msgstr "4 hodiny"
 
 #
 msgid "Swap SNR in db with SNR in percentage on OSD"
@@ -11687,6 +11334,22 @@ msgstr "Dekódovat http streamy"
 #
 msgid "Descramble recordings"
 msgstr "Dekódovat nahrávání"
+
+#
+msgid "show mediaplayer on mainmenu"
+msgstr "Zobrazovat Mediaplayer v hlavním menu"
+
+#
+msgid "Install extensions"
+msgstr "Instalovat rozšíření"
+
+#
+msgid "Offline decode delay (ms)"
+msgstr ""
+
+#
+msgid "Start offline decode"
+msgstr ""
 
 #
 msgid "original1"

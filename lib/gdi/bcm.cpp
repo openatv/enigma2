@@ -19,7 +19,7 @@ static bool supportblendingflags = true;
 #define P(x, y) do { displaylist[ptr++] = x; displaylist[ptr++] = y; } while (0)
 #define C(x) P(x, 0)
 
-static int fb_fd;
+static int fb_fd = -1;
 static int exec_list(void);
 
 int bcm_accel_init(void)
@@ -34,6 +34,7 @@ int bcm_accel_init(void)
 	{
 		fprintf(stderr, "BCM accel interface not available - %m\n");
 		close(fb_fd);
+		fb_fd = -1;
 		return 1;
 	}
 	/* now test for blending flags support */
@@ -51,7 +52,11 @@ int bcm_accel_init(void)
 
 void bcm_accel_close(void)
 {
-	close(fb_fd);
+	if (fb_fd >= 0)
+	{
+		close(fb_fd);
+		fb_fd = -1;
+	}
 }
 
 static int exec_list(void)

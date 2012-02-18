@@ -36,7 +36,7 @@
 
 	<screen name="InfoBarMoviePlayerSummary" position="0,0" size="132,64">
 		<widget source="session.CurrentService" render="Label" position="0,0" size="120,25" halign="left" noWrap="1" >
-			<convert type="ServiceName">Name</convert>
+			<convert type="ServicePosition">Summary</convert>
 		</widget>
 	</screen>
 

@@ -1,12 +1,14 @@
 from Screen import Screen
 
 from Components.Label import Label
-from Components.Pixmap import Pixmap
+from Components.Pixmap import Pixmap, MultiPixmap
 
 class PVRState(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self["state"] = Label(text="")
+		self["speed"] = Label(text="")
+		self["satusicon"] = MultiPixmap()
 
 class TimeshiftState(PVRState):
 	pass
@@ -34,3 +36,5 @@ class PTSTimeshiftState(Screen):
 		self["state"] = Label(text="")
 		self["PTSSeekPointer"] = Pixmap()
 		self["eventname"] = Label(text="")
+		self["speed"] = Label(text="")
+		self["satusicon"] = MultiPixmap()
