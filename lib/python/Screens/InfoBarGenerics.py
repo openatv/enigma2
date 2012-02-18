@@ -281,6 +281,7 @@ class InfoBarShowHide:
 		self.onShow.append(self.__onShow)
 		self.onHide.append(self.__onHide)
 
+		self.onShowHideNotifiers = []
 		self.secondInfoBarScreen = ""
 		if ".InfoBar'>" in str(self):
 			if config.usage.show_second_infobar.value == "3" and config.skin.primary_skin.value == "DMConcinnity-HD/skin.xml":
@@ -290,6 +291,14 @@ class InfoBarShowHide:
 			self.secondInfoBarScreen.hide()
 		self.secondInfoBarWasShown = False
 		self.EventViewIsShown = False
+
+	def connectShowHideNotifier(self, fnc):
+		if not fnc in self.onShowHideNotifiers:
+			self.onShowHideNotifiers.append(fnc)
+
+	def disconnectShowHideNotifier(self, fnc):
+		if fnc in self.onShowHideNotifiers:
+				self.onShowHideNotifiers.remove(fnc)
 
 	def serviceStarted(self):
 		if self.execing:
@@ -302,6 +311,8 @@ class InfoBarShowHide:
 	def __onShow(self):
 		self.__state = self.STATE_SHOWN
 		self.doButtonsCheck()
+		for x in self.onShowHideNotifiers:
+			x(True)
 		self.startHideTimer()
 
 	def startHideTimer(self):
@@ -318,6 +329,8 @@ class InfoBarShowHide:
 
 	def __onHide(self):
 		self.__state = self.STATE_HIDDEN
+		for x in self.onShowHideNotifiers:
+			x(False)
 
 	def doShow(self):
 		self.show()

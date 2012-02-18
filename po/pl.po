@@ -3,13 +3,34 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2011-12-25 23:14+0100\n"
-"PO-Revision-Date: 2011-12-27 20:40+0100\n"
+"PO-Revision-Date: 2012-02-15 23:25+0100\n"
 "Last-Translator: blzr <blzr@o2.pl>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#
+msgid "%d second"
+msgid_plural "%d seconds"
+msgstr[0] "%d sekunda"
+msgstr[1] "%d sekundy"
+msgstr[2] "%d sekund"
+
+#
+msgid "%d minute"
+msgid_plural "%d minutes"
+msgstr[0] "%d minuta"
+msgstr[1] "%d minuty"
+msgstr[2] "%d minut"
+
+#
+msgid "%d hour"
+msgid_plural "%d hours"
+msgstr[0] "%d godzina"
+msgstr[1] "%d godziny"
+msgstr[2] "%d godzin"
 
 #
 msgid ""
@@ -216,18 +237,6 @@ msgid "Activate Picture in Picture"
 msgstr "Włącz PiP"
 
 #
-msgid "Add a new NFS or CIFS mount point to your Dreambox."
-msgstr "Dodaj nowy udział sieciowy NFS lub CIFS"
-
-#
-msgid "Add new network mount point"
-msgstr "Dodawanie udziałów sieciowych"
-
-#
-msgid "Adds enigma2 settings and dreambox model informations like SN, rev... if enabled."
-msgstr "Dodaje ustawienia e2, model odbiornika, dodatkowe info o tunerze..."
-
-#
 msgid "Adds network configuration if enabled."
 msgstr "Dodaje konfigurację sieci."
 
@@ -392,14 +401,6 @@ msgstr ""
 "Enigma zostanie zrestartowana po przywróceniu"
 
 #
-msgid ""
-"Are you sure you want to save this network mount?\n"
-"\n"
-msgstr ""
-"Czy chcesz zapisać ten udział sieciowy?\n"
-"\n"
-
-#
 msgid "Assigning providers/services/caids to a CI module"
 msgstr "Przypisywanie providerów/kanałów/CAID do modułu CI"
 
@@ -410,10 +411,6 @@ msgstr "na początku"
 #
 msgid "at end"
 msgstr "na końcu"
-
-#
-msgid "Attempt to recover lost mounts (in background)"
-msgstr "Próbuje podmontować ponownie odłączone udziały sieciowe (w tle)."
 
 #
 msgid "Audio language selection 1"
@@ -567,10 +564,6 @@ msgid "Blue boost"
 msgstr "Niebieski"
 
 #
-msgid "Browse network neighbourhood"
-msgstr "Przeglądaj otoczenie sieciowe"
-
-#
 msgid "Browse for and connect to network shares"
 msgstr "Przeglądaj i podłącz udziały sieciowe"
 
@@ -600,10 +593,6 @@ msgstr "CDInfo pozwala uzyskać informacje o albumie i utworach z CDDB i CD-Text
 #
 msgid "CF Drive"
 msgstr "Czytnik CF"
-
-#
-msgid "CIFS share"
-msgstr "Udział CIFS"
 
 #
 msgid "Can't connect to server. Please check your network!"
@@ -638,10 +627,6 @@ msgid "Change default recording offset?"
 msgstr "Zmienić domyślny 'offset' nagrywania?"
 
 #
-msgid "Change hostname"
-msgstr "Zmiana nazwy hosta"
-
-#
 msgid "Change PIN code"
 msgstr "Zmień kod PIN"
 
@@ -660,10 +645,6 @@ msgstr "Zmień PIN ustawień"
 #
 msgid "Change step size"
 msgstr "Zmień rozmiar kroku"
-
-#
-msgid "Change the hostname of your Dreambox."
-msgstr "Zmień nazwę hosta odbiornika."
 
 #
 msgid "Channel"
@@ -981,10 +962,6 @@ msgstr "Wybierz kanał startowy"
 #
 msgid "Delete failed!"
 msgstr "Usunięcie nie powiodło się!"
-
-#
-msgid "Delete mount"
-msgstr "Usuń udział sieciowy"
 
 #
 #, python-format
@@ -1375,24 +1352,12 @@ msgid "Initial Rewind speed"
 msgstr "Początkowa prędkość przewijania wstecz"
 
 #
-msgid "Enter new hostname for your Dreambox"
-msgstr "Wpisz nową nazwę hosta dla odbiornika"
-
-#
 msgid "Enter PIN code"
 msgstr "Wpisz PIN"
 
 #
-msgid "Enter share name:"
-msgstr "Wpisz nazwę udziału sieciowego:"
-
-#
 msgid "Enter the service PIN"
 msgstr "Wpisz PIN kanału"
-
-#
-msgid "Enter user and password for host: "
-msgstr "Wpisz nazwę użytkownika i hasło dla hosta: "
 
 #
 msgid "Enter your email address so that we can contact you if needed."
@@ -1543,10 +1508,6 @@ msgid "Finished configuring your network"
 msgstr "Zakończono konfigurowanie sieci"
 
 #
-msgid "Finished restarting your network"
-msgstr "Zakończono restartowanie sieci"
-
-#
 msgid "Finnish"
 msgstr "Fiński"
 
@@ -1663,6 +1624,10 @@ msgstr "Ogólne opóźnienie PCM (ms)"
 #
 msgid "Getting plugin information. Please wait..."
 msgstr "Pobieranie info o pluginach. Proszę czekać..."
+
+#
+msgid "Goto"
+msgstr "Idź"
 
 #
 msgid "Goto position"
@@ -2010,14 +1975,6 @@ msgid "Make this mark just a mark"
 msgstr "Znacznik uniwersalny"
 
 #
-msgid "Manage network shares"
-msgstr "Zarządzaj udziałami sieciowymi"
-
-#
-msgid "Manage your network shares..."
-msgstr "Zarządzaj udziałami sieciowymi..."
-
-#
 msgid "Manage your receiver's software"
 msgstr "Zarządzaj oprogramowaniem odbiornika"
 
@@ -2099,28 +2056,8 @@ msgid "Most viewed"
 msgstr "Najczęściej oglądane"
 
 #
-msgid "Mount again"
-msgstr "Montuj ponownie"
-
-#
 msgid "Mount failed"
 msgstr "Montowanie nie powiodło się"
-
-#
-msgid "Mount informations"
-msgstr "Informacje o udziale sieciowym"
-
-#
-msgid "Mount type"
-msgstr "Typ udziału sieciowego"
-
-#
-msgid "Mountpoints management"
-msgstr "Zarządzanie udziałami sieciowymi"
-
-#
-msgid "Mounts management"
-msgstr "Zarządzanie udziałami sieciowymi"
 
 #
 msgid "Move"
@@ -2321,10 +2258,6 @@ msgstr "Brak wolnego tunera!"
 #
 msgid "No network connection available."
 msgstr "Brak połączenia z siecią."
-
-#
-msgid "No network devices found!"
-msgstr "Nie znaleziono urządzeń sieciowych!"
 
 #
 msgid "No networks found"
@@ -2554,7 +2487,7 @@ msgstr "Otwórz menu pluginu"
 
 #
 msgid "original"
-msgstr "Oryginalny"
+msgstr ""
 
 #
 msgid "Other"
@@ -2825,16 +2758,8 @@ msgid "Please wait (Step 2)"
 msgstr "Proszę czekać (krok 2)"
 
 #
-msgid "Please wait for activation of your network mount..."
-msgstr "Czekaj na aktywację twojego udziału sieciowego..."
-
-#
 msgid "Please wait while removing selected package..."
 msgstr "Czekaj, trwa usuwanie pakietu..."
-
-#
-msgid "Please wait while removing your network mount..."
-msgstr "Czekaj, trwa usuwanie udziału sieciowego..."
 
 #
 msgid "Please wait while scanning is in progress..."
@@ -2843,10 +2768,6 @@ msgstr "Czekaj, trwa skanowanie..."
 #
 msgid "Please wait while searching for removable packages..."
 msgstr "Czekaj, trwa wyszukiwanie usuwalnych pakietów..."
-
-#
-msgid "Please wait while updating your network mount..."
-msgstr "Czekaj, trwa aktualizacjia udziału sieciowego..."
 
 #
 msgid "Please wait while we configure your network..."
@@ -2859,10 +2780,6 @@ msgstr "Czekaj, trwa przygotowanie karty sieciowej..."
 #
 msgid "Please wait while we test your network..."
 msgstr "Czekaj, trwa test sieci..."
-
-#
-msgid "Please wait while your network is restarting..."
-msgstr "Czekaj, trwa restart sieci..."
 
 #
 msgid "Please wait..."
@@ -2958,10 +2875,6 @@ msgid "Press OK to activate the settings."
 msgstr "Wciśnij OK, aby aktywować ustawienia"
 
 #
-msgid "Press OK to collapse this host"
-msgstr "Wciśnij OK, aby 'zwinąć' tego hosta"
-
-#
 msgid "Press OK to edit selected settings."
 msgstr "Wcisnij OK, aby edytować wybrane ustawienia."
 
@@ -2970,21 +2883,9 @@ msgid "Press OK to edit the settings."
 msgstr "Aby edytować ustawienia, wciśnij OK."
 
 #
-msgid "Press OK to expand this host"
-msgstr "Wciśnij OK, aby 'rozwinąć' tego hosta"
-
-#
 #, python-format
 msgid "Press OK to get further details for %s"
 msgstr "Wciśnij OK, aby uzyskać więcej info o %s"
-
-#
-msgid "Press OK to mount this share!"
-msgstr "Wciśnij OK, aby zamontować ten udział!"
-
-#
-msgid "Press OK to mount!"
-msgstr "Wciśnij OK, aby zamontować!"
 
 #
 msgid "Press OK to save settings."
@@ -3104,12 +3005,11 @@ msgid "Recording data sync size"
 msgstr "Rozmiar 'data sync' dla nagrywania"
 
 #
-msgid "Recording demux buffer size"
-msgstr "Rozmiar bufora demux dla nagrywania"
-
-#
 msgid "Recording"
 msgstr "Nagranie"
+
+msgid "Recording type"
+msgstr "Typ nagrania"
 
 #
 msgid "Recording paths"
@@ -3301,10 +3201,6 @@ msgid "Scan Files..."
 msgstr "Przeszukaj pliki..."
 
 #
-msgid "Scan NFS share"
-msgstr "Przeszukaj udział NFS"
-
-#
 msgid "Scan Wireless Networks"
 msgstr "Skanuj sieci bezprzewodowe"
 
@@ -3476,10 +3372,6 @@ msgstr "Oddziel tytuły posiadjące menu"
 #
 msgid "September"
 msgstr "Wrzesień"
-
-#
-msgid "Server share"
-msgstr "Udostępniony udział serwera"
 
 #
 msgid "Service"
@@ -3893,7 +3785,7 @@ msgstr "Wymienne typy tunerów:"
 msgid "TRANSLATOR_INFO"
 msgstr ""
 "Polish translation for OpenPLi image by @blzr\n"
-"20121227"
+"20120104"
 
 #
 msgid "TS file is too large for ISO9660 level 1!"
@@ -3929,7 +3821,7 @@ msgstr "Opóźnienie napisów gdy nie niezsynchronizowane"
 
 #
 msgid "Teletext subtitle color"
-msgstr "Kolor napisów txt"
+msgstr "Kolor napisów teletekst"
 
 #
 msgid "Terrestrial"
@@ -4382,7 +4274,7 @@ msgid ""
 "Unable to initialize harddisk.\n"
 "Error: "
 msgstr ""
-"Nie można zainicjalizować hdd.\n"
+"Nie można zainicjalizować HDD.\n"
 "Błąd: "
 
 #
@@ -4642,14 +4534,6 @@ msgid "View teletext..."
 msgstr "Wyświetl teletext..."
 
 #
-msgid "View, edit or delete mountpoints on your Dreambox."
-msgstr "Zobacz, edytuj lub usuń udziały sieciowe."
-
-#
-msgid "View, edit or delete usernames and passwords for your network."
-msgstr "Zobacz, edytuj lub usuń nazwy użytkowników i hasła twojej sieci."
-
-#
 msgid "WLAN adapter."
 msgstr "Adapter WLAN."
 
@@ -4736,20 +4620,6 @@ msgstr ""
 
 #
 msgid ""
-"Welcome to the cleanup wizard.\n"
-"\n"
-"We have detected that your available internal memory has dropped below 2MB.\n"
-"To ensure stable operation of your Dreambox, the internal memory should be cleaned up.\n"
-"You can use this wizard to remove some extensions.\n"
-msgstr ""
-"Witamy w kreatorze czyszczenia.\n"
-"\n"
-"Wykryliśmy że ilość dostępnej pamięci flash spadła poniżej 2MB.\n"
-"Aby zapewnić stabilną pracę zalecane jest 'czyszczenie'.\n"
-"Możesz użyć tego kreatora aby usunąć niepotrzebne dodatki.\n"
-
-#
-msgid ""
 "Welcome.\n"
 "\n"
 "If you want to connect your Dreambox to the Internet, this wizard will guide you through the basic network setup of your Dreambox.\n"
@@ -4758,7 +4628,7 @@ msgid ""
 msgstr ""
 "Witam. \n"
 "\n"
-"Jeśli chcesz się połączyć z internetem, ten menadżer przeprowdzi cię przez uproszczoną konfigurację odbiornika. \n"
+"Jeśli chcesz się połączyć z internetem, ten kreator przeprowdzi cię przez uproszczoną konfigurację odbiornika. \n"
 "Nacisnij OK aby rozpocząć konfigurację sieci."
 
 #
@@ -5039,18 +4909,6 @@ msgstr ""
 #
 msgid "Your network configuration has been activated."
 msgstr "Konfiguracja sieci została aktywowana."
-
-#
-msgid "Your network mount has been activated."
-msgstr "Udział sieciowy został aktywowany."
-
-#
-msgid "Your network mount has been removed."
-msgstr "Udział sieciowy został usunięty."
-
-#
-msgid "Your network mount has been updated."
-msgstr "Udział sieciowy został zaktualizowany."
 
 #
 msgid ""
@@ -5461,6 +5319,10 @@ msgid "minutes"
 msgstr "minuty"
 
 #
+msgid "%d minutes"
+msgstr "%d minut"
+
+#
 msgid "month"
 msgstr "miesiąc"
 
@@ -5614,7 +5476,7 @@ msgstr "Cofnij do poprzedniego rozdziału"
 
 #
 msgid "Rewrap teletext subtitles"
-msgstr "Poprawiaj rozłożenie napisów txt"
+msgstr "Poprawiaj rozłożenie napisów teletekst"
 
 #
 msgid "right"
@@ -5790,24 +5652,12 @@ msgid "until standby/restart"
 msgstr "Do standby/restartu"
 
 #
-msgid "use original TXT colors"
-msgstr "Użyj oryginalnego koloru TXT"
-
-#
 msgid "Use original teletext colors"
-msgstr "Użyj oryginalnych kolorów jak w txt"
+msgstr "Użyj oryginalnych kolorów jak w teletekst"
 
 #
 msgid "Use original teletext position"
-msgstr "Użyj oryginalnej pozycji jak w txt"
-
-#
-msgid "use original TXT position"
-msgstr "Użyj oryginalnej pozycj TXT"
-
-#
-msgid "use as HDD replacement"
-msgstr "Użyj jako HDD"
+msgstr "Użyj oryginalnej pozycji jak w teletekst"
 
 #
 msgid "wait for ci..."
@@ -5823,7 +5673,7 @@ msgstr "Co tydzień"
 
 #
 msgid "white"
-msgstr "Biały"
+msgstr "biały"
 
 #
 msgid "whitelist"
@@ -5835,7 +5685,7 @@ msgstr "Pracuje"
 
 #
 msgid "yellow"
-msgstr "Żółty"
+msgstr "żółty"
 
 #
 msgid "Yellow DVB subtitles"
@@ -6158,10 +6008,6 @@ msgid "3"
 msgstr "3"
 
 #
-msgid "30 minutes"
-msgstr "30 minut"
-
-#
 msgid "4"
 msgstr "4"
 
@@ -6182,16 +6028,8 @@ msgid "5"
 msgstr "5"
 
 #
-msgid "5 minutes"
-msgstr "5 minut"
-
-#
 msgid "6"
 msgstr "6"
-
-#
-msgid "60 minutes"
-msgstr "60 minut"
 
 #
 msgid "7"
@@ -6326,14 +6164,6 @@ msgstr "Aktywuj ustawienia sieci"
 #
 msgid "Active"
 msgstr "Aktywny"
-
-#
-msgid ""
-"Active/\n"
-"Inactive"
-msgstr ""
-"Aktywny/\n"
-"Niekatywny"
 
 #
 msgid "Adapter settings"
@@ -7444,10 +7274,6 @@ msgid "Enter pin code"
 msgstr "Wpisz PIN"
 
 #
-msgid "Enter share directory:"
-msgstr "Wpisz katalog udostępniony:"
-
-#
 msgid "Enter the service pin"
 msgstr "Wpisz PIN kanału"
 
@@ -7953,10 +7779,6 @@ msgid "Local Network"
 msgstr "Sieć lokalna"
 
 #
-msgid "Local share name"
-msgstr "Lokalna nazwa udziału"
-
-#
 msgid "Location"
 msgstr "Lokalizacja"
 
@@ -8087,26 +7909,6 @@ msgid "Most recent"
 msgstr "Najnowsze"
 
 #
-msgid "Mount options"
-msgstr "Opcje montowania"
-
-#
-msgid "MountManager"
-msgstr "Menadżer montowania"
-
-#
-msgid ""
-"Mounted/\n"
-"Unmounted"
-msgstr ""
-"Zamontowane/\n"
-"Odmontowane"
-
-#
-msgid "Mounts editor"
-msgstr "Edytor montowania"
-
-#
 msgid "Multi EPG"
 msgstr ""
 
@@ -8146,9 +7948,6 @@ msgid "NEXT"
 msgstr "Następny"
 
 #
-msgid "NFS share"
-msgstr "Udział NFS"
-
 msgid "NIM"
 msgstr "Tuner"
 
@@ -8214,10 +8013,6 @@ msgstr "Test sieci:"
 #
 msgid "Network:"
 msgstr "Sieć:"
-
-#
-msgid "NetworkBrowser"
-msgstr "Przeglądarka sieciowa"
 
 #
 msgid "NetworkWizard"
@@ -9046,7 +8841,7 @@ msgstr "Skanowanie w poszukiwaniu urządzeń odtwarzających pliki multimedialne
 
 #
 msgid "Scan range"
-msgstr "Skanuj zakres"
+msgstr "Zakres skanowania"
 
 msgid "Scans default lamedbs sorted by satellite"
 msgstr "Skanuje domyślne lamedbs posortowane wg satelit"
@@ -9060,13 +8855,6 @@ msgid "Search east"
 msgstr "Szukaj na wschód"
 
 #
-msgid "Search for network shares"
-msgstr "Szukaj udziałów sieciowych"
-
-#
-msgid "Search for network shares..."
-msgstr "Szukaj udziałów sieciowych..."
-
 msgid "Search through the EPG"
 msgstr "Wyszukiwanie w EPG"
 
@@ -9077,10 +8865,6 @@ msgstr "Szukaj na zachód"
 #
 msgid "Searching for available updates. Please wait..."
 msgstr "Wyszukiwanie dostępnych aktualizacji. Proszę czekać..."
-
-#
-msgid "Searching your network. Please wait..."
-msgstr "Wyszukiwanie sieci. Proszę czekać..."
 
 #
 msgid "Secondary DNS"
@@ -9166,9 +8950,6 @@ msgid "Serbian"
 msgstr "Serbski"
 
 #
-msgid "Server IP"
-msgstr "IP serwera"
-
 msgid "Service reference"
 msgstr ""
 
@@ -9488,10 +9269,6 @@ msgstr "Sterowanie wentylatorem w zależności od temperatury."
 #
 msgid "Test DiSEqC settings"
 msgstr "Test ustawień DiSEqC"
-
-# File: tmp/enigma2_plugins/genuinedreambox/src/plugin.py, line: 80
-msgid "Test again"
-msgstr "Testuj ponownie"
 
 #
 msgid "Test mode"
@@ -10877,8 +10654,8 @@ msgstr ""
 msgid "Error code"
 msgstr "Kod błędu"
 
-msgid "Event Fontsize"
-msgstr "Wielkość czcionki (audycje)"
+msgid "Event Fontsize (relative to skin size)"
+msgstr "Wielkość czcionki (w stos. do czcionki w skinie)"
 
 msgid "Eventview menu"
 msgstr ""
@@ -10955,9 +10732,6 @@ msgstr "Nie znaleziono tunera kablowego"
 msgid "Ok"
 msgstr ""
 
-msgid "Oktober"
-msgstr "Październik"
-
 #
 msgid "Orbital Position"
 msgstr "Pozycja orbitalna"
@@ -10992,8 +10766,8 @@ msgstr "Wybierz providera i wciśnij OK aby rozpocząć skanowanie"
 msgid "Side by Side"
 msgstr ""
 
-msgid "Skip Empty Services (may need restart)"
-msgstr "Pomiń puste serwisy (wymaga restertu)"
+msgid "Skip Empty Services"
+msgstr "Pomijaj puste serwisy"
 
 #
 msgid ""
@@ -11066,7 +10840,7 @@ msgid "You system does not support ext4"
 msgstr "Twój system nie wspiera ext4"
 
 msgid "Zap mode"
-msgstr ""
+msgstr " "
 
 msgid "activate PiP"
 msgstr "Włącz PiP"
@@ -11103,4 +10877,137 @@ msgstr "Następnie wyłączony przez (min.):"
 
 msgid "Standbymode Fancontrol settings"
 msgstr "Ustawienia wentylatora w standby:"
+
+#
+msgid "Use DVB subtitles position"
+msgstr "Pozycja napisów DVB"
+
+#
+msgid "fixed"
+msgstr "stała"
+
+#
+msgid "relative"
+msgstr "względna"
+
+#
+msgid "Regard deep standby as standby"
+msgstr "Traktuj głębokie czuwanie jak standby"
+
+#
+msgid "Include ECM in http streams"
+msgstr "ECMy w streamie http"
+
+#
+msgid "Include EIT in http streams"
+msgstr "EIT w streamie http"
+
+#
+msgid "Include AIT in http streams"
+msgstr "AIT w streamie http"
+
+#
+msgid "Descramble http streams"
+msgstr "Dekoduj stream http"
+
+#
+msgid "Ginormous 4 MB"
+msgstr "Gigantyczny(!) 4MB"
+
+#
+msgid "Show Picons"
+msgstr "Wyświetlaj picony"
+
+#
+msgid "Show Service Names "
+msgstr "Wyświetlaj nazwy kanałów"
+
+#
+msgid "false"
+msgstr "nie"
+
+#
+msgid "true"
+msgstr "tak"
+
+msgid "Goto first service"
+msgstr "Idż do pierwszego kanału"
+
+msgid "Goto last service"
+msgstr "Idż do ostatniego kanału"
+
+msgid "Goto next event"
+msgstr "Idź do następnej audycji"
+
+msgid "Goto next page of events"
+msgstr "Idź do następnej strony z audycjami"
+
+msgid "Goto next page of service"
+msgstr "Idź do następnej strony kanału"
+
+msgid "Goto previous event"
+msgstr "Idź do poprzedniej audycji"
+
+msgid "Goto previous page of events"
+msgstr "Idź do poprzedniej strony z audycjami"
+
+msgid "Goto previous page of service"
+msgstr "Idź do następnej strony kanału"
+
+msgid "Goto specific data/time"
+msgstr "Idź do konkretnej daty/godziny"
+
+msgid "Maintain old EPG data for"
+msgstr "Trzymaj stre dane EPG przez (w min.)"
+
+msgid "Offline decode delay (ms)"
+msgstr "Opóźnienie dekodowania offline (ms)"
+
+msgid "Round start time on"
+msgstr "Zaokrąglaj czas startu do"
+
+msgid "Set time window to 1 hour"
+msgstr "Ustaw przedział czasowy na 1 godzinę"
+
+msgid "Set time window to 2 hours"
+msgstr "Ustaw przedział czasowy na 2 godziny"
+
+msgid "Set time window to 3 hours"
+msgstr "Ustaw przedział czasowy na 3 godziny"
+
+msgid "Set time window to 4 hours"
+msgstr "Ustaw przedział czasowy na 4 godziny"
+
+msgid "Set time window to 5 hours"
+msgstr "Ustaw przedział czasowy na 5 godzin"
+
+msgid "Setup menu"
+msgstr "Menu ustawień"
+
+msgid "Show bouquet selection menu"
+msgstr "Pokaż menu listy bukietów"
+
+msgid "Show detailed event info"
+msgstr "Pokaż szczegółowy opis audycji"
+
+msgid "Start offline decode"
+msgstr "Rozpocznij dekodowanie offline"
+
+msgid "Zap to selected channel"
+msgstr "Przełącz na wybrany kanał"
+
+msgid "descramble and record ecm"
+msgstr "Dekoduj i nagrywaj ECM"
+
+msgid "don't descramble, record ecm"
+msgstr "Nie dekoduj, nagrywaj ECM"
+
+msgid "show mediaplayer on mainmenu"
+msgstr "Pokaż Mediaplayer w menu głównym"
+
+msgid "Exit EPG"
+msgstr "Wyjdź z EPG"
+
+msgid "Add/Remove timer for current event"
+msgstr "Dodaj/usuń timer dla bieżącej audycji"
 
