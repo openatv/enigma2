@@ -1640,7 +1640,10 @@ class Config(ConfigSubsection):
 			if not l or l[0] == '#':
 				continue
 
-			(name, val) = l.split('=', 1)
+			result = l.split('=', 1)
+			if len(result) != 2:
+				continue
+			(name, val) = result
 			val = val.strip()
 
 			names = name.split('.')
