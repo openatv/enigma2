@@ -497,7 +497,7 @@ def InitUsageConfig():
 		("slv", _("Slovenian")),
 		("spa", _("Spanish")),
 		("swe", _("Swedish")),
-		("tur Audio_TUR", _("Turkish")]
+		("tur Audio_TUR", _("Turkish"))]
 
 	def setEpgLanguage(configElement):
 		enigma.eServiceEvent.setEPGLanguage(configElement.value)
