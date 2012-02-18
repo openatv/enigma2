@@ -232,7 +232,7 @@
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
 		<widget source="session.RecordState" render="Pixmap" pixmap="lcd/rec.png" position="223,52"  size="32,12">
-			<convert type="ConditionalShowHide" />
+			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>	
 		<widget source="session.TunerInfo" render="Pixmap" pixmap="lcd/tuner-a.png" position="188,50" size="9,15">
 			<convert type="TunerInfo">TunerUseMask</convert>
@@ -330,6 +330,16 @@
 		<widget source="EnigmaVersion" render="Label" position="0,52" size="255,12" font="FdLcD;12" />
 	</screen>
 
+	<screen name="TimerEditListSummary" position="0,0" size="255,64">
+		<widget source="service" render="Label" position="0,0" size="160,22" font="FdLcD;18" halign="left" noWrap="1" />
+		<widget source="name" render="Label" position="0,21" size="255,18" font="FdLcD;17" halign="left" noWrap="1" />
+		<widget source="time" render="Label" position="0,39" size="190,35" font="FdLcD;14" halign="left" transparent="1" />
+		<widget source="duration" render="Label" position="0,52" size="190,35" font="FdLcD;13" halign="left" transparent="1" />
+		<widget source="state" render="Label" position="0,50" size="190,35" font="FdLcD;13" halign="right" transparent="1" />
+		<panel name="SummaryIconsPanel" />
+		<panel name="SummaryClockPanel" />
+	</screen>
+
 <!-- DVD -->
 	<screen name="DVDSummary" position="fill">
 		<widget source="session.CurrentService" render="Label" position="top" size="*,28" font="FdLcD;12" >
@@ -345,6 +355,7 @@
 			<widget name="Chapter" position="fill" font="FdLcD;12" halign="left" />
 		</panel>
 	</screen>
+
 <!-- ViX -->
 	<screen name="VIXDevicesPanelSummary" position="0,0" size="255,64">
 		<widget source="parent.Title" render="Label" position="0,0" size="160,22" font="FdLcD;18" halign="left" noWrap="1" />
@@ -365,6 +376,4 @@
 		<widget source="parent.text_summary" render="Label" position="0,16" size="255,54" font="FdLcD;12" halign="left" transparent="1" />
 		<panel name="SummaryIconsPanel" />
 	</screen>	
-
-
 </skin>

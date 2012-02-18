@@ -5,6 +5,7 @@ from Components.MenuList import MenuList
 from Components.TimerList import TimerList
 from Components.TimerSanityCheck import TimerSanityCheck
 from Components.UsageConfig import preferredTimerPath
+from Components.Sources.StaticText import StaticText
 from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT
 from Screen import Screen
 from Screens.ChoiceBox import ChoiceBox
@@ -12,6 +13,7 @@ from Screens.MessageBox import MessageBox
 from ServiceReference import ServiceReference
 from TimerEntry import TimerEntry, TimerLog
 from Tools.BoundFunction import boundFunction
+from Tools.FuzzyDate import FuzzyTime
 from time import time
 from timer import TimerEntry as RealTimerEntry
 
@@ -26,6 +28,7 @@ class TimerEditList(Screen):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Timer List"))
 		
+		self.onChangedEntry = [ ]
 		list = [ ]
 		self.list = list
 		self.fillTimerList()
@@ -56,6 +59,9 @@ class TimerEditList(Screen):
 			}, -1)
 		self.session.nav.RecordTimer.on_state_change.append(self.onStateChange)
 		self.onShown.append(self.updateState)
+
+	def createSummary(self):
+		return TimerEditListSummary
 
 	def up(self):
 		self["timerlist"].instance.moveSelection(self["timerlist"].instance.moveUp)
@@ -168,6 +174,42 @@ class TimerEditList(Screen):
 			self.removeAction("blue")
 			self["key_blue"].setText(" ")
 			self.key_blue_choice = self.EMPTY
+		if len(self.list) == 0:
+			return
+		timer = self['timerlist'].getCurrent()
+
+		if timer:
+ 			try:
+				name = str(timer.name)
+				time = ("%s %s ... %s") % (FuzzyTime(timer.begin)[0], FuzzyTime(timer.begin)[1], FuzzyTime(timer.end)[1])
+				duration = ("(%d " + _("mins") + ")") % ((timer.end - timer.begin) / 60)
+				service = str(timer.service_ref.getServiceName())
+	
+				if timer.state == RealTimerEntry.StateWaiting:
+					state = _("waiting")
+				elif timer.state == RealTimerEntry.StatePrepared:
+					state = _("about to start")
+				elif timer.state == RealTimerEntry.StateRunning:
+					if timer.justplay:
+						state = _("zapped")
+					else:
+						state = _("recording...")
+				elif timer.state == RealTimerEntry.StateEnded:
+					state = _("done!")
+				else:
+					state = _("<unknown>")
+ 			except:
+				name = ""
+				time = ""
+				duration = ""
+				service = ""
+		else:
+			name = ""
+			time = ""
+			duration = ""
+			service = ""
+		for cb in self.onChangedEntry:
+			cb(name, time, duration, service, state)
 
 	def fillTimerList(self):
 		#helper function to move finished timers to end of list
@@ -456,3 +498,29 @@ class TimerSanityConflict(Screen):
 				self.removeAction("blue")
 				self["key_blue"].setText(" ")
 				self.key_blue_choice = self.EMPTY
+
+class TimerEditListSummary(Screen):
+	def __init__(self, session, parent):
+		Screen.__init__(self, session, parent = parent)
+		self["name"] = StaticText("")
+		self["service"] = StaticText("")
+		self["time"] = StaticText("")
+		self["duration"] = StaticText("")
+		self["state"] = StaticText("")
+		self.onShow.append(self.addWatcher)
+		self.onHide.append(self.removeWatcher)
+
+	def addWatcher(self):
+		self.parent.onChangedEntry.append(self.selectionChanged)
+		self.parent.updateState()
+
+	def removeWatcher(self):
+		self.parent.onChangedEntry.remove(self.selectionChanged)
+
+	def selectionChanged(self, name, time, duration, service, state):
+		self["name"].text = name
+		self["service"].text = service
+		self["time"].text = time
+		self["duration"].text = duration
+		self["state"].text = state
+
