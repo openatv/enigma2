@@ -141,6 +141,7 @@ RESULT eDVBDemux::setSourceFrontend(int fenum)
 {
 #if HAVE_DVB_API_VERSION >= 3
 	int fd = openDemux();
+	if (fd < 0) return -1;
 	int n = DMX_SOURCE_FRONT0 + fenum;
 	int res = ::ioctl(fd, DMX_SET_SOURCE, &n);
 	if (res)
@@ -157,6 +158,7 @@ RESULT eDVBDemux::setSourcePVR(int pvrnum)
 {
 #if HAVE_DVB_API_VERSION >= 3
 	int fd = openDemux();
+	if (fd < 0) return -1;
 	int n = DMX_SOURCE_DVR0 + pvrnum;
 	int res = ::ioctl(fd, DMX_SET_SOURCE, &n);
 	source = -1;
@@ -753,24 +755,33 @@ RESULT eDVBTSRecorder::stop()
 
 #if HAVE_DVB_API_VERSION >= 5
 	/* workaround for record thread stop */
-	if (::ioctl(m_source_fd, DMX_STOP) < 0)
-		perror("DMX_STOP");
-	else
-		state &= ~1;
+	if (m_source_fd >= 0)
+	{
+		if (::ioctl(m_source_fd, DMX_STOP) < 0)
+			perror("DMX_STOP");
+		else
+			state &= ~1;
 
-	if (::close(m_source_fd) < 0)
-		perror("close");
-	else
-		state &= ~2;
+		if (::close(m_source_fd) < 0)
+			perror("close");
+		else
+			state &= ~2;
+		m_source_fd = -1;
+	}
 #endif
 
 	m_thread->stop();
 
 	if (state & 3)
-		::close(m_source_fd);
+	{
+		if (m_source_fd >= 0)
+		{
+			::close(m_source_fd);
+			m_source_fd = -1;
+		}
+	}
 
 	m_running = 0;
-	m_source_fd = -1;
 
 	m_thread->stopSaveMetaInformation();
 	return 0;

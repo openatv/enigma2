@@ -94,7 +94,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 
 #################################################################
 
-	def __init__(self, serviceref, begin, end, name, description, eit, disabled = False, justplay = False, afterEvent = AFTEREVENT.AUTO, checkOldTimers = False, dirname = None, tags = None):
+	def __init__(self, serviceref, begin, end, name, description, eit, disabled = False, justplay = False, afterEvent = AFTEREVENT.AUTO, checkOldTimers = False, dirname = None, tags = None, descramble = True, record_ecm = False):
 		timer.TimerEntry.__init__(self, int(begin), int(end))
 		if checkOldTimers == True:
 			if self.begin < time() - 1209600:
@@ -124,6 +124,8 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		self.autoincrease = False
 		self.autoincreasetime = 3600 * 24 # 1 day
 		self.tags = tags or []
+		self.descramble = descramble
+		self.record_ecm = record_ecm
 
 		self.log_entries = []
 		self.resetState()
@@ -219,7 +221,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				if event_id is None:
 					event_id = -1
 
-			prep_res=self.record_service.prepare(self.Filename + ".ts", self.begin, self.end, event_id, self.name.replace("\n", ""), self.description.replace("\n", ""), ' '.join(self.tags))
+			prep_res=self.record_service.prepare(self.Filename + ".ts", self.begin, self.end, event_id, self.name.replace("\n", ""), self.description.replace("\n", ""), ' '.join(self.tags), self.descramble, self.record_ecm)
 			if prep_res:
 				if prep_res == -255:
 					self.log(4, "failed to write meta information")
@@ -468,10 +470,12 @@ def createTimer(xml):
 		tags = tags.encode("utf-8").split(' ')
 	else:
 		tags = None
+	descramble = int(xml.get("descramble") or "1")
+	record_ecm = int(xml.get("record_ecm") or "0")
 
 	name = xml.get("name").encode("utf-8")
 	#filename = xml.get("filename").encode("utf-8")
-	entry = RecordTimerEntry(serviceref, begin, end, name, description, eit, disabled, justplay, afterevent, dirname = location, tags = tags)
+	entry = RecordTimerEntry(serviceref, begin, end, name, description, eit, disabled, justplay, afterevent, dirname = location, tags = tags, descramble = descramble, record_ecm = record_ecm)
 	entry.repeated = int(repeated)
 	
 	for l in xml.findall("log"):
@@ -638,6 +642,8 @@ class RecordTimer(timer.Timer):
 				list.append(' tags="' + str(stringToXML(' '.join(timer.tags))) + '"')
 			list.append(' disabled="' + str(int(timer.disabled)) + '"')
 			list.append(' justplay="' + str(int(timer.justplay)) + '"')
+			list.append(' descramble="' + str(int(timer.descramble)) + '"')
+			list.append(' record_ecm="' + str(int(timer.record_ecm)) + '"')
 			list.append('>\n')
 			
 			if config.recording.debug.value:

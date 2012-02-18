@@ -422,6 +422,22 @@ class EPGSelection(Screen, HelpableScreen):
 			}, -1)
 			self["inputactions"].csel = self
 
+		elif self.type == EPG_TYPE_SINGLE:
+			self["epgactions"] = HelpableActionMap(self, "EPGSelectActions",
+				{
+					"menu":				(self.createSetup, _("Setup menu")),
+				},-1)
+			self["epgactions"].csel = self
+
+			self["cursoractions"] = HelpableActionMap(self, "DirectionActions",
+				{
+					"left":		(self.prevPage, _("Move up a page")),
+					"right":	(self.nextPage, _("Move down a page")),
+					"up":		(self.moveUp, _("Goto previous channel")),
+					"down":		(self.moveDown, _("Goto next channel")),
+				},-1)
+			self["cursoractions"].csel = self
+
 		elif self.type == EPG_TYPE_ENHANCED:
 			self["epgactions"] = HelpableActionMap(self, "EPGSelectActions",
 				{
@@ -1518,12 +1534,14 @@ class EPGSelectionSetup(Screen, ConfigListScreen):
 			self.list.append(getConfigListEntry(_("LongOK Button"), config.epgselction.OKLong_infobar))
 			self.list.append(getConfigListEntry(_("Items per Page"), config.epgselction.itemsperpage_infobar))
 			self.list.append(getConfigListEntry(_("Event Fontsize (relative to skin size)"), config.epgselction.ev_fontsize_infobar))
-		elif self.type == 3:
-			self.list.append(getConfigListEntry(_("Channel preview mode"), config.epgselction.preview_mode_enhanced))
-			self.list.append(getConfigListEntry(_("Skip Empty Services"), config.epgselction.overjump))
+		elif self.type == 3 or self.type == 0:
+			if self.type != 0:
+				self.list.append(getConfigListEntry(_("Channel preview mode"), config.epgselction.preview_mode_enhanced))
+				self.list.append(getConfigListEntry(_("Skip Empty Services"), config.epgselction.overjump))
 			self.list.append(getConfigListEntry(_("Sort List by"), config.epgselction.sort))
-			self.list.append(getConfigListEntry(_("OK Button"), config.epgselction.OK_enhanced))
-			self.list.append(getConfigListEntry(_("LongOK Button"), config.epgselction.OKLong_enhanced))
+			if self.type != 0:
+				self.list.append(getConfigListEntry(_("OK Button"), config.epgselction.OK_enhanced))
+				self.list.append(getConfigListEntry(_("LongOK Button"), config.epgselction.OKLong_enhanced))
 			self.list.append(getConfigListEntry(_("Items per Page"), config.epgselction.itemsperpage_enhanced))
 			self.list.append(getConfigListEntry(_("Event Fontsize (relative to skin size)"), config.epgselction.ev_fontsize_enhanced))
 		elif self.type == 1:

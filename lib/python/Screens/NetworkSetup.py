@@ -72,14 +72,33 @@ class NetworkAdapterSelection(Screen,HelpableScreen):
 		if len(self.adapters) == 0:
 			self.adapters = [(iNetwork.getFriendlyAdapterName(x),x) for x in iNetwork.getInstalledAdapters()]
 
+		self.onChangedEntry = [ ]
 		self.list = []
 		self["list"] = List(self.list)
 		self.updateList()
+		if not self.selectionChanged in self["list"].onSelectionChanged:
+			self["list"].onSelectionChanged.append(self.selectionChanged)
 
 		if len(self.adapters) == 1:
 			self.onFirstExecBegin.append(self.okbuttonClick)
 		self.onClose.append(self.cleanup)
 
+	def createSummary(self):
+		from Screens.PluginBrowser import PluginBrowserSummary
+		return PluginBrowserSummary
+
+	def selectionChanged(self):
+		item = self["list"].getCurrent()
+		print 'TEST',item
+		if item:
+			name = item[0]
+			desc = item[1]
+		else:
+			name = ""
+			desc = ""
+		for cb in self.onChangedEntry:
+			cb(name, desc)
+		
 	def buildInterfaceList(self,iface,name,default,active ):
 		divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/div-h.png"))
 		defaultpng = None
@@ -660,6 +679,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		self.iface = iface
 		self.restartLanRef = None
 		self.LinkState = None
+		self.onChangedEntry = [ ]
 		self.mainmenu = self.genMainMenu()
 		self["menulist"] = MenuList(self.mainmenu)
 		self["key_red"] = StaticText(_("Close"))
@@ -708,7 +728,23 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		self.updateStatusbar()
 		self.onLayoutFinish.append(self.layoutFinished)
 		self.onClose.append(self.cleanup)
+		if not self.selectionChanged in self["menulist"].onSelectionChanged:
+			self["menulist"].onSelectionChanged.append(self.selectionChanged)
 
+	def createSummary(self):
+		from Screens.PluginBrowser import PluginBrowserSummary
+		return PluginBrowserSummary
+
+	def selectionChanged(self):
+		item = self["menulist"].getCurrent()
+		if item:
+			name = str(self["menulist"].getCurrent()[0])
+			desc = self["description"].text
+		else:
+			name = ""
+			desc = ""
+		for cb in self.onChangedEntry:
+			cb(name, desc)
 
 	def queryWirelessDevice(self,iface):
 		try:
@@ -1421,6 +1457,7 @@ class NetworkAfp(Screen):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("AFP Setup"))
 		self.skinName = "NetworkAfp"
+		self.onChangedEntry = [ ]
 		self['lab1'] = Label(_("Autostart:"))
 		self['labactive'] = Label(_(_("Disabled")))
 		self['lab2'] = Label(_("Current Status:"))
@@ -1430,27 +1467,32 @@ class NetworkAfp(Screen):
 		self['key_green'] = Label(_("Start"))
 		self['key_yellow'] = Label(_("Autostart"))
 		self['key_blue'] = Label()
+		self['status_summary'] = StaticText()
+		self['autostartstatus_summary'] = StaticText()
 		self.Console = Console()
 		self.my_Samba_active = False
 		self.my_Samba_run = False
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.AfpStop, 'green': self.AfpStart, 'yellow': self.activateAfp})
-		self.onLayoutFinish.append(self.updateAfp)
+		self.onLayoutFinish.append(self.updateService)
+
+	def createSummary(self):
+		return NetworkServicesSummary
 
 	def AfpStart(self):
 		if self.my_afp_run == False:
 			self.Console.ePopen('/etc/init.d/atalk start')
 			time.sleep(3)
-			self.updateAfp()
+			self.updateService()
 		elif self.my_afp_run == True:
 			self.Console.ePopen('/etc/init.d/atalk restart')
 			time.sleep(3)
-			self.updateAfp()
+			self.updateService()
 
 	def AfpStop(self):
 		if self.my_afp_run == True:
 			self.Console.ePopen('/etc/init.d/atalk stop')
 			time.sleep(3)
-			self.updateAfp()
+			self.updateService()
 
 	def activateAfp(self):
 		if fileExists('/etc/rc2.d/S20atalk'):
@@ -1458,9 +1500,9 @@ class NetworkAfp(Screen):
 		else:
 			self.Console.ePopen('update-rc.d -f atalk defaults')
 		time.sleep(3)
-		self.updateAfp()
+		self.updateService()
 
-	def updateAfp(self):
+	def updateService(self):
 		import process
 		p = process.ProcessList()
 		afp_process = str(p.named('afpd')).strip('[]')
@@ -1480,11 +1522,18 @@ class NetworkAfp(Screen):
 			self['labactive'].show()
 			self['labrun'].show()
 			self['key_green'].setText(_("Restart"))
+			self['status_summary'].setText(_("Current Status:") + ' ' + self['labrun'].text)
 		else:
 			self['labrun'].hide()
 			self['labstop'].show()
 			self['labactive'].show()
 			self['key_green'].setText(_("Start"))
+			status_summary= self['lab2'].text + ' ' + self['labstop'].text
+		title = _("AFP Setup")
+		autostartstatus_summary = self['lab1'].text + ' ' + self['labactive'].text
+
+		for cb in self.onChangedEntry:
+			cb(title, status_summary, autostartstatus_summary)
 
 class NetworkFtp(Screen):
 	skin = """
@@ -1502,6 +1551,7 @@ class NetworkFtp(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("FTP Setup"))
+		self.onChangedEntry = [ ]
 		self['lab1'] = Label(_("Ftpd service type: Vsftpd server"))
 		self['lab2'] = Label(_("Current Status:"))
 		self['labstop'] = Label(_("Stopped"))
@@ -1511,7 +1561,10 @@ class NetworkFtp(Screen):
 		self.my_ftp_active = False
 		self.Console = Console()
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.FtpStop, 'green': self.FtpStart})
-		self.onLayoutFinish.append(self.updateFtp)
+		self.onLayoutFinish.append(self.updateService)
+
+	def createSummary(self):
+		return NetworkServicesSummary
 
 	def FtpStart(self):
 		if self.my_ftp_active == False:
@@ -1530,7 +1583,7 @@ class NetworkFtp(Screen):
 				self.Console.ePopen('ps')
 				mybox = self.session.open(MessageBox, _("Ftp service Enabled."), MessageBox.TYPE_INFO)
 				mybox.setTitle(_("Info"))
-				self.updateFtp()
+				self.updateService()
 
 	def FtpStop(self):
 		if self.my_ftp_active == True:
@@ -1549,9 +1602,9 @@ class NetworkFtp(Screen):
 				self.Console.ePopen('ps')
 				mybox = self.session.open(MessageBox, _("Ftp service Disabled."), MessageBox.TYPE_INFO)
 				mybox.setTitle(_("Info"))
-				self.updateFtp()
+				self.updateService()
 
-	def updateFtp(self):
+	def updateService(self):
 		self['labrun'].hide()
 		self['labstop'].hide()
 		self.my_ftp_active = False
@@ -1566,9 +1619,16 @@ class NetworkFtp(Screen):
 		if self.my_ftp_active == True:
 			self['labstop'].hide()
 			self['labrun'].show()
+			status_summary= self['lab2'].text + ' ' + self['labrun'].text
 		else:
 			self['labstop'].show()
 			self['labrun'].hide()
+			status_summary= self['lab2'].text + ' ' + self['labstop'].text
+		title = _("FTP Setup")
+		autostartstatus_summary = ""
+
+		for cb in self.onChangedEntry:
+			cb(title, status_summary, autostartstatus_summary)
 
 class NetworkNfs(Screen):
 	skin = """
@@ -1590,6 +1650,7 @@ class NetworkNfs(Screen):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("NFS Setup"))
 		self.skinName = "NetworkNfs"
+		self.onChangedEntry = [ ]
 		self['lab1'] = Label(_("Autostart:"))
 		self['labactive'] = Label(_(_("Disabled")))
 		self['lab2'] = Label(_("Current Status:"))
@@ -1602,23 +1663,26 @@ class NetworkNfs(Screen):
 		self.my_nfs_active = False
 		self.my_nfs_run = False
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.NfsStop, 'green': self.NfsStart, 'yellow': self.Nfsset})
-		self.onLayoutFinish.append(self.updateNfs)
+		self.onLayoutFinish.append(self.updateService)
+
+	def createSummary(self):
+		return NetworkServicesSummary
 
 	def NfsStart(self):
 		if self.my_nfs_run == False:
 			self.Console.ePopen('/etc/init.d/nfsserver start')
 			time.sleep(3)
-			self.updateNfs()
+			self.updateService()
 		if self.my_nfs_run == True:
 			self.Console.ePopen('/etc/init.d/nfsserver restart')
 			time.sleep(3)
-			self.updateNfs()
+			self.updateService()
 
 	def NfsStop(self):
 		if self.my_nfs_run == True:
 			self.Console.ePopen('/etc/init.d/nfsserver stop')
 			time.sleep(3)
-			self.updateNfs()
+			self.updateService()
 
 	def Nfsset(self):
 		if fileExists('/etc/rc2.d/S20nfsserver'):
@@ -1626,9 +1690,9 @@ class NetworkNfs(Screen):
 		else:
 			self.Console.ePopen('update-rc.d -f nfsserver defaults')
 		time.sleep(3)
-		self.updateNfs()
+		self.updateService()
 
-	def updateNfs(self):
+	def updateService(self):
 		import process
 		p = process.ProcessList()
 		nfs_process = str(p.named('nfsd')).strip('[]')
@@ -1647,10 +1711,17 @@ class NetworkNfs(Screen):
 			self['labstop'].hide()
 			self['labrun'].show()
 			self['key_green'].setText(_("Restart"))
+			status_summary= self['lab2'].text + ' ' + self['labrun'].text
 		else:
 			self['labstop'].show()
 			self['labrun'].hide()
 			self['key_green'].setText(_("Start"))
+			status_summary= self['lab2'].text + ' ' + self['labstop'].text
+		title = _("NFS Setup")
+		autostartstatus_summary = self['lab1'].text + ' ' + self['labactive'].text
+
+		for cb in self.onChangedEntry:
+			cb(title, status_summary, autostartstatus_summary)
 
 class NetworkOpenvpn(Screen):
 	skin = """
@@ -1674,6 +1745,7 @@ class NetworkOpenvpn(Screen):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("OpenVpn Setup"))
 		self.skinName = "NetworkOpenvpn"
+		self.onChangedEntry = [ ]
 		self['lab1'] = Label(_("Autostart:"))
 		self['labactive'] = Label(_(_("Disabled")))
 		self['lab2'] = Label(_("Current Status:"))
@@ -1687,7 +1759,10 @@ class NetworkOpenvpn(Screen):
 		self.my_vpn_active = False
 		self.my_vpn_run = False
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.VpnStop, 'green': self.VpnStart, 'yellow': self.activateVpn, 'blue': self.Vpnshowlog})
-		self.onLayoutFinish.append(self.updateVpn)
+		self.onLayoutFinish.append(self.updateService)
+
+	def createSummary(self):
+		return NetworkServicesSummary
 
 	def Vpnshowlog(self):
 		self.session.open(NetworkVpnLog)
@@ -1696,11 +1771,11 @@ class NetworkOpenvpn(Screen):
 		if self.my_vpn_run == False:
 			self.Console.ePopen('/etc/init.d/openvpn start')
 			time.sleep(3)
-			self.updateVpn()
+			self.updateService()
 		elif self.my_vpn_run == True:
 			self.Console.ePopen('/etc/init.d/openvpn restart')
 			time.sleep(3)
-			self.updateVpn()
+			self.updateService()
 
 	def VpnStop(self):
 		if self.my_vpn_run == True:
@@ -1714,9 +1789,9 @@ class NetworkOpenvpn(Screen):
 		else:
 			self.Console.ePopen('update-rc.d -f openvpn defaults')
 		time.sleep(3)
-		self.updateVpn()
+		self.updateService()
 
-	def updateVpn(self):
+	def updateService(self):
 		import process
 		p = process.ProcessList()
 		openvpn_process = str(p.named('openvpn')).strip('[]')
@@ -1735,10 +1810,17 @@ class NetworkOpenvpn(Screen):
 			self['labstop'].hide()
 			self['labrun'].show()
 			self['key_green'].setText(_("Restart"))
+			status_summary= self['lab2'].text + ' ' + self['labrun'].text
 		else:
 			self['labstop'].show()
 			self['labrun'].hide()
 			self['key_green'].setText(_("Start"))
+			status_summary= self['lab2'].text + ' ' + self['labstop'].text
+		title = _("OpenVpn Setup")
+		autostartstatus_summary = self['lab1'].text + ' ' + self['labactive'].text
+
+		for cb in self.onChangedEntry:
+			cb(title, status_summary, autostartstatus_summary)
 
 class NetworkVpnLog(Screen):
 	skin = """
@@ -1785,6 +1867,7 @@ class NetworkSamba(Screen):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Samba Setup"))
 		self.skinName = "NetworkSamba"
+		self.onChangedEntry = [ ]
 		self['lab1'] = Label(_("Autostart:"))
 		self['labactive'] = Label(_(_("Disabled")))
 		self['lab2'] = Label(_("Current Status:"))
@@ -1798,7 +1881,10 @@ class NetworkSamba(Screen):
 		self.my_Samba_active = False
 		self.my_Samba_run = False
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.SambaStop, 'green': self.SambaStart, 'yellow': self.activateSamba, 'blue': self.Sambashowlog})
-		self.onLayoutFinish.append(self.updateSamba)
+		self.onLayoutFinish.append(self.updateService)
+
+	def createSummary(self):
+		return NetworkServicesSummary
 
 	def Sambashowlog(self):
 		self.session.open(NetworkSambaLog)
@@ -1807,17 +1893,17 @@ class NetworkSamba(Screen):
 		if self.my_Samba_run == False:
 			self.Console.ePopen('/etc/init.d/samba start')
 			time.sleep(3)
-			self.updateSamba()
+			self.updateService()
 		elif self.my_Samba_run == True:
 			self.Console.ePopen('/etc/init.d/samba restart')
 			time.sleep(3)
-			self.updateSamba()
+			self.updateService()
 
 	def SambaStop(self):
 		if self.my_Samba_run == True:
 			self.Console.ePopen('/etc/init.d/samba stop')
 			time.sleep(3)
-			self.updateSamba()
+			self.updateService()
 
 	def activateSamba(self):
 		if fileExists('/etc/rc2.d/S20samba'):
@@ -1825,9 +1911,9 @@ class NetworkSamba(Screen):
 		else:
 			self.Console.ePopen('update-rc.d -f samba defaults')
 		time.sleep(3)
-		self.updateSamba()
+		self.updateService()
 
-	def updateSamba(self):
+	def updateService(self):
 		import process
 		p = process.ProcessList()
 		samba_process = str(p.named('smbd')).strip('[]')
@@ -1847,11 +1933,18 @@ class NetworkSamba(Screen):
 			self['labactive'].show()
 			self['labrun'].show()
 			self['key_green'].setText(_("Restart"))
+			status_summary = self['lab2'].text + ' ' + self['labrun'].text
 		else:
 			self['labrun'].hide()
 			self['labstop'].show()
 			self['labactive'].show()
 			self['key_green'].setText(_("Start"))
+			status_summary = self['lab2'].text + ' ' + self['labstop'].text
+		title = _("Samba Setup")
+		autostartstatus_summary = self['lab1'].text + ' ' + self['labactive'].text
+
+		for cb in self.onChangedEntry:
+			cb(title, status_summary, autostartstatus_summary)
 
 class NetworkSambaLog(Screen):
 	skin = """
@@ -1862,6 +1955,7 @@ class NetworkSambaLog(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Samba Log"))
+		self.skinName = "NetworkInadynLog"
 		self['infotext'] = ScrollLabel('')
 		self.Console = Console()
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'up': self['infotext'].pageUp, 'down': self['infotext'].pageDown})
@@ -1892,6 +1986,7 @@ class NetworkTelnet(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Telnet Setup"))
+		self.onChangedEntry = [ ]
 		self['lab1'] = Label(_("You can disable Telnet Server and use ssh to login."))
 		self['lab2'] = Label(_("Current Status:"))
 		self['labstop'] = Label(_("Stopped"))
@@ -1901,7 +1996,10 @@ class NetworkTelnet(Screen):
 		self.Console = Console()
 		self.my_telnet_active = False
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.TelnetStop, 'green': self.TelnetStart})
-		self.onLayoutFinish.append(self.updateTelnet)
+		self.onLayoutFinish.append(self.updateService)
+
+	def createSummary(self):
+		return NetworkServicesSummary
 
 	def TelnetStart(self):
 		if self.my_telnet_active == False:
@@ -1920,7 +2018,7 @@ class NetworkTelnet(Screen):
 				self.Console.ePopen('ps')
 				mybox = self.session.open(MessageBox, _("Telnet service Enabled."), MessageBox.TYPE_INFO)
 				mybox.setTitle(_("Info"))
-				self.updateTelnet()
+				self.updateService()
 
 	def TelnetStop(self):
 		if self.my_telnet_active == True:
@@ -1939,9 +2037,9 @@ class NetworkTelnet(Screen):
 				self.Console.ePopen('ps')
 				mybox = self.session.open(MessageBox, _("Telnet service Disabled."), MessageBox.TYPE_INFO)
 				mybox.setTitle(_("Info"))
-				self.updateTelnet()
+				self.updateService()
 
-	def updateTelnet(self):
+	def updateService(self):
 		self['labrun'].hide()
 		self['labstop'].hide()
 		self.my_telnet_active = False
@@ -1956,9 +2054,16 @@ class NetworkTelnet(Screen):
 		if self.my_telnet_active == True:
 			self['labstop'].hide()
 			self['labrun'].show()
+			status_summary= self['lab2'].text + ' ' + self['labrun'].text
 		else:
 			self['labstop'].show()
 			self['labrun'].hide()
+			status_summary= self['lab2'].text + ' ' + self['labstop'].text
+		title = _("Telnet Setup")
+		autostartstatus_summary = ""
+
+		for cb in self.onChangedEntry:
+			cb(title, status_summary, autostartstatus_summary)
 
 class NetworkInadyn(Screen):
 	skin = """
@@ -1994,6 +2099,7 @@ class NetworkInadyn(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Inadyn Setup"))
+		self.onChangedEntry = [ ]
 		self['autostart'] = Label(_("Autostart:"))
 		self['labactive'] = Label(_(_("Active")))
 		self['labdisabled'] = Label(_(_("Disabled")))
@@ -2016,19 +2122,22 @@ class NetworkInadyn(Screen):
 		self['key_green'] = Label(_("Start"))
 		self['key_yellow'] = Label(_("Autostart"))
 		self['key_blue'] = Label(_("Show Log"))
-		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.setupin, 'back': self.close, 'red': self.setupin, 'green': self.InadynStart, 'yellow': self.autostart, 'blue': self.inaLog})
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.setupinadyn, 'back': self.close, 'red': self.setupinadyn, 'green': self.InadynStart, 'yellow': self.autostart, 'blue': self.inaLog})
 		self.Console = Console()
-		self.onLayoutFinish.append(self.updateIna)
+		self.onLayoutFinish.append(self.updateService)
+
+	def createSummary(self):
+		return NetworkServicesSummary
 
 	def InadynStart(self):
 		if self.my_inadyn_run == False:
 			self.Console.ePopen('/etc/init.d/inadyn-mt start')
 			time.sleep(3)
-			self.updateIna()
+			self.updateService()
 		elif self.my_inadyn_run == True:
 			self.Console.ePopen('/etc/init.d/inadyn-mt stop')
 			time.sleep(3)
-			self.updateIna()
+			self.updateService()
 
 	def autostart(self):
 		if fileExists('/etc/rc2.d/S20inadyn-mt'):
@@ -2036,9 +2145,9 @@ class NetworkInadyn(Screen):
 		else:
 			self.Console.ePopen('update-rc.d -f inadyn-mt defaults')
 		time.sleep(3)
-		self.updateIna()
+		self.updateService()
 
-	def updateIna(self):
+	def updateService(self):
 		import process
 		p = process.ProcessList()
 		inadyn_process = str(p.named('inadyn-mt')).strip('[]')
@@ -2053,19 +2162,23 @@ class NetworkInadyn(Screen):
 			self['labdisabled'].hide()
 			self['labactive'].show()
 			self.my_inadyn_active = True
+			autostartstatus_summary = self['autostart'].text + ' ' + self['labactive'].text
 		else:
 			self['labactive'].hide()
 			self['labdisabled'].show()
+			autostartstatus_summary = self['autostart'].text + ' ' + self['labdisabled'].text
 		if inadyn_process:
 			self.my_inadyn_run = True
 		if self.my_inadyn_run == True:
 			self['labstop'].hide()
 			self['labrun'].show()
 			self['key_green'].setText(_("Stop"))
+			status_summary = self['status'].text + ' ' + self['labrun'].text
 		else:
 			self['labstop'].show()
 			self['labrun'].hide()
 			self['key_green'].setText(_("Start"))
+			status_summary = self['status'].text + ' ' + self['labstop'].text
 
 		#self.my_nabina_state = False
 		if fileExists('/etc/inadyn.conf'):
@@ -2094,34 +2207,55 @@ class NetworkInadyn(Screen):
 						self['sactive'].show()
 					self['labsys'].setText(line)
 			f.close()
+		title = _("Inadyn Setup")
 
-	def setupin(self):
-		self.session.openWithCallback(self.updateIna, NetworkInadynSetup)
+		for cb in self.onChangedEntry:
+			cb(title, status_summary, autostartstatus_summary)
+
+	def setupinadyn(self):
+		self.session.openWithCallback(self.updateService, NetworkInadynSetup)
 
 	def inaLog(self):
 		self.session.open(NetworkInadynLog)
 
 class NetworkInadynSetup(Screen, ConfigListScreen):
 	skin = """
-		<screen name="InadynSetup" position="center,center" size="642,409" title="Inadyn Setup">
-		<widget name="config" position="10,10" size="623,240" scrollbarMode="showOnDemand" />
-		<widget name="HelpWindow" pixmap="skin_default/vkey_icon.png" zPosition="1" position="340,380" size="1,1" transparent="1" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/red.png" position="260,365" size="140,40" alphatest="on" />
-		<widget name="key_red" position="260,365" size="140,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="EMCRecording" transparent="1" />
-		<ePixmap pixmap="skin_default/buttons/key_text.png" position="430,376" zPosition="4" size="35,25" alphatest="on" transparent="1" />
-	</screen>"""
+		<screen name="InadynSetup" position="center,center" size="440,350" title="Inadyn Setup">
+			<widget name="config" position="10,10" size="420,240" scrollbarMode="showOnDemand" />
+			<widget name="HelpWindow" pixmap="skin_default/vkey_icon.png" position="170,300" zPosition="1" size="440,350" transparent="1" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/red.png" position="130,310" size="140,40" alphatest="on" />
+			<widget name="key_red" position="130,310" size="140,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+			<ePixmap pixmap="skin_default/buttons/key_text.png" position="300,313" zPosition="4" size="35,25" alphatest="on" transparent="1" />
+		</screen>"""
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.onChangedEntry = [ ]
 		self.list = []
-		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
+		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.selectionChanged)
 		Screen.setTitle(self, _("Inadyn Setup"))
 		self['key_red'] = Label(_("Save"))
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'VirtualKeyboardActions'], {'red': self.saveIna, 'back': self.close, 'showVirtualKeyboard': self.KeyText})
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self.updateList()
+		if not self.selectionChanged in self["config"].onSelectionChanged:
+			self["config"].onSelectionChanged.append(self.selectionChanged)
+
+	def createSummary(self):
+		from Screens.PluginBrowser import PluginBrowserSummary
+		return PluginBrowserSummary
+
+	def selectionChanged(self):
+		item = self["config"].getCurrent()
+		if item:
+			name = str(item[0])
+			desc = str(item[1].value)
+		else:
+			name = ""
+			desc = ""
+		for cb in self.onChangedEntry:
+			cb(name, desc)
 
 	def updateList(self):
 		self.ina_user = NoSave(ConfigText(fixed_size=False))
@@ -2172,13 +2306,6 @@ class NetworkInadynSetup(Screen, ConfigListScreen):
 			f.close()
 		self['config'].list = self.list
 		self['config'].l.setList(self.list)
-
-	def changedEntry(self):
-		for x in self.onChangedEntry:
-			x()
-
-	def getCurrentEntry(self):
-		return self["config"].getCurrent()[0]
 
 	def KeyText(self):
 		sel = self['config'].getCurrent()
@@ -2295,6 +2422,7 @@ class NetworkuShare(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("uShare Setup"))
+		self.onChangedEntry = [ ]
 		self['autostart'] = Label(_("Autostart:"))
 		self['labactive'] = Label(_(_("Active")))
 		self['labdisabled'] = Label(_(_("Disabled")))
@@ -2328,19 +2456,22 @@ class NetworkuShare(Screen):
 		self['key_green'] = Label(_("Start"))
 		self['key_yellow'] = Label(_("Autostart"))
 		self['key_blue'] = Label(_("Show Log"))
-		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.setupin, 'back': self.close, 'red': self.setupin, 'green': self.uShareStart, 'yellow': self.autostart, 'blue': self.ushareLog})
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.setupushare, 'back': self.close, 'red': self.setupushare, 'green': self.uShareStart, 'yellow': self.autostart, 'blue': self.ushareLog})
 		self.Console = Console()
-		self.onLayoutFinish.append(self.updateuShare)
+		self.onLayoutFinish.append(self.updateService)
+
+	def createSummary(self):
+		return NetworkServicesSummary
 
 	def uShareStart(self):
 		if self.my_ushare_run == False:
 			self.Console.ePopen('/etc/init.d/ushare start >> /tmp/uShare.log')
 			time.sleep(3)
-			self.updateuShare()
+			self.updateService()
 		elif self.my_ushare_run == True:
 			self.Console.ePopen('/etc/init.d/ushare stop >> /tmp/uShare.log')
 			time.sleep(3)
-			self.updateuShare()
+			self.updateService()
 
 	def autostart(self):
 		if fileExists('/etc/rc2.d/S20ushare'):
@@ -2348,9 +2479,9 @@ class NetworkuShare(Screen):
 		else:
 			self.Console.ePopen('update-rc.d -f ushare defaults')
 		time.sleep(3)
-		self.updateuShare()
+		self.updateService()
 
-	def updateuShare(self):
+	def updateService(self):
 		import process
 		p = process.ProcessList()
 		ushare_process = str(p.named('ushare')).strip('[]')
@@ -2366,19 +2497,23 @@ class NetworkuShare(Screen):
 			self['labdisabled'].hide()
 			self['labactive'].show()
 			self.my_ushare_active = True
+			autostartstatus_summary = self['autostart'].text + ' ' + self['labactive'].text
 		else:
 			self['labactive'].hide()
 			self['labdisabled'].show()
+			autostartstatus_summary = self['autostart'].text + ' ' + self['labdisabled'].text
 		if ushare_process:
 			self.my_ushare_run = True
 		if self.my_ushare_run == True:
 			self['labstop'].hide()
 			self['labrun'].show()
 			self['key_green'].setText(_("Stop"))
+			status_summary= self['status'].text + ' ' + self['labstop'].text
 		else:
 			self['labstop'].show()
 			self['labrun'].hide()
 			self['key_green'].setText(_("Start"))
+			status_summary= self['status'].text + ' ' + self['labstop'].text
 
 		if fileExists('/etc/ushare.conf'):
 			f = open('/etc/ushare.conf', 'r')
@@ -2429,23 +2564,27 @@ class NetworkuShare(Screen):
 						self['dlnaactive'].show()
 						self['dlnainactive'].hide()
 			f.close()
+		title = _("uShare Setup")
 
-	def setupin(self):
-		self.session.openWithCallback(self.updateuShare, NetworkuShareSetup)
+		for cb in self.onChangedEntry:
+			cb(title, status_summary, autostartstatus_summary)
+
+	def setupushare(self):
+		self.session.openWithCallback(self.updateService, NetworkuShareSetup)
 
 	def ushareLog(self):
 		self.session.open(NetworkuShareLog)
 
 class NetworkuShareSetup(Screen, ConfigListScreen):
 	skin = """
-		<screen name="uShareSetup" position="center,center" size="642,409">
-			<widget name="config" position="10,10" size="623,240" scrollbarMode="showOnDemand" />
-			<widget name="HelpWindow" pixmap="skin_default/vkey_icon.png" position="340,380" size="1,1" transparent="1" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/red.png" position="95,360" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/green.png" position="410,360" size="140,40" alphatest="on" />
-			<widget name="key_red" position="95,360" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="EMCRecording" transparent="1" />
-			<widget name="key_green" position="410,360" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="un1f771f" transparent="1" />
-			<ePixmap pixmap="skin_default/buttons/key_text.png" position="313,369" zPosition="4" size="35,25" alphatest="on" transparent="1" />
+		<screen name="uShareSetup" position="center,center" size="440,400">
+			<widget name="config" position="10,10" size="420,240" scrollbarMode="showOnDemand" />
+			<widget name="HelpWindow" pixmap="skin_default/vkey_icon.png" position="440,390" size="440,350" transparent="1" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/red.png" position="0,360" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/green.png" position="150,360" size="140,40" alphatest="on" />
+			<widget name="key_red" position="0,360" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+			<widget name="key_green" position="150,360" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+			<ePixmap pixmap="skin_default/buttons/key_text.png" position="320,366" zPosition="4" size="35,25" alphatest="on" transparent="1" />
 		</screen>"""
 
 	def __init__(self, session):
@@ -2453,7 +2592,7 @@ class NetworkuShareSetup(Screen, ConfigListScreen):
 		Screen.setTitle(self, _("uShare Setup"))
 		self.onChangedEntry = [ ]
 		self.list = []
-		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
+		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.selectionChanged)
 		Screen.setTitle(self, _("uShare Setup"))
 		self['key_red'] = Label(_("Save"))
 		self['key_green'] = Label(_("Shares"))
@@ -2461,6 +2600,23 @@ class NetworkuShareSetup(Screen, ConfigListScreen):
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self.updateList()
+		if not self.selectionChanged in self["config"].onSelectionChanged:
+			self["config"].onSelectionChanged.append(self.selectionChanged)
+
+	def createSummary(self):
+		from Screens.PluginBrowser import PluginBrowserSummary
+		return PluginBrowserSummary
+
+	def selectionChanged(self):
+		item = self["config"].getCurrent()
+		if item:
+			name = str(item[0])
+			desc = str(item[1].value)
+		else:
+			name = ""
+			desc = ""
+		for cb in self.onChangedEntry:
+			cb(name, desc)
 
 	def updateList(self, ret=None):
 		self.list = []
@@ -2529,13 +2685,6 @@ class NetworkuShareSetup(Screen, ConfigListScreen):
 			f.close()
 		self['config'].list = self.list
 		self['config'].l.setList(self.list)
-
-	def changedEntry(self):
-		for x in self.onChangedEntry:
-			x()
-
-	def getCurrentEntry(self):
-		return self["config"].getCurrent()[0]
 
 	def KeyText(self):
 		sel = self['config'].getCurrent()
@@ -2757,6 +2906,7 @@ class NetworkMiniDLNA(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("MiniDLNA Setup"))
+		self.onChangedEntry = [ ]
 		self['autostart'] = Label(_("Autostart:"))
 		self['labactive'] = Label(_(_("Active")))
 		self['labdisabled'] = Label(_(_("Disabled")))
@@ -2787,19 +2937,22 @@ class NetworkMiniDLNA(Screen):
 		self['key_green'] = Label(_("Start"))
 		self['key_yellow'] = Label(_("Autostart"))
 		self['key_blue'] = Label(_("Show Log"))
-		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.setupin, 'back': self.close, 'red': self.setupin, 'green': self.MiniDLNAStart, 'yellow': self.autostart, 'blue': self.minidlnaLog})
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.setupminidlna, 'back': self.close, 'red': self.setupminidlna, 'green': self.MiniDLNAStart, 'yellow': self.autostart, 'blue': self.minidlnaLog})
 		self.Console = Console()
-		self.onLayoutFinish.append(self.updateMiniDLNA)
+		self.onLayoutFinish.append(self.updateService)
+
+	def createSummary(self):
+		return NetworkServicesSummary
 
 	def MiniDLNAStart(self):
 		if self.my_minidlna_run == False:
 			self.Console.ePopen('/etc/init.d/minidlna start')
 			time.sleep(3)
-			self.updateMiniDLNA()
+			self.updateService()
 		elif self.my_minidlna_run == True:
 			self.Console.ePopen('/etc/init.d/minidlna stop')
 			time.sleep(3)
-			self.updateMiniDLNA()
+			self.updateService()
 
 	def autostart(self):
 		if fileExists('/etc/rc2.d/S20minidlna'):
@@ -2807,9 +2960,9 @@ class NetworkMiniDLNA(Screen):
 		else:
 			self.Console.ePopen('update-rc.d -f minidlna defaults')
 		time.sleep(3)
-		self.updateMiniDLNA()
+		self.updateService()
 
-	def updateMiniDLNA(self):
+	def updateService(self):
 		import process
 		p = process.ProcessList()
 		minidlna_process = str(p.named('minidlna')).strip('[]')
@@ -2823,19 +2976,23 @@ class NetworkMiniDLNA(Screen):
 			self['labdisabled'].hide()
 			self['labactive'].show()
 			self.my_minidlna_active = True
+			autostartstatus_summary = self['autostart'].text + ' ' + self['labactive'].text
 		else:
 			self['labactive'].hide()
 			self['labdisabled'].show()
+			autostartstatus_summary = self['autostart'].text + ' ' + self['labdisabled'].text
 		if minidlna_process:
 			self.my_minidlna_run = True
 		if self.my_minidlna_run == True:
 			self['labstop'].hide()
 			self['labrun'].show()
 			self['key_green'].setText(_("Stop"))
+			status_summary = self['status'].text + ' ' + self['labstop'].text
 		else:
 			self['labstop'].show()
 			self['labrun'].hide()
 			self['key_green'].setText(_("Start"))
+			status_summary = self['status'].text + ' ' + self['labstop'].text
 
 		if fileExists('/etc/minidlna.conf'):
 			f = open('/etc/minidlna.conf', 'r')
@@ -2879,23 +3036,27 @@ class NetworkMiniDLNA(Screen):
 						self['dlnaactive'].show()
 						self['dlnainactive'].hide()
 			f.close()
+		title = _("MiniDLNA Setup")
 
-	def setupin(self):
-		self.session.openWithCallback(self.updateMiniDLNA, NetworkMiniDLNASetup)
+		for cb in self.onChangedEntry:
+			cb(title, status_summary, autostartstatus_summary)
+
+	def setupminidlna(self):
+		self.session.openWithCallback(self.updateService, NetworkMiniDLNASetup)
 
 	def minidlnaLog(self):
 		self.session.open(NetworkMiniDLNALog)
 
 class NetworkMiniDLNASetup(Screen, ConfigListScreen):
 	skin = """
-		<screen name="MiniDLNASetup" position="center,center" size="642,409">
-			<widget name="config" position="10,10" size="623,240" scrollbarMode="showOnDemand" />
-			<widget name="HelpWindow" pixmap="skin_default/vkey_icon.png" position="340,380" size="1,1" transparent="1" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/red.png" position="95,360" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/green.png" position="410,360" size="140,40" alphatest="on" />
-			<widget name="key_red" position="95,360" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="EMCRecording" transparent="1" />
-			<widget name="key_green" position="410,360" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="un1f771f" transparent="1" />
-			<ePixmap pixmap="skin_default/buttons/key_text.png" position="313,369" zPosition="4" size="35,25" alphatest="on" transparent="1" />
+		<screen name="MiniDLNASetup" position="center,center" size="440,400">
+			<widget name="config" position="10,10" size="420,240" scrollbarMode="showOnDemand" />
+			<widget name="HelpWindow" pixmap="skin_default/vkey_icon.png" position="440,390" size="440,350" transparent="1" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/red.png" position="0,360" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/green.png" position="150,360" size="140,40" alphatest="on" />
+			<widget name="key_red" position="0,360" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+			<widget name="key_green" position="150,360" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+			<ePixmap pixmap="skin_default/buttons/key_text.png" position="320,366" zPosition="4" size="35,25" alphatest="on" transparent="1" />
 		</screen>"""
 
 	def __init__(self, session):
@@ -2903,14 +3064,32 @@ class NetworkMiniDLNASetup(Screen, ConfigListScreen):
 		Screen.setTitle(self, _("MiniDLNA Setup"))
 		self.onChangedEntry = [ ]
 		self.list = []
-		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
+		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.selectionChanged)
 		Screen.setTitle(self, _("MiniDLNA Setup"))
+
 		self['key_red'] = Label(_("Save"))
 		self['key_green'] = Label(_("Shares"))
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'VirtualKeyboardActions'], {'red': self.saveMinidlna, 'green': self.selectfolders, 'back': self.close, 'showVirtualKeyboard': self.KeyText})
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self.updateList()
+		if not self.selectionChanged in self["config"].onSelectionChanged:
+			self["config"].onSelectionChanged.append(self.selectionChanged)
+
+	def createSummary(self):
+		from Screens.PluginBrowser import PluginBrowserSummary
+		return PluginBrowserSummary
+
+	def selectionChanged(self):
+		item = self["config"].getCurrent()
+		if item:
+			name = str(item[0])
+			desc = str(item[1].value)
+		else:
+			name = ""
+			desc = ""
+		for cb in self.onChangedEntry:
+			cb(name, desc)
 
 	def updateList(self, ret=None):
 		self.list = []
@@ -2971,13 +3150,6 @@ class NetworkMiniDLNASetup(Screen, ConfigListScreen):
 			f.close()
 		self['config'].list = self.list
 		self['config'].l.setList(self.list)
-
-	def changedEntry(self):
-		for x in self.onChangedEntry:
-			x()
-
-	def getCurrentEntry(self):
-		return self["config"].getCurrent()[0]
 
 	def KeyText(self):
 		sel = self['config'].getCurrent()
@@ -3054,6 +3226,7 @@ class MiniDLNASelection(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Select folders"))
+
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("Save"))
 		self["key_yellow"] = StaticText()
@@ -3149,3 +3322,24 @@ class NetworkMiniDLNALog(Screen):
 			f.close()
 			remove('/tmp/tmp.log')
 		self['infotext'].setText(strview)
+
+class NetworkServicesSummary(Screen):
+	def __init__(self, session, parent):
+		Screen.__init__(self, session, parent = parent)
+		self["title"] = StaticText("")
+		self["status_summary"] = StaticText("")
+		self["autostartstatus_summary"] = StaticText("")
+		self.onShow.append(self.addWatcher)
+		self.onHide.append(self.removeWatcher)
+
+	def addWatcher(self):
+		self.parent.onChangedEntry.append(self.selectionChanged)
+		self.parent.updateService()
+
+	def removeWatcher(self):
+		self.parent.onChangedEntry.remove(self.selectionChanged)
+
+	def selectionChanged(self, title, status_summary, autostartstatus_summary):
+		self["title"].text = title
+		self["status_summary"].text = status_summary
+		self["autostartstatus_summary"].text = autostartstatus_summary

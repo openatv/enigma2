@@ -59,6 +59,13 @@ class TimerEntry(Screen, ConfigListScreen):
 				AFTEREVENT.AUTO: "auto"
 				}[self.timer.afterEvent]
 
+			if self.timer.record_ecm and self.timer.descramble:
+				recordingtype = "descrambled+ecm"
+			elif self.timer.record_ecm:
+				recordingtype = "scrambled+ecm"
+			elif self.timer.descramble:
+				recordingtype = "normal"
+
 			weekday_table = ("mon", "tue", "wed", "thu", "fri", "sat", "sun")
 
 			# calculate default values
@@ -100,6 +107,7 @@ class TimerEntry(Screen, ConfigListScreen):
 			else:
 				shutdownString = _("shut down")
 			self.timerentry_afterevent = ConfigSelection(choices = [("nothing", _("do nothing")), ("standby", _("go to standby")), ("deepstandby", shutdownString), ("auto", _("auto"))], default = afterevent)
+			self.timerentry_recordingtype = ConfigSelection(choices = [("normal", _("normal")), ("descrambled+ecm", _("descramble and record ecm")), ("scrambled+ecm", _("don't descramble, record ecm"))], default = recordingtype)
 			self.timerentry_type = ConfigSelection(choices = [("once",_("once")), ("repeated", _("repeated"))], default = type)
 			self.timerentry_name = ConfigText(default = self.timer.name, visible_width = 50, fixed_size = False)
 			self.timerentry_description = ConfigText(default = self.timer.description, visible_width = 50, fixed_size = False)
@@ -193,6 +201,7 @@ class TimerEntry(Screen, ConfigListScreen):
 			if getPreferredTagEditor():
 				self.list.append(self.tagsSet)
 			self.list.append(getConfigListEntry(_("After event"), self.timerentry_afterevent))
+			self.list.append(getConfigListEntry(_("Recording type"), self.timerentry_recordingtype))
 
 		self[widget].list = self.list
 		self[widget].l.setList(self.list)
@@ -294,6 +303,16 @@ class TimerEntry(Screen, ConfigListScreen):
 			"standby": AFTEREVENT.STANDBY,
 			"auto": AFTEREVENT.AUTO
 			}[self.timerentry_afterevent.value]
+		self.timer.descramble = {
+			"normal": True,
+			"descrambled+ecm": True,
+			"scrambled+ecm": False,
+			}[self.timerentry_recordingtype.value]
+		self.timer.record_ecm = {
+			"normal": False,
+			"descrambled+ecm": True,
+			"scrambled+ecm": True,
+			}[self.timerentry_recordingtype.value]
 		self.timer.service_ref = self.timerentry_service_ref
 		self.timer.tags = self.timerentry_tags
 

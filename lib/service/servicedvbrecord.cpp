@@ -2,7 +2,6 @@
 #include <lib/base/eerror.h>
 #include <lib/dvb/epgcache.h>
 #include <lib/dvb/metaparser.h>
-#include <lib/base/nconfig.h> 
 #include <lib/base/httpstream.h>
 #include <fcntl.h>
 
@@ -26,6 +25,7 @@ eDVBServiceRecord::eDVBServiceRecord(const eServiceReferenceDVB &ref, bool isstr
 	m_state = stateIdle;
 	m_want_record = 0;
 	m_record_ecm = false;
+	m_descramble = true;
 	m_is_stream_client = isstreamclient;
 	m_tuned = 0;
 	m_target_fd = -1;
@@ -96,11 +96,13 @@ void eDVBServiceRecord::serviceEvent(int event)
 	}
 }
 
-RESULT eDVBServiceRecord::prepare(const char *filename, time_t begTime, time_t endTime, int eit_event_id, const char *name, const char *descr, const char *tags)
+RESULT eDVBServiceRecord::prepare(const char *filename, time_t begTime, time_t endTime, int eit_event_id, const char *name, const char *descr, const char *tags, bool descramble, bool recordecm)
 {
 	m_filename = filename;
 	m_streaming = 0;
-	
+	m_descramble = descramble;
+	m_record_ecm = recordecm;
+
 	if (m_state == stateIdle)
 	{
 		int ret = doPrepare();
@@ -194,10 +196,12 @@ RESULT eDVBServiceRecord::prepare(const char *filename, time_t begTime, time_t e
 	return -1;
 }
 
-RESULT eDVBServiceRecord::prepareStreaming()
+RESULT eDVBServiceRecord::prepareStreaming(bool descramble, bool includeecm)
 {
 	m_filename = "";
 	m_streaming = 1;
+	m_descramble = descramble;
+	m_record_ecm = includeecm;
 	if (m_state == stateIdle)
 		return doPrepare();
 	return -1;
@@ -246,19 +250,12 @@ int eDVBServiceRecord::doPrepare()
 	if (m_state == stateIdle)
 	{
 		eDVBServicePMTHandler::serviceType servicetype;
-		bool descramble;
 		if (m_streaming)
 		{
-			std::string stream_ecm, descramble_setting;
-			m_record_ecm = (ePythonConfigQuery::getConfigValue("config.streaming.stream_ecm", stream_ecm) >= 0 && stream_ecm == "True");
-			descramble = (ePythonConfigQuery::getConfigValue("config.streaming.descramble", descramble_setting) < 0 || descramble_setting != "False");
 			servicetype = m_record_ecm ? eDVBServicePMTHandler::scrambled_streamserver : eDVBServicePMTHandler::streamserver;
 		}
 		else
 		{
-			std::string record_ecm, descramble_setting;
-			m_record_ecm = (ePythonConfigQuery::getConfigValue("config.recording.record_ecm", record_ecm) >= 0 && record_ecm == "True");
-			descramble = (ePythonConfigQuery::getConfigValue("config.recording.descramble", descramble_setting) < 0 || descramble_setting != "False");
 			servicetype = m_record_ecm ? eDVBServicePMTHandler::scrambled_recording : eDVBServicePMTHandler::recording;
 		}
 		m_pids_active.clear();
@@ -272,7 +269,8 @@ int eDVBServiceRecord::doPrepare()
 				* streams are considered to be descrambled by default;
 				* user can indicate a stream is scrambled, by using servicetype id + 0x100
 				*/
-				descramble = (m_ref.type == eServiceFactoryDVB::id + 0x100);
+				m_descramble = (m_ref.type == eServiceFactoryDVB::id + 0x100);
+				m_record_ecm = false;
 				servicetype = eDVBServicePMTHandler::streamclient;
 				eHttpStream *f = new eHttpStream();
 				f->open(m_ref.path.c_str());
@@ -280,16 +278,14 @@ int eDVBServiceRecord::doPrepare()
 			}
 			else
 			{
-				/* descramble and re-record a scrambled recording */
-				descramble = true;
+				/* re-record a recording */
 				servicetype = eDVBServicePMTHandler::offline;
-				m_record_ecm = false;
 				eRawFile *f = new eRawFile();
 				f->open(m_ref.path.c_str());
 				source = ePtr<iTsSource>(f);
 			}
 		}
-		return m_service_handler.tuneExt(m_ref, 0, source, m_ref.path.c_str(), 0, m_simulate, NULL, servicetype, descramble);
+		return m_service_handler.tuneExt(m_ref, 0, source, m_ref.path.c_str(), 0, m_simulate, NULL, servicetype, m_descramble);
 	}
 	return 0;
 }
