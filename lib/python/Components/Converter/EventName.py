@@ -31,7 +31,7 @@ class EventName(Converter, object):
 		elif type == "ThirdName":
 			self.type = self.THIRD_NAME
 		elif type == "ThirdDescription":
-			self.type = self.THRRD_DESCRIPTION
+			self.type = self.THIRD_DESCRIPTION
 		else:
 			self.type = self.NAME
 
@@ -69,7 +69,7 @@ class EventName(Converter, object):
 					elif self.type == self.NEXT_DESCRIPTION and (self.list[1][2] or self.list[1][3]):
 						description = self.list[1][2]
 						extended = self.list[1][3]
-						if description and extended:
+						if (description and extended) and (description[0:20] != extended[0:20]):
 							description += '\n'
 						return description + extended
 					elif self.type == self.THIRD_NAME and self.list[2][1]:
@@ -77,7 +77,7 @@ class EventName(Converter, object):
 					elif self.type == self.THIRD_DESCRIPTION and (self.list[2][2] or self.list[2][3]):
 						description = self.list[2][2]
 						extended = self.list[2][3]
-						if description and extended:
+						if (description and extended) and (description[0:20] != extended[0:20]):
 							description += '\n'
 						return description + extended
 				except:
