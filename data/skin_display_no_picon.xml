@@ -134,6 +134,8 @@
     
 <!-- movieplayer-->
 	<screen name="InfoBarMoviePlayerSummary" position="0,0" size="255,64">
+		<widget name="satusicon_summary" position="0,0" zPosition="3" size="23,20" pixmaps="/usr/share/enigma2/lcd/play.png,/usr/share/enigma2/lcd/pause.png,/usr/share/enigma2/lcd/stop.png,/usr/share/enigma2/lcd/forward.png,/usr/share/enigma2/lcd/backward.png,/usr/share/enigma2/lcd/slow.png" />
+		<widget source="speed_summary" render="Label" position="30,0" size="160,22" font="FdLcD;18" halign="left" noWrap="1" />
 		<widget source="session.CurrentService" render="Label" position="0,21" size="255,20" font="FdLcD;17" halign="left" noWrap="1">
 			<convert type="ServiceName">Name</convert>
 		</widget>
@@ -356,6 +358,12 @@
 		</panel>
 	</screen>
 
+	<screen name="NumberZap_summary" position="0,0" size="255,64">
+		<widget source="parent.channel_summary" render="Label" position="0,0" size="160,22" font="FdLcD;18" halign="left" noWrap="1" />
+		<widget source="parent.number_summary" render="Label" position="0,21" size="255,30" font="FdLcD;26" halign="left" noWrap="1" />
+		<panel name="SummaryIconsPanel" />
+		<panel name="SummaryClockPanel" />
+	</screen>	
 <!-- ViX -->
 	<screen name="VIXDevicesPanelSummary" position="0,0" size="255,64">
 		<widget source="parent.Title" render="Label" position="0,0" size="160,22" font="FdLcD;18" halign="left" noWrap="1" />
