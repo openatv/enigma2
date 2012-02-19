@@ -705,6 +705,7 @@ int eDVBTSTools::findFrame(off_t &_offset, size_t &len, int &direction, int fram
 
 	off_t offset = _offset;
 	int nr_frames = 0;
+	bool is_mpeg2 = false;
 
 		/* let's find the iframe before the given offset */
 	if (direction < 0)
@@ -736,10 +737,13 @@ int eDVBTSTools::findFrame(off_t &_offset, size_t &len, int &direction, int fram
 				--nr_frames;
 			else
 				++nr_frames;
-			if ( // is start
-				((data & 0xE0FF) == 0x0009) ||		/* H.264 NAL unit access delimiter with I-frame*/
-				((data & 0x3800FF) == 0x080000))	/* MPEG2 picture start code with I-frame */
+			if ((data & 0xE0FF) == 0x0009)		/* H.264 NAL unit access delimiter with I-frame*/
 			{
+				break;
+			}
+			if ((data & 0x3800FF) == 0x080000)	/* MPEG2 picture start code with I-frame */
+			{
+				is_mpeg2 = true;
 				break;
 			}
 		}
@@ -748,22 +752,7 @@ int eDVBTSTools::findFrame(off_t &_offset, size_t &len, int &direction, int fram
 	}
 	off_t start = offset;
 
-#if 0
-			/* backtrack to find the previous sequence start, in case of MPEG2 */
-	if ((data & 0xFF) == 0x00) {
-		do {
-			--start;
-			if (m_streaminfo.getStructureEntry(start, data, 0))
-			{
-				eDebug("get previous failed");
-				return -1;
-			}
-		} while (((data & 0xFF) != 9) && ((data & 0xFF) != 0x00) && ((data & 0xFF) != 0xB3)); /* sequence start or previous frame */
-		if ((data & 0xFF) != 0xB3)
-			start = offset;  /* Failed to find corresponding sequence start, so never mind */
-	}
-#endif
-		/* let's find the next frame after the given offset */
+	/* let's find the next frame after the given offset */
 	unsigned int data;
 	do
 	{
@@ -772,9 +761,23 @@ int eDVBTSTools::findFrame(off_t &_offset, size_t &len, int &direction, int fram
 			eDebug("get next failed");
 			return -1;
 		}
-		data = (unsigned int)longdata;
+		data = ((unsigned int)longdata) & 0xFF;
 	}
-	while (((data & 0xFF) != 9) && ((data & 0xFF) != 0x00)); /* next frame */
+	while ((data != 0x09) && (data != 0x00)); /* next frame */
+
+	if (is_mpeg2)
+	{
+		// Seek back to sequence start (appears to be needed for some...)
+		do
+		{
+			if (m_streaminfo.getStructureEntryNext(start, longdata, -1))
+			{
+				eDebug("Failed to find MPEG2 start frame");
+				break;
+			}
+		}
+		while ((((unsigned int)longdata) & 0xFF) != 0xB3); /* sequence start or previous frame */
+	}
 
 	len = offset - start;
 	_offset = start;
