@@ -1,62 +1,71 @@
 # for localized messages
 from . import _
-from Plugins.Plugin import PluginDescriptor
+
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
-from Components.config import getConfigListEntry, config, ConfigSubsection, ConfigYesNo, ConfigText, ConfigSelection, ConfigInteger, ConfigClock, NoSave, configfile
+from Components.config import config, configfile, ConfigYesNo, ConfigSubsection
 from Components.ActionMap import ActionMap
 from Components.Label import Label
 from Components.Pixmap import Pixmap
-from Components.Harddisk import harddiskmanager
+from Components.Harddisk import harddiskmanager, getProcMounts
 from Components.Console import Console
-from Components.config import config
-from Components.Language import language
-from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS, SCOPE_CURRENT_SKIN
-from os import system, stat as mystat, chmod, path, remove, rename, access, W_OK, R_OK, F_OK, environ
+from Components.Sources.StaticText import StaticText
+from os import system, stat as mystat, path, remove, rename
 from enigma import eTimer
-import stat, time
+from glob import glob
+import stat
 
 config.plugins.aafpanel = ConfigSubsection()
 config.plugins.aafpanel.swapautostart = ConfigYesNo(default = False)
 
-def SwapAutostart(reason, session = None):
-	if reason == 0:
-		global device
-		print "[SwapManager] autostart"
-		f = open('/etc/fstab', 'r')
-		for line in f.readlines():
-			if line.find('swap') != -1:
-				parts = line.strip().split()
-				device = parts[0]
-				print "[SwapManager] Found a swap partition on ", device
-				swapf = file('/proc/swaps').read()
-				if swapf.find(device) < 0:
-					print "[SwapManager] Starting swap partition on ", device
-					system('swapon ' + device)
-				else:
-					print "[SwapManager] Swap partition %s is already active.", device
-		f.close()
+startswap = None
 
-		if config.plugins.aafpanel.swapautostart.value:
-			swap_place = ''
-			parts = []
+def SwapAutostart(reason, session=None, **kwargs):
+	global startswap
+	if reason == 0:
+ 		if config.plugins.aafpanel.swapautostart.value:
+			print "[SwapManager] autostart"
+			startswap = StartSwap()
+			startswap.start()
+	
+class StartSwap:
+	def __init__(self):
+		self.Console = Console()
+
+	def start(self):
+	 	self.Console.ePopen("sfdisk -l /dev/sd? | grep swap", self.startSwap2)
+
+	def startSwap2(self, result = None, retval = None, extra_args = None):
+		swap_place = ""
+		if result and result.find('sd') != -1:
+			for line in result.split('\n'):
+				if line.find('sd') != -1:
+					parts = line.strip().split()
+					swap_place = parts[0]
+					file('/etc/fstab.tmp', 'w').writelines([l for l in file('/etc/fstab').readlines() if swap_place not in l])
+					rename('/etc/fstab.tmp','/etc/fstab')
+					print "[SwapManager] Found a swap partition:", swap_place
+		else:
+			devicelist = []
 			for p in harddiskmanager.getMountedPartitions():
 				d = path.normpath(p.mountpoint)
-				if path.exists(p.mountpoint) and p.mountpoint != "/":
-					parts.append((p.description, d))
-			if len(parts):
-				for x in parts:
-					if path.exists(x[1] + '/swapfile'):
-						swap_place = x[1] + '/swapfile'
-						print "[SwapManager] Found a swapfile on ", swap_place
-						f = file('/proc/swaps').read()
-						if f.find('swap_place') < 0:
-							print "[SwapManager] Starting swapfile on ", swap_place
-							system('swapon ' + swap_place)
-						else:
-							print "[SwapManager] Swapfile is already active on ", swap_place
+				if path.exists(p.mountpoint) and p.mountpoint != "/" and not p.mountpoint.startswith('/media/net'):
+					devicelist.append((p.description, d))
+			if len(devicelist):
+				for device in devicelist:
+					for filename in glob(device[1] + '/swap*'):
+						if path.exists(filename):
+							swap_place = filename
+							print "[SwapManager] Found a swapfile on ", swap_place
 
+		f = file('/proc/swaps').read()
+		if f.find(swap_place) == -1:
+			print "[SwapManager] Starting swapfile on ", swap_place
+			system('swapon ' + swap_place)
+		else:
+			print "[SwapManager] Swapfile is already active on ", swap_place
+	
 #######################################################################
 class Swap(Screen):
 	skin = """
@@ -94,24 +103,27 @@ class Swap(Screen):
 		self['key_red'] = Label(_("Activate"))
 		self['key_green'] = Label(_("Create"))
 		self['key_yellow'] = Label(_("Autostart"))
+		self['swapname_summary'] = StaticText()
+		self['swapactive_summary'] = StaticText()
 		self.Console = Console()
 		self.swap_place = ''
 		self.new_place = ''
 		self.creatingswap = False
-		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'back': self.close, 'red': self.actDeact, 'green': self.createDel, 'yellow': self.autoSsWap})
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions', "MenuActions"], {'back': self.close, 'red': self.actDeact, 'green': self.createDel, 'yellow': self.autoSsWap, "menu": self.close})
 		self.activityTimer = eTimer()
 		self.activityTimer.timeout.get().append(self.getSwapDevice)
 		self.updateSwap()
 
 	def updateSwap(self, result = None, retval = None, extra_args = None):
+		self["actions"].setEnabled(False)
 		self.swap_active = False
-		self.autos_start = False
 		self['autostart_on'].hide()
 		self['autostart_off'].show()
 		self['active'].hide()
 		self['inactive'].show()
 		self['labplace'].hide()
 		self['labsize'].hide()
+		self['swapactive_summary'].setText(_("Current Status:"))
 		scanning = _("Wait please while scanning...")
 		self['lab1'].setText(scanning)
 		self.activityTimer.start(10)
@@ -124,125 +136,117 @@ class Swap(Screen):
 			config.plugins.aafpanel.swapautostart.save()
 		if path.exists('/tmp/swapdevices.tmp'):
 			remove('/tmp/swapdevices.tmp')
-		self.Console.ePopen("fdisk -l /dev/sd? | grep swap >/tmp/swapdevices.tmp", self.updateSwap2)
+		self.Console.ePopen("sfdisk -l /dev/sd? | grep swap", self.updateSwap2)
 
-	def updateSwap2(self, result, retval, extra_args):
-		global device
-		device = ""
-		if retval == 0:
-			f = open('/tmp/swapdevices.tmp', 'r')
-			for line in f.readlines():
+	def updateSwap2(self, result = None, retval = None, extra_args = None):
+		self.swapsize = 0
+		self.swap_place = ''
+		self.swap_active = False
+		self.device = False
+		if result.find('sd') > 0:
+			self['key_green'].setText("")
+			for line in result.split('\n'):
 				if line.find('sd') > 0:
 					parts = line.strip().split()
-					device = parts[0]
-					continue
-			f.close()
-	
-			self.swap_active = False
-			self.autos_start = False
-			self['labplace'].setText(device)
-			self['labplace'].show()
-			f = open('/etc/fstab', 'r')
-			for line in f.readlines():
-				if line.find('swap') > 0:
-					self.autos_start = True
-					self['autostart_off'].hide()
-					self['autostart_on'].show()
-					continue
-			f.close()
-			f = open('/proc/swaps', 'r')
-			for line in f.readlines():
-				if line.find('sd') > 0:
-					self.swap_active = True
+					self.swap_place = parts[0]
+					if self.swap_place == 'sfdisk:':
+						self.swap_place = ''
+					self.device = True
+				f = open('/proc/swaps', 'r')
+				for line in f.readlines():
 					parts = line.strip().split()
-					size = parts[2]
-					continue
-			f.close()
-			if self.swap_active == True:
-				filesize = int(size) / 1024
-				filesize = str(filesize) + ' M'
-				self['labsize'].setText(filesize)
-				self['labsize'].show()
-				self['inactive'].hide()
-				self['active'].show()
-				self['key_red'].setText(_("Deactivate"))
-			else:
-				self['inactive'].show()
-				self['active'].hide()
-				self['key_red'].setText(_("Activate"))
-			self['key_green'].setText(_(" "))
+					if line.find('partition') != -1:
+						self.swap_active = True
+						self.swapsize = parts[2]
+						continue
+				f.close()
 		else:
 			self['key_green'].setText(_("Create"))
-			if config.plugins.aafpanel.swapautostart.value:
-				self['autostart_off'].hide()
-				self['autostart_on'].show()
-				self.autos_start = True
-			else:
-				self['autostart_on'].hide()
-				self['autostart_off'].show()
-			fileplace = ''
-			self.swap_place = ''
-			parts = []
+			devicelist = []
 			for p in harddiskmanager.getMountedPartitions():
 				d = path.normpath(p.mountpoint)
 				if path.exists(p.mountpoint) and p.mountpoint != "/" and not p.mountpoint.startswith('/media/net'):
-					parts.append((p.description, d))
-			if len(parts):
-				for x in parts:
-					if path.exists(x[1] + '/swapfile'):
-						fileplace = x[0]
-						self.swap_place = x[1] + '/swapfile'
-						filesize = 0
-						if fileplace != '':
-							self['key_green'].setText(_("Delete"))
-							info = mystat(self.swap_place)
-							filesize = info[stat.ST_SIZE]
-						if filesize > 1048576:
-							filesize = filesize / 1048576
-						filesize = str(filesize) + ' M'
-						self['labplace'].setText(fileplace)
-						self['labplace'].show()
-						self['labsize'].setText(filesize)
-						self['labsize'].show()
-						f = open('/proc/swaps', 'r')
-						for line in f.readlines():
-							if line.find('swapfile') != -1:
-								self.swap_active = True
-								continue
-						f.close()
-						if self.swap_active == True:
-							self['active'].show()
-							self['key_red'].setText(_("Deactivate"))
-						else:
-							self['inactive'].show()
-							self['key_red'].setText(_("Activate"))
+					devicelist.append((p.description, d))
+			if len(devicelist):
+				for device in devicelist:
+					for filename in glob(device[1] + '/swap*'):
+						self.swap_place = filename
+						self['key_green'].setText(_("Delete"))
+						info = mystat(self.swap_place)
+						self.swapsize = info[stat.ST_SIZE]
+						continue
+
+		if config.plugins.aafpanel.swapautostart.value and self.swap_place:
+			self['autostart_off'].hide()
+			self['autostart_on'].show()
+		else:
+			config.plugins.aafpanel.swapautostart.setValue(False)
+			config.plugins.aafpanel.swapautostart.save()
+			configfile.save()
+			self['autostart_on'].hide()
+			self['autostart_off'].show()
+		self['labplace'].setText(self.swap_place)
+		self['labplace'].show()
+
+		f = open('/proc/swaps', 'r')
+		for line in f.readlines():
+			parts = line.strip().split()
+			if line.find('partition') != -1:
+				self.swap_active = True
+				continue
+			elif line.find('file') != -1:
+				self.swap_active = True
+				continue
+		f.close()
+
+		if self.swapsize > 0:
+			if self.swapsize >= 1024:
+				self.swapsize = int(self.swapsize) / 1024
+				if self.swapsize >= 1024:
+					self.swapsize = int(self.swapsize) / 1024
+				self.swapsize = str(self.swapsize) + ' ' + 'MB'
+			else:
+				self.swapsize = str(self.swapsize) + ' ' + 'KB'
+		else:
+			self.swapsize = ''
+
+		self['labsize'].setText(self.swapsize)
+		self['labsize'].show()
+
+		if self.swap_active == True:
+			self['inactive'].hide()
+			self['active'].show()
+			self['key_red'].setText(_("Deactivate"))
+			self['swapactive_summary'].setText(_("Current Status:") + ' ' + _("Active"))
+		else:
+			self['inactive'].show()
+			self['active'].hide()
+			self['key_red'].setText(_("Activate"))
+			self['swapactive_summary'].setText(_("Current Status:") + ' ' + _("Inactive"))
+
 		scanning = _("Enable Swap at startup")
 		self['lab1'].setText(scanning)
 		self['lab1'].show()
+		self["actions"].setEnabled(True)
+
+		name = self['labplace'].text
+		self['swapname_summary'].setText(name)
 
 	def actDeact(self):
-		global device
-		if device == "":
-			if self.swap_active == True:
-				self.Console.ePopen('swapoff ' + self.swap_place, self.updateSwap)
-			else:
+		if self.swap_active == True:
+			self.Console.ePopen('swapoff ' + self.swap_place, self.updateSwap)
+		else:
+			if not self.device:
 				if self.swap_place != '':
-					self.commands = []
-					self.commands.append('mkswap ' + self.swap_place)
-					self.commands.append('swapon ' + self.swap_place)
-					self.Console.eBatch(self.commands, self.updateSwap, debug=True)
+					self.Console.ePopen('swapon ' + self.swap_place, self.updateSwap)
 				else:
 					mybox = self.session.open(MessageBox, _("Swap File not found. You have to create the file before to activate."), MessageBox.TYPE_INFO)
 					mybox.setTitle(_("Info"))
-		else:
-			if self.swap_active == True:
-				self.Console.ePopen('swapoff ' + device, self.updateSwap)
 			else:
-				self.Console.ePopen('swapon ' + device, self.updateSwap)
+				self.Console.ePopen('swapon ' + self.swap_place, self.updateSwap)
 
 	def createDel(self):
-		global device
-		if device == "":
+		if not self.device:
 			if self.swap_place != '':
 				if self.swap_active == True:
 					self.Console.ePopen('swapoff ' + self.swap_place, self.createDel2)
@@ -255,80 +259,53 @@ class Swap(Screen):
 		if retval == 0:
 			remove(self.swap_place)
 			if config.plugins.aafpanel.swapautostart.value:
-				config.plugins.aafpanel.swapautostart.value = False
+				config.plugins.aafpanel.swapautostart.setValue(False)
 				config.plugins.aafpanel.swapautostart.save()
+				configfile.save()
 			self.updateSwap()
 
 	def doCreateSwap(self):
 		parts = []
-		for p in harddiskmanager.getMountedPartitions():
-			d = path.normpath(p.mountpoint)
-			if path.exists(p.mountpoint) and p.mountpoint != "/"  and not p.mountpoint.startswith('/media/net'):
-				parts.append((p.description, d))
-		if len(parts):
-			self.session.openWithCallback(self.doCSplace, ChoiceBox, title = _("Please select device to use as swapfile location"), list = parts)
+		supported_filesystems = frozenset(('ext4', 'ext3', 'ext2'))
+		candidates = []
+		mounts = getProcMounts() 
+		for partition in harddiskmanager.getMountedPartitions(False, mounts):
+			if partition.filesystem(mounts) in supported_filesystems:
+				candidates.append((partition.description, partition.mountpoint)) 
+		if len(candidates):
+			self.session.openWithCallback(self.doCSplace, ChoiceBox, title = _("Please select device to use as swapfile location"), list = candidates)
+		else:
+			self.session.open(MessageBox, _("Sorry, no physical devices that supports SWAP attached. Can't create Swapfile on network or fat32 filesystems"), MessageBox.TYPE_INFO, timeout = 10)
 
 	def doCSplace(self, name):
 		if name:
-			name
 			self.new_place = name[1]
 			myoptions = [[_("32 Mb"), '32768'], [_("64 Mb"), '65536'], [_("128 Mb"), '131072'], [_("256 Mb"), '262144'], [_("512 Mb"), '524288']]
 			self.session.openWithCallback(self.doCSsize, ChoiceBox, title=_("Select the Swap File Size:"), list=myoptions)
-		else:
-			name
 
-	def doCSsize(self, size):
-		if size:
-			size
-			size = size[1]
-			myfile = self.new_place + '/swapfile'
-			self.Console.ePopen('dd if=/dev/zero of=' + myfile + ' bs=1024 count=' + size + ' 2>/dev/null', self.doCScreateCheck)
-			self['actions'] = ActionMap()
+	def doCSsize(self, swapsize):
+		if swapsize:
+			self["actions"].setEnabled(False)
 			scanning = _("Wait please while creating swapfile...")
 			self['lab1'].setText(scanning)
 			self['lab1'].show()
-		else:
-			size
-
-	def doCScreateCheck(self, result, retval, extra_args):
-		if retval == 0:
-			mybox = self.session.open(MessageBox, _("Swap File successfully created."), MessageBox.TYPE_INFO, timeout = 5)
-		else:
-			mybox = self.session.open(MessageBox, _("Swap File creation Failed. Check for Available space."), MessageBox.TYPE_INFO)
-		mybox.setTitle(_("Info"))
-		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'back': self.close, 'red': self.actDeact, 'green': self.createDel, 'yellow': self.autoSsWap})
-		self.updateSwap()
+			swapsize = swapsize[1]
+			myfile = self.new_place + '/swapfile'
+			self.commands = []
+			self.commands.append('dd if=/dev/zero of=' + myfile + ' bs=1024 count=' + swapsize + ' 2>/dev/null')
+			self.commands.append('mkswap ' + myfile)
+			self.Console.eBatch(self.commands, self.updateSwap, debug=True)
 		
 	def autoSsWap(self):
-		global device
-		if device == "":
+		if self.swap_place:
 			if config.plugins.aafpanel.swapautostart.value:
-				config.plugins.aafpanel.swapautostart.value = False
+				config.plugins.aafpanel.swapautostart.setValue(False)
 				config.plugins.aafpanel.swapautostart.save()
 			else:
-				if self.swap_place:
-					config.plugins.aafpanel.swapautostart.value = True
-					config.plugins.aafpanel.swapautostart.save()
-				else:
-					mybox = self.session.open(MessageBox, _("You have to create a Swap File before to activate the autostart."), MessageBox.TYPE_INFO)
-					mybox.setTitle(_("Info"))
-			self.updateSwap()
+				config.plugins.aafpanel.swapautostart.setValue(True)
+				config.plugins.aafpanel.swapautostart.save()
+			configfile.save()
 		else:
-			swapdevice = ""
-			f = open('/etc/fstab', 'r')
-			for line in f.readlines():
-				if line.find('swap') != -1:
-					parts = line.strip().split()
-					swapdevice = parts[0]
-					break
-					continue
-			f.close()
-			if swapdevice != "":
-				file('/etc/fstab.tmp', 'w').writelines([l for l in file('/etc/fstab').readlines() if device not in l])
-				rename('/etc/fstab.tmp','/etc/fstab')
-			else:
-				out = open('/etc/fstab', 'a')
-				line = device + '            None                 swap       defaults              0 0\n'
-				out.write(line)
-				out.close()
-			self.updateSwap()
+			mybox = self.session.open(MessageBox, _("You have to create a Swap File before to activate the autostart."), MessageBox.TYPE_INFO)
+			mybox.setTitle(_("Info"))
+		self.updateSwap()
