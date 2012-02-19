@@ -217,7 +217,6 @@ def InitUsageConfig():
 	config.usage.show_cryptoinfo = ConfigYesNo(default = True)
 	config.usage.show_eit_nownext = ConfigYesNo(default = True)
 
-	config.osd = ConfigSubsection()
 	config.osd.dst_left = ConfigSlider(default = 0, increment = 1, limits = (0, 720))
 	config.osd.dst_width = ConfigSlider(default = 720, increment = 1, limits = (0, 720))
 	config.osd.dst_top = ConfigSlider(default = 0, increment = 1, limits = (0, 576))
