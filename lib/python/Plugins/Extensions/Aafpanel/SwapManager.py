@@ -266,7 +266,7 @@ class Swap(Screen):
 
 	def doCreateSwap(self):
 		parts = []
-		supported_filesystems = frozenset(('ext4', 'ext3', 'ext2'))
+		supported_filesystems = frozenset(('ext4', 'ext3', 'ext2', 'vfat'))
 		candidates = []
 		mounts = getProcMounts() 
 		for partition in harddiskmanager.getMountedPartitions(False, mounts):
