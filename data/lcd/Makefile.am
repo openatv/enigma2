@@ -15,4 +15,10 @@ dist_install_DATA = \
 	hd.png \
 	format.png \
 	dolby.png \
-	crypt.png
+	crypt.png \
+	stop.png \
+	slow.png \
+	play.png \
+	pause.png \
+	forward.png \
+	backward.png

@@ -8,7 +8,7 @@ class PVRState(Screen):
 		Screen.__init__(self, session)
 		self["state"] = Label(text="")
 		self["speed"] = Label(text="")
-		self["satusicon"] = MultiPixmap()
+		self["statusicon"] = MultiPixmap()
 
 class TimeshiftState(PVRState):
 	pass
@@ -37,4 +37,4 @@ class PTSTimeshiftState(Screen):
 		self["PTSSeekPointer"] = Pixmap()
 		self["eventname"] = Label(text="")
 		self["speed"] = Label(text="")
-		self["satusicon"] = MultiPixmap()
+		self["statusicon"] = MultiPixmap()
