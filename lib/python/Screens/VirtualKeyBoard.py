@@ -165,6 +165,20 @@ class VirtualKeyBoard(Screen):
 				[u"A", u"S", u"D", u"F", u"G", u"H", u"J", u"K", u"L", u"Ö", u"Ä", u"'"],
 				[u">", u"Y", u"X", u"C", u"V", u"B", u"N", u"M", u";", u":", u"_", u"CLEAR"],
 				[u"SHIFT", u"SPACE", u"?", u"\\", u"Ĺ", u"OK"]]
+			self.nextLang = 'ru_RU'
+		elif self.lang == 'ru_RU':
+			self.keys_list = [
+				[u"EXIT", u"1", u"2", u"3", u"4", u"5", u"6", u"7", u"8", u"9", u"0", u"BACKSPACE"],
+				[u"й", u"ц", u"у", u"к", u"е", u"н", u"г", u"ш", u"щ", u"з", u"х", u"+"],
+				[u"ф", u"ы", u"в", u"а", u"б", u"п", u"р", u"о", u"л", u"д", u"ж", u"#"],
+				[u"<", u"э", u"я", u"ч", u"с", u"м", u"и", u"т", u",", ".", u"-", u"CLEAR"],
+				[u"SHIFT", u"SPACE", u"@", u"ь", u"ю", u"ъ", u"OK"]]
+			self.shiftkeys_list = [
+				[u"EXIT", u"!", u'"', u"§", u"$", u"%", u"&", u"/", u"(", u")", u"=", u"BACKSPACE"],
+				[u"Й", u"Ц", u"У", u"К", u"Е", u"Н", u"Г", u"Ш", u"Щ", u"З", u"I", u"Х", u"*"],
+				[u"Ф", u"Ы", u"В", u"А", u"П", u"Р", u"О", u"О", u"Л", u"Д", u"Ж", u"'"],
+				[u">", u"Э", u"Я", u"Ч", u"С", u"М", u"И", u"Т", u";", u":", u"_", u"CLEAR"],
+				[u"SHIFT", u"SPACE", u"?", u"\\", u"Ь", u"Б", u"Ю",  u"Ъ", u"OK"]]
 			self.nextLang = 'sv_SE'
 		elif self.lang == 'sv_SE':
 			self.keys_list = [
@@ -287,8 +301,10 @@ class VirtualKeyBoard(Screen):
 			self.close(None)
 		
 		elif text == "BACKSPACE":
-			self.text = self.text[:-1]
-			self["text"].setText(self.text.encode("utf-8"))
+			ss=unicode(self["text"].getText(),"utf-8")
+			ss=ss[:-1]
+			self.text = str(ss.encode("utf-8"))
+			self["text"].setText(self.text)
 		
 		elif text == "CLEAR":
 			self.text = ""
