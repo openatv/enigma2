@@ -31,12 +31,15 @@ class StubInfo:
 	def isPlayable(self):
 		return True
 	def getInfo(self, serviceref, w):
-		if w == iServiceInformation.sTimeCreate:
-			return os.stat(serviceref.getPath()).st_ctime
-		if w == iServiceInformation.sFileSize:
-			return os.stat(serviceref.getPath()).st_size
-		if w == iServiceInformation.sDescription:
-			return serviceref.getPath()
+		try:
+			if w == iServiceInformation.sTimeCreate:
+				return os.stat(serviceref.getPath()).st_ctime
+			if w == iServiceInformation.sFileSize:
+				return os.stat(serviceref.getPath()).st_size
+			if w == iServiceInformation.sDescription:
+				return serviceref.getPath()
+		except:
+			pass
 		return 0
 	def getInfoString(self, serviceref, w):
 		return ''

@@ -1,4 +1,4 @@
-from ChannelSelection import ChannelSelection, BouquetSelector, SilentBouquetSelector,  EPGBouquetSelector
+from ChannelSelection import ChannelSelection, BouquetSelector, SilentBouquetSelector, EPGBouquetSelector
 from Components.ActionMap import ActionMap, HelpableActionMap
 from Components.ActionMap import NumberActionMap
 from Components.Harddisk import harddiskmanager
@@ -11,7 +11,8 @@ from Components.config import config, ConfigBoolean, ConfigClock
 from Components.SystemInfo import SystemInfo
 from Components.UsageConfig import preferredInstantRecordPath, defaultMoviePath
 from Components.Task import Task, Job, job_manager as JobManager
-from Components.Pixmap import MovingPixmap
+from Components.Pixmap import MovingPixmap, MultiPixmap
+from Components.Sources.StaticText import StaticText
 from EpgSelection import EPGSelection
 from Plugins.Plugin import PluginDescriptor
 from Screen import Screen
@@ -602,16 +603,20 @@ class NumberZap(Screen):
 		self.Timer.start(3000, True)		#reset timer
 		self.field = self.field + str(number)
 		self["number"].setText(self.field)
+		self["number_summary"].setText(self.field)
 		if len(self.field) >= 4:
 			self.keyOK()
 
 	def __init__(self, session, number):
 		Screen.__init__(self, session)
+		self.onChangedEntry = [ ]
 		self.field = str(number)
 
 		self["channel"] = Label(_("Channel:"))
+		self["channel_summary"] = StaticText(_("Channel:"))
 
 		self["number"] = Label(self.field)
+		self["number_summary"] = StaticText(self.field)
 
 		self["actions"] = NumberActionMap( [ "SetupActions" ],
 			{
@@ -1593,14 +1598,16 @@ class InfoBarSeek:
 				open("/proc/stb/lcd/symbol_hdd", "w").write("0")
 			if os_path.exists("/proc/stb/lcd/symbol_hddprogress"):	
 				open("/proc/stb/lcd/symbol_hddprogress", "w").write("0")
-			self["SeekActions"].setEnabled(False)
 #			print "not seekable, return to play"
+			self["SeekActions"].setEnabled(False)
 			self.setSeekState(self.SEEK_STATE_PLAY)
 			
 		else:
+#			print "seekable"
 			self["SeekActions"].setEnabled(True)
 			self.activityTimer.start(200, False)
-#			print "seekable"
+			for c in self.onPlayStateChanged:
+				c(self.seekstate)
 
 	def doActivityTimer(self):
 		if self.isSeekable():
@@ -1641,28 +1648,28 @@ class InfoBarSeek:
 		pauseable = service.pause()
 
 		if pauseable is None:
-			print "not pauseable."
+#			print "not pauseable."
 			state = self.SEEK_STATE_PLAY
 
 		self.seekstate = state
 
 		if pauseable is not None:
 			if self.seekstate[0] and self.seekstate[3] == '||':
-				print "resolved to PAUSE"
+#				print "resolved to PAUSE"
 				self.activityTimer.stop()
 				pauseable.pause()
 			elif self.seekstate[0] and self.seekstate[3] == 'END':
-				print "resolved to STOP"
+#				print "resolved to STOP"
 				self.activityTimer.stop()
 				service.stop()
 			elif self.seekstate[1]:
-				print "resolved to FAST FORWARD"
+#				print "resolved to FAST FORWARD"
 				pauseable.setFastForward(self.seekstate[1])
 			elif self.seekstate[2]:
-				print "resolved to SLOW MOTION"
+#				print "resolved to SLOW MOTION"
 				pauseable.setSlowMotion(self.seekstate[2])
 			else:
-				print "resolved to PLAY"
+#				print "resolved to PLAY"
 				self.activityTimer.start(200, False)
 				pauseable.unpause()
 
@@ -1801,7 +1808,7 @@ class InfoBarSeek:
 		self.session.open(Seekbar, fwd)
 
 	def fwdSeekTo(self, minutes):
-		print "Seek", minutes, "minutes forward"
+#		print "Seek", minutes, "minutes forward"
 		self.doSeekRelative(minutes * 60 * 90000)
 
 	def seekBackManual(self):
@@ -1811,13 +1818,13 @@ class InfoBarSeek:
 		self.session.open(Seekbar, fwd)
 
 	def rwdSeekTo(self, minutes):
-		print "rwdSeekTo"
+#		print "rwdSeekTo"
 		self.doSeekRelative(-minutes * 60 * 90000)
 
 	def checkSkipShowHideLock(self):
 		if self.seekstate == self.SEEK_STATE_PLAY or self.seekstate == self.SEEK_STATE_EOF:
 			self.lockedBecauseOfSkipping = False
-			self.unlockShow()
+ 			self.unlockShow()
 		else:
 			wantlock = self.seekstate != self.SEEK_STATE_PLAY
 			if config.usage.show_infobar_on_skip.value:
@@ -1879,40 +1886,59 @@ from Screens.PVRState import PVRState, TimeshiftState, PTSTimeshiftState
 
 class InfoBarPVRState:
 	def __init__(self, screen=PVRState, force_show = False):
+		self.onChangedEntry = [ ]
 		self.onPlayStateChanged.append(self.__playStateChanged)
 		self.pvrStateDialog = self.session.instantiateDialog(screen)
 		self.onShow.append(self._mayShow)
 		self.onHide.append(self.pvrStateDialog.hide)
 		self.force_show = force_show
 
+	def createSummary(self):
+		return InfoBarMoviePlayerSummary
 	def _mayShow(self):
-		if self.execing and self.seekstate != self.SEEK_STATE_PLAY and self.seekstate != self.SEEK_STATE_EOF:
+		if self.execing and self.seekstate != self.SEEK_STATE_EOF:
 			self.pvrStateDialog.show()
 
 	def __playStateChanged(self, state):
 		playstateString = state[3]
 		self.pvrStateDialog["state"].setText(playstateString)
+		state_summary = playstateString
 		if playstateString == '>':
-			self.pvrStateDialog["satusicon"].setPixmapNum(0)
+			self.pvrStateDialog["statusicon"].setPixmapNum(0)
 			self.pvrStateDialog["speed"].setText("")
+			speed_summary = self.pvrStateDialog["speed"].text
+			statusicon_summary = 0
 		elif playstateString == '||':
-			self.pvrStateDialog["satusicon"].setPixmapNum(1)
+			self.pvrStateDialog["statusicon"].setPixmapNum(1)
 			self.pvrStateDialog["speed"].setText("")
+			speed_summary = self.pvrStateDialog["speed"].text
+			statusicon_summary = 1
 		elif playstateString == 'END':
-			self.pvrStateDialog["satusicon"].setPixmapNum(2)
+			self.pvrStateDialog["statusicon"].setPixmapNum(2)
 			self.pvrStateDialog["speed"].setText("")
+			speed_summary = self.pvrStateDialog["speed"].text
+			statusicon_summary = 2
 		elif playstateString.startswith('>>'):
-			self.pvrStateDialog["satusicon"].setPixmapNum(3)
+			self.pvrStateDialog["statusicon"].setPixmapNum(3)
 			speed = state[3].split()
 			self.pvrStateDialog["speed"].setText(speed[1])
+			speed_summary = self.pvrStateDialog["speed"].text
+			statusicon_summary = 3
 		elif playstateString.startswith('<<'):
-			self.pvrStateDialog["satusicon"].setPixmapNum(4)
+			self.pvrStateDialog["statusicon"].setPixmapNum(4)
 			speed = state[3].split()
 			self.pvrStateDialog["speed"].setText(speed[1])
+			speed_summary = self.pvrStateDialog["speed"].text
+			statusicon_summary = 4
 		elif playstateString.startswith('/'):
-			self.pvrStateDialog["satusicon"].setPixmapNum(5)
-			self.pvrStateDialog["speed"].setText(playstateString)
-		
+			self.pvrStateDialog["statusicon"].setPixmapNum(5)
+			self.pvrStateDialog["speed"].setText(playstateString)	
+			speed_summary = self.pvrStateDialog["speed"].text
+			statusicon_summary = 5
+
+		for cb in self.onChangedEntry:
+			cb(state_summary, speed_summary, statusicon_summary)
+
 		# if we return into "PLAY" state, ensure that the dialog gets hidden if there will be no infobar displayed
 		if not config.usage.show_infobar_on_skip.value and self.seekstate == self.SEEK_STATE_PLAY and not self.force_show:
 			self.pvrStateDialog.hide()
@@ -3227,16 +3253,16 @@ class InfoBarTimeshift:
 	# activates timeshift, and seeks to (almost) the end
 	def activateTimeshiftEnd(self, back = True):
 		ts = self.getTimeshift()
-		print "activateTimeshiftEnd"
+#		print "activateTimeshiftEnd"
 
 		if ts is None:
 			return
 
 		if ts.isTimeshiftActive():
-			print "!! activate timeshift called - but shouldn't this be a normal pause?"
+#			print "!! activate timeshift called - but shouldn't this be a normal pause?"
 			self.pauseService()
 		else:
-			print "play, ..."
+#			print "play, ..."
 			ts.activateTimeshift() # activate timeshift will automatically pause
 			self.setSeekState(self.SEEK_STATE_PAUSE)
 
@@ -3251,7 +3277,7 @@ class InfoBarTimeshift:
 
 	# same as activateTimeshiftEnd, but pauses afterwards.
 	def activateTimeshiftEndAndPause(self):
-		print "activateTimeshiftEndAndPause"
+#		print "activateTimeshiftEndAndPause"
 		#state = self.seekstate
 		self.activateTimeshiftEnd(False)
 
@@ -3797,7 +3823,7 @@ class InfoBarInstantRecord:
 			recording.autoincrease = False
 
 	def isInstantRecordRunning(self):
-		print "self.recording:", self.recording
+#		print "self.recording:", self.recording
 		if self.recording:
 			for x in self.recording:
 				if x.isRunning():
@@ -3805,7 +3831,7 @@ class InfoBarInstantRecord:
 		return False
 
 	def recordQuestionCallback(self, answer):
-		print "pre:\n", self.recording
+#		print "pre:\n", self.recording
 
 		if answer is None or answer[1] == "no":
 			return
@@ -3835,7 +3861,7 @@ class InfoBarInstantRecord:
 				self.changeDuration(len(self.recording)-1)
 			elif answer[1] == "manualendtime":
 				self.setEndtime(len(self.recording)-1)
-		print "after:\n", self.recording
+#		print "after:\n", self.recording
 
 		if config.timeshift.enabled.value:
 			if answer is not None and answer[1] == "savetimeshift":
@@ -3863,7 +3889,7 @@ class InfoBarInstantRecord:
 		if len(ret) > 1:
 			if ret[0]:
 				localendtime = localtime(ret[1])
-				print "stopping recording at", strftime("%c", localendtime)
+#				print "stopping recording at", strftime("%c", localendtime)
 				if self.recording[self.selectedEntry].end != ret[1]:
 					self.recording[self.selectedEntry].autoincrease = False
 				self.recording[self.selectedEntry].end = ret[1]
@@ -3876,7 +3902,7 @@ class InfoBarInstantRecord:
 
 	def inputCallback(self, value):
 		if value is not None:
-			print "stopping recording after", int(value), "minutes."
+#			print "stopping recording after", int(value), "minutes."
 			entry = self.recording[self.selectedEntry]
 			if int(value) != 0:
 				entry.autoincrease = False
@@ -4337,8 +4363,7 @@ class InfoBarServiceNotifications:
 			})
 
 	def serviceHasEnded(self):
-		print "service end!"
-
+#		print "service end!"
 		try:
 			self.setSeekState(self.SEEK_STATE_PLAY)
 		except:
@@ -4370,7 +4395,7 @@ class InfoBarCueSheetSupport:
 	def __serviceStarted(self):
 		if self.is_closing:
 			return
-		print "new service started! trying to download cuts!"
+#		print "new service started! trying to download cuts!"
 		self.downloadCuesheet()
 
 		if self.ENABLE_RESUME_SUPPORT:
@@ -4387,7 +4412,7 @@ class InfoBarCueSheetSupport:
 			if seekable is None:
 				return # Should not happen?
 			length = seekable.getLength() or (None,0)
-			print "seekable.getLength() returns:", length
+#			print "seekable.getLength() returns:", length
 			# Hmm, this implies we don't resume if the length is unknown...
 			if (last > 900000) and (not length[1]  or (last < length[1] - 900000)):
 				self.resume_point = last
@@ -4497,7 +4522,7 @@ class InfoBarCueSheetSupport:
 	def toggleMark(self, onlyremove=False, onlyadd=False, tolerance=5*90000, onlyreturn=False):
 		current_pos = self.cueGetCurrentPosition()
 		if current_pos is None:
-			print "not seekable"
+#			print "not seekable"
 			return
 
 		nearest_cutpoint = self.getNearestCutPoint(current_pos)
@@ -4537,7 +4562,7 @@ class InfoBarCueSheetSupport:
 		cue = self.__getCuesheet()
 
 		if cue is None:
-			print "upload failed, no cuesheet interface"
+#			print "upload failed, no cuesheet interface"
 			return
 		cue.setCutList(self.cut_list)
 
@@ -4545,7 +4570,7 @@ class InfoBarCueSheetSupport:
 		cue = self.__getCuesheet()
 
 		if cue is None:
-			print "download failed, no cuesheet interface"
+#			print "download failed, no cuesheet interface"
 			self.cut_list = [ ]
 		else:
 			self.cut_list = cue.getCutList()
@@ -4597,6 +4622,25 @@ class InfoBarMoviePlayerSummary(Screen):
 			<convert type="ServicePosition">Position</convert>
 		</widget>
 	</screen>"""
+	def __init__(self, session, parent):
+		Screen.__init__(self, session, parent = parent)
+		self["state_summary"] = StaticText("")
+		self["speed_summary"] = StaticText("")
+ 		self["statusicon_summary"] = MultiPixmap()
+ 		self["statusicon_summary"].setPixmapNum(0)
+		self.onShow.append(self.addWatcher)
+		self.onHide.append(self.removeWatcher)
+
+	def addWatcher(self):
+		self.parent.onChangedEntry.append(self.selectionChanged)
+
+	def removeWatcher(self):
+		self.parent.onChangedEntry.remove(self.selectionChanged)
+
+	def selectionChanged(self, state_summary, speed_summary, statusicon_summary):
+		self["state_summary"].setText(state_summary)
+		self["speed_summary"].setText(speed_summary)
+ 		self["statusicon_summary"].setPixmapNum(int(statusicon_summary))
 
 class InfoBarMoviePlayerSummarySupport:
 	def __init__(self):
