@@ -978,6 +978,7 @@ class ChannelSelectionBase(Screen):
 				if currentRoot is None or currentRoot != ref:
 					self.clearPath()
 					self.enterPath(ref)
+					self.setCurrentSelection(self.session.nav.getCurrentlyPlayingServiceReference())
 
 	def showSatellites(self):
 		if not self.pathChangeDisabled:
@@ -1046,6 +1047,12 @@ class ChannelSelectionBase(Screen):
 						self.servicelist.finishFill()
 						if prev is not None:
 							self.setCurrentSelection(prev)
+						elif cur_ref:
+							refstr = cur_ref.toString()
+							op = "".join(refstr.split(':', 10)[6:7])
+							hop = int(op[:-4],16)
+							refstr = '1:7:0:0:0:0:%s:0:0:0:(satellitePosition == %s) && %s ORDER BY name'%(op,hop,self.service_types[self.service_types.rfind(':')+1:])
+							self.setCurrentSelection(eServiceReference(refstr))
 
 	def showProviders(self):
 		if not self.pathChangeDisabled:
@@ -1059,6 +1066,13 @@ class ChannelSelectionBase(Screen):
 					if currentRoot is None or currentRoot != ref:
 						self.clearPath()
 						self.enterPath(ref)
+						service = self.session.nav.getCurrentService()
+						if service:
+							info = service.info()
+							if info:
+								provider = info.getInfoString(iServiceInformation.sProvider)
+								refstr = '1:7:0:0:0:0:0:0:0:0:(provider == \"%s\") && %s ORDER BY name:%s'%(provider,self.service_types[self.service_types.rfind(':')+1:],provider)
+								self.setCurrentSelection(eServiceReference(refstr))
 
 	def changeBouquet(self, direction):
 		if not self.pathChangeDisabled:
