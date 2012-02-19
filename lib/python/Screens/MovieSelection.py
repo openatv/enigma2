@@ -56,11 +56,11 @@ preferredTagEditor = None
 
 # this kludge is needed because ConfigSelection only takes numbers
 # and someone appears to be fascinated by 'enums'.
-l_moviesort = [(str(MovieList.SORT_RECORDED), _("sort by date"), '01/02/03'),
-	(str(MovieList.SORT_ALPHANUMERIC), _("alphabetic sort"), 'AA-ZZ'),
+l_moviesort = [(str(MovieList.SORT_RECORDED), _("sort by date"), '03/02/01'),
+	(str(MovieList.SORT_ALPHANUMERIC), _("alphabetic sort"), 'A-Z'),
 	(str(MovieList.SHUFFLE), _("shuffle"), '?'),
-	(str(MovieList.SORT_RECORDED_REVERSE), _("reverse by date"), '03/02/01'),
-	(str(MovieList.SORT_ALPHANUMERIC_REVERSE), _("alphabetic reverse"), 'ZZ-AA')]
+	(str(MovieList.SORT_RECORDED_REVERSE), _("reverse by date"), '01/02/03'),
+	(str(MovieList.SORT_ALPHANUMERIC_REVERSE), _("alphabetic reverse"), 'Z-A')]
 l_listtype = [(str(MovieList.LISTTYPE_ORIGINAL), _("list style default")),
 	(str(MovieList.LISTTYPE_COMPACT_DESCRIPTION), _("list style compact with description")),
 	(str(MovieList.LISTTYPE_COMPACT), _("list style compact")),
