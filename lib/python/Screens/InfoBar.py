@@ -228,6 +228,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 				InfoBarPlugins, InfoBarPiP:
 			x.__init__(self)
 
+		self.onChangedEntry = [ ]
 		self.servicelist = slist
 		self.lastservice = lastservice or session.nav.getCurrentlyPlayingServiceReference()
 		session.nav.playService(service)
