@@ -1776,40 +1776,40 @@ class InfoBarPVRState:
 		self.pvrStateDialog["state"].setText(playstateString)
 		state_summary = playstateString
 		if playstateString == '>':
-			self.pvrStateDialog["satusicon"].setPixmapNum(0)
+			self.pvrStateDialog["statusicon"].setPixmapNum(0)
 			self.pvrStateDialog["speed"].setText("")
 			speed_summary = self.pvrStateDialog["speed"].text
-			satusicon_summary = 0
+			statusicon_summary = 0
 		elif playstateString == '||':
-			self.pvrStateDialog["satusicon"].setPixmapNum(1)
+			self.pvrStateDialog["statusicon"].setPixmapNum(1)
 			self.pvrStateDialog["speed"].setText("")
 			speed_summary = self.pvrStateDialog["speed"].text
-			satusicon_summary = 1
+			statusicon_summary = 1
 		elif playstateString == 'END':
-			self.pvrStateDialog["satusicon"].setPixmapNum(2)
+			self.pvrStateDialog["statusicon"].setPixmapNum(2)
 			self.pvrStateDialog["speed"].setText("")
 			speed_summary = self.pvrStateDialog["speed"].text
-			satusicon_summary = 2
+			statusicon_summary = 2
 		elif playstateString.startswith('>>'):
-			self.pvrStateDialog["satusicon"].setPixmapNum(3)
+			self.pvrStateDialog["statusicon"].setPixmapNum(3)
 			speed = state[3].split()
 			self.pvrStateDialog["speed"].setText(speed[1])
 			speed_summary = self.pvrStateDialog["speed"].text
-			satusicon_summary = 3
+			statusicon_summary = 3
 		elif playstateString.startswith('<<'):
-			self.pvrStateDialog["satusicon"].setPixmapNum(4)
+			self.pvrStateDialog["statusicon"].setPixmapNum(4)
 			speed = state[3].split()
 			self.pvrStateDialog["speed"].setText(speed[1])
 			speed_summary = self.pvrStateDialog["speed"].text
-			satusicon_summary = 4
+			statusicon_summary = 4
 		elif playstateString.startswith('/'):
-			self.pvrStateDialog["satusicon"].setPixmapNum(5)
+			self.pvrStateDialog["statusicon"].setPixmapNum(5)
 			self.pvrStateDialog["speed"].setText(playstateString)
 			speed_summary = self.pvrStateDialog["speed"].text
-			satusicon_summary = 5
+			statusicon_summary = 5
 
 		for cb in self.onChangedEntry:
-			cb(state_summary, speed_summary, satusicon_summary)
+			cb(state_summary, speed_summary, statusicon_summary)
 
 		# if we return into "PLAY" state, ensure that the dialog gets hidden if there will be no infobar displayed
 		if not config.usage.show_infobar_on_skip.value and self.seekstate == self.SEEK_STATE_PLAY and not self.force_show:
@@ -4255,8 +4255,8 @@ class InfoBarMoviePlayerSummary(Screen):
 		Screen.__init__(self, session, parent = parent)
 		self["state_summary"] = StaticText("")
 		self["speed_summary"] = StaticText("")
- 		self["satusicon_summary"] = MultiPixmap()
- 		self["satusicon_summary"].setPixmapNum(0)
+ 		self["statusicon_summary"] = MultiPixmap()
+ 		self["statusicon_summary"].setPixmapNum(0)
 		self.onShow.append(self.addWatcher)
 		self.onHide.append(self.removeWatcher)
 
@@ -4266,10 +4266,10 @@ class InfoBarMoviePlayerSummary(Screen):
 	def removeWatcher(self):
 		self.parent.onChangedEntry.remove(self.selectionChanged)
 
-	def selectionChanged(self, state_summary, speed_summary, satusicon_summary):
+	def selectionChanged(self, state_summary, speed_summary, statusicon_summary):
 		self["state_summary"].setText(state_summary)
 		self["speed_summary"].setText(speed_summary)
- 		self["satusicon_summary"].setPixmapNum(int(satusicon_summary))
+ 		self["statusicon_summary"].setPixmapNum(int(statusicon_summary))
 
 class InfoBarMoviePlayerSummarySupport:
 	def __init__(self):
