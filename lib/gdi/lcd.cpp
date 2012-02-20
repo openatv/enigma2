@@ -122,8 +122,16 @@ eDBoxLCD::eDBoxLCD()
 			is_oled = 3;
 		}
 	}
-	if (is_oled = 0)
+	/* Remove "/dev/dbox/oled0" for boxes with no LCD */
+	int fd = open("/proc/stb/info/boxtype", O_RDONLY);
+	char tmp[16];
+	int rd = fd >= 0 ? read(fd, tmp, sizeof(tmp)) : 0;
+	if (fd >= 0)
+		close(fd);
+	eDebug("[LCD] boxtype = %s", tmp);
+	if ((!strncmp(tmp, "et5000\n", rd)) || (!strncmp(tmp, "et6000\n", rd)))
 		remove("/dev/dbox/oled0");
+
 #endif
 #ifdef HAVE_FULLGRAPHICLCD
 	fprintf(stdout,"SET RIGHT HALF VFD SKIN\n");
