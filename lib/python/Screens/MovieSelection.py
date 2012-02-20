@@ -1,4 +1,4 @@
-﻿from Screen import Screen
+from Screen import Screen
 from Components.Button import Button
 from Components.ActionMap import HelpableActionMap, ActionMap
 from Components.MenuList import MenuList
@@ -640,7 +640,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			self["list"].instance.resize(eSize(self.listWidth, self.listHeight))
 
 	def can_delete(self, item):
-		return canDelete(item)
+		return canDelete(item) or isTrashFolder(item[0])
 	def can_move(self, item):
 		return canMove(item)
 	def can_default(self, item):
