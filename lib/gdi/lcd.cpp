@@ -122,6 +122,8 @@ eDBoxLCD::eDBoxLCD()
 			is_oled = 3;
 		}
 	}
+	if (is_oled = 0)
+		remove("/dev/dbox/oled0");
 #endif
 #ifdef HAVE_FULLGRAPHICLCD
 	fprintf(stdout,"SET RIGHT HALF VFD SKIN\n");
