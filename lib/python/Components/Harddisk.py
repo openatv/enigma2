@@ -274,8 +274,6 @@ class Harddisk:
 			h.write(zero)
 		h.close()
 
-	errorList = [ _("Everything is fine"), _("Creating partition failed"), _("Mkfs failed"), _("Mount failed"), _("Create movie folder failed"), _("Fsck failed"), _("Please Reboot"), _("Filesystem contains uncorrectable errors"), _("Unmount failed")]
-
 	def createInitializeJob(self):
 		job = Task.Job(_("Initializing storage device..."))
 
