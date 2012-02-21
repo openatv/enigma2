@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-10 20:15+0000\n"
-"PO-Revision-Date: 2012-02-11 18:26+0100\n"
+"POT-Creation-Date: 2012-02-19 18:06+0000\n"
+"PO-Revision-Date: 2012-02-20 07:36+0100\n"
 "Last-Translator: R.L. van der Does\n"
 "Language-Team: Andy Blackburn, Rob van der Does\n"
 "Language: Nederlands\n"
@@ -214,12 +214,34 @@ msgid "%d / 100"
 msgstr "%d / 100"
 
 #, python-format
+msgid "%d hour"
+msgid_plural "%d hours"
+msgstr[0] "%d uur"
+msgstr[1] "%d uren"
+
+#, python-format
 msgid "%d jobs are running in the background!"
 msgstr "%d opdrachten draaien op de achtergrond."
 
 #, python-format
 msgid "%d min"
 msgstr "%d min"
+
+#, python-format
+msgid "%d minute"
+msgid_plural "%d minutes"
+msgstr[0] "%d minuut"
+msgstr[1] "%d minuten"
+
+#, python-format
+msgid "%d minutes"
+msgstr "%d minuten"
+
+#, python-format
+msgid "%d second"
+msgid_plural "%d seconds"
+msgstr[0] "%d seconde"
+msgstr[1] "%d seconden"
 
 #, python-format
 msgid "%d services found!"
@@ -296,9 +318,6 @@ msgstr "12V Uitgang"
 msgid "13 V"
 msgstr "13 V"
 
-msgid "15 minutes"
-msgstr "15 minuten"
-
 msgid "16:10"
 msgstr "16:10"
 
@@ -344,9 +363,6 @@ msgstr "3"
 msgid "30 Days"
 msgstr "30 dagen"
 
-msgid "30 minutes"
-msgstr "30 minuten"
-
 msgid "3D Mode"
 msgstr "3D Mode"
 
@@ -374,14 +390,8 @@ msgstr "4X"
 msgid "5"
 msgstr "5"
 
-msgid "5 minutes"
-msgstr "5 minuten"
-
 msgid "6"
 msgstr "6"
-
-msgid "60 minutes"
-msgstr "60 minuten"
 
 msgid "7"
 msgstr "7"
@@ -607,6 +617,9 @@ msgstr "Ttimer voor huidig event toevoegen/verwijderen"
 msgid "Adding schedule..."
 msgstr "Voegt dchema toe..."
 
+msgid "Additional Info"
+msgstr "Aanvullende info"
+
 #
 msgid "Address"
 msgstr "Adres"
@@ -619,9 +632,6 @@ msgstr "Netwerkconfiguratie toevoegen indien ingeschakeld."
 
 msgid "Adds wlan configuration if enabled."
 msgstr "Wlan configuratie toevoegen indien ingeschakeld."
-
-msgid "Addtional Info"
-msgstr "Aanvullende Info"
 
 msgid "Adjust 3D settings"
 msgstr "Adjust 3D settings"
@@ -715,6 +725,9 @@ msgstr "Elke activiteit"
 
 msgid "April"
 msgstr "april"
+
+msgid "Arabic"
+msgstr "Arabisch"
 
 msgid ""
 "Are you sure you want to activate this network configuration?\n"
@@ -917,6 +930,9 @@ msgstr "Bandbreedte"
 msgid "Base Time"
 msgstr "Basis timer"
 
+msgid "Basque"
+msgstr "Baskisch"
+
 msgid "Begin time"
 msgstr "Starttijd"
 
@@ -965,8 +981,17 @@ msgstr "Favorieten lijst"
 msgid "Brightness"
 msgstr "Helderheid"
 
+msgid "Brightness (Normal)"
+msgstr "Helderheid (normaal)"
+
+msgid "Brightness (Standby)"
+msgstr "Helderheid (Standby)"
+
 msgid "Build:"
 msgstr "Build:"
+
+msgid "Bulgarian"
+msgstr "Bulgaars"
 
 msgid "Burn DVD"
 msgstr "Beschrijf DVD"
@@ -1154,9 +1179,6 @@ msgstr "Controleert bestandssysteem..."
 
 msgid "Checking Logs..."
 msgstr "Controleert logs..."
-
-msgid "Checking Time..."
-msgstr "Controleert tijd..."
 
 msgid "Checking for Updates..."
 msgstr "Controleert op updates..."
@@ -1451,6 +1473,9 @@ msgstr "Het aanmaken van de map %s is mislukt."
 msgid "Creating partition failed"
 msgstr "Aanmaken van de partitie is mislukt"
 
+msgid "Croatian"
+msgstr "Croatisch"
+
 msgid "Current CEC address"
 msgstr "Huidig CEC adres"
 
@@ -1505,6 +1530,9 @@ msgstr "Knip"
 msgid "Cutlist editor..."
 msgstr "Cutlist editor..."
 
+msgid "Czech"
+msgstr "Tsjechisch"
+
 msgid "D"
 msgstr "D"
 
@@ -1544,6 +1572,9 @@ msgstr "DVD media gereedschap"
 
 msgid "Daily"
 msgstr "Dagelijks"
+
+msgid "Danish"
+msgstr "Deens"
 
 msgid "Date"
 msgstr "Datum"
@@ -1617,9 +1648,6 @@ msgstr "Diepte"
 
 msgid "Descramble http streams"
 msgstr "Decodeer http streams"
-
-msgid "Descramble recordings"
-msgstr "Decodeer opnames"
 
 msgid "Description"
 msgstr "Beschrijving"
@@ -1780,7 +1808,7 @@ msgstr ""
 "Alle gegevens worden dan verwijderd!"
 
 #, python-format
-msgid "Do you really want to permanently remove '%s' from trash can ?"
+msgid "Do you really want to permamently remove '%s' from trash can ?"
 msgstr "Wilt u '%s' permanent verwijderen uit de prullenbak?"
 
 msgid "Do you really want to permanently remove from trash can ?"
@@ -1923,9 +1951,6 @@ msgstr "Downloaden plugins"
 msgid "Download the firmware (latest)"
 msgstr "Download de laatste firmware"
 
-msgid "Downloadable new plugins"
-msgstr "Beschikbare nieuwe plugins"
-
 msgid "Downloadable plugins"
 msgstr "Beschikbare plugins"
 
@@ -1943,6 +1968,9 @@ msgstr "Aan het downloaden....."
 
 msgid "Drivers:"
 msgstr "Drivers:"
+
+msgid "Dutch"
+msgstr "Nederlands"
 
 msgid "Dynamic contrast"
 msgstr "Dynamisch contrast"
@@ -2116,6 +2144,9 @@ msgstr "Eindtijd"
 msgid "EndTime"
 msgstr "Eindtijd"
 
+msgid "English"
+msgstr "Engels"
+
 msgid ""
 "Enigma2 Skinselector\n"
 "\n"
@@ -2184,6 +2215,9 @@ msgid ""
 msgstr ""
 "Foutr[%d] : %s.\n"
 "Druk op OK om af te sluiten."
+
+msgid "Estonian"
+msgstr "Estisch"
 
 msgid "Ethernet network interface"
 msgstr "Ethernet network interface"
@@ -2402,6 +2436,9 @@ msgstr "Klaar met het configureren van uw netwerk"
 msgid "Finished restarting your network"
 msgstr "Herstarten van uw netwerk is voltooid"
 
+msgid "Finnish"
+msgstr "Fins"
+
 msgid "Firmware"
 msgstr "Firmware"
 
@@ -2452,6 +2489,9 @@ msgstr "Free to Air"
 
 msgid "Free:"
 msgstr "Vrij:"
+
+msgid "French"
+msgstr "Frans"
 
 msgid "Frequency"
 msgstr "Frequentie"
@@ -2517,6 +2557,9 @@ msgstr "Algemene PCM vertraging (ms)"
 
 msgid "Genre"
 msgstr "Genre"
+
+msgid "German"
+msgstr "Duits"
 
 msgid "Get latest experimental image"
 msgstr "Ontvang het laatste experimentele image"
@@ -2593,6 +2636,9 @@ msgstr "Graph MEpg Instellingen"
 msgid "Graphical Multi EPG"
 msgstr "Grafische Multi EPG"
 
+msgid "Greek"
+msgstr "Grieks"
+
 msgid "Green boost"
 msgstr "Groene impuls"
 
@@ -2625,6 +2671,9 @@ msgstr "Harde schijf standby na"
 
 msgid "Hardware:"
 msgstr "Hardware:"
+
+msgid "Hebrew"
+msgstr "Hebreeuws"
 
 msgid "Height"
 msgstr "Hoogte"
@@ -2683,6 +2732,9 @@ msgstr "Hoe om te gaan met gevonden crashlogs?"
 msgid "Hue"
 msgstr "Tint"
 
+msgid "Hungarian"
+msgstr "Hongaars"
+
 msgid "IMDB search for current event"
 msgstr "IMDB zoekslag naar huidig event"
 
@@ -2691,6 +2743,9 @@ msgstr "IMDb Details"
 
 msgid "IMDb Search"
 msgstr "IMDb Zoeken"
+
+msgid "IP Address"
+msgstr "IP-adres"
 
 msgid "IP-Address"
 msgstr "IP-Address"
@@ -2821,9 +2876,6 @@ msgstr "Invoer"
 msgid "Input device setup"
 msgstr "Invoerapparaat instellingen"
 
-msgid "Input devices"
-msgstr "Invoer apparaten"
-
 msgid "Install"
 msgstr "Installeer"
 
@@ -2847,6 +2899,9 @@ msgstr "Installeren of verwijderen voltooid."
 
 msgid "Install picons on"
 msgstr "Installeer picons op"
+
+msgid "Install plugins"
+msgstr "Installeer plugins"
 
 msgid "Install settings, skins, software..."
 msgstr "Installatie instellingen, skins, software..."
@@ -2912,6 +2967,9 @@ msgstr "Ipkg"
 
 msgid "Is this videomode ok?"
 msgstr "Is deze videomode goed?"
+
+msgid "Italian"
+msgstr "Italiaans"
 
 msgid "Items per Page"
 msgstr "Onderdelen per pagina"
@@ -3034,6 +3092,9 @@ msgstr "Laatst gebruikte share: "
 msgid "Latitude"
 msgstr "Breedtegraad"
 
+msgid "Latvian"
+msgstr "Lets"
+
 msgid "Leave DVD Player?"
 msgstr "DVD-speler afsluiten?"
 
@@ -3043,6 +3104,9 @@ msgstr "Links"
 #. TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
 msgid "Letterbox"
 msgstr "Letterbox"
+
+msgid "Letzeburgesch"
+msgstr "Lets"
 
 msgid "Limit Debug log size (MB)"
 msgstr "Begrens Debug logs op (MB)"
@@ -3085,9 +3149,15 @@ msgstr ""
 "Lijst van gevonden transponders (%d)\n"
 "\n"
 
+msgid "List type"
+msgstr "Type lijst"
+
 #, python-format
 msgid "List version %d, found %d channels"
 msgstr "Toon verise%d, gevonden %d kanalen"
+
+msgid "Lithuanian"
+msgstr "Litouws"
 
 msgid "Load"
 msgstr "Laden"
@@ -3272,9 +3342,6 @@ msgstr "Maximale grootte (MB):"
 msgid "May"
 msgstr "mei"
 
-msgid "Media playback Remaining/Elapsed as"
-msgstr "Media afspelen Resterende/Verstreken als"
-
 msgid "Media player"
 msgstr "Mediaspeler"
 
@@ -3404,9 +3471,6 @@ msgstr "Multi EPG"
 msgid "Multi EPG..."
 msgstr "Multi EPG..."
 
-msgid "Multi-EPG bouquet selection"
-msgstr "Multi-EPG Favorieten selectie"
-
 msgid "Multimedia"
 msgstr "Multimedia"
 
@@ -3445,9 +3509,6 @@ msgstr "NU"
 
 msgid "NTP"
 msgstr "NTP"
-
-msgid "NTPSync"
-msgstr "NTPSync"
 
 msgid "NTSC"
 msgstr "NTSC"
@@ -3542,6 +3603,9 @@ msgstr "Geen (ondersteunde) DVDROM gevonden!"
 
 msgid "No Connection"
 msgstr "Geen verbinding"
+
+msgid "No Delay"
+msgstr "Geen vertraging"
 
 msgid "No HDD found or HDD not initialized!"
 msgstr "Geen harde schijf gevonden of de harde schijf is niet geformatteerd!"
@@ -3728,6 +3792,9 @@ msgstr "Nonlineair"
 msgid "North"
 msgstr "Noord"
 
+msgid "Norwegian"
+msgstr "Noors"
+
 #, python-format
 msgid "Not enough diskspace. Please free up some diskspace and try again. (%d MB required, %d MB available)"
 msgstr "Onvoldoende schijfruimte. Maak ruimte vrij en probeer het opnieuw (%d MB benodigd, %d MB beschikbaar)"
@@ -3821,6 +3888,9 @@ msgstr "oktober"
 msgid "Off"
 msgstr "Uit"
 
+msgid "Offline decode delay (ms)"
+msgstr "Offline decodeer vertraging (ms)"
+
 msgid "Ok"
 msgstr "Ok"
 
@@ -3868,6 +3938,9 @@ msgstr "Orbit positie"
 
 msgid "Orbital position"
 msgstr "Orbitale positie"
+
+msgid "Original"
+msgstr "Origineel"
 
 msgid "Oscam Info - Configuration"
 msgstr "Oscam Info - Configuratie"
@@ -3987,6 +4060,9 @@ msgstr "Alle bestanden in de prullenbak nu permanent verwijderen?"
 
 msgid "Permanently remove all deleted items"
 msgstr "Prullenbak leegmaken"
+
+msgid "Persian"
+msgstr "Perzisch"
 
 msgid "Phone number"
 msgstr "Telefoonnummer"
@@ -4297,6 +4373,9 @@ msgstr "Polarisatie"
 msgid "Polarization"
 msgstr "Polarisatie"
 
+msgid "Polish"
+msgstr "Pools"
+
 msgid "Port"
 msgstr "Port"
 
@@ -4314,6 +4393,9 @@ msgstr "Poort D"
 
 msgid "Port:"
 msgstr "Poort:"
+
+msgid "Portuguese"
+msgstr "Portugees"
 
 msgid "Position of finished Timers in Timerlist"
 msgstr "Plaats van de afgewerkte timers in de lijst"
@@ -4547,9 +4629,6 @@ msgstr "Ontvangstinstellingen"
 msgid "Record"
 msgstr "Opname"
 
-msgid "Record ECM"
-msgstr "Neem ECM op"
-
 msgid "Record started! Stopping timeshift now ..."
 msgstr "Opname begonnen! Timeshift stopt nu....."
 
@@ -4568,6 +4647,9 @@ msgstr "Recording data sync grootte"
 
 msgid "Recording in progress"
 msgstr "Opname is bezig"
+
+msgid "Recording type"
+msgstr "Type opname"
 
 msgid "Recording(s) are in progress or coming up in few seconds!"
 msgstr "Een opname is bezig of zal elk moment aanvangen in een paar seconden!"
@@ -4812,6 +4894,9 @@ msgstr "Roll-off"
 msgid "Rolloff"
 msgstr "Rolloff"
 
+msgid "Romanian"
+msgstr "Roemeens"
+
 msgid "Root directory"
 msgstr "Root "
 
@@ -4823,6 +4908,9 @@ msgstr "Ronde starttijd om"
 
 msgid "Running"
 msgstr "Actief"
+
+msgid "Russian"
+msgstr "Russisch"
 
 msgid "S-Video"
 msgstr "S-Video"
@@ -5149,6 +5237,9 @@ msgstr "september"
 msgid "Sequence repeat"
 msgstr "Herhaal sequence"
 
+msgid "Serbian"
+msgstr "Servisch"
+
 msgid "Serial No"
 msgstr "Serie nummer"
 
@@ -5332,6 +5423,9 @@ msgstr "Info weergeven"
 msgid "Show Log"
 msgstr "Toon log"
 
+msgid "Show Media playback Remaining/Elapsed as"
+msgstr "Toon resterende/verstreken media afspeeltijd als"
+
 msgid "Show Message when Recording starts"
 msgstr "Toon bericht wanneer opname begint"
 
@@ -5362,8 +5456,14 @@ msgstr "Toon zender namen"
 msgid "Show Single EPG"
 msgstr "Toon Single EPG"
 
+msgid "Show Time Remaining/Elapsed"
+msgstr "Toon resterende/verstreken tijd"
+
 msgid "Show Timer List"
 msgstr "Toon timers"
+
+msgid "Show Transponder Remaining/Elapsed as"
+msgstr "Toon resterende/verstreken tijd als"
 
 msgid "Show WLAN Status"
 msgstr "WLAN status weergeven"
@@ -5514,6 +5614,12 @@ msgstr "Diavoorstelling interval (sec.)"
 msgid "Slot %d"
 msgstr "Slot %d"
 
+msgid "Slovak"
+msgstr "Slowaaks"
+
+msgid "Slovenian"
+msgstr "Sloveens"
+
 msgid "Slow"
 msgstr "Langzaam"
 
@@ -5612,6 +5718,9 @@ msgstr "Zuid"
 msgid "Space used:"
 msgstr "Gebruikte ruimte:"
 
+msgid "Spanish"
+msgstr "Spaans"
+
 msgid "Split preview mode"
 msgstr "Split preview-modus"
 
@@ -5639,6 +5748,9 @@ msgstr "Start"
 
 msgid "Start from the beginning"
 msgstr "Start vanaf het begin"
+
+msgid "Start offline decode"
+msgstr "Start offline decoderen"
 
 msgid "Start recording?"
 msgstr "Start opname?"
@@ -5768,6 +5880,9 @@ msgstr "Verwissel SNR in db met SNR in percentage op OSD"
 
 msgid "Swap Services"
 msgstr "Zenders omwisselen"
+
+msgid "Swedish"
+msgstr "Zweeds"
 
 msgid "Switch TV to correct input"
 msgstr "Schakel TV naar juiste ingang"
@@ -6057,7 +6172,7 @@ msgid "The sleep timer has been disabled."
 msgstr "De slaaptimer is uitgeschakeld."
 
 msgid "The status of the current beta image could not be checked because www.openpli.org could not be reached for some reason"
-msgstr ""
+msgstr "The status of the current beta image could not be checked because www.openpli.org could not be reached for some reason"
 
 msgid "The timer file (timers.xml) is corrupt and could not be loaded."
 msgstr "Het timer bestand (timer.xml) is beschadigd en kan niet worden geladen."
@@ -6232,9 +6347,6 @@ msgstr "TiVo support"
 msgid "Time"
 msgstr "Tijd"
 
-msgid "Time Remaining/Elapsed"
-msgstr "Resterende/Verstreken tijd"
-
 msgid "Time Scale"
 msgstr "Tijdschaal"
 
@@ -6407,9 +6519,6 @@ msgstr "Transmissie modus"
 msgid "Transponder"
 msgstr "Transponder"
 
-msgid "Transponder Remaining/Elapsed as"
-msgstr "Transponder Resterende/Verstreken als"
-
 msgid "Transponder Type"
 msgstr "Transponder type"
 
@@ -6466,6 +6575,9 @@ msgstr "Tuner"
 msgid "Tuner type"
 msgstr "Tuner type"
 
+msgid "Turkish"
+msgstr "Turks"
+
 msgid "Two"
 msgstr "Twee"
 
@@ -6501,6 +6613,9 @@ msgstr "Upgrade zonder statusmeldingen en vervolgens systeem herstarten"
 
 msgid "Uncommitted DiSEqC command"
 msgstr "Uncommitted DiSEqC commando"
+
+msgid "Undetermined"
+msgstr "onbepaald"
 
 msgid "Undo install"
 msgstr "Installatie ongedaan maken"
@@ -7512,6 +7627,9 @@ msgstr "kaartlezer"
 msgid "cat /proc/bus/input/devices"
 msgstr "cat /proc/bus/input/devices"
 
+msgid "center"
+msgstr "midden"
+
 msgid "change recording (duration)"
 msgstr "Wijzig opnameduur"
 
@@ -7594,6 +7712,9 @@ msgstr "Opgeslagen afspeellijst wissen"
 msgid "delete..."
 msgstr "Wissen..."
 
+msgid "descramble and record ecm"
+msgstr "decodeer en neem ecm op"
+
 msgid "disable"
 msgstr "deactiveren"
 
@@ -7611,6 +7732,9 @@ msgstr "niet schakelen"
 
 msgid "do nothing"
 msgstr "Geen actie"
+
+msgid "don't descramble, record ecm"
+msgstr "niet decoderen, neem ecm op"
 
 msgid "don't record"
 msgstr "Niet opnemen"
@@ -7690,6 +7814,9 @@ msgstr "verlaat netwerkadapter instellingen menu"
 msgid "failed"
 msgstr "mislukt"
 
+msgid "false"
+msgstr "niet waar"
+
 msgid "file oscam.conf could not be found"
 msgstr "bestand oscam.conf niet gevonden"
 
@@ -7752,12 +7879,6 @@ msgstr "hops:"
 
 msgid "horizontal"
 msgstr "horizontaal"
-
-msgid "hour"
-msgstr "uur"
-
-msgid "hours"
-msgstr "uren"
 
 msgid "immediate shutdown"
 msgstr "Onmiddellijk uitschakelen"
@@ -7909,6 +8030,9 @@ msgstr "niet doorzichtig"
 
 msgid "none"
 msgstr "geen"
+
+msgid "normal"
+msgstr "normaal"
 
 #
 msgid "not configured"
@@ -8097,9 +8221,6 @@ msgstr "Bezig met zoeken - %d%% voltooid."
 
 msgid "scan state"
 msgstr "status"
-
-msgid "second"
-msgstr "seconde"
 
 msgid "second cable of motorized LNB"
 msgstr "2e kabel van gemotoriseerde LNB"
@@ -8328,6 +8449,9 @@ msgstr "Tijd, hoofdstuk, audio en ondertitels instellen"
 
 msgid "top"
 msgstr "bovenaan"
+
+msgid "true"
+msgstr "waar"
 
 msgid "tuner is not supported"
 msgstr "tuner wordt niet ondersteund"
