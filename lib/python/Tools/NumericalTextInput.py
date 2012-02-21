@@ -16,8 +16,8 @@ MAP_SEARCH = (
 	u"wxyz9",
 	)
 MAP_DEFAULT = (
-	u"0,?!&@=*'+\"()$~",
-	u" 1.:/-_",
+	u"0,?!&@=*'+\"()$~%",
+	u" 1.:;/-_",
 	u"abc2ABC",
 	u"def3DEF",
 	u"ghi4GHI",
@@ -28,8 +28,8 @@ MAP_DEFAULT = (
 	u"wxyz9WXYZ",
 	)
 MAP_DE = (
-	u"0,?!&@=*'+\"()$~",
-	u" 1.:/-_",
+	u"0,?!&@=*'+\"()$~%",
+	u" 1.:;/-_",
 	u"abcä2ABCÄ",
 	u"def3DEF",
 	u"ghi4GHI",
@@ -40,8 +40,8 @@ MAP_DE = (
 	u"wxyz9WXYZ",
 	)
 MAP_ES = (
-	u"0,?!&@=*'+\"()$~",
-	u" 1.:/-_",
+	u"0,?!&@=*'+\"()$~%",
+	u" 1.:;/-_",
 	u"abcáà2ABCÁÀ",
 	u"deéèf3DEFÉÈ",
 	u"ghiíì4GHIÍÌ",
@@ -52,8 +52,8 @@ MAP_ES = (
 	u"wxyz9WXYZ",
 	)
 MAP_SE = (
-	u"0,?!&@=*'+\"()$~",
-	u" 1.:/-_",
+	u"0,?!&@=*'+\"()$~%",
+	u" 1.:;/-_",
 	u"abcåä2ABCÅÄ",
 	u"defé3DEFÉ",
 	u"ghi4GHI",
@@ -64,8 +64,8 @@ MAP_SE = (
 	u"wxyz9WXYZ",
 	)
 MAP_CZ = (
-	u"0,?'+\"()@$!=&*",
-	u" 1.:/-_",
+	u"0,?'+\"()@$!=&*%",
+	u" 1.:;/-_",
 	u"abc2áäčABCÁÄČ",
 	u"def3ďéěDEFĎÉĚ",
 	u"ghi4íGHIÍ",
