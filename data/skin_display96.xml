@@ -26,7 +26,7 @@
 		<widget source="session.Event_Now" render="Label" position="70,15" size="24,10" font="FdLcD;10" halign="right" noWrap="1" foregroundColor="lightyellow">
 			<convert type="EventTime">Remaining</convert>
 			<convert type="RemainingToText">NoSeconds</convert>
-		</widget>
+		</widget> 
 		<widget source="session.RecordState" render="FixedLabel" text="Rec" position="70,41" size="24,12" font="FdLcD;12" zPosition="1" noWrap="1" backgroundColor="fullred" foregroundColor="black" halign="center" valign="center">
 			<convert type="ConditionalShowHide"></convert>
 		</widget>
@@ -34,10 +34,10 @@
 			<convert type="EventTime">Progress</convert>
 		</widget>
 -->
-		<widget source="session.CurrentService" render="Label" position="0,0" size="96,21" font="FdLcD;20" halign="left" noWrap="1">
+		<widget source="session.CurrentService" render="Label" position="0,0" size="96,21" font="FdLcD;16" halign="left" noWrap="1">
 			<convert type="ServiceName">Name</convert>
 		</widget>
-		<widget source="session.Event_Now" render="Label" position="0,21" size="96,14" font="FdLcD;14" halign="left" noWrap="1" foregroundColor="lightyellow">
+		<widget source="session.Event_Now" render="Label" position="0,21" size="96,14" font="FdLcD;13" halign="left" noWrap="1" foregroundColor="lightyellow">
 			<convert type="EventName">Name</convert>
 		</widget>
 		<widget source="session.Event_Now" render="Progress" position="0,36" size="96,4" borderWidth="1">
@@ -50,23 +50,23 @@
 			<convert type="EventTime">Remaining</convert>
 			<convert type="RemainingToText">NoSeconds</convert>
 		</widget>
-		<widget source="global.CurrentTime" render="Label" position="40,40" size="56,24" font="FdLcD;24" halign="right" valign="top" noWrap="1">
+		<widget source="global.CurrentTime" render="Label" position="40,40" size="56,24" font="FdLcD;20" halign="right" valign="top" noWrap="1">
 			<convert type="ClockToText"></convert>
 		</widget>
 	</screen>
  
 <!-- channelselection-->
 	<screen name="ChannelSelection_summary" position="0,0" size="96,64">
-		<widget source="parent.ServiceEvent" render="Label" position="0,0" size="96,21" font="FdLcD;20" halign="left" noWrap="1" >
+		<widget source="parent.ServiceEvent" render="Label" position="0,0" size="96,21" font="FdLcD;16" halign="left" noWrap="1" >
 			<convert type="ServiceName">Name</convert>
 		</widget>
-		<widget source="parent.ServiceEvent" render="Label" position="0,21" size="96,14" font="FdLcD;14" halign="left" noWrap="1" foregroundColor="lightyellow">
+		<widget source="parent.ServiceEvent" render="Label" position="0,21" size="96,14" font="FdLcD;13" halign="left" noWrap="1" foregroundColor="lightyellow">
 			<convert type="EventName">Name</convert>
 		</widget>
 		<widget source="parent.ServiceEvent" render="Progress" position="0,36" size="96,4" borderWidth="1">
 			<convert type="EventTime">Progress</convert>
 		</widget>
-		<widget source="global.CurrentTime" render="Label" position="40,40" size="56,24" font="FdLcD;24" halign="right" valign="top" noWrap="1">
+		<widget source="global.CurrentTime" render="Label" position="40,40" size="56,24" font="FdLcD;20" halign="right" valign="top" noWrap="1">
 			<convert type="ClockToText"></convert>
 		</widget>
 		<widget source="session.RecordState" render="FixedLabel" text="Rec" position="0,52" size="24,12" font="FdLcD;12" zPosition="1" noWrap="1" foregroundColor="fullred">
@@ -77,7 +77,7 @@
 <!-- menus-->
 	<screen name="MenuSummary" position="0,0" size="96,64">
 		<widget source="parent.title" render="Label" position="0,0" size="96,16" font="FdLcD;14" halign="center" valign="top" noWrap="1"  foregroundColor="lightyellow" />
-		<widget source="parent.menu" render="Label" position="0,16" size="96,48" font="FdLcD;16" halign="left" valign="top">
+		<widget source="parent.menu" render="Label" position="0,16" size="96,48" font="FdLcD;14" halign="center" valign="top">
 			<convert type="StringListSelection" />
 		</widget>
 	</screen>

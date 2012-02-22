@@ -94,8 +94,12 @@ else:
 		addSkin('skin_display_no_picon.xml')
 
 if addSkin('skin_display96.xml'):
-	# Color OLED
+	# Color OLED DM800 / DM800SE
 	display_skin_id = 2
+	
+if addSkin('skin_display128.xml'):
+	# Color OLED DM7020HD / DM8000
+	display_skin_id = 2	
 
 # Add Skin for Display
 try:
