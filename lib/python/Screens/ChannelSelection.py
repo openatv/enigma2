@@ -807,6 +807,7 @@ class ChannelSelectionBase(Screen):
 				"9": self.keyNumberGlobal,
 				"0": self.keyNumber0
 			})
+		self.setTitle(_("Channel Selection"))
 		self.recallBouquetMode()
 
 	def getBouquetNumOffset(self, bouquet):
@@ -898,6 +899,8 @@ class ChannelSelectionBase(Screen):
 
 	def getServiceName(self, ref):
 		str = self.removeModeStr(ServiceReference(ref).getServiceName())
+		if 'User - bouquets' in str:
+			return _("User - bouquets")
 		if not str:
 			pathstr = ref.getPath()
 			if 'FROM PROVIDERS' in pathstr:
@@ -923,7 +926,7 @@ class ChannelSelectionBase(Screen):
 				else:
 					end_ref = None
 				nameStr = self.getServiceName(base_ref)
-				titleStr += ' ' + nameStr
+				titleStr += ' - ' + nameStr
 				if end_ref is not None:
 					if Len > 2:
 						titleStr += '/../'
