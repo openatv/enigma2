@@ -47,6 +47,7 @@
 		<widget source="session.CurrentService" render="Pixmap" pixmap="lcd/hd.png" position="215,0" size="21,12">
 			<convert type="ServiceInfo">VideoWidth</convert>
 			<convert type="ValueRange">721,1980</convert>
+			<convert type="ConditionalShowHide" />
 		</widget>
 		<widget source="session.CurrentService" render="Pixmap" pixmap="lcd/dolby.png" position="239,0" size="16,12">
 			<convert type="ServiceInfo">IsMultichannel</convert>
