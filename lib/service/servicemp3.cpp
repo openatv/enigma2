@@ -1394,22 +1394,26 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 		}
 		case GST_MESSAGE_ELEMENT:
 		{
-			if (const GstStructure *msgstruct = gst_message_get_structure(msg))
+			const GstStructure *msgstruct = gst_message_get_structure(msg);
+			if (msgstruct)
 			{
 				if ( gst_is_missing_plugin_message(msg) )
 				{
-					GstCaps *caps;
-					gst_structure_get (msgstruct, "detail", GST_TYPE_CAPS, &caps, NULL); 
-					std::string codec = (const char*) gst_caps_to_string(caps);
-					gchar *description = gst_missing_plugin_message_get_description(msg);
-					if ( description )
+					GstCaps *caps = NULL;
+					gst_structure_get (msgstruct, "detail", GST_TYPE_CAPS, &caps, NULL);
+					if (caps)
 					{
-						eDebug("eServiceMP3::m_errorInfo.missing_codec = %s", codec.c_str());
-						m_errorInfo.error_message = "GStreamer plugin " + (std::string)description + " not available!\n";
-						m_errorInfo.missing_codec = codec.substr(0,(codec.find_first_of(',')));
-						g_free(description);
+						std::string codec = (const char*) gst_caps_to_string(caps);
+						gchar *description = gst_missing_plugin_message_get_description(msg);
+						if ( description )
+						{
+							eDebug("eServiceMP3::m_errorInfo.missing_codec = %s", codec.c_str());
+							m_errorInfo.error_message = "GStreamer plugin " + (std::string)description + " not available!\n";
+							m_errorInfo.missing_codec = codec.substr(0,(codec.find_first_of(',')));
+							g_free(description);
+						}
+						gst_caps_unref(caps);
 					}
-					gst_caps_unref(caps);
 				}
 				else
 				{
@@ -1611,16 +1615,15 @@ void eServiceMP3::gstTextpadHasCAPS(GstPad *pad, GParamSpec * unused, gpointer u
 
 void eServiceMP3::gstTextpadHasCAPS_synced(GstPad *pad)
 {
-	GstCaps *caps;
+	GstCaps *caps = NULL;
 
 	g_object_get (G_OBJECT (pad), "caps", &caps, NULL);
-
-	eDebug("gstTextpadHasCAPS:: signal::caps = %s", gst_caps_to_string(caps));
 
 	if (caps)
 	{
 		subtitleStream subs;
 
+		eDebug("gstTextpadHasCAPS:: signal::caps = %s", gst_caps_to_string(caps));
 //		eDebug("gstGhostpadHasCAPS_synced %p %d", pad, m_subtitleStreams.size());
 
 		if (m_currentSubtitleStream >= 0 && m_currentSubtitleStream < m_subtitleStreams.size())
