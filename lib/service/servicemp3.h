@@ -195,6 +195,7 @@ private:
 	friend class eServiceFactoryMP3;
 	eServiceReference m_ref;
 	int m_buffer_size;
+	gint64 m_buffer_duration;
 	bufferInfo m_bufferInfo;
 	errorInfo m_errorInfo;
 	eServiceMP3(eServiceReference ref);
