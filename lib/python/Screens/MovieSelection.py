@@ -634,7 +634,10 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			self["list"].instance.resize(eSize(self.listWidth, self.listHeight))
 
 	def can_delete(self, item):
-		return canDelete(item) or isTrashFolder(item[0])
+		try:
+			return canDelete(item) or isTrashFolder(item[0])
+		except:
+			pass	
 	def can_move(self, item):
 		return canMove(item)
 	def can_default(self, item):
