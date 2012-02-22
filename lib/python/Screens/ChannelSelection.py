@@ -1710,9 +1710,12 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 				self.setCurrentSelection(self.session.pip.getCurrentService())
 			else:
 				self.restoreRoot()
-				lastservice=eServiceReference(self.lastservice.value)
-				if lastservice.valid() and self.getCurrentSelection() != lastservice:
-					self.setCurrentSelection(lastservice)
+				try:
+					lastservice=eServiceReference(self.lastservice.value)
+					if lastservice.valid() and self.getCurrentSelection() != lastservice:
+						self.setCurrentSelection(lastservice)
+				except:
+					pass	
 		elif self.revertMode == MODE_TV:
 			self.setModeTv()
 		elif self.revertMode == MODE_RADIO:

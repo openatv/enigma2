@@ -1618,17 +1618,18 @@ class InfoBarSeek:
 		else:
 			self.activityTimer.stop()
 			self.activity = 0
-			hdd = 0	
-			if os_path.exists("/proc/stb/lcd/symbol_hdd"):
-				if config.lcd.hdd.value == "1":
-					file = open("/proc/stb/lcd/symbol_hdd", "w")
-					file.write('%d' % int(hdd))
-					file.close()
-			if os_path.exists("/proc/stb/lcd/symbol_hddprogress"):
-				if config.lcd.hdd.value == "1":
-					file = open("/proc/stb/lcd/symbol_hddprogress", "w")
-					file.write('%d' % int(self.activity))
-					file.close()
+			hdd = 0
+			if SystemInfo["FrontpanelDisplay"]:
+				if os_path.exists("/proc/stb/lcd/symbol_hdd"):
+					if config.lcd.hdd.value == "1":
+						file = open("/proc/stb/lcd/symbol_hdd", "w")
+						file.write('%d' % int(hdd))
+						file.close()
+				if os_path.exists("/proc/stb/lcd/symbol_hddprogress"):
+					if config.lcd.hdd.value == "1":
+						file = open("/proc/stb/lcd/symbol_hddprogress", "w")
+						file.write('%d' % int(self.activity))
+						file.close()
 
 	def __serviceStarted(self):
 		self.fast_winding_hint_message_showed = False
@@ -1824,7 +1825,7 @@ class InfoBarSeek:
 	def checkSkipShowHideLock(self):
 		if self.seekstate == self.SEEK_STATE_PLAY or self.seekstate == self.SEEK_STATE_EOF:
 			self.lockedBecauseOfSkipping = False
- 			self.unlockShow()
+			self.unlockShow()
 		else:
 			wantlock = self.seekstate != self.SEEK_STATE_PLAY
 			if config.usage.show_infobar_on_skip.value:
@@ -2033,7 +2034,8 @@ class InfoBarTimeshift:
 			}, prio=1)
 		self["TimeshiftActivateActions"] = ActionMap(["InfobarTimeshiftActivateActions"],
 			{
-				"timeshiftActivateEnd": self.selectRedkeyTimeshiftEnd, # something like "rewind key"
+				"timeshiftActivateEndR": self.selectRedkeyTimeshiftEnd, # something like "rewind key"
+				"timeshiftActivateEnd": self.activateTimeshiftEnd, # something like "rewind key"
 				"timeshiftActivateEndAndPause": self.activateTimeshiftEndAndPause,  # something like "pause key"
 				"timeshiftActivateEndAndPauseY": self.selectYellowkeyTimeshiftEndAndPause  # something like "pause key"
 			}, prio=-1) # priority over record
@@ -4626,8 +4628,8 @@ class InfoBarMoviePlayerSummary(Screen):
 		Screen.__init__(self, session, parent = parent)
 		self["state_summary"] = StaticText("")
 		self["speed_summary"] = StaticText("")
- 		self["statusicon_summary"] = MultiPixmap()
- 		self["statusicon_summary"].setPixmapNum(0)
+		self["statusicon_summary"] = MultiPixmap()
+		self["statusicon_summary"].setPixmapNum(0)
 		self.onShow.append(self.addWatcher)
 		self.onHide.append(self.removeWatcher)
 
@@ -4640,7 +4642,7 @@ class InfoBarMoviePlayerSummary(Screen):
 	def selectionChanged(self, state_summary, speed_summary, statusicon_summary):
 		self["state_summary"].setText(state_summary)
 		self["speed_summary"].setText(speed_summary)
- 		self["statusicon_summary"].setPixmapNum(int(statusicon_summary))
+		self["statusicon_summary"].setPixmapNum(int(statusicon_summary))
 
 class InfoBarMoviePlayerSummarySupport:
 	def __init__(self):

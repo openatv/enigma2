@@ -377,7 +377,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			Notifications.AddNotification(Screens.Standby.TryQuitMainloop, 1)
 
 	def getNextActivation(self):
-		if self.state == self.StateEnded:
+		if self.state == self.StateEnded or self.state == self.StateFailed:
 			return self.end
 		
 		next_state = self.state + 1
