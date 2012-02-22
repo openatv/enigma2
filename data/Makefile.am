@@ -24,8 +24,11 @@ dist_pkgdata_DATA = \
 if HAVE_TEXTLCD
 dist_pkgdata_DATA += skin_text.xml skin_text_clock.xml
 else
-if HAVE_COLORLCD
+if HAVE_DISPLAY96
 dist_pkgdata_DATA += skin_display96.xml
+else
+if HAVE_DISPLAY128
+dist_pkgdata_DATA += skin_display128.xml
 else
 SUBDIRS += lcd
 dist_pkgdata_DATA += skin_display_picon.xml skin_display_no_picon.xml
