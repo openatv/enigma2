@@ -1476,7 +1476,6 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 						g_object_set (G_OBJECT (owner), "timeout", HTTP_TIMEOUT, NULL);
 						eDebug("eServiceMP3::GST_STREAM_STATUS_TYPE_CREATE -> setting timeout on %s to %is", name, HTTP_TIMEOUT);
 					}
-					
 				}
 				if ( GST_IS_PAD(source) )
 					gst_object_unref(owner);
@@ -1513,10 +1512,13 @@ GstBusSyncReply eServiceMP3::gstBusSyncHandler(GstBus *bus, GstMessage *message,
 void eServiceMP3::gstHTTPSourceSetAgent(GObject *object, GParamSpec *unused, gpointer user_data)
 {
 	eServiceMP3 *_this = (eServiceMP3*)user_data;
-	GstElement *source;
+	GstElement *source = NULL;
 	g_object_get(_this->m_gst_playbin, "source", &source, NULL);
-	g_object_set (G_OBJECT (source), "user-agent", _this->m_useragent.c_str(), NULL);
-	gst_object_unref(source);
+	if (source)
+	{
+		g_object_set (G_OBJECT (source), "user-agent", _this->m_useragent.c_str(), NULL);
+		gst_object_unref(source);
+	}
 }
 
 audiotype_t eServiceMP3::gstCheckAudioPad(GstStructure* structure)
