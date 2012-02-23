@@ -685,7 +685,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		# ouch. this should redraw our "Please wait..."-text.
 		# this is of course not the right way to do this.
 			self.delayTimer.start(10, 1)
-			self.inited=True
+			self.inited = True
 
 	def saveListsize(self):
 			listsize = self["list"].instance.size()
@@ -696,7 +696,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 	def updateHDDData(self):
 		self.delayTimer = None
  		self.reloadList(self.selectedmovie, home=True)
-		self["waitingtext"].visible = False
 
 	def moveTo(self):
 		self["list"].moveTo(self.selectedmovie)
@@ -982,6 +981,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.current_ref.setName('8192:jpg 8192:png 8192:gif 8192:bmp')
 
 	def reloadList(self, sel = None, home = False):
+		self["waitingtext"].visible = True
 		if not os.path.isdir(config.movielist.last_videodir.value):
 			path = defaultMoviePath()
 			config.movielist.last_videodir.value = path
@@ -1004,6 +1004,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			if home:
 				self["list"].moveToFirstMovie()
 		self["freeDiskSpace"].update()
+		self["waitingtext"].visible = False
 
 	def doPathSelect(self):
 		self.session.openWithCallback(
