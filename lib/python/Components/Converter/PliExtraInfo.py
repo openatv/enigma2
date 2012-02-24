@@ -24,6 +24,7 @@ class PliExtraInfo(Poll, Converter, object):
 			( "0xd00",  "0xdff", "CryptoW", "Cw"),
 			("0x1700", "0x17ff", "Beta",    "B" ),
 			("0x1800", "0x18ff", "Nagra",   "N" ),
+			("0x2600", "0x2600", "Biss",    "Bi"),
 			("0x4ae0", "0x4ae1", "Dre",     "D" )
 		)
 		self.ecmdata = GetEcmInfo()
@@ -167,6 +168,9 @@ class PliExtraInfo(Poll, Converter, object):
 		elif self.type == "CryptoCaidNagraAvailable":
 			request_caid = "N"
 			request_selected = False
+		elif self.type == "CryptoCaidBissAvailable":
+			request_caid = "Bi"
+			request_selected = False
 		elif self.type == "CryptoCaidDreAvailable":
 			request_caid = "D"
 			request_selected = False
@@ -193,6 +197,9 @@ class PliExtraInfo(Poll, Converter, object):
 			request_selected = True
 		elif self.type == "CryptoCaidNagraSelected":
 			request_caid = "N"
+			request_selected = True
+		elif self.type == "CryptoCaidBissSelected":
+			request_caid = "Bi"
 			request_selected = True
 		elif self.type == "CryptoCaidDreSelected":
 			request_caid = "D"
