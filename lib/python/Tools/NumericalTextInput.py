@@ -2,13 +2,118 @@
 from enigma import eTimer
 from Components.Language import language
 
+# Dict languageCode -> array of strings
+MAP_SEARCH = (
+	u"%_0", # 0
+	u" 1",
+	u"abc2",
+	u"def3",
+	u"ghi4",
+	u"jkl5",
+	u"mno6",
+	u"pqrs7",
+	u"tuv8",
+	u"wxyz9",
+	)
+MAP_DEFAULT = (
+	u"0,?!&@=*'+\"()$~%",
+	u" 1.:;/-_",
+	u"abc2ABC",
+	u"def3DEF",
+	u"ghi4GHI",
+	u"jkl5JKL",
+	u"mno6MNO",
+	u"pqrs7PQRS",
+	u"tuv8TUV",
+	u"wxyz9WXYZ",
+	)
+MAP_DE = (
+	u"0,?!&@=*'+\"()$~%",
+	u" 1.:;/-_",
+	u"abcä2ABCÄ",
+	u"def3DEF",
+	u"ghi4GHI",
+	u"jkl5JKL",
+	u"mnoö6MNOÖ",
+	u"pqrsß7PQRSß",
+	u"tuvü8TUVÜ",
+	u"wxyz9WXYZ",
+	)
+MAP_ES = (
+	u"0,?!&@=*'+\"()$~%",
+	u" 1.:;/-_",
+	u"abcáà2ABCÁÀ",
+	u"deéèf3DEFÉÈ",
+	u"ghiíì4GHIÍÌ",
+	u"jkl5JKL",
+	u"mnñoóò6MNÑOÓÒ",
+	u"pqrs7PQRS",
+	u"tuvúù8TUVÚÙ",
+	u"wxyz9WXYZ",
+	)
+MAP_SE = (
+	u"0,?!&@=*'+\"()$~%",
+	u" 1.:;/-_",
+	u"abcåä2ABCÅÄ",
+	u"defé3DEFÉ",
+	u"ghi4GHI",
+	u"jkl5JKL",
+	u"mnoö6MNOÖ",
+	u"pqrs7PQRS",
+	u"tuv8TUV",
+	u"wxyz9WXYZ",
+	)
+MAP_CZ = (
+	u"0,?'+\"()@$!=&*%",
+	u" 1.:;/-_",
+	u"abc2áäčABCÁÄČ",
+	u"def3ďéěDEFĎÉĚ",
+	u"ghi4íGHIÍ",
+	u"jkl5ľĺJKLĽĹ",
+	u"mno6ňóöôMNOŇÓÖÔ",
+	u"pqrs7řŕšPQRSŘŔŠ",
+	u"tuv8ťúůüTUVŤÚŮÜ",
+	u"wxyz9ýžWXYZÝŽ",
+	)
+MAP_PL = (
+	u"0,?'+\"()@$!=&*%",
+	u" 1.:;/-_",
+	u"abcąć2ABCĄĆ",
+	u"defę3DEFĘ",
+	u"ghi4GHI",
+	u"jklł5JKLŁ",
+	u"mnońó6MNOŃÓ",
+	u"pqrsś7PQRSŚ",
+	u"tuv8TUV",
+	u"wxyzźż9WXYZŹŻ",
+	)
+MAP_RU = (
+	u"0,?'+\"()@$!=&*%",
+	u" 1.:;/-_",
+	u"abcабвг2ABCАБВГ",
+	u"defдежз3DEFДЕЖЗ",
+	u"ghiийкл4GHIИЙКЛ",
+	u"jklмноп5JKLМНОП",
+	u"mnoрсту6MNOРСТУ",
+	u"pqrsфхцч7PQRSФХЦЧ",
+	u"tuvшщь8TUVШЩЬ",
+	u"wxyzъэюя9WXYZЪЭЮЯ",
+	)
+MAPPINGS = {
+	'de_DE': MAP_DE,
+	'es_ES': MAP_ES,
+	'sv_SE': MAP_SE,
+	'fi_FI': MAP_SE,
+	'cs_CZ': MAP_CZ,
+	'sk_SK': MAP_CZ,
+	'pl_PL': MAP_PL,
+	'ru_RU': MAP_RU,
+	}
+
 class NumericalTextInput:
-	def __init__(self, nextFunc=None, handleTimeout = True, search = False):
-		self.mapping = []
-		self.lang = language.getLanguage()
+	def __init__(self, nextFunc=None, handleTimeout = True, search = False, mapping = None):
 		self.useableChars=None
 		self.nextFunction=nextFunc
-
 		if handleTimeout:
 			self.timer = eTimer()
 			self.timer.callback.append(self.timeout)
@@ -16,79 +121,15 @@ class NumericalTextInput:
 			self.timer = None
 		self.lastKey = -1
 		self.pos = -1
-
-		if search:
-			self.mapping.append (u"%_0") # 0
-			self.mapping.append (u" 1") # 1
-			self.mapping.append (u"abc2") # 2
-			self.mapping.append (u"def3") # 3
-			self.mapping.append (u"ghi4") # 4
-			self.mapping.append (u"jkl5") # 5
-			self.mapping.append (u"mno6") # 6
-			self.mapping.append (u"pqrs7") # 7
-			self.mapping.append (u"tuv8") # 8
-			self.mapping.append (u"wxyz9") # 9
-			return
-
-		if self.lang == 'de_DE':
-			self.mapping.append (u"0,?!&@=*'+\"()$~") # 0
-			self.mapping.append (u" 1.:/-_") # 1
-			self.mapping.append (u"abcä2ABCÄ") # 2
-			self.mapping.append (u"def3DEF") # 3
-			self.mapping.append (u"ghi4GHI") # 4
-			self.mapping.append (u"jkl5JKL") # 5
-			self.mapping.append (u"mnoö6MNOÖ") # 6
-			self.mapping.append (u"pqrsß7PQRSß") # 7
-			self.mapping.append (u"tuvü8TUVÜ") # 8
-			self.mapping.append (u"wxyz9WXYZ") # 9
-		elif self.lang == 'es_ES':
-			self.mapping.append (u"0,?!&@=*'+\"()$~") # 0
-			self.mapping.append (u" 1.:/-_") # 1
-			self.mapping.append (u"abcáà2ABCÁÀ") # 2
-			self.mapping.append (u"deéèf3DEFÉÈ") # 3
-			self.mapping.append (u"ghiíì4GHIÍÌ") # 4
-			self.mapping.append (u"jkl5JKL") # 5
-			self.mapping.append (u"mnñoóò6MNÑOÓÒ") # 6
-			self.mapping.append (u"pqrs7PQRS") # 7
-			self.mapping.append (u"tuvúù8TUVÚÙ") # 8
-			self.mapping.append (u"wxyz9WXYZ") # 9
-		if self.lang in ('sv_SE', 'fi_FI'):
-			self.mapping.append (u"0,?!&@=*'+\"()$~") # 0
-			self.mapping.append (u" 1.:/-_") # 1
-			self.mapping.append (u"abcåä2ABCÅÄ") # 2
-			self.mapping.append (u"defé3DEFÉ") # 3
-			self.mapping.append (u"ghi4GHI") # 4
-			self.mapping.append (u"jkl5JKL") # 5
-			self.mapping.append (u"mnoö6MNOÖ") # 6
-			self.mapping.append (u"pqrs7PQRS") # 7
-			self.mapping.append (u"tuv8TUV") # 8
-			self.mapping.append (u"wxyz9WXYZ") # 9
-		elif self.lang in ('cs_CZ', 'sk_SK'):
-			self.mapping.append (u"0,?'+\"()@$!=&*") # 0
-			self.mapping.append (u" 1.:/-_") # 1
-			self.mapping.append (u"abc2áäčABCÁÄČ") # 2
-			self.mapping.append (u"def3ďéěDEFĎÉĚ") # 3
-			self.mapping.append (u"ghi4íGHIÍ") # 4
-			self.mapping.append (u"jkl5ľĺJKLĽĹ") # 5
-			self.mapping.append (u"mno6ňóöôMNOŇÓÖÔ") # 6
-			self.mapping.append (u"pqrs7řŕšPQRSŘŔŠ") # 7
-			self.mapping.append (u"tuv8ťúůüTUVŤÚŮÜ") # 8
-			self.mapping.append (u"wxyz9ýžWXYZÝŽ") # 9
+		if mapping is not None:
+			self.mapping = mapping
+		elif search:
+			self.mapping = MAP_SEARCH
 		else:
-			self.mapping.append (u"0,?!&@=*'+\"()$~") # 0
-			self.mapping.append (u" 1.:/-_") # 1
-			self.mapping.append (u"abc2ABC") # 2
-			self.mapping.append (u"def3DEF") # 3
-			self.mapping.append (u"ghi4GHI") # 4
-			self.mapping.append (u"jkl5JKL") # 5
-			self.mapping.append (u"mno6MNO") # 6
-			self.mapping.append (u"pqrs7PQRS") # 7
-			self.mapping.append (u"tuv8TUV") # 8
-			self.mapping.append (u"wxyz9WXYZ") # 9
+			self.mapping = MAPPINGS.get(language.getLanguage(), MAP_DEFAULT)
 
 	def setUseableChars(self, useable):
 		self.useableChars = unicode(useable)
-		
 
 	def getKey(self, num):
 		cnt=0

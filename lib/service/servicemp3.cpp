@@ -58,6 +58,7 @@ eServiceFactoryMP3::eServiceFactoryMP3()
 		extensions.push_back("mov");
 		extensions.push_back("m4a");
 		extensions.push_back("3gp");
+		extensions.push_back("3g2");
 		sc->addServiceFactory(eServiceFactoryMP3::id, this, extensions);
 	}
 
@@ -285,7 +286,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 		m_sourceinfo.containertype = ctAVI;
 		m_sourceinfo.is_video = TRUE;
 	}
-	else if ( strcasecmp(ext, ".mp4") == 0 || strcasecmp(ext, ".mov") == 0 || strcasecmp(ext, ".m4v") == 0 || strcasecmp(ext, ".3gp") == 0)
+	else if ( strcasecmp(ext, ".mp4") == 0 || strcasecmp(ext, ".mov") == 0 || strcasecmp(ext, ".m4v") == 0 || strcasecmp(ext, ".3gp") == 0 || strcasecmp(ext, ".3g2") == 0)
 	{
 		m_sourceinfo.containertype = ctMP4;
 		m_sourceinfo.is_video = TRUE;
@@ -684,6 +685,8 @@ RESULT eServiceMP3::isCurrentlySeekable()
 	if (!m_gst_playbin)
 		return 0;
 	if (m_state != stRunning)
+		return 0;
+	if (m_sourceinfo.is_streaming)
 		return 0;
 
 	return ret;
@@ -1393,22 +1396,26 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 		}
 		case GST_MESSAGE_ELEMENT:
 		{
-			if (const GstStructure *msgstruct = gst_message_get_structure(msg))
+			const GstStructure *msgstruct = gst_message_get_structure(msg);
+			if (msgstruct)
 			{
 				if ( gst_is_missing_plugin_message(msg) )
 				{
-					GstCaps *caps;
-					gst_structure_get (msgstruct, "detail", GST_TYPE_CAPS, &caps, NULL); 
-					std::string codec = (const char*) gst_caps_to_string(caps);
-					gchar *description = gst_missing_plugin_message_get_description(msg);
-					if ( description )
+					GstCaps *caps = NULL;
+					gst_structure_get (msgstruct, "detail", GST_TYPE_CAPS, &caps, NULL);
+					if (caps)
 					{
-						eDebug("eServiceMP3::m_errorInfo.missing_codec = %s", codec.c_str());
-						m_errorInfo.error_message = "GStreamer plugin " + (std::string)description + " not available!\n";
-						m_errorInfo.missing_codec = codec.substr(0,(codec.find_first_of(',')));
-						g_free(description);
+						std::string codec = (const char*) gst_caps_to_string(caps);
+						gchar *description = gst_missing_plugin_message_get_description(msg);
+						if ( description )
+						{
+							eDebug("eServiceMP3::m_errorInfo.missing_codec = %s", codec.c_str());
+							m_errorInfo.error_message = "GStreamer plugin " + (std::string)description + " not available!\n";
+							m_errorInfo.missing_codec = codec.substr(0,(codec.find_first_of(',')));
+							g_free(description);
+						}
+						gst_caps_unref(caps);
 					}
-					gst_caps_unref(caps);
 				}
 				else
 				{
@@ -1471,7 +1478,6 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 						g_object_set (G_OBJECT (owner), "timeout", HTTP_TIMEOUT, NULL);
 						eDebug("eServiceMP3::GST_STREAM_STATUS_TYPE_CREATE -> setting timeout on %s to %is", name, HTTP_TIMEOUT);
 					}
-					
 				}
 				if ( GST_IS_PAD(source) )
 					gst_object_unref(owner);
@@ -1508,10 +1514,13 @@ GstBusSyncReply eServiceMP3::gstBusSyncHandler(GstBus *bus, GstMessage *message,
 void eServiceMP3::gstHTTPSourceSetAgent(GObject *object, GParamSpec *unused, gpointer user_data)
 {
 	eServiceMP3 *_this = (eServiceMP3*)user_data;
-	GstElement *source;
+	GstElement *source = NULL;
 	g_object_get(_this->m_gst_playbin, "source", &source, NULL);
-	g_object_set (G_OBJECT (source), "user-agent", _this->m_useragent.c_str(), NULL);
-	gst_object_unref(source);
+	if (source)
+	{
+		g_object_set (G_OBJECT (source), "user-agent", _this->m_useragent.c_str(), NULL);
+		gst_object_unref(source);
+	}
 }
 
 audiotype_t eServiceMP3::gstCheckAudioPad(GstStructure* structure)
@@ -1610,16 +1619,15 @@ void eServiceMP3::gstTextpadHasCAPS(GstPad *pad, GParamSpec * unused, gpointer u
 
 void eServiceMP3::gstTextpadHasCAPS_synced(GstPad *pad)
 {
-	GstCaps *caps;
+	GstCaps *caps = NULL;
 
 	g_object_get (G_OBJECT (pad), "caps", &caps, NULL);
-
-	eDebug("gstTextpadHasCAPS:: signal::caps = %s", gst_caps_to_string(caps));
 
 	if (caps)
 	{
 		subtitleStream subs;
 
+		eDebug("gstTextpadHasCAPS:: signal::caps = %s", gst_caps_to_string(caps));
 //		eDebug("gstGhostpadHasCAPS_synced %p %d", pad, m_subtitleStreams.size());
 
 		if (m_currentSubtitleStream >= 0 && m_currentSubtitleStream < m_subtitleStreams.size())

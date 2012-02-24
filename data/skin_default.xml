@@ -537,7 +537,7 @@ self.autoResize()
 		</widget>
 	</screen>
 	<!-- Messagebox -->
-	<screen name="MessageBox" position="center,center" size="600,10" title="Message">
+	<screen name="MessageBoxTemplate">
 		<widget name="text" position="65,8" size="520,0" font="Regular;22" />
 		<widget name="ErrorPixmap" pixmap="skin_default/icons/input_error.png" position="5,5" size="53,53" alphatest="on" />
 		<widget name="QuestionPixmap" pixmap="skin_default/icons/input_question.png" position="5,5" size="53,53" alphatest="on" />
@@ -579,6 +579,13 @@ newwidth = wsize[0]
 self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		</applet>
 	</screen>
+	<screen name="MessageBox" position="center,center" size="600,10" title="Message">
+		<panel name= "MessageBoxTemplate" />
+	</screen>
+	<screen name="MessageBoxSimple" position="center,center" size="600,10" title="Message">
+		<panel name= "MessageBoxTemplate" />
+	</screen>
+
 	<!-- Minute input -->
 	<screen name="MinuteInput" position="center,center" size="280,60" title="Seek">
 		<widget name="minutes" position="80,15" size="160,25" halign="right" font="Regular;23" />
