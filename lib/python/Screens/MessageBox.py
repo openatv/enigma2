@@ -19,13 +19,6 @@ class MessageBox(Screen):
 		if simple:
 			self.skinName="MessageBoxSimple"
 		
-		if wizard:
-			from Components.config import config, ConfigInteger
-			from Components.Pixmap import MultiPixmap
-			self["rc"] = MultiPixmap()
-			self["rc"].setPixmapNum(config.misc.rcused.value)		
-			self.skinName = ["MessageBoxWizard"]
-		
 		self.msgBoxID = msgBoxID
 
  		self["text"] = Label(text)

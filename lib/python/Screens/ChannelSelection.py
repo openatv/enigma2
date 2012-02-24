@@ -131,7 +131,7 @@ class SettingsMenu(ConfigListScreen, Screen):
 		Screen.setTitle(self, _("Settings..."))
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
-		self["satus"] = StaticText()
+		self["status"] = StaticText()
 
 		self.onChangedEntry = [ ]
 		self.list = []
@@ -156,15 +156,15 @@ class SettingsMenu(ConfigListScreen, Screen):
 	def createSetup(self):
 		self.editListEntry = None
 		self.list = []
-		self.list.append(getConfigListEntry(_("Service number font size"), config.usage.servicenum_fontsize))
-		self.list.append(getConfigListEntry(_("Service name font size"), config.usage.servicename_fontsize))
-		self.list.append(getConfigListEntry(_("Service info font size"), config.usage.serviceinfo_fontsize))
-		self.list.append(getConfigListEntry(_("Number of items"), config.usage.serviceitems_per_page))
+		self.list.append(getConfigListEntry(_("Service number font size"), config.usage.servicenum_fontsize, _("This allows you change the font size relative to skin size, so 1 increases by 1 piont size, and -1 decreases by 1 piont size")))
+		self.list.append(getConfigListEntry(_("Service name font size"), config.usage.servicename_fontsize, _("This allows you change the font size relative to skin size, so 1 increases by 1 piont size, and -1 decreases by 1 piont size")))
+		self.list.append(getConfigListEntry(_("Service info font size"), config.usage.serviceinfo_fontsize, _("This allows you change the font size relative to skin size, so 1 increases by 1 piont size, and -1 decreases by 1 piont size")))
+		self.list.append(getConfigListEntry(_("Number of rows"), config.usage.serviceitems_per_page, _("This allows you change the number of rows shown.")))
 		self["config"].list = self.list
 		self["config"].setList(self.list)
 
 	def selectionChanged(self):
-		self["satus"].setText(_("Current value: ") + self.getCurrentValue())
+		self["status"].setText(self["config"].getCurrent()[2])
 
 	# for summary:
 	def changedEntry(self):

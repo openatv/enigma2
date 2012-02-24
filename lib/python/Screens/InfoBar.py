@@ -5,6 +5,7 @@ import Screens.MovieSelection
 from Screens.MessageBox import MessageBox
 from Components.PluginComponent import plugins
 from Components.Label import Label
+from Components.Pixmap import MultiPixmap
 from Plugins.Plugin import PluginDescriptor
 
 from Screen import Screen
@@ -234,6 +235,10 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 		InfoBarAudioSelection.__init__(self)
 		InfoBarSecondInfobar.__init__(self)
 		
+		self["state"] = Label(text="")
+		self["speed"] = Label(text="")
+		self["statusicon"] = MultiPixmap()
+
 		self["actions"] = HelpableActionMap(self, "MoviePlayerActions",
 			{
 				"leavePlayer": (self.leavePlayer, _("leave movie player..."))

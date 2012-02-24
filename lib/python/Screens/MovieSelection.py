@@ -1006,6 +1006,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.current_ref.setName('8192:jpg 8192:png 8192:gif 8192:bmp')
 
 	def reloadList(self, sel = None, home = False):
+		self["waitingtext"].visible = True
 		if not os.path.isdir(config.movielist.last_videodir.value):
 			path = defaultMoviePath()
 			config.movielist.last_videodir.value = path
@@ -1030,6 +1031,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				self["list"].moveToFirstMovie()
 		self["freeDiskSpace"].update()
 		self["TrashcanSize"].update(config.movielist.last_videodir.value)
+		self["waitingtext"].visible = False
 
 	def doPathSelect(self):
 		self.session.openWithCallback(

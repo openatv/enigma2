@@ -45,10 +45,10 @@ def AddPopup(text, type, timeout, id = None):
 	if id is not None:
 		RemovePopup(id)
 	print "AddPopup, id =", id
-	AddNotificationWithID(id, MessageBox, text = text, type = type, timeout = timeout, close_on_any_key = True)
+	AddNotificationWithID(id, MessageBox, text = text, type = type, timeout = timeout, close_on_any_key = True, simple = True)
 
 def AddPopupWithCallback(fnc, text, type, timeout, id = None):
 	if id is not None:
 		RemovePopup(id)
 	print "AddPopup, id =", id
-	AddNotificationWithID(id, MessageBox, text = text, type = type, timeout = timeout, close_on_any_key = True, simple = True)
+	AddNotificationWithIDCallback(fnc, id, MessageBox, text = text, type = type, timeout = timeout, close_on_any_key = False, simple = True)

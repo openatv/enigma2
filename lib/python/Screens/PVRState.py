@@ -28,13 +28,15 @@ class PTSTimeshiftState(Screen):
 			   <widget source="session.CurrentService" render="Progress" position="15,33" size="390,15" zPosition="2" pixmap="/usr/share/enigma2/skin_default/slider.png" transparent="1">
 				<convert type="ServicePosition">Position</convert>
 			</widget>
-			<widget name="eventname" position="10,49" zPosition="4" size="420,20" font="Regular;18" halign="center" backgroundColor="transpBlack" />
+			<widget name="eventname" position="60,49" zPosition="4" size="320,20" font="Regular;18" halign="center" backgroundColor="transpBlack" />
+			<widget name="statusicon" position="12,45" size="20,20" zPosition="5" alphatest="on" pixmaps="ViX_HD_Common/icons/play.png,ViX_HD_Common/icons/pause.png,ViX_HD_Common/icons/stop.png,ViX_HD_Common/icons/forward.png,ViX_HD_Common/icons/backward.png,ViX_HD_Common/icons/slow.png" />
+			<widget name="speed" position="35,47" size="80,15" font="Regular; 17" halign="left" foregroundColor="infobar-frgrnd" backgroundColor="infobar_sunken" transparent="1" zPosition="5" />
 		</screen>"""
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self["state"] = Label(text="")
-		self["PTSSeekPointer"] = Pixmap()
-		self["eventname"] = Label(text="")
 		self["speed"] = Label(text="")
 		self["statusicon"] = MultiPixmap()
+		self["PTSSeekPointer"] = Pixmap()
+		self["eventname"] = Label(text="")
