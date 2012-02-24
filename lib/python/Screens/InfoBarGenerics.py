@@ -886,7 +886,7 @@ class InfoBarChannelSelection:
 								self.servicelist.prevBouquet()
 						self.servicelist.moveUp()
 						cur = self.servicelist.getCurrentSelection()
-						if not cur or (not (cur.flags & 64)) or cur.toString() == prev:
+						if cur and (cur.toString() == prev or self.isPlayable(cur)):
 							break
 			else:
 				self.servicelist.moveUp()
@@ -909,11 +909,19 @@ class InfoBarChannelSelection:
 						else:
 							self.servicelist.moveDown()
 						cur = self.servicelist.getCurrentSelection()
-						if not cur or (not (cur.flags & 64)) or cur.toString() == prev:
+						if cur and (cur.toString() == prev or self.isPlayable(cur)):
 							break
 			else:
 				self.servicelist.moveDown()
 			self.servicelist.zap(enable_pipzap = True)
+	
+	def isPlayable(self, ref):
+		if not (ref.flags & eServiceReference.isMarker):
+			cur_running = self.session.nav.getCurrentlyPlayingServiceReference()
+			info = eServiceCenter.getInstance().info(ref)
+			if info and info.isPlayable(ref, cur_running):
+				return True
+		return False	
 
 class InfoBarMenu:
 	""" Handles a menu action, to open the (main) menu """

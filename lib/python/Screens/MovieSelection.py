@@ -687,7 +687,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		if not self.inited:
 			self.reloadList(self.selectedmovie, home=True)
 			self.activityTimer.start(100)
-			self.inited=True
+			self.inited = True
 
  	def hidewaitingtext(self):
 		self.listTimer.stop()
