@@ -32,9 +32,7 @@ class SetupError(Exception):
         return self.msg
 
 class SetupSummary(Screen):
-
 	def __init__(self, session, parent):
-
 		Screen.__init__(self, session, parent = parent)
 		self["SetupTitle"] = StaticText(_(parent.setup_title))
 		self["SetupEntry"] = StaticText("")
@@ -88,6 +86,7 @@ class Setup(ConfigListScreen, Screen):
 		self["satus"] = StaticText()
 
 		self.onChangedEntry = [ ]
+		self.item = None
 		self.setup = setup
 		list = []
 		ConfigListScreen.__init__(self, list, session = session, on_change = self.changedEntry)
@@ -120,8 +119,26 @@ class Setup(ConfigListScreen, Screen):
 		list = []
 		self.refill(list)
  		self["config"].setList(list)
+		if config.usage.sort_settings.value:
+			self["config"].list.sort()
+		self.moveToItem(self.item)
+
+	def getIndexFromItem(self, item):
+		if item is not None:
+			for x in range(len(self["config"].list)):
+				if self["config"].list[x][0] == item[0]:
+					return x
+		return None
+                
+	def moveToItem(self, item):
+		newIdx = self.getIndexFromItem(item)
+		if newIdx is None:
+			newIdx = 0
+		self["config"].setCurrentIndex(newIdx)
 
 	def handleInputHelpers(self):
+ 		self["satus"].setText(self["config"].getCurrent()[2])
+ 		print 'PPP:',self["satus"].text
 		if self["config"].getCurrent() is not None:
 			try:
 				from Components.config import ConfigText, ConfigPassword
@@ -161,6 +178,7 @@ class Setup(ConfigListScreen, Screen):
 
 	# for summary:
 	def changedEntry(self):
+		self.item = self["config"].getCurrent()
 		for x in self.onChangedEntry:
 			x()
 		try:

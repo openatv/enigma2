@@ -51,6 +51,10 @@ def InitUsageConfig():
 
 	config.usage.show_spinner = ConfigYesNo(default = True)
 	config.usage.enable_tt_caching = ConfigYesNo(default = True)
+	config.usage.sort_settings = ConfigYesNo(default = True)
+	config.usage.sort_menus = ConfigYesNo(default = True)
+	config.usage.pluginlist = ConfigYesNo(default = True)
+
 	choicelist = []
 	for i in (10, 30):
 		choicelist.append(("%d" % i, ngettext("%d second", "%d seconds", i) % i))
