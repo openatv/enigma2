@@ -221,6 +221,7 @@ class Setup(ConfigListScreen, Screen):
 					continue;
 
 				item_text = _(x.get("text", "??").encode("UTF-8"))
+				item_summary = _(x.get("summary", "??").encode("UTF-8"))
 				b = eval(x.text or "");
 				if b == "":
 					continue
@@ -230,7 +231,7 @@ class Setup(ConfigListScreen, Screen):
 				# the first b is the item itself, ignored by the configList.
 				# the second one is converted to string.
 				if not isinstance(item, ConfigNothing):
-					list.append( (item_text, item) )
+					list.append((item_text, item, item_summary))
 
 def getSetupTitle(id):
 	xmldata = setupdom.getroot()

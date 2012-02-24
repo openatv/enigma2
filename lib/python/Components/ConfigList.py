@@ -64,10 +64,10 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 	GUI_WIDGET = eListbox
 	
 	def selectionChanged(self):
-		if isinstance(self.current,tuple) and len(self.current) == 2:
+		if isinstance(self.current,tuple) and len(self.current) >= 2:
 			self.current[1].onDeselect(self.session)
 		self.current = self.getCurrent()
-		if isinstance(self.current,tuple) and len(self.current) == 2:
+		if isinstance(self.current,tuple) and len(self.current) >= 2:
 			self.current[1].onSelect(self.session)
 		else:
 			return
