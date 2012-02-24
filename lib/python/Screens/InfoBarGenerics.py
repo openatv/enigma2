@@ -1914,6 +1914,7 @@ class InfoBarTimeshift:
 				"SeekPointerLeft": self.ptsSeekPointerLeft, 
 				"SeekPointerRight": self.ptsSeekPointerRight
 			},-2)
+		self["TimeshiftActions"].setEnabled(False)
 		self["TimeshiftActivateActions"].setEnabled(False)
 		self["TimeshiftSeekPointerActions"].setEnabled(False)
 		self.timeshift_enabled = 0
@@ -2087,18 +2088,20 @@ class InfoBarTimeshift:
 
 	def __seekableStatusChanged(self):
 		if config.timeshift.enabled.value:
-			self["TimeshiftActivateActions"].setEnabled(True)
 			self["TimeshiftSeekPointerActions"].setEnabled(False)
 			if self.timeshift_enabled and self.isSeekable():
 				self["TimeshiftActivateActions"].setEnabled(False)
 				self["TimeshiftSeekPointerActions"].setEnabled(True)
+				self["TimeshiftActions"].setEnabled(True)
 		else:
+			self["TimeshiftActions"].setEnabled(True)
 			self["TimeshiftActivateActions"].setEnabled(False)
+			self["TimeshiftSeekPointerActions"].setEnabled(False)
 			if self.timeshift_enabled and self.isSeekable():
-				self["TimeshiftSeekPointerActions"].setEnabled(False)
-			elif self.timeshift_enabled and not self.isSeekable():
 				self["SeekActions"].setEnabled(True)
+			elif self.timeshift_enabled and not self.isSeekable():
 				self["TimeshiftActivateActions"].setEnabled(True)
+ 				self["SeekActions"].setEnabled(False)
 
 		# Reset Seek Pointer And Eventname in InfoBar
 		if config.timeshift.enabled.value and self.timeshift_enabled and not self.isSeekable():
