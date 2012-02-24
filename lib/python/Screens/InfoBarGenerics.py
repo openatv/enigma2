@@ -1790,7 +1790,7 @@ class InfoBarPVRState:
 		return InfoBarMoviePlayerSummary
 
 	def _mayShow(self):
-		if self.execing and self.seekstate != self.SEEK_STATE_EOF and "MoviePlayer'>" not in str(self) and not config.usage.movieplayer_pvrstate.value:
+		if self.execing and self.seekstate != self.SEEK_STATE_EOF and not config.usage.movieplayer_pvrstate.value:
 			self.pvrStateDialog.show()
 
 	def __playStateChanged(self, state):
@@ -1803,9 +1803,11 @@ class InfoBarPVRState:
 			speed_summary = self.pvrStateDialog["speed"].text
 			statusicon_summary = 0
 			if "MoviePlayer'>" in str(self) and config.usage.movieplayer_pvrstate.value:
+ 				self["state"].setText(playstateString)
 				self["statusicon"].setPixmapNum(0)
 				self["speed"].setText("")
 			elif "MoviePlayer'>" in str(self) and not config.usage.movieplayer_pvrstate.value:
+ 				self["state"].setText("")
 				self["statusicon"].setPixmapNum(6)
 				self["speed"].setText("")
 		elif playstateString == '||':
@@ -1814,9 +1816,11 @@ class InfoBarPVRState:
 			speed_summary = self.pvrStateDialog["speed"].text
 			statusicon_summary = 1
 			if "MoviePlayer'>" in str(self) and config.usage.movieplayer_pvrstate.value:
+ 				self["state"].setText(playstateString)
 				self["statusicon"].setPixmapNum(1)
 				self["speed"].setText("")
 			elif "MoviePlayer'>" in str(self) and not config.usage.movieplayer_pvrstate.value:
+ 				self["state"].setText("")
 				self["statusicon"].setPixmapNum(6)
 				self["speed"].setText("")
 		elif playstateString == 'END':
@@ -1825,9 +1829,11 @@ class InfoBarPVRState:
 			speed_summary = self.pvrStateDialog["speed"].text
 			statusicon_summary = 2
 			if "MoviePlayer'>" in str(self) and config.usage.movieplayer_pvrstate.value:
+ 				self["state"].setText(playstateString)
 				self["statusicon"].setPixmapNum(2)
 				self["speed"].setText("")
 			elif "MoviePlayer'>" in str(self) and not config.usage.movieplayer_pvrstate.value:
+ 				self["state"].setText("")
 				self["statusicon"].setPixmapNum(6)
 				self["speed"].setText("")
 		elif playstateString.startswith('>>'):
@@ -1837,9 +1843,11 @@ class InfoBarPVRState:
 			speed_summary = self.pvrStateDialog["speed"].text
 			statusicon_summary = 3
 			if "MoviePlayer'>" in str(self) and config.usage.movieplayer_pvrstate.value:
+ 				self["state"].setText(playstateString)
 				self["statusicon"].setPixmapNum(3)
 				self["speed"].setText(speed[1])
 			elif "MoviePlayer'>" in str(self) and not config.usage.movieplayer_pvrstate.value:
+ 				self["state"].setText("")
 				self["statusicon"].setPixmapNum(6)
 				self["speed"].setText("")
 		elif playstateString.startswith('<<'):
@@ -1849,9 +1857,11 @@ class InfoBarPVRState:
 			speed_summary = self.pvrStateDialog["speed"].text
 			statusicon_summary = 4
 			if "MoviePlayer'>" in str(self) and config.usage.movieplayer_pvrstate.value:
+ 				self["state"].setText(playstateString)
 				self["statusicon"].setPixmapNum(4)
 				self["speed"].setText(speed[1])
 			elif "MoviePlayer'>" in str(self) and not config.usage.movieplayer_pvrstate.value:
+ 				self["state"].setText("")
 				self["statusicon"].setPixmapNum(-1)
 				self["speed"].setText("")
 		elif playstateString.startswith('/'):
@@ -1860,9 +1870,11 @@ class InfoBarPVRState:
 			speed_summary = self.pvrStateDialog["speed"].text
 			statusicon_summary = 5
 			if "MoviePlayer'>" in str(self) and config.usage.movieplayer_pvrstate.value:
+ 				self["state"].setText(playstateString)
 				self["statusicon"].setPixmapNum(5)
 				self["speed"].setText(playstateString)
 			elif "MoviePlayer'>" in str(self) and not config.usage.movieplayer_pvrstate.value:
+ 				self["state"].setText("")
 				self["statusicon"].setPixmapNum(6)
 				self["speed"].setText("")
 
