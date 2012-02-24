@@ -83,7 +83,7 @@ class Setup(ConfigListScreen, Screen):
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self["VKeyIcon"] = Boolean(False)
-		self["satus"] = StaticText()
+		self["status"] = StaticText()
 
 		self.onChangedEntry = [ ]
 		self.item = None
@@ -137,8 +137,7 @@ class Setup(ConfigListScreen, Screen):
 		self["config"].setCurrentIndex(newIdx)
 
 	def handleInputHelpers(self):
- 		self["satus"].setText(self["config"].getCurrent()[2])
- 		print 'PPP:',self["satus"].text
+ 		self["status"].setText(self["config"].getCurrent()[2])
 		if self["config"].getCurrent() is not None:
 			try:
 				from Components.config import ConfigText, ConfigPassword

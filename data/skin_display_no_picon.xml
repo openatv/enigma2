@@ -54,7 +54,7 @@
 			<convert type="ConditionalShowHide" />
 		</widget>
 	</screen>
-	<screen name="SummaryTunerSatusPanel">
+	<screen name="SummaryTunerStatusPanel">
 		<widget source="session.TunerInfo" render="Pixmap" pixmap="lcd/tuner-a.png" position="158,49" size="9,15">
 			<convert type="TunerInfo">TunerUseMask</convert>
 			<convert type="ValueBitTest">1</convert>
@@ -129,7 +129,7 @@
 			<convert type="RemainingToText">NoSeconds</convert>
 		</widget>
 		<panel name="SummaryIconsPanel" />
-		<panel name="SummaryTunerSatusPanel" />
+		<panel name="SummaryTunerStatusPanel" />
 		<panel name="SummaryClockPanel" />
 	</screen>
     
@@ -147,14 +147,14 @@
 			<convert type="ServicePosition">Position</convert>
 		</widget>
 		<panel name="SummaryIconsPanel" />
-		<panel name="SummaryTunerSatusPanel" />
+		<panel name="SummaryTunerStatusPanel" />
 		<panel name="SummaryClockPanel" />
 	</screen>
 	<screen name="MovieContextMenuSummary" position="0,0" size="255,64">
 		<widget source="parent.Title" render="Label" position="0,0" size="132,14" font="FdLcD;12" halign="left" valign="top" noWrap="1" />
 		<widget source="selected" render="Label" position="0,14" size="132,32" font="FdLcD;16" />
 		<panel name="SummaryIconsPanel" />
-		<panel name="SummaryTunerSatusPanel" />
+		<panel name="SummaryTunerStatusPanel" />
 		<panel name="SummaryClockPanel" />
 	</screen>
 	<screen name="MovieSelectionSummary" position="0,0" size="255,64">
@@ -170,7 +170,7 @@
 		  <convert type="MovieInfo">FileSize</convert>
 		</widget>
 		<panel name="SummaryIconsPanel" />
-		<panel name="SummaryTunerSatusPanel" />
+		<panel name="SummaryTunerStatusPanel" />
 		<panel name="SummaryClockPanel" />
 	</screen>
   
@@ -190,7 +190,7 @@
 			<convert type="RemainingToText">NoSeconds</convert>
 		</widget>
 		<panel name="SummaryIconsPanel" />
-		<panel name="SummaryTunerSatusPanel" />
+		<panel name="SummaryTunerStatusPanel" />
 		<panel name="SummaryClockPanel" />
 	</screen>
   
@@ -201,7 +201,7 @@
 			<convert type="StringListSelection" />
 		</widget>
 		<panel name="SummaryIconsPanel" />
-		<panel name="SummaryTunerSatusPanel" />
+		<panel name="SummaryTunerStatusPanel" />
 		<panel name="SummaryClockPanel" />
 	</screen>
 
@@ -219,7 +219,7 @@
 	<screen name="SimpleSummary" position="0,0" size="255,64">
 		<widget source="parent.Title" render="Label" position="0,0" size="160,22" font="FdLcD;18" halign="left" noWrap="1" />
 		<panel name="SummaryIconsPanel" />
-		<panel name="SummaryTunerSatusPanel" />
+		<panel name="SummaryTunerStatusPanel" />
 		<panel name="SummaryClockPanel" />
 	</screen>
 
@@ -294,25 +294,25 @@
 	<screen name="EPGSelection_summary" position="0,0" size="255,64">
 		<panel name="SummaryEpgPanel" />
 		<panel name="SummaryIconsPanel" />
-		<panel name="SummaryTunerSatusPanel" />
+		<panel name="SummaryTunerStatusPanel" />
 		<panel name="SummaryClockPanel" />
 	</screen>
 	<screen name="QuickEPG_summary" position="0,0" size="255,64">
 		<panel name="SummaryEpgPanel" />
 		<panel name="SummaryIconsPanel" />
-		<panel name="SummaryTunerSatusPanel" />
+		<panel name="SummaryTunerStatusPanel" />
 		<panel name="SummaryClockPanel" />
 	</screen>
 	<screen name="GraphicalEPG_summary" position="0,0" size="255,64">
 		<panel name="SummaryEpgPanel" />
 		<panel name="SummaryIconsPanel" />
-		<panel name="SummaryTunerSatusPanel" />
+		<panel name="SummaryTunerStatusPanel" />
 		<panel name="SummaryClockPanel" />
 	</screen>
 	<screen name="GraphicalEPGPIG_summary" position="0,0" size="255,64">
 		<panel name="SummaryEpgPanel" />
 		<panel name="SummaryIconsPanel" />
-		<panel name="SummaryTunerSatusPanel" />
+		<panel name="SummaryTunerStatusPanel" />
 		<panel name="SummaryClockPanel" />
 	</screen>
 
@@ -390,7 +390,7 @@
 		<widget source="parent.Title" render="Label" position="0,0" size="160,22" font="FdLcD;18" halign="left" noWrap="1" />
 		<widget source="entry" render="Label" position="0,21" size="255,18" font="FdLcD;16" halign="left" noWrap="1" />
 		<panel name="SummaryIconsPanel" />
-		<panel name="SummaryTunerSatusPanel" />
+		<panel name="SummaryTunerStatusPanel" />
 		<panel name="SummaryClockPanel" />
 	</screen>
 
