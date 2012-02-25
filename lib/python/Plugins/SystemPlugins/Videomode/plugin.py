@@ -3,7 +3,6 @@ from Plugins.Plugin import PluginDescriptor
 from Components.SystemInfo import SystemInfo
 from Components.ConfigList import ConfigListScreen
 from Components.config import getConfigListEntry, config, ConfigBoolean, ConfigNothing, ConfigSlider
-from Components.Label import Label
 from Components.Sources.StaticText import StaticText
 from Components.Pixmap import Pixmap,MultiPixmap
 from Screens.VirtualKeyBoard import VirtualKeyBoard
@@ -18,13 +17,11 @@ class VideoSetup(Screen, ConfigListScreen):
 	def __init__(self, session, hw):
 		Screen.__init__(self, session)
 		# for the skin: first try VideoSetup, then Setup, this allows individual skinning
-		self.skinName = ["Setup" ]
+		self.skinName = ["VideoSetup", "Setup" ]
 		self.setup_title = _("A/V Settings")
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self["VKeyIcon"] = Boolean(False)
-		self['footnote'] = Label("")
-		self["status"] = StaticText()
 
 		self.hw = hw
 		self.onChangedEntry = [ ]
@@ -47,14 +44,9 @@ class VideoSetup(Screen, ConfigListScreen):
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
 
-		if not self.SelectionChanged in self["config"].onSelectionChanged:
-			self["config"].onSelectionChanged.append(self.SelectionChanged)
 		self.createSetup()
 		self.grabLastGoodMode()
 		self.onLayoutFinish.append(self.layoutFinished)
-
-	def SelectionChanged(self):
- 		self["status"].setText(self["config"].getCurrent()[2])
 
 	def layoutFinished(self):
 		self.setTitle(self.setup_title)
@@ -69,17 +61,17 @@ class VideoSetup(Screen, ConfigListScreen):
 		level = config.usage.setup_level.index
 
 		self.list = [
-			getConfigListEntry(_("Video Output"), config.av.videoport, _("This option sets up the connection method."))
+			getConfigListEntry(_("Video Output"), config.av.videoport)
 		]
 
 		# if we have modes for this port:
 		if config.av.videoport.value in config.av.videomode:
 			# add mode- and rate-selection:
-			self.list.append(getConfigListEntry(_("Mode"), config.av.videomode[config.av.videoport.value], _("This option sets up the screen resolution.")))
+			self.list.append(getConfigListEntry(_("Mode"), config.av.videomode[config.av.videoport.value]))
 			if config.av.videomode[config.av.videoport.value].value == 'PC':
-				self.list.append(getConfigListEntry(_("Resolution"), config.av.videorate[config.av.videomode[config.av.videoport.value].value], _("This option sets up the screen resolution, when in PC mode.")))
+				self.list.append(getConfigListEntry(_("Resolution"), config.av.videorate[config.av.videomode[config.av.videoport.value].value]))
 			else:
-				self.list.append(getConfigListEntry(_("Refresh Rate"), config.av.videorate[config.av.videomode[config.av.videoport.value].value], _("This option sets up the screen refresh-rate.")))
+				self.list.append(getConfigListEntry(_("Refresh Rate"), config.av.videorate[config.av.videomode[config.av.videoport.value].value]))
 
 		port = config.av.videoport.value
 		if port not in config.av.videomode:
@@ -91,40 +83,38 @@ class VideoSetup(Screen, ConfigListScreen):
 		force_wide = self.hw.isWidescreenMode(port, mode)
 
 		if not force_wide:
-			self.list.append(getConfigListEntry(_("Aspect Ratio"), config.av.aspect), _("This option sets up the screen aspect ratio."))
+			self.list.append(getConfigListEntry(_("Aspect Ratio"), config.av.aspect))
 
 		if force_wide or config.av.aspect.value in ("16_9", "16_10"):
 			self.list.extend((
-				getConfigListEntry(_("Display 4:3 content as"), config.av.policy_43, _("When the event has a aspect ratio of 4:3, choose whether to scale/stretch the picture.")),
-				getConfigListEntry(_("Display >16:9 content as"), config.av.policy_169, _("When the event has a aspect ratio of 16:9, choose whether to scale/stretch the picture."))
+				getConfigListEntry(_("Display 4:3 content as"), config.av.policy_43),
+				getConfigListEntry(_("Display >16:9 content as"), config.av.policy_169)
 			))
 		elif config.av.aspect.value == "4_3":
-			self.list.append(getConfigListEntry(_("Display 16:9 content as"), config.av.policy_169, _("When the event has a aspect ratio of 16:9, choose whether to scale/stretch the picture.")))
+			self.list.append(getConfigListEntry(_("Display 16:9 content as"), config.av.policy_169))
 
 #		if config.av.videoport.value == "DVI":
 #			self.list.append(getConfigListEntry(_("Allow Unsupported Modes"), config.av.edid_override))
 		if config.av.videoport.value == "Scart":
-			self.list.append(getConfigListEntry(_("Color Format"), config.av.colorformat, _("When using scart connection, choose what color format to use.")))
+			self.list.append(getConfigListEntry(_("Color Format"), config.av.colorformat))
 			if level >= 1:
-				self.list.append(getConfigListEntry(_("WSS on 4:3"), config.av.wss, _("When the event has a aspect ratio of 4:3, choose whether to stretch the picture to fill the screen.")))
+				self.list.append(getConfigListEntry(_("WSS on 4:3"), config.av.wss))
 				if SystemInfo["ScartSwitch"]:
-					self.list.append(getConfigListEntry(_("Auto scart switching"), config.av.vcrswitch, _("Choose whether to control the A/V input of your TV with the scart connection.")))
+					self.list.append(getConfigListEntry(_("Auto scart switching"), config.av.vcrswitch))
 
 		if level >= 1:
 			if SystemInfo["CanDownmixAC3"]:
-				self.list.append(getConfigListEntry(_("Digital downmix"), config.av.downmix_ac3, _("Downmix the Dolby Digital sound tracks to PCM.")))
+				self.list.append(getConfigListEntry(_("Digital downmix"), config.av.downmix_ac3))
 			self.list.extend((
-				getConfigListEntry(_("General AC3 Delay"), config.av.generalAC3delay, _("This option sets up the general audio delay of Dolby Digital sound tracks.")),
-				getConfigListEntry(_("General PCM Delay"), config.av.generalPCMdelay, _("This option sets up the general audio delay of Analog sound tracks."))
+				getConfigListEntry(_("General AC3 Delay"), config.av.generalAC3delay),
+				getConfigListEntry(_("General PCM Delay"), config.av.generalPCMdelay)
 			))
 
 		if not isinstance(config.av.scaler_sharpness, ConfigNothing):
-			self.list.append(getConfigListEntry(_("Scaler sharpness"), config.av.scaler_sharpness, _("This option sets up the picture sharpness.")))
+			self.list.append(getConfigListEntry(_("Scaler sharpness"), config.av.scaler_sharpness))
 
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
-		if config.usage.sort_settings.value:
-			self["config"].list.sort()
 
 	def keyLeft(self):
 		ConfigListScreen.keyLeft(self)
