@@ -18,6 +18,12 @@ from Tools.Directories import resolveFilename, SCOPE_DEFAULTPARTITIONMOUNTDIR, S
 
 from enigma import eTimer, eDVBFrontendParametersSatellite, eComponentScan, eDVBSatelliteEquipmentControl, eDVBFrontendParametersTerrestrial, eDVBFrontendParametersCable, eConsoleAppContainer, eDVBResourceManager
 
+#used for the XML file
+from time import strftime, time
+from Components.About import about
+
+XML_BLINDSCAN_DIR = "/tmp"
+
 class Blindscan(ConfigListScreen, Screen):
 	skin="""
 		<screen name="Blindscan" position="center,center" size="560,290" title="Blindscan">
@@ -162,7 +168,7 @@ class Blindscan(ConfigListScreen, Screen):
 			(1, _("up to 1 degree")),
 			(2, _("up to 2 degrees")),
 			(3, _("up to 3 degrees"))])
-		self.display_only = ConfigYesNo(default = False)
+		self.archive_only = ConfigYesNo(default = False)
 		
 
 		# collect all nims which are *not* set to "nothing"
@@ -238,7 +244,7 @@ class Blindscan(ConfigListScreen, Screen):
 			self.list.append(getConfigListEntry(_("Only free scan"), self.scan_onlyfree))
 			self.list.append(getConfigListEntry(_("Only scan unknown transponders"), self.dont_scan_known_tps))
 			self.list.append(getConfigListEntry(_("Filter out adjacent satellites"), self.filter_off_adjacent_satellites))
-			#self.list.append(getConfigListEntry(_("Display only, don't scan"), self.display_only))
+			self.list.append(getConfigListEntry(_("Archive only (no service scan)"), self.archive_only))
 			self["config"].list = self.list
 			self["config"].l.setList(self.list)
 			
@@ -250,36 +256,56 @@ class Blindscan(ConfigListScreen, Screen):
 			(self.modulationEntry and self.systemEntry[1].value == eDVBFrontendParametersSatellite.System_DVB_S2 and cur == self.modulationEntry):
 			self.createSetup()
 
-	def checkSettings(self):
+	def checkSettings(self, orb):
 		self.ku_band_lower_limit = 10700
 		self.is_c_band_scan = False
-		if self.blindscan_start_frequency.value < 4200 :
-			self.is_c_band_scan = True
-		if self.blindscan_start_symbol.value < 1 or self.blindscan_start_symbol.value > 45 :
-			self.session.open(MessageBox, _("Please check again.\nStart symbolrate must be between 1MHz and 44MHz."), MessageBox.TYPE_ERROR)
+		band = self.SatBandCheck(orb)
+		if band :
+			if band == 'C' :
+				self.is_c_band_scan = True
+		else:
+			if self.blindscan_start_frequency.value < 4200 :
+				self.is_c_band_scan = True
+		if self.blindscan_start_symbol.value < 1 or self.blindscan_start_symbol.value > 44 :
+			self.session.open(MessageBox, _("Invalid parameters entered. Please correct and try again.\nStart symbol rate must be between 1MHz and 44MHz."), MessageBox.TYPE_ERROR)
 			return False
-		if self.blindscan_stop_symbol.value < 1 or self.blindscan_stop_symbol.value > 45 :
-			self.session.open(MessageBox, _("Please check again.\nStop symbolrate must be between 2MHz and 45MHz."), MessageBox.TYPE_ERROR)
+		if self.blindscan_stop_symbol.value < 2 or self.blindscan_stop_symbol.value > 45 :
+			self.session.open(MessageBox, _("Invalid parameters entered. Please correct and try again.\nStop symbol rate must be between 2MHz and 45MHz."), MessageBox.TYPE_ERROR)
 			return False
 		if self.blindscan_start_symbol.value > self.blindscan_stop_symbol.value :
-			self.session.open(MessageBox, _("Please check again.\nSymbolrate : start value is larger than stop value."), MessageBox.TYPE_ERROR)
+			self.session.open(MessageBox, _("Invalid parameters entered. Please correct and try again.\nSymbol rate start value is larger than stop value."), MessageBox.TYPE_ERROR)
 			return False
 		if self.blindscan_start_frequency.value > self.blindscan_stop_frequency.value :
-			self.session.open(MessageBox, _("Please check again.\nFrequency : start value is larger than stop value."), MessageBox.TYPE_ERROR)
+			self.session.open(MessageBox, _("Invalid parameters entered. Please correct and try again.\nFrequency start value is larger than stop value."), MessageBox.TYPE_ERROR)
 			return False
-		if self.is_c_band_scan :
+		if self.is_c_band_scan and band == 'C' :
 			if self.blindscan_start_frequency.value < 3000 :
-				self.session.open(MessageBox, _("Please check again.\nStart frequency must be between 10700MHz and 12750MHz.\n(Or 3000MHz and 4200MHz in the case of c-band)."), MessageBox.TYPE_ERROR)
+				self.session.open(MessageBox, _("Invalid parameters entered. Please correct and try again.\nThat is a C-band satellite so frequency values \nneed to be between 3000MHz and 4200MHz."), MessageBox.TYPE_ERROR)
 				return False
 			if self.blindscan_stop_frequency.value > 4200 :
-				self.session.open(MessageBox, _("Please check again.\nFor C-band searches stop frequency must be between 3000MHz and 4200MHz."), MessageBox.TYPE_ERROR)
+				self.session.open(MessageBox, _("Invalid parameters entered. Please correct and try again.\nThat is a C-band satellite so frequency values \nneed to be between 3000MHz and 4200MHz."), MessageBox.TYPE_ERROR)
 				return False
 			return True			
+		if self.is_c_band_scan :
+			if self.blindscan_start_frequency.value < 3000 :
+				self.session.open(MessageBox, _("Invalid parameters entered. Please correct and try again.\nStart frequency must be between 10700MHz and 12750MHz.\n(Or 3000MHz and 4200MHz in the case of c-band)."), MessageBox.TYPE_ERROR)
+				return False
+			if self.blindscan_stop_frequency.value > 4200 :
+				self.session.open(MessageBox, _("Invalid parameters entered. Please correct and try again.\nFor C-band searches stop frequency must be between 3000MHz and 4200MHz."), MessageBox.TYPE_ERROR)
+				return False
+			return True			
+		if band == 'Ku' :
+			if self.blindscan_start_frequency.value < 10700 or self.blindscan_start_frequency.value > 12750 :
+				self.session.open(MessageBox, _("Invalid parameters entered. Please correct and try again.\nThat is a Ku-band satellite so frequency values \nneed to be between 10700MHz and 12750MHz."), MessageBox.TYPE_ERROR)
+				return False
+			if self.blindscan_stop_frequency.value < 10700 or self.blindscan_stop_frequency.value > 12750 :
+				self.session.open(MessageBox, _("Invalid parameters entered. Please correct and try again.\nThat is a Ku-band satellite so frequency values \nneed to be between 10700MHz and 12750MHz."), MessageBox.TYPE_ERROR)
+				return False
 		if self.blindscan_start_frequency.value < 10700 or self.blindscan_start_frequency.value > 12750 :
-			self.session.open(MessageBox, _("Please check again.\nStart frequency must be between 10700MHz and 12750MHz.\n(Or 3000MHz and 4200MHz in the case of c-band)."), MessageBox.TYPE_ERROR)
+			self.session.open(MessageBox, _("Invalid parameters entered. Please correct and try again.\nStart frequency must be between 10700MHz and 12750MHz.\n(Or 3000MHz and 4200MHz in the case of c-band)."), MessageBox.TYPE_ERROR)
 			return False
 		if self.blindscan_stop_frequency.value < 10700 or self.blindscan_stop_frequency.value > 12750 :
-			self.session.open(MessageBox, _("Please check again.\nStop frequency must be between 10700MHz and 12750MHz.\n(Or 3000MHz and 4200MHz in the case of c-band)."), MessageBox.TYPE_ERROR)
+			self.session.open(MessageBox, _("Invalid parameters entered. Please correct and try again.\nStop frequency must be between 10700MHz and 12750MHz.\n(Or 3000MHz and 4200MHz in the case of c-band)."), MessageBox.TYPE_ERROR)
 			return False
 		return True
 
@@ -298,9 +324,7 @@ class Blindscan(ConfigListScreen, Screen):
 		self.close()
 
 	def keyGo(self):
-		if self.checkSettings() == False:
-			return
-
+		
 		tab_pol = {
 			eDVBFrontendParametersSatellite.Polarisation_Horizontal : "horizontal", 
 			eDVBFrontendParametersSatellite.Polarisation_Vertical : "vertical",
@@ -315,6 +339,10 @@ class Blindscan(ConfigListScreen, Screen):
 		tmp_band = []
 		idx_selected_sat = int(self.getSelectedSatIndex(self.scan_nims.value))
 		tmp_list=[self.satList[int(self.scan_nims.value)][self.scan_satselection[idx_selected_sat].index]]
+		orb = tmp_list[0][0]
+		
+		if self.checkSettings(orb) == False:
+			return
 
 		uni_lnb_cutoff = 11700
 		if self.blindscan_start_frequency.value < uni_lnb_cutoff and self.blindscan_stop_frequency.value > uni_lnb_cutoff :
@@ -373,6 +401,7 @@ class Blindscan(ConfigListScreen, Screen):
 	def prepareScanData(self, orb, pol, band, is_scan):
 		self.is_runable = False
 		self.orb_position = orb[0]
+		self.sat_name = orb[1]
 		self.feid = int(self.scan_nims.value)
 		tab_hilow = {"high" : 1, "low" : 0}
 		tab_pol = {
@@ -394,7 +423,7 @@ class Blindscan(ConfigListScreen, Screen):
 					if not self.openFrontend():
 						self.frontend = None
 		self.tuner = Tuner(self.frontend)
-
+		
 		if self.is_c_band_scan : 
 			self.scan_sat.frequency.value = 3600
 		else:
@@ -448,6 +477,12 @@ class Blindscan(ConfigListScreen, Screen):
 		elif config.misc.boxtype.value.startswith('et'):
 			cmd = "avl_xtrend_blindscan %d %d %d %d %d %d %d %d" % (temp_start_int_freq, temp_end_int_freq, self.blindscan_start_symbol.value, self.blindscan_stop_symbol.value, tab_pol[pol], tab_hilow[band], self.feid, self.getNimSocket(self.feid)) # commented out by Huevos cmd = "avl_xtrend_blindscan %d %d %d %d %d %d %d %d" % (self.blindscan_start_frequency.value/1000000, self.blindscan_stop_frequency.value/1000000, self.blindscan_start_symbol.value, self.blindscan_stop_symbol.value, tab_pol[pol], tab_hilow[band], self.feid, self.getNimSocket(self.feid))
 		print "prepared command : [%s]" % (cmd)
+		
+		self.thisRun = [] # used to check result corresponds with values used above
+		self.thisRun.append(int(temp_start_int_freq))
+		self.thisRun.append(int(temp_end_int_freq))
+		self.thisRun.append(int(tab_hilow[band]))
+		
 		self.blindscan_container = eConsoleAppContainer()
 		self.blindscan_container.appClosed.append(self.blindscanContainerClose)
 		self.blindscan_container.dataAvail.append(self.blindscanContainerAvail)
@@ -472,10 +507,11 @@ class Blindscan(ConfigListScreen, Screen):
 
 	def blindscanContainerClose(self, retval):
 		lines = self.full_data.split('\n')
+		self.full_data = "" # Clear this string so we don't get duplicates on subsequent runs
 		for line in lines:
 			data = line.split()
 			print "cnt :", len(data), ", data :", data
-			if len(data) >= 10:
+			if len(data) >= 10 and self.dataIsGood(data) : 
 				if data[0] == 'OK':
 					parm = eDVBFrontendParametersSatellite()
 					sys = { "DVB-S" : eDVBFrontendParametersSatellite.System_DVB_S,
@@ -554,17 +590,18 @@ class Blindscan(ConfigListScreen, Screen):
 			if self.filter_off_adjacent_satellites.value :
 				 self.tmp_tplist = self.filterOffAdjacentSatellites(self.tmp_tplist, self.orb_position, self.filter_off_adjacent_satellites.value)
 						
-			if self.tmp_tplist != [] :
+			# Process transponders still in list
+			if self.tmp_tplist != [] : 
 				for p in self.tmp_tplist:
 					print "data : [%d][%d][%d][%d][%d][%d][%d][%d][%d][%d]" % (p.orbital_position, p.polarisation, p.frequency, p.symbol_rate, p.system, p.inversion, p.pilot, p.fec, p.modulation, p.modulation)
 								
-				if self.display_only.value == False:
+				if self.archive_only.value == False: # Do a service scan
 					self.startScan(self.tmp_tplist, self.feid)
-				else:
-					msg = _("List of transponders discovered (%d)\n\n")%(len(self.tmp_tplist))
-					for p in self.tmp_tplist:
-						msg += _(" %d %d/%d/%d %d\n")%(p.system, p.frequency, p.polarisation, p.symbol_rate, p.modulation)
-					self.session.openWithCallback(self.callbackNone, MessageBox, msg, MessageBox.TYPE_INFO, timeout=600)
+				else: # Save transponder data to file. No service scan.
+					self.tmp_tplist = sorted(self.tmp_tplist, key=lambda transponder: transponder.frequency)
+					xml_location = self.createSatellitesXMLfile(self.tmp_tplist, XML_BLINDSCAN_DIR)
+					msg = _("Search completed. %d transponders found.\n\nDetails saved in:\n%s")%(len(self.tmp_tplist), xml_location)
+					self.session.openWithCallback(self.callbackNone, MessageBox, msg, MessageBox.TYPE_INFO, timeout=300)
 			else:
 				msg = _("No new transponders found! \n\nOnly transponders already listed in satellites.xml \nhave been found for those search parameters!")
 				self.session.openWithCallback(self.callbackNone, MessageBox, msg, MessageBox.TYPE_INFO, timeout=60)
@@ -678,6 +715,92 @@ class Blindscan(ConfigListScreen, Screen):
 	def positionDiff(self, pos1, pos2) :
 		diff = pos1 - pos2
 		return min(abs(diff % 3600), 3600 - abs(diff % 3600))
+		
+	def dataIsGood(self, data) : # check output of the binary for nonsense values
+		good = False
+		low_lo = 9750
+		high_lo = 10600
+		c_lo = 5150
+		lower_freq = self.thisRun[0]
+		upper_freq = self.thisRun[1]
+		high_band = self.thisRun[2]
+		data_freq = int(int(data[2])/1000)
+		data_symbol = int(data[3])
+		lower_symbol = (self.blindscan_start_symbol.value * 1000000) - 200000
+		upper_symbol = (self.blindscan_stop_symbol.value * 1000000) + 200000
+		
+		if high_band : 
+			data_if_freq = data_freq - high_lo
+		elif self.is_c_band_scan and data_freq > 2999 and data_freq < 4201 :
+			data_if_freq = c_lo - data_freq
+		else :
+			data_if_freq = data_freq - low_lo
+			
+		if data_if_freq >= lower_freq and data_if_freq <= upper_freq :
+			good = True
+			
+		if data_symbol < lower_symbol or data_symbol > upper_symbol : 
+			good = False
+			
+		if good == False :
+			print "Data returned by the binary is not good...\n	Data: Frequency [%d], Symbol rate [%d]" % (int(data[2]), int(data[3]))
+			
+		return good
+		
+	def createSatellitesXMLfile(self, tp_list, save_xml_dir) :
+		pos = self.orb_position
+		if pos > 1800 :
+			pos -= 3600
+		if pos < 0 :
+			pos_name = '%dW' % (abs(int(pos))/10)
+		else :
+			pos_name = '%dE' % (abs(int(pos))/10)
+		location = '%s/blindscan_%s_%d.xml' %(save_xml_dir, pos_name, int(time()))
+		tuner = ['A', 'B', 'C'] 
+		polarisation = ['horizontal', 'vertical', 'circular left', 'circular right', 'vertical and horizontal', 'circular right and circular left']
+		adjacent = ['no', 'up to 1 degree', 'up to 2 degrees', 'up to 3 degrees']
+		known_txp = 'no'
+		if self.filter_off_adjacent_satellites.value :
+			known_txp ='yes'		
+		xml = ['<?xml version="1.0" encoding="iso-8859-1"?>\n\n']
+		xml.append('<!--\n')
+		xml.append('	File created on %s\n' % (strftime("%A, %d of %B %Y, %H:%M:%S")))
+		xml.append('	using %s reciever running VIX image, version %s,\n' % (config.misc.boxtype.value, about.getImageVersionString()))
+		xml.append('	build %s, with the blindscan plugin by Huevos\n\n' % (about.getBuildVersionString()))
+		xml.append('	Search parameters:\n')
+		xml.append('		Tuner: %s\n' % (tuner[self.feid]))
+		xml.append('		Satellite: %s\n' % (self.sat_name))
+		xml.append('		Start frequency: %dMHz\n' % (self.blindscan_start_frequency.value))
+		xml.append('		Stop frequency: %dMHz\n' % (self.blindscan_stop_frequency.value))
+		xml.append('		Polarization: %s\n' % (polarisation[self.scan_sat.polarization.value]))
+		xml.append('		Lower symbol rate: %d\n' % (self.blindscan_start_symbol.value * 1000))
+		xml.append('		Upper symbol rate: %d\n' % (self.blindscan_stop_symbol.value * 1000))
+		xml.append('		Only save unknown tranponders: %s\n' % (known_txp))
+		xml.append('		Filter out adjacent satellites: %s\n' % (adjacent[self.filter_off_adjacent_satellites.value]))
+		xml.append('-->\n\n')
+		xml.append('<satellites>\n')
+		xml.append('	<sat name="%s" flags="0" position="%s">\n' % (self.sat_name, self.orb_position))
+		for tp in tp_list :
+			xml.append('		<transponder frequency="%d" symbol_rate="%d" polarization="%d" fec_inner="%d" system="%d" modulation="%d"/>\n' % (tp.frequency, tp.symbol_rate, tp.polarisation, tp.fec, tp.system, tp.modulation))
+		xml.append('	</sat>\n')
+		xml.append('</satellites>')
+		open(location, "w").writelines(xml)
+		return location
+		
+	def SatBandCheck(self, pos) :
+		freq = 0
+		band = ''
+		tp_list = self.getKnownTransponders(pos)
+		if len(tp_list) :
+			freq = int(tp_list[0].frequency)
+		if freq :
+			if freq < 4201000 and freq > 2999000 :
+				band = 'C'
+			elif freq < 12751000 and freq > 10700000 :
+				band = 'Ku'
+		print "SatBandCheck band = %s" % (band)
+		return band
+		
 		
 def Plugins(path, **kwargs):
 	plist = [PluginDescriptor(name=_("Blind Scan"), where=PluginDescriptor.WHERE_MENU, needsRestart = False, fnc=BlindscanSetup)]
