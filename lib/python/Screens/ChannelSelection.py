@@ -1189,6 +1189,19 @@ class ChannelSelectionBase(Screen):
 	def prevMarker(self):
 		self.servicelist.moveToPrevMarker()
 
+	def gotoCurrentServiceOrProvider(self, ref):
+		if ref.toString().find(_("Providers")) != -1:
+			service = self.session.nav.getCurrentService()
+			if service:
+				info = service.info()
+				if info:
+					provider = info.getInfoString(iServiceInformation.sProvider)
+					op = int("".join(self.session.nav.getCurrentlyPlayingServiceReference().toString().split(':', 10)[6:7])[:-4],16)
+					refstr = '1:7:0:0:0:0:0:0:0:0:(provider == \"%s\") && (satellitePosition == %s) && %s ORDER BY name:%s'%(provider,op,self.service_types[self.service_types.rfind(':')+1:],provider)
+					self.servicelist.setCurrent(eServiceReference(refstr))
+		else:
+			self.setCurrentSelection(self.session.nav.getCurrentlyPlayingServiceReference())
+
 HISTORYSIZE = 20
 
 #config for lastservice
@@ -1318,7 +1331,9 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		if self.movemode:
 			self.toggleMoveMarked()
 		elif (ref.flags & eServiceReference.flagDirectory) == eServiceReference.flagDirectory:
+			self.clearPath()
 			self.enterPath(ref)
+			self.gotoCurrentServiceOrProvider(ref)
 		elif self.bouquet_mark_edit != OFF:
 			if not (self.bouquet_mark_edit == EDIT_ALTERNATIVES and ref.flags & eServiceReference.isGroup):
 				self.doMark()
@@ -1658,7 +1673,9 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 		if self.movemode:
 			self.toggleMoveMarked()
 		elif (ref.flags & eServiceReference.flagDirectory) == eServiceReference.flagDirectory:
+			self.clearPath()
 			self.enterPath(ref)
+			self.gotoCurrentServiceOrProvider(ref)
 		elif self.bouquet_mark_edit != OFF:
 			if not (self.bouquet_mark_edit == EDIT_ALTERNATIVES and ref.flags & eServiceReference.isGroup):
 				self.doMark()
@@ -1691,7 +1708,9 @@ class SimpleChannelSelection(ChannelSelectionBase):
 	def channelSelected(self): # just return selected service
 		ref = self.getCurrentSelection()
 		if (ref.flags & eServiceReference.flagDirectory) == eServiceReference.flagDirectory:
+			self.clearPath()
 			self.enterPath(ref)
+			self.gotoCurrentServiceOrProvider(ref)
 		elif not (ref.flags & eServiceReference.isMarker):
 			ref = self.getCurrentSelection()
 			self.close(ref)
