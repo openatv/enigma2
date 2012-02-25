@@ -1350,7 +1350,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			if lastservice.valid() and self.getCurrentSelection() != lastservice:                        
 				self.setCurrentSelection(lastservice)
 
-			title += " (TV)"
+			title += _(" (TV)")
 		else:
 			# Mark PiP as active and effectively active pipzap
 			self.session.pip.active()
@@ -1359,7 +1359,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			# Move to service playing in pip (will not work with subservices)
 			self.setCurrentSelection(self.session.pip.getCurrentService())
 
-			title += " (PiP)"
+			title += _(" (PiP)")
 		self.setTitle(title)
 		self.buildTitleString()
 
