@@ -186,54 +186,42 @@ def copyServiceFiles(serviceref, dest, name=None):
 		raise
 
 class MovieBrowserConfiguration(ConfigListScreen,Screen):
-	skin = """
-<screen position="center,center" size="560,400" title="Movie Browser Configuration" >
-	<ePixmap name="red"    position="0,0"   zPosition="2" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
-	<ePixmap name="green"  position="140,0" zPosition="2" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
-
-	<widget name="key_red" position="0,0" size="140,40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;20" transparent="1" shadowColor="background" shadowOffset="-2,-2" /> 
-	<widget name="key_green" position="140,0" size="140,40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;20" transparent="1" shadowColor="background" shadowOffset="-2,-2" /> 
-
-	<widget name="config" position="10,40" size="540,340" scrollbarMode="showOnDemand" />
-
-	<ePixmap alphatest="on" pixmap="skin_default/icons/clock.png" position="480,383" size="14,14" zPosition="3"/>
-	<widget font="Regular;18" halign="left" position="505,380" render="Label" size="55,20" source="global.CurrentTime" transparent="1" valign="center" zPosition="3">
-		<convert type="ClockToText">Default</convert>
-	</widget>
-</screen>"""
-		
 	def __init__(self, session, args = 0):
-		self.session = session
-		self.setup_title = _("Movie List Configuration")
-		self.skinName = "MovieBrowserConfig"
 		Screen.__init__(self, session)
-		cfg = ConfigSubsection()
-		self.cfg = cfg
-		cfg.moviesort = ConfigSelection(default=str(config.movielist.moviesort.value), choices = l_moviesort)
-		cfg.listtype = ConfigSelection(default=str(config.movielist.listtype.value), choices = l_listtype)
-		cfg.description = ConfigYesNo(default=(config.movielist.description.value != MovieList.HIDE_DESCRIPTION))
-		configList = [
-			getConfigListEntry(_("Use slim screen"), config.movielist.useslim),
-			getConfigListEntry(_("Sort"), cfg.moviesort),
-			getConfigListEntry(_("show extended description"), cfg.description),
-			getConfigListEntry(_("Type"), cfg.listtype),
-			getConfigListEntry(_("Remember these settings for each folder"), config.movielist.settings_per_directory),
-			getConfigListEntry(_("Load Length of Movies in Movielist"), config.usage.load_length_of_movies_in_moviellist),
-			getConfigListEntry(_("Show status icons in Movielist"), config.usage.show_icons_in_movielist),
-			getConfigListEntry(_("Show icon for new/unseen items"), config.usage.movielist_unseen),
-			getConfigListEntry(_("Play audio in background"), config.movielist.play_audio_internal),
-			getConfigListEntry(_("Root directory"), config.movielist.root),
-			]
-		for btn in ('red', 'green', 'yellow', 'blue', 'tv', 'radio'):
-			configList.append(getConfigListEntry(_(btn), userDefinedButtons[btn]))
-		ConfigListScreen.__init__(self, configList, session=session, on_change = self.changedEntry)
-		self["key_red"] = Button(_("Cancel"))
-		self["key_green"] = Button(_("Ok"))
-		self["key_yellow"] = Button("")
-		self["key_blue"] = Button("")
-		self["statusbar"] = Label()
-		self["status"] = Label()
-		self["setupActions"] = ActionMap(["SetupActions", "ColorActions"],
+		self.session = session
+		self.skinName = "Setup"
+ 		self.setup_title = _("Movie List Configuration")
+ 		Screen.setTitle(self, _(self.setup_title))
+		self["HelpWindow"] = Pixmap()
+		self["HelpWindow"].hide()
+		self["status"] = StaticText()
+
+		self.onChangedEntry = [ ]
+ 		cfg = ConfigSubsection()
+ 		self.cfg = cfg
+ 		cfg.moviesort = ConfigSelection(default=str(config.movielist.moviesort.value), choices = l_moviesort)
+ 		cfg.listtype = ConfigSelection(default=str(config.movielist.listtype.value), choices = l_listtype)
+ 		cfg.description = ConfigYesNo(default=(config.movielist.description.value != MovieList.HIDE_DESCRIPTION))
+		configList = []
+		configList.append(getConfigListEntry(_("Use slim screen"), config.movielist.useslim, _("Use the alternative screen")))
+		configList.append(getConfigListEntry(_("Sort"), cfg.moviesort, _("Set the default sorting method.")))
+		configList.append(getConfigListEntry(_("show extended description"), cfg.description, _("Show or hide the extended description, (skin dependant).")))
+		configList.append(getConfigListEntry(_("Type"), cfg.listtype, _("Choose how to display the list.")))
+		configList.append(getConfigListEntry(_("Remember these settings for each folder"), config.movielist.settings_per_directory, _("When set each folder will show the previous stae used, when off the default values will be shown.")))
+		configList.append(getConfigListEntry(_("Load Length of Movies in Movielist"), config.usage.load_length_of_movies_in_moviellist, _("Shows the the movie lenth in the list.")))
+		configList.append(getConfigListEntry(_("Show status icons in Movielist"), config.usage.show_icons_in_movielist, _("Shows the watched staus of the movie.")))
+		if config.usage.show_icons_in_movielist.value:
+			configList.append(getConfigListEntry(_("Show icon for new/unseen items"), config.usage.movielist_unseen, _("Shows the icons when new/unseen, else will not show an icon.")))
+		configList.append(getConfigListEntry(_("Play audio in background"), config.movielist.play_audio_internal, _("Keeps MovieList open whilst playing audio files.")))
+		configList.append(getConfigListEntry(_("Root directory"), config.movielist.root, _("Sets the root folder of movie list, to remove the '..' from benign shown in that folder.")))
+ 		for btn in ('red', 'green', 'yellow', 'blue', 'tv', 'radio'):
+ 			configList.append(getConfigListEntry(_("Button") + " " + _(btn), userDefinedButtons[btn], _("Allows you setup the button to do what you choose.")))
+		ConfigListScreen.__init__(self, configList, session = self.session, on_change = self.changedEntry)
+		self["config"].setList(configList)
+		if config.usage.sort_settings.value:
+			self["config"].list.sort()
+
+		self["actions"] = ActionMap(["SetupActions", 'ColorActions'],
 		{
 			"red": self.cancel,
 			"green": self.save,
@@ -241,8 +229,15 @@ class MovieBrowserConfiguration(ConfigListScreen,Screen):
 			"cancel": self.cancel,
 			"ok": self.save,
 		}, -2)
-		self.onChangedEntry = []
-	
+		self["key_red"] = StaticText(_("Cancel"))
+		self["key_green"] = StaticText(_("OK"))
+		if not self.selectionChanged in self["config"].onSelectionChanged:
+			self["config"].onSelectionChanged.append(self.selectionChanged)
+		self.selectionChanged()
+
+	def selectionChanged(self):
+		self["status"].setText(self["config"].getCurrent()[2])
+
 	# for summary:
 	def changedEntry(self):
 		for x in self.onChangedEntry:
@@ -682,6 +677,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 
 	def updateHDDData(self):
 		if not self.inited:
+			self["waitingtext"].show()
 			self.reloadList(self.selectedmovie, home=True)
 			self.activityTimer.start(100)
 			self.inited=True
@@ -1003,14 +999,16 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.current_ref.setName('8192:jpg 8192:png 8192:gif 8192:bmp')
 
 	def reloadList(self, sel = None, home = False):
-		self["waitingtext"].visible = True
+		self["waitingtext"].show()
 		if not os.path.isdir(config.movielist.last_videodir.value):
 			path = defaultMoviePath()
 			config.movielist.last_videodir.value = path
 			config.movielist.last_videodir.save()
 			self.setCurrentRef(path)
 			self["freeDiskSpace"].path = path
-			self["TrashcanSize"].path = path
+ 			self["TrashcanSize"].update(path)
+ 		else:
+			self["TrashcanSize"].update(config.movielist.last_videodir.value)
 		if sel is None:
 			sel = self.getCurrent()
 		if config.movielist.settings_per_directory.value:
@@ -1027,8 +1025,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			if home:
 				self["list"].moveToFirstMovie()
 		self["freeDiskSpace"].update()
-		self["TrashcanSize"].update(config.movielist.last_videodir.value)
-		self["waitingtext"].visible = False
+		self.listTimer.start(10)
 
 	def doPathSelect(self):
 		self.session.openWithCallback(
@@ -1051,7 +1048,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				config.movielist.last_videodir.save()
 				self.setCurrentRef(res)
 				self["freeDiskSpace"].path = res
-				self["TrashcanSize"].path = res
 				self["TrashcanSize"].update(res)
 				self.reloadList(home = True, sel = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + currentDir))
 			else:
