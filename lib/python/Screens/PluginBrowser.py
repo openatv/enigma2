@@ -9,6 +9,7 @@ from Components.Label import Label
 from Components.Harddisk import harddiskmanager
 from Components.Sources.StaticText import StaticText
 from Components import Ipkg
+from Components.config import config
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
 from Screens.Console import Console
@@ -55,7 +56,9 @@ class PluginBrowser(Screen):
 		
 		self.list = []
 		self["list"] = PluginList(self.list)
-		
+ 		if config.usage.sort_pluginlist.value:
+ 			self["list"].list.sort()
+
 		self["actions"] = ActionMap(["WizardActions"],
 		{
 			"ok": self.save,

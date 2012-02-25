@@ -17,7 +17,7 @@ class OSDSetup(Screen, ConfigListScreen):
 		<widget source="key_green" render="Label" position="c-70,e-50" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;20" transparent="1" backgroundColor="green" />
 		<widget source="key_yellow" render="Label" position="c+90,e-50" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;20" transparent="1" backgroundColor="yellow" />
 		<ePixmap pixmap="skin_default/div-h.png" position="c-250,e-100" zPosition="1" size="500,2" />
-		<widget source="satus" render="Label" position="c-200,e-90" size="400,30" zPosition="10" font="Regular;21" halign="center" valign="center" foregroundColor="white" transparent="1" />
+		<widget source="status" render="Label" position="c-200,e-90" size="400,30" zPosition="10" font="Regular;21" halign="center" valign="center" foregroundColor="white" transparent="1" />
 	</screen>"""
 
 	def __init__(self, session):
@@ -28,7 +28,7 @@ class OSDSetup(Screen, ConfigListScreen):
 		from Components.ActionMap import ActionMap
 		from Components.Sources.StaticText import StaticText
 
-		self["satus"] = StaticText()
+		self["status"] = StaticText()
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
 		self["key_yellow"] = StaticText(_("Default"))
@@ -59,7 +59,7 @@ class OSDSetup(Screen, ConfigListScreen):
 		self.selectionChanged()
 
 	def selectionChanged(self):
-		self["satus"].setText(_("Current value: ") + self.getCurrentValue())
+		self["status"].setText(_("Current value: ") + self.getCurrentValue())
 
 	def layoutFinished(self):
 		self.setTitle(_(self.setup_title))
@@ -180,7 +180,7 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 		from Components.ActionMap import ActionMap
 		from Components.Sources.StaticText import StaticText
 
-		self["satus"] = StaticText()
+		self["status"] = StaticText()
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
 

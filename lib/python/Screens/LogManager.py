@@ -208,7 +208,7 @@ class LogManager(Screen):
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def layoutFinished(self):
-		self["LogsSize"].update(config.movielist.last_videodir.value)
+		self["LogsSize"].update(config.crash.debug_path.value)
 		idx = 0
 		self["list"].moveToIndex(idx)
 		self.setWindowTitle()
@@ -246,7 +246,7 @@ class LogManager(Screen):
 		self.selectedFiles = self["list"].getSelectedList()
 
 	def changelogtype(self):
-		self["LogsSize"].update(config.movielist.last_videodir.value)
+		self["LogsSize"].update(config.crash.debug_path.value)
 		import re
 		if self.logtype == 'crashlogs':
 			self["key_red"].setText(_("Crash Logs"))
@@ -314,7 +314,7 @@ class LogManager(Screen):
 			self["list"].instance.moveSelectionTo(0)
 			remove(self.defaultDir + self.sel[0])
 			self["list"].changeDir(self.defaultDir)
-			self["LogsSize"].update(config.movielist.last_videodir.value)
+			self["LogsSize"].update(config.crash.debug_path.value)
 
 	def sendlog(self, addtionalinfo = None):
 		try:

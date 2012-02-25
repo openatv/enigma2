@@ -52,6 +52,11 @@ def InitUsageConfig():
 	config.usage.second_infobar_timeout = ConfigSelection(default = "5", choices = [("0", _("no timeout"))] + choicelist)
 	config.usage.show_spinner = ConfigYesNo(default = True)
 	config.usage.enable_tt_caching = ConfigYesNo(default = True)
+	config.usage.sort_settings = ConfigYesNo(default = True)
+	config.usage.sort_menus = ConfigYesNo(default = False)
+	config.usage.sort_pluginlist = ConfigYesNo(default = True)
+	config.usage.movieplayer_pvrstate = ConfigYesNo(default = True) 
+
 	choicelist = []
 	for i in (10, 30):
 		choicelist.append(("%d" % i, ngettext("%d second", "%d seconds", i) % i))

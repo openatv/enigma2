@@ -583,7 +583,7 @@ class EPGSelection(Screen, HelpableScreen):
 	def hidewaitingtext(self):
 		self.listTimer.stop()
 		self['lab1'].hide()
-
+ 
 	def onStartup(self):
 		self.activityTimer.start(100)
 		if self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
@@ -919,7 +919,6 @@ class EPGSelection(Screen, HelpableScreen):
 				else: 
 					self.sort_type = 0
 				self["list"].sortSingleEPG(self.sort_type)
-
 	def showTimerList(self):
 		from Screens.TimerEdit import TimerEditList
 		self.session.open(TimerEditList)
@@ -962,7 +961,6 @@ class EPGSelection(Screen, HelpableScreen):
 				else: 
 					self.sort_type = 0
 				self["list"].sortSingleEPG(self.sort_type)
-
 	def editCallback(self, session):
 		global autotimer
 		global autopoller
@@ -1261,7 +1259,7 @@ class EPGSelection(Screen, HelpableScreen):
 		self.updateTimelineTimer.start((60 - (int(time()) % 60)) * 1000)        #keep syncronised
 		self["timeline_text"].setEntries(self["list"], self["timeline_now"], self.time_lines)
 		self["list"].l.invalidate() # not needed when the zPosition in the skin is correct! ?????
-
+	
 	def isPlayable(self):
 		# check if service is playable
 		current = ServiceReference(self.servicelist.getCurrentSelection())
@@ -1461,12 +1459,12 @@ class SingleEPG(EPGSelection):
 		EPGSelection.__init__(self, session, service, zapFunc, bouquetChangeCB, serviceChangeCB)
 		self.skinName = "EPGSelection"
 
-class EPGSelectionSetup(Screen, ConfigListScreen):	
+class EPGSelectionSetup(Screen, ConfigListScreen):
 	def __init__(self, session, type):
 		Screen.__init__(self, session)
 		self.type=type
 		Screen.setTitle(self, _("EPG Setup"))
-		self["satus"] = StaticText()
+		self["status"] = StaticText()
 		self['footnote'] = Label(_("* = Close EPG Required"))
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
@@ -1506,58 +1504,60 @@ class EPGSelectionSetup(Screen, ConfigListScreen):
 		self.editListEntry = None
 		self.list = [ ]
 		if self.type == 5:
-			self.list.append(getConfigListEntry(_("Channel preview mode"), config.epgselction.preview_mode_pliepg))
-			self.list.append(getConfigListEntry(_("Show bouquet on launch"), config.epgselction.showbouquet_pliepg))
-			self.list.append(getConfigListEntry(_("Picture In Graphics*"), config.epgselction.pictureingraphics))
-			self.list.append(getConfigListEntry(_("Show Picons"), config.epgselction.showpicon))
-			self.list.append(getConfigListEntry(_("Show Service names "), config.epgselction.showservicetitle))
-			self.list.append(getConfigListEntry(_("Info Button"), config.epgselction.Info))
-			self.list.append(getConfigListEntry(_("Long Info Button"), config.epgselction.InfoLong))
-			self.list.append(getConfigListEntry(_("OK Button"), config.epgselction.OK_pliepg))
-			self.list.append(getConfigListEntry(_("LongOK Button"), config.epgselction.OKLong_pliepg))
-			self.list.append(getConfigListEntry(_("Channel 1 at Start"), config.epgselction.channel1))
-			self.list.append(getConfigListEntry(_("Skip Empty Services"), config.epgselction.overjump))
-			self.list.append(getConfigListEntry(_("Base Time"), config.epgselction.roundTo))
-			self.list.append(getConfigListEntry(_("Primetime hour"), config.epgselction.primetimehour))
-			self.list.append(getConfigListEntry(_("Primetime minute"), config.epgselction.primetimemins))
-			self.list.append(getConfigListEntry(_("Items per Page"), config.epgselction.itemsperpage_vixepg))
-			self.list.append(getConfigListEntry(_("Event Fontsize (relative to skin size)"), config.epgselction.ev_fontsize_pliepg))
-			self.list.append(getConfigListEntry(_("Service Fontsize (relative to skin size)"), config.epgselction.serv_fontsize_pliepg))
-			self.list.append(getConfigListEntry(_("Service width"), config.epgselction.servicewidth))
-			self.list.append(getConfigListEntry(_("Timeline Fontsize"), config.epgselction.tl_fontsize_pliepg))
-			self.list.append(getConfigListEntry(_("Time Scale"), config.epgselction.prev_time_period))
+			self.list.append(getConfigListEntry(_("Channel preview mode"), config.epgselction.preview_mode_pliepg,_("If set to 'yes' you can preview channels in the EPG list.")))
+			self.list.append(getConfigListEntry(_("Show bouquet on launch"), config.epgselction.showbouquet_pliepg,_("If set to 'yes' the bouquets will be shown each time you open the EPG.")))
+			self.list.append(getConfigListEntry(_("Picture In Graphics*"), config.epgselction.pictureingraphics,_("If set to 'yes' shows a small TV-screen in the EPG.")))
+			self.list.append(getConfigListEntry(_("Show Picons"), config.epgselction.showpicon,_("If set to 'yes' shows the channel picons in the EPG.")))
+			self.list.append(getConfigListEntry(_("Show Service names "), config.epgselction.showservicetitle,_("If set to 'yes' shows the channel names in the EPG.")))
+			self.list.append(getConfigListEntry(_("Info (sort) Button"), config.epgselction.Info,_("Set to what you want the button to do.")))
+			self.list.append(getConfigListEntry(_("Info (long) Button"), config.epgselction.InfoLong,_("Set to what you want the button to do.")))
+			self.list.append(getConfigListEntry(_("OK (sort) Button"), config.epgselction.OK_pliepg,_("Set to what you want the button to do.")))
+			self.list.append(getConfigListEntry(_("OK (long) Button"), config.epgselction.OKLong_pliepg,_("Set to what you want the button to do.")))
+			self.list.append(getConfigListEntry(_("Channel 1 at Start"), config.epgselction.channel1,_("If set to 'yes' the EPG will alway open at the first channel. If set to 'no' the EPG will open on the present channel.")))
+			self.list.append(getConfigListEntry(_("Skip Empty Services"), config.epgselction.overjump,_("If set to 'yes' channels without EPG will not be shown.")))
+			self.list.append(getConfigListEntry(_("Base Time"), config.epgselction.roundTo,_("Choose time interval to which the graphics will be rounded off.")))
+			self.list.append(getConfigListEntry(_("Primetime hour"), config.epgselction.primetimehour,_("Set to the desired primetime (hour).")))
+			self.list.append(getConfigListEntry(_("Primetime minute"), config.epgselction.primetimemins,_("Set to the desired primetime (minutes.")))
+			self.list.append(getConfigListEntry(_("Number of rows"), config.epgselction.itemsperpage_pliepg, _("This allows you change the number of rows shown.")))
+			self.list.append(getConfigListEntry(_("Event Fontsize"), config.epgselction.ev_fontsize_pliepg, _("This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size")))
+			self.list.append(getConfigListEntry(_("Service Fontsize"), config.epgselction.serv_fontsize_pliepg, _("This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size")))
+			self.list.append(getConfigListEntry(_("Service width"), config.epgselction.servicewidth,_("Set the width allocated to the service name.")))
+			self.list.append(getConfigListEntry(_("Timeline Fontsize"), config.epgselction.tl_fontsize_pliepg, _("This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size")))
+			self.list.append(getConfigListEntry(_("Time Scale"), config.epgselction.prev_time_period,_("Choose the amount of time that will be presented.")))
 		elif self.type == 4:
-			self.list.append(getConfigListEntry(_("Channel preview mode"), config.epgselction.preview_mode_infobar))
-			self.list.append(getConfigListEntry(_("Skip Empty Services"), config.epgselction.overjump))
-			self.list.append(getConfigListEntry(_("Sort List by"), config.epgselction.sort))
-			self.list.append(getConfigListEntry(_("OK Button"), config.epgselction.OK_infobar))
-			self.list.append(getConfigListEntry(_("LongOK Button"), config.epgselction.OKLong_infobar))
-			self.list.append(getConfigListEntry(_("Items per Page"), config.epgselction.itemsperpage_infobar))
-			self.list.append(getConfigListEntry(_("Event Fontsize (relative to skin size)"), config.epgselction.ev_fontsize_infobar))
+			self.list.append(getConfigListEntry(_("Channel preview mode"), config.epgselction.preview_mode_infobar,_("If set to 'yes' you can preview channels in the EPG list.")))
+			self.list.append(getConfigListEntry(_("Skip Empty Services"), config.epgselction.overjump,_("If set to 'yes' channels without EPG will not be shown.")))
+			self.list.append(getConfigListEntry(_("Sort List by"), config.epgselction.sort,_("You can have the list sorted by time or alphanumerical.")))
+			self.list.append(getConfigListEntry(_("OK (short) Button"), config.epgselction.OK_infobar,_("Set to what you want the button to do.")))
+			self.list.append(getConfigListEntry(_("OK (long) Button"), config.epgselction.OKLong_infobar,_("Set to what you want the button to do.")))
+			self.list.append(getConfigListEntry(_("Number of rows"), config.epgselction.itemsperpage_infobar, _("This allows you change the number of rows shown.")))
+			self.list.append(getConfigListEntry(_("Event Fontsize"), config.epgselction.ev_fontsize_infobar, _("This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size")))
 		elif self.type == 3 or self.type == 0:
 			if self.type != 0:
-				self.list.append(getConfigListEntry(_("Channel preview mode"), config.epgselction.preview_mode_enhanced))
-				self.list.append(getConfigListEntry(_("Skip Empty Services"), config.epgselction.overjump))
-			self.list.append(getConfigListEntry(_("Sort List by"), config.epgselction.sort))
+				self.list.append(getConfigListEntry(_("Channel preview mode"), config.epgselction.preview_mode_enhanced,_("If set to 'yes' you can preview channels in the EPG list.")))
+				self.list.append(getConfigListEntry(_("Skip Empty Services"), config.epgselction.overjump,_("If set to 'yes' channels without EPG will not be shown.")))
+			self.list.append(getConfigListEntry(_("Sort List by"), config.epgselction.sort,_("You can have the list sorted by time or alphanumerical.")))
 			if self.type != 0:
-				self.list.append(getConfigListEntry(_("OK Button"), config.epgselction.OK_enhanced))
-				self.list.append(getConfigListEntry(_("LongOK Button"), config.epgselction.OKLong_enhanced))
-			self.list.append(getConfigListEntry(_("Items per Page"), config.epgselction.itemsperpage_enhanced))
-			self.list.append(getConfigListEntry(_("Event Fontsize (relative to skin size)"), config.epgselction.ev_fontsize_enhanced))
+				self.list.append(getConfigListEntry(_("OK (short) Button"), config.epgselction.OK_enhanced,_("Set to what you want the button to do.")))
+				self.list.append(getConfigListEntry(_("OK (long) Button"), config.epgselction.OKLong_enhanced,_("Set to what you want the button to do.")))
+			self.list.append(getConfigListEntry(_("Number of rows"), config.epgselction.itemsperpage_enhanced, _("This allows you change the number of rows shown.")))
+			self.list.append(getConfigListEntry(_("Event Fontsize"), config.epgselction.ev_fontsize_enhanced, _("This allows you change the font size relative to skin size, so 1 increases by 1 piont size, and -1 decreases by 1 piont size")))
 		elif self.type == 1:
-			self.list.append(getConfigListEntry(_("Channel preview mode"), config.epgselction.preview_mode))
-			self.list.append(getConfigListEntry(_("Show bouquet on launch"), config.epgselction.showbouquet_multi))
-			self.list.append(getConfigListEntry(_("Skip Empty Services"), config.epgselction.overjump))
-			self.list.append(getConfigListEntry(_("Sort List by"), config.epgselction.sort))
-			self.list.append(getConfigListEntry(_("OK Button"), config.epgselction.OK))
-			self.list.append(getConfigListEntry(_("LongOK Button"), config.epgselction.OKLong))
-			self.list.append(getConfigListEntry(_("Items per Page"), config.epgselction.itemsperpage_multi))
-			self.list.append(getConfigListEntry(_("Event Fontsize (relative to skin size)"), config.epgselction.ev_fontsize_multi))
+			self.list.append(getConfigListEntry(_("Channel preview mode"), config.epgselction.preview_mode,_("If set to 'yes' you can preview channels in the EPG list.")))
+			self.list.append(getConfigListEntry(_("Show bouquet on launch"), config.epgselction.showbouquet_multi,_("If set to 'yes' the bouquets will be shown each time you open the EPG")))
+			self.list.append(getConfigListEntry(_("Skip Empty Services"), config.epgselction.overjump,_("If set to 'yes' channels without EPG will not be shown.")))
+			self.list.append(getConfigListEntry(_("Sort List by"), config.epgselction.sort,_("You can have the list sorted by time or alphanumerical.")))
+			self.list.append(getConfigListEntry(_("OK (short) Button"), config.epgselction.OK,_("Set to what you want the button to do.")))
+			self.list.append(getConfigListEntry(_("OK (long) Button"), config.epgselction.OKLong,_("Set to what you want the button to do.")))
+			self.list.append(getConfigListEntry(_("Number of rows"), config.epgselction.itemsperpage_multi, _("This allows you change the number of rows shown.")))
+			self.list.append(getConfigListEntry(_("Event Fontsize"), config.epgselction.ev_fontsize_multi, _("This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size")))
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
+		if config.usage.sort_settings.value:
+			self["config"].list.sort()
 
 	def selectionChanged(self):
-		self["satus"].setText(_("Current value: ") + self.getCurrentValue())
+		self["status"].setText(self["config"].getCurrent()[2])
 
 	# for summary:
 	def changedEntry(self):

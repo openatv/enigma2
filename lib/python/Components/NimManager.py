@@ -646,11 +646,13 @@ class NimManager:
 			#print "SATS", self.satellites
 			#print "TRANSPONDERS", self.transponders
 
-		if self.hasNimType("DVB-C") or self.hasNimType("DVB-T"):
+		if self.hasNimType("DVB-C"):
 			print "Reading cables.xml"
 			db.readCables(self.cablesList, self.transponderscable)
 #			print "CABLIST", self.cablesList
 #			print "TRANSPONDERS", self.transponders
+
+		if self.hasNimType("DVB-T"):
 			print "Reading terrestrial.xml"
 			db.readTerrestrials(self.terrestrialsList, self.transpondersterrestrial)
 #			print "TERLIST", self.terrestrialsList
@@ -1266,6 +1268,9 @@ def InitNimManager(nimmgr):
 			section.longitudeOrientation = ConfigSelection(longitude_orientation_choices, "east")
 			section.latitude = ConfigFloat(default = [50,767], limits = [(0,359),(0,999)])
 			section.latitudeOrientation = ConfigSelection(latitude_orientation_choices, "north")
+			section.tuningstepsize = ConfigFloat(default = [0,360], limits = [(0,9),(0,999)])
+			section.turningspeedH = ConfigFloat(default = [2,3], limits = [(0,9),(0,9)])
+			section.turningspeedV = ConfigFloat(default = [1,7], limits = [(0,9),(0,9)])
 			section.powerMeasurement = ConfigYesNo(default=True)
 			section.powerThreshold = ConfigInteger(default=hw.get_device_name() == "dm7025" and 50 or 15, limits=(0, 100))
 			section.turningSpeed = ConfigSelection(turning_speed_choices, "fast")
@@ -1422,6 +1427,9 @@ def InitNimManager(nimmgr):
 			nim.longitudeOrientation = ConfigSelection(longitude_orientation_choices, "east")
 			nim.latitude = ConfigFloat(default=[50,767], limits=[(0,359),(0,999)])
 			nim.latitudeOrientation = ConfigSelection(latitude_orientation_choices, "north")
+			nim.tuningstepsize = ConfigFloat(default = [0,360], limits = [(0,9),(0,999)])
+			nim.turningspeedH = ConfigFloat(default = [2,3], limits = [(0,9),(0,9)])
+			nim.turningspeedV = ConfigFloat(default = [1,7], limits = [(0,9),(0,9)])
 			nim.powerMeasurement = ConfigYesNo(False)
 			nim.powerThreshold = ConfigInteger(default=hw.get_device_name() == "dm8000" and 15 or 50, limits=(0, 100))
 			nim.turningSpeed = ConfigSelection(turning_speed_choices, "fast")
@@ -1494,7 +1502,7 @@ def InitNimManager(nimmgr):
 			for x in nimmgr.terrestrialsList:
 				list.append((str(n), x[0]))
 				n += 1
-			nim.terrestrial = ConfigSelection(default = "2", choices = list)
+			nim.terrestrial = ConfigSelection(choices = list)
 			nim.terrestrial_5V = ConfigOnOff()
 		else:
 			empty_slots += 1

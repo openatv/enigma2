@@ -32,9 +32,7 @@ class SetupError(Exception):
         return self.msg
 
 class SetupSummary(Screen):
-
 	def __init__(self, session, parent):
-
 		Screen.__init__(self, session, parent = parent)
 		self["SetupTitle"] = StaticText(_(parent.setup_title))
 		self["SetupEntry"] = StaticText("")
@@ -85,9 +83,10 @@ class Setup(ConfigListScreen, Screen):
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self["VKeyIcon"] = Boolean(False)
-		self["satus"] = StaticText()
+		self["status"] = StaticText()
 
 		self.onChangedEntry = [ ]
+		self.item = None
 		self.setup = setup
 		list = []
 		ConfigListScreen.__init__(self, list, session = session, on_change = self.changedEntry)
@@ -120,8 +119,25 @@ class Setup(ConfigListScreen, Screen):
 		list = []
 		self.refill(list)
  		self["config"].setList(list)
+		if config.usage.sort_settings.value:
+			self["config"].list.sort()
+		self.moveToItem(self.item)
+
+	def getIndexFromItem(self, item):
+		if item is not None:
+			for x in range(len(self["config"].list)):
+				if self["config"].list[x][0] == item[0]:
+					return x
+		return None
+                
+	def moveToItem(self, item):
+		newIdx = self.getIndexFromItem(item)
+		if newIdx is None:
+			newIdx = 0
+		self["config"].setCurrentIndex(newIdx)
 
 	def handleInputHelpers(self):
+ 		self["status"].setText(self["config"].getCurrent()[2])
 		if self["config"].getCurrent() is not None:
 			try:
 				from Components.config import ConfigText, ConfigPassword
@@ -161,6 +177,7 @@ class Setup(ConfigListScreen, Screen):
 
 	# for summary:
 	def changedEntry(self):
+		self.item = self["config"].getCurrent()
 		for x in self.onChangedEntry:
 			x()
 		try:
@@ -204,6 +221,7 @@ class Setup(ConfigListScreen, Screen):
 					continue;
 
 				item_text = _(x.get("text", "??").encode("UTF-8"))
+				item_summary = _(x.get("summary", "??").encode("UTF-8"))
 				b = eval(x.text or "");
 				if b == "":
 					continue
@@ -213,7 +231,7 @@ class Setup(ConfigListScreen, Screen):
 				# the first b is the item itself, ignored by the configList.
 				# the second one is converted to string.
 				if not isinstance(item, ConfigNothing):
-					list.append( (item_text, item) )
+					list.append((item_text, item, item_summary))
 
 def getSetupTitle(id):
 	xmldata = setupdom.getroot()

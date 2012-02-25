@@ -23,7 +23,7 @@ class parseXML(ContentHandler, LexicalHandler):
 			self.last_comment = comment
 
 	def startElement(self, name, attrs):
-		for x in ["text", "title", "value", "caption"]:
+		for x in ["text", "title", "value", "caption", "summary"]:
 			try:
 				attrlist.add((attrs[x], self.last_comment))
 				self.last_comment = None
