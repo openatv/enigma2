@@ -530,10 +530,10 @@ class ChannelSelectionEdit:
 		mutableBouquetList = serviceHandler.list(self.bouquet_root).startEdit()
 		if mutableBouquetList:
 			if self.mode == MODE_TV:
-				bName += " (TV)"
+				bName += _(" (TV)")
 				str = '1:7:1:0:0:0:0:0:0:0:FROM BOUQUET \"userbouquet.%s.tv\" ORDER BY bouquet'%(self.buildBouquetID(bName))
 			else:
-				bName += " (Radio)"
+				bName += _(" (Radio)")
 				str = '1:7:2:0:0:0:0:0:0:0:FROM BOUQUET \"userbouquet.%s.radio\" ORDER BY bouquet'%(self.buildBouquetID(bName))
 			new_bouquet_ref = eServiceReference(str)
 			if not mutableBouquetList.addService(new_bouquet_ref):
@@ -860,7 +860,7 @@ class ChannelSelectionBase(Screen):
 		pos = title.find(" (")
 		if pos != -1:
 			title = title[:pos]
-		title += " (TV)"
+		title += _(" (TV)")
 		self.setTitle(title)
 
 	def setRadioMode(self):
@@ -871,7 +871,7 @@ class ChannelSelectionBase(Screen):
 		pos = title.find(" (")
 		if pos != -1:
 			title = title[:pos]
-		title += " (Radio)"
+		title += _(" (Radio)")
 		self.setTitle(title)
 
 	def setRoot(self, root, justSet=False):
@@ -890,9 +890,9 @@ class ChannelSelectionBase(Screen):
 
 	def removeModeStr(self, str):
 		if self.mode == MODE_TV:
-			pos = str.find(' (TV)')
+			pos = str.find(_(" (TV)"))
 		else:
-			pos = str.find(' (Radio)')
+			pos = str.find(_(" (Radio)"))
 		if pos != -1:
 			return str[:pos]
 		return str
