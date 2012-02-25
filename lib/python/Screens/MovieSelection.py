@@ -22,7 +22,7 @@ from Screens.ChoiceBox import ChoiceBox
 from Screens.LocationBox import MovieLocationBox
 from Screens.HelpMenu import HelpableScreen
 
-from Tools.NumericalTextInput import NumericalTextInput
+from Tools import NumericalTextInput
 from Tools.Directories import resolveFilename, SCOPE_HDD
 from Tools.BoundFunction import boundFunction
 import Tools.Trashcan
@@ -45,7 +45,6 @@ config.movielist.last_selected_tags = ConfigSet([], default=[])
 config.movielist.play_audio_internal = ConfigYesNo(default=True)
 config.movielist.settings_per_directory = ConfigYesNo(default=True)
 config.movielist.root = ConfigSelection(default="/media", choices=["/","/media","/media/hdd","/media/hdd/movie"])
-config.movielist.useMoveToChars = ConfigYesNo(default=True)
 
 userDefinedButtons = None
 
@@ -248,7 +247,6 @@ class MovieBrowserConfiguration(ConfigListScreen,Screen):
 			getConfigListEntry(_("Show icon for new/unseen items"), config.usage.movielist_unseen),
 			getConfigListEntry(_("Play audio in background"), config.movielist.play_audio_internal),
 			getConfigListEntry(_("Root directory"), config.movielist.root),
-			getConfigListEntry(_("Use numeric keys for jumping by chars"), config.movielist.useMoveToChars)
 			]
 		for btn in ('red', 'green', 'yellow', 'blue', 'tv', 'radio'):
 			configList.append(getConfigListEntry(_(btn), userDefinedButtons[btn]))
@@ -438,8 +436,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.delayTimer.callback.append(self.updateHDDData)
 		self.feedbackTimer = None
 
-		self.numericalTextInput = NumericalTextInput()
-		self.numericalTextInput.setUseableChars(u'1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ')
+		self.numericalTextInput = NumericalTextInput.NumericalTextInput(mapping=NumericalTextInput.MAP_SEARCH_UPCASE)
 		self["chosenletter"] = Label("")
 		self["chosenletter"].visible = False
 		
@@ -504,7 +501,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				"movePrev": (self.playPrev, _("Play previous")),
 				"channelUp": (self.moveToFirstOrFirstFile, _("Go to first movie or top of list")), 
 				"channelDown": (self.moveToLastOrFirstFile, _("Go to first movie or last item")),
-				"AudioSelection": (self.switchNumKeysActions, _("Number keys: jump to char / seek the movie"))
 			})
 		self["MovieSelectionActions"] = HelpableActionMap(self, "MovieSelectionActions",
 			{
@@ -545,23 +541,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				"seekBack": (sback, tBack),
 				"seekBackManual": (ssback, tBack),
 			}, prio=5)	
-		self["SeekActionsAdd"] = HelpableActionMap(self, "InfobarSeekActions",	
-			{
-				"seekdef:1": (lambda: self.seekRelative(-1, config.seek.selfdefined_13.value*90000), tFwd),
-				"seekdef:3": (lambda: self.seekRelative(1, config.seek.selfdefined_13.value*90000), tFwd),
-				"seekdef:4": (sback, tBack),
-				"seekdef:6": (sfwd, tFwd),
-				"seekdef:7": (ssback, tBack),
-				"seekdef:9": (ssfwd, tFwd),
-			}, prio=5)
-		self["NumberActionsAdd"] =  HelpableActionMap(self, "NumberActions", 
-			{
-				"0": (self.preview, _("Preview")),
-				"2": (self.list.moveToFirst, _("Go to top of list")),
-				"5": (self.list.moveToFirstMovie, _("Go to first movie")),
-				"8": (self.list.moveToLast, _("Go to last item")),
-			})		
-		self._switchNumKeysActions(config.movielist.useMoveToChars.value)		
 		self.onShown.append(self.go)
 		self.onLayoutFinish.append(self.saveListsize)
 		self.list.connectSelChanged(self.updateButtons)
@@ -576,15 +555,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				iPlayableService.evEOF: self.__evEOF,
 				#iPlayableService.evSOF: self.__evSOF,
 			})
-	
-	def switchNumKeysActions(self):
-		self._switchNumKeysActions(self["SeekActionsAdd"].enabled)		
-	
-	def _switchNumKeysActions(self, useMTC=True):
-		self["SeekActionsAdd"].setEnabled(not useMTC)
-		self["NumberActionsAdd"].setEnabled(not useMTC)
-		self["NumberActions"].setEnabled(useMTC)		
-	
+
 	def initUserDefinedActions(self):
 		global userDefinedButtons, userDefinedActions, config
 		if userDefinedButtons is None:
@@ -659,7 +630,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			self["list"].moveToFirst()
 		else:
 			self["list"].moveDown()
-	
+
 	def moveToFirstOrFirstFile(self):
 		if self.list.getCurrentIndex() <= self.list.firstFileEntry: #selection above or on first movie
 			if self.list.getCurrentIndex() < 1:
@@ -721,6 +692,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				if self.isItemPlayable(self.list.getCurrentIndex() + 1):
 					self.list.moveDown()
 					self.callLater(self.preview)
+		else:
+			self.preview()
 	
 	def playPrev(self):
 		if self.playInBackground:
@@ -993,7 +966,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		config.movielist.moviesort.value = self.settings["moviesort"]
 		config.movielist.listtype.value = self.settings["listtype"]
 		config.movielist.description.value = self.settings["description"]
-		self._switchNumKeysActions(config.movielist.useMoveToChars.value)
 
 	def loadLocalSettings(self):
 		'Load settings, called when entering a directory'
@@ -1008,7 +980,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			pass # ignore fail to open errors
 		except Exception, e:
 			print "Failed to load settings:", e
-		self._switchNumKeysActions(config.movielist.useMoveToChars.value)
 
 	def applyConfigSettings(self, updates):
 		needUpdate = ("description" in updates) and (updates["description"] != self.settings["description"]) 
@@ -1114,7 +1085,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.setTitle(title)
  		if not (sel and self["list"].moveTo(sel)):
 			if home:
-				self["list"].moveToParentDirectory()
+				self["list"].moveToFirstMovie()
 		self["freeDiskSpace"].update()
 		self["waitingtext"].visible = False
 
