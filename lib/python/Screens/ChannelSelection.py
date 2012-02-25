@@ -939,6 +939,7 @@ class ChannelSelectionBase(Screen):
 				"9": self.keyNumberGlobal,
 				"0": self.keyNumberGlobal
 			})
+#  		self.setTitle(_("Channel Selection"))
 		self.recallBouquetMode()
 
 	def getBouquetNumOffset(self, bouquet):
@@ -1030,6 +1031,8 @@ class ChannelSelectionBase(Screen):
 
 	def getServiceName(self, ref):
 		str = self.removeModeStr(ServiceReference(ref).getServiceName())
+		if 'User - bouquets' in str:
+			return _("User - bouquets")
 		if not str:
 			pathstr = ref.getPath()
 			if 'FROM PROVIDERS' in pathstr:
@@ -1055,7 +1058,7 @@ class ChannelSelectionBase(Screen):
 				else:
 					end_ref = None
 # 				nameStr = self.getServiceName(base_ref)
-# 				titleStr += ' ' + nameStr
+# 				titleStr += ' - ' + nameStr
 				if end_ref is not None:
 # 					if Len > 2:
 # 						titleStr += '/../'
@@ -1327,6 +1330,19 @@ class ChannelSelectionBase(Screen):
 	def prevMarker(self):
 		self.servicelist.moveToPrevMarker()
 
+	def gotoCurrentServiceOrProvider(self, ref):
+		if ref.toString().find(_("Providers")) != -1:
+			service = self.session.nav.getCurrentService()
+			if service:
+				info = service.info()
+				if info:
+					provider = info.getInfoString(iServiceInformation.sProvider)
+					op = int("".join(self.session.nav.getCurrentlyPlayingServiceReference().toString().split(':', 10)[6:7])[:-4],16)
+					refstr = '1:7:0:0:0:0:0:0:0:0:(provider == \"%s\") && (satellitePosition == %s) && %s ORDER BY name:%s'%(provider,op,self.service_types[self.service_types.rfind(':')+1:],provider)
+					self.servicelist.setCurrent(eServiceReference(refstr))
+		else:
+			self.setCurrentSelection(self.session.nav.getCurrentlyPlayingServiceReference())
+
 HISTORYSIZE = 20
 
 #config for lastservice
@@ -1471,8 +1487,10 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		ref = self.getCurrentSelection()
 		if self.movemode:
 			self.toggleMoveMarked()
-		elif (ref.flags & 7) == 7:
+		elif (ref.flags & eServiceReference.flagDirectory) == eServiceReference.flagDirectory:
+			self.clearPath()
 			self.enterPath(ref)
+			self.gotoCurrentServiceOrProvider(ref)
 		elif self.bouquet_mark_edit != OFF:
 			if not (self.bouquet_mark_edit == EDIT_ALTERNATIVES and ref.flags & eServiceReference.isGroup):
 				self.doMark()
@@ -1527,7 +1545,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			if lastservice.valid() and self.getCurrentSelection() != lastservice:                        
 				self.setCurrentSelection(lastservice)
 
-			title += " (TV)"
+			title += _(" (TV)")
 		else:
 			# Mark PiP as active and effectively active pipzap
 			self.session.pip.active()
@@ -1536,7 +1554,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			# Move to service playing in pip (will not work with subservices)
 			self.setCurrentSelection(self.session.pip.getCurrentService())
 
-			title += " (PiP)"
+			title += _(" (PiP)")
 		self.setTitle(title)
 		self.buildTitleString()
 
@@ -1728,122 +1746,6 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		self.startref = None
 		self.close(None)
 
-class SimpleChannelSelection(ChannelSelectionBase):
-	def __init__(self, session, title, zap = False):
-		ChannelSelectionBase.__init__(self, session)
-		self["actions"] = ActionMap(["OkCancelActions", "TvRadioActions"],
-			{
-				"cancel": self.close,
-				"ok": self.channelSelected,
-				"keyRadio": self.setModeRadio,
-				"keyTV": self.setModeTv,
-			})
-		self.title = title
-		self.onLayoutFinish.append(self.layoutFinished)
-
-		self.history_tv = [ ]
-		self.history_radio = [ ]
-		self.history = self.history_tv
-		self.history_pos = 0
-
-		self.lastroot = config.tv.lastroot
-		self.lastservice = config.tv.lastservice
-
-	def layoutFinished(self):
-		self.setModeTv()
-
-	def asciiOn(self):
-		rcinput = eRCInput.getInstance()
-		rcinput.setKeyboardMode(rcinput.kmAscii)
-
-	def asciiOff(self):
-		rcinput = eRCInput.getInstance()
-		rcinput.setKeyboardMode(rcinput.kmNone)
-
-	def channelSelected(self): # just return selected service
-		ref = self.getCurrentSelection()
-		if (ref.flags & 7) == 7:
-			self.enterPath(ref)
-		#elif not (ref.flags & eServiceReference.isMarker):
-			#ref = self.getCurrentSelection()
-			#self.close(ref)
-		elif not (ref.flags & eServiceReference.isMarker): # no marker
-			root = self.getRoot()
-			if not root or not (root.flags & eServiceReference.isGroup):
-				self.zap(enable_pipzap = True)
-				self.asciiOff()
-				self.close(ref)
-
-
-	#called from infoBar and channelSelected
-	def zap(self, enable_pipzap = False):
-		self.revertMode=None
-		nref = self.getCurrentSelection()
-		if enable_pipzap and self.dopipzap:
-			ref = self.session.pip.getCurrentService()
-			if ref is None or ref != nref:
-				if not self.session.pip.playService(nref):
-					# XXX: Make sure we set an invalid ref
-					self.session.pip.playService(None)
-		else:
-			ref = self.session.nav.getCurrentlyPlayingServiceReference()
-			if ref is None or ref != nref:
-				self.new_service_played = True
-				self.session.nav.playService(nref)
-				self.saveRoot()
-				self.saveChannel(nref)
-				config.servicelist.lastmode.save()
-				self.addToHistory(nref)
-
-			# Yes, we might double-check this, but we need to re-select pipservice if pipzap is active
-			# and we just wanted to zap in mainwindow once
-			# XXX: do we really want this? this also resets the service when zapping from context menu
-			#      which is irritating
-			if self.dopipzap:
-				# This unfortunately won't work with subservices
-				self.setCurrentSelection(self.session.pip.getCurrentService())
-
-	def saveRoot(self):
-		path = ''
-		for i in self.servicePath:
-			path += i.toString()
-			path += ';'
-		if path and path != self.lastroot.value:
-			self.lastroot.value = path
-			self.lastroot.save()
-
-	def saveChannel(self, ref):
-		if ref is not None:
-			refstr = ref.toString()
-		else:
-			refstr = ""
-		if refstr != self.lastservice.value:
-			self.lastservice.value = refstr
-			self.lastservice.save()
-
-	def addToHistory(self, ref):
-		if self.servicePath is not None:
-			tmp=self.servicePath[:]
-			tmp.append(ref)
-			try:
-				del self.history[self.history_pos+1:]
-			except:
-				pass
-			self.history.append(tmp)
-			hlen = len(self.history)
-			if hlen > HISTORYSIZE:
-				del self.history[0]
-				hlen -= 1
-			self.history_pos = hlen-1
-
-	def setModeTv(self):
-		self.setTvMode()
-		self.showFavourites()
-
-	def setModeRadio(self):
-		self.setRadioMode()
-		self.showFavourites()
-		
 class RadioInfoBar(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -1972,8 +1874,10 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 		ref = self.getCurrentSelection()
 		if self.movemode:
 			self.toggleMoveMarked()
-		elif (ref.flags & 7) == 7:
+		elif (ref.flags & eServiceReference.flagDirectory) == eServiceReference.flagDirectory:
+			self.clearPath()
 			self.enterPath(ref)
+			self.gotoCurrentServiceOrProvider(ref)
 		elif self.bouquet_mark_edit != OFF:
 			if not (self.bouquet_mark_edit == EDIT_ALTERNATIVES and ref.flags & eServiceReference.isGroup):
 				self.doMark()
@@ -1986,3 +1890,35 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 					config.radio.lastservice.value = ref.toString()
 					config.radio.lastservice.save()
 				self.saveRoot()
+
+class SimpleChannelSelection(ChannelSelectionBase):
+	def __init__(self, session, title):
+		ChannelSelectionBase.__init__(self, session)
+		self["actions"] = ActionMap(["OkCancelActions", "TvRadioActions"],
+			{
+				"cancel": self.close,
+				"ok": self.channelSelected,
+				"keyRadio": self.setModeRadio,
+				"keyTV": self.setModeTv,
+			})
+		self.title = title
+		self.onLayoutFinish.append(self.layoutFinished)
+
+	def layoutFinished(self):
+		self.setModeTv()
+
+	def channelSelected(self): # just return selected service
+		ref = self.getCurrentSelection()
+		if (ref.flags & 7) == 7:
+			self.enterPath(ref)
+		elif not (ref.flags & eServiceReference.isMarker):
+			ref = self.getCurrentSelection()
+			self.close(ref)
+
+	def setModeTv(self):
+		self.setTvMode()
+		self.showFavourites()
+
+	def setModeRadio(self):
+		self.setRadioMode()
+		self.showFavourites()
