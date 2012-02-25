@@ -56,7 +56,7 @@ class PluginBrowser(Screen):
 		
 		self.list = []
 		self["list"] = PluginList(self.list)
- 		if config.usage.pluginlist.value:
+ 		if config.usage.sort_pluginlist.value:
  			self["list"].list.sort()
 
 		self["actions"] = ActionMap(["WizardActions"],
