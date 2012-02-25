@@ -162,6 +162,8 @@ class SettingsMenu(ConfigListScreen, Screen):
 		self.list.append(getConfigListEntry(_("Number of rows"), config.usage.serviceitems_per_page, _("This allows you change the number of rows shown.")))
 		self["config"].list = self.list
 		self["config"].setList(self.list)
+		if config.usage.sort_settings.value:
+			self["config"].list.sort()
 
 	def selectionChanged(self):
 		self["status"].setText(self["config"].getCurrent()[2])
