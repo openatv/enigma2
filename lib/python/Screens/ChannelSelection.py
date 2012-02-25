@@ -1317,7 +1317,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		ref = self.getCurrentSelection()
 		if self.movemode:
 			self.toggleMoveMarked()
-		elif (ref.flags & 7) == 7:
+		elif (ref.flags & eServiceReference.flagDirectory) == eServiceReference.flagDirectory:
 			self.enterPath(ref)
 		elif self.bouquet_mark_edit != OFF:
 			if not (self.bouquet_mark_edit == EDIT_ALTERNATIVES and ref.flags & eServiceReference.isGroup):
@@ -1657,7 +1657,7 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 		ref = self.getCurrentSelection()
 		if self.movemode:
 			self.toggleMoveMarked()
-		elif (ref.flags & 7) == 7:
+		elif (ref.flags & eServiceReference.flagDirectory) == eServiceReference.flagDirectory:
 			self.enterPath(ref)
 		elif self.bouquet_mark_edit != OFF:
 			if not (self.bouquet_mark_edit == EDIT_ALTERNATIVES and ref.flags & eServiceReference.isGroup):
@@ -1690,7 +1690,7 @@ class SimpleChannelSelection(ChannelSelectionBase):
 
 	def channelSelected(self): # just return selected service
 		ref = self.getCurrentSelection()
-		if (ref.flags & 7) == 7:
+		if (ref.flags & eServiceReference.flagDirectory) == eServiceReference.flagDirectory:
 			self.enterPath(ref)
 		elif not (ref.flags & eServiceReference.isMarker):
 			ref = self.getCurrentSelection()
