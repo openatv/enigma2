@@ -1,4 +1,4 @@
-﻿from GUIComponent import GUIComponent
+from GUIComponent import GUIComponent
 from Tools.FuzzyDate import FuzzyTime
 from ServiceReference import ServiceReference
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest, MultiContentEntryProgress
@@ -139,6 +139,7 @@ class MovieList(GUIComponent):
 		self.descr_state = descr_state or self.HIDE_DESCRIPTION
 		self.sort_type = sort_type or self.SORT_RECORDED
 		self.firstFileEntry = 0
+		self.parentDirectory = 0
 		self.fontName = "Regular"
 		self.fontSizesOriginal = (22,18,16)
 		self.fontSizesCompact = (20,14)
@@ -409,7 +410,13 @@ class MovieList(GUIComponent):
 		else:
 			# there are no movies, just directories...
 			self.moveToFirst()
-
+	
+	def moveToParentDirectory(self):
+		if self.parentDirectory < len(self.list):
+			self.instance.moveSelectionTo(self.parentDirectory)
+		else:
+			self.moveToFirst()
+	
 	def moveToLast(self):
 		if self.list:
 			self.instance.moveSelectionTo(len(self.list) - 1)
@@ -431,7 +438,12 @@ class MovieList(GUIComponent):
 	def getCurrent(self):
 		l = self.l.getCurrentSelection()
 		return l and l[0]
-
+		
+	def getItem(self, index):
+		if self.list:
+			if len(self.list) > index:
+				return self.list[index] and self.list[index][0]
+					
 	GUI_WIDGET = eListbox
 
 	def postWidgetCreate(self, instance):
@@ -526,6 +538,7 @@ class MovieList(GUIComponent):
 			self.list.append((serviceref, info, begin, -1))
 		
 		self.firstFileEntry = numberOfDirs
+		self.parentDirectory = 0
 		if self.sort_type == MovieList.SORT_ALPHANUMERIC:
 			self.list.sort(key=self.buildAlphaNumericSortKey)
 		else:
@@ -552,7 +565,7 @@ class MovieList(GUIComponent):
 					if not itempath.endswith('/'):
 						itempath += '/'
 					if itempath == rootPath: 
-						self.firstFileEntry = index
+						self.parentDirectory = index
 						break
 		self.root = root
 		# finally, store a list of all tags which were found. these can be presented
@@ -603,3 +616,48 @@ class MovieList(GUIComponent):
 
 	def moveUp(self):
 		self.instance.moveSelection(self.instance.moveUp)
+		
+	def moveToChar(self, char, lbl=None):
+		self._char = char
+		self._lbl = lbl
+		if lbl:			
+			lbl.setText(char)
+			lbl.visible = True
+		self.moveToCharTimer = eTimer()
+		self.moveToCharTimer.callback.append(self._moveToChar)
+		self.moveToCharTimer.start(1000, True) #time to wait for next key press to decide which letter to use...		
+		
+	def _moveToChar(self):
+		currentIndex = self.instance.getCurrentIndex()
+		found = False
+		if currentIndex < (len(self.list) - 1):
+			itemsBelow = self.list[currentIndex + 1:]
+			#first search the items below the selection
+			for index, item in enumerate(itemsBelow):
+				ref = item[0]
+				itemName = getShortName(item[1].getName(ref).upper(), ref)
+				if itemName.startswith(self._char):
+					found = True
+					self.instance.moveSelectionTo(index + currentIndex + 1)
+					break
+		if found == False and currentIndex > 0:
+			itemsAbove = self.list[1:currentIndex] #first item (0) points parent folder - no point to include
+			for index, item in enumerate(itemsAbove):
+				ref = item[0]
+				itemName = getShortName(item[1].getName(ref).upper(), ref)
+				if itemName.startswith(self._char):
+					found = True
+					self.instance.moveSelectionTo(index + 1)
+					break
+		if self._lbl:
+			self._lbl.visible = False			
+
+def getShortName(name, serviceref):
+	if serviceref.flags & eServiceReference.mustDescent: #Directory			
+		pathName = serviceref.getPath()
+		p = os.path.split(pathName)
+		if not p[1]: #if path ends in '/', p is blank.
+			p = os.path.split(p[0])
+		return p[1].upper()
+	else:
+		return name
