@@ -54,7 +54,7 @@ def InitUsageConfig():
 	config.usage.enable_tt_caching = ConfigYesNo(default = True)
 	config.usage.sort_settings = ConfigYesNo(default = True)
 	config.usage.sort_menus = ConfigYesNo(default = False)
-	config.usage.pluginlist = ConfigYesNo(default = True)
+	config.usage.sort_pluginlist = ConfigYesNo(default = True)
 	config.usage.movieplayer_pvrstate = ConfigYesNo(default = True) 
 
 	choicelist = []
