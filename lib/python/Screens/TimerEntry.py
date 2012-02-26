@@ -47,6 +47,7 @@ class TimerEntry(Screen, ConfigListScreen):
 
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session = session)
+		self.setTitle(_("Timer entry"))
 		self.createSetup("config")
 
 	def createConfig(self):
@@ -445,6 +446,7 @@ class TimerLog(Screen):
 			"red": self.deleteEntry,
 			"blue": self.clearLog
 		}, -1)
+		self.setTitle(_("Timer log"))
 
 	def deleteEntry(self):
 		cur = self["loglist"].getCurrent()
