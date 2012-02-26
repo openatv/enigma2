@@ -52,7 +52,7 @@
 		<item level="2" text="Hide CI messages" summary="This option allows you to hide any Common Interface card error messages.">config.usage.hide_ci_messages</item>
 		<item level="1" text="Sort setting screen's alphabetically" summary="This option allows you to disable sorting of the option in setting screen's">config.usage.sort_settings</item>
 		<item level="1" text="Sort menu screen's alphabetically" summary="This option allows you to disable sorting of the menus">config.usage.sort_menus</item>
-		<item level="1" text="Sort plug-in browser alphabetically" summary="This option allows you to disable sorting of the plugin browser.">config.usage.pluginlist</item>
+		<item level="1" text="Sort plug-in browser alphabetically" summary="This option allows you to disable sorting of the plugin browser.">config.usage.sort_pluginlist</item>
 		<item level="1" text="Position of finished Timers in Timerlist" summary="This option allows you to control how finished timer are shown in the Timer List.">config.usage.timerlist_finished_timer_position</item>
 		<item level="1" text="Show PVR status in MoviePlayer infobar" summary="This option moves the PVR status from the seprate window into the MoviePlayer infobar.">config.usage.movieplayer_pvrstate</item>
 	</setup>
@@ -74,6 +74,7 @@
 		<item level="2" text="Include AIT in http streams" summary="Allows AIT to be included in http streams">config.streaming.stream_ait</item>
 	</setup>
 	<setup key="subtitlesetup" title="Subtitle Settings">
+		<item level="1" text="Teletext subtitle color" summary="Allows you to set the colour of the Teletext subtitles.">config.subtitles.ttx_subtitle_colors</item>
 		<item level="1" text="Use original teletext position" summary="Allows you to use the original position of the Teletext subtitles.">config.subtitles.ttx_subtitle_original_position</item>
 		<item level="2" text="Rewrap teletext subtitles" summary="Allows you to activate rewrapping of the teletext subtitles">config.subtitles.subtitle_rewrap</item>
 		<item level="1" text="Custom text position" summary="Allows you to set the position of the Teletext subtitles.">config.subtitles.subtitle_position</item>
@@ -174,7 +175,7 @@
 		<item level="2" text="Show CCcam in extensions ?" summary="Allows you to show/hide CCcam in extensions (blue button).">config.cccaminfo.showInExtensions</item>
 		<item level="2" text="Show OScam in extensions ?" summary="Allows you to show/hide OScam in extensions (blue button).">config.oscaminfo.showInExtensions</item>
 	</setup>
-	<setup key="logs" title="Settings...">
+	<setup key="logs" title="Crashlog settings">
 		<item level="2" text="Logs location" summary="Choose the location for crash and debuglogs.">config.crash.debug_path</item>
 		<item level="2" text="Create more detailed crash log" summary="Allows more detailed to be in the crash log">config.crash.details</item>
 		<item level="2" text="Enable Debug log" summary="Allows you to enable the debug log. They contain very detailed information of everything the system does.">config.crash.enabledebug</item>
