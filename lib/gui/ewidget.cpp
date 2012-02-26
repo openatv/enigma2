@@ -90,7 +90,15 @@ void eWidget::invalidate(const gRegion &region)
 	while (root && !root->m_desktop)
 	{
 		root = root->m_parent;
-		ASSERT(root);
+		if (!root) 
+		{
+			/* 
+			 * Somewhere in out ancestry is a widget without a parent.
+			 * This means we cannot find our desktop, so
+			 * we won't be able to invalidate the requested region.
+			 */
+			return;
+		}
 		if (root->m_layer != -1)
 			target_layer = root->m_layer;
 		abspos += root->position();
@@ -233,7 +241,15 @@ ePoint eWidget::getAbsolutePosition()
 	while (root && !root->m_desktop)
 	{
 		root = root->m_parent;
-		ASSERT(root);
+		if (!root) 
+		{
+			/* 
+			 * Somewhere in out ancestry is a widget without a parent.
+			 * This means we cannot find our desktop, so
+			 * we won't be able to get our absolute position.
+			 */
+			break;
+		}
 		abspos += root->position();
 	}
 
