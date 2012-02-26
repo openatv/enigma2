@@ -65,14 +65,16 @@ class PliExtraInfo(Poll, Converter, object):
 		return res
 	
 	def createCryptoSpecial(self):
-		
 		caid_name = "FTA"
-		for caid_entry in self.caid_data:
-			if int(self.current_caid, 16) >= int(caid_entry[0], 16) and int(self.current_caid, 16) <= int(caid_entry[1], 16):
-				caid_name = caid_entry[2]
-				break
-		
-		return caid_name + ":%04x:%04x:%04x:%04x" % (int(self.current_caid,16),int(self.current_provid,16),self.info.getInfo(iServiceInformation.sSID),int(self.current_ecmpid,16))
+		try:
+			for caid_entry in self.caid_data:
+				if int(self.current_caid, 16) >= int(caid_entry[0], 16) and int(self.current_caid, 16) <= int(caid_entry[1], 16):
+					caid_name = caid_entry[2]
+					break
+			return caid_name + ":%04x:%04x:%04x:%04x" % (int(self.current_caid,16),int(self.current_provid,16),self.info.getInfo(iServiceInformation.sSID),int(self.current_ecmpid,16))
+		except:
+			pass
+		return ""
 	
 	def createResolution(self):
 		xres = self.info.getInfo(iServiceInformation.sVideoWidth)
