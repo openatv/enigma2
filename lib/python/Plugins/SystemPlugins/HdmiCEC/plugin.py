@@ -24,8 +24,8 @@ class HdmiCECSetupScreen(Screen, ConfigListScreen):
 	</screen>"""
 
 	def __init__(self, session):
-		self.skin = HdmiCECSetupScreen.skin
 		Screen.__init__(self, session)
+		Screen.setTitle(self, _("HDMI CEC Setup"))
 
 		from Components.ActionMap import ActionMap
 		from Components.Button import Button
