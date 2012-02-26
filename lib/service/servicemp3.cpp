@@ -1630,7 +1630,7 @@ void eServiceMP3::gstTextpadHasCAPS_synced(GstPad *pad)
 		eDebug("gstTextpadHasCAPS:: signal::caps = %s", gst_caps_to_string(caps));
 //		eDebug("gstGhostpadHasCAPS_synced %p %d", pad, m_subtitleStreams.size());
 
-		if (m_currentSubtitleStream >= 0 && m_currentSubtitleStream < m_subtitleStreams.size())
+		if (m_currentSubtitleStream >= 0 && m_currentSubtitleStream < (int)m_subtitleStreams.size())
 			subs = m_subtitleStreams[m_currentSubtitleStream];
 		else {
 			subs.type = stUnknown;
@@ -1652,7 +1652,7 @@ void eServiceMP3::gstTextpadHasCAPS_synced(GstPad *pad)
 			subs.language_code = std::string(g_lang);
 			subs.type = getSubtitleType(pad);
 
-			if (m_currentSubtitleStream >= 0 && m_currentSubtitleStream < m_subtitleStreams.size())
+			if (m_currentSubtitleStream >= 0 && m_currentSubtitleStream < (int)m_subtitleStreams.size())
 				m_subtitleStreams[m_currentSubtitleStream] = subs;
 			else
 				m_subtitleStreams.push_back(subs);
@@ -1668,7 +1668,7 @@ void eServiceMP3::gstTextpadHasCAPS_synced(GstPad *pad)
 
 void eServiceMP3::pullSubtitle(GstBuffer *buffer)
 {
-	if (buffer && m_currentSubtitleStream >= 0 && m_currentSubtitleStream < m_subtitleStreams.size())
+	if (buffer && m_currentSubtitleStream >= 0 && m_currentSubtitleStream < (int)m_subtitleStreams.size())
 	{
 		gint64 buf_pos = GST_BUFFER_TIMESTAMP(buffer);
 		gint64 duration_ns = GST_BUFFER_DURATION(buffer);
@@ -1817,7 +1817,25 @@ RESULT eServiceMP3::disableSubtitles(eWidget *parent)
 
 PyObject *eServiceMP3::getCachedSubtitle()
 {
-// 	eDebug("eServiceMP3::getCachedSubtitle");
+	if (!m_subtitleStreams.empty())
+	{
+		int index = 0; /* report the first stream to be 'cached' */
+		if (m_currentSubtitleStream >= 0 && m_currentSubtitleStream < (int)m_subtitleStreams.size())
+		{
+			/* 
+			 * Report the currently selected subtitle stream to be 'cached',
+			 * this avoids jumping back to the first stream, when skipping/winding
+			 */
+			index = m_currentSubtitleStream;
+		}
+		ePyObject tuple = PyTuple_New(5);
+		PyTuple_SET_ITEM(tuple, 0, PyInt_FromLong(2));
+		PyTuple_SET_ITEM(tuple, 1, PyInt_FromLong(index));
+		PyTuple_SET_ITEM(tuple, 2, PyInt_FromLong(int(m_subtitleStreams[index].type)));
+		PyTuple_SET_ITEM(tuple, 3, PyInt_FromLong(0));
+		PyTuple_SET_ITEM(tuple, 4, PyString_FromString(m_subtitleStreams[index].language_code.c_str()));
+		return tuple;
+	}
 	Py_RETURN_NONE;
 }
 
