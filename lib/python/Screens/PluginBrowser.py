@@ -274,7 +274,7 @@ class PluginDownloadBrowser(Screen):
 					self.runSettingsInstall()
 			elif self.type == self.REMOVE:
 				if self["list"].l.getCurrentSelection()[0].name.startswith("bootlogo-"):
-					self.doRemove(self.installFinished, self["list"].l.getCurrentSelection()[0].name + " --force-remove")
+					self.doRemove(self.installFinished, self["list"].l.getCurrentSelection()[0].name + " --force-remove --force-depends")
 				else:
 					self.doRemove(self.installFinished, self["list"].l.getCurrentSelection()[0].name)
 
@@ -414,7 +414,9 @@ class PluginDownloadBrowser(Screen):
 
 			self.plugins[split[0]].append((PluginDescriptor(name = x[3], description = x[2], icon = verticallineIcon), split[1], x[1]))
 
-		for x in self.plugins.keys():
+		temp = self.plugins.keys()
+		temp.sort()
+		for x in temp:
 			if x in self.expanded:
 				list.append(PluginCategoryComponent(x, expandedIcon, self.listWidth))
 				list.extend([PluginDownloadComponent(plugin[0], plugin[1], plugin[2], self.listWidth) for plugin in self.plugins[x]])

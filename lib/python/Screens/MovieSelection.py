@@ -1603,7 +1603,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		if config.movielist.btn_blue.value == "sort": self['key_blue'].setText(sorttext)
 		self.sorttimer = eTimer()
 		self.sorttimer.callback.append(self._updateButtonTexts)
-		self.sorttimer.start(1500, True) #time for displaying sorting type just applied
+		self.sorttimer.start(3000, True) #time for displaying sorting type just applied
 		self.sortBy(int(l_moviesort[index][0]))
 
 	def do_listtype(self):
