@@ -186,6 +186,7 @@ private:
 	static int ac3_delay;
 	int m_currentAudioStream;
 	int m_currentSubtitleStream;
+	int m_cachedSubtitleStream;
 	int selectAudioStream(int i);
 	std::vector<audioStream> m_audioStreams;
 	std::vector<subtitleStream> m_subtitleStreams;
