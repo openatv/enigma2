@@ -618,11 +618,11 @@ msgid "Accesspoint:"
 msgstr "Access Point:"
 
 #
-msgid "Action on long powerbutton press"
+msgid "Action on long power button press"
 msgstr "Aktion bei langem Drücken der Power-Taste"
 
 #
-msgid "Action on short powerbutton press"
+msgid "Action on short power button press"
 msgstr "Aktion bei kurzem Drücken der Power-Taste"
 
 #
@@ -1275,7 +1275,7 @@ msgstr "Kanalliste"
 msgid "Channel Selection"
 msgstr "Kanalauswahl"
 
-msgid "Channel list preview mode"
+msgid "Channel list preview"
 msgstr "Programmlisten-Vorschau-Modus"
 
 msgid "Channel list service mode (requires restart)"
@@ -2766,7 +2766,7 @@ msgid "Format"
 msgstr "Formatieren"
 
 msgid "Forward volume keys"
-msgstr "Forward Volume-Tasten"
+msgstr "Weiterleiten der Volume-Tasten"
 
 #
 msgid "Frame size in full view"
@@ -4216,7 +4216,7 @@ msgstr "Einmal pro Tag"
 msgid "One"
 msgstr "Eins"
 
-msgid "Online version check every (hours) 0 = Disable"
+msgid "Online version check every (hours)"
 msgstr "Online-Versionsprüfung alle (Stunden) 0 = deaktiviert"
 
 msgid "OnlineVersionCheck"
@@ -4794,7 +4794,7 @@ msgstr "Vordefinierte Transponder"
 msgid "Prefer AC3"
 msgstr "AC3 bevorzugen"
 
-msgid "Prefer DVB-grafical subtitles"
+msgid "Prefer DVB-graphical subtitles"
 msgstr "Grafische DVB-Untertitel bevorzugen"
 
 msgid "Prefer audio stream stored by service"
@@ -6386,8 +6386,8 @@ msgstr "Sonntag"
 msgid "Support at"
 msgstr "Support bei"
 
-msgid "Swap SNR in db with SNR in percentage on OSD"
-msgstr "Tausche SNR/% mitSNR/dB im OSD"
+msgid "Swap SNR in db with SNR in percentage"
+msgstr "Tausche SNR/% mitSNR/dB in Infoleiste"
 
 #
 msgid "Swap Services"
@@ -10060,7 +10060,7 @@ msgstr "Zeige Merlin EPG Center"
 
 #
 msgid "Show infobar picons"
-msgstr "Zeige infobar picons"
+msgstr "Zeige Senderlogo in der Infoleiste"
 
 #
 msgid "Mount Manager"
@@ -10184,7 +10184,7 @@ msgid "Jump first press in channel selection*"
 msgstr "Springe zuerst in Programmauswahl*"
 
 msgid "Show infobar lite"
-msgstr "Zeige einfache Infobar"
+msgstr "Zeige einfache Infoleiste"
 
 msgid "2nd Infobar timeout"
 msgstr "2te Infoleiste Anzeigedauer"
@@ -10198,25 +10198,16 @@ msgstr "Integriere ECM in HTTP-Streams"
 msgid "Include EIT in http streams"
 msgstr "Integriere EIT in HTTP-Streams"
 
-msgid "Time Remaining/Elapsed"
-msgstr "Verbleibende/Verstrichene Zeit"
-
 msgid "Elapsed&Remaining"
 msgstr "Verstrichene&Verbleibende"
 
 msgid "Remaining&Elapsed"
 msgstr "Verbleibende&Verstrichene"
 
-msgid "Transponder Remaining/Elapsed as"
-msgstr "Transponder als Verbleibende&Verstrichene"
-
-msgid "Media playback Remaining/Elapsed as"
-msgstr "Media Wiedergabe als Verbleibende&Verstrichene"
-
 msgid "Remaining"
 msgstr "Verbleibende"
 
-msgid "Descramble http streams"
+msgid "De-scramble http streams"
 msgstr "Entschlüssele HTTP-Streams"
 
 msgid "Yellow Key Action"
@@ -10342,5 +10333,136 @@ msgstr "%02d.%02d. %02d:%02d"
 msgid "No Delay"
 msgstr "Keine Verzögerung"
 
-msgid "List type"
-msgstr "Listen Typ"
+msgid "1 second"
+msgstr "1 Sekunde"
+
+msgid "2 seconds"
+msgstr "2 Sekunden"
+
+msgid "3 seconds"
+msgstr "3 Sekunden"
+
+msgid "4 seconds"
+msgstr "4 Sekunden"
+
+msgid "5 seconds"
+msgstr "5 Sekunden"
+
+msgid "6 seconds"
+msgstr "6 Sekunden"
+
+msgid "7 seconds"
+msgstr "7 Sekunden"
+
+msgid "8 seconds"
+msgstr "8 Sekunden"
+
+msgid "9 seconds"
+msgstr "9 Sekunden"
+
+msgid "11 seconds"
+msgstr "11 Sekunden"
+
+msgid "Show Time Remaining/Elapsed"
+msgstr "Zeige verbleibende/verstrichene Zeit als"
+
+msgid "Show Transponder Remaining/Elapsed as"
+msgstr "Zeige Transponder als verbleibende/verstrichene Zeit in"
+
+msgid "Show Media playback Remaining/Elapsed as"
+msgstr "Zeige Medien Wiedergabe als verbleibende/verstrichene Zeit in"
+
+msgid "Media playback Remaining/Elapsed as"
+msgstr "Medien Wiedergabe verbleibende/verstrichene Zeit in"
+
+msgid "Brightness (Normal)"
+msgstr "Helligkeit (Normal)"
+
+msgid "Brightness (Standby)"
+msgstr "Helligkeit (Standby)"
+
+msgid "Mins Secs"
+msgstr "Minuten Sekunden"
+
+msgid "Hours Mins Secs"
+msgstr "Std Min Sek"
+
+msgid "1st Infobar timeout"
+msgstr "1ste Infoleiste Anzeigedauer"
+
+msgid "2nd infobar"
+msgstr "2te Infoleiste"
+
+msgid "2nd Infobar ECM"
+msgstr "2te Infoleiste ECM"
+
+msgid "2nd Infobar INFO"
+msgstr "2te Infoleiste Info"
+
+msgid "Channel selection on mode change"
+msgstr "Kanal Auswahl nach Modus Wechsel"
+
+msgid "Show PVR status in MoviePlayer infobar"
+msgstr "Zeige PVR Status in der MoviePlayer Infoleiste"
+
+msgid "Show alternative radio mode"
+msgstr "Zeige alternativen Radio Modus"
+
+msgid "Show time remaining/elapsed"
+msgstr "Zeige verbleibende/verstrichene Zeit als"
+
+msgid "Show transponder remaining/elapsed as"
+msgstr "Zeige Transponder verbleibende/verstrichene Zeit in"
+
+msgid "Sort menu screen's alphabetically"
+msgstr "Menü Einträge alphabetisch sortieren"
+
+msgid "Sort plug-in browser alphabetically"
+msgstr "Plugin-Browser Einträge alphabetisch sortieren"
+
+msgid "Sort setting screen's alphabetically"
+msgstr "Einstellungs Einträge alphabetisch sortieren"
+
+msgid "Transponder Time"
+msgstr "Transponder Zeit"
+
+msgid "30 Minutes"
+msgstr "30 Minuten"
+
+msgid "Maintain old EPG data for"
+msgstr "Halte alte EPG Daten für (X) Minuten"
+
+msgid "Regard deep standby as standby"
+msgstr "Deep-Standby wie Standby behandeln"
+
+msgid "Use HDMI-preemphasis"
+msgstr "HDMI-Preemphasis benutzen"
+
+msgid "center"
+msgstr "zentriert"
+
+msgid "Use DVB subtitles position"
+msgstr "DVB Untertitel Position"
+
+msgid "fixed"
+msgstr "fixiert"
+
+msgid "relative"
+msgstr "relativ"
+
+msgid "DVD-Player Setup"
+msgstr "DVD-Player Einstellungen"
+
+msgid "Show DVD-Player in Mainmenu when BMC is installed ?"
+msgstr "DVD-Player im Hauptmenü anzeigen, wenn BMC installiert ist?"
+
+
+
+
+
+
+
+
+
+
+
