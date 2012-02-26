@@ -191,7 +191,7 @@ class MovieBrowserConfiguration(ConfigListScreen,Screen):
 		Screen.__init__(self, session)
 		self.session = session
 		self.skinName = "Setup"
- 		self.setup_title = _("Movie List Configuration")
+ 		self.setup_title = _("Movie List Setup")
  		Screen.setTitle(self, _(self.setup_title))
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
@@ -282,14 +282,14 @@ class MovieContextMenuSummary(Screen):
 		self.onHide.append(self.__onHide)
 
 	def __onShow(self):
-		self.parent["menu"].onSelectionChanged.append(self.selectionChanged)
+		self.parent["config"].onSelectionChanged.append(self.selectionChanged)
 		self.selectionChanged()
 
 	def __onHide(self):
-		self.parent["menu"].onSelectionChanged.remove(self.selectionChanged)
+		self.parent["config"].onSelectionChanged.remove(self.selectionChanged)
 
 	def selectionChanged(self):
-		item = self.parent["menu"].getCurrent()
+		item = self.parent["config"].getCurrent()
 		self["selected"].text = item[0]
 
 
@@ -297,13 +297,25 @@ class MovieContextMenu(Screen):
 	# Contract: On OK returns a callable object (e.g. delete)
 	def __init__(self, session, csel, service):
 		Screen.__init__(self, session)
+		self.skinName = "Setup"
+		self.setup_title = _("Movie List Setup")
+		Screen.setTitle(self, _(self.setup_title))
+		self["HelpWindow"] = Pixmap()
+		self["HelpWindow"].hide()
+		self["VKeyIcon"] = Boolean(False)
+		self['footnote'] = Label("")
+		self["status"] = StaticText()
 
 		self["actions"] = ActionMap(["OkCancelActions"],
 			{
+				"red": self.cancelClick,
+				"green": self.okbuttonClick,
 				"ok": self.okbuttonClick,
 				"cancel": self.cancelClick
 			})
 
+		self["key_red"] = StaticText(_("Cancel"))
+		self["key_green"] = StaticText(_("OK"))
 		menu = []
 		if service:
 			if (service.flags & eServiceReference.mustDescent):
@@ -327,13 +339,13 @@ class MovieContextMenu(Screen):
 		menu.append((_("create directory"), csel.do_createdir))
 		menu.append((_("Network") + "...", csel.showNetworkSetup))
 		menu.append((_("Settings") + "...", csel.configure))
-		self["menu"] = MenuList(menu)
+		self["config"] = MenuList(menu)
 
 	def createSummary(self):
 		return MovieContextMenuSummary
 
 	def okbuttonClick(self):
-		self.close(self["menu"].getCurrent()[1])
+		self.close(self["config"].getCurrent()[1])
 
 	def cancelClick(self):
 		self.close(None)
