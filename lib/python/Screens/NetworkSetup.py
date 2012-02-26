@@ -32,6 +32,7 @@ class NetworkAdapterSelection(Screen,HelpableScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
+		Screen.setTitle(self, _("Network Setup"))
 		
 		self.wlan_errortext = _("No working wireless network adapter found.\nPlease verify that you have attached a compatible WLAN device and your network is configured correctly.")
 		self.lan_errortext = _("No working local network adapter found.\nPlease verify that you have attached a network cable and your network is configured correctly.")
@@ -240,6 +241,7 @@ class NameserverSetup(Screen, ConfigListScreen, HelpableScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
+		Screen.setTitle(self, _("Nameserver settings"))
 		self.backupNameserverList = iNetwork.getNameserverList()[:]
 		print "backup-list:", self.backupNameserverList
 		
@@ -322,6 +324,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 	def __init__(self, session, networkinfo, essid=None):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
+		Screen.setTitle(self, _("Adapter settings"))
 		self.session = session
 		if isinstance(networkinfo, (list, tuple)):
 			self.iface = networkinfo[0]
@@ -675,6 +678,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 	def __init__(self, session,iface):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
+		Screen.setTitle(self, _("Network Setup"))
 		self.session = session
 		self.iface = iface
 		self.restartLanRef = None
@@ -1018,6 +1022,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 class NetworkAdapterTest(Screen):	
 	def __init__(self, session,iface):
 		Screen.__init__(self, session)
+		Screen.setTitle(self, _("Network Test"))
 		self.iface = iface
 		self.oldInterfaceState = iNetwork.getAdapterAttribute(self.iface, "up")
 		self.setLabels()

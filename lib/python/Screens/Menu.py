@@ -233,6 +233,7 @@ class Menu(Screen):
 		if a is None:
 			a = _(parent.get("text", "").encode("UTF-8"))
 		self["title"] = StaticText(a)
+		Screen.setTitle(self, a)
 		self.menu_title = a
 
 	def keyNumberGlobal(self, number):
