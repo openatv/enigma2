@@ -151,8 +151,8 @@
 		<panel name="SummaryClockPanel" />
 	</screen>
 	<screen name="MovieContextMenuSummary" position="0,0" size="255,64">
-		<widget source="parent.Title" render="Label" position="0,0" size="132,14" font="FdLcD;12" halign="left" valign="top" noWrap="1" />
-		<widget source="selected" render="Label" position="0,14" size="132,32" font="FdLcD;16" />
+		<widget source="parent.Title" render="Label" position="0,0" size="170,18" font="FdLcD;15" halign="left" valign="top" noWrap="1" />
+		<widget source="selected" render="Label" position="0,16" size="255,32" font="FdLcD;14" halign="left" valign="top" />
 		<panel name="SummaryIconsPanel" />
 		<panel name="SummaryTunerStatusPanel" />
 		<panel name="SummaryClockPanel" />
@@ -207,9 +207,9 @@
 
 <!-- setup-->
 	<screen name="SetupSummary" position="0,0" size="255,64">
-		<widget source="SetupTitle" render="Label" position="0,0" size="170,14" font="FdLcD;15" halign="left" valign="top" noWrap="1"  />
-		<widget source="SetupEntry" render="Label" position="0,15" size="255,32" font="FdLcD;14" halign="left" valign="top" />
-		<widget source="SetupValue" render="Label" position="0,46" size="190,18" font="FdLcD;15" halign="left" valign="bottom" />
+		<widget source="SetupTitle" render="Label" position="0,0" size="170,18" font="FdLcD;15" halign="left" valign="top" noWrap="1"  />
+		<widget source="SetupEntry" render="Label" position="0,16" size="255,32" font="FdLcD;14" halign="left" valign="top" />
+		<widget source="SetupValue" render="Label" position="0,47" size="190,18" font="FdLcD;15" halign="left" valign="bottom" />
 		<panel name="SummaryIconsPanel" />
 		<panel name="SummaryClockPanel" />
 	</screen>
