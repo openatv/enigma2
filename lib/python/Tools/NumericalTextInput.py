@@ -4,7 +4,7 @@ from Components.Language import language
 
 # Dict languageCode -> array of strings
 MAP_SEARCH = (
-	u"%_0", # 0
+	u"%_0",
 	u" 1",
 	u"abc2",
 	u"def3",
@@ -14,6 +14,18 @@ MAP_SEARCH = (
 	u"pqrs7",
 	u"tuv8",
 	u"wxyz9",
+	)
+MAP_SEARCH_UPCASE = (
+	U"0%_",
+	U"1 ",
+	U"ABC2",
+	U"DEF3",
+	U"GHI4",
+	U"JKL5",
+	U"MNO6",
+	U"PQRS7",
+	U"TUV8",
+	U"WXYZ9",
 	)
 MAP_DEFAULT = (
 	u"0,?!&@=*'+\"()$~%",

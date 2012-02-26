@@ -441,6 +441,11 @@
 		<key id="KEY_TV" mapto="leavePlayer" flags="m" />
 		<key id="KEY_STOP" mapto="leavePlayer" flags="m" />
 		<key id="KEY_BACK" mapto="leavePlayer" flags="m" />
+		<key id="KEY_CHANNELUP" mapto="channelUp" flags="m" />
+		<key id="KEY_CHANNELDOWN" mapto="channelDown" flags="m" />
+		<key id="KEY_PREVIOUS" mapto="movePrev" flags="b" />
+		<key id="KEY_NEXT" mapto="moveNext" flags="b" />
+		<key id="KEY_AUDIO" mapto="AudioSelection" flags="m" />
 	</map>
 
 	<map context="InfobarCueSheetActions">

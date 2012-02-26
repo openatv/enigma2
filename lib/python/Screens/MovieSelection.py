@@ -15,6 +15,7 @@ from Components.Sources.ServiceEvent import ServiceEvent
 from Components.Sources.StaticText import StaticText
 import Components.Harddisk
 from Components.UsageConfig import preferredTimerPath
+from Components.Sources.Boolean import Boolean
 
 from Plugins.Plugin import PluginDescriptor
 
@@ -194,6 +195,8 @@ class MovieBrowserConfiguration(ConfigListScreen,Screen):
  		Screen.setTitle(self, _(self.setup_title))
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
+		self["VKeyIcon"] = Boolean(False)
+		self['footnote'] = Label("")
 		self["status"] = StaticText()
 
 		self.onChangedEntry = [ ]
@@ -1600,7 +1603,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		if config.movielist.btn_blue.value == "sort": self['key_blue'].setText(sorttext)
 		self.sorttimer = eTimer()
 		self.sorttimer.callback.append(self._updateButtonTexts)
-		self.sorttimer.start(1500, True) #time for displaying sorting type just applied
+		self.sorttimer.start(3000, True) #time for displaying sorting type just applied
 		self.sortBy(int(l_moviesort[index][0]))
 
 	def do_listtype(self):
