@@ -428,7 +428,7 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 			locations = []
 			for validdevice in candidates:
 				locations.append(validdevice[1])
-			if Components.Harddisk.findMountPoint(os.path.realpath(config.usage.timeshift_path.value))+'/' in locations:
+			if Components.Harddisk.findMountPoint(os.path.realpath(config.usage.timeshift_path.value))+'/' in locations or Components.Harddisk.findMountPoint(os.path.realpath(config.usage.timeshift_path.value)) in locations:
 				config.usage.timeshift_path.value = self.timeshift_dirname.value
 				config.usage.timeshift_path.save()
 				self.saveAll()
