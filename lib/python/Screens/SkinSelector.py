@@ -21,8 +21,8 @@ class SkinSelector(Screen):
 	root = eEnv.resolve("${datadir}/enigma2/")
 
 	def __init__(self, session, args = None):
-
 		Screen.__init__(self, session)
+		Screen.setTitle(self, _("Skin Setup"))
 
 		self.skinlist = []
 		self.previewPath = ""
@@ -30,9 +30,9 @@ class SkinSelector(Screen):
 
 		self["key_red"] = StaticText(_("Close"))
 		self["introduction"] = StaticText(_("Press OK to activate the selected skin."))
-		self.skinlist.sort()
 		self["SkinList"] = MenuList(self.skinlist)
 		self["Preview"] = Pixmap()
+		self.skinlist.sort()
 
 		self["actions"] = NumberActionMap(["WizardActions", "DirectionActions", "InputActions", "EPGSelectActions"],
 		{
@@ -120,15 +120,3 @@ class SkinSelector(Screen):
 	def restartGUI(self, answer):
 		if answer is True:
 			self.session.open(TryQuitMainloop, 3)
-
-def SkinSelMain(session, **kwargs):
-	session.open(SkinSelector)
-
-def SkinSelSetup(menuid, **kwargs):
-	if menuid != "system": 
-		return [ ]
-
-	return [(_("Skin"), SkinSelMain, "skin_selector", None)]
-
-def Plugins(**kwargs):
-	return PluginDescriptor(name="Skinselector", description="Select Your Skin", where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc=SkinSelSetup)
