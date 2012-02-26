@@ -324,14 +324,14 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 			else:
 				self.session.open(
 					MessageBox,
-					_("The directory %s is not a EXT2, EXT3 or EXT4 partition.\nMake sure you select a valid partition type.")%res,
+					_("The directory %s is not a EXT2, EXT3 or EXT4 partition.\nMake sure you select a valid partition type.")%dir,
 					type = MessageBox.TYPE_ERROR
 					)
 				return False
 		else:
 			self.session.open(
 				MessageBox,
-				_("The directory %s is not a EXT2, EXT3 or EXT4 partition.\nMake sure you select a valid partition type.")%res,
+				_("The directory %s is not a EXT2, EXT3 or EXT4 partition.\nMake sure you select a valid partition type.")%dir,
 				type = MessageBox.TYPE_ERROR
 				)
 			return False
