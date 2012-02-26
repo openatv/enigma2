@@ -1,6 +1,6 @@
-﻿from Screen import Screen
+from Screen import Screen
 from Components.Button import Button
-from Components.ActionMap import HelpableActionMap, ActionMap
+from Components.ActionMap import HelpableActionMap, ActionMap, NumberActionMap
 from Components.MenuList import MenuList
 from Components.MovieList import MovieList, resetMoviePlayState
 from Components.DiskInfo import DiskInfo
@@ -24,13 +24,14 @@ from Screens.ChoiceBox import ChoiceBox
 from Screens.LocationBox import MovieLocationBox
 from Screens.HelpMenu import HelpableScreen
 
+from Tools import NumericalTextInput
 from Tools.Directories import resolveFilename, SCOPE_HDD, SCOPE_CURRENT_SKIN
 from Tools.BoundFunction import boundFunction
 import Tools.Trashcan
 import NavigationInstance
 import RecordTimer
 
-from enigma import eServiceReference, eServiceCenter, eTimer, eSize, iPlayableService, iServiceInformation
+from enigma import eServiceReference, eServiceCenter, eTimer, eSize, iPlayableService, iServiceInformation, getPrevAsciiCode
 import os
 import time
 import cPickle as pickle
@@ -430,9 +431,11 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.movemode = False
 		self.bouquet_mark_edit = False
 
-		self.playInBackground = None
-
 		self.feedbackTimer = None
+
+		self.numericalTextInput = NumericalTextInput.NumericalTextInput(mapping=NumericalTextInput.MAP_SEARCH_UPCASE)
+		self["chosenletter"] = Label("")
+		self["chosenletter"].visible = False
 
 		self.listTimer = eTimer()
 		self.listTimer.timeout.get().append(self.hidewaitingtext)
@@ -480,16 +483,28 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				"showTv": (self.btn_tv, _("Home")),
 			})
 
-		self["NumberActions"] =  HelpableActionMap(self, "NumberActions", 
+		self["NumberActions"] =  NumberActionMap(["NumberActions", "InputAsciiActions"],
 			{
-				"0": (self.preview, _("Preview")),
-				"2": (self.list.moveToFirst, _("Go to top of list")),
-				"5": (self.list.moveToFirstMovie, _("Go to first movie")),
-				"8": (self.list.moveToLast, _("Go to last item")),
+				"gotAsciiCode": self.keyAsciiCode,
+				"0": self.keyNumberGlobal,
+				"1": self.keyNumberGlobal,
+				"2": self.keyNumberGlobal, 
+				"3": self.keyNumberGlobal, 
+				"4": self.keyNumberGlobal, 
+				"5": self.keyNumberGlobal, 
+				"6": self.keyNumberGlobal, 
+				"7": self.keyNumberGlobal, 
+				"8": self.keyNumberGlobal, 
+				"9": self.keyNumberGlobal
 			})
+
 		self["playbackActions"] = HelpableActionMap(self, "MoviePlayerActions",
 			{
 				"leavePlayer": (self.playbackStop, _("Stop")),
+				"moveNext": (self.playNext, _("Play next")),
+				"movePrev": (self.playPrev, _("Play previous")),
+				"channelUp": (self.moveToFirstOrFirstFile, _("Go to first movie or top of list")), 
+				"channelDown": (self.moveToLastOrFirstFile, _("Go to first movie or last item")),
 			})
 		self["MovieSelectionActions"] = HelpableActionMap(self, "MovieSelectionActions",
 			{
@@ -511,10 +526,10 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			})
 		self["DirectionActions"] = HelpableActionMap(self, "DirectionActions",
 			{
-				"up": self.keyUp,
-				"down": self.keyDown
-			}, prio = -2)
-
+				"up": (self.keyUp, _("Go up the list")),
+				"down": (self.keyDown, _("Go down the list"))
+			}, prio = -2)		
+		
 		tPreview = _("Preview")
 		tFwd = _("skip forward") + " (" + tPreview +")"
 		tBack= _("skip backward") + " (" + tPreview +")"
@@ -529,12 +544,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				"seekFwdManual": (ssfwd, tFwd),
 				"seekBack": (sback, tBack),
 				"seekBackManual": (ssback, tBack),
-				"seekdef:1": (lambda: self.seekRelative(-1, config.seek.selfdefined_13.value*90000), tFwd),
-				"seekdef:3": (lambda: self.seekRelative(1, config.seek.selfdefined_13.value*90000), tFwd),
-				"seekdef:4": (sback, tBack),
-				"seekdef:6": (sfwd, tFwd),
-				"seekdef:7": (ssback, tBack),
-				"seekdef:9": (ssfwd, tFwd),
 			}, prio=5)
 		self.onShown.append(self.updateHDDData)
 		self.onLayoutFinish.append(self.saveListsize)
@@ -542,6 +551,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.inited = False
 		self.onClose.append(self.__onClose)
 		NavigationInstance.instance.RecordTimer.on_state_change.append(self.list.updateRecordings)
+		self.playInBackground = None
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
 				#iPlayableService.evSeekableStatusChanged: self.__seekableStatusChanged,
@@ -564,7 +574,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				'rename': _("Rename"),
 				'gohome': _("Home"),
 				'sort': _("Sort"),
-				'listtype': _("List type")
+				'listtype': _("List type"),
+				'preview': _("Preview")
 			}
 			for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST):
 				userDefinedActions['@' + p.name] = p.description
@@ -624,6 +635,77 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		else:
 			self["list"].moveDown()
 
+	def moveToFirstOrFirstFile(self):
+		if self.list.getCurrentIndex() <= self.list.firstFileEntry: #selection above or on first movie
+			if self.list.getCurrentIndex() < 1:
+				self.list.moveToLast()
+			else:
+				self.list.moveToFirst()
+		else:
+			self.list.moveToFirstMovie()
+		
+	def moveToLastOrFirstFile(self):
+		if self.list.getCurrentIndex() >= self.list.firstFileEntry or self.list.firstFileEntry == len(self.list): #selection below or on first movie or no files
+			if self.list.getCurrentIndex() == len(self.list) - 1:
+				self.list.moveToFirst()
+			else:
+				self.list.moveToLast()		
+		else:
+			self.list.moveToFirstMovie()
+	
+	def keyNumberGlobal(self, number):
+		unichar = self.numericalTextInput.getKey(number)
+		charstr = unichar.encode("utf-8")
+		if len(charstr) == 1:
+			self.list.moveToChar(charstr[0], self["chosenletter"])
+			
+	def keyAsciiCode(self):
+		unichar = unichr(getPrevAsciiCode())
+		charstr = unichar.encode("utf-8")
+		if len(charstr) == 1:
+			self.list.moveToChar(charstr[0], self["chosenletter"])
+	
+	def isItemPlayable(self, index):
+		item = self.list.getItem(index)
+		if item:
+			path = item.getPath()
+			if not item.flags & eServiceReference.mustDescent:							
+				ext = os.path.splitext(path)[1].lower() 
+				if ext in IMAGE_EXTENSIONS:
+					return False
+				else:
+					return True
+		return False
+		
+	def goToPlayingService(self):
+		service = self.session.nav.getCurrentlyPlayingServiceReference()
+		if service:
+			path = service.getPath()
+			if path:
+				path = os.path.split(os.path.normpath(path))[0]
+				if not path.endswith('/'):
+					path += '/'
+				self.gotFilename(path)	
+				self.list.moveTo(service)
+				return True
+		return False
+		
+	def playNext(self):
+		if self.playInBackground:
+			if self.goToPlayingService():
+				if self.isItemPlayable(self.list.getCurrentIndex() + 1):
+					self.list.moveDown()
+					self.callLater(self.preview)
+		else:
+			self.preview()
+	
+	def playPrev(self):
+		if self.playInBackground:
+			if self.goToPlayingService():
+				if self.isItemPlayable(self.list.getCurrentIndex() - 1):
+					self.list.moveUp()
+					self.callLater(self.preview)
+	
 	def __onClose(self):
 		try:
 			NavigationInstance.instance.RecordTimer.on_state_change.remove(self.list.updateRecordings)
@@ -654,7 +736,9 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		return True
 	def can_listtype(self, item):
 		return True
-
+	def can_preview(self, item):
+		return isSimpleFile(item)
+		
 	def _updateButtonTexts(self):
 		for k in ('red', 'green', 'yellow', 'blue'):
 			btn = userDefinedButtons[k]
@@ -781,7 +865,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.previewTimer.callback.append(function)
 		self.previewTimer.start(10, True)
 		
-
 	def __evEOF(self):
 		playInBackground = self.playInBackground
 		if not playInBackground:
@@ -1616,7 +1699,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.sortBy(int(l_moviesort[index][0]))
 
 	def do_listtype(self):
-	        index = 0
+		index = 0
 		for index, item in enumerate(l_listtype):
 			if int(item[0]) == int(config.movielist.listtype.value):
 				break
@@ -1625,3 +1708,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		else:
 			index += 1
 		self.listType(int(l_listtype[index][0]))
+	
+	def do_preview(self):
+		self.preview()
