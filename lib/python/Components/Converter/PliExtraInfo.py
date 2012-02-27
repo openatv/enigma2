@@ -8,6 +8,11 @@ from Tools.Transponder import ConvertToHumanReadable
 from Tools.GetEcmInfo import GetEcmInfo
 from Poll import Poll
 
+def addspace(text):
+	if text:
+		text += " "
+	return text
+
 class PliExtraInfo(Poll, Converter, object):
 	def __init__(self, type):
 		Converter.__init__(self, type)
@@ -29,8 +34,8 @@ class PliExtraInfo(Poll, Converter, object):
 		)
 		self.ecmdata = GetEcmInfo()
 	
-	def getCryptoInfo(self):
-		if (self.info.getInfo(iServiceInformation.sIsCrypted) == 1):
+	def getCryptoInfo(self,info):
+		if (info.getInfo(iServiceInformation.sIsCrypted) == 1):
 			data = self.ecmdata.getEcmData()
 			self.current_source = data[0]
 			self.current_caid = data[1]
@@ -42,9 +47,9 @@ class PliExtraInfo(Poll, Converter, object):
 			self.current_provid = "0"
 			self.current_ecmpid = "0"
 	
-	def createCryptoBar(self):
+	def createCryptoBar(self,info):
 		res = ""
-		available_caids = (self.info.getInfoObject(iServiceInformation.sCAIDs))
+		available_caids = info.getInfoObject(iServiceInformation.sCAIDs)
 			
 		for caid_entry in self.caid_data:
 			if int(self.current_caid, 16) >= int(caid_entry[0], 16) and int(self.current_caid, 16) <= int(caid_entry[1], 16):
@@ -64,154 +69,147 @@ class PliExtraInfo(Poll, Converter, object):
 		res += "\c00??????"
 		return res
 	
-	def createCryptoSpecial(self):
+	def createCryptoSpecial(self,info):
 		caid_name = "FTA"
 		try:
 			for caid_entry in self.caid_data:
 				if int(self.current_caid, 16) >= int(caid_entry[0], 16) and int(self.current_caid, 16) <= int(caid_entry[1], 16):
 					caid_name = caid_entry[2]
 					break
-			return caid_name + ":%04x:%04x:%04x:%04x" % (int(self.current_caid,16),int(self.current_provid,16),self.info.getInfo(iServiceInformation.sSID),int(self.current_ecmpid,16))
+			return caid_name + ":%04x:%04x:%04x:%04x" % (int(self.current_caid,16),int(self.current_provid,16),info.getInfo(iServiceInformation.sSID),int(self.current_ecmpid,16))
 		except:
 			pass
 		return ""
 	
-	def createResolution(self):
-		xres = self.info.getInfo(iServiceInformation.sVideoWidth)
+	def createResolution(self,info):
+		xres = info.getInfo(iServiceInformation.sVideoWidth)
 		if xres == -1:
 			return ""
-		yres = self.info.getInfo(iServiceInformation.sVideoHeight)
-		mode = ("i", "p", "")[self.info.getInfo(iServiceInformation.sProgressive)]
-		fps  = str((self.info.getInfo(iServiceInformation.sFrameRate) + 500) / 1000)
+		yres = info.getInfo(iServiceInformation.sVideoHeight)
+		mode = ("i", "p", "")[info.getInfo(iServiceInformation.sProgressive)]
+		fps  = str((info.getInfo(iServiceInformation.sFrameRate) + 500) / 1000)
 		return str(xres) + "x" + str(yres) + mode + fps
 
-	def createVideoCodec(self):
-		return ("MPEG2 ", "MPEG4 ", "MPEG1 ", "MPEG4-II ", "VC1 ", "VC1-SM ", "")[self.info.getInfo(iServiceInformation.sVideoType)]
+	def createVideoCodec(self,info):
+		return ("MPEG2 ", "MPEG4 ", "MPEG1 ", "MPEG4-II ", "VC1 ", "VC1-SM ", "")[info.getInfo(iServiceInformation.sVideoType)]
 		
-	def createFrequency(self):
-		frequency = self.fedata.get("frequency")
-		if frequency is None:
-			return ""
-		else:
+	def createFrequency(self,fedata):
+		frequency = fedata.get("frequency")
+		if frequency: 
 			return str(frequency / 1000)
+		return ""		
 	
-	def createSymbolRate(self):
-		symbolrate = self.fedata.get("symbol_rate")
-		if symbolrate is None:
-			return ""
-		else:
+	def createSymbolRate(self,fedata):
+		symbolrate = fedata.get("symbol_rate")
+		if symbolrate:
 			return str(symbolrate / 1000)
+		return ""
 			
-	def createPolarization(self):
-		polarization = self.fedata.get("polarization_abbreviation")
-		if polarization is None:
-			return ""
-		else:
+	def createPolarization(self,fedata):
+		polarization = fedata.get("polarization_abbreviation")
+		if polarization:
 			return polarization
+		return ""
 
-	def createFEC(self):
-		fec = self.fedata.get("fec_inner")
-		if fec is None:
-			return ""
-		else:
+	def createFEC(self,fedata):
+		fec = fedata.get("fec_inner")
+		if fec:
 			return fec
+		return ""
 
-	def createModulation(self):
-		modulation = self.fedata.get("modulation")
-		if modulation is None:
-			return ""
-		else:
+	def createModulation(self,fedata):
+		modulation = fedata.get("modulation")
+		if modulation:
 			return modulation
+		return ""
 	
-	def createTunerType(self):
-		tunertype = self.feraw.get("tuner_type")
-		if tunertype is None:
-			return ""
-		else:
+	def createTunerType(self,feraw):
+		tunertype = feraw.get("tuner_type")
+		if tunertype:
 			return tunertype
+		return ""
 		
-	def createProviderName(self):
-		return self.info.getInfoString(iServiceInformation.sProvider)
+	def createProviderName(self,info):
+		return info.getInfoString(iServiceInformation.sProvider)
 
 	@cached
 	def getText(self):
 
 		service = self.source.service
-		self.info = service and service.info()
+		if service is None:
+			return ""
+		info = service and service.info()
 
-		if not self.info:
+		if not info:
 			return ""
 
 		if self.type == "CryptoBar":
-			self.getCryptoInfo()
-			return self.createCryptoBar()
+			self.getCryptoInfo(info)
+			return self.createCryptoBar(info)
 		
 		if self.type == "CryptoSpecial":
-			self.getCryptoInfo()
-			return self.createCryptoSpecial()
+			self.getCryptoInfo(info)
+			return self.createCryptoSpecial(info)
 			
 		if self.type == "ResolutionString":
-			return self.createResolution()
+			return self.createResolution(info)
 
 		if self.type == "VideoCodec":
-			return createVideoCodec()
-
-		if service is None:
-			return ""
+			return createVideoCodec(info)
 
 		feinfo = service.frontendInfo()
 		if feinfo is None:
 			return ""
 
-		self.feraw = feinfo.getAll(False)
-		if self.feraw is None:
+		feraw = feinfo.getAll(False)
+		if feraw is None:
 			return ""
 
-		self.fedata = ConvertToHumanReadable(self.feraw)
-		if self.fedata is None:
+		fedata = ConvertToHumanReadable(feraw)
+		if fedata is None:
 			return ""
 
 		if self.type == "TransponderFrequency":
-			return self.createFrequency()
+			return self.createFrequency(fedata)
 			
 		if self.type == "TransponderSymbolRate":
-			return self.createSymbolRate()
+			return self.createSymbolRate(fedata)
 
 		if self.type == "TransponderPolarization":
-			return self.createPolarization()
+			return self.createPolarization(fedata)
 
 		if self.type == "TransponderFEC":
-			return self.createFEC()
+			return self.createFEC(fedata)
 			
 		if self.type == "TransponderModulation":
-			return self.createModulation()
+			return self.createModulation(fedata)
 			
 		if self.type == "TunerType":
-			return self.createTunerType()	
+			return self.createTunerType(feraw)	
 		
 		if self.type == "All":
-			self.getCryptoInfo()
+			self.getCryptoInfo(info)
 			if config.usage.show_cryptoinfo.value:
-				return self.createProviderName() + " " + self.createTunerType() + " " + self.createFrequency() + self.createPolarization()\
-				+ " " + self.createSymbolRate() + " " + self.createFEC() + " " + self.createModulation()\
-				+ "\n" + self.createCryptoBar() + " " + self.createCryptoSpecial()\
-				+ "\n" + self.createVideoCodec() + " " + self.createResolution()
+				return addspace(self.createProviderName(info)) + addspace(self.createTunerType(feraw)) + addspace(self.createFrequency(fedata)) + addspace(self.createPolarization(fedata))\
+				+ addspace(self.createSymbolRate(fedata)) + addspace(self.createFEC(fedata)) + self.createModulation(fedata) + "\n"\
+				+ addspace(self.createCryptoBar(info)) + addspace(self.createCryptoSpecial(info)) + "\n"\
+				+ addspace(self.createVideoCodec(info)) + self.createResolution(info)
 			else:
-				return self.createProviderName() + " " + self.createTunerType() + " " + self.createFrequency() + self.createPolarization()\
-				+ " " + self.createSymbolRate() + " " + self.createFEC() + " " + self.createModulation()\
-				+ "\n" + self.createCryptoBar() + " " + self.current_source\
-				+ "\n" + self.createCryptoSpecial() + " " + self.createVideoCodec() + " " + self.createResolution()
+				return addspace(self.createProviderName(info)) + addspace(self.createTunerType(feraw)) + addspace(self.createFrequency(fedata)) + addspace(self.createPolarization(fedata))\
+				+ addspace(self.createSymbolRate(fedata)) + addspace(self.createFEC(fedata)) + self.createModulation(fedata) + "\n"\
+				+ addspace(self.createCryptoBar(info)) + self.current_source + "\n"\
+				+ addspace(self.createCryptoSpecial(info)) + addspace(self.createVideoCodec(info)) + self.createResolution(info)
 
-		return "invalid type"
+		return _("invalid type")
 
 	text = property(getText)
 
 	@cached
 	def getBool(self):
 		service = self.source.service
-		self.info = service and service.info()
+		info = service and service.info()
 
-		if not self.info:
+		if not info:
 			return False
 
 		if self.type == "CryptoCaidSecaAvailable":
@@ -277,7 +275,7 @@ class PliExtraInfo(Poll, Converter, object):
 		else:
 			return False
 
-		if self.info.getInfo(iServiceInformation.sIsCrypted) != 1:
+		if info.getInfo(iServiceInformation.sIsCrypted) != 1:
 			return False
 
 		data = self.ecmdata.getEcmData()
@@ -289,7 +287,7 @@ class PliExtraInfo(Poll, Converter, object):
 		#current_provid	= data[2]
 		#current_ecmpid	= data[3]
 
-		available_caids = (self.info.getInfoObject(iServiceInformation.sCAIDs))
+		available_caids = info.getInfoObject(iServiceInformation.sCAIDs)
 
 		for caid_entry in self.caid_data:
 			if caid_entry[3] == request_caid:
@@ -310,6 +308,3 @@ class PliExtraInfo(Poll, Converter, object):
 
 	def changed(self, what):
 		Converter.changed(self, what)
-
-	def short(self, langTxt):
-		return langTxt
