@@ -27,8 +27,8 @@ class Dish(Screen):
 	def __init__(self, session):
 		self.skin = Dish.skin
 		Screen.__init__(self, session)
-
-		self["Dishpixmap"] = Pixmap()
+		self["Dishpixmap"] = BlinkingPixmapConditional()
+		self["Dishpixmap"].onVisibilityChange.append(self.DishpixmapVisibilityChanged)
 		self["turnTime"] = Label("")
 		self["posFrom"] = Label("")
 		self["posGoto"] = Label("")
@@ -118,6 +118,16 @@ class Dish(Screen):
 
 	def configChanged(self, configElement):
 		self.showdish = configElement.value
+		if not configElement.value:
+			self["Dishpixmap"].setConnect(lambda: False)
+		else:
+			self["Dishpixmap"].setConnect(eDVBSatelliteEquipmentControl.getInstance().isRotorMoving)
+
+	def DishpixmapVisibilityChanged(self, state):
+		if state:
+			self["Dishpixmap"].show() # show dish picture
+		else:
+			self["Dishpixmap"].hide() # hide dish picture
 
 	def getTurnTime(self, start, end, pol=0):
 		mrt = abs(start - end) if start and end else 0
