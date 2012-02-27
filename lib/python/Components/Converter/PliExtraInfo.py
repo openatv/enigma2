@@ -91,7 +91,7 @@ class PliExtraInfo(Poll, Converter, object):
 		return str(xres) + "x" + str(yres) + mode + fps
 
 	def createVideoCodec(self,info):
-		return ("MPEG2 ", "MPEG4 ", "MPEG1 ", "MPEG4-II ", "VC1 ", "VC1-SM ", "")[info.getInfo(iServiceInformation.sVideoType)]
+		return ("MPEG2", "MPEG4", "MPEG1", "MPEG4-II", "VC1", "VC1-SM", "")[info.getInfo(iServiceInformation.sVideoType)]
 		
 	def createFrequency(self,fedata):
 		frequency = fedata.get("frequency")
@@ -308,3 +308,4 @@ class PliExtraInfo(Poll, Converter, object):
 
 	def changed(self, what):
 		Converter.changed(self, what)
+
