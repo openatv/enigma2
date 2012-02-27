@@ -245,6 +245,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 	m_stream_tags = 0;
 	m_currentAudioStream = -1;
 	m_currentSubtitleStream = -1;
+	m_cachedSubtitleStream = 0; /* report the first subtitle stream to be 'cached'. TODO: use an actual cache. */
 	m_subtitle_widget = 0;
 	m_currentTrickRatio = 1.0;
 	m_buffer_size = 1*1024*1024;
@@ -1775,6 +1776,7 @@ RESULT eServiceMP3::enableSubtitles(eWidget *parent, ePyObject tuple)
 		m_prev_decoder_time = -1;
 		m_decoder_time_valid_state = 0;
 		m_currentSubtitleStream = pid;
+		m_cachedSubtitleStream = m_currentSubtitleStream;
 		g_object_set (G_OBJECT (m_gst_playbin), "current-text", m_currentSubtitleStream, NULL);
 
 		m_subtitle_widget = 0;
@@ -1782,8 +1784,6 @@ RESULT eServiceMP3::enableSubtitles(eWidget *parent, ePyObject tuple)
 		m_subtitle_widget->resize(parent->size()); /* full size */
 
 		eDebug ("eServiceMP3::switched to subtitle stream %i", m_currentSubtitleStream);
-
-		m_event((iPlayableService*)this, evUpdatedInfo);
 
 #ifdef GSTREAMER_SUBTITLE_SYNC_MODE_BUG
 		/* 
@@ -1806,6 +1806,7 @@ RESULT eServiceMP3::disableSubtitles(eWidget *parent)
 {
 	eDebug("eServiceMP3::disableSubtitles");
 	m_currentSubtitleStream = -1;
+	m_cachedSubtitleStream = m_currentSubtitleStream;
 	g_object_set (G_OBJECT (m_gst_playbin), "current-text", m_currentSubtitleStream, NULL);
 	m_subtitle_pages.clear();
 	m_prev_decoder_time = -1;
@@ -1817,23 +1818,13 @@ RESULT eServiceMP3::disableSubtitles(eWidget *parent)
 
 PyObject *eServiceMP3::getCachedSubtitle()
 {
-	if (!m_subtitleStreams.empty())
+	if (m_cachedSubtitleStream >= 0 && m_cachedSubtitleStream < (int)m_subtitleStreams.size())
 	{
-		int index = 0; /* report the first stream to be 'cached' */
-		if (m_currentSubtitleStream >= 0 && m_currentSubtitleStream < (int)m_subtitleStreams.size())
-		{
-			/* 
-			 * Report the currently selected subtitle stream to be 'cached',
-			 * this avoids jumping back to the first stream, when skipping/winding
-			 */
-			index = m_currentSubtitleStream;
-		}
-		ePyObject tuple = PyTuple_New(5);
+		ePyObject tuple = PyTuple_New(4);
 		PyTuple_SET_ITEM(tuple, 0, PyInt_FromLong(2));
-		PyTuple_SET_ITEM(tuple, 1, PyInt_FromLong(index));
-		PyTuple_SET_ITEM(tuple, 2, PyInt_FromLong(int(m_subtitleStreams[index].type)));
+		PyTuple_SET_ITEM(tuple, 1, PyInt_FromLong(m_cachedSubtitleStream));
+		PyTuple_SET_ITEM(tuple, 2, PyInt_FromLong(int(m_subtitleStreams[m_cachedSubtitleStream].type)));
 		PyTuple_SET_ITEM(tuple, 3, PyInt_FromLong(0));
-		PyTuple_SET_ITEM(tuple, 4, PyString_FromString(m_subtitleStreams[index].language_code.c_str()));
 		return tuple;
 	}
 	Py_RETURN_NONE;
