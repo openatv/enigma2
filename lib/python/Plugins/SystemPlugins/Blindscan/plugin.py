@@ -12,6 +12,9 @@ from Components.Sources.StaticText import StaticText
 from Components.ActionMap import NumberActionMap, ActionMap
 from Components.NimManager import nimmanager, getConfigSatlist
 from Components.config import config, ConfigSubsection, ConfigSelection, ConfigYesNo, ConfigInteger, getConfigListEntry, ConfigSlider, ConfigEnableDisable
+from Components.Sources.Boolean import Boolean
+from Components.Sources.StaticText import StaticText
+from Components.Pixmap import Pixmap
 
 from Tools.HardwareInfo import HardwareInfo
 from Tools.Directories import resolveFilename, SCOPE_DEFAULTPARTITIONMOUNTDIR, SCOPE_DEFAULTDIR, SCOPE_DEFAULTPARTITION
@@ -37,10 +40,18 @@ class Blindscan(ConfigListScreen, Screen):
 		"""
 	def __init__(self, session): 
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Blindscan"))
-
+		self.setup_title = _("Blindscan")
+		Screen.setTitle(self, _(self.setup_title))
+		self.skinName = "Setup"
 		self.current_play_service = self.session.nav.getCurrentlyPlayingServiceReference()
-		
+
+		self.onChangedEntry = [ ]
+		self["HelpWindow"] = Pixmap()
+		self["HelpWindow"].hide()
+		self["VKeyIcon"] = Boolean(False)
+		self['footnote'] = Label("")
+		self["status"] = StaticText()
+	
 		# update sat list
 		self.satList = []
 		for slot in nimmanager.nim_slots:
@@ -82,6 +93,26 @@ class Blindscan(ConfigListScreen, Screen):
 
 		self.i2c_mapping_table = None
 		self.makeNimSocket()
+
+		if not self.selectionChanged in self["config"].onSelectionChanged:
+			self["config"].onSelectionChanged.append(self.selectionChanged)
+		self.selectionChanged()
+
+	def selectionChanged(self):
+ 		self["status"].setText(self["config"].getCurrent()[2])
+
+	# for summary:
+	def changedEntry(self):
+		for x in self.onChangedEntry:
+			x()
+	def getCurrentEntry(self):
+		return self["config"].getCurrent()[0]
+	def getCurrentValue(self):
+		return str(self["config"].getCurrent()[1].getText())
+	def createSummary(self):
+		from Screens.Setup import SetupSummary
+		return SetupSummary
+
 
 	def makeNimSocket(self):
 		self.i2c_mapping_table = {0:2, 1:3, 2:1, 3:0}
@@ -222,7 +253,7 @@ class Blindscan(ConfigListScreen, Screen):
 		index_to_scan = int(self.scan_nims.value)
 		print "ID: ", index_to_scan
 
-		self.tunerEntry = getConfigListEntry(_("Tuner"), self.scan_nims)
+		self.tunerEntry = getConfigListEntry(_("Tuner"), self.scan_nims,_('This is the hint text, change to what you want'))
 		self.list.append(self.tunerEntry)
 		
 		if self.scan_nims == [ ]:
@@ -234,17 +265,17 @@ class Blindscan(ConfigListScreen, Screen):
 
 		self.scan_networkScan.value = False
 		if nim.isCompatible("DVB-S") :
-			self.list.append(getConfigListEntry(_('Satellite'), self.scan_satselection[self.getSelectedSatIndex(index_to_scan)]))
-			self.list.append(getConfigListEntry(_('Scan start frequency'), self.blindscan_start_frequency))
-			self.list.append(getConfigListEntry(_('Scan stop frequency'), self.blindscan_stop_frequency))
-			self.list.append(getConfigListEntry(_("Polarisation"), self.scan_sat.polarization))
-			self.list.append(getConfigListEntry(_('Scan start symbolrate'), self.blindscan_start_symbol))
-			self.list.append(getConfigListEntry(_('Scan stop symbolrate'), self.blindscan_stop_symbol))
-			self.list.append(getConfigListEntry(_("Clear before scan"), self.scan_clearallservices))
-			self.list.append(getConfigListEntry(_("Only free scan"), self.scan_onlyfree))
-			self.list.append(getConfigListEntry(_("Only scan unknown transponders"), self.dont_scan_known_tps))
-			self.list.append(getConfigListEntry(_("Filter out adjacent satellites"), self.filter_off_adjacent_satellites))
-			self.list.append(getConfigListEntry(_("Archive only (no service scan)"), self.archive_only))
+			self.list.append(getConfigListEntry(_('Satellite'), self.scan_satselection[self.getSelectedSatIndex(index_to_scan)],_('This is the hint text, change to what you want')))
+			self.list.append(getConfigListEntry(_('Scan start frequency'), self.blindscan_start_frequency,_('This is the hint text, change to what you want')))
+			self.list.append(getConfigListEntry(_('Scan stop frequency'), self.blindscan_stop_frequency,_('This is the hint text, change to what you want')))
+			self.list.append(getConfigListEntry(_("Polarisation"), self.scan_sat.polarization,_('This is the hint text, change to what you want')))
+			self.list.append(getConfigListEntry(_('Scan start symbolrate'), self.blindscan_start_symbol,_('This is the hint text, change to what you want')))
+			self.list.append(getConfigListEntry(_('Scan stop symbolrate'), self.blindscan_stop_symbol,_('This is the hint text, change to what you want')))
+			self.list.append(getConfigListEntry(_("Clear before scan"), self.scan_clearallservices,_('This is the hint text, change to what you want')))
+			self.list.append(getConfigListEntry(_("Only free scan"), self.scan_onlyfree,_('This is the hint text, change to what you want')))
+			self.list.append(getConfigListEntry(_("Only scan unknown transponders"), self.dont_scan_known_tps,_('This is the hint text, change to what you want')))
+			self.list.append(getConfigListEntry(_("Filter out adjacent satellites"), self.filter_off_adjacent_satellites,_('This is the hint text, change to what you want')))
+			self.list.append(getConfigListEntry(_("Archive only (no service scan)"), self.archive_only,_('This is the hint text, change to what you want')))
 			self["config"].list = self.list
 			self["config"].l.setList(self.list)
 			
