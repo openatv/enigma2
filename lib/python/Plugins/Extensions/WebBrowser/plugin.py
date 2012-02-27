@@ -90,8 +90,8 @@ def wb_islock():
 class VuPlayer(Screen, InfoBarNotifications):
 	skin = 	"""
 		<screen name="VuPlayer" flags="wfNoBorder" position="center,620" size="455,53" title="VuPlayer" backgroundColor="transparent">
-			<ePixmap pixmap="ViX_HD_Common/mp_wb_background.png" position="0,0" zPosition="-1" size="455,53" />
-			<ePixmap pixmap="ViX_HD_Common/icons/mp_wb_buttons.png" position="40,23" size="30,13" alphatest="on" />
+			<ePixmap pixmap="skin_default/mp_wb_background.png" position="0,0" zPosition="-1" size="455,53" />
+			<ePixmap pixmap="skin_default/icons/mp_wb_buttons.png" position="40,23" size="30,13" alphatest="on" />
 
 			<widget source="session.CurrentService" render="PositionGauge" position="80,25" size="220,10" zPosition="2" pointer="skin_default/position_pointer.png:540,0" transparent="1" foregroundColor="#20224f">
 				<convert type="ServicePosition">Gauge</convert>
@@ -406,14 +406,14 @@ class VuPlayerService:
 class BrowserLauncher(ConfigListScreen, Screen):
 	skin=   """
 		<screen name="BrowserLauncher" position="center,center" size="309,498" title="Web Browser">
-			<ePixmap pixmap="ViX_HD_Common/buttons/red.png" position="4,0" size="40,40" alphatest="on" />
-			<ePixmap pixmap="ViX_HD_Common/buttons/green.png" position="154,0" size="40,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/red.png" position="4,0" size="40,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/green.png" position="154,0" size="40,40" alphatest="on" />
 
 			<widget source="key_red" render="Label" position="30,0" zPosition="1" size="125,30" font="Regular;20" halign="center" valign="center" transparent="1" />
 			<widget source="key_green" render="Label" position="180,0" zPosition="1" size="125,30" font="Regular;20" halign="center" valign="center" transparent="1" />
 
 			<widget name="config" position="0,50" size="309,100" scrollbarMode="showOnDemand" />
-			<ePixmap pixmap="ViX_HD_Common/rc_wb_desc.png" position="0,150" size="309,296" alphatest="on" />
+			<ePixmap pixmap="skin_default/rc_wb_desc.png" position="0,150" size="309,296" alphatest="on" />
 			<widget name="info" position="0,455" size="309,50" font="Regular;18" halign="center" foregroundColor="blue" transparent="1" />
 		</screen>
 		"""
