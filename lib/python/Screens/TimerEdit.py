@@ -57,6 +57,7 @@ class TimerEditList(Screen):
 				"up": self.up,
 				"down": self.down
 			}, -1)
+		self.setTitle(_("Timer Overview"))
 		self.session.nav.RecordTimer.on_state_change.append(self.onStateChange)
 		self.onShown.append(self.updateState)
 
@@ -401,6 +402,7 @@ class TimerSanityConflict(Screen):
 				"up": self.up,
 				"down": self.down
 			}, -1)
+		self.setTitle(_("Timer sanity error"))
 		self.onShown.append(self.updateState)
 
 	def getTimerList(self, timer):

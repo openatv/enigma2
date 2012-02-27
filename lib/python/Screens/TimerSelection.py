@@ -5,6 +5,7 @@ from Components.ActionMap import ActionMap
 class TimerSelection(Screen):
 	def __init__(self, session, list):
 		Screen.__init__(self, session)
+		self.setTitle(_("Timer selection"))
 		
 		self.list = list
 
