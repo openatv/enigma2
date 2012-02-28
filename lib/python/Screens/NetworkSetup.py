@@ -90,7 +90,6 @@ class NetworkAdapterSelection(Screen,HelpableScreen):
 
 	def selectionChanged(self):
 		item = self["list"].getCurrent()
-		print 'TEST',item
 		if item:
 			name = item[0]
 			desc = item[1]
@@ -684,7 +683,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		self.restartLanRef = None
 		self.LinkState = None
 		self.onChangedEntry = [ ]
-		self.mainmenu = self.genMainMenu()
+		self.mainmenu = ""
 		self["menulist"] = MenuList(self.mainmenu)
 		self["key_red"] = StaticText(_("Close"))
 		self["description"] = StaticText()
@@ -730,16 +729,32 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		}, -2)
 		
 		self.updateStatusbar()
-		self.onLayoutFinish.append(self.layoutFinished)
 		self.onClose.append(self.cleanup)
 		if not self.selectionChanged in self["menulist"].onSelectionChanged:
 			self["menulist"].onSelectionChanged.append(self.selectionChanged)
+		self.selectionChanged()
 
 	def createSummary(self):
 		from Screens.PluginBrowser import PluginBrowserSummary
 		return PluginBrowserSummary
 
 	def selectionChanged(self):
+		if self["menulist"].getCurrent()[1] == 'edit':
+			self["description"].setText(_("Edit the network configuration of your Dreambox.\n" ) + self.oktext )
+		if self["menulist"].getCurrent()[1] == 'test':
+			self["description"].setText(_("Test the network configuration of your Dreambox.\n" ) + self.oktext )
+		if self["menulist"].getCurrent()[1] == 'dns':
+			self["description"].setText(_("Edit the Nameserver configuration of your Dreambox.\n" ) + self.oktext )
+		if self["menulist"].getCurrent()[1] == 'scanwlan':
+			self["description"].setText(_("Scan your network for wireless access points and connect to them using your selected wireless device.\n" ) + self.oktext )
+		if self["menulist"].getCurrent()[1] == 'wlanstatus':
+			self["description"].setText(_("Shows the state of your wireless LAN connection.\n" ) + self.oktext )
+		if self["menulist"].getCurrent()[1] == 'lanrestart':
+			self["description"].setText(_("Restart your network connection and interfaces.\n" ) + self.oktext )
+		if self["menulist"].getCurrent()[1] == 'openwizard':
+			self["description"].setText(_("Use the Networkwizard to configure your Network\n" ) + self.oktext )
+		if self["menulist"].getCurrent()[1][0] == 'extendedSetup':
+			self["description"].setText(_(self["menulist"].getCurrent()[1][1]) + self.oktext )
 		item = self["menulist"].getCurrent()
 		if item:
 			name = str(self["menulist"].getCurrent()[0])
@@ -819,43 +834,16 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 	
 	def up(self):
 		self["menulist"].up()
-		self.loadDescription()
 
 	def down(self):
 		self["menulist"].down()
-		self.loadDescription()
 
 	def left(self):
 		self["menulist"].pageUp()
-		self.loadDescription()
 
 	def right(self):
 		self["menulist"].pageDown()
-		self.loadDescription()
-
-	def layoutFinished(self):
-		idx = 0
-		self["menulist"].moveToIndex(idx)
-		self.loadDescription()
-
-	def loadDescription(self):
-		if self["menulist"].getCurrent()[1] == 'edit':
-			self["description"].setText(_("Edit the network configuration of your Dreambox.\n" ) + self.oktext )
-		if self["menulist"].getCurrent()[1] == 'test':
-			self["description"].setText(_("Test the network configuration of your Dreambox.\n" ) + self.oktext )
-		if self["menulist"].getCurrent()[1] == 'dns':
-			self["description"].setText(_("Edit the Nameserver configuration of your Dreambox.\n" ) + self.oktext )
-		if self["menulist"].getCurrent()[1] == 'scanwlan':
-			self["description"].setText(_("Scan your network for wireless access points and connect to them using your selected wireless device.\n" ) + self.oktext )
-		if self["menulist"].getCurrent()[1] == 'wlanstatus':
-			self["description"].setText(_("Shows the state of your wireless LAN connection.\n" ) + self.oktext )
-		if self["menulist"].getCurrent()[1] == 'lanrestart':
-			self["description"].setText(_("Restart your network connection and interfaces.\n" ) + self.oktext )
-		if self["menulist"].getCurrent()[1] == 'openwizard':
-			self["description"].setText(_("Use the Networkwizard to configure your Network\n" ) + self.oktext )
-		if self["menulist"].getCurrent()[1][0] == 'extendedSetup':
-			self["description"].setText(_(self["menulist"].getCurrent()[1][1]) + self.oktext )
-		
+	
 	def updateStatusbar(self, data = None):
 		self.mainmenu = self.genMainMenu()
 		self["menulist"].l.setList(self.mainmenu)
@@ -1439,6 +1427,115 @@ class NetworkAdapterTest(Screen):
 			pass
 		else:
 			iStatus.stopWlanConsole()
+
+class NetworkMountsMenu(Screen,HelpableScreen):
+	skin = """
+	<screen name="NetworkMountsMenu" position="center,center" size="560,400" >
+		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+		<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+		<ePixmap pixmap="skin_default/border_menu.png" position="5,45" zPosition="1" size="250,300" transparent="1" alphatest="on" />
+		<widget name="menulist" position="15,55" size="230,260" zPosition="10" scrollbarMode="showOnDemand" />
+		<widget source="introduction" render="Label" position="305,50" size="230,300" font="Regular;19" halign="center" valign="center" backgroundColor="#25062748" transparent="1" />
+	</screen>"""
+
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		HelpableScreen.__init__(self)
+		Screen.setTitle(self, _("Mounts Setup"))
+		self.session = session
+		self.onChangedEntry = [ ]
+		self.mainmenu = self.genMainMenu()
+		self["menulist"] = MenuList(self.mainmenu)
+		self["key_red"] = StaticText(_("Close"))
+		self["introduction"] = StaticText()
+		
+		self["WizardActions"] = HelpableActionMap(self, "WizardActions",
+			{
+			"up": (self.up, _("move up to previous entry")),
+			"down": (self.down, _("move down to next entry")),
+			"left": (self.left, _("move up to first entry")),
+			"right": (self.right, _("move down to last entry")),
+			})
+		
+		self["OkCancelActions"] = HelpableActionMap(self, "OkCancelActions",
+			{
+			"cancel": (self.close, _("exit mounts setup menu")),
+			"ok": (self.ok, _("select menu entry")),
+			})
+
+		self["ColorActions"] = HelpableActionMap(self, "ColorActions",
+			{
+			"red": (self.close, _("exit networkadapter setup menu")),	
+			})
+
+		self["actions"] = NumberActionMap(["WizardActions","ShortcutActions"],
+		{
+			"ok": self.ok,
+			"back": self.close,
+			"up": self.up,
+			"down": self.down,
+			"red": self.close,
+			"left": self.left,
+			"right": self.right,
+		}, -2)
+		
+		if not self.selectionChanged in self["menulist"].onSelectionChanged:
+			self["menulist"].onSelectionChanged.append(self.selectionChanged)
+		self.selectionChanged()
+
+	def createSummary(self):
+		from Screens.PluginBrowser import PluginBrowserSummary
+		return PluginBrowserSummary
+
+	def selectionChanged(self):
+		if self["menulist"].getCurrent()[1][0] == 'extendedSetup':
+			self["introduction"].setText(_(self["menulist"].getCurrent()[1][1]))
+		item = self["menulist"].getCurrent()
+		if item:
+			name = str(self["menulist"].getCurrent()[0])
+			desc = self["introduction"].text
+		else:
+			name = ""
+			desc = ""
+		for cb in self.onChangedEntry:
+			cb(name, desc)
+
+	def ok(self):
+		if self["menulist"].getCurrent()[1][0] == 'extendedSetup':
+			self.extended = self["menulist"].getCurrent()[1][2]
+			self.extended(self.session)
+	
+	def up(self):
+		self["menulist"].up()
+
+	def down(self):
+		self["menulist"].down()
+
+	def left(self):
+		self["menulist"].pageUp()
+
+	def right(self):
+		self["menulist"].pageDown()
+
+	def genMainMenu(self):
+		menu = []
+		self.extended = None
+		self.extendedSetup = None
+		for p in plugins.getPlugins(PluginDescriptor.WHERE_NETWORKMOUNTS):
+			callFnc = p.__call__["ifaceSupported"](self)
+			if callFnc is not None:
+				self.extended = callFnc
+				if p.__call__.has_key("menuEntryName"):
+					menuEntryName = p.__call__["menuEntryName"](self)
+				else:
+					menuEntryName = _('Extended Setup...')
+				if p.__call__.has_key("menuEntryDescription"):
+					menuEntryDescription = p.__call__["menuEntryDescription"](self)
+				else:
+					menuEntryDescription = _('Extended Networksetup Plugin...')
+				self.extendedSetup = ('extendedSetup',menuEntryDescription, self.extended)
+				menu.append((menuEntryName,self.extendedSetup))					
+		return menu
 
 class NetworkAfp(Screen):
 	skin = """
