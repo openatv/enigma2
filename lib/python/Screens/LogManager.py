@@ -489,6 +489,7 @@ class LogManagerMenu(ConfigListScreen, Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.session = session
+		Screen.setTitle(self, _("Log Manager Setup"))
 		self.skin = LogManagerMenu.skin
 		self.skinName = "LogManagerMenu"
 		self["HelpWindow"] = Pixmap()
