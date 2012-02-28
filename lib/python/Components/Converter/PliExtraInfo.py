@@ -128,7 +128,15 @@ class PliExtraInfo(Poll, Converter, object):
 		if tunertype:
 			return tunertype
 		return ""
-		
+
+	def createOrbPos(self,feraw):
+		orbpos = feraw.get("orbital_position")
+		if orbpos > 1800:
+			return str((float(3600 - orbpos)) / 10.0) + "W"
+		elif orbpos > 0:
+			return str((float(orbpos)) / 10.0) + "E"
+		return ""
+
 	def createProviderName(self,info):
 		return info.getInfoString(iServiceInformation.sProvider)
 
@@ -184,6 +192,9 @@ class PliExtraInfo(Poll, Converter, object):
 		if self.type == "TransponderModulation":
 			return self.createModulation(fedata)
 			
+		if self.type == "OrbitalPosition":
+			return self.createOrbPos(feraw)	
+
 		if self.type == "TunerType":
 			return self.createTunerType(feraw)	
 		
@@ -191,12 +202,12 @@ class PliExtraInfo(Poll, Converter, object):
 			self.getCryptoInfo(info)
 			if config.usage.show_cryptoinfo.value:
 				return addspace(self.createProviderName(info)) + addspace(self.createTunerType(feraw)) + addspace(self.createFrequency(fedata)) + addspace(self.createPolarization(fedata))\
-				+ addspace(self.createSymbolRate(fedata)) + addspace(self.createFEC(fedata)) + self.createModulation(fedata) + "\n"\
+				+ addspace(self.createSymbolRate(fedata)) + addspace(self.createFEC(fedata)) + addspace(self.createModulation(fedata)) + self.createOrbPos(feraw) + "\n"\
 				+ addspace(self.createCryptoBar(info)) + addspace(self.createCryptoSpecial(info)) + "\n"\
 				+ addspace(self.createVideoCodec(info)) + self.createResolution(info)
 			else:
 				return addspace(self.createProviderName(info)) + addspace(self.createTunerType(feraw)) + addspace(self.createFrequency(fedata)) + addspace(self.createPolarization(fedata))\
-				+ addspace(self.createSymbolRate(fedata)) + addspace(self.createFEC(fedata)) + self.createModulation(fedata) + "\n"\
+				+ addspace(self.createSymbolRate(fedata)) + addspace(self.createFEC(fedata)) + addspace(self.createModulation(fedata)) + self.createOrbPos(feraw) + "\n"\
 				+ addspace(self.createCryptoBar(info)) + self.current_source + "\n"\
 				+ addspace(self.createCryptoSpecial(info)) + addspace(self.createVideoCodec(info)) + self.createResolution(info)
 
