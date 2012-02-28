@@ -331,6 +331,7 @@ class CCcamInfoMain(Screen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
+		Screen.setTitle(self, _("CCcamInfo"))
 		self.session = session
 		
 		self["menu"] = CCcamList([])
@@ -748,7 +749,7 @@ class CCcamInfoEcmInfoSelection(Screen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		
+		Screen.setTitle(self, _("CCcamInfo"))
 		list = []
 		tmp = listdir("/tmp/")
 		for x in tmp:
@@ -771,7 +772,7 @@ class CCcamInfoInfoScreen(Screen):
 
 	def __init__(self, session, info):
 		Screen.__init__(self, session)
-		
+		Screen.setTitle(self, _("CCcamInfo"))
 		self["text"] = ScrollLabel(info)
 		
 		self["actions"] = ActionMap(["CCcamInfoActions"],
@@ -802,7 +803,7 @@ class CCcamShareViewMenu(Screen, HelpableScreen):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
 		self.session = session
-
+		Screen.setTitle(self, _("CCcamInfo"))
 		self.url = url
 		self.list = []
 		self.providers = {}
@@ -1129,7 +1130,7 @@ class CCcamInfoSubMenu(Screen):
 	def __init__(self, session, list, infoList):
 		Screen.__init__(self, session)
 		self.session = session
-		
+		Screen.setTitle(self, _("CCcamInfo"))
 		self.infoList = infoList
 		self["list"] = MenuList(list)
 		self["info"] = Label()
@@ -1174,7 +1175,7 @@ class CCcamInfoServerMenu(Screen):
 	def __init__(self, session, infoList, url):
 		Screen.__init__(self, session)
 		self.session = session
-		
+		Screen.setTitle(self, _("CCcamInfo"))
 		self.infoList = infoList
 		self.url = url
 		
@@ -1236,7 +1237,7 @@ class CCcamInfoConfigMenu(ConfigListScreen, Screen):
 
 	def __init__(self, session, profile):
 		Screen.__init__(self, session)
-		
+		Screen.setTitle(self, _("CCcamInfo"))
 		config.cccaminfo.name.value = profile.name
 		config.cccaminfo.ip.value = profile.ip
 		config.cccaminfo.username.value = profile.username
@@ -1277,7 +1278,7 @@ class CCcamInfoRemoteBoxMenu(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.session = session
-		
+		Screen.setTitle(self, _("CCcamInfo"))
 		self.list = []
 		self.profiles = []
 		
@@ -1411,7 +1412,7 @@ class CCcamInfoShareInfo(Screen):
 	def __init__(self, session, hostname, url):
 		Screen.__init__(self, session)
 		self.session = session
-		
+		Screen.setTitle(self, _("CCcamInfo"))
 		self.hostname = hostname
 		self.url = url
 		self.list = []
@@ -1574,7 +1575,7 @@ class CCcamInfoConfigSwitcher(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.session = session
-		
+		Screen.setTitle(self, _("CCcamInfo"))
 		self["key_red"] = Label(_("Delete"))
 		self["key_green"] = Label(_("Activate"))
 		self["key_yellow"] = Label(_("Rename"))
@@ -1700,7 +1701,7 @@ class CCcamInfoMenuConfig(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.session = session
-		
+		Screen.setTitle(self, _("CCcamInfo"))
 		self["key_red"] = Label(_("Cancel"))
 		self["key_green"] = Label(_("Save"))
 		self["key_yellow"] = Label(_("Location"))
