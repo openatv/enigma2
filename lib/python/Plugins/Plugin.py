@@ -62,6 +62,9 @@ class PluginDescriptor:
 	# should be provided to name and describe the new menu entry.
 	WHERE_SOFTWAREMANAGER = 14
 
+	# fnc must take an interface name as parameter and return None if the plugin supports an extended setup
+	# or return a function which is called with session and the interface name for extended setup of this interface
+	WHERE_NETWORKMOUNTS = 15
 
 	def __init__(self, name = "Plugin", where = [ ], description = "", icon = None, fnc = None, wakeupfnc = None, needsRestart = None, internal = False, weight = 0):
 		self.name = name
