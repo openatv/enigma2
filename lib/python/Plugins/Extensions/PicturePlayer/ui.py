@@ -191,6 +191,9 @@ class Pic_Setup(Screen, ConfigListScreen):
 	def keyRight(self):
 		ConfigListScreen.keyRight(self)
 
+	def keyCancel(self):
+		self.close()		
+
 	# for summary:
 	def changedEntry(self):
 		for x in self.onChangedEntry:
