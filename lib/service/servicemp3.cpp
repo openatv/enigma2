@@ -250,6 +250,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 	m_currentTrickRatio = 1.0;
 	m_buffer_size = 5*1024*1024;
 	m_buffer_duration = 5 * GST_SECOND;
+	m_use_prefillbuffer = FALSE;
 	m_prev_decoder_time = -1;
 	m_decoder_time_valid_state = 0;
 	m_errorInfo.missing_codec = "";
@@ -309,6 +310,8 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 	}
 	if ( strstr(filename, "://") )
 		m_sourceinfo.is_streaming = TRUE;
+	if ( strstr(filename, " buffer=1") )
+		m_use_prefillbuffer = TRUE;
 
 	gchar *uri;
 
@@ -360,8 +363,11 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 		if ( m_sourceinfo.is_streaming )
 		{
 			g_signal_connect (G_OBJECT (m_gst_playbin), "notify::source", G_CALLBACK (gstHTTPSourceSetAgent), this);
-			g_object_set (G_OBJECT (m_gst_playbin), "buffer_duration", m_buffer_duration, NULL);
-			flags |= 0x100; // USE_BUFFERING
+			if (m_use_prefillbuffer)
+			{
+				g_object_set (G_OBJECT (m_gst_playbin), "buffer_duration", m_buffer_duration, NULL);
+				flags |= 0x100; // USE_BUFFERING
+			}
 		}
 		g_object_set (G_OBJECT (m_gst_playbin), "flags", flags, NULL);
 		GstElement *subsink = gst_element_factory_make("subsink", "subtitle_sink");
@@ -1448,7 +1454,7 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 			eDebug("Buffering %u percent done", m_bufferInfo.bufferPercent);
 			gst_message_parse_buffering_stats(msg, &mode, &(m_bufferInfo.avgInRate), &(m_bufferInfo.avgOutRate), &(m_bufferInfo.bufferingLeft));
 			m_event((iPlayableService*)this, evBuffering);
-			if (m_state == stRunning)
+			if (m_state == stRunning && m_use_prefillbuffer)
 			{
 				if (m_bufferInfo.bufferPercent == 100)
 				{

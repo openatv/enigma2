@@ -60,6 +60,7 @@ void eListboxServiceContent::FillFinished()
 void eListboxServiceContent::setRoot(const eServiceReference &root, bool justSet)
 {
 	m_list.clear();
+	m_cursor = m_list.end();
 	m_root = root;
 
 	if (justSet)
