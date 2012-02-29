@@ -295,6 +295,7 @@ private:
 	void pvrEvent(int event);
 	
 	int m_pvr_fd_dst;
+	eSingleLock m_tstools_lock;
 	eDVBTSTools m_tstools;
 	
 	ePtr<eCueSheet> m_cue;
