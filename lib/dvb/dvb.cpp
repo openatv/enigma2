@@ -1273,7 +1273,9 @@ void eDVBChannel::cueSheetEvent(int event)
 			eRdLocker l(m_cue->m_lock);
 			if (m_cue->m_skipmode_ratio)
 			{
+				m_tstools_lock.lock();
 				int bitrate = m_tstools.calcBitrate(); /* in bits/s */
+				m_tstools_lock.unlock();
 				eDebug("skipmode ratio is %lld:90000, bitrate is %d bit/s", m_cue->m_skipmode_ratio, bitrate);
 						/* i agree that this might look a bit like black magic. */
 				m_skipmode_n = 512*1024; /* must be 1 iframe at least. */
@@ -1314,7 +1316,10 @@ void eDVBChannel::cueSheetEvent(int event)
 		{
 			off_t offset_in, offset_out;
 			pts_t pts_in = i->first, pts_out = i->second;
-			if (m_tstools.getOffset(offset_in, pts_in, -1) || m_tstools.getOffset(offset_out, pts_out, 1))
+			m_tstools_lock.lock();
+			bool r = m_tstools.getOffset(offset_in, pts_in, -1) || m_tstools.getOffset(offset_out, pts_out, 1);
+			m_tstools_lock.unlock();
+			if (r)
 			{
 				eDebug("span translation failed.\n");
 				continue;
@@ -1371,7 +1376,10 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 		size_t iframe_len;
 		off_t iframe_start = current_offset;
 		int frames_skipped = frames_to_skip;
-		if (!m_tstools.findNextPicture(iframe_start, iframe_len, frames_skipped))
+		m_tstools_lock.lock();
+		int r = m_tstools.findNextPicture(iframe_start, iframe_len, frames_skipped);
+		m_tstools_lock.unlock();
+		if (!r)
 		{
 			m_skipmode_frames_remainder = frames_to_skip - frames_skipped;
 			//eDebug("successfully skipped %d (out of %d, rem now %d) frames.", frames_skipped, frames_to_skip, m_skipmode_frames_remainder);
@@ -1396,7 +1404,10 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 			off_t iframe_start = current_offset;
 			
 			int direction = (m_skipmode_m < 0) ? -1 : +1;
-			if (m_tstools.findFrame(iframe_start, iframe_len, direction))
+			m_tstools_lock.lock();
+			int r = m_tstools.findFrame(iframe_start, iframe_len, direction);
+			m_tstools_lock.unlock();
+			if (r)
 				eDebug("failed");
 			else
 			{
@@ -1472,6 +1483,7 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 		{
 			eDebug("AP relative seeking: %lld, at %lld", pts, now);
 			pts_t nextap;
+			eSingleLocker l(m_tstools_lock);
 			if (m_tstools.getNextAccessPoint(nextap, now, pts))
 			{
 				pts = now - 90000; /* approx. 1s */
@@ -1484,7 +1496,10 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 		}
 
 		off_t offset = 0;
-		if (m_tstools.getOffset(offset, pts, -1))
+		m_tstools_lock.lock();
+		int r = m_tstools.getOffset(offset, pts, -1);
+		m_tstools_lock.unlock();
+		if (r)
 		{
 			eDebug("get offset for pts=%llu failed!", pts);
 			continue;
@@ -1905,7 +1920,10 @@ void eDVBChannel::setOfflineDecodeMode(int parityswitchdelay)
 
 RESULT eDVBChannel::getLength(pts_t &len)
 {
-	return m_tstools.calcLen(len);
+	m_tstools_lock.lock();
+	RESULT r = m_tstools.calcLen(len);
+	m_tstools_lock.unlock();
+	return r;
 }
 
 RESULT eDVBChannel::getCurrentPosition(iDVBDemux *decoding_demux, pts_t &pos, int mode)
@@ -1928,7 +1946,9 @@ RESULT eDVBChannel::getCurrentPosition(iDVBDemux *decoding_demux, pts_t &pos, in
 	} else
 		now = pos; /* fixup supplied */
 
+	m_tstools_lock.lock();
 	r = m_tstools.fixupPTS(m_source ? m_source->offset() : 0, now);
+	m_tstools_lock.unlock();
 	if (r)
 	{
 		return -1;
