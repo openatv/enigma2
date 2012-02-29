@@ -6,14 +6,6 @@
 #include <byteswap.h>
 #include <sys/mman.h>
 
-#define _GNU_SOURCE
-#include <unistd.h>
-#include <sys/syscall.h>
-static int gettid()
-{
-    return syscall(SYS_gettid);
-}
-
 #ifndef BYTE_ORDER
 #	error no byte order defined!
 #endif
@@ -48,7 +40,7 @@ void eMPEGStreamInformation::close()
 	{
 		if (m_structure_cache != NULL)
 		{
-			eDebug("[eMPEGStreamInformation] {%d} close - unmap %p size %d", gettid(), m_structure_cache, m_structure_cache_entries * 16);
+			//eDebug("[eMPEGStreamInformation] {%d} close - unmap %p size %d", gettid(), m_structure_cache, m_structure_cache_entries * 16);
 			::munmap(m_structure_cache, m_structure_cache_entries * 16);
 			m_structure_cache = NULL;
 		}
@@ -68,7 +60,7 @@ void eMPEGStreamInformation::close()
 
 int eMPEGStreamInformation::load(const char *filename)
 {
-	eDebug("[eMPEGStreamInformation] {%d} load(%s)", gettid(), filename);
+	//eDebug("[eMPEGStreamInformation] {%d} load(%s)", gettid(), filename);
 	close();
 	std::string s_filename(filename);
 	m_structure_read_fd = ::open((s_filename + ".sc").c_str(), O_RDONLY);
@@ -185,7 +177,7 @@ int eMPEGStreamInformation::fixupPTS(const off_t &offset, pts_t &ts)
 // getPTS is typically called when you "jump" in a file.
 int eMPEGStreamInformation::getPTS(off_t &offset, pts_t &pts)
 {
-	eDebug("[eMPEGStreamInformation] {%d} getPTS(offset=%llu, pts=%llu)", gettid(), offset, pts);
+	//eDebug("[eMPEGStreamInformation] {%d} getPTS(offset=%llu, pts=%llu)", gettid(), offset, pts);
 	std::map<off_t,pts_t>::iterator before = m_access_points.lower_bound(offset);
 
 		/* usually, we prefer the AP before the given offset. however if there is none, we take any. */
@@ -270,14 +262,14 @@ int eMPEGStreamInformation::getNextAccessPoint(pts_t &ts, const pts_t &start, in
 {
 	if (m_access_points.empty())
 	{
-		eDebug("{%d} can't get next access point without streaminfo (yet)", gettid());
+		eDebug("can't get next access point without streaminfo (yet)");
 		return -1;
 	}
 	off_t offset = getAccessPoint(start);
 	std::map<off_t, pts_t>::const_iterator i = m_access_points.find(offset);
 	if (i == m_access_points.end())
 	{
-		eDebug("{%d} getNextAccessPoint: initial AP not found", gettid());
+		eDebug("getNextAccessPoint: initial AP not found");
 		return -1;
 	}
 	pts_t c1 = i->second - getDelta(i->first);
@@ -300,7 +292,7 @@ int eMPEGStreamInformation::getNextAccessPoint(pts_t &ts, const pts_t &start, in
 		{
 			if (i == m_access_points.begin())
 			{
-				eDebug("{%d} getNextAccessPoint at start", gettid());
+				eDebug("getNextAccessPoint at start");
 				return -1;
 			}
 			--i;
@@ -314,7 +306,7 @@ int eMPEGStreamInformation::getNextAccessPoint(pts_t &ts, const pts_t &start, in
 		}
 	}
 	ts = i->second - getDelta(i->first);
-	eDebug("{%d} getNextAccessPoint fine, at %lld - %lld = %lld", gettid(), ts, i->second, getDelta(i->first));
+	eDebug("getNextAccessPoint fine, at %lld - %lld = %lld", ts, i->second, getDelta(i->first));
 	return 0;
 }
 
@@ -356,7 +348,7 @@ int eMPEGStreamInformation::loadCache(int index)
 {
 	if (m_structure_cache != NULL)
 	{
-		eDebug("[eMPEGStreamInformation] {%d} munmap %p size %d", gettid(), m_structure_cache, m_structure_cache_entries * entry_size);
+		//eDebug("[eMPEGStreamInformation] {%d} munmap %p size %d", gettid(), m_structure_cache, m_structure_cache_entries * entry_size);
 		::munmap(m_structure_cache, m_structure_cache_entries * entry_size);
 	}
 	off_t where = ROUND_TO_PAGESIZE(index * entry_size);
@@ -371,24 +363,23 @@ int eMPEGStreamInformation::loadCache(int index)
 		bytes = (size_t)(until-where);
 		if (bytes == 0)
 		{
-			eDebug("[eMPEGStreamInformation] {%d} mmap file is empty", gettid());
+			//eDebug("[eMPEGStreamInformation] mmap file is empty");
 			m_cache_index = -1;
 			m_structure_cache_entries = 0;
 			return 0;
 		}
 	}
-	eDebug("[eMPEGStreamInformation] {%d} mmap offset=%lld size %d", gettid(), where, bytes);
+	//eDebug("[eMPEGStreamInformation] {%d} mmap offset=%lld size %d", gettid(), where, bytes);
 	m_structure_cache = (unsigned long long*) ::mmap(NULL, bytes, PROT_READ, MAP_SHARED, m_structure_read_fd, where);
-	eDebug("[eMPEGStreamInformation] {%d} mmap returns %p", gettid(), m_structure_cache);
 	if (m_structure_cache == NULL)
 	{
-		eDebug("[eMPEGStreamInformation] {%d} failed to mmap cache: %m", gettid());
+		eDebug("[eMPEGStreamInformation] failed to mmap cache: %m");
 		m_cache_index = -1;
 		m_structure_cache_entries = 0;
 		return -1;
 	}
 	m_cache_index = (int)(where / entry_size);
-	eDebug("[eMPEGStreamInformation] {%d} cache index %d starts at %d (%lld) bytes: %d", gettid(), index, m_cache_index, where, bytes);
+	//eDebug("[eMPEGStreamInformation] {%d} cache index %d starts at %d (%lld) bytes: %d", gettid(), index, m_cache_index, where, bytes);
 	int num = (int)bytes / entry_size;
 	m_structure_cache_entries = num;
 	return num;
@@ -396,10 +387,10 @@ int eMPEGStreamInformation::loadCache(int index)
 
 int eMPEGStreamInformation::getStructureEntryFirst(off_t &offset, unsigned long long &data)
 {
-	eDebug("[eMPEGStreamInformation] {%d} getStructureEntryFirst(offset=%llu)", gettid(), offset);
+	//eDebug("[eMPEGStreamInformation] {%d} getStructureEntryFirst(offset=%llu)", gettid(), offset);
 	if (m_structure_read_fd < 0)
 	{
-		eDebug("{%d} getStructureEntryFirst failed because of no m_structure_read_fd", gettid());
+		eDebug("getStructureEntryFirst failed because of no m_structure_read_fd");
 		return -1;
 	}
 
@@ -410,7 +401,7 @@ int eMPEGStreamInformation::getStructureEntryFirst(off_t &offset, unsigned long 
 		int l = ::lseek(m_structure_read_fd, 0, SEEK_END) / entry_size;
 		if (l == 0)
 		{
-			eDebug("{%d} getStructureEntryFirst failed because file size is zero", gettid());
+			eDebug("getStructureEntryFirst failed because file size is zero");
 			return -1;
 		}
 		m_structure_file_entries = l;
@@ -426,7 +417,7 @@ int eMPEGStreamInformation::getStructureEntryFirst(off_t &offset, unsigned long 
 			unsigned long long d;
 			if (::read(m_structure_read_fd, &d, sizeof(d)) < (ssize_t)sizeof(d))
 			{
-				eDebug("{%d} read error at entry %d", gettid(), i+step);
+				eDebug("getStructureEntryFirst read error at entry %d", i+step);
 				return -1;
 			}
 			d = be64toh(d);
@@ -448,7 +439,7 @@ int eMPEGStreamInformation::getStructureEntryFirst(off_t &offset, unsigned long 
 		int num = loadCache(i);
 		if ((num < structure_cache_size) && (structureCacheOffset(num - 1) <= offset))
 		{
-			eDebug("[eMPEGStreamInformation] {%d} offset %lld is past EOF of structure file", gettid(), offset);
+			eDebug("[eMPEGStreamInformation] offset %lld is past EOF of structure file", offset);
 			data = 0;
 			return 1;
 		}
@@ -481,11 +472,11 @@ int eMPEGStreamInformation::getStructureEntryFirst(off_t &offset, unsigned long 
 
 int eMPEGStreamInformation::getStructureEntryNext(off_t &offset, unsigned long long &data, int delta)
 {
-	eDebug("[eMPEGStreamInformation] {%d} getStructureEntryNext(offset=%llu, delta=%d)", gettid(), offset, delta);
+	//eDebug("[eMPEGStreamInformation] {%d} getStructureEntryNext(offset=%llu, delta=%d)", gettid(), offset, delta);
 	int next = m_current_entry + delta;
 	if (next < 0)
 	{
-		eDebug("{%d} getStructureEntryNext before start-of-file", gettid());
+		eDebug("getStructureEntryNext before start-of-file");
 		return -1;
 	}
 	int index = next - m_cache_index;
@@ -508,7 +499,7 @@ int eMPEGStreamInformation::getStructureEntryNext(off_t &offset, unsigned long l
 		int num = loadCache(where);
 		if (num <= 0)
 		{
-			eDebug("{%d} getStructureEntryNext failed, no data", gettid());
+			eDebug("getStructureEntryNext failed, no data");
 			return -1;
 		}
 		index = next - m_cache_index;
@@ -524,7 +515,7 @@ int eMPEGStreamInformation::getStructureEntryNext(off_t &offset, unsigned long l
 // Get first or last PTS value and offset.
 int eMPEGStreamInformation::getFirstFrame(off_t &offset, pts_t& pts)
 {
-	eDebug("{%d} eMPEGStreamInformation::getFirstFrame", gettid());
+	//eDebug("{%d} eMPEGStreamInformation::getFirstFrame", gettid());
 	std::map<off_t,pts_t>::const_iterator entry = m_access_points.begin();
 	if (entry != m_access_points.end())
 	{
@@ -538,7 +529,7 @@ int eMPEGStreamInformation::getFirstFrame(off_t &offset, pts_t& pts)
 		int num = moveCache(0);
 		if (num <= 0)
 		{
-			eDebug("{%d} eMPEGStreamInformation::getFirstFrame - no data (yet?)", gettid());
+			eDebug("eMPEGStreamInformation::getFirstFrame - no data (yet?)");
 			offset = 0;
 			pts = 0;
 			return 1;
@@ -559,7 +550,7 @@ int eMPEGStreamInformation::getFirstFrame(off_t &offset, pts_t& pts)
 }
 int eMPEGStreamInformation::getLastFrame(off_t &offset, pts_t& pts)
 {
-	eDebug("{%d} eMPEGStreamInformation::getLastFrame", gettid());
+	//eDebug("{%d} eMPEGStreamInformation::getLastFrame", gettid());
 	std::map<off_t,pts_t>::const_reverse_iterator entry = m_access_points.rbegin();
 	if (entry != m_access_points.rend())
 	{
@@ -573,7 +564,7 @@ int eMPEGStreamInformation::getLastFrame(off_t &offset, pts_t& pts)
 		int l = ::lseek(m_structure_read_fd, 0, SEEK_END) / entry_size;
 		if (l <= 0)
 		{
-			eDebug("{%d} eMPEGStreamInformation::getLastFrame - no data (yet?)", gettid());
+			eDebug("eMPEGStreamInformation::getLastFrame - no data (yet?)");
 			offset = 0;
 			pts = 0;
 			return 1;
@@ -586,7 +577,7 @@ int eMPEGStreamInformation::getLastFrame(off_t &offset, pts_t& pts)
 		int num = moveCache(index);
 		if (num <= 0)
 		{
-			eDebug("{%d} eMPEGStreamInformation::getLastFrame - no data in sc file", gettid());
+			eDebug("eMPEGStreamInformation::getLastFrame - no data in sc file");
 			return -1;
 		}
 		// binary search for "real" end
@@ -745,9 +736,8 @@ void eMPEGStreamInformationWriter::map()
 			eWarning("Failed to write TS file (%d): %m", written);
 			return;
 		}
-		eDebug("[eMPEGStreamInformationWriter] {%d} mmap at %lld", gettid(), where);
+		//eDebug("[eMPEGStreamInformationWriter] {%d} mmap at %lld", gettid(), where);
 		m_write_buffer = ::mmap(NULL, PAGESIZE, PROT_WRITE, MAP_SHARED, m_structure_write_fd, where);
-		eDebug("[eMPEGStreamInformationWriter] {%d}mmap returns %p", gettid(), m_write_buffer);
 	}
 	m_buffer_filled = 0;
 }
