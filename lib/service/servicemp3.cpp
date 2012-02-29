@@ -310,7 +310,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 	}
 	if ( strstr(filename, "://") )
 		m_sourceinfo.is_streaming = TRUE;
-	if ( strstr(filename, "buffer=1") )
+	if ( strstr(filename, " buffer=1") )
 		m_use_prefillbuffer = TRUE;
 
 	gchar *uri;
