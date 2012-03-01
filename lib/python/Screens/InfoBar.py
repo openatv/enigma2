@@ -260,6 +260,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 		self.lastservice = lastservice or session.nav.getCurrentlyPlayingServiceReference()
 		session.nav.playService(service)
 		self.returning = False
+		self.playingservice = None
 		self.onClose.append(self.__onClose)
 
 	def __onClose(self):
