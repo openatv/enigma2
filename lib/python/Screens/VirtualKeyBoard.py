@@ -69,9 +69,9 @@ def VirtualKeyBoardEntryComponent(keys, selectedKey, shiftMode=False):
 
 
 class VirtualKeyBoard(Screen):
-
 	def __init__(self, session, title="", text=""):
 		Screen.__init__(self, session)
+		self.setTitle(_(title))
 		self.keys_list = []
 		self.shiftkeys_list = []
 		self.lang = language.getLanguage()
