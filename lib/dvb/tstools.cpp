@@ -461,11 +461,10 @@ void eDVBTSTools::calcEnd()
 	if (!m_source || !m_source->valid())
 		return;
 
-	off_t end = m_source->lseek(0, SEEK_END);
-
 	// If there's a structure file, the calculation is much smarter, so we can try more often
-	off_t threshold = m_streaminfo.hasStructure() ? 400*1024 : 1024*1024;
-	
+	off_t threshold = m_streaminfo.hasStructure() ? 100*1024 : 1024*1024;
+
+	off_t end = m_source->lseek(0, SEEK_END);
 	if (llabs(end - m_last_filelength) > threshold)
 	{
 		m_last_filelength = end;
@@ -487,6 +486,7 @@ void eDVBTSTools::calcEnd()
 		}
 		else
 		{
+			eDebug("[@ML] m_streaminfo.getLastFrame failed, fallback");
 			while (!(m_end_valid || m_futile))
 			{
 				if (!--maxiter)

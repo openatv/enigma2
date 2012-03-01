@@ -68,7 +68,9 @@ private:
 	int m_structure_cache_entries;
 	int m_structure_file_entries; // Also to detect changes to file
 
-	unsigned long long m_structure_cache[1024];
+	unsigned long long* m_structure_cache;
+	int m_cache_end_index;
+	unsigned long long* m_structure_cache_end;
 	bool m_streamtime_accesspoints;
 };
 
@@ -84,7 +86,8 @@ public:
 	void writeStructureEntry(off_t offset, unsigned long long data);
 private:
 	void close();
-	void flush();
+	void unmap();
+	void map();
 	struct AccessPoint
 	{
 		off_t off;

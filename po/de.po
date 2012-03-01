@@ -5,10 +5,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-14 16:00+0100\n"
-"PO-Revision-Date: 2012-02-14 16:13+0100\n"
+"POT-Creation-Date: 2012-02-27 20:27+0100\n"
+"PO-Revision-Date: 2012-02-28 09:23+0100\n"
 "Last-Translator: \n"
-"Language-Team: Deutsch <>\n"
+"Language-Team: daddelfalk\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -132,6 +132,15 @@ msgid ""
 msgstr ""
 "\n"
 "Anzeigen, Installieren und Entfernen verfügbarer oder installierter Pakete."
+
+msgid " (PiP)"
+msgstr " (PiP)"
+
+msgid " (Radio)"
+msgstr " (Radio)"
+
+msgid " (TV)"
+msgstr " (TV)"
 
 #
 msgid " extensions."
@@ -721,6 +730,9 @@ msgstr "Irgendeine Aktivität"
 msgid "April"
 msgstr "April"
 
+msgid "Arabic"
+msgstr "Arabisch"
+
 #
 msgid ""
 "Are you sure you want to activate this network configuration?\n"
@@ -832,6 +844,12 @@ msgstr "Automatische Kapitelwechsel alle ? Minuten (0=nie)"
 msgid "Auto flesh"
 msgstr "Auto flesh"
 
+msgid "Auto focus"
+msgstr "Auto Fokus"
+
+msgid "Auto focus commencing ..."
+msgstr "Auto-Fokusierung beginnt ..."
+
 #
 msgid "Auto language selection"
 msgstr "Automatische Sprachauswahl"
@@ -921,6 +939,9 @@ msgstr "Band"
 msgid "Bandwidth"
 msgstr "Bandbreite"
 
+msgid "Basque"
+msgstr "Baskisch"
+
 #
 msgid "Begin time"
 msgstr "Startzeit"
@@ -972,6 +993,9 @@ msgstr "Lesezeichen"
 msgid "Brightness"
 msgstr "Helligkeit"
 
+msgid "Bulgarian"
+msgstr "Bulgarisch"
+
 #
 msgid "Burn DVD"
 msgstr "Brenne DVD"
@@ -1022,9 +1046,18 @@ msgstr "Kabel Suche"
 msgid "Cache Thumbnails"
 msgstr "Vorschaubilder zwischenspeichern"
 
+msgid "Calibrate"
+msgstr "Kalibrieren"
+
 #
 msgid "Cancel"
 msgstr "Abbrechen"
+
+msgid "Cannot determine"
+msgstr "Kann nicht beenden"
+
+msgid "Cannot find any signal ..., aborting !"
+msgstr "Kein Signal erkannt ..., Abbruch !"
 
 msgid "Cannot move files on a different disk or system to the trash can"
 msgstr "Dateien auf einem anderen System können nicht in den Mülleimer verschoben werden!"
@@ -1166,6 +1199,9 @@ msgstr "Aufräumassistent Einstellungen"
 #
 msgid "CleanupWizard"
 msgstr "Aufräumassistent"
+
+msgid "Clear"
+msgstr "Löschen"
 
 #
 msgid "Clear before scan"
@@ -1402,17 +1438,12 @@ msgid "Create movie directory"
 msgstr "\"movie\" Verzeichnis erstellen"
 
 #
-msgid "Create movie folder failed"
-msgstr "Erzeugen des Film-Verzeichnisses fehlgeschlagen"
-
-#
 #, python-format
 msgid "Creating directory %s failed."
 msgstr "Erzeugen des Verzeichnisses %s fehlgeschlagen."
 
-#
-msgid "Creating partition failed"
-msgstr "Partitionserzeugung fehlgeschlagen"
+msgid "Croatian"
+msgstr "Kroatisch"
 
 msgid "Current CEC address"
 msgstr "Aktuelle CEC-Adresse"
@@ -1470,6 +1501,9 @@ msgstr "Schneiden"
 msgid "Cutlist editor..."
 msgstr "Schnitteditor..."
 
+msgid "Czech"
+msgstr "Tschechisch"
+
 #
 msgid "D"
 msgstr "D"
@@ -1513,6 +1547,9 @@ msgstr "DVD Format"
 #
 msgid "DVD media toolbox"
 msgstr "DVD Medien-Toolbox"
+
+msgid "Danish"
+msgstr "Dänisch"
 
 #
 msgid "Date"
@@ -1908,6 +1945,9 @@ msgstr "Daten-DVD im STB Format (HDTV-kompatibel)"
 msgid "Dreambox software because updates are available."
 msgstr "STB Software, da Updates verfügbar sind."
 
+msgid "Dutch"
+msgstr "Holländisch"
+
 #
 msgid "Dynamic contrast"
 msgstr "Dynamischer Kontrast"
@@ -1936,6 +1976,9 @@ msgstr "FEHLER - Suche fehlgeschlagen (%s)!"
 #
 msgid "East"
 msgstr "Ost"
+
+msgid "East limit set"
+msgstr "Östliches Limit "
 
 #
 msgid "Edit"
@@ -2065,6 +2108,9 @@ msgstr "Endzeit"
 msgid "EndTime"
 msgstr "Endzeit"
 
+msgid "English"
+msgstr "Englisch"
+
 #
 msgid ""
 "Enigma2 Skinselector\n"
@@ -2117,6 +2163,9 @@ msgstr ""
 "Fehler aufgetreten: %s\n"
 "Erneut versuchen?"
 
+msgid "Estonian"
+msgstr "Estnisch"
+
 msgid "Ethernet network interface"
 msgstr "Ethernet Netzwerkadapter"
 
@@ -2129,10 +2178,6 @@ msgstr "Programmübersicht"
 
 msgid "Eventview menu"
 msgstr "Event Menü"
-
-#
-msgid "Everything is fine"
-msgstr "Alles ist gut"
 
 #
 msgid "Everywhere"
@@ -2227,6 +2272,9 @@ msgstr "Werkseinstellungen"
 msgid "Failed"
 msgstr "Fehlgeschlagen"
 
+msgid "Failed to write /tmp/positionersetup.log:str"
+msgstr "Fehler beim Schreiben: /tmp/positionersetup.log"
+
 #
 #, python-format
 msgid "Fan %d"
@@ -2275,9 +2323,14 @@ msgstr "Die Datei ist gerade in Verwendung.\n"
 msgid "Filesystem Check"
 msgstr "Dateisystemüberprüfung"
 
-#
-msgid "Filesystem contains uncorrectable errors"
-msgstr "Das Dateisystem enthält nicht behebbare Fehler"
+msgid "Final position at"
+msgstr "Endposition auf"
+
+msgid "Final position at index"
+msgstr "Endposition auf Index"
+
+msgid "Fine movement"
+msgstr "Fein-Steuerung"
 
 #
 msgid "Finetune"
@@ -2294,6 +2347,9 @@ msgstr "Netzwerk-Konfiguration abgeschlossen"
 #
 msgid "Finished restarting your network"
 msgstr "Netzwerkneustart abgeschlossen"
+
+msgid "Finnish"
+msgstr "Finnisch"
 
 #
 msgid "Flash"
@@ -2321,6 +2377,9 @@ msgstr "Lautstärketasten weiterleiten"
 msgid "Frame size in full view"
 msgstr "Framegröße im Vollbild"
 
+msgid "French"
+msgstr "Französisch"
+
 #
 msgid "Frequency"
 msgstr "Frequenz"
@@ -2345,14 +2404,13 @@ msgstr "Fr"
 msgid "Friday"
 msgstr "Freitag"
 
+msgid "From:"
+msgstr "Von:"
+
 #
 #, python-format
 msgid "Frontprocessor version: %d"
 msgstr "Frontprozessor-Version: %d"
-
-#
-msgid "Fsck failed"
-msgstr "Fsck fehlgeschlagen"
 
 #
 msgid ""
@@ -2387,6 +2445,9 @@ msgstr "Generelles PCM delay (ms)"
 msgid "Genre"
 msgstr "Kategorie"
 
+msgid "German"
+msgstr "Deutsch"
+
 msgid "Get latest experimental image"
 msgstr "Neuestes Experimental-Image"
 
@@ -2397,14 +2458,17 @@ msgstr "Neuestes Release-Image"
 msgid "Getting plugin information. Please wait..."
 msgstr "Lade Plugin-Informationen. Bitte warten..."
 
-msgid "Go to first movie"
-msgstr "Zum ersten Film springen"
+msgid "Go down the list"
+msgstr "Liste nach unten durchgehen"
 
-msgid "Go to last item"
-msgstr "Zum Letzten Objekt springen"
+msgid "Go to first movie or last item"
+msgstr "Zum ersten Film oder letzten Eintrag springen"
 
-msgid "Go to top of list"
-msgstr "Zum Anfang springen"
+msgid "Go to first movie or top of list"
+msgstr "Zum ersten Film oder ersten Eintrag springen"
+
+msgid "Go up the list"
+msgstr "Liste nach oben durchgehen"
 
 msgid "Goto"
 msgstr "Gehe zu"
@@ -2413,8 +2477,14 @@ msgstr "Gehe zu"
 msgid "Goto 0"
 msgstr "Gehe zu 0"
 
+msgid "Goto X"
+msgstr "Gehe zu X"
+
 msgid "Goto first service"
 msgstr "Gehe zum ersten Kanal"
+
+msgid "Goto index position"
+msgstr "Gehe zur Index Position"
 
 msgid "Goto last service"
 msgstr "Gehe zum letzten Kanal"
@@ -2444,12 +2514,21 @@ msgstr "Gehe zur vorherigen Seite der Kanäle"
 msgid "Goto specific data/time"
 msgstr "Gehe zum angegebenen Datum/Uhrzeit"
 
+msgid "Goto:"
+msgstr "Gehe zu:"
+
+msgid "GotoX calibration"
+msgstr "Gehe zur X Kalibrierung"
+
 msgid "Graph MEpg Settings"
 msgstr "Graphische MPEG Einstellungen"
 
 #
 msgid "Graphical Multi EPG"
 msgstr "Grafischer Multi-EPG"
+
+msgid "Greek"
+msgstr "Griechisch"
 
 #
 msgid "Green boost"
@@ -2484,6 +2563,9 @@ msgstr "Festplatten-Standby nach"
 
 msgid "Hardware: "
 msgstr "Hardware:"
+
+msgid "Hebrew"
+msgstr "Estnisch"
 
 msgid "Hidden network"
 msgstr "Verstecktes Netzwerk"
@@ -2520,6 +2602,9 @@ msgstr "Home"
 msgid "Horizontal"
 msgstr "Horizontal"
 
+msgid "Horizontal turning speed"
+msgstr "Horizontale Drehgeschwindigkeit"
+
 #
 msgid "How many minutes do you want to record?"
 msgstr "Wie viele Minuten möchten Sie aufnehmen?"
@@ -2531,6 +2616,9 @@ msgstr "Wenn Crashlogs gefunden werden:"
 #
 msgid "Hue"
 msgstr "Farbton"
+
+msgid "Hungarian"
+msgstr "Ungarisch"
 
 #
 msgid "IP Address"
@@ -2627,6 +2715,15 @@ msgstr "Initiale Rücklauf-Geschwindigkeit"
 
 msgid "Initial location in new timers"
 msgstr "Initialer Ort für neue Timer"
+
+msgid "Initial lock ratio"
+msgstr "Initiales Signalverhältnis"
+
+msgid "Initial signal quality"
+msgstr "Initiale Signal Qualität"
+
+msgid "Initial signal quality:"
+msgstr "Initiale Signal Qualität:"
 
 #
 msgid "Initialization"
@@ -2751,6 +2848,9 @@ msgstr "Ipkg"
 msgid "Is this videomode ok?"
 msgstr "Diesen Videomodus beibehalten?"
 
+msgid "Italian"
+msgstr "Italienisch"
+
 msgid "Items per Page "
 msgstr "Objekte per Seite"
 
@@ -2839,6 +2939,9 @@ msgstr "Letzte Geschwindigkeit"
 msgid "Latitude"
 msgstr "Breitengrad"
 
+msgid "Latvian"
+msgstr "Lettisch"
+
 #
 msgid "Leave DVD Player?"
 msgstr "DVD Player beenden?"
@@ -2851,6 +2954,9 @@ msgstr "Links"
 msgid "Letterbox"
 msgstr "Letterbox"
 
+msgid "Letzeburgesch"
+msgstr "Luxemburgisch"
+
 #
 msgid "Limit east"
 msgstr "Ost-Limit"
@@ -2862,6 +2968,12 @@ msgstr "West-Limit"
 #
 msgid "Limited character set for recording filenames"
 msgstr "Reduzierter Zeichensatz für Aufnahme-Dateinamen"
+
+msgid "Limits cancelled"
+msgstr "Limits nicht übernommen"
+
+msgid "Limits enabled"
+msgstr "Limits aktiviert"
 
 #
 msgid "Limits off"
@@ -2897,6 +3009,9 @@ msgstr "Listen Typ"
 msgid "List version %d, found %d channels"
 msgstr "Listen Version %d, %d gefundene Kanäle"
 
+msgid "Lithuanian"
+msgstr "Litauisch"
+
 #
 msgid "Load"
 msgstr "Laden"
@@ -2916,6 +3031,9 @@ msgstr "Zielverzeichnis"
 #
 msgid "Location for instant recordings"
 msgstr "Verzeichnis für Sofortaufnahmen"
+
+msgid "Lock ratio"
+msgstr "Signalverhältnis"
 
 #
 msgid "Lock:"
@@ -3026,6 +3144,9 @@ msgstr "Das Medium ist nicht leer!"
 msgid "Memory"
 msgstr "Speicher"
 
+msgid "Memory index"
+msgstr "Index speichern"
+
 #
 msgid "Menu"
 msgstr "Menu"
@@ -3040,10 +3161,6 @@ msgstr "Nachricht..."
 
 msgid "Missing "
 msgstr "Fehlend"
-
-#
-msgid "Mkfs failed"
-msgstr "Mkfs fehlgeschlagen"
 
 #
 msgid "Mode"
@@ -3080,10 +3197,6 @@ msgstr "Mosquito Noise Reduzierung"
 msgid "Mount"
 msgstr "Einhängen"
 
-#
-msgid "Mount failed"
-msgstr "Mounten fehlgeschlagen"
-
 msgid "Move"
 msgstr "Verschieben"
 
@@ -3098,9 +3211,21 @@ msgstr "Drehen nach Osten"
 msgid "Move to other directory"
 msgstr "In anderes Verzeichnis verschieben"
 
+msgid "Move to position X"
+msgstr "Bewege zur Position X"
+
 #
 msgid "Move west"
 msgstr "Drehen nach Westen"
+
+msgid "Moved to position 0"
+msgstr "Zur Position 0 bewegt"
+
+msgid "Moved to position at index"
+msgstr "Zur Index Position bewegt"
+
+msgid "Movement"
+msgstr "Steuerung"
 
 msgid "Movie List Configuration"
 msgstr "Filmlisten Einstellungen"
@@ -3112,6 +3237,18 @@ msgstr "Film Verzeichnis"
 #
 msgid "Movielist menu"
 msgstr "Aufnahmen-Menü"
+
+msgid "Moving"
+msgstr "Ansteuern"
+
+msgid "Moving east ..."
+msgstr "Bewege östlich ..."
+
+msgid "Moving to position"
+msgstr "Bewege zur Position"
+
+msgid "Moving west ..."
+msgstr "Bewege westlich ..."
 
 #
 msgid "Multi EPG"
@@ -3459,6 +3596,9 @@ msgstr "Nicht linear"
 msgid "North"
 msgstr "Nord"
 
+msgid "Norwegian"
+msgstr "Norwegisch"
+
 #
 #, python-format
 msgid "Not enough diskspace. Please free up some diskspace and try again. (%d MB required, %d MB available)"
@@ -3558,6 +3698,9 @@ msgstr "Orbit Position"
 msgid "Orbital position"
 msgstr "Orbitale Position"
 
+msgid "Original"
+msgstr "Original"
+
 msgid "Other"
 msgstr "Andere"
 
@@ -3646,6 +3789,9 @@ msgstr "Alle Aufnahmen im Mülleimer löschen?"
 msgid "Permanently remove all deleted items"
 msgstr "Gelöschte Filme endgültig entfernen"
 
+msgid "Persian"
+msgstr "Persisch"
+
 #
 msgid "Phone number"
 msgstr "Telefonnummer"
@@ -3690,13 +3836,15 @@ msgstr "Musik abspielen..."
 msgid "Play audio in background"
 msgstr "Audio im Hintergrund abspielen"
 
+msgid "Play next"
+msgstr "Nächste wiedergeben"
+
+msgid "Play previous"
+msgstr "Vorherige wiedergeben"
+
 #
 msgid "Play recorded movies..."
 msgstr "Aufgenommene Filme abspielen..."
-
-#
-msgid "Please Reboot"
-msgstr "Bitte neu starten"
 
 #
 msgid "Please Select Medium to be Scanned"
@@ -3940,9 +4088,15 @@ msgstr "Erweiterungsverwaltung: Hilfe"
 msgid "Plugins"
 msgstr "Erweiterungen"
 
+msgid "Polarisation"
+msgstr "Polarisation"
+
 #
 msgid "Polarization"
 msgstr "Polarisation"
+
+msgid "Polish"
+msgstr "Polnisch"
 
 #
 msgid "Port A"
@@ -3960,28 +4114,22 @@ msgstr "Port C"
 msgid "Port D"
 msgstr "Port D"
 
+msgid "Portuguese"
+msgstr "Portugiesisch"
+
 msgid "Position of finished Timers in Timerlist"
 msgstr "Position beendeter Timer in der Timerliste"
+
+msgid "Position stored at index"
+msgstr "Position gespeichert auf Index"
 
 #
 msgid "Positioner"
 msgstr "Rotor"
 
 #
-msgid "Positioner fine movement"
-msgstr "Rotor-Feinabstimmung"
-
-#
-msgid "Positioner movement"
-msgstr "Rotorbewegung"
-
-#
 msgid "Positioner setup"
 msgstr "Rotor-Einstellungen"
-
-#
-msgid "Positioner storage"
-msgstr "Positionsspeicher"
 
 #
 msgid "Power threshold in mA"
@@ -4274,7 +4422,7 @@ msgid "Reload Black-/Whitelists"
 msgstr "Black-/Whitelists neu laden"
 
 msgid "Reloading bouquets and services..."
-msgstr "Boquets und Sender neuladen"
+msgstr "Bouquets und Sender neu laden"
 
 msgid "Remember service PIN"
 msgstr "Service PIN merken"
@@ -4484,8 +4632,14 @@ msgstr "Roll-off"
 msgid "Rolloff"
 msgstr "Ausrollen"
 
+msgid "Romanian"
+msgstr "Rumänisch"
+
 msgid "Root directory"
 msgstr "Hauptverzeichnis"
+
+msgid "Rotor step position:"
+msgstr "Rotor Schrittposition:"
 
 #
 msgid "Rotor turning speed"
@@ -4493,6 +4647,9 @@ msgstr "Rotor Drehgeschwindigkeit"
 
 msgid "Round start time on"
 msgstr "Runde Startzeit auf"
+
+msgid "Russian"
+msgstr "Russisch"
 
 #
 msgid "S-Video"
@@ -4536,6 +4693,9 @@ msgstr "Satellitenausrüstungseinstellungen"
 #
 msgid "Satellite equipment"
 msgstr "Satelliten-Ausrüstung"
+
+msgid "Satellite longitude:"
+msgstr "Satelliten Längengrad:"
 
 #
 msgid "Satellites"
@@ -4693,6 +4853,12 @@ msgstr "Östlich suchen"
 msgid "Search west"
 msgstr "Westlich suchen"
 
+msgid "Searching"
+msgstr "Durchsuche"
+
+msgid "Searching east ..."
+msgstr "Suche östlich ..."
+
 #
 msgid "Searching for available updates. Please wait..."
 msgstr "Suche nach verfügbaren Updates. Bitte warten..."
@@ -4700,6 +4866,9 @@ msgstr "Suche nach verfügbaren Updates. Bitte warten..."
 #
 msgid "Searching for new installed or removed packages. Please wait..."
 msgstr "Suche nach neu installierten oder deinstallierten Erweiterungen. Bitte warten Sie..."
+
+msgid "Searching west ..."
+msgstr "Suche westlich ..."
 
 #
 msgid "Secondary DNS"
@@ -4817,6 +4986,9 @@ msgstr "September"
 msgid "Sequence repeat"
 msgstr "Sequenz-Wiederholung"
 
+msgid "Serbian"
+msgstr "Serbisch"
+
 #
 msgid "Service"
 msgstr "Kanal"
@@ -4880,6 +5052,9 @@ msgstr "Kanäle"
 msgid "Set End Time"
 msgstr "End-Zeit eingeben"
 
+msgid "Set Limits"
+msgstr "Setze Limits"
+
 #
 msgid "Set Voltage and 22KHz"
 msgstr "Spannung und 22KHz setzen"
@@ -4894,10 +5069,6 @@ msgstr "Adresse fest einstellen"
 #
 msgid "Set interface as default Interface"
 msgstr "Setze Netzwerkadapter als Standardd"
-
-#
-msgid "Set limits"
-msgstr "Limits setzen"
 
 msgid "Set time window to 1 hour"
 msgstr "Setze Zeitfenster auf 1 Stunde"
@@ -4928,6 +5099,9 @@ msgstr "Benutzermodus"
 
 msgid "Setup menu"
 msgstr "Konfiguration"
+
+msgid "Setup your positioner"
+msgstr "Konfiguration des Rotors"
 
 #, python-format
 msgid "Shall the USB stick wizard proceed and program the image file %s into flash memory?"
@@ -5042,9 +5216,15 @@ msgstr "STB ausschalten nach"
 msgid "Side by Side"
 msgstr "Side by Side"
 
+msgid "Signal OK, proceeding"
+msgstr "Signal OK, fortsetzen"
+
 #
 msgid "Signal Strength:"
 msgstr "Signal Stärke:"
+
+msgid "Signal quality"
+msgstr "Signal Qualität"
 
 #
 msgid "Signal: "
@@ -5086,6 +5266,12 @@ msgstr "Einzelnen Transponder"
 msgid "Singlestep (GOP)"
 msgstr "Einzelschritt (GOP)"
 
+msgid "Site latitude"
+msgstr "Breitengrad ausrichten"
+
+msgid "Site longitude"
+msgstr "Längengrad ausrichten"
+
 #
 msgid "Skin"
 msgstr "Skin"
@@ -5113,6 +5299,12 @@ msgstr "Diaschau-Intervall (sek.)"
 #, python-format
 msgid "Slot %d"
 msgstr "Steckplatz %d"
+
+msgid "Slovak"
+msgstr "Slowakisch"
+
+msgid "Slovenian"
+msgstr "Slowenisch"
 
 #
 msgid "Slow"
@@ -5218,6 +5410,9 @@ msgstr "Eingangs Anfrage"
 msgid "South"
 msgstr "Süd"
 
+msgid "Spanish"
+msgstr "Spanisch"
+
 #
 msgid "Split preview mode"
 msgstr "Splitscreen für Vorschau-Modus"
@@ -5271,6 +5466,12 @@ msgstr "Schritt nach Osten"
 msgid "Step west"
 msgstr "Schritt nach Westen"
 
+msgid "Stepped east"
+msgstr "Nach Osten justiert"
+
+msgid "Stepped west"
+msgstr "Nach Westen justiert"
+
 #
 msgid "Stop"
 msgstr "Stopp"
@@ -5309,6 +5510,12 @@ msgstr "Stoppe Test nach # fehlgeschlagenen Transpondern"
 msgid "Stop testing plane after # successful transponders"
 msgstr "Stoppe Test nach # erfolgreichen Transpondern"
 
+msgid "Stopped"
+msgstr "Gestoppt"
+
+msgid "Store at index"
+msgstr "Speichern auf Index"
+
 #
 msgid "Store position"
 msgstr "Position speichern"
@@ -5319,6 +5526,9 @@ msgstr "gespeicherte Position"
 
 msgid "Stream request"
 msgstr "Stream Anfrage"
+
+msgid "Strongest position"
+msgstr "Beste Position"
 
 #
 msgid "Subservice list..."
@@ -5379,6 +5589,9 @@ msgstr "Tausche Anzeige SNR in dB mit SNR in Prozent"
 msgid "Swap Services"
 msgstr "Kanäle tauschen"
 
+msgid "Swedish"
+msgstr "Schwedisch"
+
 msgid "Switch TV to correct input"
 msgstr "Fernseher auf passenden Eingang schalten"
 
@@ -5402,6 +5615,9 @@ msgstr "Symbolrate"
 
 msgid "Symbolrate"
 msgstr "Symbolrate"
+
+msgid "Sync failure moving back to origin !"
+msgstr "Sync Fehler bewege zur Anfangsposition!"
 
 #
 msgid "System"
@@ -5670,6 +5886,9 @@ msgstr "Es sind keine Updates verfügbar."
 msgid "There are now "
 msgstr "Es sind nun "
 
+msgid "There is no signal to lock on !"
+msgstr "Es liegt kein Signal an!"
+
 #
 msgid ""
 "There might not be enough Space on the selected Partition.\n"
@@ -5821,6 +6040,9 @@ msgstr "Zeitgesteuerte Aufnahme"
 #
 msgid "Timer Editor"
 msgstr "Timer-Editor"
+
+msgid "Timer Overview"
+msgstr "Timer-Übersicht"
 
 #
 msgid "Timer Type"
@@ -5983,6 +6205,9 @@ msgstr "Dienstag"
 msgid "Tune"
 msgstr "Tunen"
 
+msgid "Tune and Focus"
+msgstr "Tunen und Fokusieren"
+
 #
 msgid "Tune failed!"
 msgstr "Tunen fehlgeschlagen!"
@@ -6010,6 +6235,12 @@ msgstr "Tuner-Status"
 #
 msgid "Tuner type"
 msgstr "Tuner Typ"
+
+msgid "Tuning step size"
+msgstr "Stelle Schrittweite ein"
+
+msgid "Turkish"
+msgstr "Türkisch"
 
 #
 msgid "Two"
@@ -6090,10 +6321,6 @@ msgstr "Unbekannt"
 
 msgid "Unmount"
 msgstr "Aushängen"
-
-#
-msgid "Unmount failed"
-msgstr "Unmounten fehlgeschlagen"
 
 #
 msgid "Unsupported"
@@ -6234,6 +6461,9 @@ msgstr "Grundeinstellungen jetzt vornehmen"
 msgid "Used service scan type"
 msgstr "Typ der Kanalsuche"
 
+msgid "User - bouquets"
+msgstr "Benutzerspezifische - Kanallisten"
+
 #
 msgid "User defined"
 msgstr "Benutzerdefiniert"
@@ -6256,6 +6486,9 @@ msgstr "VMGM (Intro-Trailer)"
 #
 msgid "Vertical"
 msgstr "Vertikal"
+
+msgid "Vertical turning speed"
+msgstr "Vertikale Drehgeschwindigkeit"
 
 #
 msgid "Video Fine-Tuning"
@@ -6476,6 +6709,9 @@ msgstr "Mittwoch"
 msgid "Weekday"
 msgstr "Wochentag"
 
+msgid "Weigthed position"
+msgstr "Gewichtete Position"
+
 #
 msgid ""
 "Welcome to the Cutlist editor.\n"
@@ -6541,6 +6777,9 @@ msgstr "Willkommen..."
 #
 msgid "West"
 msgstr "West"
+
+msgid "West limit set"
+msgstr "Westliches Limit"
 
 #
 msgid "What do you want to scan?"
@@ -7219,6 +7458,9 @@ msgstr "Nicht aufnehmen"
 msgid "done!"
 msgstr "erledigt!"
 
+msgid "east"
+msgstr "Osten"
+
 #
 msgid "edit alternatives"
 msgstr "Alternativen bearbeiten"
@@ -7380,6 +7622,9 @@ msgstr "Module initialisieren"
 msgid "insert mark here"
 msgstr "Markierung hier einfügen"
 
+msgid "invalid type"
+msgstr "Ungültige Werte"
+
 #
 msgid "jump back to the previous title"
 msgstr "Zum letzten Titel springen"
@@ -7415,6 +7660,9 @@ msgstr "links"
 #
 msgid "length"
 msgstr "Länge"
+
+msgid "limit ..., aborting !"
+msgstr "Limit ..., abbruch!"
 
 #
 msgid "list of EPG views..."
@@ -7579,6 +7827,9 @@ msgstr "eines SINGLE-Layer-Mediums benutzt."
 #
 msgid "off"
 msgstr "aus"
+
+msgid "offset is"
+msgstr "Endstellung auf"
 
 #
 msgid "on"
@@ -8059,6 +8310,9 @@ msgstr "wurde erfolgreich entfernt"
 #
 msgid "weekly"
 msgstr "wöchentlich"
+
+msgid "west"
+msgstr "Westen"
 
 msgid "white"
 msgstr "Weiß"
