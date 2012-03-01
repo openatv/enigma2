@@ -331,7 +331,7 @@ class CCcamInfoMain(Screen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("CCcamInfo"))
+		Screen.setTitle(self, _("CCcam Info"))
 		self.session = session
 		
 		self["menu"] = CCcamList([])
@@ -426,9 +426,9 @@ class CCcamInfoMain(Screen):
 			self.url = url
 			config.cccaminfo.profile.value = self.url
 			config.cccaminfo.profile.save()
-			self.showInfo(_("New profile: ") + url)
+			self.showInfo(_("New profile: ") + url, _("Profile"))
 		else:
-			self.showInfo(_("Using old profile: ") + self.url)
+			self.showInfo(_("Using old profile: ") + self.url, _("Profile"))
 
 	def keyNumberGlobal(self, idx):
 		if (self.working) == False and (idx < len(self.menu_list)):
@@ -470,7 +470,7 @@ class CCcamInfoMain(Screen):
 			
 			elif sel == _("Local box"):
 				self.readConfig()
-				self.showInfo(_("Profile: Local box"))
+				self.showInfo(_("Profile: Local box"), _("Local box"))
 			
 			elif sel == _("Remote box"):
 				self.session.openWithCallback(self.profileSelected, CCcamInfoRemoteBoxMenu)
@@ -485,7 +485,7 @@ class CCcamInfoMain(Screen):
 				self.session.openWithCallback(self.workingFinished, CCcamInfoConfigSwitcher)
 			
 			else:
-				self.showInfo(_("CCcam Info %s\nby AliAbdul %s\n\nThis plugin shows you the status of your CCcam.") % (VERSION, DATE))
+				self.showInfo(_("CCcam Info %s\nby AliAbdul %s\n\nThis plugin shows you the status of your CCcam.") % (VERSION, DATE), _("About"))
 
 	def red(self):
 		self.keyNumberGlobal(10)
@@ -536,7 +536,7 @@ class CCcamInfoMain(Screen):
 		except:
 			content = _("Could not open the file %s!") % file
 		
-		self.showInfo(translateBlock(content))
+		self.showInfo(translateBlock(content), " ")
 
 	def showEcmInfoFile(self, file=None):
 		if file is not None:
@@ -551,7 +551,7 @@ class CCcamInfoMain(Screen):
 			self.infoToShow = html
 			getPage(self.url + "/shares").addCallback(self.showCCcamGeneral2).addErrback(self.getWebpageError)
 		else:
-			self.showInfo(_("Error reading webpage!"))
+			self.showInfo(_("Error reading webpage!"), _("Error"))
 
 	def showCCcamGeneral2(self, html):
 		if html.__contains__("Welcome to CCcam"):
@@ -566,9 +566,9 @@ class CCcamInfoMain(Screen):
 			html = html[idx+18:]
 			idx = html.index("\n")
 			html = html[:idx]
-			self.showInfo(translateBlock("%s %s\n%s" % (_("Available shares:"), html, self.infoToShow)))
+			self.showInfo(translateBlock("%s %s\n%s" % (_("Available shares:"), html, self.infoToShow)), _("General"))
 		else:
-			self.showInfo(translateBlock(self.infoToShow))
+			self.showInfo(translateBlock(self.infoToShow), _("General"))
 
 	def showCCcamClients(self, html):
 		firstLine = True
@@ -600,8 +600,8 @@ class CCcamInfoMain(Screen):
 							
 							infoList.append([username, _("Hostname: ") + hostname, _("Connected: ") + connected, _("Idle Time: ") + idleTime, _("Version: ") + version, _("Last used share: ") + share, ecmEmm]) 
 							clientList.append(username)
-		
-		self.openSubMenu(clientList, infoList)
+		self.set_title = _("CCcam Client Info")
+		self.openSubMenu(clientList, infoList, self.set_title)
 
 	def showCCcamServers(self, html):
 		firstLine = True
@@ -673,7 +673,8 @@ class CCcamInfoMain(Screen):
 							infoList.append([hostname, _("Type: ") + type, _("CaID: ") + caid, _("System: ") + system, _("Uphops: ") + uphops, _("Maxdown: ") + maxdown])
 							sharesList.append(hostname + " - " + _("CaID: ") + caid)
 
-		self.openSubMenu(sharesList, infoList)
+		self.set_title = _("CCcam Shares Info")
+		self.openSubMenu(sharesList, infoList, self.set_title)
 
 	def showCCcamProviders(self, html):
 		firstLine = True
@@ -697,26 +698,25 @@ class CCcamInfoMain(Screen):
 							infoList.append([_("CaID: ") + caid, _("Provider: ") + provider, _("Provider Name: ") + providername, _("System: ") + system])
 							providersList.append(_("CaID: ") + caid + " - " + _("Provider: ") + provider)
 		
-		self.openSubMenu(providersList, infoList)
+		self.set_title = _("CCcam Provider Info")
+		self.openSubMenu(providersList, infoList, self.set_title)
 
 	def showCCcamEntitlements(self, html):
 		if html.__contains__('<PRE>'):
 			idx = html.index('<PRE>')
 			idx2 = html.index('</PRE>')
 			html = html[idx+5:idx2].replace("\n\n", "\n")
-			
 			if html == "":
 				html = _("No card inserted!")
-			
-			self.showInfo(translateBlock(html))
+			self.showInfo(translateBlock(html), _("Entitlements"))
 		else:
-			self.showInfo(_("Error reading webpage!"))
+			self.showInfo(_("Error reading webpage!"), _("Entitlements"))
 
-	def showInfo(self, info):
-		self.session.openWithCallback(self.workingFinished, CCcamInfoInfoScreen, info)
+	def showInfo(self, info, set_title):
+		self.session.openWithCallback(self.workingFinished, CCcamInfoInfoScreen, info, set_title)
 
-	def openSubMenu(self, list, infoList):
-		self.session.openWithCallback(self.workingFinished, CCcamInfoSubMenu, list, infoList)
+	def openSubMenu(self, list, infoList, set_title):
+		self.session.openWithCallback(self.workingFinished, CCcamInfoSubMenu, list, infoList, set_title)
 
 	def workingFinished(self, callback=None):
 		self.working = False
@@ -732,12 +732,12 @@ class CCcamInfoMain(Screen):
 				for x in tmpList:
 					if x != "":
 						list.append(x)
-				
-				self.showInfo("%s\n\n  %s %s\n  %s %s\n  %s %s" % (_("Free memory:"), _("Total:"), list[0], _("Used:"), list[1], _("Free:"), list[2]))
+
+				self.showInfo("%s\n\n  %s %s\n  %s %s\n  %s %s" % (_("Free memory:"), _("Total:"), list[0], _("Used:"), list[1], _("Free:"), list[2]), _("Free memory"))
 			else:
-				self.showInfo(result)
+				self.showInfo(result, _("Free memory"))
 		else:
-			self.showInfo(str(result))
+			self.showInfo(str(result), _("Free memory"))
 
 #############################################################
 
@@ -749,7 +749,7 @@ class CCcamInfoEcmInfoSelection(Screen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("CCcamInfo"))
+		Screen.setTitle(self, _("CCcam ECM Info"))
 		list = []
 		tmp = listdir("/tmp/")
 		for x in tmp:
@@ -770,9 +770,9 @@ class CCcamInfoInfoScreen(Screen):
 		<widget name="text" position="0,0" size="500,420" font="Regular;20" />
 	</screen>"""
 
-	def __init__(self, session, info):
+	def __init__(self, session, info, set_title):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("CCcamInfo"))
+		Screen.setTitle(self, set_title)
 		self["text"] = ScrollLabel(info)
 		
 		self["actions"] = ActionMap(["CCcamInfoActions"],
@@ -803,7 +803,7 @@ class CCcamShareViewMenu(Screen, HelpableScreen):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
 		self.session = session
-		Screen.setTitle(self, _("CCcamInfo"))
+		Screen.setTitle(self, _("CCcam Share Info"))
 		self.url = url
 		self.list = []
 		self.providers = {}
@@ -1115,8 +1115,8 @@ class CCcamShareViewMenu(Screen, HelpableScreen):
 					else:
 						server += self.hostList[e] + "\n"
 				e += 1
-			self.session.open(CCcamInfoInfoScreen, server)
-		
+			self.session.open(CCcamInfoInfoScreen, server, _("Servers"))
+
 #############################################################
 
 class CCcamInfoSubMenu(Screen):
@@ -1127,10 +1127,10 @@ class CCcamInfoSubMenu(Screen):
 		<widget name="info" position="0,255" size="500,165" font="Regular;16" transparent="1" />
 	</screen>"""
 
-	def __init__(self, session, list, infoList):
+	def __init__(self, session, list, infoList, set_title):
 		Screen.__init__(self, session)
 		self.session = session
-		Screen.setTitle(self, _("CCcamInfo"))
+		Screen.setTitle(self, _(set_title))
 		self.infoList = infoList
 		self["list"] = MenuList(list)
 		self["info"] = Label()
@@ -1175,7 +1175,7 @@ class CCcamInfoServerMenu(Screen):
 	def __init__(self, session, infoList, url):
 		Screen.__init__(self, session)
 		self.session = session
-		Screen.setTitle(self, _("CCcamInfo"))
+		Screen.setTitle(self, _("CCcam Server Info"))
 		self.infoList = infoList
 		self.url = url
 		
@@ -1237,7 +1237,7 @@ class CCcamInfoConfigMenu(ConfigListScreen, Screen):
 
 	def __init__(self, session, profile):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("CCcamInfo"))
+		Screen.setTitle(self, _("CCcam Info Setup"))
 		config.cccaminfo.name.value = profile.name
 		config.cccaminfo.ip.value = profile.ip
 		config.cccaminfo.username.value = profile.username
@@ -1278,7 +1278,7 @@ class CCcamInfoRemoteBoxMenu(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.session = session
-		Screen.setTitle(self, _("CCcamInfo"))
+		Screen.setTitle(self, _("CCcam Remote Info"))
 		self.list = []
 		self.profiles = []
 		
@@ -1412,7 +1412,7 @@ class CCcamInfoShareInfo(Screen):
 	def __init__(self, session, hostname, url):
 		Screen.__init__(self, session)
 		self.session = session
-		Screen.setTitle(self, _("CCcamInfo"))
+		Screen.setTitle(self, _("CCcam Share Info"))
 		self.hostname = hostname
 		self.url = url
 		self.list = []
@@ -1575,7 +1575,7 @@ class CCcamInfoConfigSwitcher(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.session = session
-		Screen.setTitle(self, _("CCcamInfo"))
+		Screen.setTitle(self, _("CCcam Config Switcher"))
 		self["key_red"] = Label(_("Delete"))
 		self["key_green"] = Label(_("Activate"))
 		self["key_yellow"] = Label(_("Rename"))
@@ -1701,7 +1701,7 @@ class CCcamInfoMenuConfig(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.session = session
-		Screen.setTitle(self, _("CCcamInfo"))
+		Screen.setTitle(self, _("CCcam Info Config"))
 		self["key_red"] = Label(_("Cancel"))
 		self["key_green"] = Label(_("Save"))
 		self["key_yellow"] = Label(_("Location"))
