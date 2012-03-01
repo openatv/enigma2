@@ -24,7 +24,6 @@ from enigma import eTimer, eDVBFrontendParametersSatellite, eComponentScan, eDVB
 #used for the XML file
 from time import strftime, time
 from Components.About import about
-
 XML_BLINDSCAN_DIR = "/tmp"
 
 class Blindscan(ConfigListScreen, Screen):
@@ -199,7 +198,9 @@ class Blindscan(ConfigListScreen, Screen):
 			(1, _("up to 1 degree")),
 			(2, _("up to 2 degrees")),
 			(3, _("up to 3 degrees"))])
-		self.archive_only = ConfigYesNo(default = False)
+		self.search_type = ConfigSelection(default = 0, choices = [
+			(0, _("scan for channels")),
+			(1, _("save to XML file"))])
 		
 
 		# collect all nims which are *not* set to "nothing"
@@ -253,7 +254,7 @@ class Blindscan(ConfigListScreen, Screen):
 		index_to_scan = int(self.scan_nims.value)
 		print "ID: ", index_to_scan
 
-		self.tunerEntry = getConfigListEntry(_("Tuner"), self.scan_nims,_('This is the hint text, change to what you want'))
+		self.tunerEntry = getConfigListEntry(_("Tuner"), self.scan_nims,_('Select a tuner that is configured for the satellite you wish to search'))
 		self.list.append(self.tunerEntry)
 		
 		if self.scan_nims == [ ]:
@@ -265,17 +266,17 @@ class Blindscan(ConfigListScreen, Screen):
 
 		self.scan_networkScan.value = False
 		if nim.isCompatible("DVB-S") :
-			self.list.append(getConfigListEntry(_('Satellite'), self.scan_satselection[self.getSelectedSatIndex(index_to_scan)],_('This is the hint text, change to what you want')))
-			self.list.append(getConfigListEntry(_('Scan start frequency'), self.blindscan_start_frequency,_('This is the hint text, change to what you want')))
-			self.list.append(getConfigListEntry(_('Scan stop frequency'), self.blindscan_stop_frequency,_('This is the hint text, change to what you want')))
-			self.list.append(getConfigListEntry(_("Polarisation"), self.scan_sat.polarization,_('This is the hint text, change to what you want')))
-			self.list.append(getConfigListEntry(_('Scan start symbolrate'), self.blindscan_start_symbol,_('This is the hint text, change to what you want')))
-			self.list.append(getConfigListEntry(_('Scan stop symbolrate'), self.blindscan_stop_symbol,_('This is the hint text, change to what you want')))
-			self.list.append(getConfigListEntry(_("Clear before scan"), self.scan_clearallservices,_('This is the hint text, change to what you want')))
-			self.list.append(getConfigListEntry(_("Only free scan"), self.scan_onlyfree,_('This is the hint text, change to what you want')))
-			self.list.append(getConfigListEntry(_("Only scan unknown transponders"), self.dont_scan_known_tps,_('This is the hint text, change to what you want')))
-			self.list.append(getConfigListEntry(_("Filter out adjacent satellites"), self.filter_off_adjacent_satellites,_('This is the hint text, change to what you want')))
-			self.list.append(getConfigListEntry(_("Archive only (no service scan)"), self.archive_only,_('This is the hint text, change to what you want')))
+			self.list.append(getConfigListEntry(_('Satellite'), self.scan_satselection[self.getSelectedSatIndex(index_to_scan)],_('Select the satellite you wish to search')))
+			self.list.append(getConfigListEntry(_('Scan start frequency'), self.blindscan_start_frequency,_('Frequency values must be between 10700 and 12750 (or 3000 and 4200 in the case of C-band satellites)')))
+			self.list.append(getConfigListEntry(_('Scan stop frequency'), self.blindscan_stop_frequency,_('Frequency values must be between 10700 and 12750 (or 3000 and 4200 in the case of C-band satellites)')))
+			self.list.append(getConfigListEntry(_("Polarisation"), self.scan_sat.polarization,_('If you are not sure what polarisations the satellite you wish to search transmits, select "vertical and horizontal"')))
+			self.list.append(getConfigListEntry(_('Scan start symbolrate'), self.blindscan_start_symbol,_('Symbol rate values are in megasymbols; enter a value between 1 and 44')))
+			self.list.append(getConfigListEntry(_('Scan stop symbolrate'), self.blindscan_stop_symbol,_('Symbol rate values are in megasymbols; enter a value between 2 and 45')))
+			self.list.append(getConfigListEntry(_("Clear before scan"), self.scan_clearallservices,_('If you select "yes" all channels on the satellite being search will be deleted before starting the current search')))
+			self.list.append(getConfigListEntry(_("Only free scan"), self.scan_onlyfree,_('If you select "yes" the scan will only save channels that are not encrypted; "no" will find encrypted and non-encrypted cannels')))
+			self.list.append(getConfigListEntry(_("Only scan unknown transponders"), self.dont_scan_known_tps,_('If you select "yes" the scan will only search transponders not listed in satellites.xml')))
+			self.list.append(getConfigListEntry(_("Filter out adjacent satellites"), self.filter_off_adjacent_satellites,_('When a neighbouring satellite is very strong this avoids searching transponders known to be coming from the neighbouring satellite')))
+			self.list.append(getConfigListEntry(_("Search type"), self.search_type,_('"channel scan" searches for channels and saves them to the receiver; "save to XML file" does a transponder search and saves found transponders to an XML file in satellites.xml format')))
 			self["config"].list = self.list
 			self["config"].l.setList(self.list)
 			
@@ -626,7 +627,7 @@ class Blindscan(ConfigListScreen, Screen):
 				for p in self.tmp_tplist:
 					print "data : [%d][%d][%d][%d][%d][%d][%d][%d][%d][%d]" % (p.orbital_position, p.polarisation, p.frequency, p.symbol_rate, p.system, p.inversion, p.pilot, p.fec, p.modulation, p.modulation)
 								
-				if self.archive_only.value == False: # Do a service scan
+				if self.search_type.value == 0 : # Do a service scan
 					self.startScan(self.tmp_tplist, self.feid)
 				else: # Save transponder data to file. No service scan.
 					self.tmp_tplist = sorted(self.tmp_tplist, key=lambda transponder: transponder.frequency)
@@ -786,7 +787,7 @@ class Blindscan(ConfigListScreen, Screen):
 			pos_name = '%dW' % (abs(int(pos))/10)
 		else :
 			pos_name = '%dE' % (abs(int(pos))/10)
-		location = '%s/blindscan_%s_%d.xml' %(save_xml_dir, pos_name, int(time()))
+		location = '%s/blindscan_%s_%s.xml' %(save_xml_dir, pos_name, strftime("%d-%m-%Y_%H-%M-%S"))
 		tuner = ['A', 'B', 'C'] 
 		polarisation = ['horizontal', 'vertical', 'circular left', 'circular right', 'vertical and horizontal', 'circular right and circular left']
 		adjacent = ['no', 'up to 1 degree', 'up to 2 degrees', 'up to 3 degrees']
@@ -796,8 +797,8 @@ class Blindscan(ConfigListScreen, Screen):
 		xml = ['<?xml version="1.0" encoding="iso-8859-1"?>\n\n']
 		xml.append('<!--\n')
 		xml.append('	File created on %s\n' % (strftime("%A, %d of %B %Y, %H:%M:%S")))
-		xml.append('	using %s reciever running VIX image, version %s,\n' % (config.misc.boxtype.value, about.getImageVersionString()))
-		xml.append('	build %s, with the blindscan plugin by Huevos\n\n' % (about.getBuildVersionString()))
+		xml.append('	using %s receiver running VIX image, version %s,\n' % (config.misc.boxtype.value, about.getImageVersionString()))
+		xml.append('	build %s, with the blindscan plugin updated by Huevos\n\n' % (about.getBuildVersionString()))
 		xml.append('	Search parameters:\n')
 		xml.append('		Tuner: %s\n' % (tuner[self.feid]))
 		xml.append('		Satellite: %s\n' % (self.sat_name))
