@@ -12,10 +12,11 @@ class MessageBox(Screen):
 	TYPE_WARNING = 2
 	TYPE_ERROR = 3
 
-	def __init__(self, session, text, type = TYPE_YESNO, timeout = -1, close_on_any_key = False, default = True, enable_input = True, msgBoxID = None, picon = None, simple = False):
+	def __init__(self, session, text, type = TYPE_YESNO, title = None, timeout = -1, close_on_any_key = False, default = True, enable_input = True, msgBoxID = None, picon = None, simple = False):
 		self.type = type
 		Screen.__init__(self, session)
 
+		self.setTitle(_(title))
 		if simple:
 			self.skinName="MessageBoxSimple"
 		
