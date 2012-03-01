@@ -12,17 +12,18 @@ class MessageBox(Screen):
 	TYPE_WARNING = 2
 	TYPE_ERROR = 3
 
-	def __init__(self, session, text, type = TYPE_YESNO, timeout = -1, close_on_any_key = False, default = True, enable_input = True, msgBoxID = None, picon = None, simple = False):
+	def __init__(self, session, text, type = TYPE_YESNO, title = None, timeout = -1, close_on_any_key = False, default = True, enable_input = True, msgBoxID = None, picon = None, simple = False):
 		self.type = type
 		Screen.__init__(self, session)
-		
+
+		self.setTitle(_(title))
 		if simple:
 			self.skinName="MessageBoxSimple"
 		
 		self.msgBoxID = msgBoxID
 
- 		self["text"] = Label(text)
-		self["Text"] = StaticText(text)
+		self["text"] = Label(_(text))
+		self["Text"] = StaticText(_(text))
 		self["selectedChoice"] = StaticText()
 
 		self.text = text
@@ -124,7 +125,10 @@ class MessageBox(Screen):
 		if self.timerRunning:
 			del self.timer
 			self.onExecBegin.remove(self.startTimer)
-			self.setTitle(self.origTitle)
+			if self.origTitle:
+				self.setTitle(_(self.origTitle))
+			else:
+				self.setTitle(self.origTitle)
 			self.timerRunning = False
 
 	def timerTick(self):
@@ -132,7 +136,10 @@ class MessageBox(Screen):
 			self.timeout -= 1
 			if self.origTitle is None:
 				self.origTitle = self.instance.getTitle()
-			self.setTitle(self.origTitle + " (" + str(self.timeout) + ")")
+			if self.origTitle:
+				self.setTitle(_(self.origTitle) + " (" + str(self.timeout) + ")")
+			else:
+				self.setTitle(self.origTitle + " (" + str(self.timeout) + ")")
 			if self.timeout == 0:
 				self.timer.stop()
 				self.timerRunning = False

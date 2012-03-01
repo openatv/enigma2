@@ -1658,8 +1658,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.session.open(NetworkSetup.NetworkMountsMenu)
 
 	def showDeviceMounts(self):
-		import Plugins.SystemPlugins.ViX.MountManager
-		self.session.open(Plugins.SystemPlugins.ViX.MountManager.VIXDevicesPanel)
+		import Plugins.Extensions.Aafpanel.MountManager
+		self.session.open(Plugins.Extensions.Aafpanel.MountManager.HddMount)
 
 	def showActionFeedback(self, text):
 		if self.feedbackTimer is None:

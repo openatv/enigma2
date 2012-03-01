@@ -48,6 +48,7 @@ class HarddiskSetup(Screen):
 class HarddiskSelection(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
+		Screen.setTitle(self, _("Initialization"))
 		if harddiskmanager.HDDCount() == 0:
 			tlist = []
 			tlist.append((_("no storage devices found"), 0))
@@ -76,6 +77,7 @@ class HarddiskSelection(Screen):
 class HarddiskFsckSelection(HarddiskSelection):
 	def __init__(self, session):
 		HarddiskSelection.__init__(self, session)
+		Screen.setTitle(self, _("Filesystem Check"))
 		self.skinName = "HarddiskSelection"
 
 	def doIt(self, selection):
@@ -87,6 +89,7 @@ class HarddiskFsckSelection(HarddiskSelection):
 class HarddiskConvertExt4Selection(HarddiskSelection):
 	def __init__(self, session):
 		HarddiskSelection.__init__(self, session)
+		Screen.setTitle(self, _("Convert filesystem ext3 to ext4"))
 		self.skinName = "HarddiskSelection"
 
 	def doIt(self, selection):
