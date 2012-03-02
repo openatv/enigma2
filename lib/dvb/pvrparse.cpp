@@ -764,6 +764,14 @@ void eMPEGStreamInformationWriter::close()
 			where -= PAGESIZE;
 			unmap();
 			::ftruncate(m_structure_write_fd, where);
+			if ((where == 0) && !m_filename.empty())
+			{
+				// If the file is empty, attempt to delete it.
+				::close(m_structure_write_fd);
+				m_structure_write_fd = -1;
+				::unlink((m_filename + ".sc").c_str());
+				return;
+			}
 		}
 		else
 		{

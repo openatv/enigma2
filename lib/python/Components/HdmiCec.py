@@ -132,7 +132,7 @@ class HdmiCec:
 			if messages:
 				self.sendMessages(0, messages)
 
-			if config.hdmicec.control_receiver_wakeup:
+			if config.hdmicec.control_receiver_wakeup.value:
 				self.sendMessage(5, "setsystemaudiomode")
 
 	def standbyMessages(self):
@@ -148,7 +148,7 @@ class HdmiCec:
 			if messages:
 				self.sendMessages(0, messages)
 
-			if config.hdmicec.control_receiver_standby:
+			if config.hdmicec.control_receiver_standby.value:
 				self.sendMessage(5, "standby")
 
 	def onLeaveStandby(self):
@@ -191,7 +191,7 @@ class HdmiCec:
 					self.volumeForwardingDestination = 5; # on: send volume keys to receiver 
 				else:
 					self.volumeForwardingDestination = 0; # off: send volume keys to tv
-				if config.hdmicec.volume_forwarding:
+				if config.hdmicec.volume_forwarding.value:
 					print 'eHdmiCec: volume forwarding to device %02x enabled'%(self.volumeForwardingDestination)
 					self.volumeForwardingEnabled = True;
 			elif cmd == 0x8f: # request power status
