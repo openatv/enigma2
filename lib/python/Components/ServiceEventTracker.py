@@ -1,4 +1,38 @@
 class InfoBarBase:
+
+	onInfoBarOpened = [ ]
+	onInfoBarClosed = [ ]
+
+	@staticmethod
+	def connectInfoBarOpened(fnc):
+		if not fnc in InfoBarBase.onInfoBarOpened:
+			InfoBarBase.onInfoBarOpened.append(fnc)
+
+	@staticmethod
+	def disconnectInfoBarOpened(fnc):
+		if fnc in InfoBarBase.onInfoBarOpened:
+			InfoBarBase.onInfoBarOpened.remove(fnc)
+
+	@staticmethod
+	def infoBarOpened(infobar):
+		for x in InfoBarBase.onInfoBarOpened:
+			x(infobar)
+
+	@staticmethod
+	def connectInfoBarClosed(fnc):
+		if not fnc in InfoBarBase.onInfoBarClosed:
+			InfoBarBase.onInfoBarClosed.append(fnc)
+
+	@staticmethod
+	def disconnectInfoBarClosed(fnc):
+		if fnc in InfoBarBase.onInfoBarClosed:
+			InfoBarBase.onInfoBarClosed.remove(fnc)
+
+	@staticmethod
+	def infoBarClosed(infobar):
+		for x in InfoBarBase.onInfoBarClosed:
+			x(infobar)
+
 	def __init__(self, steal_current_service = False):
 		if steal_current_service:
 			ServiceEventTracker.setActiveInfoBar(self, None, None)
@@ -6,9 +40,11 @@ class InfoBarBase:
 			nav = self.session.nav
 			ServiceEventTracker.setActiveInfoBar(self, not steal_current_service and nav.getCurrentService(), nav.getCurrentlyPlayingServiceReference())
 		self.onClose.append(self.__close)
+		InfoBarBase.infoBarOpened(self)
 
 	def __close(self):
 		ServiceEventTracker.popActiveInfoBar()
+		InfoBarBase.infoBarClosed(self)
 
 class ServiceEventTracker:
 	"""Tracks service events into a screen"""

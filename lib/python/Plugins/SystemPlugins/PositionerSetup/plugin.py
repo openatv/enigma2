@@ -49,6 +49,7 @@ class PositionerSetup(Screen):
 	def __init__(self, session, feid):
 		self.skin = PositionerSetup.skin
 		Screen.__init__(self, session)
+		Screen.setTitle(self, _("Positioner Setup"))
 		self.feid = feid
 		self.oldref = None
 
