@@ -95,7 +95,7 @@ class Dish(Screen):
 	def __serviceStarted(self):
 		if self.__state == self.STATE_SHOWN:
 			self.hide()
-		if not self.showdish:
+		if self.showdish == "off":
 			return
 
 		service = self.session.nav.getCurrentService()
@@ -118,16 +118,19 @@ class Dish(Screen):
 
 	def configChanged(self, configElement):
 		self.showdish = configElement.value
-		if not configElement.value:
+		if configElement.value == "off":
 			self["Dishpixmap"].setConnect(lambda: False)
 		else:
 			self["Dishpixmap"].setConnect(eDVBSatelliteEquipmentControl.getInstance().isRotorMoving)
 
 	def DishpixmapVisibilityChanged(self, state):
-		if state:
-			self["Dishpixmap"].show() # show dish picture
+		if self.showdish == "flashing":
+			if state:
+				self["Dishpixmap"].show() # show dish picture
+			else:
+				self["Dishpixmap"].hide() # hide dish picture
 		else:
-			self["Dishpixmap"].hide() # hide dish picture
+			self["Dishpixmap"].show() # show dish picture
 
 	def getTurnTime(self, start, end, pol=0):
 		mrt = abs(start - end) if start and end else 0

@@ -80,6 +80,9 @@ class EventName(Converter, object):
 						if (description and extended) and (description[0:20] != extended[0:20]):
 							description += '\n'
 						return description + extended
+					else:
+						# failed to return any epg data.
+						return ""
 				except:
 					# failed to return any epg data.
 					return ""
