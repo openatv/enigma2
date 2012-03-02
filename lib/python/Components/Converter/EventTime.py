@@ -122,6 +122,9 @@ class EventTime(Poll, Converter, object):
 						return self.list[2][1]
 					elif self.type == self.THIRD_END_TIME and self.list[2][1] and self.list[2][2]:
 						return int(self.list[2][1]) + int(self.list[2][2])
+					else:
+						# failed to return any epg data.
+						return "0"
 				except:
 					# failed to return any epg data.
 					return "0"
