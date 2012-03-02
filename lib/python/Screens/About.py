@@ -278,7 +278,7 @@ class AboutReleaseNotes(Screen):
 	def __init__(self, session):
 		self.session = session
 		Screen.__init__(self, session)
-		self.skinName = "AboutReleaseNotes"
+		Screen.setTitle(self, _("Image Release Notes"))
 		if path.exists('/etc/releasenotes'):
 			releasenotes = file('/etc/releasenotes').read()
 		else:
