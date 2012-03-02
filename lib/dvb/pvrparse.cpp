@@ -784,6 +784,7 @@ eMPEGStreamParserTS::eMPEGStreamParserTS(int packetsize):
 	m_last_pts_valid(0),
 	m_last_pts(0),
 	m_pts_found(false),
+	m_has_accesspoints(false),
 	m_packetsize(packetsize),
 	m_header_offset(packetsize - 188)
 {
@@ -791,11 +792,9 @@ eMPEGStreamParserTS::eMPEGStreamParserTS(int packetsize):
 
 int eMPEGStreamParserTS::processPacket(const unsigned char *pkt, off_t offset)
 {
-	if (!m_last_pts_valid)
+	if (!m_has_accesspoints)
 	{
 		/* initial stream time access point: 0,0 */
-		m_last_pts = 0;
-		m_last_pts_valid = 1;
 		addAccessPoint(offset, m_last_pts, !m_pts_found);
 	}
 	if (!wantPacket(pkt))
@@ -1072,6 +1071,7 @@ void eMPEGStreamParserTS::addAccessPoint(off_t offset, pts_t pts, bool streamtim
 	timespec now;
 	clock_gettime(CLOCK_MONOTONIC, &now);
 	addAccessPoint(offset, pts, now, streamtime);
+	m_has_accesspoints = true;
 }
 
 void eMPEGStreamParserTS::addAccessPoint(off_t offset, pts_t pts, timespec &now, bool streamtime)

@@ -123,6 +123,7 @@ private:
 	int m_last_pts_valid; /* m_last_pts contains a valid value */
 	pts_t m_last_pts; /* last pts value, either from mpeg stream, or measured in streamtime */
 	bool m_pts_found; /* 'real' mpeg pts has been found, no longer measuring streamtime */
+	bool m_has_accesspoints;
 	int m_packetsize;
 	int m_header_offset;
 	timespec m_last_access_point; /* timespec at which the previous access point was reported */
