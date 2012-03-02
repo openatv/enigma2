@@ -1624,7 +1624,7 @@ class NetworkAfp(Screen):
 			self['labactive'].show()
 			self['labrun'].show()
 			self['key_green'].setText(_("Restart"))
-			self['status_summary'].setText(_("Current Status:") + ' ' + self['labrun'].text)
+			status_summary= self['lab2'].text + ' ' + self['labrun'].text
 		else:
 			self['labrun'].hide()
 			self['labstop'].show()
