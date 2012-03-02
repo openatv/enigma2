@@ -1185,9 +1185,10 @@ class ChannelSelectionBase(Screen):
 						elif cur_ref:
 							refstr = cur_ref.toString()
 							op = "".join(refstr.split(':', 10)[6:7])
-							hop = int(op[:-4],16)
-							refstr = '1:7:0:0:0:0:%s:0:0:0:(satellitePosition == %s) && %s ORDER BY name'%(op,hop,self.service_types[self.service_types.rfind(':')+1:])
-							self.setCurrentSelection(eServiceReference(refstr))
+							if len(op) >= 4:
+								hop = int(op[:-4],16)
+								refstr = '1:7:0:0:0:0:%s:0:0:0:(satellitePosition == %s) && %s ORDER BY name'%(op,hop,self.service_types[self.service_types.rfind(':')+1:])
+								self.setCurrentSelection(eServiceReference(refstr))
 
 	def showProviders(self):
 		if not self.pathChangeDisabled:
