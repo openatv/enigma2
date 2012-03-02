@@ -23,11 +23,11 @@ def InitUsageConfig():
 		folderprefix=""
 		boxtype="not detected"
 	config.misc.boxtype = ConfigText(default = boxtype)
-	config.misc.useNTPminutes = ConfigSelection(default = "30", choices = [("30", "30 Minutes"), ("60", _("Hour")), ("1440", _("Once per day"))])
+	config.misc.useNTPminutes = ConfigSelection(default = "30", choices = [("30", _("30 Minutes")), ("60", _("Hour")), ("1440", _("Once per day"))])
 	config.misc.remotecontrol_text_support = ConfigYesNo(default = False)
 
 	config.usage = ConfigSubsection();
-	config.usage.showdish = ConfigYesNo(default = True)
+	config.usage.showdish = ConfigSelection(default = "flashing", choices = [("flashing", _("Flashing")), ("normal", _("Not Flashing")), ("off", _("Off"))])
 	config.usage.multibouquet = ConfigYesNo(default = True)
 	config.usage.panicbutton = ConfigYesNo(default = True)
 	config.usage.multiepg_ask_bouquet = ConfigYesNo(default = False)
