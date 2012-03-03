@@ -638,21 +638,15 @@ int eMPEGStreamInformationWriter::stopSave(void)
 {
 	close();
 	if (m_filename.empty())
-		return -1;
+		return 1;
+	// No access points at all, then don't save a file. A single initial
+	// streamtime accesspoint is also useless, hence the <=1 instead of empty()
+	if (m_access_points.empty() && (m_streamtime_access_points.size() <= 1))
+		// Nothing to save, don't create an ap file at all
+		return 1;
 	FILE *f = fopen((m_filename + ".ap").c_str(), "wb");
 	if (!f)
 		return -1;
-
-	if (m_access_points.empty() && m_streamtime_access_points.size() == 1)
-	{
-		/* 
-		 * We only have a single initial streamtime-start access point,
-		 * which -on its own- has no use.
-		 * Drop it, or else the recording would be wrongfully identified
-		 * as having streamtime accesspoints.
-		 */
-		m_streamtime_access_points.clear();
-	}
 	for (std::deque<AccessPoint>::const_iterator i(m_streamtime_access_points.begin()); i != m_streamtime_access_points.end(); ++i)
 	{
 		unsigned long long d[2];
