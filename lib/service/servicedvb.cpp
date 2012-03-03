@@ -2304,6 +2304,7 @@ RESULT eDVBServicePlay::startTimeshift()
 		
 	m_record->setTargetFD(m_timeshift_fd);
 	m_record->setTargetFilename(m_timeshift_file);
+	m_record->enableAccessPoints(false); // no need for AP information during shift
 	m_timeshift_enabled = 1;
 	
 	updateTimeshiftPids();
@@ -2333,7 +2334,6 @@ RESULT eDVBServicePlay::stopTimeshift(bool swToLive)
 	eDebug("remove timeshift files");
 	eBackgroundFileEraser::getInstance()->erase(m_timeshift_file);
 	eBackgroundFileEraser::getInstance()->erase(m_timeshift_file + ".sc");
-	eBackgroundFileEraser::getInstance()->erase(m_timeshift_file + ".ap");
 	return 0;
 }
 
