@@ -67,6 +67,9 @@ void eDVBServicePMTHandler::channelStateChanged(iDVBChannel *channel)
 			eDebug("ok ... now we start!!");
 			m_have_cached_program = false;
 
+			if ( m_service && !m_service->cacheEmpty() )
+				serviceEvent(eventNewProgramInfo);
+
 			if (!m_service || m_service->usePMT())
 			{
 				if (m_pmt_pid == -1)
@@ -74,9 +77,6 @@ void eDVBServicePMTHandler::channelStateChanged(iDVBChannel *channel)
 				else
 					m_PMT.begin(eApp, eDVBPMTSpec(m_pmt_pid, m_reference.getServiceID().get()), m_demux);
 			}
-
-			if ( m_service && !m_service->cacheEmpty() )
-				serviceEvent(eventNewProgramInfo);
 
 			serviceEvent(eventTuned);
 		}
