@@ -62,8 +62,6 @@ void eDVBServicePMTHandler::channelStateChanged(iDVBChannel *channel)
 				eDebug("Allocating %s-decoding a demux for now tuned-in channel failed.", m_use_decode_demux ? "" : "non-");
 		}
 
-		serviceEvent(eventTuned);
-
 		if (m_demux)
 		{
 			eDebug("ok ... now we start!!");
@@ -79,6 +77,8 @@ void eDVBServicePMTHandler::channelStateChanged(iDVBChannel *channel)
 
 			if ( m_service && !m_service->cacheEmpty() )
 				serviceEvent(eventNewProgramInfo);
+
+			serviceEvent(eventTuned);
 		}
 	} else if ((m_last_channel_state != iDVBChannel::state_failed) && 
 			(state == iDVBChannel::state_failed))
