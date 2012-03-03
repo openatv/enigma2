@@ -2,7 +2,7 @@
 from Screen import Screen
 from Components.BlinkingPixmap import BlinkingPixmapConditional
 from Components.Pixmap import Pixmap
-from Components.config import config
+from Components.config import config, ConfigInteger
 from Components.Sources.Boolean import Boolean
 from Components.Label import Label
 from Components.ProgressBar import ProgressBar
@@ -11,17 +11,20 @@ from enigma import eDVBSatelliteEquipmentControl, eTimer, eComponentScan, iPlaya
 from enigma import eServiceCenter, iServiceInformation
 from ServiceReference import ServiceReference
 
+INVALID_POSITION = 9999
+config.misc.lastrotorposition = ConfigInteger(INVALID_POSITION)
+
 class Dish(Screen):
 	STATE_HIDDEN = 0
 	STATE_SHOWN  = 1
 	skin = """
 		<screen name="Dish" flags="wfNoBorder" position="86,100" size="130,200" title="Dish" zPosition="1" backgroundColor="#11396D" >
 			<widget name="Dishpixmap" position="0,0"  size="130,160" zPosition="-1" pixmap="skin_default/icons/dish.png" transparent="1" alphatest="on" />
-			<widget name="turnTime"   position="5,0"   size="120,20" zPosition="1" font="Regular;18" halign="right" shadowColor="black" shadowOffset="-2,-2" transparent="1" />
-			<eLabel name="From"       position="5,164"  size="45,16" zPosition="1" font="Regular;16" halign="left"  shadowColor="black" shadowOffset="-2,-1" transparent="1" text="From:" />
-			<widget name="posFrom"    position="55,160" size="70,20" zPosition="1" font="Regular;20" halign="left"  shadowColor="black" shadowOffset="-2,-2" transparent="1" />
-			<eLabel name="Goto"       position="5,184"  size="45,16" zPosition="1" font="Regular;16" halign="left"  shadowColor="black" shadowOffset="-2,-1" transparent="1" text="Goto:" />
-			<widget name="posGoto"    position="55,180" size="70,20" zPosition="1" font="Regular;20" halign="left"  shadowColor="black" shadowOffset="-2,-2" transparent="1" />
+			<widget name="turnTime"   position="5,0"   size="120,20" zPosition="1" font="Regular;20" halign="right" shadowColor="black" shadowOffset="-2,-2" transparent="1" />
+			<widget name="From"       position="5,164"  size="50,17" zPosition="1" font="Regular;17" halign="left"  shadowColor="black" shadowOffset="-2,-1" transparent="1"  />
+			<widget name="posFrom"    position="57,160" size="70,20" zPosition="1" font="Regular;20" halign="left"  shadowColor="black" shadowOffset="-2,-2" transparent="1" />
+			<widget name="Goto"       position="5,184"  size="50,17" zPosition="1" font="Regular;17" halign="left"  shadowColor="black" shadowOffset="-2,-1" transparent="1" />
+			<widget name="posGoto"    position="57,180" size="70,20" zPosition="1" font="Regular;20" halign="left"  shadowColor="black" shadowOffset="-2,-2" transparent="1" />
 		</screen>"""
 
 	def __init__(self, session):
@@ -32,6 +35,8 @@ class Dish(Screen):
 		self["turnTime"] = Label("")
 		self["posFrom"] = Label("")
 		self["posGoto"] = Label("")
+		self["From"] = Label (_("From :"))
+		self["Goto"] = Label (_("Goto :"))
 
 		self.rotorTimer = eTimer()
 		self.rotorTimer.callback.append(self.updateRotorMovingState)
@@ -43,7 +48,7 @@ class Dish(Screen):
 		config.usage.showdish.addNotifier(self.configChanged)
 		self.configChanged(config.usage.showdish)
 
-		self.rotor_pos = self.cur_orbpos = None
+		self.rotor_pos = self.cur_orbpos = config.misc.lastrotorposition.value
 		self.turn_time = self.total_time = None
 		self.cur_polar = 0
 		self.__state = self.STATE_HIDDEN
@@ -106,7 +111,10 @@ class Dish(Screen):
 
 		tuner_type = data.get("tuner_type")
 		if tuner_type and tuner_type.find("DVB-S") != -1:
-			self.cur_orbpos = data.get("orbital_position")
+			self.cur_orbpos = data.get("orbital_position", INVALID_POSITION)
+			if self.cur_orbpos != INVALID_POSITION:
+				config.misc.lastrotorposition.value = self.cur_orbpos
+				config.misc.lastrotorposition.save()
 			self.cur_polar  = data.get("polarization", 0)
 			self.rotorTimer.start(500, False)
 
@@ -134,7 +142,7 @@ class Dish(Screen):
 		return mrt
 
 	def OrbToStr(self, orbpos):
-		if orbpos is None:
+		if orbpos == INVALID_POSITION:
 			return "N/A"
 		if orbpos > 1800:
 			orbpos = 3600 - orbpos
