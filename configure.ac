@@ -216,6 +216,13 @@ data/skin_default/lcd/Makefile
 include/Makefile
 lib/Makefile
 lib/base/eenv.cpp
+lib/driver/Makefile
+lib/dvb_ci/Makefile
+lib/gdi/Makefile
+lib/gui/Makefile
+lib/mmi/Makefile
+lib/nav/Makefile
+lib/network/Makefile
 lib/python/Makefile
 lib/python/Components/Makefile
 lib/python/Components/Converter/Makefile
@@ -324,9 +331,13 @@ lib/python/Plugins/SystemPlugins/choiceRC/Makefile
 lib/python/Plugins/SystemPlugins/choiceRC/meta/Makefile
 lib/python/Plugins/SystemPlugins/GBVFD/Makefile
 lib/python/Tools/Makefile
+<<<<<<< HEAD
 lib/timeshift/Makefile
 lib/timeshift/eitsave/Makefile
 lib/timeshift/createapscfiles/Makefile
+=======
+lib/service/Makefile
+>>>>>>> parent of 7a3c4ad... Non-recursive makefile part 2
 po/Makefile
 main/Makefile
 tools/Makefile
