@@ -216,13 +216,6 @@ data/skin_default/lcd/Makefile
 include/Makefile
 lib/Makefile
 lib/base/eenv.cpp
-lib/driver/Makefile
-lib/dvb_ci/Makefile
-lib/gdi/Makefile
-lib/gui/Makefile
-lib/mmi/Makefile
-lib/nav/Makefile
-lib/network/Makefile
 lib/python/Makefile
 lib/python/Components/Makefile
 lib/python/Components/Converter/Makefile
@@ -331,7 +324,6 @@ lib/python/Plugins/SystemPlugins/choiceRC/Makefile
 lib/python/Plugins/SystemPlugins/choiceRC/meta/Makefile
 lib/python/Plugins/SystemPlugins/GBVFD/Makefile
 lib/python/Tools/Makefile
-lib/service/Makefile
 lib/timeshift/Makefile
 lib/timeshift/eitsave/Makefile
 lib/timeshift/createapscfiles/Makefile
