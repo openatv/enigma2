@@ -638,21 +638,15 @@ int eMPEGStreamInformationWriter::stopSave(void)
 {
 	close();
 	if (m_filename.empty())
-		return -1;
+		return 1;
+	// No access points at all, then don't save a file. A single initial
+	// streamtime accesspoint is also useless, hence the <=1 instead of empty()
+	if (m_access_points.empty() && (m_streamtime_access_points.size() <= 1))
+		// Nothing to save, don't create an ap file at all
+		return 1;
 	FILE *f = fopen((m_filename + ".ap").c_str(), "wb");
 	if (!f)
 		return -1;
-
-	if (m_access_points.empty() && m_streamtime_access_points.size() == 1)
-	{
-		/* 
-		 * We only have a single initial streamtime-start access point,
-		 * which -on its own- has no use.
-		 * Drop it, or else the recording would be wrongfully identified
-		 * as having streamtime accesspoints.
-		 */
-		m_streamtime_access_points.clear();
-	}
 	for (std::deque<AccessPoint>::const_iterator i(m_streamtime_access_points.begin()); i != m_streamtime_access_points.end(); ++i)
 	{
 		unsigned long long d[2];
@@ -791,16 +785,17 @@ eMPEGStreamParserTS::eMPEGStreamParserTS(int packetsize):
 	m_skip(0),
 	m_last_pts_valid(0),
 	m_last_pts(0),
-	m_pts_found(false),
-	m_has_accesspoints(false),
 	m_packetsize(packetsize),
-	m_header_offset(packetsize - 188)
+	m_header_offset(packetsize - 188),
+	m_enable_accesspoints(true),
+	m_pts_found(false),
+	m_has_accesspoints(false)
 {
 }
 
 int eMPEGStreamParserTS::processPacket(const unsigned char *pkt, off_t offset)
 {
-	if (!m_has_accesspoints)
+	if (!m_has_accesspoints && m_enable_accesspoints)
 	{
 		/* initial stream time access point: 0,0 */
 		addAccessPoint(offset, m_last_pts, !m_pts_found);
@@ -817,7 +812,7 @@ int eMPEGStreamParserTS::processPacket(const unsigned char *pkt, off_t offset)
 	if (pkt[3] & 0xc0) 
 	{
 		/* scrambled stream, we cannot parse pts, extrapolate with measured stream time instead */
-		if (pusi)
+		if (pusi && m_enable_accesspoints)
 		{
 			timespec now, diff;
 			clock_gettime(CLOCK_MONOTONIC, &now);
@@ -890,7 +885,7 @@ int eMPEGStreamParserTS::processPacket(const unsigned char *pkt, off_t offset)
 			{
 				if ((sc == 0x00) || (sc == 0xb3) || (sc == 0xb8)) /* picture, sequence, group start code */
 				{
-					if (sc == 0xb3) /* sequence header */
+					if ((sc == 0xb3) && m_enable_accesspoints) /* sequence header */
 					{
 						if (ptsvalid)
 						{
@@ -926,7 +921,7 @@ int eMPEGStreamParserTS::processPacket(const unsigned char *pkt, off_t offset)
 					if ( //pkt[3] == 0x09 &&   /* MPEG4 AVC NAL unit access delimiter */
 						 (pkt[4] >> 5) == 0) /* and I-frame */
 					{
-						if (ptsvalid)
+						if (ptsvalid && m_enable_accesspoints)
 						{
 							addAccessPoint(offset, pts);
 							// eDebug("MPEG4 AVC UAD at %llx, pts %llx", offset, pts);

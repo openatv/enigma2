@@ -268,7 +268,6 @@ void eDVBSectionReader::data(int)
 
 eDVBSectionReader::eDVBSectionReader(eDVBDemux *demux, eMainloop *context, RESULT &res): demux(demux)
 {
-	char filename[128];
 	fd = demux->openDemux();
 	
 	if (fd >= 0)
@@ -278,7 +277,7 @@ eDVBSectionReader::eDVBSectionReader(eDVBDemux *demux, eMainloop *context, RESUL
 		res = 0;
 	} else
 	{
-		perror(filename);
+		perror("demux->openDemux failed");
 		res = errno;
 	}
 }
@@ -487,6 +486,7 @@ public:
 	void stopSaveMetaInformation();
 	int getLastPTS(pts_t &pts);
 	void setTargetFD(int fd) { m_fd_dest = fd; }
+	void enableAccessPoints(bool enable) { m_ts_parser.enableAccessPoints(enable); }
 protected:
 	/* override */ int writeData(const unsigned char *data, int len);
 private:
@@ -735,6 +735,12 @@ RESULT eDVBTSRecorder::setTargetFD(int fd)
 RESULT eDVBTSRecorder::setTargetFilename(const std::string& filename)
 {
 	m_target_filename = filename;
+	return 0;
+}
+
+RESULT eDVBTSRecorder::enableAccessPoints(bool enable)
+{
+	m_thread->enableAccessPoints(enable);
 	return 0;
 }
 

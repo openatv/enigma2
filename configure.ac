@@ -193,12 +193,8 @@ data/skin_default/spinner/Makefile
 data/skin_default/GraphEPG/Makefile
 include/Makefile
 lib/Makefile
-lib/actions/Makefile
-lib/base/Makefile
 lib/base/eenv.cpp
 lib/driver/Makefile
-lib/dvb/Makefile
-lib/dvb/lowlevel/Makefile
 lib/dvb_ci/Makefile
 lib/gdi/Makefile
 lib/gui/Makefile
@@ -294,9 +290,9 @@ lib/python/Plugins/SystemPlugins/XtrendFancontrol/Makefile
 lib/python/Plugins/SystemPlugins/XtrendFancontrol/meta/Makefile
 lib/python/Tools/Makefile
 lib/service/Makefile
-lib/components/Makefile
-lib/components/eitsave/Makefile
-lib/components/createapscfiles/Makefile
+lib/timeshift/Makefile
+lib/timeshift/eitsave/Makefile
+lib/timeshift/createapscfiles/Makefile
 po/Makefile
 main/Makefile
 tools/Makefile
