@@ -785,16 +785,17 @@ eMPEGStreamParserTS::eMPEGStreamParserTS(int packetsize):
 	m_skip(0),
 	m_last_pts_valid(0),
 	m_last_pts(0),
-	m_pts_found(false),
-	m_has_accesspoints(false),
 	m_packetsize(packetsize),
-	m_header_offset(packetsize - 188)
+	m_header_offset(packetsize - 188),
+	m_enable_accesspoints(true),
+	m_pts_found(false),
+	m_has_accesspoints(false)
 {
 }
 
 int eMPEGStreamParserTS::processPacket(const unsigned char *pkt, off_t offset)
 {
-	if (!m_has_accesspoints)
+	if (!m_has_accesspoints && m_enable_accesspoints)
 	{
 		/* initial stream time access point: 0,0 */
 		addAccessPoint(offset, m_last_pts, !m_pts_found);
@@ -811,7 +812,7 @@ int eMPEGStreamParserTS::processPacket(const unsigned char *pkt, off_t offset)
 	if (pkt[3] & 0xc0) 
 	{
 		/* scrambled stream, we cannot parse pts, extrapolate with measured stream time instead */
-		if (pusi)
+		if (pusi && m_enable_accesspoints)
 		{
 			timespec now, diff;
 			clock_gettime(CLOCK_MONOTONIC, &now);
@@ -884,7 +885,7 @@ int eMPEGStreamParserTS::processPacket(const unsigned char *pkt, off_t offset)
 			{
 				if ((sc == 0x00) || (sc == 0xb3) || (sc == 0xb8)) /* picture, sequence, group start code */
 				{
-					if (sc == 0xb3) /* sequence header */
+					if ((sc == 0xb3) && m_enable_accesspoints) /* sequence header */
 					{
 						if (ptsvalid)
 						{
@@ -920,7 +921,7 @@ int eMPEGStreamParserTS::processPacket(const unsigned char *pkt, off_t offset)
 					if ( //pkt[3] == 0x09 &&   /* MPEG4 AVC NAL unit access delimiter */
 						 (pkt[4] >> 5) == 0) /* and I-frame */
 					{
-						if (ptsvalid)
+						if (ptsvalid && m_enable_accesspoints)
 						{
 							addAccessPoint(offset, pts);
 							// eDebug("MPEG4 AVC UAD at %llx, pts %llx", offset, pts);

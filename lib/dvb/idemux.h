@@ -39,6 +39,7 @@ public:
 		/* for saving additional meta data. */
 	virtual RESULT setTargetFilename(const std::string& filename) = 0;
 	virtual RESULT setBoundary(off_t max) = 0;
+	virtual RESULT enableAccessPoints(bool enable) = 0;
 	
 	virtual RESULT stop() = 0;
 
