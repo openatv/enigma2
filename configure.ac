@@ -167,12 +167,8 @@ data/skin_default/buttons/Makefile
 data/skin_default/spinner/Makefile
 include/Makefile
 lib/Makefile
-lib/actions/Makefile
-lib/base/Makefile
 lib/base/eenv.cpp
 lib/driver/Makefile
-lib/dvb/Makefile
-lib/dvb/lowlevel/Makefile
 lib/dvb_ci/Makefile
 lib/gdi/Makefile
 lib/gui/Makefile
@@ -259,7 +255,6 @@ lib/python/Plugins/SystemPlugins/WirelessLan/Makefile
 lib/python/Plugins/SystemPlugins/WirelessLan/meta/Makefile
 lib/python/Tools/Makefile
 lib/service/Makefile
-lib/components/Makefile
 po/Makefile
 main/Makefile
 tools/Makefile
