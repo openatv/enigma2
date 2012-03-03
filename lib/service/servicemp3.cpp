@@ -686,8 +686,6 @@ RESULT eServiceMP3::isCurrentlySeekable()
 		return 0;
 	if (m_state != stRunning)
 		return 0;
-	if (m_sourceinfo.is_streaming)
-		return 0;
 
 	return ret;
 }
