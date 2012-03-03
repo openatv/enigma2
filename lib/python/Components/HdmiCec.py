@@ -113,6 +113,12 @@ class HdmiCec:
 		elif message == "vendorid":
 			cmd = 0x87
 			data = '\x00\x00\x00'
+		elif message == "keypoweron":
+			cmd = 0x44
+			data = str(struct.pack('B', 0x6d))
+		elif message == "keypoweroff":
+			cmd = 0x44
+			data = str(struct.pack('B', 0x6c))
 		if cmd:
 			eHdmiCEC.getInstance().sendMessage(address, cmd, data, len(data))
 
@@ -133,6 +139,7 @@ class HdmiCec:
 				self.sendMessages(0, messages)
 
 			if config.hdmicec.control_receiver_wakeup.value:
+				self.sendMessage(5, "keypoweron")
 				self.sendMessage(5, "setsystemaudiomode")
 
 	def standbyMessages(self):
@@ -149,6 +156,7 @@ class HdmiCec:
 				self.sendMessages(0, messages)
 
 			if config.hdmicec.control_receiver_standby.value:
+				self.sendMessage(5, "keypoweroff")
 				self.sendMessage(5, "standby")
 
 	def onLeaveStandby(self):

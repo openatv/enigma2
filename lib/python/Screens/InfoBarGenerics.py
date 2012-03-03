@@ -283,6 +283,7 @@ class InfoBarShowHide:
 		self.onHide.append(self.__onHide)
 
 		self.onShowHideNotifiers = []
+		self.standardInfoBar = False
 		self.secondInfoBarScreen = ""
 		if ".InfoBar'>" in str(self):
 			if config.usage.show_second_infobar.value == "3" and config.skin.primary_skin.value == "DMConcinnity-HD/skin.xml":
@@ -290,6 +291,7 @@ class InfoBarShowHide:
 			else:
 				self.secondInfoBarScreen = self.session.instantiateDialog(SecondInfoBar)
 			self.secondInfoBarScreen.hide()
+			self.standardInfoBar = True
 		self.secondInfoBarWasShown = False
 		self.EventViewIsShown = False
 
@@ -1597,7 +1599,7 @@ class InfoBarSeek:
 		return seek
 
 	def isSeekable(self):
-		if self.getSeek() is None:
+		if self.getSeek() is None or (self.standardInfoBar and not self.timeshift_enabled):
 			return False
 		return True
 
