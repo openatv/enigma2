@@ -331,13 +331,10 @@ lib/python/Plugins/SystemPlugins/choiceRC/Makefile
 lib/python/Plugins/SystemPlugins/choiceRC/meta/Makefile
 lib/python/Plugins/SystemPlugins/GBVFD/Makefile
 lib/python/Tools/Makefile
-<<<<<<< HEAD
 lib/timeshift/Makefile
 lib/timeshift/eitsave/Makefile
 lib/timeshift/createapscfiles/Makefile
-=======
 lib/service/Makefile
->>>>>>> parent of 7a3c4ad... Non-recursive makefile part 2
 po/Makefile
 main/Makefile
 tools/Makefile
