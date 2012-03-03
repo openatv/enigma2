@@ -1,5 +1,5 @@
 AUTOMAKE_OPTIONS = subdir-objects
-SUBDIRS = dvb_ci gdi service driver nav gui python mmi network
+SUBDIRS = python
 
 AM_CPPFLAGS = \
 	-I$(top_builddir) \
@@ -17,3 +17,11 @@ include actions/Makefile.inc
 include base/Makefile.inc
 include components/Makefile.inc
 include dvb/Makefile.inc
+include dvb_ci/Makefile.inc
+include gdi/Makefile.inc
+include service/Makefile.inc
+include driver/Makefile.inc
+include nav/Makefile.inc
+include gui/Makefile.inc
+include mmi/Makefile.inc
+include network/Makefile.inc
