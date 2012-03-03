@@ -1592,14 +1592,7 @@ RESULT eDVBServicePlay::setTrickmode(int trick)
 
 RESULT eDVBServicePlay::isCurrentlySeekable()
 {
-	int ret = 0;
-	if (m_decoder)
-	{
-		ret = (m_is_pvr || m_timeshift_active) ? 3 : 0; // fast forward/backward possible and seeking possible
-		if (m_decoder->getVideoProgressive() == -1)
-			ret &= ~2;
-	}
-	return ret;
+	return (m_is_pvr || m_timeshift_active) ? 3 : 0; // fast forward/backward possible and seeking possible
 }
 
 RESULT eDVBServicePlay::frontendInfo(ePtr<iFrontendInformation> &ptr)
@@ -2323,6 +2316,7 @@ RESULT eDVBServicePlay::startTimeshift()
 		
 	m_record->setTargetFD(m_timeshift_fd);
 	m_record->setTargetFilename(m_timeshift_file);
+	m_record->enableAccessPoints(false); // no need for AP information during shift
 	m_timeshift_enabled = 1;
 	
 	updateTimeshiftPids();
@@ -2360,7 +2354,6 @@ RESULT eDVBServicePlay::stopTimeshift(bool swToLive)
 	eDebug("remove timeshift file");
 	eBackgroundFileEraser::getInstance()->erase(m_timeshift_file);
 	eBackgroundFileEraser::getInstance()->erase(m_timeshift_file + ".sc");
-	eBackgroundFileEraser::getInstance()->erase(m_timeshift_file + ".ap");
 	return 0;
 }
 

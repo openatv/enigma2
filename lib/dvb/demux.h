@@ -104,6 +104,7 @@ public:
 	RESULT setTargetFD(int fd);
 	RESULT setTargetFilename(const std::string& filename);
 	RESULT setBoundary(off_t max);
+	RESULT enableAccessPoints(bool enable);
 	
 	RESULT stop();
 
