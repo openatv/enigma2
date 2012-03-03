@@ -1132,13 +1132,13 @@ eTSMPEGDecoder::eTSMPEGDecoder(eDVBDemux *demux, int decoder)
 
 eTSMPEGDecoder::~eTSMPEGDecoder()
 {
-	if ( m_decoder == 0 )	// Tuxtxt caching actions only on primary decoder
-		eTuxtxtApp::getInstance()->freeCache();
-
 	finishShowSinglePic();
 	m_vpid = m_apid = m_pcrpid = m_textpid = pidNone;
 	m_changed = -1;
 	setState();
+
+	if ( m_decoder == 0 )	// Tuxtxt caching actions only on primary decoder
+		eTuxtxtApp::getInstance()->freeCache();
 }
 
 RESULT eTSMPEGDecoder::setVideoPID(int vpid, int type)
