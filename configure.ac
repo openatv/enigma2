@@ -335,10 +335,11 @@ lib/python/Plugins/SystemPlugins/choiceRC/Makefile
 lib/python/Plugins/SystemPlugins/choiceRC/meta/Makefile
 lib/python/Plugins/SystemPlugins/GBVFD/Makefile
 lib/python/Tools/Makefile
+lib/timeshift/Makefile
+lib/timeshift/eitsave/Makefile
+lib/timeshift/createapscfiles/Makefile
 lib/service/Makefile
 lib/components/Makefile
-lib/components/eitsave/Makefile
-lib/components/createapscfiles/Makefile
 po/Makefile
 main/Makefile
 tools/Makefile

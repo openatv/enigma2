@@ -1,5 +1,3 @@
-SUBDIRS = eitsave createapscfiles
-
 AM_CPPFLAGS = \
 	-I$(top_srcdir) \
 	-I$(top_srcdir)/include \
