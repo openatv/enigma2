@@ -604,7 +604,7 @@ def InitUsageConfig():
 	config.epgselction.OKLong_infobar = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap + Exit")
 	config.epgselction.Info = ConfigSelection(choices = [("Channel Info", _("Channel Info")), ("Single EPG", _("Single EPG"))], default = "Channel Info")
 	config.epgselction.InfoLong = ConfigSelection(choices = [("Channel Info", _("Channel Info")), ("Single EPG", _("Single EPG"))], default = "Single EPG")
-	config.epgselction.roundTo = ConfigSelection(default = 15, choices = [(15, _("%d minutes") % 15), (30, _("%d minutes") % 30), (60, _("%d minutes") % 60)])
+	config.epgselction.roundTo = ConfigSelection(default = "15", choices = [("15", _("%d minutes") % 15), ("30", _("%d minutes") % 30), ("60", _("%d minutes") % 60)])
 	config.epgselction.sort = ConfigSelection(default="Time", choices = [("Time", _("Time")),("AZ", _("Alphanumeric"))])
 	config.epgselction.prev_time = ConfigClock(default = time())
 	config.epgselction.primetimehour = ConfigSelectionNumber(default = 20, stepwidth = 1, min = 00, max = 23, wraparound = True)
