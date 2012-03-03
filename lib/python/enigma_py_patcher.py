@@ -1,14 +1,14 @@
 #read the comment to this file in lib/service/iservice.h !!
-import sys
+
 import os
 
-filename = sys.argv[1]
-os.rename(filename, filename + ".org")
+os.rename("enigma.py", "enigma.py.org")
 
-source=open(filename + ".org", "r")
-dest=open(filename, "w")
+source=open("enigma.py.org", "r")
+dest=open("enigma.py", "w")
 
-for line, str in enumerate(source):
+line=1
+for str in source.readlines():
 	oldstr = str[:]
 	str = str.replace('_ENUMS)', ')')
 
@@ -25,8 +25,8 @@ for line, str in enumerate(source):
 		print "!!! Patch enigma.py line %d\n%s\n%s" %(line, oldstr[:len(oldstr)-1], str)
 
 	dest.write(str)
+	line += 1
 
 del source
 del dest
-os.remove(filename + ".org")
-
+os.remove("enigma.py.org")
