@@ -85,6 +85,20 @@ class PositionerSetup(Screen):
 			position = - position
 		return position
 
+	@staticmethod
+	def longitude2orbital(position):
+		if position >= 180:
+			return 360 - position, "west"
+		else:
+			return position, "east"
+
+	@staticmethod
+	def latitude2orbital(position):
+		if position >= 0:
+			return position, "north"
+		else:
+			return -position, "south"
+
 	UPDATE_INTERVAL = 50					# milliseconds
 	STATUS_MSG_TIMEOUT = 2					# seconds
 
@@ -247,7 +261,7 @@ class PositionerSetup(Screen):
 		return False
 
 	def setLNB(self, lnb):
-		if lnb:
+		try:
 			self.sitelon = lnb.longitude.float
 			self.longitudeOrientation = lnb.longitudeOrientation.value
 			self.sitelat = lnb.latitude.float
@@ -255,7 +269,7 @@ class PositionerSetup(Screen):
 			self.tuningstepsize = lnb.tuningstepsize.float
 			self.turningspeedH = lnb.turningspeedH.float
 			self.turningspeedV = lnb.turningspeedV.float
-		else: # some reasonable defaults from NimManager
+		except: # some reasonable defaults from NimManager
 			self.sitelon = 5.1
 			self.longitudeOrientation = 'east'
 			self.sitelat = 50.767
@@ -341,7 +355,7 @@ class PositionerSetup(Screen):
 			self.red.setText(_("Tune"))
 			self.green.setText(_("Auto focus"))
 			self.yellow.setText(_("Calibrate"))
-			self.blue.setText("")
+			self.blue.setText("Calculate")
 		elif entry == "move":
 			if self.isMoving:
 				self.red.setText(_("Stop"))
@@ -418,8 +432,9 @@ class PositionerSetup(Screen):
 		entry = self.getCurrentConfigPath()
 		if entry == "tune":
 			# Auto focus
-			print>>log, (_("Site latitude") + "      : %6.1f %s") % (self.sitelat, self.latitudeOrientation)
-			print>>log, (_("Site longitude") + "     : %6.1f %s") % (self.sitelon, self.longitudeOrientation)
+			self.printMsg(_("Auto-focus"))
+			print>>log, (_("Site latitude") + "      : %5.1f %s") % PositionerSetup.latitude2orbital(self.sitelat)
+			print>>log, (_("Site longitude") + "     : %5.1f %s") % PositionerSetup.longitude2orbital(self.sitelon)
 			Thread(target = self.autofocus).start()
 		elif entry == "move":
 			if self.isMoving:
@@ -477,15 +492,16 @@ class PositionerSetup(Screen):
 		elif entry == "goto":
 			self.printMsg(_("Move to position X"))
 			satlon = self.orbitalposition.float
-			position = ("%6.1f %s") % (satlon, self.orientation.value)
+			position = ("%5.1f %s") % (satlon, self.orientation.value)
 			print>>log, (_("Satellite longitude:") + " %s") % position
 			satlon = PositionerSetup.orbital2metric(satlon, self.orientation.value)
 			self.statusMsg((_("Moving to position") + " %s") % position, timeout = self.STATUS_MSG_TIMEOUT)
 			self.gotoX(satlon)
 		elif entry == "tune":
 			# Start USALS calibration
-			print>>log, (_("Site latitude") + "      : %6.1f %s") % (self.sitelat, self.latitudeOrientation)
-			print>>log, (_("Site longitude") + "     : %6.1f %s") % (self.sitelon, self.longitudeOrientation)
+			self.printMsg(_("USALS Calibration"))
+			print>>log, (_("Site latitude") + "      : %5.1f %s") % PositionerSetup.latitude2orbital(self.sitelat)
+			print>>log, (_("Site longitude") + "     : %5.1f %s") % PositionerSetup.longitude2orbital(self.sitelon)
 			Thread(target = self.gotoXcalibration).start()
 
 	def blueKey(self):
@@ -503,6 +519,25 @@ class PositionerSetup(Screen):
 			self.printMsg(_("Limits on"))
 			self.diseqccommand("limitOn")
 			self.statusMsg(_("Limits enabled"), timeout = self.STATUS_MSG_TIMEOUT)
+		elif entry == "tune":
+			# Start (re-)calculate
+			self.session.openWithCallback(self.recalcConfirmed, MessageBox, _("This will (re-)calculate all positions of your rotor and imay remove previously memorized positions and finetunes!\nAre you sure?"), MessageBox.TYPE_YESNO, default = False, timeout = 10)
+
+	def recalcConfirmed(self, yesno):
+		if yesno:
+			self.printMsg(_("Calculate all positions"))
+			print>>log, (_("Site latitude") + "      : %5.1f %s") % PositionerSetup.latitude2orbital(self.sitelat)
+			print>>log, (_("Site longitude") + "     : %5.1f %s") % PositionerSetup.longitude2orbital(self.sitelon)
+			lon = self.sitelon
+			if lon >= 180:
+				lon -= 360
+			if lon < -30:	# americas, make unsigned binary west positive polarity
+				lon = -lon
+			lon = int(round(lon)) & 0xFF
+			lat = int(round(self.sitelat)) & 0xFF
+			index = int(self.positioner_storage.value) & 0xFF
+			self.diseqccommand("calc", (((index << 8) | lon) << 8) | lat)
+			self.statusMsg(_("Calculation complete"), timeout = self.STATUS_MSG_TIMEOUT)
 
 	def showLog(self):
 		self.session.open(PositionerSetupLog)
@@ -524,10 +559,14 @@ class PositionerSetup(Screen):
 		self.orbitalposition.value = [int(m[0] / 10), m[0] % 10]
 		self.orientation.value = m[1]
 		if self.advanced:
-			rotorposition = int(self.advancedsats[orb_pos].rotorposition.value)
-			self.positioner_storage.value = rotorposition
-			lnbnum = int(self.advancedsats[orb_pos].lnb.value)
-			self.setLNB(self.advancedconfig.lnb[lnbnum])
+			if orb_pos in self.advancedsats:
+				rotorposition = int(self.advancedsats[orb_pos].rotorposition.value)
+				self.positioner_storage.value = rotorposition
+				lnbnum = int(self.advancedsats[orb_pos].lnb.value)
+				lnb = self.advancedconfig.lnb[lnbnum]
+			else:
+				lnb = None
+			self.setLNB(lnb)
 
 	def isLocked(self):
 		return self.frontendStatus.get("tuner_locked", 0) == 1
@@ -686,7 +725,7 @@ class PositionerSetup(Screen):
 
 		self.logMsg(_("GotoX calibration"))
 		satlon = self.orbitalposition.float
-		print>>log, (_("Satellite longitude:") + " %6.1f" + chr(176) + " %s") % (satlon, self.orientation.value)
+		print>>log, (_("Satellite longitude:") + " %5.1f" + chr(176) + " %s") % (satlon, self.orientation.value)
 		satlon = PositionerSetup.orbital2metric(satlon, self.orientation.value)
 		prev_pos = 0.0						# previous relative position w.r.t. satlon
 		turningspeed = self.getTurningspeed()
@@ -890,15 +929,17 @@ class Diseqc:
 		if self.frontend:
 			cmd = eDVBDiseqcCommand()
 			if what == "moveWest":
-				string = 'E03169' + ("%02x" % param)
+				string = 'E03169' + ("%02X" % param)
 			elif what == "moveEast":
-				string = 'E03168' + ("%02x" % param)
+				string = 'E03168' + ("%02X" % param)
 			elif what == "moveTo":
-				string = 'E0316B' + ("%02x" % param)
+				string = 'E0316B' + ("%02X" % param)
 			elif what == "store":
-				string = 'E0316A' + ("%02x" % param)
+				string = 'E0316A' + ("%02X" % param)
 			elif what == "gotoX":
-				string = 'E0316E' + ("%04x" % param)
+				string = 'E0316E' + ("%04X" % param)
+			elif what == "calc":
+				string = 'E0316F' + ("%06X" % param)
 			elif what == "limitOn":
 				string = 'E0316A00'
 			elif what == "limitOff":
