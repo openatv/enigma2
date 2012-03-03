@@ -268,7 +268,6 @@ void eDVBSectionReader::data(int)
 
 eDVBSectionReader::eDVBSectionReader(eDVBDemux *demux, eMainloop *context, RESULT &res): demux(demux)
 {
-	char filename[128];
 	fd = demux->openDemux();
 	
 	if (fd >= 0)
@@ -278,7 +277,7 @@ eDVBSectionReader::eDVBSectionReader(eDVBDemux *demux, eMainloop *context, RESUL
 		res = 0;
 	} else
 	{
-		perror(filename);
+		perror("demux->openDemux failed");
 		res = errno;
 	}
 }
