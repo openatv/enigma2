@@ -91,14 +91,13 @@ void ePMTClient::parseTLVObjects(unsigned char *data, int size)
 		if (data[3] & 0x80)
 		{
 			/* multibyte length field */
-			unsigned char lengthdata[128];
 			int i;
 			lengthdatasize = data[3] & 0x7f;
 			size -= lengthdatasize;
 			if (size <= 0) break;
-			for (i = 0; i < lengthdatasize; i++)
+			for (i = 1; i < lengthdatasize; i++)
 			{
-				length = (length << 8) | lengthdata[i];
+				length = (length << 8) | data[i + 3];
 			}
 		}
 		else

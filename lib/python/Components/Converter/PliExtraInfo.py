@@ -163,7 +163,7 @@ class PliExtraInfo(Poll, Converter, object):
 			return self.createResolution(info)
 
 		if self.type == "VideoCodec":
-			return createVideoCodec(info)
+			return self.createVideoCodec(info)
 
 		feinfo = service.frontendInfo()
 		if feinfo is None:
