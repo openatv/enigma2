@@ -652,7 +652,7 @@ int isUTF8(const std::string &string)
 	return 1; // can be UTF8 (or pure ASCII, at least no non-UTF-8 8bit characters)
 }
 
-unsigned int truncateUTF8(const std::string &s, unsigned int newsize)
+unsigned int truncateUTF8(std::string &s, unsigned int newsize)
 {
 	unsigned int length = s.size();
 
