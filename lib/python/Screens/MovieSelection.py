@@ -461,6 +461,9 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.list = self["list"]
 		self.selectedmovie = selectedmovie
 
+		title = _("Movie Selection")
+		self.setTitle(title)
+
 		# Need list for init
 		SelectionEventInfo.__init__(self)
 
