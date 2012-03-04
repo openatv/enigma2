@@ -107,6 +107,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 		self.addPlaylistParser(PlaylistIOM3U, "m3u")
 		self.addPlaylistParser(PlaylistIOPLS, "pls")
 		self.addPlaylistParser(PlaylistIOInternal, "e2pls")
+		self.standardInfoBar = False
 
 		# 'None' is magic to start at the list of mountpoints
 		defaultDir = config.setupmediap.defaultDir.getValue()
