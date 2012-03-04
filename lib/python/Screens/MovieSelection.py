@@ -433,7 +433,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.bouquet_mark_edit = False
 
 		self.delayTimer = eTimer()
-		self.delayTimer.callback.append(self.updateHDDData)
+		self.delayTimer.callback.append(self.reloadWithDelay)
 		self.feedbackTimer = None
 
 		self.numericalTextInput = NumericalTextInput.NumericalTextInput(mapping=NumericalTextInput.MAP_SEARCH_UPCASE)
@@ -468,7 +468,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self["key_green"] = Button("")
 		self["key_yellow"] = Button("")
 		self["key_blue"] = Button("")
-                self._updateButtonTexts()
+		self._updateButtonTexts()
 
 		self["freeDiskSpace"] = self.diskinfo = DiskInfo(config.movielist.last_videodir.value, DiskInfo.FREE, update=False)
 
@@ -541,10 +541,9 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				"seekBack": (sback, tBack),
 				"seekBackManual": (ssback, tBack),
 			}, prio=5)	
-		self.onShown.append(self.go)
+		self.onShown.append(self.updateHDDData)
 		self.onLayoutFinish.append(self.saveListsize)
 		self.list.connectSelChanged(self.updateButtons)
-		self.inited = False
 		self.onClose.append(self.__onClose)
 		NavigationInstance.instance.RecordTimer.on_state_change.append(self.list.updateRecordings)
 		self.playInBackground = None
@@ -766,13 +765,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		if evt:
 			self.session.open(EventViewSimple, evt, ServiceReference(self.getCurrent()))
 
-	def go(self):
-		if not self.inited:
-		# ouch. this should redraw our "Please wait..."-text.
-		# this is of course not the right way to do this.
-			self.delayTimer.start(10, 1)
-			self.inited = True
-
 	def saveListsize(self):
 			listsize = self["list"].instance.size()
 			self.listWidth = listsize.width()
@@ -780,8 +772,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			self.updateDescription()
 
 	def updateHDDData(self):
-		self.delayTimer = None
- 		self.reloadList(self.selectedmovie, home=True)
+		self.show()
+		self.reloadList(self.selectedmovie, home=True)
 
 	def moveTo(self):
 		self["list"].moveTo(self.selectedmovie)
@@ -1066,15 +1058,21 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.current_ref.setName('8192:jpg 8192:png 8192:gif 8192:bmp')
 
 	def reloadList(self, sel = None, home = False):
+		self.reload_sel = sel
+		self.reload_home = home
 		self["waitingtext"].visible = True
+		self.delayTimer.start(10, 1)
+	
+	def reloadWithDelay(self):
+		self.delayTimer.stop()
 		if not os.path.isdir(config.movielist.last_videodir.value):
 			path = defaultMoviePath()
 			config.movielist.last_videodir.value = path
 			config.movielist.last_videodir.save()
 			self.setCurrentRef(path)
 			self["freeDiskSpace"].path = path
-		if sel is None:
-			sel = self.getCurrent()
+		if self.reload_sel is None:
+			self.reload_sel = self.getCurrent()
 		if config.movielist.settings_per_directory.value:
 			self.loadLocalSettings()
 		self["list"].reload(self.current_ref, self.selected_tags)
@@ -1085,8 +1083,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		if self.selected_tags is not None:
 			title += " - " + ','.join(self.selected_tags)
 		self.setTitle(title)
- 		if not (sel and self["list"].moveTo(sel)):
-			if home:
+ 		if not (self.reload_sel and self["list"].moveTo(self.reload_sel)):
+			if self.reload_home:
 				self["list"].moveToFirstMovie()
 		self["freeDiskSpace"].update()
 		self["waitingtext"].visible = False
