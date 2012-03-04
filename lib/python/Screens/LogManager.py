@@ -532,7 +532,7 @@ class LogManagerMenu(ConfigListScreen, Screen):
 
 	def KeyText(self):
 		if self['config'].getCurrent():
-			if self['config'].getCurrent()[0] == "User Name" or self['config'].getCurrent()[0] == "e-Mail address":
+			if self['config'].getCurrent()[0] == _("User Name") or self['config'].getCurrent()[0] == _("e-Mail address"):
 				from Screens.VirtualKeyBoard import VirtualKeyBoard
 				self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title = self["config"].getCurrent()[0], text = self["config"].getCurrent()[1].getValue())
 
