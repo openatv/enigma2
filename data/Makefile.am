@@ -6,6 +6,7 @@ dist_pkgdata_DATA = \
 	dreampackagewizard.xml \
 	encoding.conf \
 	keymap.xml \
+	keymap.ntr \
 	menu.xml \
 	radio.mvi \
 	prev.png \
