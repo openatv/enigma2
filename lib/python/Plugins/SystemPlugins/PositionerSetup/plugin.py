@@ -521,7 +521,7 @@ class PositionerSetup(Screen):
 			self.statusMsg(_("Limits enabled"), timeout = self.STATUS_MSG_TIMEOUT)
 		elif entry == "tune":
 			# Start (re-)calculate
-			self.session.openWithCallback(self.recalcConfirmed, MessageBox, _("This will (re-)calculate all positions of your rotor and imay remove previously memorized positions and finetunes!\nAre you sure?"), MessageBox.TYPE_YESNO, default = False, timeout = 10)
+			self.session.openWithCallback(self.recalcConfirmed, MessageBox, _("This will (re-)calculate all positions of your rotor and may remove previously memorised positions and fine-tuning!\nAre you sure?"), MessageBox.TYPE_YESNO, default = False, timeout = 10)
 
 	def recalcConfirmed(self, yesno):
 		if yesno:
