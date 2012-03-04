@@ -564,38 +564,51 @@ eDVBVideo::~eDVBVideo()
 void eDVBVideo::video_event(int)
 {
 #if HAVE_DVB_API_VERSION >= 3
-	struct video_event evt;
-	eDebugNoNewLine("VIDEO_GET_EVENT - ");
-	if (::ioctl(m_fd, VIDEO_GET_EVENT, &evt) < 0)
-		eDebug("failed (%m)");
-	else
+	while (m_fd >= 0)
 	{
-		eDebug("ok");
-		if (evt.type == VIDEO_EVENT_SIZE_CHANGED)
+		int retval;
+		pollfd pfd[1];
+		pfd[0].fd = m_fd;
+		pfd[0].events = POLLPRI;
+		retval = ::poll(pfd, 1, 0);
+		if (retval < 0 && errno == EINTR) continue;
+		if (retval <= 0) break;
+		struct video_event evt;
+		eDebugNoNewLine("VIDEO_GET_EVENT - ");
+		if (::ioctl(m_fd, VIDEO_GET_EVENT, &evt) < 0)
 		{
-			struct iTSMPEGDecoder::videoEvent event;
-			event.type = iTSMPEGDecoder::videoEvent::eventSizeChanged;
-			m_aspect = event.aspect = evt.u.size.aspect_ratio == 0 ? 2 : 3;  // convert dvb api to etsi
-			m_height = event.height = evt.u.size.h;
-			m_width = event.width = evt.u.size.w;
-			/* emit */ m_event(event);
-		}
-		else if (evt.type == VIDEO_EVENT_FRAME_RATE_CHANGED)
-		{
-			struct iTSMPEGDecoder::videoEvent event;
-			event.type = iTSMPEGDecoder::videoEvent::eventFrameRateChanged;
-			m_framerate = event.framerate = evt.u.frame_rate;
-			/* emit */ m_event(event);
-		}
-		else if (evt.type == 16 /*VIDEO_EVENT_PROGRESSIVE_CHANGED*/)
-		{
-			struct iTSMPEGDecoder::videoEvent event;
-			event.type = iTSMPEGDecoder::videoEvent::eventProgressiveChanged;
-			m_progressive = event.progressive = evt.u.frame_rate;
-			/* emit */ m_event(event);
+			eDebug("failed (%m)");
+			break;
 		}
 		else
-			eDebug("unhandled DVBAPI Video Event %d", evt.type);
+		{
+			eDebug("ok");
+			if (evt.type == VIDEO_EVENT_SIZE_CHANGED)
+			{
+				struct iTSMPEGDecoder::videoEvent event;
+				event.type = iTSMPEGDecoder::videoEvent::eventSizeChanged;
+				m_aspect = event.aspect = evt.u.size.aspect_ratio == 0 ? 2 : 3;  // convert dvb api to etsi
+				m_height = event.height = evt.u.size.h;
+				m_width = event.width = evt.u.size.w;
+				/* emit */ m_event(event);
+			}
+			else if (evt.type == VIDEO_EVENT_FRAME_RATE_CHANGED)
+			{
+				struct iTSMPEGDecoder::videoEvent event;
+				event.type = iTSMPEGDecoder::videoEvent::eventFrameRateChanged;
+				m_framerate = event.framerate = evt.u.frame_rate;
+				/* emit */ m_event(event);
+			}
+			else if (evt.type == 16 /*VIDEO_EVENT_PROGRESSIVE_CHANGED*/)
+			{
+				struct iTSMPEGDecoder::videoEvent event;
+				event.type = iTSMPEGDecoder::videoEvent::eventProgressiveChanged;
+				m_progressive = event.progressive = evt.u.frame_rate;
+				/* emit */ m_event(event);
+			}
+			else
+				eDebug("unhandled DVBAPI Video Event %d", evt.type);
+		}
 	}
 #else
 #warning "FIXMEE!! Video Events not implemented for old api"
@@ -1132,13 +1145,13 @@ eTSMPEGDecoder::eTSMPEGDecoder(eDVBDemux *demux, int decoder)
 
 eTSMPEGDecoder::~eTSMPEGDecoder()
 {
-	if ( m_decoder == 0 )	// Tuxtxt caching actions only on primary decoder
-		eTuxtxtApp::getInstance()->freeCache();
-
 	finishShowSinglePic();
 	m_vpid = m_apid = m_pcrpid = m_textpid = pidNone;
 	m_changed = -1;
 	setState();
+
+	if ( m_decoder == 0 )	// Tuxtxt caching actions only on primary decoder
+		eTuxtxtApp::getInstance()->freeCache();
 }
 
 RESULT eTSMPEGDecoder::setVideoPID(int vpid, int type)
