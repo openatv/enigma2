@@ -339,7 +339,6 @@ lib/components/Makefile
 lib/components/eitsave/Makefile
 lib/components/createapscfiles/Makefile
 lib/service/Makefile
-lib/components/Makefile
 po/Makefile
 main/Makefile
 tools/Makefile
