@@ -425,6 +425,7 @@ class EPGSelection(Screen, HelpableScreen):
 		elif self.type == EPG_TYPE_SINGLE:
 			self["epgactions"] = HelpableActionMap(self, "EPGSelectActions",
 				{
+					"info":				(self.Info, _("Show detailed event info")),
 					"menu":				(self.createSetup, _("Setup menu")),
 				},-1)
 			self["epgactions"].csel = self
