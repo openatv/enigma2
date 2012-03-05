@@ -750,22 +750,14 @@ void eMPEGStreamInformationWriter::close()
 {
 	if (m_structure_write_fd != -1)
 	{
+		off_t where = ::lseek(m_structure_write_fd, 0, SEEK_END);
 		if (m_buffer_filled != 0)
 		{
 			// Unmap and truncate the file at the correct spot.
-			off_t where = ::lseek(m_structure_write_fd, 0, SEEK_END);
 			where +=  m_buffer_filled;
 			where -= PAGESIZE;
 			unmap();
 			::ftruncate(m_structure_write_fd, where);
-			if ((where == 0) && !m_filename.empty())
-			{
-				// If the file is empty, attempt to delete it.
-				::close(m_structure_write_fd);
-				m_structure_write_fd = -1;
-				::unlink((m_filename + ".sc").c_str());
-				return;
-			}
 		}
 		else
 		{
@@ -773,6 +765,11 @@ void eMPEGStreamInformationWriter::close()
 		}
 		::close(m_structure_write_fd);
 		m_structure_write_fd = -1;
+		if ((where == 0) && !m_filename.empty())
+		{
+			// If the file is empty, attempt to delete it.
+			::unlink((m_filename + ".sc").c_str());
+		}
 	}
 }
 
