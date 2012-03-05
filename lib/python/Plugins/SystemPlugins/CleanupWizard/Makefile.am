@@ -8,5 +8,4 @@ install_PYTHON =	\
 	CleanupWizard.py
 
 dist_install_DATA = \
-	LICENSE \
 	cleanupwizard.xml
