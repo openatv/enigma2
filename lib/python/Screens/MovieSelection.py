@@ -549,7 +549,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.onShown.append(self.updateHDDData)
 		self.onLayoutFinish.append(self.saveListsize)
 		self.list.connectSelChanged(self.updateButtons)
-		self.inited = False
 		self.onClose.append(self.__onClose)
 		NavigationInstance.instance.RecordTimer.on_state_change.append(self.list.updateRecordings)
 		self.playInBackground = None
@@ -778,11 +777,9 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.updateDescription()
 
 	def updateHDDData(self):
-		if not self.inited:
-			self["waitingtext"].show()
-			self.reloadList(self.selectedmovie, home=True)
-			self.activityTimer.start(100)
-			self.inited=True
+		self["waitingtext"].show()
+		self.reloadList(self.selectedmovie, home=True)
+		self.activityTimer.start(100)
 
  	def hidewaitingtext(self):
 		self.listTimer.stop()
