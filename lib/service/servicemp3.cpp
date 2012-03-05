@@ -1440,6 +1440,14 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 							if (strstr(eventname, "Changed"))
 								m_event((iPlayableService*)this, evVideoProgressiveChanged);
 						}
+						else if (!strcmp(eventname, "redirect"))
+						{
+							const char *uri = gst_structure_get_string(msgstruct, "new-location");
+							eDebug("redirect to %s", uri);
+							gst_element_set_state (m_gst_playbin, GST_STATE_NULL);
+							g_object_set(G_OBJECT (m_gst_playbin), "uri", uri, NULL);
+							gst_element_set_state (m_gst_playbin, GST_STATE_PLAYING);
+						}
 					}
 				}
 			}
