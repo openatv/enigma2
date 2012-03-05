@@ -26,7 +26,7 @@ base_libenigma_base_a_SOURCES = \
 EXTRA_DIST += \
 	base/eenv.cpp.in
 
-baseincludedir = $(pkgincludedir)/lib
+baseincludedir = $(pkgincludedir)/lib/base
 baseinclude_HEADERS = \
 	base/buffer.h \
 	base/console.h \
@@ -39,7 +39,7 @@ baseinclude_HEADERS = \
 	base/estring.h \
 	base/etpm.h \
 	base/filepush.h \
-	base/freesatv2.cpp \
+	base/freesatv2.h \
 	base/i18n.h \
 	base/itssource.h \
 	base/init.h \
