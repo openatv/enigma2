@@ -14,7 +14,7 @@
 #	define PAGESIZE 4096
 #endif
 #define ROUND_TO_PAGESIZE(value) ((value) & 0xFFFFF000)
-#define MAPSIZE (PAGESIZE*4)
+#define MAPSIZE (PAGESIZE*8)
 
 eMPEGStreamInformation::eMPEGStreamInformation():
 	m_structure_read_fd(-1),
@@ -23,8 +23,6 @@ eMPEGStreamInformation::eMPEGStreamInformation():
 	m_structure_cache_entries(0),
 	m_structure_file_entries(0),
 	m_structure_cache(NULL),
-	m_cache_end_index(-1),
-	m_structure_cache_end(NULL),
 	m_streamtime_accesspoints(false)
 {
 }
@@ -44,17 +42,11 @@ void eMPEGStreamInformation::close()
 			::munmap(m_structure_cache, m_structure_cache_entries * 16);
 			m_structure_cache = NULL;
 		}
-		if (m_structure_cache_end != NULL)
-		{
-			::munmap(m_structure_cache_end, PAGESIZE);
-			m_structure_cache_end = NULL;
-		}
 		::close(m_structure_read_fd);
 		m_structure_cache_entries = 0;
 		m_cache_index = -1;
 		m_structure_read_fd = -1;
 		m_structure_file_entries = 0;
-		m_cache_end_index = -1;
 	}
 }
 
@@ -317,6 +309,7 @@ static const int entry_size = 16;
 
 int eMPEGStreamInformation::moveCache(int index)
 {
+	//eDebug("[eMPEGStreamInformation::moveCache] index=%d m_cache_index=%d m_structure_cache_entries=%d", index, m_cache_index, m_structure_cache_entries);
 	// Check if index falls inside current range.
 	if ((m_structure_cache_entries != 0) && (index >= m_cache_index) && (index < m_cache_index + m_structure_cache_entries))
 	{
@@ -346,10 +339,14 @@ int eMPEGStreamInformation::moveCache(int index)
 
 int eMPEGStreamInformation::loadCache(int index)
 {
+	//eDebug("[eMPEGStreamInformation::loadCache] index=%d", index);
 	if (m_structure_cache != NULL)
 	{
-		//eDebug("[eMPEGStreamInformation] {%d} munmap %p size %d", gettid(), m_structure_cache, m_structure_cache_entries * entry_size);
+		//eDebug("[eMPEGStreamInformation] munmap %p size %d index %d", m_structure_cache, m_structure_cache_entries * entry_size, m_cache_index);
 		::munmap(m_structure_cache, m_structure_cache_entries * entry_size);
+		m_structure_cache = NULL;
+		m_structure_cache_entries = 0;
+		m_cache_index = -1;
 	}
 	off_t where = ROUND_TO_PAGESIZE(index * entry_size);
 	off_t until = ::lseek(m_structure_read_fd, 0, SEEK_END);
@@ -360,16 +357,19 @@ int eMPEGStreamInformation::loadCache(int index)
 	}
 	else
 	{
+		if (index * entry_size >= until)
+		{
+			eDebug("[eMPEGStreamInformation] index %d is past EOF", index);
+			return 0;
+		}
 		bytes = (size_t)(until-where);
 		if (bytes == 0)
 		{
-			//eDebug("[eMPEGStreamInformation] mmap file is empty");
-			m_cache_index = -1;
-			m_structure_cache_entries = 0;
+			eDebug("[eMPEGStreamInformation] mmap file is empty");
 			return 0;
 		}
 	}
-	//eDebug("[eMPEGStreamInformation] {%d} mmap offset=%lld size %d", gettid(), where, bytes);
+	//eDebug("[eMPEGStreamInformation] mmap offset=%lld size %d", where, bytes);
 	m_structure_cache = (unsigned long long*) ::mmap(NULL, bytes, PROT_READ, MAP_SHARED, m_structure_read_fd, where);
 	if (m_structure_cache == NULL)
 	{
@@ -379,7 +379,7 @@ int eMPEGStreamInformation::loadCache(int index)
 		return -1;
 	}
 	m_cache_index = (int)(where / entry_size);
-	//eDebug("[eMPEGStreamInformation] {%d} cache index %d starts at %d (%lld) bytes: %d", gettid(), index, m_cache_index, where, bytes);
+	eDebug("[eMPEGStreamInformation] cache index %d starts at %d (%lld) bytes: %d", index, m_cache_index, where, bytes);
 	int num = (int)bytes / entry_size;
 	m_structure_cache_entries = num;
 	return num;
@@ -436,7 +436,7 @@ int eMPEGStreamInformation::getStructureEntryFirst(off_t &offset, unsigned long 
 		}
 		if (i < 0)
 			i = 0;
-		int num = loadCache(i);
+		int num = moveCache(i);
 		if ((num < structure_cache_size) && (structureCacheOffset(num - 1) <= offset))
 		{
 			eDebug("[eMPEGStreamInformation] offset %lld is past EOF of structure file", offset);
@@ -496,7 +496,7 @@ int eMPEGStreamInformation::getStructureEntryNext(off_t &offset, unsigned long l
 		{
 			where = next;
 		}
-		int num = loadCache(where);
+		int num = moveCache(where);
 		if (num <= 0)
 		{
 			eDebug("getStructureEntryNext failed, no data");
