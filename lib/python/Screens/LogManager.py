@@ -111,10 +111,6 @@ class LogManagerPoller:
 				print "[LogManager] looking in:",logsfolder
 				logssize = get_size(logsfolder)
 				bytesToRemove = logssize - allowedBytes
-				print "[LogManager] " + str(logsfolder) + ": Space Used:",logssize
-				print "[LogManager] " + str(logsfolder) + ": allowedBytes:",allowedBytes
-				print "[LogManager] " + str(logsfolder) + ": bytesToRemove",bytesToRemove
-
 				candidates = []
 				size = 0
 				for root, dirs, files in walk(logsfolder, topdown=False):
@@ -122,9 +118,6 @@ class LogManagerPoller:
 						try:
 							fn = path.join(root, name)
 							st = stat(fn)
-							print "[LogManager] " + str(fn) + ": dateOfFile",strftime("%c", localtime(st.st_ctime))
-							print "[LogManager] " + str(fn) + ": SizeOfFile:",name, st.st_size
-							print "[LogManager] " + str(fn) + ": LimitDays",strftime("%c", localtime(ctimeLimit))
 							if st.st_ctime < ctimeLimit:
 								print "[LogManager] " + str(fn) + ": Too old:",name, st.st_ctime
 								eBackgroundFileEraser.getInstance().erase(fn)
@@ -134,8 +127,6 @@ class LogManagerPoller:
 								size += st.st_size
 						except Exception, e:
 							print "[LogManager] Failed to stat %s:"% name, e 
-					print "[LogManager] " + str(logsfolder) + ": bytesToRemove",bytesToRemove
-					print "[LogManager] " + str(logsfolder) + ": Size now:",size
 					# Remove empty directories if possible
 					for name in dirs:
 						try:
@@ -151,8 +142,6 @@ class LogManagerPoller:
 						eBackgroundFileEraser.getInstance().erase(fn)
 						bytesToRemove -= st_size
 						size -= st_size
-					print "[LogManager] " + str(logsfolder) + ": bytesToRemove",bytesToRemove
-					print "[LogManager] " + str(logsfolder) + ": Size now:",size
 
 		self.timer.startLongTimer(43200) #twice a day
 
