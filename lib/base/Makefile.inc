@@ -26,7 +26,7 @@ base_libenigma_base_a_SOURCES = \
 EXTRA_DIST += \
 	base/eenv.cpp.in
 
-baseincludedir = $(pkgincludedir)/lib
+baseincludedir = $(pkgincludedir)/lib/base
 baseinclude_HEADERS = \
 	base/buffer.h \
 	base/console.h \
