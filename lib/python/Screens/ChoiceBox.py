@@ -12,8 +12,9 @@ class ChoiceBox(Screen):
 		if isinstance(skin_name, str):
 			skin_name = [skin_name]
 		self.skinName = skin_name + ["ChoiceBox"] 
-
-		self["text"] = Label(_(title))
+		if title:
+			title = _(title)
+		self["text"] = Label(title)
 		self.list = []
 		self.summarylist = []
 		if keys is None:

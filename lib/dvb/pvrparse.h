@@ -62,15 +62,11 @@ private:
 	std::multimap<pts_t, off_t> m_pts_to_offset;
 
 	int m_structure_read_fd;
-
 	int m_cache_index;   // Location of cache
 	int m_current_entry; // For getStructureEntryNext
 	int m_structure_cache_entries;
 	int m_structure_file_entries; // Also to detect changes to file
-
 	unsigned long long* m_structure_cache;
-	int m_cache_end_index;
-	unsigned long long* m_structure_cache_end;
 	bool m_streamtime_accesspoints;
 };
 

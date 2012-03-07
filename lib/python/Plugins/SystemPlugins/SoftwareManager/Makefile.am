@@ -15,7 +15,6 @@ dist_install_DATA = \
 	installable.png \
 	installed.png \
 	install.png \
-	LICENSE \
 	noprev.png \
 	remove.png \
 	update.png \
