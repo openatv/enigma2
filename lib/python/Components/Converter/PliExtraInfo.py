@@ -205,7 +205,7 @@ class PliExtraInfo(Poll, Converter, object):
 			return self.createTunerType(feraw)	
 
 		if self.type == "TunerSystem":
-			return createTunerSystem(fedata)
+			return self.createTunerSystem(fedata)
 
 		if self.type == "All":
 			self.getCryptoInfo(info)
