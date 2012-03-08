@@ -31,6 +31,7 @@ class Language:
 		self.addLanguage("Íslenska", "is", "IS")
 		self.addLanguage("Italiano", "it", "IT")
 		self.addLanguage("Norsk", "no", "NO")
+		self.addLanguage("Persian", "fa", "IR")
 		self.addLanguage("Polski", "pl", "PL")
 		self.addLanguage("Português", "pt", "PT")
 		self.addLanguage("Русский", "ru", "RU")
