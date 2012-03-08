@@ -2,10 +2,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-02 12:01+0100\n"
+"POT-Creation-Date: 2012-03-08 20:34+0100\n"
 "PO-Revision-Date: 2010-03-26 23:44+0200\n"
 "Last-Translator: Мартин Петков <marto74bg@yahoo.co.uk>\n"
 "Language-Team: Bulgarian\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -83,10 +84,8 @@ msgstr ""
 
 msgid ""
 "\n"
-"Scan for local packages and install them."
+"Scan for local extensions and install them."
 msgstr ""
-"\n"
-"Сканиране за местни пакети и инсталация."
 
 msgid ""
 "\n"
@@ -99,10 +98,30 @@ msgstr ""
 
 msgid ""
 "\n"
+"System will restart after the restore!"
+msgstr ""
+
+msgid ""
+"\n"
 "View, install and remove available or installed packages."
 msgstr ""
 "\n"
 "Преглед, инсталиране и премахване на налични или инсталирани пакети."
+
+msgid " (PiP)"
+msgstr ""
+
+msgid " (Radio)"
+msgstr ""
+
+msgid " (TV)"
+msgstr ""
+
+msgid " extensions."
+msgstr ""
+
+msgid " ms"
+msgstr ""
 
 msgid " packages selected."
 msgstr " избрани пакети."
@@ -113,17 +132,91 @@ msgstr " ъпдейти на разположение."
 msgid " wireless networks found!"
 msgstr "Открити са безжични мрежи!"
 
+msgid "#000000"
+msgstr ""
+
+msgid "#0064c7"
+msgstr ""
+
+msgid "#25062748"
+msgstr ""
+
+msgid "#389416"
+msgstr ""
+
+msgid "#80000000"
+msgstr ""
+
+msgid "#80ffffff"
+msgstr ""
+
+msgid "#bab329"
+msgstr ""
+
+msgid "#f23d21"
+msgstr ""
+
+msgid "#ff0000"
+msgstr ""
+
+msgid "#ffff7f"
+msgstr ""
+
+msgid "#ffffff"
+msgstr ""
+
+msgid "#ffffffff"
+msgstr ""
+
 msgid "%H:%M"
 msgstr "%Ч:%М"
 
+#, python-format
+msgid "%d hour"
+msgid_plural "%d hours"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
 msgid "%d jobs are running in the background!"
 msgstr "%d процеси работят на заден план!"
 
+#, python-format
 msgid "%d min"
 msgstr "%d мин"
 
+#, python-format
+msgid "%d minute"
+msgid_plural "%d minutes"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d minutes"
+msgstr ""
+
+#, python-format
+msgid "%d second"
+msgid_plural "%d seconds"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
 msgid "%d services found!"
 msgstr "%d намерени програми!"
+
+msgid "%d.%B %Y"
+msgstr ""
+
+#, python-format
+msgid "%s (%s)\n"
+msgstr ""
+
+msgid "(ZAP)"
+msgstr ""
+
+msgid "(empty)"
+msgstr ""
 
 msgid "(show optional DVD audio menu)"
 msgstr "(покажи DVD аудио меню)"
@@ -131,47 +224,121 @@ msgstr "(покажи DVD аудио меню)"
 msgid "* Only available if more than one interface is active."
 msgstr "* На разположение само ако е активен повече от един интерфейс."
 
-msgid "* Only available when entering hidden SSID or network key"
-msgstr "* На разположение при въвеждане на скрит SSID или мрежов ключ."
-
-msgid ".NFI Download failed:"
-msgstr ".NFI Неуспешно изтегляне:"
-
-msgid ""
-".NFI file passed md5sum signature check. You can safely flash this image!"
-msgstr ""
-".NFI файла премина проверката. Можете безопасно да заредите този имидж!"
-
 msgid "/usr/share/enigma2 directory"
 msgstr "/usr/share/enigma2 директория"
 
 msgid "/var directory"
 msgstr "/var директория"
 
+msgid "0"
+msgstr ""
+
+msgid "1"
+msgstr ""
+
 msgid "1 wireless network found!"
 msgstr "1 безжична мрежа е открита!"
 
-msgid "30 minutes"
-msgstr "30 минути"
+msgid "1.0"
+msgstr ""
 
-msgid "5 minutes"
-msgstr "5 минути"
+msgid "1.1"
+msgstr ""
 
-msgid "60 minutes"
-msgstr "60 минути"
+msgid "1.2"
+msgstr ""
+
+msgid "12V output"
+msgstr ""
+
+msgid "13 V"
+msgstr ""
+
+msgid "16:10"
+msgstr ""
+
+msgid "16:10 Letterbox"
+msgstr ""
+
+msgid "16:10 PanScan"
+msgstr ""
+
+msgid "16:9"
+msgstr ""
+
+msgid "16:9 Letterbox"
+msgstr ""
+
+msgid "16:9 always"
+msgstr ""
+
+msgid "18 V"
+msgstr ""
+
+msgid "2"
+msgstr ""
+
+msgid "3"
+msgstr ""
+
+msgid "3d mode"
+msgstr ""
+
+msgid "4"
+msgstr ""
+
+msgid "4:3"
+msgstr ""
+
+msgid "4:3 Letterbox"
+msgstr ""
+
+msgid "4:3 PanScan"
+msgstr ""
+
+msgid "5"
+msgstr ""
+
+msgid "6"
+msgstr ""
+
+msgid "7"
+msgstr ""
+
+msgid "8"
+msgstr ""
+
+msgid "9"
+msgstr ""
+
+msgid "<Current movielist location>"
+msgstr ""
+
+msgid "<Default movie location>"
+msgstr ""
+
+msgid "<Last timer location>"
+msgstr ""
 
 msgid "<unknown>"
 msgstr "<непознат>"
 
+msgid "??"
+msgstr ""
+
 msgid "A"
 msgstr "А"
 
+#, python-format
 msgid ""
 "A configuration file (%s) was modified since Installation.\n"
 "Do you want to keep your version?"
 msgstr ""
 "Конфиг файла (%s) беше променен след инсталацията.\n"
 "Искате ли да запазите вашата версия?"
+
+msgid "A demo plugin for TPM usage."
+msgstr ""
 
 msgid ""
 "A finished record timer wants to set your\n"
@@ -190,6 +357,7 @@ msgstr ""
 msgid "A graphical EPG for all services of an specific bouquet"
 msgstr "Графичен режим на EPG за всички програми от определен букет"
 
+#, python-format
 msgid ""
 "A record has been started:\n"
 "%s"
@@ -213,13 +381,28 @@ msgstr ""
 
 msgid ""
 "A recording is currently running. Please stop the recording before trying to "
+"scan."
+msgstr ""
+
+msgid ""
+"A recording is currently running. Please stop the recording before trying to "
 "start the satfinder."
 msgstr ""
 "Има запис в момента. Моля спрете записа преди да опитате да стартирате "
 "satfinder."
 
+#, python-format
 msgid "A required tool (%s) was not found."
 msgstr "Исканото устройство (%s) не беше намерено."
+
+msgid "A search for available updates is currently in progress."
+msgstr ""
+
+msgid ""
+"A second configured interface has been found.\n"
+"\n"
+"Do you want to disable the second network interface?"
+msgstr ""
 
 msgid ""
 "A sleep timer wants to set your\n"
@@ -234,6 +417,9 @@ msgid ""
 msgstr ""
 "Таймера за сън иска да изключи\n"
 "вашия Clarke-Tech. Изключване сега?"
+
+msgid "A small overview of the available icon states and actions."
+msgstr ""
 
 msgid ""
 "A timer failed to record!\n"
@@ -251,11 +437,11 @@ msgstr "АА"
 msgid "AB"
 msgstr "AB"
 
-msgid "AC3 default"
-msgstr "AC3 по подразбиране"
-
 msgid "AC3 downmix"
 msgstr "AC3 -> стерео (downmix)"
+
+msgid "AC3/DTS downmix"
+msgstr ""
 
 msgid "Abort"
 msgstr "Отмени"
@@ -266,8 +452,14 @@ msgstr "Относно"
 msgid "About..."
 msgstr "Относно..."
 
+msgid "Accesspoint:"
+msgstr ""
+
 msgid "Action on long powerbutton press"
 msgstr "Продължително натискане на бутон POWER"
+
+msgid "Action on short powerbutton press"
+msgstr ""
 
 msgid "Action:"
 msgstr "Действие:"
@@ -311,6 +503,26 @@ msgstr "Добави към букет"
 msgid "Add to favourites"
 msgstr "Добави към предпочитани"
 
+msgid "Add/Remove timer for current event"
+msgstr ""
+
+msgid ""
+"Adds enigma2 settings and dreambox model informations like SN, rev... if "
+"enabled."
+msgstr ""
+
+msgid "Adds network configuration if enabled."
+msgstr ""
+
+msgid "Adds wlan configuration if enabled."
+msgstr ""
+
+msgid "Adjust 3D settings"
+msgstr ""
+
+msgid "Adjust HDMI CEC settings"
+msgstr ""
+
 msgid ""
 "Adjust the color settings so that all the color shades are distinguishable, "
 "but appear as saturated as possible. If you are happy with the result, press "
@@ -322,11 +534,17 @@ msgstr ""
 "затворите фината настройка на картината, или използвайте цифровите бутони за "
 "да изберете друг тест екран."
 
-msgid "Advanced"
-msgstr "Експертни"
-
 msgid "Advanced Options"
 msgstr "Експертни Настройки"
+
+msgid "Advanced Software"
+msgstr ""
+
+msgid "Advanced Software Plugin"
+msgstr ""
+
+msgid "Advanced Video Enhancement Setup"
+msgstr ""
 
 msgid "Advanced Video Setup"
 msgstr "Експертна Видео Настройка"
@@ -337,12 +555,13 @@ msgstr "Експертно Възстановяване"
 msgid "After event"
 msgstr "След предаването"
 
+msgid "After pressing OK, please wait!"
+msgstr ""
+
 msgid ""
 "After the start wizard is completed, you need to protect single services. "
-"Refer to your Dreambox's manual on how to do that."
+"Refer to your dreambox's manual on how to do that."
 msgstr ""
-"След завършване на стартовия помощник, вие трябва да protect single "
-"services. Погледнете във вашата инструкция за Clarke-Tech как да го направите."
 
 msgid "Album"
 msgstr "Албум"
@@ -353,6 +572,12 @@ msgstr "Всички"
 msgid "All Satellites"
 msgstr "Всички Сателити"
 
+msgid "Allow Subtitle equals Audio mask"
+msgstr ""
+
+msgid "Allow hearing impaired subtitles"
+msgstr ""
+
 msgid "Alpha"
 msgstr "Алфа"
 
@@ -361,6 +586,9 @@ msgstr "Алтернативен радио режим"
 
 msgid "Alternative services tuner priority"
 msgstr "Алтернативен приоритет на тунера"
+
+msgid "Always ask"
+msgstr ""
 
 msgid "Always ask before sending"
 msgstr "Винаги питай преди изпращане"
@@ -373,6 +601,12 @@ msgstr "Случи се непозната грешка!"
 
 msgid "Anonymize crashlog?"
 msgstr "Анонимен crashlog?"
+
+msgid "Any activity"
+msgstr ""
+
+msgid "April"
+msgstr ""
 
 msgid "Arabic"
 msgstr "Арабски"
@@ -390,6 +624,9 @@ msgid ""
 msgstr ""
 "Искате ли да изтриете\n"
 "този backup:\n"
+
+msgid "Are you sure you want to exit this wizard?"
+msgstr ""
 
 msgid ""
 "Are you sure you want to restart your network interfaces?\n"
@@ -430,17 +667,54 @@ msgstr "Аудио"
 msgid "Audio Options..."
 msgstr "Аудио Настройки..."
 
+msgid "Audio PID"
+msgstr ""
+
+msgid "Audio language selection 1"
+msgstr ""
+
+msgid "Audio language selection 2"
+msgstr ""
+
+msgid "Audio language selection 3"
+msgstr ""
+
+msgid "Audio language selection 4"
+msgstr ""
+
+msgid "August"
+msgstr ""
+
 msgid "Author: "
 msgstr "Автор: "
 
+msgid "Authoring mode"
+msgstr ""
+
+#. TRANSLATORS: (aspect ratio policy: always try to display as fullscreen, when there is no content (black bars) on left/right, even if this breaks the aspect.
 msgid "Auto"
 msgstr "Aвто"
 
 msgid "Auto chapter split every ? minutes (0=never)"
 msgstr "Автоматично разделяне на всеки ? минути (0=никога)"
 
+msgid "Auto flesh"
+msgstr ""
+
+msgid "Auto focus"
+msgstr ""
+
+msgid "Auto focus commencing ..."
+msgstr ""
+
+msgid "Auto language selection"
+msgstr ""
+
 msgid "Auto scart switching"
 msgstr "Автом.скарт превключване"
+
+msgid "Auto-focus"
+msgstr ""
 
 msgid "Automatic"
 msgstr "Автоматично"
@@ -448,11 +722,41 @@ msgstr "Автоматично"
 msgid "Automatic Scan"
 msgstr "Автоматично Търсене"
 
+msgid "Available format variables"
+msgstr ""
+
+msgid "B"
+msgstr ""
+
+msgid "BA"
+msgstr ""
+
+msgid "BB"
+msgstr ""
+
+msgid "BER"
+msgstr ""
+
+msgid "BER:"
+msgstr ""
+
 msgid "Back"
 msgstr "Назад"
 
 msgid "Background"
 msgstr "Фон"
+
+msgid "Background delete option"
+msgstr ""
+
+msgid "Background delete speed"
+msgstr ""
+
+msgid "Backup"
+msgstr ""
+
+msgid "Backup Location"
+msgstr ""
 
 msgid "Backup Mode"
 msgstr "Backup Режим"
@@ -463,8 +767,8 @@ msgstr "Backup завършен."
 msgid "Backup failed."
 msgstr "Backup неуспех."
 
-msgid "Backup is done. Please press OK to see the result."
-msgstr "Backup завършен. Натиснете OK за да видите резултата."
+msgid "Backup is running..."
+msgstr ""
 
 msgid "Backup system settings"
 msgstr "Backup системни настройки"
@@ -474,6 +778,9 @@ msgstr "Лента"
 
 msgid "Bandwidth"
 msgstr "Ширина на лента"
+
+msgid "Basque"
+msgstr ""
 
 msgid "Begin time"
 msgstr "Начало време"
@@ -493,6 +800,24 @@ msgstr "Действие при спиране на филм"
 msgid "Behavior when a movie reaches the end"
 msgstr "Действие при завършване на филм"
 
+msgid "Bitrate:"
+msgstr ""
+
+msgid "Black screen"
+msgstr ""
+
+msgid "Black screen till locked"
+msgstr ""
+
+msgid "Block noise reduction"
+msgstr ""
+
+msgid "Blue boost"
+msgstr ""
+
+msgid "Bookmarks"
+msgstr ""
+
 msgid "Brightness"
 msgstr "Яркост"
 
@@ -505,16 +830,64 @@ msgstr "Запиши DVD"
 msgid "Burn existing image to DVD"
 msgstr "Запис на съществуващ имидж на DVD"
 
-msgid "Burn to DVD..."
-msgstr "Запиши на DVD..."
+msgid "Burn to DVD"
+msgstr ""
+
+msgid "Bus: "
+msgstr ""
 
 msgid ""
 "By pressing the OK Button on your remote control, the info bar is being "
 "displayed."
 msgstr "С натискане бутон OK на дистанционното, инфо лентата се показва."
 
+msgid "C"
+msgstr ""
+
+msgid "C-Band"
+msgstr ""
+
+msgid "CF Drive"
+msgstr ""
+
+msgid "CI assignment"
+msgstr ""
+
+msgid "CVBS"
+msgstr ""
+
+msgid "Cable"
+msgstr ""
+
+msgid "Cable Scan"
+msgstr ""
+
+msgid "Cache Thumbnails"
+msgstr ""
+
+msgid "Calculate all positions"
+msgstr ""
+
+msgid "Calculation complete"
+msgstr ""
+
+msgid "Calibrate"
+msgstr ""
+
 msgid "Cancel"
 msgstr "Отказ"
+
+msgid "Cannot determine"
+msgstr ""
+
+msgid "Cannot find any signal ..., aborting !"
+msgstr ""
+
+msgid "Cannot move files on a different disk or system to the trash can"
+msgstr ""
+
+msgid "Cannot move to trash can"
+msgstr ""
 
 msgid "Capacity: "
 msgstr "Капацитет: "
@@ -522,26 +895,32 @@ msgstr "Капацитет: "
 msgid "Card"
 msgstr "Карта"
 
-msgid "Catalan"
-msgstr "Каталонски"
+msgid "Centered DVB subtitles"
+msgstr ""
 
 msgid "Change bouquets in quickzap"
 msgstr "Смяна букет при бързопревкл."
 
-msgid "Change dir."
-msgstr "Смяна дир."
-
 msgid "Change pin code"
 msgstr "Смяна ПИН код"
 
-msgid "Change service pin"
-msgstr "Смяна ПИН на услуги"
+msgid "Change repeat and delay settings?"
+msgstr ""
 
-msgid "Change service pins"
-msgstr "Смяна ПИН на услуги"
+msgid "Change service PIN"
+msgstr ""
 
-msgid "Change setup pin"
-msgstr "Смяна ПИН за настройки"
+msgid "Change service PINs"
+msgstr ""
+
+msgid "Change setup PIN"
+msgstr ""
+
+msgid "Change step size"
+msgstr ""
+
+msgid "Changelog"
+msgstr ""
 
 msgid "Channel"
 msgstr "Канал"
@@ -557,6 +936,9 @@ msgstr "Канал:"
 
 msgid "Channellist menu"
 msgstr "Меню списък с канали"
+
+msgid "Chap."
+msgstr ""
 
 msgid "Chapter"
 msgstr "Глава"
@@ -585,8 +967,8 @@ msgstr "Избор backup местоположение"
 msgid "Choose bouquet"
 msgstr "Избор Букет"
 
-msgid "Choose source"
-msgstr "Избор източник"
+msgid "Choose image to download"
+msgstr ""
 
 msgid "Choose target folder"
 msgstr "Избор папка за целта"
@@ -609,14 +991,41 @@ msgstr "Почистване"
 msgid "Cleanup Wizard"
 msgstr "Помощник за Почистване"
 
+msgid "Cleanup Wizard settings"
+msgstr ""
+
+msgid "CleanupWizard"
+msgstr ""
+
+msgid "Clear"
+msgstr ""
+
 msgid "Clear before scan"
 msgstr "Изчистване преди сканиране"
+
+msgid "Clear fixed"
+msgstr ""
 
 msgid "Clear log"
 msgstr "Изтрий лога"
 
 msgid "Close"
 msgstr "Затваряне"
+
+msgid "Close title selection"
+msgstr ""
+
+msgid "Code rate HP"
+msgstr ""
+
+msgid "Code rate LP"
+msgstr ""
+
+msgid "Coderate HP"
+msgstr ""
+
+msgid "Coderate LP"
+msgstr ""
 
 msgid "Collection name"
 msgstr "Име на Колекцията"
@@ -633,14 +1042,32 @@ msgstr "Изпълнение на команда..."
 msgid "Command order"
 msgstr "Ред на команди"
 
+msgid "Committed DiSEqC command"
+msgstr ""
+
+msgid "Common Interface"
+msgstr ""
+
+msgid "Common Interface Assignment"
+msgstr ""
+
+msgid "CommonInterface"
+msgstr ""
+
 msgid "Communication"
 msgstr "Комуникация"
+
+msgid "Compact Flash"
+msgstr ""
 
 msgid "Complete"
 msgstr "Завършен"
 
-msgid "Config"
-msgstr "Конфиг"
+msgid "Complex (allows mixing audio tracks and aspects)"
+msgstr ""
+
+msgid "Composition of the recording filenames"
+msgstr ""
 
 msgid "Configuration Mode"
 msgstr "Режим Конфигурация"
@@ -656,6 +1083,9 @@ msgstr "Конфигуриране на вашата вътрешна LAN."
 
 msgid "Configure your network again"
 msgstr "Повторно конфигуриране на вашата мрежа."
+
+msgid "Configure your network settings, and press OK to start the scan"
+msgstr ""
 
 msgid "Configure your wireless LAN again"
 msgstr "Повторно конфигуриране на вашата WLAN мрежа."
@@ -675,23 +1105,11 @@ msgstr "Свържи се с безжична мрежа"
 msgid "Connected to"
 msgstr "Свързан с"
 
-msgid "Connected to Fritz!Box!"
-msgstr "Свързан с Fritz!Box!"
-
 msgid "Connected!"
 msgstr "Свързан!"
 
-msgid "Connecting to Fritz!Box..."
-msgstr "Свързване с Fritz!Box..."
-
-msgid ""
-"Connection to Fritz!Box\n"
-"failed! (%s)\n"
-"retrying..."
+msgid "Constellation"
 msgstr ""
-"Връзката с Fritz!Box\n"
-"пропадна! (%s)\n"
-"нов опит..."
 
 msgid "Content does not fit on DVD!"
 msgstr "Съдържанието не се побира на DVD!"
@@ -708,14 +1126,34 @@ msgstr "Продължи възпроизвеждането"
 msgid "Contrast"
 msgstr "Контраст"
 
+msgid "Convert ext3 to ext4"
+msgstr ""
+
+msgid "Convert ext3 to ext4..."
+msgstr ""
+
+msgid "Convert filesystem ext3 to ext4"
+msgstr ""
+
+msgid "Copy"
+msgstr ""
+
 msgid "Could not connect to Dreambox .NFI Image Feed Server:"
 msgstr "Не мога да се свържа с Clarke-Tech .NFI имидж сървър:"
 
 msgid "Could not load Medium! No disc inserted?"
 msgstr "Не мога да заредя диска! Не е поставен диск?"
 
+msgid "Could not open Picture in Picture"
+msgstr ""
+
+#, python-format
 msgid "Couldn't record due to conflicting timer %s"
 msgstr "Не може да се записва поради конфликт с таймера %s"
+
+#, python-format
+msgid "Couldn't record due to invalid service %s"
+msgstr ""
 
 msgid "Crashlog settings"
 msgstr "Crashlog настройки"
@@ -731,34 +1169,66 @@ msgstr "Настройки CrashlogAutoSubmit..."
 
 msgid ""
 "Crashlogs found!\n"
-"Send them to Dream Multimedia ?"
+"Send them to Dream Multimedia?"
 msgstr ""
-"Открит crashlog!\n"
-"Изпращане до Dream Multimedia?"
 
 msgid "Create DVD-ISO"
 msgstr "Създай DVD-ISO"
 
-msgid "Create movie folder failed"
-msgstr "Грешка при създаване папка за филми"
+msgid "Create Filesystem"
+msgstr ""
 
+msgid "Create Partition"
+msgstr ""
+
+msgid "Create more detailed crash log"
+msgstr ""
+
+msgid "Create movie directory"
+msgstr ""
+
+#, python-format
 msgid "Creating directory %s failed."
 msgstr "Грешка при създаване директория %s."
-
-msgid "Creating partition failed"
-msgstr "Грешка при създаване на партишън"
 
 msgid "Croatian"
 msgstr "Хърватски"
 
+msgid "Current CEC address"
+msgstr ""
+
 msgid "Current Transponder"
 msgstr "Текущ Транспондер"
+
+msgid "Current device: "
+msgstr ""
 
 msgid "Current settings:"
 msgstr "Текущи настройки:"
 
+msgid "Current value: "
+msgstr ""
+
 msgid "Current version:"
 msgstr "Текуща версия:"
+
+msgid "Currently installed image"
+msgstr ""
+
+msgid "Custom skip time for '1'/'3'-keys"
+msgstr ""
+
+msgid "Custom skip time for '4'/'6'-keys"
+msgstr ""
+
+msgid "Custom skip time for '7'/'9'-keys"
+msgstr ""
+
+msgid "Custom text alignment"
+msgstr ""
+
+msgid "Custom text position"
+msgstr ""
 
 msgid "Customize"
 msgstr "Лични настройки"
@@ -766,17 +1236,59 @@ msgstr "Лични настройки"
 msgid "Cut"
 msgstr "Изрежи"
 
+msgid "Cutlist editor..."
+msgstr ""
+
 msgid "Czech"
 msgstr "Чешки"
 
+msgid "D"
+msgstr ""
+
+msgid "DHCP"
+msgstr ""
+
+msgid "DTS downmix"
+msgstr ""
+
+msgid "DUAL LAYER DVD"
+msgstr ""
+
+msgid "DVB subtitle black transparency"
+msgstr ""
+
+msgid "DVB-S"
+msgstr ""
+
+msgid "DVB-S2"
+msgstr ""
+
+msgid "DVD File Browser"
+msgstr ""
+
 msgid "DVD Player"
 msgstr "DVD Плеър"
+
+msgid "DVD Titlelist"
+msgstr ""
+
+msgid "DVD data format"
+msgstr ""
+
+msgid "DVD media toolbox"
+msgstr ""
 
 msgid "Danish"
 msgstr "Датски"
 
 msgid "Date"
 msgstr "Дата"
+
+msgid "December"
+msgstr ""
+
+msgid "Decide if you want to enable or disable the Cleanup Wizard."
+msgstr ""
 
 msgid "Decide what should be done when crashlogs are found."
 msgstr "Определете какво да се направи при открит crashlog."
@@ -787,17 +1299,17 @@ msgstr "Определете какво да се прави с crashlogs сле
 msgid "Deep Standby"
 msgstr "Изключване"
 
+msgid "Default"
+msgstr ""
+
 msgid "Default Settings"
 msgstr "Стандартни Настройки"
 
-msgid "Default services lists"
-msgstr "Стандартни списъци с канали"
+msgid "Default movie location"
+msgstr ""
 
-msgid "Default settings"
-msgstr "Стандартни Настройки"
-
-msgid "Delay"
-msgstr "Забавяне"
+msgid "Delay before key repeat starts:"
+msgstr ""
 
 msgid "Delete"
 msgstr "Изтриване"
@@ -811,6 +1323,7 @@ msgstr "Изтриване запис"
 msgid "Delete failed!"
 msgstr "Неуспешно изтриване!"
 
+#, python-format
 msgid ""
 "Delete no more configured satellite\n"
 "%s?"
@@ -818,14 +1331,26 @@ msgstr ""
 "Изтриване на вече не конфигурирания сателит\n"
 "%s?"
 
+msgid "Deleted"
+msgstr ""
+
+msgid "Deleted items"
+msgstr ""
+
+msgid "Depth"
+msgstr ""
+
+msgid "Descramble http streams"
+msgstr ""
+
 msgid "Description"
 msgstr "Описание"
 
 msgid "Deselect"
 msgstr "Отмяна Избор"
 
-msgid "Destination directory"
-msgstr "Назначена директория"
+msgid "Details for plugin: "
+msgstr ""
 
 msgid "Detected HDD:"
 msgstr "Oткрит HDD:"
@@ -833,17 +1358,49 @@ msgstr "Oткрит HDD:"
 msgid "Detected NIMs:"
 msgstr "Открит NIMs:"
 
+msgid "Devicename:"
+msgstr ""
+
+msgid "DiSEqC"
+msgstr ""
+
+msgid "DiSEqC A/B"
+msgstr ""
+
+msgid "DiSEqC A/B/C/D"
+msgstr ""
+
 msgid "DiSEqC mode"
 msgstr "DiSEqC режим"
 
 msgid "DiSEqC repeats"
 msgstr "DiSEqC повторения"
 
+msgid "DiSEqC-Tester settings"
+msgstr ""
+
+msgid "Dialing:"
+msgstr ""
+
+msgid "Digital contour removal"
+msgstr ""
+
 msgid "Direct playback of linked titles without menu"
 msgstr "Директно възпроизвеждане на свързаните заглавия без менюта"
 
+msgid "Directory"
+msgstr ""
+
+#, python-format
 msgid "Directory %s nonexistent."
 msgstr "Директория %s не съществува."
+
+msgid "Directory browser"
+msgstr ""
+
+#, python-format
+msgid "Directory contains %d file(s) and %d sub-directories.\n"
+msgstr ""
 
 msgid "Disable"
 msgstr "Спри"
@@ -851,8 +1408,8 @@ msgstr "Спри"
 msgid "Disable Picture in Picture"
 msgstr "Спри Картина в Картината"
 
-msgid "Disable Subtitles"
-msgstr "Спри Субтитри"
+msgid "Disable background scanning"
+msgstr ""
 
 msgid "Disable crashlog reporting"
 msgstr "Спри изпращането на crashlogs"
@@ -863,8 +1420,14 @@ msgstr "Спри таймер"
 msgid "Disabled"
 msgstr "Спрян"
 
+msgid "Disconnect"
+msgstr ""
+
 msgid "Dish"
 msgstr "Антена"
+
+msgid "Disk space to reserve for recordings (in GB)"
+msgstr ""
 
 msgid "Display 16:9 content as"
 msgstr "Покажи 16:9 като"
@@ -881,6 +1444,7 @@ msgstr "Настройки Дисплей"
 msgid "Display and Userinterface"
 msgstr "Дисплей и Юзъринтерфейс"
 
+#, python-format
 msgid ""
 "Do you really want to REMOVE\n"
 "the plugin \"%s\"?"
@@ -895,9 +1459,16 @@ msgstr ""
 "Искате ли да проверите файловата система?\n"
 "Това може да отнеме доста време!"
 
+msgid ""
+"Do you really want to convert the filesystem?\n"
+"You cannot go back!"
+msgstr ""
+
+#, python-format
 msgid "Do you really want to delete %s?"
 msgstr "Наистина ли искате да изтриете %s?"
 
+#, python-format
 msgid ""
 "Do you really want to download\n"
 "the plugin \"%s\"?"
@@ -905,16 +1476,19 @@ msgstr ""
 "Искате ли да изтеглите\n"
 "плъгина \"%s\"?"
 
+msgid "Do you really want to exit?"
+msgstr ""
+
 msgid ""
-"Do you really want to initialize the harddisk?\n"
+"Do you really want to initialize the device?\n"
 "All data on the disk will be lost!"
 msgstr ""
-"Наистина ли искате да инициализирате твърдия диск?\n"
-"Всички данни на диска ще бъдат изтрити!"
 
+#, python-format
 msgid "Do you really want to remove directory %s from the disk?"
 msgstr "Наистина ли искате да премахнете директория %s от диска?"
 
+#, python-format
 msgid "Do you really want to remove your bookmark of %s?"
 msgstr "Наистина ли искате да премахнете вашия bookmark от %s?"
 
@@ -934,11 +1508,12 @@ msgstr "Искате ли да сканирам за канали?"
 msgid "Do you want to do another manual service scan?"
 msgstr "Искате ли да извърша друго ръчно сканиране?"
 
-msgid "Do you want to enable the parental control feature on your Dreambox?"
-msgstr "Искате ли да включа опцията за родителски контрол на вашия Clarke-Tech?"
+#, python-format
+msgid "Do you want to download the image to %s ?"
+msgstr ""
 
-msgid "Do you want to install default sat lists?"
-msgstr "Да инсталирм ли стандартните листи с канали?"
+msgid "Do you want to enable the parental control feature on your dreambox?"
+msgstr ""
 
 msgid "Do you want to install the package:\n"
 msgstr "Да инсталирам ли пакета:\n"
@@ -981,6 +1556,9 @@ msgstr ""
 msgid "Do you want to upgrade the package:\n"
 msgstr "Искате ли да ъпгрейднете този пакет:\n"
 
+msgid "Do you want to upgrade?"
+msgstr ""
+
 msgid "Do you want to view a tutorial?"
 msgstr "Искате ли да видите упътване?"
 
@@ -990,17 +1568,20 @@ msgstr "Не питай, просто изпращай"
 msgid "Don't stop current event but disable coming events"
 msgstr "Не спирай текущото предаване но спри следващите"
 
+#, python-format
 msgid "Done - Installed or upgraded %d packages"
 msgstr "Готово - Инсталирани или ъпгрейднати %d пакета"
 
-msgid "Done - Installed or upgraded %d packages with %d errors"
-msgstr "Готово - Инсталирани или ъпгрейднати %d пакета с %d грешки"
-
+#, python-format
 msgid "Done - Installed, upgraded or removed %d packages with %d errors"
 msgstr "Готово - Инсталирани, ъпгрейднати или премахнати %d пакета с %d грешки"
 
 msgid "Download"
 msgstr "Изтегли"
+
+#, python-format
+msgid "Download %s from Server"
+msgstr ""
 
 msgid "Download .NFI-Files for USB-Flasher"
 msgstr "Изтегли .NFI-Файлове за USB-флашка"
@@ -1020,17 +1601,39 @@ msgstr "Изтегляне"
 msgid "Downloading plugin information. Please wait..."
 msgstr "Изтеглям информация за плъгина. Моля изчакайте..."
 
+msgid "Dreambox format data DVD (HDTV compatible)"
+msgstr ""
+
+msgid "Dreambox software because updates are available."
+msgstr ""
+
 msgid "Dutch"
 msgstr "Холандски"
+
+msgid "Dynamic contrast"
+msgstr ""
+
+msgid "E"
+msgstr ""
 
 msgid "EPG Selection"
 msgstr "Избор EPG"
 
+msgid "EPG language selection 1"
+msgstr ""
+
+msgid "EPG language selection 2"
+msgstr ""
+
+#, python-format
 msgid "ERROR - failed to scan (%s)!"
 msgstr "Грешка при сканиране (%s)!"
 
 msgid "East"
 msgstr "Изток"
+
+msgid "East limit set"
+msgstr ""
 
 msgid "Edit"
 msgstr "Редактирай"
@@ -1040,6 +1643,9 @@ msgstr "Редактирай DNS"
 
 msgid "Edit Title"
 msgstr "Редакт. Заглавие"
+
+msgid "Edit bouquets list"
+msgstr ""
 
 msgid "Edit chapters of current title"
 msgstr "Редакт. главите на текущото заглавие"
@@ -1059,6 +1665,9 @@ msgstr "Редактиране мрежовите настройки за ваш
 msgid "Edit title"
 msgstr "Редакт.заглавие"
 
+msgid "Edit upgrade source url."
+msgstr ""
+
 msgid "Electronic Program Guide"
 msgstr "Електронен Програмен Гайд"
 
@@ -1068,11 +1677,32 @@ msgstr "Избери"
 msgid "Enable 5V for active antenna"
 msgstr "Включи 5V за активната антена"
 
+msgid "Enable Cleanup Wizard?"
+msgstr ""
+
+msgid "Enable EIT EPG"
+msgstr ""
+
+msgid "Enable MHW EPG"
+msgstr ""
+
+msgid "Enable Netmed EPG"
+msgstr ""
+
+msgid "Enable ViaSat EPG"
+msgstr ""
+
+msgid "Enable freesat EPG"
+msgstr ""
+
 msgid "Enable multiple bouquets"
 msgstr "Разреши много букети"
 
 msgid "Enable parental control"
 msgstr "Включи родителски контрол"
+
+msgid "Enable teletext caching"
+msgstr ""
 
 msgid "Enable timer"
 msgstr "Включи таймер"
@@ -1080,14 +1710,20 @@ msgstr "Включи таймер"
 msgid "Enabled"
 msgstr "Разрешен"
 
-msgid "Encrypted: %s"
-msgstr "Кодиран: %s"
+msgid "Encrypted: "
+msgstr ""
 
 msgid "Encryption"
 msgstr "Кодировка"
 
-msgid "Encryption Type"
-msgstr "Тип Кодировка"
+msgid "Encryption Key"
+msgstr ""
+
+msgid "Encryption Keytype"
+msgstr ""
+
+msgid "Encryption:"
+msgstr ""
 
 msgid "End time"
 msgstr "Край"
@@ -1098,14 +1734,20 @@ msgstr "Край"
 msgid "English"
 msgstr "Английски"
 
-msgid "Enter WLAN network name/SSID:"
-msgstr "Въведете името/SSID на WLAN:"
-
-msgid "Enter WLAN passphrase/key:"
-msgstr "Въведете паролата/ключа за WLAN:"
+msgid ""
+"Enigma2 Skinselector\n"
+"\n"
+"If you experience any problems please contact\n"
+"stephan@reichholf.net\n"
+"\n"
+"© 2006 - Stephan Reichholf"
+msgstr ""
 
 msgid "Enter main menu..."
 msgstr "Влезте в главното меню..."
+
+msgid "Enter pin code"
+msgstr ""
 
 msgid "Enter the service pin"
 msgstr "Въведете ПИН за канали"
@@ -1116,9 +1758,13 @@ msgstr "Въведете вашия e-mail адрес за да се свърж�
 msgid "Error"
 msgstr "Грешка"
 
+msgid "Error code"
+msgstr ""
+
 msgid "Error executing plugin"
 msgstr "Грешка при стартиране на плъгина"
 
+#, python-format
 msgid ""
 "Error: %s\n"
 "Retry?"
@@ -1126,17 +1772,47 @@ msgstr ""
 "Грешка: %s\n"
 "Да опитам отново?"
 
+msgid "Estonian"
+msgstr ""
+
+msgid "Ethernet network interface"
+msgstr ""
+
+msgid "Event Fontsize (relative to skin size)"
+msgstr ""
+
 msgid "Eventview"
 msgstr "Виж предаването"
 
-msgid "Everything is fine"
-msgstr "Всичко е ОК"
+msgid "Eventview menu"
+msgstr ""
+
+msgid "Everywhere"
+msgstr ""
+
+msgid "Exceeds dual layer medium!"
+msgstr ""
+
+msgid "Execution Progress:"
+msgstr ""
+
+msgid "Execution finished!!"
+msgstr ""
+
+msgid "Exif"
+msgstr ""
 
 msgid "Exit"
 msgstr "Изход"
 
+msgid "Exit EPG"
+msgstr ""
+
 msgid "Exit editor"
 msgstr "Изход редактор"
+
+msgid "Exit input device selection."
+msgstr ""
 
 msgid "Exit network wizard"
 msgstr "Изход от мрежовия помощник"
@@ -1153,14 +1829,50 @@ msgstr "Изход от помощника"
 msgid "Expert"
 msgstr "Експерт"
 
+msgid "Extended Networksetup Plugin..."
+msgstr ""
+
 msgid "Extended Setup..."
 msgstr "Разширени Настройки..."
+
+msgid "Extended Software"
+msgstr ""
+
+msgid "Extended Software Plugin"
+msgstr ""
+
+msgid "Extensions"
+msgstr ""
+
+msgid "Extensions management"
+msgstr ""
+
+msgid "FEC"
+msgstr ""
+
+msgid "FTA"
+msgstr ""
 
 msgid "Factory reset"
 msgstr "Фабрични настройки"
 
 msgid "Failed"
 msgstr "Грешка"
+
+msgid "Failed to write /tmp/positionersetup.log:str"
+msgstr ""
+
+#, python-format
+msgid "Fan %d"
+msgstr ""
+
+#, python-format
+msgid "Fan %d PWM"
+msgstr ""
+
+#, python-format
+msgid "Fan %d Voltage"
+msgstr ""
 
 msgid "Fast"
 msgstr "Бърз"
@@ -1171,14 +1883,32 @@ msgstr "Бърз DiSEqC"
 msgid "Fast Forward speeds"
 msgstr "Скорост превъртане напред"
 
+msgid "Fast Scan"
+msgstr ""
+
+msgid "Fast epoch"
+msgstr ""
+
 msgid "Favourites"
 msgstr "Предпочитани"
 
-msgid "Filesystem Check..."
-msgstr "Проверка файлова с-ма..."
+msgid "February"
+msgstr ""
 
-msgid "Filesystem contains uncorrectable errors"
-msgstr "Файловата система съдържа непоправими грешки"
+msgid "File appears to be busy.\n"
+msgstr ""
+
+msgid "Filesystem Check"
+msgstr ""
+
+msgid "Final position at"
+msgstr ""
+
+msgid "Final position at index"
+msgstr ""
+
+msgid "Fine movement"
+msgstr ""
 
 msgid "Finetune"
 msgstr "Фина Настройка"
@@ -1195,11 +1925,26 @@ msgstr "Завърши рестартирането на мрежата"
 msgid "Finnish"
 msgstr "Край"
 
+msgid "Flash"
+msgstr ""
+
 msgid "Flashing failed"
 msgstr "Грешка при флашване"
 
+msgid "Following tasks will be done after you press OK!"
+msgstr ""
+
+msgid "For more information see www.openpli.org"
+msgstr ""
+
 msgid "Format"
 msgstr "Форматиране"
+
+msgid "Forward volume keys"
+msgstr ""
+
+msgid "Frame size in full view"
+msgstr ""
 
 msgid "French"
 msgstr "Френски"
@@ -1210,20 +1955,24 @@ msgstr "Честота"
 msgid "Frequency bands"
 msgstr "Честотна лента"
 
+msgid "Frequency scan step size(khz)"
+msgstr ""
+
+msgid "Frequency steps"
+msgstr ""
+
 msgid "Fri"
 msgstr "Пет"
 
 msgid "Friday"
 msgstr "Петък"
 
-msgid "Frisian"
-msgstr "Фризийски"
+msgid "From :"
+msgstr ""
 
-msgid "Fsck failed"
-msgstr "Fsck грешка"
-
-msgid "Function not yet implemented"
-msgstr "Функцията не е изпълнима"
+#, python-format
+msgid "Frontprocessor version: %d"
+msgstr ""
 
 msgid ""
 "GUI needs a restart to apply a new skin\n"
@@ -1238,8 +1987,14 @@ msgstr "Шлюз"
 msgid "General AC3 Delay"
 msgstr "AC3 закъснение"
 
+msgid "General AC3 delay (ms)"
+msgstr ""
+
 msgid "General PCM Delay"
 msgstr "PCM закъснение"
+
+msgid "General PCM delay (ms)"
+msgstr ""
 
 msgid "Genre"
 msgstr "Жанр"
@@ -1247,20 +2002,101 @@ msgstr "Жанр"
 msgid "German"
 msgstr "Немски"
 
+msgid "Get latest experimental image"
+msgstr ""
+
+msgid "Get latest release image"
+msgstr ""
+
 msgid "Getting plugin information. Please wait..."
 msgstr "Приемам инфо за плъгина. Моля изчакайте..."
+
+msgid "Go down the list"
+msgstr ""
+
+msgid "Go to first movie or last item"
+msgstr ""
+
+msgid "Go to first movie or top of list"
+msgstr ""
+
+msgid "Go up the list"
+msgstr ""
+
+msgid "Goto"
+msgstr ""
 
 msgid "Goto 0"
 msgstr "Към 0"
 
+msgid "Goto :"
+msgstr ""
+
+msgid "Goto X"
+msgstr ""
+
+msgid "Goto first service"
+msgstr ""
+
+msgid "Goto index position"
+msgstr ""
+
+msgid "Goto last service"
+msgstr ""
+
+msgid "Goto next event"
+msgstr ""
+
+msgid "Goto next page of events"
+msgstr ""
+
+msgid "Goto next page of service"
+msgstr ""
+
 msgid "Goto position"
 msgstr "Към позиция"
+
+msgid "Goto previous event"
+msgstr ""
+
+msgid "Goto previous page of events"
+msgstr ""
+
+msgid "Goto previous page of service"
+msgstr ""
+
+msgid "Goto specific data/time"
+msgstr ""
+
+msgid "GotoX calibration"
+msgstr ""
+
+msgid "Graph MEpg Settings"
+msgstr ""
 
 msgid "Graphical Multi EPG"
 msgstr "Графичен Мулти ЕПГ"
 
 msgid "Greek"
 msgstr "Гръцки"
+
+msgid "Green boost"
+msgstr ""
+
+msgid "Guard Interval"
+msgstr ""
+
+msgid "Guard interval"
+msgstr ""
+
+msgid "HD list"
+msgstr ""
+
+msgid "Handle standby from TV"
+msgstr ""
+
+msgid "Handle wakeup from TV"
+msgstr ""
 
 msgid "Harddisk"
 msgstr "Твърд Диск"
@@ -1271,20 +2107,53 @@ msgstr "Настройки HDD"
 msgid "Harddisk standby after"
 msgstr "HDD в готовност след"
 
-msgid "Hidden network SSID"
-msgstr "Скрит мрежов SSID"
+msgid "Hardware: "
+msgstr ""
+
+msgid "Hebrew"
+msgstr ""
+
+msgid "Hidden network"
+msgstr ""
+
+msgid "Hide CI messages"
+msgstr ""
+
+msgid "Hide zap errors"
+msgstr ""
+
+msgid "Hierarchy Information"
+msgstr ""
+
+msgid "Hierarchy info"
+msgstr ""
 
 msgid "High bitrate support"
 msgstr "Поддръжка висок битрейт"
 
+msgid "Hold screen"
+msgstr ""
+
+msgid "Hold till locked"
+msgstr ""
+
+msgid "Home"
+msgstr ""
+
 msgid "Horizontal"
 msgstr "Хоризонтална"
+
+msgid "Horizontal turning speed"
+msgstr ""
 
 msgid "How many minutes do you want to record?"
 msgstr "Колко минути желаете да запишете?"
 
 msgid "How to handle found crashlogs?"
 msgstr "Какво да правя с crashlogs?"
+
+msgid "Hue"
+msgstr ""
 
 msgid "Hungarian"
 msgstr "Унгарски"
@@ -1295,11 +2164,11 @@ msgstr "IP Адрес"
 msgid "ISO file is too large for this filesystem!"
 msgstr "ISO файла е много голям за тази файлова система!"
 
-msgid "Icelandic"
-msgstr "Исландски"
+msgid "ISO path"
+msgstr ""
 
-msgid "If you can see this page, please press OK."
-msgstr "Ако виждате тази страница, моля натиснете ОК."
+msgid "Icons"
+msgstr ""
 
 msgid ""
 "If you see this, something is wrong with\n"
@@ -1329,11 +2198,24 @@ msgstr ""
 "стъпка.\n"
 "Ако сте доволни от резултата, натиснете OK."
 
-msgid "Image-Upgrade"
-msgstr "Ъпгрейд-Имидж"
+msgid "Image: "
+msgstr ""
 
 msgid "In Progress"
 msgstr "Се Изпълнява"
+
+msgid ""
+"In order to record a timer, the TV was switched to the recording service!\n"
+msgstr ""
+
+msgid "Include AIT in http streams"
+msgstr ""
+
+msgid "Include ECM in http streams"
+msgstr ""
+
+msgid "Include EIT in http streams"
+msgstr ""
 
 msgid "Include your email and name (optional) in the mail?"
 msgstr "Включване на вашето име и email(по избор)в пощата?"
@@ -1344,6 +2226,9 @@ msgstr "Увеличен волтаж"
 msgid "Index"
 msgstr "Индекс"
 
+msgid "Info"
+msgstr ""
+
 msgid "InfoBar"
 msgstr "ИнфоЛента"
 
@@ -1353,17 +2238,44 @@ msgstr "Времетраене ИнфоЛента"
 msgid "Information"
 msgstr "Информация"
 
-msgid "Initialization..."
-msgstr "Инициализация..."
+msgid "Init"
+msgstr ""
+
+msgid "Initial Fast Forward speed"
+msgstr ""
+
+msgid "Initial Rewind speed"
+msgstr ""
+
+msgid "Initial location in new timers"
+msgstr ""
+
+msgid "Initial lock ratio"
+msgstr ""
+
+msgid "Initial signal quality"
+msgstr ""
+
+msgid "Initial signal quality:"
+msgstr ""
+
+msgid "Initialization"
+msgstr ""
 
 msgid "Initialize"
 msgstr "Инициализирай"
 
-msgid "Initializing Harddisk..."
-msgstr "Инициализиране Твърд диск..."
+msgid "Initializing storage device..."
+msgstr ""
 
 msgid "Input"
 msgstr "Въведи"
+
+msgid "Input device setup"
+msgstr ""
+
+msgid "Input devices"
+msgstr ""
 
 msgid "Install"
 msgstr "Инсталирай"
@@ -1374,24 +2286,20 @@ msgstr "Инсталирай нов имидж с USB стик"
 msgid "Install a new image with your web browser"
 msgstr "Инсталирай нов имидж с уеб браузър"
 
-msgid "Install local IPKG"
-msgstr "Инсталирай местен IPKG"
+msgid "Install extensions."
+msgstr ""
+
+msgid "Install local extension"
+msgstr ""
 
 msgid "Install or remove finished."
 msgstr "Инсталацията или премахването завърши."
 
+msgid "Install picons on"
+msgstr ""
+
 msgid "Install settings, skins, software..."
 msgstr "Инсталация настройки, кожи, софтуер..."
-
-msgid "Install software updates..."
-msgstr "Инсталирай софтуерна актуализация..."
-
-msgid ""
-"Install/\n"
-"Remove"
-msgstr ""
-"Инсталиране/\n"
-"Премахване"
 
 msgid "Installation finished."
 msgstr "Инсталацията завърши."
@@ -1414,23 +2322,39 @@ msgstr "Инсталиране package content... Моля изчакайте...
 msgid "Instant Record..."
 msgstr "Моментален Запис..."
 
+msgid "Instant record location"
+msgstr ""
+
+msgid "Interface: "
+msgstr ""
+
 msgid "Intermediate"
 msgstr "Междинен"
 
 msgid "Internal Flash"
 msgstr "Вътрешна Флаш"
 
+msgid "Internal hdd only"
+msgstr ""
+
+msgid "Interval between keys when repeating:"
+msgstr ""
+
 msgid "Invalid Location"
 msgstr "Грешно Място"
 
+#, python-format
 msgid "Invalid directory selected: %s"
 msgstr "Избрана грешна директория: %s"
 
 msgid "Inversion"
 msgstr "Инверсия"
 
-msgid "Invert display"
-msgstr "Обръщане дисплей"
+msgid "Invert"
+msgstr ""
+
+msgid "Ipkg"
+msgstr ""
 
 msgid "Is this videomode ok?"
 msgstr "Този видео режим коректен ли е?"
@@ -1438,20 +2362,72 @@ msgstr "Този видео режим коректен ли е?"
 msgid "Italian"
 msgstr "Италиански"
 
+msgid "Items per Page "
+msgstr ""
+
+msgid "January"
+msgstr ""
+
+msgid "Job View"
+msgstr ""
+
+msgid "July"
+msgstr ""
+
+msgid "June"
+msgstr ""
+
+#. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
+msgid "Just Scale"
+msgstr ""
+
+msgid "Keep old timers for how many days"
+msgstr ""
+
+msgid "Kernel Version: "
+msgstr ""
+
 msgid "Keyboard"
 msgstr "Клавиатура"
+
+msgid "Keyboard Map"
+msgstr ""
 
 msgid "Keyboard Setup"
 msgstr "Настройка Клавиатура"
 
+msgid "Kill partition table"
+msgstr ""
+
 msgid "LAN Adapter"
 msgstr "LAN Адаптер"
+
+msgid "LAN connection"
+msgstr ""
+
+msgid "LNB"
+msgstr ""
+
+msgid "LOF"
+msgstr ""
+
+msgid "LOF/H"
+msgstr ""
+
+msgid "LOF/L"
+msgstr ""
+
+msgid "Language"
+msgstr "Език"
 
 msgid "Language selection"
 msgstr "Избор Език"
 
-msgid "Language"
-msgstr "Език"
+msgid "Last Upgrade: "
+msgstr ""
+
+msgid "Last config"
+msgstr ""
 
 msgid "Last speed"
 msgstr "Последна скорост"
@@ -1468,17 +2444,55 @@ msgstr "Изход DVD Плеър?"
 msgid "Left"
 msgstr "Лява"
 
+#. TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
+msgid "Letterbox"
+msgstr ""
+
+msgid "Letzeburgesch"
+msgstr ""
+
 msgid "Limit east"
 msgstr "Източен лимит"
 
 msgid "Limit west"
 msgstr "Западен лимит"
 
+msgid "Limited character set for recording filenames"
+msgstr ""
+
+msgid "Limits cancelled"
+msgstr ""
+
+msgid "Limits enabled"
+msgstr ""
+
 msgid "Limits off"
 msgstr "Изкл.лимити"
 
 msgid "Limits on"
 msgstr "Бкл.лимити"
+
+msgid "Link Quality:"
+msgstr ""
+
+msgid "Link:"
+msgstr ""
+
+msgid "Linked titles with a DVD menu"
+msgstr ""
+
+msgid "List available networks"
+msgstr ""
+
+msgid "List of Storage Devices"
+msgstr ""
+
+msgid "List type"
+msgstr ""
+
+#, python-format
+msgid "List version %d, found %d channels"
+msgstr ""
 
 msgid "Lithuanian"
 msgstr "Литовски"
@@ -1495,6 +2509,12 @@ msgstr "Локална Мрежа"
 msgid "Location"
 msgstr "Местоположение"
 
+msgid "Location for instant recordings"
+msgstr ""
+
+msgid "Lock ratio"
+msgstr ""
+
 msgid "Lock:"
 msgstr "Закл:"
 
@@ -1504,8 +2524,14 @@ msgstr "Записване Log на твърдия диск"
 msgid "Long Keypress"
 msgstr "Дълго натискане на Бутон"
 
+msgid "Long filenames"
+msgstr ""
+
 msgid "Longitude"
 msgstr "Дължина"
+
+msgid "MMC Card"
+msgstr ""
 
 msgid "MORE"
 msgstr "ОЩЕ"
@@ -1516,11 +2542,29 @@ msgstr "Основно Меню"
 msgid "Mainmenu"
 msgstr "Основно Меню"
 
+msgid "Maintain old EPG data for"
+msgstr ""
+
+msgid "Make this mark an 'in' point"
+msgstr ""
+
+msgid "Make this mark an 'out' point"
+msgstr ""
+
+msgid "Make this mark just a mark"
+msgstr ""
+
+msgid "Manage extensions"
+msgstr ""
+
 msgid "Manage your receiver's software"
 msgstr "Управление софтуера на ресийвъра"
 
 msgid "Manual Scan"
 msgstr "Ръчно Търсене"
+
+msgid "Manual configuration"
+msgstr ""
 
 msgid "Manual transponder"
 msgstr "Ръчен транспондер"
@@ -1528,17 +2572,38 @@ msgstr "Ръчен транспондер"
 msgid "Manufacturer"
 msgstr "Производител"
 
+msgid "March"
+msgstr ""
+
 msgid "Margin after record"
 msgstr "Граница след запис"
 
 msgid "Margin before record (minutes)"
 msgstr "Граница преди запис (минути)"
 
+msgid "Max. Bitrate: "
+msgstr ""
+
+msgid "May"
+msgstr ""
+
 msgid "Media player"
 msgstr "Медиа Плеър"
 
 msgid "MediaPlayer"
 msgstr "Медиа Плеър"
+
+msgid "Medium is not a writeable DVD!"
+msgstr ""
+
+msgid "Medium is not empty!"
+msgstr ""
+
+msgid "Memory"
+msgstr ""
+
+msgid "Memory index"
+msgstr ""
 
 msgid "Menu"
 msgstr "Меню"
@@ -1549,8 +2614,8 @@ msgstr "Съобщение"
 msgid "Message..."
 msgstr "Съобщение..."
 
-msgid "Mkfs failed"
-msgstr "Mkfs грешка"
+msgid "Missing "
+msgstr ""
 
 msgid "Mode"
 msgstr "Режим"
@@ -1573,8 +2638,14 @@ msgstr "Пон-Пет"
 msgid "Monday"
 msgstr "Понеделник"
 
-msgid "Mount failed"
-msgstr "Грешка при маунт"
+msgid "Mosquito noise reduction"
+msgstr ""
+
+msgid "Mount"
+msgstr ""
+
+msgid "Move"
+msgstr ""
 
 msgid "Move Picture in Picture"
 msgstr "Местене PiP"
@@ -1582,26 +2653,89 @@ msgstr "Местене PiP"
 msgid "Move east"
 msgstr "Завърти на изток"
 
+msgid "Move to other directory"
+msgstr ""
+
+msgid "Move to position X"
+msgstr ""
+
 msgid "Move west"
 msgstr "Завърти на запад"
+
+msgid "Moved to position 0"
+msgstr ""
+
+msgid "Moved to position at index"
+msgstr ""
+
+msgid "Movement"
+msgstr ""
+
+msgid "Movie List Configuration"
+msgstr ""
+
+msgid "Movie Selection"
+msgstr ""
+
+msgid "Movie location"
+msgstr ""
+
+msgid "Movielist menu"
+msgstr ""
+
+msgid "Moving"
+msgstr ""
+
+msgid "Moving east ..."
+msgstr ""
+
+msgid "Moving to position"
+msgstr ""
+
+msgid "Moving west ..."
+msgstr ""
 
 msgid "Multi EPG"
 msgstr "Мулти ЕПГ"
 
+msgid "Multi-EPG bouquet selection"
+msgstr ""
+
 msgid "Multimedia"
 msgstr "Мултимедиа"
+
+msgid "Multiple service support"
+msgstr ""
+
+msgid "Multiplex"
+msgstr ""
+
+msgid "Multisat"
+msgstr ""
 
 msgid "Mute"
 msgstr "Без звук"
 
+msgid "N/A"
+msgstr ""
+
 msgid "NEXT"
 msgstr "Следващ"
+
+msgid "NFI Image Flashing"
+msgstr ""
 
 msgid "NFI image flashing completed. Press Yellow to Reboot!"
 msgstr "Завърши флашването на имидж. Натиснете Жълт за Рестарт!"
 
+msgid "NIM"
+msgstr ""
+
 msgid "NOW"
 msgstr "Сега"
+
+msgid "NTSC"
+msgstr ""
 
 msgid "Name"
 msgstr "Име"
@@ -1609,6 +2743,7 @@ msgstr "Име"
 msgid "Nameserver"
 msgstr "DNS"
 
+#, python-format
 msgid "Nameserver %d"
 msgstr "DNS %d"
 
@@ -1617,6 +2752,9 @@ msgstr "Настройки DNS"
 
 msgid "Nameserver settings"
 msgstr "Настройки DNS"
+
+msgid "Namespace"
+msgstr ""
 
 msgid "Netmask"
 msgstr "Маска"
@@ -1627,11 +2765,11 @@ msgstr "Мрежа"
 msgid "Network Configuration..."
 msgstr "Мрежова Конфигурация..."
 
+msgid "Network ID"
+msgstr ""
+
 msgid "Network Mount"
 msgstr "Мрежов Маунт"
-
-msgid "Network SSID"
-msgstr "Мрежов SSID"
 
 msgid "Network Setup"
 msgstr "Настройки на Мрежа"
@@ -1651,8 +2789,8 @@ msgstr "Тест на мрежата"
 msgid "Network test..."
 msgstr "Тест на мрежата..."
 
-msgid "Network..."
-msgstr "Мрежа..."
+msgid "Network test: "
+msgstr ""
 
 msgid "Network:"
 msgstr "Мрежа:"
@@ -1660,11 +2798,14 @@ msgstr "Мрежа:"
 msgid "NetworkWizard"
 msgstr "Мрежов Помощник"
 
+msgid "Networkname (SSID)"
+msgstr ""
+
 msgid "New"
 msgstr "Нови Канали"
 
-msgid "New pin"
-msgstr "Нов ПИН"
+msgid "New PIN"
+msgstr ""
 
 msgid "New version:"
 msgstr "Нова версия:"
@@ -1678,20 +2819,20 @@ msgstr "Не"
 msgid "No (supported) DVDROM found!"
 msgstr "Не е намерен подходящ DVDROM!"
 
-msgid "No 50 Hz, sorry. :("
-msgstr "Няма 50 Hz, съжалявам"
-
 msgid "No Connection"
 msgstr "Няма Връзка!"
+
+msgid "No Delay"
+msgstr ""
 
 msgid "No HDD found or HDD not initialized!"
 msgstr "HDD Не е намерен или не е инициализиран!"
 
-msgid "No Networks found"
-msgstr "Няма открита Мрежа"
-
 msgid "No backup needed"
 msgstr "Няма нужда от backup"
+
+msgid "No cable tuner found!"
+msgstr ""
 
 msgid ""
 "No data on transponder!\n"
@@ -1706,11 +2847,22 @@ msgstr "Няма налично описание."
 msgid "No details for this image file"
 msgstr "Няма данни за този имидж файл"
 
+msgid "No displayable files on this medium found!"
+msgstr ""
+
 msgid "No event info found, recording indefinitely."
 msgstr "Няма инфо за предаването, незабавен запис."
 
+msgid ""
+"No fast winding possible yet.. but you can use the number buttons to skip "
+"forward/backward!"
+msgstr ""
+
 msgid "No free tuner!"
 msgstr "Няма свободен тунер!"
+
+msgid "No network connection available."
+msgstr ""
 
 msgid "No networks found"
 msgstr "Не са открити мрежи!"
@@ -1725,8 +2877,17 @@ msgstr "Няма картина на ТВ? Натиснете EXIT и опита
 msgid "No positioner capable frontend found."
 msgstr "Не е открит съвместим позиционер."
 
+msgid "No sat tuner found!"
+msgstr ""
+
 msgid "No satellite frontend found!!"
 msgstr "Не са открити сателити!!"
+
+msgid "No tags are set on these movies."
+msgstr ""
+
+msgid "No to all"
+msgstr ""
 
 msgid "No tuner is configured for use with a diseqc positioner!"
 msgstr "Няма конфигуриран тунер с diseqc позиционер!"
@@ -1737,9 +2898,6 @@ msgid ""
 msgstr ""
 "Няма избран тунер!\n"
 "Моля настройте вашия тунер преди търсене на канали."
-
-msgid "No useable USB stick found"
-msgstr "Няма открит работещ USB стик"
 
 msgid ""
 "No valid service PIN found!\n"
@@ -1759,8 +2917,8 @@ msgstr ""
 "Искате ли да смените ПИН сега?\n"
 "Ако изберете 'Не' няма да има защита на настройките!"
 
-msgid "No wireless networks found! Please refresh."
-msgstr "Не са открити безжични мрежи! Моля обновете."
+msgid "No wireless networks found! Searching..."
+msgstr ""
 
 msgid ""
 "No working local network adapter found.\n"
@@ -1795,8 +2953,11 @@ msgstr "Не, но рестартирай от начало"
 msgid "No, do nothing."
 msgstr "Не не прави нищо."
 
-msgid "No, just start my Dreambox"
-msgstr "Не, просто стартирай Clarke-Tech"
+msgid "No, just start my dreambox"
+msgstr ""
+
+msgid "No, never"
+msgstr ""
 
 msgid "No, not now"
 msgstr "Не, не сега."
@@ -1810,12 +2971,17 @@ msgstr "Не, никога не изпращай."
 msgid "None"
 msgstr "Никой"
 
+#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right)
+msgid "Nonlinear"
+msgstr ""
+
 msgid "North"
 msgstr "Север"
 
 msgid "Norwegian"
 msgstr "Норвежки"
 
+#, python-format
 msgid ""
 "Not enough diskspace. Please free up some diskspace and try again. (%d MB "
 "required, %d MB available)"
@@ -1823,12 +2989,21 @@ msgstr ""
 "Няма достатъчно място. Моля освободете малко и опитайте отново. (%d MB "
 "необходими, %d MB налични)"
 
+msgid "Not-Associated"
+msgstr ""
+
 msgid ""
 "Nothing to scan!\n"
 "Please setup your tuner settings before you start a service scan."
 msgstr ""
 "Нищо за сканиране!\n"
 "Моля настройте вашия тунер преди търсене на канали."
+
+msgid "Nothing to upgrade"
+msgstr ""
+
+msgid "November"
+msgstr ""
 
 msgid "Now Playing"
 msgstr "Сега Възпроизвеждам"
@@ -1842,17 +3017,41 @@ msgstr ""
 "колкото се може повече, но така, че да виждате разликите между двете най-"
 "ярки нива на сенките. Ако сте го направили, натиснете OK."
 
+msgid "OK"
+msgstr ""
+
 msgid "OK, guide me through the upgrade process"
 msgstr "OK, води ме през процеса на ъпгрейд"
+
+msgid "OK, remove another extensions"
+msgstr ""
+
+msgid "OK, remove some extensions"
+msgstr ""
+
+msgid "ONID"
+msgstr ""
 
 msgid "OSD Settings"
 msgstr "OSD Настройки"
 
+msgid "OSD name request"
+msgstr ""
+
 msgid "OSD visibility"
 msgstr "OSD видимост"
 
+msgid "October"
+msgstr ""
+
 msgid "Off"
 msgstr "Изкл."
+
+msgid "Offline decode delay (ms)"
+msgstr ""
+
+msgid "Ok"
+msgstr ""
 
 msgid "On"
 msgstr "Вкл."
@@ -1863,14 +3062,44 @@ msgstr "Един"
 msgid "Only Free scan"
 msgstr "Търсене само Свободни"
 
+msgid "Only extensions."
+msgstr ""
+
 msgid "Optionally enter your name if you want to."
 msgstr "Въведете вашето име ако желаете."
 
 msgid "Orbital Position"
 msgstr "Орбитална Позиция"
 
-msgid "Package details for: "
-msgstr "Детайли за пакет: "
+msgid "Orbital position"
+msgstr ""
+
+msgid "Original"
+msgstr ""
+
+msgid "Other"
+msgstr ""
+
+msgid "Output"
+msgstr ""
+
+msgid "Overwrite configuration files ?"
+msgstr ""
+
+msgid "Overwrite configuration files during software upgrade?"
+msgstr ""
+
+msgid "PAL"
+msgstr ""
+
+msgid "PCR PID"
+msgstr ""
+
+msgid "PIDs"
+msgstr ""
+
+msgid "PMT PID"
+msgstr ""
 
 msgid "Package list update"
 msgstr "Ъпдейт на списъка с пакети"
@@ -1881,14 +3110,18 @@ msgstr "Грешка при премахване на пакет!\n"
 msgid "Package removed successfully.\n"
 msgstr "Пакетът е премахнат успешно.\n"
 
+msgid "Packages"
+msgstr ""
+
 msgid "Packet management"
 msgstr "Управление на пакети"
 
 msgid "Packet manager"
 msgstr "Управление на пакети"
 
-msgid "Page"
-msgstr "Страница"
+#. TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
+msgid "Pan&Scan"
+msgstr ""
 
 msgid "Parent Directory"
 msgstr "Главна Директория"
@@ -1911,6 +3144,15 @@ msgstr "Парола"
 msgid "Pause movie at end"
 msgstr "При завършване на филма натисни пауза"
 
+msgid "Permanently delete all recordings in the trash can?"
+msgstr ""
+
+msgid "Permanently remove all deleted items"
+msgstr ""
+
+msgid "Persian"
+msgstr ""
+
 msgid "Phone number"
 msgstr "Телефонен номер"
 
@@ -1919,6 +3161,13 @@ msgstr "PiP Настройки"
 
 msgid "PicturePlayer"
 msgstr "Плеър за Снимки"
+
+#. TRANSLATORS: (aspect ratio policy: black bars on left/right) in doubt, keep english term.
+msgid "Pillarbox"
+msgstr ""
+
+msgid "Pilot"
+msgstr ""
 
 msgid "Pin code needed"
 msgstr "Нужен е ПИН код"
@@ -1935,14 +3184,28 @@ msgstr "Пусни DVD"
 msgid "Play Music..."
 msgstr "Пусни Музика..."
 
+msgid "Play audio in background"
+msgstr ""
+
+msgid "Play next"
+msgstr ""
+
+msgid "Play previous"
+msgstr ""
+
 msgid "Play recorded movies..."
 msgstr "Пусни записаните филми..."
 
-msgid "Please Reboot"
-msgstr "Моля Рестартирайте"
-
 msgid "Please Select Medium to be Scanned"
 msgstr "Моля изберете Среда за Сканиране"
+
+msgid "Please add titles to the compilation."
+msgstr ""
+
+msgid ""
+"Please be aware, that anyone can disable the parental control, if you have "
+"not set a PIN."
+msgstr ""
 
 msgid "Please change recording endtime"
 msgstr "Променете времето за край на записа"
@@ -1997,8 +3260,8 @@ msgstr "Моля въведете име за новата директория"
 msgid "Please enter the correct pin code"
 msgstr "Моля въведете коректен ПИН код"
 
-msgid "Please enter the old pin code"
-msgstr "Моля въведете стария ПИН код"
+msgid "Please enter the old PIN code"
+msgstr ""
 
 msgid "Please enter your email address here:"
 msgstr "Моля въведете вашия email адрес тук:"
@@ -2034,14 +3297,20 @@ msgstr "Моля изберете подканал за запис..."
 msgid "Please select a subservice..."
 msgstr "Моля изберете подканал..."
 
+msgid "Please select an NFI file and press green key to flash!"
+msgstr ""
+
+msgid "Please select an extension to remove."
+msgstr ""
+
 msgid "Please select an option below."
 msgstr "Моля изберете някоя от опциите по долу."
 
 msgid "Please select medium to use as backup location"
 msgstr "Моля изберете устройство за backup"
 
-msgid "Please select target directory or medium"
-msgstr "Моля изберете директория или устройство"
+msgid "Please select tag to filter..."
+msgstr ""
 
 msgid "Please select the movie path..."
 msgstr "Моля изберете път към филма..."
@@ -2123,14 +3392,17 @@ msgstr "Моля изчакайте...Зареждам списък..."
 msgid "Plugin browser"
 msgstr "Плъгин браузър"
 
-msgid "Plugin manager"
-msgstr "Плъгин manager"
+msgid "Plugin manager activity information"
+msgstr ""
+
+msgid "Plugin manager help"
+msgstr ""
 
 msgid "Plugins"
 msgstr "Плъгини"
 
-msgid "Polarity"
-msgstr "Поляризация"
+msgid "Polarisation"
+msgstr ""
 
 msgid "Polarization"
 msgstr "Поляризация"
@@ -2153,20 +3425,17 @@ msgstr "Порт D"
 msgid "Portuguese"
 msgstr "Португалски"
 
+msgid "Position of finished Timers in Timerlist"
+msgstr ""
+
+msgid "Position stored at index"
+msgstr ""
+
 msgid "Positioner"
 msgstr "Позиционер"
 
-msgid "Positioner fine movement"
-msgstr "Фино задвижване на позиционера"
-
-msgid "Positioner movement"
-msgstr "Задвижване на позиционера"
-
 msgid "Positioner setup"
 msgstr "Настройка позиционер"
-
-msgid "Positioner storage"
-msgstr "Позиционер запис"
 
 msgid "Power threshold in mA"
 msgstr "Праг на захранването в mA"
@@ -2174,11 +3443,44 @@ msgstr "Праг на захранването в mA"
 msgid "Predefined transponder"
 msgstr "Определен транспондер"
 
+msgid "Prefer AC3"
+msgstr ""
+
+msgid "Prefer DVB-grafical subtitles"
+msgstr ""
+
+msgid "Prefer audio stream stored by service"
+msgstr ""
+
+msgid "Prefer hearing impaired subtitles"
+msgstr ""
+
+msgid "Prefer subtitle stored by service"
+msgstr ""
+
+msgid "Preferred tuner"
+msgstr ""
+
+msgid "Prepare another USB stick for image flashing"
+msgstr ""
+
 msgid "Preparing... Please wait"
 msgstr "Подготовка...Моля изчакайте"
 
+msgid "Press '0' to toggle internal/external PiP."
+msgstr ""
+
+msgid "Press INFO on your remote control for additional information."
+msgstr ""
+
+msgid "Press MENU on your remote control for additional options."
+msgstr ""
+
 msgid "Press OK on your remote control to continue."
 msgstr "Натиснете ОК на дистанционното за да продължите."
+
+msgid "Press OK to activate the selected skin."
+msgstr ""
 
 msgid "Press OK to activate the settings."
 msgstr "Натиснете ОК за да активирате настройките."
@@ -2186,20 +3488,33 @@ msgstr "Натиснете ОК за да активирате настройк�
 msgid "Press OK to edit the settings."
 msgstr "Натиснете ОК за да редактирате настройките."
 
+#, python-format
 msgid "Press OK to get further details for %s"
 msgstr "Натиснете ОК за повече детайли относно %s"
 
 msgid "Press OK to scan"
 msgstr "Натиснете ОК за търсене"
 
+msgid "Press OK to select a Provider."
+msgstr ""
+
+msgid "Press OK to select/deselect a CAId."
+msgstr ""
+
 msgid "Press OK to start the scan"
 msgstr "Натиснете ОК за да започне търсенето"
 
-msgid "Press OK to view full changelog"
-msgstr "OK -> Вижте пълния changelog"
+msgid "Press OK to toggle the selection."
+msgstr ""
+
+msgid "Press yellow to set this interface as default interface."
+msgstr ""
 
 msgid "Prev"
 msgstr "Предишен"
+
+msgid "Preview"
+msgstr ""
 
 msgid "Preview menu"
 msgstr "Меню преглед"
@@ -2209,6 +3524,15 @@ msgstr "Основен DNS"
 
 msgid "Priority"
 msgstr "Приоритет"
+
+msgid "Process"
+msgstr ""
+
+msgid "Progress"
+msgstr ""
+
+msgid "Progress Small"
+msgstr ""
 
 msgid "Properties of current title"
 msgstr "Свойства за текущото заглавие"
@@ -2228,17 +3552,26 @@ msgstr "Сканиране на Провайдър"
 msgid "Providers"
 msgstr "Провайдъри"
 
+msgid "Put TV in standby"
+msgstr ""
+
+msgid "Put receiver in standby"
+msgstr ""
+
+msgid "Python frontend for /tmp/mmi.socket"
+msgstr ""
+
 msgid "Quick"
 msgstr "Бързо"
 
 msgid "Quickzap"
 msgstr "Бързо превкл."
 
-msgid "RC Menu"
-msgstr "RC Меню"
-
 msgid "RF output"
 msgstr "RF изход"
+
+msgid "RGB"
+msgstr ""
 
 msgid "Radio"
 msgstr "Радио"
@@ -2270,12 +3603,16 @@ msgstr "Да изключа ли приемника?"
 msgid "Reboot"
 msgstr "Рестарт"
 
+msgid "Rec"
+msgstr ""
+
 msgid "Reception Settings"
 msgstr "Настройки за Приемане"
 
 msgid "Record"
 msgstr "Запис"
 
+#, python-format
 msgid "Record time limited due to conflicting timer %s"
 msgstr "Времето за запис е ограничено поради конфликт с таймер %s"
 
@@ -2284,6 +3621,18 @@ msgstr "Записани файлове..."
 
 msgid "Recording"
 msgstr "Запис"
+
+msgid "Recording data sync size"
+msgstr ""
+
+msgid "Recording in progress"
+msgstr ""
+
+msgid "Recording paths"
+msgstr ""
+
+msgid "Recording type"
+msgstr ""
 
 msgid "Recording(s) are in progress or coming up in few seconds!"
 msgstr "Запис(и) се извършват или ще започнат до няколко секунди!"
@@ -2294,11 +3643,11 @@ msgstr "Записи"
 msgid "Recordings always have priority"
 msgstr "Записите винаги са с приоритет"
 
-msgid "Reenter new pin"
-msgstr "Въведете отново новия ПИН"
+msgid "Red button..."
+msgstr ""
 
-msgid "Refresh"
-msgstr "Обновяване"
+msgid "Reenter new PIN"
+msgstr ""
 
 msgid "Refresh Rate"
 msgstr "Честота на Обновяване"
@@ -2306,8 +3655,26 @@ msgstr "Честота на Обновяване"
 msgid "Refresh rate selection."
 msgstr "Избор честота на обновяване."
 
+msgid "Regard deep standby as standby"
+msgstr ""
+
 msgid "Reload"
 msgstr "Презареди"
+
+msgid "Reload Black-/Whitelists"
+msgstr ""
+
+msgid "Reloading bouquets and services..."
+msgstr ""
+
+msgid "Remember service PIN"
+msgstr ""
+
+msgid "Remember service PIN cancel"
+msgstr ""
+
+msgid "Remember these settings for each folder"
+msgstr ""
 
 msgid "Remove"
 msgstr "Премахни"
@@ -2330,14 +3697,11 @@ msgstr "Грешка при премахването!"
 msgid "Remove finished."
 msgstr "Премахни завършените."
 
+msgid "Remove items from trash after (days)"
+msgstr ""
+
 msgid "Remove plugins"
 msgstr "Премахни Плъгини"
-
-msgid "Remove the broken .NFI file?"
-msgstr "Премахни повредения .NFI файл?"
-
-msgid "Remove the incomplete .NFI file?"
-msgstr "Премахни непълния .NFI файл?"
 
 msgid "Remove timer"
 msgstr "Премахни таймер"
@@ -2351,6 +3715,7 @@ msgstr "Успешно премахване."
 msgid "Removing"
 msgstr "Премахвам"
 
+#, python-format
 msgid "Removing directory %s failed. (Maybe not empty.)"
 msgstr "Грешка при премахване на директория %s. (Може би не е празна.)"
 
@@ -2359,9 +3724,6 @@ msgstr "Преименувай"
 
 msgid "Rename crashlogs"
 msgstr "Преименувай crashlog"
-
-msgid "Repeat"
-msgstr "Повтори"
 
 msgid "Repeat Type"
 msgstr "Тип Повторения"
@@ -2372,17 +3734,38 @@ msgstr "Повтарящо се предаване се записва... Как
 msgid "Repeats"
 msgstr "Повторения"
 
+msgid "Required medium type:"
+msgstr ""
+
+msgid "Reread partition table"
+msgstr ""
+
+msgid "Reset"
+msgstr ""
+
+msgid "Reset and renumerate title names"
+msgstr ""
+
+msgid "Reset playback position"
+msgstr ""
+
+msgid "Reset video enhancement settings to system defaults?"
+msgstr ""
+
+msgid "Reset video enhancement settings to your last configuration?"
+msgstr ""
+
 msgid "Resolution"
 msgstr "Резолюция"
 
 msgid "Restart"
 msgstr "Рестарт"
 
-msgid "Restart GUI"
-msgstr "Рестарт GUI"
-
 msgid "Restart GUI now?"
 msgstr "Рестарт GUI сега?"
+
+msgid "Restart enigma"
+msgstr ""
 
 msgid "Restart network"
 msgstr "Рестарт мрежа"
@@ -2396,8 +3779,11 @@ msgstr "Рестартиране на мрежата и интерфейсите
 msgid "Restore"
 msgstr "Възстановаване"
 
-msgid "Restore backups..."
-msgstr "Възстановяване backups..."
+msgid "Restore backups"
+msgstr ""
+
+msgid "Restore is running..."
+msgstr ""
 
 msgid "Restore running"
 msgstr "Възстановяване"
@@ -2405,21 +3791,22 @@ msgstr "Възстановяване"
 msgid "Restore system settings"
 msgstr "Възстановяване на системните настройки"
 
-msgid ""
-"Restoring the settings is done. Please press OK to activate the restored "
-"settings now."
-msgstr ""
-"Завърши възстановяването. Натиснете OK за активиране на възстановените "
-"настройки."
-
 msgid "Resume from last position"
 msgstr "Възобнови от последното място"
 
+#, python-format
+msgid "Resume position at %s"
+msgstr ""
+
+#. TRANSLATORS: The string "Resuming playback" flashes for a moment
+#. TRANSLATORS: at the start of a movie, when the user has selected
+#. TRANSLATORS: "Resume from last position" as start behavior.
+#. TRANSLATORS: The purpose is to notify the user that the movie starts
+#. TRANSLATORS: in the middle somewhere and not from the beginning.
+#. TRANSLATORS: (Some translators seem to have interpreted it as a
+#. TRANSLATORS: question or a choice, but it is a statement.)
 msgid "Resuming playback"
 msgstr "Възобновяване на възпроизвеждането"
-
-msgid "Return to file browser"
-msgstr "Връщане към файловия браузър"
 
 msgid "Return to movie list"
 msgstr "Връщане към списъка с филми"
@@ -2430,17 +3817,53 @@ msgstr "Връщане към предишен канал"
 msgid "Rewind speeds"
 msgstr "Скорост на превъртане"
 
+msgid "Rewrap teletext subtitles"
+msgstr ""
+
 msgid "Right"
 msgstr "Дясно"
+
+msgid "Roll-off"
+msgstr ""
+
+msgid "Rolloff"
+msgstr ""
+
+msgid "Romanian"
+msgstr ""
+
+msgid "Root directory"
+msgstr ""
+
+msgid "Rotor step position:"
+msgstr ""
 
 msgid "Rotor turning speed"
 msgstr "Скорост на въртене на мотора"
 
-msgid "Running"
-msgstr "Работят"
+msgid "Round start time on"
+msgstr ""
 
 msgid "Russian"
 msgstr "Руски"
+
+msgid "S-Video"
+msgstr ""
+
+msgid "SID"
+msgstr ""
+
+msgid "SINGLE LAYER DVD"
+msgstr ""
+
+msgid "SNR"
+msgstr ""
+
+msgid "SNR:"
+msgstr ""
+
+msgid "SSID:"
+msgstr ""
 
 msgid "Sat"
 msgstr "Съб"
@@ -2454,6 +3877,12 @@ msgstr "Сателит"
 msgid "Satellite Equipment Setup"
 msgstr "Сателитна Конфигурация"
 
+msgid "Satellite equipment"
+msgstr ""
+
+msgid "Satellite longitude:"
+msgstr ""
+
 msgid "Satellites"
 msgstr "Сателити"
 
@@ -2463,8 +3892,8 @@ msgstr "Търсене на Сателити"
 msgid "Sats"
 msgstr "Сателити"
 
-msgid "Satteliteequipment"
-msgstr "Сателитно оборудване"
+msgid "Saturation"
+msgstr ""
 
 msgid "Saturday"
 msgstr "Събота"
@@ -2475,21 +3904,103 @@ msgstr "Запази"
 msgid "Save Playlist"
 msgstr "Запази Плейлист"
 
+msgid "Scaler sharpness"
+msgstr ""
+
+msgid "Scaling Mode"
+msgstr ""
+
 msgid "Scan "
 msgstr "Търсене "
 
 msgid "Scan Files..."
 msgstr "Търсене Файлове"
 
+msgid "Scan QAM128"
+msgstr ""
+
+msgid "Scan QAM16"
+msgstr ""
+
+msgid "Scan QAM256"
+msgstr ""
+
+msgid "Scan QAM32"
+msgstr ""
+
+msgid "Scan QAM64"
+msgstr ""
+
+msgid "Scan SR6875"
+msgstr ""
+
+msgid "Scan SR6900"
+msgstr ""
+
 msgid "Scan Wireless Networks"
 msgstr "Търсене Безжични Мрежи"
 
-msgid ""
-"Scan your network for wireless Access Points and connect to them using your "
-"WLAN USB Stick\n"
+msgid "Scan additional SR"
 msgstr ""
-"Търсене за безжични Точки за Достп и свързването към тях посредством вашия "
-"WLAN USB Стик\n"
+
+msgid "Scan band EU HYPER"
+msgstr ""
+
+msgid "Scan band EU MID"
+msgstr ""
+
+msgid "Scan band EU SUPER"
+msgstr ""
+
+msgid "Scan band EU UHF IV"
+msgstr ""
+
+msgid "Scan band EU UHF V"
+msgstr ""
+
+msgid "Scan band EU VHF I"
+msgstr ""
+
+msgid "Scan band EU VHF III"
+msgstr ""
+
+msgid "Scan band US HIGH"
+msgstr ""
+
+msgid "Scan band US HYPER"
+msgstr ""
+
+msgid "Scan band US LOW"
+msgstr ""
+
+msgid "Scan band US MID"
+msgstr ""
+
+msgid "Scan band US SUPER"
+msgstr ""
+
+msgid ""
+"Scan your network for wireless access points and connect to them using your "
+"selected wireless device.\n"
+msgstr ""
+
+#, python-format
+msgid "Scanning %s..."
+msgstr ""
+
+#, python-format
+msgid "Scanning completed, %d channels found"
+msgstr ""
+
+msgid "Scanning failed!"
+msgstr ""
+
+msgid "Scanning..."
+msgstr ""
+
+msgid ""
+"Scans default lamedbs sorted by satellite with a connected dish positioner"
+msgstr ""
 
 msgid "Search east"
 msgstr "Търсене на изток"
@@ -2497,8 +4008,20 @@ msgstr "Търсене на изток"
 msgid "Search west"
 msgstr "Търсене на запад"
 
+msgid "Searching"
+msgstr ""
+
+msgid "Searching east ..."
+msgstr ""
+
+msgid "Searching for available updates. Please wait..."
+msgstr ""
+
 msgid "Searching for new installed or removed packages. Please wait..."
 msgstr "Търсене на нови инсталирани или премахнати пакети. Моля изчакайте..."
+
+msgid "Searching west ..."
+msgstr ""
 
 msgid "Secondary DNS"
 msgstr "Допълнителен DNS"
@@ -2521,23 +4044,35 @@ msgstr "Изберете Мрежов Адаптер"
 msgid "Select a movie"
 msgstr "Изберете филм"
 
-msgid "Select audio mode"
-msgstr "Изберете аудио режим"
-
 msgid "Select audio track"
 msgstr "Изберете аудио"
 
 msgid "Select channel to record from"
 msgstr "Изберете канал за запис"
 
-msgid "Select files for backup. Currently selected:\n"
-msgstr "Изберете файлове за backup. В момента избрани:\n"
+msgid "Select copy destination for:"
+msgstr ""
 
-msgid "Select files/folders to backup..."
-msgstr "Изберете файлове/папки за backup..."
+msgid "Select desired image from feed list"
+msgstr ""
 
-msgid "Select image"
-msgstr "Изберете имидж"
+msgid "Select destination for:"
+msgstr ""
+
+msgid "Select files for backup."
+msgstr ""
+
+msgid "Select files/folders to backup"
+msgstr ""
+
+msgid "Select input device"
+msgstr ""
+
+msgid "Select input device."
+msgstr ""
+
+msgid "Select interface"
+msgstr ""
 
 msgid "Select package"
 msgstr "Изберете пакет"
@@ -2551,8 +4086,8 @@ msgstr "Изберете скорост за обновяване"
 msgid "Select service to add..."
 msgstr "Добавете канал..."
 
-msgid "Select video input"
-msgstr "Изберете видео вход"
+msgid "Select upgrade source to edit."
+msgstr ""
 
 msgid "Select video input with up/down buttons"
 msgstr "Изберете видео вход с бутони нaгоре/надолу"
@@ -2563,11 +4098,20 @@ msgstr "Изберете видео режим"
 msgid "Select wireless network"
 msgstr "Изберете безжична мрежа"
 
+msgid "Select your provider, and press OK to start the scan"
+msgstr ""
+
 msgid "Send DiSEqC"
 msgstr "Изпращай DiSEqC"
 
 msgid "Send DiSEqC only on satellite change"
 msgstr "Изпращай DiSEqC само при смяна на сателит"
+
+msgid "Seperate titles with a main menu"
+msgstr ""
+
+msgid "September"
+msgstr ""
 
 msgid "Sequence repeat"
 msgstr "Последователни повторения"
@@ -2604,6 +4148,9 @@ msgstr ""
 "Не е открит канал!\n"
 "(SID не е открит в PAT)"
 
+msgid "Service reference"
+msgstr ""
+
 msgid "Service scan"
 msgstr "Търсене на Канали"
 
@@ -2620,14 +4167,38 @@ msgstr "Инфо канал"
 msgid "Services"
 msgstr "Канали"
 
-msgid "Set as default Interface"
-msgstr "Направи като основен Интерфейс"
+msgid "Set End Time"
+msgstr ""
+
+msgid "Set Limits"
+msgstr ""
+
+msgid "Set Voltage and 22KHz"
+msgstr ""
+
+msgid "Set available internal memory threshold for the warning."
+msgstr ""
+
+msgid "Set fixed"
+msgstr ""
 
 msgid "Set interface as default Interface"
 msgstr "Направи интерфейса като основен Интерфейс"
 
-msgid "Set limits"
-msgstr "Поставяне лимити"
+msgid "Set time window to 1 hour"
+msgstr ""
+
+msgid "Set time window to 2 hours"
+msgstr ""
+
+msgid "Set time window to 3 hours"
+msgstr ""
+
+msgid "Set time window to 4 hours"
+msgstr ""
+
+msgid "Set time window to 5 hours"
+msgstr ""
 
 msgid "Settings"
 msgstr "Настройки"
@@ -2638,17 +4209,65 @@ msgstr "Настройки"
 msgid "Setup Mode"
 msgstr "Режим Настройки"
 
+msgid "Setup menu"
+msgstr ""
+
+msgid "Setup your positioner"
+msgstr ""
+
+#, python-format
+msgid ""
+"Shall the USB stick wizard proceed and program the image file %s into flash "
+"memory?"
+msgstr ""
+
+msgid "Sharpness"
+msgstr ""
+
+msgid "Short filenames"
+msgstr ""
+
+msgid "Show EIT now/next in infobar"
+msgstr ""
+
 msgid "Show Info"
 msgstr "Покажи Инфо"
 
 msgid "Show Message when Recording starts"
 msgstr "Показвай съобщение когато започне  запис"
 
+msgid "Show Picons"
+msgstr ""
+
+msgid "Show Service Names "
+msgstr ""
+
 msgid "Show WLAN Status"
 msgstr "Покажи WLAN Състояние"
 
-msgid "Show blinking clock in display during recording"
-msgstr "Показвай мигащ часовник на дисплея по време на запис"
+msgid "Show animation while busy"
+msgstr ""
+
+msgid "Show background in Radio Mode"
+msgstr ""
+
+msgid "Show bouquet selection menu"
+msgstr ""
+
+msgid "Show channel numbers in channel selection"
+msgstr ""
+
+msgid "Show crypto info in infobar"
+msgstr ""
+
+msgid "Show detailed event info"
+msgstr ""
+
+msgid "Show event-progress in channel selection"
+msgstr ""
+
+msgid "Show icon for new/unseen items"
+msgstr ""
 
 msgid "Show infobar on channel change"
 msgstr "Показвай инфобара при смяна на канал"
@@ -2662,8 +4281,14 @@ msgstr "Показвай инфобар при прескачане напред
 msgid "Show positioner movement"
 msgstr "Показвай въртенето на антената"
 
+msgid "Show second infobar"
+msgstr ""
+
 msgid "Show services beginning with"
 msgstr "Показвай канали започващи с"
+
+msgid "Show status icons in Movielist"
+msgstr ""
 
 msgid "Show the radio player..."
 msgstr "Покажи радио плеъра..."
@@ -2674,11 +4299,23 @@ msgstr "Покажи ТВ плеъра..."
 msgid "Shows the state of your wireless LAN connection.\n"
 msgstr "Показва статуса на вашата безжична LAN връзка.\n"
 
+msgid "Shutdown"
+msgstr ""
+
 msgid "Shutdown Dreambox after"
 msgstr "Изключи Clarke-Tech след"
 
+msgid "Side by Side"
+msgstr ""
+
+msgid "Signal OK, proceeding"
+msgstr ""
+
 msgid "Signal Strength:"
 msgstr "Сила на сигнала:"
+
+msgid "Signal quality"
+msgstr ""
 
 msgid "Signal: "
 msgstr "Сигнал: "
@@ -2692,6 +4329,9 @@ msgstr "Подобни предавания:"
 msgid "Simple"
 msgstr "Опростен"
 
+msgid "Simple titleset (compatibility for legacy players)"
+msgstr ""
+
 msgid "Single"
 msgstr "Единичен"
 
@@ -2704,11 +4344,23 @@ msgstr "Един Сателит"
 msgid "Single transponder"
 msgstr "Един транспондер"
 
+msgid "Singlestep (GOP)"
+msgstr ""
+
+msgid "Site latitude"
+msgstr ""
+
+msgid "Site longitude"
+msgstr ""
+
 msgid "Skin"
 msgstr "Кожа..."
 
 msgid "Skins"
 msgstr "Кожи"
+
+msgid "Skip Empty Services"
+msgstr ""
 
 msgid "Sleep Timer"
 msgstr "Tаймер за Сън"
@@ -2719,11 +4371,12 @@ msgstr "Действие при таймер за сън:"
 msgid "Slideshow Interval (sec.)"
 msgstr "Слайдшоу Интервал (сек.)"
 
+#, python-format
 msgid "Slot %d"
 msgstr "Слот %d"
 
-msgid "Slovakian"
-msgstr "Словашки"
+msgid "Slovak"
+msgstr ""
 
 msgid "Slovenian"
 msgstr "Словенски"
@@ -2734,11 +4387,17 @@ msgstr "Бавно"
 msgid "Slow Motion speeds"
 msgstr "Скорост при забавено движение"
 
+msgid "SoftCam / CI"
+msgstr ""
+
 msgid "Software"
 msgstr "Софтуер"
 
 msgid "Software management"
 msgstr "Управление Софтуер"
+
+msgid "Software manager setup"
+msgstr ""
 
 msgid "Software restore"
 msgstr "Възстановяване на Софтуера"
@@ -2746,11 +4405,11 @@ msgstr "Възстановяване на Софтуера"
 msgid "Software update"
 msgstr "Актуализация на Софтуера"
 
+msgid "Softwaremanager information"
+msgstr ""
+
 msgid "Some plugins are not available:\n"
 msgstr "Някои плъгини не са налични:\n"
-
-msgid "Somewhere else"
-msgstr "Някъде другаде"
 
 msgid "Sorry MediaScanner is not installed!"
 msgstr "MediaScanner не е инсталиран!"
@@ -2786,9 +4445,14 @@ msgstr ""
 "\n"
 "Моля изберете друга."
 
+msgid "Sort"
+msgstr ""
+
+#. TRANSLATORS: This must fit into the header button in the EPG-List
 msgid "Sort A-Z"
 msgstr "Подреждане A-Z"
 
+#. TRANSLATORS: This must fit into the header button in the EPG-List
 msgid "Sort Time"
 msgstr "Подреждане по час"
 
@@ -2798,11 +4462,17 @@ msgstr "Звук"
 msgid "Soundcarrier"
 msgstr "Звуконосител"
 
+msgid "Source request"
+msgstr ""
+
 msgid "South"
 msgstr "Юг"
 
 msgid "Spanish"
 msgstr "Испански"
+
+msgid "Split preview mode"
+msgstr ""
 
 msgid "Standby"
 msgstr "Готовност"
@@ -2810,8 +4480,19 @@ msgstr "Готовност"
 msgid "Standby / Restart"
 msgstr "Готовност / Рестарт"
 
+#, python-format
+msgid "Standby Fan %d PWM"
+msgstr ""
+
+#, python-format
+msgid "Standby Fan %d Voltage"
+msgstr ""
+
 msgid "Start from the beginning"
 msgstr "Започни от началото"
+
+msgid "Start offline decode"
+msgstr ""
 
 msgid "Start recording?"
 msgstr "Старт запис?"
@@ -2831,8 +4512,11 @@ msgstr "Стъпка на изток"
 msgid "Step west"
 msgstr "Стъпка на запад"
 
-msgid "Stereo"
-msgstr "Стерео"
+msgid "Stepped east"
+msgstr ""
+
+msgid "Stepped west"
+msgstr ""
 
 msgid "Stop"
 msgstr "Стоп"
@@ -2849,8 +4533,26 @@ msgstr "Спри текущото но не и следващите предав
 msgid "Stop playing this movie?"
 msgstr "Да спра този филм?"
 
+msgid "Stop recording"
+msgstr ""
+
+msgid "Stop recording and delete"
+msgstr ""
+
 msgid "Stop test"
 msgstr "Стоп тест"
+
+msgid "Stop testing plane after # failed transponders"
+msgstr ""
+
+msgid "Stop testing plane after # successful transponders"
+msgstr ""
+
+msgid "Stopped"
+msgstr ""
+
+msgid "Store at index"
+msgstr ""
 
 msgid "Store position"
 msgstr "Запази позиция"
@@ -2858,14 +4560,41 @@ msgstr "Запази позиция"
 msgid "Stored position"
 msgstr "Запазена позиция"
 
+msgid "Stream request"
+msgstr ""
+
+msgid "Strongest position"
+msgstr ""
+
 msgid "Subservice list..."
 msgstr "Списък Подканали..."
 
 msgid "Subservices"
 msgstr "Подканали"
 
+msgid "Subtitle delay when timing lacks"
+msgstr ""
+
+msgid "Subtitle language selection 1"
+msgstr ""
+
+msgid "Subtitle language selection 2"
+msgstr ""
+
+msgid "Subtitle language selection 3"
+msgstr ""
+
+msgid "Subtitle language selection 4"
+msgstr ""
+
 msgid "Subtitle selection"
 msgstr "Избор Субтитри"
+
+msgid "Subtitle selection..."
+msgstr ""
+
+msgid "Subtitle settings"
+msgstr ""
 
 msgid "Subtitles"
 msgstr "Субтитри"
@@ -2876,11 +4605,17 @@ msgstr "Нед"
 msgid "Sunday"
 msgstr "Неделя"
 
+msgid "Swap SNR in db with SNR in percentage on OSD"
+msgstr ""
+
 msgid "Swap Services"
 msgstr "Размени Канали"
 
 msgid "Swedish"
 msgstr "Шведски"
+
+msgid "Switch TV to correct input"
+msgstr ""
 
 msgid "Switch to next subservice"
 msgstr "Към следващ подканал"
@@ -2888,17 +4623,51 @@ msgstr "Към следващ подканал"
 msgid "Switch to previous subservice"
 msgstr "Към предишен подканал"
 
+msgid "Switchable tuner types:"
+msgstr ""
+
 msgid "Symbol Rate"
 msgstr "Скорост на Сигнала"
+
+msgid "Symbol rate"
+msgstr ""
 
 msgid "Symbolrate"
 msgstr "Скорост на Сигнала"
 
+msgid "Sync failure moving back to origin !"
+msgstr ""
+
 msgid "System"
 msgstr "Система"
 
+#. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
+msgid "TRANSLATOR_INFO"
+msgstr ""
+
+msgid "TS file is too large for ISO9660 level 1!"
+msgstr ""
+
+msgid "TSID"
+msgstr ""
+
 msgid "TV System"
 msgstr "ТВ Система"
+
+msgid "TXT PID"
+msgstr ""
+
+msgid "Table of content for collection"
+msgstr ""
+
+msgid "Tags"
+msgstr ""
+
+msgid "Teletext subtitle color"
+msgstr ""
+
+msgid "Temperature and Fan control"
+msgstr ""
 
 msgid "Terrestrial"
 msgstr "Наземна"
@@ -2921,6 +4690,12 @@ msgstr "Тест на мрежовите настройки на вашия Clar
 msgid "Test-Messagebox?"
 msgstr "Тест-Кутия за съобщения?"
 
+msgid "Text border width"
+msgstr ""
+
+msgid "Text font size"
+msgstr ""
+
 msgid ""
 "Thank you for using the wizard.\n"
 "Please press OK to continue."
@@ -2936,15 +4711,45 @@ msgstr ""
 "Моля натиснете OK за да започнете да използвате вашия Clarke-Tech."
 
 msgid ""
-"The USB stick is now bootable. Do you want to download the latest image from "
-"the feed server and save it on the stick?"
+"The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to "
+"create a Dreambox format data DVD (which will not play in stand-alone DVD "
+"players) instead?"
 msgstr ""
-"USB стика вече е bootable. Искате ли да изтеглите последния имидж от сървъра "
-"и да го запазите на стика?"
+
+msgid ""
+"The NetworkWizard extension is not installed!\n"
+"Please install it."
+msgstr ""
+
+msgid "The PIN code has been changed successfully."
+msgstr ""
+
+msgid "The PIN codes you entered are different."
+msgstr ""
+
+msgid ""
+"The Softwaremanagement extension is not installed!\n"
+"Please install it."
+msgstr ""
+
+msgid ""
+"The USB stick was prepared to be bootable.\n"
+"Now you can download an NFI image file!"
+msgstr ""
 
 msgid "The backup failed. Please choose a different backup location."
 msgstr "Грешка при backup. Моля изберете друго место за backup."
 
+msgid "The current beta image could not be stable"
+msgstr ""
+
+#, python-format
+msgid ""
+"The directory %s is not writable.\n"
+"Make sure you select a writable directory instead."
+msgstr ""
+
+#, python-format
 msgid ""
 "The following device was found:\n"
 "\n"
@@ -2978,7 +4783,11 @@ msgid ""
 "configuring your Dreambox by pressing the OK button on the remote control."
 msgstr ""
 "Инсталирането на стандартните листи с канали завърши. Сега вие можете да  "
-"продължите с настройките на вашия Clarke-Tech с натискане ОК на дистанционното."
+"продължите с настройките на вашия Clarke-Tech с натискане ОК на "
+"дистанционното."
+
+msgid "The md5sum validation failed, the file may be corrupted!"
+msgstr ""
 
 msgid "The package doesn't contain anything."
 msgstr "Пакетът не съдържа нищо"
@@ -2986,18 +4795,14 @@ msgstr "Пакетът не съдържа нищо"
 msgid "The package:"
 msgstr "Пакетът:"
 
+#, python-format
 msgid "The path %s already exists."
 msgstr "Пътя %s вeче съществува"
-
-msgid "The pin code has been changed successfully."
-msgstr "ПИН кодът беше променен успешно."
 
 msgid "The pin code you entered is wrong."
 msgstr "Въведеният ПИН код е грешен."
 
-msgid "The pin codes you entered are different."
-msgstr "Въведеният ПИН код е различен."
-
+#, python-format
 msgid "The results have been written to %s."
 msgstr "Резултатите са записани в %s."
 
@@ -3006,6 +4811,14 @@ msgstr "Tаймера за сън е активиран."
 
 msgid "The sleep timer has been disabled."
 msgstr "Таймера за сън е спрян."
+
+msgid ""
+"The status of the current beta image could not be checked because www."
+"openpli.org could not be reached for some reason"
+msgstr ""
+
+msgid "The timer file (timers.xml) is corrupt and could not be loaded."
+msgstr ""
 
 msgid ""
 "The wireless LAN plugin is not installed!\n"
@@ -3026,11 +4839,20 @@ msgid ""
 msgstr ""
 "Помощникът може да backup вашите текущи настройки. Да направи ли backup сега?"
 
+#, python-format
+msgid ""
+"The wizard found a configuration backup. Do you want to restore your old "
+"settings from %s?"
+msgstr ""
+
 msgid "The wizard is finished now."
 msgstr "Помощникът завърши."
 
 msgid "There are at least "
 msgstr "Има най-малко "
+
+msgid "There are currently no outstanding actions."
+msgstr ""
 
 msgid "There are no default services lists in your image."
 msgstr "Няма стандартни списъци с канали във вашия имидж."
@@ -3038,8 +4860,14 @@ msgstr "Няма стандартни списъци с канали във ва
 msgid "There are no default settings in your image."
 msgstr "Няма стандартни настройки във вашия имидж."
 
+msgid "There are no updates available."
+msgstr ""
+
 msgid "There are now "
 msgstr "Сега има"
+
+msgid "There is no signal to lock on !"
+msgstr ""
 
 msgid ""
 "There might not be enough Space on the selected Partition.\n"
@@ -3054,34 +4882,27 @@ msgstr "Грешка при изтегляне на списъка с пакет
 msgid "There was an error. The package:"
 msgstr "Грешка! Пакетът:"
 
-msgid "This .NFI file does not contain a valid %s image!"
-msgstr "Този .nfi файл не съдържа валиден %s имидж!"
-
 msgid ""
-"This .NFI file does not have a md5sum signature and is not guaranteed to "
-"work. Do you really want to burn this image to flash memory?"
+"This DVD RW medium is already formatted - reformatting will erase all "
+"content on the disc."
 msgstr ""
-"Този .nfi файл не съдържа md5 подпис и коректната му работа не егарантирана. "
-"Наистина ли искате да запишете този имидж на flash паметта "
 
-msgid ""
-"This .NFI file has a valid md5 signature. Continue programming this image to "
-"flash memory?"
-msgstr ""
-"Този .nfi файл съдържа валиден md5 подпис. Да продължа ли с инсталирането на "
-"този имидж във flash паметта?"
-
+#, python-format
 msgid "This Dreambox can't decode %s streams!"
 msgstr "Този Clarke-Tech не може да декодира %s стриймове!"
-
-msgid "This Dreambox can't decode %s video streams!"
-msgstr "Този Clarke-Tech не може да декодира %s видео стриймове!"
 
 msgid "This is step number 2."
 msgstr "Това е стъпка номер 2."
 
-msgid "This is unsupported at the moment."
-msgstr "Това не се поддържа в момента."
+msgid ""
+"This plugin creates a USB stick which can be used to update the firmware of "
+"your Dreambox without the need for a network or WLAN connection.\n"
+"First, a USB stick needs to be prepared so that it becomes bootable.\n"
+"In the next step, an NFI image file can be downloaded from the update server "
+"and saved on the USB stick.\n"
+"If you already have a prepared bootable USB stick, please insert it now. "
+"Otherwise plug in a USB stick with a minimum size of 64 MB!"
+msgstr ""
 
 msgid "This plugin is installed."
 msgstr "Този плъгин е инсталиран."
@@ -3152,6 +4973,12 @@ msgstr ""
 msgid "This test detects your configured LAN-Adapter."
 msgstr "Този тест открива вашия конфигуриран LAN-Адаптер."
 
+msgid ""
+"This will (re-)calculate all positions of your rotor and may remove "
+"previously memorised positions and fine-tuning!\n"
+"Are you sure?"
+msgstr ""
+
 msgid "Three"
 msgstr "Три"
 
@@ -3170,6 +4997,9 @@ msgstr "Четвъртък"
 msgid "Time"
 msgstr "Час"
 
+msgid "Time Scale"
+msgstr ""
+
 msgid "Time/Date Input"
 msgstr "Въвеждане Час/Дата"
 
@@ -3182,11 +5012,28 @@ msgstr "Редактирай Таймер"
 msgid "Timer Editor"
 msgstr "Редактор Таймер"
 
+msgid "Timer Overview"
+msgstr ""
+
 msgid "Timer Type"
 msgstr "Вид Таймер"
 
 msgid "Timer entry"
 msgstr "Въведи Таймер"
+
+msgid "Timer log"
+msgstr ""
+
+msgid ""
+"Timer overlap in timers.xml detected!\n"
+"Please recheck it!"
+msgstr ""
+
+msgid "Timer record location"
+msgstr ""
+
+msgid "Timer sanity error"
+msgstr ""
 
 msgid "Timer selection"
 msgstr "Избор на таймер"
@@ -3197,11 +5044,11 @@ msgstr "Таймер статус:"
 msgid "Timeshift"
 msgstr "Таймшифт"
 
+msgid "Timeshift location"
+msgstr ""
+
 msgid "Timeshift not possible!"
 msgstr "Таймшифт не е възможен!"
-
-msgid "Timeshift path..."
-msgstr "Път за Таймшифт..."
 
 msgid "Timezone"
 msgstr "Часова зона"
@@ -3212,26 +5059,44 @@ msgstr "Заглавие"
 msgid "Title properties"
 msgstr "Заглавие свойства"
 
+msgid "Titleset mode"
+msgstr ""
+
+msgid "To audio selection"
+msgstr ""
+
+msgid "To subtitle selection"
+msgstr ""
+
 msgid ""
 "To update your Dreambox firmware, please follow these steps:\n"
-"1) Turn off your box with the rear power switch and plug in the bootable USB "
-"stick.\n"
+"1) Turn off your box with the rear power switch and make sure the bootable "
+"USB stick is plugged in.\n"
 "2) Turn mains back on and hold the DOWN button on the front panel pressed "
 "for 10 seconds.\n"
 "3) Wait for bootup and follow instructions of the wizard."
 msgstr ""
-"За да обновите firmware на вашия Clarke-Tech, моля следвайте тези стъпки:\n"
-"1) Изключете вашия Clarke-Tech от задния бутон за захранване и поставете bootable "
-"USB стик.\n"
-"2) Включете отново приемника и задръжте POWER бутон на предния панел "
-"натиснат за 10 секунди.\n"
-"3) Изчакайте зареждането и следвайте инструкциите на помощника."
 
 msgid "Today"
 msgstr "Днес"
 
+msgid "Tone Amplitude"
+msgstr ""
+
+msgid "Tone mode"
+msgstr ""
+
+msgid "Toneburst"
+msgstr ""
+
 msgid "Toneburst A/B"
 msgstr "Toneburst A/B"
+
+msgid "Top and Bottom"
+msgstr ""
+
+msgid "Track"
+msgstr ""
 
 msgid "Translation"
 msgstr "Превод"
@@ -3251,14 +5116,35 @@ msgstr "Транспондер"
 msgid "Transponder Type"
 msgstr "Транспондер Тип"
 
+msgid "Trashcan"
+msgstr ""
+
 msgid "Tries left:"
 msgstr "Оставащи опити:"
+
+msgid "Try to find used Transponders in cable network.. please wait..."
+msgstr ""
+
+msgid "Try to find used transponders in cable network.. please wait..."
+msgstr ""
+
+msgid "Trying to download a new packetlist. Please wait..."
+msgstr ""
 
 msgid "Tue"
 msgstr "Вто"
 
 msgid "Tuesday"
 msgstr "Вторник"
+
+msgid "Tune"
+msgstr ""
+
+msgid "Tune and Focus"
+msgstr ""
+
+msgid "Tune failed!"
+msgstr ""
 
 msgid "Tuner"
 msgstr "Тунер"
@@ -3275,6 +5161,12 @@ msgstr "Тунер конфигурация"
 msgid "Tuner status"
 msgstr "Тунер статус"
 
+msgid "Tuner type"
+msgstr ""
+
+msgid "Tuning step size"
+msgstr ""
+
 msgid "Turkish"
 msgstr "Турски"
 
@@ -3290,34 +5182,59 @@ msgstr "Тип търсене"
 msgid "USALS"
 msgstr "USALS"
 
+msgid "USALS Calibration"
+msgstr ""
+
 msgid "USB Stick"
 msgstr "USB Стик"
 
 msgid "USB stick wizard"
 msgstr "USB Стик помощник"
 
-msgid "Ukrainian"
-msgstr "Украински"
-
 msgid ""
-"Unable to complete filesystem check.\n"
-"Error: "
+"Unattended upgrade in progress\n"
+"Please wait until your receiver reboots\n"
+"This may take a few minutes"
 msgstr ""
-"Не мога да завърша проверката на файловата система.\n"
-"Грешка: "
 
-msgid ""
-"Unable to initialize harddisk.\n"
-"Error: "
+msgid "Unattended upgrade without GUI and reboot system"
 msgstr ""
-"Не мога да инициализирам твърдия диск.\n"
-"Грешка: "
+
+msgid "Uncommitted DiSEqC command"
+msgstr ""
+
+msgid "Undo install"
+msgstr ""
+
+msgid "Undo uninstall"
+msgstr ""
+
+msgid "Unencrypted"
+msgstr ""
+
+msgid "UnhandledKey"
+msgstr ""
+
+msgid "Unicable"
+msgstr ""
+
+msgid "Unicable LNB"
+msgstr ""
+
+msgid "Unicable Martix"
+msgstr ""
+
+msgid "Uninstall"
+msgstr ""
 
 msgid "Universal LNB"
 msgstr "Универсално LNB"
 
-msgid "Unmount failed"
-msgstr "Unmount грешка!"
+msgid "Unknown"
+msgstr ""
+
+msgid "Unmount"
+msgstr ""
 
 msgid "Unsupported"
 msgstr "Не се поддържа"
@@ -3325,14 +5242,23 @@ msgstr "Не се поддържа"
 msgid "Update"
 msgstr "Актуализация"
 
+msgid "Updatefeed not available."
+msgstr ""
+
 msgid "Updates your receiver's software"
 msgstr "Актуализира софтуера на вашия приемник"
 
 msgid "Updating finished. Here is the result:"
 msgstr "Актуализацията завърши. Ето резултата:"
 
+msgid "Updating software catalog"
+msgstr ""
+
 msgid "Updating... Please wait... This can take some minutes..."
 msgstr "Актуализация...Моля изчакайте...Това може да отнеме няколко минути..."
+
+msgid "Upgrade and ask to reboot"
+msgstr ""
 
 msgid "Upgrade finished."
 msgstr "Ъпгрейда завърши."
@@ -3352,17 +5278,38 @@ msgstr "Използвай"
 msgid "Use DHCP"
 msgstr "Използвай DHCP"
 
+msgid "Use DVB subtitles position"
+msgstr ""
+
 msgid "Use Interface"
 msgstr "Използвай Интерфейс"
 
 msgid "Use Power Measurement"
 msgstr "Използвай Мерител на Захранването"
 
+msgid "Use TV remote control"
+msgstr ""
+
 msgid "Use a gateway"
 msgstr "Използвай шлюз"
 
+msgid "Use fastscan channel names"
+msgstr ""
+
+msgid "Use fastscan channel numbering"
+msgstr ""
+
+msgid "Use official channel numbering"
+msgstr ""
+
+msgid "Use original teletext position"
+msgstr ""
+
 msgid "Use power measurement"
 msgstr "Използвай мерител на напрежение"
+
+msgid "Use the Networkwizard to configure selected network adapter"
+msgstr ""
 
 msgid "Use the Networkwizard to configure your Network\n"
 msgstr "Използвайте Мрежовия помощник за конфигуриране на Мрежа\n"
@@ -3383,6 +5330,21 @@ msgstr ""
 "Използвайте бутони нагоре/надолу на вашето дистанционно за избор на опция. "
 "След това натиснете ОК."
 
+msgid "Use this input device settings?"
+msgstr ""
+
+msgid "Use this settings?"
+msgstr ""
+
+msgid "Use this video enhancement settings?"
+msgstr ""
+
+msgid "Use time of currently running service"
+msgstr ""
+
+msgid "Use trashcan in movielist"
+msgstr ""
+
 msgid "Use usals for this sat"
 msgstr "Използвай USALS zа този сат"
 
@@ -3392,17 +5354,29 @@ msgstr "Използвайте помощника за основните нас
 msgid "Used service scan type"
 msgstr "Тип сканиране на канали"
 
+msgid "User - bouquets"
+msgstr ""
+
 msgid "User defined"
 msgstr "Потребителска"
 
 msgid "Username"
 msgstr "Потребителско име"
 
+msgid "Using fixed address"
+msgstr ""
+
 msgid "VCR scart"
 msgstr "VCR скарт"
 
+msgid "VMGM (intro trailer)"
+msgstr ""
+
 msgid "Vertical"
 msgstr "Вертикална"
+
+msgid "Vertical turning speed"
+msgstr ""
 
 msgid "Video Fine-Tuning"
 msgstr "Фина настройка картина"
@@ -3413,11 +5387,23 @@ msgstr "Помощник за фина настройка на картинат�
 msgid "Video Output"
 msgstr "Видео Изход"
 
+msgid "Video PID"
+msgstr ""
+
 msgid "Video Setup"
 msgstr "Видео Настройка"
 
 msgid "Video Wizard"
 msgstr "Видео Помощник"
+
+msgid "Video enhancement preview"
+msgstr ""
+
+msgid "Video enhancement settings"
+msgstr ""
+
+msgid "Video enhancement setup"
+msgstr ""
 
 msgid ""
 "Video input selection\n"
@@ -3437,11 +5423,26 @@ msgstr ""
 msgid "Video mode selection."
 msgstr "Избор на видео режим."
 
+msgid "Videocodec"
+msgstr ""
+
+msgid "Videoenhancement Setup"
+msgstr ""
+
+msgid "Videoformat"
+msgstr ""
+
+msgid "Videosize"
+msgstr ""
+
 msgid "View Movies..."
 msgstr "Преглед Филми..."
 
 msgid "View Photos..."
 msgstr "Преглед Снимки..."
+
+msgid "View Rass interactive..."
+msgstr ""
 
 msgid "View Video CD..."
 msgstr "Преглед Video CD..."
@@ -3461,8 +5462,8 @@ msgstr "Списък с наличните extensions за Дисплей и Use
 msgid "View list of available EPG extensions."
 msgstr "Списък с наличните EPG extensions."
 
-msgid "View list of available Satteliteequipment extensions."
-msgstr "Списък с наличните Satteliteequipment extensions."
+msgid "View list of available Satellite equipment extensions."
+msgstr ""
 
 msgid "View list of available communication extensions."
 msgstr "Списък с наличните extensions за връзка."
@@ -3500,14 +5501,50 @@ msgstr "Режим волтаж"
 msgid "Volume"
 msgstr "Усилване"
 
-msgid ""
-"We will now test if your TV can also display this resolution at 50hz. If "
-"your screen goes black, wait 20 seconds and it will switch back to 60hz.\n"
-"Please press OK to begin."
+msgid "W"
 msgstr ""
-"Сега ще тестваме дали вашия ТВ може да показва тази резолюция на 50hz. Ако "
-"вашия екран остане черен, изчакайте 20 секунди и ще се върне пак на 60hz.\n"
-"Моля натиснете OK за начало на теста."
+
+msgid "WEP"
+msgstr ""
+
+msgid "WLAN connection"
+msgstr ""
+
+msgid "WPA"
+msgstr ""
+
+msgid "WPA or WPA2"
+msgstr ""
+
+msgid "WPA2"
+msgstr ""
+
+msgid "WSS on 4:3"
+msgstr ""
+
+msgid "Wait for mount"
+msgstr ""
+
+msgid "Wait for partition"
+msgstr ""
+
+msgid "Waiting"
+msgstr ""
+
+msgid "Wakeup"
+msgstr ""
+
+msgid "Wakeup TV from standby"
+msgstr ""
+
+msgid "Wakeup receiver from standby"
+msgstr ""
+
+msgid "Wakeup signal from TV"
+msgstr ""
+
+msgid "Warn if free space drops below (kB):"
+msgstr ""
 
 msgid "Wed"
 msgstr "Сря"
@@ -3518,14 +5555,44 @@ msgstr "Сряда"
 msgid "Weekday"
 msgstr "Делничен"
 
+msgid "Weigthed position"
+msgstr ""
+
+msgid ""
+"Welcome to the Cutlist editor.\n"
+"\n"
+"Seek to the start of the stuff you want to cut away. Press OK, select 'start "
+"cut'.\n"
+"\n"
+"Then seek to the end, press OK, select 'end cut'. That's it."
+msgstr ""
+
 msgid ""
 "Welcome to the Image upgrade wizard. The wizard will assist you in upgrading "
 "the firmware of your Dreambox by providing a backup facility for your "
 "current settings and a short explanation of how to upgrade your firmware."
 msgstr ""
 "Добре дошли при помощника за ъпгред на имиджа. Помощника ще ви помогне при "
-"ъпгрейдването firmware на вашия Clarke-Tech осигурявайки backup за вашите текущи "
-"настройки и кратко обяснение, как да ъпгрейднете вашия firmware."
+"ъпгрейдването firmware на вашия Clarke-Tech осигурявайки backup за вашите "
+"текущи настройки и кратко обяснение, как да ъпгрейднете вашия firmware."
+
+msgid ""
+"Welcome to the cleanup wizard.\n"
+"\n"
+"We have detected that your available internal memory has dropped below 2MB.\n"
+"To ensure stable operation of your Dreambox, the internal memory should be "
+"cleaned up.\n"
+"You can use this wizard to remove some extensions.\n"
+msgstr ""
+
+msgid ""
+"Welcome.\n"
+"\n"
+"If you want to connect your Dreambox to the Internet, this wizard will guide "
+"you through the basic network setup of your Dreambox.\n"
+"\n"
+"Press OK to start configuring your network"
+msgstr ""
 
 msgid ""
 "Welcome.\n"
@@ -3543,6 +5610,9 @@ msgstr "Добре дошли..."
 
 msgid "West"
 msgstr "Запад"
+
+msgid "West limit set"
+msgstr ""
 
 msgid "What do you want to scan?"
 msgstr "Какво искате да търся?"
@@ -3571,17 +5641,20 @@ msgstr "Къде искате да backup вашите настройки?"
 msgid "Where to save temporary timeshift recordings?"
 msgstr "Къде да съхраня временните таймшифт записи?"
 
-msgid "Wireless"
-msgstr "Безжична"
-
 msgid "Wireless LAN"
 msgstr "Безжична LAN"
 
 msgid "Wireless Network"
 msgstr "Безжична Мрежа"
 
-msgid "Wireless Network State"
-msgstr "Статус на безжичната мрежа"
+msgid "Wireless network connection setup"
+msgstr ""
+
+msgid "Wireless network connection setup."
+msgstr ""
+
+msgid "Wireless network state"
+msgstr ""
 
 msgid "Write error while recording. Disk full?\n"
 msgstr "Грешка при запис! Дискът е пълен?\n"
@@ -3589,17 +5662,26 @@ msgstr "Грешка при запис! Дискът е пълен?\n"
 msgid "Write failed!"
 msgstr "Грешка при запис!"
 
-msgid "Writing NFI image file to flash completed"
-msgstr "Зареждането на .nfi файла във флаша завърши"
-
 msgid "YPbPr"
 msgstr "YPbPr"
 
 msgid "Year"
 msgstr "Година"
 
+msgid "Yellow DVB subtitles"
+msgstr ""
+
+msgid "Yellow pango subtitles"
+msgstr ""
+
 msgid "Yes"
 msgstr "Да"
+
+msgid "Yes to all"
+msgstr ""
+
+msgid "Yes, always"
+msgstr ""
 
 msgid "Yes, and delete this movie"
 msgstr "Да, и изтрий филма"
@@ -3631,6 +5713,16 @@ msgstr "Да, върни към списъка с филми"
 msgid "Yes, view the tutorial"
 msgstr "Да, виж упътването"
 
+msgid "Yesterday"
+msgstr ""
+
+#, python-format
+msgid ""
+"You already have a channel list installed,\n"
+"would you like to remove\n"
+"\"%s\"?"
+msgstr ""
+
 msgid "You can cancel the installation."
 msgstr "Можете да отмените инсталацията."
 
@@ -3647,8 +5739,14 @@ msgstr ""
 msgid "You can choose, what you want to install..."
 msgstr "Може да изберете, какво искате да се инсталира..."
 
+msgid "You can continue watching TV etc. while this is running."
+msgstr ""
+
 msgid "You can install this plugin."
 msgstr "Можете да инсталирате този плъгин."
+
+msgid "You can only burn Dreambox recordings!"
+msgstr ""
 
 msgid "You can remove this plugin."
 msgstr "Можете да премахнете този плъгин."
@@ -3672,26 +5770,8 @@ msgstr ""
 "Вие избрахте да не се инсталира нищо. Моля натиснете ОК за изход от "
 "помощника."
 
-msgid ""
-"You do not seem to have a harddisk in your Dreambox. So backing up to a "
-"harddisk is not an option for you."
+msgid "You didn't select a channel to record from."
 msgstr ""
-"Изглежда нямате твърд диск във вашия Clarke-Tech. Така, че backing up на твърд "
-"диск не е опция за вас."
-
-msgid ""
-"You have chosen to backup to an usb drive. Better backup to the harddisk!\n"
-"Please press OK to start the backup now."
-msgstr ""
-"Вие избрахте backup на usb устройство. По добре backup на твърд диск!\n"
-"Моля натиснете ОК за да започне backup сега."
-
-msgid ""
-"You have chosen to backup to your harddisk. Please press OK to start the "
-"backup now."
-msgstr ""
-"Вие избрахте backup на вашия твърд диск. Моля натиснете ОК за да започне "
-"backup сега."
 
 msgid ""
 "You have chosen to backup your settings. Please press OK to start the backup "
@@ -3701,39 +5781,56 @@ msgstr ""
 "backup сега."
 
 msgid ""
+"You have chosen to create a new .NFI flasher bootable USB stick. This will "
+"repartition the USB stick and therefore all data on it will be erased."
+msgstr ""
+
+msgid ""
 "You have chosen to restore your settings. Enigma2 will restart after "
 "restore. Please press OK to start the restore now."
 msgstr ""
 "Избрахте да възстановите вашите настройки. Енигма2 ще се рестартира след "
 "възстановяването. Моля натиснете ОК за да започне възстановяването."
 
+#, python-format
 msgid "You have to wait %s!"
 msgstr "Трябва да изчакате %s!"
 
 msgid ""
-"You need to set a pin code and hide it from your children.\n"
+"You need a PC connected to your dreambox. If you need further instructions, "
+"please visit the website http://www.dm7025.de.\n"
+"Your dreambox will now be halted. After you have performed the update "
+"instructions from the website, your new firmware will ask you to restore "
+"your settings."
+msgstr ""
+
+msgid ""
+"You need to set a PIN code and hide it from your children.\n"
 "\n"
 "Do you want to set the pin now?"
 msgstr ""
-"Трябва да въведете ПИН код и да го скриете от вашите деца.\n"
-"\n"
-"Искате ли да въведете ПИН сега?"
 
-msgid "Your Dreambox is shutting down. Please stand by..."
-msgstr "Вашия Clarke-Tech се изключва. Моля изчакайте..."
+msgid "You system does not support ext4"
+msgstr ""
 
 msgid ""
-"Your Dreambox isn't connected to the internet properly. Please check it and "
-"try again."
+"Your Dreambox is now ready to use.\n"
+"\n"
+"Your internet connection is working now.\n"
+"\n"
 msgstr ""
-"Вашият Clarke-Tech не е свързан правилно с интернет. Моля проверете и опитайте "
-"отново."
+
+msgid ""
+"Your Dreambox is now ready to use.\n"
+"\n"
+"Your internet connection is working now.\n"
+"\n"
+"Please press OK to continue."
+msgstr ""
 
 msgid "Your Dreambox will restart after pressing OK on your remote control."
-msgstr "Вашия Clarke-Tech ще се рестартира след натискане ОK на дистанционното."
-
-msgid "Your TV works with 50 Hz. Good!"
-msgstr "Вашия ТВ работи с 50 Hz. Браво!"
+msgstr ""
+"Вашия Clarke-Tech ще се рестартира след натискане ОK на дистанционното."
 
 msgid ""
 "Your backup succeeded. We will now continue to explain the further upgrade "
@@ -3748,6 +5845,17 @@ msgid ""
 msgstr ""
 "Ваашата колекция надвишава размера на еднослоен диск, ще ви трябва празен "
 "двуслоен DVD!"
+
+msgid "Your current collection will get lost!"
+msgstr ""
+
+msgid "Your dreambox is shutting down. Please stand by..."
+msgstr ""
+
+msgid ""
+"Your dreambox isn't connected to the internet properly. Please check it and "
+"try again."
+msgstr ""
 
 msgid "Your email address:"
 msgstr "Вашият email:"
@@ -3773,17 +5881,6 @@ msgid "Your network configuration has been activated."
 msgstr "Вашата мрежова конфигурация е активирана."
 
 msgid ""
-"Your network configuration has been activated.\n"
-"A second configured interface has been found.\n"
-"\n"
-"Do you want to disable the second network interface?"
-msgstr ""
-"Вашата мрежова конфигурация е активирана.\n"
-"Втора конфигурирана мрежа бе открита.\n"
-"\n"
-"Искате ли да спрете втория мрежов интерфейс?"
-
-msgid ""
 "Your wireless LAN internet connection could not be started!\n"
 "Have you attached your USB WLAN Stick?\n"
 "\n"
@@ -3794,11 +5891,29 @@ msgstr ""
 "\n"
 "Изберете следваща стъпка."
 
+msgid "Zap back to previously tuned service?"
+msgstr ""
+
 msgid "Zap back to service before positioner setup?"
 msgstr "Назад към канала преди 'настройка на позиционер'?"
 
 msgid "Zap back to service before satfinder?"
 msgstr "Назад към канала преди 'търсене на сателити'?"
+
+msgid "Zap back to service before tuner setup?"
+msgstr ""
+
+msgid "Zap focus to Picture in Picture"
+msgstr ""
+
+msgid "Zap focus to main screen"
+msgstr ""
+
+msgid "Zap mode"
+msgstr ""
+
+msgid "Zap to selected channel"
+msgstr ""
 
 msgid "[alternative edit]"
 msgstr "[редактиране алтернативи]"
@@ -3812,6 +5927,12 @@ msgstr "[редактиране предпочитани]"
 msgid "[move mode]"
 msgstr "[режим преместване]"
 
+msgid "a gui to assign services/providers to common interface modules"
+msgstr ""
+
+msgid "a gui to assign services/providers/caids to common interface modules"
+msgstr ""
+
 msgid "abort alternatives edit"
 msgstr "прекъсни редактирането на алтернативи"
 
@@ -3824,8 +5945,14 @@ msgstr "прекъсни редактирането на предпочитан�
 msgid "about to start"
 msgstr "стартирам"
 
+msgid "activate PiP"
+msgstr ""
+
 msgid "activate current configuration"
 msgstr "активирай текущите настройки"
+
+msgid "activate network adapter configuration"
+msgstr ""
 
 msgid "add Provider"
 msgstr "добави Провайдър"
@@ -3881,6 +6008,9 @@ msgstr "добави към родителска защита"
 msgid "advanced"
 msgstr "разширен"
 
+msgid "alphabetic reverse"
+msgstr ""
+
 msgid "alphabetic sort"
 msgstr "подреждане по азбучен ред"
 
@@ -3891,17 +6021,28 @@ msgstr ""
 "искате ли да възстановите\n"
 "следния backup:\n"
 
-msgid "assigned CAIds"
-msgstr "определен CAIds"
+msgid "assigned CAIds:"
+msgstr ""
 
-msgid "assigned Services/Provider"
-msgstr "определен Канал/Провайдър"
+msgid "assigned Services/Provider:"
+msgstr ""
 
+msgid "at beginning"
+msgstr ""
+
+msgid "at end"
+msgstr ""
+
+#, python-format
 msgid "audio track (%s) format"
 msgstr "audio track (%s) формат"
 
+#, python-format
 msgid "audio track (%s) language"
 msgstr "audio track (%s) език"
+
+msgid "audio tracks"
+msgstr ""
 
 msgid "auto"
 msgstr "авто"
@@ -3930,8 +6071,12 @@ msgstr "черен лист"
 msgid "blue"
 msgstr "син"
 
+#, python-format
 msgid "burn audio track (%s)"
 msgstr "запис audio track (%s)"
+
+msgid "center"
+msgstr ""
 
 msgid "change recording (duration)"
 msgstr "променете запис (продължителност)"
@@ -3941,9 +6086,6 @@ msgstr "променете запис (край)"
 
 msgid "chapters"
 msgstr "глави"
-
-msgid "choose destination directory"
-msgstr "изберете крайна директория"
 
 msgid "circular left"
 msgstr "кръгова лява"
@@ -3978,14 +6120,15 @@ msgstr "не може да се отстрани"
 msgid "create directory"
 msgstr "създай директория"
 
+#, python-format
+msgid "currently installed image: %s"
+msgstr ""
+
 msgid "daily"
 msgstr "дневно"
 
 msgid "day"
 msgstr "ден"
-
-msgid "delete"
-msgstr "изтрий"
 
 msgid "delete cut"
 msgstr "изтрий изрежи"
@@ -4001,6 +6144,9 @@ msgstr "изтрий записания плейлист"
 
 msgid "delete..."
 msgstr "изтрий ..."
+
+msgid "descramble and record ecm"
+msgstr ""
 
 msgid "disable"
 msgstr "спри"
@@ -4020,11 +6166,35 @@ msgstr "не променяй"
 msgid "do nothing"
 msgstr "не прави нищо"
 
+msgid "don't descramble, record ecm"
+msgstr ""
+
 msgid "don't record"
 msgstr "не записвай"
 
 msgid "done!"
 msgstr "готово!"
+
+msgid "dreambox advanced remote control (native)"
+msgstr ""
+
+msgid "dreambox front panel"
+msgstr ""
+
+msgid "dreambox ir keyboard"
+msgstr ""
+
+msgid "dreambox ir mouse"
+msgstr ""
+
+msgid "dreambox remote control (native)"
+msgstr ""
+
+msgid "east"
+msgstr ""
+
+msgid "edit alternatives"
+msgstr ""
 
 msgid "empty"
 msgstr "празен"
@@ -4044,8 +6214,14 @@ msgstr "включи режим преместване на канал"
 msgid "enabled"
 msgstr "разрешен"
 
+msgid "end alternatives edit"
+msgstr ""
+
 msgid "end bouquet edit"
 msgstr "редактирането на букет завърши"
+
+msgid "end cut here"
+msgstr ""
 
 msgid "end favourites edit"
 msgstr "редактирането на предпочитани завърши"
@@ -4053,14 +6229,8 @@ msgstr "редактирането на предпочитани завърши"
 msgid "enigma2 and network"
 msgstr "enigma2 и мрежа"
 
-msgid "enter hidden network SSID"
-msgstr "Въведете SSID на скритата мрежа"
-
 msgid "equal to"
 msgstr "еднакъв с"
-
-msgid "exceeds dual layer medium!"
-msgstr "Надхвърля капацитета на двуслоен DVD!"
 
 msgid "exit DVD player or return to file browser"
 msgstr "изход от DVD плеър или връщане към файловия браузър"
@@ -4077,11 +6247,14 @@ msgstr "изход от настройките на nameserver"
 msgid "exit network adapter configuration"
 msgstr "изход от настройките на мрежовия адаптер"
 
-msgid "exit network adapter setup menu"
-msgstr "изход от настройките на мрежовия адаптер"
+msgid "exit network interface list"
+msgstr ""
 
-msgid "failed"
-msgstr "грешка"
+msgid "exit networkadapter setup menu"
+msgstr ""
+
+msgid "false"
+msgstr ""
 
 msgid "fileformats (BMP, PNG, JPG, GIF)"
 msgstr "Файлов формат (BMP, PNG, JPG, GIF)"
@@ -4092,6 +6265,9 @@ msgstr "Име на файл"
 msgid "fine-tune your display"
 msgstr "Фина настройка на дисплея"
 
+msgid "fixed"
+msgstr ""
+
 msgid "forward to the next chapter"
 msgstr "напред към следващата глава"
 
@@ -4100,6 +6276,9 @@ msgstr "свободни"
 
 msgid "free diskspace"
 msgstr "свободно място на диска"
+
+msgid "full transparency"
+msgstr ""
 
 msgid "go to deep standby"
 msgstr "изключи"
@@ -4116,17 +6295,11 @@ msgstr "зелен"
 msgid "hear radio..."
 msgstr "слушай радио..."
 
+msgid "height"
+msgstr ""
+
 msgid "help..."
 msgstr "помощ..."
-
-msgid "hidden network"
-msgstr "скрита мрежа"
-
-msgid "hidden..."
-msgstr "скрита..."
-
-msgid "hide extended description"
-msgstr "скрий разширеното описание"
 
 msgid "hide player"
 msgstr "скрий плеъра"
@@ -4134,17 +6307,20 @@ msgstr "скрий плеъра"
 msgid "horizontal"
 msgstr "хоризонтална"
 
-msgid "hour"
-msgstr "час"
-
-msgid "hours"
-msgstr "часове"
-
 msgid "immediate shutdown"
 msgstr "незабавно изключване"
 
+msgid "init module"
+msgstr ""
+
+msgid "init modules"
+msgstr ""
+
 msgid "insert mark here"
 msgstr "постави отметка тук"
+
+msgid "invalid type"
+msgstr ""
 
 msgid "jump back to the previous title"
 msgstr "обратно към предишното заглавие"
@@ -4173,6 +6349,24 @@ msgstr "ляв"
 msgid "length"
 msgstr "дължина"
 
+msgid "limit ..., aborting !"
+msgstr ""
+
+msgid "list of EPG views..."
+msgstr ""
+
+msgid "list style compact"
+msgstr ""
+
+msgid "list style compact with description"
+msgstr ""
+
+msgid "list style default"
+msgstr ""
+
+msgid "list style single line"
+msgstr ""
+
 msgid "load playlist"
 msgstr "зареди плейлист"
 
@@ -4188,20 +6382,17 @@ msgstr "ръчно"
 msgid "menu"
 msgstr "меню"
 
-msgid "menulist"
-msgstr "Меню"
-
 msgid "mins"
 msgstr "мин"
-
-msgid "minute"
-msgstr "минута"
 
 msgid "minutes"
 msgstr "минути"
 
 msgid "month"
 msgstr "месец"
+
+msgid "move PiP to main picture"
+msgstr ""
 
 msgid "move down to last entry"
 msgstr "премести надолу към последния запис"
@@ -4239,8 +6430,8 @@ msgstr "не е избеан CAId"
 msgid "no CI slots found"
 msgstr "няма открити CI слотве"
 
-msgid "no HDD found"
-msgstr "няма открит HDD"
+msgid "no Services/Providers selected"
+msgstr ""
 
 msgid "no module found"
 msgstr "няма открит модул"
@@ -4248,14 +6439,29 @@ msgstr "няма открит модул"
 msgid "no standby"
 msgstr "без готовност"
 
+msgid "no storage devices found"
+msgstr ""
+
 msgid "no timeout"
 msgstr "без прекъсване"
+
+msgid "no transparency"
+msgstr ""
 
 msgid "none"
 msgstr "никой"
 
+msgid "normal"
+msgstr ""
+
+msgid "not configured"
+msgstr ""
+
 msgid "not locked"
 msgstr "не е заключен"
+
+msgid "not supported"
+msgstr ""
 
 msgid "not used"
 msgstr "не се използва"
@@ -4263,11 +6469,23 @@ msgstr "не се използва"
 msgid "nothing connected"
 msgstr "нищо не е свързано"
 
+msgid "of a DUAL layer medium used."
+msgstr ""
+
+msgid "of a SINGLE layer medium used."
+msgstr ""
+
 msgid "off"
 msgstr "изкл."
 
+msgid "offset is"
+msgstr ""
+
 msgid "on"
 msgstr "вкл."
+
+msgid "on READ ONLY medium."
+msgstr ""
 
 msgid "once"
 msgstr "веднъж"
@@ -4284,8 +6502,29 @@ msgstr "отвори списъка с канали(down)"
 msgid "open servicelist(up)"
 msgstr "отвори списъка с канали(up)"
 
+msgid "original"
+msgstr ""
+
+msgid "pass"
+msgstr ""
+
 msgid "pause"
 msgstr "пауза"
+
+msgid "play as picture in picture"
+msgstr ""
+
+msgid "play entry"
+msgstr ""
+
+msgid "play from next mark or playlist entry"
+msgstr ""
+
+msgid "play from previous mark or playlist entry"
+msgstr ""
+
+msgid "play in mainwindow"
+msgstr ""
 
 msgid "please press OK when ready"
 msgstr "моля натиснете ОК когато е готово"
@@ -4307,6 +6546,12 @@ msgstr "запис..."
 
 msgid "red"
 msgstr "червен"
+
+msgid "relative"
+msgstr ""
+
+msgid "remove a nameserver entry"
+msgstr ""
 
 msgid "remove after this position"
 msgstr "премахни след тази позиция"
@@ -4347,6 +6592,9 @@ msgstr "повтори плейлиста"
 msgid "repeated"
 msgstr "повторен"
 
+msgid "reverse by date"
+msgstr ""
+
 msgid "rewind to the previous chapter"
 msgstr "превърти до предишната глава"
 
@@ -4365,14 +6613,12 @@ msgstr "запис плейлист при изход"
 msgid "scan done!"
 msgstr "сканирането завърши!"
 
+#, python-format
 msgid "scan in progress - %d%% done!"
 msgstr "сканиране - %d%% завършени!"
 
 msgid "scan state"
 msgstr "състояние сканиране"
-
-msgid "second"
-msgstr "втори"
 
 msgid "second cable of motorized LNB"
 msgstr "втори кабелен или моторизиран LNB"
@@ -4383,17 +6629,11 @@ msgstr "секунди"
 msgid "select"
 msgstr "избор"
 
-msgid "select .NFI flash file"
-msgstr "избор .NFI флаш файл"
-
 msgid "select CAId"
 msgstr "избор CAId"
 
 msgid "select CAId's"
 msgstr "избор CAId's"
-
-msgid "select image from server"
-msgstr "избор имидж от сървър"
 
 msgid "select interface"
 msgstr "избор интерфейс"
@@ -4404,11 +6644,17 @@ msgstr "избор menu entry"
 msgid "select movie"
 msgstr "избор филм"
 
-msgid "service pin"
-msgstr "ПИН канали"
+msgid "select the movie path"
+msgstr ""
 
-msgid "setup pin"
-msgstr "ПИН настройки"
+msgid "service PIN"
+msgstr ""
+
+msgid "set as startup service"
+msgstr ""
+
+msgid "setup PIN"
+msgstr ""
 
 msgid "show DVD main menu"
 msgstr "покажи главното DVD mеню"
@@ -4419,8 +6665,8 @@ msgstr "покажи EPG..."
 msgid "show Infoline"
 msgstr "покажи инфолиния"
 
-msgid "show all"
-msgstr "покажи всичко"
+msgid "show all tags"
+msgstr ""
 
 msgid "show alternatives"
 msgstr "покажи алтернативи"
@@ -4431,11 +6677,8 @@ msgstr "детайли на предаването"
 msgid "show extended description"
 msgstr "покажи разширено описание"
 
-msgid "show first selected tag"
-msgstr "покажи първия избран tag"
-
-msgid "show second selected tag"
-msgstr "покажи втория избран tag"
+msgid "show mediaplayer on mainmenu"
+msgstr ""
 
 msgid "show shutdown menu"
 msgstr "покажи меню за изкл."
@@ -4449,8 +6692,14 @@ msgstr "покажи tag меню"
 msgid "show transponder info"
 msgstr "покажи инфо за транспондер"
 
+msgid "shuffle"
+msgstr ""
+
 msgid "shuffle playlist"
 msgstr "разбъркано пускане"
+
+msgid "shut down"
+msgstr ""
 
 msgid "shutdown"
 msgstr "изключване"
@@ -4470,8 +6719,17 @@ msgstr "прескочи напред"
 msgid "skip forward (enter time)"
 msgstr "прескочи напред (въведи време)"
 
+msgid "slide picture in loop"
+msgstr ""
+
 msgid "sort by date"
 msgstr "подреди по дата"
+
+msgid "sorting of playlists"
+msgstr ""
+
+msgid "special characters"
+msgstr ""
 
 msgid "standard"
 msgstr "стандарт"
@@ -4488,17 +6746,26 @@ msgstr "стартова директория"
 msgid "start timeshift"
 msgstr "старт таймшифт"
 
+msgid "stepsize"
+msgstr ""
+
 msgid "stereo"
 msgstr "стерео"
 
 msgid "stop PiP"
 msgstr "спри PiP"
 
+msgid "stop entry"
+msgstr ""
+
 msgid "stop recording"
 msgstr "спри запис"
 
 msgid "stop timeshift"
 msgstr "спри таймшифт"
+
+msgid "stop using as startup service"
+msgstr ""
 
 msgid "swap PiP and main picture"
 msgstr "смяна PiP и основна картина"
@@ -4539,8 +6806,14 @@ msgstr "прикрепи разделяща отметка на текущата
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "прикрепи време, глава, аудио, субтитри инфо"
 
-msgid "unavailable"
-msgstr "не е наличен"
+msgid "top"
+msgstr ""
+
+msgid "true"
+msgstr ""
+
+msgid "tuner is not supported"
+msgstr ""
 
 msgid "unconfirmed"
 msgstr "непотвърден"
@@ -4551,8 +6824,8 @@ msgstr "непознат"
 msgid "unknown service"
 msgstr "непознат канал"
 
-msgid "until restart"
-msgstr "до рестарт"
+msgid "until standby/restart"
+msgstr ""
 
 msgid "user defined"
 msgstr "потребителска"
@@ -4581,8 +6854,20 @@ msgstr "беше премахнат успешно"
 msgid "weekly"
 msgstr "седмично"
 
+msgid "west"
+msgstr ""
+
+msgid "white"
+msgstr ""
+
 msgid "whitelist"
 msgstr "бял лист"
+
+msgid "width"
+msgstr ""
+
+msgid "wireless network interface"
+msgstr ""
 
 msgid "working"
 msgstr "работи"
@@ -4596,8 +6881,578 @@ msgstr "да"
 msgid "yes (keep feeds)"
 msgstr "да (запази фийдове)"
 
+msgid ""
+"your dreambox might be unusable now. Please consult the manual for further "
+"assistance before rebooting your dreambox."
+msgstr ""
+
 msgid "zap"
 msgstr "превключи"
 
 msgid "zapped"
 msgstr "превключен"
+
+#~ msgid ""
+#~ "\n"
+#~ "Scan for local packages and install them."
+#~ msgstr ""
+#~ "\n"
+#~ "Сканиране за местни пакети и инсталация."
+
+#~ msgid "* Only available when entering hidden SSID or network key"
+#~ msgstr "* На разположение при въвеждане на скрит SSID или мрежов ключ."
+
+#~ msgid ".NFI Download failed:"
+#~ msgstr ".NFI Неуспешно изтегляне:"
+
+#~ msgid ""
+#~ ".NFI file passed md5sum signature check. You can safely flash this image!"
+#~ msgstr ""
+#~ ".NFI файла премина проверката. Можете безопасно да заредите този имидж!"
+
+#~ msgid "30 minutes"
+#~ msgstr "30 минути"
+
+#~ msgid "5 minutes"
+#~ msgstr "5 минути"
+
+#~ msgid "60 minutes"
+#~ msgstr "60 минути"
+
+#~ msgid "AC3 default"
+#~ msgstr "AC3 по подразбиране"
+
+#~ msgid "Advanced"
+#~ msgstr "Експертни"
+
+#~ msgid ""
+#~ "After the start wizard is completed, you need to protect single services. "
+#~ "Refer to your Dreambox's manual on how to do that."
+#~ msgstr ""
+#~ "След завършване на стартовия помощник, вие трябва да protect single "
+#~ "services. Погледнете във вашата инструкция за Clarke-Tech как да го "
+#~ "направите."
+
+#~ msgid "Backup is done. Please press OK to see the result."
+#~ msgstr "Backup завършен. Натиснете OK за да видите резултата."
+
+#~ msgid "Burn to DVD..."
+#~ msgstr "Запиши на DVD..."
+
+#~ msgid "Catalan"
+#~ msgstr "Каталонски"
+
+#~ msgid "Change dir."
+#~ msgstr "Смяна дир."
+
+#~ msgid "Change service pin"
+#~ msgstr "Смяна ПИН на услуги"
+
+#~ msgid "Change service pins"
+#~ msgstr "Смяна ПИН на услуги"
+
+#~ msgid "Change setup pin"
+#~ msgstr "Смяна ПИН за настройки"
+
+#~ msgid "Choose source"
+#~ msgstr "Избор източник"
+
+#~ msgid "Config"
+#~ msgstr "Конфиг"
+
+#~ msgid "Connected to Fritz!Box!"
+#~ msgstr "Свързан с Fritz!Box!"
+
+#~ msgid "Connecting to Fritz!Box..."
+#~ msgstr "Свързване с Fritz!Box..."
+
+#~ msgid ""
+#~ "Connection to Fritz!Box\n"
+#~ "failed! (%s)\n"
+#~ "retrying..."
+#~ msgstr ""
+#~ "Връзката с Fritz!Box\n"
+#~ "пропадна! (%s)\n"
+#~ "нов опит..."
+
+#~ msgid ""
+#~ "Crashlogs found!\n"
+#~ "Send them to Dream Multimedia ?"
+#~ msgstr ""
+#~ "Открит crashlog!\n"
+#~ "Изпращане до Dream Multimedia?"
+
+#~ msgid "Create movie folder failed"
+#~ msgstr "Грешка при създаване папка за филми"
+
+#~ msgid "Creating partition failed"
+#~ msgstr "Грешка при създаване на партишън"
+
+#~ msgid "Default services lists"
+#~ msgstr "Стандартни списъци с канали"
+
+#~ msgid "Default settings"
+#~ msgstr "Стандартни Настройки"
+
+#~ msgid "Delay"
+#~ msgstr "Забавяне"
+
+#~ msgid "Destination directory"
+#~ msgstr "Назначена директория"
+
+#~ msgid "Disable Subtitles"
+#~ msgstr "Спри Субтитри"
+
+#~ msgid ""
+#~ "Do you really want to initialize the harddisk?\n"
+#~ "All data on the disk will be lost!"
+#~ msgstr ""
+#~ "Наистина ли искате да инициализирате твърдия диск?\n"
+#~ "Всички данни на диска ще бъдат изтрити!"
+
+#~ msgid "Do you want to enable the parental control feature on your Dreambox?"
+#~ msgstr ""
+#~ "Искате ли да включа опцията за родителски контрол на вашия Clarke-Tech?"
+
+#~ msgid "Do you want to install default sat lists?"
+#~ msgstr "Да инсталирм ли стандартните листи с канали?"
+
+#~ msgid "Done - Installed or upgraded %d packages with %d errors"
+#~ msgstr "Готово - Инсталирани или ъпгрейднати %d пакета с %d грешки"
+
+#~ msgid "Encrypted: %s"
+#~ msgstr "Кодиран: %s"
+
+#~ msgid "Encryption Type"
+#~ msgstr "Тип Кодировка"
+
+#~ msgid "Enter WLAN network name/SSID:"
+#~ msgstr "Въведете името/SSID на WLAN:"
+
+#~ msgid "Enter WLAN passphrase/key:"
+#~ msgstr "Въведете паролата/ключа за WLAN:"
+
+#~ msgid "Everything is fine"
+#~ msgstr "Всичко е ОК"
+
+#~ msgid "Filesystem Check..."
+#~ msgstr "Проверка файлова с-ма..."
+
+#~ msgid "Filesystem contains uncorrectable errors"
+#~ msgstr "Файловата система съдържа непоправими грешки"
+
+#~ msgid "Frisian"
+#~ msgstr "Фризийски"
+
+#~ msgid "Fsck failed"
+#~ msgstr "Fsck грешка"
+
+#~ msgid "Function not yet implemented"
+#~ msgstr "Функцията не е изпълнима"
+
+#~ msgid "Hidden network SSID"
+#~ msgstr "Скрит мрежов SSID"
+
+#~ msgid "Icelandic"
+#~ msgstr "Исландски"
+
+#~ msgid "If you can see this page, please press OK."
+#~ msgstr "Ако виждате тази страница, моля натиснете ОК."
+
+#~ msgid "Image-Upgrade"
+#~ msgstr "Ъпгрейд-Имидж"
+
+#~ msgid "Initialization..."
+#~ msgstr "Инициализация..."
+
+#~ msgid "Initializing Harddisk..."
+#~ msgstr "Инициализиране Твърд диск..."
+
+#~ msgid "Install local IPKG"
+#~ msgstr "Инсталирай местен IPKG"
+
+#~ msgid "Install software updates..."
+#~ msgstr "Инсталирай софтуерна актуализация..."
+
+#~ msgid ""
+#~ "Install/\n"
+#~ "Remove"
+#~ msgstr ""
+#~ "Инсталиране/\n"
+#~ "Премахване"
+
+#~ msgid "Invert display"
+#~ msgstr "Обръщане дисплей"
+
+#~ msgid "Mkfs failed"
+#~ msgstr "Mkfs грешка"
+
+#~ msgid "Mount failed"
+#~ msgstr "Грешка при маунт"
+
+#~ msgid "Network SSID"
+#~ msgstr "Мрежов SSID"
+
+#~ msgid "Network..."
+#~ msgstr "Мрежа..."
+
+#~ msgid "New pin"
+#~ msgstr "Нов ПИН"
+
+#~ msgid "No 50 Hz, sorry. :("
+#~ msgstr "Няма 50 Hz, съжалявам"
+
+#~ msgid "No Networks found"
+#~ msgstr "Няма открита Мрежа"
+
+#~ msgid "No useable USB stick found"
+#~ msgstr "Няма открит работещ USB стик"
+
+#~ msgid "No wireless networks found! Please refresh."
+#~ msgstr "Не са открити безжични мрежи! Моля обновете."
+
+#~ msgid "No, just start my Dreambox"
+#~ msgstr "Не, просто стартирай Clarke-Tech"
+
+#~ msgid "Package details for: "
+#~ msgstr "Детайли за пакет: "
+
+#~ msgid "Page"
+#~ msgstr "Страница"
+
+#~ msgid "Please Reboot"
+#~ msgstr "Моля Рестартирайте"
+
+#~ msgid "Please enter the old pin code"
+#~ msgstr "Моля въведете стария ПИН код"
+
+#~ msgid "Please select target directory or medium"
+#~ msgstr "Моля изберете директория или устройство"
+
+#~ msgid "Plugin manager"
+#~ msgstr "Плъгин manager"
+
+#~ msgid "Polarity"
+#~ msgstr "Поляризация"
+
+#~ msgid "Positioner fine movement"
+#~ msgstr "Фино задвижване на позиционера"
+
+#~ msgid "Positioner movement"
+#~ msgstr "Задвижване на позиционера"
+
+#~ msgid "Positioner storage"
+#~ msgstr "Позиционер запис"
+
+#~ msgid "Press OK to view full changelog"
+#~ msgstr "OK -> Вижте пълния changelog"
+
+#~ msgid "RC Menu"
+#~ msgstr "RC Меню"
+
+#~ msgid "Reenter new pin"
+#~ msgstr "Въведете отново новия ПИН"
+
+#~ msgid "Refresh"
+#~ msgstr "Обновяване"
+
+#~ msgid "Remove the broken .NFI file?"
+#~ msgstr "Премахни повредения .NFI файл?"
+
+#~ msgid "Remove the incomplete .NFI file?"
+#~ msgstr "Премахни непълния .NFI файл?"
+
+#~ msgid "Repeat"
+#~ msgstr "Повтори"
+
+#~ msgid "Restart GUI"
+#~ msgstr "Рестарт GUI"
+
+#~ msgid "Restore backups..."
+#~ msgstr "Възстановяване backups..."
+
+#~ msgid ""
+#~ "Restoring the settings is done. Please press OK to activate the restored "
+#~ "settings now."
+#~ msgstr ""
+#~ "Завърши възстановяването. Натиснете OK за активиране на възстановените "
+#~ "настройки."
+
+#~ msgid "Return to file browser"
+#~ msgstr "Връщане към файловия браузър"
+
+#~ msgid "Running"
+#~ msgstr "Работят"
+
+#~ msgid "Satteliteequipment"
+#~ msgstr "Сателитно оборудване"
+
+#~ msgid ""
+#~ "Scan your network for wireless Access Points and connect to them using "
+#~ "your WLAN USB Stick\n"
+#~ msgstr ""
+#~ "Търсене за безжични Точки за Достп и свързването към тях посредством "
+#~ "вашия WLAN USB Стик\n"
+
+#~ msgid "Select audio mode"
+#~ msgstr "Изберете аудио режим"
+
+#~ msgid "Select files for backup. Currently selected:\n"
+#~ msgstr "Изберете файлове за backup. В момента избрани:\n"
+
+#~ msgid "Select files/folders to backup..."
+#~ msgstr "Изберете файлове/папки за backup..."
+
+#~ msgid "Select image"
+#~ msgstr "Изберете имидж"
+
+#~ msgid "Select video input"
+#~ msgstr "Изберете видео вход"
+
+#~ msgid "Set as default Interface"
+#~ msgstr "Направи като основен Интерфейс"
+
+#~ msgid "Set limits"
+#~ msgstr "Поставяне лимити"
+
+#~ msgid "Show blinking clock in display during recording"
+#~ msgstr "Показвай мигащ часовник на дисплея по време на запис"
+
+#~ msgid "Slovakian"
+#~ msgstr "Словашки"
+
+#~ msgid "Somewhere else"
+#~ msgstr "Някъде другаде"
+
+#~ msgid "Stereo"
+#~ msgstr "Стерео"
+
+#~ msgid ""
+#~ "The USB stick is now bootable. Do you want to download the latest image "
+#~ "from the feed server and save it on the stick?"
+#~ msgstr ""
+#~ "USB стика вече е bootable. Искате ли да изтеглите последния имидж от "
+#~ "сървъра и да го запазите на стика?"
+
+#~ msgid "The pin code has been changed successfully."
+#~ msgstr "ПИН кодът беше променен успешно."
+
+#~ msgid "The pin codes you entered are different."
+#~ msgstr "Въведеният ПИН код е различен."
+
+#~ msgid "This .NFI file does not contain a valid %s image!"
+#~ msgstr "Този .nfi файл не съдържа валиден %s имидж!"
+
+#~ msgid ""
+#~ "This .NFI file does not have a md5sum signature and is not guaranteed to "
+#~ "work. Do you really want to burn this image to flash memory?"
+#~ msgstr ""
+#~ "Този .nfi файл не съдържа md5 подпис и коректната му работа не "
+#~ "егарантирана. Наистина ли искате да запишете този имидж на flash паметта "
+
+#~ msgid ""
+#~ "This .NFI file has a valid md5 signature. Continue programming this image "
+#~ "to flash memory?"
+#~ msgstr ""
+#~ "Този .nfi файл съдържа валиден md5 подпис. Да продължа ли с инсталирането "
+#~ "на този имидж във flash паметта?"
+
+#~ msgid "This Dreambox can't decode %s video streams!"
+#~ msgstr "Този Clarke-Tech не може да декодира %s видео стриймове!"
+
+#~ msgid "This is unsupported at the moment."
+#~ msgstr "Това не се поддържа в момента."
+
+#~ msgid "Timeshift path..."
+#~ msgstr "Път за Таймшифт..."
+
+#~ msgid ""
+#~ "To update your Dreambox firmware, please follow these steps:\n"
+#~ "1) Turn off your box with the rear power switch and plug in the bootable "
+#~ "USB stick.\n"
+#~ "2) Turn mains back on and hold the DOWN button on the front panel pressed "
+#~ "for 10 seconds.\n"
+#~ "3) Wait for bootup and follow instructions of the wizard."
+#~ msgstr ""
+#~ "За да обновите firmware на вашия Clarke-Tech, моля следвайте тези "
+#~ "стъпки:\n"
+#~ "1) Изключете вашия Clarke-Tech от задния бутон за захранване и поставете "
+#~ "bootable USB стик.\n"
+#~ "2) Включете отново приемника и задръжте POWER бутон на предния панел "
+#~ "натиснат за 10 секунди.\n"
+#~ "3) Изчакайте зареждането и следвайте инструкциите на помощника."
+
+#~ msgid "Ukrainian"
+#~ msgstr "Украински"
+
+#~ msgid ""
+#~ "Unable to complete filesystem check.\n"
+#~ "Error: "
+#~ msgstr ""
+#~ "Не мога да завърша проверката на файловата система.\n"
+#~ "Грешка: "
+
+#~ msgid ""
+#~ "Unable to initialize harddisk.\n"
+#~ "Error: "
+#~ msgstr ""
+#~ "Не мога да инициализирам твърдия диск.\n"
+#~ "Грешка: "
+
+#~ msgid "Unmount failed"
+#~ msgstr "Unmount грешка!"
+
+#~ msgid "View list of available Satteliteequipment extensions."
+#~ msgstr "Списък с наличните Satteliteequipment extensions."
+
+#~ msgid ""
+#~ "We will now test if your TV can also display this resolution at 50hz. If "
+#~ "your screen goes black, wait 20 seconds and it will switch back to 60hz.\n"
+#~ "Please press OK to begin."
+#~ msgstr ""
+#~ "Сега ще тестваме дали вашия ТВ може да показва тази резолюция на 50hz. "
+#~ "Ако вашия екран остане черен, изчакайте 20 секунди и ще се върне пак на "
+#~ "60hz.\n"
+#~ "Моля натиснете OK за начало на теста."
+
+#~ msgid "Wireless"
+#~ msgstr "Безжична"
+
+#~ msgid "Wireless Network State"
+#~ msgstr "Статус на безжичната мрежа"
+
+#~ msgid "Writing NFI image file to flash completed"
+#~ msgstr "Зареждането на .nfi файла във флаша завърши"
+
+#~ msgid ""
+#~ "You do not seem to have a harddisk in your Dreambox. So backing up to a "
+#~ "harddisk is not an option for you."
+#~ msgstr ""
+#~ "Изглежда нямате твърд диск във вашия Clarke-Tech. Така, че backing up на "
+#~ "твърд диск не е опция за вас."
+
+#~ msgid ""
+#~ "You have chosen to backup to an usb drive. Better backup to the "
+#~ "harddisk!\n"
+#~ "Please press OK to start the backup now."
+#~ msgstr ""
+#~ "Вие избрахте backup на usb устройство. По добре backup на твърд диск!\n"
+#~ "Моля натиснете ОК за да започне backup сега."
+
+#~ msgid ""
+#~ "You have chosen to backup to your harddisk. Please press OK to start the "
+#~ "backup now."
+#~ msgstr ""
+#~ "Вие избрахте backup на вашия твърд диск. Моля натиснете ОК за да започне "
+#~ "backup сега."
+
+#~ msgid ""
+#~ "You need to set a pin code and hide it from your children.\n"
+#~ "\n"
+#~ "Do you want to set the pin now?"
+#~ msgstr ""
+#~ "Трябва да въведете ПИН код и да го скриете от вашите деца.\n"
+#~ "\n"
+#~ "Искате ли да въведете ПИН сега?"
+
+#~ msgid "Your Dreambox is shutting down. Please stand by..."
+#~ msgstr "Вашия Clarke-Tech се изключва. Моля изчакайте..."
+
+#~ msgid ""
+#~ "Your Dreambox isn't connected to the internet properly. Please check it "
+#~ "and try again."
+#~ msgstr ""
+#~ "Вашият Clarke-Tech не е свързан правилно с интернет. Моля проверете и "
+#~ "опитайте отново."
+
+#~ msgid "Your TV works with 50 Hz. Good!"
+#~ msgstr "Вашия ТВ работи с 50 Hz. Браво!"
+
+#~ msgid ""
+#~ "Your network configuration has been activated.\n"
+#~ "A second configured interface has been found.\n"
+#~ "\n"
+#~ "Do you want to disable the second network interface?"
+#~ msgstr ""
+#~ "Вашата мрежова конфигурация е активирана.\n"
+#~ "Втора конфигурирана мрежа бе открита.\n"
+#~ "\n"
+#~ "Искате ли да спрете втория мрежов интерфейс?"
+
+#~ msgid "assigned CAIds"
+#~ msgstr "определен CAIds"
+
+#~ msgid "assigned Services/Provider"
+#~ msgstr "определен Канал/Провайдър"
+
+#~ msgid "choose destination directory"
+#~ msgstr "изберете крайна директория"
+
+#~ msgid "delete"
+#~ msgstr "изтрий"
+
+#~ msgid "enter hidden network SSID"
+#~ msgstr "Въведете SSID на скритата мрежа"
+
+#~ msgid "exceeds dual layer medium!"
+#~ msgstr "Надхвърля капацитета на двуслоен DVD!"
+
+#~ msgid "exit network adapter setup menu"
+#~ msgstr "изход от настройките на мрежовия адаптер"
+
+#~ msgid "failed"
+#~ msgstr "грешка"
+
+#~ msgid "hidden network"
+#~ msgstr "скрита мрежа"
+
+#~ msgid "hidden..."
+#~ msgstr "скрита..."
+
+#~ msgid "hide extended description"
+#~ msgstr "скрий разширеното описание"
+
+#~ msgid "hour"
+#~ msgstr "час"
+
+#~ msgid "hours"
+#~ msgstr "часове"
+
+#~ msgid "menulist"
+#~ msgstr "Меню"
+
+#~ msgid "minute"
+#~ msgstr "минута"
+
+#~ msgid "no HDD found"
+#~ msgstr "няма открит HDD"
+
+#~ msgid "second"
+#~ msgstr "втори"
+
+#~ msgid "select .NFI flash file"
+#~ msgstr "избор .NFI флаш файл"
+
+#~ msgid "select image from server"
+#~ msgstr "избор имидж от сървър"
+
+#~ msgid "service pin"
+#~ msgstr "ПИН канали"
+
+#~ msgid "setup pin"
+#~ msgstr "ПИН настройки"
+
+#~ msgid "show all"
+#~ msgstr "покажи всичко"
+
+#~ msgid "show first selected tag"
+#~ msgstr "покажи първия избран tag"
+
+#~ msgid "show second selected tag"
+#~ msgstr "покажи втория избран tag"
+
+#~ msgid "unavailable"
+#~ msgstr "не е наличен"
+
+#~ msgid "until restart"
+#~ msgstr "до рестарт"

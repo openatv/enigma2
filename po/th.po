@@ -7,10 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1-En-Th\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-04 15:25+0100\n"
+"POT-Creation-Date: 2012-03-08 20:34+0100\n"
 "PO-Revision-Date: 2010-04-08 18:13+0700\n"
 "Last-Translator: Tony - Thaidreambox\n"
 "Language-Team: Tony @ Thai Dreambox <tonyboyth@gmail.com>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -45,6 +46,11 @@ msgid ""
 msgstr ""
 "\n"
 "แก้ไขที่อยู่เพื่อโหลดส่วนปรับปรุง"
+
+msgid ""
+"\n"
+"Manage extensions or plugins for your Dreambox"
+msgstr ""
 
 msgid ""
 "\n"
@@ -83,10 +89,8 @@ msgstr ""
 
 msgid ""
 "\n"
-"Scan for local packages and install them."
+"Scan for local extensions and install them."
 msgstr ""
-"\n"
-"ค้นหาและติดตั้งส่วนประกอบ"
 
 msgid ""
 "\n"
@@ -111,11 +115,20 @@ msgstr ""
 "\n"
 "ตรวจดู ติดตั้งหรือลบส่วนประกอบ"
 
-msgid " "
-msgstr " "
+msgid " (PiP)"
+msgstr ""
+
+msgid " (Radio)"
+msgstr ""
+
+msgid " (TV)"
+msgstr ""
 
 msgid " extensions."
 msgstr " ส่วนเพิ่มเติม"
+
+msgid " ms"
+msgstr ""
 
 msgid " packages selected."
 msgstr " ส่วนประกอบที่เลือกไว้"
@@ -150,6 +163,12 @@ msgstr "#bab329"
 msgid "#f23d21"
 msgstr "#f23d21"
 
+msgid "#ff0000"
+msgstr ""
+
+msgid "#ffff7f"
+msgstr ""
+
 msgid "#ffffff"
 msgstr "#ffffff"
 
@@ -160,6 +179,12 @@ msgid "%H:%M"
 msgstr "%H:%M"
 
 #, python-format
+msgid "%d hour"
+msgid_plural "%d hours"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
 msgid "%d jobs are running in the background!"
 msgstr "กำลังมีงานแบบฉากหลัง %d งาน"
 
@@ -168,19 +193,27 @@ msgid "%d min"
 msgstr "%d นาที"
 
 #, python-format
+msgid "%d minute"
+msgid_plural "%d minutes"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d minutes"
+msgstr ""
+
+#, python-format
+msgid "%d second"
+msgid_plural "%d seconds"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
 msgid "%d services found!"
 msgstr "บริการนี้ %d ไม่มี!"
 
 msgid "%d.%B %Y"
 msgstr "%d.%B %Y"
-
-#, python-format
-msgid ""
-"%s\n"
-"(%s, %d MB free)"
-msgstr ""
-"%s\n"
-"(%s, %d MB ว่างอยู่)"
 
 #, python-format
 msgid "%s (%s)\n"
@@ -197,15 +230,6 @@ msgstr "(เมนูเสียงของดีวีดี)"
 
 msgid "* Only available if more than one interface is active."
 msgstr "* ต้องมีอย่างน้อย 1 อินเตอร์เฟซใช้งานอยู่"
-
-msgid "* Only available when entering hidden SSID or network key"
-msgstr "* ต้องป้อน SSID หรือคีย์ของเครือข่าย"
-
-msgid ".NFI Download failed:"
-msgstr "โหลดไฟล์ .NFI ล้มเหลว"
-
-msgid ".NFI file passed md5sum signature check. You can safely flash this image!"
-msgstr "นำไปใช้ได้ ไฟล์ .NFI นี้ผ่านตรวจสอบด้วย MD5 แล้ว"
 
 msgid "/usr/share/enigma2 directory"
 msgstr "/usr/share/enigma2 โฟล์เดอร์"
@@ -264,8 +288,8 @@ msgstr "2"
 msgid "3"
 msgstr "3"
 
-msgid "30 minutes"
-msgstr "30 นาที"
+msgid "3d mode"
+msgstr ""
 
 msgid "4"
 msgstr "4"
@@ -282,17 +306,8 @@ msgstr "4:3 PanScan"
 msgid "5"
 msgstr "5"
 
-msgid "5 minutes"
-msgstr "5 นาที"
-
-msgid "50 Hz"
-msgstr "50 Hz"
-
 msgid "6"
 msgstr "6"
-
-msgid "60 minutes"
-msgstr "60 นาที"
 
 msgid "7"
 msgstr "7"
@@ -302,6 +317,15 @@ msgstr "8"
 
 msgid "9"
 msgstr "9"
+
+msgid "<Current movielist location>"
+msgstr ""
+
+msgid "<Default movie location>"
+msgstr ""
+
+msgid "<Last timer location>"
+msgstr ""
 
 msgid "<unknown>"
 msgstr "<ไม่ทราบ>"
@@ -319,6 +343,9 @@ msgid ""
 msgstr ""
 "ไฟล์เก็บค่า (%s) ถูกแก้ไขช่วงติดตั้ง\n"
 "ต้องการใช้เวอร์ชั่นที่ถูกแก้ไขหรือไม่?"
+
+msgid "A demo plugin for TPM usage."
+msgstr ""
 
 msgid ""
 "A finished record timer wants to set your\n"
@@ -352,15 +379,33 @@ msgstr ""
 "กำลังบันทึกรายการอยู่\n"
 "ท่านต้องการที่จะทำอะไร?"
 
-msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
+msgid ""
+"A recording is currently running. Please stop the recording before trying to "
+"configure the positioner."
 msgstr "กำลังบันทึกรายการอยู่ ให้หยุดการบันทึกก่อนตั้งค่าตัวขับจาน"
 
-msgid "A recording is currently running. Please stop the recording before trying to start the satfinder."
+msgid ""
+"A recording is currently running. Please stop the recording before trying to "
+"scan."
+msgstr ""
+
+msgid ""
+"A recording is currently running. Please stop the recording before trying to "
+"start the satfinder."
 msgstr "กำลังบันทึกรายอยู่ หยุดการบันทึกก่อนค้นหาดาวเทียม"
 
 #, python-format
 msgid "A required tool (%s) was not found."
 msgstr "ไม่พบเครื่องมือที่ต้องใช้ (%s)"
+
+msgid "A search for available updates is currently in progress."
+msgstr ""
+
+msgid ""
+"A second configured interface has been found.\n"
+"\n"
+"Do you want to disable the second network interface?"
+msgstr ""
 
 msgid ""
 "A sleep timer wants to set your\n"
@@ -395,11 +440,11 @@ msgstr "AA"
 msgid "AB"
 msgstr "AB"
 
-msgid "AC3 default"
-msgstr "ให้ AC3 เป็นค่าเริ่มต้น"
-
 msgid "AC3 downmix"
 msgstr "แปลงเสียง AC3"
+
+msgid "AC3/DTS downmix"
+msgstr ""
 
 msgid "Abort"
 msgstr "ยกเลิก"
@@ -415,6 +460,9 @@ msgstr "Accesspoint:"
 
 msgid "Action on long powerbutton press"
 msgstr "เมื่อกดปุ่ม Power ค้างไว้ให้"
+
+msgid "Action on short powerbutton press"
+msgstr ""
 
 msgid "Action:"
 msgstr "แอคชั่น:"
@@ -458,7 +506,12 @@ msgstr "เพิ่มเข้ากลุ่ม (Bouquet)"
 msgid "Add to favourites"
 msgstr "เพิ่มเข้ารายการโปรด (Favourites)"
 
-msgid "Adds enigma2 settings and dreambox model informations like SN, rev... if enabled."
+msgid "Add/Remove timer for current event"
+msgstr ""
+
+msgid ""
+"Adds enigma2 settings and dreambox model informations like SN, rev... if "
+"enabled."
 msgstr "เติมข้อมูลการตั้งค่า รุ่นของดรีมบอกซ์ เช่น หมายเลขเครื่อง ชุดแก้ไจ ถ้าต้องการ"
 
 msgid "Adds network configuration if enabled."
@@ -467,14 +520,29 @@ msgstr "ตั้งค่าเครือข่าย ถ้าจะใช�
 msgid "Adds wlan configuration if enabled."
 msgstr "ตั้งค่า WLAN ถ้าจะใช้งาน"
 
-msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
-msgstr "ตั้งค่าสีเพื่อแสดงความต่างของสี แต่ยังคงมีความอิ่มตัวอยู่ ถ้าพอใจกับการตั้งค่านี้ให้กดปุ่ม OK เพื่อออกจากตั้งค่าหรือกดปุ่มตัวเลขเพื่อตั้งค่าส่วนอื่นๆ ของหน้าจอ"
+msgid "Adjust 3D settings"
+msgstr ""
 
-msgid "Advanced"
-msgstr "ขั้นสูง"
+msgid "Adjust HDMI CEC settings"
+msgstr ""
+
+msgid ""
+"Adjust the color settings so that all the color shades are distinguishable, "
+"but appear as saturated as possible. If you are happy with the result, press "
+"OK to close the video fine-tuning, or use the number keys to select other "
+"test screens."
+msgstr ""
+"ตั้งค่าสีเพื่อแสดงความต่างของสี แต่ยังคงมีความอิ่มตัวอยู่ ถ้าพอใจกับการตั้งค่านี้ให้กดปุ่ม OK "
+"เพื่อออกจากตั้งค่าหรือกดปุ่มตัวเลขเพื่อตั้งค่าส่วนอื่นๆ ของหน้าจอ"
 
 msgid "Advanced Options"
 msgstr "ตัวเลือกขั้นสูง"
+
+msgid "Advanced Software"
+msgstr ""
+
+msgid "Advanced Software Plugin"
+msgstr ""
 
 msgid "Advanced Video Enhancement Setup"
 msgstr "ตั้งค่าตัวปรับภาพวิดีโอแบบขั้นสูง"
@@ -488,7 +556,12 @@ msgstr "นำข้อมูลกลับมาใช้แบบขั้น
 msgid "After event"
 msgstr "หลังจากจบรายการ"
 
-msgid "After the start wizard is completed, you need to protect single services. Refer to your dreambox's manual on how to do that."
+msgid "After pressing OK, please wait!"
+msgstr ""
+
+msgid ""
+"After the start wizard is completed, you need to protect single services. "
+"Refer to your dreambox's manual on how to do that."
 msgstr "เมื่อจบการทำงานของตัวช่วย ท่านต้องเปิดส่วนป้องกันบริการ อ่านเพิ่มเติมจากคู่มือดรีมบอกซ์"
 
 msgid "Album"
@@ -500,6 +573,12 @@ msgstr "ทั้งหมด"
 msgid "All Satellites"
 msgstr "ดาวเทียมทั้งหมด"
 
+msgid "Allow Subtitle equals Audio mask"
+msgstr ""
+
+msgid "Allow hearing impaired subtitles"
+msgstr ""
+
 msgid "Alpha"
 msgstr "อัลฟ่า"
 
@@ -508,6 +587,9 @@ msgstr "โหมดวิทยุแบบทางเลือก"
 
 msgid "Alternative services tuner priority"
 msgstr "ลำดับของ Tuner เพื่อใช้งาน"
+
+msgid "Always ask"
+msgstr ""
 
 msgid "Always ask before sending"
 msgstr "ถามผู้ใช้ก่อนส่งข้อมูลเสมอ"
@@ -520,6 +602,12 @@ msgstr "เกิดข้อผิดพลาดขึ้น!"
 
 msgid "Anonymize crashlog?"
 msgstr "รายงานปัญหาเครื่องแบบไม่ระบุตัวตน?"
+
+msgid "Any activity"
+msgstr ""
+
+msgid "April"
+msgstr ""
 
 msgid "Arabic"
 msgstr "ภาษาอาหรับ"
@@ -580,12 +668,31 @@ msgstr "เสียง"
 msgid "Audio Options..."
 msgstr "ตั้งค่าเสียง..."
 
+msgid "Audio PID"
+msgstr ""
+
+msgid "Audio language selection 1"
+msgstr ""
+
+msgid "Audio language selection 2"
+msgstr ""
+
+msgid "Audio language selection 3"
+msgstr ""
+
+msgid "Audio language selection 4"
+msgstr ""
+
+msgid "August"
+msgstr ""
+
 msgid "Author: "
 msgstr "ผู้แต่ง: "
 
 msgid "Authoring mode"
 msgstr "โหมดแต่ง"
 
+#. TRANSLATORS: (aspect ratio policy: always try to display as fullscreen, when there is no content (black bars) on left/right, even if this breaks the aspect.
 msgid "Auto"
 msgstr "อัตโนมัติ"
 
@@ -595,8 +702,20 @@ msgstr "แยกเป็นตอนๆ ในทุกๆ กี่ ? นา�
 msgid "Auto flesh"
 msgstr "ปรับอัตโนมัติ"
 
+msgid "Auto focus"
+msgstr ""
+
+msgid "Auto focus commencing ..."
+msgstr ""
+
+msgid "Auto language selection"
+msgstr ""
+
 msgid "Auto scart switching"
 msgstr "เปลี่ยน scart อัตโนมัติ"
+
+msgid "Auto-focus"
+msgstr ""
 
 msgid "Automatic"
 msgstr "อัตโนมัติ"
@@ -628,6 +747,12 @@ msgstr "ย้อนกลับ"
 msgid "Background"
 msgstr "ฉากหลัง"
 
+msgid "Background delete option"
+msgstr ""
+
+msgid "Background delete speed"
+msgstr ""
+
 msgid "Backup"
 msgstr "สำรองข้อมูล"
 
@@ -643,9 +768,6 @@ msgstr "สำรองข้อมูลเสร็จแล้ว"
 msgid "Backup failed."
 msgstr "สำรองข้อมูลล้มเหลว"
 
-msgid "Backup is done. Please press OK to see the result."
-msgstr "สำรองข้อมูลแล้วเสร็จ กรุณากดปุ่ม OK เพื่อดูรายงาน"
-
 msgid "Backup is running..."
 msgstr "กำลังสำรองข้อมูล..."
 
@@ -657,6 +779,9 @@ msgstr "แถบ"
 
 msgid "Bandwidth"
 msgstr "แบนด์วิดธ์"
+
+msgid "Basque"
+msgstr ""
 
 msgid "Begin time"
 msgstr "เวลาเริ่ม"
@@ -679,6 +804,12 @@ msgstr "เมื่อเมื่อภาพยนต์จบ ให้"
 msgid "Bitrate:"
 msgstr "บิทเรท:"
 
+msgid "Black screen"
+msgstr ""
+
+msgid "Black screen till locked"
+msgstr ""
+
 msgid "Block noise reduction"
 msgstr "Block noise reduction"
 
@@ -691,19 +822,24 @@ msgstr "บุ๊คมาร์ค"
 msgid "Brightness"
 msgstr "ความสว่าง"
 
+msgid "Bulgarian"
+msgstr ""
+
 msgid "Burn DVD"
 msgstr "เขียนแผ่นดีวีดี"
 
 msgid "Burn existing image to DVD"
 msgstr "เขียนอิมเมจลงแผ่นดีวีดี"
 
-msgid "Burn to DVD..."
-msgstr "เขียนแผ่นดีวีดี..."
+msgid "Burn to DVD"
+msgstr ""
 
 msgid "Bus: "
 msgstr "Bus: "
 
-msgid "By pressing the OK Button on your remote control, the info bar is being displayed."
+msgid ""
+"By pressing the OK Button on your remote control, the info bar is being "
+"displayed."
 msgstr "เมื่อกดปุ่ม OK จะแสดงแถบแสดงรายการ"
 
 msgid "C"
@@ -724,17 +860,35 @@ msgstr "CVBS"
 msgid "Cable"
 msgstr "เคเบิ้ล"
 
+msgid "Cable Scan"
+msgstr ""
+
 msgid "Cache Thumbnails"
 msgstr "เก็บภาพเล็กแคช"
 
-msgid "Call monitoring"
-msgstr "เฝ้าดูการโทร"
+msgid "Calculate all positions"
+msgstr ""
+
+msgid "Calculation complete"
+msgstr ""
+
+msgid "Calibrate"
+msgstr ""
 
 msgid "Cancel"
 msgstr "ยกเลิก"
 
-msgid "Cannot parse feed directory"
-msgstr "ไม่สามารถอ่าน Feed ได้"
+msgid "Cannot determine"
+msgstr ""
+
+msgid "Cannot find any signal ..., aborting !"
+msgstr ""
+
+msgid "Cannot move files on a different disk or system to the trash can"
+msgstr ""
+
+msgid "Cannot move to trash can"
+msgstr ""
 
 msgid "Capacity: "
 msgstr "ความจุ:"
@@ -742,29 +896,32 @@ msgstr "ความจุ:"
 msgid "Card"
 msgstr "การ์ด"
 
-msgid "Catalan"
-msgstr "ภาษาคาตาลัน"
+msgid "Centered DVB subtitles"
+msgstr ""
 
 msgid "Change bouquets in quickzap"
 msgstr "เปลี่ยนกลุ่มรายการเมื่อย้ายช่อง"
 
-msgid "Change dir."
-msgstr "เปลี่ยนโฟลเดอร์"
-
 msgid "Change pin code"
 msgstr "เปลี่ยนรหัส"
 
-msgid "Change service pin"
-msgstr "เปลี่ยนรหัสบริการ"
+msgid "Change repeat and delay settings?"
+msgstr ""
 
-msgid "Change service pins"
-msgstr "เปลี่ยนรหัสบริการ"
+msgid "Change service PIN"
+msgstr ""
 
-msgid "Change setup pin"
-msgstr "เปลี่ยนรหัสติดตั้ง"
+msgid "Change service PINs"
+msgstr ""
+
+msgid "Change setup PIN"
+msgstr ""
 
 msgid "Change step size"
 msgstr "เปลี่ยน Step"
+
+msgid "Changelog"
+msgstr ""
 
 msgid "Channel"
 msgstr "ช่อง"
@@ -811,8 +968,8 @@ msgstr "เลือกที่ที่จะสำรอง"
 msgid "Choose bouquet"
 msgstr "เลือกกลุ่มรายการ"
 
-msgid "Choose source"
-msgstr "เลือกที่มา"
+msgid "Choose image to download"
+msgstr ""
 
 msgid "Choose target folder"
 msgstr "เลือกโฟล์เดอร์ปลายทาง"
@@ -841,8 +998,14 @@ msgstr "ตั้งค่าตัวช่วย Cleanup"
 msgid "CleanupWizard"
 msgstr "CleanupWizard"
 
+msgid "Clear"
+msgstr ""
+
 msgid "Clear before scan"
 msgstr "ลบข้อมูลเดิมก่อนค้นหา"
+
+msgid "Clear fixed"
+msgstr ""
 
 msgid "Clear log"
 msgstr "Clear log"
@@ -853,11 +1016,11 @@ msgstr "ปิด"
 msgid "Close title selection"
 msgstr "ปิดหน้าเลือกชื่อเรื่อง"
 
-msgid "Code rate high"
-msgstr "Code rate high"
+msgid "Code rate HP"
+msgstr ""
 
-msgid "Code rate low"
-msgstr "Code rate low"
+msgid "Code rate LP"
+msgstr ""
 
 msgid "Coderate HP"
 msgstr "Coderate HP"
@@ -898,17 +1061,14 @@ msgstr "ติดต่อสื่อสาร"
 msgid "Compact Flash"
 msgstr "Compact Flash"
 
-msgid "Compact flash card"
-msgstr "Compact flash card"
-
 msgid "Complete"
 msgstr "สำเร็จ"
 
 msgid "Complex (allows mixing audio tracks and aspects)"
 msgstr "ซับซ้อน (ยอมให้มีเสียงและสัดส่วนภาพที่หลากหลาย)"
 
-msgid "Config"
-msgstr "ตั้งค่า"
+msgid "Composition of the recording filenames"
+msgstr ""
 
 msgid "Configuration Mode"
 msgstr "โหมดการตั้งค่า"
@@ -924,6 +1084,9 @@ msgstr "ตั้งค่าการ์แลนในเครื่อง"
 
 msgid "Configure your network again"
 msgstr "ตั้งเครือข่ายอีกครั้ง"
+
+msgid "Configure your network settings, and press OK to start the scan"
+msgstr ""
 
 msgid "Configure your wireless LAN again"
 msgstr "ตั้งค่าเครือข่ายไร้สายอีกครั้ง"
@@ -943,24 +1106,8 @@ msgstr "เชื่อมต่อกับเครือข่ายไร้
 msgid "Connected to"
 msgstr "เชื่อมต่อแล้วกับ"
 
-msgid "Connected to Fritz!Box!"
-msgstr "เชื่อมต่อกับ Fritz!Box แล้ว!"
-
 msgid "Connected!"
 msgstr "เชื่อมต่อแล้ว!"
-
-msgid "Connecting to Fritz!Box..."
-msgstr "กำลังติดต่อ Fritz!Box..."
-
-#, python-format
-msgid ""
-"Connection to Fritz!Box\n"
-"failed! (%s)\n"
-"retrying..."
-msgstr ""
-"ติดต่อ Fritz!Box\n"
-"ล้มเหลว! (%s)\n"
-"กำลังลองใหม่อีกครั้ง..."
 
 msgid "Constellation"
 msgstr "Constellation"
@@ -980,15 +1127,34 @@ msgstr "เล่นต่อเนื่อง"
 msgid "Contrast"
 msgstr "ความเข้ม"
 
+msgid "Convert ext3 to ext4"
+msgstr ""
+
+msgid "Convert ext3 to ext4..."
+msgstr ""
+
+msgid "Convert filesystem ext3 to ext4"
+msgstr ""
+
+msgid "Copy"
+msgstr ""
+
 msgid "Could not connect to Dreambox .NFI Image Feed Server:"
 msgstr "ติดต่อเซอร์พเวอร์ดรีมบอกซ์เพื่อโหลดอิมเมจ .NFI ไม่ได้"
 
 msgid "Could not load Medium! No disc inserted?"
 msgstr "โหลดไม่ได้ ยังไม่ได้ใส่แผ่นหรือเปล่า?"
 
+msgid "Could not open Picture in Picture"
+msgstr ""
+
 #, python-format
 msgid "Couldn't record due to conflicting timer %s"
 msgstr "ไม่สามารถบันทึกได้ เนื่องจากเวลาซ้อนกับรายการ %s"
+
+#, python-format
+msgid "Couldn't record due to invalid service %s"
+msgstr ""
 
 msgid "Crashlog settings"
 msgstr "ตั้งค่ารายงานปัญหาเครื่อง"
@@ -1004,13 +1170,6 @@ msgstr "ตั้งค่าส่งรายงานปัญหาเคร
 
 msgid ""
 "Crashlogs found!\n"
-"Send them to Dream Multimedia ?"
-msgstr ""
-"พบรายงานปัญหาเครื่อง!\n"
-"ต้องการส่งรายงานให้ Dream Multimedia หรือไม่?"
-
-msgid ""
-"Crashlogs found!\n"
 "Send them to Dream Multimedia?"
 msgstr ""
 "พบรายงานปัญหาเครื่อง!\n"
@@ -1019,21 +1178,33 @@ msgstr ""
 msgid "Create DVD-ISO"
 msgstr "สร้างแผ่นดีวีดีแบบ ISO"
 
-msgid "Create movie folder failed"
-msgstr "สร้างโฟล์เดอร์สำหรับภาพยนต์ไม่ได้"
+msgid "Create Filesystem"
+msgstr ""
+
+msgid "Create Partition"
+msgstr ""
+
+msgid "Create more detailed crash log"
+msgstr ""
+
+msgid "Create movie directory"
+msgstr ""
 
 #, python-format
 msgid "Creating directory %s failed."
 msgstr "ไม่สามารถสร้างโฟลเดอร์ %s ได้"
 
-msgid "Creating partition failed"
-msgstr "การสร้างพาร์ทิชั่นล้มเหลว"
-
 msgid "Croatian"
 msgstr "ภาษาโคเอเชีย"
 
+msgid "Current CEC address"
+msgstr ""
+
 msgid "Current Transponder"
 msgstr "ทรานสปอนเดอร์ปัจจุบัน"
+
+msgid "Current device: "
+msgstr ""
 
 msgid "Current settings:"
 msgstr "ตั้งค่าปัจจุบัน:"
@@ -1044,6 +1215,9 @@ msgstr "ค่าปัจจุบัน:"
 msgid "Current version:"
 msgstr "เวอร์ชั่นปัจจุบัน:"
 
+msgid "Currently installed image"
+msgstr ""
+
 msgid "Custom skip time for '1'/'3'-keys"
 msgstr "ตั้งเวลาข้ามสำหรับปุ่ม '1'/'3'"
 
@@ -1052,6 +1226,12 @@ msgstr "ตั้งเวลาข้ามสำหรับปุ่ม '4'/'
 
 msgid "Custom skip time for '7'/'9'-keys"
 msgstr "ตั้งเวลาข้ามสำหรับปุ่ม '7'/'9'"
+
+msgid "Custom text alignment"
+msgstr ""
+
+msgid "Custom text position"
+msgstr ""
 
 msgid "Customize"
 msgstr "ปรับแต่ง"
@@ -1071,6 +1251,15 @@ msgstr "D"
 msgid "DHCP"
 msgstr "DHCP"
 
+msgid "DTS downmix"
+msgstr ""
+
+msgid "DUAL LAYER DVD"
+msgstr ""
+
+msgid "DVB subtitle black transparency"
+msgstr ""
+
 msgid "DVB-S"
 msgstr "DVB-S"
 
@@ -1086,6 +1275,9 @@ msgstr "เครื่องเล่นดีวีดี"
 msgid "DVD Titlelist"
 msgstr "รายการบนแผ่นดีวีดี"
 
+msgid "DVD data format"
+msgstr ""
+
 msgid "DVD media toolbox"
 msgstr "เครื่องมือจัดการดีวีดี"
 
@@ -1094,6 +1286,9 @@ msgstr "ภาษาเดนมาร์ก"
 
 msgid "Date"
 msgstr "วันที่"
+
+msgid "December"
+msgstr ""
 
 msgid "Decide if you want to enable or disable the Cleanup Wizard."
 msgstr "ตัดสินใจว่าจะเปิดหรือปิดการใช้งานตัวช่วย Cleanup"
@@ -1113,14 +1308,11 @@ msgstr "ค่าเริ่มต้น"
 msgid "Default Settings"
 msgstr "ตั้งค่าเริ่มต้น"
 
-msgid "Default services lists"
-msgstr "บริการเริ่มต้น"
+msgid "Default movie location"
+msgstr ""
 
-msgid "Default settings"
-msgstr "ตั้งค่าเริ่มต้น"
-
-msgid "Delay"
-msgstr "ชะลอ"
+msgid "Delay before key repeat starts:"
+msgstr ""
 
 msgid "Delete"
 msgstr "ลบ"
@@ -1142,20 +1334,35 @@ msgstr ""
 "ไม่ได้ลบการตั้งค่าดาวเทียมนี้\n"
 "%s?"
 
+msgid "Deleted"
+msgstr ""
+
+msgid "Deleted items"
+msgstr ""
+
+msgid "Depth"
+msgstr ""
+
+msgid "Descramble http streams"
+msgstr ""
+
 msgid "Description"
 msgstr "รายละเอียด"
 
 msgid "Deselect"
 msgstr "ไม่เลือก"
 
-msgid "Destination directory"
-msgstr "โฟล์เดอร์ปลายทาง"
+msgid "Details for plugin: "
+msgstr ""
 
 msgid "Detected HDD:"
 msgstr "ฮาร์ดไดรฟ์ที่พบ:"
 
 msgid "Detected NIMs:"
 msgstr "NIMs ที่พบ:"
+
+msgid "Devicename:"
+msgstr ""
 
 msgid "DiSEqC"
 msgstr "DiSEqC"
@@ -1184,6 +1391,9 @@ msgstr "Digital contour removal"
 msgid "Direct playback of linked titles without menu"
 msgstr "เล่นทันที ไม่ต้องแสดงเมนู"
 
+msgid "Directory"
+msgstr ""
+
 #, python-format
 msgid "Directory %s nonexistent."
 msgstr "ไม่พบโฟล์เดอร์ %s ในระบบ"
@@ -1191,14 +1401,18 @@ msgstr "ไม่พบโฟล์เดอร์ %s ในระบบ"
 msgid "Directory browser"
 msgstr "ดูโฟล์เดอร์"
 
+#, python-format
+msgid "Directory contains %d file(s) and %d sub-directories.\n"
+msgstr ""
+
 msgid "Disable"
 msgstr "ไม่ใช้งาน"
 
 msgid "Disable Picture in Picture"
 msgstr "ไม่ใช้งานภาพซ้อนภาพ"
 
-msgid "Disable Subtitles"
-msgstr "ไม่แสดงซับไดเติ้ล"
+msgid "Disable background scanning"
+msgstr ""
 
 msgid "Disable crashlog reporting"
 msgstr "ไม่รายงานปัญหาปัญหาเครื่อง"
@@ -1212,18 +1426,11 @@ msgstr "ไม่ใช้งาน"
 msgid "Disconnect"
 msgstr "ตัดการเชื่อมต่อ"
 
-#, python-format
-msgid ""
-"Disconnected from\n"
-"Fritz!Box! (%s)\n"
-"retrying..."
-msgstr ""
-"การเชื่อมต่อกับ\n"
-"Fritz!Box! (%s) ถูกตัด\n"
-"กำลังลองเชื่อมต่อซ้ำ..."
-
 msgid "Dish"
 msgstr "หน้าจาน"
+
+msgid "Disk space to reserve for recordings (in GB)"
+msgstr ""
 
 msgid "Display 16:9 content as"
 msgstr "แสดงรายการ 16:9 แบบ"
@@ -1255,6 +1462,11 @@ msgstr ""
 "ท่านแน่ใจหรือไม่ที่จะตรวจสอบระบบไฟล์?\n"
 "เนื่องจากจะใช้เวลานานมากกว่าจะแล้วเสร็จ!"
 
+msgid ""
+"Do you really want to convert the filesystem?\n"
+"You cannot go back!"
+msgstr ""
+
 #, python-format
 msgid "Do you really want to delete %s?"
 msgstr "ท่านต้องการที่จะลบ %s ออกจากระบบหรือไม่?"
@@ -1267,12 +1479,13 @@ msgstr ""
 "ท่านต้องการที่จะโหลด\n"
 "Plugin \"%s\" นี้หรือไม่?"
 
+msgid "Do you really want to exit?"
+msgstr ""
+
 msgid ""
-"Do you really want to initialize the harddisk?\n"
+"Do you really want to initialize the device?\n"
 "All data on the disk will be lost!"
 msgstr ""
-"ท่านต้องการที่จะทำให้ฮาร์ดไดรฟ์ของท่านพร้อมใช้งานหรือไม่?\n"
-"คำเตือน: ข้อมูลที่มีอยู่บนไดรฟ์ทั้งหมดจะหายไปทันที!"
 
 #, python-format
 msgid "Do you really want to remove directory %s from the disk?"
@@ -1298,11 +1511,12 @@ msgstr "ท่านต้องการค้นหารายการหร
 msgid "Do you want to do another manual service scan?"
 msgstr "ท่านต้องการที่จะทำการค้นหารายการอื่นๆ ต่อหรือไม่?"
 
+#, python-format
+msgid "Do you want to download the image to %s ?"
+msgstr ""
+
 msgid "Do you want to enable the parental control feature on your dreambox?"
 msgstr "ท่านต้องการที่จะใช้งานส่วนควบคุมอายุการรับชมในเครื่องดรีมบอกซ์ของท่านหรือไม่?"
-
-msgid "Do you want to install default sat lists?"
-msgstr "ท่านต้องการติดตั้งดาวเทียมตามค่าเริ่มต้นหรือไม่?"
 
 msgid "Do you want to install the package:\n"
 msgstr "ท่านต้องการที่จะติดตั้งส่วนประกอบนี้:\n"
@@ -1325,7 +1539,9 @@ msgstr "ท่านต้องการที่จะนำการตั้
 msgid "Do you want to resume this playback?"
 msgstr "ต้องการเล่นต่อจากที่เดิมหรือไม่?"
 
-msgid "Do you want to submit your email address and name so that we can contact you if needed?"
+msgid ""
+"Do you want to submit your email address and name so that we can contact you "
+"if needed?"
 msgstr "ต้องการส่งอีเมลล์และชื่อของท่านเพื่อให้เราติดต่อเมื่อต้องการหรือไม่?"
 
 msgid "Do you want to update your Dreambox?"
@@ -1341,6 +1557,9 @@ msgstr ""
 msgid "Do you want to upgrade the package:\n"
 msgstr "ยืนยันจะปรับปรุงส่วนประกอบนี้:\n"
 
+msgid "Do you want to upgrade?"
+msgstr ""
+
 msgid "Do you want to view a tutorial?"
 msgstr "ดูคำแนะนำการใช้หรือไม่?"
 
@@ -1355,24 +1574,21 @@ msgid "Done - Installed or upgraded %d packages"
 msgstr "เสร็จแล้ว - ติดตั้งหรือปรับปรุง %d รายการ"
 
 #, python-format
-msgid "Done - Installed or upgraded %d packages with %d errors"
-msgstr "เสร็จแล้ว - ติดตั้งหรือปรับปรุง %d รายการ พบข้อผิดพลาด %d รายการ"
-
-#, python-format
 msgid "Done - Installed, upgraded or removed %d packages with %d errors"
 msgstr "เสร็จแล้ว - ติดตั้งปรับปรุงหรือลบ %d รายการ พบข้อผิดพลาด %d รายการ"
 
 msgid "Download"
 msgstr "ดาวน์โหลด"
 
+#, python-format
+msgid "Download %s from Server"
+msgstr ""
+
 msgid "Download .NFI-Files for USB-Flasher"
 msgstr "ดาวน์โหลด .NFI สำหรับ USB-Flasher"
 
 msgid "Download Plugins"
 msgstr "ดาวน์โหลด Plugins"
-
-msgid "Download of USB flasher boot image failed: "
-msgstr "ดาวน์โหลดอิมเมจ USB flasher ล้มเหลว"
 
 msgid "Downloadable new plugins"
 msgstr "Plugin ใหม่ที่ดาวน์โหลดได้"
@@ -1404,12 +1620,21 @@ msgstr "E"
 msgid "EPG Selection"
 msgstr "เลือกผังรายการ"
 
+msgid "EPG language selection 1"
+msgstr ""
+
+msgid "EPG language selection 2"
+msgstr ""
+
 #, python-format
 msgid "ERROR - failed to scan (%s)!"
 msgstr "ผิดพลาด - การค้นหา (%s) ล้มเหลว"
 
 msgid "East"
 msgstr "ตะวันออก"
+
+msgid "East limit set"
+msgstr ""
 
 msgid "Edit"
 msgstr "แก้ไข"
@@ -1419,6 +1644,9 @@ msgstr "แก้ไข DNS"
 
 msgid "Edit Title"
 msgstr "แก้ไขชื่อเรื่อง"
+
+msgid "Edit bouquets list"
+msgstr ""
 
 msgid "Edit chapters of current title"
 msgstr "แก้ไขตอนที่ของเรื่องปัจจุบัน"
@@ -1453,11 +1681,29 @@ msgstr "เปิดใช้งาน 5V สำหรับเสาอาก�
 msgid "Enable Cleanup Wizard?"
 msgstr "เปิดใช้งานตัวช่วย Cleanuup?"
 
+msgid "Enable EIT EPG"
+msgstr ""
+
+msgid "Enable MHW EPG"
+msgstr ""
+
+msgid "Enable Netmed EPG"
+msgstr ""
+
+msgid "Enable ViaSat EPG"
+msgstr ""
+
+msgid "Enable freesat EPG"
+msgstr ""
+
 msgid "Enable multiple bouquets"
 msgstr "เปิดใช้หลายกลุ่มรายการ"
 
 msgid "Enable parental control"
 msgstr "เปิดใช้ส่วนควบคุมอายุรับชม"
+
+msgid "Enable teletext caching"
+msgstr ""
 
 msgid "Enable timer"
 msgstr "เปิดใช้การตั้งเวลา"
@@ -1465,9 +1711,8 @@ msgstr "เปิดใช้การตั้งเวลา"
 msgid "Enabled"
 msgstr "เปิดใช้งาน"
 
-#, python-format
-msgid "Encrypted: %s"
-msgstr "ถูกเข้ารหัส: %s"
+msgid "Encrypted: "
+msgstr ""
 
 msgid "Encryption"
 msgstr "การเข้ารหัส"
@@ -1477,9 +1722,6 @@ msgstr "คีย์สำหรับเข้ารหัส"
 
 msgid "Encryption Keytype"
 msgstr "ชนิดคีย์"
-
-msgid "Encryption Type"
-msgstr "เข้ารหัสแบบ"
 
 msgid "Encryption:"
 msgstr "การเข้ารหัส:"
@@ -1508,35 +1750,11 @@ msgstr ""
 "\n"
 "© 2006 - Stephan Reichholf"
 
-msgid ""
-"Enigma2 Skinselector v0.5 BETA\n"
-"\n"
-"If you experience any problems please contact\n"
-"stephan@reichholf.net\n"
-"\n"
-"© 2006 - Stephan Reichholf"
-msgstr ""
-"Enigma2 Skinselector v0.5 BETA\n"
-"\n"
-"หากท่านประสบปัญหาในการใช้งานกรุณาติดต่อ\n"
-"stephan@reichholf.net\n"
-"\n"
-"© 2006 - Stephan Reichholf"
-
-msgid "Enter Fast Forward at speed"
-msgstr "ป้อนความเร็วในการเดินหน้า"
-
-msgid "Enter Rewind at speed"
-msgstr "ป้อนความเร็วในการย้อนหลัง"
-
-msgid "Enter WLAN network name/SSID:"
-msgstr "ป้อนชื่อเครือข่าย WLAN/SSID:"
-
-msgid "Enter WLAN passphrase/key:"
-msgstr "ป้อนคีย์สำหรับ WLAN:"
-
 msgid "Enter main menu..."
 msgstr "เข้าสู่เมนูหลัก..."
+
+msgid "Enter pin code"
+msgstr ""
 
 msgid "Enter the service pin"
 msgstr "ป้อนรหัสบริการ"
@@ -1546,6 +1764,9 @@ msgstr "กรุณาป้อนอีเมลล์ของท่าน �
 
 msgid "Error"
 msgstr "ผิดพลาด"
+
+msgid "Error code"
+msgstr ""
 
 msgid "Error executing plugin"
 msgstr "เรียกใช้งาน Plugin ผิดพลาด"
@@ -1561,11 +1782,23 @@ msgstr ""
 msgid "Estonian"
 msgstr "ภาษาเอสโตเนี่ยน"
 
+msgid "Ethernet network interface"
+msgstr ""
+
+msgid "Event Fontsize (relative to skin size)"
+msgstr ""
+
 msgid "Eventview"
 msgstr "แสดงรายการ"
 
-msgid "Everything is fine"
-msgstr "ทุกอย่างปกติ"
+msgid "Eventview menu"
+msgstr ""
+
+msgid "Everywhere"
+msgstr ""
+
+msgid "Exceeds dual layer medium!"
+msgstr ""
 
 msgid "Execution Progress:"
 msgstr "ความคืบหน้า:"
@@ -1579,8 +1812,14 @@ msgstr "Exif"
 msgid "Exit"
 msgstr "ออก"
 
+msgid "Exit EPG"
+msgstr ""
+
 msgid "Exit editor"
 msgstr "ออกจากการแก้ไข"
+
+msgid "Exit input device selection."
+msgstr ""
 
 msgid "Exit network wizard"
 msgstr "ออกจากตัวช่วยเครือข่าย"
@@ -1603,17 +1842,44 @@ msgstr "Plugin สำหรับตั้งค่าเครือข่า�
 msgid "Extended Setup..."
 msgstr "ตั้งค่าส่วนเพิ่มเติม..."
 
+msgid "Extended Software"
+msgstr ""
+
+msgid "Extended Software Plugin"
+msgstr ""
+
 msgid "Extensions"
 msgstr "ส่วนเพิ่มเติม"
 
+msgid "Extensions management"
+msgstr ""
+
 msgid "FEC"
 msgstr "FEC"
+
+msgid "FTA"
+msgstr ""
 
 msgid "Factory reset"
 msgstr "ตั้งค่าจากโรงงาน"
 
 msgid "Failed"
 msgstr "ล้มเหลว"
+
+msgid "Failed to write /tmp/positionersetup.log:str"
+msgstr ""
+
+#, python-format
+msgid "Fan %d"
+msgstr ""
+
+#, python-format
+msgid "Fan %d PWM"
+msgstr ""
+
+#, python-format
+msgid "Fan %d Voltage"
+msgstr ""
 
 msgid "Fast"
 msgstr "เร็ว"
@@ -1624,17 +1890,32 @@ msgstr "Fast DiSEqC"
 msgid "Fast Forward speeds"
 msgstr "ความเร็วในการกรอเดินหน้า"
 
+msgid "Fast Scan"
+msgstr ""
+
 msgid "Fast epoch"
 msgstr "Fast epoch"
 
 msgid "Favourites"
 msgstr "รายการโปรด"
 
-msgid "Filesystem Check..."
-msgstr "ตรวจสอบระบบไฟล์..."
+msgid "February"
+msgstr ""
 
-msgid "Filesystem contains uncorrectable errors"
-msgstr "ระบบไฟล์มีปัญหาไม่สามารถแก้ไขได้"
+msgid "File appears to be busy.\n"
+msgstr ""
+
+msgid "Filesystem Check"
+msgstr ""
+
+msgid "Final position at"
+msgstr ""
+
+msgid "Final position at index"
+msgstr ""
+
+msgid "Fine movement"
+msgstr ""
 
 msgid "Finetune"
 msgstr "ปรับแบบละเอียด"
@@ -1651,23 +1932,23 @@ msgstr "ระบบเครือข่ายพร้อมใช้งาน
 msgid "Finnish"
 msgstr "จบการทำงาน"
 
-msgid "First we need to download the latest boot environment for the USB flasher."
-msgstr "ต้องดาวน์โหลด USB Flasher ก่อน"
-
 msgid "Flash"
 msgstr "แฟรช"
 
 msgid "Flashing failed"
 msgstr "การลงอิมเมจล้มเหลว"
 
-msgid "Following tasks will be done after you press continue!"
-msgstr "คำสั่งต่อไปนี้จะทำงานเมื่อเลือก 'ต่อไป'"
+msgid "Following tasks will be done after you press OK!"
+msgstr ""
+
+msgid "For more information see www.openpli.org"
+msgstr ""
 
 msgid "Format"
 msgstr "ฟอร์แมท"
 
-msgid "Frame repeat count during non-smooth winding"
-msgstr "จำนวนแฟรมสำหรับ non-smooth winding"
+msgid "Forward volume keys"
+msgstr ""
 
 msgid "Frame size in full view"
 msgstr "เต็มหน้าจอ"
@@ -1693,21 +1974,12 @@ msgstr "ศุก."
 msgid "Friday"
 msgstr "วันศุกร์"
 
-msgid "Frisian"
-msgstr "ภาษาไฟรเชียน"
-
-msgid "Fritz!Box FON IP address"
-msgstr "Fritz!Box FON IP address"
+msgid "From :"
+msgstr ""
 
 #, python-format
 msgid "Frontprocessor version: %d"
 msgstr "Frontprocessor version: %d"
-
-msgid "Fsck failed"
-msgstr "Fsck failed"
-
-msgid "Function not yet implemented"
-msgstr "ฟังก์ชั่นยังทำงานไม่ได้"
 
 msgid ""
 "GUI needs a restart to apply a new skin\n"
@@ -1722,14 +1994,14 @@ msgstr "Gateway"
 msgid "General AC3 Delay"
 msgstr "General AC3 Delay"
 
-msgid "General AC3 delay"
-msgstr "General AC3 delay"
+msgid "General AC3 delay (ms)"
+msgstr ""
 
 msgid "General PCM Delay"
 msgstr "General PCM Delay"
 
-msgid "General PCM delay"
-msgstr "General PCM delay"
+msgid "General PCM delay (ms)"
+msgstr ""
 
 msgid "Genre"
 msgstr "ชนิด"
@@ -1737,14 +2009,77 @@ msgstr "ชนิด"
 msgid "German"
 msgstr "ภาษาเยอรมัน"
 
+msgid "Get latest experimental image"
+msgstr ""
+
+msgid "Get latest release image"
+msgstr ""
+
 msgid "Getting plugin information. Please wait..."
 msgstr "กำลังโหลดข้อมูล Plugin กรุณารอสักครู่..."
+
+msgid "Go down the list"
+msgstr ""
+
+msgid "Go to first movie or last item"
+msgstr ""
+
+msgid "Go to first movie or top of list"
+msgstr ""
+
+msgid "Go up the list"
+msgstr ""
+
+msgid "Goto"
+msgstr ""
 
 msgid "Goto 0"
 msgstr "ไปยัง 0"
 
+msgid "Goto :"
+msgstr ""
+
+msgid "Goto X"
+msgstr ""
+
+msgid "Goto first service"
+msgstr ""
+
+msgid "Goto index position"
+msgstr ""
+
+msgid "Goto last service"
+msgstr ""
+
+msgid "Goto next event"
+msgstr ""
+
+msgid "Goto next page of events"
+msgstr ""
+
+msgid "Goto next page of service"
+msgstr ""
+
 msgid "Goto position"
 msgstr "ไปยังตำแหน่ง"
+
+msgid "Goto previous event"
+msgstr ""
+
+msgid "Goto previous page of events"
+msgstr ""
+
+msgid "Goto previous page of service"
+msgstr ""
+
+msgid "Goto specific data/time"
+msgstr ""
+
+msgid "GotoX calibration"
+msgstr ""
+
+msgid "Graph MEpg Settings"
+msgstr ""
 
 msgid "Graphical Multi EPG"
 msgstr "กลุ่มผังรายการหลากหลายแบบกราฟิค"
@@ -1758,8 +2093,17 @@ msgstr "Green boost"
 msgid "Guard Interval"
 msgstr "Guard Interval"
 
-msgid "Guard interval mode"
-msgstr "โหมด Guard interval"
+msgid "Guard interval"
+msgstr ""
+
+msgid "HD list"
+msgstr ""
+
+msgid "Handle standby from TV"
+msgstr ""
+
+msgid "Handle wakeup from TV"
+msgstr ""
 
 msgid "Harddisk"
 msgstr "ฮาร์ดดิสก์"
@@ -1770,23 +2114,44 @@ msgstr "ตั้งค่าฮาร์ดดิสก์"
 msgid "Harddisk standby after"
 msgstr "ให้ฮาร์ดดิสก์ standby หลังจาก"
 
-msgid "Hidden network SSID"
-msgstr "SSID ของเครือข่ายที่ซ้อนไว้"
+msgid "Hardware: "
+msgstr ""
 
-msgid "Hidden networkname"
-msgstr "ชื่อเครือข่ายที่ซ่อนไว้"
+msgid "Hebrew"
+msgstr ""
+
+msgid "Hidden network"
+msgstr ""
+
+msgid "Hide CI messages"
+msgstr ""
+
+msgid "Hide zap errors"
+msgstr ""
 
 msgid "Hierarchy Information"
 msgstr "ข้อมูลลำดับชั้น"
 
-msgid "Hierarchy mode"
-msgstr "โหมดลำดับชั้น"
+msgid "Hierarchy info"
+msgstr ""
 
 msgid "High bitrate support"
 msgstr "รองรับข้อมูลขนาดใหญ่"
 
+msgid "Hold screen"
+msgstr ""
+
+msgid "Hold till locked"
+msgstr ""
+
+msgid "Home"
+msgstr ""
+
 msgid "Horizontal"
 msgstr "แนวนอน (H)"
+
+msgid "Horizontal turning speed"
+msgstr ""
 
 msgid "How many minutes do you want to record?"
 msgstr "บันทึกรายต่อไปอีกกี่นาที?"
@@ -1809,11 +2174,8 @@ msgstr "ไฟล์แบบ ISO มีขนาดใหญ่เกินไ�
 msgid "ISO path"
 msgstr "ISO path"
 
-msgid "Icelandic"
-msgstr "ภาษาไอซ์แลนด์"
-
-msgid "If you can see this page, please press OK."
-msgstr "หากเห็นหน้าจอนี้ให้กดปุ่ม OK"
+msgid "Icons"
+msgstr ""
 
 msgid ""
 "If you see this, something is wrong with\n"
@@ -1823,27 +2185,41 @@ msgstr ""
 "สาย scart กรุณากดปุ่ม OK "
 
 msgid ""
-"If your TV has a brightness or contrast enhancement, disable it. If there is something called \"dynamic\", set it to standard. Adjust the backlight level to a value suiting your taste. Turn down contrast on your TV as much as possible.\n"
-"Then turn the brightness setting as low as possible, but make sure that the two lowermost shades of gray stay distinguishable.\n"
-"Do not care about the bright shades now. They will be set up in the next step.\n"
+"If your TV has a brightness or contrast enhancement, disable it. If there is "
+"something called \"dynamic\", set it to standard. Adjust the backlight level "
+"to a value suiting your taste. Turn down contrast on your TV as much as "
+"possible.\n"
+"Then turn the brightness setting as low as possible, but make sure that the "
+"two lowermost shades of gray stay distinguishable.\n"
+"Do not care about the bright shades now. They will be set up in the next "
+"step.\n"
 "If you are happy with the result, press OK."
 msgstr ""
-"ให้เปิดใช้งานความสว่างหรือความเข้มแบบพิเศษ เช่น ค่า \"dynamic\" ให้เปลี่ยนเป็นมาตรฐานก่อน จากนั้นปรับระดับ backlight ให้เหมาะสม รวมทั้งปรับค่าความเข้ม (contrast) ให้มากที่สุดเท่าที่จะทำได้\n"
+"ให้เปิดใช้งานความสว่างหรือความเข้มแบบพิเศษ เช่น ค่า \"dynamic\" ให้เปลี่ยนเป็นมาตรฐานก่อน "
+"จากนั้นปรับระดับ backlight ให้เหมาะสม รวมทั้งปรับค่าความเข้ม (contrast) "
+"ให้มากที่สุดเท่าที่จะทำได้\n"
 "จากนั้นปรับค่าความสว่าง (Brightness) ให้ต่ำที่สุดเท่าที่จะเห็นความแตกต่างระหว่างสีเทาที่อยู่ติดกัน\n"
 "ตอนนี้ยังไม่ต้องกังวลในส่วนของแถบสว่าง ส่วนของแถบสว่างจะถูกปรับแต่งภายหลัง\n"
 "หากท่านพอใจแล้วให้กดปุ่ม OK เพื่อเข้าส่วนต่อไป"
 
-msgid "Image flash utility"
-msgstr "ยูทิลิตี้สำรับอิมเมจ"
-
-msgid "Image-Upgrade"
-msgstr "Image-Upgrade"
+msgid "Image: "
+msgstr ""
 
 msgid "In Progress"
 msgstr "กำลังทำงาน"
 
-msgid "In order to record a timer, the TV was switched to the recording service!\n"
+msgid ""
+"In order to record a timer, the TV was switched to the recording service!\n"
 msgstr "ต้องย้ายไปยังข่องรายการอื่นเพื่อที่จะบันทึกรายการตามที่ได้ตั้งไว้\n"
+
+msgid "Include AIT in http streams"
+msgstr ""
+
+msgid "Include ECM in http streams"
+msgstr ""
+
+msgid "Include EIT in http streams"
+msgstr ""
 
 msgid "Include your email and name (optional) in the mail?"
 msgstr "ใส่ชื่อและอีเมลล์ของท่านในอีเมลล์นี้หรือไม่ (ไม่บังคับ)?"
@@ -1869,17 +2245,41 @@ msgstr "ข้อมูล"
 msgid "Init"
 msgstr "เตรียม"
 
-msgid "Initialization..."
-msgstr "การเตรียมการ..."
+msgid "Initial Fast Forward speed"
+msgstr ""
+
+msgid "Initial Rewind speed"
+msgstr ""
+
+msgid "Initial location in new timers"
+msgstr ""
+
+msgid "Initial lock ratio"
+msgstr ""
+
+msgid "Initial signal quality"
+msgstr ""
+
+msgid "Initial signal quality:"
+msgstr ""
+
+msgid "Initialization"
+msgstr ""
 
 msgid "Initialize"
 msgstr "เตรียมการ"
 
-msgid "Initializing Harddisk..."
-msgstr "กำลังเตรียมฮาร์ดดิสก์..."
+msgid "Initializing storage device..."
+msgstr ""
 
 msgid "Input"
 msgstr "นำเข้า (Input)"
+
+msgid "Input device setup"
+msgstr ""
+
+msgid "Input devices"
+msgstr ""
 
 msgid "Install"
 msgstr "ติดตั้ง"
@@ -1898,6 +2298,9 @@ msgstr "ติดตั้งส่วนเพิ่มเติมจากใ
 
 msgid "Install or remove finished."
 msgstr "ติดตั้งหรือลบออกเสร็จแล้ว"
+
+msgid "Install picons on"
+msgstr ""
 
 msgid "Install settings, skins, software..."
 msgstr "ติดตั้ง ตั้งค่าซอพท์แวร์สกิน..."
@@ -1923,21 +2326,23 @@ msgstr "กำลังติดตั้งส่วนประกอบ... �
 msgid "Instant Record..."
 msgstr "บันทึกรายการ..."
 
-msgid "Integrated Ethernet"
-msgstr "Integrated Ethernet"
+msgid "Instant record location"
+msgstr ""
 
-msgid "Integrated Wireless"
-msgstr "Integrated Wireless"
-
-#, python-format
-msgid "Interface: %s"
-msgstr "อินเตอร์เฟซ: %s"
+msgid "Interface: "
+msgstr ""
 
 msgid "Intermediate"
 msgstr "ปานกลาง"
 
 msgid "Internal Flash"
 msgstr "หน่วยความจำภายใน"
+
+msgid "Internal hdd only"
+msgstr ""
+
+msgid "Interval between keys when repeating:"
+msgstr ""
 
 msgid "Invalid Location"
 msgstr "ปลายทางไม่ถูกต้อง"
@@ -1949,8 +2354,8 @@ msgstr "โฟล์เดอร์นี้: %s ไม่ถูกต้อง"
 msgid "Inversion"
 msgstr "Inversion"
 
-msgid "Invert display"
-msgstr "แสดงกลับสี"
+msgid "Invert"
+msgstr ""
 
 msgid "Ipkg"
 msgstr "Ipkg"
@@ -1961,12 +2366,30 @@ msgstr "วิดีโอโหมดนี้ถูกต้องหรือ
 msgid "Italian"
 msgstr "ภาษาอิตาลี่"
 
+msgid "Items per Page "
+msgstr ""
+
+msgid "January"
+msgstr ""
+
 msgid "Job View"
 msgstr "ดูงาน"
+
+msgid "July"
+msgstr ""
+
+msgid "June"
+msgstr ""
 
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
 msgid "Just Scale"
 msgstr "ขยายเต็มจอ"
+
+msgid "Keep old timers for how many days"
+msgstr ""
+
+msgid "Kernel Version: "
+msgstr ""
 
 msgid "Keyboard"
 msgstr "แป้นพิมพ์"
@@ -1977,11 +2400,14 @@ msgstr "การวางแป้นพิมพ์"
 msgid "Keyboard Setup"
 msgstr "ตั้งค่าแป้นพิมพ์"
 
-msgid "Keymap"
-msgstr "Keymap"
+msgid "Kill partition table"
+msgstr ""
 
 msgid "LAN Adapter"
 msgstr "แลนอะแด๊ปเตอร์"
+
+msgid "LAN connection"
+msgstr ""
 
 msgid "LNB"
 msgstr "LNB"
@@ -1995,11 +2421,14 @@ msgstr "LOF/H"
 msgid "LOF/L"
 msgstr "LOF/L"
 
+msgid "Language"
+msgstr "ภาษา"
+
 msgid "Language selection"
 msgstr "เลือกภาษา"
 
-msgid "Language"
-msgstr "ภาษา"
+msgid "Last Upgrade: "
+msgstr ""
 
 msgid "Last config"
 msgstr "ค่าที่ตั้งล่าสุด"
@@ -2023,6 +2452,9 @@ msgstr "ซ้าย"
 msgid "Letterbox"
 msgstr "Letterbox"
 
+msgid "Letzeburgesch"
+msgstr ""
+
 msgid "Limit east"
 msgstr "จำกัดทางตะวันออก"
 
@@ -2031,6 +2463,12 @@ msgstr "จำกัดทางตะวันตก"
 
 msgid "Limited character set for recording filenames"
 msgstr "จำกัดความยาวของไฟล์"
+
+msgid "Limits cancelled"
+msgstr ""
+
+msgid "Limits enabled"
+msgstr ""
 
 msgid "Limits off"
 msgstr "ไม่จำกัด"
@@ -2047,8 +2485,18 @@ msgstr "เชื่อมต่อ:"
 msgid "Linked titles with a DVD menu"
 msgstr "เชื่อมโดยชื่อเรื่องกับเมนูดีวีดี"
 
+msgid "List available networks"
+msgstr ""
+
 msgid "List of Storage Devices"
 msgstr "อุปกรณ์สำหรับบันทึก"
+
+msgid "List type"
+msgstr ""
+
+#, python-format
+msgid "List version %d, found %d channels"
+msgstr ""
 
 msgid "Lithuanian"
 msgstr "ภาษาลิธูเนี่ยน"
@@ -2065,6 +2513,12 @@ msgstr "Local Network"
 msgid "Location"
 msgstr "สถานที่"
 
+msgid "Location for instant recordings"
+msgstr ""
+
+msgid "Lock ratio"
+msgstr ""
+
 msgid "Lock:"
 msgstr "Lock:"
 
@@ -2073,6 +2527,9 @@ msgstr "บันทึกผลลัพธ์ลงฮาร์ดไดรฟ
 
 msgid "Long Keypress"
 msgstr "กดปุ่มนานนาน"
+
+msgid "Long filenames"
+msgstr ""
 
 msgid "Longitude"
 msgstr "ลองจิจูด"
@@ -2089,6 +2546,9 @@ msgstr "เมนูหลัก"
 msgid "Mainmenu"
 msgstr "เมนูหลัก"
 
+msgid "Maintain old EPG data for"
+msgstr ""
+
 msgid "Make this mark an 'in' point"
 msgstr "สร้างตัวคั่นสำหรับจุด 'in'"
 
@@ -2098,11 +2558,17 @@ msgstr "สร้างตัวคั่นสำหรับจุด 'out'"
 msgid "Make this mark just a mark"
 msgstr "ทำเป็นแค่ตัวคั่น"
 
+msgid "Manage extensions"
+msgstr ""
+
 msgid "Manage your receiver's software"
 msgstr "จัดการซอพท์แวร์เครื่องรับของท่าน"
 
 msgid "Manual Scan"
 msgstr "ค้นหาเอง"
+
+msgid "Manual configuration"
+msgstr ""
 
 msgid "Manual transponder"
 msgstr "ป้อนทรานสปอนเดอร์เอง"
@@ -2110,15 +2576,20 @@ msgstr "ป้อนทรานสปอนเดอร์เอง"
 msgid "Manufacturer"
 msgstr "ผู้ผลิต"
 
+msgid "March"
+msgstr ""
+
 msgid "Margin after record"
 msgstr "บันทึกต่อไปอีก"
 
 msgid "Margin before record (minutes)"
 msgstr "บันทึกก่อนเวลาจริง (นาที)"
 
-#, python-format
-msgid "Max. Bitrate: %s"
-msgstr "Bitrate สูงสุด: %s"
+msgid "Max. Bitrate: "
+msgstr ""
+
+msgid "May"
+msgstr ""
 
 msgid "Media player"
 msgstr "เล่นไฟล์"
@@ -2132,6 +2603,12 @@ msgstr "แผ่นดีวีดีนี้เขียนไม่ได้
 msgid "Medium is not empty!"
 msgstr "มีข้อมูลในสื่อบันทึก!"
 
+msgid "Memory"
+msgstr ""
+
+msgid "Memory index"
+msgstr ""
+
 msgid "Menu"
 msgstr "เมนู"
 
@@ -2141,8 +2618,8 @@ msgstr "ข้อความ"
 msgid "Message..."
 msgstr "ข้อความ..."
 
-msgid "Mkfs failed"
-msgstr "Mkfs failed"
+msgid "Missing "
+msgstr ""
 
 msgid "Mode"
 msgstr "โหมด"
@@ -2168,8 +2645,11 @@ msgstr "วันจันทร์"
 msgid "Mosquito noise reduction"
 msgstr "Mosquito noise reduction"
 
-msgid "Mount failed"
-msgstr "Mount failed"
+msgid "Mount"
+msgstr ""
+
+msgid "Move"
+msgstr ""
 
 msgid "Move Picture in Picture"
 msgstr "ย้ายภาพซ้อนภาพ"
@@ -2177,20 +2657,62 @@ msgstr "ย้ายภาพซ้อนภาพ"
 msgid "Move east"
 msgstr "เคลื่อนไปทางทิศตะวันออก"
 
+msgid "Move to other directory"
+msgstr ""
+
+msgid "Move to position X"
+msgstr ""
+
 msgid "Move west"
 msgstr "เคลื่อนไปทางทิศตะวันตก"
+
+msgid "Moved to position 0"
+msgstr ""
+
+msgid "Moved to position at index"
+msgstr ""
+
+msgid "Movement"
+msgstr ""
+
+msgid "Movie List Configuration"
+msgstr ""
+
+msgid "Movie Selection"
+msgstr ""
+
+msgid "Movie location"
+msgstr ""
 
 msgid "Movielist menu"
 msgstr "เมนูรายการภาพยนต์"
 
+msgid "Moving"
+msgstr ""
+
+msgid "Moving east ..."
+msgstr ""
+
+msgid "Moving to position"
+msgstr ""
+
+msgid "Moving west ..."
+msgstr ""
+
 msgid "Multi EPG"
 msgstr "ผังรายการแบบหลากหลาย"
+
+msgid "Multi-EPG bouquet selection"
+msgstr ""
 
 msgid "Multimedia"
 msgstr "มัลติมีเดีย"
 
 msgid "Multiple service support"
 msgstr "รองรับ Multiple service"
+
+msgid "Multiplex"
+msgstr ""
 
 msgid "Multisat"
 msgstr "Multisat"
@@ -2204,8 +2726,14 @@ msgstr "ไม่ทราบ"
 msgid "NEXT"
 msgstr "ต่อไป"
 
+msgid "NFI Image Flashing"
+msgstr ""
+
 msgid "NFI image flashing completed. Press Yellow to Reboot!"
 msgstr "ลงอิมเมจ NFI เรียบร้อยแล้ว กดปุ่มเหลืองเพื่อเริ่มระบบใหม่ (Reboot)"
+
+msgid "NIM"
+msgstr ""
 
 msgid "NOW"
 msgstr "ตอนนี้"
@@ -2229,6 +2757,9 @@ msgstr "ตั้งค่า Nameserver"
 msgid "Nameserver settings"
 msgstr "ตั้งค่า Nameserver"
 
+msgid "Namespace"
+msgstr ""
+
 msgid "Netmask"
 msgstr "Netmask"
 
@@ -2238,11 +2769,11 @@ msgstr "เครือข่าย"
 msgid "Network Configuration..."
 msgstr "ตั้งค่าเครือข่าย..."
 
+msgid "Network ID"
+msgstr ""
+
 msgid "Network Mount"
 msgstr "Network Mount"
-
-msgid "Network SSID"
-msgstr "ค่า SSID"
 
 msgid "Network Setup"
 msgstr "ตั้งค่าเครือข่าย"
@@ -2262,8 +2793,8 @@ msgstr "ทดสอบเครือข่าย"
 msgid "Network test..."
 msgstr "ทดสอบเครือข่าย..."
 
-msgid "Network..."
-msgstr "เครือข่าย..."
+msgid "Network test: "
+msgstr ""
 
 msgid "Network:"
 msgstr "เครือข่าย:"
@@ -2271,11 +2802,14 @@ msgstr "เครือข่าย:"
 msgid "NetworkWizard"
 msgstr "ตัวช่วยเครือข่าย"
 
+msgid "Networkname (SSID)"
+msgstr ""
+
 msgid "New"
 msgstr "ใหม่"
 
-msgid "New pin"
-msgstr "รหัสใหม่"
+msgid "New PIN"
+msgstr ""
 
 msgid "New version:"
 msgstr "เวอร์ชั่นใหม่:"
@@ -2289,20 +2823,20 @@ msgstr "ไม่"
 msgid "No (supported) DVDROM found!"
 msgstr "ไม่พบดีวีดีรอมที่ใช้งานได้!"
 
-msgid "No 50 Hz, sorry. :("
-msgstr "ขอโทษครับ ไม่มี 50 Hz :("
-
 msgid "No Connection"
 msgstr "ไม่พบการเชื่อมต่อ"
+
+msgid "No Delay"
+msgstr ""
 
 msgid "No HDD found or HDD not initialized!"
 msgstr "ไม่พบฮาร์ดดิสก์ (HDD) หรือยังไม่ได้เตรียมเพื่อให้ใช้งานได้"
 
-msgid "No Networks found"
-msgstr "ไม่พบเครือข่าย"
-
 msgid "No backup needed"
 msgstr "ไม่จำเป็นต้องสำรองข้อมูล"
+
+msgid "No cable tuner found!"
+msgstr ""
 
 msgid ""
 "No data on transponder!\n"
@@ -2323,13 +2857,22 @@ msgstr "ไม่พบชนิดไฟล์ที่สามารถเล
 msgid "No event info found, recording indefinitely."
 msgstr "ไม่พบข้อมูลเวลากำกับ บันทึกรายโดยไม่มีข้อกำหนด"
 
+msgid ""
+"No fast winding possible yet.. but you can use the number buttons to skip "
+"forward/backward!"
+msgstr ""
+
 msgid "No free tuner!"
 msgstr "ไม่มี Tuner ว่างที่จะใช้งานได้"
+
+msgid "No network connection available."
+msgstr ""
 
 msgid "No networks found"
 msgstr "ไม่พบเครือข่าย"
 
-msgid "No packages were upgraded yet. So you can check your network and try again."
+msgid ""
+"No packages were upgraded yet. So you can check your network and try again."
 msgstr "ไม่มีส่วนประกอบใดได้รับการปรับปรุง ตรวจสอบระบบเครือข่ายแล้วลองอีกครั้ง"
 
 msgid "No picture on TV? Press EXIT and retry."
@@ -2338,11 +2881,17 @@ msgstr "ไม่มีภาพที่หน้าจอโทรทัศน
 msgid "No positioner capable frontend found."
 msgstr "ไม่พบตัวขับจานที่ใช้ได้"
 
+msgid "No sat tuner found!"
+msgstr ""
+
 msgid "No satellite frontend found!!"
 msgstr "ไม่พบอุปกรณ์ดาวเทียม"
 
 msgid "No tags are set on these movies."
 msgstr "ไม่พบป้ายใดๆ กับภาพยนต์ชุดนี้"
+
+msgid "No to all"
+msgstr ""
 
 msgid "No tuner is configured for use with a diseqc positioner!"
 msgstr "ไม่พบ Tuner ใดๆ ที่ใช้กับตัวขับจาน!"
@@ -2353,9 +2902,6 @@ msgid ""
 msgstr ""
 "ไม่มี Tuner ใดๆ สำหรับใช้งาน!\n"
 "กรุณาตั้งค่า Tuner แล้วทำการค้นหารายการที่ให้บริการก่อน"
-
-msgid "No useable USB stick found"
-msgstr "ไม่พบ USB เมโมรี่ใดๆ เลย"
 
 msgid ""
 "No valid service PIN found!\n"
@@ -2375,26 +2921,29 @@ msgstr ""
 "ต้องการเปลี่ยนรหัสตอนนี้หรือไม่?\n"
 "หากตอบ 'ไม่' หมายถึงยกเลิกการป้องกันด้วยรหัสผ่าน"
 
-msgid "No wireless networks found! Please refresh."
-msgstr "ไม่พบเครือข่ายไร้สาย! กรุณาลองอีกครั้ง"
+msgid "No wireless networks found! Searching..."
+msgstr ""
 
 msgid ""
 "No working local network adapter found.\n"
-"Please verify that you have attached a network cable and your network is configured correctly."
+"Please verify that you have attached a network cable and your network is "
+"configured correctly."
 msgstr ""
 "ไม่พบอุปกรณ์เครือข่าย\n"
 "กรุณตรวจสอบว่าท่านได้เชื่อมต่ออุปกรณ์และตั้งค่าที่ถูกต้อง"
 
 msgid ""
 "No working wireless network adapter found.\n"
-"Please verify that you have attached a compatible WLAN device and your network is configured correctly."
+"Please verify that you have attached a compatible WLAN device and your "
+"network is configured correctly."
 msgstr ""
 "ไม่พบอุปกรณ์ไร้สาย\n"
 "กรุณาตรวจสอบว่า ได้ต่ออุปกรณ์ไร้สายที่ใช้ WLAN และได้ตั้งค่าอุปกรณ์อย่างถูกต้อง"
 
 msgid ""
 "No working wireless network interface found.\n"
-" Please verify that you have attached a compatible WLAN device or enable your local network interface."
+" Please verify that you have attached a compatible WLAN device or enable "
+"your local network interface."
 msgstr ""
 "ไม่พบอุปกรณ์ไร้สาย\n"
 " กรุณาตรวจสอบว่า ได้ต่ออุปกรณ์ไร้สายและทำให้ระบบ WLAN พร้อมใช้งานแล้ว"
@@ -2407,6 +2956,9 @@ msgstr "ไม่ - ไม่ต้องการทำ"
 
 msgid "No, just start my dreambox"
 msgstr "ไม่ - เพิ่งเริ่มใช้งานเครื่องดรีมบอกซ์"
+
+msgid "No, never"
+msgstr ""
 
 msgid "No, not now"
 msgstr "ไม่ - ไม่ต้องการทำตอนนี้"
@@ -2431,8 +2983,13 @@ msgid "Norwegian"
 msgstr "ภาษานอร์เว"
 
 #, python-format
-msgid "Not enough diskspace. Please free up some diskspace and try again. (%d MB required, %d MB available)"
+msgid ""
+"Not enough diskspace. Please free up some diskspace and try again. (%d MB "
+"required, %d MB available)"
 msgstr "เนื้อที่ไม่เพียงพอ ลบไฟล์ที่ไม่ต้องการออกแล้วลองใหม่ (ต้องการ %d MB แต่เหลืออยู่ %d)"
+
+msgid "Not-Associated"
+msgstr ""
 
 msgid ""
 "Nothing to scan!\n"
@@ -2441,11 +2998,22 @@ msgstr ""
 "ไม่มีรายการให้ค้นหา\n"
 "กรุณาตั้งค่า Tuner ก่อนการค้นหาช่องรายการใหม่"
 
+msgid "Nothing to upgrade"
+msgstr ""
+
+msgid "November"
+msgstr ""
+
 msgid "Now Playing"
 msgstr "กำลังเล่น"
 
-msgid "Now, use the contrast setting to turn up the brightness of the background as much as possible, but make sure that you can still see the difference between the two brightest levels of shades.If you have done that, press OK."
-msgstr "ตอนนี้.. ให้ปรับความชัดของหน้าจอโดยการเพิ่มความสว่างให้มากที่สุด แต่ต้องแน่ใจว่าเห็นความแตกต่างของสีที่สว่างที่สุด หากจบกระบวนการแล้วให้กดปุ่ม OK"
+msgid ""
+"Now, use the contrast setting to turn up the brightness of the background as "
+"much as possible, but make sure that you can still see the difference "
+"between the two brightest levels of shades.If you have done that, press OK."
+msgstr ""
+"ตอนนี้.. ให้ปรับความชัดของหน้าจอโดยการเพิ่มความสว่างให้มากที่สุด "
+"แต่ต้องแน่ใจว่าเห็นความแตกต่างของสีที่สว่างที่สุด หากจบกระบวนการแล้วให้กดปุ่ม OK"
 
 msgid "OK"
 msgstr "ตกลง"
@@ -2459,14 +3027,29 @@ msgstr "ตกลง - ลบส่วนเพิ่มเติมอื่น
 msgid "OK, remove some extensions"
 msgstr "ตกลง - ลบส่วนเพิ่มเติมอื่นด้วย"
 
+msgid "ONID"
+msgstr ""
+
 msgid "OSD Settings"
 msgstr "ตั้งค่า OSD"
+
+msgid "OSD name request"
+msgstr ""
 
 msgid "OSD visibility"
 msgstr "ความชัดของ OSD"
 
+msgid "October"
+msgstr ""
+
 msgid "Off"
 msgstr "ปิด"
+
+msgid "Offline decode delay (ms)"
+msgstr ""
+
+msgid "Ok"
+msgstr ""
 
 msgid "On"
 msgstr "เปิด"
@@ -2474,11 +3057,11 @@ msgstr "เปิด"
 msgid "One"
 msgstr "หนึ่ง"
 
-msgid "Online-Upgrade"
-msgstr "ปรังปรุงแบบออนไลน์"
-
 msgid "Only Free scan"
 msgstr "ค้นหาเฉพาะรายการฟรี"
+
+msgid "Only extensions."
+msgstr ""
 
 msgid "Optionally enter your name if you want to."
 msgstr "ป้อนชื่อของท่าน (ไม่บังคับ)"
@@ -2486,14 +3069,35 @@ msgstr "ป้อนชื่อของท่าน (ไม่บังคั�
 msgid "Orbital Position"
 msgstr "ตำแหน่งโคจร"
 
+msgid "Orbital position"
+msgstr ""
+
+msgid "Original"
+msgstr ""
+
+msgid "Other"
+msgstr ""
+
+msgid "Output"
+msgstr ""
+
+msgid "Overwrite configuration files ?"
+msgstr ""
+
+msgid "Overwrite configuration files during software upgrade?"
+msgstr ""
+
 msgid "PAL"
 msgstr "PAL"
+
+msgid "PCR PID"
+msgstr ""
 
 msgid "PIDs"
 msgstr "PIDs"
 
-msgid "Package details for: "
-msgstr "รายละเอียดของส่วนประกอบ:"
+msgid "PMT PID"
+msgstr ""
 
 msgid "Package list update"
 msgstr "ปรับปรุงรายการของส่วนประกอบ"
@@ -2504,14 +3108,14 @@ msgstr "ไม่สามารถลบส่วนประกอบที่
 msgid "Package removed successfully.\n"
 msgstr "ลบส่วนประกอบที่เลือกเรียบร้อยแล้ว\n"
 
+msgid "Packages"
+msgstr ""
+
 msgid "Packet management"
 msgstr "จัดการส่วนประกอบ"
 
 msgid "Packet manager"
 msgstr "ตัวจัดการส่วนประกอบ"
-
-msgid "Page"
-msgstr "หน้า"
 
 #. TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
 msgid "Pan&Scan"
@@ -2537,6 +3141,15 @@ msgstr "รหัสผ่าน"
 
 msgid "Pause movie at end"
 msgstr "หยุดการเล่นชั่วคราว (Pause) เมื่อเล่นจบ"
+
+msgid "Permanently delete all recordings in the trash can?"
+msgstr ""
+
+msgid "Permanently remove all deleted items"
+msgstr ""
+
+msgid "Persian"
+msgstr ""
 
 msgid "Phone number"
 msgstr "เลขหมาย"
@@ -2569,23 +3182,34 @@ msgstr "เล่นดีวีดี"
 msgid "Play Music..."
 msgstr "เล่นเพลง..."
 
+msgid "Play audio in background"
+msgstr ""
+
+msgid "Play next"
+msgstr ""
+
+msgid "Play previous"
+msgstr ""
+
 msgid "Play recorded movies..."
 msgstr "เล่นภาพยนต์ที่ได้บันทึกไว้..."
 
-msgid "Please Reboot"
-msgstr "กรุณาเริ่มระบบใหม่ (Reboot)"
-
 msgid "Please Select Medium to be Scanned"
 msgstr "เลือกสื่อบันทึกที่ต้องการค้นหา..."
+
+msgid "Please add titles to the compilation."
+msgstr ""
+
+msgid ""
+"Please be aware, that anyone can disable the parental control, if you have "
+"not set a PIN."
+msgstr ""
 
 msgid "Please change recording endtime"
 msgstr "กรุณาเปลี่ยนเวลาสิ้นสุดการบันทึกรายการ"
 
 msgid "Please check your network settings!"
 msgstr "กรุณตรวจสอบการตั้งค่าเครือข่าย"
-
-msgid "Please choose .NFI image file from feed server to download"
-msgstr "กรุณาเลือกไฟล์ .NFI ที่จะดาวน์โหลดจากเซอร์พเวอร์"
 
 msgid "Please choose an extension..."
 msgstr "กรุณาเลือกส่วนเพิ่มเติม..."
@@ -2597,21 +3221,20 @@ msgid "Please choose the default services lists you want to install."
 msgstr "กรุณาเลือกบริการเริ่มต้นที่ต้องการติดตั้ง"
 
 msgid ""
-"Please configure or verify your Nameservers by filling out the required values.\n"
+"Please configure or verify your Nameservers by filling out the required "
+"values.\n"
 "When you are ready press OK to continue."
 msgstr ""
 "กรุณาป้อนค่าที่จำเป็น และตรวจสอบความถูกต้องของ Nameserver\n"
 "จากนั้นกดปุ่ม OK เพื่อทำงานต่อ"
 
 msgid ""
-"Please configure your internet connection by filling out the required values.\n"
+"Please configure your internet connection by filling out the required "
+"values.\n"
 "When you are ready press OK to continue."
 msgstr ""
 "กรุณาตั้งค่าอินเตอร์เน็ตโดยการป้อนข้อมูลที่จำเป็น\n"
 "หากป้อนแล้วให้กดปุ่ม OK เพื่อทำงานต่อ"
-
-msgid "Please disconnect all USB devices from your Dreambox and (re-)attach the target USB stick (minimum size is 64 MB) now!"
-msgstr "กรุณาดึงไดรฟ์ USB ออกจากเครื่อง แล้วเสียบใหม่ตอนนี้เลย (อย่างน้อย 64 MB)"
 
 msgid "Please do not change any values unless you know what you are doing!"
 msgstr "ห้ามเปลี่ยนค่าใดๆ หากท่านไม่ทราบความหมาย!"
@@ -2634,8 +3257,8 @@ msgstr "กรุณาป้อนชื่อโฟล์เดอร์ให
 msgid "Please enter the correct pin code"
 msgstr "กรุณาป้อนรหัสที่ถูกต้องด้วย"
 
-msgid "Please enter the old pin code"
-msgstr "กรุณาป้อนรหัสเดิม"
+msgid "Please enter the old PIN code"
+msgstr ""
 
 msgid "Please enter your email address here:"
 msgstr "กรุณาป้อนอีเมลล์ของท่าน:"
@@ -2646,7 +3269,9 @@ msgstr "กรุณาป้อนชื่อของท่าน (ไม่�
 msgid "Please follow the instructions on the TV"
 msgstr "กรุณาทำตามขั้นตอนที่ปรากฏบนจอโทรทัศน์"
 
-msgid "Please note that the previously selected media could not be accessed and therefore the default directory is being used instead."
+msgid ""
+"Please note that the previously selected media could not be accessed and "
+"therefore the default directory is being used instead."
 msgstr "เนื่องจากไม่สามารถเข้าถึงสื่อบันทึกข้อมูลที่ท่านเลือกได้ โฟล์เดอร์เริ่มต้นจะถูกเรียกใช้งาน"
 
 msgid "Please press OK to continue."
@@ -2654,9 +3279,6 @@ msgstr "กรุณากดปุ่ม OK เพื่อทำงานต�
 
 msgid "Please press OK!"
 msgstr "กรุณากดปุ่ม OK!"
-
-msgid "Please select .NFI flash image file from medium"
-msgstr "กรุณาเลือกไฟล์ .NFI จากสื่อบันทึกที่ต้องการ"
 
 msgid "Please select a playlist to delete..."
 msgstr "กรุณาเลือกสารบัญรายการที่จะลบ..."
@@ -2670,6 +3292,9 @@ msgstr "กรุณาเลือกบริการย่อยที่ต
 msgid "Please select a subservice..."
 msgstr "กรุณาเลือกบริการย่อย..."
 
+msgid "Please select an NFI file and press green key to flash!"
+msgstr ""
+
 msgid "Please select an extension to remove."
 msgstr "กรุณาเลือกส่วนเพิ่มเติมที่ต้องลบออก"
 
@@ -2682,14 +3307,12 @@ msgstr "กรุณาเลือกสื่อบันทึกปลาย
 msgid "Please select tag to filter..."
 msgstr "กรุณาเลือกป้ายที่จะกรอง..."
 
-msgid "Please select target directory or medium"
-msgstr "กรุณาเลือกโฟล์เดอร์หรืออุปกรณ์ปลายทาง"
-
 msgid "Please select the movie path..."
 msgstr "กรุณาเลือกตำแหน่งของภาพยนต์"
 
 msgid ""
-"Please select the network interface that you want to use for your internet connection.\n"
+"Please select the network interface that you want to use for your internet "
+"connection.\n"
 "\n"
 "Please press OK to continue."
 msgstr ""
@@ -2724,7 +3347,9 @@ msgstr ""
 "กดปุ่ม Bouquet +/- เพื่อเปลี่ยนขนาดหน้าต่าง\n"
 "กดปุ่ม OK เพื่อดูรายการโทรทัศน์ หรือกด EXIT เพื่อยกเลิกการย้ายหน้าต่าง"
 
-msgid "Please use the UP and DOWN keys to select your language. Afterwards press the OK button."
+msgid ""
+"Please use the UP and DOWN keys to select your language. Afterwards press "
+"the OK button."
 msgstr "ใช้ปุ่มขึ้นหรือลงเพื่อเลือกภาษาที่ต้องการ จากนั้นให้กดปุ่ม OK เพื่อเลือก"
 
 msgid "Please wait for activation of your network configuration..."
@@ -2760,9 +3385,6 @@ msgstr "กำลังโหลด... รอสักครู่..."
 msgid "Plugin browser"
 msgstr "แสดงปลั๊กอิน"
 
-msgid "Plugin manager"
-msgstr "ตัวจัดการปลั๊กอิน"
-
 msgid "Plugin manager activity information"
 msgstr "ข้อมูลการทำงานของตัวจัดการปลั๊กอิน"
 
@@ -2772,8 +3394,8 @@ msgstr "ช่วยเหลือตัวจัดการปลั๊กอ
 msgid "Plugins"
 msgstr "ปลั๊กอิน"
 
-msgid "Polarity"
-msgstr "ขั่ว"
+msgid "Polarisation"
+msgstr ""
 
 msgid "Polarization"
 msgstr "ค่าทิศทาง"
@@ -2796,20 +3418,17 @@ msgstr "พอร์ต D"
 msgid "Portuguese"
 msgstr "ภาษาโปตุเกส"
 
+msgid "Position of finished Timers in Timerlist"
+msgstr ""
+
+msgid "Position stored at index"
+msgstr ""
+
 msgid "Positioner"
 msgstr "ตัวขับจาน"
 
-msgid "Positioner fine movement"
-msgstr "เคลื่อนตัวขับจานแบบละเอียด"
-
-msgid "Positioner movement"
-msgstr "การเคลื่อนตัวขับจาน"
-
 msgid "Positioner setup"
 msgstr "ตั้งค่าตัวขับจาน"
-
-msgid "Positioner storage"
-msgstr "จัดเก็บตำแหน่ง"
 
 msgid "Power threshold in mA"
 msgstr "กำลังไฟฟ้า (mA)"
@@ -2817,8 +3436,38 @@ msgstr "กำลังไฟฟ้า (mA)"
 msgid "Predefined transponder"
 msgstr "ทรานสปอนเดอร์ที่ตั้งไว้แล้ว"
 
+msgid "Prefer AC3"
+msgstr ""
+
+msgid "Prefer DVB-grafical subtitles"
+msgstr ""
+
+msgid "Prefer audio stream stored by service"
+msgstr ""
+
+msgid "Prefer hearing impaired subtitles"
+msgstr ""
+
+msgid "Prefer subtitle stored by service"
+msgstr ""
+
+msgid "Preferred tuner"
+msgstr ""
+
+msgid "Prepare another USB stick for image flashing"
+msgstr ""
+
 msgid "Preparing... Please wait"
 msgstr "กำลังเตรียมงาน... รอสักครู่"
+
+msgid "Press '0' to toggle internal/external PiP."
+msgstr ""
+
+msgid "Press INFO on your remote control for additional information."
+msgstr ""
+
+msgid "Press MENU on your remote control for additional options."
+msgstr ""
 
 msgid "Press OK on your remote control to continue."
 msgstr "กดปุ่ม OK ที่รีโมทเพื่อทำงานต่อ"
@@ -2851,14 +3500,14 @@ msgstr "กดปุ่ม OK เพื่อเริ่มค้นหา"
 msgid "Press OK to toggle the selection."
 msgstr "กดปุ่ม OK เพื่อเปลี่ยน"
 
-msgid "Press OK to view full changelog"
-msgstr "กดปุ่ม OK เพื่อดูทั้งหมด"
-
 msgid "Press yellow to set this interface as default interface."
 msgstr "กดปุ่มเหลืองเพื่อให้อินเตอร์เฟซนี้ค่าเริ่มต้น"
 
 msgid "Prev"
 msgstr "ก่อน"
+
+msgid "Preview"
+msgstr ""
 
 msgid "Preview menu"
 msgstr "เมนูดูตัวอย่าง"
@@ -2871,6 +3520,12 @@ msgstr "สำคัญ"
 
 msgid "Process"
 msgstr "โพรเซส"
+
+msgid "Progress"
+msgstr ""
+
+msgid "Progress Small"
+msgstr ""
 
 msgid "Properties of current title"
 msgstr "รายละเอียดเรื่องนี้"
@@ -2890,6 +3545,12 @@ msgstr "ผู้ให้บริการที่จะค้น"
 msgid "Providers"
 msgstr "ผู้ให้บริการ"
 
+msgid "Put TV in standby"
+msgstr ""
+
+msgid "Put receiver in standby"
+msgstr ""
+
 msgid "Python frontend for /tmp/mmi.socket"
 msgstr "Python frontend for /tmp/mmi.socket"
 
@@ -2899,17 +3560,11 @@ msgstr "เร็ว"
 msgid "Quickzap"
 msgstr "เปลี่ยนช่องเร็ว (Quickzap)"
 
-msgid "RC Menu"
-msgstr "RC Menu"
-
 msgid "RF output"
 msgstr "RF output"
 
 msgid "RGB"
 msgstr "RGB"
-
-msgid "RSS Feed URI"
-msgstr "RSS Feed URI"
 
 msgid "Radio"
 msgstr "วิทยุ"
@@ -2941,6 +3596,9 @@ msgstr "ต้องการปิดเครื่องตอนนี้ห
 msgid "Reboot"
 msgstr "เริ่มระบบใหม่ (Reboot)"
 
+msgid "Rec"
+msgstr ""
+
 msgid "Reception Settings"
 msgstr "ตั้งค่าการรับ"
 
@@ -2957,6 +3615,18 @@ msgstr "ชื่อไฟล์ที่บันทึก..."
 msgid "Recording"
 msgstr "กำลังบันทึกรายการ"
 
+msgid "Recording data sync size"
+msgstr ""
+
+msgid "Recording in progress"
+msgstr ""
+
+msgid "Recording paths"
+msgstr ""
+
+msgid "Recording type"
+msgstr ""
+
 msgid "Recording(s) are in progress or coming up in few seconds!"
 msgstr "กำลังบันทึกรายการ (หรือจะบันทึกใน 2-3 วินาทีนี้)"
 
@@ -2966,11 +3636,11 @@ msgstr "กำลังบันทึกรายการ"
 msgid "Recordings always have priority"
 msgstr "บันทึกรายการสำคัญมากกว่า"
 
-msgid "Reenter new pin"
-msgstr "ป้อนรหัสซ้ำอีกครั้ง"
+msgid "Red button..."
+msgstr ""
 
-msgid "Refresh"
-msgstr "ปรับหน้าจอ"
+msgid "Reenter new PIN"
+msgstr ""
 
 msgid "Refresh Rate"
 msgstr "ความถี่หน้าจอ"
@@ -2978,8 +3648,26 @@ msgstr "ความถี่หน้าจอ"
 msgid "Refresh rate selection."
 msgstr "เลือกความถี่หน้าจอ"
 
+msgid "Regard deep standby as standby"
+msgstr ""
+
 msgid "Reload"
 msgstr "โหลดใหม่"
+
+msgid "Reload Black-/Whitelists"
+msgstr ""
+
+msgid "Reloading bouquets and services..."
+msgstr ""
+
+msgid "Remember service PIN"
+msgstr ""
+
+msgid "Remember service PIN cancel"
+msgstr ""
+
+msgid "Remember these settings for each folder"
+msgstr ""
 
 msgid "Remove"
 msgstr "ลบออก"
@@ -3002,14 +3690,11 @@ msgstr "การลบล้มเหลว"
 msgid "Remove finished."
 msgstr "ลบออกเรียบร้อยแล้ว"
 
+msgid "Remove items from trash after (days)"
+msgstr ""
+
 msgid "Remove plugins"
 msgstr "ลบ Plugin ออก"
-
-msgid "Remove the broken .NFI file?"
-msgstr "ลบไฟล์ .NFI ที่เสียหายหรือไม่?"
-
-msgid "Remove the incomplete .NFI file?"
-msgstr "ต้องการที่จะลบไฟล์ .NFI ที่ไม่สมบูรณ์หรือไม่?"
 
 msgid "Remove timer"
 msgstr "เอาตารางเวลานี้ออก"
@@ -3033,9 +3718,6 @@ msgstr "เปลี่ยนชื่อ"
 msgid "Rename crashlogs"
 msgstr "เปลี่ยนชื่อไฟล์ปัญหาของระบบ"
 
-msgid "Repeat"
-msgstr "ซ้ำ"
-
 msgid "Repeat Type"
 msgstr "ทำซ้ำแบบ"
 
@@ -3045,11 +3727,20 @@ msgstr "กำลังบันทึกรายการซ้ำอยู่
 msgid "Repeats"
 msgstr "ทำซ้ำ"
 
+msgid "Required medium type:"
+msgstr ""
+
+msgid "Reread partition table"
+msgstr ""
+
 msgid "Reset"
 msgstr "ตั้งค่าใหม่"
 
 msgid "Reset and renumerate title names"
 msgstr "ยกเลิกและเรียงลำดับชื่อเรื่องใหม่"
+
+msgid "Reset playback position"
+msgstr ""
 
 msgid "Reset video enhancement settings to system defaults?"
 msgstr "ยกเลิกการตั้งค่าวิดีโอแบบละเอียดและกลับไปใช้ค่าเริ่มต้น?"
@@ -3063,11 +3754,11 @@ msgstr "ความละเอียดจอ"
 msgid "Restart"
 msgstr "เริ่มระบบใหม่"
 
-msgid "Restart GUI"
-msgstr "เริ่มทำงานใหม่ (GUI)"
-
 msgid "Restart GUI now?"
 msgstr "เริ่มทำงานใหม่ (GUI) ตอนนี้หรือไม่?"
+
+msgid "Restart enigma"
+msgstr ""
 
 msgid "Restart network"
 msgstr "เริ่มการทำงานเครือข่ายใหม่"
@@ -3093,11 +3784,12 @@ msgstr "กำลังนำสำรองกลับมาใช้..."
 msgid "Restore system settings"
 msgstr "นำสำรองการตั้งค่าต่างๆ กลับมาใช้"
 
-msgid "Restoring the settings is done. Please press OK to activate the restored settings now."
-msgstr "การนำสำรองกลับมาใช้เสร็จเรียบร้อยแล้ว กรุณกดปุ่ม OK เพื่อเรียกใช้งานทันที"
-
 msgid "Resume from last position"
 msgstr "เล่นต่อจากตำแหน่งเดิม"
+
+#, python-format
+msgid "Resume position at %s"
+msgstr ""
 
 #. TRANSLATORS: The string "Resuming playback" flashes for a moment
 #. TRANSLATORS: at the start of a movie, when the user has selected
@@ -3109,9 +3801,6 @@ msgstr "เล่นต่อจากตำแหน่งเดิม"
 msgid "Resuming playback"
 msgstr "กำลังกลับมาเล่นที่เดิม"
 
-msgid "Return to file browser"
-msgstr "กลับสู่รายการไฟล์ข้อมูล"
-
 msgid "Return to movie list"
 msgstr "กลับไปยังสารบัญภาพยนต์"
 
@@ -3121,23 +3810,44 @@ msgstr "กลับไปยังบริการก่อนหน้า"
 msgid "Rewind speeds"
 msgstr "ความเร็วในการย้อน"
 
+msgid "Rewrap teletext subtitles"
+msgstr ""
+
 msgid "Right"
 msgstr "ขวา"
+
+msgid "Roll-off"
+msgstr ""
 
 msgid "Rolloff"
 msgstr "Rolloff"
 
+msgid "Romanian"
+msgstr ""
+
+msgid "Root directory"
+msgstr ""
+
+msgid "Rotor step position:"
+msgstr ""
+
 msgid "Rotor turning speed"
 msgstr "ความเร็วในการหมุนของ Rotor"
 
-msgid "Running"
-msgstr "กำลังทำงาน"
+msgid "Round start time on"
+msgstr ""
 
 msgid "Russian"
 msgstr "ภาษารัสเซีย"
 
 msgid "S-Video"
 msgstr "S-Video"
+
+msgid "SID"
+msgstr ""
+
+msgid "SINGLE LAYER DVD"
+msgstr ""
 
 msgid "SNR"
 msgstr "SNR"
@@ -3160,6 +3870,12 @@ msgstr "ดาวเทียม"
 msgid "Satellite Equipment Setup"
 msgstr "ตั้งค่าอุปกรณ์ดาวเทียม"
 
+msgid "Satellite equipment"
+msgstr ""
+
+msgid "Satellite longitude:"
+msgstr ""
+
 msgid "Satellites"
 msgstr "ดาวเทียม"
 
@@ -3168,9 +3884,6 @@ msgstr "ค้นหาดาวเทียม"
 
 msgid "Sats"
 msgstr "ดาว"
-
-msgid "Satteliteequipment"
-msgstr "อุปกรณ์ดาวเทียม"
 
 msgid "Saturation"
 msgstr "ความอิ่มตัว"
@@ -3259,13 +3972,27 @@ msgstr "ค้นหา band US MID"
 msgid "Scan band US SUPER"
 msgstr "ค้นหา band US SUPER"
 
-msgid "Scan your network for wireless Access Points and connect to them using your WLAN USB Stick\n"
-msgstr "ค้นหาเครือข่ายไร้สายและเชื่อมต่อโดยใช้อุปกรณ์ USB\n"
+msgid ""
+"Scan your network for wireless access points and connect to them using your "
+"selected wireless device.\n"
+msgstr ""
 
-msgid "Scan your network for wireless Access Points and connect to them using your selected wireless device.\n"
-msgstr "ค้นหาหาเครือข่ายไร้สายและเชื่อมต่อโดยใช้อุปกรณ์ไร้สายที่ได้เลือกไว้\n"
+#, python-format
+msgid "Scanning %s..."
+msgstr ""
 
-msgid "Scans default lamedbs sorted by satellite with a connected dish positioner"
+#, python-format
+msgid "Scanning completed, %d channels found"
+msgstr ""
+
+msgid "Scanning failed!"
+msgstr ""
+
+msgid "Scanning..."
+msgstr ""
+
+msgid ""
+"Scans default lamedbs sorted by satellite with a connected dish positioner"
 msgstr "ค้นหาจาก Lamedbs และโดยเรียงดาวเทียมตามที่ต่อไว้กับตัวขับจาน"
 
 msgid "Search east"
@@ -3274,8 +4001,20 @@ msgstr "ค้นหาทางทิศตะวันออก"
 msgid "Search west"
 msgstr "ค้นหาทางทิศตะวันตก"
 
+msgid "Searching"
+msgstr ""
+
+msgid "Searching east ..."
+msgstr ""
+
+msgid "Searching for available updates. Please wait..."
+msgstr ""
+
 msgid "Searching for new installed or removed packages. Please wait..."
 msgstr "กำลังค้นหาส่วนประกอบใหม่หรือลบส่วนประกอบที่ติดตั้งแล้ว กรุณารอสักครู่..."
+
+msgid "Searching west ..."
+msgstr ""
 
 msgid "Secondary DNS"
 msgstr "DNS สำรอง"
@@ -3298,23 +4037,32 @@ msgstr "เลือกการ์ดเครือข่าย"
 msgid "Select a movie"
 msgstr "เลือกภาพยนต์"
 
-msgid "Select audio mode"
-msgstr "เลือกโหมดเสียง"
-
 msgid "Select audio track"
 msgstr "เลือกช่องเสียง"
 
 msgid "Select channel to record from"
 msgstr "เลือกบันทึกรายการจาก"
 
-msgid "Select files for backup. Currently selected:\n"
-msgstr "เลือกไฟล์ที่จะสำรอง ปัจจุบันเป็น:\n"
+msgid "Select copy destination for:"
+msgstr ""
+
+msgid "Select desired image from feed list"
+msgstr ""
+
+msgid "Select destination for:"
+msgstr ""
+
+msgid "Select files for backup."
+msgstr ""
 
 msgid "Select files/folders to backup"
 msgstr "เลือกไฟล์/โฟล์เดอร์ที่จะสำรอง"
 
-msgid "Select image"
-msgstr "เลือกอิมเมจ"
+msgid "Select input device"
+msgstr ""
+
+msgid "Select input device."
+msgstr ""
 
 msgid "Select interface"
 msgstr "เลือกอินเตอร์เฟซ"
@@ -3334,9 +4082,6 @@ msgstr "เลือกบริการที่ต้องการเพิ
 msgid "Select upgrade source to edit."
 msgstr "เลือกที่มาเพื่อปรับปรุง"
 
-msgid "Select video input"
-msgstr "เลือกช่องสัญญาณวิดีโอ"
-
 msgid "Select video input with up/down buttons"
 msgstr "เลือกช่องต่อสัญญาณวิดีโอโดยกดปุ่มขึ้น/ลง"
 
@@ -3346,8 +4091,8 @@ msgstr "เลือกโหมดวีดีโอ"
 msgid "Select wireless network"
 msgstr "เลือกเครือข่ายไร้สาย"
 
-msgid "Selected source image"
-msgstr "เลือกที่มาของอิมเมจ"
+msgid "Select your provider, and press OK to start the scan"
+msgstr ""
 
 msgid "Send DiSEqC"
 msgstr "ส่งคำสั่ง DiSEqC"
@@ -3357,6 +4102,9 @@ msgstr "ส่งคำสั่ง DiSEqC เฉพาะตอนเปลี�
 
 msgid "Seperate titles with a main menu"
 msgstr "แยกเรื่องนี้ออกจากเมนูหลัก"
+
+msgid "September"
+msgstr ""
 
 msgid "Sequence repeat"
 msgstr "Sequence repeat"
@@ -3393,6 +4141,9 @@ msgstr ""
 "ไม่พบบริการใดๆ !\n"
 "(ไม่พบ SID ใน PAT)"
 
+msgid "Service reference"
+msgstr ""
+
 msgid "Service scan"
 msgstr "ค้นหาบริการ"
 
@@ -3409,20 +4160,38 @@ msgstr "รายละเอียดของบริการ"
 msgid "Services"
 msgstr "บริการต่างๆ"
 
+msgid "Set End Time"
+msgstr ""
+
+msgid "Set Limits"
+msgstr ""
+
 msgid "Set Voltage and 22KHz"
 msgstr "ตั้งค่า Voltage และ 22KHz"
-
-msgid "Set as default Interface"
-msgstr "ตั้งค่าให้เป็นอินเตอร์เฟซเริ่มต้น"
 
 msgid "Set available internal memory threshold for the warning."
 msgstr "ตั้งค่าการเตือนเมื่อหน่วยความจำเหลือจำกัด"
 
+msgid "Set fixed"
+msgstr ""
+
 msgid "Set interface as default Interface"
 msgstr "ตั้งให้อินเตอร์เฟซนี้เป็นค่าเริ่มต้น"
 
-msgid "Set limits"
-msgstr "ตั้งข้อจำกัด"
+msgid "Set time window to 1 hour"
+msgstr ""
+
+msgid "Set time window to 2 hours"
+msgstr ""
+
+msgid "Set time window to 3 hours"
+msgstr ""
+
+msgid "Set time window to 4 hours"
+msgstr ""
+
+msgid "Set time window to 5 hours"
+msgstr ""
 
 msgid "Settings"
 msgstr "การตั้งค่า"
@@ -3433,8 +4202,26 @@ msgstr "ตั้งค่า"
 msgid "Setup Mode"
 msgstr "โหมดการตั้งค่า"
 
+msgid "Setup menu"
+msgstr ""
+
+msgid "Setup your positioner"
+msgstr ""
+
+#, python-format
+msgid ""
+"Shall the USB stick wizard proceed and program the image file %s into flash "
+"memory?"
+msgstr ""
+
 msgid "Sharpness"
 msgstr "ความคม"
+
+msgid "Short filenames"
+msgstr ""
+
+msgid "Show EIT now/next in infobar"
+msgstr ""
 
 msgid "Show Info"
 msgstr "แสดงข้อมูล"
@@ -3442,11 +4229,38 @@ msgstr "แสดงข้อมูล"
 msgid "Show Message when Recording starts"
 msgstr "แสดงข้อความเริ่มเมื่อบับทึกรายการ"
 
+msgid "Show Picons"
+msgstr ""
+
+msgid "Show Service Names "
+msgstr ""
+
 msgid "Show WLAN Status"
 msgstr "แสดงสถานะของ WLAN"
 
-msgid "Show blinking clock in display during recording"
-msgstr "นาฬิกากระพริบเมื่อบันทึกรายการ"
+msgid "Show animation while busy"
+msgstr ""
+
+msgid "Show background in Radio Mode"
+msgstr ""
+
+msgid "Show bouquet selection menu"
+msgstr ""
+
+msgid "Show channel numbers in channel selection"
+msgstr ""
+
+msgid "Show crypto info in infobar"
+msgstr ""
+
+msgid "Show detailed event info"
+msgstr ""
+
+msgid "Show event-progress in channel selection"
+msgstr ""
+
+msgid "Show icon for new/unseen items"
+msgstr ""
 
 msgid "Show infobar on channel change"
 msgstr "แสดงแถบรายการเมื่อเปลี่ยนช่อง"
@@ -3460,8 +4274,14 @@ msgstr "แสดงแถบรายการเมื่อเลือกเ
 msgid "Show positioner movement"
 msgstr "แสดงตำแหน่งตัวขับจาน"
 
+msgid "Show second infobar"
+msgstr ""
+
 msgid "Show services beginning with"
 msgstr "แสดงบริการที่เริ่มต้นด้วย"
+
+msgid "Show status icons in Movielist"
+msgstr ""
 
 msgid "Show the radio player..."
 msgstr "แสดงเครื่องเล่นวิทยุ..."
@@ -3472,11 +4292,23 @@ msgstr "แสดงเครื่องเล่นโทรทัศน์...
 msgid "Shows the state of your wireless LAN connection.\n"
 msgstr "แสดงสถานะการเชื่อมต่อเครือข่ายไร้สาย\n"
 
+msgid "Shutdown"
+msgstr ""
+
 msgid "Shutdown Dreambox after"
 msgstr "ปิดเครื่องดรีมบอกซ์หลังจาก"
 
+msgid "Side by Side"
+msgstr ""
+
+msgid "Signal OK, proceeding"
+msgstr ""
+
 msgid "Signal Strength:"
 msgstr "ความเข้มสัญญาณ:"
+
+msgid "Signal quality"
+msgstr ""
 
 msgid "Signal: "
 msgstr "สัญญาณ:"
@@ -3508,14 +4340,20 @@ msgstr "ทรานสปอนเดอร์เดียว"
 msgid "Singlestep (GOP)"
 msgstr "Singlestep (GOP)"
 
+msgid "Site latitude"
+msgstr ""
+
+msgid "Site longitude"
+msgstr ""
+
 msgid "Skin"
 msgstr "สกิน"
 
-msgid "Skin..."
-msgstr "สกิน..."
-
 msgid "Skins"
 msgstr "สกิน"
+
+msgid "Skip Empty Services"
+msgstr ""
 
 msgid "Sleep Timer"
 msgstr "ตั้งเวลาปิดเครื่อง"
@@ -3530,8 +4368,8 @@ msgstr "ความเร็วของสไลด์ (วินาที)"
 msgid "Slot %d"
 msgstr "ช่อง %d"
 
-msgid "Slovakian"
-msgstr "ภาษาสโลวาเกี่ยน"
+msgid "Slovak"
+msgstr ""
 
 msgid "Slovenian"
 msgstr "ภาษาสโลเวเนี่ยน"
@@ -3542,11 +4380,17 @@ msgstr "ช้า"
 msgid "Slow Motion speeds"
 msgstr "ระดับของความช้า"
 
+msgid "SoftCam / CI"
+msgstr ""
+
 msgid "Software"
 msgstr "ซอพท์แวร์"
 
-msgid "Software manager"
-msgstr "ส่วนจัดการซอพท์แวร์"
+msgid "Software management"
+msgstr ""
+
+msgid "Software manager setup"
+msgstr ""
 
 msgid "Software restore"
 msgstr "นำสำรองกลับมาใช้"
@@ -3554,11 +4398,11 @@ msgstr "นำสำรองกลับมาใช้"
 msgid "Software update"
 msgstr "ปรับปรุงซอพท์แวร์"
 
+msgid "Softwaremanager information"
+msgstr ""
+
 msgid "Some plugins are not available:\n"
 msgstr "Plugin บางตัวยังไม่สามารถใช้งานได้:\n"
-
-msgid "Somewhere else"
-msgstr "ที่อื่นๆ"
 
 msgid "Sorry MediaScanner is not installed!"
 msgstr "ท่านยังไม่ได้ติดตั้งตัว MediaScanner!"
@@ -3594,6 +4438,9 @@ msgstr ""
 "\n"
 "กรุณาเลือกปลายทางใหม่"
 
+msgid "Sort"
+msgstr ""
+
 #. TRANSLATORS: This must fit into the header button in the EPG-List
 msgid "Sort A-Z"
 msgstr "เรียง A-Z"
@@ -3607,6 +4454,9 @@ msgstr "เสียง"
 
 msgid "Soundcarrier"
 msgstr "Soundcarrier"
+
+msgid "Source request"
+msgstr ""
 
 msgid "South"
 msgstr "ทิศใต้"
@@ -3623,8 +4473,19 @@ msgstr "Standby"
 msgid "Standby / Restart"
 msgstr "ปิดเครื่อง"
 
+#, python-format
+msgid "Standby Fan %d PWM"
+msgstr ""
+
+#, python-format
+msgid "Standby Fan %d Voltage"
+msgstr ""
+
 msgid "Start from the beginning"
 msgstr "เริ่มตั้งแต่ต้น"
+
+msgid "Start offline decode"
+msgstr ""
 
 msgid "Start recording?"
 msgstr "เริ่มบันทึก?"
@@ -3644,8 +4505,11 @@ msgstr "ไปทางทิศตะวันออก"
 msgid "Step west"
 msgstr "ไปทางทิศตะวันตก"
 
-msgid "Stereo"
-msgstr "สเตอริโอ"
+msgid "Stepped east"
+msgstr ""
+
+msgid "Stepped west"
+msgstr ""
 
 msgid "Stop"
 msgstr "หยุด"
@@ -3662,6 +4526,12 @@ msgstr "หยุดรายการปัจจุบัน แต่ไม�
 msgid "Stop playing this movie?"
 msgstr "หยุดเล่นภาพยนต์นี้หรือไม่?"
 
+msgid "Stop recording"
+msgstr ""
+
+msgid "Stop recording and delete"
+msgstr ""
+
 msgid "Stop test"
 msgstr "หยุดทดสอบ"
 
@@ -3671,11 +4541,23 @@ msgstr "หยุดทดสอบแนวเมื่อมี # ทราน
 msgid "Stop testing plane after # successful transponders"
 msgstr "หยุดการตรวจสอบแนวเมื่อพบ # ทรานสปอนเดอร์"
 
+msgid "Stopped"
+msgstr ""
+
+msgid "Store at index"
+msgstr ""
+
 msgid "Store position"
 msgstr "บันทึกตำแหน่ง"
 
 msgid "Stored position"
 msgstr "บันทึกตำแหน่งแล้ว"
+
+msgid "Stream request"
+msgstr ""
+
+msgid "Strongest position"
+msgstr ""
 
 msgid "Subservice list..."
 msgstr "บริการย่อย..."
@@ -3683,8 +4565,29 @@ msgstr "บริการย่อย..."
 msgid "Subservices"
 msgstr "บริการย่อย"
 
+msgid "Subtitle delay when timing lacks"
+msgstr ""
+
+msgid "Subtitle language selection 1"
+msgstr ""
+
+msgid "Subtitle language selection 2"
+msgstr ""
+
+msgid "Subtitle language selection 3"
+msgstr ""
+
+msgid "Subtitle language selection 4"
+msgstr ""
+
 msgid "Subtitle selection"
 msgstr "เลือกซับไตเติ้ล"
+
+msgid "Subtitle selection..."
+msgstr ""
+
+msgid "Subtitle settings"
+msgstr ""
 
 msgid "Subtitles"
 msgstr "ซับไตเติ้ล"
@@ -3695,11 +4598,17 @@ msgstr "อา."
 msgid "Sunday"
 msgstr "วันอาทิตย์"
 
+msgid "Swap SNR in db with SNR in percentage on OSD"
+msgstr ""
+
 msgid "Swap Services"
 msgstr "สลับบริการ"
 
 msgid "Swedish"
 msgstr "ภาษาสวีเดน"
+
+msgid "Switch TV to correct input"
+msgstr ""
 
 msgid "Switch to next subservice"
 msgstr "ไปบริการย่อยถัดไป"
@@ -3707,11 +4616,20 @@ msgstr "ไปบริการย่อยถัดไป"
 msgid "Switch to previous subservice"
 msgstr "ไปบริการย่อยก่อนหน้า"
 
+msgid "Switchable tuner types:"
+msgstr ""
+
 msgid "Symbol Rate"
 msgstr "Symbol Rate"
 
+msgid "Symbol rate"
+msgstr ""
+
 msgid "Symbolrate"
 msgstr "Symbolrate"
+
+msgid "Sync failure moving back to origin !"
+msgstr ""
 
 msgid "System"
 msgstr "ระบบ"
@@ -3723,20 +4641,26 @@ msgstr "TRANSLATOR_INFO"
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "ชื่อไฟล์ TS ยาวเกินไปสำหรับ ISO9660 level 1!"
 
+msgid "TSID"
+msgstr ""
+
 msgid "TV System"
 msgstr "ระบบโทรทัศน์"
+
+msgid "TXT PID"
+msgstr ""
 
 msgid "Table of content for collection"
 msgstr "สารบัญของคอลเล็คชั่น"
 
-msgid "Tag 1"
-msgstr "ป้าย 1"
-
-msgid "Tag 2"
-msgstr "ป้าย 2"
-
 msgid "Tags"
 msgstr "ป้าย"
+
+msgid "Teletext subtitle color"
+msgstr ""
+
+msgid "Temperature and Fan control"
+msgstr ""
 
 msgid "Terrestrial"
 msgstr "ภาคพื้นดิน"
@@ -3759,6 +4683,12 @@ msgstr "ทดสอบการตั้งค่าเครือข่าย
 msgid "Test-Messagebox?"
 msgstr "ทดสอบกล่องข้อความ?"
 
+msgid "Text border width"
+msgstr ""
+
+msgid "Text font size"
+msgstr ""
+
 msgid ""
 "Thank you for using the wizard.\n"
 "Please press OK to continue."
@@ -3773,14 +4703,46 @@ msgstr ""
 "ขอขอบคุณที่ใช้บริการตัวช่วยตั้งค่า เครื่องของท่านสามารถใช้งานได้ตามปกติแล้ว\n"
 "กรุณากดปุ่ม OK เพื่อเริ่มใช้งานดรีมบอกซ์ของท่าน"
 
-msgid "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to create a Dreambox format data DVD (which will not play in stand-alone DVD players) instead?"
-msgstr "ตามมาตรฐานของดีวีดีไม่รองรับ H.264 (HDTV) ต้องการบันทึกไฟล์จากดรีมบอกซ์ในโหมดข้อมูลแทนหรือไม่ (ไม่สามารถเล่นกับเครื่องเล่นได้)?"
+msgid ""
+"The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to "
+"create a Dreambox format data DVD (which will not play in stand-alone DVD "
+"players) instead?"
+msgstr ""
+"ตามมาตรฐานของดีวีดีไม่รองรับ H.264 (HDTV) "
+"ต้องการบันทึกไฟล์จากดรีมบอกซ์ในโหมดข้อมูลแทนหรือไม่ (ไม่สามารถเล่นกับเครื่องเล่นได้)?"
 
-msgid "The USB stick is now bootable. Do you want to download the latest image from the feed server and save it on the stick?"
-msgstr "ตัว USB เมโมรี่นี้สามารถบูทได้ ท่านต้องการที่จะโหลดอิมเมจล่าสุดจากเซอร์พเวอร์ลงเมโมรี่นี้หรือไม่?"
+msgid ""
+"The NetworkWizard extension is not installed!\n"
+"Please install it."
+msgstr ""
+
+msgid "The PIN code has been changed successfully."
+msgstr ""
+
+msgid "The PIN codes you entered are different."
+msgstr ""
+
+msgid ""
+"The Softwaremanagement extension is not installed!\n"
+"Please install it."
+msgstr ""
+
+msgid ""
+"The USB stick was prepared to be bootable.\n"
+"Now you can download an NFI image file!"
+msgstr ""
 
 msgid "The backup failed. Please choose a different backup location."
 msgstr "การสำรองข้อมูลล้มเหลว กรุณาเลือกแหล่งจัดเก็บข้อมูลอื่น"
+
+msgid "The current beta image could not be stable"
+msgstr ""
+
+#, python-format
+msgid ""
+"The directory %s is not writable.\n"
+"Make sure you select a writable directory instead."
+msgstr ""
 
 #, python-format
 msgid ""
@@ -3801,7 +4763,8 @@ msgstr "พบไฟล์เหล่านี้..."
 
 msgid ""
 "The input port should be configured now.\n"
-"You can now configure the screen by displaying some test pictures. Do you want to do that now?"
+"You can now configure the screen by displaying some test pictures. Do you "
+"want to do that now?"
 msgstr ""
 "ตั้งค่าช่องต่อสัญญาณภาพ\n"
 "ท่านสามารถตั้งค่าหน้าจอโดยการแสดงภาพตัวอย่าง ท่านต้องการทำตอนนี้หรือไม่?"
@@ -3809,14 +4772,15 @@ msgstr ""
 msgid "The installation of the default services lists is finished."
 msgstr "การติดตั้งบริการเริ่มต้นเสร็จแล้ว"
 
-msgid "The installation of the default settings is finished. You can now continue configuring your Dreambox by pressing the OK button on the remote control."
-msgstr "การติดตั้งตามค่าเริ่มต้นเสร็จแล้ว ท่านสามารถดำเนินการตั้งค่าอื่นๆ สำหรับ Dreambox ของท่านต่อโดยกดปุ่ม OK ที่รีโมท"
+msgid ""
+"The installation of the default settings is finished. You can now continue "
+"configuring your Dreambox by pressing the OK button on the remote control."
+msgstr ""
+"การติดตั้งตามค่าเริ่มต้นเสร็จแล้ว ท่านสามารถดำเนินการตั้งค่าอื่นๆ สำหรับ Dreambox "
+"ของท่านต่อโดยกดปุ่ม OK ที่รีโมท"
 
-msgid "The md5sum validation failed, the file may be corrupted! Are you sure that you want to burn this image to flash memory? You are doing this at your own risk!"
-msgstr "ตรวจสอบด้วย MD5 ล้มเหลว ไฟล์นี้อาจไม่สมบูรณ์ ต้องการติดตั้งอิมเมจนี้หรือไม่ (เครื่องอาจเสียหายได้ ถ้าเลือกว่า ใช่)"
-
-msgid "The md5sum validation failed, the file may be downloaded incompletely or be corrupted!"
-msgstr "ไฟล์นี้ไม่สมบูรณ์ ตรวจสอบด้วย MD5 ไม่ผ่าน"
+msgid "The md5sum validation failed, the file may be corrupted!"
+msgstr ""
 
 msgid "The package doesn't contain anything."
 msgstr "ไม่พบเนื้อหาใดเลยในส่วนประกอบนี้"
@@ -3828,14 +4792,8 @@ msgstr "ส่วนประกอบ:"
 msgid "The path %s already exists."
 msgstr "พาธ %s นี้มีแล้วในระบบ"
 
-msgid "The pin code has been changed successfully."
-msgstr "การเปลี่ยนรหัสเรียบร้อยแล้ว"
-
 msgid "The pin code you entered is wrong."
 msgstr "รหัสที่ป้อนผิด"
-
-msgid "The pin codes you entered are different."
-msgstr "รหัสที่ป้อนไม่ตรงกัน"
 
 #, python-format
 msgid "The results have been written to %s."
@@ -3846,6 +4804,11 @@ msgstr "เวลาปิดเครื่องเริ่มทำงาน
 
 msgid "The sleep timer has been disabled."
 msgstr "เวลาปิดเครื่องถูกยกเลิกแล้ว"
+
+msgid ""
+"The status of the current beta image could not be checked because www."
+"openpli.org could not be reached for some reason"
+msgstr ""
 
 msgid "The timer file (timers.xml) is corrupt and could not be loaded."
 msgstr "ไฟล์ข้อมูลการตารางเวลา (timers.xml) เสียหาย ไม่โหลดได้"
@@ -3862,8 +4825,15 @@ msgid ""
 "Please install it."
 msgstr "ยังไม่ได้ติดตั้งปลั๊กอินสำหรับเครือข่ายไร้สาย กรุณาติดตั้งก่อน"
 
-msgid "The wizard can backup your current settings. Do you want to do a backup now?"
+msgid ""
+"The wizard can backup your current settings. Do you want to do a backup now?"
 msgstr "ตัวช่วยเหลือสามารถสำรองข้อมูลการตั้งค่าให้ท่านได้ ท่านต้องการที่จะสำรองข้อมูลตอนนี้หรือไม่?"
+
+#, python-format
+msgid ""
+"The wizard found a configuration backup. Do you want to restore your old "
+"settings from %s?"
+msgstr ""
 
 msgid "The wizard is finished now."
 msgstr "จบการทำงานของตัวช่วยเหลือ"
@@ -3871,17 +4841,23 @@ msgstr "จบการทำงานของตัวช่วยเหลื
 msgid "There are at least "
 msgstr "อย่างน้อยต้องมี"
 
+msgid "There are currently no outstanding actions."
+msgstr ""
+
 msgid "There are no default services lists in your image."
 msgstr "ไม่พบบริการเริ่มต้นในอิมเมจนี้"
 
 msgid "There are no default settings in your image."
 msgstr "ไม่พบการตั้งค่าเริ่มต้นของอิมเมจนี้"
 
+msgid "There are no updates available."
+msgstr ""
+
 msgid "There are now "
 msgstr "ณ ตอนนี้เลย"
 
-msgid "There is nothing to be done."
-msgstr "ไม่มีอะไรต้องทำ"
+msgid "There is no signal to lock on !"
+msgstr ""
 
 msgid ""
 "There might not be enough Space on the selected Partition.\n"
@@ -3896,32 +4872,27 @@ msgstr "พบข้อผิดพลาด ไม่สามารถดา�
 msgid "There was an error. The package:"
 msgstr "พบข้อผิดพลาด ในส่วนประกอบ:"
 
-#, python-format
-msgid "This .NFI file does not contain a valid %s image!"
-msgstr "ไฟล์อิมเมจ .NFI นี้ไม่ใช่อิมเมจ %s ที่ถูกต้อง!"
-
-msgid "This .NFI file does not have a md5sum signature and is not guaranteed to work. Do you really want to burn this image to flash memory?"
-msgstr "ไฟล์อิมเมจ .NFI นี้ไม่ผ่านการตรวจสอบ MD5 อาจมีผลข้างเคียงหลังจากการติดตั้งได้ ท่านจะทำการติดตั้งลงเครื่องหรือไม่?"
-
-msgid "This .NFI file has a valid md5 signature. Continue programming this image to flash memory?"
-msgstr "ไฟล์ .NFI นี้ผ่านการตรวจสอบ MD5 แล้ว ท่านต้องการที่จะติดตั้งอิมเมจนี้ลงเครื่องหรือไม่?"
-
-msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
+msgid ""
+"This DVD RW medium is already formatted - reformatting will erase all "
+"content on the disc."
 msgstr "แผ่น DVD-RW นี้ได้รับการฟอร์แมทมาแล้ว หากทำซ้ำจะเป็นการลบข้อมูลออกทั้งหมด"
 
 #, python-format
 msgid "This Dreambox can't decode %s streams!"
 msgstr "Dreambox เครื่องนี้ไม่สามารถอ่านสัญญาณ %s ได้!"
 
-#, python-format
-msgid "This Dreambox can't decode %s video streams!"
-msgstr "Dreambox เครื่องนี้ไม่สามารถอ่านไฟล์วีดีโอ %s ได้!"
-
 msgid "This is step number 2."
 msgstr "ขั้นตอนที่ 2"
 
-msgid "This is unsupported at the moment."
-msgstr "ยังไม่รองรับในขณะนี้"
+msgid ""
+"This plugin creates a USB stick which can be used to update the firmware of "
+"your Dreambox without the need for a network or WLAN connection.\n"
+"First, a USB stick needs to be prepared so that it becomes bootable.\n"
+"In the next step, an NFI image file can be downloaded from the update server "
+"and saved on the USB stick.\n"
+"If you already have a prepared bootable USB stick, please insert it now. "
+"Otherwise plug in a USB stick with a minimum size of 64 MB!"
+msgstr ""
 
 msgid "This plugin is installed."
 msgstr "ปลั๊กอินตัวนี้ได้ติดตั้งแล้ว"
@@ -3939,7 +4910,8 @@ msgid ""
 "This test checks for configured Nameservers.\n"
 "If you get a \"unconfirmed\" message:\n"
 "- please check your DHCP, cabling and Adapter setup\n"
-"- if you configured your Nameservers manually please verify your entries in the \"Nameserver\" Configuration"
+"- if you configured your Nameservers manually please verify your entries in "
+"the \"Nameserver\" Configuration"
 msgstr ""
 "การทดสอบนี้จะเป็นการตรวจสอบการตั้งค่า Nameservers.\n"
 "หากผลลัพธ์เป็น \"ไม่ยืนยัน\":\n"
@@ -3969,10 +4941,12 @@ msgstr ""
 "- แนะนำให้ตรวจสอบการตั้งค่า DHCP ตรวจสอบสายสัญญาญ"
 
 msgid ""
-"This test checks whether your LAN Adapter is set up for automatic IP Address configuration with DHCP.\n"
+"This test checks whether your LAN Adapter is set up for automatic IP Address "
+"configuration with DHCP.\n"
 "If you get a \"disabled\" message:\n"
 " - then your LAN Adapter is configured for manual IP Setup\n"
-"- verify thay you have entered correct IP informations in the AdapterSetup dialog.\n"
+"- verify thay you have entered correct IP informations in the AdapterSetup "
+"dialog.\n"
 "If you get an \"enabeld\" message:\n"
 "-verify that you have a configured and working DHCP Server in your network."
 msgstr ""
@@ -3985,6 +4959,12 @@ msgstr ""
 
 msgid "This test detects your configured LAN-Adapter."
 msgstr "ทดสอบการตั้งเครือข่าย"
+
+msgid ""
+"This will (re-)calculate all positions of your rotor and may remove "
+"previously memorised positions and fine-tuning!\n"
+"Are you sure?"
+msgstr ""
 
 msgid "Three"
 msgstr "สาม"
@@ -4004,6 +4984,9 @@ msgstr "วันพฤหัสบดี"
 msgid "Time"
 msgstr "เวลา"
 
+msgid "Time Scale"
+msgstr ""
+
 msgid "Time/Date Input"
 msgstr "ป้อนวัน/เวลา"
 
@@ -4015,6 +4998,9 @@ msgstr "แก้ไขการตั้งเวลา"
 
 msgid "Timer Editor"
 msgstr "ตัวแก้ไขการตั้งเวลา"
+
+msgid "Timer Overview"
+msgstr ""
 
 msgid "Timer Type"
 msgstr "ประเภทการตั้งเวลา"
@@ -4032,6 +5018,9 @@ msgstr ""
 "พบเวลาที่ตั้งในไฟล์ timers.xml ซ้อนกัน !\n"
 "กรุณาตรวจสอบ!"
 
+msgid "Timer record location"
+msgstr ""
+
 msgid "Timer sanity error"
 msgstr "การตั้งเวลามีปัญหา"
 
@@ -4044,11 +5033,11 @@ msgstr "สถานะการตั้งเวลา:"
 msgid "Timeshift"
 msgstr "ควบคุมรายการสด"
 
+msgid "Timeshift location"
+msgstr ""
+
 msgid "Timeshift not possible!"
 msgstr "ไม่สามารถใช้งานควบคุมรายการสดได้!"
-
-msgid "Timeshift path..."
-msgstr "พาธสำหรับการควบคุมรายการสด..."
 
 msgid "Timezone"
 msgstr "เส้นแบ่งเวลา"
@@ -4062,19 +5051,26 @@ msgstr "คุณลักษณะของเรื่อง"
 msgid "Titleset mode"
 msgstr "โหมดตั้งชื่อเรื่อง"
 
+msgid "To audio selection"
+msgstr ""
+
+msgid "To subtitle selection"
+msgstr ""
+
 msgid ""
 "To update your Dreambox firmware, please follow these steps:\n"
-"1) Turn off your box with the rear power switch and plug in the bootable USB stick.\n"
-"2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n"
+"1) Turn off your box with the rear power switch and make sure the bootable "
+"USB stick is plugged in.\n"
+"2) Turn mains back on and hold the DOWN button on the front panel pressed "
+"for 10 seconds.\n"
 "3) Wait for bootup and follow instructions of the wizard."
 msgstr ""
-"ในการอัพเดตเฟิร์มแวร์บนดรีมบอกซ์ของท่านกรุณาทำดังนี้:\n"
-"1) ปิดเครื่อง (Turn off) และถอดปลั๊ก จากนั้นเสียบ USB ที่บูทได้\n"
-"2) กดปุ่มด้านหน้าเครื่องค้างไว้ และเปิดเครื่อง (เสียบปลั๊ก) นานประมาณ 10 วินาที\n"
-"3) รอจนบูทเครื่องเสร็จแล้วทำตามคำแนะนำ"
 
 msgid "Today"
 msgstr "วันนี้"
+
+msgid "Tone Amplitude"
+msgstr ""
 
 msgid "Tone mode"
 msgstr "Tone mode"
@@ -4084,6 +5080,9 @@ msgstr "Toneburst"
 
 msgid "Toneburst A/B"
 msgstr "Toneburst A/B"
+
+msgid "Top and Bottom"
+msgstr ""
 
 msgid "Track"
 msgstr "ร่องเสียง"
@@ -4106,6 +5105,9 @@ msgstr "ทรานสปอนเดอร์"
 msgid "Transponder Type"
 msgstr "ประเภทของทรานสปอนเดอร์"
 
+msgid "Trashcan"
+msgstr ""
+
 msgid "Tries left:"
 msgstr "เหลืออยู่:"
 
@@ -4127,6 +5129,9 @@ msgstr "วันอังคาร"
 msgid "Tune"
 msgstr "ปรับค่า"
 
+msgid "Tune and Focus"
+msgstr ""
+
 msgid "Tune failed!"
 msgstr "ปรับค่าล้มเหลว!"
 
@@ -4145,6 +5150,12 @@ msgstr "ตั้งค่า Tuner"
 msgid "Tuner status"
 msgstr "สถานะของ Tuner"
 
+msgid "Tuner type"
+msgstr ""
+
+msgid "Tuning step size"
+msgstr ""
+
 msgid "Turkish"
 msgstr "ภาษาตูรกี"
 
@@ -4160,8 +5171,8 @@ msgstr "ประเภทการค้นหา"
 msgid "USALS"
 msgstr "USALS"
 
-msgid "USB"
-msgstr "USB"
+msgid "USALS Calibration"
+msgstr ""
 
 msgid "USB Stick"
 msgstr "USB เมมโมรี่"
@@ -4169,39 +5180,32 @@ msgstr "USB เมมโมรี่"
 msgid "USB stick wizard"
 msgstr "ตัวช่วยสำหรับ USB"
 
-msgid "Ukrainian"
-msgstr "ภาษายูเครน"
-
 msgid ""
-"Unable to complete filesystem check.\n"
-"Error: "
+"Unattended upgrade in progress\n"
+"Please wait until your receiver reboots\n"
+"This may take a few minutes"
 msgstr ""
-"ไม่สามารถตรวจสอบระบบไฟล์ได้\n"
-"Error: "
 
-msgid ""
-"Unable to initialize harddisk.\n"
-"Error: "
+msgid "Unattended upgrade without GUI and reboot system"
 msgstr ""
-"ไม่สามารถเตรียมการใช้งานฮาร์ดดิสก์ได้.\n"
-"Error: "
 
 msgid "Uncommitted DiSEqC command"
 msgstr "คำสั่ง Uncommitted DiSEqC"
 
-msgid ""
-"Undo\n"
-"Install"
+msgid "Undo install"
 msgstr ""
-"ยกเลิก\n"
-"ติดตั้ง"
 
-msgid ""
-"Undo\n"
-"Remove"
+msgid "Undo uninstall"
 msgstr ""
-"ยกเลิก\n"
-"ลบออก"
+
+msgid "Unencrypted"
+msgstr ""
+
+msgid "UnhandledKey"
+msgstr ""
+
+msgid "Unicable"
+msgstr ""
 
 msgid "Unicable LNB"
 msgstr "Unicable LNB"
@@ -4209,11 +5213,17 @@ msgstr "Unicable LNB"
 msgid "Unicable Martix"
 msgstr "Unicable Martix"
 
+msgid "Uninstall"
+msgstr ""
+
 msgid "Universal LNB"
 msgstr "Universal LNB"
 
-msgid "Unmount failed"
-msgstr "ถอนไม่สำเร็จ"
+msgid "Unknown"
+msgstr ""
+
+msgid "Unmount"
+msgstr ""
 
 msgid "Unsupported"
 msgstr "ไม่รองรับ"
@@ -4221,14 +5231,23 @@ msgstr "ไม่รองรับ"
 msgid "Update"
 msgstr "ปรุบปรุง"
 
+msgid "Updatefeed not available."
+msgstr ""
+
 msgid "Updates your receiver's software"
 msgstr "ปรับปรุงซอพท์แวร์เครื่องรับ"
 
 msgid "Updating finished. Here is the result:"
 msgstr "อัพเกรดเสร็จสิ้น ผลการทำงาน:"
 
+msgid "Updating software catalog"
+msgstr ""
+
 msgid "Updating... Please wait... This can take some minutes..."
 msgstr "กำลังอัพเกรด... กรุณารอสักครู่... อาจใช้เวลาหลายนาที"
+
+msgid "Upgrade and ask to reboot"
+msgstr ""
 
 msgid "Upgrade finished."
 msgstr "อัพเกรดเสร็จสิ้น"
@@ -4248,20 +5267,38 @@ msgstr "ใช้"
 msgid "Use DHCP"
 msgstr "เลือกใช้ DHCP"
 
+msgid "Use DVB subtitles position"
+msgstr ""
+
 msgid "Use Interface"
 msgstr "เลือกใช้อินเตอร์เฟซนี้"
 
 msgid "Use Power Measurement"
 msgstr "ใช้ Power Measurement"
 
+msgid "Use TV remote control"
+msgstr ""
+
 msgid "Use a gateway"
 msgstr "ใช้ Gateway"
 
-msgid "Use non-smooth winding at speeds above"
-msgstr "ใช้ Non-smooth winding ที่ความเร็วข้างบนนี้"
+msgid "Use fastscan channel names"
+msgstr ""
+
+msgid "Use fastscan channel numbering"
+msgstr ""
+
+msgid "Use official channel numbering"
+msgstr ""
+
+msgid "Use original teletext position"
+msgstr ""
 
 msgid "Use power measurement"
 msgstr "ใช้ power measurement"
+
+msgid "Use the Networkwizard to configure selected network adapter"
+msgstr ""
 
 msgid "Use the Networkwizard to configure your Network\n"
 msgstr "ใช้ตัวช่วยสำหรับตั้งค่าเครือข่าวย\n"
@@ -4275,14 +5312,25 @@ msgstr ""
 "\n"
 "กรุณาตั้งค่าสำหรับ Tuner A"
 
-msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
+msgid ""
+"Use the up/down keys on your remote control to select an option. After that, "
+"press OK."
 msgstr "ใช้ปุ่มขึ้นหรือลงบนรีโมทเพื่อเลือก จากนั้นกดปุ่ม OK"
+
+msgid "Use this input device settings?"
+msgstr ""
+
+msgid "Use this settings?"
+msgstr ""
 
 msgid "Use this video enhancement settings?"
 msgstr "ยอมรับการตั้งค่านี้?"
 
 msgid "Use time of currently running service"
 msgstr "ใช้เวลาจากรายการที่กำลังทำงานอยู่"
+
+msgid "Use trashcan in movielist"
+msgstr ""
 
 msgid "Use usals for this sat"
 msgstr "ใช้ USALS กับดาวเทียมนี้"
@@ -4293,11 +5341,17 @@ msgstr "ใช่ตัวช่วยเพื่อตั้งค่าพื
 msgid "Used service scan type"
 msgstr "ประเภทของการค้นหา"
 
+msgid "User - bouquets"
+msgstr ""
+
 msgid "User defined"
 msgstr "ผู้ใช้กำหนด"
 
 msgid "Username"
 msgstr "ชื่อผู้ใช้"
+
+msgid "Using fixed address"
+msgstr ""
 
 msgid "VCR scart"
 msgstr "VCR scart"
@@ -4308,6 +5362,9 @@ msgstr "VMGM (intro trailer)"
 msgid "Vertical"
 msgstr "แนวตั้ง (V)"
 
+msgid "Vertical turning speed"
+msgstr ""
+
 msgid "Video Fine-Tuning"
 msgstr "ปรับวิดีโอแบบละเอียด"
 
@@ -4316,6 +5373,9 @@ msgstr "ตัวช่วยปรับวิดีโอแบบละเอ
 
 msgid "Video Output"
 msgstr "ช่องวีดีโอ"
+
+msgid "Video PID"
+msgstr ""
 
 msgid "Video Setup"
 msgstr "ตั้งค่าวีดีโอ"
@@ -4335,7 +5395,8 @@ msgstr "ตั้งค่าวิดีโอชั้นสูง"
 msgid ""
 "Video input selection\n"
 "\n"
-"Please press OK if you can see this page on your TV (or select a different input port).\n"
+"Please press OK if you can see this page on your TV (or select a different "
+"input port).\n"
 "\n"
 "The next input port will be automatically probed in 10 seconds."
 msgstr ""
@@ -4348,8 +5409,17 @@ msgstr ""
 msgid "Video mode selection."
 msgstr "เลือกโหมดวีดีโอ"
 
+msgid "Videocodec"
+msgstr ""
+
 msgid "Videoenhancement Setup"
 msgstr "ตั้งค่าการแสดงผลขั้นสูง"
+
+msgid "Videoformat"
+msgstr ""
+
+msgid "Videosize"
+msgstr ""
 
 msgid "View Movies..."
 msgstr "ดูภาพยนต์"
@@ -4378,8 +5448,8 @@ msgstr "แสดงรายการส่วนเพิ่มเติมส
 msgid "View list of available EPG extensions."
 msgstr "แสดงผังรายการเพิ่มเติม"
 
-msgid "View list of available Satteliteequipment extensions."
-msgstr "แสดงรายการส่วนเพิ่มเติมสำหรับอุปกรณ์ดาวเทียม"
+msgid "View list of available Satellite equipment extensions."
+msgstr ""
 
 msgid "View list of available communication extensions."
 msgstr "แสดงรายการส่วนเพิ่มเติมสำหรับการสื่อสาร"
@@ -4423,6 +5493,9 @@ msgstr "W"
 msgid "WEP"
 msgstr "WEP"
 
+msgid "WLAN connection"
+msgstr ""
+
 msgid "WPA"
 msgstr "WPA"
 
@@ -4435,18 +5508,29 @@ msgstr "WPA2"
 msgid "WSS on 4:3"
 msgstr "WSS บน 4:3"
 
+msgid "Wait for mount"
+msgstr ""
+
+msgid "Wait for partition"
+msgstr ""
+
 msgid "Waiting"
 msgstr "กำลังคอย..."
 
+msgid "Wakeup"
+msgstr ""
+
+msgid "Wakeup TV from standby"
+msgstr ""
+
+msgid "Wakeup receiver from standby"
+msgstr ""
+
+msgid "Wakeup signal from TV"
+msgstr ""
+
 msgid "Warn if free space drops below (kB):"
 msgstr "เตือนทันที่ที่เนื้อที่ต่ำกว่า (kB)"
-
-msgid ""
-"We will now test if your TV can also display this resolution at 50hz. If your screen goes black, wait 20 seconds and it will switch back to 60hz.\n"
-"Please press OK to begin."
-msgstr ""
-"เราจะทำการทดสอบว่า เครื่องรับโทรทัศน์ขอท่านรองรับ 50Hz หรือไม่ หากหน้าจอมือ ให้รอสักครู่ประมาณ 20 วินาที เครื่องจะกลับมาทำงานที่ 60Hz\n"
-"กรุณากดปุ่ม OK เพื่อเริ่มทดสอบ"
 
 msgid "Wed"
 msgstr "พุธ"
@@ -4457,10 +5541,14 @@ msgstr "วันพุธ"
 msgid "Weekday"
 msgstr "วันธรรมดา"
 
+msgid "Weigthed position"
+msgstr ""
+
 msgid ""
 "Welcome to the Cutlist editor.\n"
 "\n"
-"Seek to the start of the stuff you want to cut away. Press OK, select 'start cut'.\n"
+"Seek to the start of the stuff you want to cut away. Press OK, select 'start "
+"cut'.\n"
 "\n"
 "Then seek to the end, press OK, select 'end cut'. That's it."
 msgstr ""
@@ -4470,14 +5558,21 @@ msgstr ""
 "\n"
 "จากนั้นทำค้นหาจุดสุดท้ายแล้วกดปุ่ม OK เพื่อกำหนดจุดสุดท้าย ('end cut') เท่านั้นเอง (That's it)"
 
-msgid "Welcome to the Image upgrade wizard. The wizard will assist you in upgrading the firmware of your Dreambox by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware."
-msgstr "ยินดีต้อนรับสู่ตัวช่วยในการอัพเกรด ตัวช่วยนี้จะช่วยท่านทำการอัพเกรดเฟริ์มแวร์บนเครื่องดรีมบอกซ์โดยที่การตั้งค่าต่างๆ ในปัตจจุบันจะถูกสำรองไว้ อีกทั้งยังแสดงรายละเอียดสั้นๆ แนะทำท่านตลอดการอัพเกรดอีกด้วย"
+msgid ""
+"Welcome to the Image upgrade wizard. The wizard will assist you in upgrading "
+"the firmware of your Dreambox by providing a backup facility for your "
+"current settings and a short explanation of how to upgrade your firmware."
+msgstr ""
+"ยินดีต้อนรับสู่ตัวช่วยในการอัพเกรด "
+"ตัวช่วยนี้จะช่วยท่านทำการอัพเกรดเฟริ์มแวร์บนเครื่องดรีมบอกซ์โดยที่การตั้งค่าต่างๆ "
+"ในปัตจจุบันจะถูกสำรองไว้ อีกทั้งยังแสดงรายละเอียดสั้นๆ แนะทำท่านตลอดการอัพเกรดอีกด้วย"
 
 msgid ""
 "Welcome to the cleanup wizard.\n"
 "\n"
 "We have detected that your available internal memory has dropped below 2MB.\n"
-"To ensure stable operation of your Dreambox, the internal memory should be cleaned up.\n"
+"To ensure stable operation of your Dreambox, the internal memory should be "
+"cleaned up.\n"
 "You can use this wizard to remove some extensions.\n"
 msgstr ""
 "ยินดีต้อนรับ สู่ตัวช่วยในการทำความสะอาดระบบ\n"
@@ -4489,13 +5584,15 @@ msgstr ""
 msgid ""
 "Welcome.\n"
 "\n"
-"If you want to connect your Dreambox to the Internet, this wizard will guide you through the basic network setup of your Dreambox.\n"
+"If you want to connect your Dreambox to the Internet, this wizard will guide "
+"you through the basic network setup of your Dreambox.\n"
 "\n"
 "Press OK to start configuring your network"
 msgstr ""
 "ยินดีต้อนรับ\n"
 "\n"
-"หากท่านต้องการให้เครื่องดรีมบอกซ์ ของท่านเชื่อมต่ออินเตอร์เน็ต ตัวช่วยนี้จะช่วยแนะนำท่านตั้งค่าเครือข่ายเบื้องต้นกับเครื่องดีมบอกซ์ของท่าน\n"
+"หากท่านต้องการให้เครื่องดรีมบอกซ์ ของท่านเชื่อมต่ออินเตอร์เน็ต "
+"ตัวช่วยนี้จะช่วยแนะนำท่านตั้งค่าเครือข่ายเบื้องต้นกับเครื่องดีมบอกซ์ของท่าน\n"
 "\n"
 "กรุณากดปุ่ม OK เพื่อตั้งค่าเครือข่าย"
 
@@ -4516,6 +5613,9 @@ msgstr "ยินดีต้อนรับ..."
 msgid "West"
 msgstr "ตะวันตก"
 
+msgid "West limit set"
+msgstr ""
+
 msgid "What do you want to scan?"
 msgstr "ท่านต้องการค้นหาอะไร?"
 
@@ -4525,7 +5625,8 @@ msgstr "ท่านต้องการจะทำอะไรกับบั
 msgid ""
 "When you do a factory reset, you will lose ALL your configuration data\n"
 "(including bouquets, services, satellite data ...)\n"
-"After completion of factory reset, your receiver will restart automatically!\n"
+"After completion of factory reset, your receiver will restart "
+"automatically!\n"
 "\n"
 "Really do a factory reset?"
 msgstr ""
@@ -4541,17 +5642,20 @@ msgstr "ท่านต้องบันทึกข้อมูลที่ส
 msgid "Where to save temporary timeshift recordings?"
 msgstr "ท่านต้องบันทึกไฟล์สำหรับควบคุมรายการสดไว้ที่ไหน?"
 
-msgid "Wireless"
-msgstr "ไร้สาย"
-
 msgid "Wireless LAN"
 msgstr "แลนแบบไร้สาย"
 
 msgid "Wireless Network"
 msgstr "เครือข่ายไร้สาย"
 
-msgid "Wireless Network State"
-msgstr "สถานะเครือข่ายไร้สาย"
+msgid "Wireless network connection setup"
+msgstr ""
+
+msgid "Wireless network connection setup."
+msgstr ""
+
+msgid "Wireless network state"
+msgstr ""
 
 msgid "Write error while recording. Disk full?\n"
 msgstr "เกิดข้อผิดพลาดในการบันทึกรายการ ไดรฟ์เต็มหรือไม่?\n"
@@ -4559,17 +5663,26 @@ msgstr "เกิดข้อผิดพลาดในการบันทึ
 msgid "Write failed!"
 msgstr "พบข้อผิดพลาดในการเขียนข้อมูล!"
 
-msgid "Writing NFI image file to flash completed"
-msgstr "เขียนไฟล์อิมเมจแบบ NFI ลงแฟรชเรียบร้อยแล้ว"
-
 msgid "YPbPr"
 msgstr "YPbPr"
 
 msgid "Year"
 msgstr "ปี"
 
+msgid "Yellow DVB subtitles"
+msgstr ""
+
+msgid "Yellow pango subtitles"
+msgstr ""
+
 msgid "Yes"
 msgstr "ใช่"
+
+msgid "Yes to all"
+msgstr ""
+
+msgid "Yes, always"
+msgstr ""
 
 msgid "Yes, and delete this movie"
 msgstr "ใช่ - ต้องการที่จะลบภาพยนต์นี้"
@@ -4601,20 +5714,38 @@ msgstr "ใช่ - กลับไปที่สารบัญ Movie"
 msgid "Yes, view the tutorial"
 msgstr "ใช่ - ต้องการดูคำแนะนำ"
 
+msgid "Yesterday"
+msgstr ""
+
+#, python-format
+msgid ""
+"You already have a channel list installed,\n"
+"would you like to remove\n"
+"\"%s\"?"
+msgstr ""
+
 msgid "You can cancel the installation."
 msgstr "ท่านสามารถยกเลิกการติดตั้งได้"
 
 msgid "You can cancel the removal."
 msgstr "ท่านสามารถยกเลิกการลบได้"
 
-msgid "You can choose some default settings now. Please select the settings you want to be installed."
+msgid ""
+"You can choose some default settings now. Please select the settings you "
+"want to be installed."
 msgstr "สามารถเลือกตั้งค่าเริ่มต้นได้ กรุณาเลือกการตั้งค่าที่ต้องการ"
 
 msgid "You can choose, what you want to install..."
 msgstr "ท่านสามารถเลือกว่าจะติดตั้งอะไร..."
 
+msgid "You can continue watching TV etc. while this is running."
+msgstr ""
+
 msgid "You can install this plugin."
 msgstr "ท่านสามารถติดตั้งปลั๊กอินตัวนี้ได้"
+
+msgid "You can only burn Dreambox recordings!"
+msgstr ""
 
 msgid "You can remove this plugin."
 msgstr "ท่านสามารถลบปลั๊กอินตัวนี้ได้"
@@ -4625,60 +5756,62 @@ msgstr "ท่านไม่สามารถลบรายการนี้
 msgid "You chose not to install any default services lists."
 msgstr "ท่านเลือกที่จะไม่ติดตั้งบริการเริ่มต้นใดๆ เลย"
 
-msgid "You chose not to install any default settings. You can however install the default settings later in the settings menu."
+msgid ""
+"You chose not to install any default settings. You can however install the "
+"default settings later in the settings menu."
 msgstr "ท่านไม่ต้องการติดตั้งค่าเริ่มต้นใดๆ เลย ท่านสามารถตั้งค่านี้จากเมนูตั้งค่าในภายหลังได้"
 
-msgid "You chose not to install anything. Please press OK finish the install wizard."
+msgid ""
+"You chose not to install anything. Please press OK finish the install wizard."
 msgstr "ท่านเลือกที่จะไม่ทำการติดตั้งไฟล์ใดๆ เลย กรุณากดปุ่ม OK เพื่อจบการทำงานของตัวช่วย"
 
-msgid "You do not seem to have a harddisk in your Dreambox. So backing up to a harddisk is not an option for you."
-msgstr "ไม่พบฮาร์ดดิสก์ในเครื่องของท่าน ดังนั้นการสำรองข้อมูลลงฮาร์ดดิสก์จึงไม่สามารถทำได้"
+msgid "You didn't select a channel to record from."
+msgstr ""
 
 msgid ""
-"You have chosen to backup to a compact flash card. The card must be in the slot. We do not verify if it is really used at the moment. So better backup to the harddisk!\n"
-"Please press OK to start the backup now."
-msgstr ""
-"ท่านได้เลือกที่จะสำรองข้อมูลสู่ Compact flash (CF) กรุณาเสียบแผ่นในช่องอ่านตอนนี้  เนื่องจากไม่มีการตรวจแผ่น ทางที่ดีแนะนำให้สำรองสู่ฮาร์ดดิสก์!\n"
-"กดปุ่ม OK เพื่อเริ่มทำงาน"
-
-msgid ""
-"You have chosen to backup to an usb drive. Better backup to the harddisk!\n"
-"Please press OK to start the backup now."
-msgstr ""
-"ท่านได้เลือกที่จะสำรองข้อมูลลงสู่ USB (สำรองลงฮาร์ดดิสก์จะดีกว่า)\n"
-"กรุณากดปุ่ม OK เพื่อเริ่มทำงาน"
-
-msgid "You have chosen to backup to your harddisk. Please press OK to start the backup now."
-msgstr "ท่านได้เลือกสำรองข้อมูลลงฮาร์ดดิสก์ กรุณากดปุ่ม OK เพื่อเริ่มทำงาน"
-
-msgid "You have chosen to backup your settings. Please press OK to start the backup now."
+"You have chosen to backup your settings. Please press OK to start the backup "
+"now."
 msgstr "ท่านได้เลือกสำรองข้อมูลการตั้งค่าระบบ กรุณากดปุ่ม OK เพื่อเริ่มทำงาน"
 
-msgid "You have chosen to create a new .NFI flasher bootable USB stick. This will repartition the USB stick and therefore all data on it will be erased."
+msgid ""
+"You have chosen to create a new .NFI flasher bootable USB stick. This will "
+"repartition the USB stick and therefore all data on it will be erased."
 msgstr "ท่าได้เลือก สร้างไฟล์ .NFI ที่ USB ซึ่งระบบสร้างพาร์ทิชั่นใหม่ทำให้ข้อมูลทั้งหมดหายไป"
 
-msgid "You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now."
-msgstr "ท่านได้เลือกที่จะนำสำรองกลับมาใช้ เครื่องจะบูทให้เมื่อเสร็จสิ้นกระบวนการ กรุณากดปุ่ม OK เพื่อเริ่มทำงาน"
+msgid ""
+"You have chosen to restore your settings. Enigma2 will restart after "
+"restore. Please press OK to start the restore now."
+msgstr ""
+"ท่านได้เลือกที่จะนำสำรองกลับมาใช้ เครื่องจะบูทให้เมื่อเสร็จสิ้นกระบวนการ กรุณากดปุ่ม OK "
+"เพื่อเริ่มทำงาน"
 
 #, python-format
 msgid "You have to wait %s!"
 msgstr "ต้องรอประมาณ %s!"
 
 msgid ""
-"You need a PC connected to your dreambox. If you need further instructions, please visit the website http://www.dm7025.de\n"
-"Your dreambox will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
+"You need a PC connected to your dreambox. If you need further instructions, "
+"please visit the website http://www.dm7025.de.\n"
+"Your dreambox will now be halted. After you have performed the update "
+"instructions from the website, your new firmware will ask you to restore "
+"your settings."
 msgstr ""
-"เชื่อม PC ของท่านกับดรีมบอกซ์แล้ว หากที่ต้องการคำอธิบายเพิ่มให้ติดต่อ http://www.dm7025.de\n"
-"เครื่องดรีมบอกซ์ของท่านจะแฮงค์ หลังจากที่ท่านได้ทำตามคำแนะนำตามเวบไซด์แล้ว ตัวอิมเมจใหม่จะให้ท่านนำสำรองกลับมาใช้"
 
 msgid ""
-"You need to set a pin code and hide it from your children.\n"
+"You need to set a PIN code and hide it from your children.\n"
 "\n"
 "Do you want to set the pin now?"
 msgstr ""
-"ท่านต้องป้อนรหัสควบคุมช่องจากเด็ก\n"
+
+msgid "You system does not support ext4"
+msgstr ""
+
+msgid ""
+"Your Dreambox is now ready to use.\n"
 "\n"
-"ท่านต้องการตั้งรหัสตอนนี้หรือไม่?"
+"Your internet connection is working now.\n"
+"\n"
+msgstr ""
 
 msgid ""
 "Your Dreambox is now ready to use.\n"
@@ -4696,19 +5829,25 @@ msgstr ""
 msgid "Your Dreambox will restart after pressing OK on your remote control."
 msgstr "เครื่องจะทำการเริ่มระบบใหม่เมื่อท่านกดปุ่ม OK"
 
-msgid "Your TV works with 50 Hz. Good!"
-msgstr "โทรทัศน์ของท่านทำงานได้ที่ 50Hz เยี่ยมเลย!"
-
-msgid "Your backup succeeded. We will now continue to explain the further upgrade process."
+msgid ""
+"Your backup succeeded. We will now continue to explain the further upgrade "
+"process."
 msgstr "การสำรองข้อมูลเสร็จสิ้น และจะต่อด้วยขั้ตอนในการปรับปรุงซอพท์แวร์"
 
-msgid "Your collection exceeds the size of a single layer medium, you will need a blank dual layer DVD!"
+msgid ""
+"Your collection exceeds the size of a single layer medium, you will need a "
+"blank dual layer DVD!"
 msgstr "ข้อมูลที่เลือกใหญ่กว่าดีวีดีแบบชั้นเดียว ท่านต้องใช้ดีวีดีแบบ 2 ชั้น"
+
+msgid "Your current collection will get lost!"
+msgstr ""
 
 msgid "Your dreambox is shutting down. Please stand by..."
 msgstr "กำลังจะปิดเครื่อง (Shutdown) กรุณารอสักครับ"
 
-msgid "Your dreambox isn't connected to the internet properly. Please check it and try again."
+msgid ""
+"Your dreambox isn't connected to the internet properly. Please check it and "
+"try again."
 msgstr "เครื่องของท่านไม่สามารถเชื่อต่ออินเตอร์เน็ทได้ โปรดตรวจสอบแล้วลองใหม่"
 
 msgid "Your email address:"
@@ -4735,17 +5874,6 @@ msgid "Your network configuration has been activated."
 msgstr "เครือข่ายของท่านสามารถใช้งานได้แล้ว"
 
 msgid ""
-"Your network configuration has been activated.\n"
-"A second configured interface has been found.\n"
-"\n"
-"Do you want to disable the second network interface?"
-msgstr ""
-"เครือข่ายของท่านทำงานได้แล้ว\n"
-"พบการตั้งค่าอินเตอร์เฟซอีกอันในระบบ\n"
-"\n"
-"ท่านต้องการที่จะยกเลิการใช้งานอินเตอร์เฟซที่พบหรือไม่?"
-
-msgid ""
 "Your wireless LAN internet connection could not be started!\n"
 "Have you attached your USB WLAN Stick?\n"
 "\n"
@@ -4756,11 +5884,29 @@ msgstr ""
 "\n"
 "โปรดเลือกว่าท่านจะทำอะไรต่อไป"
 
+msgid "Zap back to previously tuned service?"
+msgstr ""
+
 msgid "Zap back to service before positioner setup?"
 msgstr "ย้ายไปยังช่องบริการก่อนตั้งค่าตัวขับจาน"
 
 msgid "Zap back to service before satfinder?"
 msgstr "ย้ายไปยังช่องบริกการก่อนที่ค้นหาดาวเทียม"
+
+msgid "Zap back to service before tuner setup?"
+msgstr ""
+
+msgid "Zap focus to Picture in Picture"
+msgstr ""
+
+msgid "Zap focus to main screen"
+msgstr ""
+
+msgid "Zap mode"
+msgstr ""
+
+msgid "Zap to selected channel"
+msgstr ""
 
 msgid "[alternative edit]"
 msgstr "[แก้ไขอื่น]"
@@ -4792,8 +5938,14 @@ msgstr "ยกเลิกการแก้ไขรายการโปรด
 msgid "about to start"
 msgstr "กำลังจะเริ่ม"
 
+msgid "activate PiP"
+msgstr ""
+
 msgid "activate current configuration"
 msgstr "สั่งใช้งานการตั้งค่าปัจจุบัน"
+
+msgid "activate network adapter configuration"
+msgstr ""
 
 msgid "add Provider"
 msgstr "เพิ่มผู้ให้บริการ"
@@ -4849,6 +6001,9 @@ msgstr "เพิ่มรายการเข้าสู่กลุ่มจ
 msgid "advanced"
 msgstr "ขั้นสูง"
 
+msgid "alphabetic reverse"
+msgstr ""
+
 msgid "alphabetic sort"
 msgstr "เรียงตามอักษร"
 
@@ -4859,17 +6014,17 @@ msgstr ""
 "ท่านแน่ใจหรือไม่ ที่จะนำ\n"
 "สำรองข้อมูลนี้กลับมาใช้:\n"
 
-msgid "assigned CAIds"
-msgstr "ตั้งค่า CAIds"
-
 msgid "assigned CAIds:"
 msgstr "ตั้งค่า CAIds:"
 
-msgid "assigned Services/Provider"
-msgstr "กำหนดบริการ/ผู้ให้บริการ"
-
 msgid "assigned Services/Provider:"
 msgstr "กำหนดบริการ/ผู้ให้บริการr:"
+
+msgid "at beginning"
+msgstr ""
+
+msgid "at end"
+msgstr ""
 
 #, python-format
 msgid "audio track (%s) format"
@@ -4913,6 +6068,9 @@ msgstr "น้ำเงิน"
 msgid "burn audio track (%s)"
 msgstr "บันทึกเสียง  (%s)"
 
+msgid "center"
+msgstr ""
+
 msgid "change recording (duration)"
 msgstr "เปลี่ยนแปลงการบันทึก (ช่วงเวลา)"
 
@@ -4921,9 +6079,6 @@ msgstr "เปลี่ยนแปลงการบันทึก (เวล�
 
 msgid "chapters"
 msgstr "บทที่"
-
-msgid "choose destination directory"
-msgstr "เลือกโฟล์เดอร์ปลายทาง"
 
 msgid "circular left"
 msgstr "วนไปทางซ้าย"
@@ -4958,14 +6113,15 @@ msgstr "ไม่สามารถย้ายได้"
 msgid "create directory"
 msgstr "สร้างโฟล์เดอร์"
 
+#, python-format
+msgid "currently installed image: %s"
+msgstr ""
+
 msgid "daily"
 msgstr "รายวัน"
 
 msgid "day"
 msgstr "วัน"
-
-msgid "delete"
-msgstr "ลบ"
 
 msgid "delete cut"
 msgstr "ลบส่วนตัดต่อ"
@@ -4981,6 +6137,9 @@ msgstr "ลบรายการสารบัญ"
 
 msgid "delete..."
 msgstr "ลบ..."
+
+msgid "descramble and record ecm"
+msgstr ""
 
 msgid "disable"
 msgstr "ไม่ใช้"
@@ -5000,11 +6159,32 @@ msgstr "ไม่ต้องเปลี่ยน"
 msgid "do nothing"
 msgstr "ไม่ต้องทำอะไร"
 
+msgid "don't descramble, record ecm"
+msgstr ""
+
 msgid "don't record"
 msgstr "ไม่ต้องบันทึก"
 
 msgid "done!"
 msgstr "เสร็จแล้ว!!"
+
+msgid "dreambox advanced remote control (native)"
+msgstr ""
+
+msgid "dreambox front panel"
+msgstr ""
+
+msgid "dreambox ir keyboard"
+msgstr ""
+
+msgid "dreambox ir mouse"
+msgstr ""
+
+msgid "dreambox remote control (native)"
+msgstr ""
+
+msgid "east"
+msgstr ""
 
 msgid "edit alternatives"
 msgstr "แก้ไขแบบอื่น"
@@ -5042,14 +6222,8 @@ msgstr "จบรายการโปรด"
 msgid "enigma2 and network"
 msgstr "Enigma 2 และเครือข่าย"
 
-msgid "enter hidden network SSID"
-msgstr "เชื่อมต่อเครือข่าย SSID ที่ถูกซ่อน"
-
 msgid "equal to"
 msgstr "เท่ากับ"
-
-msgid "exceeds dual layer medium!"
-msgstr "มากกว่าความจุของสื่อบันทึกสองหน้า"
 
 msgid "exit DVD player or return to file browser"
 msgstr "ออกจากโหมดเครื่องเล่นดีวีดี หรือกลับไปดูไฟล์ข้อมูล"
@@ -5066,17 +6240,14 @@ msgstr "ออกจากการตั้งค่า Nameserver"
 msgid "exit network adapter configuration"
 msgstr "ออกจากการตั้งค่าระบบเครือข่าย"
 
-msgid "exit network adapter setup menu"
-msgstr "ออกจากเมนูตั้งค่าระบบเครือข่าย"
-
 msgid "exit network interface list"
 msgstr "ออกจากรายการเครือข่าย"
 
 msgid "exit networkadapter setup menu"
 msgstr "ออกจากเมนูตั้งค่าระบบเครือข่าย"
 
-msgid "failed"
-msgstr "ผิดพลาด"
+msgid "false"
+msgstr ""
 
 msgid "fileformats (BMP, PNG, JPG, GIF)"
 msgstr "ชนิดไฟล์ (BMP, PNG, JPG, GIF)"
@@ -5087,6 +6258,9 @@ msgstr "ชื่อไฟล์"
 msgid "fine-tune your display"
 msgstr "ปรับหน้าจอแบบละเอียด"
 
+msgid "fixed"
+msgstr ""
+
 msgid "forward to the next chapter"
 msgstr "ข้ามไปตอนต่อไป"
 
@@ -5095,6 +6269,9 @@ msgstr "เหลืออยู่"
 
 msgid "free diskspace"
 msgstr "เนื้อที่เหลือยู่"
+
+msgid "full transparency"
+msgstr ""
 
 msgid "go to deep standby"
 msgstr "เข้าสู่โหมด Deep standby"
@@ -5111,17 +6288,11 @@ msgstr "เขียว"
 msgid "hear radio..."
 msgstr "ฟังวิทยุ..."
 
+msgid "height"
+msgstr ""
+
 msgid "help..."
 msgstr "ช่วยเหลือ..."
-
-msgid "hidden network"
-msgstr "เครือข่ายที่ถูกซ่อน"
-
-msgid "hidden..."
-msgstr "ถูกซ่อนไว้..."
-
-msgid "hide extended description"
-msgstr "ซ่อนคำอธิบาย"
 
 msgid "hide player"
 msgstr "ซ่อนตัวเล่น"
@@ -5129,22 +6300,8 @@ msgstr "ซ่อนตัวเล่น"
 msgid "horizontal"
 msgstr "แนวนอน (H)"
 
-msgid "hour"
-msgstr "ชั่วโมง"
-
-msgid "hours"
-msgstr "ชั่วโมง"
-
 msgid "immediate shutdown"
 msgstr "ปิดเครื่องทันที (Shutdown)"
-
-#, python-format
-msgid ""
-"incoming call!\n"
-"%s calls on %s!"
-msgstr ""
-"มีสายเข้า!!\n"
-"%s สายที่ %s!"
 
 msgid "init module"
 msgstr "เริ่มต้นโมดูล"
@@ -5154,6 +6311,9 @@ msgstr "เริ่มต้นโมดูล"
 
 msgid "insert mark here"
 msgstr "แทรกตรงตำแหน่งนี้"
+
+msgid "invalid type"
+msgstr ""
 
 msgid "jump back to the previous title"
 msgstr "กลับไปเรื่องก่อนหน้า"
@@ -5182,6 +6342,12 @@ msgstr "ซ้าย"
 msgid "length"
 msgstr "ความยาว"
 
+msgid "limit ..., aborting !"
+msgstr ""
+
+msgid "list of EPG views..."
+msgstr ""
+
 msgid "list style compact"
 msgstr "แสดงรายการแบบสั้น"
 
@@ -5209,14 +6375,8 @@ msgstr "ทำเอง"
 msgid "menu"
 msgstr "เมนู"
 
-msgid "menulist"
-msgstr "รายการ"
-
 msgid "mins"
 msgstr "น."
-
-msgid "minute"
-msgstr "นาที"
 
 msgid "minutes"
 msgstr "นาที"
@@ -5263,9 +6423,6 @@ msgstr "ไม่มี CAId ใดๆ ถูกเลือก"
 msgid "no CI slots found"
 msgstr "ไม่พบ CI"
 
-msgid "no HDD found"
-msgstr "ไม่พบฮาร์ดดิสก์ (HDD)"
-
 msgid "no Services/Providers selected"
 msgstr "ยังไม่ได้เลือกบริการหรือผู้ให้บริการ"
 
@@ -5275,14 +6432,29 @@ msgstr "ไม่พบโมดูลใดๆ เลย"
 msgid "no standby"
 msgstr "ไม่ Standby"
 
+msgid "no storage devices found"
+msgstr ""
+
 msgid "no timeout"
 msgstr "ไม่มีการหมดเวลา"
+
+msgid "no transparency"
+msgstr ""
 
 msgid "none"
 msgstr "ไม่มี"
 
+msgid "normal"
+msgstr ""
+
+msgid "not configured"
+msgstr ""
+
 msgid "not locked"
 msgstr "ไม่ล๊อค"
+
+msgid "not supported"
+msgstr ""
 
 msgid "not used"
 msgstr "ไม่ถูกใช้"
@@ -5298,6 +6470,9 @@ msgstr "ของสื่อบันทึกแบบชั้นเดีย
 
 msgid "off"
 msgstr "ปิด"
+
+msgid "offset is"
+msgstr ""
 
 msgid "on"
 msgstr "เปิด"
@@ -5320,14 +6495,17 @@ msgstr "เปิดสารบัญบริการ (ลง)"
 msgid "open servicelist(up)"
 msgstr "เปิดสารบันบรกิการ (ขี้น)"
 
-msgid "open virtual keyboard input help"
-msgstr "เรียกส่วนช่วยเหลือแป้นพิมพ์จำลอง"
+msgid "original"
+msgstr ""
 
 msgid "pass"
 msgstr "ผ่าน"
 
 msgid "pause"
 msgstr "หยุดชั่วคราว"
+
+msgid "play as picture in picture"
+msgstr ""
 
 msgid "play entry"
 msgstr "เล่นไฟล์นี้"
@@ -5337,6 +6515,9 @@ msgstr "เล่นไฟล์ต่อไป หรือจากสาร�
 
 msgid "play from previous mark or playlist entry"
 msgstr "เล่นไฟล์ก่อนหน้าหรือเล่นจากสารบัญรายการ"
+
+msgid "play in mainwindow"
+msgstr ""
 
 msgid "please press OK when ready"
 msgstr "กดปุ่ม OK เมื่อพร้อม"
@@ -5358,6 +6539,9 @@ msgstr "กำลังบันทึกรายการ..."
 
 msgid "red"
 msgstr "แดง"
+
+msgid "relative"
+msgstr ""
 
 msgid "remove a nameserver entry"
 msgstr "ลบ Nameserver นี้ออก"
@@ -5401,6 +6585,9 @@ msgstr "กลับไปที่สารบัญ"
 msgid "repeated"
 msgstr "เล่นซ้ำ"
 
+msgid "reverse by date"
+msgstr ""
+
 msgid "rewind to the previous chapter"
 msgstr "กลับไปตอนที่แล้ว"
 
@@ -5426,9 +6613,6 @@ msgstr "กำลังค้นหา - %d%% !"
 msgid "scan state"
 msgstr "สถานะการค้นหา"
 
-msgid "second"
-msgstr "วินาที"
-
 msgid "second cable of motorized LNB"
 msgstr "เลือกสายบังคับ LNB"
 
@@ -5438,17 +6622,11 @@ msgstr "วินาที"
 msgid "select"
 msgstr "เลือก"
 
-msgid "select .NFI flash file"
-msgstr "เลือกไฟล์ .NFI"
-
 msgid "select CAId"
 msgstr "เลือก CAId"
 
 msgid "select CAId's"
 msgstr "เลือก CAId's"
-
-msgid "select image from server"
-msgstr "เลือกอิมเมจจากเซอร์พเวอร์"
 
 msgid "select interface"
 msgstr "เลือกอินเตอร์เฟซ"
@@ -5462,11 +6640,14 @@ msgstr "เลือกภาพยนต์"
 msgid "select the movie path"
 msgstr "เลือกพาธของภาพยนต์"
 
-msgid "service pin"
-msgstr "รหัสบริการ"
+msgid "service PIN"
+msgstr ""
 
-msgid "setup pin"
-msgstr "ตั้งรหัส"
+msgid "set as startup service"
+msgstr ""
+
+msgid "setup PIN"
+msgstr ""
 
 msgid "show DVD main menu"
 msgstr "แสดงเมนูหลักของดีวีดี"
@@ -5477,8 +6658,8 @@ msgstr "แสดงผังรายการ (EPG)"
 msgid "show Infoline"
 msgstr "แสดง Infoline"
 
-msgid "show all"
-msgstr "แสดงทั้งหมด"
+msgid "show all tags"
+msgstr ""
 
 msgid "show alternatives"
 msgstr "แสดงทางเลือกอื่น"
@@ -5489,11 +6670,8 @@ msgstr "แสดงรายละเอียดรายการ"
 msgid "show extended description"
 msgstr "แสดงคำอธิบายรายการเพิ่มเติม"
 
-msgid "show first selected tag"
-msgstr "แสดงป้ายแรกที่เลือก"
-
-msgid "show second selected tag"
-msgstr "แสดงป้ายที่สอง"
+msgid "show mediaplayer on mainmenu"
+msgstr ""
 
 msgid "show shutdown menu"
 msgstr "แสดงเมนูปิดเครื่อง"
@@ -5507,8 +6685,14 @@ msgstr "แสดงเมนูป้าย"
 msgid "show transponder info"
 msgstr "แสดงข้อมูล Transponder"
 
+msgid "shuffle"
+msgstr ""
+
 msgid "shuffle playlist"
 msgstr "สลับรายการในสารบัญ"
+
+msgid "shut down"
+msgstr ""
 
 msgid "shutdown"
 msgstr "ปิด (Shutdown)"
@@ -5534,6 +6718,12 @@ msgstr "วนภาพไปเรื่อยๆ"
 msgid "sort by date"
 msgstr "เรียงตามวันที่"
 
+msgid "sorting of playlists"
+msgstr ""
+
+msgid "special characters"
+msgstr ""
+
 msgid "standard"
 msgstr "มาตรฐาน"
 
@@ -5549,6 +6739,9 @@ msgstr "โฟล์เดอร์เริ่มต้น"
 msgid "start timeshift"
 msgstr "เริ่มควบคุมรายการสด"
 
+msgid "stepsize"
+msgstr ""
+
 msgid "stereo"
 msgstr "สเตอริโอ"
 
@@ -5563,6 +6756,9 @@ msgstr "หยุดบันทึก"
 
 msgid "stop timeshift"
 msgstr "หยุดควบคุมรายการสด"
+
+msgid "stop using as startup service"
+msgstr ""
 
 msgid "swap PiP and main picture"
 msgstr "สลับภาพรายการ"
@@ -5603,8 +6799,14 @@ msgstr "สลับการเลือกจุดสำหรับตัด
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "สลับช่วงเวลา ตอนที่ เสียง หรือซับไตเติ้ล"
 
-msgid "unavailable"
-msgstr "ไม่สามารถใช้ได้"
+msgid "top"
+msgstr ""
+
+msgid "true"
+msgstr ""
+
+msgid "tuner is not supported"
+msgstr ""
 
 msgid "unconfirmed"
 msgstr "ยังไม่ยืนยัน"
@@ -5615,8 +6817,8 @@ msgstr "ไม่มีข้อมูล"
 msgid "unknown service"
 msgstr "ไม่ทราบชนิดบริการ"
 
-msgid "until restart"
-msgstr "จนกระทั้งเริ่มระบบใหม่"
+msgid "until standby/restart"
+msgstr ""
 
 msgid "user defined"
 msgstr "ผู้ใช้ระบุ"
@@ -5645,8 +6847,20 @@ msgstr "ถูกลบออกเรียบร้อยแล้ว"
 msgid "weekly"
 msgstr "รายสัปดาห์"
 
+msgid "west"
+msgstr ""
+
+msgid "white"
+msgstr ""
+
 msgid "whitelist"
 msgstr "รายการที่อนุญาต"
+
+msgid "width"
+msgstr ""
+
+msgid "wireless network interface"
+msgstr ""
 
 msgid "working"
 msgstr "กำลังทำงาน"
@@ -5660,7 +6874,9 @@ msgstr "ใช่"
 msgid "yes (keep feeds)"
 msgstr "ใช่ (เก็บฟีดนี้ไว้)"
 
-msgid "your dreambox might be unusable now. Please consult the manual for further assistance before rebooting your dreambox."
+msgid ""
+"your dreambox might be unusable now. Please consult the manual for further "
+"assistance before rebooting your dreambox."
 msgstr "เครื่องของท่านไม่เสถียรพอที่จะใช้งาน แนะนำให้ศึกษาคู่มือการใช้งานก่อนบูทเครื่อง"
 
 msgid "zap"
@@ -5669,3 +6885,720 @@ msgstr "เปลี่ยนช่อง"
 msgid "zapped"
 msgstr "เปลี่ยนช่องแล้ว"
 
+#~ msgid ""
+#~ "\n"
+#~ "Scan for local packages and install them."
+#~ msgstr ""
+#~ "\n"
+#~ "ค้นหาและติดตั้งส่วนประกอบ"
+
+#~ msgid " "
+#~ msgstr " "
+
+#~ msgid ""
+#~ "%s\n"
+#~ "(%s, %d MB free)"
+#~ msgstr ""
+#~ "%s\n"
+#~ "(%s, %d MB ว่างอยู่)"
+
+#~ msgid "* Only available when entering hidden SSID or network key"
+#~ msgstr "* ต้องป้อน SSID หรือคีย์ของเครือข่าย"
+
+#~ msgid ".NFI Download failed:"
+#~ msgstr "โหลดไฟล์ .NFI ล้มเหลว"
+
+#~ msgid ""
+#~ ".NFI file passed md5sum signature check. You can safely flash this image!"
+#~ msgstr "นำไปใช้ได้ ไฟล์ .NFI นี้ผ่านตรวจสอบด้วย MD5 แล้ว"
+
+#~ msgid "30 minutes"
+#~ msgstr "30 นาที"
+
+#~ msgid "5 minutes"
+#~ msgstr "5 นาที"
+
+#~ msgid "50 Hz"
+#~ msgstr "50 Hz"
+
+#~ msgid "60 minutes"
+#~ msgstr "60 นาที"
+
+#~ msgid "AC3 default"
+#~ msgstr "ให้ AC3 เป็นค่าเริ่มต้น"
+
+#~ msgid "Advanced"
+#~ msgstr "ขั้นสูง"
+
+#~ msgid "Backup is done. Please press OK to see the result."
+#~ msgstr "สำรองข้อมูลแล้วเสร็จ กรุณากดปุ่ม OK เพื่อดูรายงาน"
+
+#~ msgid "Burn to DVD..."
+#~ msgstr "เขียนแผ่นดีวีดี..."
+
+#~ msgid "Call monitoring"
+#~ msgstr "เฝ้าดูการโทร"
+
+#~ msgid "Cannot parse feed directory"
+#~ msgstr "ไม่สามารถอ่าน Feed ได้"
+
+#~ msgid "Catalan"
+#~ msgstr "ภาษาคาตาลัน"
+
+#~ msgid "Change dir."
+#~ msgstr "เปลี่ยนโฟลเดอร์"
+
+#~ msgid "Change service pin"
+#~ msgstr "เปลี่ยนรหัสบริการ"
+
+#~ msgid "Change service pins"
+#~ msgstr "เปลี่ยนรหัสบริการ"
+
+#~ msgid "Change setup pin"
+#~ msgstr "เปลี่ยนรหัสติดตั้ง"
+
+#~ msgid "Choose source"
+#~ msgstr "เลือกที่มา"
+
+#~ msgid "Code rate high"
+#~ msgstr "Code rate high"
+
+#~ msgid "Code rate low"
+#~ msgstr "Code rate low"
+
+#~ msgid "Compact flash card"
+#~ msgstr "Compact flash card"
+
+#~ msgid "Config"
+#~ msgstr "ตั้งค่า"
+
+#~ msgid "Connected to Fritz!Box!"
+#~ msgstr "เชื่อมต่อกับ Fritz!Box แล้ว!"
+
+#~ msgid "Connecting to Fritz!Box..."
+#~ msgstr "กำลังติดต่อ Fritz!Box..."
+
+#~ msgid ""
+#~ "Connection to Fritz!Box\n"
+#~ "failed! (%s)\n"
+#~ "retrying..."
+#~ msgstr ""
+#~ "ติดต่อ Fritz!Box\n"
+#~ "ล้มเหลว! (%s)\n"
+#~ "กำลังลองใหม่อีกครั้ง..."
+
+#~ msgid ""
+#~ "Crashlogs found!\n"
+#~ "Send them to Dream Multimedia ?"
+#~ msgstr ""
+#~ "พบรายงานปัญหาเครื่อง!\n"
+#~ "ต้องการส่งรายงานให้ Dream Multimedia หรือไม่?"
+
+#~ msgid "Create movie folder failed"
+#~ msgstr "สร้างโฟล์เดอร์สำหรับภาพยนต์ไม่ได้"
+
+#~ msgid "Creating partition failed"
+#~ msgstr "การสร้างพาร์ทิชั่นล้มเหลว"
+
+#~ msgid "Default services lists"
+#~ msgstr "บริการเริ่มต้น"
+
+#~ msgid "Default settings"
+#~ msgstr "ตั้งค่าเริ่มต้น"
+
+#~ msgid "Delay"
+#~ msgstr "ชะลอ"
+
+#~ msgid "Destination directory"
+#~ msgstr "โฟล์เดอร์ปลายทาง"
+
+#~ msgid "Disable Subtitles"
+#~ msgstr "ไม่แสดงซับไดเติ้ล"
+
+#~ msgid ""
+#~ "Disconnected from\n"
+#~ "Fritz!Box! (%s)\n"
+#~ "retrying..."
+#~ msgstr ""
+#~ "การเชื่อมต่อกับ\n"
+#~ "Fritz!Box! (%s) ถูกตัด\n"
+#~ "กำลังลองเชื่อมต่อซ้ำ..."
+
+#~ msgid ""
+#~ "Do you really want to initialize the harddisk?\n"
+#~ "All data on the disk will be lost!"
+#~ msgstr ""
+#~ "ท่านต้องการที่จะทำให้ฮาร์ดไดรฟ์ของท่านพร้อมใช้งานหรือไม่?\n"
+#~ "คำเตือน: ข้อมูลที่มีอยู่บนไดรฟ์ทั้งหมดจะหายไปทันที!"
+
+#~ msgid "Do you want to install default sat lists?"
+#~ msgstr "ท่านต้องการติดตั้งดาวเทียมตามค่าเริ่มต้นหรือไม่?"
+
+#~ msgid "Done - Installed or upgraded %d packages with %d errors"
+#~ msgstr "เสร็จแล้ว - ติดตั้งหรือปรับปรุง %d รายการ พบข้อผิดพลาด %d รายการ"
+
+#~ msgid "Download of USB flasher boot image failed: "
+#~ msgstr "ดาวน์โหลดอิมเมจ USB flasher ล้มเหลว"
+
+#~ msgid "Encrypted: %s"
+#~ msgstr "ถูกเข้ารหัส: %s"
+
+#~ msgid "Encryption Type"
+#~ msgstr "เข้ารหัสแบบ"
+
+#~ msgid ""
+#~ "Enigma2 Skinselector v0.5 BETA\n"
+#~ "\n"
+#~ "If you experience any problems please contact\n"
+#~ "stephan@reichholf.net\n"
+#~ "\n"
+#~ "© 2006 - Stephan Reichholf"
+#~ msgstr ""
+#~ "Enigma2 Skinselector v0.5 BETA\n"
+#~ "\n"
+#~ "หากท่านประสบปัญหาในการใช้งานกรุณาติดต่อ\n"
+#~ "stephan@reichholf.net\n"
+#~ "\n"
+#~ "© 2006 - Stephan Reichholf"
+
+#~ msgid "Enter Fast Forward at speed"
+#~ msgstr "ป้อนความเร็วในการเดินหน้า"
+
+#~ msgid "Enter Rewind at speed"
+#~ msgstr "ป้อนความเร็วในการย้อนหลัง"
+
+#~ msgid "Enter WLAN network name/SSID:"
+#~ msgstr "ป้อนชื่อเครือข่าย WLAN/SSID:"
+
+#~ msgid "Enter WLAN passphrase/key:"
+#~ msgstr "ป้อนคีย์สำหรับ WLAN:"
+
+#~ msgid "Everything is fine"
+#~ msgstr "ทุกอย่างปกติ"
+
+#~ msgid "Filesystem Check..."
+#~ msgstr "ตรวจสอบระบบไฟล์..."
+
+#~ msgid "Filesystem contains uncorrectable errors"
+#~ msgstr "ระบบไฟล์มีปัญหาไม่สามารถแก้ไขได้"
+
+#~ msgid ""
+#~ "First we need to download the latest boot environment for the USB flasher."
+#~ msgstr "ต้องดาวน์โหลด USB Flasher ก่อน"
+
+#~ msgid "Following tasks will be done after you press continue!"
+#~ msgstr "คำสั่งต่อไปนี้จะทำงานเมื่อเลือก 'ต่อไป'"
+
+#~ msgid "Frame repeat count during non-smooth winding"
+#~ msgstr "จำนวนแฟรมสำหรับ non-smooth winding"
+
+#~ msgid "Frisian"
+#~ msgstr "ภาษาไฟรเชียน"
+
+#~ msgid "Fritz!Box FON IP address"
+#~ msgstr "Fritz!Box FON IP address"
+
+#~ msgid "Fsck failed"
+#~ msgstr "Fsck failed"
+
+#~ msgid "Function not yet implemented"
+#~ msgstr "ฟังก์ชั่นยังทำงานไม่ได้"
+
+#~ msgid "General AC3 delay"
+#~ msgstr "General AC3 delay"
+
+#~ msgid "General PCM delay"
+#~ msgstr "General PCM delay"
+
+#~ msgid "Guard interval mode"
+#~ msgstr "โหมด Guard interval"
+
+#~ msgid "Hidden network SSID"
+#~ msgstr "SSID ของเครือข่ายที่ซ้อนไว้"
+
+#~ msgid "Hidden networkname"
+#~ msgstr "ชื่อเครือข่ายที่ซ่อนไว้"
+
+#~ msgid "Hierarchy mode"
+#~ msgstr "โหมดลำดับชั้น"
+
+#~ msgid "Icelandic"
+#~ msgstr "ภาษาไอซ์แลนด์"
+
+#~ msgid "If you can see this page, please press OK."
+#~ msgstr "หากเห็นหน้าจอนี้ให้กดปุ่ม OK"
+
+#~ msgid "Image flash utility"
+#~ msgstr "ยูทิลิตี้สำรับอิมเมจ"
+
+#~ msgid "Image-Upgrade"
+#~ msgstr "Image-Upgrade"
+
+#~ msgid "Initialization..."
+#~ msgstr "การเตรียมการ..."
+
+#~ msgid "Initializing Harddisk..."
+#~ msgstr "กำลังเตรียมฮาร์ดดิสก์..."
+
+#~ msgid "Integrated Ethernet"
+#~ msgstr "Integrated Ethernet"
+
+#~ msgid "Integrated Wireless"
+#~ msgstr "Integrated Wireless"
+
+#~ msgid "Interface: %s"
+#~ msgstr "อินเตอร์เฟซ: %s"
+
+#~ msgid "Invert display"
+#~ msgstr "แสดงกลับสี"
+
+#~ msgid "Keymap"
+#~ msgstr "Keymap"
+
+#~ msgid "Max. Bitrate: %s"
+#~ msgstr "Bitrate สูงสุด: %s"
+
+#~ msgid "Mkfs failed"
+#~ msgstr "Mkfs failed"
+
+#~ msgid "Mount failed"
+#~ msgstr "Mount failed"
+
+#~ msgid "Network SSID"
+#~ msgstr "ค่า SSID"
+
+#~ msgid "Network..."
+#~ msgstr "เครือข่าย..."
+
+#~ msgid "New pin"
+#~ msgstr "รหัสใหม่"
+
+#~ msgid "No 50 Hz, sorry. :("
+#~ msgstr "ขอโทษครับ ไม่มี 50 Hz :("
+
+#~ msgid "No Networks found"
+#~ msgstr "ไม่พบเครือข่าย"
+
+#~ msgid "No useable USB stick found"
+#~ msgstr "ไม่พบ USB เมโมรี่ใดๆ เลย"
+
+#~ msgid "No wireless networks found! Please refresh."
+#~ msgstr "ไม่พบเครือข่ายไร้สาย! กรุณาลองอีกครั้ง"
+
+#~ msgid "Online-Upgrade"
+#~ msgstr "ปรังปรุงแบบออนไลน์"
+
+#~ msgid "Package details for: "
+#~ msgstr "รายละเอียดของส่วนประกอบ:"
+
+#~ msgid "Page"
+#~ msgstr "หน้า"
+
+#~ msgid "Please Reboot"
+#~ msgstr "กรุณาเริ่มระบบใหม่ (Reboot)"
+
+#~ msgid "Please choose .NFI image file from feed server to download"
+#~ msgstr "กรุณาเลือกไฟล์ .NFI ที่จะดาวน์โหลดจากเซอร์พเวอร์"
+
+#~ msgid ""
+#~ "Please disconnect all USB devices from your Dreambox and (re-)attach the "
+#~ "target USB stick (minimum size is 64 MB) now!"
+#~ msgstr "กรุณาดึงไดรฟ์ USB ออกจากเครื่อง แล้วเสียบใหม่ตอนนี้เลย (อย่างน้อย 64 MB)"
+
+#~ msgid "Please enter the old pin code"
+#~ msgstr "กรุณาป้อนรหัสเดิม"
+
+#~ msgid "Please select .NFI flash image file from medium"
+#~ msgstr "กรุณาเลือกไฟล์ .NFI จากสื่อบันทึกที่ต้องการ"
+
+#~ msgid "Please select target directory or medium"
+#~ msgstr "กรุณาเลือกโฟล์เดอร์หรืออุปกรณ์ปลายทาง"
+
+#~ msgid "Plugin manager"
+#~ msgstr "ตัวจัดการปลั๊กอิน"
+
+#~ msgid "Polarity"
+#~ msgstr "ขั่ว"
+
+#~ msgid "Positioner fine movement"
+#~ msgstr "เคลื่อนตัวขับจานแบบละเอียด"
+
+#~ msgid "Positioner movement"
+#~ msgstr "การเคลื่อนตัวขับจาน"
+
+#~ msgid "Positioner storage"
+#~ msgstr "จัดเก็บตำแหน่ง"
+
+#~ msgid "Press OK to view full changelog"
+#~ msgstr "กดปุ่ม OK เพื่อดูทั้งหมด"
+
+#~ msgid "RC Menu"
+#~ msgstr "RC Menu"
+
+#~ msgid "RSS Feed URI"
+#~ msgstr "RSS Feed URI"
+
+#~ msgid "Reenter new pin"
+#~ msgstr "ป้อนรหัสซ้ำอีกครั้ง"
+
+#~ msgid "Refresh"
+#~ msgstr "ปรับหน้าจอ"
+
+#~ msgid "Remove the broken .NFI file?"
+#~ msgstr "ลบไฟล์ .NFI ที่เสียหายหรือไม่?"
+
+#~ msgid "Remove the incomplete .NFI file?"
+#~ msgstr "ต้องการที่จะลบไฟล์ .NFI ที่ไม่สมบูรณ์หรือไม่?"
+
+#~ msgid "Repeat"
+#~ msgstr "ซ้ำ"
+
+#~ msgid "Restart GUI"
+#~ msgstr "เริ่มทำงานใหม่ (GUI)"
+
+#~ msgid ""
+#~ "Restoring the settings is done. Please press OK to activate the restored "
+#~ "settings now."
+#~ msgstr "การนำสำรองกลับมาใช้เสร็จเรียบร้อยแล้ว กรุณกดปุ่ม OK เพื่อเรียกใช้งานทันที"
+
+#~ msgid "Return to file browser"
+#~ msgstr "กลับสู่รายการไฟล์ข้อมูล"
+
+#~ msgid "Running"
+#~ msgstr "กำลังทำงาน"
+
+#~ msgid "Satteliteequipment"
+#~ msgstr "อุปกรณ์ดาวเทียม"
+
+#~ msgid ""
+#~ "Scan your network for wireless Access Points and connect to them using "
+#~ "your WLAN USB Stick\n"
+#~ msgstr "ค้นหาเครือข่ายไร้สายและเชื่อมต่อโดยใช้อุปกรณ์ USB\n"
+
+#~ msgid ""
+#~ "Scan your network for wireless Access Points and connect to them using "
+#~ "your selected wireless device.\n"
+#~ msgstr "ค้นหาหาเครือข่ายไร้สายและเชื่อมต่อโดยใช้อุปกรณ์ไร้สายที่ได้เลือกไว้\n"
+
+#~ msgid "Select audio mode"
+#~ msgstr "เลือกโหมดเสียง"
+
+#~ msgid "Select files for backup. Currently selected:\n"
+#~ msgstr "เลือกไฟล์ที่จะสำรอง ปัจจุบันเป็น:\n"
+
+#~ msgid "Select image"
+#~ msgstr "เลือกอิมเมจ"
+
+#~ msgid "Select video input"
+#~ msgstr "เลือกช่องสัญญาณวิดีโอ"
+
+#~ msgid "Selected source image"
+#~ msgstr "เลือกที่มาของอิมเมจ"
+
+#~ msgid "Set as default Interface"
+#~ msgstr "ตั้งค่าให้เป็นอินเตอร์เฟซเริ่มต้น"
+
+#~ msgid "Set limits"
+#~ msgstr "ตั้งข้อจำกัด"
+
+#~ msgid "Show blinking clock in display during recording"
+#~ msgstr "นาฬิกากระพริบเมื่อบันทึกรายการ"
+
+#~ msgid "Skin..."
+#~ msgstr "สกิน..."
+
+#~ msgid "Slovakian"
+#~ msgstr "ภาษาสโลวาเกี่ยน"
+
+#~ msgid "Software manager"
+#~ msgstr "ส่วนจัดการซอพท์แวร์"
+
+#~ msgid "Somewhere else"
+#~ msgstr "ที่อื่นๆ"
+
+#~ msgid "Stereo"
+#~ msgstr "สเตอริโอ"
+
+#~ msgid "Tag 1"
+#~ msgstr "ป้าย 1"
+
+#~ msgid "Tag 2"
+#~ msgstr "ป้าย 2"
+
+#~ msgid ""
+#~ "The USB stick is now bootable. Do you want to download the latest image "
+#~ "from the feed server and save it on the stick?"
+#~ msgstr ""
+#~ "ตัว USB เมโมรี่นี้สามารถบูทได้ "
+#~ "ท่านต้องการที่จะโหลดอิมเมจล่าสุดจากเซอร์พเวอร์ลงเมโมรี่นี้หรือไม่?"
+
+#~ msgid ""
+#~ "The md5sum validation failed, the file may be corrupted! Are you sure "
+#~ "that you want to burn this image to flash memory? You are doing this at "
+#~ "your own risk!"
+#~ msgstr ""
+#~ "ตรวจสอบด้วย MD5 ล้มเหลว ไฟล์นี้อาจไม่สมบูรณ์ ต้องการติดตั้งอิมเมจนี้หรือไม่ "
+#~ "(เครื่องอาจเสียหายได้ ถ้าเลือกว่า ใช่)"
+
+#~ msgid ""
+#~ "The md5sum validation failed, the file may be downloaded incompletely or "
+#~ "be corrupted!"
+#~ msgstr "ไฟล์นี้ไม่สมบูรณ์ ตรวจสอบด้วย MD5 ไม่ผ่าน"
+
+#~ msgid "The pin code has been changed successfully."
+#~ msgstr "การเปลี่ยนรหัสเรียบร้อยแล้ว"
+
+#~ msgid "The pin codes you entered are different."
+#~ msgstr "รหัสที่ป้อนไม่ตรงกัน"
+
+#~ msgid "There is nothing to be done."
+#~ msgstr "ไม่มีอะไรต้องทำ"
+
+#~ msgid "This .NFI file does not contain a valid %s image!"
+#~ msgstr "ไฟล์อิมเมจ .NFI นี้ไม่ใช่อิมเมจ %s ที่ถูกต้อง!"
+
+#~ msgid ""
+#~ "This .NFI file does not have a md5sum signature and is not guaranteed to "
+#~ "work. Do you really want to burn this image to flash memory?"
+#~ msgstr ""
+#~ "ไฟล์อิมเมจ .NFI นี้ไม่ผ่านการตรวจสอบ MD5 อาจมีผลข้างเคียงหลังจากการติดตั้งได้ "
+#~ "ท่านจะทำการติดตั้งลงเครื่องหรือไม่?"
+
+#~ msgid ""
+#~ "This .NFI file has a valid md5 signature. Continue programming this image "
+#~ "to flash memory?"
+#~ msgstr "ไฟล์ .NFI นี้ผ่านการตรวจสอบ MD5 แล้ว ท่านต้องการที่จะติดตั้งอิมเมจนี้ลงเครื่องหรือไม่?"
+
+#~ msgid "This Dreambox can't decode %s video streams!"
+#~ msgstr "Dreambox เครื่องนี้ไม่สามารถอ่านไฟล์วีดีโอ %s ได้!"
+
+#~ msgid "This is unsupported at the moment."
+#~ msgstr "ยังไม่รองรับในขณะนี้"
+
+#~ msgid "Timeshift path..."
+#~ msgstr "พาธสำหรับการควบคุมรายการสด..."
+
+#~ msgid ""
+#~ "To update your Dreambox firmware, please follow these steps:\n"
+#~ "1) Turn off your box with the rear power switch and plug in the bootable "
+#~ "USB stick.\n"
+#~ "2) Turn mains back on and hold the DOWN button on the front panel pressed "
+#~ "for 10 seconds.\n"
+#~ "3) Wait for bootup and follow instructions of the wizard."
+#~ msgstr ""
+#~ "ในการอัพเดตเฟิร์มแวร์บนดรีมบอกซ์ของท่านกรุณาทำดังนี้:\n"
+#~ "1) ปิดเครื่อง (Turn off) และถอดปลั๊ก จากนั้นเสียบ USB ที่บูทได้\n"
+#~ "2) กดปุ่มด้านหน้าเครื่องค้างไว้ และเปิดเครื่อง (เสียบปลั๊ก) นานประมาณ 10 วินาที\n"
+#~ "3) รอจนบูทเครื่องเสร็จแล้วทำตามคำแนะนำ"
+
+#~ msgid "USB"
+#~ msgstr "USB"
+
+#~ msgid "Ukrainian"
+#~ msgstr "ภาษายูเครน"
+
+#~ msgid ""
+#~ "Unable to complete filesystem check.\n"
+#~ "Error: "
+#~ msgstr ""
+#~ "ไม่สามารถตรวจสอบระบบไฟล์ได้\n"
+#~ "Error: "
+
+#~ msgid ""
+#~ "Unable to initialize harddisk.\n"
+#~ "Error: "
+#~ msgstr ""
+#~ "ไม่สามารถเตรียมการใช้งานฮาร์ดดิสก์ได้.\n"
+#~ "Error: "
+
+#~ msgid ""
+#~ "Undo\n"
+#~ "Install"
+#~ msgstr ""
+#~ "ยกเลิก\n"
+#~ "ติดตั้ง"
+
+#~ msgid ""
+#~ "Undo\n"
+#~ "Remove"
+#~ msgstr ""
+#~ "ยกเลิก\n"
+#~ "ลบออก"
+
+#~ msgid "Unmount failed"
+#~ msgstr "ถอนไม่สำเร็จ"
+
+#~ msgid "Use non-smooth winding at speeds above"
+#~ msgstr "ใช้ Non-smooth winding ที่ความเร็วข้างบนนี้"
+
+#~ msgid "View list of available Satteliteequipment extensions."
+#~ msgstr "แสดงรายการส่วนเพิ่มเติมสำหรับอุปกรณ์ดาวเทียม"
+
+#~ msgid ""
+#~ "We will now test if your TV can also display this resolution at 50hz. If "
+#~ "your screen goes black, wait 20 seconds and it will switch back to 60hz.\n"
+#~ "Please press OK to begin."
+#~ msgstr ""
+#~ "เราจะทำการทดสอบว่า เครื่องรับโทรทัศน์ขอท่านรองรับ 50Hz หรือไม่ หากหน้าจอมือ "
+#~ "ให้รอสักครู่ประมาณ 20 วินาที เครื่องจะกลับมาทำงานที่ 60Hz\n"
+#~ "กรุณากดปุ่ม OK เพื่อเริ่มทดสอบ"
+
+#~ msgid "Wireless"
+#~ msgstr "ไร้สาย"
+
+#~ msgid "Wireless Network State"
+#~ msgstr "สถานะเครือข่ายไร้สาย"
+
+#~ msgid "Writing NFI image file to flash completed"
+#~ msgstr "เขียนไฟล์อิมเมจแบบ NFI ลงแฟรชเรียบร้อยแล้ว"
+
+#~ msgid ""
+#~ "You do not seem to have a harddisk in your Dreambox. So backing up to a "
+#~ "harddisk is not an option for you."
+#~ msgstr "ไม่พบฮาร์ดดิสก์ในเครื่องของท่าน ดังนั้นการสำรองข้อมูลลงฮาร์ดดิสก์จึงไม่สามารถทำได้"
+
+#~ msgid ""
+#~ "You have chosen to backup to a compact flash card. The card must be in "
+#~ "the slot. We do not verify if it is really used at the moment. So better "
+#~ "backup to the harddisk!\n"
+#~ "Please press OK to start the backup now."
+#~ msgstr ""
+#~ "ท่านได้เลือกที่จะสำรองข้อมูลสู่ Compact flash (CF) กรุณาเสียบแผ่นในช่องอ่านตอนนี้  "
+#~ "เนื่องจากไม่มีการตรวจแผ่น ทางที่ดีแนะนำให้สำรองสู่ฮาร์ดดิสก์!\n"
+#~ "กดปุ่ม OK เพื่อเริ่มทำงาน"
+
+#~ msgid ""
+#~ "You have chosen to backup to an usb drive. Better backup to the "
+#~ "harddisk!\n"
+#~ "Please press OK to start the backup now."
+#~ msgstr ""
+#~ "ท่านได้เลือกที่จะสำรองข้อมูลลงสู่ USB (สำรองลงฮาร์ดดิสก์จะดีกว่า)\n"
+#~ "กรุณากดปุ่ม OK เพื่อเริ่มทำงาน"
+
+#~ msgid ""
+#~ "You have chosen to backup to your harddisk. Please press OK to start the "
+#~ "backup now."
+#~ msgstr "ท่านได้เลือกสำรองข้อมูลลงฮาร์ดดิสก์ กรุณากดปุ่ม OK เพื่อเริ่มทำงาน"
+
+#~ msgid ""
+#~ "You need a PC connected to your dreambox. If you need further "
+#~ "instructions, please visit the website http://www.dm7025.de\n"
+#~ "Your dreambox will now be halted. After you have performed the update "
+#~ "instructions from the website, your new firmware will ask you to restore "
+#~ "your settings."
+#~ msgstr ""
+#~ "เชื่อม PC ของท่านกับดรีมบอกซ์แล้ว หากที่ต้องการคำอธิบายเพิ่มให้ติดต่อ http://www.dm7025."
+#~ "de\n"
+#~ "เครื่องดรีมบอกซ์ของท่านจะแฮงค์ หลังจากที่ท่านได้ทำตามคำแนะนำตามเวบไซด์แล้ว "
+#~ "ตัวอิมเมจใหม่จะให้ท่านนำสำรองกลับมาใช้"
+
+#~ msgid ""
+#~ "You need to set a pin code and hide it from your children.\n"
+#~ "\n"
+#~ "Do you want to set the pin now?"
+#~ msgstr ""
+#~ "ท่านต้องป้อนรหัสควบคุมช่องจากเด็ก\n"
+#~ "\n"
+#~ "ท่านต้องการตั้งรหัสตอนนี้หรือไม่?"
+
+#~ msgid "Your TV works with 50 Hz. Good!"
+#~ msgstr "โทรทัศน์ของท่านทำงานได้ที่ 50Hz เยี่ยมเลย!"
+
+#~ msgid ""
+#~ "Your network configuration has been activated.\n"
+#~ "A second configured interface has been found.\n"
+#~ "\n"
+#~ "Do you want to disable the second network interface?"
+#~ msgstr ""
+#~ "เครือข่ายของท่านทำงานได้แล้ว\n"
+#~ "พบการตั้งค่าอินเตอร์เฟซอีกอันในระบบ\n"
+#~ "\n"
+#~ "ท่านต้องการที่จะยกเลิการใช้งานอินเตอร์เฟซที่พบหรือไม่?"
+
+#~ msgid "assigned CAIds"
+#~ msgstr "ตั้งค่า CAIds"
+
+#~ msgid "assigned Services/Provider"
+#~ msgstr "กำหนดบริการ/ผู้ให้บริการ"
+
+#~ msgid "choose destination directory"
+#~ msgstr "เลือกโฟล์เดอร์ปลายทาง"
+
+#~ msgid "delete"
+#~ msgstr "ลบ"
+
+#~ msgid "enter hidden network SSID"
+#~ msgstr "เชื่อมต่อเครือข่าย SSID ที่ถูกซ่อน"
+
+#~ msgid "exceeds dual layer medium!"
+#~ msgstr "มากกว่าความจุของสื่อบันทึกสองหน้า"
+
+#~ msgid "exit network adapter setup menu"
+#~ msgstr "ออกจากเมนูตั้งค่าระบบเครือข่าย"
+
+#~ msgid "failed"
+#~ msgstr "ผิดพลาด"
+
+#~ msgid "hidden network"
+#~ msgstr "เครือข่ายที่ถูกซ่อน"
+
+#~ msgid "hidden..."
+#~ msgstr "ถูกซ่อนไว้..."
+
+#~ msgid "hide extended description"
+#~ msgstr "ซ่อนคำอธิบาย"
+
+#~ msgid "hour"
+#~ msgstr "ชั่วโมง"
+
+#~ msgid "hours"
+#~ msgstr "ชั่วโมง"
+
+#~ msgid ""
+#~ "incoming call!\n"
+#~ "%s calls on %s!"
+#~ msgstr ""
+#~ "มีสายเข้า!!\n"
+#~ "%s สายที่ %s!"
+
+#~ msgid "menulist"
+#~ msgstr "รายการ"
+
+#~ msgid "minute"
+#~ msgstr "นาที"
+
+#~ msgid "no HDD found"
+#~ msgstr "ไม่พบฮาร์ดดิสก์ (HDD)"
+
+#~ msgid "open virtual keyboard input help"
+#~ msgstr "เรียกส่วนช่วยเหลือแป้นพิมพ์จำลอง"
+
+#~ msgid "second"
+#~ msgstr "วินาที"
+
+#~ msgid "select .NFI flash file"
+#~ msgstr "เลือกไฟล์ .NFI"
+
+#~ msgid "select image from server"
+#~ msgstr "เลือกอิมเมจจากเซอร์พเวอร์"
+
+#~ msgid "service pin"
+#~ msgstr "รหัสบริการ"
+
+#~ msgid "setup pin"
+#~ msgstr "ตั้งรหัส"
+
+#~ msgid "show all"
+#~ msgstr "แสดงทั้งหมด"
+
+#~ msgid "show first selected tag"
+#~ msgstr "แสดงป้ายแรกที่เลือก"
+
+#~ msgid "show second selected tag"
+#~ msgstr "แสดงป้ายที่สอง"
+
+#~ msgid "unavailable"
+#~ msgstr "ไม่สามารถใช้ได้"
+
+#~ msgid "until restart"
+#~ msgstr "จนกระทั้งเริ่มระบบใหม่"
