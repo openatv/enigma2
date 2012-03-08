@@ -129,6 +129,15 @@ class PliExtraInfo(Poll, Converter, object):
 			return tunertype
 		return ""
 
+	def createTunerSystem(self,feraw,fedata):
+		tunertype = feraw.get("tuner_type")
+		if tunertype == "DVB-S":
+			tunersystem = fedata.get("system")
+			return tunersystem
+		if tunertype:
+			return tunertype
+		return ""
+
 	def createOrbPos(self,feraw):
 		orbpos = feraw.get("orbital_position")
 		if orbpos > 1800:
@@ -188,25 +197,28 @@ class PliExtraInfo(Poll, Converter, object):
 
 		if self.type == "TransponderFEC":
 			return self.createFEC(fedata)
-			
+
 		if self.type == "TransponderModulation":
 			return self.createModulation(fedata)
-			
+
 		if self.type == "OrbitalPosition":
-			return self.createOrbPos(feraw)	
+			return self.createOrbPos(feraw)
 
 		if self.type == "TunerType":
 			return self.createTunerType(feraw)	
-		
+
+		if self.type == "TunerSystem":
+			return createTunerSystem(feraw,fedata)
+
 		if self.type == "All":
 			self.getCryptoInfo(info)
 			if config.usage.show_cryptoinfo.value:
-				return addspace(self.createProviderName(info)) + addspace(self.createTunerType(feraw)) + addspace(self.createFrequency(fedata)) + addspace(self.createPolarization(fedata))\
+				return addspace(self.createProviderName(info)) + addspace(self.createTunerSystem(feraw,fedata)) + addspace(self.createFrequency(fedata)) + addspace(self.createPolarization(fedata))\
 				+ addspace(self.createSymbolRate(fedata)) + addspace(self.createFEC(fedata)) + addspace(self.createModulation(fedata)) + self.createOrbPos(feraw) + "\n"\
 				+ addspace(self.createCryptoBar(info)) + addspace(self.createCryptoSpecial(info)) + "\n"\
 				+ addspace(self.createVideoCodec(info)) + self.createResolution(info)
 			else:
-				return addspace(self.createProviderName(info)) + addspace(self.createTunerType(feraw)) + addspace(self.createFrequency(fedata)) + addspace(self.createPolarization(fedata))\
+				return addspace(self.createProviderName(info)) + addspace(self.createTunerSystem(feraw,fedata)) + addspace(self.createFrequency(fedata)) + addspace(self.createPolarization(fedata))\
 				+ addspace(self.createSymbolRate(fedata)) + addspace(self.createFEC(fedata)) + addspace(self.createModulation(fedata)) + self.createOrbPos(feraw) + "\n"\
 				+ addspace(self.createCryptoBar(info)) + self.current_source + "\n"\
 				+ addspace(self.createCryptoSpecial(info)) + addspace(self.createVideoCodec(info)) + self.createResolution(info)
