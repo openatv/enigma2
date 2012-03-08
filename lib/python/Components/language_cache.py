@@ -56,6 +56,10 @@ LANG_TEXT = {
 	"T1": "Please use the UP and DOWN keys to select your language. Afterwards press the OK button.",
 	"T2": "Επιλογή γλώσσας",
 },
+"he_IL": {
+	"T1": "Please use the UP and DOWN keys to select your language. Afterwards press the OK button.",
+	"T2": "Language selection",
+},
 "hu_HU": {
 	"T1": "Kérem használja a FEL és LE gombokat a nyelvezet kiválasztásához. Ez után nyomja meg az OK gombot.",
 	"T2": "Válasszon nyelvet",
