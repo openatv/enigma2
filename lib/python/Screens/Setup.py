@@ -237,8 +237,7 @@ def getSetupTitle(id):
 	xmldata = setupdom.getroot()
 	for x in xmldata.findall("setup"):
 		if x.get("key") == id:
-			print 'item_text',x.get("title", "").encode("UTF-8")
-			if x.get("title", "").encode("UTF-8") == _("OSD Setup") or x.get("title", "").encode("UTF-8") == _("Logs Setup") or x.get("title", "").encode("UTF-8") == _("Softcam Setup") or x.get("title", "").encode("UTF-8") == _("EPG Setup"):
+			if _(x.get("title", "").encode("UTF-8")) == _("OSD Setup") or _(x.get("title", "").encode("UTF-8")) == _("Logs Setup") or _(x.get("title", "").encode("UTF-8")) == _("Softcam Setup") or _(x.get("title", "").encode("UTF-8")) == _("EPG Setup"):
 				return _("Settings...")
 			return x.get("title", "").encode("UTF-8")
 	raise SetupError("unknown setup id '%s'!" % repr(id))
