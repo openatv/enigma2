@@ -464,23 +464,11 @@ class LogManagerViewLog(Screen):
 		self.close()
 
 class LogManagerMenu(ConfigListScreen, Screen):
-	skin = """
-		<screen name="LogManagerMenu" position="center,center" size="500,285" title="Log Manager Setup">
-			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-			<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-			<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-			<widget name="config" position="10,45" size="480,100" scrollbarMode="showOnDemand" />
-			<widget name="HelpWindow" pixmap="skin_default/vkey_icon.png" position="440,400" zPosition="1" size="1,1" transparent="1" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/key_text.png" position="290,5" zPosition="4" size="35,25" alphatest="on" transparent="1" />
-		</screen>"""
-
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.session = session
 		Screen.setTitle(self, _("Log Manager Setup"))
-		self.skin = LogManagerMenu.skin
-		self.skinName = "LogManagerMenu"
+		self.skinName = "Setup"
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 
