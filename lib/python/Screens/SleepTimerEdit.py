@@ -105,10 +105,10 @@ class SleepTimerEdit(Screen):
 			config.SleepTimer.action.save()
 			config.SleepTimer.ask.save()
 			self.session.nav.SleepTimer.setSleepTime(time)
-			self.session.openWithCallback(self.close, MessageBox, _("The sleep timer has been activated."), MessageBox.TYPE_INFO)
+			self.session.openWithCallback(self.close, MessageBox, _("The sleep timer has been activated."), MessageBox.TYPE_INFO, timeout=3, simple=True)
 		else:
 			self.session.nav.SleepTimer.clear()
-			self.session.openWithCallback(self.close, MessageBox, _("The sleep timer has been disabled."), MessageBox.TYPE_INFO)
+			self.session.openWithCallback(self.close, MessageBox, _("The sleep timer has been disabled."), MessageBox.TYPE_INFO, timeout=3, simple=True)
 
 	def keyNumberGlobal(self, number):
 		self["input"].number(number)
