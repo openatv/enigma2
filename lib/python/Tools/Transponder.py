@@ -74,6 +74,7 @@ def ConvertToHumanReadable(tp, type = None):
 			eDVBFrontendParametersCable.FEC_5_6 : "5/6",
 			eDVBFrontendParametersCable.FEC_7_8 : "7/8",
 			eDVBFrontendParametersCable.FEC_8_9 : "8/9"}[tp["fec_inner"]]
+		ret["system"] = "DVB-C"
 	elif type == "DVB-T":
 		ret["tuner_type"] = _("Terrestrial")
 		ret["bandwidth"] = {
@@ -120,6 +121,7 @@ def ConvertToHumanReadable(tp, type = None):
 			eDVBFrontendParametersTerrestrial.Inversion_Unknown : _("Auto"),
 			eDVBFrontendParametersTerrestrial.Inversion_On : _("On"),
 			eDVBFrontendParametersTerrestrial.Inversion_Off : _("Off")}[tp["inversion"]]
+		ret["system"] = "DVB-T"		
 	elif type != "None":
 		print "ConvertToHumanReadable: no or unknown type in tpdata dict for type:", type
 	for k,v in tp.items():

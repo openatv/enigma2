@@ -8,5 +8,4 @@ install_PYTHON =	\
 	plugin.py
 
 dist_install_DATA = \
-	LICENSE \
 	networkwizard.xml
