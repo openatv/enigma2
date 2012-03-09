@@ -44,6 +44,10 @@ LANG_TEXT = {
 	"T1": "Vali keel üles/alla klahvidega ja vajuta OK-klahvi.",
 	"T2": "Keele valik",
 },
+"fa_IR": {
+	"T1": "Please use the UP and DOWN keys to select your language. Afterwards press the OK button.",
+	"T2": "انتخاب زبان",
+},
 "fi_FI": {
 	"T1": "Valitse kieli ylös/alas näppäimillä ja paina OK-näppäintä.",
 	"T2": "Kielivalinta",
@@ -55,6 +59,10 @@ LANG_TEXT = {
 "el_GR": {
 	"T1": "Please use the UP and DOWN keys to select your language. Afterwards press the OK button.",
 	"T2": "Επιλογή γλώσσας",
+},
+"he_IL": {
+	"T1": "Please use the UP and DOWN keys to select your language. Afterwards press the OK button.",
+	"T2": "Language selection",
 },
 "hu_HU": {
 	"T1": "Kérem használja a FEL és LE gombokat a nyelvezet kiválasztásához. Ez után nyomja meg az OK gombot.",
