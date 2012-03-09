@@ -2108,7 +2108,7 @@ class InfoBarCueSheetSupport:
 # TRANSLATORS: in the middle somewhere and not from the beginning.
 # TRANSLATORS: (Some translators seem to have interpreted it as a
 # TRANSLATORS: question or a choice, but it is a statement.)
-					Notifications.AddNotificationWithCallback(self.playLastCB, MessageBox, _("Resuming playback"), timeout=2, type=MessageBox.TYPE_INFO)
+					Notifications.AddNotificationWithCallback(self.playLastCB, MessageBox, _("Resuming playback"), timeout=2, type=MessageBox.TYPE_INFO,simple=True)
 
 	def playLastCB(self, answer):
 		if answer == True:
