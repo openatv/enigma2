@@ -82,7 +82,11 @@ public:
 protected:
 	// This method should write the data out and return the number of bytes written.
 	// If result <0, set 'errno'. The simplest implementation is just "::write(m_buffer, ...)"
+	// The method may freely modify m_buffer and m_buffersize
 	virtual int writeData(int len) = 0;
+	// Called when terminating the recording thread. Allows to clean up memory and
+	// flush buffers, terminate outstanding IO requests.
+	virtual void flush() = 0;
 	
 	int m_fd_source;
 	size_t m_buffersize;
