@@ -355,7 +355,7 @@ class PositionerSetup(Screen):
 			self.red.setText(_("Tune"))
 			self.green.setText(_("Auto focus"))
 			self.yellow.setText(_("Calibrate"))
-			self.blue.setText("Calculate")
+			self.blue.setText(_("Calculate"))
 		elif entry == "move":
 			if self.isMoving:
 				self.red.setText(_("Stop"))
