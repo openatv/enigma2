@@ -259,8 +259,8 @@ class MovieBrowserConfiguration(ConfigListScreen,Screen):
 	def save(self):
 		self.saveAll()
 		cfg = self.cfg
-		config.movielist.moviesort.value = int(cfg.moviesort.value)
-		config.movielist.listtype.value = int(cfg.listtype.value)
+		config.movielist.moviesort.setValue(int(cfg.moviesort.value))
+		config.movielist.listtype.setValue(int(cfg.listtype.value))
 		if cfg.description.value:
 			config.movielist.description.value = MovieList.SHOW_DESCRIPTION
 		else:
@@ -440,13 +440,13 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self["chosenletter"] = Label("")
 		self["chosenletter"].visible = False
 
-		self.listTimer = eTimer()
-		self.listTimer.timeout.get().append(self.hidewaitingtext)
-
-		self.activityTimer = eTimer()
-		self.activityTimer.timeout.get().append(self.timerHDDData)
-
 		self["waitingtext"] = Label(_("Please wait... Loading list..."))
+
+		self.hidewaitingTimer = eTimer()
+		self.hidewaitingTimer.timeout.get().append(self.hidewaitingtext)
+
+		self.LivePlayTimer = eTimer()
+		self.LivePlayTimer.timeout.get().append(self.LivePlay)
 
 		# create optional description border and hide immediately
 		self["DescriptionBorder"] = Pixmap()
@@ -548,6 +548,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				"seekBack": (sback, tBack),
 				"seekBackManual": (ssback, tBack),
 			}, prio=5)
+		self.initial = True
+		self["waitingtext"].show()
 		self.onShown.append(self.updateHDDData)
 		self.onLayoutFinish.append(self.saveListsize)
 		self.list.connectSelChanged(self.updateButtons)
@@ -782,27 +784,27 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.updateDescription()
 
 	def updateHDDData(self):
-		self["waitingtext"].show()
-		self.reloadList(self.selectedmovie, home=True)
-		self.activityTimer.start(100)
+		if self.initial:
+			self.reloadList(self.selectedmovie, home=True)
+			self.initial = False
+			if config.movielist.show_live_tv_in_movielist.value:
+				self.LivePlayTimer.start(100)
 
  	def hidewaitingtext(self):
-		self.listTimer.stop()
+		self.hidewaitingTimer.stop()
 		self["waitingtext"].hide()
  
-	def timerHDDData(self):
-		self.activityTimer.stop()
-		self.listTimer.start(10)
-		if config.movielist.show_live_tv_in_movielist.value:
-			if not self.playInBackground:
-				if self.session.nav.getCurrentlyPlayingServiceReference():
-					if not self.session.nav.getCurrentlyPlayingServiceReference().toString().startswith('1:0:0:0:0:0:0:0:0:0'):
-						config.movielist.curentlyplayingservice.setValue(self.session.nav.getCurrentlyPlayingServiceReference().toString())
-			checkplaying = self.session.nav.getCurrentlyPlayingServiceReference()
-			if checkplaying:
-				checkplaying = checkplaying.toString()
-			if checkplaying is None or (config.movielist.curentlyplayingservice.value != checkplaying and not self.session.nav.getCurrentlyPlayingServiceReference().toString().startswith('1:0:0:0:0:0:0:0:0:0')):
-				self.session.nav.playService(eServiceReference(config.movielist.curentlyplayingservice.value))
+	def LivePlay(self):
+		if not self.playInBackground:
+			if self.session.nav.getCurrentlyPlayingServiceReference():
+				if not self.session.nav.getCurrentlyPlayingServiceReference().toString().startswith('1:0:0:0:0:0:0:0:0:0'):
+					config.movielist.curentlyplayingservice.setValue(self.session.nav.getCurrentlyPlayingServiceReference().toString())
+		checkplaying = self.session.nav.getCurrentlyPlayingServiceReference()
+		if checkplaying:
+			checkplaying = checkplaying.toString()
+		if checkplaying is None or (config.movielist.curentlyplayingservice.value != checkplaying and not self.session.nav.getCurrentlyPlayingServiceReference().toString().startswith('1:0:0:0:0:0:0:0:0:0')):
+			self.session.nav.playService(eServiceReference(config.movielist.curentlyplayingservice.value))
+		self.LivePlayTimer.stop()
 
 	def moveTo(self):
 		self["list"].moveTo(self.selectedmovie)
@@ -892,15 +894,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				if ext in AUDIO_EXTENSIONS:
 					self.callLater(self.preview)
 		if config.movielist.show_live_tv_in_movielist.value:
-			if not self.playInBackground:
-				if self.session.nav.getCurrentlyPlayingServiceReference():
-					if not self.session.nav.getCurrentlyPlayingServiceReference().toString().startswith('1:0:0:0:0:0:0:0:0:0'):
-						config.movielist.curentlyplayingservice.setValue(self.session.nav.getCurrentlyPlayingServiceReference().toString())
-			checkplaying = self.session.nav.getCurrentlyPlayingServiceReference()
-			if checkplaying:
-				checkplaying = checkplaying.toString()
-			if checkplaying is None or (config.movielist.curentlyplayingservice.value != checkplaying and not self.session.nav.getCurrentlyPlayingServiceReference().toString().startswith('1:0:0:0:0:0:0:0:0:0')):
-				self.session.nav.playService(eServiceReference(config.movielist.curentlyplayingservice.value))
+			self.LivePlayTimer.start(100)
 
 	def preview(self):
 		current = self.getCurrent()
@@ -932,15 +926,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			self.playInBackground = None
 			self.session.nav.stopService()
 		if config.movielist.show_live_tv_in_movielist.value:
-			if not self.playInBackground:
-				if self.session.nav.getCurrentlyPlayingServiceReference():
-					if not self.session.nav.getCurrentlyPlayingServiceReference().toString().startswith('1:0:0:0:0:0:0:0:0:0'):
-						config.movielist.curentlyplayingservice.setValue(self.session.nav.getCurrentlyPlayingServiceReference().toString())
-			checkplaying = self.session.nav.getCurrentlyPlayingServiceReference()
-			if checkplaying:
-				checkplaying = checkplaying.toString()
-			if checkplaying is None or (config.movielist.curentlyplayingservice.value != checkplaying and not self.session.nav.getCurrentlyPlayingServiceReference().toString().startswith('1:0:0:0:0:0:0:0:0:0')):
-				self.session.nav.playService(eServiceReference(config.movielist.curentlyplayingservice.value))
+			self.LivePlayTimer.start(100)
 
 	def itemSelected(self):
 		current = self.getCurrent()
@@ -1031,10 +1017,10 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			self["list"].setDescriptionState(self.settings["description"])
 			self.updateDescription()
 		if self.settings["listtype"] != self["list"].list_type: 
-			self["list"].setListType(self.settings["listtype"])
+			self["list"].setListType(int(self.settings["listtype"]))
 			needUpdate = True
 		if self.settings["moviesort"] != self["list"].sort_type:
-			self["list"].setSortType(self.settings["moviesort"])
+			self["list"].setSortType(int(self.settings["moviesort"]))
 			needUpdate = True
 		config.movielist.moviesort.value = self.settings["moviesort"]
 		config.movielist.listtype.value = self.settings["listtype"]
@@ -1076,8 +1062,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 
 	def configureDone(self, result):
 		if result:
-			self.applyConfigSettings({\
-				"listtype": config.movielist.listtype.value,
+			self.applyConfigSettings({"listtype": config.movielist.listtype.value,
 				"moviesort": config.movielist.moviesort.value,
 				"description": config.movielist.description.value})
 			self.saveLocalSettings()
@@ -1133,7 +1118,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			if home:
 				self["list"].moveToFirstMovie()
 		self["freeDiskSpace"].update()
-		self.listTimer.start(10)
+		self.hidewaitingTimer.start(10)
 
 	def doPathSelect(self):
 		self.session.openWithCallback(

@@ -3,6 +3,7 @@ from Screens.Console import Console
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
+from Screens.Standby import TryQuitMainloop 
 from Screens.Ipkg import Ipkg
 from Components.ActionMap import ActionMap, NumberActionMap
 from Components.Input import Input
@@ -28,7 +29,7 @@ from Components.Task import job_manager
 from Tools.Directories import pathExists, fileExists, resolveFilename, SCOPE_PLUGINS, SCOPE_CURRENT_PLUGIN, SCOPE_CURRENT_SKIN, SCOPE_METADIR
 from Tools.LoadPixmap import LoadPixmap
 from Tools.NumericalTextInput import NumericalTextInput
-from enigma import eTimer, quitMainloop, RT_HALIGN_LEFT, RT_VALIGN_CENTER, eListboxPythonMultiContent, eListbox, gFont, getDesktop, ePicLoad, eRCInput, getPrevAsciiCode, eEnv, iRecordableService
+from enigma import eTimer, RT_HALIGN_LEFT, RT_VALIGN_CENTER, eListboxPythonMultiContent, eListbox, gFont, getDesktop, ePicLoad, eRCInput, getPrevAsciiCode, eEnv, iRecordableService
 from cPickle import dump, load
 from os import path as os_path, system as os_system, unlink, stat, mkdir, popen, makedirs, listdir, access, rename, remove, W_OK, R_OK, F_OK
 from time import time, gmtime, strftime, localtime
@@ -998,7 +999,7 @@ class PluginManager(Screen, DreamInfoHandler):
 
 	def ExecuteReboot(self, result):
 		if result:
-			quitMainloop(3)
+			self.session.open(TryQuitMainloop,retvalue=3)
 		else:
 			self.selectedFiles = []
 			self.restartRequired = False
@@ -1367,7 +1368,7 @@ class PluginDetails(Screen, DreamInfoHandler):
 			self.close(True)
 	def UpgradeReboot(self, result):
 		if result:
-			quitMainloop(3)
+			self.session.open(TryQuitMainloop,retvalue=3)
 		else:
 			self.close(True)
 
@@ -1385,17 +1386,6 @@ class PluginDetails(Screen, DreamInfoHandler):
 		self.setThumbnail(noScreenshot = True)
 		print "[PluginDetails] fetch failed " + string.getErrorMessage()
 
-class UnattendedUpgradeMessageBox(Screen):
-
-	def __init__(self, session, args = None):
-		self.skin = """
-			<screen position="center,center" size="600,150" title="Unattended Upgrade">
-				<ePixmap pixmap="skin_default/icons/input_info.png" position="5,5" size="53,53" alphatest="on" />
-				<widget name="text" position="65,8" size="520,200" font="Regular;22" />
-			</screen>"""
-		Screen.__init__(self, session)
-		from Components.Label import Label
-		self["text"] = Label(_("Unattended upgrade in progress\nPlease wait until your receiver reboots\nThis may take a few minutes"))
 
 class UpdatePlugin(Screen):
 	skin = """
@@ -1480,18 +1470,7 @@ class UpdatePlugin(Screen):
 			picon = MessageBox.TYPE_ERROR
 			default = False
 		socket.setdefaulttimeout(currentTimeoutDefault)
-		
-		recordings = self.session.nav.getRecordings()
-		jobs = len(job_manager.getPendingJobs())
-		next_rec_time = -1
-		if not recordings:
-			next_rec_time = self.session.nav.RecordTimer.getNextRecordingTime()	
-		if recordings or (next_rec_time > 0 and (next_rec_time - time()) < 360):
-			message += _("Recording(s) are in progress or coming up in few seconds!") + "\n"
-			default = False
-		if jobs:
-			message += (_("%d jobs are running in the background!") % jobs) + "\n"
-			default = False
+
 		if default:
 		        # We'll ask later
 		        self.runUpgrade(True)
@@ -1601,14 +1580,8 @@ class UpdatePlugin(Screen):
 			self.close()
 			return
 		if answer[1] == "cold":
-			from enigma import gMainDC, getDesktop, eSize
-			self.session.nav.stopService()
-			desktop = getDesktop(0)
-			if desktop.size() != eSize(720,576):
-				gMainDC.getInstance().setResolution(720,576)
-				desktop.resize(eSize(720,576))
-			self.session.open(UnattendedUpgradeMessageBox)
-			quitMainloop(42)
+			self.session.open(TryQuitMainloop,retvalue=42)
+			self.close()
 		elif answer[1] == "show":
 			global plugin_path
 			self.session.openWithCallback(self.ipkgCallback(IpkgComponent.EVENT_DONE, None), ShowUpdatePackages, plugin_path)
@@ -1991,7 +1964,7 @@ class PacketManager(Screen, NumericalTextInput):
 				write_cache(self.cache_file, self.cachelist)
 				self.reloadPluginlist()
 		if result:
-			quitMainloop(3)
+			self.session.open(TryQuitMainloop,retvalue=3)
 
 	def runUpgrade(self, result):
 		if result:
@@ -2013,7 +1986,7 @@ class PacketManager(Screen, NumericalTextInput):
 				write_cache(self.cache_file, self.cachelist)
 				self.reloadPluginlist()
 		if result:
-			quitMainloop(3)
+			self.session.open(TryQuitMainloop,retvalue=3)
 
 	def ipkgCallback(self, event, param):
 		if event == IpkgComponent.EVENT_ERROR:

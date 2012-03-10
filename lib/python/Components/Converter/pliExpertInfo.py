@@ -297,7 +297,7 @@ class pliExpertInfo(Poll, Converter, object):
 							else:
 								orb_pos = str((float(orbital_pos))/10.0) + "E"
 						Ret_Text += sep + orb_pos + "\n"
-						Ret_Text += frequency + sep + frontendData.get("polarization")[:1]
+						Ret_Text += frequency + sep + frontendData.get("polarization_abbreviation")
 						Ret_Text += sep + symbolrate
 						Ret_Text += sep + frontendData.get("modulation") + "-" + fec_inner
 					else:

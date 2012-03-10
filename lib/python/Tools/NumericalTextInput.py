@@ -28,7 +28,7 @@ MAP_SEARCH_UPCASE = (
 	U"WXYZ9",
 	)
 MAP_DEFAULT = (
-	u"0,?!&@=*'+\"()$~%",
+	u"0,?!&@=*'+\"()$~%#",
 	u" 1.:;/-_",
 	u"abc2ABC",
 	u"def3DEF",
@@ -40,7 +40,7 @@ MAP_DEFAULT = (
 	u"wxyz9WXYZ",
 	)
 MAP_DE = (
-	u"0,?!&@=*'+\"()$~%",
+	u"0,?!&@=*'+\"()$~%#",
 	u" 1.:;/-_",
 	u"abcä2ABCÄ",
 	u"def3DEF",
@@ -52,7 +52,7 @@ MAP_DE = (
 	u"wxyz9WXYZ",
 	)
 MAP_ES = (
-	u"0,?!&@=*'+\"()$~%",
+	u"0,?!&@=*'+\"()$~%#",
 	u" 1.:;/-_",
 	u"abcáà2ABCÁÀ",
 	u"deéèf3DEFÉÈ",
@@ -64,7 +64,7 @@ MAP_ES = (
 	u"wxyz9WXYZ",
 	)
 MAP_SE = (
-	u"0,?!&@=*'+\"()$~%",
+	u"0,?!&@=*'+\"()$~%#",
 	u" 1.:;/-_",
 	u"abcåä2ABCÅÄ",
 	u"defé3DEFÉ",
@@ -76,7 +76,7 @@ MAP_SE = (
 	u"wxyz9WXYZ",
 	)
 MAP_CZ = (
-	u"0,?'+\"()@$!=&*%",
+	u"0,?'+\"()@$!=&*%#",
 	u" 1.:;/-_",
 	u"abc2áäčABCÁÄČ",
 	u"def3ďéěDEFĎÉĚ",
@@ -88,7 +88,7 @@ MAP_CZ = (
 	u"wxyz9ýžWXYZÝŽ",
 	)
 MAP_PL = (
-	u"0,?'+\"()@$!=&*%",
+	u"0,?'+\"()@$!=&*%#",
 	u" 1.:;/-_",
 	u"abcąć2ABCĄĆ",
 	u"defę3DEFĘ",
@@ -100,7 +100,7 @@ MAP_PL = (
 	u"wxyzźż9WXYZŹŻ",
 	)
 MAP_RU = (
-	u"0,?'+\"()@$!=&*%",
+	u"0,?'+\"()@$!=&*%#",
 	u" 1.:;/-_",
 	u"abcабвг2ABCАБВГ",
 	u"defдежз3DEFДЕЖЗ",
@@ -111,6 +111,18 @@ MAP_RU = (
 	u"tuvшщь8TUVШЩЬ",
 	u"wxyzъэюя9WXYZЪЭЮЯ",
 	)
+MAP_NL = (
+	u"0,?!&@=*'+\"()$~%#",
+	u" 1.:;/-_",
+	u"abc2ABC",
+	u"deëf3DEËF",
+	u"ghiï4GHIÏ",
+	u"jkl5JKL",
+	u"mno6MNO",
+	u"pqrs7PQRS",
+	u"tuv8TUV",
+	u"wxyz9WXYZ",
+	)
 MAPPINGS = {
 	'de_DE': MAP_DE,
 	'es_ES': MAP_ES,
@@ -120,6 +132,7 @@ MAPPINGS = {
 	'sk_SK': MAP_CZ,
 	'pl_PL': MAP_PL,
 	'ru_RU': MAP_RU,
+	'nl_NL': MAP_NL,
 	}
 
 class NumericalTextInput:
