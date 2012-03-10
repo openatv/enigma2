@@ -175,7 +175,7 @@ class PliExtraInfo(Poll, Converter, object):
 		if feinfo is None:
 			return ""
 
-		feraw = feinfo.getAll(False)
+		feraw = feinfo.getAll(True)
 		if feraw is None:
 			return ""
 

@@ -75,7 +75,7 @@ class pliExpertInfo(Poll, Converter, object):
 				feinfo = (service and service.frontendInfo())
 				prvd = info.getInfoString(iServiceInformation.sProvider)
 				Ret_Text = self.short(prvd)
-				frontendDataOrg = (feinfo and feinfo.getAll(False))
+				frontendDataOrg = (feinfo and feinfo.getAll(True))
 			except:
 				try:
 					frontendDataOrg = info.getInfoObject(service, iServiceInformation.sTransponderData)
@@ -315,7 +315,7 @@ class pliExpertInfo(Poll, Converter, object):
 			prvd = info.getInfoString(iServiceInformation.sProvider)
 			Ret_Text = self.short(prvd)
 
-			frontendDataOrg = (feinfo and feinfo.getAll(False))
+			frontendDataOrg = (feinfo and feinfo.getAll(True))
 			if (frontendDataOrg is not None):
 				frontendData = ConvertToHumanReadable(frontendDataOrg)
 				if ((frontendDataOrg.get("tuner_type") == "DVB-S") or (frontendDataOrg.get("tuner_type") == "DVB-C")):
