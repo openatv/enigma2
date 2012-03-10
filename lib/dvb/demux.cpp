@@ -11,6 +11,8 @@
 // For SYS_ stuff
 #include <syscall.h>
 
+//#define SHOW_WRITE_TIME
+
 static int determineDemuxSize()
 {
 	struct sysinfo si;
