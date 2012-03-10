@@ -323,6 +323,8 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 						)
 					return False
 			else:
+				dir = configele.value
+				configele.value = configele.last_value
 				self.session.open(
 					MessageBox,
 					_("The directory %s is not a EXT2, EXT3, EXT4 or NFS partition.\nMake sure you select a valid partition type.")%dir,
@@ -330,6 +332,8 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 					)
 				return False
 		else:
+			dir = configele.value
+			configele.value = configele.last_value
 			self.session.open(
 				MessageBox,
 				_("The directory %s is not a EXT2, EXT3, EXT4 or NFS partition.\nMake sure you select a valid partition type.")%dir,
