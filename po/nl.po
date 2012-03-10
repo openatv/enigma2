@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-06 02:23+0000\n"
-"PO-Revision-Date: 2012-03-07 10:10+0100\n"
+"POT-Creation-Date: 2012-03-10 14:41+0000\n"
+"PO-Revision-Date: 2012-03-10 16:07+0100\n"
 "Last-Translator: R.L. van der Does\n"
 "Language-Team: Andy Blackburn, Rob van der Does\n"
 "Language: Nederlands\n"
@@ -641,7 +641,7 @@ msgid "Address"
 msgstr "Adres"
 
 msgid "Adds enigma2 settings and STB_BOX informations like SN, rev... if enabled."
-msgstr ""
+msgstr "Indien ingeschakeld worden Enigma2 instellingen en STB_BOX modelinformatie toegevoegd (zoals SN, rev...)."
 
 msgid "Adds network configuration if enabled."
 msgstr "Netwerkconfiguratie toevoegen indien ingeschakeld."
@@ -3041,7 +3041,7 @@ msgid "If set to 'yes' the EPG will alway open at the first channel. If set to '
 msgstr "Als u 'ja' kiest, zal de EPG altijd geopend worden op het eerste kanaal. Als u 'nee' kiest, zal die worden geopend op het kanaal waarnaar u kijkt."
 
 msgid "If set to 'yes' the STB_BOX will use AC3 sound (when available)."
-msgstr ""
+msgstr "Indien u 'Ja' kiest, zal AC3 geluid ten gehore worden gebracht (indien beschikbaar)."
 
 msgid "If set to 'yes' the STB_BOX will use the audio stream that has been used earlier."
 msgstr "Als u hier voor 'ja' kiest, zal uw STB_BOX altijd het audiokanaal kiezen, dat eerder al is gekozen."
@@ -3095,8 +3095,8 @@ msgstr ""
 msgid "If you select \"yes\" all channels on the satellite being search will be deleted before starting the current search"
 msgstr "Als u \"Ja\" kiest, zullen alle kanalen van de huidige satelliet worden gewist voor de zoekslag begint. Dit voorkomt veelal dat kanalen dubbel bestaan in uw ontvanger."
 
-msgid "If you select \"yes\" the scan will only save channels that are not encrypted; \"no\" will find encrypted and non-encrypted channels"
-msgstr ""
+msgid "If you select \"yes\" the scan will only save channels that are not encrypted; \"no\" will find encrypted and non-encrypted cannels"
+msgstr "Als u \"Ja\" kiest, zullen alleen kanalen worden gezocht die niet gecodeerd zijn; met \"Nee\" zullen alle kanalen worden gevonden, ongeacht de codering."
 
 msgid "If you select \"yes\" the scan will only search transponders not listed in satellites.xml"
 msgstr "Als u \"Ja\" kiest, zullen alleen kanalen worden gezocht die niet in us satellites.xml staan (het bestand waar alle transponders in staan)."
@@ -3581,7 +3581,7 @@ msgid "Local Network"
 msgstr "Lokaal netwerk"
 
 msgid "Local box"
-msgstr ""
+msgstr "Lokale box"
 
 msgid "Location"
 msgstr "Locatie"
@@ -4896,7 +4896,7 @@ msgid "Profile"
 msgstr "Profiel"
 
 msgid "Profile: Local box"
-msgstr ""
+msgstr "Profiel: lokale box"
 
 msgid "Programme Guide"
 msgstr "Programma gids"
@@ -4998,10 +4998,10 @@ msgid "Really shutdown now?"
 msgstr "Nu uitschakelen?"
 
 msgid "Really upgrade the frontprocessor and reboot now?"
-msgstr ""
+msgstr "De frontprocessor nu bijwerken en opneiuw opstarten?"
 
 msgid "Really upgrade your STB_BOX and reboot now?"
-msgstr ""
+msgstr "Uw STB_BOX echt upgraden en herstarten?"
 
 msgid "Reboot"
 msgstr "Herstarten"
@@ -5107,7 +5107,7 @@ msgid "Remote Control System Code"
 msgstr "Afstandsbedienings systeem code"
 
 msgid "Remote box"
-msgstr ""
+msgstr "Remote box"
 
 msgid "Remove"
 msgstr "Verwijderen"
@@ -5319,6 +5319,27 @@ msgstr "SNR:"
 
 msgid "SSID:"
 msgstr "SSID:"
+
+msgid "STB_BOX advanced remote control (native)"
+msgstr "STB_BOX geavanceerde AB"
+
+msgid "STB_BOX format data DVD (HDTV compatible)"
+msgstr "STB_BOX format data DVD (HDTV compatible)"
+
+msgid "STB_BOX front panel"
+msgstr "STB_BOX voorpaneel"
+
+msgid "STB_BOX ir keyboard"
+msgstr "STB_BOX IR-toetsenbord"
+
+msgid "STB_BOX ir mouse"
+msgstr "STB_BOX IR-muis"
+
+msgid "STB_BOX remote control (native)"
+msgstr "STB_BOX AB"
+
+msgid "STB_BOX software because updates are available."
+msgstr "STB_BOX software want er zijn updates beschikbaar."
 
 msgid "Samba Log"
 msgstr "Samba Log"
@@ -6068,8 +6089,8 @@ msgstr "Geeft de status van uw WiFi verbinding weer.\n"
 msgid "Shows the the movie lenth in the list."
 msgstr "Toon de opnameduur in de lijst."
 
-msgid "Shows the watched status of the movie."
-msgstr ""
+msgid "Shows the watched staus of the movie."
+msgstr "Toon de bekeken status van een opname."
 
 msgid "Shutdown"
 msgstr "Afsluiten"
@@ -6620,6 +6641,12 @@ msgstr "De pincode is succesvol gewijzigd."
 msgid "The PIN codes you entered are different."
 msgstr "De ingevoerde pincodes komen niet overeen."
 
+msgid "The STB_BOX reads the stored EPG data every (hours)."
+msgstr "D eontvanger leest de opgelsagen EPG-data elke (uur)."
+
+msgid "The STB_BOX stores the EPG data every (hours)."
+msgstr "De ontvanger slaat de EPG-data elke (uur) op."
+
 msgid ""
 "The Softwaremanagement extension is not installed!\n"
 "Please install it."
@@ -6642,18 +6669,14 @@ msgstr ""
 "Nu kunt nu een NFI-bestand downloaden!"
 
 msgid "The User Interface of your receiver is restarting"
-msgstr ""
+msgstr "De gebruikersinterface van uw ontvanger wordt herstart."
 
 msgid ""
 "The User Interface of your receiver is restarting\n"
 "due to an error in mytest.py"
 msgstr ""
-
-msgid "The STB_BOX reads the stored EPG data every (hours)."
-msgstr "D eontvanger leest de opgelsagen EPG-data elke (uur)."
-
-msgid "The STB_BOX stores the EPG data every (hours)."
-msgstr "De ontvanger slaat de EPG-data elke (uur) op."
+"De gebruikersinterface van uw ontvanger wordt herstart\n"
+"vanwege een fout in mytest.py"
 
 msgid "The backup failed. Please choose a different backup location."
 msgstr "Back-up is mislukt. Kies een andere back-up locatie a.u.b."
@@ -6811,6 +6834,9 @@ msgstr "Deze optie biedt de mogelijkheid ECM-data in de stream op te nemen. Daar
 msgid "This allows the STB_BOX to decode the stream (if the ECM data is included in the stream and a valid card is availble)."
 msgstr "Hierdoor kan uw STB_BOX de stream decoderen (als ECM-data in de stream aanwezig is en als uw STB_BOX over de juiste kaart beschikt)."
 
+msgid "This allows you change the font size relative to skin size, so 1 increases by 1 piont size, and -1 decreases by 1 piont size"
+msgstr "Hier stelt u de lettergrootte in t.o.v. de waarde die in de skin staat. Dus '1' vergroot die met 1 puntgrootte en '-1' verkleint die met 1 puntgrootte."
+
 msgid "This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size"
 msgstr "Hier stelt u de lettergrootte in t.o.v. de waarde die in de skin staat. Dus '1' vergroot die met 1 puntgrootte en '-1' verkleint die met 1 puntgrootte."
 
@@ -6860,16 +6886,16 @@ msgid "This option allows you to the SNR as a percentage (not all receivers supp
 msgstr "Hiermee kiest u of de SNR in dB of in % wordt weergegeven (wordt niet door alle ontvangers ondersteund)."
 
 msgid "This option lets you adjust the 3D depth"
-msgstr ""
+msgstr "Hier kunt u de 3D-dieote instellen."
 
 msgid "This option lets you adjust the transparency of the OSD"
-msgstr ""
+msgstr "Hier kunt u de gewenste transparantie van de OSD instellen."
 
 msgid "This option lets you choose the 3D mode"
-msgstr ""
+msgstr "Hier kunt u de gewenste 3D-modus kiezen"
 
 msgid "This option lets you show the option in the extension screen"
-msgstr ""
+msgstr "Hiermee stelt u in of de optie in de extenxielijst wordt getoond."
 
 msgid "This option moves the PVR status from the seprate window into the MoviePlayer infobar."
 msgstr "Deze optie verplaatst de PVR status (gestopt etc.) van ene apart scherm naar de informatiebalk (wordt niet door alle skins ondersteund)."
@@ -7111,6 +7137,10 @@ msgid ""
 "2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n"
 "3) Wait for bootup and follow instructions of the wizard."
 msgstr ""
+"Om de firmware van uw STB_BOX te upgraden, voert u de volgende stappen uit:\n"
+"1) Schakel uw box uit met de schakelaar en zorg dat er een bootable USB stick is ingeplugd.\n"
+"2) Schakel de box in en houdt de DOWN-toets op het front paneel 10 seconden ingedrukt .\n"
+"3) Wacht op het opstarten en volg de instructies van de wizard."
 
 msgid "Today"
 msgstr "Vandaag"
@@ -7403,11 +7433,11 @@ msgstr "Meet stroomopname"
 msgid "Use slim screen"
 msgstr "Gebruik slim screen"
 
-msgid "Use the Left/Right buttons on your remote to adjust the size of the OSD. Left button decreases the size, Right increases the size."
-msgstr ""
+msgid "Use the Left/Right buttons on your remote to adjust the szie of the OSD. Left button decreases the size, Right increases the size."
+msgstr "Gebruik de Links/Rechts toetsen op uw AB om de afmetingen van de OSD aan te passen. Met 'links' verkleint de afmetingen, met 'rechts' worden die vergroot. "
 
 msgid "Use the Left/Right buttons on your remote to move the OSD left/right"
-msgstr ""
+msgstr "Gebruik de Links/Rechts toetsen op uw AB om de OSD naar links/rechts te verplaatsen."
 
 msgid "Use the Networkwizard to configure selected network adapter"
 msgstr "Gebruik de NetwerkWizard om de geselecteerde netwerkadapter te configureren"
@@ -7629,27 +7659,6 @@ msgstr "Spanningsmodus"
 msgid "Volume"
 msgstr "Volume"
 
-msgid "STB_BOX advanced remote control (native)"
-msgstr "STB_BOX geavanceerde AB"
-
-msgid "STB_BOX format data DVD (HDTV compatible)"
-msgstr "STB_BOX format data DVD (HDTV compatible)"
-
-msgid "STB_BOX front panel"
-msgstr "STB_BOX voorpaneel"
-
-msgid "STB_BOX ir keyboard"
-msgstr "STB_BOX IR-toetsenbord"
-
-msgid "STB_BOX ir mouse"
-msgstr "STB_BOX IR-muis"
-
-msgid "STB_BOX remote control (native)"
-msgstr "STB_BOX AB"
-
-msgid "STB_BOX software because updates are available."
-msgstr "STB_BOX software want er zijn updates beschikbaar."
-
 msgid "W"
 msgstr "W"
 
@@ -7787,8 +7796,8 @@ msgstr "Wat te doen met ingediende crashlogs?"
 msgid "When a neighbouring satellite is very strong this avoids searching transponders known to be coming from the neighbouring satellite"
 msgstr "Als een naburige satelliet erg sterk is, kunt u met deze instelling voorkomen dat transponders waarvan bekend is dat die van die satelliet afkomstig zijn, toegekend worden aan de gescande satelliet."
 
-msgid "When set each folder will show the previous state used, when off the default values will be shown."
-msgstr ""
+msgid "When set each folder will show the previous stae used, when off the default values will be shown."
+msgstr "Indien ingesteld zal elke map de status laten zien die de vorige maal gebruikt werd; indien uitgeschakeld worden de standaard waardes getoond."
 
 msgid "When set the PIG will return to live after a movie has stopped playing."
 msgstr "Indien 'Ja' wordt gekozen, wordt in de opnamelijst live-TV op de achtergrond of in PiG getoond zolang er geen opname loopt."
@@ -8076,10 +8085,10 @@ msgstr ""
 "Druk op OK om door te gaan."
 
 msgid "Your STB_BOX is rebooting"
-msgstr ""
+msgstr "Uw STB_BOX herstart."
 
 msgid "Your STB_BOX is shutting down"
-msgstr ""
+msgstr "Uw STB_BOX is aan het afsluiten."
 
 msgid "Your STB_BOX is shutting down. Please stand by..."
 msgstr "Uw STB_BOX wordt nu afgesloten. Een ogenblik a.u.b..."
@@ -8120,6 +8129,9 @@ msgid ""
 "Please wait until your receiver reboots\n"
 "This may take a few minutes"
 msgstr ""
+"Uw frontprocessor zal worden geupgrade\n"
+"Wacht tot uw ontvanger automatisch herstart is\n"
+"Dit kaan een paar minuten duren."
 
 msgid ""
 "Your internet connection is not working!\n"
@@ -9313,21 +9325,3 @@ msgstr "zap"
 
 msgid "zapped"
 msgstr "zapte"
-
-#~ msgid ""
-#~ "If you select \"yes\" the scan will only save channels that are not "
-#~ "encrypted; \"no\" will find encrypted and non-encrypted cannels"
-#~ msgstr ""
-#~ "Als u \"Ja\" kiest, zullen alleen kanalen worden gezocht die niet "
-#~ "gecodeerd zijn; met \"Nee\" zullen alle kanalen worden gevonden, ongeacht "
-#~ "de codering."
-
-#~ msgid "Shows the watched staus of the movie."
-#~ msgstr "Toon de bekeken status van een opname."
-
-#~ msgid ""
-#~ "When set each folder will show the previous stae used, when off the "
-#~ "default values will be shown."
-#~ msgstr ""
-#~ "Indien ingesteld zal elke map de status laten zien die de vorige maal "
-#~ "gebruikt werd; indien uitgeschakeld worden de standaard waardes getoond."
