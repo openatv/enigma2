@@ -74,6 +74,10 @@
 		<widget source="parent.Text" render="Label" position="0,0" size="132,52" font="Regular;11" valign="center" />
 		<widget source="parent.selectedChoice" render="Label" position="0,50" size="120,14" halign="left" noWrap="1"  />
 	</screen>
+	<screen name="MessageBoxSimple_summary" position="0,0" size="132,64">
+		<widget source="parent.Text" render="Label" position="0,0" size="132,52" font="Regular;11" valign="center" />
+		<widget source="parent.selectedChoice" render="Label" position="0,50" size="120,14" halign="left" noWrap="1"  />
+	</screen>
 	<screen name="JobView_summary" position="0,0" size="132,64">
 		<widget source="parent.summary_job_name" render="Label" position="0,4" size="120,42" font="Regular;16" />
 		<widget source="parent.summary_job_task" render="Label" position="0,22" size="120,26" font="Regular;12" />
