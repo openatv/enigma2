@@ -6,6 +6,7 @@
 #include <signal.h>
 #include <lib/base/systemsettings.h>
 #include <sys/sysinfo.h>
+#include <sys/mman.h>
 // For SYS_ stuff
 #include <syscall.h>
 
@@ -481,6 +482,7 @@ class eDVBRecordFileThread: public eFilePushThreadRecorder
 {
 public:
 	eDVBRecordFileThread(int packetsize = 188);
+	~eDVBRecordFileThread();
 	void setTimingPID(int pid, int type);
 	void startSaveMetaInformation(const std::string &filename);
 	void stopSaveMetaInformation();
@@ -488,26 +490,33 @@ public:
 	void setTargetFD(int fd) { m_fd_dest = fd; }
 	void enableAccessPoints(bool enable) { m_ts_parser.enableAccessPoints(enable); }
 protected:
-	/* override */ int writeData(const unsigned char *data, int len);
+	/* override */ int writeData(int len);
 private:
 	eMPEGStreamParserTS m_ts_parser;
 	off_t m_current_offset;
-	pts_t m_last_pcr; /* very approximate.. */
-	int m_pid;
 	int m_fd_dest;
 	off_t offset_last_sync;
 	size_t written_since_last_sync;
 	int m_packetsize;
 };
 
-eDVBRecordFileThread::eDVBRecordFileThread(int packetsize)
-	:eFilePushThreadRecorder(IOPRIO_CLASS_RT, 7, /*blocksize*/ packetsize, /*buffersize*/ packetsize * 1024),
+eDVBRecordFileThread::eDVBRecordFileThread(int packetsize):
+	eFilePushThreadRecorder(
+		/* buffer */ (unsigned char*) ::mmap(NULL, packetsize * 1024, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, /*ignored*/-1, 0),
+		/*buffersize*/ packetsize * 1024),
 	 m_ts_parser(packetsize),
 	 m_current_offset(0),
 	 m_fd_dest(-1),
 	 offset_last_sync(0),
 	 written_since_last_sync(0)
 {
+	if (m_buffer == MAP_FAILED)
+		eFatal("Failed to allocate filepush buffer, contact MiLo\n");
+}
+
+eDVBRecordFileThread::~eDVBRecordFileThread()
+{
+	::munmap(m_buffer, m_buffersize);
 }
 
 void eDVBRecordFileThread::setTimingPID(int pid, int type)
@@ -530,8 +539,9 @@ int eDVBRecordFileThread::getLastPTS(pts_t &pts)
 	return m_ts_parser.getLastPTS(pts);
 }
 
-int eDVBRecordFileThread::writeData(const unsigned char *data, int len)
+int eDVBRecordFileThread::writeData(int len)
 {
+	const unsigned char* data = m_buffer;
 	m_ts_parser.parseData(m_current_offset, data, len);
 	size_t total_written = 0;
 	do
