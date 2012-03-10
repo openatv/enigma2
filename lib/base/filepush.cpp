@@ -315,12 +315,12 @@ int eFilePushThread::filterRecordData(const unsigned char *data, int len, size_t
 
 
 
-eFilePushThreadRecorder::eFilePushThreadRecorder(unsigned char* buffer, size_t buffersize)
-	:m_stop(0),
-	 m_fd_source(-1),
-	 m_buffersize(buffersize),
-	 m_buffer(buffer),
-	 m_messagepump(eApp, 0)
+eFilePushThreadRecorder::eFilePushThreadRecorder(unsigned char* buffer, size_t buffersize):
+	m_fd_source(-1),
+	m_buffersize(buffersize),
+	m_buffer(buffer),
+	m_stop(0),
+	m_messagepump(eApp, 0)
 {
 	CONNECT(m_messagepump.recv_msg, eFilePushThreadRecorder::recvEvent);
 }
@@ -376,6 +376,7 @@ void eFilePushThreadRecorder::thread()
 			break;
 		}
 	}
+	flush();
 	sendEvent(evtStopped);
 	eDebug("[eFilePushThreadRecorder] THREAD STOP");
 }
