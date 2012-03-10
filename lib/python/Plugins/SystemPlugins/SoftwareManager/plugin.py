@@ -1369,8 +1369,7 @@ class PluginDetails(Screen, DreamInfoHandler):
 	def UpgradeReboot(self, result):
 		if result:
 			self.session.open(TryQuitMainloop,retvalue=3)
-		else:
-			self.close(True)
+		self.close(True)
 
 	def runRemove(self, result):
 		if result:
