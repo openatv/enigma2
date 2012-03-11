@@ -1542,7 +1542,7 @@ class EPGSelectionSetup(Screen, ConfigListScreen):
 				self.list.append(getConfigListEntry(_("OK (short) Button"), config.epgselction.OK_enhanced,_("Set to what you want the button to do.")))
 				self.list.append(getConfigListEntry(_("OK (long) Button"), config.epgselction.OKLong_enhanced,_("Set to what you want the button to do.")))
 			self.list.append(getConfigListEntry(_("Number of rows"), config.epgselction.itemsperpage_enhanced, _("This allows you change the number of rows shown.")))
-			self.list.append(getConfigListEntry(_("Event Fontsize"), config.epgselction.ev_fontsize_enhanced, _("This allows you change the font size relative to skin size, so 1 increases by 1 piont size, and -1 decreases by 1 piont size")))
+			self.list.append(getConfigListEntry(_("Event Fontsize"), config.epgselction.ev_fontsize_enhanced, _("This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size")))
 		elif self.type == 1:
 			self.list.append(getConfigListEntry(_("Channel preview mode"), config.epgselction.preview_mode,_("If set to 'yes' you can preview channels in the EPG list.")))
 			self.list.append(getConfigListEntry(_("Show bouquet on launch"), config.epgselction.showbouquet_multi,_("If set to 'yes' the bouquets will be shown each time you open the EPG")))
