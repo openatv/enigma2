@@ -12,25 +12,25 @@
 #include <syscall.h>
 
 //#define SHOW_WRITE_TIME
-
-static int determineDemuxSize()
+static int determineBufferCount()
 {
 	struct sysinfo si;
 	if (sysinfo(&si) != 0)
 	{
-		return 8*188*1024;
+		return 6; // Default to small
 	}
 	unsigned int megabytes = si.totalram >> 20;
 	int result;
 	if (megabytes > 200)
-		result = 20*188*1024; // 512MB systems: Use 4MB demux buffer (et9x00, vuultimo, ...)
+		result = 20; // 512MB systems: Use 4MB IO buffers (et9x00, vuultimo, ...)
 	else if (megabytes > 100)
-		result = 10*188*1024; // 256MB systems: Use <2MB demux buffer (dm8000, et5x00, vuduo)
+		result = 10; // 256MB systems: Use 2MB demux buffers (dm8000, et5x00, vuduo)
 	else
-		result = 6*188*1024; // Smaller boxes: Use 1MB buffer (dm7025)
+		result = 6; // Smaller boxes: Use 1MB buffer (dm7025)
 	return result;
 }
-static int demuxSize = determineDemuxSize();
+static const int demuxSize = 4*188*1024; // With the large userspace IO buffers, a 752k demux buffer is enough
+static int recordingBufferCount = determineBufferCount();
 
 static size_t flushSize = 0;
 
@@ -481,8 +481,6 @@ RESULT eDVBPESReader::connectRead(const Slot2<void,const __u8*,int> &r, ePtr<eCo
 	return 0;
 }
 
-static const int num_buffers = 4;
-
 class eDVBRecordFileThread: public eFilePushThreadRecorder
 {
 public:
@@ -505,20 +503,21 @@ private:
 	size_t written_since_last_sync;
 	int m_current_buffer;
 	unsigned char* m_allocated_buffer;
-	struct aiocb m_aio[num_buffers];
+	std::vector<struct aiocb> m_aio;
 };
 
 
 eDVBRecordFileThread::eDVBRecordFileThread(int packetsize):
 	eFilePushThreadRecorder(
-		/* buffer */ (unsigned char*) ::mmap(NULL, num_buffers * packetsize * 1024, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, /*ignored*/-1, 0),
+		/* buffer */ (unsigned char*) ::mmap(NULL, recordingBufferCount * packetsize * 1024, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, /*ignored*/-1, 0),
 		/*buffersize*/ packetsize * 1024),
 	 m_ts_parser(packetsize),
 	 m_current_offset(0),
 	 m_fd_dest(-1),
 	 offset_last_sync(0),
 	 written_since_last_sync(0),
-	 m_current_buffer(0)
+	 m_current_buffer(0),
+	 m_aio(recordingBufferCount)
 {
 	if (m_buffer == MAP_FAILED)
 		eFatal("Failed to allocate filepush buffer, contact MiLo\n");
@@ -526,12 +525,12 @@ eDVBRecordFileThread::eDVBRecordFileThread(int packetsize):
 	// move around during writes, so we must remember where the "head" is.
 	m_allocated_buffer = m_buffer;
 	// m_buffersize is thus the size of a single buffer in the queue
-	::memset(m_aio, 0, sizeof(m_aio)); // initialize to zero
+	::memset(&m_aio[0], 0, sizeof(m_aio)); // initialize to zero
 }
 
 eDVBRecordFileThread::~eDVBRecordFileThread()
 {
-	::munmap(m_allocated_buffer, num_buffers * m_buffersize);
+	::munmap(m_allocated_buffer, recordingBufferCount * m_buffersize);
 }
 
 void eDVBRecordFileThread::setTimingPID(int pid, int type)
@@ -598,7 +597,7 @@ int eDVBRecordFileThread::writeData(int len)
 	gettimeofday(&starttime, NULL);
 #endif
 	
-	struct aiocb* aio = m_aio + m_current_buffer;
+	struct aiocb* aio = &m_aio[m_current_buffer];
 	memset(aio, 0, sizeof(struct aiocb)); // Documentation says "zero it before call".
 	aio->aio_fildes = m_fd_dest;
 	aio->aio_nbytes = len;
@@ -639,10 +638,10 @@ int eDVBRecordFileThread::writeData(int len)
 	gettimeofday(&starttime, NULL);
 #endif
 	
-	m_current_buffer = (m_current_buffer + 1) % num_buffers;
+	m_current_buffer = (m_current_buffer + 1) % recordingBufferCount;
 	m_buffer = m_allocated_buffer + (m_current_buffer * m_buffersize);
 	// Wait for previous aio to complete on this buffer before returning
-	r = wait_for_aio(m_aio + m_current_buffer);
+	r = wait_for_aio(&m_aio[m_current_buffer]);
 	if (r < 0)
 		return -1;
 
@@ -658,9 +657,9 @@ int eDVBRecordFileThread::writeData(int len)
 void eDVBRecordFileThread::flush()
 {
 	eDebug("[eDVBRecordFileThread] waiting for aio to complete");
-	for (int i = 0; i < num_buffers; ++i)
+	for (int i = 0; i < recordingBufferCount; ++i)
 	{
-		wait_for_aio(m_aio + i);
+		wait_for_aio(&m_aio[i]);
 	}
 }
 
