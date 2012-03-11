@@ -584,8 +584,6 @@ RESULT eServiceMP3::seekTo(pts_t to)
 
 RESULT eServiceMP3::trickSeek(gdouble ratio)
 {
-	m_currentTrickRatio = ratio;
-
 	if (!m_gst_playbin)
 		return -1;
 	if (ratio > -0.01 && ratio < 0.01)
@@ -593,6 +591,8 @@ RESULT eServiceMP3::trickSeek(gdouble ratio)
 		gst_element_set_state(m_gst_playbin, GST_STATE_PAUSED);
 		return 0;
 	}
+
+	m_currentTrickRatio = ratio;
 
 	gint64 pos;
 	pts_t pts;
