@@ -8,7 +8,7 @@ from Tools.BoundFunction import boundFunction
 from time import time
 
 class InputBox(Screen):
-	def __init__(self, session, title = "", windowTitle = _("Input"), useableChars = None, simple=False, **kwargs):
+	def __init__(self, session, title = "", windowTitle = _("Input"), useableChars = None, **kwargs):
 		Screen.__init__(self, session)
 
 		self["text"] = Label(title)
