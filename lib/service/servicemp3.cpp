@@ -380,7 +380,9 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 			g_object_set (G_OBJECT (m_gst_playbin), "text-sink", subsink, NULL);
 			g_object_set (G_OBJECT (m_gst_playbin), "current-text", m_currentSubtitleStream, NULL);
 		}
-		gst_bus_set_sync_handler(gst_pipeline_get_bus (GST_PIPELINE (m_gst_playbin)), gstBusSyncHandler, this);
+		GstBus *bus = gst_pipeline_get_bus(GST_PIPELINE (m_gst_playbin));
+		gst_bus_set_sync_handler(bus , gstBusSyncHandler, this);
+		gst_object_unref(bus);
 		char srt_filename[strlen(filename)+1];
 		strncpy(srt_filename,filename,strlen(filename)-3);
 		srt_filename[strlen(filename)-3]='\0';
@@ -417,8 +419,13 @@ eServiceMP3::~eServiceMP3()
 
 	delete m_subtitle_widget;
 
-	// disconnect sync handler callback
-	gst_bus_set_sync_handler(gst_pipeline_get_bus (GST_PIPELINE (m_gst_playbin)), NULL, NULL);
+	if (m_gst_playbin)
+	{
+		// disconnect sync handler callback
+		GstBus *bus = gst_pipeline_get_bus(GST_PIPELINE (m_gst_playbin));
+		gst_bus_set_sync_handler(bus, NULL, NULL);
+		gst_object_unref(bus);
+	}
 
 	if (m_state == stRunning)
 		stop();
