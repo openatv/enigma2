@@ -4,10 +4,14 @@
 #include <errno.h>
 #include <unistd.h>
 #include <signal.h>
+#include <aio.h>
 #include <lib/base/systemsettings.h>
 #include <sys/sysinfo.h>
+#include <sys/mman.h>
 // For SYS_ stuff
 #include <syscall.h>
+
+//#define SHOW_WRITE_TIME
 
 static int determineDemuxSize()
 {
@@ -477,10 +481,13 @@ RESULT eDVBPESReader::connectRead(const Slot2<void,const __u8*,int> &r, ePtr<eCo
 	return 0;
 }
 
+static const int num_buffers = 4;
+
 class eDVBRecordFileThread: public eFilePushThreadRecorder
 {
 public:
 	eDVBRecordFileThread(int packetsize = 188);
+	~eDVBRecordFileThread();
 	void setTimingPID(int pid, int type);
 	void startSaveMetaInformation(const std::string &filename);
 	void stopSaveMetaInformation();
@@ -488,26 +495,43 @@ public:
 	void setTargetFD(int fd) { m_fd_dest = fd; }
 	void enableAccessPoints(bool enable) { m_ts_parser.enableAccessPoints(enable); }
 protected:
-	/* override */ int writeData(const unsigned char *data, int len);
+	/* override */ int writeData(int len);
+	/* override */ void flush();
 private:
 	eMPEGStreamParserTS m_ts_parser;
 	off_t m_current_offset;
-	pts_t m_last_pcr; /* very approximate.. */
-	int m_pid;
 	int m_fd_dest;
 	off_t offset_last_sync;
 	size_t written_since_last_sync;
-	int m_packetsize;
+	int m_current_buffer;
+	unsigned char* m_allocated_buffer;
+	struct aiocb m_aio[num_buffers];
 };
 
-eDVBRecordFileThread::eDVBRecordFileThread(int packetsize)
-	:eFilePushThreadRecorder(IOPRIO_CLASS_RT, 7, /*blocksize*/ packetsize, /*buffersize*/ packetsize * 1024),
+
+eDVBRecordFileThread::eDVBRecordFileThread(int packetsize):
+	eFilePushThreadRecorder(
+		/* buffer */ (unsigned char*) ::mmap(NULL, num_buffers * packetsize * 1024, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, /*ignored*/-1, 0),
+		/*buffersize*/ packetsize * 1024),
 	 m_ts_parser(packetsize),
 	 m_current_offset(0),
 	 m_fd_dest(-1),
 	 offset_last_sync(0),
-	 written_since_last_sync(0)
+	 written_since_last_sync(0),
+	 m_current_buffer(0)
 {
+	if (m_buffer == MAP_FAILED)
+		eFatal("Failed to allocate filepush buffer, contact MiLo\n");
+	// m_buffer actually points to a data block large enough to hold ALL buffers. m_buffer will
+	// move around during writes, so we must remember where the "head" is.
+	m_allocated_buffer = m_buffer;
+	// m_buffersize is thus the size of a single buffer in the queue
+	::memset(m_aio, 0, sizeof(m_aio)); // initialize to zero
+}
+
+eDVBRecordFileThread::~eDVBRecordFileThread()
+{
+	::munmap(m_allocated_buffer, num_buffers * m_buffersize);
 }
 
 void eDVBRecordFileThread::setTimingPID(int pid, int type)
@@ -530,50 +554,114 @@ int eDVBRecordFileThread::getLastPTS(pts_t &pts)
 	return m_ts_parser.getLastPTS(pts);
 }
 
-int eDVBRecordFileThread::writeData(const unsigned char *data, int len)
+static int wait_for_aio(struct aiocb* aio)
 {
-	m_ts_parser.parseData(m_current_offset, data, len);
-	size_t total_written = 0;
-	do
+	if (aio->aio_buf != NULL) // Only if we had a request outstanding
 	{
-		int w = ::write(m_fd_dest, data, len);
-		if (w < 0)
+		while (aio_error(aio) == EINPROGRESS)
 		{
-			if (errno == EINTR || errno == EAGAIN || errno == EBUSY)
+			eDebug("[eDVBRecordFileThread] Waiting for I/O to complete");
+			int r = aio_suspend(&aio, 1, NULL);
+			if (r < 0)
 			{
-				eDebug("[eFilePushThreadRecorder] interrupted write");
-			}
-			else
-			{
-				return w;
+				eDebug("[eDVBRecordFileThread] aio_suspend failed: %m");
+				return -1;
 			}
 		}
-		else
+		int r = aio_return(aio);
+		aio->aio_buf = NULL;
+		if (r < 0)
 		{
-			len -= w;
-			m_current_offset += w;
-			total_written += w;
-			data += w;
+			eDebug("[eDVBRecordFileThread] aio_return returned failure: %m");
+			return -1;
 		}
 	}
-	while (len != 0);
+	return 0;
+}
+
+int eDVBRecordFileThread::writeData(int len)
+{
+#ifdef SHOW_WRITE_TIME
+	struct timeval starttime;
+	struct timeval now;
+	suseconds_t diff;
+	gettimeofday(&starttime, NULL);
+#endif
+
+	const unsigned char* data = m_buffer;
+	m_ts_parser.parseData(m_current_offset, data, len);
+
+#ifdef SHOW_WRITE_TIME
+	gettimeofday(&now, NULL);
+	diff = (1000000 * (now.tv_sec - starttime.tv_sec)) + now.tv_usec - starttime.tv_usec;
+	eDebug("[eFilePushThreadRecorder] m_ts_parser.parseData: %9u us", (unsigned int)diff);
+	gettimeofday(&starttime, NULL);
+#endif
+	
+	struct aiocb* aio = m_aio + m_current_buffer;
+	memset(aio, 0, sizeof(struct aiocb)); // Documentation says "zero it before call".
+	aio->aio_fildes = m_fd_dest;
+	aio->aio_nbytes = len;
+	aio->aio_offset = m_current_offset;   // Offset can be omitted with O_APPEND
+	aio->aio_buf = m_buffer;
+	int r = aio_write(aio);
+	if (r < 0)
+	{
+		eDebug("[eDVBRecordFileThread] aio_write failed: %m");
+		return r;
+	}
+	m_current_offset += len;
+
+#ifdef SHOW_WRITE_TIME
+	gettimeofday(&now, NULL);
+	diff = (1000000 * (now.tv_sec - starttime.tv_sec)) + now.tv_usec - starttime.tv_usec;
+	eDebug("[eFilePushThreadRecorder] aio_write: %9u us", (unsigned int)diff);
+#endif
+	
 	// do the flush thing if the user wanted it
 	if (flushSize != 0)
 	{
-		written_since_last_sync += total_written;
+		written_since_last_sync += len;
 		if (written_since_last_sync > flushSize)
 		{
 			int pr;
 			pr = syscall(SYS_fadvise64, m_fd_dest, offset_last_sync, 0, 0, 0, POSIX_FADV_DONTNEED);
 			if (pr != 0)
 			{
-				eDebug("[filepush] POSIX_FADV_DONTNEED returned %d", pr);
+				eDebug("[eDVBRecordFileThread] POSIX_FADV_DONTNEED returned %d", pr);
 			}
 			offset_last_sync += written_since_last_sync;
 			written_since_last_sync = 0;
 		}
 	}
-	return total_written;
+
+#ifdef SHOW_WRITE_TIME
+	gettimeofday(&starttime, NULL);
+#endif
+	
+	m_current_buffer = (m_current_buffer + 1) % num_buffers;
+	m_buffer = m_allocated_buffer + (m_current_buffer * m_buffersize);
+	// Wait for previous aio to complete on this buffer before returning
+	r = wait_for_aio(m_aio + m_current_buffer);
+	if (r < 0)
+		return -1;
+
+#ifdef SHOW_WRITE_TIME
+	gettimeofday(&now, NULL);
+	diff = (1000000 * (now.tv_sec - starttime.tv_sec)) + now.tv_usec - starttime.tv_usec;
+	eDebug("[eFilePushThreadRecorder] wait_for_aio: %9u us", (unsigned int)diff);
+#endif
+
+	return len;
+}
+
+void eDVBRecordFileThread::flush()
+{
+	eDebug("[eDVBRecordFileThread] waiting for aio to complete");
+	for (int i = 0; i < num_buffers; ++i)
+	{
+		wait_for_aio(m_aio + i);
+	}
 }
 
 DEFINE_REF(eDVBTSRecorder);

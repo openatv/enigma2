@@ -70,8 +70,7 @@ private:
 class eFilePushThreadRecorder: public eThread, public Object
 {
 public:
-	eFilePushThreadRecorder(int prio_class=IOPRIO_CLASS_BE, int prio_level=0, int blocksize=188, size_t buffersize=188*1024);
-	~eFilePushThreadRecorder();
+	eFilePushThreadRecorder(unsigned char* buffer, size_t buffersize=188*1024);
 	void thread();
 	void stop();
 	void start(int sourcefd);
@@ -82,16 +81,18 @@ public:
 	void sendEvent(int evt);
 protected:
 	// This method should write the data out and return the number of bytes written.
-	// If result <0, set 'errno'. The simplest implementation is just "::write(...)"
-	virtual int writeData(const unsigned char *data, int len) = 0;
-private:
-	int prio_class;
-	int prio;
-	int m_stop;
+	// If result <0, set 'errno'. The simplest implementation is just "::write(m_buffer, ...)"
+	// The method may freely modify m_buffer and m_buffersize
+	virtual int writeData(int len) = 0;
+	// Called when terminating the recording thread. Allows to clean up memory and
+	// flush buffers, terminate outstanding IO requests.
+	virtual void flush() = 0;
+	
 	int m_fd_source;
-	int m_blocksize;
 	size_t m_buffersize;
 	unsigned char* m_buffer;
+private:
+	int m_stop;
 	eFixedMessagePump<int> m_messagepump;
 	void recvEvent(const int &evt);
 };

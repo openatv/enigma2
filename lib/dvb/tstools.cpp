@@ -481,7 +481,7 @@ void eDVBTSTools::calcEnd()
 	{
 		if (m_streaminfo.getLastFrame(m_offset_end, m_pts_end) == 0)
 		{
-			eDebug("[@ML] m_streaminfo.getLastFrame returned %llu, %llu", m_offset_end, m_pts_end);
+			//eDebug("[@ML] m_streaminfo.getLastFrame returned %llu, %llu", m_offset_end, m_pts_end);
 			m_end_valid = 1;
 		}
 		else
