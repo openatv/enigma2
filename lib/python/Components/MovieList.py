@@ -152,6 +152,7 @@ class MovieList(GUIComponent):
 		self.l = eListboxPythonMultiContent()
 		self.tags = set()
 		self.root = None
+		self.list = None
 		
 		if root is not None:
 			self.reload(root)
