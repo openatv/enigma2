@@ -31,6 +31,8 @@ eThread::eThread()
 {
 }
 
+static const int default_stack_size = 1024*1024;
+
 int eThread::runAsync(int prio, int policy)
 {
 		/* the thread might already run. */
@@ -48,6 +50,8 @@ int eThread::runAsync(int prio, int policy)
 		/* start thread. */
 	pthread_attr_t attr;
 	pthread_attr_init(&attr);
+	if (pthread_attr_setstacksize(&attr, default_stack_size) != 0)
+		eDebug("[eThread] pthread_attr_setstacksize failed");
 	
 	if (prio || policy)
 	{
