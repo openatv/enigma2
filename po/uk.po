@@ -4,9 +4,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-04 11:59+0000\n"
-"PO-Revision-Date: 2008-09-28 14:03+0200\n"
-"Last-Translator: stepan_kv <stepan_kv@mail.ru>\n"
+"POT-Creation-Date: 2012-03-10 15:56+0000\n"
+"PO-Revision-Date: 2012-03-10 13:30+0100\n"
+"Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
 "Language-Team: http://sat-ukraine.info/\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -42,10 +42,10 @@ msgstr ""
 #
 msgid ""
 "\n"
-"Backup your Dreambox settings."
+"Backup your STB_BOX settings."
 msgstr ""
 "\n"
-"Створення резервної копії налаштувань Dreambox'a."
+"Створення резервної копії налаштувань STB_BOX'a."
 
 #
 msgid ""
@@ -58,16 +58,16 @@ msgstr ""
 #
 msgid ""
 "\n"
-"Manage extensions or plugins for your Dreambox"
+"Manage extensions or plugins for your STB_BOX"
 msgstr ""
 
 #
 msgid ""
 "\n"
-"Online update of your Dreambox software."
+"Online update of your STB_BOX software."
 msgstr ""
 "\n"
-"Онлайн оновлення пакетів вашого Dreambox'a."
+"Онлайн оновлення пакетів вашого STB_BOX'a."
 
 #
 msgid ""
@@ -90,18 +90,18 @@ msgstr ""
 #
 msgid ""
 "\n"
-"Restore your Dreambox settings."
+"Restore your STB_BOX settings."
 msgstr ""
 "\n"
-"Відновлення системних налаштувань вашого Dreambox'a."
+"Відновлення системних налаштувань вашого STB_BOX'a."
 
 #
 msgid ""
 "\n"
-"Restore your Dreambox with a new firmware."
+"Restore your STB_BOX with a new firmware."
 msgstr ""
 "\n"
-"Встановлення нового іміджу на Dreambox."
+"Встановлення нового іміджу на STB_BOX."
 
 #
 msgid ""
@@ -318,11 +318,13 @@ msgstr ""
 msgid "* Only available if more than one interface is active."
 msgstr "* Доступні тільки якщо більше ніж один інтерфейс активний."
 
+#
 msgid "/usr/share/enigma2 directory"
-msgstr ""
+msgstr "директорія /usr/share/enigma2"
 
+#
 msgid "/var directory"
-msgstr ""
+msgstr "директорія /var"
 
 #
 msgid "0"
@@ -422,9 +424,6 @@ msgstr ""
 msgid "30 Days"
 msgstr ""
 
-msgid "30 Minutes"
-msgstr ""
-
 msgid "3D Mode"
 msgstr ""
 
@@ -512,18 +511,18 @@ msgstr ""
 #
 msgid ""
 "A finished record timer wants to set your\n"
-"Dreambox to standby. Do that now?"
+"STB_BOX to standby. Do that now?"
 msgstr ""
-"Запис закінчено. Таймер переведе ваш Dreambox\n"
+"Запис закінчено. Таймер переведе ваш STB_BOX\n"
 "в режим очікування. Зробити це?"
 
 #
 msgid ""
 "A finished record timer wants to shut down\n"
-"your Dreambox. Shutdown now?"
+"your STB_BOX. Shutdown now?"
 msgstr ""
 "Запис закінчено. Таймер зараз вимкне ваш\n"
-"Dreambox. Зробити це?"
+"STB_BOX. Зробити це?"
 
 #
 msgid "A graphical EPG for all services of an specific bouquet"
@@ -579,18 +578,18 @@ msgstr ""
 #
 msgid ""
 "A sleep timer wants to set your\n"
-"Dreambox to standby. Do that now?"
+"STB_BOX to standby. Do that now?"
 msgstr ""
-"Таймер переведе ваш Dreambox\n"
+"Таймер переведе ваш STB_BOX\n"
 "в режим очікування. Зробити це?"
 
 #
 msgid ""
 "A sleep timer wants to shut down\n"
-"your Dreambox. Shutdown now?"
+"your STB_BOX. Shutdown now?"
 msgstr ""
 "Таймер зараз вимкне\n"
-"ваш Dreambox. Зробити це?"
+"ваш STB_BOX. Зробити це?"
 
 #
 msgid "A small overview of the available icon states and actions."
@@ -659,7 +658,6 @@ msgstr "Активувати налаштування мережі"
 msgid "Activate the chosen network settings."
 msgstr ""
 
-#
 msgid "Active"
 msgstr ""
 
@@ -737,13 +735,9 @@ msgstr ""
 msgid "Address"
 msgstr ""
 
-#
 msgid ""
-"Adds enigma2 settings and dreambox model informations like SN, rev... if "
-"enabled."
+"Adds enigma2 settings and STB_BOX informations like SN, rev... if enabled."
 msgstr ""
-"Додавати параметри Енігми2 і інформацію про Dreambox, таку як сер.номер та "
-"іншу... якщо доступна"
 
 #
 msgid "Adds network configuration if enabled."
@@ -802,7 +796,7 @@ msgstr ""
 #
 msgid ""
 "After the start wizard is completed, you need to protect single services. "
-"Refer to your dreambox's manual on how to do that."
+"Refer to your STB_BOX's manual on how to do that."
 msgstr ""
 "Після завершення роботи помічника Ви можете встановити обмеження на деякі "
 "сервіси. Як це зробити, Ви можете прочитати в інструкції. "
@@ -858,35 +852,35 @@ msgstr ""
 msgid "Allows the Harddisk to go to standby after being idle for:"
 msgstr ""
 
-msgid "Allows the box to read the stored EPG data regularly."
+msgid "Allows the STB_BOX to read the stored EPG data regularly."
 msgstr ""
 
-msgid "Allows the box to store the EPG data regularly."
-msgstr ""
-
-msgid ""
-"Allows the box to use the EIT EPG when tuned to a service. This data will be "
-"stored by the box."
+msgid "Allows the STB_BOX to store the EPG data regularly."
 msgstr ""
 
 msgid ""
-"Allows the box to use the FreeSat EPG when tuned to a service. This data "
-"will be stored by the box."
+"Allows the STB_BOX to use the EIT EPG when tuned to a service. This data "
+"will be stored by the STB_BOX."
 msgstr ""
 
 msgid ""
-"Allows the box to use the MHW EPG when tuned to a service. This data will be "
-"stored by the box."
+"Allows the STB_BOX to use the FreeSat EPG when tuned to a service. This data "
+"will be stored by the STB_BOX."
 msgstr ""
 
 msgid ""
-"Allows the box to use the Netmed EPG when tuned to a service. This data will "
-"be stored by the box."
+"Allows the STB_BOX to use the MHW EPG when tuned to a service. This data "
+"will be stored by the STB_BOX."
 msgstr ""
 
 msgid ""
-"Allows the box to use the ViaSat EPG when tuned to a service. This data will "
-"be stored by the box."
+"Allows the STB_BOX to use the Netmed EPG when tuned to a service. This data "
+"will be stored by the STB_BOX."
+msgstr ""
+
+msgid ""
+"Allows the STB_BOX to use the ViaSat EPG when tuned to a service. This data "
+"will be stored by the STB_BOX."
 msgstr ""
 
 msgid "Allows you setup the button to do what you choose."
@@ -988,7 +982,7 @@ msgstr ""
 msgid "Allows you to use Yellow pango DVB subtitles"
 msgstr ""
 
-msgid "Allows you to use power measurement (if your box supports that)"
+msgid "Allows you to use power measurement (if your STB_BOX supports that)"
 msgstr ""
 
 msgid "Allows you to use the original position of the Teletext subtitles."
@@ -997,8 +991,9 @@ msgstr ""
 msgid "Allows you to use yellow DVB subtitles."
 msgstr ""
 
+#
 msgid "Alpha"
-msgstr ""
+msgstr "Прозорість"
 
 msgid "Alpha Value"
 msgstr ""
@@ -1038,8 +1033,9 @@ msgstr ""
 msgid "April"
 msgstr ""
 
+#
 msgid "Arabic"
-msgstr ""
+msgstr "Арабський"
 
 #
 msgid ""
@@ -1240,14 +1236,17 @@ msgstr ""
 msgid "Background delete speed"
 msgstr ""
 
+#
 msgid "Backup"
-msgstr ""
+msgstr "Копія"
 
+#
 msgid "Backup Location"
-msgstr ""
+msgstr "Місце збереження"
 
+#
 msgid "Backup Mode"
-msgstr ""
+msgstr "Режим збереження"
 
 #
 msgid "Backup done."
@@ -1434,8 +1433,9 @@ msgstr ""
 msgid "CCcam Shares Info"
 msgstr ""
 
+#
 msgid "CF Drive"
-msgstr ""
+msgstr "Карта CF"
 
 #
 msgid "CI assignment"
@@ -1513,6 +1513,9 @@ msgstr "Автоматична зміна списку каналів"
 #
 msgid "Change pin code"
 msgstr "Змінити PIN-код"
+
+msgid "Change repeat and delay settings?"
+msgstr ""
 
 msgid "Change service PIN"
 msgstr ""
@@ -1640,12 +1643,12 @@ msgid "Choose the location for crash and debuglogs."
 msgstr ""
 
 msgid ""
-"Choose the location where the EPG data will be stored when the box is shut "
-"down. The location must be available at boot time."
+"Choose the location where the EPG data will be stored when the STB_BOX is "
+"shut down. The location must be available at boot time."
 msgstr ""
 
 msgid ""
-"Choose the name of the file that holds the EPG data when the box is shut "
+"Choose the name of the file that holds the EPG data when the STB_BOX is shut "
 "down. This can be handy to differentiate between several boxes."
 msgstr ""
 
@@ -1746,11 +1749,13 @@ msgstr ""
 msgid "Code rate LP"
 msgstr ""
 
+#
 msgid "Coderate HP"
-msgstr ""
+msgstr "Швидкість кодування HP"
 
+#
 msgid "Coderate LP"
-msgstr ""
+msgstr "Швидкість кодування LP"
 
 #
 msgid "Collection name"
@@ -1915,8 +1920,8 @@ msgid ""
 msgstr ""
 
 #
-msgid "Could not connect to Dreambox .NFI Image Feed Server:"
-msgstr "Підключення з сервером Dreambox .NFI Image не вдалось:"
+msgid "Could not connect to STB_BOX .NFI Image Feed Server:"
+msgstr "Підключення з сервером STB_BOX .NFI Image не вдалось:"
 
 #
 msgid "Could not load Medium! No disc inserted?"
@@ -1995,8 +2000,9 @@ msgstr ""
 msgid "Creating directory %s failed."
 msgstr "Створення директорії %s невдале."
 
+#
 msgid "Croatian"
-msgstr ""
+msgstr "Хорватьска"
 
 msgid "Current CEC address"
 msgstr ""
@@ -2062,8 +2068,9 @@ msgstr "Вирізати"
 msgid "Cutlist editor..."
 msgstr "Редактор..."
 
+#
 msgid "Czech"
-msgstr ""
+msgstr "Чешська"
 
 #
 msgid "D"
@@ -2113,8 +2120,9 @@ msgstr "Інструментарій DVD"
 msgid "Daily"
 msgstr ""
 
+#
 msgid "Danish"
-msgstr ""
+msgstr "Данська"
 
 #
 msgid "Date"
@@ -2143,7 +2151,7 @@ msgstr "Вирішіть, що повинно відбутися з крешло
 
 #
 msgid "Deep Standby"
-msgstr "Вимкнути Dreambox"
+msgstr "Вимкнути STB_BOX"
 
 #
 msgid "Default"
@@ -2155,6 +2163,9 @@ msgstr "Стандартні налаштування"
 
 #
 msgid "Default movie location"
+msgstr ""
+
+msgid "Delay before key repeat starts:"
 msgstr ""
 
 #
@@ -2227,6 +2238,9 @@ msgid "Device Mounts"
 msgstr ""
 
 msgid "Device Setup"
+msgstr ""
+
+msgid "Devicename:"
 msgstr ""
 
 msgid "Devices"
@@ -2414,10 +2428,13 @@ msgid ""
 "(choose 'No' to type message using virtual keyboard.)"
 msgstr ""
 
+#
 msgid ""
 "Do you want to backup now?\n"
 "After pressing OK, please wait!"
 msgstr ""
+"Ви хочете зробити резервну копію зараз?\n"
+"Натисніть на ОК і зачекайте будь ласка!"
 
 #
 msgid "Do you want to burn this collection to DVD medium?"
@@ -2441,8 +2458,8 @@ msgid "Do you want to download the image to %s ?"
 msgstr ""
 
 #
-msgid "Do you want to enable the parental control feature on your dreambox?"
-msgstr "Ви хочете встановити батьківський контроль на Dreambox?"
+msgid "Do you want to enable the parental control feature on your STB_BOX?"
+msgstr "Ви хочете встановити батьківський контроль на STB_BOX?"
 
 #
 msgid "Do you want to install the package:\n"
@@ -2457,8 +2474,8 @@ msgid "Do you want to preview this DVD before burning?"
 msgstr "Ви хочете переглянути цей DVD перед записом?"
 
 #
-msgid "Do you want to reboot your Dreambox?"
-msgstr "Бажаєте перезавантажити Dreambox?"
+msgid "Do you want to reboot your STB_BOX?"
+msgstr "Бажаєте перезавантажити STB_BOX?"
 
 msgid "Do you want to remove binary data?"
 msgstr ""
@@ -2489,15 +2506,15 @@ msgstr ""
 "Вами у разі потреби?"
 
 #
-msgid "Do you want to update your Dreambox?"
+msgid "Do you want to update your STB_BOX?"
 msgstr "Бажаєте оновити пакети?"
 
 #
 msgid ""
-"Do you want to update your Dreambox?\n"
+"Do you want to update your STB_BOX?\n"
 "After pressing OK, please wait!"
 msgstr ""
-"Бажаєте оновити ПЗ вашого Dreambox?\n"
+"Бажаєте оновити ПЗ вашого STB_BOX?\n"
 "Після натискання OK, будь ласка зачекайте!"
 
 #
@@ -2578,8 +2595,9 @@ msgstr ""
 msgid "Drivers:"
 msgstr ""
 
+#
 msgid "Dutch"
-msgstr ""
+msgstr "Голландська"
 
 #
 msgid "Dynamic contrast"
@@ -2679,12 +2697,12 @@ msgid "Edit settings"
 msgstr "редагування налаштувань"
 
 #
-msgid "Edit the Nameserver configuration of your Dreambox.\n"
-msgstr "Редагувати налаштування Nameserver вашого Dreambox.\n"
+msgid "Edit the Nameserver configuration of your STB_BOX.\n"
+msgstr "Редагувати налаштування Nameserver вашого STB_BOX.\n"
 
 #
-msgid "Edit the network configuration of your Dreambox.\n"
-msgstr "Редагувати налаштування мережі Dreambox.\n"
+msgid "Edit the network configuration of your STB_BOX.\n"
+msgstr "Редагувати налаштування мережі STB_BOX.\n"
 
 #
 msgid "Edit title"
@@ -2784,8 +2802,9 @@ msgstr "Час закінчення"
 msgid "EndTime"
 msgstr "Час закінчення"
 
+#
 msgid "English"
-msgstr ""
+msgstr "Англійська"
 
 #
 msgid ""
@@ -2856,6 +2875,7 @@ msgid ""
 "Press OK to exit."
 msgstr ""
 
+#
 msgid "Estonian"
 msgstr ""
 
@@ -3098,8 +3118,9 @@ msgstr "Конфігурацію вашої мережі завершено"
 msgid "Finished restarting your network"
 msgstr "Перезавантаження вашої мережі завершено"
 
+#
 msgid "Finnish"
-msgstr ""
+msgstr "Фінська"
 
 msgid "Firmware"
 msgstr ""
@@ -3160,8 +3181,9 @@ msgstr ""
 msgid "Free:"
 msgstr ""
 
+#
 msgid "French"
-msgstr ""
+msgstr "Французька"
 
 #
 msgid "Frequency"
@@ -3240,8 +3262,9 @@ msgstr "Загальна PCM затримка"
 msgid "Genre"
 msgstr "Жанр"
 
+#
 msgid "German"
-msgstr ""
+msgstr "Німецька"
 
 msgid "Get latest experimental image"
 msgstr ""
@@ -3328,15 +3351,17 @@ msgstr ""
 msgid "Graphical Multi EPG"
 msgstr "Графічний Multi EPG"
 
+#
 msgid "Greek"
-msgstr ""
+msgstr "Грецька"
 
 #
 msgid "Green boost"
 msgstr ""
 
+#
 msgid "Guard Interval"
-msgstr ""
+msgstr "Захисний Інтервал"
 
 msgid "Guard interval"
 msgstr ""
@@ -3386,8 +3411,9 @@ msgstr ""
 msgid "Hide zap errors"
 msgstr ""
 
+#
 msgid "Hierarchy Information"
-msgstr ""
+msgstr "Ієрархічна Інформація"
 
 msgid "Hierarchy info"
 msgstr ""
@@ -3436,8 +3462,9 @@ msgstr "Що робити з знайденими крешлогами?"
 msgid "Hue"
 msgstr ""
 
+#
 msgid "Hungarian"
-msgstr ""
+msgstr "Угорська"
 
 msgid "IMDB search for current event"
 msgstr ""
@@ -3455,7 +3482,6 @@ msgstr "IP адреса"
 msgid "IP-Address"
 msgstr ""
 
-#
 msgid "IP:"
 msgstr ""
 
@@ -3474,9 +3500,6 @@ msgid "Idle Time: "
 msgstr ""
 
 msgid "If Teletext caching is enabled, displaying pages will be much faster."
-msgstr ""
-
-msgid "If est to 'yes' the box will use AC3 sound (when available)."
 msgstr ""
 
 msgid ""
@@ -3500,18 +3523,23 @@ msgid ""
 "the EPG will open on the present channel."
 msgstr ""
 
+msgid "If set to 'yes' the STB_BOX will use AC3 sound (when available)."
+msgstr ""
+
+msgid ""
+"If set to 'yes' the STB_BOX will use the audio stream that has been used "
+"earlier."
+msgstr ""
+
+msgid ""
+"If set to 'yes' the STB_BOX will use the subtitles that has been used "
+"earlier."
+msgstr ""
+
 msgid "If set to 'yes' the bouquets will be shown each time you open the EPG"
 msgstr ""
 
 msgid "If set to 'yes' the bouquets will be shown each time you open the EPG."
-msgstr ""
-
-msgid ""
-"If set to 'yes' the box will use the audio stream that has been used earlier."
-msgstr ""
-
-msgid ""
-"If set to 'yes' the box will use the subtitles that has been used earlier."
 msgstr ""
 
 msgid ""
@@ -3573,7 +3601,7 @@ msgstr ""
 
 msgid ""
 "If you select \"yes\" the scan will only save channels that are not "
-"encrypted; \"no\" will find encrypted and non-encrypted cannels"
+"encrypted; \"no\" will find encrypted and non-encrypted channels"
 msgstr ""
 
 msgid ""
@@ -3800,6 +3828,9 @@ msgstr "Внутрішня Флеш"
 msgid "Internal hdd only"
 msgstr ""
 
+msgid "Interval between keys when repeating:"
+msgstr ""
+
 #
 msgid "Invalid Location"
 msgstr "Неправильне розташування"
@@ -3873,8 +3904,9 @@ msgstr ""
 msgid "Is this videomode ok?"
 msgstr "Цей відеорежим OK?"
 
+#
 msgid "Italian"
-msgstr ""
+msgstr "Італійська"
 
 msgid "Items per Page "
 msgstr ""
@@ -4021,8 +4053,9 @@ msgstr ""
 msgid "Latitude"
 msgstr "Широта"
 
+#
 msgid "Latvian"
-msgstr ""
+msgstr "Латвійська"
 
 #
 msgid "Leave DVD Player?"
@@ -4089,8 +4122,9 @@ msgstr ""
 msgid "List version %d, found %d channels"
 msgstr ""
 
+#
 msgid "Lithuanian"
-msgstr ""
+msgstr "Литовська"
 
 #
 msgid "Load"
@@ -4802,8 +4836,8 @@ msgid "No, do nothing."
 msgstr "Ні, не робити нічого."
 
 #
-msgid "No, just start my dreambox"
-msgstr "Ні, просто ввімкнути мого Dreambox'a"
+msgid "No, just start my STB_BOX"
+msgstr "Ні, просто ввімкнути мого STB_BOX'a"
 
 msgid "No, never"
 msgstr ""
@@ -4839,8 +4873,9 @@ msgstr "Нелінійний"
 msgid "North"
 msgstr "Північ"
 
+#
 msgid "Norwegian"
-msgstr ""
+msgstr "Норвежська"
 
 msgid "Not Flashing"
 msgstr ""
@@ -5009,8 +5044,9 @@ msgstr ""
 msgid "Optionally enter your name if you want to."
 msgstr "При необхідності введіть Ваше ім'я, якщо хочете."
 
+#
 msgid "Orbital Position"
-msgstr ""
+msgstr "Орбітальна позиція"
 
 msgid "Orbital position"
 msgstr ""
@@ -5480,8 +5516,9 @@ msgstr ""
 msgid "Polarization"
 msgstr "Поляризація"
 
+#
 msgid "Polish"
-msgstr ""
+msgstr "Польська"
 
 msgid "Port"
 msgstr ""
@@ -5505,8 +5542,9 @@ msgstr "Порт D"
 msgid "Port:"
 msgstr ""
 
+#
 msgid "Portuguese"
-msgstr ""
+msgstr "Португальська"
 
 msgid "Position of finished Timers in Timerlist"
 msgstr ""
@@ -5518,21 +5556,18 @@ msgstr "Позиціонер"
 msgid "Positioner Setup"
 msgstr ""
 
-#
 msgid "Positioner fine movement"
-msgstr "Точний рух позиціонера"
+msgstr ""
 
-#
 msgid "Positioner movement"
-msgstr "Рух позиціонера"
+msgstr ""
 
 #
 msgid "Positioner setup"
 msgstr "Налаштування позиціонера"
 
-#
 msgid "Positioner storage"
-msgstr "Збереження позиції"
+msgstr ""
 
 #
 msgid "Power threshold in mA"
@@ -5778,6 +5813,12 @@ msgstr "Перезавантажити зараз?"
 #
 msgid "Really shutdown now?"
 msgstr "Вимкнути зараз?"
+
+msgid "Really upgrade the frontprocessor and reboot now?"
+msgstr ""
+
+msgid "Really upgrade your STB_BOX and reboot now?"
+msgstr ""
 
 #
 msgid "Reboot"
@@ -6109,8 +6150,9 @@ msgstr "Вправо"
 msgid "Roll-off"
 msgstr ""
 
+#
 msgid "Rolloff"
-msgstr ""
+msgstr "Rolloff"
 
 msgid "Romanian"
 msgstr ""
@@ -6125,12 +6167,12 @@ msgstr "Швидкість обертання ротора"
 msgid "Round start time on"
 msgstr ""
 
-#
 msgid "Running"
-msgstr "В дії"
-
-msgid "Russian"
 msgstr ""
+
+#
+msgid "Russian"
+msgstr "Російська"
 
 #
 msgid "S-Video"
@@ -6565,8 +6607,9 @@ msgstr ""
 msgid "Sequence repeat"
 msgstr "Повторення послідовності"
 
+#
 msgid "Serbian"
-msgstr ""
+msgstr "Сербська"
 
 msgid "Serial No"
 msgstr ""
@@ -6692,9 +6735,8 @@ msgstr ""
 msgid "Set interface as default Interface"
 msgstr "Встановити інтерфейс як Інтерфейс за замовчуванням"
 
-#
 msgid "Set limits"
-msgstr "Встановити обмеження"
+msgstr ""
 
 msgid "Set the brightness level for normal operation."
 msgstr ""
@@ -6965,6 +7007,9 @@ msgstr "Показувати інфопанель під час перемотк
 msgid "Show job tasks in extensions"
 msgstr ""
 
+msgid "Show live tv when movie stoped"
+msgstr ""
+
 msgid "Show or hide the extended description, (skin dependant)."
 msgstr ""
 
@@ -7009,7 +7054,7 @@ msgstr "Показати стан безпровідного LAN з'єднанн
 msgid "Shows the the movie lenth in the list."
 msgstr ""
 
-msgid "Shows the watched staus of the movie."
+msgid "Shows the watched status of the movie."
 msgstr ""
 
 #
@@ -7017,8 +7062,8 @@ msgid "Shutdown"
 msgstr ""
 
 #
-msgid "Shutdown Dreambox after"
-msgstr "Вимкнути Dreambox після"
+msgid "Shutdown STB_BOX after"
+msgstr "Вимкнути STB_BOX після"
 
 msgid "Side by Side"
 msgstr ""
@@ -7103,6 +7148,7 @@ msgstr "Слот %d"
 msgid "Slovak"
 msgstr ""
 
+#
 msgid "Slovenian"
 msgstr ""
 
@@ -7163,11 +7209,15 @@ msgstr "Вибачте, але резервних копій не знайден
 msgid "Sorry uShare Config is Missing"
 msgstr ""
 
+#
 msgid ""
 "Sorry your Backup destination does not exist\n"
 "\n"
 "Please choose an other one."
 msgstr ""
+"Вибачте, але шлях доступу до копії не існує\n"
+"\n"
+"Будь ласка, виберіть інший."
 
 #
 msgid ""
@@ -7227,8 +7277,9 @@ msgstr "Південь"
 msgid "Space used:"
 msgstr ""
 
+#
 msgid "Spanish"
-msgstr ""
+msgstr "Іспанська"
 
 #
 msgid "Split preview mode"
@@ -7416,8 +7467,9 @@ msgstr ""
 msgid "Swap Services"
 msgstr "Заміна каналів"
 
+#
 msgid "Swedish"
-msgstr ""
+msgstr "Шведська"
 
 msgid "Switch TV to correct input"
 msgstr ""
@@ -7437,8 +7489,9 @@ msgstr "перемкнути на попередній підсервіс"
 msgid "Switchable tuner types:"
 msgstr ""
 
+#
 msgid "Symbol Rate"
-msgstr ""
+msgstr "Символьна швидкість"
 
 msgid "Symbol rate"
 msgstr ""
@@ -7449,8 +7502,9 @@ msgstr ""
 msgid "Symbol rate values are in megasymbols; enter a value between 2 and 45"
 msgstr ""
 
+#
 msgid "Symbolrate"
-msgstr ""
+msgstr "Символ. швидкість"
 
 msgid "Sync NTP every (minutes)"
 msgstr ""
@@ -7540,8 +7594,8 @@ msgid "Test mode"
 msgstr "Тестовий режим"
 
 #
-msgid "Test the network configuration of your Dreambox.\n"
-msgstr "Тест мережевого з'єднання Вашого Dreambox'а.\n"
+msgid "Test the network configuration of your STB_BOX.\n"
+msgstr "Тест мережевого з'єднання Вашого STB_BOX'а.\n"
 
 #
 msgid "Test-Messagebox?"
@@ -7564,11 +7618,11 @@ msgstr ""
 
 #
 msgid ""
-"Thank you for using the wizard. Your box is now ready to use.\n"
-"Please press OK to start using your Dreambox."
+"Thank you for using the wizard. Your STB_BOX is now ready to use.\n"
+"Please press OK to start using your STB_BOX."
 msgstr ""
-"Дякуємо за використання помічника. Ваш Dreambox готовий до використання.\n"
-"Будь-ласка натисніть OK, для користування Dreambox'ом."
+"Дякуємо за використання помічника. Ваш STB_BOX готовий до використання.\n"
+"Будь-ласка натисніть OK, для користування STB_BOX'ом."
 
 msgid ""
 "The AutoTimer plugin is not installed!\n"
@@ -7583,11 +7637,11 @@ msgstr ""
 #
 msgid ""
 "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to "
-"create a Dreambox format data DVD (which will not play in stand-alone DVD "
+"create a STB_BOX format data DVD (which will not play in stand-alone DVD "
 "players) instead?"
 msgstr ""
 "DVD-стандарт не підтримує H.264 (HDTV) відео. Ви хочете створити DVD з "
-"даними в Dreambox-форматі (який не буде програватись в стандартних DVD "
+"даними в STB_BOX-форматі (який не буде програватись в стандартних DVD "
 "програвачах)?"
 
 msgid ""
@@ -7638,17 +7692,25 @@ msgid ""
 "Now you can download an NFI image file!"
 msgstr ""
 
+msgid "The User Interface of your receiver is restarting"
+msgstr ""
+
+msgid ""
+"The User Interface of your receiver is restarting\n"
+"due to an error in mytest.py"
+msgstr ""
+
+msgid "The STB_BOX reads the stored EPG data every (hours)."
+msgstr ""
+
+msgid "The STB_BOX stores the EPG data every (hours)."
+msgstr ""
+
 #
 msgid "The backup failed. Please choose a different backup location."
 msgstr "Збереження невдале. Виберіть інше місце для розташування копії."
 
 msgid "The blindscan run was cancelled by the user."
-msgstr ""
-
-msgid "The box reads the stored EPG data every (hours)."
-msgstr ""
-
-msgid "The box stores the EPG data every (hours)."
 msgstr ""
 
 msgid "The current beta image could not be stable"
@@ -7693,10 +7755,10 @@ msgstr "Встановлення стандартного списку кана�
 #
 msgid ""
 "The installation of the default settings is finished. You can now continue "
-"configuring your Dreambox by pressing the OK button on the remote control."
+"configuring your STB_BOX by pressing the OK button on the remote control."
 msgstr ""
 "Встановлення стандартних параметрів завершено. Ви можете продовжити "
-"налаштування Dreambox'а натиснувши OK на пульті."
+"налаштування STB_BOX'а натиснувши OK на пульті."
 
 msgid "The md5sum validation failed, the file may be corrupted!"
 msgstr ""
@@ -7828,22 +7890,17 @@ msgstr ""
 
 #
 #, python-format
-msgid "This Dreambox can't decode %s streams!"
-msgstr "Dreambox не в змозі декодувати %s потік!"
+msgid "This STB_BOX can't decode %s streams!"
+msgstr "STB_BOX не в змозі декодувати %s потік!"
 
 msgid ""
 "This allows the ECM data to be included in the stream. This enables a client "
-"box to decode it."
+"STB_BOX to decode it."
 msgstr ""
 
 msgid ""
-"This allows the box to decode the stream (if the ECM data is included in the "
-"stream and a valid card is availble)."
-msgstr ""
-
-msgid ""
-"This allows you change the font size relative to skin size, so 1 increases "
-"by 1 piont size, and -1 decreases by 1 piont size"
+"This allows the STB_BOX to decode the stream (if the ECM data is included in "
+"the stream and a valid card is availble)."
 msgstr ""
 
 msgid ""
@@ -7915,6 +7972,18 @@ msgid ""
 "this)."
 msgstr ""
 
+msgid "This option lets you adjust the 3D depth"
+msgstr ""
+
+msgid "This option lets you adjust the transparency of the OSD"
+msgstr ""
+
+msgid "This option lets you choose the 3D mode"
+msgstr ""
+
+msgid "This option lets you show the option in the extension screen"
+msgstr ""
+
 msgid ""
 "This option moves the PVR status from the seprate window into the "
 "MoviePlayer infobar."
@@ -7947,7 +8016,7 @@ msgstr ""
 
 msgid ""
 "This plugin creates a USB stick which can be used to update the firmware of "
-"your Dreambox without the need for a network or WLAN connection.\n"
+"your STB_BOX without the need for a network or WLAN connection.\n"
 "First, a USB stick needs to be prepared so that it becomes bootable.\n"
 "In the next step, an NFI image file can be downloaded from the update server "
 "and saved on the USB stick.\n"
@@ -8193,7 +8262,7 @@ msgid "To subtitle selection"
 msgstr ""
 
 msgid ""
-"To update your Dreambox firmware, please follow these steps:\n"
+"To update your STB_BOX firmware, please follow these steps:\n"
 "1) Turn off your box with the rear power switch and make sure the bootable "
 "USB stick is plugged in.\n"
 "2) Turn mains back on and hold the DOWN button on the front panel pressed "
@@ -8257,8 +8326,9 @@ msgstr "Переклад"
 msgid "Translation:"
 msgstr "Переклад:"
 
+#
 msgid "Transmission Mode"
-msgstr ""
+msgstr "Режим передавання"
 
 #
 msgid "Transmission mode"
@@ -8268,8 +8338,9 @@ msgstr "Режим передавання"
 msgid "Transponder"
 msgstr "Транспондер"
 
+#
 msgid "Transponder Type"
-msgstr ""
+msgstr "Тип Транспондера"
 
 msgid "Trashcan"
 msgstr ""
@@ -8340,8 +8411,9 @@ msgstr "Статус тюнера"
 msgid "Tuner type"
 msgstr ""
 
+#
 msgid "Turkish"
-msgstr ""
+msgstr "Турецька"
 
 #
 msgid "Two"
@@ -8409,7 +8481,6 @@ msgstr ""
 msgid "Unicable LNB"
 msgstr ""
 
-#
 msgid "Unicable Matrix"
 msgstr ""
 
@@ -8443,8 +8514,9 @@ msgstr ""
 msgid "Updatefeed not available."
 msgstr " доступні оновлення."
 
+#
 msgid "Updates your receiver's software"
-msgstr ""
+msgstr "Оновлення ПЗ Вашого ресівера"
 
 #
 msgid "Updating finished. Here is the result:"
@@ -8468,16 +8540,17 @@ msgstr ""
 msgid "Upgrade finished."
 msgstr "Оновлення завершено."
 
-msgid "Upgrade finished. Do you want to reboot your Dreambox?"
-msgstr ""
+#
+msgid "Upgrade finished. Do you want to reboot your STB_BOX?"
+msgstr "Оновлення завершено. Бажаєте перезавантажити STB_BOX?"
 
 #
 msgid "Upgrading"
 msgstr "Оновлення"
 
 #
-msgid "Upgrading Dreambox... Please wait"
-msgstr "Оновлення Dreambox'a... Прохання зачекати"
+msgid "Upgrading STB_BOX... Please wait"
+msgstr "Оновлення STB_BOX'a... Прохання зачекати"
 
 msgid "Uphops +"
 msgstr ""
@@ -8540,6 +8613,14 @@ msgid "Use power measurement"
 msgstr "Використовувати вимірювання потужності"
 
 msgid "Use slim screen"
+msgstr ""
+
+msgid ""
+"Use the Left/Right buttons on your remote to adjust the size of the OSD. "
+"Left button decreases the size, Right increases the size."
+msgstr ""
+
+msgid "Use the Left/Right buttons on your remote to move the OSD left/right"
 msgstr ""
 
 #
@@ -8814,13 +8895,28 @@ msgstr "Режим напруги"
 msgid "Volume"
 msgstr "Гучність"
 
-#
-msgid "Dreambox format data DVD (HDTV compatible)"
-msgstr "DVD дані в Dreambox-формат (HDTV-сумісний)"
+msgid "STB_BOX advanced remote control (native)"
+msgstr ""
 
 #
-msgid "Dreambox software because updates are available."
-msgstr "ПЗ Dreambox, тому що оновлення доступні."
+msgid "STB_BOX format data DVD (HDTV compatible)"
+msgstr "DVD дані в STB_BOX-формат (HDTV-сумісний)"
+
+msgid "STB_BOX front panel"
+msgstr ""
+
+msgid "STB_BOX ir keyboard"
+msgstr ""
+
+msgid "STB_BOX ir mouse"
+msgstr ""
+
+msgid "STB_BOX remote control (native)"
+msgstr ""
+
+#
+msgid "STB_BOX software because updates are available."
+msgstr "ПЗ STB_BOX, тому що оновлення доступні."
 
 #
 msgid "W"
@@ -8922,8 +9018,8 @@ msgstr ""
 #
 msgid ""
 "Welcome to the Image upgrade wizard. The wizard will assist you in upgrading "
-"the firmware of your Dreambox by providing a backup facility for your "
-"current settings and a short explanation of how to upgrade your firmware."
+"the firmware of your STB_BOX by providing a backup facility for your current "
+"settings and a short explanation of how to upgrade your firmware."
 msgstr ""
 "Ласкаво просимо до помічника оновлення Іміджів. Він допоможе Вам в оновленні "
 "програмного забезпечення, забезпечуючи резервне копіювання параметрів та "
@@ -8934,23 +9030,23 @@ msgid ""
 "Welcome to the cleanup wizard.\n"
 "\n"
 "We have detected that your available internal memory has dropped below 2MB.\n"
-"To ensure stable operation of your Dreambox, the internal memory should be "
+"To ensure stable operation of your STB_BOX, the internal memory should be "
 "cleaned up.\n"
 "You can use this wizard to remove some extensions.\n"
 msgstr ""
 "Ласкаво просимо до майстер очищення.\n"
 "\n"
 "Виявлено, що внутрішньої пам'яті доступно менше 2Мб.\n"
-"Щоб забезпечити стабільну роботу Вашого Dreambox, внутрішня пам'ять "
-"повинна бути очищена.\n"
+"Щоб забезпечити стабільну роботу Вашого STB_BOX, внутрішня пам'ять повинна "
+"бути очищена.\n"
 "Ви можете використати цей майстер для видалення деяких компонентів.\n"
 
 #
 msgid ""
 "Welcome.\n"
 "\n"
-"If you want to connect your Dreambox to the Internet, this wizard will "
-"guide you through the basic network setup of your Dreambox.\n"
+"If you want to connect your STB_BOX to the Internet, this wizard will guide "
+"you through the basic network setup of your STB_BOX.\n"
 "\n"
 "Press OK to start configuring your network"
 msgstr ""
@@ -8959,13 +9055,12 @@ msgstr ""
 msgid ""
 "Welcome.\n"
 "\n"
-"This start wizard will guide you through the basic setup of your Vu+ "
-"Ultimo.\n"
+"This start wizard will guide you through the basic setup of your STB_BOX.\n"
 "Press the OK button on your remote control to move to the next step."
 msgstr ""
 "Ласкаво просимо.\n"
 "\n"
-"Цей помічник допоможе Вам зробити основні налаштування вашого Dreambox'а\n"
+"Цей помічник допоможе Вам зробити основні налаштування вашого STB_BOX'а\n"
 "Натисніть на ОК щоб перейти до слідуючого кроку."
 
 #
@@ -8990,8 +9085,11 @@ msgid ""
 msgstr ""
 
 msgid ""
-"When set each folder will show the previous stae used, when off the default "
+"When set each folder will show the previous state used, when off the default "
 "values will be shown."
+msgstr ""
+
+msgid "When set the PIG will return to live after a movie has stopped playing."
 msgstr ""
 
 msgid ""
@@ -9205,7 +9303,7 @@ msgid "You can install this plugin."
 msgstr "Ви можете встановити цей додаток"
 
 #
-msgid "You can only burn Dreambox recordings!"
+msgid "You can only burn STB_BOX recordings!"
 msgstr ""
 
 #
@@ -9298,9 +9396,9 @@ msgstr "Необхідно почекати %s!"
 
 #
 msgid ""
-"You need a PC connected to your dreambox. If you need further "
-"instructions, please visit the website http://www.dm7025.de.\n"
-"Your dreambox will now be halted. After you have performed the update "
+"You need a PC connected to your STB_BOX. If you need further instructions, "
+"please visit the website http://www.dm7025.de.\n"
+"Your STB_BOX will now be halted. After you have performed the update "
 "instructions from the website, your new firmware will ask you to restore "
 "your settings."
 msgstr ""
@@ -9323,7 +9421,7 @@ msgstr ""
 
 #
 msgid ""
-"Your Dreambox is now ready to use.\n"
+"Your STB_BOX is now ready to use.\n"
 "\n"
 "Your internet connection is working now.\n"
 "\n"
@@ -9331,12 +9429,30 @@ msgstr ""
 
 #
 msgid ""
-"Your Dreambox is now ready to use.\n"
+"Your STB_BOX is now ready to use.\n"
 "\n"
 "Your internet connection is working now.\n"
 "\n"
 "Please press OK to continue."
 msgstr ""
+
+msgid "Your STB_BOX is rebooting"
+msgstr ""
+
+msgid "Your STB_BOX is shutting down"
+msgstr ""
+
+#
+msgid "Your STB_BOX is shutting down. Please stand by..."
+msgstr "Ваш STB_BOX вимикається. Прохання зачекати..."
+
+#
+msgid ""
+"Your STB_BOX isn't connected to the internet properly. Please check it and "
+"try again."
+msgstr ""
+"Ваш STB_BOX не під'єднаний до інтернету належним чином. Будь ласка перевірте "
+"і спробуйте знов."
 
 #
 msgid ""
@@ -9354,7 +9470,6 @@ msgstr ""
 "Ваша колекція перевищує розмір стандартного диску, вам буде потрібно чистий "
 "Dual Layer DVD диск!"
 
-#
 #, python-format
 msgid ""
 "Your config file is not well-formed:\n"
@@ -9377,6 +9492,12 @@ msgstr ""
 "ПЗ фронтпроцесора повинно бути оновлене.\n"
 "Натисніть OK для початку оновлення."
 
+msgid ""
+"Your frontprocessor will be upgraded\n"
+"Please wait until your receiver reboots\n"
+"This may take a few minutes"
+msgstr ""
+
 #
 msgid ""
 "Your internet connection is not working!\n"
@@ -9390,18 +9511,6 @@ msgstr "Ваше ім'я (необов'язково):"
 #
 msgid "Your network configuration has been activated."
 msgstr "Конфігурація вашої мережі активована."
-
-#
-msgid "Your dreambox is shutting down. Please stand by..."
-msgstr "Ваш Dreambox вимикається. Прохання зачекати..."
-
-#
-msgid ""
-"Your dreambox isn't connected to the internet properly. Please check it "
-"and try again."
-msgstr ""
-"Ваш Dreambox не під'єднаний до інтернету належним чином. Будь ласка "
-"перевірте і спробуйте знов."
 
 #
 msgid ""
@@ -9592,10 +9701,13 @@ msgstr ""
 msgid "alphabetic sort"
 msgstr "сортувати за алфавітом"
 
+#
 msgid ""
 "are you sure you want to restore\n"
 "following backup:\n"
 msgstr ""
+"Ви дійсно бажаєте відновити\n"
+"наступну копію:\n"
 
 msgid "as plugin in extended bar"
 msgstr ""
@@ -9764,9 +9876,8 @@ msgstr "день"
 msgid "decrease uphop by 1"
 msgstr ""
 
-#
 msgid "delete"
-msgstr "видалити"
+msgstr ""
 
 #
 msgid "delete cut"
@@ -9879,8 +9990,9 @@ msgstr "кінець вирізання тут"
 msgid "end favourites edit"
 msgstr "кінець редагування фаворитів"
 
+#
 msgid "enigma2 and network"
-msgstr ""
+msgstr "Enigma2 і мережа"
 
 #
 msgid "equal to"
@@ -9961,7 +10073,7 @@ msgstr ""
 
 #
 msgid "go to deep standby"
-msgstr "вимкнути Dreambox"
+msgstr "вимкнути STB_BOX"
 
 #
 msgid "go to standby"
@@ -10102,9 +10214,8 @@ msgstr "меню"
 msgid "mins"
 msgstr "хвилин"
 
-#
 msgid "minute"
-msgstr "хвилина"
+msgstr ""
 
 #
 msgid "minutes"
@@ -10846,12 +10957,11 @@ msgstr "Так"
 
 #
 msgid ""
-"your dreambox might be unusable now. Please consult the manual for further "
-"assistance before rebooting your dreambox."
+"your STB_BOX might be unusable now. Please consult the manual for further "
+"assistance before rebooting your STB_BOX."
 msgstr ""
-"Ваш Dreambox зараз може бути непридатним для роботи. Будь ласка "
-"перегляньте інструкцію користувача перед тим як перезавантажити ваш Vu+ "
-"Ultimo."
+"Ваш STB_BOX зараз може бути непридатним для роботи. Будь ласка перегляньте "
+"інструкцію користувача перед тим як перезавантажити ваш STB_BOX."
 
 #
 msgid "zap"
@@ -10860,103 +10970,3 @@ msgstr "переключити"
 #
 msgid "zapped"
 msgstr "Переключений"
-
-#
-#~ msgid "30 minutes"
-#~ msgstr "30 хвилин"
-
-#
-#~ msgid "5 minutes"
-#~ msgstr "5 хвилин"
-
-#
-#~ msgid "60 minutes"
-#~ msgstr "60 хвилин"
-
-#
-#~ msgid "Action on long powerbutton press"
-#~ msgstr "Дія при утримуванні кнопки вимкнення"
-
-#
-#~ msgid "Alternative radio mode"
-#~ msgstr "Альтернативний радіо режим"
-
-#
-#~ msgid "Create movie folder failed"
-#~ msgstr "Створення папки невдале"
-
-#
-#~ msgid "Creating partition failed"
-#~ msgstr "Створення розділу невдале"
-
-#
-#~ msgid "Downloadable new plugins"
-#~ msgstr "Доступні нові додатки"
-
-#
-#~ msgid "Everything is fine"
-#~ msgstr "Все є OK"
-
-#
-#~ msgid "Filesystem contains uncorrectable errors"
-#~ msgstr "Файлова система містить невиправні помилки"
-
-#
-#~ msgid "Fsck failed"
-#~ msgstr "Fsck невдала"
-
-#
-#~ msgid "Infobar timeout"
-#~ msgstr "Час показу інфопанелі"
-
-#
-#~ msgid "Mkfs failed"
-#~ msgstr "Mkfs невдале"
-
-#
-#~ msgid "Mount failed"
-#~ msgstr "Монтування невдале"
-
-#
-#~ msgid "No picture on TV? Press EXIT and retry."
-#~ msgstr ""
-#~ "Нема зображення на TV?\n"
-#~ "Натисніть EXIT і повторіть."
-
-#
-#~ msgid "Please Reboot"
-#~ msgstr "Будь ласка перезавантажте"
-
-#
-#~ msgid "Return to file browser"
-#~ msgstr "Повернутись до оглядача файлів"
-
-#
-#~ msgid "TV System"
-#~ msgstr "TV Система"
-
-#
-#~ msgid ""
-#~ "The input port should be configured now.\n"
-#~ "You can now configure the screen by displaying some test pictures. Do you "
-#~ "want to do that now?"
-#~ msgstr ""
-#~ "Відеовхід повинен бути налаштований зараз.\n"
-#~ "Ви можете налаштувати зображення за допомогою декількох тестових екранів. "
-#~ "Бажаєте це зробити зараз?"
-
-#
-#~ msgid "Unmount failed"
-#~ msgstr "Розмонтування невдале"
-
-#
-#~ msgid "hour"
-#~ msgstr "година"
-
-#
-#~ msgid "hours"
-#~ msgstr "годин"
-
-#
-#~ msgid "second"
-#~ msgstr "секунда"

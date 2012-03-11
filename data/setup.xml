@@ -21,8 +21,8 @@
 		<item level="2" text="Preferred tuner" summary="Choose with tuner will be used first. If set to 'auto' the system will give priority to the tuner having the lowest number of channels/satellites.">config.usage.frontend_priority</item>
 		<item level="2" text="Disable background scanning" summary="When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'no' if you're absolutely sure what you're doing.">config.misc.disable_background_scan</item>
 		<item level="1" text="Show background in Radio Mode" summary="Show background when tuned to a radio channel.">config.misc.showradiopic</item>
-		<item level="2" text="Include ECM in http streams" summary="This allows the ECM data to be included in the stream. This enables a client box to decode it.">config.streaming.stream_ecm</item>
-		<item level="2" text="De-scramble http streams" summary="This allows the box to decode the stream (if the ECM data is included in the stream and a valid card is availble).">config.streaming.descramble</item>
+		<item level="2" text="Include ECM in http streams" summary="This allows the ECM data to be included in the stream. This enables a client STB_BOX to decode it.">config.streaming.stream_ecm</item>
+		<item level="2" text="De-scramble http streams" summary="This allows the STB_BOX to decode the stream (if the ECM data is included in the stream and a valid card is availble).">config.streaming.descramble</item>
 	</setup>
 	<setup key="osdsetup" title="OSD Setup">
 		<item level="0" text="1st Infobar timeout" summary="Set the time to hide the infobar.">config.usage.infobar_timeout</item>
@@ -57,18 +57,18 @@
 		<item level="1" text="Show PVR status in MoviePlayer infobar" summary="This option moves the PVR status from the seprate window into the MoviePlayer infobar.">config.usage.movieplayer_pvrstate</item>
 	</setup>
 	<setup key="epgsetup" title="EPG Setup">
-		<item level="2" text="EPG location" summary="Choose the location where the EPG data will be stored when the box is shut down. The location must be available at boot time.">config.misc.epgcachepath</item>
-		<item level="2" text="EPG filename" summary="Choose the name of the file that holds the EPG data when the box is shut down. This can be handy to differentiate between several boxes.">config.misc.epgcachefilename</item>
-		<item level="2" text="Automatic refresh" summary="Allows the box to read the stored EPG data regularly.">config.epg.cacheloadsched</item>
-		<item level="2" text="Refresh every (in hours)" requires="config.epg.cacheloadsched" summary="The box reads the stored EPG data every (hours).">config.epg.cacheloadtimer</item>
-		<item level="2" text="Automatic save" summary="Allows the box to store the EPG data regularly.">config.epg.cachesavesched</item>
-		<item level="2" text="Save every (in hours)" requires="config.epg.cachesavesched" summary="The box stores the EPG data every (hours).">config.epg.cachesavetimer</item>
+		<item level="2" text="EPG location" summary="Choose the location where the EPG data will be stored when the STB_BOX is shut down. The location must be available at boot time.">config.misc.epgcachepath</item>
+		<item level="2" text="EPG filename" summary="Choose the name of the file that holds the EPG data when the STB_BOX is shut down. This can be handy to differentiate between several boxes.">config.misc.epgcachefilename</item>
+		<item level="2" text="Automatic refresh" summary="Allows the STB_BOX to read the stored EPG data regularly.">config.epg.cacheloadsched</item>
+		<item level="2" text="Refresh every (in hours)" requires="config.epg.cacheloadsched" summary="The STB_BOX reads the stored EPG data every (hours).">config.epg.cacheloadtimer</item>
+		<item level="2" text="Automatic save" summary="Allows the STB_BOX to store the EPG data regularly.">config.epg.cachesavesched</item>
+		<item level="2" text="Save every (in hours)" requires="config.epg.cachesavesched" summary="The STB_BOX stores the EPG data every (hours).">config.epg.cachesavetimer</item>
 		<item level="1" text="Show EIT now/next in infobar" summary="Allows the EIT now/next eventdata to be displayed in infobar.">config.usage.show_eit_nownext</item>
-		<item level="1" text="Enable EIT EPG" summary="Allows the box to use the EIT EPG when tuned to a service. This data will be stored by the box.">config.epg.eit</item>
-		<item level="1" text="Enable MHW EPG" summary="Allows the box to use the MHW EPG when tuned to a service. This data will be stored by the box.">config.epg.mhw</item>
-		<item level="1" text="Enable freesat EPG" summary="Allows the box to use the FreeSat EPG when tuned to a service. This data will be stored by the box.">config.epg.freesat</item>
-		<item level="1" text="Enable ViaSat EPG" summary="Allows the box to use the ViaSat EPG when tuned to a service. This data will be stored by the box.">config.epg.viasat</item>
-		<item level="1" text="Enable Netmed EPG" summary="Allows the box to use the Netmed EPG when tuned to a service. This data will be stored by the box.">config.epg.netmed</item>
+		<item level="1" text="Enable EIT EPG" summary="Allows the STB_BOX to use the EIT EPG when tuned to a service. This data will be stored by the STB_BOX.">config.epg.eit</item>
+		<item level="1" text="Enable MHW EPG" summary="Allows the STB_BOX to use the MHW EPG when tuned to a service. This data will be stored by the STB_BOX.">config.epg.mhw</item>
+		<item level="1" text="Enable freesat EPG" summary="Allows the STB_BOX to use the FreeSat EPG when tuned to a service. This data will be stored by the STB_BOX.">config.epg.freesat</item>
+		<item level="1" text="Enable ViaSat EPG" summary="Allows the STB_BOX to use the ViaSat EPG when tuned to a service. This data will be stored by the STB_BOX.">config.epg.viasat</item>
+		<item level="1" text="Enable Netmed EPG" summary="Allows the STB_BOX to use the Netmed EPG when tuned to a service. This data will be stored by the STB_BOX.">config.epg.netmed</item>
 		<item level="2" text="Maintain old EPG data for" summary="Allows epg data of a passed event to be displayed. Handy when you want to know something about an event that is about to finish or has just finished. (minutes):">config.epg.histminutes</item>
 		<item level="2" text="Include EIT in http streams" requires="config.epg.eit" summary="Allows EIT data to be included in http streams.">config.streaming.stream_eit</item>
 		<item level="2" text="Include AIT in http streams" summary="Allows AIT to be included in http streams">config.streaming.stream_ait</item>
@@ -93,8 +93,8 @@
 		<item level="1" text="Audio language selection 2" summary="Allows you to set audio language 2">config.autolanguage.audio_autoselect2</item>
 		<item level="1" text="Audio language selection 3" summary="Allows you to set audio language 3">config.autolanguage.audio_autoselect3</item>
 		<item level="1" text="Audio language selection 4" summary="Allows you to set audio language 4">config.autolanguage.audio_autoselect4</item>
-		<item level="1" text="Prefer AC3" summary="If est to 'yes' the box will use AC3 sound (when available).">config.autolanguage.audio_defaultac3</item>
-		<item level="1" text="Prefer audio stream stored by service" summary="If set to 'yes' the box will use the audio stream that has been used earlier.">config.autolanguage.audio_usecache</item>
+		<item level="1" text="Prefer AC3" summary="If set to 'yes' the STB_BOX will use AC3 sound (when available).">config.autolanguage.audio_defaultac3</item>
+		<item level="1" text="Prefer audio stream stored by service" summary="If set to 'yes' the STB_BOX will use the audio stream that has been used earlier.">config.autolanguage.audio_usecache</item>
 		<item level="1" text="Subtitle language selection 1" summary="Allows you to set the subtitle language selection 1">config.autolanguage.subtitle_autoselect1</item>
 		<item level="1" text="Subtitle language selection 2" summary="Allows you to set the subtitle language selection 2">config.autolanguage.subtitle_autoselect2</item>
 		<item level="1" text="Subtitle language selection 3" summary="Allows you to set the subtitle language selection 3">config.autolanguage.subtitle_autoselect3</item>
@@ -103,7 +103,7 @@
 		<item level="1" text="Allow hearing impaired subtitles" summary="Allows displaying the special hearing impaired subtitles">config.autolanguage.subtitle_hearingimpaired</item>
 		<item level="1" text="Prefer hearing impaired subtitles" summary="Allows you to prefer the special hearing impaired subtitles over normal subtitles.">config.autolanguage.subtitle_defaultimpaired</item>
 		<item level="1" text="Prefer DVB-graphical subtitles" summary="Allows you to prefer the DVB-graphical subtitles over Teletext subtitles.">config.autolanguage.subtitle_defaultdvb</item>
-		<item level="1" text="Prefer subtitle stored by service" summary="If set to 'yes' the box will use the subtitles that has been used earlier.">config.autolanguage.subtitle_usecache</item>
+		<item level="1" text="Prefer subtitle stored by service" summary="If set to 'yes' the STB_BOX will use the subtitles that has been used earlier.">config.autolanguage.subtitle_usecache</item>
 		<item level="1" text="EPG language selection 1" summary="Allows you to set the EPG language selection 1">config.autolanguage.audio_epglanguage</item>
 		<item level="1" text="EPG language selection 2" summary="Allows you to set the EPG language selection 2">config.autolanguage.audio_epglanguage_alternative</item>
 	</setup>
@@ -161,7 +161,7 @@
 		<item text="DiSEqC" summary="Choose the correct DiSEqC mode for this LNB.">config.sat.diseqc</item>
 		<item text="Longitude" summary="Set your Longitude:">config.sat.diseqca</item>
 		<item text="Latitude" summary="Set your Latitude:">config.sat.diseqcb</item>
-		<item text="Use power measurement" summary="Allows you to use power measurement (if your box supports that)">config.sat.diseqcc</item>
+		<item text="Use power measurement" summary="Allows you to use power measurement (if your STB_BOX supports that)">config.sat.diseqcc</item>
 	</setup>
 	<setup key="remotesetup" title="Button Setup">
 		<item level="0" text="EPG button mode" summary="Select what you want the EPG button to activate:">config.plisettings.PLIEPG_mode</item>

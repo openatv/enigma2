@@ -40,7 +40,7 @@ class SleepTimerEdit(Screen):
 		self.status = True
 		self.updateColors()
 		
-		self["pretext"] = Label(_("Shutdown Dreambox after"))
+		self["pretext"] = Label(_("Shutdown STB_BOX after"))
 		self["aftertext"] = Label(_("minutes"))
 		
 		self["actions"] = NumberActionMap(["SleepTimerEditorActions", "TextEntryActions", "KeyboardInputActions"], 
@@ -105,10 +105,10 @@ class SleepTimerEdit(Screen):
 			config.SleepTimer.action.save()
 			config.SleepTimer.ask.save()
 			self.session.nav.SleepTimer.setSleepTime(time)
-			self.session.openWithCallback(self.close, MessageBox, _("The sleep timer has been activated."), MessageBox.TYPE_INFO)
+			self.session.openWithCallback(self.close, MessageBox, _("The sleep timer has been activated."), MessageBox.TYPE_INFO, timeout=3, simple=True)
 		else:
 			self.session.nav.SleepTimer.clear()
-			self.session.openWithCallback(self.close, MessageBox, _("The sleep timer has been disabled."), MessageBox.TYPE_INFO)
+			self.session.openWithCallback(self.close, MessageBox, _("The sleep timer has been disabled."), MessageBox.TYPE_INFO, timeout=3, simple=True)
 
 	def keyNumberGlobal(self, number):
 		self["input"].number(number)

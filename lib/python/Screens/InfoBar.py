@@ -443,8 +443,11 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 			self.close()
 		else:
 			self.is_closing = False
-			ref = self.playingservice
-			del self.playingservice
-			# no selection? Continue where we left off
-			if ref and not self.session.nav.getCurrentlyPlayingServiceReference():
-				self.session.nav.playService(ref)
+			try:
+				ref = self.playingservice
+				del self.playingservice
+				# no selection? Continue where we left off
+				if ref and not self.session.nav.getCurrentlyPlayingServiceReference():
+					self.session.nav.playService(ref)
+			except:
+				pass		

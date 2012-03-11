@@ -4,9 +4,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-04 11:59+0000\n"
-"PO-Revision-Date: 2009-02-25 20:35+0200\n"
-"Last-Translator: Ivo Grinbergs <ivog@apollo.lv>\n"
+"POT-Creation-Date: 2012-03-10 15:56+0000\n"
+"PO-Revision-Date: 2012-03-10 12:40+0100\n"
+"Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
 "Language-Team: Ivo / enigma2 (c) <ivog@apolllo.lv>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -41,10 +41,10 @@ msgstr ""
 #
 msgid ""
 "\n"
-"Backup your Dreambox settings."
+"Backup your STB_BOX settings."
 msgstr ""
 "\n"
-"Veidot Dreambox iestatījumu dublējumkopiju."
+"Veidot STB_BOX iestatījumu dublējumkopiju."
 
 #
 msgid ""
@@ -57,16 +57,16 @@ msgstr ""
 #
 msgid ""
 "\n"
-"Manage extensions or plugins for your Dreambox"
+"Manage extensions or plugins for your STB_BOX"
 msgstr ""
 
 #
 msgid ""
 "\n"
-"Online update of your Dreambox software."
+"Online update of your STB_BOX software."
 msgstr ""
 "\n"
-"Dreambox programmatūras atjaunināšana tiešsaistē."
+"STB_BOX programmatūras atjaunināšana tiešsaistē."
 
 #
 msgid ""
@@ -89,18 +89,18 @@ msgstr ""
 #
 msgid ""
 "\n"
-"Restore your Dreambox settings."
+"Restore your STB_BOX settings."
 msgstr ""
 "\n"
-"Atjaunot Dreambox iestatījumus."
+"Atjaunot STB_BOX iestatījumus."
 
 #
 msgid ""
 "\n"
-"Restore your Dreambox with a new firmware."
+"Restore your STB_BOX with a new firmware."
 msgstr ""
 "\n"
-"Atjaunot Dreambox ar jaunu programmatūru."
+"Atjaunot STB_BOX ar jaunu programmatūru."
 
 #
 msgid ""
@@ -320,11 +320,13 @@ msgstr ""
 msgid "* Only available if more than one interface is active."
 msgstr "* Pieejams ja ir aktīvs vairāk nekā viens interfeiss."
 
+#
 msgid "/usr/share/enigma2 directory"
-msgstr ""
+msgstr "/usr/share/enigma2 katalogs"
 
+#
 msgid "/var directory"
-msgstr ""
+msgstr "/var katalogs"
 
 #
 msgid "0"
@@ -424,9 +426,6 @@ msgstr "3"
 msgid "30 Days"
 msgstr ""
 
-msgid "30 Minutes"
-msgstr ""
-
 msgid "3D Mode"
 msgstr ""
 
@@ -515,18 +514,18 @@ msgstr ""
 #
 msgid ""
 "A finished record timer wants to set your\n"
-"Dreambox to standby. Do that now?"
+"STB_BOX to standby. Do that now?"
 msgstr ""
 "Taimeris ir beidzis ierakstu un vēlas pārslēgt\n"
-"Dreambox gaidstāves režīmā. Vai darīt to tagad?"
+"STB_BOX gaidstāves režīmā. Vai darīt to tagad?"
 
 #
 msgid ""
 "A finished record timer wants to shut down\n"
-"your Dreambox. Shutdown now?"
+"your STB_BOX. Shutdown now?"
 msgstr ""
 "Taimeris ir beidzis ierakstu un vēlas izslēgt\n"
-"Dreambox. Vai darīt to tagad?"
+"STB_BOX. Vai darīt to tagad?"
 
 #
 # ???
@@ -587,18 +586,18 @@ msgstr ""
 #
 msgid ""
 "A sleep timer wants to set your\n"
-"Dreambox to standby. Do that now?"
+"STB_BOX to standby. Do that now?"
 msgstr ""
 "Miega taimeris vēlas pārslēgt\n"
-"Dreambox gaidstāves režīmā. Vai darīt to tagad?"
+"STB_BOX gaidstāves režīmā. Vai darīt to tagad?"
 
 #
 msgid ""
 "A sleep timer wants to shut down\n"
-"your Dreambox. Shutdown now?"
+"your STB_BOX. Shutdown now?"
 msgstr ""
 "Miega taimeris vēlas izslēgt\n"
-"Dreambox. Vai darīt to tagad?"
+"STB_BOX. Vai darīt to tagad?"
 
 #
 msgid "A small overview of the available icon states and actions."
@@ -667,7 +666,6 @@ msgstr "Aktivizēt tīkla iestatījumus"
 msgid "Activate the chosen network settings."
 msgstr ""
 
-#
 msgid "Active"
 msgstr ""
 
@@ -745,10 +743,8 @@ msgstr ""
 msgid "Address"
 msgstr ""
 
-#
 msgid ""
-"Adds enigma2 settings and dreambox model informations like SN, rev... if "
-"enabled."
+"Adds enigma2 settings and STB_BOX informations like SN, rev... if enabled."
 msgstr ""
 
 #
@@ -809,10 +805,10 @@ msgstr ""
 # ???
 msgid ""
 "After the start wizard is completed, you need to protect single services. "
-"Refer to your dreambox's manual on how to do that."
+"Refer to your STB_BOX's manual on how to do that."
 msgstr ""
 "Pēc starta vednis ir pabeigts, jums ir jāaizsargā atsevišķi kanāli. "
-"Meklējiet dreambox rokasgrāmatā kā to izdarīt."
+"Meklējiet STB_BOX rokasgrāmatā kā to izdarīt."
 
 msgid "Agree"
 msgstr ""
@@ -865,35 +861,35 @@ msgstr ""
 msgid "Allows the Harddisk to go to standby after being idle for:"
 msgstr ""
 
-msgid "Allows the box to read the stored EPG data regularly."
+msgid "Allows the STB_BOX to read the stored EPG data regularly."
 msgstr ""
 
-msgid "Allows the box to store the EPG data regularly."
-msgstr ""
-
-msgid ""
-"Allows the box to use the EIT EPG when tuned to a service. This data will be "
-"stored by the box."
+msgid "Allows the STB_BOX to store the EPG data regularly."
 msgstr ""
 
 msgid ""
-"Allows the box to use the FreeSat EPG when tuned to a service. This data "
-"will be stored by the box."
+"Allows the STB_BOX to use the EIT EPG when tuned to a service. This data "
+"will be stored by the STB_BOX."
 msgstr ""
 
 msgid ""
-"Allows the box to use the MHW EPG when tuned to a service. This data will be "
-"stored by the box."
+"Allows the STB_BOX to use the FreeSat EPG when tuned to a service. This data "
+"will be stored by the STB_BOX."
 msgstr ""
 
 msgid ""
-"Allows the box to use the Netmed EPG when tuned to a service. This data will "
-"be stored by the box."
+"Allows the STB_BOX to use the MHW EPG when tuned to a service. This data "
+"will be stored by the STB_BOX."
 msgstr ""
 
 msgid ""
-"Allows the box to use the ViaSat EPG when tuned to a service. This data will "
-"be stored by the box."
+"Allows the STB_BOX to use the Netmed EPG when tuned to a service. This data "
+"will be stored by the STB_BOX."
+msgstr ""
+
+msgid ""
+"Allows the STB_BOX to use the ViaSat EPG when tuned to a service. This data "
+"will be stored by the STB_BOX."
 msgstr ""
 
 msgid "Allows you setup the button to do what you choose."
@@ -995,7 +991,7 @@ msgstr ""
 msgid "Allows you to use Yellow pango DVB subtitles"
 msgstr ""
 
-msgid "Allows you to use power measurement (if your box supports that)"
+msgid "Allows you to use power measurement (if your STB_BOX supports that)"
 msgstr ""
 
 msgid "Allows you to use the original position of the Teletext subtitles."
@@ -1004,8 +1000,9 @@ msgstr ""
 msgid "Allows you to use yellow DVB subtitles."
 msgstr ""
 
+#
 msgid "Alpha"
-msgstr ""
+msgstr "Alpha"
 
 msgid "Alpha Value"
 msgstr ""
@@ -1046,8 +1043,9 @@ msgstr ""
 msgid "April"
 msgstr ""
 
+#
 msgid "Arabic"
-msgstr ""
+msgstr "Arābu"
 
 #
 msgid ""
@@ -1247,14 +1245,17 @@ msgstr ""
 msgid "Background delete speed"
 msgstr ""
 
+#
 msgid "Backup"
-msgstr ""
+msgstr "Dublējumkopija"
 
+#
 msgid "Backup Location"
-msgstr ""
+msgstr "Dublējumkopijas vieta"
 
+#
 msgid "Backup Mode"
-msgstr ""
+msgstr "Dublējumkopijas režīms"
 
 #
 msgid "Backup done."
@@ -1442,8 +1443,9 @@ msgstr ""
 msgid "CCcam Shares Info"
 msgstr ""
 
+#
 msgid "CF Drive"
-msgstr ""
+msgstr "CF lasītājs"
 
 #
 msgid "CI assignment"
@@ -1523,6 +1525,9 @@ msgstr "Mainīt buķetes ātrās slēgšanas režīmā"
 #
 msgid "Change pin code"
 msgstr "Mainīt PIN"
+
+msgid "Change repeat and delay settings?"
+msgstr ""
 
 msgid "Change service PIN"
 msgstr ""
@@ -1650,12 +1655,12 @@ msgid "Choose the location for crash and debuglogs."
 msgstr ""
 
 msgid ""
-"Choose the location where the EPG data will be stored when the box is shut "
-"down. The location must be available at boot time."
+"Choose the location where the EPG data will be stored when the STB_BOX is "
+"shut down. The location must be available at boot time."
 msgstr ""
 
 msgid ""
-"Choose the name of the file that holds the EPG data when the box is shut "
+"Choose the name of the file that holds the EPG data when the STB_BOX is shut "
 "down. This can be handy to differentiate between several boxes."
 msgstr ""
 
@@ -1756,11 +1761,13 @@ msgstr ""
 msgid "Code rate LP"
 msgstr ""
 
+#
 msgid "Coderate HP"
-msgstr ""
+msgstr "Kodēšanas ātrums HP"
 
+#
 msgid "Coderate LP"
-msgstr ""
+msgstr "Kodēšanas ātrums LP"
 
 #
 msgid "Collection name"
@@ -1925,8 +1932,8 @@ msgid ""
 msgstr ""
 
 #
-msgid "Could not connect to Dreambox .NFI Image Feed Server:"
-msgstr "Nevar savienoties ar Dreambox .NFI imidža barotnes serveris:"
+msgid "Could not connect to STB_BOX .NFI Image Feed Server:"
+msgstr "Nevar savienoties ar STB_BOX .NFI imidža barotnes serveris:"
 
 #
 msgid "Could not load Medium! No disc inserted?"
@@ -2005,8 +2012,9 @@ msgstr ""
 msgid "Creating directory %s failed."
 msgstr "Veido mapi %s neizdevās."
 
+#
 msgid "Croatian"
-msgstr ""
+msgstr "Horvātu"
 
 msgid "Current CEC address"
 msgstr ""
@@ -2072,8 +2080,9 @@ msgstr "Griezt"
 msgid "Cutlist editor..."
 msgstr "Griešanas redaktors..."
 
+#
 msgid "Czech"
-msgstr ""
+msgstr "Čehu"
 
 #
 msgid "D"
@@ -2123,8 +2132,9 @@ msgstr "DVD mediju aprīkojums"
 msgid "Daily"
 msgstr ""
 
+#
 msgid "Danish"
-msgstr ""
+msgstr "Dāņu"
 
 #
 msgid "Date"
@@ -2165,6 +2175,9 @@ msgstr ""
 
 #
 msgid "Default movie location"
+msgstr ""
+
+msgid "Delay before key repeat starts:"
 msgstr ""
 
 #
@@ -2239,6 +2252,9 @@ msgid "Device Mounts"
 msgstr ""
 
 msgid "Device Setup"
+msgstr ""
+
+msgid "Devicename:"
 msgstr ""
 
 msgid "Devices"
@@ -2429,10 +2445,13 @@ msgid ""
 "(choose 'No' to type message using virtual keyboard.)"
 msgstr ""
 
+#
 msgid ""
 "Do you want to backup now?\n"
 "After pressing OK, please wait!"
 msgstr ""
+"Vai vēlaties veidot dublējumkopiju?\n"
+"Nospiediet OK un gaidiet!"
 
 #
 msgid "Do you want to burn this collection to DVD medium?"
@@ -2456,7 +2475,7 @@ msgid "Do you want to download the image to %s ?"
 msgstr ""
 
 #
-msgid "Do you want to enable the parental control feature on your dreambox?"
+msgid "Do you want to enable the parental control feature on your STB_BOX?"
 msgstr "Vai vēlaties aktivizēt vecāku kontroles iespēju?"
 
 #
@@ -2472,8 +2491,8 @@ msgid "Do you want to preview this DVD before burning?"
 msgstr "Vai vēleties skatīt šo DVD pirms rakstīšanas?"
 
 #
-msgid "Do you want to reboot your Dreambox?"
-msgstr "Vai vēlaties atsāknēt Dreambox?"
+msgid "Do you want to reboot your STB_BOX?"
+msgstr "Vai vēlaties atsāknēt STB_BOX?"
 
 msgid "Do you want to remove binary data?"
 msgstr ""
@@ -2502,15 +2521,15 @@ msgid ""
 msgstr ""
 
 #
-msgid "Do you want to update your Dreambox?"
-msgstr "Vai vēlaties atjaunināt Dreambox?"
+msgid "Do you want to update your STB_BOX?"
+msgstr "Vai vēlaties atjaunināt STB_BOX?"
 
 #
 msgid ""
-"Do you want to update your Dreambox?\n"
+"Do you want to update your STB_BOX?\n"
 "After pressing OK, please wait!"
 msgstr ""
-"Vai vēlaties atjaunināt Dreambox?\n"
+"Vai vēlaties atjaunināt STB_BOX?\n"
 "Nospiediet OK un gaidiet!"
 
 #
@@ -2592,8 +2611,9 @@ msgstr ""
 msgid "Drivers:"
 msgstr ""
 
+#
 msgid "Dutch"
-msgstr ""
+msgstr "Holandiešu"
 
 #
 msgid "Dynamic contrast"
@@ -2694,12 +2714,12 @@ msgid "Edit settings"
 msgstr "Rediģēt iestatījumus"
 
 #
-msgid "Edit the Nameserver configuration of your Dreambox.\n"
-msgstr "Rediģēt Dreambox domēna vārdu servera konfigurāciju.\n"
+msgid "Edit the Nameserver configuration of your STB_BOX.\n"
+msgstr "Rediģēt STB_BOX domēna vārdu servera konfigurāciju.\n"
 
 #
-msgid "Edit the network configuration of your Dreambox.\n"
-msgstr "Rediģēt Dreambox tīkla konfigurāciju.\n"
+msgid "Edit the network configuration of your STB_BOX.\n"
+msgstr "Rediģēt STB_BOX tīkla konfigurāciju.\n"
 
 #
 msgid "Edit title"
@@ -2799,8 +2819,9 @@ msgstr "Beigu laiks"
 msgid "EndTime"
 msgstr "Beigu laiks"
 
+#
 msgid "English"
-msgstr ""
+msgstr "Angļu"
 
 #
 msgid ""
@@ -2869,6 +2890,7 @@ msgid ""
 "Press OK to exit."
 msgstr ""
 
+#
 msgid "Estonian"
 msgstr ""
 
@@ -3111,8 +3133,9 @@ msgstr "Tīkla konfigurēšana pabeigta"
 msgid "Finished restarting your network"
 msgstr "Tīkla restartēšana pabeigta"
 
+#
 msgid "Finnish"
-msgstr ""
+msgstr "Somu"
 
 msgid "Firmware"
 msgstr ""
@@ -3174,8 +3197,9 @@ msgstr ""
 msgid "Free:"
 msgstr ""
 
+#
 msgid "French"
-msgstr ""
+msgstr "Franču"
 
 #
 msgid "Frequency"
@@ -3253,8 +3277,9 @@ msgstr ""
 msgid "Genre"
 msgstr "Žanrs"
 
+#
 msgid "German"
-msgstr ""
+msgstr "Vācu"
 
 msgid "Get latest experimental image"
 msgstr ""
@@ -3341,15 +3366,17 @@ msgstr ""
 msgid "Graphical Multi EPG"
 msgstr "Grafiskais daudzkanālu EPG"
 
+#
 msgid "Greek"
-msgstr ""
+msgstr "Grieķu"
 
 #
 msgid "Green boost"
 msgstr ""
 
+#
 msgid "Guard Interval"
-msgstr ""
+msgstr "Sardzes intervāls"
 
 msgid "Guard interval"
 msgstr ""
@@ -3399,8 +3426,9 @@ msgstr ""
 msgid "Hide zap errors"
 msgstr ""
 
+#
 msgid "Hierarchy Information"
-msgstr ""
+msgstr "Hierarhijas informācija"
 
 msgid "Hierarchy info"
 msgstr ""
@@ -3449,8 +3477,9 @@ msgstr ""
 msgid "Hue"
 msgstr ""
 
+#
 msgid "Hungarian"
-msgstr ""
+msgstr "Ungāru"
 
 msgid "IMDB search for current event"
 msgstr ""
@@ -3468,7 +3497,6 @@ msgstr "IP adrese"
 msgid "IP-Address"
 msgstr ""
 
-#
 msgid "IP:"
 msgstr ""
 
@@ -3487,9 +3515,6 @@ msgid "Idle Time: "
 msgstr ""
 
 msgid "If Teletext caching is enabled, displaying pages will be much faster."
-msgstr ""
-
-msgid "If est to 'yes' the box will use AC3 sound (when available)."
 msgstr ""
 
 msgid ""
@@ -3513,18 +3538,23 @@ msgid ""
 "the EPG will open on the present channel."
 msgstr ""
 
+msgid "If set to 'yes' the STB_BOX will use AC3 sound (when available)."
+msgstr ""
+
+msgid ""
+"If set to 'yes' the STB_BOX will use the audio stream that has been used "
+"earlier."
+msgstr ""
+
+msgid ""
+"If set to 'yes' the STB_BOX will use the subtitles that has been used "
+"earlier."
+msgstr ""
+
 msgid "If set to 'yes' the bouquets will be shown each time you open the EPG"
 msgstr ""
 
 msgid "If set to 'yes' the bouquets will be shown each time you open the EPG."
-msgstr ""
-
-msgid ""
-"If set to 'yes' the box will use the audio stream that has been used earlier."
-msgstr ""
-
-msgid ""
-"If set to 'yes' the box will use the subtitles that has been used earlier."
 msgstr ""
 
 msgid ""
@@ -3586,7 +3616,7 @@ msgstr ""
 
 msgid ""
 "If you select \"yes\" the scan will only save channels that are not "
-"encrypted; \"no\" will find encrypted and non-encrypted cannels"
+"encrypted; \"no\" will find encrypted and non-encrypted channels"
 msgstr ""
 
 msgid ""
@@ -3812,6 +3842,9 @@ msgstr "Iekšējā atmiņa"
 msgid "Internal hdd only"
 msgstr ""
 
+msgid "Interval between keys when repeating:"
+msgstr ""
+
 #
 msgid "Invalid Location"
 msgstr "Nederīga vieta"
@@ -3885,8 +3918,9 @@ msgstr "Ipkg"
 msgid "Is this videomode ok?"
 msgstr ""
 
+#
 msgid "Italian"
-msgstr ""
+msgstr "Itāļu"
 
 msgid "Items per Page "
 msgstr ""
@@ -4033,8 +4067,9 @@ msgstr ""
 msgid "Latitude"
 msgstr "Platums"
 
+#
 msgid "Latvian"
-msgstr ""
+msgstr "Latviešu"
 
 #
 msgid "Leave DVD Player?"
@@ -4101,8 +4136,9 @@ msgstr ""
 msgid "List version %d, found %d channels"
 msgstr ""
 
+#
 msgid "Lithuanian"
-msgstr ""
+msgstr "Lietuviešu"
 
 #
 msgid "Load"
@@ -4810,8 +4846,8 @@ msgid "No, do nothing."
 msgstr "Nē, nedarīt neko"
 
 #
-msgid "No, just start my dreambox"
-msgstr "Nē, vienkārši startēt dreambox"
+msgid "No, just start my STB_BOX"
+msgstr "Nē, vienkārši startēt STB_BOX"
 
 msgid "No, never"
 msgstr ""
@@ -4847,8 +4883,9 @@ msgstr "Nelineāri mērogot"
 msgid "North"
 msgstr "Ziemeļi"
 
+#
 msgid "Norwegian"
-msgstr ""
+msgstr "Norvēģu"
 
 msgid "Not Flashing"
 msgstr ""
@@ -5016,8 +5053,9 @@ msgstr ""
 msgid "Optionally enter your name if you want to."
 msgstr ""
 
+#
 msgid "Orbital Position"
-msgstr ""
+msgstr "Pozīcija orbītā"
 
 msgid "Orbital position"
 msgstr ""
@@ -5489,8 +5527,9 @@ msgstr ""
 msgid "Polarization"
 msgstr "Polarizācija"
 
+#
 msgid "Polish"
-msgstr ""
+msgstr "Poļu"
 
 msgid "Port"
 msgstr ""
@@ -5514,8 +5553,9 @@ msgstr "Pieslēgvieta D"
 msgid "Port:"
 msgstr ""
 
+#
 msgid "Portuguese"
-msgstr ""
+msgstr "Portugāļu"
 
 msgid "Position of finished Timers in Timerlist"
 msgstr ""
@@ -5527,22 +5567,18 @@ msgstr "Pozicionieris"
 msgid "Positioner Setup"
 msgstr ""
 
-#
-# ???
 msgid "Positioner fine movement"
-msgstr "Precīza pozicioniera kustība"
+msgstr ""
 
-#
 msgid "Positioner movement"
-msgstr "Pozicioniera kustība"
+msgstr ""
 
 #
 msgid "Positioner setup"
 msgstr "Pozicioniera iestatne"
 
-#
 msgid "Positioner storage"
-msgstr "Pozicioniera atmiņa"
+msgstr ""
 
 #
 msgid "Power threshold in mA"
@@ -5788,6 +5824,12 @@ msgstr "Vai tiešām restartēt tagad?"
 #
 msgid "Really shutdown now?"
 msgstr "Vai tiešām izslēgt tagad?"
+
+msgid "Really upgrade the frontprocessor and reboot now?"
+msgstr ""
+
+msgid "Really upgrade your STB_BOX and reboot now?"
+msgstr ""
 
 #
 msgid "Reboot"
@@ -6117,8 +6159,10 @@ msgstr "Labais"
 msgid "Roll-off"
 msgstr ""
 
+#
+#, fuzzy
 msgid "Rolloff"
-msgstr ""
+msgstr "Rolloff"
 
 msgid "Romanian"
 msgstr ""
@@ -6133,12 +6177,12 @@ msgstr "Pozicioniera griešanās ātrums"
 msgid "Round start time on"
 msgstr ""
 
-#
 msgid "Running"
-msgstr "Darbojas"
-
-msgid "Russian"
 msgstr ""
+
+#
+msgid "Russian"
+msgstr "Krievu"
 
 #
 msgid "S-Video"
@@ -6576,6 +6620,7 @@ msgstr ""
 msgid "Sequence repeat"
 msgstr "Secības atkārtojums"
 
+#
 msgid "Serbian"
 msgstr ""
 
@@ -6703,9 +6748,8 @@ msgstr ""
 msgid "Set interface as default Interface"
 msgstr "Iestatīt interfeisu kā noklusēto"
 
-#
 msgid "Set limits"
-msgstr "Iestatīt robežas"
+msgstr ""
 
 msgid "Set the brightness level for normal operation."
 msgstr ""
@@ -6976,6 +7020,9 @@ msgstr "Rādīt infojoslu pārlēciena turp/atpakaļ laikāl"
 msgid "Show job tasks in extensions"
 msgstr ""
 
+msgid "Show live tv when movie stoped"
+msgstr ""
+
 msgid "Show or hide the extended description, (skin dependant)."
 msgstr ""
 
@@ -7020,7 +7067,7 @@ msgstr "Rādīt bezvadu tīkla savienojuma statusu.\n"
 msgid "Shows the the movie lenth in the list."
 msgstr ""
 
-msgid "Shows the watched staus of the movie."
+msgid "Shows the watched status of the movie."
 msgstr ""
 
 #
@@ -7028,8 +7075,8 @@ msgid "Shutdown"
 msgstr ""
 
 #
-msgid "Shutdown Dreambox after"
-msgstr "Izslēgt Dreambox pēc"
+msgid "Shutdown STB_BOX after"
+msgstr "Izslēgt STB_BOX pēc"
 
 msgid "Side by Side"
 msgstr ""
@@ -7117,6 +7164,7 @@ msgstr "Karšu lasītājs %d"
 msgid "Slovak"
 msgstr ""
 
+#
 msgid "Slovenian"
 msgstr ""
 
@@ -7177,11 +7225,15 @@ msgstr "Atvainojiet, dublējumkopijas nav atrastas!"
 msgid "Sorry uShare Config is Missing"
 msgstr ""
 
+#
 msgid ""
 "Sorry your Backup destination does not exist\n"
 "\n"
 "Please choose an other one."
 msgstr ""
+"Izvēlētais dublējumkopijas galamērķis neeksistē.\n"
+"\n"
+"Lūdzu izvēlieties citu."
 
 #
 msgid ""
@@ -7238,8 +7290,9 @@ msgstr "Dienvidi"
 msgid "Space used:"
 msgstr ""
 
+#
 msgid "Spanish"
-msgstr ""
+msgstr "Spāņu"
 
 #
 msgid "Split preview mode"
@@ -7427,8 +7480,9 @@ msgstr ""
 msgid "Swap Services"
 msgstr "Mainīit kanālus"
 
+#
 msgid "Swedish"
-msgstr ""
+msgstr "Zviedru"
 
 msgid "Switch TV to correct input"
 msgstr ""
@@ -7448,8 +7502,9 @@ msgstr "Pārslēgt iepriekšējo papildkanālu"
 msgid "Switchable tuner types:"
 msgstr ""
 
+#
 msgid "Symbol Rate"
-msgstr ""
+msgstr "Simbolu ātrums"
 
 msgid "Symbol rate"
 msgstr ""
@@ -7460,8 +7515,9 @@ msgstr ""
 msgid "Symbol rate values are in megasymbols; enter a value between 2 and 45"
 msgstr ""
 
+#
 msgid "Symbolrate"
-msgstr ""
+msgstr "Simbolātrums"
 
 msgid "Sync NTP every (minutes)"
 msgstr ""
@@ -7551,8 +7607,8 @@ msgid "Test mode"
 msgstr "Testa režīms"
 
 #
-msgid "Test the network configuration of your Dreambox.\n"
-msgstr "Pārbaudīt tīkla Dreambox konfigurāciju.\n"
+msgid "Test the network configuration of your STB_BOX.\n"
+msgstr "Pārbaudīt tīkla STB_BOX konfigurāciju.\n"
 
 #
 msgid "Test-Messagebox?"
@@ -7575,11 +7631,11 @@ msgstr ""
 
 #
 msgid ""
-"Thank you for using the wizard. Your box is now ready to use.\n"
-"Please press OK to start using your Dreambox."
+"Thank you for using the wizard. Your STB_BOX is now ready to use.\n"
+"Please press OK to start using your STB_BOX."
 msgstr ""
 "Pateicamies par vedņa izmantošanu. Ierīce ir gatava lietošanai.\n"
-"Lūdzu spiediet OK, lai sāktu lietot Dreambox."
+"Lūdzu spiediet OK, lai sāktu lietot STB_BOX."
 
 msgid ""
 "The AutoTimer plugin is not installed!\n"
@@ -7594,12 +7650,12 @@ msgstr ""
 #
 msgid ""
 "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to "
-"create a Dreambox format data DVD (which will not play in stand-alone DVD "
+"create a STB_BOX format data DVD (which will not play in stand-alone DVD "
 "players) instead?"
 msgstr ""
 "DVD standarts neatbalsta H.264 (HDTV) attēla plūsmas. Vai jūs tā vietā "
-"vēlaties izveidot Dreambox formāta datu DVD (kuru nevarēs izmantot "
-"standarta DVD atskaņotājos)?"
+"vēlaties izveidot STB_BOX formāta datu DVD (kuru nevarēs izmantot standarta "
+"DVD atskaņotājos)?"
 
 msgid ""
 "The EPGSearch plugin is not installed!\n"
@@ -7649,18 +7705,26 @@ msgid ""
 "Now you can download an NFI image file!"
 msgstr ""
 
+msgid "The User Interface of your receiver is restarting"
+msgstr ""
+
+msgid ""
+"The User Interface of your receiver is restarting\n"
+"due to an error in mytest.py"
+msgstr ""
+
+msgid "The STB_BOX reads the stored EPG data every (hours)."
+msgstr ""
+
+msgid "The STB_BOX stores the EPG data every (hours)."
+msgstr ""
+
 #
 msgid "The backup failed. Please choose a different backup location."
 msgstr ""
 "Dublējumkopēšana neizdevās. Lūdzu izvēlieties citu vietu dublējumkopijai. "
 
 msgid "The blindscan run was cancelled by the user."
-msgstr ""
-
-msgid "The box reads the stored EPG data every (hours)."
-msgstr ""
-
-msgid "The box stores the EPG data every (hours)."
 msgstr ""
 
 msgid "The current beta image could not be stable"
@@ -7705,10 +7769,10 @@ msgstr "Noklusēto kanālu sarakstu uzstādīšana ir pabeigta."
 #
 msgid ""
 "The installation of the default settings is finished. You can now continue "
-"configuring your Dreambox by pressing the OK button on the remote control."
+"configuring your STB_BOX by pressing the OK button on the remote control."
 msgstr ""
-"Noklusēto iestatījumu uzstādīšana ir pabeigta. Tagad varat turpināt Vu+ "
-"Ultimo konfigurēšanu, spiežot OK taustiņu uz tālvadības pults."
+"Noklusēto iestatījumu uzstādīšana ir pabeigta. Tagad varat turpināt STB_BOX "
+"konfigurēšanu, spiežot OK taustiņu uz tālvadības pults."
 
 msgid "The md5sum validation failed, the file may be corrupted!"
 msgstr ""
@@ -7842,22 +7906,17 @@ msgstr ""
 
 #
 #, python-format
-msgid "This Dreambox can't decode %s streams!"
+msgid "This STB_BOX can't decode %s streams!"
 msgstr ""
 
 msgid ""
 "This allows the ECM data to be included in the stream. This enables a client "
-"box to decode it."
+"STB_BOX to decode it."
 msgstr ""
 
 msgid ""
-"This allows the box to decode the stream (if the ECM data is included in the "
-"stream and a valid card is availble)."
-msgstr ""
-
-msgid ""
-"This allows you change the font size relative to skin size, so 1 increases "
-"by 1 piont size, and -1 decreases by 1 piont size"
+"This allows the STB_BOX to decode the stream (if the ECM data is included in "
+"the stream and a valid card is availble)."
 msgstr ""
 
 msgid ""
@@ -7929,6 +7988,18 @@ msgid ""
 "this)."
 msgstr ""
 
+msgid "This option lets you adjust the 3D depth"
+msgstr ""
+
+msgid "This option lets you adjust the transparency of the OSD"
+msgstr ""
+
+msgid "This option lets you choose the 3D mode"
+msgstr ""
+
+msgid "This option lets you show the option in the extension screen"
+msgstr ""
+
 msgid ""
 "This option moves the PVR status from the seprate window into the "
 "MoviePlayer infobar."
@@ -7961,7 +8032,7 @@ msgstr ""
 
 msgid ""
 "This plugin creates a USB stick which can be used to update the firmware of "
-"your Dreambox without the need for a network or WLAN connection.\n"
+"your STB_BOX without the need for a network or WLAN connection.\n"
 "First, a USB stick needs to be prepared so that it becomes bootable.\n"
 "In the next step, an NFI image file can be downloaded from the update server "
 "and saved on the USB stick.\n"
@@ -8205,7 +8276,7 @@ msgid "To subtitle selection"
 msgstr ""
 
 msgid ""
-"To update your Dreambox firmware, please follow these steps:\n"
+"To update your STB_BOX firmware, please follow these steps:\n"
 "1) Turn off your box with the rear power switch and make sure the bootable "
 "USB stick is plugged in.\n"
 "2) Turn mains back on and hold the DOWN button on the front panel pressed "
@@ -8269,8 +8340,9 @@ msgstr "Translēšana"
 msgid "Translation:"
 msgstr "Translēšana:"
 
+#
 msgid "Transmission Mode"
-msgstr ""
+msgstr "Pārraides režīms"
 
 #
 msgid "Transmission mode"
@@ -8280,8 +8352,9 @@ msgstr "Pārraides režīms"
 msgid "Transponder"
 msgstr "Transponderis"
 
+#
 msgid "Transponder Type"
-msgstr ""
+msgstr "Transpondera veids"
 
 msgid "Trashcan"
 msgstr ""
@@ -8348,8 +8421,9 @@ msgstr "Uztvērēja statuss"
 msgid "Tuner type"
 msgstr ""
 
+#
 msgid "Turkish"
-msgstr ""
+msgstr "Turku"
 
 #
 msgid "Two"
@@ -8418,9 +8492,8 @@ msgstr "Vienkabeļa"
 msgid "Unicable LNB"
 msgstr "Vienkabeļa LNB"
 
-#
 msgid "Unicable Matrix"
-msgstr "Vienkabeļa Matrix"
+msgstr ""
 
 #
 msgid "Uninstall"
@@ -8451,8 +8524,9 @@ msgstr ""
 msgid "Updatefeed not available."
 msgstr ""
 
+#
 msgid "Updates your receiver's software"
-msgstr ""
+msgstr "Atjaunina ierīces programmatūru"
 
 #
 msgid "Updating finished. Here is the result:"
@@ -8476,16 +8550,17 @@ msgstr ""
 msgid "Upgrade finished."
 msgstr "Atjaunināšana pabeigta."
 
-msgid "Upgrade finished. Do you want to reboot your Dreambox?"
-msgstr ""
+#
+msgid "Upgrade finished. Do you want to reboot your STB_BOX?"
+msgstr "Atjaunināšana pabeigta. Vai vēlaties atsāknēt STB_BOX?"
 
 #
 msgid "Upgrading"
 msgstr "Atjaunošana"
 
 #
-msgid "Upgrading Dreambox... Please wait"
-msgstr "Atjauno Dreambox... Lūdzu gaidiet"
+msgid "Upgrading STB_BOX... Please wait"
+msgstr "Atjauno STB_BOX... Lūdzu gaidiet"
 
 msgid "Uphops +"
 msgstr ""
@@ -8548,6 +8623,14 @@ msgid "Use power measurement"
 msgstr "Lietot sprieguma mērīšanu"
 
 msgid "Use slim screen"
+msgstr ""
+
+msgid ""
+"Use the Left/Right buttons on your remote to adjust the size of the OSD. "
+"Left button decreases the size, Right increases the size."
+msgstr ""
+
+msgid "Use the Left/Right buttons on your remote to move the OSD left/right"
 msgstr ""
 
 #
@@ -8823,12 +8906,27 @@ msgstr "Sprieguma režīms"
 msgid "Volume"
 msgstr "Skaļums"
 
-#
-msgid "Dreambox format data DVD (HDTV compatible)"
-msgstr "Dreambox formāta datu DVD (savietojams ar HDTV)"
+msgid "STB_BOX advanced remote control (native)"
+msgstr ""
 
 #
-msgid "Dreambox software because updates are available."
+msgid "STB_BOX format data DVD (HDTV compatible)"
+msgstr "STB_BOX formāta datu DVD (savietojams ar HDTV)"
+
+msgid "STB_BOX front panel"
+msgstr ""
+
+msgid "STB_BOX ir keyboard"
+msgstr ""
+
+msgid "STB_BOX ir mouse"
+msgstr ""
+
+msgid "STB_BOX remote control (native)"
+msgstr ""
+
+#
+msgid "STB_BOX software because updates are available."
 msgstr ""
 
 #
@@ -8932,11 +9030,11 @@ msgstr ""
 #
 msgid ""
 "Welcome to the Image upgrade wizard. The wizard will assist you in upgrading "
-"the firmware of your Dreambox by providing a backup facility for your "
-"current settings and a short explanation of how to upgrade your firmware."
+"the firmware of your STB_BOX by providing a backup facility for your current "
+"settings and a short explanation of how to upgrade your firmware."
 msgstr ""
 "Sveicināti imidža atjaunināšanas vednī. Vednis palīdzēs Jums atjaunot Vu+ "
-"Ultimo programmatūru, sniedzot pašreizējo iestatījumu dublējumkopēšanas "
+"Uno programmatūru, sniedzot pašreizējo iestatījumu dublējumkopēšanas "
 "iespējas, kā arī īsumā izskaidros, kā veikt programmatūras atjaunināšanu."
 
 #
@@ -8944,7 +9042,7 @@ msgid ""
 "Welcome to the cleanup wizard.\n"
 "\n"
 "We have detected that your available internal memory has dropped below 2MB.\n"
-"To ensure stable operation of your Dreambox, the internal memory should be "
+"To ensure stable operation of your STB_BOX, the internal memory should be "
 "cleaned up.\n"
 "You can use this wizard to remove some extensions.\n"
 msgstr ""
@@ -8953,8 +9051,8 @@ msgstr ""
 msgid ""
 "Welcome.\n"
 "\n"
-"If you want to connect your Dreambox to the Internet, this wizard will "
-"guide you through the basic network setup of your Dreambox.\n"
+"If you want to connect your STB_BOX to the Internet, this wizard will guide "
+"you through the basic network setup of your STB_BOX.\n"
 "\n"
 "Press OK to start configuring your network"
 msgstr ""
@@ -8963,13 +9061,12 @@ msgstr ""
 msgid ""
 "Welcome.\n"
 "\n"
-"This start wizard will guide you through the basic setup of your Vu+ "
-"Ultimo.\n"
+"This start wizard will guide you through the basic setup of your STB_BOX.\n"
 "Press the OK button on your remote control to move to the next step."
 msgstr ""
 "Sveicināti.\n"
 "\n"
-"Šis sākuma vednis būs Jūsu ceļvedis Dreambox pamata iestatnē.\n"
+"Šis sākuma vednis būs Jūsu ceļvedis STB_BOX pamata iestatnē.\n"
 "Spiediet OK taustiņu uz tālvadības pults, lai pārietu uz nākamo soli."
 
 #
@@ -8994,8 +9091,11 @@ msgid ""
 msgstr ""
 
 msgid ""
-"When set each folder will show the previous stae used, when off the default "
+"When set each folder will show the previous state used, when off the default "
 "values will be shown."
+msgstr ""
+
+msgid "When set the PIG will return to live after a movie has stopped playing."
 msgstr ""
 
 msgid ""
@@ -9209,7 +9309,7 @@ msgid "You can install this plugin."
 msgstr ""
 
 #
-msgid "You can only burn Dreambox recordings!"
+msgid "You can only burn STB_BOX recordings!"
 msgstr ""
 
 #
@@ -9303,16 +9403,15 @@ msgstr "Jums jāuzgaida %s!"
 
 #
 msgid ""
-"You need a PC connected to your dreambox. If you need further "
-"instructions, please visit the website http://www.dm7025.de.\n"
-"Your dreambox will now be halted. After you have performed the update "
+"You need a PC connected to your STB_BOX. If you need further instructions, "
+"please visit the website http://www.dm7025.de.\n"
+"Your STB_BOX will now be halted. After you have performed the update "
 "instructions from the website, your new firmware will ask you to restore "
 "your settings."
 msgstr ""
-"Personālajam datoram jābūt savienotam ar Dreambox. Ja Jums ir "
-"nepieciešamas turpmākas instrukcijas, lūdzu apmeklējiet vietni http://www."
-"dm7025.de.\n"
-"Dreambox tagad tiks apturēts. Pēc tam, kad būs izpildītas atjaunināšanas "
+"Personālajam datoram jābūt savienotam ar STB_BOX. Ja Jums ir nepieciešamas "
+"turpmākas instrukcijas, lūdzu apmeklējiet vietni http://www.dm7025.de.\n"
+"STB_BOX tagad tiks apturēts. Pēc tam, kad būs izpildītas atjaunināšanas "
 "instrukcijas no tīkla vietnes, jaunā programmatūra piedāvās Jums atjaunot "
 "iestatījumus."
 
@@ -9330,7 +9429,7 @@ msgstr ""
 
 #
 msgid ""
-"Your Dreambox is now ready to use.\n"
+"Your STB_BOX is now ready to use.\n"
 "\n"
 "Your internet connection is working now.\n"
 "\n"
@@ -9338,12 +9437,29 @@ msgstr ""
 
 #
 msgid ""
-"Your Dreambox is now ready to use.\n"
+"Your STB_BOX is now ready to use.\n"
 "\n"
 "Your internet connection is working now.\n"
 "\n"
 "Please press OK to continue."
 msgstr ""
+
+msgid "Your STB_BOX is rebooting"
+msgstr ""
+
+msgid "Your STB_BOX is shutting down"
+msgstr ""
+
+#
+msgid "Your STB_BOX is shutting down. Please stand by..."
+msgstr "STB_BOX izslēdzas. Lūdzu gaidiet..."
+
+#
+msgid ""
+"Your STB_BOX isn't connected to the internet properly. Please check it and "
+"try again."
+msgstr ""
+"STB_BOX nav pievienots internetam kā nākas. Lūdzu pārbaudiet un mēģiniet vēl."
 
 #
 msgid ""
@@ -9359,7 +9475,6 @@ msgid ""
 "blank dual layer DVD!"
 msgstr ""
 
-#
 #, python-format
 msgid ""
 "Your config file is not well-formed:\n"
@@ -9382,6 +9497,12 @@ msgstr ""
 "Uztvērēja programmatūru nepieciešams atjaunināt.\n"
 "Spiediet OK, lai sāktu atjaunināšanu."
 
+msgid ""
+"Your frontprocessor will be upgraded\n"
+"Please wait until your receiver reboots\n"
+"This may take a few minutes"
+msgstr ""
+
 #
 msgid ""
 "Your internet connection is not working!\n"
@@ -9395,18 +9516,6 @@ msgstr ""
 #
 msgid "Your network configuration has been activated."
 msgstr "Tīkla konfigurācija aktivizēta."
-
-#
-msgid "Your dreambox is shutting down. Please stand by..."
-msgstr "Dreambox izslēdzas. Lūdzu gaidiet..."
-
-#
-msgid ""
-"Your dreambox isn't connected to the internet properly. Please check it "
-"and try again."
-msgstr ""
-"Dreambox nav pievienots internetam kā nākas. Lūdzu pārbaudiet un mēģiniet "
-"vēl."
 
 #
 msgid ""
@@ -9596,10 +9705,13 @@ msgstr ""
 msgid "alphabetic sort"
 msgstr "sakārtot pēc alfabēta"
 
+#
 msgid ""
 "are you sure you want to restore\n"
 "following backup:\n"
 msgstr ""
+"vai tiešām vēlaties atjaunot\n"
+"šī dublējumkopija:\n"
 
 msgid "as plugin in extended bar"
 msgstr ""
@@ -9768,7 +9880,6 @@ msgstr "diena"
 msgid "decrease uphop by 1"
 msgstr ""
 
-#
 msgid "delete"
 msgstr ""
 
@@ -9883,8 +9994,9 @@ msgstr "beigt griešanu šeit"
 msgid "end favourites edit"
 msgstr "beigt favorītu rediģēšanu"
 
+#
 msgid "enigma2 and network"
-msgstr ""
+msgstr "enigma2 un tīkls"
 
 #
 msgid "equal to"
@@ -10107,9 +10219,8 @@ msgstr "izvēlne"
 msgid "mins"
 msgstr "min."
 
-#
 msgid "minute"
-msgstr "minūte"
+msgstr ""
 
 #
 msgid "minutes"
@@ -10852,11 +10963,11 @@ msgstr "jā (paturēt barotnes)"
 
 #
 msgid ""
-"your dreambox might be unusable now. Please consult the manual for further "
-"assistance before rebooting your dreambox."
+"your STB_BOX might be unusable now. Please consult the manual for further "
+"assistance before rebooting your STB_BOX."
 msgstr ""
-"Dreambox tagad var būt nelietojams. Lūdzu skatīt lietošanas instrukciju "
-"tālākai palīdzībai, pirms atsāknējat Dreambox."
+"STB_BOX tagad var būt nelietojams. Lūdzu skatīt lietošanas instrukciju "
+"tālākai palīdzībai, pirms atsāknējat STB_BOX."
 
 #
 msgid "zap"
@@ -10865,108 +10976,3 @@ msgstr "pārslēgt"
 #
 msgid "zapped"
 msgstr "pārslēgts"
-
-#
-#~ msgid "30 minutes"
-#~ msgstr "30 minūtēm"
-
-#
-#~ msgid "5 minutes"
-#~ msgstr "5 minūtēm"
-
-#
-#~ msgid "60 minutes"
-#~ msgstr "60 minūtēm"
-
-#
-# ???
-#~ msgid "AC3 downmix"
-#~ msgstr "Pārveide AC3 -> stereo"
-
-#
-# ???
-#~ msgid "Action on long powerbutton press"
-#~ msgstr "Darbība pēc ilgstošas ieslēgšanas taustiņa nospiešanas"
-
-#
-#~ msgid "Alternative radio mode"
-#~ msgstr "Alternatīvais radio režīms"
-
-#
-#~ msgid "Create movie folder failed"
-#~ msgstr "Neizdevās izveidot filmas mapi"
-
-#
-#~ msgid "Creating partition failed"
-#~ msgstr "Neizdevās izveidot sadaļu"
-
-#
-#~ msgid "Downloadable new plugins"
-#~ msgstr "Lejuplādējamie jaunie spraudņi"
-
-#
-#~ msgid "Everything is fine"
-#~ msgstr "Viss ir lieliski"
-
-#
-#~ msgid "Filesystem contains uncorrectable errors"
-#~ msgstr "Failsistēma satur neizlabojamas kļūdas"
-
-#
-#~ msgid "Fsck failed"
-#~ msgstr "Fsck neizdevās"
-
-#
-#~ msgid "Infobar timeout"
-#~ msgstr "Infojoslas noildze"
-
-#
-#~ msgid "Mkfs failed"
-#~ msgstr "Mkfs neizdevās"
-
-#
-#~ msgid "Mount failed"
-#~ msgstr "Montēšana neizdevās"
-
-#
-#~ msgid "No picture on TV? Press EXIT and retry."
-#~ msgstr "Nav attēla uz TV? Spiediet EXIT mēģiniet vēlreiz."
-
-#
-#~ msgid "Please Reboot"
-#~ msgstr "Lūdzu atsāknēt"
-
-#
-#~ msgid "Return to file browser"
-#~ msgstr "Atgriezties uz datņu pārlūku"
-
-#
-#~ msgid "TV System"
-#~ msgstr "TV sistēma"
-
-#
-# ???
-#~ msgid ""
-#~ "The input port should be configured now.\n"
-#~ "You can now configure the screen by displaying some test pictures. Do you "
-#~ "want to do that now?"
-#~ msgstr ""
-#~ "Ievada portam būtu jābūt nokonfigurētam.\n"
-#~ "Tagad Jūs varat konfigurēt ekrānu, attēlojot dažus testa attēlus. Vai "
-#~ "vēlaties to darīt tagad?"
-
-#
-#~ msgid "Unmount failed"
-#~ msgstr "Nomontēšana neizdevās"
-
-#
-#~ msgid "hour"
-#~ msgstr "stunda"
-
-#
-#~ msgid "hours"
-#~ msgstr "stundas"
-
-#
-#~ msgid "second"
-#~ msgstr "sekunde"

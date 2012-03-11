@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-04 11:59+0000\n"
+"POT-Creation-Date: 2012-03-10 15:56+0000\n"
 "PO-Revision-Date: 2011-04-14 00:02+0200\n"
 "Last-Translator: majevica <jovanovic@gmx.ch>\n"
 "Language-Team: veselin & majevica CRNABERZA <jovanovic@gmx.ch>\n"
@@ -44,7 +44,7 @@ msgstr ""
 #
 msgid ""
 "\n"
-"Backup your Dreambox settings."
+"Backup your STB_BOX settings."
 msgstr ""
 "\n"
 "Snimi svoje Drimbox postavke"
@@ -60,7 +60,7 @@ msgstr ""
 #
 msgid ""
 "\n"
-"Manage extensions or plugins for your Dreambox"
+"Manage extensions or plugins for your STB_BOX"
 msgstr ""
 "\n"
 "Izvrši proširenja i dodatke za vaš drimboks"
@@ -68,7 +68,7 @@ msgstr ""
 #
 msgid ""
 "\n"
-"Online update of your Dreambox software."
+"Online update of your STB_BOX software."
 msgstr ""
 "\n"
 "Onlajn ažuriranje Drimbox softvera"
@@ -94,7 +94,7 @@ msgstr ""
 #
 msgid ""
 "\n"
-"Restore your Dreambox settings."
+"Restore your STB_BOX settings."
 msgstr ""
 "\n"
 "Vrati svoje Drimbox postavke"
@@ -102,7 +102,7 @@ msgstr ""
 #
 msgid ""
 "\n"
-"Restore your Dreambox with a new firmware."
+"Restore your STB_BOX with a new firmware."
 msgstr ""
 "\n"
 "Vrati svoje Drimbox postavke sa novim firmverom"
@@ -329,11 +329,13 @@ msgstr ""
 msgid "* Only available if more than one interface is active."
 msgstr "* Dostupan samo ako je više interfejsa aktivno."
 
+#
 msgid "/usr/share/enigma2 directory"
-msgstr ""
+msgstr "/usr/share/enigma2 direktorijum"
 
+#
 msgid "/var directory"
-msgstr ""
+msgstr "/var direktorijum"
 
 #
 msgid "0"
@@ -433,9 +435,6 @@ msgstr "3"
 msgid "30 Days"
 msgstr ""
 
-msgid "30 Minutes"
-msgstr ""
-
 msgid "3D Mode"
 msgstr ""
 
@@ -522,7 +521,7 @@ msgstr "Demo dodatak za TMP korišćenje."
 #
 msgid ""
 "A finished record timer wants to set your\n"
-"Dreambox to standby. Do that now?"
+"STB_BOX to standby. Do that now?"
 msgstr ""
 "Tajmer snimanja je završen i želi postaviti vaš\n"
 "Drimbox u stanje pripravnosti. Uradite sada?"
@@ -530,7 +529,7 @@ msgstr ""
 #
 msgid ""
 "A finished record timer wants to shut down\n"
-"your Dreambox. Shutdown now?"
+"your STB_BOX. Shutdown now?"
 msgstr ""
 "Tajmer snimanja je završio i želi isključiti vaš\n"
 "Drimbox sada. Isključiti sada?"
@@ -596,7 +595,7 @@ msgstr ""
 #
 msgid ""
 "A sleep timer wants to set your\n"
-"Dreambox to standby. Do that now?"
+"STB_BOX to standby. Do that now?"
 msgstr ""
 "Tajmer spavanja želi postaviti vaš\n"
 "Drimbox u stanje pripravnosti. Uraditi sada?"
@@ -604,7 +603,7 @@ msgstr ""
 #
 msgid ""
 "A sleep timer wants to shut down\n"
-"your Dreambox. Shutdown now?"
+"your STB_BOX. Shutdown now?"
 msgstr ""
 "Tajmer spavanja želi isključiti vaš\n"
 "Drimbox. Isključiti sada?"
@@ -676,9 +675,8 @@ msgstr "Aktiviraj mrežne postavke"
 msgid "Activate the chosen network settings."
 msgstr ""
 
-#
 msgid "Active"
-msgstr "Aktivan"
+msgstr ""
 
 msgid "Active clients"
 msgstr ""
@@ -754,13 +752,9 @@ msgstr ""
 msgid "Address"
 msgstr ""
 
-#
 msgid ""
-"Adds enigma2 settings and dreambox model informations like SN, rev... if "
-"enabled."
+"Adds enigma2 settings and STB_BOX informations like SN, rev... if enabled."
 msgstr ""
-"Dodaje enigma2 postavke i informacije o modelu drimboksa kao SN,rev...ako je "
-"uključen."
 
 #
 msgid "Adds network configuration if enabled."
@@ -819,7 +813,7 @@ msgstr ""
 #
 msgid ""
 "After the start wizard is completed, you need to protect single services. "
-"Refer to your dreambox's manual on how to do that."
+"Refer to your STB_BOX's manual on how to do that."
 msgstr ""
 "Nakon što čarobnjak završi,treba da zaštitite pojedine kanale. Pogledajte u "
 "drimbox uputstva kako da to uradite."
@@ -875,35 +869,35 @@ msgstr ""
 msgid "Allows the Harddisk to go to standby after being idle for:"
 msgstr ""
 
-msgid "Allows the box to read the stored EPG data regularly."
+msgid "Allows the STB_BOX to read the stored EPG data regularly."
 msgstr ""
 
-msgid "Allows the box to store the EPG data regularly."
-msgstr ""
-
-msgid ""
-"Allows the box to use the EIT EPG when tuned to a service. This data will be "
-"stored by the box."
+msgid "Allows the STB_BOX to store the EPG data regularly."
 msgstr ""
 
 msgid ""
-"Allows the box to use the FreeSat EPG when tuned to a service. This data "
-"will be stored by the box."
+"Allows the STB_BOX to use the EIT EPG when tuned to a service. This data "
+"will be stored by the STB_BOX."
 msgstr ""
 
 msgid ""
-"Allows the box to use the MHW EPG when tuned to a service. This data will be "
-"stored by the box."
+"Allows the STB_BOX to use the FreeSat EPG when tuned to a service. This data "
+"will be stored by the STB_BOX."
 msgstr ""
 
 msgid ""
-"Allows the box to use the Netmed EPG when tuned to a service. This data will "
-"be stored by the box."
+"Allows the STB_BOX to use the MHW EPG when tuned to a service. This data "
+"will be stored by the STB_BOX."
 msgstr ""
 
 msgid ""
-"Allows the box to use the ViaSat EPG when tuned to a service. This data will "
-"be stored by the box."
+"Allows the STB_BOX to use the Netmed EPG when tuned to a service. This data "
+"will be stored by the STB_BOX."
+msgstr ""
+
+msgid ""
+"Allows the STB_BOX to use the ViaSat EPG when tuned to a service. This data "
+"will be stored by the STB_BOX."
 msgstr ""
 
 msgid "Allows you setup the button to do what you choose."
@@ -1005,7 +999,7 @@ msgstr ""
 msgid "Allows you to use Yellow pango DVB subtitles"
 msgstr ""
 
-msgid "Allows you to use power measurement (if your box supports that)"
+msgid "Allows you to use power measurement (if your STB_BOX supports that)"
 msgstr ""
 
 msgid "Allows you to use the original position of the Teletext subtitles."
@@ -1014,8 +1008,9 @@ msgstr ""
 msgid "Allows you to use yellow DVB subtitles."
 msgstr ""
 
+#
 msgid "Alpha"
-msgstr ""
+msgstr "Alfa"
 
 msgid "Alpha Value"
 msgstr ""
@@ -1055,8 +1050,9 @@ msgstr ""
 msgid "April"
 msgstr ""
 
+#
 msgid "Arabic"
-msgstr ""
+msgstr "Arapski"
 
 #
 msgid ""
@@ -1257,14 +1253,17 @@ msgstr ""
 msgid "Background delete speed"
 msgstr ""
 
+#
 msgid "Backup"
-msgstr ""
+msgstr "Sigurnosna kopija"
 
+#
 msgid "Backup Location"
-msgstr ""
+msgstr "Lokacija sigurnosne kopije"
 
+#
 msgid "Backup Mode"
-msgstr ""
+msgstr "Mod sigurnosne kopije"
 
 #
 msgid "Backup done."
@@ -1450,8 +1449,9 @@ msgstr ""
 msgid "CCcam Shares Info"
 msgstr ""
 
+#
 msgid "CF Drive"
-msgstr ""
+msgstr "CF Disk"
 
 #
 msgid "CI assignment"
@@ -1529,6 +1529,9 @@ msgstr "Promeni bukete u brzom prebacivanju"
 #
 msgid "Change pin code"
 msgstr "Promeni pin kod"
+
+msgid "Change repeat and delay settings?"
+msgstr ""
 
 msgid "Change service PIN"
 msgstr "Promeni servisni PIN"
@@ -1656,12 +1659,12 @@ msgid "Choose the location for crash and debuglogs."
 msgstr ""
 
 msgid ""
-"Choose the location where the EPG data will be stored when the box is shut "
-"down. The location must be available at boot time."
+"Choose the location where the EPG data will be stored when the STB_BOX is "
+"shut down. The location must be available at boot time."
 msgstr ""
 
 msgid ""
-"Choose the name of the file that holds the EPG data when the box is shut "
+"Choose the name of the file that holds the EPG data when the STB_BOX is shut "
 "down. This can be handy to differentiate between several boxes."
 msgstr ""
 
@@ -1762,11 +1765,13 @@ msgstr "Kod rata HP"
 msgid "Code rate LP"
 msgstr "Kod rata LP"
 
+#
 msgid "Coderate HP"
-msgstr ""
+msgstr "Kodrata HP"
 
+#
 msgid "Coderate LP"
-msgstr ""
+msgstr "Kodrata LP"
 
 #
 msgid "Collection name"
@@ -1931,7 +1936,7 @@ msgid ""
 msgstr ""
 
 #
-msgid "Could not connect to Dreambox .NFI Image Feed Server:"
+msgid "Could not connect to STB_BOX .NFI Image Feed Server:"
 msgstr "Ne može se povezati na drimbox.NFI Imidž Feed Server"
 
 #
@@ -2013,8 +2018,9 @@ msgstr ""
 msgid "Creating directory %s failed."
 msgstr "Pravljenje direktorijuma %s nije uspelo"
 
+#
 msgid "Croatian"
-msgstr ""
+msgstr "Hrvatski"
 
 msgid "Current CEC address"
 msgstr ""
@@ -2080,8 +2086,9 @@ msgstr "Odreži"
 msgid "Cutlist editor..."
 msgstr "Uređivač liste..."
 
+#
 msgid "Czech"
-msgstr ""
+msgstr "Češki"
 
 #
 msgid "D"
@@ -2131,8 +2138,9 @@ msgstr "DVD medij alati"
 msgid "Daily"
 msgstr ""
 
+#
 msgid "Danish"
-msgstr ""
+msgstr "Danski"
 
 #
 msgid "Date"
@@ -2173,6 +2181,9 @@ msgstr "Standardne postavke"
 #
 msgid "Default movie location"
 msgstr "Standardna lokacija filmova"
+
+msgid "Delay before key repeat starts:"
+msgstr ""
 
 #
 msgid "Delete"
@@ -2244,6 +2255,9 @@ msgid "Device Mounts"
 msgstr ""
 
 msgid "Device Setup"
+msgstr ""
+
+msgid "Devicename:"
 msgstr ""
 
 msgid "Devices"
@@ -2431,10 +2445,13 @@ msgid ""
 "(choose 'No' to type message using virtual keyboard.)"
 msgstr ""
 
+#
 msgid ""
 "Do you want to backup now?\n"
 "After pressing OK, please wait!"
 msgstr ""
+"Želite li napraviti sigurnosnu kopiju sada?\n"
+"Posle pritiska tipke OK, molim pričekajte!"
 
 #
 msgid "Do you want to burn this collection to DVD medium?"
@@ -2458,7 +2475,7 @@ msgid "Do you want to download the image to %s ?"
 msgstr "Da li želite da skinete imidž u %s ?"
 
 #
-msgid "Do you want to enable the parental control feature on your dreambox?"
+msgid "Do you want to enable the parental control feature on your STB_BOX?"
 msgstr "Želite li uključiti roditeljsku kontrolu na vašem drimboxu?"
 
 #
@@ -2474,7 +2491,7 @@ msgid "Do you want to preview this DVD before burning?"
 msgstr "Da li želite da pregledate ovaj DVD pre rezanja?"
 
 #
-msgid "Do you want to reboot your Dreambox?"
+msgid "Do you want to reboot your STB_BOX?"
 msgstr "Da li želite da restartujete vaš drimbox?"
 
 msgid "Do you want to remove binary data?"
@@ -2506,12 +2523,12 @@ msgstr ""
 "slučaju potrebe?"
 
 #
-msgid "Do you want to update your Dreambox?"
+msgid "Do you want to update your STB_BOX?"
 msgstr "Da li želite da ažurirate vaš drimbox?"
 
 #
 msgid ""
-"Do you want to update your Dreambox?\n"
+"Do you want to update your STB_BOX?\n"
 "After pressing OK, please wait!"
 msgstr ""
 "Želite li nadograditi vaš drimbox?\n"
@@ -2595,8 +2612,9 @@ msgstr ""
 msgid "Drivers:"
 msgstr ""
 
+#
 msgid "Dutch"
-msgstr ""
+msgstr "Holandski"
 
 #
 msgid "Dynamic contrast"
@@ -2696,11 +2714,11 @@ msgid "Edit settings"
 msgstr "Urediti postavke"
 
 #
-msgid "Edit the Nameserver configuration of your Dreambox.\n"
+msgid "Edit the Nameserver configuration of your STB_BOX.\n"
 msgstr "Urediti konfiguraciju nejmservera vašeg Drimboxa.\n"
 
 #
-msgid "Edit the network configuration of your Dreambox.\n"
+msgid "Edit the network configuration of your STB_BOX.\n"
 msgstr "Urediti mrežnu konfiguraciju vašeg Drimboxa.\n"
 
 #
@@ -2801,8 +2819,9 @@ msgstr "Završno vreme"
 msgid "EndTime"
 msgstr "Završno vreme "
 
+#
 msgid "English"
-msgstr ""
+msgstr "Engleski"
 
 #
 msgid ""
@@ -2878,8 +2897,9 @@ msgid ""
 "Press OK to exit."
 msgstr ""
 
+#
 msgid "Estonian"
-msgstr ""
+msgstr "Estonski"
 
 msgid "Ethernet network interface"
 msgstr ""
@@ -3119,8 +3139,9 @@ msgstr "Završena konfiguracija vaše mreže"
 msgid "Finished restarting your network"
 msgstr "Završeno je restartovanje vaše mreže"
 
+#
 msgid "Finnish"
-msgstr ""
+msgstr "Finski"
 
 msgid "Firmware"
 msgstr ""
@@ -3181,8 +3202,9 @@ msgstr ""
 msgid "Free:"
 msgstr ""
 
+#
 msgid "French"
-msgstr ""
+msgstr "Francuski"
 
 #
 msgid "Frequency"
@@ -3260,8 +3282,9 @@ msgstr "Opšte PCM kašnjenje"
 msgid "Genre"
 msgstr "Žanrovi"
 
+#
 msgid "German"
-msgstr ""
+msgstr "Nemački"
 
 msgid "Get latest experimental image"
 msgstr "Uzmi poslednji eksperimentalni imidž"
@@ -3348,15 +3371,17 @@ msgstr ""
 msgid "Graphical Multi EPG"
 msgstr "Grafički Multi EPG"
 
+#
 msgid "Greek"
-msgstr ""
+msgstr "Grčki"
 
 #
 msgid "Green boost"
 msgstr "Zeleno pojačanje"
 
+#
 msgid "Guard Interval"
-msgstr ""
+msgstr "Interval zaštite"
 
 msgid "Guard interval"
 msgstr "Zaštitni interval"
@@ -3406,8 +3431,9 @@ msgstr ""
 msgid "Hide zap errors"
 msgstr ""
 
+#
 msgid "Hierarchy Information"
-msgstr ""
+msgstr "Informacije hijerarhije"
 
 msgid "Hierarchy info"
 msgstr "Rangiranje info"
@@ -3456,8 +3482,9 @@ msgstr "Kako postupiti sa nađenim krah zapisima?"
 msgid "Hue"
 msgstr "Nijansa"
 
+#
 msgid "Hungarian"
-msgstr ""
+msgstr "Mađarski"
 
 msgid "IMDB search for current event"
 msgstr ""
@@ -3475,9 +3502,8 @@ msgstr "IP Adresa"
 msgid "IP-Address"
 msgstr ""
 
-#
 msgid "IP:"
-msgstr "IP:"
+msgstr ""
 
 #
 msgid "ISO file is too large for this filesystem!"
@@ -3494,9 +3520,6 @@ msgid "Idle Time: "
 msgstr ""
 
 msgid "If Teletext caching is enabled, displaying pages will be much faster."
-msgstr ""
-
-msgid "If est to 'yes' the box will use AC3 sound (when available)."
 msgstr ""
 
 msgid ""
@@ -3520,18 +3543,23 @@ msgid ""
 "the EPG will open on the present channel."
 msgstr ""
 
+msgid "If set to 'yes' the STB_BOX will use AC3 sound (when available)."
+msgstr ""
+
+msgid ""
+"If set to 'yes' the STB_BOX will use the audio stream that has been used "
+"earlier."
+msgstr ""
+
+msgid ""
+"If set to 'yes' the STB_BOX will use the subtitles that has been used "
+"earlier."
+msgstr ""
+
 msgid "If set to 'yes' the bouquets will be shown each time you open the EPG"
 msgstr ""
 
 msgid "If set to 'yes' the bouquets will be shown each time you open the EPG."
-msgstr ""
-
-msgid ""
-"If set to 'yes' the box will use the audio stream that has been used earlier."
-msgstr ""
-
-msgid ""
-"If set to 'yes' the box will use the subtitles that has been used earlier."
 msgstr ""
 
 msgid ""
@@ -3593,7 +3621,7 @@ msgstr ""
 
 msgid ""
 "If you select \"yes\" the scan will only save channels that are not "
-"encrypted; \"no\" will find encrypted and non-encrypted cannels"
+"encrypted; \"no\" will find encrypted and non-encrypted channels"
 msgstr ""
 
 msgid ""
@@ -3818,6 +3846,9 @@ msgstr "Interni fleš"
 msgid "Internal hdd only"
 msgstr ""
 
+msgid "Interval between keys when repeating:"
+msgstr ""
+
 #
 msgid "Invalid Location"
 msgstr "Nevažeća lokacija"
@@ -3880,8 +3911,9 @@ msgstr ""
 msgid "Inversion"
 msgstr "Inverzija"
 
+#
 msgid "Invert"
-msgstr ""
+msgstr "Invertni"
 
 #
 msgid "Ipkg"
@@ -3891,8 +3923,9 @@ msgstr "Ipkg"
 msgid "Is this videomode ok?"
 msgstr "Da li je ovaj video mod OK?"
 
+#
 msgid "Italian"
-msgstr ""
+msgstr "Italijanski"
 
 msgid "Items per Page "
 msgstr ""
@@ -4039,8 +4072,9 @@ msgstr ""
 msgid "Latitude"
 msgstr "Geografska širina"
 
+#
 msgid "Latvian"
-msgstr ""
+msgstr "Letonski"
 
 #
 msgid "Leave DVD Player?"
@@ -4107,8 +4141,9 @@ msgstr ""
 msgid "List version %d, found %d channels"
 msgstr ""
 
+#
 msgid "Lithuanian"
-msgstr ""
+msgstr "Litvanski"
 
 #
 msgid "Load"
@@ -4820,7 +4855,7 @@ msgid "No, do nothing."
 msgstr "Ne, ništa ne čini "
 
 #
-msgid "No, just start my dreambox"
+msgid "No, just start my STB_BOX"
 msgstr "Ne, samo pokreni moj drimbox"
 
 msgid "No, never"
@@ -4857,8 +4892,9 @@ msgstr "Nelinearno"
 msgid "North"
 msgstr "Sever"
 
+#
 msgid "Norwegian"
-msgstr ""
+msgstr "Norveški"
 
 msgid "Not Flashing"
 msgstr ""
@@ -5026,8 +5062,9 @@ msgstr ""
 msgid "Optionally enter your name if you want to."
 msgstr "Opciono unesite vaše ime ako želite."
 
+#
 msgid "Orbital Position"
-msgstr ""
+msgstr "Orbitalna pozicija"
 
 msgid "Orbital position"
 msgstr "Orbitalna pozicija"
@@ -5170,7 +5207,7 @@ msgid "Permanently remove all deleted items"
 msgstr ""
 
 msgid "Persian"
-msgstr ""
+msgstr "Persijski"
 
 #
 msgid "Phone number"
@@ -5511,8 +5548,9 @@ msgstr ""
 msgid "Polarization"
 msgstr "Polarizacija"
 
+#
 msgid "Polish"
-msgstr ""
+msgstr "Poljski"
 
 msgid "Port"
 msgstr ""
@@ -5536,8 +5574,9 @@ msgstr "Port D"
 msgid "Port:"
 msgstr ""
 
+#
 msgid "Portuguese"
-msgstr ""
+msgstr "Portugalski"
 
 msgid "Position of finished Timers in Timerlist"
 msgstr "Pozicija završenog tajmera u listi tajmera"
@@ -5549,21 +5588,18 @@ msgstr "Pozicioner"
 msgid "Positioner Setup"
 msgstr ""
 
-#
 msgid "Positioner fine movement"
-msgstr "Fini pokreti motora"
+msgstr ""
 
-#
 msgid "Positioner movement"
-msgstr "Pokret motora"
+msgstr ""
 
 #
 msgid "Positioner setup"
 msgstr "Postavke motora"
 
-#
 msgid "Positioner storage"
-msgstr "Čuvanje motora"
+msgstr ""
 
 #
 msgid "Power threshold in mA"
@@ -5809,6 +5845,12 @@ msgstr "Stvarno restartovati sada?"
 #
 msgid "Really shutdown now?"
 msgstr "Stvarno ugasiti sada?"
+
+msgid "Really upgrade the frontprocessor and reboot now?"
+msgstr ""
+
+msgid "Really upgrade your STB_BOX and reboot now?"
+msgstr ""
 
 #
 msgid "Reboot"
@@ -6138,7 +6180,7 @@ msgid "Roll-off"
 msgstr "Kotrljanje"
 
 msgid "Rolloff"
-msgstr ""
+msgstr "Kotrljanje"
 
 msgid "Romanian"
 msgstr ""
@@ -6153,12 +6195,12 @@ msgstr "Brzina okretanja rotora"
 msgid "Round start time on"
 msgstr ""
 
-#
 msgid "Running"
-msgstr "Pokrenuto"
-
-msgid "Russian"
 msgstr ""
+
+#
+msgid "Russian"
+msgstr "Ruski"
 
 #
 msgid "S-Video"
@@ -6597,8 +6639,9 @@ msgstr ""
 msgid "Sequence repeat"
 msgstr "Ponovi redosled"
 
+#
 msgid "Serbian"
-msgstr ""
+msgstr "Srpski"
 
 msgid "Serial No"
 msgstr ""
@@ -6724,9 +6767,8 @@ msgstr ""
 msgid "Set interface as default Interface"
 msgstr "Postavi interfejs kao osnovni interfejs"
 
-#
 msgid "Set limits"
-msgstr "Postavi limite"
+msgstr ""
 
 msgid "Set the brightness level for normal operation."
 msgstr ""
@@ -6999,6 +7041,9 @@ msgstr "Prikaži info traku na preskakanju napred/nazad"
 msgid "Show job tasks in extensions"
 msgstr ""
 
+msgid "Show live tv when movie stoped"
+msgstr ""
+
 msgid "Show or hide the extended description, (skin dependant)."
 msgstr ""
 
@@ -7043,7 +7088,7 @@ msgstr "Prikaži stanje vaše bežične LAN veze.\n"
 msgid "Shows the the movie lenth in the list."
 msgstr ""
 
-msgid "Shows the watched staus of the movie."
+msgid "Shows the watched status of the movie."
 msgstr ""
 
 #
@@ -7051,7 +7096,7 @@ msgid "Shutdown"
 msgstr "Isključivanje"
 
 #
-msgid "Shutdown Dreambox after"
+msgid "Shutdown STB_BOX after"
 msgstr "Isključi drimbox posle"
 
 msgid "Side by Side"
@@ -7137,8 +7182,9 @@ msgstr "Otvor %d"
 msgid "Slovak"
 msgstr ""
 
+#
 msgid "Slovenian"
-msgstr ""
+msgstr "Slovenački"
 
 #
 msgid "Slow"
@@ -7197,11 +7243,15 @@ msgstr "Žao mi je,nema rezervnih kopija"
 msgid "Sorry uShare Config is Missing"
 msgstr ""
 
+#
 msgid ""
 "Sorry your Backup destination does not exist\n"
 "\n"
 "Please choose an other one."
 msgstr ""
+"Oprostite, vaša destinacija za sigurnosnu kopiju ne postoji\n"
+"\n"
+"Molim odaberite drugu lokaciju."
 
 #
 msgid ""
@@ -7261,8 +7311,9 @@ msgstr "Jug"
 msgid "Space used:"
 msgstr ""
 
+#
 msgid "Spanish"
-msgstr ""
+msgstr "Španski"
 
 #
 msgid "Split preview mode"
@@ -7450,8 +7501,9 @@ msgstr ""
 msgid "Swap Services"
 msgstr "Zameni kanale"
 
+#
 msgid "Swedish"
-msgstr ""
+msgstr "Švedski"
 
 msgid "Switch TV to correct input"
 msgstr ""
@@ -7471,8 +7523,9 @@ msgstr "prebaci na prethodni podkanal "
 msgid "Switchable tuner types:"
 msgstr "Zamenljivi tipovi tjunera:"
 
+#
 msgid "Symbol Rate"
-msgstr ""
+msgstr "Simbol rata"
 
 msgid "Symbol rate"
 msgstr "Simbol rata"
@@ -7483,8 +7536,9 @@ msgstr ""
 msgid "Symbol rate values are in megasymbols; enter a value between 2 and 45"
 msgstr ""
 
+#
 msgid "Symbolrate"
-msgstr ""
+msgstr "Simbol rata"
 
 msgid "Sync NTP every (minutes)"
 msgstr ""
@@ -7574,7 +7628,7 @@ msgid "Test mode"
 msgstr "Test način"
 
 #
-msgid "Test the network configuration of your Dreambox.\n"
+msgid "Test the network configuration of your STB_BOX.\n"
 msgstr "Testirajte mrežnu konfiguraciju vašeg drimboxa.\n"
 
 #
@@ -7600,8 +7654,8 @@ msgstr ""
 
 #
 msgid ""
-"Thank you for using the wizard. Your box is now ready to use.\n"
-"Please press OK to start using your Dreambox."
+"Thank you for using the wizard. Your STB_BOX is now ready to use.\n"
+"Please press OK to start using your STB_BOX."
 msgstr ""
 "Hvala vam na korišćenju čarobnjaka. Vaš prijemnik je sada spreman za "
 "korišćenje.\n"
@@ -7620,7 +7674,7 @@ msgstr ""
 #
 msgid ""
 "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to "
-"create a Dreambox format data DVD (which will not play in stand-alone DVD "
+"create a STB_BOX format data DVD (which will not play in stand-alone DVD "
 "players) instead?"
 msgstr ""
 "DVD standard ne podržava H.264 (HDTV) video strimove.Da li želite umesto "
@@ -7681,17 +7735,25 @@ msgstr ""
 "USB stik je bio pripremljen da bude butabiloan.\n"
 "Sada možete skinuti NFI imidž datoteku!"
 
+msgid "The User Interface of your receiver is restarting"
+msgstr ""
+
+msgid ""
+"The User Interface of your receiver is restarting\n"
+"due to an error in mytest.py"
+msgstr ""
+
+msgid "The STB_BOX reads the stored EPG data every (hours)."
+msgstr ""
+
+msgid "The STB_BOX stores the EPG data every (hours)."
+msgstr ""
+
 #
 msgid "The backup failed. Please choose a different backup location."
 msgstr "Neuspešna sigurnosna kopija. Molim odaberite drugu lokaciju."
 
 msgid "The blindscan run was cancelled by the user."
-msgstr ""
-
-msgid "The box reads the stored EPG data every (hours)."
-msgstr ""
-
-msgid "The box stores the EPG data every (hours)."
 msgstr ""
 
 msgid "The current beta image could not be stable"
@@ -7738,7 +7800,7 @@ msgstr "Instalacija osnovne liste kanala je završena."
 #
 msgid ""
 "The installation of the default settings is finished. You can now continue "
-"configuring your Dreambox by pressing the OK button on the remote control."
+"configuring your STB_BOX by pressing the OK button on the remote control."
 msgstr ""
 "Instalacija osnovnih postavki je završena.Sada možete nastaviti "
 "konfiguraciju vašeg drimboxa pritiskajući OK tipku na daljinskom upravljaču."
@@ -7879,22 +7941,17 @@ msgstr ""
 
 #
 #, python-format
-msgid "This Dreambox can't decode %s streams!"
+msgid "This STB_BOX can't decode %s streams!"
 msgstr "Drimbox ne može dekodirati %s strimove!"
 
 msgid ""
 "This allows the ECM data to be included in the stream. This enables a client "
-"box to decode it."
+"STB_BOX to decode it."
 msgstr ""
 
 msgid ""
-"This allows the box to decode the stream (if the ECM data is included in the "
-"stream and a valid card is availble)."
-msgstr ""
-
-msgid ""
-"This allows you change the font size relative to skin size, so 1 increases "
-"by 1 piont size, and -1 decreases by 1 piont size"
+"This allows the STB_BOX to decode the stream (if the ECM data is included in "
+"the stream and a valid card is availble)."
 msgstr ""
 
 msgid ""
@@ -7966,6 +8023,18 @@ msgid ""
 "this)."
 msgstr ""
 
+msgid "This option lets you adjust the 3D depth"
+msgstr ""
+
+msgid "This option lets you adjust the transparency of the OSD"
+msgstr ""
+
+msgid "This option lets you choose the 3D mode"
+msgstr ""
+
+msgid "This option lets you show the option in the extension screen"
+msgstr ""
+
 msgid ""
 "This option moves the PVR status from the seprate window into the "
 "MoviePlayer infobar."
@@ -7998,7 +8067,7 @@ msgstr ""
 
 msgid ""
 "This plugin creates a USB stick which can be used to update the firmware of "
-"your Dreambox without the need for a network or WLAN connection.\n"
+"your STB_BOX without the need for a network or WLAN connection.\n"
 "First, a USB stick needs to be prepared so that it becomes bootable.\n"
 "In the next step, an NFI image file can be downloaded from the update server "
 "and saved on the USB stick.\n"
@@ -8249,19 +8318,13 @@ msgid "To subtitle selection"
 msgstr ""
 
 msgid ""
-"To update your Dreambox firmware, please follow these steps:\n"
+"To update your STB_BOX firmware, please follow these steps:\n"
 "1) Turn off your box with the rear power switch and make sure the bootable "
 "USB stick is plugged in.\n"
 "2) Turn mains back on and hold the DOWN button on the front panel pressed "
 "for 10 seconds.\n"
 "3) Wait for bootup and follow instructions of the wizard."
 msgstr ""
-"Da ažurirate vaš drimboks softver,molim pratite sledeće korake:\n"
-"1)Ugasite boks na prekidaču otpozadi i uverite se da je butabilni USB stik "
-"uključen.\n"
-"2)Uključite prekidač otpozadi i držite tipku DOLE na prednoj ploči "
-"pritisnutu 10 sekundi.\n"
-"3)Sačekajte podizanje i pratite instrukcije čarobnjaka."
 
 #
 msgid "Today"
@@ -8319,8 +8382,9 @@ msgstr "Prevod"
 msgid "Translation:"
 msgstr "Prevod:"
 
+#
 msgid "Transmission Mode"
-msgstr ""
+msgstr "Mod transmisije"
 
 #
 msgid "Transmission mode"
@@ -8330,8 +8394,9 @@ msgstr "Mod transmisije"
 msgid "Transponder"
 msgstr "Transponder"
 
+#
 msgid "Transponder Type"
-msgstr ""
+msgstr "Tip Transpondera"
 
 msgid "Trashcan"
 msgstr ""
@@ -8402,8 +8467,9 @@ msgstr "Status tjunera"
 msgid "Tuner type"
 msgstr "Tip tjunera"
 
+#
 msgid "Turkish"
-msgstr ""
+msgstr "Turski"
 
 #
 msgid "Two"
@@ -8471,9 +8537,8 @@ msgstr "Unikabl"
 msgid "Unicable LNB"
 msgstr "Unikabl LNB"
 
-#
 msgid "Unicable Matrix"
-msgstr "Unikabl Matrix"
+msgstr ""
 
 #
 msgid "Uninstall"
@@ -8504,8 +8569,9 @@ msgstr ""
 msgid "Updatefeed not available."
 msgstr "Fid ažuriranja nije dostupan."
 
+#
 msgid "Updates your receiver's software"
-msgstr ""
+msgstr "Nadograđuje softver vašeg prijemnika"
 
 #
 msgid "Updating finished. Here is the result:"
@@ -8529,15 +8595,16 @@ msgstr ""
 msgid "Upgrade finished."
 msgstr "Nadogradnja završena."
 
-msgid "Upgrade finished. Do you want to reboot your Dreambox?"
-msgstr ""
+#
+msgid "Upgrade finished. Do you want to reboot your STB_BOX?"
+msgstr "Nadogradnja završena. Želite li sada restartovati vaš drimbox?"
 
 #
 msgid "Upgrading"
 msgstr "Nadograđujem"
 
 #
-msgid "Upgrading Dreambox... Please wait"
+msgid "Upgrading STB_BOX... Please wait"
 msgstr "Nadograđujem drimbox... Molim čekajte"
 
 msgid "Uphops +"
@@ -8601,6 +8668,14 @@ msgid "Use power measurement"
 msgstr "Koristi merenje snage"
 
 msgid "Use slim screen"
+msgstr ""
+
+msgid ""
+"Use the Left/Right buttons on your remote to adjust the size of the OSD. "
+"Left button decreases the size, Right increases the size."
+msgstr ""
+
+msgid "Use the Left/Right buttons on your remote to move the OSD left/right"
 msgstr ""
 
 #
@@ -8875,12 +8950,27 @@ msgstr "Mod Napona"
 msgid "Volume"
 msgstr "Volumen"
 
-#
-msgid "Dreambox format data DVD (HDTV compatible)"
-msgstr "Drimbox oblik podataka DVD (HDTV kompatibilan)"
+msgid "STB_BOX advanced remote control (native)"
+msgstr ""
 
 #
-msgid "Dreambox software because updates are available."
+msgid "STB_BOX format data DVD (HDTV compatible)"
+msgstr "Drimbox oblik podataka DVD (HDTV kompatibilan)"
+
+msgid "STB_BOX front panel"
+msgstr ""
+
+msgid "STB_BOX ir keyboard"
+msgstr ""
+
+msgid "STB_BOX ir mouse"
+msgstr ""
+
+msgid "STB_BOX remote control (native)"
+msgstr ""
+
+#
+msgid "STB_BOX software because updates are available."
 msgstr "Drimboks softver zato što su ažuriranja dostupna."
 
 #
@@ -8982,8 +9072,8 @@ msgstr ""
 #
 msgid ""
 "Welcome to the Image upgrade wizard. The wizard will assist you in upgrading "
-"the firmware of your Dreambox by providing a backup facility for your "
-"current settings and a short explanation of how to upgrade your firmware."
+"the firmware of your STB_BOX by providing a backup facility for your current "
+"settings and a short explanation of how to upgrade your firmware."
 msgstr ""
 "Dobro došli u čarobnjaka za nadogradnju softvera. Čarobnjak će vam pomoći "
 "tokom nadogradnje firmvera na vašem drimboxu s pružanjem mogućnosti "
@@ -8995,7 +9085,7 @@ msgid ""
 "Welcome to the cleanup wizard.\n"
 "\n"
 "We have detected that your available internal memory has dropped below 2MB.\n"
-"To ensure stable operation of your Dreambox, the internal memory should be "
+"To ensure stable operation of your STB_BOX, the internal memory should be "
 "cleaned up.\n"
 "You can use this wizard to remove some extensions.\n"
 msgstr ""
@@ -9010,8 +9100,8 @@ msgstr ""
 msgid ""
 "Welcome.\n"
 "\n"
-"If you want to connect your Dreambox to the Internet, this wizard will "
-"guide you through the basic network setup of your Dreambox.\n"
+"If you want to connect your STB_BOX to the Internet, this wizard will guide "
+"you through the basic network setup of your STB_BOX.\n"
 "\n"
 "Press OK to start configuring your network"
 msgstr ""
@@ -9026,8 +9116,7 @@ msgstr ""
 msgid ""
 "Welcome.\n"
 "\n"
-"This start wizard will guide you through the basic setup of your Vu+ "
-"Ultimo.\n"
+"This start wizard will guide you through the basic setup of your STB_BOX.\n"
 "Press the OK button on your remote control to move to the next step."
 msgstr ""
 "Dobro došli.\n"
@@ -9058,8 +9147,11 @@ msgid ""
 msgstr ""
 
 msgid ""
-"When set each folder will show the previous stae used, when off the default "
+"When set each folder will show the previous state used, when off the default "
 "values will be shown."
+msgstr ""
+
+msgid "When set the PIG will return to live after a movie has stopped playing."
 msgstr ""
 
 msgid ""
@@ -9274,7 +9366,7 @@ msgid "You can install this plugin."
 msgstr "Možete instalirati ovaj dodatak."
 
 #
-msgid "You can only burn Dreambox recordings!"
+msgid "You can only burn STB_BOX recordings!"
 msgstr "Možeš pržiti samo drimboks snimke!"
 
 #
@@ -9368,9 +9460,9 @@ msgstr "Morate pričekati %s!"
 
 #
 msgid ""
-"You need a PC connected to your dreambox. If you need further "
-"instructions, please visit the website http://www.dm7025.de.\n"
-"Your dreambox will now be halted. After you have performed the update "
+"You need a PC connected to your STB_BOX. If you need further instructions, "
+"please visit the website http://www.dm7025.de.\n"
+"Your STB_BOX will now be halted. After you have performed the update "
 "instructions from the website, your new firmware will ask you to restore "
 "your settings."
 msgstr ""
@@ -9397,7 +9489,7 @@ msgstr ""
 
 #
 msgid ""
-"Your Dreambox is now ready to use.\n"
+"Your STB_BOX is now ready to use.\n"
 "\n"
 "Your internet connection is working now.\n"
 "\n"
@@ -9409,7 +9501,7 @@ msgstr ""
 
 #
 msgid ""
-"Your Dreambox is now ready to use.\n"
+"Your STB_BOX is now ready to use.\n"
 "\n"
 "Your internet connection is working now.\n"
 "\n"
@@ -9420,6 +9512,24 @@ msgstr ""
 "Vaša internet veza sada radi.\n"
 "\n"
 "Molim pritisnite OK da nastavite."
+
+msgid "Your STB_BOX is rebooting"
+msgstr ""
+
+msgid "Your STB_BOX is shutting down"
+msgstr ""
+
+#
+msgid "Your STB_BOX is shutting down. Please stand by..."
+msgstr "Vaš drimbox se sada gasi .Molimo stand by..."
+
+#
+msgid ""
+"Your STB_BOX isn't connected to the internet properly. Please check it and "
+"try again."
+msgstr ""
+"Vaš drimbox nije ispravno spojen na internet. Molim proverite i pokušajte "
+"ponovo."
 
 #
 msgid ""
@@ -9437,14 +9547,11 @@ msgstr ""
 "Vaša kolekcija prelazi veličinu jednoslojnog medija,trebate prazan dvoslojni "
 "DVD!  "
 
-#
 #, python-format
 msgid ""
 "Your config file is not well-formed:\n"
 "%s"
 msgstr ""
-"Vaša konfig. dat. nije dobro formirana :\n"
-"%s"
 
 #
 msgid "Your current collection will get lost!"
@@ -9462,6 +9569,12 @@ msgstr ""
 "Vaš softver frontprocesora mora biti nadograđen.\n"
 "Pritisnite OK za početak nadogradnje."
 
+msgid ""
+"Your frontprocessor will be upgraded\n"
+"Please wait until your receiver reboots\n"
+"This may take a few minutes"
+msgstr ""
+
 #
 msgid ""
 "Your internet connection is not working!\n"
@@ -9477,18 +9590,6 @@ msgstr "Vaše  ime (opciono):"
 #
 msgid "Your network configuration has been activated."
 msgstr "Vaša mrežna konfiguracija je aktivirana."
-
-#
-msgid "Your dreambox is shutting down. Please stand by..."
-msgstr "Vaš drimbox se sada gasi .Molimo stand by..."
-
-#
-msgid ""
-"Your dreambox isn't connected to the internet properly. Please check it "
-"and try again."
-msgstr ""
-"Vaš drimbox nije ispravno spojen na internet. Molim proverite i pokušajte "
-"ponovo."
 
 #
 msgid ""
@@ -9681,10 +9782,13 @@ msgstr ""
 msgid "alphabetic sort"
 msgstr "sortiraj abecedno"
 
+#
 msgid ""
 "are you sure you want to restore\n"
 "following backup:\n"
 msgstr ""
+"Želite li stvarno vratiti sledeću\n"
+"sigurnosnu kopiju:\n"
 
 msgid "as plugin in extended bar"
 msgstr ""
@@ -9853,9 +9957,8 @@ msgstr "Dan"
 msgid "decrease uphop by 1"
 msgstr ""
 
-#
 msgid "delete"
-msgstr "Obriši"
+msgstr ""
 
 #
 msgid "delete cut"
@@ -9968,8 +10071,9 @@ msgstr "završi rez ovde"
 msgid "end favourites edit"
 msgstr "završi uređivanje favorita"
 
+#
 msgid "enigma2 and network"
-msgstr ""
+msgstr "Enigma2 i mreža"
 
 #
 msgid "equal to"
@@ -10191,9 +10295,8 @@ msgstr "meni"
 msgid "mins"
 msgstr "mins"
 
-#
 msgid "minute"
-msgstr "minut"
+msgstr ""
 
 #
 msgid "minutes"
@@ -10934,8 +11037,8 @@ msgstr "Da ( zadrži fidove)"
 
 #
 msgid ""
-"your dreambox might be unusable now. Please consult the manual for further "
-"assistance before rebooting your dreambox."
+"your STB_BOX might be unusable now. Please consult the manual for further "
+"assistance before rebooting your STB_BOX."
 msgstr ""
 "vaš drimbox sada može biti  beskoristan. Molim proverite uputstvo za dalju "
 "pomoć pre ponovnog podizanja vašeg drimboxa."
@@ -10947,131 +11050,3 @@ msgstr "zap"
 #
 msgid "zapped"
 msgstr "prebačen"
-
-#
-#~ msgid "30 minutes"
-#~ msgstr "30 minuta"
-
-#
-#~ msgid "5 minutes"
-#~ msgstr "5 minuta"
-
-#
-#~ msgid "60 minutes"
-#~ msgstr "60 minuta"
-
-#
-#~ msgid "AC3 downmix"
-#~ msgstr "AC3 downmix"
-
-#
-#~ msgid "Action on long powerbutton press"
-#~ msgstr "Dejstvo za dugo pritisnutu tipku paljenja"
-
-#
-#~ msgid "Action on short powerbutton press"
-#~ msgstr "Akcija za kratko pritisnuto dugme paljenja"
-
-#
-#~ msgid "Alternative radio mode"
-#~ msgstr "Alternativni radio mod"
-
-#
-#~ msgid "Create movie folder failed"
-#~ msgstr "Neuspešno stvaranje video fascikle"
-
-#
-#~ msgid "Creating partition failed"
-#~ msgstr "Neuspešno kreiranje particije"
-
-#
-#~ msgid "Downloadable new plugins"
-#~ msgstr "Novi dodaci za skidanje"
-
-#
-#~ msgid "Everything is fine"
-#~ msgstr "Sve je u redu"
-
-#
-#~ msgid "Filesystem contains uncorrectable errors"
-#~ msgstr "Sistemske datoteke sadrže nepopravljive greške"
-
-#
-#~ msgid "Fsck failed"
-#~ msgstr "Fsck nije uspeo"
-
-#
-#~ msgid "General AC3 delay (ms)"
-#~ msgstr "Opšte AC3 kašnjenje (ms) "
-
-#
-#~ msgid "General PCM delay (ms)"
-#~ msgstr "Opšte PCM kašnjenje (ms)"
-
-#
-#~ msgid "Infobar timeout"
-#~ msgstr "Vreme trajanja info trake"
-
-#~ msgid "Input devices"
-#~ msgstr "Ulazni uređaji"
-
-#
-#~ msgid "Mkfs failed"
-#~ msgstr "Mkfs nije uspeo"
-
-#
-#~ msgid "Mount failed"
-#~ msgstr "Mount neuspešan"
-
-#~ msgid "Multi-EPG bouquet selection"
-#~ msgstr "Multi EPG izbor buketa"
-
-#
-#~ msgid "No picture on TV? Press EXIT and retry."
-#~ msgstr "Nema slike na TV?Pritisnite IZLAZ i probajte ponovo."
-
-#
-#~ msgid "Open Context Menu"
-#~ msgstr "Otvori dopunski meni"
-
-#
-#~ msgid "Please Reboot"
-#~ msgstr "Molim podići ponovo"
-
-#
-#~ msgid "Return to file browser"
-#~ msgstr "Vratite se na pretraživač datoteka"
-
-#
-#~ msgid "Skin"
-#~ msgstr "Maska"
-
-#
-#~ msgid "TV System"
-#~ msgstr "TV Sistem"
-
-#
-#~ msgid ""
-#~ "The input port should be configured now.\n"
-#~ "You can now configure the screen by displaying some test pictures. Do you "
-#~ "want to do that now?"
-#~ msgstr ""
-#~ "Ulazni port bi sada trebalo konfigurisati.\n"
-#~ "Možete sada konfigurisati ekran prikazujući neke test slike.Želite li to "
-#~ "sada da učinite? "
-
-#
-#~ msgid "Unmount failed"
-#~ msgstr "Demauntiranje nije uspelo"
-
-#
-#~ msgid "hour"
-#~ msgstr "sat"
-
-#
-#~ msgid "hours"
-#~ msgstr "sati"
-
-#
-#~ msgid "second"
-#~ msgstr "drugi"

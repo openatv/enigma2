@@ -315,29 +315,19 @@ int eFilePushThread::filterRecordData(const unsigned char *data, int len, size_t
 
 
 
-eFilePushThreadRecorder::eFilePushThreadRecorder(int io_prio_class, int io_prio_level, int blocksize, size_t buffersize)
-	:prio_class(io_prio_class),
-	 prio(io_prio_level),
-	 m_stop(0),
-	 m_fd_source(-1),
-	 m_blocksize(blocksize),
-	 m_buffersize(buffersize),
-	 m_buffer((unsigned char*) mmap(NULL, buffersize, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, /*ignored*/-1, 0)),
-	 m_messagepump(eApp, 0)
+eFilePushThreadRecorder::eFilePushThreadRecorder(unsigned char* buffer, size_t buffersize):
+	m_fd_source(-1),
+	m_buffersize(buffersize),
+	m_buffer(buffer),
+	m_stop(0),
+	m_messagepump(eApp, 0)
 {
-	if (m_buffer == MAP_FAILED)
-		eFatal("Failed to allocate filepush buffer, contact MiLo\n");
 	CONNECT(m_messagepump.recv_msg, eFilePushThreadRecorder::recvEvent);
-}
-
-eFilePushThreadRecorder::~eFilePushThreadRecorder()
-{
-	munmap(m_buffer, m_buffersize);
 }
 
 void eFilePushThreadRecorder::thread()
 {
-	setIoPrio(prio_class, prio);
+	setIoPrio(IOPRIO_CLASS_RT, 7);
 
 	eDebug("[eFilePushThreadRecorder] THREAD START");
 
@@ -373,7 +363,7 @@ void eFilePushThreadRecorder::thread()
 		struct timeval now;
 		gettimeofday(&starttime, NULL);
 #endif
-		int w = writeData(m_buffer, bytes);
+		int w = writeData(bytes);
 #ifdef SHOW_WRITE_TIME
 		gettimeofday(&now, NULL);
 		suseconds_t diff = (1000000 * (now.tv_sec - starttime.tv_sec)) + now.tv_usec - starttime.tv_usec;
@@ -386,6 +376,7 @@ void eFilePushThreadRecorder::thread()
 			break;
 		}
 	}
+	flush();
 	sendEvent(evtStopped);
 	eDebug("[eFilePushThreadRecorder] THREAD STOP");
 }
@@ -403,7 +394,7 @@ void eFilePushThreadRecorder::stop()
 	if (!sync())
 		return;
 	m_stop = 1;
-	eDebug("stopping thread."); /* just do it ONCE. it won't help to do this more than once. */
+	eDebug("[eFilePushThreadRecorder] stopping thread."); /* just do it ONCE. it won't help to do this more than once. */
 	sendSignal(SIGUSR1);
 	kill(0);
 }

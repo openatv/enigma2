@@ -16,6 +16,8 @@ dist_install_DATA = \
 	gr.png \
 	hr.png \
 	hu.png \
+	il.png \
+	ir.png \
 	is.png \
 	it.png \
 	lt.png \

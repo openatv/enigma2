@@ -75,7 +75,7 @@ class pliExpertInfo(Poll, Converter, object):
 				feinfo = (service and service.frontendInfo())
 				prvd = info.getInfoString(iServiceInformation.sProvider)
 				Ret_Text = self.short(prvd)
-				frontendDataOrg = (feinfo and feinfo.getAll(False))
+				frontendDataOrg = (feinfo and feinfo.getAll(True))
 			except:
 				try:
 					frontendDataOrg = info.getInfoObject(service, iServiceInformation.sTransponderData)
@@ -297,7 +297,7 @@ class pliExpertInfo(Poll, Converter, object):
 							else:
 								orb_pos = str((float(orbital_pos))/10.0) + "E"
 						Ret_Text += sep + orb_pos + "\n"
-						Ret_Text += frequency + sep + frontendData.get("polarization")[:1]
+						Ret_Text += frequency + sep + frontendData.get("polarization_abbreviation")
 						Ret_Text += sep + symbolrate
 						Ret_Text += sep + frontendData.get("modulation") + "-" + fec_inner
 					else:
@@ -315,7 +315,7 @@ class pliExpertInfo(Poll, Converter, object):
 			prvd = info.getInfoString(iServiceInformation.sProvider)
 			Ret_Text = self.short(prvd)
 
-			frontendDataOrg = (feinfo and feinfo.getAll(False))
+			frontendDataOrg = (feinfo and feinfo.getAll(True))
 			if (frontendDataOrg is not None):
 				frontendData = ConvertToHumanReadable(frontendDataOrg)
 				if ((frontendDataOrg.get("tuner_type") == "DVB-S") or (frontendDataOrg.get("tuner_type") == "DVB-C")):

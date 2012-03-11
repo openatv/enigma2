@@ -23,7 +23,7 @@ def InitUsageConfig():
 		folderprefix=""
 		boxtype="not detected"
 	config.misc.boxtype = ConfigText(default = boxtype)
-	config.misc.useNTPminutes = ConfigSelection(default = "30", choices = [("30", _("30 Minutes")), ("60", _("Hour")), ("1440", _("Once per day"))])
+	config.misc.useNTPminutes = ConfigSelection(default = "30", choices = [("30", "30" + " " +_("minutes")), ("60", _("Hour")), ("1440", _("Once per day"))])
 	config.misc.remotecontrol_text_support = ConfigYesNo(default = False)
 
 	config.usage = ConfigSubsection();
@@ -222,11 +222,11 @@ def InitUsageConfig():
 	config.usage.show_cryptoinfo = ConfigYesNo(default = True)
 	config.usage.show_eit_nownext = ConfigYesNo(default = True)
 
-	config.osd.dst_left = ConfigSlider(default = 0, increment = 1, limits = (0, 720))
-	config.osd.dst_width = ConfigSlider(default = 720, increment = 1, limits = (0, 720))
-	config.osd.dst_top = ConfigSlider(default = 0, increment = 1, limits = (0, 576))
-	config.osd.dst_height = ConfigSlider(default = 576, increment = 1, limits = (0, 576))
-	config.osd.alpha = ConfigSlider(default=255, limits=(0,255))
+	config.osd.dst_left = ConfigSelectionNumber(default = 0, stepwidth = 1, min = 0, max = 720, wraparound = False)
+	config.osd.dst_width = ConfigSelectionNumber(default = 720, stepwidth = 1, min = 0, max = 720, wraparound = False)
+	config.osd.dst_top = ConfigSelectionNumber(default = 0, stepwidth = 1, min = 0, max = 576, wraparound = False)
+	config.osd.dst_height = ConfigSelectionNumber(default = 576, stepwidth = 1, min = 0, max = 576, wraparound = False)
+	config.osd.alpha = ConfigSelectionNumber(default = 255, stepwidth = 1, min = 0, max = 255, wraparound = False)
 	if config.misc.boxtype.value.startswith('vu'):
 		choiceoptions = [("0", _("Off")), ("1", _("Side by Side")),("2", _("Top and Bottom")), ("3", _("Auto"))]
 		config.osd.threeDmode = ConfigSelection(default = 'auto', choices = choiceoptions )
