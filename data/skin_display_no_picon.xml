@@ -108,8 +108,8 @@
 			<convert type="EventTime">Progress</convert>
 		</widget>
 		<widget source="parent.Event" render="Label" position="0,51" size="140,18" font="FdLcD;17" halign="left" valign="bottom" noWrap="1">
-			<convert type="EventTime">Remaining</convert>
-			<convert type="RemainingToText">NoSeconds</convert>
+			<convert type="EventTime">VFDRemaining</convert>
+			<convert type="RemainingToText">VFDNoSeconds</convert>
 		</widget>
 	</screen>
 	
@@ -125,8 +125,8 @@
 			<convert type="EventTime">Progress</convert>
 		</widget>
 		<widget source="session.Event_Now" render="Label" position="0,51" size="140,18" font="FdLcD;17" halign="left" valign="bottom" noWrap="1">
-			<convert type="EventTime">Remaining</convert>
-			<convert type="RemainingToText">NoSeconds</convert>
+			<convert type="EventTime">VFDRemaining</convert>
+			<convert type="RemainingToText">VFDNoSeconds</convert>
 		</widget>
 		<panel name="SummaryIconsPanel" />
 		<panel name="SummaryTunerStatusPanel" />
@@ -141,10 +141,10 @@
 			<convert type="ServiceName">Name</convert>
 		</widget>
 		<widget source="session.CurrentService" render="Progress" position="0,43" size="140,5" borderWidth="1">
-			<convert type="ServicePosition">Position</convert>
+			<convert type="ServicePosition">VFDPosition</convert>
 		</widget>
 		<widget source="session.CurrentService" render="Label" position="0,51" size="140,18" font="FdLcD;17" halign="left" valign="bottom" noWrap="1">
-			<convert type="ServicePosition">Position</convert>
+			<convert type="ServicePosition">VFDPosition</convert>
 		</widget>
 		<panel name="SummaryIconsPanel" />
 		<panel name="SummaryTunerStatusPanel" />
@@ -186,8 +186,8 @@
 			<convert type="EventTime">Progress</convert>
 		</widget>
 		<widget source="parent.ServiceEvent" render="Label" position="0,51" size="140,18" font="FdLcD;17" halign="left" valign="bottom" noWrap="1">
-			<convert type="EventTime">Remaining</convert>
-			<convert type="RemainingToText">NoSeconds</convert>
+			<convert type="EventTime">VFDRemaining</convert>
+			<convert type="RemainingToText">VFDNoSeconds</convert>
 		</widget>
 		<panel name="SummaryIconsPanel" />
 		<panel name="SummaryTunerStatusPanel" />
@@ -353,11 +353,11 @@
 			<convert type="ServiceName">Name</convert>
 		</widget>
 		<widget source="session.CurrentService" render="Progress" position="top" size="*,4" borderWidth="1">
-			<convert type="ServicePosition">Position</convert>
+			<convert type="ServicePosition">VFDPosition</convert>
 		</widget>
 		<panel position="fill">
 			<widget source="session.CurrentService" render="Label" position="left" size="60,*" font="FdLcD;12" halign="left">
-				<convert type="ServicePosition">Position</convert>
+				<convert type="ServicePosition">VFDPosition</convert>
 			</widget>
 			<widget name="Chapter" position="fill" font="FdLcD;12" halign="left" />
 		</panel>
