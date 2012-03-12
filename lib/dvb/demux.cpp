@@ -496,14 +496,15 @@ protected:
 	/* override */ int writeData(int len);
 	/* override */ void flush();
 private:
-	typedef struct aiocb tag_aiocb;
-	struct AsyncIO: tag_aiocb
+	struct AsyncIO
 	{
+		struct aiocb aio;
 		AsyncIO()
 		{
-			memset(this, 0, sizeof(struct aiocb));
+			memset(&aio, 0, sizeof(struct aiocb));
 		}
 		int wait();
+		int start(int fd, off_t offset, size_t nbytes, void* buffer);
 	};
 	eMPEGStreamParserTS m_ts_parser;
 	off_t m_current_offset;
@@ -563,21 +564,21 @@ int eDVBRecordFileThread::getLastPTS(pts_t &pts)
 
 int eDVBRecordFileThread::AsyncIO::wait()
 {
-	if (aio_buf != NULL) // Only if we had a request outstanding
+	if (aio.aio_buf != NULL) // Only if we had a request outstanding
 	{
-		while (aio_error(this) == EINPROGRESS)
+		while (aio_error(&aio) == EINPROGRESS)
 		{
 			eDebug("[eDVBRecordFileThread] Waiting for I/O to complete");
-			struct aiocb* aio = this;
-			int r = aio_suspend(&aio, 1, NULL);
+			struct aiocb* paio = &aio;
+			int r = aio_suspend(&paio, 1, NULL);
 			if (r < 0)
 			{
 				eDebug("[eDVBRecordFileThread] aio_suspend failed: %m");
 				return -1;
 			}
 		}
-		int r = aio_return(this);
-		aio_buf = NULL;
+		int r = aio_return(&aio);
+		aio.aio_buf = NULL;
 		if (r < 0)
 		{
 			eDebug("[eDVBRecordFileThread] aio_return returned failure: %m");
@@ -585,6 +586,16 @@ int eDVBRecordFileThread::AsyncIO::wait()
 		}
 	}
 	return 0;
+}
+
+int eDVBRecordFileThread::AsyncIO::start(int fd, off_t offset, size_t nbytes, void* buffer)
+{
+	memset(&aio, 0, sizeof(struct aiocb)); // Documentation says "zero it before call".
+	aio.aio_fildes = fd;
+	aio.aio_nbytes = nbytes;
+	aio.aio_offset = offset;   // Offset can be omitted with O_APPEND
+	aio.aio_buf = buffer;
+	return aio_write(&aio);
 }
 
 int eDVBRecordFileThread::writeData(int len)
@@ -606,13 +617,7 @@ int eDVBRecordFileThread::writeData(int len)
 	gettimeofday(&starttime, NULL);
 #endif
 	
-	struct aiocb* aio = &m_aio[m_current_buffer];
-	memset(aio, 0, sizeof(struct aiocb)); // Documentation says "zero it before call".
-	aio->aio_fildes = m_fd_dest;
-	aio->aio_nbytes = len;
-	aio->aio_offset = m_current_offset;   // Offset can be omitted with O_APPEND
-	aio->aio_buf = m_buffer;
-	int r = aio_write(aio);
+	int r = m_aio[m_current_buffer].start(m_fd_dest, m_current_offset, len, m_buffer);
 	if (r < 0)
 	{
 		eDebug("[eDVBRecordFileThread] aio_write failed: %m");
