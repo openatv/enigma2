@@ -1,115 +1,390 @@
 from Components.Converter.Converter import Converter
+from Poll import Poll
 from Components.Element import cached
 from Components.config import config
 
-class RemainingToText(Converter, object):
+class RemainingToText(Poll, Converter, object):
 	DEFAULT = 0
-	WITH_SECONDS = 1
+	WITH_SECONDS = 2
 	NO_SECONDS = 2
 	IN_SECONDS = 3
 	PERCENTAGE = 4
+	VFD = 5
+	VFD_WITH_SECONDS = 6
+	VFD_NO_SECONDS = 7
+	VFD_IN_SECONDS = 8
+	VFD_PERCENTAGE = 9
 
 	def __init__(self, type):
+		Poll.__init__(self)
 		Converter.__init__(self, type)
 		if type == "WithSeconds":
-			self.type_orig = self.WITH_SECONDS
+			self.type = self.WITH_SECONDS
 		elif type == "NoSeconds":
-			self.type_orig = self.NO_SECONDS
+			self.type = self.NO_SECONDS
 		elif type == "InSeconds":
-			self.type_orig = self.IN_SECONDS	
+			self.type = self.IN_SECONDS	
 		elif type == "Percentage":
-			self.type_orig = self.PERCENTAGE	
+			self.type = self.PERCENTAGE	
+		elif type == "VFD":
+			self.type = self.VFD
+		elif type == "VFDWithSeconds":
+			self.type = self.VFD_WITH_SECONDS
+		elif type == "VFDNoSeconds":
+			self.type = self.VFD_NO_SECONDS
+		elif type == "VFDInSeconds":
+			self.type = self.VFD_IN_SECONDS	
+		elif type == "VFDPercentage":
+			self.type = self.VFD_PERCENTAGE	
 		else:
-			self.type_orig = self.DEFAULT
+			self.type = self.DEFAULT
+
+		self.poll_interval = 1000
+		self.poll_enabled = True
 
 	@cached
 	def getText(self):
-		if config.usage.swap_time_display_on_osd.value == "1" or config.usage.swap_time_display_on_vfd.value == "1":
-			self.type = self.DEFAULT
-		elif config.usage.swap_time_display_on_osd.value == "2" or config.usage.swap_time_display_on_vfd.value == "2":
-			self.type = self.NO_SECONDS
-		elif config.usage.swap_time_display_on_osd.value == "3" or config.usage.swap_time_display_on_vfd.value == "3":
-			self.type = self.PERCENTAGE	
-		else:
-			self.type = self.type_orig
-
 		time = self.source.time
 		if time is None:
 			return ""
 
+		duration = 0
+		elapsed = 0
+		remaining = 0
+
 		if str(time[1]) != 'None':
-			if config.usage.swap_time_remaining_on_osd.value == "1" or config.usage.swap_time_remaining_on_vfd.value == "1":
-				(duration, elapsed) = self.source.time
-			if config.usage.swap_time_remaining_on_osd.value == "2" or config.usage.swap_time_remaining_on_vfd.value == "2":
-				(duration, elapsed, remaining) = self.source.time
-			elif config.usage.swap_time_remaining_on_osd.value == "3" or config.usage.swap_time_remaining_on_vfd.value == "3":
-				(duration, remaining, elapsed) = self.source.time
+			if self.type < 5:
+				if config.usage.swap_time_remaining_on_osd.value == "0":
+					(duration, remaining) = self.source.time
+				elif config.usage.swap_time_remaining_on_osd.value == "1":
+					(duration, elapsed) = self.source.time
+				elif config.usage.swap_time_remaining_on_osd.value == "2":
+					(duration, elapsed, remaining) = self.source.time
+				elif config.usage.swap_time_remaining_on_osd.value == "3":
+					(duration, remaining, elapsed) = self.source.time
 			else:
-				(duration, remaining) = self.source.time
+				if config.usage.swap_time_remaining_on_vfd.value == "0":
+					(duration, remaining) = self.source.time
+				elif config.usage.swap_time_remaining_on_vfd.value == "1":
+					(duration, elapsed) = self.source.time
+				elif config.usage.swap_time_remaining_on_vfd.value == "2":
+					(duration, elapsed, remaining) = self.source.time
+				elif config.usage.swap_time_remaining_on_vfd.value == "3":
+					(duration, remaining, elapsed) = self.source.time
 		else:
 			(duration, remaining) = self.source.time
 
-		if self.type == self.WITH_SECONDS:
-			if remaining is not None:
-				if config.usage.swap_time_remaining_on_osd.value == "1" or config.usage.swap_time_remaining_on_vfd.value == "1":
-					return "-%d:%02d:%02d" % (elapsed / 3600, (elapsed / 60) - ((elapsed / 3600) * 60), elapsed % 60)
-				elif config.usage.swap_time_remaining_on_osd.value == "2" or config.usage.swap_time_remaining_on_vfd.value == "2":
-					return "-%d:%02d:%02d  +%d:%02d:%02d" % (elapsed / 3600, (elapsed / 60) - ((elapsed / 3600) * 60), elapsed % 60, remaining / 3600, (remaining / 60) - ((remaining / 3600) * 60), remaining % 60)
-				elif config.usage.swap_time_remaining_on_osd.value == "3" or config.usage.swap_time_remaining_on_vfd.value == "3":
-					return "+%d:%02d:%02d  -%d:%02d:%02d" % (remaining / 3600, (remaining / 60) - ((remaining / 3600) * 60), remaining % 60, elapsed / 3600, (elapsed / 60) - ((elapsed / 3600) * 60), elapsed % 60)
-				else:
-					return "+%d:%02d:%02d" % (remaining / 3600, (remaining / 60) - ((remaining / 3600) * 60), remaining % 60)
+		l = duration # Length
+		p = elapsed # Position
+		r = remaining  # Remaining
+
+		sign_l = ""
+
+		if self.type < 5:
+			if config.usage.elasped_time_positive_osd.value:
+				sign_p = "+"
+				sign_r = "-"
 			else:
-				return "%02d:%02d:%02d" % (duration / 3600, (duration / 60) - ((duration / 3600) * 60), duration % 60)
-		elif self.type == self.NO_SECONDS:
-			if remaining is not None:
-				if config.usage.swap_time_remaining_on_osd.value == "1" or config.usage.swap_time_remaining_on_vfd.value == "1":
-					return "-%d:%02d" % (elapsed / 3600, (elapsed / 60) - ((elapsed / 3600) * 60))
-				elif config.usage.swap_time_remaining_on_osd.value == "2" or config.usage.swap_time_remaining_on_vfd.value == "2":
-					return "-%d:%02d  +%d:%02d" % (elapsed / 3600, (elapsed / 60) - ((elapsed / 3600) * 60), remaining / 3600, (remaining / 60) - ((remaining / 3600) * 60))
-				elif config.usage.swap_time_remaining_on_osd.value == "3" or config.usage.swap_time_remaining_on_vfd.value == "3":
-					return "+%d:%02d  -%d:%02d" % (remaining / 3600, (remaining / 60) - ((remaining / 3600) * 60), elapsed / 3600, (elapsed / 60) - ((elapsed / 3600) * 60))
+				sign_p = "-"
+				sign_r = "+"
+			if config.usage.swap_time_display_on_osd.value == "1":
+				if remaining is not None:
+					if config.usage.swap_time_remaining_on_osd.value == "1": # Elasped
+						return sign_p + "%d " % (p/60) + _("Mins")
+					elif config.usage.swap_time_remaining_on_osd.value == "2": # Elapsed & Remaining
+						return sign_p + "%d  " % (p/60) + sign_r + "%d " % (r/60) + _("Mins")
+					elif config.usage.swap_time_remaining_on_osd.value == "3": # Remaining & Elapsed
+						return sign_r + "%d  " % (r/60) + sign_p + "%d " % (p/60) + _("Mins")
+					else:
+						return sign_r + "%d " % (r/60) + _("Mins")
 				else:
-					return "+%d:%02d" % (remaining / 3600, (remaining / 60) - ((remaining / 3600) * 60))
-			else:
-				return "%02d:%02d" % (duration / 3600, (duration / 60) - ((duration / 3600) * 60))
-		elif self.type == self.IN_SECONDS:
-			if remaining is not None:
-				if config.usage.swap_time_remaining_on_osd.value == "1" or config.usage.swap_time_remaining_on_vfd.value == "1":
-					return "-%d" % (elapsed)
-				elif config.usage.swap_time_remaining_on_osd.value == "2" or config.usage.swap_time_remaining_on_vfd.value == "2":
-					return "-%d  +%d" % (elapsed, remaining)
-				elif config.usage.swap_time_remaining_on_osd.value == "3" or config.usage.swap_time_remaining_on_vfd.value == "3":
-					return "+%d  -%d" % (remaining, elapsed)
+					return "%d " % (l/60) + _("Mins")
+	
+			elif config.usage.swap_time_display_on_osd.value == "2":
+				if remaining is not None:
+					if config.usage.swap_time_remaining_on_osd.value == "1":  # Elasped
+						return sign_p + "%d:%02d" % (p/60, p%60)
+					elif config.usage.swap_time_remaining_on_osd.value == "2": # Elapsed & Remaining
+						return sign_p + "%d:%02d  " % (p/60, p%60) + sign_r + "%d:%02d" % (r/60, r%60)
+					elif config.usage.swap_time_remaining_on_osd.value == "3": # Remaining & Elapsed
+						return sign_r + "%d:%02d  " % (r/60, r%60) + sign_p + "%d:%02d" % (p/60, p%60)
+					else:
+						return sign_r + "%d:%02d" % (r/60, r%60)
 				else:
-					return "+%d" % (remaining)
-			else:
-				return str(duration)
-		elif self.type == self.PERCENTAGE:
-			if remaining is not None:
-				if config.usage.swap_time_remaining_on_osd.value == "1" or config.usage.swap_time_remaining_on_vfd.value == "1":
-					return "-%d%%" % ((float(elapsed + 0.0) / float(duration + 0.0)) * 100)
-				elif config.usage.swap_time_remaining_on_osd.value == "2" or config.usage.swap_time_remaining_on_vfd.value == "2":
-					return "-%d%%  +%d%%" % ((float(elapsed + 0.0) / float(duration + 0.0)) * 100, (float(remaining + 0.0) / float(duration + 0.0)) * 100)
-				elif config.usage.swap_time_remaining_on_osd.value == "3" or config.usage.swap_time_remaining_on_vfd.value == "3":
-					return "+%d%%  -%d%%" % ((float(remaining + 0.0) / float(duration + 0.0)) * 100, (float(elapsed + 0.0) / float(duration + 0.0)) * 100)
+					return "%d:%02d" % (l/60, l%60)
+			elif config.usage.swap_time_display_on_osd.value == "3":
+				if remaining is not None:
+					if config.usage.swap_time_remaining_on_osd.value == "1":  # Elasped
+						return sign_p + "%d:%02d" % (p/3600, p%3600/60)
+					elif config.usage.swap_time_remaining_on_osd.value == "2": # Elapsed & Remaining
+						return sign_p + "%d:%02d  " % (p/3600, p%3600/60) + sign_r + "%d:%02d" % (r/3600, r%3600/60)
+					elif config.usage.swap_time_remaining_on_osd.value == "3": # Remaining & Elapsed
+						return sign_r + "%d:%02d  " % (r/3600, r%3600/60) + sign_p + "%d:%02d" % (p/3600, p%3600/60)
+					else:
+						return sign_r + "%d:%02d" % (r/3600, r%3600/60)
 				else:
-					return "+%d%%" % ((float(remaining + 0.0) / float(duration + 0.0)) * 100)
-			else:
-				return str(duration)
-		elif self.type == self.DEFAULT:
-			if remaining is not None:
-				if config.usage.swap_time_remaining_on_osd.value == "1" or config.usage.swap_time_remaining_on_vfd.value == "1":
-					return "-%d min" % (elapsed / 60)
-				elif config.usage.swap_time_remaining_on_osd.value == "2" or config.usage.swap_time_remaining_on_vfd.value == "2":
-					return "-%d min  +%d min" % ((elapsed / 60), (remaining / 60))
-				elif config.usage.swap_time_remaining_on_osd.value == "3" or config.usage.swap_time_remaining_on_vfd.value == "3":
-					return "+%d min  -%d min" % ((remaining / 60), (elapsed / 60))
+					return sign_l + "%d:%02d" % (l/3600, l%3600/60)
+			elif config.usage.swap_time_display_on_osd.value == "4":
+				if remaining is not None:
+					if config.usage.swap_time_remaining_on_osd.value == "1":  # Elasped
+						return sign_p + "%d:%02d:%02d" % (p/3600, p%3600/60, p%60)
+					elif config.usage.swap_time_remaining_on_osd.value == "2": # Elapsed & Remaining
+						return sign_p + "%d:%02d:%02d  " % (p/3600, p%3600/60, p%60) + sign_r + "%d:%02d:%02d" % (r/3600, r%3600/60, r%60)
+					elif config.usage.swap_time_remaining_on_osd.value == "3": # Remaining & Elapsed
+						return sign_r + "%d:%02d:%02d  " % (r/3600, r%3600/60, r%60) + sign_p + "%d:%02d:%02d" % (p/3600, p%3600/60, p%60)
+					else:
+						return sign_r + "%d:%02d:%02d" % (r/3600, r%3600/60, r%60)
 				else:
-					return "+%d min" % (remaining / 60)
+					return sign_l + "%d:%02d:%02d" % (l/3600, l%3600/60, l%60)
+			elif config.usage.swap_time_display_on_osd.value == "5":
+				if remaining is not None:
+					if config.usage.swap_time_remaining_on_osd.value == "1":  # Elasped
+						try:
+							return sign_p + "%d%%" % ((float(p + 0.0) / float(l + 0.0)) * 100)
+						except:
+							return ""
+					elif config.usage.swap_time_remaining_on_osd.value == "2": # Elapsed & Remaining
+						try:
+							return sign_p + "%d%%  " % ((float(p + 0.0) / float(l + 0.0)) * 100) + sign_r + "%d%%" % ((float(r + 0.0) / float(l + 0.0)) * 100 + 1)
+						except:
+							return ""
+					elif config.usage.swap_time_remaining_on_osd.value == "3": # Remaining & Elapsed
+						try:
+							return sign_r + "%d%%  " % ((float(r + 0.0) / float(l + 0.0)) * 100 +1 ) + sign_p + "%d%%" % ((float(p + 0.0) / float(l + 0.0)) * 100)
+						except:
+							return ""
+					else:
+						try:
+							return sign_r + "%d%%" % ((float(p + 0.0) / float(l + 0.0)) * 100)
+						except:
+							return ""
+				else:
+					return sign_l + "%d:%02d:%02d" % (l/3600, l%3600/60, l%60)
 			else:
-				return "%d min" % (duration / 60)
+				if self.type == self.VFD:
+					if remaining is not None:
+						if config.usage.swap_time_remaining_on_vfd.value == "1": # Elasped
+							return sign_p + "%d " % (p/60) + _("Mins")
+						elif config.usage.swap_time_remaining_on_vfd.value == "2": # Elapsed & Remaining
+							return sign_p + "%d  " % (p/60) + sign_r + "%d " % (r/60) + _("Mins")
+						elif config.usage.swap_time_remaining_on_vfd.value == "3": # Remaining & Elapsed
+							return sign_r + "%d  " % (r/60) + sign_p + "%d " % (p/60) + _("Mins")
+						else:
+							return sign_r + "%d " % (r/60) + _("Mins")
+					else:
+						return "%d " % (l/60) + _("Mins")
+				elif self.type == self.VFD_WITH_SECONDS:
+					if remaining is not None:
+						if config.usage.swap_time_remaining_on_osd.value == "1":  # Elasped
+							return sign_p + "%d:%02d:%02d" % (p/3600, p%3600/60, p%60)
+						elif config.usage.swap_time_remaining_on_osd.value == "2": # Elapsed & Remaining
+							return sign_p + "%d:%02d:%02d  " % (p/3600, p%3600/60, p%60) + sign_r + "%d:%02d:%02d" % (r/3600, r%3600/60, r%60)
+						elif config.usage.swap_time_remaining_on_osd.value == "3": # Remaining & Elapsed
+							return sign_r + "%d:%02d:%02d  " % (r/3600, r%3600/60, r%60) + sign_p + "%d:%02d:%02d" % (p/3600, p%3600/60, p%60)
+						else:
+							return sign_r + "%d:%02d:%02d" % (r/3600, r%3600/60, r%60)
+					else:
+						return sign_l + "%d:%02d:%02d" % (l/3600, l%3600/60, l%60)
+				elif self.type == self.VFD_NO_SECONDS:
+					if remaining is not None:
+						if config.usage.swap_time_remaining_on_vfd.value == "1":  # Elasped
+							return sign_p + "%d:%02d" % (p/3600, p%3600/60)
+						elif config.usage.swap_time_remaining_on_vfd.value == "2": # Elapsed & Remaining
+							return sign_p + "%d:%02d  " % (p/3600, p%3600/60) + sign_r + "%d:%02d" % (r/3600, r%3600/60)
+						elif config.usage.swap_time_remaining_on_vfd.value == "3": # Remaining & Elapsed
+							return sign_r + "%d:%02d  " % (r/3600, r%3600/60) + sign_p + "%d:%02d" % (p/3600, p%3600/60)
+						else:
+							return sign_r + "%d:%02d" % (r/3600, r%3600/60)
+					else:
+						return sign_l + "%d:%02d" % (l/3600, l%3600/60)
+				elif self.type == self.VFD_IN_SECONDS:
+					if remaining is not None:
+						if config.usage.swap_time_remaining_on_vfd.value == "1": # Elasped
+							return sign_p + "%d " % (p)
+						elif config.usage.swap_time_remaining_on_vfd.value == "2": # Elapsed & Remaining
+							return sign_p + "%d  " % (p) + sign_r + "%d " % (r)
+						elif config.usage.swap_time_remaining_on_vfd.value == "3": # Remaining & Elapsed
+							return sign_r + "%d  " % (r) + sign_p + "%d " % (p)
+						else:
+							return sign_r + "%d " % (r)
+					else:
+						return "%d " % (l) + _("Mins")
+				elif self.type == self.VFD_PERCENTAGE:
+					if config.usage.swap_time_remaining_on_vfd.value == "1":  # Elasped
+						try:
+							return sign_p + "%d%%" % ((float(p + 0.0) / float(l + 0.0)) * 100)
+						except:
+							return ""
+					elif config.usage.swap_time_remaining_on_vfd.value == "2": # Elapsed & Remaining
+						try:
+							return sign_p + "%d%%  " % ((float(p + 0.0) / float(l + 0.0)) * 100) + sign_r + "%d%%" % ((float(r + 0.0) / float(l + 0.0)) * 100 + 1)
+						except:
+							return ""
+					elif config.usage.swap_time_remaining_on_vfd.value == "3": # Remaining & Elapsed
+						try:
+							return sign_r + "%d%%  " % ((float(r + 0.0) / float(l + 0.0)) * 100 +1 ) + sign_p + "%d%%" % ((float(p + 0.0) / float(l + 0.0)) * 100)
+						except:
+							return ""
+					else:
+						try:
+							return sign_r + "%d%%" % ((float(p + 0.0) / float(l + 0.0)) * 100)
+						except:
+							return ""
+				else:
+					return sign_l + "%d" % (l)
+
 		else:
-			return "???"
+			if config.usage.elasped_time_positive_vfd.value:
+				sign_p = "+"
+				sign_r = "-"
+			else:
+				sign_p = "-"
+				sign_r = "+"
+			if config.usage.swap_time_display_on_vfd.value == "1":
+				if remaining is not None:
+					if config.usage.swap_time_remaining_on_vfd.value == "1": # Elasped
+						return sign_p + "%d " % (p/60) + _("Mins")
+					elif config.usage.swap_time_remaining_on_vfd.value == "2": # Elapsed & Remaining
+						return sign_p + "%d  " % (p/60) + sign_r + "%d " % (r/60) + _("Mins")
+					elif config.usage.swap_time_remaining_on_vfd.value == "3": # Remaining & Elapsed
+						return sign_r + "%d  " % (r/60) + sign_p + "%d " % (p/60) + _("Mins")
+					else:
+						return sign_r + "%d " % (r/60) + _("Mins")
+				else:
+					return "%d " % (l/60) + _("Mins")
+	
+			elif config.usage.swap_time_display_on_vfd.value == "2":
+				if remaining is not None:
+					if config.usage.swap_time_remaining_on_vfd.value == "1":  # Elasped
+						return sign_p + "%d:%02d" % (p/60, p%60)
+					elif config.usage.swap_time_remaining_on_vfd.value == "2": # Elapsed & Remaining
+						return sign_p + "%d:%02d  " % (p/60, p%60) + sign_r + "%d:%02d" % (r/60, r%60)
+					elif config.usage.swap_time_remaining_on_vfd.value == "3": # Remaining & Elapsed
+						return sign_r + "%d:%02d  " % (r/60, r%60) + sign_p + "%d:%02d" % (p/60, p%60)
+					else:
+						return sign_r + "%d:%02d" % (r/60, r%60)
+				else:
+					return "%d:%02d" % (l/60, l%60)
+			elif config.usage.swap_time_display_on_vfd.value == "3":
+				if remaining is not None:
+					if config.usage.swap_time_remaining_on_vfd.value == "1":  # Elasped
+						return sign_p + "%d:%02d" % (p/3600, p%3600/60)
+					elif config.usage.swap_time_remaining_on_vfd.value == "2": # Elapsed & Remaining
+						return sign_p + "%d:%02d  " % (p/3600, p%3600/60) + sign_r + "%d:%02d" % (r/3600, r%3600/60)
+					elif config.usage.swap_time_remaining_on_vfd.value == "3": # Remaining & Elapsed
+						return sign_r + "%d:%02d  " % (r/3600, r%3600/60) + sign_p + "%d:%02d" % (p/3600, p%3600/60)
+					else:
+						return sign_r + "%d:%02d" % (r/3600, r%3600/60)
+				else:
+					return sign_l + "%d:%02d" % (l/3600, l%3600/60)
+			elif config.usage.swap_time_display_on_vfd.value == "4":
+				if remaining is not None:
+					if config.usage.swap_time_remaining_on_vfd.value == "1":  # Elasped
+						return sign_p + "%d:%02d:%02d" % (p/3600, p%3600/60, p%60)
+					elif config.usage.swap_time_remaining_on_vfd.value == "2": # Elapsed & Remaining
+						return sign_p + "%d:%02d:%02d  " % (p/3600, p%3600/60, p%60) + sign_r + "%d:%02d:%02d" % (r/3600, r%3600/60, r%60)
+					elif config.usage.swap_time_remaining_on_vfd.value == "3": # Remaining & Elapsed
+						return sign_r + "%d:%02d:%02d  " % (r/3600, r%3600/60, r%60) + sign_p + "%d:%02d:%02d" % (p/3600, p%3600/60, p%60)
+					else:
+						return sign_r + "%d:%02d:%02d" % (r/3600, r%3600/60, r%60)
+				else:
+					return sign_l + "%d:%02d:%02d" % (l/3600, l%3600/60, l%60)
+			elif config.usage.swap_time_display_on_vfd.value == "5":
+				if remaining is not None:
+					if config.usage.swap_time_remaining_on_vfd.value == "1":  # Elasped
+						try:
+							return sign_p + "%d%%" % ((float(p + 0.0) / float(l + 0.0)) * 100)
+						except:
+							return ""
+					elif config.usage.swap_time_remaining_on_vfd.value == "2": # Elapsed & Remaining
+						try:
+							return sign_p + "%d%%  " % ((float(p + 0.0) / float(l + 0.0)) * 100) + sign_r + "%d%%" % ((float(r + 0.0) / float(l + 0.0)) * 100 + 1)
+						except:
+							return ""
+					elif config.usage.swap_time_remaining_on_vfd.value == "3": # Remaining & Elapsed
+						try:
+							return sign_r + "%d%%  " % ((float(r + 0.0) / float(l + 0.0)) * 100 +1 ) + sign_p + "%d%%" % ((float(p + 0.0) / float(l + 0.0)) * 100)
+						except:
+							return ""
+					else:
+						try:
+							return sign_r + "%d%%" % ((float(p + 0.0) / float(l + 0.0)) * 100)
+						except:
+							return ""
+				else:
+					return sign_l + "%d:%02d:%02d" % (l/3600, l%3600/60, l%60)
+			else:
+				if self.type == self.VFD:
+					if remaining is not None:
+						if config.usage.swap_time_remaining_on_vfd.value == "1": # Elasped
+							return sign_p + "%d " % (p/60) + _("Mins")
+						elif config.usage.swap_time_remaining_on_vfd.value == "2": # Elapsed & Remaining
+							return sign_p + "%d  " % (p/60) + sign_r + "%d " % (r/60) + _("Mins")
+						elif config.usage.swap_time_remaining_on_vfd.value == "3": # Remaining & Elapsed
+							return sign_r + "%d  " % (r/60) + sign_p + "%d " % (p/60) + _("Mins")
+						else:
+							return sign_r + "%d " % (r/60) + _("Mins")
+					else:
+						return "%d " % (l/60) + _("Mins")
+				elif self.type == self.VFD_WITH_SECONDS:
+					if remaining is not None:
+						if config.usage.swap_time_remaining_on_osd.value == "1":  # Elasped
+							return sign_p + "%d:%02d:%02d" % (p/3600, p%3600/60, p%60)
+						elif config.usage.swap_time_remaining_on_osd.value == "2": # Elapsed & Remaining
+							return sign_p + "%d:%02d:%02d  " % (p/3600, p%3600/60, p%60) + sign_r + "%d:%02d:%02d" % (r/3600, r%3600/60, r%60)
+						elif config.usage.swap_time_remaining_on_osd.value == "3": # Remaining & Elapsed
+							return sign_r + "%d:%02d:%02d  " % (r/3600, r%3600/60, r%60) + sign_p + "%d:%02d:%02d" % (p/3600, p%3600/60, p%60)
+						else:
+							return sign_r + "%d:%02d:%02d" % (r/3600, r%3600/60, r%60)
+					else:
+						return sign_l + "%d:%02d:%02d" % (l/3600, l%3600/60, l%60)
+				elif self.type == self.VFD_NO_SECONDS:
+					if remaining is not None:
+						if config.usage.swap_time_remaining_on_vfd.value == "1":  # Elasped
+							return sign_p + "%d:%02d" % (p/3600, p%3600/60)
+						elif config.usage.swap_time_remaining_on_vfd.value == "2": # Elapsed & Remaining
+							return sign_p + "%d:%02d  " % (p/3600, p%3600/60) + sign_r + "%d:%02d" % (r/3600, r%3600/60)
+						elif config.usage.swap_time_remaining_on_vfd.value == "3": # Remaining & Elapsed
+							return sign_r + "%d:%02d  " % (r/3600, r%3600/60) + sign_p + "%d:%02d" % (p/3600, p%3600/60)
+						else:
+							return sign_r + "%d:%02d" % (r/3600, r%3600/60)
+					else:
+						return sign_l + "%d:%02d" % (l/3600, l%3600/60)
+				elif self.type == self.VFD_IN_SECONDS:
+					if remaining is not None:
+						if config.usage.swap_time_remaining_on_vfd.value == "1": # Elasped
+							return sign_p + "%d " % (p)
+						elif config.usage.swap_time_remaining_on_vfd.value == "2": # Elapsed & Remaining
+							return sign_p + "%d  " % (p) + sign_r + "%d " % (r)
+						elif config.usage.swap_time_remaining_on_vfd.value == "3": # Remaining & Elapsed
+							return sign_r + "%d  " % (r) + sign_p + "%d " % (p)
+						else:
+							return sign_r + "%d " % (r)
+					else:
+						return "%d " % (l) + _("Mins")
+				elif self.type == self.VFD_PERCENTAGE:
+					if config.usage.swap_time_remaining_on_vfd.value == "1":  # Elasped
+						try:
+							return sign_p + "%d%%" % ((float(p + 0.0) / float(l + 0.0)) * 100)
+						except:
+							return ""
+					elif config.usage.swap_time_remaining_on_vfd.value == "2": # Elapsed & Remaining
+						try:
+							return sign_p + "%d%%  " % ((float(p + 0.0) / float(l + 0.0)) * 100) + sign_r + "%d%%" % ((float(r + 0.0) / float(l + 0.0)) * 100 + 1)
+						except:
+							return ""
+					elif config.usage.swap_time_remaining_on_vfd.value == "3": # Remaining & Elapsed
+						try:
+							return sign_r + "%d%%  " % ((float(r + 0.0) / float(l + 0.0)) * 100 +1 ) + sign_p + "%d%%" % ((float(p + 0.0) / float(l + 0.0)) * 100)
+						except:
+							return ""
+					else:
+						try:
+							return sign_r + "%d%%" % ((float(p + 0.0) / float(l + 0.0)) * 100)
+						except:
+							return ""
+				else:
+					return sign_l + "%d" % (l)
+
 
 	text = property(getText)

@@ -47,7 +47,7 @@
 <!-- DVD -->
 	<screen name="DVDSummary" position="0,0" size="132,1">
 		<widget source="session.CurrentService" render="Label" position="0,0" size="60,1" font="Regular;16">
-			<convert type="ServicePosition">Position</convert>
+			<convert type="ServicePosition">VFDPosition</convert>
 		</widget>
 	</screen>
 
