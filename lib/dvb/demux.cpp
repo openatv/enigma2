@@ -496,6 +496,15 @@ protected:
 	/* override */ int writeData(int len);
 	/* override */ void flush();
 private:
+	typedef struct aiocb tag_aiocb;
+	struct AsyncIO: tag_aiocb
+	{
+		AsyncIO()
+		{
+			memset(this, 0, sizeof(struct aiocb));
+		}
+		int wait();
+	};
 	eMPEGStreamParserTS m_ts_parser;
 	off_t m_current_offset;
 	int m_fd_dest;
@@ -503,7 +512,7 @@ private:
 	size_t written_since_last_sync;
 	int m_current_buffer;
 	unsigned char* m_allocated_buffer;
-	std::vector<struct aiocb> m_aio;
+	std::vector<AsyncIO> m_aio;
 };
 
 
@@ -525,7 +534,6 @@ eDVBRecordFileThread::eDVBRecordFileThread(int packetsize):
 	// move around during writes, so we must remember where the "head" is.
 	m_allocated_buffer = m_buffer;
 	// m_buffersize is thus the size of a single buffer in the queue
-	::memset(&m_aio[0], 0, sizeof(m_aio)); // initialize to zero
 }
 
 eDVBRecordFileThread::~eDVBRecordFileThread()
@@ -553,13 +561,14 @@ int eDVBRecordFileThread::getLastPTS(pts_t &pts)
 	return m_ts_parser.getLastPTS(pts);
 }
 
-static int wait_for_aio(struct aiocb* aio)
+int eDVBRecordFileThread::AsyncIO::wait()
 {
-	if (aio->aio_buf != NULL) // Only if we had a request outstanding
+	if (aio_buf != NULL) // Only if we had a request outstanding
 	{
-		while (aio_error(aio) == EINPROGRESS)
+		while (aio_error(this) == EINPROGRESS)
 		{
 			eDebug("[eDVBRecordFileThread] Waiting for I/O to complete");
+			struct aiocb* aio = this;
 			int r = aio_suspend(&aio, 1, NULL);
 			if (r < 0)
 			{
@@ -567,8 +576,8 @@ static int wait_for_aio(struct aiocb* aio)
 				return -1;
 			}
 		}
-		int r = aio_return(aio);
-		aio->aio_buf = NULL;
+		int r = aio_return(this);
+		aio_buf = NULL;
 		if (r < 0)
 		{
 			eDebug("[eDVBRecordFileThread] aio_return returned failure: %m");
@@ -641,7 +650,7 @@ int eDVBRecordFileThread::writeData(int len)
 	m_current_buffer = (m_current_buffer + 1) % recordingBufferCount;
 	m_buffer = m_allocated_buffer + (m_current_buffer * m_buffersize);
 	// Wait for previous aio to complete on this buffer before returning
-	r = wait_for_aio(&m_aio[m_current_buffer]);
+	r = m_aio[m_current_buffer].wait();
 	if (r < 0)
 		return -1;
 
@@ -659,7 +668,7 @@ void eDVBRecordFileThread::flush()
 	eDebug("[eDVBRecordFileThread] waiting for aio to complete");
 	for (int i = 0; i < recordingBufferCount; ++i)
 	{
-		wait_for_aio(&m_aio[i]);
+		m_aio[i].wait();
 	}
 }
 
