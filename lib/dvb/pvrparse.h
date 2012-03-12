@@ -5,6 +5,7 @@
 #include <map>
 #include <set>
 #include <deque>
+#include <aio.h>
 
 	/* This module parses TS data and collects valuable information  */
 	/* about it, like PTS<->offset correlations and sequence starts. */
@@ -80,10 +81,9 @@ public:
 	int stopSave(void);
 	virtual void addAccessPoint(off_t offset, pts_t pts, bool streamtime);
 	void writeStructureEntry(off_t offset, unsigned long long data);
+	void commit();
 private:
 	void close();
-	void unmap();
-	void map();
 	struct AccessPoint
 	{
 		off_t off;
@@ -91,8 +91,20 @@ private:
 		AccessPoint(off_t o, pts_t p): off(o), pts(p) {}
 	};
 	std::deque<AccessPoint> m_access_points, m_streamtime_access_points;
+	struct PendingWrite
+	{
+		PendingWrite();
+		~PendingWrite();
+		int start(int fd, off_t where, void* buffer, size_t buffer_size);
+		bool poll(); // releases resources when ready, returns true if released
+		int wait();
+		void* m_buffer;
+		struct aiocb m_aio;
+	};
+	std::deque<PendingWrite> m_pending_writes;
 	std::string m_filename;
 	int m_structure_write_fd;
+	off_t m_structure_pos;
 	void* m_write_buffer;
 	size_t m_buffer_filled;
 };

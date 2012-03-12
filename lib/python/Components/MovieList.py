@@ -135,6 +135,7 @@ class MovieList(GUIComponent):
 
 	def __init__(self, root, list_type=None, sort_type=None, descr_state=None):
 		GUIComponent.__init__(self)
+		self.list = []
 		self.list_type = list_type or self.LISTTYPE_MINIMAL
 		self.descr_state = descr_state or self.HIDE_DESCRIPTION
 		self.sort_type = sort_type or self.SORT_RECORDED
