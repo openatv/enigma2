@@ -18,7 +18,7 @@
 
 /************************************************/
 
-#define CRASH_EMAILADDR "crashlog@aaf-board.com"
+#define CRASH_EMAILADDR "forum at www.aaf-digital.info"
 #define INFOFILE "/maintainer.info"
 
 #define RINGBUFFER_SIZE 16384
@@ -118,8 +118,7 @@ void bsodFatal(const char *component)
 	bsodhandled = true;
 
 	std::ostringstream os;
-	os << getConfigString("config.crash.debug_path", "/home/root/logs/");
-	os << "enigma2_crash_";
+	os << "/media/hdd/enigma2_crash_";
 	os << time(0);
 	os << ".log";
 
@@ -174,7 +173,7 @@ void bsodFatal(const char *component)
 
 		XmlGenerator xml(f);
 
-		xml.open("opendreambox");
+		xml.open("openAAF");
 
 		xml.open("enigma2");
 		xml.string("crashdate", tm_str);
@@ -190,11 +189,20 @@ void bsodFatal(const char *component)
 		xml.close();
 
 		xml.open("image");
-		xml.stringFromFile("dreamboxmodel", "/proc/stb/info/model");
+		if(access("/proc/stb/info/boxtype", F_OK) != -1) {
+			xml.stringFromFile("stbmodel", "/proc/stb/info/boxtype");
+		}
+		else if (access("/proc/stb/info/vumodel", F_OK) != -1) {
+			xml.stringFromFile("stbmodel", "/proc/stb/info/vumodel");
+		}
+		else if (access("/proc/stb/info/model", F_OK) != -1) {
+			xml.stringFromFile("stbmodel", "/proc/stb/info/model");
+		}
+		xml.cDataFromCmd("kernelversion", "uname -a");
 		xml.stringFromFile("kernelcmdline", "/proc/cmdline");
 		xml.stringFromFile("nimsockets", "/proc/bus/nim_sockets");
 		if (!getConfigBool("config.plugins.crashlogautosubmit.sendAnonCrashlog", true)) {
-			xml.cDataFromFile("dreamboxca", "/proc/stb/info/ca");
+			xml.cDataFromFile("stbca", "/proc/stb/info/ca");
 			xml.cDataFromFile("enigma2settings", eEnv::resolve("${sysconfdir}/enigma2/settings"), ".password=");
 		}
 		if (getConfigBool("config.plugins.crashlogautosubmit.addNetwork", false)) {
@@ -211,9 +219,17 @@ void bsodFatal(const char *component)
 		if (detailedCrash)
 		{
 			xml.open("software");
-			xml.cDataFromCmd("enigma2software", "opkg list_installed 'enigma2*'");
-			xml.cDataFromCmd("dreamboxsoftware", "opkg list_installed 'dream*'");
-			xml.cDataFromCmd("gstreamersoftware", "opkg list_installed 'gst*'");
+			xml.cDataFromCmd("enigma2software", "opkg list-installed 'enigma2*'");
+			if(access("/proc/stb/info/boxtype", F_OK) != -1) {
+				xml.cDataFromCmd("xtrendsoftware", "opkg list-installed 'et-*'");
+			}
+			else if (access("/proc/stb/info/vumodel", F_OK) != -1) {
+				xml.cDataFromCmd("vuplussoftware", "opkg list-installed 'vuplus*'");
+			}
+			else if (access("/proc/stb/info/model", F_OK) != -1) {
+				xml.cDataFromCmd("dreamboxsoftware", "opkg list-installed 'dream*'");
+			}
+			xml.cDataFromCmd("gstreamersoftware", "opkg list-installed 'gst*'");
 			xml.close();
 		}
 
