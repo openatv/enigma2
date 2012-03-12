@@ -28,7 +28,11 @@ class OSDSetup(Screen, ConfigListScreen):
 		from Components.ActionMap import ActionMap
 		from Components.Sources.StaticText import StaticText
 
+<<<<<<< HEAD
 		self["status"] = StaticText()
+=======
+		self["satus"] = StaticText()
+>>>>>>> parent of e788576... OSD: allow cancel to revert OSD to state before you messed with settings.
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
 		self["key_yellow"] = StaticText(_("Default"))
@@ -107,8 +111,14 @@ class OSDSetup(Screen, ConfigListScreen):
 			config.osd.dst_height.value = int(config.osd.dst_height.value) - 1
 			config.osd.dst_height.save()
 			configfile.save()
+<<<<<<< HEAD
 
 		setPosition(int(config.osd.dst_left.value), int(config.osd.dst_width.value), int(config.osd.dst_top.value), int(config.osd.dst_height.value))
+=======
+	
+		setPosition(int(config.osd.dst_left.value), int(config.osd.dst_width.value), int(config.osd.dst_top.value), int(config.osd.dst_height.value))
+		setAlpha(int(config.osd.alpha.value))
+>>>>>>> parent of e788576... OSD: allow cancel to revert OSD to state before you messed with settings.
 
 	def saveAll(self):
 		for x in self["config"].list:
@@ -154,6 +164,7 @@ def setPosition(dst_left, dst_width, dst_top, dst_height):
 	except:
 		return
 
+<<<<<<< HEAD
 def setDefaults():
 	print'[OSD Setup] Set Defaults'
 	config.osd.dst_left.value = 0
@@ -161,6 +172,10 @@ def setDefaults():
 	config.osd.dst_top.value = 0
 	config.osd.dst_height.value = 576
 	config.osd.alpha.value = 255
+=======
+def setAlpha(alpha_value):
+		open("/proc/stb/video/alpha", "w").write(str(alpha_value))
+>>>>>>> parent of e788576... OSD: allow cancel to revert OSD to state before you messed with settings.
 
 class OSD3DSetupScreen(Screen, ConfigListScreen):
 	skin = """
@@ -180,7 +195,11 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 		from Components.ActionMap import ActionMap
 		from Components.Sources.StaticText import StaticText
 
+<<<<<<< HEAD
 		self["status"] = StaticText()
+=======
+		self["satus"] = StaticText()
+>>>>>>> parent of e788576... OSD: allow cancel to revert OSD to state before you messed with settings.
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
 
@@ -270,6 +289,7 @@ def applySettings(mode, znorm):
 		file.close()
 	except:
 		return
+<<<<<<< HEAD
 		
 def applySettings2(mode, znorm, setmode):
 	try:
@@ -293,6 +313,8 @@ def applySettings2(mode, znorm, setmode):
 			file.close()
 	except:
 		return		
+=======
+>>>>>>> parent of e788576... OSD: allow cancel to revert OSD to state before you messed with settings.
 
 def setConfiguredPosition():
 	setPosition(int(config.osd.dst_left.value), int(config.osd.dst_width.value), int(config.osd.dst_top.value), int(config.osd.dst_height.value))
@@ -309,9 +331,17 @@ def isCanChangeOsdPositionSupported():
 	return False
 
 def isCanChangeOsdAlphaSupported():
+<<<<<<< HEAD
 	if path.exists("/proc/stb/video/alpha"):
 		return True
 	return False
+=======
+	try:
+		can_osd_alpha = open("/proc/stb/video/alpha", "r") and True or False
+	except:
+		can_osd_alpha = False
+	return can_osd_alpha
+>>>>>>> parent of e788576... OSD: allow cancel to revert OSD to state before you messed with settings.
 
 def isCanChange3DOsdSupported():
 	if path.exists("/proc/stb/fb/3dmode"):
