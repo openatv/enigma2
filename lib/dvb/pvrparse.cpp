@@ -379,7 +379,7 @@ int eMPEGStreamInformation::loadCache(int index)
 		return -1;
 	}
 	m_cache_index = (int)(where / entry_size);
-	eDebug("[eMPEGStreamInformation] cache index %d starts at %d (%lld) bytes: %d", index, m_cache_index, where, bytes);
+	//eDebug("[eMPEGStreamInformation] cache index %d starts at %d (%lld) bytes: %d", index, m_cache_index, where, bytes);
 	int num = (int)bytes / entry_size;
 	m_structure_cache_entries = num;
 	return num;
@@ -616,6 +616,7 @@ int eMPEGStreamInformation::getLastFrame(off_t &offset, pts_t& pts)
 
 eMPEGStreamInformationWriter::eMPEGStreamInformationWriter():
 	m_structure_write_fd(-1),
+	m_structure_pos(0),
 	m_write_buffer(NULL),
 	m_buffer_filled(0)
 {}
@@ -688,10 +689,11 @@ void eMPEGStreamInformationWriter::writeStructureEntry(off_t offset, unsigned lo
 	{
 		if (m_write_buffer == NULL)
 		{
-			map();
+			m_write_buffer = malloc(PAGESIZE);
+			m_buffer_filled = 0;
 			if (m_write_buffer == NULL)
 			{
-				eWarning("Failed to mmap sc file");
+				eWarning("malloc fail");
 				return;
 			}
 		}
@@ -700,72 +702,117 @@ void eMPEGStreamInformationWriter::writeStructureEntry(off_t offset, unsigned lo
 		d[1] = htobe64(data);
 		m_buffer_filled += 16;
 		if (m_buffer_filled == PAGESIZE)
-			unmap();
+			commit();
 	}
 }
 
-void eMPEGStreamInformationWriter::unmap()
+eMPEGStreamInformationWriter::PendingWrite::PendingWrite():
+	m_buffer(NULL) // empty constructor because deque will make a COPY first.
 {
+}
+
+int eMPEGStreamInformationWriter::PendingWrite::start(int fd, off_t where, void* buffer, size_t buffer_size)
+{
+	m_buffer = buffer; // Note: We take ownership of the buffer!
+	memset(&m_aio, 0, sizeof(m_aio));
+	m_aio.aio_fildes = fd;
+	m_aio.aio_nbytes = buffer_size;
+	m_aio.aio_offset = where;
+	m_aio.aio_buf = buffer;
+	int r = aio_write(&m_aio);
+	if (r < 0)
+	{
+		eDebug("[eMPEGStreamInformationWriter] aio_write returned failure: %m");
+	}
+	return r;
+}
+
+eMPEGStreamInformationWriter::PendingWrite::~PendingWrite()
+{
+	if (m_buffer != NULL)
+	{
+		wait();
+		free(m_buffer);
+	}
+}
+
+int eMPEGStreamInformationWriter::PendingWrite::wait()
+{
+	//eDebug("[eMPEGStreamInformationWriter] PendingWrite waiting for IO completion");
+	struct aiocb* aio = &m_aio;
+	while (aio_error(aio) == EINPROGRESS)
+	{
+		eDebug("[eMPEGStreamInformationWriter] Waiting for I/O to complete");
+		int r = aio_suspend(&aio, 1, NULL);
+		if (r < 0)
+		{
+			eDebug("[eMPEGStreamInformationWriter] aio_suspend failed: %m");
+			return -1;
+		}
+	}
+	int r = aio_return(aio);
+	if (r < 0)
+	{
+		eDebug("[eMPEGStreamInformationWriter] aio_return returned failure: %m");
+	}
+	return r;
+}
+
+bool eMPEGStreamInformationWriter::PendingWrite::poll()
+{
+	if (m_buffer == NULL)
+		return true; // Nothing pending
+	if (aio_error(&m_aio) == EINPROGRESS)
+	{
+		return false; // still busy
+	}
+	int r = aio_return(&m_aio);
+	if (r < 0)
+	{
+		eDebug("[eDVBRecordFileThread] aio_return returned failure: %m");
+	}
+	free(m_buffer);
+	m_buffer = NULL;
+	return true;
+}
+
+void eMPEGStreamInformationWriter::commit()
+{
+	std::deque<PendingWrite>::iterator head = m_pending_writes.begin();
+	while (head != m_pending_writes.end())
+	{
+		if (!head->poll())
+		{
+			// Not ready yet, stop polling
+			break;
+		}
+		else
+		{
+			// head is done remove it from the queue
+			m_pending_writes.pop_front();
+			head = m_pending_writes.begin();
+		}
+	}
 	if (m_write_buffer != NULL)
 	{
-		if (::munmap(m_write_buffer, PAGESIZE) != 0)
-			eWarning("[eMPEGStreamInformationWriter] munmap failed");
+		m_pending_writes.push_back(PendingWrite()); // calls copy constructor, so don't initialize it
+		m_pending_writes.back().start(m_structure_write_fd, m_structure_pos, m_write_buffer, m_buffer_filled);
+		m_structure_pos += m_buffer_filled;
 		m_write_buffer = NULL;
 		m_buffer_filled = 0;
 	}
 }
 
-void eMPEGStreamInformationWriter::map()
-{
-	if (m_structure_write_fd >= 0)
-	{
-		off_t where = ::lseek(m_structure_write_fd, 0, SEEK_END);
-		// Write a PAGESIZE block of harmless data
-		char buffer[PAGESIZE];
-		unsigned long* data = (unsigned long*)buffer;
-		for (int i=0; i<PAGESIZE; i+=16)
-		{
-			*data = htobe32(0x7FFFFFFF);
-			++data;
-			*data = 0xFFFFFFFF;
-			++data;
-			*data = 0;
-			++data;
-			*data = 0;
-			++data;
-		}
-		ssize_t written = ::write(m_structure_write_fd, buffer, PAGESIZE);
-		if (written != PAGESIZE)
-		{
-			eWarning("Failed to write TS file (%d): %m", written);
-			return;
-		}
-		//eDebug("[eMPEGStreamInformationWriter] {%d} mmap at %lld", gettid(), where);
-		m_write_buffer = ::mmap(NULL, PAGESIZE, PROT_WRITE, MAP_SHARED, m_structure_write_fd, where);
-	}
-	m_buffer_filled = 0;
-}
 
 void eMPEGStreamInformationWriter::close()
 {
 	if (m_structure_write_fd != -1)
 	{
-		off_t where = ::lseek(m_structure_write_fd, 0, SEEK_END);
-		if (m_buffer_filled != 0)
-		{
-			// Unmap and truncate the file at the correct spot.
-			where +=  m_buffer_filled;
-			where -= PAGESIZE;
-			unmap();
-			::ftruncate(m_structure_write_fd, where);
-		}
-		else
-		{
-			unmap();
-		}
+		commit();
+		m_pending_writes.clear(); // this waits for all IO to complete
 		::close(m_structure_write_fd);
 		m_structure_write_fd = -1;
-		if ((where == 0) && !m_filename.empty())
+		if ((m_structure_pos == 0) && !m_filename.empty())
 		{
 			// If the file is empty, attempt to delete it.
 			::unlink((m_filename + ".sc").c_str());
@@ -1064,6 +1111,7 @@ void eMPEGStreamParserTS::parseData(off_t offset, const void *data, unsigned int
 			len = 0;
 		}
 	}
+	commit();
 }
 
 void eMPEGStreamParserTS::addAccessPoint(off_t offset, pts_t pts, bool streamtime)
