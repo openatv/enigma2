@@ -266,6 +266,15 @@ int eStaticServiceDVBBouquetInformation::isPlayable(const eServiceReference &ref
 		}
 		if (cur)
 			return cur;
+		/* fallback to stream (or pvr) service alternative */
+		for (std::list<eServiceReference>::iterator it(bouquet->m_services.begin()); it != bouquet->m_services.end(); ++it)
+		{
+			if (!it->path.empty())
+			{
+				m_playable_service = *it;
+				return 1;
+			}
+		}
 	}
 	m_playable_service = eServiceReference();
 	return 0;
