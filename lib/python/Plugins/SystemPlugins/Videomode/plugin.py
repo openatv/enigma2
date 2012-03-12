@@ -91,7 +91,7 @@ class VideoSetup(Screen, ConfigListScreen):
 		force_wide = self.hw.isWidescreenMode(port, mode)
 
 		if not force_wide:
-			self.list.append(getConfigListEntry(_("Aspect Ratio"), config.av.aspect), _("This option sets up the screen aspect ratio."))
+			self.list.append(getConfigListEntry(_("Aspect Ratio"), config.av.aspect, _("This option sets up the screen aspect ratio.")))
 
 		if force_wide or config.av.aspect.value in ("16_9", "16_10"):
 			self.list.extend((
