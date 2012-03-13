@@ -6,6 +6,7 @@ from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Components.config import config, ConfigInteger
 from Components.SystemInfo import SystemInfo
+from Tools.Notifications import AddPopup
 from enigma import eEPGCache
 from SleepTimer import SleepTimer
 from time import time
@@ -105,10 +106,12 @@ class SleepTimerEdit(Screen):
 			config.SleepTimer.action.save()
 			config.SleepTimer.ask.save()
 			self.session.nav.SleepTimer.setSleepTime(time)
-			self.session.openWithCallback(self.close, MessageBox, _("The sleep timer has been activated."), MessageBox.TYPE_INFO, timeout=3, simple=True)
+			AddPopup(_("The sleep timer has been activated."), type = MessageBox.TYPE_INFO, timeout = 3)
+			self.close(True)
 		else:
 			self.session.nav.SleepTimer.clear()
-			self.session.openWithCallback(self.close, MessageBox, _("The sleep timer has been disabled."), MessageBox.TYPE_INFO, timeout=3, simple=True)
+			AddPopup(_("The sleep timer has been disabled."), type = MessageBox.TYPE_INFO, timeout = 3)
+			self.close(True)
 
 	def keyNumberGlobal(self, number):
 		self["input"].number(number)
