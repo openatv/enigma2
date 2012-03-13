@@ -1,7 +1,7 @@
 from Screens.Screen import Screen
 from Components.GUIComponent import GUIComponent
 from Components.VariableText import VariableText
-from Components.ActionMap import ActionMap
+from Components.ActionMap import ActionMap, NumberActionMap
 from Components.Label import Label
 from Components.Button import Button
 from Components.FileList import FileList
@@ -12,8 +12,10 @@ from Components.config import getConfigListEntry, config, configfile, ConfigText
 from Components.ConfigList import ConfigListScreen, ConfigList
 from Components.FileList import MultiFileSelectList
 from Components.Pixmap import Pixmap,MultiPixmap
-from Screens.VirtualKeyBoard import VirtualKeyBoard
+from Components.Sources.Boolean import Boolean
+from Components.Sources.StaticText import StaticText
 from Screens.MessageBox import MessageBox
+from Screens.VirtualKeyBoard import VirtualKeyBoard
 from os import path, listdir, remove, walk, stat, rmdir
 from time import time, localtime, strftime
 from enigma import eTimer, eBackgroundFileEraser, eLabel
@@ -186,6 +188,7 @@ class LogManager(Screen):
 		self["key_yellow"] = Button(_("Delete"))
 		self["key_blue"] = Button(_("Send"))
 
+		self.onChangedEntry = [ ]
 		self.sentsingle = ""
 		self.selectedFiles = config.logmanager.sentfiles.value
 		self.previouslySent = config.logmanager.sentfiles.value
@@ -195,7 +198,23 @@ class LogManager(Screen):
 		self["list"] = self.filelist
 		self["LogsSize"] = self.logsinfo = LogInfo(config.crash.debug_path.value, LogInfo.USED, update=False)
 		self.onLayoutFinish.append(self.layoutFinished)
+		if not self.selectionChanged in self["list"].onSelectionChanged:
+			self["list"].onSelectionChanged.append(self.selectionChanged)
 
+	def createSummary(self):
+		from Screens.PluginBrowser import PluginBrowserSummary
+		return PluginBrowserSummary
+
+	def selectionChanged(self):
+		item = self["list"].getCurrent()[0]
+		desc = ""
+		if item:
+			name = str(item[0])
+		else:
+			name = ""
+		for cb in self.onChangedEntry:
+			cb(name, desc)
+		
 	def layoutFinished(self):
 		self["LogsSize"].update(config.crash.debug_path.value)
 		idx = 0
@@ -467,56 +486,112 @@ class LogManagerMenu(ConfigListScreen, Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.session = session
-		Screen.setTitle(self, _("Log Manager Setup"))
+		self.setup_title =  _("Log Manager Setup")
 		self.skinName = "Setup"
+
+		self['footnote'] = Label()
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
+		self["VKeyIcon"] = Boolean(False)
+		self["status"] = StaticText()
 
 		self.onChangedEntry = [ ]
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
 		self.createSetup()
 		
-		self["actions"] = ActionMap(["SetupActions", 'ColorActions', 'VirtualKeyboardActions'],
-		{
-			"cancel": self.keyCancel,
-			"save": self.keySave,
-			'showVirtualKeyboard': self.KeyText
-		}, -2)
-		self["key_red"] = Button(_("Cancel"))
-		self["key_green"] = Button(_("OK"))
+		self["key_red"] = StaticText(_("Cancel"))
+		self["key_green"] = StaticText(_("OK"))
 
+		self["actions"] = NumberActionMap(["SetupActions", "MenuActions"], 
+			{
+				"cancel": self.keyCancel,
+				"save": self.keySave,
+				"menu": self.closeRecursive,
+			}, -2)
+
+		self["VirtualKB"] = ActionMap(["VirtualKeyboardActions"],
+		{
+			"showVirtualKeyboard": self.KeyText,
+		}, -2)
+		self["VirtualKB"].setEnabled(False)
+
+		if not self.handleInputHelpers in self["config"].onSelectionChanged:
+			self["config"].onSelectionChanged.append(self.handleInputHelpers)
+		self.changedEntry()
+		self.onLayoutFinish.append(self.layoutFinished)
+	
 	def createSetup(self):
 		self.editListEntry = None
 		self.list = []
-		self.list.append(getConfigListEntry(_("Show in extensions list ?"), config.logmanager.showinextensions))
-		self.list.append(getConfigListEntry(_("User Name"), config.logmanager.user))
-		self.list.append(getConfigListEntry(_("e-Mail address"), config.logmanager.useremail))
-		self.list.append(getConfigListEntry(_("Send yourself a copy ?"), config.logmanager.usersendcopy))
+		self.list.append(getConfigListEntry(_("Show in extensions list ?"), config.logmanager.showinextensions, _("Allows you to show/hide Log Manager in extensions (blue button).")))
+		self.list.append(getConfigListEntry(_("User Name"), config.logmanager.user, _("Enter your forum user name, to make it easier trace logs.")))
+		self.list.append(getConfigListEntry(_("e-Mail address"), config.logmanager.useremail, _("Enter your email address to sned a copy of the log to.")))
+		self.list.append(getConfigListEntry(_("Send yourself a copy ?"), config.logmanager.usersendcopy, _("Allows you to send a copy of the log to yourself.")))
 		self["config"].list = self.list
 		self["config"].setList(self.list)
+		if config.usage.sort_settings.value:
+			self["config"].list.sort()
 
-	# for summary:
-	def changedEntry(self):
-		for x in self.onChangedEntry:
-			x()
-
-	def getCurrentEntry(self):
-		return self["config"].getCurrent()[0]
-
-	def getCurrentValue(self):
-		return str(self["config"].getCurrent()[1].getText())
+	def handleInputHelpers(self):
+ 		self["status"].setText(self["config"].getCurrent()[2])
+		if self["config"].getCurrent() is not None:
+			try:
+				from Components.config import ConfigText, ConfigPassword
+				if isinstance(self["config"].getCurrent()[1], ConfigText) or isinstance(self["config"].getCurrent()[1], ConfigPassword):
+					if self.has_key("VKeyIcon"):
+						self["VirtualKB"].setEnabled(True)
+						self["VKeyIcon"].boolean = True
+					if self.has_key("HelpWindow"):
+						if self["config"].getCurrent()[1].help_window.instance is not None:
+							helpwindowpos = self["HelpWindow"].getPosition()
+							from enigma import ePoint
+							self["config"].getCurrent()[1].help_window.instance.move(ePoint(helpwindowpos[0],helpwindowpos[1]))
+				else:
+					if self.has_key("VKeyIcon"):
+						self["VirtualKB"].setEnabled(False)
+						self["VKeyIcon"].boolean = False
+			except:
+				if self.has_key("VKeyIcon"):
+					self["VirtualKB"].setEnabled(False)
+					self["VKeyIcon"].boolean = False
+		else:
+			if self.has_key("VKeyIcon"):
+				self["VirtualKB"].setEnabled(False)
+				self["VKeyIcon"].boolean = False
 
 	def KeyText(self):
-		if self['config'].getCurrent():
-			if self['config'].getCurrent()[0] == _("User Name") or self['config'].getCurrent()[0] == _("e-Mail address"):
-				from Screens.VirtualKeyBoard import VirtualKeyBoard
-				self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title = self["config"].getCurrent()[0], text = self["config"].getCurrent()[1].getValue())
+		from Screens.VirtualKeyBoard import VirtualKeyBoard
+		self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title = self["config"].getCurrent()[0], text = self["config"].getCurrent()[1].getValue())
 
 	def VirtualKeyBoardCallback(self, callback = None):
 		if callback is not None and len(callback):
 			self["config"].getCurrent()[1].setValue(callback)
 			self["config"].invalidate(self["config"].getCurrent())
+
+	def layoutFinished(self):
+		self.setTitle(_(self.setup_title))
+
+	# for summary:
+	def changedEntry(self):
+		self.item = self["config"].getCurrent()
+		for x in self.onChangedEntry:
+			x()
+		try:
+			if isinstance(self["config"].getCurrent()[1], ConfigYesNo) or isinstance(self["config"].getCurrent()[1], ConfigSelection):
+				self.createSetup()
+		except:
+			pass
+
+	def getCurrentEntry(self):
+		return self["config"].getCurrent() and self["config"].getCurrent()[0] or ""
+
+	def getCurrentValue(self):
+		return self["config"].getCurrent() and str(self["config"].getCurrent()[1].getText()) or ""
+
+	def createSummary(self):
+		from Screens.Setup import SetupSummary
+		return SetupSummary
 
 	def saveAll(self):
 		for x in self["config"].list:

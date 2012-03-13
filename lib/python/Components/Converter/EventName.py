@@ -42,7 +42,10 @@ class EventName(Converter, object):
 			return ""
 			
 		if self.type == self.NAME:
-			return event.getEventName()
+			if event.getEventName() == "Visibile in analogico o digit. terrestre":
+				return event.getShortDescription().title()
+			else:
+				return event.getEventName()
 		elif self.type == self.SHORT_DESCRIPTION:
 			return event.getShortDescription()
 		elif self.type == self.EXTENDED_DESCRIPTION:

@@ -7,6 +7,8 @@ notificationAdded = [ ]
 current_notifications = [ ]
 
 def __AddNotification(fnc, screen, id, *args, **kwargs):
+	if ".MessageBox'>" in `screen`:
+		kwargs["simple"] = True
 	notifications.append((fnc, screen, args, kwargs, id))
 	for x in notificationAdded:
 		x()
@@ -45,10 +47,10 @@ def AddPopup(text, type, timeout, id = None):
 	if id is not None:
 		RemovePopup(id)
 	print "AddPopup, id =", id
-	AddNotificationWithID(id, MessageBox, text = text, type = type, timeout = timeout, close_on_any_key = True, simple = True)
+	AddNotificationWithID(id, MessageBox, text = text, type = type, timeout = timeout, close_on_any_key = True)
 
 def AddPopupWithCallback(fnc, text, type, timeout, id = None):
 	if id is not None:
 		RemovePopup(id)
 	print "AddPopup, id =", id
-	AddNotificationWithIDCallback(fnc, id, MessageBox, text = text, type = type, timeout = timeout, close_on_any_key = False, simple = True)
+	AddNotificationWithIDCallback(fnc, id, MessageBox, text = text, type = type, timeout = timeout, close_on_any_key = False)

@@ -104,6 +104,7 @@ protected:
 	int cursorMove(int count=1);
 	int cursorValid();
 	int cursorSet(int n);
+	int cursorResolve(int cursor_position);
 	int cursorGet();
 	int currentCursorSelectable();
 

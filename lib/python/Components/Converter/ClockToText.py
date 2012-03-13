@@ -104,7 +104,6 @@ class ClockToText(Converter, object):
 				return str(s1+s2)
 			else:
 				return strftime(self.fmt_string, t)
-		
 		else:
 			return "???"
 

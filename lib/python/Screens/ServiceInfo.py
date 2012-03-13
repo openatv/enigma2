@@ -121,7 +121,10 @@ class ServiceInfo(Screen):
 			else:
 				aspect = "16:9"
 
-			videocodec =  ("MPEG2", "MPEG4", "MPEG1", "MPEG4-II", "VC1", "VC1-SM", "-" )[self.info and self.info.getInfo(iServiceInformation.sVideoType)]
+			if self.info:
+				videocodec =  ("MPEG2", "MPEG4", "MPEG1", "MPEG4-II", "VC1", "VC1-SM", "-" )[self.info.getInfo(iServiceInformation.sVideoType)]
+			else:
+				videocodec = "-"
 
 			width = self.info and self.info.getInfo(iServiceInformation.sVideoWidth) or -1
 			height = self.info and self.info.getInfo(iServiceInformation.sVideoHeight) or -1

@@ -15,7 +15,7 @@ void eListboxServiceContent::addService(const eServiceReference &service, bool b
 	{
 		++m_cursor_number;
 		if (m_listbox)
-			m_listbox->entryAdded(m_cursor_number-1);
+			m_listbox->entryAdded(cursorResolve(m_cursor_number-1));
 	}
 	else
 	{
@@ -35,15 +35,15 @@ void eListboxServiceContent::removeCurrent()
 			if (m_size)
 			{
 				--m_cursor_number;
-				m_listbox->entryRemoved(m_cursor_number+1);
+				m_listbox->entryRemoved(cursorResolve(m_cursor_number+1));
 			}
 			else
-				m_listbox->entryRemoved(m_cursor_number);
+				m_listbox->entryRemoved(cursorResolve(m_cursor_number));
 		}
 		else
 		{
 			m_list.erase(m_cursor++);
-			m_listbox->entryRemoved(m_cursor_number);
+			m_listbox->entryRemoved(cursorResolve(m_cursor_number));
 		}
 	}
 }
@@ -89,7 +89,7 @@ void eListboxServiceContent::setCurrent(const eServiceReference &ref)
 			break;
 		}
 	if (m_listbox)
-		m_listbox->moveSelectionTo(index);
+		m_listbox->moveSelectionTo(cursorResolve(index));
 }
 
 void eListboxServiceContent::getCurrent(eServiceReference &ref)
@@ -137,17 +137,18 @@ int eListboxServiceContent::getPrevMarkerPos()
 	{
 		--i;
 		--index;
-		if (! (i->flags & eServiceReference::isMarker))
+		if (! ((i->flags & eServiceReference::isMarker) && !(i->flags & eServiceReference::isInvisible)))
 			break;
 	}
 	while (index)
 	{
 		--i;
 		--index;
-		if (i->flags & eServiceReference::isMarker)
+		if ((i->flags & eServiceReference::isMarker) && !(i->flags & eServiceReference::isInvisible))
 			break;
 	}
-	return index;
+	
+	return cursorResolve(index);
 }
 
 int eListboxServiceContent::getNextMarkerPos()
@@ -160,10 +161,11 @@ int eListboxServiceContent::getNextMarkerPos()
 	{
 		++i;
 		++index;
-		if (i->flags & eServiceReference::isMarker)
+		if ((i->flags & eServiceReference::isMarker) && !(i->flags & eServiceReference::isInvisible))
 			break;
 	}
-	return index;
+
+	return cursorResolve(index);
 }
 
 void eListboxServiceContent::initMarked()
@@ -175,14 +177,14 @@ void eListboxServiceContent::addMarked(const eServiceReference &ref)
 {
 	m_marked.insert(ref);
 	if (m_listbox)
-		m_listbox->entryChanged(lookupService(ref));
+		m_listbox->entryChanged(cursorResolve(lookupService(ref)));
 }
 
 void eListboxServiceContent::removeMarked(const eServiceReference &ref)
 {
 	m_marked.erase(ref);
 	if (m_listbox)
-		m_listbox->entryChanged(lookupService(ref));
+		m_listbox->entryChanged(cursorResolve(lookupService(ref)));
 }
 
 int eListboxServiceContent::isMarked(const eServiceReference &ref)
@@ -298,7 +300,7 @@ void eListboxServiceContent::cursorHome()
 			std::iter_swap(m_cursor--, m_cursor);
 			--m_cursor_number;
 			if (m_listbox && m_cursor_number)
-				m_listbox->entryChanged(m_cursor_number);
+				m_listbox->entryChanged(cursorResolve(m_cursor_number));
 		}
 	}
 	else
@@ -320,7 +322,7 @@ void eListboxServiceContent::cursorEnd()
 			{
 				std::iter_swap(m_cursor, prev);
 				if ( m_listbox )
-					m_listbox->entryChanged(m_cursor_number);
+					m_listbox->entryChanged(cursorResolve(m_cursor_number));
 			}
 		}
 	}
@@ -338,7 +340,7 @@ int eListboxServiceContent::setCurrentMarked(bool state)
 
 	if (state != prev && m_listbox)
 	{
-		m_listbox->entryChanged(m_cursor_number);
+		m_listbox->entryChanged(cursorResolve(m_cursor_number));
 		if (!state)
 		{
 			if (!m_lst)
@@ -385,10 +387,11 @@ int eListboxServiceContent::cursorMove(int count)
 			{
 				std::iter_swap(prev_it, m_cursor);
 				if ( m_listbox && prev != m_cursor_number && last != m_cursor_number )
-					m_listbox->entryChanged(m_cursor_number);
+					m_listbox->entryChanged(cursorResolve(m_cursor_number));
 			}
 			++m_cursor_number;
-			--count;
+			if (!(m_cursor->flags & eServiceReference::isInvisible))
+				--count;
 		}
 	}
 	else if (count < 0)
@@ -400,10 +403,11 @@ int eListboxServiceContent::cursorMove(int count)
 			{
 				std::iter_swap(prev_it, m_cursor);
 				if ( m_listbox && prev != m_cursor_number && last != m_cursor_number )
-					m_listbox->entryChanged(m_cursor_number);
+					m_listbox->entryChanged(cursorResolve(m_cursor_number));
 			}
 			--m_cursor_number;
-			++count;
+			if (!(m_cursor->flags & eServiceReference::isInvisible))
+				++count;
 		}
 	}
 	return 0;
@@ -421,9 +425,28 @@ int eListboxServiceContent::cursorSet(int n)
 	return 0;
 }
 
+int eListboxServiceContent::cursorResolve(int cursor_position)
+{
+	int m_stripped_cursor = 0;
+	int count = 0;
+	for (list::iterator i(m_list.begin()); i != m_list.end(); ++i)
+	{
+		if (count == cursor_position)
+			break;
+			
+		count++;
+		
+		if (i->flags & eServiceReference::isInvisible)
+			continue;
+		m_stripped_cursor++;
+	}
+	
+	return m_stripped_cursor;
+}
+
 int eListboxServiceContent::cursorGet()
 {
-	return m_cursor_number;
+	return cursorResolve(m_cursor_number);
 }
 
 int eListboxServiceContent::currentCursorSelectable()
@@ -452,7 +475,15 @@ void eListboxServiceContent::cursorRestore()
 
 int eListboxServiceContent::size()
 {
-	return m_size;
+	int size = 0;
+	for (list::iterator i(m_list.begin()); i != m_list.end(); ++i)
+	{
+		if (i->flags & eServiceReference::isInvisible)
+			continue;
+		size++;
+	}
+	
+	return size;
 }
 	
 void eListboxServiceContent::setSize(const eSize &size)
