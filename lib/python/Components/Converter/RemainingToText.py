@@ -20,27 +20,47 @@ class RemainingToText(Poll, Converter, object):
 		Converter.__init__(self, type)
 		if type == "WithSeconds":
 			self.type = self.WITH_SECONDS
+			self.poll_interval = 1000
+			self.poll_enabled = True
 		elif type == "NoSeconds":
 			self.type = self.NO_SECONDS
+			self.poll_interval = 60*1000
+			self.poll_enabled = True
 		elif type == "InSeconds":
 			self.type = self.IN_SECONDS	
+			self.poll_interval = 1000
+			self.poll_enabled = True
 		elif type == "Percentage":
 			self.type = self.PERCENTAGE	
+			self.poll_interval = 60*1000
+			self.poll_enabled = True
 		elif type == "VFD":
 			self.type = self.VFD
 		elif type == "VFDWithSeconds":
 			self.type = self.VFD_WITH_SECONDS
+			self.poll_interval = 1000
+			self.poll_enabled = True
 		elif type == "VFDNoSeconds":
 			self.type = self.VFD_NO_SECONDS
+			self.poll_interval = 60*1000
+			self.poll_enabled = True
 		elif type == "VFDInSeconds":
 			self.type = self.VFD_IN_SECONDS	
+			self.poll_interval = 1000
+			self.poll_enabled = True
 		elif type == "VFDPercentage":
 			self.type = self.VFD_PERCENTAGE	
+			self.poll_interval = 60*1000
+			self.poll_enabled = True
 		else:
 			self.type = self.DEFAULT
 
-		self.poll_interval = 1000
-		self.poll_enabled = True
+		if config.usage.swap_time_display_on_osd.value == "1" or config.usage.swap_time_display_on_osd.value == "3" or config.usage.swap_time_display_on_osd.value == "5" or config.usage.swap_time_display_on_vfd.value == "1" or config.usage.swap_time_display_on_vfd.value == "3" or config.usage.swap_time_display_on_vfd.value == "5":
+			self.poll_interval = 60*1000
+			self.poll_enabled = True
+		if config.usage.swap_time_display_on_osd.value == "2" or config.usage.swap_time_display_on_osd.value == "4" or config.usage.swap_time_display_on_vfd.value == "2" or config.usage.swap_time_display_on_vfd.value == "4":
+			self.poll_interval = 1000
+			self.poll_enabled = True
 
 	@cached
 	def getText(self):
