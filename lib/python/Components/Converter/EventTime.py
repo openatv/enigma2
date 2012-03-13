@@ -141,10 +141,10 @@ class EventTime(Poll, Converter, object):
 						return int(self.list[2][1]) + int(self.list[2][2])
 					else:
 						# failed to return any epg data.
-						return "0"
+						return None
 				except:
 					# failed to return any epg data.
-					return "0"
+					return None
 
 
 	@cached

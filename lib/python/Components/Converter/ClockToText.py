@@ -65,7 +65,6 @@ class ClockToText(Converter, object):
 	@cached
 	def getText(self):
 		time = self.source.time
-		print 'ClockToText TIME:',time
 		if time is None:
 			return ""
 
@@ -105,7 +104,6 @@ class ClockToText(Converter, object):
 				return str(s1+s2)
 			else:
 				return strftime(self.fmt_string, t)
-		
 		else:
 			return "???"
 
