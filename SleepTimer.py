@@ -31,7 +31,7 @@ class SleepTimerEntry(timer.TimerEntry):
 					self.shutdown(True)
 			elif config.SleepTimer.action.value == "standby":
 				if config.SleepTimer.ask.value and not Screens.Standby.inStandby:
-					Notifications.AddNotificationWithCallback(self.standby, MessageBox, _("A sleep timer wants to set your\nSTB_BOX to standby. Do that now?"), timeout = 20
+					Notifications.AddNotificationWithCallback(self.standby, MessageBox, _("A sleep timer wants to set your\nSTB_BOX to standby. Do that now?"), timeout = 20)
 				else:
 					self.standby(True)
 
