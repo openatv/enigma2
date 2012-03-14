@@ -206,7 +206,10 @@ fbClass::~fbClass()
 	if (available)
 		ioctl(fbFd, FBIOPUT_VSCREENINFO, &oldscreen);
 	if (lfb)
+	{
+		msync(lfb, available, MS_SYNC);
 		munmap(lfb, available);
+	}
 	showConsole(1);
 	disableManualBlit();
 	if (fbFd >= 0)
