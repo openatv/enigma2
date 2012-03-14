@@ -170,6 +170,7 @@ int fbClass::SetMode(int nxRes, int nyRes, int nbpp)
 	}
 	stride=fix.line_length;
 	memset(lfb, 0, stride*yRes);
+	blit();
 	return 0;
 }
 
