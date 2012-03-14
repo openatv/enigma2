@@ -505,6 +505,7 @@ private:
 		}
 		int wait();
 		int start(int fd, off_t offset, size_t nbytes, void* buffer);
+		int poll(); // returns 1 if busy, 0 if ready, <0 on error return
 	};
 	eMPEGStreamParserTS m_ts_parser;
 	off_t m_current_offset;
@@ -514,6 +515,7 @@ private:
 	int m_current_buffer;
 	unsigned char* m_allocated_buffer;
 	std::vector<AsyncIO> m_aio;
+	std::vector<int> m_buffer_use_histogram;
 };
 
 
@@ -527,7 +529,8 @@ eDVBRecordFileThread::eDVBRecordFileThread(int packetsize):
 	 offset_last_sync(0),
 	 written_since_last_sync(0),
 	 m_current_buffer(0),
-	 m_aio(recordingBufferCount)
+	 m_aio(recordingBufferCount),
+	 m_buffer_use_histogram(recordingBufferCount+1, 0)
 {
 	if (m_buffer == MAP_FAILED)
 		eFatal("Failed to allocate filepush buffer, contact MiLo\n");
@@ -585,6 +588,24 @@ int eDVBRecordFileThread::AsyncIO::wait()
 			return -1;
 		}
 	}
+	return 0;
+}
+
+int eDVBRecordFileThread::AsyncIO::poll()
+{
+	if (aio.aio_buf == NULL)
+		return 0;
+	if (aio_error(&aio) == EINPROGRESS)
+	{
+		return 1;
+	}
+	int r = aio_return(&aio);
+	if (r < 0)
+	{
+		eDebug("[eDVBRecordFileThread] aio_return returned failure: %m");
+		return -1;
+	}
+	aio.aio_buf = NULL;
 	return 0;
 }
 
@@ -648,6 +669,30 @@ int eDVBRecordFileThread::writeData(int len)
 		}
 	}
 
+
+	// Count how many buffers are still "busy". Move backwards from current,
+	// because they can reasonably be expected to finish in that order.
+	int i = m_current_buffer;
+	r = m_aio[i].poll();
+	int busy_count = 0;
+	while (r > 0)
+	{
+		++busy_count;
+		if (i == 0)
+			i = recordingBufferCount - 1;
+		else
+			--i;
+		if (i == m_current_buffer)
+		{
+			eDebug("[eFilePushThreadRecorder] Warning: All write buffers busy");
+			break;
+		}
+		r = m_aio[i].poll();
+		if (r < 0)
+			return r;
+	}
+	++m_buffer_use_histogram[busy_count];
+
 #ifdef SHOW_WRITE_TIME
 	gettimeofday(&starttime, NULL);
 #endif
@@ -674,6 +719,11 @@ void eDVBRecordFileThread::flush()
 	for (int i = 0; i < recordingBufferCount; ++i)
 	{
 		m_aio[i].wait();
+	}
+	eDebug("[eDVBRecordFileThread] buffer usage histogram (%d buffers of %d kB)", recordingBufferCount, m_buffersize>>10);
+	for (int i=0; i <= recordingBufferCount; ++i)
+	{
+		if (m_buffer_use_histogram[i] != 0) eDebug("     %2d: %6d", i, m_buffer_use_histogram[i]);
 	}
 }
 
