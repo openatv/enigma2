@@ -472,7 +472,7 @@ class TimerSanityConflict(Screen):
 			x = self["list"].getSelectedIndex() + 1 # the first is the new timer so we do +1 here
 			if self.timer[x] is not None:
 				if self.key_yellow_choice == self.EMPTY:
-					self["actions"].actions.update({"yellow":self.toggleTimer})
+					self["actions"].actions.update({"yellow":self.editTimer2})
 					self["key_yellow"].setText(_("Edit"))
 					self.key_yellow_choice = self.EDIT
 				if self.timer[x].disabled and self.key_blue_choice != self.ENABLE:
