@@ -1,6 +1,6 @@
 from Screen import Screen
 from Components.ActionMap import NumberActionMap, ActionMap
-from Components.config import config, ConfigNothing, ConfigYesNo, ConfigSelection
+from Components.config import config, ConfigNothing, ConfigYesNo, ConfigSelection, ConfigText, ConfigPassword
 from Components.SystemInfo import SystemInfo
 from Components.ConfigList import ConfigListScreen
 from Components.Pixmap import Pixmap,MultiPixmap
@@ -113,6 +113,7 @@ class Setup(ConfigListScreen, Screen):
 			self["config"].onSelectionChanged.append(self.handleInputHelpers)
 		self.changedEntry()
 		self.onLayoutFinish.append(self.layoutFinished)
+		self.onClose.append(self.HideHelp)
 
 	def createSetup(self):
 		list = []
@@ -139,7 +140,6 @@ class Setup(ConfigListScreen, Screen):
  		self["status"].setText(self["config"].getCurrent()[2])
 		if self["config"].getCurrent() is not None:
 			try:
-				from Components.config import ConfigText, ConfigPassword
 				if isinstance(self["config"].getCurrent()[1], ConfigText) or isinstance(self["config"].getCurrent()[1], ConfigPassword):
 					if self.has_key("VKeyIcon"):
 						self["VirtualKB"].setEnabled(True)
@@ -161,6 +161,11 @@ class Setup(ConfigListScreen, Screen):
 			if self.has_key("VKeyIcon"):
 				self["VirtualKB"].setEnabled(False)
 				self["VKeyIcon"].boolean = False
+
+	def HideHelp(self):
+		if isinstance(self["config"].getCurrent()[1], ConfigText) or isinstance(self["config"].getCurrent()[1], ConfigPassword):
+			if self["config"].getCurrent()[1].help_window.instance is not None:
+				self["config"].getCurrent()[1].help_window.hide()
 
 	def KeyText(self):
 		from Screens.VirtualKeyBoard import VirtualKeyBoard

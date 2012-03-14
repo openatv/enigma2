@@ -1541,13 +1541,19 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				else:
 					are_you_sure = _("Do you really want to delete ?")
 				if args:
-					# already confirmed...
-					# but not implemented yet...
-					msg = ''
-					CopyFiles.deleteFiles(cur_path, name)
-					self["list"].removeService(current)
-					self.showActionFeedback(_("Deleted") + " " + name)
-					return
+					try:
+						# already confirmed...
+						# but not implemented yet...
+						msg = ''
+						CopyFiles.deleteFiles(cur_path, name)
+						self["list"].removeService(current)
+						self.showActionFeedback(_("Deleted") + " " + name)
+						return
+					except Exception, e:
+						print "[MovieSelection] Weird error moving to trash", e
+						# Failed to create trash or move files.
+						msg = _("Cannot delete file") + "\n" + str(e) + "\n"
+						return
 			for fn in os.listdir(cur_path):
 				if (fn != '.') and (fn != '..'):
 					ffn = os.path.join(cur_path, fn)
