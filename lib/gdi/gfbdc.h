@@ -16,10 +16,8 @@ class gFBDC: public gMainDC
 	gSurface surface, surface_back;
 	int m_enable_double_buffering;
 	int m_xres, m_yres, m_bpp;
-	eSize initialSize;
 public:
 	void setResolution(int xres, int yres, int bpp = 32);
-	eSize getInitialSize() { return initialSize; }
 	void reloadSettings();
 	void setAlpha(int alpha);
 	void setBrightness(int brightness);

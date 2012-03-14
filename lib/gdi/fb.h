@@ -9,7 +9,7 @@ class fbClass
 	int fbFd;
 	int xRes, yRes, stride, bpp;
 	int available;
-	struct fb_var_screeninfo screeninfo, oldscreen;
+	struct fb_var_screeninfo screeninfo;
 	fb_cmap cmap;
 	__u16 red[256], green[256], blue[256], trans[256];
 	static fbClass *instance;

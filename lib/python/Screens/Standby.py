@@ -181,12 +181,7 @@ class TryQuitMainloop(MessageBox):
 			self.hide()
 			if self.retval == 1:
 				config.misc.DeepStandby.value = True
-			from enigma import gMainDC, getDesktop, eSize
  			self.session.nav.stopService()
-			desktop = getDesktop(0)
-			if desktop.size() != gMainDC.getInstance().getInitialSize():
-				gMainDC.getInstance().setResolution(gMainDC.getInstance().getInitialSize().width(), gMainDC.getInstance().getInitialSize().height())
-				desktop.resize(gMainDC.getInstance().getInitialSize())
 			self.quitScreen = self.session.instantiateDialog(QuitMainloopScreen,retvalue=self.retval)
 			self.quitScreen.show()
  			quitMainloop(self.retval)

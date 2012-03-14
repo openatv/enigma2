@@ -15,7 +15,7 @@ gFBDC::gFBDC()
 		eFatal("no framebuffer available");
 
 	fb->getMode(m_xres, m_yres, m_bpp);
-	initialSize = eSize(m_xres, m_yres);
+
 	surface.clut.data = 0;
 	setResolution(m_xres, m_yres); // default res
 
