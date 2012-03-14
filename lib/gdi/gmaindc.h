@@ -16,7 +16,6 @@ protected:
 	virtual ~gMainDC();
 public:
 	virtual void setResolution(int xres, int yres, int bpp = 32) = 0;
-	virtual eSize getInitialSize() = 0;
 #ifndef SWIG
 	static int getInstance(ePtr<gMainDC> &ptr) { if (!m_instance) return -1; ptr = m_instance; return 0; }
 #endif
