@@ -144,23 +144,23 @@ class ServicePosition(Poll, Converter, object):
 	
 			if config.usage.swap_media_time_display_on_osd.value == "1":  # Mins
 				if self.type == self.TYPE_LENGTH:
-					return sign_l + "%d" % (l/60)
+					return ngettext("%d Min", "%d Mins", (l/60)) % (l/60)
 				elif self.type == self.TYPE_POSITION:
 					if config.usage.swap_time_remaining_on_osd.value == "1": # Elasped
-						return sign_p + "%d" % (p/60)
+						return sign_p + ngettext("%d Min", "%d Mins", (p/60)) % (p/60)
 					elif config.usage.swap_time_remaining_on_osd.value == "2": # Elapsed & Remaining
-						return sign_p + "%d  " % (p/60) + sign_r + "%d" % (r/60)
+						return sign_p + "%d  " % (p/60) + sign_r + ngettext("%d Min", "%d Mins", (r/60)) % (r/60)
 					elif config.usage.swap_time_remaining_on_osd.value == "3": # Remaining & Elapsed
-						return sign_r + "%d  " % (r/60) + sign_p + "%d" % (p/60)
+						return sign_r + "%d  " % (r/60) + sign_p + ngettext("%d Min", "%d Mins", (p/60)) % (p/60)
 					else:
-						return sign_r + "%d" % (r/60)
+						return sign_r + ngettext("%d Min", "%d Mins", (r/60)) % (r/60)
 				elif self.type == self.TYPE_REMAINING:
 					if config.usage.swap_time_remaining_on_osd.value == "1": # Elasped
-						return sign_p + "%d" % (p/60)
+						return sign_p + ngettext("%d Min", "%d Mins", (p/60)) % (p/60)
 					elif config.usage.swap_time_remaining_on_osd.value == "2" or config.usage.swap_time_remaining_on_osd.value == "3": # Remaining & Elapsed
 						return ""
 					else:
-						return sign_r + "%d" % (r/60)
+						return sign_r + ngettext("%d Min", "%d Mins", (r/60)) % (r/60)
 			elif config.usage.swap_media_time_display_on_osd.value == "2":  # Mins Secs
 				if self.type == self.TYPE_LENGTH:
 						return sign_l + "%d:%02d" % (l/60, l%60)
@@ -277,11 +277,11 @@ class ServicePosition(Poll, Converter, object):
 					else:
 						if self.showNoSeconds:
 							if self.type == self.TYPE_LENGTH:
-								return sign_l + "%d" % (l/60)
+								return ngettext("%d Min", "%d Mins", (l/60)) % (l/60)
 							elif self.type == self.TYPE_POSITION:
-								return sign_p + "%d" % (p/60)
+								return sign_p + ngettext("%d Min", "%d Mins", (p/60)) % (p/60)
 							elif self.type == self.TYPE_REMAINING:
-								return sign_r + "%d" % (r/60)
+								return sign_r + ngettext("%d Min", "%d Mins", (r/60)) % (r/60)
 						else:
 							if self.type == self.TYPE_LENGTH:
 								return sign_l + "%d:%02d" % (l/60, l%60)
@@ -314,23 +314,23 @@ class ServicePosition(Poll, Converter, object):
 				sign_r = "+"
 			if config.usage.swap_media_time_display_on_vfd.value == "1":  # Mins
 				if self.type == self.TYPE_VFD_LENGTH:
-					return sign_l + "%d" % (l/60)
+					return ngettext("%d Min", "%d Mins", (l/60)) % (l/60)
 				elif self.type == self.TYPE_VFD_POSITION:
 					if config.usage.swap_time_remaining_on_vfd.value == "1": # Elasped
-						return sign_p + "%d" % (p/60)
+						return sign_p + ngettext("%d Min", "%d Mins", (p/60)) % (p/60)
 					elif config.usage.swap_time_remaining_on_vfd.value == "2": # Elapsed & Remaining
-						return sign_p + "%d  " % (p/60) + sign_r + "%d" % (r/60)
+						return sign_p + "%d  " % (p/60) + sign_r + ngettext("%d Min", "%d Mins", (r/60)) % (r/60)
 					elif config.usage.swap_time_remaining_on_vfd.value == "3": # Remaining & Elapsed
-						return sign_r + "%d  " % (r/60) + sign_p + "%d" % (p/60)
+						return sign_r + "%d  " % (r/60) + sign_p + ngettext("%d Min", "%d Mins", (p/60)) % (p/60)
 					else:
-						return sign_r + "%d" % (r/60)
+						return sign_r + ngettext("%d Min", "%d Mins", (r/60)) % (r/60)
 				elif self.type == self.TYPE_VFD_REMAINING:
 					if config.usage.swap_time_remaining_on_vfd.value == "1": # Elasped
-						return sign_p + "%d" % (p/60)
+						return sign_p + ngettext("%d Min", "%d Mins", (p/60)) % (p/60)
 					elif config.usage.swap_time_remaining_on_vfd.value == "2" or config.usage.swap_time_remaining_on_vfd.value == "3": # Remaining & Elapsed
 						return ""
 					else:
-						return sign_r + "%d" % (r/60)
+						return sign_r + ngettext("%d Min", "%d Mins", (r/60)) % (r/60)
 			elif config.usage.swap_media_time_display_on_vfd.value == "2":  # Mins Secs
 				if self.type == self.TYPE_VFD_LENGTH:
 						return sign_l + "%d:%02d" % (l/60, l%60)
@@ -448,11 +448,11 @@ class ServicePosition(Poll, Converter, object):
 					else:
 						if self.showNoSeconds:
 							if self.type == self.TYPE_VFD_LENGTH:
-								return sign_l + "%d" % (l/60)
+								return ngettext("%d Min", "%d Mins", (l/60)) % (l/60)
 							elif self.type == self.TYPE_VFD_POSITION:
-								return sign_p + "%d" % (p/60)
+								return sign_p + ngettext("%d Min", "%d Mins", (p/60)) % (p/60)
 							elif self.type == self.TYPE_VFD_REMAINING:
-								return sign_r + "%d" % (r/60)
+								return sign_r + ngettext("%d Min", "%d Mins", (r/60)) % (r/60)
 						else:
 							if self.type == self.TYPE_VFD_LENGTH:
 								return sign_l + "%d:%02d" % (l/60, l%60)
