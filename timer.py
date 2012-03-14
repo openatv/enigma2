@@ -185,8 +185,6 @@ class Timer:
 	
 	def setNextActivation(self, when):
 		delay = int((when - time()) * 1000)
-		print "[timer.py] next activation: %d (in %d ms)" % (when, delay)
-		
 		self.timer.start(delay, 1)
 		self.next = when
 
@@ -210,8 +208,6 @@ class Timer:
 			w = self.timer_list[0].getNextActivation()
 			if w < min:
 				min = w
-			else:
-				print "next real activation is", strftime("%c", localtime(w))
 		
 		self.setNextActivation(min)
 	
@@ -261,9 +257,7 @@ class Timer:
 		self.stateChanged(w)
 
 	def processActivation(self):
-		print "It's now ", strftime("%c", localtime(time()))
 		t = int(time()) + 1
-		
 		# we keep on processing the first entry until it goes into the future.
 		while self.timer_list and self.timer_list[0].getNextActivation() < t:
 			self.doActivate(self.timer_list[0])
