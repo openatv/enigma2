@@ -182,7 +182,15 @@ class TryQuitMainloop(MessageBox):
 			if self.retval == 1:
 				config.misc.DeepStandby.value = True
 			from enigma import gMainDC, getDesktop, eSize
- 			self.session.nav.stopService()
+
+			#Toggling to stop the current service off/on/off to really ensure that
+			#the framebuffer is empty (black) to prevent from an ugly flash of the 
+			#last played frame
+			ref = self.session.nav.getCurrentlyPlayingServiceReference()
+			self.session.nav.stopService()
+			self.session.nav.playService(ref)
+			self.session.nav.stopService()
+
 			desktop = getDesktop(0)
 			if desktop.size() != eSize(720,576):
 				gMainDC.getInstance().setResolution(720,576)
