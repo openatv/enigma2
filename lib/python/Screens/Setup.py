@@ -113,6 +113,7 @@ class Setup(ConfigListScreen, Screen):
 			self["config"].onSelectionChanged.append(self.handleInputHelpers)
 		self.changedEntry()
 		self.onLayoutFinish.append(self.layoutFinished)
+		self.onClose.append(self.HideHelp)
 
 	def createSetup(self):
 		list = []
@@ -161,6 +162,10 @@ class Setup(ConfigListScreen, Screen):
 			if self.has_key("VKeyIcon"):
 				self["VirtualKB"].setEnabled(False)
 				self["VKeyIcon"].boolean = False
+
+	def HideHelp(self):
+		if self["config"].getCurrent()[1].help_window.instance is not None:
+			self["config"].getCurrent()[1].help_window.hide()
 
 	def KeyText(self):
 		from Screens.VirtualKeyBoard import VirtualKeyBoard
