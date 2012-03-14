@@ -14,8 +14,10 @@ gFBDC::gFBDC()
 	if (!fb->Available())
 		eFatal("no framebuffer available");
 
+	fb->getMode(m_xres, m_yres, m_bpp);
+	initialSize = eSize(m_xres, m_yres);
 	surface.clut.data = 0;
-	setResolution(720, 576); // default res
+	setResolution(m_xres, m_yres); // default res
 
 	reloadSettings();
 }
@@ -157,14 +159,14 @@ void gFBDC::setGamma(int g)
 	setPalette();
 }
 
-void gFBDC::setResolution(int xres, int yres)
+void gFBDC::setResolution(int xres, int yres, int bpp)
 {
-	if ((m_xres == xres) && (m_yres == yres))
+	if (m_pixmap && (m_xres == xres) && (m_yres == yres) && (bpp == m_bpp))
 		return;
 
-	m_xres = xres; m_yres = yres;
+	m_xres = xres; m_yres = yres; m_bpp = bpp;
 
-	fb->SetMode(m_xres, m_yres, 32);
+	fb->SetMode(m_xres, m_yres, m_bpp);
 
 	for (int y=0; y<m_yres; y++)	// make whole screen transparent
 		memset(fb->lfb+y*fb->Stride(), 0x00, fb->Stride());
@@ -172,8 +174,8 @@ void gFBDC::setResolution(int xres, int yres)
 	surface.type = 0;
 	surface.x = m_xres;
 	surface.y = m_yres;
-	surface.bpp = 32;
-	surface.bypp = 4;
+	surface.bpp = m_bpp;
+	surface.bypp = m_bpp / 8;
 	surface.stride = fb->Stride();
 	surface.data = fb->lfb;
 	surface.offset = 0;
@@ -188,8 +190,8 @@ void gFBDC::setResolution(int xres, int yres)
 		surface_back.type = 0;
 		surface_back.x = m_xres;
 		surface_back.y = m_yres;
-		surface_back.bpp = 32;
-		surface_back.bypp = 4;
+		surface_back.bpp = m_bpp;
+		surface_back.bypp = m_bpp / 8;
 		surface_back.stride = fb->Stride();
 		surface_back.offset = surface.y;
 		surface_back.data = fb->lfb + fb_size;
