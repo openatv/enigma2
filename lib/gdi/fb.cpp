@@ -52,8 +52,6 @@ fbClass::fbClass(const char *fb)
 		perror("FBIOGET_VSCREENINFO");
 		goto nolfb;
 	}
-	
-	memcpy(&oldscreen, &screeninfo, sizeof(screeninfo));
 
 	fb_fix_screeninfo fix;
 	if (ioctl(fbFd, FBIOGET_FSCREENINFO, &fix)<0)
@@ -100,7 +98,7 @@ int fbClass::showConsole(int state)
 	return 0;
 }
 
-int fbClass::SetMode(unsigned int nxRes, unsigned int nyRes, unsigned int nbpp)
+int fbClass::SetMode(int nxRes, int nyRes, int nbpp)
 {
 	screeninfo.xres_virtual=screeninfo.xres=nxRes;
 	screeninfo.yres_virtual=(screeninfo.yres=nyRes)*2;
@@ -170,7 +168,15 @@ int fbClass::SetMode(unsigned int nxRes, unsigned int nyRes, unsigned int nbpp)
 	}
 	stride=fix.line_length;
 	memset(lfb, 0, stride*yRes);
+	blit();
 	return 0;
+}
+
+void fbClass::getMode(int &xres, int &yres, int &bpp)
+{
+	xres = screeninfo.xres;
+	yres = screeninfo.yres;
+	bpp = screeninfo.bits_per_pixel;
 }
 
 int fbClass::setOffset(int off)
@@ -196,10 +202,11 @@ void fbClass::blit()
 
 fbClass::~fbClass()
 {
-	if (available)
-		ioctl(fbFd, FBIOPUT_VSCREENINFO, &oldscreen);
 	if (lfb)
+	{
+		msync(lfb, available, MS_SYNC);
 		munmap(lfb, available);
+	}
 	showConsole(1);
 	disableManualBlit();
 	if (fbFd >= 0)

@@ -934,7 +934,6 @@ void eEPGCache::flushEPG(const uniqueEPGKey & s)
 		for (channelMapIterator it(m_knownChannels.begin()); it != m_knownChannels.end(); ++it)
 			it->second->startEPG();
 	}
-	eDebug("[EPGC] %i bytes for cache used", eventData::CacheSize);
 }
 
 void eEPGCache::cleanLoop()
@@ -997,7 +996,6 @@ void eEPGCache::cleanLoop()
 			}
 #endif
 		}
-		eDebug("[EPGC] %i bytes for cache used", eventData::CacheSize);
 	}
 	cleanTimer->start(CLEAN_INTERVAL,true);
 }
