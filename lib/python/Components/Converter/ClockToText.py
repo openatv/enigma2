@@ -70,7 +70,7 @@ class ClockToText(Converter, object):
 
 		# handle durations
 		if self.type == self.IN_MINUTES:
-			return "%d min" % (time / 60)
+			return "%d " % (time / 60) + _("Mins")
 		elif self.type == self.AS_LENGTH:
 			if time < 0:
 				return ""
