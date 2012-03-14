@@ -128,9 +128,9 @@ class PluginBrowser(Screen):
 		self.checkWarnings()
 
 	def openExtensionmanager(self):
-		if fileExists(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SoftwareManager/plugin.py")):
+		if fileExists(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/ViX/SoftwareManager.py")):
 			try:
-				from Plugins.SystemPlugins.SoftwareManager.plugin import PluginManager
+				from Plugins.SystemPlugins.ViX.SoftwareManager import PluginManager
 			except ImportError:
 				self.session.open(MessageBox, _("The Softwaremanagement extension is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 			else:
@@ -162,6 +162,7 @@ class PluginDownloadBrowser(Screen):
 		self.plugins_changed = False
 		self.reload_settings = False
 		self.check_settings = False
+		self.check_bootlogo = False
 		self.install_settings_name = ''
 		self.remove_settings_name = ''
 		
@@ -267,9 +268,13 @@ class PluginDownloadBrowser(Screen):
 						self.session.openWithCallback(self.installDestinationCallback, ChoiceBox, title=_("Install lcd picons on"), list=candidates)
 					return
 				self.install_settings_name = self["list"].l.getCurrentSelection()[0].name
+				self.install_bootlogo_name = self["list"].l.getCurrentSelection()[0].name
 				if self["list"].l.getCurrentSelection()[0].name.startswith('settings-'):
 					self.check_settings = True
 					self.startIpkgListInstalled(self.PLUGIN_PREFIX + 'settings-*')
+				elif self["list"].l.getCurrentSelection()[0].name.startswith('bootlogo-'):
+					self.check_bootlogo = True
+					self.startIpkgListInstalled(self.PLUGIN_PREFIX + 'bootlogo-*')
 				else:
 					self.runSettingsInstall()
 			elif self.type == self.REMOVE:
@@ -287,6 +292,10 @@ class PluginDownloadBrowser(Screen):
 	def runSettingsRemove(self, val):
 		if val:
 			self.doRemove(self.runSettingsInstall, self.remove_settings_name)
+
+	def runBootlogoRemove(self, val):
+		if val:
+			self.doRemove(self.runSettingsInstall, self.remove_bootlogo_name + " --force-remove --force-depends")
 
 	def runSettingsInstall(self):
 		self.doInstall(self.installFinished, self.install_settings_name)
@@ -347,6 +356,10 @@ class PluginDownloadBrowser(Screen):
 			self.check_settings = False
 			self.runSettingsInstall()
 			return
+		if self.check_bootlogo:
+			self.check_bootlogo = False
+			self.runSettingsInstall()
+			return
 		self.remainingdata = ""
 		if self.run == 0:
 			self.run = 1
@@ -379,6 +392,12 @@ class PluginDownloadBrowser(Screen):
 			self.check_settings = False
 			self.remove_settings_name = str.split(' - ')[0].replace(self.PLUGIN_PREFIX, '')
 			self.session.openWithCallback(self.runSettingsRemove, MessageBox, _('You already have a channel list installed,\nwould you like to remove\n"%s"?') % self.remove_settings_name)
+			return
+
+		if self.check_bootlogo:
+			self.check_bootlogo = False
+			self.remove_bootlogo_name = str.split(' - ')[0].replace(self.PLUGIN_PREFIX, '')
+			self.session.openWithCallback(self.runBootlogoRemove, MessageBox, _('You already have a bootlogo installed,\nwould you like to remove\n"%s"?') % self.remove_bootlogo_name)
 			return
 
 		for x in lines:
