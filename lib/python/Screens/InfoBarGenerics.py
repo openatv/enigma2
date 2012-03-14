@@ -2354,7 +2354,7 @@ class InfoBarSubtitleSupport(object):
 				self.session.open(SubtitleSelection, self)
 		except AttributeError:
 			pass
-	
+
 	def __serviceStopped(self):
 		if self.__subtitles_enabled:
 			self.subtitle_window.hide()
