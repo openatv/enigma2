@@ -26,7 +26,12 @@ gRC::gRC(): rp(0), wp(0)
 #ifndef SYNC_PAINT
 	pthread_mutex_init(&mutex, 0);
 	pthread_cond_init(&cond, 0);
-	int res = pthread_create(&the_thread, 0, thread_wrapper, this);
+	pthread_attr_t attr;
+	pthread_attr_init(&attr);
+	if (pthread_attr_setstacksize(&attr, 256*1024) != 0)
+		eDebug("[gRC] pthread_attr_setstacksize failed");
+	int res = pthread_create(&the_thread, &attr, thread_wrapper, this);
+	pthread_attr_destroy(&attr);
 	if (res)
 		eFatal("RC thread couldn't be created");
 	else
