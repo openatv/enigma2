@@ -13,7 +13,6 @@ def OnlineUpdateCheck(session=None, **kwargs):
 	onlineupdatecheckpoller.start()
 
 class OnlineUpdateCheckPoller:
-	"""Automatically Poll SoftCam"""
 	def __init__(self):
 		# Init Timer
 		self.timer = eTimer()
@@ -87,7 +86,6 @@ class VersionCheck:
 			print '[OnlineVersionCheck] New online version found'
 			return True
 		else:
-			print '[OnlineVersionCheck] No New online version found'
 			return False
 
 versioncheck = VersionCheck()
