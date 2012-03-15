@@ -67,6 +67,11 @@
 		</widget>
 	</screen>
 
+	<!-- RDS info -->
+	<screen name="RdsInfoDisplaySummary" position="0,0" size="132,64">
+		<widget source="message" render="Label" position="0,0" size="120,20" font="Regular;18" noWrap="1" />
+	</screen>
+
 <!-- Plugin browser -->
 	<screen name="PluginBrowserSummary" position="0,0" size="132,64">
 		<widget source="entry" render="Label" position="0,0" size="120,20" font="Regular;18" noWrap="1" />
