@@ -1575,7 +1575,24 @@ class NetworkAfp(Screen):
 		self.my_Samba_active = False
 		self.my_Samba_run = False
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.AfpStop, 'green': self.AfpStart, 'yellow': self.activateAfp})
-		self.onLayoutFinish.append(self.updateService)
+		self.service_name = 'task-base-appletalk'
+		self.onLayoutFinish.append(self.InstallCheck)
+
+	def InstallCheck(self):
+		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.dataAvail)
+
+	def dataAvail(self, str, retval, extra_args):
+		if not str:
+			self.session.openWithCallback(self.InstallPackage, MessageBox, _('Would you like to install\n"%s"?') % self.service_name)
+		else:
+			self.updateService()
+
+	def InstallPackage(self, val):
+		if val:
+			self.doInstall(self.updateService, self.service_name)
+
+	def doInstall(self, callback, pkgname):
+		self.Console.ePopen('/usr/bin/opkg install ' + pkgname + ' sync', callback)
 
 	def createSummary(self):
 		return NetworkServicesSummary
@@ -1604,7 +1621,7 @@ class NetworkAfp(Screen):
 		time.sleep(3)
 		self.updateService()
 
-	def updateService(self):
+	def updateService(self,result = None, retval = None, extra_args = None):
 		import process
 		p = process.ProcessList()
 		afp_process = str(p.named('afpd')).strip('[]')
@@ -1706,7 +1723,7 @@ class NetworkFtp(Screen):
 				mybox.setTitle(_("Info"))
 				self.updateService()
 
-	def updateService(self):
+	def updateService(self,result = None, retval = None, extra_args = None):
 		self['labrun'].hide()
 		self['labstop'].hide()
 		self.my_ftp_active = False
@@ -1765,7 +1782,24 @@ class NetworkNfs(Screen):
 		self.my_nfs_active = False
 		self.my_nfs_run = False
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.NfsStop, 'green': self.NfsStart, 'yellow': self.Nfsset})
-		self.onLayoutFinish.append(self.updateService)
+		self.service_name = 'task-base-nfs'
+		self.onLayoutFinish.append(self.InstallCheck)
+
+	def InstallCheck(self):
+		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.dataAvail)
+
+	def dataAvail(self, str, retval, extra_args):
+		if not str:
+			self.session.openWithCallback(self.InstallPackage, MessageBox, _('Would you like to install\n"%s"?') % self.service_name)
+		else:
+			self.updateService()
+
+	def InstallPackage(self, val):
+		if val:
+			self.doInstall(self.updateService, self.service_name)
+
+	def doInstall(self, callback, pkgname):
+		self.Console.ePopen('/usr/bin/opkg install ' + pkgname + ' sync', callback)
 
 	def createSummary(self):
 		return NetworkServicesSummary
@@ -1794,7 +1828,7 @@ class NetworkNfs(Screen):
 		time.sleep(3)
 		self.updateService()
 
-	def updateService(self):
+	def updateService(self,result = None, retval = None, extra_args = None):
 		import process
 		p = process.ProcessList()
 		nfs_process = str(p.named('nfsd')).strip('[]')
@@ -1861,7 +1895,24 @@ class NetworkOpenvpn(Screen):
 		self.my_vpn_active = False
 		self.my_vpn_run = False
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.VpnStop, 'green': self.VpnStart, 'yellow': self.activateVpn, 'blue': self.Vpnshowlog})
-		self.onLayoutFinish.append(self.updateService)
+		self.service_name = 'openvpn'
+		self.onLayoutFinish.append(self.InstallCheck)
+
+	def InstallCheck(self):
+		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.dataAvail)
+
+	def dataAvail(self, str, retval, extra_args):
+		if not str:
+			self.session.openWithCallback(self.InstallPackage, MessageBox, _('Would you like to install\n"%s"?') % self.service_name)
+		else:
+			self.updateService()
+
+	def InstallPackage(self, val):
+		if val:
+			self.doInstall(self.updateService, self.service_name)
+
+	def doInstall(self, callback, pkgname):
+		self.Console.ePopen('/usr/bin/opkg install ' + pkgname + ' sync', callback)
 
 	def createSummary(self):
 		return NetworkServicesSummary
@@ -1893,7 +1944,7 @@ class NetworkOpenvpn(Screen):
 		time.sleep(3)
 		self.updateService()
 
-	def updateService(self):
+	def updateService(self,result = None, retval = None, extra_args = None):
 		import process
 		p = process.ProcessList()
 		openvpn_process = str(p.named('openvpn')).strip('[]')
@@ -1984,7 +2035,24 @@ class NetworkSamba(Screen):
 		self.my_Samba_active = False
 		self.my_Samba_run = False
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.SambaStop, 'green': self.SambaStart, 'yellow': self.activateSamba, 'blue': self.Sambashowlog})
-		self.onLayoutFinish.append(self.updateService)
+		self.service_name = 'samba'
+		self.onLayoutFinish.append(self.InstallCheck)
+
+	def InstallCheck(self):
+		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.dataAvail)
+
+	def dataAvail(self, str, retval, extra_args):
+		if not str:
+			self.session.openWithCallback(self.InstallPackage, MessageBox, _('Would you like to install\n"%s"?') % self.service_name)
+		else:
+			self.updateService()
+
+	def InstallPackage(self, val):
+		if val:
+			self.doInstall(self.updateService, self.service_name)
+
+	def doInstall(self, callback, pkgname):
+		self.Console.ePopen('/usr/bin/opkg install ' + pkgname + ' sync', callback)
 
 	def createSummary(self):
 		return NetworkServicesSummary
@@ -2016,7 +2084,7 @@ class NetworkSamba(Screen):
 		time.sleep(3)
 		self.updateService()
 
-	def updateService(self):
+	def updateService(self,result = None, retval = None, extra_args = None):
 		import process
 		p = process.ProcessList()
 		samba_process = str(p.named('smbd')).strip('[]')
@@ -2142,7 +2210,7 @@ class NetworkTelnet(Screen):
 				mybox.setTitle(_("Info"))
 				self.updateService()
 
-	def updateService(self):
+	def updateService(self,result = None, retval = None, extra_args = None):
 		self['labrun'].hide()
 		self['labstop'].hide()
 		self.my_telnet_active = False
@@ -2227,7 +2295,24 @@ class NetworkInadyn(Screen):
 		self['key_blue'] = Label(_("Show Log"))
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.setupinadyn, 'back': self.close, 'red': self.setupinadyn, 'green': self.InadynStart, 'yellow': self.autostart, 'blue': self.inaLog})
 		self.Console = Console()
-		self.onLayoutFinish.append(self.updateService)
+		self.service_name = 'inadyn-mt'
+		self.onLayoutFinish.append(self.InstallCheck)
+
+	def InstallCheck(self):
+		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.dataAvail)
+
+	def dataAvail(self, str, retval, extra_args):
+		if not str:
+			self.session.openWithCallback(self.InstallPackage, MessageBox, _('Would you like to install\n"%s"?') % self.service_name)
+		else:
+			self.updateService()
+
+	def InstallPackage(self, val):
+		if val:
+			self.doInstall(self.updateService, self.service_name)
+
+	def doInstall(self, callback, pkgname):
+		self.Console.ePopen('/usr/bin/opkg install ' + pkgname + ' sync', callback)
 
 	def createSummary(self):
 		return NetworkServicesSummary
@@ -2250,7 +2335,7 @@ class NetworkInadyn(Screen):
 		time.sleep(3)
 		self.updateService()
 
-	def updateService(self):
+	def updateService(self,result = None, retval = None, extra_args = None):
 		import process
 		p = process.ProcessList()
 		inadyn_process = str(p.named('inadyn-mt')).strip('[]')
@@ -2561,7 +2646,24 @@ class NetworkuShare(Screen):
 		self['key_blue'] = Label(_("Show Log"))
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.setupushare, 'back': self.close, 'red': self.setupushare, 'green': self.uShareStart, 'yellow': self.autostart, 'blue': self.ushareLog})
 		self.Console = Console()
-		self.onLayoutFinish.append(self.updateService)
+		self.service_name = 'ushare'
+		self.onLayoutFinish.append(self.InstallCheck)
+
+	def InstallCheck(self):
+		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.dataAvail)
+
+	def dataAvail(self, str, retval, extra_args):
+		if not str:
+			self.session.openWithCallback(self.InstallPackage, MessageBox, _('Would you like to install\n"%s"?') % self.service_name)
+		else:
+			self.updateService()
+
+	def InstallPackage(self, val):
+		if val:
+			self.doInstall(self.updateService, self.service_name)
+
+	def doInstall(self, callback, pkgname):
+		self.Console.ePopen('/usr/bin/opkg install ' + pkgname + ' sync', callback)
 
 	def createSummary(self):
 		return NetworkServicesSummary
@@ -2584,7 +2686,7 @@ class NetworkuShare(Screen):
 		time.sleep(3)
 		self.updateService()
 
-	def updateService(self):
+	def updateService(self,result = None, retval = None, extra_args = None):
 		import process
 		p = process.ProcessList()
 		ushare_process = str(p.named('ushare')).strip('[]')
@@ -3042,7 +3144,24 @@ class NetworkMiniDLNA(Screen):
 		self['key_blue'] = Label(_("Show Log"))
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.setupminidlna, 'back': self.close, 'red': self.setupminidlna, 'green': self.MiniDLNAStart, 'yellow': self.autostart, 'blue': self.minidlnaLog})
 		self.Console = Console()
-		self.onLayoutFinish.append(self.updateService)
+		self.service_name = 'minidlna'
+		self.onLayoutFinish.append(self.InstallCheck)
+
+	def InstallCheck(self):
+		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.dataAvail)
+
+	def dataAvail(self, str, retval, extra_args):
+		if not str:
+			self.session.openWithCallback(self.InstallPackage, MessageBox, _('Would you like to install\n"%s"?') % self.service_name)
+		else:
+			self.updateService()
+
+	def InstallPackage(self, val):
+		if val:
+			self.doInstall(self.updateService, self.service_name)
+
+	def doInstall(self, callback, pkgname):
+		self.Console.ePopen('/usr/bin/opkg install ' + pkgname + ' sync', callback)
 
 	def createSummary(self):
 		return NetworkServicesSummary
@@ -3065,7 +3184,7 @@ class NetworkMiniDLNA(Screen):
 		time.sleep(3)
 		self.updateService()
 
-	def updateService(self):
+	def updateService(self,result = None, retval = None, extra_args = None):
 		import process
 		p = process.ProcessList()
 		minidlna_process = str(p.named('minidlna')).strip('[]')
