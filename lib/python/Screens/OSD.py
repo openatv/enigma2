@@ -12,12 +12,14 @@ class OSDSetup(Screen, ConfigListScreen):
 	skin = """
 	<screen name="OSDSetup" position="0,0" size="e,e" backgroundColor="blue">
 		<widget name="config" position="c-175,c-75" size="350,150" foregroundColor="black" backgroundColor="blue" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="c-145,e-100" zPosition="0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/red.png" position="c+5,e-100" zPosition="0" size="140,40" alphatest="on" />
-		<widget source="key_green" render="Label" position="c-145,e-100" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;20" transparent="1" backgroundColor="green" />
-		<widget source="key_red" render="Label" position="c+5,e-100" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;20" transparent="1" backgroundColor="red" />
-		<ePixmap pixmap="skin_default/div-h.png" position="c-200,e-150" zPosition="1" size="400,2" />
-		<widget source="status" render="Label" position="c-200,e-140" size="400,30" zPosition="10" font="Regular;21" halign="center" valign="center" foregroundColor="black" backgroundColor="blue" transparent="1" />
+		<ePixmap pixmap="skin_default/buttons/green.png" position="c-215,e-100" zPosition="0" size="140,40" alphatest="on" />
+		<widget source="key_green" render="Label" position="c-215,e-100" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;20" transparent="1" backgroundColor="green" />
+		<ePixmap pixmap="skin_default/buttons/red.png" position="c-65,e-100" zPosition="0" size="140,40" alphatest="on" />
+		<widget source="key_red" render="Label" position="c-65,e-100" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;20" transparent="1" backgroundColor="red" />
+		<ePixmap pixmap="skin_default/buttons/yellow.png" position="c+75,e-100" zPosition="0" size="140,40" alphatest="on" />
+		<widget source="key_yellow" render="Label" position="c+75,e-100" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;20" transparent="1" backgroundColor="yellow" />
+		<ePixmap pixmap="skin_default/div-h.png" position="c-200,e-180" zPosition="1" size="400,2" />
+		<widget source="status" render="Label" position="c-300,e-170" size="600,60" zPosition="10" font="Regular;21" halign="center" valign="center" foregroundColor="black" backgroundColor="blue" transparent="1" />
 	</screen>"""
 
 	def __init__(self, session):
@@ -27,11 +29,15 @@ class OSDSetup(Screen, ConfigListScreen):
 		self["status"] = StaticText()
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
+		self["key_yellow"] = StaticText(_("Defaults"))
 
-		self["actions"] = ActionMap(["SetupActions"], 
+		self["actions"] = ActionMap(["SetupActions", "ColorActions"], 
 			{
 				"cancel": self.keyCancel,
 				"save": self.keySave,
+				"left": self.keyLeft,
+				"right": self.keyRight,
+				"yellow": self.keyDefault,
 			}, -2)
 
 		self.onChangedEntry = [ ]
@@ -80,6 +86,16 @@ class OSDSetup(Screen, ConfigListScreen):
 	def keyRight(self):
 		ConfigListScreen.keyRight(self)
 		self.setPreviewPosition()
+
+	def keyDefault(self):
+		config.osd.alpha.setValue(255)
+
+		config.osd.dst_left.setValue(0)
+		config.osd.dst_width.setValue(720)
+		config.osd.dst_top.setValue(0)
+		config.osd.dst_height.setValue(576)
+
+		self.keyRight()
 
 	def setPreviewPosition(self):
 		size_w = getDesktop(0).size().width()
