@@ -201,11 +201,7 @@ class Session:
 		# when this is an execbegin after a execend of a "higher" dialog,
 		# popSummary already did the right thing.
 		if first:
-			self.pushSummary()
-			summary = c.createSummary() or SimpleSummary
-			self.summary = self.instantiateSummaryDialog(summary, c)
-			self.summary.show()
-			c.addSummary(self.summary)
+			self.instantiateSummaryDialog(c)
 
 		c.saveKeyboardMode()
 		c.execBegin()
@@ -243,8 +239,13 @@ class Session:
 		screen.hide()
 		screen.doClose()
 
-	def instantiateSummaryDialog(self, screen, *arguments, **kwargs):
-		return self.doInstantiateDialog(screen, arguments, kwargs, self.summary_desktop)
+	def instantiateSummaryDialog(self, screen, **kwargs):
+		self.pushSummary()
+		summary = screen.createSummary() or SimpleSummary
+		arguments = (screen,)
+		self.summary = self.doInstantiateDialog(summary, arguments, kwargs, self.summary_desktop)
+		self.summary.show()
+		screen.addSummary(self.summary)
 
 	def doInstantiateDialog(self, screen, arguments, kwargs, desktop):
 		# create dialog
