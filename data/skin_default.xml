@@ -762,11 +762,17 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget name="video" position="0,0" size="240,192" backgroundColor="transparent" />
 	</screen>
 	<!-- Pin input -->
-	<screen name="PinInput" position="center,center" size="500,170" title="Pin code needed">
+	<screen name="PinInputTemplate" >
 		<widget name="service" position="10,10" size="480,25" font="Regular;20" />
 		<widget name="text" position="10,40" size="480,25" font="Regular;20" halign="center" />
 		<widget name="tries" position="10,70" size="480,25" font="Regular;20" halign="center" />
 		<widget name="input" position="10,110" size="480,40" font="Regular;50" halign="center" />
+	</screen>
+	<screen name="PinInput" position="center,center" size="500,170" title="Pin code needed">
+		<panel name="PinInputTemplate" />
+	</screen>
+	<screen name="PinInputPopup" position="center,center" size="500,170" title="Pin code needed">
+		<panel name="PinInputTemplate" />
 	</screen>
 	<!-- Picture in picture setup -->
 	<screen name="PiPSetup" position="center,center" size="600,150" backgroundColor="transparent" flags="wfNoBorder" title="PiPSetup">
