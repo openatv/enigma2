@@ -95,7 +95,7 @@ class OSDSetup(Screen, ConfigListScreen):
 		config.osd.dst_top.setValue(0)
 		config.osd.dst_height.setValue(576)
 
-		self.keyRight()
+		self.keyLeft()
 
 	def setPreviewPosition(self):
 		size_w = getDesktop(0).size().width()
