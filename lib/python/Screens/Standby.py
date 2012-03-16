@@ -107,10 +107,9 @@ from Components.Task import job_manager
 class QuitMainloopScreen(Screen):
 
 	def __init__(self, session, retvalue=1):
-		self.skin = """
-			<screen position="center,center" size="600,150" title="Shutdown">
-				<ePixmap pixmap="skin_default/icons/input_info.png" position="5,5" size="53,53" alphatest="on" />
-				<widget name="text" position="65,8" size="520,200" font="Regular;22" />
+		self.skin = """<screen name="QuitMainloopScreen" position="fill" flags="wfNoBorder">
+				<ePixmap pixmap="skin_default/icons/input_info.png" position="c-27,c-60" size="53,53" alphatest="on" />
+				<widget name="text" position="center,c+5" size="720,100" font="Regular;22" halign="center" />
 			</screen>"""
 		Screen.__init__(self, session)
 		from Components.Label import Label
@@ -181,10 +180,10 @@ class TryQuitMainloop(MessageBox):
 			self.hide()
 			if self.retval == 1:
 				config.misc.DeepStandby.value = True
- 			self.session.nav.stopService()
+			self.session.nav.stopService()
 			self.quitScreen = self.session.instantiateDialog(QuitMainloopScreen,retvalue=self.retval)
 			self.quitScreen.show()
- 			quitMainloop(self.retval)
+			quitMainloop(self.retval)
 		else:
 			MessageBox.close(self, True)
 
