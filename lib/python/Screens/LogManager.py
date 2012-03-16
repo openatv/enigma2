@@ -206,10 +206,10 @@ class LogManager(Screen):
 		return PluginBrowserSummary
 
 	def selectionChanged(self):
-		item = self["list"].getCurrent()[0]
+		item = self["list"].getCurrent()
 		desc = ""
 		if item:
-			name = str(item[0])
+			name = str(item[0][0])
 		else:
 			name = ""
 		for cb in self.onChangedEntry:
