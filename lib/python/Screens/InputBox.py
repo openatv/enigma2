@@ -84,15 +84,16 @@ class InputBox(Screen):
 		self["input"].toggleOverwrite()
 
 class PinInput(InputBox):
-	def __init__(self, session, service = "", triesEntry = None, pinList = [], *args, **kwargs):
-		InputBox.__init__(self, session = session, text="    ", maxSize=True, type=Input.PIN, *args, **kwargs)
-		
+	def __init__(self, session, service = "", triesEntry = None, pinList = [], popup = False, *args, **kwargs):
+		InputBox.__init__(self, session = session, text = "    ", maxSize = True, type = Input.PIN, *args, **kwargs)
+
 		self.waitTime = 15
-		
 		self.triesEntry = triesEntry
-		
 		self.pinList = pinList
 		self["service"] = Label(service)
+
+		if service:
+			self.skinName = "PinInputPopup"
 		
 		if self.getTries() == 0:
 			if (self.triesEntry.time.value + (self.waitTime * 60)) > time():
