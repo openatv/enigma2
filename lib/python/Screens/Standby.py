@@ -110,8 +110,7 @@ class Standby(Standby2):
 			Screens.InfoBar.InfoBar.saveTimeshiftActions(Screens.InfoBar.InfoBar.instance, postaction="standby")
 
 class StandbySummary(Screen):
-	skin = """
-	<screen position="0,0" size="132,64">
+	skin = """<screen position="0,0" size="132,64">
 		<widget source="global.CurrentTime" render="Label" position="0,0" size="132,64" font="Regular;40" halign="center">
 			<convert type="ClockToText" />
 		</widget>
@@ -129,8 +128,7 @@ from Components.Task import job_manager
 class QuitMainloopScreen(Screen):
 
 	def __init__(self, session, retvalue=1):
-	self.skin = """
-		<screen name="QuitMainloopScreen" position="fill" flags="wfNoBorder">
+		self.skin = """<screen name="QuitMainloopScreen" position="fill" flags="wfNoBorder">
 			<ePixmap pixmap="skin_default/icons/input_info.png" position="c-27,c-60" size="53,53" alphatest="on" />
 			<widget name="text" position="center,c+5" size="720,100" font="Regular;22" halign="center" />
 		</screen>"""
