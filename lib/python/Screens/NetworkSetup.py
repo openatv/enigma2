@@ -1608,7 +1608,7 @@ class NetworkAfp(Screen):
 
 	def AfpStart(self):
 		if self.Installed == IPK_NotInstalled:
-			self.session.openWithCallback(self.checkAFPService, Screens.Console.Console, cmdlist = ['ipkg --force-overwrite install netatalk'], closeOnSuccess = True)
+			self.session.openWithCallback(self.checkAFPService, Screens.Console.Console, cmdlist = ['opkg update','ipkg --force-overwrite install netatalk'], closeOnSuccess = True)
 		elif self.my_afp_run == False:
 			self.Console.ePopen('/etc/init.d/atalk start')
 			time.sleep(3)
@@ -1825,7 +1825,7 @@ class NetworkNfs(Screen):
 
 	def NfsStart(self):
 		if self.Installed == IPK_NotInstalled:
-			self.session.openWithCallback(self.checkNFSService, Screens.Console.Console, cmdlist = ['ipkg --force-overwrite install nfs-utils'], closeOnSuccess = True)
+			self.session.openWithCallback(self.checkNFSService, Screens.Console.Console, cmdlist = ['opkg update','ipkg --force-overwrite install nfs-utils'], closeOnSuccess = True)
 		elif self.my_nfs_run == False:
 			self.Console.ePopen('/etc/init.d/nfsserver start')
 			time.sleep(3)
@@ -1951,7 +1951,7 @@ class NetworkOpenvpn(Screen):
 
 	def VpnStart(self):
 		if self.Installed == IPK_NotInstalled:
-			self.session.openWithCallback(self.checkOpenvpnService, Screens.Console.Console, cmdlist = ['ipkg --force-overwrite install openvpn'], closeOnSuccess = True)
+			self.session.openWithCallback(self.checkOpenvpnService, Screens.Console.Console, cmdlist = ['opkg update','ipkg --force-overwrite install openvpn'], closeOnSuccess = True)
 		elif self.my_vpn_run == False:
 			self.Console.ePopen('/etc/init.d/openvpn start')
 			time.sleep(3)
@@ -2100,7 +2100,7 @@ class NetworkSamba(Screen):
 
 	def SambaStart(self):
 		if self.Installed == IPK_NotInstalled:
-			self.session.openWithCallback(self.checkSambaService, Screens.Console.Console, cmdlist = ['ipkg --force-overwrite install samba'], closeOnSuccess = True)
+			self.session.openWithCallback(self.checkSambaService, Screens.Console.Console, cmdlist = ['opkg update','ipkg --force-overwrite install samba'], closeOnSuccess = True)
 		elif self.my_Samba_run == False:
 			self.Console.ePopen('/etc/init.d/samba start')
 			time.sleep(3)
@@ -2366,7 +2366,7 @@ class NetworkInadyn(Screen):
 
 	def InadynStart(self):
 		if self.Installed == IPK_NotInstalled:
-			self.session.openWithCallback(self.checkInadynService, Screens.Console.Console, cmdlist = ['ipkg --force-overwrite install inadyn-mt'], closeOnSuccess = True)
+			self.session.openWithCallback(self.checkInadynService, Screens.Console.Console, cmdlist = ['opkg update','ipkg --force-overwrite install inadyn-mt'], closeOnSuccess = True)
 		elif self.my_inadyn_run == False:
 			self.Console.ePopen('/etc/init.d/inadyn-mt start')
 			time.sleep(3)
@@ -2727,7 +2727,7 @@ class NetworkuShare(Screen):
 
 	def uShareStart(self):
 		if self.Installed == IPK_NotInstalled:
-			self.session.openWithCallback(self.checkuShareService, Screens.Console.Console, cmdlist = ['ipkg --force-overwrite install ushare'], closeOnSuccess = True)
+			self.session.openWithCallback(self.checkuShareService, Screens.Console.Console, cmdlist = ['opkg update','ipkg --force-overwrite install ushare'], closeOnSuccess = True)
 		elif self.my_ushare_run == False:
 			self.Console.ePopen('/etc/init.d/ushare start >> /tmp/uShare.log')
 			time.sleep(3)
@@ -3235,7 +3235,7 @@ class NetworkMiniDLNA(Screen):
 
 	def MiniDLNAStart(self):
 		if self.Installed == IPK_NotInstalled:
-			self.session.openWithCallback(self.checkMiniDLNAService, Screens.Console.Console, cmdlist = ['ipkg --force-overwrite install minidlna'], closeOnSuccess = True)
+			self.session.openWithCallback(self.checkMiniDLNAService, Screens.Console.Console, cmdlist = ['opkg update','ipkg --force-overwrite install minidlna'], closeOnSuccess = True)
 		elif self.my_minidlna_run == False:
 			self.Console.ePopen('/etc/init.d/minidlna start')
 			time.sleep(3)
