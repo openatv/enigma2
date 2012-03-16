@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 3.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-10 15:56+0000\n"
-"PO-Revision-Date: 2012-03-10 16:28+0100\n"
+"POT-Creation-Date: 2012-03-15 17:23+0000\n"
+"PO-Revision-Date: 2012-03-16 13:00+0100\n"
 "Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
 "Language-Team: ViX\n"
 "Language: en_GB\n"
@@ -222,6 +222,12 @@ msgstr "%H:%M"
 #, python-format
 msgid "%d / 100"
 msgstr "%d / 100"
+
+#, python-format
+msgid "%d Min"
+msgid_plural "%d Mins"
+msgstr[0] "%d Min"
+msgstr[1] "%d Mins"
 
 #, python-format
 msgid "%d hour"
@@ -771,6 +777,9 @@ msgstr "Allows you to prefer the DVB-graphical subtitles over Teletext subtitles
 msgid "Allows you to prefer the special hearing impaired subtitles over normal subtitles."
 msgstr "Allows you to prefer the special hearing impaired subtitles over normal subtitles."
 
+msgid "Allows you to send a copy of the log to yourself."
+msgstr "Allows you to send a copy of the log to yourself."
+
 msgid "Allows you to set audio language 1"
 msgstr "Allows you to set audio language 1"
 
@@ -830,6 +839,9 @@ msgstr "Allows you to set the transparency of the DVB subtitles."
 
 msgid "Allows you to show/hide CCcam in extensions (blue button)."
 msgstr "Allows you to show/hide CCcam in extensions (blue button)."
+
+msgid "Allows you to show/hide Log Manager in extensions (blue button)."
+msgstr "Allows you to show/hide Log Manager in extensions (blue button)."
 
 msgid "Allows you to show/hide OScam in extensions (blue button)."
 msgstr "Allows you to show/hide OScam in extensions (blue button)."
@@ -1268,6 +1280,9 @@ msgstr "Can't found model name."
 
 msgid "Cancel"
 msgstr "Cancel"
+
+msgid "Cannot delete file"
+msgstr "Cannot delete file"
 
 msgid "Cannot move to trash can"
 msgstr "Cannot move to trash can"
@@ -2416,6 +2431,12 @@ msgstr "Enter the service pin"
 
 msgid "Enter your email address so that we can contact you if needed."
 msgstr "Enter your email address so that we can contact you if needed."
+
+msgid "Enter your email address to sned a copy of the log to."
+msgstr "Enter your email address to sned a copy of the log to."
+
+msgid "Enter your forum user name, to make it easier trace logs."
+msgstr "Enter your forum user name, to make it easier trace logs."
 
 msgid "Enter your input data"
 msgstr "Enter your input data"
@@ -6031,6 +6052,9 @@ msgstr "Show the radio player..."
 msgid "Show the tv player..."
 msgstr "Show the tv player..."
 
+msgid "Show time elapsed as positive"
+msgstr "Show time elapsed as positive"
+
 msgid "Show time remaining/elapsed"
 msgstr "Show time remaining/elapsed"
 
@@ -6793,6 +6817,9 @@ msgstr "This allows you change the number of rows shown."
 
 msgid "This is step number 2."
 msgstr "This is step number 2."
+
+msgid "This option allows you choose how to display elasped time  as + or -"
+msgstr "This option allows you choose how to display elasped time  as + or -"
 
 msgid "This option allows you choose how to display remaining time, or elapsed time, or both."
 msgstr "This option allows you choose how to display remaining time, or elapsed time, or both."
@@ -7829,6 +7856,10 @@ msgstr "With this option set to 'yes' the channel lists will always show you the
 msgid "With this option you can hide Job Tasks from the extension screen (short blue button press)."
 msgstr "With this option you can hide Job Tasks from the extension screen (short blue button press)."
 
+#, python-format
+msgid "Would you like to install \"%s\"?"
+msgstr "Would you like to install \"%s\"?"
+
 msgid "Write error while recording. Disk full?\n"
 msgstr "Write error while recording. Disk full?\n"
 
@@ -7899,6 +7930,16 @@ msgstr "Yes, view the tutorial"
 
 msgid "Yesterday"
 msgstr "Yesterday"
+
+#, python-format
+msgid ""
+"You already have a bootlogo installed,\n"
+"would you like to remove\n"
+"\"%s\"?"
+msgstr ""
+"You already have a bootlogo installed,\n"
+"would you like to remove\n"
+"\"%s\"?"
 
 #, python-format
 msgid ""
