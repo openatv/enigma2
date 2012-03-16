@@ -1592,6 +1592,7 @@ class NetworkAfp(Screen):
 			self.doInstall(self.updateService, self.service_name)
 
 	def doInstall(self, callback, pkgname):
+		self["actions"].setEnabled(False)
 		self.Console.ePopen('/usr/bin/opkg install ' + pkgname + ' sync', callback)
 
 	def createSummary(self):
@@ -1653,6 +1654,8 @@ class NetworkAfp(Screen):
 
 		for cb in self.onChangedEntry:
 			cb(title, status_summary, autostartstatus_summary)
+
+		self["actions"].setEnabled(True)
 
 class NetworkFtp(Screen):
 	skin = """
@@ -1799,6 +1802,7 @@ class NetworkNfs(Screen):
 			self.doInstall(self.updateService, self.service_name)
 
 	def doInstall(self, callback, pkgname):
+		self["actions"].setEnabled(False)
 		self.Console.ePopen('/usr/bin/opkg install ' + pkgname + ' sync', callback)
 
 	def createSummary(self):
@@ -1859,6 +1863,8 @@ class NetworkNfs(Screen):
 		for cb in self.onChangedEntry:
 			cb(title, status_summary, autostartstatus_summary)
 
+		self["actions"].setEnabled(True)
+
 class NetworkOpenvpn(Screen):
 	skin = """
 		<screen position="center,center" size="560,310" title="OpenVpn Setup">
@@ -1912,6 +1918,7 @@ class NetworkOpenvpn(Screen):
 			self.doInstall(self.updateService, self.service_name)
 
 	def doInstall(self, callback, pkgname):
+		self["actions"].setEnabled(False)
 		self.Console.ePopen('/usr/bin/opkg install ' + pkgname + ' sync', callback)
 
 	def createSummary(self):
@@ -1974,6 +1981,8 @@ class NetworkOpenvpn(Screen):
 
 		for cb in self.onChangedEntry:
 			cb(title, status_summary, autostartstatus_summary)
+
+		self["actions"].setEnabled(True)
 
 class NetworkVpnLog(Screen):
 	skin = """
@@ -2052,6 +2061,7 @@ class NetworkSamba(Screen):
 			self.doInstall(self.updateService, self.service_name)
 
 	def doInstall(self, callback, pkgname):
+		self["actions"].setEnabled(False)
 		self.Console.ePopen('/usr/bin/opkg install ' + pkgname + ' sync', callback)
 
 	def createSummary(self):
@@ -2116,6 +2126,8 @@ class NetworkSamba(Screen):
 
 		for cb in self.onChangedEntry:
 			cb(title, status_summary, autostartstatus_summary)
+
+		self["actions"].setEnabled(True)
 
 class NetworkSambaLog(Screen):
 	skin = """
@@ -2312,6 +2324,7 @@ class NetworkInadyn(Screen):
 			self.doInstall(self.updateService, self.service_name)
 
 	def doInstall(self, callback, pkgname):
+		self["actions"].setEnabled(False)
 		self.Console.ePopen('/usr/bin/opkg install ' + pkgname + ' sync', callback)
 
 	def createSummary(self):
@@ -2399,6 +2412,8 @@ class NetworkInadyn(Screen):
 
 		for cb in self.onChangedEntry:
 			cb(title, status_summary, autostartstatus_summary)
+
+		self["actions"].setEnabled(True)
 
 	def setupinadyn(self):
 		self.session.openWithCallback(self.updateService, NetworkInadynSetup)
@@ -2663,6 +2678,7 @@ class NetworkuShare(Screen):
 			self.doInstall(self.updateService, self.service_name)
 
 	def doInstall(self, callback, pkgname):
+		self["actions"].setEnabled(False)
 		self.Console.ePopen('/usr/bin/opkg install ' + pkgname + ' sync', callback)
 
 	def createSummary(self):
@@ -2773,6 +2789,8 @@ class NetworkuShare(Screen):
 
 		for cb in self.onChangedEntry:
 			cb(title, status_summary, autostartstatus_summary)
+
+		self["actions"].setEnabled(True)
 
 	def setupushare(self):
 		self.session.openWithCallback(self.updateService, NetworkuShareSetup)
@@ -3161,6 +3179,7 @@ class NetworkMiniDLNA(Screen):
 			self.doInstall(self.updateService, self.service_name)
 
 	def doInstall(self, callback, pkgname):
+		self["actions"].setEnabled(False)
 		self.Console.ePopen('/usr/bin/opkg install ' + pkgname + ' sync', callback)
 
 	def createSummary(self):
@@ -3262,6 +3281,8 @@ class NetworkMiniDLNA(Screen):
 
 		for cb in self.onChangedEntry:
 			cb(title, status_summary, autostartstatus_summary)
+
+		self["actions"].setEnabled(True)
 
 	def setupminidlna(self):
 		self.session.openWithCallback(self.updateService, NetworkMiniDLNASetup)
