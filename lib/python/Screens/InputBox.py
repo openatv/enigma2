@@ -5,6 +5,7 @@ from Components.ActionMap import NumberActionMap
 from Components.Label import Label
 from Components.Input import Input
 from Tools.BoundFunction import boundFunction
+from Tools.Notifications import AddPopup
 from time import time
 
 class InputBox(Screen):
@@ -100,7 +101,12 @@ class PinInput(InputBox):
 				remaining = (self.triesEntry.time.value + (self.waitTime * 60)) - time()
 				remainingMinutes = int(remaining / 60)
 				remainingSeconds = int(remaining % 60)
-				self.onFirstExecBegin.append(boundFunction(self.session.openWithCallback, self.closePinCancel, MessageBox, _("You have to wait %s!") % (str(remainingMinutes) + " " + _("minutes") + ", " + str(remainingSeconds) + " " + _("seconds")), MessageBox.TYPE_ERROR))
+				messageText = _("You have to wait %s!") % (str(remainingMinutes) + " " + _("minutes") + ", " + str(remainingSeconds) + " " + _("seconds"))
+				if service:
+					AddPopup(messageText, type = MessageBox.TYPE_ERROR, timeout = 3)
+					self.closePinCancel()
+				else:
+					self.onFirstExecBegin.append(boundFunction(self.session.openWithCallback, self.closePinCancel, MessageBox, messageText, MessageBox.TYPE_ERROR, timeout = 3))
 			else:
 				self.setTries(3)
 
@@ -145,6 +151,7 @@ class PinInput(InputBox):
 		self.close(False)
 		
 	def closePinCorrect(self, *args):
+		self.setTries(3)
 		self.close(True)
 		
 	def closePinCancel(self, *args):

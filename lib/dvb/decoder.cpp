@@ -621,90 +621,28 @@ RESULT eDVBVideo::connectEvent(const Slot1<void, struct iTSMPEGDecoder::videoEve
 	return 0;
 }
 
-static int readMpegProc(const char *str, int decoder)
-{
-	int val = -1;
-	char tmp[64];
-	sprintf(tmp, "/proc/stb/vmpeg/%d/%s", decoder, str);
-	FILE *f = fopen(tmp, "r");
-	if (f)
-	{
-		fscanf(f, "%x", &val);
-		fclose(f);
-	}
-	return val;
-}
-
-static int readApiSize(int fd, int &xres, int &yres, int &aspect)
-{
-#if HAVE_DVB_API_VERSION >= 3
-	video_size_t size;
-	if (!::ioctl(fd, VIDEO_GET_SIZE, &size))
-	{
-		xres = size.w;
-		yres = size.h;
-		aspect = size.aspect_ratio == 0 ? 2 : 3;  // convert dvb api to etsi
-		return 0;
-	}
-//	eDebug("VIDEO_GET_SIZE failed (%m)");
-#endif
-	return -1;
-}
-
-static int readApiFrameRate(int fd, int &framerate)
-{
-#if HAVE_DVB_API_VERSION >= 3
-	unsigned int frate;
-	if (!::ioctl(fd, VIDEO_GET_FRAME_RATE, &frate))
-	{
-		framerate = frate;	
-		return 0;
-	}
-//	eDebug("VIDEO_GET_FRAME_RATE failed (%m)");
-#endif
-	return -1;
-}
-
 int eDVBVideo::getWidth()
 {
-	if (m_width == -1)
-		readApiSize(m_fd, m_width, m_height, m_aspect);
-	if (m_width == -1)
-		m_width = readMpegProc("xres", m_dev);
 	return m_width;
 }
 
 int eDVBVideo::getHeight()
 {
-	if (m_height == -1)
-		readApiSize(m_fd, m_width, m_height, m_aspect);
-	if (m_height == -1)
-		m_height = readMpegProc("yres", m_dev);
 	return m_height;
 }
 
 int eDVBVideo::getAspect()
 {
-	if (m_aspect == -1)
-		readApiSize(m_fd, m_width, m_height, m_aspect);
-	if (m_aspect == -1)
-		m_aspect = readMpegProc("aspect", m_dev);
 	return m_aspect;
 }
 
 int eDVBVideo::getProgressive()
 {
-	if (m_progressive == -1)
-		m_progressive = readMpegProc("progressive", m_dev);
 	return m_progressive;
 }
 
 int eDVBVideo::getFrameRate()
 {
-	if (m_framerate == -1)
-		readApiFrameRate(m_fd, m_framerate);
-	if (m_framerate == -1)
-		m_framerate = readMpegProc("framerate", m_dev);
 	return m_framerate;
 }
 
