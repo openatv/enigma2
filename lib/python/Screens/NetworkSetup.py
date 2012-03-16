@@ -1583,7 +1583,7 @@ class NetworkAfp(Screen):
 
 	def dataAvail(self, str, retval, extra_args):
 		if not str:
-			self.session.openWithCallback(self.InstallPackage, MessageBox, _('Would you like to install\n"%s"?') % self.service_name)
+			self.session.openWithCallback(self.InstallPackage, MessageBox, _('Would you like to install "%s"?') % self.service_name)
 		else:
 			self.updateService()
 
@@ -1790,7 +1790,7 @@ class NetworkNfs(Screen):
 
 	def dataAvail(self, str, retval, extra_args):
 		if not str:
-			self.session.openWithCallback(self.InstallPackage, MessageBox, _('Would you like to install\n"%s"?') % self.service_name)
+			self.session.openWithCallback(self.InstallPackage, MessageBox, _('Would you like to install "%s"?') % self.service_name)
 		else:
 			self.updateService()
 
@@ -1903,7 +1903,7 @@ class NetworkOpenvpn(Screen):
 
 	def dataAvail(self, str, retval, extra_args):
 		if not str:
-			self.session.openWithCallback(self.InstallPackage, MessageBox, _('Would you like to install\n"%s"?') % self.service_name)
+			self.session.openWithCallback(self.InstallPackage, MessageBox, _('Would you like to install "%s"?') % self.service_name)
 		else:
 			self.updateService()
 
@@ -2043,7 +2043,7 @@ class NetworkSamba(Screen):
 
 	def dataAvail(self, str, retval, extra_args):
 		if not str:
-			self.session.openWithCallback(self.InstallPackage, MessageBox, _('Would you like to install\n"%s"?') % self.service_name)
+			self.session.openWithCallback(self.InstallPackage, MessageBox, _('Would you like to install "%s"?') % self.service_name)
 		else:
 			self.updateService()
 
@@ -2303,7 +2303,7 @@ class NetworkInadyn(Screen):
 
 	def dataAvail(self, str, retval, extra_args):
 		if not str:
-			self.session.openWithCallback(self.InstallPackage, MessageBox, _('Would you like to install\n"%s"?') % self.service_name)
+			self.session.openWithCallback(self.InstallPackage, MessageBox, _('Would you like to install "%s"?') % self.service_name)
 		else:
 			self.updateService()
 
@@ -2654,7 +2654,7 @@ class NetworkuShare(Screen):
 
 	def dataAvail(self, str, retval, extra_args):
 		if not str:
-			self.session.openWithCallback(self.InstallPackage, MessageBox, _('Would you like to install\n"%s"?') % self.service_name)
+			self.session.openWithCallback(self.InstallPackage, MessageBox, _('Would you like to install "%s"?') % self.service_name)
 		else:
 			self.updateService()
 
@@ -3152,7 +3152,7 @@ class NetworkMiniDLNA(Screen):
 
 	def dataAvail(self, str, retval, extra_args):
 		if not str:
-			self.session.openWithCallback(self.InstallPackage, MessageBox, _('Would you like to install\n"%s"?') % self.service_name)
+			self.session.openWithCallback(self.InstallPackage, MessageBox, _('Would you like to install "%s"?') % self.service_name)
 		else:
 			self.updateService()
 
