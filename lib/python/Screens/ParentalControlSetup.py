@@ -92,8 +92,6 @@ class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
 					self.list.append(self.changePin)
 				#Added Option to remember the service pin
 				self.list.append(getConfigListEntry(_("Remember service PIN"), config.ParentalControl.storeservicepin))	
-				#Added Option to remember the cancellation of service pin entry
-				self.list.append(getConfigListEntry(_("Remember service PIN cancel"), config.ParentalControl.storeservicepincancel))	
 				self.editListEntry = getConfigListEntry(_("Edit services list"), NoSave(ConfigNothing()))
 				self.list.append(self.editListEntry)
 				#New funtion: Possibility to add Bouquets to whitelist / blacklist
