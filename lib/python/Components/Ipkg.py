@@ -113,7 +113,7 @@ class IpkgComponent:
 				os.system("opkg flag ok " + x[0])
 
 	def cmdData(self, data):
-		print "data:", data
+# 		print "data:", data
 		if self.cache is None:
 			self.cache = data
 		else:

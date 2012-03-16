@@ -16,13 +16,17 @@ class MessageBox(Screen):
 		self.type = type
 		Screen.__init__(self, session)
 
-		self.setTitle(_(title))
 		if simple:
 			self.skinName="MessageBoxSimple"
 		
 		self.msgBoxID = msgBoxID
 
-		self["text"] = Label(_(text))
+		if not title and len(_(text)) < 50:
+			Screen.setTitle(self, _(text))
+			self["text"] = Label("")
+		else:
+			self.setTitle(_(title))
+			self["text"] = Label(_(text))
 		self["Text"] = StaticText(_(text))
 		self["selectedChoice"] = StaticText()
 
@@ -93,7 +97,7 @@ class MessageBox(Screen):
 		self["text"].instance.move(enigma.ePoint(60, 0))
 		# move list
 		listsize = (wsizex,50)
-		self["list"].instance.move(enigma.ePoint(0, textsize[1]))
+		self["list"].instance.move(enigma.ePoint(50, textsize[1]))
 		self["list"].instance.resize(enigma.eSize(*listsize))
 		# center window
 		newwidth = wsize[0]
