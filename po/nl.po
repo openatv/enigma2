@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-13 12:37+0000\n"
-"PO-Revision-Date: 2012-03-14 12:03+0100\n"
+"POT-Creation-Date: 2012-03-15 17:23+0000\n"
+"PO-Revision-Date: 2012-03-16 07:53+0100\n"
 "Last-Translator: R.L. van der Does\n"
 "Language-Team: Andy Blackburn, Rob van der Does\n"
 "Language: Nederlands\n"
@@ -220,6 +220,12 @@ msgstr "%H:%M"
 #, python-format
 msgid "%d / 100"
 msgstr "%d / 100"
+
+#, python-format
+msgid "%d Min"
+msgid_plural "%d Mins"
+msgstr[0] "%d Min"
+msgstr[1] "%d Mins"
 
 #, python-format
 msgid "%d hour"
@@ -1276,6 +1282,9 @@ msgstr "Kan model naam niet vinden."
 
 msgid "Cancel"
 msgstr "Annuleren"
+
+msgid "Cannot delete file"
+msgstr "Kan bestand niet wissen"
 
 msgid "Cannot move to trash can"
 msgstr "Kan bestanden niet naar de prullenbak verplaatsen"
@@ -2424,11 +2433,11 @@ msgstr "Voer PINcode in"
 msgid "Enter the service pin"
 msgstr "Voer de zender PINcode in"
 
-msgid "Enter your email address to sned a copy of the log to."
-msgstr "Voer uw e-mail adres in om een kopie van de logs te kunnen ontvangen."
-
 msgid "Enter your email address so that we can contact you if needed."
 msgstr "Vul uw e-mailadres in, zodat wij contact met u kunnen opnemen indien nodig."
+
+msgid "Enter your email address to sned a copy of the log to."
+msgstr "Voer uw e-mail adres in om een kopie van de logs te kunnen ontvangen."
 
 msgid "Enter your forum user name, to make it easier trace logs."
 msgstr "Voer hier uw forum-gebruikersnaam in, om terugkoppeling makkelijker te maken."
@@ -7882,6 +7891,12 @@ msgstr "Als deze optie is geactiveerd, toont de kanaallijst altijd eerts de favo
 msgid "With this option you can hide Job Tasks from the extension screen (short blue button press)."
 msgstr "Met deze optie kunt u systeemtaken in de extensielijst (onder de bauwe knop) verbergen."
 
+#, python-format
+msgid ""
+"Would you like to install\n"
+"\"%s\"?"
+msgstr "Wilt u \"%s\" installeren?"
+
 msgid "Write error while recording. Disk full?\n"
 msgstr "Schrijffout tijdens opname. Harde schijf vol?\n"
 
@@ -7952,6 +7967,15 @@ msgstr "Ja, de handleiding weergeven"
 
 msgid "Yesterday"
 msgstr "Gisteren"
+
+#, python-format
+msgid ""
+"You already have a bootlogo installed,\n"
+"would you like to remove\n"
+"\"%s\"?"
+msgstr ""
+"U heeft al een bootlogo geïnstalleerd,\n"
+"wilt u \"%s\" verwijderen?"
 
 #, python-format
 msgid ""
