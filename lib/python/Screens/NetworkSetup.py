@@ -27,6 +27,11 @@ from os import path as os_path, remove, symlink, unlink, rename, chmod
 from shutil import move
 from re import compile as re_compile, search as re_search
 import time
+from Components.Ipkg import IpkgComponent
+
+IPK_Check = 0
+IPK_Installed = 1
+IPK_NotInstalled = 2
 
 class NetworkAdapterSelection(Screen,HelpableScreen):
 	def __init__(self, session):
@@ -1353,7 +1358,7 @@ class NetworkAdapterTest(Screen):
 	def LinkStatedataAvail(self,data):
 		for item in data.splitlines():
 			if "Link detected:" in item:
-			        if "yes" in item:
+				if "yes" in item:
 					self["Network"].setForegroundColorNum(2)
 					self["Network"].setText(_("connected"))
 					self["NetworkInfo_Check"].setPixmapNum(0)
@@ -1543,7 +1548,7 @@ class NetworkAfp(Screen):
 			<widget name="lab1" position="20,90" size="150,30" font="Regular;20" valign="center" transparent="0"/>
 			<widget name="labactive" position="180,90" size="250,30" font="Regular;20" valign="center" transparent="0"/>
 			<widget name="lab2" position="20,160" size="150,30" font="Regular;20" valign="center" transparent="0"/>
-			<widget name="labstop" position="180,160" size="100,30" font="Regular;20" valign="center" halign="center" backgroundColor="red"/>
+			<widget name="labstop" position="180,160" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="red"/>
 			<widget name="labrun" position="180,160" size="100,30" zPosition="1" font="Regular;20" valign="center"  halign="center" backgroundColor="green"/>
 			<ePixmap pixmap="skin_default/buttons/red.png" position="0,260" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/green.png" position="140,260" size="140,40" alphatest="on" />
@@ -1563,7 +1568,7 @@ class NetworkAfp(Screen):
 		self['lab1'] = Label(_("Autostart:"))
 		self['labactive'] = Label(_(_("Disabled")))
 		self['lab2'] = Label(_("Current Status:"))
-		self['labstop'] = Label(_("Stopped"))
+		self['labstop'] = Label(_("Checking..."))
 		self['labrun'] = Label(_("Running"))
 		self['key_red'] = Label(_("Stop"))
 		self['key_green'] = Label(_("Start"))
@@ -1575,13 +1580,36 @@ class NetworkAfp(Screen):
 		self.my_Samba_active = False
 		self.my_Samba_run = False
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.AfpStop, 'green': self.AfpStart, 'yellow': self.activateAfp})
-		self.onLayoutFinish.append(self.updateService)
+		self.Installed = IPK_Check
+		self['labactive'].hide()
+		self['labrun'].hide()
+		self['labstop'].hide()
+		self.ipkg = IpkgComponent()
+		self.ipkg.addCallback(self.afpCallback)
+		self.checkAFPService()
+
+	def afpCallback(self, event, param):
+		self.Installed = IPK_NotInstalled
+		if event == IpkgComponent.EVENT_DONE:
+			IpkList = self.ipkg.getFetchedList()
+			for x in IpkList:
+				if x[0].find("netatalk") > -1:
+					self.Installed = IPK_Installed
+					break
+			self.updateService()
+		elif event == IpkgComponent.EVENT_ERROR:
+			self.updateService()
+
+	def checkAFPService(self):
+		self.ipkg.startCmd(IpkgComponent.CMD_LIST, {'installed_only': True })
 
 	def createSummary(self):
 		return NetworkServicesSummary
 
 	def AfpStart(self):
-		if self.my_afp_run == False:
+		if self.Installed == IPK_NotInstalled:
+			self.session.openWithCallback(self.checkAFPService, Screens.Console.Console, cmdlist = ['opkg update','ipkg --force-overwrite install netatalk'], closeOnSuccess = True)
+		elif self.my_afp_run == False:
 			self.Console.ePopen('/etc/init.d/atalk start')
 			time.sleep(3)
 			self.updateService()
@@ -1608,7 +1636,7 @@ class NetworkAfp(Screen):
 		import process
 		p = process.ProcessList()
 		afp_process = str(p.named('afpd')).strip('[]')
- 		self['labrun'].hide()
+		self['labrun'].hide()
 		self['labstop'].hide()
 		self['labactive'].setText(_("Disabled"))
 		self.my_afp_active = False
@@ -1631,6 +1659,10 @@ class NetworkAfp(Screen):
 			self['labactive'].show()
 			self['key_green'].setText(_("Start"))
 			status_summary= self['lab2'].text + ' ' + self['labstop'].text
+		if self.Installed == IPK_Installed:
+			self['labstop'].setText(_("Stopped"))
+		elif self.Installed == IPK_NotInstalled:
+			self['labstop'].setText(_("Download"))
 		title = _("AFP Setup")
 		autostartstatus_summary = self['lab1'].text + ' ' + self['labactive'].text
 
@@ -1738,7 +1770,7 @@ class NetworkNfs(Screen):
 			<widget name="lab1" position="20,50" size="200,30" font="Regular;20" valign="center" transparent="0"/>
 			<widget name="labactive" position="220,50" size="150,30" font="Regular;20" valign="center" transparent="0"/>
 			<widget name="lab2" position="20,100" size="200,30" font="Regular;20" valign="center" transparent="0"/>
-			<widget name="labstop" position="220,100" size="100,30" font="Regular;20" valign="center"  halign="center" backgroundColor="red"/>
+			<widget name="labstop" position="220,100" size="200,30" font="Regular;20" valign="center"  halign="center" backgroundColor="red"/>
 			<widget name="labrun" position="220,100" size="100,30" zPosition="1" font="Regular;20" valign="center"  halign="center" backgroundColor="green"/>
 			<ePixmap pixmap="skin_default/buttons/red.png" position="0,260" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/green.png" position="140,260" size="140,40" alphatest="on" />
@@ -1756,7 +1788,7 @@ class NetworkNfs(Screen):
 		self['lab1'] = Label(_("Autostart:"))
 		self['labactive'] = Label(_(_("Disabled")))
 		self['lab2'] = Label(_("Current Status:"))
-		self['labstop'] = Label(_("Stopped"))
+		self['labstop'] = Label(_("Checking..."))
 		self['labrun'] = Label(_("Running"))
 		self['key_green'] = Label(_("Start"))
 		self['key_red'] = Label(_("Stop"))
@@ -1765,13 +1797,36 @@ class NetworkNfs(Screen):
 		self.my_nfs_active = False
 		self.my_nfs_run = False
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.NfsStop, 'green': self.NfsStart, 'yellow': self.Nfsset})
-		self.onLayoutFinish.append(self.updateService)
+		self.Installed = IPK_Check
+		self['labactive'].hide()
+		self['labrun'].hide()
+		self['labstop'].hide()
+		self.ipkg = IpkgComponent()
+		self.ipkg.addCallback(self.nfsCallback)
+		self.checkNFSService()
+
+	def nfsCallback(self, event, param):
+		self.Installed = IPK_NotInstalled
+		if event == IpkgComponent.EVENT_DONE:
+			IpkList = self.ipkg.getFetchedList()
+			for x in IpkList:
+				if x[0].find("nfs-utils") > -1 and len(x[0]) == 9:
+					self.Installed = IPK_Installed
+					break
+			self.updateService()
+		elif event == IpkgComponent.EVENT_ERROR:
+			self.updateService()
+
+	def checkNFSService(self):
+		self.ipkg.startCmd(IpkgComponent.CMD_LIST, {'installed_only': True })
 
 	def createSummary(self):
 		return NetworkServicesSummary
 
 	def NfsStart(self):
-		if self.my_nfs_run == False:
+		if self.Installed == IPK_NotInstalled:
+			self.session.openWithCallback(self.checkNFSService, Screens.Console.Console, cmdlist = ['opkg update','ipkg --force-overwrite install nfs-utils'], closeOnSuccess = True)
+		elif self.my_nfs_run == False:
 			self.Console.ePopen('/etc/init.d/nfsserver start')
 			time.sleep(3)
 			self.updateService()
@@ -1819,6 +1874,10 @@ class NetworkNfs(Screen):
 			self['labrun'].hide()
 			self['key_green'].setText(_("Start"))
 			status_summary= self['lab2'].text + ' ' + self['labstop'].text
+		if self.Installed == IPK_Installed:
+			self['labstop'].setText(_("Stopped"))
+		elif self.Installed == IPK_NotInstalled:
+			self['labstop'].setText(_("Download"))
 		title = _("NFS Setup")
 		autostartstatus_summary = self['lab1'].text + ' ' + self['labactive'].text
 
@@ -1831,7 +1890,7 @@ class NetworkOpenvpn(Screen):
 			<widget name="lab1" position="20,90" size="150,30" font="Regular;20" valign="center" transparent="0"/>
 			<widget name="labactive" position="180,90" size="250,30" font="Regular;20" valign="center" transparent="0"/>
 			<widget name="lab2" position="20,160" size="150,30" font="Regular;20" valign="center" transparent="0"/>
-			<widget name="labstop" position="180,160" size="100,30" font="Regular;20" valign="center" halign="center" backgroundColor="red"/>
+			<widget name="labstop" position="180,160" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="red"/>
 			<widget name="labrun" position="180,160" size="100,30" zPosition="1" font="Regular;20" valign="center"  halign="center" backgroundColor="green"/>
 			<ePixmap pixmap="skin_default/buttons/red.png" position="0,260" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/green.png" position="140,260" size="140,40" alphatest="on" />
@@ -1851,7 +1910,7 @@ class NetworkOpenvpn(Screen):
 		self['lab1'] = Label(_("Autostart:"))
 		self['labactive'] = Label(_(_("Disabled")))
 		self['lab2'] = Label(_("Current Status:"))
-		self['labstop'] = Label(_("Stopped"))
+		self['labstop'] = Label(_("Checking..."))
 		self['labrun'] = Label(_("Running"))
 		self['key_green'] = Label(_("Start"))
 		self['key_red'] = Label(_("Stop"))
@@ -1861,7 +1920,28 @@ class NetworkOpenvpn(Screen):
 		self.my_vpn_active = False
 		self.my_vpn_run = False
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.VpnStop, 'green': self.VpnStart, 'yellow': self.activateVpn, 'blue': self.Vpnshowlog})
-		self.onLayoutFinish.append(self.updateService)
+		self.Installed = IPK_Check
+		self['labactive'].hide()
+		self['labrun'].hide()
+		self['labstop'].hide()
+		self.ipkg = IpkgComponent()
+		self.ipkg.addCallback(self.openvpnCallback)
+		self.checkOpenvpnService()
+
+	def openvpnCallback(self, event, param):
+		self.Installed = IPK_NotInstalled
+		if event == IpkgComponent.EVENT_DONE:
+			IpkList = self.ipkg.getFetchedList()
+			for x in IpkList:
+				if x[0].find("openvpn") > -1:
+					self.Installed = IPK_Installed
+					break
+			self.updateService()
+		elif event == IpkgComponent.EVENT_ERROR:
+			self.updateService()
+
+	def checkOpenvpnService(self):
+		self.ipkg.startCmd(IpkgComponent.CMD_LIST, {'installed_only': True })
 
 	def createSummary(self):
 		return NetworkServicesSummary
@@ -1870,7 +1950,9 @@ class NetworkOpenvpn(Screen):
 		self.session.open(NetworkVpnLog)
 
 	def VpnStart(self):
-		if self.my_vpn_run == False:
+		if self.Installed == IPK_NotInstalled:
+			self.session.openWithCallback(self.checkOpenvpnService, Screens.Console.Console, cmdlist = ['opkg update','ipkg --force-overwrite install openvpn'], closeOnSuccess = True)
+		elif self.my_vpn_run == False:
 			self.Console.ePopen('/etc/init.d/openvpn start')
 			time.sleep(3)
 			self.updateService()
@@ -1918,6 +2000,10 @@ class NetworkOpenvpn(Screen):
 			self['labrun'].hide()
 			self['key_green'].setText(_("Start"))
 			status_summary= self['lab2'].text + ' ' + self['labstop'].text
+		if self.Installed == IPK_Installed:
+			self['labstop'].setText(_("Stopped"))
+		elif self.Installed == IPK_NotInstalled:
+			self['labstop'].setText(_("Download"))
 		title = _("OpenVpn Setup")
 		autostartstatus_summary = self['lab1'].text + ' ' + self['labactive'].text
 
@@ -1953,7 +2039,7 @@ class NetworkSamba(Screen):
 			<widget name="lab1" position="20,90" size="150,30" font="Regular;20" valign="center" transparent="0"/>
 			<widget name="labactive" position="180,90" size="250,30" font="Regular;20" valign="center" transparent="0"/>
 			<widget name="lab2" position="20,160" size="150,30" font="Regular;20" valign="center" transparent="0"/>
-			<widget name="labstop" position="180,160" size="100,30" font="Regular;20" valign="center" halign="center" backgroundColor="red"/>
+			<widget name="labstop" position="180,160" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="red"/>
 			<widget name="labrun" position="180,160" size="100,30" zPosition="1" font="Regular;20" valign="center"  halign="center" backgroundColor="green"/>
 			<ePixmap pixmap="skin_default/buttons/red.png" position="0,260" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/green.png" position="140,260" size="140,40" alphatest="on" />
@@ -1973,7 +2059,7 @@ class NetworkSamba(Screen):
 		self['lab1'] = Label(_("Autostart:"))
 		self['labactive'] = Label(_(_("Disabled")))
 		self['lab2'] = Label(_("Current Status:"))
-		self['labstop'] = Label(_("Stopped"))
+		self['labstop'] = Label(_("Checking...."))
 		self['labrun'] = Label(_("Running"))
 		self['key_green'] = Label(_("Start"))
 		self['key_red'] = Label(_("Stop"))
@@ -1983,7 +2069,28 @@ class NetworkSamba(Screen):
 		self.my_Samba_active = False
 		self.my_Samba_run = False
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.SambaStop, 'green': self.SambaStart, 'yellow': self.activateSamba, 'blue': self.Sambashowlog})
-		self.onLayoutFinish.append(self.updateService)
+		self.Installed = IPK_Check
+		self['labactive'].hide()
+		self['labrun'].hide()
+		self['labstop'].hide()
+		self.ipkg = IpkgComponent()
+		self.ipkg.addCallback(self.sambaCallback)
+		self.checkSambaService()
+
+	def sambaCallback(self, event, param):
+		self.Installed = IPK_NotInstalled
+		if event == IpkgComponent.EVENT_DONE:
+			IpkList = self.ipkg.getFetchedList()
+			for x in IpkList:
+				if x[0].find("samba") > -1:
+					self.Installed = IPK_Installed
+					break
+			self.updateService()
+		elif event == IpkgComponent.EVENT_ERROR:
+			self.updateService()
+
+	def checkSambaService(self):
+		self.ipkg.startCmd(IpkgComponent.CMD_LIST, {'installed_only': True })
 
 	def createSummary(self):
 		return NetworkServicesSummary
@@ -1992,7 +2099,9 @@ class NetworkSamba(Screen):
 		self.session.open(NetworkSambaLog)
 
 	def SambaStart(self):
-		if self.my_Samba_run == False:
+		if self.Installed == IPK_NotInstalled:
+			self.session.openWithCallback(self.checkSambaService, Screens.Console.Console, cmdlist = ['opkg update','ipkg --force-overwrite install samba'], closeOnSuccess = True)
+		elif self.my_Samba_run == False:
 			self.Console.ePopen('/etc/init.d/samba start')
 			time.sleep(3)
 			self.updateService()
@@ -2021,7 +2130,6 @@ class NetworkSamba(Screen):
 		samba_process = str(p.named('smbd')).strip('[]')
 		self['labrun'].hide()
 		self['labstop'].hide()
-		self['labactive'].setText(_("Disabled"))
 		self.my_Samba_active = False
 		self.my_Samba_run = False
 		if fileExists('/etc/rc3.d/S20samba'):
@@ -2042,6 +2150,10 @@ class NetworkSamba(Screen):
 			self['labactive'].show()
 			self['key_green'].setText(_("Start"))
 			status_summary = self['lab2'].text + ' ' + self['labstop'].text
+		if self.Installed == IPK_Installed:
+			self['labstop'].setText(_("Stopped"))
+		elif self.Installed == IPK_NotInstalled:
+			self['labstop'].setText(_("Download"))
 		title = _("Samba Setup")
 		autostartstatus_summary = self['lab1'].text + ' ' + self['labactive'].text
 
@@ -2174,7 +2286,7 @@ class NetworkInadyn(Screen):
 			<widget name="labdisabled" position="110,0" size="100,24" font="Regular;20" valign="center" halign="center" backgroundColor="red" zPosition="1" />
 			<widget name="labactive" position="110,0" size="100,24" font="Regular;20" valign="center" halign="center" backgroundColor="green" zPosition="2" />
 			<widget name="status" position="240,0" size="150,24" font="Regular;20" valign="center" transparent="0" />
-			<widget name="labstop" position="390,0" size="100,24" font="Regular;20" valign="center" halign="center" backgroundColor="red" zPosition="1" />
+			<widget name="labstop" position="390,0" size="200,24" font="Regular;20" valign="center" halign="center" backgroundColor="red" zPosition="1" />
 			<widget name="labrun" position="390,0" size="100,24" font="Regular;20" valign="center" halign="center" backgroundColor="green" zPosition="2"/>
 			<widget name="time" position="10,50" size="230,30" font="Regular;20" valign="center" transparent="1"/>
 			<widget name="labtime" position="240,50" size="100,30" font="Regular;20" valign="center" backgroundColor="#4D5375"/>
@@ -2206,7 +2318,7 @@ class NetworkInadyn(Screen):
 		self['labactive'] = Label(_(_("Active")))
 		self['labdisabled'] = Label(_(_("Disabled")))
 		self['status'] = Label(_("Current Status:"))
-		self['labstop'] = Label(_("Stopped"))
+		self['labstop'] = Label(_("Checking...."))
 		self['labrun'] = Label(_("Running"))
 		self['time'] = Label(_("Time Update in Minutes:"))
 		self['labtime'] = Label()
@@ -2226,13 +2338,36 @@ class NetworkInadyn(Screen):
 		self['key_blue'] = Label(_("Show Log"))
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.setupinadyn, 'back': self.close, 'red': self.setupinadyn, 'green': self.InadynStart, 'yellow': self.autostart, 'blue': self.inaLog})
 		self.Console = Console()
-		self.onLayoutFinish.append(self.updateService)
+		self.Installed = IPK_Check
+		self['labactive'].hide()
+		self['labrun'].hide()
+		self['labstop'].hide()
+		self.ipkg = IpkgComponent()
+		self.ipkg.addCallback(self.inadynCallback)
+		self.checkInadynService()
+
+	def inadynCallback(self, event, param):
+		self.Installed = IPK_NotInstalled
+		if event == IpkgComponent.EVENT_DONE:
+			IpkList = self.ipkg.getFetchedList()
+			for x in IpkList:
+				if x[0].find("inadyn-mt") > -1:
+					self.Installed = IPK_Installed
+					break
+			self.updateService()
+		elif event == IpkgComponent.EVENT_ERROR:
+			self.updateService()
+
+	def checkInadynService(self):
+		self.ipkg.startCmd(IpkgComponent.CMD_LIST, {'installed_only': True })
 
 	def createSummary(self):
 		return NetworkServicesSummary
 
 	def InadynStart(self):
-		if self.my_inadyn_run == False:
+		if self.Installed == IPK_NotInstalled:
+			self.session.openWithCallback(self.checkInadynService, Screens.Console.Console, cmdlist = ['opkg update','ipkg --force-overwrite install inadyn-mt'], closeOnSuccess = True)
+		elif self.my_inadyn_run == False:
 			self.Console.ePopen('/etc/init.d/inadyn-mt start')
 			time.sleep(3)
 			self.updateService()
@@ -2309,6 +2444,10 @@ class NetworkInadyn(Screen):
 						self['sactive'].show()
 					self['labsys'].setText(line)
 			f.close()
+		if self.Installed == IPK_Installed:
+			self['labstop'].setText(_("Stopped"))
+		elif self.Installed == IPK_NotInstalled:
+			self['labstop'].setText(_("Download"))
 		title = _("Inadyn Setup")
 
 		for cb in self.onChangedEntry:
@@ -2487,7 +2626,7 @@ class NetworkuShare(Screen):
 			<widget name="labdisabled" position="110,0" size="100,24" font="Regular;20" valign="center" halign="center" backgroundColor="red" zPosition="1" />
 			<widget name="labactive" position="110,0" size="100,24" font="Regular;20" valign="center" halign="center" backgroundColor="green" zPosition="2" />
 			<widget name="status" position="240,0" size="150,24" font="Regular;20" valign="center" transparent="0" />
-			<widget name="labstop" position="390,0" size="100,24" font="Regular;20" valign="center" halign="center" backgroundColor="red" zPosition="1" />
+			<widget name="labstop" position="390,0" size="200,24" font="Regular;20" valign="center" halign="center" backgroundColor="red" zPosition="1" />
 			<widget name="labrun" position="390,0" size="100,24" font="Regular;20" valign="center" halign="center" backgroundColor="green" zPosition="2"/>
 			<widget name="username" position="10,50" size="150,30" font="Regular;20" valign="center" transparent="1"/>
 			<widget name="labuser" position="160,50" size="310,30" font="Regular;20" valign="center" backgroundColor="#4D5375"/>
@@ -2529,7 +2668,7 @@ class NetworkuShare(Screen):
 		self['labactive'] = Label(_(_("Active")))
 		self['labdisabled'] = Label(_(_("Disabled")))
 		self['status'] = Label(_("Current Status:"))
-		self['labstop'] = Label(_("Stopped"))
+		self['labstop'] = Label(_("Checking..."))
 		self['labrun'] = Label(_("Running"))
 		self['username'] = Label(_("uShare Name") + ":")
 		self['labuser'] = Label()
@@ -2560,13 +2699,36 @@ class NetworkuShare(Screen):
 		self['key_blue'] = Label(_("Show Log"))
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.setupushare, 'back': self.close, 'red': self.setupushare, 'green': self.uShareStart, 'yellow': self.autostart, 'blue': self.ushareLog})
 		self.Console = Console()
-		self.onLayoutFinish.append(self.updateService)
+		self.Installed = IPK_Check
+		self['labactive'].hide()
+		self['labrun'].hide()
+		self['labstop'].hide()
+		self.ipkg = IpkgComponent()
+		self.ipkg.addCallback(self.ushareCallback)
+		self.checkuShareService()
+
+	def ushareCallback(self, event, param):
+		self.Installed = IPK_NotInstalled
+		if event == IpkgComponent.EVENT_DONE:
+			IpkList = self.ipkg.getFetchedList()
+			for x in IpkList:
+				if x[0].find("ushare") > -1:
+					self.Installed = IPK_Installed
+					break
+			self.updateService()
+		elif event == IpkgComponent.EVENT_ERROR:
+			self.updateService()
+
+	def checkuShareService(self):
+		self.ipkg.startCmd(IpkgComponent.CMD_LIST, {'installed_only': True })
 
 	def createSummary(self):
 		return NetworkServicesSummary
 
 	def uShareStart(self):
-		if self.my_ushare_run == False:
+		if self.Installed == IPK_NotInstalled:
+			self.session.openWithCallback(self.checkuShareService, Screens.Console.Console, cmdlist = ['opkg update','ipkg --force-overwrite install ushare'], closeOnSuccess = True)
+		elif self.my_ushare_run == False:
 			self.Console.ePopen('/etc/init.d/ushare start >> /tmp/uShare.log')
 			time.sleep(3)
 			self.updateService()
@@ -2666,6 +2828,10 @@ class NetworkuShare(Screen):
 						self['dlnaactive'].show()
 						self['dlnainactive'].hide()
 			f.close()
+		if self.Installed == IPK_Installed:
+			self['labstop'].setText(_("Stopped"))
+		elif self.Installed == IPK_NotInstalled:
+			self['labstop'].setText(_("Download"))
 		title = _("uShare Setup")
 
 		for cb in self.onChangedEntry:
@@ -2974,7 +3140,7 @@ class NetworkMiniDLNA(Screen):
 			<widget name="labdisabled" position="110,0" size="100,24" font="Regular;20" valign="center" halign="center" backgroundColor="red" zPosition="1" />
 			<widget name="labactive" position="110,0" size="100,24" font="Regular;20" valign="center" halign="center" backgroundColor="green" zPosition="2" />
 			<widget name="status" position="240,0" size="150,24" font="Regular;20" valign="center" transparent="0" />
-			<widget name="labstop" position="390,0" size="100,24" font="Regular;20" valign="center" halign="center" backgroundColor="red" zPosition="1" />
+			<widget name="labstop" position="390,0" size="200,24" font="Regular;20" valign="center" halign="center" backgroundColor="red" zPosition="1" />
 			<widget name="labrun" position="390,0" size="100,24" font="Regular;20" valign="center" halign="center" backgroundColor="green" zPosition="2"/>
 			<widget name="username" position="10,50" size="150,30" font="Regular;20" valign="center" transparent="1"/>
 			<widget name="labuser" position="160,50" size="310,30" font="Regular;20" valign="center" backgroundColor="#4D5375"/>
@@ -3013,7 +3179,7 @@ class NetworkMiniDLNA(Screen):
 		self['labactive'] = Label(_(_("Active")))
 		self['labdisabled'] = Label(_(_("Disabled")))
 		self['status'] = Label(_("Current Status:"))
-		self['labstop'] = Label(_("Stopped"))
+		self['labstop'] = Label(_("Checking..."))
 		self['labrun'] = Label(_("Running"))
 		self['username'] = Label(_("Name") + ":")
 		self['labuser'] = Label()
@@ -3041,13 +3207,36 @@ class NetworkMiniDLNA(Screen):
 		self['key_blue'] = Label(_("Show Log"))
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.setupminidlna, 'back': self.close, 'red': self.setupminidlna, 'green': self.MiniDLNAStart, 'yellow': self.autostart, 'blue': self.minidlnaLog})
 		self.Console = Console()
-		self.onLayoutFinish.append(self.updateService)
+		self.Installed = IPK_Check
+		self['labactive'].hide()
+		self['labrun'].hide()
+		self['labstop'].hide()
+		self.ipkg = IpkgComponent()
+		self.ipkg.addCallback(self.minidlnaCallback)
+		self.checkMiniDLNAService()
+
+	def minidlnaCallback(self, event, param):
+		self.Installed = IPK_NotInstalled
+		if event == IpkgComponent.EVENT_DONE:
+			IpkList = self.ipkg.getFetchedList()
+			for x in IpkList:
+				if x[0].find("minidlna") > -1:
+					self.Installed = IPK_Installed
+					break
+			self.updateService()
+		elif event == IpkgComponent.EVENT_ERROR:
+			self.updateService()
+
+	def checkMiniDLNAService(self):
+		self.ipkg.startCmd(IpkgComponent.CMD_LIST, {'installed_only': True })
 
 	def createSummary(self):
 		return NetworkServicesSummary
 
 	def MiniDLNAStart(self):
-		if self.my_minidlna_run == False:
+		if self.Installed == IPK_NotInstalled:
+			self.session.openWithCallback(self.checkMiniDLNAService, Screens.Console.Console, cmdlist = ['opkg update','ipkg --force-overwrite install minidlna'], closeOnSuccess = True)
+		elif self.my_minidlna_run == False:
 			self.Console.ePopen('/etc/init.d/minidlna start')
 			time.sleep(3)
 			self.updateService()
@@ -3138,6 +3327,10 @@ class NetworkMiniDLNA(Screen):
 						self['dlnaactive'].show()
 						self['dlnainactive'].hide()
 			f.close()
+		if self.Installed == IPK_Installed:
+			self['labstop'].setText(_("Stopped"))
+		elif self.Installed == IPK_NotInstalled:
+			self['labstop'].setText(_("Download"))
 		title = _("MiniDLNA Setup")
 
 		for cb in self.onChangedEntry:

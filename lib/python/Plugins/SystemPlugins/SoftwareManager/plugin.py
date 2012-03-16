@@ -1602,7 +1602,7 @@ class UpdatePlugin(Screen):
 
 	def exitAnswer(self, result):
 		if result is not None and result:
-			quitMainloop(2)
+			self.session.open(TryQuitMainloop,retvalue=2)
 		self.close()
 
 

@@ -206,10 +206,10 @@ class LogManager(Screen):
 		return PluginBrowserSummary
 
 	def selectionChanged(self):
-		item = self["list"].getCurrent()[0]
+		item = self["list"].getCurrent()
 		desc = ""
 		if item:
-			name = str(item[0])
+			name = str(item[0][0])
 		else:
 			name = ""
 		for cb in self.onChangedEntry:
@@ -520,13 +520,14 @@ class LogManagerMenu(ConfigListScreen, Screen):
 			self["config"].onSelectionChanged.append(self.handleInputHelpers)
 		self.changedEntry()
 		self.onLayoutFinish.append(self.layoutFinished)
+		self.onClose.append(self.HideHelp)
 	
 	def createSetup(self):
 		self.editListEntry = None
 		self.list = []
 		self.list.append(getConfigListEntry(_("Show in extensions list ?"), config.logmanager.showinextensions, _("Allows you to show/hide Log Manager in extensions (blue button).")))
 		self.list.append(getConfigListEntry(_("User Name"), config.logmanager.user, _("Enter your forum user name, to make it easier trace logs.")))
-		self.list.append(getConfigListEntry(_("e-Mail address"), config.logmanager.useremail, _("Enter your email address to sned a copy of the log to.")))
+		self.list.append(getConfigListEntry(_("e-Mail address"), config.logmanager.useremail, _("Enter your email address to send a copy of the log to.")))
 		self.list.append(getConfigListEntry(_("Send yourself a copy ?"), config.logmanager.usersendcopy, _("Allows you to send a copy of the log to yourself.")))
 		self["config"].list = self.list
 		self["config"].setList(self.list)
@@ -559,6 +560,11 @@ class LogManagerMenu(ConfigListScreen, Screen):
 			if self.has_key("VKeyIcon"):
 				self["VirtualKB"].setEnabled(False)
 				self["VKeyIcon"].boolean = False
+
+	def HideHelp(self):
+		if isinstance(self["config"].getCurrent()[1], ConfigText) or isinstance(self["config"].getCurrent()[1], ConfigPassword):
+			if self["config"].getCurrent()[1].help_window.instance is not None:
+				self["config"].getCurrent()[1].help_window.hide()
 
 	def KeyText(self):
 		from Screens.VirtualKeyBoard import VirtualKeyBoard

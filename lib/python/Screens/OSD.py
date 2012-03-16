@@ -141,11 +141,14 @@ class OSDSetup(Screen, ConfigListScreen):
 			self.close()
 
 def setPosition(dst_left, dst_width, dst_top, dst_height):
-	print 'Setting OSD position:' + str(dst_left) + " " + str(dst_width) + " " + str(dst_top) + " " + str(dst_height)
-	open("/proc/stb/fb/dst_left", "w").write('%X' % int(dst_left))
-	open("/proc/stb/fb/dst_width", "w").write('%X' % int(dst_width))
-	open("/proc/stb/fb/dst_top", "w").write('%X' % int(dst_top))
-	open("/proc/stb/fb/dst_height", "w").write('%X' % int(dst_height))
+	try:
+		print 'Setting OSD position:' + str(dst_left) + " " + str(dst_width) + " " + str(dst_top) + " " + str(dst_height)
+		open("/proc/stb/fb/dst_left", "w").write('%X' % int(dst_left))
+		open("/proc/stb/fb/dst_width", "w").write('%X' % int(dst_width))
+		open("/proc/stb/fb/dst_top", "w").write('%X' % int(dst_top))
+		open("/proc/stb/fb/dst_height", "w").write('%X' % int(dst_height))
+	except:
+		return
 
 def setDefaults():
 	print'[OSD Setup] Set Defaults'
@@ -156,8 +159,11 @@ def setDefaults():
 	config.osd.alpha.value = 255
 	
 def setAlpha(alpha_value):
-	print 'Setting OSD alpha:', str(alpha_value)
-	open("/proc/stb/video/alpha", "w").write(str(alpha_value))	
+	try:
+		print 'Setting OSD alpha:', str(alpha_value)
+		open("/proc/stb/video/alpha", "w").write(str(alpha_value))
+	except:
+		return	
 
 class OSD3DSetupScreen(Screen, ConfigListScreen):
 	skin = """
@@ -260,10 +266,13 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 			self.close()
 
 def applySettings(mode, znorm):
-	print 'Setting 3D mode:',mode
-	open("/proc/stb/fb/3dmode", "w").write(mode)
-	print 'Setting 3D depth:',znorm
-	open("/proc/stb/fb/znorm", "w").write('%d' % znorm)
+	try:
+		print 'Setting 3D mode:',mode
+		open("/proc/stb/fb/3dmode", "w").write(mode)
+		print 'Setting 3D depth:',znorm
+		open("/proc/stb/fb/znorm", "w").write('%d' % znorm)
+	except:
+		return	
 		
 def applySettings2(mode, znorm, setmode):
 	try:

@@ -4,8 +4,22 @@ from Components.ActionMap import NumberActionMap
 from Components.ServiceEventTracker import ServiceEventTracker
 from Components.Pixmap import Pixmap
 from Components.Label import Label
+from Components.Sources.StaticText import StaticText
 from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN
 from Tools.LoadPixmap import LoadPixmap
+
+class RdsInfoDisplaySummary(Screen):
+	def __init__(self, session, parent):
+		Screen.__init__(self, session, parent = parent)
+		self["message"] = StaticText("")
+		self.parent.onText.append(self.onText)
+
+	def onText(self, message):
+		self["message"].text = message
+		if message and len(message):
+			self.show()
+		else:
+			self.hide()
 
 class RdsInfoDisplay(Screen):
 	ALLOW_SUSPEND = True
@@ -28,10 +42,16 @@ class RdsInfoDisplay(Screen):
 		self.onLayoutFinish.append(self.hideWidgets)
 		self.rassInteractivePossible=False
 		self.onRassInteractivePossibilityChanged = [ ]
+		self.onText = [ ]
+
+	def createSummary(self):
+		return RdsInfoDisplaySummary
 
 	def hideWidgets(self):
 		for x in (self["RadioText"],self["RtpText"],self["RassLogo"]):
 			x.hide()
+		for x in self.onText:
+			x('')
 
 	def RadioTextChanged(self):
 		service = self.session.nav.getCurrentService()
@@ -42,6 +62,8 @@ class RdsInfoDisplay(Screen):
 			self["RadioText"].show()
 		else:
 			self["RadioText"].hide()
+		for x in self.onText:
+			x(rdsText)
 
 	def RtpTextChanged(self):
 		service = self.session.nav.getCurrentService()
@@ -52,6 +74,8 @@ class RdsInfoDisplay(Screen):
 			self["RtpText"].show()
 		else:
 			self["RtpText"].hide()
+		for x in self.onText:
+			x(rtpText)
 
 	def RassInteractivePicMaskChanged(self):
 		if not self.rassInteractivePossible:

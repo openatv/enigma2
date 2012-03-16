@@ -110,8 +110,7 @@ class Standby(Standby2):
 			Screens.InfoBar.InfoBar.saveTimeshiftActions(Screens.InfoBar.InfoBar.instance, postaction="standby")
 
 class StandbySummary(Screen):
-	skin = """
-	<screen position="0,0" size="132,64">
+	skin = """<screen position="0,0" size="132,64">
 		<widget source="global.CurrentTime" render="Label" position="0,0" size="132,64" font="Regular;40" halign="center">
 			<convert type="ClockToText" />
 		</widget>
@@ -129,11 +128,10 @@ from Components.Task import job_manager
 class QuitMainloopScreen(Screen):
 
 	def __init__(self, session, retvalue=1):
-		self.skin = """
-			<screen position="center,center" size="600,150" title="Shutdown">
-				<ePixmap pixmap="skin_default/icons/input_info.png" position="5,5" size="53,53" alphatest="on" />
-				<widget name="text" position="65,8" size="520,200" font="Regular;22" />
-			</screen>"""
+		self.skin = """<screen name="QuitMainloopScreen" position="fill" flags="wfNoBorder">
+			<ePixmap pixmap="skin_default/icons/input_info.png" position="c-27,c-60" size="53,53" alphatest="on" />
+			<widget name="text" position="center,c+5" size="720,100" font="Regular;22" halign="center" />
+		</screen>"""
 		Screen.__init__(self, session)
 		from Components.Label import Label
 		text = { 1: _("Your STB_BOX is shutting down"),
@@ -214,12 +212,7 @@ class TryQuitMainloop(MessageBox):
 			self.hide()
 			if self.retval == 1:
 				config.misc.DeepStandby.value = True
-			from enigma import gMainDC, getDesktop, eSize
  			self.session.nav.stopService()
-			desktop = getDesktop(0)
-			if desktop.size() != eSize(720,576):
-				gMainDC.getInstance().setResolution(720,576)
-				desktop.resize(eSize(720,576))
 			self.quitScreen = self.session.instantiateDialog(QuitMainloopScreen,retvalue=self.retval)
 			self.quitScreen.show()
  			quitMainloop(self.retval)
