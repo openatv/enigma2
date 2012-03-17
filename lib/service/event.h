@@ -38,7 +38,7 @@ SWIG_IGNORE(eServiceEvent);
 class eServiceEvent: public iObject
 {
 	DECLARE_REF(eServiceEvent);
-	bool loadLanguage(Event *event, std::string lang, int tsidonid);
+	bool loadLanguage(Event *event, const std::string &lang, int tsidonid);
 	std::list<eComponentData> m_component_data;
 	std::list<eServiceReference> m_linkage_services;
 	time_t m_begin;

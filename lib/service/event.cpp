@@ -23,9 +23,10 @@ DEFINE_REF(eServiceEvent);
 DEFINE_REF(eComponentData);
 
 /* search for the presence of language from given EIT event descriptors*/
-bool eServiceEvent::loadLanguage(Event *evt, std::string lang, int tsidonid)
+bool eServiceEvent::loadLanguage(Event *evt, const std::string &lang, int tsidonid)
 {
 	bool retval=0;
+	std::string language = lang;
 	for (DescriptorConstIterator desc = evt->getDescriptors()->begin(); desc != evt->getDescriptors()->end(); ++desc)
 	{
 		switch ((*desc)->getTag())
@@ -39,8 +40,10 @@ bool eServiceEvent::loadLanguage(Event *evt, std::string lang, int tsidonid)
 				std::string cc = sed->getIso639LanguageCode();
 				std::transform(cc.begin(), cc.end(), cc.begin(), tolower);
 				int table=encodingHandler.getCountryCodeDefaultMapping(cc);
-				if ( lang == "---" || lang.find(cc) != -1)
+				if (language == "---" || language.find(cc) != std::string::npos)
 				{
+					/* stick to this language, avoid merging or mixing descriptors of different languages */
+					language = cc;
 					m_event_name += replace_all(replace_all(convertDVBUTF8(sed->getEventName(), table, tsidonid), "\n", " "), "\t", " ");
 					m_short_description += convertDVBUTF8(sed->getText(), table, tsidonid);
 					retval=1;
@@ -53,8 +56,10 @@ bool eServiceEvent::loadLanguage(Event *evt, std::string lang, int tsidonid)
 				std::string cc = eed->getIso639LanguageCode();
 				std::transform(cc.begin(), cc.end(), cc.begin(), tolower);
 				int table=encodingHandler.getCountryCodeDefaultMapping(cc);
-				if ( lang == "---" || lang.find(cc) != -1)
+				if (language == "---" || language.find(cc) != std::string::npos)
 				{
+					/* stick to this language, avoid merging or mixing descriptors of different languages */
+					language = cc;
 					/*
 					 * Bit of a hack, some providers put the event description partly in the short descriptor,
 					 * and the remainder in extended event descriptors.
@@ -111,16 +116,15 @@ bool eServiceEvent::loadLanguage(Event *evt, std::string lang, int tsidonid)
 					const LinkageDescriptor  *ld = (LinkageDescriptor*)*desc;
 					if ( ld->getLinkageType() == 0xB0 )
 					{
-						eServiceReference ref;
-						ref.type = eServiceReference::idDVB;
-						eServiceReferenceDVB &dvb_ref = (eServiceReferenceDVB&) ref;
+						eServiceReferenceDVB dvb_ref;
+						dvb_ref.type = eServiceReference::idDVB;
 						dvb_ref.setServiceType(1);
 						dvb_ref.setTransportStreamID(ld->getTransportStreamId());
 						dvb_ref.setOriginalNetworkID(ld->getOriginalNetworkId());
 						dvb_ref.setServiceID(ld->getServiceId());
 						const PrivateDataByteVector *privateData = ld->getPrivateDataBytes();
 						dvb_ref.name = convertDVBUTF8((const unsigned char*)&((*privateData)[0]), privateData->size(), 1, tsidonid);
-						m_linkage_services.push_back(ref);
+						m_linkage_services.push_back(dvb_ref);
 					}
 					break;
 				}
