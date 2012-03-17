@@ -539,7 +539,7 @@ class LogManagerMenu(ConfigListScreen, Screen):
 		if self["config"].getCurrent() is not None:
 			try:
 				from Components.config import ConfigText, ConfigPassword
-				if isinstance(self["config"].getCurrent()[1], ConfigText) or isinstance(self["config"].getCurrent()[1], ConfigPassword):
+				if isinstance(self["config"].getCurrent()[1], ConfigText):
 					if self.has_key("VKeyIcon"):
 						self["VirtualKB"].setEnabled(True)
 						self["VKeyIcon"].boolean = True
@@ -562,7 +562,7 @@ class LogManagerMenu(ConfigListScreen, Screen):
 				self["VKeyIcon"].boolean = False
 
 	def HideHelp(self):
-		if isinstance(self["config"].getCurrent()[1], ConfigText) or isinstance(self["config"].getCurrent()[1], ConfigPassword):
+		if isinstance(self["config"].getCurrent()[1], ConfigText):
 			if self["config"].getCurrent()[1].help_window.instance is not None:
 				self["config"].getCurrent()[1].help_window.hide()
 
