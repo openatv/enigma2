@@ -212,10 +212,10 @@ class TryQuitMainloop(MessageBox):
 			self.hide()
 			if self.retval == 1:
 				config.misc.DeepStandby.value = True
- 			self.session.nav.stopService()
+			self.session.nav.stopService()
 			self.quitScreen = self.session.instantiateDialog(QuitMainloopScreen,retvalue=self.retval)
 			self.quitScreen.show()
- 			quitMainloop(self.retval)
+			quitMainloop(self.retval)
 		else:
 			MessageBox.close(self, True)
 
