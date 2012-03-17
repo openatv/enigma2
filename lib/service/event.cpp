@@ -111,16 +111,15 @@ bool eServiceEvent::loadLanguage(Event *evt, const std::string &lang, int tsidon
 					const LinkageDescriptor  *ld = (LinkageDescriptor*)*desc;
 					if ( ld->getLinkageType() == 0xB0 )
 					{
-						eServiceReference ref;
-						ref.type = eServiceReference::idDVB;
-						eServiceReferenceDVB &dvb_ref = (eServiceReferenceDVB&) ref;
+						eServiceReferenceDVB dvb_ref;
+						dvb_ref.type = eServiceReference::idDVB;
 						dvb_ref.setServiceType(1);
 						dvb_ref.setTransportStreamID(ld->getTransportStreamId());
 						dvb_ref.setOriginalNetworkID(ld->getOriginalNetworkId());
 						dvb_ref.setServiceID(ld->getServiceId());
 						const PrivateDataByteVector *privateData = ld->getPrivateDataBytes();
 						dvb_ref.name = convertDVBUTF8((const unsigned char*)&((*privateData)[0]), privateData->size(), 1, tsidonid);
-						m_linkage_services.push_back(ref);
+						m_linkage_services.push_back(dvb_ref);
 					}
 					break;
 				}
