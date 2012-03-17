@@ -252,7 +252,7 @@ RESULT eDVBScan::startFilter()
 	m_SDT = 0;
 	if (startSDT && (m_ready_all & readySDT))
 	{
-		m_SDT = new eTable<ServiceDescriptionSection>(m_scan_debug);
+		m_SDT = new eTable<ServiceDescriptionSection>;
 		int tsid=-1;
 		if (m_ready & readyPAT && m_ready & validPAT)
 		{
@@ -268,7 +268,7 @@ RESULT eDVBScan::startFilter()
 				for (; program != pat.getPrograms()->end(); ++program)
 					m_pmts_to_read.insert(std::pair<unsigned short, service>((*program)->getProgramNumber(), service((*program)->getProgramMapPid())));
 			}
-			m_PMT = new eTable<ProgramMapSection>(m_scan_debug);
+			m_PMT = new eTable<ProgramMapSection>;
 			CONNECT(m_PMT->tableReady, eDVBScan::PMTready);
 			PMTready(-2);
 			// KabelBW HACK ... on 618Mhz and 626Mhz the transport stream id in PAT and SDT is different
@@ -301,7 +301,7 @@ RESULT eDVBScan::startFilter()
 		m_PAT = 0;
 		if (m_ready_all & readyPAT)
 		{
-			m_PAT = new eTable<ProgramAssociationSection>(m_scan_debug);
+			m_PAT = new eTable<ProgramAssociationSection>;
 			if (m_PAT->start(m_demux, eDVBPATSpec(4000)))
 				return -1;
 			CONNECT(m_PAT->tableReady, eDVBScan::PATready);
@@ -310,7 +310,7 @@ RESULT eDVBScan::startFilter()
 		m_NIT = 0;
 		if (m_ready_all & readyNIT)
 		{
-			m_NIT = new eTable<NetworkInformationSection>(m_scan_debug);
+			m_NIT = new eTable<NetworkInformationSection>;
 			if (m_NIT->start(m_demux, eDVBNITSpec(m_networkid)))
 				return -1;
 			CONNECT(m_NIT->tableReady, eDVBScan::NITready);
@@ -319,7 +319,7 @@ RESULT eDVBScan::startFilter()
 		m_BAT = 0;
 		if (m_ready_all & readyBAT)
 		{
-			m_BAT = new eTable<BouquetAssociationSection>(m_scan_debug);
+			m_BAT = new eTable<BouquetAssociationSection>;
 			if (m_BAT->start(m_demux, eDVBBATSpec()))
 				return -1;
 			CONNECT(m_BAT->tableReady, eDVBScan::BATready);

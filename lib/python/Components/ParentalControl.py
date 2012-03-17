@@ -6,6 +6,7 @@ from Tools.BoundFunction import boundFunction
 from ServiceReference import ServiceReference
 from Tools import Notifications
 from Tools.Directories import resolveFilename, SCOPE_CONFIG
+from Tools.Notifications import AddPopup
 from enigma import eTimer
 import time
 
@@ -27,7 +28,6 @@ def InitParentalControl():
 	config.ParentalControl.configured = ConfigYesNo(default = False)
 	config.ParentalControl.mode = ConfigSelection(default = "simple", choices = [("simple", _("simple")), ("complex", _("complex"))])
 	config.ParentalControl.storeservicepin = ConfigSelection(default = "never", choices = [("never", _("never")), ("5", _("%d minutes") % 5), ("30", _("%d minutes") % 30), ("60", _("%d minutes") % 60), ("standby", _("until standby/restart"))])
-	config.ParentalControl.storeservicepincancel = ConfigSelection(default = "never", choices = [("never", _("never")), ("5", _("%d minutes") % 5), ("30", _("%d minutes") % 30), ("60", _("%d minutes") % 60), ("standby", _("until standby/restart"))])
 	config.ParentalControl.servicepinactive = ConfigYesNo(default = False)
 	config.ParentalControl.setuppinactive = ConfigYesNo(default = False)
 	config.ParentalControl.type = ConfigSelection(default = "blacklist", choices = [(LIST_WHITELIST, _("whitelist")), (LIST_BLACKLIST, _("blacklist"))])
@@ -85,7 +85,7 @@ class ParentalControl:
 			return True
 		#Check if configuration has already been read or if the significant values have changed.
 		#If true: read the configuration 
-		if self.configInitialized == False or self.storeServicePin != config.ParentalControl.storeservicepin.value or self.storeServicePinCancel != config.ParentalControl.storeservicepincancel.value:
+		if self.configInitialized == False or self.storeServicePin != config.ParentalControl.storeservicepin.value:
 			self.getConfigValues()
 		service = ref.toCompareString()
 		if (config.ParentalControl.type.value == LIST_WHITELIST and not self.whitelist.has_key(service)) or (config.ParentalControl.type.value == LIST_BLACKLIST and self.blacklist.has_key(service)):
@@ -165,14 +165,12 @@ class ParentalControl:
 		self.checkPinInterval = False
 		self.checkPinIntervalCancel = False
 		self.checkSessionPin = False
-		self.checkSessionPinCancel = False
 		
 		self.sessionPinCached = False
 		self.pinIntervalSeconds = 0
 		self.pinIntervalSecondsCancel = 0
 
 		self.storeServicePin = config.ParentalControl.storeservicepin.value
-		self.storeServicePinCancel = config.ParentalControl.storeservicepincancel.value
 		
 		if self.storeServicePin == "never":
 			pass
@@ -183,16 +181,6 @@ class ParentalControl:
 			iMinutes = float(self.storeServicePin)
 			iSeconds = iMinutes*60
 			self.pinIntervalSeconds = iSeconds
-	
-		if self.storeServicePinCancel == "never":
-			pass
-		elif self.storeServicePinCancel == "standby":
-			self.checkSessionPinCancel = True
-		else:
-			self.checkPinIntervalCancel = True
-			iMinutes = float(self.storeServicePinCancel)
-			iSeconds = iMinutes*60
-			self.pinIntervalSecondsCancel = iSeconds
 	
 		self.configInitialized = True
 		# Reset PIN cache on standby: Use StandbyCounter- Config- Callback
@@ -228,15 +216,7 @@ class ParentalControl:
 		else:
 			#This is the new function of caching cancelling of service pin
 			if result is not None:
-				Notifications.AddNotification(MessageBox,  _("The pin code you entered is wrong."), MessageBox.TYPE_ERROR)
-			else:
-				if self.checkSessionPinCancel == True:
-					self.sessionPinCached = True
-					self.sessionPinCachedValue = False
-				if self.checkPinIntervalCancel == True:
-					self.sessionPinCached = True
-					self.sessionPinCachedValue = False
-					self.sessionPinTimer.start(self.pinIntervalSecondsCancel*1000,1) 
+				AddPopup(_("The pin code you entered is wrong."), MessageBox.TYPE_ERROR, timeout = 3)
 			
 	def saveListToFile(self,sWhichList,vList):
 		#Replaces saveWhiteList and saveBlackList: 
