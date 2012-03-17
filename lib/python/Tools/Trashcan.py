@@ -62,6 +62,7 @@ class Trashcan:
 			return
 		if self.isCleaning:
 			print "[Trashcan] Cleanup already running"
+			return
 		self.isCleaning = True
 		ctimeLimit = time.time() - (config.usage.movielist_trashcan_days.value * 3600 * 24)
 		reserveBytes = 1024*1024*1024 * int(config.usage.movielist_trashcan_reserve.value)
