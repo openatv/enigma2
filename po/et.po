@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-06 02:23+0000\n"
+"POT-Creation-Date: 2012-03-15 17:23+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: rimas\n"
 "Language-Team: Raivo, Henkka, eesatfan, rimas\n"
@@ -108,7 +108,7 @@ msgid ""
 "Scan for local extensions and install them."
 msgstr ""
 "\n"
-"Otsi  paigalda IPK-faile."
+"Otsi ja paigalda IPK-faile."
 
 msgid ""
 "\n"
@@ -116,8 +116,8 @@ msgid ""
 "Current device: "
 msgstr ""
 "\n"
-"Vali andmekandja varukoopia jaoks.\n"
-"Hetke andmekandja: "
+"Vali varukoopia asukoht.\n"
+"Hetkel: "
 
 msgid ""
 "\n"
@@ -212,6 +212,12 @@ msgstr "%H:%M"
 #, python-format
 msgid "%d / 100"
 msgstr "%d / 100"
+
+#, python-format
+msgid "%d Min"
+msgid_plural "%d Mins"
+msgstr[0] "%d Min"
+msgstr[1] "%d Minutit"
 
 #, python-format
 msgid "%d hour"
@@ -369,9 +375,6 @@ msgstr "3"
 msgid "30 Days"
 msgstr "30 päeva"
 
-msgid "30 Minutes"
-msgstr "30 minutit"
-
 msgid "3D Mode"
 msgstr "3D režiim"
 
@@ -379,7 +382,7 @@ msgid "3X"
 msgstr "3X"
 
 msgid "3d mode"
-msgstr "3d režiim"
+msgstr "3D režiim"
 
 msgid "4"
 msgstr "4"
@@ -573,7 +576,7 @@ msgid "Active clients"
 msgstr "Aktiivsed kliendid"
 
 msgid "Adapter settings"
-msgstr "Võrgukaardi seadistused"
+msgstr "Võrgukaardi seadistus"
 
 msgid "Add"
 msgstr "Lisa"
@@ -632,8 +635,8 @@ msgstr "Lisainfo"
 msgid "Address"
 msgstr "Aadress"
 
-msgid "Adds enigma2 settings and STB_BOX model informations like SN, rev... if enabled."
-msgstr "Lisab enigma2 seadistused ja vastuvõtja mudeli info, nagu SN ... jne."
+msgid "Adds enigma2 settings and STB_BOX informations like SN, rev... if enabled."
+msgstr "Lisab enigma2 seadistused ja vastuvõtja info, nagu SN ... jne."
 
 msgid "Adds network configuration if enabled."
 msgstr "Lisab võrgu seadistuse."
@@ -708,7 +711,7 @@ msgid "Allows displaying the special hearing impaired subtitles"
 msgstr "Võimaldab vaegkuuljatele mõeldud subtiitrite kuvamise"
 
 msgid "Allows epg data of a passed event to be displayed. Handy when you want to know something about an event that is about to finish or has just finished. (minutes):"
-msgstr "Lubatakse möödunud saate epg kuvamine. Mugav, juhul kui soovid midagi teada saatest, mis on kohe lõppemas või on just lõppenud.(minutit):"
+msgstr "Lubatakse möödunud saate epg kuvamine. Mugav juhul, kui soovid midagi teada saatest, mis on kohe lõppemas või on just lõppenud.(minutit):"
 
 msgid "Allows more detailed to be in the crash log"
 msgstr "Võimaldab rohkemate üksikasjadega vealogide loomise"
@@ -717,28 +720,28 @@ msgid "Allows the EIT now/next eventdata to be displayed in infobar."
 msgstr "Võimaldab EIT nüüd/järgmine  saateinfo kuvamise inforibal."
 
 msgid "Allows the Harddisk to go to standby after being idle for:"
-msgstr "Lubab kõvaketta ooterežiimi pärast jõudeolekut:"
+msgstr "Lubab kõvaketta ooterežiimi mineku pärast jõudeoleku aega:"
 
-msgid "Allows the box to read the stored EPG data regularly."
+msgid "Allows the STB_BOX to read the stored EPG data regularly."
 msgstr "Võimaldab vastuvõtjal regulaarselt lugeda salvestatud EPG andmeid."
 
-msgid "Allows the box to store the EPG data regularly."
+msgid "Allows the STB_BOX to store the EPG data regularly."
 msgstr "Võimaldab vastuvõtjal regulaarselt salvestada EPG andmeid."
 
-msgid "Allows the box to use the EIT EPG when tuned to a service. This data will be stored by the box."
-msgstr "Võimaldab vastuvõtjal telekanalil olles kasutada  EIT EPG-d. Andmed salvestatakse vastuvõtjasse."
+msgid "Allows the STB_BOX to use the EIT EPG when tuned to a service. This data will be stored by the STB_BOX."
+msgstr "Võimaldab vastuvõtjal telekanalil olles kasutada  EIT EPG-d. Andmed salvestatakse."
 
-msgid "Allows the box to use the FreeSat EPG when tuned to a service. This data will be stored by the box."
-msgstr "Võimaldab vastuvõtjal telekanalil olles kasutada  FreeSat EPG-d. Andmed salvestatakse vastuvõtjasse."
+msgid "Allows the STB_BOX to use the FreeSat EPG when tuned to a service. This data will be stored by the STB_BOX."
+msgstr "Võimaldab vastuvõtjal telekanalil olles kasutada  FreeSat EPG-d. Andmed salvestatakse."
 
-msgid "Allows the box to use the MHW EPG when tuned to a service. This data will be stored by the box."
-msgstr "Võimaldab vastuvõtjal telekanalil olles kasutada  MHW EPG-d. Andmed salvestatakse vastuvõtjasse."
+msgid "Allows the STB_BOX to use the MHW EPG when tuned to a service. This data will be stored by the STB_BOX."
+msgstr "Võimaldab vastuvõtjal telekanalil olles kasutada  MHW EPG-d. Andmed salvestatakse."
 
-msgid "Allows the box to use the Netmed EPG when tuned to a service. This data will be stored by the box."
-msgstr "Võimaldab vastuvõtjal telekanalil olles kasutada  Netmed EPG-d. Andmed salvestatakse vastuvõtjasse."
+msgid "Allows the STB_BOX to use the Netmed EPG when tuned to a service. This data will be stored by the STB_BOX."
+msgstr "Võimaldab vastuvõtjal telekanalil olles kasutada  Netmed EPG-d. Andmed salvestatakse."
 
-msgid "Allows the box to use the ViaSat EPG when tuned to a service. This data will be stored by the box."
-msgstr "Võimaldab vastuvõtjal telekanalil olles kasutada  Viasat EPG-d. Andmed salvestatakse vastuvõtjasse."
+msgid "Allows the STB_BOX to use the ViaSat EPG when tuned to a service. This data will be stored by the STB_BOX."
+msgstr "Võimaldab vastuvõtjal telekanalil olles kasutada  Viasat EPG-d. Andmed salvestatakse."
 
 msgid "Allows you setup the button to do what you choose."
 msgstr "Võimaldab valida nupu toime."
@@ -753,7 +756,7 @@ msgid "Allows you to choose the Picons to be displayed on the frontpanel."
 msgstr "Võimaldab kanalilogode näitamise esipaneelil."
 
 msgid "Allows you to enable the debug log. They contain very detailed information of everything the system does."
-msgstr "Võimaldab lubada silumislogid. Need sisaldavad väga üksikasjalikku teavet kõigest, mida süsteem teeb."
+msgstr "Võimaldab lubada silumislogid. Need sisaldavad väga üksikasjalikku teavet kõigist süsteemi tegevustest."
 
 msgid "Allows you to enable/disable displaying icons on the frontpanel."
 msgstr "Võimaldab lubada/keelata ikoonide näitamise esipaneelil."
@@ -763,6 +766,9 @@ msgstr "Võimaldab eelistada DVB subtiitreid teleteksti omadele."
 
 msgid "Allows you to prefer the special hearing impaired subtitles over normal subtitles."
 msgstr "Võimaldab eelistada vaegkuuljate subtiitreid tavalistele."
+
+msgid "Allows you to send a copy of the log to yourself."
+msgstr "Võimaldab saata logi koopia iseendale."
 
 msgid "Allows you to set audio language 1"
 msgstr "Võimaldab määrata heli esimese keele"
@@ -824,13 +830,16 @@ msgstr "Võimaldab määrata DVB subtiitrite tausta läbipaistvuse."
 msgid "Allows you to show/hide CCcam in extensions (blue button)."
 msgstr "Võimaldab CCcam näitamise laienduste menüüs (sinine nupp)."
 
+msgid "Allows you to show/hide Log Manager in extensions (blue button)."
+msgstr "Võimaldab näidata/peita Logihaldurit laienduste menüüs (sinine nupp)."
+
 msgid "Allows you to show/hide OScam in extensions (blue button)."
 msgstr "Võimaldab OScam näitamise laienduste menüüs (sinine nupp)."
 
 msgid "Allows you to use Yellow pango DVB subtitles"
 msgstr "Võimaldab kollaste pango DVB subtiitrite kasutamise"
 
-msgid "Allows you to use power measurement (if your box supports that)"
+msgid "Allows you to use power measurement (if your STB_BOX supports that)"
 msgstr "Võimaldab kasutada voolukasutuse mõõtmist (kui vastuvõtja seda toetab)"
 
 msgid "Allows you to use the original position of the Teletext subtitles."
@@ -1008,7 +1017,7 @@ msgid "Automatic save"
 msgstr "Automaatne salvestamine"
 
 msgid "Automatically update Client/Server View?"
-msgstr "Automatically update Client/Server View?"
+msgstr ""
 
 msgid "Autostart"
 msgstr "Autostart"
@@ -1050,7 +1059,7 @@ msgid "Background delete speed"
 msgstr "Taustal kustutamise kiirus"
 
 msgid "Backup"
-msgstr "Varundamine"
+msgstr "Varukoopia"
 
 msgid "Backup Location"
 msgstr "Varukoopia asukoht"
@@ -1164,7 +1173,7 @@ msgid "By Team ViX"
 msgstr "ViX tiimilt"
 
 msgid "By pressing the OK Button on your remote control, the info bar is being displayed."
-msgstr "Vajuta OK-nuppu et näha olekuriba."
+msgstr "OK nupule vajutades kuvatakse inforiba."
 
 msgid "C"
 msgstr "C"
@@ -1262,6 +1271,9 @@ msgstr "Mudeli nime ei leita."
 msgid "Cancel"
 msgstr "Tühista"
 
+msgid "Cannot delete file"
+msgstr "Faili ei saa kustutada"
+
 msgid "Cannot move to trash can"
 msgstr "Prügikasti saatmine ei ole võimalik"
 
@@ -1341,7 +1353,7 @@ msgid "Channel preview mode"
 msgstr "Kanali eelvaade"
 
 msgid "Channel selection on mode change"
-msgstr "Näita kanalinimekirja režiimi vahetusel"
+msgstr "Kanalinimekiri TV ja raadiorežiimi vahetusel"
 
 msgid "Channel:"
 msgstr "Kanal:"
@@ -1403,11 +1415,11 @@ msgstr "Vali selle LNB jaoks õige DiSEqC režiim."
 msgid "Choose the location for crash and debuglogs."
 msgstr "Vali vea- ja silumislogide jaoks asukoht."
 
-msgid "Choose the location where the EPG data will be stored when the box is shut down. The location must be available at boot time."
+msgid "Choose the location where the EPG data will be stored when the STB_BOX is shut down. The location must be available at boot time."
 msgstr "Vali asukoht, kuhu vastuvõtja välja lülitamisel EPG andmed salvestatakse. Asukoht peab olema kättesaadav algkäivitusel."
 
-msgid "Choose the name of the file that holds the EPG data when the box is shut down. This can be handy to differentiate between several boxes."
-msgstr "Vali, mis nimega EPG fail vastuvõtja välja lülitamisel salvestatakse. Nii on mugav eristada mitme eri vastuvõtja faile."
+msgid "Choose the name of the file that holds the EPG data when the STB_BOX is shut down. This can be handy to differentiate between several boxes."
+msgstr "Otsusta, mis nimega EPG fail vastuvõtja välja lülitamisel salvestatakse. Nii on mugav eristada mitme eri vastuvõtja faile."
 
 msgid "Choose the order in which the tuner types will be used (for watching and recording)."
 msgstr "Määra, mille alusel tuuneri tüübid valitakse (vaatamiseks ja salvestamiseks)"
@@ -1416,10 +1428,10 @@ msgid "Choose time interval to which the graphics will be rounded off."
 msgstr "Vali aeg, mille jooksul ekraanigraafika kaob."
 
 msgid "Choose to enable or disable DHCP."
-msgstr "Vali DHCP (lubamiseks või keelamiseks)."
+msgstr "Luba või keela DHCP."
 
 msgid "Choose upgrade source"
-msgstr "Vali allikas"
+msgstr "Vali uuenduste allikas"
 
 msgid "Choose what you want the button '0' to do when PIP is active."
 msgstr "Vali, mida '0' nupp PIP- režiimis teeb."
@@ -1646,7 +1658,7 @@ msgstr "Seadistusfaili %s salvestamine nurjus!"
 
 #, python-format
 msgid "Couldn't record due to conflicting timer %s"
-msgstr "Ei saa salvestada. Taimerite konflikt %s"
+msgstr "Taimerite konflikt %s. Salvestamine nurjus."
 
 #, python-format
 msgid "Couldn't record due to invalid service %s"
@@ -1832,7 +1844,7 @@ msgid "Default Settings"
 msgstr "Vaikeväärtused"
 
 msgid "Default movie location"
-msgstr "Salvestuste tavaasukoht"
+msgstr "Salvestiste tavaasukoht"
 
 msgid "Delay before key repeat starts:"
 msgstr "Viivitus enne võtme kordamist:"
@@ -2391,7 +2403,7 @@ msgid ""
 "\n"
 "© 2006 - Stephan Reichholf"
 msgstr ""
-"Enigma2 Välimuse valija\n"
+"Enigma2 välimuse valija\n"
 "\n"
 "Kui on probleeme, kontakteeru\n"
 "stephan@reichholf.net\n"
@@ -2409,6 +2421,12 @@ msgstr "Sisesta kood"
 
 msgid "Enter your email address so that we can contact you if needed."
 msgstr "Sisesta oma emaili aadress, et saaksime vajadusel ühendust võtta."
+
+msgid "Enter your email address to sned a copy of the log to."
+msgstr "Sisesta oma mailiaadress, kuhu logifaili koopia saata."
+
+msgid "Enter your forum user name, to make it easier trace logs."
+msgstr "Sisesta foorumi kasutajanim logide jälgimise hõlbustamiseks."
 
 msgid "Enter your input data"
 msgstr "Sisesta andmed"
@@ -2465,10 +2483,10 @@ msgid "Event Fontsize (relative to skin size)"
 msgstr "Saate nime tähesuurus (suhtes teemaga)"
 
 msgid "Event Info"
-msgstr "Saatetutvustus"
+msgstr "Saateinfo"
 
 msgid "Event Info..."
-msgstr "Saatetutvustus..."
+msgstr "Saateinfo..."
 
 msgid "Eventview"
 msgstr "Saateinfo"
@@ -2662,7 +2680,7 @@ msgid "Finished configuring your network"
 msgstr "Lõpetasin võrgu seadistamise"
 
 msgid "Finished restarting your network"
-msgstr "Võrgu restart on tehtud"
+msgstr "Võrgu taaskäivitus on tehtud"
 
 msgid "Finnish"
 msgstr "Soome"
@@ -2844,7 +2862,7 @@ msgid "Goto next page of service"
 msgstr "Liigu järgmisele kanalite lehele"
 
 msgid "Goto position"
-msgstr "Mine kohale"
+msgstr "Liigu kohale"
 
 msgid "Goto previous bouquet"
 msgstr "Liigu eelmisele lemmiknimekirjale"
@@ -2985,7 +3003,7 @@ msgid "IP Address"
 msgstr "IP Aadress"
 
 msgid "IP-Address"
-msgstr "IP-Aadress"
+msgstr "IP Aadress"
 
 msgid "IP:"
 msgstr "IP:"
@@ -2994,7 +3012,7 @@ msgid "ISO file is too large for this filesystem!"
 msgstr "ISO fail on liiga suur failisüsteemile!"
 
 msgid "ISO path"
-msgstr "ISO kataloog"
+msgstr "ISO asukoht"
 
 msgid "Icons"
 msgstr "Ikoonid"
@@ -3005,62 +3023,62 @@ msgstr "Jõudeaeg:"
 msgid "If Teletext caching is enabled, displaying pages will be much faster."
 msgstr "Kui teleteksti puhverdamine on lubatud, toimub lehtede laadimine palju kiiremini."
 
-msgid "If est to 'yes' the box will use AC3 sound (when available)."
-msgstr "Kui määrad 'jah', kasutab vastuvõtja (võimaluse korral) AC3 heli."
-
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Kui logidele määratud suurim kettaruum on täis, kustutakse kõige vanemad."
 
 msgid "If set to 'yes' channels without EPG will not be shown."
-msgstr "Määrates 'jah' kanaleid, millel puudub EPG, ei näidata."
+msgstr "Määrates 'jah', kanaleid, millel puudub EPG, ei näidata."
 
 msgid "If set to 'yes' shows a small TV-screen in the EPG."
-msgstr "Määrates 'jah' näidatakse saatekavas väikest teleekraani."
+msgstr "Määrates 'jah', näidatakse saatekavas väikest teleekraani."
 
 msgid "If set to 'yes' shows the channel names in the EPG."
-msgstr "Määrates 'jah' näidatakse saatekavas kanalinimesi."
+msgstr "Määrates 'jah', näidatakse saatekavas kanalinimesi."
 
 msgid "If set to 'yes' shows the channel picons in the EPG."
-msgstr "Määrates 'jah' näidatakse saatekavas kanalilogosi."
+msgstr "Määrates 'jah', näidatakse saatekavas kanalilogosi."
 
 msgid "If set to 'yes' the EPG will alway open at the first channel. If set to 'no' the EPG will open on the present channel."
-msgstr "Määrates 'jah', avatakse saatekava alati esimesel kanalil. Määrates 'ei', avatakse saatekava töötaval kanalil."
+msgstr "Määrates 'jah', avatakse saatekava alati esimesel kanalil. Määrates 'ei', avatakse saatekava hetkel töötaval kanalil."
 
-msgid "If set to 'yes' the bouquets will be shown each time you open the EPG"
-msgstr "Määrates 'jah' näidatakse saatekava avamisel alati lemmiknimekirju"
+msgid "If set to 'yes' the STB_BOX will use AC3 sound (when available)."
+msgstr "Määrates 'jah', kasutab vastuvõtja (võimaluse korral) AC3 heli."
 
-msgid "If set to 'yes' the bouquets will be shown each time you open the EPG."
-msgstr "Määrates 'jah' näidatakse saatekava avamisel alati lemmiknimekirju."
+msgid "If set to 'yes' the STB_BOX will use the audio stream that has been used earlier."
+msgstr "Määrates 'jah', kasutab vastuvõtja alati varem kasutatud heliriba."
 
-msgid "If set to 'yes' the box will use the audio stream that has been used earlier."
-msgstr "Määrates 'jah' kasutab vastuvõtja alati varem kasutatud heliriba."
-
-msgid "If set to 'yes' the box will use the subtitles that has been used earlier."
+msgid "If set to 'yes' the STB_BOX will use the subtitles that has been used earlier."
 msgstr "Määrates 'jah', kasutab vastuvõtja varem kasutuses olnud subtiitreid."
 
+msgid "If set to 'yes' the bouquets will be shown each time you open the EPG"
+msgstr "Määrates 'jah', näidatakse saatekava avamisel alati lemmiknimekirju"
+
+msgid "If set to 'yes' the bouquets will be shown each time you open the EPG."
+msgstr "Määrates 'jah', näidatakse saatekava avamisel alati lemmiknimekirju."
+
 msgid "If set to 'yes' the channel list will be shown after switching between radio and TV modes."
-msgstr "Määrates 'jah' näidatakse TV ja raadio vahel vahetatades kanalinimekirja."
+msgstr "Määrates 'jah', näidatakse TV ja raadio režiimi vahetudes kanalinimekirja."
 
 msgid "If set to 'yes' the channel numbers in the channel list will be displayed."
-msgstr "Määrates 'jah' näidatakse kanalinimekirjas kanalinumbreid."
+msgstr "Määrates 'jah', näidatakse kanalinimekirjas kanalinumbreid."
 
 msgid "If set to 'yes' the infobar will be displayed when a new event starts."
-msgstr "Määrates 'jah' näidatakse uue saate algamisel inforiba."
+msgstr "Määrates 'jah', näidatakse uue saate algamisel inforiba."
 
 msgid "If set to 'yes' the infobar will be displayed when changing channels."
-msgstr "Määrates 'jah' näidatakse kanalivahetusel inforiba."
+msgstr "Määrates 'jah', näidatakse kanalivahetusel inforiba."
 
 msgid "If set to 'yes' the progress of the current event in the channel list is displayed."
-msgstr "Määrates 'jah' näidatakse kanalinmekirjas saate edenemist."
+msgstr "Määrates 'jah', näidatakse kanalinimekirjas saate edenemist."
 
 msgid "If set to 'yes' you can preview channels in the EPG list."
-msgstr "Määrates 'jah' näidatakse saatekavas eelvaadet."
+msgstr "Määrates 'jah', näidatakse saatekavas eelvaadet."
 
 msgid "If set to 'yes' you can preview channels in the channel list. Press 'OK' to preview the selected channel, press a 2nd 'OK' to exit and zap to that channel, pressing 'EXIT' to return to the channel you started at."
-msgstr "Määrates 'jah' näidatakse kanalinimekirjas eelvaadet. Vajuta 'OK' valitud kanali eelvaatluseks, vajuta uuesti 'OK' nimekirja sulgemiseks ja antud kanalile minekuks. Vajutades 'EXIT' lähed tagasi kanalile, millelt alustasid."
+msgstr "Määrates 'jah', näidatakse kanalinimekirjas eelvaadet. Vajuta 'OK' valitud kanali eelvaatluseks, vajuta uuesti 'OK' nimekirja sulgemiseks ja antud kanalile minekuks. Vajutades 'EXIT' lähed tagasi kanalile, millelt alustasid."
 
 msgid "If set to 'yes; the infobar will be displayed when Fast Forwarding or Rewinding during media playback."
-msgstr "Määrates 'jah' näidatakse inforiba edasi/tagasi kerimisel."
+msgstr "Määrates 'jah', näidatakse edasi/tagasi kerimisel inforiba."
 
 msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times):"
 msgstr "Kui tekst on esipaneelil kuvamiseks liiga pikk, korratakse seda (kordade arv:)"
@@ -3076,13 +3094,13 @@ msgstr ""
 "Vajuta OK, et minna tagasi."
 
 msgid "If you select \"yes\" all channels on the satellite being search will be deleted before starting the current search"
-msgstr "Valides \"jah\" kustutatakse kõik otsitava satelliidi kanalid enne kanaliotsingu alustamist"
+msgstr "Valides \"jah\", kustutatakse kõik otsitava satelliidi kanalid enne kanaliotsingu alustamist"
 
-msgid "If you select \"yes\" the scan will only save channels that are not encrypted; \"no\" will find encrypted and non-encrypted cannels"
-msgstr "Valides \"jah\" salvestab otsing ainult koodivabad kanalid; \"ei\" leiab kodeeritud ja koodivabad kanalid"
+msgid "If you select \"yes\" the scan will only save channels that are not encrypted; \"no\" will find encrypted and non-encrypted channels"
+msgstr "Määrates \"jah\", salvestab otsing ainult koodivabad kanalid; \"ei\" leiab kodeeritud ja koodivabad kanalid"
 
 msgid "If you select \"yes\" the scan will only search transponders not listed in satellites.xml"
-msgstr "Valides \"jah\" otsitakse ainult transpondereid, mida ei leidu satellites.xml failis"
+msgstr "Valides \"jah\", otsitakse ainult transpondereid, mida ei leidu satellites.xml failis"
 
 msgid ""
 "If you want to quit the Browser,\n"
@@ -3299,7 +3317,7 @@ msgid ""
 "Start symbol rate must be between 1MHz and 44MHz."
 msgstr ""
 "Sisestati kehtetud parameetrid. Paranda ja proovi uuesti.\n"
-"Alg symbol rate peab olema vahemikus 1MHz kuni 44MHz."
+"Alg sümbolikiirus peab olema vahemikus 1MHz kuni 44MHz."
 
 msgid ""
 "Invalid parameters entered. Please correct and try again.\n"
@@ -3315,7 +3333,7 @@ msgid ""
 "Stop symbol rate must be between 2MHz and 45MHz."
 msgstr ""
 "Sisestati kehtetud parameetrid. Paranda ja proovi uuesti.\n"
-"Lõpp symbol rate peab olema vahemikus 2MHz kuni 45MHz."
+"Lõpp sümbolikiirus peab olema vahemikus 2MHz kuni 45MHz."
 
 msgid ""
 "Invalid parameters entered. Please correct and try again.\n"
@@ -4271,7 +4289,7 @@ msgid "OSD 3D Setup"
 msgstr "OSD 3D seadistamine"
 
 msgid "OSD Position Setup"
-msgstr "OSD asukoha seadistused"
+msgstr "OSD asukoha seadistamine"
 
 msgid "OSD Settings"
 msgstr "OSD seadistused"
@@ -4286,7 +4304,7 @@ msgid "OSD visibility"
 msgstr "OSD nähtavus"
 
 msgid "OScam Info"
-msgstr "OScam Info"
+msgstr "OScam info"
 
 msgid "October"
 msgstr "Oktoober"
@@ -4377,7 +4395,7 @@ msgstr "PMT PID"
 
 #, python-format
 msgid "PTS Plugin Error: %s"
-msgstr "PTS laienduse viga: %s"
+msgstr "PTS (pidev ajanihe) viga: %s"
 
 msgid "PWM value"
 msgstr "PWM väärtus"
@@ -4386,19 +4404,19 @@ msgid "Package list update"
 msgstr "Paketinimekirja uuendus"
 
 msgid "Package removal failed.\n"
-msgstr "Laienduse eemaldamine nurjus.\n"
+msgstr "Tarkvarapaketi eemaldamine nurjus.\n"
 
 msgid "Package removed successfully.\n"
-msgstr "Laiendus eemaldatud.\n"
+msgstr "Tarkvarapakett eemaldatud.\n"
 
 msgid "Packages"
 msgstr "paketti"
 
 msgid "Packet management"
-msgstr "Pakkide haldamine"
+msgstr "Pakihaldus"
 
 msgid "Packet manager"
-msgstr "Paketihaldur"
+msgstr "Pakihaldur"
 
 msgid "Page down"
 msgstr "Leht alla"
@@ -4477,7 +4495,7 @@ msgid "Picture In Graphics*"
 msgstr ""
 
 msgid "PicturePlayer"
-msgstr "PildiMängija"
+msgstr "Pildimängija"
 
 #. TRANSLATORS: (aspect ratio policy: black bars on left/right) in doubt, keep english term.
 msgid "Pillarbox"
@@ -4975,6 +4993,12 @@ msgstr "Teeme taaskäivituse kohe?"
 msgid "Really shutdown now?"
 msgstr "Lülitame välja?"
 
+msgid "Really upgrade the frontprocessor and reboot now?"
+msgstr "Uuendad esiprotsessori ja taaskäivitad?"
+
+msgid "Really upgrade your STB_BOX and reboot now?"
+msgstr "Uuendad vastuvõtja ja taaskäivitad?"
+
 msgid "Reboot"
 msgstr "Taaskäivitus"
 
@@ -5362,13 +5386,10 @@ msgid "Scaler sharpness"
 msgstr "Skaleerija teravus"
 
 msgid "Scaling Mode"
-msgstr "Skaleerimise valikud"
+msgstr "Skaleerimine"
 
 msgid "Scan"
 msgstr "Otsi"
-
-msgid "Scan All"
-msgstr "Otsi kõik"
 
 msgid "Scan "
 msgstr "Otsi "
@@ -5443,13 +5464,13 @@ msgid "Scan start frequency"
 msgstr "Otsingu algsagedus"
 
 msgid "Scan start symbolrate"
-msgstr "Otsingu alustus symbolrate"
+msgstr "Otsingu sümbolikiiruse algväärtus"
 
 msgid "Scan stop frequency"
 msgstr "Otsingu lõppsagedus"
 
 msgid "Scan stop symbolrate"
-msgstr "Otsingu lõpu symbolrate"
+msgstr "Otsingu sümbolikiiruse lõppväärtus"
 
 msgid "Scan your network for wireless access points and connect to them using your selected wireless device.\n"
 msgstr "Otsi oma võrgus WiFi ruutereid ja ühendu nendega, kasutades valitud WiFi seadet.\n"
@@ -5508,7 +5529,7 @@ msgid "Searching for new installed or removed packages. Please wait..."
 msgstr "Otsin uusi paigaldatud või kustutatud pakette. Oota..."
 
 msgid "Secondary DNS"
-msgstr "Teisene nimeserver"
+msgstr "Teine nimeserver"
 
 msgid "Seek"
 msgstr "Otsi"
@@ -5526,7 +5547,7 @@ msgid "Select Location"
 msgstr "Vali kataloog"
 
 msgid "Select Network Adapter"
-msgstr "Vali võrguadapter"
+msgstr "Vali võrgukaart"
 
 msgid "Select a movie"
 msgstr "Vali salvestis"
@@ -5580,13 +5601,13 @@ msgid "Select package"
 msgstr "Vali pakett"
 
 msgid "Select provider to add..."
-msgstr "Vali levitaja lisamiseks..."
+msgstr "Vali lisamiseks levitaja..."
 
 msgid "Select refresh rate"
 msgstr "Vali värskendussagedus"
 
 msgid "Select service to add..."
-msgstr "Vali kanal lisamiseks..."
+msgstr "Vali lisamiseks kanal..."
 
 msgid "Select the satellite you wish to search"
 msgstr "Vali otsinguks satelliit"
@@ -5708,7 +5729,7 @@ msgid ""
 "Service unavailable!\n"
 "Check tuner configuration!"
 msgstr ""
-"Pole kanalit!\n"
+"Kanal pole saadaval!\n"
 "Kontrolli tuuneri seadeid!"
 
 msgid "Service width"
@@ -5950,7 +5971,7 @@ msgid "Show animation while busy"
 msgstr "Näita hõivatud oleku puhul animatsiooni"
 
 msgid "Show background in Radio Mode"
-msgstr "Näita raadioolekus taustapilti"
+msgstr "Näita raadiorežiimis taustapilti"
 
 msgid "Show background when tuned to a radio channel."
 msgstr "Näita raadiokanali taustaks taustapilti."
@@ -6021,6 +6042,9 @@ msgstr "Kuula raadiot..."
 msgid "Show the tv player..."
 msgstr "Näita TV-d..."
 
+msgid "Show time elapsed as positive"
+msgstr "Näita möödunud aega + märgiga"
+
 msgid "Show time remaining/elapsed"
 msgstr "Jäänud/möödunud aja näit"
 
@@ -6036,7 +6060,7 @@ msgstr "Näitab WiFi olekut.\n"
 msgid "Shows the the movie lenth in the list."
 msgstr "Näitab nimekirjas filmide pikkust."
 
-msgid "Shows the watched staus of the movie."
+msgid "Shows the watched status of the movie."
 msgstr "Tähista vaadatud salvestised."
 
 msgid "Shutdown"
@@ -6338,7 +6362,7 @@ msgid "Subservices"
 msgstr "Alamkanalid"
 
 msgid "Subtitle Settings"
-msgstr "Subtiitrite seadistus"
+msgstr "Subtiitrite seadistused"
 
 msgid "Subtitle delay when timing lacks"
 msgstr "Subtiitrite viiteaeg ajastuse puudumisel"
@@ -6517,7 +6541,7 @@ msgstr ""
 "Jätkamiseks vajutage OK."
 
 msgid ""
-"Thank you for using the wizard. Your box is now ready to use.\n"
+"Thank you for using the wizard. Your STB_BOX is now ready to use.\n"
 "Please press OK to start using your STB_BOX."
 msgstr ""
 "Tänan, vastuvõtja on nüüd valmis kasutuseks.\n"
@@ -6602,17 +6626,27 @@ msgstr ""
 "USB pulk oli ette valmistatud käivitatavana.\n"
 "Nüüd saad NFI tarkvara faili alla laadida!"
 
+msgid "The User Interface of your receiver is restarting"
+msgstr "Vastuvõtja kasutajaliides taaskäivitub."
+
+msgid ""
+"The User Interface of your receiver is restarting\n"
+"due to an error in mytest.py"
+msgstr ""
+"Vastuvõtja kasutajaliides taaskäivitub\n"
+"vea tõttu 'mytest.py' failis"
+
+msgid "The STB_BOX reads the stored EPG data every (hours)."
+msgstr "Vastuvõtja loeb salvestatud EPG andmeid iga (tund)."
+
+msgid "The STB_BOX stores the EPG data every (hours)."
+msgstr "Vastuvõtja salvestab EPG andmed iga (tund)."
+
 msgid "The backup failed. Please choose a different backup location."
 msgstr "Varundamine nurjus. Vali uus varukoopia asukoht."
 
 msgid "The blindscan run was cancelled by the user."
 msgstr "Kasutaja katkestas pimeotsingu."
-
-msgid "The box reads the stored EPG data every (hours)."
-msgstr "Vastuvõtja loeb salvestatud EPG andmeid iga (tund)."
-
-msgid "The box stores the EPG data every (hours)."
-msgstr "Vastuvõtja salvestab EPG andmed iga (tund)."
 
 msgid "The current beta image could not be stable"
 msgstr "Praegune beta tarkvara ei pruugi olla stabiilne"
@@ -6759,14 +6793,11 @@ msgstr "See laiendus toetab ainult UNO/ULTIMO vastuvõtjaid"
 msgid "This STB_BOX can't decode %s streams!"
 msgstr "Vastuvõtja ei suuda dekodeerida %s video voogesitust!"
 
-msgid "This allows the ECM data to be included in the stream. This enables a client box to decode it."
+msgid "This allows the ECM data to be included in the stream. This enables a client STB_BOX to decode it."
 msgstr "See võimaldab kaasata voogu ECM andmed. Nii saab klientvastuvõtja selle dekodeerida."
 
-msgid "This allows the box to decode the stream (if the ECM data is included in the stream and a valid card is availble)."
-msgstr "See võimaldab vastuvõtjal voo dekodeerida (kui ECM andmed on kaasatud ja olemas on kehtiv kaart)."
-
-msgid "This allows you change the font size relative to skin size, so 1 increases by 1 piont size, and -1 decreases by 1 piont size"
-msgstr "Siin saab muuta tähesuurust suhtes teemaga. 1 suurendab ja -1 vähendab "
+msgid "This allows the STB_BOX to decode the stream (if the ECM data is included in the stream and a valid card is availble)."
+msgstr "See võimaldab vastuvõtjal voo dekodeerida (kui ECM andmed on kaasatud ja olemas on kehtiv kaart"
 
 msgid "This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size"
 msgstr "Siin saab muuta tähesuurust suhtes teemaga. 1 suurendab ja -1 vähendab "
@@ -6776,6 +6807,9 @@ msgstr "Siin saab muuta näidatavate ridada arvu."
 
 msgid "This is step number 2."
 msgstr "See on 2. samm."
+
+msgid "This option allows you choose how to display elasped time  as + or -"
+msgstr "See valik võimaldab määrata, kas möödunud aega näidatakse + või -"
 
 msgid "This option allows you choose how to display remaining time, or elapsed time, or both."
 msgstr "Siin saab valida, kuidas näidatakse möödunud või järelejäänud aega. Või mõlemat."
@@ -6816,6 +6850,18 @@ msgstr "Saa valik võimaldab peita kõik veateated kanalivahetusel."
 msgid "This option allows you to the SNR as a percentage (not all receivers support this)."
 msgstr "See valik võimaldab näidata SNR protsentides (kõik vastuvõtjad seda ei toeta)."
 
+msgid "This option lets you adjust the 3D depth"
+msgstr "See valik võimaldab seadistada 3D sügavust"
+
+msgid "This option lets you adjust the transparency of the OSD"
+msgstr "See valik võimaldab seadistada ekraanigraafika läbipaistvust"
+
+msgid "This option lets you choose the 3D mode"
+msgstr "See valik võimaldab valida 3D režiimi"
+
+msgid "This option lets you show the option in the extension screen"
+msgstr ""
+
 msgid "This option moves the PVR status from the seprate window into the MoviePlayer infobar."
 msgstr "See valik liigutab PVR oleku eraldi aknast filmiesitaja inforibale."
 
@@ -6838,7 +6884,7 @@ msgid "This option sets up the screen refresh-rate."
 msgstr "See valik määrab ekraani värskendamissageduse."
 
 msgid "This option sets up the screen resolution, when in PC mode."
-msgstr ""
+msgstr "See valik määrab ekraanilahutuse PC režiimis"
 
 msgid "This option sets up the screen resolution."
 msgstr "See valik määrab ekraanilahutuse."
@@ -7012,7 +7058,7 @@ msgid "Timeshift Setup"
 msgstr "Ajanihke seadistamine"
 
 msgid "Timeshift location"
-msgstr "Ajanihke asukoht"
+msgstr "Ajanihke failide asukoht"
 
 msgid "Timeshift not possible!"
 msgstr "Ajanihke kasutamine pole võimalik!"
@@ -7346,6 +7392,12 @@ msgstr "Kasuta võimsuse mõõtmist"
 msgid "Use slim screen"
 msgstr "Kasuta väikest vaadet"
 
+msgid "Use the Left/Right buttons on your remote to adjust the size of the OSD. Left button decreases the size, Right increases the size."
+msgstr "Kasuta ekraanigraafika suuruse muutmiseks VASAK/PAREM nuppe. VASAK vähendab ja PAREM suurendab."
+
+msgid "Use the Left/Right buttons on your remote to move the OSD left/right"
+msgstr "Kasuta ekraanigraafika vasakule/paremale liigutamiseks VASAK/PAREM nuppe."
+
 msgid "Use the Networkwizard to configure selected network adapter"
 msgstr "Kasuta Networkwizard abilist valitud võrguliidese seadmiseks"
 
@@ -7566,8 +7618,23 @@ msgstr "Pinge valik"
 msgid "Volume"
 msgstr "Helitugevus"
 
+msgid "STB_BOX advanced remote control (native)"
+msgstr "Vastuvõtja täpsem pult (algupärane)"
+
 msgid "STB_BOX format data DVD (HDTV compatible)"
 msgstr "Vastuvõtja vormingus data DVD-d"
+
+msgid "STB_BOX front panel"
+msgstr "vastuvõtja esipaneel"
+
+msgid "STB_BOX ir keyboard"
+msgstr "vastuvõtja infrapuna klaviatuur"
+
+msgid "STB_BOX ir mouse"
+msgstr "vastuvõtja infrapuna hiir"
+
+msgid "STB_BOX remote control (native)"
+msgstr "Vastuvõtja pult (algupärane)"
 
 msgid "STB_BOX software because updates are available."
 msgstr "Vastuvõtja tarkvara, sest uuendused on saadaval."
@@ -7709,11 +7776,11 @@ msgstr "Mida teha saadud vealogidega?"
 msgid "When a neighbouring satellite is very strong this avoids searching transponders known to be coming from the neighbouring satellite"
 msgstr "Kui naabersatelliit on väga tugeva signaaliga, väldib see otsimist transponderitelt, mis tulevad naabersatelliidilt."
 
-msgid "When set each folder will show the previous stae used, when off the default values will be shown."
-msgstr "Määrates 'jah' peetakse iga kausta seadistused meeles, määrates 'ei' kasutatakse väikeväärtusi."
+msgid "When set each folder will show the previous state used, when off the default values will be shown."
+msgstr "Määrates 'jah', peetakse iga kausta seadistused meeles, määrates 'ei', kasutatakse väikeväärtusi."
 
 msgid "When set the PIG will return to live after a movie has stopped playing."
-msgstr "Määrates 'jah' aktiveerub PIG taasesituse lõppedes."
+msgstr "Määrates 'jah', aktiveerub PIG taasesituse lõppedes."
 
 msgid "When the event has a aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr "Otsusta, kas pilti skaleerida/venitada, kui saate pildisuhe on 16:9."
@@ -7771,13 +7838,21 @@ msgid "Wireless network state"
 msgstr "Wifi võrgu olek"
 
 msgid "With this option enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history."
-msgstr "Määrates 'jah' viib '0' vajutus alati kanalile 1 ja kustutab kanalivahetuse ajaloo."
+msgstr "Määrates 'jah', viib '0' vajutus alati kanalile 1 ja kustutab kanalivahetuse ajaloo."
 
 msgid "With this option set to 'yes' the channel lists will always show you the bouquet screen first. If set to 'no' the current bouquet will be opened."
-msgstr "Määrates 'jah' avatakse alati lemmiknimekirjade valik. Määrates 'ei' avatakse praegune kanalinimekiri."
+msgstr "Määrates 'jah', avatakse alati lemmiknimekirjade valik. Määrates 'ei' avatakse praegune kanalinimekiri."
 
 msgid "With this option you can hide Job Tasks from the extension screen (short blue button press)."
 msgstr "Siin saab valida, kas käsiloevaid tööülesandeid näidatakse laiendusre menüüs (sinine nupp)."
+
+#, python-format
+msgid ""
+"Would you like to install\n"
+"\"%s\"?"
+msgstr ""
+"Kas paigaldad\n"
+"\"%s\"?"
 
 msgid "Write error while recording. Disk full?\n"
 msgstr "Kirjutamise viga. Kõvaketas täis?\n"
@@ -7849,6 +7924,16 @@ msgstr "Jah, vaata juhendit"
 
 msgid "Yesterday"
 msgstr "Eile"
+
+#, python-format
+msgid ""
+"You already have a bootlogo installed,\n"
+"would you like to remove\n"
+"\"%s\"?"
+msgstr ""
+"Bootlogo on juba paigaldatud,\n"
+"kas eemaldad\n"
+"\"%s\"?"
 
 #, python-format
 msgid ""
@@ -7936,6 +8021,8 @@ msgid ""
 "You have not setup your user info in the setup screen\n"
 "Press MENU, and enter your info, then try again"
 msgstr ""
+"Seadistusmenüüs on kasutajainfo sisestamata\n"
+"Vajuta MENU, sisesta oma andmed ja proovi uuesti"
 
 msgid "You have selected no logs to delete."
 msgstr "Kustutamiseks ei ole logifaile valitud."
@@ -7993,6 +8080,18 @@ msgstr ""
 "\n"
 "Vajutage OK jätkamiseks."
 
+msgid "Your STB_BOX is rebooting"
+msgstr "Vastuvõtja taaskäivitub"
+
+msgid "Your STB_BOX is shutting down"
+msgstr "Vastuvõtja lülitub välja"
+
+msgid "Your STB_BOX is shutting down. Please stand by..."
+msgstr "Lülitan välja. Oota..."
+
+msgid "Your STB_BOX isn't connected to the internet properly. Please check it and try again."
+msgstr "Internetiühendust pole. Kontrolli võrguseadeid ja ürita uuesti."
+
 msgid "Your backup succeeded. We will now continue to explain the further upgrade process."
 msgstr "Turvakoopia valmis. Me informeerime edasistest uuenduste käigust."
 
@@ -8021,6 +8120,15 @@ msgstr ""
 "Vajuta OK uuendamiseks."
 
 msgid ""
+"Your frontprocessor will be upgraded\n"
+"Please wait until your receiver reboots\n"
+"This may take a few minutes"
+msgstr ""
+"Esiprotsessorit uuendatakse\n"
+"OOta vastuvõtja taaskäivitumist\n"
+"See võib võtta mõne minuti"
+
+msgid ""
 "Your internet connection is not working!\n"
 "Please choose what you want to do next."
 msgstr ""
@@ -8032,12 +8140,6 @@ msgstr "Teie nimi (soovi korral):"
 
 msgid "Your network configuration has been activated."
 msgstr "Võrguseadistus on aktiveeritud."
-
-msgid "Your STB_BOX is shutting down. Please stand by..."
-msgstr "Lülitan välja. Oota..."
-
-msgid "Your STB_BOX isn't connected to the internet properly. Please check it and try again."
-msgstr "Internetiühendust pole. Kontrolli võrguseadeid ja ürita uuesti."
 
 msgid ""
 "Your wireless LAN internet connection could not be started!\n"
@@ -8384,21 +8486,6 @@ msgstr "ära salvesta"
 
 msgid "done!"
 msgstr "valmis!"
-
-msgid "STB_BOX advanced remote control (native)"
-msgstr ""
-
-msgid "STB_BOX front panel"
-msgstr "vastuvõtja esipaneel"
-
-msgid "STB_BOX ir keyboard"
-msgstr "vastuvõtja infrapuna klaviatuur"
-
-msgid "STB_BOX ir mouse"
-msgstr "vastuvõtja infrapuna hiir"
-
-msgid "STB_BOX remote control (native)"
-msgstr ""
 
 msgid "e-Mail address"
 msgstr "e-Mail aadress"
@@ -9232,3 +9319,136 @@ msgstr "kanalivahetus"
 msgid "zapped"
 msgstr "vahetatud"
 
+#~ msgid "30 Minutes"
+#~ msgstr "30 minutit"
+
+#~ msgid ""
+#~ "Adds enigma2 settings and STB_BOX model informations like SN, rev... if "
+#~ "enabled."
+#~ msgstr ""
+#~ "Lisab enigma2 seadistused ja vastuvõtja mudeli info, nagu SN ... jne."
+
+#~ msgid "Allows the box to read the stored EPG data regularly."
+#~ msgstr "Võimaldab vastuvõtjal regulaarselt lugeda salvestatud EPG andmeid."
+
+#~ msgid "Allows the box to store the EPG data regularly."
+#~ msgstr "Võimaldab vastuvõtjal regulaarselt salvestada EPG andmeid."
+
+#~ msgid ""
+#~ "Allows the box to use the EIT EPG when tuned to a service. This data will "
+#~ "be stored by the box."
+#~ msgstr ""
+#~ "Võimaldab vastuvõtjal telekanalil olles kasutada  EIT EPG-d. Andmed "
+#~ "salvestatakse vastuvõtjasse."
+
+#~ msgid ""
+#~ "Allows the box to use the FreeSat EPG when tuned to a service. This data "
+#~ "will be stored by the box."
+#~ msgstr ""
+#~ "Võimaldab vastuvõtjal telekanalil olles kasutada  FreeSat EPG-d. Andmed "
+#~ "salvestatakse vastuvõtjasse."
+
+#~ msgid ""
+#~ "Allows the box to use the MHW EPG when tuned to a service. This data will "
+#~ "be stored by the box."
+#~ msgstr ""
+#~ "Võimaldab vastuvõtjal telekanalil olles kasutada  MHW EPG-d. Andmed "
+#~ "salvestatakse vastuvõtjasse."
+
+#~ msgid ""
+#~ "Allows the box to use the Netmed EPG when tuned to a service. This data "
+#~ "will be stored by the box."
+#~ msgstr ""
+#~ "Võimaldab vastuvõtjal telekanalil olles kasutada  Netmed EPG-d. Andmed "
+#~ "salvestatakse vastuvõtjasse."
+
+#~ msgid ""
+#~ "Allows the box to use the ViaSat EPG when tuned to a service. This data "
+#~ "will be stored by the box."
+#~ msgstr ""
+#~ "Võimaldab vastuvõtjal telekanalil olles kasutada  Viasat EPG-d. Andmed "
+#~ "salvestatakse vastuvõtjasse."
+
+#~ msgid "Allows you to use power measurement (if your box supports that)"
+#~ msgstr ""
+#~ "Võimaldab kasutada voolukasutuse mõõtmist (kui vastuvõtja seda toetab)"
+
+#~ msgid ""
+#~ "Choose the location where the EPG data will be stored when the box is "
+#~ "shut down. The location must be available at boot time."
+#~ msgstr ""
+#~ "Vali asukoht, kuhu vastuvõtja välja lülitamisel EPG andmed salvestatakse. "
+#~ "Asukoht peab olema kättesaadav algkäivitusel."
+
+#~ msgid ""
+#~ "Choose the name of the file that holds the EPG data when the box is shut "
+#~ "down. This can be handy to differentiate between several boxes."
+#~ msgstr ""
+#~ "Vali, mis nimega EPG fail vastuvõtja välja lülitamisel salvestatakse. Nii "
+#~ "on mugav eristada mitme eri vastuvõtja faile."
+
+#~ msgid "If est to 'yes' the box will use AC3 sound (when available)."
+#~ msgstr "Kui määrad 'jah', kasutab vastuvõtja (võimaluse korral) AC3 heli."
+
+#~ msgid ""
+#~ "If set to 'yes' the box will use the audio stream that has been used "
+#~ "earlier."
+#~ msgstr "Määrates 'jah' kasutab vastuvõtja alati varem kasutatud heliriba."
+
+#~ msgid ""
+#~ "If set to 'yes' the box will use the subtitles that has been used earlier."
+#~ msgstr ""
+#~ "Määrates 'jah', kasutab vastuvõtja varem kasutuses olnud subtiitreid."
+
+#~ msgid ""
+#~ "If you select \"yes\" the scan will only save channels that are not "
+#~ "encrypted; \"no\" will find encrypted and non-encrypted cannels"
+#~ msgstr ""
+#~ "Valides \"jah\" salvestab otsing ainult koodivabad kanalid; \"ei\" leiab "
+#~ "kodeeritud ja koodivabad kanalid"
+
+#~ msgid "Scan All"
+#~ msgstr "Otsi kõik"
+
+#~ msgid "Shows the watched staus of the movie."
+#~ msgstr "Tähista vaadatud salvestised."
+
+#~ msgid ""
+#~ "Thank you for using the wizard. Your box is now ready to use.\n"
+#~ "Please press OK to start using your STB_BOX."
+#~ msgstr ""
+#~ "Tänan, vastuvõtja on nüüd valmis kasutuseks.\n"
+#~ "Vajuta OK vastuvõtja kasutuse alustamiseks."
+
+#~ msgid "The box reads the stored EPG data every (hours)."
+#~ msgstr "Vastuvõtja loeb salvestatud EPG andmeid iga (tund)."
+
+#~ msgid "The box stores the EPG data every (hours)."
+#~ msgstr "Vastuvõtja salvestab EPG andmed iga (tund)."
+
+#~ msgid ""
+#~ "This allows the ECM data to be included in the stream. This enables a "
+#~ "client box to decode it."
+#~ msgstr ""
+#~ "See võimaldab kaasata voogu ECM andmed. Nii saab klientvastuvõtja selle "
+#~ "dekodeerida."
+
+#~ msgid ""
+#~ "This allows the box to decode the stream (if the ECM data is included in "
+#~ "the stream and a valid card is availble)."
+#~ msgstr ""
+#~ "See võimaldab vastuvõtjal voo dekodeerida (kui ECM andmed on kaasatud ja "
+#~ "olemas on kehtiv kaart)."
+
+#~ msgid ""
+#~ "This allows you change the font size relative to skin size, so 1 "
+#~ "increases by 1 piont size, and -1 decreases by 1 piont size"
+#~ msgstr ""
+#~ "Siin saab muuta tähesuurust suhtes teemaga. 1 suurendab ja -1 vähendab "
+
+#~ msgid ""
+#~ "When set each folder will show the previous stae used, when off the "
+#~ "default values will be shown."
+#~ msgstr ""
+#~ "Määrates 'jah' peetakse iga kausta seadistused meeles, määrates 'ei' "
+#~ "kasutatakse väikeväärtusi."
