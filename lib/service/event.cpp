@@ -39,7 +39,7 @@ bool eServiceEvent::loadLanguage(Event *evt, std::string lang, int tsidonid)
 				std::string cc = sed->getIso639LanguageCode();
 				std::transform(cc.begin(), cc.end(), cc.begin(), tolower);
 				int table=encodingHandler.getCountryCodeDefaultMapping(cc);
-				if ( lang == "---" || lang.find(cc) != -1)
+				if (lang == "---" || lang.find(cc) != std::string::npos)
 				{
 					m_event_name += replace_all(replace_all(convertDVBUTF8(sed->getEventName(), table, tsidonid), "\n", " "), "\t", " ");
 					m_short_description += convertDVBUTF8(sed->getText(), table, tsidonid);
@@ -53,7 +53,7 @@ bool eServiceEvent::loadLanguage(Event *evt, std::string lang, int tsidonid)
 				std::string cc = eed->getIso639LanguageCode();
 				std::transform(cc.begin(), cc.end(), cc.begin(), tolower);
 				int table=encodingHandler.getCountryCodeDefaultMapping(cc);
-				if ( lang == "---" || lang.find(cc) != -1)
+				if (lang == "---" || lang.find(cc) != std::string::npos)
 				{
 					/*
 					 * Bit of a hack, some providers put the event description partly in the short descriptor,
