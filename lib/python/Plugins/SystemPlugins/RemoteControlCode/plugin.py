@@ -169,8 +169,8 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		</applet>
 	</screen>"""
 
-	def __init__(self, session, text, type = MessageBox.TYPE_YESNO, timeout = -1, close_on_any_key = False, default = True, enable_input = True, msgBoxID = None):
-		MessageBox.__init__(self,session,text,type,timeout,close_on_any_key,default,enable_input,msgBoxID)
+	def __init__(self, session, text, type = MessageBox.TYPE_YESNO, title = None, timeout = -1, close_on_any_key = False, default = True, enable_input = True, msgBoxID = None):
+		MessageBox.__init__(self,session,text,type,title,timeout,close_on_any_key,default,enable_input,msgBoxID)
 		if type == MessageBox.TYPE_YESNO:
 			self.list = [ (_("Keep"), 0), (_("Restore"), 1) ]
 			self["list"].setList(self.list)
