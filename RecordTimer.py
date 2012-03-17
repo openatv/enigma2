@@ -243,7 +243,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 					open(self.Filename + ".ts", "w").close()
 					# Give the Trashcan a chance to clean up
 					try:
-						Trashcan.instance.cleanIfIdle()
+						Trashcan.instance.cleanIfIdle(self.Filename)
 					except Exception, e:
 						 print "[TIMER] Failed to call Trashcan.instance.cleanIfIdle()"
 						 print "[TIMER] Error:", e
@@ -295,6 +295,10 @@ class RecordTimerEntry(timer.TimerEntry, object):
 					# retry
 					self.begin = time() + self.backoff
 					return False
+
+				# Tell the trashcan we started recording. The trashcan gets events,
+				# but cannot tell what the associated path is.
+				Trashcan.instance.markDirty(self.Filename)
 
 				return True
 		elif next_state == self.StateEnded:
@@ -499,11 +503,10 @@ class RecordTimer(timer.Timer):
 		self.stateChanged(w)
 
 	def isRecording(self):
-		isRunning = False
 		for timer in self.timer_list:
 			if timer.isRunning() and not timer.justplay:
-				isRunning = True
-		return isRunning
+				return True
+		return False
 	
 	def loadTimer(self):
 		# TODO: PATH!
