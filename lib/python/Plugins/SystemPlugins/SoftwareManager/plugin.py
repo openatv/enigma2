@@ -1548,7 +1548,7 @@ class UpdatePlugin(Screen):
 					self.checkTraficLight()
 					return
 				if self.total_packages and self.TraficCheck and self.TraficResult:
-					message = _("Do you want to update your STB_BOX?") + "\n(%s " % self.total_packages + _("Packages") + ")"
+					message = _("Do you want to update your STB_BOX?") + "          \n(%s " % self.total_packages + _("Packages") + ")"
 					if config.plugins.softwaremanager.updatetype.value == "cold":
 						choices = [(_("Show new Packages"), "show"), (_("Unattended upgrade without GUI and reboot system"), "cold"), (_("Cancel"), "")]
 					else:
