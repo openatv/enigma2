@@ -561,7 +561,7 @@ class BrowserLauncher(ConfigListScreen, Screen):
 			self.conf_keymap = self.getLanguage()
 		self.lang_list = [("rc_en", "English(RC)"), ("rc_ch", "German(RC)"), ("en", "English"), ("ch", "German")]
 		self.langs = ConfigSelection(default = self.conf_keymap, choices = self.lang_list)
-		self.list.append(getConfigListEntry(_("    - Type"), self.langs))
+		self.list.append(getConfigListEntry("    - " + _("Type"), self.langs))
 
 		if self.conf_alpha == "":
 			self.conf_alpha = "255"
