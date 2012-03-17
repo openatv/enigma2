@@ -23,7 +23,7 @@ DEFINE_REF(eServiceEvent);
 DEFINE_REF(eComponentData);
 
 /* search for the presence of language from given EIT event descriptors*/
-bool eServiceEvent::loadLanguage(Event *evt, std::string lang, int tsidonid)
+bool eServiceEvent::loadLanguage(Event *evt, const std::string &lang, int tsidonid)
 {
 	bool retval=0;
 	for (DescriptorConstIterator desc = evt->getDescriptors()->begin(); desc != evt->getDescriptors()->end(); ++desc)
