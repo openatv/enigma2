@@ -21,7 +21,7 @@ class eGTable: public iObject, public Object
 	void timeout();
 	ePtr<eConnection> m_sectionRead_conn;
 protected:
-	const bool m_debug = false;
+	static const bool m_debug = false;
 	virtual int createTable(unsigned int nr, const __u8 *data, unsigned int max)=0;
 public:
 	Signal1<void, int> tableReady;

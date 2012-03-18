@@ -3603,7 +3603,7 @@ void eEPGCache::channel_data::timeMHW2DVB( u_char day, u_char hours, u_char minu
 	char *old_tz = getenv( "TZ" );
 	if (old_tz)
 		strcpy(tz_saved, old_tz);
-	putenv("TZ=CET-1CEST,M3.5.0/2,M10.5.0/3");
+	putenv((char*)"TZ=CET-1CEST,M3.5.0/2,M10.5.0/3");
 	tzset();
 
 	tm localnow;
