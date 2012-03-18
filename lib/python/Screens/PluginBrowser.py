@@ -278,10 +278,7 @@ class PluginDownloadBrowser(Screen):
 				else:
 					self.runSettingsInstall()
 			elif self.type == self.REMOVE:
-				if self["list"].l.getCurrentSelection()[0].name.startswith("bootlogo-"):
-					self.doRemove(self.installFinished, self["list"].l.getCurrentSelection()[0].name + " --force-remove --force-depends")
-				else:
-					self.doRemove(self.installFinished, self["list"].l.getCurrentSelection()[0].name)
+				self.doRemove(self.installFinished, self["list"].l.getCurrentSelection()[0].name + " --force-remove --force-depends")
 
 	def doRemove(self, callback, pkgname):
 		self.session.openWithCallback(callback, Console, cmdlist = [self.ipkg_remove + Ipkg.opkgExtraDestinations() + " " + self.PLUGIN_PREFIX + pkgname, "sync"], closeOnSuccess = True)
