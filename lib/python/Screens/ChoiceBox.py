@@ -14,7 +14,7 @@ class ChoiceBox(Screen):
 		self.skinName = skin_name + ["ChoiceBox"]
 		if title:
 			title = _(title)
-		if len(title) < 50:
+		if len(title) < 55:
 			Screen.setTitle(self, title)
 			self["text"] = Label("")
 		else:
@@ -68,12 +68,12 @@ class ChoiceBox(Screen):
 		orgwidth = self.instance.size().width()
 		orgpos = self.instance.position()
 		textsize = self["text"].getSize()
-		textsize = (textsize[0] + 60, textsize[1])
+		textsize = (textsize[0], textsize[1])
 		count = len(self.list)
 		if count > 10:
 			count = 10
 		offset = 25 * count
-		wsizex = textsize[0] + 60
+		wsizex = textsize[0]
 		wsizey = textsize[1] + offset
 		if (520 > wsizex):
 			wsizex = 520
