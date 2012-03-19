@@ -1565,7 +1565,7 @@ class NetworkAfp(Screen):
 		self['lab2'] = Label(_("Current Status:"))
 		self['labstop'] = Label(_("Stopped"))
 		self['labrun'] = Label(_("Running"))
-		self['key_red'] = Label(_("Stop"))
+		self['key_red'] = Label(_("Remove Service"))
 		self['key_green'] = Label(_("Start"))
 		self['key_yellow'] = Label(_("Autostart"))
 		self['key_blue'] = Label()
@@ -1574,42 +1574,65 @@ class NetworkAfp(Screen):
 		self.Console = Console()
 		self.my_Samba_active = False
 		self.my_Samba_run = False
-		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.AfpStop, 'green': self.AfpStart, 'yellow': self.activateAfp})
-		self.service_name = 'task-base-appletalk'
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.UninstallCheck, 'green': self.AfpStartStop, 'yellow': self.activateAfp})
+		self.service_name = 'task-base-appletalk netatalk'
 		self.onLayoutFinish.append(self.InstallCheck)
 
 	def InstallCheck(self):
-		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.dataAvail)
+		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.InstalldataAvail)
 
-	def dataAvail(self, str, retval, extra_args):
+	def InstalldataAvail(self, str, retval, extra_args):
 		if not str:
-			self.session.openWithCallback(self.InstallPackage, MessageBox, _('Would you like to install "%s"?') % self.service_name)
+			restartbox = self.session.openWithCallback(self.InstallPackage,MessageBox,_('Your STB_BOX will be restarted after the installation of service.\n\nDo you want to install now ?'), MessageBox.TYPE_YESNO)
+			restartbox.setTitle(_('Ready to install "%s" ?') % self.service_name)
 		else:
 			self.updateService()
 
 	def InstallPackage(self, val):
 		if val:
-			self.doInstall(self.updateService, self.service_name)
+			self.doInstall(self.installComplete, self.service_name)
 
 	def doInstall(self, callback, pkgname):
+		self.session.open(MessageBox, _("Installing service please wait...") , MessageBox.TYPE_INFO)
 		self["actions"].setEnabled(False)
 		self.Console.ePopen('/usr/bin/opkg install ' + pkgname + ' sync', callback)
+
+	def installComplete(self,result = None, retval = None, extra_args = None):
+		from Screens.Standby import TryQuitMainloop
+		self.session.open(TryQuitMainloop, 2)
+
+	def UninstallCheck(self):
+		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.UninstalldataAvail)
+
+	def UninstalldataAvail(self, str, retval, extra_args):
+		if str:
+			restartbox = self.session.openWithCallback(self.RemovePackage,MessageBox,_('Your STB_BOX will be restarted after the removal of service\nDo you want to remove now ?'), MessageBox.TYPE_YESNO)
+			restartbox.setTitle(_('Ready to remove "%s" ?') % self.service_name)
+		else:
+			self.updateService()
+
+	def RemovePackage(self, val):
+		if val:
+			self.doRemove(self.removeComplete, self.service_name)
+
+	def doRemove(self, callback, pkgname):
+		self.session.open(MessageBox, _("Removing service please wait...") , MessageBox.TYPE_INFO)
+		self["actions"].setEnabled(False)
+		self.Console.ePopen('/usr/bin/opkg remove ' + pkgname + ' --force-remove --autoremove sync', callback)
+
+	def removeComplete(self,result = None, retval = None, extra_args = None):
+		from Screens.Standby import TryQuitMainloop
+		self.session.open(TryQuitMainloop, 2)
 
 	def createSummary(self):
 		return NetworkServicesSummary
 
-	def AfpStart(self):
+	def AfpStartStop(self):
 		if self.my_afp_run == False:
 			self.Console.ePopen('/etc/init.d/atalk start')
 			time.sleep(3)
 			self.updateService()
 		elif self.my_afp_run == True:
-			self.Console.ePopen('/etc/init.d/atalk restart')
-			time.sleep(3)
-			self.updateService()
-
-	def AfpStop(self):
-		if self.my_afp_run == True:
 			self.Console.ePopen('/etc/init.d/atalk stop')
 			time.sleep(3)
 			self.updateService()
@@ -1641,7 +1664,7 @@ class NetworkAfp(Screen):
 			self['labstop'].hide()
 			self['labactive'].show()
 			self['labrun'].show()
-			self['key_green'].setText(_("Restart"))
+			self['key_green'].setText(_("Stop"))
 			status_summary= self['lab2'].text + ' ' + self['labrun'].text
 		else:
 			self['labrun'].hide()
@@ -1654,8 +1677,6 @@ class NetworkAfp(Screen):
 
 		for cb in self.onChangedEntry:
 			cb(title, status_summary, autostartstatus_summary)
-
-		self["actions"].setEnabled(True)
 
 class NetworkFtp(Screen):
 	skin = """
@@ -1679,16 +1700,16 @@ class NetworkFtp(Screen):
 		self['labstop'] = Label(_("Stopped"))
 		self['labrun'] = Label(_("Running"))
 		self['key_green'] = Label(_("Enable"))
-		self['key_red'] = Label(_("Disable"))
+		self['key_red'] = Label()
 		self.my_ftp_active = False
 		self.Console = Console()
-		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.FtpStop, 'green': self.FtpStart})
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'green': self.FtpStartStop})
 		self.onLayoutFinish.append(self.updateService)
 
 	def createSummary(self):
 		return NetworkServicesSummary
 
-	def FtpStart(self):
+	def FtpStartStop(self):
 		if self.my_ftp_active == False:
 			if fileExists('/etc/inetd.conf'):
 				inme = open('/etc/inetd.conf', 'r')
@@ -1702,11 +1723,8 @@ class NetworkFtp(Screen):
 			if fileExists('/etc/inetd.tmp'):
 				move('/etc/inetd.tmp', '/etc/inetd.conf')
 				self.Console.ePopen('killall -HUP inetd')
-				self.Console.ePopen('ps')
 				self.updateService()
-
-	def FtpStop(self):
-		if self.my_ftp_active == True:
+		elif self.my_ftp_active == True:
 			if fileExists('/etc/inetd.conf'):
 				inme = open('/etc/inetd.conf', 'r')
 				out = open('/etc/inetd.tmp', 'w')
@@ -1719,10 +1737,9 @@ class NetworkFtp(Screen):
 			if fileExists('/etc/inetd.tmp'):
 				move('/etc/inetd.tmp', '/etc/inetd.conf')
 				self.Console.ePopen('killall -HUP inetd')
-				self.Console.ePopen('ps')
 				self.updateService()
 
-	def updateService(self,result = None, retval = None, extra_args = None):
+	def updateService(self):
 		self['labrun'].hide()
 		self['labstop'].hide()
 		self.my_ftp_active = False
@@ -1737,10 +1754,12 @@ class NetworkFtp(Screen):
 		if self.my_ftp_active == True:
 			self['labstop'].hide()
 			self['labrun'].show()
+			self['key_green'].setText(_("Disable"))
 			status_summary= self['lab2'].text + ' ' + self['labrun'].text
 		else:
 			self['labstop'].show()
 			self['labrun'].hide()
+			self['key_green'].setText(_("Enable"))
 			status_summary= self['lab2'].text + ' ' + self['labstop'].text
 		title = _("FTP Setup")
 		autostartstatus_summary = ""
@@ -1775,48 +1794,71 @@ class NetworkNfs(Screen):
 		self['labstop'] = Label(_("Stopped"))
 		self['labrun'] = Label(_("Running"))
 		self['key_green'] = Label(_("Start"))
-		self['key_red'] = Label(_("Stop"))
+		self['key_red'] = Label(_("Remove Service"))
 		self['key_yellow'] = Label(_("Autostart"))
 		self['key_blue'] = Label()
 		self.Console = Console()
 		self.my_nfs_active = False
 		self.my_nfs_run = False
-		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.NfsStop, 'green': self.NfsStart, 'yellow': self.Nfsset})
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.UninstallCheck, 'green': self.NfsStartStop, 'yellow': self.Nfsset})
 		self.service_name = 'task-base-nfs'
 		self.onLayoutFinish.append(self.InstallCheck)
 
 	def InstallCheck(self):
-		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.dataAvail)
+		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.InstalldataAvail)
 
-	def dataAvail(self, str, retval, extra_args):
+	def InstalldataAvail(self, str, retval, extra_args):
 		if not str:
-			self.session.openWithCallback(self.InstallPackage, MessageBox, _('Would you like to install "%s"?') % self.service_name)
+			restartbox = self.session.openWithCallback(self.InstallPackage,MessageBox,_('Your STB_BOX will be restarted after the installation of service\nDo you want to install now ?'), MessageBox.TYPE_YESNO)
+			restartbox.setTitle(_('Ready to install "%s" ?') % self.service_name)
 		else:
 			self.updateService()
 
 	def InstallPackage(self, val):
 		if val:
-			self.doInstall(self.updateService, self.service_name)
+			self.doInstall(self.installComplete, self.service_name)
 
 	def doInstall(self, callback, pkgname):
+		self.session.open(MessageBox, _("Installing service please wait...") , MessageBox.TYPE_INFO)
 		self["actions"].setEnabled(False)
 		self.Console.ePopen('/usr/bin/opkg install ' + pkgname + ' sync', callback)
+
+	def installComplete(self,result = None, retval = None, extra_args = None):
+		from Screens.Standby import TryQuitMainloop
+		self.session.open(TryQuitMainloop, 2)
+
+	def UninstallCheck(self):
+		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.UninstalldataAvail)
+
+	def UninstalldataAvail(self, str, retval, extra_args):
+		if str:
+			restartbox = self.session.openWithCallback(self.RemovePackage,MessageBox,_('Your STB_BOX will be restarted after the removal of service\nDo you want to remove now ?'), MessageBox.TYPE_YESNO)
+			restartbox.setTitle(_('Ready to remove "%s" ?') % self.service_name)
+		else:
+			self.updateService()
+
+	def RemovePackage(self, val):
+		if val:
+			self.doRemove(self.removeComplete, self.service_name)
+
+	def doRemove(self, callback, pkgname):
+		self.session.open(MessageBox, _("Removing service please wait...") , MessageBox.TYPE_INFO)
+		self["actions"].setEnabled(False)
+		self.Console.ePopen('/usr/bin/opkg remove ' + pkgname + ' --force-remove --autoremove sync', callback)
+
+	def removeComplete(self,result = None, retval = None, extra_args = None):
+		from Screens.Standby import TryQuitMainloop
+		self.session.open(TryQuitMainloop, 2)
 
 	def createSummary(self):
 		return NetworkServicesSummary
 
-	def NfsStart(self):
+	def NfsStartStop(self):
 		if self.my_nfs_run == False:
 			self.Console.ePopen('/etc/init.d/nfsserver start')
 			time.sleep(3)
 			self.updateService()
-		if self.my_nfs_run == True:
-			self.Console.ePopen('/etc/init.d/nfsserver restart')
-			time.sleep(3)
-			self.updateService()
-
-	def NfsStop(self):
-		if self.my_nfs_run == True:
+		elif self.my_nfs_run == True:
 			self.Console.ePopen('/etc/init.d/nfsserver stop')
 			time.sleep(3)
 			self.updateService()
@@ -1829,7 +1871,7 @@ class NetworkNfs(Screen):
 		time.sleep(3)
 		self.updateService()
 
-	def updateService(self,result = None, retval = None, extra_args = None):
+	def updateService(self):
 		import process
 		p = process.ProcessList()
 		nfs_process = str(p.named('nfsd')).strip('[]')
@@ -1847,7 +1889,7 @@ class NetworkNfs(Screen):
 		if self.my_nfs_run == True:
 			self['labstop'].hide()
 			self['labrun'].show()
-			self['key_green'].setText(_("Restart"))
+			self['key_green'].setText(_("Stop"))
 			status_summary= self['lab2'].text + ' ' + self['labrun'].text
 		else:
 			self['labstop'].show()
@@ -1891,32 +1933,61 @@ class NetworkOpenvpn(Screen):
 		self['labstop'] = Label(_("Stopped"))
 		self['labrun'] = Label(_("Running"))
 		self['key_green'] = Label(_("Start"))
-		self['key_red'] = Label(_("Stop"))
+		self['key_red'] = Label(_("Remove Service"))
 		self['key_yellow'] = Label(_("Autostart"))
 		self['key_blue'] = Label(_("Show Log"))
 		self.Console = Console()
 		self.my_vpn_active = False
 		self.my_vpn_run = False
-		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.VpnStop, 'green': self.VpnStart, 'yellow': self.activateVpn, 'blue': self.Vpnshowlog})
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.UninstallCheck, 'green': self.VpnStartStop, 'yellow': self.activateVpn, 'blue': self.Vpnshowlog})
 		self.service_name = 'openvpn'
 		self.onLayoutFinish.append(self.InstallCheck)
 
 	def InstallCheck(self):
-		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.dataAvail)
+		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.InstalldataAvail)
 
-	def dataAvail(self, str, retval, extra_args):
+	def InstalldataAvail(self, str, retval, extra_args):
 		if not str:
-			self.session.openWithCallback(self.InstallPackage, MessageBox, _('Would you like to install "%s"?') % self.service_name)
+			self.session.openWithCallback(self.InstallPackage, MessageBox, _('Ready to install "%s" ?') % self.service_name)
 		else:
 			self.updateService()
 
 	def InstallPackage(self, val):
 		if val:
-			self.doInstall(self.updateService, self.service_name)
+			self.doInstall(self.installComplete, self.service_name)
 
 	def doInstall(self, callback, pkgname):
 		self["actions"].setEnabled(False)
+		self.message = self.session.open(MessageBox,_("Now installing service, please wait..."), MessageBox.TYPE_INFO)
 		self.Console.ePopen('/usr/bin/opkg install ' + pkgname + ' sync', callback)
+
+	def installComplete(self,result = None, retval = None, extra_args = None):
+		self["actions"].setEnabled(True)
+		self.message.close()
+		self.updateService()
+
+	def UninstallCheck(self):
+		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.RemovedataAvail)
+
+	def RemovedataAvail(self, str, retval, extra_args):
+		if str:
+			self.session.openWithCallback(self.RemovePackage, MessageBox, _('Ready to remove "%s" ?') % self.service_name)
+		else:
+			self.updateService()
+
+	def RemovePackage(self, val):
+		if val:
+			self.doRemove(self.removeComplete, self.service_name)
+
+	def doRemove(self, callback, pkgname):
+		self["actions"].setEnabled(False)
+		self.message = self.session.open(MessageBox,_("Now removing service, please wait..."), MessageBox.TYPE_INFO)
+		self.Console.ePopen('/usr/bin/opkg remove ' + pkgname + ' --force-remove --autoremove sync', callback)
+
+	def removeComplete(self,result = None, retval = None, extra_args = None):
+		self["actions"].setEnabled(True)
+		self.message.close()
+		self.updateService()
 
 	def createSummary(self):
 		return NetworkServicesSummary
@@ -1924,18 +1995,12 @@ class NetworkOpenvpn(Screen):
 	def Vpnshowlog(self):
 		self.session.open(NetworkVpnLog)
 
-	def VpnStart(self):
+	def VpnStartStop(self):
 		if self.my_vpn_run == False:
 			self.Console.ePopen('/etc/init.d/openvpn start')
 			time.sleep(3)
 			self.updateService()
 		elif self.my_vpn_run == True:
-			self.Console.ePopen('/etc/init.d/openvpn restart')
-			time.sleep(3)
-			self.updateService()
-
-	def VpnStop(self):
-		if self.my_vpn_run == True:
 			self.Console.ePopen('/etc/init.d/openvpn stop')
 			time.sleep(3)
 			self.updatemy_Vpn()
@@ -1948,7 +2013,7 @@ class NetworkOpenvpn(Screen):
 		time.sleep(3)
 		self.updateService()
 
-	def updateService(self,result = None, retval = None, extra_args = None):
+	def updateService(self):
 		import process
 		p = process.ProcessList()
 		openvpn_process = str(p.named('openvpn')).strip('[]')
@@ -1966,7 +2031,7 @@ class NetworkOpenvpn(Screen):
 		if self.my_vpn_run == True:
 			self['labstop'].hide()
 			self['labrun'].show()
-			self['key_green'].setText(_("Restart"))
+			self['key_green'].setText(_("Stop"))
 			status_summary= self['lab2'].text + ' ' + self['labrun'].text
 		else:
 			self['labstop'].show()
@@ -2034,32 +2099,61 @@ class NetworkSamba(Screen):
 		self['labstop'] = Label(_("Stopped"))
 		self['labrun'] = Label(_("Running"))
 		self['key_green'] = Label(_("Start"))
-		self['key_red'] = Label(_("Stop"))
+		self['key_red'] = Label(_("Remove Service"))
 		self['key_yellow'] = Label(_("Autostart"))
 		self['key_blue'] = Label(_("Show Log"))
 		self.Console = Console()
 		self.my_Samba_active = False
 		self.my_Samba_run = False
-		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.SambaStop, 'green': self.SambaStart, 'yellow': self.activateSamba, 'blue': self.Sambashowlog})
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.UninstallCheck, 'green': self.SambaStartStop, 'yellow': self.activateSamba, 'blue': self.Sambashowlog})
 		self.service_name = 'samba'
 		self.onLayoutFinish.append(self.InstallCheck)
 
 	def InstallCheck(self):
-		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.dataAvail)
+		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.InstalldataAvail)
 
-	def dataAvail(self, str, retval, extra_args):
+	def InstalldataAvail(self, str, retval, extra_args):
 		if not str:
-			self.session.openWithCallback(self.InstallPackage, MessageBox, _('Would you like to install "%s"?') % self.service_name)
+			self.session.openWithCallback(self.InstallPackage, MessageBox, _('Ready to install "%s" ?') % self.service_name)
 		else:
 			self.updateService()
 
 	def InstallPackage(self, val):
 		if val:
-			self.doInstall(self.updateService, self.service_name)
+			self.doInstall(self.installComplete, self.service_name)
 
 	def doInstall(self, callback, pkgname):
 		self["actions"].setEnabled(False)
+		self.message = self.session.open(MessageBox,_("Now installing service, please wait..."), MessageBox.TYPE_INFO)
 		self.Console.ePopen('/usr/bin/opkg install ' + pkgname + ' sync', callback)
+
+	def installComplete(self,result = None, retval = None, extra_args = None):
+		self["actions"].setEnabled(True)
+		self.message.close()
+		self.updateService()
+
+	def UninstallCheck(self):
+		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.RemovedataAvail)
+
+	def RemovedataAvail(self, str, retval, extra_args):
+		if str:
+			self.session.openWithCallback(self.RemovePackage, MessageBox, _('Ready to remove "%s" ?') % self.service_name)
+		else:
+			self.updateService()
+
+	def RemovePackage(self, val):
+		if val:
+			self.doRemove(self.removeComplete, self.service_name)
+
+	def doRemove(self, callback, pkgname):
+		self["actions"].setEnabled(False)
+		self.message = self.session.open(MessageBox,_("Now removing service, please wait..."), MessageBox.TYPE_INFO)
+		self.Console.ePopen('/usr/bin/opkg remove ' + pkgname + ' --force-remove --autoremove sync', callback)
+
+	def removeComplete(self,result = None, retval = None, extra_args = None):
+		self["actions"].setEnabled(True)
+		self.message.close()
+		self.updateService()
 
 	def createSummary(self):
 		return NetworkServicesSummary
@@ -2067,18 +2161,12 @@ class NetworkSamba(Screen):
 	def Sambashowlog(self):
 		self.session.open(NetworkSambaLog)
 
-	def SambaStart(self):
+	def SambaStartStop(self):
 		if self.my_Samba_run == False:
 			self.Console.ePopen('/etc/init.d/samba start')
 			time.sleep(3)
 			self.updateService()
 		elif self.my_Samba_run == True:
-			self.Console.ePopen('/etc/init.d/samba restart')
-			time.sleep(3)
-			self.updateService()
-
-	def SambaStop(self):
-		if self.my_Samba_run == True:
 			self.Console.ePopen('/etc/init.d/samba stop')
 			time.sleep(3)
 			self.updateService()
@@ -2091,7 +2179,7 @@ class NetworkSamba(Screen):
 		time.sleep(3)
 		self.updateService()
 
-	def updateService(self,result = None, retval = None, extra_args = None):
+	def updateService(self):
 		import process
 		p = process.ProcessList()
 		samba_process = str(p.named('smbd')).strip('[]')
@@ -2110,7 +2198,7 @@ class NetworkSamba(Screen):
 			self['labstop'].hide()
 			self['labactive'].show()
 			self['labrun'].show()
-			self['key_green'].setText(_("Restart"))
+			self['key_green'].setText(_("Stop"))
 			status_summary = self['lab2'].text + ' ' + self['labrun'].text
 		else:
 			self['labrun'].hide()
@@ -2172,16 +2260,16 @@ class NetworkTelnet(Screen):
 		self['labstop'] = Label(_("Stopped"))
 		self['labrun'] = Label(_("Running"))
 		self['key_green'] = Label(_("Enable"))
-		self['key_red'] = Label(_("Disable"))
+		self['key_red'] = Label()
 		self.Console = Console()
 		self.my_telnet_active = False
-		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.TelnetStop, 'green': self.TelnetStart})
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'green': self.TelnetStartStop})
 		self.onLayoutFinish.append(self.updateService)
 
 	def createSummary(self):
 		return NetworkServicesSummary
 
-	def TelnetStart(self):
+	def TelnetStartStop(self):
 		if self.my_telnet_active == False:
 			if fileExists('/etc/inetd.conf'):
 				inme = open('/etc/inetd.conf', 'r')
@@ -2195,11 +2283,7 @@ class NetworkTelnet(Screen):
 			if fileExists('/etc/inetd.tmp'):
 				move('/etc/inetd.tmp', '/etc/inetd.conf')
 				self.Console.ePopen('killall -HUP inetd')
-				self.Console.ePopen('ps')
-				self.updateService()
-
-	def TelnetStop(self):
-		if self.my_telnet_active == True:
+		elif self.my_telnet_active == True:
 			if fileExists('/etc/inetd.conf'):
 				inme = open('/etc/inetd.conf', 'r')
 				out = open('/etc/inetd.tmp', 'w')
@@ -2212,10 +2296,9 @@ class NetworkTelnet(Screen):
 			if fileExists('/etc/inetd.tmp'):
 				move('/etc/inetd.tmp', '/etc/inetd.conf')
 				self.Console.ePopen('killall -HUP inetd')
-				self.Console.ePopen('ps')
-				self.updateService()
+		self.updateService()
 
-	def updateService(self,result = None, retval = None, extra_args = None):
+	def updateService(self):
 		self['labrun'].hide()
 		self['labstop'].hide()
 		self.my_telnet_active = False
@@ -2230,10 +2313,12 @@ class NetworkTelnet(Screen):
 		if self.my_telnet_active == True:
 			self['labstop'].hide()
 			self['labrun'].show()
+			self['key_green'].setText(_("Disable"))
 			status_summary= self['lab2'].text + ' ' + self['labrun'].text
 		else:
 			self['labstop'].show()
 			self['labrun'].hide()
+			self['key_green'].setText(_("Enable"))
 			status_summary= self['lab2'].text + ' ' + self['labstop'].text
 		title = _("Telnet Setup")
 		autostartstatus_summary = ""
@@ -2294,36 +2379,65 @@ class NetworkInadyn(Screen):
 		self['sinactive'] = Pixmap()
 		self['system'] = Label(_("System") + ":")
 		self['labsys'] = Label()
-		self['key_red'] = Label(_("Setup"))
+		self['key_red'] = Label(_("Remove Service"))
 		self['key_green'] = Label(_("Start"))
 		self['key_yellow'] = Label(_("Autostart"))
 		self['key_blue'] = Label(_("Show Log"))
-		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.setupinadyn, 'back': self.close, 'red': self.setupinadyn, 'green': self.InadynStart, 'yellow': self.autostart, 'blue': self.inaLog})
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'SetupActions'], {'ok': self.setupinadyn, 'back': self.close, 'menu': self.setupinadyn, 'red': self.UninstallCheck, 'green': self.InadynStartStop, 'yellow': self.autostart, 'blue': self.inaLog})
 		self.Console = Console()
 		self.service_name = 'inadyn-mt'
 		self.onLayoutFinish.append(self.InstallCheck)
 
 	def InstallCheck(self):
-		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.dataAvail)
+		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.InstalldataAvail)
 
-	def dataAvail(self, str, retval, extra_args):
+	def InstalldataAvail(self, str, retval, extra_args):
 		if not str:
-			self.session.openWithCallback(self.InstallPackage, MessageBox, _('Would you like to install "%s"?') % self.service_name)
+			self.session.openWithCallback(self.InstallPackage, MessageBox, _('Ready to install "%s" ?') % self.service_name)
 		else:
 			self.updateService()
 
 	def InstallPackage(self, val):
 		if val:
-			self.doInstall(self.updateService, self.service_name)
+			self.doInstall(self.installComplete, self.service_name)
 
 	def doInstall(self, callback, pkgname):
 		self["actions"].setEnabled(False)
+		self.message = self.session.open(MessageBox,_("Now installing service, please wait..."), MessageBox.TYPE_INFO)
 		self.Console.ePopen('/usr/bin/opkg install ' + pkgname + ' sync', callback)
+
+	def installComplete(self,result = None, retval = None, extra_args = None):
+		self["actions"].setEnabled(True)
+		self.message.close()
+		self.updateService()
+
+	def UninstallCheck(self):
+		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.RemovedataAvail)
+
+	def RemovedataAvail(self, str, retval, extra_args):
+		if str:
+			self.session.openWithCallback(self.RemovePackage, MessageBox, _('Ready to remove "%s" ?') % self.service_name)
+		else:
+			self.updateService()
+
+	def RemovePackage(self, val):
+		if val:
+			self.doRemove(self.removeComplete, self.service_name)
+
+	def doRemove(self, callback, pkgname):
+		self["actions"].setEnabled(False)
+		self.message = self.session.open(MessageBox,_("Now removing service, please wait..."), MessageBox.TYPE_INFO)
+		self.Console.ePopen('/usr/bin/opkg remove ' + pkgname + ' --force-remove --autoremove sync', callback)
+
+	def removeComplete(self,result = None, retval = None, extra_args = None):
+		self["actions"].setEnabled(True)
+		self.message.close()
+		self.updateService()
 
 	def createSummary(self):
 		return NetworkServicesSummary
 
-	def InadynStart(self):
+	def InadynStartStop(self):
 		if self.my_inadyn_run == False:
 			self.Console.ePopen('/etc/init.d/inadyn-mt start')
 			time.sleep(3)
@@ -2341,7 +2455,7 @@ class NetworkInadyn(Screen):
 		time.sleep(3)
 		self.updateService()
 
-	def updateService(self,result = None, retval = None, extra_args = None):
+	def updateService(self):
 		import process
 		p = process.ProcessList()
 		inadyn_process = str(p.named('inadyn-mt')).strip('[]')
@@ -2648,36 +2762,65 @@ class NetworkuShare(Screen):
 		self['dlnaactive'] = Pixmap()
 		self['dlnainactive'] = Pixmap()
 
-		self['key_red'] = Label(_("Setup"))
+		self['key_red'] = Label(_("Remove Service"))
 		self['key_green'] = Label(_("Start"))
 		self['key_yellow'] = Label(_("Autostart"))
 		self['key_blue'] = Label(_("Show Log"))
-		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.setupushare, 'back': self.close, 'red': self.setupushare, 'green': self.uShareStart, 'yellow': self.autostart, 'blue': self.ushareLog})
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'SetupActions'], {'ok': self.setupushare, 'back': self.close, 'menu': self.setupushare, 'red': self.UninstallCheck, 'green': self.uShareStartStop, 'yellow': self.autostart, 'blue': self.ushareLog})
 		self.Console = Console()
 		self.service_name = 'ushare'
 		self.onLayoutFinish.append(self.InstallCheck)
 
 	def InstallCheck(self):
-		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.dataAvail)
+		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.InstalldataAvail)
 
-	def dataAvail(self, str, retval, extra_args):
+	def InstalldataAvail(self, str, retval, extra_args):
 		if not str:
-			self.session.openWithCallback(self.InstallPackage, MessageBox, _('Would you like to install "%s"?') % self.service_name)
+			self.session.openWithCallback(self.InstallPackage, MessageBox, _('Ready to install "%s" ?') % self.service_name)
 		else:
 			self.updateService()
 
 	def InstallPackage(self, val):
 		if val:
-			self.doInstall(self.updateService, self.service_name)
+			self.doInstall(self.installComplete, self.service_name)
 
 	def doInstall(self, callback, pkgname):
 		self["actions"].setEnabled(False)
+		self.message = self.session.open(MessageBox,_("Now installing service, please wait..."), MessageBox.TYPE_INFO)
 		self.Console.ePopen('/usr/bin/opkg install ' + pkgname + ' sync', callback)
+
+	def installComplete(self,result = None, retval = None, extra_args = None):
+		self["actions"].setEnabled(True)
+		self.message.close()
+		self.updateService()
+
+	def UninstallCheck(self):
+		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.RemovedataAvail)
+
+	def RemovedataAvail(self, str, retval, extra_args):
+		if str:
+			self.session.openWithCallback(self.RemovePackage, MessageBox, _('Ready to remove "%s" ?') % self.service_name)
+		else:
+			self.updateService()
+
+	def RemovePackage(self, val):
+		if val:
+			self.doRemove(self.removeComplete, self.service_name)
+
+	def doRemove(self, callback, pkgname):
+		self["actions"].setEnabled(False)
+		self.message = self.session.open(MessageBox,_("Now removing service, please wait..."), MessageBox.TYPE_INFO)
+		self.Console.ePopen('/usr/bin/opkg remove ' + pkgname + ' --force-remove --autoremove sync', callback)
+
+	def removeComplete(self,result = None, retval = None, extra_args = None):
+		self["actions"].setEnabled(True)
+		self.message.close()
+		self.updateService()
 
 	def createSummary(self):
 		return NetworkServicesSummary
 
-	def uShareStart(self):
+	def uShareStartStop(self):
 		if self.my_ushare_run == False:
 			self.Console.ePopen('/etc/init.d/ushare start >> /tmp/uShare.log')
 			time.sleep(3)
@@ -2695,7 +2838,7 @@ class NetworkuShare(Screen):
 		time.sleep(3)
 		self.updateService()
 
-	def updateService(self,result = None, retval = None, extra_args = None):
+	def updateService(self):
 		import process
 		p = process.ProcessList()
 		ushare_process = str(p.named('ushare')).strip('[]')
@@ -3149,36 +3292,65 @@ class NetworkMiniDLNA(Screen):
 		self['dlnaactive'] = Pixmap()
 		self['dlnainactive'] = Pixmap()
 
-		self['key_red'] = Label(_("Setup"))
+		self['key_red'] = Label(_("Remove Service"))
 		self['key_green'] = Label(_("Start"))
 		self['key_yellow'] = Label(_("Autostart"))
 		self['key_blue'] = Label(_("Show Log"))
-		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.setupminidlna, 'back': self.close, 'red': self.setupminidlna, 'green': self.MiniDLNAStart, 'yellow': self.autostart, 'blue': self.minidlnaLog})
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'SetupActions'], {'ok': self.setupminidlna, 'back': self.close, 'menu': self.setupminidlna, 'red': self.UninstallCheck, 'green': self.MiniDLNAStartStop, 'yellow': self.autostart, 'blue': self.minidlnaLog})
 		self.Console = Console()
 		self.service_name = 'minidlna'
 		self.onLayoutFinish.append(self.InstallCheck)
 
 	def InstallCheck(self):
-		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.dataAvail)
+		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.InstalldataAvail)
 
-	def dataAvail(self, str, retval, extra_args):
+	def InstalldataAvail(self, str, retval, extra_args):
 		if not str:
-			self.session.openWithCallback(self.InstallPackage, MessageBox, _('Would you like to install "%s"?') % self.service_name)
+			self.session.openWithCallback(self.InstallPackage, MessageBox, _('Ready to install "%s" ?') % self.service_name)
 		else:
 			self.updateService()
 
 	def InstallPackage(self, val):
 		if val:
-			self.doInstall(self.updateService, self.service_name)
+			self.doInstall(self.installComplete, self.service_name)
 
 	def doInstall(self, callback, pkgname):
 		self["actions"].setEnabled(False)
+		self.message = self.session.open(MessageBox,_("Now installing service, please wait..."), MessageBox.TYPE_INFO)
 		self.Console.ePopen('/usr/bin/opkg install ' + pkgname + ' sync', callback)
+
+	def installComplete(self,result = None, retval = None, extra_args = None):
+		self["actions"].setEnabled(True)
+		self.message.close()
+		self.updateService()
+
+	def UninstallCheck(self):
+		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.RemovedataAvail)
+
+	def RemovedataAvail(self, str, retval, extra_args):
+		if str:
+			self.session.openWithCallback(self.RemovePackage, MessageBox, _('Ready to remove "%s" ?') % self.service_name)
+		else:
+			self.updateService()
+
+	def RemovePackage(self, val):
+		if val:
+			self.doRemove(self.removeComplete, self.service_name)
+
+	def doRemove(self, callback, pkgname):
+		self["actions"].setEnabled(False)
+		self.message = self.session.open(MessageBox,_("Now removing service, please wait..."), MessageBox.TYPE_INFO)
+		self.Console.ePopen('/usr/bin/opkg remove ' + pkgname + ' --force-remove --autoremove sync', callback)
+
+	def removeComplete(self,result = None, retval = None, extra_args = None):
+		self["actions"].setEnabled(True)
+		self.message.close()
+		self.updateService()
 
 	def createSummary(self):
 		return NetworkServicesSummary
 
-	def MiniDLNAStart(self):
+	def MiniDLNAStartStop(self):
 		if self.my_minidlna_run == False:
 			self.Console.ePopen('/etc/init.d/minidlna start')
 			time.sleep(3)
@@ -3196,7 +3368,7 @@ class NetworkMiniDLNA(Screen):
 		time.sleep(3)
 		self.updateService()
 
-	def updateService(self,result = None, retval = None, extra_args = None):
+	def updateService(self):
 		import process
 		p = process.ProcessList()
 		minidlna_process = str(p.named('minidlna')).strip('[]')
