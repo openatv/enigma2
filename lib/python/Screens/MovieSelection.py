@@ -220,7 +220,7 @@ class MovieBrowserConfiguration(ConfigListScreen,Screen):
 		configList.append(getConfigListEntry(_("Play audio in background"), config.movielist.play_audio_internal, _("Keeps MovieList open whilst playing audio files.")))
 		configList.append(getConfigListEntry(_("Root directory"), config.movielist.root, _("Sets the root folder of movie list, to remove the '..' from benign shown in that folder.")))
 		configList.append(getConfigListEntry(_("Show live tv when movie stoped"), config.movielist.show_live_tv_in_movielist, _("When set the PIG will return to live after a movie has stopped playing.")))
-		for btn in ('red', 'green', 'yellow', 'blue', 'tv', 'radio'):
+		for btn in ('red', 'green', 'yellow', 'blue', 'TV', 'Radio'):
 			configList.append(getConfigListEntry(_("Button") + " " + _(btn), userDefinedButtons[btn], _("Allows you setup the button to do what you choose.")))
 		ConfigListScreen.__init__(self, configList, session = self.session, on_change = self.changedEntry)
 		self["config"].setList(configList)
@@ -531,7 +531,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			{
 				"up": (self.keyUp, _("Go up the list")),
 				"down": (self.keyDown, _("Go down the list"))
-			}, prio = -2)		
+			}, prio = -2)
 		
 		tPreview = _("Preview")
 		tFwd = _("skip forward") + " (" + tPreview +")"
@@ -594,8 +594,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				'green': config.movielist.btn_green,
 				'yellow': config.movielist.btn_yellow,
 				'blue': config.movielist.btn_blue,
-				'radio': config.movielist.btn_radio,
-				'tv': config.movielist.btn_tv,
+				'Radio': config.movielist.btn_radio,
+				'TV': config.movielist.btn_tv,
 			}
 
 	def _callButton(self, name):
@@ -653,7 +653,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			if self.list.getCurrentIndex() == len(self.list) - 1:
 				self.list.moveToFirst()
 			else:
-				self.list.moveToLast()		
+				self.list.moveToLast()
 		else:
 			self.list.moveToFirstMovie()
 	
@@ -673,7 +673,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		item = self.list.getItem(index)
 		if item:
 			path = item.getPath()
-			if not item.flags & eServiceReference.mustDescent:							
+			if not item.flags & eServiceReference.mustDescent:
 				ext = os.path.splitext(path)[1].lower() 
 				if ext in IMAGE_EXTENSIONS:
 					return False
@@ -689,7 +689,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				path = os.path.split(os.path.normpath(path))[0]
 				if not path.endswith('/'):
 					path += '/'
-				self.gotFilename(path)	
+				self.gotFilename(path)
 				self.list.moveTo(service)
 				return True
 		return False
