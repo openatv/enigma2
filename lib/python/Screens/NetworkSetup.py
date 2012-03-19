@@ -1703,8 +1703,6 @@ class NetworkFtp(Screen):
 				move('/etc/inetd.tmp', '/etc/inetd.conf')
 				self.Console.ePopen('killall -HUP inetd')
 				self.Console.ePopen('ps')
-				mybox = self.session.open(MessageBox, _("Ftp service Enabled."), MessageBox.TYPE_INFO)
-				mybox.setTitle(_("Info"))
 				self.updateService()
 
 	def FtpStop(self):
@@ -1722,8 +1720,6 @@ class NetworkFtp(Screen):
 				move('/etc/inetd.tmp', '/etc/inetd.conf')
 				self.Console.ePopen('killall -HUP inetd')
 				self.Console.ePopen('ps')
-				mybox = self.session.open(MessageBox, _("Ftp service Disabled."), MessageBox.TYPE_INFO)
-				mybox.setTitle(_("Info"))
 				self.updateService()
 
 	def updateService(self,result = None, retval = None, extra_args = None):
@@ -1781,6 +1777,7 @@ class NetworkNfs(Screen):
 		self['key_green'] = Label(_("Start"))
 		self['key_red'] = Label(_("Stop"))
 		self['key_yellow'] = Label(_("Autostart"))
+		self['key_blue'] = Label()
 		self.Console = Console()
 		self.my_nfs_active = False
 		self.my_nfs_run = False
@@ -2199,8 +2196,6 @@ class NetworkTelnet(Screen):
 				move('/etc/inetd.tmp', '/etc/inetd.conf')
 				self.Console.ePopen('killall -HUP inetd')
 				self.Console.ePopen('ps')
-				mybox = self.session.open(MessageBox, _("Telnet service Enabled."), MessageBox.TYPE_INFO)
-				mybox.setTitle(_("Info"))
 				self.updateService()
 
 	def TelnetStop(self):
@@ -2218,8 +2213,6 @@ class NetworkTelnet(Screen):
 				move('/etc/inetd.tmp', '/etc/inetd.conf')
 				self.Console.ePopen('killall -HUP inetd')
 				self.Console.ePopen('ps')
-				mybox = self.session.open(MessageBox, _("Telnet service Disabled."), MessageBox.TYPE_INFO)
-				mybox.setTitle(_("Info"))
 				self.updateService()
 
 	def updateService(self,result = None, retval = None, extra_args = None):
