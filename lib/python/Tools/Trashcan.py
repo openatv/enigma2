@@ -49,7 +49,6 @@ class Trashcan:
 			return
 		trash = getTrashFolder(path)
 		self.dirty.add(trash)
-		print "[Trashcan] dirty:", self.dirty
 
 	def gotRecordEvent(self, service, event):
 		if (event == enigma.iRecordableService.evEnd):
@@ -69,19 +68,18 @@ class Trashcan:
 		# it as dirty.
 		self.markDirty(path)
 		if not self.dirty:
-			print "[Trashcan] All devices clean"
 			return
 		if self.isCleaning:
 			print "[Trashcan] Cleanup already running"
 			return
 		if self.session.nav.getRecordings():
-			print "[Trashcan] Recordings in progress"
 			return
 		self.isCleaning = True
 		ctimeLimit = time.time() - (config.usage.movielist_trashcan_days.value * 3600 * 24)
 		reserveBytes = 1024*1024*1024 * int(config.usage.movielist_trashcan_reserve.value)
-		threads.deferToThread(purge, self.dirty, ctimeLimit, reserveBytes).addCallbacks(self.cleanReady, self.cleanFail)
+		cleanset = self.dirty
 		self.dirty = set()
+		threads.deferToThread(purge, cleanset, ctimeLimit, reserveBytes).addCallbacks(self.cleanReady, self.cleanFail)
 
 	def cleanReady(self, result=None):
 		self.isCleaning = False
@@ -137,22 +135,22 @@ def purge(cleanset, ctimeLimit, reserveBytes):
 		print "[Trashcan] Size after purging:", size, trash
  
 def cleanAll(trash):
-		if not os.path.isdir(trash):
-			print "[Trashcan] No trash.", trash
-			return 0
-		for root, dirs, files in os.walk(trash, topdown=False):
-			for name in files:
-				fn = os.path.join(root, name)
-				try:
-					enigma.eBackgroundFileEraser.getInstance().erase(fn)
-				except Exception, e:
-					print "[Trashcan] Failed to erase %s:"% name, e 
-			# Remove empty directories if possible
-			for name in dirs:
-				try:
-					os.rmdir(os.path.join(root, name))
-				except:
-					pass
+	if not os.path.isdir(trash):
+		print "[Trashcan] No trash.", trash
+		return 0
+	for root, dirs, files in os.walk(trash, topdown=False):
+		for name in files:
+			fn = os.path.join(root, name)
+			try:
+				enigma.eBackgroundFileEraser.getInstance().erase(fn)
+			except Exception, e:
+				print "[Trashcan] Failed to erase %s:"% name, e
+		# Remove empty directories if possible
+		for name in dirs:
+			try:
+				os.rmdir(os.path.join(root, name))
+			except:
+				pass
 
 def init(session):
 	global instance
