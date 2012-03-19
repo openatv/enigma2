@@ -248,7 +248,7 @@ class MovieBrowserConfiguration(ConfigListScreen,Screen):
 			getConfigListEntry(_("Play audio in background"), config.movielist.play_audio_internal),
 			getConfigListEntry(_("Root directory"), config.movielist.root),
 			]
-		for btn in ('red', 'green', 'yellow', 'blue', 'tv', 'radio'):
+		for btn in ('red', 'green', 'yellow', 'blue', 'TV', 'Radio'):
 			configList.append(getConfigListEntry(_(btn), userDefinedButtons[btn]))
 		ConfigListScreen.__init__(self, configList, session=session, on_change = self.changedEntry)
 		self["key_red"] = Button(_("Cancel"))
@@ -527,7 +527,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			{
 				"up": (self.keyUp, _("Go up the list")),
 				"down": (self.keyDown, _("Go down the list"))
-			}, prio = -2)		
+			}, prio = -2)
 		
 		tPreview = _("Preview")
 		tFwd = _("skip forward") + " (" + tPreview +")"
@@ -543,7 +543,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				"seekFwdManual": (ssfwd, tFwd),
 				"seekBack": (sback, tBack),
 				"seekBackManual": (ssback, tBack),
-			}, prio=5)	
+			}, prio=5)
 		self.onShown.append(self.updateHDDData)
 		self.onLayoutFinish.append(self.saveListsize)
 		self.list.connectSelChanged(self.updateButtons)
@@ -588,8 +588,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				'green': config.movielist.btn_green,
 				'yellow': config.movielist.btn_yellow,
 				'blue': config.movielist.btn_blue,
-				'radio': config.movielist.btn_radio,
-				'tv': config.movielist.btn_tv,
+				'Radio': config.movielist.btn_radio,
+				'TV': config.movielist.btn_tv,
 			}
 		
         def _callButton(self, name):
@@ -647,7 +647,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			if self.list.getCurrentIndex() == len(self.list) - 1:
 				self.list.moveToFirst()
 			else:
-				self.list.moveToLast()		
+				self.list.moveToLast()
 		else:
 			self.list.moveToFirstMovie()
 	
@@ -667,7 +667,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		item = self.list.getItem(index)
 		if item:
 			path = item.getPath()
-			if not item.flags & eServiceReference.mustDescent:							
+			if not item.flags & eServiceReference.mustDescent:
 				ext = os.path.splitext(path)[1].lower() 
 				if ext in IMAGE_EXTENSIONS:
 					return False
@@ -683,7 +683,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				path = os.path.split(os.path.normpath(path))[0]
 				if not path.endswith('/'):
 					path += '/'
-				self.gotFilename(path)	
+				self.gotFilename(path)
 				self.list.moveTo(service)
 				return True
 		return False
