@@ -612,21 +612,28 @@ RESULT eServiceMP3::trickSeek(gdouble ratio)
 
 	m_currentTrickRatio = ratio;
 
-	gint64 pos;
+	bool validposition = false;
+	gint64 pos = 0;
 	pts_t pts;
-	getPlayPosition(pts);
-	pos = pts * 11111LL;
+	if (getPlayPosition(pts) >= 0)
+	{
+		validposition = true;
+		pos = pts * 11111LL;
+	}
 
 	gst_element_set_state(m_gst_playbin, GST_STATE_PLAYING);
 
-	if (ratio >= 0.0)
+	if (validposition)
 	{
-		gst_element_seek(m_gst_playbin, ratio, GST_FORMAT_TIME, (GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_SKIP), GST_SEEK_TYPE_SET, pos, GST_SEEK_TYPE_SET, -1);
-	}
-	else
-	{
-		/* note that most elements will not support negative speed */
-		gst_element_seek(m_gst_playbin, ratio, GST_FORMAT_TIME, (GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_SKIP), GST_SEEK_TYPE_SET, 0, GST_SEEK_TYPE_SET, pos);
+		if (ratio >= 0.0)
+		{
+			gst_element_seek(m_gst_playbin, ratio, GST_FORMAT_TIME, (GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_SKIP), GST_SEEK_TYPE_SET, pos, GST_SEEK_TYPE_SET, -1);
+		}
+		else
+		{
+			/* note that most elements will not support negative speed */
+			gst_element_seek(m_gst_playbin, ratio, GST_FORMAT_TIME, (GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_SKIP), GST_SEEK_TYPE_SET, 0, GST_SEEK_TYPE_SET, pos);
+		}
 	}
 
 	m_subtitle_pages.clear();
@@ -642,13 +649,11 @@ RESULT eServiceMP3::seekRelative(int direction, pts_t to)
 		return -1;
 
 	pts_t ppos;
-	getPlayPosition(ppos);
+	if (getPlayPosition(ppos) < 0) return -1;
 	ppos += to * direction;
 	if (ppos < 0)
 		ppos = 0;
-	seekTo(ppos);
-	
-	return 0;
+	return seekTo(ppos);
 }
 
 gint eServiceMP3::match_sinktype(GstElement *element, gpointer type)
@@ -1043,16 +1048,24 @@ int eServiceMP3::getCurrentTrack()
 
 RESULT eServiceMP3::selectTrack(unsigned int i)
 {
-	pts_t ppos;
-	getPlayPosition(ppos);
-	ppos -= 90000;
-	if (ppos < 0)
-		ppos = 0;
+	bool validposition = false;
+	pts_t ppos = 0;
+	if (getPlayPosition(ppos) >= 0)
+	{
+		validposition = true;
+		ppos -= 90000;
+		if (ppos < 0)
+			ppos = 0;
+	}
 
 	int ret = selectAudioStream(i);
-	if (!ret) {
-		/* flush */
-		seekTo(ppos);
+	if (!ret) 
+	{
+		if (validposition)
+		{
+			/* flush */
+			seekTo(ppos);
+		}
 	}
 
 	return ret;
@@ -1766,11 +1779,14 @@ void eServiceMP3::pushSubtitles()
 	while ( !m_subtitle_pages.empty() )
 	{
 		SubtitlePage &frontpage = m_subtitle_pages.front();
-		pts_t running_pts;
+		pts_t running_pts = 0;
 		gint64 diff_ms = 0;
 		gint64 show_pts = 0;
 
-		getPlayPosition(running_pts);
+		if (getPlayPosition(running_pts) < 0)
+		{
+			m_decoder_time_valid_state = 0;
+		}
 		if (m_decoder_time_valid_state < 4) {
 			++m_decoder_time_valid_state;
 			if (m_prev_decoder_time == running_pts)
