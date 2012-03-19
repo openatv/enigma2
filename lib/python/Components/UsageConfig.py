@@ -51,8 +51,8 @@ def InitUsageConfig():
 
 	config.usage.show_spinner = ConfigYesNo(default = True)
 	config.usage.enable_tt_caching = ConfigYesNo(default = True)
-	config.usage.sort_settings = ConfigYesNo(default = True)
-	config.usage.sort_menus = ConfigYesNo(default = True)
+	config.usage.sort_settings = ConfigYesNo(default = False)
+	config.usage.sort_menus = ConfigYesNo(default = False)
 	config.usage.sort_pluginlist = ConfigYesNo(default = True)
 	config.usage.movieplayer_pvrstate = ConfigYesNo(default = True) 
 
