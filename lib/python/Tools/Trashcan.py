@@ -40,12 +40,20 @@ class Trashcan:
 		session.nav.record_event.append(self.gotRecordEvent)
 		self.isCleaning = False
 		self.gotRecordEvent(None, None)
-	
+		self.dirty = set()
+
+	def markDirty(self, path):
+		# Marks a path for purging, for when a recording on that
+		# device starts or ends.
+		if not path:
+			return
+		trash = getTrashFolder(path)
+		self.dirty.add(trash)
+
 	def gotRecordEvent(self, service, event):
-		self.recordings = len(self.session.nav.getRecordings())
 		if (event == enigma.iRecordableService.evEnd):
 			self.cleanIfIdle()
-	
+
 	def destroy(self):
 		if self.session is not None:
 			self.session.nav.record_event.remove(self.gotRecordEvent)
@@ -54,31 +62,38 @@ class Trashcan:
 	def __del__(self):
 		self.destroy()
 
-	def cleanIfIdle(self):
+	def cleanIfIdle(self, path=None):
 		# RecordTimer calls this when preparing a recording. That is a
-		# nice moment to clean up.
-		if self.recordings:
-			print "[Trashcan] Recording in progress", self.recordings
+		# nice moment to clean up. It also mentions the path, so mark
+		# it as dirty.
+		self.markDirty(path)
+		if not self.dirty:
 			return
 		if self.isCleaning:
 			print "[Trashcan] Cleanup already running"
 			return
+		if self.session.nav.getRecordings():
+			return
 		self.isCleaning = True
 		ctimeLimit = time.time() - (config.usage.movielist_trashcan_days.value * 3600 * 24)
 		reserveBytes = 1024*1024*1024 * int(config.usage.movielist_trashcan_reserve.value)
-		threads.deferToThread(clean, ctimeLimit, reserveBytes).addCallbacks(self.cleanReady, self.cleanFail)
+		cleanset = self.dirty
+		self.dirty = set()
+		threads.deferToThread(purge, cleanset, ctimeLimit, reserveBytes).addCallbacks(self.cleanReady, self.cleanFail)
 
 	def cleanReady(self, result=None):
 		self.isCleaning = False
+		# schedule another clean loop if needed (so we clean up all devices, not just one)
+		self.cleanIfIdle()
 
 	def cleanFail(self, failure):
 		print "[Trashcan] ERROR in clean:", failure
 		self.isCleaning = False
 
-def clean(ctimeLimit, reserveBytes):
+def purge(cleanset, ctimeLimit, reserveBytes):
 	# Remove expired items from trash, and attempt to have
 	# reserveBytes of free disk space.
-	for trash in enumTrashFolders():
+	for trash in cleanset:
 		if not os.path.isdir(trash):
 			print "[Trashcan] No trash.", trash
 			return 0
@@ -110,33 +125,32 @@ def clean(ctimeLimit, reserveBytes):
 					pass
 		candidates.sort()
 		# Now we have a list of ctime, candidates, size. Sorted by ctime (=deletion time)
-		print "[Trashcan] Bytes to remove:", bytesToRemove
-		print "[Trashcan] Size now:", size
+		print "[Trashcan] Bytes to remove remaining:", bytesToRemove, trash
 		for st_ctime, fn, st_size in candidates:
 			if bytesToRemove < 0:
 				break
 			enigma.eBackgroundFileEraser.getInstance().erase(fn)
 			bytesToRemove -= st_size
 			size -= st_size
-		print "[Trashcan] Size now:", size
+		print "[Trashcan] Size after purging:", size, trash
  
 def cleanAll(trash):
-		if not os.path.isdir(trash):
-			print "[Trashcan] No trash.", trash
-			return 0
-		for root, dirs, files in os.walk(trash, topdown=False):
-			for name in files:
-				fn = os.path.join(root, name)
-				try:
-					enigma.eBackgroundFileEraser.getInstance().erase(fn)
-				except Exception, e:
-					print "[Trashcan] Failed to erase %s:"% name, e 
-			# Remove empty directories if possible
-			for name in dirs:
-				try:
-					os.rmdir(os.path.join(root, name))
-				except:
-					pass
+	if not os.path.isdir(trash):
+		print "[Trashcan] No trash.", trash
+		return 0
+	for root, dirs, files in os.walk(trash, topdown=False):
+		for name in files:
+			fn = os.path.join(root, name)
+			try:
+				enigma.eBackgroundFileEraser.getInstance().erase(fn)
+			except Exception, e:
+				print "[Trashcan] Failed to erase %s:"% name, e
+		# Remove empty directories if possible
+		for name in dirs:
+			try:
+				os.rmdir(os.path.join(root, name))
+			except:
+				pass
 
 def init(session):
 	global instance
