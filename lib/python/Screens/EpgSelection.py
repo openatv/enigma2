@@ -258,7 +258,7 @@ class EPGSelection(Screen, HelpableScreen):
 	
 	ZAP = 1
 
-	def __init__(self, session, service, zapFunc=None, eventid=None, bouquetChangeCB=None, serviceChangeCB=None, EPGtype = None,  bouquetname=""):
+	def __init__(self, session, service, zapFunc=None, eventid=None, bouquetChangeCB=None, serviceChangeCB=None, EPGtype=None,  bouquetname=""):
 		Screen.__init__(self, session)
 		self.StartRef = None
 		self.StartBouquet = None
@@ -282,7 +282,6 @@ class EPGSelection(Screen, HelpableScreen):
 		self["Service"] = ServiceEvent()
 		self["Event"] = Event()
 		self['lab1'] = Label(_('Wait please while gathering data...'))
- 		Screen.setTitle(self, _("Programme Guide"))
 		self.key_green_choice = self.EMPTY
 		self["key_red"] = Button(_("IMDb Search"))
 		self["key_green"] = Button(_("Add Timer"))
@@ -611,7 +610,8 @@ class EPGSelection(Screen, HelpableScreen):
 		elif self.type == EPG_TYPE_SINGLE:
 			service = self.currentService
 			self["Service"].newService(service.ref)
-			title = service.getServiceName()
+			title = ServiceReference(self.StartBouquet).getServiceName()
+			title = title + ' - ' + service.getServiceName()
 			self.setTitle(title)
 			l.fillSingleEPG(service)
 			if config.epgselction.sort.value == "Time":
@@ -622,7 +622,8 @@ class EPGSelection(Screen, HelpableScreen):
 		elif self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
 			service = ServiceReference(self.servicelist.getCurrentSelection())
 			self["Service"].newService(service.ref)
-			title = service.getServiceName()
+			title = ServiceReference(self.StartBouquet).getServiceName()
+			title = title + ' - ' + service.getServiceName()
 			self.setTitle(title)
 			l.fillSingleEPG(service)
 			if config.epgselction.sort.value == "Time":

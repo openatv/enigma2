@@ -531,7 +531,7 @@ class ChannelSelectionEPG:
 		ref=self.getCurrentSelection()
 		if ref:
 			self.savedService = ref
-			self.session.openWithCallback(self.SingleServiceEPGClosed, EPGSelection, ref, serviceChangeCB=self.changeServiceCB)
+			self.session.openWithCallback(self.SingleServiceEPGClosed, EPGSelection, ref, serviceChangeCB=self.changeServiceCB, EPGtype=self.servicelist.getRoot())
 
 	def SingleServiceEPGClosed(self, ret=False):
 		self.setCurrentSelection(self.savedService)
@@ -1065,7 +1065,7 @@ class ChannelSelectionBase(Screen):
 # 					else:
 # 						titleStr += '/'
 					nameStr = self.getServiceName(end_ref)
-					titleStr += ' ' + nameStr
+					titleStr = nameStr + titleStr
 				self.setTitle(titleStr)
 
 	def moveUp(self):
