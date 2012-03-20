@@ -4375,12 +4375,12 @@ class InfoBarSubtitleSupport(object):
 		self.__selected_subtitle = None
 
 	def subtitleSelection(self):
-		try:
-			if self.__subtitles_enabled or self.infobar and self.infobar.getCurrentServiceSubtitle():
-				from Screens.AudioSelection import SubtitleSelection
-				self.session.open(SubtitleSelection, self)
-		except AttributeError:
-			pass
+		service = self.session.nav.getCurrentService()
+		subtitle = service and service.subtitle()
+		subtitlelist = subtitle and subtitle.getSubtitleList()
+		if self.__subtitles_enabled or subtitlelist and len(subtitlelist)>0:
+			from Screens.AudioSelection import SubtitleSelection
+			self.session.open(SubtitleSelection, self)
 
 	def __serviceStopped(self):
 		if self.__subtitles_enabled:
