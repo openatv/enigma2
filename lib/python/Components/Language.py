@@ -1,5 +1,6 @@
 # -*- coding: UTF-8 -*-
 import gettext
+import locale
 
 from Tools.Directories import SCOPE_LANGUAGE, resolveFilename
 
@@ -65,6 +66,11 @@ class Language:
 				x()
 		except:
 			print "Selected language does not exist!"
+		try:
+			locale.setlocale(locale.LC_TIME, self.getLanguage())
+		except:
+			print "Failed to set LC_TIME to " + self.getLanguage() + ". Setting it to 'C'"
+			locale.setlocale(locale.LC_TIME, 'C')
 
 	def activateLanguageIndex(self, index):
 		if index < len(self.langlist):
