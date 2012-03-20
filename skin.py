@@ -59,11 +59,11 @@ def addSkin(name, scope = SCOPE_SKIN):
 
 # example: loadSkin("nemesis_greenline/skin.xml")
 config.skin = ConfigSubsection()
-DEFAULT_SKIN = "PLi-HD/skin.xml"
+DEFAULT_SKIN = "BlackShadow3/skin.xml"
 # on SD hardware, PLi-HD will not be available
 if not fileExists(resolveFilename(SCOPE_SKIN, DEFAULT_SKIN)):
-	# in that case, fallback to Magic (which is an SD skin)
-	DEFAULT_SKIN = "Magic/skin.xml"
+	# in that case, fallback to org_skin (which is an SD skin)
+	DEFAULT_SKIN = "skin.xml"
 config.skin.primary_skin = ConfigText(default=DEFAULT_SKIN)
 
 profile("LoadSkin")
