@@ -1493,10 +1493,10 @@ class NetworkMountsMenu(Screen,HelpableScreen):
 		return PluginBrowserSummary
 
 	def selectionChanged(self):
-		if self["menulist"].getCurrent()[1][0] == 'extendedSetup':
-			self["introduction"].setText(_(self["menulist"].getCurrent()[1][1]))
 		item = self["menulist"].getCurrent()
 		if item:
+			if item[1][0] == 'extendedSetup':
+				self["introduction"].setText(_(item[1][1]))
 			name = str(self["menulist"].getCurrent()[0])
 			desc = self["introduction"].text
 		else:
