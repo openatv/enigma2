@@ -44,7 +44,7 @@ class Language:
 		self.addLanguage("ภาษาไทย", "th", "TH")
 		self.addLanguage("Türkçe", "tr", "TR")
 		self.addLanguage("Ukrainian", "uk", "UA")
-		self.addLanguage("Frysk", "fy", "x-FY") # there is no separate country for frisian
+		self.addLanguage("Frysk", "fy", "NL")
 
 		self.callbacks = []
 
