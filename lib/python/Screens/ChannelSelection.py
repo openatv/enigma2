@@ -1045,6 +1045,7 @@ class ChannelSelectionBase(Screen):
 
 	def buildTitleString(self):
 		titleStr = self.getTitle()
+		nameStr = ""
 		pos = titleStr.find(']')
 		if pos == -1:
 			pos = titleStr.find(')')
