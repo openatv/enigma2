@@ -1,5 +1,6 @@
 # -*- coding: UTF-8 -*-
 import gettext
+import locale
 
 from Tools.Directories import SCOPE_LANGUAGE, resolveFilename
 
@@ -44,7 +45,7 @@ class Language:
 		self.addLanguage("ภาษาไทย", "th", "TH")
 		self.addLanguage("Türkçe", "tr", "TR")
 		self.addLanguage("Ukrainian", "uk", "UA")
-		self.addLanguage("Frysk", "fy", "x-FY") # there is no separate country for frisian
+		self.addLanguage("Frysk", "fy", "NL")
 
 		self.callbacks = []
 
@@ -65,6 +66,11 @@ class Language:
 				x()
 		except:
 			print "Selected language does not exist!"
+		try:
+			locale.setlocale(locale.LC_TIME, self.getLanguage())
+		except:
+			print "Failed to set LC_TIME to " + self.getLanguage() + ". Setting it to 'C'"
+			locale.setlocale(locale.LC_TIME, 'C')
 
 	def activateLanguageIndex(self, index):
 		if index < len(self.langlist):
