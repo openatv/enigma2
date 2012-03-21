@@ -14,5 +14,9 @@ if DREAMBOX
 SUBDIRS += FrontprocessorUpgrade NFIFlash
 endif
 
+if GIGABLUE
+SUBDIRS += VFD_Giga
+endif
+
 install_PYTHON =	\
 	__init__.py

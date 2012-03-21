@@ -9,7 +9,7 @@ driver_libenigma_driver_a_SOURCES = \
 	driver/rc.cpp \
 	driver/rcinput.cpp \
 	driver/rfmod.cpp \
-	driver/hdmi_cec.cpp
+	driver/hdmi_cec.cpp 
 
 driverincludedir = $(pkgincludedir)/lib/driver
 driverinclude_HEADERS = \
@@ -23,10 +23,16 @@ driverinclude_HEADERS = \
 	driver/rcdreambox2.h \
 	driver/rcinput.h \
 	driver/rfmod.h \
-	driver/hdmi_cec.h
+	driver/hdmi_cec.h 
 
 if HAVE_LIBSDL
 driver_libenigma_driver_a_SOURCES += \
 	driver/rcsdl.cpp \
 	driver/rcsdl.h
 endif
+
+if GIGABLUE
+driver_libenigma_driver_a_SOURCES += \	
+	driver/vfd.cpp \
+	driver/vfd.h
+endif	

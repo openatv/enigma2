@@ -494,10 +494,11 @@ def runScreenTest():
 	profile("RunReactor")
 	profile_final()
 	
-	from enigma import evfd
-	evfd.getInstance().vfd_write_string("_E2_")
-	evfd.getInstance().vfd_led(str(1)) 
-	
+	if config.misc.boxtype.value == 'gb800se' or config.misc.boxtype.value == 'gb800solo':
+		from enigma import evfd
+		evfd.getInstance().vfd_write_string("_E2_")
+		evfd.getInstance().vfd_led(str(1)) 
+		
 	runReactor()
 
 	config.misc.startCounter.save()

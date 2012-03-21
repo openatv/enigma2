@@ -10,6 +10,20 @@ import os
 import enigma
 
 def InitUsageConfig():
+	try:
+		file = open('/etc/image-version', 'r')
+		lines = file.readlines()
+		file.close()
+		for x in lines:
+			splitted = x.split('=')
+			if splitted[0] == "box_type":
+				folderprefix = splitted[1].replace('\n','') # 0 = release, 1 = experimental
+				boxtype = splitted[1].replace('\n','') # 0 = release, 1 = experimental
+	except:
+		folderprefix=""
+		boxtype="not detected"
+	config.misc.boxtype = ConfigText(default = boxtype)
+
 	config.usage = ConfigSubsection();
 	config.usage.showdish = ConfigYesNo(default = True)
 	config.usage.multibouquet = ConfigYesNo(default = True)
