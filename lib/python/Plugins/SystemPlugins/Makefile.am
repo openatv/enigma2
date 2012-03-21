@@ -15,7 +15,7 @@ SUBDIRS += FrontprocessorUpgrade NFIFlash
 endif
 
 if GIGABLUE
-SUBDIRS += VFD_Giga
+SUBDIRS += VFDGiga
 endif
 
 install_PYTHON =	\
