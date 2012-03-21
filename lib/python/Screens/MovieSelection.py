@@ -29,7 +29,7 @@ import Tools.Trashcan
 import NavigationInstance
 import RecordTimer
 
-from enigma import eServiceReference, eServiceCenter, eTimer, eSize, iPlayableService, iServiceInformation, getPrevAsciiCode
+from enigma import eServiceReference, eServiceCenter, eTimer, eSize, iPlayableService, iServiceInformation, getPrevAsciiCode, eRCInput
 import os
 import time
 import cPickle as pickle
@@ -461,6 +461,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.list = self["list"]
 		self.selectedmovie = selectedmovie
 
+		self.playGoTo = None #1 - preview next item / -1 - preview previous
+
 		title = _("Movie Selection")
 		self.setTitle(title)
 
@@ -549,7 +551,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.list.connectSelChanged(self.updateButtons)
 		self.onClose.append(self.__onClose)
 		NavigationInstance.instance.RecordTimer.on_state_change.append(self.list.updateRecordings)
-		self.playInBackground = None
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
 				#iPlayableService.evSeekableStatusChanged: self.__seekableStatusChanged,
@@ -557,6 +558,15 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				iPlayableService.evEOF: self.__evEOF,
 				#iPlayableService.evSOF: self.__evSOF,
 			})
+		self.onExecBegin.append(self.asciiOn)
+
+	def asciiOn(self):
+		rcinput = eRCInput.getInstance()
+		rcinput.setKeyboardMode(rcinput.kmAscii)
+
+	def asciiOff(self):
+		rcinput = eRCInput.getInstance()
+		rcinput.setKeyboardMode(rcinput.kmNone)
 
 	def initUserDefinedActions(self):
 		global userDefinedButtons, userDefinedActions, config
@@ -661,7 +671,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		unichar = unichr(getPrevAsciiCode())
 		charstr = unichar.encode("utf-8")
 		if len(charstr) == 1:
-			self.list.moveToChar(charstr[0], self["chosenletter"])
+			self.list.moveToString(charstr[0], self["chosenletter"])
 	
 	def isItemPlayable(self, index):
 		item = self.list.getItem(index)
@@ -683,33 +693,38 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				path = os.path.split(os.path.normpath(path))[0]
 				if not path.endswith('/'):
 					path += '/'
-				self.gotFilename(path)
-				self.list.moveTo(service)
+				self.gotFilename(path, selItem = service)
 				return True
 		return False
 		
 	def playNext(self):
-		if self.playInBackground:
-			if self.goToPlayingService():
+		if self.list.playInBackground:
+			if self.list.moveTo(self.list.playInBackground):
 				if self.isItemPlayable(self.list.getCurrentIndex() + 1):
 					self.list.moveDown()
 					self.callLater(self.preview)
+			else:
+				self.playGoTo = 1
+				self.goToPlayingService()
 		else:
 			self.preview()
-	
+
 	def playPrev(self):
-		if self.playInBackground:
-			if self.goToPlayingService():
+		if self.list.playInBackground:
+			if self.list.moveTo(self.list.playInBackground):
 				if self.isItemPlayable(self.list.getCurrentIndex() - 1):
 					self.list.moveUp()
 					self.callLater(self.preview)
-	
+			else:
+				self.playGoTo = -1
+				self.goToPlayingService()
+
 	def __onClose(self):
 		try:
 			NavigationInstance.instance.RecordTimer.on_state_change.remove(self.list.updateRecordings)
 		except Exception, e:
 			print "[ML] failed to unsubscribe:", e
-			pass	
+			pass
 
 	def createSummary(self):
 		return MovieSelectionSummary
@@ -801,7 +816,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			print "[ML] DVD Player not installed:", e
 
 	def __serviceStarted(self):
-		if not self.playInBackground:
+		if not self.list.playInBackground:
 			return
 		ref = self.session.nav.getCurrentService()
 		cue = ref.cueSheet()
@@ -846,13 +861,13 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.previewTimer.start(10, True)
 		
 	def __evEOF(self):
-		playInBackground = self.playInBackground
+		playInBackground = self.list.playInBackground
 		if not playInBackground:
 			print "Not playing anything in background"
 			return
 		current = self.getCurrent()
 		self.session.nav.stopService()
-		self.playInBackground = None
+		self.list.playInBackground = None
 		if config.movielist.play_audio_internal.value:
 			if playInBackground == current:
 				self["list"].moveDown()
@@ -873,27 +888,27 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			if current.flags & eServiceReference.mustDescent:
 				self.gotFilename(path)
 			else:
-				playInBackground = self.playInBackground
+				playInBackground = self.list.playInBackground
 				if playInBackground:
-					self.playInBackground = None
+					self.list.playInBackground = None
 					self.session.nav.stopService()
 					if playInBackground != current:
 						# come back to play the new one
 						self.callLater(self.preview)
 				else:
-					self.playInBackground = current
+					self.list.playInBackground = current
 					self.session.nav.playService(current)
 
 	def seekRelative(self, direction, amount):
-		if self.playInBackground:
+		if self.list.playInBackground:
 			seekable = self.getSeek()
 			if seekable is None:
 				return
 			seekable.seekRelative(direction, amount)
 
 	def playbackStop(self):
-		if self.playInBackground:
-			self.playInBackground = None
+		if self.list.playInBackground:
+			self.list.playInBackground = None
 			self.session.nav.stopService()
 
 	def itemSelected(self):
@@ -910,10 +925,10 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				if config.movielist.play_audio_internal.value and (ext in AUDIO_EXTENSIONS):
 					self.preview()
 					return
-				if self.playInBackground:
+				if self.list.playInBackground:
 					# Stop preview, come back later
 					self.session.nav.stopService()
-					self.playInBackground = None
+					self.list.playInBackground = None
 					self.callLater(self.itemSelected)
 					return
 				if ext in DVD_EXTENSIONS:
@@ -1014,8 +1029,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.updateDescription()
 
 	def abort(self):
-		if self.playInBackground:
-			self.playInBackground = None
+		if self.list.playInBackground:
+			self.list.playInBackground = None
 			self.session.nav.stopService()
 			self.callLater(self.abort)
 			return
@@ -1091,6 +1106,14 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				self["list"].moveToFirstMovie()
 		self["freeDiskSpace"].update()
 		self["waitingtext"].visible = False
+		if self.playGoTo:
+			if self.isItemPlayable(self.list.getCurrentIndex() + 1):
+				if self.playGoTo > 0:
+					self.list.moveDown()
+				else:
+					self.list.moveUp()
+				self.playGoTo = None
+				self.callLater(self.preview)
 
 	def doPathSelect(self):
 		self.session.openWithCallback(
@@ -1100,7 +1123,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			config.movielist.last_videodir.value
 		)
 
-	def gotFilename(self, res):
+	def gotFilename(self, res, selItem = None):
 		if not res:
 			return
 		# serviceref must end with /
@@ -1113,7 +1136,10 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				config.movielist.last_videodir.save()
 				self.setCurrentRef(res)
 				self["freeDiskSpace"].path = res
-				self.reloadList(home = True, sel = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + currentDir))
+				if selItem:
+					self.reloadList(home = True, sel = selItem)
+				else:
+					self.reloadList(home = True, sel = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + currentDir))
 			else:
 				self.session.open(
 					MessageBox,
