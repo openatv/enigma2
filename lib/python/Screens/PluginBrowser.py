@@ -431,7 +431,8 @@ class PluginDownloadBrowser(Screen):
 			self.plugins[split[0]].append((PluginDescriptor(name = x[3], description = x[2], icon = verticallineIcon), split[1], x[1]))
 
 		temp = self.plugins.keys()
-		temp.sort()
+		if config.usage.sort_pluginlist.value:
+			temp.sort()
 		for x in temp:
 			if x in self.expanded:
 				list.append(PluginCategoryComponent(x, expandedIcon, self.listWidth))
