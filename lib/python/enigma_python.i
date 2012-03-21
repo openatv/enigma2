@@ -98,7 +98,9 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/components/tuxtxtapp.h>
 #include <lib/driver/avswitch.h>
 #include <lib/driver/hdmi_cec.h>
+#ifdef BUILD_VFD
 #include <lib/driver/vfd.h>
+#endif
 #include <lib/driver/rfmod.h>
 #include <lib/driver/misc_options.h>
 #include <lib/driver/etimezone.h>
@@ -235,7 +237,9 @@ typedef long time_t;
 %include <lib/components/tuxtxtapp.h>
 %include <lib/driver/avswitch.h>
 %include <lib/driver/hdmi_cec.h>
+#ifdef BUILD_VFD
 %include <lib/driver/vfd.h>
+#endif
 %include <lib/driver/rfmod.h>
 %include <lib/driver/misc_options.h>
 %include <lib/driver/etimezone.h>
