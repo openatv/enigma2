@@ -135,20 +135,24 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		print "[TIMER]", msg
 
 	def freespace(self):
-		if not self.dirname or not Directories.fileExists(self.dirname, 'w'):
-			if self.dirname:
-				self.dirnameHadToFallback = True
-			dirname = defaultMoviePath()
-		else:
-			dirname = self.dirname
-		import os
-		s = os.statvfs(dirname)
-		if (s.f_bavail * s.f_bsize) / 1000000 < 1024:
-			self.log(0, "Not enough free space to record")
+		try:
+			if not self.dirname or not Directories.fileExists(self.dirname, 'w'):
+				if self.dirname:
+					self.dirnameHadToFallback = True
+				dirname = defaultMoviePath()
+			else:
+				dirname = self.dirname
+			import os
+			s = os.statvfs(dirname)
+			if (s.f_bavail * s.f_bsize) / 1000000 < 1024:
+				self.log(0, "Not enough free space to record")
+				return False
+			else:
+				self.log(0, "Found enough free space to record")
+				return True
+		except:
+			self.log(0, "failed to find mount to check for free space.")
 			return False
-		else:
-			self.log(0, "Found enough free space to record")
-			return True
 
 	def calculateFilename(self):
 		service_name = self.service_ref.getServiceName()
