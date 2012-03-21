@@ -1048,9 +1048,9 @@ class ChannelSelectionBase(Screen):
 		nameStr = ""
 		pos = titleStr.find(']')
 		if pos == -1:
-			pos = titleStr.find(')')
+			pos = titleStr.find(' (')
 		if pos != -1:
-			titleStr = titleStr[:pos+1]
+			titleStr = titleStr[-5:]
 			Len = len(self.servicePath)
 			if Len > 0:
 				base_ref = self.servicePath[0]
