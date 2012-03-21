@@ -1598,6 +1598,7 @@ class NetworkAfp(Screen):
 		self.Console.ePopen('/usr/bin/opkg install ' + pkgname + ' sync', callback)
 
 	def installComplete(self,result = None, retval = None, extra_args = None):
+		self["actions"].setEnabled(True)
 		from Screens.Standby import TryQuitMainloop
 		self.session.open(TryQuitMainloop, 2)
 
@@ -1621,6 +1622,7 @@ class NetworkAfp(Screen):
 		self.Console.ePopen('/usr/bin/opkg remove ' + pkgname + ' --force-remove --autoremove sync', callback)
 
 	def removeComplete(self,result = None, retval = None, extra_args = None):
+		self["actions"].setEnabled(True)
 		from Screens.Standby import TryQuitMainloop
 		self.session.open(TryQuitMainloop, 2)
 
@@ -1824,6 +1826,7 @@ class NetworkNfs(Screen):
 		self.Console.ePopen('/usr/bin/opkg install ' + pkgname + ' sync', callback)
 
 	def installComplete(self,result = None, retval = None, extra_args = None):
+		self["actions"].setEnabled(True)
 		from Screens.Standby import TryQuitMainloop
 		self.session.open(TryQuitMainloop, 2)
 
@@ -1847,6 +1850,7 @@ class NetworkNfs(Screen):
 		self.Console.ePopen('/usr/bin/opkg remove ' + pkgname + ' --force-remove --autoremove sync', callback)
 
 	def removeComplete(self,result = None, retval = None, extra_args = None):
+		self["actions"].setEnabled(True)
 		from Screens.Standby import TryQuitMainloop
 		self.session.open(TryQuitMainloop, 2)
 
