@@ -206,7 +206,7 @@ class Devices(Screen):
 
 class SystemMemoryInfo(Screen):
 	skin = """
-	<screen name="SystemMemoryInfo" position="0,0" size="541,720" flags="wfNoBorder">
+	<screen name="SystemMemoryInfo" position="center,center" size="560,400" >
 		<widget source="lab1" render="Label" position="30,133" size="458,25" font="Boldit;24" transparent="0" zPosition="2" />
 		<widget source="lab2" render="Label" position="30,158" size="458,25" font="Italic;19" transparent="0" zPosition="2" />
 		<widget name="AboutScrollLabel" position="30,225" size="458,325" font="Regular;20" transparent="0" zPosition="1" scrollbarMode="showOnDemand"/>
@@ -246,7 +246,7 @@ class SystemMemoryInfo(Screen):
 
 class SystemNetworkInfo(Screen):
 	skin = """
-		<screen name="SystemNetworkInfo" position="center,center" size="560,400" title="Wireless Network State" >
+		<screen name="SystemNetworkInfo" position="center,center" size="560,400" >
 			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
 			<widget name="AboutScrollLabel" position="10,50" size="458,75" valign="left" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
