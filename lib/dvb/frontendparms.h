@@ -21,7 +21,7 @@ struct eDVBFrontendParametersSatellite
 	};
 
 	enum {
-		FEC_Auto, FEC_1_2, FEC_2_3, FEC_3_4, FEC_5_6, FEC_7_8, FEC_8_9, FEC_3_5, FEC_4_5, FEC_9_10, FEC_None=15
+		FEC_Auto, FEC_1_2, FEC_2_3, FEC_3_4, FEC_5_6, FEC_6_7, FEC_7_8, FEC_8_9, FEC_3_5, FEC_4_5, FEC_9_10, FEC_None=15
 	};
 
 	enum {
@@ -57,7 +57,7 @@ struct eDVBFrontendParametersCable
 	};
 
 	enum {
-		FEC_Auto, FEC_1_2, FEC_2_3, FEC_3_4, FEC_5_6, FEC_7_8, FEC_8_9, FEC_None=15
+		FEC_Auto, FEC_1_2, FEC_2_3, FEC_3_4, FEC_5_6, FEC_6_7, FEC_7_8, FEC_8_9, FEC_None=15
 	};
 
 	enum {
