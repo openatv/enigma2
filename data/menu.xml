@@ -27,8 +27,9 @@
 			<id val="information" />
 			<item level="0" text="About" entryID="about_screen"><screen module="About" screen="About"/></item>
 			<item level="0" text="Devices" entryID="device_screen"><screen module="About" screen="Devices"/></item>
+			<item level="0" text="Memory" entryID="device_screen"><screen module="About" screen="SystemMemoryInfo"/></item>
+			<item level="0" text="Network" entryID="device_screen"><screen module="About" screen="SystemNetworkInfo"/></item>
 			<item level="1" text="Service" entryID="service_info_screen"><screen module="ServiceInfo" screen="ServiceInfo"/></item>
-			<item level="0" text="System Information" entryID="device_screen"><screen module="About" screen="SystemInfo"/></item>
 		</menu>
 
 		<item level="1" text="Plugins" entryID="plugin_selection"><screen module="PluginBrowser" screen="PluginBrowser" /></item>
