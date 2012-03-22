@@ -205,32 +205,47 @@ class SystemInfo(Screen):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("System Information"))
 		self.skinName = "About"
-		self.populate()
+		self["AboutScrollLabel"] = ScrollLabel()
+		out_lines = file("/proc/meminfo").readlines()
+		for lidx in range(len(out_lines)-1):
+			tstLine = out_lines[lidx].split()
+			if "MemTotal:" in tstLine:
+				MemTotal = out_lines[lidx].split()
+				AboutText = _("Total Memory:") + "\t" + MemTotal[1] + "\n"
+			if "MemFree:" in tstLine:
+				MemFree = out_lines[lidx].split()
+				AboutText += _("Free Memory:") + "\t" + MemFree[1] + "\n"
+			if "SwapTotal:" in tstLine:
+				SwapTotal = out_lines[lidx].split()
+				AboutText += _("Total Swap:") + "\t" + SwapTotal[1] + "\n"
+			if "SwapFree:" in tstLine:
+				SwapFree = out_lines[lidx].split()
+				AboutText += _("Free Swap:") + "\t" + SwapFree[1] + "\n\n"
+
+		eth0 = about.getIfConfig('eth0') 
+		if eth0.has_key('addr'):
+			AboutText += _("Local Network:") + "\n"
+			AboutText += _("IP:") + "\t" + eth0['addr'] + "\n"
+		if eth0.has_key('netmask'):
+			AboutText += _("Netmask:") + "\t" + eth0['netmask'] + "\n"
+		if eth0.has_key('hwaddr'):
+			AboutText += _("MAC:") + "\t" + eth0['hwaddr'].replace('0:','00:') + "\n"
+		wlan0 = about.getIfConfig('wlan0') 
+		if wlan0.has_key('addr'):
+			AboutText += _("Wireless Network:") + "\n"
+			AboutText += _("IP:") + "\t" + wlan0['addr'] + "\n"
+		if wlan0.has_key('netmask'):
+			AboutText += _("Netmask:") + "\t" + wlan0['netmask'] + "\n"
+		if wlan0.has_key('hwaddr'):
+			AboutText += _("MAC:") + "\t" + wlan0['hwaddr'].replace('0:','00:') + "\n"
+
+		self["AboutScrollLabel"].setText(AboutText)
 		
 		self["actions"] = ActionMap(["SetupActions", "ColorActions", "TimerEditActions"], 
 			{
 				"cancel": self.close,
 				"ok": self.close,
 			})
-
-	def populate(self):
-		out_lines = file("/proc/meminfo").readlines()
-		for lidx in range(len(out_lines)-1):
-			tstLine = out_lines[lidx].split()
-			if "MemTotal:" in tstLine:
-				MemTotal = out_lines[lidx].split()
-				AboutText = _("Total Memory:") + " " + MemTotal[1] + "\n"
-			if "MemFree:" in tstLine:
-				MemFree = out_lines[lidx].split()
-				AboutText += _("Free Memory:") + " " + MemFree[1] + "\n"
-			if "SwapTotal:" in tstLine:
-				SwapTotal = out_lines[lidx].split()
-				AboutText += _("Total Swap:") + " " + SwapTotal[1] + "\n"
-			if "SwapFree:" in tstLine:
-				SwapFree = out_lines[lidx].split()
-				AboutText += _("Free Swap:") + " " + SwapFree[1] + "\n"
-
-		self["AboutScrollLabel"] = ScrollLabel(AboutText)
 
 	def createSummary(self):
 		return AboutSummary
