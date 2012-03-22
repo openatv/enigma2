@@ -1,9 +1,9 @@
 from Components.VariableText import VariableText
-from config import config
+from Components.config import config
 from enigma import eLabel, iServiceInformation, eServiceReference, eServiceCenter
-from Renderer import Renderer
 if config.misc.boxtype.value == 'gb800se' or config.misc.boxtype.value == 'gb800solo':
-	from enigma import evfd 
+	from enigma import evfd	
+from Renderer import Renderer
 #
 # borrowed from vali, adapted for openpli
 #
