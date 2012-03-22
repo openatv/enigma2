@@ -1050,7 +1050,10 @@ class ChannelSelectionBase(Screen):
 		if pos == -1:
 			pos = titleStr.find(' (')
 		if pos != -1:
-			titleStr = titleStr[-5:]
+			if titleStr.find(' (TV)') != -1:
+				titleStr = titleStr[-5:]
+			elif titleStr.find(' (Radio)') != -1:
+				titleStr = titleStr[-8:]
 			Len = len(self.servicePath)
 			if Len > 0:
 				base_ref = self.servicePath[0]
