@@ -73,6 +73,7 @@
 	#define FEC_S2_QPSK_2_3 (fe_code_rate_t)(FEC_2_3)
 	#define FEC_S2_QPSK_3_4 (fe_code_rate_t)(FEC_3_4)
 	#define FEC_S2_QPSK_5_6 (fe_code_rate_t)(FEC_5_6)
+	#define FEC_S2_QPSK_6_7 (fe_code_rate_t)(FEC_6_7)
 	#define FEC_S2_QPSK_7_8 (fe_code_rate_t)(FEC_7_8)
 	#define FEC_S2_QPSK_8_9 (fe_code_rate_t)(FEC_8_9)
 	#define FEC_S2_QPSK_3_5 (fe_code_rate_t)(FEC_3_5)
@@ -2156,6 +2157,11 @@ RESULT eDVBFrontend::prepare_sat(const eDVBFrontendParametersSatellite &feparm, 
 				case eDVBFrontendParametersSatellite::FEC_5_6:
 					parm_u_qpsk_fec_inner = FEC_S2_QPSK_5_6;
 					break;
+#if HAVE_DVB_API_VERSION >= 5
+				case eDVBFrontendParametersSatellite::FEC_6_7:
+					parm_u_qpsk_fec_inner = FEC_S2_QPSK_6_7;
+					break;
+#endif
 				case eDVBFrontendParametersSatellite::FEC_7_8:
 					parm_u_qpsk_fec_inner = FEC_S2_QPSK_7_8;
 					break;
@@ -2312,8 +2318,14 @@ RESULT eDVBFrontend::prepare_terrestrial(const eDVBFrontendParametersTerrestrial
 	case eDVBFrontendParametersTerrestrial::FEC_5_6:
 		parm_u_ofdm_code_rate_LP = FEC_5_6;
 		break;
+	case eDVBFrontendParametersTerrestrial::FEC_6_7:
+		parm_u_ofdm_code_rate_LP = FEC_6_7;
+		break;
 	case eDVBFrontendParametersTerrestrial::FEC_7_8:
 		parm_u_ofdm_code_rate_LP = FEC_7_8;
+		break;
+	case eDVBFrontendParametersTerrestrial::FEC_8_9:
+		parm_u_ofdm_code_rate_LP = FEC_8_9;
 		break;
 	default:
 	case eDVBFrontendParametersTerrestrial::FEC_Auto:
@@ -2334,8 +2346,14 @@ RESULT eDVBFrontend::prepare_terrestrial(const eDVBFrontendParametersTerrestrial
 	case eDVBFrontendParametersTerrestrial::FEC_5_6:
 		parm_u_ofdm_code_rate_HP = FEC_5_6;
 		break;
+	case eDVBFrontendParametersTerrestrial::FEC_6_7:
+		parm_u_ofdm_code_rate_HP = FEC_6_7;
+		break;
 	case eDVBFrontendParametersTerrestrial::FEC_7_8:
 		parm_u_ofdm_code_rate_HP = FEC_7_8;
+		break;
+	case eDVBFrontendParametersTerrestrial::FEC_8_9:
+		parm_u_ofdm_code_rate_HP = FEC_8_9;
 		break;
 	default:
 	case eDVBFrontendParametersTerrestrial::FEC_Auto:
