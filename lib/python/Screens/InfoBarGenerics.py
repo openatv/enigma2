@@ -1770,7 +1770,7 @@ class InfoBarInstantRecord:
 	def TimeDateInputClosed(self, ret):
 		if len(ret) > 1:
 			if ret[0]:
-				print "stopping recording at", strftime("%F %T", localtime(ret[1])
+				print "stopping recording at", strftime("%F %T", localtime(ret[1]))
 				if self.recording[self.selectedEntry].end != ret[1]:
 					self.recording[self.selectedEntry].autoincrease = False
 				self.recording[self.selectedEntry].end = ret[1]
