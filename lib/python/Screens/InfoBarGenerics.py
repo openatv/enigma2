@@ -1706,7 +1706,7 @@ class InfoBarInstantRecord:
 		else:
 			if len(simulTimerList) > 1: # with other recording
 				name = simulTimerList[1].name
-				name_date = ' '.join((name, strftime('%c', localtime(simulTimerList[1].begin))))
+				name_date = ' '.join((name, strftime('%F %T', localtime(simulTimerList[1].begin))))
 				print "[TIMER] conflicts with", name_date
 				recording.autoincrease = True	# start with max available length, then increment
 				if recording.setAutoincreaseEnd():
@@ -1770,8 +1770,7 @@ class InfoBarInstantRecord:
 	def TimeDateInputClosed(self, ret):
 		if len(ret) > 1:
 			if ret[0]:
-				localendtime = localtime(ret[1])
-				print "stopping recording at", strftime("%c", localendtime)
+				print "stopping recording at", strftime("%F %T", localtime(ret[1])
 				if self.recording[self.selectedEntry].end != ret[1]:
 					self.recording[self.selectedEntry].autoincrease = False
 				self.recording[self.selectedEntry].end = ret[1]
