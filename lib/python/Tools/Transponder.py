@@ -92,7 +92,7 @@ def ConvertToHumanReadable(tp, type = None):
 			eDVBFrontendParametersTerrestrial.FEC_5_6 : "5/6",
 			eDVBFrontendParametersTerrestrial.FEC_6_7 : "6/7",
 			eDVBFrontendParametersTerrestrial.FEC_7_8 : "7/8",
-			eDVBFrontendParametersTerrestrial.FEC_7_8 : "8/9"}[tp["code_rate_lp"]]
+			eDVBFrontendParametersTerrestrial.FEC_8_9 : "8/9"}[tp["code_rate_lp"]]
 		ret["code_rate_hp"] = {
 			eDVBFrontendParametersTerrestrial.FEC_Auto : _("Auto"),
 			eDVBFrontendParametersTerrestrial.FEC_1_2 : "1/2",
@@ -101,7 +101,7 @@ def ConvertToHumanReadable(tp, type = None):
 			eDVBFrontendParametersTerrestrial.FEC_5_6 : "5/6",
 			eDVBFrontendParametersTerrestrial.FEC_6_7 : "6/7",
 			eDVBFrontendParametersTerrestrial.FEC_7_8 : "7/8",
-			eDVBFrontendParametersTerrestrial.FEC_7_8 : "8/9"}[tp["code_rate_hp"]]
+			eDVBFrontendParametersTerrestrial.FEC_8_9 : "8/9"}[tp["code_rate_hp"]]
 		ret["constellation"] = {
 			eDVBFrontendParametersTerrestrial.Modulation_Auto : _("Auto"),
 			eDVBFrontendParametersTerrestrial.Modulation_QPSK : "QPSK",
