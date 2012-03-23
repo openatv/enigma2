@@ -79,7 +79,7 @@ struct eDVBFrontendParametersTerrestrial
 	}; // Bw5Mhz nyi (compatibilty with enigma1)
 
 	enum {
-		FEC_1_2, FEC_2_3, FEC_3_4, FEC_5_6, FEC_7_8, FEC_Auto
+		FEC_1_2, FEC_2_3, FEC_3_4, FEC_5_6, FEC_6_7, FEC_7_8, FEC_8_9, FEC_Auto
 	};
 
 	enum {
