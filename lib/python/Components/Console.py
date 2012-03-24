@@ -14,7 +14,7 @@ class Console(object):
 		while self.appContainers.has_key(name):
 			name = cmd +'_'+ str(i)
 			i += 1
-		print "[ePopen] command:", cmd
+#		print "[ePopen] command:", cmd
 		self.appResults[name] = ""
 		self.extra_args[name] = extra_args
 		self.callbacks[name] = callback

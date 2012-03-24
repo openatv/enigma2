@@ -153,7 +153,7 @@ class Network:
 				fp.write("iface "+ ifacename +" inet static\n")
 				fp.write("  hostname $(hostname)\n")
 				if iface.has_key('ip'):
-					print tuple(iface['ip'])
+# 					print tuple(iface['ip'])
 					fp.write("	address %d.%d.%d.%d\n" % tuple(iface['ip']))
 					fp.write("	netmask %d.%d.%d.%d\n" % tuple(iface['netmask']))
 					if iface.has_key('gateway'):
@@ -228,8 +228,8 @@ class Network:
 				self.configuredNetworkAdapters = self.configuredInterfaces
 				# load ns only once
 				self.loadNameserverConfig()
-				print "read configured interface:", ifaces
-				print "self.ifaces after loading:", self.ifaces
+#				print "read configured interface:", ifaces
+#				print "self.ifaces after loading:", self.ifaces
 				self.config_ready = True
 				self.msgPlugins()
 				if callback is not None:
@@ -255,7 +255,7 @@ class Network:
 				if ip:
 					self.nameservers.append(self.convertIP(ip))
 
-		print "nameservers:", self.nameservers
+#		print "nameservers:", self.nameservers
 
 	def getInstalledAdapters(self):
 		return [x for x in listdir('/sys/class/net') if not self.isBlacklisted(x)]
@@ -321,7 +321,7 @@ class Network:
 		return None
 
 	def setAdapterAttribute(self, iface, attribute, value):
-		print "setting for adapter", iface, "attribute", attribute, " to value", value
+# 		print "setting for adapter", iface, "attribute", attribute, " to value", value
 		if self.ifaces.has_key(iface):
 			self.ifaces[iface][attribute] = value
 
