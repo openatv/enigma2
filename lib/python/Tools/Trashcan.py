@@ -35,12 +35,14 @@ def enumTrashFolders():
 				yield result
 
 class Trashcan:
-	def __init__(self, session):
+	def __init__(self):
+		self.isCleaning = False
+		self.session = None
+		self.dirty = set()
+
+	def init(self, session):
 		self.session = session
 		session.nav.record_event.append(self.gotRecordEvent)
-		self.isCleaning = False
-		self.gotRecordEvent(None, None)
-		self.dirty = set()
 
 	def markDirty(self, path):
 		# Marks a path for purging, for when a recording on that
@@ -72,7 +74,7 @@ class Trashcan:
 		if self.isCleaning:
 			print "[Trashcan] Cleanup already running"
 			return
-		if self.session.nav.getRecordings():
+		if (self.session is not None) and self.session.nav.getRecordings():
 			return
 		self.isCleaning = True
 		ctimeLimit = time.time() - (config.usage.movielist_trashcan_days.value * 3600 * 24)
@@ -154,4 +156,6 @@ def cleanAll(trash):
 
 def init(session):
 	global instance
-	instance = Trashcan(session)
+	instance.init(session)
+
+instance = Trashcan()
