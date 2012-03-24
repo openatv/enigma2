@@ -125,8 +125,8 @@ class RemoteControlCode(Screen,ConfigListScreen,RemoteControlCodeInit):
 			self.setSystemCode(int(config.plugins.remotecontrolcode.systemcode.value))
 
 class MessageBoxConfirmCode(MessageBox):
-	def __init__(self, session, text, type = MessageBox.TYPE_YESNO, title = None, timeout = -1, close_on_any_key = False, default = True, enable_input = True, msgBoxID = None):
-		MessageBox.__init__(self,session,text,type,title,timeout,close_on_any_key,default,enable_input,msgBoxID)
+	def __init__(self, session, text, type = MessageBox.TYPE_YESNO, timeout = -1, close_on_any_key = False, default = True, enable_input = True, msgBoxID = None):
+		MessageBox.__init__(self,session,text,type,timeout,close_on_any_key,default,enable_input,msgBoxID)
 		self.skinName = "MessageBox"
 		if type == MessageBox.TYPE_YESNO:
 			self.list = [ (_("Keep"), 0), (_("Restore"), 1) ]
