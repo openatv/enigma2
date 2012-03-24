@@ -4,7 +4,7 @@ from Screen import Screen
 class ClockDisplay(Screen):
 	def okbutton(self):
 		self.session.close()
-	
+
 	def __init__(self, session, clock):
 		Screen.__init__(self, session)
 		self["theClock"] = clock

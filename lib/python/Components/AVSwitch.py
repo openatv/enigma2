@@ -69,7 +69,7 @@ def InitAVSwitch():
 	config.av = ConfigSubsection()
 	config.av.yuvenabled = ConfigBoolean(default=True)
 	colorformat_choices = {"cvbs": _("CVBS"), "rgb": _("RGB"), "svideo": _("S-Video")}
-	
+
 	# when YUV is not enabled, don't let the user select it
 	if config.av.yuvenabled.value:
 		colorformat_choices["yuv"] = _("YPbPr")
@@ -77,16 +77,16 @@ def InitAVSwitch():
 	config.av.colorformat = ConfigSelection(choices=colorformat_choices, default="rgb")
 	config.av.aspectratio = ConfigSelection(choices={
 			"4_3_letterbox": _("4:3 Letterbox"),
-			"4_3_panscan": _("4:3 PanScan"), 
-			"16_9": _("16:9"), 
+			"4_3_panscan": _("4:3 PanScan"),
+			"16_9": _("16:9"),
 			"16_9_always": _("16:9 always"),
 			"16_10_letterbox": _("16:10 Letterbox"),
-			"16_10_panscan": _("16:10 PanScan"), 
-			"16_9_letterbox": _("16:9 Letterbox")}, 
+			"16_10_panscan": _("16:10 PanScan"),
+			"16_9_letterbox": _("16:9 Letterbox")},
 			default = "16_9")
 	config.av.aspect = ConfigSelection(choices={
 			"4_3": _("4:3"),
-			"16_9": _("16:9"), 
+			"16_9": _("16:9"),
 			"16_10": _("16:10"),
 			"auto": _("Automatic")},
 			default = "auto")

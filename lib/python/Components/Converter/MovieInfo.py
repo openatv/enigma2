@@ -30,7 +30,7 @@ class MovieInfo(Converter, object):
 			if self.type == self.MOVIE_SHORT_DESCRIPTION:
 				if (self.source.service.flags & eServiceReference.flagDirectory) == eServiceReference.flagDirectory:
 					# Short description for Directory is the full path
-					return self.source.service.getPath()  
+					return self.source.service.getPath()
 				event = self.source.event
 				if event:
 					descr = info.getInfoString(service, iServiceInformation.sDescription)

@@ -20,12 +20,12 @@ class UpdatePlugin(Screen):
 			<widget source="package" render="Label" position="10,30" size="540,20" font="Regular;18" halign="center" valign="center" backgroundColor="#25062748" transparent="1" />
 			<widget source="status" render="Label" position="10,60" size="540,45" font="Regular;20" halign="center" valign="center" backgroundColor="#25062748" transparent="1" />
 		</screen>"""
-		
+
 	def __init__(self, session, args = None):
 		Screen.__init__(self, session)
-		
+
 		self.sliderPackages = { "dreambox-dvb-modules": 1, "enigma2": 2, "tuxbox-image-info": 3 }
-		
+
 		self.slider = Slider(0, 4)
 		self["slider"] = self.slider
 		self.activityslider = Slider(0, 100)
@@ -34,10 +34,10 @@ class UpdatePlugin(Screen):
 		self["status"] = self.status
 		self.package = StaticText()
 		self["package"] = self.package
-		
+
 		self.packages = 0
 		self.error = 0
-		
+
 		self.activity = 0
 		self.activityTimer = eTimer()
 		self.activityTimer.callback.append(self.doActivityTimer)
@@ -73,7 +73,7 @@ class UpdatePlugin(Screen):
 		if self.activity == 100:
 			self.activity = 0
 		self.activityslider.setValue(self.activity)
-		
+
 	def ipkgCallback(self, event, param):
 		if event == IpkgComponent.EVENT_DOWNLOAD:
 			self.status.setText(_("Downloading"))
@@ -104,10 +104,10 @@ class UpdatePlugin(Screen):
 				self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE, args = {'test_only': False})
 			elif self.error == 0:
 				self.slider.setValue(4)
-				
+
 				self.activityTimer.stop()
 				self.activityslider.setValue(0)
-				
+
 				self.package.setText("")
 				self.status.setText(_("Done - Installed or upgraded %d packages") % self.packages)
 			else:
@@ -131,7 +131,7 @@ class UpdatePlugin(Screen):
 				self.session.openWithCallback(self.exitAnswer, MessageBox, _("Upgrade finished. Do you want to reboot your STB_BOX?"))
 			else:
 				self.close()
-			
+
 	def exitAnswer(self, result):
 		if result is not None and result:
 			quitMainloop(2)

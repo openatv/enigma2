@@ -94,7 +94,7 @@ def InitUsageConfig():
 
 	config.usage.timer_path = ConfigText(default = "<default>")
 	config.usage.instantrec_path = ConfigText(default = "<default>")
-	
+
 	if not os.path.exists(resolveFilename(SCOPE_TIMESHIFT)):
 		try:
 			os.mkdir(resolveFilename(SCOPE_TIMESHIFT),0755)
@@ -132,7 +132,7 @@ def InitUsageConfig():
 		("show_menu", _("show shutdown menu")),
 		("shutdown", _("immediate shutdown")),
 		("standby", _("Standby")) ] )
-	
+
 	config.usage.on_short_powerpress = ConfigSelection(default = "standby", choices = [
 		("show_menu", _("show shutdown menu")),
 		("shutdown", _("immediate shutdown")),
@@ -409,7 +409,7 @@ def InitUsageConfig():
 		("2097152", "2 MB"),
 		("4194304", "4 MB")])
 	config.misc.flush_size.addNotifier(updateFlushSize, immediate_feedback = False)
-	
+
 	def updateEraseSpeed(el):
 		enigma.eBackgroundFileEraser.getInstance().setEraseSpeed(int(el.value))
 	def updateEraseFlags(el):
@@ -471,13 +471,13 @@ def InitUsageConfig():
 	config.subtitles.pango_subtitles_yellow = ConfigYesNo(default = False)
 
 	config.autolanguage = ConfigSubsection()
-	audio_language_choices=[	
+	audio_language_choices=[
 		("---", _("None")),
 		("und", _("Undetermined")),
 		("orj dos ory org esl qaa und mis mul ORY ORJ Audio_ORJ", _("Original")),
 		("ara", _("Arabic")),
 		("eus baq", _("Basque")),
-		("bul", _("Bulgarian")), 
+		("bul", _("Bulgarian")),
 		("hrv", _("Croatian")),
 		("ces cze", _("Czech")),
 		("dan", _("Danish")),
@@ -624,8 +624,6 @@ def InitUsageConfig():
 	config.epgselction.showservicetitle = ConfigYesNo(default = True)
 	config.epgselction.channel1 = ConfigYesNo(default = False)
 	config.epgselction.prev_time_period = ConfigSelectionNumber(default = 180, stepwidth = 1, min = 60, max = 300, wraparound = True)
-
-
 	config.epgselction.serv_fontsize_pliepg = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
 	config.epgselction.ev_fontsize_pliepg = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
 	config.epgselction.tl_fontsize_pliepg = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
@@ -636,7 +634,6 @@ def InitUsageConfig():
 	config.epgselction.itemsperpage_enhanced = ConfigSelectionNumber(default = 18, stepwidth = 1, min = 12, max = 40, wraparound = True)
 	config.epgselction.itemsperpage_multi = ConfigSelectionNumber(default = 18, stepwidth = 1, min = 12, max = 40, wraparound = True)
 	config.epgselction.itemsperpage_infobar = ConfigSelectionNumber(default = 2, stepwidth = 1, min = 2, max = 4, wraparound = True)
-
 	config.epgselction.servicewidth = ConfigSelectionNumber(default = 190, stepwidth = 1, min = 70, max = 250, wraparound = True)
 	config.epgselction.overjump = ConfigYesNo(default = False)
 	config.epgselction.pictureingraphics = ConfigYesNo(default = False)
@@ -669,7 +666,6 @@ def InitUsageConfig():
 	config.cccaminfo.ecmInfoPositionY = ConfigInteger(default=50)
 	config.cccaminfo.blacklist = ConfigText(default="/media/cf/CCcamInfo.blacklisted", fixed_size=False)
 	config.cccaminfo.profiles = ConfigText(default="/media/cf/CCcamInfo.profiles", fixed_size=False)
-
 
 	config.streaming = ConfigSubsection()
 	config.streaming.stream_ecm = ConfigYesNo(default = False)

@@ -171,7 +171,7 @@ class ServiceList(HTMLComponent, GUIComponent):
 		return self.instance.getCurrentIndex()
 
 	GUI_WIDGET = eListbox
-	
+
 	def setItemsPerPage(self):
  		if self.listHeight > 0:
 			itemHeight = self.listHeight / config.usage.serviceitems_per_page.getValue()

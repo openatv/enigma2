@@ -76,14 +76,14 @@ class Language:
 
 	def getActiveLanguage(self):
 		return self.activeLanguage
-	
+
 	def getActiveLanguageIndex(self):
 		idx = 0
 		for x in self.langlist:
 			if x == self.activeLanguage:
 				return idx
 			idx += 1
-		return None			
+		return None
 
 	def getLanguage(self):
 		try:
@@ -95,7 +95,7 @@ class Language:
 		self.callbacks.append(callback)
 
 	def precalcLanguageList(self):
-		# excuse me for those T1, T2 hacks please. The goal was to keep the language_cache.py as small as possible, *and* 
+		# excuse me for those T1, T2 hacks please. The goal was to keep the language_cache.py as small as possible, *and*
 		# don't duplicate these strings.
 		T1 = _("Please use the UP and DOWN keys to select your language. Afterwards press the OK button.")
 		T2 = _("Language selection")

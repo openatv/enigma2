@@ -5,12 +5,12 @@ class Sensors:
 	TYPE_TEMPERATURE = 0
 	# (type, name, unit, fanid)
 	TYPE_FAN_RPM = 1
-	
+
 	def __init__(self):
 		# (type, name, unit, sensor_specific_dict/list)
 		self.sensors_list = []
 		self.addSensors()
-		
+
 	def getSensorsCount(self, type = None):
 		if type is None:
 			return len(self.sensors_list)
@@ -19,7 +19,7 @@ class Sensors:
 			if sensor[0] == type:
 				count += 1
 		return count
-	
+
 	# returns a list of sensorids of type "type"
 	def getSensorsList(self, type = None):
 		if type is None:
@@ -29,14 +29,14 @@ class Sensors:
 			if self.sensors_list[sensorid][0] == type:
 				list.append(sensorid)
 		return list
-	
-	
+
+
 	def getSensorType(self, sensorid):
 		return self.sensors_list[sensorid][0]
-	
+
 	def getSensorName(self, sensorid):
 		return self.sensors_list[sensorid][1]
-	
+
 	def getSensorValue(self, sensorid):
 		value = -1
 		sensor = self.sensors_list[sensorid]
@@ -47,7 +47,7 @@ class Sensors:
 		elif sensor[0] == self.TYPE_FAN_RPM:
 			value = fancontrol.getFanSpeed(sensor[3])
 		return value
-	
+
 	def getSensorUnit(self, sensorid):
 		return self.sensors_list[sensorid][2]
 
@@ -59,14 +59,14 @@ class Sensors:
 					f = open("/proc/stb/sensors/%s/name" % dirname, "r")
 					name = f.readline().strip()
 					f.close()
-					
+
 					f = open("/proc/stb/sensors/%s/unit" % dirname, "r")
 					unit = f.readline().strip()
 					f.close()
-					
+
 					self.sensors_list.append((self.TYPE_TEMPERATURE, name, unit, "/proc/stb/sensors/%s" % dirname))
 		for fanid in range(fancontrol.getFanCount()):
 			if fancontrol.hasRPMSensor(fanid):
 				self.sensors_list.append((self.TYPE_FAN_RPM, _("Fan %d") % (fanid + 1), "rpm", fanid))
-	
+
 sensors = Sensors()

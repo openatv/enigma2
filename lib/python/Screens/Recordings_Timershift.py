@@ -214,7 +214,7 @@ class RecordingSettings(Screen,ConfigListScreen):
 		currentry = self["config"].getCurrent()
 		config.usage.default_path.value = self.default_dirname.value
 		config.usage.timer_path.value = self.timer_dirname.value
-		config.usage.instantrec_path.value = self.instantrec_dirname.value 
+		config.usage.instantrec_path.value = self.instantrec_dirname.value
 		config.usage.default_path.save()
 		config.usage.timer_path.save()
 		config.usage.instantrec_path.save()
@@ -227,7 +227,7 @@ class RecordingSettings(Screen,ConfigListScreen):
 	def keySave(self):
 		self.saveAll()
 		self.close()
-	
+
 	def cancelConfirm(self, result):
 		if not result:
 			return
@@ -301,7 +301,7 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 		import Components.Harddisk
 		supported_filesystems = frozenset(('ext4', 'ext3', 'ext2', 'nfs'))
 		candidates = []
-		mounts = Components.Harddisk.getProcMounts() 
+		mounts = Components.Harddisk.getProcMounts()
 		for partition in Components.Harddisk.harddiskmanager.getMountedPartitions(False, mounts):
 			if partition.filesystem(mounts) in supported_filesystems:
 				candidates.append((partition.description, partition.mountpoint))
@@ -381,7 +381,7 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 			import Components.Harddisk
 			supported_filesystems = frozenset(('ext4', 'ext3', 'ext2', 'nfs'))
 			candidates = []
-			mounts = Components.Harddisk.getProcMounts() 
+			mounts = Components.Harddisk.getProcMounts()
 			for partition in Components.Harddisk.harddiskmanager.getMountedPartitions(False, mounts):
 				if partition.filesystem(mounts) in supported_filesystems:
 					candidates.append((partition.description, partition.mountpoint))
@@ -424,7 +424,7 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 		import Components.Harddisk
 		supported_filesystems = frozenset(('ext4', 'ext3', 'ext2', 'nfs'))
 		candidates = []
-		mounts = Components.Harddisk.getProcMounts() 
+		mounts = Components.Harddisk.getProcMounts()
 		for partition in Components.Harddisk.harddiskmanager.getMountedPartitions(False, mounts):
 			if partition.filesystem(mounts) in supported_filesystems:
 				candidates.append((partition.description, partition.mountpoint))
@@ -449,7 +449,7 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 				_("The directory %s is not a EXT2, EXT3, EXT4 or NFS partition.\nMake sure you select a valid partition type.")%config.usage.timeshift_path.value,
 				type = MessageBox.TYPE_ERROR
 				)
-	
+
 	def cancelConfirm(self, result):
 		if not result:
 			return

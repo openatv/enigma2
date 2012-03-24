@@ -4,7 +4,7 @@ from enigma import ePoint, eSize
 
 class GUIComponent(object):
 	""" GUI component """
-	
+
 	def __init__(self):
 		self.instance = None
 		self.onVisibilityChange = [ ]
@@ -12,27 +12,27 @@ class GUIComponent(object):
 		self.visible = 1
 		self.skinAttributes = None
 		self.deprecationInfo = None
-	
+
 	def execBegin(self):
 		pass
-	
+
 	def execEnd(self):
 		pass
-	
+
 	def onShow(self):
 		pass
 
 	def onHide(self):
 		pass
-	
+
 	def destroy(self):
 		self.__dict__.clear()
-	
+
 	# this works only with normal widgets - if you don't have self.instance, override this.
 	def applySkin(self, desktop, parent):
 		if not self.visible:
 			self.instance.hide()
-		
+
 		if self.skinAttributes is None:
 			return False
 
@@ -77,7 +77,7 @@ class GUIComponent(object):
 
 	def getVisible(self):
 		return self.__visible
-	
+
 	def setVisible(self, visible):
 		if visible:
 			self.show()
@@ -92,10 +92,10 @@ class GUIComponent(object):
 	def getPosition(self):
 		p = self.instance.position()
 		return (p.x(), p.y())
-	
+
 	def getWidth(self):
 		return self.width
-	
+
 	def getHeight(self):
 		return self.height
 
@@ -106,7 +106,7 @@ class GUIComponent(object):
 	def GUIcreate(self, parent):
 		self.instance = self.createWidget(parent)
 		self.postWidgetCreate(self.instance)
-	
+
 	def GUIdelete(self):
 		self.preWidgetRemove(self.instance)
 		self.instance = None
@@ -117,6 +117,6 @@ class GUIComponent(object):
 
 	def postWidgetCreate(self, instance):
 		pass
-	
+
 	def preWidgetRemove(self, instance):
 		pass

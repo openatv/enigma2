@@ -80,7 +80,7 @@ class OscamInfo:
 					httpport = True
 					port = i.split("=")[1].strip()
 					self.port = port
-					
+
 			if not webif:
 				err = _("There is no [webif] section in oscam.conf")
 			elif not httpuser:
@@ -89,7 +89,7 @@ class OscamInfo:
 				err = _("No httppwd defined in oscam.conf")
 			elif not httpport:
 				err = _("No httpport defined in oscam.conf. This value is required!")
-			
+
 			if err != "":
 				return err
 			else:
@@ -123,7 +123,7 @@ class OscamInfo:
 			self.url = "http://%s:%s/oscamapi.html?part=%s" % (self.ip, self.port, part )
 		if part is not None and reader is not None:
 			self.url = "http://%s:%s/oscamapi.html?part=%s&label=%s" % ( self.ip, self.port, part, reader )
-			
+
 		print "URL=%s" % self.url
 		pwman = urllib2.HTTPPasswordMgrWithDefaultRealm()
 		pwman.add_password( None, self.url, self.username, self.password )
@@ -145,7 +145,7 @@ class OscamInfo:
 			return (False, err)
 		else:
 			return (True, data)
-			
+
 	def readXML(self, typ):
 		if typ == "l":
 			self.showLog = True
@@ -251,10 +251,10 @@ class OscamInfo:
 				self.version = data.attrib["version"]
 			else:
 				self.version = "n/a"
-			return self.version			
+			return self.version
 		else:
 			self.version = "n/a"
-		return self.version	
+		return self.version
 
 	def getTotalCards(self, reader):
 		xmldata = self.openWebIF(part = "entitlement", reader = reader)
@@ -287,7 +287,7 @@ class OscamInfo:
 			return readers
 		else:
 			return None
-			
+
 	def getClients(self):
 		xmldata = self.openWebIF()
 		clientnames = []
@@ -302,7 +302,7 @@ class OscamInfo:
 			return clientnames
 		else:
 			return None
-			
+
 	def getECMInfo(self, ecminfo):
 		result = []
 		if os.path.exists(ecminfo):
@@ -327,7 +327,7 @@ class OscamInfo:
 			return result
 		else:
 			return "%s not found" % self.ecminfo
-			
+
 class oscMenuList(MenuList):
 	def __init__(self, list, itemH = 25):
 		MenuList.__init__(self, list, False, eListboxPythonMultiContent)
@@ -337,13 +337,13 @@ class oscMenuList(MenuList):
 		self.clientFont = gFont("Regular", 14)
 		self.l.setFont(2, self.clientFont)
 		self.l.setFont(3, gFont("Regular", 12))
-		
+
 class OscamInfoMenu(Screen):
 	skin = """
 		<screen position="center,center" size="400, 300" title="OscamInfoMenu" >
 			<widget name="mainmenu" position="10,10" size="380,280" scrollbarMode="showOnDemand" />
 		</screen>"""
-	
+
 	def __init__(self, session):
 		self.session = session
 		self.menu = [ _("Show /tmp/ecm.info"), _("Show Clients"), _("Show Readers/Proxies"), _("Show Log"), _("Card infos (CCcam-Reader)"), _("ECM Statistics"), _("Setup") ]
@@ -370,9 +370,9 @@ class OscamInfoMenu(Screen):
 						"0": self.keyNumberGlobal,
 						"up": self.up,
 						"down": self.down
-						}, -1)	
+						}, -1)
 		self.onLayoutFinish.append(self.showMenu)
-		
+
 	def ok(self):
 		selected = self["mainmenu"].getSelectedIndex()
 		self.goEntry(selected)
@@ -463,7 +463,7 @@ class OscamInfoMenu(Screen):
 						self.session.openWithCallback(self.chooseReaderCallback, ChoiceBox, title = _("Please choose reader"), list=reader)
 		elif entry == 6:
 			self.session.open(OscamInfoConfigScreen)
-			
+
 	def chooseReaderCallback(self, retval):
 		print retval
 		if retval is not None:
@@ -471,11 +471,11 @@ class OscamInfoMenu(Screen):
 				self.session.open(oscEntitlements, retval[1])
 			else:
 				self.session.open(oscReaderStats, retval[1])
-				
+
 	def ErrMsgCallback(self, retval):
 		print retval
 		self.session.open(OscamInfoConfigScreen)
-		
+
 	def buildMenu(self, mlist):
 		keys = ["red", "green", "yellow", "blue", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ""]
 		menuentries = []
@@ -524,7 +524,7 @@ class oscECMInfo(Screen, OscamInfo):
 						"cancel": self.exit
 					}, -1)
 		self.onLayoutFinish.append(self.showData)
-		
+
 	def exit(self):
 		if config.oscaminfo.autoupdate.value:
 			self.loop.stop()
@@ -535,7 +535,7 @@ class oscECMInfo(Screen, OscamInfo):
 			(eListboxPythonMultiContent.TYPE_TEXT, 10, 10, 300, 30, 0, RT_HALIGN_LEFT, listentry[0]),
 			(eListboxPythonMultiContent.TYPE_TEXT, 300, 10, 300, 30, 0, RT_HALIGN_LEFT, listentry[1])
 			]
-		
+
 	def showData(self):
 		data = self.getECMInfo(self.ecminfo)
 		#print data
@@ -546,7 +546,7 @@ class oscECMInfo(Screen, OscamInfo):
 		self["output"].l.setItemHeight(35)
 		self["output"].l.setList(out)
 		self["output"].selectionEnabled(True)
-		
+
 class oscInfo(Screen, OscamInfo):
 	def __init__(self, session, what):
 		global HDSKIN, sizeH
@@ -558,7 +558,7 @@ class oscInfo(Screen, OscamInfo):
 #		entry_count = len(self.readXML(typ = self.what))
 		ysize = (entry_count + 4) * 25
 		ypos = 10
-		self.sizeLH = sizeH - 20	
+		self.sizeLH = sizeH - 20
 		self.skin = """<screen position="center,center" size="%d, %d" title="Client Info" >""" % (sizeH, ysize)
 		button_width = int(sizeH / 4)
 		for k, v in enumerate(["red", "green", "yellow", "blue"]):
@@ -567,7 +567,7 @@ class oscInfo(Screen, OscamInfo):
 			self.skin += """<widget source="key_%s" render="Label" position="%d,%d" size="%d,%d" font="Regular;16" zPosition="1" valign="center" transparent="1" />""" % (v, xpos + 40, ypos, button_width, 20)
 		self.skin +="""<ePixmap name="divh" position="0,37" size="%d,2" pixmap="/usr/share/enigma2/skin_default/div-h.png" transparent="1" alphatest="on" />""" % sizeH
 		self.skin +="""<widget name="output" position="10,45" size="%d,%d" zPosition="1" scrollbarMode="showOnDemand" />""" % ( self.sizeLH, ysize)
-		self.skin += """</screen>""" 
+		self.skin += """</screen>"""
 		Screen.__init__(self, session)
 		self.mlist = oscMenuList([])
 		self["output"] = self.mlist
@@ -588,7 +588,7 @@ class oscInfo(Screen, OscamInfo):
 		else:
 			self["key_green"] = StaticText("Clients")
 			self["key_yellow"] = StaticText("Servers")
-			self["key_blue"] = StaticText("Log")	
+			self["key_blue"] = StaticText("Log")
 		self.fieldSizes = []
 		self.fs2 = {}
 		if config.oscaminfo.autoupdate.value:
@@ -606,33 +606,33 @@ class oscInfo(Screen, OscamInfo):
 						"blue": self.key_blue
 					}, -1)
 		self.onLayoutFinish.append(self.showData)
-		
+
 	def key_green(self):
 		if self.what == "c":
 			pass
 		else:
 			self.what = "c"
 			self.showData()
-		
+
 	def key_yellow(self):
 		if self.what == "s":
 			pass
 		else:
 			self.what = "s"
 			self.showData()
-	
+
 	def key_blue(self):
 		if self.what == "l":
 			pass
 		else:
 			self.what = "l"
 			self.showData()
-		
+
 	def exit(self):
 		if config.oscaminfo.autoupdate.value:
 			self.loop.stop()
 		self.close()
-		
+
 	def buildListEntry(self, listentry, heading = False):
 		res = [ None ]
 		x = 0
@@ -643,7 +643,7 @@ class oscInfo(Screen, OscamInfo):
 		else:
 			self.fieldsize = [ 150, 200, 130, 200, 100, 150 ]
 			self.startPos = [ 50, 200, 400, 530, 730, 830 ]
-			
+
 			useFont = 1
 		if isinstance(self.errmsg, tuple):
 			useFont = 0  # overrides previous font-size in case of an error message. (if self.errmsg is a tuple, an error occurred which will be displayed instead of regular results
@@ -674,7 +674,7 @@ class oscInfo(Screen, OscamInfo):
 			if i.strip() != "" or i is not None:
 				res.append( (eListboxPythonMultiContent.TYPE_TEXT, 5, 0, self.sizeLH,14, 2, RT_HALIGN_LEFT, i) )
 		return res
-		
+
 	def calcSizes(self, entries):
 		self.fs2 = {}
 		colSize = [ 100, 200, 150, 200, 150, 100 ]
@@ -751,7 +751,7 @@ class oscInfo(Screen, OscamInfo):
 			elif self.what == "s":
 				self.changeScreensize( ysize )
 				self.setTitle("Server Info( Oscam-Version: %s )" % self.getVersion())
-				
+
 			elif self.what == "l":
 				self.changeScreensize( 500 )
 				self.setTitle("Oscam Log ( Oscam-Version: %s )" % self.getVersion())
@@ -770,12 +770,12 @@ class oscInfo(Screen, OscamInfo):
 			self.setTitle(_("Error") + data)
 			self["output"].l.setList(out)
 			self["output"].selectionEnabled(False)
-			
-			
-		
+
+
+
 class oscEntitlements(Screen, OscamInfo):
 	global HDSKIN, sizeH
-	sizeLH = sizeH - 20	
+	sizeLH = sizeH - 20
 	skin = """<screen position="center,center" size="%s, 400" title="Client Info" >
 			<widget source="output" render="Listbox" position="10,10" size="%s,400" scrollbarMode="showOnDemand" >
 				<convert type="TemplatedMultiContent">
@@ -803,7 +803,7 @@ class oscEntitlements(Screen, OscamInfo):
 							MultiContentEntryText(pos = (480, 1), size = (70, 24), font=0, flags = RT_HALIGN_LEFT, text = 7), # index 7 is sum of cards for caid
 							MultiContentEntryText(pos = (550, 1), size = (80, 24), font=0, flags = RT_HALIGN_LEFT, text = 8), # index 8 is reshare
 							MultiContentEntryText(pos = (630, 1), size = (1024, 50), font=1, flags = RT_HALIGN_LEFT, text = 9), # index 9 is providers
-						
+
 												]),
 					},
 					"fonts": [gFont("Regular", 18),gFont("Regular", 14),gFont("Regular", 24),gFont("Regular", 20)],
@@ -823,11 +823,11 @@ class oscEntitlements(Screen, OscamInfo):
 						"ok": self.showData,
 						"cancel": self.exit
 					}, -1)
-		self.onLayoutFinish.append(self.showData)	
-	
+		self.onLayoutFinish.append(self.showData)
+
 	def exit(self):
 		self.close()
-		
+
 	def buildList(self, data):
 		caids = data.keys()
 		caids.sort()
@@ -856,7 +856,7 @@ class oscEntitlements(Screen, OscamInfo):
 					) )
 			outlist.append(res)
 		return res
-			
+
 	def showData(self):
 		xmldata_for_reader = self.openWebIF(part = "entitlement", reader = self.cccamreader)
 		xdata = ElementTree.XML(xmldata_for_reader[1])
@@ -912,7 +912,7 @@ class oscEntitlements(Screen, OscamInfo):
 		self["output"].setList(result)
 		title = [ _("Reader"), self.cccamreader, _("Cards:"), cardTotal, "Server:", hostadr ]
 		self.setTitle( " ".join(title))
-			
+
 
 class oscReaderStats(Screen, OscamInfo):
 	global HDSKIN, sizeH
@@ -963,11 +963,11 @@ class oscReaderStats(Screen, OscamInfo):
 						"ok": self.showData,
 						"cancel": self.exit
 					}, -1)
-		self.onLayoutFinish.append(self.showData)	
-	
+		self.onLayoutFinish.append(self.showData)
+
 	def exit(self):
 		self.close()
-		
+
 	def buildList(self, data):
 		caids = data.keys()
 		caids.sort()
@@ -999,7 +999,7 @@ class oscReaderStats(Screen, OscamInfo):
 
 	def sortData(self, datalist, sort_col, reverse = False):
 		return sorted(datalist, key=itemgetter(sort_col), reverse = reverse)
-		
+
 	def showData(self):
 		readers = self.getReaders()
 		result = []
@@ -1019,7 +1019,7 @@ class oscReaderStats(Screen, OscamInfo):
 #						emm_blk = emms.attrib["totalblocked"]
 #					if emms.attrib.has_key("totalerror"):
 #						emm_err = emms.attrib["totalerror"]
-					
+
 				ecmstat = rdr.find("ecmstats")
 				totalecm = ecmstat.attrib["totalecm"]
 				ecmcount = ecmstat.attrib["count"]
@@ -1061,8 +1061,8 @@ class oscReaderStats(Screen, OscamInfo):
 		out = [ ( _("Label"), _("CAID"), _("Channel"), _("ECM avg"), _("ECM last"), _("Status"), _("Last Req."), _("Total") ) ]
 		for i in outlist:
 			out.append( (i[0], i[1], i[2], i[3], i[4], i[5], i[6], str(i[7])) )
-			
-		
+
+
 		if HDSKIN:
 			self["output"].setStyle("HD")
 		else:
@@ -1071,7 +1071,7 @@ class oscReaderStats(Screen, OscamInfo):
 		title = [ _("Reader Statistics"), title2 ]
 		self.setTitle( " ".join(title))
 
-		
+
 
 class OscamInfoConfigScreen(Screen, ConfigListScreen):
 	skin = """
@@ -1083,7 +1083,7 @@ class OscamInfoConfigScreen(Screen, ConfigListScreen):
 			<widget name="config" position="5,50" size="550,360" scrollbarMode="showOnDemand" zPosition="1"/>
 			<widget name="status" render="Label" position="10,380" zPosition="1" size="540,70" font="Regular;16" halign="center" valign="center" transparent="1" />
 		</screen>"""
-	
+
 	def __init__(self, session, msg = None):
 		Screen.__init__(self, session)
 		self.session = session
@@ -1109,14 +1109,14 @@ class OscamInfoConfigScreen(Screen, ConfigListScreen):
 		config.oscaminfo.userdatafromconf.addNotifier(self.elementChanged, initial_call = False)
 		config.oscaminfo.autoupdate.addNotifier(self.elementChanged, initial_call = False)
 		self.onLayoutFinish.append(self.layoutFinished)
-	
+
 	def elementChanged(self, instance):
 		self.createSetup()
 		try:
 			self["config"].l.setList(self.oscamconfig)
 		except KeyError:
 			pass
-		
+
 	def layoutFinished(self):
 		self.setTitle(_("Oscam Info - Configuration"))
 		self["config"].l.setList(self.oscamconfig)
@@ -1132,13 +1132,13 @@ class OscamInfoConfigScreen(Screen, ConfigListScreen):
 		self.oscamconfig.append(getConfigListEntry(_("Automatically update Client/Server View?"), config.oscaminfo.autoupdate))
 		if config.oscaminfo.autoupdate.value:
 			self.oscamconfig.append(getConfigListEntry(_("Update interval (in seconds)"), config.oscaminfo.intervall))
-		
-	def save(self):	
+
+	def save(self):
 		for x in self.oscamconfig:
 			x[1].save()
 		configfile.save()
 		self.close()
-		
+
 	def cancel(self):
 		for x in self.oscamconfig:
 			x[1].cancel()

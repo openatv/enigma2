@@ -35,8 +35,8 @@ class TimerList(HTMLComponent, GUIComponent, object):
 				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 2, 25, 20, 20, self.iconRepeat))
 		else:
 			repeatedtext = begin[0] # date
-		if timer.justplay: 
-			text = repeatedtext + ((" %s "+ _("(ZAP)")) % (begin[1])) 
+		if timer.justplay:
+			text = repeatedtext + ((" %s "+ _("(ZAP)")) % (begin[1]))
 		else:
 			text = repeatedtext + ((" %s ... %s (%d " + _("mins") + ")") % (begin[1], FuzzyTime(timer.end)[1], (timer.end - timer.begin) / 60))
 		res.append((eListboxPythonMultiContent.TYPE_TEXT, 148, 26, width-150, 25, 1, RT_HALIGN_RIGHT|RT_VALIGN_BOTTOM, text))
@@ -94,13 +94,13 @@ class TimerList(HTMLComponent, GUIComponent, object):
 		self.iconZapped = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/timer_zap.png"))
 		self.iconDisabled = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/timer_off.png"))
 		self.iconFailed = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/timer_failed.png"))
-	
+
 	def getCurrent(self):
 		cur = self.l.getCurrentSelection()
 		return cur and cur[0]
-	
+
 	GUI_WIDGET = eListbox
-	
+
 	def postWidgetCreate(self, instance):
 		instance.setContent(self.l)
 

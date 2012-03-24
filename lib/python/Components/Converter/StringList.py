@@ -30,7 +30,7 @@ class StringList(Converter):
 
 	def getIndex(self, index):
 		return None
-	
+
 	index = property(getIndex, setIndex)
 
 	@cached

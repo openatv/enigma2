@@ -13,14 +13,14 @@ class ServiceScanSummary(Screen):
 		<widget name="scan_progress" position="6,50" zPosition="1" borderWidth="1" size="56,12" backgroundColor="dark" />
 		<widget name="Service" position="6,22" size="120,26" font="Regular;12" transparent="1" />
 	</screen>"""
-	
+
 	def __init__(self, session, parent, showStepSlider = True):
 		Screen.__init__(self, session, parent)
-		
+
 		self["Title"] = Label(parent.title or "ServiceScan")
 		self["Service"] = Label("No Service")
 		self["scan_progress"] = ProgressBar()
-		
+
 	def updateProgress(self, value):
 		self["scan_progress"].setValue(value)
 
@@ -28,22 +28,22 @@ class ServiceScanSummary(Screen):
 		self["Service"].setText(name)
 
 class ServiceScan(Screen):
-	
+
 	def ok(self):
 		print "ok"
 		if self["scan"].isDone():
 			self.close()
-	
+
 	def cancel(self):
 		self.close()
-		
+
 	def __init__(self, session, scanList):
 		Screen.__init__(self, session)
-		
+
 		self.scanList = scanList
-		
+
 		self.session.nav.stopService()
-		
+
 		self["scan_progress"] = ProgressBar()
 		self["scan_state"] = Label(_("scan state"))
 		self["network"] = Label()
@@ -52,8 +52,8 @@ class ServiceScan(Screen):
 		self["pass"] = Label("")
 		self["servicelist"] = FIFOList(len=10)
 		self["FrontendInfo"] = FrontendInfo()
-		
-		self["actions"] = ActionMap(["OkCancelActions"], 
+
+		self["actions"] = ActionMap(["OkCancelActions"],
 			{
 				"ok": self.ok,
 				"cancel": self.cancel

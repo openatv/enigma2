@@ -72,7 +72,7 @@ def setResumePoint(session):
 				if l:
 					l = l[1]
 				else:
-					l = None 
+					l = None
 				resumePointCache[key] = [lru, pos[1], l]
 				print '[ResumePionts] lenth',len(resumePointCache)
 				if len(resumePointCache) > 50:
@@ -265,7 +265,7 @@ class InfoBarShowHide:
 			"0D" : "crypto",
 			"4A" : "dreamcrypt",
 			"09" : "nds" }
-		
+
 		for x in SYSTEMS:
 			self[x] = EcmInfoLabel()
 		self["ecmInfo"] = Label()
@@ -377,8 +377,7 @@ class InfoBarShowHide:
 			self.hide()
 			self.openEventView()
 			self.EventViewIsShown = True
-			self.hideTimer.stop()
-			
+			self.startHideTimer()
 		else:
 			self.hide()
 			if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
@@ -473,7 +472,7 @@ class InfoBarShowHide:
 								caid = "0%s" % caid
 							caid = caid[:2]
 							caid = caid.upper()
-							
+
 							if self.systemCaids.has_key(caid):
 								system = self.systemCaids.get(caid)
 								self[system].crypted()
@@ -486,14 +485,14 @@ class InfoBarShowHide:
 			hops = ""
 			ecmTime = ""
 			provider = ""
-						
+
 			try:
 				f = open("/tmp/ecm.info", "r")
 				content = f.read()
 				f.close()
 			except:
 				content = "using: fta"
-			
+
 			contentInfo = content.split("\n")
 			for line in contentInfo:
 				if line.startswith("caid:"):
@@ -522,7 +521,7 @@ class InfoBarShowHide:
 					ecmTime = "%s %s" % (_("Ecm:"), self.parseEcmInfoLine(line))
 				elif line.startswith("provider:"):
 					provider = "%s %s" % (_("\nProvider:"), self.parseEcmInfoLine(line))
-			
+
 			if address != "":
 				ecmInfoString = "%s " % address
 			if using != "":
@@ -536,7 +535,7 @@ class InfoBarShowHide:
 #				print 'ecm time: ' + provider
 #				if provider != "\nProvider: Unknown":
 #					ecmInfoString = "%s%s " % (ecmInfoString, provider)
-			
+
 			self["ecmInfo"].setText(ecmInfoString)
 			self["ecmInfo"].visible = config.usage.show_cryptoinfo.value
 
@@ -872,7 +871,7 @@ class InfoBarChannelSelection:
 	def openInfoBarEPG(self):
 		self.EPGtype = "infobar"
 		self.session.open(EPGSelection, self.servicelist, self.EPGtype)
-		
+
 	def zapUp(self):
 		if self.pts_blockZap_timer.isActive():
 			return
@@ -1193,7 +1192,7 @@ class InfoBarEPG:
 
 	def openSingleServiceEPG(self):
 		self.session.open(EPGSelection, self.servicelist)
-		
+
 	def openInfoBarEPG(self):
 		self.EPGtype = "infobar"
 		self.session.open(EPGSelection, self.servicelist, self.EPGtype)
@@ -1284,7 +1283,7 @@ class InfoBarEPG:
 
 	def runPlugin(self, plugin):
 		plugin(session = self.session, servicelist = self.servicelist)
-		
+
 	def EventInfoPluginChosen(self, answer):
 		if answer is not None:
 			answer[1]()
@@ -1418,16 +1417,16 @@ class Seekbar(Screen):
 				if self.length and position:
 					if int(position[1]) > 0:
 						self.percent = float(position[1]) * 100.0 / float(self.length[1])
-				
+
 		self["cursor"] = MovingPixmap()
 		self["time"] = Label()
-		
+
 		self["actions"] = ActionMap(["WizardActions", "DirectionActions"], {"back": self.exit, "ok": self.keyOK, "left": self.keyLeft, "right": self.keyRight}, -1)
-		
+
 		self.cursorTimer = eTimer()
 		self.cursorTimer.callback.append(self.updateCursor)
 		self.cursorTimer.start(200, False)
-		
+
 	def updateCursor(self):
 		if self.length:
 			x = 145 + int(2.7 * self.percent)
@@ -1497,7 +1496,7 @@ class InfoBarSeek:
 						-config.seek.selfdefined_46.value, False, config.seek.selfdefined_46.value,
 						-config.seek.selfdefined_79.value, False, config.seek.selfdefined_79.value)[key-1]
 					self.screen.doSeekRelative(time * 90000)
-					return 1					
+					return 1
 				else:
 					return HelpableActionMap.action(self, contexts, action)
 
@@ -1616,7 +1615,6 @@ class InfoBarSeek:
 #			print "not seekable, return to play"
 			self["SeekActions"].setEnabled(False)
 			self.setSeekState(self.SEEK_STATE_PLAY)
-			
 		else:
 #			print "seekable"
 			self["SeekActions"].setEnabled(True)
@@ -1871,7 +1869,7 @@ class InfoBarSeek:
 				time = (len[1] - pos[1])*speedden/(90*speednom)
 				return time
 		return False
-		
+
 	def __evEOF(self):
 		if self.seekstate == self.SEEK_STATE_EOF:
 			return
@@ -2084,8 +2082,8 @@ class InfoBarTimeshift:
 
 		self["TimeshiftSeekPointerActions"] = ActionMap(["InfobarTimeshiftSeekPointerActions"],
 			{
-				"SeekPointerOK": self.ptsSeekPointerOK, 
-				"SeekPointerLeft": self.ptsSeekPointerLeft, 
+				"SeekPointerOK": self.ptsSeekPointerOK,
+				"SeekPointerLeft": self.ptsSeekPointerLeft,
 				"SeekPointerRight": self.ptsSeekPointerRight
 			},-2)
 		self["TimeshiftActions"].setEnabled(False)
@@ -2159,7 +2157,7 @@ class InfoBarTimeshift:
 
 		# Init Block-Zap Timer
 		self.pts_blockZap_timer = eTimer()
-		
+
 		# Record Event Tracker
 		self.session.nav.RecordTimer.on_state_change.append(self.ptsTimerEntryStateChange)
 

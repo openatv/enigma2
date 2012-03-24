@@ -137,7 +137,7 @@ class SettingsMenu(ConfigListScreen, Screen):
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
 		self.createSetup()
-		
+
 		self["actions"] = ActionMap(["SetupActions", 'ColorActions'],
 		{
 			"ok": self.keySave,
@@ -190,7 +190,7 @@ class SettingsMenu(ConfigListScreen, Screen):
 	def keySave(self):
 		self.saveAll()
 		self.close()
-	
+
 	def cancelConfirm(self, result):
 		if not result:
 			return
@@ -384,7 +384,7 @@ class ChannelContextMenu(Screen):
 			self.close()
 		else:
 			self.session.openWithCallback(self.close, MessageBox, _("The pin code you entered is wrong."), MessageBox.TYPE_ERROR)
-			
+
 	def showServiceInPiP(self):
 		if not self.pipAvailable:
 			return
@@ -531,7 +531,7 @@ class ChannelSelectionEPG:
 		ref=self.getCurrentSelection()
 		if ref:
 			self.savedService = ref
-			self.session.openWithCallback(self.SingleServiceEPGClosed, EPGSelection, ref, serviceChangeCB=self.changeServiceCB)
+			self.session.openWithCallback(self.SingleServiceEPGClosed, EPGSelection, ref, serviceChangeCB=self.changeServiceCB, EPGtype=self.servicelist.getRoot())
 
 	def SingleServiceEPGClosed(self, ret=False):
 		self.setCurrentSelection(self.savedService)
@@ -861,7 +861,7 @@ class ChannelSelectionEdit:
 
 	def doContext(self):
 		self.session.openWithCallback(self.exitContext, ChannelContextMenu, self)
-		
+
 	def exitContext(self, close = False):
 		l = self["list"]
 		l.setServiceFontsize()
@@ -1045,11 +1045,15 @@ class ChannelSelectionBase(Screen):
 
 	def buildTitleString(self):
 		titleStr = self.getTitle()
+		nameStr = ""
 		pos = titleStr.find(']')
 		if pos == -1:
-			pos = titleStr.find(')')
+			pos = titleStr.find(' (')
 		if pos != -1:
-			titleStr = titleStr[:pos+1]
+			if titleStr.find(' (TV)') != -1:
+				titleStr = titleStr[-5:]
+			elif titleStr.find(' (Radio)') != -1:
+				titleStr = titleStr[-8:]
 			Len = len(self.servicePath)
 			if Len > 0:
 				base_ref = self.servicePath[0]
@@ -1065,7 +1069,7 @@ class ChannelSelectionBase(Screen):
 # 					else:
 # 						titleStr += '/'
 					nameStr = self.getServiceName(end_ref)
-					titleStr += ' ' + nameStr
+					titleStr = nameStr + titleStr
 				self.setTitle(titleStr)
 
 	def moveUp(self):
@@ -1541,8 +1545,8 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 				del self.session.pip
 
 			# Move to playing service
-			lastservice = eServiceReference(self.lastservice.value)      
-			if lastservice.valid() and self.getCurrentSelection() != lastservice:                        
+			lastservice = eServiceReference(self.lastservice.value)
+			if lastservice.valid() and self.getCurrentSelection() != lastservice:
 				self.setCurrentSelection(lastservice)
 
 			title += _(" (TV)")

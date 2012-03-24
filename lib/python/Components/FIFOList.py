@@ -5,7 +5,7 @@ class FIFOList(MenuList):
 		self.len = len
 		self.list = list
 		MenuList.__init__(self, self.list)
-	
+
 	def addItem(self, item):
 		self.list.append(item)
 		self.list = self.list[-self.len:]

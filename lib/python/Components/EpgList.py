@@ -240,7 +240,7 @@ class EPGList(HTMLComponent, GUIComponent):
 
 	def isSelectable(self, service, service_name, events, picon):
 		return (events and len(events) and True) or False
-	
+
 	def setShowPicon(self, value):
 		self.showPicon = value
 
@@ -248,13 +248,13 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.showServiceTitle = value
 		self.recalcEntrySize()
 		self.selEntry(0) #Select entry again so that the clipping region gets updated if needed
-	
+
 	def setOverjump_Empty(self, overjump_empty):
 		if overjump_empty:
 			self.l.setSelectableFunc(self.isSelectable)
 		else:
 			self.l.setSelectableFunc(None)
-		
+
 	def setEpoch(self, epoch):
 		self.offs = 0
 		self.time_epoch = epoch
@@ -275,13 +275,13 @@ class EPGList(HTMLComponent, GUIComponent):
 				if self.list[x][0] == serviceref.toString():
 					return x
 		return None
-                
+
 	def moveToService(self, serviceref):
 		newIdx = self.getIndexFromService(serviceref)
 		if newIdx is None:
 			newIdx = 0
 		self.setCurrentIndex(newIdx)
-		
+
 	def setCurrentIndex(self, index):
 		if self.instance is not None:
 			self.instance.moveSelectionTo(index)
@@ -378,7 +378,7 @@ class EPGList(HTMLComponent, GUIComponent):
 				elif ((self.listHeight / config.epgselction.itemsperpage_pliepg.getValue()) / 2) >= 27:
 					tmp_itemHeight = ((self.listHeight / config.epgselction.itemsperpage_pliepg.getValue()) / 2)
 				else:
-					tmp_itemHeight = 27		
+					tmp_itemHeight = 27
 				if tmp_itemHeight < itemHeight:
 					itemHeight = tmp_itemHeight
 				else:
@@ -506,7 +506,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		r2 = self.datetime_rect
 		r3 = self.descr_rect
 		t = localtime(beginTime)
-		
+
 		res = [
 			None, # no private data needed
 			(eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, _(days[t[6]])),
@@ -645,7 +645,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			top = r2.y
 			width = r2.w
 			height = r2.h
-			
+
 			now = time()
 			for ev in events:  #(event_id, event_title, begin_time, duration)
 				stime = ev[2]
@@ -669,11 +669,11 @@ class EPGList(HTMLComponent, GUIComponent):
 					backColorSelected = self.backColorSelected
 				if rec:
 					if rectype == "record":
-						foreColor = self.foreColorRecord 
-						backColor = self.backColorRecord 
+						foreColor = self.foreColorRecord
+						backColor = self.backColorRecord
 						foreColorSelected = self.foreColorRecordSelected
 						backColorSelected = self.backColorRecordSelected
-					elif rectype == "justplay":						
+					elif rectype == "justplay":
 						foreColor = self.foreColorZap
 						backColor = self.backColorZap
 						foreColorSelected = self.foreColorZapSelected
@@ -880,7 +880,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			return self.clock_post_pixmap
 		else:
 			return self.clock_prepost_pixmap
-		
+
 	def getPixmapForEntry(self, service, eventId, beginTime, duration):
 		rec = beginTime and (self.timer.isInTimer(eventId, beginTime, duration, service))
 		if rec:

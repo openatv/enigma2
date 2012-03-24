@@ -14,7 +14,7 @@ class ChoiceBox(Screen):
 		self.skinName = skin_name + ["ChoiceBox"]
 		if title:
 			title = _(title)
-		if len(title) < 50:
+		if len(title) < 55:
 			Screen.setTitle(self, title)
 			self["text"] = Label("")
 		else:
@@ -25,7 +25,7 @@ class ChoiceBox(Screen):
 			self.__keys = [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "red", "green", "yellow", "blue" ] + (len(list) - 10) * [""]
 		else:
 			self.__keys = keys + (len(list) - len(keys)) * [""]
-			
+
 		self.keymap = {}
 		pos = 0
 		for x in list:
@@ -39,8 +39,8 @@ class ChoiceBox(Screen):
 		self["summary_list"] = StaticText()
 		self["summary_selection"] = StaticText()
 		self.updateSummary(selection)
-				
-		self["actions"] = NumberActionMap(["WizardActions", "InputActions", "ColorActions", "DirectionActions"], 
+
+		self["actions"] = NumberActionMap(["WizardActions", "InputActions", "ColorActions", "DirectionActions"],
 		{
 			"ok": self.go,
 			"back": self.cancel,
@@ -68,12 +68,12 @@ class ChoiceBox(Screen):
 		orgwidth = self.instance.size().width()
 		orgpos = self.instance.position()
 		textsize = self["text"].getSize()
-		textsize = (textsize[0] + 60, textsize[1])
+		textsize = (textsize[0], textsize[1])
 		count = len(self.list)
 		if count > 10:
 			count = 10
 		offset = 25 * count
-		wsizex = textsize[0] + 60
+		wsizex = textsize[0]
 		wsizey = textsize[1] + offset
 		if (520 > wsizex):
 			wsizex = 520
@@ -88,14 +88,14 @@ class ChoiceBox(Screen):
 		self["list"].instance.resize(enigma.eSize(*listsize))
 		# center window
 		newwidth = wsize[0]
-		self.instance.move(enigma.ePoint((desktop_w-wsizex)/2, (desktop_h-wsizey)/2))		
+		self.instance.move(enigma.ePoint((desktop_w-wsizex)/2, (desktop_h-wsizey)/2))
 
 	def keyLeft(self):
 		pass
-	
+
 	def keyRight(self):
 		pass
-	
+
 	def up(self):
 		if len(self["list"].list) > 0:
 			while 1:

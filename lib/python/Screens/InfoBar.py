@@ -40,7 +40,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 	InfoBarSummarySupport, InfoBarTimeshiftState, InfoBarTeletextPlugin, InfoBarExtensions,
 	InfoBarPiP, InfoBarPlugins, InfoBarSubtitleSupport, InfoBarServiceErrorPopupSupport, InfoBarJobman,
 	Screen):
-	
+
 	ALLOW_SUSPEND = True
 	instance = None
 
@@ -64,7 +64,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			}, prio=2)
 
 		self.allowPiP = True
-		
+
 		for x in HelpableScreen, \
 				InfoBarBase, InfoBarShowHide, \
 				InfoBarNumberZap, InfoBarChannelSelection, InfoBarMenu, InfoBarEPG, InfoBarRdsDecoder, \
@@ -228,13 +228,12 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 
 	ENABLE_RESUME_SUPPORT = True
 	ALLOW_SUSPEND = True
-		
+
 	def __init__(self, session, service, slist = None, lastservice = None):
 		Screen.__init__(self, session)
 		InfoBarAspectSelection.__init__(self)
 		InfoBarAudioSelection.__init__(self)
-		InfoBarSecondInfobar.__init__(self)
-		
+		InfoBarSecondInfobar.__init__(self)	
 		self["state"] = Label(text="")
 		self["speed"] = Label(text="")
 		self["statusicon"] = MultiPixmap()
@@ -245,7 +244,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 			})
 
 		self.allowPiP = True
-		
+
 		for x in HelpableScreen, InfoBarShowHide, InfoBarMenu, \
 				InfoBarBase, InfoBarSeek, InfoBarShowMovies, \
 				InfoBarAudioSelection, InfoBarNotifications, InfoBarSimpleEventView, \

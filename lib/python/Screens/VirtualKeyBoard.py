@@ -81,12 +81,12 @@ class VirtualKeyBoard(Screen):
 		self.selectedKey = 0
 		self.smsChar = None
 		self.sms = NumericalTextInput(self.smsOK)
-		
+
 		self["country"] = StaticText("")
 		self["header"] = Label(title)
 		self["text"] = Label(self.text)
 		self["list"] = VirtualKeyBoardList([])
-		
+
 		self["actions"] = NumberActionMap(["OkCancelActions", "WizardActions", "ColorActions", "KeyboardInputActions", "InputBoxActions", "InputAsciiActions"],
 			{
 				"gotAsciiCode": self.keyGotAscii,
@@ -116,7 +116,7 @@ class VirtualKeyBoard(Screen):
 		self.setLang()
 		self.onExecBegin.append(self.setKeyboardModeAscii)
 		self.onLayoutFinish.append(self.buildVirtualKeyBoard)
-	
+
 	def switchLang(self):
 		self.lang = self.nextLang
 		self.setLang()
@@ -237,13 +237,13 @@ class VirtualKeyBoard(Screen):
 				[u">", u"Z", u"X", u"C", u"V", u"B", u"N", u"M", u";", u":", u"_", u"CLEAR"],
 				[u"SHIFT", u"SPACE", u"OK"]]
 			self.lang = 'en_EN'
-			self.nextLang = 'de_DE'		
+			self.nextLang = 'de_DE'
 		self["country"].setText(self.lang)
 		self.max_key=47+len(self.keys_list[4])
 
 	def buildVirtualKeyBoard(self, selectedKey=0):
 		list = []
-		
+
 		if self.shiftMode:
 			self.k_list = self.shiftkeys_list
 			for keys in self.k_list:
@@ -260,9 +260,9 @@ class VirtualKeyBoard(Screen):
 				else:
 					list.append(VirtualKeyBoardEntryComponent(keys, -1))
 				selectedKey -= 12
-		
+
 		self["list"].setList(list)
-	
+
 	def backClicked(self):
 		self.smsChar = None
 		self.text = self.text[:-1]
@@ -279,7 +279,7 @@ class VirtualKeyBoard(Screen):
 			list = self.shiftkeys_list
 		else:
 			list = self.keys_list
-		
+
 		selectedKey = self.selectedKey
 
 		text = None
@@ -299,27 +299,27 @@ class VirtualKeyBoard(Screen):
 
 		if text == "EXIT":
 			self.close(None)
-		
+
 		elif text == "BACKSPACE":
 			ss=unicode(self["text"].getText(),"utf-8")
 			ss=ss[:-1]
 			self.text = str(ss.encode("utf-8"))
 			self["text"].setText(self.text)
-		
+
 		elif text == "CLEAR":
 			self.text = ""
 			self["text"].setText(self.text.encode("utf-8"))
-		
+
 		elif text == "SHIFT":
 			self.shiftClicked()
-		
+
 		elif text == "SPACE":
 			self.text += " "
 			self["text"].setText(self.text.encode("utf-8"))
-		
+
 		elif text == "OK":
 			self.close(self.text.encode("utf-8"))
-		
+
 		else:
 			self.text += text
 			self["text"].setText(self.text.encode("utf-8"))
@@ -343,7 +343,7 @@ class VirtualKeyBoard(Screen):
 			self.selectedKey = 47
 		elif self.selectedKey == 47:
 			self.selectedKey = self.max_key
-		
+
 		self.showActiveKey()
 
 	def right(self):
@@ -367,7 +367,7 @@ class VirtualKeyBoard(Screen):
 		if (self.selectedKey < 0) and (self.selectedKey > (self.max_key-60)):
 			self.selectedKey += 48
 		elif self.selectedKey < 0:
-			self.selectedKey += 60	
+			self.selectedKey += 60
 		self.showActiveKey()
 
 	def down(self):

@@ -3,7 +3,7 @@ from Screens.Console import Console
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
-from Screens.Standby import TryQuitMainloop 
+from Screens.Standby import TryQuitMainloop
 from Screens.Ipkg import Ipkg
 from Components.ActionMap import ActionMap, NumberActionMap
 from Components.Input import Input
@@ -60,7 +60,7 @@ config.plugins.softwaremanager.overwritePiconsFiles = ConfigYesNo(default=True)
 config.plugins.softwaremanager.overwriteConfigFiles = ConfigSelection(
 				[
 				 ("Y", _("Yes, always")),
-				 ("N", _("No, never")),				 
+				 ("N", _("No, never")),
 				 ("ask", _("Always ask"))
 				], "Y")
 
@@ -129,7 +129,7 @@ class UpdatePluginMenu(Screen):
 			</widget>
 			<widget source="status" render="Label" position="5,360" zPosition="10" size="600,50" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
 		</screen>"""
-		
+
 	def __init__(self, session, args = 0):
 		Screen.__init__(self, session)
 		self.skin_path = plugin_path
@@ -250,7 +250,7 @@ class UpdatePluginMenu(Screen):
 
 	def handleMenu(self):
 		self.session.open(SoftwareManagerSetup)
-		
+
 	def handleInfo(self):
 		current = self["menu"].getCurrent()
 		if current:
@@ -315,7 +315,7 @@ class UpdatePluginMenu(Screen):
 		config.plugins.configurationbackup.backupdirs.save()
 		config.plugins.configurationbackup.save()
 		config.save()
-		
+
 	def backuplocation_choosen(self, option):
 		oldpath = config.plugins.configurationbackup.backuplocation.getValue()
 		if option is not None:
@@ -534,7 +534,7 @@ class SoftwareManagerInfo(Screen):
 
 		self.list = []
 		self["list"] = List(self.list)
-		
+
 		self["key_red"] = StaticText(_("Close"))
 		self["key_green"] = StaticText()
 		self["key_yellow"] = StaticText()
@@ -555,7 +555,7 @@ class SoftwareManagerInfo(Screen):
 			for entry in backupfiles:
 				self.list.append((entry,))
 			self['list'].setList(self.list)
-			
+
 
 class PluginManager(Screen, DreamInfoHandler):
 
@@ -633,7 +633,7 @@ class PluginManager(Screen, DreamInfoHandler):
 		self.currentSelectedPackage = None
 		self.saved_currentSelectedPackage = None
 		self.restartRequired = False
-		
+
 		self.onShown.append(self.setWindowTitle)
 		self.onLayoutFinish.append(self.getUpdateInfos)
 
@@ -709,7 +709,7 @@ class PluginManager(Screen, DreamInfoHandler):
 					iSoftwareTools.lastDownloadDate = time()
 					iSoftwareTools.list_updating = True
 					self.setState('update')
-					iSoftwareTools.getUpdates(self.getUpdateInfosCB)					
+					iSoftwareTools.getUpdates(self.getUpdateInfosCB)
 
 	def rebuildList(self, retval = None):
 		if self.currentSelectedTag is None:
@@ -808,7 +808,7 @@ class PluginManager(Screen, DreamInfoHandler):
 				iSoftwareTools.list_updating = True
 				self.setState('update')
 				iSoftwareTools.getUpdates(self.getUpdateInfosCB)
-				
+
 	def handleSelected(self):
 		current = self["list"].getCurrent()
 		if current:
@@ -1427,12 +1427,12 @@ class UpdatePlugin(Screen):
 
 		self.updating = False
 
-		self["actions"] = ActionMap(["WizardActions"], 
+		self["actions"] = ActionMap(["WizardActions"],
 		{
 			"ok": self.exit,
 			"back": self.exit
 		}, -1)
-		
+
 		self.updating = True
 		self.activityTimer.start(100, False)
 		self.ipkg.startCmd(IpkgComponent.CMD_UPDATE)
@@ -1526,7 +1526,7 @@ class UpdatePlugin(Screen):
 		elif event == IpkgComponent.EVENT_CONFIGURING:
 			self.package.setText(param)
 			self.status.setText(_("Configuring"))
-			
+
 		elif event == IpkgComponent.EVENT_MODIFIED:
 			if config.plugins.softwaremanager.overwriteConfigFiles.value in ("N", "Y"):
 				self.ipkg.write(True and config.plugins.softwaremanager.overwriteConfigFiles.value)
@@ -1620,7 +1620,7 @@ class IPKGMenu(Screen):
 	def __init__(self, session, plugin_path):
 		Screen.__init__(self, session)
 		self.skin_path = plugin_path
-		
+
 		self["key_red"] = StaticText(_("Close"))
 		self["key_green"] = StaticText(_("Edit"))
 
@@ -1628,7 +1628,7 @@ class IPKGMenu(Screen):
 		self.val = []
 		self.entry = False
 		self.exe = False
-		
+
 		self.path = ""
 
 		self["actions"] = NumberActionMap(["SetupActions"],
@@ -1715,7 +1715,7 @@ class IPKGSource(Screen):
 		else:
 			self["text"] = Input(text, maxSize=False, visible_width = 55, type=Input.TEXT)
 
-		self["actions"] = NumberActionMap(["WizardActions", "InputActions", "TextEntryActions", "KeyboardInputActions","ShortcutActions"], 
+		self["actions"] = NumberActionMap(["WizardActions", "InputActions", "TextEntryActions", "KeyboardInputActions","ShortcutActions"],
 		{
 			"ok": self.go,
 			"back": self.close,
@@ -1759,22 +1759,22 @@ class IPKGSource(Screen):
 
 	def keyLeft(self):
 		self["text"].left()
-	
+
 	def keyRight(self):
 		self["text"].right()
-	
+
 	def keyHome(self):
 		self["text"].home()
-	
+
 	def keyEnd(self):
 		self["text"].end()
-	
+
 	def keyDeleteForward(self):
 		self["text"].delete()
-	
+
 	def keyDeleteBackward(self):
 		self["text"].deleteBackward()
-	
+
 	def keyNumberGlobal(self, number):
 		self["text"].number(number)
 
@@ -1800,7 +1800,7 @@ class PacketManager(Screen, NumericalTextInput):
 				</convert>
 			</widget>
 		</screen>"""
-		
+
 	def __init__(self, session, plugin_path, args = None):
 		Screen.__init__(self, session)
 		NumericalTextInput.__init__(self)
@@ -1827,7 +1827,7 @@ class PacketManager(Screen, NumericalTextInput):
 			"9": self.keyNumberGlobal,
 			"0": self.keyNumberGlobal
 		}, -1)
-		
+
 		self.list = []
 		self.statuslist = []
 		self["list"] = List(self.list)
@@ -1852,7 +1852,7 @@ class PacketManager(Screen, NumericalTextInput):
 		self.onLayoutFinish.append(self.rebuildList)
 
 		rcinput = eRCInput.getInstance()
-		rcinput.setKeyboardMode(rcinput.kmAscii)		
+		rcinput.setKeyboardMode(rcinput.kmAscii)
 
 	def keyNumberGlobal(self, val):
 		key = self.getKey(val)
@@ -1860,12 +1860,12 @@ class PacketManager(Screen, NumericalTextInput):
 			keyvalue = key.encode("utf-8")
 			if len(keyvalue) == 1:
 				self.setNextIdx(keyvalue[0])
-		
+
 	def keyGotAscii(self):
 		keyvalue = unichr(getPrevAsciiCode()).encode("utf-8")
 		if len(keyvalue) == 1:
 			self.setNextIdx(keyvalue[0])
-		
+
 	def setNextIdx(self,char):
 		if char in ("0", "1", "a"):
 			self["list"].setIndex(0)
@@ -1894,7 +1894,7 @@ class PacketManager(Screen, NumericalTextInput):
 			remove(self.cache_file)
 			self.list_updating = True
 			self.rebuildList()
-			
+
 	def setWindowTitle(self):
 		self.setTitle(_("Packet manager"))
 
@@ -1905,11 +1905,11 @@ class PacketManager(Screen, NumericalTextInput):
 			if status == 'update':
 				statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/upgrade.png"))
 				self.statuslist.append(( _("Package list update"), '', _("Trying to download a new packetlist. Please wait..." ),'',statuspng, divpng ))
-				self['list'].setList(self.statuslist)	
+				self['list'].setList(self.statuslist)
 			elif status == 'error':
 				statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/remove.png"))
 				self.statuslist.append(( _("Error"), '', _("There was an error downloading the packetlist. Please try again." ),'',statuspng, divpng ))
-				self['list'].setList(self.statuslist)				
+				self['list'].setList(self.statuslist)
 
 	def rebuildList(self):
 		self.setStatus('update')
@@ -1971,7 +1971,7 @@ class PacketManager(Screen, NumericalTextInput):
 
 	def runUpgradeFinished(self):
 		self.session.openWithCallback(self.UpgradeReboot, MessageBox, _("Upgrade finished.") +" "+_("Do you want to reboot your STB_BOX?"), MessageBox.TYPE_YESNO)
-		
+
 	def UpgradeReboot(self, result):
 		if result is None:
 			return
@@ -2006,7 +2006,7 @@ class PacketManager(Screen, NumericalTextInput):
 			self.packetlist = []
 			last_name = ""
 			for x in result.splitlines():
-				tokens = x.split(' - ') 
+				tokens = x.split(' - ')
 				name = tokens[0].strip()
 				if not any(name.endswith(x) for x in self.unwanted_extensions):
 					l = len(tokens)
@@ -2014,7 +2014,7 @@ class PacketManager(Screen, NumericalTextInput):
 					descr = l > 2 and tokens[2].strip() or ""
 					if name == last_name:
 						continue
-					last_name = name 
+					last_name = name
 					self.packetlist.append([name, version, descr])
 
 		if not self.Console:
@@ -2048,17 +2048,17 @@ class PacketManager(Screen, NumericalTextInput):
 					version = l > 2 and tokens[2].strip() or ""
 					self.upgradeable_packages[name] = version
 		self.buildPacketList()
-	
+
 	def buildEntryComponent(self, name, version, description, state):
 		divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/div-h.png"))
 		if not description:
 			description = "No description available."
 		if state == 'installed':
 			installedpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/installed.png"))
-			return((name, version, _(description), state, installedpng, divpng))	
+			return((name, version, _(description), state, installedpng, divpng))
 		elif state == 'upgradeable':
 			upgradeablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/upgradeable.png"))
-			return((name, version, _(description), state, upgradeablepng, divpng))	
+			return((name, version, _(description), state, upgradeablepng, divpng))
 		else:
 			installablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/installable.png"))
 			return((name, version, _(description), state, installablepng, divpng))
@@ -2088,7 +2088,7 @@ class PacketManager(Screen, NumericalTextInput):
 						status = "installed"
 				else:
 					status = "installable"
-				self.list.append(self.buildEntryComponent(x[0], x[1], x[2], status))	
+				self.list.append(self.buildEntryComponent(x[0], x[1], x[2], status))
 				self.cachelist.append([x[0], x[1], x[2], status])
 			write_cache(self.cache_file, self.cachelist)
 			self['list'].setList(self.list)
@@ -2112,7 +2112,7 @@ class IpkgInstaller(Screen):
 			<ePixmap pixmap="skin_default/div-h.png" position="0,410" zPosition="10" size="560,2" transparent="1" alphatest="on" />
 			<widget source="introduction" render="Label" position="5,420" zPosition="10" size="550,30" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
 		</screen>"""
-	
+
 	def __init__(self, session, list):
 		Screen.__init__(self, session)
 
@@ -2126,8 +2126,8 @@ class IpkgInstaller(Screen):
 		self["key_yellow"] = StaticText()
 		self["key_blue"] = StaticText(_("Invert"))
 		self["introduction"] = StaticText(_("Press OK to toggle the selection."))
-		
-		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"], 
+
+		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
 		{
 			"ok": self.list.toggleSelection,
 			"cancel": self.close,
@@ -2151,13 +2151,13 @@ def filescan_open(list, session, **kwargs):
 def filescan(**kwargs):
 	from Components.Scanner import Scanner, ScanPath
 	return \
-		Scanner(mimetypes = ["application/x-debian-package"], 
-			paths_to_scan = 
+		Scanner(mimetypes = ["application/x-debian-package"],
+			paths_to_scan =
 				[
-					ScanPath(path = "ipk", with_subdirs = True), 
+					ScanPath(path = "ipk", with_subdirs = True),
 					ScanPath(path = "", with_subdirs = False), 
 				], 
-			name = "Ipkg", 
+			name = "Ipkg",
 			description = _("Install extensions."),
 			openfnc = filescan_open, )
 
@@ -2324,7 +2324,7 @@ def UpgradeMain(session, **kwargs):
 	session.open(UpdatePluginMenu)
 
 def startSetup(menuid):
-	if menuid != "setup": 
+	if menuid != "setup":
 		return [ ]
 	return [(_("Software management"), UpgradeMain, "software_manager", 50)]
 

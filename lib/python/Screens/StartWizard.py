@@ -22,11 +22,11 @@ class StartWizard(DefaultSatLists, Rc):
 		DefaultWizard.__init__(self, session, silent, showSteps, neededTag = "services")
 		Rc.__init__(self)
 		self["wizard"] = Pixmap()
-				
+
 	def markDone(self):
 		config.misc.firstrun.value = 0
 		config.misc.firstrun.save()
 		configfile.save()
-		
+
 wizardManager.registerWizard(LanguageWizard, config.misc.languageselected.value, priority = 5)
 wizardManager.registerWizard(StartWizard, config.misc.firstrun.value, priority = 20)

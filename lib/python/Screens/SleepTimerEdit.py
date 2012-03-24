@@ -16,7 +16,7 @@ config.SleepTimer.defaulttime = ConfigInteger(default = 30)
 class SleepTimerEdit(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		
+
 		self["red"] = Pixmap()
 		self["green"] = Pixmap()
 		self["yellow"] = Pixmap()
@@ -31,20 +31,20 @@ class SleepTimerEdit(Screen):
 			self["current_status"].setText(_("Timer status:") + " " + _("Enabled"))
 		else:
 			self["current_status"].setText(_("Timer status:") + " " + _("Disabled"))
-		
+
 		if self.is_active:
 			self.time = self.session.nav.SleepTimer.getCurrentSleepTime()
 		else:
 			self.time = config.SleepTimer.defaulttime.value
 		self["input"] = Input(text = str(self.time), maxSize = False, type = Input.NUMBER)
-		
+
 		self.status = True
 		self.updateColors()
-		
+
 		self["pretext"] = Label(_("Shutdown STB_BOX after"))
 		self["aftertext"] = Label(_("minutes"))
-		
-		self["actions"] = NumberActionMap(["SleepTimerEditorActions", "TextEntryActions", "KeyboardInputActions"], 
+
+		self["actions"] = NumberActionMap(["SleepTimerEditorActions", "TextEntryActions", "KeyboardInputActions"],
 		{
 			"exit": self.cancel,
 			"select": self.select,
@@ -77,7 +77,7 @@ class SleepTimerEdit(Screen):
 			self["red_text"].setText(_("Action:") + " " + _("Enable timer"))
 		else:
 			self["red_text"].setText(_("Action:") + " " + _("Disable timer"))
-		
+
 		if config.SleepTimer.action.value == "shutdown":
 			if SystemInfo["DeepstandbySupport"]:
 				shutdownString = _("Deep Standby")
@@ -86,7 +86,7 @@ class SleepTimerEdit(Screen):
 			self["green_text"].setText(_("Sleep timer action:") + " " + shutdownString)
 		elif config.SleepTimer.action.value == "standby":
 			self["green_text"].setText(_("Sleep timer action:") + " " + _("Standby"))
-		
+
 		if config.SleepTimer.ask.value:
 			self["yellow_text"].setText(_("Ask before shutdown:") + " " + _("yes"))
 		else:
@@ -148,7 +148,7 @@ class SleepTimerEdit(Screen):
 	def toggleAsk(self):
 		config.SleepTimer.ask.value = not config.SleepTimer.ask.value
 		self.updateColors()
-		
+
 	def useServiceTime(self):
 		remaining = None
 		ref = self.session.nav.getCurrentlyPlayingServiceReference()

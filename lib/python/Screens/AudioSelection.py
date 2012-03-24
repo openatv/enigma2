@@ -25,7 +25,7 @@ class AudioSelection(Screen, ConfigListScreen):
 		self["key_green"] = Boolean(False)
 		self["key_yellow"] = Boolean(True)
 		self["key_blue"] = Boolean(False)
-		
+
 		ConfigListScreen.__init__(self, [])
 		self.infobar = infobar or self.session.infobar
 
@@ -71,20 +71,12 @@ class AudioSelection(Screen, ConfigListScreen):
 		streams = []
 		conflist = []
 		selectedidx = 0
-		
+
 		service = self.session.nav.getCurrentService()
 		self.audioTracks = audio = service and service.audioTracks()
 		n = audio and audio.getNumberOfTracks() or 0
-		
+
 		subtitlelist = self.getSubtitleList()
-		if self.subtitlesEnabled():
-			selectedSubtitle = self.infobar.selected_subtitle
-			if selectedSubtitle == (0,0,0,0):
-				selectedSubtitle = None
-			elif selectedSubtitle:
-				subtitlelist.append(selectedSubtitle)
-		else:
-			selectedSubtitle = None
 
 		if self.settings.menupage.getValue() == PAGE_AUDIO:
 			self.setTitle(_("Select audio track"))
@@ -141,14 +133,15 @@ class AudioSelection(Screen, ConfigListScreen):
 				self["key_green"].setBoolean(False)
 
 			if len(subtitlelist):
+				self["key_yellow"].setBoolean(True)
 				conflist.append(getConfigListEntry(_("To subtitle selection"), self.settings.menupage))
 			else:
 				self["key_yellow"].setBoolean(False)
 				conflist.append(('',))
-	
-			
+
+
 		elif self.settings.menupage.getValue() == PAGE_SUBTITLES:
-	
+
 			if not len(subtitlelist):
 				self.close(0)
 
@@ -159,20 +152,17 @@ class AudioSelection(Screen, ConfigListScreen):
 			self["key_green"].setBoolean(False)
 
 			idx = 0
-				
+
 			for x in subtitlelist:
 				number = str(x[1])
 				description = "?"
 				language = ""
 				selected = ""
 
-				if selectedSubtitle and x[:4] == selectedSubtitle[:4]:
+				if self.selectedSubtitle and x[:4] == self.selectedSubtitle[:4]:
 					selected = "X"
 					selectedidx = idx
-					if x != subtitlelist[-1]:
-						subtitlelist.pop()
-					selectedSubtitle = None
-					
+
 				try:
 					if x[4] != "und":
 						if LanguageCodes.has_key(x[4]):
@@ -206,7 +196,7 @@ class AudioSelection(Screen, ConfigListScreen):
 
 		from Components.PluginComponent import plugins
 		from Plugins.Plugin import PluginDescriptor
-		
+
 		if hasattr(self.infobar, "runPlugin"):
 			class PluginCaller:
 				def __init__(self, fnc, *args):
@@ -234,17 +224,22 @@ class AudioSelection(Screen, ConfigListScreen):
 		self.fillList()
 
 	def getSubtitleList(self):
-		try:
-			s = self.infobar and self.infobar.getCurrentServiceSubtitle()
-			l = s and s.getSubtitleList() or [ ]
-		except AttributeError:
-			l = []
-		return l
+		service = self.session.nav.getCurrentService()
+		subtitle = service and service.subtitle()
+		subtitlelist = subtitle and subtitle.getSubtitleList()
+		self.selectedSubtitle = None
+		if self.subtitlesEnabled():
+			self.selectedSubtitle = self.infobar.selected_subtitle
+			if self.selectedSubtitle == (0,0,0,0):
+				self.selectedSubtitle = None
+			elif self.selectedSubtitle and not self.selectedSubtitle[:4] in (x[:4] for x in subtitlelist):
+				subtitlelist.append(self.selectedSubtitle)
+		return subtitlelist
 
 	def subtitlesEnabled(self):
 		try:
 			return self.infobar.subtitles_enabled
-		except: 
+		except:
 			return False
 
 	def enableSubtitle(self, subtitles):

@@ -154,13 +154,13 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 				self.player.show()
 				return NumberActionMap.action(self, contexts, action)
 
-		self["OkCancelActions"] = HelpableActionMap(self, "OkCancelActions", 
+		self["OkCancelActions"] = HelpableActionMap(self, "OkCancelActions",
 			{
 				"ok": (self.ok, _("add file to playlist")),
 				"cancel": (self.exit, _("exit mediaplayer")),
 			}, -2)
 
-		self["MediaPlayerActions"] = HelpableActionMap(self, "MediaPlayerActions", 
+		self["MediaPlayerActions"] = HelpableActionMap(self, "MediaPlayerActions",
 			{
 				"play": (self.xplayEntry, _("play entry")),
 				"pause": (self.pauseEntry, _("pause")),
@@ -178,12 +178,12 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 				"subtitles": (self.subtitleSelection, _("Subtitle selection")),
 			}, -2)
 
-		self["InfobarEPGActions"] = HelpableActionMap(self, "InfobarEPGActions", 
+		self["InfobarEPGActions"] = HelpableActionMap(self, "InfobarEPGActions",
 			{
 				"showEventInfo": (self.showEventInformation, _("show event details")),
 			})
 
-		self["actions"] = MoviePlayerActionMap(self, ["DirectionActions"], 
+		self["actions"] = MoviePlayerActionMap(self, ["DirectionActions"],
 		{
 			"right": self.rightDown,
 			"rightRepeated": self.doNothing,
@@ -413,7 +413,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 			text = ref.getPath()
 			return text.split('/')[-1]
 
-	# FIXME: maybe this code can be optimized 
+	# FIXME: maybe this code can be optimized
 	def updateCurrentInfo(self):
 		text = ""
 		if self.currList == "filelist":
@@ -721,7 +721,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 		if result == True:
 			self.session.openWithCallback(self.deleteConfirmed_offline, MessageBox, _("Do you really want to delete %s?") % (name))
 		else:
-			self.session.openWithCallback(self.close, MessageBox, _("You cannot delete this!"), MessageBox.TYPE_ERROR)      
+			self.session.openWithCallback(self.close, MessageBox, _("You cannot delete this!"), MessageBox.TYPE_ERROR)
 
 	def deleteConfirmed_offline(self, confirmed):
 		if confirmed:
@@ -813,7 +813,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 			if serviceRefList[count] == serviceref:
 				self.changeEntry(count)
 				break
-			
+
 	def xplayEntry(self):
 		if self.currList == "playlist":
 			self.playEntry()
@@ -831,7 +831,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 					self.copyDirectory(os.path.dirname(sel[0].getPath()) + "/", recursive = False)
 			if len(self.playlist) > 0:
 				self.changeEntry(0)
-	
+
 	def playEntry(self, audio_extensions = frozenset((".mp2", ".mp3", ".wav", ".ogg", ".flac", ".m4a"))):
 		if len(self.playlist.getServiceRefList()):
 			needsInfoUpdate = False
@@ -847,7 +847,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 				text = self.getIdentifier(currref)
 				ext = os.path.splitext(text)[1].lower()
 				text = ">"+text
-				# FIXME: the information if the service contains video (and we should hide our window) should com from the service instead 
+				# FIXME: the information if the service contains video (and we should hide our window) should com from the service instead
 				if ext not in audio_extensions and not self.isAudioCD:
 					self.hide()
 				else:
@@ -913,11 +913,11 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 
 	def unPauseService(self):
 		self.setSeekState(self.SEEK_STATE_PLAY)
-		
+
 	def subtitleSelection(self):
 		from Screens.AudioSelection import SubtitleSelection
 		self.session.open(SubtitleSelection, self)
-	
+
 	def hotplugCB(self, dev, media_state):
 		if dev == harddiskmanager.getCD():
 			if media_state == "1":

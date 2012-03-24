@@ -14,7 +14,7 @@ class FrontpanelLed(Element):
 			val = self.source.boolean and 0 or 1
 		else:
 			val = self.source.value
-	
+
 		(speed, pattern, pattern_4bit) = self.patterns[val]
 
 		try:

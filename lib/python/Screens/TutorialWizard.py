@@ -13,7 +13,7 @@ class TutorialWizard(Wizard):
 		self["arrowdown"] = MovingPixmap()
 		self["arrowup"] = MovingPixmap()
 		self["arrowup2"] = MovingPixmap()
-		
+
 	def markDone(self):
 		config.misc.firstruntutorial.value = False
 		config.misc.firstruntutorial.save()

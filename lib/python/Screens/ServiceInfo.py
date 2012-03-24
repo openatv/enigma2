@@ -65,7 +65,7 @@ class ServiceInfo(Screen):
 	def __init__(self, session, serviceref=None):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Service Information"))
-		
+
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
 		{
 			"ok": self.close,
@@ -180,17 +180,17 @@ class ServiceInfo(Screen):
 					   (_("ONID"), self.getServiceInfoValue(iServiceInformation.sONID), TYPE_VALUE_HEX_DEC, 4),
 					   (_("SID"), self.getServiceInfoValue(iServiceInformation.sSID), TYPE_VALUE_HEX_DEC, 4))
 			self.fillList(Labels)
-	
+
 	def showFrontendData(self, real):
 		if self.type == TYPE_SERVICE_INFO:
 			frontendData = self.feinfo and self.feinfo.getAll(real)
 			Labels = self.getFEData(frontendData)
 			self.fillList(Labels)
-	
+
 	def transponder(self):
 		if self.type == TYPE_SERVICE_INFO:
 			self.showFrontendData(True)
-		
+
 	def tuner(self):
 		if self.type == TYPE_SERVICE_INFO:
 			self.showFrontendData(False)
@@ -250,7 +250,7 @@ class ServiceInfo(Screen):
 	def getServiceInfoValue(self, what):
 		if self.info is None:
 			return ""
-		
+
 		v = self.info.getInfo(what)
 		if v == -2:
 			v = self.info.getInfoString(what)

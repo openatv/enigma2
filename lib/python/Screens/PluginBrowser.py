@@ -53,7 +53,7 @@ class PluginBrowser(Screen):
 
 		self["red"] = Label(_("Remove Plugins"))
 		self["green"] = Label(_("Download Plugins"))
-		
+
 		self.list = []
 		self["list"] = PluginList(self.list)
  		if config.usage.sort_pluginlist.value:
@@ -83,7 +83,7 @@ class PluginBrowser(Screen):
 
 	def createSummary(self):
 		return PluginBrowserSummary
-		
+
 	def selectionChanged(self):
 		item = self["list"].getCurrent()
 		if item:
@@ -95,7 +95,7 @@ class PluginBrowser(Screen):
 			desc = ""
 		for cb in self.onChangedEntry:
 			cb(name, desc)
-	
+
 	def checkWarnings(self):
 		if len(plugins.warnings):
 			text = _("Some plugins are not available:\n")
@@ -110,7 +110,7 @@ class PluginBrowser(Screen):
 	def run(self):
 		plugin = self["list"].l.getCurrentSelection()[0]
 		plugin(session=self.session)
-		
+
 	def updateList(self):
 		self.pluginlist = plugins.getPlugins(PluginDescriptor.WHERE_PLUGINMENU)
 		self.list = [PluginEntryComponent(plugin) for plugin in self.pluginlist]
@@ -119,6 +119,7 @@ class PluginBrowser(Screen):
 	def delete(self):
 		self.session.openWithCallback(self.PluginDownloadBrowserClosed, PluginDownloadBrowser, PluginDownloadBrowser.REMOVE)
 	
+
 	def download(self):
 		self.session.openWithCallback(self.PluginDownloadBrowserClosed, PluginDownloadBrowser, PluginDownloadBrowser.DOWNLOAD, self.firsttime)
 		self.firsttime = False
@@ -144,16 +145,16 @@ class PluginDownloadBrowser(Screen):
 
 	def __init__(self, session, type = 0, needupdate = True):
 		Screen.__init__(self, session)
-		
+
 		self.type = type
 		self.needupdate = needupdate
-		
+
 		self.container = eConsoleAppContainer()
 		self.container.appClosed.append(self.runFinished)
 		self.container.dataAvail.append(self.dataAvail)
 		self.onLayoutFinish.append(self.startRun)
 		self.onShown.append(self.setWindowTitle)
-		
+
 		self.list = []
 		self["list"] = PluginList(self.list)
 		self.pluginlist = []
@@ -165,12 +166,12 @@ class PluginDownloadBrowser(Screen):
 		self.check_bootlogo = False
 		self.install_settings_name = ''
 		self.remove_settings_name = ''
-		
+
 		if self.type == self.DOWNLOAD:
 			self["text"] = Label(_("Downloading plugin information. Please wait..."))
 		elif self.type == self.REMOVE:
 			self["text"] = Label(_("Getting plugin information. Please wait..."))
-		
+
 		self.run = 0
 		self.remainingdata = ""
 		self["actions"] = ActionMap(["WizardActions"], 
@@ -181,11 +182,11 @@ class PluginDownloadBrowser(Screen):
 		if os.path.isfile('/usr/bin/opkg'):
 			self.ipkg = '/usr/bin/opkg'
 			self.ipkg_install = self.ipkg + ' install --force-overwrite'
-			self.ipkg_remove =  self.ipkg + ' remove --autoremove' 
+			self.ipkg_remove =  self.ipkg + ' remove --autoremove'
 		else:
 			self.ipkg = 'ipkg'
 			self.ipkg_install = 'ipkg install --force-overwrite -force-defaults'
-			self.ipkg_remove =  self.ipkg + ' remove' 
+			self.ipkg_remove =  self.ipkg + ' remove'
 
 	def go(self):
 		sel = self["list"].l.getCurrentSelection()
@@ -245,10 +246,10 @@ class PluginDownloadBrowser(Screen):
 					supported_filesystems = frozenset(('ext4', 'ext3', 'ext2', 'reiser', 'reiser4', 'jffs2', 'ubifs', 'rootfs'))
 					candidates = []
 					import Components.Harddisk
-					mounts = Components.Harddisk.getProcMounts() 
+					mounts = Components.Harddisk.getProcMounts()
 					for partition in harddiskmanager.getMountedPartitions(False, mounts):
 						if partition.filesystem(mounts) in supported_filesystems:
-							candidates.append((partition.description, partition.mountpoint)) 
+							candidates.append((partition.description, partition.mountpoint))
 					if candidates:
 						from Components.Renderer import Picon
 						self.postInstallCall = Picon.initPiconPaths
@@ -258,10 +259,10 @@ class PluginDownloadBrowser(Screen):
 					supported_filesystems = frozenset(('ext4', 'ext3', 'ext2', 'reiser', 'reiser4', 'jffs2', 'ubifs', 'rootfs'))
 					candidates = []
 					import Components.Harddisk
-					mounts = Components.Harddisk.getProcMounts() 
+					mounts = Components.Harddisk.getProcMounts()
 					for partition in harddiskmanager.getMountedPartitions(False, mounts):
 						if partition.filesystem(mounts) in supported_filesystems:
-							candidates.append((partition.description, partition.mountpoint)) 
+							candidates.append((partition.description, partition.mountpoint))
 					if candidates:
 						from Components.Renderer import LcdPicon
 						self.postInstallCall = LcdPicon.initLcdPiconPaths
@@ -416,13 +417,13 @@ class PluginDownloadBrowser(Screen):
 							plugin.append(plugin[0][15:])
 
 							self.pluginlist.append(plugin)
-	
+
 	def updateList(self):
 		list = []
 		expandableIcon = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/expandable-plugins.png"))
 		expandedIcon = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/expanded-plugins.png"))
 		verticallineIcon = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/verticalline-plugins.png"))
-		
+
 		self.plugins = {}
 		for x in self.pluginlist:
 			split = x[3].split('-', 1)
@@ -434,7 +435,8 @@ class PluginDownloadBrowser(Screen):
 			self.plugins[split[0]].append((PluginDescriptor(name = x[3], description = x[2], icon = verticallineIcon), split[1], x[1]))
 
 		temp = self.plugins.keys()
-		temp.sort()
+		if config.usage.sort_pluginlist.value:
+			temp.sort()
 		for x in temp:
 			if x in self.expanded:
 				list.append(PluginCategoryComponent(x, expandedIcon, self.listWidth))

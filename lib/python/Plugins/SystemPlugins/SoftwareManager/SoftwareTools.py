@@ -21,7 +21,7 @@ class SoftwareTools(DreamInfoHandler):
 	available_packetlist  = []
 	installed_packetlist = {}
 
-	
+
 	def __init__(self):
 		aboutInfo = about.getImageVersionString()
 		if aboutInfo.startswith("dev-"):
@@ -39,16 +39,16 @@ class SoftwareTools(DreamInfoHandler):
 		self.cmdList = []
 		self.unwanted_extensions = ('-dbg', '-dev', '-doc')
 		self.ipkg = IpkgComponent()
-		self.ipkg.addCallback(self.ipkgCallback)		
+		self.ipkg.addCallback(self.ipkgCallback)
 
 	def statusCallback(self, status, progress):
-		pass		
+		pass
 
 	def startSoftwareTools(self, callback = None):
 		if callback is not None:
 			self.NotifierCallback = callback
 		iNetwork.checkNetworkState(self.checkNetworkCB)
-		
+
 	def checkNetworkCB(self,data):
 		if data is not None:
 			if data <= 2:
@@ -93,7 +93,7 @@ class SoftwareTools(DreamInfoHandler):
 				if self.list_updating and callback is not None:
 						self.NotifierCallback = callback
 						self.startIpkgListAvailable()
-				else:	
+				else:
 					self.list_updating = False
 					if callback is not None:
 						callback(False)
@@ -108,7 +108,7 @@ class SoftwareTools(DreamInfoHandler):
 		elif event == IpkgComponent.EVENT_DONE:
 			if self.list_updating:
 				self.startIpkgListAvailable()
-		#print event, "-", param		
+		#print event, "-", param
 		pass
 
 	def startIpkgListAvailable(self, callback = None):

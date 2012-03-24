@@ -145,7 +145,7 @@ class EPGSelection(Screen, HelpableScreen):
 				<eLabel backgroundColor="#41080808" position="0,156" size="720,110" zPosition="2"/>
 				<widget borderColor="#0f0f0f" borderWidth="1" backgroundColor="#16000000" font="Enigma;24" foregroundColor="#00f0f0f0" halign="left" noWrap="1" position="88,120" render="Label" size="68,28" source="global.CurrentTime" transparent="1" zPosition="3">
 					<convert type="ClockToText">Default</convert>
-				</widget>		
+				</widget>
 				<widget borderColor="#0f0f0f" borderWidth="1" backgroundColor="#16000000" font="Enigma;16" noWrap="1" position="54,100" render="Label" size="220,22" source="global.CurrentTime" transparent="1" valign="bottom" zPosition="3">
 					<convert type="ClockToText">Date</convert>
 				</widget>
@@ -258,7 +258,7 @@ class EPGSelection(Screen, HelpableScreen):
 	
 	ZAP = 1
 
-	def __init__(self, session, service, zapFunc=None, eventid=None, bouquetChangeCB=None, serviceChangeCB=None, EPGtype = None,  bouquetname=""):
+	def __init__(self, session, service, zapFunc=None, eventid=None, bouquetChangeCB=None, serviceChangeCB=None, EPGtype=None,  bouquetname=""):
 		Screen.__init__(self, session)
 		self.StartRef = None
 		self.StartBouquet = None
@@ -615,7 +615,8 @@ class EPGSelection(Screen, HelpableScreen):
 		elif self.type == EPG_TYPE_SINGLE:
 			service = self.currentService
 			self["Service"].newService(service.ref)
-			title = service.getServiceName()
+			title = ServiceReference(self.StartBouquet).getServiceName()
+			title = title + ' - ' + service.getServiceName()
 			self.setTitle(title)
 			l.fillSingleEPG(service)
 			if config.epgselction.sort.value == "Time":
@@ -626,7 +627,8 @@ class EPGSelection(Screen, HelpableScreen):
 		elif self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
 			service = ServiceReference(self.servicelist.getCurrentSelection())
 			self["Service"].newService(service.ref)
-			title = service.getServiceName()
+			title = ServiceReference(self.StartBouquet).getServiceName()
+			title = title + ' - ' + service.getServiceName()
 			self.setTitle(title)
 			l.fillSingleEPG(service)
 			if config.epgselction.sort.value == "Time":
@@ -646,7 +648,7 @@ class EPGSelection(Screen, HelpableScreen):
 	def updEvent(self, dir, visible=True):
 		ret = self["list"].selEntry(dir, visible)
 		if ret:
-			self.moveTimeLines(True)		
+			self.moveTimeLines(True)
 
 	def nextPage(self):
 		self["list"].moveTo(self["list"].instance.pageDown)
@@ -671,7 +673,7 @@ class EPGSelection(Screen, HelpableScreen):
 			self["list"].updateMultiEPG(1)
 		else:
 			self.updEvent(+1)
-		
+	
 	def nextBouquet(self):
 		if (self.type == EPG_TYPE_MULTI or self.type == EPG_TYPE_GRAPH) and self.bouquetChangeCB:
 			self.bouquetChangeCB(self)
@@ -816,7 +818,7 @@ class EPGSelection(Screen, HelpableScreen):
 		self.closeRecursive = True
 		ref = self["list"].getCurrent()[1]
 		if ref:
-			self.closeScreen()		
+			self.closeScreen()
 
 	def closeScreen(self):
 		if self.type == EPG_TYPE_GRAPH:
@@ -877,7 +879,7 @@ class EPGSelection(Screen, HelpableScreen):
 		serviceref = cur[1]
 		refstr = serviceref.ref.toString()
 		if event is not None:
-			self.session.open(SingleEPG, refstr)		
+			self.session.open(SingleEPG, refstr)
 
 	def redButtonPressed(self):
 		try:
@@ -933,7 +935,7 @@ class EPGSelection(Screen, HelpableScreen):
 			autotimer = AutoTimer()
 			global autotimer
 			global autopoller
-		
+
 			try:
 				autotimer.readXml()
 			except SyntaxError as se:
@@ -944,11 +946,11 @@ class EPGSelection(Screen, HelpableScreen):
 					timeout = 10
 				)
 				return
-		
+
 			# Do not run in background while editing, this might screw things up
 			if autopoller is not None:
 				autopoller.stop()
-		
+
 			from Plugins.Extensions.AutoTimer.AutoTimerOverview import AutoTimerOverview
 			self.session.openWithCallback(
 				self.editCallback,
@@ -1027,7 +1029,6 @@ class EPGSelection(Screen, HelpableScreen):
 			self["key_green"].setText(_("Add Timer"))
 			self.key_green_choice = self.ADD_TIMER
 			print "Timeredit aborted"
-	
 	def finishSanityCorrection(self, answer):
 		self.finishedAdd(answer)
 
@@ -1068,7 +1069,7 @@ class EPGSelection(Screen, HelpableScreen):
 			self.session.openWithCallback(self.finishedAdd, RecordSetup, newEntry, zap)
 
 	def key1(self):
-		hilf = config.epgselction.prev_time_period.getValue()	
+		hilf = config.epgselction.prev_time_period.getValue()
 		if hilf > 60:
 			hilf = hilf - 60
 			self["list"].setEpoch(hilf)
@@ -1079,7 +1080,7 @@ class EPGSelection(Screen, HelpableScreen):
 		self.prevPage()
 
 	def key3(self):
-		hilf = config.epgselction.prev_time_period.getValue()	
+		hilf = config.epgselction.prev_time_period.getValue()
 		if hilf < 300:
 			hilf = hilf + 60
 			self["list"].setEpoch(hilf)
@@ -1117,7 +1118,7 @@ class EPGSelection(Screen, HelpableScreen):
 		cooltime = mktime(hilf)
 		self["list"].resetOffset()
 		self["list"].fillGraphEPG(None, cooltime)
-		self.moveTimeLines(True)		
+		self.moveTimeLines(True)
 
 	def key0(self):
 		self.toTop()
@@ -1375,7 +1376,7 @@ class EPGSelection(Screen, HelpableScreen):
 # 		# save current ref and bouquet ( for cancel )
 # 		self.curSelectedRef = eServiceReference(self.servicelist.getCurrentSelection().toString())
 # 		self.curSelectedBouquet = self.servicelist.getRoot()
-# 
+#
 # 	def cancelChannelSelection(self):
 # 		# select service and bouquet selected before started ChannelSelection
 # 		if self.servicelist.revertMode is None:
@@ -1388,7 +1389,7 @@ class EPGSelection(Screen, HelpableScreen):
 # 		self.servicelist.revertMode = None
 # 		self.servicelist.asciiOff()
 # 		self.servicelist.close(None)
-# 
+#
 # 		# clean up
 # 		self.curSelectedRef = None
 # 		self.curSelectedBouquet = None
@@ -1425,7 +1426,7 @@ class EPGSelection(Screen, HelpableScreen):
 # 			self.onCreate()
 
 # 	def __onClose(self):
-# 		# reverse changes of ChannelSelection 
+# 		# reverse changes of ChannelSelection
 # 		self.servicelist.zap = self.servicelist_orig_zap
 # 		self.servicelist["actions"] = ActionMap(["OkCancelActions", "TvRadioActions"],
 # 			{
@@ -1454,7 +1455,7 @@ class RecordSetup(TimerEntry):
 
 	def saveTimer(self):
 		self.session.nav.RecordTimer.saveTimer()
-				
+			
 class SingleEPG(EPGSelection):
 	def __init__(self, session, service, zapFunc=None, bouquetChangeCB=None, serviceChangeCB=None):
 		EPGSelection.__init__(self, session, service, zapFunc, bouquetChangeCB, serviceChangeCB)
@@ -1475,7 +1476,7 @@ class EPGSelectionSetup(Screen, ConfigListScreen):
 		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
 		self.createSetup()
 		self.skinName = "Setup"
-		
+
 		if self.type == 5:
 			self["actions"] = ActionMap(["SetupActions", 'ColorActions', "HelpActions"],
 			{
@@ -1582,7 +1583,6 @@ class EPGSelectionSetup(Screen, ConfigListScreen):
 	def keySave(self):
 		self.saveAll()
 		self.close()
-	
 	def cancelConfirm(self, result):
 		if not result:
 			return

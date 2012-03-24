@@ -70,7 +70,7 @@ class GetEcmInfo:
 						eSrc = ""
 						eTime = ""
 						for line in ecm:
-							line = line.strip() 
+							line = line.strip()
 							if line.find('ECM') != -1:
 								line = line.split(' ')
 								eEnc = line[1]

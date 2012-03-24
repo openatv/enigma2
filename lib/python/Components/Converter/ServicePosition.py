@@ -141,7 +141,7 @@ class ServicePosition(Poll, Converter, object):
 				sign_p = "-"
 				sign_r = "+"
 				sign_l = ""
-	
+
 			if config.usage.swap_media_time_display_on_osd.value == "1":  # Mins
 				if self.type == self.TYPE_LENGTH:
 					return ngettext("%d Min", "%d Mins", (l/60)) % (l/60)

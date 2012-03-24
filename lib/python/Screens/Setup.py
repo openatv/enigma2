@@ -96,7 +96,7 @@ class Setup(ConfigListScreen, Screen):
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
 
-		self["actions"] = NumberActionMap(["SetupActions", "MenuActions"], 
+		self["actions"] = NumberActionMap(["SetupActions", "MenuActions"],
 			{
 				"cancel": self.keyCancel,
 				"save": self.keySave,
@@ -129,7 +129,7 @@ class Setup(ConfigListScreen, Screen):
 				if self["config"].list[x][0] == item[0]:
 					return x
 		return None
-                
+
 	def moveToItem(self, item):
 		newIdx = self.getIndexFromItem(item)
 		if newIdx is None:
@@ -163,9 +163,12 @@ class Setup(ConfigListScreen, Screen):
 				self["VKeyIcon"].boolean = False
 
 	def HideHelp(self):
-		if isinstance(self["config"].getCurrent()[1], ConfigText) or isinstance(self["config"].getCurrent()[1], ConfigPassword):
-			if self["config"].getCurrent()[1].help_window.instance is not None:
-				self["config"].getCurrent()[1].help_window.hide()
+		try:
+			if isinstance(self["config"].getCurrent()[1], ConfigText) or isinstance(self["config"].getCurrent()[1], ConfigPassword):
+				if self["config"].getCurrent()[1].help_window.instance is not None:
+					self["config"].getCurrent()[1].help_window.hide()
+		except:
+			pass
 
 	def KeyText(self):
 		from Screens.VirtualKeyBoard import VirtualKeyBoard
@@ -231,7 +234,7 @@ class Setup(ConfigListScreen, Screen):
 					continue
 				#add to configlist
 				item = b
-					
+
 				# the first b is the item itself, ignored by the configList.
 				# the second one is converted to string.
 				if not isinstance(item, ConfigNothing):

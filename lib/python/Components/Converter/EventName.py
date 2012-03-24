@@ -12,7 +12,7 @@ class EventName(Converter, object):
 	NEXT_DESCRIPTION = 6
 	THIRD_NAME = 7
 	THIRD_DESCRIPTION = 8
-	
+
 	def __init__(self, type):
 		Converter.__init__(self, type)
 		self.epgcache = eEPGCache.getInstance()
@@ -40,7 +40,7 @@ class EventName(Converter, object):
 		event = self.source.event
 		if event is None:
 			return ""
-			
+
 		if self.type == self.NAME:
 			if event.getEventName() == "Visibile in analogico o digit. terrestre":
 				return event.getShortDescription().title()
@@ -61,7 +61,7 @@ class EventName(Converter, object):
 		elif int(self.type) > 4:
 			reference = self.source.service
 			info = reference and self.source.info
-			if info is None:	
+			if info is None:
 				return
 			test = [ 'ITSECX', (reference.toString(), 1, -1, 1440) ] # search next 24 hours
 			self.list = [] if self.epgcache is None else self.epgcache.lookupEvent(test)
@@ -89,5 +89,5 @@ class EventName(Converter, object):
 				except:
 					# failed to return any epg data.
 					return ""
-	
+
 	text = property(getText)
