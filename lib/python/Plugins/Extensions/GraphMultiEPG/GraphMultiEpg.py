@@ -596,7 +596,7 @@ class TimelineText(HTMLComponent, GUIComponent):
 						pos = (0, 0),
 						size = (service_rect.width(), itemHeight),
 						font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER,
-						text = strftime("%A %d %B", localtime(time_base))
+						text = strftime("%A %d %B", localtime(time_base)),
 						color = self.foreColor, color_sel = self.foreColor,
 						backcolor = self.backColor, backcolor_sel = self.backColor,
 						border_width = self.borderWidth, border_color = self.borderColor))
