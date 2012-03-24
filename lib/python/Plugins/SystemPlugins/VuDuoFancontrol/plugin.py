@@ -83,7 +83,7 @@ class FanSetupConfiguration(Screen, ConfigListScreen):
 				config.plugins.fansetups.fanofftime.value = 1
 		except:
 			print 'Error read proc of fan'
-	
+
 
 	def createSetup(self):
 		self.list = []
@@ -98,7 +98,7 @@ class FanSetupConfiguration(Screen, ConfigListScreen):
 			if config.plugins.fansetups.usetimer.value is not "off":
 				self.list.append( self.fanontimeEntry )
 				self.list.append( self.fanofftimeEntry )
-		
+
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
 		if not self.selectionChanged in self["config"].onSelectionChanged:
@@ -119,7 +119,7 @@ class FanSetupConfiguration(Screen, ConfigListScreen):
 			x[1].cancel()
 		self.close()
 
-			
+
 	def keyCancel(self):
 		print "cancel"
 		if self["config"].isChanged():
@@ -142,8 +142,8 @@ class FanSetupConfiguration(Screen, ConfigListScreen):
 					open('/proc/stb/system/fan_off_time','w').write('%s'%config.plugins.fansetups.fanofftime.value)
 		except:
 			print 'Error write proc of fan'
-		
-	
+
+
 def openconfig(session, **kwargs):
 	session.open(FanSetupConfiguration)
 

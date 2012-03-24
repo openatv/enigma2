@@ -88,7 +88,7 @@ class Listbox(Renderer, object):
 				}[mode]))
 
 	scrollbarMode = property(lambda self: self.__scrollbarMode, setScrollbarMode)
-	
+
 	def changed(self, what):
 		if hasattr(self.source, "selectionEnabled"):
 			self.selection_enabled = self.source.selectionEnabled

@@ -73,7 +73,7 @@ class EventTime(Poll, Converter, object):
 		event = self.source.event
 		if event is None:
 			return None
-			
+
 		if self.type == self.STARTTIME:
 			return event.getBeginTime()
 		elif self.type == self.ENDTIME:
@@ -125,7 +125,7 @@ class EventTime(Poll, Converter, object):
 		elif self.type == self.NEXT_START_TIME or self.type == self.NEXT_END_TIME or self.type == self.NEXT_DURATION or self.type == self.THIRD_START_TIME or self.type == self.THIRD_END_TIME or self.type == self.THIRD_DURATION:
 			reference = self.source.service
 			info = reference and self.source.info
-			if info is None:	
+			if info is None:
 				return
 			test = [ 'IBDCX', (reference.toString(), 1, -1, 1440) ] # search next 24 hours
 			self.list = [] if self.epgcache is None else self.epgcache.lookupEvent(test)

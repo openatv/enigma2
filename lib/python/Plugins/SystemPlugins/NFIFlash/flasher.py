@@ -36,7 +36,7 @@ class md5verify(Task):
 		self.setTool("md5sum")
 		self.args += ["-c", "-s"]
 		self.initial_input = md5
-	
+
 	def writeInput(self, input):
 		self.container.dataSent.append(self.md5ready)
 		print "[writeInput]", input
@@ -88,7 +88,7 @@ class NFIFlash(Screen):
 
 	def __init__(self, session, destdir=None):
 		Screen.__init__(self, session)
-		
+
 		self.box = HardwareInfo().get_device_name()
 		self.usbmountpoint = "/mnt/usb/"
 
@@ -133,7 +133,7 @@ class NFIFlash(Screen):
 	def keyDown(self):
 		self["filelist"].down()
 		self.check_for_NFO()
-	
+
 	def keyRight(self):
 		self["filelist"].pageDown()
 		self.check_for_NFO()

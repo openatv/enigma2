@@ -22,7 +22,7 @@ class ConfigFilename(ConfigText):
 		else:
 			mark = [filename]
 		return ("mtext"[1-selected:], filename, mark)
-	
+
 class DVDProject:
 	MAX_SL = 4480
 	MAX_DL = 8150
@@ -90,7 +90,7 @@ class DVDProject:
 		while fileExists(filename):
 			i = i+1
 			filename = path + name + str(i).zfill(3) + ".ddvdp.xml"
-		try:	
+		try:
 			file = open(filename, "w")
 			for x in list:
 				file.write(x)
@@ -122,7 +122,7 @@ class DVDProject:
 				self.xmlAttributesToConfig(node, self.settings)
 			    elif node.tagName == 'titles':
 				self.xmlGetTitleNodeRecursive(node)
-				
+
 			for key in self.filekeys:
 				val = self.settings.dict()[key].getValue()
 				if not fileExists(val):

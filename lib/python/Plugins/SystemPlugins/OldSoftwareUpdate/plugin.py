@@ -13,31 +13,31 @@ class Upgrade(Screen):
 		<screen position="100,100" size="550,400" title="opkg upgrade..." >
 			<widget name="text" position="0,0" size="550,400" font="Regular;15" />
 		</screen>"""
-		
+
 	def __init__(self, session, args = None):
 		self.skin = Upgrade.skin
 		Screen.__init__(self, session)
 
 		self["text"] = ScrollLabel(_("Please press OK!"))
-				
-		self["actions"] = ActionMap(["WizardActions", "DirectionActions"], 
+
+		self["actions"] = ActionMap(["WizardActions", "DirectionActions"],
 		{
 			"ok": self.go,
 			"back": self.close,
 			"up": self["text"].pageUp,
 			"down": self["text"].pageDown
 		}, -1)
-		
+
 		self.update = True
 		self.delayTimer = eTimer()
 		self.delayTimer.callback.append(self.doUpdateDelay)
-		
+
 	def go(self):
 		if self.update:
-			self.session.openWithCallback(self.doUpdate, MessageBox, _("Do you want to update your STB_BOX?\nAfter pressing OK, please wait!"))		
+			self.session.openWithCallback(self.doUpdate, MessageBox, _("Do you want to update your STB_BOX?\nAfter pressing OK, please wait!"))
 		else:
 			self.close()
-	
+
 	def doUpdateDelay(self):
 		lines = popen("opkg update && opkg upgrade -force-defaults -force-overwrite", "r").readlines()
 		string = ""
@@ -45,8 +45,8 @@ class Upgrade(Screen):
 			string += x
 		self["text"].setText(_("Updating finished. Here is the result:") + "\n\n" + string)
 		self.update = False
-			
-	
+
+
 	def doUpdate(self, val = False):
 		if val == True:
 			self["text"].setText(_("Updating... Please wait... This can take some minutes..."))
@@ -56,7 +56,7 @@ class Upgrade(Screen):
 
 def PacketEntryComponent(packet):
 	res = [ packet ]
-	
+
 	res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 0,250, 30, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, packet[0]))
 	res.append((eListboxPythonMultiContent.TYPE_TEXT, 250, 0, 200, 30, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, packet[1]))
 	res.append((eListboxPythonMultiContent.TYPE_TEXT, 450, 0, 100, 30, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, packet[2]))
@@ -69,15 +69,15 @@ class PacketList(GUIComponent):
 		self.l.setList(list)
 		self.l.setFont(0, gFont("Regular", 20))
 		self.l.setFont(1, gFont("Regular", 18))
-	
+
 	def getCurrent(self):
 		return self.l.getCurrentSelection()
-	
+
 	def GUIcreate(self, parent):
 		self.instance = eListbox(parent)
 		self.instance.setContent(self.l)
 		self.instance.setItemHeight(30)
-	
+
 	def GUIdelete(self):
 		self.instance.setContent(None)
 		self.instance = None
@@ -90,23 +90,23 @@ class Ipkg(Screen):
 		<screen position="100,100" size="550,400" title="opkg upgrade..." >
 			<widget name="list" position="0,0" size="550,400" scrollbarMode="showOnDemand" />
 		</screen>"""
-		
+
 	def __init__(self, session, args = None):
 		self.skin = Ipkg.skin
 		Screen.__init__(self, session)
-	
+
 		list = []
 		self.list = list
 		self.fillPacketList()
 
 		self["list"] = PacketList(self.list)
-				
-		self["actions"] = ActionMap(["WizardActions"], 
+
+		self["actions"] = ActionMap(["WizardActions"],
 		{
 			"ok": self.close,
 			"back": self.close
 		}, -1)
-		
+
 
 	def fillPacketList(self):
 		lines = popen("opkg list", "r").readlines()
@@ -114,14 +114,14 @@ class Ipkg(Screen):
 		for x in lines:
 			split = x.split(' - ')
 			packetlist.append([split[0].strip(), split[1].strip()])
-		
+
 		lines = popen("opkg list_installed", "r").readlines()
-		
+
 		installedlist = {}
 		for x in lines:
 			split = x.split(' - ')
 			installedlist[split[0].strip()] = split[1].strip()
-		
+
 		for x in packetlist:
 			status = ""
 			if installedlist.has_key(x[0]):
@@ -130,13 +130,13 @@ class Ipkg(Screen):
 				else:
 					status = "upgradable"
 			self.list.append(PacketEntryComponent([x[0], x[1], status]))
-		
+
 	def go(self):
 		if self.update:
-			self.session.openWithCallback(self.doUpdate, MessageBox, _("Do you want to update your STB_BOX?\nAfter pressing OK, please wait!"))		
+			self.session.openWithCallback(self.doUpdate, MessageBox, _("Do you want to update your STB_BOX?\nAfter pressing OK, please wait!"))
 		else:
 			self.close()
-	
+
 	def doUpdateDelay(self):
 		lines = popen("opkg update && opkg upgrade", "r").readlines()
 		string = ""
@@ -144,8 +144,8 @@ class Ipkg(Screen):
 			string += x
 		self["text"].setText(_("Updating finished. Here is the result:") + "\n\n" + string)
 		self.update = False
-			
-	
+
+
 	def doUpdate(self, val = False):
 		if val == True:
 			self["text"].setText(_("Updating... Please wait... This can take some minutes..."))

@@ -72,7 +72,7 @@ def setResumePoint(session):
 				if l:
 					l = l[1]
 				else:
-					l = None 
+					l = None
 				resumePointCache[key] = [lru, pos[1], l]
 				print '[ResumePionts] lenth',len(resumePointCache)
 				if len(resumePointCache) > 50:
@@ -255,7 +255,7 @@ class InfoBarShowHide:
 			"0D" : "crypto",
 			"4A" : "dreamcrypt",
 			"09" : "nds" }
-		
+
 		for x in SYSTEMS:
 			self[x] = EcmInfoLabel()
 		self["ecmInfo"] = Label()
@@ -277,7 +277,7 @@ class InfoBarShowHide:
 		self.onShowHideNotifiers = []
 
 		self.standardInfoBar = False
-		self.secondInfoBarScreen = "" 
+		self.secondInfoBarScreen = ""
 		if isStandardInfoBar(self):
 			self.secondInfoBarScreen = self.session.instantiateDialog(SecondInfoBar)
 			self.secondInfoBarScreen.hide()
@@ -451,7 +451,7 @@ class InfoBarShowHide:
 								caid = "0%s" % caid
 							caid = caid[:2]
 							caid = caid.upper()
-							
+
 							if self.systemCaids.has_key(caid):
 								system = self.systemCaids.get(caid)
 								self[system].crypted()
@@ -464,14 +464,14 @@ class InfoBarShowHide:
 			hops = ""
 			ecmTime = ""
 			provider = ""
-						
+
 			try:
 				f = open("/tmp/ecm.info", "r")
 				content = f.read()
 				f.close()
 			except:
 				content = "using: fta"
-			
+
 			contentInfo = content.split("\n")
 			for line in contentInfo:
 				if line.startswith("caid:"):
@@ -500,7 +500,7 @@ class InfoBarShowHide:
 					ecmTime = "%s %s" % (_("Ecm:"), self.parseEcmInfoLine(line))
 				elif line.startswith("provider:"):
 					provider = "%s %s" % (_("\nProvider:"), self.parseEcmInfoLine(line))
-			
+
 			if address != "":
 				ecmInfoString = "%s " % address
 			if using != "":
@@ -514,7 +514,7 @@ class InfoBarShowHide:
 #				print 'ecm time: ' + provider
 #				if provider != "\nProvider: Unknown":
 #					ecmInfoString = "%s%s " % (ecmInfoString, provider)
-			
+
 			self["ecmInfo"].setText(ecmInfoString)
 			self["ecmInfo"].visible = config.usage.show_cryptoinfo.value
 
@@ -841,7 +841,7 @@ class InfoBarChannelSelection:
 	def openInfoBarEPG(self):
 		self.EPGtype = "infobar"
 		self.session.open(EPGSelection, self.servicelist, self.EPGtype)
-		
+
 	def zapUp(self):
 		if self.pts_blockZap_timer.isActive():
 			return
@@ -1114,7 +1114,7 @@ class InfoBarEPG:
 
 	def openSingleServiceEPG(self):
 		self.session.open(EPGSelection, self.servicelist)
-		
+
 	def openInfoBarEPG(self):
 		self.EPGtype = "infobar"
 		self.session.open(EPGSelection, self.servicelist, self.EPGtype)
@@ -1178,7 +1178,7 @@ class InfoBarEPG:
 
 	def runPlugin(self, plugin):
 		plugin(session = self.session, servicelist = self.servicelist)
-		
+
 	def EventInfoPluginChosen(self, answer):
 		if answer is not None:
 			answer[1]()
@@ -1312,16 +1312,16 @@ class Seekbar(Screen):
 				if self.length and position:
 					if int(position[1]) > 0:
 						self.percent = float(position[1]) * 100.0 / float(self.length[1])
-				
+
 		self["cursor"] = MovingPixmap()
 		self["time"] = Label()
-		
+
 		self["actions"] = ActionMap(["WizardActions", "DirectionActions"], {"back": self.exit, "ok": self.keyOK, "left": self.keyLeft, "right": self.keyRight}, -1)
-		
+
 		self.cursorTimer = eTimer()
 		self.cursorTimer.callback.append(self.updateCursor)
 		self.cursorTimer.start(200, False)
-		
+
 	def updateCursor(self):
 		if self.length:
 			x = 145 + int(2.7 * self.percent)
@@ -1391,7 +1391,7 @@ class InfoBarSeek:
 						-config.seek.selfdefined_46.value, False, config.seek.selfdefined_46.value,
 						-config.seek.selfdefined_79.value, False, config.seek.selfdefined_79.value)[key-1]
 					self.screen.doSeekRelative(time * 90000)
-					return 1					
+					return 1
 				else:
 					return HelpableActionMap.action(self, contexts, action)
 
@@ -1733,7 +1733,7 @@ class InfoBarSeek:
 				if self.lockedBecauseOfSkipping and not wantlock:
 					self.unlockShow()
 					self.lockedBecauseOfSkipping = False
-	
+
 				if wantlock and not self.lockedBecauseOfSkipping:
 					self.lockShow()
 					self.lockedBecauseOfSkipping = True
@@ -1757,7 +1757,7 @@ class InfoBarSeek:
 				time = (len[1] - pos[1])*speedden/(90*speednom)
 				return time
 		return False
-		
+
 	def __evEOF(self):
 		if self.seekstate == self.SEEK_STATE_EOF:
 			return
@@ -1968,8 +1968,8 @@ class InfoBarTimeshift:
 
 		self["TimeshiftSeekPointerActions"] = ActionMap(["InfobarTimeshiftSeekPointerActions"],
 			{
-				"SeekPointerOK": self.ptsSeekPointerOK, 
-				"SeekPointerLeft": self.ptsSeekPointerLeft, 
+				"SeekPointerOK": self.ptsSeekPointerOK,
+				"SeekPointerLeft": self.ptsSeekPointerLeft,
 				"SeekPointerRight": self.ptsSeekPointerRight
 			},-2)
 		self["TimeshiftActions"].setEnabled(False)
@@ -2043,7 +2043,7 @@ class InfoBarTimeshift:
 
 		# Init Block-Zap Timer
 		self.pts_blockZap_timer = eTimer()
-		
+
 		# Record Event Tracker
 		self.session.nav.RecordTimer.on_state_change.append(self.ptsTimerEntryStateChange)
 
@@ -2414,7 +2414,7 @@ class InfoBarTimeshift:
 			InfoBarChannelSelection.showRadioChannelList(self, zap=True)
 		elif self.save_timeshift_postaction == "standby":
 			Notifications.AddNotification(Screens.Standby.Standby2)
-			
+
 	def SaveTimeshift(self, timeshiftfile=None, mergelater=False):
 		self.save_current_timeshift = False
 		savefilename = None
@@ -3354,8 +3354,8 @@ class InfoBarExtensions:
 			autotimer = AutoTimer()
 			global autotimer
 			global autopoller
-		
-		
+
+
 			try:
 				autotimer.readXml()
 			except SyntaxError as se:
@@ -3366,11 +3366,11 @@ class InfoBarExtensions:
 					timeout = 10
 				)
 				return
-		
+
 			# Do not run in background while editing, this might screw things up
 			if autopoller is not None:
 				autopoller.stop()
-		
+
 			from Plugins.Extensions.AutoTimer.AutoTimerOverview import AutoTimerOverview
 			self.session.openWithCallback(
 				self.editCallback,
@@ -3383,16 +3383,16 @@ class InfoBarExtensions:
 	def editCallback(self, session):
 		global autotimer
 		global autopoller
-	
+
 		# XXX: canceling of GUI (Overview) won't affect config values which might have been changed - is this intended?
-	
+
 		# Don't parse EPG if editing was canceled
 		if session is not None:
 			# Save xml
 			autotimer.writeXml()
 			# Poll EPGCache
 			autotimer.parseEPG()
-	
+
 		# Start autopoller again if wanted
 		if config.plugins.autotimer.autopoll.value:
 			if autopoller is None:
@@ -3403,7 +3403,7 @@ class InfoBarExtensions:
 		else:
 			autopoller = None
 			autotimer = None
-	
+
 	def showEPGSearch(self):
 		from Plugins.Extensions.EPGSearch.EPGSearch import EPGSearch
 		s = self.session.nav.getCurrentService()
@@ -3482,7 +3482,7 @@ class InfoBarJobman:
 		from Screens.TaskView import JobView
 		job_manager.in_background = False
 		self.session.openWithCallback(self.JobViewCB, JobView, job)
-	
+
 	def JobViewCB(self, in_background):
 		job_manager.in_background = in_background
 
@@ -3835,7 +3835,7 @@ class InfoBarAudioSelection:
 	def audioSelection(self):
 		from Screens.AudioSelection import AudioSelection
 		self.session.openWithCallback(self.audioSelected, AudioSelection, infobar=self)
-		
+
 	def audioSelected(self, ret=None):
 		print "[infobar::audioSelected]", ret
 
@@ -4155,7 +4155,7 @@ class InfoBarCueSheetSupport:
 			elif cp[1] == self.CUT_TYPE_IN:
 				isin = True
 		return ret
-		
+
 	def jumpPreviousNextMark(self, cmp, start=False):
 		current_pos = self.cueGetCurrentPosition()
 		if current_pos is None:

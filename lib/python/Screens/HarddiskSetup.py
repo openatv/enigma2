@@ -53,9 +53,9 @@ class HarddiskSelection(Screen):
 			tlist = []
 			tlist.append((_("no storage devices found"), 0))
 			self["hddlist"] = MenuList(tlist)
-		else:			
+		else:
 			self["hddlist"] = MenuList(harddiskmanager.HDDList())
-		
+
 		self["actions"] = ActionMap(["OkCancelActions"],
 		{
 			"ok": self.okbuttonClick ,
@@ -67,7 +67,7 @@ class HarddiskSelection(Screen):
 			 action=selection.createInitializeJob,
 			 text=_("Initialize"),
 			 question=_("Do you really want to initialize the device?\nAll data on the disk will be lost!"))
-	
+
 	def okbuttonClick(self):
 		selection = self["hddlist"].getCurrent()
 		if selection[1] != 0:

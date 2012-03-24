@@ -12,7 +12,7 @@ class Progress(Source):
 	def setValue(self, value):
 		self.__value = value
 		self.changed((self.CHANGED_ALL,))
-		
+
 	def setRange(self, range = 100):
 		self.range = range
 		self.changed((self.CHANGED_ALL,))

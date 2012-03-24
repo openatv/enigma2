@@ -53,7 +53,7 @@ class CIselectMainMenu(Screen):
 				state = eDVBCI_UI.getInstance().getState(slot)
 				if state == 0:
 					appname = _("Slot %d") %(slot+1) + " - " + _("no module found")
-				elif state == 1:	
+				elif state == 1:
 					appname = _("Slot %d") %(slot+1) + " - " + _("init modules")
 				elif state == 2:
 					appname = _("Slot %d") %(slot+1) + " - " + eDVBCI_UI.getInstance().getAppName(slot)
@@ -370,8 +370,8 @@ class CAidSelect(Screen):
 
 		self["actions"] = ActionMap(["ColorActions","SetupActions"],
 		{
-			"ok": self.list.toggleSelection, 
-			"cancel": self.cancel, 
+			"ok": self.list.toggleSelection,
+			"cancel": self.cancel,
 			"green": self.greenPressed,
 			"red": self.cancel
 		}, -1)
@@ -564,7 +564,7 @@ def activate_all(session):
 			ret = ""
 			# How many definitions are present
 			Len = len(definitions)
-			return Len > 0 and definitions[Len-1].text or default	
+			return Len > 0 and definitions[Len-1].text or default
 
 		for ci in range(NUM_CI):
 			filename = eEnv.resolve("${sysconfdir}/enigma2/ci") + str(ci) + ".xml"

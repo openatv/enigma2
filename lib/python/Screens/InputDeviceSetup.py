@@ -32,7 +32,7 @@ class InputDeviceSelection(Screen,HelpableScreen):
 							"fonts": [gFont("Regular", 28),gFont("Regular", 20)],
 							"itemHeight": 70
 							}
-						
+
 			</convert>
 		</widget>
 		<ePixmap pixmap="skin_default/div-h.png" position="0,340" zPosition="1" size="560,2"/>
@@ -43,18 +43,18 @@ class InputDeviceSelection(Screen,HelpableScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
-		
+
 		self.edittext = _("Press OK to edit the settings.")
-		
+
 		self["key_red"] = StaticText(_("Close"))
 		self["key_green"] = StaticText(_("Select"))
 		self["key_yellow"] = StaticText("")
 		self["key_blue"] = StaticText("")
 		self["introduction"] = StaticText(self.edittext)
-		
+
 		self.devices = [(iInputDevices.getDeviceName(x),x) for x in iInputDevices.getDeviceList()]
 		print "[InputDeviceSelection] found devices :->", len(self.devices),self.devices
-			
+
 		self["OkCancelActions"] = HelpableActionMap(self, "OkCancelActions",
 			{
 			"cancel": (self.close, _("Exit input device selection.")),
@@ -66,7 +66,7 @@ class InputDeviceSelection(Screen,HelpableScreen):
 			"red": (self.close, _("Exit input device selection.")),
 			"green": (self.okbuttonClick, _("Select input device.")),
 			}, -2)
-		
+
 		self.currentIndex = 0
 		self.list = []
 		self["list"] = List(self.list)
@@ -109,7 +109,7 @@ class InputDeviceSelection(Screen,HelpableScreen):
 				devicepng = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/input_mouse.png"))
 		else:
 			devicepng = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/input_rcnew.png"))
-		return((device, description, devicepng, divpng))	
+		return((device, description, devicepng, divpng))
 
 	def updateList(self):
 		self.list = []
@@ -218,7 +218,7 @@ class InputDeviceSetup(Screen, ConfigListScreen):
 				self["config"].invalidate(self.delayEntry)
 				self.nameEntry[1].setValue(self.nameEntry[1].default)
 				self["config"].invalidate(self.nameEntry)
-				
+
 		self["config"].list = self.list
 		self["config"].l.setSeperation(400)
 		self["config"].l.setList(self.list)

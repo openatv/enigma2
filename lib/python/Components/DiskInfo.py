@@ -10,7 +10,7 @@ class DiskInfo(VariableText, GUIComponent):
 	FREE = 0
 	USED = 1
 	SIZE = 2
-	
+
 	def __init__(self, path, type, update = True):
 		GUIComponent.__init__(self)
 		VariableText.__init__(self)
@@ -18,13 +18,13 @@ class DiskInfo(VariableText, GUIComponent):
 		self.path = path
 		if update:
 			self.update()
-	
+
 	def update(self):
 		try:
 			stat = statvfs(self.path)
 		except OSError:
 			return -1
-		
+
 		if self.type == self.FREE:
 			try:
 				percent = '(' + str((100 * stat.f_bavail) // stat.f_blocks) + '%)'

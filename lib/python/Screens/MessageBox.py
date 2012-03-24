@@ -18,7 +18,7 @@ class MessageBox(Screen):
 
 		if simple:
 			self.skinName="MessageBoxSimple"
-		
+
 		self.msgBoxID = msgBoxID
 
 		if len(_(text)) < 55 and type == self.TYPE_YESNO:
@@ -54,13 +54,13 @@ class MessageBox(Screen):
 				self.list = [ (_("yes"), 0), (_("no"), 1) ]
 			else:
 				self.list = [ (_("no"), 1), (_("yes"), 0) ]
-		
+
 		if self.list:
 			self["selectedChoice"].setText(self.list[0][0])
 		self["list"] = MenuList(self.list)
 
 		if enable_input:
-			self["actions"] = ActionMap(["MsgBoxActions", "DirectionActions"], 
+			self["actions"] = ActionMap(["MsgBoxActions", "DirectionActions"],
 				{
 					"cancel": self.cancel,
 					"ok": self.ok,
@@ -114,7 +114,7 @@ class MessageBox(Screen):
 
 		# center window
 		newwidth = wsize[0]
-		self.instance.move(enigma.ePoint((desktop_w-wsizex)/2, (desktop_h-wsizey)/2))		
+		self.instance.move(enigma.ePoint((desktop_w-wsizex)/2, (desktop_h-wsizey)/2))
 
 	def initTimeout(self, timeout):
 		self.timeout = timeout

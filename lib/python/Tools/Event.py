@@ -1,10 +1,9 @@
-
 class Event:
 	def __init__(self, start = None, stop = None):
 		self.list = [ ]
 		self.start = start
 		self.stop = stop
-	
+
 	def __call__(self, *args, **kwargs):
 		for x in self.list:
 			x(*args, **kwargs)

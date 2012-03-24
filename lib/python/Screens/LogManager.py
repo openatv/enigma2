@@ -46,7 +46,7 @@ def AutoLogManager(session=None, **kwargs):
 	global debuglogcheckpoller
 	debuglogcheckpoller = LogManagerPoller()
 	debuglogcheckpoller.start()
-	
+
 class LogManagerPoller:
 	"""Automatically Poll LogManager"""
 	def __init__(self):
@@ -128,7 +128,7 @@ class LogManagerPoller:
 								candidates.append((st.st_ctime, fn, st.st_size))
 								size += st.st_size
 						except Exception, e:
-							print "[LogManager] Failed to stat %s:"% name, e 
+							print "[LogManager] Failed to stat %s:"% name, e
 					# Remove empty directories if possible
 					for name in dirs:
 						try:
@@ -193,7 +193,7 @@ class LogManager(Screen):
 		self.selectedFiles = config.logmanager.sentfiles.value
 		self.previouslySent = config.logmanager.sentfiles.value
 		self.defaultDir = config.crash.debug_path.value
-		self.matchingPattern = 'enigma2_crash_' 
+		self.matchingPattern = 'enigma2_crash_'
 		self.filelist = MultiFileSelectList(self.selectedFiles, self.defaultDir, showDirectories = False, matchingPattern = self.matchingPattern )
 		self["list"] = self.filelist
 		self["LogsSize"] = self.logsinfo = LogInfo(config.crash.debug_path.value, LogInfo.USED, update=False)
@@ -214,7 +214,7 @@ class LogManager(Screen):
 			name = ""
 		for cb in self.onChangedEntry:
 			cb(name, desc)
-		
+
 	def layoutFinished(self):
 		self["LogsSize"].update(config.crash.debug_path.value)
 		idx = 0
@@ -259,11 +259,11 @@ class LogManager(Screen):
 		if self.logtype == 'crashlogs':
 			self["key_red"].setText(_("Crash Logs"))
 			self.logtype = 'debuglogs'
-			self.matchingPattern = 'Enigma2' 
+			self.matchingPattern = 'Enigma2'
 		else:
 			self["key_red"].setText(_("Debug Logs"))
 			self.logtype = 'crashlogs'
-			self.matchingPattern = 'enigma2_crash_' 
+			self.matchingPattern = 'enigma2_crash_'
 		self["list"].matchingPattern=re.compile(self.matchingPattern)
 		self["list"].changeDir(self.defaultDir)
 
@@ -291,7 +291,7 @@ class LogManager(Screen):
 			ybox.setTitle(_("Delete Confirmation"))
 		else:
 			self.session.open(MessageBox, _("You have selected no logs to delete."), MessageBox.TYPE_INFO, timeout = 10)
-		
+
 	def doDelete1(self, answer):
 		self.selectedFiles = self["list"].getSelectedList()
 		self.selectedFiles = ",".join(self.selectedFiles).replace(",", " ")
@@ -388,7 +388,7 @@ class LogManager(Screen):
 		else:
 			from Screens.VirtualKeyBoard import VirtualKeyBoard
 			self.session.openWithCallback(self.doSendlog, VirtualKeyBoard, title = 'Additonal Info')
-		
+
 	def doSendlog(self,additonalinfo = None):
 		ref = str(time())
 		# Create the container (outer) email message.
@@ -429,11 +429,11 @@ class LogManager(Screen):
 				self.sentsingle = self.defaultDir + self.sel
 				self.changeSelectionState()
 				self.saveSelection()
-	
+
 			# Send the email via our own SMTP server.
 			wos_user = 'vixlogs@world-of-satellite.com'
 			wos_pwd = base64.b64decode('NDJJWnojMEpldUxX')
-	
+
 			try:
 				print "connecting to server: mail.world-of-satellite.com"
 				#socket.setdefaulttimeout(30)
@@ -451,7 +451,7 @@ class LogManager(Screen):
 				self.session.open(MessageBox, _("Error:\n%s" % e), MessageBox.TYPE_INFO, timeout = 10)
 		else:
 			self.session.open(MessageBox, _('You have not setup your user info in the setup screen\nPress MENU, and enter your info, then try again'), MessageBox.TYPE_INFO, timeout = 10)
-		
+
 	def myclose(self):
 		self.close()
 
@@ -499,11 +499,11 @@ class LogManagerMenu(ConfigListScreen, Screen):
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
 		self.createSetup()
-		
+
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
 
-		self["actions"] = NumberActionMap(["SetupActions", "MenuActions"], 
+		self["actions"] = NumberActionMap(["SetupActions", "MenuActions"],
 			{
 				"cancel": self.keyCancel,
 				"save": self.keySave,
@@ -521,7 +521,7 @@ class LogManagerMenu(ConfigListScreen, Screen):
 		self.changedEntry()
 		self.onLayoutFinish.append(self.layoutFinished)
 		self.onClose.append(self.HideHelp)
-	
+
 	def createSetup(self):
 		self.editListEntry = None
 		self.list = []
@@ -608,7 +608,7 @@ class LogManagerMenu(ConfigListScreen, Screen):
 	def keySave(self):
 		self.saveAll()
 		self.close()
-	
+
 	def cancelConfirm(self, result):
 		if not result:
 			return
@@ -706,7 +706,7 @@ class LogInfo(VariableText, GUIComponent):
 	FREE = 0
 	USED = 1
 	SIZE = 2
-	
+
 	def __init__(self, path, type, update = True):
 		GUIComponent.__init__(self)
 		VariableText.__init__(self)
@@ -714,13 +714,13 @@ class LogInfo(VariableText, GUIComponent):
 # 		self.path = config.crash.debug_path.getValue()
 		if update:
 			self.update(path)
-	
+
 	def update(self, path):
 		try:
 			total_size = get_size(path)
 		except OSError:
 			return -1
-		
+
 		if self.type == self.USED:
 			try:
 				if total_size < 10000000:

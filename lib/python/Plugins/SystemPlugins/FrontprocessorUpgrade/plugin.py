@@ -26,7 +26,7 @@ class FPUpgrade(Screen):
 	def __init__(self, session):
 		self.skin = FPUpgrade.skin
 		Screen.__init__(self, session)
-		
+
 		from Tools.DreamboxHardware import getFPVersion
 		version = str(getFPVersion() or "N/A")
 		newversion = str(getUpgradeVersion() or "N/A")
