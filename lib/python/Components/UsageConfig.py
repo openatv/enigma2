@@ -505,6 +505,7 @@ def InitUsageConfig():
 		("slv", _("Slovenian")),
 		("spa", _("Spanish")),
 		("swe", _("Swedish")),
+		("tha", _("Thai")),
 		("tur Audio_TUR", _("Turkish"))]
 
 	def setEpgLanguage(configElement):

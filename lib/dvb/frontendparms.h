@@ -20,8 +20,9 @@ struct eDVBFrontendParametersSatellite
 		Inversion_Off, Inversion_On, Inversion_Unknown
 	};
 
+	/* WARNING: do not change the order of these values, they are used to parse lamedb and satellites.xml FEC fields */
 	enum {
-		FEC_Auto, FEC_1_2, FEC_2_3, FEC_3_4, FEC_5_6, FEC_7_8, FEC_8_9, FEC_3_5, FEC_4_5, FEC_9_10, FEC_None=15
+		FEC_Auto=0, FEC_1_2=1, FEC_2_3=2, FEC_3_4=3, FEC_5_6=4, FEC_7_8=5, FEC_8_9=6, FEC_3_5=7, FEC_4_5=8, FEC_9_10=9, FEC_6_7=10, FEC_None=15
 	};
 
 	enum {
@@ -56,8 +57,12 @@ struct eDVBFrontendParametersCable
 		Inversion_Off, Inversion_On, Inversion_Unknown
 	};
 
+	/* 
+	 * WARNING: do not change the order of these values, they are used to parse lamedb and cables.xml FEC fields.
+	 * The values are the same as those in eDVBFrontendParametersSatellite.
+	 */
 	enum {
-		FEC_Auto, FEC_1_2, FEC_2_3, FEC_3_4, FEC_5_6, FEC_7_8, FEC_8_9, FEC_None=15
+		FEC_Auto=0, FEC_1_2=1, FEC_2_3=2, FEC_3_4=3, FEC_5_6=4, FEC_7_8=5, FEC_8_9=6, FEC_6_7=10, FEC_None=15
 	};
 
 	enum {
@@ -78,8 +83,13 @@ struct eDVBFrontendParametersTerrestrial
 		Bandwidth_8MHz, Bandwidth_7MHz, Bandwidth_6MHz, /*Bandwidth_5MHz,*/ Bandwidth_Auto
 	}; // Bw5Mhz nyi (compatibilty with enigma1)
 
+	/* 
+	 * WARNING: do not change the order of these values, they are used to parse lamedb and terrestrial.xml FEC fields.
+	 * The values are NOT the same as those in eDVBFrontendParametersSatellite/eDVBFrontendParametersCable
+	 * (and it's too late to fix this now, we would break backward compatibility)
+	 */
 	enum {
-		FEC_1_2, FEC_2_3, FEC_3_4, FEC_5_6, FEC_7_8, FEC_Auto
+		FEC_1_2=0, FEC_2_3=1, FEC_3_4=2, FEC_5_6=3, FEC_7_8=4, FEC_Auto=5, FEC_6_7=6, FEC_8_9=7
 	};
 
 	enum {

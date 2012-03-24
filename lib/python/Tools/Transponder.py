@@ -18,6 +18,7 @@ def ConvertToHumanReadable(tp, type = None):
 			eDVBFrontendParametersSatellite.FEC_2_3 : "2/3",
 			eDVBFrontendParametersSatellite.FEC_3_4 : "3/4",
 			eDVBFrontendParametersSatellite.FEC_5_6 : "5/6",
+			eDVBFrontendParametersSatellite.FEC_6_7 : "6/7",
 			eDVBFrontendParametersSatellite.FEC_7_8 : "7/8",
 			eDVBFrontendParametersSatellite.FEC_3_5 : "3/5",
 			eDVBFrontendParametersSatellite.FEC_4_5 : "4/5",
@@ -72,6 +73,7 @@ def ConvertToHumanReadable(tp, type = None):
 			eDVBFrontendParametersCable.FEC_2_3 : "2/3",
 			eDVBFrontendParametersCable.FEC_3_4 : "3/4",
 			eDVBFrontendParametersCable.FEC_5_6 : "5/6",
+			eDVBFrontendParametersCable.FEC_6_7 : "6/7",
 			eDVBFrontendParametersCable.FEC_7_8 : "7/8",
 			eDVBFrontendParametersCable.FEC_8_9 : "8/9"}[tp["fec_inner"]]
 		ret["system"] = "DVB-C"
@@ -88,14 +90,18 @@ def ConvertToHumanReadable(tp, type = None):
 			eDVBFrontendParametersTerrestrial.FEC_2_3 : "2/3",
 			eDVBFrontendParametersTerrestrial.FEC_3_4 : "3/4",
 			eDVBFrontendParametersTerrestrial.FEC_5_6 : "5/6",
-			eDVBFrontendParametersTerrestrial.FEC_7_8 : "7/8"}[tp["code_rate_lp"]]
+			eDVBFrontendParametersTerrestrial.FEC_6_7 : "6/7",
+			eDVBFrontendParametersTerrestrial.FEC_7_8 : "7/8",
+			eDVBFrontendParametersTerrestrial.FEC_8_9 : "8/9"}[tp["code_rate_lp"]]
 		ret["code_rate_hp"] = {
 			eDVBFrontendParametersTerrestrial.FEC_Auto : _("Auto"),
 			eDVBFrontendParametersTerrestrial.FEC_1_2 : "1/2",
 			eDVBFrontendParametersTerrestrial.FEC_2_3 : "2/3",
 			eDVBFrontendParametersTerrestrial.FEC_3_4 : "3/4",
 			eDVBFrontendParametersTerrestrial.FEC_5_6 : "5/6",
-			eDVBFrontendParametersTerrestrial.FEC_7_8 : "7/8"}[tp["code_rate_hp"]]
+			eDVBFrontendParametersTerrestrial.FEC_6_7 : "6/7",
+			eDVBFrontendParametersTerrestrial.FEC_7_8 : "7/8",
+			eDVBFrontendParametersTerrestrial.FEC_8_9 : "8/9"}[tp["code_rate_hp"]]
 		ret["constellation"] = {
 			eDVBFrontendParametersTerrestrial.Modulation_Auto : _("Auto"),
 			eDVBFrontendParametersTerrestrial.Modulation_QPSK : "QPSK",
