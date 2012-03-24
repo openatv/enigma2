@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1-En-Th\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-08 20:34+0100\n"
+"POT-Creation-Date: 2012-03-24 23:40+0100\n"
 "PO-Revision-Date: 2010-04-08 18:13+0700\n"
 "Last-Translator: Tony - Thaidreambox\n"
 "Language-Team: Tony @ Thai Dreambox <tonyboyth@gmail.com>\n"
@@ -175,8 +175,34 @@ msgstr "#ffffff"
 msgid "#ffffffff"
 msgstr "#ffffffff"
 
+#. TRANSLATORS: short time representation hour:minute
+#, python-format
+msgid "%2d:%02d"
+msgstr ""
+
+#. TRANSLATORS: full time representation hour:minute:seconds
+#, python-format
+msgid "%2d:%02d:%02d"
+msgstr ""
+
+#. TRANSLATORS: long date representations dayname daynum monthname in strftime() format! See 'man strftime'
+msgid "%A %e %B"
+msgstr ""
+
+#. TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
+msgid "%A %e %B %Y"
+msgstr ""
+
 msgid "%H:%M"
 msgstr "%H:%M"
+
+#. TRANSLATORS: short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'
+msgid "%a %e/%m"
+msgstr ""
+
+#. TRANSLATORS: long date representation short dayname daynum short monthname hour:minute in strftime() format! See 'man strftime'
+msgid "%a %e/%m  %-H:%M"
+msgstr ""
 
 #, python-format
 msgid "%d hour"
@@ -214,6 +240,10 @@ msgstr "บริการนี้ %d ไม่มี!"
 
 msgid "%d.%B %Y"
 msgstr "%d.%B %Y"
+
+#. TRANSLATORS: VFD hour:minute daynum short monthname in strftime() format! See 'man strftime'
+msgid "%k:%M %e/%m"
+msgstr ""
 
 #, python-format
 msgid "%s (%s)\n"
@@ -606,9 +636,6 @@ msgstr "รายงานปัญหาเครื่องแบบไม่
 msgid "Any activity"
 msgstr ""
 
-msgid "April"
-msgstr ""
-
 msgid "Arabic"
 msgstr "ภาษาอาหรับ"
 
@@ -681,9 +708,6 @@ msgid "Audio language selection 3"
 msgstr ""
 
 msgid "Audio language selection 4"
-msgstr ""
-
-msgid "August"
 msgstr ""
 
 msgid "Author: "
@@ -865,6 +889,9 @@ msgstr ""
 
 msgid "Cache Thumbnails"
 msgstr "เก็บภาพเล็กแคช"
+
+msgid "Calculate"
+msgstr ""
 
 msgid "Calculate all positions"
 msgstr ""
@@ -1286,9 +1313,6 @@ msgstr "ภาษาเดนมาร์ก"
 
 msgid "Date"
 msgstr "วันที่"
-
-msgid "December"
-msgstr ""
 
 msgid "Decide if you want to enable or disable the Cleanup Wizard."
 msgstr "ตัดสินใจว่าจะเปิดหรือปิดการใช้งานตัวช่วย Cleanup"
@@ -1899,9 +1923,6 @@ msgstr "Fast epoch"
 msgid "Favourites"
 msgstr "รายการโปรด"
 
-msgid "February"
-msgstr ""
-
 msgid "File appears to be busy.\n"
 msgstr ""
 
@@ -2369,17 +2390,8 @@ msgstr "ภาษาอิตาลี่"
 msgid "Items per Page "
 msgstr ""
 
-msgid "January"
-msgstr ""
-
 msgid "Job View"
 msgstr "ดูงาน"
-
-msgid "July"
-msgstr ""
-
-msgid "June"
-msgstr ""
 
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
 msgid "Just Scale"
@@ -2576,9 +2588,6 @@ msgstr "ป้อนทรานสปอนเดอร์เอง"
 msgid "Manufacturer"
 msgstr "ผู้ผลิต"
 
-msgid "March"
-msgstr ""
-
 msgid "Margin after record"
 msgstr "บันทึกต่อไปอีก"
 
@@ -2586,9 +2595,6 @@ msgid "Margin before record (minutes)"
 msgstr "บันทึกก่อนเวลาจริง (นาที)"
 
 msgid "Max. Bitrate: "
-msgstr ""
-
-msgid "May"
 msgstr ""
 
 msgid "Media player"
@@ -3001,9 +3007,6 @@ msgstr ""
 msgid "Nothing to upgrade"
 msgstr ""
 
-msgid "November"
-msgstr ""
-
 msgid "Now Playing"
 msgstr "กำลังเล่น"
 
@@ -3038,9 +3041,6 @@ msgstr ""
 
 msgid "OSD visibility"
 msgstr "ความชัดของ OSD"
-
-msgid "October"
-msgstr ""
 
 msgid "Off"
 msgstr "ปิด"
@@ -3593,6 +3593,12 @@ msgstr "ต้องการเริ่มระบบใหม่หรือ
 msgid "Really shutdown now?"
 msgstr "ต้องการปิดเครื่องตอนนี้หรือไม่ (Shutdown)?"
 
+msgid "Really upgrade the frontprocessor and reboot now?"
+msgstr ""
+
+msgid "Really upgrade your settop box and reboot now?"
+msgstr ""
+
 msgid "Reboot"
 msgstr "เริ่มระบบใหม่ (Reboot)"
 
@@ -3661,9 +3667,6 @@ msgid "Reloading bouquets and services..."
 msgstr ""
 
 msgid "Remember service PIN"
-msgstr ""
-
-msgid "Remember service PIN cancel"
 msgstr ""
 
 msgid "Remember these settings for each folder"
@@ -4102,9 +4105,6 @@ msgstr "ส่งคำสั่ง DiSEqC เฉพาะตอนเปลี�
 
 msgid "Seperate titles with a main menu"
 msgstr "แยกเรื่องนี้ออกจากเมนูหลัก"
-
-msgid "September"
-msgstr ""
 
 msgid "Sequence repeat"
 msgstr "Sequence repeat"
@@ -4689,6 +4689,9 @@ msgstr ""
 msgid "Text font size"
 msgstr ""
 
+msgid "Thai"
+msgstr ""
+
 msgid ""
 "Thank you for using the wizard.\n"
 "Please press OK to continue."
@@ -4730,6 +4733,14 @@ msgstr ""
 msgid ""
 "The USB stick was prepared to be bootable.\n"
 "Now you can download an NFI image file!"
+msgstr ""
+
+msgid "The User Interface of your receiver is restarting"
+msgstr ""
+
+msgid ""
+"The User Interface of your receiver is restarting\n"
+"due to an error in mytest.py"
 msgstr ""
 
 msgid "The backup failed. Please choose a different backup location."
@@ -5861,6 +5872,12 @@ msgstr ""
 "กดปุ่ม OK เพิ่มเริ่มการปรับปรุง"
 
 msgid ""
+"Your frontprocessor will be upgraded\n"
+"Please wait until your receiver reboots\n"
+"This may take a few minutes"
+msgstr ""
+
+msgid ""
 "Your internet connection is not working!\n"
 "Please choose what you want to do next."
 msgstr ""
@@ -5872,6 +5889,12 @@ msgstr "ชื่อ (ทางเลือก) :"
 
 msgid "Your network configuration has been activated."
 msgstr "เครือข่ายของท่านสามารถใช้งานได้แล้ว"
+
+msgid "Your receiver is rebooting"
+msgstr ""
+
+msgid "Your receiver is shutting down"
+msgstr ""
 
 msgid ""
 "Your wireless LAN internet connection could not be started!\n"

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2_v2.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-08 20:34+0100\n"
+"POT-Creation-Date: 2012-03-24 23:40+0100\n"
 "PO-Revision-Date: 2012-01-31 13:14+0200\n"
 "Last-Translator: DimFil <dimfil.sat@gmail.com>\n"
 "Language-Team: \n"
@@ -224,10 +224,36 @@ msgstr "#ffffff"
 msgid "#ffffffff"
 msgstr "#ffffffff"
 
+#. TRANSLATORS: short time representation hour:minute
+#, python-format
+msgid "%2d:%02d"
+msgstr ""
+
+#. TRANSLATORS: full time representation hour:minute:seconds
+#, python-format
+msgid "%2d:%02d:%02d"
+msgstr ""
+
+#. TRANSLATORS: long date representations dayname daynum monthname in strftime() format! See 'man strftime'
+msgid "%A %e %B"
+msgstr ""
+
+#. TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
+msgid "%A %e %B %Y"
+msgstr ""
+
 #
 #
 msgid "%H:%M"
 msgstr "%H:%M"
+
+#. TRANSLATORS: short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'
+msgid "%a %e/%m"
+msgstr ""
+
+#. TRANSLATORS: long date representation short dayname daynum short monthname hour:minute in strftime() format! See 'man strftime'
+msgid "%a %e/%m  %-H:%M"
+msgstr ""
 
 #, python-format
 msgid "%d hour"
@@ -273,6 +299,10 @@ msgstr "%d υπηρεσίες βρέθηκαν!"
 #
 msgid "%d.%B %Y"
 msgstr "%d.%B %Y"
+
+#. TRANSLATORS: VFD hour:minute daynum short monthname in strftime() format! See 'man strftime'
+msgid "%k:%M %e/%m"
+msgstr ""
 
 #
 # , python-format
@@ -877,10 +907,6 @@ msgid "Any activity"
 msgstr "Οποιαδήποτε δραστηριότητα"
 
 #
-msgid "April"
-msgstr "Απρίλιος"
-
-#
 msgid "Arabic"
 msgstr "Αραβικά"
 
@@ -985,10 +1011,6 @@ msgstr "Επιλογή γλώσσας ήχου 3"
 #
 msgid "Audio language selection 4"
 msgstr "Επιλογή γλώσσας ήχου 4"
-
-#
-msgid "August"
-msgstr "Αύγουστος"
 
 #
 #
@@ -1272,6 +1294,9 @@ msgstr "Cable Scan"
 #
 msgid "Cache Thumbnails"
 msgstr "Cache Thumbnails"
+
+msgid "Calculate"
+msgstr ""
 
 msgid "Calculate all positions"
 msgstr ""
@@ -1913,10 +1938,6 @@ msgstr "Δανικά"
 #
 msgid "Date"
 msgstr "Ημερομηνία"
-
-#
-msgid "December"
-msgstr "Δεκέμβριος"
 
 #
 #
@@ -2857,10 +2878,6 @@ msgstr "Fast epoch"
 msgid "Favourites"
 msgstr "Αγαπημένα"
 
-#
-msgid "February"
-msgstr "Φεβρουάριος"
-
 msgid "File appears to be busy.\n"
 msgstr "Το αρχείο χρησιμοποιείται.\n"
 
@@ -3520,21 +3537,9 @@ msgid "Items per Page "
 msgstr "Αντικείμενα ανά σελίδα"
 
 #
-msgid "January"
-msgstr "Ιανουάριος"
-
-#
 #
 msgid "Job View"
 msgstr "Εμφάνιση εργασιών"
-
-#
-msgid "July"
-msgstr "Ιούλιος"
-
-#
-msgid "June"
-msgstr "Ιούνιος"
 
 #
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
@@ -3834,10 +3839,6 @@ msgid "Manufacturer"
 msgstr "Κατασκευαστής"
 
 #
-msgid "March"
-msgstr "Μάρτιος"
-
-#
 #
 msgid "Margin after record"
 msgstr "Περιθώριο μετά την εγγραφή"
@@ -3850,10 +3851,6 @@ msgstr "Περιθώριο πριν την εγγραφή (λεπτά)"
 #
 msgid "Max. Bitrate: "
 msgstr "Μεγ. Bitrate: "
-
-#
-msgid "May"
-msgstr "Μάιος"
 
 #
 #
@@ -4474,10 +4471,6 @@ msgid "Nothing to upgrade"
 msgstr "Τίποτα για αναβάθμιση"
 
 #
-msgid "November"
-msgstr "Νοέμβριος"
-
-#
 #
 msgid "Now Playing"
 msgstr "Τώρα παίζει"
@@ -4529,9 +4522,6 @@ msgstr "OSD name request"
 #
 msgid "OSD visibility"
 msgstr "Διαφάνεια OSD"
-
-msgid "October"
-msgstr ""
 
 #
 #
@@ -5386,6 +5376,12 @@ msgstr "Επανεκκίνηση τώρα;"
 msgid "Really shutdown now?"
 msgstr "Τερματισμός τώρα;"
 
+msgid "Really upgrade the frontprocessor and reboot now?"
+msgstr ""
+
+msgid "Really upgrade your settop box and reboot now?"
+msgstr ""
+
 #
 #
 msgid "Reboot"
@@ -5489,10 +5485,6 @@ msgstr "Επαναφόρτωση μπουκέτων και υπηρεσιών...
 #
 msgid "Remember service PIN"
 msgstr "Αποθήκευση PIN υπηρεσίας"
-
-#
-msgid "Remember service PIN cancel"
-msgstr "Αποθήκευση ακύρωσης PIN υπηρεσίας"
 
 msgid "Remember these settings for each folder"
 msgstr "Αποθήκευση αυτών των ρυθμίσεων για κάθε φάκελο"
@@ -6176,10 +6168,6 @@ msgstr "Αποστολή DiSEqC μόνο σε αλλαγή δορυφόρου"
 #
 msgid "Seperate titles with a main menu"
 msgstr "Διαχωρισμός τίτλων με κεντρικό μενού"
-
-#
-msgid "September"
-msgstr "Σεπτέμβριος"
 
 #
 #
@@ -7046,6 +7034,9 @@ msgstr "Πλάτος περιθωρίου κειμένου"
 msgid "Text font size"
 msgstr "Μέγεθος γραμματοσειράς"
 
+msgid "Thai"
+msgstr ""
+
 #
 #
 msgid ""
@@ -7106,6 +7097,14 @@ msgid ""
 msgstr ""
 "Το usb stick προετοιμάσθηκε ως εκκινήσιμο.\n"
 "Τώρα μπορεί να γίνει λήψη του αρχείου NFI!"
+
+msgid "The User Interface of your receiver is restarting"
+msgstr ""
+
+msgid ""
+"The User Interface of your receiver is restarting\n"
+"due to an error in mytest.py"
+msgstr ""
 
 #
 #
@@ -8806,6 +8805,12 @@ msgstr ""
 "Το “frontprocessor firmware” πρέπει να αναβαθμιστεί\n"
 "Πιέστε ΟΚ για την αναβάθμιση."
 
+msgid ""
+"Your frontprocessor will be upgraded\n"
+"Please wait until your receiver reboots\n"
+"This may take a few minutes"
+msgstr ""
+
 #
 #
 msgid ""
@@ -8823,6 +8828,12 @@ msgstr "Το όνομά σας (προαιρετικά):"
 #
 msgid "Your network configuration has been activated."
 msgstr "Η ρύθμιση δικτύου ενεργοποιήθηκε."
+
+msgid "Your receiver is rebooting"
+msgstr ""
+
+msgid "Your receiver is shutting down"
+msgstr ""
 
 #
 msgid ""
@@ -10432,8 +10443,16 @@ msgstr "zapped"
 #~ msgstr "Προσθήκη νέας προσάρτησης δικτύου"
 
 #
+#~ msgid "April"
+#~ msgstr "Απρίλιος"
+
+#
 #~ msgid "Attempt to recover lost mounts (in background)"
 #~ msgstr "Προσπάθεια για ανάνηψη χαμένων προσαρτήσεων (στο παρασκήνιο)"
+
+#
+#~ msgid "August"
+#~ msgstr "Αύγουστος"
 
 #
 #~ msgid "Change hostname"
@@ -10454,6 +10473,10 @@ msgstr "zapped"
 #~ msgstr "Αποτυχία δημιουργίας κατάτμησης"
 
 #
+#~ msgid "December"
+#~ msgstr "Δεκέμβριος"
+
+#
 #~ msgid "Descramble recordings"
 #~ msgstr "Αποκωδικοποίηση εγγραφών"
 
@@ -10469,6 +10492,10 @@ msgstr "zapped"
 #
 #~ msgid "Everything is fine"
 #~ msgstr "Όλα είναι εντάξει"
+
+#
+#~ msgid "February"
+#~ msgstr "Φεβρουάριος"
 
 #
 #
@@ -10493,12 +10520,32 @@ msgstr "zapped"
 #~ msgstr "Μετάβαση στην αρχή της λίστας"
 
 #
+#~ msgid "January"
+#~ msgstr "Ιανουάριος"
+
+#
+#~ msgid "July"
+#~ msgstr "Ιούλιος"
+
+#
+#~ msgid "June"
+#~ msgstr "Ιούνιος"
+
+#
 #~ msgid "Local share name"
 #~ msgstr "Όνομα τοπικού κοινόχρηστου"
 
 #
 #~ msgid "Manage your network shares..."
 #~ msgstr "Διαχείριση των προσαρτήσεων δικτύου..."
+
+#
+#~ msgid "March"
+#~ msgstr "Μάρτιος"
+
+#
+#~ msgid "May"
+#~ msgstr "Μάιος"
 
 #
 #
@@ -10537,6 +10584,10 @@ msgstr "zapped"
 #
 #~ msgid "NetworkBrowser"
 #~ msgstr "Διαφυλλιστής δικτύου"
+
+#
+#~ msgid "November"
+#~ msgstr "Νοέμβριος"
 
 #~ msgid "Oktober"
 #~ msgstr "Οκτώβριος"
@@ -10579,6 +10630,10 @@ msgstr "zapped"
 #~ msgstr "Μέγεθος demux buffer εγγραφής"
 
 #
+#~ msgid "Remember service PIN cancel"
+#~ msgstr "Αποθήκευση ακύρωσης PIN υπηρεσίας"
+
+#
 #~ msgid "Restart Softcam"
 #~ msgstr "Επανεκκίνηση Softcam"
 
@@ -10593,6 +10648,10 @@ msgstr "zapped"
 #
 #~ msgid "Select Softcam"
 #~ msgstr "Επιλογή Softcam"
+
+#
+#~ msgid "September"
+#~ msgstr "Σεπτέμβριος"
 
 #
 #~ msgid "Server IP"

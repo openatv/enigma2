@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-08 20:34+0100\n"
+"POT-Creation-Date: 2012-03-24 23:40+0100\n"
 "PO-Revision-Date: 2011-08-07 17:04+0200\n"
 "Last-Translator: Timo <timojarvenpaa@hotmail.com>\n"
 "Language-Team: none\n"
@@ -193,8 +193,34 @@ msgstr "#ffffff"
 msgid "#ffffffff"
 msgstr "#ffffffff"
 
+#. TRANSLATORS: short time representation hour:minute
+#, python-format
+msgid "%2d:%02d"
+msgstr ""
+
+#. TRANSLATORS: full time representation hour:minute:seconds
+#, python-format
+msgid "%2d:%02d:%02d"
+msgstr ""
+
+#. TRANSLATORS: long date representations dayname daynum monthname in strftime() format! See 'man strftime'
+msgid "%A %e %B"
+msgstr ""
+
+#. TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
+msgid "%A %e %B %Y"
+msgstr ""
+
 msgid "%H:%M"
 msgstr "%H:%M"
+
+#. TRANSLATORS: short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'
+msgid "%a %e/%m"
+msgstr ""
+
+#. TRANSLATORS: long date representation short dayname daynum short monthname hour:minute in strftime() format! See 'man strftime'
+msgid "%a %e/%m  %-H:%M"
+msgstr ""
 
 #, python-format
 msgid "%d hour"
@@ -236,6 +262,10 @@ msgstr "%d kanavaa löydetty!"
 #
 msgid "%d.%B %Y"
 msgstr "%d.%m.%Y"
+
+#. TRANSLATORS: VFD hour:minute daynum short monthname in strftime() format! See 'man strftime'
+msgid "%k:%M %e/%m"
+msgstr ""
 
 #, python-format
 msgid "%s (%s)\n"
@@ -722,9 +752,6 @@ msgstr "Anonyymi kaatumisloki?"
 msgid "Any activity"
 msgstr ""
 
-msgid "April"
-msgstr ""
-
 #
 msgid "Arabic"
 msgstr "Arabia"
@@ -809,9 +836,6 @@ msgid "Audio language selection 3"
 msgstr ""
 
 msgid "Audio language selection 4"
-msgstr ""
-
-msgid "August"
 msgstr ""
 
 #
@@ -1037,6 +1061,9 @@ msgstr ""
 #
 msgid "Cache Thumbnails"
 msgstr "Tallenna esikatselukuvat välimuistiin"
+
+msgid "Calculate"
+msgstr ""
 
 msgid "Calculate all positions"
 msgstr ""
@@ -1553,9 +1580,6 @@ msgstr "Tanska"
 #
 msgid "Date"
 msgstr "Päiväys"
-
-msgid "December"
-msgstr ""
 
 #
 msgid "Decide if you want to enable or disable the Cleanup Wizard."
@@ -2317,9 +2341,6 @@ msgstr "Nopea päivällä"
 msgid "Favourites"
 msgstr "Suosikit"
 
-msgid "February"
-msgstr ""
-
 msgid "File appears to be busy.\n"
 msgstr ""
 
@@ -2869,18 +2890,9 @@ msgstr "Italia"
 msgid "Items per Page "
 msgstr ""
 
-msgid "January"
-msgstr ""
-
 #
 msgid "Job View"
 msgstr "Työnäkymä"
-
-msgid "July"
-msgstr ""
-
-msgid "June"
-msgstr ""
 
 #
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
@@ -3122,9 +3134,6 @@ msgstr "Manuaalinen lähetin"
 msgid "Manufacturer"
 msgstr "Valmistaja"
 
-msgid "March"
-msgstr ""
-
 #
 msgid "Margin after record"
 msgstr "Lisäaika tallenteen loppuun (minuuttia)"
@@ -3135,9 +3144,6 @@ msgstr "Lisäaika tallenteen alkuun (minuuttia)"
 
 msgid "Max. Bitrate: "
 msgstr "Maks. bittimäärä: "
-
-msgid "May"
-msgstr ""
 
 msgid "Media player"
 msgstr "Mediasoitin"
@@ -3650,9 +3656,6 @@ msgstr ""
 msgid "Nothing to upgrade"
 msgstr ""
 
-msgid "November"
-msgstr ""
-
 #
 msgid "Now Playing"
 msgstr "Toistetaan"
@@ -3698,9 +3701,6 @@ msgstr ""
 #
 msgid "OSD visibility"
 msgstr "OSD:n läpinäkyvyys"
-
-msgid "October"
-msgstr ""
 
 #
 msgid "Off"
@@ -4379,6 +4379,12 @@ msgstr "Haluatko silti käynnistää uudelleen?"
 msgid "Really shutdown now?"
 msgstr "Haluatko silti sammuttaa?"
 
+msgid "Really upgrade the frontprocessor and reboot now?"
+msgstr ""
+
+msgid "Really upgrade your settop box and reboot now?"
+msgstr ""
+
 #
 msgid "Reboot"
 msgstr "Käynnistä uudelleen"
@@ -4460,9 +4466,6 @@ msgstr ""
 
 msgid "Remember service PIN"
 msgstr "Muista kanavan PIN"
-
-msgid "Remember service PIN cancel"
-msgstr "Älä muista kanavan PIN:iä"
 
 msgid "Remember these settings for each folder"
 msgstr ""
@@ -5009,9 +5012,6 @@ msgstr "Lähetä DiSEqC vain satelliitin vaihdossa"
 #
 msgid "Seperate titles with a main menu"
 msgstr "Erilliset tallenteet ja päävalikko"
-
-msgid "September"
-msgstr ""
 
 #
 msgid "Sequence repeat"
@@ -5715,6 +5715,9 @@ msgstr ""
 msgid "Text font size"
 msgstr ""
 
+msgid "Thai"
+msgstr ""
+
 msgid ""
 "Thank you for using the wizard.\n"
 "Please press OK to continue."
@@ -5776,6 +5779,14 @@ msgid ""
 msgstr ""
 "USB-tikusta tehtiin automaattisesti käynnistyvä.\n"
 "Voit nyt ladata NFI-tiedoston."
+
+msgid "The User Interface of your receiver is restarting"
+msgstr ""
+
+msgid ""
+"The User Interface of your receiver is restarting\n"
+"due to an error in mytest.py"
+msgstr ""
 
 #
 msgid "The backup failed. Please choose a different backup location."
@@ -7197,6 +7208,12 @@ msgstr ""
 "Edustaprosessorin ohjelmisto on päivitettävä.\n"
 "Paina OK aloittaaksesi päivityksen."
 
+msgid ""
+"Your frontprocessor will be upgraded\n"
+"Please wait until your receiver reboots\n"
+"This may take a few minutes"
+msgstr ""
+
 #
 msgid ""
 "Your internet connection is not working!\n"
@@ -7212,6 +7229,12 @@ msgstr "Nimi (ei pakollinen):"
 #
 msgid "Your network configuration has been activated."
 msgstr "Verkkoasetukset on aktivoitu."
+
+msgid "Your receiver is rebooting"
+msgstr ""
+
+msgid "Your receiver is shutting down"
+msgstr ""
 
 #
 msgid ""
@@ -10702,6 +10725,9 @@ msgstr "vaihdettu"
 
 #~ msgid "Relevance"
 #~ msgstr "Merkitys"
+
+#~ msgid "Remember service PIN cancel"
+#~ msgstr "Älä muista kanavan PIN:iä"
 
 #~ msgid "Remember service pin"
 #~ msgstr "Muista kanavan PIN"

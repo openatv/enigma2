@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-08 20:34+0100\n"
+"POT-Creation-Date: 2012-03-24 23:40+0100\n"
 "PO-Revision-Date: 2011-10-14 19:15+0100\n"
 "Last-Translator: \n"
 "Language-Team:  <Benny.DeTandt@gmail.com>\n"
@@ -179,8 +179,34 @@ msgstr "#ffffff"
 msgid "#ffffffff"
 msgstr "#ffffffff"
 
+#. TRANSLATORS: short time representation hour:minute
+#, python-format
+msgid "%2d:%02d"
+msgstr ""
+
+#. TRANSLATORS: full time representation hour:minute:seconds
+#, python-format
+msgid "%2d:%02d:%02d"
+msgstr ""
+
+#. TRANSLATORS: long date representations dayname daynum monthname in strftime() format! See 'man strftime'
+msgid "%A %e %B"
+msgstr ""
+
+#. TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
+msgid "%A %e %B %Y"
+msgstr ""
+
 msgid "%H:%M"
 msgstr "%H:%M"
+
+#. TRANSLATORS: short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'
+msgid "%a %e/%m"
+msgstr ""
+
+#. TRANSLATORS: long date representation short dayname daynum short monthname hour:minute in strftime() format! See 'man strftime'
+msgid "%a %e/%m  %-H:%M"
+msgstr ""
 
 #, python-format
 msgid "%d hour"
@@ -218,6 +244,10 @@ msgstr "%d kanalen gevonden."
 
 msgid "%d.%B %Y"
 msgstr "%d-%m-%Y"
+
+#. TRANSLATORS: VFD hour:minute daynum short monthname in strftime() format! See 'man strftime'
+msgid "%k:%M %e/%m"
+msgstr ""
 
 #, python-format
 msgid "%s (%s)\n"
@@ -621,9 +651,6 @@ msgstr "Crashlog anoniem maken?"
 msgid "Any activity"
 msgstr "Elke aktiviteit"
 
-msgid "April"
-msgstr "April"
-
 msgid "Arabic"
 msgstr "Arabisch"
 
@@ -697,9 +724,6 @@ msgstr "Audio taalkeuze 3"
 
 msgid "Audio language selection 4"
 msgstr "Audio taalkeuze 4"
-
-msgid "August"
-msgstr "Augustus"
 
 msgid "Author: "
 msgstr "Auteur:"
@@ -882,6 +906,9 @@ msgstr "Kabel scan"
 
 msgid "Cache Thumbnails"
 msgstr "Miniatuurafbeeldingen cachen"
+
+msgid "Calculate"
+msgstr ""
 
 msgid "Calculate all positions"
 msgstr ""
@@ -1304,9 +1331,6 @@ msgstr "Deens"
 
 msgid "Date"
 msgstr "Datum"
-
-msgid "December"
-msgstr "December"
 
 msgid "Decide if you want to enable or disable the Cleanup Wizard."
 msgstr "Wilt u de cleanup wizard aan of uitschakelen."
@@ -1925,9 +1949,6 @@ msgstr "Snel spoelen"
 msgid "Favourites"
 msgstr "Favorieten"
 
-msgid "February"
-msgstr "Februari"
-
 msgid "File appears to be busy.\n"
 msgstr "Bestand mogelijk in gebruik door ander proces.\n"
 
@@ -2399,17 +2420,8 @@ msgstr "Italiaans"
 msgid "Items per Page "
 msgstr "Items per pagina"
 
-msgid "January"
-msgstr "Januari"
-
 msgid "Job View"
 msgstr "Voortgang"
-
-msgid "July"
-msgstr "Juli"
-
-msgid "June"
-msgstr "Juni"
 
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
 msgid "Just Scale"
@@ -2606,9 +2618,6 @@ msgstr "Transponder handmatig"
 msgid "Manufacturer"
 msgstr "Fabrikant"
 
-msgid "March"
-msgstr "Maart"
-
 msgid "Margin after record"
 msgstr "Marge na afloop opname (minuten)"
 
@@ -2617,9 +2626,6 @@ msgstr "Marge voor opname (minuten)"
 
 msgid "Max. Bitrate: "
 msgstr "Max. bitrate: "
-
-msgid "May"
-msgstr "Mei"
 
 msgid "Media player"
 msgstr "Mediaspeler"
@@ -3040,9 +3046,6 @@ msgstr ""
 msgid "Nothing to upgrade"
 msgstr "Geen updates gevonden"
 
-msgid "November"
-msgstr "November"
-
 msgid "Now Playing"
 msgstr "Weergave loopt"
 
@@ -3079,9 +3082,6 @@ msgstr "OSD naam aanvragen"
 
 msgid "OSD visibility"
 msgstr "OSD zichtbaarheid"
-
-msgid "October"
-msgstr ""
 
 msgid "Off"
 msgstr "Uit"
@@ -3645,6 +3645,12 @@ msgstr "Nu herstarten?"
 msgid "Really shutdown now?"
 msgstr "Nu uitschakelen?"
 
+msgid "Really upgrade the frontprocessor and reboot now?"
+msgstr ""
+
+msgid "Really upgrade your settop box and reboot now?"
+msgstr ""
+
 msgid "Reboot"
 msgstr "Herstarten"
 
@@ -3714,9 +3720,6 @@ msgstr "Bouquetten en zenders opnieuw inladen"
 
 msgid "Remember service PIN"
 msgstr "Onhoud zender pincode"
-
-msgid "Remember service PIN cancel"
-msgstr "Onhoud zender pincode bij annuleren"
 
 msgid "Remember these settings for each folder"
 msgstr "Onthoud deze instellingen voor elke map"
@@ -4159,9 +4162,6 @@ msgstr "Verstuur DiSEqC enkel bij satelliet wijziging"
 
 msgid "Seperate titles with a main menu"
 msgstr "Zonder titels af met een hoofdmenu"
-
-msgid "September"
-msgstr "September"
 
 msgid "Sequence repeat"
 msgstr "Herhaal sequence"
@@ -4750,6 +4750,9 @@ msgstr "Text randbreedte"
 msgid "Text font size"
 msgstr "Text lettergrootte"
 
+msgid "Thai"
+msgstr ""
+
 msgid ""
 "Thank you for using the wizard.\n"
 "Please press OK to continue."
@@ -4799,6 +4802,14 @@ msgid ""
 msgstr ""
 "De USB stick is geschikt gemaakt om van te booten.\n"
 "Je kunt nu een NFI image bestand downlaoden! "
+
+msgid "The User Interface of your receiver is restarting"
+msgstr ""
+
+msgid ""
+"The User Interface of your receiver is restarting\n"
+"due to an error in mytest.py"
+msgstr ""
 
 msgid "The backup failed. Please choose a different backup location."
 msgstr "Back-up is mislukt. Kies een andere back-up lokatie a.u.b."
@@ -6006,6 +6017,12 @@ msgstr ""
 "Druk op OK, om dit proces te starten."
 
 msgid ""
+"Your frontprocessor will be upgraded\n"
+"Please wait until your receiver reboots\n"
+"This may take a few minutes"
+msgstr ""
+
+msgid ""
 "Your internet connection is not working!\n"
 "Please choose what you want to do next."
 msgstr ""
@@ -6017,6 +6034,12 @@ msgstr "Uw naam (optioneel):"
 
 msgid "Your network configuration has been activated."
 msgstr "Configuratie van uw netwerk is geactiveerd."
+
+msgid "Your receiver is rebooting"
+msgstr ""
+
+msgid "Your receiver is shutting down"
+msgstr ""
 
 msgid ""
 "Your wireless LAN internet connection could not be started!\n"
@@ -7272,6 +7295,9 @@ msgstr "zapte"
 #~ msgid "An error occured."
 #~ msgstr "Er is een fout opgetreden."
 
+#~ msgid "April"
+#~ msgstr "April"
+
 #
 #~ msgid ""
 #~ "Are you sure you want to save this network mount?\n"
@@ -7307,6 +7333,9 @@ msgstr "zapte"
 #~ msgstr ""
 #~ "AudioSync kan geluid (Bitstream/PCM) vertragen zodat het synchroon loopt "
 #~ "met het beeld."
+
+#~ msgid "August"
+#~ msgstr "Augustus"
 
 #
 #~ msgid "Australia"
@@ -7778,6 +7807,9 @@ msgstr "zapte"
 #~ "Met de DVD-speler kunt u DVD's afspelen op uw Dreambox, maar ook een ISO-"
 #~ "bestand en een Video-ts map op uw harde schijf of van uw netwerk."
 
+#~ msgid "December"
+#~ msgstr "December"
+
 #
 #~ msgid "Decrease delay"
 #~ msgstr "Verlaag vertraging"
@@ -8174,6 +8206,9 @@ msgstr "zapte"
 
 #~ msgid "Fast scan"
 #~ msgstr "Factscan"
+
+#~ msgid "February"
+#~ msgstr "Februari"
 
 #~ msgid "Fetching feed entries"
 #~ msgstr "Ophalen Feed items"
@@ -8584,9 +8619,18 @@ msgstr "zapte"
 #~ msgid "Italy"
 #~ msgstr "Italië"
 
+#~ msgid "January"
+#~ msgstr "Januari"
+
 #
 #~ msgid "Japan"
 #~ msgstr "Japan"
+
+#~ msgid "July"
+#~ msgstr "Juli"
+
+#~ msgid "June"
+#~ msgstr "Juni"
 
 #~ msgid "Kerni's BrushedAlu-HD skin"
 #~ msgstr "Kerni's BrushedAlu-HD skin"
@@ -8714,6 +8758,9 @@ msgstr "zapte"
 #~ msgid "Manage your network shares..."
 #~ msgstr "Beheer uw netwerkverbindingen."
 
+#~ msgid "March"
+#~ msgstr "Maart"
+
 #
 #~ msgid "Match Timespan: %02d:%02d - %02d:%02d"
 #~ msgstr "Match tijdspanne: %02d:%02d - %02d:%02d"
@@ -8738,6 +8785,9 @@ msgstr "zapte"
 #~ msgstr ""
 #~ "Maximale tijdsduur van een programma. Een programma dat langer duurt komt "
 #~ "niet overeen."
+
+#~ msgid "May"
+#~ msgstr "Mei"
 
 #~ msgid ""
 #~ "MediaScanner scans devices for playable media files and displays a menu "
@@ -9127,6 +9177,9 @@ msgstr "zapte"
 #~ msgid "Not fetching feed entries"
 #~ msgstr "Niet ophalen Feed items"
 
+#~ msgid "November"
+#~ msgstr "November"
+
 #~ msgid "Number of scheduled recordings left."
 #~ msgstr "Aantal geplande opnames beschikbaar."
 
@@ -9476,6 +9529,9 @@ msgstr "zapte"
 #~ msgid "Relevance"
 #~ msgstr "Relevantie"
 
+#~ msgid "Remember service PIN cancel"
+#~ msgstr "Onhoud zender pincode bij annuleren"
+
 #~ msgid "Remember service pin"
 #~ msgstr "Onthoud zender pincode"
 
@@ -9807,6 +9863,9 @@ msgstr "zapte"
 
 #~ msgid "Selected source image"
 #~ msgstr "Selecteer bron bestand"
+
+#~ msgid "September"
+#~ msgstr "September"
 
 #
 #~ msgid "Server IP"

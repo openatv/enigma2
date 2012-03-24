@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-08 20:34+0100\n"
+"POT-Creation-Date: 2012-03-24 23:40+0100\n"
 "PO-Revision-Date: 2010-03-26 23:44+0200\n"
 "Last-Translator: Мартин Петков <marto74bg@yahoo.co.uk>\n"
 "Language-Team: Bulgarian\n"
@@ -168,8 +168,34 @@ msgstr ""
 msgid "#ffffffff"
 msgstr ""
 
+#. TRANSLATORS: short time representation hour:minute
+#, python-format
+msgid "%2d:%02d"
+msgstr ""
+
+#. TRANSLATORS: full time representation hour:minute:seconds
+#, python-format
+msgid "%2d:%02d:%02d"
+msgstr ""
+
+#. TRANSLATORS: long date representations dayname daynum monthname in strftime() format! See 'man strftime'
+msgid "%A %e %B"
+msgstr ""
+
+#. TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
+msgid "%A %e %B %Y"
+msgstr ""
+
 msgid "%H:%M"
 msgstr "%Ч:%М"
+
+#. TRANSLATORS: short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'
+msgid "%a %e/%m"
+msgstr ""
+
+#. TRANSLATORS: long date representation short dayname daynum short monthname hour:minute in strftime() format! See 'man strftime'
+msgid "%a %e/%m  %-H:%M"
+msgstr ""
 
 #, python-format
 msgid "%d hour"
@@ -206,6 +232,10 @@ msgid "%d services found!"
 msgstr "%d намерени програми!"
 
 msgid "%d.%B %Y"
+msgstr ""
+
+#. TRANSLATORS: VFD hour:minute daynum short monthname in strftime() format! See 'man strftime'
+msgid "%k:%M %e/%m"
 msgstr ""
 
 #, python-format
@@ -605,9 +635,6 @@ msgstr "Анонимен crashlog?"
 msgid "Any activity"
 msgstr ""
 
-msgid "April"
-msgstr ""
-
 msgid "Arabic"
 msgstr "Арабски"
 
@@ -680,9 +707,6 @@ msgid "Audio language selection 3"
 msgstr ""
 
 msgid "Audio language selection 4"
-msgstr ""
-
-msgid "August"
 msgstr ""
 
 msgid "Author: "
@@ -863,6 +887,9 @@ msgid "Cable Scan"
 msgstr ""
 
 msgid "Cache Thumbnails"
+msgstr ""
+
+msgid "Calculate"
 msgstr ""
 
 msgid "Calculate all positions"
@@ -1283,9 +1310,6 @@ msgstr "Датски"
 
 msgid "Date"
 msgstr "Дата"
-
-msgid "December"
-msgstr ""
 
 msgid "Decide if you want to enable or disable the Cleanup Wizard."
 msgstr ""
@@ -1892,9 +1916,6 @@ msgstr ""
 msgid "Favourites"
 msgstr "Предпочитани"
 
-msgid "February"
-msgstr ""
-
 msgid "File appears to be busy.\n"
 msgstr ""
 
@@ -2365,16 +2386,7 @@ msgstr "Италиански"
 msgid "Items per Page "
 msgstr ""
 
-msgid "January"
-msgstr ""
-
 msgid "Job View"
-msgstr ""
-
-msgid "July"
-msgstr ""
-
-msgid "June"
 msgstr ""
 
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
@@ -2572,9 +2584,6 @@ msgstr "Ръчен транспондер"
 msgid "Manufacturer"
 msgstr "Производител"
 
-msgid "March"
-msgstr ""
-
 msgid "Margin after record"
 msgstr "Граница след запис"
 
@@ -2582,9 +2591,6 @@ msgid "Margin before record (minutes)"
 msgstr "Граница преди запис (минути)"
 
 msgid "Max. Bitrate: "
-msgstr ""
-
-msgid "May"
 msgstr ""
 
 msgid "Media player"
@@ -3002,9 +3008,6 @@ msgstr ""
 msgid "Nothing to upgrade"
 msgstr ""
 
-msgid "November"
-msgstr ""
-
 msgid "Now Playing"
 msgstr "Сега Възпроизвеждам"
 
@@ -3040,9 +3043,6 @@ msgstr ""
 
 msgid "OSD visibility"
 msgstr "OSD видимост"
-
-msgid "October"
-msgstr ""
 
 msgid "Off"
 msgstr "Изкл."
@@ -3600,6 +3600,12 @@ msgstr "Да рестартирам ли сега?"
 msgid "Really shutdown now?"
 msgstr "Да изключа ли приемника?"
 
+msgid "Really upgrade the frontprocessor and reboot now?"
+msgstr ""
+
+msgid "Really upgrade your settop box and reboot now?"
+msgstr ""
+
 msgid "Reboot"
 msgstr "Рестарт"
 
@@ -3668,9 +3674,6 @@ msgid "Reloading bouquets and services..."
 msgstr ""
 
 msgid "Remember service PIN"
-msgstr ""
-
-msgid "Remember service PIN cancel"
 msgstr ""
 
 msgid "Remember these settings for each folder"
@@ -4108,9 +4111,6 @@ msgid "Send DiSEqC only on satellite change"
 msgstr "Изпращай DiSEqC само при смяна на сателит"
 
 msgid "Seperate titles with a main menu"
-msgstr ""
-
-msgid "September"
 msgstr ""
 
 msgid "Sequence repeat"
@@ -4696,6 +4696,9 @@ msgstr ""
 msgid "Text font size"
 msgstr ""
 
+msgid "Thai"
+msgstr ""
+
 msgid ""
 "Thank you for using the wizard.\n"
 "Please press OK to continue."
@@ -4735,6 +4738,14 @@ msgstr ""
 msgid ""
 "The USB stick was prepared to be bootable.\n"
 "Now you can download an NFI image file!"
+msgstr ""
+
+msgid "The User Interface of your receiver is restarting"
+msgstr ""
+
+msgid ""
+"The User Interface of your receiver is restarting\n"
+"due to an error in mytest.py"
 msgstr ""
 
 msgid "The backup failed. Please choose a different backup location."
@@ -5868,6 +5879,12 @@ msgstr ""
 "Натиснете OK за да започне ъпгрейда."
 
 msgid ""
+"Your frontprocessor will be upgraded\n"
+"Please wait until your receiver reboots\n"
+"This may take a few minutes"
+msgstr ""
+
+msgid ""
 "Your internet connection is not working!\n"
 "Please choose what you want to do next."
 msgstr ""
@@ -5879,6 +5896,12 @@ msgstr "Вашето име (по избор):"
 
 msgid "Your network configuration has been activated."
 msgstr "Вашата мрежова конфигурация е активирана."
+
+msgid "Your receiver is rebooting"
+msgstr ""
+
+msgid "Your receiver is shutting down"
+msgstr ""
 
 msgid ""
 "Your wireless LAN internet connection could not be started!\n"
