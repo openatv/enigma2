@@ -241,8 +241,41 @@ long eHdmiCEC::translateKey(unsigned char code)
 		case 0x31:
 			key = 0x193;
 			break;
+		case 0x44:
+			key = 0xcf;
+			break;
+		case 0x45:
+			key = 0x80;
+			break;
+		case 0x46:
+			key = 0x77;
+			break;
+		case 0x47:
+			key = 0xa7;
+			break;
+		case 0x48:
+			key = 0xa8;
+			break;
+		case 0x49:
+			key = 0xd0;
+			break;
 		case 0x53:
 			key = 0x166;
+			break;
+		case 0x54:
+			key = 0x16a;
+			break;
+		case 0x60:
+			key = 0xcf;
+			break;
+		case 0x61:
+			key = 0xa4;
+			break;
+		case 0x62:
+			key = 0xa7;
+			break;
+		case 0x64:
+			key = 0x80;
 			break;
 		case 0x00:
 			key = 0x160;
