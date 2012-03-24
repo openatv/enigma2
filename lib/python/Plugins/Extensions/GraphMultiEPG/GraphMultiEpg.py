@@ -592,13 +592,11 @@ class TimelineText(HTMLComponent, GUIComponent):
 			num_lines = time_epoch / time_steps
 			incWidth = event_rect.width() / num_lines
 			timeStepsCalc = time_steps * 60
-			t = localtime(time_base)
-			txt = _(strftime("%A", t)) + strftime(" %d ", t) + _(strftime("%B", t))
 			res.append( MultiContentEntryText(
 						pos = (0, 0),
 						size = (service_rect.width(), itemHeight),
 						font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER,
-						text = txt,
+						text = strftime("%A %d %B", localtime(time_base)),
 						color = self.foreColor, color_sel = self.foreColor,
 						backcolor = self.backColor, backcolor_sel = self.backColor,
 						border_width = self.borderWidth, border_color = self.borderColor))
