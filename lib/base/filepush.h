@@ -91,6 +91,7 @@ protected:
 	int m_fd_source;
 	size_t m_buffersize;
 	unsigned char* m_buffer;
+	unsigned int m_overflow_count;
 private:
 	int m_stop;
 	eFixedMessagePump<int> m_messagepump;
