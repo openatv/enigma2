@@ -298,7 +298,11 @@ class RecordTimerEntry(timer.TimerEntry, object):
 
 				# Tell the trashcan we started recording. The trashcan gets events,
 				# but cannot tell what the associated path is.
-				Trashcan.instance.markDirty(self.Filename)
+				try:
+					Trashcan.instance.markDirty(self.Filename)
+				except Exception, e:
+					print "[TIMER] Failed to call Trashcan.instance.markDirty()"
+					print "[TIMER] Error:", e
 
 				return True
 		elif next_state == self.StateEnded:
