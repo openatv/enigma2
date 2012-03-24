@@ -630,10 +630,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 	def btn_radio(self):
 		self._callButton(config.movielist.btn_radio.value)
 	def btn_tv(self):
-		if self.list.playInBackground:
-			self.playbackStop()
-		else:
-			self._callButton(config.movielist.btn_tv.value)
+		self._callButton(config.movielist.btn_tv.value)
 
 	def keyUp(self):
 		if self["list"].getCurrentIndex() < 1:
