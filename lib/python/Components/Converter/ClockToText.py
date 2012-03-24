@@ -67,13 +67,17 @@ class ClockToText(Converter, object):
 		elif self.type == self.DEFAULT:
 			return "%2d:%02d" % (t.tm_hour, t.tm_min)
 		elif self.type == self.DATE:
-			return strftime("%A %e %b %Y", t)
+			# TRANSLATORS: full date representations dayname daynum monthname year. This is a strftime() format! See 'man strftime'
+                        d = _("%A %e %B %Y")
+			return strftime(d, t)
 		elif self.type == self.FULL:
 			return strftime("%a %e/%m  %-H:%M", t)
 		elif self.type == self.SHORT_DATE:
 			return strftime("%a %e/%m", t)
 		elif self.type == self.LONG_DATE:
-			return strftime("%a %e %b", t)
+			# TRANSLATORS: long date representations dayname daynum monthname. This is a strftime() format! See 'man strftime'
+                        d = _("%A %e %B")
+			return strftime(d, t)
 		elif self.type == self.VFD:
 			return strftime("%k:%M %e/%m", t)
 		elif self.type == self.FORMAT:
