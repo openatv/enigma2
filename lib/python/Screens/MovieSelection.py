@@ -559,7 +559,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				#iPlayableService.evSOF: self.__evSOF,
 			})
 		self.onExecBegin.append(self.asciiOn)
-		self.oldIdx = 0
 
 	def asciiOn(self):
 		rcinput = eRCInput.getInstance()
@@ -700,41 +699,25 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		
 	def playNext(self):
 		if self.list.playInBackground:
-			idx = self.list.getCurrentIndex()
-			current = self.list.getCurrent()
 			if self.list.moveTo(self.list.playInBackground):
-				if idx != self.oldIdx:
-					if self.isItemPlayable(idx):
-						self.list.moveTo(current)
-						self.callLater(self.preview)
-				else:
-					if self.isItemPlayable(self.oldIdx+1):
-						self.list.moveDown()
-						self.callLater(self.preview)
+				if self.isItemPlayable(self.list.getCurrentIndex() + 1):
+					self.list.moveDown()
+					self.callLater(self.preview)
 			else:
 				self.playGoTo = 1
 				self.goToPlayingService()
 		else:
 			self.preview()
-		self.oldIdx = self.list.getCurrentIndex()
 
 	def playPrev(self):
 		if self.list.playInBackground:
-			idx = self.list.getCurrentIndex()
-			current = self.list.getCurrent()
 			if self.list.moveTo(self.list.playInBackground):
-				if idx != self.oldIdx:
-					if self.isItemPlayable(idx):
-						self.list.moveTo(current)
-						self.callLater(self.preview)
-				else:
-					if self.isItemPlayable(self.oldIdx-1):
-						self.list.moveUp()
-						self.callLater(self.preview)
+				if self.isItemPlayable(self.list.getCurrentIndex() - 1):
+					self.list.moveUp()
+					self.callLater(self.preview)
 			else:
 				self.playGoTo = -1
 				self.goToPlayingService()
-		self.oldIdx = self.list.getCurrentIndex()
 
 	def __onClose(self):
 		try:
