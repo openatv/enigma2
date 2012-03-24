@@ -56,6 +56,7 @@ AM_CONDITIONAL(DREAMBOX, test `echo "$BOXTYPE" | cut -b 1-2` == "dm")
 AM_CONDITIONAL(VUPLUS, test `echo "$BOXTYPE" | cut -b 1-2` == "vu")
 AM_CONDITIONAL(XTREND, test `echo "$BOXTYPE" | cut -b 1-2` == "et")
 AM_CONDITIONAL(GIGABLUE, test `echo "$BOXTYPE" | cut -b 1-2` == "gb")
+AM_CONDITIONAL(INIHD, test `echo "$BOXTYPE" | cut -b 1-3` == "ini")
 AM_CONDITIONAL(MARA, test `echo "$BOXTYPE" | cut -b 1-4` == "mara")
 AM_CONDITIONAL(VUUNO, test "$BOXTYPE" == vuuno)
 AM_CONDITIONAL(VUULTIMO, test "$BOXTYPE" == vuultimo)
@@ -67,6 +68,9 @@ AM_CONDITIONAL(ET6X00, test "$BOXTYPE" == et6x00)
 AM_CONDITIONAL(ET9X00, test "$BOXTYPE" == et9x00)
 AM_CONDITIONAL(GB800SE, test "$BOXTYPE" == gb800se)
 AM_CONDITIONAL(GB800SOLO, test "$BOXTYPE" == gb800solo)
+AM_CONDITIONAL(INI3000, test "$BOXTYPE" == ini-3000)
+AM_CONDITIONAL(INI5000, test "$BOXTYPE" == ini-5000)
+AM_CONDITIONAL(INI7000, test "$BOXTYPE" == ini-7000)
 AM_CONDITIONAL(MARAM9, test "$BOXTYPE" == maram9)
 AM_CONDITIONAL(HAVE_TEMPFANCONTROL, test "$BOXTYPE" == dm8000 -o "$BOXTYPE" == dm800se -o "$BOXTYPE" == dm500hd)
 AM_CONDITIONAL(HAVE_DISPLAY128, test "$BOXTYPE" == dm8000 -o "$BOXTYPE" == dm7020HD)
@@ -128,6 +132,10 @@ if test x"$BOXTYPE" == "xgb800se" -o x"$BOXTYPE" == "xgb800solo" ; then
 fi
 
 if test x"$BOXTYPE" == "xdm8000" -o x"$BOXTYPE" == "xdm7020hd" ; then
+	AC_DEFINE(KEY_PLAY_ACTUALLY_IS_KEY_PLAYPAUSE, 1,[define when rc sends a KEY_PLAY event for its KEY_PLAYPAUSE key])
+fi
+
+if test x"$BOXTYPE" == "xini-3000" -o x"$BOXTYPE" == "xini-5000" -o x"$BOXTYPE" == "xini-7000"; then
 	AC_DEFINE(KEY_PLAY_ACTUALLY_IS_KEY_PLAYPAUSE, 1,[define when rc sends a KEY_PLAY event for its KEY_PLAYPAUSE key])
 fi
 
