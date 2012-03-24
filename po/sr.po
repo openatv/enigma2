@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-08 20:34+0100\n"
+"POT-Creation-Date: 2012-03-24 23:40+0100\n"
 "PO-Revision-Date: 2011-04-14 00:02+0200\n"
 "Last-Translator: majevica <jovanovic@gmx.ch>\n"
 "Language-Team: veselin & majevica CRNABERZA <jovanovic@gmx.ch>\n"
@@ -207,9 +207,35 @@ msgstr "#ffffff"
 msgid "#ffffffff"
 msgstr "#ffffffff"
 
+#. TRANSLATORS: short time representation hour:minute
+#, python-format
+msgid "%2d:%02d"
+msgstr ""
+
+#. TRANSLATORS: full time representation hour:minute:seconds
+#, python-format
+msgid "%2d:%02d:%02d"
+msgstr ""
+
+#. TRANSLATORS: long date representations dayname daynum monthname in strftime() format! See 'man strftime'
+msgid "%A %e %B"
+msgstr ""
+
+#. TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
+msgid "%A %e %B %Y"
+msgstr ""
+
 #
 msgid "%H:%M"
 msgstr "%H:%M"
+
+#. TRANSLATORS: short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'
+msgid "%a %e/%m"
+msgstr ""
+
+#. TRANSLATORS: long date representation short dayname daynum short monthname hour:minute in strftime() format! See 'man strftime'
+msgid "%a %e/%m  %-H:%M"
+msgstr ""
 
 #, python-format
 msgid "%d hour"
@@ -254,6 +280,10 @@ msgstr "%d kanala pronađeno!"
 #
 msgid "%d.%B %Y"
 msgstr "%d.%B %Y"
+
+#. TRANSLATORS: VFD hour:minute daynum short monthname in strftime() format! See 'man strftime'
+msgid "%k:%M %e/%m"
+msgstr ""
 
 #
 #, python-format
@@ -758,9 +788,6 @@ msgstr "Anonimni krah zapis?"
 msgid "Any activity"
 msgstr ""
 
-msgid "April"
-msgstr ""
-
 #
 msgid "Arabic"
 msgstr "Arapski"
@@ -846,9 +873,6 @@ msgid "Audio language selection 3"
 msgstr ""
 
 msgid "Audio language selection 4"
-msgstr ""
-
-msgid "August"
 msgstr ""
 
 #
@@ -1078,6 +1102,9 @@ msgstr ""
 #
 msgid "Cache Thumbnails"
 msgstr "Učitaj sličice"
+
+msgid "Calculate"
+msgstr ""
 
 msgid "Calculate all positions"
 msgstr ""
@@ -1600,9 +1627,6 @@ msgstr "Danski"
 #
 msgid "Date"
 msgstr "Datum"
-
-msgid "December"
-msgstr ""
 
 #
 msgid "Decide if you want to enable or disable the Cleanup Wizard."
@@ -2362,9 +2386,6 @@ msgstr "Brza epoha"
 msgid "Favourites"
 msgstr "Favoriti"
 
-msgid "February"
-msgstr ""
-
 msgid "File appears to be busy.\n"
 msgstr ""
 
@@ -2923,18 +2944,9 @@ msgstr "Italijanski"
 msgid "Items per Page "
 msgstr ""
 
-msgid "January"
-msgstr ""
-
 #
 msgid "Job View"
 msgstr "Pregled poslova"
-
-msgid "July"
-msgstr ""
-
-msgid "June"
-msgstr ""
 
 #
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
@@ -3180,9 +3192,6 @@ msgstr "Ručno uneseni transponder"
 msgid "Manufacturer"
 msgstr "Proizvođač"
 
-msgid "March"
-msgstr ""
-
 #
 msgid "Margin after record"
 msgstr "Margina nakon snimanja"
@@ -3194,9 +3203,6 @@ msgstr "Margina pre snimanja (minuti)"
 #
 msgid "Max. Bitrate: "
 msgstr "Maks. Bit rata:"
-
-msgid "May"
-msgstr ""
 
 #
 msgid "Media player"
@@ -3707,9 +3713,6 @@ msgstr ""
 msgid "Nothing to upgrade"
 msgstr ""
 
-msgid "November"
-msgstr ""
-
 #
 msgid "Now Playing"
 msgstr "Trenutno pokrenuto"
@@ -3753,9 +3756,6 @@ msgstr ""
 #
 msgid "OSD visibility"
 msgstr "OSD preglednost"
-
-msgid "October"
-msgstr ""
 
 #
 msgid "Off"
@@ -4452,6 +4452,12 @@ msgstr "Stvarno restartovati sada?"
 msgid "Really shutdown now?"
 msgstr "Stvarno ugasiti sada?"
 
+msgid "Really upgrade the frontprocessor and reboot now?"
+msgstr ""
+
+msgid "Really upgrade your settop box and reboot now?"
+msgstr ""
+
 #
 msgid "Reboot"
 msgstr "Podići"
@@ -4534,9 +4540,6 @@ msgstr ""
 
 msgid "Remember service PIN"
 msgstr "Zapamti PIN kanala"
-
-msgid "Remember service PIN cancel"
-msgstr "Remember service PIN,otkazano"
 
 msgid "Remember these settings for each folder"
 msgstr ""
@@ -5090,9 +5093,6 @@ msgstr "Poslati DISEqC samo kod promene satelita"
 #
 msgid "Seperate titles with a main menu"
 msgstr "Odvojite naslove sa glavnim meniem"
-
-msgid "September"
-msgstr ""
 
 #
 msgid "Sequence repeat"
@@ -5801,6 +5801,9 @@ msgstr ""
 msgid "Text font size"
 msgstr ""
 
+msgid "Thai"
+msgstr ""
+
 #
 msgid ""
 "Thank you for using the wizard.\n"
@@ -5856,6 +5859,14 @@ msgid ""
 msgstr ""
 "USB stik je bio pripremljen da bude butabiloan.\n"
 "Sada možete skinuti NFI imidž datoteku!"
+
+msgid "The User Interface of your receiver is restarting"
+msgstr ""
+
+msgid ""
+"The User Interface of your receiver is restarting\n"
+"due to an error in mytest.py"
+msgstr ""
 
 #
 msgid "The backup failed. Please choose a different backup location."
@@ -7292,6 +7303,12 @@ msgstr ""
 "Vaš softver frontprocesora mora biti nadograđen.\n"
 "Pritisnite OK za početak nadogradnje."
 
+msgid ""
+"Your frontprocessor will be upgraded\n"
+"Please wait until your receiver reboots\n"
+"This may take a few minutes"
+msgstr ""
+
 #
 msgid ""
 "Your internet connection is not working!\n"
@@ -7307,6 +7324,12 @@ msgstr "Vaše  ime (opciono):"
 #
 msgid "Your network configuration has been activated."
 msgstr "Vaša mrežna konfiguracija je aktivirana."
+
+msgid "Your receiver is rebooting"
+msgstr ""
+
+msgid "Your receiver is shutting down"
+msgstr ""
 
 #
 msgid ""
@@ -11499,6 +11522,9 @@ msgstr "prebačen"
 #
 #~ msgid "Relevance"
 #~ msgstr "Važnbost"
+
+#~ msgid "Remember service PIN cancel"
+#~ msgstr "Remember service PIN,otkazano"
 
 #~ msgid "Remote timer and remote TV player"
 #~ msgstr "Udaljeni tajmer i udaljeni TV plejer"

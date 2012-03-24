@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-08 20:34+0100\n"
+"POT-Creation-Date: 2012-03-24 23:40+0100\n"
 "PO-Revision-Date: 2011-12-06 12:09+0300\n"
 "Last-Translator: Raivo, Henkka, eesatfan, rimas\n"
 "Language-Team: Raivo, Henkka, eesatfan, rimas\n"
@@ -174,8 +174,34 @@ msgstr "#ffffff"
 msgid "#ffffffff"
 msgstr "#ffffffff"
 
+#. TRANSLATORS: short time representation hour:minute
+#, python-format
+msgid "%2d:%02d"
+msgstr ""
+
+#. TRANSLATORS: full time representation hour:minute:seconds
+#, python-format
+msgid "%2d:%02d:%02d"
+msgstr ""
+
+#. TRANSLATORS: long date representations dayname daynum monthname in strftime() format! See 'man strftime'
+msgid "%A %e %B"
+msgstr ""
+
+#. TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
+msgid "%A %e %B %Y"
+msgstr ""
+
 msgid "%H:%M"
 msgstr "%H:%M"
+
+#. TRANSLATORS: short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'
+msgid "%a %e/%m"
+msgstr ""
+
+#. TRANSLATORS: long date representation short dayname daynum short monthname hour:minute in strftime() format! See 'man strftime'
+msgid "%a %e/%m  %-H:%M"
+msgstr ""
 
 #, python-format
 msgid "%d hour"
@@ -213,6 +239,10 @@ msgstr "%d kanalit leitud!"
 
 msgid "%d.%B %Y"
 msgstr "%d.%B %Y"
+
+#. TRANSLATORS: VFD hour:minute daynum short monthname in strftime() format! See 'man strftime'
+msgid "%k:%M %e/%m"
+msgstr ""
 
 #, python-format
 msgid "%s (%s)\n"
@@ -617,9 +647,6 @@ msgstr "Muuda vealogi nimetuks?"
 msgid "Any activity"
 msgstr ""
 
-msgid "April"
-msgstr "Aprill"
-
 msgid "Arabic"
 msgstr "Araabia"
 
@@ -693,9 +720,6 @@ msgstr "Heli keele valik 3"
 
 msgid "Audio language selection 4"
 msgstr "Heli keele valik 4"
-
-msgid "August"
-msgstr "August"
 
 msgid "Author: "
 msgstr "Autor: "
@@ -876,6 +900,9 @@ msgstr ""
 
 msgid "Cache Thumbnails"
 msgstr "Salvesta pisipildid"
+
+msgid "Calculate"
+msgstr ""
 
 msgid "Calculate all positions"
 msgstr ""
@@ -1297,9 +1324,6 @@ msgstr "Taani"
 
 msgid "Date"
 msgstr "Kuupäev"
-
-msgid "December"
-msgstr "Detsember"
 
 msgid "Decide if you want to enable or disable the Cleanup Wizard."
 msgstr "Otsusta kas lubate või keelate puhastusabilise."
@@ -1909,9 +1933,6 @@ msgstr "Kiire kerimine"
 msgid "Favourites"
 msgstr "Lemmikud"
 
-msgid "February"
-msgstr "Veebruar"
-
 msgid "File appears to be busy.\n"
 msgstr ""
 
@@ -2382,17 +2403,8 @@ msgstr "Itaalia"
 msgid "Items per Page "
 msgstr ""
 
-msgid "January"
-msgstr "Jaanuar"
-
 msgid "Job View"
 msgstr "Töövaade"
-
-msgid "July"
-msgstr "Juuli"
-
-msgid "June"
-msgstr "Juuni"
 
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
 msgid "Just Scale"
@@ -2589,9 +2601,6 @@ msgstr "Käsitsi sisestatud transponder"
 msgid "Manufacturer"
 msgstr "Tootja"
 
-msgid "March"
-msgstr "Märts"
-
 msgid "Margin after record"
 msgstr "Salvestise lõppu lisatakse"
 
@@ -2600,9 +2609,6 @@ msgstr "Salvestise algusesse lisatakse (minutit)"
 
 msgid "Max. Bitrate: "
 msgstr "Max. Bitikiirus: "
-
-msgid "May"
-msgstr "Mai"
 
 msgid "Media player"
 msgstr "Meediamängija"
@@ -3021,9 +3027,6 @@ msgstr ""
 msgid "Nothing to upgrade"
 msgstr "Uuendusi ei ole"
 
-msgid "November"
-msgstr "November"
-
 msgid "Now Playing"
 msgstr "Taasesitus käib"
 
@@ -3059,9 +3062,6 @@ msgstr ""
 
 msgid "OSD visibility"
 msgstr "OSD nähtavus"
-
-msgid "October"
-msgstr ""
 
 msgid "Off"
 msgstr "Väljas"
@@ -3616,6 +3616,12 @@ msgstr "Teeme taaskäivituse kohe?"
 msgid "Really shutdown now?"
 msgstr "Lülitame välja?"
 
+msgid "Really upgrade the frontprocessor and reboot now?"
+msgstr ""
+
+msgid "Really upgrade your settop box and reboot now?"
+msgstr ""
+
 msgid "Reboot"
 msgstr "Taaskäivitus"
 
@@ -3685,9 +3691,6 @@ msgstr ""
 
 msgid "Remember service PIN"
 msgstr "Mäleta kanali PIN-i"
-
-msgid "Remember service PIN cancel"
-msgstr "Ära mäleta kanali PIN-i"
 
 msgid "Remember these settings for each folder"
 msgstr "Pea iga kataloogi valikud meeles"
@@ -4129,9 +4132,6 @@ msgstr "Saada DiSEqC anult satelliidi vahetamisel"
 
 msgid "Seperate titles with a main menu"
 msgstr "Eraldi pealkirjad koos peamenüüga"
-
-msgid "September"
-msgstr "September"
 
 msgid "Sequence repeat"
 msgstr "Järjekorra kordus"
@@ -4715,6 +4715,9 @@ msgstr "Teksti äärise laius"
 msgid "Text font size"
 msgstr "Teksti suurus"
 
+msgid "Thai"
+msgstr ""
+
 msgid ""
 "Thank you for using the wizard.\n"
 "Please press OK to continue."
@@ -4763,6 +4766,14 @@ msgid ""
 msgstr ""
 "USB pulk oli ette valmistatud käivitatavana.\n"
 "Nüüd saad NFI tarkvara faili alla laadida!"
+
+msgid "The User Interface of your receiver is restarting"
+msgstr ""
+
+msgid ""
+"The User Interface of your receiver is restarting\n"
+"due to an error in mytest.py"
+msgstr ""
 
 msgid "The backup failed. Please choose a different backup location."
 msgstr "Varukoopia loomine nurjus. Vali uus varukoopia asukoht."
@@ -5940,6 +5951,12 @@ msgstr ""
 "Uuendamiseks vajuta OK."
 
 msgid ""
+"Your frontprocessor will be upgraded\n"
+"Please wait until your receiver reboots\n"
+"This may take a few minutes"
+msgstr ""
+
+msgid ""
 "Your internet connection is not working!\n"
 "Please choose what you want to do next."
 msgstr ""
@@ -5951,6 +5968,12 @@ msgstr "Nimi (soovi korral):"
 
 msgid "Your network configuration has been activated."
 msgstr "Võrguseadistus on aktiveeritud."
+
+msgid "Your receiver is rebooting"
+msgstr ""
+
+msgid "Your receiver is shutting down"
+msgstr ""
 
 msgid ""
 "Your wireless LAN internet connection could not be started!\n"
@@ -7180,6 +7203,9 @@ msgstr "vahetatud"
 #~ "Parajasti toimub teise filmi lõikamine .\n"
 #~ "Filmi \"%s\" lõikamine taustal algab pärast seda."
 
+#~ msgid "April"
+#~ msgstr "Aprill"
+
 #~ msgid ""
 #~ "Are you sure you want to save this network mount?\n"
 #~ "\n"
@@ -7208,6 +7234,9 @@ msgstr "vahetatud"
 #~ msgstr ""
 #~ "AudoSync muudab heli viidet väljundis (Bitstream / PCM) nii, et see on "
 #~ "sünkroonis pildiga."
+
+#~ msgid "August"
+#~ msgstr "August"
 
 #~ msgid "Australia"
 #~ msgstr "Austraalia"
@@ -7549,6 +7578,9 @@ msgstr "vahetatud"
 #~ msgid "Daily automatic import"
 #~ msgstr "Automaatne EPG import iga päev"
 
+#~ msgid "December"
+#~ msgstr "Detsember"
+
 #~ msgid "Decrease delay"
 #~ msgstr "Vähenda viidet"
 
@@ -7819,6 +7851,9 @@ msgstr "vahetatud"
 #~ "FTPBrowser võimaldab failide vahendust vastuvõtja ja serveri vahel, "
 #~ "kasutades failivahenduse protokolli FTP."
 
+#~ msgid "February"
+#~ msgstr "Veebruar"
+
 #~ msgid "Fetching feed entries"
 #~ msgstr "Fiidide sisestuste võtmine"
 
@@ -8078,8 +8113,17 @@ msgstr "vahetatud"
 #~ msgid "Italy"
 #~ msgstr "Itaalia"
 
+#~ msgid "January"
+#~ msgstr "Jaanuar"
+
 #~ msgid "Japan"
 #~ msgstr "Jaapan"
+
+#~ msgid "July"
+#~ msgstr "Juuli"
+
+#~ msgid "June"
+#~ msgstr "Juuni"
 
 #~ msgid "Kerni's BrushedAlu-HD skin"
 #~ msgstr "Kerni's BrushedAlu-HD välimus"
@@ -8198,6 +8242,9 @@ msgstr "vahetatud"
 #~ msgid "Manual"
 #~ msgstr "Käsitsi"
 
+#~ msgid "March"
+#~ msgstr "Märts"
+
 #~ msgid "Match Timespan: %02d:%02d - %02d:%02d"
 #~ msgstr "Vastab ajavahemikuga: %02d:%02d - %02d:%02d"
 
@@ -8216,6 +8263,9 @@ msgstr "vahetatud"
 #~ msgstr ""
 #~ "Suurim sobiv saate kestus. Kui saade on pikem kui see ajavahemik (ilma "
 #~ "seatud eranditeta), see ei sobi."
+
+#~ msgid "May"
+#~ msgstr "Mai"
 
 #~ msgid ""
 #~ "MediaScanner scans devices for playable media files and displays a menu "
@@ -8554,6 +8604,9 @@ msgstr "vahetatud"
 #~ msgid "Not fetching feed entries"
 #~ msgstr "Otsingut ei toimu"
 
+#~ msgid "November"
+#~ msgstr "November"
+
 #~ msgid "Number of scheduled recordings left."
 #~ msgstr "Järgijäänud määratud salvestuste arv."
 
@@ -8794,6 +8847,9 @@ msgstr "vahetatud"
 #~ msgid "Relevance"
 #~ msgstr "Asjakohasus"
 
+#~ msgid "Remember service PIN cancel"
+#~ msgstr "Ära mäleta kanali PIN-i"
+
 #
 #~ msgid "Remove directory from Bookmarks"
 #~ msgstr "Eemalda kataloog lemmikutest"
@@ -8953,6 +9009,9 @@ msgstr "vahetatud"
 
 #~ msgid "Select your choice."
 #~ msgstr "Tee oma valik."
+
+#~ msgid "September"
+#~ msgstr "September"
 
 #~ msgid "Server IP"
 #~ msgstr "Serveri IP"

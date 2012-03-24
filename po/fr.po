@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-08 20:34+0100\n"
+"POT-Creation-Date: 2012-03-24 23:40+0100\n"
 "PO-Revision-Date: 2012-03-03 21:23+0100\n"
 "Last-Translator: \n"
 "Language-Team: french\n"
@@ -176,8 +176,34 @@ msgstr "#ffffff"
 msgid "#ffffffff"
 msgstr "#ffffffff"
 
+#. TRANSLATORS: short time representation hour:minute
+#, python-format
+msgid "%2d:%02d"
+msgstr ""
+
+#. TRANSLATORS: full time representation hour:minute:seconds
+#, python-format
+msgid "%2d:%02d:%02d"
+msgstr ""
+
+#. TRANSLATORS: long date representations dayname daynum monthname in strftime() format! See 'man strftime'
+msgid "%A %e %B"
+msgstr ""
+
+#. TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
+msgid "%A %e %B %Y"
+msgstr ""
+
 msgid "%H:%M"
 msgstr "%H:%M"
+
+#. TRANSLATORS: short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'
+msgid "%a %e/%m"
+msgstr ""
+
+#. TRANSLATORS: long date representation short dayname daynum short monthname hour:minute in strftime() format! See 'man strftime'
+msgid "%a %e/%m  %-H:%M"
+msgstr ""
 
 #, python-format
 msgid "%d hour"
@@ -215,6 +241,10 @@ msgstr "%d services trouvés!"
 
 msgid "%d.%B %Y"
 msgstr "%d.%B %Y"
+
+#. TRANSLATORS: VFD hour:minute daynum short monthname in strftime() format! See 'man strftime'
+msgid "%k:%M %e/%m"
+msgstr ""
 
 #, python-format
 msgid "%s (%s)\n"
@@ -625,9 +655,6 @@ msgstr "Rendre le crashlog anonyme?"
 msgid "Any activity"
 msgstr "Pour toute activité"
 
-msgid "April"
-msgstr "Avril"
-
 msgid "Arabic"
 msgstr "Arabe"
 
@@ -701,9 +728,6 @@ msgstr "Sélection de la langue audio 3"
 
 msgid "Audio language selection 4"
 msgstr "Sélection de la langue audio 4"
-
-msgid "August"
-msgstr "Août"
 
 msgid "Author: "
 msgstr "Auteur: "
@@ -886,6 +910,9 @@ msgstr "Scan du Cable"
 
 msgid "Cache Thumbnails"
 msgstr "Cache vignettes"
+
+msgid "Calculate"
+msgstr ""
 
 msgid "Calculate all positions"
 msgstr ""
@@ -1310,9 +1337,6 @@ msgstr "Danois"
 
 msgid "Date"
 msgstr "Date"
-
-msgid "December"
-msgstr "Décembre"
 
 msgid "Decide if you want to enable or disable the Cleanup Wizard."
 msgstr "Décider si vous souhaitez activer ou désactiver l'assistant nettoyage."
@@ -1929,9 +1953,6 @@ msgstr "Epoque rapide"
 msgid "Favourites"
 msgstr "Favoris"
 
-msgid "February"
-msgstr "Février"
-
 msgid "File appears to be busy.\n"
 msgstr "Le fichier semble être occupé.\n"
 
@@ -2404,17 +2425,8 @@ msgstr "Italien"
 msgid "Items per Page "
 msgstr "Eléments par Page "
 
-msgid "January"
-msgstr "Janvier"
-
 msgid "Job View"
 msgstr "Vue travail"
-
-msgid "July"
-msgstr "Juillet"
-
-msgid "June"
-msgstr "Juin"
 
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
 msgid "Just Scale"
@@ -2611,9 +2623,6 @@ msgstr "Transpondeur manuel"
 msgid "Manufacturer"
 msgstr "Constructeur"
 
-msgid "March"
-msgstr "Mars"
-
 msgid "Margin after record"
 msgstr "Marge après enregistrement (min)"
 
@@ -2622,9 +2631,6 @@ msgstr "Marge avant enregistrement (min)"
 
 msgid "Max. Bitrate: "
 msgstr "Bitrate Max.: "
-
-msgid "May"
-msgstr "Mai"
 
 msgid "Media player"
 msgstr "Lecteur de médias"
@@ -3044,9 +3050,6 @@ msgstr ""
 msgid "Nothing to upgrade"
 msgstr "Rien à mettre à jour"
 
-msgid "November"
-msgstr "Novembre"
-
 msgid "Now Playing"
 msgstr "Lecture en cours"
 
@@ -3083,9 +3086,6 @@ msgstr "Demande de nom de l'OSD"
 
 msgid "OSD visibility"
 msgstr "Visibilité OSD"
-
-msgid "October"
-msgstr "Octobre"
 
 msgid "Off"
 msgstr "Arrêt"
@@ -3649,6 +3649,12 @@ msgstr "Vraiment redémarrer maintenant?"
 msgid "Really shutdown now?"
 msgstr "Vraiment éteindre maintenant?"
 
+msgid "Really upgrade the frontprocessor and reboot now?"
+msgstr ""
+
+msgid "Really upgrade your settop box and reboot now?"
+msgstr ""
+
 msgid "Reboot"
 msgstr "Reboot"
 
@@ -3720,9 +3726,6 @@ msgstr "Recharger les bouquets et services..."
 
 msgid "Remember service PIN"
 msgstr "Enregistrer PIN service"
-
-msgid "Remember service PIN cancel"
-msgstr "Désenregistrer PIN service"
 
 msgid "Remember these settings for each folder"
 msgstr "Se rappeler de ces paramètres pour chaque dossier"
@@ -4165,9 +4168,6 @@ msgstr "Envoyer DiSEqC seulement pour changement satellite"
 
 msgid "Seperate titles with a main menu"
 msgstr "Titres séparés avec un menu principal"
-
-msgid "September"
-msgstr "Septembre"
 
 msgid "Sequence repeat"
 msgstr "Répéter la séquence"
@@ -4758,6 +4758,9 @@ msgstr "Largeur de la bordure du texte"
 msgid "Text font size"
 msgstr "Taille de la police du texte"
 
+msgid "Thai"
+msgstr ""
+
 msgid ""
 "Thank you for using the wizard.\n"
 "Please press OK to continue."
@@ -4808,6 +4811,14 @@ msgid ""
 msgstr ""
 "La clé USB à été préparé pour être bootable.\n"
 "Maintenant vous pouvez télécharger un fichier image NFI!"
+
+msgid "The User Interface of your receiver is restarting"
+msgstr ""
+
+msgid ""
+"The User Interface of your receiver is restarting\n"
+"due to an error in mytest.py"
+msgstr ""
 
 msgid "The backup failed. Please choose a different backup location."
 msgstr "La sauvegarde a échoué. Veuillez choisir un autre emplacement."
@@ -6021,6 +6032,12 @@ msgstr ""
 "Veuillez appuyer sur OK pour commencer la mise à jour."
 
 msgid ""
+"Your frontprocessor will be upgraded\n"
+"Please wait until your receiver reboots\n"
+"This may take a few minutes"
+msgstr ""
+
+msgid ""
 "Your internet connection is not working!\n"
 "Please choose what you want to do next."
 msgstr ""
@@ -6032,6 +6049,12 @@ msgstr "Votre nom (optionnel):"
 
 msgid "Your network configuration has been activated."
 msgstr "Votre configuration réseau a été activée."
+
+msgid "Your receiver is rebooting"
+msgstr ""
+
+msgid "Your receiver is shutting down"
+msgstr ""
 
 msgid ""
 "Your wireless LAN internet connection could not be started!\n"
@@ -7048,14 +7071,23 @@ msgstr "zap"
 msgid "zapped"
 msgstr "zappé"
 
+#~ msgid "April"
+#~ msgstr "Avril"
+
 #~ msgid "Attempt to recover lost mounts (in background)"
 #~ msgstr "Tentative de récupération des montages perdus (en arrière-plan)"
 
 #~ msgid "Audio Sync"
 #~ msgstr "Synchro piste audio"
 
+#~ msgid "August"
+#~ msgstr "Août"
+
 #~ msgid "Browse network neighbourhood"
 #~ msgstr "Parcourir le voisinage réseau"
+
+#~ msgid "December"
+#~ msgstr "Décembre"
 
 #~ msgid "Do you want to enter a username and password for this host?\n"
 #~ msgstr ""
@@ -7064,14 +7096,32 @@ msgstr "zappé"
 #~ msgid "Event Fontsize"
 #~ msgstr "Taille de la police de l'événement"
 
+#~ msgid "February"
+#~ msgstr "Février"
+
 #~ msgid "From:"
 #~ msgstr "De:"
 
 #~ msgid "Goto:"
 #~ msgstr "Aller vers:"
 
+#~ msgid "January"
+#~ msgstr "Janvier"
+
+#~ msgid "July"
+#~ msgstr "Juillet"
+
+#~ msgid "June"
+#~ msgstr "Juin"
+
 #~ msgid "Manage your network shares..."
 #~ msgstr "Gérer vos partages réseau..."
+
+#~ msgid "March"
+#~ msgstr "Mars"
+
+#~ msgid "May"
+#~ msgstr "Mai"
 
 #~ msgid "Mount again"
 #~ msgstr "Monter à nouveau"
@@ -7088,6 +7138,12 @@ msgstr "zappé"
 #~ msgid "NetworkBrowser"
 #~ msgstr "Parcourir le réseau"
 
+#~ msgid "November"
+#~ msgstr "Novembre"
+
+#~ msgid "October"
+#~ msgstr "Octobre"
+
 #~ msgid "Press OK to collapse this host"
 #~ msgstr "Pressez OK pour réduire cet hôte"
 
@@ -7103,6 +7159,9 @@ msgstr "zappé"
 #~ msgid "Put TV in standby when deepstandby"
 #~ msgstr "Mettre la TV en veille en mode veille profonde"
 
+#~ msgid "Remember service PIN cancel"
+#~ msgstr "Désenregistrer PIN service"
+
 #~ msgid "Restart softcam"
 #~ msgstr "Redémarrer le Softcam"
 
@@ -7117,6 +7176,9 @@ msgstr "zappé"
 
 #~ msgid "Select Softcam"
 #~ msgstr "Sélectionner le Softcam"
+
+#~ msgid "September"
+#~ msgstr "Septembre"
 
 #~ msgid "Setup for the Audio Sync Plugin"
 #~ msgstr "Paramètres pour le plugin Audio Sync"
