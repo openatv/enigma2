@@ -45,5 +45,9 @@ if GIGABLUE
 SUBDIRS += GBVFD SatelliteEquipmentControl DiseqcTester FastScan HdmiCEC
 endif
 
+if INIHD
+SUBDIRS += SatelliteEquipmentControl DiseqcTester FastScan
+endif
+
 install_PYTHON =	\
 	__init__.py
