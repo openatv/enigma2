@@ -27,11 +27,11 @@ class RemainingToText(Poll, Converter, object):
 			self.poll_interval = 60*1000
 			self.poll_enabled = True
 		elif type == "InSeconds":
-			self.type = self.IN_SECONDS	
+			self.type = self.IN_SECONDS
 			self.poll_interval = 1000
 			self.poll_enabled = True
 		elif type == "Percentage":
-			self.type = self.PERCENTAGE	
+			self.type = self.PERCENTAGE
 			self.poll_interval = 60*1000
 			self.poll_enabled = True
 		elif type == "VFD":
@@ -45,11 +45,11 @@ class RemainingToText(Poll, Converter, object):
 			self.poll_interval = 60*1000
 			self.poll_enabled = True
 		elif type == "VFDInSeconds":
-			self.type = self.VFD_IN_SECONDS	
+			self.type = self.VFD_IN_SECONDS
 			self.poll_interval = 1000
 			self.poll_enabled = True
 		elif type == "VFDPercentage":
-			self.type = self.VFD_PERCENTAGE	
+			self.type = self.VFD_PERCENTAGE
 			self.poll_interval = 60*1000
 			self.poll_enabled = True
 		else:
@@ -119,7 +119,7 @@ class RemainingToText(Poll, Converter, object):
 						return sign_r + ngettext("%d Min", "%d Mins", (r/60)) % (r/60)
 				else:
 					return ngettext("%d Min", "%d Mins", (l/60)) % (l/60)
-	
+
 			elif config.usage.swap_time_display_on_osd.value == "2":
 				if remaining is not None:
 					if config.usage.swap_time_remaining_on_osd.value == "1":  # Elasped
@@ -272,7 +272,7 @@ class RemainingToText(Poll, Converter, object):
 						return sign_r + ngettext("%d Min", "%d Mins", (r/60)) % (r/60)
 				else:
 					return ngettext("%d Min", "%d Mins", (l/60)) % (l/60)
-	
+
 			elif config.usage.swap_time_display_on_vfd.value == "2":
 				if remaining is not None:
 					if config.usage.swap_time_remaining_on_vfd.value == "1":  # Elasped

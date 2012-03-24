@@ -6,7 +6,7 @@ from Tools.HardwareInfo import HardwareInfo
 from os import path
 
 # The "VideoHardware" is the interface to /proc/stb/video.
-# It generates hotplug events, and gives you the list of 
+# It generates hotplug events, and gives you the list of
 # available and preferred modes, as well as handling the currently
 # selected mode. No other strict checking is done.
 class VideoHardware:
@@ -38,7 +38,7 @@ class VideoHardware:
 								"60Hz":		{ 60: "1080i" },
 								"multi":	{ 50: "1080i50", 60: "1080i" } }
 
-	rates["PC"] = { 
+	rates["PC"] = {
 		"1024x768": { 60: "1024x768" }, # not possible on DM7025
 		"800x600" : { 60: "800x600" },  # also not possible
 		"720x480" : { 60: "720x480" },
@@ -108,7 +108,7 @@ class VideoHardware:
 
 		# take over old AVSwitch component :)
 		from Components.AVSwitch import AVSwitch
-#		config.av.colorformat.notifiers = [ ] 
+#		config.av.colorformat.notifiers = [ ]
 		config.av.aspectratio.notifiers = [ ]
 		config.av.tvsystem.notifiers = [ ]
 		config.av.wss.notifiers = [ ]
@@ -173,7 +173,7 @@ class VideoHardware:
 		mode_60 = modes.get(60)
 		if mode_50 is None or force == 60:
 			mode_50 = mode_60
-		if mode_60 is None or force == 50: 
+		if mode_60 is None or force == 50:
 			mode_60 = mode_50
 
 		try:
@@ -278,7 +278,7 @@ class VideoHardware:
 
 		# based on;
 		#   config.av.videoport.value: current video output device
-		#     Scart: 
+		#     Scart:
 		#   config.av.aspect:
 		#     4_3:            use policy_169
 		#     16_9,16_10:     use policy_43

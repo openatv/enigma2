@@ -10,7 +10,7 @@ from Components.Sources.StaticText import StaticText
 from Components.Pixmap import Pixmap
 from Components.Label import Label
 
-from Components.FileList import FileList 
+from Components.FileList import FileList
 from Components.Slider import Slider
 
 from Screens.Screen import Screen
@@ -31,7 +31,7 @@ if os.path.exists("/proc/stb/info/vumodel"):
 			 ("fpga", _("FPGA"))
 			,("fp", _("Front Processor"))
 			]
-		fwdata= { 
+		fwdata= {
 			 "fpga" : ["http://archive.vuplus.com/download/fpga", "fpga.files", "/dev/fpga_dp;/dev/misc/dp;"]
 			,"fp"   : ["http://archive.vuplus.com/download/fp", "fp.files", "/dev/bcm_mu;"]
 			}
@@ -39,7 +39,7 @@ if os.path.exists("/proc/stb/info/vumodel"):
 		fwlist= [
 			("fpga", _("FPGA"))
 			]
-		fwdata= { 
+		fwdata= {
 			"fpga" : ["http://archive.vuplus.com/download/fpga", "fpga.files", "/dev/fpga_dp;/dev/misc/dp;"]
 			}
 
@@ -317,8 +317,8 @@ class Filebrowser(Screen):
 
 	def __init__(self, session, parent, firmware):
 		Screen.__init__(self, session)
-                self.session = session 
-		
+                self.session = session
+
 		self["key_blue"] = StaticText(_("Download the firmware (latest)"))
 
 		self["status"]    = StaticText(" ")
@@ -333,7 +333,7 @@ class Filebrowser(Screen):
 			"down":   self.onClickDown,
 			"left":   self.onClickLeft,
 			"right":  self.onClickRight,
-                }, -1) 
+                }, -1)
 
 		self.resetGUI()
 		self.firmware = firmware
@@ -389,7 +389,7 @@ class Filebrowser(Screen):
 
 		if md5sum_A != md5sum_B:
 			self.session.open(MessageBox, _("Fail to verify data file. \nfile[%s]\nmd5[%s]"%(md5sum_A,md5sum_B)), MessageBox.TYPE_INFO, timeout = 10)
-			return 
+			return
 
 		if self.callback is not None:
 			self.callback(_(self.gbin))
@@ -544,9 +544,9 @@ class FirmwareUpgrade(Screen, ConfigListScreen):
                 </screen>
 		"""
 
-	def __init__(self, session): 
+	def __init__(self, session):
 		Screen.__init__(self, session)
-                self.session = session 
+                self.session = session
 
 		self["shortcuts"] = ActionMap(["ShortcutActions", "SetupActions" ],
 		{
@@ -644,13 +644,13 @@ class FirmwareUpgrade(Screen, ConfigListScreen):
 		device = None
 		for d in fwdata[self._item_firmware.value][2].split(';'):
 			if os.path.exists(d):
-				device = d			
+				device = d
 		if device is None:
 			self.session.open(MessageBox, _("Can't found device file!!"), MessageBox.TYPE_INFO, timeout = 10)
 			return
 		fbs = self.session.open(UpgradeStatus, self, self._item_firmware.value, self.updateFilePath, device)
 		fbs.setCallback(self.cbFinishedUpgrade)
-	
+
 	def doFileOpen(self):
 		fbs = self.session.open(Filebrowser, self, self._item_firmware.value)
 		fbs.setCallback(self.cbSetStatus)
@@ -723,13 +723,13 @@ class FirmwareUpgrade(Screen, ConfigListScreen):
 		self.logmode = eTimer()
 		self.logmode.callback.append(self.cbLogMode)
 		self.logmode.start(1000)
-		
+
 	def keyNone(self):
 		None
 
 def main(session, **kwargs):
         session.open(FirmwareUpgrade)
-                                                           
-def Plugins(**kwargs):            
+
+def Plugins(**kwargs):
 	return PluginDescriptor(name=_("Firmware Upgrade"), description="Upgrade Firmware..", where = PluginDescriptor.WHERE_PLUGINMENU, fnc=main)
 

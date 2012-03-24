@@ -27,7 +27,7 @@ def videoFinetuneWizard(*args, **kwargs):
 		return Dummy(*args, **kwargs)
 
 def startSetup(menuid):
-	if menuid != "system": 
+	if menuid != "system":
 		return [ ]
 
 	return [(_("Video Fine-Tuning"), videoFinetuneMain, "videofinetune_setup", None)]

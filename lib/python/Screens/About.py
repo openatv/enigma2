@@ -21,8 +21,8 @@ class About(Screen):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Image Information"))
 		self.populate()
-		
-		self["actions"] = ActionMap(["SetupActions", "ColorActions", "TimerEditActions"], 
+
+		self["actions"] = ActionMap(["SetupActions", "ColorActions", "TimerEditActions"],
 			{
 				"cancel": self.close,
 				"ok": self.close,
@@ -142,8 +142,8 @@ class Devices(Screen):
 		self.activityTimer = eTimer()
 		self.activityTimer.timeout.get().append(self.populate2)
 		self.populate()
-		
-		self["actions"] = ActionMap(["SetupActions", "ColorActions", "TimerEditActions"], 
+
+		self["actions"] = ActionMap(["SetupActions", "ColorActions", "TimerEditActions"],
 			{
 				"cancel": self.close,
 				"ok": self.close,
@@ -198,7 +198,7 @@ class Devices(Screen):
 		mountfree = mount[3]
 		if self.mountinfo:
 			self.mountinfo += "\n"
-		self.mountinfo += "%s (%sB, %sB %s)" % (ipaddress, mounttotal, mountfree, _("free")) 
+		self.mountinfo += "%s (%sB, %sB %s)" % (ipaddress, mounttotal, mountfree, _("free"))
 		self["mounts"].setText(self.mountinfo)
 
 	def createSummary(self):
@@ -234,8 +234,8 @@ class SystemMemoryInfo(Screen):
 				AboutText += _("Free Swap:") + "\t" + SwapFree[1] + "\n\n"
 
 		self["AboutScrollLabel"] = ScrollLabel(AboutText)
-		
-		self["actions"] = ActionMap(["SetupActions", "ColorActions"], 
+
+		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
 			{
 				"cancel": self.close,
 				"ok": self.close,
@@ -262,13 +262,13 @@ class SystemNetworkInfo(Screen):
 			<widget source="signal" render="Label" position="161,220" size="330,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
 			<widget source="bitrate" render="Label" position="161,250" size="330,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
 			<widget source="enc" render="Label" position="161,280" size="330,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
-			<ePixmap pixmap="skin_default/div-h.png" position="0,350" zPosition="1" size="560,2" />		
+			<ePixmap pixmap="skin_default/div-h.png" position="0,350" zPosition="1" size="560,2" />
 			<widget source="IFtext" render="Label" position="10,355" size="120,21" zPosition="10" font="Regular;20" halign="left" transparent="1" />
 			<widget source="IF" render="Label" position="120,355" size="400,21" zPosition="10" font="Regular;20" halign="left" transparent="1" />
 			<widget source="Statustext" render="Label" position="10,375" size="115,21" zPosition="10" font="Regular;20" halign="left" transparent="1"/>
 			<widget name="statuspic" pixmaps="skin_default/buttons/button_green.png,skin_default/buttons/button_green_off.png" position="120,380" zPosition="10" size="15,16" transparent="1" alphatest="on"/>
 		</screen>"""
-	
+
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Network Information"))
@@ -296,7 +296,7 @@ class SystemNetworkInfo(Screen):
 
 		self["key_red"] = StaticText(_("Close"))
 
-		self["actions"] = ActionMap(["SetupActions", "ColorActions"], 
+		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
 			{
 				"cancel": self.close,
 				"ok": self.close,
@@ -304,14 +304,14 @@ class SystemNetworkInfo(Screen):
 		self.resetList()
 		self.updateStatusbar()
 		self.timer = eTimer()
-		self.timer.timeout.get().append(self.resetList) 
+		self.timer.timeout.get().append(self.resetList)
 		self.onShown.append(lambda: self.timer.start(8000))
 		self.onClose.append(self.cleanup)
 
 	def createscreen(self):
 		AboutText = ""
 		self.iface = "eth0"
-		eth0 = about.getIfConfig('eth0') 
+		eth0 = about.getIfConfig('eth0')
 		if eth0.has_key('addr'):
 			AboutText += _("IP:") + "\t" + eth0['addr'] + "\n"
 			if eth0.has_key('netmask'):
@@ -320,7 +320,7 @@ class SystemNetworkInfo(Screen):
 				AboutText += _("MAC:") + "\t" + eth0['hwaddr'].replace('0:','00:') + "\n"
 			self.iface = 'eth0'
 
-		wlan0 = about.getIfConfig('wlan0') 
+		wlan0 = about.getIfConfig('wlan0')
 		if wlan0.has_key('addr'):
 			AboutText += _("IP:") + "\t" + wlan0['addr'] + "\n"
 			if wlan0.has_key('netmask'):
@@ -328,7 +328,7 @@ class SystemNetworkInfo(Screen):
 			if wlan0.has_key('hwaddr'):
 				AboutText += _("MAC:") + "\t" + wlan0['hwaddr'].replace('0:','00:') + "\n"
 			self.iface = 'wlan0'
-	
+
 			self["LabelBSSID"].setText(_('Accesspoint:'))
 			self["LabelESSID"].setText(_('SSID:'))
 			self["LabelQuality"].setText(_('Link Quality:'))
@@ -341,10 +341,10 @@ class SystemNetworkInfo(Screen):
 
 	def cleanup(self):
 		iStatus.stopWlanConsole()
-				
+
 	def resetList(self):
 		iStatus.getDataForInterface(self.iface,self.getInfoCB)
-		
+
 	def getInfoCB(self,data,status):
 		if data is not None:
 			if data is True:
@@ -363,22 +363,22 @@ class SystemNetworkInfo(Screen):
 							self["BSSID"].setText(accesspoint)
 						if self.has_key("ESSID"):
 							self["ESSID"].setText(essid)
-	
+
 						quality = status[self.iface]["quality"]
 						if self.has_key("quality"):
 							self["quality"].setText(quality)
-							
+
 						if status[self.iface]["bitrate"] == '0':
 							bitrate = _("Unsupported")
 						else:
 							bitrate = str(status[self.iface]["bitrate"]) + " Mb/s"
 						if self.has_key("bitrate"):
-							self["bitrate"].setText(bitrate)					
-						
+							self["bitrate"].setText(bitrate)
+
 						signal = status[self.iface]["signal"]
 						if self.has_key("signal"):
 							self["signal"].setText(signal)
-	
+
 						if status[self.iface]["encryption"] == "off":
 							if accesspoint == "Not-Associated":
 								encryption = _("Disabled")
@@ -417,7 +417,7 @@ class SystemNetworkInfo(Screen):
 					self["statuspic"].setPixmapNum(1)
 				else:
 					self["statuspic"].setPixmapNum(0)
-		self["statuspic"].show()		
+		self["statuspic"].show()
 
 	def createSummary(self):
 		return AboutSummary

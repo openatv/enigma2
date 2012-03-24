@@ -32,7 +32,7 @@ class Screen(dict, GUISkin):
 		self.onHide = [ ]
 
 		self.execing = False
-		
+
 		self.shown = True
 		# already shown is false until the screen is really shown (after creation)
 		self.already_shown = False
@@ -92,10 +92,10 @@ class Screen(dict, GUISkin):
 				self.active_components.append(val)
 
 			self.execing = True
-	
+
 			for x in self.onShown:
 				x()
-	
+
 	def execEnd(self):
 		active_components = self.active_components
 #		for (name, val) in self.items():
@@ -105,13 +105,13 @@ class Screen(dict, GUISkin):
 #		assert self.session != None, "execEnd on non-execing screen!"
 #		self.session = None
 		self.execing = False
-	
+
 	# never call this directly - it will be called from the session!
 	def doClose(self):
 		self.hide()
 		for x in self.onClose:
 			x()
-		
+
 		# fixup circular references
 		del self.helpList
 		GUISkin.close(self)
@@ -132,7 +132,7 @@ class Screen(dict, GUISkin):
 
 		# really delete all elements now
 		self.__dict__.clear()
-	
+
 	def close(self, *retval):
 		if not self.execing:
 			self.close_on_next_exec = retval

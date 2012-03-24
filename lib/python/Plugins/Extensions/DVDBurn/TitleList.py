@@ -50,13 +50,13 @@ class TitleList(Screen, HelpableScreen):
 			<widget source="space_label_single" render="Label" position="10,449" size="270,22" zPosition="3" font="Regular;18" halign="center" transparent="1" foregroundColor="#000000" />
 			<widget source="space_bar_dual" render="Progress" position="10,446" size="540,24" borderWidth="1" backgroundColor="#254f7497" />
 			<widget source="space_label_dual" render="Label" position="10,449" size="540,22" zPosition="2" font="Regular;18" halign="center" transparent="1" foregroundColor="#000000" />
-			
+
 		</screen>"""
 
 	def __init__(self, session, project = None):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
-		
+
 		self["titleactions"] = HelpableActionMap(self, "DVDTitleList",
 			{
 				"addTitle": (self.addTitle, _("Add a new title"), _("Add title")),
@@ -138,7 +138,7 @@ class TitleList(Screen, HelpableScreen):
 		job_manager.in_background = False
 		self.session.openWithCallback(self.JobViewCB, JobView, self.backgroundJob)
 		self.backgroundJob = None
-	
+
 	def titleProperties(self):
 		if self.getCurrentTitle():
 			self.session.openWithCallback(self.updateTitleList, TitleProperties.TitleProperties, self, self.project, self["titles"].getIndex())
@@ -227,7 +227,7 @@ class TitleList(Screen, HelpableScreen):
 	def removeCurrentTitle(self):
 		title = self.getCurrentTitle()
 		self.removeTitle(title)
-	
+
 	def removeTitle(self, title):
 		if title is not None:
 			self.project.titles.remove(title)

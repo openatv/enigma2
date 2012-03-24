@@ -58,9 +58,9 @@ def SecSetupMain(Session, **kwargs):
 
 def SecSetupStart(menuid):
 	show = False
-	
+
 	# other menu than "scan"?
-	if menuid != "scan": 
+	if menuid != "scan":
 		return [ ]
 
 	# only show if DVB-S frontends are available

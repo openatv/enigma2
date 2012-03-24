@@ -31,7 +31,7 @@ class OSDSetup(Screen, ConfigListScreen):
 		self["key_green"] = StaticText(_("OK"))
 		self["key_yellow"] = StaticText(_("Defaults"))
 
-		self["actions"] = ActionMap(["SetupActions", "ColorActions"], 
+		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
 			{
 				"cancel": self.keyCancel,
 				"save": self.keySave,
@@ -129,7 +129,7 @@ class OSDSetup(Screen, ConfigListScreen):
 	def keySave(self):
 		self.saveAll()
 		self.close()
-	
+
 	def cancelConfirm(self, result):
 		if not result:
 			return
@@ -169,7 +169,7 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
 
-		self["actions"] = ActionMap(["SetupActions"], 
+		self["actions"] = ActionMap(["SetupActions"],
 			{
 				"cancel": self.keyCancel,
 				"save": self.keySave,
@@ -231,7 +231,7 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 	def keySave(self):
 		self.saveAll()
 		self.close()
-	
+
 	def cancelConfirm(self, result):
 		if not result:
 			return

@@ -25,7 +25,7 @@ class Standby2(Screen):
 		if (eDVBVolumecontrol.getInstance().isMuted()):
 			self.wasMuted = 1
 			print "mute already active"
-		else:	
+		else:
 			self.wasMuted = 0
 			eDVBVolumecontrol.getInstance().volumeToggleMute()
 
@@ -136,7 +136,7 @@ class QuitMainloopScreen(Screen):
 			3: _("The User Interface of your receiver is restarting"),
 			4: _("Your frontprocessor will be upgraded\nPlease wait until your receiver reboots\nThis may take a few minutes"),
 			5: _("The User Interface of your receiver is restarting\ndue to an error in mytest.py"),
-			42: _("Unattended upgrade in progress\nPlease wait until your receiver reboots\nThis may take a few minutes") }.get(retvalue) 
+			42: _("Unattended upgrade in progress\nPlease wait until your receiver reboots\nThis may take a few minutes") }.get(retvalue)
 		self["text"] = Label(text)
 
 inTryQuitMainloop = False
@@ -151,7 +151,7 @@ class TryQuitMainloop(MessageBox):
 		reason = ""
 		next_rec_time = -1
 		if not recordings:
-			next_rec_time = session.nav.RecordTimer.getNextRecordingTime()	
+			next_rec_time = session.nav.RecordTimer.getNextRecordingTime()
 		if jobs:
 			reason = _("Job task(s) are in progress!") + '\n'
 			if jobs == 1:
@@ -166,7 +166,7 @@ class TryQuitMainloop(MessageBox):
 			session.nav.record_event.append(self.getRecordEvent)
 			self.skinName = ""
 		elif reason and not inStandby:
-			text = { 1: _("Really shutdown now?"), 
+			text = { 1: _("Really shutdown now?"),
 				2: _("Really reboot now?"),
 				3: _("Really restart now?"),
 				4: _("Really upgrade the frontprocessor and reboot now?"),

@@ -11,9 +11,9 @@ class FixedMenu(Screen):
 	def __init__(self, session, title, list):
 		Screen.__init__(self, session)
 
-		self["menu"] = List(list)	
+		self["menu"] = List(list)
 
-		self["actions"] = ActionMap(["OkCancelActions"], 
+		self["actions"] = ActionMap(["OkCancelActions"],
 			{
 				"ok": self.okbuttonClick,
 				"cancel": self.close

@@ -7,7 +7,7 @@ from Components.Converter.Converter import Converter
 from Components.Element import cached
 from Components.config import config
 from Tools.Transponder import ConvertToHumanReadable
-from Tools.GetEcmInfo import GetEcmInfo 
+from Tools.GetEcmInfo import GetEcmInfo
 from Poll import Poll
 
 class pliExpertInfo(Poll, Converter, object):
@@ -17,7 +17,7 @@ class pliExpertInfo(Poll, Converter, object):
 	SERVICE_INFO = 3
 	CRYPTO_INFO = 4
 	FREQUENCY_INFO = 5
-	
+
 	def __init__(self, type):
 		Converter.__init__(self, type)
 		Poll.__init__(self)
@@ -54,7 +54,7 @@ class pliExpertInfo(Poll, Converter, object):
 			except:
 				pass
 		if not info:
-			return ""	
+			return ""
 
 		Ret_Text = ""
 		Sec_Text = ""
@@ -69,7 +69,7 @@ class pliExpertInfo(Poll, Converter, object):
 			sep2 = "\n"
 		else:
 			return ""	# unsupported orientation
-		
+
 		if (self.type == self.FREQUENCY_INFO):
 			try:
 				feinfo = (service and service.frontendInfo())
@@ -285,7 +285,7 @@ class pliExpertInfo(Poll, Converter, object):
 							elif orbital_pos == 100:
 								orb_pos = 'Eutelsat W1'
 							elif orbital_pos == 90:
-								orb_pos = 'Eurobird 9' 
+								orb_pos = 'Eurobird 9'
 							elif orbital_pos == 70:
 								orb_pos = 'Eutelsat W3A'
 							elif orbital_pos == 50:
@@ -307,7 +307,7 @@ class pliExpertInfo(Poll, Converter, object):
 					Ret_Text = "Frequency: " + frequency
 
 		if (self.type == self.SMART_INFO_H or self.type == self.SMART_INFO_V or self.type == self.SERVICE_INFO):
-			
+
 			xresol = info.getInfo(iServiceInformation.sVideoWidth)
 			yresol = info.getInfo(iServiceInformation.sVideoHeight)
 			feinfo = (service and service.frontendInfo())
@@ -341,13 +341,13 @@ class pliExpertInfo(Poll, Converter, object):
 
 			if (feinfo is not None) and (xresol > 0):
 				Res_Text += ("MPEG2 ", "MPEG4 ", "MPEG1 ", "MPEG4-II ", "VC1 ", "VC1-SM ", "")[info.getInfo(iServiceInformation.sVideoType)]
-				Res_Text += str(xresol) + "x" + str(yresol) 
+				Res_Text += str(xresol) + "x" + str(yresol)
 				Res_Text += ("i", "p", "")[info.getInfo(iServiceInformation.sProgressive)]
 				Res_Text += str((info.getInfo(iServiceInformation.sFrameRate) + 500) / 1000)
 
 		if (self.type == self.SMART_INFO_H or self.type == self.SMART_INFO_V or self.type == self.CRYPTO_INFO):
 
-			decCI = "0" 
+			decCI = "0"
 			Sec_Text = ""
 			if (info.getInfo(iServiceInformation.sIsCrypted) == 1):
 				data = self.ecmdata.getEcmData()
@@ -356,7 +356,7 @@ class pliExpertInfo(Poll, Converter, object):
 					Sec_Text = data[0] + "\n"
 				decCI = data[1]
 				provid = data[2]
-				pid = data[3]	
+				pid = data[3]
 
 				if decCI != '0':
 					decCIfull = "%04x" % int(decCI, 16)
@@ -371,14 +371,14 @@ class pliExpertInfo(Poll, Converter, object):
 						Sec_Text += ":"
 					if pid != '0':
 						Sec_Text += ":%04x:%04x" % (info.getInfo(iServiceInformation.sSID),int(pid, 16))
-			
+
 			elif not config.usage.show_cryptoinfo.value:
 				showCryptoInfo = True
 				Sec_Text = "FTA"
-			res = ""			
+			res = ""
 			searchIDs = (info.getInfoObject(iServiceInformation.sCAIDs))
 			for idline in self.idnames:
-				if int(decCI, 16) >= int(idline[0], 16) and int(decCI, 16) <= int(idline[1], 16):                    
+				if int(decCI, 16) >= int(idline[0], 16) and int(decCI, 16) <= int(idline[1], 16):
 					color="\c0000??00"
 				else:
 					color = "\c007?7?7?"
@@ -389,11 +389,11 @@ class pliExpertInfo(Poll, Converter, object):
 					except:
 						pass
 				res += color + idline[3] + " "
-			
+
 			if (self.type != self.CRYPTO_INFO):
 				Ret_Text += "\n"
 			Ret_Text += res + "\c00?????? " + Sec_Text
-		
+
 		if Res_Text != "":
 			if showCryptoInfo:
 				Ret_Text += sep + Res_Text

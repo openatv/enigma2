@@ -117,7 +117,7 @@ def resetMoviePlayState(cutsFileName, ref=None):
 		#import sys
 		#print "Exception in resetMoviePlayState: %s: %s" % sys.exc_info()[:2]
 
-        
+
 class MovieList(GUIComponent):
 	SORT_ALPHANUMERIC = 1
 	SORT_RECORDED = 2
@@ -150,12 +150,12 @@ class MovieList(GUIComponent):
 		self.l = eListboxPythonMultiContent()
 		self.tags = set()
 		self.root = None
-		
+
 		if root is not None:
 			self.reload(root)
-		
+
 		self.l.setBuildFunc(self.buildMovieListEntry)
-		
+
 		self.onSelectionChanged = [ ]
 		self.iconPart = []
 		for part in range(5):
@@ -166,7 +166,7 @@ class MovieList(GUIComponent):
 		self.iconTrash = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/trashcan.png"))
 		self.runningTimers = {}
 		self.updateRecordings()
-	
+
 	def updateRecordings(self, timer=None):
 		if timer is not None:
 			if timer.justplay:
@@ -176,7 +176,7 @@ class MovieList(GUIComponent):
 			if timer.isRunning() and not timer.justplay:
 				result[os.path.split(timer.Filename)[1]+'.ts'] = timer
 		if self.runningTimers == result:
-			return 
+			return
 		self.runningTimers = result
 		if timer is not None:
 			if self.reloadDelayTimer is not None:
@@ -227,7 +227,7 @@ class MovieList(GUIComponent):
 					else:
 						attribs.append((attrib, value))
 				except Exception, e:
-					print '[MovieList] Error "%s" parsing attribute: %s="%s"' % (str(e), attrib,value)					
+					print '[MovieList] Error "%s" parsing attribute: %s="%s"' % (str(e), attrib,value)
 		self.skinAttributes = attribs
 		self.redrawList()
 		return GUIComponent.applySkin(self, desktop, parent)
@@ -250,7 +250,7 @@ class MovieList(GUIComponent):
 	def invalidateItem(self, index):
 		x = self.list[index]
 		self.list[index] = (x[0], x[1], x[2], None)
-		
+
 	def invalidateCurrentItem(self):
 		self.invalidateItem(self.getCurrentIndex())
 
@@ -293,7 +293,7 @@ class MovieList(GUIComponent):
 			data.txt = info.getName(serviceref)
 			data.icon = None
 			data.part = None
-			switch = config.usage.show_icons_in_movielist.value 
+			switch = config.usage.show_icons_in_movielist.value
 			if os.path.split(pathName)[1] in self.runningTimers:
 				if switch == 'i':
 					data.icon = self.iconMovieRec
@@ -322,13 +322,13 @@ class MovieList(GUIComponent):
 				data.serviceName = service.getServiceName()
 			data.description = info.getInfoString(serviceref, iServiceInformation.sDescription)
 
-		len = data.len		
+		len = data.len
 		if len > 0:
 			len = "%d:%02d" % (len / 60, len % 60)
 		else:
 			len = ""
 
-		if data.icon is not None: 
+		if data.icon is not None:
 			iconSize = 22
 			if self.list_type in (MovieList.LISTTYPE_COMPACT_DESCRIPTION,MovieList.LISTTYPE_COMPACT):
 				pos = (0,0)
@@ -346,7 +346,7 @@ class MovieList(GUIComponent):
 		elif switch == 'i':
 			iconSize = 22
 		else:
-			iconSize = 0		
+			iconSize = 0
 
 		begin_string = ""
 		if begin > 0:
@@ -355,7 +355,7 @@ class MovieList(GUIComponent):
 		ih = self.itemHeight
 		if self.list_type == MovieList.LISTTYPE_ORIGINAL:
 			ih1 = (ih * 2) / 5 # 75 -> 30
-			ih2 = (ih * 2) / 3 # 75 -> 50 
+			ih2 = (ih * 2) / 3 # 75 -> 50
 			res.append(MultiContentEntryText(pos=(iconSize, 0), size=(width-182, ih1), font = 0, flags = RT_HALIGN_LEFT, text=data.txt))
 			if self.tags:
 				res.append(MultiContentEntryText(pos=(width-180, 0), size=(180, ih1), font = 2, flags = RT_HALIGN_RIGHT, text = info.getInfoString(serviceref, iServiceInformation.sTags)))
@@ -415,13 +415,13 @@ class MovieList(GUIComponent):
 		else:
 			# there are no movies, just directories...
 			self.moveToFirst()
-	
+
 	def moveToParentDirectory(self):
 		if self.parentDirectory < len(self.list):
 			self.instance.moveSelectionTo(self.parentDirectory)
 		else:
 			self.moveToFirst()
-	
+
 	def moveToLast(self):
 		if self.list:
 			self.instance.moveSelectionTo(len(self.list) - 1)
@@ -443,12 +443,12 @@ class MovieList(GUIComponent):
 	def getCurrent(self):
 		l = self.l.getCurrentSelection()
 		return l and l[0]
-		
+
 	def getItem(self, index):
 		if self.list:
 			if len(self.list) > index:
 				return self.list[index] and self.list[index][0]
-					
+
 	GUI_WIDGET = eListbox
 
 	def postWidgetCreate(self, instance):
@@ -480,13 +480,13 @@ class MovieList(GUIComponent):
 		return len(self.list)
 
 	def load(self, root, filter_tags):
-		# this lists our root service, then building a 
+		# this lists our root service, then building a
 		# nice list
-		
+
 		self.list = [ ]
 		serviceHandler = eServiceCenter.getInstance()
 		numberOfDirs = 0
-		
+
 		reflist = serviceHandler.list(root)
 		if reflist is None:
 			print "listing of movies failed"
@@ -513,7 +513,7 @@ class MovieList(GUIComponent):
 				break
 			info = serviceHandler.info(serviceref)
 			if info is None:
-				info = justStubInfo 
+				info = justStubInfo
 			begin = info.getInfo(serviceref, iServiceInformation.sTimeCreate)
 			if serviceref.flags & eServiceReference.mustDescent:
 				dirname = info.getName(serviceref)
@@ -535,16 +535,16 @@ class MovieList(GUIComponent):
 				else:
 					tags[tag] = [name]
 			this_tags = set(this_tags)
-		
-			# filter_tags is either None (which means no filter at all), or 
+
+			# filter_tags is either None (which means no filter at all), or
 			# a set. In this case, all elements of filter_tags must be present,
-			# otherwise the entry will be dropped.			
+			# otherwise the entry will be dropped.
 			if filter_tags is not None and not this_tags.issuperset(filter_tags):
 				print "Skipping", name, "tags=", this_tags, " filter=", filter_tags
 				continue
-		
+
 			self.list.append((serviceref, info, begin, -1))
-		
+
 		self.firstFileEntry = numberOfDirs
 		self.parentDirectory = 0
 		if self.sort_type == MovieList.SORT_ALPHANUMERIC:
@@ -561,8 +561,8 @@ class MovieList(GUIComponent):
 			self.list = self.list[:numberOfDirs] + sorted(self.list[numberOfDirs:], key=self.buildAlphaNumericSortKey, reverse = True)
 		elif self.sort_type == MovieList.SORT_RECORDED_REVERSE:
 			self.list = self.list[:numberOfDirs] + sorted(self.list[numberOfDirs:], key=self.buildBeginTimeSortKey, reverse = True)
-	
-		if self.root and numberOfDirs > 0:				
+
+		if self.root and numberOfDirs > 0:
 			rootPath = os.path.normpath(self.root.getPath())
 			if not rootPath.endswith('/'):
 				rootPath += '/'
@@ -572,7 +572,7 @@ class MovieList(GUIComponent):
 					itempath = os.path.normpath(item[0].getPath())
 					if not itempath.endswith('/'):
 						itempath += '/'
-					if itempath == rootPath: 
+					if itempath == rootPath:
 						self.parentDirectory = index
 						break
 		self.root = root
@@ -580,7 +580,7 @@ class MovieList(GUIComponent):
 		# to the user to filter the list
 		# ML: Only use the tags that occur more than once in the list OR that were
 		# really in the tag set of some file.
-		
+
 		# reverse the dictionary to see which unique movie each tag now references
 		rtags = {}
 		for tag, movies in tags.items():
@@ -603,7 +603,7 @@ class MovieList(GUIComponent):
 		if ref.flags & eServiceReference.mustDescent:
 			return (0, name and name.lower() or "", -x[2])
 		return (1, name and name.lower() or "", -x[2])
-		
+
 	def buildBeginTimeSortKey(self, x):
 		ref = x[0]
 		if ref.flags & eServiceReference.mustDescent:
@@ -618,23 +618,23 @@ class MovieList(GUIComponent):
 				return True
 			count += 1
 		return False
-	
+
 	def moveDown(self):
 		self.instance.moveSelection(self.instance.moveDown)
 
 	def moveUp(self):
 		self.instance.moveSelection(self.instance.moveUp)
-		
+
 	def moveToChar(self, char, lbl=None):
 		self._char = char
 		self._lbl = lbl
-		if lbl:			
+		if lbl:
 			lbl.setText(char)
 			lbl.visible = True
 		self.moveToCharTimer = eTimer()
 		self.moveToCharTimer.callback.append(self._moveToChar)
-		self.moveToCharTimer.start(1000, True) #time to wait for next key press to decide which letter to use...		
-		
+		self.moveToCharTimer.start(1000, True) #time to wait for next key press to decide which letter to use...
+
 	def _moveToChar(self):
 		currentIndex = self.instance.getCurrentIndex()
 		found = False
@@ -658,10 +658,10 @@ class MovieList(GUIComponent):
 					self.instance.moveSelectionTo(index + 1)
 					break
 		if self._lbl:
-			self._lbl.visible = False			
+			self._lbl.visible = False
 
 def getShortName(name, serviceref):
-	if serviceref.flags & eServiceReference.mustDescent: #Directory			
+	if serviceref.flags & eServiceReference.mustDescent: #Directory
 		pathName = serviceref.getPath()
 		p = os.path.split(pathName)
 		if not p[1]: #if path ends in '/', p is blank.

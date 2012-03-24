@@ -380,7 +380,7 @@ def autostart(reason, **kwargs):
 	try:
 		device = open("/proc/stb/info/model", "r").readline().strip()
 	except:
-		device = ""	
+		device = ""
 	if "session" in kwargs:
 			try:
 				startMailer(kwargs["session"])

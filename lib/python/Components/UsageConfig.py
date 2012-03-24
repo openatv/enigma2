@@ -54,7 +54,7 @@ def InitUsageConfig():
 	config.usage.sort_settings = ConfigYesNo(default = False)
 	config.usage.sort_menus = ConfigYesNo(default = False)
 	config.usage.sort_pluginlist = ConfigYesNo(default = True)
-	config.usage.movieplayer_pvrstate = ConfigYesNo(default = True) 
+	config.usage.movieplayer_pvrstate = ConfigYesNo(default = True)
 
 	choicelist = []
 	for i in (10, 30):
@@ -92,7 +92,7 @@ def InitUsageConfig():
 
 	config.usage.timer_path = ConfigText(default = "<default>")
 	config.usage.instantrec_path = ConfigText(default = "<default>")
-	
+
 	if not os.path.exists(resolveFilename(SCOPE_TIMESHIFT)):
 		try:
 			os.mkdir(resolveFilename(SCOPE_TIMESHIFT),0755)
@@ -130,7 +130,7 @@ def InitUsageConfig():
 		("show_menu", _("show shutdown menu")),
 		("shutdown", _("immediate shutdown")),
 		("standby", _("Standby")) ] )
-	
+
 	config.usage.on_short_powerpress = ConfigSelection(default = "standby", choices = [
 		("show_menu", _("show shutdown menu")),
 		("shutdown", _("immediate shutdown")),
@@ -237,7 +237,7 @@ def InitUsageConfig():
 		config.osd.threeDmode = ConfigSelection(default = 'off', choices = choiceoptions )
 	config.osd.threeDznorm = ConfigSlider(default = 50, increment = 1, limits = (0, 100))
 	config.osd.show3dextensions = ConfigYesNo(default = False)
-	
+
 	config.epg = ConfigSubsection()
 	config.epg.eit = ConfigYesNo(default = True)
 	config.epg.mhw = ConfigYesNo(default = False)
@@ -405,7 +405,7 @@ def InitUsageConfig():
 		("2097152", "2 MB"),
 		("4194304", "4 MB")])
 	config.misc.flush_size.addNotifier(updateFlushSize, immediate_feedback = False)
-	
+
 	def updateEraseSpeed(el):
 		enigma.eBackgroundFileEraser.getInstance().setEraseSpeed(int(el.value))
 	def updateEraseFlags(el):
@@ -469,13 +469,13 @@ def InitUsageConfig():
 	config.subtitles.pango_subtitles_yellow = ConfigYesNo(default = False)
 
 	config.autolanguage = ConfigSubsection()
-	audio_language_choices=[	
+	audio_language_choices=[
 		("---", _("None")),
 		("und", _("Undetermined")),
 		("orj dos ory org esl qaa und mis mul ORY ORJ Audio_ORJ", _("Original")),
 		("ara", _("Arabic")),
 		("eus baq", _("Basque")),
-		("bul", _("Bulgarian")), 
+		("bul", _("Bulgarian")),
 		("hrv", _("Croatian")),
 		("ces cze", _("Czech")),
 		("dan", _("Danish")),

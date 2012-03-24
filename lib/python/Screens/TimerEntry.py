@@ -116,7 +116,7 @@ class TimerEntry(Screen, ConfigListScreen):
 			self.timerentry_tagsset = ConfigSelection(choices = [not self.timerentry_tags and "None" or " ".join(self.timerentry_tags)])
 
 			self.timerentry_repeated = ConfigSelection(default = repeated, choices = [("daily", _("daily")), ("weekly", _("weekly")), ("weekdays", _("Mon-Fri")), ("user", _("user defined"))])
-			
+
 			self.timerentry_date = ConfigDateTime(default = self.timer.begin, formatstring = _("%d.%B %Y"), increment = 86400)
 			self.timerentry_starttime = ConfigClock(default = self.timer.begin)
 			self.timerentry_endtime = ConfigClock(default = self.timer.end)
@@ -180,10 +180,10 @@ class TimerEntry(Screen, ConfigListScreen):
 		self.entryDate = getConfigListEntry(_("Date"), self.timerentry_date)
 		if self.timerentry_type.value == "once":
 			self.list.append(self.entryDate)
-		
+
 		self.entryStartTime = getConfigListEntry(_("StartTime"), self.timerentry_starttime)
 		self.list.append(self.entryStartTime)
-		
+
 		self.entryShowEndTime = getConfigListEntry(_("Set End Time"), self.timerentry_showendtime)
 		if self.timerentry_justplay.value == "zap":
 			self.list.append(self.entryShowEndTime)
@@ -256,7 +256,7 @@ class TimerEntry(Screen, ConfigListScreen):
 			self.timerentry_service_ref = ServiceReference(args[0])
 			self.timerentry_service.setCurrentText(self.timerentry_service_ref.getServiceName())
 			self["config"].invalidate(self.channelEntry)
-			
+
 	def getTimestamp(self, date, mytime):
 		d = localtime(date)
 		dt = datetime(d.tm_year, d.tm_mon, d.tm_mday, mytime[0], mytime[1])
@@ -451,7 +451,7 @@ class TimerLog(Screen):
 	def deleteEntry(self):
 		cur = self["loglist"].getCurrent()
 		if cur is None:
-			return 
+			return
 		self.log_entries.remove(cur[1])
 		self.fillLogList()
 		self["loglist"].l.setList(self.list)

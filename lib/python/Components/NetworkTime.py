@@ -3,7 +3,7 @@ from config import config
 from enigma import eTimer
 
 # _session = None
-# 
+#
 def AutoNTPSync(session=None, **kwargs):
 	global ntpsyncpoller
 	ntpsyncpoller = NTPSyncPoller()

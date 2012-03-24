@@ -104,7 +104,7 @@ class ProjectSettings(Screen,ConfigListScreen):
 	def __init__(self, session, project = None):
 		Screen.__init__(self, session)
 		self.project = project
-		
+
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
 		self["key_yellow"] = StaticText(_("Load"))
@@ -112,7 +112,7 @@ class ProjectSettings(Screen,ConfigListScreen):
 			self["key_blue"] = StaticText(_("Save"))
 		else:
 			self["key_blue"] = StaticText()
-		
+
 		if config.usage.setup_level.index >= 2: # expert+
 			infotext = _("Available format variables") + ":\n$i=" + _("Track") + ", $t=" + _("Title") + ", $d=" + _("Description") + ", $l=" + _("length") + ", $c=" + _("chapters") + ",\n" + _("Record") + " $T=" + _("Begin time") + ", $Y=" + _("Year") + ", $M=" + _("month") + ", $D=" + _("day") + ",\n$A=" + _("audio tracks") + ", $C=" + _("Channel") + ", $f=" + _("filename")
 		else:
@@ -123,7 +123,7 @@ class ProjectSettings(Screen,ConfigListScreen):
 		self.settings = project.settings
 		ConfigListScreen.__init__(self, [])
 		self.initConfigList()
-		
+
 		self["setupActions"] = ActionMap(["SetupActions", "ColorActions"],
 		{
 		    "green": self.exit,
@@ -173,7 +173,7 @@ class ProjectSettings(Screen,ConfigListScreen):
 					self.list.append(getConfigListEntry(_("VMGM (intro trailer)"), self.settings.vmgm))
 			else:
 				self.list.append(getConfigListEntry(_("DVD data format"), self.settings.dataformat))
-		
+
 		self["config"].setList(self.list)
 		self.keydict = {}
 		for key, val in self.settings.dict().iteritems():
@@ -200,7 +200,7 @@ class ProjectSettings(Screen,ConfigListScreen):
 	def applySettings(self):
 		for x in self["config"].list:
 			x[1].save()
-		
+
 	def ok(self):
 		key = self.keydict[self["config"].getCurrent()[1]]
 		from DVDProject import ConfigFilename

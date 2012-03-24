@@ -137,7 +137,7 @@ class SettingsMenu(ConfigListScreen, Screen):
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
 		self.createSetup()
-		
+
 		self["actions"] = ActionMap(["SetupActions", 'ColorActions'],
 		{
 			"ok": self.keySave,
@@ -190,7 +190,7 @@ class SettingsMenu(ConfigListScreen, Screen):
 	def keySave(self):
 		self.saveAll()
 		self.close()
-	
+
 	def cancelConfirm(self, result):
 		if not result:
 			return
@@ -384,7 +384,7 @@ class ChannelContextMenu(Screen):
 			self.close()
 		else:
 			self.session.openWithCallback(self.close, MessageBox, _("The pin code you entered is wrong."), MessageBox.TYPE_ERROR)
-			
+
 	def showServiceInPiP(self):
 		if not self.pipAvailable:
 			return
@@ -861,7 +861,7 @@ class ChannelSelectionEdit:
 
 	def doContext(self):
 		self.session.openWithCallback(self.exitContext, ChannelContextMenu, self)
-		
+
 	def exitContext(self, close = False):
 		l = self["list"]
 		l.setServiceFontsize()
@@ -1545,8 +1545,8 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 				del self.session.pip
 
 			# Move to playing service
-			lastservice = eServiceReference(self.lastservice.value)      
-			if lastservice.valid() and self.getCurrentSelection() != lastservice:                        
+			lastservice = eServiceReference(self.lastservice.value)
+			if lastservice.valid() and self.getCurrentSelection() != lastservice:
 				self.setCurrentSelection(lastservice)
 
 			title += _(" (TV)")

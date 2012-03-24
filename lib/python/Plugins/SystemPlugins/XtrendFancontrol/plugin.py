@@ -76,7 +76,7 @@ def applySettings(mode):
 
 	else:
 		setMode = "off"
-	
+
 	try:
 		file = open("/proc/stb/fp/fan", "w")
 		file.write('%s' % setMode)
