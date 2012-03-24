@@ -68,18 +68,24 @@ class ClockToText(Converter, object):
 			return "%2d:%02d" % (t.tm_hour, t.tm_min)
 		elif self.type == self.DATE:
 			# TRANSLATORS: full date representations dayname daynum monthname year. This is a strftime() format! See 'man strftime'
-                        d = _("%A %e %B %Y")
+			d = _("%A %e %B %Y")
 			return strftime(d, t)
 		elif self.type == self.FULL:
-			return strftime("%a %e/%m  %-H:%M", t)
+			# TRANSLATORS: full representations dayname daynum monthnum hours minutes. This is a strftime() format! See 'man strftime'
+			d = _("%a %e/%m  %-H:%M")
+			return strftime(d, t)
 		elif self.type == self.SHORT_DATE:
-			return strftime("%a %e/%m", t)
+			# TRANSLATORS: short date representations dayname daynum monthnum. This is a strftime() format! See 'man strftime'
+			d = _("%a %e/%m")
+			return strftime(d, t)
 		elif self.type == self.LONG_DATE:
 			# TRANSLATORS: long date representations dayname daynum monthname. This is a strftime() format! See 'man strftime'
-                        d = _("%A %e %B")
+			d = _("%A %e %B")
 			return strftime(d, t)
 		elif self.type == self.VFD:
-			return strftime("%k:%M %e/%m", t)
+			# TRANSLATORS: VFD representations hours minuts daynum monthnum. This is a strftime() format! See 'man strftime'
+			d = _("%k:%M %e/%m")
+			return strftime(d, t)
 		elif self.type == self.FORMAT:
 			return strftime(self.fmt_string, t)
 		else:
