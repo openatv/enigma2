@@ -302,7 +302,7 @@ def InitUsageConfig():
 	config.subtitles.pango_subtitles_yellow = ConfigYesNo(default = False)
 
 	config.autolanguage = ConfigSubsection()
-	audio_language_choices=[	
+	audio_language_choices=[
 		("---", _("None")),
 		("orj dos ory org esl qaa und mis mul ORY ORJ Audio_ORJ", _("Original")),
 		("ara", _("Arabic")),
@@ -335,6 +335,7 @@ def InitUsageConfig():
 		("slv", _("Slovenian")),
 		("spa", _("Spanish")),
 		("swe", _("Swedish")),
+		("tha", _("Thai")),
 		("tur Audio_TUR", _("Turkish"))]
 
 	def setEpgLanguage(configElement):

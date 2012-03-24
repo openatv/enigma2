@@ -99,7 +99,7 @@ class TimerEntry(Screen, ConfigListScreen):
 			else: # once
 				type = "once"
 				repeated = None
-				weekday = (int(strftime("%w", localtime(self.timer.begin))) - 1) % 7
+				weekday = int(strftime("%u", localtime(self.timer.begin))) - 1
 				day[weekday] = 1
 
 			self.timerentry_justplay = ConfigSelection(choices = [("zap", _("zap")), ("record", _("record"))], default = {0: "record", 1: "zap"}[justplay])

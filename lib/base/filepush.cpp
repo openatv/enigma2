@@ -319,6 +319,7 @@ eFilePushThreadRecorder::eFilePushThreadRecorder(unsigned char* buffer, size_t b
 	m_fd_source(-1),
 	m_buffersize(buffersize),
 	m_buffer(buffer),
+	m_overflow_count(0),
 	m_stop(0),
 	m_messagepump(eApp, 0)
 {
@@ -351,6 +352,7 @@ void eFilePushThreadRecorder::thread()
 			if (errno == EOVERFLOW)
 			{
 				eWarning("[eFilePushThreadRecorder] OVERFLOW while recording");
+				++m_overflow_count;
 				continue;
 			}
 			eDebug("[eFilePushThreadRecorder] *read error* (%m) - aborting thread because i don't know what else to do.");

@@ -24,9 +24,9 @@ static int determineBufferCount()
 	if (megabytes > 200)
 		result = 20; // 512MB systems: Use 4MB IO buffers (et9x00, vuultimo, ...)
 	else if (megabytes > 100)
-		result = 10; // 256MB systems: Use 2MB demux buffers (dm8000, et5x00, vuduo)
+		result = 16; // 256MB systems: Use 3MB demux buffers (dm8000, et5x00, vuduo)
 	else
-		result = 6; // Smaller boxes: Use 1MB buffer (dm7025)
+		result = 8; // Smaller boxes: Use 1.5MB buffer (dm7025)
 	return result;
 }
 static const int demuxSize = 4*188*1024; // With the large userspace IO buffers, a 752k demux buffer is enough
@@ -724,6 +724,10 @@ void eDVBRecordFileThread::flush()
 	for (int i=0; i <= recordingBufferCount; ++i)
 	{
 		if (m_buffer_use_histogram[i] != 0) eDebug("     %2d: %6d", i, m_buffer_use_histogram[i]);
+	}
+	if (m_overflow_count)
+	{
+		eDebug("[eDVBRecordFileThread] Demux buffer overflows: %d", m_overflow_count);
 	}
 }
 

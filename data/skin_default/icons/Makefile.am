@@ -43,6 +43,8 @@ dist_install_DATA = \
 	lockBouquet.png \
 	marker.png \
 	mp_buttons.png \
+	movie_play.png \
+	movie_play_rec.png \
 	part_0_4.png \
 	part_1_4.png \
 	part_2_4.png \
