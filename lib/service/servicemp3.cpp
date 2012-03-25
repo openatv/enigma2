@@ -59,6 +59,9 @@ eServiceFactoryMP3::eServiceFactoryMP3()
 		extensions.push_back("m4a");
 		extensions.push_back("3gp");
 		extensions.push_back("3g2");
+		extensions.push_back("asf");
+		extensions.push_back("wmv");
+		extensions.push_back("wma");
 		sc->addServiceFactory(eServiceFactoryMP3::id, this, extensions);
 	}
 
@@ -295,6 +298,11 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 		m_sourceinfo.containertype = ctMP4;
 		m_sourceinfo.is_video = TRUE;
 	}
+	else if ( strcasecmp(ext, ".asf") == 0 || strcasecmp(ext, ".wmv") == 0)
+	{
+		m_sourceinfo.containertype = ctASF;
+		m_sourceinfo.is_video = TRUE;
+	}
 	else if ( strcasecmp(ext, ".m4a") == 0 )
 	{
 		m_sourceinfo.containertype = ctMP4;
@@ -302,6 +310,8 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 	}
 	else if ( strcasecmp(ext, ".mp3") == 0 )
 		m_sourceinfo.audiotype = atMP3;
+	else if ( strcasecmp(ext, ".wma") == 0 )
+		m_sourceinfo.audiotype = atWMA;
 	else if ( (strncmp(filename, "/autofs/", 8) || strncmp(filename+strlen(filename)-13, "/track-", 7) || strcasecmp(ext, ".wav")) == 0 )
 		m_sourceinfo.containertype = ctCDA;
 	if ( strcasecmp(ext, ".dat") == 0 )

@@ -506,8 +506,8 @@ class EPGList(HTMLComponent, GUIComponent):
 
 		res = [
 			None, # no private data needed
-			(eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, _(days[t[6]])),
-			(eListboxPythonMultiContent.TYPE_TEXT, r2.x, r2.y, r2.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, "%02d/%02d, %02d:%02d"%(t[2],t[1],t[3],t[4]))
+			(eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, _(strftime("%a", localtime(beginTime)))),
+			(eListboxPythonMultiContent.TYPE_TEXT, r2.x, r2.y, r2.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, strftime("%e/%m, %-H:%M", localtime(beginTime)))
 		]
 		if rec:
 			res.extend((
@@ -526,8 +526,8 @@ class EPGList(HTMLComponent, GUIComponent):
 		t = localtime(beginTime)
 		res = [
 			None,  # no private data needed
-			(eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, _(days[t[6]])),
-			(eListboxPythonMultiContent.TYPE_TEXT, r2.x, r2.y, r2.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, "%02d/%02d, %02d:%02d"%(t[2],t[1],t[3],t[4]))
+			(eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, _(strftime("%a", localtime(beginTime)))),
+			(eListboxPythonMultiContent.TYPE_TEXT, r2.x, r2.y, r2.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, strftime("%e/%m, %-H:%M", localtime(beginTime)))
 		]
 		if rec:
 			res.extend((
@@ -974,10 +974,18 @@ class TimelineText(HTMLComponent, GUIComponent):
 		begTime = localtime(time_base)
 		self.ServiceWidth = config.epgselction.servicewidth.getValue()
 		if nowTime[2] != begTime[2]:
-			if self.ServiceWidth > 109:
-				datestr = '%s'%(_(dayslong[begTime[6]]))
+			if self.ServiceWidth > 179:
+				datestr = strftime("%A %d %B", localtime(time_base))
+			elif self.ServiceWidth > 139:
+				datestr = strftime("%a %d %B", localtime(time_base))
+			elif self.ServiceWidth > 129:
+				datestr = strftime("%a %d %b", localtime(time_base))
+			elif self.ServiceWidth > 119:
+				datestr = strftime("%a %d", localtime(time_base))
+			elif self.ServiceWidth > 109:
+				datestr = strftime("%A", localtime(time_base))
 			else:
-				datestr = '%s'%(_(days[begTime[6]]))
+				datestr = strftime("%a", localtime(time_base))
 		else:
 			datestr = '%s'%(_("Today"))
 		# Note: event_rect and service_rect are relative to the timeline_text position
@@ -993,7 +1001,7 @@ class TimelineText(HTMLComponent, GUIComponent):
 						pos = (0, 0),
 						size = (service_rect.width(), itemHeight),
 						font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_TOP,
-						text = datestr,
+						text = _(datestr),
 						color = self.foreColor, color_sel = self.foreColor,
 						backcolor = self.backColor, backcolor_sel = self.backColor,
 						border_width = self.borderWidth, border_color = self.borderColor))
