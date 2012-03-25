@@ -500,11 +500,6 @@ int eDVBFrontend::openFrontend()
 	m_state=stateIdle;
 	m_tuning=0;
 
-#if HAVE_DVB_API_VERSION < 3
-	FrontendInfo fe_info;
-#else
-	dvb_frontend_info fe_info;
-#endif
 	if (!m_simulate)
 	{
 		eDebug("opening frontend %d", m_dvbid);
@@ -2186,8 +2181,7 @@ RESULT eDVBFrontend::prepare_sat(const eDVBFrontendParametersSatellite &feparm, 
 #endif
 		}
 #endif
-		// FIXME !!! get frequency range from tuner
-		if ( parm_frequency < 900000 || parm_frequency > 2200000 )
+		if (parm_frequency < fe_info.frequency_min || parm_frequency > fe_info.frequency_max)
 		{
 			eDebugNoSimulate("%d mhz out of tuner range.. dont tune", parm_frequency/1000);
 			return -EINVAL;

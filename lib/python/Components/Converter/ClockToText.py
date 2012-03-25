@@ -66,29 +66,33 @@ class ClockToText(Converter, object):
 		t = localtime(time)
 
 		if self.type == self.WITH_SECONDS:
-			return "%2d:%02d:%02d" % (t.tm_hour, t.tm_min, t.tm_sec)
+			# TRANSLATORS: full time representation hour:minute:seconds 
+			return _("%2d:%02d:%02d") % (t.tm_hour, t.tm_min, t.tm_sec)
 		elif self.type == self.DEFAULT:
-			return "%2d:%02d" % (t.tm_hour, t.tm_min)
+			# TRANSLATORS: short time representation hour:minute
+			return _("%2d:%02d") % (t.tm_hour, t.tm_min)
 		elif self.type == self.DATE:
-			# TRANSLATORS: full date representations dayname daynum monthname year. This is a strftime() format! See 'man strftime'
+			# TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
 			d = _("%A %e %B %Y")
-			return strftime(d, t)
 		elif self.type == self.FULL:
-			return strftime("%a %e/%m  %-H:%M", t)
+			# TRANSLATORS: long date representation short dayname daynum short monthname hour:minute in strftime() format! See 'man strftime'
+			d = _("%a %e/%m  %-H:%M")
 		elif self.type == self.SHORT_DATE:
-			return strftime("%a %e/%m", t)
+			# TRANSLATORS: short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'
+			d = _("%a %e/%m")
 		elif self.type == self.LONG_DATE:
-			# TRANSLATORS: long date representations dayname daynum monthname. This is a strftime() format! See 'man strftime'
+			# TRANSLATORS: long date representations dayname daynum monthname in strftime() format! See 'man strftime'
 			d = _("%A %e %B")
-			return strftime(d, t)
 		elif self.type == self.FULL_DATE:
+			# TRANSLATORS: full date representations sort dayname daynum monthname long year in strftime() format! See 'man strftime'
 			d = _("%a %e %B %Y")
-			return strftime(d, t)
 		elif self.type == self.VFD:
-			return strftime("%k:%M %e/%m", t)
+			# TRANSLATORS: VFD hour:minute daynum short monthname in strftime() format! See 'man strftime'
+			d = _("%k:%M %e/%m")
 		elif self.type == self.FORMAT:
-			return strftime(self.fmt_string, t)
+			d = self.fmt_string
 		else:
 			return "???"
+		return strftime(d, t)
 
 	text = property(getText)
