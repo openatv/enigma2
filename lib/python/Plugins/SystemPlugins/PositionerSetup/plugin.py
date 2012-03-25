@@ -381,7 +381,10 @@ class PositionerSetup(Screen):
 			self.red.setText("")
 			self.green.setText(_("Store position"))
 			self.yellow.setText(_("Goto position"))
-			self.blue.setText("")
+			if self.advanced:
+				self.blue.setText(_("Allocate"))
+			else:
+				self.blue.setText("")
 		elif entry == "goto":
 			self.red.setText("")
 			self.green.setText(_("Goto 0"))
@@ -522,6 +525,22 @@ class PositionerSetup(Screen):
 		elif entry == "tune":
 			# Start (re-)calculate
 			self.session.openWithCallback(self.recalcConfirmed, MessageBox, _("This will (re-)calculate all positions of your rotor and may remove previously memorised positions and fine-tuning!\nAre you sure?"), MessageBox.TYPE_YESNO, default = False, timeout = 10)
+		elif entry == "storage":
+			if self.advanced:
+				self.printMsg(_("Allocate unused memory index"))
+				indices = []
+				for sat in nimmanager.getRotorSatListForNim(self.feid):
+					indices.append(int(self.advancedsats[sat[0]].rotorposition.value))
+				index = 1
+				for i in sorted(indices):
+					if i != index:
+						break
+					index += 1
+				if index <= 99:
+					self.positioner_storage.value = index
+					self.statusMsg((_("Index allocated:") + " %2d") % index, timeout = self.STATUS_MSG_TIMEOUT)
+				else:
+					self.statusMsg(_("No free index available"), timeout = self.STATUS_MSG_TIMEOUT)
 
 	def recalcConfirmed(self, yesno):
 		if yesno:
