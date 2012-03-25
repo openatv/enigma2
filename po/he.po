@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-08 21:05+0100\n"
+"POT-Creation-Date: 2012-03-24 23:40+0100\n"
 "PO-Revision-Date: 2012-03-08 10:40+0330\n"
 "Last-Translator: \n"
 "Language-Team: Arabic <moustafagamal@hotmail.com>\n"
@@ -193,8 +193,34 @@ msgstr "#ffffff"
 msgid "#ffffffff"
 msgstr "#ffffffff"
 
+#. TRANSLATORS: short time representation hour:minute
+#, python-format
+msgid "%2d:%02d"
+msgstr ""
+
+#. TRANSLATORS: full time representation hour:minute:seconds
+#, python-format
+msgid "%2d:%02d:%02d"
+msgstr ""
+
+#. TRANSLATORS: long date representations dayname daynum monthname in strftime() format! See 'man strftime'
+msgid "%A %e %B"
+msgstr ""
+
+#. TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
+msgid "%A %e %B %Y"
+msgstr ""
+
 msgid "%H:%M"
 msgstr "%H:%M"
+
+#. TRANSLATORS: short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'
+msgid "%a %e/%m"
+msgstr ""
+
+#. TRANSLATORS: long date representation short dayname daynum short monthname hour:minute in strftime() format! See 'man strftime'
+msgid "%a %e/%m  %-H:%M"
+msgstr ""
 
 #, python-format
 msgid "%d hour"
@@ -235,6 +261,10 @@ msgstr "!שירותים נמצאו %d"
 
 msgid "%d.%B %Y"
 msgstr "%d.%B %Y"
+
+#. TRANSLATORS: VFD hour:minute daynum short monthname in strftime() format! See 'man strftime'
+msgid "%k:%M %e/%m"
+msgstr ""
 
 #, python-format
 msgid "%s (%s)\n"
@@ -691,9 +721,6 @@ msgstr ""
 msgid "Any activity"
 msgstr ""
 
-msgid "April"
-msgstr ""
-
 msgid "Arabic"
 msgstr "ערבית"
 
@@ -767,9 +794,6 @@ msgid "Audio language selection 3"
 msgstr ""
 
 msgid "Audio language selection 4"
-msgstr ""
-
-msgid "August"
 msgstr ""
 
 msgid "Author: "
@@ -977,6 +1001,9 @@ msgstr ""
 
 #
 msgid "Cache Thumbnails"
+msgstr ""
+
+msgid "Calculate"
 msgstr ""
 
 msgid "Calculate all positions"
@@ -1429,9 +1456,6 @@ msgstr "דנית"
 
 msgid "Date"
 msgstr "תאריך"
-
-msgid "December"
-msgstr ""
 
 msgid "Decide if you want to enable or disable the Cleanup Wizard."
 msgstr ".החלט אם ברצונך לאפשר או להשבית את אשף הנקיון"
@@ -2096,9 +2120,6 @@ msgstr ""
 msgid "Favourites"
 msgstr "מועדפים"
 
-msgid "February"
-msgstr ""
-
 msgid "File appears to be busy.\n"
 msgstr ""
 
@@ -2608,17 +2629,8 @@ msgstr "איטלקית"
 msgid "Items per Page "
 msgstr ""
 
-msgid "January"
-msgstr ""
-
 #
 msgid "Job View"
-msgstr ""
-
-msgid "July"
-msgstr ""
-
-msgid "June"
 msgstr ""
 
 #
@@ -2856,9 +2868,6 @@ msgstr " ידני transponder"
 msgid "Manufacturer"
 msgstr "יצרן"
 
-msgid "March"
-msgstr ""
-
 msgid "Margin after record"
 msgstr "מרווח אחרי הקלטה"
 
@@ -2867,9 +2876,6 @@ msgstr "מרווח לפני הקלטה"
 
 #
 msgid "Max. Bitrate: "
-msgstr ""
-
-msgid "May"
 msgstr ""
 
 #
@@ -3330,9 +3336,6 @@ msgstr ""
 msgid "Nothing to upgrade"
 msgstr ""
 
-msgid "November"
-msgstr ""
-
 #
 msgid "Now Playing"
 msgstr "כעת מתנגן"
@@ -3371,9 +3374,6 @@ msgstr ""
 
 #
 msgid "OSD visibility"
-msgstr ""
-
-msgid "October"
 msgstr ""
 
 #
@@ -3977,6 +3977,12 @@ msgstr "?לבצע איתחול עכשיו"
 msgid "Really shutdown now?"
 msgstr "?לבצע כיבוי עכשיו"
 
+msgid "Really upgrade the frontprocessor and reboot now?"
+msgstr ""
+
+msgid "Really upgrade your settop box and reboot now?"
+msgstr ""
+
 msgid "Reboot"
 msgstr "איתחול"
 
@@ -4050,9 +4056,6 @@ msgid "Reloading bouquets and services..."
 msgstr ""
 
 msgid "Remember service PIN"
-msgstr ""
-
-msgid "Remember service PIN cancel"
 msgstr ""
 
 msgid "Remember these settings for each folder"
@@ -4534,9 +4537,6 @@ msgstr "Send DiSEqC only on satellite change"
 
 msgid "Seperate titles with a main menu"
 msgstr "Seperate titles with a main menu"
-
-msgid "September"
-msgstr ""
 
 msgid "Sequence repeat"
 msgstr "Sequence repeat"
@@ -5195,6 +5195,9 @@ msgstr ""
 msgid "Text font size"
 msgstr ""
 
+msgid "Thai"
+msgstr ""
+
 msgid ""
 "Thank you for using the wizard.\n"
 "Please press OK to continue."
@@ -5241,6 +5244,14 @@ msgstr ""
 msgid ""
 "The USB stick was prepared to be bootable.\n"
 "Now you can download an NFI image file!"
+msgstr ""
+
+msgid "The User Interface of your receiver is restarting"
+msgstr ""
+
+msgid ""
+"The User Interface of your receiver is restarting\n"
+"due to an error in mytest.py"
 msgstr ""
 
 msgid "The backup failed. Please choose a different backup location."
@@ -6493,6 +6504,12 @@ msgid ""
 msgstr ""
 
 msgid ""
+"Your frontprocessor will be upgraded\n"
+"Please wait until your receiver reboots\n"
+"This may take a few minutes"
+msgstr ""
+
+msgid ""
 "Your internet connection is not working!\n"
 "Please choose what you want to do next."
 msgstr ""
@@ -6504,6 +6521,12 @@ msgstr "Your name (optional):"
 
 msgid "Your network configuration has been activated."
 msgstr "Your network configuration has been activated."
+
+msgid "Your receiver is rebooting"
+msgstr ""
+
+msgid "Your receiver is shutting down"
+msgstr ""
 
 #
 msgid ""

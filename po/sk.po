@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-08 20:34+0100\n"
+"POT-Creation-Date: 2012-03-24 23:40+0100\n"
 "PO-Revision-Date: 2010-05-12 13:09+0200\n"
 "Last-Translator: acid-burn <>\n"
 "Language-Team: none\n"
@@ -188,8 +188,34 @@ msgstr "#ffffff"
 msgid "#ffffffff"
 msgstr "#ffffffff"
 
+#. TRANSLATORS: short time representation hour:minute
+#, python-format
+msgid "%2d:%02d"
+msgstr ""
+
+#. TRANSLATORS: full time representation hour:minute:seconds
+#, python-format
+msgid "%2d:%02d:%02d"
+msgstr ""
+
+#. TRANSLATORS: long date representations dayname daynum monthname in strftime() format! See 'man strftime'
+msgid "%A %e %B"
+msgstr ""
+
+#. TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
+msgid "%A %e %B %Y"
+msgstr ""
+
 msgid "%H:%M"
 msgstr "%H:%M"
+
+#. TRANSLATORS: short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'
+msgid "%a %e/%m"
+msgstr ""
+
+#. TRANSLATORS: long date representation short dayname daynum short monthname hour:minute in strftime() format! See 'man strftime'
+msgid "%a %e/%m  %-H:%M"
+msgstr ""
 
 #, python-format
 msgid "%d hour"
@@ -230,6 +256,10 @@ msgstr "Nájdených %d staníc!"
 
 msgid "%d.%B %Y"
 msgstr "%d.%B %Y"
+
+#. TRANSLATORS: VFD hour:minute daynum short monthname in strftime() format! See 'man strftime'
+msgid "%k:%M %e/%m"
+msgstr ""
 
 #, python-format
 msgid "%s (%s)\n"
@@ -631,9 +661,6 @@ msgstr "Anonymizovať správy o zrútení?"
 msgid "Any activity"
 msgstr ""
 
-msgid "April"
-msgstr ""
-
 msgid "Arabic"
 msgstr "Arabčina"
 
@@ -706,9 +733,6 @@ msgid "Audio language selection 3"
 msgstr ""
 
 msgid "Audio language selection 4"
-msgstr ""
-
-msgid "August"
 msgstr ""
 
 msgid "Author: "
@@ -890,6 +914,9 @@ msgstr ""
 
 msgid "Cache Thumbnails"
 msgstr "Uchovať zmenšeniny"
+
+msgid "Calculate"
+msgstr ""
 
 msgid "Calculate all positions"
 msgstr ""
@@ -1311,9 +1338,6 @@ msgstr "Dánčina"
 
 msgid "Date"
 msgstr "Dátum"
-
-msgid "December"
-msgstr ""
 
 msgid "Decide if you want to enable or disable the Cleanup Wizard."
 msgstr "Rozhodnite, či zapnúť alebo vypnúť sprievodcu vyčistením."
@@ -1927,9 +1951,6 @@ msgstr "rýchla doba"
 msgid "Favourites"
 msgstr "Obľúbené"
 
-msgid "February"
-msgstr ""
-
 msgid "File appears to be busy.\n"
 msgstr ""
 
@@ -2401,17 +2422,8 @@ msgstr "Taliančina"
 msgid "Items per Page "
 msgstr ""
 
-msgid "January"
-msgstr ""
-
 msgid "Job View"
 msgstr "Prehľad úloh"
-
-msgid "July"
-msgstr ""
-
-msgid "June"
-msgstr ""
 
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
 msgid "Just Scale"
@@ -2608,9 +2620,6 @@ msgstr "Transpondér ručne"
 msgid "Manufacturer"
 msgstr "Výrobca"
 
-msgid "March"
-msgstr ""
-
 msgid "Margin after record"
 msgstr "Rezerva po skončení programu"
 
@@ -2619,9 +2628,6 @@ msgstr "Rezerva pred začiatkom programu (min)"
 
 msgid "Max. Bitrate: "
 msgstr "Max. dátový tok:"
-
-msgid "May"
-msgstr ""
 
 msgid "Media player"
 msgstr "Prehrávač médií"
@@ -3041,9 +3047,6 @@ msgstr ""
 msgid "Nothing to upgrade"
 msgstr ""
 
-msgid "November"
-msgstr ""
-
 msgid "Now Playing"
 msgstr "Beží prehrávanie"
 
@@ -3078,9 +3081,6 @@ msgstr ""
 
 msgid "OSD visibility"
 msgstr "Viditeľnosť OSD"
-
-msgid "October"
-msgstr ""
 
 msgid "Off"
 msgstr "Vypnúť"
@@ -3637,6 +3637,12 @@ msgstr "Naozaj mám teraz reštartovať?"
 msgid "Really shutdown now?"
 msgstr "Naozaj teraz vypnúť?"
 
+msgid "Really upgrade the frontprocessor and reboot now?"
+msgstr ""
+
+msgid "Really upgrade your settop box and reboot now?"
+msgstr ""
+
 msgid "Reboot"
 msgstr "Reštartovať"
 
@@ -3706,9 +3712,6 @@ msgstr ""
 
 msgid "Remember service PIN"
 msgstr "Zapamätať PIN stanice"
-
-msgid "Remember service PIN cancel"
-msgstr "Zapamätať zrušenie PINu stanice"
 
 msgid "Remember these settings for each folder"
 msgstr ""
@@ -4149,9 +4152,6 @@ msgstr "Poslať DiSEqC len pri zmene satelitu"
 
 msgid "Seperate titles with a main menu"
 msgstr "Samostatné tituly s hlavným menu"
-
-msgid "September"
-msgstr ""
 
 msgid "Sequence repeat"
 msgstr "Opakovanie sekvencie"
@@ -4735,6 +4735,9 @@ msgstr ""
 msgid "Text font size"
 msgstr ""
 
+msgid "Thai"
+msgstr ""
+
 msgid ""
 "Thank you for using the wizard.\n"
 "Please press OK to continue."
@@ -4784,6 +4787,14 @@ msgid ""
 msgstr ""
 "Kľúč USB je pripravený ako bootovateľný.\n"
 "Teraz môžete stiahnuť súbor NFI."
+
+msgid "The User Interface of your receiver is restarting"
+msgstr ""
+
+msgid ""
+"The User Interface of your receiver is restarting\n"
+"due to an error in mytest.py"
+msgstr ""
 
 msgid "The backup failed. Please choose a different backup location."
 msgstr "Zálohovanie zlyhalo. Zvoľte iné umiestnenie zálohy."
@@ -5971,6 +5982,12 @@ msgstr ""
 "Stlačením tlačidla OK spustíte aktualizáciu."
 
 msgid ""
+"Your frontprocessor will be upgraded\n"
+"Please wait until your receiver reboots\n"
+"This may take a few minutes"
+msgstr ""
+
+msgid ""
 "Your internet connection is not working!\n"
 "Please choose what you want to do next."
 msgstr ""
@@ -5982,6 +5999,12 @@ msgstr "Vaše meno (voliteľne):"
 
 msgid "Your network configuration has been activated."
 msgstr "Nastavenie siete bolo aktivované."
+
+msgid "Your receiver is rebooting"
+msgstr ""
+
+msgid "Your receiver is shutting down"
+msgstr ""
 
 msgid ""
 "Your wireless LAN internet connection could not be started!\n"
@@ -8812,6 +8835,9 @@ msgstr "prepnuté"
 
 #~ msgid "Relevance"
 #~ msgstr "Závažnosť"
+
+#~ msgid "Remember service PIN cancel"
+#~ msgstr "Zapamätať zrušenie PINu stanice"
 
 #~ msgid "Remember service pin"
 #~ msgstr "Zmeniť PIN programu"

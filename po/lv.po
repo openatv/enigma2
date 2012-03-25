@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-08 20:34+0100\n"
+"POT-Creation-Date: 2012-03-24 23:40+0100\n"
 "PO-Revision-Date: 2009-02-25 20:35+0200\n"
 "Last-Translator: Ivo Grinbergs <ivog@apollo.lv>\n"
 "Language-Team: Ivo / enigma2 (c) <ivog@apolllo.lv>\n"
@@ -200,9 +200,35 @@ msgstr "#ffffff"
 msgid "#ffffffff"
 msgstr "#ffffffff"
 
+#. TRANSLATORS: short time representation hour:minute
+#, python-format
+msgid "%2d:%02d"
+msgstr ""
+
+#. TRANSLATORS: full time representation hour:minute:seconds
+#, python-format
+msgid "%2d:%02d:%02d"
+msgstr ""
+
+#. TRANSLATORS: long date representations dayname daynum monthname in strftime() format! See 'man strftime'
+msgid "%A %e %B"
+msgstr ""
+
+#. TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
+msgid "%A %e %B %Y"
+msgstr ""
+
 #
 msgid "%H:%M"
 msgstr "%H:%M"
+
+#. TRANSLATORS: short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'
+msgid "%a %e/%m"
+msgstr ""
+
+#. TRANSLATORS: long date representation short dayname daynum short monthname hour:minute in strftime() format! See 'man strftime'
+msgid "%a %e/%m  %-H:%M"
+msgstr ""
 
 #, python-format
 msgid "%d hour"
@@ -244,6 +270,10 @@ msgstr "%d kanāli atrasti!"
 #
 msgid "%d.%B %Y"
 msgstr "%d.%B %Y"
+
+#. TRANSLATORS: VFD hour:minute daynum short monthname in strftime() format! See 'man strftime'
+msgid "%k:%M %e/%m"
+msgstr ""
 
 #
 #, python-format
@@ -751,9 +781,6 @@ msgstr ""
 msgid "Any activity"
 msgstr ""
 
-msgid "April"
-msgstr ""
-
 #
 msgid "Arabic"
 msgstr "Arābu"
@@ -837,9 +864,6 @@ msgid "Audio language selection 3"
 msgstr ""
 
 msgid "Audio language selection 4"
-msgstr ""
-
-msgid "August"
 msgstr ""
 
 #
@@ -1073,6 +1097,9 @@ msgstr ""
 # ???
 msgid "Cache Thumbnails"
 msgstr "Kešatmiņas sīktēli"
+
+msgid "Calculate"
+msgstr ""
 
 msgid "Calculate all positions"
 msgstr ""
@@ -1594,9 +1621,6 @@ msgstr "Dāņu"
 #
 msgid "Date"
 msgstr "Datums"
-
-msgid "December"
-msgstr ""
 
 #
 msgid "Decide if you want to enable or disable the Cleanup Wizard."
@@ -2356,9 +2380,6 @@ msgstr "Ātrā epoha"
 msgid "Favourites"
 msgstr "Favorīti"
 
-msgid "February"
-msgstr ""
-
 msgid "File appears to be busy.\n"
 msgstr ""
 
@@ -2918,18 +2939,9 @@ msgstr "Itāļu"
 msgid "Items per Page "
 msgstr ""
 
-msgid "January"
-msgstr ""
-
 #
 msgid "Job View"
 msgstr "Darbu skats"
-
-msgid "July"
-msgstr ""
-
-msgid "June"
-msgstr ""
 
 #
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
@@ -3175,9 +3187,6 @@ msgstr "Manuāls transponderis"
 msgid "Manufacturer"
 msgstr "Ražotājs"
 
-msgid "March"
-msgstr ""
-
 #
 msgid "Margin after record"
 msgstr "Atstarpe aiz ieraksta"
@@ -3188,9 +3197,6 @@ msgstr "Atstarpe pirms ieraksta (minūtēs)"
 
 #
 msgid "Max. Bitrate: "
-msgstr ""
-
-msgid "May"
 msgstr ""
 
 #
@@ -3698,9 +3704,6 @@ msgstr ""
 msgid "Nothing to upgrade"
 msgstr ""
 
-msgid "November"
-msgstr ""
-
 #
 msgid "Now Playing"
 msgstr "Atskaņo"
@@ -3744,9 +3747,6 @@ msgstr ""
 #
 msgid "OSD visibility"
 msgstr "OSD redzamība"
-
-msgid "October"
-msgstr ""
 
 #
 msgid "Off"
@@ -4429,6 +4429,12 @@ msgstr "Vai tiešām restartēt tagad?"
 msgid "Really shutdown now?"
 msgstr "Vai tiešām izslēgt tagad?"
 
+msgid "Really upgrade the frontprocessor and reboot now?"
+msgstr ""
+
+msgid "Really upgrade your settop box and reboot now?"
+msgstr ""
+
 #
 msgid "Reboot"
 msgstr "Atsāknēt"
@@ -4511,9 +4517,6 @@ msgid "Reloading bouquets and services..."
 msgstr ""
 
 msgid "Remember service PIN"
-msgstr ""
-
-msgid "Remember service PIN cancel"
 msgstr ""
 
 msgid "Remember these settings for each folder"
@@ -5069,9 +5072,6 @@ msgstr "Sūtīt DiSEqC tikai mainoties pavadonim"
 # ???
 msgid "Seperate titles with a main menu"
 msgstr "Atdalīt nosaukumus ar galveno izvēlni"
-
-msgid "September"
-msgstr ""
 
 #
 msgid "Sequence repeat"
@@ -5778,6 +5778,9 @@ msgstr ""
 msgid "Text font size"
 msgstr ""
 
+msgid "Thai"
+msgstr ""
+
 #
 msgid ""
 "Thank you for using the wizard.\n"
@@ -5823,6 +5826,14 @@ msgstr ""
 msgid ""
 "The USB stick was prepared to be bootable.\n"
 "Now you can download an NFI image file!"
+msgstr ""
+
+msgid "The User Interface of your receiver is restarting"
+msgstr ""
+
+msgid ""
+"The User Interface of your receiver is restarting\n"
+"due to an error in mytest.py"
 msgstr ""
 
 #
@@ -7212,6 +7223,12 @@ msgstr ""
 "Uztvērēja programmatūru nepieciešams atjaunināt.\n"
 "Spiediet OK, lai sāktu atjaunināšanu."
 
+msgid ""
+"Your frontprocessor will be upgraded\n"
+"Please wait until your receiver reboots\n"
+"This may take a few minutes"
+msgstr ""
+
 #
 msgid ""
 "Your internet connection is not working!\n"
@@ -7225,6 +7242,12 @@ msgstr ""
 #
 msgid "Your network configuration has been activated."
 msgstr "Tīkla konfigurācija aktivizēta."
+
+msgid "Your receiver is rebooting"
+msgstr ""
+
+msgid "Your receiver is shutting down"
+msgstr ""
 
 #
 msgid ""
