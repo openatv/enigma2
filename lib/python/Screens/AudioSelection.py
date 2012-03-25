@@ -132,7 +132,7 @@ class AudioSelection(Screen, ConfigListScreen):
 				conflist.append(('',))
 				self["key_green"].setBoolean(False)
 
-			if len(subtitlelist):
+			if subtitlelist:
 				self["key_yellow"].setBoolean(True)
 				conflist.append(getConfigListEntry(_("To subtitle selection"), self.settings.menupage))
 			else:
