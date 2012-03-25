@@ -154,6 +154,8 @@ class MovieList(GUIComponent):
 		self.tags = set()
 		self.root = None
 		self.list = None
+		self._playInBackground = None
+		self._char = ''
 
 		if root is not None:
 			self.reload(root)
@@ -165,11 +167,22 @@ class MovieList(GUIComponent):
 		for part in range(5):
 			self.iconPart.append(LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/part_%d_4.png" % part)))
 		self.iconMovieRec = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/part_new.png"))
+		self.iconMoviePlay = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/movie_play.png"))
+		self.iconMoviePlayRec = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/movie_play_rec.png"))
 		self.iconUnwatched = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/part_unwatched.png"))
 		self.iconFolder = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/folder.png"))
 		self.iconTrash = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/trashcan.png"))
 		self.runningTimers = {}
 		self.updateRecordings()
+
+	def get_playInBackground(self):
+		return self._playInBackground
+
+	def set_playInBackground(self, value):
+		self._playInBackground = value
+		self.reload()
+
+	playInBackground = property(get_playInBackground, set_playInBackground)
 
 	def updateRecordings(self, timer=None):
 		if timer is not None:
@@ -300,10 +313,18 @@ class MovieList(GUIComponent):
 			switch = config.usage.show_icons_in_movielist.value
 			if os.path.split(pathName)[1] in self.runningTimers:
 				if switch == 'i':
-					data.icon = self.iconMovieRec
+					if self.playInBackground and serviceref == self.playInBackground:
+						data.icon = self.iconMoviePlayRec
+					else:
+						data.icon = self.iconMovieRec
 				elif switch == 'p':
 					data.part = 0
-					data.partcol = 0xff001d
+					if self.playInBackground and serviceref == self.playInBackground:
+						data.partcol = 0xffc71d
+					else:
+						data.partcol = 0xff001d
+			elif self.playInBackground and serviceref == self.playInBackground:
+				data.icon = self.iconMoviePlay
 			else:
 				data.part = moviePlayState(pathName + '.cuts', serviceref, data.len)
 				if switch == 'i':
@@ -633,13 +654,23 @@ class MovieList(GUIComponent):
 		self._char = char
 		self._lbl = lbl
 		if lbl:
-			lbl.setText(char)
+			lbl.setText(self._char)
 			lbl.visible = True
 		self.moveToCharTimer = eTimer()
-		self.moveToCharTimer.callback.append(self._moveToChar)
+		self.moveToCharTimer.callback.append(self._moveToChrStr)
 		self.moveToCharTimer.start(1000, True) #time to wait for next key press to decide which letter to use...
 
-	def _moveToChar(self):
+	def moveToString(self, char, lbl=None):
+		self._char = self._char + char.upper()
+		self._lbl = lbl
+		if lbl:
+			lbl.setText(self._char)
+			lbl.visible = True
+		self.moveToCharTimer = eTimer()
+		self.moveToCharTimer.callback.append(self._moveToChrStr)
+		self.moveToCharTimer.start(1000, True) #time to wait for next key press to decide which letter to use...
+
+	def _moveToChrStr(self):
 		currentIndex = self.instance.getCurrentIndex()
 		found = False
 		if currentIndex < (len(self.list) - 1):
@@ -648,7 +679,11 @@ class MovieList(GUIComponent):
 			for index, item in enumerate(itemsBelow):
 				ref = item[0]
 				itemName = getShortName(item[1].getName(ref).upper(), ref)
-				if itemName.startswith(self._char):
+				if len(self._char) == 1 and itemName.startswith(self._char):
+					found = True
+					self.instance.moveSelectionTo(index + currentIndex + 1)
+					break
+				elif len(self._char) > 1 and itemName.find(self._char) >= 0:
 					found = True
 					self.instance.moveSelectionTo(index + currentIndex + 1)
 					break
@@ -657,10 +692,16 @@ class MovieList(GUIComponent):
 			for index, item in enumerate(itemsAbove):
 				ref = item[0]
 				itemName = getShortName(item[1].getName(ref).upper(), ref)
-				if itemName.startswith(self._char):
+				if len(self._char) == 1 and itemName.startswith(self._char):
 					found = True
 					self.instance.moveSelectionTo(index + 1)
 					break
+				elif len(self._char) > 1 and itemName.find(self._char) >= 0:
+					found = True
+					self.instance.moveSelectionTo(index + 1)
+					break
+
+		self._char = ''
 		if self._lbl:
 			self._lbl.visible = False
 

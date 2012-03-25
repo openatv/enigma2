@@ -3,9 +3,9 @@ msgstr ""
 "Project-Id-Version: ENIGMA 2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-03-08 20:34+0100\n"
-"PO-Revision-Date: 2012-03-17 10:57+0100\n"
-"Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
-"Language-Team: www.Linux-Sprejemniki.info\n"
+"PO-Revision-Date: 2012-03-18 17:43+0100\n"
+"Last-Translator: \n"
+"Language-Team: OldSkul from www.linux-sprejemniki.info\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -43,6 +43,18 @@ msgid_plural "%d ur"
 msgstr[0] "%d ura"
 msgstr[1] "%d uri"
 msgstr[2] "%d ur"
+
+msgid "Timer Overview"
+msgstr "Pregled časovnikov"
+
+msgid "Recording type"
+msgstr "Vrsta snemanja"
+
+msgid "Last upgrade"
+msgstr "Zadnja nadg."
+
+msgid "Last upgrade:"
+msgstr "Zadnja nadg."
 
 #
 msgid ""
@@ -1204,10 +1216,6 @@ msgid "Allow Subtiles equals Audio mask"
 msgstr "Jezik podnapisa naj bodo enak zvočni sledi"
 
 #
-msgid "Attempt to recover lost mounts (in background)"
-msgstr "Poskus obnovitve mrežnih naprav (v ozadju)."
-
-#
 msgid "Fan on or off in standby?"
 msgstr "Uporaba ventilatorja v stanju pripravljenosti"
 
@@ -1346,10 +1354,6 @@ msgstr "Poravnava podnapisov"
 #
 msgid "Text border width"
 msgstr "Širina obrobe pisave"
-
-#
-msgid "Mount again"
-msgstr "Ponovno dodajanje"
 
 #
 msgid "Text font size"
@@ -1513,7 +1517,7 @@ msgstr ""
 "Želite obdržati vašo različico datoteke?"
 
 msgid "A demo plugin for TPM usage."
-msgstr ""
+msgstr "Poskusni vtičnik za TMP."
 
 #
 msgid ""
@@ -1535,15 +1539,6 @@ msgstr ""
 msgid "A graphical EPG for all services of an specific bouquet"
 msgstr "Grafični EPG za vse kanale izbranega paketa"
 
-#
-msgid ""
-"A mount entry with this name already exists!\n"
-"Update existing entry and continue?\n"
-msgstr ""
-"Omrežna naprava s tem imenom že obstaja!\n"
-"Vseeno nadaljujem?\n"
-
-#
 #, python-format
 msgid ""
 "A record has been started:\n"
@@ -1835,18 +1830,6 @@ msgid "Activate network settings"
 msgstr "Aktiviranje omrežnih nastavitev"
 
 #
-msgid "Active"
-msgstr "Aktivno omrežje"
-
-#
-msgid ""
-"Active/\n"
-"Inactive"
-msgstr ""
-"Aktivno/\n"
-"Neaktivno"
-
-#
 msgid "Adapter settings"
 msgstr "Nastavitve mrežnega vmesnika"
 
@@ -1946,10 +1929,6 @@ msgid "Add a mark"
 msgstr "Dodajanje zaznamka"
 
 #
-msgid "Add a new NFS or CIFS mount point to your Dreambox."
-msgstr "NFS ali CIFS"
-
-#
 msgid "Add a new title"
 msgstr "Dodajanje novega naslova"
 
@@ -1984,10 +1963,6 @@ msgstr "Naj dodam mrežne nastavitve?"
 #
 msgid "Add new AutoTimer"
 msgstr "Dodajanje novega AutoTimer"
-
-#
-msgid "Add new network mount point"
-msgstr "Nova omrežna naprava"
 
 #
 msgid "Add timer"
@@ -2183,14 +2158,6 @@ msgid ""
 "Are you sure you want to restore your Enigma2 backup?\n"
 "Enigma2 will restart after the restore"
 msgstr "Ste prepričani, da želite obnoviti varnostno kopijo Enigme2?"
-
-#
-msgid ""
-"Are you sure you want to save this network mount?\n"
-"\n"
-msgstr ""
-"Ste prepričani, da želite shraniti izbrano omrežno napravo?\n"
-"\n"
 
 #
 msgid "Artist"
@@ -2416,14 +2383,6 @@ msgid "Brightness"
 msgstr "Svetlost"
 
 #
-msgid "Browse network neighbourhood"
-msgstr "Omrežna soseščina"
-
-#
-msgid "Mounts management"
-msgstr "Upravljaj"
-
-#
 msgid "Burn DVD"
 msgstr "Posnemi DVD"
 
@@ -2462,10 +2421,6 @@ msgstr "CDInfo"
 #
 msgid "CI assignment"
 msgstr "CI dodelitev"
-
-#
-msgid "CIFS share"
-msgstr "CIFS"
 
 #
 msgid "CVBS"
@@ -2532,10 +2487,6 @@ msgid "Change dir."
 msgstr "Menjava mape"
 
 #
-msgid "Change hostname"
-msgstr "Sprememba imena sprejemnika"
-
-#
 msgid "Change pin code"
 msgstr "Sprememba PIN kode"
 
@@ -2556,9 +2507,6 @@ msgid "Change step size"
 msgstr ""
 
 #
-msgid "Change the hostname of your Dreambox."
-msgstr "Sprememba mrežnega imena satelitskega sprejemnika."
-
 msgid "Changelog"
 msgstr "Dnevnik sprememb"
 
@@ -3125,11 +3073,6 @@ msgstr "Izbris vnosa"
 msgid "Delete failed!"
 msgstr "Brisanje neuspešno!"
 
-#
-msgid "Delete mount"
-msgstr "Izbris mrežne naprave"
-
-#
 #, python-format
 msgid ""
 "Delete no more configured satellite\n"
@@ -3293,12 +3236,8 @@ msgstr "Prikaz rezultatov iskanja:"
 
 #
 #, python-format
-msgid ""
-"Do you really want to REMOVE\n"
-"the plugin \"%s\"?"
-msgstr ""
-"Res želite ODSTRANITI\n"
-"vtičnik \"%s\"?"
+msgid "Do you really want to REMOVE the plugin \"%s\"?"
+msgstr "Res želite ODSTRANITI vtičnik \"%s\"?"
 
 #
 msgid ""
@@ -3315,12 +3254,8 @@ msgstr "Res želite odstraniti %s?"
 
 #
 #, python-format
-msgid ""
-"Do you really want to download\n"
-"the plugin \"%s\"?"
-msgstr ""
-"Res želite namestiti\n"
-"vtičnik \"%s\"?"
+msgid "Do you really want to download the plugin \"%s\"?"
+msgstr "Res želite namestiti vtičnik \"%s\"?"
 
 #
 msgid "Do you really want to exit?"
@@ -3363,10 +3298,6 @@ msgstr "Želite presneti sliko k %s?"
 #
 msgid "Do you want to enable the parental control feature on your dreambox?"
 msgstr "Želite na vašem sprejemniku omogočiti funkcijo starševskega nadzora?"
-
-#
-msgid "Do you want to enter a username and password for this host?\n"
-msgstr "Želite vnesti uporabniško ime in geslo za tega gostitelja?\n"
 
 #
 msgid "Do you want to install default sat lists?"
@@ -3760,7 +3691,7 @@ msgstr "Čas konca"
 
 #
 msgid "EndTime"
-msgstr "Čas zaključk"
+msgstr "Čas zaključka"
 
 #
 msgid "English"
@@ -3781,10 +3712,6 @@ msgid "Enter Fast Forward at speed"
 msgstr "Hitro predvajanje naprej s hitrostjo:"
 
 #
-msgid "Enter IP to scan..."
-msgstr "Vnesite IP naslov:"
-
-#
 msgid "Enter Rewind at speed"
 msgstr "Previjanje s hitrostjo:"
 
@@ -3795,10 +3722,6 @@ msgstr "Vstop v glavni meni"
 #
 msgid "list of EPG views..."
 msgstr "Seznam EPG načinov"
-
-#
-msgid "Enter new hostname for your Dreambox"
-msgstr "Vnesite novo gostiteljsko ime za sprejemnik"
 
 #
 msgid "Enter options:"
@@ -3813,20 +3736,8 @@ msgid "Enter pin code"
 msgstr "Vnesite PIN kodo"
 
 #
-msgid "Enter share directory:"
-msgstr "Vnesite deljeno mapo:"
-
-#
-msgid "Enter share name:"
-msgstr "Vnesite deljeno ime:"
-
-#
 msgid "Enter the service pin"
 msgstr "Vnesite PIN kodo za kanale"
-
-#
-msgid "Enter user and password for host: "
-msgstr "Vnesite uporabniško ime in geslo za gostitelja"
 
 #
 msgid "Enter your email address so that we can contact you if needed."
@@ -4041,10 +3952,6 @@ msgstr "Zaključeno"
 #
 msgid "Finished configuring your network"
 msgstr "Nastavljanje omrežja je zaključeno!"
-
-#
-msgid "Finished restarting your network"
-msgstr "Ponovni zagon omrežja je končan!"
 
 #
 msgid "Finnish"
@@ -4316,14 +4223,6 @@ msgstr "Barva"
 #
 msgid "Hungarian"
 msgstr "Madžarščina"
-
-#
-msgid "IP Address"
-msgstr "IP naslov"
-
-#
-msgid "IP:"
-msgstr "IP:"
 
 #
 msgid "ISO file is too large for this filesystem!"
@@ -4780,10 +4679,6 @@ msgid "Local Network"
 msgstr "Lokalno omrežje"
 
 #
-msgid "Local share name"
-msgstr "Ime omrežne naprave"
-
-#
 msgid "Location"
 msgstr "Lokacija"
 
@@ -4857,14 +4752,6 @@ msgstr "Naredi oznako samo kot oznako"
 #
 msgid "Manage extensions"
 msgstr "Upravljanje vtičnikov"
-
-#
-msgid "Manage network shares"
-msgstr "Upravljanje z mrežnimi napravami"
-
-#
-msgid "Manage your network shares..."
-msgstr "Upravljanje z mrežnimi napravami."
 
 #
 msgid "Manage your receiver's software"
@@ -5025,38 +4912,6 @@ msgid "Mount failed"
 msgstr "Pripajanje neuspešno"
 
 #
-msgid "Mount informations"
-msgstr "Informacije o mrežnih napravah"
-
-#
-msgid "Mount options"
-msgstr "Napredne NFS nastavitve"
-
-#
-msgid "Mount type"
-msgstr "CIFS ali NFS (izberite)"
-
-#
-msgid "MountManager"
-msgstr "Dodajanje mrežnih naprav"
-
-#
-msgid ""
-"Mounted/\n"
-"Unmounted"
-msgstr ""
-"Dodano/\n"
-"Nedodano"
-
-#
-msgid "Mountpoints management"
-msgstr "Upravljanje z mrežnimi napravami"
-
-#
-msgid "Mounts editor"
-msgstr "Dodajanje mrežne naprave"
-
-#
 msgid "Move Picture in Picture"
 msgstr "Prestavi Sliko v Sliki"
 
@@ -5197,10 +5052,6 @@ msgid "NFI image flashing completed. Press Yellow to Reboot!"
 msgstr "NFI nadgradnja programske opreme je končana. Za ponovni zagon pritisnite rumeno tipko!"
 
 #
-msgid "NFS share"
-msgstr "NFS"
-
-#
 msgid "NOW"
 msgstr "SEDAJ"
 
@@ -5279,10 +5130,6 @@ msgstr "Test mreže:"
 #
 msgid "Network:"
 msgstr "Omrežje:"
-
-#
-msgid "NetworkBrowser"
-msgstr "Iskalnik mrežnih naprav"
 
 #
 msgid "NetworkWizard"
@@ -5379,10 +5226,6 @@ msgstr "Ni prostega kanalnika!"
 #
 msgid "No network connection available."
 msgstr "Mrežna povezava ni na voljo."
-
-#
-msgid "No network devices found!"
-msgstr "Ni najdenih mrežnih naprav!"
 
 #
 msgid "No networks found"
@@ -6071,16 +5914,8 @@ msgid "Please wait for activation of your network configuration..."
 msgstr "Počakajte na aktivacijo omrežnih nastavitev..."
 
 #
-msgid "Please wait for activation of your network mount..."
-msgstr "Poteka aktivacija mrežne naprave... Prosim počakajte!"
-
-#
 msgid "Please wait while removing selected package..."
 msgstr "Poteka odstranjevanje izbranega paketa... Prosim počakajte!"
-
-#
-msgid "Please wait while removing your network mount..."
-msgstr "Poteka odstranjevanje mrežne naprave... Prosim počakajte!"
 
 #
 msgid "Please wait while scanning is in progress..."
@@ -6091,21 +5926,12 @@ msgid "Please wait while searching for removable packages..."
 msgstr "Izvaja se iskanje odstranljivih paketov... Prosim počakajte!"
 
 #
-msgid "Please wait while updating your network mount..."
-msgstr "Vaše omrežne naprave se posodabljajo... Prosim počakajte."
-
-#
 msgid "Please wait while we configure your network..."
 msgstr "Poteka nastavljanje vašega omrežja... Prosim počakajte."
 
 #
 msgid "Please wait while we prepare your network interfaces..."
 msgstr "Poteka nastavljanje omrežja... Prosim počakajte!"
-
-#
-#
-msgid "Please wait while your network is restarting..."
-msgstr "Izvaja se ponovni zagon omrežja... Prosim počakajte!"
 
 #
 msgid "Please wait..."
@@ -6238,10 +6064,6 @@ msgid "Press OK to activate the settings."
 msgstr "Za aktiviranje nastavitev pritisnite OK."
 
 #
-msgid "Press OK to collapse this host"
-msgstr "Če želite razširiti pogled pritisnite OK."
-
-#
 msgid "Press OK to edit selected settings."
 msgstr "Za spremembo izbranih nastavitev pritisnite OK."
 
@@ -6250,21 +6072,9 @@ msgid "Press OK to edit the settings."
 msgstr "Za spreminjanje nastavitev pritisnite OK."
 
 #
-msgid "Press OK to expand this host"
-msgstr "Za razširitev pogleda pritisnite OK."
-
-#
 #, python-format
 msgid "Press OK to get further details for %s"
 msgstr "Za podrobnejše informacije o %s pritisnite OK."
-
-#
-msgid "Press OK to mount this share!"
-msgstr "Za vklop mrežne naprave pritisnite OK."
-
-#
-msgid "Press OK to mount!"
-msgstr "Za pripojitev mrežne napreva pritisnite OK!"
 
 #
 msgid "Press OK to save settings."
@@ -6685,11 +6495,11 @@ msgstr "Preuredi imena naslovov od začetka"
 
 #
 msgid "Reset count"
-msgstr "Ponstavi števec"
+msgstr "Ponastavi števec"
 
 #
 msgid "Reset saved position"
-msgstr "Ponstavi shranjeno lokacijo"
+msgstr "Ponastavi shranjeno lokacijo"
 
 #
 msgid "Reset video enhancement settings to system defaults?"
@@ -6916,10 +6726,6 @@ msgid "Scan Files..."
 msgstr "Iskanje datotek"
 
 #
-msgid "Scan NFS share"
-msgstr "Iskanje NFS"
-
-#
 msgid "Scan QAM128"
 msgstr "Iskanje QAM128"
 
@@ -7035,14 +6841,6 @@ msgid "Search east"
 msgstr "Iskanje Vzhod-a"
 
 #
-msgid "Search for network shares"
-msgstr "Iskanje mrežnih naprav"
-
-#
-msgid "Search for network shares..."
-msgstr "Iskanje mrežnih naprav."
-
-#
 msgid "Attempt to recover lost mounts (in background)."
 msgstr "Poskus obnove vseh izgubljenih mrežnih naprav (proces poteka v ozadju)."
 
@@ -7073,10 +6871,6 @@ msgstr "Iskanje posodobitev... Prosim počakajte!"
 #
 msgid "Searching for new installed or removed packages. Please wait..."
 msgstr "Iskanje na novo nameščenih ali odstranjenih paketkov... Prosim počakajte!"
-
-#
-msgid "Searching your network. Please wait..."
-msgstr "Poteka pregledovanje omrežja... Prosim počakajte!"
 
 #
 msgid "Secondary DNS"
@@ -7251,14 +7045,6 @@ msgstr "Ponovi zaporedje"
 #
 msgid "Serbian"
 msgstr "Srbsko"
-
-#
-msgid "Server IP"
-msgstr "IP serverja"
-
-#
-msgid "Server share"
-msgstr "Izberite pot do mape na mrežni napravi"
 
 #
 msgid "Service"
@@ -7523,7 +7309,7 @@ msgstr "Časovnik spanja"
 
 #
 msgid "Sleep timer action:"
-msgstr "Akcija časovnika spanja:"
+msgstr "Stanje:"
 
 #
 msgid "Slideshow Interval (sec.)"
@@ -8553,13 +8339,16 @@ msgstr "Kanalnik"
 msgid "Tuner "
 msgstr "Kanalnik "
 
+msgid "Your receiver is rebooting"
+msgstr "Sprejemnik se bo ponovno zagnal..."
+
 #
 msgid "Tuner Slot"
 msgstr "Reža kanalnika"
 
 #
 msgid "Tuner configuration"
-msgstr "Nastavitev kanalnika"
+msgstr "Nastavitev kanalnikov"
 
 #
 msgid "Tuner status"
@@ -8824,7 +8613,7 @@ msgstr "Upravljanje z uporabniki"
 
 #
 msgid "Usermanager"
-msgstr ""
+msgstr "Upravljanje z uporabniki"
 
 #
 msgid "Username"
@@ -9002,14 +8791,6 @@ msgstr ""
 #
 msgid "View teletext..."
 msgstr "Ogled teleteksta"
-
-#
-msgid "View, edit or delete mountpoints on your Dreambox."
-msgstr "Poglejte, spremenite ali brišite mrežne naprave na sprejemniku."
-
-#
-msgid "View, edit or delete usernames and passwords for your network."
-msgstr "Glejte, spremenite ali brišite gesla in uporabniška imena mrežnih naprav."
 
 #
 msgid "Views: "
@@ -9535,18 +9316,6 @@ msgstr "Vaše ime:"
 #
 msgid "Your network configuration has been activated."
 msgstr "Vaše omrežne nastavitve so omogočene."
-
-#
-msgid "Your network mount has been activated."
-msgstr "Vaša omrežna naprava je omogočene."
-
-#
-msgid "Your network mount has been removed."
-msgstr "Vaša omrežna naprava je odstranjena."
-
-#
-msgid "Your network mount has been updated."
-msgstr "Vaša omrežna naprava je posodobljena."
 
 #
 msgid ""
@@ -11272,7 +11041,7 @@ msgid "H: = Hourly / D: = Daily / W: = Weekly / M: = Monthly"
 msgstr "H: = Vsako uro / D: = Dnevno / W: = Tedensko / M: = Mesečno"
 
 msgid "Repeat how often"
-msgstr "Ponovitev - kako pogosto"
+msgstr "Ponovitev - kako pogosto?"
 
 msgid "Renaming old backup..."
 msgstr "Preimenovanje stare kopije..."

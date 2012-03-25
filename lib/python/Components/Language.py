@@ -1,5 +1,6 @@
 # -*- coding: UTF-8 -*-
 import gettext
+import locale
 
 from Tools.Directories import SCOPE_LANGUAGE, resolveFilename
 
@@ -13,39 +14,39 @@ class Language:
 		# name, iso-639 language, iso-3166 country. Please don't mix language&country!
 		# also, see "precalcLanguageList" below on how to re-create the language cache after you added a language
 		self.addLanguage("Deutsch", "de", "DE")
-		self.addLanguage("English (US)", "en", "EN")
-		self.addLanguage("English (UK)", "en_GB", "GB")
 		self.addLanguage("Arabic", "ar", "AE")
 		self.addLanguage("Български", "bg", "BG")
 		self.addLanguage("Català", "ca", "AD")
-		self.addLanguage("Hrvatski", "hr", "HR")
 		self.addLanguage("Česky", "cs", "CZ")
 		self.addLanguage("Dansk", "da", "DK")
-		self.addLanguage("Nederlands", "nl", "NL")
+		self.addLanguage("Ελληνικά", "el", "GR")
+		self.addLanguage("English (UK)", "en_GB", "GB")
+		self.addLanguage("English (US)", "en", "EN")
+		self.addLanguage("Español", "es", "ES")
 		self.addLanguage("Eesti", "et", "EE")
+		self.addLanguage("Persian", "fa", "IR")
 		self.addLanguage("Suomi", "fi", "FI")
 		self.addLanguage("Français", "fr", "FR")
-		self.addLanguage("Ελληνικά", "el", "GR")
+		self.addLanguage("Frysk", "fy", "NL")
 		self.addLanguage("Hebrew", "he", "IL")
+		self.addLanguage("Hrvatski", "hr", "HR")
 		self.addLanguage("Magyar", "hu", "HU")
-		self.addLanguage("Lietuvių", "lt", "LT")
-		self.addLanguage("Latviešu", "lv", "LV")
 		self.addLanguage("Íslenska", "is", "IS")
 		self.addLanguage("Italiano", "it", "IT")
+		self.addLanguage("Lietuvių", "lt", "LT")
+		self.addLanguage("Latviešu", "lv", "LV")
+		self.addLanguage("Nederlands", "nl", "NL")
 		self.addLanguage("Norsk", "no", "NO")
-		self.addLanguage("Persian", "fa", "IR")
 		self.addLanguage("Polski", "pl", "PL")
 		self.addLanguage("Português", "pt", "PT")
 		self.addLanguage("Русский", "ru", "RU")
-		self.addLanguage("Srpski", "sr", "YU")
 		self.addLanguage("Slovensky", "sk", "SK")
 		self.addLanguage("Slovenščina", "sl", "SI")
-		self.addLanguage("Español", "es", "ES")
+		self.addLanguage("Srpski", "sr", "YU")
 		self.addLanguage("Svenska", "sv", "SE")
 		self.addLanguage("ภาษาไทย", "th", "TH")
 		self.addLanguage("Türkçe", "tr", "TR")
 		self.addLanguage("Ukrainian", "uk", "UA")
-		self.addLanguage("Frysk", "fy", "x-FY") # there is no separate country for frisian
 
 		self.callbacks = []
 
@@ -66,6 +67,11 @@ class Language:
 				x()
 		except:
 			print "Selected language does not exist!"
+		try:
+			locale.setlocale(locale.LC_TIME, self.getLanguage())
+		except:
+			print "Failed to set LC_TIME to " + self.getLanguage() + ". Setting it to 'C'"
+			locale.setlocale(locale.LC_TIME, 'C')
 
 	def activateLanguageIndex(self, index):
 		if index < len(self.langlist):

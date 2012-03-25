@@ -422,10 +422,11 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			# TODO: this has to be done.
 		elif event == iRecordableService.evStart:
 			text = _("A recording has been started:\n%s") % self.name
+			notify = config.usage.show_message_when_recording_starts.value and not Screens.Standby.inStandby
 			if self.dirnameHadToFallback:
 				text = '\n'.join((text, _("Please note that the previously selected media could not be accessed and therefore the default directory is being used instead.")))
-
-			if config.usage.show_message_when_recording_starts.value:
+				notify = True
+			if notify:
 				Notifications.AddPopup(text = text, type = MessageBox.TYPE_INFO, timeout = 3)
 		elif event == iRecordableService.evRecordAborted:
 			NavigationInstance.instance.RecordTimer.removeEntry(self)
@@ -692,7 +693,7 @@ class RecordTimer(timer.Timer):
 
 	def getNextRecordingTime(self):
 		nextrectime = self.getNextRecordingTimeOld()
-		faketime = time()+400
+		faketime = time()+300
 
 		if config.timeshift.isRecording.value:
 			if nextrectime > 0 and nextrectime < faketime:

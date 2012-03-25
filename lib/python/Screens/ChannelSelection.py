@@ -939,7 +939,7 @@ class ChannelSelectionBase(Screen):
 				"9": self.keyNumberGlobal,
 				"0": self.keyNumberGlobal
 			})
-#  		self.setTitle(_("Channel Selection"))
+#		self.maintitle = _("Channel Selection")
 		self.recallBouquetMode()
 
 	def getBouquetNumOffset(self, bouquet):
@@ -988,22 +988,22 @@ class ChannelSelectionBase(Screen):
 		self.mode = MODE_TV
 		self.servicePath = self.servicePathTV
 		self.recallBouquetMode()
-		title = self.getTitle()
-		pos = title.find(" (")
-		if pos != -1:
-			title = title[:pos]
-		title += _(" (TV)")
+#		title = self.maintitle
+#		pos = title.find(" (")
+#		if pos != -1:
+#			title = title[:pos]
+		title = _(" (TV)")
 		self.setTitle(title)
 
 	def setRadioMode(self):
 		self.mode = MODE_RADIO
 		self.servicePath = self.servicePathRadio
 		self.recallBouquetMode()
-		title = self.getTitle()
-		pos = title.find(" (")
-		if pos != -1:
-			title = title[:pos]
-		title += _(" (Radio)")
+#		title = self.maintitle
+#		pos = title.find(" (")
+#		if pos != -1:
+#			title = title[:pos]
+		title = _(" (Radio)")
 		self.setTitle(title)
 
 	def setRoot(self, root, justSet=False):
