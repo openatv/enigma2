@@ -85,6 +85,11 @@ private:
 	int m_secfd;
 	char m_sec_filename[128];
 #endif
+#if HAVE_DVB_API_VERSION < 3
+	FrontendInfo fe_info;
+#else
+	dvb_frontend_info fe_info;
+#endif
 	FRONTENDPARAMETERS parm;
 	union {
 		eDVBFrontendParametersSatellite sat;
