@@ -213,49 +213,49 @@ msgstr "#ffffffff"
 msgid "%H:%M"
 msgstr "%ساعت:%دقیقه"
 
-#, python-format
+
 msgid "%d / 100"
 msgstr ""
 
-#, python-format
+
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] ""
 
-#, python-format
+
 msgid "%d jobs are running in the background!"
 msgstr "%d عملیات در پس زمینه انجام میشود"
 
-#, python-format
+
 msgid "%d min"
 msgstr "%d دقیقه"
 
-#, python-format
+
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] ""
 
-#, python-format
+
 msgid "%d minutes"
 msgstr ""
 
-#, python-format
+
 msgid "%d second"
 msgid_plural "%d seconds"
 msgstr[0] ""
 
-#, python-format
+
 msgid "%d services found!"
 msgstr "%d کانال یافت شد"
 
 msgid "%d.%B %Y"
 msgstr "%d.%B %Y"
 
-#, python-format
+
 msgid "%s (%s)\n"
 msgstr "%s (%s)\n"
 
-#, python-format
+
 msgid "'%s' contains %d file(s) and %d sub-directories.\n"
 msgstr ""
 
@@ -428,7 +428,7 @@ msgstr "??"
 msgid "A"
 msgstr "A"
 
-#, python-format
+
 msgid ""
 "A configuration file (%s) was modified since Installation.\n"
 "Do you want to keep your version?"
@@ -456,7 +456,7 @@ msgstr ""
 msgid "A graphical EPG for all services of an specific bouquet"
 msgstr "رابط گرافیکی EPG برای همه کانال های یک لیست خاص"
 
-#, python-format
+
 msgid ""
 "A recording has been started:\n"
 "%s"
@@ -478,7 +478,7 @@ msgstr ""
 msgid "A recording is currently running. Please stop the recording before trying to start the satfinder."
 msgstr "یک عمل ضبط کردن در حال اجرا است ، لطفا قبل از اجرای ماهواره یاب عمل ضبط را متوقف کنید"
 
-#, python-format
+
 msgid "A required tool (%s) was not found."
 msgstr "ابزار (%s) مورد نیاز یافت نشد"
 
@@ -1194,7 +1194,7 @@ msgstr ""
 msgid "CCcam Info"
 msgstr ""
 
-#, python-format
+
 msgid ""
 "CCcam Info %s\n"
 "by AliAbdul %s\n"
@@ -1536,7 +1536,7 @@ msgstr "مختلط (اجازه میدهد که قطعات موسیقی و منا
 msgid "Composition of the recording filenames"
 msgstr "ترکیب نام های فایل های ضبط"
 
-#, python-format
+
 msgid "Configfile %s saved."
 msgstr ""
 
@@ -1642,19 +1642,19 @@ msgstr "رسانه قابل لود شدن نیست ، دیسک داخل گذاش
 msgid "Could not open Picture in Picture"
 msgstr "تصویر در تصویر باز نمیشود"
 
-#, python-format
+
 msgid "Could not open the file %s!"
 msgstr ""
 
-#, python-format
+
 msgid "Could not save configfile %s!"
 msgstr ""
 
-#, python-format
+
 msgid "Couldn't record due to conflicting timer %s"
 msgstr "با توجه به مغایرت زمان %s ضبط کردن مقدور نیست"
 
-#, python-format
+
 msgid "Couldn't record due to invalid service %s"
 msgstr "با توجه به کانال نامعتبر %s ضبط کردن مقدور نیست"
 
@@ -1706,7 +1706,7 @@ msgstr ""
 msgid "Creating Hardlink to Timeshift file failed!"
 msgstr ""
 
-#, python-format
+
 msgid "Creating directory %s failed."
 msgstr "ایجاد شاخه %s ناموفق "
 
@@ -1853,7 +1853,7 @@ msgstr ""
 msgid "Delete"
 msgstr "حذف"
 
-#, python-format
+
 msgid "Delete %s?"
 msgstr ""
 
@@ -1869,7 +1869,7 @@ msgstr "حذف مورد"
 msgid "Delete failed!"
 msgstr "حذف ناموفق"
 
-#, python-format
+
 msgid ""
 "Delete no more configured satellite\n"
 "%s?"
@@ -1880,7 +1880,7 @@ msgstr ""
 msgid "Deleted"
 msgstr ""
 
-#, python-format
+
 msgid "Deleted %s!"
 msgstr ""
 
@@ -1954,7 +1954,7 @@ msgstr "پخش مستقیم عناوین لینک شده بدون منو"
 msgid "Directory"
 msgstr ""
 
-#, python-format
+
 msgid "Directory %s nonexistent."
 msgstr "پوشه %s وجود ندارد"
 
@@ -2005,9 +2005,6 @@ msgstr "تنظیمات تصویر"
 msgid "Display and Userinterface"
 msgstr "نمایش و رابط کاربری"
 
-#, python-format
-msgid "Do you really want to REMOVE the plugin \"%s\"?"
-msgstr "آیا واقعا میخواهید "پلاگین \"%s\" را حذف کنید ؟"
 
 msgid ""
 "Do you really want to check the filesystem?\n"
@@ -2021,20 +2018,16 @@ msgid ""
 "You cannot go back!"
 msgstr ""
 
-#, python-format
+
 msgid "Do you really want to delete %s ?"
 msgstr ""
 
-#, python-format
+
 msgid "Do you really want to delete %s?"
 msgstr "آیا واقعا قصد حذف کردن %s را دارید؟ "
 
 msgid "Do you really want to delete ?"
 msgstr ""
-
-#, python-format
-msgid "Do you really want to download the plugin \"%s\"?"
-msgstr "آیا واقعا میخواهید دانلود کنید "پلاگین \"%s\"?"
 
 msgid "Do you really want to exit?"
 msgstr "آیا واقعا قصد خروج دارید؟"
@@ -2044,18 +2037,18 @@ msgid ""
 "All data on the disk will be lost!"
 msgstr ""
 
-#, python-format
+
 msgid "Do you really want to permamently remove '%s' from trash can ?"
 msgstr ""
 
 msgid "Do you really want to permanently remove from trash can ?"
 msgstr ""
 
-#, python-format
+
 msgid "Do you really want to remove directory %s from the disk?"
 msgstr "آیا واقعا میخواهید پوشه %s را از دیسک حذف کنید ؟"
 
-#, python-format
+
 msgid "Do you really want to remove your bookmark of %s?"
 msgstr "آیا واقعا میخواهید علامت خود را از %s حذف کنید ؟"
 
@@ -2086,7 +2079,7 @@ msgstr "آیا میخواهید اسکن کانال انجام شود ؟"
 msgid "Do you want to do another manual service scan?"
 msgstr "آیا میخواهید اسکن دستی کانال دیگری انجام شود ؟"
 
-#, python-format
+
 msgid "Do you want to download the image to %s ?"
 msgstr "آیا میخواهید ایمیج را در %s دانلود کنید ؟"
 
@@ -2158,18 +2151,18 @@ msgstr ""
 msgid "Don't stop current event but disable coming events"
 msgstr "رخداد فعلی متوقف نشود اما رخداد های بعدی غیر فعال شوند"
 
-#, python-format
+
 msgid "Done - Installed or upgraded %d packages"
 msgstr "انجام شد ، تعداد %d مورد نصب یا به روز رسانی شد"
 
-#, python-format
+
 msgid "Done - Installed, upgraded or removed %d packages with %d errors"
 msgstr "انجام شد ، تعداد %d بسته با %d خطا نصب ، به روز رسانی و یا حذف شد"
 
 msgid "Download"
 msgstr "دانلود"
 
-#, python-format
+
 msgid "Download %s from Server"
 msgstr "دانلود %s از سرور"
 
@@ -2261,7 +2254,7 @@ msgstr ""
 msgid "EPGSearch"
 msgstr ""
 
-#, python-format
+
 msgid "ERROR - failed to scan (%s)!"
 msgstr "خطا ، اسکن انجام نشد (%s)"
 
@@ -2431,13 +2424,13 @@ msgstr "خطا هنگام اجرای پلاگین"
 msgid "Error reading webpage!"
 msgstr ""
 
-#, python-format
+
 msgid ""
 "Error:\n"
 "%s"
 msgstr ""
 
-#, python-format
+
 msgid ""
 "Error: %s\n"
 "Retry?"
@@ -2445,7 +2438,7 @@ msgstr ""
 "خطا: %s\n"
 "دوباره سعی شود?"
 
-#, python-format
+
 msgid ""
 "Error[%d] : %s.\n"
 "Press OK to exit."
@@ -2567,7 +2560,7 @@ msgstr "بازگشت به حالت کارخانه ای"
 msgid "Fail to upgrade!! Retry!!"
 msgstr ""
 
-#, python-format
+
 msgid ""
 "Fail to verify data file. \n"
 "file[%s]\n"
@@ -2580,17 +2573,17 @@ msgstr "ناموفق"
 msgid "Failed to remove old files."
 msgstr ""
 
-#, python-format
+
 msgid "Fan %d"
 msgstr "فن %d"
 
 #
-#, python-format
+
 msgid "Fan %d PWM"
 msgstr "فن %d PWM"
 
 #
-#, python-format
+
 msgid "Fan %d Voltage"
 msgstr "فن %d ولتاژ"
 
@@ -2751,7 +2744,7 @@ msgstr ""
 msgid "Front Processor"
 msgstr ""
 
-#, python-format
+
 msgid "Frontprocessor version: %d"
 msgstr "نسخه پردازنده جلویی: %d"
 
@@ -3270,7 +3263,7 @@ msgstr ""
 msgid "Invalid Location"
 msgstr "محل نامعتبر"
 
-#, python-format
+
 msgid "Invalid directory selected: %s"
 msgstr "پوشه انتخاب شده نامعتبر است : %s"
 
@@ -3525,7 +3518,7 @@ msgstr "لیست دستگاه های ذخیره سازی"
 msgid "List type"
 msgstr ""
 
-#, python-format
+
 msgid "List version %d, found %d channels"
 msgstr ""
 
@@ -3592,7 +3585,7 @@ msgstr "نام های طولانی فایل"
 msgid "Longitude"
 msgstr "طول جغرافیایی"
 
-#, python-format
+
 msgid ""
 "Looking for available transponders.\n"
 "This will take a short while.\n"
@@ -3892,7 +3885,7 @@ msgstr ""
 msgid "Nameserver"
 msgstr "Nameserver"
 
-#, python-format
+
 msgid "Nameserver %d"
 msgstr "Nameserver %d"
 
@@ -4166,11 +4159,11 @@ msgstr "نروژی"
 msgid "Not Flashing"
 msgstr ""
 
-#, python-format
+
 msgid "Not enough diskspace. Please free up some diskspace and try again. (%d MB required, %d MB available)"
 msgstr "فضای کافی وجود ندارد ، لطفا مقداری فضا خالی و دوباره تلاش کنید . (%d مگابایت نیاز است و %d مگابایت در دسترس است)"
 
-#, python-format
+
 msgid ""
 "Not enough free Diskspace!\n"
 "\n"
@@ -4342,7 +4335,7 @@ msgstr "PIDs"
 msgid "PMT PID"
 msgstr "PMT PID"
 
-#, python-format
+
 msgid "PTS Plugin Error: %s"
 msgstr ""
 
@@ -4792,7 +4785,7 @@ msgstr "دکمه OK را برای فعال کردن تنظیمات فشار ده
 msgid "Press OK to edit the settings."
 msgstr "دکمه OK را برای ویرایش تنظیمات فشار دهید"
 
-#, python-format
+
 msgid "Press OK to get further details for %s"
 msgstr "دکمه OK را برای دریافت جزئیات بیشتر %s فشار دهید"
 
@@ -4967,7 +4960,7 @@ msgid "Record started! Stopping timeshift now ..."
 msgstr ""
 
 #
-#, python-format
+
 msgid "Record time limited due to conflicting timer %s"
 msgstr ""
 
@@ -5099,7 +5092,7 @@ msgstr "با موفقیت حذف شد"
 msgid "Removing"
 msgstr "در حال حذف کردن"
 
-#, python-format
+
 msgid "Removing directory %s failed. (Maybe not empty.)"
 msgstr "حذف پوشه %s ناموفق بود (شاید پوشه خالی نیست)"
 
@@ -5116,7 +5109,7 @@ msgstr ""
 msgid "Rename to:"
 msgstr ""
 
-#, python-format
+
 msgid "Renamed %s!"
 msgstr ""
 
@@ -5200,7 +5193,7 @@ msgid "Resume from last position"
 msgstr "ادامه از مکان قبلی"
 
 #
-#, python-format
+
 msgid "Resume position at %s"
 msgstr "ادامه دادن مکان در %s"
 
@@ -5439,11 +5432,11 @@ msgstr ""
 msgid "Scan your network for wireless access points and connect to them using your selected wireless device.\n"
 msgstr ""
 
-#, python-format
+
 msgid "Scanning %s..."
 msgstr ""
 
-#, python-format
+
 msgid "Scanning completed, %d channels found"
 msgstr ""
 
@@ -5462,7 +5455,7 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
-#, python-format
+
 msgid ""
 "Search completed. %d transponders found.\n"
 "\n"
@@ -5830,7 +5823,7 @@ msgid "Setup your timezone."
 msgstr ""
 
 #
-#, python-format
+
 msgid "Shall the USB stick wizard proceed and program the image file %s into flash memory?"
 msgstr ""
 
@@ -6098,7 +6091,7 @@ msgstr ""
 msgid "Slideshow Interval (sec.)"
 msgstr ""
 
-#, python-format
+
 msgid "Slot %d"
 msgstr "شکاف %d"
 
@@ -6237,12 +6230,12 @@ msgid "Standby / Restart"
 msgstr "خاموشی موقت / راه اندازی مجدد"
 
 #
-#, python-format
+
 msgid "Standby Fan %d PWM"
 msgstr "خاموشی موقت فن %d PWM"
 
 #
-#, python-format
+
 msgid "Standby Fan %d Voltage"
 msgstr "خاموشی موقت فن %d ولتاژ"
 
@@ -6611,13 +6604,13 @@ msgstr ""
 msgid "The current beta image could not be stable"
 msgstr ""
 
-#, python-format
+
 msgid ""
 "The directory %s is not a EXT2, EXT3, EXT4 or NFS partition.\n"
 "Make sure you select a valid partition type."
 msgstr ""
 
-#, python-format
+
 msgid ""
 "The directory %s is not writable.\n"
 "Make sure you select a writable directory instead."
@@ -6625,7 +6618,7 @@ msgstr ""
 "پوشه %s قابل نوشتن نیست\n"
 "مطمئن شوید که بجای آن پوشه قابل نوشتن را انتخاب کرده اید"
 
-#, python-format
+
 msgid ""
 "The following device was found:\n"
 "\n"
@@ -6658,14 +6651,14 @@ msgstr "این بسته شامل چیزی نمیشود"
 msgid "The package:"
 msgstr "بسته :"
 
-#, python-format
+
 msgid "The path %s already exists."
 msgstr "مسیر %s از قبل وجود دارد"
 
 msgid "The pin code you entered is wrong."
 msgstr "رمز وارد شده توسط شما اشتباه است"
 
-#, python-format
+
 msgid "The results have been written to %s."
 msgstr "نتایج در %s نوشته شدند"
 
@@ -6698,7 +6691,7 @@ msgstr ""
 msgid "The wizard can backup your current settings. Do you want to do a backup now?"
 msgstr "هدایتگر میتواند از تنظیمات فعلی شما نسخه پشتیبان تهیه کند ، آیا میخواهید الان نسخه پشتیبان تهیه شود ؟"
 
-#, python-format
+
 msgid "The wizard found a configuration backup. Do you want to restore your old settings from %s?"
 msgstr "هدایتگر یک نسخه پشتیبان پیکربندی شده یافت ، آیا میخواهید تنظیمات قبلی شما از %s بازگردانی شود ؟"
 
@@ -6751,7 +6744,7 @@ msgstr ""
 msgid "This Plugin only support for UNO/ULTIMO"
 msgstr ""
 
-#, python-format
+
 msgid "This STB_BOX can't decode %s streams!"
 msgstr "این دستگاه نمیتواند جریان های %s را بازگشایی کنید"
 
@@ -7786,7 +7779,7 @@ msgstr ""
 msgid "Write error while recording. Disk full?\n"
 msgstr "خطای رایت هنگام ضبط کردن رخ داد ، دیسک پر شده است ؟\n"
 
-#, python-format
+
 msgid ""
 "Write error while recording. Disk full?\n"
 "%s"
@@ -7853,7 +7846,7 @@ msgstr "بله ، مشاهده خودآموز"
 msgid "Yesterday"
 msgstr ""
 
-#, python-format
+
 msgid ""
 "You already have a channel list installed,\n"
 "would you like to remove\n"
@@ -7947,7 +7940,7 @@ msgstr ""
 msgid "You have selected no logs to send."
 msgstr ""
 
-#, python-format
+
 msgid "You have to wait %s!"
 msgstr "لطفا صبر کنید %s"
 
@@ -8011,7 +8004,7 @@ msgstr ""
 msgid "Your collection exceeds the size of a single layer medium, you will need a blank dual layer DVD!"
 msgstr ""
 
-#, python-format
+
 msgid ""
 "Your config file is not well-formed:\n"
 "%s"
@@ -8227,11 +8220,11 @@ msgstr "از ابتدا"
 msgid "at end"
 msgstr "در آخر"
 
-#, python-format
+
 msgid "audio track (%s) format"
 msgstr "فرمت آهنگ صوتی (%s)"
 
-#, python-format
+
 msgid "audio track (%s) language"
 msgstr "زبان آهنگ صوتی (%s)"
 
@@ -8265,7 +8258,7 @@ msgstr "لیست سیاه"
 msgid "blue"
 msgstr "آبی"
 
-#, python-format
+
 msgid "burn audio track (%s)"
 msgstr "رایت کردن آهنگ صوتی  (%s)"
 
@@ -8336,7 +8329,7 @@ msgstr "نمیتواند حذف شود"
 msgid "create directory"
 msgstr "ایجاد شاخه"
 
-#, python-format
+
 msgid "currently installed image: %s"
 msgstr "ایمیج نصب شده فعلی: %s"
 
@@ -8891,7 +8884,7 @@ msgstr "اسکن انجام شد"
 msgid "scan for channels"
 msgstr ""
 
-#, python-format
+
 msgid "scan in progress - %d%% done!"
 msgstr "در حال اسکن کردن - %d%% انجام شده است"
 
