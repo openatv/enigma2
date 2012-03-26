@@ -311,8 +311,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			curIdx = self.l.getCurrentSelectionIndex()
 			self.list[curIdx] = (service, service_name, events, picon)
 
-		nowPlaying = self.currentlyPlaying.toString()
-		if nowPlaying is not None and nowPlaying == service:
+		if self.currentlyPlaying is not None and self.currentlyPlaying.toString() == service:
 			serviceForeColor = self.foreColorServiceSelected
 			serviceBackColor = self.backColorServiceSelected
 		else:
