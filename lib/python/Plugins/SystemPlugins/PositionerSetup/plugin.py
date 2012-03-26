@@ -1030,7 +1030,7 @@ class PositionerSetupLog(Screen):
 			f.write(log.getvalue())
 			f.close()
 		except Exception, e:
-			self["list"].setText(_("Failed to write /tmp/positionersetup.log:str") + str(e))
+			self["list"].setText(_("Failed to write /tmp/positionersetup.log: ") + str(e))
 		self.close(True)
 
 	def cancel(self):
