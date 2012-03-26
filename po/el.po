@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2_v2.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-10 15:56+0000\n"
-"PO-Revision-Date: 2012-03-17 17:52+0100\n"
+"POT-Creation-Date: 2012-03-26 14:40+0100\n"
+"PO-Revision-Date: 2012-03-26 16:24+0100\n"
 "Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
 "Language-Team: \n"
 "Language: el\n"
@@ -250,14 +250,50 @@ msgstr "#ffffff"
 msgid "#ffffffff"
 msgstr "#ffffffff"
 
+#. TRANSLATORS: short time representation hour:minute
+#, python-format
+msgid "%2d:%02d"
+msgstr ""
+
+#. TRANSLATORS: full time representation hour:minute:seconds
+#, python-format
+msgid "%2d:%02d:%02d"
+msgstr ""
+
+#. TRANSLATORS: long date representations dayname daynum monthname in strftime() format! See 'man strftime'
+msgid "%A %e %B"
+msgstr ""
+
+#. TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
+msgid "%A %e %B %Y"
+msgstr ""
+
 #
 #
 msgid "%H:%M"
 msgstr "%H:%M"
 
+#. TRANSLATORS: full date representations sort dayname daynum monthname long year in strftime() format! See 'man strftime'
+msgid "%a %e %B %Y"
+msgstr ""
+
+#. TRANSLATORS: short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'
+msgid "%a %e/%m"
+msgstr ""
+
+#. TRANSLATORS: long date representation short dayname daynum short monthname hour:minute in strftime() format! See 'man strftime'
+msgid "%a %e/%m  %-H:%M"
+msgstr ""
+
 #, python-format
 msgid "%d / 100"
 msgstr ""
+
+#, python-format
+msgid "%d Min"
+msgid_plural "%d Mins"
+msgstr[0] ""
+msgstr[1] ""
 
 #, python-format
 msgid "%d hour"
@@ -303,6 +339,10 @@ msgstr "%d υπηρεσίες βρέθηκαν!"
 #
 msgid "%d.%B %Y"
 msgstr "%d.%B %Y"
+
+#. TRANSLATORS: VFD hour:minute daynum short monthname in strftime() format! See 'man strftime'
+msgid "%k:%M %e/%m"
+msgstr ""
 
 #
 # , python-format
@@ -986,6 +1026,9 @@ msgstr ""
 msgid "Allows you to prefer the special hearing impaired subtitles over normal subtitles."
 msgstr ""
 
+msgid "Allows you to send a copy of the log to yourself."
+msgstr ""
+
 msgid "Allows you to set audio language 1"
 msgstr ""
 
@@ -1044,6 +1087,9 @@ msgid "Allows you to set the transparency of the DVB subtitles."
 msgstr ""
 
 msgid "Allows you to show/hide CCcam in extensions (blue button)."
+msgstr ""
+
+msgid "Allows you to show/hide Log Manager in extensions (blue button)."
 msgstr ""
 
 msgid "Allows you to show/hide OScam in extensions (blue button)."
@@ -1107,10 +1153,6 @@ msgstr "Ανώνυμη καταγραφή;"
 #
 msgid "Any activity"
 msgstr "Οποιαδήποτε δραστηριότητα"
-
-#
-msgid "April"
-msgstr "Απρίλιος"
 
 #
 msgid "Arabic"
@@ -1235,10 +1277,6 @@ msgstr "Επιλογή γλώσσας ήχου 3"
 #
 msgid "Audio language selection 4"
 msgstr "Επιλογή γλώσσας ήχου 4"
-
-#
-msgid "August"
-msgstr "Αύγουστος"
 
 #
 #
@@ -1630,6 +1668,9 @@ msgstr ""
 #
 msgid "Cancel"
 msgstr "Άκυρο "
+
+msgid "Cannot delete file"
+msgstr ""
 
 msgid "Cannot move to trash can"
 msgstr "Αδύνατη μεταφορά στον κάδο ανακύκλωσης"
@@ -2391,10 +2432,6 @@ msgid "Debug Logs"
 msgstr ""
 
 #
-msgid "December"
-msgstr "Δεκέμβριος"
-
-#
 #
 msgid "Decide if you want to enable or disable the Cleanup Wizard."
 msgstr "Αποφασίστε αν θα ενεργοποιήσετε ή όχι τον Οδηγό Εκκαθάρισης."
@@ -2427,6 +2464,9 @@ msgstr "Αρχικές ρυθμίσεις"
 #
 msgid "Default movie location"
 msgstr "Αρχική"
+
+msgid "Defaults"
+msgstr ""
 
 msgid "Delay before key repeat starts:"
 msgstr ""
@@ -2653,15 +2693,9 @@ msgstr "Ρυθμίσεις οθόνης ενδείξεων"
 msgid "Display and Userinterface"
 msgstr "Απεικόνιση και Περιβάλλον Χρήστη"
 
-#
-# , python-format
 #, python-format
-msgid ""
-"Do you really want to REMOVE\n"
-"the plugin \"%s\"?"
+msgid "Do you really want to REMOVE the plugin \"%s\"?"
 msgstr ""
-"Θέλετε πραγματικά να ΑΦΑΙΡΕΣΕΤΕ\n"
-"το πρόσθετο \"%s\";"
 
 #
 #
@@ -2692,15 +2726,9 @@ msgstr "Θέλετε πραγματικά να διαγράψετε το %s;"
 msgid "Do you really want to delete ?"
 msgstr ""
 
-#
-# , python-format
 #, python-format
-msgid ""
-"Do you really want to download\n"
-"the plugin \"%s\"?"
+msgid "Do you really want to download the plugin \"%s\"?"
 msgstr ""
-"Θέλετε να κατεβάσετε\n"
-"το πρόσθετο \"%s\"?"
 
 #
 #
@@ -3228,6 +3256,12 @@ msgstr "Βάλτε το pin υπηρεσίας"
 msgid "Enter your email address so that we can contact you if needed."
 msgstr "Εισάγετε το email σας για να επικοινωνήσουμε αν χρειαστεί"
 
+msgid "Enter your email address to send a copy of the log to."
+msgstr ""
+
+msgid "Enter your forum user name, to make it easier trace logs."
+msgstr ""
+
 msgid "Enter your input data"
 msgstr ""
 
@@ -3512,10 +3546,6 @@ msgstr "Fast epoch"
 msgid "Favourites"
 msgstr "Αγαπημένα"
 
-#
-msgid "February"
-msgstr "Φεβρουάριος"
-
 msgid "File appears to be busy.\n"
 msgstr "Το αρχείο χρησιμοποιείται.\n"
 
@@ -3672,12 +3702,6 @@ msgstr ""
 #, python-format
 msgid "Frontprocessor version: %d"
 msgstr "Έκδοση frontprocessor: %d"
-
-msgid "Ftp service Disabled."
-msgstr ""
-
-msgid "Ftp service Enabled."
-msgstr ""
 
 msgid "Ftpd service type: Vsftpd server"
 msgstr ""
@@ -4272,6 +4296,9 @@ msgstr "Εγκατάσταση αρχικών ρυθμίσεων... Παρακα
 msgid "Installing package content... Please wait..."
 msgstr "Εγκατάσταση περιεχομένου πακέτου... Παρακαλώ περιμένετε..."
 
+msgid "Installing service please wait..."
+msgstr ""
+
 #
 #
 msgid "Instant Record..."
@@ -4396,20 +4423,12 @@ msgid "Items per Page "
 msgstr "Αντικείμενα ανά σελίδα"
 
 #
-msgid "January"
-msgstr "Ιανουάριος"
-
-#
 #
 msgid "Job View"
 msgstr "Εμφάνιση εργασιών"
 
 msgid "Job task(s) are in progress!"
 msgstr ""
-
-#
-msgid "July"
-msgstr "Ιούλιος"
 
 msgid "Jump back 24 hours"
 msgstr ""
@@ -4425,10 +4444,6 @@ msgstr ""
 
 msgid "Jump to prime time"
 msgstr ""
-
-#
-msgid "June"
-msgstr "Ιούνιος"
 
 #
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
@@ -4734,6 +4749,9 @@ msgstr ""
 msgid "MA"
 msgstr ""
 
+msgid "MAC:"
+msgstr ""
+
 msgid "MB"
 msgstr ""
 
@@ -4824,10 +4842,6 @@ msgid "Manufacturer"
 msgstr "Κατασκευαστής"
 
 #
-msgid "March"
-msgstr "Μάρτιος"
-
-#
 #
 msgid "Margin after record"
 msgstr "Περιθώριο μετά την εγγραφή"
@@ -4861,10 +4875,6 @@ msgstr ""
 msgid "Maximum space used (MB):"
 msgstr ""
 
-#
-msgid "May"
-msgstr "Μάιος"
-
 msgid "Media playback Remaining/Elapsed as"
 msgstr ""
 
@@ -4891,6 +4901,9 @@ msgstr "Το μέσο δεν είναι κενό!"
 #
 msgid "Memory"
 msgstr "Μνήμη"
+
+msgid "Memory Information"
+msgstr ""
 
 #
 #
@@ -5138,6 +5151,9 @@ msgstr "Namespace"
 msgid "Netmask"
 msgstr "Netmask"
 
+msgid "Netmask:"
+msgstr ""
+
 #
 #
 msgid "Network"
@@ -5151,6 +5167,9 @@ msgstr "Διαμόρφωση δικτύου..."
 #
 msgid "Network ID"
 msgstr "ID δικτύου"
+
+msgid "Network Information"
+msgstr ""
 
 msgid "Network Mounts"
 msgstr ""
@@ -5539,13 +5558,15 @@ msgid "Nothing to upgrade"
 msgstr "Τίποτα για αναβάθμιση"
 
 #
-msgid "November"
-msgstr "Νοέμβριος"
-
-#
 #
 msgid "Now Playing"
 msgstr "Τώρα παίζει"
+
+msgid "Now installing service, please wait..."
+msgstr ""
+
+msgid "Now removing service, please wait..."
+msgstr ""
 
 #
 #
@@ -5617,9 +5638,6 @@ msgid "OSD visibility"
 msgstr "Διαφάνεια OSD"
 
 msgid "OScam Info"
-msgstr ""
-
-msgid "October"
 msgstr ""
 
 #
@@ -6454,9 +6472,6 @@ msgstr ""
 msgid "Profile: Local box"
 msgstr ""
 
-msgid "Programme Guide"
-msgstr ""
-
 #
 #
 msgid "Progress"
@@ -6563,6 +6578,14 @@ msgid "Reader"
 msgstr ""
 
 msgid "Reader Statistics"
+msgstr ""
+
+#, python-format
+msgid "Ready to install \"%s\" ?"
+msgstr ""
+
+#, python-format
+msgid "Ready to remove \"%s\" ?"
 msgstr ""
 
 #
@@ -6722,10 +6745,6 @@ msgstr ""
 msgid "Remember service PIN"
 msgstr "Αποθήκευση PIN υπηρεσίας"
 
-#
-msgid "Remember service PIN cancel"
-msgstr "Αποθήκευση ακύρωσης PIN υπηρεσίας"
-
 msgid "Remember these settings for each folder"
 msgstr "Αποθήκευση αυτών των ρυθμίσεων για κάθε φάκελο"
 
@@ -6752,6 +6771,9 @@ msgstr "Διαγραφή σελιδοδείκτη"
 #
 msgid "Remove Plugins"
 msgstr "Απεγκατάσταση προσθέτων"
+
+msgid "Remove Service"
+msgstr ""
 
 #
 #
@@ -6808,6 +6830,9 @@ msgstr "Διαγραφή"
 #, python-format
 msgid "Removing directory %s failed. (Maybe not empty.)"
 msgstr "Η διαγραφή του φακέλου %s απέτυχε. (Ίσως δεν είναι κενός)."
+
+msgid "Removing service please wait..."
+msgstr ""
 
 #
 #
@@ -7522,10 +7547,6 @@ msgid "Seperate titles with a main menu"
 msgstr "Διαχωρισμός τίτλων με κεντρικό μενού"
 
 #
-msgid "September"
-msgstr "Σεπτέμβριος"
-
-#
 #
 msgid "Sequence repeat"
 msgstr "Επανάληψη διαδοχής"
@@ -7991,6 +8012,9 @@ msgstr "Εμφάνιση ραδιοφώνου..."
 #
 msgid "Show the tv player..."
 msgstr "Εμφάνιση TV"
+
+msgid "Show time elapsed as positive"
+msgstr ""
 
 msgid "Show time remaining/elapsed"
 msgstr ""
@@ -8558,9 +8582,6 @@ msgstr ""
 msgid "System"
 msgstr "Σύστημα"
 
-msgid "System Information"
-msgstr ""
-
 msgid "System: "
 msgstr ""
 
@@ -8606,12 +8627,6 @@ msgid "Telnet Port"
 msgstr ""
 
 msgid "Telnet Setup"
-msgstr ""
-
-msgid "Telnet service Disabled."
-msgstr ""
-
-msgid "Telnet service Enabled."
 msgstr ""
 
 #
@@ -8665,6 +8680,9 @@ msgid "Text font size"
 msgstr "Μέγεθος γραμματοσειράς"
 
 msgid "Text support"
+msgstr ""
+
+msgid "Thai"
 msgstr ""
 
 #
@@ -8993,6 +9011,9 @@ msgstr ""
 #
 msgid "This is step number 2."
 msgstr "Αυτό είναι το βήμα 2"
+
+msgid "This option allows you choose how to display elasped time  as + or -"
+msgstr ""
 
 msgid "This option allows you choose how to display remaining time, or elapsed time, or both."
 msgstr ""
@@ -10475,6 +10496,13 @@ msgstr "Χθες"
 
 #, python-format
 msgid ""
+"You already have a bootlogo installed,\n"
+"would you like to remove\n"
+"\"%s\"?"
+msgstr ""
+
+#, python-format
+msgid ""
 "You already have a channel list installed,\n"
 "would you like to remove\n"
 "\"%s\"?"
@@ -10666,6 +10694,22 @@ msgstr "Ο δέκτης τερματίζεται. Παρακαλώ περιμέ�
 #
 msgid "Your STB_BOX isn't connected to the internet properly. Please check it and try again."
 msgstr "Ο δέκτης σας δεν είναι συνδεδεμένος στο διαδίκτυο σωστά. Παρακαλώ ελέγξτε και ξαναπροσπαθήστε."
+
+msgid ""
+"Your STB_BOX will be restarted after the installation of service\n"
+"Do you want to install now ?"
+msgstr ""
+
+msgid ""
+"Your STB_BOX will be restarted after the installation of service.\n"
+"\n"
+"Do you want to install now ?"
+msgstr ""
+
+msgid ""
+"Your STB_BOX will be restarted after the removal of service\n"
+"Do you want to remove now ?"
+msgstr ""
 
 #
 #

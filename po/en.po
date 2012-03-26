@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 3.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-10 15:56+0000\n"
-"PO-Revision-Date: 2012-03-17 17:52+0100\n"
+"POT-Creation-Date: 2012-03-26 14:40+0100\n"
+"PO-Revision-Date: 2012-03-26 16:23+0100\n"
 "Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -138,9 +138,6 @@ msgstr ""
 "\n"
 "View, install and remove available or installed packages."
 
-msgid "    - Type"
-msgstr "    - Type"
-
 msgid " (PiP)"
 msgstr " (PiP)"
 
@@ -214,12 +211,48 @@ msgstr "#ffffff"
 msgid "#ffffffff"
 msgstr "#ffffffff"
 
+#. TRANSLATORS: short time representation hour:minute
+#, python-format
+msgid "%2d:%02d"
+msgstr "%2d:%02d"
+
+#. TRANSLATORS: full time representation hour:minute:seconds
+#, python-format
+msgid "%2d:%02d:%02d"
+msgstr "%2d:%02d:%02d"
+
+#. TRANSLATORS: long date representations dayname daynum monthname in strftime() format! See 'man strftime'
+msgid "%A %e %B"
+msgstr "%A %e %B"
+
+#. TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
+msgid "%A %e %B %Y"
+msgstr "%A %e %B %Y"
+
 msgid "%H:%M"
 msgstr "%H:%M"
+
+#. TRANSLATORS: full date representations sort dayname daynum monthname long year in strftime() format! See 'man strftime'
+msgid "%a %e %B %Y"
+msgstr "%a %e %B %Y"
+
+#. TRANSLATORS: short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'
+msgid "%a %e/%m"
+msgstr "%a %e/%m"
+
+#. TRANSLATORS: long date representation short dayname daynum short monthname hour:minute in strftime() format! See 'man strftime'
+msgid "%a %e/%m  %-H:%M"
+msgstr "%a %e/%m  %-H:%M"
 
 #, python-format
 msgid "%d / 100"
 msgstr "%d / 100"
+
+#, python-format
+msgid "%d Min"
+msgid_plural "%d Mins"
+msgstr[0] "%d Min"
+msgstr[1] "%d Mins"
 
 #, python-format
 msgid "%d hour"
@@ -257,6 +290,10 @@ msgstr "%d services found!"
 
 msgid "%d.%B %Y"
 msgstr "%d.%B %Y"
+
+#. TRANSLATORS: VFD hour:minute daynum short monthname in strftime() format! See 'man strftime'
+msgid "%k:%M %e/%m"
+msgstr "%k:%M %e/%m"
 
 #, python-format
 msgid "%s (%s)\n"
@@ -769,6 +806,9 @@ msgstr "Allows you to prefer the DVB-graphical subtitles over Teletext subtitles
 msgid "Allows you to prefer the special hearing impaired subtitles over normal subtitles."
 msgstr "Allows you to prefer the special hearing impaired subtitles over normal subtitles."
 
+msgid "Allows you to send a copy of the log to yourself."
+msgstr "Allows you to send a copy of the log to yourself."
+
 msgid "Allows you to set audio language 1"
 msgstr "Allows you to set audio language 1"
 
@@ -829,6 +869,9 @@ msgstr "Allows you to set the transparency of the DVB subtitles."
 msgid "Allows you to show/hide CCcam in extensions (blue button)."
 msgstr "Allows you to show/hide CCcam in extensions (blue button)."
 
+msgid "Allows you to show/hide Log Manager in extensions (blue button)."
+msgstr "Allows you to show/hide Log Manager in extensions (blue button)."
+
 msgid "Allows you to show/hide OScam in extensions (blue button)."
 msgstr "Allows you to show/hide OScam in extensions (blue button)."
 
@@ -876,9 +919,6 @@ msgstr "Anonymize crashlog?"
 
 msgid "Any activity"
 msgstr "Any activity"
-
-msgid "April"
-msgstr "April"
 
 msgid "Arabic"
 msgstr "Arabic"
@@ -971,9 +1011,6 @@ msgstr "Audio language selection 3"
 
 msgid "Audio language selection 4"
 msgstr "Audio language selection 4"
-
-msgid "August"
-msgstr "August"
 
 msgid "Author: "
 msgstr "Author: "
@@ -1266,6 +1303,9 @@ msgstr "Can't found model name."
 
 msgid "Cancel"
 msgstr "Cancel"
+
+msgid "Cannot delete file"
+msgstr "Cannot delete file"
 
 msgid "Cannot move to trash can"
 msgstr "Cannot move to trash can"
@@ -1815,9 +1855,6 @@ msgstr "De-scramble http streams"
 msgid "Debug Logs"
 msgstr "Debug Logs"
 
-msgid "December"
-msgstr "December"
-
 msgid "Decide if you want to enable or disable the Cleanup Wizard."
 msgstr "Decide if you want to enable or disable the Cleanup Wizard."
 
@@ -1838,6 +1875,9 @@ msgstr "Default Settings"
 
 msgid "Default movie location"
 msgstr "Default movie location"
+
+msgid "Defaults"
+msgstr "Defaults"
 
 msgid "Delay before key repeat starts:"
 msgstr "Delay before key repeat starts:"
@@ -2407,6 +2447,12 @@ msgstr "Enter the service pin"
 msgid "Enter your email address so that we can contact you if needed."
 msgstr "Enter your email address so that we can contact you if needed."
 
+msgid "Enter your email address to send a copy of the log to."
+msgstr "Enter your email address to send a copy of the log to."
+
+msgid "Enter your forum user name, to make it easier trace logs."
+msgstr "Enter your forum user name, to make it easier trace logs."
+
 msgid "Enter your input data"
 msgstr "Enter your input data"
 
@@ -2627,9 +2673,6 @@ msgstr "Fast epoch"
 msgid "Favourites"
 msgstr "Favourites"
 
-msgid "February"
-msgstr "February"
-
 msgid "File appears to be busy.\n"
 msgstr "File appears to be busy.\n"
 
@@ -2751,12 +2794,6 @@ msgstr "Front Processor"
 #, python-format
 msgid "Frontprocessor version: %d"
 msgstr "Frontprocessor version: %d"
-
-msgid "Ftp service Disabled."
-msgstr "Ftp service Disabled."
-
-msgid "Ftp service Enabled."
-msgstr "Ftp service Enabled."
 
 msgid "Ftpd service type: Vsftpd server"
 msgstr "Ftpd service type: Vsftpd server"
@@ -3234,6 +3271,9 @@ msgstr "Installing defaults... Please wait..."
 msgid "Installing package content... Please wait..."
 msgstr "Installing package content... Please wait..."
 
+msgid "Installing service please wait..."
+msgstr "Installing service please wait..."
+
 msgid "Instant Record..."
 msgstr "Instant Record..."
 
@@ -3357,17 +3397,11 @@ msgstr "Italian"
 msgid "Items per Page "
 msgstr "Items per Page "
 
-msgid "January"
-msgstr "January"
-
 msgid "Job View"
 msgstr "Job View"
 
 msgid "Job task(s) are in progress!"
 msgstr "Job task(s) are in progress!"
-
-msgid "July"
-msgstr "July"
 
 msgid "Jump back 24 hours"
 msgstr "Jump back 24 hours"
@@ -3383,9 +3417,6 @@ msgstr "Jump to current time"
 
 msgid "Jump to prime time"
 msgstr "Jump to prime time"
-
-msgid "June"
-msgstr "June"
 
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
 msgid "Just Scale"
@@ -3626,6 +3657,9 @@ msgstr ""
 msgid "MA"
 msgstr "MA"
 
+msgid "MAC:"
+msgstr "MAC:"
+
 msgid "MB"
 msgstr "MB"
 
@@ -3692,9 +3726,6 @@ msgstr "Manual transponder"
 msgid "Manufacturer"
 msgstr "Manufacturer"
 
-msgid "March"
-msgstr "March"
-
 msgid "Margin after record"
 msgstr "Margin after record"
 
@@ -3726,9 +3757,6 @@ msgstr "Maximum no of days:"
 msgid "Maximum space used (MB):"
 msgstr "Maximum space used (MB):"
 
-msgid "May"
-msgstr "May"
-
 msgid "Media playback Remaining/Elapsed as"
 msgstr "Media playback Remaining/Elapsed as"
 
@@ -3746,6 +3774,9 @@ msgstr "Medium is not empty!"
 
 msgid "Memory"
 msgstr "Memory"
+
+msgid "Memory Information"
+msgstr "Memory Information"
 
 msgid "Menu"
 msgstr "Menu"
@@ -3925,6 +3956,9 @@ msgstr "Namespace"
 msgid "Netmask"
 msgstr "Netmask"
 
+msgid "Netmask:"
+msgstr "Netmask:"
+
 msgid "Network"
 msgstr "Network"
 
@@ -3933,6 +3967,9 @@ msgstr "Network Configuration..."
 
 msgid "Network ID"
 msgstr "Network ID"
+
+msgid "Network Information"
+msgstr "Network Information"
 
 msgid "Network Mounts"
 msgstr "Network Mounts"
@@ -4222,11 +4259,14 @@ msgstr ""
 msgid "Nothing to upgrade"
 msgstr "Nothing to upgrade"
 
-msgid "November"
-msgstr "November"
-
 msgid "Now Playing"
 msgstr "Now Playing"
+
+msgid "Now installing service, please wait..."
+msgstr "Now installing service, please wait..."
+
+msgid "Now removing service, please wait..."
+msgstr "Now removing service, please wait..."
 
 msgid "Now, use the contrast setting to turn up the brightness of the background as much as possible, but make sure that you can still see the difference between the two brightest levels of shades.If you have done that, press OK."
 msgstr "Now, use the contrast setting to turn up the brightness of the background as much as possible, but make sure that you can still see the difference between the two brightest levels of shades.If you have done that, press OK."
@@ -4284,9 +4324,6 @@ msgstr "OSD visibility"
 
 msgid "OScam Info"
 msgstr "OScam Info"
-
-msgid "October"
-msgstr "October"
 
 msgid "Off"
 msgstr "Off"
@@ -4873,9 +4910,6 @@ msgstr "Profile"
 msgid "Profile: Local box"
 msgstr "Profile: Local box"
 
-msgid "Programme Guide"
-msgstr "Programme Guide"
-
 msgid "Progress"
 msgstr "Progress"
 
@@ -4953,6 +4987,14 @@ msgstr "Reader"
 
 msgid "Reader Statistics"
 msgstr "Reader Statistics"
+
+#, python-format
+msgid "Ready to install \"%s\" ?"
+msgstr "Ready to install \"%s\" ?"
+
+#, python-format
+msgid "Ready to remove \"%s\" ?"
+msgstr "Ready to remove \"%s\" ?"
 
 msgid "Really close without saving settings?"
 msgstr "Really close without saving settings?"
@@ -5069,9 +5111,6 @@ msgstr "Remaining & Elapsed"
 msgid "Remember service PIN"
 msgstr "Remember service PIN"
 
-msgid "Remember service PIN cancel"
-msgstr "Remember service PIN cancel"
-
 msgid "Remember these settings for each folder"
 msgstr "Remember these settings for each folder"
 
@@ -5092,6 +5131,9 @@ msgstr "Remove Bookmark"
 
 msgid "Remove Plugins"
 msgstr "Remove Plugins"
+
+msgid "Remove Service"
+msgstr "Remove Service"
 
 msgid "Remove a mark"
 msgstr "Remove a mark"
@@ -5126,6 +5168,9 @@ msgstr "Removing"
 #, python-format
 msgid "Removing directory %s failed. (Maybe not empty.)"
 msgstr "Removing directory %s failed. (Maybe not empty.)"
+
+msgid "Removing service please wait..."
+msgstr "Removing service please wait..."
 
 msgid "Rename"
 msgstr "Rename"
@@ -5630,9 +5675,6 @@ msgstr "Send yourself a copy ?"
 msgid "Seperate titles with a main menu"
 msgstr "Seperate titles with a main menu"
 
-msgid "September"
-msgstr "September"
-
 msgid "Sequence repeat"
 msgstr "Sequence repeat"
 
@@ -6020,6 +6062,9 @@ msgstr "Show the radio player..."
 
 msgid "Show the tv player..."
 msgstr "Show the tv player..."
+
+msgid "Show time elapsed as positive"
+msgstr "Show time elapsed as positive"
 
 msgid "Show time remaining/elapsed"
 msgstr "Show time remaining/elapsed"
@@ -6430,9 +6475,6 @@ msgstr "Synchronize systemtime using transponder or internet."
 msgid "System"
 msgstr "System"
 
-msgid "System Information"
-msgstr "System Information"
-
 msgid "System: "
 msgstr "System: "
 
@@ -6470,12 +6512,6 @@ msgstr "Telnet Port"
 msgid "Telnet Setup"
 msgstr "Telnet Setup"
 
-msgid "Telnet service Disabled."
-msgstr "Telnet service Disabled."
-
-msgid "Telnet service Enabled."
-msgstr "Telnet service Enabled."
-
 msgid "Temperature and Fan control"
 msgstr "Temperature and Fan control"
 
@@ -6508,6 +6544,9 @@ msgstr "Text font size"
 
 msgid "Text support"
 msgstr "Text support"
+
+msgid "Thai"
+msgstr "Thai"
 
 msgid ""
 "Thank you for using the wizard.\n"
@@ -6783,6 +6822,9 @@ msgstr "This allows you change the number of rows shown."
 
 msgid "This is step number 2."
 msgstr "This is step number 2."
+
+msgid "This option allows you choose how to display elasped time  as + or -"
+msgstr "This option allows you choose how to display elasped time  as + or -"
 
 msgid "This option allows you choose how to display remaining time, or elapsed time, or both."
 msgstr "This option allows you choose how to display remaining time, or elapsed time, or both."
@@ -7892,6 +7934,16 @@ msgstr "Yesterday"
 
 #, python-format
 msgid ""
+"You already have a bootlogo installed,\n"
+"would you like to remove\n"
+"\"%s\"?"
+msgstr ""
+"You already have a bootlogo installed,\n"
+"would you like to remove\n"
+"\"%s\"?"
+
+#, python-format
+msgid ""
 "You already have a channel list installed,\n"
 "would you like to remove\n"
 "\"%s\"?"
@@ -8046,6 +8098,29 @@ msgstr "Your STB_BOX is shutting down. Please stand by..."
 
 msgid "Your STB_BOX isn't connected to the internet properly. Please check it and try again."
 msgstr "Your STB_BOX isn't connected to the internet properly. Please check it and try again."
+
+msgid ""
+"Your STB_BOX will be restarted after the installation of service\n"
+"Do you want to install now ?"
+msgstr ""
+"Your STB_BOX will be restarted after the installation of service\n"
+"Do you want to install now ?"
+
+msgid ""
+"Your STB_BOX will be restarted after the installation of service.\n"
+"\n"
+"Do you want to install now ?"
+msgstr ""
+"Your STB_BOX will be restarted after the installation of service.\n"
+"\n"
+"Do you want to install now ?"
+
+msgid ""
+"Your STB_BOX will be restarted after the removal of service\n"
+"Do you want to remove now ?"
+msgstr ""
+"Your STB_BOX will be restarted after the removal of service\n"
+"Do you want to remove now ?"
 
 msgid "Your backup succeeded. We will now continue to explain the further upgrade process."
 msgstr "Your backup succeeded. We will now continue to explain the further upgrade process."
@@ -9274,6 +9349,27 @@ msgstr "zap"
 msgid "zapped"
 msgstr "zapped"
 
+#~ msgid "    - Type"
+#~ msgstr "    - Type"
+
+#~ msgid "April"
+#~ msgstr "April"
+
+#~ msgid "August"
+#~ msgstr "August"
+
+#~ msgid "December"
+#~ msgstr "December"
+
+#~ msgid "February"
+#~ msgstr "February"
+
+#~ msgid "Ftp service Disabled."
+#~ msgstr "Ftp service Disabled."
+
+#~ msgid "Ftp service Enabled."
+#~ msgstr "Ftp service Enabled."
+
 #~ msgid ""
 #~ "If you select \"yes\" the scan will only save channels that are not "
 #~ "encrypted; \"no\" will find encrypted and non-encrypted cannels"
@@ -9281,8 +9377,47 @@ msgstr "zapped"
 #~ "If you select \"yes\" the scan will only save channels that are not "
 #~ "encrypted; \"no\" will find encrypted and non-encrypted cannels"
 
+#~ msgid "January"
+#~ msgstr "January"
+
+#~ msgid "July"
+#~ msgstr "July"
+
+#~ msgid "June"
+#~ msgstr "June"
+
+#~ msgid "March"
+#~ msgstr "March"
+
+#~ msgid "May"
+#~ msgstr "May"
+
+#~ msgid "November"
+#~ msgstr "November"
+
+#~ msgid "October"
+#~ msgstr "October"
+
+#~ msgid "Programme Guide"
+#~ msgstr "Programme Guide"
+
+#~ msgid "Remember service PIN cancel"
+#~ msgstr "Remember service PIN cancel"
+
+#~ msgid "September"
+#~ msgstr "September"
+
 #~ msgid "Shows the watched staus of the movie."
 #~ msgstr "Shows the watched staus of the movie."
+
+#~ msgid "System Information"
+#~ msgstr "System Information"
+
+#~ msgid "Telnet service Disabled."
+#~ msgstr "Telnet service Disabled."
+
+#~ msgid "Telnet service Enabled."
+#~ msgstr "Telnet service Enabled."
 
 #~ msgid ""
 #~ "Use the Left/Right buttons on your remote to adjust the szie of the OSD. "

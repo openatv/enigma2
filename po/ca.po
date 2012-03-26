@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-10 15:56+0000\n"
-"PO-Revision-Date: 2012-03-17 17:52+0100\n"
+"POT-Creation-Date: 2012-03-26 14:40+0100\n"
+"PO-Revision-Date: 2012-03-26 16:24+0100\n"
 "Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
 "Language-Team: \n"
 "Language: \n"
@@ -119,9 +119,6 @@ msgid ""
 "View, install and remove available or installed packages."
 msgstr ""
 
-msgid "    - Type"
-msgstr ""
-
 msgid " (PiP)"
 msgstr ""
 
@@ -207,13 +204,49 @@ msgstr "#ffffff"
 msgid "#ffffffff"
 msgstr "#ffffffff"
 
+#. TRANSLATORS: short time representation hour:minute
+#, python-format
+msgid "%2d:%02d"
+msgstr ""
+
+#. TRANSLATORS: full time representation hour:minute:seconds
+#, python-format
+msgid "%2d:%02d:%02d"
+msgstr ""
+
+#. TRANSLATORS: long date representations dayname daynum monthname in strftime() format! See 'man strftime'
+msgid "%A %e %B"
+msgstr ""
+
+#. TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
+msgid "%A %e %B %Y"
+msgstr ""
+
 #
 msgid "%H:%M"
 msgstr "%H:%M"
 
+#. TRANSLATORS: full date representations sort dayname daynum monthname long year in strftime() format! See 'man strftime'
+msgid "%a %e %B %Y"
+msgstr ""
+
+#. TRANSLATORS: short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'
+msgid "%a %e/%m"
+msgstr ""
+
+#. TRANSLATORS: long date representation short dayname daynum short monthname hour:minute in strftime() format! See 'man strftime'
+msgid "%a %e/%m  %-H:%M"
+msgstr ""
+
 #, python-format
 msgid "%d / 100"
 msgstr ""
+
+#, python-format
+msgid "%d Min"
+msgid_plural "%d Mins"
+msgstr[0] ""
+msgstr[1] ""
 
 #, python-format
 msgid "%d hour"
@@ -255,6 +288,10 @@ msgstr ""
 #
 msgid "%d.%B %Y"
 msgstr "%d.%B %Y"
+
+#. TRANSLATORS: VFD hour:minute daynum short monthname in strftime() format! See 'man strftime'
+msgid "%k:%M %e/%m"
+msgstr ""
 
 #
 #, python-format
@@ -852,6 +889,9 @@ msgstr ""
 msgid "Allows you to prefer the special hearing impaired subtitles over normal subtitles."
 msgstr ""
 
+msgid "Allows you to send a copy of the log to yourself."
+msgstr ""
+
 msgid "Allows you to set audio language 1"
 msgstr ""
 
@@ -912,6 +952,9 @@ msgstr ""
 msgid "Allows you to show/hide CCcam in extensions (blue button)."
 msgstr ""
 
+msgid "Allows you to show/hide Log Manager in extensions (blue button)."
+msgstr ""
+
 msgid "Allows you to show/hide OScam in extensions (blue button)."
 msgstr ""
 
@@ -964,9 +1007,6 @@ msgid "Anonymize crashlog?"
 msgstr ""
 
 msgid "Any activity"
-msgstr ""
-
-msgid "April"
 msgstr ""
 
 #
@@ -1062,9 +1102,6 @@ msgid "Audio language selection 3"
 msgstr ""
 
 msgid "Audio language selection 4"
-msgstr ""
-
-msgid "August"
 msgstr ""
 
 #
@@ -1403,6 +1440,9 @@ msgstr ""
 #
 msgid "Cancel"
 msgstr "Cancel·lar"
+
+msgid "Cannot delete file"
+msgstr ""
 
 msgid "Cannot move to trash can"
 msgstr ""
@@ -2045,9 +2085,6 @@ msgstr ""
 msgid "Debug Logs"
 msgstr ""
 
-msgid "December"
-msgstr ""
-
 #
 msgid "Decide if you want to enable or disable the Cleanup Wizard."
 msgstr ""
@@ -2074,6 +2111,9 @@ msgstr ""
 
 #
 msgid "Default movie location"
+msgstr ""
+
+msgid "Defaults"
 msgstr ""
 
 msgid "Delay before key repeat starts:"
@@ -2727,6 +2767,12 @@ msgstr "Entra el pin del canal"
 msgid "Enter your email address so that we can contact you if needed."
 msgstr ""
 
+msgid "Enter your email address to send a copy of the log to."
+msgstr ""
+
+msgid "Enter your forum user name, to make it easier trace logs."
+msgstr ""
+
 msgid "Enter your input data"
 msgstr ""
 
@@ -2972,9 +3018,6 @@ msgstr "Època ràpida"
 msgid "Favourites"
 msgstr "Preferits"
 
-msgid "February"
-msgstr ""
-
 msgid "File appears to be busy.\n"
 msgstr ""
 
@@ -3114,12 +3157,6 @@ msgstr ""
 #, python-format
 msgid "Frontprocessor version: %d"
 msgstr "Versió processador: %d"
-
-msgid "Ftp service Disabled."
-msgstr ""
-
-msgid "Ftp service Enabled."
-msgstr ""
 
 msgid "Ftpd service type: Vsftpd server"
 msgstr ""
@@ -3644,6 +3681,9 @@ msgstr ""
 msgid "Installing package content... Please wait..."
 msgstr ""
 
+msgid "Installing service please wait..."
+msgstr ""
+
 #
 msgid "Instant Record..."
 msgstr "Gravació instantània..."
@@ -3756,17 +3796,11 @@ msgstr "Italià"
 msgid "Items per Page "
 msgstr ""
 
-msgid "January"
-msgstr ""
-
 #
 msgid "Job View"
 msgstr ""
 
 msgid "Job task(s) are in progress!"
-msgstr ""
-
-msgid "July"
 msgstr ""
 
 msgid "Jump back 24 hours"
@@ -3782,9 +3816,6 @@ msgid "Jump to current time"
 msgstr ""
 
 msgid "Jump to prime time"
-msgstr ""
-
-msgid "June"
 msgstr ""
 
 #
@@ -4055,6 +4086,9 @@ msgstr ""
 msgid "MA"
 msgstr ""
 
+msgid "MAC:"
+msgstr ""
+
 msgid "MB"
 msgstr ""
 
@@ -4132,9 +4166,6 @@ msgstr "Transponedor manual"
 msgid "Manufacturer"
 msgstr ""
 
-msgid "March"
-msgstr ""
-
 #
 msgid "Margin after record"
 msgstr "Marge després de gravar"
@@ -4167,9 +4198,6 @@ msgstr ""
 msgid "Maximum space used (MB):"
 msgstr ""
 
-msgid "May"
-msgstr ""
-
 msgid "Media playback Remaining/Elapsed as"
 msgstr ""
 
@@ -4190,6 +4218,9 @@ msgid "Medium is not empty!"
 msgstr ""
 
 msgid "Memory"
+msgstr ""
+
+msgid "Memory Information"
 msgstr ""
 
 #
@@ -4403,6 +4434,9 @@ msgstr ""
 msgid "Netmask"
 msgstr "Màscara"
 
+msgid "Netmask:"
+msgstr ""
+
 #
 msgid "Network"
 msgstr ""
@@ -4412,6 +4446,9 @@ msgid "Network Configuration..."
 msgstr ""
 
 msgid "Network ID"
+msgstr ""
+
+msgid "Network Information"
 msgstr ""
 
 msgid "Network Mounts"
@@ -4736,12 +4773,15 @@ msgstr ""
 msgid "Nothing to upgrade"
 msgstr ""
 
-msgid "November"
-msgstr ""
-
 #
 msgid "Now Playing"
 msgstr "Reproduint"
+
+msgid "Now installing service, please wait..."
+msgstr ""
+
+msgid "Now removing service, please wait..."
+msgstr ""
 
 #
 msgid "Now, use the contrast setting to turn up the brightness of the background as much as possible, but make sure that you can still see the difference between the two brightest levels of shades.If you have done that, press OK."
@@ -4805,9 +4845,6 @@ msgid "OSD visibility"
 msgstr ""
 
 msgid "OScam Info"
-msgstr ""
-
-msgid "October"
 msgstr ""
 
 #
@@ -5499,9 +5536,6 @@ msgstr ""
 msgid "Profile: Local box"
 msgstr ""
 
-msgid "Programme Guide"
-msgstr ""
-
 msgid "Progress"
 msgstr ""
 
@@ -5591,6 +5625,14 @@ msgid "Reader"
 msgstr ""
 
 msgid "Reader Statistics"
+msgstr ""
+
+#, python-format
+msgid "Ready to install \"%s\" ?"
+msgstr ""
+
+#, python-format
+msgid "Ready to remove \"%s\" ?"
 msgstr ""
 
 #
@@ -5726,9 +5768,6 @@ msgstr ""
 msgid "Remember service PIN"
 msgstr ""
 
-msgid "Remember service PIN cancel"
-msgstr ""
-
 msgid "Remember these settings for each folder"
 msgstr ""
 
@@ -5752,6 +5791,9 @@ msgstr ""
 #
 msgid "Remove Plugins"
 msgstr "Esborrar plugins"
+
+msgid "Remove Service"
+msgstr ""
 
 #
 msgid "Remove a mark"
@@ -5795,6 +5837,9 @@ msgstr ""
 #
 #, python-format
 msgid "Removing directory %s failed. (Maybe not empty.)"
+msgstr ""
+
+msgid "Removing service please wait..."
 msgstr ""
 
 #
@@ -6397,9 +6442,6 @@ msgstr ""
 msgid "Seperate titles with a main menu"
 msgstr ""
 
-msgid "September"
-msgstr ""
-
 #
 msgid "Sequence repeat"
 msgstr "Repetir seqüència"
@@ -6820,6 +6862,9 @@ msgstr "Reproductor de ràdio..."
 #
 msgid "Show the tv player..."
 msgstr "Mostrar el reproductor de tv..."
+
+msgid "Show time elapsed as positive"
+msgstr ""
 
 msgid "Show time remaining/elapsed"
 msgstr ""
@@ -7298,9 +7343,6 @@ msgstr ""
 msgid "System"
 msgstr "Sistema"
 
-msgid "System Information"
-msgstr ""
-
 msgid "System: "
 msgstr ""
 
@@ -7342,12 +7384,6 @@ msgstr ""
 msgid "Telnet Setup"
 msgstr ""
 
-msgid "Telnet service Disabled."
-msgstr ""
-
-msgid "Telnet service Enabled."
-msgstr ""
-
 #
 msgid "Temperature and Fan control"
 msgstr ""
@@ -7387,6 +7423,9 @@ msgid "Text font size"
 msgstr ""
 
 msgid "Text support"
+msgstr ""
+
+msgid "Thai"
 msgstr ""
 
 #
@@ -7659,6 +7698,9 @@ msgstr ""
 #
 msgid "This is step number 2."
 msgstr "Aquest és el pas número 2."
+
+msgid "This option allows you choose how to display elasped time  as + or -"
+msgstr ""
 
 msgid "This option allows you choose how to display remaining time, or elapsed time, or both."
 msgstr ""
@@ -8896,6 +8938,13 @@ msgstr ""
 
 #, python-format
 msgid ""
+"You already have a bootlogo installed,\n"
+"would you like to remove\n"
+"\"%s\"?"
+msgstr ""
+
+#, python-format
+msgid ""
 "You already have a channel list installed,\n"
 "would you like to remove\n"
 "\"%s\"?"
@@ -9053,6 +9102,22 @@ msgstr "La STB_BOX s'està reiniciant. Espera un moment..."
 #
 msgid "Your STB_BOX isn't connected to the internet properly. Please check it and try again."
 msgstr "La connexió a internet no és correcta. Sisplau comprova-ho i torna-ho a intentar."
+
+msgid ""
+"Your STB_BOX will be restarted after the installation of service\n"
+"Do you want to install now ?"
+msgstr ""
+
+msgid ""
+"Your STB_BOX will be restarted after the installation of service.\n"
+"\n"
+"Do you want to install now ?"
+msgstr ""
+
+msgid ""
+"Your STB_BOX will be restarted after the removal of service\n"
+"Do you want to remove now ?"
+msgstr ""
 
 #
 msgid "Your backup succeeded. We will now continue to explain the further upgrade process."
