@@ -4,9 +4,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-20 16:52+0000\n"
-"PO-Revision-Date: 2012-03-21 11:05+0100\n"
-"Last-Translator: delagroov <degroov@hotmail.com>\n"
+"POT-Creation-Date: 2012-03-26 14:40+0100\n"
+"PO-Revision-Date: 2012-03-26 16:21+0100\n"
+"Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
 "Language-Team: Andy Blackburn, Rob van der Does, delagroov\n"
 "Language: Nederlands\n"
 "MIME-Version: 1.0\n"
@@ -211,8 +211,38 @@ msgstr "#ffffff"
 msgid "#ffffffff"
 msgstr "#ffffffff"
 
+#. TRANSLATORS: short time representation hour:minute
+#, python-format
+msgid "%2d:%02d"
+msgstr "%2d:%02d"
+
+#. TRANSLATORS: full time representation hour:minute:seconds
+#, python-format
+msgid "%2d:%02d:%02d"
+msgstr "%2d:%02d:%02d"
+
+#. TRANSLATORS: long date representations dayname daynum monthname in strftime() format! See 'man strftime'
+msgid "%A %e %B"
+msgstr "%A %e %B"
+
+#. TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
+msgid "%A %e %B %Y"
+msgstr "%A %e %B %Y"
+
 msgid "%H:%M"
 msgstr "%H:%M"
+
+#. TRANSLATORS: full date representations sort dayname daynum monthname long year in strftime() format! See 'man strftime'
+msgid "%a %e %B %Y"
+msgstr "%a %e %B %Y"
+
+#. TRANSLATORS: short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'
+msgid "%a %e/%m"
+msgstr "%a %e/%m"
+
+#. TRANSLATORS: long date representation short dayname daynum short monthname hour:minute in strftime() format! See 'man strftime'
+msgid "%a %e/%m  %-H:%M"
+msgstr "%a %e/%m  %-H:%M"
 
 #, python-format
 msgid "%d / 100"
@@ -260,6 +290,10 @@ msgstr "%d kanalen gevonden."
 
 msgid "%d.%B %Y"
 msgstr "%d-%m-%Y"
+
+#. TRANSLATORS: VFD hour:minute daynum short monthname in strftime() format! See 'man strftime'
+msgid "%k:%M %e/%m"
+msgstr "%k:%M %e/%m"
 
 #, python-format
 msgid "%s (%s)\n"
@@ -889,9 +923,6 @@ msgstr "Crashlog anoniem maken?"
 msgid "Any activity"
 msgstr "Elke activiteit"
 
-msgid "April"
-msgstr "april"
-
 msgid "Arabic"
 msgstr "Arabisch"
 
@@ -983,9 +1014,6 @@ msgstr "Audio taalkeuze 3"
 
 msgid "Audio language selection 4"
 msgstr "Audio taalkeuze 4"
-
-msgid "August"
-msgstr "augustus"
 
 msgid "Author: "
 msgstr "Auteur:"
@@ -1832,9 +1860,6 @@ msgstr "Decodeer http streams"
 msgid "Debug Logs"
 msgstr "Debug Logs"
 
-msgid "December"
-msgstr "december"
-
 msgid "Decide if you want to enable or disable the Cleanup Wizard."
 msgstr "Wilt u de cleanup wizard aan of uitschakelen."
 
@@ -2659,9 +2684,6 @@ msgstr "Snel spoelen"
 msgid "Favourites"
 msgstr "Favorieten"
 
-msgid "February"
-msgstr "februari"
-
 msgid "File appears to be busy.\n"
 msgstr "Bestand lijkt in gebruik te zijn.\n"
 
@@ -3389,17 +3411,11 @@ msgstr "Italiaans"
 msgid "Items per Page "
 msgstr "Onderdelen per pagina"
 
-msgid "January"
-msgstr "januari"
-
 msgid "Job View"
 msgstr "Voortgang"
 
 msgid "Job task(s) are in progress!"
 msgstr "Taak (taken) in uitvoering!"
-
-msgid "July"
-msgstr "juli"
 
 msgid "Jump back 24 hours"
 msgstr "Spring 24 uur terug"
@@ -3415,9 +3431,6 @@ msgstr "Spring naar actuele tijd"
 
 msgid "Jump to prime time"
 msgstr "Spring naar prime time"
-
-msgid "June"
-msgstr "juni"
 
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
 msgid "Just Scale"
@@ -3658,6 +3671,9 @@ msgstr ""
 msgid "MA"
 msgstr "MA"
 
+msgid "MAC:"
+msgstr ""
+
 msgid "MB"
 msgstr "MB"
 
@@ -3724,9 +3740,6 @@ msgstr "Transponder handmatig"
 msgid "Manufacturer"
 msgstr "Fabrikant"
 
-msgid "March"
-msgstr "maart"
-
 msgid "Margin after record"
 msgstr "Marge na afloop opname (minuten)"
 
@@ -3758,9 +3771,6 @@ msgstr "Maximum aantal dagen:"
 msgid "Maximum space used (MB):"
 msgstr "Maximale grootte (MB):"
 
-msgid "May"
-msgstr "mei"
-
 msgid "Media playback Remaining/Elapsed as"
 msgstr "Afspeeltijden Resterend/Verstreken weergeven als "
 
@@ -3778,6 +3788,9 @@ msgstr "Medium is niet leeg!"
 
 msgid "Memory"
 msgstr "Geheugen"
+
+msgid "Memory Information"
+msgstr ""
 
 msgid "Menu"
 msgstr "Menu"
@@ -3957,6 +3970,9 @@ msgstr "Namespace"
 msgid "Netmask"
 msgstr "Netmask"
 
+msgid "Netmask:"
+msgstr ""
+
 msgid "Network"
 msgstr "Netwerk"
 
@@ -3965,6 +3981,9 @@ msgstr "Netwerk configuratie..."
 
 msgid "Network ID"
 msgstr "Netwerk ID"
+
+msgid "Network Information"
+msgstr ""
 
 msgid "Network Mounts"
 msgstr "Netwerk mounts"
@@ -4254,9 +4273,6 @@ msgstr ""
 msgid "Nothing to upgrade"
 msgstr "Niets te upgraden"
 
-msgid "November"
-msgstr "november"
-
 msgid "Now Playing"
 msgstr "Weergave loopt"
 
@@ -4324,9 +4340,6 @@ msgstr "OSD zichtbaarheid"
 
 msgid "OScam Info"
 msgstr "OScam Info"
-
-msgid "October"
-msgstr "oktober"
 
 msgid "Off"
 msgstr "Uit"
@@ -5683,9 +5696,6 @@ msgstr "Kopie aan uzelf sturen?"
 msgid "Seperate titles with a main menu"
 msgstr "Zonder titels af met een hoofdmenu"
 
-msgid "September"
-msgstr "september"
-
 msgid "Sequence repeat"
 msgstr "Herhaal sequence"
 
@@ -6493,9 +6503,6 @@ msgstr "Gebruik transponder- of internettijd om de systeemtijd te synchroniseren
 msgid "System"
 msgstr "Systeem"
 
-msgid "System Information"
-msgstr "Systeem Informatie"
-
 msgid "System: "
 msgstr "Systeem: "
 
@@ -6568,6 +6575,9 @@ msgstr "Tekst lettergrootte"
 
 msgid "Text support"
 msgstr "Tekst ondersteuning"
+
+msgid "Thai"
+msgstr ""
 
 msgid ""
 "Thank you for using the wizard.\n"
@@ -9379,6 +9389,18 @@ msgstr "zap"
 msgid "zapped"
 msgstr "zapte"
 
+#~ msgid "April"
+#~ msgstr "april"
+
+#~ msgid "August"
+#~ msgstr "augustus"
+
+#~ msgid "December"
+#~ msgstr "december"
+
+#~ msgid "February"
+#~ msgstr "februari"
+
 #~ msgid "Ftp service Disabled."
 #~ msgstr "Ftp service uitgeschakeld."
 
@@ -9393,14 +9415,41 @@ msgstr "zapte"
 #~ "gecodeerd zijn; met \"Nee\" zullen alle kanalen worden gevonden, ongeacht "
 #~ "de codering."
 
+#~ msgid "January"
+#~ msgstr "januari"
+
+#~ msgid "July"
+#~ msgstr "juli"
+
+#~ msgid "June"
+#~ msgstr "juni"
+
+#~ msgid "March"
+#~ msgstr "maart"
+
+#~ msgid "May"
+#~ msgstr "mei"
+
+#~ msgid "November"
+#~ msgstr "november"
+
+#~ msgid "October"
+#~ msgstr "oktober"
+
 #~ msgid "Programme Guide"
 #~ msgstr "Programma gids"
 
 #~ msgid "Remember service PIN cancel"
 #~ msgstr "Onthoud zender pincode bij annuleren"
 
+#~ msgid "September"
+#~ msgstr "september"
+
 #~ msgid "Shows the watched staus of the movie."
 #~ msgstr "Toon de bekeken status van een opname."
+
+#~ msgid "System Information"
+#~ msgstr "Systeem Informatie"
 
 #~ msgid "Telnet service Disabled."
 #~ msgstr "Telnet service Uitgeschakeld."
