@@ -20,7 +20,7 @@ public:
 	
 	RESULT createSectionReader(eMainloop *context, ePtr<iDVBSectionReader> &reader);
 	RESULT createPESReader(eMainloop *context, ePtr<iDVBPESReader> &reader);
-	RESULT createTSRecorder(ePtr<iDVBTSRecorder> &recorder, int packetsize = 188);
+	RESULT createTSRecorder(ePtr<iDVBTSRecorder> &recorder, int packetsize = 188, bool streaming=false);
 	RESULT getMPEGDecoder(ePtr<iTSMPEGDecoder> &reader, int primary);
 	RESULT getSTC(pts_t &pts, int num);
 	RESULT getCADemuxID(uint8_t &id) { id = demux; return 0; }
@@ -91,7 +91,7 @@ class eDVBTSRecorder: public iDVBTSRecorder, public Object
 {
 	DECLARE_REF(eDVBTSRecorder);
 public:
-	eDVBTSRecorder(eDVBDemux *demux, int packetsize = 188);
+	eDVBTSRecorder(eDVBDemux *demux, int packetsize, bool streaming);
 	~eDVBTSRecorder();
 
 	RESULT setBufferSize(int size);
