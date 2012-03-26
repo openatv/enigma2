@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-15 17:23+0000\n"
+"POT-Creation-Date: 2012-03-26 14:40+0100\n"
 "PO-Revision-Date: \n"
-"Last-Translator: rimas\n"
+"Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
 "Language-Team: Raivo, Henkka, eesatfan, rimas\n"
 "Language: et\n"
 "MIME-Version: 1.0\n"
@@ -206,8 +206,38 @@ msgstr "#ffffff"
 msgid "#ffffffff"
 msgstr "#ffffffff"
 
+#. TRANSLATORS: short time representation hour:minute
+#, python-format
+msgid "%2d:%02d"
+msgstr ""
+
+#. TRANSLATORS: full time representation hour:minute:seconds
+#, python-format
+msgid "%2d:%02d:%02d"
+msgstr ""
+
+#. TRANSLATORS: long date representations dayname daynum monthname in strftime() format! See 'man strftime'
+msgid "%A %e %B"
+msgstr ""
+
+#. TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
+msgid "%A %e %B %Y"
+msgstr ""
+
 msgid "%H:%M"
 msgstr "%H:%M"
+
+#. TRANSLATORS: full date representations sort dayname daynum monthname long year in strftime() format! See 'man strftime'
+msgid "%a %e %B %Y"
+msgstr ""
+
+#. TRANSLATORS: short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'
+msgid "%a %e/%m"
+msgstr ""
+
+#. TRANSLATORS: long date representation short dayname daynum short monthname hour:minute in strftime() format! See 'man strftime'
+msgid "%a %e/%m  %-H:%M"
+msgstr ""
 
 #, python-format
 msgid "%d / 100"
@@ -255,6 +285,10 @@ msgstr "%d kanalit leitud!"
 
 msgid "%d.%B %Y"
 msgstr "%d.%B %Y"
+
+#. TRANSLATORS: VFD hour:minute daynum short monthname in strftime() format! See 'man strftime'
+msgid "%k:%M %e/%m"
+msgstr ""
 
 #, python-format
 msgid "%s (%s)\n"
@@ -881,9 +915,6 @@ msgstr "Muuda vealogi nimetuks?"
 msgid "Any activity"
 msgstr "Iga tegevus"
 
-msgid "April"
-msgstr "Aprill"
-
 msgid "Arabic"
 msgstr "Araabia"
 
@@ -975,9 +1006,6 @@ msgstr "Heli keele valik 3"
 
 msgid "Audio language selection 4"
 msgstr "Heli keele valik 4"
-
-msgid "August"
-msgstr "August"
 
 msgid "Author: "
 msgstr "Autor: "
@@ -1822,9 +1850,6 @@ msgstr "Dekodeeri http vood"
 msgid "Debug Logs"
 msgstr "Silumislogi failid"
 
-msgid "December"
-msgstr "Detsember"
-
 msgid "Decide if you want to enable or disable the Cleanup Wizard."
 msgstr "Otsusta, kas lubad või keelad puhastusabilise."
 
@@ -1845,6 +1870,9 @@ msgstr "Vaikeväärtused"
 
 msgid "Default movie location"
 msgstr "Salvestiste tavaasukoht"
+
+msgid "Defaults"
+msgstr ""
 
 msgid "Delay before key repeat starts:"
 msgstr "Viivitus enne võtme kordamist:"
@@ -2414,8 +2442,8 @@ msgstr "Sisesta kood"
 msgid "Enter your email address so that we can contact you if needed."
 msgstr "Sisesta oma emaili aadress, et saaksime vajadusel ühendust võtta."
 
-msgid "Enter your email address to sned a copy of the log to."
-msgstr "Sisesta oma mailiaadress, kuhu logifaili koopia saata."
+msgid "Enter your email address to send a copy of the log to."
+msgstr ""
 
 msgid "Enter your forum user name, to make it easier trace logs."
 msgstr "Sisesta foorumi kasutajanim logide jälgimise hõlbustamiseks."
@@ -2640,9 +2668,6 @@ msgstr "Kiire kerimine"
 msgid "Favourites"
 msgstr "Lemmikud"
 
-msgid "February"
-msgstr "Veebruar"
-
 msgid "File appears to be busy.\n"
 msgstr "Fail on hõivatud.\n"
 
@@ -2764,12 +2789,6 @@ msgstr "Front Processor"
 #, python-format
 msgid "Frontprocessor version: %d"
 msgstr "Esipaneeli protsessori versioon: %d"
-
-msgid "Ftp service Disabled."
-msgstr "Ftp keelatud."
-
-msgid "Ftp service Enabled."
-msgstr "Ftp lubatud."
 
 msgid "Ftpd service type: Vsftpd server"
 msgstr "Ftpd tüüp: Vsftpd server"
@@ -3247,6 +3266,9 @@ msgstr "Vaikeväärtuste paigaldamine. Oota..."
 msgid "Installing package content... Please wait..."
 msgstr "Paki paigaldamine... Oota..."
 
+msgid "Installing service please wait..."
+msgstr ""
+
 msgid "Instant Record..."
 msgstr "Kohene salvestus..."
 
@@ -3370,17 +3392,11 @@ msgstr "Itaalia"
 msgid "Items per Page "
 msgstr "Kirjet lehel"
 
-msgid "January"
-msgstr "Jaanuar"
-
 msgid "Job View"
 msgstr "Töövaade"
 
 msgid "Job task(s) are in progress!"
 msgstr "Ülesande täitmine!"
-
-msgid "July"
-msgstr "Juuli"
 
 msgid "Jump back 24 hours"
 msgstr "Hüppa 24 tundi tagasi"
@@ -3396,9 +3412,6 @@ msgstr "Hüppa hetke ajale"
 
 msgid "Jump to prime time"
 msgstr ""
-
-msgid "June"
-msgstr "Juuni"
 
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
 msgid "Just Scale"
@@ -3639,6 +3652,9 @@ msgstr ""
 msgid "MA"
 msgstr "MA"
 
+msgid "MAC:"
+msgstr ""
+
 msgid "MB"
 msgstr "MB"
 
@@ -3705,9 +3721,6 @@ msgstr "Käsitsi sisestatud transponder"
 msgid "Manufacturer"
 msgstr "Tootja"
 
-msgid "March"
-msgstr "Märts"
-
 msgid "Margin after record"
 msgstr "Salvestise lõppu lisatakse"
 
@@ -3739,9 +3752,6 @@ msgstr "Suurim lubatud päevade arv:"
 msgid "Maximum space used (MB):"
 msgstr "Suurim lubatud kettaruum (MB):"
 
-msgid "May"
-msgstr "Mai"
-
 msgid "Media playback Remaining/Elapsed as"
 msgstr "Jäänud/möödunud meedia esitus"
 
@@ -3759,6 +3769,9 @@ msgstr "Ketas ei ole tühi!"
 
 msgid "Memory"
 msgstr "Mälu"
+
+msgid "Memory Information"
+msgstr ""
 
 msgid "Menu"
 msgstr "Menüü"
@@ -3938,6 +3951,9 @@ msgstr "Nimeruum"
 msgid "Netmask"
 msgstr "Võrgumask"
 
+msgid "Netmask:"
+msgstr ""
+
 msgid "Network"
 msgstr "Võrk"
 
@@ -3946,6 +3962,9 @@ msgstr "Võrgu häälestamine..."
 
 msgid "Network ID"
 msgstr "Võrgu ID"
+
+msgid "Network Information"
+msgstr ""
 
 msgid "Network Mounts"
 msgstr "Võrgu haakepunktid"
@@ -4235,11 +4254,14 @@ msgstr ""
 msgid "Nothing to upgrade"
 msgstr "Uuendusi ei ole"
 
-msgid "November"
-msgstr "November"
-
 msgid "Now Playing"
 msgstr "Hetkel esitatakse"
+
+msgid "Now installing service, please wait..."
+msgstr ""
+
+msgid "Now removing service, please wait..."
+msgstr ""
 
 msgid "Now, use the contrast setting to turn up the brightness of the background as much as possible, but make sure that you can still see the difference between the two brightest levels of shades.If you have done that, press OK."
 msgstr "Nüüd suurenda kontrastsuse seadmise abil pildi tausta heledust nii palju kui võimalik, aga veendu, et sa näed siiski erinevust kahe kõige heledama varjundi vahel. Kui see on tehtud, vajuta OK."
@@ -4297,9 +4319,6 @@ msgstr "OSD nähtavus"
 
 msgid "OScam Info"
 msgstr "OScam info"
-
-msgid "October"
-msgstr "Oktoober"
 
 msgid "Off"
 msgstr "Väljas"
@@ -4886,9 +4905,6 @@ msgstr "Profiil"
 msgid "Profile: Local box"
 msgstr "Profiil: kohalik vastuvõtja"
 
-msgid "Programme Guide"
-msgstr "Saatekava"
-
 msgid "Progress"
 msgstr "Edenemisriba"
 
@@ -4966,6 +4982,14 @@ msgstr "Kaardipesa"
 
 msgid "Reader Statistics"
 msgstr "Kaardipesa statistika"
+
+#, python-format
+msgid "Ready to install \"%s\" ?"
+msgstr ""
+
+#, python-format
+msgid "Ready to remove \"%s\" ?"
+msgstr ""
 
 msgid "Really close without saving settings?"
 msgstr "Kas väljud seadistusi salvestamata?"
@@ -5082,9 +5106,6 @@ msgstr "Jäänud & möödunud"
 msgid "Remember service PIN"
 msgstr "Mäleta kanali PIN-i"
 
-msgid "Remember service PIN cancel"
-msgstr "Ära mäleta kanali PIN-i"
-
 msgid "Remember these settings for each folder"
 msgstr "Pea iga kataloogi seadistused meeles"
 
@@ -5105,6 +5126,9 @@ msgstr "Eemalda tähis"
 
 msgid "Remove Plugins"
 msgstr "Eemalda laiendusi"
+
+msgid "Remove Service"
+msgstr ""
 
 msgid "Remove a mark"
 msgstr "Kustuta märk"
@@ -5139,6 +5163,9 @@ msgstr "Eemaldab"
 #, python-format
 msgid "Removing directory %s failed. (Maybe not empty.)"
 msgstr "Kataloogi eemaldamine %s nurjus. (Ei ole tühi?)"
+
+msgid "Removing service please wait..."
+msgstr ""
 
 msgid "Rename"
 msgstr "Muuda nimi"
@@ -5642,9 +5669,6 @@ msgstr "Kas saadad endale koopia?"
 
 msgid "Seperate titles with a main menu"
 msgstr "Eraldi pealkirjad koos peamenüüga"
-
-msgid "September"
-msgstr "September"
 
 msgid "Sequence repeat"
 msgstr "Järjekorra kordus"
@@ -6446,9 +6470,6 @@ msgstr "Sünkroniseeri süsteemi aega kasutades transponderit või internetti."
 msgid "System"
 msgstr "Süsteem"
 
-msgid "System Information"
-msgstr "Süsteemiinfo"
-
 msgid "System: "
 msgstr "Süsteem: "
 
@@ -6486,12 +6507,6 @@ msgstr "Telneti port"
 msgid "Telnet Setup"
 msgstr "Telneti seadistus"
 
-msgid "Telnet service Disabled."
-msgstr "Telnet on keelatud."
-
-msgid "Telnet service Enabled."
-msgstr "Telnet on lubatud."
-
 msgid "Temperature and Fan control"
 msgstr "Temp. ja ventilaatori kontroll"
 
@@ -6524,6 +6539,9 @@ msgstr "Teksti suurus"
 
 msgid "Text support"
 msgstr "Teksti toetus"
+
+msgid "Thai"
+msgstr ""
 
 msgid ""
 "Thank you for using the wizard.\n"
@@ -7838,14 +7856,6 @@ msgstr "Määrates 'jah', avatakse alati lemmiknimekirjade valik. Määrates 'ei
 msgid "With this option you can hide Job Tasks from the extension screen (short blue button press)."
 msgstr "Siin saab valida, kas käsiloevaid tööülesandeid näidatakse laiendusre menüüs (sinine nupp)."
 
-#, python-format
-msgid ""
-"Would you like to install\n"
-"\"%s\"?"
-msgstr ""
-"Kas paigaldad\n"
-"\"%s\"?"
-
 msgid "Write error while recording. Disk full?\n"
 msgstr "Kirjutamise viga. Kõvaketas täis?\n"
 
@@ -8083,6 +8093,22 @@ msgstr "Lülitan välja. Oota..."
 
 msgid "Your STB_BOX isn't connected to the internet properly. Please check it and try again."
 msgstr "Internetiühendust pole. Kontrolli võrguseadeid ja ürita uuesti."
+
+msgid ""
+"Your STB_BOX will be restarted after the installation of service\n"
+"Do you want to install now ?"
+msgstr ""
+
+msgid ""
+"Your STB_BOX will be restarted after the installation of service.\n"
+"\n"
+"Do you want to install now ?"
+msgstr ""
+
+msgid ""
+"Your STB_BOX will be restarted after the removal of service\n"
+"Do you want to remove now ?"
+msgstr ""
 
 msgid "Your backup succeeded. We will now continue to explain the further upgrade process."
 msgstr "Turvakoopia valmis. Me informeerime edasistest uuenduste käigust."
@@ -9365,6 +9391,12 @@ msgstr "vahetatud"
 #~ msgstr ""
 #~ "Võimaldab kasutada voolukasutuse mõõtmist (kui vastuvõtja seda toetab)"
 
+#~ msgid "April"
+#~ msgstr "Aprill"
+
+#~ msgid "August"
+#~ msgstr "August"
+
 #~ msgid ""
 #~ "Choose the location where the EPG data will be stored when the box is "
 #~ "shut down. The location must be available at boot time."
@@ -9378,6 +9410,21 @@ msgstr "vahetatud"
 #~ msgstr ""
 #~ "Vali, mis nimega EPG fail vastuvõtja välja lülitamisel salvestatakse. Nii "
 #~ "on mugav eristada mitme eri vastuvõtja faile."
+
+#~ msgid "December"
+#~ msgstr "Detsember"
+
+#~ msgid "Enter your email address to sned a copy of the log to."
+#~ msgstr "Sisesta oma mailiaadress, kuhu logifaili koopia saata."
+
+#~ msgid "February"
+#~ msgstr "Veebruar"
+
+#~ msgid "Ftp service Disabled."
+#~ msgstr "Ftp keelatud."
+
+#~ msgid "Ftp service Enabled."
+#~ msgstr "Ftp lubatud."
 
 #~ msgid "If est to 'yes' the box will use AC3 sound (when available)."
 #~ msgstr "Kui määrad 'jah', kasutab vastuvõtja (võimaluse korral) AC3 heli."
@@ -9399,11 +9446,50 @@ msgstr "vahetatud"
 #~ "Valides \"jah\" salvestab otsing ainult koodivabad kanalid; \"ei\" leiab "
 #~ "kodeeritud ja koodivabad kanalid"
 
+#~ msgid "January"
+#~ msgstr "Jaanuar"
+
+#~ msgid "July"
+#~ msgstr "Juuli"
+
+#~ msgid "June"
+#~ msgstr "Juuni"
+
+#~ msgid "March"
+#~ msgstr "Märts"
+
+#~ msgid "May"
+#~ msgstr "Mai"
+
+#~ msgid "November"
+#~ msgstr "November"
+
+#~ msgid "October"
+#~ msgstr "Oktoober"
+
+#~ msgid "Programme Guide"
+#~ msgstr "Saatekava"
+
+#~ msgid "Remember service PIN cancel"
+#~ msgstr "Ära mäleta kanali PIN-i"
+
 #~ msgid "Scan All"
 #~ msgstr "Otsi kõik"
 
+#~ msgid "September"
+#~ msgstr "September"
+
 #~ msgid "Shows the watched staus of the movie."
 #~ msgstr "Tähista vaadatud salvestised."
+
+#~ msgid "System Information"
+#~ msgstr "Süsteemiinfo"
+
+#~ msgid "Telnet service Disabled."
+#~ msgstr "Telnet on keelatud."
+
+#~ msgid "Telnet service Enabled."
+#~ msgstr "Telnet on lubatud."
 
 #~ msgid ""
 #~ "Thank you for using the wizard. Your box is now ready to use.\n"
@@ -9444,3 +9530,10 @@ msgstr "vahetatud"
 #~ msgstr ""
 #~ "Määrates 'jah' peetakse iga kausta seadistused meeles, määrates 'ei' "
 #~ "kasutatakse väikeväärtusi."
+
+#~ msgid ""
+#~ "Would you like to install\n"
+#~ "\"%s\"?"
+#~ msgstr ""
+#~ "Kas paigaldad\n"
+#~ "\"%s\"?"

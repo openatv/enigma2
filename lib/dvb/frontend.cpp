@@ -571,6 +571,11 @@ int eDVBFrontend::openFrontend()
 		m_sn = eSocketNotifier::create(eApp, m_fd, eSocketNotifier::Read, false);
 		CONNECT(m_sn->activated, eDVBFrontend::feEvent);
 	}
+	else
+	{
+		fe_info.frequency_min = 900000;
+		fe_info.frequency_max = 2200000;
+	}
 
 	setTone(iDVBFrontend::toneOff);
 	setVoltage(iDVBFrontend::voltageOff);

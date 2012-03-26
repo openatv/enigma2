@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-10 15:56+0000\n"
-"PO-Revision-Date: 2012-03-17 17:52+0100\n"
+"POT-Creation-Date: 2012-03-26 14:40+0100\n"
+"PO-Revision-Date: 2012-03-26 16:21+0100\n"
 "Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
 "Language-Team: \n"
 "Language: \n"
@@ -201,12 +201,48 @@ msgstr "#ffffff"
 msgid "#ffffffff"
 msgstr "#ffffffff"
 
+#. TRANSLATORS: short time representation hour:minute
+#, python-format
+msgid "%2d:%02d"
+msgstr ""
+
+#. TRANSLATORS: full time representation hour:minute:seconds
+#, python-format
+msgid "%2d:%02d:%02d"
+msgstr ""
+
+#. TRANSLATORS: long date representations dayname daynum monthname in strftime() format! See 'man strftime'
+msgid "%A %e %B"
+msgstr ""
+
+#. TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
+msgid "%A %e %B %Y"
+msgstr ""
+
 msgid "%H:%M"
 msgstr "%H:%M"
+
+#. TRANSLATORS: full date representations sort dayname daynum monthname long year in strftime() format! See 'man strftime'
+msgid "%a %e %B %Y"
+msgstr ""
+
+#. TRANSLATORS: short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'
+msgid "%a %e/%m"
+msgstr ""
+
+#. TRANSLATORS: long date representation short dayname daynum short monthname hour:minute in strftime() format! See 'man strftime'
+msgid "%a %e/%m  %-H:%M"
+msgstr ""
 
 #, python-format
 msgid "%d / 100"
 msgstr ""
+
+#, python-format
+msgid "%d Min"
+msgid_plural "%d Mins"
+msgstr[0] ""
+msgstr[1] ""
 
 #, python-format
 msgid "%d hour"
@@ -244,6 +280,10 @@ msgstr "%d kanalai surasti!"
 
 msgid "%d.%B %Y"
 msgstr "%d.%B %Y"
+
+#. TRANSLATORS: VFD hour:minute daynum short monthname in strftime() format! See 'man strftime'
+msgid "%k:%M %e/%m"
+msgstr ""
 
 #, python-format
 msgid "%s (%s)\n"
@@ -754,6 +794,9 @@ msgstr ""
 msgid "Allows you to prefer the special hearing impaired subtitles over normal subtitles."
 msgstr ""
 
+msgid "Allows you to send a copy of the log to yourself."
+msgstr ""
+
 msgid "Allows you to set audio language 1"
 msgstr ""
 
@@ -814,6 +857,9 @@ msgstr ""
 msgid "Allows you to show/hide CCcam in extensions (blue button)."
 msgstr ""
 
+msgid "Allows you to show/hide Log Manager in extensions (blue button)."
+msgstr ""
+
 msgid "Allows you to show/hide OScam in extensions (blue button)."
 msgstr ""
 
@@ -860,9 +906,6 @@ msgid "Anonymize crashlog?"
 msgstr "Anonimizuotas crashlog?"
 
 msgid "Any activity"
-msgstr ""
-
-msgid "April"
 msgstr ""
 
 msgid "Arabic"
@@ -955,9 +998,6 @@ msgid "Audio language selection 3"
 msgstr ""
 
 msgid "Audio language selection 4"
-msgstr ""
-
-msgid "August"
 msgstr ""
 
 msgid "Author: "
@@ -1247,6 +1287,9 @@ msgstr ""
 
 msgid "Cancel"
 msgstr "Atšaukti"
+
+msgid "Cannot delete file"
+msgstr ""
 
 msgid "Cannot move to trash can"
 msgstr ""
@@ -1794,9 +1837,6 @@ msgstr ""
 msgid "Debug Logs"
 msgstr ""
 
-msgid "December"
-msgstr ""
-
 msgid "Decide if you want to enable or disable the Cleanup Wizard."
 msgstr "Apsispręskite, jei jūs norite įjungti ar išjungti išvalymo vedlį."
 
@@ -1817,6 +1857,9 @@ msgstr "Numatytieji nustatymai"
 
 msgid "Default movie location"
 msgstr "Numatyta filmų vieta"
+
+msgid "Defaults"
+msgstr ""
 
 msgid "Delay before key repeat starts:"
 msgstr ""
@@ -2378,6 +2421,12 @@ msgstr "Įrašykite kanalo PIN"
 msgid "Enter your email address so that we can contact you if needed."
 msgstr "Įrašykite savo elektroninio pašto adresą, kad mes galėtume susisiekti su jumis jei reikia."
 
+msgid "Enter your email address to send a copy of the log to."
+msgstr ""
+
+msgid "Enter your forum user name, to make it easier trace logs."
+msgstr ""
+
 msgid "Enter your input data"
 msgstr ""
 
@@ -2591,9 +2640,6 @@ msgstr "Greita epocha"
 msgid "Favourites"
 msgstr "Geriausi"
 
-msgid "February"
-msgstr ""
-
 msgid "File appears to be busy.\n"
 msgstr ""
 
@@ -2713,12 +2759,6 @@ msgstr ""
 #, python-format
 msgid "Frontprocessor version: %d"
 msgstr "Priekinio procesoriaus versija: %d"
-
-msgid "Ftp service Disabled."
-msgstr ""
-
-msgid "Ftp service Enabled."
-msgstr ""
 
 msgid "Ftpd service type: Vsftpd server"
 msgstr ""
@@ -3194,6 +3234,9 @@ msgstr "Numatytas įdiegimas... Prašome laukti..."
 msgid "Installing package content... Please wait..."
 msgstr "Įdiegiamas paketo turinys... Prašome laukti..."
 
+msgid "Installing service please wait..."
+msgstr ""
+
 msgid "Instant Record..."
 msgstr "Greitas įrašas..."
 
@@ -3295,16 +3338,10 @@ msgstr "Italų"
 msgid "Items per Page "
 msgstr ""
 
-msgid "January"
-msgstr ""
-
 msgid "Job View"
 msgstr "Darbo vaizdas"
 
 msgid "Job task(s) are in progress!"
-msgstr ""
-
-msgid "July"
 msgstr ""
 
 msgid "Jump back 24 hours"
@@ -3320,9 +3357,6 @@ msgid "Jump to current time"
 msgstr ""
 
 msgid "Jump to prime time"
-msgstr ""
-
-msgid "June"
 msgstr ""
 
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
@@ -3556,6 +3590,9 @@ msgstr ""
 msgid "MA"
 msgstr ""
 
+msgid "MAC:"
+msgstr ""
+
 msgid "MB"
 msgstr ""
 
@@ -3622,9 +3659,6 @@ msgstr "Rankinis transponderis"
 msgid "Manufacturer"
 msgstr "Gamintojas"
 
-msgid "March"
-msgstr ""
-
 msgid "Margin after record"
 msgstr "Sujungti po įrašymo"
 
@@ -3654,9 +3688,6 @@ msgstr ""
 msgid "Maximum space used (MB):"
 msgstr ""
 
-msgid "May"
-msgstr ""
-
 msgid "Media playback Remaining/Elapsed as"
 msgstr ""
 
@@ -3673,6 +3704,9 @@ msgid "Medium is not empty!"
 msgstr "Ne tuščias!"
 
 msgid "Memory"
+msgstr ""
+
+msgid "Memory Information"
 msgstr ""
 
 msgid "Menu"
@@ -3853,6 +3887,9 @@ msgstr "Pavadinimnų erdvė"
 msgid "Netmask"
 msgstr "Potinklio kaukė"
 
+msgid "Netmask:"
+msgstr ""
+
 msgid "Network"
 msgstr "Tinklas"
 
@@ -3860,6 +3897,9 @@ msgid "Network Configuration..."
 msgstr "Tinklo konfigūracija..."
 
 msgid "Network ID"
+msgstr ""
+
+msgid "Network Information"
 msgstr ""
 
 msgid "Network Mounts"
@@ -4143,11 +4183,14 @@ msgstr ""
 msgid "Nothing to upgrade"
 msgstr ""
 
-msgid "November"
-msgstr ""
-
 msgid "Now Playing"
 msgstr "Dabar grojama"
+
+msgid "Now installing service, please wait..."
+msgstr ""
+
+msgid "Now removing service, please wait..."
+msgstr ""
 
 msgid "Now, use the contrast setting to turn up the brightness of the background as much as possible, but make sure that you can still see the difference between the two brightest levels of shades.If you have done that, press OK."
 msgstr "Dabar, atlikite kontrasto nustatymą, kad padidinti fono šviesumą tiek kiek įmanoma, bet įsitikinkite, kad jūs galite vis dar pamatyti skirtumą tarp dviejų ryškiausių atspalvių lygmenų. Jei jūs baigėte,tai spauskite OK."
@@ -4204,9 +4247,6 @@ msgid "OSD visibility"
 msgstr "OSD matomumas"
 
 msgid "OScam Info"
-msgstr ""
-
-msgid "October"
 msgstr ""
 
 msgid "Off"
@@ -4794,9 +4834,6 @@ msgstr ""
 msgid "Profile: Local box"
 msgstr ""
 
-msgid "Programme Guide"
-msgstr ""
-
 msgid "Progress"
 msgstr ""
 
@@ -4873,6 +4910,14 @@ msgid "Reader"
 msgstr ""
 
 msgid "Reader Statistics"
+msgstr ""
+
+#, python-format
+msgid "Ready to install \"%s\" ?"
+msgstr ""
+
+#, python-format
+msgid "Ready to remove \"%s\" ?"
 msgstr ""
 
 msgid "Really close without saving settings?"
@@ -4990,9 +5035,6 @@ msgstr ""
 msgid "Remember service PIN"
 msgstr "Atsiminti kanalo PIN"
 
-msgid "Remember service PIN cancel"
-msgstr "Kanalo PIN atsiminimas panaikintas"
-
 msgid "Remember these settings for each folder"
 msgstr ""
 
@@ -5013,6 +5055,9 @@ msgstr "Pašalinti žymę"
 
 msgid "Remove Plugins"
 msgstr "Pašalinti"
+
+msgid "Remove Service"
+msgstr ""
 
 msgid "Remove a mark"
 msgstr "Pašalinti žymeklį"
@@ -5047,6 +5092,9 @@ msgstr "Pašalinimas"
 #, python-format
 msgid "Removing directory %s failed. (Maybe not empty.)"
 msgstr "Direktorijos pašalinimas %s klaidingas. (Galbūt ne tuščia.)"
+
+msgid "Removing service please wait..."
+msgstr ""
 
 msgid "Rename"
 msgstr "Pervardinti"
@@ -5547,9 +5595,6 @@ msgstr ""
 msgid "Seperate titles with a main menu"
 msgstr "Pavadinimai su pagrindiniu meniu"
 
-msgid "September"
-msgstr ""
-
 msgid "Sequence repeat"
 msgstr "Sekos pakartojimas"
 
@@ -5937,6 +5982,9 @@ msgstr "Rodyti radijo grotuvą..."
 
 msgid "Show the tv player..."
 msgstr "Rodyti TV grotuvą ..."
+
+msgid "Show time elapsed as positive"
+msgstr ""
 
 msgid "Show time remaining/elapsed"
 msgstr ""
@@ -6347,9 +6395,6 @@ msgstr ""
 msgid "System"
 msgstr "Sistema"
 
-msgid "System Information"
-msgstr ""
-
 msgid "System: "
 msgstr ""
 
@@ -6387,12 +6432,6 @@ msgstr ""
 msgid "Telnet Setup"
 msgstr ""
 
-msgid "Telnet service Disabled."
-msgstr ""
-
-msgid "Telnet service Enabled."
-msgstr ""
-
 msgid "Temperature and Fan control"
 msgstr "Temperatūros ir aušintuvo kontrolė"
 
@@ -6424,6 +6463,9 @@ msgid "Text font size"
 msgstr ""
 
 msgid "Text support"
+msgstr ""
+
+msgid "Thai"
 msgstr ""
 
 msgid ""
@@ -6682,6 +6724,9 @@ msgstr ""
 
 msgid "This is step number 2."
 msgstr "Šis žingsnis yra numeris 2."
+
+msgid "This option allows you choose how to display elasped time  as + or -"
+msgstr ""
 
 msgid "This option allows you choose how to display remaining time, or elapsed time, or both."
 msgstr ""
@@ -7783,6 +7828,13 @@ msgstr ""
 
 #, python-format
 msgid ""
+"You already have a bootlogo installed,\n"
+"would you like to remove\n"
+"\"%s\"?"
+msgstr ""
+
+#, python-format
+msgid ""
 "You already have a channel list installed,\n"
 "would you like to remove\n"
 "\"%s\"?"
@@ -7932,6 +7984,22 @@ msgstr "Jūsų imtuvas išsijungia. Būkite šalia..."
 
 msgid "Your STB_BOX isn't connected to the internet properly. Please check it and try again."
 msgstr "Jūsų imtuvas neteisingai prijungtas prie interneto. Prašome patikrinti tai ir bandyti dar kartą."
+
+msgid ""
+"Your STB_BOX will be restarted after the installation of service\n"
+"Do you want to install now ?"
+msgstr ""
+
+msgid ""
+"Your STB_BOX will be restarted after the installation of service.\n"
+"\n"
+"Do you want to install now ?"
+msgstr ""
+
+msgid ""
+"Your STB_BOX will be restarted after the removal of service\n"
+"Do you want to remove now ?"
+msgstr ""
 
 msgid "Your backup succeeded. We will now continue to explain the further upgrade process."
 msgstr "Atsarginė kopija sukurta. Dabar mes tęsime atnaujinimą. "
@@ -9155,3 +9223,5 @@ msgstr "jungti"
 msgid "zapped"
 msgstr "įjungta"
 
+#~ msgid "Remember service PIN cancel"
+#~ msgstr "Kanalo PIN atsiminimas panaikintas"

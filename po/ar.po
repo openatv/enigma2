@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-10 15:56+0000\n"
-"PO-Revision-Date: 2012-03-17 17:52+0100\n"
+"POT-Creation-Date: 2012-03-26 14:40+0100\n"
+"PO-Revision-Date: 2012-03-26 16:18+0100\n"
 "Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
 "Language-Team: Arabic <moustafagamal@hotmail.com>\n"
 "Language: ar\n"
@@ -218,14 +218,54 @@ msgstr "#ffffff"
 msgid "#ffffffff"
 msgstr "#ffffffff"
 
+#. TRANSLATORS: short time representation hour:minute
+#, python-format
+msgid "%2d:%02d"
+msgstr ""
+
+#. TRANSLATORS: full time representation hour:minute:seconds
+#, python-format
+msgid "%2d:%02d:%02d"
+msgstr ""
+
+#. TRANSLATORS: long date representations dayname daynum monthname in strftime() format! See 'man strftime'
+msgid "%A %e %B"
+msgstr ""
+
+#. TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
+msgid "%A %e %B %Y"
+msgstr ""
+
 msgid "%H:%M"
 msgstr "%H:%M"
 
+#. TRANSLATORS: full date representations sort dayname daynum monthname long year in strftime() format! See 'man strftime'
+msgid "%a %e %B %Y"
+msgstr ""
 
+#. TRANSLATORS: short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'
+msgid "%a %e/%m"
+msgstr ""
+
+#. TRANSLATORS: long date representation short dayname daynum short monthname hour:minute in strftime() format! See 'man strftime'
+msgid "%a %e/%m  %-H:%M"
+msgstr ""
+
+#, python-format
 msgid "%d / 100"
 msgstr ""
 
+#, python-format
+msgid "%d Min"
+msgid_plural "%d Mins"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
+#, python-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] ""
@@ -236,16 +276,16 @@ msgstr[4] ""
 msgstr[5] ""
 
 #
-
+#, python-format
 msgid "%d jobs are running in the background!"
 msgstr "%d وظائف تعمل فى الخلفيه"
 
 #
-
+#, python-format
 msgid "%d min"
 msgstr "%d دقيقه"
 
-
+#, python-format
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] ""
@@ -255,11 +295,11 @@ msgstr[3] ""
 msgstr[4] ""
 msgstr[5] ""
 
-
+#, python-format
 msgid "%d minutes"
 msgstr ""
 
-
+#, python-format
 msgid "%d second"
 msgid_plural "%d seconds"
 msgstr[0] ""
@@ -270,18 +310,22 @@ msgstr[4] ""
 msgstr[5] ""
 
 #
-
+#, python-format
 msgid "%d services found!"
 msgstr "%d تم العثور على"
 
 msgid "%d.%B %Y"
 msgstr "%d.%B %Y"
 
+#. TRANSLATORS: VFD hour:minute daynum short monthname in strftime() format! See 'man strftime'
+msgid "%k:%M %e/%m"
+msgstr ""
 
+#, python-format
 msgid "%s (%s)\n"
 msgstr "%s (%s) \n"
 
-
+#, python-format
 msgid "'%s' contains %d file(s) and %d sub-directories.\n"
 msgstr ""
 
@@ -466,7 +510,7 @@ msgstr "؟؟"
 msgid "A"
 msgstr "أ"
 
-
+#, python-format
 msgid ""
 "A configuration file (%s) was modified since Installation.\n"
 "Do you want to keep your version?"
@@ -494,7 +538,7 @@ msgstr ""
 msgid "A graphical EPG for all services of an specific bouquet"
 msgstr "دليل برامج الكترونى بيانى لكل قنوات باقه معينه"
 
-
+#, python-format
 msgid ""
 "A recording has been started:\n"
 "%s"
@@ -516,7 +560,7 @@ msgstr ""
 msgid "A recording is currently running. Please stop the recording before trying to start the satfinder."
 msgstr "هناك تسجيل جارى حاليا . من فضلك أوقف التسجيل قبل محاولة بدأ مكتشف الأقمار."
 
-
+#, python-format
 msgid "A required tool (%s) was not found."
 msgstr "لم يتم العثور على الاداه المطلوبه (%s)"
 
@@ -836,6 +880,9 @@ msgstr ""
 msgid "Allows you to prefer the special hearing impaired subtitles over normal subtitles."
 msgstr ""
 
+msgid "Allows you to send a copy of the log to yourself."
+msgstr ""
+
 msgid "Allows you to set audio language 1"
 msgstr ""
 
@@ -896,6 +943,9 @@ msgstr ""
 msgid "Allows you to show/hide CCcam in extensions (blue button)."
 msgstr ""
 
+msgid "Allows you to show/hide Log Manager in extensions (blue button)."
+msgstr ""
+
 msgid "Allows you to show/hide OScam in extensions (blue button)."
 msgstr ""
 
@@ -946,9 +996,6 @@ msgid "Anonymize crashlog?"
 msgstr ""
 
 msgid "Any activity"
-msgstr ""
-
-msgid "April"
 msgstr ""
 
 msgid "Arabic"
@@ -1042,9 +1089,6 @@ msgid "Audio language selection 3"
 msgstr ""
 
 msgid "Audio language selection 4"
-msgstr ""
-
-msgid "August"
 msgstr ""
 
 msgid "Author: "
@@ -1287,7 +1331,7 @@ msgstr ""
 msgid "CCcam Info"
 msgstr ""
 
-
+#, python-format
 msgid ""
 "CCcam Info %s\n"
 "by AliAbdul %s\n"
@@ -1361,6 +1405,9 @@ msgstr ""
 #
 msgid "Cancel"
 msgstr "إلغاء"
+
+msgid "Cannot delete file"
+msgstr ""
 
 msgid "Cannot move to trash can"
 msgstr ""
@@ -1649,7 +1696,7 @@ msgstr "مركب (يسمح بمزج مسارات صوت ومظاهر)"
 msgid "Composition of the recording filenames"
 msgstr ""
 
-
+#, python-format
 msgid "Configfile %s saved."
 msgstr ""
 
@@ -1753,20 +1800,20 @@ msgstr "تعذر تحميل الوسيط ! هل لا يوجد قرص"
 msgid "Could not open Picture in Picture"
 msgstr "لا يمكن فتح صوره داخل صوره"
 
-
+#, python-format
 msgid "Could not open the file %s!"
 msgstr ""
 
-
+#, python-format
 msgid "Could not save configfile %s!"
 msgstr ""
 
 #
-
+#, python-format
 msgid "Couldn't record due to conflicting timer %s"
 msgstr "تعذر التسجيل بسبب مؤقت متعارض%s"
 
-
+#, python-format
 msgid "Couldn't record due to invalid service %s"
 msgstr ""
 
@@ -1817,7 +1864,7 @@ msgstr ""
 msgid "Creating Hardlink to Timeshift file failed!"
 msgstr ""
 
-
+#, python-format
 msgid "Creating directory %s failed."
 msgstr "فشل إنشاء دليل %s"
 
@@ -1937,9 +1984,6 @@ msgstr ""
 msgid "Debug Logs"
 msgstr ""
 
-msgid "December"
-msgstr ""
-
 msgid "Decide if you want to enable or disable the Cleanup Wizard."
 msgstr "قرر إذا كنت تريد تشغيل أو تعطيل نافذة إعدادات التنظيف."
 
@@ -1962,6 +2006,9 @@ msgstr "الاعدادات الافتراضيه"
 msgid "Default movie location"
 msgstr "المكان الافتراضى للفيلم"
 
+msgid "Defaults"
+msgstr ""
+
 msgid "Delay before key repeat starts:"
 msgstr ""
 
@@ -1969,7 +2016,7 @@ msgstr ""
 msgid "Delete"
 msgstr "أمسح"
 
-
+#, python-format
 msgid "Delete %s?"
 msgstr ""
 
@@ -1986,7 +2033,7 @@ msgstr "مسح البند"
 msgid "Delete failed!"
 msgstr "فشل المسح"
 
-
+#, python-format
 msgid ""
 "Delete no more configured satellite\n"
 "%s?"
@@ -1997,7 +2044,7 @@ msgstr ""
 msgid "Deleted"
 msgstr ""
 
-
+#, python-format
 msgid "Deleted %s!"
 msgstr ""
 
@@ -2076,7 +2123,7 @@ msgstr "عرض مباشر لعناوين مربوطه بدون قائمه"
 msgid "Directory"
 msgstr ""
 
-
+#, python-format
 msgid "Directory %s nonexistent."
 msgstr "الدليل %s غير موجود"
 
@@ -2133,6 +2180,10 @@ msgstr "إعدادات العرض"
 msgid "Display and Userinterface"
 msgstr "عرض و واجهه مستخدم"
 
+#, python-format
+msgid "Do you really want to REMOVE the plugin \"%s\"?"
+msgstr "هل تريد فعلا مسح البلج إن \"%s\" ؟"
+
 msgid ""
 "Do you really want to check the filesystem?\n"
 "This could take lots of time!"
@@ -2145,17 +2196,20 @@ msgid ""
 "You cannot go back!"
 msgstr ""
 
-
+#, python-format
 msgid "Do you really want to delete %s ?"
 msgstr ""
 
-
+#, python-format
 msgid "Do you really want to delete %s?"
 msgstr "هل تريد فعلا مسح %s ؟"
 
 msgid "Do you really want to delete ?"
 msgstr ""
 
+#, python-format
+msgid "Do you really want to download the plugin \"%s\"?"
+msgstr "هل تريد فعلا تحميل البلج إن \"%s\" ؟"
 
 msgid "Do you really want to exit?"
 msgstr "هل تريد فعلا الخروج ؟"
@@ -2165,18 +2219,18 @@ msgid ""
 "All data on the disk will be lost!"
 msgstr ""
 
-
+#, python-format
 msgid "Do you really want to permamently remove '%s' from trash can ?"
 msgstr ""
 
 msgid "Do you really want to permanently remove from trash can ?"
 msgstr ""
 
-
+#, python-format
 msgid "Do you really want to remove directory %s from the disk?"
 msgstr "هل تريد فعلا حذف الدليل %s من القرص؟"
 
-
+#, python-format
 msgid "Do you really want to remove your bookmark of %s?"
 msgstr "هل تريد فعلا حذف مرجعية %s ؟"
 
@@ -2209,7 +2263,7 @@ msgstr "هل تريد عمل بحث"
 msgid "Do you want to do another manual service scan?"
 msgstr "هل تريد عمل بحث يدوى جديد ؟"
 
-
+#, python-format
 msgid "Do you want to download the image to %s ?"
 msgstr ""
 
@@ -2285,18 +2339,18 @@ msgstr ""
 msgid "Don't stop current event but disable coming events"
 msgstr "لا توقف الحدث الحالى لكن قم بتعطيل الاحداث القادمه"
 
-
+#, python-format
 msgid "Done - Installed or upgraded %d packages"
 msgstr "تم - تثبيت أو تحديث %d الرزم"
 
-
+#, python-format
 msgid "Done - Installed, upgraded or removed %d packages with %d errors"
 msgstr "تم - تثبيت ، تحديث أو حذف %d الرزم والاخطاء%d "
 
 msgid "Download"
 msgstr "تحميل"
 
-
+#, python-format
 msgid "Download %s from Server"
 msgstr ""
 
@@ -2391,7 +2445,7 @@ msgid "EPGSearch"
 msgstr ""
 
 #
-
+#, python-format
 msgid "ERROR - failed to scan (%s)!"
 msgstr "خطأ - فشل البحث (%s)!"
 
@@ -2554,6 +2608,12 @@ msgstr "أدخل الرقم السرى للخدمه"
 msgid "Enter your email address so that we can contact you if needed."
 msgstr "أدخل عنوان بريدك الألكترونى ليتم الاتصال بك عند الحاجه."
 
+msgid "Enter your email address to send a copy of the log to."
+msgstr ""
+
+msgid "Enter your forum user name, to make it easier trace logs."
+msgstr ""
+
 msgid "Enter your input data"
 msgstr ""
 
@@ -2572,13 +2632,13 @@ msgstr "خطأ فى تنفيذ البلج إن"
 msgid "Error reading webpage!"
 msgstr ""
 
-
+#, python-format
 msgid ""
 "Error:\n"
 "%s"
 msgstr ""
 
-
+#, python-format
 msgid ""
 "Error: %s\n"
 "Retry?"
@@ -2586,7 +2646,7 @@ msgstr ""
 "خطأ: %s\n"
 "إعادة المحاوله ؟"
 
-
+#, python-format
 msgid ""
 "Error[%d] : %s.\n"
 "Press OK to exit."
@@ -2708,7 +2768,7 @@ msgstr "العوده الى إعدادات المصنع"
 msgid "Fail to upgrade!! Retry!!"
 msgstr ""
 
-
+#, python-format
 msgid ""
 "Fail to verify data file. \n"
 "file[%s]\n"
@@ -2722,17 +2782,17 @@ msgid "Failed to remove old files."
 msgstr ""
 
 #
-
+#, python-format
 msgid "Fan %d"
 msgstr "مروحه %d"
 
 #
-
+#, python-format
 msgid "Fan %d PWM"
 msgstr ""
 
 #
-
+#, python-format
 msgid "Fan %d Voltage"
 msgstr "مروحه %d فولتيه"
 
@@ -2775,9 +2835,6 @@ msgstr ""
 #
 msgid "Favourites"
 msgstr "المفضله"
-
-msgid "February"
-msgstr ""
 
 msgid "File appears to be busy.\n"
 msgstr ""
@@ -2904,14 +2961,8 @@ msgid "Front Processor"
 msgstr ""
 
 #
-
+#, python-format
 msgid "Frontprocessor version: %d"
-msgstr ""
-
-msgid "Ftp service Disabled."
-msgstr ""
-
-msgid "Ftp service Enabled."
 msgstr ""
 
 msgid "Ftpd service type: Vsftpd server"
@@ -3411,6 +3462,9 @@ msgstr "جارى تثبيت الافتراضيات ... رجاء الأنتظار
 msgid "Installing package content... Please wait..."
 msgstr "جارى تثبيت محتويات الرزمه ... رجاء الأنتظار..."
 
+msgid "Installing service please wait..."
+msgstr ""
+
 msgid "Instant Record..."
 msgstr "تسجيل سريع"
 
@@ -3442,7 +3496,7 @@ msgstr ""
 msgid "Invalid Location"
 msgstr "موقع غير صالح"
 
-
+#, python-format
 msgid "Invalid directory selected: %s"
 msgstr "تم إختياردليل غير صالح %s"
 
@@ -3517,17 +3571,11 @@ msgstr "إيطالى"
 msgid "Items per Page "
 msgstr ""
 
-msgid "January"
-msgstr ""
-
 #
 msgid "Job View"
 msgstr ""
 
 msgid "Job task(s) are in progress!"
-msgstr ""
-
-msgid "July"
 msgstr ""
 
 msgid "Jump back 24 hours"
@@ -3543,9 +3591,6 @@ msgid "Jump to current time"
 msgstr ""
 
 msgid "Jump to prime time"
-msgstr ""
-
-msgid "June"
 msgstr ""
 
 #
@@ -3722,7 +3767,7 @@ msgstr "قائمة أجهزة التخزين"
 msgid "List type"
 msgstr ""
 
-
+#, python-format
 msgid "List version %d, found %d channels"
 msgstr ""
 
@@ -3796,7 +3841,7 @@ msgstr ""
 msgid "Longitude"
 msgstr "خط الطول"
 
-
+#, python-format
 msgid ""
 "Looking for available transponders.\n"
 "This will take a short while.\n"
@@ -3809,6 +3854,9 @@ msgid ""
 msgstr ""
 
 msgid "MA"
+msgstr ""
+
+msgid "MAC:"
 msgstr ""
 
 msgid "MB"
@@ -3885,9 +3933,6 @@ msgstr "تردد يدوى"
 msgid "Manufacturer"
 msgstr "الصانع"
 
-msgid "March"
-msgstr ""
-
 msgid "Margin after record"
 msgstr "الهامش بعد التسجيل"
 
@@ -3918,9 +3963,6 @@ msgstr ""
 msgid "Maximum space used (MB):"
 msgstr ""
 
-msgid "May"
-msgstr ""
-
 msgid "Media playback Remaining/Elapsed as"
 msgstr ""
 
@@ -3939,6 +3981,9 @@ msgid "Medium is not empty!"
 msgstr "الوسيط غير فارغ"
 
 msgid "Memory"
+msgstr ""
+
+msgid "Memory Information"
 msgstr ""
 
 #
@@ -4121,7 +4166,7 @@ msgstr ""
 msgid "Nameserver"
 msgstr "اسم الخادم"
 
-
+#, python-format
 msgid "Nameserver %d"
 msgstr "اسم الخادم %d"
 
@@ -4137,6 +4182,9 @@ msgstr ""
 msgid "Netmask"
 msgstr "قناع الشبكه"
 
+msgid "Netmask:"
+msgstr ""
+
 msgid "Network"
 msgstr "الشبكه"
 
@@ -4144,6 +4192,9 @@ msgid "Network Configuration..."
 msgstr "تكوين الشبكه"
 
 msgid "Network ID"
+msgstr ""
+
+msgid "Network Information"
 msgstr ""
 
 msgid "Network Mounts"
@@ -4422,11 +4473,11 @@ msgid "Not Flashing"
 msgstr ""
 
 #
-
+#, python-format
 msgid "Not enough diskspace. Please free up some diskspace and try again. (%d MB required, %d MB available)"
 msgstr "لا يوجد مساحه كافيه على القرص، من فضلك حرر مساحه وحاول ثانيه.(مطلوب %d ميجاالمطلوب %d ميجا)"
 
-
+#, python-format
 msgid ""
 "Not enough free Diskspace!\n"
 "\n"
@@ -4448,12 +4499,15 @@ msgstr ""
 msgid "Nothing to upgrade"
 msgstr ""
 
-msgid "November"
-msgstr ""
-
 #
 msgid "Now Playing"
 msgstr "الان يعرض"
+
+msgid "Now installing service, please wait..."
+msgstr ""
+
+msgid "Now removing service, please wait..."
+msgstr ""
 
 msgid "Now, use the contrast setting to turn up the brightness of the background as much as possible, but make sure that you can still see the difference between the two brightest levels of shades.If you have done that, press OK."
 msgstr "الان، استخدم إعدادات التباين لزيادة درجه إضاءه الخلفيه الى أعلى قيمه ممكنه ، لكن كن متأكدا انك لازلت تستطيع ان ترى الفرق بين مستويين من الاضاءه فى الظل . إذا انتهيت من ذلك ، أضغط موافق."
@@ -4513,9 +4567,6 @@ msgid "OSD visibility"
 msgstr ""
 
 msgid "OScam Info"
-msgstr ""
-
-msgid "October"
 msgstr ""
 
 #
@@ -4608,7 +4659,7 @@ msgstr "PIDs"
 msgid "PMT PID"
 msgstr ""
 
-
+#, python-format
 msgid "PTS Plugin Error: %s"
 msgstr ""
 
@@ -5091,7 +5142,7 @@ msgstr "اضغط موافق لتفعيل الاعدادات"
 msgid "Press OK to edit the settings."
 msgstr "أضغط موافق لتحرير الاعدادات"
 
-
+#, python-format
 msgid "Press OK to get further details for %s"
 msgstr "أضغط موالق للحصول على تفاصيل أكثر عن %s"
 
@@ -5143,9 +5194,6 @@ msgid "Profile"
 msgstr ""
 
 msgid "Profile: Local box"
-msgstr ""
-
-msgid "Programme Guide"
 msgstr ""
 
 msgid "Progress"
@@ -5228,6 +5276,14 @@ msgstr ""
 msgid "Reader Statistics"
 msgstr ""
 
+#, python-format
+msgid "Ready to install \"%s\" ?"
+msgstr ""
+
+#, python-format
+msgid "Ready to remove \"%s\" ?"
+msgstr ""
+
 msgid "Really close without saving settings?"
 msgstr "هل تريد فعلا الغلق بدون حفظ الاعدادات ؟"
 
@@ -5271,7 +5327,7 @@ msgid "Record started! Stopping timeshift now ..."
 msgstr ""
 
 #
-
+#, python-format
 msgid "Record time limited due to conflicting timer %s"
 msgstr "وقت تسجيل محدود لوجود مؤقت متعارض %s"
 
@@ -5349,9 +5405,6 @@ msgstr ""
 msgid "Remember service PIN"
 msgstr ""
 
-msgid "Remember service PIN cancel"
-msgstr ""
-
 msgid "Remember these settings for each folder"
 msgstr ""
 
@@ -5373,6 +5426,9 @@ msgstr "حذف إشاره مرجعيه"
 
 msgid "Remove Plugins"
 msgstr "حذف الـبلج إنز"
+
+msgid "Remove Service"
+msgstr ""
 
 msgid "Remove a mark"
 msgstr "حذف علامه"
@@ -5404,9 +5460,12 @@ msgstr "تم الحذف بنجاح ."
 msgid "Removing"
 msgstr "جارى الحذف"
 
-
+#, python-format
 msgid "Removing directory %s failed. (Maybe not empty.)"
 msgstr "فشل حذف الدليل%s .قد يكون فارغ ."
+
+msgid "Removing service please wait..."
+msgstr ""
 
 msgid "Rename"
 msgstr "إعادة التسميه"
@@ -5420,7 +5479,7 @@ msgstr ""
 msgid "Rename to:"
 msgstr ""
 
-
+#, python-format
 msgid "Renamed %s!"
 msgstr ""
 
@@ -5504,7 +5563,7 @@ msgstr "إستعادة إعدادات النظام"
 msgid "Resume from last position"
 msgstr "إستعاده من الوضع السابق"
 
-
+#, python-format
 msgid "Resume position at %s"
 msgstr "إستعادة الوضع الى%s"
 
@@ -5769,11 +5828,11 @@ msgstr ""
 msgid "Scan your network for wireless access points and connect to them using your selected wireless device.\n"
 msgstr "أبحث فى الشبكه عن نقاط دخول لاسلكيه وأتصل بهم باستخدامجهزك اللاسلكى المختار.\n"
 
-
+#, python-format
 msgid "Scanning %s..."
 msgstr ""
 
-
+#, python-format
 msgid "Scanning completed, %d channels found"
 msgstr ""
 
@@ -5793,7 +5852,7 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
-
+#, python-format
 msgid ""
 "Search completed. %d transponders found.\n"
 "\n"
@@ -5946,9 +6005,6 @@ msgstr ""
 
 msgid "Seperate titles with a main menu"
 msgstr "عناوين منفصله مع قائمة رئيسيه"
-
-msgid "September"
-msgstr ""
 
 msgid "Sequence repeat"
 msgstr "تكرار التسلسل"
@@ -6173,7 +6229,7 @@ msgid "Setup your timezone."
 msgstr ""
 
 #
-
+#, python-format
 msgid "Shall the USB stick wizard proceed and program the image file %s into flash memory?"
 msgstr ""
 
@@ -6358,6 +6414,9 @@ msgstr "إظهار مشغل الراديو..."
 msgid "Show the tv player..."
 msgstr "إظهار مشغل التليفزيون"
 
+msgid "Show time elapsed as positive"
+msgstr ""
+
 msgid "Show time remaining/elapsed"
 msgstr ""
 
@@ -6456,7 +6515,7 @@ msgstr "عمل مؤقت النوم :"
 msgid "Slideshow Interval (sec.)"
 msgstr "الفاصل الزمنى بين عرض الرائح(ثانيه)"
 
-
+#, python-format
 msgid "Slot %d"
 msgstr "فتحة %d"
 
@@ -6596,12 +6655,12 @@ msgid "Standby / Restart"
 msgstr "وضع الاستعداد/إعاده التشغيل"
 
 #
-
+#, python-format
 msgid "Standby Fan %d PWM"
 msgstr ""
 
 #
-
+#, python-format
 msgid "Standby Fan %d Voltage"
 msgstr ""
 
@@ -6813,9 +6872,6 @@ msgstr ""
 msgid "System"
 msgstr "النـظام"
 
-msgid "System Information"
-msgstr ""
-
 msgid "System: "
 msgstr ""
 
@@ -6856,12 +6912,6 @@ msgstr ""
 msgid "Telnet Setup"
 msgstr ""
 
-msgid "Telnet service Disabled."
-msgstr ""
-
-msgid "Telnet service Enabled."
-msgstr ""
-
 msgid "Temperature and Fan control"
 msgstr "درجة الحراره والتحكم فى المروحه"
 
@@ -6896,6 +6946,9 @@ msgid "Text font size"
 msgstr ""
 
 msgid "Text support"
+msgstr ""
+
+msgid "Thai"
 msgstr ""
 
 msgid ""
@@ -6998,14 +7051,14 @@ msgstr ""
 msgid "The current beta image could not be stable"
 msgstr ""
 
-
+#, python-format
 msgid ""
 "The directory %s is not a EXT2, EXT3, EXT4 or NFS partition.\n"
 "Make sure you select a valid partition type."
 msgstr ""
 
 #
-
+#, python-format
 msgid ""
 "The directory %s is not writable.\n"
 "Make sure you select a writable directory instead."
@@ -7013,7 +7066,7 @@ msgstr ""
 "الدليل %s لا يمكن الكتابه فيه.\n"
 " تأكد من إختيار دليل بديل يمكن الكتابه فيه"
 
-
+#, python-format
 msgid ""
 "The following device was found:\n"
 "\n"
@@ -7047,7 +7100,7 @@ msgstr "الرزمه لا تحتوى على أى شيئ ."
 msgid "The package:"
 msgstr "الرزمه:"
 
-
+#, python-format
 msgid "The path %s already exists."
 msgstr "المسار %s موجود سلفا"
 
@@ -7056,7 +7109,7 @@ msgid "The pin code you entered is wrong."
 msgstr "الرقم السرى الذى ادخلته خطأ"
 
 #
-
+#, python-format
 msgid "The results have been written to %s."
 msgstr ""
 
@@ -7091,7 +7144,7 @@ msgstr ""
 msgid "The wizard can backup your current settings. Do you want to do a backup now?"
 msgstr "من خلال هذه النافذه يمكنك عمل نسخه إحتياطيه  للإعدادات الحاليه . هل تريد عمل نسخه إحتياطيه  الان ؟"
 
-
+#, python-format
 msgid "The wizard found a configuration backup. Do you want to restore your old settings from %s?"
 msgstr ""
 
@@ -7146,7 +7199,7 @@ msgid "This Plugin only support for UNO/ULTIMO"
 msgstr ""
 
 #
-
+#, python-format
 msgid "This STB_BOX can't decode %s streams!"
 msgstr ""
 
@@ -7165,6 +7218,9 @@ msgstr ""
 #
 msgid "This is step number 2."
 msgstr "هذه هى الخطوه رقم 2"
+
+msgid "This option allows you choose how to display elasped time  as + or -"
+msgstr ""
 
 msgid "This option allows you choose how to display remaining time, or elapsed time, or both."
 msgstr ""
@@ -8269,7 +8325,7 @@ msgstr ""
 msgid "Write error while recording. Disk full?\n"
 msgstr "خطأ اثناء التسجيل. القرص ممتلئ ؟ \n"
 
-
+#, python-format
 msgid ""
 "Write error while recording. Disk full?\n"
 "%s"
@@ -8338,7 +8394,14 @@ msgstr "مشاهده الشرح"
 msgid "Yesterday"
 msgstr ""
 
+#, python-format
+msgid ""
+"You already have a bootlogo installed,\n"
+"would you like to remove\n"
+"\"%s\"?"
+msgstr ""
 
+#, python-format
 msgid ""
 "You already have a channel list installed,\n"
 "would you like to remove\n"
@@ -8430,7 +8493,7 @@ msgstr ""
 msgid "You have selected no logs to send."
 msgstr ""
 
-
+#, python-format
 msgid "You have to wait %s!"
 msgstr "يجب أن تنتظر %s !"
 
@@ -8489,13 +8552,29 @@ msgstr "يتم الان إغلاق الدريم بوكس. من فضلك كن م�
 msgid "Your STB_BOX isn't connected to the internet properly. Please check it and try again."
 msgstr "الدريم بوكس غير متصل بالانترنت بشكل صحيح. من فضلكأفحصه وحاول مره ثانيه."
 
+msgid ""
+"Your STB_BOX will be restarted after the installation of service\n"
+"Do you want to install now ?"
+msgstr ""
+
+msgid ""
+"Your STB_BOX will be restarted after the installation of service.\n"
+"\n"
+"Do you want to install now ?"
+msgstr ""
+
+msgid ""
+"Your STB_BOX will be restarted after the removal of service\n"
+"Do you want to remove now ?"
+msgstr ""
+
 msgid "Your backup succeeded. We will now continue to explain the further upgrade process."
 msgstr "نجاح عمل نسخه إحتياطيه . سوف نشرح لك طريقة الترقيه الان."
 
 msgid "Your collection exceeds the size of a single layer medium, you will need a blank dual layer DVD!"
 msgstr "هذه المجموعه تزيد عن حجم وسيط ذو طبقه واحده. أنت تحتاج الى دى فى دى ثنائى الطبقه خالى!"
 
-
+#, python-format
 msgid ""
 "Your config file is not well-formed:\n"
 "%s"
@@ -8720,12 +8799,12 @@ msgid "at end"
 msgstr ""
 
 #
-
+#, python-format
 msgid "audio track (%s) format"
 msgstr ""
 
 #
-
+#, python-format
 msgid "audio track (%s) language"
 msgstr ""
 
@@ -8762,7 +8841,7 @@ msgid "blue"
 msgstr "أزرق"
 
 #
-
+#, python-format
 msgid "burn audio track (%s)"
 msgstr ""
 
@@ -8837,7 +8916,7 @@ msgstr "لا يمكن حذفها"
 msgid "create directory"
 msgstr "إنشاء دليل"
 
-
+#, python-format
 msgid "currently installed image: %s"
 msgstr ""
 
@@ -9430,7 +9509,7 @@ msgid "scan for channels"
 msgstr ""
 
 #
-
+#, python-format
 msgid "scan in progress - %d%% done!"
 msgstr "بتم البحث الان %d %%"
 

@@ -129,7 +129,10 @@ class RecordTimerEntry(timer.TimerEntry, object):
 
 		self.log_entries = []
 		self.resetState()
-	
+
+	def __repr__(self):
+		return "RecordTimerEntry(name=%s, begin=%s, serviceref=%s, justplay=%s)" % (self.name, ctime(self.begin), self.service_ref, self.justplay)
+
 	def log(self, code, msg):
 		self.log_entries.append((int(time()), code, msg))
 		print "[TIMER]", msg
