@@ -62,6 +62,7 @@ class Harddisk:
 
 		self.max_idle_time = 0
 		self.idle_running = False
+		self.is_sleeping = False
 		self.timer = None
 
 		self.dev_path = ''
