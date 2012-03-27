@@ -21,7 +21,7 @@ class MessageBox(Screen):
 
 		self.msgBoxID = msgBoxID
 
-		if len(_(text)) < 55 and type == self.TYPE_YESNO:
+		if len(_(text)) < 50 and type == self.TYPE_YESNO:
 			Screen.setTitle(self, _(text))
 			self["text"] = Label("")
 		else:
