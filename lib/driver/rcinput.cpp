@@ -18,6 +18,8 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	struct input_event *ev = (struct input_event *)rccode;
 	if (ev->type!=EV_KEY)
 		return;
+		
+//	eDebug("%x %x %x", ev->value, ev->code, ev->type);
 
 	if (ev->type!=EV_KEY)
 		return;
@@ -86,6 +88,25 @@ void eRCDeviceInputDev::handleCode(long rccode)
 			return;
 		}
 	}
+
+#if KEY_TV_TO_KEY_VIDEO
+	if (ev->code == KEY_TV)
+	{
+		/* Venton HD1 rc has a no KEY_VIDEO key, which sends KEY_TV events. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_VIDEO;
+		
+	}
+#endif
+
+#if KEY_RECORD_TO_KEY_EPG
+	if (ev->code == KEY_RECORD)
+	{
+		/* Venton HD1 rc has a no KEY_RECORD key, which sends KEY_RECORD events. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_EPG;
+		
+	}
+#endif	
+	
 
 #if KEY_GUIDE_TO_KEY_EPG
 	if (ev->code == KEY_HELP)
