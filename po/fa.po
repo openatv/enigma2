@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-10 15:56+0000\n"
-"PO-Revision-Date: 2012-03-26 16:28+0100\n"
+"POT-Creation-Date: 2012-03-27 03:12+0100\n"
+"PO-Revision-Date: 2012-03-27 03:29+0100\n"
 "Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
 "Language-Team: Persian Professionals <persianpros@yahoo.com>\n"
 "Language: fa\n"
@@ -150,26 +150,10 @@ msgstr ""
 msgid " and"
 msgstr ""
 
-msgid " extensions."
-msgstr "بسته ها"
-
 msgid ""
 " has been sent to the ViX beta team.\n"
 "please quote "
 msgstr ""
-
-msgid " ms"
-msgstr "میلی ثانیه"
-
-msgid " packages selected."
-msgstr "بسته های انتخاب شده"
-
-#
-msgid " updates available."
-msgstr "به روز رسانی های در دسترس"
-
-msgid " wireless networks found!"
-msgstr "شبکه بدون سیم یافت شد"
 
 msgid "\"channel scan\" searches for channels and saves them to the receiver; \"save to XML file\" does a transponder search and saves found transponders to an XML file in satellites.xml format"
 msgstr ""
@@ -210,12 +194,47 @@ msgstr "#ffffff"
 msgid "#ffffffff"
 msgstr "#ffffffff"
 
+#. TRANSLATORS: short time representation hour:minute
+#, python-format
+msgid "%2d:%02d"
+msgstr ""
+
+#. TRANSLATORS: full time representation hour:minute:seconds
+#, python-format
+msgid "%2d:%02d:%02d"
+msgstr ""
+
+#. TRANSLATORS: long date representations dayname daynum monthname in strftime() format! See 'man strftime'
+msgid "%A %e %B"
+msgstr ""
+
+#. TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
+msgid "%A %e %B %Y"
+msgstr ""
+
 msgid "%H:%M"
 msgstr "%ساعت:%دقیقه"
+
+#. TRANSLATORS: full date representations sort dayname daynum monthname long year in strftime() format! See 'man strftime'
+msgid "%a %e %B %Y"
+msgstr ""
+
+#. TRANSLATORS: short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'
+msgid "%a %e/%m"
+msgstr ""
+
+#. TRANSLATORS: long date representation short dayname daynum short monthname hour:minute in strftime() format! See 'man strftime'
+msgid "%a %e/%m  %-H:%M"
+msgstr ""
 
 #, python-format
 msgid "%d / 100"
 msgstr ""
+
+#, python-format
+msgid "%d Min"
+msgid_plural "%d Mins"
+msgstr[0] ""
 
 #, python-format
 msgid "%d hour"
@@ -250,6 +269,10 @@ msgstr "%d کانال یافت شد"
 
 msgid "%d.%B %Y"
 msgstr "%d.%B %Y"
+
+#. TRANSLATORS: VFD hour:minute daynum short monthname in strftime() format! See 'man strftime'
+msgid "%k:%M %e/%m"
+msgstr ""
 
 #, python-format
 msgid "%s (%s)\n"
@@ -764,6 +787,9 @@ msgstr ""
 msgid "Allows you to prefer the special hearing impaired subtitles over normal subtitles."
 msgstr ""
 
+msgid "Allows you to send a copy of the log to yourself."
+msgstr ""
+
 msgid "Allows you to set audio language 1"
 msgstr ""
 
@@ -824,6 +850,9 @@ msgstr ""
 msgid "Allows you to show/hide CCcam in extensions (blue button)."
 msgstr ""
 
+msgid "Allows you to show/hide Log Manager in extensions (blue button)."
+msgstr ""
+
 msgid "Allows you to show/hide OScam in extensions (blue button)."
 msgstr ""
 
@@ -871,9 +900,6 @@ msgid "Anonymize crashlog?"
 msgstr "ناشناس کردن گزارش خطای دستگاه ؟"
 
 msgid "Any activity"
-msgstr ""
-
-msgid "April"
 msgstr ""
 
 msgid "Arabic"
@@ -968,9 +994,6 @@ msgid "Audio language selection 3"
 msgstr ""
 
 msgid "Audio language selection 4"
-msgstr ""
-
-msgid "August"
 msgstr ""
 
 msgid "Author: "
@@ -1265,6 +1288,9 @@ msgstr ""
 
 msgid "Cancel"
 msgstr "انصراف"
+
+msgid "Cannot delete file"
+msgstr ""
 
 msgid "Cannot move to trash can"
 msgstr ""
@@ -1823,9 +1849,6 @@ msgstr ""
 msgid "Debug Logs"
 msgstr ""
 
-msgid "December"
-msgstr ""
-
 msgid "Decide if you want to enable or disable the Cleanup Wizard."
 msgstr "تصمیم بگیرید که آیا میخواهید هدایتگر پاک ساز فعال شود یا غیر فعال"
 
@@ -1846,6 +1869,9 @@ msgstr "تنظیمات پیش فرض"
 
 msgid "Default movie location"
 msgstr "محل پیش فرض فیلم"
+
+msgid "Defaults"
+msgstr ""
 
 msgid "Delay before key repeat starts:"
 msgstr ""
@@ -2413,6 +2439,12 @@ msgstr "رمز کانال را وارد کنید"
 msgid "Enter your email address so that we can contact you if needed."
 msgstr "ایمیل خود را وارد کنید تا بتوانیم در هنگام نیاز با شما تماس بگیریم"
 
+msgid "Enter your email address to send a copy of the log to."
+msgstr ""
+
+msgid "Enter your forum user name, to make it easier trace logs."
+msgstr ""
+
 msgid "Enter your input data"
 msgstr ""
 
@@ -2630,9 +2662,6 @@ msgstr "epoch سریع"
 msgid "Favourites"
 msgstr "محبوب"
 
-msgid "February"
-msgstr ""
-
 msgid "File appears to be busy.\n"
 msgstr ""
 
@@ -2754,12 +2783,6 @@ msgstr ""
 #, python-format
 msgid "Frontprocessor version: %d"
 msgstr "نسخه پردازنده جلویی: %d"
-
-msgid "Ftp service Disabled."
-msgstr ""
-
-msgid "Ftp service Enabled."
-msgstr ""
 
 msgid "Ftpd service type: Vsftpd server"
 msgstr ""
@@ -3240,6 +3263,9 @@ msgstr "در حال نصب تنظیمات پیش فرض ، لطفا صبر کن�
 msgid "Installing package content... Please wait..."
 msgstr "نصب محتویات بسته ، لطفا صبر کنید"
 
+msgid "Installing service please wait..."
+msgstr ""
+
 msgid "Instant Record..."
 msgstr ""
 
@@ -3343,16 +3369,10 @@ msgstr "ایتالیایی"
 msgid "Items per Page "
 msgstr ""
 
-msgid "January"
-msgstr ""
-
 msgid "Job View"
 msgstr "نمای کار"
 
 msgid "Job task(s) are in progress!"
-msgstr ""
-
-msgid "July"
 msgstr ""
 
 msgid "Jump back 24 hours"
@@ -3368,9 +3388,6 @@ msgid "Jump to current time"
 msgstr ""
 
 msgid "Jump to prime time"
-msgstr ""
-
-msgid "June"
 msgstr ""
 
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
@@ -3607,6 +3624,9 @@ msgstr ""
 msgid "MA"
 msgstr ""
 
+msgid "MAC:"
+msgstr ""
+
 msgid "MB"
 msgstr ""
 
@@ -3674,9 +3694,6 @@ msgstr "ترانسپوندر دستی"
 msgid "Manufacturer"
 msgstr "تولید کننده"
 
-msgid "March"
-msgstr ""
-
 msgid "Margin after record"
 msgstr ""
 
@@ -3707,9 +3724,6 @@ msgstr ""
 msgid "Maximum space used (MB):"
 msgstr ""
 
-msgid "May"
-msgstr ""
-
 msgid "Media playback Remaining/Elapsed as"
 msgstr ""
 
@@ -3726,6 +3740,9 @@ msgid "Medium is not empty!"
 msgstr "رسانه خالی نیست"
 
 msgid "Memory"
+msgstr ""
+
+msgid "Memory Information"
 msgstr ""
 
 msgid "Menu"
@@ -3908,6 +3925,9 @@ msgstr "فضای نام"
 msgid "Netmask"
 msgstr "Netmask"
 
+msgid "Netmask:"
+msgstr ""
+
 msgid "Network"
 msgstr "شبکه"
 
@@ -3915,6 +3935,9 @@ msgid "Network Configuration..."
 msgstr "پیکربندی شبکه"
 
 msgid "Network ID"
+msgstr ""
+
+msgid "Network Information"
 msgstr ""
 
 msgid "Network Mounts"
@@ -4190,11 +4213,14 @@ msgstr ""
 msgid "Nothing to upgrade"
 msgstr ""
 
-msgid "November"
-msgstr ""
-
 msgid "Now Playing"
 msgstr "در حال پخش"
+
+msgid "Now installing service, please wait..."
+msgstr ""
+
+msgid "Now removing service, please wait..."
+msgstr ""
 
 msgid "Now, use the contrast setting to turn up the brightness of the background as much as possible, but make sure that you can still see the difference between the two brightest levels of shades.If you have done that, press OK."
 msgstr ""
@@ -4252,9 +4278,6 @@ msgid "OSD visibility"
 msgstr "OSD پدیداری"
 
 msgid "OScam Info"
-msgstr ""
-
-msgid "October"
 msgstr ""
 
 msgid "Off"
@@ -4846,9 +4869,6 @@ msgstr ""
 msgid "Profile: Local box"
 msgstr ""
 
-msgid "Programme Guide"
-msgstr ""
-
 msgid "Progress"
 msgstr ""
 
@@ -4925,6 +4945,14 @@ msgid "Reader"
 msgstr ""
 
 msgid "Reader Statistics"
+msgstr ""
+
+#, python-format
+msgid "Ready to install \"%s\" ?"
+msgstr ""
+
+#, python-format
+msgid "Ready to remove \"%s\" ?"
 msgstr ""
 
 msgid "Really close without saving settings?"
@@ -5044,9 +5072,6 @@ msgstr ""
 msgid "Remember service PIN"
 msgstr "به یاد داشتن رمز کانال"
 
-msgid "Remember service PIN cancel"
-msgstr "لغو به یاد داشتن رمز کانال"
-
 msgid "Remember these settings for each folder"
 msgstr ""
 
@@ -5067,6 +5092,9 @@ msgstr "حذف علامت"
 
 msgid "Remove Plugins"
 msgstr "حذف پلاگین ها"
+
+msgid "Remove Service"
+msgstr ""
 
 msgid "Remove a mark"
 msgstr "حذف علامت"
@@ -5102,6 +5130,9 @@ msgstr "در حال حذف کردن"
 #, python-format
 msgid "Removing directory %s failed. (Maybe not empty.)"
 msgstr "حذف پوشه %s ناموفق بود (شاید پوشه خالی نیست)"
+
+msgid "Removing service please wait..."
+msgstr ""
 
 msgid "Rename"
 msgstr "تغییر نام"
@@ -5613,9 +5644,6 @@ msgstr ""
 msgid "Seperate titles with a main menu"
 msgstr "جدا کردن عناوین با یک منوی اصلی"
 
-msgid "September"
-msgstr ""
-
 msgid "Sequence repeat"
 msgstr "تکرار دنباله"
 
@@ -6010,6 +6038,9 @@ msgstr "نمایش پخش کننده رادیو"
 
 msgid "Show the tv player..."
 msgstr "نمایش پخش کننده تلوزیون"
+
+msgid "Show time elapsed as positive"
+msgstr ""
 
 msgid "Show time remaining/elapsed"
 msgstr ""
@@ -6432,9 +6463,6 @@ msgstr ""
 msgid "System"
 msgstr "سیستم"
 
-msgid "System Information"
-msgstr ""
-
 msgid "System: "
 msgstr ""
 
@@ -6474,12 +6502,6 @@ msgstr ""
 msgid "Telnet Setup"
 msgstr ""
 
-msgid "Telnet service Disabled."
-msgstr ""
-
-msgid "Telnet service Enabled."
-msgstr ""
-
 msgid "Temperature and Fan control"
 msgstr "کنترل دما و فن"
 
@@ -6511,6 +6533,9 @@ msgid "Text font size"
 msgstr ""
 
 msgid "Text support"
+msgstr ""
+
+msgid "Thai"
 msgstr ""
 
 msgid ""
@@ -6769,6 +6794,9 @@ msgstr ""
 
 msgid "This is step number 2."
 msgstr "این مرحله دوم است"
+
+msgid "This option allows you choose how to display elasped time  as + or -"
+msgstr ""
 
 msgid "This option allows you choose how to display remaining time, or elapsed time, or both."
 msgstr ""
@@ -7855,6 +7883,13 @@ msgstr ""
 
 #, python-format
 msgid ""
+"You already have a bootlogo installed,\n"
+"would you like to remove\n"
+"\"%s\"?"
+msgstr ""
+
+#, python-format
+msgid ""
 "You already have a channel list installed,\n"
 "would you like to remove\n"
 "\"%s\"?"
@@ -8003,6 +8038,22 @@ msgstr ""
 
 msgid "Your STB_BOX isn't connected to the internet properly. Please check it and try again."
 msgstr "دستگاه شما به اینترنت متصل نیست ، لطفا بررسی و دوباره سعی کنید"
+
+msgid ""
+"Your STB_BOX will be restarted after the installation of service\n"
+"Do you want to install now ?"
+msgstr ""
+
+msgid ""
+"Your STB_BOX will be restarted after the installation of service.\n"
+"\n"
+"Do you want to install now ?"
+msgstr ""
+
+msgid ""
+"Your STB_BOX will be restarted after the removal of service\n"
+"Do you want to remove now ?"
+msgstr ""
 
 msgid "Your backup succeeded. We will now continue to explain the further upgrade process."
 msgstr ""
@@ -8471,6 +8522,9 @@ msgstr "خروج از لیست رابط شبکه "
 msgid "exit networkadapter setup menu"
 msgstr "خروج از منوی تنظیمات آداپتور شبکه"
 
+msgid "extensions."
+msgstr ""
+
 msgid "failed"
 msgstr ""
 
@@ -8655,6 +8709,9 @@ msgstr "حرکت کردن به مورد قبلی"
 msgid "movie list"
 msgstr "لیست فیلم"
 
+msgid "ms"
+msgstr ""
+
 msgid "multinorm"
 msgstr ""
 
@@ -8754,6 +8811,9 @@ msgid "open servicelist(up)"
 msgstr "باز کردن لیست کانال - بالا"
 
 msgid "original"
+msgstr ""
+
+msgid "packages selected."
 msgstr ""
 
 msgid "page left"
@@ -9167,6 +9227,9 @@ msgstr ""
 msgid "up to 3 degrees"
 msgstr ""
 
+msgid "updates available."
+msgstr ""
+
 msgid "user defined"
 msgstr "تعریف شده توسط کاربر"
 
@@ -9212,6 +9275,9 @@ msgstr ""
 
 msgid "wireless network interface"
 msgstr "رابط شبکه بدون سیم"
+
+msgid "wireless networks found!"
+msgstr ""
 
 msgid "with exit button"
 msgstr ""
