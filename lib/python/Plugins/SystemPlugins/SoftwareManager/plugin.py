@@ -214,18 +214,12 @@ class UpdatePluginMenu(Screen):
 		iSoftwareTools.cleanupSoftwareTools()
 
 	def getUpdateInfos(self):
-		self.text = ""
-		if iSoftwareTools.NetworkConnectionAvailable == True:
-			if iSoftwareTools.list_updating is False:
-				if iSoftwareTools.available_updates is not 0:
-					self.text = _("There are at least ") + str(iSoftwareTools.available_updates) + _(" updates available.")
-				else:
-					self.text = "" #_("There are no updates available.")
+		if iSoftwareTools.NetworkConnectionAvailable is True:
+			if iSoftwareTools.available_updates is not 0:
+				self.text = _("There are at least ") + str(iSoftwareTools.available_updates) + ' ' + _("updates available.")
 			else:
-				if iSoftwareTools.available_updates is not 0:
-					self.text = _("There are at least ") + str(iSoftwareTools.available_updates) + _(" updates available.")
-				else:
-					self.text = ""  #_("There are no updates available.")
+				self.text = "" #_("There are no updates available.")
+			if iSoftwareTools.list_updating is True:
 				self.text += "\n" + _("A search for available updates is currently in progress.")
 		else:
 			self.text = _("No network connection available.")
@@ -683,7 +677,7 @@ class PluginManager(Screen, DreamInfoHandler):
 		if retval is not None:
 			if retval is True:
 				if iSoftwareTools.available_updates is not 0:
-					self["status"].setText(_("There are at least ") + str(iSoftwareTools.available_updates) + _(" updates available."))
+					self["status"].setText(_("There are at least ") + str(iSoftwareTools.available_updates) + ' ' + _("updates available."))
 				else:
 					self["status"].setText(_("There are no updates available."))
 				self.rebuildList()
@@ -727,9 +721,9 @@ class PluginManager(Screen, DreamInfoHandler):
 				self["key_yellow"].setText(_("View details"))
 				self["key_blue"].setText("")
 				if len(self.selectedFiles) == 0 and iSoftwareTools.available_updates is not 0:
-					self["status"].setText(_("There are at least ") + str(iSoftwareTools.available_updates) + _(" updates available."))
+					self["status"].setText(_("There are at least ") + str(iSoftwareTools.available_updates) + ' ' + _("updates available."))
 				elif len(self.selectedFiles) is not 0:
-					self["status"].setText(str(len(self.selectedFiles)) + _(" packages selected."))
+					self["status"].setText(str(len(self.selectedFiles)) + ' ' + _("packages selected."))
 				else:
 					self["status"].setText(_("There are currently no outstanding actions."))
 			elif self.currList == "category":
@@ -738,10 +732,10 @@ class PluginManager(Screen, DreamInfoHandler):
 				self["key_yellow"].setText("")
 				self["key_blue"].setText("")
 				if len(self.selectedFiles) == 0 and iSoftwareTools.available_updates is not 0:
-					self["status"].setText(_("There are at least ") + str(iSoftwareTools.available_updates) + _(" updates available."))
+					self["status"].setText(_("There are at least ") + str(iSoftwareTools.available_updates) + ' ' + _("updates available."))
 					self["key_yellow"].setText(_("Update"))
 				elif len(self.selectedFiles) is not 0:
-					self["status"].setText(str(len(self.selectedFiles)) + _(" packages selected."))
+					self["status"].setText(str(len(self.selectedFiles)) + ' ' + _("packages selected."))
 					self["key_yellow"].setText(_("Process"))
 				else:
 					self["status"].setText(_("There are currently no outstanding actions."))
@@ -931,7 +925,7 @@ class PluginManager(Screen, DreamInfoHandler):
 			elif tag == 'Communication':
 				return(( _("Communication"), _("View list of available communication extensions." ), tag, divpng ))
 			else: # dynamically generate non existent tags
-				return(( str(tag), _("View list of available ") + str(tag) + _(" extensions." ), tag, divpng ))
+				return(( str(tag), _("View list of available ") + str(tag) + ' ' + _("extensions." ), tag, divpng ))
 
 	def prepareInstall(self):
 		self.cmdList = []

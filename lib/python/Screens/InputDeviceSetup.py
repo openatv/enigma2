@@ -230,7 +230,7 @@ class InputDeviceSetup(Screen, ConfigListScreen):
 		if self["config"].getCurrent() == self.enableEntry:
 			self["introduction"].setText(_("Current device: ") + _(str(iInputDevices.getDeviceAttribute(self.inputDevice, 'name'))))
 		else:
-			self["introduction"].setText(_("Current value: ") + self.getCurrentValue() + _(" ms"))
+			self["introduction"].setText(_("Current value: ") + self.getCurrentValue() + ' ' + _("ms"))
 
 	def newConfig(self):
 		current = self["config"].getCurrent()
