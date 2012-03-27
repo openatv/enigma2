@@ -810,7 +810,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self["waitingtext"].hide()
 
 	def LivePlay(self):
-		if not self.playInBackground:
+		if not self.list.playInBackground:
 			if self.session.nav.getCurrentlyPlayingServiceReference():
 				if not self.session.nav.getCurrentlyPlayingServiceReference().toString().startswith('1:0:0:0:0:0:0:0:0:0'):
 					config.movielist.curentlyplayingservice.setValue(self.session.nav.getCurrentlyPlayingServiceReference().toString())
