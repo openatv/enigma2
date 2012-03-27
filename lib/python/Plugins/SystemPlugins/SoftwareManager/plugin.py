@@ -214,18 +214,12 @@ class UpdatePluginMenu(Screen):
 		iSoftwareTools.cleanupSoftwareTools()
 
 	def getUpdateInfos(self):
-		self.text = ""
-		if iSoftwareTools.NetworkConnectionAvailable == True:
-			if iSoftwareTools.list_updating is False:
-				if iSoftwareTools.available_updates is not 0:
-					self.text = _("There are at least ") + str(iSoftwareTools.available_updates) + _(" updates available.")
-				else:
-					self.text = "" #_("There are no updates available.")
+		if iSoftwareTools.NetworkConnectionAvailable is True:
+			if iSoftwareTools.available_updates is not 0:
+				self.text = _("There are at least ") + str(iSoftwareTools.available_updates) + _(" updates available.")
 			else:
-				if iSoftwareTools.available_updates is not 0:
-					self.text = _("There are at least ") + str(iSoftwareTools.available_updates) + _(" updates available.")
-				else:
-					self.text = ""  #_("There are no updates available.")
+				self.text = "" #_("There are no updates available.")
+			if iSoftwareTools.list_updating is True:
 				self.text += "\n" + _("A search for available updates is currently in progress.")
 		else:
 			self.text = _("No network connection available.")
