@@ -14,7 +14,7 @@ class ChoiceBox(Screen):
 		self.skinName = skin_name + ["ChoiceBox"]
 		if title:
 			title = _(title)
-		if len(title) < 55:
+		if len(title) < 50:
 			Screen.setTitle(self, title)
 			self["text"] = Label("")
 		else:
