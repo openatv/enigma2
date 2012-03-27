@@ -4,7 +4,7 @@ from Components.ActionMap import ActionMap, NumberActionMap, HelpableActionMap
 from Components.Button import Button
 from Components.config import config, configfile, ConfigClock, getConfigListEntry
 from Components.ConfigList import ConfigListScreen
-from Components.EpgList import EPGList, TimelineText, EPG_TYPE_SINGLE, EPG_TYPE_SIMILAR, EPG_TYPE_MULTI, EPG_TYPE_ENHANCED, EPG_TYPE_INFOBAR, EPG_TYPE_GRAPH, MAX_TIMELINES, days, dayslong
+from Components.EpgList import EPGList, TimelineText, EPG_TYPE_SINGLE, EPG_TYPE_SIMILAR, EPG_TYPE_MULTI, EPG_TYPE_ENHANCED, EPG_TYPE_INFOBAR, EPG_TYPE_GRAPH, MAX_TIMELINES
 from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Components.Sources.ServiceEvent import ServiceEvent
@@ -22,7 +22,7 @@ from enigma import eServiceReference, eTimer, eServiceCenter
 from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT
 from TimerEntry import TimerEntry
 from ServiceReference import ServiceReference
-from time import time, localtime, mktime
+from time import localtime, time, strftime, mktime
 
 mepg_config_initialized = False
 
@@ -1205,7 +1205,7 @@ class EPGSelection(Screen, HelpableScreen):
 				nowTime = localtime(now)
 				begTime = localtime(beg)
 				if nowTime[2] != begTime[2]:
-						datestr = '%s'%(_(dayslong[begTime[6]]))
+						datestr = strftime(_("%A %e %b"), begTime)
 				else:
 						datestr = '%s'%(_("Today"))
 			self["date"].setText(datestr)
