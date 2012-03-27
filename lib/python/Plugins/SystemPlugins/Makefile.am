@@ -46,7 +46,7 @@ SUBDIRS += GBVFD SatelliteEquipmentControl DiseqcTester FastScan HdmiCEC
 endif
 
 if INIHD
-SUBDIRS += SatelliteEquipmentControl DiseqcTester FastScan
+SUBDIRS += SatelliteEquipmentControl DiseqcTester FastScan HdmiCEC 
 endif
 
 install_PYTHON =	\
