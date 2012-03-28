@@ -150,7 +150,6 @@ def openconfig(session, **kwargs):
 def selSetup(menuid, **kwargs):
 	if menuid != "system":
 		return [ ]
-
 	return [(_("Fan Control"), openconfig, "fansetup_config", 70)]
 
 def setfansetup(reason, **kwargs):
@@ -169,5 +168,8 @@ def setfansetup(reason, **kwargs):
 		print 'Error to set fan control'
 
 def Plugins(**kwargs):
-	return [PluginDescriptor(name = "Fan Control", description = "check Fan Control settings", where = PluginDescriptor.WHERE_AUTOSTART, fnc = setfansetup),
-	PluginDescriptor(name=_("Fan Control"), description="Fan Control", where = PluginDescriptor.WHERE_MENU, fnc=selSetup)]
+	from os import path
+	if not path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/FanControl2/plugin.pyo"):
+		return [PluginDescriptor(name=_("Fan Control"), description="check Fan Control settings", where = PluginDescriptor.WHERE_AUTOSTART, needsRestart = True, fnc=setfansetup),
+				PluginDescriptor(name=_("Fan Control"), description=_("Fan Control"), where = PluginDescriptor.WHERE_MENU, needsRestart = True, fnc=selSetup)]
+	return []
