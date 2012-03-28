@@ -1,8 +1,9 @@
 from Components.Converter.Converter import Converter
 from enigma import iServiceInformation, iPlayableService
 from Components.Element import cached
+from Poll import Poll 
 
-class ServiceInfo(Converter, object):
+class ServiceInfo(Poll,Converter, object):
 	HAS_TELETEXT = 0
 	IS_MULTICHANNEL = 1
 	IS_CRYPTED = 2
@@ -26,14 +27,18 @@ class ServiceInfo(Converter, object):
 
 	def __init__(self, type):
 		Converter.__init__(self, type)
+		Poll.__init__(self)
+		self.poll_interval = 2*1000
+		self.poll_enabled = True 
+		
 		self.type, self.interesting_events = {
 				"HasTelext": (self.HAS_TELETEXT, (iPlayableService.evUpdatedInfo,)),
 				"IsMultichannel": (self.IS_MULTICHANNEL, (iPlayableService.evUpdatedInfo,)),
 				"IsCrypted": (self.IS_CRYPTED, (iPlayableService.evUpdatedInfo,)),
-				"IsWidescreen": (self.IS_WIDESCREEN, (iPlayableService.evVideoSizeChanged,)),
+				"IsWidescreen": (self.IS_WIDESCREEN, (iPlayableService.evUpdatedInfo,)),
 				"SubservicesAvailable": (self.SUBSERVICES_AVAILABLE, (iPlayableService.evUpdatedEventInfo,)),
-				"VideoWidth": (self.XRES, (iPlayableService.evVideoSizeChanged,)),
-				"VideoHeight": (self.YRES, (iPlayableService.evVideoSizeChanged,)),
+				"VideoWidth": (self.XRES, (iPlayableService.evUpdatedInfo,)),
+				"VideoHeight": (self.YRES, (iPlayableService.evUpdatedInfo,)),
 				"AudioPid": (self.APID, (iPlayableService.evUpdatedInfo,)),
 				"VideoPid": (self.VPID, (iPlayableService.evUpdatedInfo,)),
 				"PcrPid": (self.PCRPID, (iPlayableService.evUpdatedInfo,)),
@@ -83,7 +88,7 @@ class ServiceInfo(Converter, object):
 		elif self.type == self.IS_CRYPTED:
 			return info.getInfo(iServiceInformation.sIsCrypted) == 1
 		elif self.type == self.IS_WIDESCREEN:
-			return info.getInfo(iServiceInformation.sAspect) in (3, 4, 7, 8, 0xB, 0xC, 0xF, 0x10)
+			return info.getInfo(iServiceInformation.sAspect) in (3, 4, 7, 8, 0xB, 0xC, 0xF, 0x10, 0x11)
 		elif self.type == self.SUBSERVICES_AVAILABLE:
 			subservices = service.subServices()
 			return subservices and subservices.getNumberOfSubservices() > 0

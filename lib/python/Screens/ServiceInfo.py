@@ -126,8 +126,8 @@ class ServiceInfo(Screen):
 			height = self.info and self.info.getInfo(iServiceInformation.sVideoHeight) or -1
 			if width != -1 and height != -1:
 				resolution = "%dx%d" % (width,height)
-				resolution += ("i", "p", "")[self.info.getInfo(iServiceInformation.sProgressive)]
-				resolution += str((self.info.getInfo(iServiceInformation.sFrameRate) + 500) / 1000)
+				#resolution += ("i", "p", "")[self.info.getInfo(iServiceInformation.sProgressive)]
+				#resolution += str((self.info.getInfo(iServiceInformation.sFrameRate) + 500) / 1000)
 			else:
 				resolution = "-"
 				aspect = "-"
