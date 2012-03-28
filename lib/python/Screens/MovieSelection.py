@@ -193,8 +193,8 @@ class MovieBrowserConfiguration(ConfigListScreen,Screen):
 		Screen.__init__(self, session)
 		self.session = session
 		self.skinName = "Setup"
- 		self.setup_title = _("Movie List Setup")
- 		Screen.setTitle(self, _(self.setup_title))
+		self.setup_title = _("Movie List Setup")
+		Screen.setTitle(self, _(self.setup_title))
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self["VKeyIcon"] = Boolean(False)
@@ -202,11 +202,11 @@ class MovieBrowserConfiguration(ConfigListScreen,Screen):
 		self["status"] = StaticText()
 
 		self.onChangedEntry = [ ]
- 		cfg = ConfigSubsection()
- 		self.cfg = cfg
- 		cfg.moviesort = ConfigSelection(default=str(config.movielist.moviesort.value), choices = l_moviesort)
- 		cfg.listtype = ConfigSelection(default=str(config.movielist.listtype.value), choices = l_listtype)
- 		cfg.description = ConfigYesNo(default=(config.movielist.description.value != MovieList.HIDE_DESCRIPTION))
+		cfg = ConfigSubsection()
+		self.cfg = cfg
+		cfg.moviesort = ConfigSelection(default=str(config.movielist.moviesort.value), choices = l_moviesort)
+		cfg.listtype = ConfigSelection(default=str(config.movielist.listtype.value), choices = l_listtype)
+		cfg.description = ConfigYesNo(default=(config.movielist.description.value != MovieList.HIDE_DESCRIPTION))
 		configList = []
 		configList.append(getConfigListEntry(_("Use slim screen"), config.movielist.useslim, _("Use the alternative screen")))
 		configList.append(getConfigListEntry(_("Sort"), cfg.moviesort, _("Set the default sorting method.")))
@@ -774,7 +774,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 	def updateButtons(self):
 		item = self.getCurrentSelection()
 		for name in ('red', 'green', 'yellow', 'blue'):
-		        action = userDefinedButtons[name].value
+			action = userDefinedButtons[name].value
 			if action.startswith('@'):
 				check = self.can_default
 			else:
@@ -808,12 +808,12 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			if config.movielist.show_live_tv_in_movielist.value:
 				self.LivePlayTimer.start(100)
 
- 	def hidewaitingtext(self):
+	def hidewaitingtext(self):
 		self.hidewaitingTimer.stop()
 		self["waitingtext"].hide()
 
 	def LivePlay(self):
-		if not self.playInBackground:
+		if not self.list.playInBackground:
 			if self.session.nav.getCurrentlyPlayingServiceReference():
 				if not self.session.nav.getCurrentlyPlayingServiceReference().toString().startswith('1:0:0:0:0:0:0:0:0:0'):
 					config.movielist.curentlyplayingservice.setValue(self.session.nav.getCurrentlyPlayingServiceReference().toString())
@@ -970,20 +970,20 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 					if self.playAsDVD(path):
 						return
 				if ext in IMAGE_EXTENSIONS:
-				        try:
-				                from Plugins.Extensions.PicturePlayer import ui
-				                # Build the list for the PicturePlayer UI
+					try:
+						from Plugins.Extensions.PicturePlayer import ui
+						# Build the list for the PicturePlayer UI
 						filelist = []
 						index = 0
 						for item in self.list.list:
 							p = item[0].getPath()
 							if p == path:
-							        index = len(filelist)
+								index = len(filelist)
 							if os.path.splitext(p)[1].lower() in IMAGE_EXTENSIONS:
-							        filelist.append(((p,False), None))
-				                self.session.open(ui.Pic_Full_View, filelist, index, path)
+								filelist.append(((p,False), None))
+								self.session.open(ui.Pic_Full_View, filelist, index, path)
 					except Exception, ex:
-					        print "[ML] Cannot display", str(ex)
+						print "[ML] Cannot display", str(ex)
 					return
 				self.movieSelected()
 
@@ -1117,8 +1117,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			config.movielist.last_videodir.save()
 			self.setCurrentRef(path)
 			self["freeDiskSpace"].path = path
- 			self["TrashcanSize"].update(path)
- 		else:
+			self["TrashcanSize"].update(path)
+		else:
 			self["TrashcanSize"].update(config.movielist.last_videodir.value)
 		if sel is None:
 			sel = self.getCurrent()
