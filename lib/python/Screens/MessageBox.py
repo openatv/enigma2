@@ -21,7 +21,7 @@ class MessageBox(Screen):
 
 		self.msgBoxID = msgBoxID
 
-		if len(_(text)) < 55 and type == self.TYPE_YESNO and title.find('\n') == -1:
+		if len(_(text)) < 55 and type == self.TYPE_YESNO and text.find('\n') == -1:
 			Screen.setTitle(self, _(text))
 			self["text"] = Label("")
 		else:
