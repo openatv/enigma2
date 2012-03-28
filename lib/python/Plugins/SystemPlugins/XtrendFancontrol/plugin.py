@@ -95,7 +95,7 @@ def startup(reason, **kwargs):
 
 def Plugins(**kwargs):
 	from os import path
-	if not path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/FanControl2/plugin.pyo") and path.exists("/proc/stb/fp/fan"):
+	if not path.exists("/usr/lib/enigma2/python/Plugins/Extensions/FanControl2/plugin.pyo") and path.exists("/proc/stb/fp/fan"):
 		from Plugins.Plugin import PluginDescriptor
 		return [PluginDescriptor(name = _("Fan Control"), description = _("switch Fan On/Off"), where = PluginDescriptor.WHERE_PLUGINMENU, fnc = main),
 				PluginDescriptor(name = "Fan Control", description = "", where = PluginDescriptor.WHERE_SESSIONSTART, fnc = startup)]

@@ -132,7 +132,7 @@ def selSetup(menuid, **kwargs):
 
 def Plugins(**kwargs):
 	from os import path
-	if not path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/FanControl2/plugin.pyo"):
+	if not path.exists("/usr/lib/enigma2/python/Plugins/Extensions/FanControl2/plugin.pyo"):
 		return [PluginDescriptor(name=_("Fan Control"), description=_("setup Fancontol inStandby mode"), where = PluginDescriptor.WHERE_PLUGINMENU, needsRestart = True, fnc=main),
 				PluginDescriptor(name=_("Fan Control"), description=_("setup Fancontol inStandby mode"), where = PluginDescriptor.WHERE_MENU, needsRestart = True, fnc=selSetup)]
 	return []
