@@ -45,7 +45,7 @@ if GIGABLUE
 SUBDIRS += GBVFD SatelliteEquipmentControl DiseqcTester FastScan HdmiCEC
 endif
 
-if INIHD
+if VENTON
 SUBDIRS += SatelliteEquipmentControl DiseqcTester FastScan HdmiCEC 
 endif
 
