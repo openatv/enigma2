@@ -13,6 +13,7 @@ from time import localtime, time, strftime
 from ServiceReference import ServiceReference
 from Tools.Directories import pathExists, resolveFilename, SCOPE_CURRENT_SKIN
 from os import listdir, path
+from locale import getlocale
 
 EPG_TYPE_SINGLE = 0
 EPG_TYPE_MULTI = 1
@@ -506,11 +507,15 @@ class EPGList(HTMLComponent, GUIComponent):
 		r2 = self.datetime_rect
 		r3 = self.descr_rect
 		t = localtime(beginTime)
+		if getlocale(2)[0] == 'de_DE':
+			datestring = strftime("%e.%m. ",t)
+		else: 
+			datestring = strftime("%e/%m, ",t)
 
 		res = [
 			None, # no private data needed
-			(eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, _(strftime("%a", localtime(beginTime)))),
-			(eListboxPythonMultiContent.TYPE_TEXT, r2.x, r2.y, r2.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, strftime("%e/%m, %-H:%M", localtime(beginTime)))
+			(eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, _(strftime("%a", t))),
+			(eListboxPythonMultiContent.TYPE_TEXT, r2.x, r2.y, r2.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, strftime(datestring + "%-H:%M", t))
 		]
 		if rec:
 			res.extend((
