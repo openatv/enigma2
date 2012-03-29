@@ -202,9 +202,11 @@ class PluginDownloadBrowser(Screen):
 			self.updateList()
 		else:
 			if self.type == self.DOWNLOAD:
-				self.session.openWithCallback(self.runInstall, MessageBox, _("Do you really want to download the plugin \"%s\"?") % sel.name)
+				mbox=self.session.openWithCallback(self.runInstall, MessageBox, _("Do you really want to download the plugin \"%s\"?") % sel.name)
+				mbox.setTitle(_("Download plugins"))
 			elif self.type == self.REMOVE:
-				self.session.openWithCallback(self.runInstall, MessageBox, _("Do you really want to REMOVE the plugin \"%s\"?") % sel.name)
+				mbox=self.session.openWithCallback(self.runInstall, MessageBox, _("Do you really want to remove the plugin \"%s\"?") % sel.name)
+				mbox.setTitle(_("Remove plugins"))
 
 	def requestClose(self):
 		if self.plugins_changed:
@@ -370,7 +372,7 @@ class PluginDownloadBrowser(Screen):
 				self.updateList()
 				self["list"].instance.show()
 			else:
-				self["text"].setText("No new plugins found")
+				self["text"].setText(_("Sorry feeds are down for maintenance"))
 
 	def dataAvail(self, str):
 		#prepend any remaining data from the previous call
