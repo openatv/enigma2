@@ -1170,12 +1170,13 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				else:
 					self.reloadList(home = True, sel = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + currentDir))
 			else:
-				self.session.open(
+				mbox=self.session.open(
 					MessageBox,
 					_("Directory %s nonexistent.") % (res),
 					type = MessageBox.TYPE_ERROR,
 					timeout = 5
 					)
+				mbox.setTitle(self.getTitle())
 
 	def showAll(self):
 		self.selected_tags_ele = None
@@ -1221,7 +1222,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.session.openWithCallback(self.tagChosen, ChoiceBox, title=_("Please select tag to filter..."), list = lst)
 
 	def showTagWarning(self):
-		self.session.open(MessageBox, _("No tags are set on these movies."), MessageBox.TYPE_ERROR)
+		mbox=self.session.open(MessageBox, _("No tags are set on these movies."), MessageBox.TYPE_ERROR)
+		mbox.setTitle(self.getTitle())
 
 	def selectMovieLocation(self, title, callback):
 		bookmarks = [("("+_("Other")+"...)", None)]
@@ -1287,7 +1289,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		if path in config.movielist.videodirs.value:
 			if len(path) > 40:
 				path = '...' + path[-40:]
-			self.session.openWithCallback(self.removeBookmark, MessageBox, _("Do you really want to remove your bookmark of %s?") % path)
+			mbox=self.session.openWithCallback(self.removeBookmark, MessageBox, _("Do you really want to remove your bookmark of %s?") % path)
+			mbox.setTitle(self.getTitle())
 		else:
 			config.movielist.videodirs.value += [path]
 			config.movielist.videodirs.save()
@@ -1327,7 +1330,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			print "[ML] Unexpected error:", e
 			msg = _("Error") + '\n' + str(e)
 		if msg:
-			self.session.open(MessageBox, msg, type = MessageBox.TYPE_ERROR, timeout = 5)
+			mbox=self.session.open(MessageBox, msg, type = MessageBox.TYPE_ERROR, timeout = 5)
+			mbox.setTitle(self.getTitle())
 
 	def can_rename(self, item):
 		return canMove(item)
@@ -1405,7 +1409,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				traceback.print_exc()
 				msg = _("Error") + '\n' + str(e)
 			if msg:
-				self.session.open(MessageBox, msg, type = MessageBox.TYPE_ERROR, timeout = 5)
+				mbox=self.session.open(MessageBox, msg, type = MessageBox.TYPE_ERROR, timeout = 5)
+				mbox.setTitle(self.getTitle())
 
 	def do_reset(self):
 		current = self.getCurrent()
@@ -1471,7 +1476,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			moveServiceFiles(current, dest, name)
 			self["list"].removeService(current)
 		except Exception, e:
-			self.session.open(MessageBox, str(e), MessageBox.TYPE_ERROR)
+			mbox=self.session.open(MessageBox, str(e), MessageBox.TYPE_ERROR)
+			mbox.setTitle(self.getTitle())
 
 	def can_copy(self, item):
 		return canCopy(item)
@@ -1500,7 +1506,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				name = item[1].getName(current)
 			copyServiceFiles(current, dest, name)
 		except Exception, e:
-			self.session.open(MessageBox, str(e), MessageBox.TYPE_ERROR)
+			mbox=self.session.open(MessageBox, str(e), MessageBox.TYPE_ERROR)
+			mbox.setTitle(self.getTitle())
 
 	def stopTimer(self, timer):
 		if timer.isRunning():
@@ -1589,7 +1596,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 						files += 1
 			if files or subdirs:
 				folder_filename = os.path.split(os.path.split(name)[0])[1]
-				self.session.openWithCallback(self.delete, MessageBox, _("'%s' contains %d file(s) and %d sub-directories.\n") % (folder_filename,files,subdirs) + are_you_sure)
+				mbox=self.session.openWithCallback(self.delete, MessageBox, _("'%s' contains %d file(s) and %d sub-directories.\n") % (folder_filename,files,subdirs) + are_you_sure)
+				mbox.setTitle(self.getTitle())
 				return
 			else:
 				os.rmdir(cur_path)
@@ -1610,7 +1618,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				if time.time() - st.st_mtime < 5:
 					if not args:
 						are_you_sure = _("Do you really want to delete ?")
-						self.session.openWithCallback(self.delete, MessageBox, _("File appears to be busy.\n") + are_you_sure)
+						mbox=self.session.openWithCallback(self.delete, MessageBox, _("File appears to be busy.\n") + are_you_sure)
+						mbox.setTitle(self.getTitle())
 						return
 			if cur_path.find('.Trash') == -1 and config.usage.movielist_trashcan.value:
 				try:
@@ -1632,7 +1641,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				else:
 					are_you_sure = _("Do you really want to delete %s ?") % (name)
 				msg = ''
-			self.session.openWithCallback(self.deleteConfirmed, MessageBox, msg + are_you_sure)
+			mbox=self.session.openWithCallback(self.deleteConfirmed, MessageBox, msg + are_you_sure)
+			mbox.setTitle(self.getTitle())
 
 	def deleteConfirmed(self, confirmed):
 		if not confirmed:
@@ -1657,8 +1667,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			delResumePoint(current)
 			self.showActionFeedback(_("Deleted") + " " + name)
 		except Exception, ex:
-			self.session.open(MessageBox, _("Delete failed!") + "\n" + name + "\n" + str(ex), MessageBox.TYPE_ERROR)
-
+			mbox=self.session.open(MessageBox, _("Delete failed!") + "\n" + name + "\n" + str(ex), MessageBox.TYPE_ERROR)
+			mbox.setTitle(self.getTitle())
 
 	def purgeAll(self):
 		recordings = self.session.nav.getRecordings()
@@ -1669,7 +1679,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			msg = "\n" + _("Recording(s) are in progress or coming up in few seconds!")
 		else:
 			msg = ""
-		self.session.openWithCallback(self.purgeConfirmed, MessageBox, _("Permanently delete all recordings in the trash can?") + msg)
+		mbox=self.session.openWithCallback(self.purgeConfirmed, MessageBox, _("Permanently delete all recordings in the trash can?") + msg)
+		mbox.setTitle(self.getTitle())
 
 	def purgeConfirmed(self, confirmed):
 		if not confirmed:
