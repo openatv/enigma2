@@ -222,6 +222,7 @@ class MovieBrowserConfiguration(ConfigListScreen,Screen):
 		configList.append(getConfigListEntry(_("Show live tv when movie stoped"), config.movielist.show_live_tv_in_movielist, _("When set the PIG will return to live after a movie has stopped playing.")))
 		for btn in ('red', 'green', 'yellow', 'blue', 'TV', 'Radio'):
 			configList.append(getConfigListEntry(_("Button") + " " + _(btn), userDefinedButtons[btn], _("Allows you setup the button to do what you choose.")))
+		configList.append(getConfigListEntry(_("Move to trash"), config.usage.movielist_trashcan, _("Delete or move to the Trash.")))
 		ConfigListScreen.__init__(self, configList, session = self.session, on_change = self.changedEntry)
 		self["config"].setList(configList)
 		if config.usage.sort_settings.value:
@@ -1616,19 +1617,9 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 						self.session.openWithCallback(self.delete, MessageBox, _("File appears to be busy.\n") + are_you_sure)
 						return
 			if cur_path.find('.Trash') == -1 and config.usage.movielist_trashcan.value:
-				try:
-					trash = Tools.Trashcan.createTrashFolder(cur_path)
-					moveServiceFiles(current, trash, name, allowCopy=True)
-					self["list"].removeService(current)
-					# Files were moved to .Trash, ok.
-					from Screens.InfoBarGenerics import delResumePoint
-					delResumePoint(current)
-					self.showActionFeedback(_("Deleted") + " " + name)
-					return
-				except Exception, e:
-					print "[MovieSelection] Weird error moving to trash", e
-					# Failed to create trash or move files.
-					msg = _("Cannot move to trash can") + "\n" + str(e) + "\n"
+				are_you_sure = _("Do you really want to delete %s?") % (name)
+				self.session.openWithCallback(self.moveToTrashConfirmed, MessageBox, are_you_sure)
+				return
 			else:
 				if cur_path.find('.Trash') != -1:
 					are_you_sure = _("Do you really want to permamently remove '%s' from trash can ?") % (name)
@@ -1636,6 +1627,28 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 					are_you_sure = _("Do you really want to delete %s?") % (name)
 				msg = ''
 			self.session.openWithCallback(self.deleteConfirmed, MessageBox, msg + are_you_sure)
+
+	def moveToTrashConfirmed(self, confirmed):
+		if not confirmed:
+			return
+		item = self.getCurrentSelection()
+		current = item[0]
+		info = item[1]
+		try:
+			cur_path = os.path.realpath(current.getPath())
+			trash = Tools.Trashcan.createTrashFolder(cur_path)
+			name = info and info.getName(current) or _("this recording")
+			moveServiceFiles(current, trash, name, allowCopy=True)
+			self["list"].removeService(current)
+			# Files were moved to .Trash, ok.
+			from Screens.InfoBarGenerics import delResumePoint
+			delResumePoint(current)
+			self.showActionFeedback(_("Deleted") + " " + name)
+
+		except Exception, e:
+			print "[MovieSelection] Weird error moving to trash", e
+			# Failed to create trash or move files.
+			msg = _("Cannot move to trash can") + "\n" + str(e) + "\n"
 
 	def deleteConfirmed(self, confirmed):
 		if not confirmed:
