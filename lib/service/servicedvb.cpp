@@ -1748,13 +1748,45 @@ int eDVBServicePlay::getInfo(int w)
 	switch (w)
 	{
 	case sVideoHeight:
+	{
+		int videoHeight = -1;
 		if (m_decoder)
-			return m_decoder->getVideoHeight();
+		{
+			videoHeight = m_decoder->getVideoHeight();
+			if (videoHeight = -1)
+			{
+				FILE *f = fopen("/proc/stb/vmpeg/0/yres","r");
+				if (f)
+				{
+					fscanf(f, "%x", &videoHeight);
+					fclose(f);
+				}
+			}
+			return videoHeight;
+			//gb800 disable return m_decoder->getVideoHeight();
+		}
 		break;
+	}
 	case sVideoWidth:
+	{
+		int videoWidth = -1;
 		if (m_decoder)
-			return m_decoder->getVideoWidth();
+		{
+			videoWidth = m_decoder->getVideoWidth();
+			if (videoWidth = -1)
+			{
+				FILE *f = fopen("/proc/stb/vmpeg/0/xres","r");
+				if (f)
+				{
+					fscanf(f, "%x", &videoWidth);
+					fclose(f);
+				}
+			}
+			return videoWidth;
+			//gb800 disable return m_decoder->getVideoWidth();
+		}
 		break;
+	}
 	case sFrameRate:
 		if (m_decoder)
 			return m_decoder->getVideoFrameRate();
@@ -1801,14 +1833,31 @@ int eDVBServicePlay::getInfo(int w)
 							case 0xE:
 							case 0xF: // 16:9 HD NTSC
 							case 0x10: // > 16:9 HD PAL
-								return data->getComponentType();
+							//gb800 dirty hack return data->getComponentType();
+							;
 						}
 					}
 				}
 			}
 		}
 		else
+		{
+			//gb800
+			//return aspect;
+			if (aspect != -1)
+				return aspect;
+			//gb800
+		}
+		if (aspect == -1)
+		{
+			FILE *f = fopen("/proc/stb/vmpeg/0/aspect","r");
+			if (f)
+			{
+				fscanf(f, "%x", &aspect);
+				fclose(f);
+			}
 			return aspect;
+		}
 		break;
 	}
 	case sIsCrypted: if (no_program_info) return -1; return program.isCrypted();
