@@ -16,7 +16,7 @@ try:
 			boxtype = splitted[1].replace('\n','') # 0 = release, 1 = experimental
 except:
 	boxtype="not detected"
-if boxtype == 'gb800se' or boxtype == 'gb800solo':
+if boxtype == 'gb800se' or boxtype == 'gb800solo' or boxtype == 'gb800ue':
 	from enigma import eTimer, evfd
 	from time import localtime, time
 	from os import system 	
@@ -62,7 +62,7 @@ class Standby(Screen):
 		Screen.__init__(self, session)
 		self.avswitch = AVSwitch()
 
-		if boxtype == 'gb800se' or boxtype == 'gb800solo':	
+		if boxtype == 'gb800se' or boxtype == 'gb800solo' or boxtype == 'gb800ue':	
 			self.forled = readled() 
 			if self.forled[0] == 'True':
 				self.ledenable = 1
@@ -102,7 +102,7 @@ class Standby(Screen):
 		self.onFirstExecBegin.append(self.__onFirstExecBegin)
 		self.onClose.append(self.__onClose)
 		
-		if boxtype == 'gb800se' or boxtype == 'gb800solo':
+		if boxtype == 'gb800se' or boxtype == 'gb800solo' or boxtype == 'gb800ue':
 			self.sign = 0
 			self.zaPrik = eTimer()
 			self.zaPrik.timeout.get().append(self.vrime)
@@ -117,7 +117,7 @@ class Standby(Screen):
 			self.paused_service.unPauseService()
 		self.session.screen["Standby"].boolean = False
 		globalActionMap.setEnabled(True)
-		if boxtype == 'gb800se' or boxtype == 'gb800solo':
+		if boxtype == 'gb800se' or boxtype == 'gb800solo' or boxtype == 'gb800ue':
 			try:
 				open("/proc/stb/fp/rtc", "w").write(str(0))
 			except IOError:
@@ -215,7 +215,7 @@ class TryQuitMainloop(MessageBox):
 		reason = ""
 		next_rec_time = -1
 		
-		if boxtype == 'gb800se' or boxtype == 'gb800solo':
+		if boxtype == 'gb800se' or boxtype == 'gb800solo' or boxtype == 'gb800ue':
 			self.forled = readled()
 			if self.forled[0] == 'True':
 				self.ledenable = 1
@@ -229,7 +229,7 @@ class TryQuitMainloop(MessageBox):
 		if recordings or (next_rec_time > 0 and (next_rec_time - time()) < 360):
 			reason = _("Recording(s) are in progress or coming up in few seconds!") + '\n'
 			
-			if boxtype == 'gb800se' or boxtype == 'gb800solo':
+			if boxtype == 'gb800se' or boxtype == 'gb800solo' or boxtype == 'gb800ue':
 				if self.ledenable == 1:
 					evfd.getInstance().vfd_led(str(self.forled[3])) 
 			

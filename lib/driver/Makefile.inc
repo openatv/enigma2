@@ -31,7 +31,13 @@ driver_libenigma_driver_a_SOURCES += \
 	driver/rcsdl.h
 endif
 
-if GIGABLUE
+if GB800SE
+driver_libenigma_driver_a_SOURCES += \	
+	driver/vfd.cpp \
+	driver/vfd.h
+endif
+
+if GB800SOLO
 driver_libenigma_driver_a_SOURCES += \	
 	driver/vfd.cpp \
 	driver/vfd.h
