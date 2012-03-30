@@ -263,7 +263,7 @@ self.autoResize()
 		<widget name="config" position="10,30" size="420,220" />
 	</screen>
 	<!-- Default wizard -->
-	<screen name="DefaultWizard" position="0,0" size="720,576" title="Welcome..." flags="wfNoBorder" >
+	<screen name="DefaultWizard" position="fill" title="Welcome..." flags="wfNoBorder" >
 			<widget name="text" position="153,50" size="340,270" font="Regular;23" />
 			<widget source="list" render="Listbox" position="50,300" size="440,200" scrollbarMode="showOnDemand" >
 				<convert type="StringList" />
@@ -278,7 +278,7 @@ self.autoResize()
 			<widget name="arrowup" pixmap="skin_default/arrowup.png" position="-100,-100" zPosition="11" size="37,70" transparent="1" alphatest="on"/>
 			<widget name="arrowup2" pixmap="skin_default/arrowup.png" position="-100,-100" zPosition="11" size="37,70" transparent="1" alphatest="on"/>
 	</screen>
-	<screen name="DefaultSatLists" position="0,0" size="720,576" title="Welcome..." flags="wfNoBorder" >
+	<screen name="DefaultSatLists" position="fill" title="Welcome..." flags="wfNoBorder" >
 			<widget name="text" position="153,50" size="340,270" font="Regular;23" />
 			<widget source="list" render="Listbox" position="50,300" size="440,200" scrollbarMode="showOnDemand" >
 				<convert type="StringList" />
@@ -293,7 +293,7 @@ self.autoResize()
 			<widget name="arrowup" pixmap="skin_default/arrowup.png" position="-100,-100" zPosition="11" size="37,70" transparent="1" alphatest="on"/>
 			<widget name="arrowup2" pixmap="skin_default/arrowup.png" position="-100,-100" zPosition="11" size="37,70" transparent="1" alphatest="on"/>
 	</screen>
-	<screen name="DreamPackageWizard" position="0,0" size="720,576" title="Welcome..." flags="wfNoBorder" >
+	<screen name="DreamPackageWizard" position="fill" title="Welcome..." flags="wfNoBorder" >
 			<widget name="text" position="153,50" size="340,270" font="Regular;23" />
 			<widget source="list" render="Listbox" position="50,300" size="440,200" scrollbarMode="showOnDemand" >
 				<convert type="StringList" />
@@ -441,7 +441,7 @@ self.autoResize()
 		<widget name="wait" position="20,10" size="500,25" font="Regular;23" />
 	</screen>
 	<!-- Help menu -->
-	<screen name="HelpMenu" position="0,0" size="720,576" title="Menu" flags="wfNoBorder">
+	<screen name="HelpMenu" position="fill" title="Menu" flags="wfNoBorder">
 		<eLabel text="help..." position="280,40" size="220,60" font="Regular;40" halign="right" />
 		<widget name="list" position="50,100" size="450,380" scrollbarMode="showOnDemand" />
 		<widget name="rc" pixmaps="skin_default/rc.png,skin_default/rcold.png" position="540,10" zPosition="10" size="154,500" alphatest="on" />
@@ -477,7 +477,7 @@ self.autoResize()
 			</convert>
 		</widget>
 	</screen>
-	<screen name="LanguageWizard" position="0,0" size="720,576" title="Welcome..." flags="wfNoBorder">
+	<screen name="LanguageWizard" position="fill" title="Welcome..." flags="wfNoBorder">
 		<widget name="text" position="153,50" size="340,240" font="Regular;23" />
 		<widget source="languages" render="Listbox" position="50,300" size="440,200" scrollbarMode="showOnDemand">
 			<convert type="TemplatedMultiContent">
@@ -868,7 +868,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget name="subpages_9" position="35,250" size="36,20" alphatest="on" />
 	</screen>
 	<!-- RDS info -->
-	<screen name="RdsInfoDisplay" position="0,0" zPosition="-2" size="720,576" backgroundColor="transparent" flags="wfNoBorder">
+	<screen name="RdsInfoDisplay" position="fill" zPosition="-2" backgroundColor="transparent" flags="wfNoBorder">
 		<widget name="RadioText" position="50,481" size="620,29" font="Regular;21" noWrap="1" backgroundColor="#003258" shadowOffset="-2,-2" shadowColor="transpBlack" />
 		<widget name="RtpText" position="50,510" size="620,29" font="Regular;21" halign="right" noWrap="1" backgroundColor="#003258" shadowOffset="-2,-2" shadowColor="transpBlack" />
 		<widget name="RassLogo" pixmap="skin_default/icons/rass_logo.png" position="50,445" size="50,21" />
@@ -918,7 +918,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget name="footer" position="10,310" size="400,20" font="Regular;20" halign="center" />
 	</screen>
 	<!-- Scart -->
-	<screen name="Scart" position="0,0" size="720,576" backgroundColor="transparent" />
+	<screen name="Scart" position="fill" backgroundColor="transparent" />
 	<!-- Service info -->
 	<screen name="ServiceInfo" position="center,center" size="560,430" title="Serviceinfo">
 		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
@@ -1002,9 +1002,9 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<ePixmap pixmap="skin_default/sleeptimer.png" position="390,17" size="90,125" alphatest="on" />
 	</screen>
 	<!-- Standby mode -->
-	<screen name="Standby" flags="wfNoBorder" position="0,0" size="720,576" title="Standby" />
+	<screen name="Standby" flags="wfNoBorder" position="fill" title="Standby" />
 	<!-- Start Wizard -->
-	<screen name="StartWizard" position="0,0" size="720,576" title="Welcome..." flags="wfNoBorder">
+	<screen name="StartWizard" position="fill" title="Welcome..." flags="wfNoBorder">
 		<widget name="text" position="153,50" size="340,270" font="Regular;23" />
 		<widget source="list" render="Listbox" position="50,300" size="440,200" scrollbarMode="showOnDemand" >
 			<convert type="StringList" />
@@ -1035,7 +1035,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget name="config" position="10,10" zPosition="1" size="360,275" scrollbarMode="showOnDemand" />
 	</screen>
 	<!-- Subtitle area -->
-	<screen name="SubtitleDisplay" position="0,0" size="720,576" zPosition="-1" flags="wfNoBorder" backgroundColor="transparent" />
+	<screen name="SubtitleDisplay" position="fill" zPosition="-1" flags="wfNoBorder" backgroundColor="transparent" />
 	<!-- TextBox -->
 	<screen name="TextBox" position="center,center" size="550,400" title="Message...">
 		<widget name="text" position="0,0" size="540,390" font="Regular;18" />
@@ -1125,7 +1125,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget source="TranslationInfo" render="Label" position="10,100" size="380,250" font="Regular;20" />
 	</screen>
 	<!-- Tutorial Wizard -->
-	<screen name="TutorialWizard" position="0,0" size="720,576" title="Welcome..." flags="wfNoBorder">
+	<screen name="TutorialWizard" position="fill" title="Welcome..." flags="wfNoBorder">
 		<widget name="text" position="50,100" size="440,200" font="Regular;23" />
 		<widget name="list" position="50,300" zPosition="1" size="440,200" />
 		<widget name="rc" pixmap="skin_default/rc.png" position="500,600" zPosition="10" size="154,475" alphatest="on"/>
