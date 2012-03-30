@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: ENIGMA 2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-03-24 23:40+0100\n"
-"PO-Revision-Date: 2012-03-18 17:43+0100\n"
+"PO-Revision-Date: 2012-03-30 16:03+0100\n"
 "Last-Translator: \n"
 "Language-Team: OldSkul from www.linux-sprejemniki.info\n"
 "Language: \n"
@@ -12,8 +12,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Language: Slovenian\n"
 "X-Poedit-Country: SLOVENIA\n"
-"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=2 && (n%100<10 "
-"|| n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=2 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+
+#
+msgid "Channel Selection TV"
+msgstr "Seznam TV kanalov"
 
 #
 msgid ""
@@ -130,82 +133,82 @@ msgstr ""
 "Poglejte, namestite in odstranite pakete, ki so nameščeni oz. so na voljo."
 
 msgid " (PiP)"
-msgstr ""
+msgstr " (PiP)"
 
 msgid " (Radio)"
-msgstr ""
+msgstr " (Radio)"
 
 msgid " (TV)"
-msgstr ""
+msgstr " (TV)"
 
 msgid " extensions."
-msgstr ""
+msgstr " razšititve."
 
 msgid " ms"
-msgstr ""
+msgstr " ms"
 
 msgid " packages selected."
-msgstr ""
+msgstr " izbranih paketov."
 
 msgid " updates available."
-msgstr ""
+msgstr " nadgradenj na voljo."
 
 msgid " wireless networks found!"
-msgstr ""
+msgstr " najdenih brezzičnih omrežij!"
 
 msgid "#000000"
-msgstr ""
+msgstr "#000000"
 
 msgid "#0064c7"
-msgstr ""
+msgstr "#0064c7"
 
 msgid "#25062748"
-msgstr ""
+msgstr "#25062748"
 
 msgid "#389416"
-msgstr ""
+msgstr "#389416"
 
 msgid "#80000000"
-msgstr ""
+msgstr "#80000000"
 
 msgid "#80ffffff"
-msgstr ""
+msgstr "#80ffffff"
 
 msgid "#bab329"
-msgstr ""
+msgstr "#bab329"
 
 msgid "#f23d21"
-msgstr ""
+msgstr "#f23d21"
 
 msgid "#ff0000"
-msgstr ""
+msgstr "#ff0000"
 
 msgid "#ffff7f"
-msgstr ""
+msgstr "#ffff7f"
 
 msgid "#ffffff"
-msgstr ""
+msgstr "#ffffff"
 
 msgid "#ffffffff"
-msgstr ""
+msgstr "#ffffffff"
 
 #. TRANSLATORS: short time representation hour:minute
 #, python-format
 msgid "%2d:%02d"
-msgstr ""
+msgstr "%2d:%02d"
 
 #. TRANSLATORS: full time representation hour:minute:seconds
 #, python-format
 msgid "%2d:%02d:%02d"
-msgstr ""
+msgstr "%2d:%02d:%02d"
 
 #. TRANSLATORS: long date representations dayname daynum monthname in strftime() format! See 'man strftime'
 msgid "%A %e %B"
-msgstr ""
+msgstr "%A %e %B"
 
 #. TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
 msgid "%A %e %B %Y"
-msgstr ""
+msgstr "%A %e %B %Y"
 
 #
 msgid "%H:%M"
@@ -213,13 +216,13 @@ msgstr "%S:%M"
 
 #. TRANSLATORS: short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'
 msgid "%a %e/%m"
-msgstr ""
+msgstr "%a %e/%m"
 
 #. TRANSLATORS: long date representation short dayname daynum short monthname hour:minute in strftime() format! See 'man strftime'
 msgid "%a %e/%m  %-H:%M"
-msgstr ""
+msgstr "%a %e/%m  %-H:%M"
 
-#, fuzzy, python-format
+#
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d ura"
@@ -227,27 +230,25 @@ msgstr[1] "%d uri"
 msgstr[2] "%d ur"
 
 #
-#, python-format
 msgid "%d jobs are running in the background!"
 msgstr "%d opravil teče v ozadju"
 
 #
-#, python-format
 msgid "%d min"
 msgstr "%d min"
 
-#, fuzzy, python-format
+#
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] "%d minuta"
 msgstr[1] "%d minuti"
 msgstr[2] "%d minut"
 
-#, python-format
+#
 msgid "%d minutes"
-msgstr ""
+msgstr "%d minut"
 
-#, fuzzy, python-format
+#
 msgid "%d second"
 msgid_plural "%d seconds"
 msgstr[0] "%d sekunda"
@@ -265,7 +266,7 @@ msgstr "%d.%B %Y"
 
 #. TRANSLATORS: VFD hour:minute daynum short monthname in strftime() format! See 'man strftime'
 msgid "%k:%M %e/%m"
-msgstr ""
+msgstr "%k:%M %e/%m"
 
 #
 #, python-format
@@ -289,10 +290,10 @@ msgid "* Only available if more than one interface is active."
 msgstr "* Na voljo samo kadar je hkrati aktivnih več vmesnikov."
 
 msgid "/usr/share/enigma2 directory"
-msgstr ""
+msgstr "/usr/share/enigma2 mapa"
 
 msgid "/var directory"
-msgstr ""
+msgstr "/var mapa"
 
 #
 msgid "0"
@@ -363,7 +364,7 @@ msgid "3"
 msgstr "3"
 
 msgid "3d mode"
-msgstr ""
+msgstr "3D način"
 
 #
 msgid "4"
@@ -474,25 +475,15 @@ msgstr ""
 "Kaj želite storiti?"
 
 #
-msgid ""
-"A recording is currently running. Please stop the recording before trying to "
-"configure the positioner."
-msgstr ""
-"Trenutno poteka snemanje. Če želite spreminjati nastavitve, ustavite "
-"snemanje trenutnega kanala!"
+msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
+msgstr "Trenutno poteka snemanje. Če želite spreminjati nastavitve, ustavite snemanje trenutnega kanala!"
 
-msgid ""
-"A recording is currently running. Please stop the recording before trying to "
-"scan."
-msgstr ""
+msgid "A recording is currently running. Please stop the recording before trying to scan."
+msgstr "Trenutno v ozadju poteka snemanje. Če želite pričeti z skeniranjem, ustavite snemanje."
 
 #
-msgid ""
-"A recording is currently running. Please stop the recording before trying to "
-"start the satfinder."
-msgstr ""
-"Trenutno poteka snemanje. Če želite iskati satelite, ustavite snemanje "
-"trenutnega kanala!"
+msgid "A recording is currently running. Please stop the recording before trying to start the satfinder."
+msgstr "Trenutno poteka snemanje. Če želite iskati satelite, ustavite snemanje trenutnega kanala!"
 
 #
 #, python-format
@@ -641,12 +632,10 @@ msgid "Add to favourites"
 msgstr "Dodajanje med priljubljene"
 
 msgid "Add/Remove timer for current event"
-msgstr ""
+msgstr "Dodaj/Izbriši časovnik za trenutni dogodek"
 
 #
-msgid ""
-"Adds enigma2 settings and dreambox model informations like SN, rev... if "
-"enabled."
+msgid "Adds enigma2 settings and dreambox model informations like SN, rev... if enabled."
 msgstr ""
 
 #
@@ -663,11 +652,7 @@ msgstr ""
 msgid "Adjust HDMI CEC settings"
 msgstr ""
 
-msgid ""
-"Adjust the color settings so that all the color shades are distinguishable, "
-"but appear as saturated as possible. If you are happy with the result, press "
-"OK to close the video fine-tuning, or use the number keys to select other "
-"test screens."
+msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
 msgstr ""
 
 #
@@ -702,12 +687,8 @@ msgid "After pressing OK, please wait!"
 msgstr ""
 
 #
-msgid ""
-"After the start wizard is completed, you need to protect single services. "
-"Refer to your dreambox's manual on how to do that."
-msgstr ""
-"Ko se čarovnik zaključi, zaščitite posamezne kanale. Za podrobno razlago "
-"postopka, preverite priložena navodila."
+msgid "After the start wizard is completed, you need to protect single services. Refer to your dreambox's manual on how to do that."
+msgstr "Ko se čarovnik zaključi, zaščitite posamezne kanale. Za podrobno razlago postopka, preverite priložena navodila."
 
 #
 msgid "Album"
@@ -928,16 +909,16 @@ msgid "Background"
 msgstr "Ozadje"
 
 msgid "Background delete option"
-msgstr ""
+msgstr "Nastavitev brisanja v ozadju"
 
 msgid "Background delete speed"
-msgstr ""
+msgstr "Hitrost brisanja v ozadju"
 
 msgid "Backup"
-msgstr ""
+msgstr "Varnostna kopija"
 
 msgid "Backup Location"
-msgstr ""
+msgstr "Lokacija varnostne kopije"
 
 msgid "Backup Mode"
 msgstr ""
@@ -1032,18 +1013,15 @@ msgid "Burn existing image to DVD"
 msgstr "Zapis obstoječe slike (image) na DVD"
 
 #
-#, fuzzy
 msgid "Burn to DVD"
-msgstr "Posnemi na DVD"
+msgstr ""
 
 #
 msgid "Bus: "
 msgstr "Vodilo:"
 
 #
-msgid ""
-"By pressing the OK Button on your remote control, the info bar is being "
-"displayed."
+msgid "By pressing the OK Button on your remote control, the info bar is being displayed."
 msgstr "S pritiskom na tipko OK, se bo prikazala informacijska vrstica."
 
 #
@@ -1055,7 +1033,7 @@ msgid "C-Band"
 msgstr "C-Band"
 
 msgid "CF Drive"
-msgstr ""
+msgstr "CF pogon"
 
 #
 msgid "CI assignment"
@@ -1070,20 +1048,20 @@ msgid "Cable"
 msgstr "Kabel"
 
 msgid "Cable Scan"
-msgstr ""
+msgstr "Skeniranje kabelske"
 
 #
 msgid "Cache Thumbnails"
 msgstr "Shrani sličice"
 
 msgid "Calculate"
-msgstr ""
+msgstr "Izračun"
 
 msgid "Calculate all positions"
-msgstr ""
+msgstr "Izračun vseh položajev"
 
 msgid "Calculation complete"
-msgstr ""
+msgstr "Izračun je končan"
 
 msgid "Calibrate"
 msgstr ""
@@ -1093,7 +1071,7 @@ msgid "Cancel"
 msgstr "Izhod"
 
 msgid "Cannot determine"
-msgstr ""
+msgstr "Ni možno določiti"
 
 msgid "Cannot find any signal ..., aborting !"
 msgstr ""
@@ -1128,10 +1106,10 @@ msgid "Change repeat and delay settings?"
 msgstr ""
 
 msgid "Change service PIN"
-msgstr ""
+msgstr "Spremenite PIN kodo kanala"
 
 msgid "Change service PINs"
-msgstr ""
+msgstr "Spremenite PIN kode kanala"
 
 msgid "Change setup PIN"
 msgstr ""
@@ -1357,7 +1335,7 @@ msgid "Configure your network again"
 msgstr "Ponovno nastavite omrežje"
 
 msgid "Configure your network settings, and press OK to start the scan"
-msgstr ""
+msgstr "Nastavite mrežne nastavitve in za pričetek skeniranja, pritisnite tipko OK."
 
 #
 msgid "Configure your wireless LAN again"
@@ -1396,7 +1374,7 @@ msgid "Content does not fit on DVD!"
 msgstr "Vsebina se ne prilega na DVD!"
 
 msgid "Continue"
-msgstr ""
+msgstr "Naprej"
 
 #
 msgid "Continue in background"
@@ -1411,10 +1389,10 @@ msgid "Contrast"
 msgstr "Kontrast"
 
 msgid "Convert ext3 to ext4"
-msgstr ""
+msgstr "Pretvorba ext3 v ext4"
 
 msgid "Convert ext3 to ext4..."
-msgstr ""
+msgstr "Pretvorba ext3 v ext4..."
 
 #
 msgid "Convert filesystem ext3 to ext4"
@@ -1443,7 +1421,7 @@ msgstr "Snemanje ni mogoče pričeti zaradi konflikta s časovnikom %s"
 
 #, python-format
 msgid "Couldn't record due to invalid service %s"
-msgstr ""
+msgstr "Snemanje ni možno zaradi napake %s"
 
 #
 msgid "Crashlog settings"
@@ -1472,17 +1450,17 @@ msgid "Create DVD-ISO"
 msgstr "Kreiraj DVD-ISO"
 
 msgid "Create Filesystem"
-msgstr ""
+msgstr "Izdelava datotečnega sistema"
 
 msgid "Create Partition"
-msgstr ""
+msgstr "Izdelava particije"
 
 #
 msgid "Create more detailed crash log"
 msgstr "Bolj podroben dnevnik napak"
 
 msgid "Create movie directory"
-msgstr ""
+msgstr "Ustvarite mapo za posnetke"
 
 #
 #, python-format
@@ -1575,10 +1553,10 @@ msgid "DVB subtitle black transparency"
 msgstr "Prozornost podlage DVB podnapisov"
 
 msgid "DVB-S"
-msgstr ""
+msgstr "DVB-S"
 
 msgid "DVB-S2"
-msgstr ""
+msgstr "DVB-S2"
 
 #
 msgid "DVD File Browser"
@@ -1663,13 +1641,13 @@ msgstr ""
 "%s?"
 
 msgid "Deleted"
-msgstr ""
+msgstr "Izbrisano"
 
 msgid "Deleted items"
-msgstr ""
+msgstr "Izbrisani"
 
 msgid "Depth"
-msgstr ""
+msgstr "Globina"
 
 #
 msgid "Descramble http streams"
@@ -1684,7 +1662,7 @@ msgid "Deselect"
 msgstr ""
 
 msgid "Details for plugin: "
-msgstr ""
+msgstr "Dodatne informacije:"
 
 #
 msgid "Detected HDD:"
@@ -1695,7 +1673,7 @@ msgid "Detected NIMs:"
 msgstr "Zaznani kanalniki:"
 
 msgid "Devicename:"
-msgstr ""
+msgstr "Ime naprave:"
 
 #
 msgid "DiSEqC"
@@ -1734,7 +1712,7 @@ msgid "Direct playback of linked titles without menu"
 msgstr "Neposredno predvajanje povezanih naslovov"
 
 msgid "Directory"
-msgstr ""
+msgstr "Mapa"
 
 #
 #, python-format
@@ -1747,7 +1725,7 @@ msgstr "Raziskovalec"
 
 #, python-format
 msgid "Directory contains %d file(s) and %d sub-directories.\n"
-msgstr ""
+msgstr "Mapa vsebuje %d datotek in %d pod-map.\n"
 
 #
 msgid "Disable"
@@ -1826,6 +1804,8 @@ msgid ""
 "Do you really want to convert the filesystem?\n"
 "You cannot go back!"
 msgstr ""
+"Res želite pretvoriti datotečni sistem?\n"
+"Pot nazaj ne obstaja!"
 
 #
 #, python-format
@@ -1849,6 +1829,8 @@ msgid ""
 "Do you really want to initialize the device?\n"
 "All data on the disk will be lost!"
 msgstr ""
+"Želite pripraviti novo napravo?\n"
+"Vsi podatki na napravi bodo izbrisani!"
 
 #
 #, python-format
@@ -1864,6 +1846,8 @@ msgid ""
 "Do you want to backup now?\n"
 "After pressing OK, please wait!"
 msgstr ""
+"Želite narediti varnostno kopijo?\n"
+"Po pritisku na tipko OK, počakajte na izvršitev ukaza!"
 
 #
 msgid "Do you want to burn this collection to DVD medium?"
@@ -1914,12 +1898,8 @@ msgid "Do you want to resume this playback?"
 msgstr "Želite nadaljevati s predvajanjem?"
 
 #
-msgid ""
-"Do you want to submit your email address and name so that we can contact you "
-"if needed?"
-msgstr ""
-"Želite vnesti svoj elektronski naslov in ime, da lahko z vami, po potrebi, "
-"navežemo stik?"
+msgid "Do you want to submit your email address and name so that we can contact you if needed?"
+msgstr "Želite vnesti svoj elektronski naslov in ime, da lahko z vami, po potrebi, navežemo stik?"
 
 #
 msgid "Do you want to update your Dreambox?"
@@ -1938,7 +1918,7 @@ msgid "Do you want to upgrade the package:\n"
 msgstr "Želite nadgraditi paket:\n"
 
 msgid "Do you want to upgrade?"
-msgstr ""
+msgstr "Želite nadgraditi?"
 
 #
 msgid "Do you want to view a tutorial?"
@@ -1960,8 +1940,7 @@ msgstr "Končano - nameščeno ali nadgrajeno %d paketov."
 #
 #, python-format
 msgid "Done - Installed, upgraded or removed %d packages with %d errors"
-msgstr ""
-"Končano - nameščeno, nadgrajeno ali izbrisano %d paketov z %d napakami."
+msgstr "Končano - nameščeno, nadgrajeno ali izbrisano %d paketov z %d napakami."
 
 #
 msgid "Download"
@@ -2037,7 +2016,7 @@ msgid "East"
 msgstr "Vzhod"
 
 msgid "East limit set"
-msgstr ""
+msgstr "Meja na vzhodu"
 
 #
 msgid "Edit"
@@ -2201,7 +2180,7 @@ msgid "Error"
 msgstr "Napaka"
 
 msgid "Error code"
-msgstr ""
+msgstr "Koda napake"
 
 #
 msgid "Error executing plugin"
@@ -2221,7 +2200,7 @@ msgid "Estonian"
 msgstr "Estonsko"
 
 msgid "Ethernet network interface"
-msgstr ""
+msgstr "Omrežni vmesnik"
 
 msgid "Event Fontsize (relative to skin size)"
 msgstr ""
@@ -2235,12 +2214,11 @@ msgid "Eventview menu"
 msgstr "Dodatne možnosti"
 
 msgid "Everywhere"
-msgstr ""
+msgstr "Povsod"
 
 #
-#, fuzzy
 msgid "Exceeds dual layer medium!"
-msgstr "Presega dvoplastni medij!"
+msgstr ""
 
 #
 msgid "Execution Progress:"
@@ -2259,7 +2237,7 @@ msgid "Exit"
 msgstr "Izhod"
 
 msgid "Exit EPG"
-msgstr ""
+msgstr "Izhod iz EPG"
 
 #
 msgid "Exit editor"
@@ -2317,7 +2295,7 @@ msgid "FEC"
 msgstr "FEC"
 
 msgid "FTA"
-msgstr ""
+msgstr "FTA"
 
 #
 msgid "Factory reset"
@@ -2383,7 +2361,7 @@ msgid "Final position at index"
 msgstr ""
 
 msgid "Fine movement"
-msgstr ""
+msgstr "Natančni premiki"
 
 #
 msgid "Finetune"
@@ -2398,7 +2376,7 @@ msgid "Finished configuring your network"
 msgstr "Nastavljanje omrežja je zaključeno!"
 
 msgid "Finished restarting your network"
-msgstr ""
+msgstr "Ponovni zagon omrežja je opravljen"
 
 #
 msgid "Finnish"
@@ -2417,7 +2395,7 @@ msgid "Following tasks will be done after you press OK!"
 msgstr "Sledeče naloge bodo opravljene, ko pritisnete OK!"
 
 msgid "For more information see www.openpli.org"
-msgstr ""
+msgstr "Za več informacij obiščite spletno stran www.openpli.org"
 
 #
 msgid "Format"
@@ -2459,7 +2437,7 @@ msgid "Friday"
 msgstr "Petek"
 
 msgid "From :"
-msgstr ""
+msgstr "Od:"
 
 #
 #, python-format
@@ -2471,8 +2449,7 @@ msgid ""
 "GUI needs a restart to apply a new skin\n"
 "Do you want to Restart the GUI now?"
 msgstr ""
-"Za spremembo predloge je potrebno ponovno zagnati uporabniški vmesnik "
-"(GUI)!\n"
+"Za spremembo predloge je potrebno ponovno zagnati uporabniški vmesnik (GUI)!\n"
 "Želite to storiti sedaj?"
 
 #
@@ -2573,7 +2550,7 @@ msgid "Goto specific data/time"
 msgstr ""
 
 msgid "GotoX calibration"
-msgstr ""
+msgstr "PojdiNaX kalibracija"
 
 msgid "Graph MEpg Settings"
 msgstr ""
@@ -2625,7 +2602,7 @@ msgid "Hebrew"
 msgstr ""
 
 msgid "Hidden network"
-msgstr ""
+msgstr "Skrito omrežje"
 
 #
 msgid "Hide CI messages"
@@ -2654,7 +2631,7 @@ msgid "Hold till locked"
 msgstr ""
 
 msgid "Home"
-msgstr ""
+msgstr "Domov"
 
 #
 msgid "Horizontal"
@@ -2680,7 +2657,7 @@ msgid "Hungarian"
 msgstr "Madžarščina"
 
 msgid "IP Address"
-msgstr ""
+msgstr "IP naslov"
 
 #
 msgid "ISO file is too large for this filesystem!"
@@ -2704,39 +2681,26 @@ msgstr ""
 
 #
 msgid ""
-"If your TV has a brightness or contrast enhancement, disable it. If there is "
-"something called \"dynamic\", set it to standard. Adjust the backlight level "
-"to a value suiting your taste. Turn down contrast on your TV as much as "
-"possible.\n"
-"Then turn the brightness setting as low as possible, but make sure that the "
-"two lowermost shades of gray stay distinguishable.\n"
-"Do not care about the bright shades now. They will be set up in the next "
-"step.\n"
+"If your TV has a brightness or contrast enhancement, disable it. If there is something called \"dynamic\", set it to standard. Adjust the backlight level to a value suiting your taste. Turn down contrast on your TV as much as possible.\n"
+"Then turn the brightness setting as low as possible, but make sure that the two lowermost shades of gray stay distinguishable.\n"
+"Do not care about the bright shades now. They will be set up in the next step.\n"
 "If you are happy with the result, press OK."
 msgstr ""
-"Onemogočite poudarjanje svetlosti in kontrasta v kolikor ima vaš TV to "
-"funkcionalnost. V kolikor vsebuje nastavitev \"dinamično\", jo spremenite na "
-"standardno. Nastavite osvetlitev ozadja po vaši želji. Zmanšajte kontrast TV "
-"sprejemnika na najnižjo možno raven.\n"
-"Zmanšajte nastavitev svetlosti na najnižjo možno raven, tako da bodo "
-"najnižji odtenki sive ostali razločni.\n"
-"V tem trenutku ne skrbite za svetle sence na zaslonu, ponastavili jih boste "
-"v naslednjih korakih.\n"
+"Onemogočite poudarjanje svetlosti in kontrasta v kolikor ima vaš TV to funkcionalnost. V kolikor vsebuje nastavitev \"dinamično\", jo spremenite na standardno. Nastavite osvetlitev ozadja po vaši želji. Zmanšajte kontrast TV sprejemnika na najnižjo možno raven.\n"
+"Zmanšajte nastavitev svetlosti na najnižjo možno raven, tako da bodo najnižji odtenki sive ostali razločni.\n"
+"V tem trenutku ne skrbite za svetle sence na zaslonu, ponastavili jih boste v naslednjih korakih.\n"
 "Če ste zadovoljni z nastavitvami, pritisnite OK."
 
 msgid "Image: "
-msgstr ""
+msgstr "Slika"
 
 #
 msgid "In Progress"
 msgstr "Se izvaja"
 
 #
-msgid ""
-"In order to record a timer, the TV was switched to the recording service!\n"
-msgstr ""
-"Da bi se lahko izvedlo snemanje določeno s časovnikom, je bil TV prestavljen "
-"v način snemanja!\n"
+msgid "In order to record a timer, the TV was switched to the recording service!\n"
+msgstr "Da bi se lahko izvedlo snemanje določeno s časovnikom, je bil TV prestavljen v način snemanja!\n"
 
 #
 msgid "Include AIT in http streams"
@@ -2752,8 +2716,7 @@ msgstr "Prisotnost EIT podatkov v HTTP toku"
 
 #
 msgid "Include your email and name (optional) in the mail?"
-msgstr ""
-"V elektronski naslov naj bo vključeno vaše ime in vaš elektronski naslov?"
+msgstr "V elektronski naslov naj bo vključeno vaše ime in vaš elektronski naslov?"
 
 #
 msgid "Increased voltage"
@@ -2813,7 +2776,7 @@ msgid "Initialize"
 msgstr "Ponastavitev"
 
 msgid "Initializing storage device..."
-msgstr ""
+msgstr "Poteka pripravljanje naprave za shranjevanje podatkov..."
 
 #
 msgid "Input"
@@ -2850,7 +2813,7 @@ msgid "Install or remove finished."
 msgstr "Namestite ali odstranite dokončano."
 
 msgid "Install picons on"
-msgstr ""
+msgstr "Namestitev piconsev na"
 
 #
 msgid "Install settings, skins, software..."
@@ -2901,7 +2864,7 @@ msgid "Internal Flash"
 msgstr "Notranji pomnilnik"
 
 msgid "Internal hdd only"
-msgstr ""
+msgstr "Samo notranji HDD"
 
 msgid "Interval between keys when repeating:"
 msgstr ""
@@ -2951,7 +2914,7 @@ msgid "Keep old timers for how many days"
 msgstr "Ohranitev časovnikov starih do X dni"
 
 msgid "Kernel Version: "
-msgstr ""
+msgstr "Verzija jedra:"
 
 #
 msgid "Keyboard"
@@ -3000,7 +2963,7 @@ msgid "Language selection"
 msgstr "Izbira jezik"
 
 msgid "Last Upgrade: "
-msgstr ""
+msgstr "Zadnja nadg.:"
 
 #
 msgid "Last config"
@@ -3047,10 +3010,10 @@ msgid "Limited character set for recording filenames"
 msgstr "Omejen nabor znakov za imena posnetih datotek"
 
 msgid "Limits cancelled"
-msgstr ""
+msgstr "Omejitve preklicane"
 
 msgid "Limits enabled"
-msgstr ""
+msgstr "Omejitve vključene"
 
 #
 msgid "Limits off"
@@ -3177,7 +3140,7 @@ msgid "Manual Scan"
 msgstr "Ročno iskanje"
 
 msgid "Manual configuration"
-msgstr ""
+msgstr "Ročna nastavitev"
 
 #
 msgid "Manual transponder"
@@ -3216,7 +3179,7 @@ msgid "Medium is not empty!"
 msgstr "Medij ni prazen!"
 
 msgid "Memory"
-msgstr ""
+msgstr "Spomin"
 
 msgid "Memory index"
 msgstr ""
@@ -3269,7 +3232,7 @@ msgid "Mosquito noise reduction"
 msgstr ""
 
 msgid "Mount"
-msgstr ""
+msgstr "Pripenjanje"
 
 #
 msgid "Move"
@@ -3288,26 +3251,26 @@ msgid "Move to other directory"
 msgstr "Premaknite se v drugo mapo"
 
 msgid "Move to position X"
-msgstr ""
+msgstr "Premik na položaj X"
 
 #
 msgid "Move west"
 msgstr "Premikajte proti zahodu"
 
 msgid "Moved to position 0"
-msgstr ""
+msgstr "Premik na položaj 0"
 
 msgid "Moved to position at index"
 msgstr ""
 
 msgid "Movement"
-msgstr ""
+msgstr "Premik"
 
 msgid "Movie List Configuration"
-msgstr ""
+msgstr "Nastavitve seznama posnetkov"
 
 msgid "Movie Selection"
-msgstr ""
+msgstr "Izbirnik posnetkov"
 
 #
 msgid "Movie location"
@@ -3318,16 +3281,16 @@ msgid "Movielist menu"
 msgstr "Seznam datotek"
 
 msgid "Moving"
-msgstr ""
+msgstr "Premikanje"
 
 msgid "Moving east ..."
-msgstr ""
+msgstr "Premikanje na vzhod..."
 
 msgid "Moving to position"
-msgstr ""
+msgstr "Premikanje na položaj"
 
 msgid "Moving west ..."
-msgstr ""
+msgstr "Premikanje na zahod..."
 
 #
 msgid "Multi EPG"
@@ -3345,7 +3308,7 @@ msgid "Multiple service support"
 msgstr "Podpora več storitvam"
 
 msgid "Multiplex"
-msgstr ""
+msgstr "Multiplex"
 
 #
 msgid "Multisat"
@@ -3369,12 +3332,10 @@ msgstr ""
 
 #
 msgid "NFI image flashing completed. Press Yellow to Reboot!"
-msgstr ""
-"NFI nadgradnja programske opreme je končana. Za ponovni zagon pritisnite "
-"rumeno tipko!"
+msgstr "NFI nadgradnja programske opreme je končana. Za ponovni zagon pritisnite rumeno tipko!"
 
 msgid "NIM"
-msgstr ""
+msgstr "NIM"
 
 #
 msgid "NOW"
@@ -3421,7 +3382,7 @@ msgid "Network Configuration..."
 msgstr "Nastavitve omrežja"
 
 msgid "Network ID"
-msgstr ""
+msgstr "ID omrežja"
 
 #
 msgid "Network Mount"
@@ -3463,14 +3424,14 @@ msgid "NetworkWizard"
 msgstr "Čarovnik za mrežo"
 
 msgid "Networkname (SSID)"
-msgstr ""
+msgstr "Ime omrežja (SSID)"
 
 #
 msgid "New"
 msgstr "Novo"
 
 msgid "New PIN"
-msgstr ""
+msgstr "Nova PIN koda"
 
 #
 msgid "New version:"
@@ -3493,7 +3454,7 @@ msgid "No Connection"
 msgstr "Ni povezave"
 
 msgid "No Delay"
-msgstr ""
+msgstr "Brez zamika"
 
 #
 msgid "No HDD found or HDD not initialized!"
@@ -3504,7 +3465,7 @@ msgid "No backup needed"
 msgstr "Varnostna kopija ni potrebna"
 
 msgid "No cable tuner found!"
-msgstr ""
+msgstr "Ni možno najti DVB-C kanalnika!"
 
 #
 msgid ""
@@ -3531,12 +3492,8 @@ msgid "No event info found, recording indefinitely."
 msgstr "Ne najdem informacije o dogodku. Trajanje snemanja bo neomejeno."
 
 #
-msgid ""
-"No fast winding possible yet.. but you can use the number buttons to skip "
-"forward/backward!"
-msgstr ""
-"Hitro previjanje še ni mogoče. Namesto tega lahko uporabite številske tipke "
-"(npr. 6 ali 9) na vašem daljinskem upravljalcu."
+msgid "No fast winding possible yet.. but you can use the number buttons to skip forward/backward!"
+msgstr "Hitro previjanje še ni mogoče. Namesto tega lahko uporabite številske tipke (npr. 6 ali 9) na vašem daljinskem upravljalcu."
 
 #
 msgid "No free tuner!"
@@ -3551,11 +3508,8 @@ msgid "No networks found"
 msgstr "Nobeno omrežje ni najdeno"
 
 #
-msgid ""
-"No packages were upgraded yet. So you can check your network and try again."
-msgstr ""
-"Noben paket še ni bil nadgrajen. Tako lahko preverite omrežje in poskusite "
-"znova."
+msgid "No packages were upgraded yet. So you can check your network and try again."
+msgstr "Noben paket še ni bil nadgrajen. Tako lahko preverite omrežje in poskusite znova."
 
 #
 msgid "No picture on TV? Press EXIT and retry."
@@ -3566,7 +3520,7 @@ msgid "No positioner capable frontend found."
 msgstr "Ne najdem združljive pozicionirne naprave."
 
 msgid "No sat tuner found!"
-msgstr ""
+msgstr "Ni možno najti delujočega kanalnika!"
 
 #
 msgid "No satellite frontend found!!"
@@ -3613,37 +3567,31 @@ msgstr ""
 "Če izberete 'Ne', bodo nastavitve ostale nezaščitene!"
 
 msgid "No wireless networks found! Searching..."
-msgstr ""
+msgstr "Ni najdene nobene brezzične mreže! Iskanje..."
 
 #
 msgid ""
 "No working local network adapter found.\n"
-"Please verify that you have attached a network cable and your network is "
-"configured correctly."
+"Please verify that you have attached a network cable and your network is configured correctly."
 msgstr ""
 "Ne najdem delujočega omrežnega vmesnika.\n"
-"Preverite ali ste pravilno priključili omrežni kabel in nastavili omrežne "
-"nastavitve."
+"Preverite ali ste pravilno priključili omrežni kabel in nastavili omrežne nastavitve."
 
 #
 msgid ""
 "No working wireless network adapter found.\n"
-"Please verify that you have attached a compatible WLAN device and your "
-"network is configured correctly."
+"Please verify that you have attached a compatible WLAN device and your network is configured correctly."
 msgstr ""
 "Ne najdem delujočega brezžičnega omrežnega vmesnika.\n"
-"Preverite ali je brezžična naprava kompatibilna s sprejemnikom in ali ste "
-"pravilno nastavili omrežne nastavitve."
+"Preverite ali je brezžična naprava kompatibilna s sprejemnikom in ali ste pravilno nastavili omrežne nastavitve."
 
 #
 msgid ""
 "No working wireless network interface found.\n"
-" Please verify that you have attached a compatible WLAN device or enable "
-"your local network interface."
+" Please verify that you have attached a compatible WLAN device or enable your local network interface."
 msgstr ""
 "Ne najdem delujočega brezžičnega omrežnega vmesnika.\n"
-"Preverite ali je brezžična naprava kompatibilna s sprejemnikom in ali ste "
-"pravilno nastavili omrežne nastavitve."
+"Preverite ali je brezžična naprava kompatibilna s sprejemnikom in ali ste pravilno nastavili omrežne nastavitve."
 
 #
 msgid "No, but restart from begin"
@@ -3691,12 +3639,8 @@ msgstr "Norveško"
 
 #
 #, python-format
-msgid ""
-"Not enough diskspace. Please free up some diskspace and try again. (%d MB "
-"required, %d MB available)"
-msgstr ""
-"Ni dovolj prostora! Sprostite prostor na disku in poizkusite ponovno (%d MB "
-"zahtevano, %d MB na voljo)"
+msgid "Not enough diskspace. Please free up some diskspace and try again. (%d MB required, %d MB available)"
+msgstr "Ni dovolj prostora! Sprostite prostor na disku in poizkusite ponovno (%d MB zahtevano, %d MB na voljo)"
 
 msgid "Not-Associated"
 msgstr ""
@@ -3718,14 +3662,8 @@ msgid "Now Playing"
 msgstr "Trenutno se predvaja"
 
 #
-msgid ""
-"Now, use the contrast setting to turn up the brightness of the background as "
-"much as possible, but make sure that you can still see the difference "
-"between the two brightest levels of shades.If you have done that, press OK."
-msgstr ""
-"Sedaj spremenite nastavitve kontrasta za zvišanje svetlosti ozadja kolikor "
-"je možno, vendar se prepričajte da lahko opazite razliko med dvema nivojema "
-"svetlosti. Ko boste zadovoljni z nastavitvami, pritisnite OK. "
+msgid "Now, use the contrast setting to turn up the brightness of the background as much as possible, but make sure that you can still see the difference between the two brightest levels of shades.If you have done that, press OK."
+msgstr "Sedaj spremenite nastavitve kontrasta za zvišanje svetlosti ozadja kolikor je možno, vendar se prepričajte da lahko opazite razliko med dvema nivojema svetlosti. Ko boste zadovoljni z nastavitvami, pritisnite OK. "
 
 #
 msgid "OK"
@@ -3744,7 +3682,7 @@ msgid "OK, remove some extensions"
 msgstr "Prav, odstrani nekaj razširitev"
 
 msgid "ONID"
-msgstr ""
+msgstr "ONID"
 
 #
 msgid "OSD Settings"
@@ -3796,13 +3734,13 @@ msgid "Orbital position"
 msgstr ""
 
 msgid "Original"
-msgstr ""
+msgstr "Original"
 
 msgid "Other"
-msgstr ""
+msgstr "Ostalo"
 
 msgid "Output"
-msgstr ""
+msgstr "Učinek"
 
 msgid "Overwrite configuration files ?"
 msgstr "Prepis nastavitvenih datotek?"
@@ -3815,14 +3753,14 @@ msgid "PAL"
 msgstr "PAL"
 
 msgid "PCR PID"
-msgstr ""
+msgstr "PCR PID"
 
 #
 msgid "PIDs"
 msgstr "PIDs"
 
 msgid "PMT PID"
-msgstr ""
+msgstr "PMT PID"
 
 #
 msgid "Package list update"
@@ -3837,7 +3775,7 @@ msgid "Package removed successfully.\n"
 msgstr "Paket je uspešno odstranjen.\n"
 
 msgid "Packages"
-msgstr ""
+msgstr "Paketi"
 
 #
 msgid "Packet management"
@@ -3931,7 +3869,7 @@ msgid "Play Music..."
 msgstr "Predvajajte glasbo"
 
 msgid "Play audio in background"
-msgstr ""
+msgstr "Predvajanje zvoka v ozadju"
 
 msgid "Play next"
 msgstr ""
@@ -3951,9 +3889,7 @@ msgstr "Izberite medij, ki se ga bo v nadaljevanju pregledalo"
 msgid "Please add titles to the compilation."
 msgstr ""
 
-msgid ""
-"Please be aware, that anyone can disable the parental control, if you have "
-"not set a PIN."
+msgid "Please be aware, that anyone can disable the parental control, if you have not set a PIN."
 msgstr ""
 
 #
@@ -3978,8 +3914,7 @@ msgstr "Izberite seznam privzetih kanalov za namestitev."
 
 #
 msgid ""
-"Please configure or verify your Nameservers by filling out the required "
-"values.\n"
+"Please configure or verify your Nameservers by filling out the required values.\n"
 "When you are ready press OK to continue."
 msgstr ""
 "Preverite vaše imenske strežnike.\n"
@@ -3987,8 +3922,7 @@ msgstr ""
 
 #
 msgid ""
-"Please configure your internet connection by filling out the required "
-"values.\n"
+"Please configure your internet connection by filling out the required values.\n"
 "When you are ready press OK to continue."
 msgstr ""
 
@@ -4021,7 +3955,7 @@ msgid "Please enter the correct pin code"
 msgstr "Vnesite pravilno PIN kodo;"
 
 msgid "Please enter the old PIN code"
-msgstr ""
+msgstr "Vnesite prejšnjo PIN kodo"
 
 #
 msgid "Please enter your email address here:"
@@ -4029,16 +3963,14 @@ msgstr "Vnesite vaš email naslov:"
 
 #
 msgid "Please enter your name here (optional):"
-msgstr ""
+msgstr "Vnesite vaše ime (neobvezno):"
 
 #
 msgid "Please follow the instructions on the TV"
 msgstr "Prosim, da sledite navodilom na TV zaslonu"
 
 #
-msgid ""
-"Please note that the previously selected media could not be accessed and "
-"therefore the default directory is being used instead."
+msgid "Please note that the previously selected media could not be accessed and therefore the default directory is being used instead."
 msgstr "Prejšnji izbran medij ni dostopen, uporabljena je privzeta mapa."
 
 #
@@ -4090,8 +4022,7 @@ msgstr "Izberite pot do datotek:"
 
 #
 msgid ""
-"Please select the network interface that you want to use for your internet "
-"connection.\n"
+"Please select the network interface that you want to use for your internet connection.\n"
 "\n"
 "Please press OK to continue."
 msgstr ""
@@ -4129,16 +4060,11 @@ msgid ""
 msgstr ""
 "Za prestavljanje okna Slika v Sliki uporabite smerne tipke.\n"
 "Za spreminjanje velikosti okna uporabite tipke +/-.\n"
-"Pritisnite OK za izhod v TV način ali tipko EXIT za prekinitev premikanja "
-"okna."
+"Pritisnite OK za izhod v TV način ali tipko EXIT za prekinitev premikanja okna."
 
 #
-msgid ""
-"Please use the UP and DOWN keys to select your language. Afterwards press "
-"the OK button."
-msgstr ""
-"Prosim, da za izbiro jezika uporabite tipke GOR in DOL. Za potrditev "
-"pritisnite OK tipko ."
+msgid "Please use the UP and DOWN keys to select your language. Afterwards press the OK button."
+msgstr "Prosim, da za izbiro jezika uporabite tipke GOR in DOL. Za potrditev pritisnite OK tipko ."
 
 #
 msgid "Please wait for activation of your network configuration..."
@@ -4165,10 +4091,10 @@ msgid "Please wait while we prepare your network interfaces..."
 msgstr "Poteka nastavljanje omrežja... Prosim počakajte!"
 
 msgid "Please wait while we test your network..."
-msgstr ""
+msgstr "Počakajte, da sprejemnik zaključi s testiranjem mreže..."
 
 msgid "Please wait while your network is restarting..."
-msgstr ""
+msgstr "Počakajte, da se mreža ponovno zažene..."
 
 #
 msgid "Please wait..."
@@ -4462,7 +4388,7 @@ msgid "Reboot"
 msgstr "Ponovni zagon"
 
 msgid "Rec"
-msgstr ""
+msgstr "Rec"
 
 #
 msgid "Reception Settings"
@@ -4489,7 +4415,7 @@ msgid "Recording data sync size"
 msgstr ""
 
 msgid "Recording in progress"
-msgstr ""
+msgstr "Trenutno poteka snemanje!"
 
 #
 msgid "Recording paths"
@@ -4511,10 +4437,10 @@ msgid "Recordings always have priority"
 msgstr "Snemanje ima vedno višjo prioriteto"
 
 msgid "Red button..."
-msgstr ""
+msgstr "Rdeča tipka..."
 
 msgid "Reenter new PIN"
-msgstr ""
+msgstr "Ponovni vnos PIN kode"
 
 #
 msgid "Refresh Rate"
@@ -4536,10 +4462,10 @@ msgid "Reload Black-/Whitelists"
 msgstr ""
 
 msgid "Reloading bouquets and services..."
-msgstr ""
+msgstr "Poteka ponovno nalaganje priljubljenih seznamov in kanalov..."
 
 msgid "Remember service PIN"
-msgstr ""
+msgstr "Zapomni si PIN kodo kanala"
 
 msgid "Remember these settings for each folder"
 msgstr ""
@@ -4768,7 +4694,7 @@ msgid "S-Video"
 msgstr "S-Video"
 
 msgid "SID"
-msgstr ""
+msgstr "SID"
 
 #
 msgid "SINGLE LAYER DVD"
@@ -4937,32 +4863,26 @@ msgstr "Iskanje pasu US MID"
 msgid "Scan band US SUPER"
 msgstr "Iskanje pasu US SUPER"
 
-msgid ""
-"Scan your network for wireless access points and connect to them using your "
-"selected wireless device.\n"
-msgstr ""
-"V vašem omrežju poiščite brezzične dostopne točke in se povežite na želeno "
-"točko.\n"
+msgid "Scan your network for wireless access points and connect to them using your selected wireless device.\n"
+msgstr "V vašem omrežju poiščite brezzične dostopne točke in se povežite na želeno točko.\n"
 
 #, python-format
 msgid "Scanning %s..."
-msgstr ""
+msgstr "Pregledovanje %s..."
 
 #, python-format
 msgid "Scanning completed, %d channels found"
-msgstr ""
+msgstr "Pregledovanje uspešno! Najdeno je bilo %d kanalov."
 
 msgid "Scanning failed!"
-msgstr ""
+msgstr "Pregledovanje ni uspelo!"
 
 msgid "Scanning..."
-msgstr ""
+msgstr "Pregledovanje..."
 
 #
-msgid ""
-"Scans default lamedbs sorted by satellite with a connected dish positioner"
-msgstr ""
-"Isknje privzetih lamedbs razvrščenih po satelitih s povezanimi pozicionerji."
+msgid "Scans default lamedbs sorted by satellite with a connected dish positioner"
+msgstr "Isknje privzetih lamedbs razvrščenih po satelitih s povezanimi pozicionerji."
 
 #
 msgid "Search east"
@@ -4973,10 +4893,10 @@ msgid "Search west"
 msgstr "Iskanje Zahod-a"
 
 msgid "Searching"
-msgstr ""
+msgstr "Iskanje"
 
 msgid "Searching east ..."
-msgstr ""
+msgstr "Iskanje na vzhodu..."
 
 #
 msgid "Searching for available updates. Please wait..."
@@ -4984,11 +4904,10 @@ msgstr "Iskanje posodobitev... Prosim počakajte!"
 
 #
 msgid "Searching for new installed or removed packages. Please wait..."
-msgstr ""
-"Iskanje na novo nameščenih ali odstranjenih paketkov... Prosim počakajte!"
+msgstr "Iskanje na novo nameščenih ali odstranjenih paketkov... Prosim počakajte!"
 
 msgid "Searching west ..."
-msgstr ""
+msgstr "Iskanje na zahodu..."
 
 #
 msgid "Secondary DNS"
@@ -5176,7 +5095,7 @@ msgid "Set End Time"
 msgstr "Določite čas konca"
 
 msgid "Set Limits"
-msgstr ""
+msgstr "Določitev meja"
 
 #
 msgid "Set Voltage and 22KHz"
@@ -5228,9 +5147,7 @@ msgstr ""
 
 #
 #, python-format
-msgid ""
-"Shall the USB stick wizard proceed and program the image file %s into flash "
-"memory?"
+msgid "Shall the USB stick wizard proceed and program the image file %s into flash memory?"
 msgstr ""
 
 #
@@ -5253,10 +5170,10 @@ msgid "Show Message when Recording starts"
 msgstr "Prikaz obvestila ob začetku snemanja"
 
 msgid "Show Picons"
-msgstr ""
+msgstr "Prikaz piconsov"
 
 msgid "Show Service Names "
-msgstr ""
+msgstr "Prikaz imena kanalov"
 
 #
 msgid "Show WLAN Status"
@@ -5271,7 +5188,7 @@ msgid "Show background in Radio Mode"
 msgstr "Prikaz ozadja v radio načinu"
 
 msgid "Show bouquet selection menu"
-msgstr ""
+msgstr "Prikaz izbirnika priljubljenih seznamov kanalov"
 
 #
 msgid "Show channel numbers in channel selection"
@@ -5282,7 +5199,7 @@ msgid "Show crypto info in infobar"
 msgstr "Prikaz kodiranja kanala v informacijski vrstici"
 
 msgid "Show detailed event info"
-msgstr ""
+msgstr "Prikaz podrobnih informacij o dogodku"
 
 #
 msgid "Show event-progress in channel selection"
@@ -5343,14 +5260,14 @@ msgid "Side by Side"
 msgstr ""
 
 msgid "Signal OK, proceeding"
-msgstr ""
+msgstr "Signal je zadovoljiv, nadaljujem..."
 
 #
 msgid "Signal Strength:"
 msgstr "Moč signala:"
 
 msgid "Signal quality"
-msgstr ""
+msgstr "Kakovost signala"
 
 #
 msgid "Signal: "
@@ -5407,7 +5324,7 @@ msgid "Skins"
 msgstr "Predloge"
 
 msgid "Skip Empty Services"
-msgstr ""
+msgstr "Preskoči kanale brez sporeda"
 
 #
 msgid "Sleep Timer"
@@ -5504,7 +5421,7 @@ msgid ""
 msgstr ""
 
 msgid "Sort"
-msgstr ""
+msgstr "Razvrstitev"
 
 #
 #. TRANSLATORS: This must fit into the header button in the EPG-List
@@ -5686,7 +5603,7 @@ msgid "Subtitle selection"
 msgstr "Izbira podnapisov"
 
 msgid "Subtitle selection..."
-msgstr ""
+msgstr "Izbira podnapisov"
 
 #
 msgid "Subtitle settings"
@@ -5717,7 +5634,7 @@ msgid "Swedish"
 msgstr "Švedsko"
 
 msgid "Switch TV to correct input"
-msgstr ""
+msgstr "Preklop TVja na pravilni vhod"
 
 #
 msgid "Switch to next subservice"
@@ -5760,14 +5677,14 @@ msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS datoteka prevelika za ISO9660 level 1!"
 
 msgid "TSID"
-msgstr ""
+msgstr "TSID"
 
 #
 msgid "TV System"
 msgstr "TV sistem"
 
 msgid "TXT PID"
-msgstr ""
+msgstr "TXT PID"
 
 #
 msgid "Table of content for collection"
@@ -5835,19 +5752,12 @@ msgid ""
 "Thank you for using the wizard. Your box is now ready to use.\n"
 "Please press OK to start using your Dreambox."
 msgstr ""
-"Hvala, da ste uporabili čarovnik. Sprejemnik je sedaj pripravljen za "
-"uporabo.\n"
+"Hvala, da ste uporabili čarovnik. Sprejemnik je sedaj pripravljen za uporabo.\n"
 "Za nadaljevanje pritisnite OK!"
 
 #
-msgid ""
-"The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to "
-"create a Dreambox format data DVD (which will not play in stand-alone DVD "
-"players) instead?"
-msgstr ""
-"Standarden DVD ne podpira H.264 (HD) video zapisa. Ali želite namesto tega "
-"ustvariti Dreambox obliko podatkovnega DVD (le-tega ne boste mogli "
-"predvajati v samostojnih DVD predvajalnikih)?"
+msgid "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to create a Dreambox format data DVD (which will not play in stand-alone DVD players) instead?"
+msgstr "Standarden DVD ne podpira H.264 (HD) video zapisa. Ali želite namesto tega ustvariti Dreambox obliko podatkovnega DVD (le-tega ne boste mogli predvajati v samostojnih DVD predvajalnikih)?"
 
 #
 msgid ""
@@ -5856,10 +5766,10 @@ msgid ""
 msgstr "NetworkWizard vtičnik ni nameščen. Prosim, da ga namestite!"
 
 msgid "The PIN code has been changed successfully."
-msgstr ""
+msgstr "PIN koda je spremenjena."
 
 msgid "The PIN codes you entered are different."
-msgstr ""
+msgstr "Napačna PIN koda."
 
 #
 msgid ""
@@ -5873,20 +5783,21 @@ msgid ""
 msgstr ""
 
 msgid "The User Interface of your receiver is restarting"
-msgstr ""
+msgstr "Uporabniški vmesnik sprejemnika se bo v kratkem popolno zagnal!"
 
 msgid ""
 "The User Interface of your receiver is restarting\n"
 "due to an error in mytest.py"
 msgstr ""
+"Uporabniški vmesnik sprejemnika se bo v kratkem popolno zagnal!\n"
+"Razlog je napaka v datoteki mytest.py"
 
 #
 msgid "The backup failed. Please choose a different backup location."
-msgstr ""
-"Izdelava varnostne kopije ni uspela. Prosim, da izberite drugo lokacijo."
+msgstr "Izdelava varnostne kopije ni uspela. Prosim, da izberite drugo lokacijo."
 
 msgid "The current beta image could not be stable"
-msgstr ""
+msgstr "Trenutna verzija OpenPLi slike ni stabilna."
 
 #
 #, python-format
@@ -5919,24 +5830,18 @@ msgstr "Najdene datoteke:"
 #
 msgid ""
 "The input port should be configured now.\n"
-"You can now configure the screen by displaying some test pictures. Do you "
-"want to do that now?"
+"You can now configure the screen by displaying some test pictures. Do you want to do that now?"
 msgstr ""
 "Vhodna vrata vira so sedaj nastavljena.\n"
-"Sedaj lahko spremenite nastavite zaslona s pomočjo slik za preverjanje. Ali "
-"želite to storiti sedaj?"
+"Sedaj lahko spremenite nastavite zaslona s pomočjo slik za preverjanje. Ali želite to storiti sedaj?"
 
 #
 msgid "The installation of the default services lists is finished."
 msgstr "Namestitev privzetih seznamov kanalov je končana."
 
 #
-msgid ""
-"The installation of the default settings is finished. You can now continue "
-"configuring your Dreambox by pressing the OK button on the remote control."
-msgstr ""
-"Namestitev privzetih nastavitev je končana. Sedaj lahko nadaljujete s "
-"spreminjanjem nastavitev vašega sprejemnika - pritisnite tipko OK."
+msgid "The installation of the default settings is finished. You can now continue configuring your Dreambox by pressing the OK button on the remote control."
+msgstr "Namestitev privzetih nastavitev je končana. Sedaj lahko nadaljujete s spreminjanjem nastavitev vašega sprejemnika - pritisnite tipko OK."
 
 msgid "The md5sum validation failed, the file may be corrupted!"
 msgstr ""
@@ -5971,15 +5876,12 @@ msgstr "Časovnik spanja je omogočen."
 msgid "The sleep timer has been disabled."
 msgstr "Časovnik spanja je onemogočen."
 
-msgid ""
-"The status of the current beta image could not be checked because www."
-"openpli.org could not be reached for some reason"
-msgstr ""
+msgid "The status of the current beta image could not be checked because www.openpli.org could not be reached for some reason"
+msgstr "Ni možno preveriti statusa trenutne beta OpenPLi slike, ker je spletna stran www.openpli.org nedosegljiva!"
 
 #
 msgid "The timer file (timers.xml) is corrupt and could not be loaded."
-msgstr ""
-"Datoteka s časovniki (timers.xml) je okvarjena in je ni možno namestiti."
+msgstr "Datoteka s časovniki (timers.xml) je okvarjena in je ni možno namestiti."
 
 #
 msgid ""
@@ -5996,18 +5898,12 @@ msgstr ""
 "Prosim, da ga namestite."
 
 #
-msgid ""
-"The wizard can backup your current settings. Do you want to do a backup now?"
-msgstr ""
-"Čarovnik bo kreiral varnostno kopijo vaših trenutnih nastavitev. Želite to "
-"storiti sedaj?"
+msgid "The wizard can backup your current settings. Do you want to do a backup now?"
+msgstr "Čarovnik bo kreiral varnostno kopijo vaših trenutnih nastavitev. Želite to storiti sedaj?"
 
 #, python-format
-msgid ""
-"The wizard found a configuration backup. Do you want to restore your old "
-"settings from %s?"
-msgstr ""
-"Čarovnik je našel shranjene nastavitve. Želite obnoviti te nastavitve iz %s?"
+msgid "The wizard found a configuration backup. Do you want to restore your old settings from %s?"
+msgstr "Čarovnik je našel shranjene nastavitve. Želite obnoviti te nastavitve iz %s?"
 
 #
 msgid "The wizard is finished now."
@@ -6038,7 +5934,7 @@ msgid "There are now "
 msgstr ""
 
 msgid "There is no signal to lock on !"
-msgstr ""
+msgstr "Ni signala!"
 
 #
 msgid ""
@@ -6057,30 +5953,23 @@ msgid "There was an error. The package:"
 msgstr "Prišlo je do napake. Paket:"
 
 #
-msgid ""
-"This DVD RW medium is already formatted - reformatting will erase all "
-"content on the disc."
-msgstr ""
-"DVD RW medij je že formatiran-ponovno formatiranje bo izbrisalo vso vsebino "
-"na mediju!"
+msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
+msgstr "DVD RW medij je že formatiran-ponovno formatiranje bo izbrisalo vso vsebino na mediju!"
 
 #
 #, python-format
 msgid "This Dreambox can't decode %s streams!"
-msgstr ""
+msgstr "Sprejemnik ne more odkleniti %s tokov!"
 
 #
 msgid "This is step number 2."
 msgstr "Korak št.2."
 
 msgid ""
-"This plugin creates a USB stick which can be used to update the firmware of "
-"your Dreambox without the need for a network or WLAN connection.\n"
+"This plugin creates a USB stick which can be used to update the firmware of your Dreambox without the need for a network or WLAN connection.\n"
 "First, a USB stick needs to be prepared so that it becomes bootable.\n"
-"In the next step, an NFI image file can be downloaded from the update server "
-"and saved on the USB stick.\n"
-"If you already have a prepared bootable USB stick, please insert it now. "
-"Otherwise plug in a USB stick with a minimum size of 64 MB!"
+"In the next step, an NFI image file can be downloaded from the update server and saved on the USB stick.\n"
+"If you already have a prepared bootable USB stick, please insert it now. Otherwise plug in a USB stick with a minimum size of 64 MB!"
 msgstr ""
 
 #
@@ -6104,14 +5993,12 @@ msgid ""
 "This test checks for configured Nameservers.\n"
 "If you get a \"unconfirmed\" message:\n"
 "- please check your DHCP, cabling and Adapter setup\n"
-"- if you configured your Nameservers manually please verify your entries in "
-"the \"Nameserver\" Configuration"
+"- if you configured your Nameservers manually please verify your entries in the \"Nameserver\" Configuration"
 msgstr ""
 "Preverja se nastavitev imenskih strežnikov.\n"
 "V kolikor se pojavi opozorilo \"nepotrjeno\":\n"
 "- preverite vaš DHCP, kable in nastavitve vmesnika\n"
-"- preverite nastavitve pri ročno nastavljenih imenskih strežnikih - "
-"\"Imenski strežnik\""
+"- preverite nastavitve pri ročno nastavljenih imenskih strežnikih - \"Imenski strežnik\""
 
 #
 msgid ""
@@ -6139,17 +6026,14 @@ msgstr ""
 
 #
 msgid ""
-"This test checks whether your LAN Adapter is set up for automatic IP Address "
-"configuration with DHCP.\n"
+"This test checks whether your LAN Adapter is set up for automatic IP Address configuration with DHCP.\n"
 "If you get a \"disabled\" message:\n"
 " - then your LAN Adapter is configured for manual IP Setup\n"
-"- verify thay you have entered correct IP informations in the AdapterSetup "
-"dialog.\n"
+"- verify thay you have entered correct IP informations in the AdapterSetup dialog.\n"
 "If you get an \"enabeld\" message:\n"
 "-verify that you have a configured and working DHCP Server in your network."
 msgstr ""
-"Preverja se nastavitev samodejnega IP naslavljanja vašega LAN vmesnika z "
-"DHCP.\n"
+"Preverja se nastavitev samodejnega IP naslavljanja vašega LAN vmesnika z DHCP.\n"
 "V kolikor se pojavi opozorilo \"onemogočeno\":\n"
 "- LAN vmesnik je nastavljen na ročno IP naslavljanje\n"
 "- preverite pravilnost vnešenih IP informacij v oknu Nastavitev vmesnika.\n"
@@ -6161,8 +6045,7 @@ msgid "This test detects your configured LAN-Adapter."
 msgstr "Ta test preveri nastavljene omrežne vmesnike. "
 
 msgid ""
-"This will (re-)calculate all positions of your rotor and may remove "
-"previously memorised positions and fine-tuning!\n"
+"This will (re-)calculate all positions of your rotor and may remove previously memorised positions and fine-tuning!\n"
 "Are you sure?"
 msgstr ""
 
@@ -6286,12 +6169,14 @@ msgstr "Pojdite na izbiro podnapisa"
 
 msgid ""
 "To update your Dreambox firmware, please follow these steps:\n"
-"1) Turn off your box with the rear power switch and make sure the bootable "
-"USB stick is plugged in.\n"
-"2) Turn mains back on and hold the DOWN button on the front panel pressed "
-"for 10 seconds.\n"
+"1) Turn off your box with the rear power switch and make sure the bootable USB stick is plugged in.\n"
+"2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n"
 "3) Wait for bootup and follow instructions of the wizard."
 msgstr ""
+"Za posodobitev  programske opreme sprejemnika sledite naslednjim korakom:\n"
+"1) Izklopite napravo s pomočjo stikala na zadnji strani sprejemnika in priklopite USB ključ.\n"
+"2) Ponovno prižgite sprejemnik in držite pritisnjeno tipko DOL na sprednji strani naprave 10 sekund.\n"
+"3) Počakajte na ponovni zagon in sledite navodilom čarovnika."
 
 #
 msgid "Today"
@@ -6345,7 +6230,7 @@ msgid "Transponder Type"
 msgstr "Vrsta transponderja"
 
 msgid "Trashcan"
-msgstr ""
+msgstr "Smetnjak"
 
 #
 msgid "Tries left:"
@@ -6353,13 +6238,11 @@ msgstr "Preostalo št. poskusov:"
 
 #
 msgid "Try to find used Transponders in cable network.. please wait..."
-msgstr ""
-"Poskušam poiskati transponderje v kabelskem omrežju... Prosim počakajte!"
+msgstr "Poskušam poiskati transponderje v kabelskem omrežju... Prosim počakajte!"
 
 #
 msgid "Try to find used transponders in cable network.. please wait..."
-msgstr ""
-"Poskušam poiskati transponderje v kabelskem omrežju... Prosim počakajte!"
+msgstr "Poskušam poiskati transponderje v kabelskem omrežju... Prosim počakajte!"
 
 #
 msgid "Trying to download a new packetlist. Please wait..."
@@ -6447,6 +6330,9 @@ msgid ""
 "Please wait until your receiver reboots\n"
 "This may take a few minutes"
 msgstr ""
+"Izvaja se nadgradnja vašega sprejemnika!\n"
+"Po izvedeni nadgradnji, se bo sprejemnik samodejno ponovno zagnal.\n"
+"Nadgradnja lahko traja več minut."
 
 #
 msgid "Unattended upgrade without GUI and reboot system"
@@ -6492,7 +6378,7 @@ msgid "Universal LNB"
 msgstr "Univerzalni LNB"
 
 msgid "Unknown"
-msgstr ""
+msgstr "Neznano"
 
 msgid "Unmount"
 msgstr ""
@@ -6532,7 +6418,7 @@ msgid "Upgrade finished."
 msgstr "Nadgradnja končana."
 
 msgid "Upgrade finished. Do you want to reboot your Dreambox?"
-msgstr ""
+msgstr "Nadgradnja je končana. Želite izvesti ponovni zagon sprejemnika?"
 
 #
 msgid "Upgrading"
@@ -6563,7 +6449,7 @@ msgid "Use Power Measurement"
 msgstr "Uporaba merjenja moči"
 
 msgid "Use TV remote control"
-msgstr ""
+msgstr "Uporabite daljinski upravljalnik"
 
 #
 msgid "Use a gateway"
@@ -6588,8 +6474,7 @@ msgstr "Uporaba merjenja moči"
 
 #
 msgid "Use the Networkwizard to configure selected network adapter"
-msgstr ""
-"Za nastavljanje izbranega mrežnega vmesnika, izberite omrežni čarovnik."
+msgstr "Za nastavljanje izbranega mrežnega vmesnika, izberite omrežni čarovnik."
 
 #
 msgid "Use the Networkwizard to configure your Network\n"
@@ -6606,12 +6491,8 @@ msgstr ""
 "Prosim, nastavite kanalnik A"
 
 #
-msgid ""
-"Use the up/down keys on your remote control to select an option. After that, "
-"press OK."
-msgstr ""
-"Za izbiranje uporabite tipke gor/dol na vašem upravljalniku. Nato pritisnite "
-"OK."
+msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
+msgstr "Za izbiranje uporabite tipke gor/dol na vašem upravljalniku. Nato pritisnite OK."
 
 msgid "Use this input device settings?"
 msgstr "Uporabim nastavitve te vhodne naprave?"
@@ -6685,7 +6566,7 @@ msgid "Video Output"
 msgstr "Video izhod"
 
 msgid "Video PID"
-msgstr ""
+msgstr "Video PID"
 
 #
 msgid "Video Setup"
@@ -6711,15 +6592,13 @@ msgstr "Nastavitve slike"
 msgid ""
 "Video input selection\n"
 "\n"
-"Please press OK if you can see this page on your TV (or select a different "
-"input port).\n"
+"Please press OK if you can see this page on your TV (or select a different input port).\n"
 "\n"
 "The next input port will be automatically probed in 10 seconds."
 msgstr ""
 "Izbira video vira\n"
 "\n"
-"Če vidite to sliko na zaslonu vašega TVja, pritisnite tipko OK ali pa "
-"izberite drugi vir.\n"
+"Če vidite to sliko na zaslonu vašega TVja, pritisnite tipko OK ali pa izberite drugi vir.\n"
 "\n"
 "Naslednji video vir bo samodejno preverjen čez 10 sekund."
 
@@ -6735,10 +6614,10 @@ msgid "Videoenhancement Setup"
 msgstr ""
 
 msgid "Videoformat"
-msgstr ""
+msgstr "Format videa"
 
 msgid "Videosize"
-msgstr ""
+msgstr "Velikost videa"
 
 #
 msgid "View Movies..."
@@ -6856,7 +6735,7 @@ msgid "WSS on 4:3"
 msgstr "WSS na 4:3"
 
 msgid "Wait for mount"
-msgstr ""
+msgstr "Počakajte na izvršitev pripenjanja"
 
 msgid "Wait for partition"
 msgstr ""
@@ -6900,35 +6779,26 @@ msgstr ""
 msgid ""
 "Welcome to the Cutlist editor.\n"
 "\n"
-"Seek to the start of the stuff you want to cut away. Press OK, select 'start "
-"cut'.\n"
+"Seek to the start of the stuff you want to cut away. Press OK, select 'start cut'.\n"
 "\n"
 "Then seek to the end, press OK, select 'end cut'. That's it."
 msgstr ""
 "Dobrodošli v urejevalniku.\n"
 "\n"
-"Poiščite začetek dela, ki ga želite izrezati. Pritisnite OK, izberite 'Začni "
-"brisati'.\n"
+"Poiščite začetek dela, ki ga želite izrezati. Pritisnite OK, izberite 'Začni brisati'.\n"
 "\n"
 "Nato poiščite konec in pritisnite OK, izberite 'Končaj brisanje'."
 
 #
-msgid ""
-"Welcome to the Image upgrade wizard. The wizard will assist you in upgrading "
-"the firmware of your Dreambox by providing a backup facility for your "
-"current settings and a short explanation of how to upgrade your firmware."
-msgstr ""
-"Dobrodošli v čarovniku za nadgradnjo. Čarovnik vam bo pomagal pri nadgradnji "
-"sprejemnika in nudil varno hrambo vaših trenutnih nastavitev ter kratko "
-"razlago postopka nadgradnje vašega firmware-a."
+msgid "Welcome to the Image upgrade wizard. The wizard will assist you in upgrading the firmware of your Dreambox by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware."
+msgstr "Dobrodošli v čarovniku za nadgradnjo. Čarovnik vam bo pomagal pri nadgradnji sprejemnika in nudil varno hrambo vaših trenutnih nastavitev ter kratko razlago postopka nadgradnje vašega firmware-a."
 
 #
 msgid ""
 "Welcome to the cleanup wizard.\n"
 "\n"
 "We have detected that your available internal memory has dropped below 2MB.\n"
-"To ensure stable operation of your Dreambox, the internal memory should be "
-"cleaned up.\n"
+"To ensure stable operation of your Dreambox, the internal memory should be cleaned up.\n"
 "You can use this wizard to remove some extensions.\n"
 msgstr ""
 
@@ -6936,8 +6806,7 @@ msgstr ""
 msgid ""
 "Welcome.\n"
 "\n"
-"If you want to connect your Dreambox to the Internet, this wizard will guide "
-"you through the basic network setup of your Dreambox.\n"
+"If you want to connect your Dreambox to the Internet, this wizard will guide you through the basic network setup of your Dreambox.\n"
 "\n"
 "Press OK to start configuring your network"
 msgstr ""
@@ -6977,8 +6846,7 @@ msgstr "Kaj naj storim s poslanimi dnevniki napak?"
 msgid ""
 "When you do a factory reset, you will lose ALL your configuration data\n"
 "(including bouquets, services, satellite data ...)\n"
-"After completion of factory reset, your receiver will restart "
-"automatically!\n"
+"After completion of factory reset, your receiver will restart automatically!\n"
 "\n"
 "Really do a factory reset?"
 msgstr ""
@@ -7003,13 +6871,13 @@ msgid "Wireless Network"
 msgstr "Brezžično omrežje"
 
 msgid "Wireless network connection setup"
-msgstr ""
+msgstr "Nastavitve brezzične povezave"
 
 msgid "Wireless network connection setup."
-msgstr ""
+msgstr "Nastavitve brezzične povezave."
 
 msgid "Wireless network state"
-msgstr ""
+msgstr "Stanje brezzičnega omrežja"
 
 #
 msgid "Write error while recording. Disk full?\n"
@@ -7087,7 +6955,7 @@ msgid "Yes, view the tutorial"
 msgstr "Da, prikaži vodiča"
 
 msgid "Yesterday"
-msgstr ""
+msgstr "Včeraj"
 
 #, python-format
 msgid ""
@@ -7095,6 +6963,9 @@ msgid ""
 "would you like to remove\n"
 "\"%s\"?"
 msgstr ""
+"Seznam kanalov je že nameščen!\n"
+"Bi ga radi odstranili\n"
+"\"%s\"?"
 
 #
 msgid "You can cancel the installation."
@@ -7105,19 +6976,15 @@ msgid "You can cancel the removal."
 msgstr "Lahko prekličete izbris."
 
 #
-msgid ""
-"You can choose some default settings now. Please select the settings you "
-"want to be installed."
-msgstr ""
-"Zdaj lahko izberete nekatere privzete nastavitve. Izberite nastavitve, ki "
-"jih želite namestiti."
+msgid "You can choose some default settings now. Please select the settings you want to be installed."
+msgstr "Zdaj lahko izberete nekatere privzete nastavitve. Izberite nastavitve, ki jih želite namestiti."
 
 #
 msgid "You can choose, what you want to install..."
 msgstr "Izberete lahko, kaj želite namestiti."
 
 msgid "You can continue watching TV etc. while this is running."
-msgstr ""
+msgstr "Med izvajanjem trenutne naloge, lahko nadaljujete z gledanjem trenutnega dogodka."
 
 #
 msgid "You can install this plugin."
@@ -7137,50 +7004,30 @@ msgstr "Tega ne morete izbrisati!"
 
 #
 msgid "You chose not to install any default services lists."
-msgstr ""
-"Odločili ste se, da ne želite namestiti nobenega privzetega seznama kanalov."
+msgstr "Odločili ste se, da ne želite namestiti nobenega privzetega seznama kanalov."
 
 #
-msgid ""
-"You chose not to install any default settings. You can however install the "
-"default settings later in the settings menu."
-msgstr ""
-"Ne želite namestiti privzetih nastavitev; kadarkoli lahko izberete "
-"namestitev privzetih nastavitev v meniju nastavitve."
+msgid "You chose not to install any default settings. You can however install the default settings later in the settings menu."
+msgstr "Ne želite namestiti privzetih nastavitev; kadarkoli lahko izberete namestitev privzetih nastavitev v meniju nastavitve."
 
 #
-msgid ""
-"You chose not to install anything. Please press OK finish the install wizard."
-msgstr ""
-"Odločili ste se, da ne boste namestili nič. Da zaprete čarovnik za "
-"namestitev, pritisnite tipko OK."
+msgid "You chose not to install anything. Please press OK finish the install wizard."
+msgstr "Odločili ste se, da ne boste namestili nič. Da zaprete čarovnik za namestitev, pritisnite tipko OK."
 
 msgid "You didn't select a channel to record from."
 msgstr "Niste izbrali kanala za snemanje."
 
 #
-msgid ""
-"You have chosen to backup your settings. Please press OK to start the backup "
-"now."
-msgstr ""
-"Izbrali ste si opcijo shranitve vaših nastavitev. Za začetek procesa "
-"pritisnite OK!"
+msgid "You have chosen to backup your settings. Please press OK to start the backup now."
+msgstr "Izbrali ste si opcijo shranitve vaših nastavitev. Za začetek procesa pritisnite OK!"
 
 #
-msgid ""
-"You have chosen to create a new .NFI flasher bootable USB stick. This will "
-"repartition the USB stick and therefore all data on it will be erased."
-msgstr ""
-"Izbrali ste opcijo kreiranja novega .NFI zagonskega USB ključa. Iz ključa "
-"bodo izbrisani vsi podatki!"
+msgid "You have chosen to create a new .NFI flasher bootable USB stick. This will repartition the USB stick and therefore all data on it will be erased."
+msgstr "Izbrali ste opcijo kreiranja novega .NFI zagonskega USB ključa. Iz ključa bodo izbrisani vsi podatki!"
 
 #
-msgid ""
-"You have chosen to restore your settings. Enigma2 will restart after "
-"restore. Please press OK to start the restore now."
-msgstr ""
-"Izbrali ste si opcijo obnove vaših nastavitev. Enigma 2 se bo po opravljenem "
-"procesu ponovno zagnala. Za začetek procesa pritisnite OK!"
+msgid "You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now."
+msgstr "Izbrali ste si opcijo obnove vaših nastavitev. Enigma 2 se bo po opravljenem procesu ponovno zagnala. Za začetek procesa pritisnite OK!"
 
 #
 #, python-format
@@ -7189,17 +7036,11 @@ msgstr "Počakati morate %s!"
 
 #
 msgid ""
-"You need a PC connected to your dreambox. If you need further instructions, "
-"please visit the website http://www.dm7025.de.\n"
-"Your dreambox will now be halted. After you have performed the update "
-"instructions from the website, your new firmware will ask you to restore "
-"your settings."
+"You need a PC connected to your dreambox. If you need further instructions, please visit the website http://www.dm7025.de.\n"
+"Your dreambox will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
 msgstr ""
-"Na vaš sprejemnik morate povezati na računalnik. Če potrebujete dodatna "
-"navodila, prosim obiščite stran http://www.dm7025.de.\n"
-"Vaš Dreambox bo sedaj ustavljen. Ko končate nadgradnjo sistema po navodilih "
-"iz spletne strani bo vaša nova programska oprema zahtevala izdelavo varne "
-"kopije vaših nastavitev."
+"Na vaš sprejemnik morate povezati na računalnik. Če potrebujete dodatna navodila, prosim obiščite stran http://www.dm7025.de.\n"
+"Vaš Dreambox bo sedaj ustavljen. Ko končate nadgradnjo sistema po navodilih iz spletne strani bo vaša nova programska oprema zahtevala izdelavo varne kopije vaših nastavitev."
 
 msgid ""
 "You need to set a PIN code and hide it from your children.\n"
@@ -7208,7 +7049,7 @@ msgid ""
 msgstr ""
 
 msgid "You system does not support ext4"
-msgstr ""
+msgstr "Vaš sprejemnik ne podpira ext4 datotečni sistem."
 
 #
 msgid ""
@@ -7241,17 +7082,11 @@ msgid "Your Dreambox will restart after pressing OK on your remote control."
 msgstr "Vaš sprejemnik se bo po pritisku na tipko OK ponovno zagnal."
 
 #
-msgid ""
-"Your backup succeeded. We will now continue to explain the further upgrade "
-"process."
-msgstr ""
-"Varnostna kopija je bila uspešno ustvarjena. Nadaljevali bomo z naslednjimi "
-"koraki nadgradnje."
+msgid "Your backup succeeded. We will now continue to explain the further upgrade process."
+msgstr "Varnostna kopija je bila uspešno ustvarjena. Nadaljevali bomo z naslednjimi koraki nadgradnje."
 
 #
-msgid ""
-"Your collection exceeds the size of a single layer medium, you will need a "
-"blank dual layer DVD!"
+msgid "Your collection exceeds the size of a single layer medium, you will need a blank dual layer DVD!"
 msgstr ""
 
 #
@@ -7263,12 +7098,8 @@ msgid "Your dreambox is shutting down. Please stand by..."
 msgstr "Poteka postopek ugašanja sprejemnika... Prosim počakajte!"
 
 #
-msgid ""
-"Your dreambox isn't connected to the internet properly. Please check it and "
-"try again."
-msgstr ""
-"Vaš sprejemnik ni pravilno povezan na omrežje. Prosim preverite omrežne "
-"nastavitve in poskusite znova."
+msgid "Your dreambox isn't connected to the internet properly. Please check it and try again."
+msgstr "Vaš sprejemnik ni pravilno povezan na omrežje. Prosim preverite omrežne nastavitve in poskusite znova."
 
 #
 msgid "Your email address:"
@@ -7308,7 +7139,7 @@ msgid "Your receiver is rebooting"
 msgstr "Sprejemnik se bo ponovno zagnal..."
 
 msgid "Your receiver is shutting down"
-msgstr ""
+msgstr "Vaš sprejemnik bo čez nekaj trenutkov prešel v globoko spanje!"
 
 #
 msgid ""
@@ -7349,7 +7180,7 @@ msgid "Zap mode"
 msgstr "Obnašanje pri preklopu kanala"
 
 msgid "Zap to selected channel"
-msgstr ""
+msgstr "Preklop na izbrani kanal"
 
 #
 msgid "[alternative edit]"
@@ -7392,7 +7223,7 @@ msgid "about to start"
 msgstr "se bo zagnalo"
 
 msgid "activate PiP"
-msgstr ""
+msgstr "Aktivacija Slike v Sliki"
 
 #
 msgid "activate current configuration"
@@ -7485,6 +7316,8 @@ msgid ""
 "are you sure you want to restore\n"
 "following backup:\n"
 msgstr ""
+"Ste prepričani, da želite obnoviti \n"
+"sledečo varnostno kopijo:\n"
 
 #
 msgid "assigned CAIds:"
@@ -7650,7 +7483,7 @@ msgid "delete..."
 msgstr "Izbris"
 
 msgid "descramble and record ecm"
-msgstr ""
+msgstr "odkodiraj in snemaj ECM paketke"
 
 #
 msgid "disable"
@@ -7677,7 +7510,7 @@ msgid "do nothing"
 msgstr "Izhod"
 
 msgid "don't descramble, record ecm"
-msgstr ""
+msgstr "ne odkodiran, snemaj ECM paketke"
 
 #
 msgid "don't record"
@@ -7688,22 +7521,22 @@ msgid "done!"
 msgstr "Storjeno!"
 
 msgid "dreambox advanced remote control (native)"
-msgstr ""
+msgstr "Dreambox napredni daljinski upravljalnik (izvirno)"
 
 msgid "dreambox front panel"
-msgstr ""
+msgstr "Dreambox front panel"
 
 msgid "dreambox ir keyboard"
-msgstr ""
+msgstr "Dreambox IR tipkovnica"
 
 msgid "dreambox ir mouse"
-msgstr ""
+msgstr "Dreambox IR miška"
 
 msgid "dreambox remote control (native)"
-msgstr ""
+msgstr "Dreambox daljinski upravljalnik (izvirno)"
 
 msgid "east"
-msgstr ""
+msgstr "vzhod"
 
 #
 msgid "edit alternatives"
@@ -7750,7 +7583,7 @@ msgid "end favourites edit"
 msgstr "končaj urejanje priljubljenih"
 
 msgid "enigma2 and network"
-msgstr ""
+msgstr "enigma2 in omrežje"
 
 #
 msgid "equal to"
@@ -7785,7 +7618,7 @@ msgid "exit networkadapter setup menu"
 msgstr "izhod iz nastavitvenega menija mrežnega vmesnika"
 
 msgid "false"
-msgstr ""
+msgstr "napačno"
 
 #
 msgid "fileformats (BMP, PNG, JPG, GIF)"
@@ -7800,7 +7633,7 @@ msgid "fine-tune your display"
 msgstr "podrobne nastavitve zaslona"
 
 msgid "fixed"
-msgstr ""
+msgstr "popravljeno"
 
 #
 msgid "forward to the next chapter"
@@ -7815,7 +7648,7 @@ msgid "free diskspace"
 msgstr "prazen prostor na disku"
 
 msgid "full transparency"
-msgstr ""
+msgstr "popolna prosojnost"
 
 #
 msgid "go to deep standby"
@@ -7838,7 +7671,7 @@ msgid "hear radio..."
 msgstr "Poslušaj radio"
 
 msgid "height"
-msgstr ""
+msgstr "višina"
 
 #
 msgid "help..."
@@ -7869,7 +7702,7 @@ msgid "insert mark here"
 msgstr "vnesite oznako tukaj"
 
 msgid "invalid type"
-msgstr ""
+msgstr "napačen tip"
 
 #
 msgid "jump back to the previous title"
@@ -8027,7 +7860,7 @@ msgid "no standby"
 msgstr "ni stanja pripravljenosti"
 
 msgid "no storage devices found"
-msgstr ""
+msgstr "ne najdem naprav za shranjevanje"
 
 #
 msgid "no timeout"
@@ -8042,7 +7875,7 @@ msgid "none"
 msgstr "prazno"
 
 msgid "normal"
-msgstr ""
+msgstr "normalno"
 
 #
 msgid "not configured"
@@ -8053,7 +7886,7 @@ msgid "not locked"
 msgstr "ni zaklenjeno"
 
 msgid "not supported"
-msgstr ""
+msgstr "ni podprto"
 
 #
 msgid "not used"
@@ -8107,7 +7940,7 @@ msgid "open servicelist(up)"
 msgstr "Odprtje liste kanalov (gor)"
 
 msgid "original"
-msgstr ""
+msgstr "originalno"
 
 #
 msgid "pass"
@@ -8264,7 +8097,7 @@ msgid "second cable of motorized LNB"
 msgstr "drugi kabel motoriziranega LNB-a"
 
 msgid "seconds"
-msgstr ""
+msgstr "sekund"
 
 #
 msgid "select"
@@ -8302,7 +8135,7 @@ msgid "set as startup service"
 msgstr "Dodajte kot zagonski kanal"
 
 msgid "setup PIN"
-msgstr ""
+msgstr "Nastavitev PIN"
 
 #
 msgid "show DVD main menu"
@@ -8395,7 +8228,7 @@ msgid "sort by date"
 msgstr "razvrsščanje po datumu"
 
 msgid "sorting of playlists"
-msgstr ""
+msgstr "razvrščanje seznamov"
 
 #
 msgid "special characters"
@@ -8501,13 +8334,13 @@ msgid "toggle time, chapter, audio, subtitle info"
 msgstr "izbira med prikazom časa, poglavja, zvoka in podnapisi"
 
 msgid "top"
-msgstr ""
+msgstr "na vrh"
 
 msgid "true"
-msgstr ""
+msgstr "pravilno"
 
 msgid "tuner is not supported"
-msgstr ""
+msgstr "kanalnik ni podprt"
 
 #
 msgid "unconfirmed"
@@ -8562,7 +8395,7 @@ msgid "weekly"
 msgstr "vsak teden"
 
 msgid "west"
-msgstr ""
+msgstr "zahod"
 
 #
 msgid "white"
@@ -8573,7 +8406,7 @@ msgid "whitelist"
 msgstr "bel seznam"
 
 msgid "width"
-msgstr ""
+msgstr "širina"
 
 msgid "wireless network interface"
 msgstr ""
@@ -8595,12 +8428,8 @@ msgid "yes (keep feeds)"
 msgstr "Da (obdrži feed-e)"
 
 #
-msgid ""
-"your dreambox might be unusable now. Please consult the manual for further "
-"assistance before rebooting your dreambox."
-msgstr ""
-"vaš sprejemnik je sedaj možno uporabljati. Pred ponovnim zagonom "
-"sprejemnika, preverite uporabnika navodila."
+msgid "your dreambox might be unusable now. Please consult the manual for further assistance before rebooting your dreambox."
+msgstr "vaš sprejemnik je sedaj možno uporabljati. Pred ponovnim zagonom sprejemnika, preverite uporabnika navodila."
 
 #
 msgid "zap"
@@ -8610,3291 +8439,3 @@ msgstr "preklop"
 msgid "zapped"
 msgstr "preklopljen"
 
-#~ msgid ""
-#~ "\n"
-#~ "Create and Manage your swapfiles."
-#~ msgstr ""
-#~ "\n"
-#~ "Ustvarite in upravljajte z SWAP. Le-ta vam pomaga takrat, ko sprejemniku "
-#~ "primanjkuje pomnilnika."
-
-#~ msgid ""
-#~ "\n"
-#~ "Create and Restore complete images of the system."
-#~ msgstr ""
-#~ "\n"
-#~ "Ustvari in uporabi celotne slike vašega sistema."
-
-#~ msgid ""
-#~ "\n"
-#~ "Create schedules for Standby, Restart GUI, DeepStandby and Reboot."
-#~ msgstr ""
-#~ "\n"
-#~ "Določite čas, ko se bo sprejemnik ugasnil, resetiral ali šel v spanje."
-
-#~ msgid ""
-#~ "\n"
-#~ "Install IPK's from your tmp folder."
-#~ msgstr ""
-#~ "\n"
-#~ "Namestite .ipk datoteke iz /tmp mape."
-
-#~ msgid ""
-#~ "\n"
-#~ "Manage extensions or plugins for your receiver"
-#~ msgstr ""
-#~ "\n"
-#~ "Upravljajte z razširitvami in vtičniki."
-
-#~ msgid ""
-#~ "\n"
-#~ "Manage you devices mountpoints."
-#~ msgstr ""
-#~ "\n"
-#~ "Upravljajte z mrežnimi napravami."
-
-#~ msgid ""
-#~ "\n"
-#~ "Manage your backups of your settings."
-#~ msgstr ""
-#~ "\n"
-#~ "Upravljajte z kopijami vaših nastavitev."
-
-#~ msgid ""
-#~ "\n"
-#~ "Manage your cron jobs."
-#~ msgstr ""
-#~ "\n"
-#~ "Upravljajte z načrtovalnikom opravil (cron jobs)."
-
-#~ msgid ""
-#~ "\n"
-#~ "Online update of your Receiver software."
-#~ msgstr ""
-#~ "\n"
-#~ "Internetna nadgradnja vašega sprejemnika."
-
-#
-#~ msgid ""
-#~ "\n"
-#~ "Online update of your Vu+ Duo software."
-#~ msgstr ""
-#~ "\n"
-#~ "Nadgradnja VU+ sprejemnika!"
-
-#~ msgid ""
-#~ "\n"
-#~ "Run your shell scripts."
-#~ msgstr ""
-#~ "\n"
-#~ "Zaženite shell skripte."
-
-#~ msgid ""
-#~ "\n"
-#~ "Select a backup to Restore / Delete:"
-#~ msgstr ""
-#~ "\n"
-#~ "Izberite varnostno kopijo za obnovitev sistema ali za izbris:"
-
-#~ msgid ""
-#~ "\n"
-#~ "Select an image to Restore / Delete:"
-#~ msgstr ""
-#~ "\n"
-#~ "Izberite sliko (image) za obnovitev sistema ali za izbris:"
-
-#~ msgid "%d Minute"
-#~ msgid_plural "%d Minut"
-#~ msgstr[0] "%d Minuta"
-#~ msgstr[1] "%d Minuti"
-#~ msgstr[2] "%d Minut"
-
-#~ msgid "%d Second"
-#~ msgid_plural "%d sekund"
-#~ msgstr[0] "%d sekunda"
-#~ msgstr[1] "%d sekundi"
-#~ msgstr[2] "%d sekund"
-
-#
-#~ msgid "%i ms"
-#~ msgstr "%i ms"
-
-#
-#~ msgid ""
-#~ "%s\n"
-#~ "(%s, %d MB free)"
-#~ msgstr ""
-#~ "%s\n"
-#~ "(%s, %d MB prosto)"
-
-#
-#~ msgid "(Other...)"
-#~ msgstr "(Druga lokacija)"
-
-#
-#~ msgid ".NFI Download failed:"
-#~ msgstr ".NFI prenos neuspešen:"
-
-#
-#~ msgid ""
-#~ ".NFI file passed md5sum signature check. You can safely flash this image!"
-#~ msgstr ""
-#~ ".NFI datoteka uspešno preverjanje MD5sum podpisa! Varno lahko zapečite "
-#~ "datoteko!"
-
-#
-#~ msgid "1 second"
-#~ msgstr "1 sekunda"
-
-#
-#~ msgid "10 seconds"
-#~ msgstr "10 sekund"
-
-#
-#~ msgid "2 seconds"
-#~ msgstr "2 sekundi"
-
-#
-#~ msgid "2nd Infobar"
-#~ msgstr "Razširjena info. vrstica"
-
-#
-#~ msgid "2nd Infobar timeout"
-#~ msgstr "Dolžina trajanja razširjene info. vrstice"
-
-#
-#~ msgid "3 seconds"
-#~ msgstr "3 sekunde"
-
-#
-#~ msgid "4 seconds"
-#~ msgstr "4 sekunde"
-
-#
-#~ msgid "5 seconds"
-#~ msgstr "5 sekund"
-
-#
-#~ msgid "6 seconds"
-#~ msgstr "6 sekund"
-
-#
-#~ msgid "7 seconds"
-#~ msgstr "7 sekund"
-
-#
-#~ msgid "8 seconds"
-#~ msgstr "8 sekund"
-
-#
-#~ msgid "9 seconds"
-#~ msgstr "9 sekund"
-
-#
-#~ msgid "AC3 default"
-#~ msgstr "AC3 standard"
-
-#
-#~ msgid "AFP Setup"
-#~ msgstr "AFP nastavitve"
-
-#
-#~ msgid "ALL THE DATA ON THIS PARTITION WILL BE LOST!"
-#~ msgstr "VSI PODATKI NA PARTICIJI BODO IZBRISANI!"
-
-#
-#~ msgid "APF Setup"
-#~ msgstr "APF nastavitve"
-
-#
-#~ msgid "Abort this Wizard."
-#~ msgstr "Preklic čarovnika."
-
-#
-#~ msgid "Activate"
-#~ msgstr "Aktivacija"
-
-#
-#~ msgid "Active:"
-#~ msgstr "V delovanju:"
-
-#
-#~ msgid "Add AutoTimer"
-#~ msgstr "Dodajanje AutoTimer"
-
-#
-#~ msgid "Add Timer"
-#~ msgstr "Nov časovnik"
-
-#
-#~ msgid "Add new AutoTimer"
-#~ msgstr "Dodajanje novega AutoTimer"
-
-#
-#~ msgid "Added: "
-#~ msgstr "Dodano:"
-
-#
-#~ msgid ""
-#~ "Adjust the color settings so that all the color shades are distinshable, "
-#~ "but appear as saturated as possible. If you are happy with the result, "
-#~ "press OK to close the video fine-tuning, or use the number keys to select "
-#~ "other test screens."
-#~ msgstr ""
-#~ "Spremenite nastavitve barv, da bodo vse barvne sence razločljive in "
-#~ "hkrati dovolj sorodne. Če ste zadovoljni s spremembami pritisnite OK, da "
-#~ "zaključite podrobno nastavitev video-parametrov, ali uporabite številke "
-#~ "za izbiro drugih testnih oken."
-
-#~ msgid "Alias:"
-#~ msgstr "Vzdevek:"
-
-#
-#~ msgid "Allow Subtiles equals Audio mask"
-#~ msgstr "Jezik podnapisa naj bodo enak zvočni sledi"
-
-#
-#~ msgid "Allow teletext when no textpid"
-#~ msgstr "Dovoli teletext tudi ko ni textpid-a"
-
-#
-#~ msgid "Allow zapping via Webinterface"
-#~ msgstr "Omogoči preklapljanje z uporabo Webinterfacea"
-
-#
-#~ msgid "Always show bouquets"
-#~ msgstr "Prikaz priljubljenih list kanalov"
-
-#
-#~ msgid "Ammount of recordings left"
-#~ msgstr "Koliko posnetkov je še na voljo"
-
-#
-#~ msgid "An error occured."
-#~ msgstr "Prišlo je do napake."
-
-#
-#~ msgid "April"
-#~ msgstr "April"
-
-#~ msgid "Are you ready to create a backup ?"
-#~ msgstr "Želite ustvariti varnostno kopijo?"
-
-#
-#~ msgid "Are you ready to create a backup image ?"
-#~ msgstr "Ste pripravljeni na izdelavo varnostne kopije vaše slike?"
-
-#
-#~ msgid "Are you ready to install ?"
-#~ msgstr "Ste pripravljeni na namestitev?"
-
-#
-#~ msgid "Are you ready to installl ?"
-#~ msgstr "Ste pripravljeni na namestitev?"
-
-#~ msgid "Are you ready to run the script ?"
-#~ msgstr "Ste pripravljeni na izvajanje izbrane skripte?"
-
-#
-#~ msgid "Are you sure to continue?"
-#~ msgstr "Želite nadaljevati?"
-
-#~ msgid "Are you sure you want to delete all selected logs:\n"
-#~ msgstr "Ste prepričani, da želite izbrisati vse izbrane dnevnike:\n"
-
-#~ msgid "Are you sure you want to delete this backup:\n"
-#~ msgstr "Ste prepričani, da želite izbrisati izbrano varnostno kopijo:\n"
-
-#~ msgid "Are you sure you want to delete this log:\n"
-#~ msgstr "Ste prepričani, da želite izbrisati izbrani dnevnik:\n"
-
-#~ msgid "Are you sure you want to reload the EPG data from:\n"
-#~ msgstr "Ste prepričani, da želite uporabiti EPG podatke iz:\n"
-
-#~ msgid "Are you sure you want to restore this backup:\n"
-#~ msgstr "Sre prepričani, da želite uporabiti to varnostno kopijo:\n"
-
-#~ msgid "Are you sure you want to restore this image:\n"
-#~ msgstr "Ste prepričani, da želite obnoviti to sliko:\n"
-
-#~ msgid "Are you sure you want to save the EPG Cache to:\n"
-#~ msgstr "Ste prepričani, da želite shranite podatke na:\n"
-
-#
-#~ msgid "Ascending"
-#~ msgstr "Vzpenjajoče"
-
-#~ msgid "Atheros"
-#~ msgstr "Atheros"
-
-#
-#~ msgid "Attempt to recover lost mounts (in background)."
-#~ msgstr ""
-#~ "Poskus obnove vseh izgubljenih mrežnih naprav (proces poteka v ozadju)."
-
-#
-#~ msgid "Audio Sync"
-#~ msgstr "Sinhronizacija zvoka"
-
-#
-#~ msgid "Audio Sync Setup"
-#~ msgstr "Sinhronizacija zvoka"
-
-#
-#~ msgid "August"
-#~ msgstr "Avgust"
-
-#
-#~ msgid "Australia"
-#~ msgstr "Avstralija"
-
-#
-#~ msgid "Auto Language Selection"
-#~ msgstr "Samodejna izbira zvoka in podn."
-
-#
-#~ msgid "AutoBackup Configuration"
-#~ msgstr "Nastavitve vtičnika"
-
-#
-#~ msgid "AutoStandby Setup"
-#~ msgstr "Upravljanje s stanjem priprav."
-
-#
-#~ msgid "AutoTimers"
-#~ msgstr "Časovniki vtičnika AutoTimer"
-
-#
-#~ msgid "Automatic refresh"
-#~ msgstr "Samodejno osveževanje"
-
-#
-#~ msgid "Automatic start time"
-#~ msgstr "Začetek prenosa podatkov"
-
-#
-#~ msgid "Autostart"
-#~ msgstr "Sam. zagon"
-
-#
-#~ msgid "Autostart Disabled."
-#~ msgstr "Samodejni zagon je izključen."
-
-#
-#~ msgid "Autostart Enabled."
-#~ msgstr "Samodejni zagon je vključen."
-
-#
-#~ msgid "Autostart:"
-#~ msgstr "Samod. zagon:"
-
-#~ msgid "Backup Complete..."
-#~ msgstr "Varnostno kopiranje končano."
-
-#
-#~ msgid "Backup Confirmation"
-#~ msgstr "Potrditev izdelave kopije"
-
-#
-#~ msgid "Backup Manager"
-#~ msgstr "Upravljanje z varnostnimi kopijami"
-
-#~ msgid ""
-#~ "Backup failed - e. g. wrong backup destination or no space left on "
-#~ "backupdevice"
-#~ msgstr ""
-#~ "Varnostno kopiranje ni uspelo - lahko gre za napačno ciljno pot kopije, "
-#~ "ali pa gre za pomanjkanje prostora na disku."
-
-#~ msgid ""
-#~ "Backup in progress,\n"
-#~ "Please for it to finish, before trying again"
-#~ msgstr ""
-#~ "Poteka varnostno kopiranje.\n"
-#~ "Počakajte, da se kopiranje konča, preden poskusite znova."
-
-#
-#~ msgid "Backup location"
-#~ msgstr "Lokacija kopije nastavitev"
-
-#
-#~ msgid "Backup your Vu+ Duo settings."
-#~ msgstr "Shranite Vu+ nastavitve!"
-
-#
-#~ msgid "Bouquet List"
-#~ msgstr "Seznam priljubljenih paketov"
-
-#
-#~ msgid "Bouquets"
-#~ msgstr "Paketi"
-
-#
-#~ msgid "Brazil"
-#~ msgstr "Brazilija"
-
-#
-#~ msgid "Button Setup"
-#~ msgstr "Nastavitve tipk na daljincu"
-
-#~ msgid "CCcam can't run whilst MGcamd is running"
-#~ msgstr "CCcam ne more delovati, če obenem deluje tudi MGcamd."
-
-#~ msgid "CDInfo"
-#~ msgstr "CDInfo"
-
-#, fuzzy
-#~ msgid "Can't connect to server. Please check your network!"
-#~ msgstr "Povezavva ni uspela. Preverite vaše omrežne nastavitve!"
-
-#~ msgid ""
-#~ "Can't unmount partiton, make sure it is not being used for swap or record/"
-#~ "timeshift paths"
-#~ msgstr ""
-#~ "Ne morem uporabiti izbrane particije. Poskrbite, da ni v uporabi za "
-#~ "snemanje ali za SWAP."
-
-#
-#~ msgid "Canada"
-#~ msgstr "Kanada"
-
-#
-#~ msgid "Cannot parse feed directory"
-#~ msgstr "Ne morem obdelati izvirne mape"
-
-#
-#~ msgid "Catalan"
-#~ msgstr "Katalonski"
-
-#
-#~ msgid "Center screen at the lower border"
-#~ msgstr "Osrednji zaslon na spodnji meji"
-
-#
-#~ msgid "Center screen at the upper border"
-#~ msgstr "Osrednji zaslon na zgornji meji"
-
-#
-#~ msgid "Change Subtitle Position"
-#~ msgstr "Spremeni položaj podnapisov"
-
-#
-#~ msgid "Change active delay"
-#~ msgstr "Sprememba aktivnega zamika"
-
-#
-#~ msgid "Change default recording offset?"
-#~ msgstr "Koliko časa naj se še snema, po"
-
-#
-#~ msgid "Change dir."
-#~ msgstr "Menjava mape"
-
-#
-#~ msgid "Change service pin"
-#~ msgstr "Sprememba PIN kode kanala"
-
-#
-#~ msgid "Change service pins"
-#~ msgstr "Sprememba PIN kode kanale"
-
-#
-#~ msgid "Change setup pin"
-#~ msgstr "Sprememba nastavitvene PIN kode"
-
-#
-#~ msgid "Channel +/- button mode"
-#~ msgstr "Dogodek ob pritisku na tipki + in -"
-
-#
-#~ msgid "Channel List"
-#~ msgstr "Seznam kanalov"
-
-#
-#~ msgid "Channel Selection TV"
-#~ msgstr "Seznam TV kanalov"
-
-#
-#~ msgid "Channel audio:"
-#~ msgstr "Zvok kanala:"
-
-#
-#~ msgid "Channel list preview mode"
-#~ msgstr "Možnost predogleda TV kanalov"
-
-#
-#~ msgid "Channels"
-#~ msgstr "Kanali"
-
-#
-#~ msgid "Choose EPG location"
-#~ msgstr "Lokacija EPG datoteke"
-
-#
-#~ msgid "Classic"
-#~ msgstr "Klasična "
-
-#
-#~ msgid "Clean Debug logs"
-#~ msgstr "Izbris dnevnikov napak"
-
-#
-#~ msgid "Clear history on Exit:"
-#~ msgstr "Ob izhodu se naj izbriše zgodovina:"
-
-#
-#~ msgid "Close and forget changes"
-#~ msgstr "Zapri in prezri spremembe"
-
-#
-#~ msgid "Close and save changes"
-#~ msgstr "Zapri in shrani spremembe"
-
-#
-#~ msgid "Code rate high"
-#~ msgstr "Visok nivo kodiranja"
-
-#
-#~ msgid "Code rate low"
-#~ msgstr "Nizek nivo kodiranja"
-
-#
-#~ msgid "Comedy"
-#~ msgstr "Komedija"
-
-#
-#~ msgid "Command To Run"
-#~ msgstr "Določitev ukazov, ki se bodo izvršili"
-
-#
-#~ msgid "Command type"
-#~ msgstr "Vrsta ukaza"
-
-#
-#~ msgid "Configuration for the Webinterface"
-#~ msgstr "Nastavitve za Webinterface"
-
-#
-#~ msgid "Configure AutoTimer behavior"
-#~ msgstr "Nastavi obnašanje vtičnika AutoTimer"
-
-#
-#~ msgid "Console"
-#~ msgstr "Konzola"
-
-#
-#~ msgid "Crash Logs"
-#~ msgstr "Dnevniki napak"
-
-#
-#~ msgid "Create"
-#~ msgstr "Izdelava"
-
-#
-#~ msgid "Create Autoinstall"
-#~ msgstr "Izdelava Autoinstall datoteke"
-
-#
-#~ msgid "Create a new AutoTimer."
-#~ msgstr "Ustvari novi AutoTimer."
-
-#
-#~ msgid "Create a new timer using the classic editor"
-#~ msgstr "Z uporabo klasičnega urejevalnika ustvarite nov časovnik"
-
-#
-#~ msgid "Create a new timer using the wizard"
-#~ msgstr "Z uporabo čarovnika ustvarite nov časovnik"
-
-#
-#~ msgid ""
-#~ "Create and Manage\n"
-#~ "swapfiles."
-#~ msgstr ""
-#~ "Izdelava in upravljanje\n"
-#~ "z SWAP."
-
-#
-#~ msgid ""
-#~ "Create and Restore\n"
-#~ "complete images of the system."
-#~ msgstr ""
-#~ "Izdelava in uporaba\n"
-#~ "varnostne kopije celotnega sistema."
-
-#
-#~ msgid "Create movie folder failed"
-#~ msgstr "Neuspešno ustvarjanje \"movie\" mape"
-
-#~ msgid "Creating Backup Files..."
-#~ msgstr "Poteka ustvarjanje varnostne kopije datotek..."
-
-#~ msgid "Creating Image..."
-#~ msgstr "Poteka ustvarjanje slike (image)..."
-
-#~ msgid "Creating Swap.."
-#~ msgstr "Poteka ustvarjanje SWAP..."
-
-#~ msgid "Creating list of instlled plugins..."
-#~ msgstr "Poteka ustvarjanje liste že nameščenih vtičnikov..."
-
-#
-#~ msgid "Creating partition failed"
-#~ msgstr "Neuspešno ustvarjanje particije"
-
-#
-#~ msgid "Cron Manager"
-#~ msgstr "Samod. zagon skript"
-
-#
-#~ msgid "CrossEPG"
-#~ msgstr "CrossEPG vtičnik"
-
-#
-#~ msgid "Current Status"
-#~ msgstr "Trenutno stanje"
-
-#
-#~ msgid "Current Status:"
-#~ msgstr "Trenutno stanje:"
-
-#
-#~ msgid "Custom (%s)"
-#~ msgstr "Po meri (%s)"
-
-#
-#~ msgid "Custom location"
-#~ msgstr "Poljubno mesto"
-
-#
-#~ msgid "Czech Republic"
-#~ msgstr "Češka"
-
-#
-#~ msgid "Daily automatic backup"
-#~ msgstr "Vsakodnevno varnostno kopiranje nastavitev"
-
-#
-#~ msgid "Daily automatic import"
-#~ msgstr "Vsakodnevni prenos podatkov"
-
-#
-#~ msgid "Deactivate"
-#~ msgstr "Izklop"
-
-#
-#~ msgid "Deactivation"
-#~ msgstr "Izklop"
-
-#
-#~ msgid "Debug Log location"
-#~ msgstr "Lokacija debug dnevnika"
-
-#
-#~ msgid "Debug Logs"
-#~ msgstr "Podrobno"
-
-#
-#~ msgid "December"
-#~ msgstr "December"
-
-#
-#~ msgid "Decrease delay"
-#~ msgstr "Zmanjšanje zamika"
-
-#
-#~ msgid "Decrease delay by %i ms (can be set)"
-#~ msgstr "Zmanjšanje zamika za %i ms"
-
-#
-#~ msgid "Default Skin"
-#~ msgstr "Privzeta predloga (skin)"
-
-#
-#~ msgid "Default services lists"
-#~ msgstr "Originalni seznami kanalov"
-
-#
-#~ msgid "Defaults"
-#~ msgstr "Privzeto"
-
-#
-#~ msgid "Delay"
-#~ msgstr "Zamik"
-
-#
-#~ msgid "Descending"
-#~ msgstr "Padajoče"
-
-#
-#~ msgid "Destination directory"
-#~ msgstr "Ciljna mapa"
-
-#
-#~ msgid "Details for extension: "
-#~ msgstr "Dodatne informacije za vtičnik:"
-
-#
-#~ msgid "Device Setup"
-#~ msgstr "Splošne mrežne nastavitve"
-
-#
-#~ msgid "Device:"
-#~ msgstr "Naprava:"
-
-#
-#~ msgid "Devices Manager"
-#~ msgstr "Upravljalnik pogonov"
-
-#~ msgid ""
-#~ "Devices changes need a system restart to take effects.\n"
-#~ "Restart your Box now?"
-#~ msgstr ""
-#~ "Prišlo je do sprememb nastavitev. Potreben je ponovni zagon sprejemnika.\n"
-#~ "Želite zdaj ponovno zagnati sprejemnik?"
-
-#
-#~ msgid "Digital downmix"
-#~ msgstr "Pretvorba AC3 in DTS zvoka v stereo"
-
-#
-#~ msgid "Dir:"
-#~ msgstr "Mapa:"
-
-#
-#~ msgid "Disable Startup"
-#~ msgstr "Izklop avtomatskega zagona"
-
-#
-#~ msgid "Disable Subtitles"
-#~ msgstr "Izklop podnapisov"
-
-#
-#~ msgid "Discard changes and close plugin"
-#~ msgstr "Zanemarite spremembe in zaprite vtičnik"
-
-#
-#~ msgid "Discard changes and close screen"
-#~ msgstr "Zanemarite spremembe in zaprite zaslon"
-
-#
-#~ msgid "Display search results by:"
-#~ msgstr "Prikaz rezultatov iskanja:"
-
-#
-#~ msgid ""
-#~ "Do you really want to initialize the harddisk?\n"
-#~ "All data on the disk will be lost!"
-#~ msgstr ""
-#~ "Ste prepričani da želite ponastaviti trdi disk?\n"
-#~ "Vsi podatki bodo izbrisani!"
-
-#
-#~ msgid "Do you want to install default sat lists?"
-#~ msgstr "Ali želite namestiti privzeti seznam satelitov?"
-
-#~ msgid "Do you want to reboot your Receiver?"
-#~ msgstr "Želite ponovno zagnati vaš sprejemnik?"
-
-#
-#~ msgid "Do you want to reboot your Vu+?"
-#~ msgstr "Želite ponovno zagnati vaš sprejemnik?"
-
-#
-#~ msgid "Do you want to restart GUI now ?"
-#~ msgstr "Želite to storiti sedaj?"
-
-#
-#~ msgid "Do you want to see more entries?"
-#~ msgstr "Želite videti več vnosov?"
-
-#~ msgid "Do you want to update your Receiver?"
-#~ msgstr "Želite nadgraditi vaš sprejemnik?"
-
-#
-#~ msgid "Do you want to update your Vu+ Duo?"
-#~ msgstr "Želite nadgraditi vaš VU+ sprejemnik?"
-
-#
-#~ msgid "Do you want to upgrade your Vu+ Duo?"
-#~ msgstr "Želite nadgraditi vaš VU+ sprejemnik?"
-
-#
-#~ msgid "Download location"
-#~ msgstr "Lokacija datotek"
-
-#
-#~ msgid "Download of USB flasher boot image failed: "
-#~ msgstr ""
-#~ "Prenos zagonske datoteke za programsko nadgradnjo preko USB ni uspel!"
-
-#
-#~ msgid "Downloading screenshots. Please wait..."
-#~ msgstr "Prenašanje posnetkov. Počakajte..."
-
-#
-#~ msgid "Duration: "
-#~ msgstr "Dolžina:"
-
-#
-#~ msgid "EPG"
-#~ msgstr "EPG nastavitve"
-
-#
-#~ msgid "EPG Import Configuration"
-#~ msgstr "Nastavitve EPG vtičnika"
-
-#
-#~ msgid "EPG Import Sources"
-#~ msgstr "Izberite paket"
-
-#
-#~ msgid "EPG Search"
-#~ msgstr "EPG iskanje"
-
-#
-#~ msgid "EPG buton mode"
-#~ msgstr "Način delovanja EPG tipke"
-
-#
-#~ msgid "EPG button mode"
-#~ msgstr "Način EPG tipke"
-
-#
-#~ msgid "EPG encoding"
-#~ msgstr "EPG kodiranje"
-
-#
-#~ msgid "EPG filename"
-#~ msgstr "Ime EPG datoteke"
-
-#
-#~ msgid "EPG location"
-#~ msgstr "Lokacija EPG datoteke"
-
-#
-#~ msgid "EPG search"
-#~ msgstr "EPG iskanje"
-
-#
-#~ msgid "EPGImport"
-#~ msgstr "Upravljanje z elektronskim vodičem (EPG Import)"
-
-#
-#~ msgid "EPGImport plugin"
-#~ msgstr "EPGImport vtičnik"
-
-#
-#~ msgid "Ecm Info"
-#~ msgstr "CCcam informacije"
-
-#
-#~ msgid "Edit the Nameserver configuration of your Vu+ Duo.\n"
-#~ msgstr "Spremenite nastavitve imenskega strežnika sprejemnika.\n"
-
-#
-#~ msgid "Edit the network configuration of your Vu+ Duo.\n"
-#~ msgstr "Spremenite mrežne nastavitve sprejemnika.\n"
-
-#
-#~ msgid "Editing"
-#~ msgstr "Urejanje"
-
-#
-#~ msgid "Education"
-#~ msgstr "Izobrazba"
-
-#
-#~ msgid "Enable /media"
-#~ msgstr "Omogoči /media"
-
-#
-#~ msgid "Enable Auto Standby"
-#~ msgstr "Avtomatski prehod v stanje priprav."
-
-#
-#~ msgid "Enable Debug log"
-#~ msgstr "Aktivacija \"debug\" dnevnika"
-
-#
-#~ msgid "Enable Debug logs"
-#~ msgstr "Aktivacija dnevnikov napak"
-
-#
-#~ msgid "Enable Deep Standby"
-#~ msgstr "Omogoči globoko spanje"
-
-#
-#~ msgid "Enable Filtering"
-#~ msgstr "Omogoči filtriranje"
-
-#
-#~ msgid "Enable GUI Restart"
-#~ msgstr "Ponovni zagon Enigme"
-
-#
-#~ msgid "Enable HTTP Access"
-#~ msgstr "Omogoči HTTP dostop"
-
-#
-#~ msgid "Enable HTTP Authentication"
-#~ msgstr "Omogoči dokazovanje pristnosti pri HTTP"
-
-#
-#~ msgid "Enable HTTPS Access"
-#~ msgstr "Omogoči HTTPS dostop"
-
-#
-#~ msgid "Enable HTTPS Authentication"
-#~ msgstr "Omogoči dokazovanje pristnosti pri HTTPS"
-
-#
-#~ msgid "Enable Power Manager"
-#~ msgstr "Omogoči?"
-
-#
-#~ msgid "Enable Reboot"
-#~ msgstr "Ponovni zagon sprejemnika"
-
-#
-#~ msgid "Enable Service Restriction"
-#~ msgstr "Omogoči omejitve kanala"
-
-#
-#~ msgid "Enable Standby"
-#~ msgstr "Stanje pripravljenosti"
-
-#
-#~ msgid "Enable Startup"
-#~ msgstr "Aktivacija avtomatsk. zagon"
-
-#
-#~ msgid "Enable Streaming Authentication"
-#~ msgstr "Omogoči dokazovanje pristnosti pri mrežnem pretakanju"
-
-#
-#~ msgid "Enable Swap at startup"
-#~ msgstr "Aktivacija SWAP-a po zagonu sprejemnika"
-
-#
-#~ msgid "Enable panic button"
-#~ msgstr "Tipka za paniko (tipka 0)"
-
-#
-#~ msgid "Encryption Type"
-#~ msgstr "Način šifriranja"
-
-#~ msgid "Enough Retries, delaying till next schedule."
-#~ msgstr "Dovolj ponovitev, zamik do naslednjega dogodka."
-
-#
-#~ msgid "Enter Fast Forward at speed"
-#~ msgstr "Hitro predvajanje naprej s hitrostjo:"
-
-#
-#~ msgid "Enter Rewind at speed"
-#~ msgstr "Previjanje s hitrostjo:"
-
-#
-#~ msgid "Enter options:"
-#~ msgstr "Vnesite možnosti:"
-
-#
-#~ msgid "Enter password:"
-#~ msgstr "Vnesite geslo:"
-
-#
-#~ msgid "Enter your search term(s)"
-#~ msgstr "Vnesite vaše želene besede"
-
-#
-#~ msgid "Entertainment"
-#~ msgstr "Zabava"
-
-#
-#~ msgid "Event"
-#~ msgstr "Dogodek"
-
-#
-#~ msgid "Event Info"
-#~ msgstr "Info. o trenutnem dogodku"
-
-#
-#~ msgid "Events"
-#~ msgstr "Dogodki"
-
-#
-#~ msgid "Everything is fine"
-#~ msgstr "Vse je OK"
-
-#
-#~ msgid "Exact match"
-#~ msgstr "Točno ujemanje"
-
-#
-#~ msgid "Exclude"
-#~ msgstr "Izloči"
-
-#
-#~ msgid "FTP Setup"
-#~ msgstr "FTP nastavitve"
-
-#
-#~ msgid "Fan Control"
-#~ msgstr "Nadzor ventilatorja"
-
-#
-#~ msgid "Fan alternating on and off in standby?"
-#~ msgstr "Vklapljanje in izklapljanje v stanju priprav."
-
-#
-#~ msgid "Fan basic action"
-#~ msgstr "Vklop nastavitev ventilatorja?"
-
-#
-#~ msgid "Fan off duration time"
-#~ msgstr "Časovno obdobje nedelovanja ventilatorja"
-
-#
-#~ msgid "Fan on duration time"
-#~ msgstr "Časovno obdobje delovanja ventilatorja"
-
-#
-#~ msgid "Fan on or off in standby?"
-#~ msgstr "Uporaba ventilatorja v stanju pripravljenosti"
-
-#
-#~ msgid "February"
-#~ msgstr "Februar"
-
-#
-#~ msgid "Filesystem contains uncorrectable errors"
-#~ msgstr "Datotečni sistem vsebuje nepopravljive napake"
-
-#
-#~ msgid "Filter"
-#~ msgstr "Filter"
-
-#
-#~ msgid ""
-#~ "First we need to download the latest boot environment for the USB flasher."
-#~ msgstr ""
-#~ "Najprej je potrebno prenesti zadnjo verzijo zagonskega okolja za USB "
-#~ "programsko nadgradnjo."
-
-#
-#~ msgid ""
-#~ "Found a total of %d matching Events.\n"
-#~ "%d Timer were added and %d modified."
-#~ msgstr ""
-#~ "Najdeno je bilo %d ujemajočih se dogodkov.\n"
-#~ "%d časovnikov je bilo dodanih in %d spremenjenih."
-
-#~ msgid "Found none stanadard softcam, trying to start, this may fail"
-#~ msgstr ""
-#~ "Želite zagnati ne-standardni emulator. Poskušam z zagonom, ki pa je lahko "
-#~ "neuspešen."
-
-#
-#~ msgid "Frame repeat count during non-smooth winding"
-#~ msgstr "Ponavljanje posamezne slike med neenakomernim premotavanjem"
-
-#
-#~ msgid "France"
-#~ msgstr "Francija"
-
-#
-#~ msgid "Frisian"
-#~ msgstr "Frisian"
-
-#
-#~ msgid "Fsck failed"
-#~ msgstr "Fsck ni uspel"
-
-#~ msgid "GUI Restart Time"
-#~ msgstr "čas resetiranje Enigme"
-
-#
-#~ msgid "GUI needs a restart to apply the changes !!!"
-#~ msgstr "Za potrditev nastavitev je potreben ponovni zagon Enigme!"
-
-#
-#~ msgid "Gaming"
-#~ msgstr "Igranje"
-
-#
-#~ msgid "Genuine Dreambox"
-#~ msgstr "Original Dreambox"
-
-#~ msgid "Genuine Dreambox validation failed!"
-#~ msgstr "Vaš Dreambox je ponaredek!"
-
-#
-#~ msgid "Germany"
-#~ msgstr "Nemčija"
-
-#
-#~ msgid "Global delay"
-#~ msgstr "Splošni zamik"
-
-#
-#~ msgid "Go to first movie"
-#~ msgstr "Pojdite na prvi posnetek"
-
-#
-#~ msgid "Go to last item"
-#~ msgstr "Pojdite na zadnjo datoteko"
-
-#
-#~ msgid "Go to top of list"
-#~ msgstr "Pojdite na vrh liste"
-
-#
-#~ msgid "Great Britain"
-#~ msgstr "Velika Britanija"
-
-#
-#~ msgid "Guard interval mode"
-#~ msgstr "Način zaštitnega intervala"
-
-#~ msgid "H: = Hourly / D: = Daily / W: = Weekly / M: = Monthly"
-#~ msgstr "H: = Vsako uro / D: = Dnevno / W: = Tedensko / M: = Mesečno"
-
-#~ msgid "HARD DISK: "
-#~ msgstr "Trdi disk:"
-
-#
-#~ msgid "HD videos"
-#~ msgstr "Posnetki visoke ločljivosti"
-
-#
-#~ msgid "HTTP Port"
-#~ msgstr "HTTP port"
-
-#
-#~ msgid "HTTPS Port"
-#~ msgstr "HTTPS port"
-
-#
-#~ msgid "Help"
-#~ msgstr "Pomoč"
-
-#
-#~ msgid "Hidden network SSID"
-#~ msgstr "Skrito ime brezzične mreže"
-
-#
-#~ msgid "Hidden networkname"
-#~ msgstr "Skrito mrežno ime"
-
-#
-#~ msgid "Hierarchy mode"
-#~ msgstr "Način stopnje"
-
-#
-#~ msgid "History"
-#~ msgstr "Zgodovina"
-
-#
-#~ msgid "Holland"
-#~ msgstr "Nizozemska"
-
-#
-#~ msgid "Hong Kong"
-#~ msgstr "HongKong"
-
-#
-#~ msgid "How many minutes must the fan stay on?"
-#~ msgstr "Koliko minut naj ventilator deluje?"
-
-#
-#~ msgid "IMDb Details"
-#~ msgstr "iMDb informacije"
-
-#
-#~ msgid "IMDb Search"
-#~ msgstr "IMDb iskanje"
-
-#
-#~ msgid "IPK Installer"
-#~ msgstr "Namestite IPK datoteko"
-
-#
-#~ msgid "Icelandic"
-#~ msgstr "Islandsko"
-
-#
-#~ msgid "Image Manager"
-#~ msgstr "Ustvari varnostno kopijo sistema"
-
-#
-#~ msgid "Image flash utility"
-#~ msgstr "Orodja za programsko nadgradnjo"
-
-#
-#~ msgid "Import AutoTimer"
-#~ msgstr "Uvozi avtomatski časovnik"
-
-#
-#~ msgid "Import existing Timer"
-#~ msgstr "Uvozi obstoječ časovnik"
-
-#
-#~ msgid "Import from EPG"
-#~ msgstr "Uvozi iz EPG"
-
-#
-#~ msgid "Import of epg data will start"
-#~ msgstr "Pričel se bo uvoz EPG podatkov"
-
-#
-#~ msgid "Inadyn Setup"
-#~ msgstr "Inadyn nastavitve (DynDns, No-IP)"
-
-#
-#~ msgid "Include"
-#~ msgstr "Vključi"
-
-#
-#~ msgid "Include ECM in http stream"
-#~ msgstr ""
-#~ "HTTP tok podatkov naj vključuje ECM pakete (primerno za zaklenjene kanale)"
-
-#
-#~ msgid "Increase delay"
-#~ msgstr "Povečaj zamik"
-
-#
-#~ msgid "Increase delay by %i ms (can be set)"
-#~ msgstr "Povečaj zamik za %i ms"
-
-#
-#~ msgid "India"
-#~ msgstr "Indija"
-
-#
-#~ msgid "Initializing Harddisk..."
-#~ msgstr "Poteka formatiranje (ponastavitev) trdega diska..."
-
-#
-#~ msgid "Install Confirmation"
-#~ msgstr "Potrditev nameščanja"
-
-#
-#~ msgid "Integrated Ethernet"
-#~ msgstr "Vgrajena mreža"
-
-#
-#~ msgid "Integrated Wireless"
-#~ msgstr "Vgrajen brezzični vmesnik"
-
-#~ msgid "Internal LAN adapter."
-#~ msgstr "Notranji mrežni vmesnik"
-
-#
-# File: tmp/enigma2_plugins/genuinedreambox/src/plugin.py, line: 132
-#~ msgid "Invalid response from server."
-#~ msgstr "Napaka v odzivo strežnika."
-
-#
-#~ msgid "Invalid selection"
-#~ msgstr "Napačni izbor"
-
-#
-#~ msgid "Ireland"
-#~ msgstr "Irska"
-
-#
-#~ msgid "Is this ok?"
-#~ msgstr "Se strinjate?"
-
-#
-#~ msgid "Israel"
-#~ msgstr "Izrael"
-
-#
-#~ msgid "Italy"
-#~ msgstr "Italija"
-
-#
-#~ msgid "January"
-#~ msgstr "Januar"
-
-#
-#~ msgid "Japan"
-#~ msgstr "Japonska"
-
-#
-#~ msgid "July"
-#~ msgstr "Julij"
-
-#
-#~ msgid "June"
-#~ msgstr "Junij"
-
-#
-#~ msgid "Just change channels"
-#~ msgstr "Preklop na drugi kanal"
-
-#
-#~ msgid "KeyBoard"
-#~ msgstr "Tipkovnica"
-
-#
-#~ msgid "Keymap"
-#~ msgstr "Razporeditev tipk"
-
-#
-#~ msgid "Last backup date:"
-#~ msgstr "Datum zadnje kopije:"
-
-#~ msgid "Last upgrade"
-#~ msgstr "Zadnja nadg."
-
-#~ msgid "Last upgrade:"
-#~ msgstr "Zadnja nadg."
-
-#
-#~ msgid "Limit Debug log size (MB)"
-#~ msgstr "Omejitev velikosti debug dnevnika (v MB)"
-
-#
-#~ msgid "Load EPG"
-#~ msgstr "Izberite EPG"
-
-#
-#~ msgid "Load long descriptions up to X days"
-#~ msgstr "Prenos podatkov za X dni"
-
-#
-#~ msgid "Load movie-length"
-#~ msgstr "Naloži dolžino filma"
-
-#
-#~ msgid "Load/Save"
-#~ msgstr "Izberi/Shrani"
-
-#
-#~ msgid "Logs"
-#~ msgstr "Dnevniki"
-
-#
-#~ msgid "Logs Manager"
-#~ msgstr "Upravljalnik dnevnikov"
-
-#
-#~ msgid "Manage Extensions"
-#~ msgstr "Upravljanje z razširitvami"
-
-#
-#~ msgid ""
-#~ "Manage extensions or\n"
-#~ "plugins for your receiver"
-#~ msgstr ""
-#~ "Upravljanje z razširitvami\n"
-#~ "ali vtičniki."
-
-#
-#~ msgid "Manage extensions or plugins for your Vu+ Duo"
-#~ msgstr "Upravljanje z vtičniki in razširitvami sprejemnika!"
-
-#
-#~ msgid ""
-#~ "Manage you devices\n"
-#~ "mounpoints."
-#~ msgstr ""
-#~ "Upravljanje z zunanjimi pogoni\n"
-#~ "(USB pogoni, trdi diski itd.)"
-
-#
-#~ msgid ""
-#~ "Manage your backups of\n"
-#~ "your settings."
-#~ msgstr ""
-#~ "Upravljanje z varnostnimi kopijami\n"
-#~ "nastavitev sprejemnika."
-
-#
-#~ msgid "Manage your cron jobs."
-#~ msgstr "Upravljanje s t.i. cron jobsi"
-
-#
-#~ msgid "Manual"
-#~ msgstr "Prenos"
-
-#
-#~ msgid "March"
-#~ msgstr "Marec"
-
-#
-#~ msgid "Match title"
-#~ msgstr "Ujemanje z naslovom"
-
-#
-#~ msgid "Match title: %s"
-#~ msgstr "Ujemanje z naslovom: %s"
-
-#
-#~ msgid "Maximum duration (in m)"
-#~ msgstr "Največje trajanje (v minutah)"
-
-#
-#~ msgid "May"
-#~ msgstr "Maj"
-
-#
-#~ msgid "Mexico"
-#~ msgstr "Mehika"
-
-#
-#~ msgid "MiniDLNA Setup"
-#~ msgstr "MiniDLNA nastavitve"
-
-#
-#~ msgid "Mkfs failed"
-#~ msgstr "Mkfs ni uspel"
-
-#
-#~ msgid "Modify existing timers"
-#~ msgstr "Urejanje obstoječi časovnikov"
-
-#
-#~ msgid "Monthly"
-#~ msgstr "Mesečno"
-
-#
-#~ msgid "More video entries."
-#~ msgstr "Več video vnosov."
-
-#
-#~ msgid "Mount Manager"
-#~ msgstr "Upravljanje z zunanjimi pogoni"
-
-#
-#~ msgid "Mount failed"
-#~ msgstr "Pripajanje neuspešno"
-
-#
-#~ msgid "Move plugin screen"
-#~ msgstr "Premaknite vtičnik"
-
-#
-#~ msgid "Move screen down"
-#~ msgstr "Premaknite sliko dol"
-
-#
-#~ msgid "Move screen to the center of your TV"
-#~ msgstr "Premaknite sliko v center vašega TVja."
-
-#
-#~ msgid "Move screen to the left"
-#~ msgstr "Premaknite sliko v levo"
-
-#
-#~ msgid "Move screen to the lower left corner"
-#~ msgstr "Premaknite sliko v spodnji levi kot"
-
-#
-#~ msgid "Move screen to the lower right corner"
-#~ msgstr "Premaknite sliko v spodnji desni kot"
-
-#
-#~ msgid "Move screen to the middle of the left border"
-#~ msgstr "Premaknite sliko na sredino levega kota"
-
-#
-#~ msgid "Move screen to the middle of the right border"
-#~ msgstr "Premaknite sliko na sredino desnega kota"
-
-#
-#~ msgid "Move screen to the right"
-#~ msgstr "Premaknite sliko na desno"
-
-#
-#~ msgid "Move screen to the upper left corner"
-#~ msgstr "Premaknite sliko v zgornji levi kot"
-
-#
-#~ msgid "Move screen to the upper right corner"
-#~ msgstr "Premaknite sliko v zgornji desni kot"
-
-#
-#~ msgid "Move screen up"
-#~ msgstr "Premaknite sliko gor"
-
-#
-#~ msgid "Movie List"
-#~ msgstr "Seznam posnetkov"
-
-#~ msgid "Moving to Backup Location..."
-#~ msgstr "Prenašanje na lokacijo varnostne kopije..."
-
-#
-#~ msgid "Multi Quickbutton"
-#~ msgstr "Multi Quickbutton"
-
-#
-#~ msgid "Music"
-#~ msgstr "Glasba"
-
-#
-#~ msgid "My TubePlayer"
-#~ msgstr "YouTube predvajalnik"
-
-#
-#~ msgid "MyTube Settings"
-#~ msgstr "MyTube nastavitve"
-
-#
-#~ msgid "MyTubePlayer"
-#~ msgstr "YouTube predvajalnik"
-
-#
-#~ msgid "NFS Setup"
-#~ msgstr "NFS nastavitve"
-
-#
-#~ msgid "Network SSID"
-#~ msgstr "Omrežni SSID"
-
-#
-#~ msgid "Never"
-#~ msgstr "Nikoli"
-
-#
-#~ msgid "New Backup"
-#~ msgstr "Nova kopija"
-
-#
-#~ msgid "New Search"
-#~ msgstr "Novo iskanje"
-
-#
-#~ msgid "New Zealand"
-#~ msgstr "Nova Zelandija"
-
-#
-#~ msgid "New pin"
-#~ msgstr "Nova PIN koda"
-
-#
-#~ msgid "Next Backup: "
-#~ msgstr "Naslednja varnostna kopija:"
-
-#
-#~ msgid "Next Deep Stanby:"
-#~ msgstr "Globoko spanje:"
-
-#~ msgid "Next Deep Standby: \n"
-#~ msgstr "Naslednje globoko spanje: \n"
-
-#
-#~ msgid "Next GUI Restart:"
-#~ msgstr "Resetiranje GUI:"
-
-#~ msgid "Next GUI Restart: \n"
-#~ msgstr "Ponovni zagon Enigme: \n"
-
-#~ msgid "Next Reboot: \n"
-#~ msgstr "Naslednji ponovni zagon: \n"
-
-#
-#~ msgid "Next Standby:"
-#~ msgstr "Stanje pripr.:"
-
-#~ msgid "Next Standby: \n"
-#~ msgstr "Naslednje stanje priprav. \n"
-
-#
-#~ msgid "No Networks found"
-#~ msgstr "Ni omrežij"
-
-#~ msgid ""
-#~ "No config files found, please setup CCcam first\n"
-#~ "in /etc/CCcam.cfg"
-#~ msgstr ""
-#~ "Ni najdenih nastavitvenih datotek, prosim najprej nastavite CCcam.\n"
-#~ "Nastavitvena datoteka se imenuje CCcam.cfg in se nahaja v mapi /etc"
-
-#~ msgid ""
-#~ "No config files found, please setup MGcamd first\n"
-#~ "in /var/keys"
-#~ msgstr ""
-#~ "Ni najdenih nastavitvenih datotek, prosim najprej nastavite MGcamd.\n"
-#~ "Nastavitvene datoteke se nahajajo v /var/keys"
-
-#~ msgid ""
-#~ "No config files found, please setup Oscam first\n"
-#~ "in /etc/hypercam.cfg"
-#~ msgstr ""
-#~ "Ni najdenih nastavitvenih datotek, prosim najprej nastavite Hypercam.\n"
-#~ "Nastavitvena datoteka se imenuje hypercam.cfg nahaja v /etc"
-
-#~ msgid ""
-#~ "No config files found, please setup Oscam first\n"
-#~ "in /etc/tuxbox/config"
-#~ msgstr ""
-#~ "Ni najdenih nastavitvenih datotek, prosim najprej nastavite Oscam.\n"
-#~ "Nastavitvene datoteke se nahajajo v /etc/tuxbox/config"
-
-#
-#~ msgid "No playable video found! Stop playing this movie?"
-#~ msgstr "Posnetka ni možno predvajati! Naj ustavim predvajanje?"
-
-#
-#~ msgid "No useable USB stick found"
-#~ msgstr "Ne najdem uporabnega USB ključka"
-
-#
-#~ msgid "No videos to display"
-#~ msgstr "Ni nobenega posnetka za prikaz"
-
-#
-#~ msgid "No wireless networks found! Please refresh."
-#~ msgstr "Ni najdene nobene brezzične mreže! Prosim osvežite."
-
-#
-#~ msgid "No, but play video again"
-#~ msgstr "Ne, toda ponovno zaženi posnetek"
-
-#
-#~ msgid "No, but switch to video search."
-#~ msgstr "Ne, prestavi na iskanje posnetkov."
-
-#
-#~ msgid "No, remove them."
-#~ msgstr "Ne, odstrani jih"
-
-#
-#~ msgid "November"
-#~ msgstr "November"
-
-#
-#~ msgid "OScam Info"
-#~ msgstr "Informacije o delovanju OScam"
-
-#
-#~ msgid "October"
-#~ msgstr "Oktober"
-
-#
-#~ msgid "Offset after recording (in m)"
-#~ msgstr "Dolžina dodatnega snemanja po zaključku (v min)"
-
-#
-#~ msgid "Offset before recording (in m)"
-#~ msgstr "Dolžina dodatnega snemanja pred začetkom (v min)"
-
-#
-#~ msgid "On any service"
-#~ msgstr "Na vsakem kanalu"
-
-#
-#~ msgid "On same service"
-#~ msgstr "Na istem kanalu"
-
-#
-#~ msgid ""
-#~ "Online update of your\n"
-#~ "of your Receiver software."
-#~ msgstr ""
-#~ "Internetna nadgradnja vašega\n"
-#~ "sprejemnika."
-
-#
-#~ msgid "Online version check every (hours) 0 = Disable"
-#~ msgstr "Preverjanje za novo verzijo OpenViX vsako X uro"
-
-#
-#~ msgid "Only on Service: %s"
-#~ msgstr "Samo na kanalu: %s"
-
-#
-#~ msgid "Open bouquet selection"
-#~ msgstr "Odprite seznam priljubljenih paketov"
-
-#
-#~ msgid "Open channel selection"
-#~ msgstr "Odprtje seznama kanalov"
-
-#
-#~ msgid "Open plugin menu"
-#~ msgstr "Odpri meni vtičnikov"
-
-#
-#~ msgid "OpenVPN Setup"
-#~ msgstr "OpenVPN nastavitve"
-
-#
-#~ msgid "Outer Bound (+/-)"
-#~ msgstr "Zunanja meja (+/-)"
-
-#
-#~ msgid "Packet Manager"
-#~ msgstr "Upravljanje paketov"
-
-#
-#~ msgid "Page"
-#~ msgstr "Stran"
-
-#
-#~ msgid "Password:"
-#~ msgstr "Geslo:"
-
-#
-#~ msgid "Permanent Timeshift Enable"
-#~ msgstr "Aktivacija stalnega časovnega zamika"
-
-#
-#~ msgid "Permanent Timeshift Settings"
-#~ msgstr "Nastavitve"
-
-#
-#~ msgid "Play YouTube movies"
-#~ msgstr "Predvajajte YouTube posnetke"
-
-#
-#~ msgid "Play next video"
-#~ msgstr "Predvajajte naslednji posnetek"
-
-#
-#~ msgid "Play video again"
-#~ msgstr "Ponovno predvajajte posnetek"
-
-#
-#~ msgid "Please Reboot"
-#~ msgstr "Prosim ponovno zaženi"
-
-#
-#~ msgid "Please choose .NFI image file from feed server to download"
-#~ msgstr "Za prenos iz strežnika, izberite ustrezno .NFI datoteko"
-
-#
-#~ msgid ""
-#~ "Please disconnect all USB devices from your Dreambox and (re-)attach the "
-#~ "target USB stick (minimum size is 64 MB) now!"
-#~ msgstr ""
-#~ "Izklopite vse USB naprave iz vašega sprejemnika in ponovno povežite "
-#~ "izbran USB ključ (minimalno 64MB)!"
-
-#
-#~ msgid "Please enter the old pin code"
-#~ msgstr "Vnesite staro PIN kodo:"
-
-#
-#~ msgid "Please provide a Text to match"
-#~ msgstr "Prosim, da vnesete ujemajoče besedilo"
-
-#
-#~ msgid "Please select .NFI flash image file from medium"
-#~ msgstr "Prosim, da izberete .NFI datoteko"
-
-#
-#~ msgid "Please select device to use as swapfile location"
-#~ msgstr "Lokacija SWAP-a:"
-
-#
-#~ msgid "Please select target directory or medium"
-#~ msgstr "Prosim, da izberite ciljno mapo ali medij:"
-
-#
-#, fuzzy
-#~ msgid "Please wait (Step 2)"
-#~ msgstr "Prosim počakajte (korak 2)"
-
-#~ msgid "Please wait while starting\n"
-#~ msgstr "Prosim počakajte, emulator se zaganja...\n"
-
-#~ msgid "Please wait while stopping\n"
-#~ msgstr "Prosim počakajte, emulator se ustavlja...\n"
-
-#
-#~ msgid "Plugin Browser"
-#~ msgstr "Seznam vtičnikov"
-
-#
-#~ msgid "Plugin: %(plugin)s , Version: %(version)s"
-#~ msgstr "Vtičnik: %(plugin)s, Verzija: %(version)s"
-
-#
-#~ msgid "Poland"
-#~ msgstr "Poljska"
-
-#
-#~ msgid "Polarity"
-#~ msgstr "Polariteta"
-
-#
-#~ msgid "Positioner fine movement"
-#~ msgstr "Podrobno nastavljanje"
-
-#
-#~ msgid "Positioner movement"
-#~ msgstr "Premik rotorja"
-
-#
-#~ msgid "Positioner storage"
-#~ msgstr "Hranilnik motorja"
-
-#
-#~ msgid "Power Manager"
-#~ msgstr "Upravljanje s stanjem sprejem."
-
-#
-#~ msgid "Predifined Command to execute"
-#~ msgstr "Izberite skripto, ki jo želite uporabiti"
-
-#
-#~ msgid "Press OK to edit selected settings."
-#~ msgstr "Za spremembo izbranih nastavitev pritisnite OK."
-
-#
-#~ msgid "Press OK to save settings."
-#~ msgstr "Za shranitev nastavitev pritisnite OK."
-
-#
-#~ msgid "Press OK to select."
-#~ msgstr "Za izbiro pritisnite OK."
-
-#
-#~ msgid "Press OK to view full changelog"
-#~ msgstr "Za ogled celotnega dnevnika sprememb pritisnite tipko OK."
-
-#
-#~ msgid "Preview AutoTimer"
-#~ msgstr "Predogled AutoTimerja"
-
-#
-#~ msgid "Programme Guide"
-#~ msgstr "Programski vodič"
-
-#
-#~ msgid "Project Valerie"
-#~ msgstr "Projekt Valerie"
-
-#
-#~ msgid "Published"
-#~ msgstr "Objavljeno"
-
-#
-#~ msgid "QuickEPG Usage"
-#~ msgstr "Način uporabe QuickEPG"
-
-#
-#~ msgid "QuickEPG mode"
-#~ msgstr "QuickEPG način"
-
-#
-#~ msgid "RC Menu"
-#~ msgstr "RC Meni"
-
-#~ msgid "Ralink"
-#~ msgstr "Ralink"
-
-#
-#~ msgid "Rating"
-#~ msgstr "Ocena"
-
-#~ msgid "Re-install Plugins"
-#~ msgstr "Ponovno naložite vtičnike"
-
-#
-#~ msgid "Reading directory..."
-#~ msgstr "Branje map in datotek..."
-
-#
-#~ msgid "Really quit MyTube Player?"
-#~ msgstr "Res želite zapreti MyTube predvajalnik?"
-
-#~ msgid "Reboot Time"
-#~ msgstr "Čas resetiranja"
-
-#
-#~ msgid "Record Settings"
-#~ msgstr "Nastavitve snemanja"
-
-#
-#~ msgid "Record a maximum of x times"
-#~ msgstr "Snemaj največ X-krat"
-
-#
-#~ msgid "Record on"
-#~ msgstr "Snemaj na"
-
-#
-#~ msgid "Recording Paths"
-#~ msgstr "Poti snemanja datotek"
-
-#
-#~ msgid "Recording Settings"
-#~ msgstr "Nastavitve snemanja"
-
-#
-#~ msgid "Reenter new pin"
-#~ msgstr "Ponovno vnesite PIN"
-
-#
-#~ msgid "Refresh List"
-#~ msgstr "Osvežitev"
-
-#
-#~ msgid "Refresh every (in hours)"
-#~ msgstr "Osveževanje vsakih X ur"
-
-#
-#~ msgid "Relevance"
-#~ msgstr "Ustreznost"
-
-#
-#~ msgid "Remember service pin"
-#~ msgstr "Zapomni si PIN kodo kanala"
-
-#
-#~ msgid "Remember service pin cancel"
-#~ msgstr "Preklic pomnenja PIN kode kanala"
-
-#
-#~ msgid "Remote Setup"
-#~ msgstr "Nastavi daljinski upravljalec"
-
-#
-#~ msgid "Remove Confirmation"
-#~ msgstr "Potrditev odstranitve"
-
-#
-#~ msgid "Remove selected AutoTimer"
-#~ msgstr "Odstrani izbrani avtomatski časovnik"
-
-#
-#~ msgid "Remove the broken .NFI file?"
-#~ msgstr "Odstranim pokvarjeno .NFI datoteko?"
-
-#
-#~ msgid "Remove the incomplete .NFI file?"
-#~ msgstr "Ostranim nepopolno .NFI datoteko?"
-
-#~ msgid "Renaming old backup..."
-#~ msgstr "Preimenovanje stare kopije..."
-
-#
-#~ msgid "Repartition"
-#~ msgstr "Izdelava particije"
-
-#~ msgid "Repartition Device"
-#~ msgstr "Ponovno particioniranje naprave"
-
-#
-#~ msgid "Repeat"
-#~ msgstr "Ponovi"
-
-#~ msgid "Repeat how often"
-#~ msgstr "Ponovitev - kako pogosto?"
-
-#
-#~ msgid "Require description to be unique"
-#~ msgstr "Opis mora biti unikaten"
-
-#
-#~ msgid "Rescan"
-#~ msgstr "Ponovno preišči"
-
-#
-#~ msgid "Reset count"
-#~ msgstr "Ponastavi števec"
-
-#
-#~ msgid "Reset saved position"
-#~ msgstr "Ponastavi shranjeno lokacijo"
-
-#
-#~ msgid "Restart Enigma2."
-#~ msgstr "Ponovni zagon Enigme2."
-
-#
-#~ msgid "Restart GUI"
-#~ msgstr "Ponoven zagon uporabniškega vmesnika"
-
-#
-#~ msgid "Restart both"
-#~ msgstr "Ponovni zagon obeh"
-
-#
-#~ msgid "Restart cardserver"
-#~ msgstr "Ponovni zagon bralca kartic"
-
-#
-#~ msgid "Restart softcam"
-#~ msgstr "Ponovni zagon emulatorja"
-
-#
-#~ msgid "Restore your Vu+ Duo settings."
-#~ msgstr "Obnovite Vu+ nastavitve!"
-
-#
-#~ msgid "Restore your Vu+ Duo with a new firmware"
-#~ msgstr "Obnovite VU+ z novo programsko opremo!"
-
-#
-#~ msgid "Results"
-#~ msgstr "Rezultati"
-
-#
-#~ msgid "Retry after cancel (mins)"
-#~ msgstr "Ponovni poizkus po ročni prekinitvi (v minutah)"
-
-#
-#~ msgid "Return to file browser"
-#~ msgstr "Nazaj na datotečni pregledovalnik"
-
-#
-#~ msgid "Run"
-#~ msgstr "Zagon"
-
-#
-#~ msgid "Run how often ?"
-#~ msgstr "Določitev termina delovanja"
-
-#
-#~ msgid "Run subtitle"
-#~ msgstr "Zaženi podnapis"
-
-#
-#~ msgid "Run your shell scripts."
-#~ msgstr "Zagon lastnih skript."
-
-#
-#~ msgid "Running"
-#~ msgstr "V teku"
-
-#
-#~ msgid "Russia"
-#~ msgstr "Rusija"
-
-#
-#~ msgid "RyVIX"
-#~ msgstr "RyVIX vtičnik"
-
-#
-#~ msgid "Samba Setup"
-#~ msgstr "Samba (SMB) nastavitve"
-
-#
-#~ msgid "Save EPG"
-#~ msgstr "Shranite EPG"
-
-#
-#~ msgid "Save current delay to key"
-#~ msgstr "Shranite trenutni zamik na tipko"
-
-#
-#~ msgid "Save every (in hours)"
-#~ msgstr "Shranjevanje vsakih X ur"
-
-#
-#~ msgid "Save to key"
-#~ msgstr "Shranite na tipko"
-
-#
-#~ msgid "Save values and close plugin"
-#~ msgstr "Shranite vrednosti in zaprite vtičnik"
-
-#
-#~ msgid "Save values and close screen"
-#~ msgstr "Shranite vrednosti in zapri zaslon"
-
-#
-#~ msgid "Scan range"
-#~ msgstr "Razpon iskanja"
-
-#
-#~ msgid ""
-#~ "Scan your network for wireless Access Points and connect to them using "
-#~ "your selected wireless device.\n"
-#~ msgstr ""
-#~ "V vašem omrežju poiščite brezzične dostopne točke in se povežite na "
-#~ "želeno točko.\n"
-
-#
-#~ msgid "Script Runner"
-#~ msgstr "Zagon skripte"
-
-#
-#~ msgid "Script Running"
-#~ msgstr "Zagon skripte"
-
-#
-#~ msgid "Search"
-#~ msgstr "Iskanje"
-
-#
-#~ msgid "Search IMDB"
-#~ msgstr "Išči po IMDB bazi"
-
-#
-#~ msgid "Search Term(s)"
-#~ msgstr "Iskalni termin(i)"
-
-#
-#~ msgid "Search category:"
-#~ msgstr "Iskanje kategorije:"
-
-#
-#~ msgid "Search region:"
-#~ msgstr "Področje iskanja:"
-
-#
-#~ msgid "Search restricted content:"
-#~ msgstr "Iskanje zaščitene vsebine:"
-
-#
-#~ msgid "Search type"
-#~ msgstr "Vrsta iskanja"
-
-#
-#~ msgid "Seekbar sensibility"
-#~ msgstr "Občutljivost seekbar"
-
-#
-#~ msgid "Select Card Server"
-#~ msgstr "Izbor bralca kartic"
-
-#
-#~ msgid "Select Softcam"
-#~ msgstr "Izbor emulatorja"
-
-#
-#~ msgid "Select a package to install:"
-#~ msgstr "Izberite datoteko:"
-
-#
-#~ msgid "Select a script to run:"
-#~ msgstr "Izberite skripto:"
-
-#
-#~ msgid "Select a timer to import"
-#~ msgstr "Izberite časovnik, ki ga boste uvozili"
-
-#
-#~ msgid "Select an image to Restore / Delete:"
-#~ msgstr "Izbor slike (image) za obnovo ali izbris:"
-
-#
-#~ msgid "Select and image to Restore / Delete:"
-#~ msgstr "Izberite sliko, ki jo boste obnovili oz. izbrisali:"
-
-#
-#~ msgid "Select audio mode"
-#~ msgstr "Izberite zvočni način"
-
-#
-#~ msgid "Select bouquet to record on"
-#~ msgstr "Izberite priljubljeno listo kanalov - za snemanje"
-
-#
-#~ msgid "Select channel to record on"
-#~ msgstr "Izberite kanal za snemanje"
-
-#
-#~ msgid "Select files for backup. Currently selected:\n"
-#~ msgstr ""
-#~ "Izberite datoteke za varnostno kopiranje. Trenutno izbrane datoteke so:\n"
-
-#
-#~ msgid "Select image"
-#~ msgstr "Izberite sliko (image)"
-
-#
-#~ msgid "Select new feed to view."
-#~ msgstr "Izberite nov vir."
-
-#
-#~ msgid "Select the Swap File Size:"
-#~ msgstr "Izberite velikost SWAP-a:"
-
-#
-#~ msgid "Select the location to save the recording to."
-#~ msgstr "Izberite lokacijo, kamor se bo shranil posnetek."
-
-#
-#~ msgid "Select type of Filter"
-#~ msgstr "Izberite vrsto filtra"
-
-#
-#~ msgid "Select your choice."
-#~ msgstr "Potrdite vaš izbor."
-
-#
-#~ msgid "Select:"
-#~ msgstr "Seznam:"
-
-#
-#~ msgid "Selected source image"
-#~ msgstr "Izbrana izvirna datoteka"
-
-#
-#~ msgid "Send"
-#~ msgstr "Pošlji"
-
-#
-#~ msgid "September"
-#~ msgstr "September"
-
-#
-#~ msgid "Service delay"
-#~ msgstr "Zamik kanala"
-
-#
-#~ msgid "Set delay to %i ms (can be set)"
-#~ msgstr "Nastavite zamik na %i ms"
-
-#
-#~ msgid "Set limits"
-#~ msgstr "Postavi meje"
-
-#
-#~ msgid "Set maximum duration"
-#~ msgstr "Določite skrajno mejo trajanja"
-
-#
-#~ msgid "Settings..."
-#~ msgstr "Nastavitve"
-
-#
-#~ msgid "Setup Mounts"
-#~ msgstr "Nastavitev naprav"
-
-#
-#~ msgid "Setup for the Audio Sync Plugin"
-#~ msgstr "Nastavitve za Audio Sync vtičnik"
-
-#
-#~ msgid "Short Movies"
-#~ msgstr "Kratki filmi"
-
-#
-#~ msgid "Show CCcam in extensions ?"
-#~ msgstr "Prikaz CCcam-a v seznamu vtičnikov"
-
-#
-#~ msgid "Show CoolTVGuide"
-#~ msgstr "CoolTVGuide EPG"
-
-#
-#~ msgid "Show Graphical EPG"
-#~ msgstr "Prikaz grafičnega EPG-ja"
-
-#~ msgid "Show Log"
-#~ msgstr "Pokaži dnevnik"
-
-#
-#~ msgid "Show Movie List"
-#~ msgstr "Prikaz seznama datotek"
-
-#
-#~ msgid "Show Multi EPG"
-#~ msgstr "Prikaz multi EPG-ja"
-
-#
-#~ msgid "Show OScam in extension ?"
-#~ msgstr "Prikaz Oscam-a v seznamu vtičnikov"
-
-#
-#~ msgid "Show Single EPG"
-#~ msgstr "Prikaz enostavnega/enojnega EPG-ja"
-
-#
-#~ msgid "Show TV List"
-#~ msgstr "Prikaz seznama kanalov"
-
-#
-#~ msgid "Show ViX EPG"
-#~ msgstr "ViX EPG"
-
-#
-#~ msgid "Show ViX Single EPG"
-#~ msgstr "ViX enojni EPG"
-
-#
-#~ msgid "Show blinking clock in display during recording"
-#~ msgstr "Prikaz utripajoče ure med snemanjem"
-
-#
-#~ msgid "Show channel selection on mode change"
-#~ msgstr ""
-#~ "Pri menjavi iz TV v Radio način in obratno, naj se pokaže seznam kanalov"
-
-#
-#~ msgid "Show event info on 2nd"
-#~ msgstr "Prikaz informacij o kanalu pri drugem pritisku"
-
-#
-#~ msgid "Show event info on 2nd OK"
-#~ msgstr "Informacije o trenutnem dogodku - pri drugem pritisku tipke OK"
-
-#
-#~ msgid "Show event-number in channel selection"
-#~ msgstr "Prikaz številke programa v seznamu kanalov"
-
-#
-#~ msgid "Show in extension menu"
-#~ msgstr "Prikaz v seznamu vtičnikov"
-
-#
-#~ msgid "Show in extensions"
-#~ msgstr "Prikaz v seznamu razširitev"
-
-#
-#~ msgid "Show log"
-#~ msgstr "Prikaz dnevnika"
-
-#
-#~ msgid "Show the media player..."
-#~ msgstr "Odprite multimedijski predvajalnik"
-
-#
-#~ msgid "Skin Setup"
-#~ msgstr "Izbor predloge"
-
-#
-#~ msgid "Skip the import"
-#~ msgstr "preskoči prenos"
-
-#
-#~ msgid "Slovakian"
-#~ msgstr "Slovaščina"
-
-#
-#~ msgid "Softcam Manager"
-#~ msgstr "Upravljalnik emulatorjev"
-
-#
-#~ msgid "Softcam Setup"
-#~ msgstr "Nastavitve"
-
-#
-#~ msgid "SoftcamCJ Setup"
-#~ msgstr "Nastavitve"
-
-#
-#~ msgid "Software Update"
-#~ msgstr "Posodobitev sprejemnika"
-
-#~ msgid "Sorry you box is not yet compatible."
-#~ msgstr "Oprostite, vaš sprejemnik še ni združljiv"
-
-#~ msgid ""
-#~ "Sorry you have Debug Logs enabed,\n"
-#~ "Please disable and restart GUI, before trying again"
-#~ msgstr ""
-#~ "Vključene imate debug dnevnike.\n"
-#~ "Prosim, da jih izključite in ponovno zaženite Enigmo2!"
-
-#~ msgid ""
-#~ "Sorry, not enough free ram found, and no phyical devices attached. Can't "
-#~ "create Swapfile on network mounts, unable to make backup"
-#~ msgstr ""
-#~ "Oprostite, ni dovolj prostega pomnilnika, poleg tega ne morem zaznati "
-#~ "priključenega pogona. Ne"
-
-#
-#~ msgid "Sorry, video is not available!"
-#~ msgstr "Oprostite, video ni na voljo!"
-
-#
-#~ msgid "Sort AutoTimer"
-#~ msgstr "Razvrstite AutoTimer"
-
-#
-#~ msgid "Sources"
-#~ msgstr "Viri"
-
-#
-#~ msgid "South Korea"
-#~ msgstr "Južna Koreja"
-
-#
-#~ msgid "Spain"
-#~ msgstr "Španija"
-
-#
-#~ msgid "Sports"
-#~ msgstr "Športi"
-
-#
-#~ msgid "Standby Time"
-#~ msgstr "Izberite čas izklopa"
-
-#
-#~ msgid "Standby at startup"
-#~ msgstr "Po zagonu sprejemnika naj gre v stanje priprav."
-
-#
-#~ msgid "Standbymode FanSetup settings"
-#~ msgstr "Nastavitve ventilatorja"
-
-#
-#~ msgid "Standbymode Fancontrol settings: "
-#~ msgstr "Nastavite ventilatorja"
-
-#
-#~ msgid "Start"
-#~ msgstr "Zagon"
-
-#
-#~ msgid "Start Webinterface"
-#~ msgstr "Omogočite Webinterface"
-
-#
-#~ msgid "Start import after booting up"
-#~ msgstr "Začetek prenosa podatkov po vklopu sprej."
-
-#
-#~ msgid "Start/Stop"
-#~ msgstr "Zagon/Ustavitev"
-
-#
-#~ msgid "Started"
-#~ msgstr "V teku"
-
-#
-#~ msgid "Step in ms for arrow keys"
-#~ msgstr "Koraki v ms za puščice (tipke)"
-
-#
-#~ msgid "Step in ms for key %i"
-#~ msgstr "Koraki v ms za tipko %i"
-
-#
-#~ msgid "Step in ms for keys '%s'"
-#~ msgstr "Koraki v ms za tipko '%s'"
-
-#
-#~ msgid "Stereo"
-#~ msgstr "Stereo"
-
-#
-#~ msgid "Subservice (Green)"
-#~ msgstr "Pod-Storitve (zelena tipka)"
-
-#
-#~ msgid "Subservice mode"
-#~ msgstr "Pod-storitve"
-
-#
-#~ msgid "Subtitle Files"
-#~ msgstr "Datoteke podnapisov"
-
-#
-#~ msgid "Subtitle Settings"
-#~ msgstr "Nastavitve podnapisov"
-
-#
-#~ msgid "Svenska"
-#~ msgstr "Švedščina"
-
-#
-#~ msgid "Swap File Manager"
-#~ msgstr "Izdelava SWAP"
-
-# morem ustvari SWAP na mrežnih napravah, prav tako ne morem ustvariti kopije.
-#~ msgid "Swap File creation Failed. Check for Available space."
-#~ msgstr ""
-#~ "SWAP datoteka ni bila ustvarjena. Preverite, če je na pogonu dovolj "
-#~ "prostora."
-
-#~ msgid "Swap File not found. You have to create the file before to activate."
-#~ msgstr ""
-#~ "SWAP datoteka ni najdena. SWAP je potrebno najprej ustvari, šele po tem "
-#~ "ga lahko tudi aktivirate."
-
-#~ msgid "Swap File successfully created."
-#~ msgstr "SWAP datoteka je uspešno ustvarjena."
-
-#
-#~ msgid "Swap Manager"
-#~ msgstr "Upravljanje s SWAP"
-
-#
-#~ msgid "Swap Place:"
-#~ msgstr "Lokacija SWAP:"
-
-#
-#~ msgid "Swap Size:"
-#~ msgstr "Velikost SWAP:"
-
-#
-#~ msgid "Sweden"
-#~ msgstr "Švedska"
-
-#
-#~ msgid "Sync NTP every (minutes)"
-#~ msgstr "Sinhronizacija NTP vsakih"
-
-#
-#~ msgid "Sync time using"
-#~ msgstr "Način sinhronizacije ure"
-
-#
-#~ msgid "TV button mode"
-#~ msgstr "Način tipke TV"
-
-#
-#~ msgid "Tag 1"
-#~ msgstr "Zaznamek 1"
-
-#
-#~ msgid "Tag 2"
-#~ msgstr "Zaznamek 2"
-
-#
-#~ msgid "Tags the Timer/Recording will have."
-#~ msgstr "Zaznamki, ki jih bosta imela časovnik/posnetek."
-
-#
-#~ msgid "Tags: "
-#~ msgstr "Zaznamki:"
-
-#
-#~ msgid "Taiwan"
-#~ msgstr "Tajvan"
-
-#
-#~ msgid "Teletext subtitle delay when timing lacks"
-#~ msgstr "Zamik teletekst podnapisov, ko je to potrebno"
-
-#
-#~ msgid "Telnet Setup"
-#~ msgstr "Telnet nastavitve (oddaljeni dostop)"
-
-#
-# File: tmp/enigma2_plugins/genuinedreambox/src/plugin.py, line: 80
-#~ msgid "Test again"
-#~ msgstr "Ponovno testiranje"
-
-#
-#~ msgid "Test the network configuration of your Vu+ Duo.\n"
-#~ msgstr "Preverite omrežne nastavitve vašega sprejemnika.\n"
-
-#
-#~ msgid ""
-#~ "Thank you for using the wizard. Your new AutoTimer has been added to the "
-#~ "List.\n"
-#~ "Please press OK to continue."
-#~ msgstr ""
-#~ "Hvala, da ste uporabili čarovnik. Vaš nov avtomatski časovnik je bil "
-#~ "dodan v listo.\n"
-#~ "Za nadaljevanje pritisnite OK!"
-
-#
-#~ msgid ""
-#~ "The Timer will not be added to the List.\n"
-#~ "Please press OK to close this Wizard."
-#~ msgstr ""
-#~ "Vaš časovnik ne bo dodan v listo.\n"
-#~ "Za nadaljevanje pritisnite OK."
-
-#
-#~ msgid ""
-#~ "The USB stick is now bootable. Do you want to download the latest image "
-#~ "from the feed server and save it on the stick?"
-#~ msgstr ""
-#~ "Zagon se sedaj lahko izvede s pomočjo USB ključa. Ali želite prenesti "
-#~ "zadnjo programsko opremo iz strežnika in jo shraniti na ključ? "
-
-#~ msgid "The backup location does not have enough freespace."
-#~ msgstr "Lokacija varnostne kopije nima dovolj prostora."
-
-#~ msgid "The chosen location does not exist, using /media/hdd"
-#~ msgstr "Izbrana lokacija ne obstaja, uporabil bom lokacijo /media/hdd"
-
-#~ msgid ""
-#~ "The device in now formatted to ext3\n"
-#~ "Press ok to continue"
-#~ msgstr ""
-#~ "Ta naprava je zdaj formatirana v ext3 datotečnemu sistemu.\n"
-#~ "Za nadaljevanje pritisnite OK."
-
-#~ msgid ""
-#~ "The device in now formatted.\n"
-#~ "Press ok to continue"
-#~ msgstr ""
-#~ "Ta naprava je zdaj formatirana.\n"
-#~ "Za nadaljevanje pritisnite OK."
-
-#
-#~ msgid ""
-#~ "The md5sum validation failed, the file may be corrupted! Are you sure "
-#~ "that you want to burn this image to flash memory? You are doing this at "
-#~ "your own risk!"
-#~ msgstr ""
-#~ "Preverjanje md5sum ni uspelo, datoteka je pokvarjena! Ali ste prepričani "
-#~ "da želite nadgraditi s to datoteko! To počnete na lastno odgovornost!"
-
-#
-#~ msgid ""
-#~ "The md5sum validation failed, the file may be downloaded incompletely or "
-#~ "be corrupted!"
-#~ msgstr ""
-#~ "Preverjanje md5sum ni uspelo, datoteka ni bila v celoti prenešena ali je "
-#~ "pokvarjena!"
-
-#
-#~ msgid "The pin code has been changed successfully."
-#~ msgstr "PIN koda je spremenjena."
-
-#
-#~ msgid "The pin codes you entered are different."
-#~ msgstr "Vnešene PIN kode so različne."
-
-#
-#~ msgid ""
-#~ "The screen will go blank while upgrading, be patient and wait for reboot."
-#~ msgstr "Po zaključku nadgradnje bo potrebno sprejemnik ponovno zagnati!"
-
-#
-#~ msgid "Then how many minutes off?"
-#~ msgstr "Koliko minut naj bo izklopljen?"
-
-#
-#~ msgid "This .NFI file does not contain a valid %s image!"
-#~ msgstr ".NFI datoteka ne vsebuje veljavnega %s zapisa!"
-
-#
-#~ msgid ""
-#~ "This .NFI file does not have a md5sum signature and is not guaranteed to "
-#~ "work. Do you really want to burn this image to flash memory?"
-#~ msgstr ""
-#~ ".NFI datoteka ne vsebuje md5sum podpisa in delovanje ni zagotovljeno. Ali "
-#~ "res želite zapisati datoteko?"
-
-#
-#~ msgid ""
-#~ "This .NFI file has a valid md5 signature. Continue programming this image "
-#~ "to flash memory?"
-#~ msgstr ""
-#~ ".NFI datoteka ima veljaven md5 podpis. Nadaljujem nadgradnjo programske "
-#~ "opreme?"
-
-#~ msgid "This Device is already mounted as HDD."
-#~ msgstr "Naprava je že v uporabi kot trdi disk. "
-
-#
-#~ msgid "This Month"
-#~ msgstr "Ta mesec"
-
-#
-#~ msgid "This Week"
-#~ msgstr "Ta teden"
-
-#
-#~ msgid "This may take a few minutes"
-#~ msgstr "Postopek lahko traja nekaj minut"
-
-#
-#~ msgid "Time Settings"
-#~ msgstr "Časovne nastavitve"
-
-#
-#~ msgid "Time Update in Minutes:"
-#~ msgstr "Čas obnavljanja (v minutah)"
-
-#
-#~ msgid "Time to execute command or script"
-#~ msgstr "Določitev časa izvajanja izbrane skripte"
-
-#
-#~ msgid "Timer List"
-#~ msgstr "Seznam časovnikov"
-
-#
-#~ msgid "Timer type"
-#~ msgstr "Vrsta časovnika"
-
-#
-#~ msgid "Timers"
-#~ msgstr "Časovniki"
-
-#
-#~ msgid "Timeshift Settings"
-#~ msgstr "Časovni zamik"
-
-#
-#~ msgid ""
-#~ "To update your Dreambox firmware, please follow these steps:\n"
-#~ "1) Turn off your box with the rear power switch and plug in the bootable "
-#~ "USB stick.\n"
-#~ "2) Turn mains back on and hold the DOWN button on the front panel pressed "
-#~ "for 10 seconds.\n"
-#~ "3) Wait for bootup and follow instructions of the wizard."
-#~ msgstr ""
-#~ "Za posodobitev  programske opreme sprejemnika sledite naslednjim "
-#~ "korakom:\n"
-#~ "1) Izklopite napravo s pomočjo stikala na zadnji strani sprejemnika in "
-#~ "priklopite USB ključ.\n"
-#~ "2) Ponovno prižgite sprejemnik in držite pritisnjeno tipko DOL na "
-#~ "sprednji strani naprave 10 sekund.\n"
-#~ "3) Počakajte na ponovni zagon in sledite navodilom čarovnika."
-
-#
-#~ msgid "Transponder Time"
-#~ msgstr "Čas transponderja"
-
-#
-#~ msgid "Ukrainian"
-#~ msgstr "Ukrajinsko"
-
-#
-#~ msgid ""
-#~ "Unable to complete filesystem check.\n"
-#~ "Error: "
-#~ msgstr ""
-#~ "Preverjanje datotečnega sistema ni uspelo.\n"
-#~ "Napaka:"
-
-#
-#~ msgid ""
-#~ "Unable to initialize harddisk.\n"
-#~ "Error: "
-#~ msgstr ""
-#~ "Inicializacija trdega diska ni možna.\n"
-#~ "Napaka:"
-
-#
-#~ msgid "United States"
-#~ msgstr "ZDA"
-
-#~ msgid "Unknown network adapter."
-#~ msgstr "Neznani mrežni vmesnik."
-
-#
-#~ msgid "Unmount failed"
-#~ msgstr "Odpojitev ni uspela!"
-
-#
-#~ msgid "Update done..."
-#~ msgstr "Posodobitev končana."
-
-#
-# File: tmp/enigma2_plugins/genuinedreambox/src/plugin.py, line: 170
-#~ msgid ""
-#~ "Update done... The genuine dreambox test will now be rerun and should not "
-#~ "ask you to update again."
-#~ msgstr "Posodobitev končana..."
-
-#
-# File: tmp/enigma2_plugins/genuinedreambox/src/plugin.py, line: 150
-#~ msgid ""
-#~ "Updating failed. Nothing is broken, just the update couldn't be applied."
-#~ msgstr ""
-#~ "Posodobitev ni uspela. Ne skrbite, nič ni pokvarjeno, samo posodobitev ni "
-#~ "uspela."
-
-#
-#~ msgid "Updating, please wait..."
-#~ msgstr "Poteks nadgrajevanje... Prosim počakajte!"
-
-#
-#~ msgid "Upgrading Vu +... Please wait"
-#~ msgstr "Poteka nadgradnja vašega sprejemnika... Prosim počakajte!"
-
-#
-#~ msgid "Upgrading Vu+ Duo... Please wait"
-#~ msgstr "Poteka nadgrajevanje vašega sprejemnika... Prosim počakajte!"
-
-#
-#~ msgid "Use Fan timer"
-#~ msgstr "Uporaba časovnika za ventilator"
-
-#
-#~ msgid "Use TV button to"
-#~ msgstr "Uporaba TV tipke za"
-
-#
-#~ msgid "Use ViX Coloured Butons"
-#~ msgstr "Uporaba ViX barvnih tipk"
-
-#
-#~ msgid "Use a custom location"
-#~ msgstr "Uporaba lastne lokacije"
-
-#
-#~ msgid "Use non-smooth winding at speeds above"
-#~ msgstr "Uporaba negladkega previjanja pri hitrostih nad"
-
-#
-#~ msgid "Use original teletext colors"
-#~ msgstr "Originalne barve teletekst podn."
-
-#
-#~ msgid "User management"
-#~ msgstr "Upravljanje z uporabniki"
-
-#
-#~ msgid "Usermanager"
-#~ msgstr "Upravljanje z uporabniki"
-
-#
-#~ msgid "Username:"
-#~ msgstr "Uporab. ime"
-
-#
-#~ msgid "VIX"
-#~ msgstr "VIX meni"
-
-#
-#~ msgid "VIX Setup"
-#~ msgstr "VIX nastavitve"
-
-#
-#~ msgid "VIXMenu"
-#~ msgstr "VIX meni"
-
-#~ msgid ""
-#~ "Verify your Dreambox authenticity by running the genuine dreambox plugin!"
-#~ msgstr "Preverite ali je vaš sprejemnik klon. Uporabite ustrezen vtičnik!"
-
-#
-#~ msgid "ViX"
-#~ msgstr "VIX meni"
-
-#
-#~ msgid "Video Enhancement Settings"
-#~ msgstr "Napredne nastavitve slike"
-
-#
-#~ msgid "View"
-#~ msgstr "Ogled"
-
-#~ msgid "View Progress"
-#~ msgstr "Ogled dogajanja"
-
-#
-#~ msgid "Views: "
-#~ msgstr "Ogledi:"
-
-#~ msgid "WLAN adapter."
-#~ msgstr "Brezzični adapter."
-
-#
-#~ msgid "Wait please while creating swapfile"
-#~ msgstr "Poteka ustvarjanje SWAP-a... Prosim počakajte!"
-
-#~ msgid "Wait please while creating swapfile..."
-#~ msgstr "Prosim počakajte, poteka izdelava SWAP..."
-
-#
-#~ msgid "Wait please while gathering data..."
-#~ msgstr "Poteka zbiranje podatkov... Prosim počakajte!"
-
-#~ msgid ""
-#~ "Wait please while scanning\n"
-#~ "for softcam's..."
-#~ msgstr ""
-#~ "Prosim počakajte, poteka skeniranje\n"
-#~ "emulatorjev..."
-
-#~ msgid "Wait please while scanning for devices..."
-#~ msgstr "Prosim počakajte, poteka iskanje novih naprav..."
-
-#
-#~ msgid "Wait please while scanning for softcam`s..."
-#~ msgstr "Poteka pregledovanje delujočih emulatorjev..."
-
-#
-#~ msgid "Wait please while scanning your Vu+ devices..."
-#~ msgstr ""
-#~ "Poteka pregledovanje naprav, ki so priključene na vaš sprejemnik. Prosim "
-#~ "počakajte!"
-
-#~ msgid "Wait please while scanning your box devices..."
-#~ msgstr "Prosim počakajte, poteka pregledovanje vaših naprav..."
-
-#
-#~ msgid "Wait please while scanning..."
-#~ msgstr "Poteka pregledovanje (skeniranje)... Prosim počakajte!"
-
-#
-#~ msgid "Wait time in ms before activation:"
-#~ msgstr "Pred aktivacijo počakajte nekaj ms:"
-
-#
-#~ msgid "Wake up and import"
-#~ msgstr "prebudi in prenesi"
-
-#~ msgid "Warning you are going to format\n"
-#~ msgstr "Pozor! Izvedli boste formatiranje\n"
-
-#~ msgid "Warning you are going to format "
-#~ msgstr "Pozor! Izvedli boste formatiranje."
-
-#
-#~ msgid "Warning you are going to format USB: Flash Disk"
-#~ msgstr "Pozor, USB pogon bo izbrisan!"
-
-#
-#~ msgid "Webinterface"
-#~ msgstr "Webinterface"
-
-#
-#~ msgid "Webinterface: Main Setup"
-#~ msgstr "Webinterface: Glavne nastavitve"
-
-#
-#~ msgid "Weekend"
-#~ msgstr "Vikend"
-
-#~ msgid "Weekly"
-#~ msgstr "Tedensko"
-
-#~ msgid "What Day of month ?"
-#~ msgstr "Kateri dan v mesecu?"
-
-#~ msgid "What Day of week ?"
-#~ msgstr "Kateri dan v tednu?"
-
-#
-#~ msgid "When in deep standby"
-#~ msgstr "Pri uporabi globokega spanja"
-
-#
-#~ msgid "Wireless"
-#~ msgstr "Brezžično"
-
-#
-#~ msgid "Wireless Network State"
-#~ msgstr "Stanje brezzičnega omrežja"
-
-#
-#~ msgid "Wizard"
-#~ msgstr "Čarovnik"
-
-#
-#~ msgid "Writing NFI image file to flash completed"
-#~ msgstr "Zapisovanje NFI je končano"
-
-#
-#~ msgid "XMLTV-Importer"
-#~ msgstr "Uvoz EPG podatkov"
-
-#
-#~ msgid "Yes, but play next video"
-#~ msgstr "Da, toda zaženi naslednji video"
-
-#
-#~ msgid "Yes, but play previous video"
-#~ msgstr "Da, toda zaženi prejšnji video"
-
-#
-#~ msgid "Yes, keep them."
-#~ msgstr "Da, obdrži jih."
-
-#
-#~ msgid ""
-#~ "You can disable Telnet Server and\n"
-#~ "use ssh to login."
-#~ msgstr ""
-#~ "Lahko ustavite telnet server in namesto tega\n"
-#~ "uporabite ssh način povezave."
-
-#~ msgid "You can disable Telnet Server and use ssh to login."
-#~ msgstr ""
-#~ "Telnet dostop lahko izklopite in namesto tega uporabite SSH dostop. "
-#~ "Uporabite program WinSCP."
-
-#~ msgid "You have no backup to delete."
-#~ msgstr "Za izbris ni na voljo nobene varnostne kopije."
-
-#~ msgid "You have no backups to restore."
-#~ msgstr "Za obnovi ni na voljo nobene varnostne kopije."
-
-#~ msgid "You have no image to delete."
-#~ msgstr "Za izbris ni na voljo nobena slika (image)."
-
-#~ msgid "You have no image to restore."
-#~ msgstr "Za obnovo ni na voljo nobena slika (image)."
-
-#~ msgid "You have no script to run."
-#~ msgstr "Za zagon ni na voljo nobene skripte."
-
-#~ msgid "You have to create a Swap File before to activate the autostart."
-#~ msgstr ""
-#~ "Če želite aktivirati samodejni zagon, morate najprej ustvariti SWAP."
-
-#
-#~ msgid ""
-#~ "You need to set a pin code and hide it from your children.\n"
-#~ "\n"
-#~ "Do you want to set the pin now?"
-#~ msgstr ""
-#~ "Vnesite PI kodo in jo varno shranite pred otroci.\n"
-#~ "\n"
-#~ "Želite vnesti PIN kodo?"
-
-#~ msgid ""
-#~ "Your box is about to run a backup of your settings and detect your "
-#~ "plugins,\n"
-#~ "Do you want to allow this?"
-#~ msgstr ""
-#~ "Vaš sprejemnik želi uporabiti vašo varnostno kopijo nastavitev in obenem "
-#~ "zaznati vse vaše tičnike,\n"
-#~ "Želite dovoliti to dejanje?"
-
-#~ msgid ""
-#~ "Your box is about to run a full image backup, this can take about 6 "
-#~ "minutes to complete,\n"
-#~ "do you want to allow this?"
-#~ msgstr ""
-#~ "Vaš sprejemnik želi uporabiti celotno sliko (image) vašega sistema. "
-#~ "Postopek lahko traja tudi 6 minut Želite dovoliti to dejanje?"
-
-#~ msgid ""
-#~ "Your box is going for a nightly Reboot,\n"
-#~ "do you want to allow this?"
-#~ msgstr ""
-#~ "Vaš sprejemnik se bo resetiral.\n"
-#~ "Želite dovoliti to dejanje?"
-
-#~ msgid ""
-#~ "Your box is going for nightly GUI Restart,\n"
-#~ "do you want to allow this?"
-#~ msgstr ""
-#~ "Vaš sprejemnik bo resetiral Enigmo.\n"
-#~ "Želite dovoliti to dejanje?"
-
-#~ msgid ""
-#~ "Your box is going for nightly shut-down,\n"
-#~ "do you want to allow this?"
-#~ msgstr ""
-#~ "Vaš sprejemnik se bo ugasnil.\n"
-#~ "Želite dovoliti to dejanje?"
-
-#~ msgid ""
-#~ "Your box is going for nightly standby,\n"
-#~ "do you want to allow this?"
-#~ msgstr ""
-#~ "Vaš sprejemnik bo prešel v stanje pripravljenosti.\n"
-#~ "Želite dovoliti to dejanje?"
-
-#~ msgid ""
-#~ "Your receiver isn't connected to the internet properly. Please check it "
-#~ "and try again."
-#~ msgstr ""
-#~ "Vaš sprejemnik ni pravilno povezan na internet. Prosim preverite "
-#~ "internetno povezavo in poskusite znova"
-
-#
-#~ msgid "Zap"
-#~ msgstr "Preklop"
-
-#~ msgid "Zydas"
-#~ msgstr "Zydas"
-
-#
-#~ msgid "add AutoTimer..."
-#~ msgstr "Ustvarite avtomatski časovnik"
-
-#
-#~ msgid "add filters"
-#~ msgstr "dodajanje filtrov"
-
-#
-#~ msgid "add services"
-#~ msgstr "Dodajte kanale"
-
-#
-#~ msgid "as plugin in extended bar"
-#~ msgstr "Kot vtičnik v razširjeni vrstici"
-
-#
-#~ msgid "choose destination directory"
-#~ msgstr "izberite ciljno mapo"
-
-#
-#~ msgid "delete"
-#~ msgstr "Izbris"
-
-#
-#~ msgid "edit filters"
-#~ msgstr "sprememba filtrov"
-
-#
-#~ msgid "edit services"
-#~ msgstr "sprememba kanalov"
-
-#
-#~ msgid "enter hidden network SSID"
-#~ msgstr "Vnesite skrito SSID"
-
-#
-#~ msgid "exact match"
-#~ msgstr "točno ujemanje"
-
-#
-#~ msgid "extensions."
-#~ msgstr "razširitve."
-
-#
-#~ msgid "failed"
-#~ msgstr "ni uspelo"
-
-#
-#~ msgid "hide extended description"
-#~ msgstr "skrij razširjeni opis"
-
-#
-#~ msgid "hour"
-#~ msgstr "ura"
-
-#
-#~ msgid "hourly"
-#~ msgstr "vsako uro"
-
-#
-#~ msgid "hours"
-#~ msgstr "ur"
-
-#
-#~ msgid "iMDb Details"
-#~ msgstr "iMDb informacije"
-
-#
-#~ msgid "in Description"
-#~ msgstr "v opisu"
-
-#
-#~ msgid "in Shortdescription"
-#~ msgstr "v kratkem opisu"
-
-#
-#~ msgid "in Title"
-#~ msgstr "v imenu"
-
-#
-#~ msgid "instant record"
-#~ msgstr "Takojšnje snemanje"
-
-#
-#~ msgid "menulist"
-#~ msgstr "seznam"
-
-#
-#~ msgid "minute"
-#~ msgstr "minuta"
-
-#
-#~ msgid "monthly"
-#~ msgstr "vsak mesec"
-
-#~ msgid "ms"
-#~ msgstr "ms"
-
-#
-#~ msgid "no HDD found"
-#~ msgstr "ne najdem trdega diska"
-
-#
-#~ msgid "open bouquetlist"
-#~ msgstr "Odprite listo priljubljenih paketov"
-
-#
-#~ msgid "packages"
-#~ msgstr "paketov"
-
-#
-#~ msgid "packages selected."
-#~ msgstr "izbrani paketi."
-
-#
-#~ msgid "partial match"
-#~ msgstr "delno ujemanje"
-
-#
-#~ msgid "search EPG"
-#~ msgstr "EPG iskanje"
-
-#
-#~ msgid "search EPG..."
-#~ msgstr "Iskanje po EPG"
-
-#
-#~ msgid "sec"
-#~ msgstr "sek."
-
-#
-#~ msgid "second"
-#~ msgstr "drugi"
-
-#
-#~ msgid "select .NFI flash file"
-#~ msgstr "izberite .NFI datoteko"
-
-#
-#~ msgid "select Slot"
-#~ msgstr "Izberite kanalnik"
-
-#
-#~ msgid "select image from server"
-#~ msgstr "izberite zapis iz strežnika"
-
-#
-#~ msgid "service pin"
-#~ msgstr "PIN koda kanala"
-
-#
-#~ msgid "sets the Audio Delay (LipSync)"
-#~ msgstr "določitev zamika zvoka (LipSync)"
-
-#
-#~ msgid "setup pin"
-#~ msgstr "PIN nastavitev"
-
-#
-#~ msgid "show all"
-#~ msgstr "Prikaz vsega"
-
-#
-#~ msgid "show first selected tag"
-#~ msgstr "Prikaz prvega izbranega zaznamka"
-
-#
-#~ msgid "show second selected tag"
-#~ msgstr "Prikaz drugga izbranega zaznamk"
-
-#
-#~ msgid "uShare Setup"
-#~ msgstr "uShare (DLNA) nastavitve"
-
-#
-#~ msgid "unavailable"
-#~ msgstr "ni na voljo"
-
-#
-#~ msgid "updates available."
-#~ msgstr "Na voljo so posodobitve."
-
-#
-#~ msgid "use as HDD replacement"
-#~ msgstr "Uporaba namesto trdega diska"
-
-#
-#~ msgid "wireless networks found!"
-#~ msgstr "Najdena brezzična omrežja!"
-
-#
-#~ msgid "with exit button"
-#~ msgstr "S pritiskom na tipko EXIT"
-
-#
-#~ msgid "with left/right buttons"
-#~ msgstr "S tipko za levo in desno"
-
-#
-#~ msgid "with long OK press"
-#~ msgstr "Dolgi pritisk na tipko OK"
-
-#~ msgid ""
-#~ "your receiver might be unusable now. Please consult the manual for "
-#~ "further assistance before rebooting your receiver."
-#~ msgstr ""
-#~ "V tem trenutku je lahko vaš sprejemnik nestabilen ali neuporaben. Preden "
-#~ "ponovno zaženete sprejemnik, preberite priložena navodila."
