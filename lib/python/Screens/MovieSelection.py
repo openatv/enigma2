@@ -762,7 +762,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 	def updateButtons(self):
 		item = self.getCurrentSelection()
 		for name in ('red', 'green', 'yellow', 'blue'):
-		        action = userDefinedButtons[name].value
+			action = userDefinedButtons[name].value
 			if action.startswith('@'):
 				check = self.can_default
 			else:
@@ -791,6 +791,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 
 	def onFirstTimeShown(self):
 		self.onShown.remove(self.onFirstTimeShown) # Just once, not after returning etc.
+		self.show()
 		self.reloadList(self.selectedmovie, home=True)
 		del self.selectedmovie
 
@@ -1099,7 +1100,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		if self.selected_tags is not None:
 			title += " - " + ','.join(self.selected_tags)
 		self.setTitle(title)
- 		if not (self.reload_sel and self["list"].moveTo(self.reload_sel)):
+		if not (self.reload_sel and self["list"].moveTo(self.reload_sel)):
 			if self.reload_home:
 				self["list"].moveToFirstMovie()
 		self["freeDiskSpace"].update()
