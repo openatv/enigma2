@@ -222,7 +222,7 @@ class MovieBrowserConfiguration(ConfigListScreen,Screen):
 		configList.append(getConfigListEntry(_("Show live tv when movie stoped"), config.movielist.show_live_tv_in_movielist, _("When set the PIG will return to live after a movie has stopped playing.")))
 		for btn in ('red', 'green', 'yellow', 'blue', 'TV', 'Radio'):
 			configList.append(getConfigListEntry(_("Button") + " " + _(btn), userDefinedButtons[btn], _("Allows you setup the button to do what you choose.")))
-		configList.append(getConfigListEntry(_("Move to trash"), config.usage.movielist_trashcan, _("Delete or move to the Trash.")))
+		configList.append(getConfigListEntry(_("Use trashcan in movielist"), config.usage.movielist_trashcan, _("Delete or move to the Trash.")))
 		ConfigListScreen.__init__(self, configList, session = self.session, on_change = self.changedEntry)
 		self["config"].setList(configList)
 		if config.usage.sort_settings.value:
