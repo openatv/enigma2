@@ -546,7 +546,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				"seekBack": (sback, tBack),
 				"seekBackManual": (ssback, tBack),
 			}, prio=5)
-		self.onShown.append(self.updateHDDData)
+		self.onShown.append(self.onFirstTimeShown)
 		self.onLayoutFinish.append(self.saveListsize)
 		self.list.connectSelChanged(self.updateButtons)
 		self.onClose.append(self.__onClose)
@@ -789,12 +789,10 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			self.listHeight = listsize.height()
 			self.updateDescription()
 
-	def updateHDDData(self):
-		self.show()
+	def onFirstTimeShown(self):
+		self.onShown.remove(self.onFirstTimeShown) # Just once, not after returning etc.
 		self.reloadList(self.selectedmovie, home=True)
-
-	def moveTo(self):
-		self["list"].moveTo(self.selectedmovie)
+		del self.selectedmovie
 
 	def getCurrent(self):
 		# Returns selected serviceref (may be None)
