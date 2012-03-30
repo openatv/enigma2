@@ -1618,7 +1618,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 						return
 			if cur_path.find('.Trash') == -1 and config.usage.movielist_trashcan.value:
 				are_you_sure = _("Do you really want to delete %s?") % (name)
-				self.session.openWithCallback(self.moveToTrashConfirmed, MessageBox, are_you_sure)
+				self.session.openWithCallback(self.moveToTrashConfirmed, MessageBox, are_you_sure, default = False)
 				return
 			else:
 				if cur_path.find('.Trash') != -1:
