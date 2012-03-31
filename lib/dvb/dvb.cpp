@@ -136,11 +136,7 @@ eDVBAdapterLinux::eDVBAdapterLinux(int nr): m_nr(nr)
 	{
 		struct stat s;
 		char filename[128];
-#if HAVE_DVB_API_VERSION < 3
-		sprintf(filename, "/dev/dvb/card%d/frontend%d", m_nr, num_fe);
-#else
 		sprintf(filename, "/dev/dvb/adapter%d/frontend%d", m_nr, num_fe);
-#endif
 		if (stat(filename, &s))
 			break;
 		eDVBFrontend *fe;
@@ -167,11 +163,7 @@ eDVBAdapterLinux::eDVBAdapterLinux(int nr): m_nr(nr)
 	{
 		struct stat s;
 		char filename[128];
-#if HAVE_DVB_API_VERSION < 3
-		sprintf(filename, "/dev/dvb/card%d/demux%d", m_nr, num_demux);
-#else
 		sprintf(filename, "/dev/dvb/adapter%d/demux%d", m_nr, num_demux);
-#endif
 		if (stat(filename, &s))
 			break;
 		ePtr<eDVBDemux> demux;
@@ -231,11 +223,7 @@ int eDVBAdapterLinux::exist(int nr)
 {
 	struct stat s;
 	char filename[128];
-#if HAVE_DVB_API_VERSION < 3
-	sprintf(filename, "/dev/dvb/card%d", nr);
-#else
 	sprintf(filename, "/dev/dvb/adapter%d", nr);
-#endif
 	if (!stat(filename, &s))
 		return 1;
 	return 0;
@@ -1831,14 +1819,6 @@ RESULT eDVBChannel::playSource(ePtr<iTsSource> &source, const char *streaminfo_f
 	if (m_pvr_fd_dst < 0)
 	{
 		/* (this codepath needs to be improved anyway.) */
-#if HAVE_DVB_API_VERSION < 3
-		m_pvr_fd_dst = open("/dev/pvr", O_WRONLY);
-		if (m_pvr_fd_dst < 0)
-		{
-			eDebug("can't open /dev/pvr - you need to buy the new(!) $$$ box! (%m)"); // or wait for the driver to be improved.
-			return -ENODEV;
-		}
-#else
 #ifdef HAVE_OLDPVR
 		m_pvr_fd_dst = open("/dev/misc/pvr", O_WRONLY);
 		if (m_pvr_fd_dst < 0)
@@ -1862,7 +1842,6 @@ RESULT eDVBChannel::playSource(ePtr<iTsSource> &source, const char *streaminfo_f
 			eDebug("no demux allocated yet.. so its not possible to open the dvr device!!");
 			return -ENODEV;
 		}
-#endif
 #endif
 	}
 
