@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ENIGMA 2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-24 23:40+0100\n"
-"PO-Revision-Date: 2012-03-31 13:07+0100\n"
+"POT-Creation-Date: 2012-03-31 13:23+0100\n"
+"PO-Revision-Date: 2012-03-31 13:57+0100\n"
 "Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
 "Language-Team: OldSkul from www.linux-sprejemniki.info\n"
 "Language: \n"
@@ -137,20 +137,8 @@ msgstr " (Radio)"
 msgid " (TV)"
 msgstr " (TV)"
 
-msgid "extensions."
-msgstr "razšititve."
-
-msgid "ms"
-msgstr "ms"
-
-msgid "packages selected."
-msgstr "izbranih paketov."
-
-msgid "updates available."
-msgstr "nadgradenj na voljo."
-
-msgid "wireless networks found!"
-msgstr "najdenih brezzičnih omrežij!"
+msgid " and"
+msgstr ""
 
 msgid ""
 " has been sent to the ViX beta team.\n"
@@ -159,42 +147,6 @@ msgstr ""
 
 msgid "\"channel scan\" searches for channels and saves them to the receiver; \"save to XML file\" does a transponder search and saves found transponders to an XML file in satellites.xml format"
 msgstr ""
-
-msgid "#000000"
-msgstr "#000000"
-
-msgid "#0064c7"
-msgstr "#0064c7"
-
-msgid "#25062748"
-msgstr "#25062748"
-
-msgid "#389416"
-msgstr "#389416"
-
-msgid "#80000000"
-msgstr "#80000000"
-
-msgid "#80ffffff"
-msgstr "#80ffffff"
-
-msgid "#bab329"
-msgstr "#bab329"
-
-msgid "#f23d21"
-msgstr "#f23d21"
-
-msgid "#ff0000"
-msgstr "#ff0000"
-
-msgid "#ffff7f"
-msgstr "#ffff7f"
-
-msgid "#ffffff"
-msgstr "#ffffff"
-
-msgid "#ffffffff"
-msgstr "#ffffffff"
 
 #. TRANSLATORS: short time representation hour:minute
 #, python-format
@@ -214,6 +166,9 @@ msgstr "%A %e %B"
 msgid "%A %e %B %Y"
 msgstr "%A %e %B %Y"
 
+msgid "%A %e %b"
+msgstr ""
+
 #
 msgid "%H:%M"
 msgstr "%S:%M"
@@ -230,6 +185,17 @@ msgstr "%a %e/%m"
 msgid "%a %e/%m  %-H:%M"
 msgstr "%a %e/%m  %-H:%M"
 
+#, python-format
+msgid "%d / 100"
+msgstr ""
+
+#, python-format
+msgid "%d Min"
+msgid_plural "%d Mins"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
 #, fuzzy, python-format
 msgid "%d hour"
 msgid_plural "%d hours"
@@ -238,14 +204,17 @@ msgstr[1] "%d uri"
 msgstr[2] "%d ur"
 
 #
+#, python-format
 msgid "%d jobs are running in the background!"
 msgstr "%d opravil teče v ozadju"
 
 #
+#, python-format
 msgid "%d min"
 msgstr "%d min"
 
 #
+#, python-format
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] "%d minuta"
@@ -253,10 +222,12 @@ msgstr[1] "%d minuti"
 msgstr[2] "%d minut"
 
 #
+#, python-format
 msgid "%d minutes"
 msgstr "%d minut"
 
 #
+#, python-format
 msgid "%d second"
 msgid_plural "%d seconds"
 msgstr[0] "%d sekunda"
@@ -1408,18 +1379,6 @@ msgstr "Skeniranje kabelske"
 msgid "Cache Thumbnails"
 msgstr "Shrani sličice"
 
-msgid "Calculate"
-msgstr "Izračun"
-
-msgid "Calculate all positions"
-msgstr "Izračun vseh položajev"
-
-msgid "Calculation complete"
-msgstr "Izračun je končan"
-
-msgid "Calibrate"
-msgstr ""
-
 msgid "Can't cancel during upgrade!!"
 msgstr ""
 
@@ -1445,25 +1404,12 @@ msgstr "Izhod"
 msgid "Cannot delete file"
 msgstr ""
 
-msgid "Cannot determine"
-msgstr "Ni možno določiti"
-
-msgid "Cannot find any signal ..., aborting !"
-msgstr ""
-
-msgid "Cannot move files on a different disk or system to the trash can"
-msgstr ""
-
 msgid "Cannot move to trash can"
 msgstr ""
 
 #
 msgid "Capacity: "
 msgstr "Kapaciteta:"
-
-#
-msgid "Card"
-msgstr "Kartica"
 
 msgid "Card infos (CCcam-Reader)"
 msgstr ""
@@ -2275,10 +2221,6 @@ msgstr "Mapa %s ne obstaja."
 msgid "Directory browser"
 msgstr "Raziskovalec"
 
-#, python-format
-msgid "Directory contains %d file(s) and %d sub-directories.\n"
-msgstr "Mapa vsebuje %d datotek in %d pod-map.\n"
-
 #
 msgid "Disable"
 msgstr "Izklop"
@@ -2336,11 +2278,6 @@ msgid "Display and Userinterface"
 msgstr ""
 
 #
-#, python-format
-msgid "Do you really want to remove the plugin \"%s\"?"
-msgstr "Res želite ODSTRANITI vtičnik \"%s\"?"
-
-#
 msgid ""
 "Do you really want to check the filesystem?\n"
 "This could take lots of time!"
@@ -2394,6 +2331,11 @@ msgstr ""
 #, python-format
 msgid "Do you really want to remove directory %s from the disk?"
 msgstr "Ali res želite odstraniti mapo %s iz trdega diska?"
+
+#
+#, python-format
+msgid "Do you really want to remove the plugin \"%s\"?"
+msgstr "Res želite ODSTRANITI vtičnik \"%s\"?"
 
 #
 #, python-format
@@ -2537,6 +2479,9 @@ msgstr "Prenesi .NFI-datoteke za programsko nadgradnjo preko USB"
 msgid "Download Plugins"
 msgstr "Prenos"
 
+msgid "Download plugins"
+msgstr ""
+
 msgid "Download the firmware (latest)"
 msgstr ""
 
@@ -2640,9 +2585,6 @@ msgstr "NAPAKA - neuspešno iskanje (%s)!"
 #
 msgid "East"
 msgstr "Vzhod"
-
-msgid "East limit set"
-msgstr "Meja na vzhodu"
 
 msgid "Ecm:"
 msgstr ""
@@ -3091,15 +3033,6 @@ msgstr ""
 msgid "Filesystem Check"
 msgstr "Pregled datotečnega sistema"
 
-msgid "Final position at"
-msgstr ""
-
-msgid "Final position at index"
-msgstr ""
-
-msgid "Fine movement"
-msgstr "Natančni premiki"
-
 msgid "Filter out adjacent satellites"
 msgstr ""
 
@@ -3334,9 +3267,6 @@ msgstr ""
 
 msgid "Goto specific data/time"
 msgstr ""
-
-msgid "GotoX calibration"
-msgstr "PojdiNaX kalibracija"
 
 msgid "Graph MEpg Settings"
 msgstr ""
@@ -3604,8 +3534,8 @@ msgstr ""
 msgid "Image Release Notes"
 msgstr ""
 
-msgid "Image: "
-msgstr "Slika"
+msgid "Image:"
+msgstr ""
 
 #
 msgid "In Progress"
@@ -3662,10 +3592,6 @@ msgstr ""
 #
 msgid "InfoBar"
 msgstr "Informacijska vrstica"
-
-#
-msgid "Infobar timeout"
-msgstr "Trajanje prikaza informacijske vrstice (v sekundah)"
 
 msgid "Infobar EPG..."
 msgstr ""
@@ -3924,8 +3850,8 @@ msgstr "Ohranitev časovnikov starih do X dni"
 msgid "Keeps MovieList open whilst playing audio files."
 msgstr ""
 
-msgid "Kernel Version: "
-msgstr "Verzija jedra:"
+msgid "Kernel:"
+msgstr ""
 
 #
 msgid "Keyboard"
@@ -4000,8 +3926,8 @@ msgstr "Izbira jezik"
 msgid "Last Req."
 msgstr ""
 
-msgid "Last Upgrade: "
-msgstr "Zadnja nadg.:"
+msgid "Last Update:"
+msgstr ""
 
 #
 msgid "Last config"
@@ -4053,12 +3979,6 @@ msgstr "Omejitev zahod"
 #
 msgid "Limited character set for recording filenames"
 msgstr "Omejen nabor znakov za imena posnetih datotek"
-
-msgid "Limits cancelled"
-msgstr "Omejitve preklicane"
-
-msgid "Limits enabled"
-msgstr "Omejitve vključene"
 
 #
 msgid "Limits off"
@@ -4429,9 +4349,6 @@ msgstr "Premaknite se v drugo mapo"
 msgid "Move up a page"
 msgstr ""
 
-msgid "Move to position X"
-msgstr "Premik na položaj X"
-
 #
 msgid "Move west"
 msgstr "Premikajte proti zahodu"
@@ -4443,40 +4360,12 @@ msgstr "Seznam posnetkov"
 msgid "Movie List Setup"
 msgstr ""
 
-#
-msgid "Moved to position 0"
-msgstr "Premik na položaj 0"
-
-msgid "Moved to position at index"
-msgstr ""
-
-msgid "Movement"
-msgstr "Premik"
-
-msgid "Movie List Configuration"
-msgstr "Nastavitve seznama posnetkov"
-
-msgid "Movie Selection"
-msgstr "Izbirnik posnetkov"
-
 msgid "Movie location"
 msgstr "Movie lokacija"
 
 #
 msgid "Movielist menu"
 msgstr "Seznam datotek"
-
-msgid "Moving"
-msgstr "Premikanje"
-
-msgid "Moving east ..."
-msgstr "Premikanje na vzhod..."
-
-msgid "Moving to position"
-msgstr "Premikanje na položaj"
-
-msgid "Moving west ..."
-msgstr "Premikanje na zahod..."
 
 #
 msgid "Multi EPG"
@@ -4995,10 +4884,6 @@ msgstr "Izklop"
 
 msgid "Offline decode delay (ms)"
 msgstr ""
-
-#
-msgid "Ok"
-msgstr "Potrdi"
 
 #
 msgid "On"
@@ -6467,12 +6352,6 @@ msgstr "Vrsta iskanja"
 msgid "Search west"
 msgstr "Iskanje Zahod-a"
 
-msgid "Searching"
-msgstr "Iskanje"
-
-msgid "Searching east ..."
-msgstr "Iskanje na vzhodu..."
-
 #
 msgid "Searching for available updates. Please wait..."
 msgstr "Iskanje posodobitev... Prosim počakajte!"
@@ -6480,9 +6359,6 @@ msgstr "Iskanje posodobitev... Prosim počakajte!"
 #
 msgid "Searching for new installed or removed packages. Please wait..."
 msgstr "Iskanje na novo nameščenih ali odstranjenih paketkov... Prosim počakajte!"
-
-msgid "Searching west ..."
-msgstr "Iskanje na zahodu..."
 
 #
 msgid "Secondary DNS"
@@ -6746,8 +6622,8 @@ msgstr ""
 msgid "Set End Time"
 msgstr "Določite čas konca"
 
-msgid "Set Limits"
-msgstr "Določitev meja"
+msgid "Set System"
+msgstr ""
 
 #
 msgid "Set Voltage and 22KHz"
@@ -6851,9 +6727,6 @@ msgid "Setup how to control the channel changing."
 msgstr ""
 
 msgid "Setup menu"
-msgstr ""
-
-msgid "Setup your positioner"
 msgstr ""
 
 msgid "Setup network time synchronization interval."
@@ -7097,22 +6970,15 @@ msgstr ""
 msgid "Shutdown"
 msgstr "Izklop"
 
-#
-msgid "Shutdown Dreambox after"
-msgstr "Izklopi sprejemnik po"
+msgid "Shutdown STB_BOX after"
+msgstr ""
 
 msgid "Side by Side"
 msgstr ""
 
-msgid "Signal OK, proceeding"
-msgstr "Signal je zadovoljiv, nadaljujem..."
-
 #
 msgid "Signal Strength:"
 msgstr "Moč signala:"
-
-msgid "Signal quality"
-msgstr "Kakovost signala"
 
 #
 msgid "Signal: "
@@ -7246,6 +7112,9 @@ msgid "Sorry MediaScanner is not installed!"
 msgstr "MediaScanner vtičnik ni nameščen!"
 
 msgid "Sorry MiniDLNA Config is Missing"
+msgstr ""
+
+msgid "Sorry feeds are down for maintenance"
 msgstr ""
 
 #
@@ -7682,7 +7551,7 @@ msgid ""
 msgstr ""
 
 msgid "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to create a STB_BOX format data DVD (which will not play in stand-alone DVD players) instead?"
-msgstr "Standarden DVD ne podpira H.264 (HD) video zapisa. Ali želite namesto tega ustvariti Dreambox obliko podatkovnega DVD (le-tega ne boste mogli predvajati v samostojnih DVD predvajalnikih)?"
+msgstr "Standarden DVD ne podpira H.264 (HD) video zapisa. Ali želite namesto tega ustvariti STB_BOX obliko podatkovnega DVD (le-tega ne boste mogli predvajati v samostojnih DVD predvajalnikih)?"
 
 msgid ""
 "The EPGSearch plugin is not installed!\n"
@@ -7793,20 +7662,11 @@ msgid "The following files were found..."
 msgstr "Najdene datoteke:"
 
 #
-msgid ""
-"The input port should be configured now.\n"
-"You can now configure the screen by displaying some test pictures. Do you want to do that now?"
-msgstr ""
-"Vhodna vrata vira so sedaj nastavljena.\n"
-"Sedaj lahko spremenite nastavite zaslona s pomočjo slik za preverjanje. Ali želite to storiti sedaj?"
-
-#
 msgid "The installation of the default services lists is finished."
 msgstr "Namestitev privzetih seznamov kanalov je končana."
 
-#
-msgid "The installation of the default settings is finished. You can now continue configuring your Dreambox by pressing the OK button on the remote control."
-msgstr "Namestitev privzetih nastavitev je končana. Sedaj lahko nadaljujete s spreminjanjem nastavitev vašega sprejemnika - pritisnite tipko OK."
+msgid "The installation of the default settings is finished. You can now continue configuring your STB_BOX by pressing the OK button on the remote control."
+msgstr ""
 
 msgid "The md5sum validation failed, the file may be corrupted!"
 msgstr ""
@@ -7904,9 +7764,6 @@ msgstr ""
 msgid "There is no [webif] section in oscam.conf"
 msgstr ""
 
-msgid "There is no signal to lock on !"
-msgstr "Ni signala!"
-
 #
 msgid ""
 "There might not be enough Space on the selected Partition.\n"
@@ -7931,8 +7788,8 @@ msgid "This Plugin only support for UNO/ULTIMO"
 msgstr ""
 
 #, python-format
-msgid "This Dreambox can't decode %s streams!"
-msgstr "Sprejemnik ne more odkleniti %s tokov!"
+msgid "This STB_BOX can't decode %s streams!"
+msgstr ""
 
 msgid "This allows the ECM data to be included in the stream. This enables a client STB_BOX to decode it."
 msgstr ""
@@ -8112,11 +7969,6 @@ msgstr ""
 #
 msgid "This test detects your configured LAN-Adapter."
 msgstr "Ta test preveri nastavljene omrežne vmesnike. "
-
-msgid ""
-"This will (re-)calculate all positions of your rotor and may remove previously memorised positions and fine-tuning!\n"
-"Are you sure?"
-msgstr ""
 
 #
 msgid "Three"
@@ -8558,8 +8410,8 @@ msgstr "Nadgradi in vprašaj za ponovni zagon"
 msgid "Upgrade finished."
 msgstr "Nadgradnja končana."
 
-msgid "Upgrade finished. Do you want to reboot your Dreambox?"
-msgstr "Nadgradnja je končana. Želite izvesti ponovni zagon sprejemnika?"
+msgid "Upgrade finished. Do you want to reboot your STB_BOX?"
+msgstr ""
 
 #
 msgid "Upgrading"
@@ -9026,9 +8878,8 @@ msgstr ""
 "\n"
 "Nato poiščite konec in pritisnite OK, izberite 'Končaj brisanje'."
 
-#
-msgid "Welcome to the Image upgrade wizard. The wizard will assist you in upgrading the firmware of your Dreambox by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware."
-msgstr "Dobrodošli v čarovniku za nadgradnjo. Čarovnik vam bo pomagal pri nadgradnji sprejemnika in nudil varno hrambo vaših trenutnih nastavitev ter kratko razlago postopka nadgradnje vašega firmware-a."
+msgid "Welcome to the Image upgrade wizard. The wizard will assist you in upgrading the firmware of your STB_BOX by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware."
+msgstr ""
 
 msgid ""
 "Welcome to the cleanup wizard.\n"
@@ -9355,7 +9206,7 @@ msgid ""
 "Your STB_BOX will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
 msgstr ""
 "Na vaš sprejemnik morate povezati na računalnik. Če potrebujete dodatna navodila, prosim obiščite stran http://www.dm7025.de.\n"
-"Vaš Dreambox bo sedaj ustavljen. Ko končate nadgradnjo sistema po navodilih iz spletne strani bo vaša nova programska oprema zahtevala izdelavo varne kopije vaših nastavitev."
+"Vaš STB_BOX bo sedaj ustavljen. Ko končate nadgradnjo sistema po navodilih iz spletne strani bo vaša nova programska oprema zahtevala izdelavo varne kopije vaših nastavitev."
 
 msgid ""
 "You need to set a PIN code and hide it from your children.\n"
@@ -9393,9 +9244,8 @@ msgstr ""
 "\n"
 "Za nadaljevanje pritisnite OK."
 
-#
-msgid "Your Dreambox will restart after pressing OK on your remote control."
-msgstr "Vaš sprejemnik se bo po pritisku na tipko OK ponovno zagnal."
+msgid "Your STB_BOX is rebooting"
+msgstr ""
 
 msgid "Your STB_BOX is shutting down"
 msgstr ""
@@ -9403,17 +9253,40 @@ msgstr ""
 msgid "Your STB_BOX is shutting down. Please stand by..."
 msgstr ""
 
-#
-msgid "Your current collection will get lost!"
+msgid "Your STB_BOX isn't connected to the internet properly. Please check it and try again."
+msgstr ""
+
+msgid ""
+"Your STB_BOX will be restarted after the installation of service\n"
+"Do you want to install now ?"
+msgstr ""
+
+msgid ""
+"Your STB_BOX will be restarted after the installation of service.\n"
+"\n"
+"Do you want to install now ?"
+msgstr ""
+
+msgid ""
+"Your STB_BOX will be restarted after the removal of service\n"
+"Do you want to remove now ?"
+msgstr ""
+
+msgid "Your backup succeeded. We will now continue to explain the further upgrade process."
+msgstr ""
+
+msgid "Your collection exceeds the size of a single layer medium, you will need a blank dual layer DVD!"
+msgstr ""
+
+#, python-format
+msgid ""
+"Your config file is not well-formed:\n"
+"%s"
 msgstr ""
 
 #
-msgid "Your dreambox is shutting down. Please stand by..."
-msgstr "Poteka postopek ugašanja sprejemnika... Prosim počakajte!"
-
-#
-msgid "Your dreambox isn't connected to the internet properly. Please check it and try again."
-msgstr "Vaš sprejemnik ni pravilno povezan na omrežje. Prosim preverite omrežne nastavitve in poskusite znova."
+msgid "Your current collection will get lost!"
+msgstr ""
 
 #
 msgid "Your email address:"
@@ -9448,12 +9321,6 @@ msgstr "Vaše ime:"
 #
 msgid "Your network configuration has been activated."
 msgstr "Vaše omrežne nastavitve so omogočene."
-
-msgid "Your receiver is rebooting"
-msgstr "Sprejemnik se bo ponovno zagnal..."
-
-msgid "Your receiver is shutting down"
-msgstr "Vaš sprejemnik bo čez nekaj trenutkov prešel v globoko spanje!"
 
 #
 msgid ""
@@ -9888,23 +9755,14 @@ msgstr "Ne snemaj"
 msgid "done!"
 msgstr "Storjeno!"
 
-msgid "dreambox advanced remote control (native)"
-msgstr "Dreambox napredni daljinski upravljalnik (izvirno)"
+msgid "e-Mail address"
+msgstr ""
 
-msgid "dreambox front panel"
-msgstr "Dreambox front panel"
+msgid "ecm time:"
+msgstr ""
 
-msgid "dreambox ir keyboard"
-msgstr "Dreambox IR tipkovnica"
-
-msgid "dreambox ir mouse"
-msgstr "Dreambox IR miška"
-
-msgid "dreambox remote control (native)"
-msgstr "Dreambox daljinski upravljalnik (izvirno)"
-
-msgid "east"
-msgstr "vzhod"
+msgid "ecm.info"
+msgstr ""
 
 #
 msgid "edit alternatives"
@@ -9987,6 +9845,9 @@ msgstr "izhod iz seznama mrežnih vmesnikov"
 #
 msgid "exit networkadapter setup menu"
 msgstr "izhod iz nastavitvenega menija mrežnega vmesnika"
+
+msgid "extensions."
+msgstr "razšititve."
 
 #
 msgid "failed"
@@ -10213,6 +10074,9 @@ msgstr "premik gor, prejšnji vnos"
 msgid "movie list"
 msgstr "seznam datotek"
 
+msgid "ms"
+msgstr "ms"
+
 #
 msgid "multinorm"
 msgstr "multinorm"
@@ -10339,6 +10203,9 @@ msgstr "Odprtje liste kanalov (gor)"
 
 msgid "original"
 msgstr "originalno"
+
+msgid "packages selected."
+msgstr "izbranih paketov."
 
 msgid "page left"
 msgstr ""
@@ -10558,6 +10425,9 @@ msgstr ""
 #
 msgid "set as startup service"
 msgstr "Dodajte kot zagonski kanal"
+
+msgid "setup Fancontol inStandby mode"
+msgstr ""
 
 msgid "setup PIN"
 msgstr "Nastavitev PIN"
@@ -10842,6 +10712,9 @@ msgstr ""
 msgid "up to 3 degrees"
 msgstr ""
 
+msgid "updates available."
+msgstr "nadgradenj na voljo."
+
 #
 msgid "user defined"
 msgstr "uporabniško določeno"
@@ -10884,9 +10757,6 @@ msgstr "je bilo uspešno odstranjeno"
 msgid "weekly"
 msgstr "vsak teden"
 
-msgid "west"
-msgstr "zahod"
-
 #
 msgid "white"
 msgstr "bela"
@@ -10897,6 +10767,12 @@ msgstr "bel seznam"
 
 msgid "width"
 msgstr "širina"
+
+msgid "wireless network interface"
+msgstr ""
+
+msgid "wireless networks found!"
+msgstr "najdenih brezzičnih omrežij!"
 
 #
 msgid "with exit button"
@@ -10926,9 +10802,8 @@ msgstr "Da"
 msgid "yes (keep feeds)"
 msgstr "Da (obdrži feed-e)"
 
-#
-msgid "your dreambox might be unusable now. Please consult the manual for further assistance before rebooting your dreambox."
-msgstr "vaš sprejemnik je sedaj možno uporabljati. Pred ponovnim zagonom sprejemnika, preverite uporabnika navodila."
+msgid "your STB_BOX might be unusable now. Please consult the manual for further assistance before rebooting your STB_BOX."
+msgstr ""
 
 #
 msgid "zap"
