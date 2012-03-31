@@ -434,6 +434,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.movemode = False
 		self.bouquet_mark_edit = False
 
+		self.delayTimer = eTimer()
+		self.delayTimer.callback.append(self.reloadWithDelay)
 		self.feedbackTimer = None
 
 		self.numericalTextInput = NumericalTextInput.NumericalTextInput(mapping=NumericalTextInput.MAP_SEARCH_UPCASE)
@@ -441,9 +443,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self["chosenletter"].visible = False
 
 		self["waitingtext"] = Label(_("Please wait... Loading list..."))
-
-		self.hidewaitingTimer = eTimer()
-		self.hidewaitingTimer.timeout.get().append(self.hidewaitingtext)
 
 		self.LivePlayTimer = eTimer()
 		self.LivePlayTimer.timeout.get().append(self.LivePlay)
@@ -550,9 +549,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				"seekBack": (sback, tBack),
 				"seekBackManual": (ssback, tBack),
 			}, prio=5)
-		self.initial = True
-		self["waitingtext"].show()
-		self.onShown.append(self.updateHDDData)
+		self.onShown.append(self.onFirstTimeShown)
 		self.onLayoutFinish.append(self.saveListsize)
 		self.list.connectSelChanged(self.updateButtons)
 		self.onClose.append(self.__onClose)
@@ -771,7 +768,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 	def updateButtons(self):
 		item = self.getCurrentSelection()
 		for name in ('red', 'green', 'yellow', 'blue'):
-		        action = userDefinedButtons[name].value
+			action = userDefinedButtons[name].value
 			if action.startswith('@'):
 				check = self.can_default
 			else:
@@ -798,12 +795,13 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.listHeight = listsize.height()
 		self.updateDescription()
 
-	def updateHDDData(self):
-		if self.initial:
-			self.reloadList(self.selectedmovie, home=True)
-			self.initial = False
-			if config.movielist.show_live_tv_in_movielist.value:
-				self.LivePlayTimer.start(100)
+	def onFirstTimeShown(self):
+		self.onShown.remove(self.onFirstTimeShown) # Just once, not after returning etc.
+		self.show()
+		self.reloadList(self.selectedmovie, home=True)
+		del self.selectedmovie
+		if config.movielist.show_live_tv_in_movielist.value:
+			self.LivePlayTimer.start(100)
 
  	def hidewaitingtext(self):
 		self.hidewaitingTimer.stop()
@@ -820,9 +818,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		if checkplaying is None or (config.movielist.curentlyplayingservice.value != checkplaying and not self.session.nav.getCurrentlyPlayingServiceReference().toString().startswith('1:0:0:0:0:0:0:0:0:0')):
 			self.session.nav.playService(eServiceReference(config.movielist.curentlyplayingservice.value))
 		self.LivePlayTimer.stop()
-
-	def moveTo(self):
-		self["list"].moveTo(self.selectedmovie)
 
 	def getCurrent(self):
 		# Returns selected serviceref (may be None)
@@ -1107,18 +1102,24 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.current_ref.setName('8192:jpg 8192:png 8192:gif 8192:bmp')
 
 	def reloadList(self, sel = None, home = False):
-		self["waitingtext"].show()
+		self.reload_sel = sel
+		self.reload_home = home
+		self["waitingtext"].visible = True
+		self.delayTimer.start(10, 1)
+
+	def reloadWithDelay(self):
+		self.delayTimer.stop()
 		if not os.path.isdir(config.movielist.last_videodir.value):
 			path = defaultMoviePath()
 			config.movielist.last_videodir.value = path
 			config.movielist.last_videodir.save()
 			self.setCurrentRef(path)
 			self["freeDiskSpace"].path = path
- 			self["TrashcanSize"].update(path)
- 		else:
+			self["TrashcanSize"].update(path)
+		else:
 			self["TrashcanSize"].update(config.movielist.last_videodir.value)
-		if sel is None:
-			sel = self.getCurrent()
+		if self.reload_sel is None:
+			self.reload_sel = self.getCurrent()
 		if config.movielist.settings_per_directory.value:
 			self.loadLocalSettings()
 		self["list"].reload(self.current_ref, self.selected_tags)
@@ -1129,11 +1130,11 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		if self.selected_tags is not None:
 			title += " - " + ','.join(self.selected_tags)
 		self.setTitle(title)
-		if not (sel and self["list"].moveTo(sel)):
-			if home:
+		if not (self.reload_sel and self["list"].moveTo(self.reload_sel)):
+			if self.reload_home:
 				self["list"].moveToFirstMovie()
 		self["freeDiskSpace"].update()
-		self.hidewaitingTimer.start(10)
+		self["waitingtext"].visible = False
 		if self.playGoTo:
 			if self.isItemPlayable(self.list.getCurrentIndex() + 1):
 				if self.playGoTo > 0:
