@@ -1496,7 +1496,7 @@ class EPGSelectionSetup(Screen, ConfigListScreen):
 			self.list.append(getConfigListEntry(_("Show bouquet on launch"), config.epgselction.showbouquet_vixepg,_("If set to 'yes' the bouquets will be shown each time you open the EPG.")))
 			self.list.append(getConfigListEntry(_("Picture In Graphics*"), config.epgselction.pictureingraphics,_("If set to 'yes' shows a small TV-screen in the EPG.")))
 			self.list.append(getConfigListEntry(_("Show Picons"), config.epgselction.showpicon,_("If set to 'yes' shows the channel picons in the EPG.")))
-			self.list.append(getConfigListEntry(_("Show Service names "), config.epgselction.showservicetitle,_("If set to 'yes' shows the channel names in the EPG.")))
+			self.list.append(getConfigListEntry(_("Show Service Names "), config.epgselction.showservicetitle,_("If set to 'yes' shows the channel names in the EPG.")))
 			self.list.append(getConfigListEntry(_("Info (sort) Button"), config.epgselction.Info,_("Set to what you want the button to do.")))
 			self.list.append(getConfigListEntry(_("Info (long) Button"), config.epgselction.InfoLong,_("Set to what you want the button to do.")))
 			self.list.append(getConfigListEntry(_("OK (sort) Button"), config.epgselction.OK_vixepg,_("Set to what you want the button to do.")))
