@@ -136,6 +136,24 @@ def ConvertToHumanReadable(tp, type = None):
 		ret["system"] = {
 			eDVBFrontendParametersTerrestrial.System_DVB_T : "DVB-T",
 			eDVBFrontendParametersTerrestrial.System_DVB_T2 : "DVB-T2"}[tp["system"]]
+	elif type == "ATSC":
+		ret["tuner_type"] = "ATSC"
+		ret["modulation"] = {
+			eDVBFrontendParametersATSC.Modulation_Auto: _("Auto"),
+			eDVBFrontendParametersATSC.Modulation_QAM16 : "QAM16",
+			eDVBFrontendParametersATSC.Modulation_QAM32 : "QAM32",
+			eDVBFrontendParametersATSC.Modulation_QAM64 : "QAM64",
+			eDVBFrontendParametersATSC.Modulation_QAM128 : "QAM128",
+			eDVBFrontendParametersATSC.Modulation_QAM256 : "QAM256",
+			eDVBFrontendParametersATSC.Modulation_VSB_8 : "VSB_8",
+			eDVBFrontendParametersATSC.Modulation_VSB_16 : "VSB_16"}[tp["modulation"]]
+		ret["inversion"] = {
+			eDVBFrontendParametersATSC.Inversion_Unknown : _("Auto"),
+			eDVBFrontendParametersATSC.Inversion_On : _("On"),
+			eDVBFrontendParametersATSC.Inversion_Off : _("Off")}[tp["inversion"]]
+		ret["system"] = {
+			eDVBFrontendParametersATSC.System_ATSC : "ATSC",
+			eDVBFrontendParametersATSC.System_DVB_C_ANNEX_B : "DVB-C ANNEX B"}[tp["system"]]
 	elif type != "None":
 		print "ConvertToHumanReadable: no or unknown type in tpdata dict for type:", type
 	for k,v in tp.items():
