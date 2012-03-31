@@ -508,14 +508,14 @@ class EPGList(HTMLComponent, GUIComponent):
 		r3 = self.descr_rect
 		t = localtime(beginTime)
 		if getlocale(2)[0] == 'de_DE':
-			datestring = strftime("%e.%m. ",t)
+			datestring = strftime("%d.%m. ",t)
 		else: 
-			datestring = strftime("%e/%m, ",t)
+			datestring = strftime("%d/%m, ",t)
 
 		res = [
 			None, # no private data needed
 			(eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, _(strftime("%a", t))),
-			(eListboxPythonMultiContent.TYPE_TEXT, r2.x, r2.y, r2.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, strftime(datestring + "%-H:%M", t))
+			(eListboxPythonMultiContent.TYPE_TEXT, r2.x, r2.y, r2.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, strftime(datestring + "%H:%M", t))
 		]
 		if rec:
 			res.extend((
