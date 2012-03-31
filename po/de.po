@@ -10487,3 +10487,275 @@ msgstr "Ihre STB_BOX wird Ausgeschaltet"
 
 msgid "The User Interface of your receiver is restarting"
 msgstr "Die Bedienoberfläche wird neu gestartet"
+
+#: c:\POTEST/Blindscan/plugin.py:42
+msgid "Blindscan"
+msgstr "Blind Scan"
+
+#
+#: c:\POTEST/Blindscan/plugin.py:78
+msgid "Scan"
+msgstr "Suchlauf "
+
+#: c:\POTEST/Blindscan/plugin.py:198
+msgid "up to 1 degree"
+msgstr "bis zu 1 Grad"
+
+#: c:\POTEST/Blindscan/plugin.py:199
+msgid "up to 2 degrees"
+msgstr "bis zu 2 Grad"
+
+#: c:\POTEST/Blindscan/plugin.py:200
+msgid "up to 3 degrees"
+msgstr "bis zu 3 Grad"
+
+#: c:\POTEST/Blindscan/plugin.py:202
+msgid "scan for channels"
+msgstr "Kanalsuchlauf"
+
+#: c:\POTEST/Blindscan/plugin.py:203
+msgid "save to XML file"
+msgstr "Speichere in XML Datei"
+
+#
+#: c:\POTEST/Blindscan/plugin.py:224
+msgid "vertical and horizontal"
+msgstr "Vertikal und Horizontal"
+
+#
+#: c:\POTEST/Blindscan/plugin.py:227
+msgid "circular right and circular left"
+msgstr "Rechts-zirkular & Links-zirkular"
+
+#
+#: c:\POTEST/Blindscan/plugin.py:257
+msgid "Select a tuner that is configured for the satellite you wish to search"
+msgstr "Einen Tuner auswählen, der für den Satelliten eingerichtet ist,auf dem gesucht werden soll."
+
+#: c:\POTEST/Blindscan/plugin.py:269
+msgid "Select the satellite you wish to search"
+msgstr "Satellit für den Suchlauf auswählen"
+
+#: c:\POTEST/Blindscan/plugin.py:270
+#: c:\POTEST/Blindscan/plugin.py:271
+msgid "Frequency values must be between 10700 and 12750 (or 3000 and 4200 in the case of C-band satellites)"
+msgstr "Frequenzwerte müssen zwischen 10700 und 12750 liegen (bzw. 3000 und 4200 für C-Band Satelliten)"
+
+#
+#: c:\POTEST/Blindscan/plugin.py:272
+msgid "Polarisation"
+msgstr "Polarisation"
+
+#: c:\POTEST/Blindscan/plugin.py:272
+msgid "If you are not sure what polarisations the satellite you wish to search transmits, select \"vertical and horizontal\""
+msgstr "Wenn Sie sich nicht sicher sind, welche Polarisation der Satellit hat,  wählen sie \"Vertikal und Horizontal \""
+
+#: c:\POTEST/Blindscan/plugin.py:273
+msgid "Symbol rate values are in megasymbols; enter a value between 1 and 44"
+msgstr "Symbolraten sind in tausender Werten angegeben, bitte einen Wert zwischen 2 und 44 eingeben."
+
+#: c:\POTEST/Blindscan/plugin.py:274
+msgid "Symbol rate values are in megasymbols; enter a value between 2 and 45"
+msgstr " Symbol rate values are in megasymbols; enter a value between 2 and 45"
+
+#: c:\POTEST/Blindscan/plugin.py:275
+msgid "If you select \"yes\" all channels on the satellite being search will be deleted before starting the current search"
+msgstr "Wenn Sie \"Ja\" auswählen, werden alle Sender des Satellitens gelöscht, auf dem der Suchlauf ausgeführt wird!"
+
+#
+#: c:\POTEST/Blindscan/plugin.py:276
+msgid "Only free scan"
+msgstr "Nur frei empfangbare"
+
+#: c:\POTEST/Blindscan/plugin.py:276
+msgid "If you select \"yes\" the scan will only save channels that are not encrypted; \"no\" will find encrypted and non-encrypted channels"
+msgstr "Wenn Sie \"Ja\" auswählen, wird der Suchlauf nur unverschlüsselte Sender finden; \"Nein\" findet alle Sender."
+
+#
+#: c:\POTEST/Blindscan/plugin.py:277
+msgid "Only scan unknown transponders"
+msgstr "Nur auf unbekannten Transpondern suchen"
+
+#: c:\POTEST/Blindscan/plugin.py:277
+msgid "If you select \"yes\" the scan will only search transponders not listed in satellites.xml"
+msgstr ""
+"Wenn Sie \"Ja\" auswählen, wird der Suchlauf nur auf Transpondern durchgeführt, \n"
+"\" \"die nicht in der satellites.xml enthalten sind."
+
+#: c:\POTEST/Blindscan/plugin.py:278
+msgid "Filter out adjacent satellites"
+msgstr "Filtere angrenzende Satelliten heraus"
+
+#: c:\POTEST/Blindscan/plugin.py:278
+msgid "When a neighbouring satellite is very strong this avoids searching transponders known to be coming from the neighbouring satellite"
+msgstr "Wenn ein benachbarter Satellit sehr stark ist, verhindert dies, das Transponder von diesem Satelliten durchsucht werden."
+
+#
+#: c:\POTEST/Blindscan/plugin.py:279
+msgid "Search type"
+msgstr "Suchlauftyp"
+
+#: c:\POTEST/Blindscan/plugin.py:279
+msgid "\"channel scan\" searches for channels and saves them to the receiver; \"save to XML file\" does a transponder search and saves found transponders to an XML file in satellites.xml format"
+msgstr "\"Kanalsuchlauf\" sucht nach Kanälen und speichert diese im Receiver; \"Speichere in XML Datei\" Sucht nach Transpondern und speichert dies im XML Format in der satellites.xml Datei."
+
+#: c:\POTEST/Blindscan/plugin.py:302
+msgid ""
+"Invalid parameters entered. Please correct and try again.\n"
+"Start symbol rate must be between 1MHz and 44MHz."
+msgstr ""
+"Ungültige Einstellungen. Bitte prüfen.\n"
+"Startsymbolrate muss zwischen 2MHz und 44MHz liegen."
+
+#: c:\POTEST/Blindscan/plugin.py:305
+msgid ""
+"Invalid parameters entered. Please correct and try again.\n"
+"Stop symbol rate must be between 2MHz and 45MHz."
+msgstr ""
+"Ungültige Einstellungen. Bitte prüfen.\n"
+"Endsymbolrate muss zwischen 2MHz und 45MHz liegen."
+
+#: c:\POTEST/Blindscan/plugin.py:308
+msgid ""
+"Invalid parameters entered. Please correct and try again.\n"
+"Symbol rate start value is larger than stop value."
+msgstr ""
+"Ungültige Einstellungen. Bitte prüfen.\n"
+"Symbolrate: Startwert ist höher als Endwert."
+
+#: c:\POTEST/Blindscan/plugin.py:311
+msgid ""
+"Invalid parameters entered. Please correct and try again.\n"
+"Frequency start value is larger than stop value."
+msgstr ""
+"Ungültige Einstellungen. Bitte prüfen.\n"
+"Frequenz: Startwert ist höher als Endwert."
+
+#: c:\POTEST/Blindscan/plugin.py:315
+#: c:\POTEST/Blindscan/plugin.py:318
+msgid ""
+"Invalid parameters entered. Please correct and try again.\n"
+"That is a C-band satellite so frequency values \n"
+"need to be between 3000MHz and 4200MHz."
+msgstr ""
+"Ungültige Einstellungen. Bitte prüfen.\n"
+"Dies ist ein C-Band Satellit, somit müssen die Frequenzen \n"
+"zwischen 3000MHz und 4200MHz liegen."
+
+#: c:\POTEST/Blindscan/plugin.py:323
+#: c:\POTEST/Blindscan/plugin.py:337
+msgid ""
+"Invalid parameters entered. Please correct and try again.\n"
+"Start frequency must be between 10700MHz and 12750MHz.\n"
+"(Or 3000MHz and 4200MHz in the case of c-band)."
+msgstr ""
+"Ungültige Einstellungen. Bitte prüfen.\n"
+"Die Start Frequenz muss zwischen 10700MHz und 12750MHz liegen.\n"
+"(bzw. 3000MHz und 4200MHz im Falle von C-Band)."
+
+#: c:\POTEST/Blindscan/plugin.py:326
+msgid ""
+"Invalid parameters entered. Please correct and try again.\n"
+"For C-band searches stop frequency must be between 3000MHz and 4200MHz."
+msgstr ""
+"Ungültige Einstellungen. Bitte prüfen.\n"
+"Für einen C-Band Suchlauf muss die Stopp Frequenz zwischen \n"
+"3000Mhz und 4200MHz liegen."
+
+#: c:\POTEST/Blindscan/plugin.py:331
+#: c:\POTEST/Blindscan/plugin.py:334
+msgid ""
+"Invalid parameters entered. Please correct and try again.\n"
+"That is a Ku-band satellite so frequency values \n"
+"need to be between 10700MHz and 12750MHz."
+msgstr ""
+"Ungültige Einstellungen. Bitte prüfen.\n"
+"Dies ist ein Ku-Band Satellit, somit müssen die Frequenzen \n"
+"zwischen 10700MHz und 12750MHz liegen."
+
+#: c:\POTEST/Blindscan/plugin.py:340
+msgid ""
+"Invalid parameters entered. Please correct and try again.\n"
+"Stop frequency must be between 10700MHz and 12750MHz.\n"
+"(Or 3000MHz and 4200MHz in the case of c-band)."
+msgstr ""
+"Ungültige Einstellungen. Bitte prüfen.\n"
+"Stopp Frequenz muss zwischen 10700MHz and 12750MHz liegen.\n"
+"(bzw. 3000MHz und 4200MHz im Falle von C-Band)."
+
+#: c:\POTEST/Blindscan/plugin.py:534
+#, python-format
+msgid ""
+"Looking for available transponders.\n"
+"This will take a short while.\n"
+"\n"
+"   Current Status : %d/%d\n"
+"   Satellite : %s\n"
+"   Polarization : %s\n"
+"   Frequency range : %d - %d MHz\n"
+"   Symbol rates : %d - %d MHz"
+msgstr ""
+"Suche nach verfügbaren Transpondern\n"
+"Das wird einige Minuten dauern.\n"
+"\n"
+"   Derzeitiger Status : %d / %d\n"
+"   Satellit :  %s\n"
+"   Polarisation : %s\n"
+"   Frequenz  :  %d - %d MHz\n"
+"   Symbolrate : %d - %d MHz"
+
+#: c:\POTEST/Blindscan/plugin.py:635
+#, python-format
+msgid ""
+"Search completed. %d transponders found.\n"
+"\n"
+"Details saved in:\n"
+"%s"
+msgstr ""
+"Suchlauf beendet. %d  Transponder gefunden. \n"
+"\n"
+"Details gespeichert in: \n"
+"%s"
+
+#: c:\POTEST/Blindscan/plugin.py:638
+msgid ""
+"No new transponders found! \n"
+"\n"
+"Only transponders already listed in satellites.xml \n"
+"have been found for those search parameters!"
+msgstr ""
+"Keine neuen Transponder gefunden! \n"
+"\n"
+"Mit dieser Suchlauf Einstellung wurden nur \n"
+"Transponder gefunden, die sich schon in der \n"
+"satellites.xml befinden!"
+
+#: c:\POTEST/Blindscan/plugin.py:642
+msgid "No transponders were found for those search parameters!"
+msgstr ""
+"Mit diesen Suchlauf Einstellungen wurden keine \n"
+"Transponder gefunden!"
+
+#: c:\POTEST/Blindscan/plugin.py:644
+msgid "The blindscan run was cancelled by the user."
+msgstr "Blind Scan durch Nutzer abgebrochen."
+
+#: Einstellunen Box Display
+msgid "Show time elapsed as positive"
+msgstr "Zeige verstrichene Zeit mit positivem Vorzeichen"
+
+#: Einstellunen Kanallisten-Menue
+msgid "Service number font size"
+msgstr "Schriftgröße der Sendernummern"
+
+#: Einstellunen Kanallisten-Menue
+msgid "Service name font size"
+msgstr "Schriftgröße der Sendernamen"
+
+#: Einstellunen Kanallisten-Menue
+msgid "Service info font size"
+msgstr "Schriftgröße der Sendungsinformation"
+
+#: Einstellunen Kanallisten-Menue
+msgid "Number of rows"
+msgstr "Anzahl Zeilen in der Senderliste"
