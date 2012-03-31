@@ -81,16 +81,8 @@ private:
 	bool m_can_handle_dvbs2;
 	char m_filename[128];
 	char m_description[128];
-#if HAVE_DVB_API_VERSION < 3
-	int m_secfd;
-	char m_sec_filename[128];
-#endif
-#if HAVE_DVB_API_VERSION < 3
-	FrontendInfo fe_info;
-#else
 	dvb_frontend_info fe_info;
-#endif
-	FRONTENDPARAMETERS parm;
+	int satfrequency;
 	union {
 		eDVBFrontendParametersSatellite sat;
 		eDVBFrontendParametersCable cab;

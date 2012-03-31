@@ -3,14 +3,8 @@
 
 #ifndef SWIG
 
-#if HAVE_DVB_API_VERSION < 3
-#include <ost/frontend.h>
-#define FRONTENDPARAMETERS FrontendParameters
-#else
 #include <linux/dvb/frontend.h>
 #include <linux/dvb/video.h>
-#define FRONTENDPARAMETERS struct dvb_frontend_parameters
-#endif
 #include <lib/dvb/frontendparms.h>
 #include <lib/base/object.h>
 #include <lib/base/ebase.h>
@@ -421,10 +415,6 @@ public:
 #endif
 	int len;
 	__u8 data[MAX_DISEQC_LENGTH];
-#if HAVE_DVB_API_VERSION < 3
-	int tone;
-	int voltage;
-#endif
 #ifdef SWIG
 public:
 #endif
@@ -485,7 +475,7 @@ SWIG_TEMPLATE_TYPEDEF(ePtr<iDVBFrontend>, iDVBFrontendPtr);
 class iDVBSatelliteEquipmentControl: public iObject
 {
 public:
-	virtual RESULT prepare(iDVBFrontend &frontend, FRONTENDPARAMETERS &parm, const eDVBFrontendParametersSatellite &sat, int frontend_id, unsigned int timeout)=0;
+	virtual RESULT prepare(iDVBFrontend &frontend, const eDVBFrontendParametersSatellite &sat, int &frequency, int frontend_id, unsigned int timeout)=0;
 	virtual void prepareTurnOffSatCR(iDVBFrontend &frontend, int satcr)=0;
 	virtual int canTune(const eDVBFrontendParametersSatellite &feparm, iDVBFrontend *fe, int frontend_id, int *highest_score_lnb=0)=0;
 	virtual void setRotorMoving(int slotid, bool)=0;
@@ -634,11 +624,6 @@ public:
 	virtual RESULT flush()=0;
 	virtual int openDVR(int flags)=0;
 };
-
-#if HAVE_DVB_API_VERSION < 3 && !defined(VIDEO_EVENT_SIZE_CHANGED)
-#define VIDEO_EVENT_SIZE_CHANGED 1
-#define VIDEO_EVENT_FRAME_RATE_CHANGED 2
-#endif
 
 class iTSMPEGDecoder: public iObject
 {
