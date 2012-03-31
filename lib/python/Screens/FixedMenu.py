@@ -6,12 +6,13 @@ from Components.Sources.StaticText import StaticText
 class FixedMenu(Screen):
 	def okbuttonClick(self):
 		selection = self["menu"].getCurrent()
-		selection[1]()
+		if selection and len(selection) > 1:
+			selection[1]()
 
 	def __init__(self, session, title, list):
 		Screen.__init__(self, session)
 
-		self["menu"] = List(list)	
+		self["menu"] = List(list)
 
 		self["actions"] = ActionMap(["OkCancelActions"], 
 			{
