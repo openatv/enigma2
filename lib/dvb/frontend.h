@@ -11,6 +11,7 @@ class eDVBFrontendParameters: public iDVBFrontendParameters
 		eDVBFrontendParametersSatellite sat;
 		eDVBFrontendParametersCable cable;
 		eDVBFrontendParametersTerrestrial terrestrial;
+		eDVBFrontendParametersATSC atsc;
 	};
 	int m_type;
 	int m_flags;
@@ -24,10 +25,12 @@ public:
 	SWIG_VOID(RESULT) getDVBS(eDVBFrontendParametersSatellite &SWIG_OUTPUT) const;
 	SWIG_VOID(RESULT) getDVBC(eDVBFrontendParametersCable &SWIG_OUTPUT) const;
 	SWIG_VOID(RESULT) getDVBT(eDVBFrontendParametersTerrestrial &SWIG_OUTPUT) const;
+	SWIG_VOID(RESULT) getATSC(eDVBFrontendParametersATSC &SWIG_OUTPUT) const;
 
 	RESULT setDVBS(const eDVBFrontendParametersSatellite &p, bool no_rotor_command_on_tune=false);
 	RESULT setDVBC(const eDVBFrontendParametersCable &p);
 	RESULT setDVBT(const eDVBFrontendParametersTerrestrial &p);
+	RESULT setATSC(const eDVBFrontendParametersATSC &p);
 	SWIG_VOID(RESULT) getFlags(unsigned int &SWIG_NAMED_OUTPUT(flags)) const { flags = m_flags; return 0; }
 	RESULT setFlags(unsigned int flags) { m_flags = flags; return 0; }
 #ifndef SWIG
@@ -87,6 +90,7 @@ private:
 		eDVBFrontendParametersSatellite sat;
 		eDVBFrontendParametersCable cab;
 		eDVBFrontendParametersTerrestrial ter;
+		eDVBFrontendParametersATSC atsc;
 	} oparm;
 
 	int m_state;
@@ -123,6 +127,7 @@ public:
 	RESULT prepare_sat(const eDVBFrontendParametersSatellite &, unsigned int timeout);
 	RESULT prepare_cable(const eDVBFrontendParametersCable &);
 	RESULT prepare_terrestrial(const eDVBFrontendParametersTerrestrial &);
+	RESULT prepare_atsc(const eDVBFrontendParametersATSC &);
 	RESULT connectStateChange(const Slot1<void,iDVBFrontend*> &stateChange, ePtr<eConnection> &connection);
 	RESULT getState(int &state);
 	RESULT setTone(int tone);

@@ -132,4 +132,23 @@ struct eDVBFrontendParametersTerrestrial
 };
 SWIG_ALLOW_OUTPUT_SIMPLE(eDVBFrontendParametersTerrestrial);
 
+struct eDVBFrontendParametersATSC
+{
+	enum {
+		Inversion_Off, Inversion_On, Inversion_Unknown
+	};
+
+	enum {
+		System_ATSC, System_DVB_C_ANNEX_B
+	};
+
+	enum {
+		Modulation_Auto, Modulation_QAM16, Modulation_QAM32, Modulation_QAM64, Modulation_QAM128, Modulation_QAM256, Modulation_VSB_8, Modulation_VSB_16
+	};
+
+	unsigned int frequency;
+	int modulation, inversion, system;
+};
+SWIG_ALLOW_OUTPUT_SIMPLE(eDVBFrontendParametersATSC);
+
 #endif
