@@ -16,25 +16,8 @@ from xml.sax import make_parser
 from xml.sax.handler import ContentHandler
 
 class WizardSummary(Screen):
-	skin = """
-	<screen position="0,0" size="132,64">
-		<widget source="text" render="Label" position="6,0" size="120,16" font="Regular;16" transparent="1" />
-		<widget source="parent.list" render="Label" position="6,18" size="120,46" font="Regular;12">
-			<convert type="StringListSelection" />
-		</widget>
-	</screen>"""
-	
 	def __init__(self, session, parent):
 		Screen.__init__(self, session, parent)
-		
-		#names = parent.skinName
-		#if not isinstance(names, list):
-			#names = [names]
-#			
-		#self.skinName = [x + "_summary" for x in names ]
-		#self.skinName.append("Wizard")
-		#print "*************+++++++++++++++++****************++++++++++******************* WizardSummary", self.skinName
-			#
 		self["text"] = StaticText("")
 		self.onShow.append(self.setCallback)
 		
