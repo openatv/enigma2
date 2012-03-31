@@ -139,6 +139,20 @@
 		<panel position="bottom" size="*,24" name="SummaryClockPanel" />
 	</screen>
 
+	<screen name="WizardSummary" position="fill">
+		<widget source="text" render="Label" position="top" size="*,16" font="FdLcD;16"/>
+		<widget source="parent.list" render="Label" position="fill" font="FdLcD;12">
+			<convert type="StringListSelection" />
+		</widget>
+	</screen>
+
+	<screen name="VideoWizardSummary" position="fill">
+		<widget name="text" position="top" size="*,40" font="FdLcD;12" transparent="1" />
+		<widget source="parent.list" render="Label" position="fill" font="FdLcD;14">
+			<convert type="StringListSelection" />
+		</widget>
+	</screen>
+
 <!-- standby -->
 	<screen name="StandbySummary" position="fill">
 		<widget source="global.CurrentTime" render="Label" position="center,0" size="120,64" font="FdLcD;48" halign="center" valign="center" noWrap="1">

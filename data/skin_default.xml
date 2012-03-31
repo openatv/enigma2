@@ -1003,6 +1003,13 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 	</screen>
 	<!-- Standby mode -->
 	<screen name="Standby" flags="wfNoBorder" position="fill" title="Standby" />
+	<!-- Extra margin for wizard, never know how bad the TV is... -->
+	<screen name="WizardMarginsTemplate">
+		<panel position="left" size="10%,*" />
+		<panel position="right" size="8%,*" />
+		<panel position="top" size="8%,*" />
+		<panel position="bottom" size="10%,*" />
+	</screen>
 	<!-- Start Wizard -->
 	<screen name="StartWizard" position="fill" title="Welcome..." flags="wfNoBorder">
 		<widget name="text" position="153,50" size="340,270" font="Regular;23" />
