@@ -4,10 +4,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-27 03:12+0100\n"
-"PO-Revision-Date: 2012-03-27 03:29+0100\n"
-"Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
-"Language-Team: Andy Blackburn, Rob van der Does, delagroov\n"
+"POT-Creation-Date: 2012-03-29 15:57+0100\n"
+"PO-Revision-Date: 2012-03-30 06:47+0100\n"
+"Last-Translator: \n"
+"Language-Team: Andy Blackburn, Rob van der Does\n"
 "Language: Nederlands\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -160,42 +160,6 @@ msgstr ""
 msgid "\"channel scan\" searches for channels and saves them to the receiver; \"save to XML file\" does a transponder search and saves found transponders to an XML file in satellites.xml format"
 msgstr "\"kanaal  scan\" zoekt naar kanalen en slaat die op in de ontvanger; \"sla op in XML bestand\" voert een transponder scan uit en slaat de gevonden transponders op in een XML bestand in satellites.xml formaat"
 
-msgid "#000000"
-msgstr "#000000"
-
-msgid "#0064c7"
-msgstr "#0064c7"
-
-msgid "#25062748"
-msgstr "#25062748"
-
-msgid "#389416"
-msgstr "#389416"
-
-msgid "#80000000"
-msgstr "#80000000"
-
-msgid "#80ffffff"
-msgstr "#80ffffff"
-
-msgid "#bab329"
-msgstr "#bab329"
-
-msgid "#f23d21"
-msgstr "#f23d21"
-
-msgid "#ff0000"
-msgstr "#ff0000"
-
-msgid "#ffff7f"
-msgstr "#ffff7f"
-
-msgid "#ffffff"
-msgstr "#ffffff"
-
-msgid "#ffffffff"
-msgstr "#ffffffff"
-
 #. TRANSLATORS: short time representation hour:minute
 #, python-format
 msgid "%2d:%02d"
@@ -213,6 +177,9 @@ msgstr "%A %e %B"
 #. TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
 msgid "%A %e %B %Y"
 msgstr "%A %e %B %Y"
+
+msgid "%A %e %b"
+msgstr "%A %e %b"
 
 msgid "%H:%M"
 msgstr "%H:%M"
@@ -2024,10 +1991,6 @@ msgstr "Display instellingen"
 msgid "Display and Userinterface"
 msgstr "Display en gebruikersinterface"
 
-#, python-format
-msgid "Do you really want to REMOVE the plugin \"%s\"?"
-msgstr "Wilt u echt deze applicatie \"%s\" verwijderen?"
-
 msgid ""
 "Do you really want to check the filesystem?\n"
 "This could take lots of time!"
@@ -2078,6 +2041,10 @@ msgstr "Wilt u echt permanent verwijderen uit de prullenbak?"
 #, python-format
 msgid "Do you really want to remove directory %s from the disk?"
 msgstr "Weet u zeker dat u map %s van de harde schijf wilt wissen?"
+
+#, python-format
+msgid "Do you really want to remove the plugin \"%s\"?"
+msgstr "Wilt u echt deze applicatie \"%s\" verwijderen?"
 
 #, python-format
 msgid "Do you really want to remove your bookmark of %s?"
@@ -2208,6 +2175,9 @@ msgstr "Download .NFI-Bestanden naar USB-Flasher"
 
 msgid "Download Plugins"
 msgstr "Downloaden plugins"
+
+msgid "Download plugins"
+msgstr "Download plugins"
 
 msgid "Download the firmware (latest)"
 msgstr "Download de laatste firmware"
@@ -3657,7 +3627,7 @@ msgid "MA"
 msgstr "MA"
 
 msgid "MAC:"
-msgstr ""
+msgstr "MAC:"
 
 msgid "MB"
 msgstr "MB"
@@ -3775,7 +3745,7 @@ msgid "Memory"
 msgstr "Geheugen"
 
 msgid "Memory Information"
-msgstr ""
+msgstr "Geheugen informatie"
 
 msgid "Menu"
 msgstr "Menu"
@@ -3956,7 +3926,7 @@ msgid "Netmask"
 msgstr "Netmask"
 
 msgid "Netmask:"
-msgstr ""
+msgstr "Netmask:"
 
 msgid "Network"
 msgstr "Netwerk"
@@ -3968,7 +3938,7 @@ msgid "Network ID"
 msgstr "Netwerk ID"
 
 msgid "Network Information"
-msgstr ""
+msgstr "Netwerk informatie"
 
 msgid "Network Mounts"
 msgstr "Netwerk mounts"
@@ -5972,9 +5942,6 @@ msgstr "Toon lezers/Proxies"
 msgid "Show Service Names "
 msgstr "Toon kanaal namen"
 
-msgid "Show Service names "
-msgstr "Toon zender namen"
-
 msgid "Show Single EPG"
 msgstr "Toon Single EPG"
 
@@ -6211,6 +6178,9 @@ msgstr "Sorry MediaScanner is niet geïnstalleerd!"
 
 msgid "Sorry MiniDLNA Config is Missing"
 msgstr "MiniDLNA Configuratie ontbreekt"
+
+msgid "Sorry feeds are down for maintenance"
+msgstr "Excuses: vanwege onderhoud zijn de feeds niet aktief."
 
 msgid "Sorry no backups found!"
 msgstr "Sorry geen back-ups gevonden!"
@@ -6562,7 +6532,7 @@ msgid "Text support"
 msgstr "Tekst ondersteuning"
 
 msgid "Thai"
-msgstr ""
+msgstr "Thais"
 
 msgid ""
 "Thank you for using the wizard.\n"
@@ -8613,7 +8583,7 @@ msgid "exit networkadapter setup menu"
 msgstr "verlaat netwerkadapter instellingen menu"
 
 msgid "extensions."
-msgstr ""
+msgstr "extensies."
 
 msgid "failed"
 msgstr "mislukt"
@@ -8794,7 +8764,7 @@ msgid "movie list"
 msgstr "Opnamelijst"
 
 msgid "ms"
-msgstr ""
+msgstr "ms"
 
 msgid "multinorm"
 msgstr "multinorm"
@@ -8897,7 +8867,7 @@ msgid "original"
 msgstr "origineel"
 
 msgid "packages selected."
-msgstr ""
+msgstr "pakketten geselecteerd."
 
 msgid "page left"
 msgstr "Pagina links"
@@ -9073,6 +9043,9 @@ msgstr "zender pincode"
 
 msgid "set as startup service"
 msgstr "kanaal kiezen bij opstarten"
+
+msgid "setup Fancontol inStandby mode"
+msgstr "Fancontol instellingen voor standby"
 
 msgid "setup PIN"
 msgstr "menu pincode"
@@ -9309,7 +9282,7 @@ msgid "up to 3 degrees"
 msgstr "tot 3 graden"
 
 msgid "updates available."
-msgstr ""
+msgstr "updates beschikbaar."
 
 msgid "user defined"
 msgstr "door u gedefinieerd"
@@ -9357,7 +9330,7 @@ msgid "wireless network interface"
 msgstr "draadloze netwerk interface"
 
 msgid "wireless networks found!"
-msgstr ""
+msgstr "draadloze netwerken gevonden!"
 
 msgid "with exit button"
 msgstr "met exit toets"

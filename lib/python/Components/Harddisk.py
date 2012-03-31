@@ -62,7 +62,10 @@ class Harddisk:
 
 		self.max_idle_time = 0
 		self.idle_running = False
+		self.last_access = time.time()
+		self.last_stat = 0
 		self.timer = None
+		self.is_sleeping = False
 
 		self.dev_path = ''
 		self.disk_path = ''
@@ -445,9 +448,6 @@ class Harddisk:
 		return (int(data[0]), int(data[4]))
 
 	def startIdle(self):
-		self.last_access = time.time()
-		self.last_stat = 0
-		self.is_sleeping = False
 		from enigma import eTimer
 
 		# disable HDD standby timer

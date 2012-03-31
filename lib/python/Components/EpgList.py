@@ -13,7 +13,6 @@ from time import localtime, time, strftime
 from ServiceReference import ServiceReference
 from Tools.Directories import pathExists, resolveFilename, SCOPE_CURRENT_SKIN
 from os import listdir, path
-from locale import getlocale
 
 EPG_TYPE_SINGLE = 0
 EPG_TYPE_MULTI = 1
@@ -23,9 +22,6 @@ EPG_TYPE_INFOBAR = 4
 EPG_TYPE_GRAPH = 5
 
 MAX_TIMELINES = 6
-
-days = (_("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun"))
-dayslong = (_("Monday"), _("Tuesday"), _("Wednesday"), _("Thursday"), _("Friday"), _("Saturday"), _("Sunday"))
 
 class Rect:
 	def __init__(self, x, y, width, height):

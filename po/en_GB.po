@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 3.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-27 03:12+0100\n"
-"PO-Revision-Date: 2012-03-27 03:30+0100\n"
+"POT-Creation-Date: 2012-03-31 13:23+0100\n"
+"PO-Revision-Date: 2012-03-31 13:48+0100\n"
 "Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
 "Language-Team: ViX\n"
 "Language: en_GB\n"
@@ -162,42 +162,6 @@ msgstr ""
 msgid "\"channel scan\" searches for channels and saves them to the receiver; \"save to XML file\" does a transponder search and saves found transponders to an XML file in satellites.xml format"
 msgstr "\"channel scan\" searches for channels and saves them to the receiver; \"save to XML file\" does a transponder search and saves found transponders to an XML file in satellites.xml format"
 
-msgid "#000000"
-msgstr "#000000"
-
-msgid "#0064c7"
-msgstr "#0064c7"
-
-msgid "#25062748"
-msgstr "#25062748"
-
-msgid "#389416"
-msgstr "#389416"
-
-msgid "#80000000"
-msgstr "#80000000"
-
-msgid "#80ffffff"
-msgstr "#80ffffff"
-
-msgid "#bab329"
-msgstr "#bab329"
-
-msgid "#f23d21"
-msgstr "#f23d21"
-
-msgid "#ff0000"
-msgstr "#ff0000"
-
-msgid "#ffff7f"
-msgstr "#ffff7f"
-
-msgid "#ffffff"
-msgstr "#ffffff"
-
-msgid "#ffffffff"
-msgstr "#ffffffff"
-
 #. TRANSLATORS: short time representation hour:minute
 #, python-format
 msgid "%2d:%02d"
@@ -215,6 +179,9 @@ msgstr "%A %e %B"
 #. TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
 msgid "%A %e %B %Y"
 msgstr "%A %e %B %Y"
+
+msgid "%A %e %b"
+msgstr "%A %e %b"
 
 msgid "%H:%M"
 msgstr "%H:%M"
@@ -2021,10 +1988,6 @@ msgstr "Display Setup"
 msgid "Display and Userinterface"
 msgstr "Display and User interface"
 
-#, python-format
-msgid "Do you really want to REMOVE the plugin \"%s\"?"
-msgstr "Do you really want to REMOVE the plugin \"%s\"?"
-
 msgid ""
 "Do you really want to check the filesystem?\n"
 "This could take lots of time!"
@@ -2074,6 +2037,10 @@ msgstr "Do you really want to permanently remove from trash can ?"
 #, python-format
 msgid "Do you really want to remove directory %s from the disk?"
 msgstr "Do you really want to remove directory %s from the disk?"
+
+#, python-format
+msgid "Do you really want to remove the plugin \"%s\"?"
+msgstr "Do you really want to remove the plugin \"%s\"?"
 
 #, python-format
 msgid "Do you really want to remove your bookmark of %s?"
@@ -2204,6 +2171,9 @@ msgstr "Download .NFI-Files for USB-Flasher"
 
 msgid "Download Plugins"
 msgstr "Download Plugins"
+
+msgid "Download plugins"
+msgstr "Download plugins"
 
 msgid "Download the firmware (latest)"
 msgstr "Download the firmware (latest)"
@@ -5951,9 +5921,6 @@ msgstr "Show Readers/Proxies"
 msgid "Show Service Names "
 msgstr "Show Service Names "
 
-msgid "Show Service names "
-msgstr "Show Service names "
-
 msgid "Show Single EPG"
 msgstr "Show Single EPG"
 
@@ -6188,6 +6155,9 @@ msgstr "Sorry MediaScanner is not installed!"
 
 msgid "Sorry MiniDLNA Config is Missing"
 msgstr "Sorry MiniDLNA Config is Missing"
+
+msgid "Sorry feeds are down for maintenance"
+msgstr "Sorry feeds are down for maintenance"
 
 msgid "Sorry no backups found!"
 msgstr "Sorry no backups found!"
@@ -9035,6 +9005,9 @@ msgstr "service PIN"
 
 msgid "set as startup service"
 msgstr "set as startup service"
+
+msgid "setup Fancontol inStandby mode"
+msgstr "setup Fancontol inStandby mode"
 
 msgid "setup PIN"
 msgstr "setup PIN"

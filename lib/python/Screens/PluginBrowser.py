@@ -203,9 +203,11 @@ class PluginDownloadBrowser(Screen):
 			self.updateList()
 		else:
 			if self.type == self.DOWNLOAD:
-				self.session.openWithCallback(self.runInstall, MessageBox, _("Do you really want to download the plugin \"%s\"?") % sel.name)
+				mbox=self.session.openWithCallback(self.runInstall, MessageBox, _("Do you really want to download the plugin \"%s\"?") % sel.name)
+				mbox.setTitle(_("Download plugins"))
 			elif self.type == self.REMOVE:
-				self.session.openWithCallback(self.runInstall, MessageBox, _("Do you really want to REMOVE the plugin \"%s\"?") % sel.name)
+				mbox=self.session.openWithCallback(self.runInstall, MessageBox, _("Do you really want to remove the plugin \"%s\"?") % sel.name)
+				mbox.setTitle(_("Remove plugins"))
 
 	def requestClose(self):
 		if self.plugins_changed:
@@ -319,13 +321,7 @@ class PluginDownloadBrowser(Screen):
 		self.listWidth = listsize.width()
 		self.listHeight = listsize.height()
 		if self.type == self.DOWNLOAD:
-			if self.needupdate and not PluginDownloadBrowser.lastDownloadDate or (time() - PluginDownloadBrowser.lastDownloadDate) > 3600:
-				# Only update from internet once per hour
-				self.container.execute(self.ipkg + " update")
-				PluginDownloadBrowser.lastDownloadDate = time()
-			else:
-				self.run = 1
-				self.startIpkgListInstalled()
+			self.container.execute(self.ipkg + " update")
 		elif self.type == self.REMOVE:
 			self.run = 1
 			self.startIpkgListInstalled()
@@ -374,9 +370,13 @@ class PluginDownloadBrowser(Screen):
 				self.updateList()
 				self["list"].instance.show()
 			else:
-				self["text"].setText("No new plugins found")
+				self["text"].setText(_("Sorry feeds are down for maintenance"))
 
 	def dataAvail(self, str):
+		if str.find('404 Not Found') >= 0:
+			self["text"].setText(_("Sorry feeds are down for maintenance"))
+			self.run = 3
+			return
 		#prepend any remaining data from the previous call
 		str = self.remainingdata + str
 		#split in lines

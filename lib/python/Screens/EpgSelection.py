@@ -4,7 +4,7 @@ from Components.ActionMap import ActionMap, NumberActionMap, HelpableActionMap
 from Components.Button import Button
 from Components.config import config, configfile, ConfigClock, getConfigListEntry
 from Components.ConfigList import ConfigListScreen
-from Components.EpgList import EPGList, TimelineText, EPG_TYPE_SINGLE, EPG_TYPE_SIMILAR, EPG_TYPE_MULTI, EPG_TYPE_ENHANCED, EPG_TYPE_INFOBAR, EPG_TYPE_GRAPH, MAX_TIMELINES, days, dayslong
+from Components.EpgList import EPGList, TimelineText, EPG_TYPE_SINGLE, EPG_TYPE_SIMILAR, EPG_TYPE_MULTI, EPG_TYPE_ENHANCED, EPG_TYPE_INFOBAR, EPG_TYPE_GRAPH, MAX_TIMELINES
 from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Components.Sources.ServiceEvent import ServiceEvent
@@ -22,7 +22,7 @@ from enigma import eServiceReference, eTimer, eServiceCenter
 from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT
 from TimerEntry import TimerEntry
 from ServiceReference import ServiceReference
-from time import time, localtime, mktime
+from time import localtime, time, strftime, mktime
 
 mepg_config_initialized = False
 
@@ -1219,7 +1219,7 @@ class EPGSelection(Screen, HelpableScreen):
 				nowTime = localtime(now)
 				begTime = localtime(beg)
 				if nowTime[2] != begTime[2]:
-						datestr = '%s'%(_(dayslong[begTime[6]]))
+						datestr = strftime(_("%A %e %b"), begTime)
 				else:
 						datestr = '%s'%(_("Today"))
 			self["date"].setText(datestr)
@@ -1510,7 +1510,7 @@ class EPGSelectionSetup(Screen, ConfigListScreen):
 			self.list.append(getConfigListEntry(_("Show bouquet on launch"), config.epgselction.showbouquet_pliepg,_("If set to 'yes' the bouquets will be shown each time you open the EPG.")))
 			self.list.append(getConfigListEntry(_("Picture In Graphics*"), config.epgselction.pictureingraphics,_("If set to 'yes' shows a small TV-screen in the EPG.")))
 			self.list.append(getConfigListEntry(_("Show Picons"), config.epgselction.showpicon,_("If set to 'yes' shows the channel picons in the EPG.")))
-			self.list.append(getConfigListEntry(_("Show Service names "), config.epgselction.showservicetitle,_("If set to 'yes' shows the channel names in the EPG.")))
+			self.list.append(getConfigListEntry(_("Show Service Names "), config.epgselction.showservicetitle,_("If set to 'yes' shows the channel names in the EPG.")))
 			self.list.append(getConfigListEntry(_("Info (sort) Button"), config.epgselction.Info,_("Set to what you want the button to do.")))
 			self.list.append(getConfigListEntry(_("Info (long) Button"), config.epgselction.InfoLong,_("Set to what you want the button to do.")))
 			self.list.append(getConfigListEntry(_("OK (sort) Button"), config.epgselction.OK_pliepg,_("Set to what you want the button to do.")))

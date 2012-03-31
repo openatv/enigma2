@@ -120,7 +120,7 @@ class picshow(Screen):
 		else:
 			self.session.openWithCallback(self.callbackView, Pic_Full_View, self.filelist.getFileList(), self.filelist.getSelectionIndex(), self.filelist.getCurrentDirectory())
 
-	def setConf(self):
+	def setConf(self, retval=None):
 		self.setTitle(_("PicturePlayer"))
 		sc = getScale()
 		#0=Width 1=Height 2=Aspect 3=use_cache 4=resize_type 5=Background(#AARRGGBB)
@@ -148,11 +148,11 @@ class Pic_Setup(Screen, ConfigListScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		# for the skin: first try MediaPlayerSettings, then Setup, this allows individual skinning
-		self.skinName = ["PicturePlayerSetup", "Setup" ]
+		self.skinName = ["PicturePlayerSetup", "Setup"]
 		self.setup_title = _("Settings")
-		self.onChangedEntry = [ ]
+		self.onChangedEntry = []
 		self.session = session
-
+		ConfigListScreen.__init__(self, [], session = session, on_change = self.changedEntry)
 		self["actions"] = ActionMap(["SetupActions", "MenuActions"],
 			{
 				"cancel": self.keyCancel,
@@ -160,12 +160,8 @@ class Pic_Setup(Screen, ConfigListScreen):
 				"ok": self.keySave,
 				"menu": self.closeRecursive,
 			}, -2)
-
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
-
-		self.list = []
-		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
 		self.createSetup()
 		self.onLayoutFinish.append(self.layoutFinished)
 
@@ -173,17 +169,18 @@ class Pic_Setup(Screen, ConfigListScreen):
 		self.setTitle(self.setup_title)
 
 	def createSetup(self):
-		self.list = []
-		self.list.append(getConfigListEntry(_("Slideshow Interval (sec.)"), config.pic.slidetime))
-		self.list.append(getConfigListEntry(_("Scaling Mode"), config.pic.resize))
-		self.list.append(getConfigListEntry(_("Cache Thumbnails"), config.pic.cache))
-		self.list.append(getConfigListEntry(_("show Infoline"), config.pic.infoline))
-		self.list.append(getConfigListEntry(_("Frame size in full view"), config.pic.framesize))
-		self.list.append(getConfigListEntry(_("slide picture in loop"), config.pic.loop))
-		self.list.append(getConfigListEntry(_("backgroundcolor"), config.pic.bgcolor))
-		self.list.append(getConfigListEntry(_("textcolor"), config.pic.textcolor))
-		self["config"].list = self.list
-		self["config"].l.setList(self.list)
+		setup_list = [
+			getConfigListEntry(_("Slideshow Interval (sec.)"), config.pic.slidetime),
+			getConfigListEntry(_("Scaling Mode"), config.pic.resize),
+			getConfigListEntry(_("Cache Thumbnails"), config.pic.cache),
+			getConfigListEntry(_("show Infoline"), config.pic.infoline),
+			getConfigListEntry(_("Frame size in full view"), config.pic.framesize),
+			getConfigListEntry(_("slide picture in loop"), config.pic.loop),
+			getConfigListEntry(_("backgroundcolor"), config.pic.bgcolor),
+			getConfigListEntry(_("textcolor"), config.pic.textcolor),
+		]
+		self["config"].list = setup_list
+		self["config"].l.setList(setup_list)
 
 	def keyLeft(self):
 		ConfigListScreen.keyLeft(self)
