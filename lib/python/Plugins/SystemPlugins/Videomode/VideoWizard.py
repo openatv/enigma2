@@ -25,20 +25,8 @@ class VideoWizard(WizardLanguage, Rc):
 	skin = """
 		<screen position="fill" title="Welcome..." flags="wfNoBorder" >
 			<panel name="WizardMarginsTemplate"/>
-			<panel position="right" size="154,*">
-				<widget name="rc" pixmaps="skin_default/rc.png,skin_default/rcold.png" position="top" zPosition="10" size="154,500" alphatest="on"/>
-				<widget name="arrowdown" pixmap="skin_default/arrowdown.png" position="0,0" zPosition="11" size="37,70" transparent="1" alphatest="on"/>
-				<widget name="arrowdown2" pixmap="skin_default/arrowdown.png" position="0,0" zPosition="11" size="37,70" transparent="1" alphatest="on"/>
-				<widget name="arrowup" pixmap="skin_default/arrowup.png" position="-100,-100" zPosition="11" size="37,70" transparent="1" alphatest="on"/>
-				<widget name="arrowup2" pixmap="skin_default/arrowup.png" position="-100,-100" zPosition="11" size="37,70" transparent="1" alphatest="on"/>
-			</panel>
-			<panel position="left" size="110,*">
-				<widget name="wizard" pixmap="skin_default/wizard.png" position="top" zPosition="10" size="110,174" alphatest="on"/>
-				<panel position="top" size="*,30">
-					<ePixmap pixmap="skin_default/buttons/button_red.png" position="left" zPosition="0" size="15,16" alphatest="on" />
-					<widget name="languagetext" position="fill" font="Regular;18" />
-				</panel>
-			</panel>
+			<panel name="WizardPictureLangTemplate"/>
+			<panel name="RemoteControlTemplate"/>
 			<panel position="left" size="10,*" />
 			<panel position="right" size="10,*" />
 			<panel position="fill">
