@@ -281,11 +281,6 @@ lib/python/Plugins/SystemPlugins/WirelessLan/Makefile
 lib/python/Plugins/SystemPlugins/WirelessLan/meta/Makefile
 lib/python/Plugins/SystemPlugins/XtrendFancontrol/Makefile
 lib/python/Plugins/SystemPlugins/XtrendFancontrol/meta/Makefile
-lib/python/Plugins/SystemPlugins/ViX/Makefile
-lib/python/Plugins/SystemPlugins/ViX/etc/Makefile
-lib/python/Plugins/SystemPlugins/ViX/etc/cron/Makefile
-lib/python/Plugins/SystemPlugins/ViX/etc/cron/crontabs/Makefile
-lib/python/Plugins/SystemPlugins/ViX/src/Makefile
 lib/python/Tools/Makefile
 po/Makefile
 main/Makefile
