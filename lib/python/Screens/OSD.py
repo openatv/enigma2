@@ -255,13 +255,16 @@ def applySettings(mode, znorm):
 	open("/proc/stb/fb/znorm", "w").write('%d' % znorm)
 
 def setConfiguredPosition():
-	setPosition(int(config.osd.dst_left.value), int(config.osd.dst_width.value), int(config.osd.dst_top.value), int(config.osd.dst_height.value))
+	if isChangeOsdPositionSupported():
+		setPosition(int(config.osd.dst_left.value), int(config.osd.dst_width.value), int(config.osd.dst_top.value), int(config.osd.dst_height.value))
 
 def setConfiguredAplha():
-	setAlpha(int(config.osd.alpha.value))
+	if isChangeOsdAlphaSupported():
+		setAlpha(int(config.osd.alpha.value))
 
 def setConfiguredSettings():
-	applySettings(config.osd.threeDmode.value, int(config.osd.threeDznorm.value))
+	if isChange3DOsdSupported():
+		applySettings(config.osd.threeDmode.value, int(config.osd.threeDznorm.value))
 
 def isChangeOsdPositionSupported():
 	try:
@@ -285,7 +288,7 @@ def isChange3DOsdSupported():
 	return can_osd_3dmode
 
 def isOsdSetupSupported():
-	if SystemInfo["CanChangeOsdAlpha"] == True or SystemInfo["CanChangeOsdPosition"] == True:
+	if SystemInfo["CanChangeOsdPosition"] == True:
 		return True
 	return False
 
