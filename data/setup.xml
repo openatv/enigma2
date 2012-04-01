@@ -22,7 +22,7 @@
 		<item level="2" text="Disable background scanning" summary="When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'no' if you're absolutely sure what you're doing.">config.misc.disable_background_scan</item>
 		<item level="1" text="Show background in Radio Mode" summary="Show background when tuned to a radio channel.">config.misc.showradiopic</item>
 		<item level="2" text="Include ECM in http streams" summary="This allows the ECM data to be included in the stream. This enables a client STB_BOX to decode it.">config.streaming.stream_ecm</item>
-		<item level="2" text="De-scramble http streams" summary="This allows the STB_BOX to decode the stream (if the ECM data is included in the stream and a valid card is availble).">config.streaming.descramble</item>
+		<item level="2" text="De-scramble http streams" summary="This allows the STB_BOX to decode the stream (if the ECM data is included in the stream and a valid card is available).">config.streaming.descramble</item>
 	</setup>
 	<setup key="osdsetup" title="OSD Setup">
 		<item level="0" text="1st Infobar timeout" summary="Set the time to hide the infobar.">config.usage.infobar_timeout</item>
@@ -43,7 +43,7 @@
 		<item level="1" text="Show infobar on event change" summary="If set to 'yes' the infobar will be displayed when a new event starts.">config.usage.show_infobar_on_event_change</item>
 		<item level="2" text="Show crypto info in infobar" summary="Show encryption info in the infobar (if the skin allows that).">config.usage.show_cryptoinfo</item>
 		<item level="0" text="Show time remaining/elapsed" summary="This option allows you choose how to display remaining time, or elapsed time, or both.">config.usage.swap_time_remaining_on_osd</item>
-		<item level="0" text="Show time elapsed as positive" summary="This option allows you choose how to display elasped time  as + or -">config.usage.elasped_time_positive_osd</item>
+		<item level="0" text="Show time elapsed as positive" summary="This option allows you choose how to display elapsed time  as + or -">config.usage.elapsed_time_positive_osd</item>
 		<item level="0" text="Show transponder remaining/elapsed as" summary="This option allows you choose how to display the remaining/elapsed time for live tv.">config.usage.swap_time_display_on_osd</item>
 		<item level="0" text="Media playback Remaining/Elapsed as" summary="This option allows you choose how to display the remaining/elapsed time for media playback.">config.usage.swap_media_time_display_on_osd</item>
 		<item level="2" text="Swap SNR in db with SNR in percentage" summary="This option allows you to the SNR as a percentage (not all receivers support this).">config.usage.swap_snr_on_osd</item>
@@ -144,7 +144,7 @@
 		<item level="1" text="Show Time Remaining/Elapsed" summary="This option allows you choose how to display remaining time, or elapsed time, or both.">config.usage.swap_time_remaining_on_vfd</item>
 		<item level="1" text="Show Transponder Remaining/Elapsed as" summary="This option allows you choose how to display the remaining/elapsed time for live tv.">config.usage.swap_time_display_on_vfd</item>
 		<item level="1" text="Show Media playback Remaining/Elapsed as" summary="This option allows you choose how to display the remaining/elapsed time for Media playback.">config.usage.swap_media_time_display_on_vfd</item>
-		<item level="0" text="Show time elapsed as positive" summary="This option allows you choose how to display elasped time  as + or -">config.usage.elasped_time_positive_vfd</item>
+		<item level="0" text="Show time elapsed as positive" summary="This option allows you choose how to display elapsed time  as + or -">config.usage.elapsed_time_positive_vfd</item>
 	</setup>
 	<setup key="satconfig" title="Sat / Dish Setup">
 		<item text="Tuner Slot" summary="Choose which tuner to configure.">config.sat.tunerslot</item>
