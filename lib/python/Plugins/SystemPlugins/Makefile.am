@@ -1,24 +1,24 @@
 installdir = $(pkglibdir)/python/Plugins/SystemPlugins
 
 SUBDIRS = PositionerSetup Satfinder SoftwareManager \
-	Videomode VideoTune Hotplug \
+	Videomode VideoTune Hotplug FastScan \
 	DefaultServicesScanner CommonInterfaceAssignment \
 	VideoEnhancement WirelessLan NetworkWizard Blindscan
 
 if XTREND
-SUBDIRS += SatelliteEquipmentControl DiseqcTester choiceRC FastScan XtrendFancontrol HdmiCEC
+SUBDIRS += SatelliteEquipmentControl DiseqcTester choiceRC XtrendFancontrol HdmiCEC
 endif
 
 if MARA
-SUBDIRS += SatelliteEquipmentControl DiseqcTester FastScan choiceRC XtrendFancontrol HdmiCEC
+SUBDIRS += SatelliteEquipmentControl DiseqcTester choiceRC XtrendFancontrol HdmiCEC
 endif
 
 if VUUNO
-SUBDIRS += VuUnoFancontrol SatelliteEquipmentControl DiseqcTester CableScan FastScan FirmwareUpgrade RemoteControlCode HdmiCEC
+SUBDIRS += VuUnoFancontrol SatelliteEquipmentControl DiseqcTester CableScan FirmwareUpgrade RemoteControlCode HdmiCEC
 endif
 
 if VUULTIMO
-SUBDIRS += VuUnoFancontrol SatelliteEquipmentControl DiseqcTester CableScan FastScan FirmwareUpgrade RemoteControlCode HdmiCEC
+SUBDIRS += VuUnoFancontrol SatelliteEquipmentControl DiseqcTester CableScan FirmwareUpgrade RemoteControlCode HdmiCEC
 endif
 
 if VUDUO
@@ -38,15 +38,15 @@ SUBDIRS += TempFanControl
 endif
 
 if DREAMBOX
-SUBDIRS += FrontprocessorUpgrade NFIFlash SatelliteEquipmentControl DiseqcTester CableScan FastScan 
+SUBDIRS += FrontprocessorUpgrade NFIFlash SatelliteEquipmentControl DiseqcTester CableScan 
 endif
 
 if GIGABLUE
-SUBDIRS += GBVFD SatelliteEquipmentControl DiseqcTester FastScan HdmiCEC
+SUBDIRS += GBVFD SatelliteEquipmentControl DiseqcTester HdmiCEC
 endif
 
 if VENTON
-SUBDIRS += SatelliteEquipmentControl DiseqcTester FastScan HdmiCEC 
+SUBDIRS += SatelliteEquipmentControl DiseqcTester HdmiCEC 
 endif
 
 install_PYTHON =	\
