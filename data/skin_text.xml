@@ -60,6 +60,15 @@
 		<widget source="parent.Title" render="Label" position="0,0" size="124,40" font="Regular;16" halign="center" valign="center" />
 	</screen>
 
+	<screen name="WizardSummary" position="fill">
+		<widget source="parent.list" render="Label" position="fill" font="Regular;12">
+			<convert type="StringListSelection" />
+		</widget>
+	</screen>
+	<screen name="VideoWizardSummary" position="fill">
+		<panel name="WizardSummary" />
+	</screen>
+
 <!-- standby -->
 	<screen name="StandbySummary" position="0,0" size="132,64">
 		<widget source="global.CurrentTime" render="Label" position="0,0" size="120,64" font="Regular;48" halign="center" valign="center">

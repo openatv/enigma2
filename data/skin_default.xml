@@ -264,19 +264,20 @@ self.autoResize()
 	</screen>
 	<!-- Default wizard -->
 	<screen name="DefaultWizard" position="fill" title="Welcome..." flags="wfNoBorder" >
-			<widget name="text" position="153,50" size="340,270" font="Regular;23" />
-			<widget source="list" render="Listbox" position="50,300" size="440,200" scrollbarMode="showOnDemand" >
-				<convert type="StringList" />
-			</widget>
-			<ePixmap pixmap="skin_default/buttons/button_red.png" position="40,225" size="15,16" alphatest="on" />
-			<widget name="languagetext" position="55,225" size="95,30" font="Regular;18" />
-			<widget name="config" position="50,300" zPosition="1" size="440,200" transparent="1" scrollbarMode="showOnDemand" />            
-			<!--widget name="stepslider" position="50,500" zPosition="1" borderWidth="2" size="440,20" backgroundColor="dark" /-->
-			<widget name="wizard" pixmap="skin_default/wizard.png" position="40,50" zPosition="10" size="110,174" transparent="1" alphatest="on"/>
-			<widget name="rc" pixmap="skin_default/rc.png" position="500,600" zPosition="10" size="154,471" transparent="1" alphatest="on"/>
-			<widget name="arrowdown" pixmap="skin_default/arrowdown.png" position="-100,-100" zPosition="11" size="37,70" transparent="1" alphatest="on"/>
-			<widget name="arrowup" pixmap="skin_default/arrowup.png" position="-100,-100" zPosition="11" size="37,70" transparent="1" alphatest="on"/>
-			<widget name="arrowup2" pixmap="skin_default/arrowup.png" position="-100,-100" zPosition="11" size="37,70" transparent="1" alphatest="on"/>
+		<panel name="WizardMarginsTemplate"/>
+		<panel name="WizardPictureLangTemplate"/>
+		<panel name="RemoteControlTemplate"/>
+		<panel position="left" size="10,*" />
+		<panel position="right" size="10,*" />
+		<panel position="fill">
+			<widget name="text" position="top" size="*,270" font="Regular;23" valign="center" />
+			<panel position="fill" layout="stack">
+				<widget source="list" render="Listbox" position="fill" scrollbarMode="showOnDemand" >
+					<convert type="StringList" />
+				</widget>
+				<widget name="config" position="fill" zPosition="1" scrollbarMode="showOnDemand" transparent="1" />
+			</panel>
+		</panel>
 	</screen>
 	<screen name="DefaultSatLists" position="fill" title="Welcome..." flags="wfNoBorder" >
 			<widget name="text" position="153,50" size="340,270" font="Regular;23" />
@@ -478,24 +479,28 @@ self.autoResize()
 		</widget>
 	</screen>
 	<screen name="LanguageWizard" position="fill" title="Welcome..." flags="wfNoBorder">
-		<widget name="text" position="153,50" size="340,240" font="Regular;23" />
-		<widget source="languages" render="Listbox" position="50,300" size="440,200" scrollbarMode="showOnDemand">
-			<convert type="TemplatedMultiContent">
-				{"template": [
-						MultiContentEntryText(pos = (80, 10), size = (200, 50), flags = RT_HALIGN_LEFT, text = 1), # index 1 is the language name,
-						MultiContentEntryPixmap(pos = (10, 5), size = (60, 40), png = 2), # index 2 is the pixmap
-					],
-				 "fonts": [gFont("Regular", 20)],
-				 "itemHeight": 50
-				}
-			</convert>
-		</widget>
-		<widget name="wizard" pixmap="skin_default/wizard.png" position="40,50" zPosition="10" size="110,174" alphatest="on" />
-		<widget name="rc" pixmaps="skin_default/rc.png,skin_default/rcold.png" position="500,50" zPosition="10" size="154,500" alphatest="on" />
-		<widget name="arrowdown" pixmap="skin_default/arrowdown.png" position="-100,-100" zPosition="11" size="37,70" alphatest="on" />
-		<widget name="arrowdown2" pixmap="skin_default/arrowdown.png" position="-100,-100" zPosition="11" size="37,70" alphatest="on" />
-		<widget name="arrowup" pixmap="skin_default/arrowup.png" position="-100,-100" zPosition="11" size="37,70" alphatest="on" />
-		<widget name="arrowup2" pixmap="skin_default/arrowup.png" position="-100,-100" zPosition="11" size="37,70" alphatest="on" />
+		<panel name="WizardMarginsTemplate"/>
+		<panel position="left" size="110,*">
+			<panel position="top" size="*,50"/>
+			<widget name="wizard" pixmap="skin_default/wizard.png" position="top" zPosition="10" size="110,174" alphatest="on"/>
+		</panel>
+		<panel name="RemoteControlTemplate"/>
+		<panel position="left" size="10,*" />
+		<panel position="right" size="10,*" />
+		<panel position="fill">
+			<widget name="text" position="top" size="*,240" font="Regular;23" valign="center" />
+			<widget source="languages" render="Listbox" position="fill" scrollbarMode="showOnDemand">
+				<convert type="TemplatedMultiContent">
+					{"template": [
+							MultiContentEntryText(pos = (80, 10), size = (200, 50), flags = RT_HALIGN_LEFT, text = 1), # index 1 is the language name,
+							MultiContentEntryPixmap(pos = (10, 5), size = (60, 40), png = 2), # index 2 is the pixmap
+						],
+					"fonts": [gFont("Regular", 20)],
+					"itemHeight": 50
+					}
+				</convert>
+			</widget>
+		</panel>
 	</screen>
 	<!-- Location Box -->
 	<screen name="LocationBox" position="center,center" size="540,460" >
@@ -1003,21 +1008,35 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 	</screen>
 	<!-- Standby mode -->
 	<screen name="Standby" flags="wfNoBorder" position="fill" title="Standby" />
+	<!-- Extra margin for wizard, never know how bad the TV is... -->
+	<screen name="WizardMarginsTemplate">
+		<panel position="left" size="10%,*" />
+		<panel position="right" size="8%,*" />
+		<panel position="top" size="8%,*" />
+		<panel position="bottom" size="10%,*" />
+	</screen>
 	<!-- Start Wizard -->
+	<screen name="RemoteControlTemplate">
+		<panel position="right" size="154,*">
+			<panel position="top" size="*,50"/>
+			<widget name="rc" pixmaps="skin_default/rc.png,skin_default/rcold.png" position="top" zPosition="10" size="154,500" alphatest="on"/>
+			<widget name="arrowdown" pixmap="skin_default/arrowdown.png" position="0,0" zPosition="11" size="37,70" transparent="1" alphatest="on"/>
+			<widget name="arrowdown2" pixmap="skin_default/arrowdown.png" position="0,0" zPosition="11" size="37,70" transparent="1" alphatest="on"/>
+			<widget name="arrowup" pixmap="skin_default/arrowup.png" position="-100,-100" zPosition="11" size="37,70" transparent="1" alphatest="on"/>
+			<widget name="arrowup2" pixmap="skin_default/arrowup.png" position="-100,-100" zPosition="11" size="37,70" transparent="1" alphatest="on"/>
+		</panel>
+	</screen>
+	<screen name="WizardPictureLangTemplate">
+		<panel position="left" size="110,*">
+			<panel position="top" size="*,50"/>
+			<widget name="wizard" pixmap="skin_default/wizard.png" position="top" zPosition="10" size="110,174" alphatest="on"/>
+			<ePixmap pixmap="skin_default/buttons/button_red.png" position="left" zPosition="0" size="15,16" alphatest="on" />
+			<widget name="languagetext" position="fill" font="Regular;18" />
+		</panel>
+	</screen>
+	<!-- it's the same screen... -->
 	<screen name="StartWizard" position="fill" title="Welcome..." flags="wfNoBorder">
-		<widget name="text" position="153,50" size="340,270" font="Regular;23" />
-		<widget source="list" render="Listbox" position="50,300" size="440,200" scrollbarMode="showOnDemand" >
-			<convert type="StringList" />
-		</widget>
-		<widget name="config" position="50,300" size="440,200" scrollbarMode="showOnDemand" zPosition="1" transparent="1" />
-		<ePixmap pixmap="skin_default/buttons/button_red.png" position="40,225" size="15,16" alphatest="on" />
-		<widget name="languagetext" position="55,225" size="95,30" font="Regular;18" />
-		<widget name="wizard" pixmap="skin_default/wizard.png" position="40,50" zPosition="10" size="110,174" alphatest="on" />
-		<widget name="rc" pixmaps="skin_default/rc.png,skin_default/rcold.png" position="500,50" zPosition="10" size="154,500" alphatest="on" />
-		<widget name="arrowdown" pixmap="skin_default/arrowdown.png" position="-100,-100" zPosition="11" size="37,70" alphatest="on" />
-		<widget name="arrowdown2" pixmap="skin_default/arrowdown.png" position="-100,-100" zPosition="11" size="37,70" alphatest="on" />
-		<widget name="arrowup" pixmap="skin_default/arrowup.png" position="-100,-100" zPosition="11" size="37,70" alphatest="on" />
-		<widget name="arrowup2" pixmap="skin_default/arrowup.png" position="-100,-100" zPosition="11" size="37,70" alphatest="on" />
+		<panel name="DefaultWizard" />
 	</screen>
 	<!-- Subservice quickzap -->
 	<screen name="SubservicesQuickzap" position="center,center" size="512,200" title="Subservices" backgroundColor="transparent" flags="wfNoBorder">
