@@ -96,7 +96,7 @@ class ManualFancontrol(Screen,ConfigListScreen):
 			print "<SimpleFancontrol> instandbyon.fanoffmode 'ON' -> 'OFF'"
 			instandbyon.fanoffmode = 'OFF'
 			instandbyon.removeRecordEventCB()
-#			instandbyon.checkStatusLoopStop() # stoped at init
+#			instandbyon.checkStatusLoopStop() # stopped at init
 		elif self.oldfanoffmode is 'ON' :
 			instandbyon.checkStatusLoopStart()
 		instandbyon.checkStstus()
