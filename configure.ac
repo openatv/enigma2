@@ -64,6 +64,7 @@ AM_CONDITIONAL(ET5X00, test "$BOXTYPE" == et5x00)
 AM_CONDITIONAL(ET6X00, test "$BOXTYPE" == et6x00)
 AM_CONDITIONAL(ET9X00, test "$BOXTYPE" == et9x00)
 AM_CONDITIONAL(MARAM9, test "$BOXTYPE" == maram9)
+AM_CONDITIONAL(GBHD800SE, test "$BOXTYPE" == gbhd800se)
 AM_CONDITIONAL(HAVE_TEMPFANCONTROL, test "$BOXTYPE" == dm8000 -o "$BOXTYPE" == dm800se -o "$BOXTYPE" == dm500hd)
 
 AC_ARG_WITH(textlcd,
@@ -115,7 +116,7 @@ if test x"$BOXTYPE" == "xet5x00" -o x"$BOXTYPE" == "xet6x00" -o x"$BOXTYPE" == "
 # 	AC_DEFINE(FORCE_ADVANCED_REMOTE, 1,[define to fixup the input device identification when the remote control is actually an 'advanced' remote (with play/forward/rewind keys)])
 fi
 
-if test x"$BOXTYPE" == "xvuduo" -o x"$BOXTYPE" == "xvusolo" -o x"$BOXTYPE" == "xvuuno" -o x"$BOXTYPE" == "xvuultimo"; then
+if test x"$BOXTYPE" == "xvuduo" -o x"$BOXTYPE" == "xvusolo" -o x"$BOXTYPE" == "xvuuno" -o x"$BOXTYPE" == "xvuultimo" -o x"$BOXTYPE" == "xgbhd800se"; then
 	AC_DEFINE(FORCE_NO_BLENDING_ACCELERATION, 1,[define when the framebuffer acceleration does not have alphablending support, though the autodetection might indicate that it does])
 # 	AC_DEFINE(FORCE_ADVANCED_REMOTE, 1,[define to fixup the input device identification when the remote control is actually an 'advanced' remote (with play/forward/rewind keys)])
 fi
