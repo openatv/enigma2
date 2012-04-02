@@ -201,12 +201,7 @@ class InfoBarShowHide:
 			self.hide()
 		else:
 			if self.session.pipshown:
-				self.session.openWithCallback(self.hidePipConfirmed, MessageBox, _("Disable Picture in Picture"), MessageBox.TYPE_YESNO, -1, False, True, True, None, None, True)
-
-	def hidePipConfirmed(self, confirmed):
-		if not confirmed:
-			return
-		self.showPiP()
+				self.showPiP()
 
 	def connectShowHideNotifier(self, fnc):
 		if not fnc in self.onShowHideNotifiers:
