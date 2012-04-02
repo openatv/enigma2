@@ -171,7 +171,7 @@ class InfoBarShowHide:
 		self["ShowHideActions"] = ActionMap( ["InfobarShowHideActions"] ,
 			{
 				"toggleShow": self.toggleShow,
-				"hide": self.hide,
+				"hide": self.keyHide,
 			}, 1) # lower prio to make it possible to override ok and cancel..
 
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
@@ -195,6 +195,18 @@ class InfoBarShowHide:
 		if isStandardInfoBar(self):
 			self.secondInfoBarScreen = self.session.instantiateDialog(SecondInfoBar)
 			self.secondInfoBarScreen.hide()
+
+	def keyHide(self):
+		if self.__state == self.STATE_SHOWN:
+			self.hide()
+		else:
+			if self.session.pipshown:
+				self.session.openWithCallback(self.hidePipConfirmed, MessageBox, _("Disable Picture in Picture"), MessageBox.TYPE_YESNO, -1, False, True, True, None, None, True)
+
+	def hidePipConfirmed(self, confirmed):
+		if not confirmed:
+			return
+		self.showPiP()
 
 	def connectShowHideNotifier(self, fnc):
 		if not fnc in self.onShowHideNotifiers:
