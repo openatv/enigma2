@@ -1591,6 +1591,8 @@ class NetworkAfp(Screen):
 	def InstallPackage(self, val):
 		if val:
 			self.doInstall(self.installComplete, self.service_name)
+		else:
+			self.close()
 
 	def doInstall(self, callback, pkgname):
 		self.session.open(MessageBox, _("Installing service please wait...") , MessageBox.TYPE_INFO)
@@ -1819,6 +1821,8 @@ class NetworkNfs(Screen):
 	def InstallPackage(self, val):
 		if val:
 			self.doInstall(self.installComplete, self.service_name)
+		else:
+			self.close()
 
 	def doInstall(self, callback, pkgname):
 		self.session.open(MessageBox, _("Installing service please wait...") , MessageBox.TYPE_INFO)
@@ -1959,6 +1963,8 @@ class NetworkOpenvpn(Screen):
 	def InstallPackage(self, val):
 		if val:
 			self.doInstall(self.installComplete, self.service_name)
+		else:
+			self.close()
 
 	def doInstall(self, callback, pkgname):
 		self["actions"].setEnabled(False)
@@ -2125,6 +2131,8 @@ class NetworkSamba(Screen):
 	def InstallPackage(self, val):
 		if val:
 			self.doInstall(self.installComplete, self.service_name)
+		else:
+			self.close()
 
 	def doInstall(self, callback, pkgname):
 		self["actions"].setEnabled(False)
@@ -2404,6 +2412,8 @@ class NetworkInadyn(Screen):
 	def InstallPackage(self, val):
 		if val:
 			self.doInstall(self.installComplete, self.service_name)
+		else:
+			self.close()
 
 	def doInstall(self, callback, pkgname):
 		self["actions"].setEnabled(False)
@@ -2787,6 +2797,8 @@ class NetworkuShare(Screen):
 	def InstallPackage(self, val):
 		if val:
 			self.doInstall(self.installComplete, self.service_name)
+		else:
+			self.close()
 
 	def doInstall(self, callback, pkgname):
 		self["actions"].setEnabled(False)
@@ -3317,6 +3329,8 @@ class NetworkMiniDLNA(Screen):
 	def InstallPackage(self, val):
 		if val:
 			self.doInstall(self.installComplete, self.service_name)
+		else:
+			self.close()
 
 	def doInstall(self, callback, pkgname):
 		self["actions"].setEnabled(False)
