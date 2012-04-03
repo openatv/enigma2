@@ -41,12 +41,12 @@ class Trashcan:
 		self.session = session
 		session.nav.record_event.append(self.gotRecordEvent)
 		self.gotRecordEvent(None, None)
-	
+
 	def gotRecordEvent(self, service, event):
 		self.recordings = len(self.session.nav.getRecordings())
 		if (event == enigma.iRecordableService.evEnd):
 			self.cleanIfIdle()
-	
+
 	def destroy(self):
 		if self.session is not None:
 			self.session.nav.record_event.remove(self.gotRecordEvent)
@@ -64,7 +64,7 @@ class Trashcan:
 		ctimeLimit = time.time() - (config.usage.movielist_trashcan_days.value * 3600 * 24)
 		reserveBytes = 1024*1024*1024 * int(config.usage.movielist_trashcan_reserve.value)
 		clean(ctimeLimit, reserveBytes)
-	
+
 def clean(ctimeLimit, reserveBytes):
 	isCleaning = False
 	for job in Components.Task.job_manager.getPendingJobs():
@@ -72,7 +72,7 @@ def clean(ctimeLimit, reserveBytes):
 		if jobname.startswith(_("Cleaning Trashes")):
 			isCleaning = True
 			break
-			
+
 	if config.usage.movielist_trashcan.value and not isCleaning:
 		name = _("Cleaning Trashes")
 		job = Components.Task.Job(name)
@@ -83,7 +83,7 @@ def clean(ctimeLimit, reserveBytes):
 		print "[Trashcan] Cleanup already running"
 	else:
 		print "[Trashcan] Disabled skipping check."
-		
+
 def cleanAll(path=None):
 	trash = getTrashFolder(path)
 	if not os.path.isdir(trash):
@@ -95,7 +95,7 @@ def cleanAll(path=None):
 			try:
 				enigma.eBackgroundFileEraser.getInstance().erase(fn)
 			except Exception, e:
-				print "[Trashcan] Failed to erase %s:"% name, e 
+				print "[Trashcan] Failed to erase %s:"% name, e
 		# Remove empty directories if possible
 		for name in dirs:
 			try:
@@ -127,12 +127,12 @@ class CleanTrashTask(Components.Task.PythonTask):
 				matches.append(os.path.join(mount,'.Trash'))
 			if os.path.isdir(os.path.join(mount,'movie/.Trash')):
 				matches.append(os.path.join(mount,'movie/.Trash'))
-				
+
 		print "[Trashcan] found following trashcan's:",matches
 		if len(matches):
 			for trashfolder in matches:
 				print "[Trashcan] looking in trashcan",trashfolder
-				trashsize = get_size(trashfolder) 
+				trashsize = get_size(trashfolder)
 				diskstat = os.statvfs(trashfolder)
 				free = diskstat.f_bfree * diskstat.f_bsize
 				bytesToRemove = self.reserveBytes - free
@@ -151,7 +151,7 @@ class CleanTrashTask(Components.Task.PythonTask):
 								candidates.append((st.st_ctime, fn, st.st_size))
 								size += st.st_size
 						except Exception, e:
-							print "[Trashcan] Failed to stat %s:"% name, e 
+							print "[Trashcan] Failed to stat %s:"% name, e
 					# Remove empty directories if possible
 					for name in dirs:
 						try:
@@ -172,28 +172,28 @@ class TrashInfo(VariableText, GUIComponent):
 	FREE = 0
 	USED = 1
 	SIZE = 2
-	
+
 	def __init__(self, path, type, update = True):
 		GUIComponent.__init__(self)
 		VariableText.__init__(self)
 		self.type = type
 		if update:
 			self.update(path)
-	
+
 	def update(self, path):
 		try:
 			total_size = get_size(getTrashFolder(path))
 		except OSError:
 			return -1
-		
+
 		if self.type == self.USED:
 			try:
 				if total_size < 10000000:
-					total_size = "%d kB" % (total_size >> 10)
+					total_size = _("%d Kb") % (total_size >> 10)
 				elif total_size < 10000000000:
-					total_size = "%d MB" % (total_size >> 20)
+					total_size = _("%d Mb") % (total_size >> 20)
 				else:
-					total_size = "%d GB" % (total_size >> 30)
+					total_size = _("%d Gb") % (total_size >> 30)
 				self.setText(_("Trashcan:") + " " + total_size)
 			except:
 				# occurs when f_blocks is 0 or a similar error
