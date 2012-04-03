@@ -8,7 +8,7 @@ from Tools.Trashcan import TrashInfo
 from Components.Pixmap import Pixmap
 from Components.Label import Label
 from Components.PluginComponent import plugins
-from Components.config import config, ConfigSubsection, ConfigText, ConfigInteger, ConfigLocations, ConfigSet, ConfigYesNo, ConfigSelection, getConfigListEntry
+from Components.config import config, ConfigSubsection, ConfigText, ConfigInteger, ConfigLocations, ConfigSet, ConfigYesNo, ConfigSelection, getConfigListEntry, ConfigSelectionNumber
 from Components.ConfigList import ConfigListScreen
 from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
 from Components.Sources.ServiceEvent import ServiceEvent
@@ -39,7 +39,6 @@ import cPickle as pickle
 config.movielist = ConfigSubsection()
 config.movielist.useslim = ConfigYesNo(default=False)
 config.movielist.moviesort = ConfigInteger(default=MovieList.SORT_RECORDED)
-config.movielist.listtype = ConfigInteger(default=MovieList.LISTTYPE_MINIMAL)
 config.movielist.description = ConfigInteger(default=MovieList.SHOW_DESCRIPTION)
 config.movielist.last_videodir = ConfigText(default=resolveFilename(SCOPE_HDD))
 config.movielist.last_timer_videodir = ConfigText(default=resolveFilename(SCOPE_HDD))
@@ -50,6 +49,8 @@ config.movielist.settings_per_directory = ConfigYesNo(default=True)
 config.movielist.root = ConfigSelection(default="/media", choices=["/","/media","/media/hdd","/media/hdd/movie"])
 config.movielist.curentlyplayingservice = ConfigText()
 config.movielist.show_live_tv_in_movielist = ConfigYesNo(default=True)
+config.movielist.fontsize = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
+config.movielist.itemsperpage = ConfigSelectionNumber(default = 20, stepwidth = 1, min = 3, max = 30, wraparound = True)
 
 userDefinedButtons = None
 
@@ -67,10 +68,6 @@ l_moviesort = [(str(MovieList.SORT_RECORDED), _("sort by date"), '03/02/01'),
 	(str(MovieList.SHUFFLE), _("shuffle"), '?'),
 	(str(MovieList.SORT_RECORDED_REVERSE), _("reverse by date"), '01/02/03'),
 	(str(MovieList.SORT_ALPHANUMERIC_REVERSE), _("alphabetic reverse"), 'Z-A')]
-l_listtype = [(str(MovieList.LISTTYPE_ORIGINAL), _("list style default")),
-	(str(MovieList.LISTTYPE_COMPACT_DESCRIPTION), _("list style compact with description")),
-	(str(MovieList.LISTTYPE_COMPACT), _("list style compact")),
-	(str(MovieList.LISTTYPE_MINIMAL), _("list style single line"))]
 
 def defaultMoviePath():
 	result = config.usage.default_path.value
@@ -205,21 +202,20 @@ class MovieBrowserConfiguration(ConfigListScreen,Screen):
 		cfg = ConfigSubsection()
 		self.cfg = cfg
 		cfg.moviesort = ConfigSelection(default=str(config.movielist.moviesort.value), choices = l_moviesort)
-		cfg.listtype = ConfigSelection(default=str(config.movielist.listtype.value), choices = l_listtype)
 		cfg.description = ConfigYesNo(default=(config.movielist.description.value != MovieList.HIDE_DESCRIPTION))
 		configList = []
+		configList.append(getConfigListEntry(_("Fontsize"), config.movielist.fontsize, _("This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size")))
+		configList.append(getConfigListEntry(_("Number of rows"), config.movielist.itemsperpage, _("This allows you change the number of rows shown.")))
 		configList.append(getConfigListEntry(_("Use slim screen"), config.movielist.useslim, _("Use the alternative screen")))
 		configList.append(getConfigListEntry(_("Sort"), cfg.moviesort, _("Set the default sorting method.")))
-		configList.append(getConfigListEntry(_("show extended description"), cfg.description, _("Show or hide the extended description, (skin dependant).")))
-		configList.append(getConfigListEntry(_("Type"), cfg.listtype, _("Choose how to display the list.")))
+		configList.append(getConfigListEntry(_("show extended description"), cfg.description, _("Show or hide the extended description, (skin dependent).")))
 		configList.append(getConfigListEntry(_("Remember these settings for each folder"), config.movielist.settings_per_directory, _("When set each folder will show the previous state used, when off the default values will be shown.")))
-		configList.append(getConfigListEntry(_("Load Length of Movies in Movielist"), config.usage.load_length_of_movies_in_moviellist, _("Shows the the movie lenth in the list.")))
 		configList.append(getConfigListEntry(_("Show status icons in Movielist"), config.usage.show_icons_in_movielist, _("Shows the watched status of the movie.")))
 		if config.usage.show_icons_in_movielist.value:
 			configList.append(getConfigListEntry(_("Show icon for new/unseen items"), config.usage.movielist_unseen, _("Shows the icons when new/unseen, else will not show an icon.")))
 		configList.append(getConfigListEntry(_("Play audio in background"), config.movielist.play_audio_internal, _("Keeps MovieList open whilst playing audio files.")))
 		configList.append(getConfigListEntry(_("Root directory"), config.movielist.root, _("Sets the root folder of movie list, to remove the '..' from benign shown in that folder.")))
-		configList.append(getConfigListEntry(_("Show live tv when movie stoped"), config.movielist.show_live_tv_in_movielist, _("When set the PIG will return to live after a movie has stopped playing.")))
+		configList.append(getConfigListEntry(_("Show live tv when movie stopped"), config.movielist.show_live_tv_in_movielist, _("When set the PIG will return to live after a movie has stopped playing.")))
 		for btn in ('red', 'green', 'yellow', 'blue', 'TV', 'Radio'):
 			configList.append(getConfigListEntry(_("Button") + " " + _(btn), userDefinedButtons[btn], _("Allows you setup the button to do what you choose.")))
 		configList.append(getConfigListEntry(_("Use trashcan in movielist"), config.usage.movielist_trashcan, _("Delete or move to the Trash.")))
@@ -261,14 +257,12 @@ class MovieBrowserConfiguration(ConfigListScreen,Screen):
 		self.saveAll()
 		cfg = self.cfg
 		config.movielist.moviesort.setValue(int(cfg.moviesort.value))
-		config.movielist.listtype.setValue(int(cfg.listtype.value))
 		if cfg.description.value:
 			config.movielist.description.value = MovieList.SHOW_DESCRIPTION
 		else:
 			config.movielist.description.value = MovieList.HIDE_DESCRIPTION
 		if not config.movielist.settings_per_directory.value:
 			config.movielist.moviesort.save()
-			config.movielist.listtype.save()
 			config.movielist.description.save()
 		config.movielist.useslim.save()
 		self.close(True)
@@ -458,11 +452,10 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.setCurrentRef(config.movielist.last_videodir.value)
 
 		self.settings = {
-			"listtype": config.movielist.listtype.value,
 			"moviesort": config.movielist.moviesort.value,
 			"description": config.movielist.description.value
 		}
-		self["list"] = MovieList(None, list_type=self.settings["listtype"], sort_type=self.settings["moviesort"], descr_state=self.settings["description"])
+		self["list"] = MovieList(None, sort_type=self.settings["moviesort"], descr_state=self.settings["description"])
 
 		self.list = self["list"]
 		self.selectedmovie = selectedmovie
@@ -589,7 +582,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				'rename': _("Rename"),
 				'gohome': _("Home"),
 				'sort': _("Sort"),
-				'listtype': _("List type"),
 				'preview': _("Preview")
 			}
 			for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST):
@@ -758,8 +750,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		# returns whether item is a regular file
 		return isSimpleFile(item)
 	def can_sort(self, item):
-		return True
-	def can_listtype(self, item):
 		return True
 	def can_preview(self, item):
 		return isSimpleFile(item)
@@ -1007,7 +997,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			print "Failed to save settings:", e
 		# Also set config items, in case the user has a read-only disk
 		config.movielist.moviesort.value = self.settings["moviesort"]
-		config.movielist.listtype.value = self.settings["listtype"]
 		config.movielist.description.value = self.settings["description"]
 
 	def loadLocalSettings(self):
@@ -1018,7 +1007,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			self.applyConfigSettings(updates)
 		except IOError, e:
 			config.movielist.moviesort.value = config.movielist.moviesort.default
-			config.movielist.listtype.value = config.movielist.listtype.default
 			config.movielist.description.value = config.movielist.description.default
 			pass # ignore fail to open errors
 		except Exception, e:
@@ -1030,14 +1018,10 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		if needUpdate:
 			self["list"].setDescriptionState(self.settings["description"])
 			self.updateDescription()
-		if self.settings["listtype"] != self["list"].list_type:
-			self["list"].setListType(int(self.settings["listtype"]))
-			needUpdate = True
 		if self.settings["moviesort"] != self["list"].sort_type:
 			self["list"].setSortType(int(self.settings["moviesort"]))
 			needUpdate = True
 		config.movielist.moviesort.value = self.settings["moviesort"]
-		config.movielist.listtype.value = self.settings["listtype"]
 		config.movielist.description.value = self.settings["description"]
 		return needUpdate
 
@@ -1045,12 +1029,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.settings["moviesort"] = newType
 		self.saveLocalSettings()
 		self.setSortType(newType)
-		self.reloadList()
-
-	def listType(self, newType):
-		self.settings["listtype"] = newType
-		self.saveLocalSettings()
-		self.setListType(newType)
 		self.reloadList()
 
 	def showDescription(self, newType):
@@ -1076,11 +1054,12 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 
 	def configureDone(self, result):
 		if result:
-			self.applyConfigSettings({"listtype": config.movielist.listtype.value,
-				"moviesort": config.movielist.moviesort.value,
+			self.applyConfigSettings({"moviesort": config.movielist.moviesort.value,
 				"description": config.movielist.description.value})
 			self.saveLocalSettings()
 			self._updateButtonTexts()
+			self["list"].setItemsPerPage()
+			self["list"].setFontsize()
 			self.reloadList()
 
 	def getTagDescription(self, tag):
@@ -1090,9 +1069,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 	def updateTags(self):
 		# get a list of tags available in this list
 		self.tags = self["list"].tags
-
-	def setListType(self, type):
-		self["list"].setListType(type)
 
 	def setDescriptionState(self, val):
 		self["list"].setDescriptionState(val)
@@ -1756,17 +1732,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.sorttimer.callback.append(self._updateButtonTexts)
 		self.sorttimer.start(3000, True) #time for displaying sorting type just applied
 		self.sortBy(int(l_moviesort[index][0]))
-
-	def do_listtype(self):
-		index = 0
-		for index, item in enumerate(l_listtype):
-			if int(item[0]) == int(config.movielist.listtype.value):
-				break
-		if index >= len(l_listtype) - 1:
-			index = 0
-		else:
-			index += 1
-		self.listType(int(l_listtype[index][0]))
 
 	def do_preview(self):
 		self.preview()

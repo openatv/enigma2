@@ -108,8 +108,6 @@ class RecordingSettings(Screen,ConfigListScreen):
 		self.list.append(getConfigListEntry(_("Margin after record"), config.recording.margin_after))
 		if config.usage.setup_level.index >= 2:
 			self.list.append(getConfigListEntry(_("Show Message when Recording starts"), config.usage.show_message_when_recording_starts))
-			self.list.append(getConfigListEntry(_("Load Length of Movies in Movielist"), config.usage.load_length_of_movies_in_moviellist))
-			self.list.append(getConfigListEntry(_("Show status icons in Movielist"), config.usage.show_icons_in_movielist))
 			self.list.append(getConfigListEntry(_("Behavior when a movie is started"), config.usage.on_movie_start))
 			self.list.append(getConfigListEntry(_("Behavior when a movie is stopped"), config.usage.on_movie_stop))
 			self.list.append(getConfigListEntry(_("Behavior when a movie reaches the end"), config.usage.on_movie_eof))

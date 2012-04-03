@@ -341,17 +341,17 @@ class LogManager(Screen):
 			if self.selectedFiles:
 				message = _("Do you want to send all selected files:\n(choose 'No' to only send the currently selected file.)")
 				ybox = self.session.openWithCallback(self.sendlog1, MessageBox, message, MessageBox.TYPE_YESNO)
-				ybox.setTitle(_("Delete Confirmation"))
+				ybox.setTitle(_("Send Confirmation"))
 			elif self.sel and not self.resend:
 				self.sendallfiles = False
 				message = _("Are you sure you want to send this log:\n") + self.sel
 				ybox = self.session.openWithCallback(self.sendlog2, MessageBox, message, MessageBox.TYPE_YESNO)
-				ybox.setTitle(_("Delete Confirmation"))
+				ybox.setTitle(_("Send Confirmation"))
 			elif self.sel and self.resend:
 				self.sendallfiles = False
 				message = _("You have already sent this log, are you sure you want to resend this log:\n") + self.sel
 				ybox = self.session.openWithCallback(self.sendlog2, MessageBox, message, MessageBox.TYPE_YESNO)
-				ybox.setTitle(_("Delete Confirmation"))
+				ybox.setTitle(_("Send Confirmation"))
 		else:
 			self.session.open(MessageBox, _("You have selected no logs to send."), MessageBox.TYPE_INFO, timeout = 10)
 
@@ -365,7 +365,7 @@ class LogManager(Screen):
 			self.sendallfiles = False
 			message = _("Are you sure you want to send this log:\n") + str(self.sel[0])
 			ybox = self.session.openWithCallback(self.sendlog2, MessageBox, message, MessageBox.TYPE_YESNO)
-			ybox.setTitle(_("Delete Confirmation"))
+			ybox.setTitle(_("Send Confirmation"))
 
 	def sendlog2(self,answer):
 		if answer:

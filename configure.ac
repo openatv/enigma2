@@ -72,6 +72,7 @@ AM_CONDITIONAL(VENTONHD1, test "$BOXTYPE" == venton-hd1)
 AM_CONDITIONAL(VENTONHD2, test "$BOXTYPE" == venton-hd2)
 AM_CONDITIONAL(VENTONHD3, test "$BOXTYPE" == venton-hd3)
 AM_CONDITIONAL(MARAM9, test "$BOXTYPE" == maram9)
+AM_CONDITIONAL(GBHD800SE, test "$BOXTYPE" == gbhd800se)
 AM_CONDITIONAL(HAVE_TEMPFANCONTROL, test "$BOXTYPE" == dm8000 -o "$BOXTYPE" == dm800se -o "$BOXTYPE" == dm500hd)
 AM_CONDITIONAL(HAVE_DISPLAY128, test "$BOXTYPE" == dm8000 -o "$BOXTYPE" == dm7020HD)
 AM_CONDITIONAL(HAVE_DISPLAY96, test "$BOXTYPE" == dm800 -o "$BOXTYPE" == dm800se)
@@ -145,7 +146,7 @@ if test x"$BOXTYPE" == "xet5x00" -o x"$BOXTYPE" == "xet6x00" -o x"$BOXTYPE" == "
 # 	AC_DEFINE(FORCE_ADVANCED_REMOTE, 1,[define to fixup the input device identification when the remote control is actually an 'advanced' remote (with play/forward/rewind keys)])
 fi
 
-if test x"$BOXTYPE" == "xvuduo" -o x"$BOXTYPE" == "xvusolo" -o x"$BOXTYPE" == "xvuuno" -o x"$BOXTYPE" == "xvuultimo"; then
+if test x"$BOXTYPE" == "xvuduo" -o x"$BOXTYPE" == "xvusolo" -o x"$BOXTYPE" == "xvuuno" -o x"$BOXTYPE" == "xvuultimo" -o x"$BOXTYPE" == "xgbhd800se"; then
 	AC_DEFINE(FORCE_NO_BLENDING_ACCELERATION, 1,[define when the framebuffer acceleration does not have alphablending support, though the autodetection might indicate that it does])
 # 	AC_DEFINE(FORCE_ADVANCED_REMOTE, 1,[define to fixup the input device identification when the remote control is actually an 'advanced' remote (with play/forward/rewind keys)])
 fi
