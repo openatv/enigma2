@@ -67,14 +67,19 @@ def InitLcd():
 			config.lcd.contrast = ConfigNothing()
 			standby_default = 1
 
-		config.lcd.standby = ConfigSlider(default=standby_default, limits=(0, 10))
-		config.lcd.standby.addNotifier(setLCDbright);
-		config.lcd.standby.apply = lambda : setLCDbright(config.lcd.standby)
-
-		config.lcd.bright = ConfigSlider(default=5, limits=(0, 10))
-		config.lcd.bright.addNotifier(setLCDbright);
-		config.lcd.bright.apply = lambda : setLCDbright(config.lcd.bright)
-		config.lcd.bright.callNotifiersOnSaveAndCancel = True
+		if not config.misc.boxtype.value == 'gb800se' and not config.misc.boxtype.value == 'gb800solo':		
+			config.lcd.standby = ConfigSlider(default=standby_default, limits=(0, 10))
+			config.lcd.standby.addNotifier(setLCDbright);
+			config.lcd.standby.apply = lambda : setLCDbright(config.lcd.standby)
+			config.lcd.bright = ConfigSlider(default=5, limits=(0, 10))
+			config.lcd.bright.addNotifier(setLCDbright);
+			config.lcd.bright.apply = lambda : setLCDbright(config.lcd.bright)
+			config.lcd.bright.callNotifiersOnSaveAndCancel = True
+		else:
+			config.lcd.bright = ConfigNothing()
+			config.lcd.standby = ConfigNothing()
+			config.lcd.bright.apply = lambda : doNothing()
+			config.lcd.standby.apply = lambda : doNothing()	
 
 		config.lcd.invert = ConfigYesNo(default=False)
 		config.lcd.invert.addNotifier(setLCDinverted);
