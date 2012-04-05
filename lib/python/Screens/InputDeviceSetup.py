@@ -176,7 +176,7 @@ class InputDeviceSetup(Screen, ConfigListScreen):
 		self["introduction"] = StaticText()
 
 		# for generating strings into .po only
-		devicenames = [_("dreambox front panel"),_("dreambox front panel"),_("dreambox remote control (native)"),_("dreambox advanced remote control (native)"),_("dreambox ir keyboard"),_("dreambox ir mouse")]
+		devicenames = [_("STB-BOX front panel"),_("STB-BOX front panel"),_("STB-BOX remote control (native)"),_("STB-BOX advanced remote control (native)"),_("STB-BOX ir keyboard"),_("STB-BOX ir mouse")]
 
 		self.createSetup()
 		self.onLayoutFinish.append(self.layoutFinished)

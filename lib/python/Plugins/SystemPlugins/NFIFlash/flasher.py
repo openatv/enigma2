@@ -200,7 +200,7 @@ class NFIFlash(Screen):
 		print "[flashed]"
 		if self.job.status == self.job.FINISHED:
 			self["status"].text = _("NFI image flashing completed. Press Yellow to Reboot!")
-			filename = self.usbmountpoint+'enigma2settingsbackup.tar.gz'
+			filename = self.usbmountpoint+'settingsbackup.tar.gz'
 			if fileExists(filename):
 				import os.path, time
 				date = time.ctime(os.path.getmtime(filename))

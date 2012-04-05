@@ -659,7 +659,7 @@ class NimManager:
 #			print "TRANSPONDERS", self.transpondersterrestrial
 
 	def enumerateNIMs(self):
-		# enum available NIMs. This is currently very dreambox-centric and uses the /proc/bus/nim_sockets interface.
+		# enum available NIMs. This is currently very STB-BOX-centric and uses the /proc/bus/nim_sockets interface.
 		# the result will be stored into nim_slots.
 		# the content of /proc/bus/nim_sockets looks like:
 		# NIM Socket 0:

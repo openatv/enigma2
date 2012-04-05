@@ -199,7 +199,7 @@ class RestoreMenu(Screen):
 		if (self.exe == False) and (self.entry == True):
 			self.sel = self["filelist"].getCurrent()
 			self.val = self.path + self.sel
-			self.session.openWithCallback(self.startRestore, MessageBox, _("are you sure you want to restore\nfollowing backup:\n" + self.sel + "\nEnigma2 will restart after the restore"))
+			self.session.openWithCallback(self.startRestore, MessageBox, _("are you sure you want to restore\nfollowing backup:\n" + self.sel + "\nSTB-GUI will restart after the restore"))
 
 	def keyCancel(self):
 		self.close()

@@ -145,7 +145,7 @@ class DreamInfoHandler:
 		self.neededTag = neededTag
 		self.neededFlag = neededFlag
 
-		# caution: blocking should only be used, if further execution in enigma2 depends on the outcome of
+		# caution: blocking should only be used, if further execution in STB-GUI depends on the outcome of
 		# the installer!
 		self.blocking = blocking
 

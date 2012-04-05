@@ -29,7 +29,7 @@ def getBackupPath():
 		return backuppath + '/backup'
 
 def getBackupFilename():
-	return "enigma2settingsbackup.tar.gz"
+	return "settingsbackup.tar.gz"
 		
 
 class BackupScreen(Screen, ConfigListScreen):
