@@ -5,19 +5,29 @@ from Components.Harddisk import harddiskmanager
 from Components.NimManager import nimmanager
 from Components.About import about
 from Components.ScrollLabel import ScrollLabel
+from Components.config import config
 
 from Tools.DreamboxHardware import getFPVersion
 
 class About(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
-
 		
-		AboutText = _("Hardware: ") + about.getHardwareTypeString() + "\n"
+		if config.misc.boxtype.value == 'gb800solo':
+			AboutText = _("Hardware: ") + " GigaBlue HD 800solo\n"
+		elif config.misc.boxtype.value == 'gb800se':
+			AboutText = _("Hardware: ") + " GigaBlue HD 800se\n"
+		elif config.misc.boxtype.value == 'gb800ue':
+			AboutText = _("Hardware: ") + " GigaBlue HD 800ue\n"
+		elif config.misc.boxtype.value == 'quattro':
+			AboutText = _("Hardware: ") + " GigaBlue HD Quattro\n"
+		else:
+			AboutText = _("Hardware: ") + about.getHardwareTypeString() + "\n"
+		
 		AboutText += _("Image: ") + about.getImageTypeString() + "\n"
 		AboutText += _("Kernel Version: ") + about.getKernelVersionString() + "\n"
 		
-		EnigmaVersion = "Enigma: " + about.getEnigmaVersionString()
+		EnigmaVersion = "GUI Build: " + about.getEnigmaVersionString()
 		self["EnigmaVersion"] = StaticText(EnigmaVersion)
 		AboutText += EnigmaVersion + "\n"
 		
