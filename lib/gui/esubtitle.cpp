@@ -3,7 +3,6 @@
 #include <lib/base/estring.h>
 #include <lib/base/nconfig.h>
 
-
 std::map<eSubtitleWidget::subfont_t, eSubtitleWidget::eSubtitleStyle> eSubtitleWidget::subtitleStyles;
 
 eSubtitleWidget::eSubtitleWidget(eWidget *parent)
@@ -23,7 +22,7 @@ void eSubtitleWidget::setPage(const eDVBTeletextSubtitlePage &p)
 	m_page = p;
 	m_page.clear();
 	m_page_ok = 1;
-	invalidate(m_visible_region);  // invalidate old visible regions
+	invalidate(m_visible_region); // invalidate old visible regions
 	m_visible_region.rects.clear();
 
 	unsigned int elements = newpage.m_elements.size();
@@ -123,14 +122,14 @@ void eSubtitleWidget::setPage(const eDVBTeletextSubtitlePage &p)
 		}
 	}
 	m_hide_subtitles_timer->start(7500, true);
-	invalidate(m_visible_region);  // invalidate new regions
+	invalidate(m_visible_region); // invalidate new regions
 }
 
 void eSubtitleWidget::setPage(const eDVBSubtitlePage &p)
 {
 	eDebug("setPage");
 	m_dvb_page = p;
-	invalidate(m_visible_region);  // invalidate old visible regions
+	invalidate(m_visible_region); // invalidate old visible regions
 	m_visible_region.rects.clear();
 	int line = 0;
 	int original_position = 0;
@@ -160,14 +159,14 @@ void eSubtitleWidget::setPage(const eDVBSubtitlePage &p)
 	}
 	m_dvb_page_ok = 1;
 	m_hide_subtitles_timer->start(7500, true);
-	invalidate(m_visible_region);  // invalidate new regions
+	invalidate(m_visible_region); // invalidate new regions
 }
 
 void eSubtitleWidget::setPage(const ePangoSubtitlePage &p)
 {
 	m_pango_page = p;
 	m_pango_page_ok = 1;
-	invalidate(m_visible_region);  // invalidate old visible regions
+	invalidate(m_visible_region); // invalidate old visible regions
 	m_visible_region.rects.clear();
 
 	int elements = m_pango_page.m_elements.size();
@@ -197,7 +196,7 @@ void eSubtitleWidget::setPage(const ePangoSubtitlePage &p)
 	}
 	int timeout_ms = m_pango_page.m_timeout;
 	m_hide_subtitles_timer->start(timeout_ms, true);
-	invalidate(m_visible_region);  // invalidate new regions
+	invalidate(m_visible_region); // invalidate new regions
 }
 
 void eSubtitleWidget::clearPage()
@@ -307,8 +306,8 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 				bool yellow_color = (ePythonConfigQuery::getConfigValue("config.subtitles.pango_subtitles_yellow", configvalue) >= 0 && configvalue == "True");
 				if (yellow_color)
 					text = (std::string) gRGB(255,255,0) + text;
-				text = replace_all(text, "<i>",  yellow_color ? "" : (std::string) gRGB(0,255,255));
-				text = replace_all(text, "<b>",  yellow_color ? "" : (std::string) gRGB(255,255,0));
+				text = replace_all(text, "<i>", yellow_color ? "" : (std::string) gRGB(0,255,255));
+				text = replace_all(text, "<b>", yellow_color ? "" : (std::string) gRGB(255,255,0));
 				text = replace_all(text, "</i>", yellow_color ? "" : (std::string) gRGB(255,255,255));
 				text = replace_all(text, "</b>", yellow_color ? "" : (std::string) gRGB(255,255,255));
 
@@ -328,7 +327,7 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 			for (std::list<eDVBSubtitleRegion>::iterator it(m_dvb_page.m_regions.begin()); it != m_dvb_page.m_regions.end(); ++it)
 			{
 				eRect r = eRect(it->m_position, it->m_pixmap->size());
-				r.scale(size().width(), m_dvb_page.m_display_size.width(), size().height(),  m_dvb_page.m_display_size.height());
+				r.scale(size().width(), m_dvb_page.m_display_size.width(), size().height(), m_dvb_page.m_display_size.height());
 				painter.blitScale(it->m_pixmap, r);
 			}
 		}
@@ -347,4 +346,3 @@ void eSubtitleWidget::setFontStyle(subfont_t face, gFont *font, int haveColor, c
 	subtitleStyles[face].border_color = borderCol;
 	subtitleStyles[face].border_width = borderWidth;
 }
-
