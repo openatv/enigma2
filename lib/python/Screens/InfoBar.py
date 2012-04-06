@@ -6,7 +6,8 @@ import Screens.MovieSelection
 from Screen import Screen
 
 profile("LOAD:enigma")
-from enigma import iPlayableService
+from enigma import iServiceInformation, iPlayableService
+
 
 profile("LOAD:InfoBarGenerics")
 from Screens.InfoBarGenerics import InfoBarShowHide, \
@@ -44,6 +45,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		self["actions"] = HelpableActionMap(self, "InfobarActions",
 			{
 				"showMovies": (self.showMovies, _("Play recorded movies...")),
+				"toogleTvRadio": (self.toogleTvRadio, _("toggels betwenn tv and radio...")),
 				"showRadio": (self.showRadio, _("Show the radio player...")),
 				"showTv": (self.showTv, _("Show the tv player...")),
 			}, prio=2)
@@ -112,6 +114,21 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			self.rds_display.hide() # in InfoBarRdsDecoder
 			from Screens.ChannelSelection import ChannelSelectionRadio
 			self.session.openWithCallback(self.ChannelSelectionRadioClosed, ChannelSelectionRadio, self)
+			
+	def toogleTvRadio(self): 
+		service = self.session.nav.getCurrentService()
+		if service is not None: # workaround to avoid an error when service is None
+			info = service.info()
+			AudioPID = info.getInfo(iServiceInformation.sAudioPID)
+			VideoPID = info.getInfo(iServiceInformation.sVideoPID)
+		else:
+			AudioPID = 1
+			VideoPID = 1
+               
+		if VideoPID == -1: 
+			self.showTv() 
+		else: 
+			self.showRadio()		
 
 	def ChannelSelectionRadioClosed(self, *arg):
 		self.rds_display.show()  # in InfoBarRdsDecoder
