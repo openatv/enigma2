@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-03-24 23:40+0100\n"
-"PO-Revision-Date: 2012-03-07 22:15+0330\n"
-"Last-Translator: Persian Prince <persianprince@persianpros.com>\n"
+"PO-Revision-Date: 2012-04-03 22:31+0330\n"
+"Last-Translator: Persian Prince <persianprince@persianpros.org>\n"
 "Language-Team: Persian Professionals <persianpros@yahoo.com>\n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
@@ -124,13 +124,13 @@ msgstr ""
 "مشاهده ، نصب و حذف بسته های در دسترس و یا نصب شده"
 
 msgid " (PiP)"
-msgstr ""
+msgstr "(تصویر در تصویر)"
 
 msgid " (Radio)"
-msgstr ""
+msgstr "(رادیو)"
 
 msgid " (TV)"
-msgstr ""
+msgstr "(تلوزیون)"
 
 msgid " extensions."
 msgstr "بسته ها"
@@ -173,10 +173,10 @@ msgid "#f23d21"
 msgstr "#f23d21"
 
 msgid "#ff0000"
-msgstr ""
+msgstr "#ff0000"
 
 msgid "#ffff7f"
-msgstr ""
+msgstr "#ffff7f"
 
 msgid "#ffffff"
 msgstr "#ffffff"
@@ -187,31 +187,31 @@ msgstr "#ffffffff"
 #. TRANSLATORS: short time representation hour:minute
 #, python-format
 msgid "%2d:%02d"
-msgstr ""
+msgstr "%2d:%02d"
 
 #. TRANSLATORS: full time representation hour:minute:seconds
 #, python-format
 msgid "%2d:%02d:%02d"
-msgstr ""
+msgstr "%2d:%02d:%02d"
 
 #. TRANSLATORS: long date representations dayname daynum monthname in strftime() format! See 'man strftime'
 msgid "%A %e %B"
-msgstr ""
+msgstr "%A %e %B"
 
 #. TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
 msgid "%A %e %B %Y"
-msgstr ""
+msgstr "%A %e %B %Y"
 
 msgid "%H:%M"
 msgstr "%ساعت:%دقیقه"
 
 #. TRANSLATORS: short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'
 msgid "%a %e/%m"
-msgstr ""
+msgstr "%a %e/%m"
 
 #. TRANSLATORS: long date representation short dayname daynum short monthname hour:minute in strftime() format! See 'man strftime'
 msgid "%a %e/%m  %-H:%M"
-msgstr ""
+msgstr "%a %e/%m  %-H:%M"
 
 #, python-format
 msgid "%d hour"
@@ -233,7 +233,7 @@ msgstr[0] ""
 
 #, python-format
 msgid "%d minutes"
-msgstr ""
+msgstr "%d دقیقه"
 
 #, python-format
 msgid "%d second"
@@ -249,7 +249,7 @@ msgstr "%d.%B %Y"
 
 #. TRANSLATORS: VFD hour:minute daynum short monthname in strftime() format! See 'man strftime'
 msgid "%k:%M %e/%m"
-msgstr ""
+msgstr "%k:%M %e/%m"
 
 #, python-format
 msgid "%s (%s)\n"
@@ -272,7 +272,7 @@ msgid "/usr/share/enigma2 directory"
 msgstr "شاخه /usr/share/enigma2"
 
 msgid "/var directory"
-msgstr ""
+msgstr "پوشه /var"
 
 msgid "0"
 msgstr "0"
@@ -326,7 +326,7 @@ msgid "3"
 msgstr "3"
 
 msgid "3d mode"
-msgstr ""
+msgstr "حالت 3 بعدی"
 
 msgid "4"
 msgstr "4"
@@ -416,24 +416,14 @@ msgstr ""
 "یک عمل ضبط کردن در حال اجرا است\n"
 "قصد انجام چه کاری را دارید ؟"
 
-msgid ""
-"A recording is currently running. Please stop the recording before trying to "
-"configure the positioner."
-msgstr ""
-"یک عمل ضبط کردن در حال اجرا است ، لطفا قبل از پیکربندی مکان یاب عمل ضبط را "
-"متوقف کنید"
+msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
+msgstr "یک عمل ضبط کردن در حال اجرا است ، لطفا قبل از پیکربندی مکان یاب عمل ضبط را متوقف کنید"
 
-msgid ""
-"A recording is currently running. Please stop the recording before trying to "
-"scan."
+msgid "A recording is currently running. Please stop the recording before trying to scan."
 msgstr ""
 
-msgid ""
-"A recording is currently running. Please stop the recording before trying to "
-"start the satfinder."
-msgstr ""
-"یک عمل ضبط کردن در حال اجرا است ، لطفا قبل از اجرای ماهواره یاب عمل ضبط را "
-"متوقف کنید"
+msgid "A recording is currently running. Please stop the recording before trying to start the satfinder."
+msgstr "یک عمل ضبط کردن در حال اجرا است ، لطفا قبل از اجرای ماهواره یاب عمل ضبط را متوقف کنید"
 
 #, python-format
 msgid "A required tool (%s) was not found."
@@ -466,7 +456,7 @@ msgstr ""
 "به طور کامل خاموش کند ، انجام شود ؟"
 
 msgid "A small overview of the available icon states and actions."
-msgstr "A small overview of the available icon states and actions"
+msgstr ""
 
 msgid ""
 "A timer failed to record!\n"
@@ -488,7 +478,7 @@ msgid "AC3 downmix"
 msgstr "تبدیل صدای AC3 به صدای استریو"
 
 msgid "AC3/DTS downmix"
-msgstr ""
+msgstr "AC3/DTS downmix"
 
 msgid "Abort"
 msgstr "لغو"
@@ -554,11 +544,8 @@ msgstr "اضافه کردن به مورد علاقه"
 msgid "Add/Remove timer for current event"
 msgstr ""
 
-msgid ""
-"Adds enigma2 settings and dreambox model informations like SN, rev... if "
-"enabled."
-msgstr ""
-"افزودن تنظیمات انیگما 2 و اطلاعات مدل دستگاه مانند SN و Rev اگر فعال است"
+msgid "Adds enigma2 settings and dreambox model informations like SN, rev... if enabled."
+msgstr "افزودن تنظیمات انیگما 2 و اطلاعات مدل دستگاه مانند SN و Rev اگر فعال است"
 
 msgid "Adds network configuration if enabled."
 msgstr "اضافه کردن پیکربندی شبکه در صورت فعال بودن"
@@ -568,21 +555,13 @@ msgid "Adds wlan configuration if enabled."
 msgstr "افزودن پیکربندی شبکه بدون سیم اگر فعال است"
 
 msgid "Adjust 3D settings"
-msgstr ""
+msgstr "تنظیمات 3 بعدی"
 
 msgid "Adjust HDMI CEC settings"
-msgstr ""
+msgstr "تنظیمات HDMI CEC"
 
-msgid ""
-"Adjust the color settings so that all the color shades are distinguishable, "
-"but appear as saturated as possible. If you are happy with the result, press "
-"OK to close the video fine-tuning, or use the number keys to select other "
-"test screens."
-msgstr ""
-"تنظیم کردن تنظیمات رنگ طوری که سایه های رنگ ها مشخص باشد ، اما تا حد امکان "
-"به صورت اشباع شده نمایان شود ، اگر شما از نتیجه راضی هستید دکمه OK را برای "
-"بستن \"میزان مناسب تصویر\" فشار دهید و یا از اعداد ریموت کنترل برای تست های "
-"دیگر صفحه نمایش استفاده کنید"
+msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
+msgstr "تنظیم کردن تنظیمات رنگ طوری که سایه های رنگ ها مشخص باشد ، اما تا حد امکان به صورت اشباع شده نمایان شود ، اگر شما از نتیجه راضی هستید دکمه OK را برای بستن \"میزان مناسب تصویر\" فشار دهید و یا از اعداد ریموت کنترل برای تست های دیگر صفحه نمایش استفاده کنید"
 
 msgid "Advanced Options"
 msgstr "گزینه های پیشرفته"
@@ -607,14 +586,10 @@ msgid "After event"
 msgstr "بعد از رویداد"
 
 msgid "After pressing OK, please wait!"
-msgstr ""
+msgstr "بعد از فشار دادن کلید OK لطفا صبر کنید"
 
-msgid ""
-"After the start wizard is completed, you need to protect single services. "
-"Refer to your dreambox's manual on how to do that."
-msgstr ""
-"بعد از این که هدایتگر کامل شد ، شما باید از کانال های تنها حفاظت کنید  ، "
-"رجوع شود به دفترچه راهنمای دستگاه که چگونه انجام شود"
+msgid "After the start wizard is completed, you need to protect single services. Refer to your dreambox's manual on how to do that."
+msgstr "بعد از این که هدایتگر کامل شد ، شما باید از کانال های تنها حفاظت کنید  ، رجوع شود به دفترچه راهنمای دستگاه که چگونه انجام شود"
 
 msgid "Album"
 msgstr "آلبوم"
@@ -657,7 +632,7 @@ msgid "Anonymize crashlog?"
 msgstr "ناشناس کردن گزارش خطای دستگاه ؟"
 
 msgid "Any activity"
-msgstr ""
+msgstr "هر فعالیتی"
 
 msgid "Arabic"
 msgstr "عربی"
@@ -724,16 +699,16 @@ msgid "Audio PID"
 msgstr "PID صدا"
 
 msgid "Audio language selection 1"
-msgstr ""
+msgstr "انتخاب زبان صدا 1"
 
 msgid "Audio language selection 2"
-msgstr ""
+msgstr "انتخاب زبان صدا 2"
 
 msgid "Audio language selection 3"
-msgstr ""
+msgstr "انتخاب زبان صدا 3"
 
 msgid "Audio language selection 4"
-msgstr ""
+msgstr "انتخاب زبان صدا 4"
 
 msgid "Author: "
 msgstr "مولف:"
@@ -753,19 +728,19 @@ msgid "Auto flesh"
 msgstr "خودکار flesh"
 
 msgid "Auto focus"
-msgstr ""
+msgstr "فوکوس خودکار"
 
 msgid "Auto focus commencing ..."
 msgstr ""
 
 msgid "Auto language selection"
-msgstr ""
+msgstr "انتخاب زبان خودکار"
 
 msgid "Auto scart switching"
 msgstr "جایگزینی خودکار scart"
 
 msgid "Auto-focus"
-msgstr ""
+msgstr "فوکوس خودکار"
 
 msgid "Automatic"
 msgstr "خودکار"
@@ -807,10 +782,10 @@ msgid "Backup"
 msgstr "نسخه پشتیبان"
 
 msgid "Backup Location"
-msgstr ""
+msgstr "محل نسخه پشتیبان"
 
 msgid "Backup Mode"
-msgstr ""
+msgstr "حالت نسخه پشتیبان"
 
 msgid "Backup done."
 msgstr "نسخه پشتیبان تهیه شد"
@@ -875,7 +850,7 @@ msgid "Brightness"
 msgstr "روشنایی"
 
 msgid "Bulgarian"
-msgstr ""
+msgstr "بلغاری"
 
 msgid "Burn DVD"
 msgstr "رایت DVD"
@@ -890,9 +865,7 @@ msgstr "رایت در DVD"
 msgid "Bus: "
 msgstr "گذرگاه:"
 
-msgid ""
-"By pressing the OK Button on your remote control, the info bar is being "
-"displayed."
+msgid "By pressing the OK Button on your remote control, the info bar is being displayed."
 msgstr "با فشار دادن دکمه OK نوار اطلاعات نمایش داده خواهد شد"
 
 msgid "C"
@@ -915,19 +888,19 @@ msgid "Cable"
 msgstr "کابل"
 
 msgid "Cable Scan"
-msgstr ""
+msgstr "اسکن کابلی"
 
 msgid "Cache Thumbnails"
 msgstr "ذخیره کردن عکس های کوچک"
 
 msgid "Calculate"
-msgstr ""
+msgstr "محاسبه"
 
 msgid "Calculate all positions"
-msgstr ""
+msgstr "محاسبه همه موقعیت ها"
 
 msgid "Calculation complete"
-msgstr ""
+msgstr "محاسبه کامل شد"
 
 msgid "Calibrate"
 msgstr ""
@@ -1056,7 +1029,7 @@ msgid "CleanupWizard"
 msgstr "هدایتگر پاک سازی"
 
 msgid "Clear"
-msgstr ""
+msgstr "پاک سازی"
 
 msgid "Clear before scan"
 msgstr "پاک سازی قبل از اسکن"
@@ -1146,7 +1119,7 @@ msgid "Configure your network again"
 msgstr "شبکه خود را دوباره پیکربندی کنید"
 
 msgid "Configure your network settings, and press OK to start the scan"
-msgstr ""
+msgstr "تنظیمات شبکه را پیکربندی کنید ، دکمه OK را برای شروع اسکن فشار دهید"
 
 #
 msgid "Configure your wireless LAN again"
@@ -1189,16 +1162,16 @@ msgid "Contrast"
 msgstr "کنتراست"
 
 msgid "Convert ext3 to ext4"
-msgstr ""
+msgstr "تبدیل ext3 به ext4"
 
 msgid "Convert ext3 to ext4..."
-msgstr ""
+msgstr "تبدیل ext3 به ext4"
 
 msgid "Convert filesystem ext3 to ext4"
-msgstr ""
+msgstr "تبدیل سیستم فایل ext3 به ext4"
 
 msgid "Copy"
-msgstr ""
+msgstr "رونوشت"
 
 msgid "Could not connect to Dreambox .NFI Image Feed Server:"
 msgstr "ارتباط با سرور ایمیج NFI دستگاه میسر نیست"
@@ -1245,16 +1218,16 @@ msgid "Create DVD-ISO"
 msgstr "ایجاد DVD-ISO"
 
 msgid "Create Filesystem"
-msgstr ""
+msgstr "ایجاد سیستم فایل"
 
 msgid "Create Partition"
-msgstr ""
+msgstr "ایجاد پارتیشن"
 
 msgid "Create more detailed crash log"
 msgstr ""
 
 msgid "Create movie directory"
-msgstr ""
+msgstr "ایجاد پوشه فیلم"
 
 #, python-format
 msgid "Creating directory %s failed."
@@ -1264,7 +1237,7 @@ msgid "Croatian"
 msgstr "کرواسی"
 
 msgid "Current CEC address"
-msgstr ""
+msgstr "آدرس فعلی CEC"
 
 msgid "Current Transponder"
 msgstr "فرستنده فعلی"
@@ -1294,10 +1267,10 @@ msgid "Custom skip time for '7'/'9'-keys"
 msgstr "پرش سفارشی زمان برای کلید های 7 و 9"
 
 msgid "Custom text alignment"
-msgstr ""
+msgstr "تراز متن سفارشی"
 
 msgid "Custom text position"
-msgstr ""
+msgstr "موقعیت متن سفارشی"
 
 msgid "Customize"
 msgstr "سفارشی"
@@ -1318,7 +1291,7 @@ msgid "DHCP"
 msgstr "DHCP"
 
 msgid "DTS downmix"
-msgstr ""
+msgstr "DTS downmix"
 
 #
 msgid "DUAL LAYER DVD"
@@ -1400,13 +1373,13 @@ msgstr ""
 "%s?"
 
 msgid "Deleted"
-msgstr ""
+msgstr "حذف شد"
 
 msgid "Deleted items"
-msgstr ""
+msgstr "موارد حذف شده"
 
 msgid "Depth"
-msgstr ""
+msgstr "عمق"
 
 msgid "Descramble http streams"
 msgstr ""
@@ -1427,7 +1400,7 @@ msgid "Detected NIMs:"
 msgstr "NIM های شناسایی شده:"
 
 msgid "Devicename:"
-msgstr ""
+msgstr "نام وسیله :"
 
 msgid "DiSEqC"
 msgstr "DiSEqC"
@@ -1458,7 +1431,7 @@ msgid "Direct playback of linked titles without menu"
 msgstr "پخش مستقیم عناوین لینک شده بدون منو"
 
 msgid "Directory"
-msgstr ""
+msgstr "پوشه"
 
 #, python-format
 msgid "Directory %s nonexistent."
@@ -1606,12 +1579,8 @@ msgid "Do you want to resume this playback?"
 msgstr "آیا میخواهید به پخش این مورد ادامه داده شود ؟"
 
 #
-msgid ""
-"Do you want to submit your email address and name so that we can contact you "
-"if needed?"
-msgstr ""
-"آیا میخواهید آدرس ایمیل و نام خود را ارسال کنید تا هنگامی که نیاز باشد با "
-"شما تماس بگیریم ؟"
+msgid "Do you want to submit your email address and name so that we can contact you if needed?"
+msgstr "آیا میخواهید آدرس ایمیل و نام خود را ارسال کنید تا هنگامی که نیاز باشد با شما تماس بگیریم ؟"
 
 msgid "Do you want to update your Dreambox?"
 msgstr "آیا میخواهید دستگاه خود را به روز رسانی کنید ؟"
@@ -1692,10 +1661,10 @@ msgid "EPG Selection"
 msgstr "EPG انتخاب"
 
 msgid "EPG language selection 1"
-msgstr ""
+msgstr "انتخاب زبان EPG 1"
 
 msgid "EPG language selection 2"
-msgstr ""
+msgstr "انتخاب زبان EPG 2"
 
 #, python-format
 msgid "ERROR - failed to scan (%s)!"
@@ -1755,19 +1724,19 @@ msgid "Enable Cleanup Wizard?"
 msgstr "فعال کردن هدایتگر پاک سازی؟"
 
 msgid "Enable EIT EPG"
-msgstr ""
+msgstr "فعال کردن EIT EPG"
 
 msgid "Enable MHW EPG"
-msgstr ""
+msgstr "فعال کردن MHW EPG"
 
 msgid "Enable Netmed EPG"
-msgstr ""
+msgstr "فعال کردن Netmed EPG"
 
 msgid "Enable ViaSat EPG"
-msgstr ""
+msgstr "فعال کردن ViaSat EPG"
 
 msgid "Enable freesat EPG"
-msgstr ""
+msgstr "فعال کردن freesat EPG"
 
 msgid "Enable multiple bouquets"
 msgstr "فعال کردن چندین لیست"
@@ -1871,7 +1840,7 @@ msgid "Eventview menu"
 msgstr ""
 
 msgid "Everywhere"
-msgstr ""
+msgstr "در همه جا"
 
 msgid "Exceeds dual layer medium!"
 msgstr "بیش از رسانه دو لایه"
@@ -1889,7 +1858,7 @@ msgid "Exit"
 msgstr "خروج"
 
 msgid "Exit EPG"
-msgstr ""
+msgstr "خروج از EPG"
 
 msgid "Exit editor"
 msgstr "خروج از ویرایشگر"
@@ -1935,7 +1904,7 @@ msgid "FEC"
 msgstr "FEC"
 
 msgid "FTA"
-msgstr ""
+msgstr "FTA"
 
 msgid "Factory reset"
 msgstr "بازگشت به حالت کارخانه ای"
@@ -1970,7 +1939,7 @@ msgid "Fast Forward speeds"
 msgstr "سرعت های پرش به جلوی سریع"
 
 msgid "Fast Scan"
-msgstr ""
+msgstr "اسکن سریع"
 
 msgid "Fast epoch"
 msgstr "epoch سریع"
@@ -1985,7 +1954,7 @@ msgid "Filesystem Check"
 msgstr "بررسی سیستم فایل"
 
 msgid "Final position at"
-msgstr ""
+msgstr "موقعیت نهایی در"
 
 msgid "Final position at index"
 msgstr ""
@@ -2020,7 +1989,7 @@ msgid "Following tasks will be done after you press OK!"
 msgstr "وظایف زیر بعد از فشار دادن دکمه OK انجام خواهند شد"
 
 msgid "For more information see www.openpli.org"
-msgstr ""
+msgstr "برای اطلاعات بیشتر به www.openpli.org مراجعه کنید"
 
 msgid "Format"
 msgstr "فرمت"
@@ -2053,7 +2022,7 @@ msgid "Friday"
 msgstr "جمعه"
 
 msgid "From :"
-msgstr ""
+msgstr "از :"
 
 #, python-format
 msgid "Frontprocessor version: %d"
@@ -2101,58 +2070,58 @@ msgid "Getting plugin information. Please wait..."
 msgstr "در حال جمع آوری اطلاعات پلاگین ها - لطفا صبر کنید"
 
 msgid "Go down the list"
-msgstr ""
+msgstr "برو پایین لیست"
 
 msgid "Go to first movie or last item"
-msgstr ""
+msgstr "مراجعه به اولین فیلم یا آخرین مورد"
 
 msgid "Go to first movie or top of list"
-msgstr ""
+msgstr "مراجعه به اولین فیلم یا بالای لیست"
 
 msgid "Go up the list"
-msgstr ""
+msgstr "برو بالای لیست"
 
 msgid "Goto"
-msgstr ""
+msgstr "مراجعه به"
 
 msgid "Goto 0"
 msgstr "مراجعه به 0"
 
 msgid "Goto :"
-msgstr ""
+msgstr "مراجعه به :"
 
 msgid "Goto X"
-msgstr ""
+msgstr "مراجعه به X"
 
 msgid "Goto first service"
-msgstr ""
+msgstr "مراجعه به اولین کانال"
 
 msgid "Goto index position"
 msgstr ""
 
 msgid "Goto last service"
-msgstr ""
+msgstr "مراجعه به آخرین کانال"
 
 msgid "Goto next event"
-msgstr ""
+msgstr "مراجعه به رخداد بعدی"
 
 msgid "Goto next page of events"
-msgstr ""
+msgstr "مراجعه به صفحه بعدی رخداد ها"
 
 msgid "Goto next page of service"
-msgstr ""
+msgstr "مراجعه به صفحه بعدی کانال"
 
 msgid "Goto position"
-msgstr "مراجعه به مکان"
+msgstr "مراجعه به موقعیت"
 
 msgid "Goto previous event"
-msgstr ""
+msgstr "مراجعه به رخداد قبلی"
 
 msgid "Goto previous page of events"
-msgstr ""
+msgstr "مراجعه به صفحه قبلی رخداد ها"
 
 msgid "Goto previous page of service"
-msgstr ""
+msgstr "مراجعه به صفحه قبلی کانال"
 
 msgid "Goto specific data/time"
 msgstr ""
@@ -2179,7 +2148,7 @@ msgid "Guard interval"
 msgstr "فاصله گارد"
 
 msgid "HD list"
-msgstr ""
+msgstr "لیست HD"
 
 msgid "Handle standby from TV"
 msgstr ""
@@ -2197,7 +2166,7 @@ msgid "Harddisk standby after"
 msgstr "خاموشی موقت دیسک سخت بعد از"
 
 msgid "Hardware: "
-msgstr ""
+msgstr "سخت افزار :"
 
 msgid "Hebrew"
 msgstr "عبری"
@@ -2206,7 +2175,7 @@ msgid "Hidden network"
 msgstr "شبکه مخفی"
 
 msgid "Hide CI messages"
-msgstr ""
+msgstr "پنهان کردن پیام های CI"
 
 msgid "Hide zap errors"
 msgstr ""
@@ -2228,7 +2197,7 @@ msgid "Hold till locked"
 msgstr ""
 
 msgid "Home"
-msgstr ""
+msgstr "خانه"
 
 msgid "Horizontal"
 msgstr "افقی"
@@ -2260,7 +2229,7 @@ msgid "ISO path"
 msgstr "ISO مسیر"
 
 msgid "Icons"
-msgstr ""
+msgstr "آیکون"
 
 msgid ""
 "If you see this, something is wrong with\n"
@@ -2270,25 +2239,19 @@ msgstr ""
 "ارتباط scart شما اختلال دارد ، دکمه OK را برای بازگشت فشار دهید"
 
 msgid ""
-"If your TV has a brightness or contrast enhancement, disable it. If there is "
-"something called \"dynamic\", set it to standard. Adjust the backlight level "
-"to a value suiting your taste. Turn down contrast on your TV as much as "
-"possible.\n"
-"Then turn the brightness setting as low as possible, but make sure that the "
-"two lowermost shades of gray stay distinguishable.\n"
-"Do not care about the bright shades now. They will be set up in the next "
-"step.\n"
+"If your TV has a brightness or contrast enhancement, disable it. If there is something called \"dynamic\", set it to standard. Adjust the backlight level to a value suiting your taste. Turn down contrast on your TV as much as possible.\n"
+"Then turn the brightness setting as low as possible, but make sure that the two lowermost shades of gray stay distinguishable.\n"
+"Do not care about the bright shades now. They will be set up in the next step.\n"
 "If you are happy with the result, press OK."
 msgstr ""
 
 msgid "Image: "
-msgstr ""
+msgstr "عکس :"
 
 msgid "In Progress"
 msgstr "در حال اجرا"
 
-msgid ""
-"In order to record a timer, the TV was switched to the recording service!\n"
+msgid "In order to record a timer, the TV was switched to the recording service!\n"
 msgstr ""
 
 msgid "Include AIT in http streams"
@@ -2345,7 +2308,7 @@ msgid "Initial signal quality:"
 msgstr ""
 
 msgid "Initialization"
-msgstr ""
+msgstr "مقدار دهی اولیه"
 
 msgid "Initialize"
 msgstr "مقدار دهی اولیه"
@@ -2439,7 +2402,7 @@ msgid "Inversion"
 msgstr "وارونگی"
 
 msgid "Invert"
-msgstr ""
+msgstr "معکوس کردن"
 
 #
 msgid "Ipkg"
@@ -2453,7 +2416,7 @@ msgid "Italian"
 msgstr "ایتالیایی"
 
 msgid "Items per Page "
-msgstr ""
+msgstr "موارد در هر صفحه"
 
 msgid "Job View"
 msgstr "نمای کار"
@@ -2466,7 +2429,7 @@ msgid "Keep old timers for how many days"
 msgstr ""
 
 msgid "Kernel Version: "
-msgstr ""
+msgstr "نسخه کرنل :"
 
 msgid "Keyboard"
 msgstr "صفحه کلید"
@@ -2505,7 +2468,7 @@ msgid "Language selection"
 msgstr "انتخاب زبان"
 
 msgid "Last Upgrade: "
-msgstr ""
+msgstr "آخرین به روز رسانی :"
 
 #
 msgid "Last config"
@@ -2572,7 +2535,7 @@ msgid "List of Storage Devices"
 msgstr "لیست دستگاه های ذخیره سازی"
 
 msgid "List type"
-msgstr ""
+msgstr "نوع لیست"
 
 #, python-format
 msgid "List version %d, found %d channels"
@@ -2616,7 +2579,7 @@ msgid "Longitude"
 msgstr "طول جغرافیایی"
 
 msgid "MMC Card"
-msgstr ""
+msgstr "کارت MMC"
 
 msgid "MORE"
 msgstr "بیشتر"
@@ -2681,10 +2644,10 @@ msgid "Medium is not empty!"
 msgstr "رسانه خالی نیست"
 
 msgid "Memory"
-msgstr ""
+msgstr "حافظه"
 
 msgid "Memory index"
-msgstr ""
+msgstr "فهرست حافظه"
 
 msgid "Menu"
 msgstr "منو"
@@ -2696,7 +2659,7 @@ msgid "Message..."
 msgstr "پیام"
 
 msgid "Missing "
-msgstr ""
+msgstr "مفقود"
 
 msgid "Mode"
 msgstr "حالت"
@@ -2727,37 +2690,37 @@ msgid "Mount"
 msgstr ""
 
 msgid "Move"
-msgstr ""
+msgstr "جابجایی"
 
 msgid "Move Picture in Picture"
-msgstr "انتقال تصویر در تصویر"
+msgstr "جابجایی تصویر در تصویر"
 
 msgid "Move east"
 msgstr "جابجایی به شرق"
 
 msgid "Move to other directory"
-msgstr ""
+msgstr "انتقال به پوشه دیگر"
 
 msgid "Move to position X"
-msgstr ""
+msgstr "جابجایی به موقعت X"
 
 msgid "Move west"
 msgstr "جابجایی به غرب"
 
 msgid "Moved to position 0"
-msgstr ""
+msgstr "به موقعیت 0 جابجا شد"
 
 msgid "Moved to position at index"
 msgstr ""
 
 msgid "Movement"
-msgstr ""
+msgstr "جنبش"
 
 msgid "Movie List Configuration"
-msgstr ""
+msgstr "پیکربندی لیست فیلم"
 
 msgid "Movie Selection"
-msgstr ""
+msgstr "انتخاب فیلم"
 
 msgid "Movie location"
 msgstr "محل فیلم"
@@ -2766,16 +2729,16 @@ msgid "Movielist menu"
 msgstr "منوی لیست فیلم"
 
 msgid "Moving"
-msgstr ""
+msgstr "در حال جابجایی"
 
 msgid "Moving east ..."
-msgstr ""
+msgstr "جابجایی به شرق"
 
 msgid "Moving to position"
-msgstr ""
+msgstr "در حال جابجایی به موقعیت"
 
 msgid "Moving west ..."
-msgstr ""
+msgstr "جابجایی به غرب"
 
 msgid "Multi EPG"
 msgstr "EPG چندگانه"
@@ -2849,7 +2812,7 @@ msgid "Network Configuration..."
 msgstr "پیکربندی شبکه"
 
 msgid "Network ID"
-msgstr ""
+msgstr "ID شبکه"
 
 msgid "Network Mount"
 msgstr "شبکه Mount"
@@ -2906,7 +2869,7 @@ msgid "No Connection"
 msgstr "ارتباطی وجود ندارد"
 
 msgid "No Delay"
-msgstr ""
+msgstr "بدون تاخیر"
 
 msgid "No HDD found or HDD not initialized!"
 msgstr "دیسک سخت پیدا نشد و یا دیسک سخت مقدار دهی اولیه نشده است"
@@ -2915,7 +2878,7 @@ msgid "No backup needed"
 msgstr "نیازی به نسخه پشتیبان نیست"
 
 msgid "No cable tuner found!"
-msgstr ""
+msgstr "تیونر کابلی یافت نشد"
 
 msgid ""
 "No data on transponder!\n"
@@ -2937,9 +2900,7 @@ msgid "No event info found, recording indefinitely."
 msgstr ""
 
 #
-msgid ""
-"No fast winding possible yet.. but you can use the number buttons to skip "
-"forward/backward!"
+msgid "No fast winding possible yet.. but you can use the number buttons to skip forward/backward!"
 msgstr ""
 
 msgid "No free tuner!"
@@ -2952,15 +2913,11 @@ msgstr "هیچ ارتباط شبکه ای در دسترس نیست"
 msgid "No networks found"
 msgstr "هیچ شبکه ای یافت نشد"
 
-msgid ""
-"No packages were upgraded yet. So you can check your network and try again."
-msgstr ""
-"هیچ بسته ای به روز رسانی نشده است ، تنظیمات شبکه را بررسی و دوباره سعی کنید"
+msgid "No packages were upgraded yet. So you can check your network and try again."
+msgstr "هیچ بسته ای به روز رسانی نشده است ، تنظیمات شبکه را بررسی و دوباره سعی کنید"
 
 msgid "No picture on TV? Press EXIT and retry."
-msgstr ""
-"اگر تصویر را در تلوزیون مشاهده نمیکنید با فشار دادن دکمه EXIT خارج شده و "
-"دوباره سعی کنید"
+msgstr "اگر تصویر را در تلوزیون مشاهده نمیکنید با فشار دادن دکمه EXIT خارج شده و دوباره سعی کنید"
 
 msgid "No positioner capable frontend found."
 msgstr ""
@@ -3007,22 +2964,19 @@ msgstr "هیچ شبکه بدون سیمی یافت نشد ، در حال جست�
 #
 msgid ""
 "No working local network adapter found.\n"
-"Please verify that you have attached a network cable and your network is "
-"configured correctly."
+"Please verify that you have attached a network cable and your network is configured correctly."
 msgstr ""
 
 #
 msgid ""
 "No working wireless network adapter found.\n"
-"Please verify that you have attached a compatible WLAN device and your "
-"network is configured correctly."
+"Please verify that you have attached a compatible WLAN device and your network is configured correctly."
 msgstr ""
 
 #
 msgid ""
 "No working wireless network interface found.\n"
-" Please verify that you have attached a compatible WLAN device or enable "
-"your local network interface."
+" Please verify that you have attached a compatible WLAN device or enable your local network interface."
 msgstr ""
 
 msgid "No, but restart from begin"
@@ -3061,12 +3015,8 @@ msgid "Norwegian"
 msgstr "نروژی"
 
 #, python-format
-msgid ""
-"Not enough diskspace. Please free up some diskspace and try again. (%d MB "
-"required, %d MB available)"
-msgstr ""
-"فضای کافی وجود ندارد ، لطفا مقداری فضا خالی و دوباره تلاش کنید . (%d مگابایت "
-"نیاز است و %d مگابایت در دسترس است)"
+msgid "Not enough diskspace. Please free up some diskspace and try again. (%d MB required, %d MB available)"
+msgstr "فضای کافی وجود ندارد ، لطفا مقداری فضا خالی و دوباره تلاش کنید . (%d مگابایت نیاز است و %d مگابایت در دسترس است)"
 
 msgid "Not-Associated"
 msgstr ""
@@ -3077,15 +3027,12 @@ msgid ""
 msgstr ""
 
 msgid "Nothing to upgrade"
-msgstr ""
+msgstr "چیزی برای به روز رسانی وجود ندارد"
 
 msgid "Now Playing"
 msgstr "در حال پخش"
 
-msgid ""
-"Now, use the contrast setting to turn up the brightness of the background as "
-"much as possible, but make sure that you can still see the difference "
-"between the two brightest levels of shades.If you have done that, press OK."
+msgid "Now, use the contrast setting to turn up the brightness of the background as much as possible, but make sure that you can still see the difference between the two brightest levels of shades.If you have done that, press OK."
 msgstr ""
 
 msgid "OK"
@@ -3120,7 +3067,7 @@ msgid "Offline decode delay (ms)"
 msgstr ""
 
 msgid "Ok"
-msgstr ""
+msgstr "Ok"
 
 msgid "On"
 msgstr "روشن"
@@ -3139,19 +3086,19 @@ msgid "Optionally enter your name if you want to."
 msgstr "اگر مایل هستید نام خود را وارد کنید (اختیاری)"
 
 msgid "Orbital Position"
-msgstr ""
+msgstr "موقعیت مداری"
 
 msgid "Orbital position"
 msgstr "موقعیت مداری"
 
 msgid "Original"
-msgstr ""
+msgstr "اصلی"
 
 msgid "Other"
-msgstr ""
+msgstr "دیگر"
 
 msgid "Output"
-msgstr ""
+msgstr "خروجی"
 
 msgid "Overwrite configuration files ?"
 msgstr "بازنویسی فایل های پیکربندی ؟"
@@ -3181,7 +3128,7 @@ msgid "Package removed successfully.\n"
 msgstr "بسته با موفقیت حذف شد\n"
 
 msgid "Packages"
-msgstr ""
+msgstr "پکیج ها"
 
 msgid "Packet management"
 msgstr "مدیریت بسته های نرم افزاری"
@@ -3261,10 +3208,10 @@ msgid "Play audio in background"
 msgstr ""
 
 msgid "Play next"
-msgstr ""
+msgstr "پخش بعدی"
 
 msgid "Play previous"
-msgstr ""
+msgstr "پخش قبلی"
 
 msgid "Play recorded movies..."
 msgstr "پخش فیلم های ضبط شده"
@@ -3275,9 +3222,7 @@ msgstr "لطفا یک رسانه را برای اسکن انتخاب کنید"
 msgid "Please add titles to the compilation."
 msgstr ""
 
-msgid ""
-"Please be aware, that anyone can disable the parental control, if you have "
-"not set a PIN."
+msgid "Please be aware, that anyone can disable the parental control, if you have not set a PIN."
 msgstr ""
 
 msgid "Please change recording endtime"
@@ -3297,15 +3242,13 @@ msgstr "لطفا لیست های پیش فرض مورد نظر خود را بر�
 
 #
 msgid ""
-"Please configure or verify your Nameservers by filling out the required "
-"values.\n"
+"Please configure or verify your Nameservers by filling out the required values.\n"
 "When you are ready press OK to continue."
 msgstr ""
 
 #
 msgid ""
-"Please configure your internet connection by filling out the required "
-"values.\n"
+"Please configure your internet connection by filling out the required values.\n"
 "When you are ready press OK to continue."
 msgstr ""
 
@@ -3343,9 +3286,7 @@ msgstr "لطفا نام خود را وارد کنید (اختیاری) :"
 msgid "Please follow the instructions on the TV"
 msgstr "لطفا دستورالعمل هایی که در تلوزیون مشاهده میکنید را دنبال کنید"
 
-msgid ""
-"Please note that the previously selected media could not be accessed and "
-"therefore the default directory is being used instead."
+msgid "Please note that the previously selected media could not be accessed and therefore the default directory is being used instead."
 msgstr ""
 
 msgid "Please press OK to continue."
@@ -3386,8 +3327,7 @@ msgstr "لطفا مسیر فیلم را انتخاب کنید"
 
 #
 msgid ""
-"Please select the network interface that you want to use for your internet "
-"connection.\n"
+"Please select the network interface that you want to use for your internet connection.\n"
 "\n"
 "Please press OK to continue."
 msgstr ""
@@ -3414,9 +3354,7 @@ msgid ""
 "Press OK to go back to the TV mode or EXIT to cancel the moving."
 msgstr ""
 
-msgid ""
-"Please use the UP and DOWN keys to select your language. Afterwards press "
-"the OK button."
+msgid "Please use the UP and DOWN keys to select your language. Afterwards press the OK button."
 msgstr ""
 
 #
@@ -3468,7 +3406,7 @@ msgid "Plugins"
 msgstr "پلاگین ها"
 
 msgid "Polarisation"
-msgstr ""
+msgstr "Polarisation"
 
 msgid "Polarization"
 msgstr "قطبش"
@@ -3510,7 +3448,7 @@ msgid "Predefined transponder"
 msgstr "ترانسپوندر از قبل تعریف شده"
 
 msgid "Prefer AC3"
-msgstr ""
+msgstr "ترجیح دادن AC3"
 
 msgid "Prefer DVB-grafical subtitles"
 msgstr ""
@@ -3525,7 +3463,7 @@ msgid "Prefer subtitle stored by service"
 msgstr ""
 
 msgid "Preferred tuner"
-msgstr ""
+msgstr "تیونر ترجیحی"
 
 msgid "Prepare another USB stick for image flashing"
 msgstr ""
@@ -3597,7 +3535,7 @@ msgid "Process"
 msgstr "پردازش"
 
 msgid "Progress"
-msgstr ""
+msgstr "پیشرفت"
 
 msgid "Progress Small"
 msgstr ""
@@ -3645,7 +3583,7 @@ msgid "Radio"
 msgstr "رادیو"
 
 msgid "Ram Disk"
-msgstr "Ram Disk"
+msgstr "دیسک رم"
 
 msgid "Random"
 msgstr "تصادفی"
@@ -3701,13 +3639,13 @@ msgid "Recording data sync size"
 msgstr ""
 
 msgid "Recording in progress"
-msgstr ""
+msgstr "ضبط در حال پیشرفت"
 
 msgid "Recording paths"
 msgstr "مسیر های ضبط کردن"
 
 msgid "Recording type"
-msgstr ""
+msgstr "نوع ضبط"
 
 msgid "Recording(s) are in progress or coming up in few seconds!"
 msgstr ""
@@ -3719,7 +3657,7 @@ msgid "Recordings always have priority"
 msgstr ""
 
 msgid "Red button..."
-msgstr ""
+msgstr "دکمه قرمز"
 
 msgid "Reenter new PIN"
 msgstr "رمز جدید را دوباره وارد کنید"
@@ -3843,7 +3781,7 @@ msgid "Restart GUI now?"
 msgstr "راه اندازی مجدد رابط گرافیک کاربری؟"
 
 msgid "Restart enigma"
-msgstr ""
+msgstr "راه اندازی مجدد انیگما"
 
 msgid "Restart network"
 msgstr "راه اندازی دوباره شبکه"
@@ -3910,10 +3848,10 @@ msgid "Rolloff"
 msgstr ""
 
 msgid "Romanian"
-msgstr ""
+msgstr "رومانیایی"
 
 msgid "Root directory"
-msgstr ""
+msgstr "پوشه root"
 
 msgid "Rotor step position:"
 msgstr ""
@@ -3963,7 +3901,7 @@ msgid "Satellite equipment"
 msgstr "تجهیزات ماهواره"
 
 msgid "Satellite longitude:"
-msgstr ""
+msgstr "طول جغرافیایی ماهواره :"
 
 msgid "Satellites"
 msgstr "ماهواره ها"
@@ -4062,27 +4000,24 @@ msgstr "اسکن باند US MID"
 msgid "Scan band US SUPER"
 msgstr "اسکن باند US SUPER"
 
-msgid ""
-"Scan your network for wireless access points and connect to them using your "
-"selected wireless device.\n"
+msgid "Scan your network for wireless access points and connect to them using your selected wireless device.\n"
 msgstr ""
 
 #, python-format
 msgid "Scanning %s..."
-msgstr ""
+msgstr "در حال اسکن %s"
 
 #, python-format
 msgid "Scanning completed, %d channels found"
-msgstr ""
+msgstr "اسکن کامل شد ، %d کانال یافت شد"
 
 msgid "Scanning failed!"
-msgstr ""
+msgstr "اسکن ناموفق"
 
 msgid "Scanning..."
-msgstr ""
+msgstr "در حال اسکن"
 
-msgid ""
-"Scans default lamedbs sorted by satellite with a connected dish positioner"
+msgid "Scans default lamedbs sorted by satellite with a connected dish positioner"
 msgstr ""
 
 msgid "Search east"
@@ -4092,10 +4027,10 @@ msgid "Search west"
 msgstr "جستجوی غرب"
 
 msgid "Searching"
-msgstr ""
+msgstr "در حال جستجو"
 
 msgid "Searching east ..."
-msgstr ""
+msgstr "جستجوی شرق"
 
 msgid "Searching for available updates. Please wait..."
 msgstr "در حال جستجو برای به آپدیت های در فعال ، لطفا صبر کنید"
@@ -4104,7 +4039,7 @@ msgid "Searching for new installed or removed packages. Please wait..."
 msgstr "جستجو برای بسته هایی که به تازگی نصب یا حذف شده اند ، لطفا صبر کنید"
 
 msgid "Searching west ..."
-msgstr ""
+msgstr "جستجوی غرب"
 
 msgid "Secondary DNS"
 msgstr "DNS دوم"
@@ -4295,16 +4230,14 @@ msgid "Setup Mode"
 msgstr "حالت تنظیمات"
 
 msgid "Setup menu"
-msgstr ""
+msgstr "منوی تنظیمات"
 
 msgid "Setup your positioner"
 msgstr ""
 
 #
 #, python-format
-msgid ""
-"Shall the USB stick wizard proceed and program the image file %s into flash "
-"memory?"
+msgid "Shall the USB stick wizard proceed and program the image file %s into flash memory?"
 msgstr ""
 
 #
@@ -4325,10 +4258,10 @@ msgid "Show Message when Recording starts"
 msgstr "نمایش پیام هنگامی که ضبط کردن شروع میشود"
 
 msgid "Show Picons"
-msgstr ""
+msgstr "نمایش پیکون ها"
 
 msgid "Show Service Names "
-msgstr ""
+msgstr "نمایش نام کانال ها"
 
 msgid "Show WLAN Status"
 msgstr "نمایش وضعیت شبکه بدون سیم"
@@ -4340,10 +4273,10 @@ msgid "Show background in Radio Mode"
 msgstr ""
 
 msgid "Show bouquet selection menu"
-msgstr ""
+msgstr "نمایش منوی انتخاب لیست"
 
 msgid "Show channel numbers in channel selection"
-msgstr ""
+msgstr "نمایش شماره کانال ها در انتخاب کانال"
 
 msgid "Show crypto info in infobar"
 msgstr ""
@@ -4386,7 +4319,7 @@ msgid "Show the tv player..."
 msgstr "نمایش پخش کننده تلوزیون"
 
 msgid "Shows the state of your wireless LAN connection.\n"
-msgstr ""
+msgstr "نمایش وضعیت اتصال شبکه بدون سیم شما\n"
 
 msgid "Shutdown"
 msgstr "خاموش کردن"
@@ -4405,7 +4338,7 @@ msgid "Signal Strength:"
 msgstr "قدرت سیگنال:"
 
 msgid "Signal quality"
-msgstr ""
+msgstr "کیفیت سیگنال"
 
 #
 msgid "Signal: "
@@ -4440,10 +4373,10 @@ msgid "Singlestep (GOP)"
 msgstr ""
 
 msgid "Site latitude"
-msgstr ""
+msgstr "عرض جغرافیایی سایت"
 
 msgid "Site longitude"
-msgstr ""
+msgstr "طول جغرافیایی سایت"
 
 msgid "Skin"
 msgstr "اسکین"
@@ -4468,7 +4401,7 @@ msgid "Slot %d"
 msgstr "شکاف %d"
 
 msgid "Slovak"
-msgstr ""
+msgstr "اسلواکی"
 
 #
 msgid "Slovenian"
@@ -4481,7 +4414,7 @@ msgid "Slow Motion speeds"
 msgstr ""
 
 msgid "SoftCam / CI"
-msgstr ""
+msgstr "SoftCam / CI"
 
 msgid "Software"
 msgstr "نرم افزار"
@@ -4676,25 +4609,25 @@ msgid "Subtitle delay when timing lacks"
 msgstr ""
 
 msgid "Subtitle language selection 1"
-msgstr ""
+msgstr "انتخاب زبان زیرنویس 1"
 
 msgid "Subtitle language selection 2"
-msgstr ""
+msgstr "انتخاب زبان زیرنویس 2"
 
 msgid "Subtitle language selection 3"
-msgstr ""
+msgstr "انتخاب زبان زیرنویس 3"
 
 msgid "Subtitle language selection 4"
-msgstr ""
+msgstr "انتخاب زبان زیرنویس 4"
 
 msgid "Subtitle selection"
 msgstr "انتخاب زیرنویس"
 
 msgid "Subtitle selection..."
-msgstr ""
+msgstr "انتخاب زیرنویس"
 
 msgid "Subtitle settings"
-msgstr ""
+msgstr "تنظیمات زیرنویس"
 
 msgid "Subtitles"
 msgstr "زیرنویس ها"
@@ -4767,7 +4700,7 @@ msgid "Tags"
 msgstr "برچسب ها"
 
 msgid "Teletext subtitle color"
-msgstr ""
+msgstr "رنگ زیرنویس تله تکست"
 
 msgid "Temperature and Fan control"
 msgstr "کنترل دما و فن"
@@ -4794,13 +4727,13 @@ msgid "Test-Messagebox?"
 msgstr "جعبه پیام های تست ؟"
 
 msgid "Text border width"
-msgstr ""
+msgstr "پهنای حاشیه نوشته"
 
 msgid "Text font size"
-msgstr ""
+msgstr "اندازه فونت نوشته"
 
 msgid "Thai"
-msgstr ""
+msgstr "تایلندی"
 
 msgid ""
 "Thank you for using the wizard.\n"
@@ -4816,10 +4749,7 @@ msgstr ""
 "ممنون بابت استفاده از هدایتگر ، دستگاه شما آماده برای استفاده است\n"
 "لطفا دکمه OK را برای شروع استفاده از دستگاه خود فشار دهید"
 
-msgid ""
-"The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to "
-"create a Dreambox format data DVD (which will not play in stand-alone DVD "
-"players) instead?"
+msgid "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to create a Dreambox format data DVD (which will not play in stand-alone DVD players) instead?"
 msgstr ""
 
 #
@@ -4887,19 +4817,14 @@ msgstr "فایل های زیر یافت شدند"
 
 msgid ""
 "The input port should be configured now.\n"
-"You can now configure the screen by displaying some test pictures. Do you "
-"want to do that now?"
+"You can now configure the screen by displaying some test pictures. Do you want to do that now?"
 msgstr ""
 
 msgid "The installation of the default services lists is finished."
 msgstr "نصب لیست های کانال های پیش فرض به پایان رسید"
 
-msgid ""
-"The installation of the default settings is finished. You can now continue "
-"configuring your Dreambox by pressing the OK button on the remote control."
-msgstr ""
-"نصب تنظیمات پیش فرض پایان یافت ، شما میتوانید برای ادامه پیکربندی دستگاه خود "
-"دکمه OK روی ریموت کنترل را فشار دهید"
+msgid "The installation of the default settings is finished. You can now continue configuring your Dreambox by pressing the OK button on the remote control."
+msgstr "نصب تنظیمات پیش فرض پایان یافت ، شما میتوانید برای ادامه پیکربندی دستگاه خود دکمه OK روی ریموت کنترل را فشار دهید"
 
 msgid "The md5sum validation failed, the file may be corrupted!"
 msgstr "تایید md5sum ناموفق بود ، فایل احتمالا خراب است"
@@ -4927,9 +4852,7 @@ msgstr "زمان خواب فعال شد"
 msgid "The sleep timer has been disabled."
 msgstr "زمان خواب غیر فعال شد"
 
-msgid ""
-"The status of the current beta image could not be checked because www."
-"openpli.org could not be reached for some reason"
+msgid "The status of the current beta image could not be checked because www.openpli.org could not be reached for some reason"
 msgstr ""
 
 msgid "The timer file (timers.xml) is corrupt and could not be loaded."
@@ -4949,19 +4872,12 @@ msgstr ""
 "پلاگین شبکه بدون سیم نصب نشده است\n"
 "لطفا آن را نصب کنید"
 
-msgid ""
-"The wizard can backup your current settings. Do you want to do a backup now?"
-msgstr ""
-"هدایتگر میتواند از تنظیمات فعلی شما نسخه پشتیبان تهیه کند ، آیا میخواهید "
-"الان نسخه پشتیبان تهیه شود ؟"
+msgid "The wizard can backup your current settings. Do you want to do a backup now?"
+msgstr "هدایتگر میتواند از تنظیمات فعلی شما نسخه پشتیبان تهیه کند ، آیا میخواهید الان نسخه پشتیبان تهیه شود ؟"
 
 #, python-format
-msgid ""
-"The wizard found a configuration backup. Do you want to restore your old "
-"settings from %s?"
-msgstr ""
-"هدایتگر یک نسخه پشتیبان پیکربندی شده یافت ، آیا میخواهید تنظیمات قبلی شما از "
-"%s بازگردانی شود ؟"
+msgid "The wizard found a configuration backup. Do you want to restore your old settings from %s?"
+msgstr "هدایتگر یک نسخه پشتیبان پیکربندی شده یافت ، آیا میخواهید تنظیمات قبلی شما از %s بازگردانی شود ؟"
 
 msgid "The wizard is finished now."
 msgstr "هدایتگر به پایان رسید"
@@ -5003,9 +4919,7 @@ msgstr "یک خطا هنگام دانلود لیست بسته ها رخ داد �
 msgid "There was an error. The package:"
 msgstr "یک خطا رخ داد ، بسته :"
 
-msgid ""
-"This DVD RW medium is already formatted - reformatting will erase all "
-"content on the disc."
+msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr ""
 
 #, python-format
@@ -5016,13 +4930,10 @@ msgid "This is step number 2."
 msgstr "این مرحله دوم است"
 
 msgid ""
-"This plugin creates a USB stick which can be used to update the firmware of "
-"your Dreambox without the need for a network or WLAN connection.\n"
+"This plugin creates a USB stick which can be used to update the firmware of your Dreambox without the need for a network or WLAN connection.\n"
 "First, a USB stick needs to be prepared so that it becomes bootable.\n"
-"In the next step, an NFI image file can be downloaded from the update server "
-"and saved on the USB stick.\n"
-"If you already have a prepared bootable USB stick, please insert it now. "
-"Otherwise plug in a USB stick with a minimum size of 64 MB!"
+"In the next step, an NFI image file can be downloaded from the update server and saved on the USB stick.\n"
+"If you already have a prepared bootable USB stick, please insert it now. Otherwise plug in a USB stick with a minimum size of 64 MB!"
 msgstr ""
 
 #
@@ -5045,8 +4956,7 @@ msgid ""
 "This test checks for configured Nameservers.\n"
 "If you get a \"unconfirmed\" message:\n"
 "- please check your DHCP, cabling and Adapter setup\n"
-"- if you configured your Nameservers manually please verify your entries in "
-"the \"Nameserver\" Configuration"
+"- if you configured your Nameservers manually please verify your entries in the \"Nameserver\" Configuration"
 msgstr ""
 
 msgid ""
@@ -5064,12 +4974,10 @@ msgid ""
 msgstr ""
 
 msgid ""
-"This test checks whether your LAN Adapter is set up for automatic IP Address "
-"configuration with DHCP.\n"
+"This test checks whether your LAN Adapter is set up for automatic IP Address configuration with DHCP.\n"
 "If you get a \"disabled\" message:\n"
 " - then your LAN Adapter is configured for manual IP Setup\n"
-"- verify thay you have entered correct IP informations in the AdapterSetup "
-"dialog.\n"
+"- verify thay you have entered correct IP informations in the AdapterSetup dialog.\n"
 "If you get an \"enabeld\" message:\n"
 "-verify that you have a configured and working DHCP Server in your network."
 msgstr ""
@@ -5078,8 +4986,7 @@ msgid "This test detects your configured LAN-Adapter."
 msgstr ""
 
 msgid ""
-"This will (re-)calculate all positions of your rotor and may remove "
-"previously memorised positions and fine-tuning!\n"
+"This will (re-)calculate all positions of your rotor and may remove previously memorised positions and fine-tuning!\n"
 "Are you sure?"
 msgstr ""
 
@@ -5176,10 +5083,8 @@ msgstr ""
 
 msgid ""
 "To update your Dreambox firmware, please follow these steps:\n"
-"1) Turn off your box with the rear power switch and make sure the bootable "
-"USB stick is plugged in.\n"
-"2) Turn mains back on and hold the DOWN button on the front panel pressed "
-"for 10 seconds.\n"
+"1) Turn off your box with the rear power switch and make sure the bootable USB stick is plugged in.\n"
+"2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n"
 "3) Wait for bootup and follow instructions of the wizard."
 msgstr ""
 
@@ -5436,9 +5341,7 @@ msgid ""
 "Please set up tuner A"
 msgstr ""
 
-msgid ""
-"Use the up/down keys on your remote control to select an option. After that, "
-"press OK."
+msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
 msgstr ""
 
 msgid "Use this input device settings?"
@@ -5524,8 +5427,7 @@ msgstr "تنظیمات بهینه تصویر"
 msgid ""
 "Video input selection\n"
 "\n"
-"Please press OK if you can see this page on your TV (or select a different "
-"input port).\n"
+"Please press OK if you can see this page on your TV (or select a different input port).\n"
 "\n"
 "The next input port will be automatically probed in 10 seconds."
 msgstr ""
@@ -5688,16 +5590,12 @@ msgstr ""
 msgid ""
 "Welcome to the Cutlist editor.\n"
 "\n"
-"Seek to the start of the stuff you want to cut away. Press OK, select 'start "
-"cut'.\n"
+"Seek to the start of the stuff you want to cut away. Press OK, select 'start cut'.\n"
 "\n"
 "Then seek to the end, press OK, select 'end cut'. That's it."
 msgstr ""
 
-msgid ""
-"Welcome to the Image upgrade wizard. The wizard will assist you in upgrading "
-"the firmware of your Dreambox by providing a backup facility for your "
-"current settings and a short explanation of how to upgrade your firmware."
+msgid "Welcome to the Image upgrade wizard. The wizard will assist you in upgrading the firmware of your Dreambox by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware."
 msgstr ""
 
 #
@@ -5705,8 +5603,7 @@ msgid ""
 "Welcome to the cleanup wizard.\n"
 "\n"
 "We have detected that your available internal memory has dropped below 2MB.\n"
-"To ensure stable operation of your Dreambox, the internal memory should be "
-"cleaned up.\n"
+"To ensure stable operation of your Dreambox, the internal memory should be cleaned up.\n"
 "You can use this wizard to remove some extensions.\n"
 msgstr ""
 
@@ -5714,8 +5611,7 @@ msgstr ""
 msgid ""
 "Welcome.\n"
 "\n"
-"If you want to connect your Dreambox to the Internet, this wizard will guide "
-"you through the basic network setup of your Dreambox.\n"
+"If you want to connect your Dreambox to the Internet, this wizard will guide you through the basic network setup of your Dreambox.\n"
 "\n"
 "Press OK to start configuring your network"
 msgstr ""
@@ -5747,8 +5643,7 @@ msgstr "گزارش های خطای دستگاه چه شوند ؟"
 msgid ""
 "When you do a factory reset, you will lose ALL your configuration data\n"
 "(including bouquets, services, satellite data ...)\n"
-"After completion of factory reset, your receiver will restart "
-"automatically!\n"
+"After completion of factory reset, your receiver will restart automatically!\n"
 "\n"
 "Really do a factory reset?"
 msgstr ""
@@ -5834,7 +5729,7 @@ msgid "Yes, view the tutorial"
 msgstr "بله ، مشاهده خودآموز"
 
 msgid "Yesterday"
-msgstr ""
+msgstr "دیروز"
 
 #, python-format
 msgid ""
@@ -5851,12 +5746,8 @@ msgstr "شما میتوانید عملیات نصب را لغو کنید"
 msgid "You can cancel the removal."
 msgstr "شما میتوانید عملیات حذف را لغو کنید"
 
-msgid ""
-"You can choose some default settings now. Please select the settings you "
-"want to be installed."
-msgstr ""
-"شما هم اکنون میتوانید تعدادی تنظیمات پیش فرض انتخاب کنید ، لطفا تنظیمات مورد "
-"نظر خود را برای نصب انتخاب کنید"
+msgid "You can choose some default settings now. Please select the settings you want to be installed."
+msgstr "شما هم اکنون میتوانید تعدادی تنظیمات پیش فرض انتخاب کنید ، لطفا تنظیمات مورد نظر خود را برای نصب انتخاب کنید"
 
 msgid "You can choose, what you want to install..."
 msgstr "انتخاب با شما است ، میتوانید هر انتخابی برای نصب داشته باشید"
@@ -5880,52 +5771,32 @@ msgstr "شما نمیتوانید این را حذف کنید"
 msgid "You chose not to install any default services lists."
 msgstr "شما هیچ لیست کانال پیش فرضی را برای نصب انتخاب نکرده اید"
 
-msgid ""
-"You chose not to install any default settings. You can however install the "
-"default settings later in the settings menu."
-msgstr ""
-"شما هیچ تنظیمات پیش فرضی را برای نصب انتخاب نکرده اید ، اگرچه در آینده "
-"میتوانید تنظیمات پیش فرض توسط منوی تنظیمات نصب کنید"
+msgid "You chose not to install any default settings. You can however install the default settings later in the settings menu."
+msgstr "شما هیچ تنظیمات پیش فرضی را برای نصب انتخاب نکرده اید ، اگرچه در آینده میتوانید تنظیمات پیش فرض توسط منوی تنظیمات نصب کنید"
 
-msgid ""
-"You chose not to install anything. Please press OK finish the install wizard."
-msgstr ""
-"شما هیچ چیزی برای نصب انتخاب نکرده اید ، لطفا دکمه OK را برای پایان هدایتگر "
-"نصب فشار دهید"
+msgid "You chose not to install anything. Please press OK finish the install wizard."
+msgstr "شما هیچ چیزی برای نصب انتخاب نکرده اید ، لطفا دکمه OK را برای پایان هدایتگر نصب فشار دهید"
 
 msgid "You didn't select a channel to record from."
 msgstr "شما کانالی برای شروع ضبط انتخاب نکرده اید"
 
-msgid ""
-"You have chosen to backup your settings. Please press OK to start the backup "
-"now."
-msgstr ""
-"شما تهیه نسخه پشتیبان از تنظیمات خود را انتخاب کرده اید ، لطفا دکمه OK را "
-"برای شروع تهیه نسخه پشتیبان فشار دهید"
+msgid "You have chosen to backup your settings. Please press OK to start the backup now."
+msgstr "شما تهیه نسخه پشتیبان از تنظیمات خود را انتخاب کرده اید ، لطفا دکمه OK را برای شروع تهیه نسخه پشتیبان فشار دهید"
 
-msgid ""
-"You have chosen to create a new .NFI flasher bootable USB stick. This will "
-"repartition the USB stick and therefore all data on it will be erased."
+msgid "You have chosen to create a new .NFI flasher bootable USB stick. This will repartition the USB stick and therefore all data on it will be erased."
 msgstr ""
 
 #
-msgid ""
-"You have chosen to restore your settings. Enigma2 will restart after "
-"restore. Please press OK to start the restore now."
-msgstr ""
-"شما بازگردانی تنظیمات خود را انتخاب کرده اید ، انیگما 2 بعد از بازگردانی "
-"دوباره راه اندازی میشود ، برای شروع بازگردانی دکمه OK را فشار دهید"
+msgid "You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now."
+msgstr "شما بازگردانی تنظیمات خود را انتخاب کرده اید ، انیگما 2 بعد از بازگردانی دوباره راه اندازی میشود ، برای شروع بازگردانی دکمه OK را فشار دهید"
 
 #, python-format
 msgid "You have to wait %s!"
 msgstr "لطفا صبر کنید %s"
 
 msgid ""
-"You need a PC connected to your dreambox. If you need further instructions, "
-"please visit the website http://www.dm7025.de.\n"
-"Your dreambox will now be halted. After you have performed the update "
-"instructions from the website, your new firmware will ask you to restore "
-"your settings."
+"You need a PC connected to your dreambox. If you need further instructions, please visit the website http://www.dm7025.de.\n"
+"Your dreambox will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
 msgstr ""
 
 msgid ""
@@ -5964,15 +5835,11 @@ msgstr ""
 msgid "Your Dreambox will restart after pressing OK on your remote control."
 msgstr "دستگاه شما بعد از فشار دادن دکمه OK دوباره راه اندازی خواهد شد"
 
-msgid ""
-"Your backup succeeded. We will now continue to explain the further upgrade "
-"process."
+msgid "Your backup succeeded. We will now continue to explain the further upgrade process."
 msgstr ""
 
 #
-msgid ""
-"Your collection exceeds the size of a single layer medium, you will need a "
-"blank dual layer DVD!"
+msgid "Your collection exceeds the size of a single layer medium, you will need a blank dual layer DVD!"
 msgstr ""
 
 #
@@ -5982,9 +5849,7 @@ msgstr "مجموعه فعلی شما گم خواهد شد"
 msgid "Your dreambox is shutting down. Please stand by..."
 msgstr ""
 
-msgid ""
-"Your dreambox isn't connected to the internet properly. Please check it and "
-"try again."
+msgid "Your dreambox isn't connected to the internet properly. Please check it and try again."
 msgstr "دستگاه شما به اینترنت متصل نیست ، لطفا بررسی و دوباره سعی کنید"
 
 #
@@ -6069,14 +5934,11 @@ msgstr "[حالت حرکت]"
 
 #
 msgid "a gui to assign services/providers to common interface modules"
-msgstr ""
-"یک GUI برای واگذار کردن کانال ها ، ارائه کننده ها به رابط مشترک ماژول ها"
+msgstr "یک GUI برای واگذار کردن کانال ها ، ارائه کننده ها به رابط مشترک ماژول ها"
 
 #
 msgid "a gui to assign services/providers/caids to common interface modules"
-msgstr ""
-"یک GUI برای واگذار کردن کانال ها ، ارائه کننده ها و CAIds به رابط مشترک "
-"ماژول ها"
+msgstr "یک GUI برای واگذار کردن کانال ها ، ارائه کننده ها و CAIds به رابط مشترک ماژول ها"
 
 msgid "abort alternatives edit"
 msgstr "انصراف از ویرایش متناوب"
@@ -6091,7 +5953,7 @@ msgid "about to start"
 msgstr "نزدیک به شروع شدن"
 
 msgid "activate PiP"
-msgstr ""
+msgstr "فعال کردن تصویر در تصویر"
 
 msgid "activate current configuration"
 msgstr "فعال کردن پیکربندی فعلی"
@@ -6154,7 +6016,7 @@ msgid "advanced"
 msgstr "پیشرفته"
 
 msgid "alphabetic reverse"
-msgstr ""
+msgstr "معکوس حروف الفبا"
 
 msgid "alphabetic sort"
 msgstr "چیدمان بر اساس حروف الفبا"
@@ -6221,7 +6083,7 @@ msgid "burn audio track (%s)"
 msgstr "رایت کردن آهنگ صوتی  (%s)"
 
 msgid "center"
-msgstr ""
+msgstr "مرکز"
 
 msgid "change recording (duration)"
 msgstr "تغییر مدت زمان ضبط کردن"
@@ -6322,22 +6184,22 @@ msgid "done!"
 msgstr "انجام شد"
 
 msgid "dreambox advanced remote control (native)"
-msgstr ""
+msgstr "ریموت کنترل پیشرفته دستگاه (محلی)"
 
 msgid "dreambox front panel"
-msgstr ""
+msgstr "پنل جلوی دستگاه"
 
 msgid "dreambox ir keyboard"
-msgstr ""
+msgstr "کیبورد مادون قرمز دستگاه"
 
 msgid "dreambox ir mouse"
-msgstr ""
+msgstr "موس مادون قرمز دستگاه"
 
 msgid "dreambox remote control (native)"
-msgstr ""
+msgstr "ریموت کنترل دستگاه (محلی)"
 
 msgid "east"
-msgstr ""
+msgstr "شرق"
 
 msgid "edit alternatives"
 msgstr ""
@@ -6373,7 +6235,7 @@ msgid "end favourites edit"
 msgstr "پایان ویرایش مورد علاقه"
 
 msgid "enigma2 and network"
-msgstr ""
+msgstr "انیگما 2 و شبکه"
 
 msgid "equal to"
 msgstr "مساوی با"
@@ -6402,7 +6264,7 @@ msgid "exit networkadapter setup menu"
 msgstr "خروج از منوی تنظیمات آداپتور شبکه"
 
 msgid "false"
-msgstr ""
+msgstr "غلط"
 
 #
 msgid "fileformats (BMP, PNG, JPG, GIF)"
@@ -6446,7 +6308,7 @@ msgid "hear radio..."
 msgstr "گوش کردن به رادیو"
 
 msgid "height"
-msgstr ""
+msgstr "ارتفاع"
 
 msgid "help..."
 msgstr "راهنما"
@@ -6609,7 +6471,7 @@ msgid "none"
 msgstr "هیچکدام"
 
 msgid "normal"
-msgstr ""
+msgstr "معمولی"
 
 msgid "not configured"
 msgstr "پیکربندی نشده"
@@ -6660,7 +6522,7 @@ msgid "open servicelist(up)"
 msgstr "باز کردن لیست کانال - بالا"
 
 msgid "original"
-msgstr ""
+msgstr "اصلی"
 
 msgid "pass"
 msgstr "قبول"
@@ -6669,7 +6531,7 @@ msgid "pause"
 msgstr "مکث"
 
 msgid "play as picture in picture"
-msgstr ""
+msgstr "نمایش به صورت تصویر در تصویر"
 
 msgid "play entry"
 msgstr "پخش مورد"
@@ -6681,7 +6543,7 @@ msgid "play from previous mark or playlist entry"
 msgstr "پخش کردن از علامت قبلی یا مورد لیست پخش"
 
 msgid "play in mainwindow"
-msgstr ""
+msgstr "نمایش در صفحه اصلی"
 
 msgid "please press OK when ready"
 msgstr "هنگامی که آماده بودید دکمه OK را فشار دهید"
@@ -6705,7 +6567,7 @@ msgid "red"
 msgstr "قرمز"
 
 msgid "relative"
-msgstr ""
+msgstr "مربوط"
 
 msgid "remove a nameserver entry"
 msgstr "حذف یک مورد nameserver"
@@ -6750,7 +6612,7 @@ msgid "repeated"
 msgstr "تکرار شده"
 
 msgid "reverse by date"
-msgstr ""
+msgstr "معکوس توسط تاریخ"
 
 msgid "rewind to the previous chapter"
 msgstr "بازگشت به فصل قبلی"
@@ -6808,7 +6670,7 @@ msgid "service PIN"
 msgstr "رمز کانال"
 
 msgid "set as startup service"
-msgstr ""
+msgstr "انتخاب به عنوان کانال پیش فرض"
 
 msgid "setup PIN"
 msgstr "رمز تنظیمات"
@@ -6823,7 +6685,7 @@ msgid "show Infoline"
 msgstr "نمایش خط اطلاعات"
 
 msgid "show all tags"
-msgstr ""
+msgstr "نمایش همه برچسب ها"
 
 msgid "show alternatives"
 msgstr "نمایش متناوب"
@@ -6951,7 +6813,7 @@ msgid "template file"
 msgstr "قالب فایل"
 
 msgid "textcolor"
-msgstr "رنگ متن"
+msgstr "رنگ نوشته"
 
 msgid "this recording"
 msgstr "این ضبط کردن"
@@ -6966,10 +6828,10 @@ msgid "toggle time, chapter, audio, subtitle info"
 msgstr "اطلاعات زمان ، فصل ، صدا ، زیرنویس"
 
 msgid "top"
-msgstr ""
+msgstr "بالا"
 
 msgid "true"
-msgstr ""
+msgstr "درست"
 
 msgid "tuner is not supported"
 msgstr "تیونر پشتیبانی نمیشود"
@@ -7015,16 +6877,16 @@ msgid "weekly"
 msgstr "هفته ای"
 
 msgid "west"
-msgstr ""
+msgstr "غرب"
 
 msgid "white"
-msgstr ""
+msgstr "سفید"
 
 msgid "whitelist"
 msgstr "لیست سفید"
 
 msgid "width"
-msgstr ""
+msgstr "عرض"
 
 msgid "wireless network interface"
 msgstr "رابط شبکه بدون سیم"
@@ -7041,13 +6903,8 @@ msgstr "بله"
 msgid "yes (keep feeds)"
 msgstr "بله نگه داشتن feeds"
 
-msgid ""
-"your dreambox might be unusable now. Please consult the manual for further "
-"assistance before rebooting your dreambox."
-msgstr ""
-"دستگاه شما احتمالا غیر قابل استفاده شده است ، لطفا قبل از راه اندازی مجدد "
-"دستگاه دفترچه راهنما را برای کمک بیشتر مطالعه کنید ، به شما توصیه میشود "
-"دوباره ایمیج نصب کنید"
+msgid "your dreambox might be unusable now. Please consult the manual for further assistance before rebooting your dreambox."
+msgstr "دستگاه شما احتمالا غیر قابل استفاده شده است ، لطفا قبل از راه اندازی مجدد دستگاه دفترچه راهنما را برای کمک بیشتر مطالعه کنید ، به شما توصیه میشود دوباره ایمیج نصب کنید"
 
 msgid "zap"
 msgstr "حذف"
@@ -7083,2394 +6940,3 @@ msgstr "حذف شد"
 
 #~ msgid "%dMhz scanned"
 #~ msgstr "%dMhz اسکن شد"
-
-#
-#~ msgid "%i ms"
-#~ msgstr "%i میلی ثانیه"
-
-#~ msgid ""
-#~ "%s\n"
-#~ "(%s, %d MB free)"
-#~ msgstr ""
-#~ "%s\n"
-#~ "(%s, %d مگابایت خالی)"
-
-#~ msgid "%s: %s at %s"
-#~ msgstr "%s: %s در %s"
-
-#~ msgid ".NFI Download failed:"
-#~ msgstr "دانلود فایل NFI با خطا مواجه شد:"
-
-#~ msgid "/"
-#~ msgstr "/"
-
-#~ msgid "30 minutes"
-#~ msgstr "30 دقیقه"
-
-#~ msgid "3D OSD Switcher"
-#~ msgstr "تعویض 3D OSD"
-
-#~ msgid "5 minutes"
-#~ msgstr "5 دقیقه"
-
-#~ msgid "50 Hz"
-#~ msgstr "50 هرتز"
-
-#~ msgid "60 minutes"
-#~ msgstr "60 دقیقه"
-
-#~ msgid "<No default storage device selected.>"
-#~ msgstr "<وسیله پیش فرضی برای ذخیره سازی انتخاب نشده است>"
-
-#~ msgid "A BackToTheRoots-Skin .. but with Warp-8 speed."
-#~ msgstr "A BackToTheRoots-Skin .. but with Warp-8 speed."
-
-#~ msgid "A BackToTheRoots-Skin .. or good old times."
-#~ msgstr "A BackToTheRoots-Skin .. or good old times."
-
-#~ msgid "A basic ftp client"
-#~ msgstr "یک ftp client بنیادی"
-
-#~ msgid "A client for www.dyndns.org"
-#~ msgstr "یک client برای سایت www.dyndns.org"
-
-#~ msgid "A dreambox simulation from SG-Atlantis displays."
-#~ msgstr "شبیه سازی دستگاه از صفحه نمایش SG-Atlantis"
-
-#~ msgid "A graphical EPG interface"
-#~ msgstr "رابط گرافیکی EPG"
-
-#~ msgid "A graphical EPG interface and EPG tools manager"
-#~ msgstr "رابط گرافیکی EPG و مدیریت ابزار های EPG"
-
-#~ msgid "A graphical EPG interface."
-#~ msgstr "رابط گرافیکی EPG"
-
-#~ msgid ""
-#~ "A mount entry with this name already exists!\n"
-#~ "Update existing entry and continue?\n"
-#~ msgstr ""
-#~ "یک مورد mount با این نام در حال حاضر وجود دارد\n"
-#~ "به روز رسانی مورد موجود و ادامه دادن ؟\n"
-
-#~ msgid "A nice looking HD skin from Kerni"
-#~ msgstr "اسکین"
-
-#~ msgid "A nice looking HD skin in Brushed Alu Design from Kerni."
-#~ msgstr "اسکین"
-
-#~ msgid "A nice looking skin from Kerni"
-#~ msgstr "اسکین"
-
-#~ msgid "A plugin to add / remove / modify entries of fstab."
-#~ msgstr "یک پلاگین برای اضافه/حذف/تغییر موارد fstab"
-
-#~ msgid "A simple downloading application for other plugins"
-#~ msgstr "یک برنامه دانلود ساده برای پلاگین های دیگر"
-
-#~ msgid "AC3 default"
-#~ msgstr "صدای AC3 در حالت پیش فرض"
-
-#~ msgid "AGC"
-#~ msgstr "قدرت سیگنال"
-
-#~ msgid "AGC:"
-#~ msgstr "قدرت سیگنال:"
-
-#~ msgid "AUTOMATICALLY start service searching, press green to change"
-#~ msgstr "اجرای خودکار جستجوی کانال ، برای تغییر دکمه سبز را فشار دهید"
-
-#~ msgid "Abort this Wizard."
-#~ msgstr "لغو این هدایتگر"
-
-#~ msgid "Access the EPG from within the Movie Player"
-#~ msgstr "دسترسی به EPG از پخش کننده صوت و تصویر داخلی"
-
-#~ msgid "Access to the ARD-Mediathek"
-#~ msgstr "دسترسی به ARD-Mediathek"
-
-#~ msgid "Access to the ARD-Mediathek online video database."
-#~ msgstr "دسترسی به دیتابیس تصویری آنلاین ARD-Mediathek"
-
-#~ msgid "Accesspoint"
-#~ msgstr "نقطه دسترسی"
-
-#~ msgid "Accuracy (higher is better)"
-#~ msgstr "دقت (بیشتر بهتر است)"
-
-#~ msgid "Activate VPS"
-#~ msgstr "فعال کردن VPS"
-
-#~ msgid "Active"
-#~ msgstr "فعال"
-
-#
-#~ msgid ""
-#~ "Active/\n"
-#~ "Inactive"
-#~ msgstr ""
-#~ "فعال/\n"
-#~ "غیر فعال"
-
-#~ msgid "Add a new NFS or CIFS mount point to your Dreambox."
-#~ msgstr "اضافه کردن mount point جدید NFS یا CIFS به دستگاه شما"
-
-#~ msgid "Add new AutoTimer"
-#~ msgstr "اضافه کردن زمان خودکار جدید"
-
-#
-#~ msgid "Add new network mount point"
-#~ msgstr "اضافه کردن mount point شبکه"
-
-#~ msgid "Add similar timer on conflict"
-#~ msgstr "اضافه کردن زمان مشابه روی مغایرت"
-
-#~ msgid "Add tags to recorded movies"
-#~ msgstr "اضافه کردن برچسب به فیلم های ضبط شده"
-
-#~ msgid "Add timer as disabled on conflict"
-#~ msgstr "اضافه کردن زمان به صورت غیر فعال روی تضاد"
-
-#~ msgid "Add zap timer instead of record timer?"
-#~ msgstr "اضافه کردن زمان zap بجای زمان ضبط ؟"
-
-#~ msgid "Added: "
-#~ msgstr "افزوده شد:"
-
-#~ msgid ""
-#~ "Adds 'search...' to the context menu of the movie list to allow searches."
-#~ msgstr ""
-#~ "'جستجو' را به منوی زمینه لیست فیلم اضافه میکند تا به جستجو ها اجازه داده "
-#~ "شود"
-
-#~ msgid "Adult streaming plugin"
-#~ msgstr "پلاگین بزرگسالان"
-
-#~ msgid "Adult streaming plugin."
-#~ msgstr "پلاگین بزرگسالان"
-
-#~ msgid "Advanced settings."
-#~ msgstr "تنظیمات پیشرفته"
-
-#~ msgid ""
-#~ "After a reboot or power outage, StartupToStandby will bring your Dreambox "
-#~ "to standby-mode."
-#~ msgstr ""
-#~ "بعد از راه اندازی مجدد و یا قطع برق ، پلاگین \"روشن تا خاموش\" دستگاه شما "
-#~ "را به حالت خاموشی موقت میبرد"
-
-#~ msgid "Ai.HD skin-style control plugin"
-#~ msgstr "پلاگین کنترل اسکین های HD"
-
-#~ msgid "All Time"
-#~ msgstr "همه زمان"
-
-#~ msgid "All non-repeating timers"
-#~ msgstr "همه زمان های غیر تکرار شونده"
-
-#~ msgid "All..."
-#~ msgstr "همه"
-
-#~ msgid "Allow to search recordings"
-#~ msgstr "اجازه برای جستجوی ضبط شده ها"
-
-#
-#~ msgid "Allow zapping via Webinterface"
-#~ msgstr "اجازه دادن برای تعویض کانال توسط رابط وب"
-
-#~ msgid "Allows the execution of TuxboxPlugins."
-#~ msgstr "اجازه دادن برای اجرا شدن پلاگین های Tuxbox"
-
-#~ msgid "Allows to change the order of entries in the main menu manually."
-#~ msgstr "اجازه برای تغییر دستی چیدمان موارد در منوی اصلی"
-
-#~ msgid "Allows to zap using the picture in picture."
-#~ msgstr "با استفاده از تصویر در تصویر به تعویض کانال اجازه میدهد"
-
-#~ msgid "Allows user to download files from rapidshare in the background."
-#~ msgstr "به کاربر اجازه میدهد که از رپیدشیر در پس زمینه دانلود کند"
-
-#~ msgid "Ammount of recordings left"
-#~ msgstr "مقدار باقی مانده از ضبط"
-
-#~ msgid "Amount of recordings left"
-#~ msgstr "میزان ضبط های باقی مانده"
-
-#~ msgid "An error occured."
-#~ msgstr "خطا رخ داد"
-
-#~ msgid "Any service/recording"
-#~ msgstr "هر کانال/ضبط"
-
-#~ msgid ""
-#~ "Are you sure you want to save this network mount?\n"
-#~ "\n"
-#~ msgstr ""
-#~ "آیا مطمئن هستید که میخواهید این mount شبکه را ذخیره کنید ؟\n"
-#~ "\n"
-
-#
-#~ msgid "Ascending"
-#~ msgstr "صعودی"
-
-#~ msgid "Aspect ratio"
-#~ msgstr "نسبت تصویر"
-
-#~ msgid ""
-#~ "Assign color buttons (red/green/yellow/blue) to plugins of MOVIELIST."
-#~ msgstr ""
-#~ "اختصاص دادن کلید های رنگی (قرمز/سبز/زرد/آبی) به پلاگین های لیست فیلم"
-
-#~ msgid "Assign color buttons to plugins of MOVIELIST"
-#~ msgstr "اختصاص دادن کلید های رنگی به پلاگین های لیست فیلم"
-
-#~ msgid "Assigning providers/services/caids to a CI module"
-#~ msgstr "تعیین ارائه دهندگان/کانال ها/caids به یک ماژول CI"
-
-#~ msgid "Atheros"
-#~ msgstr "Atheros"
-
-#~ msgid "Audio Sync"
-#~ msgstr "به هنگام رسانی صدا"
-
-#~ msgid "Audio Sync Setup"
-#~ msgstr "تنظیمات به هنگام رسانی صدا"
-
-#~ msgid ""
-#~ "AudoSync allows delaying the sound output (Bitstream/PCM) so that it is "
-#~ "synchronous to the picture."
-#~ msgstr ""
-#~ "به هنگام رسانی صدا اجازه میدهد که خروجی صدا تاخیر داشته باشد (Bitstream/"
-#~ "PCM) بنابراین صدا با تصویر همگام میشود"
-
-#~ msgid "Australia"
-#~ msgstr "استرالیا"
-
-#~ msgid "AutoTimer Editor"
-#~ msgstr "ویرایشگر زمان خودکار"
-
-#~ msgid "AutoTimer Filters"
-#~ msgstr "فیلتر های زمان خودکار"
-
-#~ msgid "AutoTimer Services"
-#~ msgstr "کانال های زمان خودکار"
-
-#~ msgid "AutoTimer Settings"
-#~ msgstr "تنظیمات زمان خودکار"
-
-#
-#~ msgid "AutoTimer overview"
-#~ msgstr "مرور کلی زمان خودکار"
-
-#~ msgid ""
-#~ "AutoTimer scans the EPG and creates Timers depending on user-defined "
-#~ "search  criteria."
-#~ msgstr ""
-#~ "زمان خودکار EPG را اسکن میکند و زمان هایی وابسته به جستجوی تعریف شده توسط "
-#~ "کاربر ایجاد میکند"
-
-#~ msgid "AutoTimer was added successfully"
-#~ msgstr "زمان خودکار با موفقیت اضافه شد"
-
-#~ msgid "AutoTimer was changed successfully"
-#~ msgstr "زمان خودکار با موفقیت تغییر کرد"
-
-#~ msgid "AutoTimer was removed"
-#~ msgstr "زمان خودکار حذف شد"
-
-#~ msgid "Automatic volume adjustment"
-#~ msgstr "تنظیم حجم صدا به صورت خودکار"
-
-#~ msgid "Automatic volume adjustment for ac3/dts services."
-#~ msgstr "تنظیم خودکار حجم صدای ac3/dts برای کانال ها"
-
-#~ msgid "Automatically change video resolution"
-#~ msgstr "تغییر اندازه تصویر به صورت خودکار"
-
-#~ msgid ""
-#~ "Automatically changes the output resolution depending on the video "
-#~ "resolution you are watching."
-#~ msgstr ""
-#~ "تغییر اندازه تصویر خروجی به صورت خودکار با توجه به اندازه تصویری که شما "
-#~ "تماشا میکنید"
-
-#~ msgid "Automatically create timer events based on keywords"
-#~ msgstr "ایجاد خودکار رخداد های ضبط کردن بر پایه کلمات کلیدی"
-
-#~ msgid "Automatically informs you on low internal memory"
-#~ msgstr "شما را از کم بودن حافظه داخلی به صورت خودکار آگاه میکند"
-
-#~ msgid "Automatically refresh EPG"
-#~ msgstr "بازنگری خودکار EPG"
-
-#~ msgid "Automatically send crashlogs to Dream Multimedia"
-#~ msgstr "ارسال گزارش های خطا به شرکت دریم مولتی مدیا به صورت خودکار"
-
-#~ msgid "Autoresolution"
-#~ msgstr "اندازه تصویر خودکار"
-
-#~ msgid ""
-#~ "Autoresolution Plugin Testmode:\n"
-#~ "Is %s OK?"
-#~ msgstr ""
-#~ "پلاگین اندازه تصویر خودکار در حالت تست :\n"
-#~ "آیا %s درست است ؟"
-
-#~ msgid ""
-#~ "Autoresolution Plugin Testmode:\n"
-#~ "Is %s ok?"
-#~ msgstr ""
-#~ "حالت تست پلاگین اندازه تصویر خودکار:\n"
-#~ "آیا %s مورد تایید است ؟"
-
-#~ msgid "Autoresolution Switch"
-#~ msgstr "تعویض اندازه تصویر خودکار"
-
-#~ msgid "Autoresolution is not working in Scart/DVI-PC Mode"
-#~ msgstr "پلاگین اندازه تصویر خودکار در حالت های Scart/DVI-PC کار نمیکند"
-
-#~ msgid "Autoresolution settings"
-#~ msgstr "تنظیمات اندازه تصویر خودکار"
-
-#~ msgid "Autoresolution videomode setup"
-#~ msgstr "تنظیمات حالت تصویر پلاگین اندازه تصویر خودکار"
-
-#
-#~ msgid "Autos & Vehicles"
-#~ msgstr "خودرو و وسایل نقلیه"
-
-#~ msgid "Autowrite timer"
-#~ msgstr "بازنویسی خودکار زمان"
-
-#~ msgid "BASIC-HD Skin by Ismail Demir"
-#~ msgstr "اسکین"
-
-#~ msgid "BASIC-HD Skin for Dreambox Images created from Ismail Demir"
-#~ msgstr "اسکین"
-
-#~ msgid "Back, lower USB"
-#~ msgstr "بازگشت ، USB پایینی"
-
-#~ msgid "Back, lower USB Slot"
-#~ msgstr "بازگشت ، شکاف USB پایینی"
-
-#~ msgid "Back, upper USB"
-#~ msgstr "بازگشت ، USB بالایی"
-
-#~ msgid "Back, upper USB Slot"
-#~ msgstr "بازگشت ، شکاف USB بالایی"
-
-#~ msgid "Backup is done. Please press OK to see the result."
-#~ msgstr "تهیه نسخه پشتیبان انجام شد ، دکمه OK را برای مشاهده نتیجه فشار دهید"
-
-#~ msgid "Basic Picasa client."
-#~ msgstr "پلاگین بنیادی Picasa"
-
-#~ msgid "Begin of \"after event\" timespan"
-#~ msgstr "شروع محدوده \"بعد از رخداد\""
-
-#~ msgid "Begin of timespan"
-#~ msgstr "شروع محدوده زمان"
-
-#~ msgid "Bitrate"
-#~ msgstr "میزان ارسال"
-
-#~ msgid "Blindscan"
-#~ msgstr "اسکن کور"
-
-#~ msgid "Blindscan is not supported by this tuner (%s)"
-#~ msgstr "اسکن کور توسط تیونر (%s) پشتیبانی نمیشود"
-
-#~ msgid "Bonjour/Avahi control plugin"
-#~ msgstr "پلاگین کنترل Bonjour/Avahi"
-
-#~ msgid "Bonjour/Avahi control plugin."
-#~ msgstr "پلاگین کنترل Bonjour/Avahi"
-
-#~ msgid "Bouquets"
-#~ msgstr "لیست ها"
-
-#
-#~ msgid "Brazil"
-#~ msgstr "برزیل"
-
-#~ msgid ""
-#~ "Browse ORF and SAT1 Teletext independent from channel. This need I-net "
-#~ "conection."
-#~ msgstr ""
-#~ "مرور تله تکست مستقل از کانال ORF و SAT1 ، این مورد نیاز به ارتباط I-net "
-#~ "دارد"
-
-#~ msgid "Browse for and connect to network shares"
-#~ msgstr "مرور برای به اشتراک گذاشته شده های شبکه و وصل شدن به آنها"
-
-#~ msgid "Browse for nfs/cifs shares and connect to them."
-#~ msgstr "مرور برای به اشتراک گذاشته شده های nfs/cifs و وصل شدن به آنها"
-
-#
-#~ msgid "Browse network neighbourhood"
-#~ msgstr "مرور شبکه مجاور"
-
-#~ msgid "Burn your recordings to DVD"
-#~ msgstr "رایت فایل های ضبط شده شما در DVD"
-
-#~ msgid ""
-#~ "By enabling this events will not be matched if they don't occur on "
-#~ "certain dates."
-#~ msgstr ""
-#~ "با فعال کردن این مورد ، رخداد ها اگر در تاریخ های مشخصی رخ ندهند منطبق "
-#~ "نخواهند شد"
-
-#~ msgid ""
-#~ "By enabling this you will be notified about timer conflicts found during "
-#~ "automated polling. There is no intelligence involved, so it might bother "
-#~ "you about the same conflict over and over."
-#~ msgstr ""
-#~ "با فعال کردن این مورد ، درباره مغایرت هایی که در طول رای گیری خودکار یافت "
-#~ "میشود به شما اطلاع داده خواهد شد ، هیچ هوشی در کار نیست ، بنابراین ممکن "
-#~ "است درباره مغایرت های یکسان بار ها و بار ها مزاحم شما شود"
-
-#~ msgid "CDInfo"
-#~ msgstr "اطلاعات CD"
-
-#~ msgid ""
-#~ "CDInfo enables gathering album and track details from CDDB and CD-Text "
-#~ "when playing Audio CDs in Mediaplayer."
-#~ msgstr ""
-#~ "اطلاعات CD ، جمع آوری جزئیات آلبوم و قطعات موسیقی را از CDDB و CD-Text "
-#~ "هنگام پخش CD های صوتی در پخش کننده صوت و تصویر فعال میکند"
-
-#
-#~ msgid "CIFS share"
-#~ msgstr "CIFS share"
-
-#~ msgid "Call monitoring"
-#~ msgstr "Call monitoring"
-
-#~ msgid "Can't connect to server. Please check your network!"
-#~ msgstr "نمیتوان به سرور متصل شد ، لطفا شبکه خود را بررسی کنید"
-
-#~ msgid "Canada"
-#~ msgstr "کانادا"
-
-#~ msgid "Catalan"
-#~ msgstr "کاتالان"
-
-#
-#~ msgid "Center screen at the lower border"
-#~ msgstr "پنجره مرکزی در حاشیه پایینی"
-
-#
-#~ msgid "Center screen at the upper border"
-#~ msgstr "پنجره مرکزی در حاشیه بالایی"
-
-#~ msgid "Change active delay"
-#~ msgstr "تغییر تاخیر فعال"
-
-#~ msgid "Change default recording offset?"
-#~ msgstr "تغییر offset پیش فرض ضبط کردن ؟"
-
-#~ msgid "Change dir."
-#~ msgstr "تغییر پوشه"
-
-#~ msgid "Change hostname"
-#~ msgstr "تغییر نام هاست"
-
-#~ msgid "Change the hostname of your Dreambox."
-#~ msgstr "تغییر نام هاست دستگاه شما"
-
-#~ msgid "Channel audio:"
-#~ msgstr "صدای کانال:"
-
-#~ msgid "Channels"
-#~ msgstr "کانال ها"
-
-#~ msgid "Check for uniqueness in"
-#~ msgstr "بررسی برای یگانگی در"
-
-#~ msgid "Check selected harddisk."
-#~ msgstr "هارد انتخاب شده را بررسی کنید"
-
-#~ msgid "Check selected storage device."
-#~ msgstr "بررسی وسیله ذخیره سازی انتخاب شده"
-
-#
-#~ msgid "Classic"
-#~ msgstr "کلاسیک"
-
-#~ msgid "Cleanup timerlist automatically"
-#~ msgstr "پاک سازی لیست زمان به صورت خودکار"
-
-#~ msgid "Cleanup timerlist automatically."
-#~ msgstr "پاک سازی خودکار لیست زمان"
-
-#
-#~ msgid "Clear history on Exit:"
-#~ msgstr "پاک سازی تاریخچه هنگام خروج :"
-
-#~ msgid "Close and forget changes"
-#~ msgstr "بستن و فراموش کردن تغییرات"
-
-#
-#~ msgid "Close and save changes"
-#~ msgstr "بستن و ذخیره کردن تغییرات"
-
-#~ msgid "Code rate high"
-#~ msgstr "Code rate high"
-
-#~ msgid "Code rate low"
-#~ msgstr "Code rate low"
-
-#
-#~ msgid "Comedy"
-#~ msgstr "کمدی"
-
-#~ msgid "Compact flash card"
-#~ msgstr "Compact flash کارت"
-
-#~ msgid "Configuration for the Webinterface"
-#~ msgstr "پیکربندی رابط وب"
-
-#
-#~ msgid "Configure AutoTimer behavior"
-#~ msgstr "پیکربندی عملکرد زمان خودکار"
-
-#~ msgid "Configure your WLAN network interface"
-#~ msgstr "پیکربندی رابط بدون سیم شبکه شما"
-
-#~ msgid "Continue configuring your network"
-#~ msgstr "ادامه پیکربندی شبکه شما"
-
-#~ msgid "Control recording completely by service"
-#~ msgstr "کنترل کامل ضبط کردن توسط کانال"
-
-#~ msgid "Control your Dreambox with your Web browser."
-#~ msgstr "کنترل دستگاه شما فقط با مرورگر شما"
-
-#~ msgid "Control your Dreambox with your browser"
-#~ msgstr "کنترل دستگاه شما فقط با مرورگر شما"
-
-#~ msgid "Control your dreambox with only the MUTE button"
-#~ msgstr "کنترل دستگاه شما فقط با دکمه MUTE"
-
-#~ msgid "Control your dreambox with only the MUTE button."
-#~ msgstr "کنترل دستگاه شما فقط با دکمه MUTE"
-
-#~ msgid "Control your internal system fan."
-#~ msgstr "کنترل فن داخلی سیستم شما"
-
-#~ msgid "Control your kids's tv usage"
-#~ msgstr "کنترل میزان استفاده از تلوزیون فرزندان شما"
-
-#~ msgid "Control your system fan"
-#~ msgstr "کنترل فن سیستم شما"
-
-#~ msgid "Copy, rename, delete, move local files on your Dreambox."
-#~ msgstr "کپی ، تغییر نام ، حذف و انتقال فایل های محلی دستگاه شما"
-
-#~ msgid "Create a backup of your Video DVD on your DreamBox hard drive."
-#~ msgstr "تهیه نسخه پشتیبان از DVD تصویری شما روی هارد دستگاه شما"
-
-#~ msgid "Create a backup of your Video-DVD"
-#~ msgstr "تهیه نسخه پشتیبان از DVD تصویری شما"
-
-#~ msgid "Create a new AutoTimer."
-#~ msgstr "ایجاد یک زمان خودکار جدید"
-
-#~ msgid "Create a new timer using the classic editor"
-#~ msgstr "ایجاد یک زمان جدید با استفاده از ویرایشگر کلاسیک"
-
-#~ msgid "Create a new timer using the wizard"
-#~ msgstr "ایجاد یک زمان جدید با استفاده از هدایتگر"
-
-#~ msgid "Create directory"
-#~ msgstr "ایجاد پوشه"
-
-#~ msgid "Create movie folder failed"
-#~ msgstr "ایجاد پوشه فیلم ناموفق"
-
-#~ msgid "Create movie folder failed. Please verify your mountpoint!"
-#~ msgstr "ایجاد پوشه فیلم ناموفق بود لطفا mountpoint خود را بررسی کنید"
-
-#~ msgid "Create preview pictures of your Movies"
-#~ msgstr "ساخت تصاویر پیش نمایش از فیلم های شما"
-
-#~ msgid "Create remote timers"
-#~ msgstr "ایجاد زمان های ریموت"
-
-#~ msgid "Create timers on remote Dreamboxes."
-#~ msgstr "ایجاد زمان های ریموت دستگاه"
-
-#~ msgid "Creating partition failed"
-#~ msgstr "ایجاد پارتیشن ناموفق"
-
-#~ msgid "Custom (%s)"
-#~ msgstr "سفارشی (%s)"
-
-#~ msgid "Custom location"
-#~ msgstr "محل خاص"
-
-#~ msgid "Custom offset"
-#~ msgstr "offset سفارشی"
-
-#~ msgid "Customize Vali-XD skins"
-#~ msgstr "سفارشی کردن اسکین های Vali-XD"
-
-#~ msgid "Customize Vali-XD skins by yourself."
-#~ msgstr "سفارشی کردن اسکین های Vali-XD توسط خود شما"
-
-#~ msgid "Cut your movies"
-#~ msgstr "برش فیلم های شما"
-
-#~ msgid "Cut your movies."
-#~ msgstr "برش فیلم های شما"
-
-#~ msgid "CutListEditor allows you to edit your movies"
-#~ msgstr "ویرایشگر برش لیست به شما اجازه میدهد که فیلم های خود را ویرایش کنید"
-
-#~ msgid ""
-#~ "CutListEditor allows you to edit your movies.\n"
-#~ "Seek to the start of the stuff you want to cut away. Press OK, select "
-#~ "'start cut'.\n"
-#~ "Then seek to the end, press OK, select 'end cut'. That's it."
-#~ msgstr ""
-#~ "ویرایشگر برش لیست به شما اجازه میدهد که فیلم های خود را ویرایش کنید\n"
-#~ "به دنبال شروع مواردی باشید که میخواهید بریده شوند ، دکمه OK را فشار دهید "
-#~ "و \"شروع برش\" را انتخاب کنید\n"
-#~ "سپس دنبال پایان موارد باشید ، دکمه OK را فشار دهید و \"پایان برش\" را "
-#~ "انتخاب کنید"
-
-#
-#~ msgid "Czech Republic"
-#~ msgstr "جمهوری چک"
-
-#~ msgid "DVB-S + DVB-S2"
-#~ msgstr "DVB-S + DVB-S2"
-
-#~ msgid "DVB-S only"
-#~ msgstr "فقط DVB-S"
-
-#~ msgid "DVD Drive"
-#~ msgstr "درایو DVD"
-
-#~ msgid "DVDPlayer plays your DVDs on your Dreambox"
-#~ msgstr "پخش کننده DVD رسانه های DVD شما را در دستگاه پخش میکند"
-
-#~ msgid ""
-#~ "DVDPlayer plays your DVDs on your Dreambox.\n"
-#~ "With the DVDPlayer you can play your DVDs on your Dreambox from a DVD or "
-#~ "even from an iso file or video_ts folder on your harddisc or network."
-#~ msgstr ""
-#~ "پخش کننده DVD رسانه های DVD شما را در دستگاه پخش میکند\n"
-#~ "با پخش کننده DVD شما میتوانید رسانه های DVD خود را از DVD ، پوشه video_ts "
-#~ "روی هارد و یا شبکه و حتی ایمیج iso نیز پخش کنید"
-
-#~ msgid "Decrease delay"
-#~ msgstr "کاهش تاخیر"
-
-#
-#~ msgid "Decrease delay by %i ms (can be set)"
-#~ msgstr "کاهش تاخیر با %i میلی ثانیه (قابل تنظیم)"
-
-#~ msgid "Default services lists"
-#~ msgstr "لیست های پیش فرض کانال ها"
-
-#~ msgid "Default storage device"
-#~ msgstr "وسیله ذخیره سازی پیش فرض"
-
-#~ msgid "Default storage device is not available!"
-#~ msgstr "وسیله ذخیره سازی پیش فرض در دسترس نیست"
-
-#~ msgid "Default storage device was removed!"
-#~ msgstr "وسیله ذخیره سازی پیش فرض حذف شد"
-
-#~ msgid "Defaults"
-#~ msgstr "پیش فرض"
-
-#~ msgid "Define a related pip service"
-#~ msgstr "یک کانال مرتبط برای تصویر در تصویر تعریف کنید"
-
-#~ msgid "Define a related pip service "
-#~ msgstr "یک کانال مرتبط برای تصویر در تصویر تعریف کنید"
-
-#~ msgid "Define a startup service"
-#~ msgstr "تعیین یک کانال به عنوان پیش فرض شروع دستگاه"
-
-#~ msgid "Define a startup service for your Dreambox."
-#~ msgstr "تعیین یک کانال به عنوان پیش فرض شروع دستگاه شما"
-
-#~ msgid "Deinterlacer mode for interlaced content"
-#~ msgstr "حالت غیر interlace برای محتوای interlace"
-
-#~ msgid "Deinterlacer mode for progressive content"
-#~ msgstr "حالت غیر interlace برای محتوای progressive"
-
-#~ msgid "Delay"
-#~ msgstr "تاخیر"
-
-#~ msgid "Delay x seconds after service started"
-#~ msgstr "تاخیر x ثانیه ای بعد از شروع کانال"
-
-#~ msgid "Delete mount"
-#~ msgstr "حذف mount"
-
-#~ msgid "Descending"
-#~ msgstr "نزولی"
-
-#~ msgid "DiSEqC Mode"
-#~ msgstr "DiSEqC حالت"
-
-#
-#~ msgid "Dir:"
-#~ msgstr "شاخه:"
-
-#~ msgid "Direct playback of Youtube videos"
-#~ msgstr "پخش مستقیم ویدیو های YouTube"
-
-#~ msgid "Disable Subtitles"
-#~ msgstr "غیر فعال کردن زیرنویس"
-
-#
-#~ msgid "Discard changes and close plugin"
-#~ msgstr "نادیده گرفتن تغییرات و بستن پلاگین"
-
-#
-#~ msgid "Discard changes and close screen"
-#~ msgstr "نادیده گرفتن تغییرات و بستن پنجره"
-
-#
-#~ msgid "Display search results by:"
-#~ msgstr "نمایش نتایج جستجو توسط:"
-
-#~ msgid "Display your photos on the TV"
-#~ msgstr "نمایش عکس های شما روی تلوزیون"
-
-#~ msgid "Displays Movie Information from the InternetMovieDatabase"
-#~ msgstr "اطلاعات فیلم را از بانک اطلاعاتی اینترنتی فیلم نمایش میدهد"
-
-#~ msgid "Displays Movie Information from the Online Film Datenbank (German)"
-#~ msgstr "اطلاعات فیلم را از بانک اطلاعاتی اینترنتی فیلم (آلمانی) نمایش میدهد"
-
-#~ msgid "Do nothing."
-#~ msgstr "هیچ کاری انجام نشود"
-
-#~ msgid ""
-#~ "Do you really want to delete %s\n"
-#~ "%s?"
-#~ msgstr ""
-#~ "آیا واقعا میخواهید حذف کنید %s\n"
-#~ "%s?"
-
-#~ msgid ""
-#~ "Do you really want to initialize the harddisk?\n"
-#~ "All data on the disk will be lost!"
-#~ msgstr ""
-#~ "آیا واقعا میخواهید دیسک سخت را آماده سازی کنید ؟\n"
-#~ "همه اطلاعات روی دیسک از بین خواهند رفت!"
-
-#~ msgid ""
-#~ "Do you really want to initialize this hard disk?\n"
-#~ "All data on this disk will be lost!"
-#~ msgstr ""
-#~ "آیا واقعا میخواهید که این هارد مقدار دهی اولیه شود ؟\n"
-#~ "تمامی اطلاعات موجود روی این دیسک از دست خواهند رفت"
-
-#~ msgid ""
-#~ "Do you really want to initialize this storage device?\n"
-#~ "All data on this device will be lost!"
-#~ msgstr ""
-#~ "آیا واقعا میخواهید که این وسیله ذخیر سازی مقدار دهی اولیه شود ؟\n"
-#~ "تمامی اطلاعات موجود روی این وسیله از دست خواهند رفت"
-
-#
-#~ msgid "Do you want to enter a username and password for this host?\n"
-#~ msgstr "آیا میخواهید نام کاربری و رمز عبور برای این میزبان وارد کنید ؟\n"
-
-#~ msgid "Do you want to install default sat lists?"
-#~ msgstr "آیا میخواهید لیست های پیش فرض ماهواره نصب کنید ؟"
-
-#~ msgid "Do you want to see more entries?"
-#~ msgstr "آیا میخواهید موارد بیشتری را ببینید ؟"
-
-#~ msgid "Download Video"
-#~ msgstr "دانلود ویدیو"
-
-#~ msgid "Download files from Rapidshare"
-#~ msgstr "دانلود فایل ها از سایت رپیدشیر"
-
-#~ msgid "Download location"
-#~ msgstr "دانلود محل"
-
-#~ msgid "Download subtitle to any movie."
-#~ msgstr "دانلود زیرنویس برای هر فیلمی"
-
-#~ msgid "Downloading image description..."
-#~ msgstr "در حال دانلود مشخصات ایمیج"
-
-#~ msgid "Downloading screenshots. Please wait..."
-#~ msgstr "در حال دانلود کردن تصاویر ، لطفا صبر کنید"
-
-#~ msgid "Driver for Ralink RT8070/RT3070/RT3370 based wireless-n USB devices."
-#~ msgstr ""
-#~ "درایور برای دستگاه های بدون سیم USB با چیپ  Ralink RT8070/RT3070/RT3370"
-
-#~ msgid "Driver for Realtek r8712u based wireless-n USB devices."
-#~ msgstr "درایور برای دستگاه های بدون سیم USB با چیپ  Realtek r8712u"
-
-#~ msgid "Duration: "
-#~ msgstr "مدت:"
-
-#~ msgid "EPG encoding"
-#~ msgstr "رمز گذاری EPG"
-
-#~ msgid "Edit AutoTimer"
-#~ msgstr "ویرایش زمان خودکار"
-
-#~ msgid "Edit AutoTimer filters"
-#~ msgstr "ویرایش فیلتر های زمان خودکار"
-
-#~ msgid "Edit AutoTimer services"
-#~ msgstr "ویرایش کانال های زمان خودکار"
-
-#~ msgid "Edit Timers and scan for new Events"
-#~ msgstr "ویرایش زمان ها و اسکن برای رخداد های جدید"
-
-#~ msgid "Edit new timer defaults"
-#~ msgstr "ویرایش پیش فرض های جدید زمان"
-
-#~ msgid "Edit selected AutoTimer"
-#~ msgstr "ویرایش زمان خودکار انتخاب شده"
-
-#~ msgid "Edit tags of recorded movies"
-#~ msgstr "ویرایش برچسب های فیلم های ضبط شده"
-
-#~ msgid "Edit tags of recorded movies."
-#~ msgstr "ویرایش برچسب های فیلم های ضبط شده"
-
-#~ msgid "Editing"
-#~ msgstr "در حال ویرایش"
-
-#~ msgid "Editor for fstab"
-#~ msgstr "ویرایشگر برای fstab"
-
-#~ msgid "Editor for new AutoTimers"
-#~ msgstr "ویرایشگر برای زمان های خودکار جدید"
-
-#~ msgid "Education"
-#~ msgstr "آموزش"
-
-#~ msgid "Emailclient is an IMAP4 e-mail viewer for the Dreambox."
-#~ msgstr "پلاگین ایمیل یک نمایش دهنده ایمیل IMAP4 برای دستگاه است"
-
-#~ msgid "Enable /media"
-#~ msgstr "فعال کردن /media"
-
-#~ msgid "Enable 1080p24 Mode"
-#~ msgstr "فعال کردن حالت 1080p24"
-
-#~ msgid "Enable 1080p25 Mode"
-#~ msgstr "فعال کردن حالت 1080p25"
-
-#~ msgid "Enable 1080p30 Mode"
-#~ msgstr "فعال کردن حالت 1080p30"
-
-#~ msgid "Enable 720p24 Mode"
-#~ msgstr "فعال کردن حالت 720p24"
-
-#~ msgid "Enable Autoresolution"
-#~ msgstr "فعال کردن اندازه تصویر خودکار"
-
-#~ msgid "Enable Filtering"
-#~ msgstr "فعال کردن فیلتر گذاری"
-
-#
-#~ msgid "Enable HTTP Access"
-#~ msgstr "فعال کردن دسترسی HTTP"
-
-#
-#~ msgid "Enable HTTP Authentication"
-#~ msgstr "فعال کردن تصدیق HTTP"
-
-#
-#~ msgid "Enable HTTPS Access"
-#~ msgstr "فعال کردن دسترسی HTTPS"
-
-#
-#~ msgid "Enable HTTPS Authentication"
-#~ msgstr "فعال کردن تصدیق HTTPS"
-
-#~ msgid "Enable Service Restriction"
-#~ msgstr "فعال کردن محدودیت کانال"
-
-#~ msgid "Enable Streaming Authentication"
-#~ msgstr "فعال کردن تصدیق Streaming"
-
-#~ msgid "Enable automatic partition mounting?"
-#~ msgstr "فعال کردن mount خودکار پارتیشن ؟"
-
-#~ msgid "Enable partition automount?"
-#~ msgstr "فعال کردن mount خودکار پارتیشن ؟"
-
-#~ msgid "Encryption Type"
-#~ msgstr "نوع رمزگذاری"
-
-#~ msgid "End"
-#~ msgstr "پایان"
-
-#~ msgid "End of \"after event\" timespan"
-#~ msgstr "پایان محدوده زمان \"بعد از رخداد\""
-
-#~ msgid "End of timespan"
-#~ msgstr "پایان محدوده زمان"
-
-#~ msgid ""
-#~ "Enigma2 Plugin to play AVI/DIVX/WMV/etc. videos from PC on your Dreambox. "
-#~ "Needs a running VLC from www.videolan.org on your pc."
-#~ msgstr ""
-#~ "پلاگین انیگما 2 برای پخش فرمت های  AVI/DIVX/WMV و غیره . فایل های تصویری "
-#~ "کامپیوتر شما روی دستگاه شما . نرم افزار VLC باید روی کامپیوتر شما نصب شده "
-#~ "باشد ، برای دانلود نسخه PC به سایت www.videolan.org مراجعه کنید"
-
-#
-#~ msgid "Enter IP to scan..."
-#~ msgstr "IP را برای اسکن وارد کنید"
-
-#~ msgid "Enter mountpoint path."
-#~ msgstr "مسیر mountpoint را وارد کنید"
-
-#~ msgid "Enter new hostname for your Dreambox"
-#~ msgstr "نام میزبان جدید دستگاه خود را وارد کنید"
-
-#~ msgid "Enter options:"
-#~ msgstr "گزینه ها را وارد کنید"
-
-#
-#~ msgid "Enter password:"
-#~ msgstr "رمز عبور را وارد کنید:"
-
-#~ msgid "Enter share directory:"
-#~ msgstr "وارد پوشه به اشتراک گذاشته شده شوید"
-
-#
-#~ msgid "Enter share name:"
-#~ msgstr "نام share را وارد کنید:"
-
-#
-#~ msgid "Enter user and password for host: "
-#~ msgstr "نام کاربری و رمز عبور میزبان را وارد کنید:"
-
-#
-#~ msgid "Enter username:"
-#~ msgstr "نام کاربری را وارد کنید:"
-
-#~ msgid "Enter your search term(s)"
-#~ msgstr "شرایط جستجوی خود را وارد کنید"
-
-#~ msgid "Entertainment"
-#~ msgstr "سرگرمی"
-
-#~ msgid "EuroticTV"
-#~ msgstr "EuroticTV"
-
-#~ msgid "Everything is fine"
-#~ msgstr "وضعیت مناسب است"
-
-#
-#~ msgid "Exact match"
-#~ msgstr "تطابق کامل"
-
-#
-#~ msgid "Exclude"
-#~ msgstr "مانع شدن"
-
-#~ msgid "Execute \"after event\" during timespan"
-#~ msgstr "اجرا شدن \"بعد از رخداد\" در طول محدوده زمانی"
-
-#~ msgid "Execute TuxboxPlugins"
-#~ msgstr "اجرای پلاگین های Tuxbox"
-
-#~ msgid "Exit harddisk selection."
-#~ msgstr "خروج از انتخاب هارد"
-
-#~ msgid "Exit storage device selection."
-#~ msgstr "خروج از انتخاب دستگاه ذخیر سازی"
-
-#~ msgid ""
-#~ "FTPBrowser allows uploading and downloading files between your Dreambox "
-#~ "and a server using the file transfer protocol."
-#~ msgstr ""
-#~ "FTPBrowser اجازه آپلود و دانلود فایل ها بین دستگاه شما و یک سرور را با "
-#~ "استفاده از پروتکل انتقال فایل میدهد"
-
-#~ msgid "Fetching feed entries"
-#~ msgstr "دریافت موارد feed"
-
-#~ msgid "Fetching search entries"
-#~ msgstr "دریافت موارد جستجو"
-
-#~ msgid "Filesystem check completed without errors."
-#~ msgstr "بررسی سیستم فایل بدون خطا پایان یافت"
-
-#~ msgid "Filesystem contains uncorrectable errors"
-#~ msgstr "سیستم فایل شامل خطا های اصلاح ناپذیر است"
-
-#
-#~ msgid "Film & Animation"
-#~ msgstr "فیلم و انیمیشن"
-
-#~ msgid "Filter"
-#~ msgstr "فیلتر"
-
-#~ msgid "Font size"
-#~ msgstr "اندازه فونت"
-
-#~ msgid ""
-#~ "Found a total of %d matching Events.\n"
-#~ "%d Timer were added and\n"
-#~ "%d modified,\n"
-#~ "%d conflicts encountered,\n"
-#~ "%d similars added."
-#~ msgstr ""
-#~ "مجموع %d رخداد مطابق یافت شد\n"
-#~ "%d زمان اضافه شد\n"
-#~ "%d ویرایش شد\n"
-#~ "%d مغایرت مواجه شد\n"
-#~ "%d مشابه اضافه شد"
-
-#~ msgid "France"
-#~ msgstr "فرانسه"
-
-#~ msgid "Frequency start"
-#~ msgstr "شروع فرکانس"
-
-#~ msgid "Frequency stop"
-#~ msgstr "توقف فرکانس"
-
-#~ msgid "Frequently asked questions"
-#~ msgstr "سوالات پرسیده شده متداول"
-
-#~ msgid "Frisian"
-#~ msgstr "فریزی"
-
-#~ msgid "FritzCall shows incoming calls to your Fritz!Box on your Dreambox."
-#~ msgstr "FritzCall تماس های ورودی Fritz!Box شما را روی دستگاه نمایش میدهد"
-
-#~ msgid "Front USB"
-#~ msgstr "USB جلویی"
-
-#~ msgid "Front USB Slot"
-#~ msgstr "شکاف جلویی USB"
-
-#~ msgid "Frontend for /tmp/mmi.socket"
-#~ msgstr "ظاهر برای /tmp/mmi.socket"
-
-#~ msgid "Fsck failed"
-#~ msgstr "Fsck ناموفق"
-
-#~ msgid "GUI that allows user to change the ftp- / telnet password."
-#~ msgstr ""
-#~ "رابط گرافیکی که به کاربر اجازه میدهد رمز عبور ftp و telnet را تغییر دهد"
-
-#~ msgid ""
-#~ "GUI that allows user to change the ftp-/telnet-password of the Dreambox."
-#~ msgstr ""
-#~ "رابط گرافیکی که به کاربر اجازه میدهد رمز عبور ftp و telnet دستگاه را "
-#~ "تغییر دهد"
-
-#~ msgid "GUI to change the ftp and telnet-password"
-#~ msgstr "رابط گرافیکی برای تغییر رمز عبور ftp و telnet"
-
-#~ msgid "Gaming"
-#~ msgstr "بازی کردن"
-
-#~ msgid ""
-#~ "Generates and Shows TV Charts of all users having this plugin installed"
-#~ msgstr "ایجاد و نمایش جدول همه کاربرانی که این پلاگین را نصب کرده اند"
-
-#~ msgid "Genuine Dreambox"
-#~ msgstr "دستگاه اصلی"
-
-#~ msgid "Genuine Dreambox validation failed!"
-#~ msgstr "تایید اصل بودن دستگاه ناموفق بود"
-
-#~ msgid "Genuine Dreambox verification"
-#~ msgstr "تایید اصل بودن دستگاه"
-
-#~ msgid "German storm information"
-#~ msgstr "اطلاعات آب و هوای آلمان"
-
-#~ msgid "German traffic information"
-#~ msgstr "اطلاعات ترافیک آلمان"
-
-#~ msgid "Germany"
-#~ msgstr "آلمان"
-
-#
-#~ msgid "Global delay"
-#~ msgstr "تاخیر سراسری"
-
-#
-#~ msgid "Great Britain"
-#~ msgstr "بریتانیای کبیر"
-
-#~ msgid "HD Interlace Mode"
-#~ msgstr "حالت HD Interlace"
-
-#~ msgid "HD Progressive Mode"
-#~ msgstr "حالت HD Progressive"
-
-#
-#~ msgid "HD videos"
-#~ msgstr "ویدیو های HD"
-
-#
-#~ msgid "HTTP Port"
-#~ msgstr "HTTP پورت"
-
-#
-#~ msgid "HTTPS Port"
-#~ msgstr "HTTPS پورت"
-
-#~ msgid "Hard disk"
-#~ msgstr "دیسک سخت"
-
-#
-#~ msgid "Help"
-#~ msgstr "راهنما"
-
-#~ msgid "Hidden network SSID"
-#~ msgstr "شبکه SSID مخفی"
-
-#~ msgid "Hide Plugin from Plugin or Extensionsmenu."
-#~ msgstr "مخفی کردن پلاگین از منوی پلاگین ها"
-
-#
-#~ msgid "History"
-#~ msgstr "تاریخچه"
-
-#
-#~ msgid "Holland"
-#~ msgstr "هلند"
-
-#
-#~ msgid "Hong Kong"
-#~ msgstr "هنگ کنگ"
-
-#
-#~ msgid "Howto & Style"
-#~ msgstr "چگونگی و سبک"
-
-#~ msgid "IMAP4 e-mail viewer for the Dreambox"
-#~ msgstr "نمایشگر ایمیل IMAP4 برای دستگاه"
-
-#
-#~ msgid "IP:"
-#~ msgstr "IP:"
-
-#~ msgid "IRC Client for Enigma2"
-#~ msgstr "IRC Client برای انیگما 2"
-
-#~ msgid "Icelandic"
-#~ msgstr "ایسلندی"
-
-#~ msgid "Import AutoTimer"
-#~ msgstr "وارد کردن زمان خودکار"
-
-#~ msgid "Import existing Timer"
-#~ msgstr "وارد کردن زمان موجود"
-
-#
-#~ msgid "Import from EPG"
-#~ msgstr "وارد کردن از EPG"
-
-#
-#~ msgid "Include"
-#~ msgstr "شامل شدن"
-
-#~ msgid "Increase delay"
-#~ msgstr "افزایش تاخیر"
-
-#
-#~ msgid "Increase delay by %i ms (can be set)"
-#~ msgstr "افزایش تاخیر توسط %i میلی ثانیه (میتواند تنظیم شود)"
-
-#~ msgid "India"
-#~ msgstr "هند"
-
-#~ msgid "Initializing hard disk..."
-#~ msgstr "در حال مقدار دهی اولیه دیسک سخت"
-
-#~ msgid "Internal USB"
-#~ msgstr "USB داخلی"
-
-#~ msgid "Internal firmware updater"
-#~ msgstr "به روز رسان نرم افزار داخلی"
-
-#~ msgid "Internal network setup plugin"
-#~ msgstr "پلاگین داخلی تنظیم شبکه"
-
-#~ msgid "Invalid selection"
-#~ msgstr "انتخاب نامعتبر"
-
-#~ msgid "Ireland"
-#~ msgstr "ایسلندی"
-
-#
-#~ msgid "Israel"
-#~ msgstr "اسرائیل"
-
-#~ msgid "Italian Weather forecast on Dreambox"
-#~ msgstr "پیش بینی آب و هوای ایتالیا روی دستگاه"
-
-#~ msgid "Italian Weather forecast on Dreambox from www.google.it."
-#~ msgstr "پیش بینی آب و هوای ایتالیا روی دستگاه از سایت www.google.it"
-
-#~ msgid "Italy"
-#~ msgstr "ایتالیایی"
-
-#
-#~ msgid "Japan"
-#~ msgstr "ژاپن"
-
-#~ msgid "Kerni's BrushedAlu-HD skin"
-#~ msgstr "Kerni's BrushedAlu-HD اسکین"
-
-#~ msgid "Kerni's DMConcinnity-HD skin"
-#~ msgstr "اسکین Kerni's DMConcinnity-HD"
-
-#~ msgid "Kerni's DreamMM-HD skin"
-#~ msgstr "Kerni's DreamMM-HD اسکین"
-
-#~ msgid "Kerni's Elgato-HD skin"
-#~ msgstr "Kerni's Elgato-HD اسکین"
-
-#~ msgid "Kerni's SWAIN skin"
-#~ msgstr "Kerni's SWAIN اسکین"
-
-#~ msgid "Kerni's SWAIN-HD skin"
-#~ msgstr "Kerni's SWAIN-HD اسکین"
-
-#~ msgid "Kerni's UltraViolet skin"
-#~ msgstr "Kerni's UltraViolet اسکین"
-
-#~ msgid "Kerni's YADS-HD skin"
-#~ msgstr "Kerni's YADS-HD اسکین"
-
-#~ msgid "Kerni's dTV-HD skin"
-#~ msgstr "Kerni's dTV-HD اسکین"
-
-#~ msgid "Kerni's dTV-HD-Reloaded skin"
-#~ msgstr "Kerni's dTV-HD-Reloaded اسکین"
-
-#~ msgid "Kerni's dmm-HD skin"
-#~ msgstr "Kerni's dmm-HD اسکین"
-
-#~ msgid "Kerni's dreamTV-HD skin"
-#~ msgstr "Kerni's dreamTV-HD اسکین"
-
-#~ msgid "Kerni's simple skin"
-#~ msgstr "Kerni's simple اسکین"
-
-#~ msgid "Kerni-HD1 skin"
-#~ msgstr "Kerni-HD1 اسکین"
-
-#~ msgid "Kerni-HD1R2 skin"
-#~ msgstr "Kerni-HD1R2 اسکین"
-
-#~ msgid "Kernis HD1 skin"
-#~ msgstr "Kernis HD1 اسکین"
-
-#
-#~ msgid "Key %(Key)s successfully set to %(delay)i ms"
-#~ msgstr "کلید %(Key)s با موفقیت تنظیم شد به %(delay)i میلی ثانیه"
-
-#
-#~ msgid "Key %(key)s (current value: %(value)i ms)"
-#~ msgstr "کلید %(key)s (مقدار فعلی: %(value)i میلی ثانیه)"
-
-#~ msgid "Keymap"
-#~ msgstr "نقشه کلید"
-
-#~ msgid "Link Quality"
-#~ msgstr "کیفیت لینک"
-
-#
-#~ msgid "Load feed on startup:"
-#~ msgstr "آماده سازی feed در راه اندازی"
-
-#
-#~ msgid "Load movie-length"
-#~ msgstr "آماده سازی طول فیلم"
-
-#
-#~ msgid "Local share name"
-#~ msgstr "نام share محلی"
-
-#~ msgid "Lower USB"
-#~ msgstr "USB پایینی"
-
-#~ msgid "Manage local files"
-#~ msgstr "مدیریت فایل های محلی"
-
-#~ msgid "Manage logos to display at boot time or while in radio mode."
-#~ msgstr ""
-#~ "مدیریت لوگو هایی که در زمان بوت و یا هنگام حالت رادیو نمایش داده میشوند"
-
-#~ msgid "Manage logos to display at boottime"
-#~ msgstr "مدیریت لوگو هایی که در زمان بوت نمایش داده میشوند"
-
-#~ msgid "Manage network shares"
-#~ msgstr "مدیریت به اشتراک گذاشته شده های شبکه"
-
-#
-#~ msgid "Manage your network shares..."
-#~ msgstr "مدیریت shares شبکه خود"
-
-#
-#~ msgid "Match Timespan: %02d:%02d - %02d:%02d"
-#~ msgstr "تطبیق  Timespan: %02d:%02d - %02d:%02d"
-
-#~ msgid "Match title"
-#~ msgstr "تطبیق عنوان"
-
-#
-#~ msgid "Match title: %s"
-#~ msgstr "تطبیق عنوان: %s"
-
-#
-#~ msgid "Maximum duration (in m)"
-#~ msgstr "نهایت مدت (به دقیقه)"
-
-#
-#~ msgid "Mexico"
-#~ msgstr "مکزیک"
-
-#~ msgid "Mkfs failed"
-#~ msgstr "Mkfs ناموفق"
-
-#~ msgid "Monthly"
-#~ msgstr "ماهانه"
-
-#
-#~ msgid "More video entries."
-#~ msgstr "موارد تصویری بیشتر"
-
-#
-#~ msgid "Most discussed"
-#~ msgstr "بیشترین بحث شده"
-
-#~ msgid "Most linked"
-#~ msgstr "بیشتر لینک داده شده"
-
-#
-#~ msgid "Most popular"
-#~ msgstr "مشهورترین"
-
-#
-#~ msgid "Most recent"
-#~ msgstr "جدیدترین"
-
-#
-#~ msgid "Most responded"
-#~ msgstr "بیشترین پاسخ"
-
-#~ msgid "Most viewed"
-#~ msgstr "بیشتر مشاهده شده"
-
-#~ msgid "Mount failed"
-#~ msgstr "Mount ناموفق"
-
-#~ msgid "Mount informations"
-#~ msgstr "اطلاعات Mount"
-
-#~ msgid "Mount options"
-#~ msgstr "گزینه های Mount"
-
-#
-#~ msgid "Mount type"
-#~ msgstr "Mount نوع"
-
-#
-#~ msgid "MountManager"
-#~ msgstr "Mount مدیریت"
-
-#
-#~ msgid ""
-#~ "Mounted/\n"
-#~ "Unmounted"
-#~ msgstr ""
-#~ "Mounted/\n"
-#~ "Unmounted"
-
-#~ msgid "Mountpoints management"
-#~ msgstr "مدیریت Mountpoints"
-
-#~ msgid "Mounts editor"
-#~ msgstr "ویرایشگر Mounts"
-
-#~ msgid "Mounts management"
-#~ msgstr "مدیریت Mounts"
-
-#~ msgid "Move plugin screen"
-#~ msgstr "حرکت صفحه نمایش پلاگین"
-
-#
-#~ msgid "Move screen down"
-#~ msgstr "جابجایی پنجره به پایین"
-
-#
-#~ msgid "Move screen to the center of your TV"
-#~ msgstr "جابجایی پنجره به مرکز تلوزیون شما"
-
-#
-#~ msgid "Move screen to the left"
-#~ msgstr "جابجایی پنجره به چپ"
-
-#
-#~ msgid "Move screen to the lower left corner"
-#~ msgstr "جابجایی پنجره به گوشه پایینی سمت چپ"
-
-#
-#~ msgid "Move screen to the lower right corner"
-#~ msgstr "جابجایی پنجره به گوشه پایینی سمت راست"
-
-#
-#~ msgid "Move screen to the middle of the left border"
-#~ msgstr "جابجایی پنجره به حاشیه وسطی سمت چپ"
-
-#
-#~ msgid "Move screen to the middle of the right border"
-#~ msgstr "جابجایی پنجره به حاشیه وسطی سمت راست"
-
-#
-#~ msgid "Move screen to the right"
-#~ msgstr "جابجایی پنجره به راست"
-
-#
-#~ msgid "Move screen to the upper left corner"
-#~ msgstr "جابجایی پنجره به گوشه بالایی سمت چپ"
-
-#
-#~ msgid "Move screen to the upper right corner"
-#~ msgstr "جابجایی پنجره به گوشه بالایی سمت راست"
-
-#
-#~ msgid "Move screen up"
-#~ msgstr "جابجایی پنجره به بالا"
-
-#
-#~ msgid "Music"
-#~ msgstr "موسیقی"
-
-#~ msgid "My TubePlayer"
-#~ msgstr "My TubePlayer"
-
-#~ msgid "MyTube Settings"
-#~ msgstr "MyTube تنظیمات"
-
-#~ msgid "MyTubePlayer"
-#~ msgstr "MyTubePlayer"
-
-#
-#~ msgid "MyTubePlayer Help"
-#~ msgstr "MyTubePlayer راهنمای"
-
-#
-#~ msgid "MyTubePlayer active video downloads"
-#~ msgstr "MyTubePlayer دانلود های فعال ویدویی"
-
-#~ msgid "MyTubePlayer settings"
-#~ msgstr "MyTubePlayer تنظیمات"
-
-#
-#~ msgid "MyTubeVideoInfoScreen"
-#~ msgstr "MyTube پنجره اطلاعات تصویر"
-
-#
-#~ msgid "MyTubeVideohelpScreen"
-#~ msgstr "MyTube پنجره راهنمای تصویر"
-
-#
-#~ msgid "NFS share"
-#~ msgstr "NFS share"
-
-#~ msgid "Nemesis BlackBox Skin"
-#~ msgstr "Nemesis BlackBox اسکین"
-
-#~ msgid "Nemesis BlackBox Skin for the Dreambox"
-#~ msgstr "Nemesis BlackBox اسکین"
-
-#~ msgid "Nemesis Blueline Single Skin"
-#~ msgstr "Nemesis Blueline Single اسکین"
-
-#~ msgid "Nemesis Blueline Single Skin for the Dreambox"
-#~ msgstr "Nemesis Blueline Single اسکین"
-
-#~ msgid "Nemesis Blueline Skin"
-#~ msgstr "Nemesis Blueline اسکین"
-
-#~ msgid "Nemesis Blueline Skin for the Dreambox"
-#~ msgstr "Nemesis Blueline اسکین"
-
-#~ msgid "Nemesis Blueline.Extended Skin"
-#~ msgstr "Nemesis Blueline.Extended اسکین"
-
-#~ msgid "Nemesis Blueline.Extended Skin for the Dreambox"
-#~ msgstr "Nemesis Blueline.Extended اسکین"
-
-#~ msgid "Nemesis ChromeLine Cobolt Skin"
-#~ msgstr "Nemesis ChromeLine Cobolt اسکین"
-
-#~ msgid "Nemesis ChromeLine Cobolt Skin for the Dreambox"
-#~ msgstr "Nemesis ChromeLine Cobolt اسکین"
-
-#~ msgid "Nemesis ChromeLine Skin"
-#~ msgstr "Nemesis ChromeLine اسکین"
-
-#~ msgid "Nemesis ChromeLine Skin for the Dreambox"
-#~ msgstr "Nemesis ChromeLine اسکین"
-
-#~ msgid "Nemesis Flatline Blue Skin"
-#~ msgstr "Nemesis Flatline Blue اسکین"
-
-#~ msgid "Nemesis Flatline Blue Skin for the Dreambox"
-#~ msgstr "Nemesis Flatline Blue اسکین"
-
-#~ msgid "Nemesis Flatline Skin"
-#~ msgstr "Nemesis Flatline اسکین"
-
-#~ msgid "Nemesis Flatline Skin for the Dreambox"
-#~ msgstr "Nemesis Flatline اسکین"
-
-#~ msgid "Nemesis GlassLine Skin"
-#~ msgstr "Nemesis GlassLine اسکین"
-
-#~ msgid "Nemesis GlassLine Skin for the Dreambox"
-#~ msgstr "Nemesis GlassLine اسکین"
-
-#~ msgid "Nemesis Greenline Extended Skin"
-#~ msgstr "Nemesis Greenline Extended اسکین"
-
-#~ msgid "Nemesis Greenline Extended Skin for the Dreambox"
-#~ msgstr "Nemesis Greenline Extended اسکین"
-
-#~ msgid "Nemesis Greenline Single Skin"
-#~ msgstr "Nemesis Greenline Single اسکین"
-
-#~ msgid "Nemesis Greenline Single Skin for the Dreambox"
-#~ msgstr "Nemesis Greenline Single اسکین"
-
-#~ msgid "Nemesis Greenline Skin"
-#~ msgstr "Nemesis Greenline اسکین"
-
-#~ msgid "Nemesis Greenline Skin for the Dreambox"
-#~ msgstr "Nemesis Greenline اسکین"
-
-#~ msgid "Nemesis Greyline Extended Skin"
-#~ msgstr "Nemesis Greyline Extended اسکین"
-
-#~ msgid "Nemesis Greyline Extended Skin for the Dreambox"
-#~ msgstr "Nemesis Greyline Extended اسکین"
-
-#~ msgid "Nemesis Greyline Single Skin"
-#~ msgstr "Nemesis Greyline Single اسکین"
-
-#~ msgid "Nemesis Greyline Single Skin for the Dreambox"
-#~ msgstr "Nemesis Greyline Single اسکین"
-
-#~ msgid "Nemesis Greyline Skin"
-#~ msgstr "Nemesis Greyline اسکین"
-
-#~ msgid "Nemesis Greyline Skin for the Dreambox"
-#~ msgstr "Nemesis Greyline اسکین"
-
-#~ msgid "Nemesis ShadowLine Skin"
-#~ msgstr "Nemesis ShadowLine اسکین"
-
-#~ msgid "Nemesis ShadowLine Skin for the Dreambox"
-#~ msgstr "Nemesis ShadowLine اسکین"
-
-#~ msgid "NetworkBrowser"
-#~ msgstr "مرورگر شبکه"
-
-#~ msgid "Never"
-#~ msgstr "هیچ وقت"
-
-#
-#~ msgid "New Zealand"
-#~ msgstr "نیوزیلند"
-
-#
-#~ msgid "News & Politics"
-#~ msgstr "اخبار و سیاست"
-
-#~ msgid "No network devices found!"
-#~ msgstr "هیچ دستگاه شبکه ای یافت نشد"
-
-#~ msgid "No playable video found! Stop playing this movie?"
-#~ msgstr "هیچ فایل تصویری قابل پخش یافت نشد ، پخش این فیلم متوقف شود ؟"
-
-#~ msgid "No videos to display"
-#~ msgstr "تصویری برای نمایش وجود ندارد"
-
-#~ msgid "No, but play video again"
-#~ msgstr "خیر ، اما تصویر دوباره پخش شود"
-
-#
-#~ msgid "No, but switch to video entries."
-#~ msgstr "خیر ، ولی بازگشت به موارد تصویر"
-
-#
-#~ msgid "No, but switch to video search."
-#~ msgstr "خیر ، ولی بازگشت به جستجوی تصویر"
-
-#~ msgid "No, remove them."
-#~ msgstr "خیر ، حذف آنها"
-
-#
-#~ msgid "Nonprofits & Activism"
-#~ msgstr "سازمان های غیر انتفاعی و فعالان"
-
-#~ msgid "Not after"
-#~ msgstr "نه بعد از"
-
-#~ msgid "Not before"
-#~ msgstr "نه قبل از"
-
-#~ msgid "On any service"
-#~ msgstr "روی هر کانالی"
-
-#~ msgid "On same service"
-#~ msgstr "روی بعضی از کانال ها"
-
-#
-#~ msgid "Only on Service: %s"
-#~ msgstr "فقط روی کانال: %s"
-
-#
-#~ msgid "Open Context Menu"
-#~ msgstr "باز کردن منوی متن"
-
-#
-#~ msgid "Open plugin menu"
-#~ msgstr "باز کردن منوی پلاگین"
-
-#
-#~ msgid "Outer Bound (+/-)"
-#~ msgstr "کران بیرونی (+/-)"
-
-#
-#~ msgid "People & Blogs"
-#~ msgstr "مردم و وبلاگ ها"
-
-#
-#~ msgid "Pets & Animals"
-#~ msgstr "حیوانات خانگی و جانوران"
-
-#~ msgid "Play YouTube movies"
-#~ msgstr "پخش فیلم های YouTube"
-
-#
-#~ msgid "Play next video"
-#~ msgstr "پخش تصویر بعدی"
-
-#
-#~ msgid "Play video again"
-#~ msgstr "پخش دوباره تصویر"
-
-#~ msgid "Please Reboot"
-#~ msgstr "لطفا دستگاه را دوباره راه اندازی کنید"
-
-#~ msgid "Please enter your search term."
-#~ msgstr "لطفا شرط جستجوی خود را وارد کنید"
-
-#
-#~ msgid "Please provide a Text to match"
-#~ msgstr "لطفا یک متن برای تطابق ارائه کنید"
-
-#
-#~ msgid "Please wait (Step 2)"
-#~ msgstr "لطفا صبر کنید (مرحله دوم)"
-
-#
-#~ msgid "Please wait for activation of your network mount..."
-#~ msgstr "لطفا صبر کنید تا mount شبکه شما فعال شود"
-
-#
-#~ msgid "Please wait while removing your network mount..."
-#~ msgstr "لطفا صبر کنید تا mount شبکه شما حذف شود"
-
-#
-#~ msgid "Please wait while updating your network mount..."
-#~ msgstr "لطفا صبر کنید تا mount شبکه شما به روز رسانی شود"
-
-#
-#~ msgid "Plugin: %(plugin)s , Version: %(version)s"
-#~ msgstr "پلاگین: %(plugin)s , نسخه: %(version)s"
-
-#~ msgid "Poland"
-#~ msgstr "لهستان"
-
-#
-#~ msgid "Poll Interval (in h)"
-#~ msgstr "Poll Interval (in h)"
-
-#
-#~ msgid "Poll automatically"
-#~ msgstr "Poll خودکار"
-
-#~ msgid "Positioner fine movement"
-#~ msgstr "حرکت مناسب مکان یاب"
-
-#~ msgid "Positioner movement"
-#~ msgstr "حرکت مکان یاب"
-
-#~ msgid "Positioner storage"
-#~ msgstr "مخزن مکان یاب"
-
-#~ msgid "Press OK to collapse this host"
-#~ msgstr "دکمه OK را برای بستن این هاست فشار دهید"
-
-#~ msgid "Press OK to edit selected settings."
-#~ msgstr "دکمه OK را برای ویرایش تنظیمات انتخاب شده فشار دهید"
-
-#~ msgid "Press OK to expand this host"
-#~ msgstr "دکمه OK را برای باز کردن این هاست فشار دهید"
-
-#~ msgid "Press OK to mount this share!"
-#~ msgstr "دکمه OK را برای mount این share فشار دهید"
-
-#~ msgid "Press OK to mount!"
-#~ msgstr "دکمه OK را برای mount فشار دهید"
-
-#~ msgid "Press OK to save settings."
-#~ msgstr "دکمه OK را برای ذخیره کردن تنظیمات فشار دهید"
-
-#~ msgid "Press OK to select."
-#~ msgstr "دکمه OK را برای انتخاب فشار دهید"
-
-#~ msgid "Preview AutoTimer"
-#~ msgstr "پیش نمایش زمان خودکار"
-
-#~ msgid "Published"
-#~ msgstr "منتشر شد"
-
-#~ msgid "Python frontend for /tmp/mmi.socket."
-#~ msgstr "Python frontend برای /tmp/mmi.socket."
-
-#~ msgid "RC Menu"
-#~ msgstr "منوی RC"
-
-#~ msgid "RSS viewer"
-#~ msgstr "نمایشگر RSS"
-
-#~ msgid "RT8070/RT3070/RT3370 USB wireless-n driver"
-#~ msgstr "درایور شبکه بدون سیم USB برای چیپ های RT8070/RT3070/RT3370"
-
-#~ msgid "Rating"
-#~ msgstr "رتبه"
-
-#~ msgid "Ratings: "
-#~ msgstr "رتبه ها:"
-
-#
-#~ msgid "Really quit MyTube Player?"
-#~ msgstr "خروج از MyTube Player ?"
-
-#~ msgid "Reconstruct .ap and .sc files"
-#~ msgstr "بازسازی فایل های ap و sc"
-
-#
-#~ msgid "Record a maximum of x times"
-#~ msgstr "ضبط کردن نهایت از x بار"
-
-#~ msgid "Record on"
-#~ msgstr "ضبط در"
-
-#~ msgid "Related video entries."
-#~ msgstr "ورودی های وابسته به تصویر"
-
-#
-#~ msgid "Relevance"
-#~ msgstr "ارتباط"
-
-#~ msgid "Remember service PIN cancel"
-#~ msgstr "لغو به یاد داشتن رمز کانال"
-
-#~ msgid "Remove selected AutoTimer"
-#~ msgstr "حذف زمان خودکار انتخاب شده"
-
-#~ msgid "Rename your movies"
-#~ msgstr "تغییر نام فیلم های شما"
-
-#~ msgid "Repeat"
-#~ msgstr "تکرار"
-
-#
-#~ msgid "Require description to be unique"
-#~ msgstr "توضیحات مورد نیاز برای یکتا بودن"
-
-#~ msgid "Rescan"
-#~ msgstr "اسکن دوباره"
-
-#~ msgid "Reset count"
-#~ msgstr "بازنشانی تعداد"
-
-#~ msgid "Reset saved position"
-#~ msgstr "بازنشانی مکان ذخیره شده"
-
-#~ msgid "Restart GUI"
-#~ msgstr "راه اندازی دوباره GUI"
-
-#~ msgid "Restore your Dreambox with a USB stick"
-#~ msgstr "بازگردانی دستگاه خود توسط یک USB"
-
-#~ msgid "Restrict to events on certain dates"
-#~ msgstr "محدود کردن رخداد ها به تاریخ های مشخص"
-
-#~ msgid "Return to file browser"
-#~ msgstr "بازگشت به مرورگر فایل"
-
-#~ msgid "Running"
-#~ msgstr "در حال اجرا"
-
-#~ msgid "Russia"
-#~ msgstr "روسیه"
-
-#~ msgid "SD 25/50HZ Interlace Mode"
-#~ msgstr "حالت SD 25/50HZ Interlace"
-
-#~ msgid "SD 25/50HZ Progressive Mode"
-#~ msgstr "حالت SD 25/50HZ Progressive"
-
-#~ msgid "SD 30/60HZ Interlace Mode"
-#~ msgstr "حالت SD 30/60HZ Interlace"
-
-#~ msgid "SD 30/60HZ Progressive Mode"
-#~ msgstr "حالت SD 30/60HZ Progressive"
-
-#~ msgid "SVDRP server for Enigma2"
-#~ msgstr "سرور SVDRP برای انیگما 2"
-
-#
-#~ msgid "Save current delay to key"
-#~ msgstr "ذخیره تاخیر فعلی در کلید"
-
-#
-#~ msgid "Save to key"
-#~ msgstr "ذخیره در کلید"
-
-#
-#~ msgid "Save values and close plugin"
-#~ msgstr "ذخیره کردن مقادیر و بستن پلاگین"
-
-#
-#~ msgid "Save values and close screen"
-#~ msgstr "ذخیره کردن مقادیر و بستن پنجره"
-
-#
-#~ msgid "Scan NFS share"
-#~ msgstr "اسکن NFS share"
-
-#~ msgid "Scan range"
-#~ msgstr "محدوده اسکن"
-
-#
-#~ msgid "Science & Technology"
-#~ msgstr "علم و تکنولوژی"
-
-#~ msgid "Search Term(s)"
-#~ msgstr "شرایط جستجو"
-
-#~ msgid "Search category:"
-#~ msgstr "دسته جستجو:"
-
-#~ msgid "Search for network shares"
-#~ msgstr "جستجو برای share های شبکه"
-
-#~ msgid "Search for network shares..."
-#~ msgstr "جستجو برای share های شبکه"
-
-#~ msgid "Search region:"
-#~ msgstr "جستجوی منطقه"
-
-#
-#~ msgid "Search restricted content:"
-#~ msgstr "جستجوی محتوای محدود شده:"
-
-#~ msgid "Search type"
-#~ msgstr "نوع جستجو"
-
-#~ msgid "Searching your network. Please wait..."
-#~ msgstr "جستجوی شبکه شما ، لطفا صبر کنید"
-
-#
-#~ msgid "Security service not running."
-#~ msgstr "سرویس امنیتی در حال اجرا نیست"
-
-#~ msgid "Select a timer to import"
-#~ msgstr "انتخاب زمان برای وارد کردن"
-
-#~ msgid "Select bouquet to record on"
-#~ msgstr "انتخاب لیست برای شروع ضبط"
-
-#~ msgid "Select channel to record on"
-#~ msgstr "انتخاب کانال برای شروع ضبط"
-
-#~ msgid "Select new feed to view."
-#~ msgstr "انتخاب feed جدید برای مشاهده"
-
-#
-#~ msgid "Select the key you want to set to %i ms"
-#~ msgstr "کلید مورد نظر خود را برای تنظیم به %i میلی ثانیه انتخاب کنید"
-
-#
-#~ msgid "Select the location to save the recording to."
-#~ msgstr "انتخاب محل مورد نظر برای ذخیره شدن ضبط کردن"
-
-#~ msgid "Select type of Filter"
-#~ msgstr "انتخاب نوع فیلتر"
-
-#~ msgid "Select your choice."
-#~ msgstr "انتخاب شما"
-
-#~ msgid "Server IP"
-#~ msgstr "IP سرور"
-
-#~ msgid "Server share"
-#~ msgstr "اشتراک گذاری سرور"
-
-#~ msgid "Service delay"
-#~ msgstr "تاخیر کانال"
-
-#~ msgid "Set Bitstream/PCM audio delays"
-#~ msgstr "تنظیم تاخیر صدای Bitstream/PCM"
-
-#
-#~ msgid "Set delay to %i ms (can be set)"
-#~ msgstr "تنظیم تاخیر به %i میلی ثانیه (میتواند تنظیم شود)"
-
-#~ msgid "Set limits"
-#~ msgstr "تنظیم محدودیت ها"
-
-#
-#~ msgid "Set maximum duration"
-#~ msgstr "تنظیم نهایت مدت"
-
-#
-#~ msgid "Setting key canceled"
-#~ msgstr "کلید تنظیمات لغو شد"
-
-#
-#~ msgid "Setup for the Audio Sync Plugin"
-#~ msgstr "تنظیمات پلاگین Audio Sync"
-
-#~ msgid "Short Movies"
-#~ msgstr "فیلم های کوتاه"
-
-#~ msgid "Show in extension menu"
-#~ msgstr "نمایش در منوی پلاگین"
-
-#~ msgid "Show info screen"
-#~ msgstr "نمایش صفحه اطلاعات"
-
-#~ msgid "Show webcam pictures on your TV Screen"
-#~ msgstr "نمایش تصاویر وب کم روی صفحه تلوزیون شما"
-
-#
-#~ msgid "Slovakian"
-#~ msgstr "اسلواکی"
-
-#~ msgid "SoftwareManager manages your Dreambox software"
-#~ msgstr "مدیریت نرم افزار ، نرم افزار دستگاه شما را مدیریت میکند"
-
-#
-#~ msgid "Sorry, video is not available!"
-#~ msgstr "متاسفانه تصویر در دسترس نیست"
-
-#~ msgid "Sort AutoTimer"
-#~ msgstr "مرتب کردن زمان خودکار"
-
-#~ msgid "South Korea"
-#~ msgstr "کره جنوبی"
-
-#~ msgid "Spain"
-#~ msgstr "اسپانیا"
-
-#~ msgid "Sports"
-#~ msgstr "ورزشی"
-
-#
-#~ msgid "Start Webinterface"
-#~ msgstr "شروع رابط وب"
-
-#
-#~ msgid "Start with following feed:"
-#~ msgstr "شروع همراه feed زیر:"
-
-#
-#~ msgid "Std. Feeds"
-#~ msgstr "Feeds استاندارد"
-
-#~ msgid "Step by step network configuration"
-#~ msgstr "پیکربندی شبکه مرحله به مرحله"
-
-#
-#~ msgid "Step in ms for arrow keys"
-#~ msgstr "یک حرکت به میلی ثانیه برای کلیدهای جهت دار"
-
-#
-#~ msgid "Step in ms for key %i"
-#~ msgstr "یک حرکت به میلی ثانیه برای کلید %i"
-
-#
-#~ msgid "Step in ms for keys '%s'"
-#~ msgstr "یک حرکت به میلی ثانیه برای کلید های '%s'"
-
-#~ msgid "Support \"Fast Scan\"?"
-#~ msgstr "پشتیبانی از \"اسکن سریع\"?"
-
-#~ msgid "Sweden"
-#~ msgstr "سوئد"
-
-#~ msgid "TV Charts of all users"
-#~ msgstr "نمودار های تلوزیون برای همه کاربران"
-
-#
-#~ msgid "Tag 1"
-#~ msgstr "برچسب 1"
-
-#
-#~ msgid "Tag 2"
-#~ msgstr "برچسب 2"
-
-#
-#~ msgid "Tags: "
-#~ msgstr "برچسب ها:"
-
-#~ msgid "Taiwan"
-#~ msgstr "تایوان"
-
-#
-# File: tmp/enigma2_plugins/genuinedreambox/src/plugin.py, line: 80
-#~ msgid "Test again"
-#~ msgstr "تست دوباره"
-
-#~ msgid "Test your DiSEqC equipment"
-#~ msgstr "تست تجهیزات DiSEqC شما"
-
-#
-#~ msgid ""
-#~ "Thank you for using the wizard. Your new AutoTimer has been added to the "
-#~ "List.\n"
-#~ "Please press OK to continue."
-#~ msgstr ""
-#~ "ممنون بابت استفاده از هدایتگر ، زمان خودکار جدید شما به لیست اضافه شد\n"
-#~ "دکمه OK را برای ادامه دادن فشار دهید"
-
-#~ msgid ""
-#~ "The CleanupWizard informs you when the internal free memory of your "
-#~ "dreambox has dropped below a definable threshold.You can use this wizard "
-#~ "to remove some plugins."
-#~ msgstr ""
-#~ "هدایتگر پاک ساز هر زمان که مقدار خالی حافظه داخلی دستگاه شما از میزان "
-#~ "تعیین شده کمتر شود به شما اطلاع میدهد ، شما توسط این هدایتگر میتوانید "
-#~ "تعدادی از پلاگین ها را حذف کنید"
-
-#~ msgid ""
-#~ "The WirelessLan plugin helps you configuring your WLAN network interface."
-#~ msgstr ""
-#~ "پلاگین شبکه بدون سیم به شما کمک میکند که رابط شبکه بدون سیم خود را "
-#~ "پیکربندی کنید"
-
-#
-#~ msgid "This Month"
-#~ msgstr "این ماه"
-
-#
-#~ msgid "This Week"
-#~ msgstr "این هفته"
-
-#~ msgid "Time in minutes to append to recording."
-#~ msgstr "زمان به دقیقه برای افزودن به ضبط کردن"
-
-#~ msgid "Time in minutes to prepend to recording."
-#~ msgstr "زمان به دقیقه برای کاستن از ضبط کردن"
-
-#~ msgid "Timer type"
-#~ msgstr "نوع زمان"
-
-#~ msgid "Top favorites"
-#~ msgstr "مورد علاقه های منتخب"
-
-#
-#~ msgid "Top rated"
-#~ msgstr "بالاترین امتیاز"
-
-#
-#~ msgid "Travel & Events"
-#~ msgstr "سفر و رویداد ها"
-
-#
-#~ msgid "Trying to download the Youtube feed entries. Please wait..."
-#~ msgstr "تلاش برای دانلود موارد feed YouTube ، لطفا صبر کنید"
-
-#
-#~ msgid "Trying to download the Youtube search results. Please wait..."
-#~ msgstr "تلاش برای دانلود نتایج جستجوی YouTube ، لطفا صبر کنید"
-
-#
-#~ msgid "Ukrainian"
-#~ msgstr "اوکراینی"
-
-#~ msgid ""
-#~ "Unable to complete filesystem check.\n"
-#~ "Error: "
-#~ msgstr ""
-#~ "دستگاه قادر به کامل کردن بررسی سیستم فایل نیست\n"
-#~ "خطا: "
-
-#
-#~ msgid "United States"
-#~ msgstr "ایالات متحده آمریکا"
-
-#~ msgid "Unmount failed"
-#~ msgstr "Unmount ناموفق"
-
-#~ msgid "Update done..."
-#~ msgstr "به روز رسانی انجام شد"
-
-#~ msgid "Updating, please wait..."
-#~ msgstr "در حال به روز رسانی ، لطفا صبر کنید"
-
-#~ msgid "Use a custom location"
-#~ msgstr "انتخاب یک محل سفارشی"
-
-#~ msgid "User management"
-#~ msgstr "مدیریت کاربر"
-
-#
-#~ msgid "Usermanager"
-#~ msgstr "مدیریت کاربر"
-
-#~ msgid "Vali-XD skin"
-#~ msgstr "Vali-XD اسکین"
-
-#~ msgid "Vali.HD.atlantis skin"
-#~ msgstr "اسکین"
-
-#~ msgid "Vali.HD.nano skin"
-#~ msgstr "Vali.HD.nano اسکین"
-
-#~ msgid "Vali.HD.warp skin"
-#~ msgstr "اسکین"
-
-#
-#~ msgid "Videobrowser exit behavior:"
-#~ msgstr "عملکرد خروج مرورگر تصویر"
-
-#
-#~ msgid "Videoplayer stop/exit behavior:"
-#~ msgstr "عملکرد توقف/خروج پخش کننده تصویری"
-
-#~ msgid "View Count"
-#~ msgstr "مشاهده تعداد"
-
-#~ msgid "View Google maps"
-#~ msgstr "مشاهده نقشه های گوگل"
-
-#~ msgid "View Google maps with your Dreambox."
-#~ msgstr "مشاهده نقشه های گوگل توسط دستگاه شما"
-
-#
-#~ msgid "View active downloads"
-#~ msgstr "مشاهده دانلود های فعال"
-
-#
-#~ msgid "View related videos"
-#~ msgstr "مشاهده ویدیو های مرتبط"
-
-#
-#~ msgid "View response videos"
-#~ msgstr "مشاهده ویدیو های واکنش"
-
-#~ msgid "View, edit or delete mountpoints on your Dreambox."
-#~ msgstr "مشاهده ، ویرایش و یا حذف mountpoints دستگاه شما"
-
-#
-#~ msgid "View, edit or delete usernames and passwords for your network."
-#~ msgstr "مشاهده ، ویرایش و یا حذف نام کاربری و رمز عبور برای شبکه شما"
-
-#
-#~ msgid "Views: "
-#~ msgstr "مشاهدات"
-
-#
-#~ msgid "Wait time in ms before activation:"
-#~ msgstr "زمان صبر کردن قبل از فعال سازی به میلی ثانیه"
-
-#~ msgid "Weatherforecast on your Dreambox"
-#~ msgstr "پیش بینی هوا در دستگاه شما"
-
-#~ msgid "Webinterface"
-#~ msgstr "رابط وب"
-
-#
-#~ msgid "Webinterface: Main Setup"
-#~ msgstr "رابط وب : تنظیمات اصلی"
-
-#~ msgid "Weekend"
-#~ msgstr "آخر هفته"
-
-#~ msgid "Weekly (Monday)"
-#~ msgstr "هفتگی (دوشنبه)"
-
-#~ msgid "Weekly (Sunday)"
-#~ msgstr "هفتگی (یکشنبه)"
-
-#~ msgid ""
-#~ "With the NetworkWizard you can easily configure your network step by step."
-#~ msgstr ""
-#~ "توسط هدایتگر شبکه به سادگی میتوانید شبکه خود را مرحله به مرحله پیکربندی "
-#~ "کنید"
-
-#~ msgid "Wizard"
-#~ msgstr "هدایتگر"
-
-#
-#~ msgid "Yes, but play next video"
-#~ msgstr "بله ، ولی فایل تصویری بعدی پخش شود"
-
-#
-#~ msgid "Yes, but play previous video"
-#~ msgstr "بله ، ولی فایل تصویری قبلی پخش شود"
-
-#
-#~ msgid "Yes, keep them."
-#~ msgstr "بله ، آنها را نگه دار"
-
-#
-#~ msgid ""
-#~ "Your config file is not well-formed:\n"
-#~ "%s"
-#~ msgstr ""
-#~ "فایل پیکربندی شما فرم درستی ندارد\n"
-#~ "%s"
-
-#~ msgid "Your network mount has been activated."
-#~ msgstr "mount شبکه شما فعال شد"
-
-#
-#~ msgid "Your network mount has been removed."
-#~ msgstr "mount شبکه شما حذف شد"
-
-#
-#~ msgid "Your network mount has been updated."
-#~ msgstr "mount شبکه شما به روز رسانی شد"
-
-#~ msgid "a HD skin from Kerni"
-#~ msgstr "اسکین"
-
-#~ msgid "add AutoTimer..."
-#~ msgstr "اضافه کردن زمان خودکار"
-
-#~ msgid "add filters"
-#~ msgstr "اضافه کردن فیلتر"
-
-#~ msgid "add services"
-#~ msgstr "اضافه کردن کانال ها"
-
-#~ msgid "bob"
-#~ msgstr "bob"
-
-#
-#~ msgid "case-insensitive search"
-#~ msgstr "جستجوی غیر حساس به بزرگ و کوچک بودن"
-
-#
-#~ msgid "case-sensitive search"
-#~ msgstr "جستجوی حساس به بزرگ و کوچک بودن"
-
-#~ msgid "config changed."
-#~ msgstr "پیکربندی تغییر کرد"
-
-#~ msgid "default"
-#~ msgstr "پیش فرض"
-
-#~ msgid "delete"
-#~ msgstr "حذف"
-
-#~ msgid "edit filters"
-#~ msgstr "ویرایش فیلتر"
-
-#~ msgid "edit services"
-#~ msgstr "ویرایش کانال ها"
-
-#
-#~ msgid "exact match"
-#~ msgstr "تطبیق کامل"
-
-#~ msgid "hide extended description"
-#~ msgstr "مخفی کردن مشخصات طولانی"
-
-#~ msgid "hour"
-#~ msgstr "ساعت"
-
-#~ msgid "hours"
-#~ msgstr "ساعت"
-
-#~ msgid "in Description"
-#~ msgstr "در توضیحات"
-
-#~ msgid "in Shortdescription"
-#~ msgstr "در توضیحات کوتاه"
-
-#~ msgid "in Title"
-#~ msgstr "در عنوان"
-
-#~ msgid "minute"
-#~ msgstr "دقیقه"
-
-#~ msgid "on Weekday"
-#~ msgstr "در روز هفته"
-
-#
-#~ msgid "partial match"
-#~ msgstr "تطبیق جزئی"
-
-#~ msgid "redesigned Kerni-HD1 skin"
-#~ msgstr "اسکین"
-
-#~ msgid "second"
-#~ msgstr "ثانیه"
-
-#~ msgid "set enigma2 to standby-mode after startup"
-#~ msgstr "تنظیم انیگما 2 برای خاموشی موقت بعد از راه اندازی"
-
-#
-#~ msgid "sets the Audio Delay (LipSync)"
-#~ msgstr "تنظیم تاخیر صدا LipSync"
-
-#~ msgid "show all"
-#~ msgstr "نمایش همه"
-
-#
-#~ msgid "show first selected tag"
-#~ msgstr "نمایش برچسب انتخاب شده اول"
-
-#
-#~ msgid "show second selected tag"
-#~ msgstr "نمایش برچسب انتخاب شده دوم"
-
-#~ msgid "unable to find timer with id %i"
-#~ msgstr "عاجز از پیدا کردن زمان با id %i"
-
-#
-#~ msgid "use as HDD replacement"
-#~ msgstr "استفاده به عنوان جایگزینی دیسک سخت"
-
-#~ msgid "use your Dreambox as Web proxy"
-#~ msgstr "استفاده از دستگاه خود به عنوان پراکسی وب"
-
-#~ msgid "use your Dreambox as Web proxy."
-#~ msgstr "استفاده از دستگاه خود به عنوان پراکسی وب"
