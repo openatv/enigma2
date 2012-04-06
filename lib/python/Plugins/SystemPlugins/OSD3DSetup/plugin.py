@@ -6,7 +6,6 @@ modelist = {"off": _("Off"), "auto": _("Auto"), "sidebyside": _("Side by Side"),
 if config.misc.boxtype.value == 'gb800se' or config.misc.boxtype.value == 'gb800solo' or config.misc.boxtype.value == 'gb800ue':
 	setmodelist = {"mode1": _("Mode 1"), "mode2": _("Mode 2")}
 
-
 config.plugins.OSD3DSetup = ConfigSubsection()
 config.plugins.OSD3DSetup.mode = ConfigSelection(choices = modelist, default = "auto")
 config.plugins.OSD3DSetup.znorm = ConfigInteger(default = 0)
@@ -48,12 +47,14 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 
 		mode = config.plugins.OSD3DSetup.mode.value
 		znorm = config.plugins.OSD3DSetup.znorm.value
+		if config.misc.boxtype.value == 'gb800se' or config.misc.boxtype.value == 'gb800solo' or config.misc.boxtype.value == 'gb800ue':		
+			setmode = config.plugins.OSD3DSetup.setmode.value
 
 		self.mode = ConfigSelection(choices = modelist, default = mode)
 		self.znorm = ConfigSlider(default = znorm + 50, increment = 1, limits = (0, 100))
 		if config.misc.boxtype.value == 'gb800se' or config.misc.boxtype.value == 'gb800solo' or config.misc.boxtype.value == 'gb800ue':
-				self.setmode = ConfigSelection(choices = setmodelist, default = setmode)
-				self.list.append(getConfigListEntry(_("Setup mode"), self.setmode))
+			self.setmode = ConfigSelection(choices = setmodelist, default = setmode)
+			self.list.append(getConfigListEntry(_("Setup mode"), self.setmode))
 		self.list.append(getConfigListEntry(_("3d mode"), self.mode))
 		self.list.append(getConfigListEntry(_("Depth"), self.znorm))
 		
