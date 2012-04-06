@@ -1,7 +1,7 @@
 <menu text="Mainmenu" title="Main menu">
 	<id val="mainmenu" />
 <!-- the following types are allowed:
-	<screen [module="mod"] [screen="classname"]>[arguments]</screen> 
+	<screen [module="mod"] [screen="classname"]>[arguments]</screen>
 		executes Screen called "classname" from module "Screen.mod"
 		if no module is given, Screen must be globally available.
 		if no screen is given, module is used as screen class name.
@@ -54,7 +54,7 @@
 			<menu weight="5" level="0" text="System" entryID="system_selection">
 				<id val="system" />
 				<item level="1" entryID="autolanguage_setup"><setup id="autolanguagesetup" /></item>
-<!-- 
+<!--
 				<item level="0" entryID="av_setup"><setup id="avsetup"/></item>
  -->
 				<item level="0" entryID="remote_setup"><setup id="remotesetup"/></item>
@@ -102,7 +102,7 @@ from Plugins.SystemPlugins.HdmiCEC.plugin import HdmiCECSetupScreen
 self.session.open(HdmiCECSetupScreen)
 </code>
 				</item>
-<!-- 
+<!--
 				<item level="1" text="Input devices" entryID="input_device_setup"><screen module="InputDeviceSetup" screen="InputDeviceSelection" /></item>
  -->
 				<item text="Keyboard"><setup id="keyboard" /></item>
@@ -122,6 +122,7 @@ self.session.open(HdmiCECSetupScreen)
 					<item level="2" text="MiniDLNA Setup" entryID="netushare_setup"><screen module="NetworkSetup" screen="NetworkMiniDLNA"/></item>
 					<item level="2" text="NFS Setup" entryID="netnfs_setup"><screen module="NetworkSetup" screen="NetworkNfs"/></item>
 					<item level="2" text="OpenVPN Setup" entryID="netvpn_setup"><screen module="NetworkSetup" screen="NetworkOpenvpn"/></item>
+					<item level="2" text="SABnzbd Setup" entryID="netsabnzbd_setup"><screen module="NetworkSetup" screen="NetworkSABnzbd"/></item>
 					<item level="2" text="Samba Setup" entryID="netsmba_setup"><screen module="NetworkSetup" screen="NetworkSamba"/></item>
 					<item level="2" text="Telnet Setup" entryID="nettelnet_setup"><screen module="NetworkSetup" screen="NetworkTelnet"/></item>
 					<item level="2" text="uShare Setup" entryID="netushare_setup"><screen module="NetworkSetup" screen="NetworkuShare"/></item>
