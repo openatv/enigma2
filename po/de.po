@@ -5,9 +5,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-31 13:23+0100\n"
-"PO-Revision-Date: 2012-04-02 14:39+0100\n"
-"Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
+"POT-Creation-Date: 2012-04-05 10:13+0100\n"
+"PO-Revision-Date: 2012-04-05 21:07+0100\n"
+"Last-Translator: Ralf Biedermann <ralf.biedermann@rbsoft.de>\n"
 "Language-Team: Deutsch <> j-ot&Trial\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -48,7 +48,7 @@ msgid ""
 "Backup your STB_BOX settings."
 msgstr ""
 "\n"
-"Sichern Ihrer STB_BOX Einstellungen."
+"Sichern der STB_BOX Einstellungen."
 
 #
 msgid ""
@@ -64,7 +64,7 @@ msgid ""
 "Manage extensions or plugins for your STB_BOX"
 msgstr ""
 "\n"
-"Verwalten Sie die Erweiterungen und Plugins Ihrer STB_BOX"
+"Verwaltung der Erweiterungen und Plugins der STB_BOX"
 
 #
 msgid ""
@@ -72,7 +72,7 @@ msgid ""
 "Online update of your STB_BOX software."
 msgstr ""
 "\n"
-"Online update Ihrer STB_BOX Software."
+"Online update der STB_BOX Software."
 
 #
 msgid ""
@@ -100,7 +100,7 @@ msgid ""
 "Restore your STB_BOX settings."
 msgstr ""
 "\n"
-"Wiederherstellen Ihrer STB_BOX Einstellungen."
+"Wiederherstellen der STB_BOX Einstellungen."
 
 #
 msgid ""
@@ -108,7 +108,7 @@ msgid ""
 "Restore your STB_BOX with a new firmware."
 msgstr ""
 "\n"
-"Wiederherstellen Ihrer STB_BOX mit einer neuen Firmware."
+"Wiederherstellen der STB_BOX mit einer neuen Firmware."
 
 #
 msgid ""
@@ -213,6 +213,18 @@ msgstr ""
 
 #, python-format
 msgid "%d / 100"
+msgstr ""
+
+#, python-format
+msgid "%d Gb"
+msgstr ""
+
+#, python-format
+msgid "%d Kb"
+msgstr ""
+
+#, python-format
+msgid "%d Mb"
 msgstr ""
 
 #, python-format
@@ -492,7 +504,7 @@ msgid ""
 "A finished record timer wants to set your\n"
 "STB_BOX to standby. Do that now?"
 msgstr ""
-"Ein Aufnahmetimer will Ihre STB_BOX in den Standby-Modus schalten.\n"
+"Ein Aufnahmetimer will die STB_BOX in den Standby-Modus schalten.\n"
 "Jetzt ausführen?"
 
 #
@@ -500,7 +512,7 @@ msgid ""
 "A finished record timer wants to shut down\n"
 "your STB_BOX. Shutdown now?"
 msgstr ""
-"Ein Aufnahmetimer will Ihre STB_BOX ausschalten.\n"
+"Ein Aufnahmetimer will die STB_BOX ausschalten.\n"
 "Jetzt ausschalten?"
 
 #
@@ -558,15 +570,15 @@ msgid ""
 "A sleep timer wants to set your\n"
 "STB_BOX to standby. Do that now?"
 msgstr ""
-"Ein Ausschalt-Timer möchte Ihre STB_BOX\n"
-"den Standby-Modus schalten. Dies jetzt tun?"
+"Ein Ausschalt-Timer möchte die STB_BOX\n"
+"in den Standby-Modus schalten. Dies jetzt tun?"
 
 #
 msgid ""
 "A sleep timer wants to shut down\n"
 "your STB_BOX. Shutdown now?"
 msgstr ""
-"Ein Ausschalt-Timer möchte Ihre STB_BOX\n"
+"Ein Ausschalt-Timer möchte die STB_BOX\n"
 "ausschalten. Jetzt herunterfahren?"
 
 #
@@ -583,7 +595,7 @@ msgstr ""
 
 #
 msgid "A/V Settings"
-msgstr "A/V-Einstellungen"
+msgstr "A/V Einstellungen"
 
 #
 msgid "AA"
@@ -644,7 +656,7 @@ msgstr "Aktive Klienten"
 
 #
 msgid "Adapter settings"
-msgstr "Adapter-Einstellungen"
+msgstr "Adaptereinstellungen"
 
 #
 msgid "Add"
@@ -749,7 +761,7 @@ msgstr "Erweiterte A/V Einstellungen"
 
 #
 msgid "Advanced Video Setup"
-msgstr "Erweiterte Video-Einstellungen"
+msgstr "Erweiterte Bildeinstellungen"
 
 #
 msgid "Advanced restore"
@@ -766,7 +778,7 @@ msgstr ""
 
 #
 msgid "After the start wizard is completed, you need to protect single services. Refer to your STB_BOX's manual on how to do that."
-msgstr "Nachdem der Startassistent beendet wurde, müssen Sie noch die einzelnen Sender schützen. Wie Sie dies tun können, entnehmen Sie bitte dem Handbuch Ihrer STB_BOX."
+msgstr "Nachdem der Startassistent beendet wurde, müssen noch die einzelnen Sender geschützt werden. Wie dies getan werden kann, entnehme bitte dem Handbuch der STB_BOX."
 
 msgid "Agree"
 msgstr "Ich stimme zu"
@@ -1577,9 +1589,6 @@ msgstr "Wählen Sie den Sicherungsort"
 msgid "Choose bouquet"
 msgstr "Bouquet wählen"
 
-msgid "Choose how to display the list."
-msgstr "Wähle wie die Liste angezeigt werden soll."
-
 msgid "Choose image to download"
 msgstr "Image zum Download auswählen"
 
@@ -1704,7 +1713,7 @@ msgstr "Zusammenstellungsname"
 
 #
 msgid "Collection settings"
-msgstr "Zusammenstellungs-Einstellungen"
+msgstr "Zusammenstellungseinstellungen"
 
 #
 msgid "Color Format"
@@ -1863,7 +1872,7 @@ msgstr ""
 
 #
 msgid "Could not connect to STB_BOX .NFI Image Feed Server:"
-msgstr "Verbindung zum STB_BOX .NFI Image Feed Server konnte nicht hergestellt werden:"
+msgstr "Verbindung zur STB_BOX .NFI Image Feed Server konnte nicht hergestellt werden:"
 
 #
 msgid "Could not load Medium! No disc inserted?"
@@ -1899,15 +1908,15 @@ msgstr "Crashlog Einstellungen"
 
 #
 msgid "CrashlogAutoSubmit"
-msgstr "Crashlog Übermittlung"
+msgstr "Crashlog automatische Übermittlung"
 
 #
 msgid "CrashlogAutoSubmit settings"
-msgstr "Crashlog Einstellungen"
+msgstr "Crashlog Einstellungen für automatische Übermittlung"
 
 #
 msgid "CrashlogAutoSubmit settings..."
-msgstr "Crashlog Einstellungen"
+msgstr "Crashlog Einstellungen für automatische Übermittlung..."
 
 #
 msgid ""
@@ -1915,7 +1924,7 @@ msgid ""
 "Send them to Dream Multimedia?"
 msgstr ""
 "Crashlogs gefunden!\n"
-"Wollen Sie diese an Dream Multimedia übermitteln?"
+"Wollen Sie diese übermitteln?"
 
 #
 msgid "Create DVD-ISO"
@@ -2045,9 +2054,6 @@ msgstr "DVB-S2"
 #
 msgid "DVD File Browser"
 msgstr "DVD Datei Browser"
-
-msgid "DVD Player"
-msgstr "DVD Player"
 
 #
 msgid "DVD Titlelist"
@@ -2288,7 +2294,7 @@ msgstr ">16:9-Inhalt anzeigen als"
 
 #
 msgid "Display Setup"
-msgstr "Display-Einstellungen"
+msgstr "Display Einstellungen"
 
 #
 msgid "Display and Userinterface"
@@ -2402,7 +2408,7 @@ msgstr "Wollen Sie das Image nach %s herunterladen?"
 
 #
 msgid "Do you want to enable the parental control feature on your STB_BOX?"
-msgstr "Möchten Sie den Jugendschutz Ihrer STB_BOX aktivieren?"
+msgstr "Den Jugendschutz der STB_BOX aktivieren?"
 
 #
 msgid "Do you want to install the package:\n"
@@ -2418,7 +2424,7 @@ msgstr "Wollen Sie vor dem Brennen eine Vorschau der DVD ansehen?"
 
 #
 msgid "Do you want to reboot your STB_BOX?"
-msgstr "Wollen Sie die STB_BOX neu starten?"
+msgstr "Die STB_BOX neu starten?"
 
 msgid "Do you want to remove binary data?"
 msgstr "Willst Du die Binärdaten löschen?"
@@ -2448,14 +2454,14 @@ msgstr "Wollen Sie Ihre Email-Adresse und Namen übermitteln, so dass wir Sie, f
 
 #
 msgid "Do you want to update your STB_BOX?"
-msgstr "Wollen Sie Ihre STB_BOX aktualisieren?"
+msgstr "Die STB_BOX aktualisieren?"
 
 #
 msgid ""
 "Do you want to update your STB_BOX?\n"
 "After pressing OK, please wait!"
 msgstr ""
-"Möchten Sie Ihre STB_BOX aktualisieren?\n"
+"Die STB_BOX aktualisieren?\n"
 "Nach dem Druck auf OK bitte warten!"
 
 #
@@ -2510,7 +2516,7 @@ msgid "Download Plugins"
 msgstr "Plugins herunterladen"
 
 msgid "Download plugins"
-msgstr ""
+msgstr "Plugins herunter laden"
 
 msgid "Download the firmware (latest)"
 msgstr "Neueste Firmware herunterladen"
@@ -2643,11 +2649,11 @@ msgstr "Einstellungen bearbeiten"
 
 #
 msgid "Edit the Nameserver configuration of your STB_BOX.\n"
-msgstr "Bearbeiten Sie die Nameserver-Einstellungen Ihrer STB_BOX.\n"
+msgstr "Bearbeiten Sie die Nameserver Einstellungen Ihrer STB_BOX.\n"
 
 #
 msgid "Edit the network configuration of your STB_BOX.\n"
-msgstr "Bearbeiten Sie die Netzwerk-Konfiguration Ihrer STB_BOX.\n"
+msgstr "Bearbeite die Netzwerk-Konfiguration der STB_BOX.\n"
 
 #
 msgid "Edit title"
@@ -2789,7 +2795,7 @@ msgid "Enter your email address so that we can contact you if needed."
 msgstr "Bitte geben Sie Ihre Email-Adresse ein, damit wir Sie bei Bedarf kontaktieren können."
 
 msgid "Enter your email address to send a copy of the log to."
-msgstr ""
+msgstr "Gebe deine E-Mail-Adresse an zu der eine Kopie des Logs geschickt werden soll."
 
 msgid "Enter your forum user name, to make it easier trace logs."
 msgstr "Gebe deinen Foren-Nick ein damit die Logs einfacher zugeordnet werden können."
@@ -2927,7 +2933,7 @@ msgstr "Erweitertes Netzwerksetup Plugin..."
 
 #
 msgid "Extended Setup..."
-msgstr "Erweiterte-Einstellungen..."
+msgstr "Erweiterte Einstellungen..."
 
 msgid "Extended Shares"
 msgstr "Erweiterte Freigaben"
@@ -2952,7 +2958,7 @@ msgstr "Erweiterungsverwaltung"
 msgid "FEC"
 msgstr "FEC"
 
-msgid "FILE NOT EXIST : /proc/stb/fp/remote_code"
+msgid "FILE NOT EXIST : /proc//fp/remote_code"
 msgstr "Datei existiert nicht: /proc/stb/fp/remote_code"
 
 msgid "FPGA"
@@ -3109,6 +3115,9 @@ msgstr "Flashen fehlgeschlagen"
 #
 msgid "Following tasks will be done after you press OK!"
 msgstr "Folgendes wird ausgeführt, nachdem Sie OK gedrückt haben!"
+
+msgid "Fontsize"
+msgstr "Zeichengröße"
 
 msgid "For more information see www.openpli.org"
 msgstr "Für mehr Informationen besuchen sie www.openpli.org"
@@ -3339,7 +3348,7 @@ msgstr "Festplatte"
 
 #
 msgid "Harddisk setup"
-msgstr "Festplatten-Einstellungen"
+msgstr "Festplatten Einstellungen"
 
 #
 msgid "Harddisk standby after"
@@ -3715,7 +3724,7 @@ msgid "Installing package content... Please wait..."
 msgstr "Installiere Paketinhalt... Bitte warten..."
 
 msgid "Installing service please wait..."
-msgstr ""
+msgstr "Service wird installiert. Bitte warten..."
 
 #
 msgid "Instant Record..."
@@ -4042,9 +4051,6 @@ msgstr "Zeige verfügbare Netzwerke"
 msgid "List of Storage Devices"
 msgstr "Speichergeräteliste"
 
-msgid "List type"
-msgstr "Listen Typ"
-
 #, python-format
 msgid "List version %d, found %d channels"
 msgstr "Listen Version %d, %d gefundene Kanäle"
@@ -4206,7 +4212,7 @@ msgstr "Erweiterungen verwalten"
 
 #
 msgid "Manage your receiver's software"
-msgstr "Verwalten Sie die Software Ihrer STB_BOX."
+msgstr "Verwaltung der Software der STB_BOX."
 
 #
 msgid "Manual Scan"
@@ -4279,7 +4285,7 @@ msgid "Memory"
 msgstr "Speicher"
 
 msgid "Memory Information"
-msgstr ""
+msgstr "Speicherinformationen"
 
 #
 msgid "Menu"
@@ -4480,11 +4486,11 @@ msgstr "Nameserver %d"
 
 #
 msgid "Nameserver Setup"
-msgstr "DNS-Einstellungen"
+msgstr "DNS Einstellungen"
 
 #
 msgid "Nameserver settings"
-msgstr "DNS-Einstellungen"
+msgstr "DNS Einstellungen"
 
 msgid "Namespace"
 msgstr "Namensraum"
@@ -4508,7 +4514,7 @@ msgid "Network ID"
 msgstr "Netzwerk ID"
 
 msgid "Network Information"
-msgstr ""
+msgstr "Netzwerkinformationen"
 
 msgid "Network Mounts"
 msgstr ""
@@ -4521,7 +4527,7 @@ msgid "Network Setup"
 msgstr "Netzwerkeinstellungen"
 
 msgid "Network Test"
-msgstr ""
+msgstr "Netzwerktest"
 
 #
 msgid "Network Wizard"
@@ -4852,10 +4858,10 @@ msgid "Now Playing"
 msgstr "Wiedergabe läuft"
 
 msgid "Now installing service, please wait..."
-msgstr ""
+msgstr "Service wird installiert. Bitte warten..."
 
 msgid "Now removing service, please wait..."
-msgstr ""
+msgstr "Service wird entfernt. Bitte warten..."
 
 #
 msgid "Now, use the contrast setting to turn up the brightness of the background as much as possible, but make sure that you can still see the difference between the two brightest levels of shades.If you have done that, press OK."
@@ -4903,7 +4909,7 @@ msgstr "OSD Position Einstellungen"
 
 #
 msgid "OSD Settings"
-msgstr "OSD-Einstellungen"
+msgstr "OSD Einstellungen"
 
 msgid "OSD Setup"
 msgstr "OSD Einstellungen"
@@ -5068,7 +5074,7 @@ msgstr "Jugendschutz-Kanaleditor"
 
 #
 msgid "Parental control setup"
-msgstr "Jugendschutz-Einstellungen"
+msgstr "Jugendschutz Einstellungen"
 
 #
 msgid "Parental control type"
@@ -5121,7 +5127,7 @@ msgstr "Telefonnummer"
 
 #
 msgid "PiPSetup"
-msgstr "PiP-Einstellung"
+msgstr "PiP Einstellung"
 
 msgid "Picture in Graphics*"
 msgstr "Bild in Grafik*"
@@ -5484,7 +5490,7 @@ msgstr "Rotorbewegung"
 
 #
 msgid "Positioner setup"
-msgstr "Rotor-Einstellungen"
+msgstr "Rotor Einstellungen"
 
 #
 msgid "Positioner storage"
@@ -5715,11 +5721,11 @@ msgstr "Statistik vom Kartenleser"
 
 #, python-format
 msgid "Ready to install \"%s\" ?"
-msgstr ""
+msgstr "Fertig zur Installation von \"%s\"?"
 
 #, python-format
 msgid "Ready to remove \"%s\" ?"
-msgstr ""
+msgstr "Fertig zur Entfernung von \"%s\"?"
 
 #
 msgid "Really close without saving settings?"
@@ -5782,7 +5788,7 @@ msgid "Recording Settings"
 msgstr "Aufnahmeeinstellungen"
 
 msgid "Recording Setup"
-msgstr "Aufnahme Einstellungen"
+msgstr "Aufnahmeeinstellungen"
 
 #
 msgid "Recording data sync size"
@@ -5880,7 +5886,7 @@ msgid "Remove Plugins"
 msgstr "Plugins entfernen"
 
 msgid "Remove Service"
-msgstr ""
+msgstr "Entferne Service"
 
 #
 msgid "Remove a mark"
@@ -5928,7 +5934,7 @@ msgid "Removing directory %s failed. (Maybe not empty.)"
 msgstr "Entfernen des Verzeichnisses %s fehlgeschlagen. (nicht leer?)"
 
 msgid "Removing service please wait..."
-msgstr ""
+msgstr "Service wird entfernt. Bitte warten..."
 
 #
 msgid "Rename"
@@ -5985,11 +5991,11 @@ msgstr "Wiedergabeposition zurücksetzen"
 
 #
 msgid "Reset video enhancement settings to system defaults?"
-msgstr "Erweiterte A/V-Einstellungen auf Standardwerte zurücksetzten?"
+msgstr "Erweiterte A/V Einstellungen auf Standardwerte zurücksetzten?"
 
 #
 msgid "Reset video enhancement settings to your last configuration?"
-msgstr "Erweiterte A/V-Einstellungen auf Ihre letzte Konfiguration zurücksetzen?"
+msgstr "Erweiterte A/V Einstellungen auf Ihre letzte Konfiguration zurücksetzen?"
 
 msgid "Reshare:"
 msgstr ""
@@ -6020,7 +6026,7 @@ msgstr "Test wiederholen"
 
 #
 msgid "Restart your network connection and interfaces.\n"
-msgstr "Neustart der Netzwerk-Konfiguration Ihrer STB_BOX.\n"
+msgstr "Neustart der Netzwerk-Konfiguration der STB_BOX.\n"
 
 #
 msgid "Restore"
@@ -6519,6 +6525,9 @@ msgstr "Bitte wählen Sie den Provider aus und bestätigen Sie mit OK, um die Su
 msgid "Send"
 msgstr "Senden"
 
+msgid "Send Confirmation"
+msgstr "Sendebestätigung"
+
 #
 msgid "Send DiSEqC"
 msgstr "DiSEqC senden"
@@ -6973,9 +6982,6 @@ msgstr "Zeige das Icon wenn neu oder ungesehen sonst wird kein Icon gezeigt."
 msgid "Shows the state of your wireless LAN connection.\n"
 msgstr "Zeigt den Status der WLAN-Verbinung an.\n"
 
-msgid "Shows the the movie length in the list."
-msgstr "Zeige die Filmlänge in der Liste."
-
 msgid "Shows the watched status of the movie."
 msgstr "Zeige den Filmstatus in der Liste."
 
@@ -7124,7 +7130,7 @@ msgid "Sorry MiniDLNA Config is Missing"
 msgstr "Sorry Konfiguration für MiniDLNA fehlt"
 
 msgid "Sorry feeds are down for maintenance"
-msgstr ""
+msgstr "Tut uns leid. Feeds sind wegen Wartungsarbeiten nicht erreichbar."
 
 #
 msgid "Sorry no backups found!"
@@ -7499,7 +7505,7 @@ msgstr "Region"
 
 #
 msgid "Test DiSEqC settings"
-msgstr "Teste DiSEqC-Einstellungen"
+msgstr "Teste DiSEqC Einstellungen"
 
 #
 msgid "Test Type"
@@ -7511,7 +7517,7 @@ msgstr "Testmodus"
 
 #
 msgid "Test the network configuration of your STB_BOX.\n"
-msgstr "Überprüfen Sie die Netzwerk-Konfiguration Ihrer STB_BOX\n"
+msgstr "Überprüfe die Netzwerk-Konfiguration der STB_BOX\n"
 
 #
 msgid "Test-Messagebox?"
@@ -7544,8 +7550,8 @@ msgid ""
 "Thank you for using the wizard. Your STB_BOX is now ready to use.\n"
 "Please press OK to start using your STB_BOX."
 msgstr ""
-"Der Assistent ist hiermit beendet. Ihre STB_BOX kann nun benutzt werden.\n"
-"Bitte drücken Sie OK, um den Assistenten zu verlassen."
+"Der Assistent ist hiermit beendet. Die STB_BOX kann nun benutzt werden.\n"
+"Bitte drücke OK, um den Assistenten zu verlassen."
 
 msgid ""
 "The AutoTimer plugin is not installed!\n"
@@ -7697,7 +7703,7 @@ msgstr "Die Installation der Standard-Kanallisten wurde abgeschlossen."
 
 #
 msgid "The installation of the default settings is finished. You can now continue configuring your STB_BOX by pressing the OK button on the remote control."
-msgstr "Die Installation der Standardeinstellungen wurde beendet. Sie können nun mit der Konfiguration Ihrer STB_BOX fortfahren, indem Sie die OK-Taste auf Ihrer Fernbedienung drücken."
+msgstr "Die Installation der Standardeinstellungen wurde beendet. Mit OK kann mit der Konfiguration der STB_BOX fortgefahren werden."
 
 msgid "The md5sum validation failed, the file may be corrupted!"
 msgstr "Die md5sum Überprüfung ist fehlgeschlagen. Die Datei könnte defekt sein!"
@@ -7784,7 +7790,7 @@ msgstr "Es befinden sich keine Standard-Kanallisten in Ihrer Firmware."
 
 #
 msgid "There are no default settings in your image."
-msgstr "Es befinden sich keine Standard-Einstellungen in Ihrer Firmware."
+msgstr "Es befinden sich keine Standardeinstellungen in Ihrer Firmware."
 
 #
 msgid "There are no updates available."
@@ -7827,7 +7833,7 @@ msgid "This STB_BOX can't decode %s streams!"
 msgstr "Diese STB_BOX kann %s Streams nicht dekodieren!"
 
 msgid "This allows the ECM data to be included in the stream. This enables a client STB_BOX to decode it."
-msgstr "Dies erlaubt ECM Daten in Streams zu übertragen. Damit kann die andere Vu+ Uno es entschlüsseln."
+msgstr "Dies erlaubt ECM Daten in Streams zu übertragen. Damit kann die andere STB_BOX es entschlüsseln."
 
 msgid "This allows the STB_BOX to decode the stream (if the ECM data is included in the stream and a valid card is available)."
 msgstr "Dies erlaubt der STB_BOX Streams zu entschlüsselns (wenn ECM Daten vorhanden sind und eine gültige Karte im Leser steckt)."
@@ -7928,7 +7934,7 @@ msgid ""
 "First, a USB stick needs to be prepared so that it becomes bootable.\n"
 "In the next step, an NFI image file can be downloaded from the update server and saved on the USB stick.\n"
 "If you already have a prepared bootable USB stick, please insert it now. Otherwise plug in a USB stick with a minimum size of 64 MB!"
-msgstr "Dieses Plugin erzeugt einen USB-Stick, mit dessen Hilfe die Firmware Ihrer Vu+ Uno aktualisiert werden kann, ohne dass dafür eine Netzwerk- oder WLAN-Verbindung notwendig ist. Zuerst muss ein USB-Stick vorbereitet und bootfähig gemacht werden. Im nächsten Schritt kann eine NFI-Imagedatei vom Update-Server heruntergeladen und auf diesem Stick gespeichert werden.Wenn Sie bereits einen bootfähigen USB-Stick vorbereitet haben, stecken Sie ihn bitte jetzt ein. Anderenfalls stecken Sie bitte einen USB-Stick mit einer Mindestgröße von 64 MB ein."
+msgstr "Dieses Plugin erzeugt einen USB-Stick, mit dessen Hilfe die Firmware der STB_BOX aktualisiert werden kann, ohne dass dafür eine Netzwerk- oder WLAN-Verbindung notwendig ist. Zuerst muss ein USB-Stick vorbereitet und bootfähig gemacht werden. Im nächsten Schritt kann eine NFI-Imagedatei vom Update-Server heruntergeladen und auf diesem Stick gespeichert werden.Wenn Sie bereits einen bootfähigen USB-Stick vorbereitet haben, stecken Sie ihn bitte jetzt ein. Anderenfalls stecken Sie bitte einen USB-Stick mit einer Mindestgröße von 64 MB ein."
 
 #
 msgid "This plugin is installed."
@@ -7959,7 +7965,7 @@ msgstr ""
 "Dieser Test sucht nach konfigurierten Nameservern\n"
 "Wenn Sie eine \"Unbestätigt\"-Meldung erhalten:\n"
 "- Überprüfen Sie Ihr DHCP, Ihre Verkabelung und Ihre Adapter-Konfiguration.\n"
-"- Haben Sie Ihre Namensserver manuell konfiguriert, überprüfen Sie bitte Ihre Konfiguration in den \"DNS\"-Einstellungen"
+"- Haben Sie Ihre Namensserver manuell konfiguriert, überprüfen Sie bitte Ihre Konfiguration in den \"DNS\" Einstellungen"
 
 #
 msgid ""
@@ -8409,7 +8415,7 @@ msgid "Updatefeed not available."
 msgstr "Updatefeed nicht verfügbar."
 
 msgid "Updates your receiver's software"
-msgstr "Aktualisiert die Software Ihrer STB_BOX"
+msgstr "Aktualisiert die Software der STB_BOX"
 
 #
 msgid "Updating finished. Here is the result:"
@@ -8434,7 +8440,7 @@ msgid "Upgrade finished."
 msgstr "Upgrade beendet."
 
 msgid "Upgrade finished. Do you want to reboot your STB_BOX?"
-msgstr "Aktualisierung abgeschlossen. Wollen Sie Ihre STB_BOX neustarten?"
+msgstr "Aktualisierung abgeschlossen. Die STB_BOX neu starten?"
 
 #
 msgid "Upgrading"
@@ -8513,6 +8519,9 @@ msgstr "Benutze die Tasten Links/Rechts der Fernbedienungen um die Größe der G
 msgid "Use the Left/Right buttons on your remote to move the OSD left/right"
 msgstr "Benutze die Tasten Links/Rechts um das OSD nach links/rechts zu verschieben"
 
+msgid "Use the Left/Right buttons on your remote to move the OSD up/down"
+msgstr "Benutze die Tasten Links/Rechts um das OSD nach oben/unten zu verschieben"
+
 #
 msgid "Use the Networkwizard to configure selected network adapter"
 msgstr "Nutzen Sie den NetworkWizard um den selektierten Adapter zu konfigurieren"
@@ -8549,7 +8558,7 @@ msgstr "Diese Einstellungen benutzten?"
 
 #
 msgid "Use this video enhancement settings?"
-msgstr "Diese erweiterten A/V-Einstellungen benutzen?"
+msgstr "Diese erweiterten A/V Einstellungen benutzen?"
 
 #
 msgid "Use time of currently running service"
@@ -8622,15 +8631,15 @@ msgid "ViX EPG"
 msgstr ""
 
 msgid "Video Enhancement Settings"
-msgstr ""
+msgstr "Bildoptimierung Einstellungen"
 
 #
 msgid "Video Fine-Tuning"
-msgstr "Video-Feineinstellung"
+msgstr "Bild Feineinstellung"
 
 #
 msgid "Video Fine-Tuning Wizard"
-msgstr "Video-Feineinstellungs-Assistent"
+msgstr "Bild Feineinstellungsassistent"
 
 #
 msgid "Video Output"
@@ -8649,11 +8658,11 @@ msgstr "Video-Assistent"
 
 #
 msgid "Video enhancement preview"
-msgstr "Erweiterte A/V-Einstellungen Vorschau"
+msgstr "Erweiterte A/V Einstellungen Vorschau"
 
 #
 msgid "Video enhancement setup"
-msgstr "Erweiterte A/V-Einstellungen"
+msgstr "Erweiterte A/V Einstellungen"
 
 #
 msgid ""
@@ -8678,7 +8687,7 @@ msgstr "Videocodec"
 
 #
 msgid "Videoenhancement Setup"
-msgstr "Erweiterte A/V-Einstellungen"
+msgstr "Erweiterte A/V Einstellungen"
 
 msgid "Videoformat"
 msgstr "Videoformat"
@@ -8735,7 +8744,7 @@ msgstr "Eine Liste der verfügbaren Kommunikations-Erweiterungen anzeigen."
 
 #
 msgid "View list of available default settings"
-msgstr "Eine Liste der verfügbaren Standard-Einstellungen anzeigen."
+msgstr "Eine Liste der verfügbaren Standardeinstellungen anzeigen."
 
 #
 msgid "View list of available multimedia extensions."
@@ -8933,7 +8942,7 @@ msgstr ""
 msgid ""
 "Welcome.\n"
 "\n"
-"This start wizard will guide you through the basic setup of your STB_BOX.\n"
+"This start wizard will guide you through the basic setup of your Vu+ Ultimo.\n"
 "Press the OK button on your remote control to move to the next step."
 msgstr ""
 "Willkommen.\n"
@@ -9313,17 +9322,24 @@ msgid ""
 "Your STB_BOX will be restarted after the installation of service\n"
 "Do you want to install now ?"
 msgstr ""
+"Deine STB_BOX wird nach installieren des Services neu gestartet\n"
+"Service jetzt installieren?"
 
 msgid ""
 "Your STB_BOX will be restarted after the installation of service.\n"
 "\n"
 "Do you want to install now ?"
 msgstr ""
+"Deine STB_BOX wird nach installieren des Services neu gestartet\n"
+"\n"
+"Service jetzt installieren?"
 
 msgid ""
 "Your STB_BOX will be restarted after the removal of service\n"
 "Do you want to remove now ?"
 msgstr ""
+"Deine STB_BOX wird nach entfernen des Services neu gestartet\n"
+"Service jetzt entfernen?"
 
 #
 msgid "Your backup succeeded. We will now continue to explain the further upgrade process."
@@ -9395,10 +9411,10 @@ msgstr ""
 "Bitte wählen Sie eine Option zum Fortfahren."
 
 msgid "Zap"
-msgstr ""
+msgstr "Umschalten"
 
 msgid "Zap + Exit"
-msgstr ""
+msgstr "Umschalten + Verlassen"
 
 #
 msgid "Zap back to previously tuned service?"
@@ -9408,7 +9424,7 @@ msgstr "Zurückschalten zum vorher laufenden Sender?"
 msgid "Zap back to service before positioner setup?"
 msgstr ""
 "Zurückschalten zum Sender der vor dem\n"
-"Öffnen der Motor-Einstellungen lief?"
+"Öffnen der Motoreinstellungen lief?"
 
 #
 msgid "Zap back to service before satfinder?"
@@ -9724,7 +9740,7 @@ msgid "continue"
 msgstr "Weiter"
 
 msgid "copy"
-msgstr ""
+msgstr "kopieren"
 
 #
 msgid "copy to bouquets"
@@ -9751,10 +9767,10 @@ msgid "day"
 msgstr "Tag"
 
 msgid "decrease uphop by 1"
-msgstr ""
+msgstr "uhop um 1 verringern"
 
 msgid "delete"
-msgstr ""
+msgstr "löschen"
 
 #
 msgid "delete cut"
@@ -9902,7 +9918,7 @@ msgid "exit networkadapter setup menu"
 msgstr "Netzwerkadaptermenü verlassen"
 
 msgid "extensions."
-msgstr ""
+msgstr "Erweiterungen."
 
 msgid "failed"
 msgstr "fehlgeschlagen"
@@ -9992,7 +10008,7 @@ msgid "immediate shutdown"
 msgstr "Direkt runterfahren"
 
 msgid "increase uphop by 1"
-msgstr ""
+msgstr "uhop um 1 erhöhen"
 
 #
 msgid "init module"
@@ -10007,7 +10023,7 @@ msgid "insert mark here"
 msgstr "Markierung hier einfügen"
 
 msgid "invalid type"
-msgstr ""
+msgstr "ungültiger Typ"
 
 #
 msgid "jump back to the previous title"
@@ -10050,22 +10066,6 @@ msgid "list of EPG views..."
 msgstr "Liste der EPG Ansichten."
 
 #
-msgid "list style compact"
-msgstr "kompakte Listenansicht"
-
-#
-msgid "list style compact with description"
-msgstr "kompakte Listenansicht mit Beschreibung"
-
-#
-msgid "list style default"
-msgstr "Standard Listenansicht"
-
-#
-msgid "list style single line"
-msgstr "einzeilige Listenansicht"
-
-#
 msgid "load playlist"
 msgstr "Wiedergabeliste laden"
 
@@ -10101,7 +10101,7 @@ msgid "month"
 msgstr "Monat"
 
 msgid "move"
-msgstr ""
+msgstr "verschieben"
 
 #
 msgid "move PiP to main picture"
@@ -10256,7 +10256,7 @@ msgid "original"
 msgstr "Original"
 
 msgid "packages selected."
-msgstr ""
+msgstr "Pakete ausgewählt."
 
 msgid "page left"
 msgstr "Seite links"
@@ -10760,7 +10760,7 @@ msgid "up to 3 degrees"
 msgstr "Bis zu 3 Grad"
 
 msgid "updates available."
-msgstr ""
+msgstr "Updates verfügbar."
 
 #
 msgid "user defined"
@@ -10818,7 +10818,7 @@ msgid "wireless network interface"
 msgstr "Funk Netzwerkadapter"
 
 msgid "wireless networks found!"
-msgstr ""
+msgstr "Drahtlosnetzwerke gefunden!"
 
 msgid "with exit button"
 msgstr "Mit Exit Taste"
@@ -10857,3 +10857,14 @@ msgstr "umschalten"
 msgid "zapped"
 msgstr "umgeschaltet"
 
+#~ msgid "Choose how to display the list."
+#~ msgstr "Wähle wie die Liste angezeigt werden soll."
+
+#~ msgid "DVD Player"
+#~ msgstr "DVD Player"
+
+#~ msgid "List type"
+#~ msgstr "Listen Typ"
+
+#~ msgid "Shows the the movie length in the list."
+#~ msgstr "Zeige die Filmlänge in der Liste."
