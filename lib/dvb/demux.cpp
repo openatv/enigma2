@@ -752,18 +752,12 @@ eDVBTSRecorder::eDVBTSRecorder(eDVBDemux *demux, int packetsize, bool streaming)
 	m_packetsize(packetsize)
 {
 	CONNECT(m_thread->m_event, eDVBTSRecorder::filepushEvent);
-#ifndef HAVE_ADD_PID
-	m_demux->m_dvr_busy = 1;
-#endif
 }
 
 eDVBTSRecorder::~eDVBTSRecorder()
 {
 	stop();
 	delete m_thread;
-#ifndef HAVE_ADD_PID
-	m_demux->m_dvr_busy = 0;
-#endif
 }
 
 RESULT eDVBTSRecorder::start()
@@ -780,16 +774,6 @@ RESULT eDVBTSRecorder::start()
 		return -3;
 
 	char filename[128];
-#ifndef HAVE_ADD_PID
-	snprintf(filename, 128, "/dev/dvb/adapter%d/dvr%d", m_demux->adapter, m_demux->demux);
-	m_source_fd = ::open(filename, O_RDONLY);
-	
-	if (m_source_fd < 0)
-	{
-		eDebug("FAILED to open dvr (%s) in ts recoder (%m)", filename);
-		return -3;
-	}
-#else
 	snprintf(filename, 128, "/dev/dvb/adapter%d/demux%d", m_demux->adapter, m_demux->demux);
 
 	m_source_fd = ::open(filename, O_RDONLY);
@@ -828,8 +812,6 @@ RESULT eDVBTSRecorder::start()
 	}
 	
 	::ioctl(m_source_fd, DMX_START);
-	
-#endif
 
 	if (!m_target_filename.empty())
 		m_thread->startSaveMetaInformation(m_target_filename);
@@ -968,32 +950,6 @@ RESULT eDVBTSRecorder::connectEvent(const Slot1<void,int> &event, ePtr<eConnecti
 
 RESULT eDVBTSRecorder::startPID(int pid)
 {
-#ifndef HAVE_ADD_PID
-	int fd = m_demux->openDemux();
-	if (fd < 0)
-	{
-		eDebug("FAILED to open demux in ts recoder (%m)");
-		return -1;
-	}
-
-	dmx_pes_filter_params flt;
-	
-	flt.pes_type = DMX_PES_OTHER;
-	flt.pid     = pid;
-	flt.input   = DMX_IN_FRONTEND;
-	flt.output  = DMX_OUT_TS_TAP;
-	
-	flt.flags   = DMX_IMMEDIATE_START;
-
-	int res = ::ioctl(fd, DMX_SET_PES_FILTER, &flt);
-	if (res < 0)
-	{
-		eDebug("set pes filter failed!");
-		::close(fd);
-		return -1;
-	}
-	m_pids[pid] = fd;
-#else
 	while(true) {
 		__u16 p = pid;
 		if (::ioctl(m_source_fd, DMX_ADD_PID, &p) < 0) {
@@ -1006,16 +962,11 @@ RESULT eDVBTSRecorder::startPID(int pid)
 			m_pids[pid] = 1;
 		break;
 	}
-#endif
 	return 0;
 }
 
 void eDVBTSRecorder::stopPID(int pid)
 {
-#ifndef HAVE_ADD_PID
-	if (m_pids[pid] != -1)
-		::close(m_pids[pid]);
-#else
 	if (m_pids[pid] != -1)
 	{
 		while(true) {
@@ -1030,7 +981,6 @@ void eDVBTSRecorder::stopPID(int pid)
 			break;
 		}
 	}
-#endif
 	m_pids[pid] = -1;
 }
 
