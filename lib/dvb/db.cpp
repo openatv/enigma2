@@ -567,7 +567,7 @@ void eDVBDB::saveServicelist(const char *file)
 		else if (!ch.m_frontendParameters->getDVBT(ter))
 		{
 			int bandwidth;
-			switch (bandwidth)
+			switch (ter.bandwidth)
 			{
 			case 8000000: bandwidth = eDVBFrontendParametersTerrestrial::Bandwidth_8MHz; break;
 			case 7000000: bandwidth = eDVBFrontendParametersTerrestrial::Bandwidth_7MHz; break;
