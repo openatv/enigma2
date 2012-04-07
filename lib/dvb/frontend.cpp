@@ -445,12 +445,12 @@ DEFINE_REF(eDVBFrontend);
 int eDVBFrontend::PriorityOrder=0;
 int eDVBFrontend::PreferredFrontendIndex = -1;
 
-eDVBFrontend::eDVBFrontend(int adap, int fe, int &ok, bool simulate, eDVBFrontend *simulate_fe)
+eDVBFrontend::eDVBFrontend(const char *devicenodename, int fe, int &ok, bool simulate, eDVBFrontend *simulate_fe)
 	:m_simulate(simulate), m_enabled(false), m_type(-1), m_simulate_fe(simulate_fe), m_dvbid(fe), m_slotid(fe)
 	,m_fd(-1), m_rotor_mode(false), m_need_rotor_workaround(false), m_can_handle_dvbs2(false)
 	,m_state(stateClosed), m_timeout(0), m_tuneTimer(0)
 {
-	sprintf(m_filename, "/dev/dvb/adapter%d/frontend%d", adap, fe);
+	m_filename = devicenodename;
 
 	m_timeout = eTimer::create(eApp);
 	CONNECT(m_timeout->timeout, eDVBFrontend::timeout);
@@ -487,10 +487,10 @@ int eDVBFrontend::openFrontend()
 		eDebug("opening frontend %d", m_dvbid);
 		if (m_fd < 0)
 		{
-			m_fd = ::open(m_filename, O_RDWR|O_NONBLOCK);
+			m_fd = ::open(m_filename.c_str(), O_RDWR|O_NONBLOCK);
 			if (m_fd < 0)
 			{
-				eWarning("failed! (%s) %m", m_filename);
+				eWarning("failed! (%s) %m", m_filename.c_str());
 				return -1;
 			}
 		}

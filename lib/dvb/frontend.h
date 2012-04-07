@@ -82,7 +82,7 @@ private:
 	bool m_rotor_mode;
 	bool m_need_rotor_workaround;
 	bool m_can_handle_dvbs2;
-	char m_filename[128];
+	std::string m_filename;
 	char m_description[128];
 	dvb_frontend_info fe_info;
 	int satfrequency;
@@ -118,7 +118,7 @@ private:
 	static int PriorityOrder;
 	static int PreferredFrontendIndex;
 public:
-	eDVBFrontend(int adap, int fe, int &ok, bool simulate=false, eDVBFrontend *simulate_fe=NULL);
+	eDVBFrontend(const char *devidenodename, int fe, int &ok, bool simulate=false, eDVBFrontend *simulate_fe=NULL);
 	virtual ~eDVBFrontend();
 
 	int readInputpower();
