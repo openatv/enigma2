@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
-from os import path as os_path, mkdir, rmdir, system, walk, stat as os_stat, listdir, readlink, makedirs, error as os_error, symlink, access, F_OK, R_OK, W_OK
+from os import mkdir, rmdir, system, walk, stat as os_stat, listdir, readlink, makedirs, error as os_error, symlink, access, F_OK, R_OK, W_OK
 from stat import S_IMODE
 from re import compile
 from enigma import eEnv
@@ -76,7 +76,7 @@ def resolveFilename(scope, base = "", path_prefix = None):
 	if base.startswith("~/"):
 		# you can only use the ~/ if we have a prefix directory
 		assert path_prefix is not None
-		base = os_path.join(path_prefix, base[2:])
+		base = os.path.join(path_prefix, base[2:])
 
 	# don't resolve absolute paths
 	if base.startswith('/'):
@@ -162,8 +162,8 @@ def resolveFilename(scope, base = "", path_prefix = None):
 	return path + base
 	# this is only the BASE - an extension must be added later.
 
-pathExists = os_path.exists
-isMount = os_path.ismount
+pathExists = os.path.exists
+isMount = os.path.ismount
 
 def createDir(path, makeParents = False):
 	try:
@@ -206,7 +206,7 @@ def getRecordingFilename(basename, dirname = None):
 		filename += c
 
 	if dirname is not None:
-		filename = ''.join((dirname, filename))
+		filename = os.path.join(dirname, filename)
 
 	while len(filename) > 240:
 		filename = filename.decode('UTF-8')
@@ -246,8 +246,8 @@ def crawlDirectory(directory, pattern):
 def copyfile(src, dst):
 	try:
 		f1 = open(src, "rb")
-		if os_path.isdir(dst):
-			dst = os_path.join(dst, os_path.basename(src))
+		if os.path.isdir(dst):
+			dst = os.path.join(dst, os.path.basename(src))
 		f2 = open(dst, "w+b")
 		while True:
 			buf = f1.read(16*1024)
@@ -267,20 +267,20 @@ def copyfile(src, dst):
 
 def copytree(src, dst, symlinks=False):
 	names = listdir(src)
-	if os_path.isdir(dst):
-		dst = os_path.join(dst, os_path.basename(src))
-		if not os_path.isdir(dst):
+	if os.path.isdir(dst):
+		dst = os.path.join(dst, os.path.basename(src))
+		if not os.path.isdir(dst):
 			mkdir(dst)
 	else:
 		makedirs(dst)
 	for name in names:
-		srcname = os_path.join(src, name)
-		dstname = os_path.join(dst, name)
+		srcname = os.path.join(src, name)
+		dstname = os.path.join(dst, name)
 		try:
-			if symlinks and os_path.islink(srcname):
+			if symlinks and os.path.islink(srcname):
 				linkto = readlink(srcname)
 				symlink(linkto, dstname)
-			elif os_path.isdir(srcname):
+			elif os.path.isdir(srcname):
 				copytree(srcname, dstname, symlinks)
 			else:
 				copyfile(srcname, dstname)
@@ -298,11 +298,11 @@ def copytree(src, dst, symlinks=False):
 
 def getSize(path, pattern=".*"):
 	path_size = 0
-	if os_path.isdir(path):
+	if os.path.isdir(path):
 		files = crawlDirectory(path, pattern)
 		for file in files:
-			filepath = os_path.join(file[0], file[1])
-			path_size += os_path.getsize(filepath)
-	elif os_path.isfile(path):
-		path_size = os_path.getsize(path)
+			filepath = os.path.join(file[0], file[1])
+			path_size += os.path.getsize(filepath)
+	elif os.path.isfile(path):
+		path_size = os.path.getsize(path)
 	return path_size
