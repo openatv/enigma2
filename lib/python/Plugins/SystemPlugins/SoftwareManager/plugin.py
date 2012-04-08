@@ -1468,9 +1468,7 @@ class UpdatePlugin(Screen):
 			        self.total_packages = len(self.ipkg.getFetchedList())
 			        if self.total_packages:
 					message = _("Do you want to update your STB-BOX?") + "\n(%s " % self.total_packages + _("Packages") + ")"
-					choices = [(_("Unattended upgrade without GUI and reboot system"), "cold"),
-						(_("Upgrade and ask to reboot"), "hot"),
-						(_("Cancel"), "")]
+					choices = [(_("Upgrade and ask to reboot"), "hot"),	(_("Cancel"), "")]
 					self.session.openWithCallback(self.startActualUpgrade, ChoiceBox, title=message, list=choices)
 				else:
 				        self.session.openWithCallback(self.close, MessageBox, _("Nothing to upgrade"), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
