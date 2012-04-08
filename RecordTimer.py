@@ -54,8 +54,8 @@ def findSafeRecordPath(dirname):
 	from Components import Harddisk
 	dirname = os.path.realpath(dirname)
 	mountpoint = Harddisk.findMountPoint(dirname)
-	if mountpoint == '/':
-		print '[RecordTimer] mountpoint is root:', dirname
+	if mountpoint in ('/', '/media'):
+		print '[RecordTimer] media is not mounted:', dirname
 		return None
 	if not os.path.isdir(dirname):
 		try:
