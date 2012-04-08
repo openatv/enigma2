@@ -236,32 +236,32 @@ class UpdatePluginMenu(Screen):
 				self.session.open(SoftwareManagerInfo, mode = "backupinfo")
 
 	def checkTraficLight(self):
-		from urllib import urlopen
-		import socket
-		import os
-		currentTimeoutDefault = socket.getdefaulttimeout()
-		socket.setdefaulttimeout(3)
+		#from urllib import urlopen
+		#import socket
+		#import os
+		#currentTimeoutDefault = socket.getdefaulttimeout()
+		#socket.setdefaulttimeout(3)
 		message = ""
 		picon = None
 		default = True
-		try:
-			if os.path.isfile("/proc/stb/info/boxtype"):
-				boxType = open("/proc/stb/info/boxtype").read().strip().lower()
-			elif os.path.isfile("/proc/stb/info/vumodel"):
-				boxType = "vu" + open("/proc/stb/info/vumodel").read().strip().lower()
-			elif os.path.isfile("/proc/stb/info/model"):
-				boxType = open("/proc/stb/info/model").read().strip().lower()
+		#try:
+		#	if os.path.isfile("/proc/stb/info/boxtype"):
+		#		boxType = open("/proc/stb/info/boxtype").read().strip().lower()
+		#	elif os.path.isfile("/proc/stb/info/vumodel"):
+		#		boxType = "vu" + open("/proc/stb/info/vumodel").read().strip().lower()
+		#	elif os.path.isfile("/proc/stb/info/model"):
+		#		boxType = open("/proc/stb/info/model").read().strip().lower()
 			# TODO: Use Twisted's URL fetcher, urlopen is evil. And it can
 			# run in parallel to the package update.
-			if boxType in urlopen("http://openpli.org/status").read():
-				message = _("The current beta image could not be stable") + "\n" + _("For more information see www.openpli.org") + "\n"
-				picon = MessageBox.TYPE_ERROR
-				default = False
-		except:
-			message = _("The status of the current beta image could not be checked because www.openpli.org could not be reached for some reason") + "\n"
-			picon = MessageBox.TYPE_ERROR
-			default = False
-		socket.setdefaulttimeout(currentTimeoutDefault)
+		#	if boxType in urlopen("http://openpli.org/status").read():
+		#		message = _("The current beta image could not be stable") + "\n" + _("For more information see www.openpli.org") + "\n"
+		#		picon = MessageBox.TYPE_ERROR
+		#		default = False
+		#except:
+		#	message = _("The status of the current beta image could not be checked because www.openpli.org could not be reached for some reason") + "\n"
+		#	picon = MessageBox.TYPE_ERROR
+		#	default = False
+		#socket.setdefaulttimeout(currentTimeoutDefault)
 		
 		if default:
 		        # We'll ask later
