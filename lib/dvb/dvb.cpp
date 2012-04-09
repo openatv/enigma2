@@ -1,3 +1,7 @@
+#include <linux/dvb/frontend.h>
+#include <linux/dvb/dmx.h>
+#include <linux/dvb/version.h>
+
 #include <lib/base/eerror.h>
 #include <lib/base/filepush.h>
 #include <lib/dvb/cahandler.h>
@@ -71,15 +75,22 @@ eDVBResourceManager::eDVBResourceManager()
 	if (!instance)
 		instance = this;
 
-		/* search available adapters... */
-
-		// add linux devices
-
-	int num_adapter = 0;
+	int num_adapter = 1;
 	while (eDVBAdapterLinux::exist(num_adapter))
 	{
-		addAdapter(new eDVBAdapterLinux(num_adapter));
+		if (eDVBAdapterLinux::isusb(num_adapter))
+		{
+			eDVBAdapterLinux *adapter = new eDVBUsbAdapter(num_adapter);
+			addAdapter(adapter);
+		}
 		num_adapter++;
+	}
+
+	if (eDVBAdapterLinux::exist(0))
+	{
+		eDVBAdapterLinux *adapter = new eDVBAdapterLinux(0);
+		adapter->scanDevices();
+		addAdapter(adapter);
 	}
 
 	int fd = open("/proc/stb/info/model", O_RDONLY);
@@ -127,8 +138,14 @@ void eDVBResourceManager::feStateChanged()
 	/* emit */ frontendUseMaskChanged(mask);
 }
 
+std::map<std::string, std::string> eDVBAdapterLinux::mappedFrontendName;
+
 DEFINE_REF(eDVBAdapterLinux);
 eDVBAdapterLinux::eDVBAdapterLinux(int nr): m_nr(nr)
+{
+}
+
+void eDVBAdapterLinux::scanDevices()
 {
 		// scan frontends
 	int num_fe = 0;
@@ -138,25 +155,24 @@ eDVBAdapterLinux::eDVBAdapterLinux(int nr): m_nr(nr)
 	{
 		struct stat s;
 		char filename[128];
-#if HAVE_DVB_API_VERSION < 3
-		sprintf(filename, "/dev/dvb/card%d/frontend%d", m_nr, num_fe);
-#else
 		sprintf(filename, "/dev/dvb/adapter%d/frontend%d", m_nr, num_fe);
-#endif
 		if (stat(filename, &s))
 			break;
 		eDVBFrontend *fe;
+		std::string name = filename;
+		std::map<std::string, std::string>::iterator it = mappedFrontendName.find(name);
+		if (it != mappedFrontendName.end()) name = it->second;
 
 		{
 			int ok = 0;
-			fe = new eDVBFrontend(m_nr, num_fe, ok, true);
+			fe = new eDVBFrontend(name.c_str(), num_fe, ok, true);
 			if (ok)
 				m_simulate_frontend.push_back(ePtr<eDVBFrontend>(fe));
 		}
 
 		{
 			int ok = 0;
-			fe = new eDVBFrontend(m_nr, num_fe, ok, false, fe);
+			fe = new eDVBFrontend(name.c_str(), num_fe, ok, false, fe);
 			if (ok)
 				m_frontend.push_back(ePtr<eDVBFrontend>(fe));
 		}
@@ -169,11 +185,7 @@ eDVBAdapterLinux::eDVBAdapterLinux(int nr): m_nr(nr)
 	{
 		struct stat s;
 		char filename[128];
-#if HAVE_DVB_API_VERSION < 3
-		sprintf(filename, "/dev/dvb/card%d/demux%d", m_nr, num_demux);
-#else
 		sprintf(filename, "/dev/dvb/adapter%d/demux%d", m_nr, num_demux);
-#endif
 		if (stat(filename, &s))
 			break;
 		ePtr<eDVBDemux> demux;
@@ -233,14 +245,350 @@ int eDVBAdapterLinux::exist(int nr)
 {
 	struct stat s;
 	char filename[128];
-#if HAVE_DVB_API_VERSION < 3
-	sprintf(filename, "/dev/dvb/card%d", nr);
-#else
 	sprintf(filename, "/dev/dvb/adapter%d", nr);
-#endif
 	if (!stat(filename, &s))
 		return 1;
 	return 0;
+}
+
+bool eDVBAdapterLinux::isusb(int nr)
+{
+	char devicename[256];
+	snprintf(devicename, sizeof(devicename), "/sys/class/dvb/dvb%d.frontend0/device/ep_00", nr);
+	return ::access(devicename, X_OK) >= 0;
+}
+
+DEFINE_REF(eDVBUsbAdapter);
+eDVBUsbAdapter::eDVBUsbAdapter(int nr)
+: eDVBAdapterLinux(nr)
+{
+	FILE *file = NULL;
+	char type[8];
+	struct dmx_pes_filter_params filter;
+	struct dvb_frontend_info fe_info;
+	int frontend = -1;
+	char filename[256];
+	eDebug("linking adapter%d/frontend0 to vtuner%d", nr, nr - 1);
+
+	pumpThread = NULL;
+
+	int num_fe = 0;
+	while (1)
+	{
+		snprintf(filename, sizeof(filename), "/dev/dvb/adapter0/frontend%d", num_fe);
+		if (::access(filename, R_OK) < 0) break;
+		num_fe++;
+	}
+	virtualFrontendName = filename;
+
+	demuxFd = vtunerFd = pipeFd[0] = pipeFd[1] = -1;
+
+	snprintf(filename, sizeof(filename), "/sys/class/dvb/dvb%d.frontend0/device/product", nr);
+	file = fopen(filename, "r");
+	if (!file)
+	{
+		snprintf(filename, sizeof(filename), "/sys/class/dvb/dvb%d.frontend0/device/manufacturer", nr);
+		file = fopen(filename, "r");
+	}
+
+	if (file)
+	{
+		char *tmp = name;
+		fread(tmp, sizeof(name), 1, file);
+		tmp[sizeof(name) - 1] = 0;
+		while (strlen(tmp) > 0 && (tmp[strlen(tmp) - 1] == '\n' || tmp[strlen(tmp) - 1] == ' ')) tmp[strlen(tmp) - 1] = 0;
+		fclose(file);
+	}
+
+	snprintf(filename, sizeof(filename), "/dev/dvb/adapter%d/frontend0", nr);
+	frontend = open(filename, O_RDWR);
+	if (frontend < 0)
+	{
+		goto error;
+	}
+	if (::ioctl(frontend, FE_GET_INFO, &fe_info) < 0)
+	{
+		::close(frontend);
+		frontend = -1;
+		goto error;
+	}
+	::close(frontend);
+	frontend = -1;
+
+	usbFrontendName = filename;
+
+	snprintf(filename, sizeof(filename), "/dev/dvb/adapter%d/demux0", nr);
+	demuxFd = open(filename, O_RDONLY | O_NONBLOCK);
+	if (demuxFd < 0)
+	{
+		goto error;
+	}
+
+	snprintf(filename, sizeof(filename), "/dev/misc/vtuner%d", nr - 1);
+	vtunerFd = open(filename, O_RDWR);
+	if (vtunerFd < 0)
+	{
+		goto error;
+	}
+
+	filter.input = DMX_IN_FRONTEND;
+	filter.flags = 0;
+	filter.pid = 0;
+	filter.output = DMX_OUT_TSDEMUX_TAP;
+	filter.pes_type = DMX_PES_OTHER;
+
+#define DEMUX_BUFFER_SIZE (8 * ((188 / 4) * 4096)) /* 1.5MB */
+	ioctl(demuxFd, DMX_SET_BUFFER_SIZE, DEMUX_BUFFER_SIZE);
+	ioctl(demuxFd, DMX_SET_PES_FILTER, &filter);
+	ioctl(demuxFd, DMX_START);
+
+	switch (fe_info.type)
+	{
+	case FE_QPSK:
+		strcpy(type,"DVB-S2");
+		break;
+	case FE_QAM:
+		strcpy(type,"DVB-C");
+		break;
+	case FE_OFDM:
+		strcpy(type,"DVB-T");
+		break;
+	case FE_ATSC:
+		strcpy(type,"ATSC");
+		break;
+	default:
+		eDebug("Frontend type 0x%x not supported", fe_info.type);
+		goto error;
+	}
+
+#define VTUNER_GET_MESSAGE  1
+#define VTUNER_SET_RESPONSE 2
+#define VTUNER_SET_NAME     3
+#define VTUNER_SET_TYPE     4
+#define VTUNER_SET_HAS_OUTPUTS 5
+#define VTUNER_SET_FE_INFO  6
+#define VTUNER_SET_DELSYS   7
+	ioctl(vtunerFd, VTUNER_SET_NAME, name);
+	ioctl(vtunerFd, VTUNER_SET_TYPE, type);
+	ioctl(vtunerFd, VTUNER_SET_HAS_OUTPUTS, "no");
+
+	memset(pidList, 0xff, sizeof(pidList));
+
+	mappedFrontendName[virtualFrontendName] = usbFrontendName;
+	pipe(pipeFd);
+	running = true;
+	pthread_create(&pumpThread, NULL, threadproc, (void*)this);
+	return;
+
+error:
+	if (vtunerFd >= 0)
+	{
+		close(vtunerFd);
+		vtunerFd = -1;
+	}
+	if (demuxFd >= 0)
+	{
+		close(demuxFd);
+		demuxFd = -1;
+	}
+}
+
+eDVBUsbAdapter::~eDVBUsbAdapter()
+{
+	running = false;
+	if (pipeFd[1] >= 0)
+	{
+		::close(pipeFd[1]);
+		pipeFd[1] = -1;
+	}
+	if (pumpThread) pthread_join(pumpThread, NULL);
+	if (pipeFd[0] >= 0)
+	{
+		::close(pipeFd[0]);
+		pipeFd[0] = -1;
+	}
+	if (vtunerFd >= 0)
+	{
+		close(vtunerFd);
+		vtunerFd = -1;
+	}
+	if (demuxFd >= 0)
+	{
+		close(demuxFd);
+		demuxFd = -1;
+	}
+}
+
+int eDVBUsbAdapter::select(int maxfd, fd_set *readfds, fd_set *writefds, fd_set *exceptfds, struct timeval *timeout)
+{
+	int retval;
+	fd_set rset, wset, xset;
+	struct timeval interval;
+	timerclear(&interval);
+
+	/* make a backup of all fd_set's and timeval struct */
+	if (readfds) rset = *readfds;
+	if (writefds) wset = *writefds;
+	if (exceptfds) xset = *exceptfds;
+	if (timeout) interval = *timeout;
+
+	while (1)
+	{
+		retval = ::select(maxfd, readfds, writefds, exceptfds, timeout);
+
+		if (retval < 0)
+		{
+			/* restore the backup before we continue */
+			if (readfds) *readfds = rset;
+			if (writefds) *writefds = wset;
+			if (exceptfds) *exceptfds = xset;
+			if (timeout) *timeout = interval;
+			if (errno == EINTR) continue;
+			break;
+		}
+		break;
+	}
+	return retval;
+}
+
+ssize_t eDVBUsbAdapter::writeAll(int fd, const void *buf, size_t count)
+{
+	ssize_t retval;
+	char *ptr = (char*)buf;
+	size_t handledcount = 0;
+	if (fd < 0) return -1;
+	while (handledcount < count)
+	{
+		retval = ::write(fd, &ptr[handledcount], count - handledcount);
+
+		if (retval == 0) return -1;
+		if (retval < 0)
+		{
+			if (errno == EINTR) continue;
+			return retval;
+		}
+		handledcount += retval;
+	}
+	return handledcount;
+}
+
+ssize_t eDVBUsbAdapter::read(int fd, void *buf, size_t count)
+{
+	ssize_t retval;
+	char *ptr = (char*)buf;
+	size_t handledcount = 0;
+	if (fd < 0) return -1;
+	while (handledcount < count)
+	{
+		retval = ::read(fd, &ptr[handledcount], count - handledcount);
+		if (retval < 0)
+		{
+			if (errno == EINTR) continue;
+			return retval;
+		}
+		handledcount += retval;
+		break; /* one read only */
+	}
+	return handledcount;
+}
+
+void *eDVBUsbAdapter::threadproc(void *arg)
+{
+	eDVBUsbAdapter *user = (eDVBUsbAdapter*)arg;
+	return user->vtunerPump();
+}
+
+void *eDVBUsbAdapter::vtunerPump()
+{
+	if (vtunerFd < 0 || demuxFd < 0 || pipeFd[0] < 0) return NULL;
+
+#define MSG_PIDLIST         14
+	struct vtuner_message
+	{
+		int type;
+		unsigned short int pidlist[30];
+		unsigned char pad[64]; /* nobody knows the much data the driver will try to copy into our struct, add some padding to be sure */
+	};
+
+	while (running)
+	{
+		fd_set rset, xset;
+		int maxfd = vtunerFd;
+		if (demuxFd > maxfd) maxfd = demuxFd;
+		if (pipeFd[0] > maxfd) maxfd = pipeFd[0];
+		FD_ZERO(&rset);
+		FD_ZERO(&xset);
+		FD_SET(vtunerFd, &xset);
+		FD_SET(demuxFd, &rset);
+		FD_SET(pipeFd[0], &rset);
+		if (select(maxfd + 1, &rset, NULL, &xset, NULL) > 0)
+		{
+			if (FD_ISSET(vtunerFd, &xset))
+			{
+				int i, j;
+				struct vtuner_message message;
+				memset(message.pidlist, 0xff, sizeof(message.pidlist));
+				::ioctl(vtunerFd, VTUNER_GET_MESSAGE, &message);
+
+				switch (message.type)
+				{
+				case MSG_PIDLIST:
+					/* remove old pids */
+					for (i = 0; i < 30; i++)
+					{
+						bool found = false;
+						if (pidList[i] == 0xffff) continue;
+						for (j = 0; j < 30; j++)
+						{
+							if (pidList[i] == message.pidlist[j])
+							{
+								found = true;
+								break;
+							}
+						}
+
+						if (found) continue;
+
+						::ioctl(demuxFd, DMX_REMOVE_PID, &pidList[i]);
+					}
+
+					/* add new pids */
+					for (i = 0; i < 30; i++)
+					{
+						bool found = false;
+						if (message.pidlist[i] == 0xffff) continue;
+						for (j = 0; j < 30; j++)
+						{
+							if (message.pidlist[i] == pidList[j])
+							{
+								found = true;
+								break;
+							}
+						}
+
+						if (found) continue;
+
+						::ioctl(demuxFd, DMX_ADD_PID, &message.pidlist[i]);
+					}
+
+					/* copy pids */
+					for (i = 0; i < 30; i++)
+					{
+						pidList[i] = message.pidlist[i];
+					}
+					break;
+				}
+			}
+			if (FD_ISSET(demuxFd, &rset))
+			{
+				int size = read(demuxFd, buffer, sizeof(buffer));
+				if (writeAll(vtunerFd, buffer, size) <= 0)
+				{
+					break;
+				}
+			}
+		}
+	}
 }
 
 eDVBResourceManager::~eDVBResourceManager()
@@ -1833,14 +2181,6 @@ RESULT eDVBChannel::playSource(ePtr<iTsSource> &source, const char *streaminfo_f
 	if (m_pvr_fd_dst < 0)
 	{
 		/* (this codepath needs to be improved anyway.) */
-#if HAVE_DVB_API_VERSION < 3
-		m_pvr_fd_dst = open("/dev/pvr", O_WRONLY);
-		if (m_pvr_fd_dst < 0)
-		{
-			eDebug("can't open /dev/pvr - you need to buy the new(!) $$$ box! (%m)"); // or wait for the driver to be improved.
-			return -ENODEV;
-		}
-#else
 #ifdef HAVE_OLDPVR
 		m_pvr_fd_dst = open("/dev/misc/pvr", O_WRONLY);
 		if (m_pvr_fd_dst < 0)
@@ -1864,7 +2204,6 @@ RESULT eDVBChannel::playSource(ePtr<iTsSource> &source, const char *streaminfo_f
 			eDebug("no demux allocated yet.. so its not possible to open the dvr device!!");
 			return -ENODEV;
 		}
-#endif
 #endif
 	}
 

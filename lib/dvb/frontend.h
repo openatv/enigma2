@@ -11,6 +11,7 @@ class eDVBFrontendParameters: public iDVBFrontendParameters
 		eDVBFrontendParametersSatellite sat;
 		eDVBFrontendParametersCable cable;
 		eDVBFrontendParametersTerrestrial terrestrial;
+		eDVBFrontendParametersATSC atsc;
 	};
 	int m_type;
 	int m_flags;
@@ -24,10 +25,12 @@ public:
 	SWIG_VOID(RESULT) getDVBS(eDVBFrontendParametersSatellite &SWIG_OUTPUT) const;
 	SWIG_VOID(RESULT) getDVBC(eDVBFrontendParametersCable &SWIG_OUTPUT) const;
 	SWIG_VOID(RESULT) getDVBT(eDVBFrontendParametersTerrestrial &SWIG_OUTPUT) const;
+	SWIG_VOID(RESULT) getATSC(eDVBFrontendParametersATSC &SWIG_OUTPUT) const;
 
 	RESULT setDVBS(const eDVBFrontendParametersSatellite &p, bool no_rotor_command_on_tune=false);
 	RESULT setDVBC(const eDVBFrontendParametersCable &p);
 	RESULT setDVBT(const eDVBFrontendParametersTerrestrial &p);
+	RESULT setATSC(const eDVBFrontendParametersATSC &p);
 	SWIG_VOID(RESULT) getFlags(unsigned int &SWIG_NAMED_OUTPUT(flags)) const { flags = m_flags; return 0; }
 	RESULT setFlags(unsigned int flags) { m_flags = flags; return 0; }
 #ifndef SWIG
@@ -79,22 +82,15 @@ private:
 	bool m_rotor_mode;
 	bool m_need_rotor_workaround;
 	bool m_can_handle_dvbs2;
-	char m_filename[128];
+	std::string m_filename;
 	char m_description[128];
-#if HAVE_DVB_API_VERSION < 3
-	int m_secfd;
-	char m_sec_filename[128];
-#endif
-#if HAVE_DVB_API_VERSION < 3
-	FrontendInfo fe_info;
-#else
 	dvb_frontend_info fe_info;
-#endif
-	FRONTENDPARAMETERS parm;
+	int satfrequency;
 	union {
 		eDVBFrontendParametersSatellite sat;
 		eDVBFrontendParametersCable cab;
 		eDVBFrontendParametersTerrestrial ter;
+		eDVBFrontendParametersATSC atsc;
 	} oparm;
 
 	int m_state;
@@ -122,7 +118,7 @@ private:
 	static int PriorityOrder;
 	static int PreferredFrontendIndex;
 public:
-	eDVBFrontend(int adap, int fe, int &ok, bool simulate=false, eDVBFrontend *simulate_fe=NULL);
+	eDVBFrontend(const char *devidenodename, int fe, int &ok, bool simulate=false, eDVBFrontend *simulate_fe=NULL);
 	virtual ~eDVBFrontend();
 
 	int readInputpower();
@@ -131,6 +127,7 @@ public:
 	RESULT prepare_sat(const eDVBFrontendParametersSatellite &, unsigned int timeout);
 	RESULT prepare_cable(const eDVBFrontendParametersCable &);
 	RESULT prepare_terrestrial(const eDVBFrontendParametersTerrestrial &);
+	RESULT prepare_atsc(const eDVBFrontendParametersATSC &);
 	RESULT connectStateChange(const Slot1<void,iDVBFrontend*> &stateChange, ePtr<eConnection> &connection);
 	RESULT getState(int &state);
 	RESULT setTone(int tone);

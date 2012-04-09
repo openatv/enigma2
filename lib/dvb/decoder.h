@@ -18,15 +18,7 @@ public:
 	enum { aMonoLeft, aStereo, aMonoRight };
 	void setChannel(int channel);
 	void stop();
-#if HAVE_DVB_API_VERSION < 3
-	int setPid(int pid, int type);
-	int startPid();
-	int start();
-	int stopPid();
-	int setAVSync(int val);
-#else
 	int startPid(int pid, int type);
-#endif
 	void flush();
 	void freeze();
 	void unfreeze();
@@ -40,30 +32,18 @@ class eDVBVideo: public iObject, public Object
 private:
 	ePtr<eDVBDemux> m_demux;
 	int m_fd, m_fd_demux, m_dev;
-#if HAVE_DVB_API_VERSION < 3
-	m_fd_video;
-#endif
 	static int m_close_invalidates_attributes;
 	int m_is_slow_motion, m_is_fast_forward, m_is_freezed;
 	ePtr<eSocketNotifier> m_sn;
 	void video_event(int what);
 	Signal1<void, struct iTSMPEGDecoder::videoEvent> m_event;
 	int m_width, m_height, m_framerate, m_aspect, m_progressive;
-	static int readApiFrameRate(int fd, int &framerate);
 	static int readApiSize(int fd, int &xres, int &yres, int &aspect);
-	static int readMpegProc(const char *str, int decoder);
 public:
 	enum { MPEG2, MPEG4_H264, MPEG1, MPEG4_Part2, VC1, VC1_SM };
 	eDVBVideo(eDVBDemux *demux, int dev);
 	void stop();
-#if HAVE_DVB_API_VERSION < 3
-	int setPid(int pid);
-	int startPid();
-	int start();
-	int stopPid();
-#else
 	int startPid(int pid, int type=MPEG2);
-#endif
 	void flush();
 	void freeze();
 	int setSlowMotion(int repeat);
@@ -87,12 +67,7 @@ private:
 	int m_fd_demux, m_dev;
 public:
 	eDVBPCR(eDVBDemux *demux, int dev);
-#if HAVE_DVB_API_VERSION < 3
-	int setPid(int pid);
-	int startPid();
-#else
 	int startPid(int pid);
-#endif
 	void stop();
 	virtual ~eDVBPCR();
 };
