@@ -715,3 +715,27 @@ std::string replace_all(const std::string &in, const std::string &entity, const 
 	out.replace(loc, entity.length(), symbol);
 	return out;
 }
+
+std::string urlDecode(const std::string &s)
+{
+	int len = s.size();
+	std::string res;
+	int i;
+	for (i = 0; i < len; ++i)
+	{
+		unsigned char c = s[i];
+		if (c != '%')
+		{
+			res += c;
+		}
+		else
+		{
+			i += 2;
+			if (i >= len) break;
+			char t[3] = {s[i - 1], s[i], 0};
+			unsigned char r = strtoul(t, 0, 0x10);
+			if (r) res += r;
+		}
+	}
+	return res;
+}
