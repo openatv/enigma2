@@ -18,10 +18,7 @@ class FrontpanelLed(Element):
 		(speed, pattern, pattern_4bit) = self.patterns[val]
 
 		try:
-			if config.misc.boxtype.value == 'gb800se' or config.misc.boxtype.value == 'gb800solo':
-				pass
-			else:
-				open("/proc/stb/fp/led%d_pattern" % self.which, "w").write("%08x" % pattern)
+			open("/proc/stb/fp/led%d_pattern" % self.which, "w").write("%08x" % pattern)
 		except IOError:
 			pass
 		if self.which == 0:

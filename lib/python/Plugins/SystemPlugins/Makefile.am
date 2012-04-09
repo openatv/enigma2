@@ -42,7 +42,7 @@ SUBDIRS += FrontprocessorUpgrade NFIFlash SatelliteEquipmentControl DiseqcTester
 endif
 
 if GIGABLUE
-SUBDIRS += GBVFD SatelliteEquipmentControl DiseqcTester HdmiCEC
+SUBDIRS += VFDGiga SatelliteEquipmentControl DiseqcTester HdmiCEC
 endif
 
 if VENTON

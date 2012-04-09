@@ -37,3 +37,15 @@ libenigma_driver_a_SOURCES += \
 	rcsdl.cpp \
 	rcsdl.h
 endif
+
+if GB800SE
+driver_libenigma_driver_a_SOURCES += \	
+	vfd.cpp \
+	vfd.h
+endif
+
+if GB800SOLO
+driver_libenigma_driver_a_SOURCES += \	
+	vfd.cpp \
+	vfd.h
+endif

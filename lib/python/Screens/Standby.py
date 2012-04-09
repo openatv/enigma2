@@ -8,7 +8,34 @@ from enigma import eDVBVolumecontrol
 from os import path
 import Screens.InfoBar
 
+try:
+	file = open('/etc/image-version', 'r')
+	lines = file.readlines()
+	file.close()
+	for x in lines:
+		splitted = x.split('=')
+		if splitted[0] == "box_type":
+			boxtype = splitted[1].replace('\n','') # 0 = release, 1 = experimental
+except:
+	boxtype="not detected"
+if boxtype == 'gb800se' or boxtype == 'gb800solo':
+	from enigma import eTimer, evfd
+	from time import localtime, time
+	from os import system
+
 inStandby = None
+
+def readled():
+	try:
+		fp = open('/etc/vfdled','r')
+		forled = fp.read()
+		fp.close()		
+	except:	
+		fp = open('/etc/vfdled','w')
+		forled =str(['True', '1', '2', '3', 'True', '24h'])
+		fp.write(forled)
+		fp.close()	
+	return eval(forled)
 
 class Standby2(Screen):
 	def Power(self):
@@ -20,8 +47,6 @@ class Standby2(Screen):
 		self.leaveMute()
 		#kill me
 		self.close(True)
-		if config.misc.boxtype.value == 'gb800se' or config.misc.boxtype.value == 'gb800solo':
-			open("/proc/stb/fp/led0_pattern", "w").write(config.lcd.led_run.value)
 
 	def setMute(self):
 		if (eDVBVolumecontrol.getInstance().isMuted()):
@@ -39,6 +64,13 @@ class Standby2(Screen):
 		Screen.__init__(self, session)
 		self.skinName = "Standby"
 		self.avswitch = AVSwitch()
+		
+		if boxtype == 'gb800se' or boxtype == 'gb800solo':	
+			self.forled = readled() 
+			if self.forled[0] == 'True':
+				self.ledenable = 1
+			else:
+				self.ledenable = 0
 
 		print "enter standby"
 
@@ -72,8 +104,12 @@ class Standby2(Screen):
 			self.avswitch.setInput("AUX")
 		self.onFirstExecBegin.append(self.__onFirstExecBegin)
 		self.onClose.append(self.__onClose)
-		if config.misc.boxtype.value == 'gb800se' or config.misc.boxtype.value == 'gb800solo':
-			open("/proc/stb/fp/led0_pattern", "w").write(config.lcd.led_stb.value)
+		
+		if boxtype == 'gb800se' or boxtype == 'gb800solo':
+			self.sign = 0
+			self.zaPrik = eTimer()
+			self.zaPrik.timeout.get().append(self.vrime)
+			self.zaPrik.start(1, 1)	
 
 	def __onClose(self):
 		global inStandby
@@ -84,6 +120,50 @@ class Standby2(Screen):
 			self.paused_service.unPauseService()
 		self.session.screen["Standby"].boolean = False
 		globalActionMap.setEnabled(True)
+		
+		if boxtype == 'gb800se' or boxtype == 'gb800solo':
+			try:
+				open("/proc/stb/fp/rtc", "w").write(str(0))
+			except IOError:
+				print "setRTCtime failed!"		
+			self.zaPrik.stop()
+			if self.forled[0] == 'True':
+				self.ledenable = 1
+			else:
+				self.ledenable = 0				
+			if self.ledenable == 1:
+				evfd.getInstance().vfd_led(str(self.forled[1]))
+
+	def prikaz(self): 		
+		if self.forled[4] == 'True':
+			clock = str(localtime()[3])
+			clock1 = str(localtime()[4])
+			if self.forled[5] != '24h':
+				if clock > 12:
+					clock = str(int(clock) - 12)
+			if len(clock) != 2:
+				clock = " "+clock
+			if len(clock1) != 2:
+				clock1 = "0"+clock1			
+			if self.sign == 0:
+				clock = clock+":"
+				self.sign = 1
+			else:
+				self.sign = 0
+			clock = clock+clock1
+			evfd.getInstance().vfd_write_string(str(clock)) 
+		else:
+			evfd.getInstance().vfd_write_string("    ") 
+		if self.forled[0] == 'True':
+			self.ledenable = 1
+			evfd.getInstance().vfd_led(str(self.forled[2]))
+		else:
+			self.ledenable = 0
+			evfd.getInstance().vfd_led(str(0))
+			
+	def vrime(self): 
+		self.zaPrik.start(1000, 1)
+		self.prikaz() 						
 
 	def __onFirstExecBegin(self):
 		global inStandby
@@ -153,6 +233,16 @@ class TryQuitMainloop(MessageBox):
 		self.connected = False
 		reason = ""
 		next_rec_time = -1
+		
+		if boxtype == 'gb800se' or boxtype == 'gb800solo':
+			self.forled = readled()
+			if self.forled[0] == 'True':
+				self.ledenable = 1
+				evfd.getInstance().vfd_led(str(self.forled[2]))
+			else:
+				self.ledenable = 0
+				evfd.getInstance().vfd_led(str(0))
+
 		if not recordings:
 			next_rec_time = session.nav.RecordTimer.getNextRecordingTime()
 		if jobs:
@@ -166,6 +256,10 @@ class TryQuitMainloop(MessageBox):
 				reason = ""	
 		if recordings or (next_rec_time > 0 and (next_rec_time - time()) < 360):
 			reason = _("Recording(s) are in progress or coming up in few seconds!") + '\n'
+			
+			if boxtype == 'gb800se' or boxtype == 'gb800solo':
+				if self.ledenable == 1:
+					evfd.getInstance().vfd_led(str(self.forled[3])) 
 
 		if reason and inStandby:
 			session.nav.record_event.append(self.getRecordEvent)

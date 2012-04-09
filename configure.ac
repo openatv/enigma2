@@ -68,6 +68,8 @@ AM_CONDITIONAL(ET6X00, test "$BOXTYPE" == et6x00)
 AM_CONDITIONAL(ET9X00, test "$BOXTYPE" == et9x00)
 AM_CONDITIONAL(GB800SE, test "$BOXTYPE" == gb800se)
 AM_CONDITIONAL(GB800SOLO, test "$BOXTYPE" == gb800solo)
+AM_CONDITIONAL(GB800UE, test "$BOXTYPE" == gb800ue)
+AM_CONDITIONAL(QUATTRO, test "$BOXTYPE" == quattro)
 AM_CONDITIONAL(VENTONHD1, test "$BOXTYPE" == venton-hd1)
 AM_CONDITIONAL(VENTONHD2, test "$BOXTYPE" == venton-hd2)
 AM_CONDITIONAL(VENTONHD3, test "$BOXTYPE" == venton-hd3)
@@ -127,7 +129,7 @@ if test x"$witholdpvr" != xno ; then
 fi
 AM_CONDITIONAL(HAVE_OLDPVR, test x"$witholdpvr" != xno)
 
-if test x"$BOXTYPE" == "xgb800se" -o x"$BOXTYPE" == "xgb800solo" ; then
+if test x"$BOXTYPE" == "xgb800se" -o x"$BOXTYPE" == "xgb800solo" -o x"$BOXTYPE" == "xgb800ue" -o x"$BOXTYPE" == "xquattro" ; then
 	AC_DEFINE(KEY_PLAY_ACTUALLY_IS_KEY_PLAYPAUSE, 1,[define when rc sends a KEY_PLAY event for its KEY_PLAYPAUSE key])
 	AC_DEFINE(KEY_GUIDE_TO_KEY_EPG, 1,[define when rc sends a KEY_HELP event for its KEY_EPG key])
 fi
@@ -343,7 +345,7 @@ lib/python/Plugins/SystemPlugins/SoftwareManager/Makefile
 lib/python/Plugins/SystemPlugins/SoftwareManager/meta/Makefile
 lib/python/Plugins/SystemPlugins/choiceRC/Makefile
 lib/python/Plugins/SystemPlugins/choiceRC/meta/Makefile
-lib/python/Plugins/SystemPlugins/GBVFD/Makefile
+lib/python/Plugins/SystemPlugins/VFDGiga/Makefile
 lib/python/Tools/Makefile
 lib/components/Makefile
 lib/components/eitsave/Makefile
