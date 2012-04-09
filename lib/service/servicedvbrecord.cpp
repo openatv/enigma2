@@ -426,7 +426,7 @@ int eDVBServiceRecord::doRecord()
 				eDebugNoNewLine(")");
 			}
 			eDebugNoNewLine(", and the pcr pid is %04x", program.pcrPid);
-			if (program.pcrPid != 0x1fff)
+			if (program.pcrPid >= 0 && program.pcrPid < 0x1fff)
 				pids_to_record.insert(program.pcrPid);
 			eDebug(", and the text pid is %04x", program.textPid);
 			if (program.textPid != -1)
