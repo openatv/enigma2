@@ -411,9 +411,20 @@ void eDVBDB::loadServicelist(const char *file)
 			{
 				eDVBFrontendParametersTerrestrial ter;
 				int frequency, bandwidth, code_rate_HP, code_rate_LP, modulation, transmission_mode, guard_interval, hierarchy, inversion, flags=0;
-				sscanf(line+3, "%d:%d:%d:%d:%d:%d:%d:%d:%d:%d", &frequency, &bandwidth, &code_rate_HP, &code_rate_LP, &modulation, &transmission_mode, &guard_interval, &hierarchy, &inversion, &flags);
+				int system = eDVBFrontendParametersTerrestrial::System_DVB_T;
+				sscanf(line+3, "%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d", &frequency, &bandwidth, &code_rate_HP, &code_rate_LP, &modulation, &transmission_mode, &guard_interval, &hierarchy, &inversion, &flags, &system);
 				ter.frequency = frequency;
-				ter.bandwidth = bandwidth;
+				switch (bandwidth)
+				{
+				case eDVBFrontendParametersTerrestrial::Bandwidth_8MHz: ter.bandwidth = 8000000; break;
+				case eDVBFrontendParametersTerrestrial::Bandwidth_7MHz: ter.bandwidth = 7000000; break;
+				case eDVBFrontendParametersTerrestrial::Bandwidth_6MHz: ter.bandwidth = 6000000; break;
+				default:
+				case eDVBFrontendParametersTerrestrial::Bandwidth_Auto: ter.bandwidth = 0; break;
+				case eDVBFrontendParametersTerrestrial::Bandwidth_5MHz: ter.bandwidth = 5000000; break;
+				case eDVBFrontendParametersTerrestrial::Bandwidth_1_712MHz: ter.bandwidth = 1712000; break;
+				case eDVBFrontendParametersTerrestrial::Bandwidth_10MHz: ter.bandwidth = 10000000; break;
+				}
 				ter.code_rate_HP = code_rate_HP;
 				ter.code_rate_LP = code_rate_LP;
 				ter.modulation = modulation;
@@ -421,6 +432,7 @@ void eDVBDB::loadServicelist(const char *file)
 				ter.guard_interval = guard_interval;
 				ter.hierarchy = hierarchy;
 				ter.inversion = inversion;
+				ter.system = system;
 				feparm->setDVBT(ter);
 				feparm->setFlags(flags);
 			} else if (line[1]=='c')
@@ -430,13 +442,15 @@ void eDVBDB::loadServicelist(const char *file)
 					inversion=eDVBFrontendParametersCable::Inversion_Unknown,
 					modulation=eDVBFrontendParametersCable::Modulation_Auto,
 					fec_inner=eDVBFrontendParametersCable::FEC_Auto,
+					system = eDVBFrontendParametersCable::System_DVB_C_ANNEX_A,
 					flags=0;
-				sscanf(line+3, "%d:%d:%d:%d:%d:%d", &frequency, &symbol_rate, &inversion, &modulation, &fec_inner, &flags);
+				sscanf(line+3, "%d:%d:%d:%d:%d:%d", &frequency, &symbol_rate, &inversion, &modulation, &fec_inner, &flags, &system);
 				cab.frequency = frequency;
 				cab.fec_inner = fec_inner;
 				cab.inversion = inversion;
 				cab.symbol_rate = symbol_rate;
 				cab.modulation = modulation;
+				cab.system = system;
 				feparm->setDVBC(cab);
 				feparm->setFlags(flags);
 			}
@@ -552,10 +566,22 @@ void eDVBDB::saveServicelist(const char *file)
 		}
 		else if (!ch.m_frontendParameters->getDVBT(ter))
 		{
-			fprintf(f, "\tt %d:%d:%d:%d:%d:%d:%d:%d:%d:%d\n",
-				ter.frequency, ter.bandwidth, ter.code_rate_HP,
+			int bandwidth;
+			switch (ter.bandwidth)
+			{
+			case 8000000: bandwidth = eDVBFrontendParametersTerrestrial::Bandwidth_8MHz; break;
+			case 7000000: bandwidth = eDVBFrontendParametersTerrestrial::Bandwidth_7MHz; break;
+			case 6000000: bandwidth = eDVBFrontendParametersTerrestrial::Bandwidth_6MHz; break;
+			default:
+			case 0: bandwidth = eDVBFrontendParametersTerrestrial::Bandwidth_Auto; break;
+			case 5000000: bandwidth = eDVBFrontendParametersTerrestrial::Bandwidth_5MHz; break;
+			case 1712000: bandwidth = eDVBFrontendParametersTerrestrial::Bandwidth_1_712MHz; break;
+			case 10000000: bandwidth = eDVBFrontendParametersTerrestrial::Bandwidth_10MHz; break;
+			}
+			fprintf(f, "\tt %d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d\n",
+				ter.frequency, bandwidth, ter.code_rate_HP,
 				ter.code_rate_LP, ter.modulation, ter.transmission_mode,
-				ter.guard_interval, ter.hierarchy, ter.inversion, flags);
+				ter.guard_interval, ter.hierarchy, ter.inversion, flags, ter.system);
 		}
 		else if (!ch.m_frontendParameters->getDVBC(cab))
 		{
@@ -965,7 +991,7 @@ PyObject *eDVBDB::readCables(ePyObject cab_list, ePyObject tp_dict)
 	}
 	const Attribute *at;
 	int tmp, *dest,
-		modulation, fec, freq, sr;
+		modulation, fec, freq, sr, inversion, system;
 	std::string name;
 	char *end_ptr;
 	const ElementList &root_elements = root->getElementList();
@@ -1009,6 +1035,8 @@ PyObject *eDVBDB::readCables(ePyObject cab_list, ePyObject tp_dict)
 				AttributeConstIterator end = tp_attributes.end();
 				modulation = eDVBFrontendParametersCable::Modulation_QAM64;
 				fec = eDVBFrontendParametersCable::FEC_Auto;
+				system = eDVBFrontendParametersCable::System_DVB_C_ANNEX_A;
+				inversion = eDVBFrontendParametersCable::Inversion_Unknown;
 				freq = 0;
 				sr = 0;
 				for (AttributeConstIterator it(tp_attributes.begin()); it != end; ++it)
@@ -1021,6 +1049,8 @@ PyObject *eDVBDB::readCables(ePyObject cab_list, ePyObject tp_dict)
 					else if (name == "frequency") dest = &freq;
 					else if (name == "symbol_rate") dest = &sr;
 					else if (name == "fec_inner") dest = &fec;
+					else if (name == "inversion") dest = &inversion;
+					else if (name == "system") dest = &system;
 					else continue;
 					if (dest)
 					{
@@ -1033,12 +1063,14 @@ PyObject *eDVBDB::readCables(ePyObject cab_list, ePyObject tp_dict)
 				{
 					while (freq > 999999)
 						freq /= 10;
-					tuple = PyTuple_New(5);
+					tuple = PyTuple_New(7);
 					PyTuple_SET_ITEM(tuple, 0, PyInt_FromLong(1));
 					PyTuple_SET_ITEM(tuple, 1, PyInt_FromLong(freq));
 					PyTuple_SET_ITEM(tuple, 2, PyInt_FromLong(sr));
 					PyTuple_SET_ITEM(tuple, 3, PyInt_FromLong(modulation));
 					PyTuple_SET_ITEM(tuple, 4, PyInt_FromLong(fec));
+					PyTuple_SET_ITEM(tuple, 5, PyInt_FromLong(inversion));
+					PyTuple_SET_ITEM(tuple, 6, PyInt_FromLong(system));
 					PyList_Append(tplist, tuple);
 					Py_DECREF(tuple);
 				}
@@ -1080,7 +1112,7 @@ PyObject *eDVBDB::readTerrestrials(ePyObject ter_list, ePyObject tp_dict)
 	const Attribute *at;
 	std::string name;
 	int tmp, *dest,
-		freq, bw, constellation, crh = 5, crl = 5, guard = 4, transm, hierarchy, inv = 2;
+		freq, bw, constellation, crh, crl, guard, transm, hierarchy, inv, system;
 	char *end_ptr;
 	const ElementList &root_elements = root->getElementList();
 	for (ElementConstIterator it(root_elements.begin()); it != root_elements.end(); ++it)
@@ -1130,6 +1162,7 @@ PyObject *eDVBDB::readTerrestrials(ePyObject ter_list, ePyObject tp_dict)
 				transm = eDVBFrontendParametersTerrestrial::TransmissionMode_Auto;
 				hierarchy = eDVBFrontendParametersTerrestrial::Hierarchy_Auto;
 				inv = eDVBFrontendParametersTerrestrial::Inversion_Unknown;
+				system = eDVBFrontendParametersTerrestrial::System_DVB_T;
 				for (AttributeConstIterator it(tp_attributes.begin()); it != end; ++it)
 				{
 //					eDebug("\t\tattr: %s", at->name().c_str());
@@ -1145,6 +1178,7 @@ PyObject *eDVBDB::readTerrestrials(ePyObject ter_list, ePyObject tp_dict)
 					else if (name == "transmission_mode") dest = &transm;
 					else if (name == "hierarchy_information") dest = &hierarchy;
 					else if (name == "inversion") dest = &inv;
+					else if (name == "system") dest = &system;
 					else continue;
 					if (dest)
 					{
@@ -1155,11 +1189,22 @@ PyObject *eDVBDB::readTerrestrials(ePyObject ter_list, ePyObject tp_dict)
 				}
 				if (freq)
 				{
-					if (crh > 5) // our terrestrial.xml is buggy... 6 for AUTO
-						crh = 5;
-					if (crl > 5) // our terrestrial.xml is buggy... 6 for AUTO
-						crl = 5;
-					tuple = PyTuple_New(10);
+					switch (bw)
+					{
+					case eDVBFrontendParametersTerrestrial::Bandwidth_8MHz: bw = 8000000; break;
+					case eDVBFrontendParametersTerrestrial::Bandwidth_7MHz: bw = 7000000; break;
+					case eDVBFrontendParametersTerrestrial::Bandwidth_6MHz: bw = 6000000; break;
+					default:
+					case eDVBFrontendParametersTerrestrial::Bandwidth_Auto: bw = 0; break;
+					case eDVBFrontendParametersTerrestrial::Bandwidth_5MHz: bw = 5000000; break;
+					case eDVBFrontendParametersTerrestrial::Bandwidth_1_712MHz: bw = 1712000; break;
+					case eDVBFrontendParametersTerrestrial::Bandwidth_10MHz: bw = 10000000; break;
+					}
+					if (crh > eDVBFrontendParametersTerrestrial::FEC_8_9)
+						crh = eDVBFrontendParametersTerrestrial::FEC_Auto;
+					if (crl > eDVBFrontendParametersTerrestrial::FEC_8_9)
+						crl = eDVBFrontendParametersTerrestrial::FEC_Auto;
+					tuple = PyTuple_New(11);
 					PyTuple_SET_ITEM(tuple, 0, PyInt_FromLong(2));
 					PyTuple_SET_ITEM(tuple, 1, PyInt_FromLong(freq));
 					PyTuple_SET_ITEM(tuple, 2, PyInt_FromLong(bw));
@@ -1170,6 +1215,7 @@ PyObject *eDVBDB::readTerrestrials(ePyObject ter_list, ePyObject tp_dict)
 					PyTuple_SET_ITEM(tuple, 7, PyInt_FromLong(transm));
 					PyTuple_SET_ITEM(tuple, 8, PyInt_FromLong(hierarchy));
 					PyTuple_SET_ITEM(tuple, 9, PyInt_FromLong(inv));
+					PyTuple_SET_ITEM(tuple, 10, PyInt_FromLong(system));
 					PyList_Append(tplist, tuple);
 					Py_DECREF(tuple);
 				}

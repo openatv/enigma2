@@ -478,7 +478,7 @@ class NIM(object):
 	def __init__(self, slot, type, description, has_outputs = True, internally_connectable = None, multi_type = {}, frontend_id = None, i2c = None, is_empty = False):
 		self.slot = slot
 
-		if type not in ("DVB-S", "DVB-C", "DVB-T", "DVB-S2", None):
+		if type not in ("DVB-S", "DVB-C", "DVB-T", "DVB-S2", "DVB-T2", "DVB-C2", "ATSC", None):
 			print "warning: unknown NIM type %s, not using." % type
 			type = None
 
@@ -499,7 +499,10 @@ class NIM(object):
 				"DVB-S": ("DVB-S", None),
 				"DVB-C": ("DVB-C", None),
 				"DVB-T": ("DVB-T", None),
-				"DVB-S2": ("DVB-S", "DVB-S2", None)
+				"DVB-S2": ("DVB-S", "DVB-S2", None),
+				"DVB-C2": ("DVB-C", "DVB-C2", None),
+				"DVB-T2": ("DVB-T", "DVB-T2", None),
+				"ATSC": ("ATSC", None),
 			}
 		return what in compatible[self.type]
 	
@@ -509,9 +512,12 @@ class NIM(object):
 	def connectableTo(self):
 		connectable = {
 				"DVB-S": ("DVB-S", "DVB-S2"),
-				"DVB-C": ("DVB-C",),
-				"DVB-T": ("DVB-T",),
-				"DVB-S2": ("DVB-S", "DVB-S2")
+				"DVB-C": ("DVB-C", "DVB-C2"),
+				"DVB-T": ("DVB-T","DVB-T2"),
+				"DVB-S2": ("DVB-S", "DVB-S2"),
+				"DVB-C2": ("DVB-C", "DVB-C2"),
+				"DVB-T2": ("DVB-T", "DVB-T2"),
+				"ATSC": ("ATSC"),
 			}
 		return connectable[self.type]
 
@@ -565,8 +571,11 @@ class NIM(object):
 		return {
 			"DVB-S": "DVB-S", 
 			"DVB-T": "DVB-T",
-			"DVB-S2": "DVB-S2",
 			"DVB-C": "DVB-C",
+			"DVB-S2": "DVB-S2",
+			"DVB-T2": "DVB-T2",
+			"DVB-C2": "DVB-C2",
+			"ATSC": "ATSC",
 			None: _("empty")
 			}[self.type]
 
@@ -637,6 +646,7 @@ class NimManager:
 		self.transponders = { }
 		self.transponderscable = { }
 		self.transpondersterrestrial = { }
+		self.transpondersatsc = { }
 		db = eDVBDB.getInstance()
 		if self.hasNimType("DVB-S"):
 			print "Reading satellites.xml"
@@ -657,6 +667,10 @@ class NimManager:
 			db.readTerrestrials(self.terrestrialsList, self.transpondersterrestrial)
 #			print "TERLIST", self.terrestrialsList
 #			print "TRANSPONDERS", self.transpondersterrestrial
+
+		if self.hasNimType("ATSC"):
+			print "Reading atsc.xml"
+			#db.readATSC(self.atscList, self.transpondersatsc)
 
 	def enumerateNIMs(self):
 		# enum available NIMs. This is currently very dreambox-centric and uses the /proc/bus/nim_sockets interface.
@@ -786,6 +800,7 @@ class NimManager:
 		self.satList = [ ]
 		self.cablesList = []
 		self.terrestrialsList = []
+		self.atscList = []
 		self.enumerateNIMs()
 		self.readTransponders()
 		InitNimManager(self)	#init config stuff
@@ -829,8 +844,7 @@ class NimManager:
 	
 	def canEqualTo(self, slotid):
 		type = self.getNimType(slotid)
-		if type == "DVB-S2":
-			type = "DVB-S"
+		type = type[:5] # DVB-S2 --> DVB-S, DVB-T2 --> DVB-T, DVB-C2 --> DVB-C
 		nimList = self.getNimListOfType(type, slotid)
 		for nim in nimList[:]:
 			mode = self.getNimConfig(nim)
@@ -840,8 +854,7 @@ class NimManager:
 
 	def canDependOn(self, slotid):
 		type = self.getNimType(slotid)
-		if type == "DVB-S2":
-			type = "DVB-S"
+		type = type[:5] # DVB-S2 --> DVB-S, DVB-T2 --> DVB-T, DVB-C2 --> DVB-C
 		nimList = self.getNimListOfType(type, slotid)
 		positionerList = []
 		for nim in nimList[:]:
