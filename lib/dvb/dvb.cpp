@@ -90,7 +90,7 @@ eDVBResourceManager::eDVBResourceManager()
 	{
 		eDVBAdapterLinux *adapter = new eDVBAdapterLinux(0);
 		adapter->scanDevices();
-		addAdapter(adapter);
+		addAdapter(adapter, true);
 	}
 
 	int fd = open("/proc/stb/info/model", O_RDONLY);
@@ -597,12 +597,19 @@ eDVBResourceManager::~eDVBResourceManager()
 		instance = 0;
 }
 
-void eDVBResourceManager::addAdapter(iDVBAdapter *adapter)
+void eDVBResourceManager::addAdapter(iDVBAdapter *adapter, bool front)
 {
 	int num_fe = adapter->getNumFrontends();
 	int num_demux = adapter->getNumDemux();
 
-	m_adapter.push_back(adapter);
+	if (front)
+	{
+		m_adapter.push_front(adapter);
+	}
+	else
+	{
+		m_adapter.push_back(adapter);
+	}
 
 	int i;
 	for (i=0; i<num_demux; ++i)

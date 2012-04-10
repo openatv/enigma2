@@ -173,7 +173,7 @@ class eDVBResourceManager: public iObject, public Object
 	eSmartPtrList<iDVBAdapter> m_adapter;
 	eSmartPtrList<eDVBRegisteredDemux> m_demux;
 	eSmartPtrList<eDVBRegisteredFrontend> m_frontend, m_simulate_frontend;
-	void addAdapter(iDVBAdapter *adapter);
+	void addAdapter(iDVBAdapter *adapter, bool front = false);
 
 	struct active_channel
 	{
