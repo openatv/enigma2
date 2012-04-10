@@ -1772,7 +1772,7 @@ class NetworkSABnzbd(Screen):
 			self['labactive'].setText(_("Enabled"))
 			self['labactive'].show()
 			self.my_sabnzbd_active = True
-		if afp_process:
+		if sabnzbd_process:
 			self.my_sabnzbd_run = True
 		if self.my_sabnzbd_run == True:
 			self['labstop'].hide()
