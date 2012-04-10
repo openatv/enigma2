@@ -1712,7 +1712,7 @@ class NetworkSABnzbd(Screen):
 		self['labrun'].hide()
 		self['labstop'].hide()
 		self.ipkg = IpkgComponent()
-		self.ipkg.addCallback(self.afpCallback)
+		self.ipkg.addCallback(self.sabnzbdCallback)
 		self.checkSABnzbdService()
 
 	def sabnzbdCallback(self, event, param):
