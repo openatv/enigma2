@@ -1,7 +1,8 @@
 from Screen import Screen
 from Screens.DefaultWizard import DefaultWizard
 from ServiceScan import ServiceScan
-from Components.config import config, ConfigSubsection, ConfigSelection, ConfigYesNo, ConfigInteger, getConfigListEntry, ConfigSlider, ConfigEnableDisable
+from Components.config import config, ConfigSubsection, ConfigSelection, \
+	ConfigYesNo, ConfigInteger, getConfigListEntry, ConfigSlider, ConfigEnableDisable
 from Components.ActionMap import NumberActionMap, ActionMap
 from Components.ConfigList import ConfigListScreen
 from Components.NimManager import nimmanager, getConfigSatlist
@@ -9,12 +10,14 @@ from Components.Label import Label
 from Tools.Directories import resolveFilename, SCOPE_DEFAULTPARTITIONMOUNTDIR, SCOPE_DEFAULTDIR, SCOPE_DEFAULTPARTITION
 from Tools.HardwareInfo import HardwareInfo
 from Screens.MessageBox import MessageBox
-from enigma import eTimer, eDVBFrontendParametersSatellite, eComponentScan, eDVBSatelliteEquipmentControl, eDVBFrontendParametersTerrestrial, eDVBFrontendParametersCable, eConsoleAppContainer, eDVBResourceManager
+from enigma import eTimer, eDVBFrontendParametersSatellite, eComponentScan, \
+	eDVBSatelliteEquipmentControl, eDVBFrontendParametersTerrestrial, \
+	eDVBFrontendParametersCable, eConsoleAppContainer, eDVBResourceManager
 
-def buildTerTransponder(frequency,
-	inversion=2, bandwidth = 3, fechigh = 6, feclow = 6,
-	modulation = 2, transmission = 2, guard = 4,
-	hierarchy = 4):
+def buildTerTransponder(frequency, 
+		inversion=2, bandwidth = 7000000, fechigh = 6, feclow = 6,
+		modulation = 2, transmission = 2, guard = 4,
+		hierarchy = 4, system = 0):
 #	print "freq", frequency, "inv", inversion, "bw", bandwidth, "fech", fechigh, "fecl", feclow, "mod", modulation, "tm", transmission, "guard", guard, "hierarchy", hierarchy
 	parm = eDVBFrontendParametersTerrestrial()
 	parm.frequency = frequency
@@ -26,6 +29,7 @@ def buildTerTransponder(frequency,
 	parm.transmission_mode = transmission
 	parm.guard_interval = guard
 	parm.hierarchy = hierarchy
+	parm.system = system
 	return parm
 
 def getInitialTransponderList(tlist, pos):
@@ -43,6 +47,7 @@ def getInitialTransponderList(tlist, pos):
 			parm.modulation = x[6]
 			parm.rolloff = x[8]
 			parm.pilot = x[9]
+			parm.system = x[10]
 			tlist.append(parm)
 
 def getInitialCableTransponderList(tlist, nim):
@@ -54,12 +59,8 @@ def getInitialCableTransponderList(tlist, nim):
 			parm.symbol_rate = x[2]
 			parm.modulation = x[3]
 			parm.fec_inner = x[4]
-			parm.inversion = parm.Inversion_Unknown
-			#print "frequency:", x[1]
-			#print "symbol_rate:", x[2]
-			#print "modulation:", x[3]
-			#print "fec_inner:", x[4]
-			#print "inversion:", 2
+			parm.inversion = x[5]
+			parm.system = x[6]
 			tlist.append(parm)
 
 def getInitialTerrestrialTransponderList(tlist, region):
@@ -72,7 +73,7 @@ def getInitialTerrestrialTransponderList(tlist, region):
 
 	for x in list:
 		if x[0] == 2: #TERRESTRIAL
-			parm = buildTerTransponder(x[1], x[9], x[2], x[4], x[5], x[3], x[7], x[6], x[8])
+			parm = buildTerTransponder(x[1], x[9], x[2], x[4], x[5], x[3], x[7], x[6], x[8], x[10])
 			tlist.append(parm)
 
 cable_bands = {
@@ -104,7 +105,7 @@ class CableTransponderSearchSupport:
 			if raw_channel:
 				frontend = raw_channel.getFrontend()
 				if frontend:
-					frontend.closeFrontend() # immediate close...
+					frontend.closeFrontend() # immediate close... 
 					del frontend
 					del raw_channel
 					return True
@@ -176,7 +177,7 @@ class CableTransponderSearchSupport:
 				tmpstr += " kHz "
 				tmpstr += data[0]
 				self.cable_search_session["text"].setText(tmpstr)
-
+		
 	def startCableTransponderSearch(self, nim_idx):
 		if not self.tryGetRawFrontend(nim_idx):
 			self.session.nav.stopService()
@@ -216,7 +217,7 @@ class CableTransponderSearchSupport:
 			cmd = "cxd1978 --init --scan --verbose --wakeup --inv 2 --bus %d" % bus
 		else:
 			cmd = "tda1002x --init --scan --verbose --wakeup --inv 2 --bus %d" % bus
-
+		
 		if cableConfig.scan_type.value == "bands":
 			cmd += " --scan-bands "
 			bands = 0
@@ -289,14 +290,14 @@ class DefaultSatLists(DefaultWizard):
 		import os
 		os.system("mount %s %s" % (resolveFilename(SCOPE_DEFAULTPARTITION), resolveFilename(SCOPE_DEFAULTPARTITIONMOUNTDIR)))
 		self.directory.append(resolveFilename(SCOPE_DEFAULTPARTITIONMOUNTDIR))
-
+				
 	def statusCallback(self, status, progress):
 		print "statusCallback:", status, progress
 		from Components.DreamInfoHandler import DreamInfoHandler
 		if status == DreamInfoHandler.STATUS_DONE:
 			self["text"].setText(_("The installation of the default services lists is finished.") + "\n\n" + _("Please press OK to continue."))
 			self.markDone()
-			self.disableKeys = False
+			self.disableKeys = False	
 
 class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 	def __init__(self, session):
@@ -312,7 +313,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		if self.service is not None:
 			self.feinfo = self.service.frontendInfo()
 			frontendData = self.feinfo and self.feinfo.getAll(True)
-
+		
 		self.createConfig(frontendData)
 
 		del self.feinfo
@@ -357,10 +358,10 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 
 		self.tunerEntry = getConfigListEntry(_("Tuner"), self.scan_nims)
 		self.list.append(self.tunerEntry)
-
+		
 		if self.scan_nims == [ ]:
 			return
-
+		
 		self.typeOfScanEntry = None
 		self.systemEntry = None
 		self.modulationEntry = None
@@ -502,17 +503,19 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 				"inversion": eDVBFrontendParametersCable.Inversion_Unknown,
 				"modulation": eDVBFrontendParametersCable.Modulation_QAM64,
 				"fec": eDVBFrontendParametersCable.FEC_Auto,
-				"symbolrate": 6900 }
+				"symbolrate": 6900,
+				"system": eDVBFrontendParametersCable.System_DVB_C_ANNEX_A }
 			defaultTer = {
 				"frequency" : 466000,
 				"inversion" : eDVBFrontendParametersTerrestrial.Inversion_Unknown,
-				"bandwidth" : eDVBFrontendParametersTerrestrial.Bandwidth_7MHz,
+				"bandwidth" : 7000000,
 				"fechigh" : eDVBFrontendParametersTerrestrial.FEC_Auto,
 				"feclow" : eDVBFrontendParametersTerrestrial.FEC_Auto,
 				"modulation" : eDVBFrontendParametersTerrestrial.Modulation_Auto,
 				"transmission_mode" : eDVBFrontendParametersTerrestrial.TransmissionMode_Auto,
 				"guard_interval" : eDVBFrontendParametersTerrestrial.GuardInterval_Auto,
-				"hierarchy": eDVBFrontendParametersTerrestrial.Hierarchy_Auto }
+				"hierarchy": eDVBFrontendParametersTerrestrial.Hierarchy_Auto,
+				"system": eDVBFrontendParametersTerrestrial.System_DVB_T }
 
 			if frontendData is not None:
 				ttype = frontendData.get("tuner_type", "UNKNOWN")
@@ -536,16 +539,18 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 					defaultCab["inversion"] = frontendData.get("inversion", eDVBFrontendParametersCable.Inversion_Unknown)
 					defaultCab["fec"] = frontendData.get("fec_inner", eDVBFrontendParametersCable.FEC_Auto)
 					defaultCab["modulation"] = frontendData.get("modulation", eDVBFrontendParametersCable.Modulation_QAM16)
+					defaultTer["system"] = frontendData.get("system", eDVBFrontendParametersCable.System_DVB_C_ANNEX_A)
 				elif ttype == "DVB-T":
 					defaultTer["frequency"] = frontendData.get("frequency", 0)
 					defaultTer["inversion"] = frontendData.get("inversion", eDVBFrontendParametersTerrestrial.Inversion_Unknown)
-					defaultTer["bandwidth"] = frontendData.get("bandwidth", eDVBFrontendParametersTerrestrial.Bandwidth_7MHz)
+					defaultTer["bandwidth"] = frontendData.get("bandwidth", 7000000)
 					defaultTer["fechigh"] = frontendData.get("code_rate_hp", eDVBFrontendParametersTerrestrial.FEC_Auto)
 					defaultTer["feclow"] = frontendData.get("code_rate_lp", eDVBFrontendParametersTerrestrial.FEC_Auto)
 					defaultTer["modulation"] = frontendData.get("constellation", eDVBFrontendParametersTerrestrial.Modulation_Auto)
 					defaultTer["transmission_mode"] = frontendData.get("transmission_mode", eDVBFrontendParametersTerrestrial.TransmissionMode_Auto)
 					defaultTer["guard_interval"] = frontendData.get("guard_interval", eDVBFrontendParametersTerrestrial.GuardInterval_Auto)
 					defaultTer["hierarchy"] = frontendData.get("hierarchy_information", eDVBFrontendParametersTerrestrial.Hierarchy_Auto)
+					defaultTer["system"] = frontendData.get("system", eDVBFrontendParametersTerrestrial.System_DVB_T)
 
 			self.scan_sat = ConfigSubsection()
 			self.scan_cab = ConfigSubsection()
@@ -645,10 +650,14 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 				(eDVBFrontendParametersCable.FEC_2_3, "2/3"),
 				(eDVBFrontendParametersCable.FEC_3_4, "3/4"),
 				(eDVBFrontendParametersCable.FEC_5_6, "5/6"),
+				(eDVBFrontendParametersCable.FEC_6_7, "6/7"),
 				(eDVBFrontendParametersCable.FEC_7_8, "7/8"),
 				(eDVBFrontendParametersCable.FEC_8_9, "8/9"),
 				(eDVBFrontendParametersCable.FEC_None, _("None"))])
 			self.scan_cab.symbolrate = ConfigInteger(default = defaultCab["symbolrate"], limits = (1, 99999))
+			self.scan_cab.system = ConfigSelection(default = defaultCab["system"], choices = [
+				(eDVBFrontendParametersCable.System_DVB_C_ANNEX_A, _("DVB-C")),
+				(eDVBFrontendParametersCable.System_DVB_C_ANNEX_C, _("DVB-C ANNEX C"))])
 
 			# terrestial
 			self.scan_ter.frequency = ConfigInteger(default = 466000, limits = (50000, 999000))
@@ -658,23 +667,31 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 				(eDVBFrontendParametersTerrestrial.Inversion_Unknown, _("Auto"))])
 			# WORKAROUND: we can't use BW-auto
 			self.scan_ter.bandwidth = ConfigSelection(default = defaultTer["bandwidth"], choices = [
-				(eDVBFrontendParametersTerrestrial.Bandwidth_8MHz, "8MHz"),
-				(eDVBFrontendParametersTerrestrial.Bandwidth_7MHz, "7MHz"),
-				(eDVBFrontendParametersTerrestrial.Bandwidth_6MHz, "6MHz")])
+				(10000000, "10MHz"),
+				(8000000, "8MHz"),
+				(7000000, "7MHz"),
+				(6000000, "6MHz"),
+				(5000000, "5MHz"),
+				(1712000, "1.712MHz")
+				])
 			#, (eDVBFrontendParametersTerrestrial.Bandwidth_Auto, _("Auto"))))
 			self.scan_ter.fechigh = ConfigSelection(default = defaultTer["fechigh"], choices = [
 				(eDVBFrontendParametersTerrestrial.FEC_1_2, "1/2"),
 				(eDVBFrontendParametersTerrestrial.FEC_2_3, "2/3"),
 				(eDVBFrontendParametersTerrestrial.FEC_3_4, "3/4"),
 				(eDVBFrontendParametersTerrestrial.FEC_5_6, "5/6"),
+				(eDVBFrontendParametersTerrestrial.FEC_6_7, "6/7"),
 				(eDVBFrontendParametersTerrestrial.FEC_7_8, "7/8"),
+				(eDVBFrontendParametersTerrestrial.FEC_8_9, "8/9"),
 				(eDVBFrontendParametersTerrestrial.FEC_Auto, _("Auto"))])
 			self.scan_ter.feclow = ConfigSelection(default = defaultTer["feclow"], choices = [
 				(eDVBFrontendParametersTerrestrial.FEC_1_2, "1/2"),
 				(eDVBFrontendParametersTerrestrial.FEC_2_3, "2/3"),
 				(eDVBFrontendParametersTerrestrial.FEC_3_4, "3/4"),
 				(eDVBFrontendParametersTerrestrial.FEC_5_6, "5/6"),
+				(eDVBFrontendParametersTerrestrial.FEC_6_7, "6/7"),
 				(eDVBFrontendParametersTerrestrial.FEC_7_8, "7/8"),
+				(eDVBFrontendParametersTerrestrial.FEC_8_9, "8/9"),
 				(eDVBFrontendParametersTerrestrial.FEC_Auto, _("Auto"))])
 			self.scan_ter.modulation = ConfigSelection(default = defaultTer["modulation"], choices = [
 				(eDVBFrontendParametersTerrestrial.Modulation_QPSK, "QPSK"),
@@ -683,6 +700,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 				(eDVBFrontendParametersTerrestrial.Modulation_Auto, _("Auto"))])
 			self.scan_ter.transmission = ConfigSelection(default = defaultTer["transmission_mode"], choices = [
 				(eDVBFrontendParametersTerrestrial.TransmissionMode_2k, "2K"),
+				(eDVBFrontendParametersTerrestrial.TransmissionMode_4k, "4K"),
 				(eDVBFrontendParametersTerrestrial.TransmissionMode_8k, "8K"),
 				(eDVBFrontendParametersTerrestrial.TransmissionMode_Auto, _("Auto"))])
 			self.scan_ter.guard = ConfigSelection(default = defaultTer["guard_interval"], choices = [
@@ -697,6 +715,9 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 				(eDVBFrontendParametersTerrestrial.Hierarchy_2, "2"),
 				(eDVBFrontendParametersTerrestrial.Hierarchy_4, "4"),
 				(eDVBFrontendParametersTerrestrial.Hierarchy_Auto, _("Auto"))])
+			self.scan_ter.system = ConfigSelection(default = defaultTer["system"], choices = [
+				(eDVBFrontendParametersTerrestrial.System_DVB_T, _("DVB-T")),
+				(eDVBFrontendParametersTerrestrial.System_DVB_T2, _("DVB-T2"))])
 
 			self.scan_scansat = {}
 			for sat in nimmanager.satList:
@@ -760,7 +781,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		startScan = True
 		removeAll = True
 		index_to_scan = int(self.scan_nims.value)
-
+		
 		if self.scan_nims == [ ]:
 			self.session.open(MessageBox, _("No tuner is enabled!\nPlease setup your tuner settings before you start a service scan."), MessageBox.TYPE_ERROR)
 			return
@@ -773,7 +794,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 				# these lists are generated for each tuner, so this has work.
 				assert len(self.satList) > index_to_scan
 				assert len(self.scan_satselection) > index_to_scan
-
+				
 				nimsats = self.satList[index_to_scan]
 				selsatidx = self.scan_satselection[index_to_scan].index
 
@@ -923,7 +944,7 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport):
 
 			need_scan = False
 			networks = self.getNetworksForNim(nim)
-
+			
 			print "nim %d provides" % nim.slot, networks
 			print "known:", known_networks
 
@@ -934,7 +955,7 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport):
 					need_scan = True
 					print x, "not in ", known_networks
 					known_networks.append(x)
-
+					
 			# don't offer to scan nims if nothing is connected
 			if not nimmanager.somethingConnected(nim.slot):
 				need_scan = False

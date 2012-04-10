@@ -66,11 +66,15 @@ struct eDVBFrontendParametersCable
 	};
 
 	enum {
+		System_DVB_C_ANNEX_A, System_DVB_C_ANNEX_C
+	};
+
+	enum {
 		Modulation_Auto, Modulation_QAM16, Modulation_QAM32, Modulation_QAM64, Modulation_QAM128, Modulation_QAM256
 	};
 
 	unsigned int frequency, symbol_rate;
-	int modulation, inversion, fec_inner;
+	int modulation, inversion, fec_inner, system;
 };
 SWIG_ALLOW_OUTPUT_SIMPLE(eDVBFrontendParametersCable);
 
@@ -80,8 +84,8 @@ struct eDVBFrontendParametersTerrestrial
 	void set(const TerrestrialDeliverySystemDescriptor  &);
 #endif
 	enum {
-		Bandwidth_8MHz, Bandwidth_7MHz, Bandwidth_6MHz, /*Bandwidth_5MHz,*/ Bandwidth_Auto
-	}; // Bw5Mhz nyi (compatibilty with enigma1)
+		Bandwidth_8MHz, Bandwidth_7MHz, Bandwidth_6MHz, Bandwidth_Auto, Bandwidth_5MHz, Bandwidth_1_712MHz, Bandwidth_10MHz
+	};
 
 	/* 
 	 * WARNING: do not change the order of these values, they are used to parse lamedb and terrestrial.xml FEC fields.
@@ -93,8 +97,12 @@ struct eDVBFrontendParametersTerrestrial
 	};
 
 	enum {
-		TransmissionMode_2k, TransmissionMode_8k, /*TransmissionMode_4k,*/ TransmissionMode_Auto
-	}; // TM4k nyi (compatibility with enigma1)
+		System_DVB_T, System_DVB_T2
+	};
+
+	enum {
+		TransmissionMode_2k, TransmissionMode_8k, TransmissionMode_Auto, TransmissionMode_4k
+	};
 
 	enum {
 		GuardInterval_1_32, GuardInterval_1_16, GuardInterval_1_8, GuardInterval_1_4, GuardInterval_Auto
@@ -120,7 +128,27 @@ struct eDVBFrontendParametersTerrestrial
 	int guard_interval;
 	int hierarchy;
 	int inversion;
+	int system;
 };
 SWIG_ALLOW_OUTPUT_SIMPLE(eDVBFrontendParametersTerrestrial);
+
+struct eDVBFrontendParametersATSC
+{
+	enum {
+		Inversion_Off, Inversion_On, Inversion_Unknown
+	};
+
+	enum {
+		System_ATSC, System_DVB_C_ANNEX_B
+	};
+
+	enum {
+		Modulation_Auto, Modulation_QAM16, Modulation_QAM32, Modulation_QAM64, Modulation_QAM128, Modulation_QAM256, Modulation_VSB_8, Modulation_VSB_16
+	};
+
+	unsigned int frequency;
+	int modulation, inversion, system;
+};
+SWIG_ALLOW_OUTPUT_SIMPLE(eDVBFrontendParametersATSC);
 
 #endif

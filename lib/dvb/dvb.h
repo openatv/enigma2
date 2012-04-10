@@ -115,17 +115,48 @@ class eDVBAdapterLinux: public iDVBAdapter
 public:
 	eDVBAdapterLinux(int nr);
 
+	void scanDevices();
+
 	int getNumDemux();
 	RESULT getDemux(ePtr<eDVBDemux> &demux, int nr);
 	
 	int getNumFrontends();
 	RESULT getFrontend(ePtr<eDVBFrontend> &fe, int nr, bool simulate=false);
-	
+
 	static int exist(int nr);
+	static bool isusb(int nr);
 private:
 	int m_nr;
 	eSmartPtrList<eDVBFrontend> m_frontend, m_simulate_frontend;
 	eSmartPtrList<eDVBDemux>    m_demux;
+protected:
+	static std::map<std::string, std::string> mappedFrontendName;
+};
+
+class eDVBUsbAdapter: public eDVBAdapterLinux
+{
+	DECLARE_REF(eDVBUsbAdapter);
+private:
+	int vtunerFd;
+	int demuxFd;
+	int pipeFd[2];
+	char name[64];
+	std::string usbFrontendName;
+	std::string virtualFrontendName;
+	bool running;
+	unsigned short int pidList[30];
+	unsigned char buffer[(188 / 4) * 4096];
+	pthread_t pumpThread;
+	static void *threadproc(void *arg);
+	void *vtunerPump();
+
+	int select(int maxfd, fd_set *readfds, fd_set *writefds, fd_set *exceptfds, struct timeval *timeout);
+	ssize_t writeAll(int fd, const void *buf, size_t count);
+	ssize_t read(int fd, void *buf, size_t count);
+
+public:
+	eDVBUsbAdapter(int nr);
+	~eDVBUsbAdapter();
 };
 #endif // SWIG
 
@@ -142,7 +173,7 @@ class eDVBResourceManager: public iObject, public Object
 	eSmartPtrList<iDVBAdapter> m_adapter;
 	eSmartPtrList<eDVBRegisteredDemux> m_demux;
 	eSmartPtrList<eDVBRegisteredFrontend> m_frontend, m_simulate_frontend;
-	void addAdapter(iDVBAdapter *adapter);
+	void addAdapter(iDVBAdapter *adapter, bool front = false);
 
 	struct active_channel
 	{

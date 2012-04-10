@@ -76,14 +76,19 @@ def ConvertToHumanReadable(tp, type = None):
 			eDVBFrontendParametersCable.FEC_6_7 : "6/7",
 			eDVBFrontendParametersCable.FEC_7_8 : "7/8",
 			eDVBFrontendParametersCable.FEC_8_9 : "8/9"}[tp["fec_inner"]]
-		ret["system"] = "DVB-C"
+		ret["system"] = {
+			eDVBFrontendParametersCable.System_DVB_C_ANNEX_A : "DVB-C",
+			eDVBFrontendParametersCable.System_DVB_C_ANNEX_C : "DVB-C ANNEX C"}[tp["system"]]
 	elif type == "DVB-T":
 		ret["tuner_type"] = _("Terrestrial")
 		ret["bandwidth"] = {
-			eDVBFrontendParametersTerrestrial.Bandwidth_Auto : _("Auto"),
-			eDVBFrontendParametersTerrestrial.Bandwidth_8MHz : "8 MHz",
-			eDVBFrontendParametersTerrestrial.Bandwidth_7MHz : "7 MHz",
-			eDVBFrontendParametersTerrestrial.Bandwidth_6MHz : "6 MHz"}[tp["bandwidth"]]
+			0 : _("Auto"),
+			10000000 : "10 MHz",
+			8000000 : "8 MHz",
+			7000000 : "7 MHz",
+			6000000 : "6 MHz",
+			5000000 : "5 MHz",
+			1712000 : "1.712 MHz"}[tp["bandwidth"]]
 		ret["code_rate_lp"] = {
 			eDVBFrontendParametersTerrestrial.FEC_Auto : _("Auto"),
 			eDVBFrontendParametersTerrestrial.FEC_1_2 : "1/2",
@@ -110,6 +115,7 @@ def ConvertToHumanReadable(tp, type = None):
 		ret["transmission_mode"] = {
 			eDVBFrontendParametersTerrestrial.TransmissionMode_Auto : _("Auto"),
 			eDVBFrontendParametersTerrestrial.TransmissionMode_2k : "2k",
+			eDVBFrontendParametersTerrestrial.TransmissionMode_4k : "4k",
 			eDVBFrontendParametersTerrestrial.TransmissionMode_8k : "8k"}[tp["transmission_mode"]]
 		ret["guard_interval"] = {
 			eDVBFrontendParametersTerrestrial.GuardInterval_Auto : _("Auto"),
@@ -127,7 +133,27 @@ def ConvertToHumanReadable(tp, type = None):
 			eDVBFrontendParametersTerrestrial.Inversion_Unknown : _("Auto"),
 			eDVBFrontendParametersTerrestrial.Inversion_On : _("On"),
 			eDVBFrontendParametersTerrestrial.Inversion_Off : _("Off")}[tp["inversion"]]
-		ret["system"] = "DVB-T"		
+		ret["system"] = {
+			eDVBFrontendParametersTerrestrial.System_DVB_T : "DVB-T",
+			eDVBFrontendParametersTerrestrial.System_DVB_T2 : "DVB-T2"}[tp["system"]]
+	elif type == "ATSC":
+		ret["tuner_type"] = "ATSC"
+		ret["modulation"] = {
+			eDVBFrontendParametersATSC.Modulation_Auto: _("Auto"),
+			eDVBFrontendParametersATSC.Modulation_QAM16 : "QAM16",
+			eDVBFrontendParametersATSC.Modulation_QAM32 : "QAM32",
+			eDVBFrontendParametersATSC.Modulation_QAM64 : "QAM64",
+			eDVBFrontendParametersATSC.Modulation_QAM128 : "QAM128",
+			eDVBFrontendParametersATSC.Modulation_QAM256 : "QAM256",
+			eDVBFrontendParametersATSC.Modulation_VSB_8 : "VSB_8",
+			eDVBFrontendParametersATSC.Modulation_VSB_16 : "VSB_16"}[tp["modulation"]]
+		ret["inversion"] = {
+			eDVBFrontendParametersATSC.Inversion_Unknown : _("Auto"),
+			eDVBFrontendParametersATSC.Inversion_On : _("On"),
+			eDVBFrontendParametersATSC.Inversion_Off : _("Off")}[tp["inversion"]]
+		ret["system"] = {
+			eDVBFrontendParametersATSC.System_ATSC : "ATSC",
+			eDVBFrontendParametersATSC.System_DVB_C_ANNEX_B : "DVB-C ANNEX B"}[tp["system"]]
 	elif type != "None":
 		print "ConvertToHumanReadable: no or unknown type in tpdata dict for type:", type
 	for k,v in tp.items():

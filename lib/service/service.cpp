@@ -26,31 +26,6 @@ static std::string encode(const std::string s)
 	return res;
 }
 
-static std::string decode(const std::string s)
-{
-	int len = s.size();
-	std::string res;
-	int i;
-	for (i=0; i<len; ++i)
-	{
-		unsigned char c = s[i];
-		if (c != '%')
-			res += c;
-		else
-		{
-			i += 2;
-			if (i >= len)
-				break;
-			char t[3] = {s[i - 1], s[i], 0};
-			unsigned char r = strtoul(t, 0, 0x10);
-			if (r)
-				res += r;
-		}
-	}
-	return res;
-}
-
-
 eServiceReference::eServiceReference(const std::string &string)
 {
 	const char *c=string.c_str();
@@ -103,8 +78,8 @@ eServiceReference::eServiceReference(const std::string &string)
 		}
 	}
 
-	path = decode(path);
-	name = decode(name);
+	path = urlDecode(path);
+	name = urlDecode(name);
 }
 
 std::string eServiceReference::toString() const

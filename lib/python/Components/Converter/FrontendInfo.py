@@ -92,6 +92,8 @@ class FrontendInfo(Converter, object):
 				return 1
 			elif type == 'DVB-T':
 				return 2
+			elif type == 'ATSC':
+				return 3
 			return -1
 		elif self.type == self.SLOT_NUMBER:
 			num = self.source.slot_number
