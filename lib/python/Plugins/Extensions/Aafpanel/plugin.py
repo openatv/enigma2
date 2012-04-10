@@ -57,6 +57,7 @@ from Plugins.Extensions.Aafpanel.SoftcamPanel import *
 from Plugins.Extensions.Aafpanel.CamStart import *
 from Plugins.Extensions.Aafpanel.sundtek import *
 from Plugins.Extensions.Aafpanel.SwapManager import Swap, SwapAutostart
+from Plugins.SystemPlugins.SoftwareManager.plugin import UpdatePlugin
 
 def Check_Softcam():
 	found = False
@@ -149,7 +150,7 @@ def Plugins(**kwargs):
 	return [
 
 	#// show Aafpanel in Main Menu
-	PluginDescriptor(name="OpenAAF Panel", description="OpenAAF panel AAF-GUI 31/12/2011", where = PluginDescriptor.WHERE_MENU, fnc = Apanel),
+	PluginDescriptor(name="OpenAAF Panel", description="OpenAAF panel AAF-GUI 10/04/2012", where = PluginDescriptor.WHERE_MENU, fnc = Apanel),
 	#// autostart
 	PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART,PluginDescriptor.WHERE_AUTOSTART],fnc = autostart),
 	#// SwapAutostart
@@ -266,6 +267,7 @@ class Aafpanel(Screen, InfoBarPiP):
 		if Check_Softcam():
 			self.Mlist.append(MenuEntryItem((AafEntryComponent('SoftcamPanel'), _("SoftcamPanel"), 'SoftcamPanel')))
 			self.Mlist.append(MenuEntryItem((AafEntryComponent('Softcam-Panel Setup'), _("Softcam-Panel Setup"), 'Softcam-Panel Setup')))
+		self.Mlist.append(MenuEntryItem((AafEntryComponent ("SoftwareManager" ), _("Software update"), ("software-update"))))
 		self.Mlist.append(MenuEntryItem((AafEntryComponent('RedPanel'), _("RedPanel"), 'RedPanel')))
 		self.Mlist.append(MenuEntryItem((AafEntryComponent('Yellow-Key-Action'), _("Yellow-Key-Action"), 'Yellow-Key-Action')))
 		self.Mlist.append(MenuEntryItem((AafEntryComponent('KeymapSel'), _("Keymap Selection"), 'KeymapSel')))	
@@ -395,6 +397,8 @@ class Aafpanel(Screen, InfoBarPiP):
 			self.session.open(ScriptRunner)
 		elif menu == "SoftcamPanel":
 			self.session.open(SoftcamPanel)
+		elif menu == "software-update":
+			self.session.open(UpdatePlugin)
 		elif menu == "MultiQuickButton":
 			self.session.open(MultiQuickButton)
 		elif menu == "MountManager":
