@@ -1577,8 +1577,8 @@ class NetworkAfp(Screen):
 		self['status_summary'] = StaticText()
 		self['autostartstatus_summary'] = StaticText()
 		self.Console = Console()
-		self.my_Samba_active = False
-		self.my_Samba_run = False
+		self.my_afp_active = False
+		self.my_afp_run = False
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.AfpStop, 'green': self.AfpStart, 'yellow': self.activateAfp})
 		self.Installed = IPK_Check
 		self['labactive'].hide()
@@ -1641,7 +1641,7 @@ class NetworkAfp(Screen):
 		self['labactive'].setText(_("Disabled"))
 		self.my_afp_active = False
 		self.my_afp_run = False
-		if fileExists('/etc/rc3.d/S20atalk'):
+		if fileExists('/etc/rc2.d/S20atalk'):
 			self['labactive'].setText(_("Enabled"))
 			self['labactive'].show()
 			self.my_afp_active = True
@@ -1668,6 +1668,133 @@ class NetworkAfp(Screen):
 
 		for cb in self.onChangedEntry:
 			cb(title, status_summary, autostartstatus_summary)
+			
+class NetworkSABnzbd(Screen):
+	skin = """
+		<screen position="center,center" size="560,310" title="SABnzbd Setup">
+			<widget name="lab1" position="20,90" size="150,30" font="Regular;20" valign="center" transparent="0"/>
+			<widget name="labactive" position="180,90" size="250,30" font="Regular;20" valign="center" transparent="0"/>
+			<widget name="lab2" position="20,160" size="150,30" font="Regular;20" valign="center" transparent="0"/>
+			<widget name="labstop" position="180,160" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="red"/>
+			<widget name="labrun" position="180,160" size="100,30" zPosition="1" font="Regular;20" valign="center"  halign="center" backgroundColor="green"/>
+			<ePixmap pixmap="skin_default/buttons/red.png" position="0,260" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/green.png" position="140,260" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,260" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/blue.png" position="420,260" size="140,40" alphatest="on" />
+			<widget name="key_red" position="0,260" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+			<widget name="key_green" position="140,260" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+			<widget name="key_yellow" position="280,260" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
+			<widget name="key_blue" position="420,260" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
+		</screen>"""
+
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		Screen.setTitle(self, _("SABnzbd Setup"))
+		self.skinName = "NetworkSABnzbd"
+		self.onChangedEntry = [ ]
+		self['lab1'] = Label(_("Autostart:"))
+		self['labactive'] = Label(_(_("Disabled")))
+		self['lab2'] = Label(_("Current Status:"))
+		self['labstop'] = Label(_("Checking..."))
+		self['labrun'] = Label(_("Running"))
+		self['key_red'] = Label(_("Stop"))
+		self['key_green'] = Label(_("Start"))
+		self['key_yellow'] = Label(_("Autostart"))
+		self['key_blue'] = Label()
+		self['status_summary'] = StaticText()
+		self['autostartstatus_summary'] = StaticText()
+		self.Console = Console()
+		self.my_sabnzbd_active = False
+		self.my_sabnzbd_run = False
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.SABnzbdStop, 'green': self.SABnzbdStart, 'yellow': self.activateSABnzbd})
+		self.Installed = IPK_Check
+		self['labactive'].hide()
+		self['labrun'].hide()
+		self['labstop'].hide()
+		self.ipkg = IpkgComponent()
+		self.ipkg.addCallback(self.afpCallback)
+		self.checkSABnzbdService()
+
+	def sabnzbdCallback(self, event, param):
+		self.Installed = IPK_NotInstalled
+		if event == IpkgComponent.EVENT_DONE:
+			IpkList = self.ipkg.getFetchedList()
+			for x in IpkList:
+				if x[0].find("sabnzbd") > -1:
+					self.Installed = IPK_Installed
+					break
+			self.updateService()
+		elif event == IpkgComponent.EVENT_ERROR:
+			self.updateService()
+
+	def checkSABnzbdService(self):
+		self.ipkg.startCmd(IpkgComponent.CMD_LIST, {'installed_only': True })
+
+	def createSummary(self):
+		return NetworkServicesSummary
+
+	def SABnzbdStart(self):
+		if self.Installed == IPK_NotInstalled:
+			self.session.openWithCallback(self.checkSABnzbdService, Screens.Console.Console, cmdlist = ['opkg update','ipkg --force-overwrite install sabnzbd'], closeOnSuccess = True)
+		elif self.my_sabnzbd_run == False:
+			self.Console.ePopen('/etc/init.d/sabnzbd start')
+			time.sleep(3)
+			self.updateService()
+		elif self.my_sabnzbd_run == True:
+			self.Console.ePopen('/etc/init.d/sabnzbd restart')
+			time.sleep(3)
+			self.updateService()
+
+	def SABnzbdStop(self):
+		if self.my_afp_run == True:
+			self.Console.ePopen('/etc/init.d/sabnzbd stop')
+			time.sleep(3)
+			self.updateService()
+
+	def activateSABnzbd(self):
+		if fileExists('/etc/rc2.d/S20sabnzbd'):
+			self.Console.ePopen('update-rc.d -f sabnzbd remove')
+		else:
+			self.Console.ePopen('update-rc.d -f sabnzbd defaults')
+		time.sleep(3)
+		self.updateService()
+
+	def updateService(self):
+		import process
+		p = process.ProcessList()
+		sabnzbd_process = str(p.named('SABnzbd.py')).strip('[]')
+		self['labrun'].hide()
+		self['labstop'].hide()
+		self['labactive'].setText(_("Disabled"))
+		self.my_sabnzbd_active = False
+		self.my_sabnzbd_run = False
+		if fileExists('/etc/rc2.d/S20sabnzbd'):
+			self['labactive'].setText(_("Enabled"))
+			self['labactive'].show()
+			self.my_sabnzbd_active = True
+		if afp_process:
+			self.my_sabnzbd_run = True
+		if self.my_sabnzbd_run == True:
+			self['labstop'].hide()
+			self['labactive'].show()
+			self['labrun'].show()
+			self['key_green'].setText(_("Restart"))
+			status_summary= self['lab2'].text + ' ' + self['labrun'].text
+		else:
+			self['labrun'].hide()
+			self['labstop'].show()
+			self['labactive'].show()
+			self['key_green'].setText(_("Start"))
+			status_summary= self['lab2'].text + ' ' + self['labstop'].text
+		if self.Installed == IPK_Installed:
+			self['labstop'].setText(_("Stopped"))
+		elif self.Installed == IPK_NotInstalled:
+			self['labstop'].setText(_("Download"))
+		title = _("SABnzbd Setup")
+		autostartstatus_summary = self['lab1'].text + ' ' + self['labactive'].text
+
+		for cb in self.onChangedEntry:
+			cb(title, status_summary, autostartstatus_summary)			
 
 class NetworkFtp(Screen):
 	skin = """
@@ -1858,7 +1985,7 @@ class NetworkNfs(Screen):
 		self['labactive'].setText(_("Disabled"))
 		self.my_nfs_active = False
 		self.my_nfs_run = False
-		if fileExists('/etc/rc3.d/S20nfsserver'):
+		if fileExists('/etc/rc2.d/S20nfsserver'):
 			self['labactive'].setText(_("Enabled"))
 			self['labactive'].show()
 			self.my_nfs_active = True
@@ -1984,7 +2111,7 @@ class NetworkOpenvpn(Screen):
 		self['labactive'].setText(_("Disabled"))
 		self.my_Vpn_active = False
 		self.my_vpn_run = False
-		if fileExists('/etc/rc3.d/S20openvpn'):
+		if fileExists('/etc/rc2.d/S20openvpn'):
 			self['labactive'].setText(_("Enabled"))
 			self['labactive'].show()
 			self.my_Vpn_active = True
@@ -2132,7 +2259,7 @@ class NetworkSamba(Screen):
 		self['labstop'].hide()
 		self.my_Samba_active = False
 		self.my_Samba_run = False
-		if fileExists('/etc/rc3.d/S20samba'):
+		if fileExists('/etc/rc2.d/S20samba'):
 			self['labactive'].setText(_("Enabled"))
 			self['labactive'].show()
 			self.my_Samba_active = True
@@ -2395,7 +2522,7 @@ class NetworkInadyn(Screen):
 		self['sactive'].hide()
 		self.my_inadyn_active = False
 		self.my_inadyn_run = False
-		if fileExists('/etc/rc3.d/S20inadyn-mt'):
+		if fileExists('/etc/rc2.d/S20inadyn-mt'):
 			self['labdisabled'].hide()
 			self['labactive'].show()
 			self.my_inadyn_active = True
@@ -2757,7 +2884,7 @@ class NetworkuShare(Screen):
 		self.my_ushare_run = False
 		if not fileExists('/tmp/uShare.log'):
 			open('/tmp/uShare.log', "w").write("")
-		if fileExists('/etc/rc3.d/S20ushare'):
+		if fileExists('/etc/rc2.d/S20ushare'):
 			self['labdisabled'].hide()
 			self['labactive'].show()
 			self.my_ushare_active = True
@@ -3263,7 +3390,7 @@ class NetworkMiniDLNA(Screen):
 		self['labdisabled'].hide()
 		self.my_minidlna_active = False
 		self.my_minidlna_run = False
-		if fileExists('/etc/rc3.d/S20minidlna'):
+		if fileExists('/etc/rc2.d/S20minidlna'):
 			self['labdisabled'].hide()
 			self['labactive'].show()
 			self.my_minidlna_active = True

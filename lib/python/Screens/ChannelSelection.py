@@ -11,6 +11,7 @@ from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
 from Components.SystemInfo import SystemInfo
 from Components.Sources.StaticText import StaticText
 from Components.Pixmap import Pixmap,MultiPixmap
+from Components.UsageConfig import preferredTimerPath
 profile("ChannelSelection.py 1")
 from EpgSelection import EPGSelection
 from enigma import eServiceReference, eEPGCache, eServiceCenter, eRCInput, eTimer, eDVBDB, iPlayableService, iServiceInformation, getPrevAsciiCode, eEnv
@@ -27,6 +28,8 @@ from Components.Input import Input
 profile("ChannelSelection.py 3")
 from Components.ChoiceList import ChoiceList, ChoiceEntryComponent
 from Components.SystemInfo import SystemInfo
+from RecordTimer import RecordTimerEntry, AFTEREVENT
+from TimerEntry import TimerEntry
 from Screens.InputBox import InputBox, PinInput
 from Screens.MessageBox import MessageBox
 from Screens.ServiceInfo import ServiceInfo
@@ -520,12 +523,77 @@ class SelectionEventInfo:
 		cur = self.getCurrentSelection()
 		self["ServiceEvent"].newService(cur)
 
+def parseEvent(list):
+	list = list[0]
+	begin = list[2] - (config.recording.margin_before.value * 60)
+	end = list[2] + list[3] + (config.recording.margin_after.value * 60)
+	name = list[1]
+	description = list[5]
+	eit = list[0]
+	return (begin, end, name, description, eit)
+
+class RecordSetup(TimerEntry):
+	def __init__(self, session, timer, zap):
+		Screen.__init__(self, session)
+		self.timer = timer
+		self.timer.justplay = zap
+		self.entryDate = None
+		self.entryService = None
+		self.keyGo()
+
+	def keyGo(self, result = None):
+		if self.timer.justplay:
+			self.timer.begin += (config.recording.margin_before.value * 60)
+			self.timer.end = self.timer.begin
+		self.timer.resetRepeated()
+		self.saveTimer()
+		self.close((True, self.timer))
+
+	def saveTimer(self):
+		self.session.nav.RecordTimer.saveTimer()
+
 class ChannelSelectionEPG:
 	def __init__(self):
 		self["ChannelSelectEPGActions"] = ActionMap(["ChannelSelectEPGActions"],
 			{
 				"showEPGList": self.showEPGList,
 			})
+		self["recordingactions"] = HelpableActionMap(self, "InfobarInstantRecord",
+			{
+				"ShortRecord":		(self.doRecordTimer, _("Add a record timer for current event")),
+			},-1)
+
+	def doRecordTimer(self):
+		zap = False
+		serviceref = ServiceReference(self.getCurrentSelection())
+		refstr = serviceref.ref.toString()
+		self.epgcache = eEPGCache.getInstance()
+		test = [ 'ITBDSECX', (refstr, 1, -1, 60) ] # search next 24 hours
+		self.list = [] if self.epgcache is None else self.epgcache.lookupEvent(test)
+		if self.list is None:
+			return
+		eventid = self.list[0]
+		for timer in self.session.nav.RecordTimer.timer_list:
+			if timer.eit == eventid and timer.service_ref.ref.toString() == refstr:
+				cb_func = lambda ret : not ret or self.removeTimer(timer)
+				self.session.openWithCallback(cb_func, MessageBox, _("Do you really want to delete %s?") % self.list[1])
+				break
+		else:
+			newEntry = RecordTimerEntry(serviceref, checkOldTimers = True, dirname = preferredTimerPath(), *parseEvent(self.list))
+			self.session.openWithCallback(self.finishedAdd, RecordSetup, newEntry, zap)
+
+	def finishedAdd(self, answer):
+		print "finished add"
+		if answer[0]:
+			entry = answer[1]
+			simulTimerList = self.session.nav.RecordTimer.record(entry)
+			if simulTimerList is not None:
+				for x in simulTimerList:
+					if x.setAutoincreaseEnd(entry):
+						self.session.nav.RecordTimer.timeChanged(x)
+				simulTimerList = self.session.nav.RecordTimer.record(entry)
+				if simulTimerList is not None:
+					self.session.openWithCallback(self.finishSanityCorrection, TimerSanityConflict, simulTimerList)
 
 	def showEPGList(self):
 		ref=self.getCurrentSelection()
