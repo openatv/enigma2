@@ -151,11 +151,16 @@ void eDVBAdapterLinux::scanDevices()
 	eDebug("scanning for frontends..");
 	while (1)
 	{
-		struct stat s;
+		/*
+		 * Some frontend devices might have been just created, if
+		 * they are virtual (vtuner) frontends.
+		 * In that case, we cannot be sure the devicenodes are available yet.
+		 * So it is safer to scan for sys entries, than for device nodes
+		 */
 		char filename[128];
-		sprintf(filename, "/dev/dvb/adapter%d/frontend%d", m_nr, num_fe);
-		if (stat(filename, &s))
-			break;
+		snprintf(filename, sizeof(filename), "/sys/class/dvb/dvb%d.frontend%d", m_nr, num_fe);
+		if (::access(filename, X_OK) < 0) break;
+		snprintf(filename, sizeof(filename), "/dev/dvb/adapter%d/frontend%d", m_nr, num_fe);
 		eDVBFrontend *fe;
 		std::string name = filename;
 		std::map<std::string, std::string>::iterator it = mappedFrontendName.find(name);
@@ -273,10 +278,17 @@ eDVBUsbAdapter::eDVBUsbAdapter(int nr)
 	int num_fe = 0;
 	while (1)
 	{
-		snprintf(filename, sizeof(filename), "/dev/dvb/adapter0/frontend%d", num_fe);
-		if (::access(filename, R_OK) < 0) break;
+		/*
+		 * Some frontend devices might have been just created, if
+		 * they are virtual (vtuner) frontends.
+		 * In that case, we cannot be sure the devicenodes are available yet.
+		 * So it is safer to scan for sys entries, than for device nodes
+		 */
+		snprintf(filename, sizeof(filename), "/sys/class/dvb/dvb0.frontend%d", num_fe);
+		if (::access(filename, X_OK) < 0) break;
 		num_fe++;
 	}
+	snprintf(filename, sizeof(filename), "/dev/dvb/adapter0/frontend%d", num_fe);
 	virtualFrontendName = filename;
 
 	demuxFd = vtunerFd = pipeFd[0] = pipeFd[1] = -1;
