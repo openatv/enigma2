@@ -370,10 +370,11 @@ class PluginDownloadBrowser(Screen):
 				self.updateList()
 				self["list"].instance.show()
 			else:
-				self["text"].setText(_("Sorry feeds are down for maintenance"))
+				if self.type == self.DOWNLOAD:
+					self["text"].setText(_("Sorry feeds are down for maintenance"))
 
 	def dataAvail(self, str):
-		if str.find('404 Not Found') >= 0:
+		if self.type == self.DOWNLOAD and str.find('404 Not Found') >= 0:
 			self["text"].setText(_("Sorry feeds are down for maintenance"))
 			self.run = 3
 			return

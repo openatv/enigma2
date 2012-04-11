@@ -255,7 +255,7 @@ class EPGSelection(Screen, HelpableScreen):
 	EMPTY = 0
 	ADD_TIMER = 1
 	REMOVE_TIMER = 2
-	
+
 	ZAP = 1
 
 	def __init__(self, session, service, zapFunc=None, eventid=None, bouquetChangeCB=None, serviceChangeCB=None, EPGtype=None,  bouquetname=""):
@@ -263,7 +263,8 @@ class EPGSelection(Screen, HelpableScreen):
 		self.StartRef = None
 		self.StartBouquet = None
 		if EPGtype:
-			self.StartBouquet = EPGtype
+			self.StartBouquet = EPGtype.getRoot()
+			self.servicelist = EPGtype
 			EPGtype = None
 		if zapFunc == 'infobar':
 			self.InfobarEPG = True
@@ -543,6 +544,8 @@ class EPGSelection(Screen, HelpableScreen):
 		elif self.type == EPG_TYPE_MULTI:
 			self.curBouquet = bouquetChangeCB
 
+		self.refreshTimer = eTimer()
+		self.refreshTimer.timeout.get().append(self.refreshData)
 		self.listTimer = eTimer()
 		self.listTimer.timeout.get().append(self.hidewaitingtext)
 
@@ -806,7 +809,7 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def closing(self):
 		if ((self.type == 5 and config.epgselction.preview_mode_pliepg.value) or (self.type == 4 and config.epgselction.preview_mode_infobar.value) or (self.type == 3 and config.epgselction.preview_mode_enhanced.value) or (self.type != 5 and self.type != 4 and self.type != 3 and config.epgselction.preview_mode.value)) and (self.StartRef and self.StartBouquet):
-			if self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
+			if self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_SINGLE:
 				self.session.nav.playService(self.StartRef)
 			elif self.type == EPG_TYPE_MULTI or self.type == EPG_TYPE_GRAPH:
 				self.zapFunc(self.StartRef, self.StartBouquet)
@@ -1261,7 +1264,18 @@ class EPGSelection(Screen, HelpableScreen):
 		self.updateTimelineTimer.start((60 - (int(time()) % 60)) * 1000)        #keep syncronised
 		self["timeline_text"].setEntries(self["list"], self["timeline_now"], self.time_lines)
 		self["list"].l.invalidate() # not needed when the zPosition in the skin is correct! ?????
-	
+		self["list"].fillGraphEPG(None, self.ask_time)
+
+	def refreshData(self, force=False):
+		self.refreshTimer.stop()
+		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_MULTI:
+			self["list"].fillGraphEPG(None, self.ask_time)
+		elif self.type == EPG_TYPE_SINGLE:
+			service = self.currentService
+			self["list"].fillSingleEPG(service)
+		elif self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
+			service = ServiceReference(self.servicelist.getCurrentSelection())
+			self["list"].fillSingleEPG(service)
 	def isPlayable(self):
 		# check if service is playable
 		current = ServiceReference(self.servicelist.getCurrentSelection())
@@ -1318,9 +1332,20 @@ class EPGSelection(Screen, HelpableScreen):
 						self.close(True)
 					else:
 						self.zapFunc(ref.ref)
+						self.refreshTimer.start(10000)
 				else:
 					self.close(True)
-		else:
+		elif self.type == EPG_TYPE_SINGLE:
+			currch = self.session.nav.getCurrentlyPlayingServiceReference()
+			currch = currch.toString()
+			switchto = ServiceReference(self.currentService.ref)
+			switchto = str(switchto)
+			if not switchto == currch:
+				self.session.nav.playService(self.currentService.ref)
+				self.refreshTimer.start(10000)
+			else:
+				self.close()
+		elif self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
 			try:
 				currch = self.session.nav.getCurrentlyPlayingServiceReference()
 				currch = currch.toString()
@@ -1508,7 +1533,7 @@ class EPGSelectionSetup(Screen, ConfigListScreen):
 		if self.type == 5:
 			self.list.append(getConfigListEntry(_("Channel preview mode"), config.epgselction.preview_mode_pliepg,_("If set to 'yes' you can preview channels in the EPG list.")))
 			self.list.append(getConfigListEntry(_("Show bouquet on launch"), config.epgselction.showbouquet_pliepg,_("If set to 'yes' the bouquets will be shown each time you open the EPG.")))
-			self.list.append(getConfigListEntry(_("Picture In Graphics*"), config.epgselction.pictureingraphics,_("If set to 'yes' shows a small TV-screen in the EPG.")))
+			self.list.append(getConfigListEntry(_("Picture in Graphics*"), config.epgselction.pictureingraphics,_("If set to 'yes' shows a small TV-screen in the EPG.")))
 			self.list.append(getConfigListEntry(_("Show Picons"), config.epgselction.showpicon,_("If set to 'yes' shows the channel picons in the EPG.")))
 			self.list.append(getConfigListEntry(_("Show Service Names "), config.epgselction.showservicetitle,_("If set to 'yes' shows the channel names in the EPG.")))
 			self.list.append(getConfigListEntry(_("Info Button (short)"), config.epgselction.Info,_("Set to what you want the button to do.")))
@@ -1583,6 +1608,7 @@ class EPGSelectionSetup(Screen, ConfigListScreen):
 	def keySave(self):
 		self.saveAll()
 		self.close()
+
 	def cancelConfirm(self, result):
 		if not result:
 			return
