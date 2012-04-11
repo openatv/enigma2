@@ -263,7 +263,8 @@ class EPGSelection(Screen, HelpableScreen):
 		self.StartRef = None
 		self.StartBouquet = None
 		if EPGtype:
-			self.StartBouquet = EPGtype
+			self.StartBouquet = EPGtype.getRoot()
+			self.servicelist = EPGtype
 			EPGtype = None
 		if zapFunc == 'infobar':
 			self.InfobarEPG = True
@@ -538,6 +539,9 @@ class EPGSelection(Screen, HelpableScreen):
 		elif self.type == EPG_TYPE_MULTI:
 			self.curBouquet = bouquetChangeCB
 
+		self.refreshTimer = eTimer()
+		self.refreshTimer.timeout.get().append(self.refreshData)
+
 		self.listTimer = eTimer()
 		self.listTimer.timeout.get().append(self.hidewaitingtext)
 
@@ -801,7 +805,7 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def closing(self):
 		if ((self.type == 5 and config.epgselction.preview_mode_vixepg.value) or (self.type == 4 and config.epgselction.preview_mode_infobar.value) or (self.type == 3 and config.epgselction.preview_mode_enhanced.value) or (self.type != 5 and self.type != 4 and self.type != 3 and config.epgselction.preview_mode.value)) and (self.StartRef and self.StartBouquet):
-			if self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
+			if self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_SINGLE:
 				self.session.nav.playService(self.StartRef)
 			elif self.type == EPG_TYPE_MULTI or self.type == EPG_TYPE_GRAPH:
 				self.zapFunc(self.StartRef, self.StartBouquet)
@@ -1247,6 +1251,18 @@ class EPGSelection(Screen, HelpableScreen):
 		self.updateTimelineTimer.start((60 - (int(time()) % 60)) * 1000)        #keep syncronised
 		self["timeline_text"].setEntries(self["list"], self["timeline_now"], self.time_lines)
 		self["list"].l.invalidate() # not needed when the zPosition in the skin is correct! ?????
+		self["list"].fillGraphEPG(None, self.ask_time)
+
+	def refreshData(self, force=False):
+		self.refreshTimer.stop()
+		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_MULTI:
+			self["list"].fillGraphEPG(None, self.ask_time)
+		elif self.type == EPG_TYPE_SINGLE:
+			service = self.currentService
+			self["list"].fillSingleEPG(service)
+		elif self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
+			service = ServiceReference(self.servicelist.getCurrentSelection())
+			self["list"].fillSingleEPG(service)
 
 	def isPlayable(self):
 		# check if service is playable
@@ -1304,19 +1320,28 @@ class EPGSelection(Screen, HelpableScreen):
 						self.close(True)
 					else:
 						self.zapFunc(ref.ref)
+						self.refreshTimer.start(10000)
 				else:
 					self.close(True)
-		else:
-			try:
-				currch = self.session.nav.getCurrentlyPlayingServiceReference()
-				currch = currch.toString()
-				switchto = ServiceReference(self.servicelist.getCurrentSelection())
-				switchto = str(switchto)
-				if not switchto == currch:
-					self.servicelist.zap()
-				else:
-					self.close()
-			except:
+		elif self.type == EPG_TYPE_SINGLE:
+			currch = self.session.nav.getCurrentlyPlayingServiceReference()
+			currch = currch.toString()
+			switchto = ServiceReference(self.currentService.ref)
+			switchto = str(switchto)
+			if not switchto == currch:
+				self.session.nav.playService(self.currentService.ref)
+				self.refreshTimer.start(10000)
+			else:
+				self.close()
+		elif self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
+			currch = self.session.nav.getCurrentlyPlayingServiceReference()
+			currch = currch.toString()
+			switchto = ServiceReference(self.servicelist.getCurrentSelection())
+			switchto = str(switchto)
+			if not switchto == currch:
+				self.servicelist.zap()
+				self.refreshTimer.start(10000)
+			else:
 				self.close()
 
 	def keyNumberGlobal(self, number):
