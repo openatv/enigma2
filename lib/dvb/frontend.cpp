@@ -725,6 +725,11 @@ int eDVBFrontend::readFrontendData(int type)
 				ret = (int)(snr / 40.5);
 				sat_max = 1618;
 			}
+			else if (!strcmp(m_description, "Nova-T Stick")) // Nova-T - dib0700
+				if ( snr > 300 )
+					ret = 0; //error condition
+				else
+					ret = (int)(snr * 10);
 			else if (!strcmp(m_description, "BCM4501 (internal)"))
 			{
 				float SDS_SNRE = snr << 16;
