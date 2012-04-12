@@ -1,3 +1,3 @@
 installdir = $(pkglibdir)/python/Plugins/SystemPlugins/VFD_Giga
 
-install_PYTHON = *.py *.pyo skin.xml
+install_PYTHON = *.py
