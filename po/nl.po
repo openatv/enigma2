@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-24 23:40+0100\n"
+"POT-Creation-Date: 2012-04-11 16:07+0200\n"
 "PO-Revision-Date: 2011-10-14 19:15+0100\n"
 "Last-Translator: \n"
 "Language-Team:  <Benny.DeTandt@gmail.com>\n"
@@ -142,42 +142,6 @@ msgstr " updates beschikbaar."
 
 msgid " wireless networks found!"
 msgstr "draadloze netwerken gevonden!"
-
-msgid "#000000"
-msgstr "#000000"
-
-msgid "#0064c7"
-msgstr "#0064c7"
-
-msgid "#25062748"
-msgstr "#25062748"
-
-msgid "#389416"
-msgstr "#389416"
-
-msgid "#80000000"
-msgstr "#80000000"
-
-msgid "#80ffffff"
-msgstr "#80ffffff"
-
-msgid "#bab329"
-msgstr "#bab329"
-
-msgid "#f23d21"
-msgstr "#f23d21"
-
-msgid "#ff0000"
-msgstr "#ff0000"
-
-msgid "#ffff7f"
-msgstr "#ffff7f"
-
-msgid "#ffffff"
-msgstr "#ffffff"
-
-msgid "#ffffffff"
-msgstr "#ffffffff"
 
 #. TRANSLATORS: short time representation hour:minute
 #, python-format
@@ -618,6 +582,12 @@ msgstr "Alles"
 msgid "All Satellites"
 msgstr "Alle Satellieten"
 
+msgid "Allocate"
+msgstr ""
+
+msgid "Allocate unused memory index"
+msgstr ""
+
 msgid "Allow Subtitle equals Audio mask"
 msgstr "Ondertiteling gelijk aan de audo instelling"
 
@@ -929,7 +899,8 @@ msgid "Cannot find any signal ..., aborting !"
 msgstr "Kan geen signaal vinden. Stoppen!"
 
 msgid "Cannot move files on a different disk or system to the trash can"
-msgstr "Kan bestanden niet van een ander apparaat naar de prullenbak verplaatsen"
+msgstr ""
+"Kan bestanden niet van een ander apparaat naar de prullenbak verplaatsen"
 
 msgid "Cannot move to trash can"
 msgstr "Kan bestanden niet naar de prullenbak verplaatsen"
@@ -1304,11 +1275,23 @@ msgstr "DUAL LAYER DVD"
 msgid "DVB subtitle black transparency"
 msgstr "Zwart transparantie van DVB ondertitels"
 
+msgid "DVB-C"
+msgstr ""
+
+msgid "DVB-C ANNEX C"
+msgstr ""
+
 msgid "DVB-S"
 msgstr "DVB-S"
 
 msgid "DVB-S2"
 msgstr "DVB-S2"
+
+msgid "DVB-T"
+msgstr ""
+
+msgid "DVB-T2"
+msgstr ""
 
 msgid "DVD File Browser"
 msgstr "DvD file verkenner"
@@ -2280,6 +2263,9 @@ msgstr "Verhoogd voltage"
 msgid "Index"
 msgstr "Index"
 
+msgid "Index allocated:"
+msgstr ""
+
 msgid "Info"
 msgstr "Informatie"
 
@@ -2898,6 +2884,9 @@ msgid ""
 msgstr ""
 "Snel spoelen is nog niet mogelijk....maar u kunt de cijfertoetsengebruiken "
 "om te springen"
+
+msgid "No free index available"
+msgstr ""
 
 msgid "No free tuner!"
 msgstr "Geen vrije tuner!"
@@ -4808,7 +4797,8 @@ msgstr "De gebruikersomgeving van uw ontvanger wordt opnieuw opgestart"
 msgid ""
 "The User Interface of your receiver is restarting\n"
 "due to an error in mytest.py"
-msgstr "De gebruikersomgeving van uw ontvanger wordt opnieuw opgestart\n"
+msgstr ""
+"De gebruikersomgeving van uw ontvanger wordt opnieuw opgestart\n"
 "omdat er een probleem in mytest.py is geconstateerd"
 
 msgid "The backup failed. Please choose a different backup location."
@@ -5070,9 +5060,10 @@ msgid ""
 "This will (re-)calculate all positions of your rotor and may remove "
 "previously memorised positions and fine-tuning!\n"
 "Are you sure?"
-msgstr "Alle posities van de rotor worden opnieuw berekend. Hierdoor kunnen"
-"oude instellingen en optimalisaties verloren gaan!\n "
-"Doorgaan?"
+msgstr ""
+"Alle posities van de rotor worden opnieuw berekend. Hierdoor kunnenoude "
+"instellingen en optimalisaties verloren gaan!\n"
+" Doorgaan?"
 
 msgid "Three"
 msgstr "Drie"
@@ -5853,7 +5844,8 @@ msgid ""
 "You already have a channel list installed,\n"
 "would you like to remove\n"
 "\"%s\"?"
-msgstr "Er is al een kanalenlijst geinstalleerd.\n"
+msgstr ""
+"Er is al een kanalenlijst geinstalleerd.\n"
 "Mag die verwijderd worden\n"
 "\"%s\"?"
 
@@ -6980,8 +6972,14 @@ msgstr "waar"
 msgid "tuner is not supported"
 msgstr "tuner wordt niet ondersteund"
 
+msgid "unavailable"
+msgstr "niet beschikbaar"
+
 msgid "unconfirmed"
 msgstr "onbevestigd"
+
+msgid "undefined"
+msgstr ""
 
 msgid "unknown"
 msgstr "onbekend"
@@ -7078,6 +7076,42 @@ msgstr "zapte"
 
 #~ msgid " Results"
 #~ msgstr " Resultaten"
+
+#~ msgid "#000000"
+#~ msgstr "#000000"
+
+#~ msgid "#0064c7"
+#~ msgstr "#0064c7"
+
+#~ msgid "#25062748"
+#~ msgstr "#25062748"
+
+#~ msgid "#389416"
+#~ msgstr "#389416"
+
+#~ msgid "#80000000"
+#~ msgstr "#80000000"
+
+#~ msgid "#80ffffff"
+#~ msgstr "#80ffffff"
+
+#~ msgid "#bab329"
+#~ msgstr "#bab329"
+
+#~ msgid "#f23d21"
+#~ msgstr "#f23d21"
+
+#~ msgid "#ff0000"
+#~ msgstr "#ff0000"
+
+#~ msgid "#ffff7f"
+#~ msgstr "#ffff7f"
+
+#~ msgid "#ffffff"
+#~ msgstr "#ffffff"
+
+#~ msgid "#ffffffff"
+#~ msgstr "#ffffffff"
 
 #~ msgid ""
 #~ "%d conflict(s) encountered when trying to add new timers:\n"
@@ -11358,9 +11392,6 @@ msgstr "zapte"
 
 #~ msgid "unable to find timer with id %i"
 #~ msgstr "kan timer met id %i niet vinden"
-
-#~ msgid "unavailable"
-#~ msgstr "niet beschikbaar"
 
 #~ msgid "until restart"
 #~ msgstr "tot herstart"

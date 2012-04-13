@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-24 23:40+0100\n"
+"POT-Creation-Date: 2012-04-11 16:07+0200\n"
 "PO-Revision-Date: 2011-04-12 22:26+0200\n"
 "Last-Translator: Jose Juan <jzapater@gmail.com>\n"
 "Language-Team: none\n"
@@ -159,52 +159,6 @@ msgstr "actualizaciones disponibles."
 #
 msgid " wireless networks found!"
 msgstr " redes wifi encontradas!"
-
-#
-msgid "#000000"
-msgstr "#000000"
-
-#
-msgid "#0064c7"
-msgstr "#0064c7"
-
-#
-msgid "#25062748"
-msgstr "#25062748"
-
-#
-msgid "#389416"
-msgstr "#389416"
-
-#
-msgid "#80000000"
-msgstr "#80000000"
-
-#
-msgid "#80ffffff"
-msgstr "#80ffffff"
-
-#
-msgid "#bab329"
-msgstr "#bab329"
-
-#
-msgid "#f23d21"
-msgstr "#f23d21"
-
-msgid "#ff0000"
-msgstr ""
-
-msgid "#ffff7f"
-msgstr ""
-
-#
-msgid "#ffffff"
-msgstr "#ffffff"
-
-#
-msgid "#ffffffff"
-msgstr "#ffffffff"
 
 #. TRANSLATORS: short time representation hour:minute
 #, python-format
@@ -743,6 +697,12 @@ msgstr "Todo"
 #
 msgid "All Satellites"
 msgstr "Todos satélites"
+
+msgid "Allocate"
+msgstr ""
+
+msgid "Allocate unused memory index"
+msgstr ""
 
 msgid "Allow Subtitle equals Audio mask"
 msgstr ""
@@ -1588,6 +1548,12 @@ msgstr "DVD DOBLE CAPA"
 msgid "DVB subtitle black transparency"
 msgstr ""
 
+msgid "DVB-C"
+msgstr ""
+
+msgid "DVB-C ANNEX C"
+msgstr ""
+
 #
 msgid "DVB-S"
 msgstr "DVB-S"
@@ -1595,6 +1561,12 @@ msgstr "DVB-S"
 #
 msgid "DVB-S2"
 msgstr "DVB-S2"
+
+msgid "DVB-T"
+msgstr ""
+
+msgid "DVB-T2"
+msgstr ""
 
 #
 msgid "DVD File Browser"
@@ -2337,7 +2309,7 @@ msgstr "Reinicio de fábrica"
 msgid "Failed"
 msgstr "Falló"
 
-msgid "Failed to write /tmp/positionersetup.log:str"
+msgid "Failed to write /tmp/positionersetup.log: "
 msgstr ""
 
 #
@@ -2760,6 +2732,9 @@ msgstr "Voltaje incrementado"
 #
 msgid "Index"
 msgstr "Índice"
+
+msgid "Index allocated:"
+msgstr ""
 
 #
 msgid "Info"
@@ -3527,6 +3502,9 @@ msgid ""
 msgstr ""
 "¡No es posible todavía avance rápido.. pero puede usar los botones numéricos "
 "para ir adelante/atrás!"
+
+msgid "No free index available"
+msgstr ""
 
 #
 msgid "No free tuner!"
@@ -8494,8 +8472,15 @@ msgid "tuner is not supported"
 msgstr "tuner no soportado"
 
 #
+msgid "unavailable"
+msgstr "no disponible"
+
+#
 msgid "unconfirmed"
 msgstr "no confirmado"
+
+msgid "undefined"
+msgstr ""
 
 #
 msgid "unknown"
@@ -8624,16 +8609,56 @@ msgstr "zapeado"
 #~ msgstr "\"?"
 
 #
+#~ msgid "#000000"
+#~ msgstr "#000000"
+
+#
 #~ msgid "#003258"
 #~ msgstr "#003258"
+
+#
+#~ msgid "#0064c7"
+#~ msgstr "#0064c7"
+
+#
+#~ msgid "#25062748"
+#~ msgstr "#25062748"
 
 #
 #~ msgid "#33294a6b"
 #~ msgstr "#33294a6b"
 
 #
+#~ msgid "#389416"
+#~ msgstr "#389416"
+
+#
 #~ msgid "#77ffffff"
 #~ msgstr "#77ffffff"
+
+#
+#~ msgid "#80000000"
+#~ msgstr "#80000000"
+
+#
+#~ msgid "#80ffffff"
+#~ msgstr "#80ffffff"
+
+#
+#~ msgid "#bab329"
+#~ msgstr "#bab329"
+
+#
+#~ msgid "#f23d21"
+#~ msgstr "#f23d21"
+
+#
+#~ msgid "#ffffff"
+#~ msgstr "#ffffff"
+
+#
+#~ msgid "#ffffffff"
+#~ msgstr "#ffffffff"
 
 #~ msgid ""
 #~ "%d conflict(s) encountered when trying to add new timers:\n"
@@ -12968,10 +12993,6 @@ msgstr "zapeado"
 #
 #~ msgid "text"
 #~ msgstr "texto"
-
-#
-#~ msgid "unavailable"
-#~ msgstr "no disponible"
 
 #
 #~ msgid "until restart"

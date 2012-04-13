@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-24 23:40+0100\n"
+"POT-Creation-Date: 2012-04-11 16:07+0200\n"
 "PO-Revision-Date: 2011-09-01 15:22+0100\n"
 "Last-Translator: \n"
 "Language-Team: Mediavox, robertut <info@mediavox.hu, robertut@yahoo.com>\n"
@@ -160,52 +160,6 @@ msgstr " frissítés elérhető."
 #
 msgid " wireless networks found!"
 msgstr " elérhető vezeték nélküli hálózat!"
-
-#
-msgid "#000000"
-msgstr "#000000"
-
-#
-msgid "#0064c7"
-msgstr "#0064c7"
-
-#
-msgid "#25062748"
-msgstr "#25062748"
-
-#
-msgid "#389416"
-msgstr "#389416"
-
-#
-msgid "#80000000"
-msgstr "#80000000"
-
-#
-msgid "#80ffffff"
-msgstr "#80ffffff"
-
-#
-msgid "#bab329"
-msgstr "#bab329"
-
-#
-msgid "#f23d21"
-msgstr "#f23d21"
-
-msgid "#ff0000"
-msgstr ""
-
-msgid "#ffff7f"
-msgstr ""
-
-#
-msgid "#ffffff"
-msgstr "#ffffff"
-
-#
-msgid "#ffffffff"
-msgstr "#ffffffff"
 
 #. TRANSLATORS: short time representation hour:minute
 #, python-format
@@ -743,6 +697,12 @@ msgstr "Összes"
 #
 msgid "All Satellites"
 msgstr "Összes műhold"
+
+msgid "Allocate"
+msgstr ""
+
+msgid "Allocate unused memory index"
+msgstr ""
 
 msgid "Allow Subtitle equals Audio mask"
 msgstr ""
@@ -1582,6 +1542,12 @@ msgstr "Kétréteges DVD"
 msgid "DVB subtitle black transparency"
 msgstr "DVB felirat fekete-áttetszőssége"
 
+msgid "DVB-C"
+msgstr ""
+
+msgid "DVB-C ANNEX C"
+msgstr ""
+
 #
 msgid "DVB-S"
 msgstr "DVB-S"
@@ -1589,6 +1555,12 @@ msgstr "DVB-S"
 #
 msgid "DVB-S2"
 msgstr "DVB-S2"
+
+msgid "DVB-T"
+msgstr ""
+
+msgid "DVB-T2"
+msgstr ""
 
 #
 msgid "DVD File Browser"
@@ -2334,7 +2306,7 @@ msgstr "Gyári alapbeállítások"
 msgid "Failed"
 msgstr "Sikertelen"
 
-msgid "Failed to write /tmp/positionersetup.log:str"
+msgid "Failed to write /tmp/positionersetup.log: "
 msgstr ""
 
 #
@@ -2760,6 +2732,9 @@ msgstr "Magasabb feszültség"
 #
 msgid "Index"
 msgstr "Index"
+
+msgid "Index allocated:"
+msgstr ""
 
 #
 msgid "Info"
@@ -3529,6 +3504,9 @@ msgid ""
 msgstr ""
 "Gyorscsévélési lehetőség nincs még... de a szám-gombokkal lehet ugranni "
 "előre vagy hátra!"
+
+msgid "No free index available"
+msgstr ""
 
 #
 msgid "No free tuner!"
@@ -8473,8 +8451,15 @@ msgid "tuner is not supported"
 msgstr "nem támogatott tuner"
 
 #
+msgid "unavailable"
+msgstr "nem elérhető"
+
+#
 msgid "unconfirmed"
 msgstr "nem igazolt"
+
+msgid "undefined"
+msgstr ""
 
 #
 msgid "unknown"
@@ -8580,6 +8565,46 @@ msgstr "ugrott"
 #
 #~ msgid " Results"
 #~ msgstr "Eredmény"
+
+#
+#~ msgid "#000000"
+#~ msgstr "#000000"
+
+#
+#~ msgid "#0064c7"
+#~ msgstr "#0064c7"
+
+#
+#~ msgid "#25062748"
+#~ msgstr "#25062748"
+
+#
+#~ msgid "#389416"
+#~ msgstr "#389416"
+
+#
+#~ msgid "#80000000"
+#~ msgstr "#80000000"
+
+#
+#~ msgid "#80ffffff"
+#~ msgstr "#80ffffff"
+
+#
+#~ msgid "#bab329"
+#~ msgstr "#bab329"
+
+#
+#~ msgid "#f23d21"
+#~ msgstr "#f23d21"
+
+#
+#~ msgid "#ffffff"
+#~ msgstr "#ffffff"
+
+#
+#~ msgid "#ffffffff"
+#~ msgstr "#ffffffff"
 
 #
 #~ msgid "%d sec"
@@ -10731,10 +10756,6 @@ msgstr "ugrott"
 #
 #~ msgid "show second selected tag"
 #~ msgstr "a második kijelölt meta megjelenítése"
-
-#
-#~ msgid "unavailable"
-#~ msgstr "nem elérhető"
 
 #
 #~ msgid "use as HDD replacement"
