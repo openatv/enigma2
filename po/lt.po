@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-24 23:40+0100\n"
+"POT-Creation-Date: 2012-04-11 16:07+0200\n"
 "PO-Revision-Date: 2010-04-03 17:28+0200\n"
 "Last-Translator: Audronis Grincevicius <audrgrin@takas.lt>\n"
 "Language-Team: \n"
@@ -138,42 +138,6 @@ msgstr " pasiekiami atnaujinimai."
 
 msgid " wireless networks found!"
 msgstr " rastas belaidis tinklas!"
-
-msgid "#000000"
-msgstr "#000000"
-
-msgid "#0064c7"
-msgstr "#0064c7"
-
-msgid "#25062748"
-msgstr "#25062748"
-
-msgid "#389416"
-msgstr "#389416"
-
-msgid "#80000000"
-msgstr "#80000000"
-
-msgid "#80ffffff"
-msgstr "#80ffffff"
-
-msgid "#bab329"
-msgstr "#bab329"
-
-msgid "#f23d21"
-msgstr "#f23d21"
-
-msgid "#ff0000"
-msgstr ""
-
-msgid "#ffff7f"
-msgstr ""
-
-msgid "#ffffff"
-msgstr "#ffffff"
-
-msgid "#ffffffff"
-msgstr "#ffffffff"
 
 #. TRANSLATORS: short time representation hour:minute
 #, python-format
@@ -616,6 +580,12 @@ msgstr "Visi"
 
 msgid "All Satellites"
 msgstr "Visi palydovai"
+
+msgid "Allocate"
+msgstr ""
+
+msgid "Allocate unused memory index"
+msgstr ""
 
 msgid "Allow Subtitle equals Audio mask"
 msgstr ""
@@ -1301,11 +1271,23 @@ msgstr "DVIGUBAS DVD"
 msgid "DVB subtitle black transparency"
 msgstr ""
 
+msgid "DVB-C"
+msgstr ""
+
+msgid "DVB-C ANNEX C"
+msgstr ""
+
 msgid "DVB-S"
 msgstr "DVB-S"
 
 msgid "DVB-S2"
 msgstr "DVB-S2"
+
+msgid "DVB-T"
+msgstr ""
+
+msgid "DVB-T2"
+msgstr ""
 
 msgid "DVD File Browser"
 msgstr "DVD failų naršyklė"
@@ -1911,7 +1893,7 @@ msgstr "Gamykliniai nustatymai"
 msgid "Failed"
 msgstr "Klaidingas"
 
-msgid "Failed to write /tmp/positionersetup.log:str"
+msgid "Failed to write /tmp/positionersetup.log: "
 msgstr ""
 
 #, python-format
@@ -2278,6 +2260,9 @@ msgstr "Padidinta įtampa"
 
 msgid "Index"
 msgstr "Indeksas"
+
+msgid "Index allocated:"
+msgstr ""
 
 msgid "Info"
 msgstr "Informacija"
@@ -2899,6 +2884,9 @@ msgid ""
 msgstr ""
 "Joks greitas vingiavimas, galimas dar.. bet jūs galite panaudoti skaičių "
 "mygtukus, kad praleistumėte pirmyn/atgal!"
+
+msgid "No free index available"
+msgstr ""
 
 msgid "No free tuner!"
 msgstr "Nėra laisvo imtuvo!"
@@ -6971,8 +6959,14 @@ msgstr ""
 msgid "tuner is not supported"
 msgstr "imtuvas nepalaikomas"
 
+msgid "unavailable"
+msgstr "nepasiekiamas"
+
 msgid "unconfirmed"
 msgstr "neparvirtintas"
+
+msgid "undefined"
+msgstr ""
 
 msgid "unknown"
 msgstr "nežinoma"
@@ -7083,8 +7077,20 @@ msgstr "įjungta"
 #~ msgid "\"?"
 #~ msgstr "\"?"
 
+#~ msgid "#000000"
+#~ msgstr "#000000"
+
 #~ msgid "#00000000"
 #~ msgstr "#00000000"
+
+#~ msgid "#0064c7"
+#~ msgstr "#0064c7"
+
+#~ msgid "#25062748"
+#~ msgstr "#25062748"
+
+#~ msgid "#389416"
+#~ msgstr "#389416"
 
 #~ msgid "#41000000"
 #~ msgstr "#41000000"
@@ -7095,14 +7101,32 @@ msgstr "įjungta"
 #~ msgid "#77ffffff"
 #~ msgstr "#77ffffff"
 
+#~ msgid "#80000000"
+#~ msgstr "#80000000"
+
+#~ msgid "#80ffffff"
+#~ msgstr "#80ffffff"
+
 #~ msgid "#999999"
 #~ msgstr "#999999"
+
+#~ msgid "#bab329"
+#~ msgstr "#bab329"
 
 #~ msgid "#cccccc"
 #~ msgstr "#cccccc"
 
 #~ msgid "#dddddd"
 #~ msgstr "#dddddd"
+
+#~ msgid "#f23d21"
+#~ msgstr "#f23d21"
+
+#~ msgid "#ffffff"
+#~ msgstr "#ffffff"
+
+#~ msgid "#ffffffff"
+#~ msgstr "#ffffffff"
 
 #~ msgid ""
 #~ "%d conflict(s) encountered when trying to add new timers:\n"
@@ -11998,9 +12022,6 @@ msgstr "įjungta"
 
 #~ msgid "unable to find timer with id %i"
 #~ msgstr "negalima surasti laikmačio su id %i"
-
-#~ msgid "unavailable"
-#~ msgstr "nepasiekiamas"
 
 #~ msgid "until restart"
 #~ msgstr "iki pradžios iš naujo"
