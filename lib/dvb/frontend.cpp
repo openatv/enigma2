@@ -891,7 +891,7 @@ int eDVBFrontend::readFrontendData(int type)
 					case feCable: // we assume a max of 42db here
 						return ret >= 4200 ? 65536 : ret * 65536 / 4200;
 					case feTerrestrial: // we assume a max of 29db here
-						return ret >= 2900 ? 65536 : ret * 65536 / 2400;
+						return ret >= 2900 ? 65536 : ret * 65536 / 2900;
 					case feATSC: // we assume a max of 42db here
 						return ret >= 4200 ? 65536 : ret * 65536 / 4200;
 				}
