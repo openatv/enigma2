@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-24 23:40+0100\n"
+"POT-Creation-Date: 2012-04-11 16:07+0200\n"
 "PO-Revision-Date: 2010-08-20 00:08+0200\n"
 "Last-Translator: Hazem <moustafagamal@hotmail.com>\n"
 "Language-Team: Arabic <moustafagamal@hotmail.com>\n"
@@ -154,44 +154,6 @@ msgstr "التحديثات المتاحه"
 #
 msgid " wireless networks found!"
 msgstr "الشبكات اللاسلكيه التى تم العثور عليها"
-
-#
-msgid "#000000"
-msgstr "#000000"
-
-#
-msgid "#0064c7"
-msgstr "0064c7"
-
-msgid "#25062748"
-msgstr "#25062748"
-
-msgid "#389416"
-msgstr "#389416"
-
-msgid "#80000000"
-msgstr "#80000000"
-
-msgid "#80ffffff"
-msgstr "#80ffffff"
-
-msgid "#bab329"
-msgstr "#bab329"
-
-msgid "#f23d21"
-msgstr "#f23d21"
-
-msgid "#ff0000"
-msgstr ""
-
-msgid "#ffff7f"
-msgstr ""
-
-msgid "#ffffff"
-msgstr "#ffffff"
-
-msgid "#ffffffff"
-msgstr "#ffffffff"
 
 #. TRANSLATORS: short time representation hour:minute
 #, python-format
@@ -695,6 +657,12 @@ msgstr "الكل"
 #
 msgid "All Satellites"
 msgstr "كل الاقمار"
+
+msgid "Allocate"
+msgstr ""
+
+msgid "Allocate unused memory index"
+msgstr ""
 
 msgid "Allow Subtitle equals Audio mask"
 msgstr ""
@@ -1441,11 +1409,23 @@ msgstr "دى فى بى ثنائى الطبقه"
 msgid "DVB subtitle black transparency"
 msgstr ""
 
+msgid "DVB-C"
+msgstr ""
+
+msgid "DVB-C ANNEX C"
+msgstr ""
+
 msgid "DVB-S"
 msgstr "DVB-S"
 
 msgid "DVB-S2"
 msgstr "DVB-S2"
+
+msgid "DVB-T"
+msgstr ""
+
+msgid "DVB-T2"
+msgstr ""
 
 msgid "DVD File Browser"
 msgstr "متصفح ملفات دى فى دى"
@@ -2090,7 +2070,7 @@ msgstr "العوده الى إعدادات المصنع"
 msgid "Failed"
 msgstr "فشل"
 
-msgid "Failed to write /tmp/positionersetup.log:str"
+msgid "Failed to write /tmp/positionersetup.log: "
 msgstr ""
 
 #
@@ -2485,6 +2465,9 @@ msgstr "فولت زائد"
 
 msgid "Index"
 msgstr "فهرس"
+
+msgid "Index allocated:"
+msgstr ""
 
 #
 msgid "Info"
@@ -3194,6 +3177,9 @@ msgstr ""
 msgid ""
 "No fast winding possible yet.. but you can use the number buttons to skip "
 "forward/backward!"
+msgstr ""
+
+msgid "No free index available"
 msgstr ""
 
 msgid "No free tuner!"
@@ -7565,8 +7551,14 @@ msgstr ""
 msgid "tuner is not supported"
 msgstr ""
 
+msgid "unavailable"
+msgstr "غير متاح"
+
 msgid "unconfirmed"
 msgstr "غير مؤكد"
+
+msgid "undefined"
+msgstr ""
 
 msgid "unknown"
 msgstr "غير معروف"
@@ -7656,6 +7648,38 @@ msgstr "تم الانتقال"
 #
 #~ msgid " Results"
 #~ msgstr "النتائج"
+
+#
+#~ msgid "#000000"
+#~ msgstr "#000000"
+
+#
+#~ msgid "#0064c7"
+#~ msgstr "0064c7"
+
+#~ msgid "#25062748"
+#~ msgstr "#25062748"
+
+#~ msgid "#389416"
+#~ msgstr "#389416"
+
+#~ msgid "#80000000"
+#~ msgstr "#80000000"
+
+#~ msgid "#80ffffff"
+#~ msgstr "#80ffffff"
+
+#~ msgid "#bab329"
+#~ msgstr "#bab329"
+
+#~ msgid "#f23d21"
+#~ msgstr "#f23d21"
+
+#~ msgid "#ffffff"
+#~ msgstr "#ffffff"
+
+#~ msgid "#ffffffff"
+#~ msgstr "#ffffffff"
 
 #~ msgid "%i ms"
 #~ msgstr "%i مللى ثانيه"
@@ -9512,9 +9536,6 @@ msgstr "تم الانتقال"
 
 #~ msgid "show all"
 #~ msgstr "إظهر الكل"
-
-#~ msgid "unavailable"
-#~ msgstr "غير متاح"
 
 #~ msgid "use your Dreambox as Web proxy"
 #~ msgstr "أستخدم الدريم بوكس كبروكسى شبكه"
