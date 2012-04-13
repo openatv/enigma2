@@ -725,7 +725,8 @@ int eDVBFrontend::readFrontendData(int type)
 				ret = (int)(snr / 40.5);
 				sat_max = 1618;
 			}
-			else if (!strcmp(m_description, "Nova-T Stick")) // Nova-T - dib0700
+			else if (!strcmp(m_description, "Nova-T Stick") ||
+				!strcmp(m_description, "NovaT 500Stick")) // Nova-T - dib0700
 				if ( snr > 300 )
 					ret = 0; //error condition
 				else
@@ -889,8 +890,8 @@ int eDVBFrontend::readFrontendData(int type)
 						return ret >= sat_max ? 65536 : ret * 65536 / sat_max;
 					case feCable: // we assume a max of 42db here
 						return ret >= 4200 ? 65536 : ret * 65536 / 4200;
-					case feTerrestrial: // we assume a max of 24db here
-						return ret >= 2400 ? 65536 : ret * 65536 / 2400;
+					case feTerrestrial: // we assume a max of 29db here
+						return ret >= 2900 ? 65536 : ret * 65536 / 2900;
 					case feATSC: // we assume a max of 42db here
 						return ret >= 4200 ? 65536 : ret * 65536 / 4200;
 				}
