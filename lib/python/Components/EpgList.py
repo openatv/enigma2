@@ -504,9 +504,12 @@ class EPGList(HTMLComponent, GUIComponent):
 		r2 = self.datetime_rect
 		r3 = self.descr_rect
 		t = localtime(beginTime)
-		if getlocale(2)[0] == 'de_DE':
-			datestring = strftime("%d.%m. ",t)
-		else: 
+		try:
+			if getlocale(2)[0] == 'de_DE':
+				datestring = strftime("%d.%m. ",t)
+			else: 
+				datestring = strftime("%d/%m, ",t)
+		except:
 			datestring = strftime("%d/%m, ",t)
 
 		res = [
