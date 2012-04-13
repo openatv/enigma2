@@ -3734,11 +3734,15 @@ class InfoBarInstantRecord:
 	def TimeDateInputClosed(self, ret):
 		if len(ret) > 1:
 			if ret[0]:
-				print "stopping recording at", strftime("%F %T", localtime(ret[1]))
+# 				print "stopping recording at", strftime("%F %T", localtime(ret[1]))
 				if self.recording[self.selectedEntry].end != ret[1]:
 					self.recording[self.selectedEntry].autoincrease = False
 				self.recording[self.selectedEntry].end = ret[1]
-				self.session.nav.RecordTimer.timeChanged(self.recording[self.selectedEntry])
+		else:
+			if self.recording[self.selectedEntry].end != int(time()):
+				self.recording[self.selectedEntry].autoincrease = False
+			self.recording[self.selectedEntry].end = int(time())
+		self.session.nav.RecordTimer.timeChanged(self.recording[self.selectedEntry])
 
 	def changeDuration(self, entry):
 		if entry is not None and entry >= 0:
@@ -3746,13 +3750,17 @@ class InfoBarInstantRecord:
 			self.session.openWithCallback(self.inputCallback, InputBox, title=_("How many minutes do you want to record?"), text="5", maxSize=False, type=Input.NUMBER)
 
 	def inputCallback(self, value):
+# 		print "stopping recording after", int(value), "minutes."
+		entry = self.recording[self.selectedEntry]
 		if value is not None:
-# 			print "stopping recording after", int(value), "minutes."
-			entry = self.recording[self.selectedEntry]
 			if int(value) != 0:
 				entry.autoincrease = False
 			entry.end = int(time()) + 60 * int(value)
-			self.session.nav.RecordTimer.timeChanged(entry)
+		else:
+			if entry.end != int(time()):
+				entry.autoincrease = False
+			entry.end = int(time())
+		self.session.nav.RecordTimer.timeChanged(entry)
 
 	def instantRecord(self):
 		if not config.timeshift.enabled.value or not self.timeshift_enabled:
