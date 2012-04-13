@@ -14,6 +14,12 @@ def addspace(text):
 	return text
 
 class PliExtraInfo(Poll, Converter, object):
+	@classmethod
+	def enablePliExtraInfo(self, val):
+		self.isEnaled = val
+
+	isEnaled = False
+
 	def __init__(self, type):
 		Converter.__init__(self, type)
 		Poll.__init__(self)
@@ -33,7 +39,7 @@ class PliExtraInfo(Poll, Converter, object):
 			("0x4ae0", "0x4ae1", "Dre",     "D" )
 		)
 		self.ecmdata = GetEcmInfo()
-	
+
 	def getCryptoInfo(self,info):
 		if (info.getInfo(iServiceInformation.sIsCrypted) == 1):
 			data = self.ecmdata.getEcmData()
@@ -46,11 +52,11 @@ class PliExtraInfo(Poll, Converter, object):
 			self.current_caid = "0"
 			self.current_provid = "0"
 			self.current_ecmpid = "0"
-	
+
 	def createCryptoBar(self,info):
 		res = ""
 		available_caids = info.getInfoObject(iServiceInformation.sCAIDs)
-			
+
 		for caid_entry in self.caid_data:
 			if int(self.current_caid, 16) >= int(caid_entry[0], 16) and int(self.current_caid, 16) <= int(caid_entry[1], 16):
 				color="\c0000??00"
@@ -65,10 +71,10 @@ class PliExtraInfo(Poll, Converter, object):
 
 			if res: res += " "
 			res += color + caid_entry[3]
-		
+
 		res += "\c00??????"
 		return res
-	
+
 	def createCryptoSpecial(self,info):
 		caid_name = "FTA"
 		try:
@@ -80,7 +86,7 @@ class PliExtraInfo(Poll, Converter, object):
 		except:
 			pass
 		return ""
-	
+
 	def createResolution(self,info):
 		xres = info.getInfo(iServiceInformation.sVideoWidth)
 		if xres == -1:
@@ -92,19 +98,19 @@ class PliExtraInfo(Poll, Converter, object):
 
 	def createVideoCodec(self,info):
 		return ("MPEG2", "MPEG4", "MPEG1", "MPEG4-II", "VC1", "VC1-SM", "")[info.getInfo(iServiceInformation.sVideoType)]
-		
+
 	def createFrequency(self,fedata):
 		frequency = fedata.get("frequency")
-		if frequency: 
+		if frequency:
 			return str(frequency / 1000)
-		return ""		
-	
+		return ""
+
 	def createSymbolRate(self,fedata):
 		symbolrate = fedata.get("symbol_rate")
 		if symbolrate:
 			return str(symbolrate / 1000)
 		return ""
-			
+
 	def createPolarization(self,fedata):
 		polarization = fedata.get("polarization_abbreviation")
 		if polarization:
@@ -122,7 +128,7 @@ class PliExtraInfo(Poll, Converter, object):
 		if modulation:
 			return modulation
 		return ""
-	
+
 	def createTunerType(self,feraw):
 		tunertype = feraw.get("tuner_type")
 		if tunertype:
@@ -148,6 +154,8 @@ class PliExtraInfo(Poll, Converter, object):
 
 	@cached
 	def getText(self):
+		if PliExtraInfo.isEnaled is False:
+			return ""
 
 		service = self.source.service
 		if service is None:
@@ -202,7 +210,7 @@ class PliExtraInfo(Poll, Converter, object):
 			return self.createOrbPos(feraw)
 
 		if self.type == "TunerType":
-			return self.createTunerType(feraw)	
+			return self.createTunerType(feraw)
 
 		if self.type == "TunerSystem":
 			return self.createTunerSystem(fedata)
@@ -226,6 +234,9 @@ class PliExtraInfo(Poll, Converter, object):
 
 	@cached
 	def getBool(self):
+		if PliExtraInfo.isEnaled is False:
+			return False
+
 		service = self.source.service
 		info = service and service.info()
 

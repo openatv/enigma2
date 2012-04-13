@@ -11,6 +11,7 @@ from Components.Sources.Boolean import Boolean
 from Components.config import config, ConfigBoolean, ConfigClock
 from Components.SystemInfo import SystemInfo
 from Components.UsageConfig import preferredInstantRecordPath, defaultMoviePath
+from Components.Converter.PliExtraInfo import PliExtraInfo
 from EpgSelection import EPGSelection
 from Plugins.Plugin import PluginDescriptor
 
@@ -63,7 +64,7 @@ def setResumePoint(session):
 				if l:
 					l = l[1]
 				else:
-					l = None 
+					l = None
 				resumePointCache[key] = [lru, pos[1], l]
 				if len(resumePointCache) > 50:
 					candidate = key
@@ -191,7 +192,7 @@ class InfoBarShowHide:
 
 		self.onShowHideNotifiers = []
 
-		self.secondInfoBarScreen = "" 
+		self.secondInfoBarScreen = ""
 		if isStandardInfoBar(self):
 			self.secondInfoBarScreen = self.session.instantiateDialog(SecondInfoBar)
 			self.secondInfoBarScreen.hide()
@@ -235,6 +236,7 @@ class InfoBarShowHide:
 	def __onHide(self):
 		self.__state = self.STATE_HIDDEN
 		if self.secondInfoBarScreen:
+			PliExtraInfo.enablePliExtraInfo(False)
 			self.secondInfoBarScreen.hide()
 		for x in self.onShowHideNotifiers:
 			x(False)
@@ -252,8 +254,10 @@ class InfoBarShowHide:
 		if self.__state == self.STATE_HIDDEN:
 			self.show()
 			if self.secondInfoBarScreen:
+				PliExtraInfo.enablePliExtraInfo(False)
 				self.secondInfoBarScreen.hide()
 		elif self.secondInfoBarScreen and config.usage.show_second_infobar.value and not self.secondInfoBarScreen.shown:
+			PliExtraInfo.enablePliExtraInfo(True)
 			self.secondInfoBarScreen.show()
 			self.startHideTimer()
 		else:
@@ -749,7 +753,7 @@ class InfoBarEPG:
 
 	def runPlugin(self, plugin):
 		plugin(session = self.session, servicelist = self.servicelist)
-		
+
 	def EventInfoPluginChosen(self, answer):
 		if answer is not None:
 			answer[1]()
@@ -890,7 +894,7 @@ class InfoBarSeek:
 						-config.seek.selfdefined_46.value, False, config.seek.selfdefined_46.value,
 						-config.seek.selfdefined_79.value, False, config.seek.selfdefined_79.value)[key-1]
 					self.screen.doSeekRelative(time * 90000)
-					return 1					
+					return 1
 				else:
 					return HelpableActionMap.action(self, contexts, action)
 
@@ -1197,7 +1201,7 @@ class InfoBarSeek:
 				time = (len[1] - pos[1])*speedden/(90*speednom)
 				return time
 		return False
-		
+
 	def __evEOF(self):
 		if self.seekstate == self.SEEK_STATE_EOF:
 			return
@@ -1240,7 +1244,7 @@ class InfoBarPVRState:
 	def __playStateChanged(self, state):
 		playstateString = state[3]
 		self.pvrStateDialog["state"].setText(playstateString)
-		
+
 		# if we return into "PLAY" state, ensure that the dialog gets hidden if there will be no infobar displayed
 		if not config.usage.show_infobar_on_skip.value and self.seekstate == self.SEEK_STATE_PLAY and not self.force_show:
 			self.pvrStateDialog.hide()
@@ -1539,7 +1543,7 @@ class InfoBarJobman:
 		from Screens.TaskView import JobView
 		job_manager.in_background = False
 		self.session.openWithCallback(self.JobViewCB, JobView, job)
-	
+
 	def JobViewCB(self, in_background):
 		job_manager.in_background = in_background
 
@@ -1840,7 +1844,7 @@ class InfoBarAudioSelection:
 	def audioSelection(self):
 		from Screens.AudioSelection import AudioSelection
 		self.session.openWithCallback(self.audioSelected, AudioSelection, infobar=self)
-		
+
 	def audioSelected(self, ret=None):
 		print "[infobar::audioSelected]", ret
 
@@ -2152,7 +2156,7 @@ class InfoBarCueSheetSupport:
 			elif cp[1] == self.CUT_TYPE_IN:
 				isin = True
 		return ret
-		
+
 	def jumpPreviousNextMark(self, cmp, start=False):
 		current_pos = self.cueGetCurrentPosition()
 		if current_pos is None:
