@@ -16,9 +16,9 @@ def addspace(text):
 class PliExtraInfo(Poll, Converter, object):
 	@classmethod
 	def enablePliExtraInfo(self, val):
-		self.isEnaled = val
+		self.isEnabled = val
 
-	isEnaled = False
+	isEnabled = False
 
 	def __init__(self, type):
 		Converter.__init__(self, type)
@@ -154,7 +154,7 @@ class PliExtraInfo(Poll, Converter, object):
 
 	@cached
 	def getText(self):
-		if PliExtraInfo.isEnaled is False:
+		if PliExtraInfo.isEnabled is False:
 			return ""
 
 		service = self.source.service
@@ -234,7 +234,7 @@ class PliExtraInfo(Poll, Converter, object):
 
 	@cached
 	def getBool(self):
-		if PliExtraInfo.isEnaled is False:
+		if PliExtraInfo.isEnabled is False:
 			return False
 
 		service = self.source.service
