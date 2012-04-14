@@ -1746,7 +1746,7 @@ class NetworkSABnzbd(Screen):
 			self.updateService()
 
 	def SABnzbdStop(self):
-		if self.my_afp_run == True:
+		if self.my_sabnzbd_run == True:
 			self.Console.ePopen('/etc/init.d/sabnzbd stop')
 			time.sleep(3)
 			self.updateService()
