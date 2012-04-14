@@ -198,7 +198,8 @@ class InfoBarShowHide:
 		self.onLayoutFinish.append(self.__layoutFinished)
 
 	def __layoutFinished(self):
-		self.secondInfoBarScreen.hide()
+		if self.secondInfoBarScreen:
+			self.secondInfoBarScreen.hide()
 
 	def keyHide(self):
 		if self.__state == self.STATE_SHOWN:
