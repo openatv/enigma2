@@ -11,7 +11,6 @@ from Components.Sources.Boolean import Boolean
 from Components.config import config, ConfigBoolean, ConfigClock
 from Components.SystemInfo import SystemInfo
 from Components.UsageConfig import preferredInstantRecordPath, defaultMoviePath
-from Components.Converter.PliExtraInfo import PliExtraInfo
 from EpgSelection import EPGSelection
 from Plugins.Plugin import PluginDescriptor
 
@@ -195,7 +194,11 @@ class InfoBarShowHide:
 		self.secondInfoBarScreen = ""
 		if isStandardInfoBar(self):
 			self.secondInfoBarScreen = self.session.instantiateDialog(SecondInfoBar)
-			self.secondInfoBarScreen.hide()
+			self.secondInfoBarScreen.show()
+		self.onLayoutFinish.append(self.__layoutFinished)
+
+	def __layoutFinished(self):
+		self.secondInfoBarScreen.hide()
 
 	def keyHide(self):
 		if self.__state == self.STATE_SHOWN:
@@ -236,7 +239,6 @@ class InfoBarShowHide:
 	def __onHide(self):
 		self.__state = self.STATE_HIDDEN
 		if self.secondInfoBarScreen:
-			PliExtraInfo.enablePliExtraInfo(False)
 			self.secondInfoBarScreen.hide()
 		for x in self.onShowHideNotifiers:
 			x(False)
@@ -254,10 +256,8 @@ class InfoBarShowHide:
 		if self.__state == self.STATE_HIDDEN:
 			self.show()
 			if self.secondInfoBarScreen:
-				PliExtraInfo.enablePliExtraInfo(False)
 				self.secondInfoBarScreen.hide()
 		elif self.secondInfoBarScreen and config.usage.show_second_infobar.value and not self.secondInfoBarScreen.shown:
-			PliExtraInfo.enablePliExtraInfo(True)
 			self.secondInfoBarScreen.show()
 			self.startHideTimer()
 		else:
