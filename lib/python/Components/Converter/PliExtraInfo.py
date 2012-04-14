@@ -87,7 +87,7 @@ class PliExtraInfo(Poll, Converter, object):
 		if xres == -1:
 			return ""
 		yres = self.info.getInfo(iServiceInformation.sVideoHeight)
-		mode = ("i", "p", "")[self.info.getInfo(iServiceInformation.sProgressive)]
+		mode = ("i", "p", " ")[self.info.getInfo(iServiceInformation.sProgressive)]
 		fps  = str((self.info.getInfo(iServiceInformation.sFrameRate) + 500) / 1000)
 		return str(xres) + "x" + str(yres) + mode + fps
 
@@ -311,16 +311,21 @@ class PliExtraInfo(Poll, Converter, object):
 	boolean = property(getBool)
 
 	def changed(self, what):
+		if what[0] == self.CHANGED_POLL:
+			Converter.changed(self, what)
 		if what[0] == self.CHANGED_SPECIFIC:
-			self.info = self.fedata = None
-			self.service = self.source.service
-			if self.service:
-				self.info = self.service.info()
-				if self.info:
-					self.feinfo = self.service.frontendInfo()
-					if self.feinfo:
-						self.feraw = self.feinfo.getAll(False)
-						if self.feraw:
-							self.fedata = ConvertToHumanReadable(self.feraw)
-		Converter.changed(self, what)
+			if what[1] == iPlayableService.evEnd:
+				self.info = self.fedata = None
+				Converter.changed(self, what)
+			if what[1] in (iPlayableService.evStart, iPlayableService.evUpdatedInfo, iPlayableService.evVideoSizeChanged, iPlayableService.evVideoFramerateChanged, iPlayableService.evVideoProgressiveChanged):	
+				self.service = self.source.service
+				if self.service:
+					self.info = self.service.info()
+					if self.info and what[1] not in (iPlayableService.evVideoSizeChanged, iPlayableService.evVideoFramerateChanged, iPlayableService.evVideoProgressiveChanged):
+						self.feinfo = self.service.frontendInfo()
+						if self.feinfo:
+							self.feraw = self.feinfo.getAll(False)
+							if self.feraw:
+								self.fedata = ConvertToHumanReadable(self.feraw)
+					Converter.changed(self, what)			
 
