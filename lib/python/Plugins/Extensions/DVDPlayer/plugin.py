@@ -1,3 +1,4 @@
+import os
 from os import path as os_path, remove as os_remove, listdir as os_listdir, system
 from enigma import eTimer, iPlayableService, iServiceInformation, eServiceReference, iServiceKeys, getDesktop
 from Screens.Screen import Screen
