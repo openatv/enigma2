@@ -113,7 +113,7 @@ struct eDVBFrontendParametersTerrestrial
 	};
 
 	enum {
-		Modulation_QPSK, Modulation_QAM16, Modulation_QAM64, Modulation_Auto
+		Modulation_QPSK, Modulation_QAM16, Modulation_QAM64, Modulation_Auto, Modulation_QAM256
 	};
 
 	enum {

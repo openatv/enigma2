@@ -444,7 +444,7 @@ void eDVBDB::loadServicelist(const char *file)
 					fec_inner=eDVBFrontendParametersCable::FEC_Auto,
 					system = eDVBFrontendParametersCable::System_DVB_C_ANNEX_A,
 					flags=0;
-				sscanf(line+3, "%d:%d:%d:%d:%d:%d", &frequency, &symbol_rate, &inversion, &modulation, &fec_inner, &flags, &system);
+				sscanf(line+3, "%d:%d:%d:%d:%d:%d:%d", &frequency, &symbol_rate, &inversion, &modulation, &fec_inner, &flags, &system);
 				cab.frequency = frequency;
 				cab.fec_inner = fec_inner;
 				cab.inversion = inversion;
@@ -585,8 +585,8 @@ void eDVBDB::saveServicelist(const char *file)
 		}
 		else if (!ch.m_frontendParameters->getDVBC(cab))
 		{
-			fprintf(f, "\tc %d:%d:%d:%d:%d:%d\n",
-				cab.frequency, cab.symbol_rate, cab.inversion, cab.modulation, cab.fec_inner, flags);
+			fprintf(f, "\tc %d:%d:%d:%d:%d:%d:%d\n",
+				cab.frequency, cab.symbol_rate, cab.inversion, cab.modulation, cab.fec_inner, flags, cab.system);
 		}
 		fprintf(f, "/\n");
 		channels++;
