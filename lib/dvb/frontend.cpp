@@ -1241,6 +1241,7 @@ static void fillDictWithTerrestrialData(ePyObject dict, struct dtv_property *p, 
 			case QPSK: tmp = eDVBFrontendParametersTerrestrial::Modulation_QPSK; break;
 			case QAM_16: tmp = eDVBFrontendParametersTerrestrial::Modulation_QAM16; break;
 			case QAM_64: tmp = eDVBFrontendParametersTerrestrial::Modulation_QAM64; break;
+			case QAM_256: tmp = eDVBFrontendParametersTerrestrial::Modulation_QAM256; break;
 			default:
 			case QAM_AUTO: tmp = eDVBFrontendParametersTerrestrial::Modulation_Auto; break;
 			}
@@ -2158,6 +2159,7 @@ void eDVBFrontend::setFrontend(bool recvEvents)
 			case eDVBFrontendParametersTerrestrial::Modulation_QPSK: p[cmdseq.num].u.data = QPSK; break;
 			case eDVBFrontendParametersTerrestrial::Modulation_QAM16: p[cmdseq.num].u.data = QAM_16; break;
 			case eDVBFrontendParametersTerrestrial::Modulation_QAM64: p[cmdseq.num].u.data = QAM_64; break;
+			case eDVBFrontendParametersTerrestrial::Modulation_QAM256: p[cmdseq.num].u.data = QAM_256; break;
 			default:
 			case eDVBFrontendParametersTerrestrial::Modulation_Auto: p[cmdseq.num].u.data = QAM_AUTO; break;
 			}

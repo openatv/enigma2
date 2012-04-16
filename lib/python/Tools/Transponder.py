@@ -111,7 +111,8 @@ def ConvertToHumanReadable(tp, type = None):
 			eDVBFrontendParametersTerrestrial.Modulation_Auto : _("Auto"),
 			eDVBFrontendParametersTerrestrial.Modulation_QPSK : "QPSK",
 			eDVBFrontendParametersTerrestrial.Modulation_QAM16 : "QAM16",
-			eDVBFrontendParametersTerrestrial.Modulation_QAM64 : "QAM64"}.get(tp.get("constellation"))
+			eDVBFrontendParametersTerrestrial.Modulation_QAM64 : "QAM64",
+			eDVBFrontendParametersTerrestrial.Modulation_QAM256 : "QAM256"}.get(tp.get("constellation"))
 		ret["transmission_mode"] = {
 			eDVBFrontendParametersTerrestrial.TransmissionMode_Auto : _("Auto"),
 			eDVBFrontendParametersTerrestrial.TransmissionMode_2k : "2k",
