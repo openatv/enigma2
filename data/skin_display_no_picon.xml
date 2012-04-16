@@ -28,9 +28,11 @@
 	</screen>
 
 	<screen name="SummaryIconsPanel">
+<!--
 		<widget source="session.OnlineCheckState" render="Pixmap" pixmap="lcd/update.png" position="165,0" size="14,12">
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
+-->
 <!--
 		<widget source="session.CurrentService" render="Pixmap" pixmap="lcd/crypt.png" position="185,0"  size="10,12">
 			<convert type="ServiceInfo">IsCrypted</convert>
@@ -231,9 +233,11 @@
 		<widget source="global.CurrentTime" render="Label" position="0,22" size="120,45" font="FdLcD;46" halign="left" noWrap="1">
 			<convert type="ClockToText">Format:%H:%M</convert>
 		</widget>
+<!--
 		<widget source="session.OnlineCheckState" render="Pixmap" pixmap="lcd/update.png" position="241,0" size="14,12">
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
+-->
 		<widget source="session.RecordState" render="Pixmap" pixmap="lcd/rec.png" position="223,52"  size="32,12">
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
