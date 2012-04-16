@@ -206,11 +206,11 @@ class PluginDownloadBrowser(Screen):
 		if os.path.isfile('/usr/bin/opkg'):
 			self.ipkg = '/usr/bin/opkg'
 			self.ipkg_install = self.ipkg + ' install --force-overwrite'
-			self.ipkg_remove =  self.ipkg + ' remove --autoremove'
+			self.ipkg_remove =  self.ipkg + ' remove --autoremove --force-removal-of-dependent-packages'
 		else:
 			self.ipkg = 'ipkg'
 			self.ipkg_install = 'ipkg install --force-overwrite -force-defaults'
-			self.ipkg_remove =  self.ipkg + ' remove'
+			self.ipkg_remove =  self.ipkg + ' remove --force-removal-of-dependent-packages'
 
 	def createPluginFilter(self):
 		#Create Plugin Filter
