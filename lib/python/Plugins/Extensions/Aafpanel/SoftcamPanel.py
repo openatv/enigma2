@@ -1,4 +1,4 @@
-from Components.config import config, ConfigSubsection, ConfigText
+from Components.config import config, ConfigSubsection, ConfigText, configfile
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 from Components.MenuList import MenuList
 from Components.Label import Label
@@ -528,6 +528,7 @@ class SoftcamPanel(Screen):
 		#// Save Came Name to Settings file
 		config.softcam.actCam.value = cam_name
 		config.softcam.save()
+		configfile.save()
 
 	def Label_restart_Enigma2(self, index):
 		#// Display warning when Enigma2 restarts with Cam
