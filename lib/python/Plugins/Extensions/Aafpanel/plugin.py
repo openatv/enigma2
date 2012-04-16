@@ -17,7 +17,7 @@ from Components.FileList import FileList
 from Components.Label import Label
 from Components.ScrollLabel import ScrollLabel
 from Components.Pixmap import Pixmap
-from Components.config import ConfigSubsection, ConfigInteger, ConfigText, getConfigListEntry, ConfigSelection,  ConfigIP, ConfigYesNo, ConfigSequence, ConfigNumber, NoSave, ConfigEnableDisable
+from Components.config import ConfigSubsection, ConfigInteger, ConfigText, getConfigListEntry, ConfigSelection,  ConfigIP, ConfigYesNo, ConfigSequence, ConfigNumber, NoSave, ConfigEnableDisable, configfile
 from Components.ConfigList import ConfigListScreen
 from Components.Sources.StaticText import StaticText 
 from Components.Sources.Progress import Progress
@@ -107,7 +107,7 @@ def command(comandline, strip=1):
   os.system("rm /tmp/command.txt")
   return comandline
 
-AAF_Panel_Version = 'OpenAAF-Panel V1.0'
+AAF_Panel_Version = 'OpenAAF-Panel V1.1'
 boxversion = command('cat /etc/image-version | grep box_type | cut -d = -f2')
 print "[Aaf-Panel] boxversion: %s"  % (boxversion)
 panel = open("/tmp/aafpanel.ver", "w")
@@ -150,13 +150,13 @@ def Plugins(**kwargs):
 	return [
 
 	#// show Aafpanel in Main Menu
-	PluginDescriptor(name="OpenAAF Panel", description="OpenAAF panel AAF-GUI 10/04/2012", where = PluginDescriptor.WHERE_MENU, fnc = Apanel),
+	PluginDescriptor(name="OpenAAF Panel", description="OpenAAF panel AAF-GUI 16/04/2012", where = PluginDescriptor.WHERE_MENU, fnc = Apanel),
 	#// autostart
 	PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART,PluginDescriptor.WHERE_AUTOSTART],fnc = autostart),
 	#// SwapAutostart
 	PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART,PluginDescriptor.WHERE_AUTOSTART],fnc = SwapAutostart),
 	#// show Aafpanel in EXTENSIONS Menu
-	PluginDescriptor(name="OpenAAF Panel", description="OpenAAAF panel AAF-GUI 31/12/2011", where = PluginDescriptor.WHERE_EXTENSIONSMENU, fnc = main) ]
+	PluginDescriptor(name="OpenAAF Panel", description="OpenAAAF panel AAF-GUI 16/04/2012", where = PluginDescriptor.WHERE_EXTENSIONSMENU, fnc = main) ]
 
 
 
@@ -173,14 +173,6 @@ MENU_SKIN = """<screen position="center,center" size="500,370" title="OpenAAF Pa
 
 CONFIG_SKIN = """<screen position="center,center" size="600,440" title="AAF Config" >
 	<widget name="config" position="10,10" size="580,377" enableWrapAround="1" scrollbarMode="showOnDemand" />
-	<widget name="labelExitsave" position="90,410" size="420,25" halign="center" font="Regular;20" transparent="1" foregroundColor="#f2e000" />
-</screen>"""
-
-CONFIG_SKIN_INFO = """<screen position="center,center" size="600,440" title="AAF Config" >
-	<widget name="config" position="10,10" size="580,300" enableWrapAround="1" scrollbarMode="showOnDemand" />
-	<eLabel backgroundColor="#56C856" position="0,300" size="600,1" zPosition="0" />
-	<widget name="labelInfo" position="10,320" size="600,50" halign="center" font="Regular;20" transparent="1" foregroundColor="white" />
-	<eLabel backgroundColor="#56C856" position="0,380" size="600,1" zPosition="0" />
 	<widget name="labelExitsave" position="90,410" size="420,25" halign="center" font="Regular;20" transparent="1" foregroundColor="#f2e000" />
 </screen>"""
 
@@ -485,18 +477,17 @@ class Aafpanel(Screen, InfoBarPiP):
 		self["Mlist"].moveToIndex(0)
 		self["Mlist"].l.setList(self.tlist)
 
-class KeymapSel(ConfigListScreen,Screen):
+class KeymapSel(ConfigListScreen, Screen):
 	def __init__(self, session):
-		self.service = None
 		Screen.__init__(self, session)
-
-		self.skin = CONFIG_SKIN_INFO
-		self.onShown.append(self.setWindowTitle)
-
-		self["labelExitsave"] = Label(ExitSave)
+		self.session = session
+		self.skinName = "SetupInfo"
+		Screen.setTitle(self, _("Keymap Selection") + "...")
+		self["HelpWindow"] = Pixmap()
+		self["HelpWindow"].hide()
+		self["status"] = StaticText()
 		self["labelInfo"] = Label(_("Copy your keymap to\n/usr/share/enigma2/keymap.usr"))
 
-		
 		usrkey = eEnv.resolve("${datadir}/enigma2/keymap.usr")
 		ntrkey = eEnv.resolve("${datadir}/enigma2/keymap.ntr")
 		self.actkeymap = self.getKeymap(config.usage.keymap.value)
@@ -512,40 +503,77 @@ class KeymapSel(ConfigListScreen,Screen):
 		self.keyshow = ConfigSelection(keySel)
 		self.keyshow.value = self.actkeymap
 
-		self.Clist = []
-		self.Clist.append(getConfigListEntry(_("Use Keymap"), self.keyshow))
-		ConfigListScreen.__init__(self, self.Clist)
+		self.onChangedEntry = [ ]
+		self.list = []
+		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
+		self.createSetup()
 
-		self["actions"] = ActionMap(["OkCancelActions", "DirectionActions", "ColorActions", "SetupActions"],
+		self["actions"] = ActionMap(["SetupActions", 'ColorActions'],
 		{
-			"cancel": self.Exit,
-			"ok": self.ok,
-			"left": self.keyLeft,
-			"right": self.keyRight,
-			"green": self.ok,
-			"red": self.Exit,
+			"ok": self.keySave,
+			"cancel": self.keyCancel,
+			"red": self.keyCancel,
+			"green": self.keySave,
+			"menu": self.keyCancel,
 		}, -2)
 
-	def setWindowTitle(self):
-		self.setTitle(_("Keymap Selection"))
+		self["key_red"] = StaticText(_("Cancel"))
+		self["key_green"] = StaticText(_("OK"))
+		if not self.selectionChanged in self["config"].onSelectionChanged:
+			self["config"].onSelectionChanged.append(self.selectionChanged)
+		self.selectionChanged()
 
-	def Exit(self):
-		self.close()
+	def createSetup(self):
+		self.editListEntry = None
+		self.list = []
+		self.list.append(getConfigListEntry(_("Use Keymap"), self.keyshow))
+		
+		self["config"].list = self.list
+		self["config"].setList(self.list)
+		if config.usage.sort_settings.value:
+			self["config"].list.sort()
 
-	def keyLeft(self):
-		ConfigListScreen.keyLeft(self)
-	
-	def keyRight(self):
-		ConfigListScreen.keyRight(self)
+	def selectionChanged(self):
+		self["status"].setText(self["config"].getCurrent()[0])
 
-	def ok(self):
-		config.usage.keymap.value = eEnv.resolve("${datadir}/enigma2/" + self.keyshow.value)
-		config.save()
+	def changedEntry(self):
+		for x in self.onChangedEntry:
+			x()
+		self.selectionChanged()
+
+	def getCurrentEntry(self):
+		return self["config"].getCurrent()[0]
+
+	def getCurrentValue(self):
+		return str(self["config"].getCurrent()[1].getText())
+
+	def saveAll(self):
+		for x in self["config"].list:
+			x[1].save()
+		configfile.save()
 		if self.actkeymap != self.keyshow.value:
 			self.changedFinished()
+
+	def keySave(self):
+		self.saveAll()
+		self.close()
+
+	def cancelConfirm(self, result):
+		if not result:
+			return
+		for x in self["config"].list:
+			x[1].cancel()
+		self.close()
+
+	def keyCancel(self):
+		if self["config"].isChanged():
+			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"))
 		else:
 			self.close()
-	
+
+	def getKeymap(self, file):
+		return file[file.rfind('/') +1:]
+
 	def changedFinished(self):
 		self.session.openWithCallback(self.ExecuteRestart, MessageBox, _("Keymap changed, you need to restart the GUI") +"\n"+_("Do you want to restart now?"), MessageBox.TYPE_YESNO)
 		self.close()
@@ -555,129 +583,238 @@ class KeymapSel(ConfigListScreen,Screen):
 			quitMainloop(3)
 		else:
 			self.close()
-	def getKeymap(self, file):
-		return file[file.rfind('/') +1:]
 
-class RedPanel(ConfigListScreen,Screen):
+class RedPanel(ConfigListScreen, Screen):
 	def __init__(self, session):
-		self.service = None
 		Screen.__init__(self, session)
+		self.session = session
+		self.skinName = "Setup"
+		Screen.setTitle(self, _("RedPanel") + "...")
+		self["HelpWindow"] = Pixmap()
+		self["HelpWindow"].hide()
+		self["status"] = StaticText()
+		self["labelExitsave"] = Label("[Exit] = " +_("Cancel") +"              [Ok] =" +_("Save"))
 
-		self.skin = CONFIG_SKIN
-		self.onShown.append(self.setWindowTitle)
+		self.onChangedEntry = [ ]
+		self.list = []
+		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
+		self.createSetup()
 
-		self["labelExitsave"] = Label(ExitSave)
-
-		self.Clist = []
-		self.Clist.append(getConfigListEntry(_("Show AAF-Panel Red-key"), config.plugins.aafpanel_redpanel.enabled))
-		self.Clist.append(getConfigListEntry(_("Show Softcam-Panel Red-key long"), config.plugins.aafpanel_redpanel.enabledlong))
-		ConfigListScreen.__init__(self, self.Clist)
-
-		self["actions"] = ActionMap(["OkCancelActions", "DirectionActions", "ColorActions", "SetupActions"],
+		self["actions"] = ActionMap(["SetupActions", 'ColorActions'],
 		{
-			"cancel": self.Exit,
-			"ok": self.ok,
-			"left": self.keyLeft,
-			"right": self.keyRight,
-			"green": self.ok,
-			"red": self.Exit,
+			"ok": self.keySave,
+			"cancel": self.keyCancel,
+			"red": self.keyCancel,
+			"green": self.keySave,
+			"menu": self.keyCancel,
 		}, -2)
 
-	def setWindowTitle(self):
-		self.setTitle(_("RedPanel"))
+		self["key_red"] = StaticText(_("Cancel"))
+		self["key_green"] = StaticText(_("OK"))
+		if not self.selectionChanged in self["config"].onSelectionChanged:
+			self["config"].onSelectionChanged.append(self.selectionChanged)
+		self.selectionChanged()
 
-	def Exit(self):
+	def createSetup(self):
+		self.editListEntry = None
+		self.list = []
+		self.list.append(getConfigListEntry(_("Show AAF-Panel Red-key"), config.plugins.aafpanel_redpanel.enabled))
+		self.list.append(getConfigListEntry(_("Show Softcam-Panel Red-key long"), config.plugins.aafpanel_redpanel.enabledlong))
+		
+		self["config"].list = self.list
+		self["config"].setList(self.list)
+		if config.usage.sort_settings.value:
+			self["config"].list.sort()
+
+	def selectionChanged(self):
+		self["status"].setText(self["config"].getCurrent()[0])
+
+	def changedEntry(self):
+		for x in self.onChangedEntry:
+			x()
+		self.selectionChanged()
+
+	def getCurrentEntry(self):
+		return self["config"].getCurrent()[0]
+
+	def getCurrentValue(self):
+		return str(self["config"].getCurrent()[1].getText())
+
+	def saveAll(self):
+		for x in self["config"].list:
+			x[1].save()
+		configfile.save()
+
+	def keySave(self):
+		self.saveAll()
 		self.close()
 
-	def keyLeft(self):
-		ConfigListScreen.keyLeft(self)
-	
-	def keyRight(self):
-		ConfigListScreen.keyRight(self)
-
-	def ok(self):
-		config.plugins.aafpanel_redpanel.save()
+	def cancelConfirm(self, result):
+		if not result:
+			return
+		for x in self["config"].list:
+			x[1].cancel()
 		self.close()
 
-class YellowPanel(ConfigListScreen,Screen):
+	def keyCancel(self):
+		if self["config"].isChanged():
+			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"))
+		else:
+			self.close()
+
+class YellowPanel(ConfigListScreen, Screen):
 	def __init__(self, session):
-		self.service = None
 		Screen.__init__(self, session)
+		self.session = session
+		self.skinName = "Setup"
+		Screen.setTitle(self, _("Yellow Key Action") + "...")
+		self["HelpWindow"] = Pixmap()
+		self["HelpWindow"].hide()
+		self["status"] = StaticText()
+		self["labelExitsave"] = Label("[Exit] = " +_("Cancel") +"              [Ok] =" +_("Save"))
 
-		self.skin = CONFIG_SKIN
-		self.onShown.append(self.setWindowTitle)
+		self.onChangedEntry = [ ]
+		self.list = []
+		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
+		self.createSetup()
 
-		self["labelExitsave"] = Label(ExitSave)
-
-		self.Clist = []
-		self.Clist.append(getConfigListEntry(_("Yellow Key Action"), config.plugins.aafpanel_yellowkey.list))
-		ConfigListScreen.__init__(self, self.Clist)
-
-		self["actions"] = ActionMap(["OkCancelActions", "DirectionActions", "ColorActions", "SetupActions"],
+		self["actions"] = ActionMap(["SetupActions", 'ColorActions'],
 		{
-			"cancel": self.Exit,
-			"ok": self.ok,
-			"left": self.keyLeft,
-			"right": self.keyRight,
-			"green": self.ok,
-			"red": self.Exit,
+			"ok": self.keySave,
+			"cancel": self.keyCancel,
+			"red": self.keyCancel,
+			"green": self.keySave,
+			"menu": self.keyCancel,
 		}, -2)
 
-	def setWindowTitle(self):
-		self.setTitle(_("Yellow Key Action"))
+		self["key_red"] = StaticText(_("Cancel"))
+		self["key_green"] = StaticText(_("OK"))
+		if not self.selectionChanged in self["config"].onSelectionChanged:
+			self["config"].onSelectionChanged.append(self.selectionChanged)
+		self.selectionChanged()
 
-	def Exit(self):
+	def createSetup(self):
+		self.editListEntry = None
+		self.list = []
+		self.list.append(getConfigListEntry(_("Yellow Key Action"), config.plugins.aafpanel_yellowkey.list))
+		
+		self["config"].list = self.list
+		self["config"].setList(self.list)
+		if config.usage.sort_settings.value:
+			self["config"].list.sort()
+
+	def selectionChanged(self):
+		self["status"].setText(self["config"].getCurrent()[0])
+
+	def changedEntry(self):
+		for x in self.onChangedEntry:
+			x()
+		self.selectionChanged()
+
+	def getCurrentEntry(self):
+		return self["config"].getCurrent()[0]
+
+	def getCurrentValue(self):
+		return str(self["config"].getCurrent()[1].getText())
+
+	def saveAll(self):
+		for x in self["config"].list:
+			x[1].save()
+		configfile.save()
+
+	def keySave(self):
+		self.saveAll()
 		self.close()
 
-	def keyLeft(self):
-		ConfigListScreen.keyLeft(self)
-	def keyRight(self):
-		ConfigListScreen.keyRight(self)
-
-	def ok(self):
-		#// save and exit
-		config.plugins.aafpanel_yellowkey.save()
+	def cancelConfirm(self, result):
+		if not result:
+			return
+		for x in self["config"].list:
+			x[1].cancel()
 		self.close()
 
-class ShowSoftcamPanelExtensions(ConfigListScreen,Screen):
+	def keyCancel(self):
+		if self["config"].isChanged():
+			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"))
+		else:
+			self.close()
+
+class ShowSoftcamPanelExtensions(ConfigListScreen, Screen):
 	def __init__(self, session):
-		self.service = None
 		Screen.__init__(self, session)
+		self.session = session
+		self.skinName = "Setup"
+		Screen.setTitle(self, _("Softcam-Panel Setup") + "...")
+		self["HelpWindow"] = Pixmap()
+		self["HelpWindow"].hide()
+		self["status"] = StaticText()
+		self["labelExitsave"] = Label("[Exit] = " +_("Cancel") +"              [Ok] =" +_("Save"))
 
-		self.skin = CONFIG_SKIN
-		self.onShown.append(self.setWindowTitle)
+		self.onChangedEntry = [ ]
+		self.list = []
+		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
+		self.createSetup()
 
-		self["labelExitsave"] = Label(ExitSave)
-
-		self.Clist = []
-		self.Clist.append(getConfigListEntry(_("Show Softcam-Panel in Extensions Menu"), config.plugins.showaafpanelextensions))
-		ConfigListScreen.__init__(self, self.Clist)
-
-		self["actions"] = ActionMap(["OkCancelActions", "DirectionActions", "ColorActions", "SetupActions"],
+		self["actions"] = ActionMap(["SetupActions", 'ColorActions'],
 		{
-			"cancel": self.Exit,
-			"ok": self.ok,
-			"left": self.keyLeft,
-			"right": self.keyRight,
-			"green": self.ok,
-			"red": self.Exit,
+			"ok": self.keySave,
+			"cancel": self.keyCancel,
+			"red": self.keyCancel,
+			"green": self.keySave,
+			"menu": self.keyCancel,
 		}, -2)
 
-	def setWindowTitle(self):
-		self.setTitle(_("Softcam-Panel Setup"))
+		self["key_red"] = StaticText(_("Cancel"))
+		self["key_green"] = StaticText(_("OK"))
+		if not self.selectionChanged in self["config"].onSelectionChanged:
+			self["config"].onSelectionChanged.append(self.selectionChanged)
+		self.selectionChanged()
 
-	def Exit(self):
+	def createSetup(self):
+		self.editListEntry = None
+		self.list = []
+		self.list.append(getConfigListEntry(_("Show Softcam-Panel in Extensions Menu"), config.plugins.showaafpanelextensions))
+		
+		self["config"].list = self.list
+		self["config"].setList(self.list)
+		if config.usage.sort_settings.value:
+			self["config"].list.sort()
+
+	def selectionChanged(self):
+		self["status"].setText(self["config"].getCurrent()[0])
+
+	def changedEntry(self):
+		for x in self.onChangedEntry:
+			x()
+		self.selectionChanged()
+
+	def getCurrentEntry(self):
+		return self["config"].getCurrent()[0]
+
+	def getCurrentValue(self):
+		return str(self["config"].getCurrent()[1].getText())
+
+	def saveAll(self):
+		for x in self["config"].list:
+			x[1].save()
+		configfile.save()
+
+	def keySave(self):
+		self.saveAll()
 		self.close()
 
-	def keyLeft(self):
-		ConfigListScreen.keyLeft(self)
-	
-	def keyRight(self):
-		ConfigListScreen.keyRight(self)
-
-	def ok(self):
-		config.plugins.showaafpanelextensions.save()
+	def cancelConfirm(self, result):
+		if not result:
+			return
+		for x in self["config"].list:
+			x[1].cancel()
 		self.close()
+
+	def keyCancel(self):
+		if self["config"].isChanged():
+			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"))
+		else:
+			self.close()
 
 class Info(Screen):
 	def __init__(self, session, info):
