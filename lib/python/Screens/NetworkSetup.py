@@ -2092,7 +2092,7 @@ class NetworkOpenvpn(Screen):
 		if self.my_vpn_run == True:
 			self.Console.ePopen('/etc/init.d/openvpn stop')
 			time.sleep(3)
-			self.updatemy_Vpn()
+			self.updateService()
 
 	def activateVpn(self):
 		if fileExists('/etc/rc2.d/S20openvpn'):
@@ -2109,12 +2109,12 @@ class NetworkOpenvpn(Screen):
 		self['labrun'].hide()
 		self['labstop'].hide()
 		self['labactive'].setText(_("Disabled"))
-		self.my_Vpn_active = False
+		self.my_vpn_active = False
 		self.my_vpn_run = False
 		if fileExists('/etc/rc2.d/S20openvpn'):
 			self['labactive'].setText(_("Enabled"))
 			self['labactive'].show()
-			self.my_Vpn_active = True
+			self.my_vpn_active = True
 		if openvpn_process:
 			self.my_vpn_run = True
 		if self.my_vpn_run == True:
