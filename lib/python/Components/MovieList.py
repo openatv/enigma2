@@ -340,7 +340,7 @@ class MovieList(GUIComponent):
 
 		begin_string = ""
 		if begin > 0:
-			begin_string = ', '.join(FuzzyTime(begin, inPast = True))
+			begin_string = ' '.join(FuzzyTime(begin, inPast = True))
 
 		ih = self.itemHeight
 		lenSize = ih * 3 # 25 -> 75
