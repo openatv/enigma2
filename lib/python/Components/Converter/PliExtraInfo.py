@@ -33,8 +33,7 @@ class PliExtraInfo(Poll, Converter, object):
 			("0x4ae0", "0x4ae1", "Dre",     "D" )
 		)
 		self.ecmdata = GetEcmInfo()
-		self.updateFEdata = False
-		self.feraw = self.fedata = None
+		self.feraw = self.fedata = self.updateFEdata = None
 
 	def getCryptoInfo(self,info):
 		if (info.getInfo(iServiceInformation.sIsCrypted) == 1):
@@ -330,9 +329,11 @@ class PliExtraInfo(Poll, Converter, object):
 	boolean = property(getBool)
 
 	def changed(self, what):
-		if what[0] == self.CHANGED_SPECIFIC and what[1] in (iPlayableService.evEnd, iPlayableService.evStart, iPlayableService.evUpdatedInfo):
-			self.updateFEdata = True
-		else:
+		if what[0] == self.CHANGED_SPECIFIC:
+			if what[1] in (iPlayableService.evEnd, iPlayableService.evStart, iPlayableService.evUpdatedInfo):
+				self.updateFEdata = True
+			Converter.changed(self, what)
+		elif what[0] == self.CHANGED_POLL and self.updateFEdata is not None:
 			self.updateFEdata = False
-		Converter.changed(self, what)
+			Converter.changed(self, what)
 
