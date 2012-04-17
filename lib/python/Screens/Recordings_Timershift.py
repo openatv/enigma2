@@ -26,6 +26,8 @@ class RecordingSettings(Screen,ConfigListScreen):
 		self.skinName = "Setup"
 		self.setup_title = _("Recording Settings")
 		Screen.setTitle(self, _(self.setup_title))
+		self["status"] = StaticText()
+		self['footnote'] = Label()
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self["VKeyIcon"] = Boolean(False)
@@ -259,6 +261,8 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 		self.skinName = "Setup"
 		self.setup_title = _("Timshift Settings")
 		Screen.setTitle(self, _(self.setup_title))
+		self["status"] = StaticText()
+		self['footnote'] = Label(_("* = Restart timeshift required"))
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self["VKeyIcon"] = Boolean(False)
@@ -358,7 +362,7 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 			self.list.append(getConfigListEntry(_("Permanent Timeshift Start Delay"), config.timeshift.startdelay))
 			self.list.append(getConfigListEntry(_("Timeshift-Save Action on zap"), config.timeshift.favoriteSaveAction))
 			self.list.append(getConfigListEntry(_("Stop timeshift while recording?"), config.timeshift.stopwhilerecording))
-			self.list.append(getConfigListEntry(_("Show PTS Infobar while timeshifting?"), config.timeshift.showinfobar))
+			self.list.append(getConfigListEntry(_("Use PTS seekbar while timeshifting? *"), config.timeshift.showinfobar))
 		self["config"].setList(self.list)
 
 	def ok(self):
