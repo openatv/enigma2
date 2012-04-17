@@ -58,7 +58,7 @@ class Setup(ConfigListScreen, Screen):
 	ALLOW_SUSPEND = True
 
 	def removeNotifier(self):
-		config.usage.setup_level.notifiers.remove(self.levelChanged)
+		self.onNotifiers.remove(self.levelChanged)
 
 	def levelChanged(self, configElement):
 		list = []
@@ -89,6 +89,7 @@ class Setup(ConfigListScreen, Screen):
 		self.item = None
 		self.setup = setup
 		list = []
+		self.onNotifiers = [ ]
 		ConfigListScreen.__init__(self, list, session = session, on_change = self.changedEntry)
 		self.createSetup()
 
@@ -118,7 +119,7 @@ class Setup(ConfigListScreen, Screen):
 	def createSetup(self):
 		list = []
 		self.refill(list)
- 		self["config"].setList(list)
+		self["config"].setList(list)
 		if config.usage.sort_settings.value:
 			self["config"].list.sort()
 		self.moveToItem(self.item)
@@ -137,7 +138,7 @@ class Setup(ConfigListScreen, Screen):
 		self["config"].setCurrentIndex(newIdx)
 
 	def handleInputHelpers(self):
- 		self["status"].setText(self["config"].getCurrent()[2])
+		self["status"].setText(self["config"].getCurrent()[2])
 		if self["config"].getCurrent() is not None:
 			try:
 				if isinstance(self["config"].getCurrent()[1], ConfigText) or isinstance(self["config"].getCurrent()[1], ConfigPassword):
@@ -209,11 +210,11 @@ class Setup(ConfigListScreen, Screen):
 			if x.tag == 'item':
 				item_level = int(x.get("level", 0))
 
-				if not self.levelChanged in config.usage.setup_level.notifiers:
-					config.usage.setup_level.notifiers.append(self.levelChanged)
+				if not self.onNotifiers:
+					self.onNotifiers.append(self.levelChanged)
 					self.onClose.append(self.removeNotifier)
 
-				if item_level > config.usage.setup_level.index:
+				if item_level > self.onNotifiers.index:
 					continue
 
 				requires = x.get("requires")
