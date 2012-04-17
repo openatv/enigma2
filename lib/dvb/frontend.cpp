@@ -725,8 +725,7 @@ int eDVBFrontend::readFrontendData(int type)
 				ret = (int)(snr / 40.5);
 				sat_max = 1618;
 			}
-			else if (!strcmp(m_description, "Nova-T Stick") ||
-				!strcmp(m_description, "NovaT 500Stick")) // Nova-T - dib0700
+			else if (strstr("Nova-T StickNovaT 500StickDTB03", m_description)) // dib0700
 				if ( snr > 300 )
 					ret = 0; //error condition
 				else
