@@ -925,6 +925,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		if self.list.playInBackground:
 			self.list.playInBackground = None
 			self.session.nav.stopService()
+			return
 		if config.movielist.show_live_tv_in_movielist.value:
 			self.LivePlayTimer.start(100)
 
@@ -1040,6 +1041,10 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			self.callLater(self.abort)
 			return
 		self.saveconfig()
+		from Screens.InfoBar import InfoBar
+		infobar = InfoBar.instance
+		if not infobar.timeshift_enabled:
+			self.session.nav.stopService()
 		self.close(None)
 
 	def saveconfig(self):
