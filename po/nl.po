@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-15 14:45+0100\n"
-"PO-Revision-Date: 2012-04-15 21:25+0100\n"
+"POT-Creation-Date: 2012-04-17 18:22+0100\n"
+"PO-Revision-Date: 2012-04-18 08:11+0100\n"
 "Last-Translator: \n"
 "Language-Team: Andy Blackburn, Rob van der Does\n"
 "Language: Nederlands\n"
@@ -287,6 +287,9 @@ msgstr "* = Herstart EPG noodzakelijk"
 
 msgid "* = Restart Required"
 msgstr "* = Herstart noodzakelijk"
+
+msgid "* = Restart timeshift required"
+msgstr "* = Herstarten timeshift noodzakelijk"
 
 msgid "* Only available if more than one interface is active."
 msgstr "* Alleen beschikbaar indien meer dan één interface actief is."
@@ -5927,9 +5930,6 @@ msgstr "Toon Multi EPG"
 msgid "Show OScam in extensions ?"
 msgstr "Toon OScam in extensie menu ?"
 
-msgid "Show PTS Infobar while timeshifting?"
-msgstr "Toon PTS informatiebalk tijdens timeshiften?"
-
 msgid "Show PVR status in MoviePlayer infobar"
 msgstr "Toon de PVR-status in de informatiebalk (als uw skin dat ondersteunt)."
 
@@ -7368,6 +7368,12 @@ msgstr "Gebruik fan- timer"
 msgid "Use Interface"
 msgstr "Gebruik interface"
 
+msgid "Use PTS seekbar while timeshifting?"
+msgstr "Gebruik PTS seekbar tijdens timeshift?"
+
+msgid "Use PTS seekbar while timeshifting? *"
+msgstr "Gebruik PTS seekbar tijdens timeshift? *"
+
 msgid "Use Power Measurement"
 msgstr "Gebruik stroommeting"
 
@@ -7627,6 +7633,27 @@ msgstr "Spanningsmodus"
 msgid "Volume"
 msgstr "Volume"
 
+msgid "STB_BOX advanced remote control (native)"
+msgstr "STB_BOX geavanceerde AB"
+
+msgid "STB_BOX format data DVD (HDTV compatible)"
+msgstr "STB_BOX format data DVD (HDTV compatible)"
+
+msgid "STB_BOX front panel"
+msgstr "STB_BOX voorpaneel"
+
+msgid "STB_BOX ir keyboard"
+msgstr "STB_BOX IR-toetsenbord"
+
+msgid "STB_BOX ir mouse"
+msgstr "STB_BOX IR-muis"
+
+msgid "STB_BOX remote control (native)"
+msgstr "STB_BOX AB"
+
+msgid "STB_BOX software because updates are available."
+msgstr "STB_BOX software want er zijn updates beschikbaar."
+
 msgid "W"
 msgstr "W"
 
@@ -7851,27 +7878,6 @@ msgstr "Schrijven mislukt!"
 
 msgid "XBox 360 support"
 msgstr "XBox 360 support"
-
-msgid "STB_BOX advanced remote control (native)"
-msgstr "STB_BOX geavanceerde AB"
-
-msgid "STB_BOX format data DVD (HDTV compatible)"
-msgstr "STB_BOX format data DVD (HDTV compatible)"
-
-msgid "STB_BOX front panel"
-msgstr "STB_BOX voorpaneel"
-
-msgid "STB_BOX ir keyboard"
-msgstr "STB_BOX IR-toetsenbord"
-
-msgid "STB_BOX ir mouse"
-msgstr "STB_BOX IR-muis"
-
-msgid "STB_BOX remote control (native)"
-msgstr "STB_BOX AB"
-
-msgid "STB_BOX software because updates are available."
-msgstr "STB_BOX software want er zijn updates beschikbaar."
 
 msgid "YPbPr"
 msgstr "Component"
@@ -9367,3 +9373,6 @@ msgstr "zapte"
 
 #~ msgid "Removing service please wait..."
 #~ msgstr "Bezig de service te verwijderen. Even wachten..."
+
+#~ msgid "Show PTS Infobar while timeshifting?"
+#~ msgstr "Toon PTS informatiebalk tijdens timeshiften?"
