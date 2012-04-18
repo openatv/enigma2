@@ -216,12 +216,12 @@ public:
 	 : m_driver(NULL), m_device(NULL), m_buttondriver(NULL), m_buttondevice(NULL)
 	{
 		struct stat s;
-		if (!stat("/dev/rawir2", &s))
+		if (::access("/dev/rawir2", R_OK) >= 0)
 		{
 			m_driver = new eRCShortDriver("/dev/rawir2");
 			m_device = new eRCDeviceDreambox2(m_driver);
 		}
-		if (!stat("/dev/dbox/fpkeys0", &s))
+		if (::access("/dev/dbox/fpkeys0", R_OK) >= 0)
 		{
 			m_buttondriver = new eRCShortDriver("/dev/dbox/fpkeys0");
 			m_buttondevice = new eRCDeviceDreamboxButton(m_buttondriver);

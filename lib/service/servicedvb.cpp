@@ -531,11 +531,9 @@ RESULT eDVBPVRServiceOfflineOperations::getListOfFilenames(std::list<std::string
 	while(true)
 	{
 		snprintf(buf, 255, "%s.%03d", m_ref.path.c_str(), slice++);
-		struct stat s;
-		if (stat(buf, &s) < 0)
-			break;
+		if (::access(buf, R_OK) < 0) break;
 		res.push_back(buf);
-	}	
+	}
 
 	res.push_back(m_ref.path + ".meta");
 	res.push_back(m_ref.path + ".ap");
@@ -1354,9 +1352,8 @@ RESULT eDVBServicePlay::stop()
 	
 	if (m_is_pvr && m_cuesheet_changed)
 	{
-		struct stat s;
 				/* save cuesheet only when main file is accessible. */
-		if (!::stat(m_reference.path.c_str(), &s))
+		if (::access(m_reference.path.c_str(), R_OK) >= 0)
 			saveCuesheet();
 	}
 	m_nownext_timer->stop();
