@@ -398,8 +398,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 		strncpy(srt_filename,filename,strlen(filename)-3);
 		srt_filename[strlen(filename)-3]='\0';
 		strcat(srt_filename, "srt");
-		struct stat buffer;
-		if (stat(srt_filename, &buffer) == 0)
+		if (::access(srt_filename, R_OK) >= 0)
 		{
 			eDebug("eServiceMP3::subtitle uri: %s", g_filename_to_uri(srt_filename, NULL, NULL));
 			g_object_set (G_OBJECT (m_gst_playbin), "suburi", g_filename_to_uri(srt_filename, NULL, NULL), NULL);
