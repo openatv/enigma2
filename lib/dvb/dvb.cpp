@@ -188,11 +188,9 @@ void eDVBAdapterLinux::scanDevices()
 	int num_demux = 0;
 	while (1)
 	{
-		struct stat s;
 		char filename[128];
 		sprintf(filename, "/dev/dvb/adapter%d/demux%d", m_nr, num_demux);
-		if (stat(filename, &s))
-			break;
+		if (::access(filename, R_OK) < 0) break;
 		ePtr<eDVBDemux> demux;
 
 		demux = new eDVBDemux(m_nr, num_demux);
@@ -248,12 +246,9 @@ RESULT eDVBAdapterLinux::getFrontend(ePtr<eDVBFrontend> &fe, int nr, bool simula
 
 int eDVBAdapterLinux::exist(int nr)
 {
-	struct stat s;
 	char filename[128];
 	sprintf(filename, "/dev/dvb/adapter%d", nr);
-	if (!stat(filename, &s))
-		return 1;
-	return 0;
+	return (::access(filename, X_OK) >= 0) ? 1 : 0;
 }
 
 bool eDVBAdapterLinux::isusb(int nr)
