@@ -639,7 +639,7 @@ class EPGList(HTMLComponent, GUIComponent):
  			font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER,
  			text = "",
 			color = self.foreColor, color_sel = self.foreColor,
-			backcolor = self.backColor, backcolor_sel = self.backColor,
+			backcolor = self.backColor, backcolor_sel = self.backColorSelected,
 			border_width = 1, border_color = self.borderColor))
 
 		# Events for service
