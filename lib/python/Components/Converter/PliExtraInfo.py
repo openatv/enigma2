@@ -97,7 +97,8 @@ class PliExtraInfo(Poll, Converter, object):
 
 	def createTransponderInfo(self,fedata,feraw):
 		return addspace(self.createTunerSystem(fedata)) + addspace(self.createFrequency(fedata)) + addspace(self.createPolarization(fedata))\
-			+ addspace(self.createSymbolRate(fedata)) + addspace(self.createFEC(fedata)) + addspace(self.createModulation(fedata)) + self.createOrbPos(feraw)
+			+ addspace(self.createSymbolRate(fedata)) + addspace(self.createFEC(fedata)) + addspace(self.createModulation(fedata))\
+			+ self.createOrbPos(feraw)
 		
 	def createFrequency(self,fedata):
 		frequency = fedata.get("frequency")
