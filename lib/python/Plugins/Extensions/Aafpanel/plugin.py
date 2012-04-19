@@ -135,14 +135,14 @@ def Apanel(menuid, **kwargs):
 	else:
 		return []
 
-def autostart(reason, **kwargs):
+def camstart(reason, **kwargs):
 	global timerInstance
 	try:
 		open("/proc/stb/video/alpha", "w").write(str(config.osd.alpha.value))
 		if timerInstance is None:
 			timerInstance = CamStart(None)
-		#timerInstance.startTimer()
-		timerInstance.timerEvent()
+		timerInstance.startTimer()
+		#timerInstance.timerEvent()
 	except:
 		pass
 
@@ -152,7 +152,7 @@ def Plugins(**kwargs):
 	#// show Aafpanel in Main Menu
 	PluginDescriptor(name="OpenAAF Panel", description="OpenAAF panel AAF-GUI 16/04/2012", where = PluginDescriptor.WHERE_MENU, fnc = Apanel),
 	#// autostart
-	PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART,PluginDescriptor.WHERE_AUTOSTART],fnc = autostart),
+	PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART,PluginDescriptor.WHERE_AUTOSTART],fnc = camstart),
 	#// SwapAutostart
 	PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART,PluginDescriptor.WHERE_AUTOSTART],fnc = SwapAutostart),
 	#// show Aafpanel in EXTENSIONS Menu
@@ -774,6 +774,9 @@ class ShowSoftcamPanelExtensions(ConfigListScreen, Screen):
 		self.editListEntry = None
 		self.list = []
 		self.list.append(getConfigListEntry(_("Show Softcam-Panel in Extensions Menu"), config.plugins.showaafpanelextensions))
+		self.list.append(getConfigListEntry(_("Start attempts"), config.softcam.restartAttempts))
+		self.list.append(getConfigListEntry(_("Time beteween start attempts (sec.)"), config.softcam.restartTime))
+		self.list.append(getConfigListEntry(_("Stop check when cam is running"), config.softcam.restartRunning))
 		
 		self["config"].list = self.list
 		self["config"].setList(self.list)
