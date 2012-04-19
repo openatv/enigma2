@@ -1116,11 +1116,11 @@ class EPGSelection(Screen, HelpableScreen):
 		self.nextPage()
 
 	def key9(self):
-		cooltime = localtime(self["list"].getTimeBase())
-		hilf = (cooltime[0], cooltime[1], cooltime[2], int(config.epgselction.primetimehour.getValue()), int(config.epgselction.primetimemins.getValue()),0, cooltime[6], cooltime[7], cooltime[8])
-		cooltime = mktime(hilf)
+		basetime = localtime(self["list"].getTimeBase())
+		basetime = (basetime[0], basetime[1], basetime[2], int(config.epgselction.primetimehour.getValue()), int(config.epgselction.primetimemins.getValue()),0, basetime[6], basetime[7], basetime[8])
+		self.ask_time = mktime(basetime)
 		self["list"].resetOffset()
-		self["list"].fillGraphEPG(None, cooltime)
+		self["list"].fillGraphEPG(None, self.ask_time)
 		self.moveTimeLines(True)
 
 	def key0(self):

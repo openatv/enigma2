@@ -345,6 +345,8 @@ class InfoBarShowHide:
 		self.hideTimer.stop()
 		if self.__state == self.STATE_SHOWN:
 			self.hide()
+			if self.pvrStateDialog:
+				self.pvrStateDialog.hide()
 		elif self.__state == self.STATE_HIDDEN and self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
@@ -431,6 +433,8 @@ class InfoBarShowHide:
 					self.secondInfoBarScreen.hide()
 		else:
 			self.hide()
+			if self.pvrStateDialog:
+				self.pvrStateDialog.hide()
 
 	def int2hex(self, int):
 		return "%x" % int
@@ -1983,36 +1987,59 @@ class InfoBarPVRState:
 class InfoBarTimeshiftState(InfoBarPVRState):
 	def __init__(self):
 		InfoBarPVRState.__init__(self, screen=TimeshiftState, force_show = True)
-		self.__hideTimer = eTimer()
-		self.__hideTimer.callback.append(self.__hideTimeshiftState)
+		self.onHide.append(self.__hideTimeshiftState)
 
 	def _mayShow(self):
+		if config.timeshift.enabled.value:
+			self["TimeshiftActivateActions"].setEnabled(True)
+			self["TimeshiftActions"].setEnabled(False)
+		else:
+			self["TimeshiftActivateActions"].setEnabled(False)
+			self["TimeshiftActions"].setEnabled(True)
 		if self.execing and self.timeshift_enabled and self.isSeekable():
-			InfoBarTimeshift.ptsSeekPointerSetCurrentPos(self)
 			if config.timeshift.enabled.value:
+				self["TimeshiftActivateActions"].setEnabled(False)
+				self["TimeshiftActions"].setEnabled(True)
+				self["SeekActions"].setEnabled(True)
+				InfoBarTimeshift.ptsSeekPointerSetCurrentPos(self)
 				self["SeekActions"].setEnabled(False)
 				self["SeekActionsPTS"].setEnabled(True)
-
+				if config.timeshift.showinfobar.value:
+					self["TimeshiftSeekPointerActions"].setEnabled(True)
+			else:
+				self["SeekActions"].setEnabled(True)
 			self.pvrStateDialog.show()
 
-			self.pvrstate_hide_timer = eTimer()
-			self.pvrstate_hide_timer.callback.append(self.pvrStateDialog.hide)
-
-			if self.seekstate == self.SEEK_STATE_PLAY:
-				idx = config.usage.infobar_timeout.index
-				if not idx:
-					idx = 5
-				self.pvrstate_hide_timer.start(idx*1000, True)
-			else:
-				self.pvrstate_hide_timer.stop()
 		elif self.execing and self.timeshift_enabled and not self.isSeekable():
 			if config.timeshift.enabled.value:
+				self["SeekActions"].setEnabled(False)
 				self["SeekActionsPTS"].setEnabled(False)
+				self["TimeshiftSeekPointerActions"].setEnabled(False)
+			else:
+				self["TimeshiftActivateActions"].setEnabled(True)
+				self["SeekActions"].setEnabled(False)
 			self.pvrStateDialog.hide()
 
 	def __hideTimeshiftState(self):
 		if config.timeshift.enabled.value:
+			self["TimeshiftActivateActions"].setEnabled(True)
+			self["TimeshiftActions"].setEnabled(False)
 			self["SeekActionsPTS"].setEnabled(False)
+			self["TimeshiftSeekPointerActions"].setEnabled(False)
+			if self.timeshift_enabled and self.isSeekable():
+				self["TimeshiftActivateActions"].setEnabled(False)
+				self["TimeshiftActions"].setEnabled(True)
+				self["SeekActions"].setEnabled(True)
+			elif self.timeshift_enabled and not self.isSeekable():
+				self["SeekActions"].setEnabled(False)
+		else:
+			self["TimeshiftActivateActions"].setEnabled(False)
+			self["TimeshiftActions"].setEnabled(True)
+			if self.timeshift_enabled and self.isSeekable():
+				self["SeekActions"].setEnabled(True)
+			elif self.timeshift_enabled and not self.isSeekable():
+				self["TimeshiftActivateActions"].setEnabled(True)
+				self["SeekActions"].setEnabled(False)
 		self.pvrStateDialog.hide()
 
 class InfoBarShowMovies:
@@ -2253,17 +2280,20 @@ class InfoBarTimeshift:
 						self.pts_delay_timer.start(1000, True)
 
 	def __seekableStatusChanged(self):
+		self["SeekActionsPTS"].setEnabled(False)
+		self["TimeshiftSeekPointerActions"].setEnabled(False)
 		if config.timeshift.enabled.value:
-			self["TimeshiftSeekPointerActions"].setEnabled(False)
 			self["TimeshiftActivateActions"].setEnabled(True)
+			self["TimeshiftActions"].setEnabled(False)
 			if self.timeshift_enabled and self.isSeekable():
 				self["TimeshiftActivateActions"].setEnabled(False)
-				self["TimeshiftSeekPointerActions"].setEnabled(True)
 				self["TimeshiftActions"].setEnabled(True)
+				self["SeekActions"].setEnabled(True)
+			elif self.timeshift_enabled and not self.isSeekable():
+				self["SeekActions"].setEnabled(False)
 		else:
-			self["TimeshiftActions"].setEnabled(True)
 			self["TimeshiftActivateActions"].setEnabled(False)
-			self["TimeshiftSeekPointerActions"].setEnabled(False)
+			self["TimeshiftActions"].setEnabled(True)
 			if self.timeshift_enabled and self.isSeekable():
 				self["SeekActions"].setEnabled(True)
 			elif self.timeshift_enabled and not self.isSeekable():
@@ -3030,22 +3060,10 @@ class InfoBarTimeshift:
 	def ptsGetSaveTimeshiftStatus(self):
 		return self.save_current_timeshift
 
-	def ptsSeekPointerPlay(self):
-		if self.pts_pvrStateDialog == "Screens.PVRState.PTSTimeshiftState" and self.timeshift_enabled and self.isSeekable():
-			if not self.pvrstate_hide_timer.isActive():
-				if self.seekstate != self.SEEK_STATE_PLAY or self.seekstate == self.SEEK_STATE_PAUSE:
-					self.setSeekState(self.SEEK_STATE_PLAY)
-				else:
-					self.setSeekState(self.SEEK_STATE_PAUSE)
-				self.doShow()
-				return
-		else:
-			return
-
 	def ptsSeekPointerOK(self):
 		if self.pts_pvrStateDialog == "Screens.PVRState.PTSTimeshiftState" and self.timeshift_enabled and self.isSeekable():
-			if not self.pvrstate_hide_timer.isActive():
-				if self.seekstate != self.SEEK_STATE_PLAY:
+			if not self.pvrStateDialog.shown:
+				if self.seekstate != self.SEEK_STATE_PLAY or self.seekstate == self.SEEK_STATE_PAUSE:
 					self.setSeekState(self.SEEK_STATE_PLAY)
 				self.doShow()
 				return
@@ -3099,7 +3117,7 @@ class InfoBarTimeshift:
 
 		isvalidjump = False
 		cur_pos = self.pvrStateDialog["PTSSeekPointer"].position
-		InfoBarTimeshiftState._mayShow(self)
+		self.doShow()
 
 		if direction == "left":
 			minmaxval = self.pts_seekpointer_MinX
