@@ -595,6 +595,9 @@ class ChannelSelectionEPG:
 				if simulTimerList is not None:
 					self.session.openWithCallback(self.finishSanityCorrection, TimerSanityConflict, simulTimerList)
 
+	def finishSanityCorrection(self, answer):
+		self.finishedAdd(answer)
+
 	def showEPGList(self):
 		ref=self.getCurrentSelection()
 		if ref:
