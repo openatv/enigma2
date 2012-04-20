@@ -77,10 +77,7 @@ class ServiceInfo(Screen):
 
 		if serviceref:
 			self.type = TYPE_TRANSPONDER_INFO
-			self["red"] = Label()
-			self["green"] = Label()
-			self["yellow"] = Label()
-			self["blue"] = Label()
+			self.skinName="ServiceInfoSimple"
 			info = eServiceCenter.getInstance().info(serviceref)
 			self.transponder_info = info.getInfoObject(serviceref, iServiceInformation.sTransponderData)
 			# info is a iStaticServiceInformation, not a iServiceInformation
@@ -96,7 +93,6 @@ class ServiceInfo(Screen):
 			if service is not None:
 				self.info = service.info()
 				self.feinfo = service.frontendInfo()
-				print self.info.getInfoObject(iServiceInformation.sCAIDs);
 			else:
 				self.info = None
 				self.feinfo = None
@@ -107,8 +103,6 @@ class ServiceInfo(Screen):
 		self.onShown.append(self.information)
 
 	def information(self):
-		if self.info is None:
-			return
 		if self.type == TYPE_SERVICE_INFO:
 			if self.session.nav.getCurrentlyPlayingServiceReference():
 				name = ServiceReference(self.session.nav.getCurrentlyPlayingServiceReference()).getServiceName()
@@ -122,7 +116,7 @@ class ServiceInfo(Screen):
 			else:
 				aspect = "16:9"
 
-			videocodec =  ("MPEG2", "MPEG4", "MPEG1", "MPEG4-II", "VC1", "VC1-SM", "-" )[self.info and self.info.getInfo(iServiceInformation.sVideoType)]
+			videocodec =  ("MPEG2", "MPEG4", "MPEG1", "MPEG4-II", "VC1", "VC1-SM", "-" )[self.info and self.info.getInfo(iServiceInformation.sVideoType) or -1]
 
 			width = self.info and self.info.getInfo(iServiceInformation.sVideoWidth) or -1
 			height = self.info and self.info.getInfo(iServiceInformation.sVideoHeight) or -1
