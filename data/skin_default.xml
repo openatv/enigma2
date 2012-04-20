@@ -925,7 +925,11 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 	<!-- Scart -->
 	<screen name="Scart" position="fill" backgroundColor="transparent" />
 	<!-- Service info -->
+	<screen name="ServiceInfoSimple" position="center,center" size="560,430" title="Serviceinfo">
+		<widget name="infolist" position="20,45" size="560,380" selectionDisabled="1" />
+	</screen>
 	<screen name="ServiceInfo" position="center,center" size="560,430" title="Serviceinfo">
+		<panel name="ServiceInfoSimple"/>
 		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
@@ -934,8 +938,8 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget name="green" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
 		<widget name="yellow" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
 		<widget name="blue" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
-		<widget name="infolist" position="20,45" size="560,380" selectionDisabled="1" />
 	</screen>
+
 	<!-- Service scan -->
 	<screen name="ServiceScan" position="center,center" size="420,390" title="Service Scan">
 		<widget source="FrontendInfo" render="Pixmap" pixmap="skin_default/icons/scan-s.png" position="5,5" size="64,64" transparent="1" alphatest="on">
