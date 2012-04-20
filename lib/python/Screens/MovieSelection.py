@@ -1527,6 +1527,9 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		current = item[0]
 		info = item[1]
 		cur_path = os.path.realpath(current.getPath())
+		if not os.path.exists(cur_path):
+			# file does not exist.
+			return
 		st = os.stat(cur_path)
 		name = info and info.getName(current) or _("this recording")
 		are_you_sure = ""
