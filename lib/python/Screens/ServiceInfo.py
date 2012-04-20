@@ -96,7 +96,6 @@ class ServiceInfo(Screen):
 			if service is not None:
 				self.info = service.info()
 				self.feinfo = service.frontendInfo()
-				print self.info.getInfoObject(iServiceInformation.sCAIDs);
 			else:
 				self.info = None
 				self.feinfo = None
@@ -107,7 +106,7 @@ class ServiceInfo(Screen):
 		self.onShown.append(self.information)
 
 	def information(self):
-		if self.info is None:
+		if self.type != TYPE_TRANSPONDER_INFO and self.info is None:
 			return
 		if self.type == TYPE_SERVICE_INFO:
 			if self.session.nav.getCurrentlyPlayingServiceReference():
