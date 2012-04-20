@@ -78,10 +78,7 @@ class ServiceInfo(Screen):
 
 		if serviceref:
 			self.type = TYPE_TRANSPONDER_INFO
-			self["red"] = Label()
-			self["green"] = Label()
-			self["yellow"] = Label()
-			self["blue"] = Label()
+			self.skinName="ServiceInfoSimple"
 			info = eServiceCenter.getInstance().info(serviceref)
 			self.transponder_info = info.getInfoObject(serviceref, iServiceInformation.sTransponderData)
 			# info is a iStaticServiceInformation, not a iServiceInformation
