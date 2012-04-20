@@ -386,7 +386,7 @@ class TimerSanityConflict(Screen):
 		self["timer2"] = TimerList(self.list2)
 
 		self["key_red"] = Button("Edit")
-# 		self["key_green"] = Button(" ")
+ 		self["key_green"] = Button(" ")
 		self["key_yellow"] = Button(" ")
 		self["key_blue"] = Button(" ")
 
@@ -413,6 +413,16 @@ class TimerSanityConflict(Screen):
 
 	def editTimer2(self):
 		self.session.openWithCallback(self.finishedEdit, TimerEntry, self["timer2"].getCurrent())
+
+	def toggleNewTimer(self):
+		if self.timer[0].disabled:
+			self.timer[0].disabled = False
+			self.session.nav.RecordTimer.timeChanged(self.timer[0])
+
+		elif not self.timer[0].isRunning():
+			self.timer[0].disabled = True
+			self.session.nav.RecordTimer.timeChanged(self.timer[0])
+		self.finishedEdit((True, self.timer[0]))
 
 	def toggleTimer(self):
 		x = self["list"].getSelectedIndex() + 1 # the first is the new timer so we do +1 here
@@ -454,19 +464,19 @@ class TimerSanityConflict(Screen):
 			del actions[descr]
 
 	def updateState(self):
-# 		if self.timer[0] is not None:
-# 			if self.timer[0].disabled and self.key_green_choice != self.ENABLE:
-# 				self["actions"].actions.update({"green":self.toggleTimer})
-# 				self["key_green"].setText(_("Enable"))
-# 				self.key_green_choice = self.ENABLE
-# 			elif self.timer[0].isRunning() and not self.timer[0].repeated and self.key_green_choice != self.EMPTY:
-# 				self.removeAction("green")
-# 				self["key_green"].setText(" ")
-# 				self.key_green_choice = self.EMPTY
-# 			elif (not self.timer[0].isRunning() or self.timer[0].repeated ) and self.key_green_choice != self.DISABLE:
-# 				self["actions"].actions.update({"green":self.toggleTimer})
-# 				self["key_green"].setText(_("Disable"))
-# 				self.key_green_choice = self.DISABLE
+ 		if self.timer[0] is not None:
+ 			if self.timer[0].disabled and self.key_green_choice != self.ENABLE:
+ 				self["actions"].actions.update({"green":self.toggleTimer})
+ 				self["key_green"].setText(_("Enable"))
+ 				self.key_green_choice = self.ENABLE
+ 			elif self.timer[0].isRunning() and not self.timer[0].repeated and self.key_green_choice != self.EMPTY:
+ 				self.removeAction("green")
+ 				self["key_green"].setText(" ")
+ 				self.key_green_choice = self.EMPTY
+ 			elif (not self.timer[0].isRunning() or self.timer[0].repeated ) and self.key_green_choice != self.DISABLE:
+ 				self["actions"].actions.update({"green":self.toggleNewTimer})
+ 				self["key_green"].setText(_("Disable"))
+ 				self.key_green_choice = self.DISABLE
 
 		if len(self.timer) > 1:
 			x = self["list"].getSelectedIndex() + 1 # the first is the new timer so we do +1 here
