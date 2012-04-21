@@ -87,19 +87,15 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.foreColor = 0xffffff
 		self.foreColorSelected = 0xffffff
 		self.backColor = 0x2D455E
-		self.backColorSelected = 0x0D253E
+		self.backColorSelected = 0xd69600
 		self.foreColorService = 0xffffff
-		self.foreColorServiceSelected = 0xffffff
 		self.backColorService = 0x2D455E
-		self.backColorServiceSelected = 0x0D253E
 		self.foreColorNow = 0xffffff
 		self.foreColorNowSelected = 0xffffff
 		self.backColorNow = 0x00825F
-		self.backColorNowSelected = 0x004f3a
+		self.backColorNowSelected = 0xd69600
 		self.foreColorServiceNow = 0xffffff
 		self.backColorServiceNow = 0x00825F
-		self.foreColorServiceNowSelected = 0xffffff
-		self.backColorServiceNowSelected = 0x004f3a
 
 		self.foreColorRecord = 0xffffff
 		self.backColorRecord = 0xd13333
@@ -154,20 +150,12 @@ class EPGList(HTMLComponent, GUIComponent):
 
 				elif attrib == "ServiceForegroundColor":
 					self.foreColorService = parseColor(value).argb()
-				elif attrib == "ServiceForegroundColorSelected":
-					self.foreColorServiceSelected = parseColor(value).argb()
 				elif attrib == "ServiceForegroundColorNow":
 					self.foreColorServiceNow = parseColor(value).argb()
-				elif attrib == "ServiceForegroundColorNowSelected":
-					self.foreColorServiceNowSelected = parseColor(value).argb()
 				elif attrib == "ServiceBackgroundColor":
 					self.backColorService = parseColor(value).argb()
-				elif attrib == "ServiceBackgroundColorSelected":
-					self.backColorServiceSelected = parseColor(value).argb()
 				elif attrib == "ServiceBackgroundColorNow":
 					self.backColorServiceNow = parseColor(value).argb()
-				elif attrib == "ServiceBackgroundColorNowSelected":
-					self.backColorServiceNowSelected = parseColor(value).argb()
 
 				elif attrib == "EntryForegroundColor":
 					self.foreColor = parseColor(value).argb()
