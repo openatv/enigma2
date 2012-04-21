@@ -491,8 +491,7 @@ class SoftcamPanel(Screen):
 	def Startcam(self):
 		#// Starting the CAM
 		print "count=",count
-		#try
-		if count>0:
+		try:
 			if count > 0:
 				if config.softcam.camstartMode.value == "0":
 					self.Stopcam()
@@ -535,8 +534,8 @@ class SoftcamPanel(Screen):
 
 				self["key_green"].setText(_("Restart"))
 				self.ReadMenu()
-		#except:
-			#pass
+		except:
+			pass
 
 	def Save_Settings(self, cam_name):
 		#// Save Came Name to Settings file
@@ -621,7 +620,6 @@ class SoftcamPanel(Screen):
 		os.chmod(Adir,0755)
 		# Create symbolic link for startup
 		if not os.path.exists("/etc/rc2.d/S20softcam"):
-			print"Create Link"
 			self.container.execute('update-rc.d -f softcam defaults')
 		# Wait a few seconds
 		import time
@@ -629,10 +627,8 @@ class SoftcamPanel(Screen):
 
 		# Start cam
 		if self.isCamrunning(emubin):
-			print"RESTART CAM"
 			self.container.execute('/etc/init.d/softcam restart')
 		else:
-			print"START CAM"
 			self.container.execute('/etc/init.d/softcam start')
 
 class ShowSoftcamPackages(Screen):
