@@ -24,6 +24,11 @@ config.softcam.restartTime = ConfigSelection(
                     ("120", _("120")),
                     ("240", _("240")),
                     ], "10")
+config.softcam.camstartMode =  ConfigSelection(
+                    [
+                    ("0", _("Python Camstarter (default)")),
+                    ("1", _("Init.d")),
+                    ], "0")
 
 def command(comandline, strip=1):
   comandline = comandline + " >/tmp/command.txt"

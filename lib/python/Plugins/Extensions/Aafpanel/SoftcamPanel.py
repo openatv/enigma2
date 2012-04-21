@@ -7,7 +7,7 @@ from Components.ActionMap import ActionMap
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
 from Tools.LoadPixmap import LoadPixmap
-from Tools.Directories import resolveFilename, SCOPE_CURRENT_PLUGIN, SCOPE_CURRENT_SKIN
+from Tools.Directories import resolveFilename, SCOPE_CURRENT_PLUGIN, SCOPE_CURRENT_SKIN, fileExists
 from Screens.MessageBox import MessageBox
 from Screens.Console import Console
 from enigma import *
@@ -131,27 +131,27 @@ class SoftcamPanel(Screen):
 					if line.find("startcam") > -1:
 						line = line.split("=")
 						self.emuStart.append(line[1].strip())
-						print  '[SOFTCAM] startcam: ' + line[1].strip()
+						#print  '[SOFTCAM] startcam: ' + line[1].strip()
 
 					#// stopcam
 					line = line1
 					if line.find("stopcam") > -1:
 						line = line.split("=")
 						self.emuStop.append(line[1].strip())
-						print  '[SOFTCAM] stopcam: ' + line[1].strip()
+						#print  '[SOFTCAM] stopcam: ' + line[1].strip()
 
 					#// Restart GUI
 					line = line1
 					if line.find("restartgui") > -1:
 						self.emuRgui[count] = 1
-						print  '[SOFTCAM] emuname: ' + line[1].strip()
+						#print  '[SOFTCAM] emuname: ' + line[1].strip()
 
 					#// binname
 					line = line1
 					if line.find("binname") > -1:
 						line = line.split("=")
 						self.emuBin.append(line[1].strip())
-						print  '[SOFTCAM] binname: ' + line[1].strip()
+						#print  '[SOFTCAM] binname: ' + line[1].strip()
 					#// startcam
 				em.close()
 				count += 1
@@ -274,7 +274,7 @@ class SoftcamPanel(Screen):
 			self.first = 1
 		except:
 			pass
-
+		
 		#// read ecm.info
 		ecmi = ""
 		if os.path.exists('/tmp/ecm.info') is True:
@@ -449,32 +449,39 @@ class SoftcamPanel(Screen):
 		self.ShowEmuList()
 		global oldcamIndex
 		oldcam = self.emuBin[oldcamIndex]
-		print  '[SOFTCAM] stop cam: ' + oldcam
-		self.container = eConsoleAppContainer()
-		self.container.execute(self.emuStop[oldcamIndex])
-		if os.path.exists('/tmp/ecm.info') is True:
-			os.system("rm /tmp/ecm.info")
-		# check if incubus_watch runs
-		p = command('pidof incubus_watch |wc -w')
-		if not p.isdigit(): p=0
-		if int(p) > 0:
-			# stop incubus_watch
-			print '[SOFTCAM] stop incubus_watch'
-			self.container = eConsoleAppContainer()
-			self.container.execute('killall -9 incubus_watch')
 		import time
-		time.sleep(1) # was 5sec
-		t = 0
-		while t < 5:
-			p = command('pidof %s |wc -w' % oldcam )
+		self.container = eConsoleAppContainer()
+
+		if config.softcam.camstartMode.value == "0" or not fileExists('/etc/init.d/softcam'):
+			print  '[SOFTCAM] Python stop cam: ' + oldcam
+			self.container.execute(self.emuStop[oldcamIndex])
+		
+			# check if incubus_watch runs
+			p = command('pidof incubus_watch |wc -w')
 			if not p.isdigit(): p=0
 			if int(p) > 0:
+				# stop incubus_watch
+				print '[SOFTCAM] stop incubus_watch'
 				self.container = eConsoleAppContainer()
-				self.container.execute('killall -9 ' + oldcam)
-				t += 1
-				time.sleep(1)
-			else:
-				t = 5
+				self.container.execute('killall -9 incubus_watch')
+			time.sleep(1) # was 5sec
+			t = 0
+			while t < 5:
+				p = command('pidof %s |wc -w' % oldcam )
+				if not p.isdigit(): p=0
+				if int(p) > 0:
+					self.container = eConsoleAppContainer()
+					self.container.execute('killall -9 ' + oldcam)
+					t += 1
+					time.sleep(1)
+				else:
+					t = 5
+		else:
+			print  '[SOFTCAM] init.d stop cam: ' + oldcam
+			self.container.execute('/etc/init.d/softcam stop')
+
+		if os.path.exists('/tmp/ecm.info') is True:
+			os.system("rm /tmp/ecm.info")
 		actcam = _("no CAM active")
 		self["actifcam"].setText(actcam)
 		self["key_green"].setText(_("Start"))
@@ -484,45 +491,52 @@ class SoftcamPanel(Screen):
 	def Startcam(self):
 		#// Starting the CAM
 		print "count=",count
-		try:
+		#try
+		if count>0:
 			if count > 0:
-				self.Stopcam()
+				if config.softcam.camstartMode.value == "0":
+					self.Stopcam()
 				global camIndex
 				camIndex = self["Mlist"].getSelectedIndex()
 				print "camindex", camIndex
 				actcam = self.mlist[camIndex]
-				print  '[SOFTCAM ml] start cam: ' + actcam
+				#print  '[SOFTCAM ml] start cam: ' + actcam
 				self["actifcam"].setText(_("active CAM: ") + actcam)
 				emustart = self.emuStart[camIndex][self.emuStart[camIndex].find(self.emuBin[camIndex]):]
 				print emustart
 				self.Save_Settings(actcam)
 				start = self.emuStart[camIndex]
-				import time
-				time.sleep (1) # was 5sec
-				if self.emuRgui[camIndex] == 0:
-					kk = start.find(';')
-					if kk >-1:
-						print "[SOFTCAM] starting two cam's"
-						emu1 = start[0:kk]
-						emu2 = start[kk+1:]
-						print "[SOFTCAM] starting cam 1 " + emu1
-						self.container = eConsoleAppContainer()
-						self.container.execute(emu1)
-						time.sleep (5)
-						print "[SOFTCAM] starting cam 2 " + emu2
-						self.container = eConsoleAppContainer()
-						self.container.execute(emu2)
+				if config.softcam.camstartMode.value == "0":
+					print  '[SOFTCAM] Python start cam: ' + actcam
+					import time
+					time.sleep (1) # was 5sec
+					if self.emuRgui[camIndex] == 0:
+						kk = start.find(';')
+						if kk >-1:
+							print "[SOFTCAM] starting two cam's"
+							emu1 = start[0:kk]
+							emu2 = start[kk+1:]
+							print "[SOFTCAM] starting cam 1 " + emu1
+							self.container = eConsoleAppContainer()
+							self.container.execute(emu1)
+							time.sleep (5)
+							print "[SOFTCAM] starting cam 2 " + emu2
+							self.container = eConsoleAppContainer()
+							self.container.execute(emu2)
+						else:
+							self.container = eConsoleAppContainer()
+							self.container.execute(start)
 					else:
-						self.container = eConsoleAppContainer()
-						self.container.execute(start)
+						self.session.open(MessageBox, "Prepairing " + actcam + " to start\n\n" + "Restarting Enigma2", MessageBox.TYPE_WARNING)
+						TryQuitMainloop(self.session, 2)
 				else:
-					self.session.open(MessageBox, "Prepairing " + actcam + " to start\n\n" + "Restarting Enigma2", MessageBox.TYPE_WARNING)
-					TryQuitMainloop(self.session, 2)
+					print  '[SOFTCAM] init.d start cam: ' + actcam
+					self.createInitdscript("/usr/bin/" + self.emuBin[camIndex], self.emuStart[camIndex], self.emuStop[camIndex])
 
 				self["key_green"].setText(_("Restart"))
 				self.ReadMenu()
-		except:
-			pass
+		#except:
+			#pass
 
 	def Save_Settings(self, cam_name):
 		#// Save Came Name to Settings file
@@ -550,6 +564,76 @@ class SoftcamPanel(Screen):
 					if k[1][:-1] == "y":
 						return True
 						break
+	def isCamrunning(self, cam):
+		p = command('pidof ' + cam + ' |wc -w')
+		if not p.isdigit(): p=0
+		if int(p) > 0:
+			return True
+		else:
+			return False
+
+	def createInitdscript(self, emubin, start, stop):
+		Adir = "/etc/init.d/softcam"
+		softcamfile = []
+		softcamfile.append('#!/bin/sh')
+		softcamfile.append('DAEMON=%s' % emubin)
+		softcamfile.append('STARTCAM="%s"' % start)
+		softcamfile.append('STOPCAM="%s"' % stop)
+		softcamfile.append('DESC="Softcam"')
+		softcamfile.append('')
+		softcamfile.append('test -f $DAEMON || exit 0')
+		softcamfile.append('set -e')
+		softcamfile.append('')
+		softcamfile.append('case "$1" in')
+		softcamfile.append('	start)')
+		softcamfile.append('		echo -n "starting $DESC: $DAEMON... "')
+		softcamfile.append('		$STARTCAM')
+		softcamfile.append('		echo "done."')
+		softcamfile.append('		;;')
+		softcamfile.append('	stop)')
+		softcamfile.append('		echo -n "stopping $DESC: $DAEMON... "')
+		softcamfile.append('		$STOPCAM')
+		softcamfile.append('		echo "done."')
+		softcamfile.append('		;;')
+		softcamfile.append('	restart)')
+		softcamfile.append('		echo "restarting $DESC: $DAEMON... "')
+		softcamfile.append('		$0 stop')
+		softcamfile.append('		echo "wait..."')
+		softcamfile.append('		sleep 5')
+		softcamfile.append('		$0 start')
+		softcamfile.append('		echo "done."')
+		softcamfile.append('		;;')
+		softcamfile.append('	*)')
+		softcamfile.append('		echo "Usage: $0 {start|stop|restart}"')
+		softcamfile.append('		exit 1')
+		softcamfile.append('		;;')
+		softcamfile.append('esac')
+		softcamfile.append('')
+		softcamfile.append('exit 0')
+
+		f = open( Adir, "w" )
+		for x in softcamfile:
+			f.writelines(x + '\n')
+		f.close
+
+		self.container = eConsoleAppContainer()
+		# Set execute rights
+		os.chmod(Adir,0755)
+		# Create symbolic link for startup
+		if not os.path.exists("/etc/rc2.d/S20softcam"):
+			print"Create Link"
+			self.container.execute('update-rc.d -f softcam defaults')
+		# Wait a few seconds
+		import time
+		time.sleep (3) 
+
+		# Start cam
+		if self.isCamrunning(emubin):
+			print"RESTART CAM"
+			self.container.execute('/etc/init.d/softcam restart')
+		else:
+			print"START CAM"
+			self.container.execute('/etc/init.d/softcam start')
 
 class ShowSoftcamPackages(Screen):
 	skin = """
