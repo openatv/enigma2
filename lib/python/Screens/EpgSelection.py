@@ -1108,7 +1108,7 @@ class EPGSelection(Screen, HelpableScreen):
 		basetime = localtime(self["list"].getTimeBase())
 		basetime = (basetime[0], basetime[1], basetime[2], int(config.epgselction.primetimehour.getValue()), int(config.epgselction.primetimemins.getValue()),0, basetime[6], basetime[7], basetime[8])
 		self.ask_time = mktime(basetime)
-		if self.ask_time + 3600 < now():
+		if self.ask_time + 3600 < time():
 			self.ask_time = self.ask_time + 86400
 		self["list"].resetOffset()
 		self["list"].fillGraphEPG(None, self.ask_time)
