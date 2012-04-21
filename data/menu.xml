@@ -122,7 +122,12 @@ self.session.open(HdmiCECSetupScreen)
 					<item level="2" text="MiniDLNA Setup" entryID="netushare_setup"><screen module="NetworkSetup" screen="NetworkMiniDLNA"/></item>
 					<item level="2" text="NFS Setup" entryID="netnfs_setup"><screen module="NetworkSetup" screen="NetworkNfs"/></item>
 					<item level="2" text="OpenVPN Setup" entryID="netvpn_setup"><screen module="NetworkSetup" screen="NetworkOpenvpn"/></item>
-					<item level="2" text="SABnzbd Setup" entryID="netsabnzbd_setup"><screen module="NetworkSetup" screen="NetworkSABnzbd"/></item>
+					<item level="2" text="SABnzbd Setup" entryID="netsabnzbd_setup" requires="SABSetup">
+<code>
+from Plugins.SystemPlugins.SABnzbd.plugin import SABnzbdSetupScreen
+self.session.open(SABnzbdSetupScreen)
+</code>
+					</item>
 					<item level="2" text="Samba Setup" entryID="netsmba_setup"><screen module="NetworkSetup" screen="NetworkSamba"/></item>
 					<item level="2" text="Telnet Setup" entryID="nettelnet_setup"><screen module="NetworkSetup" screen="NetworkTelnet"/></item>
 					<item level="2" text="uShare Setup" entryID="netushare_setup"><screen module="NetworkSetup" screen="NetworkuShare"/></item>
