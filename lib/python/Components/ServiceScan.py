@@ -30,7 +30,10 @@ class ServiceScan:
 				self.network.setText("")
 				self.transponder.setText("")
 			else:
-				self.text.setText(_("scan in progress - %d%% done!") % self.scan.getProgress() + ' ' + _("%d services found!") % (self.foundServices + self.scan.getNumServices()))
+				progress = self.scan.getProgress()
+				if(progress > 99):
+					progress = 99
+				self.text.setText(_("scan in progress - %d%% done!") % progress + ' ' + _("%d services found!") % (self.foundServices + self.scan.getNumServices()))
 				transponder = self.scan.getCurrentTransponder()
 				network = ""
 				tp_text = ""
