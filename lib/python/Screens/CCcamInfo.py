@@ -1681,7 +1681,7 @@ class CCcamInfoConfigSwitcher(Screen):
 				f.close()
 			except:
 				content = _("Could not open the file %s!") % fileName[0]
-			self.session.open(CCcamInfoInfoScreen, content)
+			self.session.open(CCcamInfoInfoScreen, content, _("CCcam Config Switcher"))
 
 #############################################################
 
