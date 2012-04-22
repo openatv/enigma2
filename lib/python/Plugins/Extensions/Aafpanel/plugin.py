@@ -136,13 +136,14 @@ def Apanel(menuid, **kwargs):
 		return []
 
 def camstart(reason, **kwargs):
-	global timerInstance
 	try:
 		open("/proc/stb/video/alpha", "w").write(str(config.osd.alpha.value))
-		if timerInstance is None:
-			timerInstance = CamStart(None)
-		timerInstance.startTimer()
-		#timerInstance.timerEvent()
+		if config.softcam.camstartMode.value == "0":
+			global timerInstance
+			if timerInstance is None:
+				timerInstance = CamStart(None)
+			timerInstance.startTimer()
+			#timerInstance.timerEvent()
 	except:
 		pass
 
@@ -774,9 +775,11 @@ class ShowSoftcamPanelExtensions(ConfigListScreen, Screen):
 		self.editListEntry = None
 		self.list = []
 		self.list.append(getConfigListEntry(_("Show Softcam-Panel in Extensions Menu"), config.plugins.showaafpanelextensions))
-		self.list.append(getConfigListEntry(_("Start attempts"), config.softcam.restartAttempts))
-		self.list.append(getConfigListEntry(_("Time beteween start attempts (sec.)"), config.softcam.restartTime))
-		self.list.append(getConfigListEntry(_("Stop check when cam is running"), config.softcam.restartRunning))
+		self.list.append(getConfigListEntry(_("Start Mode"), config.softcam.camstartMode))
+		if config.softcam.camstartMode.value == "0":
+			self.list.append(getConfigListEntry(_("Start attempts"), config.softcam.restartAttempts))
+			self.list.append(getConfigListEntry(_("Time between start attempts (sec.)"), config.softcam.restartTime))
+			self.list.append(getConfigListEntry(_("Stop check when cam is running"), config.softcam.restartRunning))
 		
 		self["config"].list = self.list
 		self["config"].setList(self.list)
@@ -790,6 +793,7 @@ class ShowSoftcamPanelExtensions(ConfigListScreen, Screen):
 		for x in self.onChangedEntry:
 			x()
 		self.selectionChanged()
+		self.createSetup()
 
 	def getCurrentEntry(self):
 		return self["config"].getCurrent()[0]
@@ -798,6 +802,15 @@ class ShowSoftcamPanelExtensions(ConfigListScreen, Screen):
 		return str(self["config"].getCurrent()[1].getText())
 
 	def saveAll(self):
+		if config.softcam.camstartMode.value == "0":
+			if os.path.exists("/etc/rc2.d/S20softcam"):
+				print"Delete Symbolink link"
+				self.container = eConsoleAppContainer()
+				self.container.execute('update-rc.d -f softcam defaults')
+			if os.path.exists("/etc/init.d/softcam"):
+				print"Delete softcam init script"
+				os.system("rm /etc/init.d/softcam")
+			
 		for x in self["config"].list:
 			x[1].save()
 		configfile.save()

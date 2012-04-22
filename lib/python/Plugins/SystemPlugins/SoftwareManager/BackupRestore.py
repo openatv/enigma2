@@ -1,20 +1,24 @@
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.Console import Console
+from Screens.Standby import TryQuitMainloop
 from Components.ActionMap import ActionMap, NumberActionMap
 from Components.Pixmap import Pixmap
+from Tools.LoadPixmap import LoadPixmap
 from Components.Label import Label
 from Components.Sources.StaticText import StaticText
 from Components.MenuList import MenuList
+from Components.Sources.List import List
+from Components.Button import Button
 from Components.config import getConfigListEntry, configfile, ConfigSelection, ConfigSubsection, ConfigText, ConfigLocations
 from Components.config import config
 from Components.ConfigList import ConfigList,ConfigListScreen
 from Components.FileList import MultiFileSelectList
 from Plugins.Plugin import PluginDescriptor
-from enigma import eTimer, eEnv
+from enigma import eTimer, eEnv, quitMainloop, eConsoleAppContainer
 from Tools.Directories import *
 from os import popen, path, makedirs, listdir, access, stat, rename, remove, W_OK, R_OK
-from time import gmtime, strftime, localtime
+from time import gmtime, strftime, localtime, sleep
 from datetime import date
 
 config.plugins.configurationbackup = ConfigSubsection()
@@ -34,6 +38,13 @@ def getBackupPath():
 def getBackupFilename():
 	return "enigma2settingsbackup.tar.gz"
 
+def SettingsEntry(name, checked):
+	if checked:
+		picture = LoadPixmap(cached = True, path = resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/lock_on.png"));
+	else:
+		picture = LoadPixmap(cached = True, path = resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/lock_off.png"));
+		
+	return (name, picture, checked)
 
 class BackupScreen(Screen, ConfigListScreen):
 	skin = """
@@ -73,6 +84,16 @@ class BackupScreen(Screen, ConfigListScreen):
 			if (path.exists(self.backuppath) == False):
 				makedirs(self.backuppath)
 			self.backupdirs = ' '.join( config.plugins.configurationbackup.backupdirs.value )
+			if not "/tmp/installed-list.txt" in self.backupdirs:
+				self.backupdirs = self.backupdirs + " /tmp/installed-list.txt"
+			if not "/tmp/changed-configfiles.txt" in self.backupdirs:
+				self.backupdirs = self.backupdirs + " /tmp/changed-configfiles.txt"
+			print"self.backupdirs = "
+			print self.backupdirs
+			cmd1 = "ipkg list-installed | grep 'enigma2-plugin-' | sed -r  's/- [0-9][a-z 0-9_.-]*//' > /tmp/installed-list.txt"
+			cmd2 = "ipkg list-changed-conffiles > /tmp/changed-configfiles.txt"
+			cmd3 = "tar -czvf " + self.fullbackupfilename + " " + self.backupdirs
+			cmd = [cmd1, cmd2, cmd3]
 			if path.exists(self.fullbackupfilename):
 				dt = str(date.fromtimestamp(stat(self.fullbackupfilename).st_ctime))
 				self.newfilename = self.backuppath + "/" + dt + '-' + self.backupfile
@@ -80,9 +101,9 @@ class BackupScreen(Screen, ConfigListScreen):
 					remove(self.newfilename)
 				rename(self.fullbackupfilename,self.newfilename)
 			if self.finished_cb:
-				self.session.openWithCallback(self.finished_cb, Console, title = _("Backup is running..."), cmdlist = ["tar -czvf " + self.fullbackupfilename + " " + self.backupdirs],finishedCallback = self.backupFinishedCB,closeOnSuccess = True)
+				self.session.openWithCallback(self.finished_cb, Console, title = _("Backup is running..."), cmdlist = cmd,finishedCallback = self.backupFinishedCB,closeOnSuccess = True)
 			else:
-				self.session.open(Console, title = _("Backup is running..."), cmdlist = ["tar -czvf " + self.fullbackupfilename + " " + self.backupdirs],finishedCallback = self.backupFinishedCB, closeOnSuccess = True)
+				self.session.open(Console, title = _("Backup is running..."), cmdlist = cmd,finishedCallback = self.backupFinishedCB, closeOnSuccess = True)
 		except OSError:
 			if self.finished_cb:
 				self.session.openWithCallback(self.finished_cb, MessageBox, _("Sorry your backup destination is not writeable.\nPlease choose an other one."), MessageBox.TYPE_INFO, timeout = 10 )
@@ -297,7 +318,6 @@ class RestoreScreen(Screen, ConfigListScreen):
 			"back": self.close,
 			"cancel": self.close,
 		}, -1)
-		self.finished_cb = None
 		self.backuppath = getBackupPath()
 		self.backupfile = getBackupFilename()
 		self.fullbackupfilename = self.backuppath + "/" + self.backupfile
@@ -315,21 +335,117 @@ class RestoreScreen(Screen, ConfigListScreen):
 
 	def doRestore(self):
 		if path.exists("/proc/stb/vmpeg/0/dst_width"):
-			restorecmdlist = ["tar -xzvf " + self.fullbackupfilename + " -C /", "echo 0 > /proc/stb/vmpeg/0/dst_height", "echo 0 > /proc/stb/vmpeg/0/dst_left", "echo 0 > /proc/stb/vmpeg/0/dst_top", "echo 0 > /proc/stb/vmpeg/0/dst_width", "killall -9 enigma2"]
+			restorecmdlist = ["tar -xzvf " + self.fullbackupfilename + " -C /", "echo 0 > /proc/stb/vmpeg/0/dst_height", "echo 0 > /proc/stb/vmpeg/0/dst_left", "echo 0 > /proc/stb/vmpeg/0/dst_top", "echo 0 > /proc/stb/vmpeg/0/dst_width"]
 		else:
-			restorecmdlist = ["tar -xzvf " + self.fullbackupfilename + " -C /", "killall -9 enigma2"]
+			restorecmdlist = ["tar -xzvf " + self.fullbackupfilename + " -C /"]
 		print"[SOFTWARE MANAGER] Restore Settings !!!!"
-		if self.finished_cb:
-			self.session.openWithCallback(self.finished_cb, Console, title = _("Restore is running..."), cmdlist = restorecmdlist)
+		self.session.open(Console, title = _("Restore is running..."), cmdlist = restorecmdlist, finishedCallback = self.restoreFinishedCB)
+
+	def restoreFinishedCB(self,retval = None):
+		if path.exists("/tmp/installed-list.txt"):
+			self.session.openWithCallback(self.startInstall, MessageBox, _("Backup plugins found\ndo you want to install now?"))
 		else:
-			self.session.open(Console, title = _("Restore is running..."), cmdlist = restorecmdlist)
+			self.restartGUI()
 
-	def backupFinishedCB(self,retval = None):
-		self.close(True)
+	def startInstall(self, ret = None):
+		if ret:
+			self.session.openWithCallback(self.restartGUI, RestorePlugins)
+		else:
+			print"END INSTALLING PLUGINS"
+			self.restartGUI()
 
-	def backupErrorCB(self,retval = None):
-		self.close(False)
+	def restartGUI(self, ret = None):
+		self.session.open(TryQuitMainloop,retvalue=3)
+		#quitMainloop(3)
 
-	def runAsync(self, finished_cb):
-		self.finished_cb = finished_cb
-		self.doRestore()
+class RestorePlugins(Screen):
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		Screen.setTitle(self, _("Restore Plugins"))
+		self.index = 0
+		self.container = eConsoleAppContainer()
+		self.container.appClosed.append(self.runFinished)
+		self.container.dataAvail.append(self.dataAvail)
+		self.remainingdata = ""
+		self.pluginsInstalled = []
+		self["menu"] = List(list())
+		self["menu"].onSelectionChanged.append(self.selectionChanged)
+		self["key_green"] = Button(_("Install"))
+		self["key_red"] = Button(_("Cancel"))
+		self["key_blue"] = Button("")
+		self["key_yellow"] = Button("")
+				
+		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
+				{
+					"red": self.exit,
+					"green": self.green,
+					"cancel": self.exit,
+					"ok": self.ok
+				}, -2)
+	
+		self.container.execute("ipkg list-installed | grep 'enigma2-plugin-' | sed -r  's/- [0-9][a-z 0-9_.-]*//'")
+		self.selectionChanged()
+		self.onShown.append(self.setWindowTitle)
+
+	def setWindowTitle(self):
+		self.setTitle(_("Restore Plugins"))
+
+	def exit(self):
+		self.close()
+
+	def green(self):
+		pluginlist = []
+		for x in self.list:
+			if x[2]:
+				pluginlist.append('enigma2-plugin-' + x[0].split(" - ")[0])
+		if len(pluginlist) > 0:
+			self.session.open(Console, title = _("Installing plugins..."), cmdlist = ['ipkg install ' + ' '.join(pluginlist)], finishedCallback = self.exit, closeOnSuccess = True)
+
+	def ok(self):
+		index = self["menu"].getIndex()
+		item = self["menu"].getCurrent()[0]
+		state = self["menu"].getCurrent()[2]
+		if state:
+			self.list[index] = SettingsEntry(item , False)
+		else:
+			self.list[index] = SettingsEntry(item, True)
+
+		self["menu"].setList(self.list)
+		self["menu"].setIndex(index)
+
+	def selectionChanged(self):
+		index = self["menu"].getIndex()
+		if index == None:
+			index = 0
+		
+		self.index = index
+
+	def dataAvail(self, str):
+		str = self.remainingdata + str
+		lines = str.split('\n')
+		if len(lines[-1]):
+			self.remainingdata = lines[-1]
+			lines = lines[0:-1]
+		else:
+			self.remainingdata = ""
+		for x in lines:
+			self.pluginsInstalled.append(x)
+
+	def runFinished(self, retval):
+		self.readPluginList()
+
+	def readPluginList(self):
+		self.PluginList = []
+		f = open("/tmp/installed-list.txt", "r")
+		self.PluginList = f.readlines()
+		f.close()
+		self.drawList()
+			
+	def drawList(self):
+		self.list = []
+		for x in self.PluginList:
+			if x[:-1] not in self.pluginsInstalled:
+				self.list.append(SettingsEntry(x[15:-1] , True))
+
+		self["menu"].setList(self.list)
+		self["menu"].setIndex(self.index)
