@@ -14,20 +14,18 @@ from VideoHardware import video_hw
 config.misc.videowizardenabled = ConfigBoolean(default = True)
 
 class VideoSetup(Screen, ConfigListScreen):
-
 	def __init__(self, session, hw):
 		Screen.__init__(self, session)
-		# for the skin: first try VideoSetup, then Setup, this allows individual skinning
+		self.onChangedEntry = [ ]
 		self.skinName = ["Setup" ]
 		self.setup_title = _("A/V Settings")
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self["VKeyIcon"] = Boolean(False)
-		self['footnote'] = Label("")
+		self['footnote'] = Label()
 		self["status"] = StaticText()
 
 		self.hw = hw
-		self.onChangedEntry = [ ]
 
 		# handle hotplug by re-creating setup
 		self.onShow.append(self.startHotplug)
@@ -54,7 +52,7 @@ class VideoSetup(Screen, ConfigListScreen):
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def SelectionChanged(self):
- 		self["status"].setText(self["config"].getCurrent()[2])
+		self["status"].setText(self["config"].getCurrent()[2])
 
 	def layoutFinished(self):
 		self.setTitle(self.setup_title)
@@ -118,8 +116,8 @@ class VideoSetup(Screen, ConfigListScreen):
 				getConfigListEntry(_("General PCM Delay"), config.av.generalPCMdelay, _("This option sets up the general audio delay of Analog sound tracks."))
 			))
 
-		if not isinstance(config.av.scaler_sharpness, ConfigNothing):
-			self.list.append(getConfigListEntry(_("Scaler sharpness"), config.av.scaler_sharpness, _("This option sets up the picture sharpness.")))
+# 		if not isinstance(config.av.scaler_sharpness, ConfigNothing):
+# 			self.list.append(getConfigListEntry(_("Scaler sharpness"), config.av.scaler_sharpness, _("This option sets up the picture sharpness.")))
 
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
