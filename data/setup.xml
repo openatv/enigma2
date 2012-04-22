@@ -19,7 +19,8 @@
 		<item level="2" text="Alternative services tuner priority" summary="Choose the order in which the tuner types will be used (for watching and recording).">config.usage.alternatives_priority</item>
 		<item level="2" text="Preferred tuner" summary="Choose with tuner will be used first. If set to 'auto' the system will give priority to the tuner having the lowest number of channels/satellites.">config.usage.frontend_priority</item>
 		<item level="2" text="Disable background scanning" summary="When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'no' if you're absolutely sure what you're doing.">config.misc.disable_background_scan</item>
-		<item level="1" text="Show background in Radio Mode" summary="Show background when tuned to a radio channel.">config.misc.showradiopic</item>
+		<item level="1" text="Show alternative radio mode" summary="Use the alternative or the conventional radio mode.">config.usage.e1like_radio_mode</item>
+		<item level="1" text="Show background in radio mode" summary="Show background when tuned to a radio channel.">config.misc.showradiopic</item>
 		<item level="2" text="Include ECM in http streams" summary="This allows the ECM data to be included in the stream. This enables a client STB_BOX to decode it.">config.streaming.stream_ecm</item>
 		<item level="2" text="De-scramble http streams" summary="This allows the STB_BOX to decode the stream (if the ECM data is included in the stream and a valid card is available).">config.streaming.descramble</item>
 	</setup>
@@ -28,7 +29,6 @@
 		<item level="0" text="2nd infobar" summary="Set the screen type you get on pressing 'OK' when the info bar shows to 2nd infobar or event info.">config.usage.show_second_infobar</item>
 		<item level="0" text="2nd Infobar timeout" summary="Set the time to hide the second infobar. The bar also disappears on pressing 'OK'.">config.usage.second_infobar_timeout</item>
 		<item level="0" text="Show animation while busy" summary="Show ViX spinning logo when system is busy.">config.usage.show_spinner</item>
-		<item level="1" text="Show alternative radio mode" summary="Use the alternative or the conventional radio mode.">config.usage.e1like_radio_mode</item>
 		<item level="1" text="Show job tasks in extensions" summary="With this option you can hide Job Tasks from the extension screen (short blue button press).">config.usage.jobtaksextensions</item>
 		<item level="1" text="Show positioner movement" summary="Choose whether or not to show an icon when a motorized dish is moving.">config.usage.showdish</item>
 		<item level="0" text="Always show bouquets" summary="With this option set to 'yes' the channel lists will always show you the bouquet screen first. If set to 'no' the current bouquet will be opened.">config.usage.show_bouquetalways</item>
