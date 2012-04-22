@@ -1043,8 +1043,9 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.saveconfig()
 		from Screens.InfoBar import InfoBar
 		infobar = InfoBar.instance
-		if not infobar.timeshift_enabled:
-			self.session.nav.stopService()
+		if self.session.nav.getCurrentlyPlayingServiceReference():
+			if not infobar.timeshift_enabled and not self.session.nav.getCurrentlyPlayingServiceReference().toString().startswith('1:0:0:0:0:0:0:0:0:0:'):
+				self.session.nav.stopService()
 		self.close(None)
 
 	def saveconfig(self):
