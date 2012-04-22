@@ -12,6 +12,8 @@ from Components.SystemInfo import SystemInfo
 from Components.Sources.StaticText import StaticText
 from Components.Pixmap import Pixmap,MultiPixmap
 from Components.UsageConfig import preferredTimerPath
+from Components.Label import Label
+from Components.Sources.Boolean import Boolean
 profile("ChannelSelection.py 1")
 from EpgSelection import EPGSelection
 from enigma import eServiceReference, eEPGCache, eServiceCenter, eRCInput, eTimer, eDVBDB, iPlayableService, iServiceInformation, getPrevAsciiCode, eEnv
@@ -132,8 +134,10 @@ class SettingsMenu(ConfigListScreen, Screen):
 		self.session = session
 		self.skinName = "Setup"
 		Screen.setTitle(self, _("Settings..."))
+		self['footnote'] = Label(_("* = Restart Required"))
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
+		self["VKeyIcon"] = Boolean(False)
 		self["status"] = StaticText()
 
 		self.onChangedEntry = [ ]
@@ -160,6 +164,10 @@ class SettingsMenu(ConfigListScreen, Screen):
 		self.editListEntry = None
 		self.list = []
 		self.list.append(getConfigListEntry(_("Channel list preview"), config.usage.servicelistpreview_mode, _("If set to 'yes' you can preview channels in the channel list. Press 'OK' to preview the selected channel, press a 2nd 'OK' to exit and zap to that channel, pressing 'EXIT' to return to the channel you started at.")))
+		self.list.append(getConfigListEntry(_("Channel list service mode*"), config.usage.servicelist_mode, _("This option allows you to choose from the two channel lists that are available.")))
+		self.list.append(getConfigListEntry(_("Jump first press in channel selection*"), config.usage.show_channel_jump_in_servicelist, _("This option allows you to choose what the first button press jumps to in channel list screen, (so pressing '2' jumps to 'A' or '2' first)")))
+		self.list.append(getConfigListEntry(_("Show event-progress in channel selection"), config.usage.show_event_progress_in_servicelist, _("If set to 'yes' the progress of the current event in the channel list is displayed.")))
+		self.list.append(getConfigListEntry(_("Show channel numbers in channel selection"), config.usage.show_channel_numbers_in_servicelist, _("If set to 'yes' the channel numbers in the channel list will be displayed.")))
 		self.list.append(getConfigListEntry(_("Number of rows"), config.usage.serviceitems_per_page, _("This allows you change the number of rows shown.")))
 		self.list.append(getConfigListEntry(_("Service number font size"), config.usage.servicenum_fontsize, _("This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size")))
 		self.list.append(getConfigListEntry(_("Service name font size"), config.usage.servicename_fontsize, _("This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size")))
