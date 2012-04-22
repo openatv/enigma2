@@ -2,6 +2,9 @@ from Plugins.Plugin import PluginDescriptor
 from Components.ConfigList import ConfigListScreen
 from Components.config import getConfigListEntry, config, ConfigNothing, ConfigSelection
 from Components.ActionMap import ActionMap
+from Components.Label import Label
+from Components.Pixmap import Pixmap
+from Components.Sources.Boolean import Boolean
 from Components.Sources.StaticText import StaticText
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
@@ -9,32 +12,22 @@ import VideoEnhancement
 from os import path as os_path
 
 class VideoEnhancementSetup(Screen, ConfigListScreen):
-
-	skin = """
-		<screen name="VideoEnhancementSetup" position="center,center" size="560,440" title="VideoEnhancementSetup">
-			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
-			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-			<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-			<widget source="key_yellow" render="Label" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-			<widget source="key_blue" render="Label" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
-			<widget name="config" position="5,50" size="550,350" scrollbarMode="showOnDemand" />
-			<ePixmap pixmap="skin_default/div-h.png" position="0,400" zPosition="1" size="560,2" />
-			<widget source="introduction" render="Label" position="5,410" size="550,30" zPosition="10" font="Regular;21" halign="center" valign="center" backgroundColor="#25062748" transparent="1" />
-		</screen>"""
-
 	def __init__(self, session):
 		Screen.__init__(self, session)
-
 		self.session = session
 		self.onChangedEntry = [ ]
-		self.setup_title = "Videoenhancement"
+		self.skinName = ["Setup" ]
+		self.setup_title = _("Video enhancement setup")
+		self["HelpWindow"] = Pixmap()
+		self["HelpWindow"].hide()
+		self["VKeyIcon"] = Boolean(False)
+		self['footnote'] = Label()
+		self["status"] = StaticText()
 
 		self.list = [ ]
 		self.xtdlist = [ ]
 		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
+		self.createSetup()
 
 		self["actions"] = ActionMap(["SetupActions", "ColorActions", "MenuActions"],
 			{
@@ -49,14 +42,15 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 		self["key_green"] = StaticText(_("OK"))
 		self["key_yellow"] = StaticText(_("Last config"))
 		self["key_blue"] = StaticText(_("Default"))
-		self["introduction"] = StaticText()
 
-		self.createSetup()
+		if not self.SelectionChanged in self["config"].onSelectionChanged:
+			self["config"].onSelectionChanged.append(self.SelectionChanged)
 		self.rememberOldSettings()
+		self.changedEntry()
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def layoutFinished(self):
-		self.setTitle(_("Video enhancement setup"))
+		self.setTitle(self.setup_title)
 
 	def rememberOldSettings(self):
 		self.oldContrast = config.pep.contrast.value
@@ -74,10 +68,10 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 		self.oldBlue_boost = config.pep.blue_boost.value
 		self.oldDynamic_contrast = config.pep.dynamic_contrast.value
 
-	def addToConfigList(self, description, configEntry, add_to_xtdlist=False):
+	def addToConfigList(self, description, configEntry, hinttext, add_to_xtdlist=False):
 		if isinstance(configEntry, ConfigNothing):
 			return None
-		entry = getConfigListEntry(description, configEntry)
+		entry = getConfigListEntry(description, configEntry, hinttext)
 		self.list.append(entry);
 		if add_to_xtdlist:
 			self.xtdlist.append(entry)
@@ -86,32 +80,29 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 	def createSetup(self):
 		self.list = []
 		self.xtdlist = []
-		addToConfigList = self.addToConfigList
-		self.contrastEntry = addToConfigList(_("Contrast"), config.pep.contrast)
-		self.saturationEntry = addToConfigList(_("Saturation"), config.pep.saturation)
-		self.hueEntry = addToConfigList(_("Hue"), config.pep.hue)
-		self.brightnessEntry = addToConfigList(_("Brightness"), config.pep.brightness)
-		self.scaler_sharpnessEntry = addToConfigList(_("Scaler sharpness"), config.av.scaler_sharpness)
-		self.splitEntry = addToConfigList(_("Split preview mode"), config.pep.split, True)
 		add_to_xtdlist = self.splitEntry is not None
-		self.sharpnessEntry = addToConfigList(_("Sharpness"), config.pep.sharpness, add_to_xtdlist)
-		self.auto_fleshEntry = addToConfigList(_("Auto flesh"), config.pep.auto_flesh, add_to_xtdlist)
-		self.green_boostEntry = addToConfigList(_("Green boost"), config.pep.green_boost, add_to_xtdlist)
-		self.blue_boostEntry = addToConfigList(_("Blue boost"), config.pep.blue_boost, add_to_xtdlist)
-		self.dynamic_contrastEntry = addToConfigList(_("Dynamic contrast"), config.pep.dynamic_contrast, add_to_xtdlist)
-		self.block_noise_reductionEntry = addToConfigList(_("Block noise reduction"), config.pep.block_noise_reduction, add_to_xtdlist)
-		self.mosquito_noise_reductionEntry = addToConfigList(_("Mosquito noise reduction"), config.pep.mosquito_noise_reduction, add_to_xtdlist)
-		self.digital_contour_removalEntry = addToConfigList(_("Digital contour removal"), config.pep.digital_contour_removal, add_to_xtdlist)
-
+		addToConfigList = self.addToConfigList
+		self.splitEntry = addToConfigList(_("Split preview mode"), config.pep.split, _("This option allows you to view the old and new settings side by side."), True)
+		self.auto_fleshEntry = addToConfigList(_("Auto flesh"), config.pep.auto_flesh, _("This option sets the picture flesh tones."), add_to_xtdlist)
+		self.block_noise_reductionEntry = addToConfigList(_("Block noise reduction"), config.pep.block_noise_reduction, _("This option allows to reduce the block-noise in the picture. Obviously this is at the cost of the picture's sharpness."), add_to_xtdlist)
+		self.brightnessEntry = addToConfigList(_("Brightness"), config.pep.brightness, _("This option sets the picture brightness."))
+		self.blue_boostEntry = addToConfigList(_("Boost blue"), config.pep.blue_boost, _("This option allows you to boost the blue tones in the picture."), add_to_xtdlist)
+		self.green_boostEntry = addToConfigList(_("Boost green"), config.pep.green_boost, _("This option allows you to boost the green tones in the picture."), add_to_xtdlist)
+		self.contrastEntry = addToConfigList(_("Contrast"), config.pep.contrast, _("This option sets  the picture contrast."))
+		self.digital_contour_removalEntry = addToConfigList(_("Digital contour removal"), config.pep.digital_contour_removal, _("This option sets the surpression of false digital contours, that are the result of a limited number of discrete values."), add_to_xtdlist)
+		self.dynamic_contrastEntry = addToConfigList(_("Dynamic contrast"), config.pep.dynamic_contrast, _("This option allows to set the level of dynamic contrast of the picture."), add_to_xtdlist)
+		self.hueEntry = addToConfigList(_("Hue"), config.pep.hue, _("This option sets the picture hue."))
+		self.mosquito_noise_reductionEntry = addToConfigList(_("Mosquito noise reduction"), config.pep.mosquito_noise_reduction, _("This option set the level of surpression of musquito noise (Musquito Noise is random aliasing as a reslut of strong compression). Obviously this goes at the cost of picture details."), add_to_xtdlist)
+		self.scaler_sharpnessEntry = addToConfigList(_("Scaler sharpness"), config.av.scaler_sharpness, _("This option sets the scaler sharpness, used when scretching picture from 4:3 to 16:9."))
+		self.sharpnessEntry = addToConfigList(_("Sharpness"), config.pep.sharpness, _("This option sets up the picture sharpness, used when the picture is being upscaled."), add_to_xtdlist)
+		self.saturationEntry = addToConfigList(_("Saturation"), config.pep.saturation, _("This option sets the picture saturation."))
 		self["config"].list = self.list
-		self["config"].l.setSeperation(300)
 		self["config"].l.setList(self.list)
-		if not self.selectionChanged in self["config"].onSelectionChanged:
-			self["config"].onSelectionChanged.append(self.selectionChanged)
-		self.selectionChanged()
+		if config.usage.sort_settings.value:
+			self["config"].list.sort()
 
-	def selectionChanged(self):
-		self["introduction"].setText(_("Current value: ") + self.getCurrentValue())
+	def SelectionChanged(self):
+		self["status"].setText(self["config"].getCurrent()[2])
 
 	def PreviewClosed(self):
 		self["config"].invalidate(self["config"].getCurrent())
@@ -254,7 +245,6 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 	def changedEntry(self):
 		for x in self.onChangedEntry:
 			x()
-		self.selectionChanged()
 
 	def getCurrentEntry(self):
 		return self["config"].getCurrent()[0]
