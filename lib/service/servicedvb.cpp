@@ -3035,7 +3035,7 @@ RESULT eDVBServicePlay::disableSubtitles(eWidget *parent)
 		m_subtitle_pages.clear();
 	}
 	if (m_dvb_service)
-		m_dvb_service->setCacheEntry(eDVBService::cSUBTITLE, 0);
+		m_dvb_service->setCacheEntry(eDVBService::cSUBTITLE, -1);
 	return 0;
 }
 
