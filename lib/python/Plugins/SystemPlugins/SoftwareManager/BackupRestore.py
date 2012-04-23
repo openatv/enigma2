@@ -88,9 +88,8 @@ class BackupScreen(Screen, ConfigListScreen):
 				self.backupdirs = self.backupdirs + " /tmp/installed-list.txt"
 			if not "/tmp/changed-configfiles.txt" in self.backupdirs:
 				self.backupdirs = self.backupdirs + " /tmp/changed-configfiles.txt"
-			print"self.backupdirs = "
-			print self.backupdirs
-			cmd1 = "ipkg list-installed | grep 'enigma2-plugin-' | sed -r  's/- [0-9][a-z 0-9_.-]*//' > /tmp/installed-list.txt"
+
+			cmd1 = "ipkg list-installed | grep 'enigma2-plugin-' > /tmp/installed-list.txt"
 			cmd2 = "ipkg list-changed-conffiles > /tmp/changed-configfiles.txt"
 			cmd3 = "tar -czvf " + self.fullbackupfilename + " " + self.backupdirs
 			cmd = [cmd1, cmd2, cmd3]
@@ -339,6 +338,7 @@ class RestoreScreen(Screen, ConfigListScreen):
 		else:
 			restorecmdlist = ["tar -xzvf " + self.fullbackupfilename + " -C /"]
 		print"[SOFTWARE MANAGER] Restore Settings !!!!"
+
 		self.session.open(Console, title = _("Restore is running..."), cmdlist = restorecmdlist, finishedCallback = self.restoreFinishedCB)
 
 	def restoreFinishedCB(self,retval = None):
@@ -351,12 +351,13 @@ class RestoreScreen(Screen, ConfigListScreen):
 		if ret:
 			self.session.openWithCallback(self.restartGUI, RestorePlugins)
 		else:
-			print"END INSTALLING PLUGINS"
 			self.restartGUI()
 
 	def restartGUI(self, ret = None):
 		self.session.open(TryQuitMainloop,retvalue=3)
-		#quitMainloop(3)
+
+	def runAsync(self, finished_cb):
+		self.doRestore()
 
 class RestorePlugins(Screen):
 	def __init__(self, session):
@@ -372,8 +373,8 @@ class RestorePlugins(Screen):
 		self["menu"].onSelectionChanged.append(self.selectionChanged)
 		self["key_green"] = Button(_("Install"))
 		self["key_red"] = Button(_("Cancel"))
-		self["key_blue"] = Button("")
-		self["key_yellow"] = Button("")
+		#self["key_blue"] = Button("")
+		#self["key_yellow"] = Button("")
 				
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
 				{
@@ -383,7 +384,7 @@ class RestorePlugins(Screen):
 					"ok": self.ok
 				}, -2)
 	
-		self.container.execute("ipkg list-installed | grep 'enigma2-plugin-' | sed -r  's/- [0-9][a-z 0-9_.-]*//'")
+		self.container.execute("ipkg list-installed | grep 'enigma2-plugin-'")
 		self.selectionChanged()
 		self.onShown.append(self.setWindowTitle)
 
@@ -397,7 +398,7 @@ class RestorePlugins(Screen):
 		pluginlist = []
 		for x in self.list:
 			if x[2]:
-				pluginlist.append('enigma2-plugin-' + x[0].split(" - ")[0])
+				pluginlist.append('enigma2-plugin-' + x[0])
 		if len(pluginlist) > 0:
 			self.session.open(Console, title = _("Installing plugins..."), cmdlist = ['ipkg install ' + ' '.join(pluginlist)], finishedCallback = self.exit, closeOnSuccess = True)
 
@@ -429,7 +430,7 @@ class RestorePlugins(Screen):
 		else:
 			self.remainingdata = ""
 		for x in lines:
-			self.pluginsInstalled.append(x)
+			self.pluginsInstalled.append(x[:x.find(' - ')])
 
 	def runFinished(self, retval):
 		self.readPluginList()
@@ -437,15 +438,22 @@ class RestorePlugins(Screen):
 	def readPluginList(self):
 		self.PluginList = []
 		f = open("/tmp/installed-list.txt", "r")
-		self.PluginList = f.readlines()
+		lines = f.readlines()
+		for x in lines:
+			self.PluginList.append(x[:x.find(' - ')])
 		f.close()
 		self.drawList()
 			
 	def drawList(self):
 		self.list = []
 		for x in self.PluginList:
-			if x[:-1] not in self.pluginsInstalled:
-				self.list.append(SettingsEntry(x[15:-1] , True))
+			if x not in self.pluginsInstalled:
+				self.list.append(SettingsEntry(x[15:] , True))
 
 		self["menu"].setList(self.list)
 		self["menu"].setIndex(self.index)
+		if len(self.list) == 0:
+			self.session.openWithCallback(self.exitNoPlugin, MessageBox, _("All Plugins are already installed"),MessageBox.TYPE_INFO, timeout = 10)
+
+	def exitNoPlugin(self, ret):
+		self.close()
