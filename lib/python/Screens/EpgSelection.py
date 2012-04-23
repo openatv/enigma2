@@ -1484,7 +1484,7 @@ class RecordSetup(TimerEntry):
 
 	def keyGo(self, result = None):
 		if self.timer.justplay:
-			self.timer.begin += ((config.recording.margin_before.value * 60) + 1)
+			self.timer.begin += (config.recording.margin_before.value * 60)
 			self.timer.end = self.timer.begin
 		self.timer.resetRepeated()
 		self.saveTimer()
