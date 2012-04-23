@@ -17,7 +17,7 @@ from Components.FileList import MultiFileSelectList
 from Plugins.Plugin import PluginDescriptor
 from enigma import eTimer, eEnv, quitMainloop, eConsoleAppContainer
 from Tools.Directories import *
-from os import popen, path, makedirs, listdir, access, stat, rename, remove, W_OK, R_OK
+from os import system, popen, path, makedirs, listdir, access, stat, rename, remove, W_OK, R_OK
 from time import gmtime, strftime, localtime, sleep
 from datetime import date
 
@@ -354,7 +354,7 @@ class RestoreScreen(Screen, ConfigListScreen):
 			self.restartGUI()
 
 	def restartGUI(self, ret = None):
-		self.session.open(TryQuitMainloop,retvalue=3)
+		system('killall -9 enigma2')
 
 	def runAsync(self, finished_cb):
 		self.doRestore()
