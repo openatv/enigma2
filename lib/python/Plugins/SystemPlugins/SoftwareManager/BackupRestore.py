@@ -400,7 +400,7 @@ class RestorePlugins(Screen):
 			if x[2]:
 				pluginlist.append('enigma2-plugin-' + x[0])
 		if len(pluginlist) > 0:
-			self.session.open(Console, title = _("Installing plugins..."), cmdlist = ['ipkg install ' + ' '.join(pluginlist)], finishedCallback = self.exit, closeOnSuccess = True)
+			self.session.open(Console, title = _("Installing plugins..."), cmdlist = ['ipkg --force-overwrite install ' + ' '.join(pluginlist)], finishedCallback = self.exit, closeOnSuccess = True)
 
 	def ok(self):
 		index = self["menu"].getIndex()
