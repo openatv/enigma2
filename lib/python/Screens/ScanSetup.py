@@ -47,7 +47,6 @@ def getInitialTransponderList(tlist, pos):
 			parm.modulation = x[6]
 			parm.rolloff = x[8]
 			parm.pilot = x[9]
-			parm.system = x[10]
 			tlist.append(parm)
 
 def getInitialCableTransponderList(tlist, nim):

@@ -54,38 +54,48 @@ class ServiceScan:
 						else:
 							network = ("%s %d.%d %s") % (sat_name, orb_pos / 10, orb_pos % 10, h)
 						tp_text = ("%s %s %d%c / %d / %s") %( { tp.System_DVB_S : "DVB-S",
-							tp.System_DVB_S2 : "DVB-S2" }.get(tp.system, tp.System_DVB_S),
+							tp.System_DVB_S2 : "DVB-S2" }.get(tp.system, ""),
 							{ tp.Modulation_Auto : "Auto", tp.Modulation_QPSK : "QPSK",
-								tp.Modulation_8PSK : "8PSK", tp.Modulation_QAM16 : "QAM16" }.get(tp.modulation, tp.Modulation_QPSK),
+								tp.Modulation_8PSK : "8PSK", tp.Modulation_QAM16 : "QAM16" }.get(tp.modulation, ""),
 							tp.frequency/1000,
 							{ tp.Polarisation_Horizontal : 'H', tp.Polarisation_Vertical : 'V', tp.Polarisation_CircularLeft : 'L',
-								tp.Polarisation_CircularRight : 'R' }.get(tp.polarisation, tp.Polarisation_Horizontal),
+								tp.Polarisation_CircularRight : 'R' }.get(tp.polarisation, ' '),
 							tp.symbol_rate/1000,
 							{ tp.FEC_Auto : "AUTO", tp.FEC_1_2 : "1/2", tp.FEC_2_3 : "2/3",
 								tp.FEC_3_4 : "3/4", tp.FEC_5_6 : "5/6", tp.FEC_7_8 : "7/8",
 								tp.FEC_8_9 : "8/9", tp.FEC_3_5 : "3/5", tp.FEC_4_5 : "4/5",
-								tp.FEC_9_10 : "9/10", tp.FEC_None : "NONE" }.get(tp.fec, tp.FEC_Auto))
+								tp.FEC_9_10 : "9/10", tp.FEC_None : "NONE" }.get(tp.fec, ""))
 					elif tp_type == iDVBFrontend.feCable:
 						network = _("Cable")
 						tp = transponder.getDVBC()
 						tp_text = ("DVB-C %s %d / %d / %s") %( { tp.Modulation_Auto : "AUTO",
 							tp.Modulation_QAM16 : "QAM16", tp.Modulation_QAM32 : "QAM32",
 							tp.Modulation_QAM64 : "QAM64", tp.Modulation_QAM128 : "QAM128",
-							tp.Modulation_QAM256 : "QAM256" }.get(tp.modulation, tp.Modulation_Auto),
+							tp.Modulation_QAM256 : "QAM256" }.get(tp.modulation, ""),
 							tp.frequency,
 							tp.symbol_rate/1000,
 							{ tp.FEC_Auto : "AUTO", tp.FEC_1_2 : "1/2", tp.FEC_2_3 : "2/3",
 								tp.FEC_3_4 : "3/4", tp.FEC_5_6 : "5/6", tp.FEC_7_8 : "7/8",
-								tp.FEC_8_9 : "8/9", tp.FEC_None : "NONE" }.get(tp.fec_inner, tp.FEC_Auto))
+								tp.FEC_8_9 : "8/9", tp.FEC_6_7 : "6/7", tp.FEC_None : "NONE" }.get(tp.fec_inner, ""))
 					elif tp_type == iDVBFrontend.feTerrestrial:
 						network = _("Terrestrial")
 						tp = transponder.getDVBT()
-						tp_text = ("DVB-T %s %d %s") %( { tp.Modulation_QPSK : "QPSK",
-							tp.Modulation_QAM16 : "QAM16", tp.Modulation_QAM64 : "QAM64",
-							tp.Modulation_Auto : "AUTO" }.get(tp.modulation, tp.Modulation_Auto),
+						tp_text = ("%s %s %d %s") %( 
+							{ 
+								tp.System_DVB_T : "DVB-T",
+								tp.System_DVB_T2 : "DVB-T2"
+							}.get(tp.system, ""),
+							{ 
+								tp.Modulation_QPSK : "QPSK",
+								tp.Modulation_QAM16 : "QAM16", tp.Modulation_QAM64 : "QAM64",
+								tp.Modulation_Auto : "AUTO", tp.Modulation_QAM256 : "QAM256"
+							}.get(tp.modulation, ""),
 							tp.frequency,
-							{ tp.Bandwidth_8MHz : "Bw 8MHz", tp.Bandwidth_7MHz : "Bw 7MHz", tp.Bandwidth_6MHz : "Bw 6MHz",
-								tp.Bandwidth_Auto : "Bw Auto" }.get(tp.bandwidth, tp.Bandwidth_Auto))
+							{ 
+								tp.Bandwidth_8MHz : "Bw 8MHz", tp.Bandwidth_7MHz : "Bw 7MHz", tp.Bandwidth_6MHz : "Bw 6MHz",
+								tp.Bandwidth_Auto : "Bw Auto", tp.Bandwidth_5MHz : "Bw 5MHz",
+								tp.Bandwidth_1_712MHz : "Bw 1.712MHz", tp.Bandwidth_10MHz : "Bw 10MHz"
+							}.get(tp.bandwidth, ""))
 					else:
 						print "unknown transponder type in scanStatusChanged"
 				self.network.setText(network)
