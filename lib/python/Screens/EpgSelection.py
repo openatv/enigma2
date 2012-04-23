@@ -260,6 +260,7 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def __init__(self, session, service, zapFunc=None, eventid=None, bouquetChangeCB=None, serviceChangeCB=None, EPGtype=None,  bouquetname=""):
 		Screen.__init__(self, session)
+		self.longbuttonpressed = False
 		self.StartRef = None
 		self.StartBouquet = None
 		if EPGtype:
@@ -360,19 +361,15 @@ class EPGSelection(Screen, HelpableScreen):
 
 		self["colouractions"] = HelpableActionMap(self, "ColorActions",
 			{
-				"red":				(self.redButtonPressed, _("IMDB search for current event")),
-				"greenlong":		(self.showTimerList, _("Show Timer List")),
-				"yellow":			(self.yellowButtonPressed, _("Search for similar events")),
-				"blue":				(self.blueButtonPressed, _("Add a auto timer for current event")),
-				"bluelong":			(self.showAutoTimerList, _("Show AutoTimer List")),
+				"red":			(self.redButtonPressed, _("IMDB search for current event")),
+				"redlong":		(self.redlongButtonPressed, _("Sort EPG List")),
+				"green":		(self.greenButtonPressed, _("Add/Remove timer for current event")),
+				"yellow":		(self.yellowButtonPressed, _("Search for similar events")),
+				"greenlong":	(self.showTimerList, _("Show Timer List")),
+				"blue":			(self.blueButtonPressed, _("Add a auto timer for current event")),
+				"bluelong":		(self.bluelongButtonPressed, _("Show AutoTimer List")),
 			},-1)
 		self["colouractions"].csel = self
-
-		self["addtimer"] = HelpableActionMap(self, "EPGSelectActions",
-			{
-				"timerAdd":			(self.timerAdd, _("Add/Remove timer for current event")),
-			},-1)
-		self["addtimer"].csel = self
 
 		self["recordingactions"] = HelpableActionMap(self, "InfobarInstantRecord",
 			{
@@ -570,15 +567,11 @@ class EPGSelection(Screen, HelpableScreen):
 			l.fillGraphEPG(None, self.ask_time)
 			self.moveTimeLines()
 		else:
-			if config.epgselction.sort.value == "Time":
-				self.sort_type = 0
-			else:
-				self.sort_type = 1
 			l = self["list"]
 			l.setItemsPerPage()
 			l.setEventFontsize()
 			l.recalcEntrySize()
-			l.sortSingleEPG(self.sort_type)
+			l.sortSingleEPG(int(config.epgselction.sort.value))
 
  	def hidewaitingtext(self):
 		self.listTimer.stop()
@@ -618,11 +611,7 @@ class EPGSelection(Screen, HelpableScreen):
 			title = title + ' - ' + service.getServiceName()
 			self.setTitle(title)
 			l.fillSingleEPG(service)
-			if config.epgselction.sort.value == "Time":
-				self.sort_type = 0
-			else:
-				self.sort_type = 1
-			l.sortSingleEPG(self.sort_type)
+			l.sortSingleEPG(int(config.epgselction.sort.value))
 		elif self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
 			service = ServiceReference(self.servicelist.getCurrentSelection())
 			self["Service"].newService(service.ref)
@@ -630,11 +619,7 @@ class EPGSelection(Screen, HelpableScreen):
 			title = title + ' - ' + service.getServiceName()
 			self.setTitle(title)
 			l.fillSingleEPG(service)
-			if config.epgselction.sort.value == "Time":
-				self.sort_type = 0
-			else:
-				self.sort_type = 1
-			l.sortSingleEPG(self.sort_type)
+			l.sortSingleEPG(int(config.epgselction.sort.value))
 		else:
 			l.fillSimilarList(self.currentService, self.eventid)
 
@@ -834,6 +819,42 @@ class EPGSelection(Screen, HelpableScreen):
 			else:
 				self.session.open(EventViewSimple, event, service, self.eventViewCallback)
 
+	def redButtonPressed(self):
+		if not self.longbuttonpressed:
+			self.openIMDb()
+		else:
+			self.longbuttonpressed = False
+
+	def redlongButtonPressed(self):
+		self.longbuttonpressed = True
+		self.sortEpg()
+
+	def greenButtonPressed(self):
+		if not self.longbuttonpressed:
+			self.timerAdd()
+		else:
+			self.longbuttonpressed = False
+
+	def greenlongButtonPressed(self):
+		self.longbuttonpressed = True
+		self.showAutoTimerList()
+
+	def yellowButtonPressed(self):
+		if not self.longbuttonpressed:
+			self.openEPGSearch()
+		else:
+			self.longbuttonpressed = False
+
+	def blueButtonPressed(self):
+		if not self.longbuttonpressed:
+			self.addAutoTimer()
+		else:
+			self.longbuttonpressed = False
+
+	def bluelongButtonPressed(self):
+		self.longbuttonpressed = True
+		self.showAutoTimerList()
+
 	def openSimilarList(self, eventid, refstr):
 		self.session.open(EPGSelection, refstr, None, eventid)
 
@@ -865,12 +886,15 @@ class EPGSelection(Screen, HelpableScreen):
 	def eventSelected(self):
 		self.infoKeyPressed()
 
-	def setSortDescription(self):
-		if config.epgselction.sort.value == "Time":
-			self.sort_type = 1
-		else:
-			self.sort_type = 0
-		self["list"].sortSingleEPG(self.sort_type)
+	def sortEpg(self):
+		if self.type == EPG_TYPE_SINGLE or self.type == EPG_TYPE_ENHANCED:
+			if config.epgselction.sort.value == "0":
+				config.epgselction.sort.setValue("1")
+			else:
+				config.epgselction.sort.setValue("0")
+			config.epgselction.sort.save()
+			configfile.save()
+			self["list"].sortSingleEPG(int(config.epgselction.sort.value))
 
 	def OpenSingleEPG(self):
 		cur = self["list"].getCurrent()
@@ -880,7 +904,7 @@ class EPGSelection(Screen, HelpableScreen):
 		if event is not None:
 			self.session.open(SingleEPG, refstr)
 
-	def redButtonPressed(self):
+	def openIMDb(self):
 		try:
 			from Plugins.Extensions.IMDb.plugin import IMDB, IMDBEPGSelection
 			try:
@@ -893,7 +917,7 @@ class EPGSelection(Screen, HelpableScreen):
 		except ImportError:
 			self.session.open(MessageBox, _("The IMDb plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
-	def yellowButtonPressed(self):
+	def openEPGSearch(self):
 		try:
 			from Plugins.Extensions.EPGSearch.EPGSearch import EPGSearch
 			try:
@@ -906,7 +930,7 @@ class EPGSelection(Screen, HelpableScreen):
 		except ImportError:
 			self.session.open(MessageBox, _("The EPGSearch plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
-	def blueButtonPressed(self):
+	def addAutoTimer(self):
 		try:
 			from Plugins.Extensions.AutoTimer.AutoTimerEditor import addAutotimerFromEvent
 			cur = self["list"].getCurrent()
@@ -1460,7 +1484,7 @@ class RecordSetup(TimerEntry):
 
 	def keyGo(self, result = None):
 		if self.timer.justplay:
-			self.timer.begin += (config.recording.margin_before.value * 60)
+			self.timer.begin += ((config.recording.margin_before.value * 60) + 1)
 			self.timer.end = self.timer.begin
 		self.timer.resetRepeated()
 		self.saveTimer()
