@@ -1707,21 +1707,32 @@ class InfoBarSeek:
 				self.setSeekState(self.SEEK_STATE_PAUSE)
 		self.pts_lastseekspeed = self.seekstate[1]
 
-	def seekFwdManual(self):
-		self.session.openWithCallback(self.fwdSeekTo, MinuteInput)
+	def seekFwdManual(self, fwd=True):
+		if not config.seek.baractivation.value == "leftright":
+			self.session.open(Seekbar, fwd)
+		else:
+			self.session.openWithCallback(self.fwdSeekTo, MinuteInput)
 
 	def seekFwdSeekbar(self, fwd=True):
-		self.session.open(Seekbar, fwd)
+		if config.seek.baractivation.value == "leftright":
+			self.session.open(Seekbar, fwd)
+		else:
+			self.session.openWithCallback(self.fwdSeekTo, MinuteInput)
 
 	def fwdSeekTo(self, minutes):
-# 		print "Seek", minutes, "minutes forward"
 		self.doSeekRelative(minutes * 60 * 90000)
 
-	def seekBackManual(self):
-		self.session.openWithCallback(self.rwdSeekTo, MinuteInput)
+	def seekBackManual(self, fwd=False):
+		if not config.seek.baractivation.value == "leftright":
+			self.session.openWithCallback(self.rwdSeekTo, MinuteInput)
+		else:
+			self.session.open(Seekbar, fwd)
 
 	def seekBackSeekbar(self, fwd=False):
-		self.session.open(Seekbar, fwd)
+		if config.seek.baractivation.value == "leftright":
+			self.session.openWithCallback(self.rwdSeekTo, MinuteInput)
+		else:
+			self.session.open(Seekbar, fwd)
 
 	def rwdSeekTo(self, minutes):
 # 		print "rwdSeekTo"
