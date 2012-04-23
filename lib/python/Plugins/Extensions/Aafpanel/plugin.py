@@ -58,6 +58,7 @@ from Plugins.Extensions.Aafpanel.CamStart import *
 from Plugins.Extensions.Aafpanel.sundtek import *
 from Plugins.Extensions.Aafpanel.SwapManager import Swap, SwapAutostart
 from Plugins.SystemPlugins.SoftwareManager.plugin import UpdatePlugin
+from Plugins.SystemPlugins.SoftwareManager.BackupRestore import BackupScreen, RestoreScreen, BackupSelection, getBackupPath, getBackupFilename
 
 def Check_Softcam():
 	found = False
@@ -260,7 +261,8 @@ class Aafpanel(Screen, InfoBarPiP):
 		if Check_Softcam():
 			self.Mlist.append(MenuEntryItem((AafEntryComponent('SoftcamPanel'), _("SoftcamPanel"), 'SoftcamPanel')))
 			self.Mlist.append(MenuEntryItem((AafEntryComponent('Softcam-Panel Setup'), _("Softcam-Panel Setup"), 'Softcam-Panel Setup')))
-		self.Mlist.append(MenuEntryItem((AafEntryComponent ("SoftwareManager" ), _("Software update"), ("software-update"))))
+		#self.Mlist.append(MenuEntryItem((AafEntryComponent ("SoftwareManager" ), _("Software update"), ("software-update"))))
+		self.Mlist.append(MenuEntryItem((AafEntryComponent ("SoftwareManager" ), _("Software Manager"), ("software-manager"))))
 		self.Mlist.append(MenuEntryItem((AafEntryComponent('RedPanel'), _("RedPanel"), 'RedPanel')))
 		self.Mlist.append(MenuEntryItem((AafEntryComponent('Yellow-Key-Action'), _("Yellow-Key-Action"), 'Yellow-Key-Action')))
 		self.Mlist.append(MenuEntryItem((AafEntryComponent('KeymapSel'), _("Keymap Selection"), 'KeymapSel')))	
@@ -390,8 +392,22 @@ class Aafpanel(Screen, InfoBarPiP):
 			self.session.open(ScriptRunner)
 		elif menu == "SoftcamPanel":
 			self.session.open(SoftcamPanel)
+		elif menu == "software-manager":
+			self.Software_Manager()
 		elif menu == "software-update":
 			self.session.open(UpdatePlugin)
+		elif menu == "backup-settings":
+			self.session.openWithCallback(self.backupDone,BackupScreen, runBackup = True)
+		elif menu == "restore-settings":
+			self.backuppath = getBackupPath()
+			self.backupfile = getBackupFilename()
+			self.fullbackupfilename = self.backuppath + "/" + self.backupfile
+			if os_path.exists(self.fullbackupfilename):
+				self.session.openWithCallback(self.startRestore, MessageBox, _("Are you sure you want to restore your STB backup?\nSTB will restart after the restore"))
+			else:
+				self.session.open(MessageBox, _("Sorry no backups found!"), MessageBox.TYPE_INFO, timeout = 10)
+		elif menu == "backup-files":
+			self.session.openWithCallback(self.backupfiles_choosen,BackupSelection)
 		elif menu == "MultiQuickButton":
 			self.session.open(MultiQuickButton)
 		elif menu == "MountManager":
@@ -477,6 +493,38 @@ class Aafpanel(Screen, InfoBarPiP):
 		self.tlist.append(MenuEntryItem((AafEntryComponent('Info'), _("Info"), 'Info')))
 		self["Mlist"].moveToIndex(0)
 		self["Mlist"].l.setList(self.tlist)
+
+	def Software_Manager(self):
+		#// Create Software Manager Menu
+		global menu
+		menu = 1
+		self["label1"].setText(_("Software Manager"))
+		self.tlist = []
+		self.oldmlist = []
+		self.oldmlist = self.Mlist
+		self.tlist.append(MenuEntryItem((AafEntryComponent ("SoftwareManager" ), _("Software update"), ("software-update"))))
+		self.tlist.append(MenuEntryItem((AafEntryComponent ("BackupSettings" ), _("Backup Settings"), ("backup-settings"))))
+		self.tlist.append(MenuEntryItem((AafEntryComponent ("RestoreSettings" ), _("Restore Settings"), ("restore-settings"))))
+		self.tlist.append(MenuEntryItem((AafEntryComponent ("BackupFiles" ), _("Choose backup files"), ("backup-files"))))
+		self["Mlist"].moveToIndex(0)
+		self["Mlist"].l.setList(self.tlist)
+
+	def backupfiles_choosen(self, ret):
+		#self.backupdirs = ' '.join( config.plugins.configurationbackup.backupdirs.value )
+		config.plugins.configurationbackup.backupdirs.save()
+		config.plugins.configurationbackup.save()
+		config.save()
+
+	def backupDone(self,retval = None):
+		if retval is True:
+			self.session.open(MessageBox, _("Backup done."), MessageBox.TYPE_INFO, timeout = 10)
+		else:
+			self.session.open(MessageBox, _("Backup failed."), MessageBox.TYPE_INFO, timeout = 10)
+
+	def startRestore(self, ret = False):
+		if (ret == True):
+			self.exe = True
+			self.session.open(RestoreScreen, runRestore = True)
 
 class KeymapSel(ConfigListScreen, Screen):
 	def __init__(self, session):
