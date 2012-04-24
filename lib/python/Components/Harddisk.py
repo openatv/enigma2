@@ -493,7 +493,8 @@ class Harddisk:
 	def setIdleTime(self, idle, hddtimer):
 		# use hardwaretimer if asked to
 		if hddtimer:
-			self.timer.stop()
+			if self.timer:
+				self.timer.stop()
 			idle_parm = 0
 			# calculate the complicated timeout needed by hdparm
 			if idle <= 1200:
