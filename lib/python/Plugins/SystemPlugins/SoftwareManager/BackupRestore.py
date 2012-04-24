@@ -14,6 +14,7 @@ from Components.config import getConfigListEntry, configfile, ConfigSelection, C
 from Components.config import config
 from Components.ConfigList import ConfigList,ConfigListScreen
 from Components.FileList import MultiFileSelectList
+from Components.Network import iNetwork
 from Plugins.Plugin import PluginDescriptor
 from enigma import eTimer, eEnv, quitMainloop, eConsoleAppContainer
 from Tools.Directories import *
@@ -342,6 +343,9 @@ class RestoreScreen(Screen, ConfigListScreen):
 		self.session.open(Console, title = _("Restore is running..."), cmdlist = restorecmdlist, finishedCallback = self.restoreFinishedCB)
 
 	def restoreFinishedCB(self,retval = None):
+		self.restartLan()
+
+	def checkPlugins(self):
 		if path.exists("/tmp/installed-list.txt"):
 			self.session.openWithCallback(self.startInstall, MessageBox, _("Backup plugins found\ndo you want to install now?"))
 		else:
@@ -359,9 +363,20 @@ class RestoreScreen(Screen, ConfigListScreen):
 	def runAsync(self, finished_cb):
 		self.doRestore()
 
+	def restartLan(self):
+		print"[SOFTWARE MANAGER] Restart Network"
+		iNetwork.restartNetwork(self.restartLanDataAvail)
+		
+	def restartLanDataAvail(self, data):
+		if data is True:
+			iNetwork.getInterfaces(self.getInterfacesDataAvail)
+
+	def getInterfacesDataAvail(self, data):
+		self.checkPlugins()
+
 class RestorePlugins(Screen):
 	UPDATE = 0
-	INSTALL = 1
+	LIST = 1
 	
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -436,7 +451,7 @@ class RestorePlugins(Screen):
 		self.index = index
 
 	def dataAvail(self, strData):
-		if self.type == self.INSTALL:
+		if self.type == self.LIST:
 			strData = self.remainingdata + strData
 			lines = strData.split('\n')
 			if len(lines[-1]):
@@ -449,9 +464,9 @@ class RestorePlugins(Screen):
 
 	def runFinished(self, retval):
 		if self.type == self.UPDATE:
-			self.type = self.INSTALL
+			self.type = self.LIST
 			self.doInstall()
-		elif self.type == self.INSTALL:
+		elif self.type == self.LIST:
 			self.readPluginList()
 
 	def readPluginList(self):
