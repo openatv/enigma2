@@ -78,8 +78,8 @@ def InitUsageConfig():
 	if not os.path.exists(resolveFilename(SCOPE_HDD)):
 		try:
 			os.mkdir(resolveFilename(SCOPE_HDD),0755)
-		except OSError:
-			return -1
+		except:
+			pass
 	config.usage.default_path = ConfigText(default = resolveFilename(SCOPE_HDD))
 	if not config.usage.default_path.value.endswith('/'):
 		tmpvalue = config.usage.default_path.value
@@ -98,8 +98,8 @@ def InitUsageConfig():
 	if not os.path.exists(resolveFilename(SCOPE_TIMESHIFT)):
 		try:
 			os.mkdir(resolveFilename(SCOPE_TIMESHIFT),0755)
-		except OSError:
-			return -1
+		except:
+			pass
 	config.usage.timeshift_path = ConfigText(default = resolveFilename(SCOPE_TIMESHIFT))
 	if not config.usage.default_path.value.endswith('/'):
 		tmpvalue = config.usage.timeshift_path.value
