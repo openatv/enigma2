@@ -80,9 +80,9 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 	def createSetup(self):
 		self.list = []
 		self.xtdlist = []
-		add_to_xtdlist = self.splitEntry is not None
 		addToConfigList = self.addToConfigList
 		self.splitEntry = addToConfigList(_("Split preview mode"), config.pep.split, _("This option allows you to view the old and new settings side by side."), True)
+		add_to_xtdlist = self.splitEntry is not None
 		self.auto_fleshEntry = addToConfigList(_("Auto flesh"), config.pep.auto_flesh, _("This option sets the picture flesh tones."), add_to_xtdlist)
 		self.block_noise_reductionEntry = addToConfigList(_("Block noise reduction"), config.pep.block_noise_reduction, _("This option allows to reduce the block-noise in the picture. Obviously this is at the cost of the picture's sharpness."), add_to_xtdlist)
 		self.brightnessEntry = addToConfigList(_("Brightness"), config.pep.brightness, _("This option sets the picture brightness."))
