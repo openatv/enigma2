@@ -343,17 +343,11 @@ class RestoreScreen(Screen, ConfigListScreen):
 		self.session.open(Console, title = _("Restore is running..."), cmdlist = restorecmdlist, finishedCallback = self.restoreFinishedCB)
 
 	def restoreFinishedCB(self,retval = None):
-		self.restartLan()
+		self.session.openWithCallback(self.checkPlugins, RestartNetwork)
 
 	def checkPlugins(self):
 		if path.exists("/tmp/installed-list.txt"):
-			self.session.openWithCallback(self.startInstall, MessageBox, _("Backup plugins found\ndo you want to install now?"))
-		else:
-			self.restartGUI()
-
-	def startInstall(self, ret = None):
-		if ret:
-			self.session.openWithCallback(self.restartGUI, RestorePlugins)
+			self.session.openWithCallback(self.restartGUI, installedPlugins)
 		else:
 			self.restartGUI()
 
@@ -362,6 +356,22 @@ class RestoreScreen(Screen, ConfigListScreen):
 
 	def runAsync(self, finished_cb):
 		self.doRestore()
+
+class RestartNetwork(Screen):
+	
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		skin = """
+			<screen name="RestartNetwork" position="center,center" size="600,100" title="Restart Network Adapter">
+			<widget name="label" position="10,30" size="500,50" halign="center" font="Regular;20" transparent="1" foregroundColor="white" />
+			</screen> """
+		self.skin = skin
+		self["label"] = Label(_("Please wait while your network is restarting..."))
+		self.onShown.append(self.setWindowTitle)
+		self.onLayoutFinish.append(self.restartLan)
+
+	def setWindowTitle(self):
+		self.setTitle(_("Restart Network Adapter"))
 
 	def restartLan(self):
 		print"[SOFTWARE MANAGER] Restart Network"
@@ -372,28 +382,96 @@ class RestoreScreen(Screen, ConfigListScreen):
 			iNetwork.getInterfaces(self.getInterfacesDataAvail)
 
 	def getInterfacesDataAvail(self, data):
-		self.checkPlugins()
+		self.close()
 
-class RestorePlugins(Screen):
+class installedPlugins(Screen):
 	UPDATE = 0
 	LIST = 1
-	
+
+	skin = """
+		<screen position="center,center" size="600,100" title="Install Plugins" >
+		<widget name="label" position="10,30" size="500,50" halign="center" font="Regular;20" transparent="1" foregroundColor="white" />
+		</screen>"""
+
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Restore Plugins"))
-		self.index = 0
+		Screen.setTitle(self, _("Install Plugins"))
+		self["label"] = Label(_("Please wait while we check your installed plugins..."))
 		self.type = self.UPDATE
 		self.container = eConsoleAppContainer()
 		self.container.appClosed.append(self.runFinished)
 		self.container.dataAvail.append(self.dataAvail)
 		self.remainingdata = ""
 		self.pluginsInstalled = []
+		self.doUpdate()
+
+	def doUpdate(self):
+		print"[SOFTWARE MANAGER] update package list"
+		self.container.execute("ipkg update")
+
+	def doList(self):
+		print"[SOFTWARE MANAGER] read installed package list"
+		self.container.execute("ipkg list-installed | grep 'enigma2-plugin-'")
+
+	def dataAvail(self, strData):
+		if self.type == self.LIST:
+			strData = self.remainingdata + strData
+			lines = strData.split('\n')
+			if len(lines[-1]):
+				self.remainingdata = lines[-1]
+				lines = lines[0:-1]
+			else:
+				self.remainingdata = ""
+			for x in lines:
+				self.pluginsInstalled.append(x[:x.find(' - ')])
+
+	def runFinished(self, retval):
+		if self.type == self.UPDATE:
+			self.type = self.LIST
+			self.doList()
+		elif self.type == self.LIST:
+			self.readPluginList()
+
+	def readPluginList(self):
+		self.PluginList = []
+		f = open("/tmp/installed-list.txt", "r")
+		lines = f.readlines()
+		for x in lines:
+			self.PluginList.append(x[:x.find(' - ')])
+		f.close()
+		self.createMenuList()
+
+	def createMenuList(self):
+		self.Menulist = []
+		for x in self.PluginList:
+			if x not in self.pluginsInstalled:
+				self.Menulist.append(SettingsEntry(x[15:] , True))
+		if len(self.Menulist) == 0:
+			self.close()
+		else:
+			self.session.openWithCallback(self.startInstall, MessageBox, _("Backup plugins found\ndo you want to install now?"))
+
+	def startInstall(self, ret = None):
+		if ret:
+			self.session.openWithCallback(self.restoreCB, RestorePlugins, self.Menulist)
+		else:
+			self.close()
+
+	def restoreCB(self, ret = None):
+		self.close()
+
+class RestorePlugins(Screen):
+
+	def __init__(self, session, menulist):
+		Screen.__init__(self, session)
+		Screen.setTitle(self, _("Restore Plugins"))
+		self.index = 0
+		self.list = menulist
+		self.container = eConsoleAppContainer()
 		self["menu"] = List(list())
 		self["menu"].onSelectionChanged.append(self.selectionChanged)
 		self["key_green"] = Button(_("Install"))
 		self["key_red"] = Button(_("Cancel"))
-		#self["key_blue"] = Button("")
-		#self["key_yellow"] = Button("")
 				
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
 				{
@@ -402,8 +480,9 @@ class RestorePlugins(Screen):
 					"cancel": self.exit,
 					"ok": self.ok
 				}, -2)
-	
-		self.doUpdate()
+
+		self["menu"].setList(menulist)
+		self["menu"].setIndex(self.index)
 		self.selectionChanged()
 		self.onShown.append(self.setWindowTitle)
 
@@ -411,8 +490,6 @@ class RestorePlugins(Screen):
 		self.setTitle(_("Restore Plugins"))
 
 	def exit(self):
-		self.container.appClosed.remove(self.runFinished)
-		self.container.dataAvail.remove(self.dataAvail)
 		self.close()
 
 	def green(self):
@@ -422,14 +499,6 @@ class RestorePlugins(Screen):
 				pluginlist.append('enigma2-plugin-' + x[0])
 		if len(pluginlist) > 0:
 			self.session.open(Console, title = _("Installing plugins..."), cmdlist = ['ipkg --force-overwrite install ' + ' '.join(pluginlist)], finishedCallback = self.exit, closeOnSuccess = True)
-
-	def doUpdate(self):
-		print"[SOFTWARE MANAGER] update package list"
-		self.container.execute("ipkg update")
-
-	def doInstall(self):
-		print"[SOFTWARE MANAGER] read installed package list"
-		self.container.execute("ipkg list-installed | grep 'enigma2-plugin-'")
 
 	def ok(self):
 		index = self["menu"].getIndex()
@@ -447,49 +516,11 @@ class RestorePlugins(Screen):
 		index = self["menu"].getIndex()
 		if index == None:
 			index = 0
-		
 		self.index = index
-
-	def dataAvail(self, strData):
-		if self.type == self.LIST:
-			strData = self.remainingdata + strData
-			lines = strData.split('\n')
-			if len(lines[-1]):
-				self.remainingdata = lines[-1]
-				lines = lines[0:-1]
-			else:
-				self.remainingdata = ""
-			for x in lines:
-				self.pluginsInstalled.append(x[:x.find(' - ')])
-
-	def runFinished(self, retval):
-		if self.type == self.UPDATE:
-			self.type = self.LIST
-			self.doInstall()
-		elif self.type == self.LIST:
-			self.readPluginList()
-
-	def readPluginList(self):
-		self.PluginList = []
-		f = open("/tmp/installed-list.txt", "r")
-		lines = f.readlines()
-		for x in lines:
-			self.PluginList.append(x[:x.find(' - ')])
-		f.close()
-		self.drawList()
 			
 	def drawList(self):
-		self.list = []
-		for x in self.PluginList:
-			if x not in self.pluginsInstalled:
-				self.list.append(SettingsEntry(x[15:] , True))
-
-		self["menu"].setList(self.list)
+		self["menu"].setList(self.Menulist)
 		self["menu"].setIndex(self.index)
-		if len(self.list) == 0:
-			self.session.openWithCallback(self.exitNoPlugin, MessageBox, _("All Plugins are already installed"),MessageBox.TYPE_INFO, timeout = 10)
 
 	def exitNoPlugin(self, ret):
-		self.container.appClosed.remove(self.runFinished)
-		self.container.dataAvail.remove(self.dataAvail)
 		self.close()
