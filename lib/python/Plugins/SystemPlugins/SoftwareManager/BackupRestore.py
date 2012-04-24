@@ -360,10 +360,14 @@ class RestoreScreen(Screen, ConfigListScreen):
 		self.doRestore()
 
 class RestorePlugins(Screen):
+	UPDATE = 0
+	INSTALL = 1
+	
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Restore Plugins"))
 		self.index = 0
+		self.type = self.UPDATE
 		self.container = eConsoleAppContainer()
 		self.container.appClosed.append(self.runFinished)
 		self.container.dataAvail.append(self.dataAvail)
@@ -384,7 +388,7 @@ class RestorePlugins(Screen):
 					"ok": self.ok
 				}, -2)
 	
-		self.container.execute("ipkg list-installed | grep 'enigma2-plugin-'")
+		self.doUpdate()
 		self.selectionChanged()
 		self.onShown.append(self.setWindowTitle)
 
@@ -392,6 +396,8 @@ class RestorePlugins(Screen):
 		self.setTitle(_("Restore Plugins"))
 
 	def exit(self):
+		self.container.appClosed.remove(self.runFinished)
+		self.container.dataAvail.remove(self.dataAvail)
 		self.close()
 
 	def green(self):
@@ -401,6 +407,14 @@ class RestorePlugins(Screen):
 				pluginlist.append('enigma2-plugin-' + x[0])
 		if len(pluginlist) > 0:
 			self.session.open(Console, title = _("Installing plugins..."), cmdlist = ['ipkg --force-overwrite install ' + ' '.join(pluginlist)], finishedCallback = self.exit, closeOnSuccess = True)
+
+	def doUpdate(self):
+		print"[SOFTWARE MANAGER] update package list"
+		self.container.execute("ipkg update")
+
+	def doInstall(self):
+		print"[SOFTWARE MANAGER] read installed package list"
+		self.container.execute("ipkg list-installed | grep 'enigma2-plugin-'")
 
 	def ok(self):
 		index = self["menu"].getIndex()
@@ -421,19 +435,24 @@ class RestorePlugins(Screen):
 		
 		self.index = index
 
-	def dataAvail(self, str):
-		str = self.remainingdata + str
-		lines = str.split('\n')
-		if len(lines[-1]):
-			self.remainingdata = lines[-1]
-			lines = lines[0:-1]
-		else:
-			self.remainingdata = ""
-		for x in lines:
-			self.pluginsInstalled.append(x[:x.find(' - ')])
+	def dataAvail(self, strData):
+		if self.type == self.INSTALL:
+			strData = self.remainingdata + strData
+			lines = strData.split('\n')
+			if len(lines[-1]):
+				self.remainingdata = lines[-1]
+				lines = lines[0:-1]
+			else:
+				self.remainingdata = ""
+			for x in lines:
+				self.pluginsInstalled.append(x[:x.find(' - ')])
 
 	def runFinished(self, retval):
-		self.readPluginList()
+		if self.type == self.UPDATE:
+			self.type = self.INSTALL
+			self.doInstall()
+		elif self.type == self.INSTALL:
+			self.readPluginList()
 
 	def readPluginList(self):
 		self.PluginList = []
@@ -456,4 +475,6 @@ class RestorePlugins(Screen):
 			self.session.openWithCallback(self.exitNoPlugin, MessageBox, _("All Plugins are already installed"),MessageBox.TYPE_INFO, timeout = 10)
 
 	def exitNoPlugin(self, ret):
+		self.container.appClosed.remove(self.runFinished)
+		self.container.dataAvail.remove(self.dataAvail)
 		self.close()
