@@ -124,8 +124,8 @@ def parseCoordinate(s, e, size=0, font=None):
 			        val += fonts[font][2] * int(s[:-1]);
 			else:
 				val += int(s)
-	if val < 0:
-		val = 0
+	#if val < 0:     # Label shadowsOffset
+	#	val = 0  # can have a negative value
 	return val
 	        
 
