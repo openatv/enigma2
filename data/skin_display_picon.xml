@@ -28,7 +28,10 @@
 	</screen>
 
 	<screen name="SummaryIconsPanel">
-		<widget source="session.OnlineCheckState" render="Pixmap" pixmap="lcd/update.png" position="165,0" size="14,12">
+		<widget source="global.OnlineStableUpdateState" render="Pixmap" pixmap="lcd/update.png" position="165,0" size="14,12" >
+			<convert type="ConditionalShowHide">Blink</convert>
+		</widget>
+		<widget source="global.OnlineUnstableUpdateState" render="Pixmap" pixmap="lcd/update.png" position="165,0" size="14,12" >
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
 <!--

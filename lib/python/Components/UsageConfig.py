@@ -35,9 +35,12 @@ def InitUsageConfig():
 	config.usage.quickzap_bouquet_change = ConfigYesNo(default = False)
 	config.usage.e1like_radio_mode = ConfigYesNo(default = True)
 
+	config.usage.infobar_onlinecheck = ConfigYesNo(default = True)
 	config.usage.infobar_onlinechecktimer = ConfigInteger(default=6, limits=(0, 48))
 	config.usage.infobar_onlineupdatelastcheck = ConfigInteger(default=0)
 	config.usage.infobar_onlineupdatefound = NoSave(ConfigBoolean(default = False))
+	config.usage.infobar_onlineupdatebeta = ConfigYesNo(default = False)
+	config.usage.infobar_onlineupdateisunstable = ConfigInteger(default=0)
 
 	choicelist = []
 	for i in range(1, 12):
