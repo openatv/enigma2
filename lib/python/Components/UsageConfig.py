@@ -335,6 +335,7 @@ def InitUsageConfig():
 	config.network.uShare_autostart = ConfigYesNo(default = False)
 
 	config.timeshift = ConfigSubsection()
+	config.timeshift.pauzekeyenabled = ConfigYesNo(default = True)
 	config.timeshift.enabled = ConfigYesNo(default = False)
 	config.timeshift.maxevents = ConfigInteger(default=5, limits=(1, 99))
 	config.timeshift.maxlength = ConfigInteger(default=180, limits=(5, 999))
