@@ -83,7 +83,7 @@ class FanSetupConfiguration(Screen, ConfigListScreen):
 				config.plugins.fansetups.fanofftime.value = 1
 		except:
 			print 'Error read proc of fan'
-	
+
 
 	def createSetup(self):
 		self.list = []
@@ -98,7 +98,7 @@ class FanSetupConfiguration(Screen, ConfigListScreen):
 			if config.plugins.fansetups.usetimer.value is not "off":
 				self.list.append( self.fanontimeEntry )
 				self.list.append( self.fanofftimeEntry )
-		
+
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
 		if not self.selectionChanged in self["config"].onSelectionChanged:
@@ -119,7 +119,7 @@ class FanSetupConfiguration(Screen, ConfigListScreen):
 			x[1].cancel()
 		self.close()
 
-			
+
 	def keyCancel(self):
 		print "cancel"
 		if self["config"].isChanged():
@@ -142,15 +142,14 @@ class FanSetupConfiguration(Screen, ConfigListScreen):
 					open('/proc/stb/system/fan_off_time','w').write('%s'%config.plugins.fansetups.fanofftime.value)
 		except:
 			print 'Error write proc of fan'
-		
-	
+
+
 def openconfig(session, **kwargs):
 	session.open(FanSetupConfiguration)
 
 def selSetup(menuid, **kwargs):
 	if menuid != "system":
 		return [ ]
-
 	return [(_("Fan Control"), openconfig, "fansetup_config", 70)]
 
 def setfansetup(reason, **kwargs):
@@ -169,5 +168,8 @@ def setfansetup(reason, **kwargs):
 		print 'Error to set fan control'
 
 def Plugins(**kwargs):
-	return [PluginDescriptor(name = "Fan Control", description = "check Fan Control settings", where = PluginDescriptor.WHERE_AUTOSTART, fnc = setfansetup),
-	PluginDescriptor(name=_("Fan Control"), description="Fan Control", where = PluginDescriptor.WHERE_MENU, fnc=selSetup)]
+	from os import path
+	if not path.exists("/usr/lib/enigma2/python/Plugins/Extensions/FanControl2/plugin.pyo"):
+		return [PluginDescriptor(name=_("Fan Control"), description="check Fan Control settings", where = PluginDescriptor.WHERE_AUTOSTART, needsRestart = True, fnc=setfansetup),
+				PluginDescriptor(name=_("Fan Control"), description=_("Fan Control"), where = PluginDescriptor.WHERE_MENU, needsRestart = True, fnc=selSetup)]
+	return []

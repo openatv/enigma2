@@ -28,22 +28,22 @@ class boundFunction:
 		self.args = args
 	def __call__(self):
 		self.fnc(*self.args)
-		
+
 class MenuUpdater:
 	def __init__(self):
 		self.updatedMenuItems = {}
-	
+
 	def addMenuItem(self, id, pos, text, module, screen, weight):
 		if not self.updatedMenuAvailable(id):
 			self.updatedMenuItems[id] = []
 		self.updatedMenuItems[id].append([text, pos, module, screen, weight])
-	
+
 	def delMenuItem(self, id, pos, text, module, screen, weight):
 		self.updatedMenuItems[id].remove([text, pos, module, screen, weight])
-	
+
 	def updatedMenuAvailable(self, id):
 		return self.updatedMenuItems.has_key(id)
-	
+
 	def getUpdatedMenu(self, id):
 		return self.updatedMenuItems[id]
 
@@ -66,9 +66,9 @@ class Menu(Screen):
 
 	def runScreen(self, arg):
 		# arg[0] is the module (as string)
-		# arg[1] is Screen inside this module 
-		#        plus possible arguments, as 
-		#        string (as we want to reference 
+		# arg[1] is Screen inside this module
+		#        plus possible arguments, as
+		#        string (as we want to reference
 		#        stuff which is just imported)
 		# FIXME. somehow
 		if arg[0] != "":
@@ -160,9 +160,9 @@ class Menu(Screen):
 
 	def __init__(self, session, parent):
 		Screen.__init__(self, session)
-		
+
 		list = []
-		
+
 		menuID = None
 		for x in parent:						#walk through the actual nodelist
 			if not x.tag:
@@ -205,7 +205,10 @@ class Menu(Screen):
 		self.skinName.append("Menu")
 
 		# Sort by Weight
-		list.sort(key=lambda x: int(x[3]))
+		if config.usage.sort_menus.value:
+			list.sort()
+		else:
+			list.sort(key=lambda x: int(x[3]))
 
 		self["menu"] = List(list)
 
@@ -230,6 +233,7 @@ class Menu(Screen):
 		if a is None:
 			a = _(parent.get("text", "").encode("UTF-8"))
 		self["title"] = StaticText(a)
+		Screen.setTitle(self, a)
 		self.menu_title = a
 
 	def keyNumberGlobal(self, number):
@@ -252,7 +256,7 @@ class Menu(Screen):
 
 class MainMenu(Menu):
 	#add file load functions for the xml-file
-	
+
 	def __init__(self, *x):
 		self.skinName = "Menu"
 		Menu.__init__(self, *x)

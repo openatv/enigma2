@@ -13,5 +13,4 @@ def InitRecordingConfig():
 		("standard", _("standard")),
 		("short", _("Short filenames")),
 		("long", _("Long filenames")) ] )
-	config.recording.record_ecm = ConfigYesNo(default = False)
-	config.recording.descramble = ConfigYesNo(default = True)
+	config.recording.offline_decode_delay = ConfigNumber(default = 1000)

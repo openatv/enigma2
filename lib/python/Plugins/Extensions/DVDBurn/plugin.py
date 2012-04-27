@@ -6,7 +6,7 @@ def main(session, **kwargs):
 	#project = DVDProject.DVDProject()
 	#project.addService(service)
 	return session.open(TitleList.TitleList)
-	
+
 def main_add(session, service, **kwargs):
 	dvdburn = main(session, **kwargs)
 	dvdburn.selectedSource(service)

@@ -110,7 +110,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 
 		# 'None' is magic to start at the list of mountpoints
 		defaultDir = config.mediaplayer.defaultDir.getValue()
-		self.filelist = FileList(defaultDir, matchingPattern = "(?i)^.*\.(mp2|mp3|ogg|ts|mts|m2ts|wav|wave|m3u|pls|e2pls|mpg|vob|avi|divx|m4v|mkv|mp4|m4a|dat|flac|flv|mov|dts|3gp)", useServiceRef = True, additionalExtensions = "4098:m3u 4098:e2pls 4098:pls")
+		self.filelist = FileList(defaultDir, matchingPattern = "(?i)^.*\.(mp2|mp3|ogg|ts|mts|m2ts|wav|wave|m3u|pls|e2pls|mpg|vob|avi|divx|m4v|mkv|mp4|m4a|dat|flac|flv|mov|dts|3gp|3g2|asf|wmv|wma)", useServiceRef = True, additionalExtensions = "4098:m3u 4098:e2pls 4098:pls")
 		self["filelist"] = self.filelist
 
 		self.playlist = MyPlayList()
@@ -153,13 +153,13 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 				self.player.show()
 				return NumberActionMap.action(self, contexts, action)
 
-		self["OkCancelActions"] = HelpableActionMap(self, "OkCancelActions", 
+		self["OkCancelActions"] = HelpableActionMap(self, "OkCancelActions",
 			{
 				"ok": (self.ok, _("add file to playlist")),
 				"cancel": (self.exit, _("exit mediaplayer")),
 			}, -2)
 
-		self["MediaPlayerActions"] = HelpableActionMap(self, "MediaPlayerActions", 
+		self["MediaPlayerActions"] = HelpableActionMap(self, "MediaPlayerActions",
 			{
 				"play": (self.xplayEntry, _("play entry")),
 				"pause": (self.pauseEntry, _("pause")),
@@ -177,12 +177,12 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 				"subtitles": (self.subtitleSelection, _("Subtitle selection")),
 			}, -2)
 
-		self["InfobarEPGActions"] = HelpableActionMap(self, "InfobarEPGActions", 
+		self["InfobarEPGActions"] = HelpableActionMap(self, "InfobarEPGActions",
 			{
 				"showEventInfo": (self.showEventInformation, _("show event details")),
 			})
 
-		self["actions"] = MoviePlayerActionMap(self, ["DirectionActions"], 
+		self["actions"] = MoviePlayerActionMap(self, ["DirectionActions"],
 		{
 			"right": self.rightDown,
 			"rightRepeated": self.doNothing,
@@ -284,13 +284,13 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 		currPlay = self.session.nav.getCurrentService()
 		sTagAudioCodec = currPlay.info().getInfoString(iServiceInformation.sTagAudioCodec)
 		print "[__evAudioDecodeError] audio-codec %s can't be decoded by hardware" % (sTagAudioCodec)
-		self.session.open(MessageBox, _("This Dreambox can't decode %s streams!") % sTagAudioCodec, type = MessageBox.TYPE_INFO,timeout = 20 )
+		self.session.open(MessageBox, _("This STB_BOX can't decode %s streams!") % sTagAudioCodec, type = MessageBox.TYPE_INFO,timeout = 20 )
 
 	def __evVideoDecodeError(self):
 		currPlay = self.session.nav.getCurrentService()
 		sTagVideoCodec = currPlay.info().getInfoString(iServiceInformation.sTagVideoCodec)
 		print "[__evVideoDecodeError] video-codec %s can't be decoded by hardware" % (sTagVideoCodec)
-		self.session.open(MessageBox, _("This Dreambox can't decode %s streams!") % sTagVideoCodec, type = MessageBox.TYPE_INFO,timeout = 20 )
+		self.session.open(MessageBox, _("This STB_BOX can't decode %s streams!") % sTagVideoCodec, type = MessageBox.TYPE_INFO,timeout = 20 )
 
 	def __evPluginError(self):
 		currPlay = self.session.nav.getCurrentService()
@@ -412,7 +412,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 			text = ref.getPath()
 			return text.split('/')[-1]
 
-	# FIXME: maybe this code can be optimized 
+	# FIXME: maybe this code can be optimized
 	def updateCurrentInfo(self):
 		text = ""
 		if self.currList == "filelist":
@@ -526,11 +526,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 		if choice[1] == "copydir":
 			self.copyDirectory(self.filelist.getSelection()[0])
 		elif choice[1] == "copyfiles":
-			self.stopEntry()
-			self.playlist.clear()
-			self.isAudioCD = False
 			self.copyDirectory(os.path.dirname(self.filelist.getSelection()[0].getPath()) + "/", recursive = False)
-			self.playServiceRefEntry(self.filelist.getServiceRef())
 		elif choice[1] == "playlist":
 			self.switchToPlayList()
 		elif choice[1] == "filelist":
@@ -560,8 +556,6 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 
 	def playAudioCD(self):
 		from enigma import eServiceReference
-		from Plugins.Extensions.CDInfo.plugin import Query
-
 		if len(self.cdAudioTrackFiles):
 			self.playlist.clear()
 			self.savePlaylistOnExit = False
@@ -569,8 +563,12 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 			for file in self.cdAudioTrackFiles:
 				ref = eServiceReference(4097, 0, file)
 				self.playlist.addFile(ref)
-			cdinfo = Query(self)
-			cdinfo.scan()
+			try:
+				from Plugins.Extensions.CDInfo.plugin import Query
+				cdinfo = Query(self)
+				cdinfo.scan()
+			except ImportError:
+				pass # we can live without CDInfo
 			self.changeEntry(0)
 			self.switchToPlayList()
 
@@ -722,7 +720,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 		if result == True:
 			self.session.openWithCallback(self.deleteConfirmed_offline, MessageBox, _("Do you really want to delete %s?") % (name))
 		else:
-			self.session.openWithCallback(self.close, MessageBox, _("You cannot delete this!"), MessageBox.TYPE_ERROR)      
+			self.session.openWithCallback(self.close, MessageBox, _("You cannot delete this!"), MessageBox.TYPE_ERROR)
 
 	def deleteConfirmed_offline(self, confirmed):
 		if confirmed:
@@ -814,7 +812,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 			if serviceRefList[count] == serviceref:
 				self.changeEntry(count)
 				break
-			
+
 	def xplayEntry(self):
 		if self.currList == "playlist":
 			self.playEntry()
@@ -832,7 +830,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 					self.copyDirectory(os.path.dirname(sel[0].getPath()) + "/", recursive = False)
 			if len(self.playlist) > 0:
 				self.changeEntry(0)
-	
+
 	def playEntry(self, audio_extensions = frozenset((".mp2", ".mp3", ".wav", ".ogg", ".flac", ".m4a"))):
 		if len(self.playlist.getServiceRefList()):
 			needsInfoUpdate = False
@@ -848,7 +846,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 				text = self.getIdentifier(currref)
 				ext = os.path.splitext(text)[1].lower()
 				text = ">"+text
-				# FIXME: the information if the service contains video (and we should hide our window) should com from the service instead 
+				# FIXME: the information if the service contains video (and we should hide our window) should com from the service instead
 				if ext not in audio_extensions and not self.isAudioCD:
 					self.hide()
 				else:
@@ -914,11 +912,11 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 
 	def unPauseService(self):
 		self.setSeekState(self.SEEK_STATE_PLAY)
-		
+
 	def subtitleSelection(self):
 		from Screens.AudioSelection import SubtitleSelection
 		self.session.open(SubtitleSelection, self)
-	
+
 	def hotplugCB(self, dev, media_state):
 		if dev == harddiskmanager.getCD():
 			if media_state == "1":
@@ -973,7 +971,7 @@ def main(session, **kwargs):
 	session.open(MediaPlayer)
 
 def menu(menuid, **kwargs):
-	if menuid == "mainmenu":
+	if menuid == "mainmenu" and config.mediaplayer.onMainMenu.getValue():
 		return [(_("Media player"), main, "media_player", 45)]
 	return []
 
@@ -1022,7 +1020,7 @@ def movielist_open(list, session, **kwargs):
 
 def filescan(**kwargs):
 	from Components.Scanner import Scanner, ScanPath
-	mediatypes = [
+	return [
 		Scanner(mimetypes = ["video/mpeg", "video/MP2T", "video/x-msvideo", "video/mkv"],
 			paths_to_scan =
 				[
@@ -1050,10 +1048,7 @@ def filescan(**kwargs):
 			name = "Music",
 			description = _("Play Music..."),
 			openfnc = filescan_open,
-		)]
-	try:
-		from Plugins.Extensions.CDInfo.plugin import Query
-		mediatypes.append(
+		),
 		Scanner(mimetypes = ["audio/x-cda"],
 			paths_to_scan =
 				[
@@ -1062,14 +1057,13 @@ def filescan(**kwargs):
 			name = "Audio-CD",
 			description = _("Play Audio-CD..."),
 			openfnc = audioCD_open,
-		))
-		return mediatypes
-	except ImportError:
-		return mediatypes
+		),
+		]
 
 from Plugins.Plugin import PluginDescriptor
 def Plugins(**kwargs):
 	return [
 		PluginDescriptor(name = "MediaPlayer", description = "Play back media files", where = PluginDescriptor.WHERE_PLUGINMENU, needsRestart = False, fnc = main),
-		PluginDescriptor(name = "MediaPlayer", where = PluginDescriptor.WHERE_FILESCAN, needsRestart = False, fnc = filescan)
+		PluginDescriptor(name = "MediaPlayer", where = PluginDescriptor.WHERE_FILESCAN, needsRestart = False, fnc = filescan),
+		PluginDescriptor(name = "MediaPlayer", description = "Play back media files", where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc = menu)
 	]

@@ -45,12 +45,8 @@ void gLCDDC::exec(const gOpcode *o)
 		break;
 #endif
 	case gOpcode::flush:
-#if defined(HAVE_GRAPHICLCD) && !defined(HAVE_TEXTLCD)
 //		if (update)
 			lcd->update();
-#else
-			;
-#endif /*defined(HAVE_GRAPHICLCD) && !defined(HAVE_TEXTLCD)*/
 	default:
 		gDC::exec(o);
 		break;

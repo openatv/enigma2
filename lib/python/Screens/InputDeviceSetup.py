@@ -32,7 +32,7 @@ class InputDeviceSelection(Screen,HelpableScreen):
 							"fonts": [gFont("Regular", 28),gFont("Regular", 20)],
 							"itemHeight": 70
 							}
-						
+
 			</convert>
 		</widget>
 		<ePixmap pixmap="skin_default/div-h.png" position="0,340" zPosition="1" size="560,2"/>
@@ -43,18 +43,18 @@ class InputDeviceSelection(Screen,HelpableScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
-		
+
 		self.edittext = _("Press OK to edit the settings.")
-		
+
 		self["key_red"] = StaticText(_("Close"))
 		self["key_green"] = StaticText(_("Select"))
 		self["key_yellow"] = StaticText("")
 		self["key_blue"] = StaticText("")
 		self["introduction"] = StaticText(self.edittext)
-		
+
 		self.devices = [(iInputDevices.getDeviceName(x),x) for x in iInputDevices.getDeviceList()]
 		print "[InputDeviceSelection] found devices :->", len(self.devices),self.devices
-			
+
 		self["OkCancelActions"] = HelpableActionMap(self, "OkCancelActions",
 			{
 			"cancel": (self.close, _("Exit input device selection.")),
@@ -66,7 +66,7 @@ class InputDeviceSelection(Screen,HelpableScreen):
 			"red": (self.close, _("Exit input device selection.")),
 			"green": (self.okbuttonClick, _("Select input device.")),
 			}, -2)
-		
+
 		self.currentIndex = 0
 		self.list = []
 		self["list"] = List(self.list)
@@ -109,7 +109,7 @@ class InputDeviceSelection(Screen,HelpableScreen):
 				devicepng = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/input_mouse.png"))
 		else:
 			devicepng = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/input_rcnew.png"))
-		return((device, description, devicepng, divpng))	
+		return((device, description, devicepng, divpng))
 
 	def updateList(self):
 		self.list = []
@@ -175,6 +175,9 @@ class InputDeviceSetup(Screen, ConfigListScreen):
 		self["key_blue"] = StaticText()
 		self["introduction"] = StaticText()
 
+		# for generating strings into .po only
+		devicenames = [_("STB_BOX front panel"),_("STB_BOX front panel"),_("STB_BOX remote control (native)"),_("STB_BOX advanced remote control (native)"),_("STB_BOX ir keyboard"),_("STB_BOX ir mouse")]
+
 		self.createSetup()
 		self.onLayoutFinish.append(self.layoutFinished)
 		self.onClose.append(self.cleanup)
@@ -187,13 +190,17 @@ class InputDeviceSetup(Screen, ConfigListScreen):
 
 	def createSetup(self):
 		self.list = [ ]
-		cmd = "self.enableEntry = getConfigListEntry(_('"'Change repeat and delay settings?'"'), config.inputDevices." + self.inputDevice + ".enabled)"
+		string = _("Change repeat and delay settings?")
+		cmd = "self.enableEntry = getConfigListEntry(string, config.inputDevices." + self.inputDevice + ".enabled)"
 		exec (cmd)
-		cmd = "self.repeatEntry = getConfigListEntry(_('"'Interval between keys when repeating:'"'), config.inputDevices." + self.inputDevice + ".repeat)"
+		string = _("Interval between keys when repeating:")
+		cmd = "self.repeatEntry = getConfigListEntry(string, config.inputDevices." + self.inputDevice + ".repeat)"
 		exec (cmd)
-		cmd = "self.delayEntry = getConfigListEntry(_('"'Delay before key repeat starts:'"'), config.inputDevices." + self.inputDevice + ".delay)"
+		string = _("Delay before key repeat starts:")
+		cmd = "self.delayEntry = getConfigListEntry(string, config.inputDevices." + self.inputDevice + ".delay)"
 		exec (cmd)
-		cmd = "self.nameEntry = getConfigListEntry(_('"'Devicename:'"'), config.inputDevices." + self.inputDevice + ".name)"
+		string = _("Devicename:")
+		cmd = "self.nameEntry = getConfigListEntry(string, config.inputDevices." + self.inputDevice + ".name)"
 		exec (cmd)
 		if self.enableEntry:
 			if isinstance(self.enableEntry[1], ConfigYesNo):
@@ -211,7 +218,7 @@ class InputDeviceSetup(Screen, ConfigListScreen):
 				self["config"].invalidate(self.delayEntry)
 				self.nameEntry[1].setValue(self.nameEntry[1].default)
 				self["config"].invalidate(self.nameEntry)
-				
+
 		self["config"].list = self.list
 		self["config"].l.setSeperation(400)
 		self["config"].l.setList(self.list)
@@ -221,9 +228,9 @@ class InputDeviceSetup(Screen, ConfigListScreen):
 
 	def selectionChanged(self):
 		if self["config"].getCurrent() == self.enableEntry:
-			self["introduction"].setText(_("Current device: ") + str(iInputDevices.getDeviceAttribute(self.inputDevice, 'name')) )
+			self["introduction"].setText(_("Current device: ") + _(str(iInputDevices.getDeviceAttribute(self.inputDevice, 'name'))))
 		else:
-			self["introduction"].setText(_("Current value: ") + self.getCurrentValue() + _(" ms"))
+			self["introduction"].setText(_("Current value: ") + self.getCurrentValue() + ' ' + _("ms"))
 
 	def newConfig(self):
 		current = self["config"].getCurrent()

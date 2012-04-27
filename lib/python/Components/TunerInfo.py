@@ -38,7 +38,7 @@ class TunerInfo(GUIComponent):
 	def setValue(self, value):
 		self.value = value
 		if self.instance:
-			self.instance.setValue(self.value)		
+			self.instance.setValue(self.value)
 
 	def calc(self,val):
 		if not val:

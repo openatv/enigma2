@@ -65,7 +65,7 @@ class InfoHandler(xml.sax.ContentHandler):
 			else:
 				if not attrs.has_key("name"):
 					self.printError("file tag with no name attribute")
-				else:	
+				else:
 					if not attrs.has_key("directory"):
 						directory = self.directory
 					type = attrs["type"]
@@ -168,7 +168,7 @@ class DreamInfoHandler:
 		try:
 			xml.sax.parse(file, handler)
 			for entry in handler.list:
-				self.packageslist.append((entry,file)) 
+				self.packageslist.append((entry,file))
 		except InfoHandlerParseError:
 			print "file", file, "ignored due to errors in the file"
 		#print handler.list
@@ -249,7 +249,7 @@ class DreamInfoHandler:
 			self.directory = [self.directory]
 		self.readDetails(self.directory[0] + "/", self.directory[0] + "/" + detailsfile)
 		return self.packageDetails
-			
+
 	def prerequisiteMet(self, prerequisites):
 		# TODO: we need to implement a hardware detection here...
 		print "prerequisites:", prerequisites
@@ -275,11 +275,11 @@ class DreamInfoHandler:
 					return False
 			else:
 				return True # No flag found, assuming all flags valid
-				
+
 		if prerequisites.has_key("satellite"):
 			for sat in prerequisites["satellite"]:
 				if int(sat) not in nimmanager.getConfiguredSats():
-					return False			
+					return False
 		if prerequisites.has_key("bcastsystem"):
 			has_system = False
 			for bcastsystem in prerequisites["bcastsystem"]:
@@ -295,7 +295,7 @@ class DreamInfoHandler:
 			if not hardware_found:
 				return False
 		return True
-	
+
 	def installPackages(self, indexes):
 		print "installing packages", indexes
 		if len(indexes) == 0:
@@ -312,18 +312,18 @@ class DreamInfoHandler:
 			print "no package with index", index, "found... installing nothing"
 			return
 		print "installing package with index", index, "and name", self.packageslist[index][0]["attributes"]["name"]
-		
+
 		attributes = self.packageslist[index][0]["attributes"]
 		self.installingAttributes = attributes
 		self.attributeNames = ["skin", "config", "favourites", "package", "services"]
 		self.currentAttributeIndex = 0
 		self.currentIndex = -1
 		self.installNext()
-		
+
 	def setStatus(self, status):
 		self.status = status
 		self.statusCallback(self.status, None)
-						
+
 	def installNext(self, *args, **kwargs):
 		if self.reloadFavourites:
 			self.reloadFavourites = False
@@ -332,7 +332,7 @@ class DreamInfoHandler:
 		self.currentIndex += 1
 		attributes = self.installingAttributes
 		#print "attributes:", attributes
-		
+
 		if self.currentAttributeIndex >= len(self.attributeNames): # end of package reached
 			print "end of package reached"
 			if self.currentlyInstallingMetaIndex is None or self.currentlyInstallingMetaIndex >= len(self.installIndexes) - 1:
@@ -345,14 +345,14 @@ class DreamInfoHandler:
 				self.currentAttributeIndex = 0
 				self.installPackage(self.installIndexes[self.currentlyInstallingMetaIndex])
 				return
-		
-		self.setStatus(self.STATUS_WORKING)		
-		
+
+		self.setStatus(self.STATUS_WORKING)
+
 		print "currentAttributeIndex:", self.currentAttributeIndex
 		currentAttribute = self.attributeNames[self.currentAttributeIndex]
-		
+
 		print "installing", currentAttribute, "with index", self.currentIndex
-		
+
 		if attributes.has_key(currentAttribute):
 			if self.currentIndex >= len(attributes[currentAttribute]): # all jobs done for current attribute
 				self.currentIndex = -1
@@ -364,7 +364,7 @@ class DreamInfoHandler:
 			self.currentAttributeIndex += 1
 			self.installNext()
 			return
-			
+
 		if currentAttribute == "skin":
 			skin = attributes["skin"][self.currentIndex]
 			self.installSkin(skin["directory"], skin["name"])
@@ -383,7 +383,7 @@ class DreamInfoHandler:
 		elif currentAttribute == "services":
 			service = attributes["services"][self.currentIndex]
 			self.mergeServices(service["directory"], service["name"])
-				
+
 	def readfile(self, filename):
 		if not os.path.isfile(filename):
 			return []
@@ -391,14 +391,14 @@ class DreamInfoHandler:
 		lines = fd.readlines()
 		fd.close()
 		return lines
-			
+
 	def mergeConfig(self, directory, name, merge = True):
 		print "merging config:", directory, " - ", name
 		if os.path.isfile(directory + name):
 			config.loadFromFile(directory + name, base_file=False)
 			configfile.save()
 		self.installNext()
-		
+
 	def installIPK(self, directory, name):
 		if self.blocking:
 			os.system("opkg install " + directory + name)
@@ -407,14 +407,14 @@ class DreamInfoHandler:
 			self.ipkg = IpkgComponent()
 			self.ipkg.addCallback(self.ipkgCallback)
 			self.ipkg.startCmd(IpkgComponent.CMD_INSTALL, {'package': directory + name})
-		
+
 	def ipkgCallback(self, event, param):
 		print "ipkgCallback"
 		if event == IpkgComponent.EVENT_DONE:
 			self.installNext()
 		elif event == IpkgComponent.EVENT_ERROR:
 			self.installNext()
-	
+
 	def installSkin(self, directory, name):
 		print "installing skin:", directory, " - ", name
 		print "cp -a %s %s" % (directory, resolveFilename(SCOPE_SKIN))

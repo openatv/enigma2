@@ -38,7 +38,7 @@ class HdmiCec:
 		config.misc.standbyCounter.addNotifier(self.onEnterStandby, initial_call = False)
 		config.misc.DeepStandby.addNotifier(self.onEnterDeepStandby, initial_call = False)
 		self.setFixedPhysicalAddress(config.hdmicec.fixed_physical_address.value)
-		
+
 		self.volumeForwardingEnabled = False
 		self.volumeForwardingDestination = 0
 		eRCInput.getInstance().pyKeyEvent.get().append(self.keyEvent)
@@ -109,6 +109,12 @@ class HdmiCec:
 		elif message == "vendorid":
 			cmd = 0x87
 			data = '\x00\x00\x00'
+		elif message == "keypoweron":
+			cmd = 0x44
+			data = str(struct.pack('B', 0x6d))
+		elif message == "keypoweroff":
+			cmd = 0x44
+			data = str(struct.pack('B', 0x6c))
 		if cmd:
 			eHdmiCEC.getInstance().sendMessage(address, cmd, data, len(data))
 
@@ -128,7 +134,8 @@ class HdmiCec:
 			if messages:
 				self.sendMessages(0, messages)
 
-			if config.hdmicec.control_receiver_wakeup:
+			if config.hdmicec.control_receiver_wakeup.value:
+				self.sendMessage(5, "keypoweron")
 				self.sendMessage(5, "setsystemaudiomode")
 
 	def standbyMessages(self):
@@ -144,7 +151,8 @@ class HdmiCec:
 			if messages:
 				self.sendMessages(0, messages)
 
-			if config.hdmicec.control_receiver_standby:
+			if config.hdmicec.control_receiver_standby.value:
+				self.sendMessage(5, "keypoweroff")
 				self.sendMessage(5, "standby")
 
 	def onLeaveStandby(self):
@@ -184,10 +192,10 @@ class HdmiCec:
 				self.sendMessage(message.getAddress(), 'osdname')
 			elif cmd == 0x7e or cmd == 0x72: # system audio mode status
 				if data[0] == '\x01':
-					self.volumeForwardingDestination = 5; # on: send volume keys to receiver 
+					self.volumeForwardingDestination = 5; # on: send volume keys to receiver
 				else:
 					self.volumeForwardingDestination = 0; # off: send volume keys to tv
-				if config.hdmicec.volume_forwarding:
+				if config.hdmicec.volume_forwarding.value:
 					print 'eHdmiCec: volume forwarding to device %02x enabled'%(self.volumeForwardingDestination)
 					self.volumeForwardingEnabled = True;
 			elif cmd == 0x8f: # request power status

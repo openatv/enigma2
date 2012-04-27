@@ -454,15 +454,18 @@ void eDVBDB::loadServicelist(const char *file)
 
 	int count=0;
 
+	size_t linebufsize = 256;
+	char *linebuf = (char*)malloc(linebufsize);
 	while (!feof(f))
 	{
-		if (!fgets(line, 256, f))
+		int len;
+		if (getline(&linebuf, &linebufsize, f) <= 0)
 			break;
-		if (!strcmp(line, "end\n"))
+		if (!strcmp(linebuf, "end\n"))
 			break;
 
 		int service_id=-1, dvb_namespace, transport_stream_id=-1, original_network_id=-1, service_type=-1, service_number=-1;
-		sscanf(line, "%x:%x:%x:%x:%d:%d", &service_id, &dvb_namespace, &transport_stream_id, &original_network_id, &service_type, &service_number);
+		sscanf(linebuf, "%x:%x:%x:%x:%d:%d", &service_id, &dvb_namespace, &transport_stream_id, &original_network_id, &service_type, &service_number);
 		if (service_number == -1)
 			continue;
 		ePtr<eDVBService> s = new eDVBService;
@@ -474,27 +477,26 @@ void eDVBDB::loadServicelist(const char *file)
 						eServiceID(service_id),
 						service_type);
 		count++;
-		if (fgets(line, 256, f))
+		if ((len = getline(&linebuf, &linebufsize, f)) > 0)
 		{
 			/* strip newline */
-			int len = strlen(line);
-			line[--len] = 0;
-			s->m_service_name = line;
+			linebuf[--len] = 0;
+			s->m_service_name = linebuf;
 		}
 		s->genSortName();
 
-		if (fgets(line, 256, f))
+		if ((len = getline(&linebuf, &linebufsize, f)) > 0)
 		{
 			/* strip newline */
-			int len = strlen(line);
-			line[--len] = 0;
-			if (line[1]!=':')	// old ... (only service_provider)
-				s->m_provider_name=line;
+			linebuf[--len] = 0;
+			if (linebuf[1]!=':')	// old ... (only service_provider)
+				s->m_provider_name=linebuf;
 			else
-				parseServiceData(s, line);
+				parseServiceData(s, linebuf);
 		}
 		addService(ref, s);
 	}
+	free(linebuf);
 
 	eDebug("loaded %d services", count);
 
@@ -653,74 +655,70 @@ void eDVBDB::loadBouquet(const char *path)
 		return;
 	}
 	int entries=0;
-	char line[256];
+	size_t linesize = 256;
+	char *line = (char*)malloc(linesize);
 	bool read_descr=false;
 	eServiceReference *e = NULL;
 	while (1)
 	{
 		int len;
-		if (!fgets(line, 256, fp)) break;
-		len = strlen(line);
-		if (len < 2) break;
+		if ((len = getline(&line, &linesize, fp)) < 2) break;
 		/* strip newline */
 		line[--len] = 0;
 		/* strip carriage return (when found) */
 		if (line[len - 1] == '\r') line[--len] = 0;
-		if (line[0]=='#')
+		if (!strncmp(line, "#SERVICE", 8))
 		{
-			if (!strncmp(line, "#SERVICE", 8))
+			int offs = line[8] == ':' ? 10 : 9;
+			eServiceReference tmp(line+offs);
+			if ( tmp.flags&eServiceReference::canDescent )
 			{
-				int offs = line[8] == ':' ? 10 : 9;
-				eServiceReference tmp(line+offs);
-				if ( tmp.flags&eServiceReference::canDescent )
+				size_t pos = tmp.path.rfind('/');
+				char buf[256];
+				std::string path = tmp.path;
+				if ( pos != std::string::npos )
+					path.erase(0, pos+1);
+				if (path.empty())
 				{
-					size_t pos = tmp.path.rfind('/');
-					char buf[256];
-					std::string path = tmp.path;
-					if ( pos != std::string::npos )
-						path.erase(0, pos+1);
-					if (path.empty())
+					eDebug("Bouquet load failed.. no filename given..");
+					continue;
+				}
+				pos = path.find("FROM BOUQUET ");
+				if (pos != std::string::npos)
+				{
+					char endchr = path[pos+13];
+					if (endchr != '"')
 					{
-						eDebug("Bouquet load failed.. no filename given..");
+						eDebug("ignore invalid bouquet '%s' (only \" are allowed)",
+							tmp.toString().c_str());
 						continue;
 					}
-					pos = path.find("FROM BOUQUET ");
-					if (pos != std::string::npos)
-					{
-						char endchr = path[pos+13];
-						if (endchr != '"')
-						{
-							eDebug("ignore invalid bouquet '%s' (only \" are allowed)",
-								tmp.toString().c_str());
-							continue;
-						}
-						char *beg = &path[pos+14];
-						char *end = strchr(beg, endchr);
-						path.assign(beg, end - beg);
-					}
-					else
-					{
-						snprintf(buf, 256, "FROM BOUQUET \"%s\" ORDER BY bouquet", path.c_str());
-						tmp.path = buf;
-					}
-					loadBouquet(path.c_str());
+					char *beg = &path[pos+14];
+					char *end = strchr(beg, endchr);
+					path.assign(beg, end - beg);
 				}
-				list.push_back(tmp);
-				e = &list.back();
-				read_descr=true;
-				++entries;
+				else
+				{
+					snprintf(buf, 256, "FROM BOUQUET \"%s\" ORDER BY bouquet", path.c_str());
+					tmp.path = buf;
+				}
+				loadBouquet(path.c_str());
 			}
-			else if (read_descr && !strncmp(line, "#DESCRIPTION", 12))
-			{
-				int offs = line[12] == ':' ? 14 : 13;
-				e->name = line+offs;
-				read_descr=false;
-			}
-			else if (!strncmp(line, "#NAME ", 6))
-				bouquet.m_bouquet_name=line+6;
-			continue;
+			list.push_back(tmp);
+			e = &list.back();
+			read_descr=true;
+			++entries;
 		}
+		else if (read_descr && !strncmp(line, "#DESCRIPTION", 12))
+		{
+			int offs = line[12] == ':' ? 14 : 13;
+			e->name = line+offs;
+			read_descr=false;
+		}
+		else if (!strncmp(line, "#NAME ", 6))
+			bouquet.m_bouquet_name=line+6;
 	}
+	free(line);
 	fclose(fp);
 	eDebug("%d entries in Bouquet %s", entries, bouquet_name.c_str());
 }
@@ -738,7 +736,6 @@ void eDVBDB::reloadBouquets()
 		b.m_bouquet_name = "Favourites (TV)";
 		b.flushChanges();
 		eServiceReference ref;
-		memset(ref.data, 0, sizeof(ref.data));
 		ref.type=1;
 		ref.flags=7;
 		ref.data[0]=1;
@@ -754,7 +751,6 @@ void eDVBDB::reloadBouquets()
 		b.m_bouquet_name = "Favourites (Radio)";
 		b.flushChanges();
 		eServiceReference ref;
-		memset(ref.data, 0, sizeof(ref.data));
 		ref.type=1;
 		ref.flags=7;
 		ref.data[0]=2;

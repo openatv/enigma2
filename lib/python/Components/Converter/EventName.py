@@ -10,7 +10,9 @@ class EventName(Converter, object):
 	ID = 4
 	NEXT_NAME = 5
 	NEXT_DESCRIPTION = 6
-	
+	THIRD_NAME = 7
+	THIRD_DESCRIPTION = 8
+
 	def __init__(self, type):
 		Converter.__init__(self, type)
 		self.epgcache = eEPGCache.getInstance()
@@ -26,6 +28,10 @@ class EventName(Converter, object):
 			self.type = self.NEXT_NAME
 		elif type == "NextDescription":
 			self.type = self.NEXT_DESCRIPTION
+		elif type == "ThirdName":
+			self.type = self.THIRD_NAME
+		elif type == "ThirdDescription":
+			self.type = self.THIRD_DESCRIPTION
 		else:
 			self.type = self.NAME
 
@@ -34,7 +40,7 @@ class EventName(Converter, object):
 		event = self.source.event
 		if event is None:
 			return ""
-			
+
 		if self.type == self.NAME:
 			return event.getEventName()
 		elif self.type == self.SHORT_DESCRIPTION:
@@ -49,21 +55,36 @@ class EventName(Converter, object):
 			return description + extended
 		elif self.type == self.ID:
 			return str(event.getEventId())
-		elif self.type == self.NEXT_NAME or self.type == self.NEXT_DESCRIPTION:
+		elif int(self.type) > 4:
 			reference = self.source.service
 			info = reference and self.source.info
-			if info is None:	
+			if info is None:
 				return
-			nextEvent = self.epgcache.lookupEvent(['IBDCTSERNX', (reference.toString(), 1, -1)])
-			if nextEvent:
-				if self.type == self.NEXT_NAME and nextEvent[0][4]:
-					return nextEvent[0][4]
-				elif self.type == self.NEXT_DESCRIPTION and nextEvent[0][4]:
-					if nextEvent[0][6] != "":
-						return nextEvent[0][6]
-					elif nextEvent[0][5] != "":
-						return nextEvent[0][5]
+			test = [ 'ITSECX', (reference.toString(), 1, -1, 1440) ] # search next 24 hours
+			self.list = [] if self.epgcache is None else self.epgcache.lookupEvent(test)
+			if self.list:
+				try:
+					if self.type == self.NEXT_NAME and self.list[1][1]:
+						return self.list[1][1]
+					elif self.type == self.NEXT_DESCRIPTION and (self.list[1][2] or self.list[1][3]):
+						description = self.list[1][2]
+						extended = self.list[1][3]
+						if (description and extended) and (description[0:20] != extended[0:20]):
+							description += '\n'
+						return description + extended
+					elif self.type == self.THIRD_NAME and self.list[2][1]:
+						return self.list[2][1]
+					elif self.type == self.THIRD_DESCRIPTION and (self.list[2][2] or self.list[2][3]):
+						description = self.list[2][2]
+						extended = self.list[2][3]
+						if (description and extended) and (description[0:20] != extended[0:20]):
+							description += '\n'
+						return description + extended
 					else:
+						# failed to return any epg data.
 						return ""
-		
+				except:
+					# failed to return any epg data.
+					return ""
+
 	text = property(getText)

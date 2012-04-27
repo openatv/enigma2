@@ -1,4 +1,3 @@
-
 def elementsWithTag(el, tag):
 
 	"""filters all elements of childNode with the specified function
@@ -8,7 +7,7 @@ def elementsWithTag(el, tag):
 	if isinstance(tag, str):
 		s = tag
 		tag = lambda x: x == s
-		
+
 	for x in el:
 		if not x.tag:
 			continue

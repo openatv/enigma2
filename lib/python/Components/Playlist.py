@@ -5,25 +5,25 @@ import os
 class PlaylistIO:
 	def __init__(self):
 		self.list = []
-	
+
 	# returns a list of services or None if filename is not a valid playlist
 	def open(self, filename):
 		return None
-	
+
 	OK = 0
 	FILEEXISTS = 1
 	WRITEERROR = 2
 	ERROR = 3
 	UNSUPPORTED_FILES_IN_PLAYLIST = 4
-	
+
 	REMOTE_PROTOS = ["http", "https", "udp", "rtsp", "rtp", "mmp"]
-	
+
 	def save(self, filename = None):
 		return self.ERROR
-		
+
 	def clear(self):
 		del self.list[:]
-		
+
 	def addService(self, service):
 		self.list.append(service)
 
@@ -55,20 +55,20 @@ class PlaylistIOInternal(PlaylistIO):
 			self.addService(ServiceReference(entry))
 		file.close()
 		return self.list
-		
+
 	def save(self, filename = None):
 		print "Writing playlist into file", filename
 		file = open(filename, "w")
 		for x in self.list:
 			file.write(str(x) + "\n")
 		file.close()
-		
+
 		return self.OK
-	
+
 class PlaylistIOM3U(PlaylistIO):
 	def __init__(self):
 		PlaylistIO.__init__(self)
-	
+
 	def open(self, filename):
 		self.clear()
 		self.displayname = None
@@ -93,14 +93,14 @@ class PlaylistIOM3U(PlaylistIO):
 				self.addService(sref)
 		file.close()
 		return self.list
-		
+
 	def save(self, filename = None):
 		return self.ERROR
-	
+
 class PlaylistIOPLS(PlaylistIO):
 	def __init__(self):
 		PlaylistIO.__init__(self)
-	
+
 	def open(self, filename):
 		self.clear()
 		try:
@@ -123,6 +123,6 @@ class PlaylistIOPLS(PlaylistIO):
 			return playlist.open(filename)
 		file.close()
 		return self.list
-		
+
 	def save(self, filename = None):
 		return self.ERROR

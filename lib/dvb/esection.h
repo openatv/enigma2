@@ -21,11 +21,11 @@ class eGTable: public iObject, public Object
 	void timeout();
 	ePtr<eConnection> m_sectionRead_conn;
 protected:
-	bool m_debug;
+	static const bool m_debug = false;
 	virtual int createTable(unsigned int nr, const __u8 *data, unsigned int max)=0;
 public:
 	Signal1<void, int> tableReady;
-	eGTable(bool debug=true);
+	eGTable();
 	RESULT start(iDVBSectionReader *reader, const eDVBTableSpec &table);
 	RESULT start(iDVBDemux *reader, const eDVBTableSpec &table);
 	RESULT getSpec(eDVBTableSpec &spec) { spec = m_table; return 0; }
@@ -74,9 +74,6 @@ protected:
 	}
 public:
 	std::vector<Section*> &getSections() { return sections; }
-	eTable(bool debug=true): eGTable(debug)
-	{
-	}
 	~eTable()
 	{
 		for (std::set<int>::iterator i(avail.begin()); i != avail.end(); ++i)

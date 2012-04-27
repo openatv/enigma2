@@ -74,8 +74,7 @@ void eTuxtxtApp::thread_finished()
 
 void eTuxtxtApp::initCache()
 {
-	if (enableTtCaching)
-		tuxtxt_init();
+	tuxtxt_init();
 }
 
 void eTuxtxtApp::freeCache()

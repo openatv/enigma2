@@ -7,17 +7,18 @@
 DEFINE_REF(eRawFile);
 
 eRawFile::eRawFile(int packetsize)
-	: iTsSource(packetsize), m_lock(false)
+	: iTsSource(packetsize)
+	, m_lock(false)
+	, m_fd(-1)
+	, m_file(NULL)
+	, m_splitsize(0)
+	, m_totallength(0)
+	, m_current_offset(0)
+	, m_base_offset(0)
+	, m_last_offset(0)
+	, m_nrfiles(0)
+	, m_current_file(0)
 {
-	m_fd = -1;
-	m_file = 0;
-	m_splitsize = 0;
-	m_totallength = 0;
-	m_current_offset = 0;
-	m_base_offset = 0;
-	m_last_offset = 0;
-	m_nrfiles = 0;
-	m_current_file = 0;
 }
 
 eRawFile::~eRawFile()
@@ -33,7 +34,7 @@ int eRawFile::open(const char *filename, int cached)
 	scan();
 	m_current_offset = 0;
 	m_last_offset = 0;
-	if (!m_cached)
+	if (!cached)
 	{
 		m_fd = ::open(filename, O_RDONLY | O_LARGEFILE);
 		return m_fd;
@@ -254,4 +255,9 @@ int eRawFile::openFileUncached(int nr)
 off_t eRawFile::length()
 {
 	return m_totallength;
+}
+
+off_t eRawFile::offset()
+{
+	return m_last_offset;
 }

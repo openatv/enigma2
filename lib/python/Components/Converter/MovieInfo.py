@@ -30,7 +30,7 @@ class MovieInfo(Converter, object):
 			if self.type == self.MOVIE_SHORT_DESCRIPTION:
 				if (self.source.service.flags & eServiceReference.flagDirectory) == eServiceReference.flagDirectory:
 					# Short description for Directory is the full path
-					return self.source.service.getPath()  
+					return self.source.service.getPath()
 				event = self.source.event
 				if event:
 					descr = info.getInfoString(service, iServiceInformation.sDescription)
@@ -52,7 +52,7 @@ class MovieInfo(Converter, object):
 					return _("Directory")
 				filesize = info.getInfoObject(service, iServiceInformation.sFileSize)
 				if filesize is not None:
-					return "%d MB" % (filesize / (1024*1024))
+					return _("%d Mb") % (filesize / (1024*1024))
 		return ""
 
 	text = property(getText)

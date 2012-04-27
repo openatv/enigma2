@@ -47,6 +47,7 @@ class TimerEntry(Screen, ConfigListScreen):
 
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session = session)
+		self.setTitle(_("Timer entry"))
 		self.createSetup("config")
 
 	def createConfig(self):
@@ -58,6 +59,13 @@ class TimerEntry(Screen, ConfigListScreen):
 				AFTEREVENT.STANDBY: "standby",
 				AFTEREVENT.AUTO: "auto"
 				}[self.timer.afterEvent]
+
+			if self.timer.record_ecm and self.timer.descramble:
+				recordingtype = "descrambled+ecm"
+			elif self.timer.record_ecm:
+				recordingtype = "scrambled+ecm"
+			elif self.timer.descramble:
+				recordingtype = "normal"
 
 			weekday_table = ("mon", "tue", "wed", "thu", "fri", "sat", "sun")
 
@@ -91,7 +99,7 @@ class TimerEntry(Screen, ConfigListScreen):
 			else: # once
 				type = "once"
 				repeated = None
-				weekday = (int(strftime("%w", localtime(self.timer.begin))) - 1) % 7
+				weekday = int(strftime("%u", localtime(self.timer.begin))) - 1
 				day[weekday] = 1
 
 			self.timerentry_justplay = ConfigSelection(choices = [("zap", _("zap")), ("record", _("record"))], default = {0: "record", 1: "zap"}[justplay])
@@ -100,6 +108,7 @@ class TimerEntry(Screen, ConfigListScreen):
 			else:
 				shutdownString = _("shut down")
 			self.timerentry_afterevent = ConfigSelection(choices = [("nothing", _("do nothing")), ("standby", _("go to standby")), ("deepstandby", shutdownString), ("auto", _("auto"))], default = afterevent)
+			self.timerentry_recordingtype = ConfigSelection(choices = [("normal", _("normal")), ("descrambled+ecm", _("descramble and record ecm")), ("scrambled+ecm", _("don't descramble, record ecm"))], default = recordingtype)
 			self.timerentry_type = ConfigSelection(choices = [("once",_("once")), ("repeated", _("repeated"))], default = type)
 			self.timerentry_name = ConfigText(default = self.timer.name, visible_width = 50, fixed_size = False)
 			self.timerentry_description = ConfigText(default = self.timer.description, visible_width = 50, fixed_size = False)
@@ -107,7 +116,7 @@ class TimerEntry(Screen, ConfigListScreen):
 			self.timerentry_tagsset = ConfigSelection(choices = [not self.timerentry_tags and "None" or " ".join(self.timerentry_tags)])
 
 			self.timerentry_repeated = ConfigSelection(default = repeated, choices = [("daily", _("daily")), ("weekly", _("weekly")), ("weekdays", _("Mon-Fri")), ("user", _("user defined"))])
-			
+
 			self.timerentry_date = ConfigDateTime(default = self.timer.begin, formatstring = _("%d.%B %Y"), increment = 86400)
 			self.timerentry_starttime = ConfigClock(default = self.timer.begin)
 			self.timerentry_endtime = ConfigClock(default = self.timer.end)
@@ -171,10 +180,10 @@ class TimerEntry(Screen, ConfigListScreen):
 		self.entryDate = getConfigListEntry(_("Date"), self.timerentry_date)
 		if self.timerentry_type.value == "once":
 			self.list.append(self.entryDate)
-		
+
 		self.entryStartTime = getConfigListEntry(_("StartTime"), self.timerentry_starttime)
 		self.list.append(self.entryStartTime)
-		
+
 		self.entryShowEndTime = getConfigListEntry(_("Set End Time"), self.timerentry_showendtime)
 		if self.timerentry_justplay.value == "zap":
 			self.list.append(self.entryShowEndTime)
@@ -193,6 +202,7 @@ class TimerEntry(Screen, ConfigListScreen):
 			if getPreferredTagEditor():
 				self.list.append(self.tagsSet)
 			self.list.append(getConfigListEntry(_("After event"), self.timerentry_afterevent))
+			self.list.append(getConfigListEntry(_("Recording type"), self.timerentry_recordingtype))
 
 		self[widget].list = self.list
 		self[widget].l.setList(self.list)
@@ -246,7 +256,7 @@ class TimerEntry(Screen, ConfigListScreen):
 			self.timerentry_service_ref = ServiceReference(args[0])
 			self.timerentry_service.setCurrentText(self.timerentry_service_ref.getServiceName())
 			self["config"].invalidate(self.channelEntry)
-			
+
 	def getTimestamp(self, date, mytime):
 		d = localtime(date)
 		dt = datetime(d.tm_year, d.tm_mon, d.tm_mday, mytime[0], mytime[1])
@@ -294,6 +304,16 @@ class TimerEntry(Screen, ConfigListScreen):
 			"standby": AFTEREVENT.STANDBY,
 			"auto": AFTEREVENT.AUTO
 			}[self.timerentry_afterevent.value]
+		self.timer.descramble = {
+			"normal": True,
+			"descrambled+ecm": True,
+			"scrambled+ecm": False,
+			}[self.timerentry_recordingtype.value]
+		self.timer.record_ecm = {
+			"normal": False,
+			"descrambled+ecm": True,
+			"scrambled+ecm": True,
+			}[self.timerentry_recordingtype.value]
 		self.timer.service_ref = self.timerentry_service_ref
 		self.timer.tags = self.timerentry_tags
 
@@ -426,11 +446,12 @@ class TimerLog(Screen):
 			"red": self.deleteEntry,
 			"blue": self.clearLog
 		}, -1)
+		self.setTitle(_("Timer log"))
 
 	def deleteEntry(self):
 		cur = self["loglist"].getCurrent()
 		if cur is None:
-			return 
+			return
 		self.log_entries.remove(cur[1])
 		self.fillLogList()
 		self["loglist"].l.setList(self.list)

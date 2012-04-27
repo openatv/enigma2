@@ -36,7 +36,7 @@
 
 	<screen name="InfoBarMoviePlayerSummary" position="0,0" size="132,64">
 		<widget source="session.CurrentService" render="Label" position="0,0" size="120,25" halign="left" noWrap="1" >
-			<convert type="ServiceName">Name</convert>
+			<convert type="ServicePosition">Summary</convert>
 		</widget>
 	</screen>
 
@@ -47,7 +47,7 @@
 <!-- DVD -->
 	<screen name="DVDSummary" position="0,0" size="132,1">
 		<widget source="session.CurrentService" render="Label" position="0,0" size="60,1" font="Regular;16">
-			<convert type="ServicePosition">Position</convert>
+			<convert type="ServicePosition">VFDPosition</convert>
 		</widget>
 	</screen>
 
@@ -74,6 +74,10 @@
 		<widget source="parent.Text" render="Label" position="0,0" size="132,52" font="Regular;11" valign="center" />
 		<widget source="parent.selectedChoice" render="Label" position="0,50" size="120,14" halign="left" noWrap="1"  />
 	</screen>
+	<screen name="MessageBoxSimple_summary" position="0,0" size="132,64">
+		<widget source="parent.Text" render="Label" position="0,0" size="132,52" font="Regular;11" valign="center" />
+		<widget source="parent.selectedChoice" render="Label" position="0,50" size="120,14" halign="left" noWrap="1"  />
+	</screen>
 	<screen name="JobView_summary" position="0,0" size="132,64">
 		<widget source="parent.summary_job_name" render="Label" position="0,4" size="120,42" font="Regular;16" />
 		<widget source="parent.summary_job_task" render="Label" position="0,22" size="120,26" font="Regular;12" />
@@ -92,6 +96,11 @@
 			<convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,True,CheckSourceBoolean</convert>
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
+	</screen>
+
+	<!-- RDS info -->
+	<screen name="RdsInfoDisplaySummary" position="0,0" size="132,64">
+		<widget source="message" render="Label" position="0,0" size="120,20" font="Regular;18" noWrap="1" />
 	</screen>
 
 <!-- Plugin browser -->

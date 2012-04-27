@@ -1,6 +1,6 @@
 from Screen import Screen
 from Components.ActionMap import NumberActionMap, ActionMap
-from Components.config import config, ConfigNothing, ConfigYesNo, ConfigSelection
+from Components.config import config, ConfigNothing, ConfigYesNo, ConfigSelection, ConfigText, ConfigPassword
 from Components.SystemInfo import SystemInfo
 from Components.ConfigList import ConfigListScreen
 from Components.Pixmap import Pixmap,MultiPixmap
@@ -32,9 +32,7 @@ class SetupError(Exception):
         return self.msg
 
 class SetupSummary(Screen):
-
 	def __init__(self, session, parent):
-
 		Screen.__init__(self, session, parent = parent)
 		self["SetupTitle"] = StaticText(_(parent.setup_title))
 		self["SetupEntry"] = StaticText("")
@@ -85,8 +83,10 @@ class Setup(ConfigListScreen, Screen):
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self["VKeyIcon"] = Boolean(False)
+		self["status"] = StaticText()
 
 		self.onChangedEntry = [ ]
+		self.item = None
 		self.setup = setup
 		list = []
 		ConfigListScreen.__init__(self, list, session = session, on_change = self.changedEntry)
@@ -96,7 +96,7 @@ class Setup(ConfigListScreen, Screen):
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
 
-		self["actions"] = NumberActionMap(["SetupActions", "MenuActions"], 
+		self["actions"] = NumberActionMap(["SetupActions", "MenuActions"],
 			{
 				"cancel": self.keyCancel,
 				"save": self.keySave,
@@ -108,22 +108,38 @@ class Setup(ConfigListScreen, Screen):
 			"showVirtualKeyboard": self.KeyText,
 		}, -2)
 		self["VirtualKB"].setEnabled(False)
-		
 
 		if not self.handleInputHelpers in self["config"].onSelectionChanged:
 			self["config"].onSelectionChanged.append(self.handleInputHelpers)
 		self.changedEntry()
 		self.onLayoutFinish.append(self.layoutFinished)
+		self.onClose.append(self.HideHelp)
 
 	def createSetup(self):
 		list = []
 		self.refill(list)
  		self["config"].setList(list)
+		if config.usage.sort_settings.value:
+			self["config"].list.sort()
+		self.moveToItem(self.item)
+
+	def getIndexFromItem(self, item):
+		if item is not None:
+			for x in range(len(self["config"].list)):
+				if self["config"].list[x][0] == item[0]:
+					return x
+		return None
+
+	def moveToItem(self, item):
+		newIdx = self.getIndexFromItem(item)
+		if newIdx is None:
+			newIdx = 0
+		self["config"].setCurrentIndex(newIdx)
 
 	def handleInputHelpers(self):
+ 		self["status"].setText(self["config"].getCurrent()[2])
 		if self["config"].getCurrent() is not None:
 			try:
-				from Components.config import ConfigText, ConfigPassword
 				if isinstance(self["config"].getCurrent()[1], ConfigText) or isinstance(self["config"].getCurrent()[1], ConfigPassword):
 					if self.has_key("VKeyIcon"):
 						self["VirtualKB"].setEnabled(True)
@@ -146,6 +162,14 @@ class Setup(ConfigListScreen, Screen):
 				self["VirtualKB"].setEnabled(False)
 				self["VKeyIcon"].boolean = False
 
+	def HideHelp(self):
+		try:
+			if isinstance(self["config"].getCurrent()[1], ConfigText) or isinstance(self["config"].getCurrent()[1], ConfigPassword):
+				if self["config"].getCurrent()[1].help_window.instance is not None:
+					self["config"].getCurrent()[1].help_window.hide()
+		except:
+			pass
+
 	def KeyText(self):
 		from Screens.VirtualKeyBoard import VirtualKeyBoard
 		self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title = self["config"].getCurrent()[0], text = self["config"].getCurrent()[1].getValue())
@@ -160,6 +184,7 @@ class Setup(ConfigListScreen, Screen):
 
 	# for summary:
 	def changedEntry(self):
+		self.item = self["config"].getCurrent()
 		for x in self.onChangedEntry:
 			x()
 		try:
@@ -203,20 +228,23 @@ class Setup(ConfigListScreen, Screen):
 					continue;
 
 				item_text = _(x.get("text", "??").encode("UTF-8"))
+				item_summary = _(x.get("summary", "??").encode("UTF-8"))
 				b = eval(x.text or "");
 				if b == "":
 					continue
 				#add to configlist
 				item = b
-					
+
 				# the first b is the item itself, ignored by the configList.
 				# the second one is converted to string.
 				if not isinstance(item, ConfigNothing):
-					list.append( (item_text, item) )
+					list.append((item_text, item, item_summary))
 
 def getSetupTitle(id):
 	xmldata = setupdom.getroot()
 	for x in xmldata.findall("setup"):
 		if x.get("key") == id:
+			if _(x.get("title", "").encode("UTF-8")) == _("OSD Setup") or _(x.get("title", "").encode("UTF-8")) == _("Logs Setup") or _(x.get("title", "").encode("UTF-8")) == _("Softcam Setup") or _(x.get("title", "").encode("UTF-8")) == _("EPG Setup"):
+				return _("Settings...")
 			return x.get("title", "").encode("UTF-8")
 	raise SetupError("unknown setup id '%s'!" % repr(id))

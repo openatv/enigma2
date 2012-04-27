@@ -15,7 +15,7 @@ from Tools.Directories import fileExists
 from Components.Label import Label
 from Components.Slider import Slider
 from Components.Pixmap import Pixmap
-from Components.FileList import FileList 
+from Components.FileList import FileList
 from Components.ActionMap import ActionMap
 from Components.PluginComponent import plugins
 from Components.Sources.StaticText import StaticText
@@ -149,11 +149,11 @@ class UpgradeStatus(Screen):
 		self["info"] = StaticText(_("Can't cancel during upgrade!!"))
 
 		self["status"] = Label(_("Status : 0%"))
-		self.status_bar = self["status"] 
+		self.status_bar = self["status"]
 
 		self.slider = Slider(0, 100)
 		self["slider"] = self.slider
-		
+
 		self.parent = parent
 		self.timer_check_progress = eTimer()
 		self.timer_check_progress.callback.append(self.callbackDoCheckProgress)
@@ -198,7 +198,7 @@ class UpgradeStatus(Screen):
 			self.keyExit()
 		self.exit_count = self.exit_count + 1
 		#self.instance.setTitle("%s (%d)" % (self.title_str, (self.timeout-self.exit_count)))
-		self["info"].setText("Reboot after %d seconds.\nPress the OK to reboot now." %(self.timeout-self.exit_count)) 
+		self["info"].setText("Reboot after %d seconds.\nPress the OK to reboot now." %(self.timeout-self.exit_count))
 
 	def keyExit(self):
 		if self.need_restart:
@@ -206,7 +206,7 @@ class UpgradeStatus(Screen):
 			self.session.open(TryQuitMainloop, 2)
 		if self.is_done :
 			self.close()
-		
+
 class FPGAUpgrade(Screen):
 	skin = 	"""
 		<screen position="center,center" size="560,440" title="FPGA Upgrade" >
@@ -223,9 +223,9 @@ class FPGAUpgrade(Screen):
                 </screen>
 		"""
 
-	def __init__(self, session): 
+	def __init__(self, session):
 		Screen.__init__(self, session)
-		self.session = session 
+		self.session = session
 		Screen.setTitle(self, _("FPGA Upgrade"))
 
 		self["key_red"] = StaticText(_("Close"))
@@ -247,18 +247,18 @@ class FPGAUpgrade(Screen):
 			"down": self.onClickDown,
 			"left": self.onClickLeft,
 			"right": self.onClickRight,
-                }, -1) 
+                }, -1)
 		self.onLayoutFinish.append(self.doLayoutFinish)
-	
-                self.ERROR_MSG = ''                                                                                          
-                self.ERROR_CODE = 0                                                                                          
-                self.SOURCELIST = self["file_list"]                                                                          
-                self.STATUS_BAR = self["status"]                                                                             
+
+                self.ERROR_MSG = ''
+                self.ERROR_CODE = 0
+                self.SOURCELIST = self["file_list"]
+                self.STATUS_BAR = self["status"]
                 self.STATUS_BAR.setText(_(self.SOURCELIST.getCurrentDirectory()))
 
 		self.DEVICE_LIST = '/dev/fpga_dp;/dev/dp;/dev/misc/dp;'
-		self.DOWNLOAD_TAR_PATH = '/tmp/'                                                                             
-		self.DOWNLOAD_FILE_NAME = 'TS_PRO.dat'                                                                       
+		self.DOWNLOAD_TAR_PATH = '/tmp/'
+		self.DOWNLOAD_FILE_NAME = 'TS_PRO.dat'
 		self.DOWNLOAD_URL = ''
 		self.doLoadConf()
 		self.FPGA = FPGAUpgradeManager()
@@ -268,7 +268,7 @@ class FPGAUpgrade(Screen):
 		print self.DOWNLOAD_URL
 
 	def doLayoutFinish(self):
-		return	
+		return
 
 	def doExit(self):
 		if fileExists(self.DOWNLOAD_TAR_PATH + self.DOWNLOAD_FILE_NAME):
@@ -286,18 +286,18 @@ class FPGAUpgrade(Screen):
 			self.STATUS_BAR.setText(_("Downloaded " + self.DOWNLOAD_TAR_PATH + self.DOWNLOAD_FILE_NAME))
 		else :
 			self.STATUS_BAR.setText(_("Downloading..."))
-		
-	def onCallbackHandler(self, confirmed):                                                                                                                
-		if confirmed:                                                                                                                    
-			self.doExit()	
+
+	def onCallbackHandler(self, confirmed):
+		if confirmed:
+			self.doExit()
 
 	def doUpgradeHandler(self, confirmed):
 		if confirmed == False:
 			return
-		
+
 		path = ''
 		try:
-			path = self.SOURCELIST.getCurrentDirectory() + self.SOURCELIST.getFilename() 
+			path = self.SOURCELIST.getCurrentDirectory() + self.SOURCELIST.getFilename()
 		except:
 			#self.session.open(MessageBox, _("Can't select directory."), MessageBox.TYPE_INFO, timeout = 5)
 			return
@@ -325,7 +325,7 @@ class FPGAUpgrade(Screen):
 			print "FILE : ", path
 		else:
 			#self.session.open(MessageBox, _("Success!!"), MessageBox.TYPE_INFO, timeout = 5)
-			self.session.open(UpgradeStatus, self, timeout = 20)			
+			self.session.open(UpgradeStatus, self, timeout = 20)
 
 	def onClickRed(self):
 		self.doExit()
@@ -364,11 +364,11 @@ class FPGAUpgrade(Screen):
 			before_name = self.SOURCELIST.getFilename()
 
 	def onClickOk(self):
-	        if self.SOURCELIST.canDescent() : # isDir                                                                   
-	        	self.SOURCELIST.descent()                                                                              
+	        if self.SOURCELIST.canDescent() : # isDir
+	        	self.SOURCELIST.descent()
 			if self.SOURCELIST.getCurrentDirectory():
 				self.STATUS_BAR.setText(_(self.SOURCELIST.getCurrentDirectory()))
-        	else:                                                                                                      
+        	else:
 			self.onClickGreen()
 
 	def onClickUp(self):
@@ -389,7 +389,7 @@ class FPGAUpgrade(Screen):
 
 def main(session, **kwargs):
         session.open(FPGAUpgrade)
-                                                           
-def Plugins(**kwargs):            
+
+def Plugins(**kwargs):
 	return PluginDescriptor(name=_("FPGA Upgrade"), description="Upgrade FPGA..", where = PluginDescriptor.WHERE_PLUGINMENU, fnc=main)
 

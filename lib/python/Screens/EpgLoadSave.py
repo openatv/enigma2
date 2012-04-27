@@ -56,7 +56,7 @@ class EpgCacheLoadCheckPoller:
 		epgcache.load()
 
 	def JobSched(self):
-		self.timer.startLongTimer(int(config.epg.cacheloadtimer.value) * 3600)
+		self.timer.startLongTimer(int(config.epg.cacheloadtimer.getValue()) * 3600)
 
 class EpgCacheSaveCheckPoller:
 	def __init__(self):
@@ -95,7 +95,7 @@ class EpgCacheSaveCheckPoller:
 		epgcache.save()
 
 	def JobSched(self):
-		self.timer.startLongTimer(int(config.epg.cachesavetimer.value) * 3600)
+		self.timer.startLongTimer(int(config.epg.cachesavetimer.getValue()) * 3600)
 
 
 class EpgSaveMsg(MessageBox):

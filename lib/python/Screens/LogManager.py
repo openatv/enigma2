@@ -1,5 +1,7 @@
 from Screens.Screen import Screen
-from Components.ActionMap import ActionMap
+from Components.GUIComponent import GUIComponent
+from Components.VariableText import VariableText
+from Components.ActionMap import ActionMap, NumberActionMap
 from Components.Label import Label
 from Components.Button import Button
 from Components.FileList import FileList
@@ -10,11 +12,16 @@ from Components.config import getConfigListEntry, config, configfile, ConfigText
 from Components.ConfigList import ConfigListScreen, ConfigList
 from Components.FileList import MultiFileSelectList
 from Components.Pixmap import Pixmap,MultiPixmap
-from Screens.VirtualKeyBoard import VirtualKeyBoard
+from Components.Sources.Boolean import Boolean
+from Components.Sources.StaticText import StaticText
 from Screens.MessageBox import MessageBox
-from os import path,listdir, remove
-from os.path import isdir as os_path_isdir
-from time import time, localtime
+from Screens.VirtualKeyBoard import VirtualKeyBoard
+from os import path, listdir, remove, walk, stat, rmdir
+from time import time, localtime, strftime
+from enigma import eTimer, eBackgroundFileEraser, eLabel
+from glob import glob
+
+import Components.Task
 
 # Import smtplib for the actual sending function
 import smtplib, base64
@@ -24,6 +31,121 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.Utils import formatdate
 from email import encoders
+
+_session = None
+
+def get_size(self, start_path = '.'):
+	total_size = 0
+	for dirpath, dirnames, filenames in walk(start_path):
+		for f in filenames:
+			fp = path.join(dirpath, f)
+			total_size += path.getsize(fp)
+	return total_size
+
+def AutoLogManager(session=None, **kwargs):
+	global debuglogcheckpoller
+	debuglogcheckpoller = LogManagerPoller()
+	debuglogcheckpoller.start()
+
+class LogManagerPoller:
+	"""Automatically Poll LogManager"""
+	def __init__(self):
+		# Init Timer
+		self.timer = eTimer()
+
+	def start(self):
+		if self.debug_check not in self.timer.callback:
+			self.timer.callback.append(self.debug_check)
+		self.timer.startLongTimer(0)
+
+	def stop(self):
+		if self.version_check in self.timer.callback:
+			self.timer.callback.remove(self.debug_check)
+		self.timer.stop()
+
+	def debug_check(self):
+		print '[LogManager] Poll Started'
+		Components.Task.job_manager.AddJob(self.createCheckJob())
+
+	def createCheckJob(self):
+		job = Components.Task.Job(_("LogManager"))
+		task = Components.Task.PythonTask(job, _("Checking Logs..."))
+		task.work = self.JobStart
+		task.weighting = 1
+		return job
+
+	def openFiles(self, ctimeLimit, allowedBytes):
+		ctimeLimit = ctimeLimit
+		allowedBytes = allowedBytes
+
+	def JobStart(self):
+		filename = ""
+		for filename in glob(config.crash.debug_path.value + '*.log'):
+			if path.getsize(filename) > (config.crash.debugloglimit.value * 1024 * 1024):
+				fh = open(filename, 'rb+')
+				fh.seek(-(config.crash.debugloglimit.value * 1024 * 1024), 2)
+				data = fh.read()
+				fh.seek(0) # rewind
+				fh.write(data)
+				fh.truncate()
+				fh.close()
+
+		ctimeLimit = time() - (config.crash.daysloglimit.value * 3600 * 24)
+		allowedBytes = 1024*1024 * int(config.crash.sizeloglimit.value)
+
+		mounts=[]
+		matches = []
+		print "[LogManager] probing folders"
+		f = open('/proc/mounts', 'r')
+		for line in f.readlines():
+			parts = line.strip().split()
+			mounts.append(parts[1])
+		f.close()
+
+ 		for mount in mounts:
+			if path.isdir(path.join(mount,'logs')):
+				matches.append(path.join(mount,'logs'))
+		matches.append('/home/root/logs')
+
+		print "[LogManager] found following log's:",matches
+		if len(matches):
+			for logsfolder in matches:
+				print "[LogManager] looking in:",logsfolder
+				logssize = get_size(logsfolder)
+				bytesToRemove = logssize - allowedBytes
+				candidates = []
+				size = 0
+				for root, dirs, files in walk(logsfolder, topdown=False):
+					for name in files:
+						try:
+							fn = path.join(root, name)
+							st = stat(fn)
+							if st.st_ctime < ctimeLimit:
+								print "[LogManager] " + str(fn) + ": Too old:",name, st.st_ctime
+								eBackgroundFileEraser.getInstance().erase(fn)
+								bytesToRemove -= st.st_size
+							else:
+								candidates.append((st.st_ctime, fn, st.st_size))
+								size += st.st_size
+						except Exception, e:
+							print "[LogManager] Failed to stat %s:"% name, e
+					# Remove empty directories if possible
+					for name in dirs:
+						try:
+							rmdir(path.join(root, name))
+						except:
+							pass
+					candidates.sort()
+					# Now we have a list of ctime, candidates, size. Sorted by ctime (=deletion time)
+					for st_ctime, fn, st_size in candidates:
+						print "[LogManager] " + str(logsfolder) + ": bytesToRemove",bytesToRemove
+						if bytesToRemove < 0:
+							break
+						eBackgroundFileEraser.getInstance().erase(fn)
+						bytesToRemove -= st_size
+						size -= st_size
+
+		self.timer.startLongTimer(43200) #twice a day
 
 class LogManager(Screen):
 	skin = """<screen name="LogManager" position="center,center" size="560,400" title="Log Manager" flags="wfBorder">
@@ -46,7 +168,7 @@ class LogManager(Screen):
 		Screen.__init__(self, session)
 		self.logtype = 'crashlogs'
 
-		self['myactions'] = ActionMap(['ColorActions', 'OkCancelActions', 'DirectionActions', "MenuActions"],
+		self['myactions'] = ActionMap(['ColorActions', 'OkCancelActions', 'DirectionActions'],
 			{
 				'ok': self.changeSelectionState,
 				'cancel': self.close,
@@ -54,7 +176,6 @@ class LogManager(Screen):
 				'green': self.showLog,
 				'yellow': self.deletelog,
 				'blue': self.sendlog,
-				'menu': self.createSetup,
 				"left": self.left,
 				"right": self.right,
 				"down": self.down,
@@ -66,16 +187,35 @@ class LogManager(Screen):
 		self["key_yellow"] = Button(_("Delete"))
 		self["key_blue"] = Button(_("Send"))
 
+		self.onChangedEntry = [ ]
 		self.sentsingle = ""
 		self.selectedFiles = config.logmanager.sentfiles.value
 		self.previouslySent = config.logmanager.sentfiles.value
 		self.defaultDir = config.crash.debug_path.value
-		self.matchingPattern = 'enigma2_crash_' 
+		self.matchingPattern = 'enigma2_crash_'
 		self.filelist = MultiFileSelectList(self.selectedFiles, self.defaultDir, showDirectories = False, matchingPattern = self.matchingPattern )
 		self["list"] = self.filelist
+		self["LogsSize"] = self.logsinfo = LogInfo(config.crash.debug_path.value, LogInfo.USED, update=False)
 		self.onLayoutFinish.append(self.layoutFinished)
+		if not self.selectionChanged in self["list"].onSelectionChanged:
+			self["list"].onSelectionChanged.append(self.selectionChanged)
+
+	def createSummary(self):
+		from Screens.PluginBrowser import PluginBrowserSummary
+		return PluginBrowserSummary
+
+	def selectionChanged(self):
+		item = self["list"].getCurrent()
+		desc = ""
+		if item:
+			name = str(item[0][0])
+		else:
+			name = ""
+		for cb in self.onChangedEntry:
+			cb(name, desc)
 
 	def layoutFinished(self):
+		self["LogsSize"].update(config.crash.debug_path.value)
 		idx = 0
 		self["list"].moveToIndex(idx)
 		self.setWindowTitle()
@@ -105,23 +245,21 @@ class LogManager(Screen):
 	def exit(self):
 		self.close(None)
 
-	def createSetup(self):
-		self.session.open(LogManagerMenu)
-
 	def changeSelectionState(self):
 		self["list"].changeSelectionState()
 		self.selectedFiles = self["list"].getSelectedList()
 
 	def changelogtype(self):
+		self["LogsSize"].update(config.crash.debug_path.value)
 		import re
 		if self.logtype == 'crashlogs':
 			self["key_red"].setText(_("Crash Logs"))
 			self.logtype = 'debuglogs'
-			self.matchingPattern = 'Enigma2' 
+			self.matchingPattern = 'Enigma2'
 		else:
 			self["key_red"].setText(_("Debug Logs"))
 			self.logtype = 'crashlogs'
-			self.matchingPattern = 'enigma2_crash_' 
+			self.matchingPattern = 'enigma2_crash_'
 		self["list"].matchingPattern=re.compile(self.matchingPattern)
 		self["list"].changeDir(self.defaultDir)
 
@@ -131,7 +269,7 @@ class LogManager(Screen):
 		except:
 			self.sel = None
 		if self.sel:
-			self.session.open(LogManagerViewLog, self.sel[0], self.logtype)
+			self.session.open(LogManagerViewLog, self.sel[0])
 
 	def deletelog(self):
 		try:
@@ -149,7 +287,7 @@ class LogManager(Screen):
 			ybox.setTitle(_("Delete Confirmation"))
 		else:
 			self.session.open(MessageBox, _("You have selected no logs to delete."), MessageBox.TYPE_INFO, timeout = 10)
-		
+
 	def doDelete1(self, answer):
 		self.selectedFiles = self["list"].getSelectedList()
 		self.selectedFiles = ",".join(self.selectedFiles).replace(",", " ")
@@ -180,52 +318,57 @@ class LogManager(Screen):
 			self["list"].instance.moveSelectionTo(0)
 			remove(self.defaultDir + self.sel[0])
 			self["list"].changeDir(self.defaultDir)
+			self["LogsSize"].update(config.crash.debug_path.value)
 
 	def sendlog(self, addtionalinfo = None):
-		self.sel = self["list"].getCurrent()[0]
-		self.sel = str(self.sel[0])
-		self.selectedFiles = self["list"].getSelectedList()
-		self.resend = False
-		for send in self.previouslySent:
-			if send in self.selectedFiles:
-				self.selectedFiles.remove(send)
-			if send == (self.defaultDir + self.sel):
-				self.resend = True
-		if self.selectedFiles:
-			message = _("Do you want to send all selected files:\n(choose 'No' to only send the currently selected file.)")
-			ybox = self.session.openWithCallback(self.sendlog1, MessageBox, message, MessageBox.TYPE_YESNO)
-			ybox.setTitle(_("Delete Confirmation"))
-		elif self.sel and not self.resend:
-			self.sendallfiles = False
-			message = _("Are you sure you want to send this log:\n") + self.sel
-			ybox = self.session.openWithCallback(self.sendlog2, MessageBox, message, MessageBox.TYPE_YESNO)
-			ybox.setTitle(_("Delete Confirmation"))
-		elif self.sel and self.resend:
-			self.sendallfiles = False
-			message = _("You have already sent this log, are you sure you want to resend this log:\n") + self.sel
-			ybox = self.session.openWithCallback(self.sendlog2, MessageBox, message, MessageBox.TYPE_YESNO)
-			ybox.setTitle(_("Delete Confirmation"))
+		try:
+			self.sel = self["list"].getCurrent()[0]
+		except:
+			self.sel = None
+		if self.sel:
+			self.sel = str(self.sel[0])
+			self.selectedFiles = self["list"].getSelectedList()
+			self.resend = False
+			for send in self.previouslySent:
+				if send in self.selectedFiles:
+					self.selectedFiles.remove(send)
+				if send == (self.defaultDir + self.sel):
+					self.resend = True
+			if self.selectedFiles:
+				message = _("Do you want to send all selected files:\n(choose 'No' to only send the currently selected file.)")
+				ybox = self.session.openWithCallback(self.sendlog1, MessageBox, message, MessageBox.TYPE_YESNO)
+				ybox.setTitle(_("Send Confirmation"))
+			elif self.sel and not self.resend:
+				self.sendallfiles = False
+				message = _("Are you sure you want to send this log:\n") + self.sel
+				ybox = self.session.openWithCallback(self.sendlog2, MessageBox, message, MessageBox.TYPE_YESNO)
+				ybox.setTitle(_("Send Confirmation"))
+			elif self.sel and self.resend:
+				self.sendallfiles = False
+				message = _("You have already sent this log, are you sure you want to resend this log:\n") + self.sel
+				ybox = self.session.openWithCallback(self.sendlog2, MessageBox, message, MessageBox.TYPE_YESNO)
+				ybox.setTitle(_("Send Confirmation"))
 		else:
 			self.session.open(MessageBox, _("You have selected no logs to send."), MessageBox.TYPE_INFO, timeout = 10)
 
 	def sendlog1(self,answer):
 		if answer:
 			self.sendallfiles = True
-			message = _("Do you want to add any additional infomation ?")
+			message = _("Do you want to add any additional information ?")
 			ybox = self.session.openWithCallback(self.sendlog3, MessageBox, message, MessageBox.TYPE_YESNO)
-			ybox.setTitle(_("Addtional Info"))
+			ybox.setTitle(_("Additional Info"))
 		else:
 			self.sendallfiles = False
 			message = _("Are you sure you want to send this log:\n") + str(self.sel[0])
 			ybox = self.session.openWithCallback(self.sendlog2, MessageBox, message, MessageBox.TYPE_YESNO)
-			ybox.setTitle(_("Delete Confirmation"))
+			ybox.setTitle(_("Send Confirmation"))
 
 	def sendlog2(self,answer):
 		if answer:
 			self.sendallfiles = False
-			message = _("Do you want to add any additional infomation ?")
+			message = _("Do you want to add any additional information ?")
 			ybox = self.session.openWithCallback(self.sendlog3, MessageBox, message, MessageBox.TYPE_YESNO)
-			ybox.setTitle(_("Addtional Info"))
+			ybox.setTitle(_("Additional Info"))
 
 	def sendlog3(self,answer):
 		if answer:
@@ -241,7 +384,7 @@ class LogManager(Screen):
 		else:
 			from Screens.VirtualKeyBoard import VirtualKeyBoard
 			self.session.openWithCallback(self.doSendlog, VirtualKeyBoard, title = 'Additonal Info')
-		
+
 	def doSendlog(self,additonalinfo = None):
 		ref = str(time())
 		# Create the container (outer) email message.
@@ -282,11 +425,11 @@ class LogManager(Screen):
 				self.sentsingle = self.defaultDir + self.sel
 				self.changeSelectionState()
 				self.saveSelection()
-	
+
 			# Send the email via our own SMTP server.
 			wos_user = 'vixlogs@world-of-satellite.com'
 			wos_pwd = base64.b64decode('NDJJWnojMEpldUxX')
-	
+
 			try:
 				print "connecting to server: mail.world-of-satellite.com"
 				#socket.setdefaulttimeout(30)
@@ -304,7 +447,7 @@ class LogManager(Screen):
 				self.session.open(MessageBox, _("Error:\n%s" % e), MessageBox.TYPE_INFO, timeout = 10)
 		else:
 			self.session.open(MessageBox, _('You have not setup your user info in the setup screen\nPress MENU, and enter your info, then try again'), MessageBox.TYPE_INFO, timeout = 10)
-		
+
 	def myclose(self):
 		self.close()
 
@@ -313,17 +456,13 @@ class LogManagerViewLog(Screen):
 		<screen name="LogManagerViewLog" position="center,center" size="700,400" title="Log Manager" >
 			<widget name="list" position="0,0" size="700,400" font="Console;14" />
 		</screen>"""
-	def __init__(self, session, selected, logtype):
+	def __init__(self, session, selected):
 		self.session = session
 		Screen.__init__(self, session)
 		self.setTitle(selected)
 		self.skinName = "LogManagerViewLog"
-		if logtype == 'crashlogs':
-			selected = '/media/hdd/' + selected
-		else:
-			selected = config.crash.debug_path.value + selected
-		if path.exists(selected):
-			log = file(selected).read()
+		if path.exists(config.crash.debug_path.value + selected):
+			log = file(config.crash.debug_path.value + selected).read()
 		else:
 			log = ""
 		self["list"] = ScrollLabel(str(log))
@@ -339,115 +478,25 @@ class LogManagerViewLog(Screen):
 	def cancel(self):
 		self.close()
 
-class LogManagerMenu(ConfigListScreen, Screen):
-	skin = """
-		<screen name="LogManagerMenu" position="center,center" size="500,285" title="Log Manager Setup">
-			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-			<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-			<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-			<widget name="config" position="10,45" size="480,100" scrollbarMode="showOnDemand" />
-			<widget name="HelpWindow" pixmap="skin_default/vkey_icon.png" position="440,400" zPosition="1" size="1,1" transparent="1" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/key_text.png" position="290,5" zPosition="4" size="35,25" alphatest="on" transparent="1" />
-		</screen>"""
-
-	def __init__(self, session):
-		Screen.__init__(self, session)
-		self.session = session
-		self.skin = LogManagerMenu.skin
-		self.skinName = "LogManagerMenu"
-		self["HelpWindow"] = Pixmap()
-		self["HelpWindow"].hide()
-
-		self.onChangedEntry = [ ]
-		self.list = []
-		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
-		self.createSetup()
-		
-		self["actions"] = ActionMap(["SetupActions", 'ColorActions', 'VirtualKeyboardActions'],
-		{
-			"cancel": self.keyCancel,
-			"save": self.keySave,
-			'showVirtualKeyboard': self.KeyText
-		}, -2)
-		self["key_red"] = Button(_("Cancel"))
-		self["key_green"] = Button(_("OK"))
-
-	def createSetup(self):
-		self.editListEntry = None
-		self.list = []
-		self.list.append(getConfigListEntry(_("Show in extensions list ?"), config.logmanager.showinextensions))
-		self.list.append(getConfigListEntry(_("User Name"), config.logmanager.user))
-		self.list.append(getConfigListEntry(_("e-Mail address"), config.logmanager.useremail))
-		self.list.append(getConfigListEntry(_("Send yourself a copy ?"), config.logmanager.usersendcopy))
-		self["config"].list = self.list
-		self["config"].setList(self.list)
-
-	# for summary:
-	def changedEntry(self):
-		for x in self.onChangedEntry:
-			x()
-
-	def getCurrentEntry(self):
-		return self["config"].getCurrent()[0]
-
-	def getCurrentValue(self):
-		return str(self["config"].getCurrent()[1].getText())
-
-	def KeyText(self):
-		if self['config'].getCurrent():
-			if self['config'].getCurrent()[0] == "User Name" or self['config'].getCurrent()[0] == "e-Mail address":
-				from Screens.VirtualKeyBoard import VirtualKeyBoard
-				self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title = self["config"].getCurrent()[0], text = self["config"].getCurrent()[1].getValue())
-
-	def VirtualKeyBoardCallback(self, callback = None):
-		if callback is not None and len(callback):
-			self["config"].getCurrent()[1].setValue(callback)
-			self["config"].invalidate(self["config"].getCurrent())
-
-	def saveAll(self):
-		for x in self["config"].list:
-			x[1].save()
-
-	# keySave and keyCancel are just provided in case you need them.
-	# you have to call them by yourself.
-	def keySave(self):
-		self.saveAll()
-		self.close()
-	
-	def cancelConfirm(self, result):
-		if not result:
-			return
-
-		for x in self["config"].list:
-			x[1].cancel()
-		self.close()
-
-	def keyCancel(self):
-		if self["config"].isChanged():
-			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"))
-		else:
-			self.close()
-
 class LogManagerFb(Screen):
 	skin = """
 		<screen name="LogManagerFb" position="center,center" size="265,430" title="">
 			<widget name="list" position="0,0" size="265,430" scrollbarMode="showOnDemand" />
 		</screen>
 		"""
-	def __init__(self, session,path=None):
-		if path is None:
-			if os_path_isdir(config.logmanager.path.value):
-				path = config.logmanager.path.value
+	def __init__(self, session,logpath=None):
+		if logpath is None:
+			if path.isdir(config.logmanager.path.value):
+				logpath = config.logmanager.path.value
 			else:
-				path = "/"
+				logpath = "/"
 
 		self.session = session
 		Screen.__init__(self, session)
 		self.skin = LogManagerFb.skin
 		self.skinName = "LogManagerFb"
 
-		self["list"] = FileList(path, matchingPattern = "^.*")
+		self["list"] = FileList(logpath, matchingPattern = "^.*")
 		self["red"] = Label(_("delete"))
 		self["green"] = Label(_("move"))
 		self["yellow"] = Label(_("copy"))
@@ -507,3 +556,37 @@ class LogManagerFb(Screen):
 			config.logmanager.path.value = self["list"].getCurrentDirectory()
 			config.logmanager.path.save()
 		self.close()
+
+class LogInfo(VariableText, GUIComponent):
+	FREE = 0
+	USED = 1
+	SIZE = 2
+
+	def __init__(self, path, type, update = True):
+		GUIComponent.__init__(self)
+		VariableText.__init__(self)
+		self.type = type
+# 		self.path = config.crash.debug_path.getValue()
+		if update:
+			self.update(path)
+
+	def update(self, path):
+		try:
+			total_size = get_size(path)
+		except OSError:
+			return -1
+
+		if self.type == self.USED:
+			try:
+				if total_size < 10000000:
+					total_size = "%d kB" % (total_size >> 10)
+				elif total_size < 10000000000:
+					total_size = "%d MB" % (total_size >> 20)
+				else:
+					total_size = "%d GB" % (total_size >> 30)
+				self.setText(_("Space used:") + " " + total_size)
+			except:
+				# occurs when f_blocks is 0 or a similar error
+				self.setText("-?-")
+
+	GUI_WIDGET = eLabel

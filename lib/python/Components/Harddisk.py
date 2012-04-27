@@ -18,7 +18,7 @@ def getProcMounts():
 		mounts = open("/proc/mounts")
 		return [line.strip().split(' ') for line in mounts]
 	except IOError, ex:
-		print "[Harddisk] Failed to open /proc/mounts", ex 
+		print "[Harddisk] Failed to open /proc/mounts", ex
 		return []
 
 def createMovieFolder():
@@ -38,12 +38,19 @@ def isFileSystemSupported(filesystem):
 	except Exception, ex:
 		print "[Harddisk] Failed to read /proc/filesystems:", ex
 
+def findMountPoint(path):
+	'Example: findMountPoint("/media/hdd/some/file") returns "/media/hdd"'
+	path = os.path.abspath(path)
+	while not os.path.ismount(path):
+		path = os.path.dirname(path)
+	return path
+
 
 DEVTYPE_UDEV = 0
 DEVTYPE_DEVFS = 1
 
 class Harddisk:
-	def __init__(self, device):
+	def __init__(self, device, removable):
 		self.device = device
 
 		if access("/dev/.udev", 0):
@@ -55,14 +62,17 @@ class Harddisk:
 
 		self.max_idle_time = 0
 		self.idle_running = False
+		self.last_access = time.time()
+		self.last_stat = 0
 		self.timer = None
+		self.is_sleeping = False
 
 		self.dev_path = ''
 		self.disk_path = ''
 		self.mount_path = None
 		self.mount_device = None
 		self.phys_path = path.realpath(self.sysfsPath('device'))
-		
+
 		if self.type == DEVTYPE_UDEV:
 			self.dev_path = '/dev/' + self.device
 			self.disk_path = self.dev_path
@@ -84,7 +94,8 @@ class Harddisk:
 					break
 
 		print "new Harddisk", self.device, '->', self.dev_path, '->', self.disk_path
-		self.startIdle()
+		if not removable:
+			self.startIdle()
 
 	def __lt__(self, ob):
 		return self.device < ob.device
@@ -145,7 +156,7 @@ class Harddisk:
 				model = readFile(self.sysfsPath('device/model'))
 				return vendor + '(' + model + ')'
 			else:
-				raise Exception, "no hdX or sdX" 
+				raise Exception, "no hdX or sdX"
 		except Exception, e:
 			print "[Harddisk] Failed to get model:", e
 			return "-?-"
@@ -209,7 +220,7 @@ class Harddisk:
 
 	def mkfs(self):
 		# No longer supported, use createInitializeJob instead
-		return 1 
+		return 1
 
 	def mount(self):
 		# try mounting through fstab first
@@ -257,7 +268,7 @@ class Harddisk:
 
 	def fsck(self):
 		# No longer supported, use createCheckJob instead
-		return 1 
+		return 1
 
 	def killPartitionTable(self):
 		zero = 512 * '\0'
@@ -274,8 +285,6 @@ class Harddisk:
 		for i in range(3):
 			h.write(zero)
 		h.close()
-
-	errorList = [ _("Everything is fine"), _("Creating partition failed"), _("Mkfs failed"), _("Mount failed"), _("Create movie folder failed"), _("Fsck failed"), _("Please Reboot"), _("Filesystem contains uncorrectable errors"), _("Unmount failed")]
 
 	def createInitializeJob(self):
 		job = Task.Job(_("Initializing storage device..."))
@@ -318,10 +327,14 @@ class Harddisk:
 
 		task = MkfsTask(job, _("Create Filesystem"))
 		if isFileSystemSupported("ext4"):
-			cmd = "mkfs.ext4"
+			task.setTool("mkfs.ext4")
+			if size > 20000:
+				version = open("/proc/version","r").read().split(' ', 4)[2].split('.',2)[:2]
+				if (version[0] > 3) or ((version[0] > 2) and (version[1] >= 2)):
+					# Linux version 3.2 supports bigalloc and -C option, use 256k blocks
+					task.args += ["-O", "bigalloc", "-C", "262144"]
 		else:
-			cmd = "mkfs.ext3"
-		task.setTool(cmd)
+			task.setTool("mkfs.ext3")
 		if size > 250000:
 			# No more than 256k i-nodes (prevent problems with fsck memory requirements)
 			task.args += ["-T", "largefile", "-O", "sparse_super", "-N", "262144"]
@@ -353,7 +366,7 @@ class Harddisk:
 	def check(self):
 		# no longer supported
 		return -5
-		
+
 	def createCheckJob(self):
 		job = Task.Job(_("Checking Filesystem..."))
 		if self.findMount():
@@ -400,6 +413,8 @@ class Harddisk:
 		task.setTool('tune2fs')
 		task.args.append('-O')
 		task.args.append('extents,uninit_bg,dir_index')
+		task.args.append('-o')
+		task.args.append('journal_data_writeback')
 		task.args.append(dev)
 		task = Task.LoggingTask(job, "fsck")
 		task.setTool('fsck.ext4')
@@ -433,9 +448,6 @@ class Harddisk:
 		return (int(data[0]), int(data[4]))
 
 	def startIdle(self):
-		self.last_access = time.time()
-		self.last_stat = 0
-		self.is_sleeping = False
 		from enigma import eTimer
 
 		# disable HDD standby timer
@@ -666,12 +678,12 @@ class HarddiskManager:
 			description = self.getUserfriendlyDeviceName(device, physdev)
 			p = Partition(mountpoint = self.getMountpoint(device), description = description, force_mounted = True, device = device)
 			self.partitions.append(p)
-			if p.mountpoint: # Plugins won't expect unmounted devices 
+			if p.mountpoint: # Plugins won't expect unmounted devices
 				self.on_partition_list_change("add", p)
 			# see if this is a harddrive
 			l = len(device)
 			if l and not device[l-1].isdigit():
-				self.hdd.append(Harddisk(device))
+				self.hdd.append(Harddisk(device, removable))
 				self.hdd.sort()
 				SystemInfo["Harddisk"] = True
 		return error, blacklisted, removable, is_cdrom, partitions, medium_found
@@ -767,7 +779,7 @@ class HarddiskManager:
 		try:
 			from fcntl import ioctl
 			cd = open(device)
-			ioctl(cd.fileno(), ioctl_flag, speed) 
+			ioctl(cd.fileno(), ioctl_flag, speed)
 			cd.close()
 		except Exception, ex:
 			print "[Harddisk] Failed to set %s speed to %s" % (device, speed), ex

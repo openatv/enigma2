@@ -46,6 +46,7 @@ class eDBoxLCD: public eLCD
 {
 	static eDBoxLCD *instance;
 	unsigned char inverted;
+	bool flipped;
 	int is_oled;
 #ifdef SWIG
 	eDBoxLCD();
@@ -60,11 +61,9 @@ public:
 	int setLCDContrast(int contrast);
 	int setLCDBrightness(int brightness);
 	void setInverted( unsigned char );
+	void setFlipped(bool);
 	bool isOled() const { return !!is_oled; }
 	void update();
-#if defined(HAVE_TEXTLCD)
-	void updates(ePoint start,char *text);
-#endif /*defined(HAVE_TEXTLCD)*/
 };
 
 #endif

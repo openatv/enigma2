@@ -1,4 +1,3 @@
-
 keyBindings = { }
 
 from keyids import KEYIDS

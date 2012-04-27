@@ -10,7 +10,7 @@ import NavigationInstance
 
 class ManualFancontrol(Screen,ConfigListScreen):
 	skin = """
-			<screen name="ManualFancontrol" position="center,center" size="560,300" title="Fancontrol Settings in Standby mode" >
+			<screen name="ManualFancontrol" position="center,center" size="560,300" >
 			<widget name="config" zPosition="2" position="5,50" size="550,200" scrollbarMode="showOnDemand" transparent="1" />
 			<widget source="current" render="Label" position="150,270" zPosition="1" size="280,30" font="Regular;18" halign="left" valign="center" transparent="1" />
 			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
@@ -96,7 +96,7 @@ class ManualFancontrol(Screen,ConfigListScreen):
 			print "<SimpleFancontrol> instandbyon.fanoffmode 'ON' -> 'OFF'"
 			instandbyon.fanoffmode = 'OFF'
 			instandbyon.removeRecordEventCB()
-#			instandbyon.checkStatusLoopStop() # stoped at init
+#			instandbyon.checkStatusLoopStop() # stopped at init
 		elif self.oldfanoffmode is 'ON' :
 			instandbyon.checkStatusLoopStart()
 		instandbyon.checkStstus()
@@ -125,5 +125,13 @@ class ManualFancontrol(Screen,ConfigListScreen):
 def main(session, **kwargs):
 	session.open(ManualFancontrol)
 
+def selSetup(menuid, **kwargs):
+	if menuid != "system":
+		return [ ]
+	return [(_("Fan Control"), main, "fansetup_config", 70)]
+
 def Plugins(**kwargs):
-	return [PluginDescriptor(name=_("Fan Control"), description="setup Fancontol inStandby mode", where = PluginDescriptor.WHERE_PLUGINMENU, needsRestart = True, fnc=main)]
+	from os import path
+	if not path.exists("/usr/lib/enigma2/python/Plugins/Extensions/FanControl2/plugin.pyo"):
+		return [PluginDescriptor(name=_("Fan Control"), description=_("setup Fancontol inStandby mode"), where = PluginDescriptor.WHERE_MENU, needsRestart = True, fnc=selSetup)]
+	return []

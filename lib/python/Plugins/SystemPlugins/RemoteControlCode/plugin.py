@@ -14,10 +14,10 @@ if fileExists("/proc/stb/info/vumodel"):
 	info=vumodel.read().strip()
 	vumodel.close()
 	if info == "uno" or info == "ultimo":
-		config.plugins.remotecontrolcode.systemcode = ConfigSelection(default = "2", choices = 
+		config.plugins.remotecontrolcode.systemcode = ConfigSelection(default = "2", choices =
 			[ ("1", "1 "), ("2", "2 "), ("3", "3 "), ("4", "4 ") ] )
 	elif info == "solo" or info == "duo":
-		config.plugins.remotecontrolcode.systemcode = ConfigSelection(default = "1", choices = 
+		config.plugins.remotecontrolcode.systemcode = ConfigSelection(default = "1", choices =
 			[ ("1", "1 "), ("2", "2 "), ("3", "3 "), ("4", "4 ") ] )
 
 def isRemoteCodeSupported():
@@ -125,52 +125,9 @@ class RemoteControlCode(Screen,ConfigListScreen,RemoteControlCodeInit):
 			self.setSystemCode(int(config.plugins.remotecontrolcode.systemcode.value))
 
 class MessageBoxConfirmCode(MessageBox):
-	skin = """
-		<screen position="center,center" size="600,10" title="Message">
-		<widget name="text" position="65,8" size="420,0" font="Regular;22" />
-		<widget name="ErrorPixmap" pixmap="ViX_HD_Common/icons/input_error.png" position="5,5" size="53,53" alphatest="blend" />
-		<widget name="QuestionPixmap" pixmap="ViX_HD_Common/icons/input_question.png" position="5,5" size="53,53" alphatest="blend" />
-		<widget name="InfoPixmap" pixmap="ViX_HD_Common/icons/input_info.png" position="5,5" size="53,53" alphatest="blend" />
-		<widget name="list" position="100,100" size="380,375" transparent="1" backgroundColor="darkgrey" />
-		<applet type="onLayoutFinish">
-# this should be factored out into some helper code, but currently demonstrates applets.
-from enigma import eSize, ePoint
-
-orgwidth = self.instance.size().width()
-orgpos = self.instance.position()
-textsize = self[&quot;text&quot;].getSize()
-
-# y size still must be fixed in font stuff...
-textsize = (textsize[0] + 50, textsize[1] + 50)
-offset = 0
-if self.type == self.TYPE_YESNO:
-	offset = 60
-wsizex = textsize[0] + 60
-wsizey = textsize[1] + offset
-if (280 &gt; wsizex):
-	wsizex = 280
-wsize = (wsizex, wsizey)
-
-
-# resize
-self.instance.resize(eSize(*wsize))
-
-# resize label
-self[&quot;text&quot;].instance.resize(eSize(*textsize))
-
-# move list
-listsize = (wsizex, 50)
-self[&quot;list&quot;].instance.move(ePoint(0, textsize[1]))
-self[&quot;list&quot;].instance.resize(eSize(*listsize))
-
-# center window
-newwidth = wsize[0]
-self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
-		</applet>
-	</screen>"""
-
 	def __init__(self, session, text, type = MessageBox.TYPE_YESNO, timeout = -1, close_on_any_key = False, default = True, enable_input = True, msgBoxID = None):
 		MessageBox.__init__(self,session,text,type,timeout,close_on_any_key,default,enable_input,msgBoxID)
+		self.skinName = "MessageBox"
 		if type == MessageBox.TYPE_YESNO:
 			self.list = [ (_("Keep"), 0), (_("Restore"), 1) ]
 			self["list"].setList(self.list)

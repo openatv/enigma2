@@ -7,7 +7,7 @@ from Tools.LoadPixmap import LoadPixmap
 class ValueToPixmap(Converter, object):
 	LANGUAGE_CODE = 0
 	PATH = 1
-	
+
 	def __init__(self, type):
 		Converter.__init__(self, type)
 		if type == "LanguageCode":
@@ -30,8 +30,8 @@ class ValueToPixmap(Converter, object):
 			if png == None:
 				png = LoadPixmap(cached=True, path=resolveFilename(SCOPE_SKIN_IMAGE, "countries/missing.png"))
 			return png
-		return None			
-	
+		return None
+
 	pixmap = property(getPixmap)
 
 	def changed(self, what):

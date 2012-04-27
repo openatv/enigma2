@@ -8,7 +8,7 @@
 
 #define PVR_COMMIT 1
 
-
+//#define SHOW_WRITE_TIME 1
 
 eFilePushThread::eFilePushThread(int io_prio_class, int io_prio_level, int blocksize, size_t buffersize)
 	:prio_class(io_prio_class),
@@ -41,6 +41,7 @@ static void signal_handler(int x)
 
 void eFilePushThread::thread()
 {
+	int eofcount = 0;
 	setIoPrio(prio_class, prio);
 
 	size_t bytes_read = 0;
@@ -205,9 +206,16 @@ void eFilePushThread::thread()
 				sleep(1);
 				continue;
 			}
+			else if (++eofcount < 10)
+			{
+				eDebug("reached EOF, but the file may grow. delaying 1 second.");
+				sleep(1);
+				continue;
+			}
 			break;
 		} else
 		{
+			eofcount = 0;
 			m_current_position += m_buf_end;
 			bytes_read += m_buf_end;
 			if (m_sg)
@@ -215,6 +223,7 @@ void eFilePushThread::thread()
 		}
 //		printf("FILEPUSH: read %d bytes\n", m_buf_end);
 	}
+	sendEvent(evtStopped);
 	eDebug("FILEPUSH THREAD STOP");
 }
 
@@ -306,29 +315,20 @@ int eFilePushThread::filterRecordData(const unsigned char *data, int len, size_t
 
 
 
-eFilePushThreadRecorder::eFilePushThreadRecorder(int io_prio_class, int io_prio_level, int blocksize, size_t buffersize)
-	:prio_class(io_prio_class),
-	 prio(io_prio_level),
-	 m_stop(0),
-	 m_fd_source(-1),
-	 m_blocksize(blocksize),
-	 m_buffersize(buffersize),
-	 m_buffer((unsigned char*) mmap(NULL, buffersize, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, /*ignored*/-1, 0)),
-	 m_messagepump(eApp, 0)
+eFilePushThreadRecorder::eFilePushThreadRecorder(unsigned char* buffer, size_t buffersize):
+	m_fd_source(-1),
+	m_buffersize(buffersize),
+	m_buffer(buffer),
+	m_overflow_count(0),
+	m_stop(0),
+	m_messagepump(eApp, 0)
 {
-	if (m_buffer == MAP_FAILED)
-		eFatal("Failed to allocate filepush buffer, contact MiLo\n");
 	CONNECT(m_messagepump.recv_msg, eFilePushThreadRecorder::recvEvent);
-}
-
-eFilePushThreadRecorder::~eFilePushThreadRecorder()
-{
-	munmap(m_buffer, m_buffersize);
 }
 
 void eFilePushThreadRecorder::thread()
 {
-	setIoPrio(prio_class, prio);
+	setIoPrio(IOPRIO_CLASS_RT, 7);
 
 	eDebug("[eFilePushThreadRecorder] THREAD START");
 
@@ -352,6 +352,7 @@ void eFilePushThreadRecorder::thread()
 			if (errno == EOVERFLOW)
 			{
 				eWarning("[eFilePushThreadRecorder] OVERFLOW while recording");
+				++m_overflow_count;
 				continue;
 			}
 			eDebug("[eFilePushThreadRecorder] *read error* (%m) - aborting thread because i don't know what else to do.");
@@ -364,7 +365,12 @@ void eFilePushThreadRecorder::thread()
 		struct timeval now;
 		gettimeofday(&starttime, NULL);
 #endif
-		int w = writeData(m_buffer, bytes);
+		int w = writeData(bytes);
+#ifdef SHOW_WRITE_TIME
+		gettimeofday(&now, NULL);
+		suseconds_t diff = (1000000 * (now.tv_sec - starttime.tv_sec)) + now.tv_usec - starttime.tv_usec;
+		eDebug("[eFilePushThreadRecorder] write %d bytes time: %9u us", bytes, (unsigned int)diff);
+#endif
 		if (w < 0)
 		{
 			eDebug("[eFilePushThreadRecorder] WRITE ERROR, aborting thread");
@@ -372,6 +378,8 @@ void eFilePushThreadRecorder::thread()
 			break;
 		}
 	}
+	flush();
+	sendEvent(evtStopped);
 	eDebug("[eFilePushThreadRecorder] THREAD STOP");
 }
 
@@ -388,7 +396,7 @@ void eFilePushThreadRecorder::stop()
 	if (!sync())
 		return;
 	m_stop = 1;
-	eDebug("stopping thread."); /* just do it ONCE. it won't help to do this more than once. */
+	eDebug("[eFilePushThreadRecorder] stopping thread."); /* just do it ONCE. it won't help to do this more than once. */
 	sendSignal(SIGUSR1);
 	kill(0);
 }

@@ -76,7 +76,7 @@ def applySettings(mode):
 
 	else:
 		setMode = "off"
-	
+
 	try:
 		file = open("/proc/stb/fp/fan", "w")
 		file.write('%s' % setMode)
@@ -93,10 +93,15 @@ def main(session, **kwargs):
 def startup(reason, **kwargs):
 	setConfiguredSettings()
 
+def selSetup(menuid, **kwargs):
+	if menuid != "system":
+		return [ ]
+	return [(_("Fan Control"), main, "fansetup_config", 70)]
+
 def Plugins(**kwargs):
 	from os import path
-	if path.exists("/proc/stb/fp/fan"):
+	if not path.exists("/usr/lib/enigma2/python/Plugins/Extensions/FanControl2/plugin.pyo") and path.exists("/proc/stb/fp/fan"):
 		from Plugins.Plugin import PluginDescriptor
-		return [PluginDescriptor(name = "Fan Control", description = _("switch Fan On/Off"), where = PluginDescriptor.WHERE_PLUGINMENU, fnc = main),
-					PluginDescriptor(name = "Fan Control", description = "", where = PluginDescriptor.WHERE_SESSIONSTART, fnc = startup)]
+		return [PluginDescriptor(name=_("Fan Control"), description=_("switch Fan On/Off"), where = PluginDescriptor.WHERE_MENU, needsRestart = True, fnc=selSetup)
+				PluginDescriptor(name = "Fan Control", description = "", where = PluginDescriptor.WHERE_SESSIONSTART, needsRestart = True, fnc = startup)]
 	return []

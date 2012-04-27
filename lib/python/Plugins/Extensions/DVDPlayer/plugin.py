@@ -1,10 +1,18 @@
+import os
 from Components.config import config
 from Tools.Directories import pathExists, fileExists
 from Plugins.Plugin import PluginDescriptor
+from Components.Harddisk import harddiskmanager
+
+detected_DVD = None
 
 def main(session, **kwargs):
 	from Screens import DVD
 	session.open(DVD.DVDPlayer)
+
+def play(session, **kwargs):
+	from Screens import DVD
+	session.open(DVD.DVDPlayer, dvd_device=harddiskmanager.getAutofsMountpoint(harddiskmanager.getCD()))
 
 def DVDPlayer(*args, **kwargs):
 	# for backward compatibility with plugins that do "from DVDPlayer.plugin import DVDPlayer"
@@ -33,7 +41,7 @@ def filescan_open(list, session, **kwargs):
 			if x.mimetype == "video/x-dvd-iso":
 				dvd_filelist.append(x.path)
 			if x.mimetype == "video/x-dvd":
-				dvd_filelist.append(x.path.rsplit('/',1)[0])			
+				dvd_filelist.append(x.path.rsplit('/',1)[0])
 		session.open(DVD.DVDPlayer, dvd_filelist=dvd_filelist)
 
 def filescan(**kwargs):
@@ -55,7 +63,19 @@ def filescan(**kwargs):
 			name = "DVD",
 			description = _("Play DVD"),
 			openfnc = filescan_open,
-		)]		
+		)]
+
+def onPartitionChange(action, partition):
+	print "[@] onPartitionChange", action, partition
+	if partition != harddiskmanager.getCD():
+		global detected_DVD
+		if action == 'remove':
+			print "[@] DVD removed"
+			detected_DVD = False
+		elif action == 'add':
+			print "[@] DVD Inserted"
+			detected_DVD = None
+
 
 def Plugins(**kwargs):
 	return [PluginDescriptor(where = PluginDescriptor.WHERE_FILESCAN, needsRestart = False, fnc = filescan)]
