@@ -43,11 +43,15 @@ private:
 #if HAVE_DVB_API_VERSION < 3
 	m_fd_video;
 #endif
+	static int m_close_invalidates_attributes;
 	int m_is_slow_motion, m_is_fast_forward, m_is_freezed;
 	ePtr<eSocketNotifier> m_sn;
 	void video_event(int what);
 	Signal1<void, struct iTSMPEGDecoder::videoEvent> m_event;
 	int m_width, m_height, m_framerate, m_aspect, m_progressive;
+	static int readApiFrameRate(int fd, int &framerate);
+	static int readApiSize(int fd, int &xres, int &yres, int &aspect);
+	static int readMpegProc(const char *str, int decoder);
 public:
 	enum { MPEG2, MPEG4_H264, MPEG1, MPEG4_Part2, VC1, VC1_SM };
 	eDVBVideo(eDVBDemux *demux, int dev);

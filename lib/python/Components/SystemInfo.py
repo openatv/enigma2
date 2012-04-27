@@ -32,3 +32,4 @@ SystemInfo["FrontpanelDisplayGrayscale"] = fileExists("/dev/dbox/oled0")
 SystemInfo["OledDisplay"] = fileExists(resolveFilename(SCOPE_SKIN, 'skin_display_picon.xml')) or fileExists(resolveFilename(SCOPE_SKIN, 'skin_display_no_picon.xml'))
 SystemInfo["DeepstandbySupport"] = HardwareInfo().get_device_name() != "dm800"
 SystemInfo["HDMICEC"] = fileExists("/dev/hdmi_cec") and fileExists("/usr/lib/enigma2/python/Plugins/SystemPlugins/HdmiCEC/plugin.pyo")
+SystemInfo["SABSetup"] = fileExists("/etc/init.d/sabnzbd") and fileExists("/usr/lib/enigma2/python/Plugins/SystemPlugins/SABnzbd/plugin.pyo")

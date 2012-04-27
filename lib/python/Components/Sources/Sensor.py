@@ -19,7 +19,7 @@ class SensorSource(Source):
 		if self.sensorid is not None:
 			return sensors.getSensorValue(self.sensorid)
 		return None
-	
+
 	def getUnit(self):
 		return sensors.getSensorUnit(self.sensorid)
 

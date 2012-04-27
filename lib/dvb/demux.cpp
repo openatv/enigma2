@@ -4,31 +4,33 @@
 #include <errno.h>
 #include <unistd.h>
 #include <signal.h>
+#include <aio.h>
 #include <lib/base/systemsettings.h>
+#include <sys/sysinfo.h>
+#include <sys/mman.h>
 // For SYS_ stuff
 #include <syscall.h>
+
 //#define SHOW_WRITE_TIME
-#ifdef SHOW_WRITE_TIME
-#	include <sys/types.h>
-#	include <sys/stat.h>
-#	include <sys/time.h>
-#endif
-
-
-
-static int demuxSize = 8 * 188 * 1024;
-// exported to SWIG in lib/base/systemsettings.h
-int getDemuxSize(void)
+static int determineBufferCount()
 {
-	return demuxSize;
-}
-void setDemuxSize(int size)
-{
-	if ((size >= 2*188*1024) && (size <= 16*188*1024))
+	struct sysinfo si;
+	if (sysinfo(&si) != 0)
 	{
-		demuxSize = size;
+		return 6; // Default to small
 	}
+	unsigned int megabytes = si.totalram >> 20;
+	int result;
+	if (megabytes > 200)
+		result = 20; // 512MB systems: Use 4MB IO buffers (et9x00, vuultimo, ...)
+	else if (megabytes > 100)
+		result = 16; // 256MB systems: Use 3MB demux buffers (dm8000, et5x00, vuduo)
+	else
+		result = 8; // Smaller boxes: Use 1.5MB buffer (dm7025)
+	return result;
 }
+static const int demuxSize = 4*188*1024; // With the large userspace IO buffers, a 752k demux buffer is enough
+static int recordingBufferCount = determineBufferCount();
 
 static size_t flushSize = 0;
 
@@ -45,13 +47,6 @@ void setFlushSize(int size)
 		flushSize = (size_t)size;
 	}
 }
-
-// #define FUZZING 1
-
-#if FUZZING
-		/* change every 1:FUZZING_PROPABILITY byte */
-#define FUZZING_PROPABILITY 100
-#endif
 
 #if HAVE_DVB_API_VERSION < 3
 #include <ost/dmx.h>
@@ -106,9 +101,12 @@ typedef enum {
 #include <lib/dvb/decoder.h>
 #include <lib/dvb/pvrparse.h>
 
-eDVBDemux::eDVBDemux(int adapter, int demux): adapter(adapter), demux(demux)
+eDVBDemux::eDVBDemux(int adapter, int demux):
+	adapter(adapter),
+	demux(demux),
+	source(-1),
+	m_dvr_busy(0)
 {
-	m_dvr_busy = 0;
 }
 
 eDVBDemux::~eDVBDemux()
@@ -147,6 +145,7 @@ RESULT eDVBDemux::setSourceFrontend(int fenum)
 {
 #if HAVE_DVB_API_VERSION >= 3
 	int fd = openDemux();
+	if (fd < 0) return -1;
 	int n = DMX_SOURCE_FRONT0 + fenum;
 	int res = ::ioctl(fd, DMX_SET_SOURCE, &n);
 	if (res)
@@ -163,6 +162,7 @@ RESULT eDVBDemux::setSourcePVR(int pvrnum)
 {
 #if HAVE_DVB_API_VERSION >= 3
 	int fd = openDemux();
+	if (fd < 0) return -1;
 	int n = DMX_SOURCE_DVR0 + pvrnum;
 	int res = ::ioctl(fd, DMX_SET_SOURCE, &n);
 	source = -1;
@@ -190,11 +190,11 @@ RESULT eDVBDemux::createPESReader(eMainloop *context, ePtr<iDVBPESReader> &reade
 	return res;
 }
 
-RESULT eDVBDemux::createTSRecorder(ePtr<iDVBTSRecorder> &recorder, int packetsize)
+RESULT eDVBDemux::createTSRecorder(ePtr<iDVBTSRecorder> &recorder, int packetsize, bool streaming)
 {
 	if (m_dvr_busy)
 		return -EBUSY;
-	recorder = new eDVBTSRecorder(this, packetsize);
+	recorder = new eDVBTSRecorder(this, packetsize, streaming);
 	return 0;
 }
 
@@ -249,14 +249,6 @@ void eDVBSectionReader::data(int)
 	__u8 data[4096]; // max. section size
 	int r;
 	r = ::read(fd, data, 4096);
-#if FUZZING
-	int j;
-	for (j = 0; j < r; ++j)
-	{
-		if (!(rand()%FUZZING_PROPABILITY))
-			data[j] ^= rand();
-	}
-#endif	
 	if(r < 0)
 	{
 		eWarning("ERROR reading section - %m\n");
@@ -264,7 +256,7 @@ void eDVBSectionReader::data(int)
 	}
 	if (checkcrc)
 	{
-			// this check should never happen unless the driver is crappy!
+		// this check should never happen unless the driver is crappy!
 		unsigned int c;
 		if ((c = crc32((unsigned)-1, data, r)))
 		{
@@ -280,7 +272,6 @@ void eDVBSectionReader::data(int)
 
 eDVBSectionReader::eDVBSectionReader(eDVBDemux *demux, eMainloop *context, RESULT &res): demux(demux)
 {
-	char filename[128];
 	fd = demux->openDemux();
 	
 	if (fd >= 0)
@@ -290,7 +281,7 @@ eDVBSectionReader::eDVBSectionReader(eDVBDemux *demux, eMainloop *context, RESUL
 		res = 0;
 	} else
 	{
-		perror(filename);
+		perror("demux->openDemux failed");
 		res = errno;
 	}
 }
@@ -330,13 +321,11 @@ RESULT eDVBSectionReader::start(const eDVBSectionFilterMask &mask)
 #else
 	sct.flags   = DMX_IMMEDIATE_START;
 #endif
-#if !FUZZING
 	if (mask.flags & eDVBSectionFilterMask::rfCRC)
 	{
 		sct.flags |= DMX_CHECK_CRC;
 		checkcrc = 1;
 	} else
-#endif
 		checkcrc = 0;
 	
 	memcpy(sct.filter.filter, mask.data, DMX_FILTER_SIZE);
@@ -495,33 +484,76 @@ RESULT eDVBPESReader::connectRead(const Slot2<void,const __u8*,int> &r, ePtr<eCo
 class eDVBRecordFileThread: public eFilePushThreadRecorder
 {
 public:
-	eDVBRecordFileThread(int packetsize = 188);
+	eDVBRecordFileThread(int packetsize, int bufferCount);
+	~eDVBRecordFileThread();
 	void setTimingPID(int pid, int type);
 	void startSaveMetaInformation(const std::string &filename);
 	void stopSaveMetaInformation();
 	int getLastPTS(pts_t &pts);
 	void setTargetFD(int fd) { m_fd_dest = fd; }
+	void enableAccessPoints(bool enable) { m_ts_parser.enableAccessPoints(enable); }
 protected:
-	/* override */ int writeData(const unsigned char *data, int len);
-private:
+	int asyncWrite(int len);
+	/* override */ int writeData(int len);
+	/* override */ void flush();
+
+	struct AsyncIO
+	{
+		struct aiocb aio;
+		unsigned char* buffer;
+		AsyncIO()
+		{
+			memset(&aio, 0, sizeof(struct aiocb));
+			buffer = NULL;
+		}
+		int wait();
+		int start(int fd, off_t offset, size_t nbytes, void* buffer);
+		int poll(); // returns 1 if busy, 0 if ready, <0 on error return
+		int cancel(int fd); // returns <0 on error, 0 cancelled, >0 bytes written?
+	};
 	eMPEGStreamParserTS m_ts_parser;
 	off_t m_current_offset;
-	pts_t m_last_pcr; /* very approximate.. */
-	int m_pid;
 	int m_fd_dest;
 	off_t offset_last_sync;
 	size_t written_since_last_sync;
-	int m_packetsize;
+	typedef std::vector<AsyncIO> AsyncIOvector;
+	unsigned char* m_allocated_buffer;
+	AsyncIOvector m_aio;
+	AsyncIOvector::iterator m_current_buffer;
+	std::vector<int> m_buffer_use_histogram;
 };
 
-eDVBRecordFileThread::eDVBRecordFileThread(int packetsize)
-	:eFilePushThreadRecorder(IOPRIO_CLASS_RT, 7, /*blocksize*/ packetsize, /*buffersize*/ packetsize * 1024),
+eDVBRecordFileThread::eDVBRecordFileThread(int packetsize, int bufferCount):
+	eFilePushThreadRecorder(
+		/* buffer */ (unsigned char*) ::mmap(NULL, bufferCount * packetsize * 1024, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, /*ignored*/-1, 0),
+		/*buffersize*/ packetsize * 1024),
 	 m_ts_parser(packetsize),
 	 m_current_offset(0),
 	 m_fd_dest(-1),
 	 offset_last_sync(0),
-	 written_since_last_sync(0)
+	 written_since_last_sync(0),
+	 m_aio(bufferCount),
+	 m_current_buffer(m_aio.begin()),
+	 m_buffer_use_histogram(bufferCount+1, 0)
 {
+	if (m_buffer == MAP_FAILED)
+		eFatal("Failed to allocate filepush buffer, contact MiLo\n");
+	// m_buffer actually points to a data block large enough to hold ALL buffers. m_buffer will
+	// move around during writes, so we must remember where the "head" is.
+	m_allocated_buffer = m_buffer;
+	// m_buffersize is thus the size of a single buffer in the queue
+	// Initialize the buffer pointers
+	int index = 0;
+	for (AsyncIOvector::iterator it = m_aio.begin(); it != m_aio.end(); ++it)
+	{
+		it->buffer = m_allocated_buffer + (index * m_buffersize);
+		++index;
+	}
+}
+
+eDVBRecordFileThread::~eDVBRecordFileThread()
+{
+	::munmap(m_allocated_buffer, m_aio.size() * m_buffersize);
 }
 
 void eDVBRecordFileThread::setTimingPID(int pid, int type)
@@ -544,58 +576,260 @@ int eDVBRecordFileThread::getLastPTS(pts_t &pts)
 	return m_ts_parser.getLastPTS(pts);
 }
 
-int eDVBRecordFileThread::writeData(const unsigned char *data, int len)
+int eDVBRecordFileThread::AsyncIO::wait()
 {
-	m_ts_parser.parseData(m_current_offset, data, len);
-	size_t total_written = 0;
-	do
+	if (aio.aio_buf != NULL) // Only if we had a request outstanding
 	{
-		int w = ::write(m_fd_dest, data, len);
-		if (w < 0)
+		while (aio_error(&aio) == EINPROGRESS)
 		{
-			if (errno == EINTR || errno == EAGAIN || errno == EBUSY)
+			eDebug("[eDVBRecordFileThread] Waiting for I/O to complete");
+			struct aiocb* paio = &aio;
+			int r = aio_suspend(&paio, 1, NULL);
+			if (r < 0)
 			{
-				eDebug("[eFilePushThreadRecorder] interrupted write");
-			}
-			else
-			{
+				eDebug("[eDVBRecordFileThread] aio_suspend failed: %m");
 				return -1;
 			}
 		}
-		else
+		int r = aio_return(&aio);
+		aio.aio_buf = NULL;
+		if (r < 0)
 		{
-			len -= w;
-			m_current_offset += w;
-			total_written += w;
-			data += w;
+			eDebug("[eDVBRecordFileThread] wait: aio_return returned failure: %m");
+			return -1;
 		}
 	}
-	while (len != 0);
+	return 0;
+}
+
+int eDVBRecordFileThread::AsyncIO::cancel(int fd)
+{
+	int r = poll();
+	if (r <= 0)
+		return r; // Either no need to cancel, or error return
+	eDebug("[eDVBRecordFileThread] cancelling");
+	return aio_cancel(fd, &aio);
+}
+
+int eDVBRecordFileThread::AsyncIO::poll()
+{
+	if (aio.aio_buf == NULL)
+		return 0;
+	if (aio_error(&aio) == EINPROGRESS)
+	{
+		return 1;
+	}
+	int r = aio_return(&aio);
+	aio.aio_buf = NULL;
+	if (r < 0)
+	{
+		eDebug("[eDVBRecordFileThread] poll: aio_return returned failure: %m");
+		return -1;
+	}
+	return 0;
+}
+
+int eDVBRecordFileThread::AsyncIO::start(int fd, off_t offset, size_t nbytes, void* buffer)
+{
+	memset(&aio, 0, sizeof(struct aiocb)); // Documentation says "zero it before call".
+	aio.aio_fildes = fd;
+	aio.aio_nbytes = nbytes;
+	aio.aio_offset = offset;   // Offset can be omitted with O_APPEND
+	aio.aio_buf = buffer;
+	return aio_write(&aio);
+}
+
+int eDVBRecordFileThread::asyncWrite(int len)
+{
+#ifdef SHOW_WRITE_TIME
+	struct timeval starttime;
+	struct timeval now;
+	suseconds_t diff;
+	gettimeofday(&starttime, NULL);
+#endif
+
+	m_ts_parser.parseData(m_current_offset, m_buffer, len);
+
+#ifdef SHOW_WRITE_TIME
+	gettimeofday(&now, NULL);
+	diff = (1000000 * (now.tv_sec - starttime.tv_sec)) + now.tv_usec - starttime.tv_usec;
+	eDebug("[eFilePushThreadRecorder] m_ts_parser.parseData: %9u us", (unsigned int)diff);
+	gettimeofday(&starttime, NULL);
+#endif
+	
+	int r = m_current_buffer->start(m_fd_dest, m_current_offset, len, m_buffer);
+	if (r < 0)
+	{
+		eDebug("[eDVBRecordFileThread] aio_write failed: %m");
+		return r;
+	}
+	m_current_offset += len;
+
+#ifdef SHOW_WRITE_TIME
+	gettimeofday(&now, NULL);
+	diff = (1000000 * (now.tv_sec - starttime.tv_sec)) + now.tv_usec - starttime.tv_usec;
+	eDebug("[eFilePushThreadRecorder] aio_write: %9u us", (unsigned int)diff);
+#endif
+	
 	// do the flush thing if the user wanted it
 	if (flushSize != 0)
 	{
-		written_since_last_sync += total_written;
+		written_since_last_sync += len;
 		if (written_since_last_sync > flushSize)
 		{
 			int pr;
 			pr = syscall(SYS_fadvise64, m_fd_dest, offset_last_sync, 0, 0, 0, POSIX_FADV_DONTNEED);
 			if (pr != 0)
 			{
-				eDebug("[filepush] POSIX_FADV_DONTNEED returned %d", pr);
+				eDebug("[eDVBRecordFileThread] POSIX_FADV_DONTNEED returned %d", pr);
 			}
 			offset_last_sync += written_since_last_sync;
 			written_since_last_sync = 0;
 		}
 	}
+
+	// Count how many buffers are still "busy". Move backwards from current,
+	// because they can reasonably be expected to finish in that order.
+	AsyncIOvector::iterator i = m_current_buffer;
+	r = i->poll();
+	int busy_count = 0;
+	while (r > 0)
+	{
+		++busy_count;
+		if (i == m_aio.begin())
+			i = m_aio.end();
+		--i;
+		if (i == m_current_buffer)
+		{
+			eDebug("[eFilePushThreadRecorder] Warning: All write buffers busy");
+			break;
+		}
+		r = i->poll();
+		if (r < 0)
+			return r;
+	}
+	++m_buffer_use_histogram[busy_count];
+
+#ifdef SHOW_WRITE_TIME
+	gettimeofday(&starttime, NULL);
+#endif
+	
+	++m_current_buffer;
+	if (m_current_buffer == m_aio.end())
+		m_current_buffer = m_aio.begin();
+	m_buffer = m_current_buffer->buffer;
+	return len;
 }
+
+int eDVBRecordFileThread::writeData(int len)
+{
+	len = asyncWrite(len);
+	if (len < 0)
+		return len;
+	// Wait for previous aio to complete on this buffer before returning
+	int r = m_current_buffer->wait();
+	if (r < 0)
+		return -1;
+	return len;
+}
+
+void eDVBRecordFileThread::flush()
+{
+	eDebug("[eDVBRecordFileThread] waiting for aio to complete");
+	for (AsyncIOvector::iterator it = m_aio.begin(); it != m_aio.end(); ++it)
+	{
+		it->wait();
+	}
+	int bufferCount = m_aio.size();
+	eDebug("[eDVBRecordFileThread] buffer usage histogram (%d buffers of %d kB)", bufferCount, m_buffersize>>10);
+	for (int i=0; i <= bufferCount; ++i)
+	{
+		if (m_buffer_use_histogram[i] != 0) eDebug("     %2d: %6d", i, m_buffer_use_histogram[i]);
+	}
+	if (m_overflow_count)
+	{
+		eDebug("[eDVBRecordFileThread] Demux buffer overflows: %d", m_overflow_count);
+	}
+}
+
+class eDVBRecordStreamThread: public eDVBRecordFileThread
+{
+public:
+	eDVBRecordStreamThread(int packetsize):
+		eDVBRecordFileThread(packetsize, /*bufferCount*/ 4)
+	{
+	}
+protected:
+	int writeData(int len)
+	{
+		len = asyncWrite(len);
+		if (len < 0)
+			return len;
+		// Cancel aio on this buffer before returning, streams should not be held up. So we CANCEL
+		// any request that hasn't finished on the second round.
+		int r = m_current_buffer->cancel(m_fd_dest);
+		switch (r)
+		{
+			//case 0: // that's one of these two:
+			case AIO_CANCELED:
+			case AIO_ALLDONE:
+				break;
+			case AIO_NOTCANCELED:
+				eDebug("[eDVBRecordStreamThread] failed to cancel, killing all waiting IO");
+				aio_cancel(m_fd_dest, NULL);
+				// Poll all open requests, because they are all in error state now.
+				for (AsyncIOvector::iterator it = m_aio.begin(); it != m_aio.end(); ++it)
+				{
+					it->poll();
+				}
+				break;
+			case -1:
+				eDebug("[eDVBRecordStreamThread] failed: %m");
+				return r;
+		}
+		// we want to have a consistent state, so wait for completion, just to be sure
+		r = m_current_buffer->wait();
+		if (r < 0)
+		{
+			eDebug("[eDVBRecordStreamThread] wait failed: %m");
+			return -1;
+		}
+		return len;
+	}
+	void flush()
+	{
+		eDebug("[eDVBRecordStreamThread] cancelling aio");
+		switch (aio_cancel(m_fd_dest, NULL))
+		{
+			case AIO_CANCELED:
+				eDebug("[eDVBRecordStreamThread] ok");
+				break;
+			case AIO_NOTCANCELED:
+				eDebug("[eDVBRecordStreamThread] not all cancelled");
+				break;
+			case AIO_ALLDONE:
+				eDebug("[eDVBRecordStreamThread] all done");
+				break;
+			case -1:
+				eDebug("[eDVBRecordStreamThread] failed: %m");
+				break;
+			default:
+				eDebug("[eDVBRecordStreamThread] unexpected return code");
+				break;
+		}
+		// Call inherited flush to clean up the rest.
+		eDVBRecordFileThread::flush();
+	}
+};
+
 
 DEFINE_REF(eDVBTSRecorder);
 
-eDVBTSRecorder::eDVBTSRecorder(eDVBDemux *demux, int packetsize):
+eDVBTSRecorder::eDVBTSRecorder(eDVBDemux *demux, int packetsize, bool streaming):
 	m_demux(demux),
 	m_running(0),
 	m_target_fd(-1),
-	m_thread(new eDVBRecordFileThread(packetsize)),
+	m_thread(streaming ? new eDVBRecordStreamThread(packetsize) : new eDVBRecordFileThread(packetsize, recordingBufferCount)),
 	m_packetsize(packetsize)
 {
 	CONNECT(m_thread->m_event, eDVBTSRecorder::filepushEvent);
@@ -658,6 +892,7 @@ RESULT eDVBTSRecorder::start()
 			size /= 188;
 			size *= m_packetsize;
 		}
+		eDebug("Demux size: %d", size);
 		setBufferSize(size);
 	}
 
@@ -750,6 +985,12 @@ RESULT eDVBTSRecorder::setTargetFilename(const std::string& filename)
 	return 0;
 }
 
+RESULT eDVBTSRecorder::enableAccessPoints(bool enable)
+{
+	m_thread->enableAccessPoints(enable);
+	return 0;
+}
+
 RESULT eDVBTSRecorder::setBoundary(off_t max)
 {
 	return -1; // not yet implemented
@@ -767,24 +1008,33 @@ RESULT eDVBTSRecorder::stop()
 
 #if HAVE_DVB_API_VERSION >= 5
 	/* workaround for record thread stop */
-	if (::ioctl(m_source_fd, DMX_STOP) < 0)
-		perror("DMX_STOP");
-	else
-		state &= ~1;
+	if (m_source_fd >= 0)
+	{
+		if (::ioctl(m_source_fd, DMX_STOP) < 0)
+			perror("DMX_STOP");
+		else
+			state &= ~1;
 
-	if (::close(m_source_fd) < 0)
-		perror("close");
-	else
-		state &= ~2;
+		if (::close(m_source_fd) < 0)
+			perror("close");
+		else
+			state &= ~2;
+		m_source_fd = -1;
+	}
 #endif
 
 	m_thread->stop();
 
 	if (state & 3)
-		::close(m_source_fd);
+	{
+		if (m_source_fd >= 0)
+		{
+			::close(m_source_fd);
+			m_source_fd = -1;
+		}
+	}
 
 	m_running = 0;
-	m_source_fd = -1;
 
 	m_thread->stopSaveMetaInformation();
 	return 0;

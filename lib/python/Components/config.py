@@ -383,7 +383,7 @@ class ConfigSelection(ConfigElement):
 # several customized versions exist for different
 # descriptions.
 #
-boolean_descriptions = {False: "false", True: "true"}
+boolean_descriptions = {False: _("false"), True: _("true")}
 class ConfigBoolean(ConfigElement):
 	def __init__(self, default = False, descriptions = boolean_descriptions):
 		ConfigElement.__init__(self)
@@ -1042,7 +1042,7 @@ class ConfigSelectionNumber(ConfigSelection):
 		while step <= max:
 			choices.append(str(step))
 			step += stepwidth
-		
+
 		ConfigSelection.__init__(self, choices, default)
 
 	def getValue(self):
@@ -1635,21 +1635,21 @@ class Config(ConfigSubsection):
 
 	def unpickle(self, lines, base_file=True):
 		tree = { }
+		configbase = tree.setdefault("config", {})
 		for l in lines:
 			if not l or l[0] == '#':
 				continue
 
-			n = l.find('=')
-			name = l[:n]
-			val = l[n+1:].strip()
+			result = l.split('=', 1)
+			if len(result) != 2:
+				continue
+			(name, val) = result
+			val = val.strip()
 
 			names = name.split('.')
-#			if val.find(' ') != -1:
-#				val = val[:val.find(' ')]
+			base = configbase
 
-			base = tree
-
-			for n in names[:-1]:
+			for n in names[1:-1]:
 				base = base.setdefault(n, {})
 
 			base[names[-1]] = val

@@ -49,8 +49,8 @@ void eGTable::timeout()
 	tableReady(error);
 }
 
-eGTable::eGTable(bool debug):
-		m_debug(debug), error(0)
+eGTable::eGTable():
+	error(0)
 {
 }
 

@@ -43,14 +43,14 @@ class IpkgComponent:
 	EVENT_DONE = 10
 	EVENT_ERROR = 11
 	EVENT_MODIFIED = 12
-	
+
 	CMD_INSTALL = 0
 	CMD_LIST = 1
 	CMD_REMOVE = 2
 	CMD_UPDATE = 3
 	CMD_UPGRADE = 4
 	CMD_UPGRADE_LIST = 5
-	
+
 	def __init__(self, ipkg = 'opkg'):
 		self.ipkg = ipkg
 		self.cmd = eConsoleAppContainer()
@@ -60,7 +60,7 @@ class IpkgComponent:
 
 	def setCurrentCommand(self, command = None):
 		self.currentCommand = command
-		
+
 	def runCmdEx(self, cmd):
 	        self.runCmd(opkgExtraDestinations() + ' ' + cmd)
 
@@ -93,14 +93,14 @@ class IpkgComponent:
 			self.fetchedList = []
 			self.runCmd("list-upgradable")
 		self.setCurrentCommand(cmd)
-	
+
 	def cmdFinished(self, retval):
 		self.callCallbacks(self.EVENT_DONE)
 		self.cmd.appClosed.remove(self.cmdFinished)
 		self.cmd.dataAvail.remove(self.cmdData)
 
 	def cmdData(self, data):
-		print "data:", data
+# 		print "data:", data
 		if self.cache is None:
 			self.cache = data
 		else:
@@ -117,7 +117,7 @@ class IpkgComponent:
 			for mydata in iteration:
 				if mydata != '':
 					self.parseLine(mydata)
-		
+
 	def parseLine(self, data):
 		if self.currentCommand in (self.CMD_LIST, self.CMD_UPGRADE_LIST):
 			item = data.split(' - ', 2)
@@ -156,13 +156,13 @@ class IpkgComponent:
 
 	def addCallback(self, callback):
 		self.callbackList.append(callback)
-		
+
 	def getFetchedList(self):
 		return self.fetchedList
-	
+
 	def stop(self):
 		self.cmd.kill()
-		
+
 	def isRunning(self):
 		return self.cmd.running()
 

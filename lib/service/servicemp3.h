@@ -47,9 +47,9 @@ public:
 
 typedef struct _GstElement GstElement;
 
-typedef enum { atUnknown, atMPEG, atMP3, atAC3, atDTS, atAAC, atPCM, atOGG, atFLAC } audiotype_t;
+typedef enum { atUnknown, atMPEG, atMP3, atAC3, atDTS, atAAC, atPCM, atOGG, atFLAC, atWMA } audiotype_t;
 typedef enum { stUnknown, stPlainText, stSSA, stASS, stSRT, stVOB, stPGS } subtype_t;
-typedef enum { ctNone, ctMPEGTS, ctMPEGPS, ctMKV, ctAVI, ctMP4, ctVCD, ctCDA } containertype_t;
+typedef enum { ctNone, ctMPEGTS, ctMPEGPS, ctMKV, ctAVI, ctMP4, ctVCD, ctCDA, ctASF } containertype_t;
 
 class eServiceMP3: public iPlayableService, public iPauseableService,
 	public iServiceInformation, public iSeekableService, public iAudioTrackSelection, public iAudioChannelSelection, 
@@ -186,6 +186,7 @@ private:
 	static int ac3_delay;
 	int m_currentAudioStream;
 	int m_currentSubtitleStream;
+	int m_cachedSubtitleStream;
 	int selectAudioStream(int i);
 	std::vector<audioStream> m_audioStreams;
 	std::vector<subtitleStream> m_subtitleStreams;
@@ -194,6 +195,8 @@ private:
 	friend class eServiceFactoryMP3;
 	eServiceReference m_ref;
 	int m_buffer_size;
+	gint64 m_buffer_duration;
+	bool m_use_prefillbuffer;
 	bufferInfo m_bufferInfo;
 	errorInfo m_errorInfo;
 	eServiceMP3(eServiceReference ref);
@@ -203,7 +206,7 @@ private:
 		stIdle, stRunning, stStopped,
 	};
 	int m_state;
-	GstElement *m_gst_playbin;
+	GstElement *m_gst_playbin, *audioSink, *videoSink;
 	GstTagList *m_stream_tags;
 
 	class GstMessageContainer: public iObject
@@ -245,6 +248,7 @@ private:
 	GstPad* gstCreateSubtitleSink(eServiceMP3* _this, subtype_t type);
 	void gstPoll(ePtr<GstMessageContainer> const &);
 	static void gstHTTPSourceSetAgent(GObject *source, GParamSpec *unused, gpointer user_data);
+	static gint match_sinktype(GstElement *element, gpointer type);
 
 	struct SubtitlePage
 	{

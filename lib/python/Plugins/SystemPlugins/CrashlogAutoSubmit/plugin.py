@@ -176,7 +176,7 @@ class CrashlogAutoSubmitConfiguration(Screen, ConfigListScreen):
 			self.enableVKeyIcon()
 			self.showKeypad()
 		elif current == self.AnonCrashlogEntry:
-			self["status"].setText(_("Adds enigma2 settings and dreambox model informations like SN, rev... if enabled."))
+			self["status"].setText(_("Adds enigma2 settings and STB_BOX informations like SN, rev... if enabled."))
 			self.disableVKeyIcon()
 		elif current == self.NetworkEntry:
 			self["status"].setText(_("Adds network configuration if enabled."))
@@ -380,7 +380,7 @@ def autostart(reason, **kwargs):
 	try:
 		device = open("/proc/stb/info/model", "r").readline().strip()
 	except:
-		device = ""	
+		device = ""
 	if "session" in kwargs:
 			try:
 				startMailer(kwargs["session"])

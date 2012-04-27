@@ -6,4 +6,5 @@ class FactoryReset(MessageBox):
 			"(including bouquets, services, satellite data ...)\n"
 			"After completion of factory reset, your receiver will restart automatically!\n\n"
 			"Really do a factory reset?"), MessageBox.TYPE_YESNO)
+		self.setTitle(_("Factory reset"))
 		self.skinName = "MessageBox"

@@ -1,4 +1,3 @@
-
 notifications = [ ]
 
 notificationAdded = [ ]
@@ -7,6 +6,8 @@ notificationAdded = [ ]
 current_notifications = [ ]
 
 def __AddNotification(fnc, screen, id, *args, **kwargs):
+	if ".MessageBox'>" in `screen`:
+		kwargs["simple"] = True
 	notifications.append((fnc, screen, args, kwargs, id))
 	for x in notificationAdded:
 		x()

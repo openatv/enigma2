@@ -954,9 +954,8 @@ void eServiceDVD::loadCuesheet()
 			return;
 		if (!fread(&what, sizeof(what), 1, f))
 			return;
-#if BYTE_ORDER == LITTLE_ENDIAN
-		where = bswap_64(where);
-#endif
+
+		where = be64toh(where);
 		what = ntohl(what);
 
 		if (!fread(&m_resume_info, sizeof(struct ddvd_resume), 1, f))
@@ -1039,11 +1038,7 @@ void eServiceDVD::saveCuesheet()
 		unsigned long long where;
 		int what;
 
-#if BYTE_ORDER == BIG_ENDIAN
-		where = m_cue_pts;
-#else
-		where = bswap_64(m_cue_pts);
-#endif
+		where = htobe64(m_cue_pts);
 		what = htonl(3);
 		fwrite(&where, sizeof(where), 1, f);
 		fwrite(&what, sizeof(what), 1, f);

@@ -29,12 +29,12 @@ class ServiceList(Source):
 		assert isinstance(root, eServiceReference)
 		self.__root = root
 		self.changed()
-		
+
 	root = property(getRoot, setRoot)
 
 	def handleCommand(self, cmd):
 		print "ServiceList handle command"
-		
+
 		if self.validate_commands and not self.validateReference(cmd):
 			print "Service reference did not validate!"
 			return

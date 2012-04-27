@@ -80,6 +80,7 @@ class FastScanStatus(Screen):
 
 	def __init__(self, session, scanTuner = 0, scanPid = 900, keepNumbers = False, keepSettings = False, providerName = 'Favorites'):
 		Screen.__init__(self, session)
+		self.setTitle(_("Fast Scan"))
 		self.scanPid = scanPid
 		self.scanTuner = scanTuner
 		self.keepNumbers = keepNumbers
@@ -93,7 +94,7 @@ class FastScanStatus(Screen):
 		self.prevservice = self.session.nav.getCurrentlyPlayingServiceReference()
 		self.session.nav.stopService()
 
-		self["actions"] = ActionMap(["OkCancelActions"], 
+		self["actions"] = ActionMap(["OkCancelActions"],
 			{
 				"ok": self.ok,
 				"cancel": self.cancel
@@ -112,7 +113,7 @@ class FastScanStatus(Screen):
 		if self["scan"].isDone():
 			self.restoreService()
 			self.close()
-	
+
 	def cancel(self):
 		self.restoreService()
 		self.close()
@@ -126,6 +127,7 @@ class FastScanScreen(ConfigListScreen, Screen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
+		self.setTitle(_("Fast Scan"))
 
 		self["actions"] = ActionMap(["SetupActions", "MenuActions"],
 		{
@@ -182,8 +184,6 @@ class FastScanScreen(ConfigListScreen, Screen):
 		self["config"].l.setList(self.list)
 
 		self.finished_cb = None
-
-		ConfigListScreen.__init__(self, self.list)
 
 		self["introduction"] = Label(_("Select your provider, and press OK to start the scan"))
 

@@ -24,8 +24,8 @@ class HdmiCECSetupScreen(Screen, ConfigListScreen):
 	</screen>"""
 
 	def __init__(self, session):
-		self.skin = HdmiCECSetupScreen.skin
 		Screen.__init__(self, session)
+		Screen.setTitle(self, _("HDMI CEC Setup"))
 
 		from Components.ActionMap import ActionMap
 		from Components.Button import Button
@@ -62,8 +62,8 @@ class HdmiCECSetupScreen(Screen, ConfigListScreen):
 		self.list.append(getConfigListEntry(_("Handle wakeup from TV"), config.hdmicec.handle_tv_wakeup))
 		self.list.append(getConfigListEntry(_("Wakeup signal from TV"), config.hdmicec.tv_wakeup_detection))
 		self.list.append(getConfigListEntry(_("Forward volume keys"), config.hdmicec.volume_forwarding))
-		self.list.append(getConfigListEntry(_("Put receiver in standby"), config.hdmicec.control_receiver_standby)) 
-		self.list.append(getConfigListEntry(_("Wakeup receiver from standby"), config.hdmicec.control_receiver_wakeup)) 
+		self.list.append(getConfigListEntry(_("Put receiver in standby"), config.hdmicec.control_receiver_standby))
+		self.list.append(getConfigListEntry(_("Wakeup receiver from standby"), config.hdmicec.control_receiver_wakeup))
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
 

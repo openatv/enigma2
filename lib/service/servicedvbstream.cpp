@@ -139,7 +139,7 @@ int eDVBServiceStream::doRecord()
 			eDebug("eDVBServiceStream - NO DEMUX available");
 			return -1;
 		}
-		demux->createTSRecorder(m_record);
+		demux->createTSRecorder(m_record, /*packetsize*/ 188, /*streaming*/ true);
 		if (!m_record)
 		{
 			eDebug("eDVBServiceStream - no ts recorder available.");
@@ -251,6 +251,9 @@ int eDVBServiceStream::doRecord()
 		{
 			pids_to_record.insert(0x12);
 		}
+
+		/* include TDT pid, really low bandwidth, should not hurt anyone */
+		pids_to_record.insert(0x14);
 
 			/* find out which pids are NEW and which pids are obsolete.. */
 		std::set<int> new_pids, obsolete_pids;

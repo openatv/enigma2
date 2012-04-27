@@ -5,7 +5,7 @@ class List(Source, object):
 	"""The datasource of a listbox. Currently, the format depends on the used converter. So
 if you put a simple string list in here, you need to use a StringList converter, if you are
 using a "multi content list styled"-list, you need to use the StaticMultiList converter, and
-setup the "fonts". 
+setup the "fonts".
 
 This has been done so another converter could convert the list to a different format, for example
 to generate HTML."""
@@ -69,7 +69,7 @@ to generate HTML."""
 	setCurrentIndex = setIndex
 
 	index = property(getIndex, setIndex)
-	
+
 	def selectNext(self):
 		if self.getIndex() + 1 >= self.count():
 			if self.enableWrapAround:

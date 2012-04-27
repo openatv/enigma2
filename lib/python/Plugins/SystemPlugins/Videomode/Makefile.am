@@ -13,7 +13,6 @@ dist_install_DATA = \
 	lcd_DVI.png \
 	lcd_Scart.png \
 	lcd_YPbPr.png \
-	LICENSE \
 	Scart.png \
 	videowizard.xml \
 	YPbPr.png \

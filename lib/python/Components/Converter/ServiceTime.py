@@ -22,7 +22,7 @@ class ServiceTime(Converter, object):
 	def getTime(self):
 		service = self.source.service
 		info = self.source.info
-		
+
 		if not info or not service:
 			return None
 

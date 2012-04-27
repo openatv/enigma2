@@ -50,13 +50,13 @@ class TitleList(Screen, HelpableScreen):
 			<widget source="space_label_single" render="Label" position="10,449" size="270,22" zPosition="3" font="Regular;18" halign="center" transparent="1" foregroundColor="#000000" />
 			<widget source="space_bar_dual" render="Progress" position="10,446" size="540,24" borderWidth="1" backgroundColor="#254f7497" />
 			<widget source="space_label_dual" render="Label" position="10,449" size="540,22" zPosition="2" font="Regular;18" halign="center" transparent="1" foregroundColor="#000000" />
-			
+
 		</screen>"""
 
 	def __init__(self, session, project = None):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
-		
+
 		self["titleactions"] = HelpableActionMap(self, "DVDTitleList",
 			{
 				"addTitle": (self.addTitle, _("Add a new title"), _("Add title")),
@@ -138,7 +138,7 @@ class TitleList(Screen, HelpableScreen):
 		job_manager.in_background = False
 		self.session.openWithCallback(self.JobViewCB, JobView, self.backgroundJob)
 		self.backgroundJob = None
-	
+
 	def titleProperties(self):
 		if self.getCurrentTitle():
 			self.session.openWithCallback(self.updateTitleList, TitleProperties.TitleProperties, self, self.project, self["titles"].getIndex())
@@ -215,7 +215,7 @@ class TitleList(Screen, HelpableScreen):
 		if source is None:
 			return None
 		if not source.getPath().endswith(".ts"):
-			self.session.open(MessageBox,text = _("You can only burn Dreambox recordings!"), type = MessageBox.TYPE_ERROR)
+			self.session.open(MessageBox,text = _("You can only burn STB_BOX recordings!"), type = MessageBox.TYPE_ERROR)
 			return None
 		t = self.project.addService(source)
 		try:
@@ -227,7 +227,7 @@ class TitleList(Screen, HelpableScreen):
 	def removeCurrentTitle(self):
 		title = self.getCurrentTitle()
 		self.removeTitle(title)
-	
+
 	def removeTitle(self, title):
 		if title is not None:
 			self.project.titles.remove(title)
@@ -353,7 +353,7 @@ class TitleList(Screen, HelpableScreen):
 		t = self.current_edit_title
 		t.titleEditDone(cutlist)
 		if t.VideoType != 0:
-			self.session.openWithCallback(self.DVDformatCB,MessageBox,text = _("The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to create a Dreambox format data DVD (which will not play in stand-alone DVD players) instead?"), type = MessageBox.TYPE_YESNO)
+			self.session.openWithCallback(self.DVDformatCB,MessageBox,text = _("The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to create a STB_BOX format data DVD (which will not play in stand-alone DVD players) instead?"), type = MessageBox.TYPE_YESNO)
 		else:
 			self.updateTitleList()
 

@@ -94,7 +94,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 
 #################################################################
 
-	def __init__(self, serviceref, begin, end, name, description, eit, disabled = False, justplay = False, afterEvent = AFTEREVENT.AUTO, checkOldTimers = False, dirname = None, tags = None):
+	def __init__(self, serviceref, begin, end, name, description, eit, disabled = False, justplay = False, afterEvent = AFTEREVENT.AUTO, checkOldTimers = False, dirname = None, tags = None, descramble = True, record_ecm = False):
 		timer.TimerEntry.__init__(self, int(begin), int(end))
 		if checkOldTimers == True:
 			if self.begin < time() - 1209600:
@@ -124,29 +124,38 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		self.autoincrease = False
 		self.autoincreasetime = 3600 * 24 # 1 day
 		self.tags = tags or []
+		self.descramble = descramble
+		self.record_ecm = record_ecm
 
 		self.log_entries = []
 		self.resetState()
-	
+
+	def __repr__(self):
+		return "RecordTimerEntry(name=%s, begin=%s, serviceref=%s, justplay=%s)" % (self.name, ctime(self.begin), self.service_ref, self.justplay)
+
 	def log(self, code, msg):
 		self.log_entries.append((int(time()), code, msg))
 		print "[TIMER]", msg
 
 	def freespace(self):
-		if not self.dirname or not Directories.fileExists(self.dirname, 'w'):
-			if self.dirname:
-				self.dirnameHadToFallback = True
-			dirname = defaultMoviePath()
-		else:
-			dirname = self.dirname
-		import os
-		s = os.statvfs(dirname)
-		if (s.f_bavail * s.f_bsize) / 1000000 < 1024:
-			self.log(0, "Not enough free space to record")
+		try:
+			if not self.dirname or not Directories.fileExists(self.dirname, 'w'):
+				if self.dirname:
+					self.dirnameHadToFallback = True
+				dirname = defaultMoviePath()
+			else:
+				dirname = self.dirname
+			import os
+			s = os.statvfs(dirname)
+			if (s.f_bavail * s.f_bsize) / 1000000 < 1024:
+				self.log(0, "Not enough free space to record")
+				return False
+			else:
+				self.log(0, "Found enough free space to record")
+				return True
+		except:
+			self.log(0, "failed to find mount to check for free space.")
 			return False
-		else:
-			self.log(0, "Found enough free space to record")
-			return True
 
 	def calculateFilename(self):
 		service_name = self.service_ref.getServiceName()
@@ -219,7 +228,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				if event_id is None:
 					event_id = -1
 
-			prep_res=self.record_service.prepare(self.Filename + ".ts", self.begin, self.end, event_id, self.name.replace("\n", ""), self.description.replace("\n", ""), ' '.join(self.tags))
+			prep_res=self.record_service.prepare(self.Filename + ".ts", self.begin, self.end, event_id, self.name.replace("\n", ""), self.description.replace("\n", ""), ' '.join(self.tags), self.descramble, self.record_ecm)
 			if prep_res:
 				if prep_res == -255:
 					self.log(4, "failed to write meta information")
@@ -336,13 +345,13 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				self.record_service = None
 			if self.afterEvent == AFTEREVENT.STANDBY:
 				if not Screens.Standby.inStandby: # not already in standby
-					Notifications.AddNotificationWithCallback(self.sendStandbyNotification, MessageBox, _("A finished record timer wants to set your\nDreambox to standby. Do that now?"), timeout = 20)
+					Notifications.AddNotificationWithCallback(self.sendStandbyNotification, MessageBox, _("A finished record timer wants to set your\nSTB_BOX to standby. Do that now?"), timeout = 20)
 			elif self.afterEvent == AFTEREVENT.DEEPSTANDBY:
 				if not Screens.Standby.inTryQuitMainloop: # not a shutdown messagebox is open
 					if Screens.Standby.inStandby: # in standby
 						RecordTimerEntry.TryQuitMainloop() # start shutdown handling without screen
 					else:
-						Notifications.AddNotificationWithCallback(self.sendTryQuitMainloopNotification, MessageBox, _("A finished record timer wants to shut down\nyour Dreambox. Shutdown now?"), timeout = 20)
+						Notifications.AddNotificationWithCallback(self.sendTryQuitMainloopNotification, MessageBox, _("A finished record timer wants to shut down\nyour STB_BOX. Shutdown now?"), timeout = 20)
 			return True
 
 	def setAutoincreaseEnd(self, entry = None):
@@ -375,7 +384,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			Notifications.AddNotification(Screens.Standby.TryQuitMainloop, 1)
 
 	def getNextActivation(self):
-		if self.state == self.StateEnded:
+		if self.state == self.StateEnded or self.state == self.StateFailed:
 			return self.end
 		
 		next_state = self.state + 1
@@ -416,11 +425,14 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			# TODO: this has to be done.
 		elif event == iRecordableService.evStart:
 			text = _("A recording has been started:\n%s") % self.name
+			notify = config.usage.show_message_when_recording_starts.value and not Screens.Standby.inStandby
 			if self.dirnameHadToFallback:
 				text = '\n'.join((text, _("Please note that the previously selected media could not be accessed and therefore the default directory is being used instead.")))
-
-			if config.usage.show_message_when_recording_starts.value:
+				notify = True
+			if notify:
 				Notifications.AddPopup(text = text, type = MessageBox.TYPE_INFO, timeout = 3)
+		elif event == iRecordableService.evRecordAborted:
+			NavigationInstance.instance.RecordTimer.removeEntry(self)
 
 	# we have record_service as property to automatically subscribe to record service events
 	def setRecordService(self, service):
@@ -466,10 +478,12 @@ def createTimer(xml):
 		tags = tags.encode("utf-8").split(' ')
 	else:
 		tags = None
+	descramble = int(xml.get("descramble") or "1")
+	record_ecm = int(xml.get("record_ecm") or "0")
 
 	name = xml.get("name").encode("utf-8")
 	#filename = xml.get("filename").encode("utf-8")
-	entry = RecordTimerEntry(serviceref, begin, end, name, description, eit, disabled, justplay, afterevent, dirname = location, tags = tags)
+	entry = RecordTimerEntry(serviceref, begin, end, name, description, eit, disabled, justplay, afterevent, dirname = location, tags = tags, descramble = descramble, record_ecm = record_ecm)
 	entry.repeated = int(repeated)
 	
 	for l in xml.findall("log"):
@@ -636,6 +650,8 @@ class RecordTimer(timer.Timer):
 				list.append(' tags="' + str(stringToXML(' '.join(timer.tags))) + '"')
 			list.append(' disabled="' + str(int(timer.disabled)) + '"')
 			list.append(' justplay="' + str(int(timer.justplay)) + '"')
+			list.append(' descramble="' + str(int(timer.descramble)) + '"')
+			list.append(' record_ecm="' + str(int(timer.record_ecm)) + '"')
 			list.append('>\n')
 			
 			if config.recording.debug.value:

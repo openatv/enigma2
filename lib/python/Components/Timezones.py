@@ -1,41 +1,28 @@
-from xml.sax import make_parser
-from xml.sax.handler import ContentHandler
+import xml.etree.cElementTree
 
 from os import environ, unlink, symlink
 import time
 
 class Timezones:
-	class parseTimezones(ContentHandler):
-		def __init__(self, timezones):
-			self.isPointsElement, self.isReboundsElement = 0, 0
-			self.timezones = timezones
-	
-		def startElement(self, name, attrs):
-			if (name == "zone"):
-				self.timezones.append((attrs.get('name',""), attrs.get('zone',"")))
-	
 	def __init__(self):
 		self.timezones = []
-		
 		self.readTimezonesFromFile()
 
 	def readTimezonesFromFile(self):
-		parser = make_parser()
-		
 		try:
-			timezonesHandler = self.parseTimezones(self.timezones)
-			parser.setContentHandler(timezonesHandler)
-			parser.parse('/etc/timezone.xml')
+			root = xml.etree.cElementTree.parse('/etc/timezone.xml').getroot()
+			for zone in root.findall("zone"):
+				self.timezones.append((zone.get('name',""), zone.get('zone',"")))
 		except:
 			pass
-		
+
 		if len(self.timezones) == 0:
 			self.timezones = [("UTC", "UTC")]
-		
+
 	def activateTimezone(self, index):
 		if len(self.timezones) <= index:
 			return
-		
+
 		environ['TZ'] = self.timezones[index][1]
 		try:
 			unlink("/etc/localtime")
@@ -50,7 +37,7 @@ class Timezones:
 		except:
 			from enigma import e_tzset
 			e_tzset()
-		
+
 	def getTimezoneList(self):
 		return [ str(x[0]) for x in self.timezones ]
 

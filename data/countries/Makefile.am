@@ -12,9 +12,12 @@ dist_install_DATA = \
 	ee.png \
 	fi.png \
 	fr.png \
+	gb.png \
 	gr.png \
 	hr.png \
 	hu.png \
+	il.png \
+	ir.png \
 	is.png \
 	it.png \
 	lt.png \

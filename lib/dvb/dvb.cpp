@@ -699,7 +699,7 @@ RESULT eDVBResourceManager::allocateRawChannel(eUsePtr<iDVBChannel> &channel, in
 }
 
 
-RESULT eDVBResourceManager::allocatePVRChannel(eUsePtr<iDVBPVRChannel> &channel)
+RESULT eDVBResourceManager::allocatePVRChannel(const eDVBChannelID &channelid, eUsePtr<iDVBPVRChannel> &channel)
 {
 	ePtr<eDVBAllocatedDemux> demux;
 
@@ -710,48 +710,62 @@ RESULT eDVBResourceManager::allocatePVRChannel(eUsePtr<iDVBPVRChannel> &channel)
 		m_releaseCachedChannelTimer->stop();
 	}
 
-	channel = new eDVBChannel(this, 0);
+	ePtr<eDVBChannel> ch = new eDVBChannel(this, 0);
+	if (channelid)
+	{
+		/* 
+		 * user provided a channelid, with the clear intention for 
+		 * this channel to be registered at the resource manager.
+		 * (allowing e.g. epgcache to be started) 
+		 */
+		ePtr<iDVBFrontendParameters> feparm;
+		ch->setChannel(channelid, feparm);
+	}
+	channel = ch;
 	return 0;
 }
 
 RESULT eDVBResourceManager::addChannel(const eDVBChannelID &chid, eDVBChannel *ch)
 {
+	bool simulate = false;
 	ePtr<iDVBFrontend> fe;
 	if (!ch->getFrontend(fe))
 	{
 		eDVBFrontend *frontend = (eDVBFrontend*)&(*fe);
-		if (frontend->is_simulate())
-			m_active_simulate_channels.push_back(active_channel(chid, ch));
-		else
-		{
-			m_active_channels.push_back(active_channel(chid, ch));
-			/* emit */ m_channelAdded(ch);
-		}
+		simulate = frontend->is_simulate();
+	}
+	std::list<active_channel> &active_channels = simulate ? m_active_simulate_channels : m_active_channels;
+	active_channels.push_back(active_channel(chid, ch));
+	if (!simulate) 
+	{
+		/* emit */ m_channelAdded(ch);
 	}
 	return 0;
 }
 
 RESULT eDVBResourceManager::removeChannel(eDVBChannel *ch)
 {
+	bool simulate = false;
 	ePtr<iDVBFrontend> fe;
 	if (!ch->getFrontend(fe))
 	{
 		eDVBFrontend *frontend = (eDVBFrontend*)&(*fe);
-		std::list<active_channel> &active_channels = frontend->is_simulate() ? m_active_simulate_channels : m_active_channels;
-		int cnt = 0;
-		for (std::list<active_channel>::iterator i(active_channels.begin()); i != active_channels.end();)
-		{
-			if (i->m_channel == ch)
-			{
-				i = active_channels.erase(i);
-				++cnt;
-			} else
-				++i;
-		}
-		ASSERT(cnt == 1);
-		if (cnt == 1)
-			return 0;
+		simulate = frontend->is_simulate();
 	}
+	std::list<active_channel> &active_channels = simulate ? m_active_simulate_channels : m_active_channels;
+	int cnt = 0;
+	for (std::list<active_channel>::iterator i(active_channels.begin()); i != active_channels.end();)
+	{
+		if (i->m_channel == ch)
+		{
+			i = active_channels.erase(i);
+			++cnt;
+		} else
+			++i;
+	}
+	ASSERT(cnt == 1);
+	if (cnt == 1)
+		return 0;
 	return -ENOENT;
 }
 
@@ -933,22 +947,48 @@ public:
 		m_iframe_state(0),
 		m_pid(0),
 		m_timebase_change(0),
-		m_packet_size(packetsize)
+		m_packet_size(packetsize),
+		m_parity_switch_delay(0),
+		m_parity(-1)
 	{}
 	void setIFrameSearch(int enabled) { m_iframe_search = enabled; m_iframe_state = 0; }
 
 			/* "timebase change" is for doing trickmode playback at an exact speed, even when pictures are skipped. */
 			/* you need to set it to 1/16 if you want 16x playback, for example. you need video master sync. */
 	void setTimebaseChange(int ratio) { m_timebase_change = ratio; } /* 16bit fixpoint, 0 for disable */
+	void setParitySwitchDelay(int msdelay) { m_parity_switch_delay = msdelay; }
 protected:
 	int m_iframe_search, m_iframe_state, m_pid;
 	int m_timebase_change;
 	int m_packet_size;
+	int m_parity_switch_delay;
+	int m_parity;
 	int filterRecordData(const unsigned char *data, int len, size_t &current_span_remaining);
 };
 
 int eDVBChannelFilePush::filterRecordData(const unsigned char *_data, int len, size_t &current_span_remaining)
 {
+	if (m_parity_switch_delay)
+	{
+		int offset;
+		for (offset = 0; offset < len; offset += m_packet_size)
+		{
+			unsigned char *pkt = (unsigned char*)_data + offset + m_packet_size - 188;
+			if (pkt[3] & 0xc0)
+			{
+				int parity = (pkt[3] & 0x40) ? 1 : 0;
+				if (parity != m_parity)
+				{
+					if (m_parity >= 0)
+					{
+						usleep(m_parity_switch_delay * 1000);
+					}
+					m_parity = parity;
+					break;
+				}
+			}
+		}
+	}
 #if 0
 	if (m_timebase_change)
 	{
@@ -1206,6 +1246,10 @@ void eDVBChannel::pvrEvent(int event)
 		eDebug("SOF");
 		m_event(this, evtSOF);
 		break;
+	case eFilePushThread::evtStopped:
+		eDebug("eDVBChannel: pvrEvent evtStopped");
+		m_event(this, evtStopped);
+		break;
 	}
 }
 
@@ -1229,7 +1273,9 @@ void eDVBChannel::cueSheetEvent(int event)
 			eRdLocker l(m_cue->m_lock);
 			if (m_cue->m_skipmode_ratio)
 			{
+				m_tstools_lock.lock();
 				int bitrate = m_tstools.calcBitrate(); /* in bits/s */
+				m_tstools_lock.unlock();
 				eDebug("skipmode ratio is %lld:90000, bitrate is %d bit/s", m_cue->m_skipmode_ratio, bitrate);
 						/* i agree that this might look a bit like black magic. */
 				m_skipmode_n = 512*1024; /* must be 1 iframe at least. */
@@ -1270,7 +1316,10 @@ void eDVBChannel::cueSheetEvent(int event)
 		{
 			off_t offset_in, offset_out;
 			pts_t pts_in = i->first, pts_out = i->second;
-			if (m_tstools.getOffset(offset_in, pts_in, -1) || m_tstools.getOffset(offset_out, pts_out, 1))
+			m_tstools_lock.lock();
+			bool r = m_tstools.getOffset(offset_in, pts_in, -1) || m_tstools.getOffset(offset_out, pts_out, 1);
+			m_tstools_lock.unlock();
+			if (r)
 			{
 				eDebug("span translation failed.\n");
 				continue;
@@ -1327,7 +1376,10 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 		size_t iframe_len;
 		off_t iframe_start = current_offset;
 		int frames_skipped = frames_to_skip;
-		if (!m_tstools.findNextPicture(iframe_start, iframe_len, frames_skipped))
+		m_tstools_lock.lock();
+		int r = m_tstools.findNextPicture(iframe_start, iframe_len, frames_skipped);
+		m_tstools_lock.unlock();
+		if (!r)
 		{
 			m_skipmode_frames_remainder = frames_to_skip - frames_skipped;
 			//eDebug("successfully skipped %d (out of %d, rem now %d) frames.", frames_skipped, frames_to_skip, m_skipmode_frames_remainder);
@@ -1352,7 +1404,10 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 			off_t iframe_start = current_offset;
 			
 			int direction = (m_skipmode_m < 0) ? -1 : +1;
-			if (m_tstools.findFrame(iframe_start, iframe_len, direction))
+			m_tstools_lock.lock();
+			int r = m_tstools.findFrame(iframe_start, iframe_len, direction);
+			m_tstools_lock.unlock();
+			if (r)
 				eDebug("failed");
 			else
 			{
@@ -1428,6 +1483,7 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 		{
 			eDebug("AP relative seeking: %lld, at %lld", pts, now);
 			pts_t nextap;
+			eSingleLocker l(m_tstools_lock);
 			if (m_tstools.getNextAccessPoint(nextap, now, pts))
 			{
 				pts = now - 90000; /* approx. 1s */
@@ -1440,7 +1496,10 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 		}
 
 		off_t offset = 0;
-		if (m_tstools.getOffset(offset, pts, -1))
+		m_tstools_lock.lock();
+		int r = m_tstools.getOffset(offset, pts, -1);
+		m_tstools_lock.unlock();
+		if (r)
 		{
 			eDebug("get offset for pts=%llu failed!", pts);
 			continue;
@@ -1564,14 +1623,15 @@ RESULT eDVBChannel::setChannel(const eDVBChannelID &channelid, ePtr<iDVBFrontend
 	if (!channelid)
 		return 0;
 
-	if (!m_frontend)
-	{
-		eDebug("no frontend to tune!");
-		return -ENODEV;
-	}
-
 	m_channel_id = channelid;
 	m_mgr->addChannel(channelid, this);
+
+	if (!m_frontend)
+	{
+		/* no frontend, no need to tune (must be a streamed service) */
+		return 0;
+	}
+
 	m_state = state_tuning;
 			/* if tuning fails, shutdown the channel immediately. */
 	int res;
@@ -1762,7 +1822,8 @@ RESULT eDVBChannel::playSource(ePtr<iTsSource> &source, const char *streaminfo_f
 		return -ENOENT;
 	}
 
-	m_tstools.setSource(source, streaminfo_file);
+	m_source = source;
+	m_tstools.setSource(m_source, streaminfo_file);
 
 		/* DON'T EVEN THINK ABOUT FIXING THIS. FIX THE ATI SOURCES FIRST,
 		   THEN DO A REAL FIX HERE! */
@@ -1805,14 +1866,15 @@ RESULT eDVBChannel::playSource(ePtr<iTsSource> &source, const char *streaminfo_f
 #endif
 	}
 
-	m_pvr_thread = new eDVBChannelFilePush(source->getPacketSize());
+	m_pvr_thread = new eDVBChannelFilePush(m_source->getPacketSize());
 	m_pvr_thread->enablePVRCommit(1);
-	m_pvr_thread->setStreamMode(1);
+	/* If the source specifies a length, it's a file. If not, it's a stream */
+	m_pvr_thread->setStreamMode(m_source->length() <= 0);
 	m_pvr_thread->setScatterGather(this);
 
 	m_event(this, evtPreStart);
 
-	m_pvr_thread->start(source, m_pvr_fd_dst);
+	m_pvr_thread->start(m_source, m_pvr_fd_dst);
 	CONNECT(m_pvr_thread->m_event, eDVBChannel::pvrEvent);
 
 	m_state = state_ok;
@@ -1830,9 +1892,12 @@ void eDVBChannel::stopSource()
 		m_pvr_thread = 0;
 	}
 	if (m_pvr_fd_dst >= 0)
+	{
 		::close(m_pvr_fd_dst);
-	ePtr<iTsSource> d;
-	m_tstools.setSource(d);
+		m_pvr_fd_dst = -1;
+	}
+	m_source = NULL;
+	m_tstools.setSource(m_source);
 }
 
 void eDVBChannel::stopFile()
@@ -1848,9 +1913,17 @@ void eDVBChannel::setCueSheet(eCueSheet *cuesheet)
 		m_cue->connectEvent(slot(*this, &eDVBChannel::cueSheetEvent), m_conn_cueSheetEvent);
 }
 
+void eDVBChannel::setOfflineDecodeMode(int parityswitchdelay)
+{
+	if (m_pvr_thread) m_pvr_thread->setParitySwitchDelay(parityswitchdelay);
+}
+
 RESULT eDVBChannel::getLength(pts_t &len)
 {
-	return m_tstools.calcLen(len);
+	m_tstools_lock.lock();
+	RESULT r = m_tstools.calcLen(len);
+	m_tstools_lock.unlock();
+	return r;
 }
 
 RESULT eDVBChannel::getCurrentPosition(iDVBDemux *decoding_demux, pts_t &pos, int mode)
@@ -1873,8 +1946,9 @@ RESULT eDVBChannel::getCurrentPosition(iDVBDemux *decoding_demux, pts_t &pos, in
 	} else
 		now = pos; /* fixup supplied */
 
-	off_t off = 0; /* TODO: fixme */
-	r = m_tstools.fixupPTS(off, now);
+	m_tstools_lock.lock();
+	r = m_tstools.fixupPTS(m_source ? m_source->offset() : 0, now);
+	m_tstools_lock.unlock();
 	if (r)
 	{
 		return -1;

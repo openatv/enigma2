@@ -2,21 +2,6 @@ from Converter import Converter
 from time import localtime, strftime
 from Components.Element import cached
 
-MONTHS = (_("January"),
-          _("February"),
-          _("March"),
-          _("April"),
-          _("May"),
-          _("June"),
-          _("July"),
-          _("August"),
-          _("September"),
-          _("October"),
-          _("November"),
-          _("December"))
-
-dayOfWeek = (_("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun"))
-
 class ClockToText(Converter, object):
 	DEFAULT = 0
 	WITH_SECONDS = 1
@@ -30,10 +15,10 @@ class ClockToText(Converter, object):
 	LONG_DATE = 9
 	VFD = 10
 	FULL_DATE = 11
-	
-	# add: date, date as string, weekday, ... 
+
+	# add: date, date as string, weekday, ...
 	# (whatever you need!)
-	
+
 	def __init__(self, type):
 		Converter.__init__(self, type)
 		if type == "WithSeconds":
@@ -44,7 +29,7 @@ class ClockToText(Converter, object):
 			self.type = self.DATE
 		elif type == "AsLength":
 			self.type = self.AS_LENGTH
-		elif type == "Timestamp":	
+		elif type == "Timestamp":
 			self.type = self.TIMESTAMP
 		elif type == "Full":
 			self.type = self.FULL
@@ -70,42 +55,44 @@ class ClockToText(Converter, object):
 
 		# handle durations
 		if self.type == self.IN_MINUTES:
-			return "%d min" % (time / 60)
+			return ngettext("%d Min", "%d Mins", (time / 60)) % (time / 60)
 		elif self.type == self.AS_LENGTH:
 			if time < 0:
 				return ""
 			return "%d:%02d" % (time / 60, time % 60)
 		elif self.type == self.TIMESTAMP:
 			return str(time)
-		
+
 		t = localtime(time)
-		
+
 		if self.type == self.WITH_SECONDS:
-			return "%2d:%02d:%02d" % (t.tm_hour, t.tm_min, t.tm_sec)
+			# TRANSLATORS: full time representation hour:minute:seconds 
+			return _("%2d:%02d:%02d") % (t.tm_hour, t.tm_min, t.tm_sec)
 		elif self.type == self.DEFAULT:
-			return "%2d:%02d" % (t.tm_hour, t.tm_min)
+			# TRANSLATORS: short time representation hour:minute
+			return _("%2d:%02d") % (t.tm_hour, t.tm_min)
 		elif self.type == self.DATE:
-			return _(strftime("%A",t)) + " " + str(t[2]) + " " + MONTHS[t[1]-1] + " " + str(t[0])
+			# TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
+			d = _("%A %e %B %Y")
 		elif self.type == self.FULL:
-			return dayOfWeek[t[6]] + " %02d/%02d  %02d:%02d" % (t[2],t[1], t.tm_hour, t.tm_min)  
+			# TRANSLATORS: long date representation short dayname daynum short monthname hour:minute in strftime() format! See 'man strftime'
+			d = _("%a %e/%m  %-H:%M")
 		elif self.type == self.SHORT_DATE:
-			return dayOfWeek[t[6]] + " %d/%d" % (t[2], t[1])
+			# TRANSLATORS: short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'
+			d = _("%a %e/%m")
 		elif self.type == self.LONG_DATE:
-			return dayOfWeek[t[6]] + " " + str(t[2]) + " " + MONTHS[t[1]-1]  
+			# TRANSLATORS: long date representations dayname daynum monthname in strftime() format! See 'man strftime'
+			d = _("%A %e %B")
 		elif self.type == self.FULL_DATE:
-			return dayOfWeek[t[6]] + " " + str(t[2]) + " " + MONTHS[t[1]-1] + " " + str(t[0])
+			# TRANSLATORS: full date representations sort dayname daynum monthname long year in strftime() format! See 'man strftime'
+			d = _("%a %e %B %Y")
 		elif self.type == self.VFD:
-			return "%2d:%02d %d/%d" % (t.tm_hour, t.tm_min, t[2], t[1])
+			# TRANSLATORS: VFD hour:minute daynum short monthname in strftime() format! See 'man strftime'
+			d = _("%k:%M %e/%m")
 		elif self.type == self.FORMAT:
-			spos = self.fmt_string.find('%')
-			if spos > 0:
-				s1 = self.fmt_string[:spos]
-				s2 = strftime(self.fmt_string[spos:], t)
-				return str(s1+s2)
-			else:
-				return strftime(self.fmt_string, t)
-		
+			d = self.fmt_string
 		else:
 			return "???"
+		return strftime(d, t)
 
 	text = property(getText)

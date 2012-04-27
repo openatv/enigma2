@@ -28,7 +28,7 @@ class inputDevices:
 		self.Devices = {}
 		self.currentDevice = ""
 		self.getInputDevices()
-	
+
 	def getInputDevices(self):
 		devices = listdir("/dev/input/")
 
@@ -44,10 +44,10 @@ class inputDevices:
 			except (IOError,OSError), err:
 				print '[iInputDevices] getInputDevices  <ERROR: ioctl(EVIOCGNAME): ' + str(err) + ' >'
 				self.name = None
-			
+
 			if self.name:
 				self.Devices[evdev] = {'name': self.name, 'type': self.getInputDeviceType(self.name),'enabled': False, 'configuredName': None }
-	
+
 
 	def getInputDeviceType(self,name):
 		if name.find("remote control") != -1:
@@ -59,7 +59,7 @@ class inputDevices:
 		else:
 			print "Unknown device type:",name
 			return None
-			
+
 	def getDeviceName(self, x):
 		if x in self.Devices.keys():
 			return self.Devices[x].get("name", x)
@@ -73,13 +73,13 @@ class inputDevices:
 		#print "[iInputDevices] setting for device", device, "attribute", attribute, " to value", value
 		if self.Devices.has_key(device):
 			self.Devices[device][attribute] = value
-			
+
 	def getDeviceAttribute(self, device, attribute):
 		if self.Devices.has_key(device):
 			if self.Devices[device].has_key(attribute):
 				return self.Devices[device][attribute]
 		return None
-			
+
 	def setEnabled(self, device, value):
 		oldval = self.getDeviceAttribute(device, 'enabled')
 		#print "[iInputDevices] setEnabled for device %s to %s from %s" % (device,value,oldval)
@@ -90,7 +90,7 @@ class inputDevices:
 	def setName(self, device, value):
 		#print "[iInputDevices] setName for device %s to %s" % (device,value)
 		self.setDeviceAttribute(device, 'configuredName', value)
-		
+
 	#struct input_event {
 	#	struct timeval time;    -> ignored
 	#	__u16 type;             -> EV_REP (0x14)
@@ -126,11 +126,11 @@ class inputDevices:
 
 
 class InitInputDevices:
-	
+
 	def __init__(self):
 		self.currentDevice = ""
 		self.createConfig()
-	
+
 	def createConfig(self, *args):
 		config.inputDevices = ConfigSubsection()
 		for device in sorted(iInputDevices.Devices.iterkeys()):
@@ -163,7 +163,7 @@ class InitInputDevices:
 			iInputDevices.setRepeat(self.currentDevice, configElement.value)
 		elif iInputDevices.currentDevice != "":
 			iInputDevices.setRepeat(iInputDevices.currentDevice, configElement.value)
-		
+
 	def inputDevicesDelayChanged(self,configElement):
 		if self.currentDevice != "" and iInputDevices.currentDevice == "":
 			iInputDevices.setDelay(self.currentDevice, configElement.value)

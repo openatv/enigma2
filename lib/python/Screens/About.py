@@ -9,6 +9,10 @@ from Components.ScrollLabel import ScrollLabel
 from Components.Console import Console
 from enigma import eTimer
 
+from Plugins.SystemPlugins.WirelessLan.Wlan import iWlan, iStatus, getWlanConfigName
+from Components.Pixmap import MultiPixmap
+from Components.Network import iNetwork
+
 from Tools.DreamboxHardware import getFPVersion
 from os import path, popen
 
@@ -17,8 +21,8 @@ class About(Screen):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Image Information"))
 		self.populate()
-		
-		self["actions"] = ActionMap(["SetupActions", "ColorActions", "TimerEditActions"], 
+
+		self["actions"] = ActionMap(["SetupActions", "ColorActions", "TimerEditActions"],
 			{
 				"cancel": self.close,
 				"ok": self.close,
@@ -34,6 +38,10 @@ class About(Screen):
 			self["lab3"] = StaticText(_("Support at") + " www.vuplus-support.co.uk")
 			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Uno")
 			AboutText = _("Hardware:") + " Vu+ Uno\n"
+		elif config.misc.boxtype.value == 'vuultimo':
+			self["lab3"] = StaticText(_("Support at") + " www.vuplus-support.co.uk")
+			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Ultimo")
+			AboutText = _("Hardware:") + " Vu+ Ultimo\n"
 		elif config.misc.boxtype.value == 'vusolo':
 			self["lab3"] = StaticText(_("Support at") + " www.vuplus-support.co.uk")
 			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Solo")
@@ -54,6 +62,10 @@ class About(Screen):
 			self["lab3"] = StaticText(_("Support at") + " www.xtrend-support.co.uk")
 			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET9x00 Series")
 			AboutText = _("Hardware:") + " Xtrend ET9x00 Series\n"
+		elif config.misc.boxtype.value == 'maram9':
+			self["lab3"] = StaticText(_("Support at") + " www.mara-support.co.uk")
+			self["BoxType"] = StaticText(_("Hardware:") + " MarA M9")
+			AboutText = _("Hardware:") + " MarA M9\n"
 		else:
 			self["lab3"] = StaticText(_("Support at") + " www.world-of-satellite.co.uk")
 			self["BoxType"] = StaticText(_("Hardware:") + " " + config.misc.boxtype.value)
@@ -130,8 +142,8 @@ class Devices(Screen):
 		self.activityTimer = eTimer()
 		self.activityTimer.timeout.get().append(self.populate2)
 		self.populate()
-		
-		self["actions"] = ActionMap(["SetupActions", "ColorActions", "TimerEditActions"], 
+
+		self["actions"] = ActionMap(["SetupActions", "ColorActions", "TimerEditActions"],
 			{
 				"cancel": self.close,
 				"ok": self.close,
@@ -186,44 +198,226 @@ class Devices(Screen):
 		mountfree = mount[3]
 		if self.mountinfo:
 			self.mountinfo += "\n"
-		self.mountinfo += "%s (%sB, %sB %s)" % (ipaddress, mounttotal, mountfree, _("free")) 
-		print 'mountinfo:',self.mountinfo
+		self.mountinfo += "%s (%sB, %sB %s)" % (ipaddress, mounttotal, mountfree, _("free"))
 		self["mounts"].setText(self.mountinfo)
 
 	def createSummary(self):
 		return AboutSummary
 
-class SystemInfo(Screen):
+class SystemMemoryInfo(Screen):
+	skin = """
+	<screen name="SystemMemoryInfo" position="center,center" size="560,400" >
+		<widget source="lab1" render="Label" position="30,133" size="458,25" font="Boldit;24" transparent="0" zPosition="2" />
+		<widget source="lab2" render="Label" position="30,158" size="458,25" font="Italic;19" transparent="0" zPosition="2" />
+		<widget name="AboutScrollLabel" position="30,225" size="458,325" font="Regular;20" transparent="0" zPosition="1" scrollbarMode="showOnDemand"/>
+	</screen>"""
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("System Information"))
-		self.skinName = "About"
-		self.populate()
-		
-		self["actions"] = ActionMap(["SetupActions", "ColorActions", "TimerEditActions"], 
-			{
-				"cancel": self.close,
-				"ok": self.close,
-			})
-
-	def populate(self):
+		Screen.setTitle(self, _("Memory Information"))
+		self.skinName = ["SystemMemoryInfo", "About"]
+		self["lab1"] = StaticText(_("Virtuosso Image Xtreme"))
+		self["lab2"] = StaticText(_("By Team ViX"))
 		out_lines = file("/proc/meminfo").readlines()
 		for lidx in range(len(out_lines)-1):
 			tstLine = out_lines[lidx].split()
 			if "MemTotal:" in tstLine:
 				MemTotal = out_lines[lidx].split()
-				AboutText = _("Total Memory:") + " " + MemTotal[1] + "\n"
+				AboutText = _("Total Memory:") + "\t" + MemTotal[1] + "\n"
 			if "MemFree:" in tstLine:
 				MemFree = out_lines[lidx].split()
-				AboutText += _("Free Memory:") + " " + MemFree[1] + "\n"
+				AboutText += _("Free Memory:") + "\t" + MemFree[1] + "\n"
 			if "SwapTotal:" in tstLine:
 				SwapTotal = out_lines[lidx].split()
-				AboutText += _("Total Swap:") + " " + SwapTotal[1] + "\n"
+				AboutText += _("Total Swap:") + "\t" + SwapTotal[1] + "\n"
 			if "SwapFree:" in tstLine:
 				SwapFree = out_lines[lidx].split()
-				AboutText += _("Free Swap:") + " " + SwapFree[1] + "\n"
+				AboutText += _("Free Swap:") + "\t" + SwapFree[1] + "\n\n"
 
 		self["AboutScrollLabel"] = ScrollLabel(AboutText)
+
+		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
+			{
+				"cancel": self.close,
+				"ok": self.close,
+			})
+
+	def createSummary(self):
+		return AboutSummary
+
+class SystemNetworkInfo(Screen):
+	skin = """
+		<screen name="SystemNetworkInfo" position="center,center" size="560,400" >
+			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+			<widget name="AboutScrollLabel" position="10,50" size="458,75" valign="left" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
+			<widget source="LabelBSSID" render="Label" position="10,130" size="200,25" valign="left" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
+			<widget source="LabelESSID" render="Label" position="10,160" size="200,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
+			<widget source="LabelQuality" render="Label" position="10,190" size="200,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
+			<widget source="LabelSignal" render="Label" position="10,220" size="200,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
+			<widget source="LabelBitrate" render="Label" position="10,250" size="200,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
+			<widget source="LabelEnc" render="Label" position="10,280" size="200,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
+			<widget source="BSSID" render="Label" position="161,130" size="330,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
+			<widget source="ESSID" render="Label" position="161,160" size="330,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
+			<widget source="quality" render="Label" position="161,190" size="330,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
+			<widget source="signal" render="Label" position="161,220" size="330,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
+			<widget source="bitrate" render="Label" position="161,250" size="330,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
+			<widget source="enc" render="Label" position="161,280" size="330,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
+			<ePixmap pixmap="skin_default/div-h.png" position="0,350" zPosition="1" size="560,2" />
+			<widget source="IFtext" render="Label" position="10,355" size="120,21" zPosition="10" font="Regular;20" halign="left" transparent="1" />
+			<widget source="IF" render="Label" position="120,355" size="400,21" zPosition="10" font="Regular;20" halign="left" transparent="1" />
+			<widget source="Statustext" render="Label" position="10,375" size="115,21" zPosition="10" font="Regular;20" halign="left" transparent="1"/>
+			<widget name="statuspic" pixmaps="skin_default/buttons/button_green.png,skin_default/buttons/button_green_off.png" position="120,380" zPosition="10" size="15,16" transparent="1" alphatest="on"/>
+		</screen>"""
+
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		Screen.setTitle(self, _("Network Information"))
+		self.skinName = ["SystemNetworkInfo", "WlanStatus"]
+		self["LabelBSSID"] = StaticText()
+		self["LabelESSID"] = StaticText()
+		self["LabelQuality"] = StaticText()
+		self["LabelSignal"] = StaticText()
+		self["LabelBitrate"] = StaticText()
+		self["LabelEnc"] = StaticText()
+		self["BSSID"] = StaticText()
+		self["ESSID"] = StaticText()
+		self["quality"] = StaticText()
+		self["signal"] = StaticText()
+		self["bitrate"] = StaticText()
+		self["enc"] = StaticText()
+
+		self["IFtext"] = StaticText()
+		self["IF"] = StaticText()
+		self["Statustext"] = StaticText()
+		self["statuspic"] = MultiPixmap()
+		self["statuspic"].hide()
+
+		self.createscreen()
+
+		self["key_red"] = StaticText(_("Close"))
+
+		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
+			{
+				"cancel": self.close,
+				"ok": self.close,
+			})
+		self.resetList()
+		self.updateStatusbar()
+		self.timer = eTimer()
+		self.timer.timeout.get().append(self.resetList)
+		self.onShown.append(lambda: self.timer.start(8000))
+		self.onClose.append(self.cleanup)
+
+	def createscreen(self):
+		AboutText = ""
+		self.iface = "eth0"
+		eth0 = about.getIfConfig('eth0')
+		if eth0.has_key('addr'):
+			AboutText += _("IP:") + "\t" + eth0['addr'] + "\n"
+			if eth0.has_key('netmask'):
+				AboutText += _("Netmask:") + "\t" + eth0['netmask'] + "\n"
+			if eth0.has_key('hwaddr'):
+				AboutText += _("MAC:") + "\t" + eth0['hwaddr'].replace('0:','00:') + "\n"
+			self.iface = 'eth0'
+
+		wlan0 = about.getIfConfig('wlan0')
+		if wlan0.has_key('addr'):
+			AboutText += _("IP:") + "\t" + wlan0['addr'] + "\n"
+			if wlan0.has_key('netmask'):
+				AboutText += _("Netmask:") + "\t" + wlan0['netmask'] + "\n"
+			if wlan0.has_key('hwaddr'):
+				AboutText += _("MAC:") + "\t" + wlan0['hwaddr'].replace('0:','00:') + "\n"
+			self.iface = 'wlan0'
+
+			self["LabelBSSID"].setText(_('Accesspoint:'))
+			self["LabelESSID"].setText(_('SSID:'))
+			self["LabelQuality"].setText(_('Link Quality:'))
+			self["LabelSignal"].setText(_('Signal Strength:'))
+			self["LabelBitrate"].setText(_('Bitrate:'))
+			self["LabelEnc"].setText(_('Encryption:'))
+
+		self["AboutScrollLabel"] = ScrollLabel(AboutText)
+
+
+	def cleanup(self):
+		iStatus.stopWlanConsole()
+
+	def resetList(self):
+		iStatus.getDataForInterface(self.iface,self.getInfoCB)
+
+	def getInfoCB(self,data,status):
+		if data is not None:
+			if data is True:
+				if status is not None:
+					if self.iface == 'wlan0':
+						if status[self.iface]["essid"] == "off":
+							essid = _("No Connection")
+						else:
+							essid = status[self.iface]["essid"]
+						if status[self.iface]["accesspoint"] == "Not-Associated":
+							accesspoint = _("Not-Associated")
+							essid = _("No Connection")
+						else:
+							accesspoint = status[self.iface]["accesspoint"]
+						if self.has_key("BSSID"):
+							self["BSSID"].setText(accesspoint)
+						if self.has_key("ESSID"):
+							self["ESSID"].setText(essid)
+
+						quality = status[self.iface]["quality"]
+						if self.has_key("quality"):
+							self["quality"].setText(quality)
+
+						if status[self.iface]["bitrate"] == '0':
+							bitrate = _("Unsupported")
+						else:
+							bitrate = str(status[self.iface]["bitrate"]) + " Mb/s"
+						if self.has_key("bitrate"):
+							self["bitrate"].setText(bitrate)
+
+						signal = status[self.iface]["signal"]
+						if self.has_key("signal"):
+							self["signal"].setText(signal)
+
+						if status[self.iface]["encryption"] == "off":
+							if accesspoint == "Not-Associated":
+								encryption = _("Disabled")
+							else:
+								encryption = _("Unsupported")
+						else:
+							encryption = _("Enabled")
+						if self.has_key("enc"):
+							self["enc"].setText(encryption)
+					self.updateStatusLink(status)
+
+	def exit(self):
+		self.timer.stop()
+		self.close(True)
+
+	def updateStatusbar(self):
+		if self.iface == 'wlan0':
+			wait_txt = _("Please wait...")
+			self["BSSID"].setText(wait_txt)
+			self["ESSID"].setText(wait_txt)
+			self["quality"].setText(wait_txt)
+			self["signal"].setText(wait_txt)
+			self["bitrate"].setText(wait_txt)
+			self["enc"].setText(wait_txt)
+
+	def updateStatusLink(self,status):
+		self["IFtext"].setText(_("Network:"))
+		self["IF"].setText(iNetwork.getFriendlyAdapterName(self.iface))
+		self["Statustext"].setText(_("Link:"))
+		self["statuspic"].setPixmapNum(1)
+		if self.iface == 'eth0':
+			self["statuspic"].setPixmapNum(0)
+		elif self.iface == 'wlan0':
+			if status is not None:
+				if status[self.iface]["essid"] == "off" or status[self.iface]["accesspoint"] == "Not-Associated" or status[self.iface]["accesspoint"] == False:
+					self["statuspic"].setPixmapNum(1)
+				else:
+					self["statuspic"].setPixmapNum(0)
+		self["statuspic"].show()
 
 	def createSummary(self):
 		return AboutSummary
@@ -242,6 +436,8 @@ class AboutSummary(Screen):
 			self["selected"] = StaticText("ViX:" + about.getImageVersionString() + ' (B)')
 		if config.misc.boxtype.value == 'vuuno':
 			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Uno")
+		elif config.misc.boxtype.value == 'vuultimo':
+			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Ultimo")
 		elif config.misc.boxtype.value == 'vusolo':
 			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Solo")
 		elif config.misc.boxtype.value == 'vuduo':
@@ -252,6 +448,8 @@ class AboutSummary(Screen):
 			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET6x00 Series")
 		elif config.misc.boxtype.value == 'et9x00':
 			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET9x00 Series")
+		elif config.misc.boxtype.value == 'maram9':
+			self["BoxType"] = StaticText(_("Hardware:") + " MarA M9")
 		else:
 			self["BoxType"] = StaticText(_("Hardware:") + " " + config.misc.boxtype.value)
 		self["KernelVersion"] = StaticText(_("Kernel:") + " " + about.getKernelVersionString())
@@ -267,7 +465,7 @@ class AboutReleaseNotes(Screen):
 	def __init__(self, session):
 		self.session = session
 		Screen.__init__(self, session)
-		self.skinName = "AboutReleaseNotes"
+		Screen.setTitle(self, _("Image Release Notes"))
 		if path.exists('/etc/releasenotes'):
 			releasenotes = file('/etc/releasenotes').read()
 		else:

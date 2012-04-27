@@ -5,6 +5,7 @@
 #include <map>
 #include <set>
 #include <deque>
+#include <aio.h>
 
 	/* This module parses TS data and collects valuable information  */
 	/* about it, like PTS<->offset correlations and sequence starts. */
@@ -44,6 +45,7 @@ public:
 private:
 	void close();
 	int loadCache(int index);
+	int moveCache(int index);
 	/* inter/extrapolate timestamp from offset */
 	pts_t getInterpolated(off_t offset);
 	/* get delta at specific offset */
@@ -60,12 +62,13 @@ private:
 	/* these are non-fixed up pts value (like m_access_points), just used to accelerate stuff. */
 	std::multimap<pts_t, off_t> m_pts_to_offset;
 
-	int m_structure_cache_entries;
-	unsigned long long m_structure_cache[2048];
 	int m_structure_read_fd;
-
 	int m_cache_index;   // Location of cache
 	int m_current_entry; // For getStructureEntryNext
+	int m_structure_cache_entries;
+	int m_structure_file_entries; // Also to detect changes to file
+	unsigned long long* m_structure_cache;
+	bool m_streamtime_accesspoints;
 };
 
 class eMPEGStreamInformationWriter
@@ -76,20 +79,32 @@ public:
 	/* Used by parser */
 	int startSave(const std::string& filename);
 	int stopSave(void);
-	void addAccessPoint(off_t offset, pts_t pts) { m_access_points.push_back(AccessPoint(offset, pts)); }
+	virtual void addAccessPoint(off_t offset, pts_t pts, bool streamtime);
 	void writeStructureEntry(off_t offset, unsigned long long data);
+	void commit();
 private:
 	void close();
-	void flush();
 	struct AccessPoint
 	{
 		off_t off;
 		pts_t pts;
 		AccessPoint(off_t o, pts_t p): off(o), pts(p) {}
 	};
-	std::deque<AccessPoint> m_access_points;
+	std::deque<AccessPoint> m_access_points, m_streamtime_access_points;
+	struct PendingWrite
+	{
+		PendingWrite();
+		~PendingWrite();
+		int start(int fd, off_t where, void* buffer, size_t buffer_size);
+		bool poll(); // releases resources when ready, returns true if released
+		int wait();
+		void* m_buffer;
+		struct aiocb m_aio;
+	};
+	std::deque<PendingWrite> m_pending_writes;
 	std::string m_filename;
 	int m_structure_write_fd;
+	off_t m_structure_pos;
 	void* m_write_buffer;
 	size_t m_buffer_filled;
 };
@@ -102,19 +117,26 @@ public:
 	void parseData(off_t offset, const void *data, unsigned int len);
 	void setPid(int pid, int streamtype);
 	int getLastPTS(pts_t &last_pts);
+	void enableAccessPoints(bool enable) { m_enable_accesspoints = enable; }
 private:
 	unsigned char m_pkt[192];
 	int m_pktptr;
 	int processPacket(const unsigned char *pkt, off_t offset);
 	inline int wantPacket(const unsigned char *pkt) const;
+	void addAccessPoint(off_t offset, pts_t pts, bool streamtime = false);
+	void addAccessPoint(off_t offset, pts_t pts, timespec &now, bool streamtime = false);
 	int m_pid;
 	int m_streamtype;
 	int m_need_next_packet;
 	int m_skip;
-	int m_last_pts_valid;
-	pts_t m_last_pts;
+	int m_last_pts_valid; /* m_last_pts contains a valid value */
+	pts_t m_last_pts; /* last pts value, either from mpeg stream, or measured in streamtime */
 	int m_packetsize;
 	int m_header_offset;
+	timespec m_last_access_point; /* timespec at which the previous access point was reported */
+	bool m_enable_accesspoints; /* set to false to prevent saving .ap files (e.g. timeshift) */
+	bool m_pts_found; /* 'real' mpeg pts has been found, no longer measuring streamtime */
+	bool m_has_accesspoints;
 };
 
 #endif

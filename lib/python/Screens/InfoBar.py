@@ -5,6 +5,7 @@ import Screens.MovieSelection
 from Screens.MessageBox import MessageBox
 from Components.PluginComponent import plugins
 from Components.Label import Label
+from Components.Pixmap import MultiPixmap
 from Plugins.Plugin import PluginDescriptor
 
 from Screen import Screen
@@ -39,7 +40,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 	InfoBarSummarySupport, InfoBarTimeshiftState, InfoBarTeletextPlugin, InfoBarExtensions,
 	InfoBarPiP, InfoBarPlugins, InfoBarSubtitleSupport, InfoBarServiceErrorPopupSupport, InfoBarJobman,
 	Screen):
-	
+
 	ALLOW_SUSPEND = True
 	instance = None
 
@@ -59,7 +60,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			}, prio=2)
 
 		self.allowPiP = True
-		
+
 		for x in HelpableScreen, \
 				InfoBarBase, InfoBarShowHide, \
 				InfoBarNumberZap, InfoBarChannelSelection, InfoBarMenu, InfoBarEPG, InfoBarRdsDecoder, \
@@ -208,17 +209,21 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 
 	ENABLE_RESUME_SUPPORT = True
 	ALLOW_SUSPEND = True
-		
+
 	def __init__(self, session, service, slist = None, lastservice = None):
 		Screen.__init__(self, session)
-		
+
+		self["state"] = Label(text="")
+		self["speed"] = Label(text="")
+		self["statusicon"] = MultiPixmap()
+
 		self["actions"] = HelpableActionMap(self, "MoviePlayerActions",
 			{
 				"leavePlayer": (self.leavePlayer, _("leave movie player..."))
 			})
 
 		self.allowPiP = True
-		
+
 		for x in HelpableScreen, InfoBarShowHide, InfoBarMenu, \
 				InfoBarBase, InfoBarSeek, InfoBarShowMovies, \
 				InfoBarAudioSelection, InfoBarNotifications, InfoBarSimpleEventView, \
@@ -228,6 +233,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 				InfoBarPlugins, InfoBarPiP:
 			x.__init__(self)
 
+		self.onChangedEntry = [ ]
 		self.servicelist = slist
 		self.lastservice = lastservice or session.nav.getCurrentlyPlayingServiceReference()
 		session.nav.playService(service)
@@ -279,7 +285,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 				if config.usage.movielist_trashcan.value:
 					import Tools.Trashcan
 					try:
-						trash = Tools.Trashcan.createTrashFolder()
+						trash = Tools.Trashcan.createTrashFolder(ref.getPath())
 						Screens.MovieSelection.moveServiceFiles(ref, trash)
 						# Moved to trash, okay
 						self.close()

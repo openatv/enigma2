@@ -55,6 +55,7 @@ AC_DEFINE_UNQUOTED(BOXTYPE,"$BOXTYPE",[box type])
 AM_CONDITIONAL(DREAMBOX, test `echo "$BOXTYPE" | cut -b 1-2` == "dm")
 AM_CONDITIONAL(VUPLUS, test `echo "$BOXTYPE" | cut -b 1-2` == "vu")
 AM_CONDITIONAL(XTREND, test `echo "$BOXTYPE" | cut -b 1-2` == "et")
+AM_CONDITIONAL(MARA, test `echo "$BOXTYPE" | cut -b 1-4` == "mara")
 AM_CONDITIONAL(VUUNO, test "$BOXTYPE" == vuuno)
 AM_CONDITIONAL(VUULTIMO, test "$BOXTYPE" == vuultimo)
 AM_CONDITIONAL(VUSOLO, test "$BOXTYPE" == vusolo)
@@ -62,6 +63,8 @@ AM_CONDITIONAL(VUDUO, test "$BOXTYPE" == vuduo)
 AM_CONDITIONAL(ET5X00, test "$BOXTYPE" == et5x00)
 AM_CONDITIONAL(ET6X00, test "$BOXTYPE" == et6x00)
 AM_CONDITIONAL(ET9X00, test "$BOXTYPE" == et9x00)
+AM_CONDITIONAL(MARAM9, test "$BOXTYPE" == maram9)
+AM_CONDITIONAL(GBHD800SE, test "$BOXTYPE" == gbhd800se)
 AM_CONDITIONAL(HAVE_TEMPFANCONTROL, test "$BOXTYPE" == dm8000 -o "$BOXTYPE" == dm800se -o "$BOXTYPE" == dm500hd)
 
 AC_ARG_WITH(textlcd,
@@ -73,16 +76,6 @@ if test x"$withtextlcd" != xno ; then
 	AC_DEFINE(HAVE_TEXTLCD, 1,[Define when using an ascii based lcd device])
 fi
 AM_CONDITIONAL(HAVE_TEXTLCD, test x"$withtextlcd" != xno)
-
-AC_ARG_WITH(graphiclcd,
-	AC_HELP_STRING([--with-graphiclcd], [use graphic based lcd, yes or no]),
-	[[withgraphiclcd=$withval]],
-	[[withgraphiclcd=no]]
-)
-if test x"$withgraphiclcd" != xno ; then
-	AC_DEFINE(HAVE_GRAPHICLCD, 1,[Define when using an graphic based vfd device])
-fi
-AM_CONDITIONAL(HAVE_GRAPHICLCD, test x"$withgraphiclcd != xno")
 
 AC_ARG_WITH(fullgraphiclcd,
         AC_HELP_STRING([--with-fullgraphiclcd], [display right_half_vfd_icons from skin(for ultimo), yes or no]),
@@ -118,38 +111,13 @@ if test x"$BOXTYPE" == "xdm8000" -o x"$BOXTYPE" == "xdm7020hd" ; then
 	AC_DEFINE(KEY_PLAY_ACTUALLY_IS_KEY_PLAYPAUSE, 1,[define when rc sends a KEY_PLAY event for its KEY_PLAYPAUSE key])
 fi
 
-if test x"$BOXTYPE" == "xet5x00" ; then
-# 	AC_DEFINE(FORCE_ADVANCED_REMOTE, 1,[define to fixup the input device identification when the remote control is actually an 'advanced' remote (with play/forward/rewind keys)])
+if test x"$BOXTYPE" == "xet5x00" -o x"$BOXTYPE" == "xet6x00" -o x"$BOXTYPE" == "xet9x00" -o x"$BOXTYPE" == "xmaram9" ; then
 	AC_DEFINE(KEY_PLAY_ACTUALLY_IS_KEY_PLAYPAUSE, 1,[define when rc sends a KEY_PLAY event for its KEY_PLAYPAUSE key])
-fi
-
-if test x"$BOXTYPE" == "xet6x00" ; then
 # 	AC_DEFINE(FORCE_ADVANCED_REMOTE, 1,[define to fixup the input device identification when the remote control is actually an 'advanced' remote (with play/forward/rewind keys)])
-	AC_DEFINE(KEY_PLAY_ACTUALLY_IS_KEY_PLAYPAUSE, 1,[define when rc sends a KEY_PLAY event for its KEY_PLAYPAUSE key])
 fi
 
-if test x"$BOXTYPE" == "xet9x00" ; then
-# 	AC_DEFINE(FORCE_ADVANCED_REMOTE, 1,[define to fixup the input device identification when the remote control is actually an 'advanced' remote (with play/forward/rewind keys)])
-	AC_DEFINE(KEY_PLAY_ACTUALLY_IS_KEY_PLAYPAUSE, 1,[define when rc sends a KEY_PLAY event for its KEY_PLAYPAUSE key])
-fi
-
-if test x"$BOXTYPE" == "xvuuno" ; then
+if test x"$BOXTYPE" == "xvuduo" -o x"$BOXTYPE" == "xvusolo" -o x"$BOXTYPE" == "xvuuno" -o x"$BOXTYPE" == "xvuultimo" -o x"$BOXTYPE" == "xtmtwin" -o x"$BOXTYPE" == "xgbhd800se"; then
 	AC_DEFINE(FORCE_NO_BLENDING_ACCELERATION, 1,[define when the framebuffer acceleration does not have alphablending support, though the autodetection might indicate that it does])
-# 	AC_DEFINE(FORCE_ADVANCED_REMOTE, 1,[define to fixup the input device identification when the remote control is actually an 'advanced' remote (with play/forward/rewind keys)])
-fi
-
-if test x"$BOXTYPE" == "xvuultimo" ; then
-	AC_DEFINE(FORCE_NO_BLENDING_ACCELERATION, 1,[define when the framebuffer acceleration does not have alphablending support, though the autodetection might indicate that it does])
-# 	AC_DEFINE(FORCE_ADVANCED_REMOTE, 1,[define to fixup the input device identification when the remote control is actually an 'advanced' remote (with play/forward/rewind keys)])
-fi
-
-if test x"$BOXTYPE" == "xvusolo" ; then
-	AC_DEFINE(FORCE_NO_BLENDING_ACCELERATION, 1,[define when the framebuffer acceleration does not have alphablending support, though the autodetection might indicate that it does])
-# 	AC_DEFINE(FORCE_ADVANCED_REMOTE, 1,[define to fixup the input device identification when the remote control is actually an 'advanced' remote (with play/forward/rewind keys)])
-fi
-
-if test x"$BOXTYPE" == "xvuduo" ; then
- 	AC_DEFINE(FORCE_NO_BLENDING_ACCELERATION, 1,[define when the framebuffer acceleration does not have alphablending support, though the autodetection might indicate that it does])
 # 	AC_DEFINE(FORCE_ADVANCED_REMOTE, 1,[define to fixup the input device identification when the remote control is actually an 'advanced' remote (with play/forward/rewind keys)])
 fi
 
@@ -226,18 +194,7 @@ data/skin_default/spinner/Makefile
 data/skin_default/GraphEPG/Makefile
 include/Makefile
 lib/Makefile
-lib/actions/Makefile
-lib/base/Makefile
 lib/base/eenv.cpp
-lib/driver/Makefile
-lib/dvb/Makefile
-lib/dvb/lowlevel/Makefile
-lib/dvb_ci/Makefile
-lib/gdi/Makefile
-lib/gui/Makefile
-lib/mmi/Makefile
-lib/nav/Makefile
-lib/network/Makefile
 lib/python/Makefile
 lib/python/Components/Makefile
 lib/python/Components/Converter/Makefile
@@ -245,12 +202,6 @@ lib/python/Components/Renderer/Makefile
 lib/python/Components/Sources/Makefile
 lib/python/Screens/Makefile
 lib/python/Plugins/Makefile
-lib/python/Plugins/SystemPlugins/Blindscan/Makefile
-lib/python/Plugins/SystemPlugins/Blindscan/meta/Makefile
-lib/python/Plugins/SystemPlugins/CableScan/Makefile
-lib/python/Plugins/SystemPlugins/FastScan/Makefile
-lib/python/Plugins/SystemPlugins/HdmiCEC/Makefile
-lib/python/Plugins/SystemPlugins/VideoClippingSetup/Makefile
 lib/python/Plugins/DemoPlugins/Makefile
 lib/python/Plugins/DemoPlugins/TPMDemo/Makefile
 lib/python/Plugins/DemoPlugins/TestPlugin/Makefile
@@ -261,8 +212,6 @@ lib/python/Plugins/Extensions/DVDBurn/Makefile
 lib/python/Plugins/Extensions/DVDBurn/meta/Makefile
 lib/python/Plugins/Extensions/DVDPlayer/Makefile
 lib/python/Plugins/Extensions/DVDPlayer/meta/Makefile
-lib/python/Plugins/Extensions/GenuineVuplus/Makefile
-lib/python/Plugins/Extensions/GenuineVuplus/meta/Makefile
 lib/python/Plugins/Extensions/MediaPlayer/Makefile
 lib/python/Plugins/Extensions/MediaPlayer/meta/Makefile
 lib/python/Plugins/Extensions/MediaScanner/Makefile
@@ -276,10 +225,15 @@ lib/python/Plugins/Extensions/SocketMMI/meta/Makefile
 lib/python/Plugins/Extensions/SocketMMI/src/Makefile
 lib/python/Plugins/Extensions/TuxboxPlugins/Makefile
 lib/python/Plugins/Extensions/TuxboxPlugins/meta/Makefile
+lib/python/Plugins/Extensions/VuplusEvent/Makefile
+lib/python/Plugins/Extensions/VuplusEvent/meta/Makefile
 lib/python/Plugins/Extensions/WebBrowser/Makefile
 lib/python/Plugins/Extensions/WebBrowser/meta/Makefile
 lib/python/Plugins/Extensions/WebBrowser/keymap/Makefile
 lib/python/Plugins/PLi/Makefile
+lib/python/Plugins/SystemPlugins/Blindscan/Makefile
+lib/python/Plugins/SystemPlugins/Blindscan/meta/Makefile
+lib/python/Plugins/SystemPlugins/CableScan/Makefile
 lib/python/Plugins/SystemPlugins/CleanupWizard/Makefile
 lib/python/Plugins/SystemPlugins/CleanupWizard/meta/Makefile
 lib/python/Plugins/SystemPlugins/CommonInterfaceAssignment/Makefile
@@ -288,12 +242,14 @@ lib/python/Plugins/SystemPlugins/DefaultServicesScanner/Makefile
 lib/python/Plugins/SystemPlugins/DefaultServicesScanner/meta/Makefile
 lib/python/Plugins/SystemPlugins/DiseqcTester/Makefile
 lib/python/Plugins/SystemPlugins/DiseqcTester/meta/Makefile
+lib/python/Plugins/SystemPlugins/FastScan/Makefile
 lib/python/Plugins/SystemPlugins/FirmwareUpgrade/Makefile
 lib/python/Plugins/SystemPlugins/FirmwareUpgrade/meta/Makefile
 lib/python/Plugins/SystemPlugins/FPGAUpgrade/Makefile
 lib/python/Plugins/SystemPlugins/FPGAUpgrade/meta/Makefile
 lib/python/Plugins/SystemPlugins/FrontprocessorUpgrade/Makefile
 lib/python/Plugins/SystemPlugins/FrontprocessorUpgrade/meta/Makefile
+lib/python/Plugins/SystemPlugins/HdmiCEC/Makefile
 lib/python/Plugins/SystemPlugins/Hotplug/Makefile
 lib/python/Plugins/SystemPlugins/Hotplug/meta/Makefile
 lib/python/Plugins/SystemPlugins/Makefile
@@ -307,29 +263,27 @@ lib/python/Plugins/SystemPlugins/PositionerSetup/Makefile
 lib/python/Plugins/SystemPlugins/PositionerSetup/meta/Makefile
 lib/python/Plugins/SystemPlugins/RemoteControlCode/Makefile
 lib/python/Plugins/SystemPlugins/RemoteControlCode/meta/Makefile
+lib/python/Plugins/SystemPlugins/SABnzbdSetup/Makefile
 lib/python/Plugins/SystemPlugins/SatelliteEquipmentControl/Makefile
 lib/python/Plugins/SystemPlugins/SatelliteEquipmentControl/meta/Makefile
 lib/python/Plugins/SystemPlugins/Satfinder/Makefile
 lib/python/Plugins/SystemPlugins/Satfinder/meta/Makefile
-lib/python/Plugins/SystemPlugins/VuDuoFancontrol/Makefile
-lib/python/Plugins/SystemPlugins/VuDuoFancontrol/meta/Makefile
-lib/python/Plugins/SystemPlugins/VuUnoFancontrol/Makefile
-lib/python/Plugins/SystemPlugins/VuUnoFancontrol/meta/Makefile
+lib/python/Plugins/SystemPlugins/VideoClippingSetup/Makefile
 lib/python/Plugins/SystemPlugins/VideoEnhancement/Makefile
 lib/python/Plugins/SystemPlugins/VideoEnhancement/meta/Makefile
 lib/python/Plugins/SystemPlugins/VideoTune/Makefile
 lib/python/Plugins/SystemPlugins/VideoTune/meta/Makefile
 lib/python/Plugins/SystemPlugins/Videomode/Makefile
 lib/python/Plugins/SystemPlugins/Videomode/meta/Makefile
+lib/python/Plugins/SystemPlugins/VuDuoFancontrol/Makefile
+lib/python/Plugins/SystemPlugins/VuDuoFancontrol/meta/Makefile
+lib/python/Plugins/SystemPlugins/VuUnoFancontrol/Makefile
+lib/python/Plugins/SystemPlugins/VuUnoFancontrol/meta/Makefile
 lib/python/Plugins/SystemPlugins/WirelessLan/Makefile
 lib/python/Plugins/SystemPlugins/WirelessLan/meta/Makefile
 lib/python/Plugins/SystemPlugins/XtrendFancontrol/Makefile
 lib/python/Plugins/SystemPlugins/XtrendFancontrol/meta/Makefile
 lib/python/Tools/Makefile
-lib/service/Makefile
-lib/components/Makefile
-lib/components/eitsave/Makefile
-lib/components/createapscfiles/Makefile
 po/Makefile
 main/Makefile
 tools/Makefile

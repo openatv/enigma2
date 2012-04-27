@@ -49,6 +49,7 @@ class PositionerSetup(Screen):
 	def __init__(self, session, feid):
 		self.skin = PositionerSetup.skin
 		Screen.__init__(self, session)
+		Screen.setTitle(self, _("Positioner Setup"))
 		self.feid = feid
 		self.oldref = None
 
@@ -74,7 +75,7 @@ class PositionerSetup(Screen):
 					del session.pip
 					if not self.openFrontend():
 						self.frontend = None # in normal case this should not happen
-		
+
 		self.frontendStatus = { }
 		self.diseqc = Diseqc(self.frontend)
 		self.tuner = Tuner(self.frontend, True) #True means we dont like that the normal sec stuff sends commands to the rotor!
@@ -92,10 +93,10 @@ class PositionerSetup(Screen):
 
 		self.tuner.tune(tp)
 		self.createConfig()
-		
+
 		self.isMoving = False
 		self.stopOnLock = False
-		
+
 		self.red = Label("")
 		self["red"] = self.red
 		self.green = Label("")
@@ -119,7 +120,7 @@ class PositionerSetup(Screen):
 		self["frequency_value"] = Label("")
 		self["symbolrate_value"] = Label("")
 		self["fec_value"] = Label("")
-		
+
 		self["actions"] = ActionMap(["DirectionActions", "OkCancelActions", "ColorActions"],
 		{
 			"ok": self.go,
@@ -133,9 +134,9 @@ class PositionerSetup(Screen):
 			"yellow": self.yellowKey,
 			"blue": self.blueKey,
 		}, -1)
-		
+
 		self.updateColors("tune")
-		
+
 		self.statusTimer = eTimer()
 		self.statusTimer.callback.append(self.updateStatus)
 		self.statusTimer.start(50, True)
@@ -151,7 +152,7 @@ class PositionerSetup(Screen):
 				del self.raw_channel
 		else:
 			self.oldref=None
-		self.close(None)	
+		self.close(None)
 
 	def keyCancel(self):
 		if self.oldref:
@@ -302,7 +303,7 @@ class PositionerSetup(Screen):
 		elif entry == "storage":
 			print "store at position", int(self.positioner_storage.value)
 			self.diseqccommand("store", int(self.positioner_storage.value))
-			
+
 		elif entry == "limits":
 			self.diseqccommand("limitWest")
 
@@ -395,7 +396,7 @@ class Diseqc:
 				string = 'e03167'
 			else:
 				string = 'e03160' #positioner stop
-			
+
 			print "diseqc command:",
 			print string
 			cmd.setCommandString(string)
@@ -431,7 +432,7 @@ class TunerScreen(ScanSetup):
 		self.list.append(self.satEntry)
 		nim = nimmanager.nim_slots[self.feid]
 		self.systemEntry = None
-		
+
 		if tuning.type.value == "manual_transponder":
 			if nim.isCompatible("DVB-S2"):
 				self.systemEntry = getConfigListEntry(_('System'), self.scan_sat.system)
@@ -567,7 +568,7 @@ class RotorNimSelection(Screen):
 		nimMenuList = []
 		for x in nimlist:
 			nimMenuList.append((nimmanager.nim_slots[x].friendly_full_description, x))
-		
+
 		self["nimlist"] = MenuList(nimMenuList)
 
 		self["actions"] = ActionMap(["OkCancelActions"],

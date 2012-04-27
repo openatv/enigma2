@@ -4,6 +4,7 @@ from Components.config import configfile , config, getConfigListEntry
 from Components.ConfigList import ConfigListScreen
 from Components.SystemInfo import SystemInfo
 from Components.Sources.StaticText import StaticText
+from Components.Pixmap import Pixmap
 from os import path
 from enigma import getDesktop
 
@@ -11,38 +12,44 @@ class OSDSetup(Screen, ConfigListScreen):
 	skin = """
 	<screen name="OSDSetup" position="0,0" size="e,e" backgroundColor="blue">
 		<widget name="config" position="c-175,c-75" size="350,150" foregroundColor="black" backgroundColor="blue" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="c-145,e-100" zPosition="0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/red.png" position="c+5,e-100" zPosition="0" size="140,40" alphatest="on" />
-		<widget source="key_green" render="Label" position="c-145,e-100" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;20" transparent="1" backgroundColor="green" />
-		<widget source="key_red" render="Label" position="c+5,e-100" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;20" transparent="1" backgroundColor="red" />
-		<ePixmap pixmap="skin_default/div-h.png" position="c-200,e-150" zPosition="1" size="400,2" />
-		<widget source="satus" render="Label" position="c-200,e-140" size="400,30" zPosition="10" font="Regular;21" halign="center" valign="center" foregroundColor="black" backgroundColor="blue" transparent="1" />
+		<ePixmap pixmap="skin_default/buttons/green.png" position="c-215,e-100" zPosition="0" size="140,40" alphatest="on" />
+		<widget source="key_green" render="Label" position="c-215,e-100" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;20" transparent="1" backgroundColor="green" />
+		<ePixmap pixmap="skin_default/buttons/red.png" position="c-65,e-100" zPosition="0" size="140,40" alphatest="on" />
+		<widget source="key_red" render="Label" position="c-65,e-100" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;20" transparent="1" backgroundColor="red" />
+		<ePixmap pixmap="skin_default/buttons/yellow.png" position="c+75,e-100" zPosition="0" size="140,40" alphatest="on" />
+		<widget source="key_yellow" render="Label" position="c+75,e-100" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;20" transparent="1" backgroundColor="yellow" />
+		<ePixmap pixmap="skin_default/div-h.png" position="c-200,e-180" zPosition="1" size="400,2" />
+		<widget source="status" render="Label" position="c-300,e-170" size="600,60" zPosition="10" font="Regular;21" halign="center" valign="center" foregroundColor="black" backgroundColor="blue" transparent="1" />
 	</screen>"""
 
 	def __init__(self, session):
 		self.skin = OSDSetup.skin
 		Screen.__init__(self, session)
 		self.setup_title = _("OSD Setup")
-		self["satus"] = StaticText()
+		self["status"] = StaticText()
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
+		self["key_yellow"] = StaticText(_("Defaults"))
 
-		self["actions"] = ActionMap(["SetupActions"], 
+		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
 			{
 				"cancel": self.keyCancel,
 				"save": self.keySave,
+				"left": self.keyLeft,
+				"right": self.keyRight,
+				"yellow": self.keyDefault,
 			}, -2)
 
 		self.onChangedEntry = [ ]
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
 		if SystemInfo["CanChangeOsdAlpha"] == True:
-			self.list.append(getConfigListEntry(_("OSD visibility"), config.osd.alpha))
+			self.list.append(getConfigListEntry(_("OSD visibility"), config.osd.alpha, _("This option lets you adjust the transparency of the OSD")))
 		if SystemInfo["CanChangeOsdPosition"] == True:
-			self.list.append(getConfigListEntry(_("Move Left/Right"), config.osd.dst_left))
-			self.list.append(getConfigListEntry(_("Width"), config.osd.dst_width))
-			self.list.append(getConfigListEntry(_("Move Up/Down"), config.osd.dst_top))
-			self.list.append(getConfigListEntry(_("Height"), config.osd.dst_height))
+			self.list.append(getConfigListEntry(_("Move Left/Right"), config.osd.dst_left, _("Use the Left/Right buttons on your remote to move the OSD left/right")))
+			self.list.append(getConfigListEntry(_("Width"), config.osd.dst_width, _("Use the Left/Right buttons on your remote to adjust the size of the OSD. Left button decreases the size, Right increases the size.")))
+			self.list.append(getConfigListEntry(_("Move Up/Down"), config.osd.dst_top, _("Use the Left/Right buttons on your remote to move the OSD up/down")))
+			self.list.append(getConfigListEntry(_("Height"), config.osd.dst_height, _("Use the Left/Right buttons on your remote to adjust the size of the OSD. Left button decreases the size, Right increases the size.")))
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
 
@@ -52,7 +59,7 @@ class OSDSetup(Screen, ConfigListScreen):
 		self.selectionChanged()
 
 	def selectionChanged(self):
-		self["satus"].setText(_("Current value: ") + self.getCurrentValue())
+		self["status"].setText(self["config"].getCurrent()[2])
 
 	def layoutFinished(self):
 		self.setTitle(_(self.setup_title))
@@ -65,7 +72,6 @@ class OSDSetup(Screen, ConfigListScreen):
 	def changedEntry(self):
 		for x in self.onChangedEntry:
 			x()
- 		self.selectionChanged()
 
 	def getCurrentEntry(self):
 		return self["config"].getCurrent()[0]
@@ -80,6 +86,16 @@ class OSDSetup(Screen, ConfigListScreen):
 	def keyRight(self):
 		ConfigListScreen.keyRight(self)
 		self.setPreviewPosition()
+
+	def keyDefault(self):
+		config.osd.alpha.setValue(255)
+
+		config.osd.dst_left.setValue(0)
+		config.osd.dst_width.setValue(720)
+		config.osd.dst_top.setValue(0)
+		config.osd.dst_height.setValue(576)
+
+		self.keyLeft()
 
 	def setPreviewPosition(self):
 		size_w = getDesktop(0).size().width()
@@ -113,7 +129,7 @@ class OSDSetup(Screen, ConfigListScreen):
 	def keySave(self):
 		self.saveAll()
 		self.close()
-	
+
 	def cancelConfirm(self, result):
 		if not result:
 			return
@@ -132,34 +148,28 @@ class OSDSetup(Screen, ConfigListScreen):
 
 def setPosition(dst_left, dst_width, dst_top, dst_height):
 	print 'Setting OSD position:' + str(dst_left) + " " + str(dst_width) + " " + str(dst_top) + " " + str(dst_height)
-	open("/proc/stb/fb/dst_left", "w").write('%X' % dst_left)
-	open("/proc/stb/fb/dst_width", "w").write('%X' % dst_width)
-	open("/proc/stb/fb/dst_top", "w").write('%X' % dst_top)
-	open("/proc/stb/fb/dst_height", "w").write('%X' % dst_height)
+	open("/proc/stb/fb/dst_left", "w").write('%X' % int(dst_left))
+	open("/proc/stb/fb/dst_width", "w").write('%X' % int(dst_width))
+	open("/proc/stb/fb/dst_top", "w").write('%X' % int(dst_top))
+	open("/proc/stb/fb/dst_height", "w").write('%X' % int(dst_height))
 
 def setAlpha(alpha_value):
 	print 'Setting OSD alpha:', str(alpha_value)
 	open("/proc/stb/video/alpha", "w").write(str(alpha_value))
 
 class OSD3DSetupScreen(Screen, ConfigListScreen):
-	skin = """
-	<screen position="c-200,c-100" size="400,200" title="OSD 3D setup">
-		<widget name="config" position="c-175,c-75" size="350,150" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="c-145,e-45" zPosition="0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/red.png" position="c+5,e-45" zPosition="0" size="140,40" alphatest="on" />
-		<widget source="key_green" render="Label" position="c-145,e-45" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;20" transparent="1" backgroundColor="green" />
-		<widget source="key_red" render="Label" position="c+5,e-45" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;20" transparent="1" backgroundColor="red" />
-	</screen>"""
-
 	def __init__(self, session):
-		self.skin = OSD3DSetupScreen.skin
 		Screen.__init__(self, session)
 		self.setup_title = _("OSD 3D Setup")
-		self["satus"] = StaticText()
+		self.skinName = "Setup"
+		self["status"] = StaticText()
+		self["HelpWindow"] = Pixmap()
+		self["HelpWindow"].hide()
+
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
 
-		self["actions"] = ActionMap(["SetupActions"], 
+		self["actions"] = ActionMap(["SetupActions"],
 			{
 				"cancel": self.keyCancel,
 				"save": self.keySave,
@@ -168,13 +178,19 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 		self.onChangedEntry = [ ]
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
-		self.list.append(getConfigListEntry(_("3D Mode"), config.osd.threeDmode))
-		self.list.append(getConfigListEntry(_("Depth"), config.osd.threeDznorm))
-		self.list.append(getConfigListEntry(_("Show in extensions list ?"), config.osd.show3dextensions))
+		self.list.append(getConfigListEntry(_("3D Mode"), config.osd.threeDmode, _("This option lets you choose the 3D mode")))
+		self.list.append(getConfigListEntry(_("Depth"), config.osd.threeDznorm, _("This option lets you adjust the 3D depth")))
+		self.list.append(getConfigListEntry(_("Show in extensions list ?"), config.osd.show3dextensions, _("This option lets you show the option in the extension screen")))
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
 
 		self.onLayoutFinish.append(self.layoutFinished)
+		if not self.selectionChanged in self["config"].onSelectionChanged:
+			self["config"].onSelectionChanged.append(self.selectionChanged)
+		self.selectionChanged()
+
+	def selectionChanged(self):
+ 		self["status"].setText(self["config"].getCurrent()[2])
 
 	def layoutFinished(self):
 		self.setTitle(_(self.setup_title))
@@ -215,7 +231,7 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 	def keySave(self):
 		self.saveAll()
 		self.close()
-	
+
 	def cancelConfirm(self, result):
 		if not result:
 			return
@@ -239,13 +255,16 @@ def applySettings(mode, znorm):
 	open("/proc/stb/fb/znorm", "w").write('%d' % znorm)
 
 def setConfiguredPosition():
-	setPosition(int(config.osd.dst_left.value), int(config.osd.dst_width.value), int(config.osd.dst_top.value), int(config.osd.dst_height.value))
+	if isChangeOsdPositionSupported():
+		setPosition(int(config.osd.dst_left.value), int(config.osd.dst_width.value), int(config.osd.dst_top.value), int(config.osd.dst_height.value))
 
 def setConfiguredAplha():
-	setAlpha(int(config.osd.alpha.value))
+	if isChangeOsdAlphaSupported():
+		setAlpha(int(config.osd.alpha.value))
 
 def setConfiguredSettings():
-	applySettings(config.osd.threeDmode.value, int(config.osd.threeDznorm.value))
+	if isChange3DOsdSupported():
+		applySettings(config.osd.threeDmode.value, int(config.osd.threeDznorm.value))
 
 def isChangeOsdPositionSupported():
 	try:
@@ -269,7 +288,7 @@ def isChange3DOsdSupported():
 	return can_osd_3dmode
 
 def isOsdSetupSupported():
-	if SystemInfo["CanChangeOsdAlpha"] == True or SystemInfo["CanChangeOsdPosition"] == True:
+	if SystemInfo["CanChangeOsdPosition"] == True:
 		return True
 	return False
 

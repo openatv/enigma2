@@ -304,6 +304,8 @@ eDVBAudio::~eDVBAudio()
 
 DEFINE_REF(eDVBVideo);
 
+int eDVBVideo::m_close_invalidates_attributes = -1;
+
 eDVBVideo::eDVBVideo(eDVBDemux *demux, int dev)
 	: m_demux(demux), m_dev(dev),
 	m_width(-1), m_height(-1), m_framerate(-1), m_aspect(-1), m_progressive(-1)
@@ -335,6 +337,25 @@ eDVBVideo::eDVBVideo(eDVBDemux *demux, int dev)
 	if (m_fd_demux < 0)
 		eWarning("%s: %m", filename);
 	eDebug("demux device: %s", filename);
+	if (m_close_invalidates_attributes < 0)
+	{
+		/* 
+		 * Some hardware does not invalidate the video attributes, 
+		 * when we open the video device.
+		 * If that is the case, we cannot rely on receiving VIDEO_EVENTs
+		 * when the new video attributes are available, because they might
+		 * be equal to the old attributes.
+		 * Instead, we should just query the old attributes, and assume
+		 * them to be correct untill we receive VIDEO_EVENTs.
+		 * 
+		 * Though this is merely a cosmetic issue, we do try to detect
+		 * whether attributes are invalidated or not.
+		 * So we can avoid polling for valid attributes, when we know
+		 * we can rely on VIDEO_EVENTs.
+		 */
+		readApiSize(m_fd, m_width, m_height, m_aspect);
+		m_close_invalidates_attributes = (m_width == -1) ? 1 : 0;
+	}
 }
 
 // not finally values i think.. !!
@@ -564,38 +585,51 @@ eDVBVideo::~eDVBVideo()
 void eDVBVideo::video_event(int)
 {
 #if HAVE_DVB_API_VERSION >= 3
-	struct video_event evt;
-	eDebugNoNewLine("VIDEO_GET_EVENT - ");
-	if (::ioctl(m_fd, VIDEO_GET_EVENT, &evt) < 0)
-		eDebug("failed (%m)");
-	else
+	while (m_fd >= 0)
 	{
-		eDebug("ok");
-		if (evt.type == VIDEO_EVENT_SIZE_CHANGED)
+		int retval;
+		pollfd pfd[1];
+		pfd[0].fd = m_fd;
+		pfd[0].events = POLLPRI;
+		retval = ::poll(pfd, 1, 0);
+		if (retval < 0 && errno == EINTR) continue;
+		if (retval <= 0) break;
+		struct video_event evt;
+		eDebugNoNewLine("VIDEO_GET_EVENT - ");
+		if (::ioctl(m_fd, VIDEO_GET_EVENT, &evt) < 0)
 		{
-			struct iTSMPEGDecoder::videoEvent event;
-			event.type = iTSMPEGDecoder::videoEvent::eventSizeChanged;
-			m_aspect = event.aspect = evt.u.size.aspect_ratio == 0 ? 2 : 3;  // convert dvb api to etsi
-			m_height = event.height = evt.u.size.h;
-			m_width = event.width = evt.u.size.w;
-			/* emit */ m_event(event);
-		}
-		else if (evt.type == VIDEO_EVENT_FRAME_RATE_CHANGED)
-		{
-			struct iTSMPEGDecoder::videoEvent event;
-			event.type = iTSMPEGDecoder::videoEvent::eventFrameRateChanged;
-			m_framerate = event.framerate = evt.u.frame_rate;
-			/* emit */ m_event(event);
-		}
-		else if (evt.type == 16 /*VIDEO_EVENT_PROGRESSIVE_CHANGED*/)
-		{
-			struct iTSMPEGDecoder::videoEvent event;
-			event.type = iTSMPEGDecoder::videoEvent::eventProgressiveChanged;
-			m_progressive = event.progressive = evt.u.frame_rate;
-			/* emit */ m_event(event);
+			eDebug("failed (%m)");
+			break;
 		}
 		else
-			eDebug("unhandled DVBAPI Video Event %d", evt.type);
+		{
+			eDebug("ok");
+			if (evt.type == VIDEO_EVENT_SIZE_CHANGED)
+			{
+				struct iTSMPEGDecoder::videoEvent event;
+				event.type = iTSMPEGDecoder::videoEvent::eventSizeChanged;
+				m_aspect = event.aspect = evt.u.size.aspect_ratio == 0 ? 2 : 3;  // convert dvb api to etsi
+				m_height = event.height = evt.u.size.h;
+				m_width = event.width = evt.u.size.w;
+				/* emit */ m_event(event);
+			}
+			else if (evt.type == VIDEO_EVENT_FRAME_RATE_CHANGED)
+			{
+				struct iTSMPEGDecoder::videoEvent event;
+				event.type = iTSMPEGDecoder::videoEvent::eventFrameRateChanged;
+				m_framerate = event.framerate = evt.u.frame_rate;
+				/* emit */ m_event(event);
+			}
+			else if (evt.type == 16 /*VIDEO_EVENT_PROGRESSIVE_CHANGED*/)
+			{
+				struct iTSMPEGDecoder::videoEvent event;
+				event.type = iTSMPEGDecoder::videoEvent::eventProgressiveChanged;
+				m_progressive = event.progressive = evt.u.frame_rate;
+				/* emit */ m_event(event);
+			}
+			else
+				eDebug("unhandled DVBAPI Video Event %d", evt.type);
+		}
 	}
 #else
 #warning "FIXMEE!! Video Events not implemented for old api"
@@ -608,7 +642,7 @@ RESULT eDVBVideo::connectEvent(const Slot1<void, struct iTSMPEGDecoder::videoEve
 	return 0;
 }
 
-static int readMpegProc(const char *str, int decoder)
+int eDVBVideo::readMpegProc(const char *str, int decoder)
 {
 	int val = -1;
 	char tmp[64];
@@ -622,7 +656,7 @@ static int readMpegProc(const char *str, int decoder)
 	return val;
 }
 
-static int readApiSize(int fd, int &xres, int &yres, int &aspect)
+int eDVBVideo::readApiSize(int fd, int &xres, int &yres, int &aspect)
 {
 #if HAVE_DVB_API_VERSION >= 3
 	video_size_t size;
@@ -638,7 +672,7 @@ static int readApiSize(int fd, int &xres, int &yres, int &aspect)
 	return -1;
 }
 
-static int readApiFrameRate(int fd, int &framerate)
+int eDVBVideo::readApiFrameRate(int fd, int &framerate)
 {
 #if HAVE_DVB_API_VERSION >= 3
 	unsigned int frate;
@@ -654,44 +688,64 @@ static int readApiFrameRate(int fd, int &framerate)
 
 int eDVBVideo::getWidth()
 {
-	if (m_width == -1)
-		readApiSize(m_fd, m_width, m_height, m_aspect);
-	if (m_width == -1)
-		m_width = readMpegProc("xres", m_dev);
+	/* when closing the video device invalidates the attributes, we can rely on VIDEO_EVENTs */
+	if (!m_close_invalidates_attributes)
+	{
+		if (m_width == -1)
+			readApiSize(m_fd, m_width, m_height, m_aspect);
+		if (m_width == -1)
+			m_width = readMpegProc("xres", m_dev);
+	}
 	return m_width;
 }
 
 int eDVBVideo::getHeight()
 {
-	if (m_height == -1)
-		readApiSize(m_fd, m_width, m_height, m_aspect);
-	if (m_height == -1)
-		m_height = readMpegProc("yres", m_dev);
+	/* when closing the video device invalidates the attributes, we can rely on VIDEO_EVENTs */
+	if (!m_close_invalidates_attributes)
+	{
+		if (m_height == -1)
+			readApiSize(m_fd, m_width, m_height, m_aspect);
+		if (m_height == -1)
+			m_height = readMpegProc("yres", m_dev);
+	}
 	return m_height;
 }
 
 int eDVBVideo::getAspect()
 {
-	if (m_aspect == -1)
-		readApiSize(m_fd, m_width, m_height, m_aspect);
-	if (m_aspect == -1)
-		m_aspect = readMpegProc("aspect", m_dev);
+	/* when closing the video device invalidates the attributes, we can rely on VIDEO_EVENTs */
+	if (!m_close_invalidates_attributes)
+	{
+		if (m_aspect == -1)
+			readApiSize(m_fd, m_width, m_height, m_aspect);
+		if (m_aspect == -1)
+			m_aspect = readMpegProc("aspect", m_dev);
+	}
 	return m_aspect;
 }
 
 int eDVBVideo::getProgressive()
 {
-	if (m_progressive == -1)
-		m_progressive = readMpegProc("progressive", m_dev);
+	/* when closing the video device invalidates the attributes, we can rely on VIDEO_EVENTs */
+	if (!m_close_invalidates_attributes)
+	{
+		if (m_progressive == -1)
+			m_progressive = readMpegProc("progressive", m_dev);
+	}
 	return m_progressive;
 }
 
 int eDVBVideo::getFrameRate()
 {
-	if (m_framerate == -1)
-		readApiFrameRate(m_fd, m_framerate);
-	if (m_framerate == -1)
-		m_framerate = readMpegProc("framerate", m_dev);
+	/* when closing the video device invalidates the attributes, we can rely on VIDEO_EVENTs */
+	if (!m_close_invalidates_attributes)
+	{
+		if (m_framerate == -1)
+			readApiFrameRate(m_fd, m_framerate);
+		if (m_framerate == -1)
+			m_framerate = readMpegProc("framerate", m_dev);
+	}
 	return m_framerate;
 }
 
@@ -1132,13 +1186,13 @@ eTSMPEGDecoder::eTSMPEGDecoder(eDVBDemux *demux, int decoder)
 
 eTSMPEGDecoder::~eTSMPEGDecoder()
 {
-	if ( m_decoder == 0 )	// Tuxtxt caching actions only on primary decoder
-		eTuxtxtApp::getInstance()->freeCache();
-
 	finishShowSinglePic();
 	m_vpid = m_apid = m_pcrpid = m_textpid = pidNone;
 	m_changed = -1;
 	setState();
+
+	if ( m_decoder == 0 )	// Tuxtxt caching actions only on primary decoder
+		eTuxtxtApp::getInstance()->freeCache();
 }
 
 RESULT eTSMPEGDecoder::setVideoPID(int vpid, int type)

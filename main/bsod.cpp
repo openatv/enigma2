@@ -118,7 +118,7 @@ void bsodFatal(const char *component)
 	bsodhandled = true;
 
 	std::ostringstream os;
-	os << getConfigString("config.crash.debug_path", "/home/root");
+	os << getConfigString("config.crash.debug_path", "/home/root/logs/");
 	os << "enigma2_crash_";
 	os << time(0);
 	os << ".log";
@@ -188,19 +188,47 @@ void bsodFatal(const char *component)
 		xml.close();
 
 		xml.open("image");
-		xml.stringFromFile("receivermodel", "/proc/stb/info/model");
+		if(access("/proc/stb/info/boxtype", F_OK) != -1) {
+			xml.stringFromFile("stbmodel", "/proc/stb/info/boxtype");
+		}
+		else if (access("/proc/stb/info/vumodel", F_OK) != -1) {
+			xml.stringFromFile("stbmodel", "/proc/stb/info/vumodel");
+		}
+		else if (access("/proc/stb/info/model", F_OK) != -1) {
+			xml.stringFromFile("stbmodel", "/proc/stb/info/model");
+		}
+		xml.cDataFromCmd("kernelversion", "uname -a");
 		xml.stringFromFile("kernelcmdline", "/proc/cmdline");
 		xml.stringFromFile("nimsockets", "/proc/bus/nim_sockets");
+		if (!getConfigBool("config.plugins.crashlogautosubmit.sendAnonCrashlog", true)) {
+			xml.cDataFromFile("stbca", "/proc/stb/info/ca");
+			xml.cDataFromFile("enigma2settings", eEnv::resolve("${sysconfdir}/enigma2/settings"), ".password=");
+		}
+		if (getConfigBool("config.plugins.crashlogautosubmit.addNetwork", false)) {
+			xml.cDataFromFile("networkinterfaces", "/etc/network/interfaces");
+			xml.cDataFromFile("dns", "/etc/resolv.conf");
+			xml.cDataFromFile("defaultgateway", "/etc/default_gw");
+		}
+		if (getConfigBool("config.plugins.crashlogautosubmit.addWlan", false))
+			xml.cDataFromFile("wpasupplicant", "/etc/wpa_supplicant.conf");
 		xml.cDataFromFile("imageversion", "/etc/image-version");
+		xml.cDataFromFile("imageissue", "/etc/issue.net");
 		xml.close();
 
 		if (detailedCrash)
 		{
 			xml.open("software");
-			xml.cDataFromCmd("enigma2software", "opkg list_installed 'enigma2*'");
-			xml.cDataFromCmd("vuplussoftware", "opkg list_installed 'vuplus*'");
-			xml.cDataFromCmd("xtrendsoftware", "opkg list_installed 'et-*'");
-			xml.cDataFromCmd("gstreamersoftware", "opkg list_installed 'gst*'");
+			xml.cDataFromCmd("enigma2software", "opkg list-installed 'enigma2*'");
+			if(access("/proc/stb/info/boxtype", F_OK) != -1) {
+				xml.cDataFromCmd("xtrendsoftware", "opkg list-installed 'et-*'");
+			}
+			else if (access("/proc/stb/info/vumodel", F_OK) != -1) {
+				xml.cDataFromCmd("vuplussoftware", "opkg list-installed 'vuplus*'");
+			}
+			else if (access("/proc/stb/info/model", F_OK) != -1) {
+				xml.cDataFromCmd("dreamboxsoftware", "opkg list-installed 'dream*'");
+			}
+			xml.cDataFromCmd("gstreamersoftware", "opkg list-installed 'gst*'");
 			xml.close();
 		}
 

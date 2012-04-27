@@ -70,6 +70,8 @@ void eLCD::renderText(ePoint start, const char *text)
 eDBoxLCD::eDBoxLCD()
 {
 	int xres=132, yres=64, bpp=8;
+	flipped = false;
+	inverted = 0;
 	is_oled = 0;
 #ifndef NO_LCD
 	lcdfd = open("/dev/dbox/oled0", O_RDWR);
@@ -91,7 +93,6 @@ eDBoxLCD::eDBoxLCD()
 	{
 		int i=LCD_MODE_BIN;
 		ioctl(lcdfd, LCD_IOCTL_ASC_MODE, &i);
-		inverted=0;
 		FILE *f = fopen("/proc/stb/lcd/xres", "r");
 		if (f)
 		{
@@ -131,6 +132,12 @@ eDBoxLCD::eDBoxLCD()
 void eDBoxLCD::setInverted(unsigned char inv)
 {
 	inverted=inv;
+	update();
+}
+
+void eDBoxLCD::setFlipped(bool onoff)
+{
+	flipped = onoff;
 	update();
 }
 
@@ -199,10 +206,10 @@ eDBoxLCD *eDBoxLCD::getInstance()
 
 void eDBoxLCD::update()
 {
-#if defined(HAVE_GRAPHICLCD) && !defined(HAVE_TEXTLCD)
+#ifndef HAVE_TEXTLCD
 	if (lcdfd >= 0)
 	{
-		if (!is_oled || is_oled == 2)
+		if (is_oled == 0 || is_oled == 2)
 		{
 			unsigned char raw[132*8];
 			int x, y, yy;
@@ -215,14 +222,51 @@ void eDBoxLCD::update()
 					{
 						pix|=(_buffer[(y*8+yy)*132+x]>=108)<<yy;
 					}
-					raw[y*132+x]=(pix^inverted);
+					if (flipped)
+					{
+						/* 8 pixels per byte, swap bits */
+#define BIT_SWAP(a) (( ((a << 7)&0x80) + ((a << 5)&0x40) + ((a << 3)&0x20) + ((a << 1)&0x10) + ((a >> 1)&0x08) + ((a >> 3)&0x04) + ((a >> 5)&0x02) + ((a >> 7)&0x01) )&0xff)
+						raw[(7 - y) * 132 + (131 - x)] = BIT_SWAP(pix ^ inverted);
+					}
+					else
+					{
+						raw[y * 132 + x] = pix ^ inverted;
+					}
 				}
 			}
 			write(lcdfd, raw, 132*8);
 		}
 		else if (is_oled == 3)
-			write(lcdfd, _buffer, _stride * res.height());
-		else
+		{
+			/* for now, only support flipping / inverting for 8bpp displays */
+			if ((flipped || inverted) && _stride == res.width())
+			{
+				unsigned int height = res.height();
+				unsigned int width = res.width();
+				unsigned char raw[_stride * height];
+				for (unsigned int y = 0; y < height; y++)
+				{
+					for (unsigned int x = 0; x < width; x++)
+					{
+						if (flipped)
+						{
+							/* 8bpp, no bit swapping */
+							raw[(height - 1 - y) * width + (width - 1 - x)] = _buffer[y * width + x] ^ inverted;
+						}
+						else
+						{
+							raw[y * width + x] = _buffer[y * width + x] ^ inverted;
+						}
+					}
+				}
+				write(lcdfd, raw, _stride * height);
+			}
+			else
+			{
+				write(lcdfd, _buffer, _stride * res.height());
+			}
+		}
+		else /* is_oled == 1 */
 		{
 			unsigned char raw[64*64];
 			int x, y;
@@ -235,26 +279,22 @@ void eDBoxLCD::update()
 					pix = (_buffer[y*132 + x * 2 + 2] & 0xF0) |(_buffer[y*132 + x * 2 + 1 + 2] >> 4);
 					if (inverted)
 						pix = 0xFF - pix;
-					raw[y*64+x] = pix;
+					if (flipped)
+					{
+						/* device seems to be 4bpp, swap nibbles */
+						unsigned char byte;
+						byte = (pix >> 4) & 0x0f;
+						byte |= (pix << 4) & 0xf0;
+						raw[(63 - y) * 64 + (63 - x)] = byte;
+					}
+					else
+					{
+						raw[y * 64 + x] = pix;
+					}
 				}
 			}
 			write(lcdfd, raw, 64*64);
 		}
 	}
-#endif /*defined(DISPLAY_GRAPHICVFD) && !defined(DISPLAY_TEXTVFD)*/
+#endif
 }
-
-#if defined(HAVE_TEXTLCD)
-void eDBoxLCD::updates(ePoint start,char *text)
-{
-	if((lcdfd >= 0) && (start.y() < 5))
-	{
-		int i = 0, text_len = strlen(text);
-		for(; i<text_len ; i++)
-		{
-					if(text[i]==0x0a) text[i] = 0x20;
-			}
-		write(lcdfd, text, text_len);
-	}
-}
-#endif /*defined(HAVE_TEXTLCD)*/

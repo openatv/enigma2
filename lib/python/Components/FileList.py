@@ -13,6 +13,7 @@ EXTENSIONS = {
 		"mp3": "music",
 		"wav": "music",
 		"ogg": "music",
+		"wma": "music",
 		"flac": "music",
 		"jpg": "picture",
 		"jpeg": "picture",
@@ -28,6 +29,10 @@ EXTENSIONS = {
 		"mp4": "movie",
 		"mov": "movie",
 		"m2ts": "movie",
+		"3gp": "movie",
+		"3g2": "movie",
+		"asf": "movie",
+		"wmv": "movie",
 	}
 
 def FileEntryComponent(name, absolute = None, isDir = False):
@@ -44,7 +49,7 @@ def FileEntryComponent(name, absolute = None, isDir = False):
 			png = None
 	if png is not None:
 		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 10, 2, 20, 20, png))
-	
+
 	return res
 
 class FileList(MenuList):
@@ -209,10 +214,10 @@ class FileList(MenuList):
 			self.moveToIndex(0)
 			for x in self.list:
 				p = x[0][0]
-				
+
 				if isinstance(p, eServiceReference):
 					p = p.getPath()
-				
+
 				if p == select:
 					self.moveToIndex(i)
 				i += 1
@@ -291,7 +296,7 @@ class MultiFileSelectList(FileList):
 		else:
 		        self.selectedFiles = preselectedFiles
 		FileList.__init__(self, directory, showMountpoints = showMountpoints, matchingPattern = matchingPattern, showDirectories = showDirectories, showFiles = showFiles,  useServiceRef = useServiceRef, inhibitDirs = inhibitDirs, inhibitMounts = inhibitMounts, isTop = isTop, enableWrapAround = enableWrapAround, additionalExtensions = additionalExtensions)
-		self.changeDir(directory)			
+		self.changeDir(directory)
 		self.l.setItemHeight(25)
 		self.l.setFont(0, gFont("Regular", 20))
 		self.onSelectionChanged = [ ]
@@ -325,7 +330,7 @@ class MultiFileSelectList(FileList):
 			newList[idx] = MultiFileSelectEntryComponent(name = x[0][3], absolute = x[0][0], isDir = x[0][1], selected = SelectState)
 		self.list = newList
 		self.l.setList(self.list)
-	
+
 	def getSelectedList(self):
 		selectedFilesExist = []
 		for x in self.selectedFiles:
@@ -412,7 +417,7 @@ class MultiFileSelectList(FileList):
 					alreadySelected = False
 					for entry in self.selectedFiles:
 						if os.path.basename(entry) == x:
-							alreadySelected = True	
+							alreadySelected = True
 					self.list.append(MultiFileSelectEntryComponent(name = name, absolute = x , isDir = False, selected = alreadySelected))
 
 		self.l.setList(self.list)
@@ -422,10 +427,10 @@ class MultiFileSelectList(FileList):
 			self.moveToIndex(0)
 			for x in self.list:
 				p = x[0][0]
-				
+
 				if isinstance(p, eServiceReference):
 					p = p.getPath()
-				
+
 				if p == select:
 					self.moveToIndex(i)
 				i += 1
