@@ -12,6 +12,7 @@ from Components.SystemInfo import SystemInfo
 from Components.Sources.StaticText import StaticText
 from Components.Pixmap import Pixmap,MultiPixmap
 from Components.UsageConfig import preferredTimerPath
+from Screens.TimerEdit import TimerSanityConflict
 from Components.Label import Label
 from Components.Sources.Boolean import Boolean
 profile("ChannelSelection.py 1")
@@ -582,6 +583,8 @@ class ChannelSelectionEPG:
 		if self.list is None:
 			return
 		eventid = self.list[0]
+		if eventid is None:
+			return
 		for timer in self.session.nav.RecordTimer.timer_list:
 			if timer.eit == eventid and timer.service_ref.ref.toString() == refstr:
 				cb_func = lambda ret : not ret or self.removeTimer(timer)
