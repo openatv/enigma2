@@ -13,9 +13,7 @@ class OnlineUpdateStableCheck(Source):
 	@cached
 	def getBoolean(self):
 		checkavailable = versioncheck.getStableUpdateAvailable()
-		if checkavailable:
-			self.check_timer.stop()
-		return checkavailable
+		return versioncheck.getStableUpdateAvailable()
 
 	boolean = property(getBoolean)
 
@@ -26,7 +24,7 @@ class OnlineUpdateStableCheck(Source):
 		if suspended:
 			self.check_timer.stop()
 		else:
-			self.check_timer.start(60000)
+			self.check_timer.start(3600000)
 			self.poll()
 
 	def destroy(self):
@@ -43,9 +41,7 @@ class OnlineUpdateUnstableCheck(Source):
 	@cached
 	def getBoolean(self):
 		checkavailable = versioncheck.getUnstableUpdateAvailable()
-		if checkavailable:
-			self.check_timer.stop()
-		return checkavailable
+		return versioncheck.getUnstableUpdateAvailable()
 
 	boolean = property(getBoolean)
 
@@ -56,7 +52,7 @@ class OnlineUpdateUnstableCheck(Source):
 		if suspended:
 			self.check_timer.stop()
 		else:
-			self.check_timer.start(60000)
+			self.check_timer.start(3600000)
 			self.poll()
 
 	def destroy(self):
