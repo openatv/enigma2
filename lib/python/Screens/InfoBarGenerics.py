@@ -51,8 +51,6 @@ from random import randint
 from Menu import MainMenu, mdom
 import Screens.Standby
 
-SYSTEMS = ["irdeto", "seca", "nagra", "via", "conax", "betacrypt", "crypto", "dreamcrypt", "nds"]
-
 def isStandardInfoBar(self):
 	return ".InfoBar'>" in `self`
 
@@ -165,54 +163,6 @@ class InfoBarUnhandledKey:
 			self.unhandledKeyDialog.show()
 			self.hideUnhandledKeySymbolTimer.start(2000, True)
 
-############################################################
-# ECM Info
-############################################################
-
-class EcmInfoLabel(Label):
-	def __init__(self, text=""):
-		Label.__init__(self, text)
-		self.visible = config.usage.show_cryptoinfo.value
-
-	def notCrypted(self):
-		if self.skinAttributes is not None:
-			attribs = [ ]
-			for (attrib, value) in self.skinAttributes:
-				if attrib == "foregroundNotCrypted":
-					self.instance.setForegroundColor(parseColor(value)),
-				elif attrib == "backgroundNotCrypted":
-			 		self.instance.setBackgroundColor(parseColor(value)),
-		else:
-			self.instance.setForegroundColor(parseColor("#595959")),
-			self.instance.setBackgroundColor(parseColor("#aeaeae")),
-		self.instance.setTransparent(1)
-
-	def crypted(self):
-		if self.skinAttributes is not None:
-			attribs = [ ]
-			for (attrib, value) in self.skinAttributes:
-				if attrib == "foregroundCrypted":
-					self.instance.setForegroundColor(parseColor(value)),
-				elif attrib == "backgroundCrypted":
-			 		self.instance.setBackgroundColor(parseColor(value)),
-		else:
-			self.instance.setForegroundColor(parseColor("#aeaeae")),
-			self.instance.setBackgroundColor(parseColor("#868686")),
-		self.instance.setTransparent(0)
-
-	def encrypted(self):
-		if self.skinAttributes is not None:
-			attribs = [ ]
-			for (attrib, value) in self.skinAttributes:
-				if attrib == "foregroundEncrypted":
-					self.instance.setForegroundColor(parseColor(value)),
-				elif attrib == "backgroundEncrypted":
-			 		self.instance.setBackgroundColor(parseColor(value)),
-		else:
-			self.instance.setForegroundColor(parseColor("#aeaeae")),
-			self.instance.setBackgroundColor(parseColor("#595959")),
-		self.instance.setTransparent(0)
-
 class SecondInfoBar(Screen):
 
 	def __init__(self, session):
@@ -245,21 +195,6 @@ class InfoBarShowHide:
 		self["key_blue"] = Label()
 		self["key_green"] = Label()
 
-		self.systemCaids = {
-			"06" : "irdeto",
-			"01" : "seca",
-			"18" : "nagra",
-			"05" : "via",
-			"0B" : "conax",
-			"17" : "betacrypt",
-			"0D" : "crypto",
-			"4A" : "dreamcrypt",
-			"09" : "nds" }
-
-		for x in SYSTEMS:
-			self[x] = EcmInfoLabel()
-		self["ecmInfo"] = Label()
-
 		self.__state = self.STATE_SHOWN
 		self.__locked = 0
 
@@ -267,10 +202,6 @@ class InfoBarShowHide:
 		self.hideTimer.callback.append(self.doTimerHide)
 		self.hideTimer.start(5000, True)
 
-		self.ecmTimer = eTimer()
-		self.ecmTimer.timeout.get().append(self.parseEcmInfo)
-
-		self.onShow.append(self.__onShowEcm)
 		self.onShow.append(self.__onShow)
 		self.onHide.append(self.__onHide)
 
@@ -298,15 +229,11 @@ class InfoBarShowHide:
 			if config.usage.show_infobar_on_zap.value:
 				self.doShow()
 
-	def __onShowEcm(self):
-		self.ecmTimer.start(1000, False)
-
 	def __onShow(self):
 		self.__state = self.STATE_SHOWN
 		self.doButtonsCheck()
 		for x in self.onShowHideNotifiers:
 			x(True)
-
 		self.startHideTimer()
 
 	def startHideTimer(self):
@@ -420,107 +347,6 @@ class InfoBarShowHide:
 			self.hide()
 			if self.pvrStateDialog:
 				self.pvrStateDialog.hide()
-
-	def int2hex(self, int):
-		return "%x" % int
-
-	def parseEcmInfoLine(self, line):
-		if line.__contains__(":"):
-			idx = line.index(":")
-			line = line[idx+1:]
-			line = line.replace("\n", "")
-			while line.startswith(" "):
-				line = line[1:]
-			while line.endswith(" "):
-				line = line[:-1]
-			return line
-		else:
-			return ""
-
-	def parseEcmInfo(self):
-		for x in SYSTEMS:
-			self[x].notCrypted()
-		self["ecmInfo"].setText("")
-
-		service = self.session.nav.getCurrentService()
-		if service:
-			info = service and service.info()
-			if info:
-				caids = info.getInfoObject(iServiceInformation.sCAIDs)
-				if caids:
-					if len(caids) > 0:
-						for caid in caids:
-							caid = self.int2hex(caid)
-							if len(caid) == 3:
-								caid = "0%s" % caid
-							caid = caid[:2]
-							caid = caid.upper()
-
-							if self.systemCaids.has_key(caid):
-								system = self.systemCaids.get(caid)
-								self[system].crypted()
-
-		if self.shown:
-			ecmInfoString = ""
-			using = ""
-			address = ""
-			protocol = ""
-			hops = ""
-			ecmTime = ""
-			provider = ""
-
-			try:
-				f = open("/tmp/ecm.info", "r")
-				content = f.read()
-				f.close()
-			except:
-				content = "using: fta"
-
-			contentInfo = content.split("\n")
-			for line in contentInfo:
-				if line.startswith("caid:"):
-					caid = self.parseEcmInfoLine(line)
-					if caid.__contains__("x"):
-						idx = caid.index("x")
-						caid = caid[idx+1:]
-						if len(caid) == 3:
-							caid = "0%s" % caid
-						caid = caid[:2]
-						caid = caid.upper()
-						if self.systemCaids.has_key(caid):
-							system = self.systemCaids.get(caid)
-							self[system].encrypted()
-				elif line.startswith("address:") or line.startswith("from:"):
-					address = "%s %s" % (_("Server:"), self.parseEcmInfoLine(line))
-					if len(address) > 34:
-						address = "%s***" % address[:config.cccaminfo.serverNameLength.value-3]
-				elif line.startswith("using:") or line.startswith("protocol:"):
-					using = "%s %s" % (_("\nProtocol:"), self.parseEcmInfoLine(line))
-					if using == "\nProtocol: fta":
-						using = _("Free to Air")
-				elif line.startswith("hops:"):
-					hops = "%s %s" % (_("Hops:"), self.parseEcmInfoLine(line))
-				elif line.startswith("ecm time:"):
-					ecmTime = "%s %s" % (_("Ecm:"), self.parseEcmInfoLine(line))
-				elif line.startswith("provider:"):
-					provider = "%s %s" % (_("\nProvider:"), self.parseEcmInfoLine(line))
-
-			if address != "":
-				ecmInfoString = "%s " % address
-			if using != "":
-				ecmInfoString = "%s%s  " % (ecmInfoString, using)
-			if hops != "":
-				ecmInfoString = "%s%s  " % (ecmInfoString, hops)
-			if ecmTime != "":
-				if ecmTime != "Ecm: nan" and ecmTime != "Ecm: 0.000":
-					ecmInfoString = "%s%s " % (ecmInfoString, ecmTime)
-#			if provider != "":
-#				print 'ecm time: ' + provider
-#				if provider != "\nProvider: Unknown":
-#					ecmInfoString = "%s%s " % (ecmInfoString, provider)
-
-			self["ecmInfo"].setText(ecmInfoString)
-			self["ecmInfo"].visible = config.usage.show_cryptoinfo.value
 
 	def openEventView(self):
 		if isinstance(self, InfoBarEPG):
