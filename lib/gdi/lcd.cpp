@@ -77,14 +77,9 @@ eDBoxLCD::eDBoxLCD()
 	lcdfd = open("/dev/dbox/oled0", O_RDWR);
 	if (lcdfd < 0)
 	{
-		FILE *f=fopen("/proc/stb/lcd/oled_brightness", "w");
-		if (!f)
-			f = fopen("/proc/stb/fp/oled_brightness", "w");
-		if (f)
-		{
+		if (!access("/proc/stb/lcd/oled_brightness", W_OK) ||
+		    !access("/proc/stb/fp/oled_brightness", W_OK) )
 			is_oled = 2;
-			fclose(f);
-		}
 		lcdfd = open("/dev/dbox/lcd0", O_RDWR);
 	} else
 	{
@@ -122,17 +117,6 @@ eDBoxLCD::eDBoxLCD()
 			is_oled = 3;
 		}
 	}
-	/* Remove "/dev/dbox/oled0" for boxes with no LCD */
-	int fd = open("/proc/stb/info/boxtype", O_RDONLY);
-	char tmp[16];
-	int rd = fd >= 0 ? read(fd, tmp, sizeof(tmp)) : 0;
-	if (fd >= 0) {
-		close(fd);
-        eDebug("[LCD] boxtype = %s", tmp);
-	    if ((!strncmp(tmp, "et5000\n", rd)) || (!strncmp(tmp, "et6000\n", rd)))
-		    remove("/dev/dbox/oled0");
-    }
-
 #endif
 #ifdef HAVE_FULLGRAPHICLCD
 	fprintf(stdout,"SET RIGHT HALF VFD SKIN\n");
@@ -222,7 +206,7 @@ eDBoxLCD *eDBoxLCD::getInstance()
 
 void eDBoxLCD::update()
 {
-#if defined(HAVE_GRAPHICLCD) || defined(HAVE_COLORLCD)
+#ifndef HAVE_TEXTLCD
 	if (lcdfd >= 0)
 	{
 		if (is_oled == 0 || is_oled == 2)
@@ -312,20 +296,5 @@ void eDBoxLCD::update()
 			write(lcdfd, raw, 64*64);
 		}
 	}
-#endif /*defined(DISPLAY_GRAPHICVFD) && !defined(DISPLAY_TEXTVFD)*/
+#endif
 }
-
-#if defined(HAVE_TEXTLCD)
-void eDBoxLCD::updates(ePoint start,char *text)
-{
-	if((lcdfd >= 0) && (start.y() < 5))
-	{
-		int i = 0, text_len = strlen(text);
-		for(; i<text_len ; i++)
-		{
-					if(text[i]==0x0a) text[i] = 0x20;
-			}
-		write(lcdfd, text, text_len);
-	}
-}
-#endif /*defined(HAVE_TEXTLCD)*/
