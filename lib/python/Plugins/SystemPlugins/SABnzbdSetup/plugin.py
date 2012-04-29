@@ -7,6 +7,7 @@ from Components.PluginComponent import plugins
 from Components.ActionMap import ActionMap
 from Tools.Directories import fileExists
 from Plugins.Plugin import PluginDescriptor
+import time
 
 class SABnzbdSetupScreen(Screen):
 	skin = """
