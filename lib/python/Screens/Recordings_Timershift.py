@@ -285,7 +285,7 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 
 	# for summary:
 	def changedEntry(self):
-		if self["config"].getCurrent()[0] == _("Permanent Timeshift Enable"):
+		if (self["config"].getCurrent()[0] == _("Permanent Timeshift Enable") or self["config"].getCurrent()[0] == _("Timeshift Enable")):
 			self.createSetup()
 		if self["config"].getCurrent()[0] == _("Timeshift location"):
 			self.checkReadWriteDir(self["config"].getCurrent()[1])
@@ -355,6 +355,7 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 		self.list = []
 		self.timeshift_entry = getConfigListEntry(_("Timeshift location"), self.timeshift_dirname)
 		self.list.append(self.timeshift_entry)
+		self.list.append(getConfigListEntry(_("Timeshift Enable"), config.timeshift.pauzekeyenabled))
 		self.list.append(getConfigListEntry(_("Permanent Timeshift Enable"), config.timeshift.enabled))
 		if config.usage.setup_level.index >= 2 and config.timeshift.enabled.value:
 			self.list.append(getConfigListEntry(_("Permanent Timeshift Max Events"), config.timeshift.maxevents))
