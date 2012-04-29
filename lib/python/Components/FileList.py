@@ -308,6 +308,8 @@ class MultiFileSelectList(FileList):
 	def changeSelectionState(self):
 		idx = self.l.getCurrentSelectionIndex()
 		newList = self.list[:]
+		print 'FileList debug: self.list',self.list
+		print 'FileList debug: idx',idx
 		x = self.list[idx]
 		if not x[0][3].startswith('<'):
 			if x[0][1] is True:
