@@ -12,7 +12,6 @@ class OnlineUpdateStableCheck(Source):
 
 	@cached
 	def getBoolean(self):
-		checkavailable = versioncheck.getStableUpdateAvailable()
 		return versioncheck.getStableUpdateAvailable()
 
 	boolean = property(getBoolean)
@@ -40,7 +39,6 @@ class OnlineUpdateUnstableCheck(Source):
 
 	@cached
 	def getBoolean(self):
-		checkavailable = versioncheck.getUnstableUpdateAvailable()
 		return versioncheck.getUnstableUpdateAvailable()
 
 	boolean = property(getBoolean)

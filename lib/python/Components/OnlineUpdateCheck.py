@@ -65,7 +65,7 @@ class OnlineUpdateCheckPoller:
 					try:
 						config.usage.infobar_onlineupdateisunstable.setValue(urlopen("http://enigma2.world-of-satellite.com/feeds/status").read())
 					except:
-						config.usage.infobar_onlineupdateisunstable.setValue(0)
+						config.usage.infobar_onlineupdateisunstable.setValue(1)
 					socket.setdefaulttimeout(currentTimeoutDefault)
 				else:
 					config.usage.infobar_onlineupdatefound.setValue(False)
