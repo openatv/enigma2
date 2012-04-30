@@ -30,19 +30,30 @@ class GetEcmInfo:
 					info[d[0].strip()] = d[1].strip()
 			# info is dictionary
 			using = info.get('using', '')
-			if using:
+			protocol = info.get('protocol', '')
+			if using or protocol:
 				# CCcam
 				if using == 'fta':
-					self.textvalue = _("FTA")
-				elif using == 'emu':
-					self.textvalue = "EMU (%ss)" % (info.get('ecm time', '?'))
+					self.textvalue = _("Free To Air")
 				else:
-					hops = info.get('hops', None)
-					if hops and hops != '0':
-						hops = ' @' + hops
-					else:
-						hops = ''
-					self.textvalue = info.get('address', '?') + hops + " (%ss)" % info.get('ecm time', '?')
+					address = _('Server:') + ' '
+					if info.get('address', None):
+						address += info.get('address', '')
+					elif info.get('from', None):
+						address += info.get('from', '')
+
+					protocol = _('Protocol:') + ' '
+					if info.get('protocol', None):
+						protocol += info.get('protocol', '')
+
+					hops = _('Hops:') + ' '
+					if info.get('hops', None):
+						hops += info.get('hops', '')
+
+					ecm = _('Ecm:') + ' '
+					if info.get('ecm time', None):
+						ecm += info.get('ecm time', '')
+					self.textvalue = address + '\n' + protocol + '  ' + hops + '  ' + ecm
 			else:
 				decode = info.get('decode', None)
 				if decode:
@@ -103,7 +114,7 @@ class GetEcmInfo:
 			ecmpid = info.get('pid', '0')
 		except:
 			ecm = None
-			self.textvalue = ""
+			self.textvalue = _("Free To Air")
 			decCI='0'
 			provid='0'
 			ecmpid='0'
