@@ -221,7 +221,7 @@ def InitUsageConfig():
 
 	config.usage.hide_zap_errors = ConfigYesNo(default = False)
 	config.usage.hide_ci_messages = ConfigYesNo(default = False)
-	config.usage.show_cryptoinfo = ConfigYesNo(default = True)
+	config.usage.show_cryptoinfo = ConfigSelection([("0", _("Off")),("1", _("One line")),("2", _("Two lines"))], "2")
 	config.usage.show_eit_nownext = ConfigYesNo(default = True)
 
 	config.osd.dst_left = ConfigSelectionNumber(default = 0, stepwidth = 1, min = 0, max = 720, wraparound = False)
