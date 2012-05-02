@@ -36,7 +36,7 @@ def InitUsageConfig():
 	config.usage.e1like_radio_mode = ConfigYesNo(default = True)
 
 	config.usage.infobar_onlinecheck = ConfigYesNo(default = True)
-	config.usage.infobar_onlinechecktimer = ConfigInteger(default=6, limits=(0, 48))
+	config.usage.infobar_onlinechecktimer = ConfigInteger(default=6, limits=(1, 48))
 	config.usage.infobar_onlineupdatelastcheck = ConfigInteger(default=0)
 	config.usage.infobar_onlineupdatefound = NoSave(ConfigBoolean(default = False))
 	config.usage.infobar_onlineupdatebeta = ConfigYesNo(default = False)
