@@ -58,7 +58,6 @@ class OnlineUpdateCheckPoller:
 				if self.total_packages:
 					from urllib import urlopen
 					import socket
-					import os
 					currentTimeoutDefault = socket.getdefaulttimeout()
 					socket.setdefaulttimeout(3)
 					config.usage.infobar_onlineupdatefound.setValue(True)

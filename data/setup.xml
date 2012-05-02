@@ -26,7 +26,7 @@
 	<setup key="onlineupdatesetup" title="Online Update">
 		<item level="1" text="Online update" summary="Perform an online update check">config.usage.infobar_onlinecheck</item>
 		<item level="1" text="Check every (hours)" summary="Setup the interval to check for online updates. (in hours)" requires="config.usage.infobar_onlinecheck">config.usage.infobar_onlinechecktimer</item>
-		<item level="1" text="Check for unstable updates" summary="With this option enabled the online checker will also check for experimental versions" requires="config.usage.infobar_onlinecheck">config.usage.infobar_onlineupdatebeta</item>
+		<item level="1" text="Allow unstable (untested) updates" summary="With this option enabled the online checker will also check for experimental versions" requires="config.usage.infobar_onlinecheck">config.usage.infobar_onlineupdatebeta</item>
 	</setup>
 	<setup key="osdsetup" title="OSD Setup">
 		<item level="0" text="1st Infobar timeout" summary="Set the time to hide the infobar.">config.usage.infobar_timeout</item>
