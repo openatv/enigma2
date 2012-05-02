@@ -1598,7 +1598,7 @@ class NetworkAfp(Screen):
 		self["actions"].setEnabled(False)
 		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO)
 		self.message.setTitle(_('Installing Service'))
-		self.Console.ePopen('/usr/bin/opkg install ' + pkgname + ' sync', callback)
+		self.Console.ePopen('/usr/bin/opkg install ' + pkgname, callback)
 
 	def installComplete(self,result = None, retval = None, extra_args = None):
 		self["actions"].setEnabled(True)
@@ -1623,7 +1623,7 @@ class NetworkAfp(Screen):
 		self["actions"].setEnabled(False)
 		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO)
 		self.message.setTitle(_('Removing Service'))
-		self.Console.ePopen('/usr/bin/opkg remove ' + pkgname + ' --force-remove --autoremove sync', callback)
+		self.Console.ePopen('/usr/bin/opkg remove ' + pkgname + ' --force-remove --autoremove', callback)
 
 	def removeComplete(self,result = None, retval = None, extra_args = None):
 		self["actions"].setEnabled(True)
@@ -1830,7 +1830,7 @@ class NetworkNfs(Screen):
 		self["actions"].setEnabled(False)
 		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO)
 		self.message.setTitle(_('Installing Service'))
-		self.Console.ePopen('/usr/bin/opkg install ' + pkgname + ' sync', callback)
+		self.Console.ePopen('/usr/bin/opkg install ' + pkgname, callback)
 
 	def installComplete(self,result = None, retval = None, extra_args = None):
 		self["actions"].setEnabled(True)
@@ -1855,7 +1855,7 @@ class NetworkNfs(Screen):
 		self["actions"].setEnabled(False)
 		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO)
 		self.message.setTitle(_('Removing Service'))
-		self.Console.ePopen('/usr/bin/opkg remove ' + pkgname + ' --force-remove --autoremove sync', callback)
+		self.Console.ePopen('/usr/bin/opkg remove ' + pkgname + ' --force-remove --autoremove', callback)
 
 	def removeComplete(self,result = None, retval = None, extra_args = None):
 		self["actions"].setEnabled(True)
@@ -1974,7 +1974,7 @@ class NetworkOpenvpn(Screen):
 		self["actions"].setEnabled(False)
 		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO)
 		self.message.setTitle(_('Installing Service'))
-		self.Console.ePopen('/usr/bin/opkg install ' + pkgname + ' sync', callback)
+		self.Console.ePopen('/usr/bin/opkg install ' + pkgname, callback)
 
 	def installComplete(self,result = None, retval = None, extra_args = None):
 		self["actions"].setEnabled(True)
@@ -1998,7 +1998,7 @@ class NetworkOpenvpn(Screen):
 		self["actions"].setEnabled(False)
 		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO)
 		self.message.setTitle(_('Removing Service'))
-		self.Console.ePopen('/usr/bin/opkg remove ' + pkgname + ' --force-remove --autoremove sync', callback)
+		self.Console.ePopen('/usr/bin/opkg remove ' + pkgname + ' --force-remove --autoremove', callback)
 
 	def removeComplete(self,result = None, retval = None, extra_args = None):
 		self["actions"].setEnabled(True)
@@ -2144,7 +2144,7 @@ class NetworkSamba(Screen):
 		self["actions"].setEnabled(False)
 		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO)
 		self.message.setTitle(_('Installing Service'))
-		self.Console.ePopen('/usr/bin/opkg install ' + pkgname + ' sync', callback)
+		self.Console.ePopen('/usr/bin/opkg install ' + pkgname, callback)
 
 	def installComplete(self,result = None, retval = None, extra_args = None):
 		self["actions"].setEnabled(True)
@@ -2168,7 +2168,7 @@ class NetworkSamba(Screen):
 		self["actions"].setEnabled(False)
 		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO)
 		self.message.setTitle(_('Removing Service'))
-		self.Console.ePopen('/usr/bin/opkg remove ' + pkgname + ' --force-remove --autoremove sync', callback)
+		self.Console.ePopen('/usr/bin/opkg remove ' + pkgname + ' --force-remove --autoremove', callback)
 
 	def removeComplete(self,result = None, retval = None, extra_args = None):
 		self["actions"].setEnabled(True)
@@ -2427,7 +2427,7 @@ class NetworkInadyn(Screen):
 		self["actions"].setEnabled(False)
 		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO)
 		self.message.setTitle(_('Installing Service'))
-		self.Console.ePopen('/usr/bin/opkg install ' + pkgname + ' sync', callback)
+		self.Console.ePopen('/usr/bin/opkg install ' + pkgname, callback)
 
 	def installComplete(self,result = None, retval = None, extra_args = None):
 		self["actions"].setEnabled(True)
@@ -2451,7 +2451,7 @@ class NetworkInadyn(Screen):
 		self["actions"].setEnabled(False)
 		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO)
 		self.message.setTitle(_('Removing Service'))
-		self.Console.ePopen('/usr/bin/opkg remove ' + pkgname + ' --force-remove --autoremove sync', callback)
+		self.Console.ePopen('/usr/bin/opkg remove ' + pkgname + ' --force-remove --autoremove', callback)
 
 	def removeComplete(self,result = None, retval = None, extra_args = None):
 		self["actions"].setEnabled(True)
@@ -2814,7 +2814,7 @@ class NetworkuShare(Screen):
 		self["actions"].setEnabled(False)
 		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO)
 		self.message.setTitle(_('Installing Service'))
-		self.Console.ePopen('/usr/bin/opkg install ' + pkgname + ' sync', callback)
+		self.Console.ePopen('/usr/bin/opkg install ' + pkgname, callback)
 
 	def installComplete(self,result = None, retval = None, extra_args = None):
 		self["actions"].setEnabled(True)
@@ -2838,7 +2838,7 @@ class NetworkuShare(Screen):
 		self["actions"].setEnabled(False)
 		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO)
 		self.message.setTitle(_('Removing Service'))
-		self.Console.ePopen('/usr/bin/opkg remove ' + pkgname + ' --force-remove --autoremove sync', callback)
+		self.Console.ePopen('/usr/bin/opkg remove ' + pkgname + ' --force-remove --autoremove', callback)
 
 	def removeComplete(self,result = None, retval = None, extra_args = None):
 		self["actions"].setEnabled(True)
@@ -3348,7 +3348,7 @@ class NetworkMiniDLNA(Screen):
 		self["actions"].setEnabled(False)
 		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO)
 		self.message.setTitle(_('Installing Service'))
-		self.Console.ePopen('/usr/bin/opkg install ' + pkgname + ' sync', callback)
+		self.Console.ePopen('/usr/bin/opkg install ' + pkgname, callback)
 
 	def installComplete(self,result = None, retval = None, extra_args = None):
 		self["actions"].setEnabled(True)
@@ -3372,7 +3372,7 @@ class NetworkMiniDLNA(Screen):
 		self["actions"].setEnabled(False)
 		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO)
 		self.message.setTitle(_('Removing Service'))
-		self.Console.ePopen('/usr/bin/opkg remove ' + pkgname + ' --force-remove --autoremove sync', callback)
+		self.Console.ePopen('/usr/bin/opkg remove ' + pkgname + ' --force-remove --autoremove', callback)
 
 	def removeComplete(self,result = None, retval = None, extra_args = None):
 		self["actions"].setEnabled(True)
