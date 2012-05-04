@@ -1,0 +1,17 @@
+<default>
+	  <prerequisites>
+                    <tag type="Multimedia" />
+	  </prerequisites>
+          <info>
+                    <author>kos</author>
+                    <name>StreamTV</name>
+                    <packagename>enigma2-plugin-extensions-streamtv</packagename>
+                    <shortdescription>IPTV Player</shortdescription>
+                    <description>Watching IPTV implemented by RTSP/RTMP protocol.</description>
+          </info>
+	  <files type="package"> <!-- without version, without .ipk -->
+		<file type="package" name="enigma2-plugin-extensions-streamtv" />
+                <file type="package" name="librtmp0" />
+                <file type="package" name="gst-plugin-rtmp" />
+  	  </files>
+</default>
