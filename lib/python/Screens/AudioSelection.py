@@ -36,7 +36,7 @@ class AudioSelection(Screen, ConfigListScreen):
 		self.cached_subtitle_checked = False
 		self.__selected_subtitle = None
 
-		self["actions"] = NumberActionMap(["ColorActions", "OkCancelActions", "DirectionActions"],
+		self["actions"] = NumberActionMap(["ColorActions", "OkCancelActions", "DirectionActions", "InfobarSubtitleSelectionActions", "InfobarAudioSelectionActions"],
 		{
 			"red": self.keyRed,
 			"green": self.keyGreen,
@@ -46,6 +46,8 @@ class AudioSelection(Screen, ConfigListScreen):
 			"cancel": self.cancel,
 			"up": self.keyUp,
 			"down": self.keyDown,
+			"subtitleSelection": self.keySubtitle,
+			"audioSelection": self.keyAudio,
 			"1": self.keyNumberGlobal,
 			"2": self.keyNumberGlobal,
 			"3": self.keyNumberGlobal,
@@ -345,6 +347,14 @@ class AudioSelection(Screen, ConfigListScreen):
 			self.close(0)
 		elif self.focus == FOCUS_CONFIG:
 			self.keyRight()
+
+	def keySubtitle(self):
+		if self.settings.menupage.getValue() == PAGE_SUBTITLES:
+			self.cancel()
+
+	def keyAudio(self):
+		if self.settings.menupage.getValue() == PAGE_AUDIO:
+			self.cancel()
 
 	def cancel(self):
 		self.close(0)
