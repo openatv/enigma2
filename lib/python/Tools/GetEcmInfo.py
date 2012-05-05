@@ -18,7 +18,7 @@ class GetEcmInfo:
 			old_ecm_mtime = ecm_mtime
 			data = self.getText()
 		if data == None:
-			return '','0','0','0'
+			return _("Free To Air"),'0','0','0'
 		return data
 
 	def getText(self):
