@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-17 18:22+0100\n"
-"PO-Revision-Date: 2012-04-18 08:11+0100\n"
+"POT-Creation-Date: 2012-04-30 12:28+0100\n"
+"PO-Revision-Date: 2012-05-04 09:36+0100\n"
 "Last-Translator: \n"
 "Language-Team: Andy Blackburn, Rob van der Does\n"
 "Language: Nederlands\n"
@@ -72,20 +72,6 @@ msgid ""
 msgstr ""
 "\n"
 "Druk op OK om door te gaan."
-
-msgid ""
-"\n"
-"Protocol:"
-msgstr ""
-"\n"
-"Protocol:"
-
-msgid ""
-"\n"
-"Provider:"
-msgstr ""
-"\n"
-"Provider:"
 
 msgid ""
 "\n"
@@ -1130,11 +1116,14 @@ msgstr "Blindscan"
 msgid "Block noise reduction"
 msgstr "Blok ruis vermindering"
 
-msgid "Blue boost"
-msgstr "Blauwe impuls"
-
 msgid "Bookmarks"
 msgstr "Markeerpunten :"
+
+msgid "Boost blue"
+msgstr "Versterk blauw"
+
+msgid "Boost green"
+msgstr "Versterk groen"
 
 msgid "Bouquet List"
 msgstr "Favorieten lijst"
@@ -1323,6 +1312,9 @@ msgstr "Wijzig menu pincode"
 msgid "Change step size"
 msgstr "Wijzig stap grootte"
 
+msgid "Change this value if your smartcard can't doesn't handle off-line decoding well; default is '1000'."
+msgstr "Verander deze waarde als uw smartcard het off-line decoderen niet goed afhandelt; default is '1000'."
+
 msgid "Changelog"
 msgstr "Changelog"
 
@@ -1376,6 +1368,12 @@ msgstr "Hoofdstuk:"
 
 msgid "Check"
 msgstr "Controleer"
+
+msgid "Check every (hours)"
+msgstr "Controleer elke (uur)"
+
+msgid "Check for unstable updates"
+msgstr "Controleer op onstabiele updates"
 
 msgid "Checking Filesystem..."
 msgstr "Controleert bestandssysteem..."
@@ -2059,6 +2057,9 @@ msgstr "Wilt u echt deze applicatie \"%s\" verwijderen?"
 msgid "Do you really want to remove your bookmark of %s?"
 msgstr "Weet u zeker dat u de het markeerpunt van %s wilt wissen?"
 
+msgid "Do you want a pop-up message saying 'a recording has started'?"
+msgstr "Wilt u een pop-up bericht dat aangeeft dat een opname gestart is?"
+
 msgid "Do you want to add any additional information ?"
 msgstr "Wilt u informatie toevoegen?"
 
@@ -2351,6 +2352,9 @@ msgstr "Freesat EPG inschakelen"
 msgid "Enable multiple bouquets"
 msgstr "Meerdere boeketten toestaan"
 
+msgid "Enable or disable Permanent Timeshift. When activated, you can wind back until the time you zapped to a channel, and you can make recordings in retrospect."
+msgstr "Activeer of de-activeer Permanent Timeshift. Als PTS geactiveerd is, kunt u een programma terugspoelen tot het tijdstip dat u naar het kanaal bent gezapt. Bovendien kunt u achteraf nog een opname van een programma maken."
+
 msgid "Enable panic button"
 msgstr "Panic button gebruiken"
 
@@ -2569,9 +2573,6 @@ msgstr "FPGA"
 msgid "FPGA Upgrade"
 msgstr "FPGA Upgrade"
 
-msgid "FTA"
-msgstr "FTA"
-
 msgid "FTP Setup"
 msgstr "FTP Instellingen"
 
@@ -2727,14 +2728,14 @@ msgstr "Vrij geheugen:"
 msgid "Free Swap:"
 msgstr "Vrije swap:"
 
+msgid "Free To Air"
+msgstr "FTA"
+
 msgid "Free memory"
 msgstr "Vrij geheugen"
 
 msgid "Free memory:"
 msgstr "Vrij geheugen:"
-
-msgid "Free to Air"
-msgstr "Free to Air"
 
 msgid "Free:"
 msgstr "Vrij:"
@@ -2885,9 +2886,6 @@ msgstr "Grafische Multi EPG"
 msgid "Greek"
 msgstr "Grieks"
 
-msgid "Green boost"
-msgstr "Groene impuls"
-
 msgid "Guard Interval"
 msgstr "Guard interval"
 
@@ -2926,6 +2924,9 @@ msgstr "Hebreeuws"
 
 msgid "Height"
 msgstr "Hoogte"
+
+msgid "Here you can select the behaviour of the 'puase'-button when playback has been paused."
+msgstr "Hier stelt u in wat de 'pauze-toets' doet als het afspelen van een opname is gepauzeerd."
 
 msgid "Hidden network"
 msgstr "Verborgen network"
@@ -3020,6 +3021,12 @@ msgstr "Als teletekst caching is ingeschakeld, zal het vertonen van pagina's vee
 
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Maximale ruimte die de logs in beslag mogen nemen. Als dat overschreden wordt,worden de oudste het eerste verwijderd."
+
+msgid "If set to 'Yes' recordings will be deleted to a trashcan. That way thay can still be played."
+msgstr "Als u de prullenbak activeert worden opnames niet echt verwijderd, maar naar de prullenbak verplaatst. Daardoor staan die opnames nog enige tijd ter beschikking."
+
+msgid "If set to 'yes' a special seekbar is available during timeshift."
+msgstr "Indie 'ja' is gekozen, is er tijdens timeshift een speciale 'seekbar' beschikbaar. Deze maakt het gemakelijk naar een ander afspeeltijdstip te navigeren."
 
 msgid "If set to 'yes' channels without EPG will not be shown."
 msgstr "Indien u 'ja' kiest, zullen kanalen zonder EPG niet getoond worden."
@@ -3378,6 +3385,9 @@ msgstr "Italiaans"
 msgid "Items per Page "
 msgstr "Onderdelen per pagina"
 
+msgid "Itmes in trashcan will be deleted if less then the set space is available."
+msgstr "Bestanden in de prullenbak zullen worden verwijderd als de ingestelde waarde onderscreden dreigt te worden."
+
 msgid "Job View"
 msgstr "Voortgang"
 
@@ -3579,9 +3589,6 @@ msgstr "Lock:"
 msgid "Log Manager"
 msgstr "Log Manager"
 
-msgid "Log Manager Setup"
-msgstr "Log manager instellingen"
-
 msgid "Log results to harddisk"
 msgstr "Schrijf resultaten naar de harde schijf"
 
@@ -3603,8 +3610,14 @@ msgstr "Log lokatie"
 msgid "Logs older then the set no of days will be deleted."
 msgstr "Logs ouder dan het ingestelde aantal dagen worden verwijderd."
 
+msgid "Long << / >>"
+msgstr "Lang << / >>"
+
 msgid "Long Keypress"
 msgstr "Lange toetsdruk"
+
+msgid "Long Left/Right"
+msgstr "Lang links/rechts"
 
 msgid "Long filenames"
 msgstr "Lange naam"
@@ -4305,20 +4318,38 @@ msgstr "Offline decodeer vertraging (ms)"
 msgid "On"
 msgstr "Aan"
 
+msgid "On raching the end of a file during playback, you can choose the box's behaviour."
+msgstr "Hiert stelt u in wat er gebeurt als tijdens het afspelen het einde van een opname wordt bereikt."
+
+msgid "On starting playback of a file, you can choose the box's behaviour."
+msgstr "Hiert stelt u in wat er gebeurt bij het starten van het afspelen."
+
+msgid "On stopping playback of a file, you can choose the box's behaviour."
+msgstr "Hiert stelt u in wat er gebeurt bij het stoppen van het afspelen."
+
 msgid "Once per day"
 msgstr "Eenmaal per dag"
 
 msgid "One"
 msgstr "Een"
 
-msgid "Online version check every (hours)"
-msgstr "Kontroleert elke (uur) op updates"
+msgid "Online Update"
+msgstr "Online update"
+
+msgid "Online update"
+msgstr "Online update"
 
 msgid "OnlineVersionCheck"
 msgstr "Controle op update"
 
 msgid "Only Free scan"
 msgstr "Alleen ongecodeerde zenders scannen"
+
+msgid "Only change for debugging; default is '20 MB/s'."
+msgstr "Verander deze waarde alleen ten behoeve van debugging; default is '20 MB/s'."
+
+msgid "Only change for debugging; default is 'Off'."
+msgstr "Verander deze waarde alleen ten behoeve van debugging; default is 'Uit'."
 
 msgid "Only extensions."
 msgstr "Alleen extensions"
@@ -4450,6 +4481,9 @@ msgstr "Piek belasting (max rij verzoeken per workerthread)"
 
 msgid "Percentage"
 msgstr "Percentage"
+
+msgid "Perform an online update check"
+msgstr "Controleer online op updates"
 
 msgid "Permanent Timeshift Enable"
 msgstr "Permanent Timeshift Inschakelen"
@@ -4899,6 +4933,9 @@ msgstr "Beveilig menu"
 
 msgid "Protocol"
 msgstr "Protocol"
+
+msgid "Protocol:"
+msgstr "Protocol:"
 
 msgid "Provider"
 msgstr "Provider"
@@ -5537,11 +5574,20 @@ msgstr "Secondaire DNS"
 msgid "Seek"
 msgstr "Zoeken"
 
+msgid "Seekbar activation"
+msgstr "Seekbar activeren:"
+
 msgid "Seekbar sensibility"
 msgstr "Seekbar gevoeligheid"
 
 msgid "Select"
 msgstr "Selecteer"
+
+msgid "Select 'Yes' if you want only a small number of characters to be used for recording names."
+msgstr "Kies 'Ja' als voor de namen van opnames slechts een beperkt aantal karakters mag worden gebruikt."
+
+msgid "Select 'Yes' if you want recordings to have priority over live-TV."
+msgstr "Kies 'Ja' als u wilt dat opnames voorrang hebben boven live-TV (default)."
 
 msgid "Select HDD"
 msgstr "Kies harde schijf"
@@ -5585,6 +5631,12 @@ msgstr "Kies folders"
 msgid "Select how to activate the Quick EPG mode:"
 msgstr "Stel hier in hoe u de Quick-EPG modus wilt activeren"
 
+msgid "Select how you want recording names to be populated."
+msgstr "Hier stelt u in hoe de namen van opnames worden samengesteld."
+
+msgid "Select if timeshift must continue when set to record."
+msgstr "Stel hier in of timeshift moet doorlopen als er een opname wordt gemaakt."
+
 msgid "Select if you want the Subservice mode to be activated."
 msgstr "Kies hiervoor als u het gebruik van sub-kanalen wilt activeren"
 
@@ -5609,8 +5661,14 @@ msgstr "Selecteer provider om toe te voegen..."
 msgid "Select refresh rate"
 msgstr "Selecteer herhalingsfrequentie"
 
+msgid "Select seekbar to be activated by arrow L/R (long) or << >> (long)."
+msgstr "Hier geeft u aan of de 'seekbar' wordt geactiveerd met pijl L/R (lang) of met << - >> (lang)."
+
 msgid "Select service to add..."
 msgstr "Selecteer zender om toe te voegen..."
+
+msgid "Select the number of days after which the box is allowed to permanently delete recordings (from the trashcan)."
+msgstr "Geef het aantal dagen op waarna opnames uit de prullenbak permanent mogen worden verwijderd."
 
 msgid "Select the satellite you wish to search"
 msgstr "Kies de satelliet die u wilt zoeken"
@@ -5781,11 +5839,35 @@ msgstr "Stel de helderheid tijdens standby in."
 msgid "Set the contrast level."
 msgstr "Stel het contrast niveau in."
 
+msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, select left/right to select an existing location."
+msgstr "Stel hier de standaard locatie in voor 'instant opnames'. Druk op 'OK' om nieuwe locaties toe te voegen; met links/rechts kiest u uit bestaande, reeds vastgelegde locaties."
+
+msgid "Set the default location for your recordings. Press 'OK' to add new locations, select left/right to select an existing location."
+msgstr "Stel hier de standaard locatie in voor opnames. Druk op 'OK' om nieuwe locaties toe te voegen; met links/rechts kiest u uit bestaande, reeds vastgelegde locaties."
+
+msgid "Set the default location for your timers. Press 'OK' to add new locations, select left/right to select an existing location."
+msgstr "Stel hier de standaard locatie in voor timers'. Druk op 'OK' om nieuwe locaties toe te voegen; met links/rechts kiest u uit bestaande, reeds vastgelegde locaties."
+
+msgid "Set the default location for your timeshift-files. Press 'OK' to add new locations, select left/right to select an existing location."
+msgstr "Stel hier de standaard locatie in voortimeshift bestanden. Druk op 'OK' om nieuwe locaties toe te voegen; met links/rechts kiest u uit bestaande, reeds vastgelegde locaties."
+
 msgid "Set the default sorting method."
 msgstr "Kies de standaad sorteer methode."
 
 msgid "Set the desired configuration mode."
 msgstr "Kies de gewenste configuratie modus."
+
+msgid "Set the jump-size of the seekbar."
+msgstr "Stel hier de grootte van de tijdsprong van de 'seekbar' in."
+
+msgid "Set the maximum length a timeshift file may be."
+msgstr "Geef de maximale tijdsduur aan die een timeshift bestand mag krijgen."
+
+msgid "Set the maximum number of events (programs) that timeshift may handle."
+msgstr "Stel het maximale aantal events (programma's) in dat timeshift mag behandelen."
+
+msgid "Set the number of days you want old timers to be kept."
+msgstr "Stel het aantal dagen in dat afgewerkte timers bewaard moeten worden."
 
 msgid "Set the screen type you get on pressing 'OK' when the info bar shows to 2nd infobar or event info."
 msgstr "Stel hier het schermtype in dat verschijnt als u op 'OK' drukt als de informatiebalk vertoond wordt. Kies voor de 2e informatiebalk of voor programma informatie."
@@ -5793,11 +5875,41 @@ msgstr "Stel hier het schermtype in dat verschijnt als u op 'OK' drukt als de in
 msgid "Set the scrolling speed of text on the front display."
 msgstr "Stel de rol snelheid op het schermpje van uw STB_BOX in."
 
+msgid "Set the skip-forward/backward time of the 1-3 number keys."
+msgstr "Stel de waarde in van de 'tijdsprong toetsen'1-3'. "
+
+msgid "Set the skip-forward/backward time of the 4-6 number keys."
+msgstr "Stel de waarde in van de 'tijdsprong toetsen'4-6'."
+
+msgid "Set the skip-forward/backward time of the 7-9 number keys."
+msgstr "Stel de waarde in van de 'tijdsprong toetsen'7-9'."
+
 msgid "Set the time to hide the infobar."
 msgstr "Stel de tijd in waarna de infobalk verdwijnt."
 
 msgid "Set the time to hide the second infobar. The bar also disappears on pressing 'OK'."
 msgstr "Stel de tijd in waarna de 2e informatiebalk verdwijnt. Die verdwijnt ook door op 'OK' te drukken."
+
+msgid "Set the time you want recordings to start before the event start-time."
+msgstr "Stel de tijd in die een opname eerder moet beginnen dan de programmatijd (voorloop)."
+
+msgid "Set the time you want recordings to stop after the event stop-time."
+msgstr "Stel de tijd in die een opname later moet eindigen dan de programmatijd (naloop)."
+
+msgid "Set the value for the initial fast-backward speed."
+msgstr "Stel de snelheid in waarmee initieel snel achteruit gespeeld wordt."
+
+msgid "Set the value for the initial fast-forward speed."
+msgstr "Stel de snelheid in waarmee initieel snel vooruit gespeeld wordt."
+
+msgid "Set the values for fast-backward speeds."
+msgstr "Stel de waardes in voor snel achteruit spelen."
+
+msgid "Set the values for fast-forward speeds."
+msgstr "Stel de waardes in voor snel vooruit spelen."
+
+msgid "Set the values for slow-motion speeds."
+msgstr "Stel de waardes in voor afspelen in slow-motion."
 
 msgid "Set the width allocated to the service name."
 msgstr "Stelt de ruimte in voor een kanaal naam."
@@ -5825,6 +5937,9 @@ msgstr "Stel de gewenste primetime in (minuten)."
 
 msgid "Set to what you want the button to do."
 msgstr "Kies wat een toets moet doen."
+
+msgid "Set what the required action must be when zapping while a timeshift has been set as recording."
+msgstr "Hier bepaalt u wat er moet gebeuren als u gaat zappen terwijl er een timeshift als opname loopt."
 
 msgid "Set your Latitude:"
 msgstr "Geef uw breedtegraad in:"
@@ -5856,8 +5971,8 @@ msgstr "Instellingenmenu"
 msgid "Setup network time synchronization interval."
 msgstr "Stel hier het systeemtijd synchronisatie interval in."
 
-msgid "Setup the interval to check for online updates. (in hours, 0 = Disable the check completely.)"
-msgstr "Stel hier het interval in waarop uw STB_BOX naar updates zoekt (in uren, ''0' schakelt het zoeken uit). "
+msgid "Setup the interval to check for online updates. (in hours)"
+msgstr "Hier stelt u het tijdsinterval in waarmee uw STB_BOX naar updates zoekt (in uren; '0' betekent dat er niet gezocht wordt)."
 
 msgid "Setup what a long press on the power button does."
 msgstr "Stel in wat een lange druk op de aan/uit toets moet doen."
@@ -5918,6 +6033,9 @@ msgstr "Info weergeven"
 msgid "Show Log"
 msgstr "Toon log"
 
+msgid "Show Log Manager in extensions list ?"
+msgstr "Toon logmanager in extensies?"
+
 msgid "Show Media playback Remaining/Elapsed as"
 msgstr "Toon resterende/verstreken media afspeeltijd als"
 
@@ -5969,8 +6087,8 @@ msgstr "Toon de alternatieve radio modus."
 msgid "Show animation while busy"
 msgstr "Laat animatie zien wanneer bezig"
 
-msgid "Show background in Radio Mode"
-msgstr "Radio achtergrond weergeven"
+msgid "Show background in radio mode"
+msgstr "Toon achtergrond in de radiomodus"
 
 msgid "Show background when tuned to a radio channel."
 msgstr "Toon achtergrond als op een radio kanaal is afgestemd."
@@ -6221,6 +6339,9 @@ msgstr ""
 
 msgid "Sort"
 msgstr "Sorteer"
+
+msgid "Sort EPG List"
+msgstr "Sorteer EPG-lijst"
 
 msgid "Sort List by"
 msgstr "Sorteer lijst op"
@@ -6808,6 +6929,12 @@ msgstr "Hier kunt u het aantal regels dat vertoond wordt aanpassen."
 msgid "This is step number 2."
 msgstr "Dit is stap nummer 2."
 
+msgid "This option allows to reduce the block-noise in the picture. Obviously this is at the cost of the picture's sharpness."
+msgstr "Met deze optie bepaalt u de mate van onderdrukking van 'blok ruis' ('blok ruis' is blokvorming als resultaat van sterke compressie). Uiteraard gaat dit ten koste van beeldscherpte."
+
+msgid "This option allows to set the level of dynamic contrast of the picture."
+msgstr "Hiermee bepaalt u de mate van dynamich contrast in het beeld."
+
 msgid "This option allows you choose how to display elapsed time  as + or -"
 msgstr "Hier kunt u aangeven of de verstreken tijd met een min- of een plusteken wordt vertoond."
 
@@ -6822,6 +6949,12 @@ msgstr "Hier kunt u instellen of u de resterende of de vertsreken tijd wilt zien
 
 msgid "This option allows you choose how to display the remaining/elapsed time for media playback."
 msgstr "Hier kunt u instellen of u de resterende of de vertsreken tijd wilt zien voor het afspelen van opnames."
+
+msgid "This option allows you to boost the blue tones in the picture."
+msgstr "Met deze instelling kunt u de blauwe kleuren in het beeld versterken."
+
+msgid "This option allows you to boost the green tones in the picture."
+msgstr "Met deze instelling kunt u de groene kleuren in het beeld versterken."
 
 msgid "This option allows you to choose from the two channel lists that are available."
 msgstr "Hier kiest u tussen twee lijsttypes (afhankelijk van uw skin kunnen er twee met een verschillende lay-out zijn)."
@@ -6850,6 +6983,9 @@ msgstr "Hiermee kunt u voorkomen dat meldingen van afstemfouten getoond worden."
 msgid "This option allows you to the SNR as a percentage (not all receivers support this)."
 msgstr "Hiermee kiest u of de SNR in dB of in % wordt weergegeven (wordt niet door alle ontvangers ondersteund)."
 
+msgid "This option allows you to view the old and new settings side by side."
+msgstr "Met deze optie kunt u de oude en de nieuwe instelling in een half beeld naast elkaar zien. Dit vergemakkelijkt het maken van de juiste instelling."
+
 msgid "This option lets you adjust the 3D depth"
 msgstr "Hier kunt u de 3D-diepte instellen."
 
@@ -6865,6 +7001,30 @@ msgstr "Hiermee stelt u in of de optie in de extenxielijst wordt getoond."
 msgid "This option moves the PVR status from the seprate window into the MoviePlayer infobar."
 msgstr "Deze optie verplaatst de PVR status (gestopt etc.) van ene apart scherm naar de informatiebalk (wordt niet door alle skins ondersteund)."
 
+msgid "This option set the level of surpression of musquito noise (Musquito Noise is random aliasing as a reslut of strong compression). Obviously this goes at the cost of picture details."
+msgstr "Met deze optie bepaalt u de mate van onderdrukking van 'musquito ruis' ('musquito ruis' is willekeuring aliasing als resultaat van sterke compressie). Uiteraard gaat dit ten koste van beelddetails."
+
+msgid "This option sets  the picture contrast."
+msgstr "Hier stelt u het beeldcontrast in."
+
+msgid "This option sets the picture brightness."
+msgstr "Hier stelt u de beeld helderheid in."
+
+msgid "This option sets the picture flesh tones."
+msgstr "Hiermee corrigeert u de huidkleur."
+
+msgid "This option sets the picture hue."
+msgstr "Hiermee stelt u de kleurschakering in"
+
+msgid "This option sets the picture saturation."
+msgstr "Hiermee stelt u de kleurverzadiging in."
+
+msgid "This option sets the scaler sharpness, used when scretching picture from 4:3 to 16:9."
+msgstr "Hiermee stelt u de beeldscherpte in wanneer het beeld moet worden uitgerekt van 4:3 naar 16:9."
+
+msgid "This option sets the surpression of false digital contours, that are the result of a limited number of discrete values."
+msgstr "Hiermee stelt u de onderdrukking in van valse digitale contouren, die het resultaat zijn van een beperkt aantal discrete waardes."
+
 msgid "This option sets up the connection method."
 msgstr "Hier kiest u de gewenste verdindingsmethode."
 
@@ -6874,8 +7034,8 @@ msgstr "Hier stelt u de vertraging in die analoge audio moet krijgen."
 msgid "This option sets up the general audio delay of Dolby Digital sound tracks."
 msgstr "Hier stelt u de vertraging in die Dolby Digital audio moet krijgen."
 
-msgid "This option sets up the picture sharpness."
-msgstr "Hier stelt u de gewenste beeldscherpte in."
+msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
+msgstr "Hiermee stelt u de beeldscherpte in als het beeld moet worden opgeschaald."
 
 msgid "This option sets up the screen aspect ratio."
 msgstr "Hier stelt u de gewenste beeldverhouding  in."
@@ -7071,6 +7231,9 @@ msgstr "Timeshift opgeslagen op uw HDD!"
 
 msgid "Timeshift will get saved at end of event!"
 msgstr "Timeshift zal na afloop van het event worden opgeslagen!"
+
+msgid "Timeshift will only start when the start delay time has passed. Thois prevents numurous very short files when zapping."
+msgstr "Timeshift zal pas starten als de opstart vertraging voorbij is. Dit voorkomt grote aantallen zeer korte opnames tijdens zappen."
 
 msgid "Timeshift-Save Action on zap"
 msgstr "Timeshift-save actie bij zappen"
@@ -7852,6 +8015,9 @@ msgstr "Draadloze netwerkinstellingen."
 
 msgid "Wireless network state"
 msgstr "Status draadloos netwerk"
+
+msgid "With this option enabled the online checker will also check for experimental versions"
+msgstr "Als deze optie is ingeschakeld wordt ook gecontroleerd op experimentele versies"
 
 msgid "With this option enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history."
 msgstr "Als deze optie geactiveerd is, is de '0' de paniek toets. Er wordt dan afgestemd op het eerste kanaal van de eerste favorietenlijst en de zag-historie wordt verwijderd."
@@ -9362,8 +9528,37 @@ msgstr "zap"
 msgid "zapped"
 msgstr "zapte"
 
+#~ msgid ""
+#~ "\n"
+#~ "Protocol:"
+#~ msgstr ""
+#~ "\n"
+#~ "Protocol:"
+
+#~ msgid ""
+#~ "\n"
+#~ "Provider:"
+#~ msgstr ""
+#~ "\n"
+#~ "Provider:"
+
+#~ msgid "Blue boost"
+#~ msgstr "Blauwe impuls"
+
+#~ msgid "FTA"
+#~ msgstr "FTA"
+
+#~ msgid "Free to Air"
+#~ msgstr "Free to Air"
+
+#~ msgid "Green boost"
+#~ msgstr "Groene impuls"
+
 #~ msgid "Installing service please wait..."
 #~ msgstr "Bezig met het installeren van de service. Even wachten..."
+
+#~ msgid "Log Manager Setup"
+#~ msgstr "Log manager instellingen"
 
 #~ msgid "Now installing service, please wait..."
 #~ msgstr "Service wordt momenteel geïnstalleerd. Even wachten..."
@@ -9371,8 +9566,24 @@ msgstr "zapte"
 #~ msgid "Now removing service, please wait..."
 #~ msgstr "Service wordt momenteel verwijderd. Even wachten..."
 
+#~ msgid "Online version check every (hours)"
+#~ msgstr "Kontroleert elke (uur) op updates"
+
 #~ msgid "Removing service please wait..."
 #~ msgstr "Bezig de service te verwijderen. Even wachten..."
 
+#~ msgid ""
+#~ "Setup the interval to check for online updates. (in hours, 0 = Disable "
+#~ "the check completely.)"
+#~ msgstr ""
+#~ "Stel hier het interval in waarop uw STB_BOX naar updates zoekt (in uren, "
+#~ "''0' schakelt het zoeken uit). "
+
 #~ msgid "Show PTS Infobar while timeshifting?"
 #~ msgstr "Toon PTS informatiebalk tijdens timeshiften?"
+
+#~ msgid "Show background in Radio Mode"
+#~ msgstr "Radio achtergrond weergeven"
+
+#~ msgid "This option sets up the picture sharpness."
+#~ msgstr "Hier stelt u de gewenste beeldscherpte in."
