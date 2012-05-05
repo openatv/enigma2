@@ -10,10 +10,11 @@ from Components.ServiceEventTracker import ServiceEventTracker
 from Components.Sources.Boolean import Boolean
 from Components.config import config, ConfigBoolean, ConfigClock
 from Components.SystemInfo import SystemInfo
-from Components.UsageConfig import preferredInstantRecordPath, defaultMoviePath
+from Components.UsageConfig import preferredInstantRecordPath, defaultMoviePath, preferredTimerPath
 from Components.Task import Task, Job, job_manager as JobManager
 from Components.Pixmap import MovingPixmap, MultiPixmap
 from Components.Sources.StaticText import StaticText
+from Components.ScrollLabel import ScrollLabel
 from EpgSelection import EPGSelection
 from Plugins.Plugin import PluginDescriptor
 
@@ -35,7 +36,9 @@ from Screens.UnhandledKey import UnhandledKey
 from ServiceReference import ServiceReference
 from skin import parseColor
 
-from RecordTimer import RecordTimer, RecordTimerEntry, parseEvent
+from RecordTimer import RecordTimer, RecordTimerEntry, parseEvent, AFTEREVENT
+from TimerEntry import TimerEntry as TimerEntry_TimerEntry
+
 from timer import TimerEntry
 
 from Tools import Directories, ASCIItranslit, Notifications
@@ -164,10 +167,265 @@ class InfoBarUnhandledKey:
 			self.hideUnhandledKeySymbolTimer.start(2000, True)
 
 class SecondInfoBar(Screen):
+	ADD_TIMER = 0
+	REMOVE_TIMER = 1
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		self.skin = None
+		self["epg_description"] = ScrollLabel()
+		self["channel"] = Label()
+		self["duration"] = Label()
+		self["key_red"] = Label()
+		self["key_green"] = Label()
+		self["key_yellow"] = Label()
+		self["key_blue"] = Label()
+		self["SecondInfoBar"] = ActionMap(["EventViewActions"],
+			{
+				"pageUp": self.pageUp,
+				"pageDown": self.pageDown,
+				"prevEvent": self.prevEvent,
+				"nextEvent": self.nextEvent,
+				"timerAdd": self.timerAdd,
+				"openSimilarList": self.openSimilarList,
+				"contextMenu": self.doContext,
+			}, -1)
+		self.onShow.append(self.__Show)
+ 		self.onHide.append(self.__Hide)
+
+	def __Show(self):
+		if config.vixsettings.ColouredButtons.value:
+			self["key_yellow"].setText(_("Search"))
+
+			if config.vixsettings.ViXEPG_mode.value == "vixepg":
+				self["key_red"].setText(_("Single EPG"))
+			else:
+				self["key_red"].setText(_("ViX EPG"))
+
+			if not config.vixsettings.Subservice.value:
+				self["key_green"].setText(_("Timers"))
+			else:
+				self["key_green"].setText(_("Subservices"))
+		self["key_blue"].setText(_("Extensions"))
+		self["SecondInfoBar"].doBind()
+		self.getEvent()
+
+	def __Hide(self):
+		if self["SecondInfoBar"].bound:
+			self["SecondInfoBar"].doUnbind()
+
+	def doButtonsCheck(self):
+		if config.vixsettings.ColouredButtons.value:
+			self["key_yellow"].setText(_("Search"))
+
+			if config.vixsettings.ViXEPG_mode.value == "vixepg":
+				self["key_red"].setText(_("Single EPG"))
+			else:
+				self["key_red"].setText(_("ViX EPG"))
+
+			if not config.vixsettings.Subservice.value:
+				self["key_green"].setText(_("Timers"))
+			else:
+				self["key_green"].setText(_("Subservices"))
+		self["key_blue"].setText(_("Extensions"))
+
+	def getEvent(self):
+		self.ref = self.session.nav.getCurrentlyPlayingServiceReference()
+		self.getNowNext()
+		epglist = self.epglist
+		if not epglist:
+			self.is_now_next = False
+			epg = eEPGCache.getInstance()
+			ptr = self.ref and self.ref.valid() and epg.lookupEventTime(self.ref, -1)
+			if ptr:
+				epglist.append(ptr)
+				ptr = epg.lookupEventTime(self.ref, ptr.getBeginTime(), +1)
+				if ptr:
+					epglist.append(ptr)
+		else:
+			self.is_now_next = True
+		if epglist:
+			Event = self.epglist[0]
+			Ref = ServiceReference(self.ref)
+			callback = self.eventViewCallback
+			self.cbFunc = callback
+			self.currentService=Ref
+			self.isRecording = (not Ref.ref.flags & eServiceReference.isGroup) and Ref.ref.getPath()
+			self.event = Event
+			self.SimilarBroadcastTimer = eTimer()
+			self.SimilarBroadcastTimer.callback.append(self.getSimilarEvents)
+			self.key_green_choice = self.ADD_TIMER
+			if self.isRecording:
+				self["key_green"].setText("")
+			else:
+				self["key_green"].setText(_("Add timer"))
+			self.setEvent(self.event)
+
+	def getNowNext(self):
+		epglist = [ ]
+		service = self.session.nav.getCurrentService()
+		info = service and service.info()
+		ptr = info and info.getEvent(0)
+		if ptr:
+			epglist.append(ptr)
+		ptr = info and info.getEvent(1)
+		if ptr:
+			epglist.append(ptr)
+		self.epglist = epglist
+
+	def eventViewCallback(self, setEvent, setService, val): #used for now/next displaying
+		epglist = self.epglist
+		if len(epglist) > 1:
+			tmp = epglist[0]
+			epglist[0]=epglist[1]
+			epglist[1]=tmp
+			setEvent(epglist[0])
+
+	def prevEvent(self):
+		if self.cbFunc is not None:
+			self.cbFunc(self.setEvent, self.setService, -1)
+
+	def nextEvent(self):
+		if self.cbFunc is not None:
+			self.cbFunc(self.setEvent, self.setService, +1)
+
+	def removeTimer(self, timer):
+		timer.afterEvent = AFTEREVENT.NONE
+		self.session.nav.RecordTimer.removeEntry(timer)
+		self["key_green"].setText(_("Add timer"))
+		self.key_green_choice = self.ADD_TIMER
+
+	def timerAdd(self):
+		self.hide()
+		self.secondInfoBarWasShown = False
+		if self.isRecording:
+			return
+		event = self.event
+		serviceref = self.currentService
+		if event is None:
+			return
+		eventid = event.getEventId()
+		refstr = serviceref.ref.toString()
+		for timer in self.session.nav.RecordTimer.timer_list:
+			if timer.eit == eventid and timer.service_ref.ref.toString() == refstr:
+				cb_func = lambda ret : not ret or self.removeTimer(timer)
+				self.session.openWithCallback(cb_func, MessageBox, _("Do you really want to delete %s?") % event.getEventName())
+				break
+		else:
+			newEntry = RecordTimerEntry(self.currentService, checkOldTimers = True, dirname = preferredTimerPath(), *parseEvent(self.event))
+			self.session.openWithCallback(self.finishedAdd, TimerEntry_TimerEntry, newEntry)
+
+	def finishedAdd(self, answer):
+		print "finished add"
+		if answer[0]:
+			entry = answer[1]
+			simulTimerList = self.session.nav.RecordTimer.record(entry)
+			if simulTimerList is not None:
+				for x in simulTimerList:
+					if x.setAutoincreaseEnd(entry):
+						self.session.nav.RecordTimer.timeChanged(x)
+				simulTimerList = self.session.nav.RecordTimer.record(entry)
+				if simulTimerList is not None:
+					self.session.openWithCallback(self.finishSanityCorrection, TimerSanityConflict, simulTimerList)
+			self["key_green"].setText(_("Remove timer"))
+			self.key_green_choice = self.REMOVE_TIMER
+		else:
+			self["key_green"].setText(_("Add timer"))
+			self.key_green_choice = self.ADD_TIMER
+			print "Timeredit aborted"
+
+	def finishSanityCorrection(self, answer):
+		self.finishedAdd(answer)
+
+	def setService(self, service):
+		self.currentService=service
+		if self.isRecording:
+			self["channel"].setText(_("Recording"))
+		else:
+			name = self.currentService.getServiceName()
+			if name is not None:
+				self["channel"].setText(name)
+			else:
+				self["channel"].setText(_("unknown service"))
+
+	def sort_func(self,x,y):
+		if x[1] < y[1]:
+			return -1
+		elif x[1] == y[1]:
+			return 0
+		else:
+			return 1
+
+	def setEvent(self, event):
+		self.event = event
+		if event is None:
+			return
+		try:
+			name = event.getEventName()
+			self["channel"].setText(name)
+		except:
+			pass
+		text = ""
+		description = event.getShortDescription()
+		extended = event.getExtendedDescription()
+		if description and extended:
+			description += '\n'
+		text = description + extended
+		self.setTitle(event.getEventName())
+		self["epg_description"].setText(text)
+		self["duration"].setText(_("%d min")%(event.getDuration()/60))
+		self["key_red"].setText("")
+		if self.SimilarBroadcastTimer is not None:
+			self.SimilarBroadcastTimer.start(400,True)
+
+		serviceref = self.currentService
+		eventid = self.event.getEventId()
+		refstr = serviceref.ref.toString()
+		isRecordEvent = False
+		for timer in self.session.nav.RecordTimer.timer_list:
+			if timer.eit == eventid and timer.service_ref.ref.toString() == refstr:
+				isRecordEvent = True
+				break
+		if isRecordEvent and self.key_green_choice != self.REMOVE_TIMER:
+			self["key_green"].setText(_("Remove timer"))
+			self.key_green_choice = self.REMOVE_TIMER
+		elif not isRecordEvent and self.key_green_choice != self.ADD_TIMER:
+			self["key_green"].setText(_("Add timer"))
+			self.key_green_choice = self.ADD_TIMER
+
+	def pageUp(self):
+		self["epg_description"].pageUp()
+
+	def pageDown(self):
+		self["epg_description"].pageDown()
+
+	def getSimilarEvents(self):
+		# search similar broadcastings
+		if not self.event:
+			return
+		refstr = str(self.currentService)
+		id = self.event.getEventId()
+		epgcache = eEPGCache.getInstance()
+		ret = epgcache.search(('NB', 100, eEPGCache.SIMILAR_BROADCASTINGS_SEARCH, refstr, id))
+		if ret is not None:
+			descr = self["epg_description"]
+			text = descr.getText()
+			text += '\n\n' + _('Similar broadcasts:')
+			ret.sort(self.sort_func)
+			for x in ret:
+				t = localtime(x[1])
+				text += '\n%d.%d.%d, %2d:%02d  -  %s'%(t[2], t[1], t[0], t[3], t[4], x[0])
+			descr.setText(text)
+			self["key_red"].setText(_("Similar"))
+
+	def openSimilarList(self):
+		id = self.event and self.event.getEventId()
+		refstr = str(self.currentService)
+		if id is not None:
+			self.session.open(EPGSelection, refstr, None, id)
+
+	def doContext(self):
+		if self.event is not None:
+			self.session.open(EventViewContextMenu, self.currentService, self.event)
 
 class InfoBarShowHide:
 	""" InfoBar show/hide control, accepts toggleShow and hide actions, might start
@@ -189,11 +447,6 @@ class InfoBarShowHide:
 			{
 				iPlayableService.evStart: self.serviceStarted,
 			})
-
-		self["key_red"] = Label()
-		self["key_yellow"] = Label()
-		self["key_blue"] = Label()
-		self["key_green"] = Label()
 
 		self.__state = self.STATE_SHOWN
 		self.__locked = 0
@@ -231,7 +484,6 @@ class InfoBarShowHide:
 
 	def __onShow(self):
 		self.__state = self.STATE_SHOWN
-		self.doButtonsCheck()
 		for x in self.onShowHideNotifiers:
 			x(True)
 		self.startHideTimer()
@@ -242,7 +494,7 @@ class InfoBarShowHide:
 			idx = config.usage.infobar_timeout.index
 			if idx:
 				self.hideTimer.start(idx*1000, True)
-		elif (self.secondInfoBarScreen and self.secondInfoBarScreen.shown) or config.usage.show_second_infobar.value == "1":
+		elif self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.hideTimer.stop()
 			idx = config.usage.second_infobar_timeout.index
 			if idx:
@@ -275,21 +527,16 @@ class InfoBarShowHide:
 
 	def toggleShow(self):
 		if self.__state == self.STATE_HIDDEN:
-			if not self.secondInfoBarWasShown or (config.usage.show_second_infobar.value == "1" and not self.EventViewIsShown):
+			if not self.secondInfoBarWasShown:
 				self.show()
 			if self.secondInfoBarScreen:
 				self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
 			self.EventViewIsShown = False
-		elif self.secondInfoBarScreen and config.usage.show_second_infobar.value == "2" and not self.secondInfoBarScreen.shown:
+		elif self.secondInfoBarScreen and config.usage.show_second_infobar.value and not self.secondInfoBarScreen.shown:
 			self.hide()
 			self.secondInfoBarScreen.show()
 			self.secondInfoBarWasShown = True
-			self.startHideTimer()
-		elif config.usage.show_second_infobar.value == "1" and not self.EventViewIsShown:
-			self.hide()
-			self.openEventView()
-			self.EventViewIsShown = True
 			self.startHideTimer()
 		else:
 			self.hide()
@@ -315,21 +562,6 @@ class InfoBarShowHide:
 		if self.execing:
 			self.startHideTimer()
 
-	def doButtonsCheck(self):
-		if config.vixsettings.ColouredButtons.value:
-			self["key_yellow"].setText(_("Search"))
-
-			if config.vixsettings.ViXEPG_mode.value == "vixepg":
-				self["key_red"].setText(_("Single EPG"))
-			else:
-				self["key_red"].setText(_("ViX EPG"))
-
-			if not config.vixsettings.Subservice.value:
-				self["key_green"].setText(_("Timers"))
-			else:
-				self["key_green"].setText(_("Subservices"))
-		self["key_blue"].setText(_("Extensions"))
-
 	def LongOKPressed(self):
 		if isinstance(self, InfoBarEPG):
 			if config.vixsettings.QuickEPG_mode.value == "1":
@@ -343,55 +575,11 @@ class InfoBarShowHide:
 				self.hide()
 				if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 					self.secondInfoBarScreen.hide()
+					self.secondInfoBarWasShown = False
 		else:
 			self.hide()
 			if self.pvrStateDialog:
 				self.pvrStateDialog.hide()
-
-	def openEventView(self):
-		if isinstance(self, InfoBarEPG):
-			ref = self.session.nav.getCurrentlyPlayingServiceReference()
-			self.getNowNext()
-			epglist = self.epglist
-			if not epglist:
-				self.is_now_next = False
-				epg = eEPGCache.getInstance()
-				ptr = ref and ref.valid() and epg.lookupEventTime(ref, -1)
-				if ptr:
-					epglist.append(ptr)
-					ptr = epg.lookupEventTime(ref, ptr.getBeginTime(), +1)
-					if ptr:
-						epglist.append(ptr)
-			else:
-				self.is_now_next = True
-			if epglist:
-				self.eventView = self.session.openWithCallback(self.closed, EventViewEPGSelect, self.epglist[0], ServiceReference(ref), self.eventViewCallback, self.openSingleServiceEPG, self.openMultiServiceEPG, self.openSimilarList)
-				self.dlg_stack.append(self.eventView)
-			else:
-				print "no epg for the service avail.. so we show multiepg instead of eventinfo"
-# 				self.openMultiServiceEPG(False)
-		else:
-			epglist = [ ]
-			self.epglist = epglist
-			service = self.session.nav.getCurrentService()
-			ref = self.session.nav.getCurrentlyPlayingServiceReference()
-			info = service.info()
-			ptr=info.getEvent(0)
-			if ptr:
-				epglist.append(ptr)
-			ptr=info.getEvent(1)
-			if ptr:
-				epglist.append(ptr)
-			if epglist:
-				self.session.open(EventViewSimple, epglist[0], ServiceReference(ref), self.eventViewCallback)
-
-	def eventViewCallback(self, setEvent, setService, val): #used for now/next displaying
-		epglist = self.epglist
-		if len(epglist) > 1:
-			tmp = epglist[0]
-			epglist[0]=epglist[1]
-			epglist[1]=tmp
-			setEvent(epglist[0])
 
 class NumberZap(Screen):
 	def quit(self):
@@ -459,6 +647,9 @@ class InfoBarNumberZap:
 			})
 
 	def keyNumberGlobal(self, number):
+		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+			self.secondInfoBarScreen.hide()
+			self.secondInfoBarWasShown = False
 		if self.pts_pvrStateDialog == "Screens.PVRState.PTSTimeshiftState" and self.timeshift_enabled and self.isSeekable() and number == 0:
 			InfoBarTimeshiftState._mayShow(self)
 			self.pvrStateDialog["PTSSeekPointer"].setPosition(self.pts_seekpointer_MaxX/2, self.pvrStateDialog["PTSSeekPointer"].position[1])
@@ -562,18 +753,27 @@ class InfoBarChannelSelection:
 			})
 
 	def LeftPressed(self):
+		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+			self.secondInfoBarScreen.hide()
+			self.secondInfoBarWasShown = False
 		if config.vixsettings.QuickEPG_mode.value == "3":
 			self.openInfoBarEPG()
 		else:
 			self.zapUp()
 
 	def RightPressed(self):
+		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+			self.secondInfoBarScreen.hide()
+			self.secondInfoBarWasShown = False
 		if config.vixsettings.QuickEPG_mode.value == "3":
 			self.openInfoBarEPG()
 		else:
 			self.zapDown()
 
 	def ChannelPlusPressed(self):
+		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+			self.secondInfoBarScreen.hide()
+			self.secondInfoBarWasShown = False
 		if config.usage.channelbutton_mode.value == "0":
 			self.zapDown()
 		elif config.usage.channelbutton_mode.value == "1":
@@ -584,6 +784,9 @@ class InfoBarChannelSelection:
 			self.session.execDialog(self.servicelist)
 
 	def ChannelMinusPressed(self):
+		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+			self.secondInfoBarScreen.hide()
+			self.secondInfoBarWasShown = False
 		if config.usage.channelbutton_mode.value == "0":
 			self.zapUp()
 		elif config.usage.channelbutton_mode.value == "1":
@@ -594,6 +797,9 @@ class InfoBarChannelSelection:
 			self.session.execDialog(self.servicelist)
 
 	def showTvChannelList(self, zap=False):
+		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+			self.secondInfoBarScreen.hide()
+			self.secondInfoBarWasShown = False
 		self.servicelist.setModeTv()
 		if zap:
 			self.servicelist.zap()
@@ -601,6 +807,9 @@ class InfoBarChannelSelection:
 			self.session.execDialog(self.servicelist)
 
 	def showRadioChannelList(self, zap=False):
+		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+			self.secondInfoBarScreen.hide()
+			self.secondInfoBarWasShown = False
 		if self.save_current_timeshift and self.timeshift_enabled:
 			InfoBarTimeshift.saveTimeshiftActions(self, postaction="showRadioChannelList")
 		else:
@@ -617,6 +826,9 @@ class InfoBarChannelSelection:
 		self.switchChannelDown()
 
 	def historyBack(self):
+		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+			self.secondInfoBarScreen.hide()
+			self.secondInfoBarWasShown = False
 		if self.pts_pvrStateDialog == "Screens.PVRState.PTSTimeshiftState" and self.timeshift_enabled and self.isSeekable():
 			InfoBarTimeshiftState._mayShow(self)
 			self.pvrStateDialog["PTSSeekPointer"].setPosition(self.pts_seekpointer_MinX, self.pvrStateDialog["PTSSeekPointer"].position[1])
@@ -629,6 +841,9 @@ class InfoBarChannelSelection:
 			self.servicelist.historyBack()
 
 	def historyNext(self):
+		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+			self.secondInfoBarScreen.hide()
+			self.secondInfoBarWasShown = False
 		if self.pts_pvrStateDialog == "Screens.PVRState.PTSTimeshiftState" and self.timeshift_enabled and self.isSeekable():
 			InfoBarTimeshiftState._mayShow(self)
 			self.pvrStateDialog["PTSSeekPointer"].setPosition(self.pts_seekpointer_MaxX, self.pvrStateDialog["PTSSeekPointer"].position[1])
@@ -641,6 +856,9 @@ class InfoBarChannelSelection:
 			self.servicelist.historyNext()
 
 	def switchChannelUp(self):
+		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+			self.secondInfoBarScreen.hide()
+			self.secondInfoBarWasShown = False
 		if self.save_current_timeshift and self.timeshift_enabled:
 			InfoBarTimeshift.saveTimeshiftActions(self, postaction="switchChannelUp")
 		else:
@@ -652,6 +870,9 @@ class InfoBarChannelSelection:
 				self.session.execDialog(self.servicelist)
 
 	def switchChannelDown(self):
+		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+			self.secondInfoBarScreen.hide()
+			self.secondInfoBarWasShown = False
 		if self.save_current_timeshift and self.timeshift_enabled:
 			InfoBarTimeshift.saveTimeshiftActions(self, postaction="switchChannelDown")
 		else:
@@ -663,16 +884,25 @@ class InfoBarChannelSelection:
 				self.session.execDialog(self.servicelist)
 
 	def openServiceList(self):
+		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+			self.secondInfoBarScreen.hide()
+			self.secondInfoBarWasShown = False
 		if self.save_current_timeshift and self.timeshift_enabled:
 			InfoBarTimeshift.saveTimeshiftActions(self, postaction="openServiceList")
 		else:
 			self.session.execDialog(self.servicelist)
 
 	def openInfoBarEPG(self):
+		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+			self.secondInfoBarScreen.hide()
+			self.secondInfoBarWasShown = False
 		self.EPGtype = "infobar"
 		self.session.open(EPGSelection, self.servicelist, self.EPGtype)
 
 	def zapUp(self):
+		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+			self.secondInfoBarScreen.hide()
+			self.secondInfoBarWasShown = False
 		if self.pts_blockZap_timer.isActive():
 			return
 
@@ -696,6 +926,9 @@ class InfoBarChannelSelection:
 			self.servicelist.zap(enable_pipzap = True)
 
 	def zapDown(self):
+		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+			self.secondInfoBarScreen.hide()
+			self.secondInfoBarWasShown = False
 		if self.pts_blockZap_timer.isActive():
 			return
 
@@ -738,6 +971,9 @@ class InfoBarMenu:
 		self.session.infobar = None
 
 	def mainMenu(self):
+		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+			self.secondInfoBarScreen.hide()
+			self.secondInfoBarWasShown = False
 		print "loading mainmenu XML..."
 		menu = mdom.getroot()
 		assert menu.tag == "menu", "root element in menu must be 'menu'!"
@@ -762,6 +998,9 @@ class InfoBarSimpleEventView:
 			})
 
 	def showEventInfoWhenNotVisible(self):
+		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+			self.secondInfoBarScreen.hide()
+			self.secondInfoBarWasShown = False
 		if self.shown:
 			self.openEventView()
 		else:
@@ -769,6 +1008,9 @@ class InfoBarSimpleEventView:
 			return 1
 
 	def openEventView(self):
+		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+			self.secondInfoBarScreen.hide()
+			self.secondInfoBarWasShown = False
 		epglist = [ ]
 		self.epglist = epglist
 		service = self.session.nav.getCurrentService()
@@ -822,12 +1064,18 @@ class InfoBarEPG:
 			})
 
 	def InfoPressed(self):
+		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+			self.secondInfoBarScreen.hide()
+			self.secondInfoBarWasShown = False
 		if self.box_type == 'et5x00' or self.box_type == 'et6x00' or self.box_type == 'et9x00' or self.box_type == 'maram9':
 			self.openEventView()
 		else:
 			self.EPGPressed()
 
 	def EPGPressed(self):
+		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+			self.secondInfoBarScreen.hide()
+			self.secondInfoBarWasShown = False
 		if config.vixsettings.ViXEPG_mode.value == "vixepg":
 			self.openGraphEPG()
 		elif config.vixsettings.ViXEPG_mode.value == "multi":
@@ -838,6 +1086,9 @@ class InfoBarEPG:
 			self.showCoolTVGuide()
 
 	def showEventInfoWhenNotVisible(self):
+		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+			self.secondInfoBarScreen.hide()
+			self.secondInfoBarWasShown = False
 		if self.shown:
 			self.openEventView()
 		else:
@@ -995,6 +1246,9 @@ class InfoBarEPG:
 			self.session.open(MessageBox, _("The Cool TV Guide plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
 	def showEventInfoPlugins(self):
+		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+			self.secondInfoBarScreen.hide()
+			self.secondInfoBarWasShown = False
 		list = [(p.name, boundFunction(self.runPlugin, p)) for p in plugins.getPlugins(where = PluginDescriptor.WHERE_EVENTINFO)]
 
 		if list:
@@ -1036,6 +1290,9 @@ class InfoBarEPG:
 				self.eventView.setEvent(self.epglist[0])
 
 	def openEventView(self):
+		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+			self.secondInfoBarScreen.hide()
+			self.secondInfoBarWasShown = False
 		ref = self.session.nav.getCurrentlyPlayingServiceReference()
 		self.getNowNext()
 		epglist = self.epglist
@@ -3114,7 +3371,10 @@ class InfoBarExtensions:
 			return []
 
 	def RedPressed(self):
-		if isinstance(self, InfoBarEPG):
+		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+			self.secondInfoBarScreen.hide()
+			self.secondInfoBarWasShown = False
+		elif isinstance(self, InfoBarEPG):
 			if config.vixsettings.ViXEPG_mode.value == "vixepg":
 				self.openSingleServiceEPG()
 			else:
@@ -3153,6 +3413,9 @@ class InfoBarExtensions:
 
 
 	def showExtensionSelection(self):
+		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+			self.secondInfoBarScreen.hide()
+			self.secondInfoBarWasShown = False
 		self.updateExtensions()
 		extensionsList = self.extensionsList[:]
 		keys = []
@@ -3178,6 +3441,9 @@ class InfoBarExtensions:
 			answer[1][1]()
 
 	def showPluginBrowser(self):
+		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+			self.secondInfoBarScreen.hide()
+			self.secondInfoBarWasShown = False
 		from Screens.PluginBrowser import PluginBrowser
 		self.session.open(PluginBrowser)
 
@@ -3190,6 +3456,9 @@ class InfoBarExtensions:
 		self.session.open(OscamInfoMenu)
 
 	def showTimerList(self):
+		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+			self.secondInfoBarScreen.hide()
+			self.secondInfoBarWasShown = False
 		self.session.open(TimerEditList)
 
 	def openLogManager(self):
@@ -3201,6 +3470,9 @@ class InfoBarExtensions:
 		self.session.open(OSD3DSetupScreen)
 
 	def showAutoTimerList(self):
+		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+			self.secondInfoBarScreen.hide()
+			self.secondInfoBarWasShown = False
 		if os_path.exists("/usr/lib/enigma2/python/Plugins/Extensions/AutoTimer/plugin.pyo"):
 			from Plugins.Extensions.AutoTimer.plugin import main, autostart
 			from Plugins.Extensions.AutoTimer.AutoTimer import AutoTimer
@@ -3209,8 +3481,6 @@ class InfoBarExtensions:
 			autotimer = AutoTimer()
 			global autotimer
 			global autopoller
-
-
 			try:
 				autotimer.readXml()
 			except SyntaxError as se:
@@ -3238,9 +3508,7 @@ class InfoBarExtensions:
 	def editCallback(self, session):
 		global autotimer
 		global autopoller
-
 		# XXX: canceling of GUI (Overview) won't affect config values which might have been changed - is this intended?
-
 		# Don't parse EPG if editing was canceled
 		if session is not None:
 			# Save xml
@@ -3260,6 +3528,9 @@ class InfoBarExtensions:
 			autotimer = None
 
 	def showEPGSearch(self):
+		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+			self.secondInfoBarScreen.hide()
+			self.secondInfoBarWasShown = False
 		from Plugins.Extensions.EPGSearch.EPGSearch import EPGSearch
 		s = self.session.nav.getCurrentService()
 		if s:
@@ -3271,6 +3542,9 @@ class InfoBarExtensions:
 			self.session.open(EPGSearch)
 
 	def showIMDB(self):
+		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+			self.secondInfoBarScreen.hide()
+			self.secondInfoBarWasShown = False
 		if os_path.exists("/usr/lib/enigma2/python/Plugins/Extensions/IMDb/plugin.pyo"):
 			from Plugins.Extensions.IMDb.plugin import IMDB
 			s = self.session.nav.getCurrentService()
@@ -3283,6 +3557,9 @@ class InfoBarExtensions:
 			self.session.open(MessageBox, _("The IMDb plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
 	def showMediaPlayer(self):
+		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+			self.secondInfoBarScreen.hide()
+			self.secondInfoBarWasShown = False
 		if isinstance(self, InfoBarExtensions):
 			if isinstance(self, InfoBar):
 				try: # falls es nicht installiert ist
@@ -3385,7 +3662,6 @@ class InfoBarPiP:
 		if slist and slist.dopipzap:
 			return _("Zap focus to main screen")
 		return _("Zap focus to Picture in Picture")
-
 
 	def togglePipzap(self):
 		if not self.session.pipshown:
@@ -3618,6 +3894,9 @@ class InfoBarInstantRecord:
 		self.session.nav.RecordTimer.timeChanged(entry)
 
 	def instantRecord(self):
+		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+			self.secondInfoBarScreen.hide()
+			self.secondInfoBarWasShown = False
 		if not config.timeshift.enabled.value or not self.timeshift_enabled:
 			dir = preferredInstantRecordPath()
 			if not dir or not Directories.fileExists(dir, 'w'):
@@ -3684,7 +3963,6 @@ class InfoBarInstantRecord:
 					(_("Timeshift")+" "+_("save recording (Select event)"), "savetimeshiftEvent"), \
 					(_("don't record"), "no")))
 
-
 from Tools.ISO639 import LanguageCodes
 
 class InfoBarAudioSelection:
@@ -3695,6 +3973,9 @@ class InfoBarAudioSelection:
 			})
 
 	def audioSelection(self):
+		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+			self.secondInfoBarScreen.hide()
+			self.secondInfoBarWasShown = False
 		from Screens.AudioSelection import AudioSelection
 		self.session.openWithCallback(self.audioSelected, AudioSelection, infobar=self)
 
@@ -3724,6 +4005,9 @@ class InfoBarSubserviceSelection:
 		self.bsel = None
 
 	def GreenPressed(self):
+		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+			self.secondInfoBarScreen.hide()
+			self.secondInfoBarWasShown = False
 		if not config.vixsettings.Subservice.value:
 			self.openTimerList()
 		else:
@@ -3850,6 +4134,9 @@ class InfoBarRedButton:
 		self.onRedButtonActivation = [ ]
 
 	def activateRedButton(self):
+		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+			self.secondInfoBarScreen.hide()
+			self.secondInfoBarWasShown = False
 		service = self.session.nav.getCurrentService()
 		info = service and service.info()
 		if info and info.getInfoString(iServiceInformation.sHBBTVUrl) != "":
@@ -3861,7 +4148,6 @@ class InfoBarRedButton:
 
 class InfoBarAdditionalInfo:
 	def __init__(self):
-
 		self["RecordingPossible"] = Boolean(fixed=harddiskmanager.HDDCount() > 0)
 		self["TimeshiftPossible"] = self["RecordingPossible"]
 		self["ExtensionsAvailable"] = Boolean(fixed=1)
@@ -4216,6 +4502,9 @@ class InfoBarTeletextPlugin:
 			print "no teletext plugin found!"
 
 	def startTeletext(self):
+		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+			self.secondInfoBarScreen.hide()
+			self.secondInfoBarWasShown = False
 		self.teletext_plugin(session=self.session, service=self.session.nav.getCurrentService())
 
 class InfoBarSubtitleSupport(object):
@@ -4237,6 +4526,9 @@ class InfoBarSubtitleSupport(object):
 		self.__selected_subtitle = None
 
 	def subtitleSelection(self):
+		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+			self.secondInfoBarScreen.hide()
+			self.secondInfoBarWasShown = False
 		service = self.session.nav.getCurrentService()
 		subtitle = service and service.subtitle()
 		subtitlelist = subtitle and subtitle.getSubtitleList()

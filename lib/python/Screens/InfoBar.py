@@ -59,6 +59,11 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 				"openIMDB": (self.openIMDB, _("Show the tv player...")),
 			}, prio=2)
 
+		self["key_red"] = Label()
+		self["key_yellow"] = Label()
+		self["key_blue"] = Label()
+		self["key_green"] = Label()
+
 		self.allowPiP = True
 
 		for x in HelpableScreen, \
@@ -82,6 +87,22 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		self.current_begin_time=0
 		assert InfoBar.instance is None, "class InfoBar is a singleton class and just one instance of this class is allowed!"
 		InfoBar.instance = self
+		self.onShow.append(self.doButtonsCheck)
+
+	def doButtonsCheck(self):
+		if config.vixsettings.ColouredButtons.value:
+			self["key_yellow"].setText(_("Search"))
+
+			if config.vixsettings.ViXEPG_mode.value == "vixepg":
+				self["key_red"].setText(_("Single EPG"))
+			else:
+				self["key_red"].setText(_("ViX EPG"))
+
+			if not config.vixsettings.Subservice.value:
+				self["key_green"].setText(_("Timers"))
+			else:
+				self["key_green"].setText(_("Subservices"))
+		self["key_blue"].setText(_("Extensions"))
 
 	def __onClose(self):
 		InfoBar.instance = None
