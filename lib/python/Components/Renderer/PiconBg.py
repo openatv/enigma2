@@ -9,6 +9,9 @@ class PiconBg(Renderer):
 
 	GUI_WIDGET = ePixmap
 
+	def postWidgetCreate(self, instance):
+		self.changed((self.CHANGED_DEFAULT,))
+
 	def changed(self, what):
 		if self.instance:
 			pngname = resolveFilename(SCOPE_SKIN_IMAGE, "ViX_HD_Common/piconbg/"+config.usage.show_picon_bkgrn.value+".png")
