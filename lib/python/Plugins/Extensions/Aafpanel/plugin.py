@@ -597,8 +597,8 @@ class KeymapSel(ConfigListScreen, Screen):
 		return str(self["config"].getCurrent()[1].getText())
 
 	def saveAll(self):
-		for x in self["config"].list:
-			x[1].save()
+		config.usage.keymap.value = eEnv.resolve("${datadir}/enigma2/" + self.keyshow.value)
+		config.usage.keymap.save()
 		configfile.save()
 		if self.actkeymap != self.keyshow.value:
 			self.changedFinished()
