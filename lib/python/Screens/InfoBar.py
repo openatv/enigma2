@@ -234,6 +234,10 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 	def __init__(self, session, service, slist = None, lastservice = None):
 		Screen.__init__(self, session)
 
+		self["key_yellow"] = Label()
+		self["key_blue"] = Label()
+		self["key_green"] = Label()
+
 		self["state"] = Label(text="")
 		self["speed"] = Label(text="")
 		self["statusicon"] = MultiPixmap()
@@ -260,6 +264,13 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 		session.nav.playService(service)
 		self.returning = False
 		self.onClose.append(self.__onClose)
+		self.onShow.append(self.doButtonsCheck)
+
+	def doButtonsCheck(self):
+		if config.vixsettings.ColouredButtons.value:
+			self["key_yellow"].setText(_("Search"))
+			self["key_green"].setText(_("Timers"))
+		self["key_blue"].setText(_("Extensions"))
 
 	def __onClose(self):
 		self.session.nav.playService(self.lastservice)

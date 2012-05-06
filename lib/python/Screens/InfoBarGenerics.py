@@ -213,21 +213,6 @@ class SecondInfoBar(Screen):
 		if self["SecondInfoBar"].bound:
 			self["SecondInfoBar"].doUnbind()
 
-	def doButtonsCheck(self):
-		if config.vixsettings.ColouredButtons.value:
-			self["key_yellow"].setText(_("Search"))
-
-			if config.vixsettings.ViXEPG_mode.value == "vixepg":
-				self["key_red"].setText(_("Single EPG"))
-			else:
-				self["key_red"].setText(_("ViX EPG"))
-
-			if not config.vixsettings.Subservice.value:
-				self["key_green"].setText(_("Timers"))
-			else:
-				self["key_green"].setText(_("Subservices"))
-		self["key_blue"].setText(_("Extensions"))
-
 	def getEvent(self):
 		self.ref = self.session.nav.getCurrentlyPlayingServiceReference()
 		self.getNowNext()
@@ -3311,17 +3296,25 @@ class InfoBarExtensions:
 	def __init__(self):
 		self.list = []
 
-		self["InstantExtensionsActions"] = HelpableActionMap(self, "InfobarExtensions",
-			{
-				"extensions": (self.showExtensionSelection, _("view extensions...")),
-				"RedPressed": self.RedPressed,
-				"showPluginBrowser": self.showPluginBrowser,
-				"openTimerList": self.showTimerList,
-				"openAutoTimerList": self.showAutoTimerList,
-				"openEPGSearch": self.showEPGSearch,
-				"openIMDB": self.showIMDB,
-				"showEventInfo": self.openEventView,
-			}, 1) # lower priority
+		if config.vixsettings.ColouredButtons.value:
+			self["InstantExtensionsActions"] = HelpableActionMap(self, "InfobarExtensions",
+				{
+					"extensions": (self.showExtensionSelection, _("view extensions...")),
+					"RedPressed": self.RedPressed,
+					"showPluginBrowser": self.showPluginBrowser,
+					"openTimerList": self.showTimerList,
+					"openAutoTimerList": self.showAutoTimerList,
+					"openEPGSearch": self.showEPGSearch,
+					"openIMDB": self.showIMDB,
+					"showEventInfo": self.openEventView,
+				}, 1) # lower priority
+		else:
+			self["InstantExtensionsActions"] = HelpableActionMap(self, "InfobarExtensions",
+				{
+					"extensions": (self.showExtensionSelection, _("view extensions...")),
+					"showPluginBrowser": self.showPluginBrowser,
+					"showEventInfo": self.openEventView,
+				}, 1) # lower priority
 
 		self.addExtension(extension = self.getLogManager, type = InfoBarExtensions.EXTENSION_LIST)
 		self.addExtension(extension = self.getOsd3DSetup, type = InfoBarExtensions.EXTENSION_LIST)
