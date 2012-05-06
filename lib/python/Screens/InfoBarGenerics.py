@@ -187,7 +187,6 @@ class SecondInfoBar(Screen):
 				"nextEvent": self.nextEvent,
 				"timerAdd": self.timerAdd,
 				"openSimilarList": self.openSimilarList,
-				"contextMenu": self.doContext,
 			}, -1)
 		self.onShow.append(self.__Show)
  		self.onHide.append(self.__Hide)
@@ -407,10 +406,6 @@ class SecondInfoBar(Screen):
 		refstr = str(self.currentService)
 		if id is not None:
 			self.session.open(EPGSelection, refstr, None, id)
-
-	def doContext(self):
-		if self.event is not None:
-			self.session.open(EventViewContextMenu, self.currentService, self.event)
 
 class InfoBarShowHide:
 	""" InfoBar show/hide control, accepts toggleShow and hide actions, might start
