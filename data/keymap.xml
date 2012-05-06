@@ -12,11 +12,11 @@
 		<key id="KEY_PAGEDOWN" mapto="pageDown" flags="mr" />
 		<key id="KEY_LEFT" mapto="pageUp" flags="mr" />
 		<key id="KEY_RIGHT" mapto="pageDown" flags="mr" />
-		
+
 		<key id="1" mapto="moveUp" flags="mr" />
 		<key id="2" mapto="moveDown" flags="mr" />
 	</map>
-	
+
 	<map context="KeyboardInputActions">
 		<key id="KEY_LEFT" mapto="left" flags="mr" />
 		<key id="KEY_RIGHT" mapto="right" flags="mr" />
@@ -58,7 +58,7 @@
 		<key id="KEY_9" mapto="9" flags="m" />
 		<key id="KEY_0" mapto="0" flags="m" />
 	</map>
-	
+
 	<map context="InputActions">
 		<key id="KEY_LEFT" mapto="left" flags="mr" />
 		<key id="KEY_RIGHT" mapto="right" flags="mr" />
@@ -80,7 +80,7 @@
 		<key id="KEY_EPG" mapto="EPGPressed" flags="b" />
 		<key id="KEY_EPG" mapto="showEventInfoPlugin" flags="l" />
 	</map>
-	
+
 	<map context="InfobarInstantRecord">
 		<key id="KEY_RECORD" mapto="instantRecord" flags="m" />
 		<key id="KEY_RECORD" mapto="ShortRecord" flags="b" />
@@ -118,7 +118,7 @@
 		<key id="BTN_0" mapto="zapUp" flags="mr" />
 		<key id="BTN_1" mapto="zapDown" flags="mr" />
 	</map>
-	
+
 	<map context="MinuteInputActions">
 		<key id="KEY_UP" mapto="up" flags="mr" />
 		<key id="KEY_DOWN" mapto="down" flags="mr" />
@@ -153,7 +153,7 @@
 		<key id="KEY_9" mapto="9" flags="m" />
 		<key id="KEY_0" mapto="0" flags="m" />
 	</map>
-	
+
 	<map context="WizardActions">
 		<key id="KEY_OK" mapto="ok" flags="m" />
 		<key id="KEY_ENTER" mapto="ok" flags="m" />
@@ -165,17 +165,17 @@
 		<key id="KEY_LEFT" mapto="left" flags="mr" />
 		<key id="KEY_RIGHT" mapto="right" flags="mr" />
 	</map>
-	
+
 	<map context="InfobarMenuActions">
 		<key id="KEY_MENU" mapto="mainMenu" flags="mr" />
 		<key id="KEY_SPACE" mapto="mainMenu" flags="mr" />
 	</map>
-	
+
 	<map context="MenuActions">
 		<key id="KEY_MENU" mapto="menu" flags="mr" />
 		<key id="KEY_SPACE" mapto="menu" flags="mr" />
 	</map>
-	
+
 	<map context="InfobarShowHideActions">
 		<key id="KEY_OK" mapto="toggleShow" flags="m" />
 		<key id="KEY_OK" mapto="LongOKPressed" flags="l" />
@@ -192,6 +192,7 @@
 		<key id="KEY_TV" mapto="showTv" flags="b" />
 		<key id="KEY_TV" mapto="openBouquetList" flags="l" />
 		<key id="KEY_FILE" mapto="showMovies" flags="m" />
+		<key id="KEY_MEDIA" mapto="showMediaPlayer" flags="m" />
 		<key id="KEY_LIST" mapto="showMediaPlayer" flags="b" />
 		<key id="KEY_PROGRAM" mapto="openTimerList" flags="b" />
 		<key id="KEY_PROGRAM" mapto="openAutoTimerList" flags="l" />
@@ -246,12 +247,12 @@
 			<key id="KEY_POWER" mapto="deepstandby" flags="l" />
 		</device>
 	</map>
-	
+
 	<map context="PowerKeyActions">
 		<key id="KEY_POWER" mapto="powerdown" flags="m" />
 		<key id="KEY_POWER" mapto="powerup" flags="b" />
 	</map>
-	
+
 	<map context="NumberActions">
 		<key id="KEY_1" mapto="1" flags="m" />
 		<key id="KEY_2" mapto="2" flags="m" />
@@ -269,7 +270,7 @@
 		<key id="KEY_MUTE" mapto="deleteForward" flags="mr" />
 		<key id="KEY_NEXT" mapto="deleteForward" flags="mr" />
 		<key id="KEY_PREVIOUS" mapto="deleteBackward" flags="mr" />
-	</map>	
+	</map>
 
 	<map context="InfobarSeekActions">
 		<device name="dreambox advanced remote control (native)">
@@ -303,9 +304,9 @@
 		<key id="KEY_NEXTSONG" mapto="seekFwd" flags="b" />
 		<key id="KEY_PREVIOUSSONG" mapto="SeekbarBack" flags="l" />
 		<key id="KEY_NEXTSONG" mapto="SeekbarFwd" flags="l" />
-		
+
 		<key id="KEY_OK" mapto="unPauseService" flags="m" />
-		
+
 		<key id="KEY_1" mapto="seekdef:1" flags="m" />
 		<key id="KEY_3" mapto="seekdef:3" flags="m" />
 		<key id="KEY_4" mapto="seekdef:4" flags="m" />
@@ -323,7 +324,7 @@
 
 		<key id="KEY_PREVIOUSSONG" mapto="seekBack" flags="b" />
 		<key id="KEY_NEXTSONG" mapto="seekFwd" flags="b" />
-		
+
 		<key id="KEY_OK" mapto="unPauseService" flags="m" />
 
 		<key id="KEY_1" mapto="seekdef:1" flags="m" />
@@ -355,7 +356,7 @@
 
 		<key id="KEY_PREVIOUSSONG" mapto="seekBack" flags="b" />
 		<key id="KEY_NEXTSONG" mapto="seekFwd" flags="b" />
-			
+
 		<key id="KEY_OK" mapto="unPauseService" flags="m" />
 
 		<key id="KEY_1" mapto="seekdef:1" flags="m" />
@@ -425,7 +426,7 @@
 		<key id="KEY_NEXT" mapto="moveNext" flags="b" />
 		<key id="KEY_AUDIO" mapto="AudioSelection" flags="m" />
 	</map>
-	
+
 	<map context="InfobarCueSheetActions">
 		<device name="dreambox ir keyboard">
 			<key id="KEY_PREVIOUSSONG" mapto="jumpPreviousMark" flags="m" />
@@ -436,7 +437,7 @@
 		<key id="KEY_0" mapto="toggleMark" flags="m" />
 		<key id="KEY_NEXT" mapto="jumpNextMark" flags="m" />
 	</map>
-	
+
 	<map context="MediaPlayerCueSheetActions">
 		<device name="dreambox ir keyboard">
 			<key id="KEY_TAB" mapto="toggleMark" flags="m" />
@@ -447,7 +448,7 @@
 	<map context="VirtualKeyboardActions">
 		<key id="KEY_TEXT" mapto="showVirtualKeyboard" flags="m" />
 	</map>
-	
+
 	<map context="InfobarTeletextActions">
 		<key id="KEY_TEXT" mapto="startTeletext" flags="m" />
 	</map>
@@ -496,7 +497,7 @@
 	<map context="TimerEditActions">
 		<key id="KEY_INFO" mapto="log" flags="m" />
 	</map>
-	
+
 	<map context="EPGSelectActions">
 		<key id="KEY_GREEN" mapto="timerAdd" flags="b"/>
 		<key id="KEY_CHANNELUP" mapto="nextService" flags="m" />
@@ -520,7 +521,7 @@
 		<key id="KEY_MENU" mapto="contextMenu" flags="m" />
 		<key id="KEY_PROGRAM" mapto="timerAdd" flags="m" />
 	</map>
-	
+
 	<map context="EventViewEPGActions">
 		<key id="KEY_YELLOW" mapto="openSingleServiceEPG" flags="m" />
 		<key id="KEY_BLUE" mapto="openMultiServiceEPG" flags="m" />
@@ -540,14 +541,14 @@
 		<key id="KEY_ENTER" mapto="ok" flags="m" />
 		<key id="KEY_ESC" mapto="cancel" flags="m" />
 	</map>
-	
+
 	<map context="DirectionActions">
 		<key id="KEY_UP" mapto="up" flags="mr" />
 		<key id="KEY_DOWN" mapto="down" flags="mr" />
 		<key id="KEY_LEFT" mapto="left" flags="mr" />
 		<key id="KEY_RIGHT" mapto="right" flags="mr" />
 	</map>
-	
+
 	<map context="ColorActions">
 		<key id="KEY_RED" mapto="red" flags="b"/>
 		<key id="KEY_RED" mapto="redlong" flags="l"/>
@@ -569,9 +570,9 @@
 	</map>
 
 	<map context="WindowActions">
-		
+
 	</map>
-	
+
 	<map context="HelpActions">
 		<key id="KEY_HELP" mapto="displayHelp" flags="m" />
 	</map>
@@ -591,7 +592,7 @@
 		<key id="KEY_POWER" mapto="power" flags="m" />
 		<key id="KEY_KP1" mapto="discrete_on" flags="m" />
 	</map>
-	
+
 	<map context="SleepTimerEditorActions">
 		<key id="KEY_OK" mapto="select" flags="m" />
 		<key id="KEY_ENTER" mapto="select" flags="m" />
@@ -613,8 +614,8 @@
 		<key id="KEY_YELLOW" mapto="toggleAsk" flags="mr" />
 		<key id="KEY_GREEN" mapto="toggleAction" flags="mr" />
 		<key id="KEY_BLUE" mapto="useServiceTime" flags="mr" />
-	</map>	
-	
+	</map>
+
 	<map context="CiSelectionActions">
 		<key id="KEY_LEFT" mapto="left" flags="mr" />
 		<key id="KEY_RIGHT" mapto="right" flags="mr" />
@@ -632,7 +633,7 @@
 		<key id="KEY_CHANNELUP" mapto="size+" flags="mr" />
 		<key id="KEY_CHANNELDOWN" mapto="size-" flags="mr" />
 	</map>
-	
+
 	<map context="MediaPlayerActions">
 		<device name="dreambox advanced remote control (native)">
 			<key id="KEY_RECORD" mapto="shift_record" flags="l" />
