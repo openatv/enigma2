@@ -117,6 +117,7 @@ class GetEcmInfo:
 							continue
 						if line.find('source') != -1:
 							line = line.split(' ')
+							print '!!!!!!!LINE:',line
 							eSrc = line[4][:-1]
 							continue
 						if line.find('msec') != -1:
