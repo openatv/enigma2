@@ -17,6 +17,9 @@ from Plugins.Plugin import PluginDescriptor
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_SKIN_IMAGE
 from Tools.LoadPixmap import LoadPixmap
 
+from urllib import urlopen
+import socket
+
 from time import time
 import os
 
@@ -316,8 +319,23 @@ class PluginDownloadBrowser(Screen):
 		self["list"].instance.hide()
 		self.listWidth = listsize.width()
 		self.listHeight = listsize.height()
+
 		if self.type == self.DOWNLOAD:
-			self.container.execute(self.ipkg + " update")
+			currentTimeoutDefault = socket.getdefaulttimeout()
+			socket.setdefaulttimeout(3)
+			try:
+				config.usage.infobar_onlineupdateisunstable.setValue(urlopen("http://enigma2.world-of-satellite.com/feeds/status").read())
+			except:
+				config.usage.infobar_onlineupdateisunstable.setValue(1)
+			socket.setdefaulttimeout(currentTimeoutDefault)
+
+			if config.usage.infobar_onlineupdateisunstable.value == '1' and config.usage.infobar_onlineupdatebeta.value:
+				self["text"].setText(_("WARNING: feeds maybe unsable.") + '\n' + _("Downloading plugin information. Please wait..."))
+				self.container.execute(self.ipkg + " update")
+			elif config.usage.infobar_onlineupdateisunstable.value == '1' and not config.usage.infobar_onlineupdatebeta.value:
+				self["text"].setText(_("Sorry feeds seem be in an unstable state, if you wish to use them please enable 'Allow unstable updates' in online update setup."))
+			else:
+				self.container.execute(self.ipkg + " update")
 		elif self.type == self.REMOVE:
 			self.run = 1
 			self.startIpkgListInstalled()
@@ -367,32 +385,13 @@ class PluginDownloadBrowser(Screen):
 				self["list"].instance.show()
 			else:
 				if self.type == self.DOWNLOAD:
-					if config.usage.infobar_onlineupdateisunstable.value == '1' and not config.usage.infobar_onlineupdatebeta.value:
-						self["text"].setText(_("Sorry feeds seem be in an unstable state, if you wish to use them please enable 'Allow unstable updates' in online update setup."))
-					else:
-						self["text"].setText(_("Sorry feeds are down for maintenance"))
+					self["text"].setText(_("Sorry feeds are down for maintenance"))
 
 	def dataAvail(self, str):
 		if self.type == self.DOWNLOAD and str.find('404 Not Found') >= 0:
 			self.run = 3
 			return
 
-		if self.type == self.DOWNLOAD:
-			from urllib import urlopen
-			import socket
-			currentTimeoutDefault = socket.getdefaulttimeout()
-			socket.setdefaulttimeout(3)
-			try:
-				config.usage.infobar_onlineupdateisunstable.setValue(urlopen("http://enigma2.world-of-satellite.com/feeds/status").read())
-			except:
-				config.usage.infobar_onlineupdateisunstable.setValue(1)
-			socket.setdefaulttimeout(currentTimeoutDefault)
-
-			if config.usage.infobar_onlineupdateisunstable.value == '1' and config.usage.infobar_onlineupdatebeta.value:
-				self["text"].setText(_("WARNING: feeds maybe unsable.") + '\n' + _("Downloading plugin information. Please wait..."))
-			elif config.usage.infobar_onlineupdateisunstable.value == '1' and not config.usage.infobar_onlineupdatebeta.value:
-				self.run = 3
-				return
 
 		#prepend any remaining data from the previous call
 		str = self.remainingdata + str
