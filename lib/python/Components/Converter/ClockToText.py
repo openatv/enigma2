@@ -55,7 +55,7 @@ class ClockToText(Converter, object):
 
 		# handle durations
 		if self.type == self.IN_MINUTES:
-			return ngettext("%d Min", "%d min", (time / 60)) % (time / 60)
+			return ngettext(_("%d Min"), _("%d min"), (time / 60)) % (time / 60)
 		elif self.type == self.AS_LENGTH:
 			if time < 0:
 				return ""
