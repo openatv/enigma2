@@ -174,8 +174,8 @@ class EventViewBase:
 		if event is None:
 			return
 		try:
-			name = event.getEventName()
-			self["channel"].setText(name)
+			self["channel"].setText(event.getEventName())
+			self.setTitle(event.getEventName())
 		except:
 			pass
  		text = ""
@@ -184,7 +184,6 @@ class EventViewBase:
 		if description and extended:
 			description += '\n'
 		text = description + extended
-		self.setTitle(event.getEventName())
 		self["epg_description"].setText(text)
 		self["summary_description"].setText(text)
 		self["datetime"].setText(event.getBeginTimeString())
