@@ -80,6 +80,7 @@ class BouquetSelector(Screen):
 class EPGBouquetSelector(Screen):
 	def __init__(self, session, bouquets, curbouquet, enableWrapAround=True):
 		Screen.__init__(self, session)
+		self.curbouquet = curbouquet
 		self.skinName = "BouquetSelector"
 		self["actions"] = ActionMap(["OkCancelActions", "EPGSelectActions"],
 			{
@@ -92,8 +93,21 @@ class EPGBouquetSelector(Screen):
 		self["menu"] = MenuList(entrys, enableWrapAround)
 		self.onShow.append(self.__onShow)
 
+	def getIndexFromItem(self, item):
+		if item is not None:
+			for x in range(len(self["menu"].list)):
+				if self["menu"].list[x][1] == item:
+					return x
+		return None
+
+	def moveToItem(self, item):
+		newIdx = self.getIndexFromItem(item)
+		if newIdx is None:
+			newIdx = 0
+		self["menu"].moveToIndex(newIdx)
+
 	def __onShow(self):
-		self["menu"].moveToIndex(0)
+		self.moveToItem(self.curbouquet)
 
 	def getCurrent(self):
 		cur = self["menu"].getCurrent()
