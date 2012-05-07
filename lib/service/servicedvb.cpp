@@ -2740,7 +2740,7 @@ void eDVBServicePlay::updateDecoder(bool sendSeekableStateChanged)
 							pid = PyInt_AsLong(PyTuple_GET_ITEM(subs, 1)),
 							comp_page = PyInt_AsLong(PyTuple_GET_ITEM(subs, 2)), // ttx page
 							anc_page = PyInt_AsLong(PyTuple_GET_ITEM(subs, 3)); // ttx magazine
-					if (type == 0) // dvb
+					if (type == 0 && pid !=0) // dvb
 						m_subtitle_parser->start(pid, comp_page, anc_page);
 					else if (type == 1) // ttx
 						m_teletext_parser->setPageAndMagazine(comp_page, anc_page);
@@ -2986,8 +2986,7 @@ RESULT eDVBServicePlay::enableSubtitles(eWidget *parent, ePyObject tuple)
 
 		m_subtitle_widget = new eSubtitleWidget(parent);
 		m_subtitle_widget->resize(parent->size()); /* full size */
-		if (pid != 0)
-			m_subtitle_parser->start(pid, composition_page_id, ancillary_page_id);
+		m_subtitle_parser->start(pid, composition_page_id, ancillary_page_id);
 		if (m_dvb_service)
 			m_dvb_service->setCacheEntry(eDVBService::cSUBTITLE, ((pid&0xFFFF)<<16)|((composition_page_id&0xFF)<<8)|(ancillary_page_id&0xFF));
 	}
