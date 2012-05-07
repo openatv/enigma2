@@ -200,6 +200,13 @@
 		<key id="KEY_SEARCH" mapto="openIMDB" flags="l" />
 	</map>
 
+	<map context="2ndInfobarActions">
+		<key id="KEY_UP" mapto="prevEvent" flags="mr" />
+		<key id="KEY_DOWN" mapto="nextEvent" flags="mr" />
+		<key id="KEY_RED" mapto="openSimilarList" flags="m" />
+		<key id="KEY_GREEN" mapto="timerAdd" flags="m" />
+	</map>
+
 	<map context="InfobarAudioSelectionActions">
 		<key id="KEY_AUDIO" mapto="audioSelection" flags="m" />
 		<device name="dreambox advanced remote control (native)">
