@@ -179,17 +179,23 @@ class SecondInfoBar(Screen):
 		self["key_green"] = Label()
 		self["key_yellow"] = Label()
 		self["key_blue"] = Label()
-		self["SecondInfoBar"] = ActionMap(["EventViewActions"],
+		self["SecondInfoBar"] = ActionMap(["2ndInfobarActions"],
 			{
-				"pageUp": self.pageUp,
-				"pageDown": self.pageDown,
+				"prevPage": self.pageUp,
+				"nextPage": self.pageDown,
 				"prevEvent": self.prevEvent,
 				"nextEvent": self.nextEvent,
 				"timerAdd": self.timerAdd,
 				"openSimilarList": self.openSimilarList,
 			}, -1)
+
+		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
+			{
+				iPlayableService.evUpdatedEventInfo: self.getEvent
+			})
+
 		self.onShow.append(self.__Show)
- 		self.onHide.append(self.__Hide)
+		self.onHide.append(self.__Hide)
 
 	def __Show(self):
 		if config.vixsettings.ColouredButtons.value:
@@ -390,7 +396,6 @@ class SecondInfoBar(Screen):
 		id = self.event.getEventId()
 		epgcache = eEPGCache.getInstance()
 		ret = epgcache.search(('NB', 1000, eEPGCache.SIMILAR_BROADCASTINGS_SEARCH, refstr, id))
-		print 'RET:',ret
 		if ret is not None:
 			descr = self["epg_description"]
 			text = descr.getText()
@@ -405,6 +410,7 @@ class SecondInfoBar(Screen):
 	def openSimilarList(self):
 		if self["key_red"].getText() != "":
 			self.hide()
+			self.secondInfoBarWasShown = False
 			id = self.event and self.event.getEventId()
 			refstr = str(self.currentService)
 			if id is not None:
@@ -450,7 +456,6 @@ class InfoBarShowHide:
 			self.secondInfoBarScreen.hide()
 			self.standardInfoBar = True
 		self.secondInfoBarWasShown = False
-		self.EventViewIsShown = False
 
 	def connectShowHideNotifier(self, fnc):
 		if not fnc in self.onShowHideNotifiers:
@@ -501,12 +506,6 @@ class InfoBarShowHide:
 		elif self.__state == self.STATE_HIDDEN and self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
-		elif self.__state == self.STATE_HIDDEN and self.EventViewIsShown:
-			try:
-				self.eventView.close()
-			except:
-				pass
-			self.EventViewIsShown = False
 
 	def toggleShow(self):
 		if self.__state == self.STATE_HIDDEN:
@@ -515,7 +514,6 @@ class InfoBarShowHide:
 			if self.secondInfoBarScreen:
 				self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
-			self.EventViewIsShown = False
 		elif self.secondInfoBarScreen and config.usage.show_second_infobar.value and not self.secondInfoBarScreen.shown:
 			self.hide()
 			self.secondInfoBarScreen.show()
@@ -525,12 +523,6 @@ class InfoBarShowHide:
 			self.hide()
 			if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 				self.secondInfoBarScreen.hide()
-			elif self.EventViewIsShown:
-				try:
-					self.eventView.close()
-				except:
-					pass
-				self.EventViewIsShown = False
 
 	def lockShow(self):
 		self.__locked = self.__locked + 1
@@ -733,45 +725,51 @@ class InfoBarChannelSelection:
 			})
 
 	def LeftPressed(self):
-		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
-			self.secondInfoBarScreen.hide()
-			self.secondInfoBarWasShown = False
 		if config.vixsettings.QuickEPG_mode.value == "3":
+			if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+				self.secondInfoBarScreen.hide()
+				self.secondInfoBarWasShown = False
 			self.openInfoBarEPG()
 		else:
 			self.zapUp()
 
 	def RightPressed(self):
-		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
-			self.secondInfoBarScreen.hide()
-			self.secondInfoBarWasShown = False
 		if config.vixsettings.QuickEPG_mode.value == "3":
+			if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+				self.secondInfoBarScreen.hide()
+				self.secondInfoBarWasShown = False
 			self.openInfoBarEPG()
 		else:
 			self.zapDown()
 
 	def ChannelPlusPressed(self):
-		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
-			self.secondInfoBarScreen.hide()
-			self.secondInfoBarWasShown = False
 		if config.usage.channelbutton_mode.value == "0":
 			self.zapDown()
 		elif config.usage.channelbutton_mode.value == "1":
+			if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+				self.secondInfoBarScreen.hide()
+				self.secondInfoBarWasShown = False
 			self.openServiceList()
 		elif config.usage.channelbutton_mode.value == "2":
+			if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+				self.secondInfoBarScreen.hide()
+				self.secondInfoBarWasShown = False
 			self.serviceListType = "Norm"
 			self.servicelist.showFavourites()
 			self.session.execDialog(self.servicelist)
 
 	def ChannelMinusPressed(self):
-		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
-			self.secondInfoBarScreen.hide()
-			self.secondInfoBarWasShown = False
 		if config.usage.channelbutton_mode.value == "0":
 			self.zapUp()
 		elif config.usage.channelbutton_mode.value == "1":
+			if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+				self.secondInfoBarScreen.hide()
+				self.secondInfoBarWasShown = False
 			self.openServiceList()
 		elif config.usage.channelbutton_mode.value == "2":
+			if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+				self.secondInfoBarScreen.hide()
+				self.secondInfoBarWasShown = False
 			self.serviceListType = "Norm"
 			self.servicelist.showFavourites()
 			self.session.execDialog(self.servicelist)
@@ -880,9 +878,6 @@ class InfoBarChannelSelection:
 		self.session.open(EPGSelection, self.servicelist, self.EPGtype)
 
 	def zapUp(self):
-		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
-			self.secondInfoBarScreen.hide()
-			self.secondInfoBarWasShown = False
 		if self.pts_blockZap_timer.isActive():
 			return
 
@@ -906,9 +901,6 @@ class InfoBarChannelSelection:
 			self.servicelist.zap(enable_pipzap = True)
 
 	def zapDown(self):
-		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
-			self.secondInfoBarScreen.hide()
-			self.secondInfoBarWasShown = False
 		if self.pts_blockZap_timer.isActive():
 			return
 
