@@ -76,7 +76,7 @@ def moviePlayState(cutsFileName, ref, length):
 				lastCut = length * 90000
 			else:
 				# dunno
-				return 50
+				return 0
 		if cutPTS >= lastCut:
 			return 100
 		return (100 * cutPTS) // lastCut
@@ -90,7 +90,7 @@ def moviePlayState(cutsFileName, ref, length):
 			                return 100
 				return (100 * cutPTS[1]) // length
 			else:
-				return 50
+				return 0
 		return None
 
 def resetMoviePlayState(cutsFileName, ref=None):
