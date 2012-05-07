@@ -110,16 +110,19 @@ class GetEcmInfo:
 					eTime = ""
 					for line in ecm:
 						line = line.strip()
+						print '!!!!!!!LINE:',line
 						if line.find('ECM') != -1:
 							line = line.split(' ')
 							eEnc = line[1]
 							eCaid = line[5][2:-1]
 							continue
 						if line.find('source') != -1:
-							line = line.split(' ')
-							print '!!!!!!!LINE:',line
-							eSrc = line[4][:-1]
-							continue
+							try:
+								line = line.split(' ')
+								eSrc = line[4][:-1]
+								continue
+							except:
+								pass
 						if line.find('msec') != -1:
 							line = line.split(' ')
 							eTime = line[0]
