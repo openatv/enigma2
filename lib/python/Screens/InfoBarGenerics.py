@@ -213,23 +213,23 @@ class SecondInfoBar(Screen):
 			self["SecondInfoBar"].doUnbind()
 
 	def getEvent(self):
-		self.ref = self.session.nav.getCurrentlyPlayingServiceReference()
+		ref = self.session.nav.getCurrentlyPlayingServiceReference()
 		self.getNowNext()
 		epglist = self.epglist
 		if not epglist:
 			self.is_now_next = False
 			epg = eEPGCache.getInstance()
-			ptr = self.ref and self.ref.valid() and epg.lookupEventTime(self.ref, -1)
+			ptr = ref and ref.valid() and epg.lookupEventTime(ref, -1)
 			if ptr:
 				epglist.append(ptr)
-				ptr = epg.lookupEventTime(self.ref, ptr.getBeginTime(), +1)
+				ptr = epg.lookupEventTime(ref, ptr.getBeginTime(), +1)
 				if ptr:
 					epglist.append(ptr)
 		else:
 			self.is_now_next = True
 		if epglist:
 			Event = self.epglist[0]
-			Ref = ServiceReference(self.ref)
+			Ref = ServiceReference(ref)
 			callback = self.eventViewCallback
 			self.cbFunc = callback
 			self.currentService=Ref
@@ -389,7 +389,8 @@ class SecondInfoBar(Screen):
 		refstr = str(self.currentService)
 		id = self.event.getEventId()
 		epgcache = eEPGCache.getInstance()
-		ret = epgcache.search(('NB', 100, eEPGCache.SIMILAR_BROADCASTINGS_SEARCH, refstr, id))
+		ret = epgcache.search(('NB', 1000, eEPGCache.SIMILAR_BROADCASTINGS_SEARCH, refstr, id))
+		print 'RET:',ret
 		if ret is not None:
 			descr = self["epg_description"]
 			text = descr.getText()
@@ -402,10 +403,12 @@ class SecondInfoBar(Screen):
 			self["key_red"].setText(_("Similar"))
 
 	def openSimilarList(self):
-		id = self.event and self.event.getEventId()
-		refstr = str(self.currentService)
-		if id is not None:
-			self.session.open(EPGSelection, refstr, None, id)
+		if self["key_red"].getText() != "":
+			self.hide()
+			id = self.event and self.event.getEventId()
+			refstr = str(self.currentService)
+			if id is not None:
+				self.session.open(EPGSelection, refstr, None, id)
 
 class InfoBarShowHide:
 	""" InfoBar show/hide control, accepts toggleShow and hide actions, might start
@@ -627,9 +630,6 @@ class InfoBarNumberZap:
 			})
 
 	def keyNumberGlobal(self, number):
-		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
-			self.secondInfoBarScreen.hide()
-			self.secondInfoBarWasShown = False
 		if self.pts_pvrStateDialog == "Screens.PVRState.PTSTimeshiftState" and self.timeshift_enabled and self.isSeekable() and number == 0:
 			InfoBarTimeshiftState._mayShow(self)
 			self.pvrStateDialog["PTSSeekPointer"].setPosition(self.pts_seekpointer_MaxX/2, self.pvrStateDialog["PTSSeekPointer"].position[1])
@@ -3359,16 +3359,14 @@ class InfoBarExtensions:
 			return []
 
 	def RedPressed(self):
-		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
-			self.secondInfoBarScreen.hide()
-			self.secondInfoBarWasShown = False
-		elif isinstance(self, InfoBarEPG):
-			if config.vixsettings.ViXEPG_mode.value == "vixepg":
-				self.openSingleServiceEPG()
+		if not self.secondInfoBarScreen.shown:
+			if isinstance(self, InfoBarEPG):
+				if config.vixsettings.ViXEPG_mode.value == "vixepg":
+					self.openSingleServiceEPG()
+				else:
+					self.openGraphEPG()
 			else:
-				self.openGraphEPG()
-		else:
-			self.openEventView()
+				self.openEventView()
 
 	def addExtension(self, extension, key = None, type = EXTENSION_SINGLE):
 		self.list.append((type, extension, key))
@@ -3444,9 +3442,6 @@ class InfoBarExtensions:
 		self.session.open(OscamInfoMenu)
 
 	def showTimerList(self):
-		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
-			self.secondInfoBarScreen.hide()
-			self.secondInfoBarWasShown = False
 		self.session.open(TimerEditList)
 
 	def openLogManager(self):
@@ -3458,10 +3453,7 @@ class InfoBarExtensions:
 		self.session.open(OSD3DSetupScreen)
 
 	def showAutoTimerList(self):
-		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
-			self.secondInfoBarScreen.hide()
-			self.secondInfoBarWasShown = False
-		if os_path.exists("/usr/lib/enigma2/python/Plugins/Extensions/AutoTimer/plugin.pyo"):
+		if not self.secondInfoBarScreen.shown and os_path.exists("/usr/lib/enigma2/python/Plugins/Extensions/AutoTimer/plugin.pyo"):
 			from Plugins.Extensions.AutoTimer.plugin import main, autostart
 			from Plugins.Extensions.AutoTimer.AutoTimer import AutoTimer
 			from Plugins.Extensions.AutoTimer.AutoPoller import AutoPoller
