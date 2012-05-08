@@ -181,8 +181,6 @@ class SecondInfoBar(Screen):
 		self["key_blue"] = Label()
 		self["SecondInfoBar"] = ActionMap(["2ndInfobarActions"],
 			{
-				"prevPage": self.pageUp,
-				"nextPage": self.pageDown,
 				"prevEvent": self.prevEvent,
 				"nextEvent": self.nextEvent,
 				"timerAdd": self.timerAdd,
@@ -200,16 +198,7 @@ class SecondInfoBar(Screen):
 	def __Show(self):
 		if config.vixsettings.ColouredButtons.value:
 			self["key_yellow"].setText(_("Search"))
-
-			if config.vixsettings.ViXEPG_mode.value == "vixepg":
-				self["key_red"].setText(_("Single EPG"))
-			else:
-				self["key_red"].setText(_("ViX EPG"))
-
-			if not config.vixsettings.Subservice.value:
-				self["key_green"].setText(_("Timers"))
-			else:
-				self["key_green"].setText(_("Subservices"))
+		self["key_red"].setText(_("Similar"))
 		self["key_blue"].setText(_("Extensions"))
 		self["SecondInfoBar"].doBind()
 		self.getEvent()
@@ -241,8 +230,6 @@ class SecondInfoBar(Screen):
 			self.currentService=Ref
 			self.isRecording = (not Ref.ref.flags & eServiceReference.isGroup) and Ref.ref.getPath()
 			self.event = Event
-			self.SimilarBroadcastTimer = eTimer()
-			self.SimilarBroadcastTimer.callback.append(self.getSimilarEvents)
 			self.key_green_choice = self.ADD_TIMER
 			if self.isRecording:
 				self["key_green"].setText("")
@@ -362,11 +349,6 @@ class SecondInfoBar(Screen):
 		text = description + extended
 		self.setTitle(event.getEventName())
 		self["epg_description"].setText(text)
-		self["duration"].setText(_("%d min")%(event.getDuration()/60))
-		self["key_red"].setText("")
-		if self.SimilarBroadcastTimer is not None:
-			self.SimilarBroadcastTimer.start(400,True)
-
 		serviceref = self.currentService
 		eventid = self.event.getEventId()
 		refstr = serviceref.ref.toString()
@@ -382,39 +364,13 @@ class SecondInfoBar(Screen):
 			self["key_green"].setText(_("Add timer"))
 			self.key_green_choice = self.ADD_TIMER
 
-	def pageUp(self):
-		self["epg_description"].pageUp()
-
-	def pageDown(self):
-		self["epg_description"].pageDown()
-
-	def getSimilarEvents(self):
-		# search similar broadcastings
-		if not self.event:
-			return
-		refstr = str(self.currentService)
-		id = self.event.getEventId()
-		epgcache = eEPGCache.getInstance()
-		ret = epgcache.search(('NB', 1000, eEPGCache.SIMILAR_BROADCASTINGS_SEARCH, refstr, id))
-		if ret is not None:
-			descr = self["epg_description"]
-			text = descr.getText()
-			text += '\n\n' + _('Similar broadcasts:')
-			ret.sort(self.sort_func)
-			for x in ret:
-				t = localtime(x[1])
-				text += '\n%d.%d.%d, %2d:%02d  -  %s'%(t[2], t[1], t[0], t[3], t[4], x[0])
-			descr.setText(text)
-			self["key_red"].setText(_("Similar"))
-
 	def openSimilarList(self):
-		if self["key_red"].getText() != "":
+		id = self.event and self.event.getEventId()
+		refstr = str(self.currentService)
+		if id is not None:
 			self.hide()
 			self.secondInfoBarWasShown = False
-			id = self.event and self.event.getEventId()
-			refstr = str(self.currentService)
-			if id is not None:
-				self.session.open(EPGSelection, refstr, None, id)
+			self.session.open(EPGSelection, refstr, None, id)
 
 class InfoBarShowHide:
 	""" InfoBar show/hide control, accepts toggleShow and hide actions, might start
@@ -456,6 +412,7 @@ class InfoBarShowHide:
 			self.secondInfoBarScreen.hide()
 			self.standardInfoBar = True
 		self.secondInfoBarWasShown = False
+		self.EventViewIsShown = False
 
 	def connectShowHideNotifier(self, fnc):
 		if not fnc in self.onShowHideNotifiers:
@@ -506,6 +463,12 @@ class InfoBarShowHide:
 		elif self.__state == self.STATE_HIDDEN and self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
+		elif self.__state == self.STATE_HIDDEN and self.EventViewIsShown:
+			try:
+				self.eventView.close()
+			except:
+				pass
+			self.EventViewIsShown = False
 
 	def toggleShow(self):
 		if self.__state == self.STATE_HIDDEN:
@@ -514,15 +477,27 @@ class InfoBarShowHide:
 			if self.secondInfoBarScreen:
 				self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
+			self.EventViewIsShown = False
 		elif self.secondInfoBarScreen and config.usage.show_second_infobar.value and not self.secondInfoBarScreen.shown:
 			self.hide()
 			self.secondInfoBarScreen.show()
 			self.secondInfoBarWasShown = True
 			self.startHideTimer()
+		elif not config.usage.show_second_infobar.value and not self.EventViewIsShown:
+			self.hide()
+			self.openEventView()
+			self.EventViewIsShown = True
+			self.startHideTimer()
 		else:
 			self.hide()
 			if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 				self.secondInfoBarScreen.hide()
+			elif self.EventViewIsShown:
+				try:
+					self.eventView.close()
+				except:
+					pass
+				self.EventViewIsShown = False
 
 	def lockShow(self):
 		self.__locked = self.__locked + 1
