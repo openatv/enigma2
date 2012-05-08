@@ -432,6 +432,15 @@ class EPGSelection(Screen, HelpableScreen):
 				},-1)
 			self["cursoractions"].csel = self
 
+		elif self.type == EPG_TYPE_SIMILAR:
+			self["epgactions"] = HelpableActionMap(self, "EPGSelectActions",
+				{
+					"info":				(self.Info, _("Show detailed event info")),
+					"infolong":			(self.InfoLong, _("Show single epg for current channel")),
+					"menu":				(self.createSetup, _("Setup menu")),
+				},-1)
+			self["epgactions"].csel = self
+
 		elif self.type == EPG_TYPE_ENHANCED:
 			self["epgactions"] = HelpableActionMap(self, "EPGSelectActions",
 				{
@@ -1571,23 +1580,25 @@ class EPGSelectionSetup(Screen, ConfigListScreen):
 			self.list.append(getConfigListEntry(_("OK Button (long)"), config.epgselction.OKLong_infobar,_("Set to what you want the button to do.")))
 			self.list.append(getConfigListEntry(_("Number of rows"), config.epgselction.itemsperpage_infobar, _("This allows you change the number of rows shown.")))
 			self.list.append(getConfigListEntry(_("Event Fontsize"), config.epgselction.ev_fontsize_infobar, _("This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size")))
-		elif self.type == 3 or self.type == 0:
+		elif self.type == 0 or self.type == 3:
 			if self.type != 0:
 				self.list.append(getConfigListEntry(_("Channel preview mode"), config.epgselction.preview_mode_enhanced,_("If set to 'yes' you can preview channels in the EPG list.")))
 				self.list.append(getConfigListEntry(_("Skip Empty Services"), config.epgselction.overjump,_("If set to 'yes' channels without EPG will not be shown.")))
 			self.list.append(getConfigListEntry(_("Sort List by"), config.epgselction.sort,_("You can have the list sorted by time or alphanumerical.")))
-			if self.type != 0:
+			if self.type != 0 and self.type != 2:
 				self.list.append(getConfigListEntry(_("OK Button (short)"), config.epgselction.OK_enhanced,_("Set to what you want the button to do.")))
 				self.list.append(getConfigListEntry(_("OK Button (long)"), config.epgselction.OKLong_enhanced,_("Set to what you want the button to do.")))
 			self.list.append(getConfigListEntry(_("Number of rows"), config.epgselction.itemsperpage_enhanced, _("This allows you change the number of rows shown.")))
 			self.list.append(getConfigListEntry(_("Event Fontsize"), config.epgselction.ev_fontsize_enhanced, _("This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size")))
-		elif self.type == 1:
-			self.list.append(getConfigListEntry(_("Channel preview mode"), config.epgselction.preview_mode,_("If set to 'yes' you can preview channels in the EPG list.")))
-			self.list.append(getConfigListEntry(_("Show bouquet on launch"), config.epgselction.showbouquet_multi,_("If set to 'yes' the bouquets will be shown each time you open the EPG")))
-			self.list.append(getConfigListEntry(_("Skip Empty Services"), config.epgselction.overjump,_("If set to 'yes' channels without EPG will not be shown.")))
+		elif self.type == 1 or self.type == 2:
+			if self.type != 2:
+				self.list.append(getConfigListEntry(_("Channel preview mode"), config.epgselction.preview_mode,_("If set to 'yes' you can preview channels in the EPG list.")))
+				self.list.append(getConfigListEntry(_("Show bouquet on launch"), config.epgselction.showbouquet_multi,_("If set to 'yes' the bouquets will be shown each time you open the EPG")))
+				self.list.append(getConfigListEntry(_("Skip Empty Services"), config.epgselction.overjump,_("If set to 'yes' channels without EPG will not be shown.")))
 			self.list.append(getConfigListEntry(_("Sort List by"), config.epgselction.sort,_("You can have the list sorted by time or alphanumerical.")))
-			self.list.append(getConfigListEntry(_("OK Button (short)"), config.epgselction.OK,_("Set to what you want the button to do.")))
-			self.list.append(getConfigListEntry(_("OK Button (long)"), config.epgselction.OKLong,_("Set to what you want the button to do.")))
+			if self.type != 2:
+				self.list.append(getConfigListEntry(_("OK Button (short)"), config.epgselction.OK,_("Set to what you want the button to do.")))
+				self.list.append(getConfigListEntry(_("OK Button (long)"), config.epgselction.OKLong,_("Set to what you want the button to do.")))
 			self.list.append(getConfigListEntry(_("Number of rows"), config.epgselction.itemsperpage_multi, _("This allows you change the number of rows shown.")))
 			self.list.append(getConfigListEntry(_("Event Fontsize"), config.epgselction.ev_fontsize_multi, _("This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size")))
 		self["config"].list = self.list

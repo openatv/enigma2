@@ -735,10 +735,10 @@ class EPGList(HTMLComponent, GUIComponent):
 		t = time()
 		if event_id is None:
 			return
-		l = self.epgcache.search(('RIBND', 1024, eEPGCache.SIMILAR_BROADCASTINGS_SEARCH, refstr, event_id))
-		if l and len(l):
-			l.sort(key=lambda x: x[2])
-		self.l.setList(l)
+		self.list = self.epgcache.search(('RIBND', 1024, eEPGCache.SIMILAR_BROADCASTINGS_SEARCH, refstr, event_id))
+		if self.list and len(self.list):
+			self.list.sort(key=lambda x: x[2])
+		self.l.setList(self.list)
 		self.selectionChanged()
 		print time() - t
 

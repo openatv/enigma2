@@ -174,13 +174,14 @@ class SecondInfoBar(Screen):
 		Screen.__init__(self, session)
 		self["epg_description"] = ScrollLabel()
 		self["channel"] = Label()
-		self["duration"] = Label()
 		self["key_red"] = Label()
 		self["key_green"] = Label()
 		self["key_yellow"] = Label()
 		self["key_blue"] = Label()
 		self["SecondInfoBar"] = ActionMap(["2ndInfobarActions"],
 			{
+				"prevPage": self.pageUp,
+				"nextPage": self.pageDown,
 				"prevEvent": self.prevEvent,
 				"nextEvent": self.nextEvent,
 				"timerAdd": self.timerAdd,
@@ -194,6 +195,12 @@ class SecondInfoBar(Screen):
 
 		self.onShow.append(self.__Show)
 		self.onHide.append(self.__Hide)
+
+	def pageUp(self):
+		self["epg_description"].pageUp()
+
+	def pageDown(self):
+		self["epg_description"].pageDown()
 
 	def __Show(self):
 		if config.vixsettings.ColouredButtons.value:
