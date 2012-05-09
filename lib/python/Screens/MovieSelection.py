@@ -1220,7 +1220,10 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			if d != '/':
 				if d in inlist:
 					# improve shortcuts to mountpoints
-					bookmarks[bookmarks.index((d,d))] = (p.tabbedDescription(), d)
+					try:
+						bookmarks[bookmarks.index((d,d))] = (p.tabbedDescription(), d)
+					except:
+						pass
 				else:
 					bookmarks.append((p.tabbedDescription(), d))
 				inlist.append(d)
