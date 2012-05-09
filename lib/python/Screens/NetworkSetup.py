@@ -1811,30 +1811,42 @@ class NetworkNfs(Screen):
 		self.onLayoutFinish.append(self.InstallCheck)
 
 	def InstallCheck(self):
+		print 'INSTALL CHECK STARTED',self.service_name
 		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.InstalldataAvail)
 
 	def InstalldataAvail(self, str, retval, extra_args):
+		print 'INSTALL CHECK FINISHED',str
 		if not str:
+			print 'INSTALL QUESTION'
 			restartbox = self.session.openWithCallback(self.InstallPackage,MessageBox,_('Your STB_BOX will be restarted after the installation of service\nDo you want to install now ?'), MessageBox.TYPE_YESNO)
 			restartbox.setTitle(_('Ready to install "%s" ?') % self.service_name)
 		else:
+			print 'INSTALL ALREADY INSTALLED'
 			self.updateService()
 
 	def InstallPackage(self, val):
+		print 'INSTALL QUESTION FINISHED',val
 		if val:
+			print 'INSTALLING: ABOUT TO START',self.service_name
 			self.doInstall(self.installComplete, self.service_name)
 		else:
+			print 'INSTALL NO'
 			self.close()
 
 	def doInstall(self, callback, pkgname):
+		print 'INSTALLING: DISABLING REMOTE'
 		self["actions"].setEnabled(False)
 		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO)
 		self.message.setTitle(_('Installing Service'))
+		print 'INSTALLING: SHOW PLEASE WAIT MESSAGE'
+		print 'INSTALLING: STARTED',pkgname
 		self.Console.ePopen('/usr/bin/opkg install ' + pkgname, callback)
 
 	def installComplete(self,result = None, retval = None, extra_args = None):
+		print 'INSTALLING: RE-ENABLING REMOTE'
 		self["actions"].setEnabled(True)
 		from Screens.Standby import TryQuitMainloop
+		print 'INSTALLING: REBOOT'
 		self.session.open(TryQuitMainloop, 2)
 
 	def UninstallCheck(self):
