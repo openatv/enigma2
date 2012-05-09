@@ -119,6 +119,11 @@
 		<key id="BTN_1" mapto="zapDown" flags="mr" />
 	</map>
 
+	<map context="InfobarZoomActions">
+		<key id="KEY_ZOOM" mapto="ZoomInOut" flags="b" />
+		<key id="KEY_ZOOM" mapto="ZoomOff" flags="l" />
+	</map>
+
 	<map context="MinuteInputActions">
 		<key id="KEY_UP" mapto="up" flags="mr" />
 		<key id="KEY_DOWN" mapto="down" flags="mr" />

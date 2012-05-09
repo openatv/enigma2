@@ -3269,20 +3269,22 @@ class InfoBarExtensions:
 			self["InstantExtensionsActions"] = HelpableActionMap(self, "InfobarExtensions",
 				{
 					"extensions": (self.showExtensionSelection, _("view extensions...")),
-					"RedPressed": self.RedPressed,
-					"showPluginBrowser": self.showPluginBrowser,
-					"openTimerList": self.showTimerList,
-					"openAutoTimerList": self.showAutoTimerList,
-					"openEPGSearch": self.showEPGSearch,
-					"openIMDB": self.showIMDB,
-					"showEventInfo": self.openEventView,
+					"RedPressed": (self.RedPressed, _("Show epg")),
+					"showPluginBrowser": (self.showPluginBrowser, _("Show the plugin browser..")),
+					"showEventInfo": (self.openEventView, _("Show the infomation on current event.")),
+					"openTimerList": (self.showAutoTimerList, _("Show the tv player...")),
+					"openAutoTimerList": (self.showAutoTimerList, _("Show the tv player...")),
+					"openEPGSearch": (self.showEPGSearch, _("Show the tv player...")),
+					"openIMDB": (self.showIMDB, _("Show the tv player...")),
+					"showMediaPlayer": (self.showMediaPlayer, _("Show the media player...")),
 				}, 1) # lower priority
 		else:
 			self["InstantExtensionsActions"] = HelpableActionMap(self, "InfobarExtensions",
 				{
 					"extensions": (self.showExtensionSelection, _("view extensions...")),
-					"showPluginBrowser": self.showPluginBrowser,
-					"showEventInfo": self.openEventView,
+					"showPluginBrowser": (self.showPluginBrowser, _("Show the plugin browser..")),
+					"showEventInfo": (self.openEventView, _("Show the infomation on current event.")),
+					"showMediaPlayer": (self.showMediaPlayer, _("Show the media player...")),
 				}, 1) # lower priority
 
 		self.addExtension(extension = self.getLogManager, type = InfoBarExtensions.EXTENSION_LIST)
@@ -4573,6 +4575,44 @@ class InfoBarServiceErrorPopupSupport:
 				Notifications.AddPopup(text = error, type = MessageBox.TYPE_ERROR, timeout = 5, id = "ZapError")
 			else:
 				Notifications.RemovePopup(id = "ZapError")
+
+class InfoBarZoom:
+	def __init__(self):
+		self.zoomrate=0
+		self.zoomin=1
+
+		self["ZoomActions"] = HelpableActionMap(self, "InfobarZoomActions",
+			{
+				"ZoomInOut":(self.ZoomInOut, _("Zoom In/Out TV...")),
+				"ZoomOff":(self.ZoomOff, _("Zoom Off...")),
+			}, prio=2)
+
+	def ZoomInOut(self):
+		zoomval=0
+		if self.zoomrate > 3:
+			self.zoomin = 0
+		elif self.zoomrate < -9:
+			self.zoomin = 1
+
+		if self.zoomin == 1:
+			self.zoomrate += 1
+		else:
+			self.zoomrate -= 1
+
+		if self.zoomrate < 0:
+		    zoomval=abs(self.zoomrate)+10
+		else:
+		    zoomval=self.zoomrate
+		print "zoomRate:", self.zoomrate
+		print "zoomval:", zoomval
+		file = open("/proc/stb/vmpeg/0/zoomrate", "w")
+		file.write('%d' % int(zoomval))
+		file.close()
+
+	def ZoomOff(self):
+		self.zoomrate = 0
+		self.zoomin = 1
+		open("/proc/stb/vmpeg/0/zoomrate", "w").write(str(0))
 
 
 
