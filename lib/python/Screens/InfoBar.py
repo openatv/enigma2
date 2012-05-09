@@ -82,7 +82,17 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		self.current_begin_time=0
 		assert InfoBar.instance is None, "class InfoBar is a singleton class and just one instance of this class is allowed!"
 		InfoBar.instance = self
+
+		if config.misc.initialchannelselection.value:
+			self.onShown.append(self.showMenu)
+
 		self.onShow.append(self.doButtonsCheck)
+
+	def showMenu(self):
+		self.onShown.remove(self.showMenu)
+		config.misc.initialchannelselection.value = False
+		config.misc.initialchannelselection.save()
+		self.mainMenu()
 
 	def doButtonsCheck(self):
 		if config.vixsettings.ColouredButtons.value:

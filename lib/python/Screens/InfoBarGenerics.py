@@ -688,8 +688,6 @@ class InfoBarChannelSelection:
 		#instantiate forever
 		self.servicelist = self.session.instantiateDialog(ChannelSelection)
 
-		if config.misc.initialchannelselection.value:
-			self.onShown.append(self.firstRun)
 
 		self["ChannelSelectActions"] = HelpableActionMap(self, "InfobarChannelSelection",
 			{
@@ -779,11 +777,6 @@ class InfoBarChannelSelection:
 			if config.usage.show_servicelist.value:
 				self.session.execDialog(self.servicelist)
 
-	def firstRun(self):
-		self.onShown.remove(self.firstRun)
-		config.misc.initialchannelselection.value = False
-		config.misc.initialchannelselection.save()
-		self.switchChannelDown()
 
 	def historyBack(self):
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
