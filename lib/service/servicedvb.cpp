@@ -3064,7 +3064,7 @@ RESULT eDVBServicePlay::disableSubtitles(eWidget *parent)
 		m_subtitle_pages.clear();
 	}
 	if (m_dvb_service)
-		m_dvb_service->setCacheEntry(eDVBService::cSUBTITLE, -1);
+		m_dvb_service->setCacheEntry(eDVBService::cSUBTITLE, 0);
 	return 0;
 }
 
@@ -3086,7 +3086,7 @@ PyObject *eDVBServicePlay::getCachedSubtitle()
 
 			if (usecache || stream == -1)
 			{
-				if (tmp != -1)
+				if (tmp != -1 && tmp != 0)
 				{
 					unsigned int data = (unsigned int)tmp;
 					int pid = (data&0xFFFF0000)>>16;
