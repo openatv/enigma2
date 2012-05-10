@@ -689,7 +689,6 @@ class InfoBarChannelSelection:
 		#instantiate forever
 		self.servicelist = self.session.instantiateDialog(ChannelSelection)
 
-
 		self["ChannelSelectActions"] = HelpableActionMap(self, "InfobarChannelSelection",
 			{
 				"switchChannelUp": (self.switchChannelUp, _("open servicelist(up)")),
@@ -703,6 +702,7 @@ class InfoBarChannelSelection:
 				"historyBack": (self.historyBack, _("previous channel in history")),
 				"historyNext": (self.historyNext, _("next channel in history")),
 				"openServiceList": (self.openServiceList, _("open servicelist")),
+				"openSatellites": (self.openSatellites, _("open Satellites")),
 			})
 
 	def LeftPressed(self):
@@ -778,7 +778,6 @@ class InfoBarChannelSelection:
 			if config.usage.show_servicelist.value:
 				self.session.execDialog(self.servicelist)
 
-
 	def historyBack(self):
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
@@ -844,6 +843,13 @@ class InfoBarChannelSelection:
 		if self.save_current_timeshift and self.timeshift_enabled:
 			InfoBarTimeshift.saveTimeshiftActions(self, postaction="openServiceList")
 		else:
+			self.session.execDialog(self.servicelist)
+
+	def openSatellites(self):
+		if self.save_current_timeshift and self.timeshift_enabled:
+			InfoBarTimeshift.saveTimeshiftActions(self, postaction="openSatellites")
+		else:
+			self.servicelist.showSatellites()
 			self.session.execDialog(self.servicelist)
 
 	def openInfoBarEPG(self):
