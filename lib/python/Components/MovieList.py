@@ -298,17 +298,17 @@ class MovieList(GUIComponent):
 			else:
 				data.part = moviePlayState(pathName + '.cuts', serviceref, data.len)
 				if switch == 'i':
-					if data.part is not None:
+					if data.part is not None and data.part > 0:
 						data.icon = self.iconPart[data.part // 25]
 					else:
 						if config.usage.movielist_unseen.value:
 							data.icon = self.iconUnwatched
 				elif switch == 'p' or switch == 's':
-					if data.part is not None:
+					if data.part is not None and data.part > 0:
 						data.partcol = 0xffc71d
 					else:
 						if config.usage.movielist_unseen.value:
-							data.part = 0
+							data.part = 100
 							data.partcol = 0x206333
 
 		len = data.len
