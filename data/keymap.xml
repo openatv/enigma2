@@ -117,6 +117,7 @@
 		<key id="KEY_CHANNELDOWN" mapto="ChannelMinusPressed" flags="m" />
 		<key id="BTN_0" mapto="zapUp" flags="mr" />
 		<key id="BTN_1" mapto="zapDown" flags="mr" />
+		<key id="KEY_SAT" mapto="openSatellites" flags="m" />
 	</map>
 
 	<map context="InfobarZoomActions">
@@ -174,6 +175,9 @@
 	<map context="InfobarMenuActions">
 		<key id="KEY_MENU" mapto="mainMenu" flags="mr" />
 		<key id="KEY_SPACE" mapto="mainMenu" flags="mr" />
+		<key id="KEY_F1" mapto="showNetworkSetup" flags="mr" />
+		<key id="KEY_F5" mapto="showRFmod" flags="b" />
+		<key id="KEY_F5" mapto="toggleAspectRatio" flags="l" />
 	</map>
 
 	<map context="MenuActions">
