@@ -354,7 +354,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 
 		elif next_state == self.StateEnded:
 			old_end = self.end
-			if self.setAutoincreaseEnd():
+			if self.setAutoincreaseEnd() and self.dontSave == False:
 				self.log(12, "autoincrase recording %d minute(s)" % int((self.end - old_end)/60))
 				self.state -= 1
 				return True
