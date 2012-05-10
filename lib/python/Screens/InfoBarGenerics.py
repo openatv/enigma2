@@ -3955,9 +3955,10 @@ class InfoBarInstantRecord:
 					self.recording[self.selectedEntry].autoincrease = False
 				self.recording[self.selectedEntry].end = ret[1]
 		else:
-			if self.recording[self.selectedEntry].end != int(time()):
-				self.recording[self.selectedEntry].autoincrease = False
-			self.recording[self.selectedEntry].end = int(time())
+			print"[INSTAND RECORD] EndTime not changed !!"
+			#if self.recording[self.selectedEntry].end != int(time()):
+			#	self.recording[self.selectedEntry].autoincrease = False
+			#self.recording[self.selectedEntry].end = int(time())
 		self.session.nav.RecordTimer.timeChanged(self.recording[self.selectedEntry])
 
 	def changeDuration(self, entry):
@@ -3973,9 +3974,10 @@ class InfoBarInstantRecord:
 				entry.autoincrease = False
 			entry.end = int(time()) + 60 * int(value)
 		else:
-			if entry.end != int(time()):
-				entry.autoincrease = False
-			entry.end = int(time())
+			print"[INSTAND RECORD] Duration not changed !!"
+			#if entry.end != int(time()):
+			#	entry.autoincrease = False
+			#entry.end = int(time())
 		self.session.nav.RecordTimer.timeChanged(entry)
 
 	def instantRecord(self):
