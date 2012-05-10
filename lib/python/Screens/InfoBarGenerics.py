@@ -51,7 +51,8 @@ from bisect import insort
 from random import randint
 
 # hack alert!
-from Menu import MainMenu, mdom
+from Menu import MainMenu, Menu, mdom
+from Setup import Setup
 import Screens.Standby
 
 def isStandardInfoBar(self):
@@ -914,6 +915,9 @@ class InfoBarMenu:
 		self["MenuActions"] = HelpableActionMap(self, "InfobarMenuActions",
 			{
 				"mainMenu": (self.mainMenu, _("Enter main menu...")),
+				"showNetworkSetup": (self.showNetworkMounts, _("Show network mounts ...")),
+				"showRFmod": (self.showRFSetup, _("Show RFmod setup...")),
+				"toggleAspectRatio": (self.toggleAspectRatio, _("Toggle aspect ratio...")),
 			})
 		self.session.infobar = None
 
@@ -930,6 +934,34 @@ class InfoBarMenu:
 		# at the moment used from the SubserviceSelection
 
 		self.session.openWithCallback(self.mainMenuClosed, MainMenu, menu)
+
+	def toggleAspectRatio(self):
+		ASPECT = [ "auto", "16_9", "4_3" ]
+		ASPECT_MSG = { "auto":"Auto", "16_9":"16:9", "4_3":"4:3" }
+		if config.av.aspect.value in ASPECT:
+			index = ASPECT.index(config.av.aspect.value)
+			config.av.aspect.value = ASPECT[(index+1)%3]
+		else:
+			config.av.aspect.value = "auto"
+		config.av.aspect.save()
+		self.session.open(MessageBox, _("AV aspect is %s." % ASPECT_MSG[config.av.aspect.value]), MessageBox.TYPE_INFO, timeout=5)
+
+	def showNetworkMounts(self):
+		menulist = mdom.getroot().findall('menu')
+		for item in menulist:
+			if item.attrib['entryID'] == 'setup_selection':
+				menulist = item.findall('menu')
+				for item in menulist:
+					if item.attrib['entryID'] == 'system_selection':
+						menulist = item.findall('menu')
+						for item in menulist:
+							if item.attrib['entryID'] == 'network_menu':
+								menu = item
+		assert menu.tag == "menu", "root element in menu must be 'menu'!"
+		self.session.openWithCallback(self.mainMenuClosed, Menu, menu)
+
+	def showRFSetup(self):
+		self.session.openWithCallback(self.mainMenuClosed, Setup, 'RFmod')
 
 	def mainMenuClosed(self, *val):
 		self.session.infobar = None
