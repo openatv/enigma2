@@ -82,6 +82,7 @@ class EventViewBase:
 			{
 				"cancel": self.close,
 				"ok": self.close,
+				"info": self.close,
 				"pageUp": self.pageUp,
 				"pageDown": self.pageDown,
 				"prevEvent": self.prevEvent,
