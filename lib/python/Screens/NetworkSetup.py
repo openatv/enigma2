@@ -1578,31 +1578,58 @@ class NetworkAfp(Screen):
 		self.service_name = 'task-base-appletalk netatalk'
 		self.onLayoutFinish.append(self.InstallCheck)
 
-	def InstallCheck(self):
-		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.InstalldataAvail)
-
-	def InstalldataAvail(self, str, retval, extra_args):
+	def checkNetworkState(self, str, retval, extra_args):
+		print 'INSTALL CHECK FINISHED',str
 		if not str:
-			restartbox = self.session.openWithCallback(self.InstallPackage,MessageBox,_('Your STB_BOX will be restarted after the installation of service.\n\nDo you want to install now ?'), MessageBox.TYPE_YESNO)
-			restartbox.setTitle(_('Ready to install "%s" ?') % self.service_name)
+			cmd1 = "wget http://www.world-of-satellite.com/enigma2/feeds/2.4/image-version -T 1 -s"
+			self.CheckConsole = Console()
+			self.CheckConsole.ePopen(cmd1, self.checkNetworkStateFinished)
 		else:
+			print 'INSTALL ALREADY INSTALLED'
+			self.feedscheck.close()
 			self.updateService()
 
+	def checkNetworkStateFinished(self, result, retval,extra_args=None):
+		if result.find('404 Not Found') != -1:
+			self.session.openWithCallback(self.close, MessageBox, _("Sorry feeds are down for maintenance, please try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+		elif result.find('bad address') != -1:
+			self.session.openWithCallback(self.close, MessageBox, _("Your box is not connected to the internet, please check your network settings and try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+		else:
+			self.feedscheck.close()
+			self.InstalldataAvail()
+
+	def InstallCheck(self):
+		print 'INSTALL CHECK STARTED',self.service_name
+		self.feedscheck = self.session.open(MessageBox,_('Please wait whilst feeds state is checked.'), MessageBox.TYPE_INFO, enable_input = False)
+		self.feedscheck.setTitle(_('Checking Feeds') % self.service_name)
+		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.checkNetworkState)
+
+	def InstalldataAvail(self):
+		print 'INSTALL QUESTION'
+		restartbox = self.session.openWithCallback(self.InstallPackage,MessageBox,_('Your STB_BOX will be restarted after the installation of service\nDo you want to install now ?'), MessageBox.TYPE_YESNO)
+		restartbox.setTitle(_('Ready to install "%s" ?') % self.service_name)
+
 	def InstallPackage(self, val):
+		print 'INSTALL QUESTION FINISHED',val
 		if val:
+			print 'INSTALLING: ABOUT TO START',self.service_name
 			self.doInstall(self.installComplete, self.service_name)
 		else:
+			print 'INSTALL NO'
 			self.close()
 
 	def doInstall(self, callback, pkgname):
-		self["actions"].setEnabled(False)
-		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO)
+		print 'INSTALLING: DISABLING REMOTE'
+		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO, enable_input = False)
 		self.message.setTitle(_('Installing Service'))
+		print 'INSTALLING: SHOW PLEASE WAIT MESSAGE'
+		print 'INSTALLING: STARTED',pkgname
 		self.Console.ePopen('/usr/bin/opkg install ' + pkgname, callback)
 
 	def installComplete(self,result = None, retval = None, extra_args = None):
-		self["actions"].setEnabled(True)
+		print 'INSTALLING: RE-ENABLING REMOTE'
 		from Screens.Standby import TryQuitMainloop
+		print 'INSTALLING: REBOOT'
 		self.session.open(TryQuitMainloop, 2)
 
 	def UninstallCheck(self):
@@ -1810,19 +1837,32 @@ class NetworkNfs(Screen):
 		self.service_name = 'task-base-nfs'
 		self.onLayoutFinish.append(self.InstallCheck)
 
-	def InstallCheck(self):
-		print 'INSTALL CHECK STARTED',self.service_name
-		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.InstalldataAvail)
-
-	def InstalldataAvail(self, str, retval, extra_args):
+	def checkNetworkState(self, str, retval, extra_args):
 		print 'INSTALL CHECK FINISHED',str
 		if not str:
-			print 'INSTALL QUESTION'
-			restartbox = self.session.openWithCallback(self.InstallPackage,MessageBox,_('Your STB_BOX will be restarted after the installation of service\nDo you want to install now ?'), MessageBox.TYPE_YESNO)
-			restartbox.setTitle(_('Ready to install "%s" ?') % self.service_name)
+			cmd1 = "wget http://www.world-of-satellite.com/enigma2/feeds/2.4/image-version -T 1 -s"
+			self.CheckConsole = Console()
+			self.CheckConsole.ePopen(cmd1, self.checkNetworkStateFinished)
 		else:
 			print 'INSTALL ALREADY INSTALLED'
 			self.updateService()
+
+	def checkNetworkStateFinished(self, result, retval,extra_args=None):
+		if result.find('404 Not Found') != -1:
+			self.session.openWithCallback(self.close, MessageBox, _("Sorry feeds are down for maintenance, please try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+		elif result.find('bad address') != -1:
+			self.session.openWithCallback(self.close, MessageBox, _("Your box is not connected to the internet, please check your network settings and try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+		else:
+			self.InstalldataAvail()
+
+	def InstallCheck(self):
+		print 'INSTALL CHECK STARTED',self.service_name
+		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.checkNetworkState)
+
+	def InstalldataAvail(self):
+		print 'INSTALL QUESTION'
+		restartbox = self.session.openWithCallback(self.InstallPackage,MessageBox,_('Your STB_BOX will be restarted after the installation of service\nDo you want to install now ?'), MessageBox.TYPE_YESNO)
+		restartbox.setTitle(_('Ready to install "%s" ?') % self.service_name)
 
 	def InstallPackage(self, val):
 		print 'INSTALL QUESTION FINISHED',val
@@ -1967,28 +2007,53 @@ class NetworkOpenvpn(Screen):
 		self.service_name = 'openvpn'
 		self.onLayoutFinish.append(self.InstallCheck)
 
-	def InstallCheck(self):
-		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.InstalldataAvail)
-
-	def InstalldataAvail(self, str, retval, extra_args):
+	def checkNetworkState(self, str, retval, extra_args):
+		print 'INSTALL CHECK FINISHED',str
 		if not str:
-			self.session.openWithCallback(self.InstallPackage, MessageBox, _('Ready to install "%s" ?') % self.service_name)
+			cmd1 = "wget http://www.world-of-satellite.com/enigma2/feeds/2.4/image-version -T 1 -s"
+			self.CheckConsole = Console()
+			self.CheckConsole.ePopen(cmd1, self.checkNetworkStateFinished)
 		else:
+			print 'INSTALL ALREADY INSTALLED'
 			self.updateService()
 
+	def checkNetworkStateFinished(self, result, retval,extra_args=None):
+		if result.find('404 Not Found') != -1:
+			self.session.openWithCallback(self.close, MessageBox, _("Sorry feeds are down for maintenance, please try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+		elif result.find('bad address') != -1:
+			self.session.openWithCallback(self.close, MessageBox, _("Your box is not connected to the internet, please check your network settings and try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+		else:
+			self.InstalldataAvail()
+
+	def InstallCheck(self):
+		print 'INSTALL CHECK STARTED',self.service_name
+		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.checkNetworkState)
+
+	def InstalldataAvail(self):
+		print 'INSTALL QUESTION'
+		restartbox = self.session.openWithCallback(self.InstallPackage,MessageBox,_('Your STB_BOX will be restarted after the installation of service\nDo you want to install now ?'), MessageBox.TYPE_YESNO)
+		restartbox.setTitle(_('Ready to install "%s" ?') % self.service_name)
+
 	def InstallPackage(self, val):
+		print 'INSTALL QUESTION FINISHED',val
 		if val:
+			print 'INSTALLING: ABOUT TO START',self.service_name
 			self.doInstall(self.installComplete, self.service_name)
 		else:
+			print 'INSTALL NO'
 			self.close()
 
 	def doInstall(self, callback, pkgname):
+		print 'INSTALLING: DISABLING REMOTE'
 		self["actions"].setEnabled(False)
 		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO)
 		self.message.setTitle(_('Installing Service'))
+		print 'INSTALLING: SHOW PLEASE WAIT MESSAGE'
+		print 'INSTALLING: STARTED',pkgname
 		self.Console.ePopen('/usr/bin/opkg install ' + pkgname, callback)
 
 	def installComplete(self,result = None, retval = None, extra_args = None):
+		print 'INSTALLING: RE-ENABLING REMOTE'
 		self["actions"].setEnabled(True)
 		self.message.close()
 		self.updateService()
@@ -2137,28 +2202,53 @@ class NetworkSamba(Screen):
 		self.service_name = 'samba'
 		self.onLayoutFinish.append(self.InstallCheck)
 
-	def InstallCheck(self):
-		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.InstalldataAvail)
-
-	def InstalldataAvail(self, str, retval, extra_args):
+	def checkNetworkState(self, str, retval, extra_args):
+		print 'INSTALL CHECK FINISHED',str
 		if not str:
-			self.session.openWithCallback(self.InstallPackage, MessageBox, _('Ready to install "%s" ?') % self.service_name)
+			cmd1 = "wget http://www.world-of-satellite.com/enigma2/feeds/2.4/image-version -T 1 -s"
+			self.CheckConsole = Console()
+			self.CheckConsole.ePopen(cmd1, self.checkNetworkStateFinished)
 		else:
+			print 'INSTALL ALREADY INSTALLED'
 			self.updateService()
 
+	def checkNetworkStateFinished(self, result, retval,extra_args=None):
+		if result.find('404 Not Found') != -1:
+			self.session.openWithCallback(self.close, MessageBox, _("Sorry feeds are down for maintenance, please try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+		elif result.find('bad address') != -1:
+			self.session.openWithCallback(self.close, MessageBox, _("Your box is not connected to the internet, please check your network settings and try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+		else:
+			self.InstalldataAvail()
+
+	def InstallCheck(self):
+		print 'INSTALL CHECK STARTED',self.service_name
+		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.checkNetworkState)
+
+	def InstalldataAvail(self):
+		print 'INSTALL QUESTION'
+		restartbox = self.session.openWithCallback(self.InstallPackage,MessageBox,_('Your STB_BOX will be restarted after the installation of service\nDo you want to install now ?'), MessageBox.TYPE_YESNO)
+		restartbox.setTitle(_('Ready to install "%s" ?') % self.service_name)
+
 	def InstallPackage(self, val):
+		print 'INSTALL QUESTION FINISHED',val
 		if val:
+			print 'INSTALLING: ABOUT TO START',self.service_name
 			self.doInstall(self.installComplete, self.service_name)
 		else:
+			print 'INSTALL NO'
 			self.close()
 
 	def doInstall(self, callback, pkgname):
+		print 'INSTALLING: DISABLING REMOTE'
 		self["actions"].setEnabled(False)
 		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO)
 		self.message.setTitle(_('Installing Service'))
+		print 'INSTALLING: SHOW PLEASE WAIT MESSAGE'
+		print 'INSTALLING: STARTED',pkgname
 		self.Console.ePopen('/usr/bin/opkg install ' + pkgname, callback)
 
 	def installComplete(self,result = None, retval = None, extra_args = None):
+		print 'INSTALLING: RE-ENABLING REMOTE'
 		self["actions"].setEnabled(True)
 		self.message.close()
 		self.updateService()
@@ -2420,28 +2510,53 @@ class NetworkInadyn(Screen):
 		self.service_name = 'inadyn-mt'
 		self.onLayoutFinish.append(self.InstallCheck)
 
-	def InstallCheck(self):
-		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.InstalldataAvail)
-
-	def InstalldataAvail(self, str, retval, extra_args):
+	def checkNetworkState(self, str, retval, extra_args):
+		print 'INSTALL CHECK FINISHED',str
 		if not str:
-			self.session.openWithCallback(self.InstallPackage, MessageBox, _('Ready to install "%s" ?') % self.service_name)
+			cmd1 = "wget http://www.world-of-satellite.com/enigma2/feeds/2.4/image-version -T 1 -s"
+			self.CheckConsole = Console()
+			self.CheckConsole.ePopen(cmd1, self.checkNetworkStateFinished)
 		else:
+			print 'INSTALL ALREADY INSTALLED'
 			self.updateService()
 
+	def checkNetworkStateFinished(self, result, retval,extra_args=None):
+		if result.find('404 Not Found') != -1:
+			self.session.openWithCallback(self.close, MessageBox, _("Sorry feeds are down for maintenance, please try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+		elif result.find('bad address') != -1:
+			self.session.openWithCallback(self.close, MessageBox, _("Your box is not connected to the internet, please check your network settings and try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+		else:
+			self.InstalldataAvail()
+
+	def InstallCheck(self):
+		print 'INSTALL CHECK STARTED',self.service_name
+		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.checkNetworkState)
+
+	def InstalldataAvail(self):
+		print 'INSTALL QUESTION'
+		restartbox = self.session.openWithCallback(self.InstallPackage,MessageBox,_('Your STB_BOX will be restarted after the installation of service\nDo you want to install now ?'), MessageBox.TYPE_YESNO)
+		restartbox.setTitle(_('Ready to install "%s" ?') % self.service_name)
+
 	def InstallPackage(self, val):
+		print 'INSTALL QUESTION FINISHED',val
 		if val:
+			print 'INSTALLING: ABOUT TO START',self.service_name
 			self.doInstall(self.installComplete, self.service_name)
 		else:
+			print 'INSTALL NO'
 			self.close()
 
 	def doInstall(self, callback, pkgname):
+		print 'INSTALLING: DISABLING REMOTE'
 		self["actions"].setEnabled(False)
 		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO)
 		self.message.setTitle(_('Installing Service'))
+		print 'INSTALLING: SHOW PLEASE WAIT MESSAGE'
+		print 'INSTALLING: STARTED',pkgname
 		self.Console.ePopen('/usr/bin/opkg install ' + pkgname, callback)
 
 	def installComplete(self,result = None, retval = None, extra_args = None):
+		print 'INSTALLING: RE-ENABLING REMOTE'
 		self["actions"].setEnabled(True)
 		self.message.close()
 		self.updateService()
@@ -2810,28 +2925,53 @@ class NetworkuShare(Screen):
 		self.service_name = 'ushare'
 		self.onLayoutFinish.append(self.InstallCheck)
 
-	def InstallCheck(self):
-		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.InstalldataAvail)
-
-	def InstalldataAvail(self, str, retval, extra_args):
+	def checkNetworkState(self, str, retval, extra_args):
+		print 'INSTALL CHECK FINISHED',str
 		if not str:
-			self.session.openWithCallback(self.InstallPackage, MessageBox, _('Ready to install "%s" ?') % self.service_name)
+			cmd1 = "wget http://www.world-of-satellite.com/enigma2/feeds/2.4/image-version -T 1 -s"
+			self.CheckConsole = Console()
+			self.CheckConsole.ePopen(cmd1, self.checkNetworkStateFinished)
 		else:
+			print 'INSTALL ALREADY INSTALLED'
 			self.updateService()
 
+	def checkNetworkStateFinished(self, result, retval,extra_args=None):
+		if result.find('404 Not Found') != -1:
+			self.session.openWithCallback(self.close, MessageBox, _("Sorry feeds are down for maintenance, please try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+		elif result.find('bad address') != -1:
+			self.session.openWithCallback(self.close, MessageBox, _("Your box is not connected to the internet, please check your network settings and try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+		else:
+			self.InstalldataAvail()
+
+	def InstallCheck(self):
+		print 'INSTALL CHECK STARTED',self.service_name
+		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.checkNetworkState)
+
+	def InstalldataAvail(self):
+		print 'INSTALL QUESTION'
+		restartbox = self.session.openWithCallback(self.InstallPackage,MessageBox,_('Your STB_BOX will be restarted after the installation of service\nDo you want to install now ?'), MessageBox.TYPE_YESNO)
+		restartbox.setTitle(_('Ready to install "%s" ?') % self.service_name)
+
 	def InstallPackage(self, val):
+		print 'INSTALL QUESTION FINISHED',val
 		if val:
+			print 'INSTALLING: ABOUT TO START',self.service_name
 			self.doInstall(self.installComplete, self.service_name)
 		else:
+			print 'INSTALL NO'
 			self.close()
 
 	def doInstall(self, callback, pkgname):
+		print 'INSTALLING: DISABLING REMOTE'
 		self["actions"].setEnabled(False)
 		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO)
 		self.message.setTitle(_('Installing Service'))
+		print 'INSTALLING: SHOW PLEASE WAIT MESSAGE'
+		print 'INSTALLING: STARTED',pkgname
 		self.Console.ePopen('/usr/bin/opkg install ' + pkgname, callback)
 
 	def installComplete(self,result = None, retval = None, extra_args = None):
+		print 'INSTALLING: RE-ENABLING REMOTE'
 		self["actions"].setEnabled(True)
 		self.message.close()
 		self.updateService()
@@ -3347,28 +3487,53 @@ class NetworkMiniDLNA(Screen):
 		self.service_name = 'minidlna'
 		self.onLayoutFinish.append(self.InstallCheck)
 
-	def InstallCheck(self):
-		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.InstalldataAvail)
-
-	def InstalldataAvail(self, str, retval, extra_args):
+	def checkNetworkState(self, str, retval, extra_args):
+		print 'INSTALL CHECK FINISHED',str
 		if not str:
-			self.session.openWithCallback(self.InstallPackage, MessageBox, _('Ready to install "%s" ?') % self.service_name)
+			cmd1 = "wget http://www.world-of-satellite.com/enigma2/feeds/2.4/image-version -T 1 -s"
+			self.CheckConsole = Console()
+			self.CheckConsole.ePopen(cmd1, self.checkNetworkStateFinished)
 		else:
+			print 'INSTALL ALREADY INSTALLED'
 			self.updateService()
 
+	def checkNetworkStateFinished(self, result, retval,extra_args=None):
+		if result.find('404 Not Found') != -1:
+			self.session.openWithCallback(self.close, MessageBox, _("Sorry feeds are down for maintenance, please try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+		elif result.find('bad address') != -1:
+			self.session.openWithCallback(self.close, MessageBox, _("Your box is not connected to the internet, please check your network settings and try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+		else:
+			self.InstalldataAvail()
+
+	def InstallCheck(self):
+		print 'INSTALL CHECK STARTED',self.service_name
+		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.checkNetworkState)
+
+	def InstalldataAvail(self):
+		print 'INSTALL QUESTION'
+		restartbox = self.session.openWithCallback(self.InstallPackage,MessageBox,_('Your STB_BOX will be restarted after the installation of service\nDo you want to install now ?'), MessageBox.TYPE_YESNO)
+		restartbox.setTitle(_('Ready to install "%s" ?') % self.service_name)
+
 	def InstallPackage(self, val):
+		print 'INSTALL QUESTION FINISHED',val
 		if val:
+			print 'INSTALLING: ABOUT TO START',self.service_name
 			self.doInstall(self.installComplete, self.service_name)
 		else:
+			print 'INSTALL NO'
 			self.close()
 
 	def doInstall(self, callback, pkgname):
+		print 'INSTALLING: DISABLING REMOTE'
 		self["actions"].setEnabled(False)
 		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO)
 		self.message.setTitle(_('Installing Service'))
+		print 'INSTALLING: SHOW PLEASE WAIT MESSAGE'
+		print 'INSTALLING: STARTED',pkgname
 		self.Console.ePopen('/usr/bin/opkg install ' + pkgname, callback)
 
 	def installComplete(self,result = None, retval = None, extra_args = None):
+		print 'INSTALLING: RE-ENABLING REMOTE'
 		self["actions"].setEnabled(True)
 		self.message.close()
 		self.updateService()
