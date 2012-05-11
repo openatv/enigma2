@@ -2656,8 +2656,11 @@ class NetworkInadynSetup(Screen, ConfigListScreen):
 	def KeyText(self):
 		sel = self['config'].getCurrent()
 		if sel:
+			if isinstance(self["config"].getCurrent()[1], ConfigText) or isinstance(self["config"].getCurrent()[1], ConfigPassword):
+				if self["config"].getCurrent()[1].help_window.instance is not None:
+					self["config"].getCurrent()[1].help_window.hide()
 			self.vkvar = sel[0]
-			if self.vkvar == _("Username") or self.vkvar == _("Password") or self.vkvar == _("Alias") or self.vkvar == _("System"):
+			if self.vkvar == _("Username") + ':' or self.vkvar == _("Password") + ':' or self.vkvar == _("Alias") + ':' or self.vkvar == _("System") + ':':
 				from Screens.VirtualKeyBoard import VirtualKeyBoard
 				self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title = self["config"].getCurrent()[0], text = self["config"].getCurrent()[1].getValue())
 
@@ -3088,6 +3091,9 @@ class NetworkuShareSetup(Screen, ConfigListScreen):
 	def KeyText(self):
 		sel = self['config'].getCurrent()
 		if sel:
+			if isinstance(self["config"].getCurrent()[1], ConfigText) or isinstance(self["config"].getCurrent()[1], ConfigPassword):
+				if self["config"].getCurrent()[1].help_window.instance is not None:
+					self["config"].getCurrent()[1].help_window.hide()
 			self.vkvar = sel[0]
 			if self.vkvar == _("uShare Name") + ":" or self.vkvar == _("Share Folder's") + ":":
 				from Screens.VirtualKeyBoard import VirtualKeyBoard
@@ -3606,6 +3612,9 @@ class NetworkMiniDLNASetup(Screen, ConfigListScreen):
 	def KeyText(self):
 		sel = self['config'].getCurrent()
 		if sel:
+			if isinstance(self["config"].getCurrent()[1], ConfigText) or isinstance(self["config"].getCurrent()[1], ConfigPassword):
+				if self["config"].getCurrent()[1].help_window.instance is not None:
+					self["config"].getCurrent()[1].help_window.hide()
 			self.vkvar = sel[0]
 			if self.vkvar == _("Name") + ":" or self.vkvar == _("Share Folder's") + ":":
 				from Screens.VirtualKeyBoard import VirtualKeyBoard
