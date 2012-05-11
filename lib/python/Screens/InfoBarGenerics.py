@@ -3460,7 +3460,7 @@ class InfoBarExtensions:
 		self.session.open(OSD3DSetupScreen)
 
 	def showAutoTimerList(self):
-		if not self.secondInfoBarScreen.shown and os_path.exists("/usr/lib/enigma2/python/Plugins/Extensions/AutoTimer/plugin.pyo"):
+		if os_path.exists("/usr/lib/enigma2/python/Plugins/Extensions/AutoTimer/plugin.pyo"):
 			from Plugins.Extensions.AutoTimer.plugin import main, autostart
 			from Plugins.Extensions.AutoTimer.AutoTimer import AutoTimer
 			from Plugins.Extensions.AutoTimer.AutoPoller import AutoPoller
