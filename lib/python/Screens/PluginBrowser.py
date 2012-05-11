@@ -330,7 +330,7 @@ class PluginDownloadBrowser(Screen):
 			socket.setdefaulttimeout(currentTimeoutDefault)
 
 			if config.usage.infobar_onlineupdateisunstable.value == '1' and config.usage.infobar_onlineupdatebeta.value:
-				self["text"].setText(_("WARNING: feeds maybe unsable.") + '\n' + _("Downloading plugin information. Please wait..."))
+				self["text"].setText(_("WARNING: feeds maybe unstable.") + '\n' + _("Downloading plugin information. Please wait..."))
 				self.container.execute(self.ipkg + " update")
 			elif config.usage.infobar_onlineupdateisunstable.value == '1' and not config.usage.infobar_onlineupdatebeta.value:
 				self["text"].setText(_("Sorry feeds seem be in an unstable state, if you wish to use them please enable 'Allow unstable updates' in online update setup."))
