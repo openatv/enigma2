@@ -171,6 +171,9 @@ class Setup(ConfigListScreen, Screen):
 			pass
 
 	def KeyText(self):
+		if isinstance(self["config"].getCurrent()[1], ConfigText) or isinstance(self["config"].getCurrent()[1], ConfigPassword):
+			if self["config"].getCurrent()[1].help_window.instance is not None:
+				self["config"].getCurrent()[1].help_window.hide()
 		from Screens.VirtualKeyBoard import VirtualKeyBoard
 		self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title = self["config"].getCurrent()[0], text = self["config"].getCurrent()[1].getValue())
 
