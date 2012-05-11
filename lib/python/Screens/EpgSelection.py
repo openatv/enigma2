@@ -1290,8 +1290,10 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def refreshData(self, force=False):
 		self.refreshTimer.stop()
-		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_MULTI:
+		if self.type == EPG_TYPE_GRAPH:
 			self["list"].fillGraphEPG(None, self.ask_time)
+		elif self.type == EPG_TYPE_MULTI:
+			self["list"].fillMultiEPG(self.services, self.ask_time)
 		elif self.type == EPG_TYPE_SINGLE:
 			service = self.currentService
 			self["list"].fillSingleEPG(service)
