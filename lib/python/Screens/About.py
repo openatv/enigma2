@@ -346,6 +346,7 @@ class SystemNetworkInfo(Screen):
 		iStatus.getDataForInterface(self.iface,self.getInfoCB)
 
 	def getInfoCB(self,data,status):
+		self.LinkState = None
 		if data is not None:
 			if data is True:
 				if status is not None:
@@ -388,13 +389,23 @@ class SystemNetworkInfo(Screen):
 							encryption = _("Enabled")
 						if self.has_key("enc"):
 							self["enc"].setText(encryption)
-					self.updateStatusLink(status)
+
+					if status[self.iface]["essid"] == "off" or status[self.iface]["accesspoint"] == "Not-Associated" or status[self.iface]["accesspoint"] == False:
+						self.LinkState = False
+						self["statuspic"].setPixmapNum(1)
+						self["statuspic"].show()
+					else:
+						self.LinkState = True
+						iNetwork.checkNetworkState(self.checkNetworkCB)
 
 	def exit(self):
 		self.timer.stop()
 		self.close(True)
 
 	def updateStatusbar(self):
+		self["IFtext"].setText(_("Network:"))
+		self["IF"].setText(iNetwork.getFriendlyAdapterName(self.iface))
+		self["Statustext"].setText(_("Link:"))
 		if self.iface == 'wlan0':
 			wait_txt = _("Please wait...")
 			self["BSSID"].setText(wait_txt)
@@ -404,20 +415,46 @@ class SystemNetworkInfo(Screen):
 			self["bitrate"].setText(wait_txt)
 			self["enc"].setText(wait_txt)
 
-	def updateStatusLink(self,status):
-		self["IFtext"].setText(_("Network:"))
-		self["IF"].setText(iNetwork.getFriendlyAdapterName(self.iface))
-		self["Statustext"].setText(_("Link:"))
-		self["statuspic"].setPixmapNum(1)
-		if self.iface == 'eth0':
-			self["statuspic"].setPixmapNum(0)
-		elif self.iface == 'wlan0':
-			if status is not None:
-				if status[self.iface]["essid"] == "off" or status[self.iface]["accesspoint"] == "Not-Associated" or status[self.iface]["accesspoint"] == False:
-					self["statuspic"].setPixmapNum(1)
+		if iNetwork.isWirelessInterface(self.iface):
+			try:
+				from Plugins.SystemPlugins.WirelessLan.Wlan import iStatus
+			except:
+				self["statuspic"].setPixmapNum(1)
+				self["statuspic"].show()
+			else:
+				iStatus.getDataForInterface(self.iface,self.getInfoCB)
+		else:
+			iNetwork.getLinkState(self.iface,self.dataAvail)
+
+	def dataAvail(self,data):
+		self.LinkState = None
+		for line in data.splitlines():
+			line = line.strip()
+			if 'Link detected:' in line:
+				if "yes" in line:
+					self.LinkState = True
 				else:
+					self.LinkState = False
+		if self.LinkState == True:
+			iNetwork.checkNetworkState(self.checkNetworkCB)
+		else:
+			self["statuspic"].setPixmapNum(1)
+			self["statuspic"].show()
+
+	def checkNetworkCB(self,data):
+		if iNetwork.getAdapterAttribute(self.iface, "up") is True:
+			if self.LinkState is True:
+				if data <= 2:
 					self["statuspic"].setPixmapNum(0)
-		self["statuspic"].show()
+				else:
+					self["statuspic"].setPixmapNum(1)
+				self["statuspic"].show()
+			else:
+				self["statuspic"].setPixmapNum(1)
+				self["statuspic"].show()
+		else:
+			self["statuspic"].setPixmapNum(1)
+			self["statuspic"].show()
 
 	def createSummary(self):
 		return AboutSummary
