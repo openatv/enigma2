@@ -317,7 +317,7 @@ class SystemNetworkInfo(Screen):
 			if eth0.has_key('netmask'):
 				AboutText += _("Netmask:") + "\t" + eth0['netmask'] + "\n"
 			if eth0.has_key('hwaddr'):
-				AboutText += _("MAC:") + "\t" + eth0['hwaddr'].replace('0:','00:') + "\n"
+				AboutText += _("MAC:") + "\t" + eth0['hwaddr'] + "\n"
 			self.iface = 'eth0'
 
 		wlan0 = about.getIfConfig('wlan0')
@@ -326,7 +326,7 @@ class SystemNetworkInfo(Screen):
 			if wlan0.has_key('netmask'):
 				AboutText += _("Netmask:") + "\t" + wlan0['netmask'] + "\n"
 			if wlan0.has_key('hwaddr'):
-				AboutText += _("MAC:") + "\t" + wlan0['hwaddr'].replace('0:','00:') + "\n"
+				AboutText += _("MAC:") + "\t" + wlan0['hwaddr'] + "\n"
 			self.iface = 'wlan0'
 
 			self["LabelBSSID"].setText(_('Accesspoint:'))
