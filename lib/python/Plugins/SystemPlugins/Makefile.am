@@ -14,15 +14,19 @@ SUBDIRS += SatelliteEquipmentControl DiseqcTester Blindscan
 endif
 
 if VUUNO
-SUBDIRS += VuUnoFancontrol SatelliteEquipmentControl DiseqcTester CableScan FirmwareUpgrade Blindscan RemoteControlCode
+SUBDIRS += VuUnoFanControl SatelliteEquipmentControl DiseqcTester CableScan FirmwareUpgrade Blindscan RemoteControlCode
 endif
 
 if VUULTIMO
-SUBDIRS += VuUnoFancontrol SatelliteEquipmentControl DiseqcTester CableScan FirmwareUpgrade Blindscan RemoteControlCode
+SUBDIRS += VuUnoFanControl SatelliteEquipmentControl DiseqcTester CableScan FirmwareUpgrade Blindscan RemoteControlCode
 endif
 
 if VUDUO
-SUBDIRS += VuDuoFancontrol
+SUBDIRS += VuDuoFanControl
+endif
+
+if TMTWIN
+SUBDIRS += TmTwinFanControl
 endif
 
 if HAVE_TEMPFANCONTROL
