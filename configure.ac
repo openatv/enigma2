@@ -279,10 +279,10 @@ lib/python/Plugins/SystemPlugins/VideoTune/Makefile
 lib/python/Plugins/SystemPlugins/VideoTune/meta/Makefile
 lib/python/Plugins/SystemPlugins/Videomode/Makefile
 lib/python/Plugins/SystemPlugins/Videomode/meta/Makefile
-lib/python/Plugins/SystemPlugins/VuDuoFancontrol/Makefile
-lib/python/Plugins/SystemPlugins/VuDuoFancontrol/meta/Makefile
-lib/python/Plugins/SystemPlugins/VuUnoFancontrol/Makefile
-lib/python/Plugins/SystemPlugins/VuUnoFancontrol/meta/Makefile
+lib/python/Plugins/SystemPlugins/VuDuoFanControl/Makefile
+lib/python/Plugins/SystemPlugins/VuDuoFanControl/meta/Makefile
+lib/python/Plugins/SystemPlugins/VuUnoFanControl/Makefile
+lib/python/Plugins/SystemPlugins/VuUnoFanControl/meta/Makefile
 lib/python/Plugins/SystemPlugins/WirelessLan/Makefile
 lib/python/Plugins/SystemPlugins/WirelessLan/meta/Makefile
 lib/python/Plugins/SystemPlugins/XtrendFancontrol/Makefile
