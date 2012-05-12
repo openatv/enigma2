@@ -1873,9 +1873,10 @@ class NetworkFtp(Screen):
 			f = open('/etc/inetd.conf', 'r')
 			for line in f.readlines():
 				parts = line.strip().split()
-				if parts[0] == 'ftp':
-					self.my_ftp_active = True
-					continue
+				if parts:
+					if parts[0] == 'ftp':
+						self.my_ftp_active = True
+						continue
 			f.close()
 		if self.my_ftp_active == True:
 			self['labstop'].hide()
