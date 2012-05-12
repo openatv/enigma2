@@ -339,7 +339,6 @@ class ConditionTask(Task):
 class JobManager:
 	def __init__(self):
 		self.active_jobs = [ ]
-		self.active_jobsnr = [ ]
 		self.failed_jobs = [ ]
 		self.job_classes = [ ]
 		self.in_background = False
