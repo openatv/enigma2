@@ -3303,7 +3303,7 @@ class InfoBarExtensions:
 					"RedPressed": (self.RedPressed, _("Show epg")),
 					"showPluginBrowser": (self.showPluginBrowser, _("Show the plugin browser..")),
 					"showEventInfo": (self.openEventView, _("Show the infomation on current event.")),
-					"openTimerList": (self.showAutoTimerList, _("Show the tv player...")),
+					"openTimerList": (self.showTimerList, _("Show the tv player...")),
 					"openAutoTimerList": (self.showAutoTimerList, _("Show the tv player...")),
 					"openEPGSearch": (self.showEPGSearch, _("Show the tv player...")),
 					"openIMDB": (self.showIMDB, _("Show the tv player...")),
