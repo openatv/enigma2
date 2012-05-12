@@ -1578,21 +1578,6 @@ class NetworkAfp(Screen):
 		self.service_name = 'task-base-appletalk netatalk'
 		self.onShow.append(self.InstallCheck)
 
-	def checkNetworkState(self, str, retval, extra_args):
-		print 'INSTALL CHECK FINISHED',str
-		if not str:
-			self.feedscheck = self.session.open(MessageBox,_('Please wait whilst feeds state is checked.'), MessageBox.TYPE_INFO, enable_input = False)
-			self.feedscheck.setTitle(_('Checking Feeds'))
-			cmd1 = "wget http://www.world-of-satellite.com/enigma2/feeds/2.4/image-version -T 1 -s"
-			self.CheckConsole = Console()
-			self.CheckConsole.ePopen(cmd1, self.checkNetworkStateFinished)
-		else:
-			print 'INSTALL ALREADY INSTALLED'
-			self.feedscheck.close()
-			self.updateService()
-
-		self.onShow.append(self.InstallCheck)
-
 	def InstallCheck(self):
 		self.onShow.remove(self.InstallCheck)
 		print 'INSTALL CHECK STARTED',self.service_name
@@ -1608,7 +1593,6 @@ class NetworkAfp(Screen):
 			self.CheckConsole.ePopen(cmd1, self.checkNetworkStateFinished)
 		else:
 			print 'INSTALL ALREADY INSTALLED'
-			self.feedscheck.close()
 			self.updateService()
 
 	def checkNetworkStateFinished(self, result, retval,extra_args=None):
@@ -1855,21 +1839,6 @@ class NetworkNfs(Screen):
 		self.service_name = 'task-base-nfs'
 		self.onShow.append(self.InstallCheck)
 
-	def checkNetworkState(self, str, retval, extra_args):
-		print 'INSTALL CHECK FINISHED',str
-		if not str:
-			self.feedscheck = self.session.open(MessageBox,_('Please wait whilst feeds state is checked.'), MessageBox.TYPE_INFO, enable_input = False)
-			self.feedscheck.setTitle(_('Checking Feeds'))
-			cmd1 = "wget http://www.world-of-satellite.com/enigma2/feeds/2.4/image-version -T 1 -s"
-			self.CheckConsole = Console()
-			self.CheckConsole.ePopen(cmd1, self.checkNetworkStateFinished)
-		else:
-			print 'INSTALL ALREADY INSTALLED'
-			self.feedscheck.close()
-			self.updateService()
-
-		self.onShow.append(self.InstallCheck)
-
 	def InstallCheck(self):
 		self.onShow.remove(self.InstallCheck)
 		print 'INSTALL CHECK STARTED',self.service_name
@@ -1885,7 +1854,6 @@ class NetworkNfs(Screen):
 			self.CheckConsole.ePopen(cmd1, self.checkNetworkStateFinished)
 		else:
 			print 'INSTALL ALREADY INSTALLED'
-			self.feedscheck.close()
 			self.updateService()
 
 	def checkNetworkStateFinished(self, result, retval,extra_args=None):
@@ -2056,7 +2024,6 @@ class NetworkOpenvpn(Screen):
 			self.CheckConsole = Console()
 			self.CheckConsole.ePopen(cmd1, self.checkNetworkStateFinished)
 		else:
-			self.feedscheck.close()
 			self.updateService()
 
 	def checkNetworkStateFinished(self, result, retval,extra_args=None):
@@ -2241,7 +2208,6 @@ class NetworkSamba(Screen):
 			self.CheckConsole = Console()
 			self.CheckConsole.ePopen(cmd1, self.checkNetworkStateFinished)
 		else:
-			self.feedscheck.close()
 			self.updateService()
 
 	def checkNetworkStateFinished(self, result, retval,extra_args=None):
@@ -2539,7 +2505,6 @@ class NetworkInadyn(Screen):
 			self.CheckConsole = Console()
 			self.CheckConsole.ePopen(cmd1, self.checkNetworkStateFinished)
 		else:
-			self.feedscheck.close()
 			self.updateService()
 
 	def checkNetworkStateFinished(self, result, retval,extra_args=None):
@@ -2945,7 +2910,6 @@ class NetworkuShare(Screen):
 			self.CheckConsole = Console()
 			self.CheckConsole.ePopen(cmd1, self.checkNetworkStateFinished)
 		else:
-			self.feedscheck.close()
 			self.updateService()
 
 	def checkNetworkStateFinished(self, result, retval,extra_args=None):
@@ -3498,7 +3462,6 @@ class NetworkMiniDLNA(Screen):
 			self.CheckConsole = Console()
 			self.CheckConsole.ePopen(cmd1, self.checkNetworkStateFinished)
 		else:
-			self.feedscheck.close()
 			self.updateService()
 
 	def checkNetworkStateFinished(self, result, retval,extra_args=None):
