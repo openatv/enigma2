@@ -1576,7 +1576,7 @@ class NetworkAfp(Screen):
 		self.my_afp_run = False
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.UninstallCheck, 'green': self.AfpStartStop, 'yellow': self.activateAfp})
 		self.service_name = 'task-base-appletalk netatalk'
-		self.onLayoutFinish.append(self.InstallCheck)
+		self.onShow.append(self.InstallCheck)
 
 	def checkNetworkState(self, str, retval, extra_args):
 		print 'INSTALL CHECK FINISHED',str
@@ -1592,16 +1592,19 @@ class NetworkAfp(Screen):
 	def checkNetworkStateFinished(self, result, retval,extra_args=None):
 		if result.find('404 Not Found') != -1:
 			self.session.openWithCallback(self.close, MessageBox, _("Sorry feeds are down for maintenance, please try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+			self.feedscheck.close()
 		elif result.find('bad address') != -1:
 			self.session.openWithCallback(self.close, MessageBox, _("Your box is not connected to the internet, please check your network settings and try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+			self.feedscheck.close()
 		else:
 			self.feedscheck.close()
 			self.InstalldataAvail()
 
 	def InstallCheck(self):
+		self.onShow.remove(self.InstallCheck)
 		print 'INSTALL CHECK STARTED',self.service_name
 		self.feedscheck = self.session.open(MessageBox,_('Please wait whilst feeds state is checked.'), MessageBox.TYPE_INFO, enable_input = False)
-		self.feedscheck.setTitle(_('Checking Feeds') % self.service_name)
+		self.feedscheck.setTitle(_('Checking Feeds'))
 		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.checkNetworkState)
 
 	def InstalldataAvail(self):
@@ -1835,7 +1838,7 @@ class NetworkNfs(Screen):
 		self.my_nfs_run = False
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.UninstallCheck, 'green': self.NfsStartStop, 'yellow': self.Nfsset})
 		self.service_name = 'task-base-nfs'
-		self.onLayoutFinish.append(self.InstallCheck)
+		self.onShow.append(self.InstallCheck)
 
 	def checkNetworkState(self, str, retval, extra_args):
 		print 'INSTALL CHECK FINISHED',str
@@ -1845,18 +1848,25 @@ class NetworkNfs(Screen):
 			self.CheckConsole.ePopen(cmd1, self.checkNetworkStateFinished)
 		else:
 			print 'INSTALL ALREADY INSTALLED'
+			self.feedscheck.close()
 			self.updateService()
 
 	def checkNetworkStateFinished(self, result, retval,extra_args=None):
 		if result.find('404 Not Found') != -1:
 			self.session.openWithCallback(self.close, MessageBox, _("Sorry feeds are down for maintenance, please try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+			self.feedscheck.close()
 		elif result.find('bad address') != -1:
 			self.session.openWithCallback(self.close, MessageBox, _("Your box is not connected to the internet, please check your network settings and try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+			self.feedscheck.close()
 		else:
+			self.feedscheck.close()
 			self.InstalldataAvail()
 
 	def InstallCheck(self):
+		self.onShow.remove(self.InstallCheck)
 		print 'INSTALL CHECK STARTED',self.service_name
+		self.feedscheck = self.session.open(MessageBox,_('Please wait whilst feeds state is checked.'), MessageBox.TYPE_INFO, enable_input = False)
+		self.feedscheck.setTitle(_('Checking Feeds'))
 		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.checkNetworkState)
 
 	def InstalldataAvail(self):
@@ -1875,8 +1885,7 @@ class NetworkNfs(Screen):
 
 	def doInstall(self, callback, pkgname):
 		print 'INSTALLING: DISABLING REMOTE'
-		self["actions"].setEnabled(False)
-		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO)
+		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO, enable_input = False)
 		self.message.setTitle(_('Installing Service'))
 		print 'INSTALLING: SHOW PLEASE WAIT MESSAGE'
 		print 'INSTALLING: STARTED',pkgname
@@ -2005,7 +2014,7 @@ class NetworkOpenvpn(Screen):
 		self.my_vpn_run = False
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.UninstallCheck, 'green': self.VpnStartStop, 'yellow': self.activateVpn, 'blue': self.Vpnshowlog})
 		self.service_name = 'openvpn'
-		self.onLayoutFinish.append(self.InstallCheck)
+		self.onShow.append(self.InstallCheck)
 
 	def checkNetworkState(self, str, retval, extra_args):
 		print 'INSTALL CHECK FINISHED',str
@@ -2015,24 +2024,31 @@ class NetworkOpenvpn(Screen):
 			self.CheckConsole.ePopen(cmd1, self.checkNetworkStateFinished)
 		else:
 			print 'INSTALL ALREADY INSTALLED'
+			self.feedscheck.close()
 			self.updateService()
 
 	def checkNetworkStateFinished(self, result, retval,extra_args=None):
 		if result.find('404 Not Found') != -1:
 			self.session.openWithCallback(self.close, MessageBox, _("Sorry feeds are down for maintenance, please try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+			self.feedscheck.close()
 		elif result.find('bad address') != -1:
 			self.session.openWithCallback(self.close, MessageBox, _("Your box is not connected to the internet, please check your network settings and try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+			self.feedscheck.close()
 		else:
+			self.feedscheck.close()
 			self.InstalldataAvail()
 
 	def InstallCheck(self):
+		self.onShow.remove(self.InstallCheck)
 		print 'INSTALL CHECK STARTED',self.service_name
+		self.feedscheck = self.session.open(MessageBox,_('Please wait whilst feeds state is checked.'), MessageBox.TYPE_INFO, enable_input = False)
+		self.feedscheck.setTitle(_('Checking Feeds'))
 		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.checkNetworkState)
 
 	def InstalldataAvail(self):
 		print 'INSTALL QUESTION'
-		restartbox = self.session.openWithCallback(self.InstallPackage,MessageBox,_('Your STB_BOX will be restarted after the installation of service\nDo you want to install now ?'), MessageBox.TYPE_YESNO)
-		restartbox.setTitle(_('Ready to install "%s" ?') % self.service_name)
+		restartbox=self.session.openWithCallback(self.InstallPackage, MessageBox, _('Ready to install ?'))
+		restartbox.setTitle(self.service_name)
 
 	def InstallPackage(self, val):
 		print 'INSTALL QUESTION FINISHED',val
@@ -2045,8 +2061,7 @@ class NetworkOpenvpn(Screen):
 
 	def doInstall(self, callback, pkgname):
 		print 'INSTALLING: DISABLING REMOTE'
-		self["actions"].setEnabled(False)
-		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO)
+		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO, enable_input = False)
 		self.message.setTitle(_('Installing Service'))
 		print 'INSTALLING: SHOW PLEASE WAIT MESSAGE'
 		print 'INSTALLING: STARTED',pkgname
@@ -2200,7 +2215,7 @@ class NetworkSamba(Screen):
 		self.my_Samba_run = False
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.UninstallCheck, 'green': self.SambaStartStop, 'yellow': self.activateSamba, 'blue': self.Sambashowlog})
 		self.service_name = 'samba'
-		self.onLayoutFinish.append(self.InstallCheck)
+		self.onShow.append(self.InstallCheck)
 
 	def checkNetworkState(self, str, retval, extra_args):
 		print 'INSTALL CHECK FINISHED',str
@@ -2210,24 +2225,31 @@ class NetworkSamba(Screen):
 			self.CheckConsole.ePopen(cmd1, self.checkNetworkStateFinished)
 		else:
 			print 'INSTALL ALREADY INSTALLED'
+			self.feedscheck.close()
 			self.updateService()
 
 	def checkNetworkStateFinished(self, result, retval,extra_args=None):
 		if result.find('404 Not Found') != -1:
 			self.session.openWithCallback(self.close, MessageBox, _("Sorry feeds are down for maintenance, please try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+			self.feedscheck.close()
 		elif result.find('bad address') != -1:
 			self.session.openWithCallback(self.close, MessageBox, _("Your box is not connected to the internet, please check your network settings and try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+			self.feedscheck.close()
 		else:
+			self.feedscheck.close()
 			self.InstalldataAvail()
 
 	def InstallCheck(self):
+		self.onShow.remove(self.InstallCheck)
 		print 'INSTALL CHECK STARTED',self.service_name
+		self.feedscheck = self.session.open(MessageBox,_('Please wait whilst feeds state is checked.'), MessageBox.TYPE_INFO, enable_input = False)
+		self.feedscheck.setTitle(_('Checking Feeds'))
 		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.checkNetworkState)
 
 	def InstalldataAvail(self):
 		print 'INSTALL QUESTION'
-		restartbox = self.session.openWithCallback(self.InstallPackage,MessageBox,_('Your STB_BOX will be restarted after the installation of service\nDo you want to install now ?'), MessageBox.TYPE_YESNO)
-		restartbox.setTitle(_('Ready to install "%s" ?') % self.service_name)
+		restartbox = self.session.openWithCallback(self.InstallPackage, MessageBox, _('Ready to install ?'))
+		restartbox.setTitle(self.service_name)
 
 	def InstallPackage(self, val):
 		print 'INSTALL QUESTION FINISHED',val
@@ -2240,8 +2262,7 @@ class NetworkSamba(Screen):
 
 	def doInstall(self, callback, pkgname):
 		print 'INSTALLING: DISABLING REMOTE'
-		self["actions"].setEnabled(False)
-		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO)
+		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO, enable_input = False)
 		self.message.setTitle(_('Installing Service'))
 		print 'INSTALLING: SHOW PLEASE WAIT MESSAGE'
 		print 'INSTALLING: STARTED',pkgname
@@ -2508,7 +2529,7 @@ class NetworkInadyn(Screen):
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'SetupActions'], {'ok': self.setupinadyn, 'back': self.close, 'menu': self.setupinadyn, 'red': self.UninstallCheck, 'green': self.InadynStartStop, 'yellow': self.autostart, 'blue': self.inaLog})
 		self.Console = Console()
 		self.service_name = 'inadyn-mt'
-		self.onLayoutFinish.append(self.InstallCheck)
+		self.onShow.append(self.InstallCheck)
 
 	def checkNetworkState(self, str, retval, extra_args):
 		print 'INSTALL CHECK FINISHED',str
@@ -2518,24 +2539,31 @@ class NetworkInadyn(Screen):
 			self.CheckConsole.ePopen(cmd1, self.checkNetworkStateFinished)
 		else:
 			print 'INSTALL ALREADY INSTALLED'
+			self.feedscheck.close()
 			self.updateService()
 
 	def checkNetworkStateFinished(self, result, retval,extra_args=None):
 		if result.find('404 Not Found') != -1:
 			self.session.openWithCallback(self.close, MessageBox, _("Sorry feeds are down for maintenance, please try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+			self.feedscheck.close()
 		elif result.find('bad address') != -1:
 			self.session.openWithCallback(self.close, MessageBox, _("Your box is not connected to the internet, please check your network settings and try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+			self.feedscheck.close()
 		else:
+			self.feedscheck.close()
 			self.InstalldataAvail()
 
 	def InstallCheck(self):
+		self.onShow.remove(self.InstallCheck)
 		print 'INSTALL CHECK STARTED',self.service_name
+		self.feedscheck = self.session.open(MessageBox,_('Please wait whilst feeds state is checked.'), MessageBox.TYPE_INFO, enable_input = False)
+		self.feedscheck.setTitle(_('Checking Feeds'))
 		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.checkNetworkState)
 
 	def InstalldataAvail(self):
 		print 'INSTALL QUESTION'
-		restartbox = self.session.openWithCallback(self.InstallPackage,MessageBox,_('Your STB_BOX will be restarted after the installation of service\nDo you want to install now ?'), MessageBox.TYPE_YESNO)
-		restartbox.setTitle(_('Ready to install "%s" ?') % self.service_name)
+		restartbox = self.session.openWithCallback(self.InstallPackage, MessageBox, _('Ready to install ?'))
+		restartbox.setTitle(self.service_name)
 
 	def InstallPackage(self, val):
 		print 'INSTALL QUESTION FINISHED',val
@@ -2548,8 +2576,7 @@ class NetworkInadyn(Screen):
 
 	def doInstall(self, callback, pkgname):
 		print 'INSTALLING: DISABLING REMOTE'
-		self["actions"].setEnabled(False)
-		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO)
+		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO, enable_input = False)
 		self.message.setTitle(_('Installing Service'))
 		print 'INSTALLING: SHOW PLEASE WAIT MESSAGE'
 		print 'INSTALLING: STARTED',pkgname
@@ -2923,7 +2950,7 @@ class NetworkuShare(Screen):
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'SetupActions'], {'ok': self.setupushare, 'back': self.close, 'menu': self.setupushare, 'red': self.UninstallCheck, 'green': self.uShareStartStop, 'yellow': self.autostart, 'blue': self.ushareLog})
 		self.Console = Console()
 		self.service_name = 'ushare'
-		self.onLayoutFinish.append(self.InstallCheck)
+		self.onShow.append(self.InstallCheck)
 
 	def checkNetworkState(self, str, retval, extra_args):
 		print 'INSTALL CHECK FINISHED',str
@@ -2933,24 +2960,31 @@ class NetworkuShare(Screen):
 			self.CheckConsole.ePopen(cmd1, self.checkNetworkStateFinished)
 		else:
 			print 'INSTALL ALREADY INSTALLED'
+			self.feedscheck.close()
 			self.updateService()
 
 	def checkNetworkStateFinished(self, result, retval,extra_args=None):
 		if result.find('404 Not Found') != -1:
 			self.session.openWithCallback(self.close, MessageBox, _("Sorry feeds are down for maintenance, please try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+			self.feedscheck.close()
 		elif result.find('bad address') != -1:
 			self.session.openWithCallback(self.close, MessageBox, _("Your box is not connected to the internet, please check your network settings and try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+			self.feedscheck.close()
 		else:
+			self.feedscheck.close()
 			self.InstalldataAvail()
 
 	def InstallCheck(self):
+		self.onShow.remove(self.InstallCheck)
 		print 'INSTALL CHECK STARTED',self.service_name
+		self.feedscheck = self.session.open(MessageBox,_('Please wait whilst feeds state is checked.'), MessageBox.TYPE_INFO, enable_input = False)
+		self.feedscheck.setTitle(_('Checking Feeds'))
 		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.checkNetworkState)
 
 	def InstalldataAvail(self):
 		print 'INSTALL QUESTION'
-		restartbox = self.session.openWithCallback(self.InstallPackage,MessageBox,_('Your STB_BOX will be restarted after the installation of service\nDo you want to install now ?'), MessageBox.TYPE_YESNO)
-		restartbox.setTitle(_('Ready to install "%s" ?') % self.service_name)
+		restartbox = self.session.openWithCallback(self.InstallPackage, MessageBox, _('Ready to install ?'))
+		restartbox.setTitle(self.service_name)
 
 	def InstallPackage(self, val):
 		print 'INSTALL QUESTION FINISHED',val
@@ -2963,8 +2997,7 @@ class NetworkuShare(Screen):
 
 	def doInstall(self, callback, pkgname):
 		print 'INSTALLING: DISABLING REMOTE'
-		self["actions"].setEnabled(False)
-		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO)
+		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO, enable_input = False)
 		self.message.setTitle(_('Installing Service'))
 		print 'INSTALLING: SHOW PLEASE WAIT MESSAGE'
 		print 'INSTALLING: STARTED',pkgname
@@ -3485,7 +3518,7 @@ class NetworkMiniDLNA(Screen):
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'SetupActions'], {'ok': self.setupminidlna, 'back': self.close, 'menu': self.setupminidlna, 'red': self.UninstallCheck, 'green': self.MiniDLNAStartStop, 'yellow': self.autostart, 'blue': self.minidlnaLog})
 		self.Console = Console()
 		self.service_name = 'minidlna'
-		self.onLayoutFinish.append(self.InstallCheck)
+		self.onShow.append(self.InstallCheck)
 
 	def checkNetworkState(self, str, retval, extra_args):
 		print 'INSTALL CHECK FINISHED',str
@@ -3495,24 +3528,31 @@ class NetworkMiniDLNA(Screen):
 			self.CheckConsole.ePopen(cmd1, self.checkNetworkStateFinished)
 		else:
 			print 'INSTALL ALREADY INSTALLED'
+			self.feedscheck.close()
 			self.updateService()
 
 	def checkNetworkStateFinished(self, result, retval,extra_args=None):
 		if result.find('404 Not Found') != -1:
 			self.session.openWithCallback(self.close, MessageBox, _("Sorry feeds are down for maintenance, please try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+			self.feedscheck.close()
 		elif result.find('bad address') != -1:
 			self.session.openWithCallback(self.close, MessageBox, _("Your box is not connected to the internet, please check your network settings and try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+			self.feedscheck.close()
 		else:
+			self.feedscheck.close()
 			self.InstalldataAvail()
 
 	def InstallCheck(self):
+		self.onShow.remove(self.InstallCheck)
 		print 'INSTALL CHECK STARTED',self.service_name
+		self.feedscheck = self.session.open(MessageBox,_('Please wait whilst feeds state is checked.'), MessageBox.TYPE_INFO, enable_input = False)
+		self.feedscheck.setTitle(_('Checking Feeds'))
 		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.checkNetworkState)
 
 	def InstalldataAvail(self):
 		print 'INSTALL QUESTION'
-		restartbox = self.session.openWithCallback(self.InstallPackage,MessageBox,_('Your STB_BOX will be restarted after the installation of service\nDo you want to install now ?'), MessageBox.TYPE_YESNO)
-		restartbox.setTitle(_('Ready to install "%s" ?') % self.service_name)
+		restartbox = self.session.openWithCallback(self.InstallPackage, MessageBox, _('Ready to install ?'))
+		restartbox.setTitle(self.service_name)
 
 	def InstallPackage(self, val):
 		print 'INSTALL QUESTION FINISHED',val
@@ -3525,8 +3565,7 @@ class NetworkMiniDLNA(Screen):
 
 	def doInstall(self, callback, pkgname):
 		print 'INSTALLING: DISABLING REMOTE'
-		self["actions"].setEnabled(False)
-		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO)
+		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO, enable_input = False)
 		self.message.setTitle(_('Installing Service'))
 		print 'INSTALLING: SHOW PLEASE WAIT MESSAGE'
 		print 'INSTALLING: STARTED',pkgname
