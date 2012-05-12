@@ -1581,6 +1581,28 @@ class NetworkAfp(Screen):
 	def checkNetworkState(self, str, retval, extra_args):
 		print 'INSTALL CHECK FINISHED',str
 		if not str:
+			self.feedscheck = self.session.open(MessageBox,_('Please wait whilst feeds state is checked.'), MessageBox.TYPE_INFO, enable_input = False)
+			self.feedscheck.setTitle(_('Checking Feeds'))
+			cmd1 = "wget http://www.world-of-satellite.com/enigma2/feeds/2.4/image-version -T 1 -s"
+			self.CheckConsole = Console()
+			self.CheckConsole.ePopen(cmd1, self.checkNetworkStateFinished)
+		else:
+			print 'INSTALL ALREADY INSTALLED'
+			self.feedscheck.close()
+			self.updateService()
+
+		self.onShow.append(self.InstallCheck)
+
+	def InstallCheck(self):
+		self.onShow.remove(self.InstallCheck)
+		print 'INSTALL CHECK STARTED',self.service_name
+		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.checkNetworkState)
+
+	def checkNetworkState(self, str, retval, extra_args):
+		print 'INSTALL CHECK FINISHED',str
+		if not str:
+			self.feedscheck = self.session.open(MessageBox,_('Please wait whilst feeds state is checked.'), MessageBox.TYPE_INFO, enable_input = False)
+			self.feedscheck.setTitle(_('Checking Feeds'))
 			cmd1 = "wget http://www.world-of-satellite.com/enigma2/feeds/2.4/image-version -T 1 -s"
 			self.CheckConsole = Console()
 			self.CheckConsole.ePopen(cmd1, self.checkNetworkStateFinished)
@@ -1599,13 +1621,6 @@ class NetworkAfp(Screen):
 		else:
 			self.feedscheck.close()
 			self.InstalldataAvail()
-
-	def InstallCheck(self):
-		self.onShow.remove(self.InstallCheck)
-		print 'INSTALL CHECK STARTED',self.service_name
-		self.feedscheck = self.session.open(MessageBox,_('Please wait whilst feeds state is checked.'), MessageBox.TYPE_INFO, enable_input = False)
-		self.feedscheck.setTitle(_('Checking Feeds'))
-		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.checkNetworkState)
 
 	def InstalldataAvail(self):
 		print 'INSTALL QUESTION'
@@ -1636,9 +1651,9 @@ class NetworkAfp(Screen):
 		self.session.open(TryQuitMainloop, 2)
 
 	def UninstallCheck(self):
-		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.UninstalldataAvail)
+		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.RemovedataAvail)
 
-	def UninstalldataAvail(self, str, retval, extra_args):
+	def RemovedataAvail(self, str, retval, extra_args):
 		if str:
 			restartbox = self.session.openWithCallback(self.RemovePackage,MessageBox,_('Your STB_BOX will be restarted after the removal of service\nDo you want to remove now ?'), MessageBox.TYPE_YESNO)
 			restartbox.setTitle(_('Ready to remove "%s" ?') % self.service_name)
@@ -1655,8 +1670,9 @@ class NetworkAfp(Screen):
 		self.Console.ePopen('/usr/bin/opkg remove ' + pkgname + ' --force-remove --autoremove', callback)
 
 	def removeComplete(self,result = None, retval = None, extra_args = None):
-		self["actions"].setEnabled(True)
+		print 'INSTALLING: RE-ENABLING REMOTE'
 		from Screens.Standby import TryQuitMainloop
+		print 'INSTALLING: REBOOT'
 		self.session.open(TryQuitMainloop, 2)
 
 	def createSummary(self):
@@ -1842,6 +1858,28 @@ class NetworkNfs(Screen):
 	def checkNetworkState(self, str, retval, extra_args):
 		print 'INSTALL CHECK FINISHED',str
 		if not str:
+			self.feedscheck = self.session.open(MessageBox,_('Please wait whilst feeds state is checked.'), MessageBox.TYPE_INFO, enable_input = False)
+			self.feedscheck.setTitle(_('Checking Feeds'))
+			cmd1 = "wget http://www.world-of-satellite.com/enigma2/feeds/2.4/image-version -T 1 -s"
+			self.CheckConsole = Console()
+			self.CheckConsole.ePopen(cmd1, self.checkNetworkStateFinished)
+		else:
+			print 'INSTALL ALREADY INSTALLED'
+			self.feedscheck.close()
+			self.updateService()
+
+		self.onShow.append(self.InstallCheck)
+
+	def InstallCheck(self):
+		self.onShow.remove(self.InstallCheck)
+		print 'INSTALL CHECK STARTED',self.service_name
+		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.checkNetworkState)
+
+	def checkNetworkState(self, str, retval, extra_args):
+		print 'INSTALL CHECK FINISHED',str
+		if not str:
+			self.feedscheck = self.session.open(MessageBox,_('Please wait whilst feeds state is checked.'), MessageBox.TYPE_INFO, enable_input = False)
+			self.feedscheck.setTitle(_('Checking Feeds'))
 			cmd1 = "wget http://www.world-of-satellite.com/enigma2/feeds/2.4/image-version -T 1 -s"
 			self.CheckConsole = Console()
 			self.CheckConsole.ePopen(cmd1, self.checkNetworkStateFinished)
@@ -1860,13 +1898,6 @@ class NetworkNfs(Screen):
 		else:
 			self.feedscheck.close()
 			self.InstalldataAvail()
-
-	def InstallCheck(self):
-		self.onShow.remove(self.InstallCheck)
-		print 'INSTALL CHECK STARTED',self.service_name
-		self.feedscheck = self.session.open(MessageBox,_('Please wait whilst feeds state is checked.'), MessageBox.TYPE_INFO, enable_input = False)
-		self.feedscheck.setTitle(_('Checking Feeds'))
-		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.checkNetworkState)
 
 	def InstalldataAvail(self):
 		print 'INSTALL QUESTION'
@@ -1897,9 +1928,9 @@ class NetworkNfs(Screen):
 		self.session.open(TryQuitMainloop, 2)
 
 	def UninstallCheck(self):
-		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.UninstalldataAvail)
+		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.RemovedataAvail)
 
-	def UninstalldataAvail(self, str, retval, extra_args):
+	def RemovedataAvail(self, str, retval, extra_args):
 		if str:
 			restartbox = self.session.openWithCallback(self.RemovePackage,MessageBox,_('Your STB_BOX will be restarted after the removal of service\nDo you want to remove now ?'), MessageBox.TYPE_YESNO)
 			restartbox.setTitle(_('Ready to remove "%s" ?') % self.service_name)
@@ -1916,8 +1947,9 @@ class NetworkNfs(Screen):
 		self.Console.ePopen('/usr/bin/opkg remove ' + pkgname + ' --force-remove --autoremove', callback)
 
 	def removeComplete(self,result = None, retval = None, extra_args = None):
-		self["actions"].setEnabled(True)
+		print 'INSTALLING: RE-ENABLING REMOTE'
 		from Screens.Standby import TryQuitMainloop
+		print 'INSTALLING: REBOOT'
 		self.session.open(TryQuitMainloop, 2)
 
 	def createSummary(self):
@@ -2012,14 +2044,18 @@ class NetworkOpenvpn(Screen):
 		self.service_name = 'openvpn'
 		self.onShow.append(self.InstallCheck)
 
+	def InstallCheck(self):
+		self.onShow.remove(self.InstallCheck)
+		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.checkNetworkState)
+
 	def checkNetworkState(self, str, retval, extra_args):
-		print 'INSTALL CHECK FINISHED',str
 		if not str:
+			self.feedscheck = self.session.open(MessageBox,_('Please wait whilst feeds state is checked.'), MessageBox.TYPE_INFO, enable_input = False)
+			self.feedscheck.setTitle(_('Checking Feeds'))
 			cmd1 = "wget http://www.world-of-satellite.com/enigma2/feeds/2.4/image-version -T 1 -s"
 			self.CheckConsole = Console()
 			self.CheckConsole.ePopen(cmd1, self.checkNetworkStateFinished)
 		else:
-			print 'INSTALL ALREADY INSTALLED'
 			self.feedscheck.close()
 			self.updateService()
 
@@ -2034,37 +2070,22 @@ class NetworkOpenvpn(Screen):
 			self.feedscheck.close()
 			self.InstalldataAvail()
 
-	def InstallCheck(self):
-		self.onShow.remove(self.InstallCheck)
-		print 'INSTALL CHECK STARTED',self.service_name
-		self.feedscheck = self.session.open(MessageBox,_('Please wait whilst feeds state is checked.'), MessageBox.TYPE_INFO, enable_input = False)
-		self.feedscheck.setTitle(_('Checking Feeds'))
-		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.checkNetworkState)
-
 	def InstalldataAvail(self):
-		print 'INSTALL QUESTION'
-		restartbox=self.session.openWithCallback(self.InstallPackage, MessageBox, _('Ready to install ?'))
+		restartbox = self.session.openWithCallback(self.InstallPackage, MessageBox, _('Ready to install ?'))
 		restartbox.setTitle(self.service_name)
 
 	def InstallPackage(self, val):
-		print 'INSTALL QUESTION FINISHED',val
 		if val:
-			print 'INSTALLING: ABOUT TO START',self.service_name
 			self.doInstall(self.installComplete, self.service_name)
 		else:
-			print 'INSTALL NO'
 			self.close()
 
 	def doInstall(self, callback, pkgname):
-		print 'INSTALLING: DISABLING REMOTE'
 		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO, enable_input = False)
 		self.message.setTitle(_('Installing Service'))
-		print 'INSTALLING: SHOW PLEASE WAIT MESSAGE'
-		print 'INSTALLING: STARTED',pkgname
 		self.Console.ePopen('/usr/bin/opkg install ' + pkgname, callback)
 
 	def installComplete(self,result = None, retval = None, extra_args = None):
-		print 'INSTALLING: RE-ENABLING REMOTE'
 		self.message.close()
 		self.updateService()
 
@@ -2145,7 +2166,6 @@ class NetworkOpenvpn(Screen):
 		for cb in self.onChangedEntry:
 			cb(title, status_summary, autostartstatus_summary)
 
-
 class NetworkVpnLog(Screen):
 	skin = """
 		<screen position="80,100" size="560,400" title="OpenVpn Log">
@@ -2209,14 +2229,18 @@ class NetworkSamba(Screen):
 		self.service_name = 'samba'
 		self.onShow.append(self.InstallCheck)
 
+	def InstallCheck(self):
+		self.onShow.remove(self.InstallCheck)
+		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.checkNetworkState)
+
 	def checkNetworkState(self, str, retval, extra_args):
-		print 'INSTALL CHECK FINISHED',str
 		if not str:
+			self.feedscheck = self.session.open(MessageBox,_('Please wait whilst feeds state is checked.'), MessageBox.TYPE_INFO, enable_input = False)
+			self.feedscheck.setTitle(_('Checking Feeds'))
 			cmd1 = "wget http://www.world-of-satellite.com/enigma2/feeds/2.4/image-version -T 1 -s"
 			self.CheckConsole = Console()
 			self.CheckConsole.ePopen(cmd1, self.checkNetworkStateFinished)
 		else:
-			print 'INSTALL ALREADY INSTALLED'
 			self.feedscheck.close()
 			self.updateService()
 
@@ -2231,37 +2255,22 @@ class NetworkSamba(Screen):
 			self.feedscheck.close()
 			self.InstalldataAvail()
 
-	def InstallCheck(self):
-		self.onShow.remove(self.InstallCheck)
-		print 'INSTALL CHECK STARTED',self.service_name
-		self.feedscheck = self.session.open(MessageBox,_('Please wait whilst feeds state is checked.'), MessageBox.TYPE_INFO, enable_input = False)
-		self.feedscheck.setTitle(_('Checking Feeds'))
-		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.checkNetworkState)
-
 	def InstalldataAvail(self):
-		print 'INSTALL QUESTION'
 		restartbox = self.session.openWithCallback(self.InstallPackage, MessageBox, _('Ready to install ?'))
 		restartbox.setTitle(self.service_name)
 
 	def InstallPackage(self, val):
-		print 'INSTALL QUESTION FINISHED',val
 		if val:
-			print 'INSTALLING: ABOUT TO START',self.service_name
 			self.doInstall(self.installComplete, self.service_name)
 		else:
-			print 'INSTALL NO'
 			self.close()
 
 	def doInstall(self, callback, pkgname):
-		print 'INSTALLING: DISABLING REMOTE'
 		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO, enable_input = False)
 		self.message.setTitle(_('Installing Service'))
-		print 'INSTALLING: SHOW PLEASE WAIT MESSAGE'
-		print 'INSTALLING: STARTED',pkgname
 		self.Console.ePopen('/usr/bin/opkg install ' + pkgname, callback)
 
 	def installComplete(self,result = None, retval = None, extra_args = None):
-		print 'INSTALLING: RE-ENABLING REMOTE'
 		self.message.close()
 		self.updateService()
 
@@ -2343,7 +2352,6 @@ class NetworkSamba(Screen):
 
 		for cb in self.onChangedEntry:
 			cb(title, status_summary, autostartstatus_summary)
-
 
 class NetworkSambaLog(Screen):
 	skin = """
@@ -2519,14 +2527,18 @@ class NetworkInadyn(Screen):
 		self.service_name = 'inadyn-mt'
 		self.onShow.append(self.InstallCheck)
 
+	def InstallCheck(self):
+		self.onShow.remove(self.InstallCheck)
+		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.checkNetworkState)
+
 	def checkNetworkState(self, str, retval, extra_args):
-		print 'INSTALL CHECK FINISHED',str
 		if not str:
+			self.feedscheck = self.session.open(MessageBox,_('Please wait whilst feeds state is checked.'), MessageBox.TYPE_INFO, enable_input = False)
+			self.feedscheck.setTitle(_('Checking Feeds'))
 			cmd1 = "wget http://www.world-of-satellite.com/enigma2/feeds/2.4/image-version -T 1 -s"
 			self.CheckConsole = Console()
 			self.CheckConsole.ePopen(cmd1, self.checkNetworkStateFinished)
 		else:
-			print 'INSTALL ALREADY INSTALLED'
 			self.feedscheck.close()
 			self.updateService()
 
@@ -2541,37 +2553,22 @@ class NetworkInadyn(Screen):
 			self.feedscheck.close()
 			self.InstalldataAvail()
 
-	def InstallCheck(self):
-		self.onShow.remove(self.InstallCheck)
-		print 'INSTALL CHECK STARTED',self.service_name
-		self.feedscheck = self.session.open(MessageBox,_('Please wait whilst feeds state is checked.'), MessageBox.TYPE_INFO, enable_input = False)
-		self.feedscheck.setTitle(_('Checking Feeds'))
-		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.checkNetworkState)
-
 	def InstalldataAvail(self):
-		print 'INSTALL QUESTION'
 		restartbox = self.session.openWithCallback(self.InstallPackage, MessageBox, _('Ready to install ?'))
 		restartbox.setTitle(self.service_name)
 
 	def InstallPackage(self, val):
-		print 'INSTALL QUESTION FINISHED',val
 		if val:
-			print 'INSTALLING: ABOUT TO START',self.service_name
 			self.doInstall(self.installComplete, self.service_name)
 		else:
-			print 'INSTALL NO'
 			self.close()
 
 	def doInstall(self, callback, pkgname):
-		print 'INSTALLING: DISABLING REMOTE'
 		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO, enable_input = False)
 		self.message.setTitle(_('Installing Service'))
-		print 'INSTALLING: SHOW PLEASE WAIT MESSAGE'
-		print 'INSTALLING: STARTED',pkgname
 		self.Console.ePopen('/usr/bin/opkg install ' + pkgname, callback)
 
 	def installComplete(self,result = None, retval = None, extra_args = None):
-		print 'INSTALLING: RE-ENABLING REMOTE'
 		self.message.close()
 		self.updateService()
 
@@ -2936,14 +2933,18 @@ class NetworkuShare(Screen):
 		self.service_name = 'ushare'
 		self.onShow.append(self.InstallCheck)
 
+	def InstallCheck(self):
+		self.onShow.remove(self.InstallCheck)
+		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.checkNetworkState)
+
 	def checkNetworkState(self, str, retval, extra_args):
-		print 'INSTALL CHECK FINISHED',str
 		if not str:
+			self.feedscheck = self.session.open(MessageBox,_('Please wait whilst feeds state is checked.'), MessageBox.TYPE_INFO, enable_input = False)
+			self.feedscheck.setTitle(_('Checking Feeds'))
 			cmd1 = "wget http://www.world-of-satellite.com/enigma2/feeds/2.4/image-version -T 1 -s"
 			self.CheckConsole = Console()
 			self.CheckConsole.ePopen(cmd1, self.checkNetworkStateFinished)
 		else:
-			print 'INSTALL ALREADY INSTALLED'
 			self.feedscheck.close()
 			self.updateService()
 
@@ -2958,37 +2959,22 @@ class NetworkuShare(Screen):
 			self.feedscheck.close()
 			self.InstalldataAvail()
 
-	def InstallCheck(self):
-		self.onShow.remove(self.InstallCheck)
-		print 'INSTALL CHECK STARTED',self.service_name
-		self.feedscheck = self.session.open(MessageBox,_('Please wait whilst feeds state is checked.'), MessageBox.TYPE_INFO, enable_input = False)
-		self.feedscheck.setTitle(_('Checking Feeds'))
-		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.checkNetworkState)
-
 	def InstalldataAvail(self):
-		print 'INSTALL QUESTION'
 		restartbox = self.session.openWithCallback(self.InstallPackage, MessageBox, _('Ready to install ?'))
 		restartbox.setTitle(self.service_name)
 
 	def InstallPackage(self, val):
-		print 'INSTALL QUESTION FINISHED',val
 		if val:
-			print 'INSTALLING: ABOUT TO START',self.service_name
 			self.doInstall(self.installComplete, self.service_name)
 		else:
-			print 'INSTALL NO'
 			self.close()
 
 	def doInstall(self, callback, pkgname):
-		print 'INSTALLING: DISABLING REMOTE'
 		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO, enable_input = False)
 		self.message.setTitle(_('Installing Service'))
-		print 'INSTALLING: SHOW PLEASE WAIT MESSAGE'
-		print 'INSTALLING: STARTED',pkgname
 		self.Console.ePopen('/usr/bin/opkg install ' + pkgname, callback)
 
 	def installComplete(self,result = None, retval = None, extra_args = None):
-		print 'INSTALLING: RE-ENABLING REMOTE'
 		self.message.close()
 		self.updateService()
 
@@ -3500,14 +3486,18 @@ class NetworkMiniDLNA(Screen):
 		self.service_name = 'minidlna'
 		self.onShow.append(self.InstallCheck)
 
+	def InstallCheck(self):
+		self.onShow.remove(self.InstallCheck)
+		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.checkNetworkState)
+
 	def checkNetworkState(self, str, retval, extra_args):
-		print 'INSTALL CHECK FINISHED',str
 		if not str:
+			self.feedscheck = self.session.open(MessageBox,_('Please wait whilst feeds state is checked.'), MessageBox.TYPE_INFO, enable_input = False)
+			self.feedscheck.setTitle(_('Checking Feeds'))
 			cmd1 = "wget http://www.world-of-satellite.com/enigma2/feeds/2.4/image-version -T 1 -s"
 			self.CheckConsole = Console()
 			self.CheckConsole.ePopen(cmd1, self.checkNetworkStateFinished)
 		else:
-			print 'INSTALL ALREADY INSTALLED'
 			self.feedscheck.close()
 			self.updateService()
 
@@ -3522,37 +3512,22 @@ class NetworkMiniDLNA(Screen):
 			self.feedscheck.close()
 			self.InstalldataAvail()
 
-	def InstallCheck(self):
-		self.onShow.remove(self.InstallCheck)
-		print 'INSTALL CHECK STARTED',self.service_name
-		self.feedscheck = self.session.open(MessageBox,_('Please wait whilst feeds state is checked.'), MessageBox.TYPE_INFO, enable_input = False)
-		self.feedscheck.setTitle(_('Checking Feeds'))
-		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.checkNetworkState)
-
 	def InstalldataAvail(self):
-		print 'INSTALL QUESTION'
 		restartbox = self.session.openWithCallback(self.InstallPackage, MessageBox, _('Ready to install ?'))
 		restartbox.setTitle(self.service_name)
 
 	def InstallPackage(self, val):
-		print 'INSTALL QUESTION FINISHED',val
 		if val:
-			print 'INSTALLING: ABOUT TO START',self.service_name
 			self.doInstall(self.installComplete, self.service_name)
 		else:
-			print 'INSTALL NO'
 			self.close()
 
 	def doInstall(self, callback, pkgname):
-		print 'INSTALLING: DISABLING REMOTE'
 		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO, enable_input = False)
 		self.message.setTitle(_('Installing Service'))
-		print 'INSTALLING: SHOW PLEASE WAIT MESSAGE'
-		print 'INSTALLING: STARTED',pkgname
 		self.Console.ePopen('/usr/bin/opkg install ' + pkgname, callback)
 
 	def installComplete(self,result = None, retval = None, extra_args = None):
-		print 'INSTALLING: RE-ENABLING REMOTE'
 		self.message.close()
 		self.updateService()
 
