@@ -117,12 +117,13 @@ class GetEcmInfo:
 							eCaid = line[5][2:-1]
 							continue
 						if line.find('source') != -1:
+							line = line.split(' ')
 							try:
-								line = line.split(' ')
 								eSrc = line[4][:-1]
 								continue
 							except:
-								pass
+								eSrc = line[1]
+								continue
 						if line.find('msec') != -1:
 							line = line.split(' ')
 							eTime = line[0]
