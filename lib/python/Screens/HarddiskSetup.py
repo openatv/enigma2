@@ -39,7 +39,7 @@ class HarddiskSetup(Screen):
 		if not confirmed:
 			return
 		try:
-			Components.Task.job_manager.AddJob(self.action())
+			Components.Task.job_manager.AddJob(self.action(), True)
 		except Exception, ex:
 			self.session.open(MessageBox, str(ex), type=MessageBox.TYPE_ERROR, timeout=10)
 		self.close()

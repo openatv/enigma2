@@ -339,12 +339,17 @@ class ConditionTask(Task):
 class JobManager:
 	def __init__(self):
 		self.active_jobs = [ ]
+		self.active_jobsnr = [ ]
 		self.failed_jobs = [ ]
 		self.job_classes = [ ]
 		self.in_background = False
 		self.active_job = None
+		self.MesgAfterRun = None
 
-	def AddJob(self, job):
+	def AddJob(self, job, MesgAfterRun=None):
+		if self.active_job is None:
+			print"[Jobmanager] addjob with MesgAfterRun"
+			self.MesgAfterRun = MesgAfterRun
 		self.active_jobs.append(job)
 		self.kick()
 
@@ -370,6 +375,10 @@ class JobManager:
 				self.errorCB(False)
 			return
 			#self.failed_jobs.append(self.active_job)
+		if self.MesgAfterRun:
+			self.MesgAfterRun = None
+			from Screens.MessageBox import MessageBox
+			Notifications.AddNotification(MessageBox, job.name + "\n\n" + _("Finished") , type = MessageBox.TYPE_INFO, timeout = 20 )
 		self.active_job = None
 		self.kick()
 
