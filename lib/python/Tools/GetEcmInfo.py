@@ -107,10 +107,9 @@ class GetEcmInfo:
 					eEnc  = ""
 					eCaid = ""
 					eSrc = ""
-					eTime = ""
+					eTime = "0"
 					for line in ecm:
 						line = line.strip()
-						print '!!!!!!!LINE:',line
 						if line.find('ECM') != -1:
 							linetmp = line.split(' ')
 							eEnc = linetmp[1]
