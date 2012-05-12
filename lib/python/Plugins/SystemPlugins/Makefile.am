@@ -9,8 +9,8 @@ if XTREND
 SUBDIRS += XtrendFancontrol SatelliteEquipmentControl DiseqcTester Blindscan
 endif
 
-if MARA
-SUBDIRS += SatelliteEquipmentControl DiseqcTester Blindscan
+if ODIN
+SUBDIRS += XtrendFancontrol SatelliteEquipmentControl DiseqcTester Blindscan
 endif
 
 if VUUNO
