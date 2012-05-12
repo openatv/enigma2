@@ -1650,8 +1650,7 @@ class NetworkAfp(Screen):
 			self.doRemove(self.removeComplete, self.service_name)
 
 	def doRemove(self, callback, pkgname):
-		self["actions"].setEnabled(False)
-		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO)
+		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO, enable_input = False)
 		self.message.setTitle(_('Removing Service'))
 		self.Console.ePopen('/usr/bin/opkg remove ' + pkgname + ' --force-remove --autoremove', callback)
 
@@ -1893,7 +1892,6 @@ class NetworkNfs(Screen):
 
 	def installComplete(self,result = None, retval = None, extra_args = None):
 		print 'INSTALLING: RE-ENABLING REMOTE'
-		self["actions"].setEnabled(True)
 		from Screens.Standby import TryQuitMainloop
 		print 'INSTALLING: REBOOT'
 		self.session.open(TryQuitMainloop, 2)
@@ -1913,8 +1911,7 @@ class NetworkNfs(Screen):
 			self.doRemove(self.removeComplete, self.service_name)
 
 	def doRemove(self, callback, pkgname):
-		self["actions"].setEnabled(False)
-		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO)
+		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO, enable_input = False)
 		self.message.setTitle(_('Removing Service'))
 		self.Console.ePopen('/usr/bin/opkg remove ' + pkgname + ' --force-remove --autoremove', callback)
 
@@ -1975,7 +1972,6 @@ class NetworkNfs(Screen):
 		for cb in self.onChangedEntry:
 			cb(title, status_summary, autostartstatus_summary)
 
-		self["actions"].setEnabled(True)
 
 class NetworkOpenvpn(Screen):
 	skin = """
@@ -2069,7 +2065,6 @@ class NetworkOpenvpn(Screen):
 
 	def installComplete(self,result = None, retval = None, extra_args = None):
 		print 'INSTALLING: RE-ENABLING REMOTE'
-		self["actions"].setEnabled(True)
 		self.message.close()
 		self.updateService()
 
@@ -2087,13 +2082,11 @@ class NetworkOpenvpn(Screen):
 			self.doRemove(self.removeComplete, self.service_name)
 
 	def doRemove(self, callback, pkgname):
-		self["actions"].setEnabled(False)
-		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO)
+		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO, enable_input = False)
 		self.message.setTitle(_('Removing Service'))
 		self.Console.ePopen('/usr/bin/opkg remove ' + pkgname + ' --force-remove --autoremove', callback)
 
 	def removeComplete(self,result = None, retval = None, extra_args = None):
-		self["actions"].setEnabled(True)
 		self.message.close()
 		self.updateService()
 
@@ -2152,7 +2145,6 @@ class NetworkOpenvpn(Screen):
 		for cb in self.onChangedEntry:
 			cb(title, status_summary, autostartstatus_summary)
 
-		self["actions"].setEnabled(True)
 
 class NetworkVpnLog(Screen):
 	skin = """
@@ -2270,7 +2262,6 @@ class NetworkSamba(Screen):
 
 	def installComplete(self,result = None, retval = None, extra_args = None):
 		print 'INSTALLING: RE-ENABLING REMOTE'
-		self["actions"].setEnabled(True)
 		self.message.close()
 		self.updateService()
 
@@ -2288,13 +2279,11 @@ class NetworkSamba(Screen):
 			self.doRemove(self.removeComplete, self.service_name)
 
 	def doRemove(self, callback, pkgname):
-		self["actions"].setEnabled(False)
-		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO)
+		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO, enable_input = False)
 		self.message.setTitle(_('Removing Service'))
 		self.Console.ePopen('/usr/bin/opkg remove ' + pkgname + ' --force-remove --autoremove', callback)
 
 	def removeComplete(self,result = None, retval = None, extra_args = None):
-		self["actions"].setEnabled(True)
 		self.message.close()
 		self.updateService()
 
@@ -2355,7 +2344,6 @@ class NetworkSamba(Screen):
 		for cb in self.onChangedEntry:
 			cb(title, status_summary, autostartstatus_summary)
 
-		self["actions"].setEnabled(True)
 
 class NetworkSambaLog(Screen):
 	skin = """
@@ -2584,7 +2572,6 @@ class NetworkInadyn(Screen):
 
 	def installComplete(self,result = None, retval = None, extra_args = None):
 		print 'INSTALLING: RE-ENABLING REMOTE'
-		self["actions"].setEnabled(True)
 		self.message.close()
 		self.updateService()
 
@@ -2602,13 +2589,11 @@ class NetworkInadyn(Screen):
 			self.doRemove(self.removeComplete, self.service_name)
 
 	def doRemove(self, callback, pkgname):
-		self["actions"].setEnabled(False)
-		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO)
+		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO, enable_input = False)
 		self.message.setTitle(_('Removing Service'))
 		self.Console.ePopen('/usr/bin/opkg remove ' + pkgname + ' --force-remove --autoremove', callback)
 
 	def removeComplete(self,result = None, retval = None, extra_args = None):
-		self["actions"].setEnabled(True)
 		self.message.close()
 		self.updateService()
 
@@ -2698,7 +2683,6 @@ class NetworkInadyn(Screen):
 		for cb in self.onChangedEntry:
 			cb(title, status_summary, autostartstatus_summary)
 
-		self["actions"].setEnabled(True)
 
 	def setupinadyn(self):
 		self.session.openWithCallback(self.updateService, NetworkInadynSetup)
@@ -3005,7 +2989,6 @@ class NetworkuShare(Screen):
 
 	def installComplete(self,result = None, retval = None, extra_args = None):
 		print 'INSTALLING: RE-ENABLING REMOTE'
-		self["actions"].setEnabled(True)
 		self.message.close()
 		self.updateService()
 
@@ -3023,13 +3006,11 @@ class NetworkuShare(Screen):
 			self.doRemove(self.removeComplete, self.service_name)
 
 	def doRemove(self, callback, pkgname):
-		self["actions"].setEnabled(False)
-		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO)
+		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO, enable_input = False)
 		self.message.setTitle(_('Removing Service'))
 		self.Console.ePopen('/usr/bin/opkg remove ' + pkgname + ' --force-remove --autoremove', callback)
 
 	def removeComplete(self,result = None, retval = None, extra_args = None):
-		self["actions"].setEnabled(True)
 		self.message.close()
 		self.updateService()
 
@@ -3142,7 +3123,6 @@ class NetworkuShare(Screen):
 		for cb in self.onChangedEntry:
 			cb(title, status_summary, autostartstatus_summary)
 
-		self["actions"].setEnabled(True)
 
 	def setupushare(self):
 		self.session.openWithCallback(self.updateService, NetworkuShareSetup)
@@ -3573,7 +3553,6 @@ class NetworkMiniDLNA(Screen):
 
 	def installComplete(self,result = None, retval = None, extra_args = None):
 		print 'INSTALLING: RE-ENABLING REMOTE'
-		self["actions"].setEnabled(True)
 		self.message.close()
 		self.updateService()
 
@@ -3591,13 +3570,11 @@ class NetworkMiniDLNA(Screen):
 			self.doRemove(self.removeComplete, self.service_name)
 
 	def doRemove(self, callback, pkgname):
-		self["actions"].setEnabled(False)
-		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO)
+		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO, enable_input = False)
 		self.message.setTitle(_('Removing Service'))
 		self.Console.ePopen('/usr/bin/opkg remove ' + pkgname + ' --force-remove --autoremove', callback)
 
 	def removeComplete(self,result = None, retval = None, extra_args = None):
-		self["actions"].setEnabled(True)
 		self.message.close()
 		self.updateService()
 
@@ -3700,8 +3677,6 @@ class NetworkMiniDLNA(Screen):
 
 		for cb in self.onChangedEntry:
 			cb(title, status_summary, autostartstatus_summary)
-
-		self["actions"].setEnabled(True)
 
 	def setupminidlna(self):
 		self.session.openWithCallback(self.updateService, NetworkMiniDLNASetup)
