@@ -112,21 +112,21 @@ class GetEcmInfo:
 						line = line.strip()
 						print '!!!!!!!LINE:',line
 						if line.find('ECM') != -1:
-							line = line.split(' ')
-							eEnc = line[1]
-							eCaid = line[5][2:-1]
+							linetmp = line.split(' ')
+							eEnc = linetmp[1]
+							eCaid = linetmp[5][2:-1]
 							continue
 						if line.find('source') != -1:
-							line = line.split(' ')
+							linetmp = line.split(' ')
 							try:
-								eSrc = line[4][:-1]
+								eSrc = linetmp[4][:-1]
 								continue
 							except:
-								eSrc = line[1]
+								eSrc = linetmp[1]
 								continue
 						if line.find('msec') != -1:
-							line = line.split(' ')
-							eTime = line[0]
+							linetmp = line.split(' ')
+							eTime = linetmp[0]
 							continue
 					self.textvalue = "(%s %s %.3f @ %s)" % (eEnc,eCaid,(float(eTime)/1000),eSrc)
 				else:
