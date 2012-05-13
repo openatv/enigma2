@@ -1603,13 +1603,8 @@ class NetworkAfp(Screen):
 			self.session.openWithCallback(self.close, MessageBox, _("Your box is not connected to the internet, please check your network settings and try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 			self.feedscheck.close()
 		else:
+			self.session.openWithCallback(self.InstallPackage,MessageBox,_('Your STB_BOX will be restarted after the installation of service\nReady to install "%s" ?') % self.service_name, MessageBox.TYPE_YESNO)
 			self.feedscheck.close()
-			self.InstalldataAvail()
-
-	def InstalldataAvail(self):
-		print 'INSTALL QUESTION'
-		restartbox = self.session.openWithCallback(self.InstallPackage,MessageBox,_('Your STB_BOX will be restarted after the installation of service\nDo you want to install now ?'), MessageBox.TYPE_YESNO)
-		restartbox.setTitle(_('Ready to install "%s" ?') % self.service_name)
 
 	def InstallPackage(self, val):
 		print 'INSTALL QUESTION FINISHED',val
@@ -1864,13 +1859,8 @@ class NetworkNfs(Screen):
 			self.session.openWithCallback(self.close, MessageBox, _("Your box is not connected to the internet, please check your network settings and try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 			self.feedscheck.close()
 		else:
+			self.session.openWithCallback(self.InstallPackage,MessageBox,_('Your STB_BOX will be restarted after the installation of service\nReady to install "%s" ?') % self.service_name, MessageBox.TYPE_YESNO)
 			self.feedscheck.close()
-			self.InstalldataAvail()
-
-	def InstalldataAvail(self):
-		print 'INSTALL QUESTION'
-		restartbox = self.session.openWithCallback(self.InstallPackage,MessageBox,_('Your STB_BOX will be restarted after the installation of service\nDo you want to install now ?'), MessageBox.TYPE_YESNO)
-		restartbox.setTitle(_('Ready to install "%s" ?') % self.service_name)
 
 	def InstallPackage(self, val):
 		print 'INSTALL QUESTION FINISHED',val
@@ -2034,12 +2024,8 @@ class NetworkOpenvpn(Screen):
 			self.session.openWithCallback(self.close, MessageBox, _("Your box is not connected to the internet, please check your network settings and try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 			self.feedscheck.close()
 		else:
+			self.session.openWithCallback(self.InstallPackage, MessageBox, _('Ready to install "%s" ?') % self.service_name, MessageBox.TYPE_YESNO)
 			self.feedscheck.close()
-			self.InstalldataAvail()
-
-	def InstalldataAvail(self):
-		restartbox = self.session.openWithCallback(self.InstallPackage, MessageBox, _('Ready to install ?'))
-		restartbox.setTitle(self.service_name)
 
 	def InstallPackage(self, val):
 		if val:
@@ -2061,7 +2047,7 @@ class NetworkOpenvpn(Screen):
 
 	def RemovedataAvail(self, str, retval, extra_args):
 		if str:
-			self.session.openWithCallback(self.RemovePackage, MessageBox, _('Ready to remove "%s" ?') % self.service_name)
+			self.session.openWithCallback(self.RemovePackage, MessageBox, _('Ready to remove "%s" ?') % self.service_name, MessageBox.TYPE_YESNO)
 		else:
 			self.updateService()
 
@@ -2218,12 +2204,8 @@ class NetworkSamba(Screen):
 			self.session.openWithCallback(self.close, MessageBox, _("Your box is not connected to the internet, please check your network settings and try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 			self.feedscheck.close()
 		else:
+			self.session.openWithCallback(self.InstallPackage, MessageBox, _('Ready to install "%s" ?') % self.service_name, MessageBox.TYPE_YESNO)
 			self.feedscheck.close()
-			self.InstalldataAvail()
-
-	def InstalldataAvail(self):
-		restartbox = self.session.openWithCallback(self.InstallPackage, MessageBox, _('Ready to install ?'))
-		restartbox.setTitle(self.service_name)
 
 	def InstallPackage(self, val):
 		if val:
@@ -2245,7 +2227,7 @@ class NetworkSamba(Screen):
 
 	def RemovedataAvail(self, str, retval, extra_args):
 		if str:
-			self.session.openWithCallback(self.RemovePackage, MessageBox, _('Ready to remove "%s" ?') % self.service_name)
+			self.session.openWithCallback(self.RemovePackage, MessageBox, _('Ready to remove "%s" ?') % self.service_name, MessageBox.TYPE_YESNO)
 		else:
 			self.updateService()
 
@@ -2515,12 +2497,8 @@ class NetworkInadyn(Screen):
 			self.session.openWithCallback(self.close, MessageBox, _("Your box is not connected to the internet, please check your network settings and try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 			self.feedscheck.close()
 		else:
+			self.session.openWithCallback(self.InstallPackage, MessageBox, _('Ready to install "%s" ?') % self.service_name, MessageBox.TYPE_YESNO)
 			self.feedscheck.close()
-			self.InstalldataAvail()
-
-	def InstalldataAvail(self):
-		restartbox = self.session.openWithCallback(self.InstallPackage, MessageBox, _('Ready to install ?'))
-		restartbox.setTitle(self.service_name)
 
 	def InstallPackage(self, val):
 		if val:
@@ -2542,7 +2520,7 @@ class NetworkInadyn(Screen):
 
 	def RemovedataAvail(self, str, retval, extra_args):
 		if str:
-			self.session.openWithCallback(self.RemovePackage, MessageBox, _('Ready to remove "%s" ?') % self.service_name)
+			self.session.openWithCallback(self.RemovePackage, MessageBox, _('Ready to remove "%s" ?') % self.service_name, MessageBox.TYPE_YESNO)
 		else:
 			self.updateService()
 
@@ -2920,12 +2898,8 @@ class NetworkuShare(Screen):
 			self.session.openWithCallback(self.close, MessageBox, _("Your box is not connected to the internet, please check your network settings and try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 			self.feedscheck.close()
 		else:
+			self.session.openWithCallback(self.InstallPackage, MessageBox, _('Ready to install "%s" ?') % self.service_name, MessageBox.TYPE_YESNO)
 			self.feedscheck.close()
-			self.InstalldataAvail()
-
-	def InstalldataAvail(self):
-		restartbox = self.session.openWithCallback(self.InstallPackage, MessageBox, _('Ready to install ?'))
-		restartbox.setTitle(self.service_name)
 
 	def InstallPackage(self, val):
 		if val:
@@ -2947,7 +2921,7 @@ class NetworkuShare(Screen):
 
 	def RemovedataAvail(self, str, retval, extra_args):
 		if str:
-			self.session.openWithCallback(self.RemovePackage, MessageBox, _('Ready to remove "%s" ?') % self.service_name)
+			self.session.openWithCallback(self.RemovePackage, MessageBox, _('Ready to remove "%s" ?') % self.service_name, MessageBox.TYPE_YESNO)
 		else:
 			self.updateService()
 
@@ -3472,12 +3446,8 @@ class NetworkMiniDLNA(Screen):
 			self.session.openWithCallback(self.close, MessageBox, _("Your box is not connected to the internet, please check your network settings and try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 			self.feedscheck.close()
 		else:
+			self.session.openWithCallback(self.InstallPackage, MessageBox, _('Ready to install "%s" ?') % self.service_name, MessageBox.TYPE_YESNO)
 			self.feedscheck.close()
-			self.InstalldataAvail()
-
-	def InstalldataAvail(self):
-		restartbox = self.session.openWithCallback(self.InstallPackage, MessageBox, _('Ready to install ?'))
-		restartbox.setTitle(self.service_name)
 
 	def InstallPackage(self, val):
 		if val:
@@ -3499,7 +3469,7 @@ class NetworkMiniDLNA(Screen):
 
 	def RemovedataAvail(self, str, retval, extra_args):
 		if str:
-			self.session.openWithCallback(self.RemovePackage, MessageBox, _('Ready to remove "%s" ?') % self.service_name)
+			self.session.openWithCallback(self.RemovePackage, MessageBox, _('Ready to remove "%s" ?') % self.service_name, MessageBox.TYPE_YESNO)
 		else:
 			self.updateService()
 
