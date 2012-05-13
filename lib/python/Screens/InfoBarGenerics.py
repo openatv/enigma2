@@ -3366,14 +3366,13 @@ class InfoBarExtensions:
 			return []
 
 	def RedPressed(self):
-		if not self.secondInfoBarScreen.shown:
-			if isinstance(self, InfoBarEPG):
-				if config.vixsettings.ViXEPG_mode.value == "vixepg":
-					self.openSingleServiceEPG()
-				else:
-					self.openGraphEPG()
+		if isinstance(self, InfoBarEPG):
+			if config.vixsettings.ViXEPG_mode.value == "vixepg":
+				self.openSingleServiceEPG()
 			else:
-				self.openEventView()
+				self.openGraphEPG()
+		else:
+			self.openEventView()
 
 	def addExtension(self, extension, key = None, type = EXTENSION_SINGLE):
 		self.list.append((type, extension, key))
