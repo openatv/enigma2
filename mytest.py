@@ -499,7 +499,10 @@ def runScreenTest():
 
 	if config.misc.boxtype.value == 'gb800se' or config.misc.boxtype.value == 'gb800solo' or config.misc.boxtype.value == 'gb800ue':
 		from enigma import evfd
-		evfd.getInstance().vfd_write_string("-E2-")
+		try:
+			os.system('vfdctl "    openaaf starting e2"; vfdctl -a')
+		except:
+			evfd.getInstance().vfd_write_string("-E2-")
 		evfd.getInstance().vfd_led(str(1)) 	
 	
 	runReactor()
