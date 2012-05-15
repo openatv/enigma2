@@ -109,8 +109,8 @@ class Job(object):
 
 	def cancel(self):
 		self.abort()
-		
-	def __str__(self):	
+
+	def __str__(self):
 		return "Components.Task.Job name=%s #tasks=%s" % (self.name, len(self.tasks))
 
 class Task(object):
@@ -198,10 +198,10 @@ class Task(object):
 
 	def cleanup(self, failed):
 		pass
-	
+
 	def processStdout(self, data):
 		self.processOutput(data)
-		
+
 	def processStderr(self, data):
 		self.processOutput(data)
 
@@ -259,7 +259,7 @@ class Task(object):
 
 	progress = property(getProgress, setProgress)
 
-	def __str__(self):	
+	def __str__(self):
 		return "Components.Task.Task name=%s" % (self.name)
 
 class LoggingTask(Task):
@@ -343,8 +343,12 @@ class JobManager:
 		self.job_classes = [ ]
 		self.in_background = False
 		self.active_job = None
+		self.MesgAfterRun = None
 
-	def AddJob(self, job):
+	def AddJob(self, job, MesgAfterRun=None):
+		if self.active_job is None:
+			print"[Jobmanager] addjob with MesgAfterRun"
+			self.MesgAfterRun = MesgAfterRun
 		self.active_jobs.append(job)
 		self.kick()
 
@@ -370,6 +374,10 @@ class JobManager:
 				self.errorCB(False)
 			return
 			#self.failed_jobs.append(self.active_job)
+		if self.MesgAfterRun:
+			self.MesgAfterRun = None
+			from Screens.MessageBox import MessageBox
+			Notifications.AddNotification(MessageBox, job.name + "\n\n" + _("Finished") , type = MessageBox.TYPE_INFO, timeout = 20 )
 		self.active_job = None
 		self.kick()
 
@@ -457,7 +465,7 @@ class ToolExistsPrecondition(Condition):
 		import os
 		if task.cmd[0]=='/':
 			self.realpath = task.cmd
-			print "[Task.py][ToolExistsPrecondition] WARNING: usage of absolute paths for tasks should be avoided!" 
+			print "[Task.py][ToolExistsPrecondition] WARNING: usage of absolute paths for tasks should be avoided!"
 			return os.access(self.realpath, os.X_OK)
 		else:
 			self.realpath = task.cmd
@@ -467,7 +475,7 @@ class ToolExistsPrecondition(Condition):
 			if absolutes:
 				self.realpath = absolutes[0]
 				return True
-		return False 
+		return False
 
 	def getErrorMessage(self, task):
 		return _("A required tool (%s) was not found.") % (self.realpath)
@@ -502,7 +510,7 @@ class FailedPostcondition(Condition):
 				return _("Error code") + " %s" % self.exception
 		return str(self.exception)
 	def check(self, task):
-		return (self.exception is None) or (self.exception == 0) 
+		return (self.exception is None) or (self.exception == 0)
 
 #class HDDInitJob(Job):
 #	def __init__(self, device):
