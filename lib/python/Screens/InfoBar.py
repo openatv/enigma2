@@ -52,7 +52,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		self["actions"] = HelpableActionMap(self, "InfobarActions",
 			{
 				"showMovies": (self.showMovies, _("Play recorded movies...")),
-				"showRadio": (self.showRadio, _("Show the radio player...")),
+				"showRadio": (self.showRadioButton, _("Show the radio player...")),
 				"showTv": (self.showTv, _("Show the tv player...")),
 				"toogleTvRadio": (self.toogleTvRadio, _("toggels betwenn tv and radio...")),
 				"openBouquetList": (self.openBouquetList, _("open bouquetlist")),
@@ -137,6 +137,12 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		else:
 			self.showTvChannelList(True)
 
+	def showRadioButton(self):
+		if config.misc.boxtype.value == 'gb800se' or config.misc.boxtype.value == 'gb800solo' or config.misc.boxtype.value == 'gb800ue' or config.misc.boxtype.value == 'venton-hd1':
+			self.toogleTvRadio()
+		else:
+			self.showRadio()
+
 	def showRadio(self):
 		if config.usage.e1like_radio_mode.value:
 			if config.usage.tvradiobutton_mode.value == "BouquetList":
@@ -158,7 +164,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		else:
 			AudioPID = 1
 			VideoPID = 1
-               
+
 		if VideoPID == -1: 
 			self.showTv() 
 		else: 
