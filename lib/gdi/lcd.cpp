@@ -182,7 +182,9 @@ int eDBoxLCD::setLCDBrightness(int brightness)
 			eDebug("[LCD] can't open /dev/dbox/fp0");
 			return(-1);
 		}
-
+#ifndef FP_IOCTL_LCD_DIMM
+#define FP_IOCTL_LCD_DIMM       3
+#endif
 		if(ioctl(fp, FP_IOCTL_LCD_DIMM, &brightness) < 0)
 			eDebug("[LCD] can't set lcd brightness (%m)");
 		close(fp);
