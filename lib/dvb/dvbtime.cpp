@@ -220,7 +220,7 @@ eDVBLocalTimeHandler::~eDVBLocalTimeHandler()
 	{
 		eDebug("set RTC to previous valid time");
 		if (!strncmp(mybox,"gb800",sizeof(mybox)))
-				setRTC(::time(7200));
+				setRTC(::time(0)+7200);
 			else
 				setRTC(::time(0));
 	}
