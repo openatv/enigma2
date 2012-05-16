@@ -1,6 +1,7 @@
 from Screen import Screen
 from Components.ActionMap import NumberActionMap, ActionMap
 from Components.config import config, ConfigNothing, ConfigYesNo, ConfigSelection, ConfigText, ConfigPassword
+from Tools.Directories import resolveFilename, SCOPE_CURRENT_PLUGIN
 from Components.SystemInfo import SystemInfo
 from Components.ConfigList import ConfigListScreen
 from Components.Pixmap import Pixmap,MultiPixmap
@@ -12,17 +13,6 @@ from Components.Sources.Boolean import Boolean
 from enigma import eEnv
 
 import xml.etree.cElementTree
-
-# FIXME: use resolveFile!
-# read the setupmenu
-try:
-	# first we search in the current path
-	setupfile = file('data/setup.xml', 'r')
-except:
-	# if not found in the current path, we use the global datadir-path
-	setupfile = file(eEnv.resolve('${datadir}/enigma2/setup.xml'), 'r')
-setupdom = xml.etree.cElementTree.parse(setupfile)
-setupfile.close()
 
 class SetupError(Exception):
     def __init__(self, message):
@@ -66,7 +56,7 @@ class Setup(ConfigListScreen, Screen):
 		self["config"].setList(list)
 
 	def refill(self, list):
-		xmldata = setupdom.getroot()
+		xmldata = self.setupdom.getroot()
 		for x in xmldata.findall("setup"):
 			if x.get("key") != self.setup:
 				continue
@@ -74,8 +64,17 @@ class Setup(ConfigListScreen, Screen):
 			self.setup_title = x.get("title", "").encode("UTF-8")
 			self.seperation = int(x.get('separation', '0'))
 
-	def __init__(self, session, setup):
+	def __init__(self, session, setup, plugin=None):
 		Screen.__init__(self, session)
+		# read the setupmenu
+		try:
+			# first we search in the current path
+			setupfile = file(resolveFilename(SCOPE_CURRENT_PLUGIN, plugin + '/data/setup.xml'), 'r')
+		except:
+			# if not found in the current path, we use the global datadir-path
+			setupfile = file(eEnv.resolve('${datadir}/enigma2/setup.xml'), 'r')
+		self.setupdom = xml.etree.cElementTree.parse(setupfile)
+		setupfile.close()
 		# for the skin: first try a setup_<setupID>, then Setup
 		self.skinName = ["setup_" + setup, "Setup" ]
 
@@ -244,6 +243,9 @@ class Setup(ConfigListScreen, Screen):
 					list.append((item_text, item, item_summary))
 
 def getSetupTitle(id):
+	setupfile = file(eEnv.resolve('${datadir}/enigma2/setup.xml'), 'r')
+	setupdom = xml.etree.cElementTree.parse(setupfile)
+	setupfile.close()
 	xmldata = setupdom.getroot()
 	for x in xmldata.findall("setup"):
 		if x.get("key") == id:
