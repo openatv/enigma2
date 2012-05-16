@@ -1346,20 +1346,21 @@ class EPGSelection(Screen, HelpableScreen):
 				currch = self.session.nav.getCurrentlyPlayingServiceReference()
 				currch = currch.toString()
 				ref = self["list"].getCurrent()[1]
-				if self.type == EPG_TYPE_GRAPH:
-					self["list"].curr_refcool = ref.ref
-					self["list"].fillGraphEPG(None)
-				switchto = ServiceReference(ref.ref)
-				switchto = str(switchto)
-				if not switchto == currch:
-					if ref and switchto.find('alternatives') != -1:
-						self.zapFunc(ref.ref)
-						self.close(True)
+				if ref:
+					if self.type == EPG_TYPE_GRAPH:
+						self["list"].curr_refcool = ref.ref
+						self["list"].fillGraphEPG(None)
+					switchto = ServiceReference(ref.ref)
+					switchto = str(switchto)
+					if not switchto == currch:
+						if ref and switchto.find('alternatives') != -1:
+							self.zapFunc(ref.ref)
+							self.close(True)
+						else:
+							self.zapFunc(ref.ref)
+							self.refreshTimer.start(10000)
 					else:
-						self.zapFunc(ref.ref)
-						self.refreshTimer.start(10000)
-				else:
-					self.close(True)
+						self.close(True)
 		elif self.type == EPG_TYPE_SINGLE:
 			currch = self.session.nav.getCurrentlyPlayingServiceReference()
 			currch = currch.toString()
