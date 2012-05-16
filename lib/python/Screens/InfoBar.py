@@ -53,7 +53,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			{
 				"showMovies": (self.showMovies, _("Play recorded movies...")),
 				"showRadio": (self.showRadioButton, _("Show the radio player...")),
-				"showTv": (self.showTv, _("Show the tv player...")),
+				"showTv": (self.showTvButton, _("Show the tv player...")),
 				"toogleTvRadio": (self.toogleTvRadio, _("toggels betwenn tv and radio...")),
 				"openBouquetList": (self.openBouquetList, _("open bouquetlist")),
 				"showMediaPlayer": (self.showMediaPlayer, _("Show the media player...")),
@@ -126,6 +126,11 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		elif config.usage.tvradiobutton_mode.value == "BouquetList":
 			self.showTvChannelList(True)
 			self.servicelist.showFavourites()
+	def showTvButton(self):
+		if config.misc.boxtype.value == 'gb800se' or config.misc.boxtype.value == 'gb800solo' or config.misc.boxtype.value == 'gb800ue' or config.misc.boxtype.value == 'venton-hd1':
+			self.toogleTvRadio()
+		else:
+			self.showTv()
 
 	def showTv(self):
 		if config.usage.tvradiobutton_mode.value == "MovieList":
