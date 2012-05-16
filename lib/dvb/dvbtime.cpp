@@ -219,7 +219,10 @@ eDVBLocalTimeHandler::~eDVBLocalTimeHandler()
 	if (ready())
 	{
 		eDebug("set RTC to previous valid time");
-		setRTC(::time(0));
+		if (!strncmp(mybox,"gb800",sizeof(mybox)))
+				eDebug("Dont set RTC to previous valid time, giga box");
+			else
+				setRTC(::time(0));
 	}
 }
 
