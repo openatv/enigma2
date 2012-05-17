@@ -24,7 +24,10 @@ def getEnigmaVersionString():
 	return enigma_version
 
 def getKernelVersionString():
-	return HardwareInfo().linux_kernel()
+	try:
+		return open("/proc/version","r").read().split(' ', 4)[2].split('-',2)[0]
+	except:
+		return _("unknown")
 
 def getBuildVersionString():
 	try:

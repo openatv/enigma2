@@ -38,12 +38,10 @@ eDVBCIInterfaces::eDVBCIInterfaces()
 
 	while (1)
 	{
-		struct stat s;
 		char filename[128];
 		sprintf(filename, "/dev/ci%d", num_ci);
 
-		if (stat(filename, &s))
-			break;
+		if (::access(filename, R_OK) < 0) break;
 
 		ePtr<eDVBCISlot> cislot;
 

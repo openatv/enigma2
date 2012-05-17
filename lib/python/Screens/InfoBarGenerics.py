@@ -393,7 +393,7 @@ class InfoBarShowHide:
 			{
 				"toggleShow": self.toggleShow,
 				"LongOKPressed": self.LongOKPressed,
-				"hide": self.ExitPressed,
+				"hide": self.keyHide,
 			}, 1) # lower prio to make it possible to override ok and cancel..
 
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
@@ -421,6 +421,28 @@ class InfoBarShowHide:
 			self.standardInfoBar = True
 		self.secondInfoBarWasShown = False
 		self.EventViewIsShown = False
+
+	def LongOKPressed(self):
+		if isinstance(self, InfoBarEPG):
+			if config.vixsettings.QuickEPG_mode.value == "1":
+				self.openInfoBarEPG()
+
+	def keyHide(self):
+		if self.__state == self.STATE_HIDDEN:
+			if config.vixsettings.QuickEPG_mode.value == "2":
+				self.openInfoBarEPG()
+			else:
+				self.hide()
+				if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+					self.secondInfoBarScreen.hide()
+					self.secondInfoBarWasShown = False
+			if self.session.pipshown:
+				self.showPiP()
+		else:
+			self.hide()
+			if self.pvrStateDialog:
+				self.pvrStateDialog.hide()
+
 
 	def connectShowHideNotifier(self, fnc):
 		if not fnc in self.onShowHideNotifiers:
@@ -519,25 +541,6 @@ class InfoBarShowHide:
 			self.__locked = 0
 		if self.execing:
 			self.startHideTimer()
-
-	def LongOKPressed(self):
-		if isinstance(self, InfoBarEPG):
-			if config.vixsettings.QuickEPG_mode.value == "1":
-				self.openInfoBarEPG()
-
-	def ExitPressed(self):
-		if self.__state == self.STATE_HIDDEN:
-			if config.vixsettings.QuickEPG_mode.value == "2":
-				self.openInfoBarEPG()
-			else:
-				self.hide()
-				if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
-					self.secondInfoBarScreen.hide()
-					self.secondInfoBarWasShown = False
-		else:
-			self.hide()
-			if self.pvrStateDialog:
-				self.pvrStateDialog.hide()
 
 class NumberZap(Screen):
 	def quit(self):

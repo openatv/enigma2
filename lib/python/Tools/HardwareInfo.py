@@ -44,10 +44,4 @@ class HardwareInfo:
 		return HardwareInfo.device_version
 
 	def has_hdmi(self):
-		return (HardwareInfo.device_name == 'dm800se' or HardwareInfo.device_name == 'dm500hd' or (HardwareInfo.device_name == 'dm8000' and HardwareInfo.device_version != None))
-
-	def linux_kernel(self):
-		try:
-			return open("/proc/version","r").read().split(' ', 4)[2].split('-',2)[0]
-		except:
-			return "unknown"
+		return (HardwareInfo.device_name == 'dm7020hd' or HardwareInfo.device_name == 'dm800se' or HardwareInfo.device_name == 'dm500hd' or (HardwareInfo.device_name == 'dm8000' and HardwareInfo.device_version != None))

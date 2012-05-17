@@ -182,7 +182,7 @@ static int extractPTS(pts_t &pts, unsigned char *pkt)
 		return -1;
 }
 
-eDVBTeletextParser::eDVBTeletextParser(iDVBDemux *demux)
+eDVBTeletextParser::eDVBTeletextParser(iDVBDemux *demux) : m_pid(-1)
 {
 	setStreamID(0xBD); /* as per en 300 472 */
 	
@@ -470,7 +470,7 @@ int eDVBTeletextParser::start(int pid)
 {
 	m_page_open = 0;
 
-	if (m_pes_reader)
+	if (m_pes_reader && pid >= 0 && pid < 0x1fff)
 	{
 		m_pid = pid;
 		return m_pes_reader->start(pid);
