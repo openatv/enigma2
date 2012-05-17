@@ -146,11 +146,9 @@ public:
 		consoleFd = ::open("/dev/tty0", O_RDWR);
 		while (1)
 		{
-			struct stat s;
 			char filename[128];
 			sprintf(filename, "/dev/input/event%d", i);
-			if (stat(filename, &s))
-				break;
+			if (::access(filename, R_OK) < 0) break;
 			eRCInputEventDriver *p;
 			m_drivers.push_back(p = new eRCInputEventDriver(filename));
 			m_devices.push_back(new eRCDeviceInputDev(p, consoleFd));

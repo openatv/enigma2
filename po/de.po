@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-08 15:25+0100\n"
-"PO-Revision-Date: 2012-05-08 22:11+0100\n"
-"Last-Translator: Ralf Biedermann <ralf.biedermann@rbsoft.de>\n"
+"POT-Creation-Date: 2012-05-17 20:08+0100\n"
+"PO-Revision-Date: 2012-05-17 20:23+0100\n"
+"Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
 "Language-Team: Deutsch <> j-ot&Trial\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -524,6 +524,10 @@ msgstr "AB"
 msgid "AFP Setup"
 msgstr "AFP Einstellungen"
 
+#, python-format
+msgid "AV aspect is %s."
+msgstr ""
+
 msgid "Abort"
 msgstr "Abbrechen"
 
@@ -988,9 +992,6 @@ msgstr "Auto flesh"
 msgid "Auto scart switching"
 msgstr "Automatische Scart-Umschaltung"
 
-msgid "AutoTimer"
-msgstr ""
-
 msgid "Automatic"
 msgstr "Automatisch"
 
@@ -1374,6 +1375,9 @@ msgstr "Test"
 
 msgid "Check every (hours)"
 msgstr "Alle x Stunden prüfen"
+
+msgid "Checking Feeds"
+msgstr ""
 
 msgid "Checking Filesystem..."
 msgstr "Überprüfe Dateisystem..."
@@ -1785,11 +1789,24 @@ msgstr "DUAL LAYER DVD"
 msgid "DVB subtitle black transparency"
 msgstr "DVB Untertitel Transparenz"
 
+msgid "DVB-C"
+msgstr ""
+
+msgid "DVB-C ANNEX C"
+msgstr ""
+
+#
 msgid "DVB-S"
 msgstr "DVB-S"
 
 msgid "DVB-S2"
 msgstr "DVB-S2"
+
+msgid "DVB-T"
+msgstr ""
+
+msgid "DVB-T2"
+msgstr ""
 
 msgid "DVD File Browser"
 msgstr "DVD Datei Browser"
@@ -2266,9 +2283,6 @@ msgstr "EPG Sprachwahl 2"
 msgid "EPG location"
 msgstr "EPG Speicherort"
 
-msgid "EPGSearch"
-msgstr "EPG Suche"
-
 #, python-format
 msgid "ERROR - failed to scan (%s)!"
 msgstr "FEHLER - Suche fehlgeschlagen (%s)!"
@@ -2608,6 +2622,9 @@ msgid "Fan Control"
 msgstr "Lüflterkontrolle"
 
 msgid "Fan basic action"
+msgstr ""
+
+msgid "Fan control"
 msgstr ""
 
 msgid "Fan mode"
@@ -2982,9 +2999,6 @@ msgstr "Ungarisch"
 
 msgid "IMDB search for current event"
 msgstr "IMDB Suche nach laufenden Progra,,"
-
-msgid "IMDb Details"
-msgstr ""
 
 msgid "IMDb Search"
 msgstr "IMDb Suche"
@@ -4736,6 +4750,9 @@ msgstr "Bitte warte, dass Netzwerk wird überprüft."
 msgid "Please wait while your network is restarting..."
 msgstr "Bitte warte, dass Netzwerk wird neu gestartet."
 
+msgid "Please wait whilst feeds state is checked."
+msgstr ""
+
 msgid "Please wait..."
 msgstr "Bitte warten..."
 
@@ -6054,6 +6071,9 @@ msgstr "Zeige Senderlogos"
 msgid "Show Picons *"
 msgstr "Zeige PIcons*"
 
+msgid "Show RFmod setup..."
+msgstr ""
+
 msgid "Show Readers/Proxies"
 msgstr "Zeige Kartenleser/Proxies"
 
@@ -6108,6 +6128,9 @@ msgstr "Zeige detailierte Sendungsinformation"
 msgid "Show encryption info in the infobar (if the skin allows that)."
 msgstr "Zeige Verschlüsselungsinfo im Infobar (wenn es der Skin vorsieht)."
 
+msgid "Show epg"
+msgstr ""
+
 msgid "Show event-progress in channel selection"
 msgstr "Zeige Sendungs-Fortschritt in der Sender-Liste"
 
@@ -6132,6 +6155,9 @@ msgstr "Zeige Jobs in Erweiterungen"
 msgid "Show live tv when movie stopped"
 msgstr "Zeige Live-TV wenn Film beendet"
 
+msgid "Show network mounts ..."
+msgstr ""
+
 msgid "Show or hide the extended description, (skin dependent)."
 msgstr "Zeige oder Verstecke erweiterte Beschreibung (skinabhängig)."
 
@@ -6150,8 +6176,14 @@ msgstr "Zeige EinzelEPG für den aktuellen Sender"
 msgid "Show status icons in Movielist"
 msgstr "Zeige Status-Icons in der Filmliste"
 
+msgid "Show the infomation on current event."
+msgstr ""
+
 msgid "Show the media player..."
 msgstr "Zeige den Medienplayer..."
+
+msgid "Show the plugin browser.."
+msgstr ""
 
 msgid "Show the radio player..."
 msgstr "Radio-Wiedergabemodus..."
@@ -6297,6 +6329,9 @@ msgstr "Sorry Konfiguration für MiniDLNA fehlt"
 
 msgid "Sorry feeds are down for maintenance"
 msgstr "Tut uns leid. Feeds sind wegen Wartungsarbeiten nicht erreichbar."
+
+msgid "Sorry feeds are down for maintenance, please try again later."
+msgstr ""
 
 msgid "Sorry feeds seem be in an unstable state, if you wish to use them please enable 'Allow unstable updates' in online update setup."
 msgstr "Tut uns leid. Feeds sind auf instabil eingestellt. Wenn instabile Updates erlaubt werden sollen muss das in den Einstellungen für Online-Update aktiviert werden."
@@ -6602,6 +6637,27 @@ msgstr "Inhalt der Zusammenstellung"
 msgid "Tags"
 msgstr "Tags"
 
+msgid "STB_BOX advanced remote control (native)"
+msgstr "STB_BOX erweiterte Fernbedienung (native)"
+
+msgid "STB_BOX format data DVD (HDTV compatible)"
+msgstr "Daten-DVD im STB_BOX Format (HDTV-kompatibel)"
+
+msgid "STB_BOX front panel"
+msgstr "STB_BOX Frontpaneel"
+
+msgid "STB_BOX ir keyboard"
+msgstr "STB_BOX IR Tastatur"
+
+msgid "STB_BOX ir mouse"
+msgstr "STB_BOX IR Maus"
+
+msgid "STB_BOX remote control (native)"
+msgstr "STB_BOX Fernbedienung (native)"
+
+msgid "STB_BOX software because updates are available."
+msgstr "STB_BOX Software, da Aktualisierungen verfügbar sind."
+
 msgid "Teletext subtitle color"
 msgstr "Farbe Videotextuntertitel"
 
@@ -6729,6 +6785,12 @@ msgstr ""
 "Das Softwaremanagement Plugin ist nicht installiert!\n"
 "Bitte installiere es."
 
+msgid "The STB_BOX reads the stored EPG data every (hours)."
+msgstr "Die STB_BOX liest die EPG Daten alle x Stunden."
+
+msgid "The STB_BOX stores the EPG data every (hours)."
+msgstr "Die STB_BOX speichert die EPG alle x Stunden."
+
 msgid ""
 "The Timeshift record was not saved yet!\n"
 "What do you want to do now with the timeshift file?"
@@ -6752,12 +6814,6 @@ msgid ""
 msgstr ""
 "Die Benutzeroberfläche der STB_BOX startet\n"
 "wegen eines Fehler in mytest.py neu"
-
-msgid "The STB_BOX reads the stored EPG data every (hours)."
-msgstr "Die STB_BOX liest die EPG Daten alle x Stunden."
-
-msgid "The STB_BOX stores the EPG data every (hours)."
-msgstr "Die STB_BOX speichert die EPG alle x Stunden."
 
 msgid "The backup failed. Please choose a different backup location."
 msgstr "Die Sicherung ist fehlgeschlagen. Bitte einen anderes Sicherungs-Verzeichnis auswählen."
@@ -7268,6 +7324,9 @@ msgstr ""
 
 msgid "Today"
 msgstr "Heute"
+
+msgid "Toggle aspect ratio..."
+msgstr ""
 
 msgid "Tone Amplitude"
 msgstr "Ton Amplitude"
@@ -7792,27 +7851,6 @@ msgstr "Spannungs-Modus"
 msgid "Volume"
 msgstr "Lautstärke"
 
-msgid "STB_BOX advanced remote control (native)"
-msgstr "STB_BOX erweiterte Fernbedienung (native)"
-
-msgid "STB_BOX format data DVD (HDTV compatible)"
-msgstr "Daten-DVD im STB_BOX Format (HDTV-kompatibel)"
-
-msgid "STB_BOX front panel"
-msgstr "STB_BOX Frontpaneel"
-
-msgid "STB_BOX ir keyboard"
-msgstr "STB_BOX IR Tastatur"
-
-msgid "STB_BOX ir mouse"
-msgstr "STB_BOX IR Maus"
-
-msgid "STB_BOX remote control (native)"
-msgstr "STB_BOX Fernbedienung (native)"
-
-msgid "STB_BOX software because updates are available."
-msgstr "STB_BOX Software, da Aktualisierungen verfügbar sind."
-
 msgid "W"
 msgstr "W"
 
@@ -7930,13 +7968,9 @@ msgstr ""
 msgid ""
 "Welcome.\n"
 "\n"
-"This start wizard will guide you through the basic setup of your Vu+ Ultimo.\n"
+"This start wizard will guide you through the basic setup of your STB_BOX.\n"
 "Press the OK button on your remote control to move to the next step."
 msgstr ""
-"Willkommen.\n"
-"\n"
-"Der Startassistent wird Sie durch die Grundeinstellungen der STB_BOX führen.\n"
-"Drücken Sie OK auf Ihrer Fernbedienung, um zum nächsten Schritt zu gelangen."
 
 msgid "Welcome..."
 msgstr "Willkommen..."
@@ -8266,12 +8300,11 @@ msgstr "Ihre STB_BOX schaltet sich nun aus. Bitte warte einen Moment..."
 msgid "Your STB_BOX isn't connected to the internet properly. Please check it and try again."
 msgstr "Die STB_BOX ist nicht korrekt mit dem Internet verbunden. Bitte behebe dies und versuche es dann erneut."
 
+#, python-format
 msgid ""
 "Your STB_BOX will be restarted after the installation of service\n"
-"Do you want to install now ?"
+"Ready to install \"%s\" ?"
 msgstr ""
-"Deine STB_BOX wird nach installieren des Services neu gestartet\n"
-"Service jetzt installieren?"
 
 msgid ""
 "Your STB_BOX will be restarted after the installation of service.\n"
@@ -8291,6 +8324,9 @@ msgstr ""
 
 msgid "Your backup succeeded. We will now continue to explain the further upgrade process."
 msgstr "Die Sicherung ist geglückt. Die STB_BOX wird nun den weiteren Aktualisierungs-Prozess erklären."
+
+msgid "Your box is not connected to the internet, please check your network settings and try again."
+msgstr ""
 
 msgid "Your collection exceeds the size of a single layer medium, you will need a blank dual layer DVD!"
 msgstr "Die Zusammenstellung überschreitet die Größe eines einfachen Mediums, es wirdein Dual-Layer-Rohling benötigt!"
@@ -8388,6 +8424,12 @@ msgstr "Zap zu Sender und verlasse"
 
 msgid "Zap to selected channel"
 msgstr "Schalte zum ausgewählten Sender um"
+
+msgid "Zoom In/Out TV..."
+msgstr ""
+
+msgid "Zoom Off..."
+msgstr ""
 
 msgid "[TimeShift] Restarting Timeshift!"
 msgstr "[Timeshift] Timeshift erneut starten!"
@@ -9012,6 +9054,9 @@ msgstr "auf dem nicht beschreibbaren Medium."
 msgid "once"
 msgstr "einmalig"
 
+msgid "open Satellites"
+msgstr ""
+
 msgid "open bouquetlist"
 msgstr "öffne Favoritenliste"
 
@@ -9529,58 +9574,26 @@ msgstr "umschalten"
 msgid "zapped"
 msgstr "umgeschaltet"
 
-#~ msgid ""
-#~ "\n"
-#~ "Protocol:"
-#~ msgstr ""
-#~ "\n"
-#~ "Protokoll:"
-
-#~ msgid "2nd Infobar"
-#~ msgstr "2. Infobar"
-
-#~ msgid "Blue boost"
-#~ msgstr "Blauanteil erhöhen"
-
-#~ msgid "Check for unstable updates"
-#~ msgstr "Nach instabilen Updates suchen"
-
-#~ msgid "Event Info"
-#~ msgstr "Programminformation"
-
-#~ msgid "FTA"
-#~ msgstr "FTA"
-
-#~ msgid "Free to Air"
-#~ msgstr "unverschlüsselt"
-
-#~ msgid "Green boost"
-#~ msgstr "Grünanteil erhöhen"
-
-#~ msgid "Log Manager Setup"
-#~ msgstr "Log Verwaltung Einstellungen"
-
-#~ msgid "Online version check every (hours)"
-#~ msgstr "Nach Update suchen alle x Stunden"
+#~ msgid "EPGSearch"
+#~ msgstr "EPG Suche"
 
 #~ msgid ""
-#~ "Setup the interval to check for online updates. (in hours, 0 = Disable "
-#~ "the check completely.)"
+#~ "Welcome.\n"
+#~ "\n"
+#~ "This start wizard will guide you through the basic setup of your Vu+ "
+#~ "Ultimo.\n"
+#~ "Press the OK button on your remote control to move to the next step."
 #~ msgstr ""
-#~ "Setze das Zeitintervall für die Suche nach Updates. (Stunden, "
-#~ "0=ausgeschaltet)"
+#~ "Willkommen.\n"
+#~ "\n"
+#~ "Der Startassistent wird Sie durch die Grundeinstellungen der STB_BOX "
+#~ "führen.\n"
+#~ "Drücken Sie OK auf Ihrer Fernbedienung, um zum nächsten Schritt zu "
+#~ "gelangen."
 
-#~ msgid "Show PTS Infobar while timeshifting?"
-#~ msgstr "Zeige PTS Infobar während Timeshift?"
-
-#~ msgid "Show background in Radio Mode"
-#~ msgstr "Zeige Hintergrund im Radio-Modus"
-
-#~ msgid "Swap total:"
-#~ msgstr "Swap:"
-
-#~ msgid "This option sets up the picture sharpness."
-#~ msgstr "Diese Option bestimmt die Bildschärfe."
-
-#~ msgid "Use ViX coloured Buttons"
-#~ msgstr "ViX Farbtasten benutzen"
+#~ msgid ""
+#~ "Your STB_BOX will be restarted after the installation of service\n"
+#~ "Do you want to install now ?"
+#~ msgstr ""
+#~ "Deine STB_BOX wird nach installieren des Services neu gestartet\n"
+#~ "Service jetzt installieren?"

@@ -26,4 +26,6 @@ inline std::string convertDVBUTF8(const std::string &string, int table=1, int ts
 	return convertDVBUTF8((const unsigned char*)string.c_str(), string.length(), table, tsidonid);
 }
 
+std::string urlDecode(const std::string &s);
+
 #endif // __E_STRING__

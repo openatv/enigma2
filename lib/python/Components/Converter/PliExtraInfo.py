@@ -1,6 +1,6 @@
 # shamelessly copied from pliExpertInfo (Vali, Mirakels, Littlesat)
 
-from enigma import iServiceInformation
+from enigma import iServiceInformation, iPlayableService
 from Components.Converter.Converter import Converter
 from Components.Element import cached
 from Components.config import config
@@ -10,7 +10,7 @@ from Poll import Poll
 
 def addspace(text):
 	if text:
-		text += " "
+		text += "  "
 	return text
 
 class PliExtraInfo(Poll, Converter, object):
@@ -27,12 +27,14 @@ class PliExtraInfo(Poll, Converter, object):
 			( "0x900",  "0x9ff", "NDS",     "Nd"),
 			( "0xb00",  "0xbff", "Conax",   "Co"),
 			( "0xd00",  "0xdff", "CryptoW", "Cw"),
+			( "0xe00",  "0xeff", "PowerVU", "P" ),
 			("0x1700", "0x17ff", "Beta",    "B" ),
 			("0x1800", "0x18ff", "Nagra",   "N" ),
 			("0x2600", "0x2600", "Biss",    "Bi"),
 			("0x4ae0", "0x4ae1", "Dre",     "D" )
 		)
 		self.ecmdata = GetEcmInfo()
+		self.feraw = self.fedata = self.updateFEdata = None
 
 	def getCryptoInfo(self,info):
 		if (info.getInfo(iServiceInformation.sIsCrypted) == 1):
@@ -165,6 +167,22 @@ class PliExtraInfo(Poll, Converter, object):
 		res += "\c00??????"
 		return res
 
+	def createCryptoPowerVU(self,info):
+		available_caids = info.getInfoObject(iServiceInformation.sCAIDs)
+		if int(self.current_caid, 16) >= int('0xe00', 16) and int(self.current_caid, 16) <= int('0xeff', 16):
+			color="\c004c7d3f"
+		else:
+			color = "\c009?9?9?"
+			try:
+				for caid in available_caids:
+					if caid >= int('0xe00', 16) and caid <= int('0xeff', 16):
+						color="\c00eeee00"
+			except:
+				pass
+		res = color + 'P'
+		res += "\c00??????"
+		return res
+
 	def createCryptoBeta(self,info):
 		available_caids = info.getInfoObject(iServiceInformation.sCAIDs)
 		if int(self.current_caid, 16) >= int('0x1700', 16) and int(self.current_caid, 16) <= int('0x17ff', 16):
@@ -253,6 +271,11 @@ class PliExtraInfo(Poll, Converter, object):
 	def createVideoCodec(self,info):
 		return ("MPEG2", "MPEG4", "MPEG1", "MPEG4-II", "VC1", "VC1-SM", "")[info.getInfo(iServiceInformation.sVideoType)]
 
+	def createTransponderInfo(self,fedata,feraw):
+		return addspace(self.createTunerSystem(fedata)) + addspace(self.createFrequency(fedata)) + addspace(self.createPolarization(fedata))\
+			+ addspace(self.createSymbolRate(fedata)) + addspace(self.createFEC(fedata)) + addspace(self.createModulation(fedata))\
+			+ self.createOrbPos(feraw)
+
 	def createFrequency(self,fedata):
 		frequency = fedata.get("frequency")
 		if frequency:
@@ -303,6 +326,214 @@ class PliExtraInfo(Poll, Converter, object):
 			return str((float(orbpos)) / 10.0) + "E"
 		return ""
 
+	def createTransponderName(self,feraw):
+		orbpos = feraw.get("orbital_position")
+		if orbpos > 1800:
+			if orbpos == 3590:
+				orb_pos = 'Thor/Intelsat'
+			elif orbpos == 3560:
+				orb_pos = 'Amos (4'
+			elif orbpos == 3550:
+				orb_pos = 'Atlantic Bird'
+			elif orbpos == 3530:
+				orb_pos = 'Nilesat/Atlantic Bird'
+			elif orbpos == 3520:
+				orb_pos = 'Atlantic Bird'
+			elif orbpos == 3475:
+				orb_pos = 'Atlantic Bird'
+			elif orbpos == 3460:
+				orb_pos = 'Express'
+			elif orbpos == 3450:
+				orb_pos = 'Telstar'
+			elif orbpos == 3420:
+				orb_pos = 'Intelsat'
+			elif orbpos == 3380:
+				orb_pos = 'Nss'
+			elif orbpos == 3355:
+				orb_pos = 'Intelsat'
+			elif orbpos == 3325:
+				orb_pos = 'Intelsat'
+			elif orbpos == 3300:
+				orb_pos = 'Hispasat'
+			elif orbpos == 3285:
+				orb_pos = 'Intelsat'
+			elif orbpos == 3170:
+				orb_pos = 'Intelsat'
+			elif orbpos == 3150:
+				orb_pos = 'Intelsat'
+			elif orbpos == 3070:
+				orb_pos = 'Intelsat'
+			elif orbpos == 3045:
+				orb_pos = 'Intelsat'
+			elif orbpos == 3020:
+				orb_pos = 'Intelsat 9'
+			elif orbpos == 2990:
+				orb_pos = 'Amazonas'
+			elif orbpos == 2900:
+				orb_pos = 'Star One'
+			elif orbpos == 2880:
+				orb_pos = 'AMC 6 (72'
+			elif orbpos == 2875:
+				orb_pos = 'Echostar 6'
+			elif orbpos == 2860:
+				orb_pos = 'Horizons'
+			elif orbpos == 2810:
+				orb_pos = 'AMC5'
+			elif orbpos == 2780:
+				orb_pos = 'NIMIQ 4'
+			elif orbpos == 2690:
+				orb_pos = 'NIMIQ 1'
+			elif orbpos == 3592:
+				orb_pos = 'Thor/Intelsat'
+			elif orbpos == 2985:
+				orb_pos = 'Echostar 3,12'
+			elif orbpos == 2830:
+				orb_pos = 'Echostar 8'
+			elif orbpos == 2630:
+				orb_pos = 'Galaxy 19'
+			elif orbpos == 2500:
+				orb_pos = 'Echostar 10,11'
+			elif orbpos == 2502:
+				orb_pos = 'DirectTV 5'
+			elif orbpos == 2410:
+				orb_pos = 'Echostar 7 Anik F3'
+			elif orbpos == 2391:
+				orb_pos = 'Galaxy 23'
+			elif orbpos == 2390:
+				orb_pos = 'Echostar 9'
+			elif orbpos == 2412:
+				orb_pos = 'DirectTV 7S'
+			elif orbpos == 2310:
+				orb_pos = 'Galaxy 27'
+			elif orbpos == 2311:
+				orb_pos = 'Ciel 2'
+			elif orbpos == 2120:
+				orb_pos = 'Echostar 2'
+			else:
+				orb_pos = str((float(3600 - orbpos)) / 10.0) + "W"
+		elif orbpos > 0:
+			if orbpos == 192:
+				orb_pos = 'Astra 1F'
+			elif orbpos == 130:
+				orb_pos = 'Hot Bird 6,7A,8'
+			elif orbpos == 235:
+				orb_pos = 'Astra 1E'
+			elif orbpos == 1100:
+				orb_pos = 'BSat 1A,2A'
+			elif orbpos == 1101:
+				orb_pos = 'N-Sat 110'
+			elif orbpos == 1131:
+				orb_pos = 'KoreaSat 5'
+			elif orbpos == 1440:
+				orb_pos = 'SuperBird 7,C2'
+			elif orbpos == 1006:
+				orb_pos = 'AsiaSat 2'
+			elif orbpos == 1030:
+				orb_pos = 'Express A2'
+			elif orbpos == 1056:
+				orb_pos = 'Asiasat 3S'
+			elif orbpos == 1082:
+				orb_pos = 'NSS 11'
+			elif orbpos == 881:
+				orb_pos = 'ST1'
+			elif orbpos == 900:
+				orb_pos = 'Yamal 201'
+			elif orbpos == 917:
+				orb_pos = 'Mesat'
+			elif orbpos == 950:
+				orb_pos = 'Insat 4B'
+			elif orbpos == 951:
+				orb_pos = 'NSS 6'
+			elif orbpos == 765:
+				orb_pos = 'Telestar'
+			elif orbpos == 785:
+				orb_pos = 'ThaiCom 5'
+			elif orbpos == 800:
+				orb_pos = 'Express'
+			elif orbpos == 830:
+				orb_pos = 'Insat 4A'
+			elif orbpos == 850:
+				orb_pos = 'Intelsat 709'
+			elif orbpos == 750:
+				orb_pos = 'Abs'
+			elif orbpos == 720:
+				orb_pos = 'Intelsat'
+			elif orbpos == 705:
+				orb_pos = 'Eutelsat W5'
+			elif orbpos == 685:
+				orb_pos = 'Intelsat'
+			elif orbpos == 620:
+				orb_pos = 'Intelsat 902'
+			elif orbpos == 600:
+				orb_pos = 'Intelsat 904'
+			elif orbpos == 570:
+				orb_pos = 'Nss'
+			elif orbpos == 530:
+				orb_pos = 'Express AM22'
+			elif orbpos == 480:
+				orb_pos = 'Eutelsat 2F2'
+			elif orbpos == 450:
+				orb_pos = 'Intelsat'
+			elif orbpos == 420:
+				orb_pos = 'Turksat 2A'
+			elif orbpos == 400:
+				orb_pos = 'Express AM1'
+			elif orbpos == 390:
+				orb_pos = 'Hellas Sat 2'
+			elif orbpos == 380:
+				orb_pos = 'Paksat 1'
+			elif orbpos == 360:
+				orb_pos = 'Eutelsat Sesat'
+			elif orbpos == 335:
+				orb_pos = 'Astra 1M'
+			elif orbpos == 330:
+				orb_pos = 'Eurobird 3'
+			elif orbpos == 328:
+				orb_pos = 'Galaxy 11'
+			elif orbpos == 315:
+				orb_pos = 'Astra 5A'
+			elif orbpos == 310:
+				orb_pos = 'Turksat'
+			elif orbpos == 305:
+				orb_pos = 'Arabsat'
+			elif orbpos == 285:
+				orb_pos = 'Eurobird 1'
+			elif orbpos == 284:
+				orb_pos = 'Eurobird/Astra'
+			elif orbpos == 282:
+				orb_pos = 'Eurobird/Astra'
+			elif orbpos == 1220:
+				orb_pos = 'AsiaSat'
+			elif orbpos == 1380:
+				orb_pos = 'Telstar 18'
+			elif orbpos == 260:
+				orb_pos = 'Badr 3/4'
+			elif orbpos == 255:
+				orb_pos = 'Eurobird 2'
+			elif orbpos == 215:
+				orb_pos = 'Eutelsat'
+			elif orbpos == 216:
+				orb_pos = 'Eutelsat W6'
+			elif orbpos == 210:
+				orb_pos = 'AfriStar 1'
+			elif orbpos == 160:
+				orb_pos = 'Eutelsat W2'
+			elif orbpos == 100:
+				orb_pos = 'Eutelsat W1'
+			elif orbpos == 90:
+				orb_pos = 'Eurobird 9'
+			elif orbpos == 70:
+				orb_pos = 'Eutelsat W3A'
+			elif orbpos == 50:
+				orb_pos = 'Sirius 4'
+			elif orbpos == 48:
+				orb_pos = 'Sirius 4'
+			elif orbpos == 30:
+				orb_pos = 'Telecom 2'
+			else:
+				orb_pos = str((float(orbpos)) / 10.0) + "E"
+		return orb_pos
+
 	def createProviderName(self,info):
 		return info.getInfoString(iServiceInformation.sProvider)
 
@@ -316,6 +547,13 @@ class PliExtraInfo(Poll, Converter, object):
 
 		if not info:
 			return ""
+
+		if self.type == "CryptoInfo":
+			self.getCryptoInfo(info)
+			if int(config.usage.show_cryptoinfo.value) > 0:
+				return addspace(self.createCryptoBar(info)) + self.createCryptoSpecial(info)
+			else:
+				return addspace(self.createCryptoBar(info)) + addspace(self.current_source) + self.createCryptoSpecial(info)
 
 		if self.type == "CryptoBar":
 			if int(config.usage.show_cryptoinfo.value) > 0:
@@ -407,17 +645,42 @@ class PliExtraInfo(Poll, Converter, object):
 		if self.type == "VideoCodec":
 			return self.createVideoCodec(info)
 
-		feinfo = service.frontendInfo()
-		if feinfo is None:
+		if self.updateFEdata:
+			feinfo = service.frontendInfo()
+			if feinfo:
+				self.feraw = feinfo.getAll(True)
+				if self.feraw:
+					self.fedata = ConvertToHumanReadable(self.feraw)
+
+		feraw=self.feraw
+		fedata=self.fedata
+
+		if not feraw or not fedata:
 			return ""
 
-		feraw = feinfo.getAll(True)
-		if feraw is None:
-			return ""
+		if self.type == "All":
+			self.getCryptoInfo(info)
+			if int(config.usage.show_cryptoinfo.value) > 0:
+				return addspace(self.createProviderName(info)) + self.createTransponderInfo(fedata,feraw) + "\n"\
+				+ addspace(self.createCryptoBar(info)) + addspace(self.createCryptoSpecial(info)) + "\n"\
+				+ addspace(self.createVideoCodec(info)) + self.createResolution(info)
+			else:
+				return addspace(self.createProviderName(info)) + self.createTransponderInfo(fedata,feraw) + "\n"\
+				+ addspace(self.createCryptoBar(info)) + self.current_source + "\n"\
+				+ addspace(self.createCryptoSpecial(info)) + addspace(self.createVideoCodec(info)) + self.createResolution(info)
 
-		fedata = ConvertToHumanReadable(feraw)
-		if fedata is None:
-			return ""
+		if self.type == "ServiceInfo":
+			return addspace(self.createProviderName(info)) + addspace(self.createTunerSystem(fedata)) + addspace(self.createFrequency(fedata)) + addspace(self.createPolarization(fedata))\
+			+ addspace(self.createSymbolRate(fedata)) + addspace(self.createFEC(fedata)) + addspace(self.createModulation(fedata)) + addspace(self.createOrbPos(feraw))\
+			+ addspace(self.createVideoCodec(info)) + self.createResolution(info)
+
+		if self.type == "TransponderInfo2line":
+			return addspace(self.createProviderName(info)) + addspace(self.createTunerSystem(fedata)) +  addspace(self.createTransponderName(feraw)) + '\n'\
+			+ self.createFrequency(fedata) + addspace(" MHz") + addspace(self.createPolarization(fedata))\
+			+ addspace(self.createSymbolRate(fedata)) + self.createModulation(fedata) + '-' + addspace(self.createFEC(fedata))
+
+		if self.type == "TransponderInfo":
+			return self.createTransponderInfo(fedata,feraw)
 
 		if self.type == "TransponderFrequency":
 			return self.createFrequency(fedata)
@@ -442,19 +705,6 @@ class PliExtraInfo(Poll, Converter, object):
 
 		if self.type == "TunerSystem":
 			return self.createTunerSystem(fedata)
-
-		if self.type == "All":
-			self.getCryptoInfo(info)
-			if int(config.usage.show_cryptoinfo.value) > 0:
-				return addspace(self.createProviderName(info)) + addspace(self.createTunerSystem(fedata)) + addspace(self.createFrequency(fedata)) + addspace(self.createPolarization(fedata))\
-				+ addspace(self.createSymbolRate(fedata)) + addspace(self.createFEC(fedata)) + addspace(self.createModulation(fedata)) + self.createOrbPos(feraw) + "\n"\
-				+ addspace(self.createCryptoBar(info)) + addspace(self.createCryptoSpecial(info)) + "\n"\
-				+ addspace(self.createVideoCodec(info)) + self.createResolution(info)
-			else:
-				return addspace(self.createProviderName(info)) + addspace(self.createTunerSystem(fedata)) + addspace(self.createFrequency(fedata)) + addspace(self.createPolarization(fedata))\
-				+ addspace(self.createSymbolRate(fedata)) + addspace(self.createFEC(fedata)) + addspace(self.createModulation(fedata)) + self.createOrbPos(feraw) + "\n"\
-				+ addspace(self.createCryptoBar(info)) + self.current_source + "\n"\
-				+ addspace(self.createCryptoSpecial(info)) + addspace(self.createVideoCodec(info)) + self.createResolution(info)
 
 		return _("invalid type")
 
@@ -486,6 +736,9 @@ class PliExtraInfo(Poll, Converter, object):
 		elif self.type == "CryptoCaidCryptoWAvailable":
 			request_caid = "Cw"
 			request_selected = False
+		elif self.type == "CryptoCaidPowerVUAvailable":
+			request_caid = "P"
+			request_selected = False
 		elif self.type == "CryptoCaidBetaAvailable":
 			request_caid = "B"
 			request_selected = False
@@ -516,6 +769,9 @@ class PliExtraInfo(Poll, Converter, object):
 		elif self.type == "CryptoCaidCryptoWSelected":
 			request_caid = "Cw"
 			request_selected = True
+		elif self.type == "CryptoCaidPowerVUSelected":
+			request_caid = "P"
+			request_selected = True
 		elif self.type == "CryptoCaidBetaSelected":
 			request_caid = "B"
 			request_selected = True
@@ -540,8 +796,6 @@ class PliExtraInfo(Poll, Converter, object):
 			return False
 
 		current_caid	= data[1]
-		#current_provid	= data[2]
-		#current_ecmpid	= data[3]
 
 		available_caids = info.getInfoObject(iServiceInformation.sCAIDs)
 
@@ -563,5 +817,11 @@ class PliExtraInfo(Poll, Converter, object):
 	boolean = property(getBool)
 
 	def changed(self, what):
-		Converter.changed(self, what)
+		if what[0] == self.CHANGED_SPECIFIC:
+			if what[1] in (iPlayableService.evEnd, iPlayableService.evStart, iPlayableService.evUpdatedInfo):
+				self.updateFEdata = True
+			Converter.changed(self, what)
+		elif what[0] == self.CHANGED_POLL and self.updateFEdata is not None:
+			self.updateFEdata = False
+			Converter.changed(self, what)
 

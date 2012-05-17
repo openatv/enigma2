@@ -51,7 +51,7 @@ void eStreamClient::notifier(int what)
 					size_t pos = request.find(' ', 5);
 					if (pos != std::string::npos)
 					{
-						serviceref = request.substr(5, pos - 5);
+						serviceref = urlDecode(request.substr(5, pos - 5));
 						if (!serviceref.empty())
 						{
 							const char *reply = "HTTP/1.0 200 OK\r\nConnection: Close\r\nContent-Type: video/mpeg\r\nServer: streamserver\r\n\r\n";

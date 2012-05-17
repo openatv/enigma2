@@ -1,3 +1,4 @@
+import os
 from enigma import eEPGCache, getBestPlayableServiceReference, \
 	eServiceReference, iRecordableService, quitMainloop
 
@@ -49,6 +50,21 @@ class AFTEREVENT:
 	STANDBY = 1
 	DEEPSTANDBY = 2
 	AUTO = 3
+
+def findSafeRecordPath(dirname):
+	from Components import Harddisk
+	dirname = os.path.realpath(dirname)
+	mountpoint = Harddisk.findMountPoint(dirname)
+	if mountpoint in ('/', '/media'):
+		print '[RecordTimer] media is not mounted:', dirname
+		return None
+	if not os.path.isdir(dirname):
+		try:
+			os.makedirs(dirname)
+		except Exception, ex:
+			print '[RecordTimer] Failed to create dir "%s":' % dirname, ex
+			return None
+	return dirname
 
 # please do not translate log messages
 class RecordTimerEntry(timer.TimerEntry, object):
@@ -139,13 +155,13 @@ class RecordTimerEntry(timer.TimerEntry, object):
 
 	def freespace(self):
 		try:
-			if not self.dirname or not Directories.fileExists(self.dirname, 'w'):
-				if self.dirname:
-					self.dirnameHadToFallback = True
-				dirname = defaultMoviePath()
+			if not self.dirname:
+				dirname = findSafeRecordPath(defaultMoviePath())
 			else:
-				dirname = self.dirname
-			import os
+				dirname = findSafeRecordPath(self.dirname)
+				if dirname is None:
+					dirname = findSafeRecordPath(defaultMoviePath())
+					self.dirnameHadToFallback = True
 			s = os.statvfs(dirname)
 			if (s.f_bavail * s.f_bsize) / 1000000 < 1024:
 				self.log(0, "Not enough free space to record")
@@ -160,43 +176,46 @@ class RecordTimerEntry(timer.TimerEntry, object):
 	def calculateFilename(self):
 		service_name = self.service_ref.getServiceName()
 		begin_date = strftime("%Y%m%d %H%M", localtime(self.begin))
-		begin_shortdate = strftime("%Y%m%d", localtime(self.begin))
-		
+
 		print "begin_date: ", begin_date
 		print "service_name: ", service_name
 		print "name:", self.name
 		print "description: ", self.description
-		
+
 		filename = begin_date + " - " + service_name
 		if self.name:
-			if config.usage.setup_level.index >= 2: # expert+
-				if config.recording.filename_composition.value == "short":
-					filename = begin_shortdate + " - " + self.name
-				elif config.recording.filename_composition.value == "long":
-					filename += " - " + self.name + " - " + self.description
-				else:
-					filename += " - " + self.name # standard
+			if config.recording.filename_composition.value == "short":
+				filename = strftime("%Y%m%d", localtime(self.begin)) + " - " + self.name
+			elif config.recording.filename_composition.value == "long":
+				filename += " - " + self.name + " - " + self.description
 			else:
-				filename += " - " + self.name
+				filename += " - " + self.name # standard
 
 		if config.recording.ascii_filenames.value:
 			filename = ASCIItranslit.legacyEncode(filename)
 
-		if not self.dirname or not Directories.fileExists(self.dirname, 'w'):
-			if self.dirname:
-				self.dirnameHadToFallback = True
-			dirname = defaultMoviePath()
+
+		if not self.dirname:
+			dirname = findSafeRecordPath(defaultMoviePath())
 		else:
-			dirname = self.dirname
+			dirname = findSafeRecordPath(self.dirname)
+			if dirname is None:
+				dirname = findSafeRecordPath(defaultMoviePath())
+				self.dirnameHadToFallback = True
+		if not dirname:
+			return None
 		self.Filename = Directories.getRecordingFilename(filename, dirname)
 		self.log(0, "Filename calculated as: '%s'" % self.Filename)
-		#begin_date + " - " + service_name + description)
+		return self.Filename
 
 	def tryPrepare(self):
 		if self.justplay:
 			return True
 		else:
-			self.calculateFilename()
+			if not self.calculateFilename():
+				self.do_backoff()
+				self.start_prepare = time() + self.backoff
+				return False
 			if not self.freespace():
 				return False
 			rec_ref = self.service_ref and self.service_ref.ref

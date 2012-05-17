@@ -1283,7 +1283,7 @@ int eDVBSubtitleParser::stop()
 
 int eDVBSubtitleParser::start(int pid, int composition_page_id, int ancillary_page_id)
 {
-	if (m_pes_reader)
+	if (m_pes_reader && pid >= 0 && pid < 0x1fff)
 	{
 		eDebug("start dvb subtitles on pid 0x%04x with composition_page_id %d and ancillary_page_id %d",
 			pid, composition_page_id, ancillary_page_id);

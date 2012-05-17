@@ -5,11 +5,6 @@
 
 #include <set>
 
-#if HAVE_DVB_API_VERSION < 3
-#define FREQUENCY Frequency
-#else
-#define FREQUENCY frequency
-#endif
 #include <lib/base/eerror.h>
 
 //#define SEC_DEBUG
@@ -302,7 +297,7 @@ bool need_turn_fast(int turn_speed)
 //			eDebug(x); \
 //		} \
 
-RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPARAMETERS &parm, const eDVBFrontendParametersSatellite &sat, int slot_id, unsigned int tunetimeout)
+RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, const eDVBFrontendParametersSatellite &sat, int &frequency, int slot_id, unsigned int tunetimeout)
 {
 	bool simulate = ((eDVBFrontend*)&frontend)->is_simulate();
 	int lnb_idx = -1;
@@ -409,8 +404,8 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 				// calc Frequency
 				int local= abs(sat.frequency
 					- lof);
-				parm.FREQUENCY = ((((local * 2) / 125) + 1) / 2) * 125;
-				frontend.setData(eDVBFrontend::FREQ_OFFSET, sat.frequency - parm.FREQUENCY);
+				frequency = ((((local * 2) / 125) + 1) / 2) * 125;
+				frontend.setData(eDVBFrontend::FREQ_OFFSET, sat.frequency - frequency);
 
 				/* Dishpro bandstacking HACK */
 				if (lnb_param.m_lof_threshold == 1000)
@@ -438,7 +433,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 						- 1400000
 						+ lnb_param.guard_offset;
 				int tmp2 = ((((tmp1 * 2) / 4000) + 1) / 2) * 4000;
-				parm.FREQUENCY = lnb_param.SatCRvco - (tmp1-tmp2) + lnb_param.guard_offset;
+				frequency = lnb_param.SatCRvco - (tmp1-tmp2) + lnb_param.guard_offset;
 				lnb_param.UnicableTuningWord = ((tmp2 / 4000) 
 						| ((band & 1) ? 0x400 : 0)			//HighLow
 						| ((band & 2) ? 0x800 : 0)			//VertHor
