@@ -1568,9 +1568,14 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				self.session.openWithCallback(self.delete, MessageBox, _("Directory contains %d file(s) and %d sub-directories.\n") % (files,subdirs) + are_you_sure)
 				return
 			else:
-				os.rmdir(cur_path)
-				self["list"].removeService(current)
-				self.showActionFeedback(_("Deleted") + " " + name)
+				try:
+					os.rmdir(cur_path)
+				except Exception, e:
+					print "[MovieSelection] Failed delete", e
+					self.session.open(MessageBox, _("Delete failed!") + "\n" + str(e), MessageBox.TYPE_ERROR)
+				else:
+					self["list"].removeService(current)
+					self.showActionFeedback(_("Deleted") + " " + name)
 		else:
 			if not args:
 				rec_filename = os.path.split(current.getPath())[1]
