@@ -498,9 +498,11 @@ def runScreenTest():
 	profile_final()
 
 	if config.misc.boxtype.value == 'gb800se' or config.misc.boxtype.value == 'gb800solo' or config.misc.boxtype.value == 'gb800ue':
-		from enigma import evfd
+		from enigma import evfd, eConsoleAppContainer
 		try:
-			os.system('vfdctl "    openaaf starting e2"; vfdctl -a')
+			cmd = 'vfdctl "    openaaf starting e2"; vfdctl -a'
+			container = eConsoleAppContainer()
+			container.execute(cmd)
 		except:
 			evfd.getInstance().vfd_write_string("-E2-")
 		evfd.getInstance().vfd_led(str(1)) 	
