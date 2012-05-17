@@ -39,6 +39,7 @@ static time_t prev_time;
 
 void setRTC(time_t time)
 {
+	eDebug("[eDVBLocalTimerHandler] set RTC Time");
 	noRTC();
 	FILE *f = fopen("/proc/stb/fp/rtc", "w");
 	if (f)
