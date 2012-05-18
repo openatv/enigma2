@@ -50,7 +50,7 @@ SUBDIRS += VFDGiga SatelliteEquipmentControl DiseqcTester HdmiCEC
 endif
 
 if VENTON
-SUBDIRS += SatelliteEquipmentControl DiseqcTester HdmiCEC 
+SUBDIRS += SatelliteEquipmentControl DiseqcTester HdmiCEC VentonFancontrol
 endif
 
 install_PYTHON =	\

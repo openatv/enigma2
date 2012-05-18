@@ -346,6 +346,8 @@ lib/python/Plugins/SystemPlugins/SoftwareManager/meta/Makefile
 lib/python/Plugins/SystemPlugins/choiceRC/Makefile
 lib/python/Plugins/SystemPlugins/choiceRC/meta/Makefile
 lib/python/Plugins/SystemPlugins/VFDGiga/Makefile
+lib/python/Plugins/SystemPlugins/VentonFancontrol/Makefile
+lib/python/Plugins/SystemPlugins/VentonFancontrol/meta/Makefile
 lib/python/Tools/Makefile
 lib/components/Makefile
 lib/components/eitsave/Makefile
