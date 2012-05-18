@@ -40,7 +40,7 @@ config.plugins.aafpanel_redpanel = ConfigSubsection()
 config.plugins.aafpanel_redpanel.enabled = ConfigYesNo(default=True)
 config.plugins.aafpanel_redpanel.enabledlong = ConfigYesNo(default=False)
 config.plugins.aafpanel_yellowkey = ConfigSubsection()
-config.plugins.aafpanel_yellowkey.list = ConfigSelection([('0',_("Audio Selection")),('1',_("Default (Timeshift)"))])
+config.plugins.aafpanel_yellowkey.list = ConfigSelection([('0',_("Audio Selection")),('1',_("Default (Timeshift)")), ('2',_("Toggle Pillarbox <> Pan&Scan"))])
 config.plugins.showaafpanelextensions = ConfigYesNo(default=False)
 
 	

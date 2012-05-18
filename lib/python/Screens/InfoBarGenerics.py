@@ -4061,6 +4061,14 @@ class InfoBarAudioSelection:
 		if config.plugins.aafpanel_yellowkey.list.value == '0':
 			from Screens.AudioSelection import AudioSelection
 			self.session.openWithCallback(self.audioSelected, AudioSelection, infobar=self)
+		elif config.plugins.aafpanel_yellowkey.list.value == '2':
+			mode = open("/proc/stb/video/policy").read()[:-1]
+			if mode == "letterbox":
+				open("/proc/stb/video/policy", "w").write("panscan")
+			elif mode == "panscan":
+				open("/proc/stb/video/policy", "w").write("letterbox")
+			else:
+				open("/proc/stb/video/policy", "w").write("panscan") # if current policy is not panscan or letterbox, set to panscan
 		else:
 			try:
 				self.startTimeshift()
