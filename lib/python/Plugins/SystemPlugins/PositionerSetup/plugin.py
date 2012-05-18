@@ -101,17 +101,18 @@ class PositionerSetup(Screen):
 
 	UPDATE_INTERVAL = 50					# milliseconds
 	STATUS_MSG_TIMEOUT = 2					# seconds
+	LOG_SIZE = 16 * 1024					# log buffer size
 
 	def __init__(self, session, feid):
 		self.session = session
 		Screen.__init__(self, session)
 		self.feid = feid
 		self.oldref = None
-		log.open(16 * 1024)
+		log.open(self.LOG_SIZE)
 		if config.Nims[self.feid].configMode.value == 'advanced':
 			self.advanced = True
 			self.advancedconfig = config.Nims[self.feid].advanced
-			self.advancedsats = config.Nims[self.feid].advanced.sat
+			self.advancedsats = self.advancedconfig.sat
 		else:
 			self.advanced = False
 
@@ -155,7 +156,6 @@ class PositionerSetup(Screen):
 			cur.get("pilot", eDVBFrontendParametersSatellite.Pilot_Unknown))
 
 		self.tuner.tune(tp)
-		self.createConfig()
 		self.polarisation = tp[2]
 		self.isMoving = False
 		self.stopOnLock = False
@@ -171,7 +171,6 @@ class PositionerSetup(Screen):
 
 		self.list = []
 		self["list"] = ConfigList(self.list)
-		self.createSetup()
 
 		self["snr_db"] = TunerInfo(TunerInfo.SNR_DB, statusDict = self.frontendStatus)
 		self["snr_percentage"] = TunerInfo(TunerInfo.SNR_PERCENTAGE, statusDict = self.frontendStatus)
@@ -223,6 +222,9 @@ class PositionerSetup(Screen):
 		self.statusTimer.start(self.UPDATE_INTERVAL, True)
 		self.dataAvailable = Event()
 		self.onClose.append(self.__onClose)
+
+		self.createConfig()
+		self.createSetup()
 
 	def __onClose(self):
 		self.statusTimer.stop()
@@ -283,7 +285,9 @@ class PositionerSetup(Screen):
 	def createConfig(self):
 		rotorposition = 1
 		orb_pos = 0
+		self.printMsg((_("Using Tuner ") + "%s") % chr(0x41 + self.feid))
 		if not self.advanced:
+			self.printMsg((_("Configuration mode: ") + "%s") % _("simple"))
 			nim = config.Nims[self.feid]
 			self.sitelon = nim.longitude.float
 			self.longitudeOrientation = nim.longitudeOrientation.value
@@ -295,16 +299,25 @@ class PositionerSetup(Screen):
 			self.turningspeedH = nim.turningspeedH.float
 			self.turningspeedV = nim.turningspeedV.float
 		else:	# it is advanced
+			self.printMsg((_("Configuration mode: ") + "%s") % _("advanced"))
 			fe_data = { }
 			self.frontend.getFrontendData(fe_data)
 			self.frontend.getTransponderData(fe_data, True)
 			orb_pos = fe_data.get("orbital_position", None)
+			lnb = None
 			if orb_pos in self.advancedsats:
 				rotorposition = int(self.advancedsats[orb_pos].rotorposition.value)
 				lnbnum = int(self.advancedsats[orb_pos].lnb.value)
-				lnb = self.advancedconfig.lnb[lnbnum]
-			else:
-				lnb = None
+				if not lnbnum:
+					for allsats in range(3601, 3604):
+						lnbnum = int(self.advancedsats[allsats].lnb.value)
+						if lnbnum:
+							break
+				if lnbnum:
+					self.printMsg((_("Using LNB") + "%d") % lnbnum)
+					lnb = self.advancedconfig.lnb[lnbnum]
+			if not lnb:
+				self.logMsg(_("Warning: no LNB; using factory defaults."))
 			self.setLNB(lnb)
 		self.positioner_tune = ConfigNothing()
 		self.positioner_move = ConfigNothing()
@@ -677,8 +690,8 @@ class PositionerSetup(Screen):
 		return max(turningspeed, 0.1)
 
 	TURNING_START_STOP_DELAY = 1.200	# seconds
-	MAX_SEARCH_ANGLE = 10.0				# degrees
-	MAX_FOCUS_ANGLE = 5.0				# degrees
+	MAX_SEARCH_ANGLE = 12.0				# degrees
+	MAX_FOCUS_ANGLE = 6.0				# degrees
 	LOCK_LIMIT = 0.1					# ratio
 	MEASURING_TIME = 2.500				# seconds
 
