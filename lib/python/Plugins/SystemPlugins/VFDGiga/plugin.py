@@ -112,10 +112,10 @@ class VFD_GigaSetup(ConfigListScreen, Screen):
 		self.createSetup()
 		
 		self.Console = Console()
-                self["key_red"] = Button(_("Cancel"))
-                self["key_green"] = Button(_("Save"))
-                self["key_yellow"] = Button(_("Update Date/Time"))
-                                
+		self["key_red"] = Button(_("Cancel"))
+		self["key_green"] = Button(_("Save"))
+		self["key_yellow"] = Button(_("Update Date/Time"))
+
 		self["setupActions"] = ActionMap(["SetupActions"],
 		{
 			"save": self.save,
@@ -202,7 +202,7 @@ class VFD_Giga:
 		global ChannelnumberInstance
 		if ChannelnumberInstance is None:
 			ChannelnumberInstance = Channelnumber(session) 
-		    			
+
 	def shutdown(self):
 		self.abort()
 
@@ -211,12 +211,12 @@ class VFD_Giga:
 
 def main(menuid):
 	if menuid != "system": 
-			return [ ] 	
+			return [ ]
 	return [(_("VFD_Giga"), startVFD, "VFD_Giga", None)] 
 
-def startVFD(session, **kwargs): 
-	session.open(VFD_GigaSetup) 	
-	
+def startVFD(session, **kwargs):
+	session.open(VFD_GigaSetup)
+
 gigaVfd = None
 gReason = -1
 mySession = None
@@ -228,6 +228,10 @@ def controlgigaVfd():
 	
 	if gReason == 0 and mySession != None and gigaVfd == None:
 		print "Starting VFD_Giga"
+		try:
+			open("/proc/stb/fp/rtc", "w").write(str(0))
+		except IOError:
+			print "setRTCtime failed!"
 		gigaVfd = VFD_Giga(mySession)
 	elif gReason == 1 and gigaVfd != None:
 		print "Stopping VFD_Giga"
@@ -235,11 +239,11 @@ def controlgigaVfd():
 		if time.localtime().tm_isdst == 0:
 			forsleep = int(time.time())-time.timezone
 		else:
-			forsleep = int(time.time())-time.altzone			
+			forsleep = int(time.time())-time.altzone-time.timezone
 		try:
 			open("/proc/stb/fp/rtc", "w").write(str(forsleep))
 		except IOError:
-			print "setRTCtime failed!" 		
+			print "setRTCtime failed!"
 		gigaVfd = None
 
 def sessionstart(reason, **kwargs):

@@ -39,6 +39,7 @@ static time_t prev_time;
 
 void setRTC(time_t time)
 {
+	eDebug("[eDVBLocalTimerHandler] set RTC Time");
 	noRTC();
 	FILE *f = fopen("/proc/stb/fp/rtc", "w");
 	if (f)
@@ -219,7 +220,10 @@ eDVBLocalTimeHandler::~eDVBLocalTimeHandler()
 	if (ready())
 	{
 		eDebug("set RTC to previous valid time");
-		setRTC(::time(0));
+		if (!strncmp(mybox,"gb800",sizeof(mybox)))
+				eDebug("Dont set RTC to previous valid time, giga box");
+			else
+				setRTC(::time(0));
 	}
 }
 
@@ -351,7 +355,6 @@ void eDVBLocalTimeHandler::updateTime( time_t tp_time, eDVBChannel *chan, int up
 		int enigma_diff = tp_time-linuxTime;
 
 		int new_diff=0;
-
 
 		bool updated = m_time_ready;
 
