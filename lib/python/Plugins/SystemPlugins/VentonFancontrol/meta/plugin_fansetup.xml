@@ -1,0 +1,16 @@
+<default>
+	  <prerequisites>
+                    <tag type="System" />
+	  </prerequisites>
+          <info language="en">
+                    <author>Venton</author>
+                    <name>Fan Control</name>
+                    <packagename>enigma2-plugin-systemplugins-fancontrol</packagename>
+                    <shortdescription>Fancontrol Settings inStandby Mode</shortdescription>
+                    <description>Fancontrol Settings inStandby Mode</description>
+          </info>
+	  <files type="package"> <!-- without version, without .ipk -->
+		<file type="package" name="enigma2-plugin-systemplugins-fansetup" />
+	</files>
+
+</default>
