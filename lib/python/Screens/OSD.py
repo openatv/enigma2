@@ -267,25 +267,13 @@ def setConfiguredSettings():
 		applySettings(config.osd.threeDmode.value, int(config.osd.threeDznorm.value))
 
 def isChangeOsdPositionSupported():
-	try:
-		can_osd_position = open("/proc/stb/fb/dst_left", "r") and True or False
-	except:
-		can_osd_position = False
-	return can_osd_position
+	return open("/proc/stb/fb/dst_left", "r") and True or False
 
 def isChangeOsdAlphaSupported():
-	try:
-		can_osd_alpha = open("/proc/stb/video/alpha", "r") and True or False
-	except:
-		can_osd_alpha = False
-	return can_osd_alpha
+	return open("/proc/stb/video/alpha", "r") and True or False
 
 def isChange3DOsdSupported():
-	try:
-		can_osd_3dmode = open("/proc/stb/fb/3dmode", "r") and True or False
-	except:
-		can_osd_3dmode = False
-	return can_osd_3dmode
+	return (open("/proc/stb/fb/3dmode", "r") or open("/proc/stb/fb/primary/3d", "r")) and True or False
 
 def isOsdSetupSupported():
 	if SystemInfo["CanChangeOsdPosition"] == True:

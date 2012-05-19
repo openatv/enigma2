@@ -230,15 +230,7 @@ def InitUsageConfig():
 	config.osd.dst_top = ConfigSelectionNumber(default = 0, stepwidth = 1, min = 0, max = 576, wraparound = False)
 	config.osd.dst_height = ConfigSelectionNumber(default = 576, stepwidth = 1, min = 0, max = 576, wraparound = False)
 	config.osd.alpha = ConfigSelectionNumber(default = 255, stepwidth = 1, min = 0, max = 255, wraparound = False)
-	if config.misc.boxtype.value.startswith('vu'):
-		choiceoptions = [("0", _("Off")), ("1", _("Side by Side")),("2", _("Top and Bottom")), ("3", _("Auto"))]
-		config.osd.threeDmode = ConfigSelection(default = 'auto', choices = choiceoptions )
-	elif config.misc.boxtype.value.startswith('et'):
-		choiceoptions = [("off", _("Off")), ("auto", _("Auto")), ("sidebyside", _("Side by Side")),("topandbottom", _("Top and Bottom"))]
-		config.osd.threeDmode = ConfigSelection(default = 'auto', choices = choiceoptions )
-	else:
-		choiceoptions = [("off", _("Off"))]
-		config.osd.threeDmode = ConfigSelection(default = 'off', choices = choiceoptions )
+	config.osd.threeDmode = ConfigSelection([("off", _("Off")), ("auto", _("Auto")), ("sidebyside", _("Side by Side")),("topandbottom", _("Top and Bottom"))], "auto")
 	config.osd.threeDznorm = ConfigSlider(default = 50, increment = 1, limits = (0, 100))
 	config.osd.show3dextensions = ConfigYesNo(default = False)
 
