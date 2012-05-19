@@ -601,6 +601,14 @@ profile("LCD")
 import Components.Lcd
 Components.Lcd.InitLcd()
 Components.Lcd.IconCheck()
+# Disable internal clock vfd for Venton-HD1 until we can adjust it for standby
+if config.misc.boxtype.value == 'venton-hd1':
+	try:
+		f = open("/proc/stb/fp/clock_enable", "r").readline()[:-1]
+		if f != '0':
+			open("/proc/stb/fp/clock_enable", "w").write('0')
+	except:
+		print "Error disable clock_enable for venton boxes"
 
 profile("OSD")
 import Screens.OSD
