@@ -10,25 +10,19 @@ config.plugins.FanControl = ConfigSubsection()
 config.plugins.FanControl.mode = ConfigSelection(choices = modelist, default = "0")
 config.plugins.FanControl.StandbyOff = ConfigSelection(choices = standbylist, default="false")
 
-class FanSetupScreen(Screen, ConfigListScreen):
-	skin = """
-	<screen position="c-200,c-100" size="600,200" title="Fan setup">
-		<widget name="config" position="c-275,c-75" size="550,150" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="c-245,e-45" zPosition="0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/red.png" position="c+105,e-45" zPosition="0" size="140,40" alphatest="on" />
-		<widget name="ok" position="c-245,e-45" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;20" transparent="1" backgroundColor="green" />
-		<widget name="cancel" position="c+105,e-45" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;20" transparent="1" backgroundColor="red" />
-	</screen>"""
+class FanSetupScreen(ConfigListScreen, Screen):
 
 	def __init__(self, session):
-		self.skin = FanSetupScreen.skin
 		Screen.__init__(self, session)
+		self.session = session
+		self.skinName = "Setup"
+		Screen.setTitle(self, _("Fan setup") + "...")
 
 		from Components.ActionMap import ActionMap
-		from Components.Button import Button
+		from Components.Sources.StaticText import StaticText
 
-		self["ok"] = Button(_("OK"))
-		self["cancel"] = Button(_("Cancel"))
+		self["key_red"] = StaticText(_("Cancel"))
+		self["key_green"] = StaticText(_("OK"))
 
 		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
 		{
