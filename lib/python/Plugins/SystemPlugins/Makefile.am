@@ -9,10 +9,6 @@ if XTREND
 SUBDIRS += SatelliteEquipmentControl DiseqcTester choiceRC XtrendFancontrol HdmiCEC
 endif
 
-if MARA
-SUBDIRS += SatelliteEquipmentControl DiseqcTester choiceRC XtrendFancontrol HdmiCEC
-endif
-
 if VUUNO
 SUBDIRS += VuUnoFancontrol SatelliteEquipmentControl DiseqcTester FirmwareUpgrade RemoteControlCode HdmiCEC
 endif
