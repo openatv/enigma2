@@ -218,22 +218,43 @@ class SystemMemoryInfo(Screen):
 		self["lab1"] = StaticText(_("Virtuosso Image Xtreme"))
 		self["lab2"] = StaticText(_("By Team ViX"))
 		out_lines = file("/proc/meminfo").readlines()
+		self.AboutText = _("RAM") + '\n\n'
+		RamTotal = "-"
+		RamFree = "-"
 		for lidx in range(len(out_lines)-1):
 			tstLine = out_lines[lidx].split()
 			if "MemTotal:" in tstLine:
 				MemTotal = out_lines[lidx].split()
-				AboutText = _("Total Memory:") + "\t" + MemTotal[1] + "\n"
+				self.AboutText += _("Total Memory:") + "\t" + MemTotal[1] + "\n"
 			if "MemFree:" in tstLine:
 				MemFree = out_lines[lidx].split()
-				AboutText += _("Free Memory:") + "\t" + MemFree[1] + "\n"
+				self.AboutText += _("Free Memory:") + "\t" + MemFree[1] + "\n"
+			if "Buffers:" in tstLine:
+				Buffers = out_lines[lidx].split()
+				self.AboutText += _("Buffers:") + "\t" + Buffers[1] + "\n"
+			if "Cached:" in tstLine:
+				Cached = out_lines[lidx].split()
+				self.AboutText += _("Cached:") + "\t" + Cached[1] + "\n"
 			if "SwapTotal:" in tstLine:
 				SwapTotal = out_lines[lidx].split()
-				AboutText += _("Total Swap:") + "\t" + SwapTotal[1] + "\n"
+				self.AboutText += _("Total Swap:") + "\t" + SwapTotal[1] + "\n"
 			if "SwapFree:" in tstLine:
 				SwapFree = out_lines[lidx].split()
-				AboutText += _("Free Swap:") + "\t" + SwapFree[1] + "\n\n"
+				self.AboutText += _("Free Swap:") + "\t" + SwapFree[1] + "\n\n"
 
-		self["AboutScrollLabel"] = ScrollLabel(AboutText)
+		cmd = "df -mh / | grep -v '^Filesystem'"
+		result = popen(cmd).read()
+		if result != "":
+			flash = str(result).replace('\n','')
+			flash = flash.split()
+			RamTotal=flash[1]
+			RamFree=flash[3]
+
+		self.AboutText += _("FLASH") + '\n\n'
+		self.AboutText += _("Total:") + "\t" + RamTotal + "\n"
+		self.AboutText += _("Free:") + "\t" + RamFree + "\n\n"
+
+		self["AboutScrollLabel"] = ScrollLabel(self.AboutText)
 
 		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
 			{
