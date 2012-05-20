@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-18 01:34+0100\n"
-"PO-Revision-Date: 2012-05-18 01:41+0100\n"
-"Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
+"POT-Creation-Date: 2012-05-20 16:54+0100\n"
+"PO-Revision-Date: 2012-05-20 21:48+0100\n"
+"Last-Translator: Ralf Biedermann <ralf.biedermann@rbsoft.de>\n"
 "Language-Team: Deutsch <> j-ot&Trial\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -526,7 +526,7 @@ msgstr "AFP Einstellungen"
 
 #, python-format
 msgid "AV aspect is %s."
-msgstr ""
+msgstr "AV Aspect ist %s."
 
 msgid "Abort"
 msgstr "Abbrechen"
@@ -1142,6 +1142,9 @@ msgstr "Helligkeit (Normal)"
 msgid "Brightness (Standby)"
 msgstr "Helligkeit (Standby)"
 
+msgid "Buffers:"
+msgstr "Buffer:"
+
 msgid "Build:"
 msgstr ""
 
@@ -1246,6 +1249,9 @@ msgstr "Kabel Suche"
 
 msgid "Cache Thumbnails"
 msgstr "Vorschaubilder zwischenspeichern"
+
+msgid "Cached:"
+msgstr "Cache:"
 
 msgid "Can't cancel during upgrade!!"
 msgstr "Upgrade kann nciht unterbrochen werden!!"
@@ -1377,7 +1383,7 @@ msgid "Check every (hours)"
 msgstr "Alle x Stunden prüfen"
 
 msgid "Checking Feeds"
-msgstr ""
+msgstr "Prüfe Feeds"
 
 msgid "Checking Filesystem..."
 msgstr "Überprüfe Dateisystem..."
@@ -2575,6 +2581,9 @@ msgstr "FEC"
 msgid "FILE NOT EXIST : /proc/stb/fp/remote_code"
 msgstr "Datei existiert nicht: : /proc/stb/fp/remote_code"
 
+msgid "FLASH"
+msgstr ""
+
 msgid "FPGA"
 msgstr ""
 
@@ -2972,6 +2981,9 @@ msgstr ""
 
 msgid "Horizontal"
 msgstr "Horizontal"
+
+msgid "Horizontal turning speed"
+msgstr "Horizontale Geschwindigkeit"
 
 msgid "Hostname: "
 msgstr ""
@@ -4751,7 +4763,7 @@ msgid "Please wait while your network is restarting..."
 msgstr "Bitte warte, dass Netzwerk wird neu gestartet."
 
 msgid "Please wait whilst feeds state is checked."
-msgstr ""
+msgstr "Bitte warten bis Feeds geprüft wurden."
 
 msgid "Please wait..."
 msgstr "Bitte warten..."
@@ -4990,6 +5002,9 @@ msgstr "QuickEPG Taste"
 
 msgid "Quickzap"
 msgstr "Schnellumschalter"
+
+msgid "RAM"
+msgstr ""
 
 msgid "RF output"
 msgstr "RF-Ausgang"
@@ -6156,7 +6171,7 @@ msgid "Show live tv when movie stopped"
 msgstr "Zeige Live-TV wenn Film beendet"
 
 msgid "Show network mounts ..."
-msgstr ""
+msgstr "Zeige Netzwerk Mounts..."
 
 msgid "Show or hide the extended description, (skin dependent)."
 msgstr "Zeige oder Verstecke erweiterte Beschreibung (skinabhängig)."
@@ -6177,7 +6192,7 @@ msgid "Show status icons in Movielist"
 msgstr "Zeige Status-Icons in der Filmliste"
 
 msgid "Show the infomation on current event."
-msgstr ""
+msgstr "Zeige Informationen des aktuellen Programms."
 
 msgid "Show the media player..."
 msgstr "Zeige den Medienplayer..."
@@ -6331,7 +6346,7 @@ msgid "Sorry feeds are down for maintenance"
 msgstr "Tut uns leid. Feeds sind wegen Wartungsarbeiten nicht erreichbar."
 
 msgid "Sorry feeds are down for maintenance, please try again later."
-msgstr ""
+msgstr "Tut uns leid zur Zeit finden Wartungsarbeiten statt. Bitte später erneut versuchen."
 
 msgid "Sorry feeds seem be in an unstable state, if you wish to use them please enable 'Allow unstable updates' in online update setup."
 msgstr "Tut uns leid. Feeds sind auf instabil eingestellt. Wenn instabile Updates erlaubt werden sollen muss das in den Einstellungen für Online-Update aktiviert werden."
@@ -7305,7 +7320,7 @@ msgid "Today"
 msgstr "Heute"
 
 msgid "Toggle aspect ratio..."
-msgstr ""
+msgstr "Aspect/Ratio umschalten..."
 
 msgid "Tone Amplitude"
 msgstr "Ton Amplitude"
@@ -7341,7 +7356,7 @@ msgid "Total handled client emm's"
 msgstr "Insgesamt behandelte Klienten EMMs"
 
 msgid "Total:"
-msgstr "gesamt:"
+msgstr "Gesamt:"
 
 msgid "Track"
 msgstr "Spur"
@@ -7417,6 +7432,9 @@ msgstr "Tuner-Status"
 
 msgid "Tuner type"
 msgstr "Tuner Typ"
+
+msgid "Tuning step size"
+msgstr "Suche Schrittweite"
 
 msgid "Turkish"
 msgstr "Türkisch"
@@ -7700,6 +7718,9 @@ msgstr ""
 msgid "Vertical"
 msgstr "Vertikal"
 
+msgid "Vertical turning speed"
+msgstr "Vertikale Geschwindigkeit"
+
 msgid "ViX EPG"
 msgstr ""
 
@@ -7896,11 +7917,11 @@ msgstr "Einschalten"
 msgid "Wakeup TV from standby"
 msgstr "Fernseher aus Standby einschalten"
 
-msgid "Wakeup your STB_BOX from standby"
-msgstr "A/V-Receiver aus Standby einschalten"
-
 msgid "Wakeup signal from TV"
 msgstr "Einschaltsignal vom Fernseher"
+
+msgid "Wakeup your STB_BOX from standby"
+msgstr "A/V-Receiver aus Standby einschalten"
 
 msgid "Warn if free space drops below (kB):"
 msgstr "Warnen wenn der freie interne Speicher unter (kB) fällt:"
@@ -7968,9 +7989,13 @@ msgstr ""
 msgid ""
 "Welcome.\n"
 "\n"
-"This start wizard will guide you through the basic setup of your STB_BOX.\n"
+"This start wizard will guide you through the basic setup of your Vu+ Ultimo.\n"
 "Press the OK button on your remote control to move to the next step."
 msgstr ""
+"Willkommen.\n"
+"\n"
+"Der Startassistent wird dich durch die Grundeinstellungen der STB_BOX führen.\n"
+"Bitte OK drücken um zum nächsten Punkt zu gelangen."
 
 msgid "Welcome..."
 msgstr "Willkommen..."
@@ -8305,6 +8330,8 @@ msgid ""
 "Your STB_BOX will be restarted after the installation of service\n"
 "Ready to install \"%s\" ?"
 msgstr ""
+"Die STB_BOX wird neu gestartet wenn der Service installiert ist.\n"
+"Bereit \"%s\" zu installieren?"
 
 msgid ""
 "Your STB_BOX will be restarted after the installation of service.\n"
@@ -8326,7 +8353,7 @@ msgid "Your backup succeeded. We will now continue to explain the further upgrad
 msgstr "Die Sicherung ist geglückt. Die STB_BOX wird nun den weiteren Aktualisierungs-Prozess erklären."
 
 msgid "Your box is not connected to the internet, please check your network settings and try again."
-msgstr ""
+msgstr "Die STB_BOX ist nicht mit dem Internet verbunden. Bitte Netzwerkeinstellungen überprüfen und erneut versuchen."
 
 msgid "Your collection exceeds the size of a single layer medium, you will need a blank dual layer DVD!"
 msgstr "Die Zusammenstellung überschreitet die Größe eines einfachen Mediums, es wirdein Dual-Layer-Rohling benötigt!"
@@ -8429,7 +8456,7 @@ msgid "Zoom In/Out TV..."
 msgstr ""
 
 msgid "Zoom Off..."
-msgstr ""
+msgstr "Zoom Aus..."
 
 msgid "[TimeShift] Restarting Timeshift!"
 msgstr "[Timeshift] Timeshift erneut starten!"
