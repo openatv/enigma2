@@ -76,7 +76,7 @@ class CIselectMainMenu(Screen):
 			action = cur[2]
 			slot = cur[3]
 			if action == 1:
-				print "[CI_Wizzard] there is no CI Slot in your receiver"
+				print "[CI_Wizzard] there is no CI Slot in your STB_BOX"
 			else:
 				print "[CI_Wizzard] selected CI Slot : %d" % slot
 				if config.usage.setup_level.index > 1: # advanced

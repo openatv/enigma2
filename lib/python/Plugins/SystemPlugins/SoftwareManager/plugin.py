@@ -2105,9 +2105,9 @@ def Plugins(path, **kwargs):
 	global plugin_path
 	plugin_path = path
 	list = [
-		PluginDescriptor(name=_("Software management"), description=_("Manage your receiver's software"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc=startSetup),
+		PluginDescriptor(name=_("Software management"), description=_("Manage your STB_BOX's software"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc=startSetup),
 		PluginDescriptor(name=_("Ipkg"), where = PluginDescriptor.WHERE_FILESCAN, needsRestart = False, fnc = filescan)
 	]
 	if config.usage.setup_level.index >= 2: # expert+
-		list.append(PluginDescriptor(name=_("Software management"), description=_("Manage your receiver's software"), where = PluginDescriptor.WHERE_EXTENSIONSMENU, needsRestart = False, fnc=UpgradeMain))
+		list.append(PluginDescriptor(name=_("Software management"), description=_("Manage your STB_BOX's software"), where = PluginDescriptor.WHERE_EXTENSIONSMENU, needsRestart = False, fnc=UpgradeMain))
 	return list
