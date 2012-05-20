@@ -1,31 +1,28 @@
 from Screens.Screen import Screen
 from Components.ConfigList import ConfigListScreen
 from Components.config import config, ConfigSubsection, ConfigInteger, ConfigSelection, getConfigListEntry
+from Components.FanControl import fancontrol
 
 modelist = {"0": _("Off"), "1": _("On")}
+standbylist = [("false", _("no")), ("true", _("yes")), ("trueRec", _("yes, Except for Recording or HDD"))]
 
-config.plugins.FanSetup = ConfigSubsection()
-config.plugins.FanSetup.mode = ConfigSelection(choices = modelist, default = "0")
+config.plugins.FanControl = ConfigSubsection()
+config.plugins.FanControl.mode = ConfigSelection(choices = modelist, default = "0")
+config.plugins.FanControl.StandbyOff = ConfigSelection(choices = standbylist, default="false")
 
-class FanSetupScreen(Screen, ConfigListScreen):
-	skin = """
-	<screen position="c-200,c-100" size="400,200" title="Fan setup">
-		<widget name="config" position="c-175,c-75" size="350,150" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="c-145,e-45" zPosition="0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/red.png" position="c+5,e-45" zPosition="0" size="140,40" alphatest="on" />
-		<widget name="ok" position="c-145,e-45" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;20" transparent="1" backgroundColor="green" />
-		<widget name="cancel" position="c+5,e-45" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;20" transparent="1" backgroundColor="red" />
-	</screen>"""
+class FanSetupScreen(ConfigListScreen, Screen):
 
 	def __init__(self, session):
-		self.skin = FanSetupScreen.skin
 		Screen.__init__(self, session)
+		self.session = session
+		self.skinName = "Setup"
+		Screen.setTitle(self, _("Fan setup") + "...")
 
 		from Components.ActionMap import ActionMap
-		from Components.Button import Button
+		from Components.Sources.StaticText import StaticText
 
-		self["ok"] = Button(_("OK"))
-		self["cancel"] = Button(_("Cancel"))
+		self["key_red"] = StaticText(_("Cancel"))
+		self["key_green"] = StaticText(_("OK"))
 
 		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
 		{
@@ -39,10 +36,13 @@ class FanSetupScreen(Screen, ConfigListScreen):
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session = self.session)
 
-		mode = config.plugins.FanSetup.mode.value
+		mode = config.plugins.FanControl.mode.value
+		modestandby = config.plugins.FanControl.StandbyOff.value
 
 		self.mode = ConfigSelection(choices = modelist, default = mode)
 		self.list.append(getConfigListEntry(_("Fan mode"), self.mode))
+		self.modestandby = ConfigSelection(choices = standbylist, default = modestandby)
+		self.list.append(getConfigListEntry(_("Fan control in Standby off"), self.modestandby))
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
 
@@ -55,33 +55,40 @@ class FanSetupScreen(Screen, ConfigListScreen):
 		self.setPreviewSettings()
 
 	def setPreviewSettings(self):
-		applySettings(int(self.mode.value))
+		applySettings(int(self.mode.value), False, self.modestandby.value)
 
 	def keyGo(self):
-		config.plugins.FanSetup.mode.value = self.mode.value
-		config.plugins.FanSetup.save()
+		config.plugins.FanControl.mode.value = self.mode.value
+		config.plugins.FanControl.StandbyOff.value = self.modestandby.value
+		config.plugins.FanControl.save()
 		self.close()
 
 	def keyCancel(self):
 		setConfiguredSettings()
 		self.close()
 
-def applySettings(mode):
-	setMode = ""
+def applySettings(mode, firststart = None, modestandby = None):
 	if mode == 1:
-		setMode = "255"
+		fancontrol.getConfig(0).pwm.value = 255
 	else:
-		setMode = "0"
+		fancontrol.getConfig(0).pwm.value = 0
 
-	try:
-		file = open("/proc/stb/fp/fan_pwm", "w")
-		file.write('%s' % setMode)
-		file.close()
-	except:
-		return
+	if firststart:
+		if config.plugins.FanControl.StandbyOff.value == "false":
+			fancontrol.getConfig(0).pwm_standby.value = 255
+		else:
+			fancontrol.getConfig(0).pwm_standby.value = 0
+	else:
+		if modestandby == "false":
+			fancontrol.getConfig(0).pwm_standby.value = 255
+		else:
+			fancontrol.getConfig(0).pwm_standby.value = 0
+
+	fancontrol.getConfig(0).pwm.save()
+	fancontrol.getConfig(0).pwm_standby.save()
 
 def setConfiguredSettings():
-	applySettings(int(config.plugins.FanSetup.mode.value))
+	applySettings(int(config.plugins.FanControl.mode.value), True)
 
 def main(session, **kwargs):
 	session.open(FanSetupScreen)
