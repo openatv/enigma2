@@ -234,6 +234,9 @@ def InitUsageConfig():
 	elif config.misc.boxtype.value.startswith('et'):
 		choiceoptions = [("off", _("Off")), ("auto", _("Auto")), ("sidebyside", _("Side by Side")),("topandbottom", _("Top and Bottom"))]
 		config.osd.threeDmode = ConfigSelection(default = 'auto', choices = choiceoptions )
+	elif config.misc.boxtype.value.startswith('od'):
+		choiceoptions = [("off", _("Off")), ("auto", _("Auto")), ("sidebyside", _("Side by Side")),("topandbottom", _("Top and Bottom"))]
+		config.osd.threeDmode = ConfigSelection(default = 'auto', choices = choiceoptions )	
 	elif config.misc.boxtype.value.startswith('gb'):
 		choiceoptions = [("off", _("Off")), ("auto", _("Auto")), ("sidebyside", _("Side by Side")),("topandbottom", _("Top and Bottom"))]
 		config.osd.threeDmode = ConfigSelection(default = 'auto', choices = choiceoptions )

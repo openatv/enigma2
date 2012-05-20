@@ -70,9 +70,9 @@ class SystemInfo(Screen):
 		elif config.misc.boxtype.value == 'et9x00':
 			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET9x00 Series")
 			AboutText = _("Hardware:") + " Xtrend ET9x00 Series\n"
-		elif config.misc.boxtype.value == 'maram9':
-			self["BoxType"] = StaticText(_("Hardware:") + " MarA M9")
-			AboutText = _("Hardware:") + " MarA M9\n"
+		elif config.misc.boxtype.value == 'odinm9':
+			self["BoxType"] = StaticText(_("Hardware:") + " Odin M9")
+			AboutText = _("Hardware:") + " Odin M9\n"
 		elif config.misc.boxtype.value == 'gb800solo':
 			self["BoxType"] = StaticText(_("Hardware:") + " GigaBlue HD 800SOLO")
 			AboutText = _("Hardware:") + " GigaBlue HD 800SOLO\n"
@@ -84,7 +84,16 @@ class SystemInfo(Screen):
 			AboutText = _("Hardware:") + " GigaBlue HD 800UE\n"
 		elif config.misc.boxtype.value == 'quattro':
 			self["BoxType"] = StaticText(_("Hardware:") + " GigaBlue HD QUATTRO")
-			AboutText = _("Hardware:") + " GigaBlue HD 800 QUATTRO\n"			
+			AboutText = _("Hardware:") + " GigaBlue HD 800 QUATTRO\n"
+		elif config.misc.boxtype.value == 'venton-hd1':
+			self["BoxType"] = StaticText(_("Hardware:") + " Venton Unibox HD1")
+			AboutText = _("Hardware:") + " Venton Unibox HD1\n"
+		elif config.misc.boxtype.value == 'venton-hd2':
+			self["BoxType"] = StaticText(_("Hardware:") + " Venton Unibox HD2")
+			AboutText = _("Hardware:") + " Venton Unibox HD2\n"	
+		elif config.misc.boxtype.value == 'venton-hd3':
+			self["BoxType"] = StaticText(_("Hardware:") + " Venton Unibox HD3")
+			AboutText = _("Hardware:") + " Venton Unibox HD3\n"				
 		else:
 			self["BoxType"] = StaticText(_("Hardware:") + " " + config.misc.boxtype.value)
 			AboutText = _("Hardware:") + " " + config.misc.boxtype.value + "\n"
