@@ -160,5 +160,5 @@ def IpkgMain(session, **kwargs):
 	session.open(Ipkg)
 
 def Plugins(**kwargs):
-	return [PluginDescriptor(name="Old Softwareupdate", description="Updates your receiver's software", icon="update.png", where = PluginDescriptor.WHERE_PLUGINMENU, fnc=UpgradeMain),
+	return [PluginDescriptor(name="Old Softwareupdate", description="Updates your STB_BOX's software", icon="update.png", where = PluginDescriptor.WHERE_PLUGINMENU, fnc=UpgradeMain),
 			PluginDescriptor(name="opkg", description="opkg frontend", icon="update.png", where = PluginDescriptor.WHERE_PLUGINMENU, fnc=IpkgMain)]

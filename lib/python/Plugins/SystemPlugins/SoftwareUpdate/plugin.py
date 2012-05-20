@@ -141,4 +141,4 @@ def UpgradeMain(session, **kwargs):
 	session.open(UpdatePlugin)
 
 def Plugins(**kwargs):
-	return PluginDescriptor(name="Softwareupdate", description=_("Updates your receiver's software"), icon="update.png", where = PluginDescriptor.WHERE_PLUGINMENU, fnc=UpgradeMain)
+	return PluginDescriptor(name="Softwareupdate", description=_("Updates your STB_BOX's software"), icon="update.png", where = PluginDescriptor.WHERE_PLUGINMENU, fnc=UpgradeMain)
