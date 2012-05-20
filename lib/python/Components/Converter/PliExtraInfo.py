@@ -327,6 +327,7 @@ class PliExtraInfo(Poll, Converter, object):
 		return ""
 
 	def createTransponderName(self,feraw):
+		orb_pos = ""
 		orbpos = feraw.get("orbital_position")
 		if orbpos > 1800:
 			if orbpos == 3590:
