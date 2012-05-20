@@ -19,11 +19,13 @@ import Screens.Standby
 
 config.plugins.VFD_Giga = ConfigSubsection()
 config.plugins.VFD_Giga.showClock = ConfigSelection(default = "Yes", choices = [("False",_("in standby: ") + _("No")),("True",_("in standby: ") + _("Yes")),("True_All",_("Yes")),("Off",_("Off"))])
+config.plugins.VFD_Giga.showClockDeepStandby = ConfigSelection(default = "No", choices = [("False",_("No")),("True",_("Yes"))])
 config.plugins.VFD_Giga.setLed = ConfigYesNo(default = True)
 led = [("0",_("None")),("1",_("Blue")),("2",_("Red")),("3",_("Purple"))]				
 config.plugins.VFD_Giga.ledRUN = ConfigSelection(led, default = "Blue")
 config.plugins.VFD_Giga.ledSBY = ConfigSelection(led, default = "Red")
 config.plugins.VFD_Giga.ledREC = ConfigSelection(led, default = "Purple")
+#config.plugins.VFD_Giga.ledDSBY = ConfigSelection(led, default = "Red")
 config.plugins.VFD_Giga.timeMode = ConfigSelection(default = "24h", choices = [("12h"),("24h")])
 
 RecLed = None
@@ -187,15 +189,16 @@ def initVFD():
 		evfd.getInstance().vfd_led(config.plugins.VFD_Giga.ledRUN.value)
 	else:
 		evfd.getInstance().vfd_led("0")
-	if config.plugins.VFD_Giga.showClock.value == 'True' or config.plugins.VFD_Giga.showClock.value == 'True_All':
+
+	if config.plugins.VFD_Giga.showClockDeepStandby.value == 'True':
 		forcmd = '1'
-	elif config.plugins.VFD_Giga.showClock.value == 'Off':
-		evfd.getInstance().vfd_write_string("    ")
-		forcmd = '0'
 	else:
 		forcmd = '0'
 	cmd = 'echo '+str(forcmd)+' > /proc/stb/fp/display_clock'
 	res = system(cmd)
+	
+	if config.plugins.VFD_Giga.showClock.value == 'Off':
+		evfd.getInstance().vfd_write_string("    ")
 
 class VFD_GigaSetup(ConfigListScreen, Screen):
 	def __init__(self, session, args = None):
@@ -237,19 +240,17 @@ class VFD_GigaSetup(ConfigListScreen, Screen):
 		self.list.append(getConfigListEntry(_("Enable led"), config.plugins.VFD_Giga.setLed))
 		if config.plugins.VFD_Giga.setLed.value:
 			self.list.append(getConfigListEntry(_("Led state RUN"), config.plugins.VFD_Giga.ledRUN))	
-			self.list.append(getConfigListEntry(_("Led state Standby"), config.plugins.VFD_Giga.ledSBY))	
+			self.list.append(getConfigListEntry(_("Led state Standby"), config.plugins.VFD_Giga.ledSBY))
+			#self.list.append(getConfigListEntry(_("Led state Deep Standby"), config.plugins.VFD_Giga.ledDSBY))
 			self.list.append(getConfigListEntry(_("Led state Record"), config.plugins.VFD_Giga.ledREC))	
 			evfd.getInstance().vfd_led(str(config.plugins.VFD_Giga.ledRUN.value))
 		else:
 			evfd.getInstance().vfd_led("0")
 		self.list.append(getConfigListEntry(_("Show clock"), config.plugins.VFD_Giga.showClock))
-		if config.plugins.VFD_Giga.showClock.value != "Off":
+		self.list.append(getConfigListEntry(_("Show clock in Deep Standby"), config.plugins.VFD_Giga.showClockDeepStandby))
+		if config.plugins.VFD_Giga.showClock.value != "Off" or config.plugins.VFD_Giga.showClockDeepStandby.value == "True":
 			self.list.append(getConfigListEntry(_("Time mode"), config.plugins.VFD_Giga.timeMode))
-			cmd = 'echo 1 > /proc/stb/fp/display_clock'
-		else:
-			cmd = 'echo 0 > /proc/stb/fp/display_clock'
-			evfd.getInstance().vfd_led("0")
-		res = system(cmd)
+
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)	
 
@@ -262,10 +263,12 @@ class VFD_GigaSetup(ConfigListScreen, Screen):
 		print self["config"].getCurrent()[0]
 		if self["config"].getCurrent()[0] == _('Enable led'):
 			self.createSetup()	
-		if self["config"].getCurrent()[0][:3].upper() == 'LED':
+		elif self["config"].getCurrent()[0][:3].upper() == 'LED':
 			evfd.getInstance().vfd_led(str(config.plugins.VFD_Giga.ledRUN.value))
-		if self["config"].getCurrent()[0] == _('Show clock'):
-			self.createSetup()						
+		elif self["config"].getCurrent()[0] == _('Show clock'):
+			self.createSetup()
+		elif self["config"].getCurrent()[0] == _('Show clock in Deep Standby'):
+			self.createSetup()
 	
 	def abort(self):
 		print "aborting"
@@ -337,6 +340,7 @@ def controlgigaVfd():
 		gigaVfd = VFD_Giga(mySession)
 	elif gReason == 1 and gigaVfd != None:
 		print "Stopping VFD_Giga"
+		#evfd.getInstance().vfd_led(config.plugins.VFD_Giga.ledDSBY.value)
 		import time
 		if time.localtime().tm_isdst == 0:
 			forsleep = int(time.time())-time.timezone
