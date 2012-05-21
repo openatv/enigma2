@@ -526,7 +526,7 @@ def runScreenTest():
 	wakeupList.sort()
 	recordTimerWakeupAuto = False
 	if wakeupList:
-		from time import strftime
+		from time import strftime, altzone, timezone
 		startTime = wakeupList[0]
 		if (startTime[0] - nowTime) < 270: # no time to switch box back on
 			wptime = nowTime + 30  # so switch back on in 30 seconds
@@ -535,8 +535,14 @@ def runScreenTest():
 		if not config.misc.SyncTimeUsing.value == "0":
 			print "dvb time sync disabled... so set RTC now to current linux time!", strftime("%Y/%m/%d %H:%M", localtime(nowTime))
 			setRTCtime(nowTime)
-		print "set wakeup time to", strftime("%Y/%m/%d %H:%M", localtime(wptime))
-		setFPWakeuptime(wptime)
+		
+		if config.misc.boxtype.value == 'gb800se' or config.misc.boxtype.value == 'gb800solo' or config.misc.boxtype.value == 'gb800ue':
+			gigawutime = wptime-altzone-timezone
+			print "set Gigabox wakeup time to", strftime("%Y/%m/%d %H:%M", localtime(wptime))
+			setFPWakeuptime(gigawutime)
+		else:
+			print "set wakeup time to", strftime("%Y/%m/%d %H:%M", localtime(wptime))
+			setFPWakeuptime(wptime)
 		recordTimerWakeupAuto = startTime[1] == 0 and startTime[2]
 	config.misc.isNextRecordTimerAfterEventActionAuto.value = recordTimerWakeupAuto
 	config.misc.isNextRecordTimerAfterEventActionAuto.save()
