@@ -19,13 +19,13 @@ import Screens.Standby
 
 config.plugins.VFD_Giga = ConfigSubsection()
 config.plugins.VFD_Giga.showClock = ConfigSelection(default = "Yes", choices = [("False",_("in standby: ") + _("No")),("True",_("in standby: ") + _("Yes")),("True_All",_("Yes")),("Off",_("Off"))])
-config.plugins.VFD_Giga.showClockDeepStandby = ConfigSelection(default = "No", choices = [("False",_("No")),("True",_("Yes"))])
+config.plugins.VFD_Giga.showClockDeepStandby = ConfigSelection(default = "False", choices = [("False",_("No")),("True",_("Yes"))])
 config.plugins.VFD_Giga.setLed = ConfigYesNo(default = True)
 led = [("0",_("None")),("1",_("Blue")),("2",_("Red")),("3",_("Purple"))]				
-config.plugins.VFD_Giga.ledRUN = ConfigSelection(led, default = "Blue")
-config.plugins.VFD_Giga.ledSBY = ConfigSelection(led, default = "Red")
-config.plugins.VFD_Giga.ledREC = ConfigSelection(led, default = "Purple")
-#config.plugins.VFD_Giga.ledDSBY = ConfigSelection(led, default = "Red")
+config.plugins.VFD_Giga.ledRUN = ConfigSelection(led, default = "1")
+config.plugins.VFD_Giga.ledSBY = ConfigSelection(led, default = "2")
+config.plugins.VFD_Giga.ledREC = ConfigSelection(led, default = "3")
+config.plugins.VFD_Giga.ledDSBY = ConfigSelection(led, default = "2")
 config.plugins.VFD_Giga.timeMode = ConfigSelection(default = "24h", choices = [("12h"),("24h")])
 
 RecLed = None
@@ -147,12 +147,9 @@ class Channelnumber:
 ChannelnumberInstance = None
 
 def leaveStandby():
-	print "[GIGA-VFD] Leave Standby"
+	print "[VFD-GIGA] Leave Standby"
 
-	try:
-		open("/proc/stb/fp/rtc", "w").write(str(0))
-	except IOError:
-		print "setRTCtime failed!"
+	SetTime()
 
 	if config.plugins.VFD_Giga.showClock.value == 'Off':
 		evfd.getInstance().vfd_write_string("    ")
@@ -166,11 +163,13 @@ def leaveStandby():
 		evfd.getInstance().vfd_led(config.plugins.VFD_Giga.ledREC.value)
 
 def standbyCounterChanged(configElement):
-	print "[GIGA-VFD] In Standby"
+	print "[VFD-GIGA] In Standby"
 	
 	from Screens.Standby import inStandby
 	inStandby.onClose.append(leaveStandby)
-	
+
+	SetTime()		
+
 	if config.plugins.VFD_Giga.showClock.value == 'Off':
 		evfd.getInstance().vfd_write_string("    ")
 	
@@ -183,7 +182,7 @@ def standbyCounterChanged(configElement):
 		evfd.getInstance().vfd_led(config.plugins.VFD_Giga.ledREC.value)
 
 def initVFD():
-	print "[GIGA-VFD] initVFD"
+	print "[VFD-GIGA] initVFD"
 	
 	if config.plugins.VFD_Giga.setLed.value:
 		evfd.getInstance().vfd_led(config.plugins.VFD_Giga.ledRUN.value)
@@ -241,7 +240,7 @@ class VFD_GigaSetup(ConfigListScreen, Screen):
 		if config.plugins.VFD_Giga.setLed.value:
 			self.list.append(getConfigListEntry(_("Led state RUN"), config.plugins.VFD_Giga.ledRUN))	
 			self.list.append(getConfigListEntry(_("Led state Standby"), config.plugins.VFD_Giga.ledSBY))
-			#self.list.append(getConfigListEntry(_("Led state Deep Standby"), config.plugins.VFD_Giga.ledDSBY))
+			self.list.append(getConfigListEntry(_("Led state Deep Standby"), config.plugins.VFD_Giga.ledDSBY))
 			self.list.append(getConfigListEntry(_("Led state Record"), config.plugins.VFD_Giga.ledREC))	
 			evfd.getInstance().vfd_led(str(config.plugins.VFD_Giga.ledRUN.value))
 		else:
@@ -264,7 +263,7 @@ class VFD_GigaSetup(ConfigListScreen, Screen):
 		if self["config"].getCurrent()[0] == _('Enable led'):
 			self.createSetup()	
 		elif self["config"].getCurrent()[0][:3].upper() == 'LED':
-			evfd.getInstance().vfd_led(str(config.plugins.VFD_Giga.ledRUN.value))
+			evfd.getInstance().vfd_led(config.plugins.VFD_Giga.ledRUN.value)
 		elif self["config"].getCurrent()[0] == _('Show clock'):
 			self.createSetup()
 		elif self["config"].getCurrent()[0] == _('Show clock in Deep Standby'):
@@ -293,7 +292,7 @@ class VFD_GigaSetup(ConfigListScreen, Screen):
 
 class VFD_Giga:
 	def __init__(self, session):
-		print "VFD_Giga initializing"
+		print "[VFD-GIGA] initializing"
 		self.session = session
 		self.service = None
 		self.onClose = [ ]
@@ -310,7 +309,7 @@ class VFD_Giga:
 		self.abort()
 
 	def abort(self):
-		print "VFD_Giga aborting"
+		print "[VFD-GIGA] aborting"
 
 	config.misc.standbyCounter.addNotifier(standbyCounterChanged, initial_call = False)
 
@@ -330,30 +329,31 @@ def controlgigaVfd():
 	global gigaVfd
 	global gReason
 	global mySession
-	
+
+	SetTime()
+
 	if gReason == 0 and mySession != None and gigaVfd == None:
-		print "Starting VFD_Giga"
-		try:
-			open("/proc/stb/fp/rtc", "w").write(str(0))
-		except IOError:
-			print "setRTCtime failed!"
+		print "[VFD-GIGA] Starting !!"
 		gigaVfd = VFD_Giga(mySession)
 	elif gReason == 1 and gigaVfd != None:
-		print "Stopping VFD_Giga"
-		#evfd.getInstance().vfd_led(config.plugins.VFD_Giga.ledDSBY.value)
-		import time
-		if time.localtime().tm_isdst == 0:
-			forsleep = int(time.time())-time.timezone
-		else:
-			forsleep = int(time.time())-time.altzone-time.timezone
-		try:
-			open("/proc/stb/fp/rtc", "w").write(str(forsleep))
-		except IOError:
-			print "setRTCtime failed!"
+		print "[VFD-GIGA] Stopping !!"
+		evfd.getInstance().vfd_led(config.plugins.VFD_Giga.ledDSBY.value)
 		gigaVfd = None
 
+def SetTime():
+	print "[VFD-GIGA] Set RTC time" 
+	import time
+	if time.localtime().tm_isdst == 0:
+		forsleep = int(time.time())-time.timezone
+	else:
+		forsleep = int(time.time())-time.altzone-time.timezone
+	try:
+		open("/proc/stb/fp/rtc", "w").write(str(forsleep))
+	except IOError:
+		print "[VFD-GIGA] setRTCtime failed!"
+
 def sessionstart(reason, **kwargs):
-	print "AutoStarting VFD_Giga"
+	print "[VFD-GIGA] AutoStarting VFD_Giga"
 	global gigaVfd
 	global gReason
 	global mySession
