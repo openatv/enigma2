@@ -14,7 +14,9 @@ def initPiconPaths():
 	for mp in ('/usr/share/enigma2/', '/'):
 		onMountpointAdded(mp)
 	for part in harddiskmanager.getMountedPartitions():
+		mp = path = os.path.join(part.mountpoint, 'usr/share/enigma2')
 		onMountpointAdded(part.mountpoint)
+		onMountpointAdded(mp)
 
 def onMountpointAdded(mountpoint):
 	global searchPaths
