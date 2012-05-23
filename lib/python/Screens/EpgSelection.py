@@ -811,7 +811,7 @@ class EPGSelection(Screen, HelpableScreen):
 		if ((self.type == 5 and config.epgselction.preview_mode_pliepg.value) or (self.type == 4 and config.epgselction.preview_mode_infobar.value) or (self.type == 3 and config.epgselction.preview_mode_enhanced.value) or (self.type != 5 and self.type != 4 and self.type != 3 and config.epgselction.preview_mode.value)) and (self.StartRef and self.StartBouquet):
 			if self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_SINGLE:
 				self.session.nav.playService(self.StartRef)
-			elif self.type == EPG_TYPE_MULTI or self.type == EPG_TYPE_GRAPH:
+			elif self.type == EPG_TYPE_GRAPH:
 				self.zapFunc(self.StartRef, self.StartBouquet)
 		if self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
 			self.setServicelistSelection(self.StartBouquet, self.StartRef)

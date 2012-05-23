@@ -365,7 +365,7 @@ class EPGList(HTMLComponent, GUIComponent):
 	GUI_WIDGET = eListbox
 
 	def setItemsPerPage(self):
- 		if self.type == EPG_TYPE_GRAPH:
+		if self.type == EPG_TYPE_GRAPH:
 			if self.listHeight > 0:
 				itemHeight = self.listHeight / config.epgselction.itemsperpage_pliepg.getValue()
 			else:
@@ -413,7 +413,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.l.setFont(0, gFont(self.serviceFontNameGraph, self.serviceFontSizeGraph + config.epgselction.serv_fontsize_pliepg.getValue()))
 
 	def setEventFontsize(self):
- 		if self.type == EPG_TYPE_GRAPH:
+		if self.type == EPG_TYPE_GRAPH:
 			self.l.setFont(1, gFont(self.eventFontNameGraph, self.eventFontSizeGraph + config.epgselction.ev_fontsize_pliepg.getValue()))
 		elif self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_SINGLE or self.type == EPG_TYPE_SIMILAR:
 			self.l.setFont(0, gFont(self.eventFontNameSingle, self.eventFontSizeSingle + config.epgselction.ev_fontsize_enhanced.getValue()))
@@ -424,7 +424,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.l.setFont(0, gFont(self.eventFontNameInfobar, self.eventFontSizeInfobar + config.epgselction.ev_fontsize_infobar.getValue()))
 
 	def postWidgetCreate(self, instance):
- 		if self.type == EPG_TYPE_GRAPH:
+		if self.type == EPG_TYPE_GRAPH:
 			self.setOverjump_Empty(self.overjump_empty)
 			instance.setWrapAround(True)
 			instance.selectionChanged.get().append(self.serviceChanged)
@@ -433,7 +433,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.setServiceFontsize()
 			self.setEventFontsize()
 		else:
- 			if self.type == EPG_TYPE_SINGLE or self.type == EPG_TYPE_ENHANCED:
+			if self.type == EPG_TYPE_SINGLE or self.type == EPG_TYPE_ENHANCED:
 				instance.setWrapAround(True)
 			else:
 				instance.setWrapAround(False)
@@ -442,7 +442,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.setEventFontsize()
 
 	def preWidgetRemove(self, instance):
- 		if self.type == EPG_TYPE_GRAPH:
+		if self.type == EPG_TYPE_GRAPH:
 			instance.selectionChanged.get().remove(self.serviceChanged)
 			instance.setContent(None)
 		else:
@@ -524,7 +524,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			))
 		else:
 			res.append((eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w, r3.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName))
- 		return res
+		return res
 
 	def buildSimilarEntry(self, service, eventId, beginTime, service_name, duration):
 		(clock_pic, rec) = self.getPixmapForEntry(service, eventId, beginTime, duration)
@@ -800,6 +800,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			test = [ (service[0], 0, time_base, self.time_epoch) for service in self.list ]
 			serviceList = self.list
 			piconIdx = 3
+			return
 		else:
 			self.cur_event = None
 			self.cur_service = None
