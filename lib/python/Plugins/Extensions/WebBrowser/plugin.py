@@ -87,9 +87,9 @@ def wb_islock():
 	global lock
 	return lock
 
-class VuPlayer(Screen, InfoBarNotifications):
+class Player(Screen, InfoBarNotifications):
 	skin = 	"""
-		<screen name="VuPlayer" flags="wfNoBorder" position="center,620" size="455,53" title="Webbrowser" backgroundColor="transparent">
+		<screen name="Player" flags="wfNoBorder" position="center,620" size="455,53" title="Webbrowser" backgroundColor="transparent">
 			<ePixmap pixmap="skin_default/mp_wb_background.png" position="0,0" zPosition="-1" size="455,53" />
 			<ePixmap pixmap="skin_default/icons/mp_wb_buttons.png" position="40,23" size="30,13" alphatest="on" />
 
@@ -239,7 +239,7 @@ std_headers = {
 	'Accept-Language': 'en-us,en;q=0.5',
 }
 
-class VuPlayerLauncher:
+class PlayerLauncher:
 	def getVideoUrl(self, video_id):
 		video_url = None
 
@@ -308,12 +308,12 @@ class VuPlayerLauncher:
 				session.open(MessageBox, _("Sorry, video is not available!"), MessageBox.TYPE_INFO)
 				return
 			myreference = eServiceReference(4097, 0, myurl)
-			session.open(VuPlayer, myreference, service)
+			session.open(Player, myreference, service)
 		except Exception, msg:
 			wb_unlock()
 			print "Error >>", msg
 
-class VuPlayerService:
+class PlayerService:
 	def __init__(self, session):
 		self.enable = False
 		self.socket_timeout = 0
@@ -338,7 +338,7 @@ class VuPlayerService:
 	def run(self, e = True):
 		if self.enable:
 			return
-		print "VuPlayerService start!!"
+		print "PlayerService start!!"
 		self.enable = e
 		self.sock = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
 		self.sock.settimeout(self.socket_timeout)
@@ -351,7 +351,7 @@ class VuPlayerService:
 			except socket.timeout:
 				#print "[socket timeout]"
 				pass
-		print "VuPlayerService stop!!"
+		print "PlayerService stop!!"
 
 	def parseHandle(self, conn, addr):
 		# [http://www.youtube.com/watch?v=BpThu778qB4&feature=related]
@@ -371,7 +371,7 @@ class VuPlayerService:
 					print tmp # ['v', 'BpThu778qB4']
 					if len(tmp) == 2 and tmp[0] == "v":
 						wb_lock()
-						player = VuPlayerLauncher()
+						player = PlayerLauncher()
 						player.run(tmp[1], self.session, service)
 						while wb_islock():
 							time.sleep(1)
@@ -424,7 +424,7 @@ class BrowserLauncher(ConfigListScreen, Screen):
 
 		self.browser_root = "/usr/bin"
 		self.browser_name = "arora"
-		self.conf_file = "/usr/lib/enigma2/python/Plugins/Extensions/vuWebBrowser/settings.conf"
+		self.conf_file = "/usr/lib/enigma2/python/Plugins/Extensions/WebBrowser/settings.conf"
 		self["actions"] = ActionMap(["OkCancelActions", "ShortcutActions", "WizardActions", "ColorActions", "SetupActions", ],
                 {	"red": self.keyCancel,
 			"green": self.keyGo,
@@ -449,8 +449,8 @@ class BrowserLauncher(ConfigListScreen, Screen):
 		#time.sleep(2)
 
 		self.lock = False
-		self.vu_service = VuPlayerService(self.session)
-		self.vu_service.start(timeout=5)
+		self.service = PlayerService(self.session)
+		self.service.start(timeout=5)
 
 		self.exit_wait_cond = False
 		self.timer_exit_cond = eTimer()
@@ -465,7 +465,7 @@ class BrowserLauncher(ConfigListScreen, Screen):
 	def doExit(self):
 		change_galpha(set_const=False, set_value=False)
 		self.saveConfig()
-		self.vu_service.stop()
+		self.service.stop()
 		excute_cmd("killall -15 %s"%(self.browser_name))
 		excute_cmd("echo 60 > /proc/sys/vm/swappiness")
 		enable_rc_mouse(False) #rc-mouse off

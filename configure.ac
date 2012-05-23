@@ -221,9 +221,9 @@ lib/python/Plugins/Extensions/TuxboxPlugins/meta/Makefile
 lib/python/Plugins/Extensions/StreamTV/Makefile
 lib/python/Plugins/Extensions/StreamTV/icons/Makefile
 lib/python/Plugins/Extensions/StreamTV/meta/Makefile
-lib/python/Plugins/Extensions/vuWebBrowser/Makefile
-lib/python/Plugins/Extensions/vuWebBrowser/meta/Makefile
-lib/python/Plugins/Extensions/vuWebBrowser/keymap/Makefile
+lib/python/Plugins/Extensions/WebBrowser/Makefile
+lib/python/Plugins/Extensions/WebBrowser/meta/Makefile
+lib/python/Plugins/Extensions/WebBrowser/keymap/Makefile
 lib/python/Plugins/PLi/Makefile
 lib/python/Plugins/SystemPlugins/CleanupWizard/Makefile
 lib/python/Plugins/SystemPlugins/CleanupWizard/meta/Makefile

@@ -1,4 +1,4 @@
-installdir = $(pkglibdir)/python/Plugins/Extensions/vuWebBrowser
+installdir = $(pkglibdir)/python/Plugins/Extensions/WebBrowser
 
 SUBDIRS = meta keymap
 
