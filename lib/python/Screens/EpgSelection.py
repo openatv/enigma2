@@ -1134,12 +1134,35 @@ class EPGSelection(Screen, HelpableScreen):
 		self.moveTimeLines()
 
 	def OK(self):
-		if config.epgselction.OK_pliepg.value == "EventView" or config.epgselction.OK_enhanced.value == "EventView" or config.epgselction.OK_infobar.value == "EventView":
-			self.infoKeyPressed()
-		elif config.epgselction.OK_pliepg.value == "Zap" or config.epgselction.OK_enhanced.value == "Zap" or config.epgselction.OK_infobar.value == "Zap":
-			self.ZapTo()
-		elif config.epgselction.OK_pliepg.value == "Zap + Exit" or config.epgselction.OK_enhanced.value == "Zap + Exit" or config.epgselction.OK_infobar.value == "Zap + Exit":
-			self.zap()
+		if self.type == EPG_TYPE_GRAPH:
+			if config.epgselction.OK_pliepg.value == "EventView":
+				self.infoKeyPressed()
+			elif config.epgselction.OK_pliepg.value == "Zap":
+				self.ZapTo()
+			elif config.epgselction.OK_pliepg.value == "Zap + Exit":
+				self.zap()
+		elif self.type == EPG_TYPE_INFOBAR:
+			if config.epgselction.OK_infobar.value == "EventView":
+				self.infoKeyPressed()
+			elif config.epgselction.OK_infobar.value == "Zap":
+				self.ZapTo()
+			elif config.epgselction.OK_infobar.value == "Zap + Exit":
+				self.zap()
+		elif self.type == EPG_TYPE_ENHANCED:
+			if config.epgselction.OK_enhanced.value == "EventView":
+				self.infoKeyPressed()
+			elif config.epgselction.OK_enhanced.value == "Zap":
+				self.ZapTo()
+			elif config.epgselction.OK_enhanced.value == "Zap + Exit":
+				self.zap()
+		elif self.type == EPG_TYPE_MULTI:
+			if config.epgselction.OK.value == "EventView":
+				self.infoKeyPressed()
+			elif config.epgselction.OK.value == "Zap":
+				self.ZapTo()
+			elif config.epgselction.OK.value == "Zap + Exit":
+				self.zap()
+
 		if self.type == EPG_TYPE_GRAPH:
 			serviceref = self.session.nav.getCurrentlyPlayingServiceReference()
 			self["list"].setCurrentlyPlaying(serviceref)
