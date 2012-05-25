@@ -67,7 +67,7 @@
 						<id val="epgloadsave_menu" />
 						<item level="0" entryID="saveepgcache" text="Save EPG">
 <code>
-from Screens.EpgLoadSave import EpgSaveMsg
+from Components.EpgLoadSave import EpgSaveMsg
 def msgClosed(ret):
 	if ret:
 		from enigma import eEPGCache
@@ -78,7 +78,7 @@ self.session.openWithCallback(msgClosed, EpgSaveMsg)
 						</item>
 						<item level="0" entryID="loadepgcache" text="Load EPG">
 <code>
-from Screens.EpgLoadSave import EpgLoadMsg
+from Components.EpgLoadSave import EpgLoadMsg
 def msgClosed(ret):
 	if ret:
 		from enigma import eEPGCache

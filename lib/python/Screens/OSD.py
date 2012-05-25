@@ -1,6 +1,6 @@
 from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
-from Components.config import configfile , config, getConfigListEntry
+from Components.config import config, configfile, ConfigSubsection, ConfigSelectionNumber, ConfigSelection, ConfigSlider, ConfigYesNo, getConfigListEntry
 from Components.ConfigList import ConfigListScreen
 from Components.SystemInfo import SystemInfo
 from Components.Sources.StaticText import StaticText
@@ -255,38 +255,34 @@ def applySettings(mode, znorm):
 	open("/proc/stb/fb/znorm", "w").write('%d' % znorm)
 
 def setConfiguredPosition():
-	if isChangeOsdPositionSupported():
+	if SystemInfo["CanChangeOsdPosition"]:
 		setPosition(int(config.osd.dst_left.value), int(config.osd.dst_width.value), int(config.osd.dst_top.value), int(config.osd.dst_height.value))
 
 def setConfiguredAplha():
-	if isChangeOsdAlphaSupported():
+	if SystemInfo["CanChangeOsdAlpha"]:
 		setAlpha(int(config.osd.alpha.value))
 
 def setConfiguredSettings():
-	if isChange3DOsdSupported():
+	if SystemInfo["CanChange3DOsd"]:
 		applySettings(config.osd.threeDmode.value, int(config.osd.threeDznorm.value))
 
-def isChangeOsdPositionSupported():
-	return open("/proc/stb/fb/dst_left", "r") and True or False
-
-def isChangeOsdAlphaSupported():
-	return open("/proc/stb/video/alpha", "r") and True or False
-
-def isChange3DOsdSupported():
-	return (open("/proc/stb/fb/3dmode", "r") or open("/proc/stb/fb/primary/3d", "r")) and True or False
-
-def isOsdSetupSupported():
-	if SystemInfo["CanChangeOsdPosition"] == True:
-		return True
-	return False
-
-def isOsdMenuSupported():
+def InitOsd():
+	SystemInfo["CanChange3DOsd"] = (open("/proc/stb/fb/3dmode", "r") or open("/proc/stb/fb/primary/3d", "r")) and True or False
+	SystemInfo["CanChangeOsdAlpha"] = open("/proc/stb/video/alpha", "r") and True or False
+	SystemInfo["CanChangeOsdPosition"] = open("/proc/stb/fb/dst_left", "r") and True or False
+	SystemInfo["OsdSetup"] = SystemInfo["CanChangeOsdPosition"]
 	if SystemInfo["CanChangeOsdAlpha"] == True or SystemInfo["CanChangeOsdPosition"] == True:
-		return True
-	return False
+		SystemInfo["OsdMenu"] = True
+	else:
+		SystemInfo["OsdMenu"] = False
 
-SystemInfo["CanChange3DOsd"] = isChange3DOsdSupported()
-SystemInfo["CanChangeOsdAlpha"] = isChangeOsdAlphaSupported()
-SystemInfo["CanChangeOsdPosition"] = isChangeOsdPositionSupported()
-SystemInfo["OsdSetup"] = isOsdSetupSupported()
-SystemInfo["OsdMenu"] = isOsdMenuSupported()
+	config.osd = ConfigSubsection();
+	config.osd.dst_left = ConfigSelectionNumber(default = 0, stepwidth = 1, min = 0, max = 720, wraparound = False)
+	config.osd.dst_width = ConfigSelectionNumber(default = 720, stepwidth = 1, min = 0, max = 720, wraparound = False)
+	config.osd.dst_top = ConfigSelectionNumber(default = 0, stepwidth = 1, min = 0, max = 576, wraparound = False)
+	config.osd.dst_height = ConfigSelectionNumber(default = 576, stepwidth = 1, min = 0, max = 576, wraparound = False)
+	config.osd.alpha = ConfigSelectionNumber(default = 255, stepwidth = 1, min = 0, max = 255, wraparound = False)
+	config.osd.threeDmode = ConfigSelection([("off", _("Off")), ("auto", _("Auto")), ("sidebyside", _("Side by Side")),("topandbottom", _("Top and Bottom"))], "auto")
+	config.osd.threeDznorm = ConfigSlider(default = 50, increment = 1, limits = (0, 100))
+	config.osd.show3dextensions = ConfigYesNo(default = False)
+
