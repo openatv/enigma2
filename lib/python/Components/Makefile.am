@@ -20,4 +20,4 @@ install_PYTHON = \
 	Ipkg.py SelectionList.py Scanner.py SystemInfo.py DreamInfoHandler.py \
 	Task.py language_cache.py Console.py ResourceManager.py TuneTest.py \
 	Keyboard.py Sensors.py FanControl.py HdmiCec.py \
-	OnlineUpdateCheck.py NetworkTime.py
+	OnlineUpdateCheck.py NetworkTime.py EpgLoadSave.py

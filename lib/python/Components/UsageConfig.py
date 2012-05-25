@@ -1,8 +1,7 @@
 from Components.Harddisk import harddiskmanager
 from config import config, ConfigSubsection, ConfigYesNo, ConfigSelection, ConfigText, ConfigNumber, ConfigSet, ConfigLocations, NoSave, ConfigClock, ConfigInteger, ConfigBoolean, ConfigPassword, ConfigIP, ConfigSlider, ConfigSelectionNumber
 from Tools.Directories import resolveFilename, SCOPE_HDD, SCOPE_TIMESHIFT
-from enigma import setTunerTypePriorityOrder, setPreferredTuner, setSpinnerOnOff, setEnableTtCachingOnOff;
-from enigma import Misc_Options, eEnv;
+from enigma import setTunerTypePriorityOrder, setPreferredTuner, setSpinnerOnOff, setEnableTtCachingOnOff, Misc_Options, eEnv
 from Components.NimManager import nimmanager
 from SystemInfo import SystemInfo
 import os
@@ -22,6 +21,7 @@ def InitUsageConfig():
 	except:
 		folderprefix=""
 		boxtype="not detected"
+
 	config.misc.boxtype = ConfigText(default = boxtype)
 	config.misc.useNTPminutes = ConfigSelection(default = "30", choices = [("30", "30" + " " +_("minutes")), ("60", _("Hour")), ("1440", _("Once per day"))])
 	config.misc.remotecontrol_text_support = ConfigYesNo(default = False)
@@ -80,8 +80,8 @@ def InitUsageConfig():
 	if not os.path.exists(resolveFilename(SCOPE_HDD)):
 		try:
 			os.mkdir(resolveFilename(SCOPE_HDD),0755)
-		except OSError:
-			return -1
+		except:
+			passs
 	config.usage.default_path = ConfigText(default = resolveFilename(SCOPE_HDD))
 	if not config.usage.default_path.value.endswith('/'):
 		tmpvalue = config.usage.default_path.value
@@ -100,8 +100,8 @@ def InitUsageConfig():
 	if not os.path.exists(resolveFilename(SCOPE_TIMESHIFT)):
 		try:
 			os.mkdir(resolveFilename(SCOPE_TIMESHIFT),0755)
-		except OSError:
-			return -1
+		except:
+			passs
 	config.usage.timeshift_path = ConfigText(default = resolveFilename(SCOPE_TIMESHIFT))
 	if not config.usage.default_path.value.endswith('/'):
 		tmpvalue = config.usage.timeshift_path.value
@@ -225,15 +225,6 @@ def InitUsageConfig():
 	config.usage.show_cryptoinfo = ConfigSelection([("0", _("Off")),("1", _("One line")),("2", _("Two lines"))], "2")
 	config.usage.show_eit_nownext = ConfigYesNo(default = True)
 
-	config.osd.dst_left = ConfigSelectionNumber(default = 0, stepwidth = 1, min = 0, max = 720, wraparound = False)
-	config.osd.dst_width = ConfigSelectionNumber(default = 720, stepwidth = 1, min = 0, max = 720, wraparound = False)
-	config.osd.dst_top = ConfigSelectionNumber(default = 0, stepwidth = 1, min = 0, max = 576, wraparound = False)
-	config.osd.dst_height = ConfigSelectionNumber(default = 576, stepwidth = 1, min = 0, max = 576, wraparound = False)
-	config.osd.alpha = ConfigSelectionNumber(default = 255, stepwidth = 1, min = 0, max = 255, wraparound = False)
-	config.osd.threeDmode = ConfigSelection([("off", _("Off")), ("auto", _("Auto")), ("sidebyside", _("Side by Side")),("topandbottom", _("Top and Bottom"))], "auto")
-	config.osd.threeDznorm = ConfigSlider(default = 50, increment = 1, limits = (0, 100))
-	config.osd.show3dextensions = ConfigYesNo(default = False)
-
 	config.epg = ConfigSubsection()
 	config.epg.eit = ConfigYesNo(default = True)
 	config.epg.mhw = ConfigYesNo(default = False)
@@ -266,19 +257,6 @@ def InitUsageConfig():
 		from enigma import eEPGCache
 		eEPGCache.getInstance().setEpgHistorySeconds(config.epg.histminutes.getValue()*60)
 	config.epg.histminutes.addNotifier(EpgHistorySecondsChanged)
-
-	config.epg.cacheloadsched = ConfigYesNo(default = False)
-	config.epg.cachesavesched = ConfigYesNo(default = False)
-	def EpgCacheLoadSchedChanged(configElement):
-		import Screens.EpgLoadSave
-		Screens.EpgLoadSave.EpgCacheLoadCheck()
-	def EpgCacheSaveSchedChanged(configElement):
-		import Screens.EpgLoadSave
-		Screens.EpgLoadSave.EpgCacheSaveCheck()
- 	config.epg.cacheloadsched.addNotifier(EpgCacheLoadSchedChanged, immediate_feedback = False)
- 	config.epg.cachesavesched.addNotifier(EpgCacheSaveSchedChanged, immediate_feedback = False)
-	config.epg.cacheloadtimer = ConfigSelectionNumber(default = 24, stepwidth = 1, min = 1, max = 24, wraparound = True)
-	config.epg.cachesavetimer = ConfigSelectionNumber(default = 24, stepwidth = 1, min = 1, max = 24, wraparound = True)
 
 	hddchoises = [('/etc/enigma2/', 'Internal Flash')]
 	for p in harddiskmanager.getMountedPartitions():

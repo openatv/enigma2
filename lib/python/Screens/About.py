@@ -357,6 +357,9 @@ class SystemNetworkInfo(Screen):
 			self["LabelBitrate"].setText(_('Bitrate:'))
 			self["LabelEnc"].setText(_('Encryption:'))
 
+		hostname = file('/proc/sys/kernel/hostname').read()
+		AboutText += "\n" + _("Hostname:") + "\t" + hostname + "\n"
+
 		self["AboutScrollLabel"] = ScrollLabel(AboutText)
 
 
