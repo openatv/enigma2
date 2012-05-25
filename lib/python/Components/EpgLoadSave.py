@@ -97,19 +97,6 @@ class EpgCacheSaveCheckPoller:
 	def JobSched(self):
 		self.timer.startLongTimer(int(config.epg.cachesavetimer.getValue()) * 3600)
 
-def InitEpg():
- 	config.epg = ConfigSubsection();
-	config.epg.cacheloadsched = ConfigYesNo(default = False)
-	config.epg.cachesavesched = ConfigYesNo(default = False)
-	def EpgCacheLoadSchedChanged(configElement):
-		EpgCacheLoadCheck()
-	def EpgCacheSaveSchedChanged(configElement):
-		EpgCacheSaveCheck()
- 	config.epg.cacheloadsched.addNotifier(EpgCacheLoadSchedChanged, immediate_feedback = False)
- 	config.epg.cachesavesched.addNotifier(EpgCacheSaveSchedChanged, immediate_feedback = False)
-	config.epg.cacheloadtimer = ConfigSelectionNumber(default = 24, stepwidth = 1, min = 1, max = 24, wraparound = True)
-	config.epg.cachesavetimer = ConfigSelectionNumber(default = 24, stepwidth = 1, min = 1, max = 24, wraparound = True)
-
 class EpgSaveMsg(MessageBox):
 	def __init__(self, session):
 		MessageBox.__init__(self, session, _("Are you sure you want to save the EPG Cache to:\n") + config.misc.epgcache_filename.value, MessageBox.TYPE_YESNO)
