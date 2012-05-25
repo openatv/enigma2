@@ -81,7 +81,7 @@ def InitUsageConfig():
 		try:
 			os.mkdir(resolveFilename(SCOPE_HDD),0755)
 		except:
-			passs
+			pass
 	config.usage.default_path = ConfigText(default = resolveFilename(SCOPE_HDD))
 	if not config.usage.default_path.value.endswith('/'):
 		tmpvalue = config.usage.default_path.value
@@ -101,7 +101,7 @@ def InitUsageConfig():
 		try:
 			os.mkdir(resolveFilename(SCOPE_TIMESHIFT),0755)
 		except:
-			passs
+			pass
 	config.usage.timeshift_path = ConfigText(default = resolveFilename(SCOPE_TIMESHIFT))
 	if not config.usage.default_path.value.endswith('/'):
 		tmpvalue = config.usage.timeshift_path.value
@@ -257,6 +257,28 @@ def InitUsageConfig():
 		from enigma import eEPGCache
 		eEPGCache.getInstance().setEpgHistorySeconds(config.epg.histminutes.getValue()*60)
 	config.epg.histminutes.addNotifier(EpgHistorySecondsChanged)
+
+	config.epg.cacheloadsched = ConfigYesNo(default = False)
+	config.epg.cachesavesched = ConfigYesNo(default = False)
+	def EpgCacheLoadSchedChanged(configElement):
+		import EpgLoadSave
+		EpgLoadSave.EpgCacheLoadCheck()
+	def EpgCacheSaveSchedChanged(configElement):
+		import EpgLoadSave
+		EpgLoadSave.EpgCacheSaveCheck()
+ 	config.epg.cacheloadsched.addNotifier(EpgCacheLoadSchedChanged, immediate_feedback = False)
+ 	config.epg.cachesavesched.addNotifier(EpgCacheSaveSchedChanged, immediate_feedback = False)
+	config.epg.cacheloadtimer = ConfigSelectionNumber(default = 24, stepwidth = 1, min = 1, max = 24, wraparound = True)
+	config.epg.cachesavetimer = ConfigSelectionNumber(default = 24, stepwidth = 1, min = 1, max = 24, wraparound = True)
+
+	config.osd.dst_left = ConfigSelectionNumber(default = 0, stepwidth = 1, min = 0, max = 720, wraparound = False)
+	config.osd.dst_width = ConfigSelectionNumber(default = 720, stepwidth = 1, min = 0, max = 720, wraparound = False)
+	config.osd.dst_top = ConfigSelectionNumber(default = 0, stepwidth = 1, min = 0, max = 576, wraparound = False)
+	config.osd.dst_height = ConfigSelectionNumber(default = 576, stepwidth = 1, min = 0, max = 576, wraparound = False)
+	config.osd.alpha = ConfigSelectionNumber(default = 255, stepwidth = 1, min = 0, max = 255, wraparound = False)
+	config.osd.threeDmode = ConfigSelection([("off", _("Off")), ("auto", _("Auto")), ("sidebyside", _("Side by Side")),("topandbottom", _("Top and Bottom"))], "auto")
+	config.osd.threeDznorm = ConfigSlider(default = 50, increment = 1, limits = (0, 100))
+	config.osd.show3dextensions = ConfigYesNo(default = False)
 
 	hddchoises = [('/etc/enigma2/', 'Internal Flash')]
 	for p in harddiskmanager.getMountedPartitions():

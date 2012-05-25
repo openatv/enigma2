@@ -572,7 +572,6 @@ Screens.LogManager.AutoLogManager()
 
 profile("Init:OnlineCheckState")
 import Components.OnlineUpdateCheck
-print 'config.usage.keymap2222222:',config.usage.keymap.value
 Components.OnlineUpdateCheck.OnlineUpdateCheck()
 
 profile("Init:NTPSync")
@@ -601,7 +600,6 @@ Screens.OSD.setConfiguredAplha()
 
 profile("EpgCacheSched")
 import Components.EpgLoadSave
-Components.EpgLoadSave.InitEpg()
 Components.EpgLoadSave.EpgCacheSaveCheck()
 Components.EpgLoadSave.EpgCacheLoadCheck()
 
