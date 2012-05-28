@@ -537,8 +537,10 @@ def runScreenTest():
 			setRTCtime(nowTime)
 		
 		if config.misc.boxtype.value == 'gb800se' or config.misc.boxtype.value == 'gb800solo' or config.misc.boxtype.value == 'gb800ue':
-			gigawutime = wptime-altzone-timezone
-			print "set Gigabox wakeup time to", strftime("%Y/%m/%d %H:%M", localtime(wptime))
+			gigawutime = wptime+3600-timezone+120 # 3600 = summertime (must be fixed before the winter), 120 = gigabox already starts 2 min. earlier 
+			t_local = localtime(wptime+120)
+			t_utc = localtime(gigawutime)
+			print "set Gigabox wakeup time to %s (UTC=%s)" % (strftime("%Y/%m/%d %H:%M", t_local), strftime("%H:%M", t_utc))
 			setFPWakeuptime(gigawutime)
 		else:
 			print "set wakeup time to", strftime("%Y/%m/%d %H:%M", localtime(wptime))
