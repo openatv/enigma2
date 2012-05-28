@@ -63,7 +63,7 @@ class FanControl:
 		for fanid in range(self.getFanCount()):
 			fan = ConfigSubsection()
 			fan.vlt = ConfigSlider(default = 15, increment = 5, limits = (0, 255))
-			fan.pwm = ConfigSlider(default = 0, increment = 5, limits = (0, 255))
+			fan.pwm = ConfigSlider(default = 1, increment = 5, limits = (0, 255))
 			fan.vlt_standby = ConfigSlider(default = 5, increment = 5, limits = (0, 255))
 			fan.pwm_standby = ConfigSlider(default = 0, increment = 5, limits = (0, 255))
 			fan.vlt.addNotifier(boundFunction(setVlt, self, fanid))
