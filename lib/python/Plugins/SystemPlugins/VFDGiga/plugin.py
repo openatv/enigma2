@@ -239,7 +239,7 @@ def controlgigaVfd():
 		if time.localtime().tm_isdst == 0:
 			forsleep = int(time.time())-time.timezone
 		else:
-			forsleep = int(time.time())-time.altzone-time.timezone
+			forsleep = int(time.time())+3600-time.timezone
 		try:
 			open("/proc/stb/fp/rtc", "w").write(str(forsleep))
 		except IOError:
