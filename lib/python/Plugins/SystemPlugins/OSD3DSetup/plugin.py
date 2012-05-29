@@ -8,6 +8,12 @@ config.plugins.OSD3DSetup = ConfigSubsection()
 config.plugins.OSD3DSetup.mode = ConfigSelection(choices = modelist, default = "auto")
 config.plugins.OSD3DSetup.znorm = ConfigInteger(default = 0)
 
+PROC_ET_3DMODE = "/proc/stb/fb/3dmode"
+PROC_ET_ZNORM = "/proc/stb/fb/znorm"
+
+PROC_DM_3DMODE = "/proc/stb/fb/primary/3d"
+PROC_DM_ZNORM = "/proc/stb/fb/primary/zoffset"
+
 class OSD3DSetupScreen(Screen, ConfigListScreen):
 	skin = """
 	<screen position="c-200,c-100" size="400,200" title="OSD 3D setup">
@@ -73,11 +79,28 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 		self.close()
 
 def applySettings(mode, znorm):
+	path_mode = ""
+	path_znorm = ""
+	from os import path
+	if path.exists(PROC_ET_3DMODE):
+		path_mode = PROC_ET_3DMODE
+		path_znorm = PROC_ET_ZNORM
+	elif path.exists(PROC_DM_3DMODE):
+		path_mode = PROC_DM_3DMODE
+		path_znorm = PROC_DM_ZNORM
+		if mode == 'sidebyside':
+			mode = 'sbs'
+		elif mode == 'topandbottom':
+			mode = 'tab'
+		else:
+			mode = 'off'
+	else:
+		return
 	try:
-		file = open("/proc/stb/fb/3dmode", "w")
+		file = open(path_mode, "w")
 		file.write(mode)
 		file.close()
-		file = open("/proc/stb/fb/znorm", "w")
+		file = open(path_znorm, "w")
 		file.write('%d' % znorm)
 		file.close()
 	except:
@@ -94,7 +117,7 @@ def startup(reason, **kwargs):
 
 def Plugins(**kwargs):
 	from os import path
-	if path.exists("/proc/stb/fb/3dmode"):
+	if path.exists(PROC_ET_3DMODE) or path.exists(PROC_DM_3DMODE):
 		from Plugins.Plugin import PluginDescriptor
 		return [PluginDescriptor(name = "OSD 3D setup", description = _("Adjust 3D settings"), where = PluginDescriptor.WHERE_PLUGINMENU, fnc = main),
 					PluginDescriptor(name = "OSD 3D setup", description = "", where = PluginDescriptor.WHERE_SESSIONSTART, fnc = startup)]
