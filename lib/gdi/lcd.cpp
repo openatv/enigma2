@@ -4,13 +4,6 @@
 #include <fcntl.h>
 #include <sys/ioctl.h>
 
-#if defined(HAVE_DBOX_FP_H) && defined(HAVE_DBOX_LCD_KS0713_H)
-#include <dbox/fp.h>
-#include <dbox/lcd-ks0713.h>
-#else
-#define NO_LCD 1
-#endif
-
 #include <lib/gdi/esize.h>
 #include <lib/base/init.h>
 #include <lib/base/init_num.h>
@@ -91,6 +84,14 @@ eDBoxLCD::eDBoxLCD()
 		eDebug("couldn't open LCD - load lcd.ko!");
 	else
 	{
+
+#ifndef LCD_IOCTL_ASC_MODE
+#define LCDSET                  0x1000
+#define LCD_IOCTL_ASC_MODE		(21|LCDSET)
+#define	LCD_MODE_ASC			0
+#define	LCD_MODE_BIN			1
+#endif
+
 		int i=LCD_MODE_BIN;
 		ioctl(lcdfd, LCD_IOCTL_ASC_MODE, &i);
 		FILE *f = fopen("/proc/stb/lcd/xres", "r");
@@ -138,6 +139,12 @@ void eDBoxLCD::setFlipped(bool onoff)
 int eDBoxLCD::setLCDContrast(int contrast)
 {
 #ifndef NO_LCD
+
+#ifndef LCD_IOCTL_SRV
+#define LCDSET                  0x1000
+#define	LCD_IOCTL_SRV			(10|LCDSET)
+#endif
+
 	int fp;
 	if((fp=open("/dev/dbox/fp0", O_RDWR))<0)
 	{
@@ -175,7 +182,9 @@ int eDBoxLCD::setLCDBrightness(int brightness)
 			eDebug("[LCD] can't open /dev/dbox/fp0");
 			return(-1);
 		}
-
+#ifndef FP_IOCTL_LCD_DIMM
+#define FP_IOCTL_LCD_DIMM       3
+#endif
 		if(ioctl(fp, FP_IOCTL_LCD_DIMM, &brightness) < 0)
 			eDebug("[LCD] can't set lcd brightness (%m)");
 		close(fp);
