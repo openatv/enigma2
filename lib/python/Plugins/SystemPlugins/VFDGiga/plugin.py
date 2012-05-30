@@ -133,9 +133,8 @@ class Channelnumber:
 		global RecLed
 		recordings = self.session.nav.getRecordings()
 		if recordings:
-			if RecLed is None:
-				evfd.getInstance().vfd_led(config.plugins.VFD_Giga.ledREC.value)
-				RecLed = True
+			evfd.getInstance().vfd_led(config.plugins.VFD_Giga.ledREC.value)
+			RecLed = True
 		else:
 			if RecLed is not None:
 				RecLed = None
