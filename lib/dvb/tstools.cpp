@@ -733,10 +733,7 @@ int eDVBTSTools::findFrame(off_t &_offset, size_t &len, int &direction, int fram
 		// is_frame
 		if (((data & 0xFF) == 0x0009) || ((data & 0xFF) == 0x00)) /* H.264 UAD or MPEG2 start code */
 		{
-			if (direction < 0)
-				--nr_frames;
-			else
-				++nr_frames;
+			++nr_frames;
 			if ((data & 0xE0FF) == 0x0009)		/* H.264 NAL unit access delimiter with I-frame*/
 			{
 				break;
@@ -767,21 +764,26 @@ int eDVBTSTools::findFrame(off_t &_offset, size_t &len, int &direction, int fram
 
 	if (is_mpeg2)
 	{
-		// Seek back to sequence start (appears to be needed for some...)
-		do
+		// Seek back to sequence start (appears to be needed for e.g. a few TCM streams)
+		while (nr_frames)
 		{
 			if (m_streaminfo.getStructureEntryNext(start, longdata, -1))
 			{
 				eDebug("Failed to find MPEG2 start frame");
 				break;
 			}
+			if ((((unsigned int)longdata) & 0xFF) == 0xB3) /* sequence start or previous frame */
+				break;
+			--nr_frames;
 		}
-		while ((((unsigned int)longdata) & 0xFF) != 0xB3); /* sequence start or previous frame */
 	}
 
 	len = offset - start;
 	_offset = start;
-	direction = nr_frames;
+	if (direction < 0)
+		direction = -nr_frames;
+	else
+		direction = nr_frames;
 //	eDebug("result: offset=%llu, len: %ld", offset, (int)len);
 	return 0;
 }
