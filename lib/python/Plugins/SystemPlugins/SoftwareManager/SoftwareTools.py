@@ -37,7 +37,7 @@ class SoftwareTools(DreamInfoHandler):
 		self.Console = Console()
 		self.UpdateConsole = Console()
 		self.cmdList = []
-		self.unwanted_extensions = ('-dbg', '-dev', '-doc')
+		self.unwanted_extensions = ('-dbg', '-dev', '-doc', '-staticdev')
 		self.ipkg = IpkgComponent()
 		self.ipkg.addCallback(self.ipkgCallback)		
 

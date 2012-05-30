@@ -1773,7 +1773,7 @@ class PacketManager(Screen, NumericalTextInput):
 		self.cache_ttl = 86400  #600 is default, 0 disables, Seconds cache is considered valid (24h should be ok for caching ipkgs)
 		self.cache_file = eEnv.resolve('${libdir}/enigma2/python/Plugins/SystemPlugins/SoftwareManager/packetmanager.cache') #Path to cache directory
 		self.oktext = _("\nAfter pressing OK, please wait!")
-		self.unwanted_extensions = ('-dbg', '-dev', '-doc', 'busybox')
+		self.unwanted_extensions = ('-dbg', '-dev', '-doc', '-staticdev', 'busybox')
 
 		self.ipkg = IpkgComponent()
 		self.ipkg.addCallback(self.ipkgCallback)
