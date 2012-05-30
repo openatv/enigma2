@@ -1,5 +1,6 @@
 from fcntl import ioctl
 from struct import pack, unpack
+from Components.config import config
 
 def getFPVersion():
 	ret = None
@@ -60,6 +61,13 @@ def getFPWasTimerWakeup():
 			wasTimerWakeup = unpack('B', ioctl(fp.fileno(), 9, ' '))[0] and True or False
 		except IOError:
 			print "wasTimerWakeup failed!"
+
+	if config.misc.boxtype.value == 'gb800se' or config.misc.boxtype.value == 'gb800solo' or config.misc.boxtype.value == 'gb800ue':
+		if not wasTimerWakeup:
+			from os import path
+			if path.isfile("/var/.was_wakeup_timer"):
+				wasTimerWakeup = True
+	
 	if wasTimerWakeup:
 		# clear hardware status
 		clearFPWasTimerWakeup()
@@ -74,3 +82,8 @@ def clearFPWasTimerWakeup():
 			ioctl(fp.fileno(), 10)
 		except IOError:
 			print "clearFPWasTimerWakeup failed!"
+
+	if config.misc.boxtype.value == 'gb800se' or config.misc.boxtype.value == 'gb800solo' or config.misc.boxtype.value == 'gb800ue':
+		from os import path, system
+		if path.isfile("/var/.was_wakeup_timer"):
+			system("rm -f /var/.was_wakeup_timer")
