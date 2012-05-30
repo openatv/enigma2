@@ -64,9 +64,12 @@ def getFPWasTimerWakeup():
 
 	if config.misc.boxtype.value == 'gb800se' or config.misc.boxtype.value == 'gb800solo' or config.misc.boxtype.value == 'gb800ue':
 		if not wasTimerWakeup:
-			from os import path
+			from os import path, system
+			from time import time, strftime, localtime
 			if path.isfile("/var/.was_wakeup_timer"):
-				wasTimerWakeup = True
+				system("echo wakeuptime=%s, current time=%s > /tmp/wakeup.txt" %(strftime("%d/%m/%Y %H:%M",localtime(config.misc.wakeUpTime.value)), strftime("%H:%M",localtime(time()))))
+				if (config.misc.wakeUpTime.value - time()) < 300:
+					wasTimerWakeup = True
 	
 	if wasTimerWakeup:
 		# clear hardware status
