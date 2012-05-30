@@ -365,7 +365,7 @@ class PluginDownloadBrowser(Screen):
 			plugin = x.split(" - ", 2)
 			# 'opkg list_installed' only returns name + version, no description field
 			if len(plugin) >= 2:
-				if not plugin[0].endswith('-dev') and not plugin[0].endswith('-dbg'):
+				if not plugin[0].endswith('-dev') and not plugin[0].endswith('-staticdev') and not plugin[0].endswith('-dbg') and not plugin[0].endswith('-doc'):
 					if self.run == 1 and self.type == self.DOWNLOAD:
 						if plugin[0] not in self.installedplugins:
 							self.installedplugins.append(plugin[0])
