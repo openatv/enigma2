@@ -368,7 +368,8 @@ class StreamTVList(Screen):
 
 	def cbFinishedStream(self):
 		self.doConsoleStop()
-		print 'done!!'
+		self.session.nav.playService(self.beforeService)
+		print 'player done!!'
 
 	def doConsoleStop(self):
 		self.keyLocked = False
@@ -400,6 +401,6 @@ def main(session, **kwargs):
 	session.open(StreamTVList)
                                                            
 def Plugins(**kwargs):
-	return PluginDescriptor(name=_("StreamTVPalyer"), description="Watching IPTV implemented by RTSP/RTMP protocol.", where = PluginDescriptor.WHERE_PLUGINMENU, fnc=main)
+	return PluginDescriptor(name=_("StreamTVPlayer"), description="Watching IPTV implemented by RTSP/RTMP protocol.", where = PluginDescriptor.WHERE_PLUGINMENU, fnc=main)
 
 
