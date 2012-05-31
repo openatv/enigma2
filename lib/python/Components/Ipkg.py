@@ -2,7 +2,7 @@ import os
 from enigma import eConsoleAppContainer
 from Components.Harddisk import harddiskmanager
 
-opkgDestinations = []
+opkgDestinations = ['/']
 
 def opkgExtraDestinations():
 	global opkgDestinations
