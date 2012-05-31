@@ -105,6 +105,9 @@ class ServicePosition(Poll, Converter, object):
 		p = self.position
 		r = self.length - self.position  # Remaining
 
+		if l < 0:
+			return ""
+
 		if not self.detailed:
 			l /= 90000
 			p /= 90000
