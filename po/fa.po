@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-05-28 23:25+0200\n"
-"PO-Revision-Date: 2012-04-03 22:31+0330\n"
+"PO-Revision-Date: 2012-05-31 22:18+0330\n"
 "Last-Translator: Persian Prince <persianprince@persianpros.org>\n"
 "Language-Team: Persian Professionals <persianpros@yahoo.com>\n"
 "Language: fa\n"
@@ -105,8 +105,8 @@ msgid ""
 "Current device: "
 msgstr ""
 "\n"
-"دستگاه مورد نظر برای تهیه نسخه پشتیبان را انتخاب کنید\n"
-"دستگاه فعلی: "
+"وسیله مورد نظر برای تهیه نسخه پشتیبان را انتخاب کنید\n"
+"وسیله فعلی: "
 
 #
 msgid ""
@@ -180,7 +180,7 @@ msgstr "%a %e/%m  %-H:%M"
 #, python-format
 msgid "%d hour"
 msgid_plural "%d hours"
-msgstr[0] ""
+msgstr[0] "%d ساعت"
 
 #, python-format
 msgid "%d jobs are running in the background!"
@@ -193,7 +193,7 @@ msgstr "%d دقیقه"
 #, python-format
 msgid "%d minute"
 msgid_plural "%d minutes"
-msgstr[0] ""
+msgstr[0] "%d دقیقه"
 
 #, python-format
 msgid "%d minutes"
@@ -202,7 +202,7 @@ msgstr "%d دقیقه"
 #, python-format
 msgid "%d second"
 msgid_plural "%d seconds"
-msgstr[0] ""
+msgstr[0] "%d ثانیه"
 
 #, python-format
 msgid "%d services found!"
@@ -380,24 +380,14 @@ msgstr ""
 "یک عمل ضبط کردن در حال اجرا است\n"
 "قصد انجام چه کاری را دارید ؟"
 
-msgid ""
-"A recording is currently running. Please stop the recording before trying to "
-"configure the positioner."
-msgstr ""
-"یک عمل ضبط کردن در حال اجرا است ، لطفا قبل از پیکربندی مکان یاب عمل ضبط را "
-"متوقف کنید"
+msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
+msgstr "یک عمل ضبط کردن در حال اجرا است ، لطفا قبل از پیکربندی مکان یاب عمل ضبط را متوقف کنید"
 
-msgid ""
-"A recording is currently running. Please stop the recording before trying to "
-"scan."
+msgid "A recording is currently running. Please stop the recording before trying to scan."
 msgstr ""
 
-msgid ""
-"A recording is currently running. Please stop the recording before trying to "
-"start the satfinder."
-msgstr ""
-"یک عمل ضبط کردن در حال اجرا است ، لطفا قبل از اجرای ماهواره یاب عمل ضبط را "
-"متوقف کنید"
+msgid "A recording is currently running. Please stop the recording before trying to start the satfinder."
+msgstr "یک عمل ضبط کردن در حال اجرا است ، لطفا قبل از اجرای ماهواره یاب عمل ضبط را متوقف کنید"
 
 #, python-format
 msgid "A required tool (%s) was not found."
@@ -465,7 +455,7 @@ msgstr "درباره"
 
 #
 msgid "Accesspoint:"
-msgstr "نقطه دسترسی :"
+msgstr "نقطه دسترسی:"
 
 msgid "Action on long powerbutton press"
 msgstr "عمل کردن هنگام فشار دادن طولانی دکمه روشن/خاموش"
@@ -518,11 +508,8 @@ msgstr "اضافه کردن به مورد علاقه"
 msgid "Add/Remove timer for current event"
 msgstr ""
 
-msgid ""
-"Adds enigma2 settings and dreambox model informations like SN, rev... if "
-"enabled."
-msgstr ""
-"افزودن تنظیمات انیگما 2 و اطلاعات مدل دستگاه مانند SN و Rev اگر فعال است"
+msgid "Adds enigma2 settings and dreambox model informations like SN, rev... if enabled."
+msgstr "افزودن تنظیمات انیگما 2 و اطلاعات مدل دستگاه مانند SN و Rev اگر فعال است"
 
 msgid "Adds network configuration if enabled."
 msgstr "اضافه کردن پیکربندی شبکه در صورت فعال بودن"
@@ -537,16 +524,8 @@ msgstr "تنظیمات 3 بعدی"
 msgid "Adjust HDMI CEC settings"
 msgstr "تنظیمات HDMI CEC"
 
-msgid ""
-"Adjust the color settings so that all the color shades are distinguishable, "
-"but appear as saturated as possible. If you are happy with the result, press "
-"OK to close the video fine-tuning, or use the number keys to select other "
-"test screens."
-msgstr ""
-"تنظیم کردن تنظیمات رنگ طوری که سایه های رنگ ها مشخص باشد ، اما تا حد امکان "
-"به صورت اشباع شده نمایان شود ، اگر شما از نتیجه راضی هستید دکمه OK را برای "
-"بستن \"میزان مناسب تصویر\" فشار دهید و یا از اعداد ریموت کنترل برای تست های "
-"دیگر صفحه نمایش استفاده کنید"
+msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
+msgstr "تنظیم کردن تنظیمات رنگ طوری که سایه های رنگ ها مشخص باشد ، اما تا حد امکان به صورت اشباع شده نمایان شود ، اگر شما از نتیجه راضی هستید دکمه OK را برای بستن \"میزان مناسب تصویر\" فشار دهید و یا از اعداد ریموت کنترل برای تست های دیگر صفحه نمایش استفاده کنید"
 
 msgid "Advanced Options"
 msgstr "گزینه های پیشرفته"
@@ -573,12 +552,8 @@ msgstr "بعد از رویداد"
 msgid "After pressing OK, please wait!"
 msgstr "بعد از فشار دادن کلید OK لطفا صبر کنید"
 
-msgid ""
-"After the start wizard is completed, you need to protect single services. "
-"Refer to your dreambox's manual on how to do that."
-msgstr ""
-"بعد از این که هدایتگر کامل شد ، شما باید از کانال های تنها حفاظت کنید  ، "
-"رجوع شود به دفترچه راهنمای دستگاه که چگونه انجام شود"
+msgid "After the start wizard is completed, you need to protect single services. Refer to your dreambox's manual on how to do that."
+msgstr "بعد از این که هدایتگر کامل شد ، شما باید از کانال های تنها حفاظت کنید  ، رجوع شود به دفترچه راهنمای دستگاه که چگونه انجام شود"
 
 msgid "Album"
 msgstr "آلبوم"
@@ -590,7 +565,7 @@ msgid "All Satellites"
 msgstr "همه ماهواره ها"
 
 msgid "Allocate"
-msgstr ""
+msgstr "اختصاص دادن"
 
 msgid "Allocate unused memory index"
 msgstr ""
@@ -771,7 +746,7 @@ msgid "Background delete option"
 msgstr ""
 
 msgid "Background delete speed"
-msgstr ""
+msgstr "سرعت حذف پس زمینه"
 
 msgid "Backup"
 msgstr "نسخه پشتیبان"
@@ -826,10 +801,10 @@ msgid "Bitrate:"
 msgstr "میزان ارسال"
 
 msgid "Black screen"
-msgstr ""
+msgstr "صفحه نمایش سیاه"
 
 msgid "Black screen till locked"
-msgstr ""
+msgstr "صفحه نمایش سیاه تا زمانی که قفل شود"
 
 #
 msgid "Block noise reduction"
@@ -860,9 +835,7 @@ msgstr "رایت در DVD"
 msgid "Bus: "
 msgstr "گذرگاه:"
 
-msgid ""
-"By pressing the OK Button on your remote control, the info bar is being "
-"displayed."
+msgid "By pressing the OK Button on your remote control, the info bar is being displayed."
 msgstr "با فشار دادن دکمه OK نوار اطلاعات نمایش داده خواهد شد"
 
 msgid "C"
@@ -924,7 +897,7 @@ msgid "Card"
 msgstr "کارت"
 
 msgid "Centered DVB subtitles"
-msgstr ""
+msgstr "زیرنویس وسط DVB"
 
 msgid "Change bouquets in quickzap"
 msgstr "تغییر لیست در جابجایی سریع کانال"
@@ -1089,7 +1062,7 @@ msgid "Compact Flash"
 msgstr "فلش فشرده"
 
 msgid "Compatibilty Mode"
-msgstr ""
+msgstr "حالت سازگاری"
 
 msgid "Complete"
 msgstr "کامل"
@@ -1104,7 +1077,7 @@ msgid "Configuration Mode"
 msgstr "حالت پیکربندی"
 
 msgid "Configuration mode: "
-msgstr ""
+msgstr "حالت پیکربندی: "
 
 msgid "Configure interface"
 msgstr "رابط مشترک"
@@ -1246,7 +1219,7 @@ msgid "Current Transponder"
 msgstr "فرستنده فعلی"
 
 msgid "Current device: "
-msgstr "دستگاه فعلی:"
+msgstr "وسیله فعلی:"
 
 msgid "Current settings:"
 msgstr "تنظیمات فعلی:"
@@ -1304,10 +1277,10 @@ msgid "DVB subtitle black transparency"
 msgstr ""
 
 msgid "DVB-C"
-msgstr ""
+msgstr "DVB-C"
 
 msgid "DVB-C ANNEX C"
-msgstr ""
+msgstr "DVB-C ANNEX C"
 
 msgid "DVB-S"
 msgstr "DVB-S"
@@ -1316,10 +1289,10 @@ msgid "DVB-S2"
 msgstr "DVB-S2"
 
 msgid "DVB-T"
-msgstr ""
+msgstr "DVB-T"
 
 msgid "DVB-T2"
-msgstr ""
+msgstr "DVB-T2"
 
 #
 msgid "DVD File Browser"
@@ -1332,7 +1305,7 @@ msgid "DVD Titlelist"
 msgstr "لیست عنوان DVD"
 
 msgid "DVD data format"
-msgstr ""
+msgstr "فرمت اطلاعات DVD"
 
 msgid "DVD media toolbox"
 msgstr "جعبه ابزار رسانه DVD"
@@ -1344,7 +1317,7 @@ msgid "Date"
 msgstr "تاریخ"
 
 msgid "Date/Time"
-msgstr ""
+msgstr "تاریخ/زمان"
 
 msgid "Decide if you want to enable or disable the Cleanup Wizard."
 msgstr "تصمیم بگیرید که آیا میخواهید هدایتگر پاک ساز فعال شود یا غیر فعال"
@@ -1418,7 +1391,7 @@ msgid "Detected NIMs:"
 msgstr "NIM های شناسایی شده:"
 
 msgid "Devicename:"
-msgstr "نام وسیله :"
+msgstr "نام وسیله:"
 
 msgid "DiSEqC"
 msgstr "DiSEqC"
@@ -1469,10 +1442,10 @@ msgid "Disable Picture in Picture"
 msgstr "غیر فعال کردن تصویر در تصویر"
 
 msgid "Disable Selecting Expired Events"
-msgstr ""
+msgstr "غیر فعال کردن انتخاب رخداد های تمام شده"
 
 msgid "Disable background scanning"
-msgstr ""
+msgstr "غیر فعال کردن اسکن کردن در پس زمینه"
 
 #
 msgid "Disable crashlog reporting"
@@ -1579,7 +1552,7 @@ msgid "Do you want to enable the parental control feature on your dreambox?"
 msgstr "آیا میخواهید ویژگی کنترل والدین را در دستگاه خود فعال کنید ؟"
 
 msgid "Do you want to install the package:\n"
-msgstr "آیا میخواهید بسته را نصب کنید :\n"
+msgstr "آیا میخواهید بسته را نصب کنید:\n"
 
 msgid "Do you want to play DVD in drive?"
 msgstr "آیا میخواهید یک DVD پخش کنید ؟"
@@ -1591,7 +1564,7 @@ msgid "Do you want to reboot your Dreambox?"
 msgstr "آیا میخواهید دستگاه شما دوباره راه اندازی شود ؟"
 
 msgid "Do you want to remove the package:\n"
-msgstr "آیا میخواهید بسته را حذف کنید :\n"
+msgstr "آیا میخواهید بسته را حذف کنید:\n"
 
 msgid "Do you want to restore your settings?"
 msgstr "آیا میخواهید تنظیمات شما بازگردانی شود ؟"
@@ -1600,12 +1573,8 @@ msgid "Do you want to resume this playback?"
 msgstr "آیا میخواهید به پخش این مورد ادامه داده شود ؟"
 
 #
-msgid ""
-"Do you want to submit your email address and name so that we can contact you "
-"if needed?"
-msgstr ""
-"آیا میخواهید آدرس ایمیل و نام خود را ارسال کنید تا هنگامی که نیاز باشد با "
-"شما تماس بگیریم ؟"
+msgid "Do you want to submit your email address and name so that we can contact you if needed?"
+msgstr "آیا میخواهید آدرس ایمیل و نام خود را ارسال کنید تا هنگامی که نیاز باشد با شما تماس بگیریم ؟"
 
 msgid "Do you want to update your Dreambox?"
 msgstr "آیا میخواهید دستگاه خود را به روز رسانی کنید ؟"
@@ -1618,10 +1587,10 @@ msgstr ""
 "بعد از فشار دادن دکمه OK لطفا صبر کنید"
 
 msgid "Do you want to upgrade the package:\n"
-msgstr "آیا میخواهید بسته به روز رسانی شود :\n"
+msgstr "آیا میخواهید بسته به روز رسانی شود:\n"
 
 msgid "Do you want to upgrade?"
-msgstr ""
+msgstr "آیا میخواهید به روز رسانی کنید ؟"
 
 msgid "Do you want to view a tutorial?"
 msgstr "آیا میخواهید خود آموز را مشاهده کنید ؟"
@@ -1708,7 +1677,7 @@ msgid "Edit DNS"
 msgstr "ویرایش DNS"
 
 msgid "Edit Search Title"
-msgstr ""
+msgstr "ویرایش عنوان جستجو"
 
 msgid "Edit Title"
 msgstr "ویرایش عنوان"
@@ -1761,7 +1730,7 @@ msgid "Enable Netmed EPG"
 msgstr "فعال کردن Netmed EPG"
 
 msgid "Enable Picon"
-msgstr ""
+msgstr "فعال کردن پیکون"
 
 msgid "Enable ViaSat EPG"
 msgstr "فعال کردن ViaSat EPG"
@@ -1841,7 +1810,7 @@ msgid "Error"
 msgstr "خطا"
 
 msgid "Error code"
-msgstr ""
+msgstr "کد خطا"
 
 msgid "Error executing plugin"
 msgstr "خطا هنگام اجرای پلاگین"
@@ -1862,34 +1831,34 @@ msgid "Ethernet network interface"
 msgstr "رابط شبکه Ethernet"
 
 msgid "Event"
-msgstr ""
+msgstr "رخداد"
 
 msgid "Event Fontsize"
-msgstr ""
+msgstr "فونت رخداد"
 
 msgid "Event Fontsize (relative to skin size)"
 msgstr ""
 
 msgid "Event Info"
-msgstr ""
+msgstr "اطلاعات رخداد"
 
 msgid "Eventview"
 msgstr "مشاهده مورد"
 
 msgid "Eventview menu"
-msgstr ""
+msgstr "منوی مشاهده رخداد"
 
 msgid "Everywhere"
 msgstr "در همه جا"
 
 msgid "Exact Search"
-msgstr ""
+msgstr "جستجوی دقیق"
 
 msgid "Exceeds dual layer medium!"
 msgstr "بیش از رسانه دو لایه"
 
 msgid "Execution Progress:"
-msgstr "پیشرفت اجرا کردن :"
+msgstr "پیشرفت اجرا کردن:"
 
 msgid "Execution finished!!"
 msgstr "عملیات اجرایی پایان یافت"
@@ -1907,7 +1876,7 @@ msgid "Exit editor"
 msgstr "خروج از ویرایشگر"
 
 msgid "Exit input device selection."
-msgstr "خروج از انتخاب دستگاه ورودی"
+msgstr "خروج از انتخاب وسیله ورودی"
 
 msgid "Exit network wizard"
 msgstr "خروج از هدایتگر شبکه"
@@ -2209,7 +2178,7 @@ msgid "Harddisk standby after"
 msgstr "خاموشی موقت دیسک سخت بعد از"
 
 msgid "Hardware: "
-msgstr "سخت افزار :"
+msgstr "سخت افزار: "
 
 msgid "Hebrew"
 msgstr "عبری"
@@ -2221,26 +2190,26 @@ msgid "Hide CI messages"
 msgstr "پنهان کردن پیام های CI"
 
 msgid "Hide Expired Title"
-msgstr ""
+msgstr "مخفی کردن عنوان تمام شده"
 
 msgid "Hide zap errors"
-msgstr ""
+msgstr "مخفی کردن خطا های جابجایی"
 
 msgid "Hierarchy Information"
-msgstr ""
+msgstr "اطلاعات سلسله مراتبی"
 
 msgid "Hierarchy info"
-msgstr ""
+msgstr "اطلاعات سلسله مراتبی"
 
 #
 msgid "High bitrate support"
 msgstr "پشتیبانی از bitrate بالا"
 
 msgid "Hold screen"
-msgstr ""
+msgstr "نگه داشتن صفحه نمایش"
 
 msgid "Hold till locked"
-msgstr ""
+msgstr "نگه داشتن صفحه نمایش تا قفل شدن"
 
 msgid "Home"
 msgstr "خانه"
@@ -2249,7 +2218,7 @@ msgid "Horizontal"
 msgstr "افقی"
 
 msgid "Horizontal turning speed"
-msgstr ""
+msgstr "سرعت چرخش افقی"
 
 msgid "How many minutes do you want to record?"
 msgstr "چند دقیقه میخواهید ضبط کنید؟"
@@ -2264,7 +2233,7 @@ msgid "Hungarian"
 msgstr "مجارستانی"
 
 msgid "IMDB"
-msgstr ""
+msgstr "IMDB"
 
 msgid "IP Address"
 msgstr "IP آدرس"
@@ -2288,25 +2257,19 @@ msgstr ""
 "ارتباط scart شما اختلال دارد ، دکمه OK را برای بازگشت فشار دهید"
 
 msgid ""
-"If your TV has a brightness or contrast enhancement, disable it. If there is "
-"something called \"dynamic\", set it to standard. Adjust the backlight level "
-"to a value suiting your taste. Turn down contrast on your TV as much as "
-"possible.\n"
-"Then turn the brightness setting as low as possible, but make sure that the "
-"two lowermost shades of gray stay distinguishable.\n"
-"Do not care about the bright shades now. They will be set up in the next "
-"step.\n"
+"If your TV has a brightness or contrast enhancement, disable it. If there is something called \"dynamic\", set it to standard. Adjust the backlight level to a value suiting your taste. Turn down contrast on your TV as much as possible.\n"
+"Then turn the brightness setting as low as possible, but make sure that the two lowermost shades of gray stay distinguishable.\n"
+"Do not care about the bright shades now. They will be set up in the next step.\n"
 "If you are happy with the result, press OK."
 msgstr ""
 
 msgid "Image: "
-msgstr "عکس :"
+msgstr "عکس: "
 
 msgid "In Progress"
 msgstr "در حال اجرا"
 
-msgid ""
-"In order to record a timer, the TV was switched to the recording service!\n"
+msgid "In order to record a timer, the TV was switched to the recording service!\n"
 msgstr ""
 
 msgid "Include AIT in http streams"
@@ -2354,16 +2317,16 @@ msgstr "آماده سازی سرعت پرش به عقب"
 
 #
 msgid "Initial location in new timers"
-msgstr ""
+msgstr "آماده سازی مکان در زمان های جدید"
 
 msgid "Initial lock ratio"
 msgstr ""
 
 msgid "Initial signal quality"
-msgstr ""
+msgstr "آماده سازی کیفیت سیگنال"
 
 msgid "Initial signal quality:"
-msgstr ""
+msgstr "آماده سازی کیفیت سیگنال:"
 
 msgid "Initialization"
 msgstr "مقدار دهی اولیه"
@@ -2381,7 +2344,7 @@ msgid "Input device setup"
 msgstr "تنظیم دستگاه ورودی"
 
 msgid "Input devices"
-msgstr "دستگاه های ورودی"
+msgstr "وسیله های ورودی"
 
 msgid "Install"
 msgstr "نصب"
@@ -2444,7 +2407,7 @@ msgid "Internal Flash"
 msgstr "فلش داخلی"
 
 msgid "Internal hdd only"
-msgstr ""
+msgstr "فقط هارد داخلی"
 
 msgid "Interval between keys when repeating:"
 msgstr ""
@@ -2454,7 +2417,7 @@ msgstr "محل نامعتبر"
 
 #, python-format
 msgid "Invalid directory selected: %s"
-msgstr "پوشه انتخاب شده نامعتبر است : %s"
+msgstr "پوشه انتخاب شده نامعتبر است: %s"
 
 msgid "Inversion"
 msgstr "وارونگی"
@@ -2480,10 +2443,10 @@ msgid "Job View"
 msgstr "نمای کار"
 
 msgid "Jump to First Service"
-msgstr ""
+msgstr "پرش به اولین کانال"
 
 msgid "Jump to Last Service"
-msgstr ""
+msgstr "پرش به آخرین کانال"
 
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
 msgid "Just Scale"
@@ -2493,7 +2456,7 @@ msgid "Keep old timers for how many days"
 msgstr ""
 
 msgid "Kernel Version: "
-msgstr "نسخه کرنل :"
+msgstr "نسخه کرنل: "
 
 msgid "Keyboard"
 msgstr "صفحه کلید"
@@ -2532,7 +2495,7 @@ msgid "Language selection"
 msgstr "انتخاب زبان"
 
 msgid "Last Upgrade: "
-msgstr "آخرین به روز رسانی :"
+msgstr "آخرین به روز رسانی: "
 
 #
 msgid "Last config"
@@ -2558,7 +2521,7 @@ msgid "Letterbox"
 msgstr "Letterbox"
 
 msgid "Letzeburgesch"
-msgstr ""
+msgstr "Letzeburgesch"
 
 msgid "Limit east"
 msgstr "محدودیت شرق"
@@ -2571,10 +2534,10 @@ msgid "Limited character set for recording filenames"
 msgstr ""
 
 msgid "Limits cancelled"
-msgstr ""
+msgstr "محدودیت ها لغو شدند"
 
 msgid "Limits enabled"
-msgstr ""
+msgstr "محدودیت ها فعال شدند"
 
 msgid "Limits off"
 msgstr "خاموش کردن محدودیت"
@@ -2596,14 +2559,14 @@ msgid "List available networks"
 msgstr "لیست شبکه های در دسترس"
 
 msgid "List of Storage Devices"
-msgstr "لیست دستگاه های ذخیره سازی"
+msgstr "لیست وسیله های ذخیره سازی"
 
 msgid "List type"
 msgstr "نوع لیست"
 
 #, python-format
 msgid "List version %d, found %d channels"
-msgstr ""
+msgstr "لیست نسخه %d ، تعداد %d کانال یافت شد"
 
 msgid "Lithuanian"
 msgstr "لیتوانی"
@@ -2717,7 +2680,7 @@ msgid "Menu"
 msgstr "منو"
 
 msgid "Merge Short/Long Descriptions"
-msgstr ""
+msgstr "ادغام توضیحات کوتاه/بلند"
 
 msgid "Message"
 msgstr "پیام"
@@ -2927,7 +2890,7 @@ msgid "Next"
 msgstr "بعدی"
 
 msgid "Next Bouquet"
-msgstr ""
+msgstr "لیست کانال بعدی"
 
 msgid "No"
 msgstr "خیر"
@@ -2970,9 +2933,7 @@ msgid "No event info found, recording indefinitely."
 msgstr ""
 
 #
-msgid ""
-"No fast winding possible yet.. but you can use the number buttons to skip "
-"forward/backward!"
+msgid "No fast winding possible yet.. but you can use the number buttons to skip forward/backward!"
 msgstr ""
 
 msgid "No free index available"
@@ -2988,21 +2949,17 @@ msgstr "هیچ ارتباط شبکه ای در دسترس نیست"
 msgid "No networks found"
 msgstr "هیچ شبکه ای یافت نشد"
 
-msgid ""
-"No packages were upgraded yet. So you can check your network and try again."
-msgstr ""
-"هیچ بسته ای به روز رسانی نشده است ، تنظیمات شبکه را بررسی و دوباره سعی کنید"
+msgid "No packages were upgraded yet. So you can check your network and try again."
+msgstr "هیچ بسته ای به روز رسانی نشده است ، تنظیمات شبکه را بررسی و دوباره سعی کنید"
 
 msgid "No picture on TV? Press EXIT and retry."
-msgstr ""
-"اگر تصویر را در تلوزیون مشاهده نمیکنید با فشار دادن دکمه EXIT خارج شده و "
-"دوباره سعی کنید"
+msgstr "اگر تصویر را در تلوزیون مشاهده نمیکنید با فشار دادن دکمه EXIT خارج شده و دوباره سعی کنید"
 
 msgid "No positioner capable frontend found."
 msgstr ""
 
 msgid "No sat tuner found!"
-msgstr ""
+msgstr "هیچ تیونر ماهواره یافت نشد"
 
 msgid "No satellite frontend found!!"
 msgstr ""
@@ -3043,22 +3000,19 @@ msgstr "هیچ شبکه بدون سیمی یافت نشد ، در حال جست�
 #
 msgid ""
 "No working local network adapter found.\n"
-"Please verify that you have attached a network cable and your network is "
-"configured correctly."
+"Please verify that you have attached a network cable and your network is configured correctly."
 msgstr ""
 
 #
 msgid ""
 "No working wireless network adapter found.\n"
-"Please verify that you have attached a compatible WLAN device and your "
-"network is configured correctly."
+"Please verify that you have attached a compatible WLAN device and your network is configured correctly."
 msgstr ""
 
 #
 msgid ""
 "No working wireless network interface found.\n"
-" Please verify that you have attached a compatible WLAN device or enable "
-"your local network interface."
+" Please verify that you have attached a compatible WLAN device or enable your local network interface."
 msgstr ""
 
 msgid "No, but restart from begin"
@@ -3097,12 +3051,8 @@ msgid "Norwegian"
 msgstr "نروژی"
 
 #, python-format
-msgid ""
-"Not enough diskspace. Please free up some diskspace and try again. (%d MB "
-"required, %d MB available)"
-msgstr ""
-"فضای کافی وجود ندارد ، لطفا مقداری فضا خالی و دوباره تلاش کنید . (%d مگابایت "
-"نیاز است و %d مگابایت در دسترس است)"
+msgid "Not enough diskspace. Please free up some diskspace and try again. (%d MB required, %d MB available)"
+msgstr "فضای کافی وجود ندارد ، لطفا مقداری فضا خالی و دوباره تلاش کنید . (%d مگابایت نیاز است و %d مگابایت در دسترس است)"
 
 msgid "Not-Associated"
 msgstr ""
@@ -3118,10 +3068,7 @@ msgstr "چیزی برای به روز رسانی وجود ندارد"
 msgid "Now Playing"
 msgstr "در حال پخش"
 
-msgid ""
-"Now, use the contrast setting to turn up the brightness of the background as "
-"much as possible, but make sure that you can still see the difference "
-"between the two brightest levels of shades.If you have done that, press OK."
+msgid "Now, use the contrast setting to turn up the brightness of the background as much as possible, but make sure that you can still see the difference between the two brightest levels of shades.If you have done that, press OK."
 msgstr ""
 
 msgid "OK"
@@ -3229,16 +3176,16 @@ msgid "Packet manager"
 msgstr "مدیریت بسته های نرم افزاری"
 
 msgid "Page Down"
-msgstr ""
+msgstr "صفحه پایین"
 
 msgid "Page Left"
-msgstr ""
+msgstr "صفحه چپ"
 
 msgid "Page Right"
-msgstr ""
+msgstr "صفحه راست"
 
 msgid "Page Up"
-msgstr ""
+msgstr "صفحه بالا"
 
 #. TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
 msgid "Pan&Scan"
@@ -3260,7 +3207,7 @@ msgid "Parental control type"
 msgstr "نوع کنترل والدین"
 
 msgid "Partial Search"
-msgstr ""
+msgstr "جستجوی جزئی"
 
 #
 msgid "Password"
@@ -3273,7 +3220,7 @@ msgid "Permanently delete all recordings in the trash can?"
 msgstr ""
 
 msgid "Permanently remove all deleted items"
-msgstr ""
+msgstr "حذف تمامی موارد حذف شده به صورت دائمی"
 
 msgid "Persian"
 msgstr "فارسی"
@@ -3312,7 +3259,7 @@ msgid "Play Music..."
 msgstr "پخش موسیقی"
 
 msgid "Play audio in background"
-msgstr ""
+msgstr "پخش صدا در پس زمینه"
 
 msgid "Play next"
 msgstr "پخش بعدی"
@@ -3329,9 +3276,7 @@ msgstr "لطفا یک رسانه را برای اسکن انتخاب کنید"
 msgid "Please add titles to the compilation."
 msgstr ""
 
-msgid ""
-"Please be aware, that anyone can disable the parental control, if you have "
-"not set a PIN."
+msgid "Please be aware, that anyone can disable the parental control, if you have not set a PIN."
 msgstr ""
 
 msgid "Please change recording endtime"
@@ -3351,15 +3296,13 @@ msgstr "لطفا لیست های پیش فرض مورد نظر خود را بر�
 
 #
 msgid ""
-"Please configure or verify your Nameservers by filling out the required "
-"values.\n"
+"Please configure or verify your Nameservers by filling out the required values.\n"
 "When you are ready press OK to continue."
 msgstr ""
 
 #
 msgid ""
-"Please configure your internet connection by filling out the required "
-"values.\n"
+"Please configure your internet connection by filling out the required values.\n"
 "When you are ready press OK to continue."
 msgstr ""
 
@@ -3392,14 +3335,12 @@ msgid "Please enter your email address here:"
 msgstr "لطفا آدرس ایمیل خود را اینجا بنویسید:"
 
 msgid "Please enter your name here (optional):"
-msgstr "لطفا نام خود را وارد کنید (اختیاری) :"
+msgstr "لطفا نام خود را وارد کنید (اختیاری):"
 
 msgid "Please follow the instructions on the TV"
 msgstr "لطفا دستورالعمل هایی که در تلوزیون مشاهده میکنید را دنبال کنید"
 
-msgid ""
-"Please note that the previously selected media could not be accessed and "
-"therefore the default directory is being used instead."
+msgid "Please note that the previously selected media could not be accessed and therefore the default directory is being used instead."
 msgstr ""
 
 msgid "Please press OK to continue."
@@ -3440,8 +3381,7 @@ msgstr "لطفا مسیر فیلم را انتخاب کنید"
 
 #
 msgid ""
-"Please select the network interface that you want to use for your internet "
-"connection.\n"
+"Please select the network interface that you want to use for your internet connection.\n"
 "\n"
 "Please press OK to continue."
 msgstr ""
@@ -3468,10 +3408,8 @@ msgid ""
 "Press OK to go back to the TV mode or EXIT to cancel the moving."
 msgstr ""
 
-msgid ""
-"Please use the UP and DOWN keys to select your language. Afterwards press "
-"the OK button."
-msgstr ""
+msgid "Please use the UP and DOWN keys to select your language. Afterwards press the OK button."
+msgstr "لطفا از کلید های بالا و پایین برای انتخاب زبان خود استفاده کنید ، سپس دکمه OK را فشار دهید"
 
 #
 msgid "Please wait for activation of your network configuration..."
@@ -3642,7 +3580,7 @@ msgid "Preview menu"
 msgstr "منوی قبلی"
 
 msgid "Previous Bouquet"
-msgstr ""
+msgstr "لیست قبلی"
 
 msgid "Primary DNS"
 msgstr "DNS اول"
@@ -3678,10 +3616,10 @@ msgid "Providers"
 msgstr "ارائه کنندگان"
 
 msgid "Put TV in standby"
-msgstr ""
+msgstr "قرار دادن تلوزیون در خاموشی موقت"
 
 msgid "Put receiver in standby"
-msgstr ""
+msgstr "قرار دادن دستگاه در خاموشی موقت"
 
 msgid "Python frontend for /tmp/mmi.socket"
 msgstr "Python frontend برای /tmp/mmi.socket"
@@ -3735,7 +3673,7 @@ msgid "Reboot"
 msgstr "راه اندازی مجدد"
 
 msgid "Rec"
-msgstr ""
+msgstr "ضبط"
 
 msgid "Reception Settings"
 msgstr "تنظیمات دریافت"
@@ -4023,7 +3961,7 @@ msgid "Satellite equipment"
 msgstr "تجهیزات ماهواره"
 
 msgid "Satellite longitude:"
-msgstr "طول جغرافیایی ماهواره :"
+msgstr "طول جغرافیایی ماهواره:"
 
 msgid "Satellites"
 msgstr "ماهواره ها"
@@ -4125,9 +4063,7 @@ msgstr "اسکن باند US MID"
 msgid "Scan band US SUPER"
 msgstr "اسکن باند US SUPER"
 
-msgid ""
-"Scan your network for wireless access points and connect to them using your "
-"selected wireless device.\n"
+msgid "Scan your network for wireless access points and connect to them using your selected wireless device.\n"
 msgstr ""
 
 #, python-format
@@ -4144,12 +4080,11 @@ msgstr "اسکن ناموفق"
 msgid "Scanning..."
 msgstr "در حال اسکن"
 
-msgid ""
-"Scans default lamedbs sorted by satellite with a connected dish positioner"
+msgid "Scans default lamedbs sorted by satellite with a connected dish positioner"
 msgstr ""
 
 msgid "Search"
-msgstr ""
+msgstr "جستجو"
 
 msgid "Search east"
 msgstr "جستجوی شرق"
@@ -4216,10 +4151,10 @@ msgid "Select files/folders to backup"
 msgstr "انتخاب فایل و پوشه ها برای تهیه نسخه پشتیبان"
 
 msgid "Select input device"
-msgstr "انتخاب دستگاه ورودی"
+msgstr "انتخاب وسیله ورودی"
 
 msgid "Select input device."
-msgstr "انتخاب دستگاه ورودی"
+msgstr "انتخاب وسیله ورودی"
 
 msgid "Select interface"
 msgstr "انتخاب رابط"
@@ -4319,7 +4254,7 @@ msgid "Set End Time"
 msgstr "تنظیم زمان پایان"
 
 msgid "Set Limits"
-msgstr ""
+msgstr "تنظیم محدودیت ها"
 
 #
 msgid "Set Voltage and 22KHz"
@@ -4330,26 +4265,26 @@ msgid "Set available internal memory threshold for the warning."
 msgstr "تنظیم حافظه داخلی در دسترس برای آستانه هشدار"
 
 msgid "Set fixed"
-msgstr ""
+msgstr "تنظیم ثابت"
 
 #
 msgid "Set interface as default Interface"
 msgstr "تنظیم رابط به عنوان رابط پیش فرض"
 
 msgid "Set time window to 1 hour"
-msgstr ""
+msgstr "تنظیم پنجره زمان تا 1 ساعت"
 
 msgid "Set time window to 2 hours"
-msgstr ""
+msgstr "تنظیم پنجره زمان تا 2 ساعت"
 
 msgid "Set time window to 3 hours"
-msgstr ""
+msgstr "تنظیم پنجره زمان تا 3 ساعت"
 
 msgid "Set time window to 4 hours"
-msgstr ""
+msgstr "تنظیم پنجره زمان تا 4 ساعت"
 
 msgid "Set time window to 5 hours"
-msgstr ""
+msgstr "تنظیم پنجره زمان تا 5 ساعت"
 
 msgid "Settings"
 msgstr "تنظیمات"
@@ -4364,13 +4299,11 @@ msgid "Setup menu"
 msgstr "منوی تنظیمات"
 
 msgid "Setup your positioner"
-msgstr ""
+msgstr "تنظیم مکان یاب شما"
 
 #
 #, python-format
-msgid ""
-"Shall the USB stick wizard proceed and program the image file %s into flash "
-"memory?"
+msgid "Shall the USB stick wizard proceed and program the image file %s into flash memory?"
 msgstr ""
 
 #
@@ -4381,7 +4314,7 @@ msgid "Short filenames"
 msgstr "نام های کوتاه فایل"
 
 msgid "Show EIT now/next in infobar"
-msgstr ""
+msgstr "نمایش EIT الان/بعدی در نوار اطلاعات"
 
 msgid "Show Info"
 msgstr "نمایش اطلاعات"
@@ -4397,7 +4330,7 @@ msgid "Show Service Names "
 msgstr "نمایش نام کانال ها"
 
 msgid "Show Service Title"
-msgstr ""
+msgstr "نمایش عنوان کانال"
 
 msgid "Show WLAN Status"
 msgstr "نمایش وضعیت شبکه بدون سیم"
@@ -4406,7 +4339,7 @@ msgid "Show animation while busy"
 msgstr ""
 
 msgid "Show background in Radio Mode"
-msgstr ""
+msgstr "نمایش تصویر پس زمینه در حالت رادیو"
 
 msgid "Show bouquet selection menu"
 msgstr "نمایش منوی انتخاب لیست"
@@ -4415,10 +4348,10 @@ msgid "Show channel numbers in channel selection"
 msgstr "نمایش شماره کانال ها در انتخاب کانال"
 
 msgid "Show crypto info in infobar"
-msgstr ""
+msgstr "نمایش اطلاعات کد گذاری در نوار اطلاعات"
 
 msgid "Show detailed event info"
-msgstr ""
+msgstr "نمایش اطلاعات همراه جزئیات رخداد"
 
 #
 msgid "Show event-progress in channel selection"
@@ -4440,7 +4373,7 @@ msgid "Show positioner movement"
 msgstr "نمایش گردش مکان یاب"
 
 msgid "Show second infobar"
-msgstr ""
+msgstr "نمایش نوار اطلاعات دوم"
 
 msgid "Show services beginning with"
 msgstr "نمایش کانال های که شروع میشوند با"
@@ -4464,7 +4397,7 @@ msgid "Shutdown Dreambox after"
 msgstr "خاموش کردن کامل دستگاه بعد از"
 
 msgid "Side by Side"
-msgstr ""
+msgstr "پهلو به پهلو"
 
 msgid "Signal OK, proceeding"
 msgstr ""
@@ -4524,10 +4457,10 @@ msgid "Skins"
 msgstr "اسکین ها"
 
 msgid "Skip Empty Services"
-msgstr ""
+msgstr "نادیده گرفتن کانال های خالی"
 
 msgid "Skip Empty Services (may need restart)"
-msgstr ""
+msgstr "نادیده گرفتن کانال های خالی (ممکن است به راه اندازی مجدد نیاز داشته باشد)"
 
 msgid "Sleep Timer"
 msgstr "زمان خواب"
@@ -4617,7 +4550,7 @@ msgstr ""
 "لطفا محل دیگری را انتخاب کنید"
 
 msgid "Sort"
-msgstr ""
+msgstr "چیدن"
 
 #. TRANSLATORS: This must fit into the header button in the EPG-List
 msgid "Sort A-Z"
@@ -4634,7 +4567,7 @@ msgid "Soundcarrier"
 msgstr "حمل کننده صدا"
 
 msgid "Source request"
-msgstr ""
+msgstr "درخواست منبع"
 
 msgid "South"
 msgstr "جنوب"
@@ -4707,7 +4640,7 @@ msgid "Stop playing this movie?"
 msgstr "توقف پخش این فیلم؟"
 
 msgid "Stop recording"
-msgstr ""
+msgstr "توقف ضبط کردن"
 
 msgid "Stop recording and delete"
 msgstr ""
@@ -4724,7 +4657,7 @@ msgid "Stop testing plane after # successful transponders"
 msgstr ""
 
 msgid "Stopped"
-msgstr ""
+msgstr "متوقف شده"
 
 msgid "Store at index"
 msgstr ""
@@ -4739,7 +4672,7 @@ msgid "Stream request"
 msgstr ""
 
 msgid "Strongest position"
-msgstr ""
+msgstr "قوی ترین مکان"
 
 msgid "Subservice list..."
 msgstr "لیست کانال های فرعی"
@@ -4803,13 +4736,13 @@ msgid "Switchable tuner types:"
 msgstr "انواع تیونر های قابل تعویض:"
 
 msgid "Symbol Rate"
-msgstr ""
+msgstr "سیمبل ریت"
 
 msgid "Symbol rate"
-msgstr ""
+msgstr "سیمبل ریت"
 
 msgid "Symbolrate"
-msgstr ""
+msgstr "سیمبل ریت"
 
 msgid "Sync failure moving back to origin !"
 msgstr ""
@@ -4891,10 +4824,7 @@ msgstr ""
 "ممنون بابت استفاده از هدایتگر ، دستگاه شما آماده برای استفاده است\n"
 "لطفا دکمه OK را برای شروع استفاده از دستگاه خود فشار دهید"
 
-msgid ""
-"The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to "
-"create a Dreambox format data DVD (which will not play in stand-alone DVD "
-"players) instead?"
+msgid "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to create a Dreambox format data DVD (which will not play in stand-alone DVD players) instead?"
 msgstr ""
 
 #
@@ -4950,7 +4880,7 @@ msgid ""
 "\n"
 "Do you want to write the USB flasher to this stick?"
 msgstr ""
-"دستگاه های زیر یافت شدند :\n"
+"دستگاه های زیر یافت شدند:\n"
 "\n"
 "%s\n"
 "\n"
@@ -4962,19 +4892,14 @@ msgstr "فایل های زیر یافت شدند"
 
 msgid ""
 "The input port should be configured now.\n"
-"You can now configure the screen by displaying some test pictures. Do you "
-"want to do that now?"
+"You can now configure the screen by displaying some test pictures. Do you want to do that now?"
 msgstr ""
 
 msgid "The installation of the default services lists is finished."
 msgstr "نصب لیست های کانال های پیش فرض به پایان رسید"
 
-msgid ""
-"The installation of the default settings is finished. You can now continue "
-"configuring your Dreambox by pressing the OK button on the remote control."
-msgstr ""
-"نصب تنظیمات پیش فرض پایان یافت ، شما میتوانید برای ادامه پیکربندی دستگاه خود "
-"دکمه OK روی ریموت کنترل را فشار دهید"
+msgid "The installation of the default settings is finished. You can now continue configuring your Dreambox by pressing the OK button on the remote control."
+msgstr "نصب تنظیمات پیش فرض پایان یافت ، شما میتوانید برای ادامه پیکربندی دستگاه خود دکمه OK روی ریموت کنترل را فشار دهید"
 
 msgid "The md5sum validation failed, the file may be corrupted!"
 msgstr "تایید md5sum ناموفق بود ، فایل احتمالا خراب است"
@@ -4983,7 +4908,7 @@ msgid "The package doesn't contain anything."
 msgstr "این بسته شامل چیزی نمیشود"
 
 msgid "The package:"
-msgstr "بسته :"
+msgstr "بسته:"
 
 #, python-format
 msgid "The path %s already exists."
@@ -5002,9 +4927,7 @@ msgstr "زمان خواب فعال شد"
 msgid "The sleep timer has been disabled."
 msgstr "زمان خواب غیر فعال شد"
 
-msgid ""
-"The status of the current beta image could not be checked because www."
-"openpli.org could not be reached for some reason"
+msgid "The status of the current beta image could not be checked because www.openpli.org could not be reached for some reason"
 msgstr ""
 
 msgid "The timer file (timers.xml) is corrupt and could not be loaded."
@@ -5024,19 +4947,12 @@ msgstr ""
 "پلاگین شبکه بدون سیم نصب نشده است\n"
 "لطفا آن را نصب کنید"
 
-msgid ""
-"The wizard can backup your current settings. Do you want to do a backup now?"
-msgstr ""
-"هدایتگر میتواند از تنظیمات فعلی شما نسخه پشتیبان تهیه کند ، آیا میخواهید "
-"الان نسخه پشتیبان تهیه شود ؟"
+msgid "The wizard can backup your current settings. Do you want to do a backup now?"
+msgstr "هدایتگر میتواند از تنظیمات فعلی شما نسخه پشتیبان تهیه کند ، آیا میخواهید الان نسخه پشتیبان تهیه شود ؟"
 
 #, python-format
-msgid ""
-"The wizard found a configuration backup. Do you want to restore your old "
-"settings from %s?"
-msgstr ""
-"هدایتگر یک نسخه پشتیبان پیکربندی شده یافت ، آیا میخواهید تنظیمات قبلی شما از "
-"%s بازگردانی شود ؟"
+msgid "The wizard found a configuration backup. Do you want to restore your old settings from %s?"
+msgstr "هدایتگر یک نسخه پشتیبان پیکربندی شده یافت ، آیا میخواهید تنظیمات قبلی شما از %s بازگردانی شود ؟"
 
 msgid "The wizard is finished now."
 msgstr "هدایتگر به پایان رسید"
@@ -5076,11 +4992,9 @@ msgid "There was an error downloading the packetlist. Please try again."
 msgstr "یک خطا هنگام دانلود لیست بسته ها رخ داد ، لطفا دوباره سعی کنید"
 
 msgid "There was an error. The package:"
-msgstr "یک خطا رخ داد ، بسته :"
+msgstr "یک خطا رخ داد ، بسته:"
 
-msgid ""
-"This DVD RW medium is already formatted - reformatting will erase all "
-"content on the disc."
+msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr ""
 
 #, python-format
@@ -5091,13 +5005,10 @@ msgid "This is step number 2."
 msgstr "این مرحله دوم است"
 
 msgid ""
-"This plugin creates a USB stick which can be used to update the firmware of "
-"your Dreambox without the need for a network or WLAN connection.\n"
+"This plugin creates a USB stick which can be used to update the firmware of your Dreambox without the need for a network or WLAN connection.\n"
 "First, a USB stick needs to be prepared so that it becomes bootable.\n"
-"In the next step, an NFI image file can be downloaded from the update server "
-"and saved on the USB stick.\n"
-"If you already have a prepared bootable USB stick, please insert it now. "
-"Otherwise plug in a USB stick with a minimum size of 64 MB!"
+"In the next step, an NFI image file can be downloaded from the update server and saved on the USB stick.\n"
+"If you already have a prepared bootable USB stick, please insert it now. Otherwise plug in a USB stick with a minimum size of 64 MB!"
 msgstr ""
 
 #
@@ -5120,8 +5031,7 @@ msgid ""
 "This test checks for configured Nameservers.\n"
 "If you get a \"unconfirmed\" message:\n"
 "- please check your DHCP, cabling and Adapter setup\n"
-"- if you configured your Nameservers manually please verify your entries in "
-"the \"Nameserver\" Configuration"
+"- if you configured your Nameservers manually please verify your entries in the \"Nameserver\" Configuration"
 msgstr ""
 
 msgid ""
@@ -5139,12 +5049,10 @@ msgid ""
 msgstr ""
 
 msgid ""
-"This test checks whether your LAN Adapter is set up for automatic IP Address "
-"configuration with DHCP.\n"
+"This test checks whether your LAN Adapter is set up for automatic IP Address configuration with DHCP.\n"
 "If you get a \"disabled\" message:\n"
 " - then your LAN Adapter is configured for manual IP Setup\n"
-"- verify thay you have entered correct IP informations in the AdapterSetup "
-"dialog.\n"
+"- verify thay you have entered correct IP informations in the AdapterSetup dialog.\n"
 "If you get an \"enabeld\" message:\n"
 "-verify that you have a configured and working DHCP Server in your network."
 msgstr ""
@@ -5153,8 +5061,7 @@ msgid "This test detects your configured LAN-Adapter."
 msgstr ""
 
 msgid ""
-"This will (re-)calculate all positions of your rotor and may remove "
-"previously memorised positions and fine-tuning!\n"
+"This will (re-)calculate all positions of your rotor and may remove previously memorised positions and fine-tuning!\n"
 "Are you sure?"
 msgstr ""
 
@@ -5184,19 +5091,19 @@ msgid "Time/Date Input"
 msgstr "ورودی زمان و تاریخ"
 
 msgid "Timeline 120 minutes"
-msgstr ""
+msgstr "خط زمان 120 دقیقه"
 
 msgid "Timeline 180 minutes"
-msgstr ""
+msgstr "خط زمان 180 دقیقه"
 
 msgid "Timeline 240 minutes"
-msgstr ""
+msgstr "خط زمان 240 دقیقه"
 
 msgid "Timeline 300 minutes"
-msgstr ""
+msgstr "خط زمان 300 دقیقه"
 
 msgid "Timeline 60 minutes"
-msgstr ""
+msgstr "خط زمان 60 دقیقه"
 
 msgid "Timer"
 msgstr "زمان"
@@ -5208,7 +5115,7 @@ msgid "Timer Editor"
 msgstr "ویرایشگر زمان"
 
 msgid "Timer Overview"
-msgstr ""
+msgstr "بررسی اجمالی زمان خودکار"
 
 msgid "Timer Type"
 msgstr "نوع زمان"
@@ -5259,17 +5166,15 @@ msgid "Titleset mode"
 msgstr "حالت تنظیم عنوان"
 
 msgid "To audio selection"
-msgstr ""
+msgstr "برای انتخاب صدا"
 
 msgid "To subtitle selection"
-msgstr ""
+msgstr "برای انتخاب زیرنویس"
 
 msgid ""
 "To update your Dreambox firmware, please follow these steps:\n"
-"1) Turn off your box with the rear power switch and make sure the bootable "
-"USB stick is plugged in.\n"
-"2) Turn mains back on and hold the DOWN button on the front panel pressed "
-"for 10 seconds.\n"
+"1) Turn off your box with the rear power switch and make sure the bootable USB stick is plugged in.\n"
+"2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n"
 "3) Wait for bootup and follow instructions of the wizard."
 msgstr ""
 
@@ -5289,7 +5194,7 @@ msgid "Toneburst A/B"
 msgstr "Toneburst A/B"
 
 msgid "Top and Bottom"
-msgstr ""
+msgstr "بالا و پایین"
 
 msgid "Track"
 msgstr "آهنگ"
@@ -5301,7 +5206,7 @@ msgid "Translation:"
 msgstr "ترجمه:"
 
 msgid "Transmission Mode"
-msgstr ""
+msgstr "حالت ارسال"
 
 msgid "Transmission mode"
 msgstr "حالت انتقال"
@@ -5450,7 +5355,7 @@ msgid "Updatefeed not available."
 msgstr "Updatefeed در دسترس نیست"
 
 msgid "Updates your receiver's software"
-msgstr ""
+msgstr "به روز رسانی نرم افزار دستگاه شما"
 
 msgid "Updating finished. Here is the result:"
 msgstr "به روز رسانی انجام شد ، نتیجه این است"
@@ -5463,13 +5368,13 @@ msgid "Updating... Please wait... This can take some minutes..."
 msgstr "در حال به روز رسانی ، لطفا صبر کنید ، ممکن است چند دقیقه زمان ببرد"
 
 msgid "Upgrade and ask to reboot"
-msgstr ""
+msgstr "به روز رسانی و پرسش برای راه اندازی مجدد"
 
 msgid "Upgrade finished."
 msgstr "به روز رسانی پایان یافت"
 
 msgid "Upgrade finished. Do you want to reboot your Dreambox?"
-msgstr ""
+msgstr "به روز رسانی پایان یافت ، آیا میخواهید دستگاه شما دوباره راه اندازی شود ؟"
 
 msgid "Upgrading"
 msgstr "در حال به روز رسانی"
@@ -5485,13 +5390,13 @@ msgid "Use DHCP"
 msgstr "استفاده از DHCP"
 
 msgid "Use DVB subtitles position"
-msgstr ""
+msgstr "استفاده از مکان زیرنویس DVB"
 
 msgid "Use Interface"
 msgstr "استفاده از رابط"
 
 msgid "Use Long Title"
-msgstr ""
+msgstr "استفاده از عنوان طولانی"
 
 msgid "Use Power Measurement"
 msgstr "استفاده از اندازه گیری توان"
@@ -5512,7 +5417,7 @@ msgid "Use official channel numbering"
 msgstr ""
 
 msgid "Use original teletext position"
-msgstr ""
+msgstr "استفاده از مکان اصلی تله تکست"
 
 msgid "Use power measurement"
 msgstr "استفاده از اندازه گیری توان"
@@ -5529,13 +5434,11 @@ msgid ""
 "Please set up tuner A"
 msgstr ""
 
-msgid ""
-"Use the up/down keys on your remote control to select an option. After that, "
-"press OK."
+msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
 msgstr ""
 
 msgid "Use this input device settings?"
-msgstr ""
+msgstr "استفاده از این تنظیمات وسیله ورودی ؟"
 
 msgid "Use this settings?"
 msgstr "استفاده از این تنظیمات ؟"
@@ -5555,13 +5458,13 @@ msgid "Use usals for this sat"
 msgstr "استفاده از usals برای این ماهواره"
 
 msgid "Use wizard to set up basic features"
-msgstr ""
+msgstr "استفاده از هدایتگر برای تنظیم ویژگی های پایه"
 
 msgid "Used service scan type"
-msgstr ""
+msgstr "نوع اسکن کانال استفاده شده"
 
 msgid "User - bouquets"
-msgstr ""
+msgstr "لیست های کاربر"
 
 msgid "User defined"
 msgstr "تعریف شده توسط کاربر"
@@ -5570,10 +5473,10 @@ msgid "Username"
 msgstr "نام کاربری"
 
 msgid "Using LNB"
-msgstr ""
+msgstr "استفاده از LNB"
 
 msgid "Using Tuner "
-msgstr ""
+msgstr "استفاده از تیونر"
 
 msgid "Using fixed address"
 msgstr ""
@@ -5588,7 +5491,7 @@ msgid "Vertical"
 msgstr "عمودی"
 
 msgid "Vertical turning speed"
-msgstr ""
+msgstr "سرعت چرخش عمودی"
 
 msgid "Video Fine-Tuning"
 msgstr "بهینه سازی تصویر"
@@ -5623,8 +5526,7 @@ msgstr "تنظیمات بهینه تصویر"
 msgid ""
 "Video input selection\n"
 "\n"
-"Please press OK if you can see this page on your TV (or select a different "
-"input port).\n"
+"Please press OK if you can see this page on your TV (or select a different input port).\n"
 "\n"
 "The next input port will be automatically probed in 10 seconds."
 msgstr ""
@@ -5633,16 +5535,16 @@ msgid "Video mode selection."
 msgstr "انتخاب حالت تصویر"
 
 msgid "Videocodec"
-msgstr ""
+msgstr "کدک تصویر"
 
 msgid "Videoenhancement Setup"
 msgstr "تنظیمات بهینه تصویر"
 
 msgid "Videoformat"
-msgstr ""
+msgstr "فرمت تصویر"
 
 msgid "Videosize"
-msgstr ""
+msgstr "اندازه تصویر"
 
 msgid "View Movies..."
 msgstr "مشاهده فیلم ها"
@@ -5790,16 +5692,12 @@ msgstr ""
 msgid ""
 "Welcome to the Cutlist editor.\n"
 "\n"
-"Seek to the start of the stuff you want to cut away. Press OK, select 'start "
-"cut'.\n"
+"Seek to the start of the stuff you want to cut away. Press OK, select 'start cut'.\n"
 "\n"
 "Then seek to the end, press OK, select 'end cut'. That's it."
 msgstr ""
 
-msgid ""
-"Welcome to the Image upgrade wizard. The wizard will assist you in upgrading "
-"the firmware of your Dreambox by providing a backup facility for your "
-"current settings and a short explanation of how to upgrade your firmware."
+msgid "Welcome to the Image upgrade wizard. The wizard will assist you in upgrading the firmware of your Dreambox by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware."
 msgstr ""
 
 #
@@ -5807,8 +5705,7 @@ msgid ""
 "Welcome to the cleanup wizard.\n"
 "\n"
 "We have detected that your available internal memory has dropped below 2MB.\n"
-"To ensure stable operation of your Dreambox, the internal memory should be "
-"cleaned up.\n"
+"To ensure stable operation of your Dreambox, the internal memory should be cleaned up.\n"
 "You can use this wizard to remove some extensions.\n"
 msgstr ""
 
@@ -5816,8 +5713,7 @@ msgstr ""
 msgid ""
 "Welcome.\n"
 "\n"
-"If you want to connect your Dreambox to the Internet, this wizard will guide "
-"you through the basic network setup of your Dreambox.\n"
+"If you want to connect your Dreambox to the Internet, this wizard will guide you through the basic network setup of your Dreambox.\n"
 "\n"
 "Press OK to start configuring your network"
 msgstr ""
@@ -5849,8 +5745,7 @@ msgstr "گزارش های خطای دستگاه چه شوند ؟"
 msgid ""
 "When you do a factory reset, you will lose ALL your configuration data\n"
 "(including bouquets, services, satellite data ...)\n"
-"After completion of factory reset, your receiver will restart "
-"automatically!\n"
+"After completion of factory reset, your receiver will restart automatically!\n"
 "\n"
 "Really do a factory reset?"
 msgstr ""
@@ -5890,10 +5785,10 @@ msgid "Year"
 msgstr "سال"
 
 msgid "Yellow DVB subtitles"
-msgstr ""
+msgstr "زیرنویس زرد DVB"
 
 msgid "Yellow pango subtitles"
-msgstr ""
+msgstr "زیرنویس زرد pango"
 
 msgid "Yes"
 msgstr "بله"
@@ -5953,12 +5848,8 @@ msgstr "شما میتوانید عملیات نصب را لغو کنید"
 msgid "You can cancel the removal."
 msgstr "شما میتوانید عملیات حذف را لغو کنید"
 
-msgid ""
-"You can choose some default settings now. Please select the settings you "
-"want to be installed."
-msgstr ""
-"شما هم اکنون میتوانید تعدادی تنظیمات پیش فرض انتخاب کنید ، لطفا تنظیمات مورد "
-"نظر خود را برای نصب انتخاب کنید"
+msgid "You can choose some default settings now. Please select the settings you want to be installed."
+msgstr "شما هم اکنون میتوانید تعدادی تنظیمات پیش فرض انتخاب کنید ، لطفا تنظیمات مورد نظر خود را برای نصب انتخاب کنید"
 
 msgid "You can choose, what you want to install..."
 msgstr "انتخاب با شما است ، میتوانید هر انتخابی برای نصب داشته باشید"
@@ -5982,52 +5873,32 @@ msgstr "شما نمیتوانید این را حذف کنید"
 msgid "You chose not to install any default services lists."
 msgstr "شما هیچ لیست کانال پیش فرضی را برای نصب انتخاب نکرده اید"
 
-msgid ""
-"You chose not to install any default settings. You can however install the "
-"default settings later in the settings menu."
-msgstr ""
-"شما هیچ تنظیمات پیش فرضی را برای نصب انتخاب نکرده اید ، اگرچه در آینده "
-"میتوانید تنظیمات پیش فرض توسط منوی تنظیمات نصب کنید"
+msgid "You chose not to install any default settings. You can however install the default settings later in the settings menu."
+msgstr "شما هیچ تنظیمات پیش فرضی را برای نصب انتخاب نکرده اید ، اگرچه در آینده میتوانید تنظیمات پیش فرض توسط منوی تنظیمات نصب کنید"
 
-msgid ""
-"You chose not to install anything. Please press OK finish the install wizard."
-msgstr ""
-"شما هیچ چیزی برای نصب انتخاب نکرده اید ، لطفا دکمه OK را برای پایان هدایتگر "
-"نصب فشار دهید"
+msgid "You chose not to install anything. Please press OK finish the install wizard."
+msgstr "شما هیچ چیزی برای نصب انتخاب نکرده اید ، لطفا دکمه OK را برای پایان هدایتگر نصب فشار دهید"
 
 msgid "You didn't select a channel to record from."
 msgstr "شما کانالی برای شروع ضبط انتخاب نکرده اید"
 
-msgid ""
-"You have chosen to backup your settings. Please press OK to start the backup "
-"now."
-msgstr ""
-"شما تهیه نسخه پشتیبان از تنظیمات خود را انتخاب کرده اید ، لطفا دکمه OK را "
-"برای شروع تهیه نسخه پشتیبان فشار دهید"
+msgid "You have chosen to backup your settings. Please press OK to start the backup now."
+msgstr "شما تهیه نسخه پشتیبان از تنظیمات خود را انتخاب کرده اید ، لطفا دکمه OK را برای شروع تهیه نسخه پشتیبان فشار دهید"
 
-msgid ""
-"You have chosen to create a new .NFI flasher bootable USB stick. This will "
-"repartition the USB stick and therefore all data on it will be erased."
+msgid "You have chosen to create a new .NFI flasher bootable USB stick. This will repartition the USB stick and therefore all data on it will be erased."
 msgstr ""
 
 #
-msgid ""
-"You have chosen to restore your settings. Enigma2 will restart after "
-"restore. Please press OK to start the restore now."
-msgstr ""
-"شما بازگردانی تنظیمات خود را انتخاب کرده اید ، انیگما 2 بعد از بازگردانی "
-"دوباره راه اندازی میشود ، برای شروع بازگردانی دکمه OK را فشار دهید"
+msgid "You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now."
+msgstr "شما بازگردانی تنظیمات خود را انتخاب کرده اید ، انیگما 2 بعد از بازگردانی دوباره راه اندازی میشود ، برای شروع بازگردانی دکمه OK را فشار دهید"
 
 #, python-format
 msgid "You have to wait %s!"
 msgstr "لطفا صبر کنید %s"
 
 msgid ""
-"You need a PC connected to your dreambox. If you need further instructions, "
-"please visit the website http://www.dm7025.de.\n"
-"Your dreambox will now be halted. After you have performed the update "
-"instructions from the website, your new firmware will ask you to restore "
-"your settings."
+"You need a PC connected to your dreambox. If you need further instructions, please visit the website http://www.dm7025.de.\n"
+"Your dreambox will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
 msgstr ""
 
 msgid ""
@@ -6037,7 +5908,7 @@ msgid ""
 msgstr ""
 
 msgid "You system does not support ext4"
-msgstr ""
+msgstr "سیستم شما از ext4 پشتیبانی نمیکند"
 
 msgid ""
 "Your Dreambox is now ready to use.\n"
@@ -6066,15 +5937,11 @@ msgstr ""
 msgid "Your Dreambox will restart after pressing OK on your remote control."
 msgstr "دستگاه شما بعد از فشار دادن دکمه OK دوباره راه اندازی خواهد شد"
 
-msgid ""
-"Your backup succeeded. We will now continue to explain the further upgrade "
-"process."
+msgid "Your backup succeeded. We will now continue to explain the further upgrade process."
 msgstr ""
 
 #
-msgid ""
-"Your collection exceeds the size of a single layer medium, you will need a "
-"blank dual layer DVD!"
+msgid "Your collection exceeds the size of a single layer medium, you will need a blank dual layer DVD!"
 msgstr ""
 
 #
@@ -6084,9 +5951,7 @@ msgstr "مجموعه فعلی شما گم خواهد شد"
 msgid "Your dreambox is shutting down. Please stand by..."
 msgstr ""
 
-msgid ""
-"Your dreambox isn't connected to the internet properly. Please check it and "
-"try again."
+msgid "Your dreambox isn't connected to the internet properly. Please check it and try again."
 msgstr "دستگاه شما به اینترنت متصل نیست ، لطفا بررسی و دوباره سعی کنید"
 
 #
@@ -6120,10 +5985,10 @@ msgid "Your network configuration has been activated."
 msgstr "پیکربندی شبکه شما فعال شد"
 
 msgid "Your receiver is rebooting"
-msgstr ""
+msgstr "دستگاه شما در حال راه اندازی مجدد است"
 
 msgid "Your receiver is shutting down"
-msgstr ""
+msgstr "دستگاه شما در حال خاموش شدن است"
 
 #
 msgid ""
@@ -6134,7 +5999,7 @@ msgid ""
 msgstr ""
 
 msgid "Zap"
-msgstr ""
+msgstr "تعویض"
 
 msgid "Zap PIG"
 msgstr ""
@@ -6158,10 +6023,10 @@ msgid "Zap focus to main screen"
 msgstr ""
 
 msgid "Zap mode"
-msgstr ""
+msgstr "حالت تعویض"
 
 msgid "Zap to selected channel"
-msgstr ""
+msgstr "تعویض به کانال انتخاب شده"
 
 msgid "[alternative edit]"
 msgstr "[ویرایش متناوب]"
@@ -6177,14 +6042,11 @@ msgstr "[حالت حرکت]"
 
 #
 msgid "a gui to assign services/providers to common interface modules"
-msgstr ""
-"یک GUI برای واگذار کردن کانال ها ، ارائه کننده ها به رابط مشترک ماژول ها"
+msgstr "یک GUI برای واگذار کردن کانال ها ، ارائه کننده ها به رابط مشترک ماژول ها"
 
 #
 msgid "a gui to assign services/providers/caids to common interface modules"
-msgstr ""
-"یک GUI برای واگذار کردن کانال ها ، ارائه کننده ها و CAIds به رابط مشترک "
-"ماژول ها"
+msgstr "یک GUI برای واگذار کردن کانال ها ، ارائه کننده ها و CAIds به رابط مشترک ماژول ها"
 
 msgid "abort alternatives edit"
 msgstr "انصراف از ویرایش متناوب"
@@ -6271,6 +6133,8 @@ msgid ""
 "are you sure you want to restore\n"
 "following backup:\n"
 msgstr ""
+"آیا مطمئن هستید که میخواهید نسخه پشتیبان\n"
+"زیر را بازگردانی کنید:\n"
 
 #
 msgid "assigned CAIds:"
@@ -6400,7 +6264,7 @@ msgid "delete..."
 msgstr "حذف"
 
 msgid "descramble and record ecm"
-msgstr ""
+msgstr "کد گشایی و ضبط ECM"
 
 msgid "disable"
 msgstr "غیر فعال"
@@ -6421,7 +6285,7 @@ msgid "do nothing"
 msgstr "کاری انجام نشود"
 
 msgid "don't descramble, record ecm"
-msgstr ""
+msgstr "کد گشایی نشود ، ضبط ECM"
 
 msgid "don't record"
 msgstr "ضبط نشود"
@@ -6523,7 +6387,7 @@ msgid "fine-tune your display"
 msgstr ""
 
 msgid "fixed"
-msgstr ""
+msgstr "ثابت"
 
 msgid "forward to the next chapter"
 msgstr "جلو رفتن به فصل بعدی"
@@ -6535,7 +6399,7 @@ msgid "free diskspace"
 msgstr "فضای خالی دیسک"
 
 msgid "full transparency"
-msgstr ""
+msgstr "شفافیت کامل"
 
 msgid "go to deep standby"
 msgstr "رفتن به خاموشی کامل"
@@ -6579,7 +6443,7 @@ msgid "insert mark here"
 msgstr "درج علامت اینجا"
 
 msgid "invalid type"
-msgstr ""
+msgstr "نوع نامعتبر"
 
 msgid "jump back to the previous title"
 msgstr "پرش به عقب عنوان قبلی"
@@ -6705,13 +6569,13 @@ msgid "no standby"
 msgstr "خاموشی موقت خیر"
 
 msgid "no storage devices found"
-msgstr ""
+msgstr "هیچ وسیله ذخیره سازی یافت نشد"
 
 msgid "no timeout"
 msgstr "مهلت وجود ندارد"
 
 msgid "no transparency"
-msgstr ""
+msgstr "بدون شفافیت"
 
 msgid "none"
 msgstr "هیچکدام"
@@ -6943,7 +6807,7 @@ msgid "show extended description"
 msgstr "نمایش توضیحات طولانی"
 
 msgid "show mediaplayer on mainmenu"
-msgstr ""
+msgstr "نمایش پخش کننده صوتی و تصویری در منوی اصلی"
 
 msgid "show shutdown menu"
 msgstr "نمایش منوی خاموش کردن"
@@ -7083,13 +6947,13 @@ msgid "tuner is not supported"
 msgstr "تیونر پشتیبانی نمیشود"
 
 msgid "unavailable"
-msgstr ""
+msgstr "در دسترس نیست"
 
 msgid "unconfirmed"
 msgstr "تایید نشده"
 
 msgid "undefined"
-msgstr ""
+msgstr "تعریف نشده"
 
 msgid "unknown"
 msgstr "نامشخص"
@@ -7155,13 +7019,8 @@ msgstr "بله"
 msgid "yes (keep feeds)"
 msgstr "بله نگه داشتن feeds"
 
-msgid ""
-"your dreambox might be unusable now. Please consult the manual for further "
-"assistance before rebooting your dreambox."
-msgstr ""
-"دستگاه شما احتمالا غیر قابل استفاده شده است ، لطفا قبل از راه اندازی مجدد "
-"دستگاه دفترچه راهنما را برای کمک بیشتر مطالعه کنید ، به شما توصیه میشود "
-"دوباره ایمیج نصب کنید"
+msgid "your dreambox might be unusable now. Please consult the manual for further assistance before rebooting your dreambox."
+msgstr "دستگاه شما احتمالا غیر قابل استفاده شده است ، لطفا قبل از راه اندازی مجدد دستگاه دفترچه راهنما را برای کمک بیشتر مطالعه کنید ، به شما توصیه میشود دوباره ایمیج نصب کنید"
 
 msgid "zap"
 msgstr "حذف"
@@ -7212,14 +7071,14 @@ msgstr "حذف شد"
 #~ "%d conflict(s) encountered when trying to add new timers:\n"
 #~ "%s"
 #~ msgstr ""
-#~ "هنگام اضافه کردن زمان های جدید با %d مغایرت مواجه شدیم :\n"
+#~ "هنگام اضافه کردن زمان های جدید با %d مغایرت مواجه شدیم:\n"
 #~ "%s"
 
 #~ msgid ""
 #~ "%d conflict(s) solved with similar timer(s):\n"
 #~ "%s"
 #~ msgstr ""
-#~ "%d مغایرت با زمان های مشابه حل شد :\n"
+#~ "%d مغایرت با زمان های مشابه حل شد:\n"
 #~ "%s"
 
 #~ msgid "%d transponder(s) found"
