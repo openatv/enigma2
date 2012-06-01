@@ -37,6 +37,10 @@ class VideoHardware:
 	rates["1080i"] =		{ "50Hz":		{ 50: "1080i50" },
 								"60Hz":		{ 60: "1080i" },
 								"multi":	{ 50: "1080i50", 60: "1080i" } }
+								
+	rates["1080p"] =		{ "50Hz":	{ 50: "1080p50" },
+								"60Hz":	{ 60: "1080p" },
+								"multi": 	{ 50: "1080p50", 60: "1080p" } }							
 
 	rates["PC"] = {
 		"1024x768": { 60: "1024x768" }, # not possible on DM7025
@@ -55,11 +59,16 @@ class VideoHardware:
 	}
 
 	modes["Scart"] = ["PAL", "NTSC", "Multi"]
-	modes["YPbPr"] = ["720p", "1080i", "576p", "480p", "576i", "480i"]
-	modes["DVI"] = ["720p", "1080i", "576p", "480p", "576i", "480i"]
 	modes["DVI-PC"] = ["PC"]
-
-	widescreen_modes = set(["720p", "1080i"])
+	
+	if config.misc.boxtype.value == 'quattro'
+		modes["YPbPr"] = ["720p", "1080i", "576p", "480p", "576i", "480i", "1080p"]
+		modes["DVI"] = ["720p", "1080i", "576p", "480p", "576i", "480i", "1080p"]
+		widescreen_modes = set(["720p", "1080i", "1080p"])
+	else:
+		modes["YPbPr"] = ["720p", "1080i", "576p", "480p", "576i", "480i"]
+		modes["DVI"] = ["720p", "1080i", "576p", "480p", "576i", "480i"]
+		widescreen_modes = set(["720p", "1080i"])
 
 	def getOutputAspect(self):
 		ret = (16,9)
