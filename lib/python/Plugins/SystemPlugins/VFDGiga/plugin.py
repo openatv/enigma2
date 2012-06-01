@@ -21,6 +21,7 @@ config.plugins.VFD_Giga = ConfigSubsection()
 config.plugins.VFD_Giga.showClock = ConfigSelection(default = "Yes", choices = [("False",_("in standby: ") + _("No")),("True",_("in standby: ") + _("Yes")),("True_All",_("Yes")),("Off",_("Off"))])
 config.plugins.VFD_Giga.showClockDeepStandby = ConfigSelection(default = "False", choices = [("False",_("No")),("True",_("Yes"))])
 config.plugins.VFD_Giga.setLed = ConfigYesNo(default = True)
+config.plugins.VFD_Giga.recLedBlink = ConfigYesNo(default = True)
 led = [("0",_("None")),("1",_("Blue")),("2",_("Red")),("3",_("Purple"))]				
 config.plugins.VFD_Giga.ledRUN = ConfigSelection(led, default = "1")
 config.plugins.VFD_Giga.ledSBY = ConfigSelection(led, default = "2")
@@ -35,6 +36,7 @@ class Channelnumber:
 	def __init__(self, session):
 		self.session = session
 		self.sign = 0
+		self.blink = False
 		self.zaPrik = eTimer()
 		self.zaPrik.timeout.get().append(self.vrime)
 		self.zaPrik.start(1000, 1)
@@ -133,7 +135,13 @@ class Channelnumber:
 		global RecLed
 		recordings = self.session.nav.getRecordings()
 		if recordings:
-			evfd.getInstance().vfd_led(config.plugins.VFD_Giga.ledREC.value)
+			self.blink = not self.blink
+			if not config.plugins.VFD_Giga.recLedBlink.value:
+				self.blink = True
+			if self.blink:
+				evfd.getInstance().vfd_led(config.plugins.VFD_Giga.ledREC.value)
+			else:
+				evfd.getInstance().vfd_led("0")
 			RecLed = True
 		else:
 			if RecLed is not None:
@@ -240,7 +248,8 @@ class VFD_GigaSetup(ConfigListScreen, Screen):
 			self.list.append(getConfigListEntry(_("Led state RUN"), config.plugins.VFD_Giga.ledRUN))	
 			self.list.append(getConfigListEntry(_("Led state Standby"), config.plugins.VFD_Giga.ledSBY))
 			self.list.append(getConfigListEntry(_("Led state Deep Standby"), config.plugins.VFD_Giga.ledDSBY))
-			self.list.append(getConfigListEntry(_("Led state Record"), config.plugins.VFD_Giga.ledREC))	
+			self.list.append(getConfigListEntry(_("Led state Record"), config.plugins.VFD_Giga.ledREC))
+			self.list.append(getConfigListEntry(_("Blink Record Led"), config.plugins.VFD_Giga.recLedBlink))
 			evfd.getInstance().vfd_led(str(config.plugins.VFD_Giga.ledRUN.value))
 		else:
 			evfd.getInstance().vfd_led("0")
