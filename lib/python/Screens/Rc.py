@@ -2,6 +2,7 @@ from Components.Pixmap import MovingPixmap, MultiPixmap
 from Tools.Directories import resolveFilename, SCOPE_SKIN
 from xml.etree.ElementTree import ElementTree
 from Components.config import config, ConfigInteger
+from Components.RcModel import rc_model
 
 config.misc.rcused = ConfigInteger(default = 1)
 
@@ -30,7 +31,11 @@ class Rc:
 		self["rc"].setPixmapNum(config.misc.rcused.value)		
 				
 	def readPositions(self):
-		tree = ElementTree(file = resolveFilename(SCOPE_SKIN, "rcpositions.xml"))
+		if rc_model.rcIsDefault() is True:
+			target = resolveFilename(SCOPE_SKIN, "rcpositions.xml")
+		else:
+			target = rc_model.getRcLocation() + 'rcpositions.xml'
+		tree = ElementTree(file = target)
 		rcs = tree.getroot()
 		self.rcs = {}
 		for rc in rcs:
