@@ -20,8 +20,7 @@ def onPartitionChange(why, part):
 	if mountpoint and mountpoint != '/':
 		if why == 'add':
 			if os.path.exists(os.path.join(mountpoint, 'usr/lib/opkg/status')):
-				if os.stat(os.path.join(mountpoint, 'usr/lib/opkg/status')).st_size != 0:
-					opkgAddDestination(mountpoint)
+				opkgAddDestination(mountpoint)
 		elif why == 'remove':
 			try:
 				opkgDestinations.remove(mountpoint)
@@ -63,7 +62,7 @@ class IpkgComponent:
 		self.currentCommand = command
 
 	def runCmdEx(self, cmd):
-	        self.runCmd(opkgExtraDestinations() + ' ' + cmd)
+		self.runCmd(opkgExtraDestinations() + ' ' + cmd)
 
 	def runCmd(self, cmd):
 		print "executing", self.ipkg, cmd
@@ -92,7 +91,7 @@ class IpkgComponent:
 			self.runCmd("remove " + args['package'])
 		elif cmd == self.CMD_UPGRADE_LIST:
 			self.fetchedList = []
-			self.runCmd("list-upgradable")
+			self.runCmdEx("list-upgradable")
 		self.setCurrentCommand(cmd)
 
 	def cmdFinished(self, retval):
