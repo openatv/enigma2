@@ -21,17 +21,19 @@ class PliExtraInfo(Poll, Converter, object):
 		self.poll_interval = 1000
 		self.poll_enabled = True
 		self.caid_data = (
-			( "0x100",  "0x1ff", "Seca",    "S" ),
-			( "0x500",  "0x5ff", "Via",     "V" ),
-			( "0x600",  "0x6ff", "Irdeto",  "I" ),
-			( "0x900",  "0x9ff", "NDS",     "Nd"),
-			( "0xb00",  "0xbff", "Conax",   "Co"),
-			( "0xd00",  "0xdff", "CryptoW", "Cw"),
-			( "0xe00",  "0xeff", "PowerVU", "P" ),
-			("0x1700", "0x17ff", "Beta",    "B" ),
-			("0x1800", "0x18ff", "Nagra",   "N" ),
-			("0x2600", "0x2600", "Biss",    "Bi"),
-			("0x4ae0", "0x4ae1", "Dre",     "D" )
+			( "0x100",  "0x1ff", "Seca",     "S",  True  ),
+			( "0x500",  "0x5ff", "Via",      "V",  True  ),
+			( "0x600",  "0x6ff", "Irdeto",   "I",  True  ),
+			( "0x900",  "0x9ff", "NDS",      "Nd", True  ),
+			( "0xb00",  "0xbff", "Conax",    "Co", True  ),
+			( "0xd00",  "0xdff", "CryptoW",  "Cw", True  ),
+			( "0xe00",  "0xeff", "PowerVU",  "P",  False ),
+			("0x1700", "0x17ff", "Beta",     "B",  True  ),
+			("0x1800", "0x18ff", "Nagra",    "N",  True  ),
+			("0x2600", "0x2600", "Biss",     "Bi", False ),
+			("0x4ae0", "0x4ae1", "Dre",      "D",  False ),
+			("0x4aee", "0x4aee", "BulCrypt", "B1", False ),
+			("0x5581", "0x5581", "BulCrypt", "B2", False )
 		)
 		self.ecmdata = GetEcmInfo()
 		self.feraw = self.fedata = self.updateFEdata = None
@@ -65,8 +67,9 @@ class PliExtraInfo(Poll, Converter, object):
 				except:
 					pass
 
-			if res: res += " "
-			res += color + caid_entry[3]
+			if color != "\c007?7?7?" or caid_entry[4]:
+				if res: res += " "
+				res += color + caid_entry[3]
 
 		res += "\c00??????"
 		return res
@@ -286,6 +289,12 @@ class PliExtraInfo(Poll, Converter, object):
 		elif self.type == "CryptoCaidDreAvailable":
 			request_caid = "D"
 			request_selected = False
+		elif self.type == "CryptoCaidBulCrypt1Available":
+			request_caid = "B1"
+			request_selected = False
+		elif self.type == "CryptoCaidBulCrypt2Available":
+			request_caid = "B2"
+			request_selected = False
 		elif self.type == "CryptoCaidSecaSelected":
 			request_caid = "S"
 			request_selected = True
@@ -318,6 +327,12 @@ class PliExtraInfo(Poll, Converter, object):
 			request_selected = True
 		elif self.type == "CryptoCaidDreSelected":
 			request_caid = "D"
+			request_selected = True
+		elif self.type == "CryptoCaidBulCrypt1Selected":
+			request_caid = "B1"
+			request_selected = True
+		elif self.type == "CryptoCaidBulCrypt2Selected":
+			request_caid = "B2"
 			request_selected = True
 		else:
 			return False

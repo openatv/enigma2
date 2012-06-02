@@ -2401,7 +2401,7 @@ class InfoBarTimeshift:
 				return 0
 			ts = self.getTimeshift()
 			if ts is None:
-				self.session.open(MessageBox, _("Timeshift not possible!"), MessageBox.TYPE_ERROR)
+				self.session.open(MessageBox, _("Timeshift not possible!"), MessageBox.TYPE_ERROR, simple = True)
 #				print "no ts interface"
 				return 0
 
@@ -2447,7 +2447,7 @@ class InfoBarTimeshift:
 		ts = self.getTimeshift()
 		if ts is None:
 			return 0
-		self.session.openWithCallback(self.stopTimeshiftConfirmed, MessageBox, _("Stop Timeshift?"), MessageBox.TYPE_YESNO)
+		self.session.openWithCallback(self.stopTimeshiftConfirmed, MessageBox, _("Stop Timeshift?"), MessageBox.TYPE_YESNO, simple = True)
 
 	def stopTimeshiftConfirmed(self, confirmed, switchToLive=True):
 		was_enabled = self.timeshift_enabled
@@ -2468,6 +2468,7 @@ class InfoBarTimeshift:
 			ts.stopTimeshift()
 
 		self.timeshift_enabled = 0
+		self.pvrStateDialog.hide()
 		self.__seekableStatusChanged()
 
 		if was_enabled and not self.timeshift_enabled:
