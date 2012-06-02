@@ -61,7 +61,7 @@ class VideoHardware:
 	modes["Scart"] = ["PAL", "NTSC", "Multi"]
 	modes["DVI-PC"] = ["PC"]
 	
-	if config.misc.boxtype.value == 'quattro'
+	if config.misc.boxtype.value == 'quattro':
 		modes["YPbPr"] = ["720p", "1080i", "576p", "480p", "576i", "480i", "1080p"]
 		modes["DVI"] = ["720p", "1080i", "576p", "480p", "576i", "480i", "1080p"]
 		widescreen_modes = set(["720p", "1080i", "1080p"])

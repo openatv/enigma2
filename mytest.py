@@ -43,7 +43,6 @@ config.misc.radiopic = ConfigText(default = resolveFilename(SCOPE_CURRENT_SKIN, 
 config.misc.blackradiopic = ConfigText(default = resolveFilename(SCOPE_CURRENT_SKIN, "black.mvi"))
 config.misc.isNextRecordTimerAfterEventActionAuto = ConfigYesNo(default=False)
 config.misc.SyncTimeUsing = ConfigSelection(default = "0", choices = [("0", "Transponder Time"), ("1", _("NTP"))])
-config.misc.wakeUpTime = ConfigNumber(default=0)
 
 config.misc.startCounter = ConfigInteger(default=0) # number of e2 starts...
 config.misc.standbyCounter = NoSave(ConfigInteger(default=0)) # number of standby
@@ -543,9 +542,7 @@ def runScreenTest():
 			t_utc = localtime(gigawutime)
 			print "set Gigabox wakeup time to %s (UTC=%s)" % (strftime("%Y/%m/%d %H:%M", t_local), strftime("%H:%M", t_utc))
 			setFPWakeuptime(gigawutime)
-			ret = os.system("touch /var/.was_wakeup_timer")
-			config.misc.wakeUpTime.value = int(wptime+300)
-			config.misc.wakeUpTime.save()
+			ret = os.system("echo %s > /var/.was_wakeup_timer" % int(wptime+300))
 		else:
 			print "set wakeup time to", strftime("%Y/%m/%d %H:%M", localtime(wptime))
 			setFPWakeuptime(wptime)

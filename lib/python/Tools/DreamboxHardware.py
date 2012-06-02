@@ -62,13 +62,18 @@ def getFPWasTimerWakeup():
 		except IOError:
 			print "wasTimerWakeup failed!"
 
-	if config.misc.boxtype.value == 'gb800se' or config.misc.boxtype.value == 'gb800solo' or config.misc.boxtype.value == 'gb800ue':
+	if boxtype == 'gb800se' or boxtype == 'gb800solo' or boxtype == 'gb800ue':
 		if not wasTimerWakeup:
 			from os import path, system
 			from time import time, strftime, localtime
 			if path.isfile("/var/.was_wakeup_timer"):
-				system("echo wakeuptime=%s, current time=%s > /tmp/wakeup.txt" %(strftime("%d/%m/%Y %H:%M",localtime(config.misc.wakeUpTime.value)), strftime("%H:%M",localtime(time()))))
-				if (config.misc.wakeUpTime.value - time()) < 300:
+				ll = open('/var/.was_wakeup_timer', 'r').readline()
+				if len(ll) > 0:
+					wakeUpTime = int(ll)
+				else:
+					wakeUpTime = 0
+				system("echo wakeuptime=%s, current time=%s > /tmp/wakeup.txt" %(strftime("%d/%m/%Y %H:%M",localtime(wakeUpTime)), strftime("%H:%M",localtime(time()))))
+				if (wakeUpTime - time()) < 300:
 					wasTimerWakeup = True
 	
 	if wasTimerWakeup:
@@ -86,7 +91,18 @@ def clearFPWasTimerWakeup():
 		except IOError:
 			print "clearFPWasTimerWakeup failed!"
 
-	if config.misc.boxtype.value == 'gb800se' or config.misc.boxtype.value == 'gb800solo' or config.misc.boxtype.value == 'gb800ue':
+	if boxtype == 'gb800se' or boxtype == 'gb800solo' or boxtype == 'gb800ue':
 		from os import path, system
 		if path.isfile("/var/.was_wakeup_timer"):
 			system("rm -f /var/.was_wakeup_timer")
+
+def getBoxtype():
+	try:
+		lines = open('/etc/image-version', 'r').readlines()
+		boxtype = lines[0][:-1].split("=")[1]
+	except:
+		boxtype="not detected"
+
+	return boxtype
+
+boxtype = getBoxtype()
