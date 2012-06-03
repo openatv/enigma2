@@ -4,12 +4,12 @@ class RcModel:
 	RCTYPE_DMM = 0
 	RCTYPE_ET9X00 = 1
 	RCTYPE_ET6X00 = 2
-	RCTYPE_VU = 3
-	RCTYPE_GB = 4
-	RCTYPE_INI3000 = 5
-	RCTYPE_INI7000 = 6
-	RCTYPE_ODIN = 7
-	RCTYPE_ET9500 = 8
+	RCTYPE_ET9500 = 3
+	RCTYPE_VU = 4	
+	RCTYPE_GB = 5
+	RCTYPE_INI3000 = 6
+	RCTYPE_INI7000 = 7
+	RCTYPE_ODIN = 8
 
 	def __init__(self):
 		self.currentRcType = self.RCTYPE_DMM
@@ -43,8 +43,12 @@ class RcModel:
 					self.currentRcType = self.RCTYPE_ET6X00
 				elif rc == '8':
 					self.currentRcType = self.RCTYPE_VU
-				elif rc == '9' or rc == '11':
+				elif rc == '9':
 					self.currentRcType = self.RCTYPE_ET9500
+				elif rc == '11' and model == 'et9200':
+					self.currentRcType = self.RCTYPE_ET9500
+				elif rc == '11' and model == 'et9000':
+					self.currentRcType = self.RCTYPE_ET9x00		
 			elif model == 'gigablue':
 				self.currentRcType = self.RCTYPE_GB
 			elif model == 'ini-3000':
