@@ -80,6 +80,8 @@ except (SkinError, IOError, AssertionError), err:
 
 # some boxes lie about their dimensions
 addSkin('skin_box.xml')
+# add optional discrete second infobar
+addSkin('skin_second_infobar.xml')
 # Only one of these is present, compliments of AM_CONDITIONAL
 config.skin.display_skin = ConfigYesNo(default = False)
 display_skin_id = 1
