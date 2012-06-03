@@ -47,9 +47,9 @@ class RcModel:
 					self.currentRcType = self.RCTYPE_ET9500
 			elif model == 'gigablue':
 				self.currentRcType = self.RCTYPE_GB
-			elif model == 'ini3000':
+			elif model == 'ini-3000':
 				self.currentRcType = self.RCTYPE_INI3000
-			elif model == 'ini5000' or model == 'ini7000':
+			elif model == 'ini-5000' or model == 'ini-7000':
 				self.currentRcType = self.RCTYPE_INI7000	
 		elif os.path.exists('/proc/stb/info/vumodel'):
 			self.currentRcType = self.RCTYPE_VU
