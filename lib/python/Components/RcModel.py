@@ -4,7 +4,8 @@ class RcModel:
 	RCTYPE_DMM = 0
 	RCTYPE_ET9X00 = 1
 	RCTYPE_ET6X00 = 2
-	RCTYPE_VU = 3
+	RCTYPE_ET9500 = 3
+	RCTYPE_VU = 4
 
 	def __init__(self):
 		self.currentRcType = self.RCTYPE_DMM
@@ -28,7 +29,7 @@ class RcModel:
 				rc = self.readFile('/proc/stb/ir/rc/type')
 				if rc == '4':
 					self.currentRcType = self.RCTYPE_DMM
-				elif rc == '5':
+				elif rc == '5' or rc == '11':
 					self.currentRcType = self.RCTYPE_ET9X00
 				elif rc == '6':
 					self.currentRcType = self.RCTYPE_DMM
@@ -36,12 +37,16 @@ class RcModel:
 					self.currentRcType = self.RCTYPE_ET6X00
 				elif rc == '8':
 					self.currentRcType = self.RCTYPE_VU
+				elif rc == '9':
+					self.currentRcType = self.RCTYPE_ET9500
 		elif os.path.exists('/proc/stb/info/vumodel'):
 			self.currentRcType = self.RCTYPE_VU
 
 	def getRcLocation(self):
 		if self.currentRcType == self.RCTYPE_ET9X00:
 			return '/usr/share/enigma2/rc_models/et9x00/'
+		elif self.currentRcType == self.RCTYPE_ET9500:
+			return '/usr/share/enigma2/rc_models/et9500/'
 		elif self.currentRcType == self.RCTYPE_ET6X00:
 			return '/usr/share/enigma2/rc_models/et6x00/'
 		elif self.currentRcType == self.RCTYPE_VU:
