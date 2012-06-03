@@ -160,6 +160,7 @@ data/extensions/Makefile
 data/keymaps/Makefile
 data/rc_models/Makefile
 data/rc_models/et6x00/Makefile
+data/rc_models/et9500/Makefile
 data/rc_models/et9x00/Makefile
 data/rc_models/vu/Makefile
 data/skin_default/Makefile
