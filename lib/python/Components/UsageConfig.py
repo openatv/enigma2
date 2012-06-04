@@ -55,7 +55,7 @@ def InitUsageConfig():
 	config.usage.sort_settings = ConfigYesNo(default = True)
 	config.usage.sort_menus = ConfigYesNo(default = False)
 	config.usage.sort_pluginlist = ConfigYesNo(default = True)
-	config.usage.movieplayer_pvrstate = ConfigYesNo(default = True) 
+	config.usage.movieplayer_pvrstate = ConfigYesNo(default = False) 
 
 	choicelist = []
 	for i in (10, 30):
