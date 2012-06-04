@@ -1,1 +1,1 @@
-SUBDIRS = et6x00 et9x00 vu gb ini3000 ini7000 odin et9500
+SUBDIRS = et6x00 et9x00 vu gb ini3000 ini5000 ini7000 odin et9500

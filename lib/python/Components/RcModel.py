@@ -8,8 +8,9 @@ class RcModel:
 	RCTYPE_VU = 4	
 	RCTYPE_GB = 5
 	RCTYPE_INI3000 = 6
-	RCTYPE_INI7000 = 7
-	RCTYPE_ODIN = 8
+	RCTYPE_INI5000 = 7
+	RCTYPE_INI7000 = 8
+	RCTYPE_ODIN = 9
 
 	def __init__(self):
 		self.currentRcType = self.RCTYPE_DMM
@@ -53,7 +54,9 @@ class RcModel:
 				self.currentRcType = self.RCTYPE_GB
 			elif model == 'ini-3000':
 				self.currentRcType = self.RCTYPE_INI3000
-			elif model == 'ini-5000' or model == 'ini-7000':
+			elif model == 'ini-5000':
+				self.currentRcType = self.RCTYPE_INI5000
+			elif model == 'ini-7000':
 				self.currentRcType = self.RCTYPE_INI7000	
 		elif os.path.exists('/proc/stb/info/vumodel'):
 			self.currentRcType = self.RCTYPE_VU
@@ -71,6 +74,8 @@ class RcModel:
 			return '/usr/share/enigma2/rc_models/gb/'
 		elif self.currentRcType == self.RCTYPE_INI3000:
 			return '/usr/share/enigma2/rc_models/ini3000/'
+		elif self.currentRcType == self.RCTYPE_INI5000:
+			return '/usr/share/enigma2/rc_models/ini5000/'
 		elif self.currentRcType == self.RCTYPE_INI7000:
 			return '/usr/share/enigma2/rc_models/ini7000/'
 		elif self.currentRcType == self.RCTYPE_ODIN:
