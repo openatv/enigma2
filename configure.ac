@@ -221,7 +221,7 @@ data/rc_models/et9x00/Makefile
 data/rc_models/vu/Makefile
 data/rc_models/gb/Makefile
 data/rc_models/ini3000/Makefile
-data/rc_models/ini-5000/Makefile
+data/rc_models/ini5000/Makefile
 data/rc_models/ini7000/Makefile
 data/rc_models/odin/Makefile
 data/skin_default/Makefile
