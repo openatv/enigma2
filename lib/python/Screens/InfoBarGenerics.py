@@ -296,6 +296,7 @@ class InfoBarShowHide:
 			self.standardInfoBar = True
 		self.secondInfoBarWasShown = False
 		self.EventViewIsShown = False
+		self.pvrStateDialog = None
 
 	def connectShowHideNotifier(self, fnc):
 		if not fnc in self.onShowHideNotifiers:
