@@ -26,7 +26,6 @@ from enigma import eEPGCache, eListbox, ePicLoad, gFont, eListboxPythonMultiCont
 	RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, RT_VALIGN_CENTER, RT_WRAP, \
 	eSize, eRect, eTimer
 from GraphMultiEpgSetup import GraphMultiEpgSetup
-
 from time import localtime, time, strftime
 
 MAX_TIMELINES = 6
@@ -641,7 +640,7 @@ config.misc.graph_mepg.items_per_page = ConfigSelectionNumber(min = 3, max = 10,
 config.misc.graph_mepg.overjump = ConfigBoolean(default = True)
 config.misc.graph_mepg.showpicon = ConfigBoolean(default = False)
 config.misc.graph_mepg.showservicetitle = ConfigBoolean(default = True)
-config.misc.graph_mepg.roundTo = ConfigSelection(default = 15, choices = [(15, _("%d minutes") % 15), (30, _("%d minutes") % 30), (60, _("%d minutes") % 60)])
+config.misc.graph_mepg.roundTo = ConfigSelection(default = 15, choices = [("900", _("%d minutes") % 15), ("1800", _("%d minutes") % 30), ("3600", _("%d minutes") % 60)])
 
 
 class GraphMultiEPG(Screen, HelpableScreen):
@@ -655,7 +654,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		Screen.__init__(self, session)
 		self.bouquetChangeCB = bouquetChangeCB
 		now = time() - config.epg.histminutes.getValue() * 60
-		self.ask_time = now - now % (config.misc.graph_mepg.roundTo.getValue() * 60)
+		self.ask_time = now - now % int(config.misc.graph_mepg.roundTo.getValue())
 		self.closeRecursive = False
 		self["key_red"] = Button("")
 		self["key_green"] = Button("")
@@ -791,7 +790,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 			if ret[0]:
 				now = time() - config.epg.histminutes.getValue() * 60
 				self.ask_time = ret[1] if ret[1] >= now else now
-				self.ask_time = self.ask_time - self.ask_time % (config.misc.graph_mepg.roundTo.getValue() * 60)
+				self.ask_time = self.ask_time - self.ask_time % int(config.misc.graph_mepg.roundTo.getValue())
 				l = self["list"]
 				l.resetOffset()
 				l.fillMultiEPG(None, self.ask_time)
@@ -809,7 +808,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		l.setShowPicon(config.misc.graph_mepg.showpicon.value)
 		l.setShowServiceTitle(config.misc.graph_mepg.showservicetitle.value)
 		now = time() - config.epg.histminutes.getValue() * 60
-		self.ask_time = now - now % (config.misc.graph_mepg.roundTo.getValue() * 60)
+		self.ask_time = now - now % int(config.misc.graph_mepg.roundTo.getValue())
 		l.fillMultiEPG(None, self.ask_time)
 		self.moveTimeLines()
 		
