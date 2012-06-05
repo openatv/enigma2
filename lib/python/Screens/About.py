@@ -19,8 +19,8 @@ class About(Screen):
 			AboutText = _("Hardware: ") + " GigaBlue HD 800se\n"
 		elif config.misc.boxtype.value == 'gb800ue':
 			AboutText = _("Hardware: ") + " GigaBlue HD 800ue\n"
-		elif config.misc.boxtype.value == 'quattro':
-			AboutText = _("Hardware: ") + " GigaBlue HD Quattro\n"
+		elif config.misc.boxtype.value == 'gbquad':
+			AboutText = _("Hardware: ") + " GigaBlue HD Quad\n"
 		else:
 			AboutText = _("Hardware: ") + about.getHardwareTypeString() + "\n"
 		

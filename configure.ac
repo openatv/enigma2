@@ -52,13 +52,11 @@ AC_DEFINE_UNQUOTED(BOXTYPE,"$BOXTYPE",[box type])
 
 AM_CONDITIONAL(DREAMBOX, test `echo "$BOXTYPE" | cut -b 1-2` == "dm")
 AM_CONDITIONAL(HAVE_TEMPFANCONTROL, test "$BOXTYPE" == dm8000 -o "$BOXTYPE" == dm800se -o "$BOXTYPE" == dm500hd)
-AM_CONDITIONAL(GIGABLUE, test `echo "$BOXTYPE" | cut -b 1-2` == "gb")
-AM_CONDITIONAL(MARA, test `echo "$BOXTYPE" | cut -b 1-4` == "mara")
+AM_CONDITIONAL(GIGABLUE, test `echo "$BOXTYPE" | cut -b 1-5` == "gb800")
 AM_CONDITIONAL(GB800SE, test "$BOXTYPE" == gb800se)
 AM_CONDITIONAL(GB800UE, test "$BOXTYPE" == gb800ue)
 AM_CONDITIONAL(GB800SOLO, test "$BOXTYPE" == gb800solo)
-AM_CONDITIONAL(MARAM9, test "$BOXTYPE" == maram9)
-AM_CONDITIONAL(QUATTRO, test "$BOXTYPE" == quattro)
+AM_CONDITIONAL(GBQUAD, test "$BOXTYPE" == gbquad)
 
 AC_ARG_WITH(textlcd,
 	AC_HELP_STRING([--with-textlcd], [use ascii based lcd, yes or no]),
@@ -101,7 +99,7 @@ if test x"$BOXTYPE" == "xvuduo" -o x"$BOXTYPE" == "xvusolo" -o x"$BOXTYPE" == "x
 	AC_DEFINE(FORCE_ADVANCED_REMOTE, 1,[define to fixup the input device identification when the remote control is actually an 'advanced' remote (with play/forward/rewind keys)])
 fi
 
-if test x"$BOXTYPE" == "xgb800se" -o x"$BOXTYPE" == "xgb800solo" -o x"$BOXTYPE" == "xgb800ue" -o x"$BOXTYPE" == "xquattro" ; then
+if test x"$BOXTYPE" == "xgb800se" -o x"$BOXTYPE" == "xgb800solo" -o x"$BOXTYPE" == "xgb800ue" -o x"$BOXTYPE" == "xgbquad" ; then
 	AC_DEFINE(KEY_PLAY_ACTUALLY_IS_KEY_PLAYPAUSE, 1,[define when rc sends a KEY_PLAY event for its KEY_PLAYPAUSE key])
 	AC_DEFINE(KEY_GUIDE_TO_KEY_EPG, 1,[define when rc sends a KEY_HELP event for its KEY_EPG key])
 fi
