@@ -299,6 +299,11 @@ lib/python/Plugins/Extensions/vuWebBrowser/meta/Makefile
 lib/python/Plugins/Extensions/vuWebBrowser/keymap/Makefile
 lib/python/Plugins/Extensions/Volume_adjust/Makefile
 lib/python/Plugins/Extensions/Volume_adjust/nl/Makefile
+lib/python/Plugins/Extensions/StreamTV/Makefile
+lib/python/Plugins/Extensions/StreamTV/icons/Makefile
+lib/python/Plugins/Extensions/StreamTV/meta/Makefile
+lib/python/Plugins/Extensions/DLNABrowser/Makefile
+lib/python/Plugins/Extensions/DLNABrowser/meta/Makefile
 lib/python/Plugins/PLi/Makefile
 lib/python/Plugins/SystemPlugins/CleanupWizard/Makefile
 lib/python/Plugins/SystemPlugins/CleanupWizard/meta/Makefile
@@ -354,6 +359,8 @@ lib/python/Plugins/SystemPlugins/choiceRC/meta/Makefile
 lib/python/Plugins/SystemPlugins/VFDGiga/Makefile
 lib/python/Plugins/SystemPlugins/VentonFancontrol/Makefile
 lib/python/Plugins/SystemPlugins/VentonFancontrol/meta/Makefile
+lib/python/Plugins/SystemPlugins/WirelessAccessPoint/Makefile
+lib/python/Plugins/SystemPlugins/WirelessAccessPoint/meta/Makefile
 lib/python/Tools/Makefile
 lib/components/Makefile
 lib/components/eitsave/Makefile

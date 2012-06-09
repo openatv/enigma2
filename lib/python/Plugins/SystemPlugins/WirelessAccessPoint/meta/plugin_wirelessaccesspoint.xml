@@ -1,0 +1,17 @@
+<default>
+	  <prerequisites>
+                    <tag type="System" />
+                    <tag type="Network" />
+	  </prerequisites>
+          <info>
+                    <author>hschang</author>
+                    <name>Wireless Access Point</name>
+                    <packagename>enigma2-plugin-systemplugins-wirelessaccesspoint</packagename>
+                    <shortdescription>Using a Wireless module as AP.</shortdescription>
+                    <description>Using a Wireless module as AP.\n(The Module should support master mode)</description>
+          </info>
+
+	  <files type="package"> <!-- without version, without .ipk -->
+		<file type="package" name="enigma2-plugin-systemplugins-wirelessaccesspoint" />
+	</files>
+</default>

@@ -1,0 +1,21 @@
+<default>
+	  <prerequisites>
+                    <tag type="Network" />
+	  </prerequisites>
+          <info>
+                    <author>kos</author>
+                    <name>DLNABrowser</name>
+                    <packagename>enigma2-plugin-extensions-dlnabrowser</packagename>
+                    <shortdescription>this is dlna/upnp browser using djmount..</shortdescription>
+                    <description>this is dlna/upnp browser using djmount..</description>
+          </info>
+	  <files type="package"> <!-- without version, without .ipk -->
+		<file type="package" name="enigma2-plugin-extensions-dlnabrowser" />
+                <file type="package" name="djmount" />
+                <file type="package" name="fuse-utils" />
+                <file type="package" name="libfuse2" />
+                <file type="package" name="libupnp3" />
+                <file type="package" name="libfuse2" />
+                <file type="package" name="kernel-module-fuse" />
+  	  </files>
+</default>
