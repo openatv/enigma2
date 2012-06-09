@@ -54,6 +54,7 @@ AM_CONDITIONAL(DREAMBOX, test `echo "$BOXTYPE" | cut -b 1-2` == "dm")
 AM_CONDITIONAL(VUPLUS, test `echo "$BOXTYPE" | cut -b 1-2` == "vu")
 AM_CONDITIONAL(XTREND, test `echo "$BOXTYPE" | cut -b 1-2` == "et")
 AM_CONDITIONAL(TECHNOMATE, test `echo "$BOXTYPE" | cut -b 1-2` == "tm")
+AM_CONDITIONAL(GIGABLUE, test `echo "$BOXTYPE" | cut -b 1-2` == "gb")
 AM_CONDITIONAL(ODIN, test `echo "$BOXTYPE" | cut -b 1-4` == "odin")
 AM_CONDITIONAL(VUUNO, test "$BOXTYPE" == vuuno)
 AM_CONDITIONAL(VUULTIMO, test "$BOXTYPE" == vuultimo)
@@ -64,7 +65,10 @@ AM_CONDITIONAL(ET6X00, test "$BOXTYPE" == et6x00)
 AM_CONDITIONAL(ET9X00, test "$BOXTYPE" == et9x00)
 AM_CONDITIONAL(ODINM9, test "$BOXTYPE" == odinm9)
 AM_CONDITIONAL(TMTWIN, test "$BOXTYPE" == tmtwin)
-AM_CONDITIONAL(GBHD800SE, test "$BOXTYPE" == gbhd800se)
+AM_CONDITIONAL(GB800SOLO, test "$BOXTYPE" == gb800solo)
+AM_CONDITIONAL(GB800SE, test "$BOXTYPE" == gb800se)
+AM_CONDITIONAL(GB800UE, test "$BOXTYPE" == gb800ue)
+AM_CONDITIONAL(GBQUAD, test "$BOXTYPE" == gbquad)
 AM_CONDITIONAL(HAVE_TEMPFANCONTROL, test "$BOXTYPE" == dm8000 -o "$BOXTYPE" == dm800se -o "$BOXTYPE" == dm500hd)
 
 AC_ARG_WITH(textlcd,
@@ -116,7 +120,12 @@ if test x"$BOXTYPE" == "xet5x00" -o x"$BOXTYPE" == "xet6x00" -o x"$BOXTYPE" == "
 # 	AC_DEFINE(FORCE_ADVANCED_REMOTE, 1,[define to fixup the input device identification when the remote control is actually an 'advanced' remote (with play/forward/rewind keys)])
 fi
 
-if test x"$BOXTYPE" == "xvuduo" -o x"$BOXTYPE" == "xvusolo" -o x"$BOXTYPE" == "xvuuno" -o x"$BOXTYPE" == "xvuultimo" -o x"$BOXTYPE" == "xtmtwin" -o x"$BOXTYPE" == "xgbhd800se"; then
+if test x"$BOXTYPE" == "xvuduo" -o x"$BOXTYPE" == "xvusolo" -o x"$BOXTYPE" == "xvuuno" -o x"$BOXTYPE" == "xvuultimo" -o x"$BOXTYPE" == "xtmtwin"; then
+	AC_DEFINE(FORCE_NO_BLENDING_ACCELERATION, 1,[define when the framebuffer acceleration does not have alphablending support, though the autodetection might indicate that it does])
+# 	AC_DEFINE(FORCE_ADVANCED_REMOTE, 1,[define to fixup the input device identification when the remote control is actually an 'advanced' remote (with play/forward/rewind keys)])
+fi
+
+if test x"$BOXTYPE" == "xgb800solo" -o x"$BOXTYPE" == "xgb800se" -o x"$BOXTYPE" == "xgb800ue" -o x"$BOXTYPE" == "xgbquad"; then
 	AC_DEFINE(FORCE_NO_BLENDING_ACCELERATION, 1,[define when the framebuffer acceleration does not have alphablending support, though the autodetection might indicate that it does])
 # 	AC_DEFINE(FORCE_ADVANCED_REMOTE, 1,[define to fixup the input device identification when the remote control is actually an 'advanced' remote (with play/forward/rewind keys)])
 fi
@@ -277,6 +286,7 @@ lib/python/Plugins/SystemPlugins/VideoTune/Makefile
 lib/python/Plugins/SystemPlugins/VideoTune/meta/Makefile
 lib/python/Plugins/SystemPlugins/Videomode/Makefile
 lib/python/Plugins/SystemPlugins/Videomode/meta/Makefile
+lib/python/Plugins/SystemPlugins/VFDGiga/Makefile
 lib/python/Plugins/SystemPlugins/VuDuoFanControl/Makefile
 lib/python/Plugins/SystemPlugins/VuDuoFanControl/meta/Makefile
 lib/python/Plugins/SystemPlugins/VuUnoFanControl/Makefile
