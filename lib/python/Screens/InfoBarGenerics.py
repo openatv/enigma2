@@ -296,6 +296,7 @@ class InfoBarShowHide:
 			self.standardInfoBar = True
 		self.secondInfoBarWasShown = False
 		self.EventViewIsShown = False
+		self.pvrStateDialog = None
 
 	def connectShowHideNotifier(self, fnc):
 		if not fnc in self.onShowHideNotifiers:
@@ -1047,6 +1048,7 @@ class InfoBarEPG:
 		self.dlg_stack = [ ]
 		self.bouquetSel = None
 		self.eventView = None
+		self.isInfo = None
 
 		self["EPGActions"] = HelpableActionMap(self, "InfobarEPGActions",
 			{
@@ -1079,7 +1081,8 @@ class InfoBarEPG:
 		elif config.plisettings.PLIEPG_mode.value == "merlinepgcenter":
 			self.openMerlinEPGCenter()	
 		elif config.plisettings.PLIEPG_mode.value == "cooltvguide":
-			self.showCoolTVGuide()
+			if self.isInfo:
+				self.showCoolTVGuide()
 		elif config.plisettings.PLIEPG_mode.value == "eventview":
 			self.openEventView()
 
@@ -1302,6 +1305,7 @@ class InfoBarEPG:
 		self.epglist = epglist
 
 	def __evEventInfoChanged(self):
+		self.isInfo = True
 		if self.is_now_next and len(self.dlg_stack) == 1:
 			self.getNowNext()
 			assert self.eventView
