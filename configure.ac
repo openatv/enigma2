@@ -220,6 +220,10 @@ lib/python/Plugins/Extensions/StreamTV/meta/Makefile
 lib/python/Plugins/Extensions/WebBrowser/Makefile
 lib/python/Plugins/Extensions/WebBrowser/meta/Makefile
 lib/python/Plugins/Extensions/WebBrowser/keymap/Makefile
+lib/python/Plugins/Extensions/DLNAServer/Makefile
+lib/python/Plugins/Extensions/DLNAServer/meta/Makefile
+lib/python/Plugins/Extensions/DLNABrowser/Makefile
+lib/python/Plugins/Extensions/DLNABrowser/meta/Makefile
 lib/python/Plugins/PLi/Makefile
 lib/python/Plugins/SystemPlugins/CleanupWizard/Makefile
 lib/python/Plugins/SystemPlugins/CleanupWizard/meta/Makefile
@@ -261,6 +265,11 @@ lib/python/Plugins/SystemPlugins/Videomode/meta/Makefile
 lib/python/Plugins/SystemPlugins/WirelessLan/Makefile
 lib/python/Plugins/SystemPlugins/WirelessLan/meta/Makefile
 lib/python/Plugins/SystemPlugins/VFDGiga/Makefile
+lib/python/Plugins/SystemPlugins/3GModemManager/Makefile
+lib/python/Plugins/SystemPlugins/3GModemManager/meta/Makefile
+lib/python/Plugins/SystemPlugins/3GModemManager/script/Makefile
+lib/python/Plugins/SystemPlugins/WirelessAccessPoint/Makefile
+lib/python/Plugins/SystemPlugins/WirelessAccessPoint/meta/Makefile
 lib/python/Tools/Makefile
 po/Makefile
 main/Makefile

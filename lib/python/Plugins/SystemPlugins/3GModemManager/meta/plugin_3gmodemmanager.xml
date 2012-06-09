@@ -1,0 +1,19 @@
+<default>
+	  <prerequisites>
+                    <tag type="System" />
+	  </prerequisites>
+          <info>
+                    <author>oskwon</author>
+                    <name>3G Modem Manager</name>
+                    <packagename>enigma2-plugin-systemplugins-3gmodemmanager</packagename>
+                    <shortdescription>3g modem manager</shortdescription>
+                    <description>3g modem manager is manage connecting and disconnecting for the modem.</description>
+          </info>
+
+	  <files type="package"> <!-- without version, without .ipk -->
+		<file type="package" name="enigma2-plugin-systemplugins-3gmodemmanager" />
+		<file type="package" name="ppp" />
+		<file type="package" name="bmodeswitch" />
+		<file type="package" name="bmodeswitch-data" />
+	</files>
+</default>

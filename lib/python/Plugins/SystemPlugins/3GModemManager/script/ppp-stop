@@ -1,0 +1,50 @@
+#!/bin/sh
+DEVICE=ppp0
+
+unload()
+{
+	modprobe -r ppp_deflate
+	modprobe -r bsd_comp
+	modprobe -r ppp_async
+	modprobe -r slhc
+	modprobe -r ppp_generic
+}
+
+if [ -r /var/run/$DEVICE.pid ]; then                                 
+        kill -INT `cat /var/run/$DEVICE.pid`                         
+        exec /etc/ppp/ip-down                                   
+fi
+
+if ps x | fgrep "options.demand" 1> /dev/null 2> /dev/null ; then
+        D="echo Demand Dialing Stoped."
+fi
+
+if [ -r /var/run/$DEVICE.pid ]; then
+        kill -INT `cat /var/run/$DEVICE.pid`
+
+        if [ ! "$?" = "0" ]; then
+	        killall -INT pppd 2>/dev/null
+                rm -f /var/run/$DEVICE.pid
+                rm -f /var/lock/LCK*
+                echo "ERROR: No pppd process running, removed stale pid file."
+                exit 1
+        fi
+
+	unload
+        echo "PPP link to [$DEVICE] terminated."
+        $D
+        if [ "$1" = "-d" ]; then
+		pppd file "/etc/ppp/options.demand" || exit 1
+		echo "Demand Dialing Started."
+		exit 0
+	elif [ "$2" = "-d" ]; then
+		pppd file "/etc/ppp/options.demand" || exit 1
+		echo "Demand Dialing Started."
+		exit 0
+	else
+		exit 0
+	fi
+fi
+echo "ERROR: PPP link is not active on: [$DEVICE]"
+unload
+exit 1

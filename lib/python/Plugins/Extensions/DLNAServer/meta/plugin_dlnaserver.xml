@@ -1,0 +1,25 @@
+<default>
+	  <prerequisites>
+                    <tag type="Network" />
+	  </prerequisites>
+          <info>
+                    <author>kos</author>
+                    <name>DLNAServer</name>
+                    <packagename>enigma2-plugin-extensions-dlnaserver</packagename>
+                    <shortdescription>this is dlna server using minidlna..</shortdescription>
+                    <description>this is dlna server using minidlna..</description>
+          </info>
+	  <files type="package"> <!-- without version, without .ipk -->
+		<file type="package" name="enigma2-plugin-extensions-dlnaserver" />
+                <file type="package" name="minidlna" />
+                <file type="package" name="libexif12" />
+                <file type="package" name="libavformat52" />
+                <file type="package" name="libavutil50" />
+                <file type="package" name="libavcodec52" />
+                <file type="package" name="libgsm1" />
+                <file type="package" name="libmp3lame0" />
+                <file type="package" name="libschroedinger-1.0-0" />
+                <file type="package" name="libtheora0" />
+                <file type="package" name="liboil" />
+  	  </files>
+</default>
