@@ -217,6 +217,7 @@ class SystemMemoryInfo(Screen):
 		self.skinName = ["SystemMemoryInfo", "About"]
 		self["lab1"] = StaticText(_("Virtuosso Image Xtreme"))
 		self["lab2"] = StaticText(_("By Team ViX"))
+		self["AboutScrollLabel"] = ScrollLabel()
 		out_lines = file("/proc/meminfo").readlines()
 		self.AboutText = _("RAM") + '\n\n'
 		RamTotal = "-"
@@ -242,19 +243,20 @@ class SystemMemoryInfo(Screen):
 				SwapFree = out_lines[lidx].split()
 				self.AboutText += _("Free Swap:") + "\t" + SwapFree[1] + "\n\n"
 
-		cmd = "df -mh / | grep -v '^Filesystem'"
-		result = popen(cmd).read()
-		if result != "":
-			flash = str(result).replace('\n','')
-			flash = flash.split()
-			RamTotal=flash[1]
-			RamFree=flash[3]
+		self.Console = Console()
+		self.Console.ePopen("df -mh / | grep -v '^Filesystem'", self.Stage1Complete)
+
+	def Stage1Complete(self,result, retval, extra_args = None):
+		flash = str(result).replace('\n','')
+		flash = flash.split()
+		RamTotal=flash[1]
+		RamFree=flash[3]
 
 		self.AboutText += _("FLASH") + '\n\n'
 		self.AboutText += _("Total:") + "\t" + RamTotal + "\n"
 		self.AboutText += _("Free:") + "\t" + RamFree + "\n\n"
 
-		self["AboutScrollLabel"] = ScrollLabel(self.AboutText)
+		self["AboutScrollLabel"].setText(self.AboutText)
 
 		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
 			{
