@@ -218,6 +218,13 @@ class SystemMemoryInfo(Screen):
 		self["lab1"] = StaticText(_("Virtuosso Image Xtreme"))
 		self["lab2"] = StaticText(_("By Team ViX"))
 		self["AboutScrollLabel"] = ScrollLabel()
+
+		self["actions"] = ActionMap(["SetupActions", "ColorActions", "TimerEditActions"],
+			{
+				"cancel": self.close,
+				"ok": self.close,
+			})
+
 		out_lines = file("/proc/meminfo").readlines()
 		self.AboutText = _("RAM") + '\n\n'
 		RamTotal = "-"
