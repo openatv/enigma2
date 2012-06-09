@@ -195,6 +195,13 @@ data/defaults/Dream/sdbouquets/Makefile
 data/extensions/Makefile
 data/keymaps/Makefile
 data/lcd/Makefile
+data/rc_models/Makefile
+data/rc_models/et6x00/Makefile
+data/rc_models/et9500/Makefile
+data/rc_models/et9x00/Makefile
+data/rc_models/gb/Makefile
+data/rc_models/tm/Makefile
+data/rc_models/vu/Makefile
 data/skin_default/Makefile
 data/skin_default/menu/Makefile
 data/skin_default/icons/Makefile
