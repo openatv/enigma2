@@ -29,6 +29,10 @@ if TMTWIN
 SUBDIRS += TmTwinFanControl
 endif
 
+if GIGABLUE
+SUBDIRS += VFDGiga
+endif
+
 if HAVE_TEMPFANCONTROL
 SUBDIRS += TempFanControl
 endif
