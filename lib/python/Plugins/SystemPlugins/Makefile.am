@@ -29,7 +29,7 @@ if VUSOLO
 SUBDIRS += HdmiCEC
 endif
 
-if QUATTRO
+if GBQUAD
 SUBDIRS += HdmiCEC
 endif
 
