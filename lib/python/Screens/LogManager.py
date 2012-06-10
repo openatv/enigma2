@@ -1,4 +1,4 @@
-from Screens.Screen import Screen
+﻿from Screens.Screen import Screen
 from Components.GUIComponent import GUIComponent
 from Components.VariableText import VariableText
 from Components.ActionMap import ActionMap, NumberActionMap
@@ -149,7 +149,6 @@ class LogManagerPoller:
 
 class LogManager(Screen):
 	skin = """<screen name="LogManager" position="center,center" size="560,400" title="Log Manager" flags="wfBorder">
-		<ePixmap pixmap="skin_default/buttons/key_menu.png" position="0,35" zPosition="4" size="35,25" alphatest="on" transparent="1" />
 		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
