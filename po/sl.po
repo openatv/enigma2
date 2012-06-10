@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ENIGMA 2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-05 23:41+0200\n"
+"POT-Creation-Date: 2012-04-11 16:07+0200\n"
 "PO-Revision-Date: 2012-03-30 16:03+0100\n"
 "Last-Translator: \n"
 "Language-Team: OldSkul from www.linux-sprejemniki.info\n"
@@ -1045,7 +1045,7 @@ msgid "Cable"
 msgstr "Kabel"
 
 msgid "Cable Scan"
-msgstr "Skeniranje kabelske"
+msgstr "Iskanje DVBC kanalov"
 
 #
 msgid "Cache Thumbnails"
@@ -1061,7 +1061,7 @@ msgid "Calculation complete"
 msgstr "Izračun je končan"
 
 msgid "Calibrate"
-msgstr ""
+msgstr "Kalibracija"
 
 #
 msgid "Cancel"
@@ -1314,9 +1314,6 @@ msgstr "Struktura imena posnetih datotek"
 #
 msgid "Configuration Mode"
 msgstr "Nastavitveni način"
-
-msgid "Configuration mode: "
-msgstr ""
 
 #
 msgid "Configure interface"
@@ -1823,7 +1820,7 @@ msgstr ""
 #
 #, python-format
 msgid "Do you really want to delete %s?"
-msgstr "Res želite odstraniti %s?"
+msgstr "Res želite odstraniti: %s?"
 
 #
 #, python-format
@@ -1836,7 +1833,7 @@ msgstr ""
 
 #
 msgid "Do you really want to exit?"
-msgstr "Ali res želite zapustiti?"
+msgstr "Ali res želite odditi?"
 
 msgid ""
 "Do you really want to initialize the device?\n"
@@ -1848,12 +1845,12 @@ msgstr ""
 #
 #, python-format
 msgid "Do you really want to remove directory %s from the disk?"
-msgstr "Ali res želite odstraniti mapo %s iz trdega diska?"
+msgstr "Ali res želite odstraniti mapo: %s iz trdega diska?"
 
 #
 #, python-format
 msgid "Do you really want to remove your bookmark of %s?"
-msgstr "Ali res želite odstraniti zaznamek %s?"
+msgstr "Ali res želite odstraniti zaznamek: %s?"
 
 msgid ""
 "Do you want to backup now?\n"
@@ -3943,7 +3940,7 @@ msgstr ""
 
 #
 msgid "Play recorded movies..."
-msgstr "Predvajajte lastne posnetke"
+msgstr "Predvajanje posnetkov"
 
 #
 msgid "Please Select Medium to be Scanned"
@@ -4178,7 +4175,7 @@ msgstr "Prosim počakajte..."
 
 #
 msgid "Please wait... Loading list..."
-msgstr "Poteka nalaganje seznama datotek..."
+msgstr "Nalaganje seznama datotek..."
 
 #
 msgid "Plugin browser"
@@ -4513,7 +4510,7 @@ msgid "Recordings always have priority"
 msgstr "Snemanje ima vedno višjo prioriteto"
 
 msgid "Red button..."
-msgstr "Rdeča tipka..."
+msgstr "Rdeča tipka"
 
 msgid "Reenter new PIN"
 msgstr "Ponovni vnos PIN kode"
@@ -5576,7 +5573,7 @@ msgstr "Zaženite test"
 
 #
 msgid "StartTime"
-msgstr "Začetni čas"
+msgstr "Čas začetka"
 
 #
 msgid "Starting on"
@@ -5708,7 +5705,7 @@ msgstr "Nedelja"
 
 #
 msgid "Swap SNR in db with SNR in percentage on OSD"
-msgstr "Zamenjava moči signala v db s prikazom v odstotkih"
+msgstr "Prikaz signala v db, namesto v odstotkih"
 
 #
 msgid "Swap Services"
@@ -5875,13 +5872,13 @@ msgid ""
 msgstr ""
 
 msgid "The User Interface of your receiver is restarting"
-msgstr "Uporabniški vmesnik sprejemnika se bo v kratkem popolno zagnal!"
+msgstr "Uporabniški vmesnik sprejemnika se bo v kratkem ponovno zagnal!"
 
 msgid ""
 "The User Interface of your receiver is restarting\n"
 "due to an error in mytest.py"
 msgstr ""
-"Uporabniški vmesnik sprejemnika se bo v kratkem popolno zagnal!\n"
+"Uporabniški vmesnik sprejemnika se bo v kratkem ponovno zagnal!\n"
 "Razlog je napaka v datoteki mytest.py"
 
 #
@@ -6366,12 +6363,12 @@ msgstr "Preostalo št. poskusov:"
 #
 msgid "Try to find used Transponders in cable network.. please wait..."
 msgstr ""
-"Poskušam poiskati transponderje v kabelskem omrežju... Prosim počakajte!"
+"Poteka iskanje transponderjev v kabelskem omrežju... Prosim počakajte!"
 
 #
 msgid "Try to find used transponders in cable network.. please wait..."
 msgstr ""
-"Poskušam poiskati transponderje v kabelskem omrežju... Prosim počakajte!"
+"Poteka iskanje transponderjev v kabelskem omrežju... Prosim počakajte!"
 
 #
 msgid "Trying to download a new packetlist. Please wait..."
@@ -6459,9 +6456,9 @@ msgid ""
 "Please wait until your receiver reboots\n"
 "This may take a few minutes"
 msgstr ""
-"Izvaja se nadgradnja vašega sprejemnika!\n"
-"Po izvedeni nadgradnji, se bo sprejemnik samodejno ponovno zagnal.\n"
-"Nadgradnja lahko traja več minut."
+"Izvaja se nadgradnja sprejemnika...\n"
+"Po nadgradnji se bo sprejemnik ponovno zagnal.\n"
+"POZOR! Nadgradnja lahko traja več minut."
 
 #
 msgid "Unattended upgrade without GUI and reboot system"
@@ -6668,12 +6665,6 @@ msgstr "Določeno s strani uporabnika"
 #
 msgid "Username"
 msgstr "Uporabniško ime"
-
-msgid "Using LNB"
-msgstr ""
-
-msgid "Using Tuner "
-msgstr ""
 
 msgid "Using fixed address"
 msgstr ""
@@ -6902,9 +6893,6 @@ msgstr ""
 msgid "Warn if free space drops below (kB):"
 msgstr "Opozori, če se prostor na disku zmanjša pod (kB):"
 
-msgid "Warning: no LNB; using factory defaults."
-msgstr ""
-
 #
 msgid "Wed"
 msgstr "Sre"
@@ -6995,7 +6983,7 @@ msgstr "Kaj želite iskati?"
 
 #
 msgid "What to do with submitted crashlogs?"
-msgstr "Kaj naj storim s poslanimi dnevniki napak?"
+msgstr "Kaj se naj stori s poslanimi dnevniki napak?"
 
 #
 msgid ""
@@ -7006,8 +6994,8 @@ msgid ""
 "\n"
 "Really do a factory reset?"
 msgstr ""
-"Pozor! Uporaba te funkcije izbriše vse nastavitve vašega sprejemnika!\n"
-"Po zaključku se bo sprejemnik ponovno zagnal.\n"
+"POZOR! Izbrana funkcija izbriše vse nastavitve vašega sprejemnika!\n"
+"Po zaključku brisanja se bo sprejemnik ponovno zagnal.\n"
 "Želite nadaljevati?"
 
 #
@@ -7634,7 +7622,7 @@ msgstr "povezano"
 
 #
 msgid "continue"
-msgstr "Nadaljuj"
+msgstr "Nadaljevanje"
 
 #
 msgid "copy to bouquets"
@@ -7866,7 +7854,7 @@ msgstr "zeleno"
 
 #
 msgid "hear radio..."
-msgstr "Poslušaj radio"
+msgstr "Poslušanje radia"
 
 msgid "height"
 msgstr "višina"
@@ -8111,7 +8099,7 @@ msgstr ""
 
 #
 msgid "on"
-msgstr "vključi"
+msgstr "vklop"
 
 #
 msgid "on READ ONLY medium."
@@ -8177,7 +8165,7 @@ msgstr "poteka nalaganje slike, prosim počakajte..."
 
 #
 msgid "previous channel"
-msgstr "Predhodni kanal"
+msgstr "Prejšnji kanal"
 
 #
 msgid "previous channel in history"
@@ -8330,7 +8318,7 @@ msgstr ""
 
 #
 msgid "set as startup service"
-msgstr "Dodajte kot zagonski kanal"
+msgstr "Izbira zagonskega kanala"
 
 msgid "setup PIN"
 msgstr "Nastavitev PIN"
@@ -8341,7 +8329,7 @@ msgstr "Prikaz glavnega DVD menija"
 
 #
 msgid "show EPG..."
-msgstr "Prikaz EPG-ja"
+msgstr "Prikaz sporeda - EPG"
 
 #
 msgid "show Infoline"
@@ -8415,11 +8403,11 @@ msgstr "Preskok naprej"
 
 #
 msgid "skip forward (enter time)"
-msgstr "preskok naprej (vnesite čas)"
+msgstr "Preskok naprej (vnesite čas)"
 
 #
 msgid "slide picture in loop"
-msgstr "prikaz slike v zanki"
+msgstr "Prikaz slike v zanki"
 
 #
 msgid "sort by date"
@@ -8473,7 +8461,7 @@ msgstr "Ustavitev snemanja"
 
 #
 msgid "stop timeshift"
-msgstr "Ustavitev časovni zamika"
+msgstr "Ustavitev časovnega zamika"
 
 #
 msgid "stop using as startup service"
@@ -8572,11 +8560,11 @@ msgstr "Vertikalna"
 
 #
 msgid "view extensions..."
-msgstr "Poglejte oznake"
+msgstr "Ogled vtičnikov"
 
 #
 msgid "view recordings..."
-msgstr "Poglejte posnetke"
+msgstr "Ogled posnetkov"
 
 #
 msgid "wait for ci..."
