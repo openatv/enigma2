@@ -19,7 +19,8 @@ public:
 		alignCenter,
 		alignRight,
 		alignBottom=alignRight,
-		alignBlock
+		alignBlock,
+		alignBidi
 	};
 	
 	void setVAlign(int align);

@@ -11,7 +11,7 @@ eLabel::eLabel(eWidget *parent, int markedPos): eWidget(parent)
 	
 		/* default to topleft alignment */
 	m_valign = alignTop;
-	m_halign = alignLeft;
+	m_halign = alignBidi;
 	
 	m_have_foreground_color = 0;
 	m_have_shadow_color = 0;
@@ -49,6 +49,8 @@ int eLabel::event(int event, void *data, void *data2)
 				para->realign(eTextPara::dirRight);
 			else if (m_halign == alignBlock)
 				para->realign(eTextPara::dirBlock);
+			else if (m_halign == alignBidi)
+				para->realign(eTextPara::dirBidi);
 
 			int glyphs = para->size();
 
