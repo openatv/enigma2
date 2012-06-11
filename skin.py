@@ -219,14 +219,8 @@ def collectAttributes(skinAttributes, node, context, skin_path_prefix=None, igno
 
 def morphRcImagePath(value):
 	if rc_model.rcIsDefault() is False:
-		if value == '/usr/share/enigma2/skin_default/arrowdown.png':
-			value = rc_model.getRcLocation() + 'arrowdown.png'
-		elif value == '/usr/share/enigma2/skin_default/arrowup.png':
-			value = rc_model.getRcLocation() + 'arrowup.png'
-		elif value == '/usr/share/enigma2/skin_default/rc.png':
+		if value == '/usr/share/enigma2/skin_default/rc.png' or value == '/usr/share/enigma2/skin_default/rcold.png':
 			value = rc_model.getRcLocation() + 'rc.png'
-		elif value == '/usr/share/enigma2/skin_default/rcold.png':
-			value = rc_model.getRcLocation() + 'rcold.png'
 	return value
 
 def loadPixmap(path, desktop):
