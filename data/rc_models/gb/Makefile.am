@@ -1,4 +1,4 @@
-installdir = $(pkgdatadir)/rc_models/vu
+installdir = $(pkgdatadir)/rc_models/gb
 
 dist_install_DATA = \
 	arrowdown.png \
