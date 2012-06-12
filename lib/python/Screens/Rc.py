@@ -67,13 +67,13 @@ class Rc:
 		self["rc"].show()
 
 	def selectKey(self, key):
-		if config.misc.boxtype.value == 'venton-hdx':
+		if self.isDefaultRc:
 			rc = self.rcs[config.misc.rcused.value]
 		else:
-			if self.isDefaultRc:
-				rc = self.rcs[config.misc.rcused.value]
-			else:
+			try:
 				rc = self.rcs[2]
+			except:
+				rc = self.rcs[config.misc.rcused.value]
 
 		if rc.has_key(key):
 			rcpos = self["rc"].getPosition()
