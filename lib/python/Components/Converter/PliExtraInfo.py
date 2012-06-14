@@ -106,7 +106,7 @@ class PliExtraInfo(Poll, Converter, object):
 		if vpid < 0 : vpid = 0
 		if apid < 0 : apid = 0
 		if pcrpid < 0 : pcrpid = 0
-		if pmtpid < 0 : pmtpid =0
+		if pmtpid < 0 : pmtpid = 0
 		return "Pids:%04d:%04d:%04d:%04d" % (vpid,apid,pcrpid,pmtpid)
 
 	def createTransponderInfo(self,fedata,feraw):
