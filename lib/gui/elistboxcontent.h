@@ -87,14 +87,15 @@ private:
 };
 
 #ifdef SWIG
-#define RT_HALIGN_LEFT 0
-#define RT_HALIGN_RIGHT 1
-#define RT_HALIGN_CENTER 2
-#define RT_HALIGN_BLOCK 4
+#define RT_HALIGN_BIDI 0
+#define RT_HALIGN_LEFT 1
+#define RT_HALIGN_RIGHT 2
+#define RT_HALIGN_CENTER 4
+#define RT_HALIGN_BLOCK 8
 #define RT_VALIGN_TOP 0
-#define RT_VALIGN_CENTER 8
-#define RT_VALIGN_BOTTOM 16
-#define RT_WRAP 32
+#define RT_VALIGN_CENTER 16
+#define RT_VALIGN_BOTTOM 32
+#define RT_WRAP 64
 #endif // SWIG
 
 #endif
