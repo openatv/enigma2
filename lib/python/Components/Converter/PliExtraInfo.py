@@ -102,12 +102,12 @@ class PliExtraInfo(Poll, Converter, object):
 		vpid = info.getInfo(iServiceInformation.sVideoPID)
 		apid = info.getInfo(iServiceInformation.sAudioPID)
 		pcrpid = info.getInfo(iServiceInformation.sPCRPID)
-		pmtpid = info.getInfo(iServiceInformation.sPMTPID)
+		sidpid = info.getInfo(iServiceInformation.sSID)
 		if vpid < 0 : vpid = 0
 		if apid < 0 : apid = 0
 		if pcrpid < 0 : pcrpid = 0
-		if pmtpid < 0 : pmtpid = 0
-		return "Pids:%04d:%04d:%04d:%04d" % (vpid,apid,pcrpid,pmtpid)
+		if sidpid < 0 : sidpid = 0
+		return "Pids:%04d:%04d:%04d:%05d" % (vpid,apid,pcrpid,sidpid)
 
 	def createTransponderInfo(self,fedata,feraw):
 		return addspace(self.createTunerSystem(fedata)) + addspace(self.createFrequency(fedata)) + addspace(self.createPolarization(fedata))\
