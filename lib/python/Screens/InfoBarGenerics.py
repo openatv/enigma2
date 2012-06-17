@@ -4062,6 +4062,7 @@ class InfoBarAudioSelection:
 		self["AudioSelectionAction"] = HelpableActionMap(self, "InfobarAudioSelectionActions",
 			{
 				"audioSelection": (self.audioSelection, _("Audio Options...")),
+				"audio_key": (self.audio_key, _("Audio Options...")),
 			})
 
 	def audioSelection(self):
@@ -4081,6 +4082,10 @@ class InfoBarAudioSelection:
 				self.startTimeshift()
 			except:
 				pass
+				
+	def audio_key(self):
+		from Screens.AudioSelection import AudioSelection
+		self.session.openWithCallback(self.audioSelected, AudioSelection, infobar=self)
 
 	def audioSelected(self, ret=None):
 		print "[infobar::audioSelected]", ret
