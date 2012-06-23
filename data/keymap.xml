@@ -215,6 +215,9 @@
 		<device name="dreambox advanced remote control (native)">
 			<key id="KEY_YELLOW" mapto="audioSelection" flags="b" />
 		</device>
+		<device name="dreambox remote control (native)">
+			<key id="KEY_YELLOW" mapto="audioSelection" flags="b" />
+		</device>
 	</map>
 
 	<map context="InfobarAspectSelectionActions">
@@ -231,6 +234,9 @@
 
 	<map context="InfobarRedButtonActions">
 		<device name="dreambox advanced remote control (native)">
+			<key id="KEY_RED" mapto="activateRedButton" flags="l" />
+		</device>
+		<device name="dreambox remote control (native)">
 			<key id="KEY_RED" mapto="activateRedButton" flags="l" />
 		</device>
 	</map>
