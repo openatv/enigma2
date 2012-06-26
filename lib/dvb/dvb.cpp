@@ -266,7 +266,7 @@ eDVBUsbAdapter::eDVBUsbAdapter(int nr)
 	struct dvb_frontend_info fe_info;
 	int frontend = -1;
 	char filename[256];
-	eDebug("linking adapter%d/frontend0 to vtuner%d", nr, nr - 1);
+	int vtunerid = nr - 1;
 
 	pumpThread = NULL;
 
@@ -329,12 +329,23 @@ eDVBUsbAdapter::eDVBUsbAdapter(int nr)
 		goto error;
 	}
 
-	snprintf(filename, sizeof(filename), "/dev/misc/vtuner%d", nr - 1);
-	vtunerFd = open(filename, O_RDWR);
+	while (vtunerFd < 0)
+	{
+		snprintf(filename, sizeof(filename), "/dev/misc/vtuner%d", vtunerid);
+		if (::access(filename, F_OK) < 0) break;
+		vtunerFd = open(filename, O_RDWR);
+		if (vtunerFd < 0)
+		{
+			vtunerid++;
+		}
+	}
+
 	if (vtunerFd < 0)
 	{
 		goto error;
 	}
+
+	eDebug("linking adapter%d/frontend0 to vtuner%d", nr, vtunerid);
 
 	filter.input = DMX_IN_FRONTEND;
 	filter.flags = 0;
