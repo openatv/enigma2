@@ -7,6 +7,8 @@ class EventName(Converter, object):
 	EXTENDED_DESCRIPTION = 2
 	FULL_DESCRIPTION = 3
 	ID = 4
+	NAME_NOW = 5
+	NAME_NEXT = 6
 	
 	def __init__(self, type):
 		Converter.__init__(self, type)
@@ -18,6 +20,10 @@ class EventName(Converter, object):
 			self.type = self.FULL_DESCRIPTION
 		elif type == "ID":
 			self.type = self.ID
+		elif type == "NameNow":
+			self.type = self.NAME_NOW
+		elif type == "NameNext":
+			self.type = self.NAME_NEXT
 		else:
 			self.type = self.NAME
 
@@ -29,6 +35,10 @@ class EventName(Converter, object):
 			
 		if self.type == self.NAME:
 			return event.getEventName()
+		elif self.type == self.NAME_NOW:
+			return _("Now") + ": " + event.getEventName()
+		elif self.type == self.NAME_NEXT:
+			return _("Next") + ": " + event.getEventName()
 		elif self.type == self.SHORT_DESCRIPTION:
 			return event.getShortDescription()
 		elif self.type == self.EXTENDED_DESCRIPTION:

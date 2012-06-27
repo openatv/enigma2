@@ -19,4 +19,4 @@ class NextEpgInfo(Renderer, VariableText):
 		nextEvent = self.epgcache.lookupEvent(['IBDCTSERNX', (reference.toString(), 1, -1)])
 		if nextEvent:
 			if nextEvent[0][4]:
-				self.text = nextEvent[0][4]
+				self.text = _("Next") + ": " + nextEvent[0][4]
