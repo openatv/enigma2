@@ -274,6 +274,17 @@ class PliExtraInfo(Poll, Converter, object):
 	def createVideoCodec(self,info):
 		return ("MPEG2", "MPEG4", "MPEG1", "MPEG4-II", "VC1", "VC1-SM", "")[info.getInfo(iServiceInformation.sVideoType)]
 
+	def createPIDInfo(self,info):
+		vpid = info.getInfo(iServiceInformation.sVideoPID)
+		apid = info.getInfo(iServiceInformation.sAudioPID)
+		pcrpid = info.getInfo(iServiceInformation.sPCRPID)
+		sidpid = info.getInfo(iServiceInformation.sSID)
+		if vpid < 0 : vpid = 0
+		if apid < 0 : apid = 0
+		if pcrpid < 0 : pcrpid = 0
+		if sidpid < 0 : sidpid = 0
+		return "Pids:%04d:%04d:%04d:%05d" % (vpid,apid,pcrpid,sidpid)
+
 	def createTransponderInfo(self,fedata,feraw):
 		return addspace(self.createTunerSystem(fedata)) + addspace(self.createFrequency(fedata)) + addspace(self.createPolarization(fedata))\
 			+ addspace(self.createSymbolRate(fedata)) + addspace(self.createFEC(fedata)) + addspace(self.createModulation(fedata))\
@@ -667,7 +678,7 @@ class PliExtraInfo(Poll, Converter, object):
 			if int(config.usage.show_cryptoinfo.value) > 0:
 				return addspace(self.createProviderName(info)) + self.createTransponderInfo(fedata,feraw) + "\n"\
 				+ addspace(self.createCryptoBar(info)) + addspace(self.createCryptoSpecial(info)) + "\n"\
-				+ addspace(self.createVideoCodec(info)) + self.createResolution(info)
+				+ addspace(self.createPIDInfo(info)) + addspace(self.createVideoCodec(info)) + self.createResolution(info)
 			else:
 				return addspace(self.createProviderName(info)) + self.createTransponderInfo(fedata,feraw) + "\n"\
 				+ addspace(self.createCryptoBar(info)) + self.current_source + "\n"\
@@ -709,6 +720,9 @@ class PliExtraInfo(Poll, Converter, object):
 
 		if self.type == "TunerSystem":
 			return self.createTunerSystem(fedata)
+			
+		if self.type == "PIDInfo":
+			return createPIDInfo(info)
 
 		return _("invalid type")
 
