@@ -241,9 +241,6 @@ lib/python/Plugins/Extensions/SocketMMI/meta/Makefile
 lib/python/Plugins/Extensions/SocketMMI/src/Makefile
 lib/python/Plugins/Extensions/TuxboxPlugins/Makefile
 lib/python/Plugins/Extensions/TuxboxPlugins/meta/Makefile
-lib/python/Plugins/Extensions/WebBrowser/Makefile
-lib/python/Plugins/Extensions/WebBrowser/meta/Makefile
-lib/python/Plugins/Extensions/WebBrowser/keymap/Makefile
 lib/python/Plugins/PLi/Makefile
 lib/python/Plugins/SystemPlugins/CableScan/Makefile
 lib/python/Plugins/SystemPlugins/CleanupWizard/Makefile
