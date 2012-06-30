@@ -141,12 +141,6 @@ self.session.open(SABnzbdSetupScreen)
 				</menu>
 				<item level="0" text="Recording Settings" entryID="recording_setup"><screen module="Recordings_Timershift" screen="RecordingSettings" /></item>
 				<item level="1" entryID="rfmod_setup" requires="RfModulator"><setup id="RFmod"/></item>
-				<item level="1" text="Remote Control Code" entryID="remotecode" requires="RemoteCode">
-<code>
-from Plugins.SystemPlugins.RemoteControlCode.plugin import RemoteControlCode
-self.session.open(RemoteControlCode)
-</code>
-				</item>
 				<item level="0" text="Skin Setup" entryID="skin_setup"><screen module="SkinSelector" screen="SkinSelector"/></item>
 				<item level="2" entryID="subtitle_setup"><setup id="subtitlesetup" /></item>
 				<item level="0" text="Timeshift Settings" entryID="timshift_setup"><screen module="Recordings_Timershift" screen="TimeshiftSettings" /></item>
