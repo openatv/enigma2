@@ -383,10 +383,14 @@ eDVBUsbAdapter::eDVBUsbAdapter(int nr)
 #define VTUNER_SET_TYPE     4
 #define VTUNER_SET_HAS_OUTPUTS 5
 #define VTUNER_SET_FE_INFO  6
-#define VTUNER_SET_DELSYS   7
+#define VTUNER_SET_NUM_MODES 7
+#define VTUNER_SET_MODES 8
+#define VTUNER_SET_DELSYS 32
+#define VTUNER_SET_ADAPTER 33
 	ioctl(vtunerFd, VTUNER_SET_NAME, name);
 	ioctl(vtunerFd, VTUNER_SET_TYPE, type);
 	ioctl(vtunerFd, VTUNER_SET_HAS_OUTPUTS, "no");
+	ioctl(vtunerFd, VTUNER_SET_ADAPTER, nr);
 
 	memset(pidList, 0xff, sizeof(pidList));
 
