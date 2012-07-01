@@ -2,7 +2,7 @@ echo "HDD-CHECK" > /hdd/hdd-check;
 
 if [ -f /hdd/hdd-check ] ; then
 	echo "Full back-up to the harddisk"
-        build-combi.sh /hdd | tee /tmp/HDD-Full-Backup.log 
+        /usr/lib/enigma2/python/Plugins/SystemPlugins/SoftwareManager/backup.sh /hdd | tee /tmp/HDD-Full-Backup.log 
 	rm -f /hdd/hdd-check
         wait 3
 else
