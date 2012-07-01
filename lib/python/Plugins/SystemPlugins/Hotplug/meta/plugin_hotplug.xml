@@ -1,0 +1,18 @@
+<default>
+	  <prerequisites>
+                    <tag type="System" />
+	  </prerequisites>
+          <info>
+                    <author>Dream Multimedia</author>
+                    <name>Hotplug</name>
+                    <packagename>enigma2-plugin-systemplugins-hotplug</packagename>
+                    <shortdescription>Hotplugging for removeable devices</shortdescription>
+                    <description>The Hotplug plugin notifies your system of newly added or removed devices.
+                    </description>
+          </info>
+
+	  <files type="package"> <!-- without version, without .ipk -->
+		<file type="package" name="enigma2-plugin-systemplugins-hotplug" />
+	</files>
+
+</default>

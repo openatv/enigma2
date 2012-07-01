@@ -1,0 +1,82 @@
+#!/bin/sh
+
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+datarootdir=@datarootdir@
+
+# update NTP time if NTP Time Enabled
+if [ "$(grep config.misc.SyncTimeUsing /etc/enigma2/settings)" == "config.misc.SyncTimeUsing=1" ]; then
+	/usr/bin/ntpdate -s -u pool.ntp.org &
+fi
+
+if [ -x @bindir@/showiframe ]; then
+	if [ -f @sysconfdir@/enigma2/backdrop.mvi ]; then
+		@bindir@/showiframe @sysconfdir@/enigma2/backdrop.mvi
+	elif [ -f @datadir@/backdrop.mvi ]; then
+		@bindir@/showiframe @datadir@/backdrop.mvi
+	fi
+fi
+
+# hook to execute scripts always before enigma2 start
+if [ -x @bindir@/enigma2_pre_start.sh ]; then
+	@bindir@/enigma2_pre_start.sh
+fi
+
+if [ -d /home/root ]; then
+	cd /home/root
+fi
+
+LIBS=@libdir@/libopen.so.0.0.0
+
+#check for dreambox specific passthrough helper lib
+if [ -e @libdir@/libpassthrough.so ]; then
+	LIBS="$LIBS @libdir@/libpassthrough.so"
+fi
+
+sync
+if [ "$(grep config.crash.enabledebug /etc/enigma2/settings)" == "config.crash.enabledebug=true" ]; then
+	if [ "$(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')" != "" -a -d "$(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')" ]; then
+		LD_PRELOAD=$LIBS @bindir@/enigma2 &> $(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')Enigma2-$(date +%d-%m-%Y_%H-%M-%S).log
+	else
+		LD_PRELOAD=$LIBS @bindir@/enigma2 &> /home/root/logs/Enigma2-$(date +%d-%m-%Y_%H-%M-%S).log
+	fi
+else
+	LD_PRELOAD=$LIBS @bindir@/enigma2
+fi
+
+# enigma2 exit codes:
+#
+# 1 - halt
+# 2 - reboot
+# 3 - restart enigma
+#
+# >128 signal
+
+ret=$?
+case $ret in
+	1)
+		/sbin/halt
+		;;
+	2)
+		/sbin/reboot
+		;;
+	3)
+		rm -fR /home/root/.gstreamer-0.10
+		;;
+	4)
+		/sbin/rmmod lcd
+		/usr/sbin/fpupgrade --upgrade 2>&1 | tee /home/root/fpupgrade.log
+		sleep 1;
+		/sbin/rmmod fp
+		/sbin/modprobe fp
+		/sbin/reboot
+		;;
+	42)
+		# bind the console (when available)
+# 		[ -f /sys/class/vtconsole/vtcon1/bind ] && echo 1 > /sys/class/vtconsole/vtcon1/bind
+		opkg upgrade 2>&1 | tee /home/root/ipkgupgrade.log
+		/sbin/reboot
+		;;
+	*)
+		;;
+esac

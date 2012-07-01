@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--  Skin: LCD from Magic by MiLo -->
+<skin>
+
+<!-- main-->
+	<screen name="InfoBarSummary" position="0,0" size="132,64">
+		<widget source="global.CurrentTime" render="Label" position="0,0" size="120,64" font="Regular;48" halign="center" valign="center">
+			<convert type="ClockToText">Format:%H:%M</convert>
+		</widget>
+		<widget source="session.RecordState" render="FixedLabel" text=" " position="6,30" zPosition="1" size="120,34">
+			<convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,True,CheckSourceBoolean</convert>
+			<convert type="ConditionalShowHide">Blink</convert>
+		</widget>
+	</screen>
+
+<!-- channelselection-->
+	<screen name="ChannelSelection_summary" position="0,0" size="132,64">
+		<widget source="parent.ServiceEvent" render="Label" position="0,0" size="120,25" halign="left" noWrap="1" >
+			<convert type="ServiceName">Name</convert>
+		</widget>
+	</screen>
+
+<!-- menus-->
+	<screen name="MenuSummary" position="0,0" size="16,1">
+		<widget source="parent.menu" render="Label" position="0,0" size="132,1" font="Regular;16" halign="left" valign="top">
+			<convert type="StringListSelection" />
+		</widget>
+	</screen>
+
+<!-- movieplayer-->
+	<screen name="MovieSelectionSummary" position="0,0" size="132,64">
+		<widget source="parent.Service" render="Label" position="4,0" size="120,25" font="Regular;14">
+			<convert type="ServiceName">Name</convert>
+		</widget>
+	</screen>
+
+	<screen name="InfoBarMoviePlayerSummary" position="0,0" size="132,64">
+		<widget source="session.CurrentService" render="Label" position="6,0" size="120,25" halign="left" noWrap="1" >
+			<convert type="ServiceName">Name</convert>
+		</widget>
+	</screen>
+
+	<screen name="MovieContextMenuSummary" position="0,0" size="132,64">
+		<widget source="selected" render="Label" position="0,0" size="124,32" font="Regular;16" />
+	</screen>
+
+	<screen name="MovieSelectionSummary" position="0,0" size="132,64">
+		<widget source="name" render="Label" position="0,0" size="124,32" font="Regular;16" halign="left" valign="top" />
+	</screen>
+
+<!-- setup-->
+	<screen name="SetupSummary" position="0,0" size="132,64">
+		<widget source="SetupTitle" render="Label" position="6,0" size="120,16" font="Regular;12" />
+<!--
+		<widget source="SetupEntry" render="Label" position="6,0" size="120,32" font="Regular;12" />
+ -->
+		<widget source="SetupValue" render="Label" position="6,0" size="120,32" font="Regular;12" />
+	</screen>
+
+<!-- misc-->
+	<screen name="SimpleSummary" position="0,0" size="132,64">
+		<widget source="parent.Title" render="Label" position="0,0" size="124,40" font="Regular;16" valign="center" />
+	</screen>
+	<screen name="PLIMenuSummary" position="0,0" size="132,64">
+		<widget source="entry" render="Label" position="0,0" size="120,20" font="Regular;18" noWrap="1" />
+	</screen>
+	<screen name="ChoiceBox_summary" position="0,0" size="132,64">
+		<widget source="parent.summary_selection" render="Label" position="0,0" size="126,64" font="Regular;11" noWrap="1" />
+	</screen>
+	<screen name="MessageBox_summary" position="0,0" size="132,64">
+		<widget source="parent.Text" render="Label" position="0,0" size="132,52" font="Regular;11" valign="center" />
+		<widget source="parent.selectedChoice" render="Label" position="6,50" size="120,14" halign="left" noWrap="1"  />
+	</screen>
+	<screen name="JobView_summary" position="0,0" size="132,64">
+		<widget source="parent.summary_job_name" render="Label" position="6,4" size="120,42" font="Regular;16" />
+		<widget source="parent.summary_job_task" render="Label" position="6,22" size="120,26" font="Regular;12" />
+		<widget source="parent.summary_job_progress" render="Progress" position="6,50" size="60,12" borderWidth="1" zPosition="1" />
+		<widget source="parent.summary_job_progress" render="Label" position="66,50" size="50,12" font="Regular;12" zPosition="2" transparent="1">
+			<convert type="ProgressToText" />
+		</widget>
+	</screen>
+
+<!-- standby -->
+	<screen name="StandbySummary" position="0,0" size="132,64">
+		<widget source="global.CurrentTime" render="Label" position="0,0" size="120,64" font="Regular;48" halign="center" valign="center">
+			<convert type="ClockToText">Format:%H:%M</convert>
+		</widget>
+		<widget source="session.RecordState" render="FixedLabel" position="6,4" zPosition="1" size="120,64" text=" ">
+			<convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,True,CheckSourceBoolean</convert>
+			<convert type="ConditionalShowHide">Blink</convert>
+		</widget>
+	</screen>
+
+<!-- Plugin browser -->
+	<screen name="PluginBrowserSummary" position="0,0" size="132,64">
+		<widget source="entry" render="Label" position="0,0" size="120,20" font="Regular;18" noWrap="1" />
+	</screen>
+
+</skin>

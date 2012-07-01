@@ -1,0 +1,21 @@
+<default>
+	  <prerequisites>
+                    <tag type="SAT" />
+                    <tag type="System" />
+	  </prerequisites>
+          <info>
+                    <author>Dream Multimedia</author>
+                    <name>SatelliteEquipmentControl</name>
+                    <name_de>SatelliteEquipmentControl</name_de>
+                    <packagename>enigma2-plugin-systemplugins-satelliteequipmentcontrol</packagename>
+                    <shortdescription>SatelliteEquipmentControl allows you to fine-tune DiSEqC-settings</shortdescription>
+                    <description>With the SatelliteEquipmentControl plugin it is possible to fine-tune DiSEqC-settings.
+                    </description>
+                    <screenshot src="http://www.dreamboxupdate.com/preview/plugin_satcontrol.jpg" />
+          </info>
+
+	  <files type="package"> <!-- without version, without .ipk -->
+		<file type="package" name="enigma2-plugin-systemplugins-satelliteequipmentcontrol" />
+	  </files>
+
+</default>

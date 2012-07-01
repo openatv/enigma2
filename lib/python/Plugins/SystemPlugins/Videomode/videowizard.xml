@@ -1,0 +1,107 @@
+<wizard>
+	<step id="inputselection" nextstep="modeselection" timeout="20" timeoutaction="selectnext">
+		<text value="Video input selection\n\nPlease press OK if you can see this page on your TV (or select a different input port).\n\nThe next input port will be automatically probed in 10 seconds." />
+		<displaytext value="Select video input with up/down buttons" />
+		<list type="dynamic" source="listInputChannels" evaluation="inputSelectionMade" onselect="inputSelectionMoved" />
+		<code>
+self["portpic"].show()
+self.clearSelectedKeys()
+self.selectKey("OK")
+		</code>
+	</step>
+	<step id="modeselection" nextstep="rateselection" timeout="20" timeoutaction="selectnext">
+		<text value="Video mode selection." />
+		<displaytext value="Select video mode" />
+		<list type="dynamic" source="listModes" evaluation="modeSelectionMade" onselect="modeSelectionMoved" />
+		<code>
+self.clearSelectedKeys()
+self.selectKey("UP")
+self.selectKey("DOWN")
+self["portpic"].hide()
+		</code>
+	</step>
+	<step id="rateselection" nextstep="end" timeout="20" timeoutaction="selectnext">
+		<condition>
+self.condition = (self.port != "DVI" or self.mode == "PC")
+		</condition>		
+		<text value="Refresh rate selection." />
+		<displaytext value="Select refresh rate" />
+		<list type="dynamic" source="listRates" evaluation="rateSelectionMade" onselect="rateSelectionMoved" />
+		<code>
+self.clearSelectedKeys()
+self.selectKey("UP")
+self.selectKey("DOWN")
+		</code>
+	</step>
+	<!--step id="dvirateintroduction" nextstep="dvirateselection">
+		<condition>
+self.condition = (self.port == "DVI" and self.mode in ["720p", "1080i"])
+		</condition>
+		<text value="We will now test if your TV can also display this resolution at 50hz. If your screen goes black, wait 20 seconds and it will switch back to 60hz.\nPlease press OK to begin." />
+		<displaytext value="Please follow the instructions on the TV" />
+		<code>
+self.clearSelectedKeys()
+self.selectKey("UP")
+self.selectKey("DOWN")
+self.rateSelect("60Hz")
+		</code>
+	</step>
+	<step id="dvirateselection" timeout="20" timeoutaction="changestep" timeoutstep="notworking50Hz">
+		<condition>
+self.condition = (self.port == "DVI" and self.mode in ["720p", "1080i"])
+		</condition>
+		<text value="If you can see this page, please press OK." />
+		<displaytext value="" />
+		<list>
+			<listentry caption="50 Hz" step="working50Hz" />
+		</list>
+		<code>
+self.clearSelectedKeys()
+self.selectKey("UP")
+self.selectKey("DOWN")
+self.rateSelect("50Hz")
+		</code>
+		<code pos="after">
+self.rateSelect("60Hz")			
+		</code>
+	</step>
+	<step id="notworking50Hz" nextstep="end">
+		<condition>
+self.condition = (self.port == "DVI" and self.mode in ["720p", "1080i"])
+		</condition>
+		<text value="No 50 Hz, sorry. :(" />
+		<displaytext value="" />
+		<code>
+self.clearSelectedKeys()
+self.selectKey("UP")
+self.selectKey("DOWN")
+		</code>
+	</step>
+	<step id="working50Hz" nextstep="end" timeout="20" timeoutaction="nextstep">
+		<condition>
+self.condition = (self.port == "DVI" and self.mode in ["720p", "1080i"])
+		</condition>
+		<text value="Your TV works with 50 Hz. Good!" />
+		<displaytext value="" />
+		<code>
+self.clearSelectedKeys()
+self.selectKey("UP")
+self.selectKey("DOWN")
+self.rateSelect("50Hz")
+		</code>
+	</step-->
+	<step id="end">
+		<code>
+self.hw.saveMode(self.port, self.mode, self.rate)
+from Components.config import configfile
+configfile.save() 
+		</code>
+		<text value="The input port should be configured now.\nYou can now configure the screen by displaying some test pictures. Do you want to do that now?" />
+		<!--text value="You have successfully finished the video setup. If you want to change the settings later, you can do this in the settings menu."/-->
+		<displaytext value="No picture on TV? Press EXIT and retry." />
+		<list evaluation="showTestCard" onselect="showTestCard">
+			<listentry caption="Yes" step="yes" />
+			<listentry caption="No" step="no" />
+		</list>
+		</step>
+</wizard>

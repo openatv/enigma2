@@ -1,0 +1,17 @@
+<default>
+	  <prerequisites>
+                    <tag type="EPG" />
+                    <tag type="Recording" />
+	  </prerequisites>
+          <info>
+                    <author>Dream Multimedia</author>
+                    <name>GraphMultiEPG</name>
+                    <packagename>enigma2-plugin-extensions-graphmultiepg</packagename>
+		    <shortdescription>GraphMultiEPG shows a graphical timeline EPG</shortdescription>
+                    <description>GraphMultiEPG shows a graphical timeline EPG.\nShows a nice overview of all running und upcoming tv shows.</description>
+                    <screenshot src="http://www.dreamboxupdate.com/preview/plugin_graphmultiepg_en.jpg" />
+          </info>
+	  <files type="package"> <!-- without version, without .ipk -->
+		<file type="package" name="enigma2-plugin-extensions-graphmultiepg" />
+	  </files>
+</default>

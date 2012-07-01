@@ -1,0 +1,128 @@
+enigma2 python coding rules
+===========================
+
+1.) The Zen of Python
+
+The Zen of Python, by Tim Peters
+
+Beautiful is better than ugly.
+Explicit is better than implicit.
+Simple is better than complex.
+Complex is better than complicated.
+Flat is better than nested.
+Sparse is better than dense.
+Readability counts.
+Special cases aren't special enough to break the rules.
+Although practicality beats purity.
+Errors should never pass silently.
+Unless explicitly silenced.
+In the face of ambiguity, refuse the temptation to guess.
+There should be one-- and preferably only one --obvious way to do it.
+Although that way may not be obvious at first unless you're Dutch.
+Now is better than never.
+Although never is often better than *right* now.
+If the implementation is hard to explain, it's a bad idea.
+If the implementation is easy to explain, it may be a good idea.
+Namespaces are one honking great idea -- let's do more of those!
+
+2.) Exceptions
+
+Exceptions are great!
+
+They are great to nullify any performance. Don't ever use them in functions
+which are called more than once or twice. 
+
+Don't use them when a failure is expected. Use them for unexpected failures,
+not as a method for coroutines.
+
+C++ wrapped stuff usually doesn't throw exceptions, but returns None or
+stuff like that.
+
+Exceptions trough C++ are evil, too. Don't throw exceptions on callbacks
+made from C++!
+
+Exceptions are still great!
+
+For example, to hide your coding errors. Don't wrap your code in a
+try:/except:-clause because it behaves differently each time. The proper
+solution is to fix your code!
+
+Sometimes, exceptions are ok.
+
+Really. For example, when opening a file, which you expect to be there. It's
+ok if there is an assertion failure, i.e. something which can't be, unless
+something is seriously broken (i.e. buggy, not misconfigured)!
+
+As a rule of thumb,
+
+"except:" (that is, without a specification which exception to catch) is
+generally FORBIDDEN.
+
+(Of course, unless you know what you're doing. So if you're feeling smarter
+than this document, do whatever you like.)
+
+3.) exec, eval, or other uses of dynamic code
+
+Be aware that any call to exec/eval/... opens a backdoor. That sucks. Plus,
+it starts the parser, which is SLOOOW. There are generally very few reasons
+to call exec/eval.
+
+ - importing a "plugin", or resolving a dynamic reference (for example in a
+   menu.xml)
+
+There is __import__. "exec 'import ' + string" is not so good.
+
+ - dynamically resolving function names
+
+There is "getattr". For example an "eval('blub.' + x)" can also be written
+as "blub.getattr(x)", which is a LOT faster as it doesn't need to start a
+parser. It's also easier to debug.
+
+ - dynamic code, loaded from a menu.xml.
+
+You can compile() code, and call that later. The backdoor warning still
+applies, of course.
+
+4.) formatting rules
+
+Please use tabs (that is, \t) for indenting. 
+
+Empty lines should be either empty, or indented like the line before / line
+after. Empty lines are definitely preferred to save bandwidth.
+
+An ascii file ends with \n, and preferrable not with other empty lines.
+
+That means: make sure the last line doesn't contain any characters, thanks.
+
+5.) usage of 'print'
+
+While it's great to dump out debug stuff, especially if your code can crash,
+expect your code to be stable at some point.
+
+At that point, others might get annoyed by the debug output created by your
+code. That's no problem, they can remove it, but they have to find them
+first.
+
+Using "print obj" with obj being some object, preferably a complex one, is a
+good way to ensure that nobody is able to remove your debug output - because
+nobody finds it!
+
+Please, always prepend something before which can be grepped. Anything, just
+not nothing. Going trough all prints to find the offending one is definitely
+no fun. Something like "print 'obj', obj" is fine. Something like "print 
+'mySpecialPlugin actionmap is', actionMap" is even better.
+
+6.) usage of 'import'
+
+Please avoid 'import *'.
+Use "from foo import bar" only if bar is clearly identifiable to belong to
+foo (e.g.: it's ok to "from Screens.MessageBox import MessageBox", but it's
+not ok to do "from os import path". Use "import os.path", then os.path.fnc.
+Of course "from os.path import *" is even worse.)
+
+7.-99.) Threads are bad.
+
+(Unless they are worker threads. And sleep()ing is definitely not working.
+So if you every having a thread which sleeps, you did something wrong. There
+are eTimers, and not knowing how to use them is no excuse to throw aways all
+enigma code design concepts.)

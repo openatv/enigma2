@@ -1,0 +1,10 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
+
+Name: enigma2
+Description: Enigma2
+Version: @VERSION@
+Cflags: -I${includedir}/enigma2 @ENIGMA2_CFLAGS@
+Requires.private: sigc++-1.2

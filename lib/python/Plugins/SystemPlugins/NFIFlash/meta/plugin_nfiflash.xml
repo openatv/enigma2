@@ -1,0 +1,21 @@
+<default>
+	  <prerequisites>
+                    <hardware type="dm8000" />
+                    <tag type="System" />
+	  </prerequisites>
+          <info>
+                    <author>Dream Multimedia</author>
+                    <name>NFIFlash</name>
+                    <packagename>enigma2-plugin-systemplugins-nfiflash</packagename>
+                    <shortdescription>Restore your Receiver with a USB stick</shortdescription>
+                    <description>With the NFIFlash plugin it is possible to prepare a USB stick with an Receiver image.\n
+                    It is then possible to flash your Receiver with the image on that stick.
+                    </description>
+                    <screenshot src="http://www.dreamboxupdate.com/preview/plugin_nfiflash_en.jpg" />
+          </info>
+
+	  <files type="package"> <!-- without version, without .ipk -->
+		<file type="package" name="enigma2-plugin-systemplugins-nfiflash" />
+	  </files>
+
+</default>

@@ -1,0 +1,20 @@
+<default>
+	  <prerequisites>
+                    <tag type="SAT" />
+                    <tag type="System" />
+	  </prerequisites>
+          <info>
+                    <author>Dream Multimedia</author>
+                    <name>PositionerSetup</name>
+                    <packagename>enigma2-plugin-systemplugins-positionersetup</packagename>
+                    <shortdescription>PositionerSetup helps you installing a motorized dish</shortdescription>
+                    <description>With the PositionerSetup plugin it is easy to install and configure a motorized dish.
+                    </description>
+                    <screenshot src="http://www.dreamboxupdate.com/preview/plugin_positionersetup.jpg" />
+          </info>
+
+	  <files type="package"> <!-- without version, without .ipk -->
+		<file type="package" name="enigma2-plugin-systemplugins-positionersetup" />
+	</files>
+
+</default>

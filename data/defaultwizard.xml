@@ -1,0 +1,63 @@
+<wizard>
+	<step id="welcome" nextstep="nothingtoinstall">
+		<condition>
+packagelist = self.fillPackagesList()
+self.runWizard = (len(packagelist) > 0)
+self.condition = self.runWizard
+		</condition>
+		<text value="You can choose some default settings now. Please select the settings you want to be installed." />
+		<!--list type="dynamic" source="listDefaults" evaluation="selectionMade" /-->
+		<config type="dynamic" source="getConfigList" evaluation="selectionMade" />
+		<code pos="after">
+self.disableKeys = True
+		</code>
+	</step>
+	<step id="nopackages" nextstep="install">
+		<condition>
+self.condition = self.runWizard or not self.silent
+		</condition>
+		<text value="There are no default settings in your image." />
+	</step>
+	
+	<step id="nothingtoinstall" nextstep="install">
+		<condition>
+if self.runWizard:
+	self.condition = True
+	for x in self.packagesConfig:
+		if x.value:
+			self.condition = False
+			break
+else:
+	self.condition = False
+		</condition>
+		<text value="You chose not to install any default settings. You can however install the default settings later in the settings menu." />
+		<!--list type="dynamic" source="listDefaults" evaluation="selectionMade" /-->
+		<code>
+self.disableKeys = False
+		</code>
+		<code pos="after">
+self.markDone()
+		</code>
+	</step>
+	
+	<step id="install">
+		<condition>
+self.condition = False
+if self.runWizard:
+	for x in self.packagesConfig:
+		if x.value:
+			self.condition = True
+			break 
+		</condition>
+		<code>
+self.disableKeys = True		
+self.installPackages(self.indexList)
+		</code>
+		<code>
+#print "len of packageslist", len(self.packageslist)
+#if (len(self.packageslist) == 1):
+	#self.installPackage(0)
+		</code>
+		<text value="Installing defaults... Please wait..." />
+	</step>
+</wizard>

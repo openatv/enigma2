@@ -1,0 +1,42 @@
+enigma2 test environment
+
+
+The goal is to test as much components of enigma2 with as less dependencies
+as possible. So we create an environment which emulates "all" runtime
+dependencies with fixed value. 
+
+Only python is tested, all c++ stuff is re-implemented in python (usually as
+dummy functions).
+
+When testing components, they should be kept seperated. If this is not
+possible, you can try overriding imports, for example you can replace
+Notification support with dummy notifications to prevent the whole GUI from
+loading...
+
+If even that doesn't help, the component is bad, and should be fixed. Please
+try to seperate changes to the test system from changes from components.
+Please don't add specific test functionality into the components. If they
+are not remote controllable, the component is badly writen anyway.
+
+Usually, all dummy functions are implemented to not fail. They emit special
+events to signal what has been done. These results will be compared to the
+expected test results, so they should be consistent with each run. If you
+want to test failures, you need to install "fault hooks", where you can
+inject faults.
+
+For example:
+
+The timer test initializes
+ - the "real" navigation stuff,
+ - the real record config,
+ - the real parental control,
+ - inserts a fake null-notification handler,
+
+then it installs a timer, and runs the enigma mainloop (enigma.run()).
+Core events happening during the duration of the test (like "record prepare,
+record start, record stop") will be recorded, and compared after the test.
+
+(compare is not yet implemented)
+
+Starting these tests must currently done with
+PYTHONPATH=.:..:../lib/python/ python test_timer.py
