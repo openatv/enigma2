@@ -4,4 +4,4 @@ dist_install_DATA = \
 	arrowdown.png \
 	arrowup.png \
 	rc.png \
-s	rcpositions.xml
+	rcpositions.xml
