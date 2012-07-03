@@ -202,6 +202,9 @@ data/rc_models/et6x00/Makefile
 data/rc_models/et9500/Makefile
 data/rc_models/et9x00/Makefile
 data/rc_models/gb/Makefile
+data/rc_models/ini3000/Makefile
+data/rc_models/ini5000/Makefile
+data/rc_models/ini7000/Makefile
 data/rc_models/tm/Makefile
 data/rc_models/vu/Makefile
 data/skin_default/Makefile
