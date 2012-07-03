@@ -57,7 +57,7 @@ elif [ $MODEL = "odinm9" ] ; then
 	EXTRAOLD=$DIRECTORY/fullbackup_$MODEL/$DATE/$MODEL
 	EXTRA=$DIRECTORY/fullbackup_odin/$DATE	
 ## TESTING THE Venton HDx Models
-elif [ $MODEL = "venton-hdx" ] ; then
+elif [ $MODEL = "ventonhdx" ] ; then
 	TYPE=VENTON
 	MKUBIFS_ARGS="-m 2048 -e 126976 -c 4096"
 	UBINIZE_ARGS="-m 2048 -p 128KiB"

@@ -85,7 +85,7 @@ class SystemInfo(Screen):
 		elif config.misc.boxtype.value == 'gbquad':
 			self["BoxType"] = StaticText(_("Hardware:") + " GigaBlue HD QUAD")
 			AboutText = _("Hardware:") + " GigaBlue HD Quad\n"
-		elif config.misc.boxtype.value == 'venton-hdx':
+		elif config.misc.boxtype.value == 'ventonhdx':
 			self["BoxType"] = StaticText(_("Hardware:") + " Venton Unibox HDx")
 			AboutText = _("Hardware:") + " Venton Unibox HDx\n"	
 		else:

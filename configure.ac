@@ -68,7 +68,7 @@ AM_CONDITIONAL(GB800SE, test "$BOXTYPE" == gb800se)
 AM_CONDITIONAL(GB800SOLO, test "$BOXTYPE" == gb800solo)
 AM_CONDITIONAL(GB800UE, test "$BOXTYPE" == gb800ue)
 AM_CONDITIONAL(GBQUAD, test "$BOXTYPE" == gbquad)
-AM_CONDITIONAL(VENTONHDx, test "$BOXTYPE" == venton-hdx)
+AM_CONDITIONAL(VENTONHDX, test "$BOXTYPE" == ventonhdx)
 AM_CONDITIONAL(GBHD800SE, test "$BOXTYPE" == gbhd800se)
 AM_CONDITIONAL(ODINM9, test "$BOXTYPE" == odinm9)
 AM_CONDITIONAL(HAVE_TEMPFANCONTROL, test "$BOXTYPE" == dm8000 -o "$BOXTYPE" == dm800se -o "$BOXTYPE" == dm500hd)
@@ -130,11 +130,11 @@ if test x"$BOXTYPE" == "xgb800se" -o x"$BOXTYPE" == "xgb800solo" -o x"$BOXTYPE" 
 	AC_DEFINE(KEY_GUIDE_TO_KEY_EPG, 1,[define when rc sends a KEY_HELP event for its KEY_EPG key])
 fi
 
-if test x"$BOXTYPE" == "xdm8000" -o x"$BOXTYPE" == "xdm7020hd" -o x"$BOXTYPE" == "xventon-hdx"; then
+if test x"$BOXTYPE" == "xdm8000" -o x"$BOXTYPE" == "xdm7020hd" -o x"$BOXTYPE" == "xventonhdx"; then
 	AC_DEFINE(KEY_PLAY_ACTUALLY_IS_KEY_PLAYPAUSE, 1,[define when rc sends a KEY_PLAY event for its KEY_PLAYPAUSE key])
 fi
 
-if test x"$BOXTYPE" == "xventon-hdx" ; then
+if test x"$BOXTYPE" == "xventonhdx" ; then
 	AC_DEFINE(KEY_RECORD_TO_KEY_EPG, 1,[define when rc sends a KEY_RECORD event for its KEY_EPG key])
 	AC_DEFINE(KEY_TV_TO_KEY_VIDEO, 1,[define when rc sends a KEY_TV event for its KEY_VIDEO key])
 fi

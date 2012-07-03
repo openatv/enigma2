@@ -29,7 +29,7 @@ class Rc:
 		self.onShown.append(self.initRc)
 
 	def initRc(self):
-		if config.misc.boxtype.value == 'venton-hdx':
+		if config.misc.boxtype.value == 'ventonhdx':
 			self["rc"].setPixmapNum(config.misc.rcused.value)
 		else:
 			if self.isDefaultRc:
