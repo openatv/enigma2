@@ -112,9 +112,9 @@ elif [ $MODEL = "gbquad" ] ; then
 ## TESTING THE VU+ MODELS
 elif [ $MODEL = "vusolo" ] || [ $MODEL = "vuduo" ] || [ $MODEL = "vuuno" ] || [ $MODEL = "vuultimo" ] ; then
 	TYPE=VU
-	SHOWNAME="VU+ $MODEL"
-	MAINDEST=$DIRECTORY/vuplus/$MODEL
-	EXTRA=$DIRECTORY/fullbackup_$MODEL/$DATE/vuplus	
+	SHOWNAME="VU+ ${MODEL:2}"
+	MAINDEST=$DIRECTORY/vuplus/${MODEL:2}
+	EXTRA=$DIRECTORY/fullbackup_${MODEL:2}/$DATE/vuplus 
 	if [ $ROOTFSTYPE = "ubifs" ] ; then
 		MKUBIFS_ARGS="-m 2048 -e 126976 -c 4096 -F"
 		UBINIZE_ARGS="-m 2048 -p 128KiB"
@@ -286,7 +286,7 @@ fi
 if [ $TYPE = "VU" ] ; then
 	rm -rf $MAINDEST
 	mkdir -p $MAINDEST
-	mkdir -p $EXTRA/$MODEL
+	mkdir -p $EXTRA/${MODEL:2}
 	if [ $ROOTFSTYPE = "ubifs" ] ; then
 		mv $WORKDIR/root.ubifs $MAINDEST/root_cfe_auto.jffs2
 	else
@@ -469,7 +469,7 @@ if [ $DIRECTORY == /hdd ]; then
 				cp -r $MAINDEST $TARGET
 			fi
 		elif [ $TYPE = "VU" ] ; then					# VU+ detected
-			mkdir -p $TARGET/vuplus/$MODEL
+			mkdir -p $TARGET/vuplus/${MODEL:2}
 			cp -r $MAINDEST $TARGET/vuplus/
 		elif [ $TYPE = "VENTON" ] ; then				# Venton detected
 			mkdir -p $TARGET/venton/$MODEL
