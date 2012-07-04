@@ -59,6 +59,7 @@ elif [ $MODEL = "odinm9" ] ; then
 ## TESTING THE Venton HDx Models
 elif [ $MODEL = "ventonhdx" ] ; then
 	TYPE=VENTON
+	MODEL="venton-hdx"
 	MKUBIFS_ARGS="-m 2048 -e 126976 -c 4096"
 	UBINIZE_ARGS="-m 2048 -p 128KiB"
 	SHOWNAME="$MODEL"
