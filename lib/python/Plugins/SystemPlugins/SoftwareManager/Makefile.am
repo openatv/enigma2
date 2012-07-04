@@ -21,4 +21,5 @@ dist_install_DATA = \
 	upgradeable.png \
 	upgrade.png \
 	backup-hdd.sh \
-	backup-usb.sh
+	backup-usb.sh \
+	backup.sh
