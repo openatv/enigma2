@@ -25,6 +25,6 @@ dist_install_DATA = \
 	backup.sh
 
 install-data-hook:
-	@chmod +x $(DESTDIR)$(installdir)/backup-hdd.sh; \
-	@chmod +x $(DESTDIR)$(installdir)/backup-usb.sh; \
-	@chmod +x $(DESTDIR)$(installdir)/backup.sh
+	chmod +x $(DESTDIR)$(installdir)/backup-hdd.sh; \
+	chmod +x $(DESTDIR)$(installdir)/backup-usb.sh; \
+	chmod +x $(DESTDIR)$(installdir)/backup.sh
