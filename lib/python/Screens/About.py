@@ -186,8 +186,10 @@ class Devices(Screen):
 		f = open('/proc/mounts', 'r')
 		for line in f.readlines():
 			self.parts = line.strip().split()
-			if self.parts[0].startswith('192') or self.parts[0].startswith('//192'):
+			if not self.parts[0] and (self.parts[0].startswith('192') or self.parts[0].startswith('//192')):
 				self.Console.ePopen("df -mh " + self.parts[1] + " | grep -v '^Filesystem'", self.Stage1Complete)
+			else:
+				self["mounts"].setText(_('none'))
 		f.close()
 
 	def Stage1Complete(self,result, retval, extra_args = None):
