@@ -61,6 +61,8 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 				"openAutoTimerList": (self.openAutoTimerList, _("Show the tv player...")),
 				"openEPGSearch": (self.openEPGSearch, _("Show the tv player...")),
 				"openIMDB": (self.openIMDB, _("Show the tv player...")),
+				"showMC": (self.showMediaCenter, _("Show the media center...")),
+				"openSleepTimer": (self.openSleepTimer, _("Show the Sleep Timer...")),
 			}, prio=2)
 
 		self.allowPiP = True
@@ -127,7 +129,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			self.showTvChannelList(True)
 			self.servicelist.showFavourites()
 	def showTvButton(self):
-		if config.misc.boxtype.value == 'gb800se' or config.misc.boxtype.value == 'gb800solo' or config.misc.boxtype.value == 'gb800ue' or config.misc.boxtype.value == 'ventonhdx':
+		if config.misc.boxtype.value == 'gb800se' or config.misc.boxtype.value == 'gb800solo' or config.misc.boxtype.value == 'gb800ue' or config.misc.boxtype.value == 'venton-hdx':
 			self.toogleTvRadio()
 		else:
 			self.showTv()
@@ -143,7 +145,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			self.showTvChannelList(True)
 
 	def showRadioButton(self):
-		if config.misc.boxtype.value == 'gb800se' or config.misc.boxtype.value == 'gb800solo' or config.misc.boxtype.value == 'gb800ue' or config.misc.boxtype.value == 'ventonhdx':
+		if config.misc.boxtype.value == 'gb800se' or config.misc.boxtype.value == 'gb800solo' or config.misc.boxtype.value == 'gb800ue' or config.misc.boxtype.value == 'venton-hdx':
 			self.toogleTvRadio()
 		else:
 			self.showRadio()
@@ -198,7 +200,19 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			no_plugin = False
 		except Exception, e:
 			self.session.open(MessageBox, _("The MediaPlayer plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
-
+			
+	def showMediaCenter(self):
+		try:
+			from Plugins.Extensions.BMediaCenter.plugin import DMC_MainMenu
+			self.session.open(DMC_MainMenu)
+			no_plugin = False
+		except Exception, e:
+			self.session.open(MessageBox, _("The MediaCenter plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			
+	def openSleepTimer(self):
+		from Screens.SleepTimerEdit import SleepTimerEdit
+		self.session.open(SleepTimerEdit)
+			
 	def openTimerList(self):
 		from Screens.TimerEdit import TimerEditList
 		self.session.open(TimerEditList)

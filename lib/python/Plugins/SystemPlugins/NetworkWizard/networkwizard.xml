@@ -17,7 +17,6 @@ self.selectInterface()
                 <list type="dynamic" source="listInterfaces" evaluation="InterfaceSelectionMade" onselect="InterfaceSelectionMoved" />
                 <code>
 self.clearSelectedKeys()
-self.selectKey("OK")
 self.selectKey("UP")
 self.selectKey("DOWN")
                 </code>
@@ -32,10 +31,6 @@ self.checkInterface(self.selectedInterface)
                 <code>
 self.clearSelectedKeys()
 self.selectKey("OK")
-self.selectKey("UP")
-self.selectKey("DOWN")
-self.selectKey("LEFT")
-self.selectKey("RIGHT")
                 </code>
                 <code pos="after" async="yes">
 self.AdapterSetupEnd(self.selectedInterface)
@@ -79,8 +74,6 @@ self.condition = (self.InterfaceState == False )
                 <code>
 self.clearSelectedKeys()
 self.selectKey("OK")
-self.selectKey("UP")
-self.selectKey("DOWN")
                 </code>
                 <list>
                         <listentry caption="Configure your network again" step="welcome" />
@@ -97,8 +90,6 @@ self.condition = (self.isInterfaceUp == True and self.WlanPluginInstalled == Tru
                 <code>
 self.clearSelectedKeys()
 self.selectKey("OK")
-self.selectKey("UP")
-self.selectKey("DOWN")
                 </code>
                 <list>
                         <listentry caption="List available networks" step="scanwlan" />
@@ -117,10 +108,6 @@ self.condition = (self.isInterfaceUp == True and self.WlanPluginInstalled == Tru
                 <code>
 self.clearSelectedKeys()
 self.selectKey("OK")
-self.selectKey("UP")
-self.selectKey("DOWN")
-self.selectKey("LEFT")
-self.selectKey("RIGHT")
                 </code>
                 <code pos="after">
 self.checkWlanSelection()

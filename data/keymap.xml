@@ -195,19 +195,24 @@
 
 	<map context="InfobarActions">
 		<key id="KEY_VIDEO" mapto="showMovies" flags="b" />
+		<key id="KEY_ARCHIVE" mapto="showMovies" flags="b" />
 		<key id="KEY_VIDEO" mapto="showMediaPlayer" flags="l" />
 		<key id="KEY_PLAY" mapto="showMovies" flags="m" />
 		<key id="KEY_RADIO" mapto="showRadio" flags="b" />
+		<key id="KEY_HOMEPAGE" mapto="showMC" flags="b" />
 		<key id="KEY_RADIO" mapto="openBouquetList" flags="l" />
 		<key id="KEY_TV" mapto="showTv" flags="b" />
 		<key id="KEY_TV" mapto="openBouquetList" flags="l" />
+		<key id="KEY_FAVORITES" mapto="openBouquetList" flags="b" />
 		<key id="KEY_FILE" mapto="showMovies" flags="m" />
+		<key id="KEY_MEDIA" mapto="showMovies" flags="m" />
 		<key id="KEY_LIST" mapto="showMediaPlayer" flags="b" />
 		<key id="KEY_PROGRAM" mapto="openTimerList" flags="b" />
 		<key id="KEY_F5" mapto="openTimerList" flags="b" />
 		<key id="KEY_PROGRAM" mapto="openAutoTimerList" flags="l" />
 		<key id="KEY_SEARCH" mapto="openEPGSearch" flags="b" />
 		<key id="KEY_SEARCH" mapto="openIMDB" flags="l" />
+		<key id="KEY_SLEEP" mapto="openSleepTimer" flags="b" />
 	</map>
 
 	<map context="InfobarAudioSelectionActions">
