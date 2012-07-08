@@ -52,7 +52,7 @@
 			<menu weight="5" level="0" text="System" entryID="system_selection">
 				<id val="system" />
 				<item level="1" entryID="autolanguage_setup"><setup id="autolanguagesetup" /></item>
-<!-- 
+<!--
 				<item level="0" entryID="av_setup"><setup id="avsetup"/></item>
  -->
 				<item level="0" entryID="remote_setup"><setup id="remotesetup"/></item>
@@ -153,6 +153,21 @@ self.session.open(RemoteControlCode)
 			<!--item level="0" text="Startwizard" entryID="startwizzard"><screen module="StartWizard" screen="StartWizard" /></item-->
 			<!--<item text="Parental Control"><setup id="parental" /></item>-->
 			<!--<item text="Expert -disabled-"><setup id="expert" /></item>-->
+			<item weight="25" level="0" text="Factory reset" entryID="factory_reset">
+<code>
+from Screens.FactoryReset import FactoryReset
+def msgClosed(ret):
+	if ret:
+		from os import system, _exit
+		print"[FACTORY RESET] remove dir /etc/enigma2"
+		system("rm -R /etc/enigma2")
+		print"[FACTORY RESET] set network to DHCP"
+		system("cp -f /usr/share/enigma2/defaults/interfaces /etc/network/interfaces")
+		system("/etc/init.d/networking restart")
+		_exit(0)
+self.session.openWithCallback(msgClosed, FactoryReset)
+</code>
+			</item>
 		</menu>
 		<!--<item text="Unser Setup">self.openSetup("Blaselfasel")</item>-->
 		<menu text="Standby / Restart" entryID="standby_restart_list">
