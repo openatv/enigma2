@@ -2,6 +2,7 @@ from Screen import Screen
 from Components.Language import language
 from enigma import eConsoleAppContainer, eDVBDB
 
+from Components.About import about
 from Components.ActionMap import ActionMap
 from Components.PluginComponent import plugins
 from Components.PluginList import *
@@ -388,7 +389,7 @@ class PluginDownloadBrowser(Screen):
 					self["text"].setText(_("Sorry feeds are down for maintenance"))
 
 	def dataAvail(self, str):
-		if self.type == self.DOWNLOAD and str.find('404 Not Found') >= 0:
+		if self.type == self.DOWNLOAD and ((float(about.getImageVersionString()) < 3.0 and str.find('mipsel/Packages.gz, wget returned 1') != -1) or (float(about.getImageVersionString()) >= 3.0 and str.find('mips32el/Packages.gz, wget returned 1') != -1)):
 			self.run = 3
 			return
 
