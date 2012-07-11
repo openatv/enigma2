@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-20 16:54+0100\n"
-"PO-Revision-Date: 2012-05-20 21:48+0100\n"
-"Last-Translator: Ralf Biedermann <ralf.biedermann@rbsoft.de>\n"
+"POT-Creation-Date: 2012-07-07 18:42+0100\n"
+"PO-Revision-Date: 2012-07-11 17:33+0100\n"
+"Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
 "Language-Team: Deutsch <> j-ot&Trial\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -142,9 +142,6 @@ msgstr ""
 " wurde zum ViX Beta Team geschickt.\n"
 "bitte zitieren "
 
-msgid "\"channel scan\" searches for channels and saves them to your STB_BOX; \"save to XML file\" does a transponder search and saves found transponders to an XML file in satellites.xml format"
-msgstr "\"Sendersuche\" sucht nach Sender und speichert sie auf der STB_BOX;\"speicher XML Datei\" macht eine Transpondersuche und speichert gefundene Transponder in eine XML Datei im Format von satellites.xml"
-
 #. TRANSLATORS: short time representation hour:minute
 #, python-format
 msgid "%2d:%02d"
@@ -179,10 +176,6 @@ msgstr ""
 
 #. TRANSLATORS: long date representation short dayname daynum short monthname hour:minute in strftime() format! See 'man strftime'
 msgid "%a %e/%m  %-H:%M"
-msgstr ""
-
-#, python-format
-msgid "%d / 100"
 msgstr ""
 
 #, python-format
@@ -294,12 +287,6 @@ msgstr "1"
 msgid "1 wireless network found!"
 msgstr "1 Funk-Netzwerk gefunden!"
 
-msgid "1-1. Serial Number (The first two or three letters of SN)"
-msgstr "1-1. Seriennummer (Die ersten zwei bis drei Buchstaben von SN)"
-
-msgid "1-2. Serial Number (The remaining numbers of SN)"
-msgstr "1-2. Seriennummer (Die restlichen Zahlen von SN)"
-
 msgid "1.0"
 msgstr "1.0"
 
@@ -344,9 +331,6 @@ msgstr "1. Infobar Timeout"
 
 msgid "2"
 msgstr "2"
-
-msgid "2. Contact"
-msgstr "2. Kontakt"
 
 msgid "2X"
 msgstr ""
@@ -671,9 +655,6 @@ msgstr ""
 msgid "After the start wizard is completed, you need to protect single services. Refer to your STB_BOX's manual on how to do that."
 msgstr "Nachdem der Startassistent beendet wurde, müssen noch die einzelnen Sender geschützt werden. Wie dies getan werden kann, entnehme bitte dem Handbuch der STB_BOX."
 
-msgid "Agree"
-msgstr "Ich stimme zu"
-
 msgid "Album"
 msgstr "Album"
 
@@ -846,9 +827,6 @@ msgid "Allows you to use yellow DVB subtitles."
 msgstr "Gelbe DVB Untertitel erlauben."
 
 msgid "Alpha"
-msgstr "Buchstabe"
-
-msgid "Alpha Value"
 msgstr "Buchstabe"
 
 msgid "Alphanumeric"
@@ -1109,12 +1087,6 @@ msgstr "Schwarzes Bild"
 msgid "Black screen till locked"
 msgstr "Schwarzes Bild bis Abschluß"
 
-msgid "Blind Scan"
-msgstr "Blindscan"
-
-msgid "Blindscan"
-msgstr "Blindscan"
-
 msgid "Block noise reduction"
 msgstr "Block Noise Reduzierung"
 
@@ -1252,24 +1224,6 @@ msgstr "Vorschaubilder zwischenspeichern"
 
 msgid "Cached:"
 msgstr "Cache:"
-
-msgid "Can't cancel during upgrade!!"
-msgstr "Upgrade kann nciht unterbrochen werden!!"
-
-msgid "Can't find /usr/bin/md5sum"
-msgstr "Datei /usr/bin/md5sum nicht vorhanden"
-
-msgid "Can't found MD5 file."
-msgstr "Datei MD5 nicht vorhanden."
-
-msgid "Can't found binary file."
-msgstr "Binärdatei nicht vorhanden."
-
-msgid "Can't found device file!!"
-msgstr "Gerätedatei nicht vorhanden!!"
-
-msgid "Can't found model name."
-msgstr "Modellname nicht gefunden."
 
 msgid "Cancel"
 msgstr "Abbrechen"
@@ -2134,9 +2088,6 @@ msgstr "Vor dem Brennen eine Vorschau der DVD ansehen?"
 msgid "Do you want to reboot your STB_BOX?"
 msgstr "Die STB_BOX neu starten?"
 
-msgid "Do you want to remove binary data?"
-msgstr "Willst Du die Binärdaten löschen?"
-
 msgid "Do you want to remove the package:\n"
 msgstr "Das Paket deinstallieren:\n"
 
@@ -2211,23 +2162,14 @@ msgstr "Plugins installieren"
 msgid "Download plugins"
 msgstr "Plugins installieren"
 
-msgid "Download the firmware (latest)"
-msgstr "Neueste Firmware herunterladen"
-
 msgid "Downloadable plugins"
 msgstr "Herunterladbare Erweiterungen"
-
-msgid "Downloaded "
-msgstr "Heruntergeladen"
 
 msgid "Downloading"
 msgstr "Herunterladen"
 
 msgid "Downloading plugin information. Please wait..."
 msgstr "Lade Plugin-Informationen herunter. Bitte warten..."
-
-msgid "Downloading..."
-msgstr "Lade herunter..."
 
 msgid "Downmix the Dolby Digital sound tracks to PCM."
 msgstr "Downmix der DolbyDigital-Spur zu PCM (Stereo)."
@@ -2446,9 +2388,6 @@ msgstr "Gebe deine E-Mail-Adresse an zu der eine Kopie des Logs geschickt werden
 msgid "Enter your forum user name, to make it easier trace logs."
 msgstr "Gebe deinen Foren-Nick ein damit die Logs einfacher zugeordnet werden können."
 
-msgid "Enter your input data"
-msgstr "Gebe eine Daten ein"
-
 msgid "Entitlements"
 msgstr "Berechtigungen"
 
@@ -2479,14 +2418,6 @@ msgid ""
 msgstr ""
 "Fehler aufgetreten: %s\n"
 "Erneut versuchen?"
-
-#, python-format
-msgid ""
-"Error[%d] : %s.\n"
-"Press OK to exit."
-msgstr ""
-"Fehler[%d] : %s.\n"
-"Drücke OK zum Verlassen."
 
 msgid "Estonian"
 msgstr "Estnisch"
@@ -2578,16 +2509,7 @@ msgstr "Erweiterungsverwaltung"
 msgid "FEC"
 msgstr "FEC"
 
-msgid "FILE NOT EXIST : /proc/stb/fp/remote_code"
-msgstr "Datei existiert nicht: : /proc/stb/fp/remote_code"
-
 msgid "FLASH"
-msgstr ""
-
-msgid "FPGA"
-msgstr ""
-
-msgid "FPGA Upgrade"
 msgstr ""
 
 msgid "FTP Setup"
@@ -2595,19 +2517,6 @@ msgstr "FTP Einstellungen"
 
 msgid "Factory reset"
 msgstr "Werkseinstellungen"
-
-msgid "Fail to upgrade!! Retry!!"
-msgstr "Upgrade fehlgeschlagen!! Wiederholen!!"
-
-#, python-format
-msgid ""
-"Fail to verify data file. \n"
-"file[%s]\n"
-"md5[%s]"
-msgstr ""
-"Verifizieren der Datei fehlgeschlagen. \n"
-"Datei[%s]\n"
-"MD5[%s]"
 
 msgid "Failed"
 msgstr "Fehlgeschlagen"
@@ -2626,27 +2535,6 @@ msgstr "Lüfter %d PWM"
 #, python-format
 msgid "Fan %d Voltage"
 msgstr "Lüfter %d Spannung"
-
-msgid "Fan Control"
-msgstr "Lüflterkontrolle"
-
-msgid "Fan basic action"
-msgstr ""
-
-msgid "Fan control"
-msgstr ""
-
-msgid "Fan mode"
-msgstr "Lüftermodus"
-
-msgid "Fan off duration time"
-msgstr "Zeitdauer für Lüfter aus"
-
-msgid "Fan on duration time"
-msgstr "Zeitdauer für Lüfter an"
-
-msgid "FanOFF InStanby"
-msgstr "Lüfter aus in Standby"
 
 msgid "Fast"
 msgstr "Schnell"
@@ -2669,9 +2557,6 @@ msgstr "Favoriten"
 msgid "File appears to be busy.\n"
 msgstr "Die Datei ist gerade in Verwendung.\n"
 
-msgid "File not found"
-msgstr "Datei nicht gefunden"
-
 msgid ""
 "File oscam.conf not found.\n"
 "Please enter username/password manually."
@@ -2681,9 +2566,6 @@ msgstr ""
 
 msgid "Filesystem Check"
 msgstr "Dateisystemüberprüfung"
-
-msgid "Filter out adjacent satellites"
-msgstr "Angrenzende Satelliten heraus filtern"
 
 msgid "Finetune"
 msgstr "Feineinst."
@@ -2699,15 +2581,6 @@ msgstr "Netzwerkneustart abgeschlossen"
 
 msgid "Finnish"
 msgstr "Ende"
-
-msgid "Firmware"
-msgstr ""
-
-msgid "Firmware Upgrade"
-msgstr ""
-
-msgid "Firmware does not exist."
-msgstr "Firmware nicht vorhanden."
 
 msgid "Flash"
 msgstr "Flash"
@@ -2726,9 +2599,6 @@ msgstr "Schriftgröße"
 
 msgid "For more information see www.openpli.org"
 msgstr "Für mehr Informationen besuche www.openpli.org"
-
-msgid "For use this plugin, you must update the kernel version to 3.1 or later"
-msgstr "Um dieses Plugin benutzen zu können muss Kernel 3.1 (oder höher) vorhanden sein"
 
 msgid "Format"
 msgstr "Formatieren"
@@ -2772,9 +2642,6 @@ msgstr "Frequenz Schrittweite (kHz)"
 msgid "Frequency steps"
 msgstr "Frequenz Schritte"
 
-msgid "Frequency values must be between 10700 and 12750 (or 3000 and 4200 in the case of C-band satellites)"
-msgstr "Frequenz muss einen Wert zwischen 10700 und 12750 (oder 3000 und 4200 im Falle von C-Band Satelliten) haben"
-
 msgid "Fri"
 msgstr "Fr"
 
@@ -2783,9 +2650,6 @@ msgstr "Freitag"
 
 msgid "From :"
 msgstr "Von:"
-
-msgid "Front Processor"
-msgstr ""
 
 #, python-format
 msgid "Frontprocessor version: %d"
@@ -2985,6 +2849,9 @@ msgstr "Horizontal"
 msgid "Horizontal turning speed"
 msgstr "Horizontale Geschwindigkeit"
 
+msgid "Hostname:"
+msgstr ""
+
 msgid "Hostname: "
 msgstr ""
 
@@ -3105,9 +2972,6 @@ msgstr "Wenn 'Ja' eingestellt ist wird Infobar bei schnellem Vor- und Rücklauf 
 msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times):"
 msgstr "Wenn der Text zu lang für das Display ist läuft es mehrfach durch (Anzahl der Durchgänge):"
 
-msgid "If you are not sure what polarisations the satellite you wish to search transmits, select \"vertical and horizontal\""
-msgstr "Wenn Du nicht sicher bist mit welcher Polarisation der Satellit, den Du suchst, arbeitet wähle \"Vertikal und Horizontal\""
-
 msgid ""
 "If you see this, something is wrong with\n"
 "your scart connection. Press OK to return."
@@ -3115,22 +2979,6 @@ msgstr ""
 "Wenn Sie diese Meldung sehen, ist Ihr\n"
 "Scart-Kabel falsch angeschlossen. Bitte OK\n"
 "drücken, um zurück zu gelangen."
-
-msgid "If you select \"yes\" all channels on the satellite being search will be deleted before starting the current search"
-msgstr "Wenn Du \"Ja\" wählst werden alle Sender auf dem zu durchsuchenden Satelliten vor der Suche gelöscht"
-
-msgid "If you select \"yes\" the scan will only save channels that are not encrypted; \"no\" will find encrypted and non-encrypted channels"
-msgstr "Wenn Du \"Ja\" wählst werden nur unverschlüsselte Sender gespeichert;\"Nein\" speichert verschlüsselte UND nicht verschlüsselte"
-
-msgid "If you select \"yes\" the scan will only search transponders not listed in satellites.xml"
-msgstr "Wenn Du \"Ja\" wählst werden nur Transponder gesucht die nicht in satellites.xml stehen"
-
-msgid ""
-"If you want to quit the Browser,\n"
-"Press RED -> EXIT."
-msgstr ""
-"Wenn Du den Browser verlassen willst,\n"
-"Dürcke ROT->Exit"
 
 msgid ""
 "If your TV has a brightness or contrast enhancement, disable it. If there is something called \"dynamic\", set it to standard. Adjust the backlight level to a value suiting your taste. Turn down contrast on your TV as much as possible.\n"
@@ -3314,76 +3162,6 @@ msgstr "Fehlerhafter Ort"
 msgid "Invalid directory selected: %s"
 msgstr "Ungültiges Verzeichnis ausgewählt: %s"
 
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"For C-band searches stop frequency must be between 3000MHz and 4200MHz."
-msgstr ""
-"Ungültige Werte eingegeben. Bitte korrigieren und erneut versuchen.\n"
-"Für die C-Band-Suche muss die Endfrequenz zwischen 3000MHz und 4200MHz liegen."
-
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"Frequency start value is larger than stop value."
-msgstr ""
-"Ungültige Werte eingegeben. Bitte korrigieren und erneut versuchen.\n"
-"Startfrequenz ist größer als Endfrequenz."
-
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"Start frequency must be between 10700MHz and 12750MHz.\n"
-"(Or 3000MHz and 4200MHz in the case of c-band)."
-msgstr ""
-"Ungültige Werte eingegeben. Bitte korrigieren und erneut versuchen.\n"
-"Startfrequenz muss zwischen 10700MHz und 12750MHz liegen.\n"
-"(Oder 3000MHz und 4200MHz im Falle von C-Band)."
-
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"Start symbol rate must be between 1MHz and 44MHz."
-msgstr ""
-"Ungültige Werte eingegeben. Bitte korrigieren und erneut versuchen.\n"
-"Startsymbolrate muss zwischen 1MHz und 44MHz liegen."
-
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"Stop frequency must be between 10700MHz and 12750MHz.\n"
-"(Or 3000MHz and 4200MHz in the case of c-band)."
-msgstr ""
-"Ungültige Werte eingegeben. Bitte korrigieren und erneut versuchen.\n"
-"Endfrequenz muss zwischen 10700MHz und 12750MHz liegen.\n"
-"(Oder 3000MHz und 4200MHz im Falle von C-Band)."
-
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"Stop symbol rate must be between 2MHz and 45MHz."
-msgstr ""
-"Ungültige Werte eingegeben. Bitte korrigieren und erneut versuchen.\n"
-"Endsymbolrate muss zwischen 1MHz und 44MHz liegen."
-
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"Symbol rate start value is larger than stop value."
-msgstr ""
-"Ungültige Werte eingegeben. Bitte korrigieren und erneut versuchen.\n"
-"Startsymbolrate ist größer als Endsymbolrate."
-
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"That is a C-band satellite so frequency values \n"
-"need to be between 3000MHz and 4200MHz."
-msgstr ""
-"Ungültige Werte eingegeben. Bitte korrigieren und erneut versuchen.\n"
-"Das ist ein C-Band Satellit die Frequenzen müssen\also zwischen 3000MHz und 4200MHz liegen."
-
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"That is a Ku-band satellite so frequency values \n"
-"need to be between 10700MHz and 12750MHz."
-msgstr ""
-"Ungültige Werte eingegeben. Bitte korrigieren und erneut versuchen.\n"
-"Das ist ein Ku-Band Satellit die Frequenzen müssen also\n"
-"zwischen 10700MHz und 12750MHz liegen."
-
 msgid "Inversion"
 msgstr "Inversion"
 
@@ -3432,9 +3210,6 @@ msgstr "Nur Skalieren"
 
 msgid "Just change channels"
 msgstr "Nur Umschalten"
-
-msgid "Keep"
-msgstr "Behalten"
 
 msgid "Keep old timers for how many days"
 msgstr "Alte Timer aufbewahren für (Tage)"
@@ -3645,58 +3420,11 @@ msgstr "Lange Dateinamen"
 msgid "Longitude"
 msgstr "Längengrad"
 
-#, python-format
-msgid ""
-"Looking for available transponders.\n"
-"This will take a short while.\n"
-"\n"
-"   Current Status : %d/%d\n"
-"   Satellite : %s\n"
-"   Polarization : %s\n"
-"   Frequency range : %d - %d MHz\n"
-"   Symbol rates : %d - %d MHz"
-msgstr ""
-"Suche vorhandene Transponder.\n"
-"Das dauert ein Weilchen.\n"
-"\n"
-"   Akt. Status: %d/%d\n"
-"   Satellit: %s\n"
-"   Polarisation: %s\n"
-"   Frequenzbereich: %d - %d MHz\n"
-"   Symbolratenbereich: %d - %d MHz"
-
-msgid "MA"
-msgstr ""
-
 msgid "MAC:"
-msgstr ""
-
-msgid "MB"
-msgstr ""
-
-msgid "MC"
-msgstr ""
-
-msgid "MD"
-msgstr ""
-
-msgid "ME"
-msgstr ""
-
-msgid "MF"
-msgstr ""
-
-msgid "MG"
-msgstr ""
-
-msgid "MH"
 msgstr ""
 
 msgid "MORE"
 msgstr "MEHR"
-
-msgid "MSA"
-msgstr ""
 
 msgid "Main Menu"
 msgstr "Hauptmenü"
@@ -3848,9 +3576,6 @@ msgstr "Einhängen"
 
 msgid "Mounts Setup"
 msgstr "Mounts Einstellungen"
-
-msgid "Mouse"
-msgstr "Maus"
 
 msgid "Move"
 msgstr "Verschieben"
@@ -4107,17 +3832,6 @@ msgstr "Keine Netzwerkverbindung verfügbar."
 msgid "No networks found"
 msgstr "Keine Netzwerke gefunden"
 
-msgid ""
-"No new transponders found! \n"
-"\n"
-"Only transponders already listed in satellites.xml \n"
-"have been found for those search parameters!"
-msgstr ""
-"Kein keuer Transponder gefunden!\n"
-"\n"
-"Nur Transponder gefunden die schon in satellites.xml\n"
-"stehen wurden mit diesen Einstellungen gefunden!"
-
 msgid "No of items switch (increase or reduced)"
 msgstr ""
 
@@ -4133,17 +3847,11 @@ msgstr "Kein Satempfänger gefunden!"
 msgid "No satellite frontend found!!"
 msgstr "Kein Satellit-Tuner gefunden"
 
-msgid "No selected binary data!!"
-msgstr "Keine ausgewählten binären Daten!"
-
 msgid "No tags are set on these movies."
 msgstr "Keine Tags für diese Filme gesetzt."
 
 msgid "No to all"
 msgstr "Nein zu allen"
-
-msgid "No transponders were found for those search parameters!"
-msgstr "Kein Transponder mit diesen Einstellungen gefunden!"
 
 msgid "No tuner is configured for use with a diseqc positioner!"
 msgstr "Es wurde kein Tuner für die Benutzung eines DiSEqC-Rotors konfiguriert."
@@ -4196,9 +3904,6 @@ msgid ""
 msgstr ""
 "Keine funktionierende WLAN-Verbindung gefunden.\n"
 "Bitte prüfe ob Sie ein kompatibles WLAN-Gerät angeschlossen ist oder aktiviere die LAN-Verbindung."
-
-msgid "No, but play video again"
-msgstr "Nein aber spiele den Film erneut"
 
 msgid "No, but restart from begin"
 msgstr "Nein, aber von Anfang an neu beginnen"
@@ -4379,12 +4084,6 @@ msgstr "Nur zur Fehlersuche ändern. Standard ist 'AUS'."
 msgid "Only extensions."
 msgstr "Nur Erweiterungen."
 
-msgid "Only free scan"
-msgstr "Suche nur freie Sender"
-
-msgid "Only scan unknown transponders"
-msgstr "Nur unbekannte Transponder durchsuchen"
-
 msgid "OpenVPN Setup"
 msgstr "OpenVPN Einstellungen"
 
@@ -4439,9 +4138,6 @@ msgstr "PMT PID"
 #, python-format
 msgid "PTS Plugin Error: %s"
 msgstr "PTS Plugi Fehler:%s"
-
-msgid "PWM value"
-msgstr "PWM Wert"
 
 msgid "Package list update"
 msgstr "Paketlistenaktualisierung"
@@ -4589,9 +4285,6 @@ msgstr "Bitte beachte, dass jeder den Jugendschutz deaktivieren kann, wenn keine
 msgid "Please change recording endtime"
 msgstr "Bitte Aufnahmeendzeit ändern"
 
-msgid "Please change your remote mode"
-msgstr "Bitte den Modus der Fernbedienung ändern"
-
 msgid "Please check your network settings!"
 msgstr "Bitte überprüfe die Netzwerkeinstellungen"
 
@@ -4723,9 +4416,6 @@ msgstr "Einstellungen für Tuner C."
 msgid "Please set up tuner D"
 msgstr "Einstellungen für Tuner D."
 
-msgid "Please setup your tuner configuration."
-msgstr "Bitte die Tuner konfigurieren"
-
 msgid ""
 "Please use direction keys to move the PiP window.\n"
 "Press Bouquet +/- to resize the window.\n"
@@ -4785,9 +4475,6 @@ msgstr "Hilfe Erweiterungsverwaltung"
 
 msgid "Plugins"
 msgstr "Erweiterungen"
-
-msgid "Polarisation"
-msgstr ""
 
 msgid "Polarization"
 msgstr "Polarisation"
@@ -4870,9 +4557,6 @@ msgstr "Vorbereitung läuft... Bitte warten!"
 msgid "Press '0' to toggle internal/external PiP."
 msgstr "Drücke '0' um zwischen internen und externem PiP zu wechseln"
 
-msgid "Press Green/OK to start the scan"
-msgstr "Grün/OK drücken um Suche zu starten"
-
 msgid "Press INFO on your remote control for additional information."
 msgstr "INFO drücken für zusätzliche Informationen."
 
@@ -4909,9 +4593,6 @@ msgstr "Zum Starten der Suche OK drücken."
 
 msgid "Press OK to toggle the selection."
 msgstr "Drücke OK um die Auswahl umzuschalten."
-
-msgid "Press and hold '2' & '7' until red LED is solid, then press 'Help', then press '000"
-msgstr "'2' & '7' gedrückt halten bis LED dauerhaft leuchtet, dann 'Help' drücken, dann drücke '000"
 
 msgid "Press yellow to set this interface as default interface."
 msgstr "Drücke Gelb um diese Schnittstelle als Standard zu setzen."
@@ -5156,12 +4837,6 @@ msgstr "Service PIN merken"
 msgid "Remember these settings for each folder"
 msgstr "Diese Einstellungen für jeden Ordner verwenden"
 
-msgid "Remote Control Code"
-msgstr "Fernbedienung Code"
-
-msgid "Remote Control System Code"
-msgstr "Fernbedienung System Code"
-
 msgid "Remote box"
 msgstr "Entfernte Box"
 
@@ -5321,9 +4996,6 @@ msgstr "Wiedergabestart ab %s"
 msgid "Resuming playback"
 msgstr "Setze Wiedergabe fort"
 
-msgid "Return the Love Event"
-msgstr ""
-
 msgid "Return to movie list"
 msgstr "Zurück zur Filmliste"
 
@@ -5459,9 +5131,6 @@ msgstr "Scaler Schärfe"
 msgid "Scaling Mode"
 msgstr "Skalierungsmodus"
 
-msgid "Scan"
-msgstr "Suche"
-
 msgid "Scan "
 msgstr "Suche "
 
@@ -5531,18 +5200,6 @@ msgstr "Durchsuche US MID"
 msgid "Scan band US SUPER"
 msgstr "Durchsuche US SUPER"
 
-msgid "Scan start frequency"
-msgstr "Startfrequenz für Suche"
-
-msgid "Scan start symbolrate"
-msgstr "Startsymbolrate für Suche"
-
-msgid "Scan stop frequency"
-msgstr "Endfrequenz für Suche"
-
-msgid "Scan stop symbolrate"
-msgstr "Endsymbolrate für Suche"
-
 msgid "Scan your network for wireless access points and connect to them using your selected wireless device.\n"
 msgstr "Durchsucht Ihr Netzwerk nach WLAN-Zugangspunkten und stellt eine Verbindung mit Hilfe Ihres gewählten WLAN-Gerätes her.\n"
 
@@ -5569,26 +5226,11 @@ msgstr "Scrollgeschwindigkeit"
 msgid "Search"
 msgstr "Suche"
 
-#, python-format
-msgid ""
-"Search completed. %d transponders found.\n"
-"\n"
-"Details saved in:\n"
-"%s"
-msgstr ""
-"Suche beendet. %d Transponder gefunden.\n"
-"\n"
-"Details gespeichert in Datei:\n"
-"%s"
-
 msgid "Search east"
 msgstr "Östlich suchen"
 
 msgid "Search for similar events"
 msgstr "Ähnliche Sendungen suchen"
-
-msgid "Search type"
-msgstr "Suchmodus"
 
 msgid "Search west"
 msgstr "Westlich suchen"
@@ -5631,9 +5273,6 @@ msgstr "Netzwerkadapter wählen"
 
 msgid "Select a movie"
 msgstr "Filmauswahl"
-
-msgid "Select a tuner that is configured for the satellite you wish to search"
-msgstr "Wähle einen Tuner der für den gewünschten Satelliten konfiguriert ist"
 
 msgid "Select audio track"
 msgstr "Wähle eine Tonspur"
@@ -5700,9 +5339,6 @@ msgstr "Wähle einen Sender zum Hinzufügen"
 
 msgid "Select the number of days after which the box is allowed to permanently delete recordings (from the trashcan)."
 msgstr "Wähle die Anzahl von Tagen nachdem die STB_BOX Dateien aus dem Mülleimer permanent löschen darf."
-
-msgid "Select the satellite you wish to search"
-msgstr "Wähle einen Satelliten den Du durchsuchen möchtest"
 
 msgid "Select upgrade source to edit."
 msgstr "Wähle eine Update-Quelle zum Bearbeiten"
@@ -6376,9 +6012,6 @@ msgstr ""
 msgid "Sorry, no Details available!"
 msgstr "Entschuldigung, keine Details verfügbar"
 
-msgid "Sorry, video is not available!"
-msgstr "Sorry Film nicht vorhanden!"
-
 msgid ""
 "Sorry, your backup destination is not writeable.\n"
 "\n"
@@ -6468,12 +6101,6 @@ msgstr "Beginnend ab"
 msgid "Status"
 msgstr ""
 
-msgid "Status : 0%"
-msgstr ""
-
-msgid "Status Check Period"
-msgstr "Statusprüfung Zeitintervall"
-
 msgid "Step east"
 msgstr "Schritt nach Osten"
 
@@ -6561,12 +6188,6 @@ msgstr "Untertitel Auswahl..."
 msgid "Subtitles"
 msgstr "Untertitel"
 
-msgid "Succeed"
-msgstr "Erfolgreich"
-
-msgid "Success. Press OK to exit."
-msgstr "Erfolgreich. Drücke OK zum Verlassen."
-
 msgid "Sun"
 msgstr "So"
 
@@ -6605,12 +6226,6 @@ msgstr "Symbolrate"
 
 msgid "Symbol rate"
 msgstr "Symbolrate"
-
-msgid "Symbol rate values are in megasymbols; enter a value between 1 and 44"
-msgstr "Symbolraten sind in Megasymbolen; gebe einen Wert zwischen 1 und 44 ein"
-
-msgid "Symbol rate values are in megasymbols; enter a value between 2 and 45"
-msgstr "Symbolraten sind in Megasymbolen; gebe einen Wert zwischen 2 und 45 ein"
 
 msgid "Symbolrate"
 msgstr "Symbolrate"
@@ -6693,9 +6308,6 @@ msgstr "Text Randbreite"
 
 msgid "Text font size"
 msgstr "Text Schriftgröße"
-
-msgid "Text support"
-msgstr "Textunterstützung"
 
 msgid "Thai"
 msgstr ""
@@ -6812,9 +6424,6 @@ msgstr "Die STB_BOX speichert die EPG alle x Stunden."
 msgid "The backup failed. Please choose a different backup location."
 msgstr "Die Sicherung ist fehlgeschlagen. Bitte einen anderes Sicherungs-Verzeichnis auswählen."
 
-msgid "The blindscan run was cancelled by the user."
-msgstr "Blindscan wurde vom Benutzer abgebrochen."
-
 msgid "The current beta image could not be stable"
 msgstr "Das aktuelle Image könnte fehlerhaft sein!"
 
@@ -6913,9 +6522,6 @@ msgstr "Der Assistent hat eine Konfigurations-Sicherungsdatei entdeckt. Die Eins
 msgid "The wizard is finished now."
 msgstr "Der Assistent ist nun beendet."
 
-msgid "Then choose 'Keep' within seconds"
-msgstr "Dann wähle 'Behalten' innerhalb X Sekunden"
-
 msgid "There are at least "
 msgstr "Es sind mindestens "
 
@@ -6953,9 +6559,6 @@ msgstr "Es gab ein Problem. Die Erweiterung:"
 
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr "Dieses wiederbeschreibbare Medium ist bereits formatiert - durch eine Neuformatierung wird der gesamte Inhalt gelöscht"
-
-msgid "This Plugin only support for UNO/ULTIMO"
-msgstr "Dieses Plugin untertsützt nur UNO/ULTIMO"
 
 #, python-format
 msgid "This STB_BOX can't decode %s streams!"
@@ -7111,9 +6714,6 @@ msgstr "Diese Erweiterung ist installiert."
 
 msgid "This plugin is not installed."
 msgstr "Diese Erweiterung ist nicht installiert."
-
-msgid "This plugin is supported only the Ultimo/Uno."
-msgstr "Dieses Plugin unterstützt nur UNO/ULTIMO."
 
 msgid "This plugin will be installed."
 msgstr "Diese Erweiterung wird installiert."
@@ -7538,9 +7138,6 @@ msgstr "Softwarekatalog wird aktualisiert."
 msgid "Updating... Please wait... This can take some minutes..."
 msgstr "Update wird durchgeführt... Bitte warten... Der Vorgang kann einige Minuten dauern."
 
-msgid "Upgrade"
-msgstr ""
-
 msgid "Upgrade and ask to reboot"
 msgstr "Aktualisieren und auf Nachfrage neustarten"
 
@@ -7576,9 +7173,6 @@ msgstr "Adresse automatisch beziehen (DHCP)"
 
 msgid "Use DVB subtitles position"
 msgstr "DVB Untertitel Position benutzen"
-
-msgid "Use Fan timer"
-msgstr "Fan Timer benutzen"
 
 msgid "Use Interface"
 msgstr "Netzwerkadapter aktivieren"
@@ -7851,27 +7445,6 @@ msgstr "Spannungs-Modus"
 msgid "Volume"
 msgstr "Lautstärke"
 
-msgid "STB_BOX advanced remote control (native)"
-msgstr "STB_BOX erweiterte Fernbedienung (native)"
-
-msgid "STB_BOX format data DVD (HDTV compatible)"
-msgstr "Daten-DVD im STB_BOX Format (HDTV-kompatibel)"
-
-msgid "STB_BOX front panel"
-msgstr "STB_BOX Frontpaneel"
-
-msgid "STB_BOX ir keyboard"
-msgstr "STB_BOX IR Tastatur"
-
-msgid "STB_BOX ir mouse"
-msgstr "STB_BOX IR Maus"
-
-msgid "STB_BOX remote control (native)"
-msgstr "STB_BOX Fernbedienung (native)"
-
-msgid "STB_BOX software because updates are available."
-msgstr "STB_BOX Software, da Aktualisierungen verfügbar sind."
-
 msgid "W"
 msgstr "W"
 
@@ -7925,9 +7498,6 @@ msgstr "A/V-Receiver aus Standby einschalten"
 
 msgid "Warn if free space drops below (kB):"
 msgstr "Warnen wenn der freie interne Speicher unter (kB) fällt:"
-
-msgid "Web Browser"
-msgstr ""
 
 msgid "Web Interface"
 msgstr ""
@@ -7989,13 +7559,9 @@ msgstr ""
 msgid ""
 "Welcome.\n"
 "\n"
-"This start wizard will guide you through the basic setup of your Vu+ Ultimo.\n"
+"This start wizard will guide you through the basic setup of your Xtrend ET9.\n"
 "Press the OK button on your remote control to move to the next step."
 msgstr ""
-"Willkommen.\n"
-"\n"
-"Der Startassistent wird dich durch die Grundeinstellungen der STB_BOX führen.\n"
-"Bitte OK drücken um zum nächsten Punkt zu gelangen."
 
 msgid "Welcome..."
 msgstr "Willkommen..."
@@ -8008,9 +7574,6 @@ msgstr "Was durchsuchen?"
 
 msgid "What to do with submitted crashlogs?"
 msgstr "Übermittelte Crashlogs:"
-
-msgid "When a neighbouring satellite is very strong this avoids searching transponders known to be coming from the neighbouring satellite"
-msgstr "Wenn der Nachbarsatellit sehr stark ist verhindert es Transponder zu durchsuchen die vom Nachbarsatelliten kommen könnten"
 
 msgid "When set each folder will show the previous state used, when off the default values will be shown."
 msgstr "Wenn gesetzt merken sich die Verzeichnisse ihren Zusatnd. Wenn ausgeschaltet wird eine Standardansicht genommen."
@@ -8104,6 +7667,27 @@ msgstr "Schreiben fehlgeschlagen!"
 
 msgid "XBox 360 support"
 msgstr "XBox 360 Unterstützung"
+
+msgid "STB_BOX advanced remote control (native)"
+msgstr "STB_BOX erweiterte Fernbedienung (native)"
+
+msgid "STB_BOX format data DVD (HDTV compatible)"
+msgstr "Daten-DVD im STB_BOX Format (HDTV-kompatibel)"
+
+msgid "STB_BOX front panel"
+msgstr "STB_BOX Frontpaneel"
+
+msgid "STB_BOX ir keyboard"
+msgstr "STB_BOX IR Tastatur"
+
+msgid "STB_BOX ir mouse"
+msgstr "STB_BOX IR Maus"
+
+msgid "STB_BOX remote control (native)"
+msgstr "STB_BOX Fernbedienung (native)"
+
+msgid "STB_BOX software because updates are available."
+msgstr "STB_BOX Software, da Aktualisierungen verfügbar sind."
 
 msgid "YPbPr"
 msgstr "YPbPr"
@@ -8231,9 +7815,6 @@ msgstr "Du hast keine Standardeinstellung für die Installation ausgewählt, die
 
 msgid "You chose not to install anything. Please press OK finish the install wizard."
 msgstr "Nichts zur Installation gewählt. Bitte drücke OK, um den Installations-Assistenten zu beenden."
-
-msgid "You chose the incorrect file."
-msgstr "Du hast die falsche Datei gewählt."
 
 msgid "You didn't select a channel to record from."
 msgstr "Du hast keinen Sender zum Aufnehmen ausgewählt."
@@ -8639,9 +8220,6 @@ msgstr "Karte"
 msgid "card reader"
 msgstr "Kartenleser"
 
-msgid "cat /proc/bus/input/devices"
-msgstr ""
-
 msgid "center"
 msgstr "zentriert"
 
@@ -8659,9 +8237,6 @@ msgstr "links-zirkulär"
 
 msgid "circular right"
 msgstr "rechts-zirkulär"
-
-msgid "circular right and circular left"
-msgstr "Zirkular rechts und zirkular links"
 
 msgid "clear playlist"
 msgstr "Wiedergabeliste leeren"
@@ -8967,9 +8542,6 @@ msgstr "Menü"
 msgid "mins"
 msgstr "Minuten"
 
-msgid "minute"
-msgstr "Minute"
-
 msgid "minutes"
 msgstr "Minuten"
 
@@ -9234,14 +8806,8 @@ msgstr "Aufnahme speichern (wähle Sendung)"
 msgid "save recording (stop after current event)"
 msgstr "Aufnahme speichern (am Ende der aktuellen Sendung)"
 
-msgid "save to XML file"
-msgstr "Sichere in XML-Datei"
-
 msgid "scan done!"
 msgstr "Suche beendet!"
-
-msgid "scan for channels"
-msgstr "Suche nach Sendern"
 
 #, python-format
 msgid "scan in progress - %d%% done!"
@@ -9282,9 +8848,6 @@ msgstr "Service PIN"
 
 msgid "set as startup service"
 msgstr "Als Startsender benutzen"
-
-msgid "setup Fancontol inStandby mode"
-msgstr ""
 
 msgid "setup PIN"
 msgstr "Setup PIN"
@@ -9436,9 +8999,6 @@ msgstr "Nicht mehr als Startsender benutzen"
 msgid "swap PiP and main picture"
 msgstr "Tausche PiP mit Hauptbild"
 
-msgid "switch Fan On/Off"
-msgstr "Lüfter Ein/Aus schalten"
-
 msgid "switch to bookmarks"
 msgstr "gehe zu Lesezeichen"
 
@@ -9511,15 +9071,6 @@ msgstr "unbekannter Sender"
 msgid "until standby/restart"
 msgstr "bis zum Standby/Neustart"
 
-msgid "up to 1 degree"
-msgstr "Bis zu 1 Grad"
-
-msgid "up to 2 degrees"
-msgstr "Bis zu 2 Grad"
-
-msgid "up to 3 degrees"
-msgstr "Bis zu 3 Grad"
-
 msgid "updates available."
 msgstr "Updates verfügbar."
 
@@ -9531,9 +9082,6 @@ msgstr "benutze:"
 
 msgid "vertical"
 msgstr "vertikal"
-
-msgid "vertical and horizontal"
-msgstr "Vertikal und Horizontal"
 
 msgid "view extensions..."
 msgstr "Erweiterungen anzeigen..."

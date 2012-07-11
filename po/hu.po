@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-18 01:34+0100\n"
-"PO-Revision-Date: 2012-05-18 01:40+0100\n"
+"POT-Creation-Date: 2012-07-07 18:42+0100\n"
+"PO-Revision-Date: 2012-07-11 17:32+0100\n"
 "Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
 "Language-Team: Mediavox, robertut <info@mediavox.hu, robertut@yahoo.com>\n"
 "Language: \n"
@@ -155,9 +155,6 @@ msgid ""
 "please quote "
 msgstr ""
 
-msgid "\"channel scan\" searches for channels and saves them to your STB_BOX; \"save to XML file\" does a transponder search and saves found transponders to an XML file in satellites.xml format"
-msgstr ""
-
 #. TRANSLATORS: short time representation hour:minute
 #, python-format
 msgid "%2d:%02d"
@@ -193,10 +190,6 @@ msgstr ""
 
 #. TRANSLATORS: long date representation short dayname daynum short monthname hour:minute in strftime() format! See 'man strftime'
 msgid "%a %e/%m  %-H:%M"
-msgstr ""
-
-#, python-format
-msgid "%d / 100"
 msgstr ""
 
 #, python-format
@@ -320,12 +313,6 @@ msgstr "1"
 msgid "1 wireless network found!"
 msgstr "1 elérhető vezeték nélküli hálózat!"
 
-msgid "1-1. Serial Number (The first two or three letters of SN)"
-msgstr ""
-
-msgid "1-2. Serial Number (The remaining numbers of SN)"
-msgstr ""
-
 #
 msgid "1.0"
 msgstr "1.0"
@@ -383,9 +370,6 @@ msgstr ""
 #
 msgid "2"
 msgstr "2"
-
-msgid "2. Contact"
-msgstr ""
 
 msgid "2X"
 msgstr ""
@@ -768,9 +752,6 @@ msgstr ""
 msgid "After the start wizard is completed, you need to protect single services. Refer to your STB_BOX's manual on how to do that."
 msgstr "Miután az indítási varázsló befejeződött, le kell védenie a szimpla szolgáltatásokat. Olvassa el a készülék kezelési útmutatóját, további információért."
 
-msgid "Agree"
-msgstr ""
-
 #
 msgid "Album"
 msgstr "Album"
@@ -948,9 +929,6 @@ msgstr ""
 #
 msgid "Alpha"
 msgstr "Alfa"
-
-msgid "Alpha Value"
-msgstr ""
 
 msgid "Alphanumeric"
 msgstr ""
@@ -1255,12 +1233,6 @@ msgstr ""
 msgid "Black screen till locked"
 msgstr ""
 
-msgid "Blind Scan"
-msgstr ""
-
-msgid "Blindscan"
-msgstr ""
-
 #
 msgid "Block noise reduction"
 msgstr "Blokk-zaj csökkentés"
@@ -1289,6 +1261,9 @@ msgid "Brightness (Normal)"
 msgstr ""
 
 msgid "Brightness (Standby)"
+msgstr ""
+
+msgid "Buffers:"
 msgstr ""
 
 msgid "Build:"
@@ -1403,22 +1378,7 @@ msgstr ""
 msgid "Cache Thumbnails"
 msgstr "Cache ikonok"
 
-msgid "Can't cancel during upgrade!!"
-msgstr ""
-
-msgid "Can't find /usr/bin/md5sum"
-msgstr ""
-
-msgid "Can't found MD5 file."
-msgstr ""
-
-msgid "Can't found binary file."
-msgstr ""
-
-msgid "Can't found device file!!"
-msgstr ""
-
-msgid "Can't found model name."
+msgid "Cached:"
 msgstr ""
 
 #
@@ -2426,9 +2386,6 @@ msgstr "Kiírás előtt meg szeretné tekinteni a DVD tartalmat?"
 msgid "Do you want to reboot your STB_BOX?"
 msgstr "Újra szeretné indítani a készüléket?"
 
-msgid "Do you want to remove binary data?"
-msgstr ""
-
 #
 msgid "Do you want to remove the package:\n"
 msgstr "Biztos benne, hogy eltávolítja ezt a csomagot:\n"
@@ -2516,15 +2473,9 @@ msgstr "Pluginek letöltése"
 msgid "Download plugins"
 msgstr ""
 
-msgid "Download the firmware (latest)"
-msgstr ""
-
 #
 msgid "Downloadable plugins"
 msgstr "Letölthető pluginek"
-
-msgid "Downloaded "
-msgstr ""
 
 #
 msgid "Downloading"
@@ -2533,9 +2484,6 @@ msgstr "Letöltés"
 #
 msgid "Downloading plugin information. Please wait..."
 msgstr "Plugin-lista letöltése. Kérem, várjon..."
-
-msgid "Downloading..."
-msgstr ""
 
 msgid "Downmix the Dolby Digital sound tracks to PCM."
 msgstr ""
@@ -2786,9 +2734,6 @@ msgstr ""
 msgid "Enter your forum user name, to make it easier trace logs."
 msgstr ""
 
-msgid "Enter your input data"
-msgstr ""
-
 msgid "Entitlements"
 msgstr ""
 
@@ -2820,12 +2765,6 @@ msgid ""
 msgstr ""
 "Hiba? %s\n"
 "Próbáljam újra?"
-
-#, python-format
-msgid ""
-"Error[%d] : %s.\n"
-"Press OK to exit."
-msgstr ""
 
 #
 msgid "Estonian"
@@ -2937,13 +2876,7 @@ msgstr "Bővítmények kezelése"
 msgid "FEC"
 msgstr "FEC"
 
-msgid "FILE NOT EXIST : /proc/stb/fp/remote_code"
-msgstr ""
-
-msgid "FPGA"
-msgstr ""
-
-msgid "FPGA Upgrade"
+msgid "FLASH"
 msgstr ""
 
 msgid "FTP Setup"
@@ -2952,16 +2885,6 @@ msgstr ""
 #
 msgid "Factory reset"
 msgstr "Gyári alapbeállítások"
-
-msgid "Fail to upgrade!! Retry!!"
-msgstr ""
-
-#, python-format
-msgid ""
-"Fail to verify data file. \n"
-"file[%s]\n"
-"md5[%s]"
-msgstr ""
 
 #
 msgid "Failed"
@@ -2984,27 +2907,6 @@ msgstr "Ventilátor %d PWM"
 #, python-format
 msgid "Fan %d Voltage"
 msgstr "Ventilátor %d tápfeszültség"
-
-msgid "Fan Control"
-msgstr ""
-
-msgid "Fan basic action"
-msgstr ""
-
-msgid "Fan control"
-msgstr ""
-
-msgid "Fan mode"
-msgstr ""
-
-msgid "Fan off duration time"
-msgstr ""
-
-msgid "Fan on duration time"
-msgstr ""
-
-msgid "FanOFF InStanby"
-msgstr ""
 
 #
 msgid "Fast"
@@ -3032,9 +2934,6 @@ msgstr "Kedvencek"
 msgid "File appears to be busy.\n"
 msgstr ""
 
-msgid "File not found"
-msgstr ""
-
 msgid ""
 "File oscam.conf not found.\n"
 "Please enter username/password manually."
@@ -3043,9 +2942,6 @@ msgstr ""
 #
 msgid "Filesystem Check"
 msgstr "Fájlrendszer ellenőrzése"
-
-msgid "Filter out adjacent satellites"
-msgstr ""
 
 #
 msgid "Finetune"
@@ -3067,15 +2963,6 @@ msgstr "A hálózati kapcsolat újraindítása befejeződött"
 msgid "Finnish"
 msgstr "Finn"
 
-msgid "Firmware"
-msgstr ""
-
-msgid "Firmware Upgrade"
-msgstr ""
-
-msgid "Firmware does not exist."
-msgstr ""
-
 #
 msgid "Flash"
 msgstr "Flash"
@@ -3095,9 +2982,6 @@ msgid "Fontsize"
 msgstr ""
 
 msgid "For more information see www.openpli.org"
-msgstr ""
-
-msgid "For use this plugin, you must update the kernel version to 3.1 or later"
 msgstr ""
 
 #
@@ -3149,9 +3033,6 @@ msgstr "Frekvencia léptetés mérete (kHz)"
 msgid "Frequency steps"
 msgstr "Frekvencia lépések"
 
-msgid "Frequency values must be between 10700 and 12750 (or 3000 and 4200 in the case of C-band satellites)"
-msgstr ""
-
 #
 msgid "Fri"
 msgstr "Pén"
@@ -3161,9 +3042,6 @@ msgid "Friday"
 msgstr "Péntek"
 
 msgid "From :"
-msgstr ""
-
-msgid "Front Processor"
 msgstr ""
 
 #
@@ -3379,6 +3257,12 @@ msgstr ""
 msgid "Horizontal"
 msgstr "Vízszintes"
 
+msgid "Horizontal turning speed"
+msgstr ""
+
+msgid "Hostname:"
+msgstr ""
+
 msgid "Hostname: "
 msgstr ""
 
@@ -3506,9 +3390,6 @@ msgstr ""
 msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times):"
 msgstr ""
 
-msgid "If you are not sure what polarisations the satellite you wish to search transmits, select \"vertical and horizontal\""
-msgstr ""
-
 #
 msgid ""
 "If you see this, something is wrong with\n"
@@ -3516,20 +3397,6 @@ msgid ""
 msgstr ""
 "Ha ezt látja, akkor valami nem stimmel a\n"
 "scart csatlakozással. OK-val visszaléphet."
-
-msgid "If you select \"yes\" all channels on the satellite being search will be deleted before starting the current search"
-msgstr ""
-
-msgid "If you select \"yes\" the scan will only save channels that are not encrypted; \"no\" will find encrypted and non-encrypted channels"
-msgstr ""
-
-msgid "If you select \"yes\" the scan will only search transponders not listed in satellites.xml"
-msgstr ""
-
-msgid ""
-"If you want to quit the Browser,\n"
-"Press RED -> EXIT."
-msgstr ""
 
 #
 msgid ""
@@ -3747,55 +3614,6 @@ msgstr "Érvénytelen hely"
 msgid "Invalid directory selected: %s"
 msgstr "A kiválasztott mappa érvénytelen: %s"
 
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"For C-band searches stop frequency must be between 3000MHz and 4200MHz."
-msgstr ""
-
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"Frequency start value is larger than stop value."
-msgstr ""
-
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"Start frequency must be between 10700MHz and 12750MHz.\n"
-"(Or 3000MHz and 4200MHz in the case of c-band)."
-msgstr ""
-
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"Start symbol rate must be between 1MHz and 44MHz."
-msgstr ""
-
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"Stop frequency must be between 10700MHz and 12750MHz.\n"
-"(Or 3000MHz and 4200MHz in the case of c-band)."
-msgstr ""
-
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"Stop symbol rate must be between 2MHz and 45MHz."
-msgstr ""
-
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"Symbol rate start value is larger than stop value."
-msgstr ""
-
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"That is a C-band satellite so frequency values \n"
-"need to be between 3000MHz and 4200MHz."
-msgstr ""
-
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"That is a Ku-band satellite so frequency values \n"
-"need to be between 10700MHz and 12750MHz."
-msgstr ""
-
 #
 msgid "Inversion"
 msgstr "Invertálás"
@@ -3849,9 +3667,6 @@ msgid "Just Scale"
 msgstr "Skálázás (nyújtás)"
 
 msgid "Just change channels"
-msgstr ""
-
-msgid "Keep"
 msgstr ""
 
 msgid "Keep old timers for how many days"
@@ -4098,51 +3913,12 @@ msgstr "Hosszú fájlnevek"
 msgid "Longitude"
 msgstr "Hosszúsági fok"
 
-#, python-format
-msgid ""
-"Looking for available transponders.\n"
-"This will take a short while.\n"
-"\n"
-"   Current Status : %d/%d\n"
-"   Satellite : %s\n"
-"   Polarization : %s\n"
-"   Frequency range : %d - %d MHz\n"
-"   Symbol rates : %d - %d MHz"
-msgstr ""
-
-msgid "MA"
-msgstr ""
-
 msgid "MAC:"
-msgstr ""
-
-msgid "MB"
-msgstr ""
-
-msgid "MC"
-msgstr ""
-
-msgid "MD"
-msgstr ""
-
-msgid "ME"
-msgstr ""
-
-msgid "MF"
-msgstr ""
-
-msgid "MG"
-msgstr ""
-
-msgid "MH"
 msgstr ""
 
 #
 msgid "MORE"
 msgstr "TOVÁBB"
-
-msgid "MSA"
-msgstr ""
 
 msgid "Main Menu"
 msgstr ""
@@ -4319,9 +4095,6 @@ msgid "Mount"
 msgstr ""
 
 msgid "Mounts Setup"
-msgstr ""
-
-msgid "Mouse"
 msgstr ""
 
 msgid "Move"
@@ -4624,13 +4397,6 @@ msgstr "Nincs elérhető hálózati kapcsolat."
 msgid "No networks found"
 msgstr "Nem észlelhető hálózat"
 
-msgid ""
-"No new transponders found! \n"
-"\n"
-"Only transponders already listed in satellites.xml \n"
-"have been found for those search parameters!"
-msgstr ""
-
 msgid "No of items switch (increase or reduced)"
 msgstr ""
 
@@ -4649,9 +4415,6 @@ msgstr ""
 msgid "No satellite frontend found!!"
 msgstr "Nem találtam műholdas tunert!!"
 
-msgid "No selected binary data!!"
-msgstr ""
-
 #
 msgid "No tags are set on these movies."
 msgstr "Ezeknek a felvételekre nincsenek metaadataik."
@@ -4659,9 +4422,6 @@ msgstr "Ezeknek a felvételekre nincsenek metaadataik."
 #
 msgid "No to all"
 msgstr "Mindenre NEM"
-
-msgid "No transponders were found for those search parameters!"
-msgstr ""
 
 #
 msgid "No tuner is configured for use with a diseqc positioner!"
@@ -4719,9 +4479,6 @@ msgid ""
 msgstr ""
 "Nem található egyetlen működőképes vezeték nélküli hálózati illesztő sem.\n"
 "Kérem, ellenőrizze, hogy egy kompatibilis vezeték nélküli hálózati illesztő csatlakoztatva van, és a hálózati paraméterek megfelelően be vannak állítva."
-
-msgid "No, but play video again"
-msgstr ""
 
 #
 msgid "No, but restart from begin"
@@ -4922,12 +4679,6 @@ msgstr ""
 msgid "Only extensions."
 msgstr "Csak bővítmények!"
 
-msgid "Only free scan"
-msgstr ""
-
-msgid "Only scan unknown transponders"
-msgstr ""
-
 msgid "OpenVPN Setup"
 msgstr ""
 
@@ -4985,9 +4736,6 @@ msgstr ""
 
 #, python-format
 msgid "PTS Plugin Error: %s"
-msgstr ""
-
-msgid "PWM value"
 msgstr ""
 
 #
@@ -5163,9 +4911,6 @@ msgstr "Figyelem: a szülői zárat bárki kikapcsolhatja, ha nincs beállítva 
 msgid "Please change recording endtime"
 msgstr "Kérem, változtassa meg a felvétel vége idejét"
 
-msgid "Please change your remote mode"
-msgstr ""
-
 #
 msgid "Please check your network settings!"
 msgstr "Kérem, ellenőrizze a hálózati beállításokat!"
@@ -5328,9 +5073,6 @@ msgstr "Állítsa be a C tunert"
 msgid "Please set up tuner D"
 msgstr "Állítsa be a D tunert"
 
-msgid "Please setup your tuner configuration."
-msgstr ""
-
 #
 msgid ""
 "Please use direction keys to move the PiP window.\n"
@@ -5406,9 +5148,6 @@ msgstr "Bővítménykezelő - súgó"
 #
 msgid "Plugins"
 msgstr "Pluginek"
-
-msgid "Polarisation"
-msgstr ""
 
 #
 msgid "Polarization"
@@ -5503,9 +5242,6 @@ msgstr "Előkészítés... Kérem, várjon."
 msgid "Press '0' to toggle internal/external PiP."
 msgstr ""
 
-msgid "Press Green/OK to start the scan"
-msgstr ""
-
 msgid "Press INFO on your remote control for additional information."
 msgstr "Nyomja le az INFO gombot a távírányítón a részletekért."
 
@@ -5552,9 +5288,6 @@ msgstr "Az OK gombbal indíthatja a keresést"
 #
 msgid "Press OK to toggle the selection."
 msgstr "Nyomja le az OK gombot a jelölés változtatásához."
-
-msgid "Press and hold '2' & '7' until red LED is solid, then press 'Help', then press '000"
-msgstr ""
 
 msgid "Press yellow to set this interface as default interface."
 msgstr "Nyomja le a sárga gombot, hogy ezt az interfészt jelölje alapértelmezettnek."
@@ -5659,6 +5392,9 @@ msgstr ""
 #
 msgid "Quickzap"
 msgstr "GyorsUGRÁS"
+
+msgid "RAM"
+msgstr ""
 
 #
 msgid "RF output"
@@ -5830,12 +5566,6 @@ msgid "Remember service PIN"
 msgstr ""
 
 msgid "Remember these settings for each folder"
-msgstr ""
-
-msgid "Remote Control Code"
-msgstr ""
-
-msgid "Remote Control System Code"
 msgstr ""
 
 msgid "Remote box"
@@ -6033,9 +5763,6 @@ msgstr ""
 msgid "Resuming playback"
 msgstr "Lejátszás folytatása"
 
-msgid "Return the Love Event"
-msgstr ""
-
 #
 msgid "Return to movie list"
 msgstr "Visszatérés a felvételek listájához"
@@ -6197,9 +5924,6 @@ msgstr "Skálázó élesség"
 msgid "Scaling Mode"
 msgstr "Skálázási mód"
 
-msgid "Scan"
-msgstr ""
-
 #
 msgid "Scan "
 msgstr "Keresés"
@@ -6292,18 +6016,6 @@ msgstr "US középsáv szkennelése"
 msgid "Scan band US SUPER"
 msgstr "US szupersáv szkennelése"
 
-msgid "Scan start frequency"
-msgstr ""
-
-msgid "Scan start symbolrate"
-msgstr ""
-
-msgid "Scan stop frequency"
-msgstr ""
-
-msgid "Scan stop symbolrate"
-msgstr ""
-
 msgid "Scan your network for wireless access points and connect to them using your selected wireless device.\n"
 msgstr ""
 
@@ -6331,22 +6043,11 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
-#, python-format
-msgid ""
-"Search completed. %d transponders found.\n"
-"\n"
-"Details saved in:\n"
-"%s"
-msgstr ""
-
 #
 msgid "Search east"
 msgstr "Léptetés kelet felé"
 
 msgid "Search for similar events"
-msgstr ""
-
-msgid "Search type"
 msgstr ""
 
 #
@@ -6400,9 +6101,6 @@ msgstr "Válasszon hálózati adaptert"
 #
 msgid "Select a movie"
 msgstr "Felvétel kiválasztása"
-
-msgid "Select a tuner that is configured for the satellite you wish to search"
-msgstr ""
 
 #
 msgid "Select audio track"
@@ -6476,9 +6174,6 @@ msgid "Select service to add..."
 msgstr "Válasszon hozzáadandó szolgáltást..."
 
 msgid "Select the number of days after which the box is allowed to permanently delete recordings (from the trashcan)."
-msgstr ""
-
-msgid "Select the satellite you wish to search"
 msgstr ""
 
 #
@@ -7219,9 +6914,6 @@ msgstr ""
 msgid "Sorry, no Details available!"
 msgstr "Nincs több elérhető információ!"
 
-msgid "Sorry, video is not available!"
-msgstr ""
-
 #
 msgid ""
 "Sorry, your backup destination is not writeable.\n"
@@ -7326,12 +7018,6 @@ msgstr "Mely dátumtól?"
 msgid "Status"
 msgstr ""
 
-msgid "Status : 0%"
-msgstr ""
-
-msgid "Status Check Period"
-msgstr ""
-
 #
 msgid "Step east"
 msgstr "Léptetés kelet felé"
@@ -7433,12 +7119,6 @@ msgstr ""
 msgid "Subtitles"
 msgstr "Feliratok"
 
-msgid "Succeed"
-msgstr ""
-
-msgid "Success. Press OK to exit."
-msgstr ""
-
 #
 msgid "Sun"
 msgstr "Vas"
@@ -7485,12 +7165,6 @@ msgstr "Szimbólumsebesség"
 
 msgid "Symbol rate"
 msgstr "Symbólumsebesség"
-
-msgid "Symbol rate values are in megasymbols; enter a value between 1 and 44"
-msgstr ""
-
-msgid "Symbol rate values are in megasymbols; enter a value between 2 and 45"
-msgstr ""
 
 #
 msgid "Symbolrate"
@@ -7592,9 +7266,6 @@ msgstr "Betűk körvonal-vastagsága"
 msgid "Text font size"
 msgstr "Betűméret"
 
-msgid "Text support"
-msgstr ""
-
 msgid "Thai"
 msgstr ""
 
@@ -7693,9 +7364,6 @@ msgstr ""
 #
 msgid "The backup failed. Please choose a different backup location."
 msgstr "A mentés nem sikerült. Válasszon másik célt ahova menthetem."
-
-msgid "The blindscan run was cancelled by the user."
-msgstr ""
 
 msgid "The current beta image could not be stable"
 msgstr ""
@@ -7806,9 +7474,6 @@ msgstr ""
 msgid "The wizard is finished now."
 msgstr "A varázsló befejezte feladatát."
 
-msgid "Then choose 'Keep' within seconds"
-msgstr ""
-
 #
 msgid "There are at least "
 msgstr "Legalább"
@@ -7855,9 +7520,6 @@ msgstr "Hiba történt. A csomag:"
 #
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr "Ez a DVD RW medium már meg van formázva - a lemez újraformázásával minden adat el fog veszni."
-
-msgid "This Plugin only support for UNO/ULTIMO"
-msgstr ""
 
 #
 #, python-format
@@ -8017,9 +7679,6 @@ msgstr "A plugin telepítve van."
 #
 msgid "This plugin is not installed."
 msgstr "A plugin nincs telepítve."
-
-msgid "This plugin is supported only the Ultimo/Uno."
-msgstr ""
 
 #
 msgid "This plugin will be installed."
@@ -8390,6 +8049,9 @@ msgstr "Tuner"
 msgid "Tuner type"
 msgstr "Tuner típus"
 
+msgid "Tuning step size"
+msgstr ""
+
 #
 msgid "Turkish"
 msgstr "Török"
@@ -8509,9 +8171,6 @@ msgstr "Szoftver-katalógus frissítése"
 msgid "Updating... Please wait... This can take some minutes..."
 msgstr "Frissítés... Kérem, várjon... Ez akár pár percig is eltarthat..."
 
-msgid "Upgrade"
-msgstr ""
-
 msgid "Upgrade and ask to reboot"
 msgstr ""
 
@@ -8550,9 +8209,6 @@ msgid "Use DHCP"
 msgstr "DHCP használata"
 
 msgid "Use DVB subtitles position"
-msgstr ""
-
-msgid "Use Fan timer"
 msgstr ""
 
 #
@@ -8710,6 +8366,9 @@ msgstr ""
 #
 msgid "Vertical"
 msgstr "Függőleges"
+
+msgid "Vertical turning speed"
+msgstr ""
 
 msgid "ViX EPG"
 msgstr ""
@@ -8872,29 +8531,6 @@ msgstr "Feszültség"
 msgid "Volume"
 msgstr "Hangerő"
 
-msgid "STB_BOX advanced remote control (native)"
-msgstr ""
-
-#
-msgid "STB_BOX format data DVD (HDTV compatible)"
-msgstr "STB_BOX formátumú adat DVD (HDTV kompatibilis)"
-
-msgid "STB_BOX front panel"
-msgstr ""
-
-msgid "STB_BOX ir keyboard"
-msgstr "infra billentyűzet"
-
-msgid "STB_BOX ir mouse"
-msgstr "infra egér"
-
-msgid "STB_BOX remote control (native)"
-msgstr "eredeti távirányító"
-
-#
-msgid "STB_BOX software because updates are available."
-msgstr "(a készülék szoftverének frissítése)"
-
 #
 msgid "W"
 msgstr "Ny"
@@ -8947,17 +8583,14 @@ msgstr ""
 msgid "Wakeup TV from standby"
 msgstr ""
 
-msgid "Wakeup your STB_BOX from standby"
+msgid "Wakeup signal from TV"
 msgstr ""
 
-msgid "Wakeup signal from TV"
+msgid "Wakeup your STB_BOX from standby"
 msgstr ""
 
 #
 msgid "Warn if free space drops below (kB):"
-msgstr ""
-
-msgid "Web Browser"
 msgstr ""
 
 msgid "Web Interface"
@@ -9027,7 +8660,7 @@ msgstr ""
 msgid ""
 "Welcome.\n"
 "\n"
-"This start wizard will guide you through the basic setup of your STB_BOX.\n"
+"This start wizard will guide you through the basic setup of your Xtrend ET9.\n"
 "Press the OK button on your remote control to move to the next step."
 msgstr ""
 "Üdvözlöm.\n"
@@ -9050,9 +8683,6 @@ msgstr "Mit szeretne lekeresni?"
 #
 msgid "What to do with submitted crashlogs?"
 msgstr "Mit szeretne tenni az elküldött hibanaplókkal?"
-
-msgid "When a neighbouring satellite is very strong this avoids searching transponders known to be coming from the neighbouring satellite"
-msgstr ""
 
 msgid "When set each folder will show the previous state used, when off the default values will be shown."
 msgstr ""
@@ -9149,6 +8779,29 @@ msgstr "Az írás sikertelen!"
 
 msgid "XBox 360 support"
 msgstr ""
+
+msgid "STB_BOX advanced remote control (native)"
+msgstr ""
+
+#
+msgid "STB_BOX format data DVD (HDTV compatible)"
+msgstr "STB_BOX formátumú adat DVD (HDTV kompatibilis)"
+
+msgid "STB_BOX front panel"
+msgstr ""
+
+msgid "STB_BOX ir keyboard"
+msgstr "infra billentyűzet"
+
+msgid "STB_BOX ir mouse"
+msgstr "infra egér"
+
+msgid "STB_BOX remote control (native)"
+msgstr "eredeti távirányító"
+
+#
+msgid "STB_BOX software because updates are available."
+msgstr "(a készülék szoftverének frissítése)"
 
 msgid "YPbPr"
 msgstr "YPbPr"
@@ -9295,9 +8948,6 @@ msgstr "Nem választott ki telepítésre egyetlen beállítást sem. Később te
 #
 msgid "You chose not to install anything. Please press OK finish the install wizard."
 msgstr "Úgy döntött, hogy nem telepít semmit. Az OK gomb megnyomásával bezárhatja a varázslót."
-
-msgid "You chose the incorrect file."
-msgstr ""
 
 msgid "You didn't select a channel to record from."
 msgstr "Nem választott ki csatornát, ahonnan történjen a felvétel."
@@ -9748,9 +9398,6 @@ msgstr ""
 msgid "card reader"
 msgstr ""
 
-msgid "cat /proc/bus/input/devices"
-msgstr ""
-
 #
 msgid "center"
 msgstr "középre"
@@ -9773,9 +9420,6 @@ msgstr "forgó balos"
 #
 msgid "circular right"
 msgstr "forgó jobbos"
-
-msgid "circular right and circular left"
-msgstr ""
 
 #
 msgid "clear playlist"
@@ -10158,9 +9802,6 @@ msgstr "menü"
 msgid "mins"
 msgstr "perc"
 
-msgid "minute"
-msgstr ""
-
 #
 msgid "minutes"
 msgstr "perc"
@@ -10492,15 +10133,9 @@ msgstr ""
 msgid "save recording (stop after current event)"
 msgstr ""
 
-msgid "save to XML file"
-msgstr ""
-
 #
 msgid "scan done!"
 msgstr "keresés kész!"
-
-msgid "scan for channels"
-msgstr ""
 
 #
 #, python-format
@@ -10550,9 +10185,6 @@ msgstr "szervíz-PIN"
 
 msgid "set as startup service"
 msgstr "beállítás indítási csatornának"
-
-msgid "setup Fancontol inStandby mode"
-msgstr ""
 
 msgid "setup PIN"
 msgstr "PIN-kód beállítása"
@@ -10734,9 +10366,6 @@ msgstr "beállítás indítási csatornának"
 msgid "swap PiP and main picture"
 msgstr "Kép-a-Képben és főkép megcserélése"
 
-msgid "switch Fan On/Off"
-msgstr ""
-
 #
 msgid "switch to bookmarks"
 msgstr "átkapcsolás a bookmarkokra"
@@ -10825,15 +10454,6 @@ msgstr "ismeretlen csatorna"
 msgid "until standby/restart"
 msgstr "kikapcsolásig/újraindításig"
 
-msgid "up to 1 degree"
-msgstr ""
-
-msgid "up to 2 degrees"
-msgstr ""
-
-msgid "up to 3 degrees"
-msgstr ""
-
 msgid "updates available."
 msgstr ""
 
@@ -10847,9 +10467,6 @@ msgstr ""
 #
 msgid "vertical"
 msgstr "függőleges"
-
-msgid "vertical and horizontal"
-msgstr ""
 
 #
 msgid "view extensions..."

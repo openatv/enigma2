@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-18 01:34+0100\n"
-"PO-Revision-Date: 2012-05-18 01:40+0100\n"
+"POT-Creation-Date: 2012-07-07 18:42+0100\n"
+"PO-Revision-Date: 2012-07-11 17:32+0100\n"
 "Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
 "Language-Team: \n"
 "Language: sv\n"
@@ -152,9 +152,6 @@ msgid ""
 "please quote "
 msgstr ""
 
-msgid "\"channel scan\" searches for channels and saves them to your STB_BOX; \"save to XML file\" does a transponder search and saves found transponders to an XML file in satellites.xml format"
-msgstr ""
-
 #. TRANSLATORS: short time representation hour:minute
 #, python-format
 msgid "%2d:%02d"
@@ -190,10 +187,6 @@ msgstr ""
 
 #. TRANSLATORS: long date representation short dayname daynum short monthname hour:minute in strftime() format! See 'man strftime'
 msgid "%a %e/%m  %-H:%M"
-msgstr ""
-
-#, python-format
-msgid "%d / 100"
 msgstr ""
 
 #, python-format
@@ -314,12 +307,6 @@ msgstr "1"
 msgid "1 wireless network found!"
 msgstr "1 trådlöst nätverk hittat!"
 
-msgid "1-1. Serial Number (The first two or three letters of SN)"
-msgstr ""
-
-msgid "1-2. Serial Number (The remaining numbers of SN)"
-msgstr ""
-
 #
 msgid "1.0"
 msgstr "1.0"
@@ -374,9 +361,6 @@ msgstr ""
 #
 msgid "2"
 msgstr "2"
-
-msgid "2. Contact"
-msgstr ""
 
 msgid "2X"
 msgstr ""
@@ -759,9 +743,6 @@ msgstr ""
 msgid "After the start wizard is completed, you need to protect single services. Refer to your STB_BOX's manual on how to do that."
 msgstr "Efter att startguiden är avslutad, behöver du skydda enskilda kanaler. Läs i din manual för STB_BOX om hur du utför det."
 
-msgid "Agree"
-msgstr ""
-
 #
 msgid "Album"
 msgstr "Album"
@@ -939,9 +920,6 @@ msgstr ""
 #
 msgid "Alpha"
 msgstr "Alpha"
-
-msgid "Alpha Value"
-msgstr ""
 
 msgid "Alphanumeric"
 msgstr ""
@@ -1248,12 +1226,6 @@ msgstr ""
 msgid "Black screen till locked"
 msgstr ""
 
-msgid "Blind Scan"
-msgstr ""
-
-msgid "Blindscan"
-msgstr ""
-
 #
 msgid "Block noise reduction"
 msgstr "Block brus minskning"
@@ -1282,6 +1254,9 @@ msgid "Brightness (Normal)"
 msgstr ""
 
 msgid "Brightness (Standby)"
+msgstr ""
+
+msgid "Buffers:"
 msgstr ""
 
 msgid "Build:"
@@ -1394,22 +1369,7 @@ msgstr ""
 msgid "Cache Thumbnails"
 msgstr "Buffra miniatyrer"
 
-msgid "Can't cancel during upgrade!!"
-msgstr ""
-
-msgid "Can't find /usr/bin/md5sum"
-msgstr ""
-
-msgid "Can't found MD5 file."
-msgstr ""
-
-msgid "Can't found binary file."
-msgstr ""
-
-msgid "Can't found device file!!"
-msgstr ""
-
-msgid "Can't found model name."
+msgid "Cached:"
 msgstr ""
 
 #
@@ -2407,9 +2367,6 @@ msgstr "Vill du förhandsvisa denna DVD innan bränning?"
 msgid "Do you want to reboot your STB_BOX?"
 msgstr "Vill du starta om din STB_BOX?"
 
-msgid "Do you want to remove binary data?"
-msgstr ""
-
 #
 msgid "Do you want to remove the package:\n"
 msgstr "Vill du avinstallera paketet:\n"
@@ -2497,15 +2454,9 @@ msgstr "Ladda ner Plugins"
 msgid "Download plugins"
 msgstr ""
 
-msgid "Download the firmware (latest)"
-msgstr ""
-
 #
 msgid "Downloadable plugins"
 msgstr "Nerladdningsbara plugins"
-
-msgid "Downloaded "
-msgstr ""
 
 #
 msgid "Downloading"
@@ -2514,9 +2465,6 @@ msgstr "Laddar ner"
 #
 msgid "Downloading plugin information. Please wait..."
 msgstr "Hämtar plugininformation. Var vänlig vänta..."
-
-msgid "Downloading..."
-msgstr ""
 
 msgid "Downmix the Dolby Digital sound tracks to PCM."
 msgstr ""
@@ -2770,9 +2718,6 @@ msgstr ""
 msgid "Enter your forum user name, to make it easier trace logs."
 msgstr ""
 
-msgid "Enter your input data"
-msgstr ""
-
 msgid "Entitlements"
 msgstr ""
 
@@ -2804,12 +2749,6 @@ msgid ""
 msgstr ""
 "Fel: %s\n"
 "Försöka igen?"
-
-#, python-format
-msgid ""
-"Error[%d] : %s.\n"
-"Press OK to exit."
-msgstr ""
 
 #
 msgid "Estonian"
@@ -2918,13 +2857,7 @@ msgstr "Utökningshanterare"
 msgid "FEC"
 msgstr "FEC"
 
-msgid "FILE NOT EXIST : /proc/stb/fp/remote_code"
-msgstr ""
-
-msgid "FPGA"
-msgstr ""
-
-msgid "FPGA Upgrade"
+msgid "FLASH"
 msgstr ""
 
 msgid "FTP Setup"
@@ -2933,16 +2866,6 @@ msgstr ""
 #
 msgid "Factory reset"
 msgstr "Fabriksåterställning"
-
-msgid "Fail to upgrade!! Retry!!"
-msgstr ""
-
-#, python-format
-msgid ""
-"Fail to verify data file. \n"
-"file[%s]\n"
-"md5[%s]"
-msgstr ""
 
 #
 msgid "Failed"
@@ -2965,27 +2888,6 @@ msgstr "Fläkt %d PWM"
 #, python-format
 msgid "Fan %d Voltage"
 msgstr "Fläkt %d Volt"
-
-msgid "Fan Control"
-msgstr ""
-
-msgid "Fan basic action"
-msgstr ""
-
-msgid "Fan control"
-msgstr ""
-
-msgid "Fan mode"
-msgstr ""
-
-msgid "Fan off duration time"
-msgstr ""
-
-msgid "Fan on duration time"
-msgstr ""
-
-msgid "FanOFF InStanby"
-msgstr ""
 
 #
 msgid "Fast"
@@ -3013,9 +2915,6 @@ msgstr "Favoriter"
 msgid "File appears to be busy.\n"
 msgstr ""
 
-msgid "File not found"
-msgstr ""
-
 msgid ""
 "File oscam.conf not found.\n"
 "Please enter username/password manually."
@@ -3024,9 +2923,6 @@ msgstr ""
 #
 msgid "Filesystem Check"
 msgstr "Filsystemskontroll"
-
-msgid "Filter out adjacent satellites"
-msgstr ""
 
 msgid "Finetune"
 msgstr "Fininställning"
@@ -3047,15 +2943,6 @@ msgstr "Klar med omstarten av ditt nätverk"
 msgid "Finnish"
 msgstr "Finska"
 
-msgid "Firmware"
-msgstr ""
-
-msgid "Firmware Upgrade"
-msgstr ""
-
-msgid "Firmware does not exist."
-msgstr ""
-
 #
 msgid "Flash"
 msgstr "Flash"
@@ -3075,9 +2962,6 @@ msgid "Fontsize"
 msgstr ""
 
 msgid "For more information see www.openpli.org"
-msgstr ""
-
-msgid "For use this plugin, you must update the kernel version to 3.1 or later"
 msgstr ""
 
 #
@@ -3129,9 +3013,6 @@ msgstr "Frekvenssökningssteg (khz)"
 msgid "Frequency steps"
 msgstr "Frekvenssteg"
 
-msgid "Frequency values must be between 10700 and 12750 (or 3000 and 4200 in the case of C-band satellites)"
-msgstr ""
-
 #
 msgid "Fri"
 msgstr "Fre"
@@ -3141,9 +3022,6 @@ msgid "Friday"
 msgstr "Fredag"
 
 msgid "From :"
-msgstr ""
-
-msgid "Front Processor"
 msgstr ""
 
 #
@@ -3357,6 +3235,12 @@ msgstr ""
 msgid "Horizontal"
 msgstr "Horisontal"
 
+msgid "Horizontal turning speed"
+msgstr ""
+
+msgid "Hostname:"
+msgstr ""
+
 msgid "Hostname: "
 msgstr ""
 
@@ -3485,9 +3369,6 @@ msgstr ""
 msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times):"
 msgstr ""
 
-msgid "If you are not sure what polarisations the satellite you wish to search transmits, select \"vertical and horizontal\""
-msgstr ""
-
 #
 msgid ""
 "If you see this, something is wrong with\n"
@@ -3495,20 +3376,6 @@ msgid ""
 msgstr ""
 "Om du ser detta, något är fel med\n"
 "din scartkontakt. Tryck OK för återgå."
-
-msgid "If you select \"yes\" all channels on the satellite being search will be deleted before starting the current search"
-msgstr ""
-
-msgid "If you select \"yes\" the scan will only save channels that are not encrypted; \"no\" will find encrypted and non-encrypted channels"
-msgstr ""
-
-msgid "If you select \"yes\" the scan will only search transponders not listed in satellites.xml"
-msgstr ""
-
-msgid ""
-"If you want to quit the Browser,\n"
-"Press RED -> EXIT."
-msgstr ""
 
 msgid ""
 "If your TV has a brightness or contrast enhancement, disable it. If there is something called \"dynamic\", set it to standard. Adjust the backlight level to a value suiting your taste. Turn down contrast on your TV as much as possible.\n"
@@ -3725,55 +3592,6 @@ msgstr "Ogiltig sökväg"
 msgid "Invalid directory selected: %s"
 msgstr "Ogiltigt bibliotek valt: %s"
 
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"For C-band searches stop frequency must be between 3000MHz and 4200MHz."
-msgstr ""
-
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"Frequency start value is larger than stop value."
-msgstr ""
-
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"Start frequency must be between 10700MHz and 12750MHz.\n"
-"(Or 3000MHz and 4200MHz in the case of c-band)."
-msgstr ""
-
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"Start symbol rate must be between 1MHz and 44MHz."
-msgstr ""
-
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"Stop frequency must be between 10700MHz and 12750MHz.\n"
-"(Or 3000MHz and 4200MHz in the case of c-band)."
-msgstr ""
-
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"Stop symbol rate must be between 2MHz and 45MHz."
-msgstr ""
-
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"Symbol rate start value is larger than stop value."
-msgstr ""
-
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"That is a C-band satellite so frequency values \n"
-"need to be between 3000MHz and 4200MHz."
-msgstr ""
-
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"That is a Ku-band satellite so frequency values \n"
-"need to be between 10700MHz and 12750MHz."
-msgstr ""
-
 #
 msgid "Inversion"
 msgstr "Inversion"
@@ -3827,9 +3645,6 @@ msgid "Just Scale"
 msgstr "Bara skala"
 
 msgid "Just change channels"
-msgstr ""
-
-msgid "Keep"
 msgstr ""
 
 msgid "Keep old timers for how many days"
@@ -4076,50 +3891,11 @@ msgstr "Långa filnamn"
 msgid "Longitude"
 msgstr "Longitud"
 
-#, python-format
-msgid ""
-"Looking for available transponders.\n"
-"This will take a short while.\n"
-"\n"
-"   Current Status : %d/%d\n"
-"   Satellite : %s\n"
-"   Polarization : %s\n"
-"   Frequency range : %d - %d MHz\n"
-"   Symbol rates : %d - %d MHz"
-msgstr ""
-
-msgid "MA"
-msgstr ""
-
 msgid "MAC:"
-msgstr ""
-
-msgid "MB"
-msgstr ""
-
-msgid "MC"
-msgstr ""
-
-msgid "MD"
-msgstr ""
-
-msgid "ME"
-msgstr ""
-
-msgid "MF"
-msgstr ""
-
-msgid "MG"
-msgstr ""
-
-msgid "MH"
 msgstr ""
 
 msgid "MORE"
 msgstr "MER"
-
-msgid "MSA"
-msgstr ""
 
 msgid "Main Menu"
 msgstr ""
@@ -4293,9 +4069,6 @@ msgid "Mount"
 msgstr ""
 
 msgid "Mounts Setup"
-msgstr ""
-
-msgid "Mouse"
 msgstr ""
 
 msgid "Move"
@@ -4592,13 +4365,6 @@ msgstr "Ingen nätverksanslutning tillgänglig."
 msgid "No networks found"
 msgstr "Inget nätverk hittat"
 
-msgid ""
-"No new transponders found! \n"
-"\n"
-"Only transponders already listed in satellites.xml \n"
-"have been found for those search parameters!"
-msgstr ""
-
 msgid "No of items switch (increase or reduced)"
 msgstr ""
 
@@ -4617,9 +4383,6 @@ msgstr ""
 msgid "No satellite frontend found!!"
 msgstr "Ingen satellit frontend funnen!!"
 
-msgid "No selected binary data!!"
-msgstr ""
-
 #
 msgid "No tags are set on these movies."
 msgstr "Ingen märkning är gjord på dessa filmer."
@@ -4627,9 +4390,6 @@ msgstr "Ingen märkning är gjord på dessa filmer."
 #
 msgid "No to all"
 msgstr "Nej till alla"
-
-msgid "No transponders were found for those search parameters!"
-msgstr ""
 
 #
 msgid "No tuner is configured for use with a diseqc positioner!"
@@ -4689,10 +4449,6 @@ msgid ""
 msgstr ""
 "Inget fungerandes trådlöst nätverkskort funnet.\n"
 "Vänligen bekräfta att du har anslutit ett kompatibelt WLAN enhet eller aktiverat ditt lokala nätverkskort."
-
-#
-msgid "No, but play video again"
-msgstr "Nej, men spela video igen"
 
 #
 msgid "No, but restart from begin"
@@ -4892,12 +4648,6 @@ msgstr ""
 msgid "Only extensions."
 msgstr "Endast utökningar."
 
-msgid "Only free scan"
-msgstr ""
-
-msgid "Only scan unknown transponders"
-msgstr ""
-
 msgid "OpenVPN Setup"
 msgstr ""
 
@@ -4955,9 +4705,6 @@ msgstr "PMT PID"
 
 #, python-format
 msgid "PTS Plugin Error: %s"
-msgstr ""
-
-msgid "PWM value"
 msgstr ""
 
 #
@@ -5131,9 +4878,6 @@ msgstr ""
 msgid "Please change recording endtime"
 msgstr "Vänligen ändra inspelnings sluttid"
 
-msgid "Please change your remote mode"
-msgstr ""
-
 #
 msgid "Please check your network settings!"
 msgstr "Vänligen kontrollera dina nätverksinställningar!"
@@ -5294,9 +5038,6 @@ msgstr "Vänligen installera tuner C"
 msgid "Please set up tuner D"
 msgstr "Vänligen installera tuner D"
 
-msgid "Please setup your tuner configuration."
-msgstr ""
-
 #
 msgid ""
 "Please use direction keys to move the PiP window.\n"
@@ -5371,9 +5112,6 @@ msgstr "Pluginhanterare hjälp"
 #
 msgid "Plugins"
 msgstr "Plugins"
-
-msgid "Polarisation"
-msgstr ""
 
 #
 msgid "Polarization"
@@ -5471,9 +5209,6 @@ msgstr "Förbereder... Vänligen vänta"
 msgid "Press '0' to toggle internal/external PiP."
 msgstr ""
 
-msgid "Press Green/OK to start the scan"
-msgstr ""
-
 msgid "Press INFO on your remote control for additional information."
 msgstr "Tryck INFO på din fjärrkontroll för ytterligare information."
 
@@ -5520,9 +5255,6 @@ msgstr "Tryck OK för att starta sökning"
 #
 msgid "Press OK to toggle the selection."
 msgstr "Tryck OK för att växla val."
-
-msgid "Press and hold '2' & '7' until red LED is solid, then press 'Help', then press '000"
-msgstr ""
 
 #
 msgid "Press yellow to set this interface as default interface."
@@ -5628,6 +5360,9 @@ msgstr ""
 #
 msgid "Quickzap"
 msgstr "Snabbzap"
+
+msgid "RAM"
+msgstr ""
 
 #
 msgid "RF output"
@@ -5798,12 +5533,6 @@ msgid "Remember service PIN"
 msgstr ""
 
 msgid "Remember these settings for each folder"
-msgstr ""
-
-msgid "Remote Control Code"
-msgstr ""
-
-msgid "Remote Control System Code"
 msgstr ""
 
 msgid "Remote box"
@@ -6000,9 +5729,6 @@ msgstr "Återuppta vid position %s"
 msgid "Resuming playback"
 msgstr "Återupptar uppspelning"
 
-msgid "Return the Love Event"
-msgstr ""
-
 #
 msgid "Return to movie list"
 msgstr "Återvänd till filmlista"
@@ -6165,9 +5891,6 @@ msgstr "Scaler skärpa"
 msgid "Scaling Mode"
 msgstr "Scalingläge"
 
-msgid "Scan"
-msgstr ""
-
 #
 msgid "Scan "
 msgstr "Sök "
@@ -6260,18 +5983,6 @@ msgstr "Sök US MID band"
 msgid "Scan band US SUPER"
 msgstr "Sök US SUPER band"
 
-msgid "Scan start frequency"
-msgstr ""
-
-msgid "Scan start symbolrate"
-msgstr ""
-
-msgid "Scan stop frequency"
-msgstr ""
-
-msgid "Scan stop symbolrate"
-msgstr ""
-
 msgid "Scan your network for wireless access points and connect to them using your selected wireless device.\n"
 msgstr "Sök ditt nätverk efter trådlös acccesspunkt och anslut till den med din valda trådlösa enhet.\n"
 
@@ -6298,24 +6009,12 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
-#, python-format
-msgid ""
-"Search completed. %d transponders found.\n"
-"\n"
-"Details saved in:\n"
-"%s"
-msgstr ""
-
 #
 msgid "Search east"
 msgstr "Sök öst"
 
 msgid "Search for similar events"
 msgstr ""
-
-#
-msgid "Search type"
-msgstr "Typ av sökning"
 
 #
 msgid "Search west"
@@ -6367,9 +6066,6 @@ msgstr "Välj nätverksadapter"
 #
 msgid "Select a movie"
 msgstr "Välj en film"
-
-msgid "Select a tuner that is configured for the satellite you wish to search"
-msgstr ""
 
 #
 msgid "Select audio track"
@@ -6443,9 +6139,6 @@ msgid "Select service to add..."
 msgstr "Välj kanal att lägga till..."
 
 msgid "Select the number of days after which the box is allowed to permanently delete recordings (from the trashcan)."
-msgstr ""
-
-msgid "Select the satellite you wish to search"
 msgstr ""
 
 #
@@ -7187,10 +6880,6 @@ msgid "Sorry, no Details available!"
 msgstr "Tyvärr, inga Detaljer tillgängliga!"
 
 #
-msgid "Sorry, video is not available!"
-msgstr "Ledsen, video är ej tillgänglig!"
-
-#
 msgid ""
 "Sorry, your backup destination is not writeable.\n"
 "\n"
@@ -7292,12 +6981,6 @@ msgid "Starting on"
 msgstr "Startar på"
 
 msgid "Status"
-msgstr ""
-
-msgid "Status : 0%"
-msgstr ""
-
-msgid "Status Check Period"
 msgstr ""
 
 #
@@ -7402,12 +7085,6 @@ msgstr ""
 msgid "Subtitles"
 msgstr "Textning"
 
-msgid "Succeed"
-msgstr ""
-
-msgid "Success. Press OK to exit."
-msgstr ""
-
 #
 msgid "Sun"
 msgstr "Sön"
@@ -7454,12 +7131,6 @@ msgstr "Symbolrate"
 
 msgid "Symbol rate"
 msgstr "Symbolhastighet"
-
-msgid "Symbol rate values are in megasymbols; enter a value between 1 and 44"
-msgstr ""
-
-msgid "Symbol rate values are in megasymbols; enter a value between 2 and 45"
-msgstr ""
 
 #
 msgid "Symbolrate"
@@ -7554,9 +7225,6 @@ msgid "Text border width"
 msgstr ""
 
 msgid "Text font size"
-msgstr ""
-
-msgid "Text support"
 msgstr ""
 
 msgid "Thai"
@@ -7661,9 +7329,6 @@ msgstr ""
 
 msgid "The backup failed. Please choose a different backup location."
 msgstr "Backupen misslyckades. Välj en annan plats för din backup."
-
-msgid "The blindscan run was cancelled by the user."
-msgstr ""
 
 msgid "The current beta image could not be stable"
 msgstr ""
@@ -7777,9 +7442,6 @@ msgstr "Guiden hittade en konfigurationsbackup. Vill du återställla dina gamla
 msgid "The wizard is finished now."
 msgstr "Guiden är nu färdig."
 
-msgid "Then choose 'Keep' within seconds"
-msgstr ""
-
 #
 msgid "There are at least "
 msgstr "Det finns minst "
@@ -7826,9 +7488,6 @@ msgstr "Ett fel uppstod. Paketet:"
 #
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr "Detta DVD RW media är redan formaterat - omformatering kommer ta bort all data på skivan."
-
-msgid "This Plugin only support for UNO/ULTIMO"
-msgstr ""
 
 #
 #, python-format
@@ -7992,9 +7651,6 @@ msgstr "Den pluginen är installerad."
 #
 msgid "This plugin is not installed."
 msgstr "Den pluginen är inte installerad."
-
-msgid "This plugin is supported only the Ultimo/Uno."
-msgstr ""
 
 #
 msgid "This plugin will be installed."
@@ -8365,6 +8021,9 @@ msgstr "Tuner status"
 msgid "Tuner type"
 msgstr "Tuner typ"
 
+msgid "Tuning step size"
+msgstr ""
+
 #
 msgid "Turkish"
 msgstr "Turkiska"
@@ -8484,9 +8143,6 @@ msgstr "Uppdaterar mjukvarukatalogen"
 msgid "Updating... Please wait... This can take some minutes..."
 msgstr "Uppdaterar... Vänlig vänta... Detta tar några minuter..."
 
-msgid "Upgrade"
-msgstr ""
-
 msgid "Upgrade and ask to reboot"
 msgstr ""
 
@@ -8526,9 +8182,6 @@ msgid "Use DHCP"
 msgstr "Använd DHCP"
 
 msgid "Use DVB subtitles position"
-msgstr ""
-
-msgid "Use Fan timer"
 msgstr ""
 
 #
@@ -8685,6 +8338,9 @@ msgstr ""
 #
 msgid "Vertical"
 msgstr "Vertikal"
+
+msgid "Vertical turning speed"
+msgstr ""
 
 msgid "ViX EPG"
 msgstr ""
@@ -8847,29 +8503,6 @@ msgstr "Spännings läge"
 msgid "Volume"
 msgstr "Volym"
 
-msgid "STB_BOX advanced remote control (native)"
-msgstr ""
-
-#
-msgid "STB_BOX format data DVD (HDTV compatible)"
-msgstr "STB_BOX formaterad data DVD (HDTV kompatibel)"
-
-msgid "STB_BOX front panel"
-msgstr ""
-
-msgid "STB_BOX ir keyboard"
-msgstr ""
-
-msgid "STB_BOX ir mouse"
-msgstr ""
-
-msgid "STB_BOX remote control (native)"
-msgstr ""
-
-#
-msgid "STB_BOX software because updates are available."
-msgstr "STB_BOX mjukvara på grund av uppdateringar är tillgängliga."
-
 #
 msgid "W"
 msgstr "V"
@@ -8922,18 +8555,15 @@ msgstr ""
 msgid "Wakeup TV from standby"
 msgstr ""
 
-msgid "Wakeup your STB_BOX from standby"
+msgid "Wakeup signal from TV"
 msgstr ""
 
-msgid "Wakeup signal from TV"
+msgid "Wakeup your STB_BOX from standby"
 msgstr ""
 
 #
 msgid "Warn if free space drops below (kB):"
 msgstr "Varna om tillgängligt utrymme understiger (kB):"
-
-msgid "Web Browser"
-msgstr ""
 
 msgid "Web Interface"
 msgstr ""
@@ -9001,7 +8631,7 @@ msgstr ""
 msgid ""
 "Welcome.\n"
 "\n"
-"This start wizard will guide you through the basic setup of your STB_BOX.\n"
+"This start wizard will guide you through the basic setup of your Xtrend ET9.\n"
 "Press the OK button on your remote control to move to the next step."
 msgstr ""
 "Välkommen.\n"
@@ -9024,9 +8654,6 @@ msgstr "Vad vill du söka efter?"
 #
 msgid "What to do with submitted crashlogs?"
 msgstr "Vad ska ske med skickade crashlogs?"
-
-msgid "When a neighbouring satellite is very strong this avoids searching transponders known to be coming from the neighbouring satellite"
-msgstr ""
 
 msgid "When set each folder will show the previous state used, when off the default values will be shown."
 msgstr ""
@@ -9125,6 +8752,29 @@ msgstr "Skrivning misslyckades!"
 
 msgid "XBox 360 support"
 msgstr ""
+
+msgid "STB_BOX advanced remote control (native)"
+msgstr ""
+
+#
+msgid "STB_BOX format data DVD (HDTV compatible)"
+msgstr "STB_BOX formaterad data DVD (HDTV kompatibel)"
+
+msgid "STB_BOX front panel"
+msgstr ""
+
+msgid "STB_BOX ir keyboard"
+msgstr ""
+
+msgid "STB_BOX ir mouse"
+msgstr ""
+
+msgid "STB_BOX remote control (native)"
+msgstr ""
+
+#
+msgid "STB_BOX software because updates are available."
+msgstr "STB_BOX mjukvara på grund av uppdateringar är tillgängliga."
 
 #
 msgid "YPbPr"
@@ -9271,9 +8921,6 @@ msgstr "Du har valt att inte installera grundinställningar. Du kan om du vill s
 #
 msgid "You chose not to install anything. Please press OK finish the install wizard."
 msgstr "Du har valt att inte installetra något. Vänligen tryck OK för att avsluta installations guiden."
-
-msgid "You chose the incorrect file."
-msgstr ""
 
 msgid "You didn't select a channel to record from."
 msgstr "Du valde ingen kanal att spela in från."
@@ -9725,9 +9372,6 @@ msgstr ""
 msgid "card reader"
 msgstr ""
 
-msgid "cat /proc/bus/input/devices"
-msgstr ""
-
 msgid "center"
 msgstr ""
 
@@ -9750,9 +9394,6 @@ msgstr "cirkulär vänster"
 #
 msgid "circular right"
 msgstr "circulär höger"
-
-msgid "circular right and circular left"
-msgstr ""
 
 #
 msgid "clear playlist"
@@ -10137,10 +9778,6 @@ msgid "mins"
 msgstr "min"
 
 #
-msgid "minute"
-msgstr "minut"
-
-#
 msgid "minutes"
 msgstr "minuter"
 
@@ -10466,15 +10103,9 @@ msgstr ""
 msgid "save recording (stop after current event)"
 msgstr ""
 
-msgid "save to XML file"
-msgstr ""
-
 #
 msgid "scan done!"
 msgstr "sökning klar!"
-
-msgid "scan for channels"
-msgstr ""
 
 #
 #, python-format
@@ -10525,9 +10156,6 @@ msgid "service PIN"
 msgstr "kanal PIN"
 
 msgid "set as startup service"
-msgstr ""
-
-msgid "setup Fancontol inStandby mode"
 msgstr ""
 
 msgid "setup PIN"
@@ -10709,9 +10337,6 @@ msgstr ""
 msgid "swap PiP and main picture"
 msgstr "skifta BiB och huvudbild"
 
-msgid "switch Fan On/Off"
-msgstr ""
-
 #
 msgid "switch to bookmarks"
 msgstr "byt till bokmärke"
@@ -10800,15 +10425,6 @@ msgstr "okänd kanal"
 msgid "until standby/restart"
 msgstr "tills standby/omstart"
 
-msgid "up to 1 degree"
-msgstr ""
-
-msgid "up to 2 degrees"
-msgstr ""
-
-msgid "up to 3 degrees"
-msgstr ""
-
 msgid "updates available."
 msgstr ""
 
@@ -10822,9 +10438,6 @@ msgstr ""
 #
 msgid "vertical"
 msgstr "vertikal"
-
-msgid "vertical and horizontal"
-msgstr ""
 
 #
 msgid "view extensions..."
