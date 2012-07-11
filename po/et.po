@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-18 01:34+0100\n"
-"PO-Revision-Date: 2012-05-18 01:41+0100\n"
+"POT-Creation-Date: 2012-07-07 18:42+0100\n"
+"PO-Revision-Date: 2012-07-11 17:33+0100\n"
 "Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
 "Language-Team: Raivo, Henkka, eesatfan, rimas\n"
 "Language: et\n"
@@ -138,9 +138,6 @@ msgstr ""
 " saadeti ViX beta tiimile.\n"
 "palun osunda "
 
-msgid "\"channel scan\" searches for channels and saves them to your STB_BOX; \"save to XML file\" does a transponder search and saves found transponders to an XML file in satellites.xml format"
-msgstr "\"kanaliotsing\" otsib kanaleid ja salvestab need vastuvõtjasse; \"salvesta XML faili\" otsib transpondereid ja salvestab leitud transponderid  XML faili satellites.xml vormingus"
-
 #. TRANSLATORS: short time representation hour:minute
 #, python-format
 msgid "%2d:%02d"
@@ -176,10 +173,6 @@ msgstr ""
 #. TRANSLATORS: long date representation short dayname daynum short monthname hour:minute in strftime() format! See 'man strftime'
 msgid "%a %e/%m  %-H:%M"
 msgstr ""
-
-#, python-format
-msgid "%d / 100"
-msgstr "%d / 100"
 
 #, python-format
 msgid "%d Gb"
@@ -290,12 +283,6 @@ msgstr "1"
 msgid "1 wireless network found!"
 msgstr "1 Wifi võrk leitud!"
 
-msgid "1-1. Serial Number (The first two or three letters of SN)"
-msgstr "1-1. Seerianumber (SN kaks või kolm esimest tähte)"
-
-msgid "1-2. Serial Number (The remaining numbers of SN)"
-msgstr "1-2. Seerianumber (SN ülejäänud numbrid)"
-
 msgid "1.0"
 msgstr "1.0"
 
@@ -340,9 +327,6 @@ msgstr "Esimese inforiba kestus"
 
 msgid "2"
 msgstr "2"
-
-msgid "2. Contact"
-msgstr "2. kontakt"
 
 msgid "2X"
 msgstr "2X"
@@ -665,9 +649,6 @@ msgstr "Vajuta OK ja oota!"
 msgid "After the start wizard is completed, you need to protect single services. Refer to your STB_BOX's manual on how to do that."
 msgstr "Kui alghäälestus on lõppenud, pead valima lapselukuga kanalid. Vaata juhendist, kuidas seda teha."
 
-msgid "Agree"
-msgstr "Nõus"
-
 msgid "Album"
 msgstr "Album"
 
@@ -841,9 +822,6 @@ msgstr "Võimaldab kasutada kollaseid DVB subtiitreid."
 
 msgid "Alpha"
 msgstr "Tähestik"
-
-msgid "Alpha Value"
-msgstr "Alfa väärtus"
 
 msgid "Alphanumeric"
 msgstr "Tähestikujärjekord"
@@ -1103,12 +1081,6 @@ msgstr "Must ekraan"
 msgid "Black screen till locked"
 msgstr "Must ekraan lukustumiseni"
 
-msgid "Blind Scan"
-msgstr "Pimeotsing"
-
-msgid "Blindscan"
-msgstr "Pimeotsing"
-
 msgid "Block noise reduction"
 msgstr "Blokeeri müra vähendamist"
 
@@ -1135,6 +1107,9 @@ msgstr "Heledus (tavakasutus)"
 
 msgid "Brightness (Standby)"
 msgstr "Heledus (ooterežiim)"
+
+msgid "Buffers:"
+msgstr ""
 
 msgid "Build:"
 msgstr "Build:"
@@ -1241,23 +1216,8 @@ msgstr "Kaabel TV otsing"
 msgid "Cache Thumbnails"
 msgstr "Salvesta pisipildid"
 
-msgid "Can't cancel during upgrade!!"
-msgstr "Uuendamise ajal ei saa tühistada!!"
-
-msgid "Can't find /usr/bin/md5sum"
-msgstr "Ei leia /usr/bin/md5sum"
-
-msgid "Can't found MD5 file."
-msgstr "MD5 faili ei leita."
-
-msgid "Can't found binary file."
-msgstr "Binaarfaili ei leita."
-
-msgid "Can't found device file!!"
-msgstr "Andmekandja faili ei leita!!"
-
-msgid "Can't found model name."
-msgstr "Mudeli nime ei leita."
+msgid "Cached:"
+msgstr ""
 
 msgid "Cancel"
 msgstr "Tühista"
@@ -2120,9 +2080,6 @@ msgstr "Soovid plaadi eelvaadet ka, enne kirjutamise alustamist?"
 msgid "Do you want to reboot your STB_BOX?"
 msgstr "Soovid vastuvõtja uuesti käivitada?"
 
-msgid "Do you want to remove binary data?"
-msgstr "Kas kustutad binaarandmed?n"
-
 msgid "Do you want to remove the package:\n"
 msgstr "Kas eemaldad paketi:\n"
 
@@ -2197,23 +2154,14 @@ msgstr "Paigalda laiendusi"
 msgid "Download plugins"
 msgstr ""
 
-msgid "Download the firmware (latest)"
-msgstr "Laadi alla värskeim püsivara"
-
 msgid "Downloadable plugins"
 msgstr "Saadaolevad laiendused"
-
-msgid "Downloaded "
-msgstr "Alla laetud "
 
 msgid "Downloading"
 msgstr "Laetakse alla"
 
 msgid "Downloading plugin information. Please wait..."
 msgstr "Laeme alla laienduse infot. Oota..."
-
-msgid "Downloading..."
-msgstr "Allalaadimine..."
 
 msgid "Downmix the Dolby Digital sound tracks to PCM."
 msgstr "Dolby Digital heli > PCM."
@@ -2432,9 +2380,6 @@ msgstr ""
 msgid "Enter your forum user name, to make it easier trace logs."
 msgstr "Sisesta foorumi kasutajanim logide jälgimise hõlbustamiseks."
 
-msgid "Enter your input data"
-msgstr "Sisesta andmed"
-
 msgid "Entitlements"
 msgstr "Õigused"
 
@@ -2465,14 +2410,6 @@ msgid ""
 msgstr ""
 "Viga: %s\n"
 "Uuesti?"
-
-#, python-format
-msgid ""
-"Error[%d] : %s.\n"
-"Press OK to exit."
-msgstr ""
-"Viga[%d] : %s.\n"
-"Väljumiseks vajuta OK."
 
 msgid "Estonian"
 msgstr "Eesti"
@@ -2564,33 +2501,14 @@ msgstr "Laienduste haldamine"
 msgid "FEC"
 msgstr "FEC"
 
-msgid "FILE NOT EXIST : /proc/stb/fp/remote_code"
-msgstr "FAILI EI OLE : /proc/stb/fp/remote_code"
-
-msgid "FPGA"
-msgstr "FPGA"
-
-msgid "FPGA Upgrade"
-msgstr "FPGA uuendamine"
+msgid "FLASH"
+msgstr ""
 
 msgid "FTP Setup"
 msgstr "FTP seadistus"
 
 msgid "Factory reset"
 msgstr "Algseadistuse taastamine"
-
-msgid "Fail to upgrade!! Retry!!"
-msgstr "Uuendamine nurjus!! Proovi uuesti!!"
-
-#, python-format
-msgid ""
-"Fail to verify data file. \n"
-"file[%s]\n"
-"md5[%s]"
-msgstr ""
-"Faili õigsuse kontroll nurjus. \n"
-"fail[%s]\n"
-"md5[%s]"
 
 msgid "Failed"
 msgstr "Nurjus"
@@ -2609,27 +2527,6 @@ msgstr "Ventilaatori %d PWM"
 #, python-format
 msgid "Fan %d Voltage"
 msgstr "Ventilaatori %d pinge"
-
-msgid "Fan Control"
-msgstr "Ventilaatori juhtimine"
-
-msgid "Fan basic action"
-msgstr "Ventilaatori põhitoimingud"
-
-msgid "Fan control"
-msgstr ""
-
-msgid "Fan mode"
-msgstr "Ventilaatori olek"
-
-msgid "Fan off duration time"
-msgstr "Ventilaatori väljas oleku aeg"
-
-msgid "Fan on duration time"
-msgstr "Ventilaatori seesoleku aeg"
-
-msgid "FanOFF InStanby"
-msgstr "Puhkeolekus ventilaator väljas"
 
 msgid "Fast"
 msgstr "Kiire"
@@ -2652,9 +2549,6 @@ msgstr "Lemmikud"
 msgid "File appears to be busy.\n"
 msgstr "Fail on hõivatud.\n"
 
-msgid "File not found"
-msgstr "Faili ei leitud"
-
 msgid ""
 "File oscam.conf not found.\n"
 "Please enter username/password manually."
@@ -2664,9 +2558,6 @@ msgstr ""
 
 msgid "Filesystem Check"
 msgstr "Failisüsteemi kontroll"
-
-msgid "Filter out adjacent satellites"
-msgstr "Filtreeri kõrvutised satelliidid"
 
 msgid "Finetune"
 msgstr "Peenhäälestus"
@@ -2682,15 +2573,6 @@ msgstr "Võrgu taaskäivitus on tehtud"
 
 msgid "Finnish"
 msgstr "Soome"
-
-msgid "Firmware"
-msgstr "Püsivara"
-
-msgid "Firmware Upgrade"
-msgstr "Püsivara uuendamine"
-
-msgid "Firmware does not exist."
-msgstr "Püsivara ei ole olemas"
 
 msgid "Flash"
 msgstr "Flash"
@@ -2709,9 +2591,6 @@ msgstr ""
 
 msgid "For more information see www.openpli.org"
 msgstr "Enama info jaoks vaata www.openpli.org"
-
-msgid "For use this plugin, you must update the kernel version to 3.1 or later"
-msgstr "Selle laienduse kasutamiseks tuleb uuendada kerneli versioonile 3.1 või hilisem"
 
 msgid "Format"
 msgstr "Vorming"
@@ -2755,9 +2634,6 @@ msgstr "Sageduse otsingu samm (khz)"
 msgid "Frequency steps"
 msgstr "Sageduse samm"
 
-msgid "Frequency values must be between 10700 and 12750 (or 3000 and 4200 in the case of C-band satellites)"
-msgstr "Sageduste vahemik peab olema 10700 kuni 12750 (või 3000 kuni 4200 C-band satelliitidel)"
-
 msgid "Fri"
 msgstr "R"
 
@@ -2766,9 +2642,6 @@ msgstr "Reede"
 
 msgid "From :"
 msgstr ""
-
-msgid "Front Processor"
-msgstr "Front Processor"
 
 #, python-format
 msgid "Frontprocessor version: %d"
@@ -2964,6 +2837,12 @@ msgstr ""
 msgid "Horizontal"
 msgstr "Horisontaalne"
 
+msgid "Horizontal turning speed"
+msgstr ""
+
+msgid "Hostname:"
+msgstr ""
+
 msgid "Hostname: "
 msgstr "Masina nimi: "
 
@@ -3084,31 +2963,12 @@ msgstr "Määrates 'jah', näidatakse edasi/tagasi kerimisel inforiba."
 msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times):"
 msgstr "Kui tekst on esipaneelil kuvamiseks liiga pikk, korratakse seda (kordade arv:)"
 
-msgid "If you are not sure what polarisations the satellite you wish to search transmits, select \"vertical and horizontal\""
-msgstr "Kui sa ei ole kindel, millist polarisatsiooni otsitav satelliit kasutab, vali \"vertikaalne and horisontaalne\""
-
 msgid ""
 "If you see this, something is wrong with\n"
 "your scart connection. Press OK to return."
 msgstr ""
 "SCART-ühenduses on probleem.\n"
 "Vajuta OK, et minna tagasi."
-
-msgid "If you select \"yes\" all channels on the satellite being search will be deleted before starting the current search"
-msgstr "Valides \"jah\", kustutatakse kõik otsitava satelliidi kanalid enne kanaliotsingu alustamist"
-
-msgid "If you select \"yes\" the scan will only save channels that are not encrypted; \"no\" will find encrypted and non-encrypted channels"
-msgstr "Määrates \"jah\", salvestab otsing ainult koodivabad kanalid; \"ei\" leiab kodeeritud ja koodivabad kanalid"
-
-msgid "If you select \"yes\" the scan will only search transponders not listed in satellites.xml"
-msgstr "Valides \"jah\", otsitakse ainult transpondereid, mida ei leidu satellites.xml failis"
-
-msgid ""
-"If you want to quit the Browser,\n"
-"Press RED -> EXIT."
-msgstr ""
-"Lehitsejast väljumiseks vajuta\n"
-"PUNAST nuppu -> EXIT."
 
 msgid ""
 "If your TV has a brightness or contrast enhancement, disable it. If there is something called \"dynamic\", set it to standard. Adjust the backlight level to a value suiting your taste. Turn down contrast on your TV as much as possible.\n"
@@ -3293,77 +3153,6 @@ msgstr "Vale asukoht"
 msgid "Invalid directory selected: %s"
 msgstr "Valisid mittetöötava kausta: %s"
 
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"For C-band searches stop frequency must be between 3000MHz and 4200MHz."
-msgstr ""
-"Sisestati kehtetud parameetrid. Paranda ja proovi uuesti.\n"
-"C-band otsingu lõppsagedus peab olema vahemikus 3000MHz kuni 4200MHz."
-
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"Frequency start value is larger than stop value."
-msgstr ""
-"Sisestati kehtetud parameetrid. Paranda ja proovi uuesti.\n"
-"Algsagedus peab olema lõppsagedusest suurem."
-
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"Start frequency must be between 10700MHz and 12750MHz.\n"
-"(Or 3000MHz and 4200MHz in the case of c-band)."
-msgstr ""
-"Sisestati kehtetud parameetrid. Paranda ja proovi uuesti.\n"
-"Algsagedus peab olema vahemikus 10700MHz kuni 12750MHz.\n"
-"(Või 3000MHz kuni 4200MHz, kui on c-band)."
-
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"Start symbol rate must be between 1MHz and 44MHz."
-msgstr ""
-"Sisestati kehtetud parameetrid. Paranda ja proovi uuesti.\n"
-"Alg sümbolikiirus peab olema vahemikus 1MHz kuni 44MHz."
-
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"Stop frequency must be between 10700MHz and 12750MHz.\n"
-"(Or 3000MHz and 4200MHz in the case of c-band)."
-msgstr ""
-"Sisestati kehtetud parameetrid. Paranda ja proovi uuesti.\n"
-"Lõppsagedus peab olema vahemikus 10700MHz kuni 12750MHz.\n"
-"(Või 3000MHz and 4200MHz, kui on c-band)."
-
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"Stop symbol rate must be between 2MHz and 45MHz."
-msgstr ""
-"Sisestati kehtetud parameetrid. Paranda ja proovi uuesti.\n"
-"Lõpp sümbolikiirus peab olema vahemikus 2MHz kuni 45MHz."
-
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"Symbol rate start value is larger than stop value."
-msgstr ""
-"Sisestati kehtetud parameetrid. Paranda ja proovi uuesti.\n"
-"Symbol rate algväärtus peab olema suurem kui lõppväärtus."
-
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"That is a C-band satellite so frequency values \n"
-"need to be between 3000MHz and 4200MHz."
-msgstr ""
-"Sisestati kehtetud parameetrid. Paranda ja proovi uuesti.\n"
-"See on C-band satelliit, sageduste vahemik \n"
-"peab olema 3000MHz kuni 4200MHz."
-
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"That is a Ku-band satellite so frequency values \n"
-"need to be between 10700MHz and 12750MHz."
-msgstr ""
-"Sisestati kehtetud parameetrid. Paranda ja proovi uuesti.\n"
-"See on Ku-band satelliit, sageduste vahemik \n"
-"peab olema 10700MHz kuni 12750MHz."
-
 msgid "Inversion"
 msgstr "Inversioon"
 
@@ -3412,9 +3201,6 @@ msgstr "Alati kogu ekraan"
 
 msgid "Just change channels"
 msgstr "Kanalivahetus"
-
-msgid "Keep"
-msgstr "Hoia alles"
 
 msgid "Keep old timers for how many days"
 msgstr "Aegunud taimerite säilitamise aeg (päevad)"
@@ -3625,58 +3411,11 @@ msgstr "Pikad failinimed"
 msgid "Longitude"
 msgstr "Pikkuskraad"
 
-#, python-format
-msgid ""
-"Looking for available transponders.\n"
-"This will take a short while.\n"
-"\n"
-"   Current Status : %d/%d\n"
-"   Satellite : %s\n"
-"   Polarization : %s\n"
-"   Frequency range : %d - %d MHz\n"
-"   Symbol rates : %d - %d MHz"
-msgstr ""
-"Otsime saadaolevaid transpondereid.\n"
-"See kestab mõne minuti.\n"
-"\n"
-"   Praegune olek : %d/%d\n"
-"   Satelliit : %s\n"
-"   Polarisatsioon : %s\n"
-"   Ribalaius : %d - %d MHz\n"
-"   Symbol rates : %d - %d MHz"
-
-msgid "MA"
-msgstr "MA"
-
 msgid "MAC:"
 msgstr ""
 
-msgid "MB"
-msgstr "MB"
-
-msgid "MC"
-msgstr "MC"
-
-msgid "MD"
-msgstr "MD"
-
-msgid "ME"
-msgstr "ME"
-
-msgid "MF"
-msgstr "MF"
-
-msgid "MG"
-msgstr "MG"
-
-msgid "MH"
-msgstr "MH"
-
 msgid "MORE"
 msgstr "VEEL"
-
-msgid "MSA"
-msgstr "MSA"
 
 msgid "Main Menu"
 msgstr "Peamenüü"
@@ -3828,9 +3567,6 @@ msgstr "Haagi"
 
 msgid "Mounts Setup"
 msgstr "Haakepunktid"
-
-msgid "Mouse"
-msgstr "Hiir"
 
 msgid "Move"
 msgstr "Liiguta"
@@ -4083,17 +3819,6 @@ msgstr "Võrgu ühendust pole saadaval."
 msgid "No networks found"
 msgstr "Võrke ei leidnud"
 
-msgid ""
-"No new transponders found! \n"
-"\n"
-"Only transponders already listed in satellites.xml \n"
-"have been found for those search parameters!"
-msgstr ""
-"Uusi transpondereid ei leitud! \n"
-"\n"
-"Kõik nende otsingu parameetrite järgi leitud transponderid\n"
-"juba leiduvad satellites.xml failis!"
-
 msgid "No of items switch (increase or reduced)"
 msgstr "Pole, mida vahetada (suurendada või vähendada)"
 
@@ -4109,17 +3834,11 @@ msgstr "Satituunerit ei leitud"
 msgid "No satellite frontend found!!"
 msgstr "Ei leitud satelliidi tuunerit!!"
 
-msgid "No selected binary data!!"
-msgstr "Valitud binaarandmeid ei ole!!"
-
 msgid "No tags are set on these movies."
 msgstr "Salvestisele pole märksõnu määratud."
 
 msgid "No to all"
 msgstr "EI kõigile"
-
-msgid "No transponders were found for those search parameters!"
-msgstr "Nende otsingu parameetritega transpondereid ei leitud!"
 
 msgid "No tuner is configured for use with a diseqc positioner!"
 msgstr "Ükski tuuner pole seadistatud DISEqC-mootorit kasutama!"
@@ -4172,9 +3891,6 @@ msgid ""
 msgstr ""
 "Ei leidnud töötavat WiFi seadet.\n"
 " Kontrolli, kas tuuneriga ühilduv seade on ühendatud ja kas kohalik võrk töötab."
-
-msgid "No, but play video again"
-msgstr "Ei, esita video uuesti"
 
 msgid "No, but restart from begin"
 msgstr "Ei, alusta uuesti algusest"
@@ -4355,12 +4071,6 @@ msgstr ""
 msgid "Only extensions."
 msgstr "Ainult laiendused."
 
-msgid "Only free scan"
-msgstr "Ainult vabakanalid"
-
-msgid "Only scan unknown transponders"
-msgstr "Ainult tundmatud transponderid"
-
 msgid "OpenVPN Setup"
 msgstr "OpenVPN seadistus"
 
@@ -4415,9 +4125,6 @@ msgstr "PMT PID"
 #, python-format
 msgid "PTS Plugin Error: %s"
 msgstr "PTS (pidev ajanihe) viga: %s"
-
-msgid "PWM value"
-msgstr "PWM väärtus"
 
 msgid "Package list update"
 msgstr "Paketinimekirja uuendus"
@@ -4565,9 +4272,6 @@ msgstr "Arvesta, et kui PIN on määramata, saab igaüks lapeluku maha võtta."
 msgid "Please change recording endtime"
 msgstr "Muuda salvestamise lõpuaega"
 
-msgid "Please change your remote mode"
-msgstr "Muuda puldi režiimi"
-
 msgid "Please check your network settings!"
 msgstr "Kontrolli võrgu seadistusi!"
 
@@ -4699,9 +4403,6 @@ msgstr "Häälesta tuuner C"
 msgid "Please set up tuner D"
 msgstr "Häälesta tuuner D"
 
-msgid "Please setup your tuner configuration."
-msgstr "Häälesta tuuner."
-
 msgid ""
 "Please use direction keys to move the PiP window.\n"
 "Press Bouquet +/- to resize the window.\n"
@@ -4761,9 +4462,6 @@ msgstr "Laienduste halduri abi"
 
 msgid "Plugins"
 msgstr "Laiendused"
-
-msgid "Polarisation"
-msgstr "Polarisatsioon"
 
 msgid "Polarization"
 msgstr "Polarisatsioon"
@@ -4846,9 +4544,6 @@ msgstr "Ettevalmistus...Oota"
 msgid "Press '0' to toggle internal/external PiP."
 msgstr "Sisese ja välise PIP vahetamiseks vajuta '0'."
 
-msgid "Press Green/OK to start the scan"
-msgstr "Otsingu alustamiseks vajuta OK"
-
 msgid "Press INFO on your remote control for additional information."
 msgstr "Vajuta INFO nuppu puldil lisainfo saamiseks."
 
@@ -4885,9 +4580,6 @@ msgstr "Otsingu alustamiseks vajuta OK"
 
 msgid "Press OK to toggle the selection."
 msgstr "Valiku muutmiseks vajuta OK."
-
-msgid "Press and hold '2' & '7' until red LED is solid, then press 'Help', then press '000"
-msgstr "Vajuta ja hoia '2' & '7' kuni punane LED põleb ühtlaselt, siis vajuta 'HELP', siis vajuta '000"
 
 msgid "Press yellow to set this interface as default interface."
 msgstr "Vajutage kollast nuppu, valimaks see liides vaikimisi liideseks."
@@ -4978,6 +4670,9 @@ msgstr "QuickEPG"
 
 msgid "Quickzap"
 msgstr "Kiire kanalivalik"
+
+msgid "RAM"
+msgstr ""
 
 msgid "RF output"
 msgstr "RF-väljund"
@@ -5128,12 +4823,6 @@ msgstr "Mäleta kanali PIN-i"
 
 msgid "Remember these settings for each folder"
 msgstr "Pea iga kataloogi seadistused meeles"
-
-msgid "Remote Control Code"
-msgstr "Puldi kood"
-
-msgid "Remote Control System Code"
-msgstr "Puldi süsteemi kood"
 
 msgid "Remote box"
 msgstr "Võrgus olev vastuvõtja"
@@ -5292,9 +4981,6 @@ msgstr "Jätka alates %s"
 msgid "Resuming playback"
 msgstr "Taasesitus jätkub katkestatud kohalt"
 
-msgid "Return the Love Event"
-msgstr ""
-
 msgid "Return to movie list"
 msgstr "Tagasi filmilisti"
 
@@ -5430,9 +5116,6 @@ msgstr "Skaleerija teravus"
 msgid "Scaling Mode"
 msgstr "Skaleerimine"
 
-msgid "Scan"
-msgstr "Otsi"
-
 msgid "Scan "
 msgstr "Otsi "
 
@@ -5502,18 +5185,6 @@ msgstr "Otsi US MID sagedusalast"
 msgid "Scan band US SUPER"
 msgstr "Otsi US SUPER sagedusalast"
 
-msgid "Scan start frequency"
-msgstr "Otsingu algsagedus"
-
-msgid "Scan start symbolrate"
-msgstr "Otsingu sümbolikiiruse algväärtus"
-
-msgid "Scan stop frequency"
-msgstr "Otsingu lõppsagedus"
-
-msgid "Scan stop symbolrate"
-msgstr "Otsingu sümbolikiiruse lõppväärtus"
-
 msgid "Scan your network for wireless access points and connect to them using your selected wireless device.\n"
 msgstr "Otsi oma võrgus WiFi ruutereid ja ühendu nendega, kasutades valitud WiFi seadet.\n"
 
@@ -5540,26 +5211,11 @@ msgstr "Kerimise kiirus"
 msgid "Search"
 msgstr "Otsi"
 
-#, python-format
-msgid ""
-"Search completed. %d transponders found.\n"
-"\n"
-"Details saved in:\n"
-"%s"
-msgstr ""
-"Otsing lõpetatud. %d transponderit leitud.\n"
-"\n"
-"Üksikasjad salvestati:\n"
-"%s"
-
 msgid "Search east"
 msgstr "Otsi itta"
 
 msgid "Search for similar events"
 msgstr "Otsi sarnaseid saateid"
-
-msgid "Search type"
-msgstr "Otsingu tüüp"
 
 msgid "Search west"
 msgstr "Otsi läände"
@@ -5602,9 +5258,6 @@ msgstr "Vali võrgukaart"
 
 msgid "Select a movie"
 msgstr "Vali salvestis"
-
-msgid "Select a tuner that is configured for the satellite you wish to search"
-msgstr "Vali tuuner, mis on häälestatud otsitavale satellidile"
 
 msgid "Select audio track"
 msgstr "Vali heliriba"
@@ -5671,9 +5324,6 @@ msgstr "Vali lisamiseks kanal..."
 
 msgid "Select the number of days after which the box is allowed to permanently delete recordings (from the trashcan)."
 msgstr ""
-
-msgid "Select the satellite you wish to search"
-msgstr "Vali otsinguks satelliit"
 
 msgid "Select upgrade source to edit."
 msgstr "Vali uuenduste allikas muutmiseks."
@@ -6347,9 +5997,6 @@ msgstr ""
 msgid "Sorry, no Details available!"
 msgstr "Kahjuks pole üksikasju saadaval!"
 
-msgid "Sorry, video is not available!"
-msgstr "Video ei ole saadaval saadaval!"
-
 msgid ""
 "Sorry, your backup destination is not writeable.\n"
 "\n"
@@ -6439,12 +6086,6 @@ msgstr "Alates"
 msgid "Status"
 msgstr "Olek"
 
-msgid "Status : 0%"
-msgstr "Olek : 0%"
-
-msgid "Status Check Period"
-msgstr "Oleku kontrolli vahemik"
-
 msgid "Step east"
 msgstr "Samm itta"
 
@@ -6532,12 +6173,6 @@ msgstr "Subtiitrite valik..."
 msgid "Subtitles"
 msgstr "Subtiitrid"
 
-msgid "Succeed"
-msgstr "Õnnestunud"
-
-msgid "Success. Press OK to exit."
-msgstr "Õnnestus. Väljumiseks vajuta OK"
-
 msgid "Sun"
 msgstr "P"
 
@@ -6576,12 +6211,6 @@ msgstr "SR"
 
 msgid "Symbol rate"
 msgstr "Symbol rate"
-
-msgid "Symbol rate values are in megasymbols; enter a value between 1 and 44"
-msgstr "Symbol rate väärtused on megasymbolites; sisesta väärtus vahemikus 1 kuni 44"
-
-msgid "Symbol rate values are in megasymbols; enter a value between 2 and 45"
-msgstr "Symbol rate väärtused on megasymbolites; sisesta väärtus vahemikus 2 kuni 45"
 
 msgid "Symbolrate"
 msgstr "Symbolrate"
@@ -6664,9 +6293,6 @@ msgstr "Teksti äärise laius"
 
 msgid "Text font size"
 msgstr "Teksti suurus"
-
-msgid "Text support"
-msgstr "Teksti toetus"
 
 msgid "Thai"
 msgstr ""
@@ -6783,9 +6409,6 @@ msgstr "Vastuvõtja salvestab EPG andmed iga (tund)."
 msgid "The backup failed. Please choose a different backup location."
 msgstr "Varundamine nurjus. Vali uus varukoopia asukoht."
 
-msgid "The blindscan run was cancelled by the user."
-msgstr "Kasutaja katkestas pimeotsingu."
-
 msgid "The current beta image could not be stable"
 msgstr "Praegune beta tarkvara ei pruugi olla stabiilne"
 
@@ -6884,9 +6507,6 @@ msgstr "Abiline leidis konfiguratsiooni varukoopia. Kas soovid taastada vanad se
 msgid "The wizard is finished now."
 msgstr "Toiming on nüüd lõpetatud. Vajuta OK."
 
-msgid "Then choose 'Keep' within seconds"
-msgstr ""
-
 msgid "There are at least "
 msgstr "Leiti vähemalt "
 
@@ -6923,9 +6543,6 @@ msgstr "Juhtus viga. Pakett:"
 
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr "DVD RW ketas on formaaditud.Uuesti formaatimisel kustutatakse kõik, mis plaadile kirjutatud."
-
-msgid "This Plugin only support for UNO/ULTIMO"
-msgstr "See laiendus toetab ainult UNO/ULTIMO vastuvõtjaid"
 
 #, python-format
 msgid "This STB_BOX can't decode %s streams!"
@@ -7085,9 +6702,6 @@ msgstr "Laiendus on paigaldatud."
 
 msgid "This plugin is not installed."
 msgstr "See laiendus pole paigaldatud."
-
-msgid "This plugin is supported only the Ultimo/Uno."
-msgstr "Ainult Ultimo/Uno toetab seda laiendust."
 
 msgid "This plugin will be installed."
 msgstr "See laiendus paigaldatakse."
@@ -7407,6 +7021,9 @@ msgstr "Tuuneri olek"
 msgid "Tuner type"
 msgstr "Tuuneri tüüp"
 
+msgid "Tuning step size"
+msgstr ""
+
 msgid "Turkish"
 msgstr "Türgi"
 
@@ -7509,9 +7126,6 @@ msgstr "Tarkvara kataloogi uuendamine"
 msgid "Updating... Please wait... This can take some minutes..."
 msgstr "Uuendan... Oota... See võib kesta mõne minuti..."
 
-msgid "Upgrade"
-msgstr "Uuenda"
-
 msgid "Upgrade and ask to reboot"
 msgstr "Uuenda ja küsi luba taaskäivitamiseks"
 
@@ -7547,9 +7161,6 @@ msgstr "Kasuta DHCP:d"
 
 msgid "Use DVB subtitles position"
 msgstr "Kasuta DVB subtiitrite asukohta"
-
-msgid "Use Fan timer"
-msgstr "Kasuta ventilaatori taimerit"
 
 msgid "Use Interface"
 msgstr "Kasuta võrguliidest"
@@ -7689,6 +7300,9 @@ msgstr "Versioon: "
 msgid "Vertical"
 msgstr "Vertikaalne"
 
+msgid "Vertical turning speed"
+msgstr ""
+
 msgid "ViX EPG"
 msgstr "ViX EPG"
 
@@ -7819,27 +7433,6 @@ msgstr "Pinge valik"
 msgid "Volume"
 msgstr "Helitugevus"
 
-msgid "STB_BOX advanced remote control (native)"
-msgstr "Vastuvõtja täpsem pult (algupärane)"
-
-msgid "STB_BOX format data DVD (HDTV compatible)"
-msgstr "Vastuvõtja vormingus data DVD-d"
-
-msgid "STB_BOX front panel"
-msgstr "vastuvõtja esipaneel"
-
-msgid "STB_BOX ir keyboard"
-msgstr "vastuvõtja infrapuna klaviatuur"
-
-msgid "STB_BOX ir mouse"
-msgstr "vastuvõtja infrapuna hiir"
-
-msgid "STB_BOX remote control (native)"
-msgstr "Vastuvõtja pult (algupärane)"
-
-msgid "STB_BOX software because updates are available."
-msgstr "Vastuvõtja tarkvara, sest uuendused on saadaval."
-
 msgid "W"
 msgstr "W"
 
@@ -7885,17 +7478,14 @@ msgstr "Ärata"
 msgid "Wakeup TV from standby"
 msgstr "Ärata TV"
 
-msgid "Wakeup your STB_BOX from standby"
-msgstr "Käivita A/V ressiiver"
-
 msgid "Wakeup signal from TV"
 msgstr "Äratussignaal TV-st"
 
+msgid "Wakeup your STB_BOX from standby"
+msgstr "Käivita A/V ressiiver"
+
 msgid "Warn if free space drops below (kB):"
 msgstr "Hoiata, kui vaba ruumi alla (kB):"
-
-msgid "Web Browser"
-msgstr "Veebilehitseja"
 
 msgid "Web Interface"
 msgstr "Veebiliides"
@@ -7957,7 +7547,7 @@ msgstr ""
 msgid ""
 "Welcome.\n"
 "\n"
-"This start wizard will guide you through the basic setup of your STB_BOX.\n"
+"This start wizard will guide you through the basic setup of your Xtrend ET9.\n"
 "Press the OK button on your remote control to move to the next step."
 msgstr ""
 "Tere.\n"
@@ -7976,9 +7566,6 @@ msgstr "Mida soovid otsida?"
 
 msgid "What to do with submitted crashlogs?"
 msgstr "Mida teha saadud vealogidega?"
-
-msgid "When a neighbouring satellite is very strong this avoids searching transponders known to be coming from the neighbouring satellite"
-msgstr "Kui naabersatelliit on väga tugeva signaaliga, väldib see otsimist transponderitelt, mis tulevad naabersatelliidilt."
 
 msgid "When set each folder will show the previous state used, when off the default values will be shown."
 msgstr "Määrates 'jah', peetakse iga kausta seadistused meeles, määrates 'ei', kasutatakse väikeväärtusi."
@@ -8072,6 +7659,27 @@ msgstr "Kirjutamine nurjus!"
 
 msgid "XBox 360 support"
 msgstr "XBox 360 tugi"
+
+msgid "STB_BOX advanced remote control (native)"
+msgstr "Vastuvõtja täpsem pult (algupärane)"
+
+msgid "STB_BOX format data DVD (HDTV compatible)"
+msgstr "Vastuvõtja vormingus data DVD-d"
+
+msgid "STB_BOX front panel"
+msgstr "vastuvõtja esipaneel"
+
+msgid "STB_BOX ir keyboard"
+msgstr "vastuvõtja infrapuna klaviatuur"
+
+msgid "STB_BOX ir mouse"
+msgstr "vastuvõtja infrapuna hiir"
+
+msgid "STB_BOX remote control (native)"
+msgstr "Vastuvõtja pult (algupärane)"
+
+msgid "STB_BOX software because updates are available."
+msgstr "Vastuvõtja tarkvara, sest uuendused on saadaval."
 
 msgid "YPbPr"
 msgstr "YPbPr"
@@ -8200,9 +7808,6 @@ msgstr "Ei soovinud paigaldada ühtegi vaikimisi seadet. Siiski saab ka hiljem v
 
 msgid "You chose not to install anything. Please press OK finish the install wizard."
 msgstr "Ei soovinud paigaldada midagi. Vajuta OK väljumiseks."
-
-msgid "You chose the incorrect file."
-msgstr "Valisid vale faili."
 
 msgid "You didn't select a channel to record from."
 msgstr "Salvestavat kanalit pole valitud."
@@ -8597,9 +8202,6 @@ msgstr "kaart"
 msgid "card reader"
 msgstr "kaardilugeja"
 
-msgid "cat /proc/bus/input/devices"
-msgstr "cat /proc/bus/input/devices"
-
 msgid "center"
 msgstr "keskel"
 
@@ -8617,9 +8219,6 @@ msgstr "ringpolarisatsioon vasak"
 
 msgid "circular right"
 msgstr "ringpolarisatsioon parem"
-
-msgid "circular right and circular left"
-msgstr "ringpolarisatsioon parem ja vasak"
 
 msgid "clear playlist"
 msgstr "tühjenda esitusloend"
@@ -8925,9 +8524,6 @@ msgstr "menüü"
 msgid "mins"
 msgstr "min"
 
-msgid "minute"
-msgstr "minut"
-
 msgid "minutes"
 msgstr "minutid"
 
@@ -9192,14 +8788,8 @@ msgstr "salvesta (vali saade)"
 msgid "save recording (stop after current event)"
 msgstr "salvesta (lõpeta peale praegust saadet)"
 
-msgid "save to XML file"
-msgstr "salvesta XML faili"
-
 msgid "scan done!"
 msgstr "otsing valmis!"
-
-msgid "scan for channels"
-msgstr "otsi kanaleid"
 
 #, python-format
 msgid "scan in progress - %d%% done!"
@@ -9240,9 +8830,6 @@ msgstr "kanali PIN"
 
 msgid "set as startup service"
 msgstr "käivitu sellel kanalil"
-
-msgid "setup Fancontol inStandby mode"
-msgstr ""
 
 msgid "setup PIN"
 msgstr "määra PIN"
@@ -9394,9 +8981,6 @@ msgstr "ära käivitu sellel kanalil"
 msgid "swap PiP and main picture"
 msgstr "vaheta PiP- ja peapilt"
 
-msgid "switch Fan On/Off"
-msgstr "lülita ventilaator sisse/välja"
-
 msgid "switch to bookmarks"
 msgstr "mine lemmikute-loendisse"
 
@@ -9469,15 +9053,6 @@ msgstr "tundmatu kanal"
 msgid "until standby/restart"
 msgstr "kuni ooterežiimini/taaskäivitamiseni"
 
-msgid "up to 1 degree"
-msgstr "1 kraad"
-
-msgid "up to 2 degrees"
-msgstr "2 kraadi"
-
-msgid "up to 3 degrees"
-msgstr "3 kraadi"
-
 msgid "updates available."
 msgstr ""
 
@@ -9489,9 +9064,6 @@ msgstr "kasutuses:"
 
 msgid "vertical"
 msgstr "vertikaal"
-
-msgid "vertical and horizontal"
-msgstr "vertikaalne ja horisontaalne"
 
 msgid "view extensions..."
 msgstr "näita laiendusi..."

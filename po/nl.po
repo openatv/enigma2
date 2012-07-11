@@ -4,9 +4,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-28 11:27+0100\n"
-"PO-Revision-Date: 2012-06-30 15:39+0100\n"
-"Last-Translator: \n"
+"POT-Creation-Date: 2012-07-07 18:42+0100\n"
+"PO-Revision-Date: 2012-07-11 17:32+0100\n"
+"Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
 "Language-Team: Andy Blackburn, Rob van der Does\n"
 "Language: Nederlands\n"
 "MIME-Version: 1.0\n"
@@ -143,9 +143,6 @@ msgstr ""
 " verstuurd naar het ViX beta team.\n"
 "refereer naar "
 
-msgid "\"channel scan\" searches for channels and saves them to your STB_BOX; \"save to XML file\" does a transponder search and saves found transponders to an XML file in satellites.xml format"
-msgstr "\"kanaal  scan\" zoekt naar kanalen en slaat die op in uw STB_BOX; \"sla op in XML bestand\" voert een transponder scan uit en slaat de gevonden transponders op in een XML bestand in satellites.xml formaat"
-
 #. TRANSLATORS: short time representation hour:minute
 #, python-format
 msgid "%2d:%02d"
@@ -181,10 +178,6 @@ msgstr "%a %e/%m"
 #. TRANSLATORS: long date representation short dayname daynum short monthname hour:minute in strftime() format! See 'man strftime'
 msgid "%a %e/%m  %-H:%M"
 msgstr "%a %e/%m  %-H:%M"
-
-#, python-format
-msgid "%d / 100"
-msgstr "%d / 100"
 
 #, python-format
 msgid "%d Gb"
@@ -295,12 +288,6 @@ msgstr "1"
 msgid "1 wireless network found!"
 msgstr "1 draadloos netwerk gevonden!"
 
-msgid "1-1. Serial Number (The first two or three letters of SN)"
-msgstr "1-1. Serienummer (de eerste 2 of 3 letters)"
-
-msgid "1-2. Serial Number (The remaining numbers of SN)"
-msgstr "1-2. Serie nummer (de resterende cijfers van SN)"
-
 msgid "1.0"
 msgstr "1.0"
 
@@ -345,9 +332,6 @@ msgstr "1e informatiebalk timeout"
 
 msgid "2"
 msgstr "2"
-
-msgid "2. Contact"
-msgstr "2. Contact"
 
 msgid "2X"
 msgstr "2X"
@@ -673,9 +657,6 @@ msgstr "Druk op OK en wacht."
 msgid "After the start wizard is completed, you need to protect single services. Refer to your STB_BOX's manual on how to do that."
 msgstr "Nadat de wizard is uitgevoerd, moet u enkele services beveiligen. Kijk in de handleiding van uw STB_BOX hoe dat te doen."
 
-msgid "Agree"
-msgstr "Mee eens"
-
 msgid "Album"
 msgstr "Album"
 
@@ -752,13 +733,13 @@ msgid "Allows you to center the position of the DVB subtitles."
 msgstr "Geeft u de mogelijkheid de DVB-ondertitels gecentreerd weer te geven."
 
 msgid "Allows you to choose the Picons to be displayed on the frontpanel."
-msgstr "Geeft u de mogelijkheid on Picons weer te geven op het scherm van uw STB_BOX."
+msgstr "Geeft u de mogelijkheid on Picons weer te geven op het scherm van uw Xtrend ET9."
 
 msgid "Allows you to enable the debug log. They contain very detailed information of everything the system does."
 msgstr "Geeft de mogelijkheid debug-logs te activeren. Deze bevatten zeer gedetailleerde informatie over alles wat het systeem doet."
 
 msgid "Allows you to enable/disable displaying icons on the frontpanel."
-msgstr "Geeft u de mogelijkheid on iconen weer te geven op het scherm van uw STB_BOX."
+msgstr "Geeft u de mogelijkheid on iconen weer te geven op het scherm van uw Xtrend ET9."
 
 msgid "Allows you to prefer the DVB-graphical subtitles over Teletext subtitles."
 msgstr "Geeft de voorkeur aan grafische DVB-ondertitels boven teletekst ondertitels"
@@ -849,9 +830,6 @@ msgstr "Kies hier of u gele DVB-ondertitels wilt zien."
 
 msgid "Alpha"
 msgstr "Alpha"
-
-msgid "Alpha Value"
-msgstr "Alpha waarde"
 
 msgid "Alphanumeric"
 msgstr "Alfanumeriek"
@@ -1111,12 +1089,6 @@ msgstr "Zwart scherm"
 msgid "Black screen till locked"
 msgstr "Zwart scherm tot gelocked"
 
-msgid "Blind Scan"
-msgstr "Blind Scan"
-
-msgid "Blindscan"
-msgstr "Blindscan"
-
 msgid "Block noise reduction"
 msgstr "Blok ruis vermindering"
 
@@ -1255,24 +1227,6 @@ msgstr "Miniatuurafbeeldingen cachen"
 
 msgid "Cached:"
 msgstr "Cached:"
-
-msgid "Can't cancel during upgrade!!"
-msgstr "Kan tijdens de upgrade niet annuleren!"
-
-msgid "Can't find /usr/bin/md5sum"
-msgstr "Kan  /usr/bin/md5sum  niet vinden"
-
-msgid "Can't found MD5 file."
-msgstr "Kan MD5 bestand niet vinden."
-
-msgid "Can't found binary file."
-msgstr "Kan binary bestand niet vinden."
-
-msgid "Can't found device file!!"
-msgstr "Kan device bestand niet vinden!!"
-
-msgid "Can't found model name."
-msgstr "Kan model naam niet vinden."
 
 msgid "Cancel"
 msgstr "Annuleren"
@@ -2137,9 +2091,6 @@ msgstr "Wilt u de DVD bekijken alvorens te schrijven?"
 msgid "Do you want to reboot your STB_BOX?"
 msgstr "Wilt u uw STB_BOX opnieuw opstarten?"
 
-msgid "Do you want to remove binary data?"
-msgstr "Wilt u de binary gegevens verwijderen?"
-
 msgid "Do you want to remove the package:\n"
 msgstr "Wilt u het volgende pakket verwijderen:\n"
 
@@ -2214,23 +2165,14 @@ msgstr "Downloaden plugins"
 msgid "Download plugins"
 msgstr "Download plugins"
 
-msgid "Download the firmware (latest)"
-msgstr "Download de laatste firmware"
-
 msgid "Downloadable plugins"
 msgstr "Beschikbare plugins"
-
-msgid "Downloaded "
-msgstr "Gedownload"
 
 msgid "Downloading"
 msgstr "Bezig met downloaden"
 
 msgid "Downloading plugin information. Please wait..."
 msgstr "Ophalen informatie. Een ogenblik a.u.b..."
-
-msgid "Downloading..."
-msgstr "Aan het downloaden....."
 
 msgid "Downmix the Dolby Digital sound tracks to PCM."
 msgstr "Downmix Dolby Digital geluid naar PCM."
@@ -2449,9 +2391,6 @@ msgstr "Voer uw e-mail adres in om een kopie van de logs te kunnen ontvangen."
 msgid "Enter your forum user name, to make it easier trace logs."
 msgstr "Voer hier uw forum-gebruikersnaam in, om terugkoppeling makkelijker te maken."
 
-msgid "Enter your input data"
-msgstr "Geef uw invoer"
-
 msgid "Entitlements"
 msgstr "Rechten"
 
@@ -2482,14 +2421,6 @@ msgid ""
 msgstr ""
 "Fout: %s\n"
 "Opnieuw?"
-
-#, python-format
-msgid ""
-"Error[%d] : %s.\n"
-"Press OK to exit."
-msgstr ""
-"Foutr[%d] : %s.\n"
-"Druk op OK om af te sluiten."
 
 msgid "Estonian"
 msgstr "Estisch"
@@ -2583,36 +2514,14 @@ msgstr "Applicatiebeheer"
 msgid "FEC"
 msgstr "FEC"
 
-msgid "FILE NOT EXIST : /proc/stb/fp/remote_code"
-msgstr "BESTAND BESTAAT NIET: /proc/stb/fp/remote_code"
-
 msgid "FLASH"
 msgstr "FLASH"
-
-msgid "FPGA"
-msgstr "FPGA"
-
-msgid "FPGA Upgrade"
-msgstr "FPGA Upgrade"
 
 msgid "FTP Setup"
 msgstr "FTP Instellingen"
 
 msgid "Factory reset"
 msgstr "Fabrieksinstellingen"
-
-msgid "Fail to upgrade!! Retry!!"
-msgstr "Upgrade mislukt!! Probeer het opnieuw!!"
-
-#, python-format
-msgid ""
-"Fail to verify data file. \n"
-"file[%s]\n"
-"md5[%s]"
-msgstr ""
-"Verifieren data bestand mislukt. \n"
-"file[%s]\n"
-"md5[%s]"
 
 msgid "Failed"
 msgstr "Mislukt"
@@ -2635,27 +2544,6 @@ msgstr "Ventilator %d PWM"
 msgid "Fan %d Voltage"
 msgstr "Ventilator %d Voltage"
 
-msgid "Fan Control"
-msgstr "Fan Control"
-
-msgid "Fan basic action"
-msgstr "Fan basis actie"
-
-msgid "Fan control"
-msgstr "Fan control"
-
-msgid "Fan mode"
-msgstr "Fan modus"
-
-msgid "Fan off duration time"
-msgstr "Fan uit gedurende"
-
-msgid "Fan on duration time"
-msgstr "Fan aan gedurende"
-
-msgid "FanOFF InStanby"
-msgstr "Fan uit in standby"
-
 msgid "Fast"
 msgstr "Snel"
 
@@ -2677,9 +2565,6 @@ msgstr "Favorieten"
 msgid "File appears to be busy.\n"
 msgstr "Bestand lijkt in gebruik te zijn.\n"
 
-msgid "File not found"
-msgstr "Bestand niet gevonden"
-
 msgid ""
 "File oscam.conf not found.\n"
 "Please enter username/password manually."
@@ -2689,9 +2574,6 @@ msgstr ""
 
 msgid "Filesystem Check"
 msgstr "Bestandssysteem controle"
-
-msgid "Filter out adjacent satellites"
-msgstr "Filter nabije satellieten uit"
 
 msgid "Finetune"
 msgstr "Fijn afst."
@@ -2707,15 +2589,6 @@ msgstr "Herstarten van uw netwerk is voltooid"
 
 msgid "Finnish"
 msgstr "Fins"
-
-msgid "Firmware"
-msgstr "Firmware"
-
-msgid "Firmware Upgrade"
-msgstr "Firmware Upgrade"
-
-msgid "Firmware does not exist."
-msgstr "Firmware bestaat niet."
 
 msgid "Flash"
 msgstr "Flash"
@@ -2734,9 +2607,6 @@ msgstr "Lettergrootte"
 
 msgid "For more information see www.openpli.org"
 msgstr "Voor meer informatie zie: www.openpli.org"
-
-msgid "For use this plugin, you must update the kernel version to 3.1 or later"
-msgstr "Om deze plugin te gebruiken moet u updaten naar kernel versie 3.1 of jonger."
 
 msgid "Format"
 msgstr "Formaat"
@@ -2780,9 +2650,6 @@ msgstr "Frequentiescan stapgrootte(khz)"
 msgid "Frequency steps"
 msgstr "Freqentie stappen"
 
-msgid "Frequency values must be between 10700 and 12750 (or 3000 and 4200 in the case of C-band satellites)"
-msgstr "Frequentie waardes moeten tussen 10700MHz en 12750MHz liggen (of tussen 3000MHz en 4200MHz in geval van C-band satellieten)."
-
 msgid "Fri"
 msgstr "Vr"
 
@@ -2791,9 +2658,6 @@ msgstr "vrijdag"
 
 msgid "From :"
 msgstr "Van:"
-
-msgid "Front Processor"
-msgstr "Frontprocessor"
 
 #, python-format
 msgid "Frontprocessor version: %d"
@@ -3116,31 +2980,12 @@ msgstr "Als u hier voor 'ja' kiest, wordt de informatiebalk getoond als u snel o
 msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times):"
 msgstr "Als de tekst te lang is voor het schermpje van uw STB_BOX, zal het (aantal keren) worden herhaald:"
 
-msgid "If you are not sure what polarisations the satellite you wish to search transmits, select \"vertical and horizontal\""
-msgstr "Als u niet zeker bent van de polarisatie van de gewenste transponder, kiest u voor \"vertikaal en horizontaal\" "
-
 msgid ""
 "If you see this, something is wrong with\n"
 "your scart connection. Press OK to return."
 msgstr ""
 "Waneer u dit ziet, is er iets mis met uw\n"
 "scart aansluiting. Druk op OK om terug te keren."
-
-msgid "If you select \"yes\" all channels on the satellite being search will be deleted before starting the current search"
-msgstr "Als u \"Ja\" kiest, zullen alle kanalen van de huidige satelliet worden gewist voor de zoekslag begint. Dit voorkomt veelal dat kanalen dubbel bestaan in uw STB_BOX."
-
-msgid "If you select \"yes\" the scan will only save channels that are not encrypted; \"no\" will find encrypted and non-encrypted channels"
-msgstr "Als u \"Ja\" kiest, zullen alleen kanalen worden gezocht die niet gecodeerd zijn; met \"no\" zullen alle kanalen gezocht worden."
-
-msgid "If you select \"yes\" the scan will only search transponders not listed in satellites.xml"
-msgstr "Als u \"Ja\" kiest, zullen alleen kanalen worden gezocht die niet in us satellites.xml staan (het bestand waar alle transponders in staan)."
-
-msgid ""
-"If you want to quit the Browser,\n"
-"Press RED -> EXIT."
-msgstr ""
-"Om de browser te verlaten,\n"
-"Druk op Rood -> Exit."
 
 msgid ""
 "If your TV has a brightness or contrast enhancement, disable it. If there is something called \"dynamic\", set it to standard. Adjust the backlight level to a value suiting your taste. Turn down contrast on your TV as much as possible.\n"
@@ -3327,77 +3172,6 @@ msgstr "Ongeldige locatie"
 msgid "Invalid directory selected: %s"
 msgstr "Ongeldige map geselecteerd: %s"
 
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"For C-band searches stop frequency must be between 3000MHz and 4200MHz."
-msgstr ""
-"Ongeldige waardes ingevoerd. Corrigeer en probeer opnieuw.\n"
-"Voor C-band zoeken moet de eind frequentie liggen tussen 3000MHz en 4200MHz."
-
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"Frequency start value is larger than stop value."
-msgstr ""
-"Ongeldige waardes ingevoerd. Corrigeer en probeer opnieuw.\n"
-"De frequentie beginwaarde is hoger dan de eindwaarde"
-
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"Start frequency must be between 10700MHz and 12750MHz.\n"
-"(Or 3000MHz and 4200MHz in the case of c-band)."
-msgstr ""
-"Ongeldige waardes ingevoerd. Corrigeer en probeer opnieuw.\n"
-"De beginwaarde voor de frequentie moet liggen tussen de 10700MHz en 12750MHz.\n"
-"(of tussen de 3000MHz en 4200MHz voor de C-band)."
-
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"Start symbol rate must be between 1MHz and 44MHz."
-msgstr ""
-"Ongeldige waardes ingevoerd. Corrigeer en probeer opnieuw.\n"
-"De aanvangs symbol rate moet liggen tussen de 1MHz en de 44MHz."
-
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"Stop frequency must be between 10700MHz and 12750MHz.\n"
-"(Or 3000MHz and 4200MHz in the case of c-band)."
-msgstr ""
-"Ongeldige waardes ingevoerd. Corrigeer en probeer opnieuw.\n"
-"De eindwaarde voor de frequentie moet liggen tussen de 10700MHz en 12750MHz.\n"
-"(of tussen de 3000MHz en 4200MHz voor de C-band)."
-
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"Stop symbol rate must be between 2MHz and 45MHz."
-msgstr ""
-"Ongeldige waardes ingevoerd. Corrigeer en probeer opnieuw.\n"
-"De eindwaarde voor de symbolrate moet tussen de 2MHz en de 45MHz liggen."
-
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"Symbol rate start value is larger than stop value."
-msgstr ""
-"Ongeldige waardes ingevoerd. Corrigeer en probeer opnieuw.\n"
-"De aanvangs symbolrate is groter dan de eindwaarde"
-
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"That is a C-band satellite so frequency values \n"
-"need to be between 3000MHz and 4200MHz."
-msgstr ""
-"Ongeldige waardes ingevoerd. Corrigeer en probeer opnieuw.\n"
-"Dit is een C-band transponder dus de frequentie moet liggen tussen \n"
-"de 3000MHz en 4200MHz."
-
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"That is a Ku-band satellite so frequency values \n"
-"need to be between 10700MHz and 12750MHz."
-msgstr ""
-"Ongeldige waardes ingevoerd. Corrigeer en probeer opnieuw.\n"
-"Dit is een Ku-band transponder dus de frequentie moet liggen tussen \n"
-"de 10700MHz en 12750MHz."
-
 msgid "Inversion"
 msgstr "Inversie"
 
@@ -3446,9 +3220,6 @@ msgstr "Alleen schalen"
 
 msgid "Just change channels"
 msgstr "Kanaal veranderen"
-
-msgid "Keep"
-msgstr "Behoud"
 
 msgid "Keep old timers for how many days"
 msgstr "Bewaar gebruikte timers zoveel dagen:"
@@ -3659,58 +3430,11 @@ msgstr "Lange naam"
 msgid "Longitude"
 msgstr "Lengtegraad"
 
-#, python-format
-msgid ""
-"Looking for available transponders.\n"
-"This will take a short while.\n"
-"\n"
-"   Current Status : %d/%d\n"
-"   Satellite : %s\n"
-"   Polarization : %s\n"
-"   Frequency range : %d - %d MHz\n"
-"   Symbol rates : %d - %d MHz"
-msgstr ""
-"Zoekt naar beschikbare transponders.\n"
-"Dit duurt even.\n"
-"\n"
-"   Actuele status: %d/%d\n"
-"   Satelliet: %s\n"
-"   Polarisatie: %s\n"
-"   Frequentie bereik: %d - %d MHz\n"
-"   Symbol rates: %d - %d MHz"
-
-msgid "MA"
-msgstr "MA"
-
 msgid "MAC:"
 msgstr "MAC:"
 
-msgid "MB"
-msgstr "MB"
-
-msgid "MC"
-msgstr "MC"
-
-msgid "MD"
-msgstr "MD"
-
-msgid "ME"
-msgstr "ME"
-
-msgid "MF"
-msgstr "MF"
-
-msgid "MG"
-msgstr "MG"
-
-msgid "MH"
-msgstr "MH"
-
 msgid "MORE"
 msgstr "MEER"
-
-msgid "MSA"
-msgstr "MSA"
 
 msgid "Main Menu"
 msgstr "Hoofdmenu"
@@ -3862,9 +3586,6 @@ msgstr "Mount"
 
 msgid "Mounts Setup"
 msgstr "Mount instellingen"
-
-msgid "Mouse"
-msgstr "Muis"
 
 msgid "Move"
 msgstr "Verplaats"
@@ -4117,17 +3838,6 @@ msgstr "Geen netwerkverbinding beschikbaar"
 msgid "No networks found"
 msgstr "Geen netwerken gevonden"
 
-msgid ""
-"No new transponders found! \n"
-"\n"
-"Only transponders already listed in satellites.xml \n"
-"have been found for those search parameters!"
-msgstr ""
-"Geen nieuwe transponders gevonden! \n"
-"\n"
-"Er zijn alleen transponders gevonden \n"
-"die al in de satellites.xml aanwezig waren!"
-
 msgid "No of items switch (increase or reduced)"
 msgstr "Aantal onderdelen (verklein of vergroot)"
 
@@ -4143,17 +3853,11 @@ msgstr "Geen vrije tuner"
 msgid "No satellite frontend found!!"
 msgstr "Geen satelliettuner gevonden!"
 
-msgid "No selected binary data!!"
-msgstr "Geen binary data geselecteerd!!"
-
 msgid "No tags are set on these movies."
 msgstr "Geen markeringen geplaatst op deze opnames."
 
 msgid "No to all"
 msgstr "Nee op alles"
-
-msgid "No transponders were found for those search parameters!"
-msgstr "Met deze zoek parameters zijn geen transponders gevonden!"
 
 msgid "No tuner is configured for use with a diseqc positioner!"
 msgstr "Er is geen tuner ingesteld voor gebruik van een DiSEqC motor!"
@@ -4206,9 +3910,6 @@ msgid ""
 msgstr ""
 "Geen werkende draadloze netwerk interface gevonden.\n"
 "Controleer of er een compatibel WLAN apparaat is geplaatst of activeer uw lokale netwerk interface."
-
-msgid "No, but play video again"
-msgstr "Nee, maar speel de video opnieuw"
 
 msgid "No, but restart from begin"
 msgstr "Nee, vanaf begin herstarten"
@@ -4391,12 +4092,6 @@ msgstr "Verander deze waarde alleen ten behoeve van debugging; default is 'Uit'.
 msgid "Only extensions."
 msgstr "Alleen extensions"
 
-msgid "Only free scan"
-msgstr "Alleen FTA"
-
-msgid "Only scan unknown transponders"
-msgstr "Scan alleen onbekende transponders"
-
 msgid "OpenVPN Setup"
 msgstr "Open-VPN instellingen"
 
@@ -4451,9 +4146,6 @@ msgstr "PMT PID"
 #, python-format
 msgid "PTS Plugin Error: %s"
 msgstr "PTS Plugin fout: %s"
-
-msgid "PWM value"
-msgstr "PWM waarde"
 
 msgid "Package list update"
 msgstr "Pakketlijst vernieuwen"
@@ -4602,9 +4294,6 @@ msgstr "Als er geen PIN is ingesteld, kan iedereen het kinderslot uitschakelen"
 msgid "Please change recording endtime"
 msgstr "Wijzig de opname eindtijd a.u.b."
 
-msgid "Please change your remote mode"
-msgstr "Verander nu de mode van uw AB"
-
 msgid "Please check your network settings!"
 msgstr "Controleer uw netwerkinstellingen a.u.b.!"
 
@@ -4736,9 +4425,6 @@ msgstr "Instellingen voor tuner C"
 msgid "Please set up tuner D"
 msgstr "Instellingen voor tuner D"
 
-msgid "Please setup your tuner configuration."
-msgstr "U moet de tunerconfiguratie vastleggen."
-
 msgid ""
 "Please use direction keys to move the PiP window.\n"
 "Press Bouquet +/- to resize the window.\n"
@@ -4798,9 +4484,6 @@ msgstr "Pluginmanager helpfunctie"
 
 msgid "Plugins"
 msgstr "Applicaties"
-
-msgid "Polarisation"
-msgstr "Polarisatie"
 
 msgid "Polarization"
 msgstr "Polarisatie"
@@ -4883,9 +4566,6 @@ msgstr "Voorbereiden... Een ogenblik geduld a.u.b."
 msgid "Press '0' to toggle internal/external PiP."
 msgstr "Druk op  '0' om te schakelen tussen interne/externe PiP."
 
-msgid "Press Green/OK to start the scan"
-msgstr "Druk op Groen/OK om de scan te beginnen"
-
 msgid "Press INFO on your remote control for additional information."
 msgstr "Druk op INFO voor aanvullende informatie."
 
@@ -4922,9 +4602,6 @@ msgstr "Druk OK om te zoeken."
 
 msgid "Press OK to toggle the selection."
 msgstr "Druk op OK om de selectie te de/activeren."
-
-msgid "Press and hold '2' & '7' until red LED is solid, then press 'Help', then press '000"
-msgstr "Druk tegelijkertijd op '2' & '7' tot de rode LED constant brandt, druk dan op 'Help' en vervolgens op '000X'"
 
 msgid "Press yellow to set this interface as default interface."
 msgstr "Druk op geel om deze interface als standaard in te stellen."
@@ -5169,12 +4846,6 @@ msgstr "Onthoud zender pincode"
 msgid "Remember these settings for each folder"
 msgstr "Bewaar de instellingen voor elke map"
 
-msgid "Remote Control Code"
-msgstr "Afstandsbedienings code"
-
-msgid "Remote Control System Code"
-msgstr "Afstandsbedienings systeem code"
-
 msgid "Remote box"
 msgstr "Remote box"
 
@@ -5334,9 +5005,6 @@ msgstr "Hervat positie op %s"
 msgid "Resuming playback"
 msgstr "Afspelen wordt hervat"
 
-msgid "Return the Love Event"
-msgstr "Keer terug naar het 'Love Event'"
-
 msgid "Return to movie list"
 msgstr "Terug naar de opnamelijst"
 
@@ -5473,9 +5141,6 @@ msgstr "Scaler scherpte"
 msgid "Scaling Mode"
 msgstr "Schaalmodus"
 
-msgid "Scan"
-msgstr "Scan"
-
 msgid "Scan "
 msgstr "Zoeken"
 
@@ -5545,18 +5210,6 @@ msgstr "Zoek band US MID"
 msgid "Scan band US SUPER"
 msgstr "Zoek band US SUPER"
 
-msgid "Scan start frequency"
-msgstr "Scan start frequentie"
-
-msgid "Scan start symbolrate"
-msgstr "Scan start symbolrate"
-
-msgid "Scan stop frequency"
-msgstr "Scan stop frequentie"
-
-msgid "Scan stop symbolrate"
-msgstr "Scan stop symbolrate"
-
 msgid "Scan your network for wireless access points and connect to them using your selected wireless device.\n"
 msgstr "Doorzoek uw netwerk naar draadloze access points en maak een verbinding met uw geselecteerd apparaat.\n"
 
@@ -5583,26 +5236,11 @@ msgstr "Sroll snelheid"
 msgid "Search"
 msgstr "Zoek"
 
-#, python-format
-msgid ""
-"Search completed. %d transponders found.\n"
-"\n"
-"Details saved in:\n"
-"%s"
-msgstr ""
-"Zoeken gereed. %d transponders gevonden.\n"
-"\n"
-"Details opgeslagen in:\n"
-"%s"
-
 msgid "Search east"
 msgstr "Zoek oost"
 
 msgid "Search for similar events"
 msgstr "Zoek soortgelijke events"
-
-msgid "Search type"
-msgstr "Zoek type"
 
 msgid "Search west"
 msgstr "Zoek west"
@@ -5646,9 +5284,6 @@ msgstr "Netwerkadapter selecteren"
 
 msgid "Select a movie"
 msgstr "Kies een opname"
-
-msgid "Select a tuner that is configured for the satellite you wish to search"
-msgstr "Kies een tuner die is geconfigureerd voor de satelliet die u wilt zoeken"
 
 msgid "Select audio track"
 msgstr "Kies audiospoor"
@@ -5715,9 +5350,6 @@ msgstr "Selecteer zender om toe te voegen..."
 
 msgid "Select the number of days after which the box is allowed to permanently delete recordings (from the trashcan)."
 msgstr "Geef het aantal dagen op waarna opnames uit de prullenbak permanent mogen worden verwijderd."
-
-msgid "Select the satellite you wish to search"
-msgstr "Kies de satelliet die u wilt zoeken"
 
 msgid "Select upgrade source to edit."
 msgstr "Kies de te wijzigen upgrade bron."
@@ -6395,9 +6027,6 @@ msgstr ""
 msgid "Sorry, no Details available!"
 msgstr "Sorry, geen detail gegevens beschikbaar!"
 
-msgid "Sorry, video is not available!"
-msgstr "Excuses, video is niet beschikbaar!"
-
 msgid ""
 "Sorry, your backup destination is not writeable.\n"
 "\n"
@@ -6489,12 +6118,6 @@ msgstr "Start op"
 msgid "Status"
 msgstr "Status"
 
-msgid "Status : 0%"
-msgstr "Status : 0%"
-
-msgid "Status Check Period"
-msgstr "Status controleperiode"
-
 msgid "Step east"
 msgstr "Stap > oost"
 
@@ -6582,12 +6205,6 @@ msgstr "Ondertitel selectie..."
 msgid "Subtitles"
 msgstr "Ondertitels"
 
-msgid "Succeed"
-msgstr "Gelukt"
-
-msgid "Success. Press OK to exit."
-msgstr "Geslaagd. Druk op OK om af te sluiten."
-
 msgid "Sun"
 msgstr "Zo"
 
@@ -6627,12 +6244,6 @@ msgstr "Symbolrate"
 
 msgid "Symbol rate"
 msgstr "Symbol rate"
-
-msgid "Symbol rate values are in megasymbols; enter a value between 1 and 44"
-msgstr "Symbol rate waardes in megasymbols; geef een waarde tussen 1 and 44 in"
-
-msgid "Symbol rate values are in megasymbols; enter a value between 2 and 45"
-msgstr "Symbol rate waardes in megasymbols; geef een waarde tussen 2 and 45 in"
 
 msgid "Symbolrate"
 msgstr "Symbolrate"
@@ -6718,9 +6329,6 @@ msgstr "Tekst randbreedte"
 
 msgid "Text font size"
 msgstr "Tekst lettergrootte"
-
-msgid "Text support"
-msgstr "Tekst ondersteuning"
 
 msgid "Thai"
 msgstr "Thais"
@@ -6837,9 +6445,6 @@ msgstr "Uw STB_BOX slaat de EPG-data elke (uur) op."
 msgid "The backup failed. Please choose a different backup location."
 msgstr "Back-up is mislukt. Kies een andere back-up locatie a.u.b."
 
-msgid "The blindscan run was cancelled by the user."
-msgstr "De blindscan is door d egebruiker geannuleerd"
-
 msgid "The current beta image could not be stable"
 msgstr "The current beta image could not be stable"
 
@@ -6937,9 +6542,6 @@ msgstr "De wizard vond een configuratie back-up. Wilt u uw oude instellingen van
 msgid "The wizard is finished now."
 msgstr "De wizard is nu gereed."
 
-msgid "Then choose 'Keep' within seconds"
-msgstr "Druk op 'Keep' binnen secondes"
-
 msgid "There are at least "
 msgstr "Er zijn ten minste"
 
@@ -6976,9 +6578,6 @@ msgstr "Er is een fout. Het pakket:"
 
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr "Dit DVD-RW medium is reeds geformatteerd - herformatteren zal alles wissen op deze disk."
-
-msgid "This Plugin only support for UNO/ULTIMO"
-msgstr "Deze plugin is uitsluitend bestemd voor de UNO/ULTIMO"
 
 #, python-format
 msgid "This STB_BOX can't decode %s streams!"
@@ -7138,9 +6737,6 @@ msgstr "Deze plugin is geïnstalleerd."
 
 msgid "This plugin is not installed."
 msgstr "Deze plugin is niet geïnstalleerd."
-
-msgid "This plugin is supported only the Ultimo/Uno."
-msgstr "Deze plugin is uitsluitend voor de Ultimo/Uno."
 
 msgid "This plugin will be installed."
 msgstr "Deze plugin wordt geïnstalleerd."
@@ -7571,9 +7167,6 @@ msgstr "Software catalogus wordt geupdate"
 msgid "Updating... Please wait... This can take some minutes..."
 msgstr "Software update is bezig. Een ogenblik geduld a.u.b. Dit kan enkele minuten duren..."
 
-msgid "Upgrade"
-msgstr "Upgrade"
-
 msgid "Upgrade and ask to reboot"
 msgstr "Voer upgrade uit en vraag toestemming voor reboot"
 
@@ -7609,9 +7202,6 @@ msgstr "Automatisch IP verkrijgen (DHCP)"
 
 msgid "Use DVB subtitles position"
 msgstr "Gebruik DVB ondertitelpositie"
-
-msgid "Use Fan timer"
-msgstr "Gebruik fan- timer"
 
 msgid "Use Interface"
 msgstr "Gebruik interface"
@@ -7884,27 +7474,6 @@ msgstr "Spanningsmodus"
 msgid "Volume"
 msgstr "Volume"
 
-msgid "STB_BOX advanced remote control (native)"
-msgstr "STB_BOX geavanceerde AB"
-
-msgid "STB_BOX format data DVD (HDTV compatible)"
-msgstr "STB_BOX format data DVD (HDTV compatible)"
-
-msgid "STB_BOX front panel"
-msgstr "STB_BOX voorpaneel"
-
-msgid "STB_BOX ir keyboard"
-msgstr "STB_BOX IR-toetsenbord"
-
-msgid "STB_BOX ir mouse"
-msgstr "STB_BOX IR-muis"
-
-msgid "STB_BOX remote control (native)"
-msgstr "STB_BOX AB"
-
-msgid "STB_BOX software because updates are available."
-msgstr "STB_BOX software want er zijn updates beschikbaar."
-
 msgid "W"
 msgstr "W"
 
@@ -7958,9 +7527,6 @@ msgstr "Ontwaakt STB_BOX vanuit standby"
 
 msgid "Warn if free space drops below (kB):"
 msgstr "Meldt als het vrij geheugen minder wordt dan (kB):"
-
-msgid "Web Browser"
-msgstr "Webbrowser"
 
 msgid "Web Interface"
 msgstr "Web Interface"
@@ -8022,7 +7588,7 @@ msgstr ""
 msgid ""
 "Welcome.\n"
 "\n"
-"This start wizard will guide you through the basic setup of your STB_BOX.\n"
+"This start wizard will guide you through the basic setup of your Xtrend ET9.\n"
 "Press the OK button on your remote control to move to the next step."
 msgstr ""
 "Welkom.\n"
@@ -8041,9 +7607,6 @@ msgstr "Wat wilt u zoeken?"
 
 msgid "What to do with submitted crashlogs?"
 msgstr "Wat te doen met ingediende crashlogs?"
-
-msgid "When a neighbouring satellite is very strong this avoids searching transponders known to be coming from the neighbouring satellite"
-msgstr "Als een naburige satelliet erg sterk is, kunt u met deze instelling voorkomen dat transponders waarvan bekend is dat die van die satelliet afkomstig zijn, toegekend worden aan de gescande satelliet."
 
 msgid "When set each folder will show the previous state used, when off the default values will be shown."
 msgstr "Indien ingesteld worden de vorige waarden van elke map getoond, indien uitgeschakeld worden de defaults getoond. "
@@ -8138,6 +7701,27 @@ msgstr "Schrijven mislukt!"
 
 msgid "XBox 360 support"
 msgstr "XBox 360 support"
+
+msgid "STB_BOX advanced remote control (native)"
+msgstr "STB_BOX geavanceerde AB"
+
+msgid "STB_BOX format data DVD (HDTV compatible)"
+msgstr "STB_BOX format data DVD (HDTV compatible)"
+
+msgid "STB_BOX front panel"
+msgstr "STB_BOX voorpaneel"
+
+msgid "STB_BOX ir keyboard"
+msgstr "STB_BOX IR-toetsenbord"
+
+msgid "STB_BOX ir mouse"
+msgstr "STB_BOX IR-muis"
+
+msgid "STB_BOX remote control (native)"
+msgstr "STB_BOX AB"
+
+msgid "STB_BOX software because updates are available."
+msgstr "STB_BOX software want er zijn updates beschikbaar."
 
 msgid "YPbPr"
 msgstr "Component"
@@ -8266,9 +7850,6 @@ msgstr "U heeft er voor gekozen om standaard instellingen niet te gebruiken. U k
 
 msgid "You chose not to install anything. Please press OK finish the install wizard."
 msgstr "U heeft er voor gekozen om niets te installeren. Druk op OK om de wizard af te sluiten. "
-
-msgid "You chose the incorrect file."
-msgstr "U heeft een verkeerd bestand gekozen."
 
 msgid "You didn't select a channel to record from."
 msgstr "U heeft geen kanaal geselecteerd om op te nemen."
@@ -8671,9 +8252,6 @@ msgstr "kaart"
 msgid "card reader"
 msgstr "kaartlezer"
 
-msgid "cat /proc/bus/input/devices"
-msgstr "cat /proc/bus/input/devices"
-
 msgid "center"
 msgstr "midden"
 
@@ -8691,9 +8269,6 @@ msgstr "circular links"
 
 msgid "circular right"
 msgstr "circular rechts"
-
-msgid "circular right and circular left"
-msgstr "circulair rechts en links"
 
 msgid "clear playlist"
 msgstr "Afspeellijst leegmaken"
@@ -9000,9 +8575,6 @@ msgstr "menu"
 msgid "mins"
 msgstr "min"
 
-msgid "minute"
-msgstr "minuut"
-
 msgid "minutes"
 msgstr "minuten"
 
@@ -9268,14 +8840,8 @@ msgstr "bewaar opname (kies event)"
 msgid "save recording (stop after current event)"
 msgstr "bewaar opname (stop na huidig event)"
 
-msgid "save to XML file"
-msgstr "sla op in XML-bestand"
-
 msgid "scan done!"
 msgstr "Zoeken voltooid."
-
-msgid "scan for channels"
-msgstr "Zoek kanalen"
 
 #, python-format
 msgid "scan in progress - %d%% done!"
@@ -9316,9 +8882,6 @@ msgstr "zender pincode"
 
 msgid "set as startup service"
 msgstr "kanaal kiezen bij opstarten"
-
-msgid "setup Fancontol inStandby mode"
-msgstr "Fancontol instellingen voor standby"
 
 msgid "setup PIN"
 msgstr "menu pincode"
@@ -9470,9 +9033,6 @@ msgstr "kanaal niet meer kiezen bij het opstarten"
 msgid "swap PiP and main picture"
 msgstr "PiP/hoofdbeeld wisselen"
 
-msgid "switch Fan On/Off"
-msgstr "schakel Fan Aan/Uit"
-
 msgid "switch to bookmarks"
 msgstr "Ga naar markeerpunten"
 
@@ -9545,15 +9105,6 @@ msgstr "onbekende zender"
 msgid "until standby/restart"
 msgstr "tot standby/herstart"
 
-msgid "up to 1 degree"
-msgstr "tot 1 graad"
-
-msgid "up to 2 degrees"
-msgstr "tot 2 graden"
-
-msgid "up to 3 degrees"
-msgstr "tot 3 graden"
-
 msgid "updates available."
 msgstr "updates beschikbaar."
 
@@ -9565,9 +9116,6 @@ msgstr "gebruikt:"
 
 msgid "vertical"
 msgstr "vertikaal"
-
-msgid "vertical and horizontal"
-msgstr "vertikaal en horizontaal"
 
 msgid "view extensions..."
 msgstr "Applicaties weergeven..."

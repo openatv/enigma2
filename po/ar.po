@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-18 01:34+0100\n"
-"PO-Revision-Date: 2012-05-18 01:41+0100\n"
+"POT-Creation-Date: 2012-07-07 18:42+0100\n"
+"PO-Revision-Date: 2012-07-11 17:33+0100\n"
 "Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
 "Language-Team: Arabic <moustafagamal@hotmail.com>\n"
 "Language: ar\n"
@@ -149,9 +149,6 @@ msgid ""
 "please quote "
 msgstr ""
 
-msgid "\"channel scan\" searches for channels and saves them to your STB_BOX; \"save to XML file\" does a transponder search and saves found transponders to an XML file in satellites.xml format"
-msgstr ""
-
 #. TRANSLATORS: short time representation hour:minute
 #, python-format
 msgid "%2d:%02d"
@@ -186,10 +183,6 @@ msgstr ""
 
 #. TRANSLATORS: long date representation short dayname daynum short monthname hour:minute in strftime() format! See 'man strftime'
 msgid "%a %e/%m  %-H:%M"
-msgstr ""
-
-#, python-format
-msgid "%d / 100"
 msgstr ""
 
 #, python-format
@@ -321,12 +314,6 @@ msgstr "1"
 msgid "1 wireless network found!"
 msgstr "تم العثور على شبكه لاسلكيه"
 
-msgid "1-1. Serial Number (The first two or three letters of SN)"
-msgstr ""
-
-msgid "1-2. Serial Number (The remaining numbers of SN)"
-msgstr ""
-
 msgid "1.0"
 msgstr "1.0"
 
@@ -377,9 +364,6 @@ msgstr ""
 
 msgid "2"
 msgstr "2"
-
-msgid "2. Contact"
-msgstr ""
 
 msgid "2X"
 msgstr ""
@@ -740,9 +724,6 @@ msgstr ""
 msgid "After the start wizard is completed, you need to protect single services. Refer to your STB_BOX's manual on how to do that."
 msgstr "إذا أردت حمايه خدمه واحده بعد انتهاء نافذه البدأأرجع الى دليل المستخدم لتعرف كيف تفعل ذلك"
 
-msgid "Agree"
-msgstr ""
-
 #
 msgid "Album"
 msgstr "البوم"
@@ -920,9 +901,6 @@ msgstr ""
 #
 msgid "Alpha"
 msgstr "الفا"
-
-msgid "Alpha Value"
-msgstr ""
 
 msgid "Alphanumeric"
 msgstr ""
@@ -1202,12 +1180,6 @@ msgstr ""
 msgid "Black screen till locked"
 msgstr ""
 
-msgid "Blind Scan"
-msgstr ""
-
-msgid "Blindscan"
-msgstr ""
-
 #
 msgid "Block noise reduction"
 msgstr "منع الحد من الضوضاء"
@@ -1235,6 +1207,9 @@ msgid "Brightness (Normal)"
 msgstr ""
 
 msgid "Brightness (Standby)"
+msgstr ""
+
+msgid "Buffers:"
 msgstr ""
 
 msgid "Build:"
@@ -1345,22 +1320,7 @@ msgstr ""
 msgid "Cache Thumbnails"
 msgstr ""
 
-msgid "Can't cancel during upgrade!!"
-msgstr ""
-
-msgid "Can't find /usr/bin/md5sum"
-msgstr ""
-
-msgid "Can't found MD5 file."
-msgstr ""
-
-msgid "Can't found binary file."
-msgstr ""
-
-msgid "Can't found device file!!"
-msgstr ""
-
-msgid "Can't found model name."
+msgid "Cached:"
 msgstr ""
 
 #
@@ -2263,9 +2223,6 @@ msgstr "هل تريد معاينة هذا الدى فى دى قبل الحرق؟
 msgid "Do you want to reboot your STB_BOX?"
 msgstr "هل تريد إعادة تشغيل الدريم بوكس ؟"
 
-msgid "Do you want to remove binary data?"
-msgstr ""
-
 msgid "Do you want to remove the package:\n"
 msgstr "هل تريد فعلا حذف الرزمه:\n"
 
@@ -2343,23 +2300,14 @@ msgstr "تحميل بلج إنز"
 msgid "Download plugins"
 msgstr ""
 
-msgid "Download the firmware (latest)"
-msgstr ""
-
 msgid "Downloadable plugins"
 msgstr "بلج إنز متاحه للتحميل"
-
-msgid "Downloaded "
-msgstr ""
 
 msgid "Downloading"
 msgstr "جارى التحميل"
 
 msgid "Downloading plugin information. Please wait..."
 msgstr "جارى تحميل معلومات عن البلج إن. رجاء الانتظار.."
-
-msgid "Downloading..."
-msgstr ""
 
 msgid "Downmix the Dolby Digital sound tracks to PCM."
 msgstr ""
@@ -2596,9 +2544,6 @@ msgstr ""
 msgid "Enter your forum user name, to make it easier trace logs."
 msgstr ""
 
-msgid "Enter your input data"
-msgstr ""
-
 msgid "Entitlements"
 msgstr ""
 
@@ -2627,12 +2572,6 @@ msgid ""
 msgstr ""
 "خطأ: %s\n"
 "إعادة المحاوله ؟"
-
-#, python-format
-msgid ""
-"Error[%d] : %s.\n"
-"Press OK to exit."
-msgstr ""
 
 msgid "Estonian"
 msgstr "أستونى"
@@ -2726,13 +2665,7 @@ msgstr "التحكم فى الاضافات"
 msgid "FEC"
 msgstr "FEC"
 
-msgid "FILE NOT EXIST : /proc/stb/fp/remote_code"
-msgstr ""
-
-msgid "FPGA"
-msgstr ""
-
-msgid "FPGA Upgrade"
+msgid "FLASH"
 msgstr ""
 
 msgid "FTP Setup"
@@ -2740,16 +2673,6 @@ msgstr ""
 
 msgid "Factory reset"
 msgstr "العوده الى إعدادات المصنع"
-
-msgid "Fail to upgrade!! Retry!!"
-msgstr ""
-
-#, python-format
-msgid ""
-"Fail to verify data file. \n"
-"file[%s]\n"
-"md5[%s]"
-msgstr ""
 
 msgid "Failed"
 msgstr "فشل"
@@ -2771,27 +2694,6 @@ msgstr ""
 #, python-format
 msgid "Fan %d Voltage"
 msgstr "مروحه %d فولتيه"
-
-msgid "Fan Control"
-msgstr ""
-
-msgid "Fan basic action"
-msgstr ""
-
-msgid "Fan control"
-msgstr ""
-
-msgid "Fan mode"
-msgstr ""
-
-msgid "Fan off duration time"
-msgstr ""
-
-msgid "Fan on duration time"
-msgstr ""
-
-msgid "FanOFF InStanby"
-msgstr ""
 
 #
 msgid "Fast"
@@ -2818,9 +2720,6 @@ msgstr "المفضله"
 msgid "File appears to be busy.\n"
 msgstr ""
 
-msgid "File not found"
-msgstr ""
-
 msgid ""
 "File oscam.conf not found.\n"
 "Please enter username/password manually."
@@ -2828,9 +2727,6 @@ msgstr ""
 
 msgid "Filesystem Check"
 msgstr "فحص نظام الملفات"
-
-msgid "Filter out adjacent satellites"
-msgstr ""
 
 #
 msgid "Finetune"
@@ -2848,15 +2744,6 @@ msgstr "تم النتهاء من إعادة تشغيل الشبكه"
 msgid "Finnish"
 msgstr "إنتهاء"
 
-msgid "Firmware"
-msgstr ""
-
-msgid "Firmware Upgrade"
-msgstr ""
-
-msgid "Firmware does not exist."
-msgstr ""
-
 msgid "Flash"
 msgstr "شحن"
 
@@ -2873,9 +2760,6 @@ msgid "Fontsize"
 msgstr ""
 
 msgid "For more information see www.openpli.org"
-msgstr ""
-
-msgid "For use this plugin, you must update the kernel version to 3.1 or later"
 msgstr ""
 
 msgid "Format"
@@ -2925,9 +2809,6 @@ msgstr ""
 msgid "Frequency steps"
 msgstr "خطوات التردد"
 
-msgid "Frequency values must be between 10700 and 12750 (or 3000 and 4200 in the case of C-band satellites)"
-msgstr ""
-
 #
 msgid "Fri"
 msgstr "الجمعه"
@@ -2937,9 +2818,6 @@ msgid "Friday"
 msgstr "الجمعه"
 
 msgid "From :"
-msgstr ""
-
-msgid "Front Processor"
 msgstr ""
 
 #
@@ -3147,6 +3025,12 @@ msgstr ""
 msgid "Horizontal"
 msgstr "أفقـى"
 
+msgid "Horizontal turning speed"
+msgstr ""
+
+msgid "Hostname:"
+msgstr ""
+
 msgid "Hostname: "
 msgstr ""
 
@@ -3269,29 +3153,12 @@ msgstr ""
 msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times):"
 msgstr ""
 
-msgid "If you are not sure what polarisations the satellite you wish to search transmits, select \"vertical and horizontal\""
-msgstr ""
-
 msgid ""
 "If you see this, something is wrong with\n"
 "your scart connection. Press OK to return."
 msgstr ""
 "إذا كنت تشاهد هذا، فهناك شيئ خطا فى \n"
 "وصلة السكارت . أضغط موافق للعوده"
-
-msgid "If you select \"yes\" all channels on the satellite being search will be deleted before starting the current search"
-msgstr ""
-
-msgid "If you select \"yes\" the scan will only save channels that are not encrypted; \"no\" will find encrypted and non-encrypted channels"
-msgstr ""
-
-msgid "If you select \"yes\" the scan will only search transponders not listed in satellites.xml"
-msgstr ""
-
-msgid ""
-"If you want to quit the Browser,\n"
-"Press RED -> EXIT."
-msgstr ""
 
 msgid ""
 "If your TV has a brightness or contrast enhancement, disable it. If there is something called \"dynamic\", set it to standard. Adjust the backlight level to a value suiting your taste. Turn down contrast on your TV as much as possible.\n"
@@ -3488,55 +3355,6 @@ msgstr "موقع غير صالح"
 msgid "Invalid directory selected: %s"
 msgstr "تم إختياردليل غير صالح %s"
 
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"For C-band searches stop frequency must be between 3000MHz and 4200MHz."
-msgstr ""
-
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"Frequency start value is larger than stop value."
-msgstr ""
-
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"Start frequency must be between 10700MHz and 12750MHz.\n"
-"(Or 3000MHz and 4200MHz in the case of c-band)."
-msgstr ""
-
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"Start symbol rate must be between 1MHz and 44MHz."
-msgstr ""
-
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"Stop frequency must be between 10700MHz and 12750MHz.\n"
-"(Or 3000MHz and 4200MHz in the case of c-band)."
-msgstr ""
-
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"Stop symbol rate must be between 2MHz and 45MHz."
-msgstr ""
-
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"Symbol rate start value is larger than stop value."
-msgstr ""
-
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"That is a C-band satellite so frequency values \n"
-"need to be between 3000MHz and 4200MHz."
-msgstr ""
-
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"That is a Ku-band satellite so frequency values \n"
-"need to be between 10700MHz and 12750MHz."
-msgstr ""
-
 #
 msgid "Inversion"
 msgstr "عكـس"
@@ -3590,9 +3408,6 @@ msgid "Just Scale"
 msgstr ""
 
 msgid "Just change channels"
-msgstr ""
-
-msgid "Keep"
 msgstr ""
 
 msgid "Keep old timers for how many days"
@@ -3835,50 +3650,11 @@ msgstr ""
 msgid "Longitude"
 msgstr "خط الطول"
 
-#, python-format
-msgid ""
-"Looking for available transponders.\n"
-"This will take a short while.\n"
-"\n"
-"   Current Status : %d/%d\n"
-"   Satellite : %s\n"
-"   Polarization : %s\n"
-"   Frequency range : %d - %d MHz\n"
-"   Symbol rates : %d - %d MHz"
-msgstr ""
-
-msgid "MA"
-msgstr ""
-
 msgid "MAC:"
-msgstr ""
-
-msgid "MB"
-msgstr ""
-
-msgid "MC"
-msgstr ""
-
-msgid "MD"
-msgstr ""
-
-msgid "ME"
-msgstr ""
-
-msgid "MF"
-msgstr ""
-
-msgid "MG"
-msgstr ""
-
-msgid "MH"
 msgstr ""
 
 msgid "MORE"
 msgstr "المزيـد"
-
-msgid "MSA"
-msgstr ""
 
 msgid "Main Menu"
 msgstr ""
@@ -4048,9 +3824,6 @@ msgid "Mount"
 msgstr ""
 
 msgid "Mounts Setup"
-msgstr ""
-
-msgid "Mouse"
 msgstr ""
 
 msgid "Move"
@@ -4328,13 +4101,6 @@ msgstr "لا يوجد اتصال متاح بشبكه"
 msgid "No networks found"
 msgstr "لم يتم العثور على شبكه"
 
-msgid ""
-"No new transponders found! \n"
-"\n"
-"Only transponders already listed in satellites.xml \n"
-"have been found for those search parameters!"
-msgstr ""
-
 msgid "No of items switch (increase or reduced)"
 msgstr ""
 
@@ -4352,9 +4118,6 @@ msgstr ""
 msgid "No satellite frontend found!!"
 msgstr "لم يتم العثور على أقمار موجهه !!"
 
-msgid "No selected binary data!!"
-msgstr ""
-
 #
 msgid "No tags are set on these movies."
 msgstr ""
@@ -4362,9 +4125,6 @@ msgstr ""
 #
 msgid "No to all"
 msgstr "لا للجميع"
-
-msgid "No transponders were found for those search parameters!"
-msgstr ""
 
 msgid "No tuner is configured for use with a diseqc positioner!"
 msgstr "لم يتم العثور على موالف مهيأ للعمل مع موتور دايزك !"
@@ -4413,9 +4173,6 @@ msgid ""
 msgstr ""
 "لم يتم العثور على واحهة شبكه عامله.\n"
 "رجاء التأكد من توصيل محول شبكه مناسب أو قم بتشغيل واحهة الشبكه المحليه."
-
-msgid "No, but play video again"
-msgstr "لا، لكن أعد تشغيل الفيديو ثانية"
 
 msgid "No, but restart from begin"
 msgstr "لا، لكن أعد التشغيل من البدايه"
@@ -4606,12 +4363,6 @@ msgstr ""
 msgid "Only extensions."
 msgstr "إضافات فقط"
 
-msgid "Only free scan"
-msgstr ""
-
-msgid "Only scan unknown transponders"
-msgstr ""
-
 msgid "OpenVPN Setup"
 msgstr ""
 
@@ -4667,9 +4418,6 @@ msgstr ""
 
 #, python-format
 msgid "PTS Plugin Error: %s"
-msgstr ""
-
-msgid "PWM value"
 msgstr ""
 
 #
@@ -4832,9 +4580,6 @@ msgstr ""
 msgid "Please change recording endtime"
 msgstr "من فضلك قم بتغيير وقت إنتهاء التسجيل"
 
-msgid "Please change your remote mode"
-msgstr ""
-
 msgid "Please check your network settings!"
 msgstr "من فضلك أفحص إعدادات الشبكه!"
 
@@ -4970,9 +4715,6 @@ msgstr "من فضلك أضبط الموالف C"
 msgid "Please set up tuner D"
 msgstr "من فضلك أضبط الموالف D"
 
-msgid "Please setup your tuner configuration."
-msgstr ""
-
 msgid ""
 "Please use direction keys to move the PiP window.\n"
 "Press Bouquet +/- to resize the window.\n"
@@ -5035,9 +4777,6 @@ msgstr "مساعده متحكم البلج إن"
 #
 msgid "Plugins"
 msgstr "بلج إنز"
-
-msgid "Polarisation"
-msgstr ""
 
 #
 msgid "Polarization"
@@ -5131,9 +4870,6 @@ msgstr "جارى التجهيز ... رجاء الانتظار"
 msgid "Press '0' to toggle internal/external PiP."
 msgstr ""
 
-msgid "Press Green/OK to start the scan"
-msgstr ""
-
 msgid "Press INFO on your remote control for additional information."
 msgstr ""
 
@@ -5174,9 +4910,6 @@ msgstr "اضغط موافق لبدأ البحث"
 
 msgid "Press OK to toggle the selection."
 msgstr "أضغط موافق لتبدل الأختيار"
-
-msgid "Press and hold '2' & '7' until red LED is solid, then press 'Help', then press '000"
-msgstr ""
 
 msgid "Press yellow to set this interface as default interface."
 msgstr "أضغط الذر الأصفر لتجعل هذه الواجهه هى الواجهه الأفتراضيه"
@@ -5269,6 +5002,9 @@ msgstr ""
 
 msgid "Quickzap"
 msgstr "انتقال سريع"
+
+msgid "RAM"
+msgstr ""
 
 msgid "RF output"
 msgstr "مخرج RF"
@@ -5424,12 +5160,6 @@ msgid "Remember service PIN"
 msgstr ""
 
 msgid "Remember these settings for each folder"
-msgstr ""
-
-msgid "Remote Control Code"
-msgstr ""
-
-msgid "Remote Control System Code"
 msgstr ""
 
 msgid "Remote box"
@@ -5596,9 +5326,6 @@ msgstr "إستعادة الوضع الى%s"
 msgid "Resuming playback"
 msgstr "إستئناف العرض"
 
-msgid "Return the Love Event"
-msgstr ""
-
 msgid "Return to movie list"
 msgstr "العوده الى قائمة الأفلام"
 
@@ -5748,9 +5475,6 @@ msgstr ""
 msgid "Scaling Mode"
 msgstr "وضع التدريج"
 
-msgid "Scan"
-msgstr ""
-
 msgid "Scan "
 msgstr "بحـث"
 
@@ -5834,18 +5558,6 @@ msgstr ""
 msgid "Scan band US SUPER"
 msgstr ""
 
-msgid "Scan start frequency"
-msgstr ""
-
-msgid "Scan start symbolrate"
-msgstr ""
-
-msgid "Scan stop frequency"
-msgstr ""
-
-msgid "Scan stop symbolrate"
-msgstr ""
-
 msgid "Scan your network for wireless access points and connect to them using your selected wireless device.\n"
 msgstr "أبحث فى الشبكه عن نقاط دخول لاسلكيه وأتصل بهم باستخدامجهزك اللاسلكى المختار.\n"
 
@@ -5873,22 +5585,11 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
-#, python-format
-msgid ""
-"Search completed. %d transponders found.\n"
-"\n"
-"Details saved in:\n"
-"%s"
-msgstr ""
-
 msgid "Search east"
 msgstr "البحث شرقا"
 
 msgid "Search for similar events"
 msgstr ""
-
-msgid "Search type"
-msgstr "نوع البحث"
 
 msgid "Search west"
 msgstr "بحث غربا"
@@ -5934,9 +5635,6 @@ msgstr "أختار محول الشبكه"
 #
 msgid "Select a movie"
 msgstr "اختار الفيلم"
-
-msgid "Select a tuner that is configured for the satellite you wish to search"
-msgstr ""
 
 msgid "Select audio track"
 msgstr "أختار مسار الصوت"
@@ -6003,9 +5701,6 @@ msgid "Select service to add..."
 msgstr "اختار قناه ليتم إضافتها"
 
 msgid "Select the number of days after which the box is allowed to permanently delete recordings (from the trashcan)."
-msgstr ""
-
-msgid "Select the satellite you wish to search"
 msgstr ""
 
 msgid "Select upgrade source to edit."
@@ -6715,9 +6410,6 @@ msgstr ""
 msgid "Sorry, no Details available!"
 msgstr "عفوا ، لا يوجد تفاصيل متاحه !"
 
-msgid "Sorry, video is not available!"
-msgstr "عفوا ، الفيديو غير متاح !"
-
 msgid ""
 "Sorry, your backup destination is not writeable.\n"
 "\n"
@@ -6819,12 +6511,6 @@ msgstr "يبدأ فى"
 msgid "Status"
 msgstr ""
 
-msgid "Status : 0%"
-msgstr ""
-
-msgid "Status Check Period"
-msgstr ""
-
 #
 msgid "Step east"
 msgstr "خطوه ناحية الشرق"
@@ -6924,12 +6610,6 @@ msgstr ""
 msgid "Subtitles"
 msgstr "العناوين الفرعيه"
 
-msgid "Succeed"
-msgstr ""
-
-msgid "Success. Press OK to exit."
-msgstr ""
-
 #
 msgid "Sun"
 msgstr "الاحد"
@@ -6974,12 +6654,6 @@ msgid "Symbol Rate"
 msgstr "معدل الترميز"
 
 msgid "Symbol rate"
-msgstr ""
-
-msgid "Symbol rate values are in megasymbols; enter a value between 1 and 44"
-msgstr ""
-
-msgid "Symbol rate values are in megasymbols; enter a value between 2 and 45"
 msgstr ""
 
 msgid "Symbolrate"
@@ -7069,9 +6743,6 @@ msgid "Text border width"
 msgstr ""
 
 msgid "Text font size"
-msgstr ""
-
-msgid "Text support"
 msgstr ""
 
 msgid "Thai"
@@ -7170,9 +6841,6 @@ msgstr ""
 
 msgid "The backup failed. Please choose a different backup location."
 msgstr "فشل عمل نسخه إحتياطيه  ، من فضلك أختار مان آخر للنسخه الإحتياطيه  ."
-
-msgid "The blindscan run was cancelled by the user."
-msgstr ""
 
 msgid "The current beta image could not be stable"
 msgstr ""
@@ -7277,9 +6945,6 @@ msgstr ""
 msgid "The wizard is finished now."
 msgstr "إنتهاء نافذة الاعدادات الان ."
 
-msgid "Then choose 'Keep' within seconds"
-msgstr ""
-
 msgid "There are at least "
 msgstr "يوجد على الأقل"
 
@@ -7319,9 +6984,6 @@ msgstr "حدث خطأ. الرزمه:"
 
 #
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
-msgstr ""
-
-msgid "This Plugin only support for UNO/ULTIMO"
 msgstr ""
 
 #
@@ -7480,9 +7142,6 @@ msgstr "هذا البلج إن مثبت ."
 
 msgid "This plugin is not installed."
 msgstr "هذا البلج إن غير مثبت ."
-
-msgid "This plugin is supported only the Ultimo/Uno."
-msgstr ""
 
 msgid "This plugin will be installed."
 msgstr "سيتم تثبيت هذا البلج إن ."
@@ -7833,6 +7492,9 @@ msgstr "حالة الموالف"
 msgid "Tuner type"
 msgstr "نوع الموالف"
 
+msgid "Tuning step size"
+msgstr ""
+
 msgid "Turkish"
 msgstr "تركى"
 
@@ -7946,9 +7608,6 @@ msgstr "جارى تحديث فهرس البرنامج التشغيلى"
 msgid "Updating... Please wait... This can take some minutes..."
 msgstr "جارى التحديث ..انتظر..قد يستغرق بعض الوقت..."
 
-msgid "Upgrade"
-msgstr ""
-
 msgid "Upgrade and ask to reboot"
 msgstr ""
 
@@ -7986,9 +7645,6 @@ msgid "Use DHCP"
 msgstr "استخدمDHCP"
 
 msgid "Use DVB subtitles position"
-msgstr ""
-
-msgid "Use Fan timer"
 msgstr ""
 
 msgid "Use Interface"
@@ -8137,6 +7793,9 @@ msgstr ""
 msgid "Vertical"
 msgstr "رأسى"
 
+msgid "Vertical turning speed"
+msgstr ""
+
 msgid "ViX EPG"
 msgstr ""
 
@@ -8279,28 +7938,6 @@ msgstr "وضعيه الفولت"
 msgid "Volume"
 msgstr "درجه الصوت"
 
-msgid "STB_BOX advanced remote control (native)"
-msgstr ""
-
-#
-msgid "STB_BOX format data DVD (HDTV compatible)"
-msgstr ""
-
-msgid "STB_BOX front panel"
-msgstr ""
-
-msgid "STB_BOX ir keyboard"
-msgstr ""
-
-msgid "STB_BOX ir mouse"
-msgstr ""
-
-msgid "STB_BOX remote control (native)"
-msgstr ""
-
-msgid "STB_BOX software because updates are available."
-msgstr "البرنامج التشغيلى للدريم بوكس لتوافر تحديثات"
-
 #
 msgid "W"
 msgstr ""
@@ -8353,18 +7990,15 @@ msgstr ""
 msgid "Wakeup TV from standby"
 msgstr ""
 
-msgid "Wakeup your STB_BOX from standby"
+msgid "Wakeup signal from TV"
 msgstr ""
 
-msgid "Wakeup signal from TV"
+msgid "Wakeup your STB_BOX from standby"
 msgstr ""
 
 #
 msgid "Warn if free space drops below (kB):"
 msgstr "حذرنى إذا قلت المساحه عن (kB) :"
-
-msgid "Web Browser"
-msgstr ""
 
 msgid "Web Interface"
 msgstr ""
@@ -8417,7 +8051,7 @@ msgstr ""
 msgid ""
 "Welcome.\n"
 "\n"
-"This start wizard will guide you through the basic setup of your STB_BOX.\n"
+"This start wizard will guide you through the basic setup of your Xtrend ET9.\n"
 "Press the OK button on your remote control to move to the next step."
 msgstr ""
 "اهلا وسهلا\n"
@@ -8438,9 +8072,6 @@ msgstr "ماذا تريد ان تبحث ؟"
 
 #
 msgid "What to do with submitted crashlogs?"
-msgstr ""
-
-msgid "When a neighbouring satellite is very strong this avoids searching transponders known to be coming from the neighbouring satellite"
 msgstr ""
 
 msgid "When set each folder will show the previous state used, when off the default values will be shown."
@@ -8534,6 +8165,28 @@ msgstr "فشل الكتابه !"
 
 msgid "XBox 360 support"
 msgstr ""
+
+msgid "STB_BOX advanced remote control (native)"
+msgstr ""
+
+#
+msgid "STB_BOX format data DVD (HDTV compatible)"
+msgstr ""
+
+msgid "STB_BOX front panel"
+msgstr ""
+
+msgid "STB_BOX ir keyboard"
+msgstr ""
+
+msgid "STB_BOX ir mouse"
+msgstr ""
+
+msgid "STB_BOX remote control (native)"
+msgstr ""
+
+msgid "STB_BOX software because updates are available."
+msgstr "البرنامج التشغيلى للدريم بوكس لتوافر تحديثات"
 
 msgid "YPbPr"
 msgstr "YPbPr"
@@ -8660,9 +8313,6 @@ msgstr "لقد أخترت عدم تثبيت الاعدادات الافتراض�
 
 msgid "You chose not to install anything. Please press OK finish the install wizard."
 msgstr "لقد أخترت عدم تثبيت أى شيئ ، من فضلك أغط موافق لأغلاق نافذة التثبيت"
-
-msgid "You chose the incorrect file."
-msgstr ""
 
 msgid "You didn't select a channel to record from."
 msgstr ""
@@ -9062,9 +8712,6 @@ msgstr ""
 msgid "card reader"
 msgstr ""
 
-msgid "cat /proc/bus/input/devices"
-msgstr ""
-
 msgid "center"
 msgstr ""
 
@@ -9085,9 +8732,6 @@ msgstr "دائرى يسار"
 #
 msgid "circular right"
 msgstr "دائرى يمين"
-
-msgid "circular right and circular left"
-msgstr ""
 
 msgid "clear playlist"
 msgstr "مسح قائمة العرض"
@@ -9417,9 +9061,6 @@ msgstr "قائمه"
 msgid "mins"
 msgstr "دقائق"
 
-msgid "minute"
-msgstr "دقيقه"
-
 msgid "minutes"
 msgstr "دقائق"
 
@@ -9705,15 +9346,9 @@ msgstr ""
 msgid "save recording (stop after current event)"
 msgstr ""
 
-msgid "save to XML file"
-msgstr ""
-
 #
 msgid "scan done!"
 msgstr "انتهـى البحث!"
-
-msgid "scan for channels"
-msgstr ""
 
 #
 #, python-format
@@ -9759,9 +9394,6 @@ msgid "service PIN"
 msgstr ""
 
 msgid "set as startup service"
-msgstr ""
-
-msgid "setup Fancontol inStandby mode"
 msgstr ""
 
 msgid "setup PIN"
@@ -9919,9 +9551,6 @@ msgstr ""
 msgid "swap PiP and main picture"
 msgstr ""
 
-msgid "switch Fan On/Off"
-msgstr ""
-
 #
 msgid "switch to bookmarks"
 msgstr "الانتقال الى المرجعيات"
@@ -9999,15 +9628,6 @@ msgstr "قناه غير معروفه"
 msgid "until standby/restart"
 msgstr "حتى وضع الانتظار/إعادة التشغيل"
 
-msgid "up to 1 degree"
-msgstr ""
-
-msgid "up to 2 degrees"
-msgstr ""
-
-msgid "up to 3 degrees"
-msgstr ""
-
 msgid "updates available."
 msgstr ""
 
@@ -10021,9 +9641,6 @@ msgstr ""
 #
 msgid "vertical"
 msgstr "رأسى"
-
-msgid "vertical and horizontal"
-msgstr ""
 
 msgid "view extensions..."
 msgstr "مشاهدة الاضافات..."

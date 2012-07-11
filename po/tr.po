@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-18 01:34+0100\n"
-"PO-Revision-Date: 2012-05-18 01:40+0100\n"
+"POT-Creation-Date: 2012-07-07 18:42+0100\n"
+"PO-Revision-Date: 2012-07-11 17:32+0100\n"
 "Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
 "Language-Team: CÜNEYT OCAKLILAR <ocaklilar@gmail.com>\n"
 "Language: tr\n"
@@ -158,9 +158,6 @@ msgstr ""
 " ViX beta takımına gönderildi.\n"
 "lütfen kaydedin "
 
-msgid "\"channel scan\" searches for channels and saves them to your STB_BOX; \"save to XML file\" does a transponder search and saves found transponders to an XML file in satellites.xml format"
-msgstr "\"kanal tara\" kanalları bulur ve alıcınıza kaydeder; \"XML'e sakla\" aktarıcı bulur ve satellites.xml dosyasına kaydeder"
-
 #. TRANSLATORS: short time representation hour:minute
 #, python-format
 msgid "%2d:%02d"
@@ -197,10 +194,6 @@ msgstr ""
 #. TRANSLATORS: long date representation short dayname daynum short monthname hour:minute in strftime() format! See 'man strftime'
 msgid "%a %e/%m  %-H:%M"
 msgstr ""
-
-#, python-format
-msgid "%d / 100"
-msgstr "%d / 100"
 
 #, python-format
 msgid "%d Gb"
@@ -321,12 +314,6 @@ msgstr "1"
 msgid "1 wireless network found!"
 msgstr "1 kablosuz ağ bulundu!"
 
-msgid "1-1. Serial Number (The first two or three letters of SN)"
-msgstr "1-1. Seri Numarası (SN nin ilk iki veya üç harfi)"
-
-msgid "1-2. Serial Number (The remaining numbers of SN)"
-msgstr "1-2. Seri Numarası (SN nin geri kalan sayıları)"
-
 #
 msgid "1.0"
 msgstr "1.0"
@@ -384,9 +371,6 @@ msgstr "1. Bilgi-çubuğu zaman aşımı"
 #
 msgid "2"
 msgstr "2"
-
-msgid "2. Contact"
-msgstr "2. İletişim"
 
 msgid "2X"
 msgstr "2X"
@@ -766,9 +750,6 @@ msgstr "OK'a bastıktan sonra, lütfen bekleyin!"
 msgid "After the start wizard is completed, you need to protect single services. Refer to your STB_BOX's manual on how to do that."
 msgstr "Sihirbaz tamamlandıktan sonra, kanal korumasına ihtiyacınız olacak. Nasıl yapılacağını öğrenmek istiyorsanız STB_BOX'nun kullanım kılavuzuna başvurun."
 
-msgid "Agree"
-msgstr "Kabul"
-
 #
 msgid "Album"
 msgstr "Albüm"
@@ -827,16 +808,16 @@ msgid "Allows the STB_BOX to use the EIT EPG when tuned to a service. This data 
 msgstr "STB_BOX, bir kanala ayarlandığında EIT EPG kullansın. Bu bilgi STB_BOX tarafından saklanır."
 
 msgid "Allows the STB_BOX to use the FreeSat EPG when tuned to a service. This data will be stored by the STB_BOX."
-msgstr "STB_BOX, bir kanala ayarlandığında FreeSat EPG kullansın. Bu bilgi STB_BOX tarafından saklanır."
+msgstr "STB_BOX, bir kanala ayarlandığında FreeSat EPG kullansın. Bu bilgi Xtrend ET9 tarafından saklanır."
 
 msgid "Allows the STB_BOX to use the MHW EPG when tuned to a service. This data will be stored by the STB_BOX."
 msgstr "STB_BOX, bir kanala ayarlandığında MHW EPG kullansın. Bu bilgi STB_BOX tarafından saklanır."
 
 msgid "Allows the STB_BOX to use the Netmed EPG when tuned to a service. This data will be stored by the STB_BOX."
-msgstr "STB_BOX, bir kanala ayarlandığında Netmed EPG kullansın. Bu bilgi STB_BOX tarafından saklanır."
+msgstr "STB_BOX, bir kanala ayarlandığında Netmed EPG kullansın. Bu bilgi Xtrend ET9 tarafından saklanır."
 
 msgid "Allows the STB_BOX to use the ViaSat EPG when tuned to a service. This data will be stored by the STB_BOX."
-msgstr "STB_BOX, bir kanala ayarlandığında ViaSat EPG kullansın. Bu bilgi STB_BOX tarafından saklanır."
+msgstr "STB_BOX, bir kanala ayarlandığında ViaSat EPG kullansın. Bu bilgi Xtrend ET9 tarafından saklanır."
 
 msgid "Allows you setup the button to do what you choose."
 msgstr "Tuşun seçtiğiniz eyleme ayarlanması."
@@ -946,9 +927,6 @@ msgstr "Sarı DVB altyazı kullan."
 #
 msgid "Alpha"
 msgstr "Alpha"
-
-msgid "Alpha Value"
-msgstr "Alfabetik değer"
 
 msgid "Alphanumeric"
 msgstr "Alfanümerik"
@@ -1258,12 +1236,6 @@ msgstr "Siyah ekran"
 msgid "Black screen till locked"
 msgstr "Kilitlenene dek siyah ekran"
 
-msgid "Blind Scan"
-msgstr "Kör Tarama"
-
-msgid "Blindscan"
-msgstr "Körtarama"
-
 #
 msgid "Block noise reduction"
 msgstr "Blok gürültü azaltma"
@@ -1293,6 +1265,9 @@ msgstr "Parlaklık (Normalde)"
 
 msgid "Brightness (Standby)"
 msgstr "Parlaklık (Beklemede)"
+
+msgid "Buffers:"
+msgstr ""
 
 msgid "Build:"
 msgstr "Oluşum:"
@@ -1409,23 +1384,8 @@ msgstr "Kablo Tarama"
 msgid "Cache Thumbnails"
 msgstr "Küçük resimleri önbelleğe al"
 
-msgid "Can't cancel during upgrade!!"
-msgstr "Yükseltme sırasında iptal edilemez!!"
-
-msgid "Can't find /usr/bin/md5sum"
-msgstr " /usr/bin/md5sum bulunamadı"
-
-msgid "Can't found MD5 file."
-msgstr "MD5 dosyası bulunamadı."
-
-msgid "Can't found binary file."
-msgstr "binary dosyası bulunamadı."
-
-msgid "Can't found device file!!"
-msgstr "Aygıt dosyası bulunamadı!!"
-
-msgid "Can't found model name."
-msgstr "Model adı bulunamadı."
+msgid "Cached:"
+msgstr ""
 
 #
 msgid "Cancel"
@@ -2436,9 +2396,6 @@ msgstr "DVD'yi yazmadan önce önizleme yapmak istiyor musunuz?"
 msgid "Do you want to reboot your STB_BOX?"
 msgstr "STB_BOX'yu yeniden başlatmak istiyor musunuz?"
 
-msgid "Do you want to remove binary data?"
-msgstr "Binary bilgisini kaldırmak istiyor musunuz?"
-
 #
 msgid "Do you want to remove the package:\n"
 msgstr "Seçilen paketi kaldırmak istiyor musunuz?:\n"
@@ -2528,15 +2485,9 @@ msgstr "Eklenti İndir"
 msgid "Download plugins"
 msgstr ""
 
-msgid "Download the firmware (latest)"
-msgstr "Bellenim indir (en son)"
-
 #
 msgid "Downloadable plugins"
 msgstr "İndirilebilir eklentiler"
-
-msgid "Downloaded "
-msgstr "İndirildi"
 
 #
 msgid "Downloading"
@@ -2545,9 +2496,6 @@ msgstr "İndiriliyor"
 #
 msgid "Downloading plugin information. Please wait..."
 msgstr "Eklenti bilgisi indiriliyor. Lütfen bekleyin..."
-
-msgid "Downloading..."
-msgstr "İndiriliyor..."
 
 msgid "Downmix the Dolby Digital sound tracks to PCM."
 msgstr "Dolby Digital sesi PCM'e downmix"
@@ -2802,9 +2750,6 @@ msgstr ""
 msgid "Enter your forum user name, to make it easier trace logs."
 msgstr "Günlüklerin kolay takibi için forum kullanıcı adınızı girin."
 
-msgid "Enter your input data"
-msgstr "Bilginizi girin."
-
 msgid "Entitlements"
 msgstr "Yetkiler"
 
@@ -2838,14 +2783,6 @@ msgid ""
 msgstr ""
 "Hata: %s\n"
 "Tekrar denensin mi?"
-
-#, python-format
-msgid ""
-"Error[%d] : %s.\n"
-"Press OK to exit."
-msgstr ""
-"Hata[%d] : %s.\n"
-"Çıkmak için OK."
 
 #
 msgid "Estonian"
@@ -2957,14 +2894,8 @@ msgstr "Genişletme yönetimi"
 msgid "FEC"
 msgstr "FEC"
 
-msgid "FILE NOT EXIST : /proc/stb/fp/remote_code"
-msgstr "DOSYA YOK : /proc/stb/fp/remote_code"
-
-msgid "FPGA"
-msgstr "FPGA"
-
-msgid "FPGA Upgrade"
-msgstr "FPGA Yükselt"
+msgid "FLASH"
+msgstr ""
 
 msgid "FTP Setup"
 msgstr "FTP Kurulum"
@@ -2972,19 +2903,6 @@ msgstr "FTP Kurulum"
 #
 msgid "Factory reset"
 msgstr "Fabrika ayarlarına dön"
-
-msgid "Fail to upgrade!! Retry!!"
-msgstr "Yükseltme hatası!! Tekrar dene!!"
-
-#, python-format
-msgid ""
-"Fail to verify data file. \n"
-"file[%s]\n"
-"md5[%s]"
-msgstr ""
-"Bilgi dosya doğrulaması başarısız. \n"
-"dosya[%s]\n"
-"md5[%s]"
 
 #
 msgid "Failed"
@@ -3007,27 +2925,6 @@ msgstr "Fan %d PWM"
 #, python-format
 msgid "Fan %d Voltage"
 msgstr "Fan %d V"
-
-msgid "Fan Control"
-msgstr "Fan kontrolü"
-
-msgid "Fan basic action"
-msgstr "Fan temel eylemi"
-
-msgid "Fan control"
-msgstr ""
-
-msgid "Fan mode"
-msgstr "Fan kipi"
-
-msgid "Fan off duration time"
-msgstr "Fan kapalı zamanı"
-
-msgid "Fan on duration time"
-msgstr "Fan açık zamanı"
-
-msgid "FanOFF InStanby"
-msgstr "Beklemede Fan Kapalı"
 
 #
 msgid "Fast"
@@ -3055,9 +2952,6 @@ msgstr "Favoriler"
 msgid "File appears to be busy.\n"
 msgstr "Dosya kullanımda.\n"
 
-msgid "File not found"
-msgstr "Dosya bulunamadı"
-
 msgid ""
 "File oscam.conf not found.\n"
 "Please enter username/password manually."
@@ -3067,9 +2961,6 @@ msgstr ""
 
 msgid "Filesystem Check"
 msgstr "Dosya sistemi kontrolü"
-
-msgid "Filter out adjacent satellites"
-msgstr "Bitişik uyduları filtrele"
 
 #
 msgid "Finetune"
@@ -3091,15 +2982,6 @@ msgstr "Ağ yeniden başlatıldı"
 msgid "Finnish"
 msgstr "Fince"
 
-msgid "Firmware"
-msgstr "Bellenim"
-
-msgid "Firmware Upgrade"
-msgstr "Bellenim Yükseltme"
-
-msgid "Firmware does not exist."
-msgstr "Bellenim yok."
-
 #
 msgid "Flash"
 msgstr "Flaş"
@@ -3120,9 +3002,6 @@ msgstr ""
 
 msgid "For more information see www.openpli.org"
 msgstr "Daha fazla bilgi için www.openpli.org"
-
-msgid "For use this plugin, you must update the kernel version to 3.1 or later"
-msgstr "Bu eklentiyi kulanabilmek için çekirdek (kernel) sürümü en az 3.1 olmalı"
 
 #
 msgid "Format"
@@ -3173,9 +3052,6 @@ msgstr "Frekans tarama adımı (khz)"
 msgid "Frequency steps"
 msgstr "Frekans adımları"
 
-msgid "Frequency values must be between 10700 and 12750 (or 3000 and 4200 in the case of C-band satellites)"
-msgstr "Frekans değerleri 10700 - 12750 arasında olmalı (C-Band uydularında 3000 - 4200)"
-
 #
 msgid "Fri"
 msgstr "Cuma"
@@ -3186,9 +3062,6 @@ msgstr "Cuma"
 
 msgid "From :"
 msgstr "Kimden:"
-
-msgid "Front Processor"
-msgstr "Ön İşlemci"
 
 #
 #, python-format
@@ -3403,6 +3276,12 @@ msgstr "Sekmeler:"
 msgid "Horizontal"
 msgstr "Yatay (H)"
 
+msgid "Horizontal turning speed"
+msgstr ""
+
+msgid "Hostname:"
+msgstr ""
+
 msgid "Hostname: "
 msgstr "Host adı:"
 
@@ -3530,9 +3409,6 @@ msgstr "'evet' Ortam izlerken hızlı ileri/geri sarmada bilgi-çubuğu görünt
 msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times):"
 msgstr "Ön panelde görüntülenecek metin çok uzunsa, tekrarlanır (tekrar sayısı):"
 
-msgid "If you are not sure what polarisations the satellite you wish to search transmits, select \"vertical and horizontal\""
-msgstr "Taranacak uydunun polarizasyonundan emin değilseniz, \"dikey ve yatay\" seçin."
-
 #
 msgid ""
 "If you see this, something is wrong with\n"
@@ -3540,22 +3416,6 @@ msgid ""
 msgstr ""
 "Eğer bunu görüyorsanız, scart bağlantınızla\n"
 "ilgili bazı hatalar var. Geri dönmek için OK'a basın."
-
-msgid "If you select \"yes\" all channels on the satellite being search will be deleted before starting the current search"
-msgstr "\"evet\" geçerli tarama başlamadan önce uyduya ait tüm eski kanallar silinir."
-
-msgid "If you select \"yes\" the scan will only save channels that are not encrypted; \"no\" will find encrypted and non-encrypted channels"
-msgstr "\"evet\" tarama sadece şifresiz kanalları saklar; \"hayır\" şifresiz ve şifreli kanalları bulur."
-
-msgid "If you select \"yes\" the scan will only search transponders not listed in satellites.xml"
-msgstr "\"evet\" sadece satellites.xml de olmayan aktarıcılar için tarama yapılır."
-
-msgid ""
-"If you want to quit the Browser,\n"
-"Press RED -> EXIT."
-msgstr ""
-"Tarayıcıdan çıkmak için,\n"
-"KIRMIZI -> EXIT."
 
 #
 msgid ""
@@ -3772,77 +3632,6 @@ msgstr "Geçersiz Konum"
 msgid "Invalid directory selected: %s"
 msgstr "Seçilen klasör geçersiz: %s"
 
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"For C-band searches stop frequency must be between 3000MHz and 4200MHz."
-msgstr ""
-"Geçersiz parametre girildi. Lütfen düzeltip tekrar deneyin.\n"
-"C-band taramada bitiş frekansı 3000MHz - 4200MHz arasında olmalıdır."
-
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"Frequency start value is larger than stop value."
-msgstr ""
-"Geçersiz parametre girildi. Lütfen düzeltip tekrar deneyin.\n"
-"Başlangıç frekans değeri, bitiş frekans değerinden büyük."
-
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"Start frequency must be between 10700MHz and 12750MHz.\n"
-"(Or 3000MHz and 4200MHz in the case of c-band)."
-msgstr ""
-"Geçersiz parametre girildi. Lütfen düzeltip tekrar deneyin.\n"
-"Başlangıç frekansı 10700MHz - 12750MHz arasında olmalıdır.\n"
-"(C-Bandında 3000MHz - 4200MHz arasında)."
-
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"Start symbol rate must be between 1MHz and 44MHz."
-msgstr ""
-"Geçersiz parametre girildi. Lütfen düzeltip tekrar deneyin.\n"
-"Başlangıç sembol değeri 1MHz - 44MHz arasında olmalıdır."
-
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"Stop frequency must be between 10700MHz and 12750MHz.\n"
-"(Or 3000MHz and 4200MHz in the case of c-band)."
-msgstr ""
-"Geçersiz parametre girildi. Lütfen düzeltip tekrar deneyin.\n"
-"Bitiş frekansı 10700MHz - 12750MHz arasında olmalıdır.\n"
-"(C-Bandında 3000MHz - 4200MHz arasında)."
-
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"Stop symbol rate must be between 2MHz and 45MHz."
-msgstr ""
-"Geçersiz parametre girildi. Lütfen düzeltip tekrar deneyin.\n"
-"Bitiş sembol değeri 2MHz - 45MHz arasında olmalıdır."
-
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"Symbol rate start value is larger than stop value."
-msgstr ""
-"Geçersiz parametre girildi. Lütfen düzeltip tekrar deneyin.\n"
-"Başlangıç sembol değeri, bitiş sembol değerinden büyük."
-
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"That is a C-band satellite so frequency values \n"
-"need to be between 3000MHz and 4200MHz."
-msgstr ""
-"Geçersiz parametre girildi. Lütfen düzeltip tekrar deneyin.\n"
-"C-band uydusu olduğundan frekans değerleri \n"
-"3000MHz - 4200MHz arasında olmalıdır."
-
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"That is a Ku-band satellite so frequency values \n"
-"need to be between 10700MHz and 12750MHz."
-msgstr ""
-"Geçersiz parametre girildi. Lütfen düzeltip tekrar deneyin.\n"
-"Ku-band uydusu olduğundan frekans değerleri \n"
-"10700MHz - 12750MHz arasında olmalıdır."
-
 #
 msgid "Inversion"
 msgstr "Tersine çevir"
@@ -3897,9 +3686,6 @@ msgstr "Hep Tam ekran"
 
 msgid "Just change channels"
 msgstr "Sadece kanal değiştir"
-
-msgid "Keep"
-msgstr "Sakla"
 
 msgid "Keep old timers for how many days"
 msgstr "Eski zamanlamalar kaç gün saklansın"
@@ -4146,59 +3932,12 @@ msgstr "Uzun dosya adı"
 msgid "Longitude"
 msgstr "Boylam"
 
-#, python-format
-msgid ""
-"Looking for available transponders.\n"
-"This will take a short while.\n"
-"\n"
-"   Current Status : %d/%d\n"
-"   Satellite : %s\n"
-"   Polarization : %s\n"
-"   Frequency range : %d - %d MHz\n"
-"   Symbol rates : %d - %d MHz"
-msgstr ""
-"Uygun aktarıcılar aranıyor.\n"
-"Bu ilem biraz sürebilir.\n"
-"\n"
-"   Geçerli Durum : %d/%d\n"
-"   Uydu : %s\n"
-"   Polarizasyon : %s\n"
-"   Frekans genişliği : %d - %d MHz\n"
-"   Sembol değeri : %d - %d MHz"
-
-msgid "MA"
-msgstr "MA"
-
 msgid "MAC:"
 msgstr ""
-
-msgid "MB"
-msgstr "MB"
-
-msgid "MC"
-msgstr "MC"
-
-msgid "MD"
-msgstr "MD"
-
-msgid "ME"
-msgstr "ME"
-
-msgid "MF"
-msgstr "MF"
-
-msgid "MG"
-msgstr "MG"
-
-msgid "MH"
-msgstr "MH"
 
 #
 msgid "MORE"
 msgstr "DAHA"
-
-msgid "MSA"
-msgstr "MSA"
 
 msgid "Main Menu"
 msgstr "Ana Menü"
@@ -4381,9 +4120,6 @@ msgstr "Bağla"
 
 msgid "Mounts Setup"
 msgstr "Bağlantı Kurulumu"
-
-msgid "Mouse"
-msgstr "Fare"
 
 msgid "Move"
 msgstr "Taşı"
@@ -4682,17 +4418,6 @@ msgstr "Uygun ağ bağlantısı yok."
 msgid "No networks found"
 msgstr "Ağ bulunamadı"
 
-msgid ""
-"No new transponders found! \n"
-"\n"
-"Only transponders already listed in satellites.xml \n"
-"have been found for those search parameters!"
-msgstr ""
-"Yeni aktarıcı bulunamadı! \n"
-"\n"
-"Sadece satellites.xml içinde bulunan aktarıcılar\n"
-"bulundu!"
-
 #, fuzzy
 msgid "No of items switch (increase or reduced)"
 msgstr "Değişen öğeler (artan veya azalan)"
@@ -4712,9 +4437,6 @@ msgstr "Sat Tuner bulunamadı!"
 msgid "No satellite frontend found!!"
 msgstr "Uydu uç ekipmanı (frontend) bulunamadı!!"
 
-msgid "No selected binary data!!"
-msgstr "Seçimiş binary bilgisi yok!!"
-
 #
 msgid "No tags are set on these movies."
 msgstr "Bu filmler için etiket tanımlanmamış"
@@ -4722,9 +4444,6 @@ msgstr "Bu filmler için etiket tanımlanmamış"
 #
 msgid "No to all"
 msgstr "Tümüne hayır"
-
-msgid "No transponders were found for those search parameters!"
-msgstr "Arama parametreleri için hiçbir aktarıcı bulunamadı!"
 
 #
 msgid "No tuner is configured for use with a diseqc positioner!"
@@ -4784,9 +4503,6 @@ msgid ""
 msgstr ""
 "Çalışan kablosuz ağ arayüzü bulunamadı.\n"
 " Lütfen uyumlu WLAN USB donanımının takılı olduğundan emin olun veya yerel ağ arayüzünü etkinleştirin."
-
-msgid "No, but play video again"
-msgstr "Hayır, ama filmi tekrar oynat."
 
 #
 msgid "No, but restart from begin"
@@ -4992,12 +4708,6 @@ msgstr ""
 msgid "Only extensions."
 msgstr "Yalnızca genişletmeler"
 
-msgid "Only free scan"
-msgstr "Sadece şifresiz tara"
-
-msgid "Only scan unknown transponders"
-msgstr "Sadece bilinmeyen aktarıcıları tara"
-
 msgid "OpenVPN Setup"
 msgstr "OpenVPN Kurulumu"
 
@@ -5056,9 +4766,6 @@ msgstr "PMT PID"
 #, python-format
 msgid "PTS Plugin Error: %s"
 msgstr "PTS Eklentii Hatası: %s"
-
-msgid "PWM value"
-msgstr "PWM değeri"
 
 #
 msgid "Package list update"
@@ -5234,9 +4941,6 @@ msgstr "PIN tanımlanmazsa, herhangi biri ebeveyn kontrolünü kapatabilir."
 msgid "Please change recording endtime"
 msgstr "Lütfen kayıt bitiş zamanını değiştirin"
 
-msgid "Please change your remote mode"
-msgstr "Lütfen uzak kipinizi değiştirin"
-
 #
 msgid "Please check your network settings!"
 msgstr "Lütfen ağ ayarlarını kontrol edin!"
@@ -5401,9 +5105,6 @@ msgstr "Lütfen Tuner C'yi yapılandırın"
 msgid "Please set up tuner D"
 msgstr "Lütfen Tuner D'yi yapılandırın"
 
-msgid "Please setup your tuner configuration."
-msgstr "Lütfen tuner yapılandırmanızı kurun."
-
 #
 msgid ""
 "Please use direction keys to move the PiP window.\n"
@@ -5479,9 +5180,6 @@ msgstr "Eklenti yönetici yardımı"
 #
 msgid "Plugins"
 msgstr "Eklentiler"
-
-msgid "Polarisation"
-msgstr "Polarizasyon"
 
 #
 msgid "Polarization"
@@ -5576,9 +5274,6 @@ msgstr "Hazırlanıyor... Lütfen bekleyin"
 msgid "Press '0' to toggle internal/external PiP."
 msgstr "Dahili/harici PiP için '0' basın."
 
-msgid "Press Green/OK to start the scan"
-msgstr "Taramayı başlatmak için Yeşil/OK'a basın."
-
 msgid "Press INFO on your remote control for additional information."
 msgstr "Ek bilgi için INFO'ya basın."
 
@@ -5625,10 +5320,6 @@ msgstr "Taramayı başlatmak için OK'a basın."
 #
 msgid "Press OK to toggle the selection."
 msgstr "Seçimi açıp kapamak için OK'a basın."
-
-#, fuzzy
-msgid "Press and hold '2' & '7' until red LED is solid, then press 'Help', then press '000"
-msgstr "Led sabit yanana kadar '2' ve '7' tuşlarını basılı tutun, sonra 'Help', sonra da '000"
 
 #
 msgid "Press yellow to set this interface as default interface."
@@ -5734,6 +5425,9 @@ msgstr "QuickEPG kipi"
 #
 msgid "Quickzap"
 msgstr "Hızlızap"
+
+msgid "RAM"
+msgstr ""
 
 #
 msgid "RF output"
@@ -5905,12 +5599,6 @@ msgstr "Kanal PINini hatırla"
 
 msgid "Remember these settings for each folder"
 msgstr "Bu ayarları her klasör için hatırla"
-
-msgid "Remote Control Code"
-msgstr "Uzaktan Kumanda Kodu"
-
-msgid "Remote Control System Code"
-msgstr "Uzaktan Kumanda Sistem Kodu"
 
 msgid "Remote box"
 msgstr "Uzak kutu"
@@ -6104,10 +5792,6 @@ msgstr "%s konumundan devam et"
 msgid "Resuming playback"
 msgstr "Oynatmaya devam ediliyor"
 
-#, fuzzy
-msgid "Return the Love Event"
-msgstr "Return the Love Event"
-
 #
 msgid "Return to movie list"
 msgstr "Film listesine geri dön"
@@ -6270,9 +5954,6 @@ msgstr "Raspa keskinliği"
 msgid "Scaling Mode"
 msgstr "Ölçekleme Kipi"
 
-msgid "Scan"
-msgstr "Tara"
-
 #
 msgid "Scan "
 msgstr "Tara"
@@ -6365,18 +6046,6 @@ msgstr "US MID bantını tara"
 msgid "Scan band US SUPER"
 msgstr "US SUPER bantını tara"
 
-msgid "Scan start frequency"
-msgstr "Tarama başlangıç frekansı"
-
-msgid "Scan start symbolrate"
-msgstr "Tarama başlangıç sembol değeri"
-
-msgid "Scan stop frequency"
-msgstr "Tarama bitiş frekansı"
-
-msgid "Scan stop symbolrate"
-msgstr "Tarama bitiş sembol değeri"
-
 msgid "Scan your network for wireless access points and connect to them using your selected wireless device.\n"
 msgstr "Kablosuz erişim noktaları için ağınızı tarayın ve seçilen kablosuz aygıtı kullanarak bağlanın.\n"
 
@@ -6404,27 +6073,12 @@ msgstr "Kaydırma Hızı"
 msgid "Search"
 msgstr "Ara"
 
-#, python-format
-msgid ""
-"Search completed. %d transponders found.\n"
-"\n"
-"Details saved in:\n"
-"%s"
-msgstr ""
-"Arama tamamlandı. %d aktarıcı bulundu.\n"
-"\n"
-"Detaylar buraya saklandı:\n"
-"%s"
-
 #
 msgid "Search east"
 msgstr "Doğu'yu ara"
 
 msgid "Search for similar events"
 msgstr "Benzer etkinlikleri ara"
-
-msgid "Search type"
-msgstr "Arama tipi"
 
 #
 msgid "Search west"
@@ -6477,9 +6131,6 @@ msgstr "Ağ Donanımını Seç"
 #
 msgid "Select a movie"
 msgstr "Bir film seçin"
-
-msgid "Select a tuner that is configured for the satellite you wish to search"
-msgstr "Taramak istediğiniz uyduya yapılandırılmış bir tuner seçin"
 
 #
 msgid "Select audio track"
@@ -6554,9 +6205,6 @@ msgstr "Eklenecek kanalı seçin..."
 
 msgid "Select the number of days after which the box is allowed to permanently delete recordings (from the trashcan)."
 msgstr ""
-
-msgid "Select the satellite you wish to search"
-msgstr "Taramak istediğiniz uyduyu seçin"
 
 #
 msgid "Select upgrade source to edit."
@@ -7302,9 +6950,6 @@ msgstr ""
 msgid "Sorry, no Details available!"
 msgstr "Üzgünüm, detay bilgisi yok!"
 
-msgid "Sorry, video is not available!"
-msgstr "Üzgünüm, görüntü yok!"
-
 #
 msgid ""
 "Sorry, your backup destination is not writeable.\n"
@@ -7409,12 +7054,6 @@ msgstr "Başlangıç"
 msgid "Status"
 msgstr "Durum"
 
-msgid "Status : 0%"
-msgstr "Durum : 0%"
-
-msgid "Status Check Period"
-msgstr "Durum Kontrol Periyodu"
-
 #
 msgid "Step east"
 msgstr "Doğu adımı"
@@ -7516,12 +7155,6 @@ msgstr "Altyazı seçimi..."
 msgid "Subtitles"
 msgstr "Altyazı"
 
-msgid "Succeed"
-msgstr "Başarılı"
-
-msgid "Success. Press OK to exit."
-msgstr "Başarılı. Çıkmak için OK'a basın."
-
 #
 msgid "Sun"
 msgstr "Paz"
@@ -7567,12 +7200,6 @@ msgstr "Sembol Değeri"
 
 msgid "Symbol rate"
 msgstr "Sembol değeri"
-
-msgid "Symbol rate values are in megasymbols; enter a value between 1 and 44"
-msgstr "Sembol değerleri, megasembol biçiminde; 1 - 44 arasında bir değer girin."
-
-msgid "Symbol rate values are in megasymbols; enter a value between 2 and 45"
-msgstr "Sembol değerleri, megasembol biçiminde; 2 - 45 arasında bir değer girin."
 
 #
 msgid "Symbolrate"
@@ -7669,9 +7296,6 @@ msgstr "Metin kenar kalınlığı"
 
 msgid "Text font size"
 msgstr "Metin font boyutu"
-
-msgid "Text support"
-msgstr "Metin desteği"
 
 msgid "Thai"
 msgstr ""
@@ -7790,9 +7414,6 @@ msgstr "STB_BOX EPG bilgisini her (saat) saklar."
 msgid "The backup failed. Please choose a different backup location."
 msgstr "Yedek alınamadı. Lütfen başka bir yedekleme konumu seçin."
 
-msgid "The blindscan run was cancelled by the user."
-msgstr "Kör tarama kullanıcı tarafından iptal edildi."
-
 msgid "The current beta image could not be stable"
 msgstr "Geçerli beta imajı stabil değil."
 
@@ -7908,10 +7529,6 @@ msgstr "Sihirbaz bir yapılandırma yedeği buldu. %s den eski ayarlarınızın 
 msgid "The wizard is finished now."
 msgstr "Sihirbaz şimdi bitti."
 
-#, fuzzy
-msgid "Then choose 'Keep' within seconds"
-msgstr "Sonra 'Sakla' seçin"
-
 #
 msgid "There are at least "
 msgstr "En az "
@@ -7958,9 +7575,6 @@ msgstr "Hata oluştu. Paket:"
 #
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr "DVD-RW ortamı zaten biçimlendirilmiş - yeniden biçimlendirme tüm disk içeriğini silecektir."
-
-msgid "This Plugin only support for UNO/ULTIMO"
-msgstr "Bu eklenti sadece UNO/ULTIMO içindir."
 
 #
 #, python-format
@@ -8124,9 +7738,6 @@ msgstr "Bu eklenti yüklü."
 #
 msgid "This plugin is not installed."
 msgstr "Bu eklenti yüklü değil."
-
-msgid "This plugin is supported only the Ultimo/Uno."
-msgstr "Bu eklenti sadece Ultimo/Uno içindir."
 
 msgid "This plugin will be installed."
 msgstr "Bu eklenti yüklenecek."
@@ -8498,6 +8109,9 @@ msgstr "Tuner durumu"
 msgid "Tuner type"
 msgstr "Tuner tipi"
 
+msgid "Tuning step size"
+msgstr ""
+
 #
 msgid "Turkish"
 msgstr "Türkçe"
@@ -8623,9 +8237,6 @@ msgstr "Yazılım kataloğu güncelleniyor"
 msgid "Updating... Please wait... This can take some minutes..."
 msgstr "Güncelleniyor... Lütfen bekleyin... Bu işlem birkaç dakika sürebilir..."
 
-msgid "Upgrade"
-msgstr "Yükselt"
-
 msgid "Upgrade and ask to reboot"
 msgstr "Yükselt ve yeniden başlatma için sor"
 
@@ -8670,9 +8281,6 @@ msgstr "DHCP Kullan"
 
 msgid "Use DVB subtitles position"
 msgstr "DVB altyazı konumunu kullan"
-
-msgid "Use Fan timer"
-msgstr "Fan zamanlayıcı kullan"
 
 #
 msgid "Use Interface"
@@ -8828,6 +8436,9 @@ msgstr "Sürüm: "
 #
 msgid "Vertical"
 msgstr "Dikey (V)"
+
+msgid "Vertical turning speed"
+msgstr ""
 
 msgid "ViX EPG"
 msgstr "ViX EPG"
@@ -8991,29 +8602,6 @@ msgstr "Voltaj kipi"
 msgid "Volume"
 msgstr "Ses"
 
-msgid "STB_BOX advanced remote control (native)"
-msgstr "STB_BOX gelişmiş uzaktan kumanda (yerel)"
-
-#
-msgid "STB_BOX format data DVD (HDTV compatible)"
-msgstr "STB_BOX DVD biçimi (HDTV uyumlu)"
-
-msgid "STB_BOX front panel"
-msgstr "STB_BOX ön panel"
-
-msgid "STB_BOX ir keyboard"
-msgstr "STB_BOX IR klavye"
-
-msgid "STB_BOX ir mouse"
-msgstr "STB_BOX IR fare"
-
-msgid "STB_BOX remote control (native)"
-msgstr "STB_BOX uzaktan kumanda (yerel)"
-
-#
-msgid "STB_BOX software because updates are available."
-msgstr "STB_BOX güncellemeleri var."
-
 #
 msgid "W"
 msgstr "B"
@@ -9066,18 +8654,15 @@ msgstr "Uyandır"
 msgid "Wakeup TV from standby"
 msgstr "TV'yi uyandır"
 
-msgid "Wakeup your STB_BOX from standby"
-msgstr "Alıcıyı uyandır"
-
 msgid "Wakeup signal from TV"
 msgstr "TV'den uyandır sinyali"
+
+msgid "Wakeup your STB_BOX from standby"
+msgstr "Alıcıyı uyandır"
 
 #
 msgid "Warn if free space drops below (kB):"
 msgstr "Boş alan belirtilen eşiğin altına inince uyar (kB):"
-
-msgid "Web Browser"
-msgstr "Web Tarayıcı"
 
 msgid "Web Interface"
 msgstr "Web Arayüzü"
@@ -9147,7 +8732,7 @@ msgstr ""
 msgid ""
 "Welcome.\n"
 "\n"
-"This start wizard will guide you through the basic setup of your STB_BOX.\n"
+"This start wizard will guide you through the basic setup of your Xtrend ET9.\n"
 "Press the OK button on your remote control to move to the next step."
 msgstr ""
 "Hoşgeldiniz.\n"
@@ -9170,9 +8755,6 @@ msgstr "Ne taramak istiyorsunuz?"
 #
 msgid "What to do with submitted crashlogs?"
 msgstr "Gönderilen çökme günlükleri ne yapılsın?"
-
-msgid "When a neighbouring satellite is very strong this avoids searching transponders known to be coming from the neighbouring satellite"
-msgstr "Komşu bir uydunun çok kuvvetli olması, yakındaki uydu aktarıcılarının aranmasını önleyebilir."
 
 msgid "When set each folder will show the previous state used, when off the default values will be shown."
 msgstr "Ayarlandığında her klasör bir önceki durumda gösterilir, kapatıldığında varsayılan değerler görüntülenir."
@@ -9273,6 +8855,29 @@ msgstr "Yazma başarısız!"
 
 msgid "XBox 360 support"
 msgstr "XBox 360 desteği"
+
+msgid "STB_BOX advanced remote control (native)"
+msgstr "STB_BOX gelişmiş uzaktan kumanda (yerel)"
+
+#
+msgid "STB_BOX format data DVD (HDTV compatible)"
+msgstr "STB_BOX DVD biçimi (HDTV uyumlu)"
+
+msgid "STB_BOX front panel"
+msgstr "STB_BOX ön panel"
+
+msgid "STB_BOX ir keyboard"
+msgstr "STB_BOX IR klavye"
+
+msgid "STB_BOX ir mouse"
+msgstr "STB_BOX IR fare"
+
+msgid "STB_BOX remote control (native)"
+msgstr "STB_BOX uzaktan kumanda (yerel)"
+
+#
+msgid "STB_BOX software because updates are available."
+msgstr "STB_BOX güncellemeleri var."
 
 #
 msgid "YPbPr"
@@ -9426,9 +9031,6 @@ msgstr "Varsayılan ayar yüklemeyi seçmediniz. Daha sonra yüklemek isterseniz
 #
 msgid "You chose not to install anything. Please press OK finish the install wizard."
 msgstr "Yüklenecek bir şey seçmediniz. Lütfen yükleme sihirbazından çıkmak için OK'a basın."
-
-msgid "You chose the incorrect file."
-msgstr "Yanlış dosya seçtiniz."
 
 msgid "You didn't select a channel to record from."
 msgstr "Kayıt yapılacak kanalı seçmediniz."
@@ -9891,9 +9493,6 @@ msgstr "kart"
 msgid "card reader"
 msgstr "kart okuyucu"
 
-msgid "cat /proc/bus/input/devices"
-msgstr "cat /proc/bus/input/devices"
-
 msgid "center"
 msgstr "merkez"
 
@@ -9916,9 +9515,6 @@ msgstr "dairesel sola"
 #
 msgid "circular right"
 msgstr "dairesel sağa"
-
-msgid "circular right and circular left"
-msgstr "dairesel sağ ve dairesel sol"
 
 #
 msgid "clear playlist"
@@ -10304,9 +9900,6 @@ msgstr "menü"
 msgid "mins"
 msgstr "dak."
 
-msgid "minute"
-msgstr "dakika"
-
 #
 msgid "minutes"
 msgstr "dakika"
@@ -10636,15 +10229,9 @@ msgstr "kayıdı sakla (Etkinlik seç)"
 msgid "save recording (stop after current event)"
 msgstr "kayıdı sakla (geçerli etkinlikten sonra durdur)"
 
-msgid "save to XML file"
-msgstr "XML dosyasına sakla"
-
 #
 msgid "scan done!"
 msgstr "tarama yapıldı!"
-
-msgid "scan for channels"
-msgstr "kanal tara"
 
 #
 #, python-format
@@ -10696,9 +10283,6 @@ msgstr "kanal PINi"
 
 msgid "set as startup service"
 msgstr "başlangıç aygıtı yap"
-
-msgid "setup Fancontol inStandby mode"
-msgstr ""
 
 msgid "setup PIN"
 msgstr "PIN kur"
@@ -10879,9 +10463,6 @@ msgstr "başlangıç aygıtı olarak kullanma"
 msgid "swap PiP and main picture"
 msgstr "PiP ile asıl görüntünün yerlerini değiştir"
 
-msgid "switch Fan On/Off"
-msgstr "fan Aç/Kapa"
-
 #
 msgid "switch to bookmarks"
 msgstr "yer imlerine geç"
@@ -10969,15 +10550,6 @@ msgstr "bilinmeyen kanal"
 msgid "until standby/restart"
 msgstr "h.bekle/y.başlatana kadar"
 
-msgid "up to 1 degree"
-msgstr "1 dereceye kadar"
-
-msgid "up to 2 degrees"
-msgstr "2 dereceye kadar"
-
-msgid "up to 3 degrees"
-msgstr "3 dereceye kadar"
-
 msgid "updates available."
 msgstr ""
 
@@ -10991,9 +10563,6 @@ msgstr "kullanılan:"
 #
 msgid "vertical"
 msgstr "dikey (v)"
-
-msgid "vertical and horizontal"
-msgstr "dikey ve yatay"
 
 #
 msgid "view extensions..."

@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ims\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: jerry <jerry00@quick.cz>\n"
-"POT-Creation-Date: 2012-05-20 14:07+0100\n"
-"PO-Revision-Date: 2012-05-22 01:01+0100\n"
+"POT-Creation-Date: 2012-07-07 18:42+0100\n"
+"PO-Revision-Date: 2012-07-11 17:33+0100\n"
+"Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
 "Language-Team: jerry00 <jerry00@quick.cz>\n"
 "Language: Czech\n"
 "MIME-Version: 1.0\n"
@@ -53,6 +53,11 @@ msgid ""
 msgstr ""
 "\n"
 "Upravit adresy aktualizačních zdrojů."
+
+msgid ""
+"\n"
+"Manage extensions or plugins for your STB_BOX"
+msgstr ""
 
 msgid ""
 "\n"
@@ -147,10 +152,6 @@ msgstr ""
 " odešle se ViX beta teamu.\n"
 "prosím citujte "
 
-#
-msgid "\"channel scan\" searches for channels and saves them to your STB_BOX; \"save to XML file\" does a transponder search and saves found transponders to an XML file in satellites.xml format"
-msgstr "\"hledat kanál\" vyhledá kanály a uloží je do přijímače; \"uložit so souboru XML\"  vyhledá transpondéry a uloží nalezené do XML souboru ve formátu satellites.xml"
-
 #. TRANSLATORS: short time representation hour:minute
 #, python-format
 msgid "%2d:%02d"
@@ -187,10 +188,6 @@ msgstr ""
 
 #. TRANSLATORS: long date representation short dayname daynum short monthname hour:minute in strftime() format! See 'man strftime'
 msgid "%a %e/%m  %-H:%M"
-msgstr ""
-
-#, python-format
-msgid "%d / 100"
 msgstr ""
 
 #, python-format
@@ -325,14 +322,6 @@ msgid "1 wireless network found!"
 msgstr "nalezena 1 bezdrátová síť!"
 
 #
-msgid "1-1. Serial Number (The first two or three letters of SN)"
-msgstr "1-1. Sériové číslo (První 2 nebo 3 znaky SČ)"
-
-#
-msgid "1-2. Serial Number (The remaining numbers of SN)"
-msgstr "1-2. Sériové číslo (zbývající čísla SČ)"
-
-#
 msgid "1.0"
 msgstr "1.0"
 
@@ -391,10 +380,6 @@ msgstr "1 lištu skrýt za"
 #
 msgid "2"
 msgstr "2"
-
-#
-msgid "2. Contact"
-msgstr "2. Kontakt"
 
 #
 msgid "2X"
@@ -806,10 +791,6 @@ msgid "After the start wizard is completed, you need to protect single services.
 msgstr "Po skončení průvodce je potřeba zabezpečit jednotlivé programy. Podívejte se do návodu od přijímače, jak to udělat."
 
 #
-msgid "Agree"
-msgstr "Souhlas"
-
-#
 msgid "Album"
 msgstr "Album"
 
@@ -1039,10 +1020,6 @@ msgstr "Dovolí vám použít DVB titulky."
 #
 msgid "Alpha"
 msgstr "Alpha"
-
-#
-msgid "Alpha Value"
-msgstr "Hodnota alpha"
 
 #
 msgid "Alphanumeric"
@@ -1381,14 +1358,6 @@ msgid "Black screen till locked"
 msgstr "Vyplnit černou obrazovkou"
 
 #
-msgid "Blind Scan"
-msgstr ""
-
-#
-msgid "Blindscan"
-msgstr ""
-
-#
 msgid "Block noise reduction"
 msgstr "Redukce blokového šumu"
 
@@ -1566,30 +1535,6 @@ msgstr "Uchovat náhledy"
 #
 msgid "Cached:"
 msgstr "V cache:"
-
-#
-msgid "Can't cancel during upgrade!!"
-msgstr "Během aktualizace nelze zrušit!!"
-
-#
-msgid "Can't find /usr/bin/md5sum"
-msgstr "Nelze nalézt /usr/bin/md5sum"
-
-#
-msgid "Can't found MD5 file."
-msgstr "Nelze nalézt soubor MD5."
-
-#
-msgid "Can't found binary file."
-msgstr "Nelze nalézt binární soubor."
-
-#
-msgid "Can't found device file!!"
-msgstr "Nelze nalézt soubor zařízení!!"
-
-#
-msgid "Can't found model name."
-msgstr "Nelze nalézt název modelu."
 
 #
 msgid "Cancel"
@@ -2710,10 +2655,6 @@ msgid "Do you want to reboot your STB_BOX?"
 msgstr "Chcete Váš STB_BOX restartovat?"
 
 #
-msgid "Do you want to remove binary data?"
-msgstr "Chcete odstranit binární data?"
-
-#
 msgid "Do you want to remove the package:\n"
 msgstr "Chcete odstranit balíček:\n"
 
@@ -2808,16 +2749,8 @@ msgid "Download plugins"
 msgstr "Stáhnout pluginy"
 
 #
-msgid "Download the firmware (latest)"
-msgstr "Stáhnout firmware (poslední)"
-
-#
 msgid "Downloadable plugins"
 msgstr "Stažitelné pluginy"
-
-#
-msgid "Downloaded "
-msgstr "Staženo"
 
 #
 msgid "Downloading"
@@ -2826,10 +2759,6 @@ msgstr "Stahuji"
 #
 msgid "Downloading plugin information. Please wait..."
 msgstr "Stahuji informace o pluginech. Prosím, čekejte..."
-
-#
-msgid "Downloading..."
-msgstr "Stahuje se..."
 
 #
 msgid "Downmix the Dolby Digital sound tracks to PCM."
@@ -3117,10 +3046,6 @@ msgid "Enter your forum user name, to make it easier trace logs."
 msgstr "Zadejte jméno pro fórum, aby bylo snazší trasovat protokoly."
 
 #
-msgid "Enter your input data"
-msgstr "Vložte vstupní data"
-
-#
 msgid "Entitlements"
 msgstr "Zápisy"
 
@@ -3156,14 +3081,6 @@ msgid ""
 msgstr ""
 "Chyba: %s\n"
 "opakovat?"
-
-#, python-format
-msgid ""
-"Error[%d] : %s.\n"
-"Press OK to exit."
-msgstr ""
-"Chyba[%d] : %s.\n"
-"Stiskem OK ukončete."
 
 #
 msgid "Estonian"
@@ -3285,19 +3202,8 @@ msgid "FEC"
 msgstr "FEC"
 
 #
-msgid "FILE NOT EXIST : /proc/stb/fp/remote_code"
-msgstr "SOUBOR NEEXISTUJE : /proc/stb/fp/remote_code"
-
-#
 msgid "FLASH"
 msgstr "FLASH"
-
-msgid "FPGA"
-msgstr "FPGA"
-
-#
-msgid "FPGA Upgrade"
-msgstr "Aktualizace FPGA"
 
 #
 msgid "FTP Setup"
@@ -3306,20 +3212,6 @@ msgstr "Nastavení FTP"
 #
 msgid "Factory reset"
 msgstr "Tovární nastavení"
-
-#
-msgid "Fail to upgrade!! Retry!!"
-msgstr "Nelze aktualizovat!! opakujte!!"
-
-#, python-format
-msgid ""
-"Fail to verify data file. \n"
-"file[%s]\n"
-"md5[%s]"
-msgstr ""
-"Nelze ověřit data souboru. \n"
-"soubor[%s]\n"
-"md5[%s]"
 
 #
 msgid "Failed"
@@ -3343,33 +3235,6 @@ msgstr "Ventilátor %d PWM"
 #, python-format
 msgid "Fan %d Voltage"
 msgstr "Ventilátor %d napětí"
-
-#
-msgid "Fan Control"
-msgstr "Ovládání funidla"
-
-#
-msgid "Fan basic action"
-msgstr "Zákl. akce funidla"
-
-msgid "Fan control"
-msgstr "Ovládání funidla"
-
-#
-msgid "Fan mode"
-msgstr "Režim funidla"
-
-#
-msgid "Fan off duration time"
-msgstr "Doba vypnutí funidla"
-
-#
-msgid "Fan on duration time"
-msgstr "Doba běhu fubidla"
-
-#
-msgid "FanOFF InStanby"
-msgstr "Vyp. ve Standby"
 
 #
 msgid "Fast"
@@ -3400,10 +3265,6 @@ msgid "File appears to be busy.\n"
 msgstr "Soubor je asi zaneprázdněn.\n"
 
 #
-msgid "File not found"
-msgstr "Soubor nenalezen"
-
-#
 msgid ""
 "File oscam.conf not found.\n"
 "Please enter username/password manually."
@@ -3414,10 +3275,6 @@ msgstr ""
 #
 msgid "Filesystem Check"
 msgstr "Kontrola souborového systému"
-
-#
-msgid "Filter out adjacent satellites"
-msgstr "Filtrovat sousední satelity"
 
 #
 msgid "Finetune"
@@ -3438,18 +3295,6 @@ msgstr "Dokončení restartování sítě"
 #
 msgid "Finnish"
 msgstr "Finsky"
-
-#
-msgid "Firmware"
-msgstr "Firmware"
-
-#
-msgid "Firmware Upgrade"
-msgstr "Aktualizace FW"
-
-#
-msgid "Firmware does not exist."
-msgstr "Firmware neexistuje."
 
 #
 msgid "Flash"
@@ -3474,10 +3319,6 @@ msgstr "Písmo"
 #
 msgid "For more information see www.openpli.org"
 msgstr "Více informací na www.openpli.org"
-
-#
-msgid "For use this plugin, you must update the kernel version to 3.1 or later"
-msgstr "Pro použití tohoto pluginu,musíte mít kernel 3.1 a novější"
 
 #
 msgid "Format"
@@ -3536,10 +3377,6 @@ msgid "Frequency steps"
 msgstr "Frekvenční kroky"
 
 #
-msgid "Frequency values must be between 10700 and 12750 (or 3000 and 4200 in the case of C-band satellites)"
-msgstr "Frekvence musí být mezi 10700 a 12750 (nebo 3000 a 4200 v případě satelitu v C-pásmu)"
-
-#
 msgid "Fri"
 msgstr "Pá"
 
@@ -3550,10 +3387,6 @@ msgstr "Pátek"
 #
 msgid "From :"
 msgstr "Z :"
-
-#
-msgid "Front Processor"
-msgstr "Hlavní cpu"
 
 #
 #, python-format
@@ -3816,6 +3649,9 @@ msgstr "Horizontální"
 msgid "Horizontal turning speed"
 msgstr "Horizontální rychlost otáčení"
 
+msgid "Hostname:"
+msgstr ""
+
 #
 msgid "Hostname: "
 msgstr "HostNázev:"
@@ -3977,36 +3813,12 @@ msgid "If the text is too long to be displayed on the front panel, it will be re
 msgstr "Pokud je text moc dlouhý pro zobrazení na displeji stb,bude opakován (počet kolikrát):"
 
 #
-msgid "If you are not sure what polarisations the satellite you wish to search transmits, select \"vertical and horizontal\""
-msgstr "Pokud si nejste jisti, jakou polarizaci má satelit, který chcete prohledat, vyberte \"vertikální a horizontální\""
-
-#
 msgid ""
 "If you see this, something is wrong with\n"
 "your scart connection. Press OK to return."
 msgstr ""
 "Pokud vidíte, že je něco špatného s\n"
 "vaším scart propojením, stiskněte OK pro návrat."
-
-#
-msgid "If you select \"yes\" all channels on the satellite being search will be deleted before starting the current search"
-msgstr "Když vyberete \"ano\" všechny kanály na satelitu budou před zahájením hledání odstraněny "
-
-#
-msgid "If you select \"yes\" the scan will only save channels that are not encrypted; \"no\" will find encrypted and non-encrypted channels"
-msgstr "Když vyberete \"ano\" vyhledají se pouze nekódované kanály;\"ne\" vyhledají se free i kódované kanály"
-
-#
-msgid "If you select \"yes\" the scan will only search transponders not listed in satellites.xml"
-msgstr "Když vyberete \"ano\" prohledají se pouze transpondéry, které nejsou uvedeny v satellites.xml"
-
-#
-msgid ""
-"If you want to quit the Browser,\n"
-"Press RED -> EXIT."
-msgstr ""
-"Pokud chcete ukončit prohlížeč,\n"
-"stiskněte ČERVENÉ -> EXIT."
 
 #
 msgid ""
@@ -4249,85 +4061,6 @@ msgid "Invalid directory selected: %s"
 msgstr "Zvolen neplatný adresář: %s"
 
 #
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"For C-band searches stop frequency must be between 3000MHz and 4200MHz."
-msgstr ""
-"Zadán neplatný parametr. Opravte ho a zkuste to znova.\n"
-"Pro C-pásmo musí být koncová frekvence mezi 3000MHz a 4200MHz."
-
-#
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"Frequency start value is larger than stop value."
-msgstr ""
-"Zadán neplatný parametr. Opravte ho a zkuste to znova.\n"
-"Počáteční frekvence je větší než koncová."
-
-#
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"Start frequency must be between 10700MHz and 12750MHz.\n"
-"(Or 3000MHz and 4200MHz in the case of c-band)."
-msgstr ""
-"Zadán neplatný parametr. Opravte ho a zkuste to znova.\n"
-"Počáteční frekvence musí být mezi 10700MHz a 15750MHz.Nebo pro C-pásmo  mezi 3000MHz a 4200MHz."
-
-#
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"Start symbol rate must be between 1MHz and 44MHz."
-msgstr ""
-"Zadán neplatný parametr. Opravte ho a zkuste to znova.\n"
-"Počáteční symb. rychlost musí být mezi 1MHz a 44MHz."
-
-#
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"Stop frequency must be between 10700MHz and 12750MHz.\n"
-"(Or 3000MHz and 4200MHz in the case of c-band)."
-msgstr ""
-"Zadán neplatný parametr.Opravte ho a znovu.\n"
-"Konc. frkv. musí být mezi 10700 a 12750MHz.\n"
-"(Nebo v pásmu C frekv. mezi 3000MHz a 4200MHz."
-
-#
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"Stop symbol rate must be between 2MHz and 45MHz."
-msgstr ""
-"Zadán neplatný parametr.Opravte ho a znovu.\n"
-"Koncová symb. rychlost musí být mezi 2MHz a 45MHz."
-
-#
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"Symbol rate start value is larger than stop value."
-msgstr ""
-"Zadán neplatný parametr.Opravte ho a znovu.\n"
-"Počáteční symb. rychlost je větší než cílová."
-
-#
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"That is a C-band satellite so frequency values \n"
-"need to be between 3000MHz and 4200MHz."
-msgstr ""
-"Zadán neplatný parametr.Opravte ho a znovu.\n"
-"Pokud je to sat. v pásmu C-, tak jeho frekv. \n"
-"musí být mezi 3000MHz a 4200MHz."
-
-#
-msgid ""
-"Invalid parameters entered. Please correct and try again.\n"
-"That is a Ku-band satellite so frequency values \n"
-"need to be between 10700MHz and 12750MHz."
-msgstr ""
-"Zadán neplatný parametr.Opravte ho a znovu.\n"
-"Pokud je to sat. v pásmu Ku, tak jeho frekv. \n"
-"musí být mezi 10700MHz a 12750MHz."
-
-#
 msgid "Inversion"
 msgstr "Inverze"
 
@@ -4390,10 +4123,6 @@ msgstr "celá obrazovka (nedodržuje poměr stran)"
 #
 msgid "Just change channels"
 msgstr "Stačí přepnout kanály"
-
-#
-msgid "Keep"
-msgstr "Zachovat"
 
 #
 msgid "Keep old timers for how many days"
@@ -4672,69 +4401,13 @@ msgstr "dlouhé názvy souborů"
 msgid "Longitude"
 msgstr "Zeměpsiná délka"
 
-#, python-format
-msgid ""
-"Looking for available transponders.\n"
-"This will take a short while.\n"
-"\n"
-"   Current Status : %d/%d\n"
-"   Satellite : %s\n"
-"   Polarization : %s\n"
-"   Frequency range : %d - %d MHz\n"
-"   Symbol rates : %d - %d MHz"
-msgstr ""
-"Hledám dostupné tranďáky.\n"
-"Zabere to nějaký čas.\n"
-"\n"
-"   Stav nyní : %d/%d\n"
-"   Satelit : %s\n"
-"   Polarizace : %s\n"
-"   Frekv. rozsah : %d - %d MHz\n"
-"   Sym. rychlost : %d - %d MHz"
-
-#
-msgid "MA"
-msgstr "MA"
-
 #
 msgid "MAC:"
 msgstr "MAC:"
 
 #
-msgid "MB"
-msgstr "MB"
-
-#
-msgid "MC"
-msgstr "MC"
-
-#
-msgid "MD"
-msgstr "MD"
-
-#
-msgid "ME"
-msgstr "ME"
-
-#
-msgid "MF"
-msgstr "MF"
-
-#
-msgid "MG"
-msgstr "MG"
-
-#
-msgid "MH"
-msgstr "MH"
-
-#
 msgid "MORE"
 msgstr "VÍCE"
-
-#
-msgid "MSA"
-msgstr "MSA"
 
 #
 msgid "Main Menu"
@@ -4935,10 +4608,6 @@ msgstr "Připojit"
 #
 msgid "Mounts Setup"
 msgstr "Nastavit připojování"
-
-#
-msgid "Mouse"
-msgstr "Myš"
 
 #
 msgid "Move"
@@ -5272,17 +4941,6 @@ msgstr "Žádné síťové připojení k dispozici."
 msgid "No networks found"
 msgstr "Žádné sítě nenalezeny"
 
-msgid ""
-"No new transponders found! \n"
-"\n"
-"Only transponders already listed in satellites.xml \n"
-"have been found for those search parameters!"
-msgstr ""
-"Žádné nové tranďáky! \n"
-"\n"
-"Pouze ty, co již jsou v satellites.xml \n"
-"odpovídají nastaveným parametrům hledání!"
-
 #
 msgid "No of items switch (increase or reduced)"
 msgstr "Není co přepnout (zvýšit nebo snížit)"
@@ -5304,20 +4962,12 @@ msgid "No satellite frontend found!!"
 msgstr "Žádný satelitní frontend nenalezen!"
 
 #
-msgid "No selected binary data!!"
-msgstr "Nevybrána binární data!!"
-
-#
 msgid "No tags are set on these movies."
 msgstr "Tyto soubory nemají nastavené žádné tagy. "
 
 #
 msgid "No to all"
 msgstr "Ne pro všechny"
-
-#
-msgid "No transponders were found for those search parameters!"
-msgstr "Těmto parametrům hledání neodpovídají žádné traňďáky!"
 
 #
 msgid "No tuner is configured for use with a diseqc positioner!"
@@ -5378,10 +5028,6 @@ msgid ""
 msgstr ""
 "Žádný funkční bezdrátový síťový adaptér nebyl nalezen!\n"
 "Zkontrolujte, zda máte připojeno kompatibilní WLAN zařízení nebo povolte lokální síťový adaptér."
-
-#
-msgid "No, but play video again"
-msgstr "Ne, ale hrát video znovu"
 
 #
 msgid "No, but restart from begin"
@@ -5614,14 +5260,6 @@ msgid "Only extensions."
 msgstr "Pouze rozšíření"
 
 #
-msgid "Only free scan"
-msgstr "Jen volné"
-
-#
-msgid "Only scan unknown transponders"
-msgstr "Pouze neznámé tranďáky"
-
-#
 msgid "OpenVPN Setup"
 msgstr "Nastavení OpenVPN"
 
@@ -5692,10 +5330,6 @@ msgstr "PMT Pid"
 #, python-format
 msgid "PTS Plugin Error: %s"
 msgstr "Chyba PTS Pluginu: %s"
-
-#
-msgid "PWM value"
-msgstr "Hodnota PWM"
 
 #
 msgid "Package list update"
@@ -5892,10 +5526,6 @@ msgid "Please change recording endtime"
 msgstr "Změňte dobu ukončení nahrávání"
 
 #
-msgid "Please change your remote mode"
-msgstr "Změňte režim ovládání"
-
-#
 msgid "Please check your network settings!"
 msgstr "Zkontrolujte Vaše nastavení sítě!"
 
@@ -6064,10 +5694,6 @@ msgid "Please set up tuner D"
 msgstr "Prosím, nastavte tuner D"
 
 #
-msgid "Please setup your tuner configuration."
-msgstr "Nastavte konfiguraci tuneru."
-
-#
 msgid ""
 "Please use direction keys to move the PiP window.\n"
 "Press Bouquet +/- to resize the window.\n"
@@ -6144,10 +5770,6 @@ msgstr "Nápověda správy pluginů"
 #
 msgid "Plugins"
 msgstr "Pluginy"
-
-#
-msgid "Polarisation"
-msgstr "Polarizace"
 
 #
 msgid "Polarization"
@@ -6258,10 +5880,6 @@ msgid "Press '0' to toggle internal/external PiP."
 msgstr "Stiskněte '0' k přepínání mezi interním/externím PiP"
 
 #
-msgid "Press Green/OK to start the scan"
-msgstr "Zeleným/OK začne skenování"
-
-#
 msgid "Press INFO on your remote control for additional information."
 msgstr "Stiskněte INFO na dálkovém ovladači pro další informace."
 
@@ -6309,10 +5927,6 @@ msgstr "Stiskněte OK pro spuštění prohledávání"
 #
 msgid "Press OK to toggle the selection."
 msgstr "Stiskněte OK pro změnu označení."
-
-#
-msgid "Press and hold '2' & '7' until red LED is solid, then press 'Help', then press '000"
-msgstr "Stiskni a podrž '2' & '7' až svítí červená dioda, pak stiskni 'Help', a poté '000"
 
 #
 msgid "Press yellow to set this interface as default interface."
@@ -6413,10 +6027,6 @@ msgstr "Poskytovatelé: "
 #
 msgid "Put TV in standby"
 msgstr "Uspat TV"
-
-#
-msgid "Put receiver in standby"
-msgstr "Uspat stb"
 
 #
 msgid "Put your STB_BOX in standby"
@@ -6640,14 +6250,6 @@ msgid "Remember these settings for each folder"
 msgstr "Zapamatovat nastavení pro každý adresář"
 
 #
-msgid "Remote Control Code"
-msgstr "Kód DO"
-
-#
-msgid "Remote Control System Code"
-msgstr "Systémový kód DO"
-
-#
 msgid "Remote box"
 msgstr "Vzdálený box"
 
@@ -6855,10 +6457,6 @@ msgid "Resuming playback"
 msgstr "Obnovit přehrávání"
 
 #
-msgid "Return the Love Event"
-msgstr "Vraťte se k oblíbenému pořadu"
-
-#
 msgid "Return to movie list"
 msgstr "zpět na seznam filmů"
 
@@ -7040,10 +6638,6 @@ msgid "Scaling Mode"
 msgstr "Režim škálování"
 
 #
-msgid "Scan"
-msgstr "Hledat"
-
-#
 msgid "Scan "
 msgstr "Prohledat "
 
@@ -7136,22 +6730,6 @@ msgid "Scan band US SUPER"
 msgstr "Prohledat pásmo US SUPER"
 
 #
-msgid "Scan start frequency"
-msgstr "Hledat od frekvence"
-
-#
-msgid "Scan start symbolrate"
-msgstr "Hledat od symb.ryhlosti"
-
-#
-msgid "Scan stop frequency"
-msgstr "Hledat do frekvence"
-
-#
-msgid "Scan stop symbolrate"
-msgstr "Hledat do symb.ryhlosti"
-
-#
 msgid "Scan your network for wireless access points and connect to them using your selected wireless device.\n"
 msgstr "Vyhledá v síťi bezdrátové přístupové body a připojí se k nim pomocí vybraného bezdrátového zařízení.\n"
 
@@ -7183,18 +6761,6 @@ msgstr "Rych. rolování"
 msgid "Search"
 msgstr "Hledat"
 
-#, python-format
-msgid ""
-"Search completed. %d transponders found.\n"
-"\n"
-"Details saved in:\n"
-"%s"
-msgstr ""
-"Prohledáno. %d nalezených tranďáků.\n"
-"\n"
-"Podrobnosti ulož. v:\n"
-"%s"
-
 #
 msgid "Search east"
 msgstr "Hledej východ"
@@ -7202,10 +6768,6 @@ msgstr "Hledej východ"
 #
 msgid "Search for similar events"
 msgstr "Hledat podobné pořady"
-
-#
-msgid "Search type"
-msgstr "Typ hledání"
 
 #
 msgid "Search west"
@@ -7262,10 +6824,6 @@ msgstr "Vyberte síťový adaptér"
 #
 msgid "Select a movie"
 msgstr "Vyberte film"
-
-#
-msgid "Select a tuner that is configured for the satellite you wish to search"
-msgstr "Vyberte tuner na satelitu, který chcete prohledat"
 
 #
 msgid "Select audio track"
@@ -7352,10 +6910,6 @@ msgstr "Vyberte program pro přidání..."
 #
 msgid "Select the number of days after which the box is allowed to permanently delete recordings (from the trashcan)."
 msgstr "Vyberte počet dní, po které má stb povoleno trvale mazat nahrávky (z koše)."
-
-#
-msgid "Select the satellite you wish to search"
-msgstr "Vyberte satelit, který chcete prohledat"
 
 #
 msgid "Select upgrade source to edit."
@@ -8242,10 +7796,6 @@ msgid "Sorry, no Details available!"
 msgstr "Žádné detaily nejsou k dispozici!"
 
 #
-msgid "Sorry, video is not available!"
-msgstr "Soráč, video není dostupné!"
-
-#
 msgid ""
 "Sorry, your backup destination is not writeable.\n"
 "\n"
@@ -8360,14 +7910,6 @@ msgstr "Začíná"
 #
 msgid "Status"
 msgstr "Stav"
-
-#
-msgid "Status : 0%"
-msgstr "Stav : 0%"
-
-#
-msgid "Status Check Period"
-msgstr "Kontrolovat stav po"
 
 #
 msgid "Step east"
@@ -8486,14 +8028,6 @@ msgid "Subtitles"
 msgstr "Titulky"
 
 #
-msgid "Succeed"
-msgstr "Dokončeno"
-
-#
-msgid "Success. Press OK to exit."
-msgstr "Dokončeno. OK ukončíte."
-
-#
 msgid "Sun"
 msgstr "Ne"
 
@@ -8544,14 +8078,6 @@ msgstr "Symbolová rychlost"
 #
 msgid "Symbol rate"
 msgstr "Sym. rychlost"
-
-#
-msgid "Symbol rate values are in megasymbols; enter a value between 1 and 44"
-msgstr "Hodnoty přenosové rychlosti jsou v megasymbols, zadejte hodnotu mezi 1 a 44"
-
-#
-msgid "Symbol rate values are in megasymbols; enter a value between 2 and 45"
-msgstr "Hodnoty přenosové rychlosti jsou v megasymbols, zadejte hodnotu mezi 2 a 45"
 
 #
 msgid "Symbolrate"
@@ -8663,10 +8189,6 @@ msgstr "Šířka okraje"
 #
 msgid "Text font size"
 msgstr "Velikost textu"
-
-#
-msgid "Text support"
-msgstr "Textová podpora"
 
 #
 msgid "Thai"
@@ -8805,10 +8327,6 @@ msgid "The backup failed. Please choose a different backup location."
 msgstr "Zálohování selhalo. Zvolte jiné umístění zálohy."
 
 #
-msgid "The blindscan run was cancelled by the user."
-msgstr "Spuštěný blindscan byl zrušen uživatelem."
-
-#
 msgid "The current beta image could not be stable"
 msgstr "Aktuální beta image nemusí být stabilní"
 
@@ -8925,10 +8443,6 @@ msgid "The wizard is finished now."
 msgstr "Průvodce skončil."
 
 #
-msgid "Then choose 'Keep' within seconds"
-msgstr "Pak zvolte 'Zachovat' během několika vteřin"
-
-#
 msgid "There are at least "
 msgstr "Existuje nejméně "
 
@@ -8975,10 +8489,6 @@ msgstr "Vyskytla se chyba. Balíček:"
 #
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr "DVD RW médium je již naformátováno - nové formátování smaže veškerý obsah na tomto DVD."
-
-#
-msgid "This Plugin only support for UNO/ULTIMO"
-msgstr "Tento plugin podporuje pouze UNO/ULTIMO"
 
 #, python-format
 msgid "This STB_BOX can't decode %s streams!"
@@ -9187,10 +8697,6 @@ msgstr "Plugin je nainstalován."
 #
 msgid "This plugin is not installed."
 msgstr "Plugin není nainstalován."
-
-#
-msgid "This plugin is supported only the Ultimo/Uno."
-msgstr "Tento plugin podporují pouze Ultimo/Uno."
 
 #
 msgid "This plugin will be installed."
@@ -9740,10 +9246,6 @@ msgid "Updating... Please wait... This can take some minutes..."
 msgstr "Aktualizuje se... Prosím, čekejte... může to trvat několik minut..."
 
 #
-msgid "Upgrade"
-msgstr "Aktualizace"
-
-#
 msgid "Upgrade and ask to reboot"
 msgstr "Aktualizovat a požádat o restart boxu"
 
@@ -9789,10 +9291,6 @@ msgstr "Použít DHCP"
 #
 msgid "Use DVB subtitles position"
 msgstr "Poloha DVB titulků"
-
-#
-msgid "Use Fan timer"
-msgstr "Použít časovač funidla"
 
 #
 msgid "Use Interface"
@@ -10150,34 +9648,6 @@ msgid "Volume"
 msgstr "Hlasitost"
 
 #
-msgid "STB_BOX advanced remote control (native)"
-msgstr "STB_BOX původní rozšířené DO"
-
-#
-msgid "STB_BOX format data DVD (HDTV compatible)"
-msgstr "STB_BOX datový formát DVD (kompatibilní s HDTV)"
-
-#
-msgid "STB_BOX front panel"
-msgstr "Čelní panel STB_BOX"
-
-#
-msgid "STB_BOX ir keyboard"
-msgstr "IR klávesnice STB_BOX"
-
-#
-msgid "STB_BOX ir mouse"
-msgstr "IR myš STB_BOX"
-
-#
-msgid "STB_BOX remote control (native)"
-msgstr "DO STB_BOX (původní)"
-
-#
-msgid "STB_BOX software because updates are available."
-msgstr "STB_BOX software; jsou dostupné aktualizace."
-
-#
 msgid "W"
 msgstr "Západní"
 
@@ -10237,10 +9707,6 @@ msgid "Wakeup TV from standby"
 msgstr "Probudit TV ze standby"
 
 #
-msgid "Wakeup receiver from standby"
-msgstr "Probudit stb ze standby"
-
-#
 msgid "Wakeup signal from TV"
 msgstr "Probudit signál z TV"
 
@@ -10251,10 +9717,6 @@ msgstr "Probudit stb ze standby"
 #
 msgid "Warn if free space drops below (kB):"
 msgstr "Upozornit, když volné místo klesne pod (kB):"
-
-#
-msgid "Web Browser"
-msgstr "Webový prohlížeč"
 
 #
 msgid "Web Interface"
@@ -10322,17 +9784,12 @@ msgstr ""
 "\n"
 "Stiskněte OK pro spuštění konfigurace Vaší sítě"
 
-#
 msgid ""
 "Welcome.\n"
 "\n"
-"This start wizard will guide you through the basic setup of your Vu+ Ultimo.\n"
+"This start wizard will guide you through the basic setup of your Xtrend ET9.\n"
 "Press the OK button on your remote control to move to the next step."
 msgstr ""
-"Vítejte.\n"
-"\n"
-"Tento průvodce vás provede základním nastavením Vašeho Vu+ Ultimo.\n"
-"Stiskněte OK na dálkovém ovladači pro přesun na další krok."
 
 #
 msgid "Welcome..."
@@ -10349,10 +9806,6 @@ msgstr "Co chcete prohledat?"
 #
 msgid "What to do with submitted crashlogs?"
 msgstr "Co dělat s předloženými crashlogy? "
-
-#
-msgid "When a neighbouring satellite is very strong this avoids searching transponders known to be coming from the neighbouring satellite"
-msgstr "Když je sousední satelit velmi silný ,zabrání se tím hledání transpondérů ze sousedního satelitu"
 
 #
 msgid "When set each folder will show the previous state used, when off the default values will be shown."
@@ -10472,6 +9925,34 @@ msgid "XBox 360 support"
 msgstr "Podpora XBox 360"
 
 #
+msgid "STB_BOX advanced remote control (native)"
+msgstr "STB_BOX původní rozšířené DO"
+
+#
+msgid "STB_BOX format data DVD (HDTV compatible)"
+msgstr "STB_BOX datový formát DVD (kompatibilní s HDTV)"
+
+#
+msgid "STB_BOX front panel"
+msgstr "Čelní panel STB_BOX"
+
+#
+msgid "STB_BOX ir keyboard"
+msgstr "IR klávesnice STB_BOX"
+
+#
+msgid "STB_BOX ir mouse"
+msgstr "IR myš STB_BOX"
+
+#
+msgid "STB_BOX remote control (native)"
+msgstr "DO STB_BOX (původní)"
+
+#
+msgid "STB_BOX software because updates are available."
+msgstr "STB_BOX software; jsou dostupné aktualizace."
+
+#
 msgid "YPbPr"
 msgstr "YPbPr"
 
@@ -10486,6 +9967,9 @@ msgstr "Žluté DVB titulky"
 #
 msgid "Yellow pango subtitles"
 msgstr "Žluté pango titulky"
+
+msgid "Yes"
+msgstr ""
 
 #
 #
@@ -10630,10 +10114,6 @@ msgstr "Nevybrali jste si k instalaci žádný defaultní seting. Můžete nains
 #
 msgid "You chose not to install anything. Please press OK finish the install wizard."
 msgstr "Nevybrali jste si nic k instalaci. Prosím, stiskněte OK pro dokončení průvodce."
-
-#
-msgid "You chose the incorrect file."
-msgstr "Vybrali jste neplatný soubor."
 
 #
 msgid "You didn't select a channel to record from."
@@ -11138,10 +10618,6 @@ msgid "card reader"
 msgstr "čtečka"
 
 #
-msgid "cat /proc/bus/input/devices"
-msgstr "cat /proc/bus/input/zařízení"
-
-#
 msgid "center"
 msgstr "střed"
 
@@ -11164,10 +10640,6 @@ msgstr "levá kruhová (polarizace)"
 #
 msgid "circular right"
 msgstr "pravá kruhová (polarizace)"
-
-#
-msgid "circular right and circular left"
-msgstr "pravá kruhová a levá kruhová "
 
 #
 msgid "clear playlist"
@@ -11574,10 +11046,6 @@ msgid "mins"
 msgstr "minut"
 
 #
-msgid "minute"
-msgstr "min"
-
-#
 msgid "minutes"
 msgstr "minutách"
 
@@ -11930,16 +11398,8 @@ msgid "save recording (stop after current event)"
 msgstr "uložit záznam (zastavit po akt. pořadu)"
 
 #
-msgid "save to XML file"
-msgstr "uložit do souboru XML"
-
-#
 msgid "scan done!"
 msgstr "Prohledávání dokončeno!"
-
-#
-msgid "scan for channels"
-msgstr "hledám kanály"
 
 #, python-format
 msgid "scan in progress - %d%% done!"
@@ -11992,10 +11452,6 @@ msgstr "programový PIN"
 #
 msgid "set as startup service"
 msgstr "nastavit jako program po spuštění"
-
-#
-msgid "setup Fancontol inStandby mode"
-msgstr "nastavit funidlo ve Standby"
 
 #
 msgid "setup PIN"
@@ -12197,10 +11653,6 @@ msgid "swap PiP and main picture"
 msgstr "zaměnit PIP a hlavní obraz"
 
 #
-msgid "switch Fan On/Off"
-msgstr "funidlo Zap/Vyp"
-
-#
 msgid "switch to bookmarks"
 msgstr "přepnout do záložek"
 
@@ -12296,18 +11748,6 @@ msgstr "neznámý program"
 msgid "until standby/restart"
 msgstr "do standby/restartu"
 
-#
-msgid "up to 1 degree"
-msgstr "až 1 stupeň"
-
-#
-msgid "up to 2 degrees"
-msgstr "až  stupně"
-
-#
-msgid "up to 3 degrees"
-msgstr "až 3 stupně"
-
 msgid "updates available."
 msgstr "aktualizací dostupných."
 
@@ -12322,10 +11762,6 @@ msgstr "použít:"
 #
 msgid "vertical"
 msgstr "vertikální"
-
-#
-msgid "vertical and horizontal"
-msgstr "svile a vodorovně"
 
 #
 msgid "view extensions..."
@@ -12414,36 +11850,4 @@ msgstr "přepnout"
 #
 msgid "zapped"
 msgstr "přepnutý"
-
-#
-msgid "AutoTimer"
-msgstr "AutoČasovač"
-
-#
-msgid "AutoTimers"
-msgstr "AutoČasovače"
-
-#
-msgid "AGC"
-msgstr "Síl"
-
-#
-msgid "AGC:"
-msgstr "Síl:"
-
-#
-msgid "Agc:"
-msgstr "Síl:"
-
-#
-msgid "Filebrowser"
-msgstr "Prohlížeč souborů"
-
-#
-msgid "Smart services renaming for XBMC"
-msgstr "Přizpůsobit názvy kanálů pro XBMC"
-
-#
-msgid "Snr:"
-msgstr "Kva:"
 
