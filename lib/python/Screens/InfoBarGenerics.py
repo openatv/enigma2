@@ -39,7 +39,7 @@ from time import time, localtime, strftime
 from os import stat as os_stat
 from bisect import insort
 
-from RecordTimer import RecordTimerEntry, RecordTimer
+from RecordTimer import RecordTimerEntry, RecordTimer, findSafeRecordPath
 
 # hack alert!
 from Menu import MainMenu, mdom
@@ -1806,14 +1806,9 @@ class InfoBarInstantRecord:
 			self.session.nav.RecordTimer.timeChanged(entry)
 
 	def instantRecord(self):
-		dir = preferredInstantRecordPath()
-		if not dir or not fileExists(dir, 'w'):
-			dir = defaultMoviePath()
-		try:
-			stat = os_stat(dir)
-		except:
-			# XXX: this message is a little odd as we might be recording to a remote device
-			self.session.open(MessageBox, _("Missing ") + dir + "\n" + _("No HDD found or HDD not initialized!"), MessageBox.TYPE_ERROR)
+		if not findSafeRecordPath(preferredInstantRecordPath()) and not findSafeRecordPath(defaultMoviePath()):
+			self.session.open(MessageBox, _("Missing ") + "\n" + preferredInstantRecordPath() +
+						 "\n" + _("No HDD found or HDD not initialized!"), MessageBox.TYPE_ERROR)
 			return
 
 		if self.isInstantRecordRunning():
