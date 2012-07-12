@@ -425,13 +425,13 @@ class SystemNetworkInfo(Screen):
 						if self.has_key("enc"):
 							self["enc"].setText(encryption)
 
-					if status[self.iface]["essid"] == "off" or status[self.iface]["accesspoint"] == "Not-Associated" or status[self.iface]["accesspoint"] == False:
-						self.LinkState = False
-						self["statuspic"].setPixmapNum(1)
-						self["statuspic"].show()
-					else:
-						self.LinkState = True
-						iNetwork.checkNetworkState(self.checkNetworkCB)
+						if status[self.iface]["essid"] == "off" or status[self.iface]["accesspoint"] == "Not-Associated" or status[self.iface]["accesspoint"] == False:
+							self.LinkState = False
+							self["statuspic"].setPixmapNum(1)
+							self["statuspic"].show()
+						else:
+							self.LinkState = True
+							iNetwork.checkNetworkState(self.checkNetworkCB)
 
 	def exit(self):
 		self.timer.stop()
