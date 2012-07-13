@@ -36,7 +36,7 @@ from Screens.UnhandledKey import UnhandledKey
 from ServiceReference import ServiceReference
 from skin import parseColor
 
-from RecordTimer import RecordTimer, RecordTimerEntry, parseEvent, AFTEREVENT
+from RecordTimer import RecordTimer, RecordTimerEntry, parseEvent, AFTEREVENT, findSafeRecordPath
 from TimerEntry import TimerEntry as TimerEntry_TimerEntry
 
 from timer import TimerEntry
@@ -3889,13 +3889,9 @@ class InfoBarInstantRecord:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
 		if not config.timeshift.enabled.value or not self.timeshift_enabled:
-			dir = preferredInstantRecordPath()
-			if not dir or not Directories.fileExists(dir, 'w'):
-				dir = defaultMoviePath()
-			try:
-				stat = os_stat(dir)
-			except:
-				self.session.open(MessageBox, _("Missing ") + dir + "\n" + _("No HDD found or HDD not initialized!"), MessageBox.TYPE_ERROR)
+			if not findSafeRecordPath(preferredInstantRecordPath()) and not findSafeRecordPath(defaultMoviePath()):
+				self.session.open(MessageBox, _("Missing ") + "\n" + preferredInstantRecordPath() +
+							 "\n" + _("No HDD found or HDD not initialized!"), MessageBox.TYPE_ERROR)
 				return
 
 			if self.isInstantRecordRunning():

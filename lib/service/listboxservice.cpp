@@ -551,6 +551,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 #define PB_BorderWidth 2
 #define PB_Height 6
 		int paintProgress = 0; /* if non zero draw a progress this size and shorten event string width with it */
+		bool reserveSpace = false;
 		ePtr<eServiceEvent> evt;
 
 		bool serviceAvail = true;
@@ -568,6 +569,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 			painter.blit(local_style->m_selection, offset, eRect(), gPainter::BT_ALPHATEST);
 
 		int xoffset=0;  // used as offset when painting the folder/marker symbol or the serviceevent progress
+		int pb_xpos;
 
 		for (int e = 0; e != celElements; ++e)
 		{
@@ -629,7 +631,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 							else
 								painter.setForegroundColor(gRGB(0xe7b53f));
 						}
-						if (paintProgress)
+						if (reserveSpace)
 					    		area.setWidth(area.width() - paintProgress - 2*PB_BorderWidth - 2 ); /* create space for the progress bar */
 					}
 					else
@@ -649,6 +651,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 				if (e == celServiceName)
 				{
 					eRect bbox = para->getBoundBox();
+					pb_xpos = area.left();
 					int new_left = area.left() + bbox.width() + 8 + xoffs;
 					m_element_position[celServiceInfo].setLeft(new_left);
 					m_element_position[celServiceInfo].setTop(area.top());
@@ -727,7 +730,10 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 				{
 					// we schedule it to paint it as last element.. so we dont need to reset fore/background color
 					paintProgress = area.width();
-					// nopli xoffset = area.width() + 10;
+					if ( area.left() == 0 )
+						xoffset = area.width() + 10;
+					else
+						reserveSpace = true;
 				}
 			}
 		}
@@ -738,8 +744,10 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 			// show a event progressbar for this service at the right end the screen
 			gRGB ProgressbarBorderColor = 0xdfdfdf;
 			time_t now = time(0);
+			eRect area = m_element_position[celServiceEventProgressbar];
 			int evt_done = paintProgress * (now - evt->getBeginTime()) / evt->getDuration();
-			int pb_xpos = offset.x() + m_itemsize.width() - paintProgress - 2*PB_BorderWidth;
+			if (area.left() != 0)
+				pb_xpos = offset.x() + m_itemsize.width() - paintProgress - 2*PB_BorderWidth;
 			int pb_ypos = offset.y() + (m_itemsize.height() - PB_Height - 2*PB_BorderWidth) / 2;
 
 			// the progress data...
@@ -777,48 +785,6 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 			painter.fill(eRect(pb_xpos, pb_ypos + PB_BorderWidth + PB_Height, paintProgress + 2 * PB_BorderWidth,  PB_BorderWidth));
 			painter.fill(eRect(pb_xpos, pb_ypos + PB_BorderWidth,             PB_BorderWidth,                      PB_Height));
 			painter.fill(eRect(pb_xpos + PB_BorderWidth + paintProgress, pb_ypos + PB_BorderWidth, PB_BorderWidth, PB_Height));
-		}
-		if (false && paintProgress && evt)  // not in pli
-		{
-			eRect area = m_element_position[celServiceEventProgressbar];
-			if (!selected && m_color_set[serviceEventProgressbarBorderColor])
-				painter.setForegroundColor(m_color[serviceEventProgressbarBorderColor]);
-			else if (selected && m_color_set[serviceEventProgressbarBorderColorSelected])
-				painter.setForegroundColor(m_color[serviceEventProgressbarBorderColorSelected]);
-
-			int border = 1;
-			int progressH = 6;
-			int progressX = area.left() + offset.x();
-			int progressW = area.width() - 2 * border;
-			int progressT = offset.y() + (m_itemsize.height() - progressH - 2*border) / 2;
-
-			// paint progressbar frame
-			painter.fill(eRect(progressX, progressT, area.width(), border));
-			painter.fill(eRect(progressX, progressT + border, border, progressH));
-			painter.fill(eRect(progressX, progressT + progressH + border, area.width(), border));
-			painter.fill(eRect(progressX + area.width() - border, progressT + border, border, progressH));
-
-			// calculate value
-			time_t now = time(0);
-			int value = progressW * (now - evt->getBeginTime()) / evt->getDuration();
-
-			eRect tmp = eRect(progressX + border, progressT + border, value, progressH);
-			ePtr<gPixmap> &pixmap = m_pixmaps[picServiceEventProgressbar];
-			if (pixmap)
-			{
-				area.moveBy(offset);
-				painter.clip(area);
-				painter.blit(pixmap, ePoint(progressX + border, progressT + border), tmp, gPainter::BT_ALPHATEST);
-				painter.clippop();
-			}
-			else
-			{
-				if (!selected && m_color_set[serviceEventProgressbarColor])
-					painter.setForegroundColor(m_color[serviceEventProgressbarColor]);
-				else if (selected && m_color_set[serviceEventProgressbarColorSelected])
-					painter.setForegroundColor(m_color[serviceEventProgressbarColorSelected]);
-				painter.fill(tmp);
-			}
 		}
 	}
 	painter.clippop();

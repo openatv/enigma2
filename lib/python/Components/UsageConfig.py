@@ -175,7 +175,10 @@ def InitUsageConfig():
 					("1", _("Channel List")),
 					("2", _("Bouquet List"))])
 	config.usage.show_bouquetalways = ConfigYesNo(default = False)
-	config.usage.show_event_progress_in_servicelist = ConfigYesNo(default = True)
+	config.usage.show_event_progress_in_servicelist = ConfigSelection(default = 'right', choices = [
+		('left', _("Left")),
+		('right', _("Right")),
+		('no', _("No")) ])
 	config.usage.show_channel_numbers_in_servicelist = ConfigYesNo(default = True)
 	config.usage.show_channel_jump_in_servicelist = ConfigSelection(default="alpha", choices = [
 					("alpha", _("Alpha")),
