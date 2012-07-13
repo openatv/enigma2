@@ -52,6 +52,8 @@ class AFTEREVENT:
 	AUTO = 3
 
 def findSafeRecordPath(dirname):
+	if not dirname:
+		return None
 	from Components import Harddisk
 	dirname = os.path.realpath(dirname)
 	mountpoint = Harddisk.findMountPoint(dirname)
