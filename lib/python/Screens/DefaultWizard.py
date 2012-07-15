@@ -9,7 +9,7 @@ from Components.PluginComponent import plugins
 from Plugins.Plugin import PluginDescriptor
 from os import system as os_system, path as os_path, mkdir
 
-config.misc.defaultchosen = ConfigBoolean(default = True)
+config.misc.defaultchosen = ConfigBoolean(default = False)
 
 class DefaultWizard(WizardLanguage, DreamInfoHandler):
 	def __init__(self, session, silent = True, showSteps = False, neededTag = None):
