@@ -2228,7 +2228,7 @@ class NetworkSamba(Screen):
 
 	def SambaStart(self):
 		if self.Installed == IPK_NotInstalled:
-			self.session.openWithCallback(self.checkSambaService, Screens.Console.Console, cmdlist = ['opkg update','ipkg --force-overwrite install samba'], closeOnSuccess = True)
+			self.session.openWithCallback(self.checkSambaService, Screens.Console.Console, cmdlist = ['opkg update','ipkg --force-overwrite install sambaserver samba'], closeOnSuccess = True)
 		elif self.my_Samba_run == False:
 			self.Console.ePopen('/etc/init.d/samba start')
 			time.sleep(3)
