@@ -17,7 +17,7 @@ def opkgAddDestination(mountpoint):
 def onPartitionChange(why, part):
 	global opkgDestinations
 	mountpoint = os.path.normpath(part.mountpoint)
-	if mountpoint and mountpoint != '/':
+	if mountpoint and mountpoint != '/' and not mountpoint.startswith('/media/net'):
 		if why == 'add':
 			if os.path.exists(os.path.join(mountpoint, 'usr/lib/opkg/status')):
 				opkgAddDestination(mountpoint)
