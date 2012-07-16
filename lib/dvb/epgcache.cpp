@@ -648,10 +648,19 @@ void eEPGCache::sectionRead(const __u8 *data, int source, channel_data *channel)
 	if ( ptr >= len )
 		return;
 
+#if 0 
+		/* 
+		 * disable for now, as this hack breaks EIT parsing for 
+		 * services with a low segment_last_table_id
+		 * 
+		 * Multichoice should be the exception, not the rule... 
+		 */
+
 	// This fixed the EPG on the Multichoice irdeto systems
 	// the EIT packet is non-compliant.. their EIT packet stinks
 	if ( data[ptr-1] < 0x40 )
 		--ptr;
+#endif
 
 	int onid = HILO(eit->original_network_id);
 	int tsid  = HILO(eit->transport_stream_id);
