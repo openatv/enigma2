@@ -237,7 +237,8 @@ class SatNimSelection(Screen):
 		nimlist = nimmanager.getNimListOfType("DVB-S")
 		nimMenuList = []
 		for x in nimlist:
-			nimMenuList.append((nimmanager.nim_slots[x].friendly_full_description, x))
+			if not nimmanager.getNimConfig(x).configMode.value in ("loopthrough", "satposdepends", "nothing"):
+				nimMenuList.append((nimmanager.nim_slots[x].friendly_full_description, x))
 
 		self["nimlist"] = MenuList(nimMenuList)
 
