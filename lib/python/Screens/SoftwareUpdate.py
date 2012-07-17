@@ -4,12 +4,15 @@ from Screens.Screen import Screen
 from Screens.Standby import TryQuitMainloop
 from Components.About import about
 from Components.ActionMap import ActionMap, NumberActionMap
+from Components.Button import Button
 from Components.config import config
 from Components.Console import Console
 from Components.Ipkg import IpkgComponent
+from Components.ScrollLabel import ScrollLabel
 from Components.Sources.StaticText import StaticText
 from Components.Slider import Slider
 from enigma import eTimer
+from os import rename
 
 class SoftwareUpdateChanges(Screen):
 	def __init__(self, session, args = None):
