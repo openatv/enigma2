@@ -58,6 +58,9 @@ import Screens.Standby
 def isStandardInfoBar(self):
 	return ".InfoBar'>" in `self`
 
+def isMoviePlayerInfoBar(self):
+	return ".MoviePlayer" in `self`
+
 def setResumePoint(session):
 	global resumePointCache, resumePointCacheLast
 	service = session.nav.getCurrentService()
@@ -513,7 +516,7 @@ class InfoBarShowHide:
 			self.secondInfoBarScreen.show()
 			self.secondInfoBarWasShown = True
 			self.startHideTimer()
-		elif not config.usage.show_second_infobar.value and not self.EventViewIsShown:
+		elif (not config.usage.show_second_infobar.value or isMoviePlayerInfoBar(self)) and not self.EventViewIsShown:
 			self.hide()
 			self.openEventView()
 			self.EventViewIsShown = True
