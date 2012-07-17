@@ -423,6 +423,8 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 			return
 		else:
 			self.keySave()
+			plugins.clearPluginList()
+			plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
 
 	def apply(self):
 		self.session.openWithCallback(self.confirm, MessageBox, _("Use this settings?"), MessageBox.TYPE_YESNO, timeout = 20, default = True)
