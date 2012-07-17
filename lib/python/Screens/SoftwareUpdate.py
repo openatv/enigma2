@@ -4,6 +4,7 @@ from Screens.Screen import Screen
 from Screens.Standby import TryQuitMainloop
 from Components.About import about
 from Components.ActionMap import ActionMap, NumberActionMap
+from Components.config import config
 from Components.Console import Console
 from Components.Ipkg import IpkgComponent
 from Components.Sources.StaticText import StaticText
