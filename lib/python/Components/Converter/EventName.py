@@ -1,5 +1,6 @@
 from Components.Converter.Converter import Converter
 from Components.Element import cached
+from Components.Converter.genre import getGenreStringLong, getGenreStringSub
 
 class EventName(Converter, object):
 	NAME = 0
@@ -9,6 +10,8 @@ class EventName(Converter, object):
 	ID = 4
 	NAME_NOW = 5
 	NAME_NEXT = 6
+	GENRE = 7
+	RATING = 8
 	
 	def __init__(self, type):
 		Converter.__init__(self, type)
@@ -24,6 +27,10 @@ class EventName(Converter, object):
 			self.type = self.NAME_NOW
 		elif type == "NameNext":
 			self.type = self.NAME_NEXT
+		elif type == "Genre":
+			self.type = self.GENRE
+		elif type == "Rating":
+			self.type = self.RATING
 		else:
 			self.type = self.NAME
 
@@ -35,6 +42,26 @@ class EventName(Converter, object):
 			
 		if self.type == self.NAME:
 			return event.getEventName()
+		elif self.type == self.RATING:
+			rating = event.getParentalData()
+			if rating is None:
+				return "---"
+			else:
+				country = rating.getCountryCode()
+				age = rating.getRating()
+				if age == 0:
+					return _("Rating undefined")
+				elif age > 15:
+					return _("Rating defined by broadcaster - %d") % age
+				else:
+					age += 3
+					return _("Minimum age %d years") % age
+		elif self.type == self.GENRE:
+			genre = event.getGenreData()
+			if genre is None:
+				return "---"
+			else:
+				return getGenreStringSub(genre.getLevel1(), genre.getLevel2())
 		elif self.type == self.NAME_NOW:
 			return _("Now") + ": " + event.getEventName()
 		elif self.type == self.NAME_NEXT:
