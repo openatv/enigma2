@@ -12,19 +12,19 @@ from Tools.Directories import *
 
 class GraphMultiEpgSetup(Screen, ConfigListScreen):
 	skin = """
-        	<screen name="GraphMultiEPGSetup" position="center,center" size="560,435" title="Electronic Program Guide Setup">
-                	<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-                	<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-                	<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
-                	<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
-                	<widget name="canceltext" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-                	<widget name="oktext" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-                	<widget name="config" position="10,50" size="550,395" />
+		<screen name="GraphMultiEPGSetup" position="center,center" size="560,435" title="Electronic Program Guide Setup">
+			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
+			<widget name="canceltext" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+			<widget name="oktext" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+			<widget name="config" position="10,50" size="550,395" />
 		</screen>"""
 		
 	def __init__(self, session, args = None):
 		Screen.__init__(self, session)
-                self.setup_title = _("Graph MEpg Settings")
+		self.setup_title = _("Graph MEpg Settings")
 		
 		self["oktext"] = Label(_("OK"))
 		self["canceltext"] = Label(_("Cancel"))
@@ -49,6 +49,8 @@ class GraphMultiEpgSetup(Screen, ConfigListScreen):
 		self.list.append(getConfigListEntry(_("Event Fontsize (relative to skin size)"), config.misc.graph_mepg.ev_fontsize))
 		self.list.append(getConfigListEntry(_("Time Scale"), config.misc.graph_mepg.prev_time_period))
 		self.list.append(getConfigListEntry(_("Items per Page "), config.misc.graph_mepg.items_per_page))
+		self.list.append(getConfigListEntry(_("Items per Page for Listscreen"), config.misc.graph_mepg.items_per_page_listscreen))
+		self.list.append(getConfigListEntry(_("Listscreen default at start user interface"), config.misc.graph_mepg.default_mode))
 		self.list.append(getConfigListEntry(_("Skip Empty Services"), config.misc.graph_mepg.overjump))
 		self.list.append(getConfigListEntry(_("Show Picons"), config.misc.graph_mepg.showpicon))
 		self.list.append(getConfigListEntry(_("Show Service Names "), config.misc.graph_mepg.showservicetitle))
