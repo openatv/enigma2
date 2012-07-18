@@ -32,6 +32,41 @@ public:
 };
 SWIG_TEMPLATE_TYPEDEF(ePtr<eComponentData>, eComponentDataPtr);
 
+SWIG_IGNORE(eGenreData);
+struct eGenreData
+{
+	friend class eServiceEvent;
+	DECLARE_REF(eGenreData);
+	uint8_t m_level1;
+	uint8_t m_level2;
+	uint8_t m_user1;
+	uint8_t m_user2;
+public:
+	eGenreData(const eGenreData& d) { *this = d; }
+	eGenreData() { m_level1 = m_level2 = m_user1 = m_user2 = 0; }
+	int getLevel1(void) const { return m_level1; }
+	int getLevel2(void) const { return m_level2; }
+	int getUser1(void) const { return m_user1; }
+	int getUser2(void) const { return m_user2; }
+};
+SWIG_TEMPLATE_TYPEDEF(ePtr<eGenreData>, eGenreDataPtr);
+
+SWIG_IGNORE(eParentalData);
+struct eParentalData
+{
+	friend class eServiceEvent;
+	DECLARE_REF(eParentalData);
+        std::string m_country_code;
+	uint8_t m_rating;
+public:
+	eParentalData(const eParentalData& d) { *this = d; }
+	eParentalData() { m_country_code = ""; m_rating = 0; }
+	std::string getCountryCode(void) const { return m_country_code; }
+	int getRating(void) const { return m_rating; }
+};
+SWIG_TEMPLATE_TYPEDEF(ePtr<eParentalData>, eParentalDataPtr);
+
+
 SWIG_ALLOW_OUTPUT_SIMPLE(eServiceReference);  // needed for SWIG_OUTPUT in eServiceEvent::getLinkageService
 
 SWIG_IGNORE(eServiceEvent);
@@ -41,6 +76,8 @@ class eServiceEvent: public iObject
 	bool loadLanguage(Event *event, const std::string &lang, int tsidonid);
 	std::list<eComponentData> m_component_data;
 	std::list<eServiceReference> m_linkage_services;
+	std::list<eGenreData> m_genres;
+	std::list<eParentalData> m_ratings;
 	time_t m_begin;
 	int m_duration;
 	int m_event_id;
@@ -65,6 +102,10 @@ public:
 	PyObject *getComponentData() const;
 	int getNumOfLinkageServices() const { return m_linkage_services.size(); }
 	SWIG_VOID(RESULT) getLinkageService(eServiceReference &SWIG_OUTPUT, eServiceReference &parent, int num) const;
+	SWIG_VOID(RESULT) getGenreData(ePtr<eGenreData> &SWIG_OUTPUT) const;
+	PyObject *getGenreData() const;
+	SWIG_VOID(RESULT) getParentalData(ePtr<eParentalData> &SWIG_OUTPUT) const;
+	PyObject *getParentalData() const;
 };
 SWIG_TEMPLATE_TYPEDEF(ePtr<eServiceEvent>, eServiceEvent);
 SWIG_EXTEND(ePtr<eServiceEvent>,
