@@ -130,7 +130,6 @@ def runGraphMultiEpg():
 	global Servicelist
 	global bouquets
 	global epg_bouquet
-	epg_bouquet = Servicelist and Servicelist.getRoot()
 	if epg_bouquet is not None:
 		if len(bouquets) > 1 :
 			cb = changeBouquetCB
