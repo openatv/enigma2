@@ -122,6 +122,11 @@ int eDVBMetaParser::parseMeta(const std::string &tsname)
 			break;
 		case 8:
 			m_packet_size = atoi(line);
+			if (m_packet_size <= 0)
+			{
+				/* invalid value, use default */
+				m_packet_size = 188;
+			}
 			break;
 		case 9:
 			m_scrambled = atoi(line);
