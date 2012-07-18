@@ -141,6 +141,8 @@ def runGraphMultiEpg():
 def reopen(answer):
 	if answer:
 		runGraphMultiEpg()
+	else:
+		closed()
 
 def Plugins(**kwargs):
 	name = _("Graphical Multi EPG")
