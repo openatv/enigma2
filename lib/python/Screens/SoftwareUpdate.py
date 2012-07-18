@@ -10,7 +10,7 @@ from enigma import eTimer
 
 class UpdatePlugin(Screen):
 	skin = """
-		<screen name="UpdatePlugin" position="center,center" size="550,300" title="Software update" >
+		<screen name="UpdatePlugin" position="center,center" size="550,300">
 			<widget name="activityslider" position="0,0" size="550,5"  />
 			<widget name="slider" position="0,150" size="550,30"  />
 			<widget source="package" render="Label" position="10,30" size="540,20" font="Regular;18" halign="center" valign="center" backgroundColor="#25062748" transparent="1" />
@@ -22,6 +22,7 @@ class UpdatePlugin(Screen):
 
 		self.sliderPackages = { "dreambox-dvb-modules": 1, "enigma2": 2, "tuxbox-image-info": 3 }
 
+		self.setTitle(_("Software Update"))
 		self.slider = Slider(0, 4)
 		self["slider"] = self.slider
 		self.activityslider = Slider(0, 100)
@@ -40,6 +41,7 @@ class UpdatePlugin(Screen):
 		self.updating = False
 		self.ipkg = IpkgComponent()
 		self.ipkg.addCallback(self.ipkgCallback)
+		self.onClose.append(self.__close)
 
 		self["actions"] = ActionMap(["WizardActions"], 
 		{
@@ -199,3 +201,6 @@ class UpdatePlugin(Screen):
 		if result is not None and result:
 			self.session.open(TryQuitMainloop,retvalue=2)
 		self.close()
+
+	def __close(self):
+		self.ipkg.removeCallback(self.ipkgCallback)
