@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-07-07 18:42+0100\n"
-"PO-Revision-Date: 2012-07-11 17:33+0100\n"
-"Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
+"POT-Creation-Date: 2012-07-19 10:06+0100\n"
+"PO-Revision-Date: 2012-07-19 19:05+0100\n"
+"Last-Translator: Ralf Biedermann <ralf.biedermann@rbsoft.de>\n"
 "Language-Team: Deutsch <> j-ot&Trial\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -647,11 +647,6 @@ msgstr "Erweiterte Wiederherstellung"
 msgid "After event"
 msgstr "Nach dem Event"
 
-msgid "After pressing OK, please wait!"
-msgstr ""
-"Bestätige mit OK!\n"
-"Der Vorgang kann einige Minuten in Anspruch nehmen!"
-
 msgid "After the start wizard is completed, you need to protect single services. Refer to your STB_BOX's manual on how to do that."
 msgstr "Nachdem der Startassistent beendet wurde, müssen noch die einzelnen Sender geschützt werden. Wie dies getan werden kann, entnehme bitte dem Handbuch der STB_BOX."
 
@@ -911,6 +906,9 @@ msgstr "Bist Du sicher das die EPG Daten an diesen Ort gespeichert werden sollen
 
 msgid "Are you sure you want to send this log:\n"
 msgstr "Bist Du sicher das diese Log Datei gesendet werden soll:\n"
+
+msgid "Are you sure you want to update your STB_BOX?"
+msgstr "Sicher das die STB_BOX aktualisiert werden soll?"
 
 msgid "Artist"
 msgstr "Künstler"
@@ -2597,9 +2595,6 @@ msgstr "Folgendes wird ausgeführt, nachdem OK gedrückt wurde!"
 msgid "Fontsize"
 msgstr "Schriftgröße"
 
-msgid "For more information see www.openpli.org"
-msgstr "Für mehr Informationen besuche www.openpli.org"
-
 msgid "Format"
 msgstr "Formatieren"
 
@@ -4198,7 +4193,7 @@ msgid "Pause movie at end"
 msgstr "Am Filmende pausieren"
 
 msgid "Peak load (max queued requests per workerthread)"
-msgstr ""
+msgstr "Spitzenlast (max. Warteschlange pro Arbeitsthread)"
 
 msgid "Percentage"
 msgstr "Prozent"
@@ -5780,7 +5775,7 @@ msgid "Show encryption info in the infobar (if the skin allows that)."
 msgstr "Zeige Verschlüsselungsinfo im Infobar (wenn es der Skin vorsieht)."
 
 msgid "Show epg"
-msgstr ""
+msgstr "Zeige EPG"
 
 msgid "Show event-progress in channel selection"
 msgstr "Zeige Sendungs-Fortschritt in der Sender-Liste"
@@ -5834,7 +5829,7 @@ msgid "Show the media player..."
 msgstr "Zeige den Medienplayer..."
 
 msgid "Show the plugin browser.."
-msgstr ""
+msgstr "Zeige die Erweiterungsliste"
 
 msgid "Show the radio player..."
 msgstr "Radio-Wiedergabemodus..."
@@ -5950,6 +5945,9 @@ msgstr "Softcam Einstellungen"
 
 msgid "Software"
 msgstr "Software"
+
+msgid "Software Update"
+msgstr ""
 
 msgid "Software management"
 msgstr "Softwareverwaltung"
@@ -6424,8 +6422,8 @@ msgstr "Die STB_BOX speichert die EPG alle x Stunden."
 msgid "The backup failed. Please choose a different backup location."
 msgstr "Die Sicherung ist fehlgeschlagen. Bitte einen anderes Sicherungs-Verzeichnis auswählen."
 
-msgid "The current beta image could not be stable"
-msgstr "Das aktuelle Image könnte fehlerhaft sein!"
+msgid "The current update maybe unstable"
+msgstr "Das aktuelle Update könnte instabil sein"
 
 #, python-format
 msgid ""
@@ -6491,9 +6489,6 @@ msgstr "Der Ausschalt-Timer wurde aktiviert"
 
 msgid "The sleep timer has been disabled."
 msgstr "Der Ausschalt-Timer wurde deaktiviert"
-
-msgid "The status of the current beta image could not be checked because www.openpli.org could not be reached for some reason"
-msgstr "Der Status des aktuellen Image konnte nicht ermittelt werden"
 
 msgid "The timer file (timers.xml) is corrupt and could not be loaded."
 msgstr "Die Timer-Datei (timers.xml) ist kaputt und konnte nicht geladen werden."
@@ -7138,9 +7133,6 @@ msgstr "Softwarekatalog wird aktualisiert."
 msgid "Updating... Please wait... This can take some minutes..."
 msgstr "Update wird durchgeführt... Bitte warten... Der Vorgang kann einige Minuten dauern."
 
-msgid "Upgrade and ask to reboot"
-msgstr "Aktualisieren und auf Nachfrage neustarten"
-
 msgid "Upgrade finished."
 msgstr "Upgrade beendet."
 
@@ -7376,6 +7368,9 @@ msgstr "Bildgröße"
 msgid "View"
 msgstr "Anzeigen"
 
+msgid "View Changes"
+msgstr "Änderungen ansehen"
+
 msgid "View Movies..."
 msgstr "Filme ansehen"
 
@@ -7433,6 +7428,9 @@ msgstr "Eine Liste der verfügbaren System-Erweiterungen anzeigen."
 msgid "View teletext..."
 msgstr "Videotext anzeigen..."
 
+msgid "View the changes"
+msgstr "Änderungen ansehen"
+
 msgid "Virtual KeyBoard"
 msgstr "Virtuelle Tastatur"
 
@@ -7444,6 +7442,27 @@ msgstr "Spannungs-Modus"
 
 msgid "Volume"
 msgstr "Lautstärke"
+
+msgid "STB_BOX advanced remote control (native)"
+msgstr "STB_BOX erweiterte Fernbedienung (native)"
+
+msgid "STB_BOX format data DVD (HDTV compatible)"
+msgstr "Daten-DVD im STB_BOX Format (HDTV-kompatibel)"
+
+msgid "STB_BOX front panel"
+msgstr "STB_BOX Frontpaneel"
+
+msgid "STB_BOX ir keyboard"
+msgstr "STB_BOX IR Tastatur"
+
+msgid "STB_BOX ir mouse"
+msgstr "STB_BOX IR Maus"
+
+msgid "STB_BOX remote control (native)"
+msgstr "STB_BOX Fernbedienung (native)"
+
+msgid "STB_BOX software because updates are available."
+msgstr "STB_BOX Software, da Aktualisierungen verfügbar sind."
 
 msgid "W"
 msgstr "W"
@@ -7559,9 +7578,13 @@ msgstr ""
 msgid ""
 "Welcome.\n"
 "\n"
-"This start wizard will guide you through the basic setup of your Xtrend ET9.\n"
+"This start wizard will guide you through the basic setup of your Vu+ Ultimo.\n"
 "Press the OK button on your remote control to move to the next step."
 msgstr ""
+"Willkommen.\n"
+"\n"
+"Dieser Startassistent wird dich durch die Grundeinstellungen der STB_BOX führen.\n"
+"Drücke OK auf der Fernbedienung um zum nächsten Schritt zu gelangen."
 
 msgid "Welcome..."
 msgstr "Willkommen..."
@@ -7667,27 +7690,6 @@ msgstr "Schreiben fehlgeschlagen!"
 
 msgid "XBox 360 support"
 msgstr "XBox 360 Unterstützung"
-
-msgid "STB_BOX advanced remote control (native)"
-msgstr "STB_BOX erweiterte Fernbedienung (native)"
-
-msgid "STB_BOX format data DVD (HDTV compatible)"
-msgstr "Daten-DVD im STB_BOX Format (HDTV-kompatibel)"
-
-msgid "STB_BOX front panel"
-msgstr "STB_BOX Frontpaneel"
-
-msgid "STB_BOX ir keyboard"
-msgstr "STB_BOX IR Tastatur"
-
-msgid "STB_BOX ir mouse"
-msgstr "STB_BOX IR Maus"
-
-msgid "STB_BOX remote control (native)"
-msgstr "STB_BOX Fernbedienung (native)"
-
-msgid "STB_BOX software because updates are available."
-msgstr "STB_BOX Software, da Aktualisierungen verfügbar sind."
 
 msgid "YPbPr"
 msgstr "YPbPr"
@@ -7870,6 +7872,9 @@ msgstr "Ihr System unterstützt nicht das ext4 Dateisystem"
 msgid "Your STB will restart after pressing OK on your remote control."
 msgstr "Deine STB_BOX wird neu Starten wenn Du OK auf der Fernbedienung drückst."
 
+msgid "Your STB_BOX is not connected to the internet, please check your network settings and try again."
+msgstr "Die STB_BOX ist nicht mit dem Internet verbunden. Bitte überprüfe die Netzwerkeinstellungen und versuche es erneut."
+
 msgid ""
 "Your STB_BOX is now ready to use.\n"
 "\n"
@@ -7905,6 +7910,9 @@ msgstr "Ihre STB_BOX schaltet sich nun aus. Bitte warte einen Moment..."
 
 msgid "Your STB_BOX isn't connected to the internet properly. Please check it and try again."
 msgstr "Die STB_BOX ist nicht korrekt mit dem Internet verbunden. Bitte behebe dies und versuche es dann erneut."
+
+msgid "Your STB_BOX might be unusable now. Please consult the manual for further assistance before rebooting your STB_BOX."
+msgstr "Die STB_BOX könnte jetzt unbenutzbar sein. Bitte im Handbuch nach Hinweisen suchen bevor die STB_BOX neu gestartet wird."
 
 #, python-format
 msgid ""
@@ -8759,7 +8767,7 @@ msgid "remove directory"
 msgstr "Verzeichnis löschen"
 
 msgid "remove entry"
-msgstr "Aus Favoritenliste löschen"
+msgstr "Favoritenliste löschen"
 
 msgid "remove from parental protection"
 msgstr "Jugendschutz ausschalten"
