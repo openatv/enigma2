@@ -74,6 +74,8 @@ eventData::eventData(const eit_event_struct* e, int size, int type, int tsidonid
 				case EXTENDED_EVENT_DESCRIPTOR:
 				case LINKAGE_DESCRIPTOR:
 				case COMPONENT_DESCRIPTOR:
+				case CONTENT_DESCRIPTOR:
+				case PARENTAL_RATING_DESCRIPTOR:
 				{
 					__u32 crc = 0;
 					int cnt=0;
@@ -2220,6 +2222,12 @@ void fillTuple(ePyObject tuple, const char *argstring, int argcount, ePyObject s
 			case 'E': // Event Extended Description
 				tmp = ptr ? PyString_FromString(ptr->getExtendedDescription().c_str()) : ePyObject();
 				break;
+			case 'P': // Event Parental Rating
+				tmp = ptr ? ePyObject(ptr->getParentalData()) : ePyObject();
+				break;
+			case 'W': // Event Content Description
+				tmp = ptr ? ePyObject(ptr->getGenreData()) : ePyObject();
+				break;
 			case 'C': // Current Time
 				tmp = nowTime;
 				inc_refcount = true;
@@ -2292,6 +2300,8 @@ int handleEvent(eServiceEvent *ptr, ePyObject dest_list, const char* argstring, 
 //   T = Event Title
 //   S = Event Short Description
 //   E = Event Extended Description
+//   P = Event Parental Rating
+//   W = Event Content Description ('W'hat)
 //   C = Current Time
 //   R = Service Reference
 //   N = Service Name
@@ -2830,6 +2840,8 @@ void eEPGCache::importEvents(ePyObject serviceReferences, ePyObject list)
 //   D = Event Duration
 //   T = Event Title
 //   S = Event Short Description
+//   P = Event Parental Rating
+//   W = Event Content Description
 //   E = Event Extended Description
 //   R = Service Reference
 //   N = Service Name
@@ -2883,6 +2895,8 @@ PyObject *eEPGCache::search(ePyObject arg)
 					case 'S':
 					case 'E':
 					case 'T':
+					case 'P':
+					case 'W':
 						needServiceEvent=true;
 						break;
 					case 'N':
@@ -2929,7 +2943,7 @@ PyObject *eEPGCache::search(ePyObject arg)
 							__u8 *data = evData->EITdata;
 							int tmp = evData->ByteSize-10;
 							__u32 *p = (__u32*)(data+10);
-								// search short and extended event descriptors
+							// search short and extended event descriptors
 							while(tmp>3)
 							{
 								__u32 crc = *p++;
