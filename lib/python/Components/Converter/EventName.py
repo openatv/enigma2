@@ -12,6 +12,7 @@ class EventName(Converter, object):
 	NAME_NEXT = 6
 	GENRE = 7
 	RATING = 8
+	SRATING = 9
 	
 	def __init__(self, type):
 		Converter.__init__(self, type)
@@ -31,6 +32,8 @@ class EventName(Converter, object):
 			self.type = self.GENRE
 		elif type == "Rating":
 			self.type = self.RATING
+		elif type == "SmallRating":
+			self.type = self.SRATING
 		else:
 			self.type = self.NAME
 
@@ -42,10 +45,24 @@ class EventName(Converter, object):
 			
 		if self.type == self.NAME:
 			return event.getEventName()
+		elif self.type == self.SRATING:
+			rating = event.getParentalData()
+			if rating is None:
+				return ""
+			else:
+				country = rating.getCountryCode()
+				age = rating.getRating()
+				if age == 0:
+					return _("undef")
+				elif age > 15:
+					return _("bc%s") % age
+				else:
+					age += 3
+					return " %d+" % age
 		elif self.type == self.RATING:
 			rating = event.getParentalData()
 			if rating is None:
-				return "---"
+				return ""
 			else:
 				country = rating.getCountryCode()
 				age = rating.getRating()
@@ -59,7 +76,7 @@ class EventName(Converter, object):
 		elif self.type == self.GENRE:
 			genre = event.getGenreData()
 			if genre is None:
-				return "---"
+				return ""
 			else:
 				return getGenreStringSub(genre.getLevel1(), genre.getLevel2())
 		elif self.type == self.NAME_NOW:
