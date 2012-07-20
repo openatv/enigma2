@@ -1,148 +1,159 @@
+#
+# Genre types taken from DVB standards documentation
+#
+# some broadcaster do define other types so this list
+# may grow or be replaced..
+#
+maintype = [	_("Reserved"),
+		_("Movie/Drama"),
+		_("News Current Affairs"),
+		_("Show Games show"),
+		_("Sports"),
+		_("Children/Youth"),
+		_("Music/Ballet/Dance"),
+		_("Arts/Culture"),
+		_("Social/Political/Economics"),
+		_("Education/Science/..."),
+		_("Leisure hobies"),
+		_("Other")]
 
-maintype = [	"Reserved",
-			"Movie/Drama",
-			"News Current Affairs",
-			"Show Games show",
-			"Sports",
-			"Children/Youth",
-			"Music/Ballet/Dance",
-			"Arts/Culture",
-			"Social/Political/Economics",
-			"Education/Science/...",
-			"Leisure hobies",
-			"Other",
-			"Reserved",
-			"Reserved",
-			"Reserved",
-			"Reserved"]
-
-	
 
 subtype = {}
-subtype["Movie/Drama"] = [
-					"movie/drama (general)",
-					"detective/thriller",
-					"adventure/western/war",
-					"science fiction/fantasy/horror",
-					"comedy",
-					"soap/melodram/folkloric",
-					"romance",
-					"serious/classical/religious/historical movie/drama",
-					"adult movie/drama"]
+# Movie/Drama
+subtype[1] = [
+					_("movie/drama (general)"),
+					_("detective/thriller"),
+					_("adventure/western/war"),
+					_("science fiction/fantasy/horror"),
+					_("comedy"),
+					_("soap/melodram/folkloric"),
+					_("romance"),
+					_("serious/classical/religious/historical movie/drama"),
+					_("adult movie/drama")]
 
-subtype["News Current Affairs"] = [
-					"news/current affairs (general)",
-					"news/weather report",
-					"news magazine",
-					"documentary",
-					"discussion/interview/debate"]
+# News Current Affairs
+subtype[2] = [
+					_("news/current affairs (general)"),
+					_("news/weather report"),
+					_("news magazine"),
+					_("documentary"),
+					_("discussion/interview/debate")]
 
-subtype["Show Games show"] = [
-					"show/game show (general)",
-					"game show/quiz/contest",
-					"variety show",
-					"talk show"]
+# Show Games show
+subtype[3] = [
+					_("show/game show (general)"),
+					_("game show/quiz/contest"),
+					_("variety show"),
+					_("talk show")]
 
-subtype["Sports"] = [
-					"sports (general)",
-					"special events",
-					"sports magazine",
-					"football/soccer",
-					"tennis/squash",
-					"team sports",
-					"athletics",
-					"motor sport",
-					"water sport",
-					"winter sport",
-					"equestrian",
-					"martial sports"]
+# Sports
+subtype[4] = [
+					_("sports (general)"),
+					_("special events"),
+					_("sports magazine"),
+					_("football/soccer"),
+					_("tennis/squash"),
+					_("team sports"),
+					_("athletics"),
+					_("motor sport"),
+					_("water sport"),
+					_("winter sport"),
+					_("equestrian"),
+					_("martial sports")]
 
-subtype["Children/Youth"] = [
-					"childrens's/youth program (general)",
-					"pre-school children's program",
-					"entertainment (6-14 year old)",
-					"entertainment (10-16 year old)",
-					"information/education/school program",
-					"cartoon/puppets"]
+# Children/Youth
+subtype[5] = [
+					_("childrens's/youth program (general)"),
+					_("pre-school children's program"),
+					_("entertainment (6-14 year old)"),
+					_("entertainment (10-16 year old)"),
+					_("information/education/school program"),
+					_("cartoon/puppets")]
 
-subtype["Music/Ballet/Dance"] = [
-					"music/ballet/dance (general)",
-					"rock/pop",
-					"serious music/classic music",
-					"folk/traditional music",
-					"jazz",
-					"musical/opera",
-					"ballet"]
+# Music/Ballet/Dance
+subtype[6] = [
+					_("music/ballet/dance (general)"),
+					_("rock/pop"),
+					_("serious music/classic music"),
+					_("folk/traditional music"),
+					_("jazz"),
+					_("musical/opera"),
+					_("ballet")]
 
-subtype["Arts/Culture"] = [
-					"arts/culture (without music, general)",
-					"performing arts",
-					"fine arts",
-					"religion",
-					"popular culture/traditional arts",
-					"literature",
-					"film/cinema",
-					"experimental film/video",
-					"broadcasting/press",
-					"new media",
-					"arts/culture magazine",
-					"fashion"]
+# Arts/Culture
+subtype[7] = [
+					_("arts/culture (without music, general)"),
+					_("performing arts"),
+					_("fine arts"),
+					_("religion"),
+					_("popular culture/traditional arts"),
+					_("literature"),
+					_("film/cinema"),
+					_("experimental film/video"),
+					_("broadcasting/press"),
+					_("new media"),
+					_("arts/culture magazine"),
+					_("fashion")]
 
-subtype["Social/Political/Economics"] = [
-					"social/political issues/economics (general)",
-					"magazines/reports/documentary",
-					"economics/social advisory",
-					"remarkable people"]
+# Social/Political/Economics
+subtype[8] = [
+					_("social/political issues/economics (general)"),
+					_("magazines/reports/documentary"),
+					_("economics/social advisory"),
+					_("remarkable people")]
 
-subtype["Education/Science/..."] = [
-					"education/science/factual topics (general)",
-					"nature/animals/environment",
-					"technology/natural science",
-					"medicine/physiology/psychology",
-					"foreign countries/expeditions",
-					"social/spiritual science",
-					"further education",
-					"languages"]
+# Education/Science/...
+subtype[9] = [
+					_("education/science/factual topics (general)"),
+					_("nature/animals/environment"),
+					_("technology/natural science"),
+					_("medicine/physiology/psychology"),
+					_("foreign countries/expeditions"),
+					_("social/spiritual science"),
+					_("further education"),
+					_("languages")]
 
-subtype["Leisure hobies"] = [
-					"leisure hobbies (general)",
-					"tourism/travel",
-					"handicraft",
-					"motoring",
-					"fitness & health",
-					"cooking",
-					"advertisement/shopping",
-					"gardening"]
+# Leisure hobies
+subtype[10] = [
+					_("leisure hobbies (general)"),
+					_("tourism/travel"),
+					_("handicraft"),
+					_("motoring"),
+					_("fitness & health"),
+					_("cooking"),
+					_("advertisement/shopping"),
+					_("gardening")]
 
-subtype["Other"] = [
-					"original language",
-					"black & white",
-					"unpublished",
-					"live broadcast"]
+# Other
+subtype[11] = [
+					_("original language"),
+					_("black & white"),
+					_("unpublished"),
+					_("live broadcast")]
 
 def getGenreStringLong(hn, ln):
-	maingenre = maintype[hn]
-	if maingenre == "Reserved":
-		return "Reserved"
-	if ln == 15:
-		return maingenre + ": User defined"
-	sublen = len(subtype[maingenre])
-	if ln >= sublen:
-		return maingenre + " : Reserved"
-	subgenre = subtype[maingenre][ln]
-	return maingenre + ": " + subgenre
+	if hn > 0 and hn < len(maintype):
+		maingenre = maintype[hn]
+		if ln == 15:
+			return maingenre + ": " + _("User defined")
+		if ln < len(subtype[hn]):
+			return maingenre + ": " + subtype[hn][ln]
+		return maingenre + ": " + _("Reserved")
+	return _("Reserved")
 
 def getGenreStringMain(hn, ln):
-        return maintype[hn]
+	if hn > 0 and hn < len(maintype):
+		return maintype[hn]
+	return _("Reserved")
 
 def getGenreStringSub(hn, ln):
-	maingenre = maintype[hn]
-	if maingenre == "Reserved":
-		return "Reserved"
-	if ln == 15:
-		return "User defined"
-	sublen = len(subtype[maingenre])
-	if ln >= sublen:
-		return "Reserved"
-	subgenre = subtype[maingenre][ln]
-	return subgenre
+	if hn > 0 and hn < len(maintype):
+		if ln == 15:
+			return _("User defined")
+		if ln < len(subtype[hn]):
+			return subtype[hn][ln]
+	return _("Reserved")
+
+#
+# The End
+#
