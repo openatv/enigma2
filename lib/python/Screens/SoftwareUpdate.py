@@ -203,4 +203,4 @@ class UpdatePlugin(Screen):
 		self.close()
 
 	def __close(self):
-		self.ipkg.removeCallback(self.ipkgCallback)
+		self.ipkg.stop()

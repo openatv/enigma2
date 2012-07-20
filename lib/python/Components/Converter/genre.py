@@ -8,7 +8,7 @@ maintype = [	"Reserved",
 			"Music/Ballet/Dance",
 			"Arts/Culture",
 			"Social/Political/Economics",
-     			"Education/Science/...",
+			"Education/Science/...",
 			"Leisure hobies",
 			"Other",
 			"Reserved",
@@ -65,7 +65,7 @@ subtype["Children/Youth"] = [
 					"information/education/school program",
 					"cartoon/puppets"]
 
-subtype["Music/Ballet/Dance "] = [
+subtype["Music/Ballet/Dance"] = [
 					"music/ballet/dance (general)",
 					"rock/pop",
 					"serious music/classic music",
@@ -121,12 +121,12 @@ subtype["Other"] = [
 					"live broadcast"]
 
 def getGenreStringLong(hn, ln):
-        maingenre = maintype[hn]
+	maingenre = maintype[hn]
 	if maingenre == "Reserved":
 		return "Reserved"
 	if ln == 15:
 		return maingenre + ": User defined"
-        sublen = len(subtype[maingenre])
+	sublen = len(subtype[maingenre])
 	if ln >= sublen:
 		return maingenre + " : Reserved"
 	subgenre = subtype[maingenre][ln]
@@ -136,14 +136,13 @@ def getGenreStringMain(hn, ln):
         return maintype[hn]
 
 def getGenreStringSub(hn, ln):
-        maingenre = maintype[hn]
+	maingenre = maintype[hn]
 	if maingenre == "Reserved":
 		return "Reserved"
 	if ln == 15:
 		return "User defined"
-        sublen = len(subtype[maingenre])
+	sublen = len(subtype[maingenre])
 	if ln >= sublen:
 		return "Reserved"
 	subgenre = subtype[maingenre][ln]
 	return subgenre
-
