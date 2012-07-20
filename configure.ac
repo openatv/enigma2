@@ -270,6 +270,9 @@ lib/python/Plugins/SystemPlugins/3GModemManager/meta/Makefile
 lib/python/Plugins/SystemPlugins/3GModemManager/script/Makefile
 lib/python/Plugins/SystemPlugins/WirelessAccessPoint/Makefile
 lib/python/Plugins/SystemPlugins/WirelessAccessPoint/meta/Makefile
+lib/python/Plugins/SystemPlugins/DeviceManager/Makefile
+lib/python/Plugins/SystemPlugins/DeviceManager/icons/Makefile
+lib/python/Plugins/SystemPlugins/SwapManager/Makefile
 lib/python/Tools/Makefile
 po/Makefile
 main/Makefile
