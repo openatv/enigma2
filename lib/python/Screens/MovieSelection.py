@@ -978,6 +978,10 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		config.movielist.listtype.value = self.settings["listtype"]
 		config.movielist.description.value = self.settings["description"]
 
+		config.movielist.moviesort.save()
+		config.movielist.listtype.save()
+		config.movielist.description.save()
+
 	def loadLocalSettings(self):
 		'Load settings, called when entering a directory'
 		try:
@@ -1556,7 +1560,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 						print "[MovieSelection] Weird error moving to trash", e
 						# Failed to create trash or move files.
 						msg = _("Cannot move to trash can") + "\n" + str(e) + "\n"
-				msg += "Sorry, deleting directories can (for now) only be done through the trash can."
+				msg += _("Sorry, deleting directories can (for now) only be done through the trash can.")
 				self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR)
 				return
 			for fn in os.listdir(cur_path):
