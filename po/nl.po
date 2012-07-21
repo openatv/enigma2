@@ -4,9 +4,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-07-07 18:42+0100\n"
-"PO-Revision-Date: 2012-07-11 17:32+0100\n"
-"Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
+"POT-Creation-Date: 2012-07-18 13:23+0100\n"
+"PO-Revision-Date: 2012-07-20 08:06+0100\n"
+"Last-Translator: \n"
 "Language-Team: Andy Blackburn, Rob van der Does\n"
 "Language: Nederlands\n"
 "MIME-Version: 1.0\n"
@@ -651,9 +651,6 @@ msgstr "Geavanceerd herstellen"
 msgid "After event"
 msgstr "Na opname"
 
-msgid "After pressing OK, please wait!"
-msgstr "Druk op OK en wacht."
-
 msgid "After the start wizard is completed, you need to protect single services. Refer to your STB_BOX's manual on how to do that."
 msgstr "Nadat de wizard is uitgevoerd, moet u enkele services beveiligen. Kijk in de handleiding van uw STB_BOX hoe dat te doen."
 
@@ -913,6 +910,9 @@ msgstr "Weet u zeker dat u de EPG Cache wilt opslaan in:\n"
 
 msgid "Are you sure you want to send this log:\n"
 msgstr "Weet u zeker dat u dit log wilt versturen:\n"
+
+msgid "Are you sure you want to update your STB_BOX?"
+msgstr "Weet u zeker dat u uw STB_BOX wilt updaten?"
 
 msgid "Artist"
 msgstr "Artiest"
@@ -2604,9 +2604,6 @@ msgstr "Nadat u op OK drukt worden de volgende taken uitgevoerd!"
 
 msgid "Fontsize"
 msgstr "Lettergrootte"
-
-msgid "For more information see www.openpli.org"
-msgstr "Voor meer informatie zie: www.openpli.org"
 
 msgid "Format"
 msgstr "Formaat"
@@ -5965,6 +5962,9 @@ msgstr "Softcam instellingen"
 msgid "Software"
 msgstr "Software"
 
+msgid "Software Update"
+msgstr "Software Update"
+
 #
 msgid "Software management"
 msgstr "Softwarebeheer"
@@ -6445,8 +6445,8 @@ msgstr "Uw STB_BOX slaat de EPG-data elke (uur) op."
 msgid "The backup failed. Please choose a different backup location."
 msgstr "Back-up is mislukt. Kies een andere back-up locatie a.u.b."
 
-msgid "The current beta image could not be stable"
-msgstr "The current beta image could not be stable"
+msgid "The current update maybe unstable"
+msgstr "De huidige update kan onstabiel zijn"
 
 #, python-format
 msgid ""
@@ -6513,9 +6513,6 @@ msgstr "De slaaptimer is geactiveerd."
 
 msgid "The sleep timer has been disabled."
 msgstr "De slaaptimer is uitgeschakeld."
-
-msgid "The status of the current beta image could not be checked because www.openpli.org could not be reached for some reason"
-msgstr ""
 
 msgid "The timer file (timers.xml) is corrupt and could not be loaded."
 msgstr "Het timer bestand (timer.xml) is beschadigd en kan niet worden geladen."
@@ -7167,9 +7164,6 @@ msgstr "Software catalogus wordt geupdate"
 msgid "Updating... Please wait... This can take some minutes..."
 msgstr "Software update is bezig. Een ogenblik geduld a.u.b. Dit kan enkele minuten duren..."
 
-msgid "Upgrade and ask to reboot"
-msgstr "Voer upgrade uit en vraag toestemming voor reboot"
-
 msgid "Upgrade finished."
 msgstr "Upgrade voltooid."
 
@@ -7404,6 +7398,9 @@ msgstr "Video-afmetingen"
 msgid "View"
 msgstr "Bekijken"
 
+msgid "View Changes"
+msgstr "Bekijk veranderingen"
+
 msgid "View Movies..."
 msgstr "Bekijk opname..."
 
@@ -7462,6 +7459,9 @@ msgstr "Bekijk de lijst met beschikbare systeem extensies"
 msgid "View teletext..."
 msgstr "Teletekst weergeven..."
 
+msgid "View the changes"
+msgstr "Bekijk de veranderingen"
+
 msgid "Virtual KeyBoard"
 msgstr "Virtueel toetsenbord"
 
@@ -7473,6 +7473,27 @@ msgstr "Spanningsmodus"
 
 msgid "Volume"
 msgstr "Volume"
+
+msgid "STB_BOX advanced remote control (native)"
+msgstr "STB_BOX geavanceerde AB"
+
+msgid "STB_BOX format data DVD (HDTV compatible)"
+msgstr "STB_BOX format data DVD (HDTV compatible)"
+
+msgid "STB_BOX front panel"
+msgstr "STB_BOX voorpaneel"
+
+msgid "STB_BOX ir keyboard"
+msgstr "STB_BOX IR-toetsenbord"
+
+msgid "STB_BOX ir mouse"
+msgstr "STB_BOX IR-muis"
+
+msgid "STB_BOX remote control (native)"
+msgstr "STB_BOX AB"
+
+msgid "STB_BOX software because updates are available."
+msgstr "STB_BOX software want er zijn updates beschikbaar."
 
 msgid "W"
 msgstr "W"
@@ -7588,13 +7609,13 @@ msgstr ""
 msgid ""
 "Welcome.\n"
 "\n"
-"This start wizard will guide you through the basic setup of your Xtrend ET9.\n"
+"This start wizard will guide you through the basic setup of your STB_BOX.\n"
 "Press the OK button on your remote control to move to the next step."
 msgstr ""
 "Welkom.\n"
 "\n"
-"Deze wizard leidt u door de basisinstellingen van uw STB_BOX.\n"
-"Druk op OK om door te gaan naar de volgende stap."
+"Deze start-wizard zal u door de basis instellingen van uw STB_BOX leiden.\n"
+"Druk op 'OK' op uw afstandsbediening om naar de volgende stap te gaan."
 
 msgid "Welcome..."
 msgstr "Welkom..."
@@ -7701,27 +7722,6 @@ msgstr "Schrijven mislukt!"
 
 msgid "XBox 360 support"
 msgstr "XBox 360 support"
-
-msgid "STB_BOX advanced remote control (native)"
-msgstr "STB_BOX geavanceerde AB"
-
-msgid "STB_BOX format data DVD (HDTV compatible)"
-msgstr "STB_BOX format data DVD (HDTV compatible)"
-
-msgid "STB_BOX front panel"
-msgstr "STB_BOX voorpaneel"
-
-msgid "STB_BOX ir keyboard"
-msgstr "STB_BOX IR-toetsenbord"
-
-msgid "STB_BOX ir mouse"
-msgstr "STB_BOX IR-muis"
-
-msgid "STB_BOX remote control (native)"
-msgstr "STB_BOX AB"
-
-msgid "STB_BOX software because updates are available."
-msgstr "STB_BOX software want er zijn updates beschikbaar."
 
 msgid "YPbPr"
 msgstr "Component"
@@ -7905,6 +7905,9 @@ msgstr "Uw systeem ondersteunt geen ext4"
 msgid "Your STB will restart after pressing OK on your remote control."
 msgstr "Als u op OK drukt zal uw STB_BOX opnieuw opstarten."
 
+msgid "Your STB_BOX is not connected to the internet, please check your network settings and try again."
+msgstr "Uw STB_BOX is niet met het internet verbonden. Controleer uw netwerkinstellingen en probeer het opnieuw."
+
 msgid ""
 "Your STB_BOX is now ready to use.\n"
 "\n"
@@ -7940,6 +7943,9 @@ msgstr "Uw STB_BOX wordt nu afgesloten. Een ogenblik a.u.b..."
 
 msgid "Your STB_BOX isn't connected to the internet properly. Please check it and try again."
 msgstr "Uw STB_BOX heeft geen verbinding met het internet kunnen maken. Controleer instellingen en kabels en probeer opnieuw."
+
+msgid "Your STB_BOX might be unusable now. Please consult the manual for further assistance before rebooting your STB_BOX."
+msgstr "Uw STB_BOX kan nu onbruikbaar zijn geworden. Raadpleeg voordat uw uw STB_BOX herstart de handleiding."
 
 #, python-format
 msgid ""
