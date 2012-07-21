@@ -86,7 +86,7 @@ class SoftwareUpdateChanges(Screen):
 
 class UpdatePlugin(Screen):
 	skin = """
-		<screen name="UpdatePlugin" position="center,center" size="550,300" title="Software update" >
+		<screen name="UpdatePlugin" position="center,center" size="550,300">
 			<widget name="activityslider" position="0,0" size="550,5"  />
 			<widget name="slider" position="0,150" size="550,30"  />
 			<widget source="package" render="Label" position="10,30" size="540,20" font="Regular;18" halign="center" valign="center" backgroundColor="#25062748" transparent="1" />
@@ -99,6 +99,7 @@ class UpdatePlugin(Screen):
 
 		self.sliderPackages = { "dreambox-dvb-modules": 1, "enigma2": 2, "tuxbox-image-info": 3 }
 
+		self.setTitle(_("Software update"))
 		self.slider = Slider(0, 4)
 		self["slider"] = self.slider
 		self.activityslider = Slider(0, 100)
@@ -135,6 +136,7 @@ class UpdatePlugin(Screen):
 
 		self.ipkg = IpkgComponent()
 		self.ipkg.addCallback(self.ipkgCallback)
+		self.onClose.append(self.__close)
 
 		self.updating = False
 
@@ -182,8 +184,8 @@ class UpdatePlugin(Screen):
 			self.status.setText(_("Configuring"))
 
 		elif event == IpkgComponent.EVENT_MODIFIED:
-			if config.plugins.SoftwareManager.overwriteConfigFiles.value in ("N", "Y"):
-				self.ipkg.write(True and config.plugins.SoftwareManager.overwriteConfigFiles.value)
+			if config.plugins.softwaremanager.overwriteConfigFiles.value in ("N", "Y"):
+				self.ipkg.write(True and config.plugins.softwaremanager.overwriteConfigFiles.value)
 			else:
 				self.session.openWithCallback(
 					self.modificationCallback,
@@ -245,8 +247,8 @@ class UpdatePlugin(Screen):
 
 	def startActualUpgrade(self, answer):
 		if not answer or not answer[1]:
-				self.close()
-				return
+			self.close()
+			return
 
 		if answer[1] == "changes":
 			self.session.openWithCallback(self.startActualUpgrade,SoftwareUpdateChanges)
@@ -272,3 +274,5 @@ class UpdatePlugin(Screen):
 			self.session.open(TryQuitMainloop,retvalue=2)
 		self.close()
 
+	def __close(self):
+		self.ipkg.removeCallback(self.ipkgCallback)

@@ -228,6 +228,9 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 		self.servicelist = slist
 		self.lastservice = lastservice or session.nav.getCurrentlyPlayingServiceReference()
 		session.nav.playService(service)
+		from Screens.MovieSelection import Playlist
+		self.playlist = Playlist.getPlayList()
+		self.cur_service = service
 		self.returning = False
 		self.onClose.append(self.__onClose)
 		self.onShow.append(self.doButtonsCheck)
@@ -239,6 +242,8 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 		self["key_blue"].setText(_("Extensions"))
 
 	def __onClose(self):
+		from Screens.MovieSelection import Playlist
+		Playlist.clearPlayList()
 		self.session.nav.playService(self.lastservice)
 
 	def handleLeave(self, how):
@@ -315,6 +320,17 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 		elif answer == "restart":
 			self.doSeek(0)
 			self.setSeekState(self.SEEK_STATE_PLAY)
+		elif answer in ("playlist","playlistquit"):
+			( next_service, idx , n ) = self.nextPlaylistService(self.cur_service)
+			if next_service is not None:
+				self.displayPlayedName(next_service, idx, n)
+				self.session.nav.playService(next_service)
+				self.cur_service = next_service
+			else:
+				if answer == "playlist":
+					self.leavePlayerConfirmed([True,"movielist"])
+				else:
+					self.leavePlayerConfirmed([True,"quit"])
 
 	def doEofInternal(self, playing):
 		if not self.execing:
@@ -411,6 +427,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 
 	def movieSelected(self, service):
 		if service is not None:
+			self.cur_service = service
 			self.is_closing = False
 			self.session.nav.playService(service)
 			self.returning = False
@@ -423,3 +440,23 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 			# no selection? Continue where we left off
 			if ref and not self.session.nav.getCurrentlyPlayingServiceReference():
 				self.session.nav.playService(ref)
+
+	def nextPlaylistService(self, service):
+		next = False
+		idx = 1
+		for i in self.playlist:
+			if next:
+				return (i, idx, len(self.playlist))
+			if i == service:
+				next = True
+			idx += 1
+		return ( None, 0, 0 )
+
+	def displayPlayedName(self, ref, idx, n):
+		from Tools import Notifications
+		from Screens.MessageBox import MessageBox
+		Notifications.AddPopup(text = _("%s/%s: %s") % (idx, n, self.ref2HumanName(ref)), type = MessageBox.TYPE_INFO, timeout = 4)
+
+	def ref2HumanName(self, ref):
+		from enigma import eServiceCenter
+		return eServiceCenter.getInstance().info(ref).getName(ref)

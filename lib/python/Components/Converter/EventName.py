@@ -1,5 +1,6 @@
 from Components.Converter.Converter import Converter
 from Components.Element import cached
+from Components.Converter.genre import getGenreStringLong, getGenreStringSub
 from enigma import eEPGCache
 
 class EventName(Converter, object):
@@ -8,10 +9,15 @@ class EventName(Converter, object):
 	EXTENDED_DESCRIPTION = 2
 	FULL_DESCRIPTION = 3
 	ID = 4
-	NEXT_NAME = 5
-	NEXT_DESCRIPTION = 6
-	THIRD_NAME = 7
-	THIRD_DESCRIPTION = 8
+	NAME_NOW = 5
+	NAME_NEXT = 6
+	GENRE = 7
+	RATING = 8
+	SRATING = 9
+
+	NEXT_DESCRIPTION = 21
+	THIRD_NAME = 22
+	THIRD_DESCRIPTION = 23
 
 	def __init__(self, type):
 		Converter.__init__(self, type)
@@ -24,8 +30,17 @@ class EventName(Converter, object):
 			self.type = self.FULL_DESCRIPTION
 		elif type == "ID":
 			self.type = self.ID
-		elif type == "NextName":
-			self.type = self.NEXT_NAME
+		elif type == "NameNow" or type == "NowName":
+			self.type = self.NAME_NOW
+		elif type == "NameNext" or type == "NextName":
+			self.type = self.NAME_NEXT
+		elif type == "Genre":
+			self.type = self.GENRE
+		elif type == "Rating":
+			self.type = self.RATING
+		elif type == "SmallRating":
+			self.type = self.SRATING
+
 		elif type == "NextDescription":
 			self.type = self.NEXT_DESCRIPTION
 		elif type == "ThirdName":
@@ -43,6 +58,45 @@ class EventName(Converter, object):
 
 		if self.type == self.NAME:
 			return event.getEventName()
+		elif self.type == self.SRATING:
+			rating = event.getParentalData()
+			if rating is None:
+				return ""
+			else:
+				country = rating.getCountryCode()
+				age = rating.getRating()
+				if age == 0:
+					return _("undef")
+				elif age > 15:
+					return _("bc%s") % age
+				else:
+					age += 3
+					return " %d+" % age
+		elif self.type == self.RATING:
+			rating = event.getParentalData()
+			if rating is None:
+				return ""
+			else:
+				country = rating.getCountryCode()
+				age = rating.getRating()
+				if age == 0:
+					return _("Rating undefined")
+				elif age > 15:
+					return _("Rating defined by broadcaster - %d") % age
+				else:
+					age += 3
+					return _("Minimum age %d years") % age
+		elif self.type == self.GENRE:
+			genre = event.getGenreData()
+			if genre is None:
+				return ""
+			else:
+				return getGenreStringSub(genre.getLevel1(), genre.getLevel2())
+		elif self.type == self.NAME_NOW:
+			return _("Now") + ": " + event.getEventName()
+		elif self.type == self.NAME_NEXT:
+			return _("Next") + ": " + event.getEventName()
+
 		elif self.type == self.SHORT_DESCRIPTION:
 			return event.getShortDescription()
 		elif self.type == self.EXTENDED_DESCRIPTION:
@@ -55,7 +109,7 @@ class EventName(Converter, object):
 			return description + extended
 		elif self.type == self.ID:
 			return str(event.getEventId())
-		elif int(self.type) > 4:
+		elif int(self.type) = 6 or int(self.type) > 20:
 			reference = self.source.service
 			info = reference and self.source.info
 			if info is None:
@@ -64,7 +118,7 @@ class EventName(Converter, object):
 			self.list = [] if self.epgcache is None else self.epgcache.lookupEvent(test)
 			if self.list:
 				try:
-					if self.type == self.NEXT_NAME and self.list[1][1]:
+					if self.type == self.NAME_NEXT and self.list[1][1]:
 						return self.list[1][1]
 					elif self.type == self.NEXT_DESCRIPTION and (self.list[1][2] or self.list[1][3]):
 						description = self.list[1][2]

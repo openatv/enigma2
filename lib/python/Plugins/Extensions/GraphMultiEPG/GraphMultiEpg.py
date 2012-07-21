@@ -1,5 +1,5 @@
 from skin import parseColor, parseFont, parseSize
-from Components.config import config, ConfigClock, ConfigInteger, ConfigSubsection, ConfigBoolean, ConfigSelection, ConfigSelectionNumber
+from Components.config import config, ConfigClock, ConfigInteger, ConfigSubsection, ConfigYesNo, ConfigSelection, ConfigSelectionNumber
 from Components.Pixmap import Pixmap
 from Components.Button import Button
 from Components.ActionMap import HelpableActionMap
@@ -29,6 +29,20 @@ from GraphMultiEpgSetup import GraphMultiEpgSetup
 from time import localtime, time, strftime
 
 MAX_TIMELINES = 6
+
+config.misc.graph_mepg = ConfigSubsection()
+config.misc.graph_mepg.prev_time = ConfigClock(default = time())
+config.misc.graph_mepg.prev_time_period = ConfigInteger(default = 120, limits = (60, 300))
+config.misc.graph_mepg.ev_fontsize = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 8, wraparound = True)
+config.misc.graph_mepg.items_per_page = ConfigSelectionNumber(min = 3, max = 10, stepwidth = 1, default = 6, wraparound = True)
+config.misc.graph_mepg.items_per_page_listscreen = ConfigSelectionNumber(min = 3, max = 20, stepwidth = 1, default = 12, wraparound = True)
+config.misc.graph_mepg.default_mode = ConfigYesNo(default = False)
+config.misc.graph_mepg.overjump = ConfigYesNo(default = True)
+config.misc.graph_mepg.showpicon = ConfigYesNo(default = False)
+config.misc.graph_mepg.showservicetitle = ConfigYesNo(default = True)
+config.misc.graph_mepg.roundTo = ConfigSelection(default = 15, choices = [("900", _("%d minutes") % 15), ("1800", _("%d minutes") % 30), ("3600", _("%d minutes") % 60)])
+
+listscreen = config.misc.graph_mepg.default_mode.value
 
 class EPGList(HTMLComponent, GUIComponent):
 	def __init__(self, selChangedCB = None, timer = None, time_epoch = 120, overjump_empty = True):
@@ -254,11 +268,18 @@ class EPGList(HTMLComponent, GUIComponent):
 	GUI_WIDGET = eListbox
 
 	def setItemsPerPage(self):
+		global listscreen
 		if self.listHeight > 0:
-			itemHeight = self.listHeight / config.misc.graph_mepg.items_per_page.getValue()
+			if listscreen:
+				itemHeight = self.listHeight / config.misc.graph_mepg.items_per_page_listscreen.getValue()
+			else:
+				itemHeight = self.listHeight / config.misc.graph_mepg.items_per_page.getValue()
 		else:
 			itemHeight = 54 # some default (270/5)
-		self.instance.resize(eSize(self.listWidth, itemHeight * config.misc.graph_mepg.items_per_page.getValue()))
+		if listscreen:
+			self.instance.resize(eSize(self.listWidth, itemHeight * config.misc.graph_mepg.items_per_page_listscreen.getValue()))
+		else:
+			self.instance.resize(eSize(self.listWidth, itemHeight * config.misc.graph_mepg.items_per_page.getValue()))
 		self.l.setItemHeight(itemHeight)
 
 	def setEventFontsize(self):
@@ -631,18 +652,6 @@ class TimelineText(HTMLComponent, GUIComponent):
 		else:
 			timeline_now.visible = False
 
-
-config.misc.graph_mepg = ConfigSubsection()
-config.misc.graph_mepg.prev_time = ConfigClock(default = time())
-config.misc.graph_mepg.prev_time_period = ConfigInteger(default = 120, limits = (60, 300))
-config.misc.graph_mepg.ev_fontsize = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 8, wraparound = True)
-config.misc.graph_mepg.items_per_page = ConfigSelectionNumber(min = 3, max = 10, stepwidth = 1, default = 5, wraparound = True)
-config.misc.graph_mepg.overjump = ConfigBoolean(default = True)
-config.misc.graph_mepg.showpicon = ConfigBoolean(default = False)
-config.misc.graph_mepg.showservicetitle = ConfigBoolean(default = True)
-config.misc.graph_mepg.roundTo = ConfigSelection(default = 15, choices = [("900", _("%d minutes") % 15), ("1800", _("%d minutes") % 30), ("3600", _("%d minutes") % 60)])
-
-
 class GraphMultiEPG(Screen, HelpableScreen):
 	EMPTY = 0
 	ADD_TIMER = 1
@@ -658,7 +667,14 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		self.closeRecursive = False
 		self["key_red"] = Button("")
 		self["key_green"] = Button("")
-		self["key_yellow"] = Button("")
+
+		global listscreen
+		if listscreen:
+			self["key_yellow"] = Button(_("Normal mode"))
+			self.skinName="GraphMultiEPGList"
+		else:
+			self["key_yellow"] = Button(_("List mode"))
+
 		self["key_blue"] = Button(_("Goto"))
 
 		self.key_green_choice = self.EMPTY
@@ -693,6 +709,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 				"timerAdd":    (self.timerAdd,       _("Add/Remove timer for current event")),
 				"info":        (self.infoKeyPressed, _("Show detailed event info")),
 				"red":         (self.zapTo,          _("Zap to selected channel")),
+				"yellow":      (self.swapMode,       _("Swap from normal to list mode")),	
 				"blue":        (self.enterDateTime,  _("Goto specific data/time")),
 				"menu":        (self.showSetup,      _("Setup menu")),
 				"nextBouquet": (self.nextBouquet,    _("Show bouquet selection menu")),
@@ -859,6 +876,11 @@ class GraphMultiEPG(Screen, HelpableScreen):
 				self.zapFunc(ref.ref)
 				self["list"].setCurrentlyPlaying(ref.ref)
 				self["list"].l.invalidate()
+
+	def swapMode(self):
+		global listscreen
+		listscreen = not listscreen
+		self.close(True)
 
 	def eventSelected(self):
 		self.infoKeyPressed()
