@@ -3,7 +3,7 @@ from Screens.Console import Console
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
-from Screens.Standby import TryQuitMainloop 
+from Screens.Standby import TryQuitMainloop
 from Screens.Ipkg import Ipkg
 from Screens.SoftwareUpdate import UpdatePlugin
 from Components.ActionMap import ActionMap, NumberActionMap
@@ -54,6 +54,8 @@ config.plugins.softwaremanager.overwriteConfigFiles = ConfigSelection(
 				 ("N", _("No, never")),
 				 ("ask", _("Always ask"))
 				], "Y")
+config.plugins.softwaremanager.onSetupMenu = ConfigYesNo(default=False)
+config.plugins.softwaremanager.onBlueButton = ConfigYesNo(default=False)
 
 def write_cache(cache_file, cache_data):
 	#Does a cPickle dump
@@ -390,6 +392,9 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 		self.list = [ ]
 		self.overwriteConfigfilesEntry = getConfigListEntry(_("Overwrite configuration files ?"), config.plugins.softwaremanager.overwriteConfigFiles)
 		self.list.append(self.overwriteConfigfilesEntry)
+		self.list.append(getConfigListEntry(_("show softwaremanager in plugin menu"), config.plugins.softwaremanager.onSetupMenu))
+		self.list.append(getConfigListEntry(_("show softwaremanager on blue button"), config.plugins.softwaremanager.onBlueButton))
+
 		self["config"].list = self.list
 		self["config"].l.setSeperation(400)
 		self["config"].l.setList(self.list)
@@ -418,6 +423,8 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 			return
 		else:
 			self.keySave()
+			plugins.clearPluginList()
+			plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
 
 	def apply(self):
 		self.session.openWithCallback(self.confirm, MessageBox, _("Use this settings?"), MessageBox.TYPE_YESNO, timeout = 20, default = True)
@@ -1901,11 +1908,20 @@ def filescan(**kwargs):
 def UpgradeMain(session, **kwargs):
 	session.open(UpdatePluginMenu)
 
+def startSetup(menuid):
+	if menuid == "setup" and config.plugins.softwaremanager.onSetupMenu.value:
+		return [(_("Software management"), UpgradeMain, "software_manager", 50)]
+	return [ ]
+
 def Plugins(path, **kwargs):
 	global plugin_path
 	plugin_path = path
 	list = [
-		PluginDescriptor(name=_("Software management"), description=_("Manage your STB_BOX's software"), where = PluginDescriptor.WHERE_PLUGINMENU, needsRestart = False, fnc=UpgradeMain),
+		PluginDescriptor(name=_("Software management"), description=_("Manage your STB_BOX's software"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc=startSetup),
 		PluginDescriptor(name=_("Ipkg"), where = PluginDescriptor.WHERE_FILESCAN, needsRestart = False, fnc = filescan)
 	]
+	if not config.plugins.softwaremanager.onSetupMenu.value and not config.plugins.softwaremanager.onBlueButton.value:
+		list.append(PluginDescriptor(name=_("Software management"), description=_("Manage your STB_BOX's software"), where = PluginDescriptor.WHERE_PLUGINMENU, needsRestart = False, fnc=UpgradeMain))
+	if config.plugins.softwaremanager.onBlueButton.value:
+		list.append(PluginDescriptor(name=_("Software management"), description=_("Manage your STB_BOX's software"), where = PluginDescriptor.WHERE_EXTENSIONSMENU, needsRestart = False, fnc=UpgradeMain))
 	return list

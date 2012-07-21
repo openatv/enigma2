@@ -8,6 +8,8 @@
 #include <dvbsi++/extended_event_descriptor.h>
 #include <dvbsi++/linkage_descriptor.h>
 #include <dvbsi++/component_descriptor.h>
+#include <dvbsi++/content_descriptor.h>
+#include <dvbsi++/parental_rating_descriptor.h>
 #include <dvbsi++/descriptor_tag.h>
 
 #include <sys/types.h>
@@ -21,6 +23,8 @@ std::string eServiceEvent::m_language_alternative = "---";
 
 DEFINE_REF(eServiceEvent);
 DEFINE_REF(eComponentData);
+DEFINE_REF(eGenreData);
+DEFINE_REF(eParentalData);
 
 /* search for the presence of language from given EIT event descriptors*/
 bool eServiceEvent::loadLanguage(Event *evt, const std::string &lang, int tsidonid)
@@ -128,6 +132,35 @@ bool eServiceEvent::loadLanguage(Event *evt, const std::string &lang, int tsidon
 					}
 					break;
 				}
+				case CONTENT_DESCRIPTOR:
+				{
+					const ContentDescriptor *cd = (ContentDescriptor *)*desc;
+					const ContentClassificationList *con = cd->getClassifications();
+					for (ContentClassificationConstIterator it = con->begin(); it != con->end(); ++it)
+					{
+						eGenreData data;
+				                data.m_level1 = (*it)->getContentNibbleLevel1();
+						data.m_level2 = (*it)->getContentNibbleLevel2();
+						data.m_user1  = (*it)->getUserNibble1();
+						data.m_user2  = (*it)->getUserNibble2();
+						m_genres.push_back(data);
+					}
+					break;
+				}
+				case PARENTAL_RATING_DESCRIPTOR:
+				{
+					const ParentalRatingDescriptor *prd = (ParentalRatingDescriptor *)*desc;
+					const ParentalRatingList *par = prd->getParentalRatings();
+					for (ParentalRatingConstIterator it = par->begin(); it != par->end(); ++it)
+					{
+						eParentalData data;
+
+						data.m_country_code = (*it)->getCountryCode();
+						data.m_rating = (*it)->getRating();
+						m_ratings.push_back(data);
+					}
+					break;
+				}
 			}
 		}
 	}
@@ -193,6 +226,60 @@ std::string eServiceEvent::getBeginTimeString() const
 	return std::string(tmp, 12);
 }
 
+RESULT eServiceEvent::getGenreData(ePtr<eGenreData> &dest) const
+{
+	std::list<eGenreData>::const_iterator it = m_genres.begin();
+	for(;it != m_genres.end(); ++it) {
+		dest = new eGenreData(*it);
+		//  for now just return the first item on the list
+		return 0;
+	}
+	dest = 0;
+	return -1;
+}
+
+PyObject *eServiceEvent::getGenreData() const
+{
+	ePyObject ret = PyList_New(m_genres.size());
+	int cnt=0;
+	for (std::list<eGenreData>::const_iterator it(m_genres.begin()); it != m_genres.end(); ++it)
+	{
+		ePyObject tuple = PyTuple_New(4);
+		PyTuple_SET_ITEM(tuple, 0, PyInt_FromLong(it->getLevel1()));
+		PyTuple_SET_ITEM(tuple, 1, PyInt_FromLong(it->getLevel2()));
+		PyTuple_SET_ITEM(tuple, 2, PyInt_FromLong(it->getUser1()));
+		PyTuple_SET_ITEM(tuple, 3, PyInt_FromLong(it->getUser2()));
+		PyList_SET_ITEM(ret, cnt++, tuple);
+	}
+	return ret;
+}
+
+RESULT eServiceEvent::getParentalData(ePtr<eParentalData> &dest) const
+{
+	std::list<eParentalData>::const_iterator it = m_ratings.begin();
+	for(;it != m_ratings.end(); ++it) {
+		dest = new eParentalData(*it);
+		//  for now just return the first item on the list
+		return 0;
+	}
+	dest = 0;
+	return -1;
+}
+
+PyObject *eServiceEvent::getParentalData() const
+{
+	ePyObject ret = PyList_New(m_ratings.size());
+	int cnt = 0;
+	for (std::list<eParentalData>::const_iterator it(m_ratings.begin()); it != m_ratings.end(); ++it)
+	{
+		ePyObject tuple = PyTuple_New(2);
+		PyTuple_SET_ITEM(tuple, 0, PyString_FromString(it->getCountryCode().c_str()));
+		PyTuple_SET_ITEM(tuple, 1, PyInt_FromLong(it->getRating()));
+		PyList_SET_ITEM(ret, cnt++, tuple);
+	}
+	return ret;
+}
+
 RESULT eServiceEvent::getComponentData(ePtr<eComponentData> &dest, int tagnum) const
 {
 	std::list<eComponentData>::const_iterator it =
@@ -205,14 +292,14 @@ RESULT eServiceEvent::getComponentData(ePtr<eComponentData> &dest, int tagnum) c
 			return 0;
 		}
 	}
-	dest=0;
+	dest = 0;
 	return -1;
 }
 
 PyObject *eServiceEvent::getComponentData() const
 {
 	ePyObject ret = PyList_New(m_component_data.size());
-	int cnt=0;
+	int cnt = 0;
 	for (std::list<eComponentData>::const_iterator it(m_component_data.begin()); it != m_component_data.end(); ++it)
 	{
 		ePyObject tuple = PyTuple_New(5);

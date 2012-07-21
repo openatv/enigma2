@@ -15,8 +15,8 @@ epg = None
 
 class SelectBouquet(Screen):
 	skin = """<screen name="SelectBouquet" position="center,center" size="300,240" title="Choose bouquet">
-              <widget name="menu" position="10,10" size="290,225" scrollbarMode="showOnDemand" />
-          </screen>"""
+		<widget name="menu" position="10,10" size="290,225" scrollbarMode="showOnDemand" />
+	</screen>"""
 
 	def __init__(self, session, bouquets, curbouquet, direction, enableWrapAround=True):
 		Screen.__init__(self, session)
@@ -124,13 +124,25 @@ def main(session, servicelist = None, **kwargs):
 	bouquets = Servicelist and Servicelist.getBouquetList()
 	global epg_bouquet
 	epg_bouquet = Servicelist and Servicelist.getRoot()
+	runGraphMultiEpg()
+
+def runGraphMultiEpg():
+	global Servicelist
+	global bouquets
+	global epg_bouquet
 	if epg_bouquet is not None:
 		if len(bouquets) > 1 :
 			cb = changeBouquetCB
 		else:
 			cb = None
 		services = getBouquetServices(epg_bouquet)
-		Session.openWithCallback(closed, GraphMultiEPG, services, zapToService, cb, ServiceReference(epg_bouquet).getServiceName())
+		Session.openWithCallback(reopen, GraphMultiEPG, services, zapToService, cb, ServiceReference(epg_bouquet).getServiceName())
+
+def reopen(answer):
+	if answer:
+		runGraphMultiEpg()
+	else:
+		closed()
 
 def Plugins(**kwargs):
 	name = _("Graphical Multi EPG")

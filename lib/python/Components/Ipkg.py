@@ -159,6 +159,9 @@ class IpkgComponent:
 	def addCallback(self, callback):
 		self.callbackList.append(callback)
 
+	def removeCallback(self, callback):
+		self.callbackList.remove(callback)
+
 	def getFetchedList(self):
 		return self.fetchedList
 
