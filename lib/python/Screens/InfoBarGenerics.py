@@ -1203,7 +1203,7 @@ class InfoBarEPG:
 				cnt = len(self.bouquets)
 			if cnt > 1: # show bouquet list
 				if withCallback:
-					self.bouquetSel = self.session.openWithCallback(self.closed, BouquetSelector, self.bouquets, self.openBouquetEPG, enableWrapAround=True)
+					self.bouquetSel = self.session.openWithCallback(self.reopen, BouquetSelector, self.bouquets, self.openBouquetEPG, enableWrapAround=True)
 					self.dlg_stack.append(self.bouquetSel)
 				else:
 					self.bouquetSel = self.session.open(BouquetSelector, self.bouquets, self.openBouquetEPG, enableWrapAround=True)
@@ -1222,10 +1222,15 @@ class InfoBarEPG:
 
 	def closeGraphEPG(self, ret=False):
 		self.GraphEPG_cleanup()
+		self.reopen(ret)
 
 	def GraphEPG_cleanup(self):
 		global epg
 		epg = None
+
+	def reopen(self, answer):
+		if answer:
+			self.openGraphEPG()
 
 	def showCoolTVGuide(self):
 		if Directories.fileExists("/usr/lib/enigma2/python/Plugins/Extensions/CoolTVGuide/plugin.pyo"):

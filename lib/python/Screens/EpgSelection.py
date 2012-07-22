@@ -487,6 +487,7 @@ class EPGSelection(Screen, HelpableScreen):
 					"input_date_time":	(self.enterDateTime, _("Goto specific data/time")),
 					"info":				(self.Info, _("Show detailed event info")),
 					"infolong":			(self.InfoLong, _("Show single epg for current channel")),
+					"tv":				(self.togglePIG, _("Toggle Picture In Graphics")),
 					"menu":				(self.createSetup, _("Setup menu")),
 				},-1)
 			self["epgactions"].csel = self
@@ -581,8 +582,18 @@ class EPGSelection(Screen, HelpableScreen):
 			l.setEventFontsize()
 			l.recalcEntrySize()
 			l.sortSingleEPG(int(config.epgselction.sort.value))
+		self.close(True)
 
- 	def hidewaitingtext(self):
+	def togglePIG(self):
+		if not config.epgselction.pictureingraphics.value:
+			config.epgselction.pictureingraphics.setValue(True)
+		else:
+			config.epgselction.pictureingraphics.setValue(False)
+		config.epgselction.pictureingraphics.save()
+		configfile.save()
+		self.close(True)
+
+	def hidewaitingtext(self):
 		self.listTimer.stop()
 		self['lab1'].hide()
 
@@ -1516,7 +1527,7 @@ class EPGSelectionSetup(Screen, ConfigListScreen):
 		self.type=type
 		Screen.setTitle(self, _("EPG Setup"))
 		self["status"] = StaticText()
-		self['footnote'] = Label(_("* = Close EPG Required"))
+		self['footnote'] = Label()
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self["VKeyIcon"] = Boolean(False)
@@ -1557,7 +1568,7 @@ class EPGSelectionSetup(Screen, ConfigListScreen):
 		if self.type == 5:
 			self.list.append(getConfigListEntry(_("Channel preview mode"), config.epgselction.preview_mode_vixepg,_("If set to 'yes' you can preview channels in the EPG list.")))
 			self.list.append(getConfigListEntry(_("Show bouquet on launch"), config.epgselction.showbouquet_vixepg,_("If set to 'yes' the bouquets will be shown each time you open the EPG.")))
-			self.list.append(getConfigListEntry(_("Picture in Graphics*"), config.epgselction.pictureingraphics,_("If set to 'yes' shows a small TV-screen in the EPG.")))
+			self.list.append(getConfigListEntry(_("Picture in Graphics"), config.epgselction.pictureingraphics,_("If set to 'yes' shows a small TV-screen in the EPG.")))
 			self.list.append(getConfigListEntry(_("Show Picons"), config.epgselction.showpicon,_("If set to 'yes' shows the channel picons in the EPG.")))
 			self.list.append(getConfigListEntry(_("Show Service Names "), config.epgselction.showservicetitle,_("If set to 'yes' shows the channel names in the EPG.")))
 			self.list.append(getConfigListEntry(_("Info Button (short)"), config.epgselction.Info,_("Set to what you want the button to do.")))
