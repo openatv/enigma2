@@ -478,6 +478,9 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self["movie_off"] = MultiPixmap()
 		self["movie_off"].hide()
 
+		self["movie_sort"] = MultiPixmap()
+		self["movie_sort"].hide()
+
 		self["freeDiskSpace"] = self.diskinfo = DiskInfo(config.movielist.last_videodir.value, DiskInfo.FREE, update=False)
 
 		self["InfobarActions"] = HelpableActionMap(self, "InfobarActions", 
@@ -1115,7 +1118,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			title += " - " + ','.join(self.selected_tags)
 		self.setTitle(title)
 		self.displayMovieOffStatus()
-		self["movie_off"].show()
+		self.displaySortStatus()
 		if not (self.reload_sel and self["list"].moveTo(self.reload_sel)):
 			if self.reload_home:
 				self["list"].moveToFirstMovie()
@@ -1725,6 +1728,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.sorttimer.callback.append(self._updateButtonTexts)
 		self.sorttimer.start(1500, True) #time for displaying sorting type just applied
 		self.sortBy(int(l_moviesort[index][0]))
+		self["movie_sort"].setPixmapNum(int(l_moviesort[index][0])-1)
 
 	def do_listtype(self):
 		index = 0
@@ -1740,16 +1744,21 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 	def do_preview(self):
 		self.preview()
 
+	def displaySortStatus(self):
+		self["movie_sort"].setPixmapNum(int(config.movielist.moviesort.value)-1)
+		self["movie_sort"].show()
+
 	def do_movieoff(self):
 		self.setNextMovieOffStatus()
 		self.displayMovieOffStatus()
 
 	def displayMovieOffStatus(self):
-		playback = config.usage.on_movie_eof.getText()
 		self["movie_off"].setPixmapNum(config.usage.on_movie_eof.getIndex())
+		self["movie_off"].show()
 
 	def setNextMovieOffStatus(self):
 		config.usage.on_movie_eof.selectNext()
+		config.usage.on_movie_eof.save()
 
 
 class PlayList:
