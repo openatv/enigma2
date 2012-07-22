@@ -1,6 +1,7 @@
 installdir = $(pkgdatadir)/skin_default/icons
 
 dist_install_DATA = \
+	ask.png \
 	clock.png \
 	dish.png \
 	dish_scan.png \
@@ -41,10 +42,12 @@ dist_install_DATA = \
 	lock_on.png \
 	lock.png \
 	lockBouquet.png \
+	loop.png \
 	marker.png \
 	mp_buttons.png \
 	movie_play.png \
 	movie_play_rec.png \
+	movielist.png \
 	part_0_4.png \
 	part_1_4.png \
 	part_2_4.png \
@@ -52,7 +55,11 @@ dist_install_DATA = \
 	part_4_4.png \
 	part_new.png \
 	part_unwatched.png \
+	pause.png \
+	playlist.png \
+	playlistquit.png \
 	plilogo-fs8.png \
+	quit.png \
 	network_wired.png \
 	network_wired-active.png \
 	network_wired-inactive.png \
@@ -78,4 +85,3 @@ dist_install_DATA = \
 	trashcan.png \
 	unlock.png \
 	unlockBouquet.png
-
