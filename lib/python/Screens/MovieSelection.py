@@ -5,7 +5,7 @@ from Components.MenuList import MenuList
 from Components.MovieList import MovieList, resetMoviePlayState
 from Components.DiskInfo import DiskInfo
 from Tools.Trashcan import TrashInfo
-from Components.Pixmap import Pixmap
+from Components.Pixmap import Pixmap, MultiPixmap
 from Components.Label import Label
 from Components.PluginComponent import plugins
 from Components.config import config, ConfigSubsection, ConfigText, ConfigInteger, ConfigLocations, ConfigSet, ConfigYesNo, ConfigSelection, getConfigListEntry, ConfigSelectionNumber
@@ -216,7 +216,7 @@ class MovieBrowserConfiguration(ConfigListScreen,Screen):
 		configList.append(getConfigListEntry(_("Play audio in background"), config.movielist.play_audio_internal, _("Keeps MovieList open whilst playing audio files.")))
 		configList.append(getConfigListEntry(_("Root directory"), config.movielist.root, _("Sets the root folder of movie list, to remove the '..' from benign shown in that folder.")))
 		configList.append(getConfigListEntry(_("Show live tv when movie stopped"), config.movielist.show_live_tv_in_movielist, _("When set the PIG will return to live after a movie has stopped playing.")))
-		for btn in ('red', 'green', 'yellow', 'blue', 'TV', 'Radio'):
+		for btn in ('red', 'green', 'yellow', 'blue', 'TV', 'Radio', 'Text'):
 			configList.append(getConfigListEntry(_("Button") + " " + _(btn), userDefinedButtons[btn], _("Allows you setup the button to do what you choose.")))
 		ConfigListScreen.__init__(self, configList, session = self.session, on_change = self.changedEntry)
 		self["config"].setList(configList)
@@ -470,6 +470,12 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self["key_blue"] = Button("")
 		self._updateButtonTexts()
 
+		self["movie_off"] = MultiPixmap()
+		self["movie_off"].hide()
+
+		self["movie_sort"] = MultiPixmap()
+		self["movie_sort"].hide()
+
 		self["freeDiskSpace"] = self.diskinfo = DiskInfo(config.movielist.last_videodir.value, DiskInfo.FREE, update=False)
 		self["TrashcanSize"] = self.trashinfo = TrashInfo(config.movielist.last_videodir.value, TrashInfo.USED, update=False)
 
@@ -478,6 +484,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				"showMovies": (self.doPathSelect, _("select the movie path")),
 				"showRadio": (self.btn_radio, "?"),
 				"showTv": (self.btn_tv, _("Home")),
+				"showText": (self.btn_text, _("on end of movie")),
 			})
 
 		self["NumberActions"] =  NumberActionMap(["NumberActions", "InputAsciiActions"],
@@ -581,7 +588,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				'rename': _("Rename"),
 				'gohome': _("Home"),
 				'sort': _("Sort"),
-				'preview': _("Preview")
+				'preview': _("Preview"),
+				'movieoff': _("On end of movie")
 			}
 			for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST):
 				userDefinedActions['@' + p.name] = p.description
@@ -591,6 +599,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			config.movielist.btn_blue = ConfigSelection(default='sort', choices=userDefinedActions)
 			config.movielist.btn_radio = ConfigSelection(default='bookmarks', choices=userDefinedActions)
 			config.movielist.btn_tv = ConfigSelection(default='gohome', choices=userDefinedActions)
+			config.movielist.btn_text = ConfigSelection(default='movieoff', choices=userDefinedActions)
 			userDefinedButtons ={
 				'red': config.movielist.btn_red,
 				'green': config.movielist.btn_green,
@@ -598,6 +607,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				'blue': config.movielist.btn_blue,
 				'Radio': config.movielist.btn_radio,
 				'TV': config.movielist.btn_tv,
+				'Text': config.movielist.btn_text,
 			}
 
 	def _callButton(self, name):
@@ -628,6 +638,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self._callButton(config.movielist.btn_radio.value)
 	def btn_tv(self):
 		self._callButton(config.movielist.btn_tv.value)
+	def btn_text(self):
+		self._callButton(config.movielist.btn_text.value)
 
 	def keyUp(self):
 		if self["list"].getCurrentIndex() < 1:
@@ -996,6 +1008,10 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		config.movielist.moviesort.value = self.settings["moviesort"]
 		config.movielist.description.value = self.settings["description"]
 
+		config.movielist.moviesort.save()
+		config.movielist.listtype.save()
+		config.movielist.description.save()
+
 	def loadLocalSettings(self):
 		'Load settings, called when entering a directory'
 		try:
@@ -1113,6 +1129,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		if self.selected_tags is not None:
 			title += " - " + ','.join(self.selected_tags)
 		self.setTitle(title)
+		self.displayMovieOffStatus()
+		self.displaySortStatus()
 		if not (self.reload_sel and self["list"].moveTo(self.reload_sel)):
 			if self.reload_home:
 				self["list"].moveToFirstMovie()
@@ -1738,9 +1756,27 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.sorttimer.callback.append(self._updateButtonTexts)
 		self.sorttimer.start(3000, True) #time for displaying sorting type just applied
 		self.sortBy(int(l_moviesort[index][0]))
+		self["movie_sort"].setPixmapNum(int(l_moviesort[index][0])-1)
 
 	def do_preview(self):
 		self.preview()
+
+	def displaySortStatus(self):
+		self["movie_sort"].setPixmapNum(int(config.movielist.moviesort.value)-1)
+		self["movie_sort"].show()
+
+	def do_movieoff(self):
+		self.setNextMovieOffStatus()
+		self.displayMovieOffStatus()
+
+	def displayMovieOffStatus(self):
+		self["movie_off"].setPixmapNum(config.usage.on_movie_eof.getIndex())
+		self["movie_off"].show()
+
+	def setNextMovieOffStatus(self):
+		config.usage.on_movie_eof.selectNext()
+		config.usage.on_movie_eof.save()
+
 
 class PlayList:
 	def __init__(self):

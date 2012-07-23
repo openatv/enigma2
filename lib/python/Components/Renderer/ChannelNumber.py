@@ -24,10 +24,11 @@ class ChannelNumber(Renderer, VariableText):
 		if info is None:
 			self.text = ""
 			return
-		name = info.getName().replace('\xc2\x86', '').replace('\xc2\x87', '')
-		if name in self.list:
+
+		serviceref = info.getInfoString(iServiceInformation.sServiceref)
+		if serviceref in self.list:
 			for idx in range(1, len(self.list)):
-				if name == self.list[idx-1]:
+				if serviceref == self.list[idx-1]:
 					self.text = str(idx)
 					if config.misc.boxtype.value == 'gb800se' or config.misc.boxtype.value == 'gb800solo':
 							number = self.text[0:4]
@@ -49,5 +50,4 @@ class ChannelNumber(Renderer, VariableText):
 			channels = services and services.getContent("SN", True)
 			for channel in channels:
 				if not channel[0].startswith("1:64:"):
-					self.list.append(channel[1].replace('\xc2\x86', '').replace('\xc2\x87', ''))
-
+					self.list.append(channel[0])

@@ -119,6 +119,7 @@ class RecordingSettings(Screen,ConfigListScreen):
 			self.list.append(getConfigListEntry(_("Custom skip time for '1'/'3'-keys"), config.seek.selfdefined_13, _("Set the skip-forward/backward time of the 1-3 number keys.")))
 			self.list.append(getConfigListEntry(_("Custom skip time for '4'/'6'-keys"), config.seek.selfdefined_46, _("Set the skip-forward/backward time of the 4-6 number keys.")))
 			self.list.append(getConfigListEntry(_("Custom skip time for '7'/'9'-keys"), config.seek.selfdefined_79, _("Set the skip-forward/backward time of the 7-9 number keys.")))
+			self.list.append(getConfigListEntry(_("Display message before next played movie"), config.usage.next_movie_msg, _("Show a popup message after a recording has finished and before start next in queue.")))
 			self.list.append(getConfigListEntry(_("Seekbar activation"), config.seek.baractivation, _("Select seekbar to be activated by arrow L/R (long) or << >> (long).")))
 			self.list.append(getConfigListEntry(_("Seekbar sensibility"), config.seek.sensibility, _("Set the jump-size of the seekbar.")))
 			self.list.append(getConfigListEntry(_("Fast Forward speeds"), config.seek.speeds_forward, _("Set the values for fast-forward speeds.")))
