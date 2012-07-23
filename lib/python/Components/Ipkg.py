@@ -3,6 +3,7 @@ from enigma import eConsoleAppContainer
 from Components.Harddisk import harddiskmanager
 
 opkgDestinations = []
+opkgStatusPath = ''
 
 def opkgExtraDestinations():
 	global opkgDestinations
@@ -16,10 +17,17 @@ def opkgAddDestination(mountpoint):
 
 def onPartitionChange(why, part):
 	global opkgDestinations
+	global opkgStatusPath
 	mountpoint = os.path.normpath(part.mountpoint)
 	if mountpoint and mountpoint != '/':
 		if why == 'add':
-			if os.path.exists(os.path.join(mountpoint, 'usr/lib/opkg/status')):
+			if opkgStatusPath == '':
+				# recent opkg versions
+				opkgStatusPath = 'var/lib/opkg/status'
+				if not os.path.exists(os.path.join('/', opkgStatusPath)):
+					# older opkg versions
+					opkgStatusPath = 'usr/lib/opkg/status'
+			if os.path.exists(os.path.join(mountpoint, opkgStatusPath)):
 				opkgAddDestination(mountpoint)
 		elif why == 'remove':
 			try:
