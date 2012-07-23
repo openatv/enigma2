@@ -45,19 +45,21 @@ class CIselectMainMenu(Screen):
 
 		print "[CI_Wizzard] FOUND %d CI Slots " % NUM_CI
 
-		self.dlg = None
 		self.state = { }
 		self.list = [ ]
 		if NUM_CI > 0:
 			for slot in range(NUM_CI):
 				state = eDVBCI_UI.getInstance().getState(slot)
-				if state == 0:
-					appname = _("Slot %d") %(slot+1) + " - " + _("no module found")
-				elif state == 1:
-					appname = _("Slot %d") %(slot+1) + " - " + _("init modules")
-				elif state == 2:
-					appname = _("Slot %d") %(slot+1) + " - " + eDVBCI_UI.getInstance().getAppName(slot)
-				self.list.append( (appname, ConfigNothing(), 0, slot) )
+				if state != -1:
+					if state == 0:
+						appname = _("Slot %d") %(slot+1) + " - " + _("no module found")
+					elif state == 1:
+						appname = _("Slot %d") %(slot+1) + " - " + _("init modules")
+					elif state == 2:
+						appname = _("Slot %d") %(slot+1) + " - " + eDVBCI_UI.getInstance().getAppName(slot)
+					self.list.append( (appname, ConfigNothing(), 0, slot) )
+				else:
+					self.list.append( (_("Slot %d") %(slot+1) + " - " + _("no module found") , ConfigNothing(), 1, -1) )
 		else:
 			self.list.append( (_("no CI slots found") , ConfigNothing(), 1, -1) )
 
@@ -630,7 +632,7 @@ def main(session, **kwargs):
 	session.open(CIselectMainMenu)
 
 def menu(menuid, **kwargs):
-	if menuid == "setup" and eDVBCIInterfaces.getInstance().getNumOfSlots():
+	if menuid == "cam" and eDVBCIInterfaces.getInstance().getNumOfSlots():
 		return [(_("Common Interface Assignment"), main, "ci_assign", 11)]
 	return [ ]
 
