@@ -895,8 +895,8 @@ int ePicLoad::startThread(int what, const char *file, int x, int y, bool async)
 	}
 
 	m_filepara = new Cfilepara(file, file_id, getSize(file));
-	x > 0 ? m_filepara->max_x = x : m_filepara->max_x = m_conf.max_x;
-	y > 0 ? m_filepara->max_y = y : m_filepara->max_y = m_conf.max_y;
+	m_filepara->max_x = x > 0 ? x : m_conf.max_x;
+	m_filepara->max_y = x > 0 ? y : m_conf.max_y;
 	
 	if(m_filepara->max_x <= 0 || m_filepara->max_y <= 0)
 	{
