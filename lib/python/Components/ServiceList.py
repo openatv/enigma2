@@ -237,6 +237,10 @@ class ServiceList(HTMLComponent, GUIComponent):
 		self.mode = mode
 		self.l.setItemHeight(self.ItemHeight)
 		self.l.setVisualMode(eListboxServiceContent.visModeComplex)
+		
+		progressBarWidth = 52
+		rowWidth = self.instance.size().width() - 30 #scrollbar is fixed 20 + 10 Extra marge
+
 		if mode == self.MODE_NORMAL or not config.usage.show_channel_numbers_in_servicelist.value:
 			channelNumberWidth = 0
 			channelNumberSpace = 0
@@ -244,15 +248,19 @@ class ServiceList(HTMLComponent, GUIComponent):
 			channelNumberWidth = 50
 			channelNumberSpace = 10
 
+		self.l.setElementPosition(self.l.celServiceNumber, eRect(0, 0, channelNumberWidth, self.ItemHeight))
+
 		if config.usage.show_event_progress_in_servicelist.value == "left":
-			self.l.setElementPosition(self.l.celServiceEventProgressbar, eRect(0, 0, 52, self.ItemHeight))
+			self.l.setElementPosition(self.l.celServiceEventProgressbar, eRect(channelNumberWidth+channelNumberSpace, 0, progressBarWidth , self.ItemHeight))
+			self.l.setElementPosition(self.l.celServiceName, eRect(channelNumberWidth+channelNumberSpace+progressBarWidth+10, 0, rowWidth - (channelNumberWidth+channelNumberSpace+progressBarWidth+10), self.ItemHeight))
 		elif config.usage.show_event_progress_in_servicelist.value == "right":
-			self.l.setElementPosition(self.l.celServiceEventProgressbar, eRect(1, 0, 52, self.ItemHeight))
+			self.l.setElementPosition(self.l.celServiceEventProgressbar, eRect(rowWidth-progressBarWidth, 0, progressBarWidth, self.ItemHeight))
+			self.l.setElementPosition(self.l.celServiceName, eRect(channelNumberWidth+channelNumberSpace, 0, rowWidth - (channelNumberWidth+channelNumberSpace+progressBarWidth+10), self.ItemHeight))
 		else:
-			self.l.setElementPosition(self.l.celServiceEventProgressbar, eRect(1, 0, 0, 0))
+			self.l.setElementPosition(self.l.celServiceEventProgressbar, eRect(0, 0, 0, 0))
+			self.l.setElementPosition(self.l.celServiceName, eRect(channelNumberWidth+channelNumberSpace, 0, rowWidth - (channelNumberWidth+channelNumberSpace), self.ItemHeight))
+
 		self.l.setElementFont(self.l.celServiceName, self.ServiceNameFont)
 		self.l.setElementFont(self.l.celServiceNumber, self.ServiceNumberFont)
-		self.l.setElementPosition(self.l.celServiceNumber, eRect(0, 0, channelNumberWidth, self.ItemHeight))
-		self.l.setElementPosition(self.l.celServiceName, eRect(channelNumberWidth+channelNumberSpace, 0, self.instance.size().width() - (channelNumberWidth+channelNumberSpace), self.ItemHeight))
 		self.l.setElementFont(self.l.celServiceInfo, self.ServiceInfoFont)
 
