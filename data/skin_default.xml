@@ -652,6 +652,8 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget source="Service" render="Label" position="5,357" zPosition="1" size="550,58" font="Regular;19">
 			<convert type="EventName">ExtendedDescription</convert>
 		</widget>
+		<widget name="movie_sort" pixmaps="skin_default/icons/az.png,skin_default/icons/newtop.png,skin_default/icons/shuffle.png,skin_default/icons/za.png,skin_default/icons/oldtop.png" position="0,425" zPosition="10" size="35,20" transparent="1" alphatest="on"/>
+		<widget name="movie_off" pixmaps="skin_default/icons/ask.png,skin_default/icons/movielist.png,skin_default/icons/quit.png,skin_default/icons/pause.png,skin_default/icons/playlist.png,skin_default/icons/playlistquit.png,skin_default/icons/loop.png" position="40,425" zPosition="10" size="35,20" transparent="1" alphatest="on"/>
 		<widget name="freeDiskSpace" position="10,425" size="540,20" font="Regular;19" valign="center" halign="right" />
 	</screen>
 	<!-- Mute -->

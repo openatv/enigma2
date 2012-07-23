@@ -320,15 +320,18 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 		elif answer == "restart":
 			self.doSeek(0)
 			self.setSeekState(self.SEEK_STATE_PLAY)
-		elif answer in ("playlist","playlistquit"):
-			( next_service, idx , n ) = self.nextPlaylistService(self.cur_service)
+		elif answer in ("playlist","playlistquit","loop"):
+			( next_service, item , lenght ) = self.nextPlaylistService(self.cur_service)
 			if next_service is not None:
-				self.displayPlayedName(next_service, idx, n)
+				if config.usage.next_movie_msg.value:
+					self.displayPlayedName(next_service, item, lenght)
 				self.session.nav.playService(next_service)
 				self.cur_service = next_service
 			else:
 				if answer == "playlist":
 					self.leavePlayerConfirmed([True,"movielist"])
+				elif answer == "loop" and lenght > 0:
+					self.leavePlayerConfirmed([True,"loop"])
 				else:
 					self.leavePlayerConfirmed([True,"quit"])
 
@@ -442,20 +445,19 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 				self.session.nav.playService(ref)
 
 	def nextPlaylistService(self, service):
-		next = False
-		idx = 1
-		for i in self.playlist:
-			if next:
-				return (i, idx, len(self.playlist))
-			if i == service:
-				next = True
-			idx += 1
+		n = len(self.playlist)
+		for item, i in zip(self.playlist,range(1,n+1)):
+			if item == service:
+				if i < n:
+					return (self.playlist[i], i+1, n)
+				elif config.usage.on_movie_eof.value == "loop" and n > 0:
+					return (self.playlist[0], 1, n)
 		return ( None, 0, 0 )
 
-	def displayPlayedName(self, ref, idx, n):
+	def displayPlayedName(self, ref, index, n):
 		from Tools import Notifications
 		from Screens.MessageBox import MessageBox
-		Notifications.AddPopup(text = _("%s/%s: %s") % (idx, n, self.ref2HumanName(ref)), type = MessageBox.TYPE_INFO, timeout = 4)
+		Notifications.AddPopup(text = _("%s/%s: %s") % (index, n, self.ref2HumanName(ref)), type = MessageBox.TYPE_INFO, timeout = 5)
 
 	def ref2HumanName(self, ref):
 		from enigma import eServiceCenter
