@@ -53,7 +53,7 @@ class EventName(Converter, object):
 				country = rating.getCountryCode()
 				age = rating.getRating()
 				if age == 0:
-					return _("undef")
+					return _("All ages")
 				elif age > 15:
 					return _("bc%s") % age
 				else:
