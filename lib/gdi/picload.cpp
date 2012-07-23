@@ -1166,7 +1166,6 @@ RESULT ePicLoad::setPara(PyObject *val)
 		m_conf.max_y		= PyInt_AsLong( PySequence_Fast_GET_ITEM(fast, 1));
 		as			= PyInt_AsLong(PySequence_Fast_GET_ITEM(fast, 3));
 		m_conf.aspect_ratio	= as == 0 ? 0.0 : (double)PyInt_AsLong( PySequence_Fast_GET_ITEM(fast, 2)) / as;
-		m_conf.aspect_ratio	= (double)PyInt_AsLong( PySequence_Fast_GET_ITEM(fast, 2)) / PyInt_AsLong(PySequence_Fast_GET_ITEM(fast, 3));
 		m_conf.usecache		= PyInt_AsLong( PySequence_Fast_GET_ITEM(fast, 4));
 		m_conf.resizetype	= PyInt_AsLong( PySequence_Fast_GET_ITEM(fast, 5));
 		const char *bg_str	= PyString_AsString( PySequence_Fast_GET_ITEM(fast, 6));
