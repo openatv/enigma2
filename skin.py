@@ -48,6 +48,14 @@ def addSkin(name, scope = SCOPE_SKIN):
 		return True
 	return False
 
+# get own skin_user_skinname.xml file, if exist
+def skin_user_skinname():
+	name = "skin_user_" + config.skin.primary_skin.value[:config.skin.primary_skin.value.rfind('/')] + ".xml"
+	filename = resolveFilename(SCOPE_CONFIG, name)
+	if fileExists(filename):
+		return name
+	return None
+
 # we do our best to always select the "right" value
 # skins are loaded in order of priority: skin with
 # highest priority is loaded last, usually the user-provided
@@ -69,7 +77,11 @@ config.skin.primary_skin = ConfigText(default=DEFAULT_SKIN)
 
 profile("LoadSkin")
 try:
-	addSkin('skin_user.xml', SCOPE_CONFIG)
+	name = skin_user_skinname()
+	if name is not None:
+		addSkin(name, SCOPE_CONFIG)
+	else:
+		addSkin('skin_user.xml', SCOPE_CONFIG)
 except (SkinError, IOError, AssertionError), err:
 	print "not loading user skin: ", err
 

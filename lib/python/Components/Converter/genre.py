@@ -131,28 +131,39 @@ subtype[11] = [
 					_("unpublished"),
 					_("live broadcast")]
 
-def getGenreStringLong(hn, ln):
-	if hn > 0 and hn < len(maintype):
-		maingenre = maintype[hn]
-		if ln == 15:
-			return maingenre + ": " + _("User defined")
-		if ln < len(subtype[hn]):
-			return maingenre + ": " + subtype[hn][ln]
-		return maingenre + ": " + _("Reserved")
-	return _("Reserved")
-
 def getGenreStringMain(hn, ln):
+#	if hn == 0:
+#		return _("Undefined content")
+	if hn == 15:
+		return _("User defined")
 	if hn > 0 and hn < len(maintype):
 		return maintype[hn]
-	return _("Reserved")
+#	return _("Reserved") + " " + str(hn)
+	return ""
 
 def getGenreStringSub(hn, ln):
+#	if hn == 0:
+#		return _("Undefined content") + " " + str(ln)
+	if hn == 15:
+		return _("User defined") + " " + str(ln)
 	if hn > 0 and hn < len(maintype):
 		if ln == 15:
 			return _("User defined")
 		if ln < len(subtype[hn]):
 			return subtype[hn][ln]
-	return _("Reserved")
+#		return _("Reserved") " " + str(ln)
+#	return _("Reserved") + " " + str(hn) + "," + str(ln)
+	return ""
+
+def getGenreStringLong(hn, ln):
+#	if hn == 0:
+#		return _("Undefined content") + " " + str(ln)
+	if hn == 15:
+		return _("User defined") + " " + str(ln)
+	if hn > 0 and hn < len(maintype):
+		return maintype[hn] + ": " + getGenreStringSub(hn, ln)
+#	return _("Reserved") + " " + str(hn) + "," + str(ln)
+	return ""
 
 #
 # The End
