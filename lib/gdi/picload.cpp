@@ -895,8 +895,8 @@ int ePicLoad::startThread(int what, const char *file, int x, int y, bool async)
 	}
 
 	m_filepara = new Cfilepara(file, file_id, getSize(file));
-	x > 0 ? m_filepara->max_x = x : m_filepara->max_x = m_conf.max_x;
-	y > 0 ? m_filepara->max_y = y : m_filepara->max_y = m_conf.max_y;
+	m_filepara->max_x = x > 0 ? x : m_conf.max_x;
+	m_filepara->max_y = x > 0 ? y : m_conf.max_y;
 	
 	if(m_filepara->max_x <= 0 || m_filepara->max_y <= 0)
 	{
@@ -1166,7 +1166,6 @@ RESULT ePicLoad::setPara(PyObject *val)
 		m_conf.max_y		= PyInt_AsLong( PySequence_Fast_GET_ITEM(fast, 1));
 		as			= PyInt_AsLong(PySequence_Fast_GET_ITEM(fast, 3));
 		m_conf.aspect_ratio	= as == 0 ? 0.0 : (double)PyInt_AsLong( PySequence_Fast_GET_ITEM(fast, 2)) / as;
-		m_conf.aspect_ratio	= (double)PyInt_AsLong( PySequence_Fast_GET_ITEM(fast, 2)) / PyInt_AsLong(PySequence_Fast_GET_ITEM(fast, 3));
 		m_conf.usecache		= PyInt_AsLong( PySequence_Fast_GET_ITEM(fast, 4));
 		m_conf.resizetype	= PyInt_AsLong( PySequence_Fast_GET_ITEM(fast, 5));
 		const char *bg_str	= PyString_AsString( PySequence_Fast_GET_ITEM(fast, 6));
