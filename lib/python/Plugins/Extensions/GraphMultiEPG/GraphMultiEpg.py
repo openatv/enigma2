@@ -73,6 +73,8 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.showServiceTitle = True
 		self.piconSize = None
 		self.picload = ePicLoad()
+		self.nowEvPix = None
+		self.othEvPix = None
 
 		self.foreColor = 0xffffff
 		self.foreColorSelected = 0xffc000
@@ -282,6 +284,14 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.instance.resize(eSize(self.listWidth, itemHeight * config.misc.graph_mepg.items_per_page.getValue()))
 		self.l.setItemHeight(itemHeight)
 
+		self.picload.setPara((self.listWidth, itemHeight - 2 * self.eventBorderWidth, 0, 0, 1, 1, "#00000000"))
+		self.picload.startDecode(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/CurrentEvent.png'), 0, 0, False)
+		self.nowEvPix = self.picload.getData()
+
+		self.picload.setPara((self.listWidth, itemHeight - 2 * self.eventBorderWidth, 0, 0, 1, 1, "#00000000"))
+		self.picload.startDecode(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/OtherEvent.png'), 0, 0, False)
+		self.othEvPix = self.picload.getData()
+
 	def setEventFontsize(self):
 		self.l.setFont(1, gFont(self.entryFontName, self.entryFontSize + config.misc.graph_mepg.ev_fontsize.getValue()))
 
@@ -394,20 +404,30 @@ class EPGList(HTMLComponent, GUIComponent):
 			for ev in events:  #(event_id, event_title, begin_time, duration)
 				stime = ev[2]
 				duration = ev[3]
+				xpos, ewidth = self.calcEntryPosAndWidthHelper(stime, duration, start, end, width)
+				# event box background
 				if stime <= now and now < stime + duration:
 					backColor = self.backColorNow
 					foreColor = self.foreColorNow
+					bgpng = self.nowEvPix
 				else:
 					backColor = self.backColor
 					foreColor = self.foreColor
-				xpos, ewidth = self.calcEntryPosAndWidthHelper(stime, duration, start, end, width)
-				# event box background
-				res.append(MultiContentEntryText(
-					pos = (left + xpos, top), size = (ewidth, height),
-					font = 1, flags = RT_HALIGN_CENTER | RT_VALIGN_CENTER,
-					text = "", color = None, color_sel = None,
-					backcolor = backColor, backcolor_sel = self.backColorSelected,
-					border_width = self.eventBorderWidth, border_color = self.borderColor))
+					bgpng = self.othEvPix
+
+				if bgpng is not None:
+					res.append(MultiContentEntryPixmapAlphaTest(
+						pos = (left + xpos + self.eventBorderWidth, top + self.eventBorderWidth),
+						size = (ewidth - 2 * self.eventBorderWidth, height - 2 * self.eventBorderWidth),
+						png = bgpng))
+				else:
+					res.append(MultiContentEntryText(
+						pos = (left + xpos, top), size = (ewidth, height),
+						font = 1, flags = RT_HALIGN_CENTER | RT_VALIGN_CENTER,
+						text = "", color = None, color_sel = None,
+						backcolor = backColor, backcolor_sel = self.backColorSelected,
+						border_width = self.eventBorderWidth, border_color = self.borderColor))
+
 				# event text
 				evX = left + xpos + self.eventBorderWidth + self.eventNamePadding
 				evY = top + self.eventBorderWidth
@@ -418,14 +438,14 @@ class EPGList(HTMLComponent, GUIComponent):
 						pos = (evX, evY), size = (evW, evH),
 						font = 1, flags = RT_HALIGN_CENTER | RT_VALIGN_CENTER | RT_WRAP,
 						text = ev[1],
-						color = foreColor, color_sel = self.foreColorSelected))
+						color = foreColor, color_sel = self.foreColorSelected,
+						backcolor_sel = self.backColorSelected))
 				# recording icons
 				rec = stime and self.timer.isInTimer(ev[0], stime, duration, service)
 				if rec and ewidth > 23:
 					res.append(MultiContentEntryPixmapAlphaTest(
 						pos = (left + xpos + ewidth - 22, top + height - 22), size = (21, 21),
-						png = self.getClockPixmap(service, stime, duration, ev[0]),
-						backcolor = backColor, backcolor_sel = self.backColorSelected))
+						png = self.getClockPixmap(service, stime, duration, ev[0])) )
 		return res
 
 	def selEntry(self, dir, visible = True):
