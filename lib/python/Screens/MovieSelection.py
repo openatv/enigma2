@@ -1007,9 +1007,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		# Also set config items, in case the user has a read-only disk
 		config.movielist.moviesort.value = self.settings["moviesort"]
 		config.movielist.description.value = self.settings["description"]
-
 		config.movielist.moviesort.save()
-		config.movielist.listtype.save()
 		config.movielist.description.save()
 
 	def loadLocalSettings(self):
