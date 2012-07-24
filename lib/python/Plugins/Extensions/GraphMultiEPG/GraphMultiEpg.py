@@ -965,7 +965,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 			return
 
 		if self.key_red_choice != self.ZAP:
-			self["key_red"].setText("Zap")
+			self["key_red"].setText(_("Zap"))
 			self.key_red_choice = self.ZAP
 			
 		if not event:
