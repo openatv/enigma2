@@ -7,10 +7,13 @@ def getVersionString():
 
 def getImageVersionString():
 	try:
-		st = os.stat('/usr/lib/ipkg/status')
+		if os.path.isfile('/var/lib/opkg/status'):
+			st = os.stat('/var/lib/opkg/status')
+		else:
+			st = os.stat('/usr/lib/ipkg/status')
 		tm = time.localtime(st.st_mtime)
 		if tm.tm_year >= 2011:
-			return time.strftime("%b %e %Y %H:%M:%S", tm)
+			return time.strftime("%Y-%m-%d %H:%M:%S", tm)
 	except:
 		pass
 	return _("unavailable")
