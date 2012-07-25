@@ -505,11 +505,13 @@ int eDVBFrontend::openFrontend()
 				m_fd = -1;
 				return -1;
 			}
+			strncpy(m_description, fe_info.name, sizeof(m_description));
 
 			switch (fe_info.type)
 			{
 			case FE_QPSK:
 				m_type = iDVBFrontend::feSatellite;
+				m_can_handle_dvbs2 = (fe_info.caps & FE_CAN_2G_MODULATION);
 				break;
 			case FE_QAM:
 				m_type = iDVBFrontend::feCable;
