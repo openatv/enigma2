@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-05 23:41+0200\n"
+"POT-Creation-Date: 2012-07-25 16:21+0200\n"
 "PO-Revision-Date: 2012-03-08 10:40+0330\n"
 "Last-Translator: \n"
 "Language-Team: Arabic <moustafagamal@hotmail.com>\n"
@@ -231,6 +231,10 @@ msgstr ""
 #, python-format
 msgid "%s (%s)\n"
 msgstr "%s (%s)\n"
+
+#, python-format
+msgid "%s/%s: %s"
+msgstr ""
 
 msgid "(ZAP)"
 msgstr "(זיפזופ)"
@@ -645,6 +649,9 @@ msgstr "כולם"
 msgid "All Satellites"
 msgstr "כל הלוויינים"
 
+msgid "All ages"
+msgstr ""
+
 msgid "Allocate"
 msgstr ""
 
@@ -732,6 +739,9 @@ msgstr ""
 
 msgid "Artist"
 msgstr "אומן"
+
+msgid "Arts/Culture"
+msgstr ""
 
 msgid "Ask before shutdown:"
 msgstr ":שאל לפני כיבוי"
@@ -1070,6 +1080,9 @@ msgstr "בדוק"
 msgid "Checking Filesystem..."
 msgstr "...בודק קבצי מערכת"
 
+msgid "Children/Youth"
+msgstr ""
+
 msgid "Choose Tuner"
 msgstr "Choose Tuner"
 
@@ -1252,6 +1265,9 @@ msgstr "המשך ברקע"
 
 msgid "Continue playing"
 msgstr "המשך לנגן"
+
+msgid "Continues play (loop)"
+msgstr ""
 
 msgid "Contrast"
 msgstr "ניגודיות"
@@ -1614,6 +1630,9 @@ msgstr "הצג הגדרות"
 msgid "Display and Userinterface"
 msgstr "תצוגה וממשק משתמש"
 
+msgid "Display message before next played movie"
+msgstr ""
+
 #, python-format
 msgid ""
 "Do you really want to REMOVE\n"
@@ -1805,6 +1824,9 @@ msgstr ""
 msgid "EPG language selection 2"
 msgstr ""
 
+msgid "EPG settings"
+msgstr ""
+
 #
 #, python-format
 msgid "ERROR - failed to scan (%s)!"
@@ -1855,6 +1877,9 @@ msgstr "ערוך כותרת"
 #
 msgid "Edit upgrade source url."
 msgstr "Edit upgrade source url."
+
+msgid "Education/Science/..."
+msgstr ""
 
 msgid "Electronic Program Guide"
 msgstr "Electronic Program Guide"
@@ -2615,6 +2640,9 @@ msgstr "איטלקית"
 msgid "Items per Page "
 msgstr ""
 
+msgid "Items per Page for Listscreen"
+msgstr ""
+
 #
 msgid "Job View"
 msgstr ""
@@ -2702,6 +2730,9 @@ msgstr "Leave DVD Player?"
 msgid "Left"
 msgstr "שמאל"
 
+msgid "Leisure hobies"
+msgstr ""
+
 #
 #. TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
 msgid "Letterbox"
@@ -2750,6 +2781,9 @@ msgstr ""
 msgid "List available networks"
 msgstr ""
 
+msgid "List mode"
+msgstr ""
+
 #
 msgid "List of Storage Devices"
 msgstr "רשימת התקני אחסון"
@@ -2759,6 +2793,9 @@ msgstr ""
 
 #, python-format
 msgid "List version %d, found %d channels"
+msgstr ""
+
+msgid "Listscreen default at start user interface"
 msgstr ""
 
 #
@@ -2895,6 +2932,10 @@ msgstr "הודעה"
 msgid "Message..."
 msgstr "...הודעה"
 
+#, python-format
+msgid "Minimum age %d years"
+msgstr ""
+
 msgid "Missing "
 msgstr ""
 
@@ -2969,6 +3010,9 @@ msgstr ""
 msgid "Movie location"
 msgstr "מיקום סרטים"
 
+msgid "Movie/Drama"
+msgstr ""
+
 msgid "Movielist menu"
 msgstr "תפריט רשימת הסרטים"
 
@@ -3003,6 +3047,9 @@ msgstr ""
 #
 msgid "Multisat"
 msgstr "Multisat"
+
+msgid "Music/Ballet/Dance"
+msgstr ""
 
 msgid "Mute"
 msgstr "השתק"
@@ -3111,6 +3158,9 @@ msgstr ""
 #
 msgid "New version:"
 msgstr ":גרסה חדשה"
+
+msgid "News Current Affairs"
+msgstr ""
 
 #
 msgid "Next"
@@ -3296,6 +3346,9 @@ msgstr "אף אחד"
 msgid "Nonlinear"
 msgstr "Nonlinear"
 
+msgid "Normal mode"
+msgstr ""
+
 #
 msgid "North"
 msgstr "North"
@@ -3323,6 +3376,9 @@ msgstr ""
 ".הגדר את הטינר לפני סריקת התדרים"
 
 msgid "Nothing to upgrade"
+msgstr ""
+
+msgid "Now"
 msgstr ""
 
 #
@@ -3378,6 +3434,9 @@ msgstr ""
 #
 msgid "On"
 msgstr "דלוק"
+
+msgid "On end of movie"
+msgstr ""
 
 #
 msgid "One"
@@ -3527,6 +3586,12 @@ msgid "Play audio in background"
 msgstr ""
 
 msgid "Play next"
+msgstr ""
+
+msgid "Play next (return to movie list)"
+msgstr ""
+
+msgid "Play next (return to previous service)"
 msgstr ""
 
 msgid "Play previous"
@@ -3947,6 +4012,13 @@ msgstr ""
 msgid "Random"
 msgstr "רנדומלי"
 
+#, python-format
+msgid "Rating defined by broadcaster - %d"
+msgstr ""
+
+msgid "Rating undefined"
+msgstr ""
+
 msgid "Really close without saving settings?"
 msgstr "?לסגור מבלי לשמור את השינויים"
 
@@ -4114,6 +4186,9 @@ msgid "Required medium type:"
 msgstr "Required medium type:"
 
 msgid "Reread partition table"
+msgstr ""
+
+msgid "Reserved"
 msgstr ""
 
 #
@@ -4656,6 +4731,9 @@ msgstr ""
 msgid "Show EIT now/next in infobar"
 msgstr ""
 
+msgid "Show Games show"
+msgstr ""
+
 #
 msgid "Show Info"
 msgstr "הצג מידע"
@@ -4836,6 +4914,9 @@ msgstr "Slow"
 msgid "Slow Motion speeds"
 msgstr "Slow Motion speeds"
 
+msgid "Social/Political/Economics"
+msgstr ""
+
 msgid "SoftCam / CI"
 msgstr ""
 
@@ -4879,6 +4960,10 @@ msgid ""
 msgstr ""
 ".יעד הגיבוי לא ניתן לכתיבה\n"
 ".אנא בחר מיקום אחר"
+
+msgid ""
+"Sorry, deleting directories can (for now) only be done through the trash can."
+msgstr ""
 
 #
 msgid "Sorry, no Details available!"
@@ -4928,6 +5013,9 @@ msgstr "ספרדית"
 #
 msgid "Split preview mode"
 msgstr "Split preview mode"
+
+msgid "Sports"
+msgstr ""
 
 msgid "Standby"
 msgstr "המתנה"
@@ -5086,6 +5174,9 @@ msgstr ""
 
 #
 msgid "Swap Services"
+msgstr ""
+
+msgid "Swap from normal to list mode"
 msgstr ""
 
 #
@@ -5930,6 +6021,9 @@ msgstr "Used service scan type"
 msgid "User - bouquets"
 msgstr ""
 
+msgid "User Interface"
+msgstr ""
+
 #
 msgid "User defined"
 msgstr "User defined"
@@ -6534,6 +6628,9 @@ msgid ""
 "Please choose what you want to do next."
 msgstr ""
 
+msgid "Zap"
+msgstr ""
+
 #
 msgid "Zap back to previously tuned service?"
 msgstr "?לזפזפ אחורנית לערוץ הקודם"
@@ -6659,8 +6756,17 @@ msgstr "הוסף את הערוץ למועדפים"
 msgid "add to parental protection"
 msgstr "הוסף לבקרת הורים"
 
+msgid "adult movie/drama"
+msgstr ""
+
 msgid "advanced"
 msgstr "מתקדם"
+
+msgid "adventure/western/war"
+msgstr ""
+
+msgid "advertisement/shopping"
+msgstr ""
 
 msgid "alphabetic reverse"
 msgstr ""
@@ -6671,6 +6777,12 @@ msgstr "alphabetic sort"
 msgid ""
 "are you sure you want to restore\n"
 "following backup:\n"
+msgstr ""
+
+msgid "arts/culture (without music, general)"
+msgstr ""
+
+msgid "arts/culture magazine"
 msgstr ""
 
 #
@@ -6685,6 +6797,9 @@ msgid "at beginning"
 msgstr ""
 
 msgid "at end"
+msgstr ""
+
+msgid "athletics"
 msgstr ""
 
 #
@@ -6717,11 +6832,21 @@ msgstr "תמונת רקע"
 msgid "backgroundcolor"
 msgstr "צבע רקע"
 
+msgid "ballet"
+msgstr ""
+
+#, python-format
+msgid "bc%s"
+msgstr ""
+
 msgid "better"
 msgstr "better"
 
 msgid "black"
 msgstr "black"
+
+msgid "black & white"
+msgstr ""
 
 msgid "blacklist"
 msgstr "blacklist"
@@ -6729,9 +6854,15 @@ msgstr "blacklist"
 msgid "blue"
 msgstr "blue"
 
+msgid "broadcasting/press"
+msgstr ""
+
 #
 #, python-format
 msgid "burn audio track (%s)"
+msgstr ""
+
+msgid "cartoon/puppets"
 msgstr ""
 
 msgid "center"
@@ -6747,6 +6878,9 @@ msgstr "שנה הקלטה - שעת סיום"
 msgid "chapters"
 msgstr "chapters"
 
+msgid "childrens's/youth program (general)"
+msgstr ""
+
 #
 msgid "circular left"
 msgstr "circular left"
@@ -6757,6 +6891,9 @@ msgstr "circular right"
 
 msgid "clear playlist"
 msgstr "clear playlist"
+
+msgid "comedy"
+msgstr ""
 
 #
 msgid "complex"
@@ -6774,6 +6911,9 @@ msgstr "התחבר"
 
 msgid "continue"
 msgstr "המשך"
+
+msgid "cooking"
+msgstr ""
 
 msgid "copy to bouquets"
 msgstr "העתק לתיקית ערוצים"
@@ -6816,6 +6956,9 @@ msgstr "...מחק"
 msgid "descramble and record ecm"
 msgstr ""
 
+msgid "detective/thriller"
+msgstr ""
+
 msgid "disable"
 msgstr "הפסק"
 
@@ -6828,11 +6971,17 @@ msgstr "disabled"
 msgid "disconnected"
 msgstr "disconnected"
 
+msgid "discussion/interview/debate"
+msgstr ""
+
 msgid "do not change"
 msgstr "do not change"
 
 msgid "do nothing"
 msgstr "do nothing"
+
+msgid "documentary"
+msgstr ""
 
 msgid "don't descramble, record ecm"
 msgstr ""
@@ -6861,8 +7010,14 @@ msgstr ""
 msgid "east"
 msgstr ""
 
+msgid "economics/social advisory"
+msgstr ""
+
 msgid "edit alternatives"
 msgstr "edit alternatives"
+
+msgid "education/science/factual topics (general)"
+msgstr ""
 
 msgid "empty"
 msgstr "ריק"
@@ -6902,8 +7057,17 @@ msgstr "end favourites edit"
 msgid "enigma2 and network"
 msgstr ""
 
+msgid "entertainment (10-16 year old)"
+msgstr ""
+
+msgid "entertainment (6-14 year old)"
+msgstr ""
+
 msgid "equal to"
 msgstr "equal to"
+
+msgid "equestrian"
+msgstr ""
 
 msgid "exit DVD player or return to file browser"
 msgstr "exit DVD player or return to file browser"
@@ -6926,7 +7090,13 @@ msgstr "exit network interface list"
 msgid "exit networkadapter setup menu"
 msgstr "exit networkadapter setup menu"
 
+msgid "experimental film/video"
+msgstr ""
+
 msgid "false"
+msgstr ""
+
+msgid "fashion"
 msgstr ""
 
 #
@@ -6936,10 +7106,28 @@ msgstr ""
 msgid "filename"
 msgstr "filename"
 
+msgid "film/cinema"
+msgstr ""
+
+msgid "fine arts"
+msgstr ""
+
 msgid "fine-tune your display"
 msgstr "fine-tune your display"
 
+msgid "fitness & health"
+msgstr ""
+
 msgid "fixed"
+msgstr ""
+
+msgid "folk/traditional music"
+msgstr ""
+
+msgid "football/soccer"
+msgstr ""
+
+msgid "foreign countries/expeditions"
 msgstr ""
 
 #
@@ -6957,6 +7145,15 @@ msgstr "מקום פנוי בכונן הקשיח"
 msgid "full transparency"
 msgstr ""
 
+msgid "further education"
+msgstr ""
+
+msgid "game show/quiz/contest"
+msgstr ""
+
+msgid "gardening"
+msgstr ""
+
 msgid "go to deep standby"
 msgstr "go to deep standby"
 
@@ -6969,6 +7166,9 @@ msgstr ""
 
 msgid "green"
 msgstr "ירוק"
+
+msgid "handicraft"
+msgstr ""
 
 msgid "hear radio..."
 msgstr "hear radio..."
@@ -6988,6 +7188,9 @@ msgstr "horizontal"
 msgid "immediate shutdown"
 msgstr "כיבוי מיידי"
 
+msgid "information/education/school program"
+msgstr ""
+
 #
 msgid "init module"
 msgstr "init module"
@@ -7000,6 +7203,9 @@ msgid "insert mark here"
 msgstr "הכנס סמן כאן"
 
 msgid "invalid type"
+msgstr ""
+
+msgid "jazz"
 msgstr ""
 
 msgid "jump back to the previous title"
@@ -7022,12 +7228,18 @@ msgstr ""
 msgid "jump to previous marked position"
 msgstr ""
 
+msgid "languages"
+msgstr ""
+
 #
 msgid "leave movie player..."
 msgstr "leave movie player..."
 
 msgid "left"
 msgstr "left"
+
+msgid "leisure hobbies (general)"
+msgstr ""
 
 msgid "length"
 msgstr "length"
@@ -7055,6 +7267,12 @@ msgstr ""
 msgid "list style single line"
 msgstr ""
 
+msgid "literature"
+msgstr ""
+
+msgid "live broadcast"
+msgstr ""
+
 msgid "load playlist"
 msgstr "load playlist"
 
@@ -7064,9 +7282,18 @@ msgstr "locked"
 msgid "loopthrough to"
 msgstr ""
 
+msgid "magazines/reports/documentary"
+msgstr ""
+
 #
 msgid "manual"
 msgstr "ידני"
+
+msgid "martial sports"
+msgstr ""
+
+msgid "medicine/physiology/psychology"
+msgstr ""
 
 msgid "menu"
 msgstr "תפריט"
@@ -7079,6 +7306,12 @@ msgstr "דקות"
 
 msgid "month"
 msgstr "חודש"
+
+msgid "motor sport"
+msgstr ""
+
+msgid "motoring"
+msgstr ""
 
 msgid "move PiP to main picture"
 msgstr "move PiP to main picture"
@@ -7098,11 +7331,35 @@ msgstr "move up to previous entry"
 msgid "movie list"
 msgstr "רשימת סרטים"
 
+msgid "movie/drama (general)"
+msgstr ""
+
 msgid "multinorm"
 msgstr "multinorm"
 
+msgid "music/ballet/dance (general)"
+msgstr ""
+
+msgid "musical/opera"
+msgstr ""
+
+msgid "nature/animals/environment"
+msgstr ""
+
 msgid "never"
 msgstr "לעולם"
+
+msgid "new media"
+msgstr ""
+
+msgid "news magazine"
+msgstr ""
+
+msgid "news/current affairs (general)"
+msgstr ""
+
+msgid "news/weather report"
+msgstr ""
 
 #
 msgid "next channel"
@@ -7187,6 +7444,9 @@ msgstr "דלוק"
 msgid "on READ ONLY medium."
 msgstr "on READ ONLY medium."
 
+msgid "on end of movie"
+msgstr ""
+
 #
 msgid "once"
 msgstr "once"
@@ -7206,11 +7466,17 @@ msgstr "open servicelist(up)"
 msgid "original"
 msgstr ""
 
+msgid "original language"
+msgstr ""
+
 msgid "pass"
 msgstr "pass"
 
 msgid "pause"
 msgstr "pause"
+
+msgid "performing arts"
+msgstr ""
 
 msgid "play as picture in picture"
 msgstr ""
@@ -7235,6 +7501,12 @@ msgstr "please press OK when ready"
 msgid "please wait, loading picture..."
 msgstr "...נא המתן, טוען תמונה"
 
+msgid "popular culture/traditional arts"
+msgstr ""
+
+msgid "pre-school children's program"
+msgstr ""
+
 msgid "previous channel"
 msgstr "previous channel"
 
@@ -7252,6 +7524,12 @@ msgid "red"
 msgstr "אדום"
 
 msgid "relative"
+msgstr ""
+
+msgid "religion"
+msgstr ""
+
+msgid "remarkable people"
 msgstr ""
 
 #
@@ -7311,6 +7589,12 @@ msgstr "rewind to the previous chapter"
 msgid "right"
 msgstr "ימין"
 
+msgid "rock/pop"
+msgstr ""
+
+msgid "romance"
+msgstr ""
+
 msgid "save last directory on exit"
 msgstr "save last directory on exit"
 
@@ -7332,6 +7616,9 @@ msgstr "סריקה בפעולה - %d%% !בוצע"
 #
 msgid "scan state"
 msgstr "מצב סריקה"
+
+msgid "science fiction/fantasy/horror"
+msgstr ""
 
 #
 msgid "second cable of motorized LNB"
@@ -7363,6 +7650,12 @@ msgstr "בחר סרט"
 
 msgid "select the movie path"
 msgstr "select the movie path"
+
+msgid "serious music/classic music"
+msgstr ""
+
+msgid "serious/classical/religious/historical movie/drama"
+msgstr ""
 
 msgid "service PIN"
 msgstr ""
@@ -7406,12 +7699,21 @@ msgstr "הראה תפריט כיבוי"
 msgid "show single service EPG..."
 msgstr ""
 
+msgid "show softwaremanager in setup menu"
+msgstr ""
+
+msgid "show softwaremanager on blue button"
+msgstr ""
+
 #
 msgid "show tag menu"
 msgstr ""
 
 msgid "show transponder info"
 msgstr "transponder  הראה מידע על ה"
+
+msgid "show/game show (general)"
+msgstr ""
 
 msgid "shuffle"
 msgstr ""
@@ -7444,6 +7746,15 @@ msgstr "דלג קדימה - הכנס זמן"
 msgid "slide picture in loop"
 msgstr "הצג תמונות בלולאה"
 
+msgid "soap/melodram/folkloric"
+msgstr ""
+
+msgid "social/political issues/economics (general)"
+msgstr ""
+
+msgid "social/spiritual science"
+msgstr ""
+
 msgid "sort by date"
 msgstr "מיין לפי תאריך"
 
@@ -7452,6 +7763,15 @@ msgstr ""
 
 msgid "special characters"
 msgstr "תוויות מיוחדות"
+
+msgid "special events"
+msgstr ""
+
+msgid "sports (general)"
+msgstr ""
+
+msgid "sports magazine"
+msgstr ""
 
 msgid "standard"
 msgstr "סטנדרטי"
@@ -7513,8 +7833,20 @@ msgstr "העבר לפס השמע הבא"
 msgid "switch to the next subtitle language"
 msgstr "העבר לשפת תרגום הבאה"
 
+msgid "talk show"
+msgstr ""
+
+msgid "team sports"
+msgstr ""
+
+msgid "technology/natural science"
+msgstr ""
+
 msgid "template file"
 msgstr "קובץ תבנית"
+
+msgid "tennis/squash"
+msgstr ""
 
 msgid "textcolor"
 msgstr "צבע טקסט"
@@ -7534,6 +7866,9 @@ msgid "toggle time, chapter, audio, subtitle info"
 msgstr ""
 
 msgid "top"
+msgstr ""
+
+msgid "tourism/travel"
 msgstr ""
 
 msgid "true"
@@ -7558,6 +7893,9 @@ msgstr "לא ידוע"
 msgid "unknown service"
 msgstr "שירות לא ידוע"
 
+msgid "unpublished"
+msgstr ""
+
 #
 msgid "until standby/restart"
 msgstr "until standby/restart"
@@ -7565,6 +7903,9 @@ msgstr "until standby/restart"
 #
 msgid "user defined"
 msgstr "user defined"
+
+msgid "variety show"
+msgstr ""
 
 #
 msgid "vertical"
@@ -7590,6 +7931,9 @@ msgstr "ממתין"
 msgid "was removed successfully"
 msgstr "הוסר בהצלחה"
 
+msgid "water sport"
+msgstr ""
+
 #
 msgid "weekly"
 msgstr "שבועי"
@@ -7604,6 +7948,9 @@ msgid "whitelist"
 msgstr "רשימה לבנה"
 
 msgid "width"
+msgstr ""
+
+msgid "winter sport"
 msgstr ""
 
 msgid "wireless network interface"
