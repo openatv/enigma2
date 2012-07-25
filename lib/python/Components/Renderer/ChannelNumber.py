@@ -10,7 +10,6 @@ class ChannelNumber(Renderer, VariableText):
 	def __init__(self):
 		Renderer.__init__(self)
 		VariableText.__init__(self)
-		self.text = "---"
 		global firstChannelNumberClass
 		self.firstChannelNumberClass  = firstChannelNumberClass
 		firstChannelNumberClass  = False
