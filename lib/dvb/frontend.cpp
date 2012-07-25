@@ -412,8 +412,8 @@ RESULT eDVBFrontendParameters::calcLockTimeout(unsigned int &timeout) const
 	{
 	case iDVBFrontend::feSatellite:
 	{
-			/* high symbol rate transponders tune faster, due to 
-				requiring less zigzag and giving more symbols faster. 
+			/* high symbol rate transponders tune faster, due to
+				requiring less zigzag and giving more symbols faster.
 
 				5s are definitely not enough on really low SR when
 				zigzag has to find the exact frequency first.
@@ -842,7 +842,7 @@ int eDVBFrontend::readFrontendData(int type)
 			} else if (!strcmp(m_description, "Philips CU1216Mk3"))
 			{
 				int mse = (~snr) & 0xFF;
-				switch (oparm.cab.modulation) 
+				switch (oparm.cab.modulation)
 				{
 				case eDVBFrontendParametersCable::Modulation_QAM16: ret = fe_udiv(1950000, (32 * mse) + 138) + 1000; break;
 				case eDVBFrontendParametersCable::Modulation_QAM32: ret = fe_udiv(2150000, (40 * mse) + 500) + 1350; break;
@@ -868,7 +868,7 @@ int eDVBFrontend::readFrontendData(int type)
 			else if (!strcmp(m_description, "CXD1981"))
 			{
 				int mse = (~snr) & 0xFF;
-				switch (oparm.cab.modulation) 
+				switch (oparm.cab.modulation)
 				{
 				case eDVBFrontendParametersCable::Modulation_QAM16:
 				case eDVBFrontendParametersCable::Modulation_QAM64:
@@ -2068,7 +2068,7 @@ void eDVBFrontend::setFrontend(bool recvEvents)
 			p[cmdseq.num].u.data = SYS_DVBC_ANNEX_AC;
 #endif
 			cmdseq.num++;
-			
+
 			p[cmdseq.num].cmd = DTV_SYMBOL_RATE, p[cmdseq.num].u.data = oparm.cab.symbol_rate, cmdseq.num++;
 
 			p[cmdseq.num].cmd = DTV_INNER_FEC;
