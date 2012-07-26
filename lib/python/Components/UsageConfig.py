@@ -579,7 +579,7 @@ def InitUsageConfig():
 	config.backupmanager.backupretry = ConfigNumber(default = 30)
 	config.backupmanager.backupretrycount = NoSave(ConfigNumber(default = 0))
 	config.backupmanager.nextscheduletime = NoSave(ConfigNumber(default = 0))
-	config.backupmanager.backupdirs = ConfigLocations(default=[eEnv.resolve('${sysconfdir}/enigma2/'), eEnv.resolve('${sysconfdir}/fstab'), eEnv.resolve('${sysconfdir}/hostname'), eEnv.resolve('${sysconfdir}/network/interfaces'), eEnv.resolve('${sysconfdir}/passwd'), eEnv.resolve('${sysconfdir}/resolv.conf'), eEnv.resolve('${sysconfdir}/ushare.conf'), eEnv.resolve('${sysconfdir}/inadyn.conf'), eEnv.resolve('${sysconfdir}/tuxbox/config/'), eEnv.resolve('${sysconfdir}/wpa_supplicant.conf'), '/usr/softcams/'])
+	config.backupmanager.backupdirs = ConfigLocations(default=[eEnv.resolve('${sysconfdir}/enigma2/'), eEnv.resolve('${sysconfdir}/fstab'), eEnv.resolve('${sysconfdir}/hostname'), eEnv.resolve('${sysconfdir}/network/interfaces'), eEnv.resolve('${sysconfdir}/passwd'), eEnv.resolve('${sysconfdir}//etc/shadow'), eEnv.resolve('${sysconfdir}/resolv.conf'), eEnv.resolve('${sysconfdir}/ushare.conf'), eEnv.resolve('${sysconfdir}/inadyn.conf'), eEnv.resolve('${sysconfdir}/tuxbox/config/'), eEnv.resolve('${sysconfdir}/wpa_supplicant.conf'), '/usr/softcams/'])
 	config.backupmanager.lastlog = ConfigText(default=' ', fixed_size=False)
 
 	config.vixsettings = ConfigSubsection()
