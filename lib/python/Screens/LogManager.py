@@ -245,8 +245,13 @@ class LogManager(Screen):
 		self.close(None)
 
 	def changeSelectionState(self):
-		self["list"].changeSelectionState()
-		self.selectedFiles = self["list"].getSelectedList()
+		try:
+			self.sel = self["list"].getCurrent()[0]
+		except:
+			self.sel = None
+		if self.sel:
+			self["list"].changeSelectionState()
+			self.selectedFiles = self["list"].getSelectedList()
 
 	def changelogtype(self):
 		self["LogsSize"].update(config.crash.debug_path.value)
