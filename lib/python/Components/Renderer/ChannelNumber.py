@@ -29,11 +29,10 @@ class ChannelNumber(Renderer, VariableText):
 		self.text = "---"
 		service = self.source.service
 		if service and service.info():
-			serviceHandler = eServiceCenter.getInstance()
 			CurrentServiceList = InfoBar.instance.servicelist
 			root = CurrentServiceList.servicelist.getRoot()
 			if 'userbouquet.' in root.toCompareString():
-				services = serviceHandler.list(root)
+				services = eServiceCenter.getInstance().list(root)
 				channels = services and services.getContent("SN", True)
 				channelIndex = CurrentServiceList.servicelist.l.lookupService(CurrentServiceList.servicelist.getCurrent())
 				markersCounter = 0
