@@ -8,6 +8,7 @@ import SleepTimer
 import Screens.Standby
 import NavigationInstance
 import ServiceReference
+from Screens.InfoBar import InfoBar
 
 # TODO: remove pNavgation, eNavigation and rewrite this stuff in python.
 class Navigation:
@@ -65,6 +66,7 @@ class Navigation:
 		if ref is None:
 			self.stopService()
 			return 0
+		InfoBar.instance.servicelist.servicelist.setCurrent(ref)
 		if not checkParentalControl or parentalControl.isServicePlayable(ref, boundFunction(self.playService, checkParentalControl = False)):
 			if ref.flags & eServiceReference.isGroup:
 				if not oldref:
