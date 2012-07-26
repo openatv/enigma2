@@ -2346,6 +2346,7 @@ class InfoBarTimeshift:
 			self.ptsCreateHardlink()
 			self.__seekableStatusChanged()
 		else:
+			self.session.open(MessageBox, _("Timeshift not possible!"), MessageBox.TYPE_ERROR)
 			self.pts_eventcount = 0
 
 	def startTimeshift(self):
