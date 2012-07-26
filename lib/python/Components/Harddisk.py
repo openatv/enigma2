@@ -613,7 +613,7 @@ class HarddiskManager:
 		try:
 			removable = bool(int(readFile(devpath + "/removable")))
 			dev = int(readFile(devpath + "/dev").split(':')[0])
-			if dev in (7, 31, 253): # loop, mtdblock, romblock
+			if dev in (1, 7, 31, 253): # ram, loop, mtdblock, romblock
 				blacklisted = True
 			if blockdev[0:2] == 'sr':
 				is_cdrom = True
