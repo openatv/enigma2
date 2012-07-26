@@ -66,7 +66,6 @@ class Navigation:
 		if ref is None:
 			self.stopService()
 			return 0
-		InfoBar.instance.servicelist.servicelist.setCurrent(ref)
 		if not checkParentalControl or parentalControl.isServicePlayable(ref, boundFunction(self.playService, checkParentalControl = False)):
 			if ref.flags & eServiceReference.isGroup:
 				if not oldref:
@@ -84,6 +83,7 @@ class Navigation:
 			if self.pnav:
 				self.pnav.stopService()
 				self.currentlyPlayingServiceReference = playref
+				InfoBar.instance.servicelist.servicelist.setCurrent(playref)
 				if self.pnav.playService(playref):
 					print "Failed to start", playref
 					self.currentlyPlayingServiceReference = None
