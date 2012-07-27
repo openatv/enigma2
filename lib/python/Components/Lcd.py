@@ -72,7 +72,8 @@ class LCD:
 	LED_IOCTL_SET_DEFAULT = 0X13
 
 	def __init__(self):
-		self.led_fd = open("/dev/dbox/oled0",'rw')
+		if config.misc.boxtype.value == 'vuultimo':
+			self.led_fd = open("/dev/dbox/oled0",'rw')
 
 	def __del__(self):
 		self.led_fd.close()
