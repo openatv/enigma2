@@ -51,7 +51,7 @@ class CIselectMainMenu(Screen):
 		if NUM_CI > 0:
 			for slot in range(NUM_CI):
 				state = eDVBCI_UI.getInstance().getState(slot)
-				if state == 0:
+				if state <= 0:
 					appname = _("Slot %d") %(slot+1) + " - " + _("no module found")
 				elif state == 1:
 					appname = _("Slot %d") %(slot+1) + " - " + _("init modules")
