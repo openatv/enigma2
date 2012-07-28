@@ -12,7 +12,7 @@ from Components.ScrollLabel import ScrollLabel
 from Components.Sources.StaticText import StaticText
 from Components.Slider import Slider
 from enigma import eTimer
-from os import rename
+from os import rename, path, remove
 
 class SoftwareUpdateChanges(Screen):
 	def __init__(self, session, args = None):
@@ -25,23 +25,41 @@ class SoftwareUpdateChanges(Screen):
 				<widget name="text" position="0,50" size="720,500" font="Regular;21" />
 			</screen>"""
 		Screen.__init__(self, session)
-		self.setTitle(_("View Changes"))
+		self.setTitle(_("OE Changes"))
+		if path.exists('/tmp/oe-git.log'):
+			remove('/tmp/oe-git.log')
+		if path.exists('/tmp/e2-git.log'):
+			remove('/tmp/e2-git.log')
+		self.logtype = 'oe'
 		self["text"] = ScrollLabel()
 		self['title_summary'] = StaticText()
 		self['text_summary'] = StaticText()
 		self["key_red"] = Button(_("Close"))
 		self["key_green"] = Button(_("Update"))
+		self["key_yellow"] = Button(_("Show E2 Log"))
 		self["myactions"] = ActionMap(['ColorActions', 'OkCancelActions', 'DirectionActions'],
 		{
 			'cancel': self.closeRecursive,
 			"red": self.closeRecursive,
 			"green": self.unattendedupdate,
+			"yellow": self.changelogtype,
 			"left": self.pageUp,
 			"right": self.pageDown,
 			"down": self.pageDown,
 			"up": self.pageUp
 		},-1)
 		self.onLayoutFinish.append(self.getlog)
+
+	def changelogtype(self):
+		if self.logtype == 'oe':
+			self["key_yellow"].setText(_("Show E2 Log"))
+			self.setTitle(_("OE Changes"))
+			self.logtype = 'e2'
+		else:
+			self["key_yellow"].setText(_("Show OE Log"))
+			self.setTitle(_("Enimga2 Changes"))
+			self.logtype = 'oe'
+		self.getlog()
 
 	def pageUp(self):
 		self["text"].pageUp()
@@ -50,13 +68,15 @@ class SoftwareUpdateChanges(Screen):
 		self["text"].pageDown()
 
 	def getlog(self):
-		import urllib
-		sourcefile='http://enigma2.world-of-satellite.com/feeds/' + about.getImageVersionString() + '/releasenotes'
-		sourcefile,headers = urllib.urlretrieve(sourcefile)
-		rename(sourcefile,'/tmp/online-releasenotes')
-		fd = open('/tmp/online-releasenotes', 'r')
+		if not path.exists('/tmp/' + self.logtype + '-git.log'):
+			import urllib
+			sourcefile='http://enigma2.world-of-satellite.com/feeds/' + about.getImageVersionString() + '/' + self.logtype + '-git.log'
+			sourcefile,headers = urllib.urlretrieve(sourcefile)
+			rename(sourcefile,'/tmp/' + self.logtype + '-git.log')
+		fd = open('/tmp/' + self.logtype + '-git.log', 'r')
 		releasenotes = fd.read()
 		fd.close()
+		releasenotes = releasenotes.replace('\nopenvix: build',"\n\nopenvix: build")
 		releasenotes = releasenotes.split('\n\n')
 		ver=0
 		releasever = releasenotes[int(ver)].split('\n')
@@ -273,6 +293,3 @@ class UpdatePlugin(Screen):
 		if result is not None and result:
 			self.session.open(TryQuitMainloop,retvalue=2)
 		self.close()
-
-	def __close(self):
-		self.ipkg.removeCallback(self.ipkgCallback)
