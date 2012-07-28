@@ -311,10 +311,15 @@ class EPGList(HTMLComponent, GUIComponent):
 		esize = self.l.getItemSize()
 		width = esize.width()
 		height = esize.height()
-		if self.showServiceTitle or not self.showPicon or self.piconSize is None:
+		if self.showServiceTitle:
 			w = width / 10 * 2;
+		elif self.showPicon:
+			if self.piconSize is not None:
+				w = self.piconSize.width()
+			else:
+				w = 2 * height - 2 * self.serviceBorderWidth  # FIXME: could do better...
 		else:
-			w = self.piconSize.width()
+			w = 0
 		self.service_rect = Rect(0, 0, w, height)
 		self.event_rect = Rect(w, 0, width - w, height)
 
@@ -380,7 +385,7 @@ class EPGList(HTMLComponent, GUIComponent):
 						backcolor = None, backcolor_sel = None) )
 		else:
 			piconWidth = 0
-		if self.showServiceTitle or picon == "" or not self.showPicon:
+		if self.showServiceTitle:
 			res.append(MultiContentEntryText(
 				pos = (r1.x + piconWidth + self.serviceBorderWidth + self.serviceNamePadding,
 					r1.y + self.serviceBorderWidth),
@@ -390,7 +395,16 @@ class EPGList(HTMLComponent, GUIComponent):
 				text = service_name,
 				color = serviceForeColor, color_sel = serviceForeColor,
 				backcolor = None, backcolor_sel = None))
-
+		elif self.showPicon and  picon == "":
+			res.append(MultiContentEntryText(
+				pos = (r1.x + self.serviceBorderWidth + self.serviceNamePadding,
+					r1.y + self.serviceBorderWidth),
+				size = (piconWidth - 2 * (self.serviceBorderWidth + self.serviceNamePadding),
+					r1.h - 2 * self.serviceBorderWidth),
+				font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER,
+				text = service_name,
+				color = serviceForeColor, color_sel = serviceForeColor,
+				backcolor = None, backcolor_sel = None))
 		# Events for service
 		if events:
 			start = self.time_base + self.offs * self.time_epoch * 60
