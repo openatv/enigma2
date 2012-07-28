@@ -1058,7 +1058,7 @@ class InfoBarEPG:
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
-		if self.box_type.startswith('et') or self.box_type.startswith('odin') or self.box_type.startswith == 'venton' or self.box_type.startswith == 'tm':
+		if self.box_type.startswith('et') or self.box_type.startswith('odin') or self.box_type.startswith == 'venton' or self.box_type.startswith == 'tm' or self.box_type.startswith == 'gb':
 			self.openEventView()
 		else:
 			self.EPGPressed()
