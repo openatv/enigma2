@@ -625,7 +625,7 @@ class TimelineText(HTMLComponent, GUIComponent):
 		instance.setContent(self.l)
 		self.l.setFont(0, self.font)
 
-	def setEntries(self, l, timeline_now, time_lines):
+	def setEntries(self, l, timeline_now, time_lines, force):
 		event_rect = l.getEventRect()
 		time_epoch = l.getTimeEpoch()
 		time_base = l.getTimeBase()
@@ -638,21 +638,27 @@ class TimelineText(HTMLComponent, GUIComponent):
 
 		# Note: event_rect and service_rect are relative to the timeline_text position
 		#       while the time lines are relative to the GraphEPG screen position!
-		if self.time_base != time_base or self.time_epoch != time_epoch:
+		if self.time_base != time_base or self.time_epoch != time_epoch or force:
 			service_rect = l.getServiceRect()
 			itemHeight = self.l.getItemSize().height()
 			time_steps = 60 if time_epoch > 180 else 30
 			num_lines = time_epoch / time_steps
 			incWidth = event_rect.width() / num_lines
 			timeStepsCalc = time_steps * 60
+			if config.misc.graph_mepg.showservicetitle.value:
+				datetext = strftime("%A %d %B", localtime(time_base))
+			elif config.misc.graph_mepg.showpicon.value:
+				datetext = strftime("%a %d/%m", localtime(time_base))
+			else:
+				datetext = ""
 			res.append( MultiContentEntryText(
-						pos = (0, 0),
-						size = (service_rect.width(), itemHeight),
-						font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER,
-						text = strftime("%A %d %B", localtime(time_base)),
-						color = self.foreColor, color_sel = self.foreColor,
-						backcolor = self.backColor, backcolor_sel = self.backColor,
-						border_width = self.borderWidth, border_color = self.borderColor))
+				pos = (0, 0),
+				size = (service_rect.width(), itemHeight),
+				font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER,
+				text = datetext,
+				color = self.foreColor, color_sel = self.foreColor,
+				backcolor = self.backColor, backcolor_sel = self.backColor,
+				border_width = self.borderWidth, border_color = self.borderColor))
 
 			xpos = 0 # eventLeft
 			for x in range(0, num_lines):
@@ -861,7 +867,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		now = time() - config.epg.histminutes.getValue() * 60
 		self.ask_time = now - now % int(config.misc.graph_mepg.roundTo.getValue())
 		l.fillMultiEPG(None, self.ask_time)
-		self.moveTimeLines()
+		self.moveTimeLines(True)
 		
 	def closeScreen(self):
 		config.misc.graph_mepg.save()
@@ -1005,5 +1011,5 @@ class GraphMultiEPG(Screen, HelpableScreen):
 	
 	def moveTimeLines(self, force=False):
 		self.updateTimelineTimer.start((60 - (int(time()) % 60)) * 1000)	#keep syncronised
-		self["timeline_text"].setEntries(self["list"], self["timeline_now"], self.time_lines)
+		self["timeline_text"].setEntries(self["list"], self["timeline_now"], self.time_lines, force)
 		self["list"].l.invalidate() # not needed when the zPosition in the skin is correct! ?????
