@@ -12,7 +12,7 @@ from Components.TimerList import TimerList
 from Components.Renderer.Picon import getPiconName
 from Screens.Screen import Screen
 from Screens.HelpMenu import HelpableScreen
-from Screens.EventView import EventViewSimple
+from Screens.EventView import EventViewEPGSelect
 from Screens.TimeDateInput import TimeDateInput
 from Screens.TimerEntry import TimerEntry
 from Screens.EpgSelection import EPGSelection
@@ -878,10 +878,19 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		event = cur[0]
 		service = cur[1]
 		if event is not None:
-			self.session.open(EventViewSimple, event, service, self.eventViewCallback, self.openSimilarList)
+			self.session.open(EventViewEPGSelect, event, service, self.eventViewCallback, self.openSingleServiceEPG, self.openMultiServiceEPG, self.openSimilarList)
 
 	def openSimilarList(self, eventid, refstr):
 		self.session.open(EPGSelection, refstr, None, eventid)
+
+	def openSingleServiceEPG(self):
+		ref = self["list"].getCurrent()[1].ref.toString()
+		if ref:
+			self.session.open(EPGSelection, ref)
+
+	def openMultiServiceEPG(self):
+		#Work to do currently a dummy
+		return
 
 	def setServices(self, services):
 		self.services = services
