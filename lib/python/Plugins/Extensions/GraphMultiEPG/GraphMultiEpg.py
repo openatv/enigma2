@@ -648,7 +648,7 @@ class TimelineText(HTMLComponent, GUIComponent):
 			if config.misc.graph_mepg.showservicetitle.value:
 				datetext = strftime("%A %d %B", localtime(time_base))
 			elif config.misc.graph_mepg.showpicon.value:
-				datetext = strftime("%a %d/%m", localtime(time_base))
+				datetext = strftime("%a %d", localtime(time_base))
 			else:
 				datetext = ""
 			res.append( MultiContentEntryText(
