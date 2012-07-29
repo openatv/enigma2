@@ -889,8 +889,8 @@ class GraphMultiEPG(Screen, HelpableScreen):
 			self.session.open(EPGSelection, ref)
 
 	def openMultiServiceEPG(self):
-		#Work to do currently a dummy
-		return
+		if self.services:
+			self.session.open(EPGSelection, self.services, self.zapFunc)
 
 	def setServices(self, services):
 		self.services = services
