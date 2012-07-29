@@ -156,7 +156,6 @@ class UpdatePlugin(Screen):
 
 		self.ipkg = IpkgComponent()
 		self.ipkg.addCallback(self.ipkgCallback)
-		self.onClose.append(self.__close)
 
 		self.updating = False
 
