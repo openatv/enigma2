@@ -890,11 +890,18 @@ class GraphMultiEPG(Screen, HelpableScreen):
 
 	def openMultiServiceEPG(self):
 		if self.services:
-			self.session.open(EPGSelection, self.services, self.zapFunc, None, self.bouquetChangeCB)
+			self.session.openWithCallback(self.doRefresh, EPGSelection, self.services, self.zapFunc, None, self.bouquetChangeCB)
 
 	def setServices(self, services):
 		self.services = services
 		self.onCreate()
+
+	def doRefresh(self, answer):
+		serviceref = self.session.nav.getCurrentlyPlayingServiceReference()
+		l = self["list"]
+		l.moveToService(serviceref)
+		l.setCurrentlyPlaying(serviceref)
+		self.moveTimeLines()
 
 	def onCreate(self):
 		serviceref = self.session.nav.getCurrentlyPlayingServiceReference()
