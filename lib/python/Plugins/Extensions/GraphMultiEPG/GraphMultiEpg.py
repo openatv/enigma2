@@ -66,6 +66,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.time_base = None
 		self.time_epoch = time_epoch
 		self.list = None
+		self.select_rect = None
 		self.event_rect = None
 		self.service_rect = None
 		self.currentlyPlaying = None
@@ -75,6 +76,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.picload = ePicLoad()
 		self.nowEvPix = None
 		self.othEvPix = None
+		self.selEvPix = None
 
 		self.foreColor = 0xffffff
 		self.foreColorSelected = 0xffc000
@@ -82,7 +84,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.backColor = 0x595959
 		self.backColorSelected = 0x808080
 		self.foreColorService = 0xffffff
-		self.foreColorServiceSelected = 0x000000
+		self.foreColorServiceSelected = 0xffc000
 		self.backColorService = 0x000000
 		self.backColorServiceSelected = 0xffffff
 		self.borderColorService = 0x000000
@@ -288,9 +290,11 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.picload.startDecode(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/CurrentEvent.png'), 0, 0, False)
 		self.nowEvPix = self.picload.getData()
 
-		self.picload.setPara((self.listWidth, itemHeight - 2 * self.eventBorderWidth, 0, 0, 1, 1, "#00000000"))
 		self.picload.startDecode(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/OtherEvent.png'), 0, 0, False)
 		self.othEvPix = self.picload.getData()
+
+		self.picload.startDecode(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/SelectedEvent.png'), 0, 0, False)
+		self.selEvPix = self.picload.getData()
 
 	def setEventFontsize(self):
 		self.l.setFont(1, gFont(self.entryFontName, self.entryFontSize + config.misc.graph_mepg.ev_fontsize.getValue()))
@@ -341,6 +345,7 @@ class EPGList(HTMLComponent, GUIComponent):
 	def buildEntry(self, service, service_name, events, picon):
 		r1 = self.service_rect
 		r2 = self.event_rect
+		selected = self.cur_service[0] == service
 		if picon is None: # go find picon and cache its location
 			picon = getPiconName(service)
 			curIdx = self.l.getCurrentSelectionIndex()
@@ -349,20 +354,28 @@ class EPGList(HTMLComponent, GUIComponent):
 		if self.currentlyPlaying is not None and self.currentlyPlaying.toString() == service:
 			serviceForeColor = self.foreColorServiceSelected
 			serviceBackColor = self.backColorServiceSelected
+			bgpng = self.nowEvPix
 		else:
 			serviceForeColor = self.foreColorService
 			serviceBackColor = self.backColorService
+			bgpng = self.othEvPix
 
 		res = [ None ]
 		# Picon and Service name
-		res.append(MultiContentEntryText(
-						pos  = (r1.x, r1.y),
-						size = (r1.w, r1.h),
-						font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER,
-						text = "",
-						color = serviceForeColor, color_sel = serviceForeColor,
-						backcolor = serviceBackColor, backcolor_sel = serviceBackColor,
-						border_width = self.serviceBorderWidth, border_color = self.borderColorService) )
+		if bgpng is not None:
+			res.append(MultiContentEntryPixmapAlphaTest(
+					pos = (r1.x + self.eventBorderWidth, r1.y + self.eventBorderWidth),
+					size = (r1.w - 2 * self.eventBorderWidth, r1.h - 2 * self.eventBorderWidth),
+					png = bgpng))
+		else:
+			res.append(MultiContentEntryText(
+					pos  = (r1.x, r1.y),
+					size = (r1.w, r1.h),
+					font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER,
+					text = "",
+					color = serviceForeColor, color_sel = serviceForeColor,
+					backcolor = serviceBackColor, backcolor_sel = serviceBackColor,
+					border_width = self.serviceBorderWidth, border_color = self.borderColorService) )
 		if self.showPicon:
 			if self.piconSize is not None:
 				piconHeight = self.piconSize.h - 2 * self.serviceBorderWidth
@@ -405,7 +418,9 @@ class EPGList(HTMLComponent, GUIComponent):
 				text = service_name,
 				color = serviceForeColor, color_sel = serviceForeColor,
 				backcolor = None, backcolor_sel = None))
+
 		# Events for service
+		backColorSel = self.backColorSelected
 		if events:
 			start = self.time_base + self.offs * self.time_epoch * 60
 			end = start + self.time_epoch * 60
@@ -419,14 +434,21 @@ class EPGList(HTMLComponent, GUIComponent):
 				stime = ev[2]
 				duration = ev[3]
 				xpos, ewidth = self.calcEntryPosAndWidthHelper(stime, duration, start, end, width)
+
 				# event box background
 				if stime <= now and now < stime + duration:
 					backColor = self.backColorNow
 					foreColor = self.foreColorNow
-					bgpng = self.nowEvPix
 				else:
 					backColor = self.backColor
 					foreColor = self.foreColor
+
+				if selected and self.select_rect.x == xpos + left and self.selEvPix:
+					bgpng = self.selEvPix
+					backColorSel = None
+				elif stime <= now and now < stime + duration:
+					bgpng = self.nowEvPix
+				else:
 					bgpng = self.othEvPix
 
 				if bgpng is not None:
@@ -439,7 +461,7 @@ class EPGList(HTMLComponent, GUIComponent):
 						pos = (left + xpos, top), size = (ewidth, height),
 						font = 1, flags = RT_HALIGN_CENTER | RT_VALIGN_CENTER,
 						text = "", color = None, color_sel = None,
-						backcolor = backColor, backcolor_sel = self.backColorSelected,
+						backcolor = backColor, backcolor_sel = backColorSel,
 						border_width = self.eventBorderWidth, border_color = self.borderColor))
 
 				# event text
@@ -453,7 +475,7 @@ class EPGList(HTMLComponent, GUIComponent):
 						font = 1, flags = RT_HALIGN_CENTER | RT_VALIGN_CENTER | RT_WRAP,
 						text = ev[1],
 						color = foreColor, color_sel = self.foreColorSelected,
-						backcolor_sel = self.backColorSelected))
+						backcolor_sel = backColorSel))
 				# recording icons
 				rec = stime and self.timer.isInTimer(ev[0], stime, duration, service)
 				if rec and ewidth > 23:
@@ -498,8 +520,10 @@ class EPGList(HTMLComponent, GUIComponent):
 			entry = entries[self.cur_event] #(event_id, event_title, begin_time, duration)
 			time_base = self.time_base + self.offs*self.time_epoch * 60
 			xpos, width = self.calcEntryPosAndWidth(self.event_rect, time_base, self.time_epoch, entry[2], entry[3])
+			self.select_rect = Rect(xpos ,0, width, self.event_rect.height)
 			self.l.setSelectionClip(eRect(xpos, 0, width, self.event_rect.h), visible and update)
 		else:
+			self.select_rect = self.event_rect
 			self.l.setSelectionClip(eRect(self.event_rect.x, self.event_rect.y, self.event_rect.w, self.event_rect.h), False)
 		self.selectionChanged()
 		return False
