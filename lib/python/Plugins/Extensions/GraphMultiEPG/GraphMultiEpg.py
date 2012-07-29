@@ -890,7 +890,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 
 	def openMultiServiceEPG(self):
 		if self.services:
-			self.session.open(EPGSelection, self.services, self.zapFunc)
+			self.session.open(EPGSelection, self.services, self.zapFunc, None, self.bouquetChangeCB)
 
 	def setServices(self, services):
 		self.services = services
