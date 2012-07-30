@@ -7,6 +7,7 @@ from Components.About import about
 from Components.config import config
 from Components.ScrollLabel import ScrollLabel
 from Components.Console import Console
+from Screens.SoftwareUpdate import SoftwareUpdateChanges
 from enigma import eTimer
 
 from Plugins.SystemPlugins.WirelessLan.Wlan import iWlan, iStatus, getWlanConfigName
@@ -124,7 +125,7 @@ class About(Screen):
 		self["AboutScrollLabel"] = ScrollLabel(AboutText)
 
 	def showAboutReleaseNotes(self):
-		self.session.open(AboutReleaseNotes)
+		self.session.open(SoftwareUpdateChanges)
 
 	def createSummary(self):
 		return AboutSummary
@@ -528,28 +529,3 @@ class AboutSummary(Screen):
 		self["ImageType"] = StaticText(_("Image:") + " " + about.getImageTypeString())
 		self["ImageVersion"] = StaticText(_("Version:") + " " + about.getImageVersionString() + "   " + _("Build:") + " " + about.getBuildVersionString())
 		self["EnigmaVersion"] = StaticText(_("Last Update:") + " " + about.getLastUpdateString())
-
-class AboutReleaseNotes(Screen):
-	skin = """
-<screen name="AboutReleaseNotes" position="center,center" size="560,400" title="Release Notes" >
-	<widget name="list" position="0,0" size="560,400" font="Regular;16" />
-</screen>"""
-	def __init__(self, session):
-		self.session = session
-		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Image Release Notes"))
-		if path.exists('/etc/releasenotes'):
-			releasenotes = file('/etc/releasenotes').read()
-		else:
-			releasenotes = ""
-		self["list"] = ScrollLabel(str(releasenotes))
-		self["setupActions"] = ActionMap(["SetupActions", "ColorActions", "DirectionActions"],
-		{
-			"cancel": self.cancel,
-			"ok": self.cancel,
-			"up": self["list"].pageUp,
-			"down": self["list"].pageDown
-		}, -2)
-
-	def cancel(self):
-		self.close()
