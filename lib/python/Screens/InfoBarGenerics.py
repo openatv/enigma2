@@ -129,12 +129,12 @@ class InfoBarUnhandledKey:
 		self.onLayoutFinish.append(self.unhandledKeyDialog.hide)
 		eActionMap.getInstance().bindAction('', -0x7FFFFFFF, self.actionA) #highest prio
 		eActionMap.getInstance().bindAction('', 0x7FFFFFFF, self.actionB) #lowest prio
-		self.flags = (1<<1);
-		self.uflags = 0;
+		self.flags = (1<<1)
+		self.uflags = 0
 
 	#this function is called on every keypress!
 	def actionA(self, key, flag):
-		self.unhandledKeyDialog.hide();
+		self.unhandledKeyDialog.hide()
 		if flag != 4:
 			if self.flags & (1<<1):
 				self.flags = self.uflags = 0
@@ -370,7 +370,7 @@ class InfoBarNumberZap:
 					break
 				playable = not (serviceIterator.flags & (eServiceReference.isMarker|eServiceReference.isDirectory)) or (serviceIterator.flags & eServiceReference.isNumberedMarker)
 				if playable:
-					num -= 1;
+					num -= 1
 			if not num: #found service with searched number ?
 				return serviceIterator, 0
 		return None, num
@@ -1084,7 +1084,7 @@ class InfoBarSeek:
 		else:
 			if self.seekstate != self.SEEK_STATE_EOF:
 				self.lastseekstate = self.seekstate
-			self.setSeekState(self.SEEK_STATE_PAUSE);
+			self.setSeekState(self.SEEK_STATE_PAUSE)
 
 	def unPauseService(self):
 		print "unpause"
