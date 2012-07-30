@@ -71,6 +71,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.select_rect = None
 		self.event_rect = None
 		self.service_rect = None
+		self.picon_size = None
 		self.currentlyPlaying = None
 		self.showPicon = False
 		self.showServiceTitle = True
@@ -314,12 +315,15 @@ class EPGList(HTMLComponent, GUIComponent):
 		height = esize.height()
 		if self.showServiceTitle:
 			w = width / 10 * 2;
-		elif self.showPicon:
+		else:     # if self.showPicon:    # this must be set if showServiceTitle is None
 			w = 2 * height - 2 * self.serviceBorderWidth  # FIXME: could do better...
-		else:
-			w = 0
 		self.service_rect = Rect(0, 0, w, height)
 		self.event_rect = Rect(w, 0, width - w, height)
+		piconHeight = height - 2 * self.serviceBorderWidth
+		piconWidth = 2 * piconHeight  # FIXME: could do better...
+		if piconWidth > w - 2 * self.serviceBorderWidth:
+			piconWidth = w - 2 * self.serviceBorderWidth
+		self.picon_size = eSize(piconWidth, piconHeight)
 
 	def calcEntryPosAndWidthHelper(self, stime, duration, start, end, width):
 		xpos = (stime - start) * width / (end - start)
@@ -340,11 +344,8 @@ class EPGList(HTMLComponent, GUIComponent):
 		r1 = self.service_rect
 		r2 = self.event_rect
 		selected = self.cur_service[0] == service
-		if picon is None: # go find picon and cache its location
-			picon = getPiconName(service)
-			curIdx = self.l.getCurrentSelectionIndex()
-			self.list[curIdx] = (service, service_name, events, picon)
 
+		# Picon and Service name
 		if self.currentlyPlaying is not None and self.currentlyPlaying.toString() == service:
 			serviceForeColor = self.foreColorServiceSelected
 			serviceBackColor = self.backColorServiceSelected
@@ -355,11 +356,10 @@ class EPGList(HTMLComponent, GUIComponent):
 			bgpng = self.othEvPix
 
 		res = [ None ]
-		# Picon and Service name
-		if bgpng is not None:
+		if bgpng is not None:    # bacground for service rect
 			res.append(MultiContentEntryPixmapAlphaTest(
-					pos = (r1.x + self.eventBorderWidth, r1.y + self.eventBorderWidth),
-					size = (r1.w - 2 * self.eventBorderWidth, r1.h - 2 * self.eventBorderWidth),
+					pos = (r1.x + self.serviceBorderWidth, r1.y + self.serviceBorderWidth),
+					size = (r1.w - 2 * self.serviceBorderWidth, r1.h - 2 * self.serviceBorderWidth),
 					png = bgpng))
 		else:
 			res.append(MultiContentEntryText(
@@ -370,41 +370,46 @@ class EPGList(HTMLComponent, GUIComponent):
 					color = serviceForeColor, color_sel = serviceForeColor,
 					backcolor = serviceBackColor, backcolor_sel = serviceBackColor,
 					border_width = self.serviceBorderWidth, border_color = self.borderColorService) )
+
+		displayPicon = None
 		if self.showPicon:
-			piconHeight = r1.h - 2 * self.serviceBorderWidth
-			piconWidth = 2 * piconHeight  # FIXME: could do better...
-			if piconWidth > r1.w - 2 * self.serviceBorderWidth:
-				piconWidth = r1.w - 2 * self.serviceBorderWidth
+			if picon is None: # go find picon and cache its location
+				picon = getPiconName(service)
+				curIdx = self.l.getCurrentSelectionIndex()
+				self.list[curIdx] = (service, service_name, events, picon)
+			piconWidth = self.picon_size.width()
+			piconHeight = self.picon_size.height()
 			if picon != "":
 				self.picload.setPara((piconWidth, piconHeight, 1, 1, 1, 1, "#FFFFFFFF"))
-				self.picload.startDecode(picon, piconWidth, piconHeight, False)
+				self.picload.startDecode(picon, 0, 0, False)
 				displayPicon = self.picload.getData()
-
-				if displayPicon is not None:
-					res.append(MultiContentEntryPixmapAlphaTest(
-						pos = (r1.x + self.serviceBorderWidth, r1.y + self.serviceBorderWidth),
-						size = (piconWidth, piconHeight),
-						png = displayPicon,
-						backcolor = None, backcolor_sel = None) )
+			if displayPicon is not None:
+				res.append(MultiContentEntryPixmapAlphaTest(
+					pos = (r1.x + self.serviceBorderWidth, r1.y + self.serviceBorderWidth),
+					size = (piconWidth, piconHeight),
+					png = displayPicon,
+					backcolor = None, backcolor_sel = None) )
+			elif not self.showServiceTitle:
+				# no picon so show servicename anyway in picon space
+				namefont = 1
+				namefontflag = RT_HALIGN_LEFT | RT_VALIGN_CENTER | RT_WRAP
+				namewidth = piconWidth
+				piconWidth = 0
 		else:
 			piconWidth = 0
-		if self.showServiceTitle:
+
+		if self.showServiceTitle: # we have more space so reset parms
+			namefont = 0
+			namefontflag = RT_HALIGN_LEFT | RT_VALIGN_CENTER
+			namewidth = r1.w - piconWidth
+
+		if self.showServiceTitle or displayPicon is None:
 			res.append(MultiContentEntryText(
 				pos = (r1.x + piconWidth + self.serviceBorderWidth + self.serviceNamePadding,
 					r1.y + self.serviceBorderWidth),
-				size = (r1.w - piconWidth - 2 * (self.serviceBorderWidth + self.serviceNamePadding),
+				size = (namewidth - 2 * (self.serviceBorderWidth + self.serviceNamePadding),
 					r1.h - 2 * self.serviceBorderWidth),
-				font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER,
-				text = service_name,
-				color = serviceForeColor, color_sel = serviceForeColor,
-				backcolor = None, backcolor_sel = None))
-		elif self.showPicon and  picon == "":
-			res.append(MultiContentEntryText(
-				pos = (r1.x + self.serviceBorderWidth + self.serviceNamePadding,
-					r1.y + self.serviceBorderWidth),
-				size = (piconWidth - 2 * (self.serviceBorderWidth + self.serviceNamePadding),
-					r1.h - 2 * self.serviceBorderWidth),
-				font = 1, flags = RT_HALIGN_CENTER | RT_VALIGN_CENTER | RT_WRAP,
+				font = namefont, flags = namefontflag,
 				text = service_name,
 				color = serviceForeColor, color_sel = serviceForeColor,
 				backcolor = None, backcolor_sel = None))
