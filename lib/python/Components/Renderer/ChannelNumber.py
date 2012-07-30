@@ -1,43 +1,48 @@
-from Components.VariableText import VariableText
 from Components.config import config
-from enigma import eLabel, iServiceInformation, eServiceReference, eServiceCenter
+from Components.VariableText import VariableText
+from enigma import eLabel, eServiceCenter, iPlayableService
 from Renderer import Renderer
+from Screens.InfoBar import InfoBar
 
-#
-# borrowed from vali, adapted for openpli
-#
+firstChannelNumberClass = True
+text = ""
+
+if config.misc.boxtype.value == 'gb800se' or config.misc.boxtype.value == 'gb800solo':
+	from enigma import evfd
+
 class ChannelNumber(Renderer, VariableText):
 	def __init__(self):
 		Renderer.__init__(self)
 		VariableText.__init__(self)
-		self.list = []
-		self.getList()
+		self.text = "---"
+		global firstChannelNumberClass
+		self.firstChannelNumberClass  = firstChannelNumberClass
+		firstChannelNumberClass  = False
 
 	GUI_WIDGET = eLabel
 
 	def changed(self, what):
-		service = self.source.service
-		info = service and service.info()
-		if info is None:
-			self.text = ""
+		global text
+		if what[0] != self.CHANGED_SPECIFIC:
 			return
-		name = info.getName().replace('\xc2\x86', '').replace('\xc2\x87', '')
-		if name in self.list:
-			for idx in range(1, len(self.list)):
-				if name == self.list[idx-1]:
-					self.text = str(idx)
-					break
-		else:
-			self.text = '---'
-
-	def getList(self):
-		serviceHandler = eServiceCenter.getInstance()
-		services = serviceHandler.list(eServiceReference('1:7:1:0:0:0:0:0:0:0:(type == 1) || (type == 17) || (type == 195) || (type == 25) FROM BOUQUET "bouquets.tv" ORDER BY bouquet'))
-		bouquets = services and services.getContent("SN", True)
-		for bouquet in bouquets:
-			services = serviceHandler.list(eServiceReference(bouquet[0]))
-			channels = services and services.getContent("SN", True)
-			for channel in channels:
-				if not channel[0].startswith("1:64:"):
-					self.list.append(channel[1].replace('\xc2\x86', '').replace('\xc2\x87', ''))
-
+		if what[1] != iPlayableService.evStart:
+			return
+		if not self.firstChannelNumberClass:
+			self.text = text
+			return
+		self.text = "---"
+		service = self.source.service
+		if service and service.info():
+			serviceHandler = eServiceCenter.getInstance()
+			CurrentServiceList = InfoBar.instance.servicelist
+			root = CurrentServiceList.servicelist.getRoot()
+			if 'userbouquet.' in root.toCompareString():
+				services = serviceHandler.list(root)
+				channels = services and services.getContent("SN", True)
+				channelIndex = CurrentServiceList.servicelist.l.lookupService(CurrentServiceList.servicelist.getCurrent())
+				markersCounter = 0
+				for i in range(channelIndex):
+					if channels[i][0].startswith("1:64:"):
+						markersCounter = markersCounter + 1
+				self.text = str(CurrentServiceList.getBouquetNumOffset(root)+channelIndex+1-markersCounter)
+		text = self.text
