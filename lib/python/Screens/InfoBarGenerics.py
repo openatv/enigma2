@@ -10,7 +10,7 @@ from Components.ServiceEventTracker import ServiceEventTracker
 from Components.Sources.Boolean import Boolean
 from Components.config import config, ConfigBoolean, ConfigClock
 from Components.SystemInfo import SystemInfo
-from Components.UsageConfig import preferredInstantRecordPath, defaultMoviePath
+from Components.UsageConfig import preferredInstantRecordPath, defaultMoviePath, ConfigSelection
 from EpgSelection import EPGSelection
 from Plugins.Plugin import PluginDescriptor
 
@@ -607,17 +607,33 @@ class InfoBarEPG:
 			{
 				iPlayableService.evUpdatedEventInfo: self.__evEventInfoChanged,
 			})
-
 		self.is_now_next = False
 		self.dlg_stack = [ ]
 		self.bouquetSel = None
 		self.eventView = None
+		self.defaultEPGType = self.getDefaultEPGtype()
+
 		self["EPGActions"] = HelpableActionMap(self, "InfobarEPGActions",
 			{
 				"showEventInfo": (self.openEventView, _("show EPG...")),
 				"showEventInfoPlugin": (self.showEventInfoPlugins, _("list of EPG views...")),
 				"showInfobarOrEpgWhenInfobarAlreadyVisible": self.showEventInfoWhenNotVisible,
 			})
+
+	def getEPGPluginList(self):
+		pluginlist = [(p.name, boundFunction(self.runPlugin, p)) for p in plugins.getPlugins(where = PluginDescriptor.WHERE_EVENTINFO)]
+		if pluginlist:
+			pluginlist.append((_("show single service EPG..."), self.openSingleServiceEPG))
+			pluginlist.append((_("Multi EPG"), self.openMultiServiceEPG))
+		return pluginlist
+
+	def getDefaultEPGtype(self):
+		pluginlist = self.getEPGPluginList()
+		config.usage.defaultEPGType=ConfigSelection(default = "None", choices = pluginlist)
+		for plugin in pluginlist:
+			if plugin[0] == config.usage.defaultEPGType.value:
+				return plugin[1]
+		return None
 
 	def showEventInfoWhenNotVisible(self):
 		if self.shown:
@@ -743,12 +759,9 @@ class InfoBarEPG:
 				self.session.open(EPGSelection, ref)
 
 	def showEventInfoPlugins(self):
-		list = [(p.name, boundFunction(self.runPlugin, p)) for p in plugins.getPlugins(where = PluginDescriptor.WHERE_EVENTINFO)]
-
-		if list:
-			list.append((_("show single service EPG..."), self.openSingleServiceEPG))
-			list.append((_("Multi EPG"), self.openMultiServiceEPG))
-			self.session.openWithCallback(self.EventInfoPluginChosen, ChoiceBox, title=_("Please choose an extension..."), list = list, skin_name = "EPGExtensionsList")
+		pluginlist = self.getEPGPluginList()
+		if pluginlist:
+			self.session.openWithCallback(self.EventInfoPluginChosen, ChoiceBox, title=_("Please choose an extension..."), list = pluginlist, skin_name = "EPGExtensionsList")
 		else:
 			self.openSingleServiceEPG()
 
@@ -757,6 +770,9 @@ class InfoBarEPG:
 
 	def EventInfoPluginChosen(self, answer):
 		if answer is not None:
+			self.defaultEPGType=answer[1]
+			config.usage.defaultEPGType.value=answer[0]
+			config.usage.defaultEPGType.save()
 			answer[1]()
 
 	def openSimilarList(self, eventid, refstr):
@@ -782,6 +798,9 @@ class InfoBarEPG:
 				self.eventView.setEvent(self.epglist[0])
 
 	def openEventView(self):
+		if self.defaultEPGType is not None:
+			self.defaultEPGType()
+			return
 		ref = self.session.nav.getCurrentlyPlayingServiceReference()
 		self.getNowNext()
 		epglist = self.epglist
@@ -1520,9 +1539,9 @@ class InfoBarPlugins:
 	def getPluginList(self):
 		l = []
 		for p in plugins.getPlugins(where = PluginDescriptor.WHERE_EXTENSIONSMENU):
-		  args = inspect.getargspec(p.__call__)[0]
-		  if len(args) == 1 or len(args) == 2 and isinstance(self, InfoBarChannelSelection):
-			  l.append(((boundFunction(self.getPluginName, p.name), boundFunction(self.runPlugin, p), lambda: True), None, p.name))
+			args = inspect.getargspec(p.__call__)[0]
+			if len(args) == 1 or len(args) == 2 and isinstance(self, InfoBarChannelSelection):
+				l.append(((boundFunction(self.getPluginName, p.name), boundFunction(self.runPlugin, p), lambda: True), None, p.name))
 		l.sort(key = lambda e: e[2]) # sort by name
 		return l
 
@@ -2159,7 +2178,7 @@ class InfoBarCueSheetSupport:
 	def jumpPreviousNextMark(self, cmp, start=False):
 		current_pos = self.cueGetCurrentPosition()
 		if current_pos is None:
- 			return False
+			return False
 		mark = self.getNearestCutPoint(current_pos, cmp=cmp, start=start)
 		if mark is not None:
 			pts = mark[0]
