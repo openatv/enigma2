@@ -585,11 +585,6 @@ def InitUsageConfig():
 	config.vixsettings = ConfigSubsection()
 	config.vixsettings.Subservice = ConfigYesNo(default = False)
 	config.vixsettings.ColouredButtons = ConfigYesNo(default = True)
-	config.vixsettings.ViXEPG_mode = ConfigSelection(default="vixepg", choices = [
-					("vixepg", _("Show Graphical EPG")),
-					("single", _("Show Single EPG")),
-					("multi", _("Show Multi EPG")),
-					("cooltvguide", _("Show CoolTVGuide"))])
 	config.vixsettings.QuickEPG_mode = ConfigSelection(default="3", choices = [
 					("0", _("as plugin in extended bar")),
 					("1", _("with long OK press")),

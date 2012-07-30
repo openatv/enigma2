@@ -9,6 +9,7 @@ import SleepTimer
 import Screens.Standby
 import NavigationInstance
 import ServiceReference
+from Screens.InfoBar import InfoBar
 from os import path
 
 # TODO: remove pNavgation, eNavigation and rewrite this stuff in python.
@@ -105,6 +106,9 @@ class Navigation:
 			if self.pnav:
 				self.pnav.stopService()
 				self.currentlyPlayingServiceReference = playref
+				InfoBarInstance = InfoBar.instance
+				if InfoBarInstance is not None:
+					InfoBarInstance.servicelist.servicelist.setCurrent(playref)
 				if self.pnav.playService(playref):
 					print "Failed to start", playref
 					self.currentlyPlayingServiceReference = None

@@ -10,7 +10,7 @@ from Components.ServiceEventTracker import ServiceEventTracker
 from Components.Sources.Boolean import Boolean
 from Components.config import config, ConfigBoolean, ConfigClock
 from Components.SystemInfo import SystemInfo
-from Components.UsageConfig import preferredInstantRecordPath, defaultMoviePath, preferredTimerPath
+from Components.UsageConfig import preferredInstantRecordPath, defaultMoviePath, preferredTimerPath, ConfigSelection
 from Components.Task import Task, Job, job_manager as JobManager
 from Components.Pixmap import MovingPixmap, MultiPixmap
 from Components.Sources.StaticText import StaticText
@@ -1044,6 +1044,7 @@ class InfoBarEPG:
 		self.dlg_stack = [ ]
 		self.bouquetSel = None
 		self.eventView = None
+		self.defaultEPGType = self.getDefaultEPGtype()
 
 		self["EPGActions"] = HelpableActionMap(self, "InfobarEPGActions",
 			{
@@ -1053,6 +1054,24 @@ class InfoBarEPG:
 				"InfoPressed": self.InfoPressed,
 				"EPGPressed": self.EPGPressed,
 			})
+
+	def getEPGPluginList(self):
+		pluginlist = [(p.name, boundFunction(self.runPlugin, p)) for p in plugins.getPlugins(where = PluginDescriptor.WHERE_EVENTINFO)]
+		if pluginlist:
+			pluginlist.append((_("Event Info..."), self.openEventView))
+			pluginlist.append((_("Graphical EPG..."), self.openGraphEPG))
+			pluginlist.append((_("Infobar EPG..."), self.openInfoBarEPG))
+			pluginlist.append((_("Multi EPG..."), self.openMultiServiceEPG))
+			pluginlist.append((_("Single EPG..."), self.openSingleServiceEPG))
+		return pluginlist
+
+	def getDefaultEPGtype(self):
+		pluginlist = self.getEPGPluginList()
+		config.usage.defaultEPGType=ConfigSelection(default = "None", choices = pluginlist)
+		for plugin in pluginlist:
+			if plugin[0] == config.usage.defaultEPGType.value:
+				return plugin[1]
+		return None
 
 	def InfoPressed(self):
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
@@ -1064,17 +1083,15 @@ class InfoBarEPG:
 			self.EPGPressed()
 
 	def EPGPressed(self):
+		if self.defaultEPGType is not None:
+			self.defaultEPGType()
+			return
+
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
-		if config.vixsettings.ViXEPG_mode.value == "vixepg":
-			self.openGraphEPG()
-		elif config.vixsettings.ViXEPG_mode.value == "multi":
-			self.openMultiServiceEPG()
-		elif config.vixsettings.ViXEPG_mode.value == "single":
-			self.openSingleServiceEPG()
-		elif config.vixsettings.ViXEPG_mode.value == "cooltvguide":
-			self.showCoolTVGuide()
+
+		self.openGraphEPG()
 
 	def showEventInfoWhenNotVisible(self):
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
@@ -1245,14 +1262,10 @@ class InfoBarEPG:
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
-		list = [(p.name, boundFunction(self.runPlugin, p)) for p in plugins.getPlugins(where = PluginDescriptor.WHERE_EVENTINFO)]
 
-		if list:
-			list.append((_("Event Info..."), self.openEventView))
-			list.append((_("Infobar EPG..."), self.openInfoBarEPG))
-			list.append((_("Multi EPG..."), self.openMultiServiceEPG))
-			list.append((_("Single EPG..."), self.openSingleServiceEPG))
-			self.session.openWithCallback(self.EventInfoPluginChosen, ChoiceBox, title=_("Please choose an extension..."), list = list, skin_name = "EPGExtensionsList")
+		pluginlist = self.getEPGPluginList()
+		if pluginlist:
+			self.session.openWithCallback(self.EventInfoPluginChosen, ChoiceBox, title=_("Please choose an extension..."), list = pluginlist, skin_name = "EPGExtensionsList")
 		else:
 			self.openSingleServiceEPG()
 
@@ -1261,6 +1274,9 @@ class InfoBarEPG:
 
 	def EventInfoPluginChosen(self, answer):
 		if answer is not None:
+			self.defaultEPGType=answer[1]
+			config.usage.defaultEPGType.value=answer[0]
+			config.usage.defaultEPGType.save()
 			answer[1]()
 
 	def openSimilarList(self, eventid, refstr):
@@ -3584,9 +3600,9 @@ class InfoBarPlugins:
 	def getPluginList(self):
 		l = []
 		for p in plugins.getPlugins(where = PluginDescriptor.WHERE_EXTENSIONSMENU):
-		  args = inspect.getargspec(p.__call__)[0]
-		  if len(args) == 1 or len(args) == 2 and isinstance(self, InfoBarChannelSelection):
-			  l.append(((boundFunction(self.getPluginName, p.name), boundFunction(self.runPlugin, p), lambda: True), None, p.name))
+			args = inspect.getargspec(p.__call__)[0]
+			if len(args) == 1 or len(args) == 2 and isinstance(self, InfoBarChannelSelection):
+				l.append(((boundFunction(self.getPluginName, p.name), boundFunction(self.runPlugin, p), lambda: True), None, p.name))
 		l.sort(key = lambda e: e[2]) # sort by name
 		return l
 
@@ -4303,7 +4319,7 @@ class InfoBarCueSheetSupport:
 	def jumpPreviousNextMark(self, cmp, start=False):
 		current_pos = self.cueGetCurrentPosition()
 		if current_pos is None:
- 			return False
+			return False
 		mark = self.getNearestCutPoint(current_pos, cmp=cmp, start=start)
 		if mark is not None:
 			pts = mark[0]
