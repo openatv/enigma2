@@ -416,7 +416,7 @@ class EPGList(HTMLComponent, GUIComponent):
 					r1.y + self.serviceBorderWidth),
 				size = (piconWidth - 2 * (self.serviceBorderWidth + self.serviceNamePadding),
 					r1.h - 2 * self.serviceBorderWidth),
-				font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER,
+				font = 1, flags = RT_HALIGN_CENTER | RT_VALIGN_CENTER | RT_WRAP,
 				text = service_name,
 				color = serviceForeColor, color_sel = serviceForeColor,
 				backcolor = None, backcolor_sel = None))
