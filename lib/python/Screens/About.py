@@ -1,5 +1,6 @@
 from Screen import Screen
 from Components.ActionMap import ActionMap
+from Components.Button import Button
 from Components.Sources.StaticText import StaticText
 from Components.Harddisk import harddiskmanager
 from Components.NimManager import nimmanager
@@ -125,7 +126,7 @@ class About(Screen):
 		self["AboutScrollLabel"] = ScrollLabel(AboutText)
 
 	def showAboutReleaseNotes(self):
-		self.session.open(SoftwareUpdateChanges)
+		self.session.open(ViewGitLog)
 
 	def createSummary(self):
 		return AboutSummary
@@ -529,3 +530,77 @@ class AboutSummary(Screen):
 		self["ImageType"] = StaticText(_("Image:") + " " + about.getImageTypeString())
 		self["ImageVersion"] = StaticText(_("Version:") + " " + about.getImageVersionString() + "   " + _("Build:") + " " + about.getBuildVersionString())
 		self["EnigmaVersion"] = StaticText(_("Last Update:") + " " + about.getLastUpdateString())
+
+class ViewGitLog(Screen):
+	def __init__(self, session, args = None):
+		self.skin = """
+			<screen position="center,center" size="720,540" >
+				<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+				<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
+				<widget name="key_red" position="0,2" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+				<widget name="key_green" position="140,2" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+				<widget name="text" position="0,50" size="720,500" font="Regular;21" />
+			</screen>"""
+		Screen.__init__(self, session)
+		self.skinName = "SoftwareUpdateChanges"
+		self.setTitle(_("OE Changes"))
+		if path.exists('/tmp/oe-git.log'):
+			remove('/tmp/oe-git.log')
+		if path.exists('/tmp/e2-git.log'):
+			remove('/tmp/e2-git.log')
+		self.logtype = 'oe'
+		self["text"] = ScrollLabel()
+		self['title_summary'] = StaticText()
+		self['text_summary'] = StaticText()
+		self["key_red"] = Button(_("Close"))
+		self["key_green"] = Button(_("OK"))
+		self["key_yellow"] = Button(_("Show E2 Log"))
+		self["myactions"] = ActionMap(['ColorActions', 'OkCancelActions', 'DirectionActions'],
+		{
+			'cancel': self.closeRecursive,
+			"red": self.closeRecursive,
+			"yellow": self.changelogtype,
+			"left": self.pageUp,
+			"right": self.pageDown,
+			"down": self.pageDown,
+			"up": self.pageUp
+		},-1)
+		self.onLayoutFinish.append(self.getlog)
+
+	def changelogtype(self):
+		if self.logtype == 'oe':
+			self["key_yellow"].setText(_("Show E2 Log"))
+			self.setTitle(_("OE Changes"))
+			self.logtype = 'e2'
+		else:
+			self["key_yellow"].setText(_("Show OE Log"))
+			self.setTitle(_("Enimga2 Changes"))
+			self.logtype = 'oe'
+		self.getlog()
+
+	def pageUp(self):
+		self["text"].pageUp()
+
+	def pageDown(self):
+		self["text"].pageDown()
+
+	def getlog(self):
+		fd = open('/etc/' + self.logtype + '-git.log', 'r')
+		releasenotes = fd.read()
+		fd.close()
+		releasenotes = releasenotes.replace('\nopenvix: build',"\n\nopenvix: build")
+		self["text"].setText(releasenotes)
+		summarytext = releasenotes.split(':\n')
+		try:
+			self['title_summary'].setText(summarytext[0]+':')
+			self['text_summary'].setText(summarytext[1])
+		except:
+			self['title_summary'].setText("")
+			self['text_summary'].setText("")
+
+	def unattendedupdate(self):
+		self.close((_("Unattended upgrade without GUI and reboot system"), "cold"))
+
+	def closeRecursive(self):
+		self.close((_("Cancel"), ""))
+
