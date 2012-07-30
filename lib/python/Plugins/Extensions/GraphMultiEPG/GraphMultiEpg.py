@@ -74,7 +74,6 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.currentlyPlaying = None
 		self.showPicon = False
 		self.showServiceTitle = True
-		self.piconSize = None
 		self.picload = ePicLoad()
 		self.nowEvPix = None
 		self.othEvPix = None
@@ -137,8 +136,6 @@ class EPGList(HTMLComponent, GUIComponent):
 					self.backColorNow = parseColor(value).argb()
 				elif attrib == "EntryForegroundColorNow":
 					self.foreColorNow = parseColor(value).argb()
-				elif attrib == "PiconSize":
-					self.piconSize = parseSize(value, ((1,1),(1,1)))
 				elif attrib == "ServiceBorderWidth":
 					self.serviceBorderWidth = int(value)
 				elif attrib == "ServiceNamePadding":
@@ -318,10 +315,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		if self.showServiceTitle:
 			w = width / 10 * 2;
 		elif self.showPicon:
-			if self.piconSize is not None:
-				w = self.piconSize.width()
-			else:
-				w = 2 * height - 2 * self.serviceBorderWidth  # FIXME: could do better...
+			w = 2 * height - 2 * self.serviceBorderWidth  # FIXME: could do better...
 		else:
 			w = 0
 		self.service_rect = Rect(0, 0, w, height)
@@ -377,14 +371,10 @@ class EPGList(HTMLComponent, GUIComponent):
 					backcolor = serviceBackColor, backcolor_sel = serviceBackColor,
 					border_width = self.serviceBorderWidth, border_color = self.borderColorService) )
 		if self.showPicon:
-			if self.piconSize is not None:
-				piconHeight = self.piconSize.h - 2 * self.serviceBorderWidth
-				piconWidth = self.piconSize.w - 2 * self.serviceBorderWidth
-			else:
-				piconHeight = r1.h - 2 * self.serviceBorderWidth
-				piconWidth = 2 * piconHeight  # FIXME: could do better...
-				if piconWidth > r1.w - 2 * self.serviceBorderWidth:
-					piconWidth = r1.w - 2 * self.serviceBorderWidth
+			piconHeight = r1.h - 2 * self.serviceBorderWidth
+			piconWidth = 2 * piconHeight  # FIXME: could do better...
+			if piconWidth > r1.w - 2 * self.serviceBorderWidth:
+				piconWidth = r1.w - 2 * self.serviceBorderWidth
 			if picon != "":
 				self.picload.setPara((piconWidth, piconHeight, 1, 1, 1, 1, "#FFFFFFFF"))
 				self.picload.startDecode(picon, piconWidth, piconHeight, False)
