@@ -3397,7 +3397,7 @@ class InfoBarExtensions:
 
 	def RedPressed(self):
 		if isinstance(self, InfoBarEPG):
-			if config.vixsettings.ViXEPG_mode.value == "vixepg":
+			if config.usage.defaultEPGType.value == "Graphical EPG..." or config.usage.defaultEPGType.value == "None":
 				self.openSingleServiceEPG()
 			else:
 				self.openGraphEPG()
