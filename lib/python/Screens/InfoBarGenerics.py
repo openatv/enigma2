@@ -762,6 +762,7 @@ class InfoBarEPG:
 	def showEventInfoPlugins(self):
 		pluginlist = self.getEPGPluginList()
 		if pluginlist:
+			pluginlist.append((_("Select default EPG type..."), None))
 			self.session.openWithCallback(self.EventInfoPluginChosen, ChoiceBox, title=_("Please choose an extension..."), list = pluginlist, skin_name = "EPGExtensionsList")
 		else:
 			self.openSingleServiceEPG()
@@ -771,10 +772,17 @@ class InfoBarEPG:
 
 	def EventInfoPluginChosen(self, answer):
 		if answer is not None:
-			self.defaultEPGType=answer[1]
-			config.usage.defaultEPGType.value=answer[0]
+			if answer[1] is None:
+				self.session.openWithCallback(self.DefaultInfoPluginChosen, ChoiceBox, title=_("Please select a default EPG type..."), list = self.getEPGPluginList(), skin_name = "EPGExtensionsList")
+			else:
+				answer[1]()
+
+	def DefaultInfoPluginChosen(self, answer):
+		if answer is not None:
+			self.defaultEPGType = answer[1]
+			config.usage.defaultEPGType.value = answer[0]
 			config.usage.defaultEPGType.save()
-			answer[1]()
+			self.showEventInfoPlugins()
 
 	def openSimilarList(self, eventid, refstr):
 		self.session.open(EPGSelection, refstr, None, eventid)
