@@ -419,9 +419,11 @@ class LogManager(Screen):
 					fp.close()
 					msg.attach(data)
 					self.saveSelection()
+					sentfiles = self.sel
 			else:
 				self.sel = self["list"].getCurrent()[0]
 				self.sel = str(self.sel[0])
+				sentfiles = self.sel
 				fp = open((self.defaultDir + self.sel), 'rb')
 				data = MIMEText(fp.read())
 				fp.close()
@@ -442,11 +444,11 @@ class LogManager(Screen):
 				if config.logmanager.usersendcopy.value:
 					s.sendmail(fromlogman, [tovixlogs, fromlogman], msg.as_string())
 					s.quit()
-					self.session.open(MessageBox, _(self.sel + ' has been sent to the ViX beta team.\nplease quote ' + ref + ' when asking question about this log\n\nA copy has been sent to yourself.'), MessageBox.TYPE_INFO)
+					self.session.open(MessageBox, sentfiles + ' ' + _('has been sent to the ViX beta team.\nplease quote') + ' ' + str(ref) + ' ' + _('when asking question about this log\n\nA copy has been sent to yourself.'), MessageBox.TYPE_INFO)
 				else:
 					s.sendmail(fromlogman, tovixlogs, msg.as_string())
 					s.quit()
-					self.session.open(MessageBox, _(self.sel + ' has been sent to the ViX beta team.\nplease quote ' + ref + ' when asking question about this log'), MessageBox.TYPE_INFO)
+					self.session.open(MessageBox, sentfiles + ' ' + _('has been sent to the ViX beta team.\nplease quote') + ' ' + str(ref) + ' ' + _('when asking question about this log'), MessageBox.TYPE_INFO)
 			except Exception,e:
 				self.session.open(MessageBox, _("Error:\n%s" % e), MessageBox.TYPE_INFO, timeout = 10)
 		else:
