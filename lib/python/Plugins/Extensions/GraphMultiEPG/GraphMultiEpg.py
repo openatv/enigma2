@@ -38,8 +38,10 @@ config.misc.graph_mepg.items_per_page = ConfigSelectionNumber(min = 3, max = 10,
 config.misc.graph_mepg.items_per_page_listscreen = ConfigSelectionNumber(min = 3, max = 20, stepwidth = 1, default = 12, wraparound = True)
 config.misc.graph_mepg.default_mode = ConfigYesNo(default = False)
 config.misc.graph_mepg.overjump = ConfigYesNo(default = True)
-config.misc.graph_mepg.showpicon = ConfigYesNo(default = False)
-config.misc.graph_mepg.showservicetitle = ConfigYesNo(default = True)
+config.misc.graph_mepg.servicetitle_mode = ConfigSelection(default = "picon+servicename", choices = [
+	("servicename", _("Service Name")),
+	("picon", _("Picon")),
+	("picon+servicename", _("Both")) ])
 config.misc.graph_mepg.roundTo = ConfigSelection(default = 15, choices = [("900", _("%d minutes") % 15), ("1800", _("%d minutes") % 30), ("3600", _("%d minutes") % 60)])
 
 listscreen = config.misc.graph_mepg.default_mode.value
@@ -669,10 +671,11 @@ class TimelineText(HTMLComponent, GUIComponent):
 			num_lines = time_epoch / time_steps
 			incWidth = event_rect.width() / num_lines
 			timeStepsCalc = time_steps * 60
-			if config.misc.graph_mepg.showservicetitle.value:
-				datetext = strftime("%A %d %B", localtime(time_base))
-			elif config.misc.graph_mepg.showpicon.value:
-				datetext = strftime("%a %d", localtime(time_base))
+
+			if "servicename" in config.misc.graph_mepg.servicetitle_mode.value:
+				datetext = strftime(_("%A %d %B"), localtime(time_base))
+			elif "picon" in config.misc.graph_mepg.servicetitle_mode.value:
+				datetext = strftime(_("%d-%m"), localtime(time_base))
 			else:
 				datetext = ""
 			res.append( MultiContentEntryText(
@@ -886,8 +889,8 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		l.setEventFontsize()
 		l.setEpoch(config.misc.graph_mepg.prev_time_period.value)
 		l.setOverjump_Empty(config.misc.graph_mepg.overjump.value)
-		l.setShowPicon(config.misc.graph_mepg.showpicon.value)
-		l.setShowServiceTitle(config.misc.graph_mepg.showservicetitle.value)
+		l.setShowPicon("picon" in config.misc.graph_mepg.servicetitle_mode.value)
+		l.setShowServiceTitle("servicename" in config.misc.graph_mepg.servicetitle_mode.value)
 		now = time() - config.epg.histminutes.getValue() * 60
 		self.ask_time = now - now % int(config.misc.graph_mepg.roundTo.getValue())
 		l.fillMultiEPG(None, self.ask_time)
@@ -933,8 +936,8 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		l.fillMultiEPG(self.services, self.ask_time)
 		l.moveToService(serviceref)
 		l.setCurrentlyPlaying(serviceref)
-		l.setShowPicon(config.misc.graph_mepg.showpicon.value)
-		l.setShowServiceTitle(config.misc.graph_mepg.showservicetitle.value)
+		l.setShowPicon("picon" in config.misc.graph_mepg.servicetitle_mode.value)
+		l.setShowServiceTitle("servicename" in config.misc.graph_mepg.servicetitle_mode.value)
 		self.moveTimeLines()
 
 	def eventViewCallback(self, setEvent, setService, val):

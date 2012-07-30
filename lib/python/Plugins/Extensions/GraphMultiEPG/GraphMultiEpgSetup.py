@@ -52,8 +52,7 @@ class GraphMultiEpgSetup(Screen, ConfigListScreen):
 		self.list.append(getConfigListEntry(_("Items per Page for Listscreen"), config.misc.graph_mepg.items_per_page_listscreen))
 		self.list.append(getConfigListEntry(_("Listscreen default at start user interface"), config.misc.graph_mepg.default_mode))
 		self.list.append(getConfigListEntry(_("Skip Empty Services"), config.misc.graph_mepg.overjump))
-		self.list.append(getConfigListEntry(_("Show Picons"), config.misc.graph_mepg.showpicon))
-		self.list.append(getConfigListEntry(_("Show Service Names "), config.misc.graph_mepg.showservicetitle))
+		self.list.append(getConfigListEntry(_("Service Title mode"), config.misc.graph_mepg.servicetitle_mode))
 		self.list.append(getConfigListEntry(_("Round start time on"), config.misc.graph_mepg.roundTo))
 
 		self["config"].list = self.list
