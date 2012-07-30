@@ -41,7 +41,7 @@ config.misc.graph_mepg.overjump = ConfigYesNo(default = True)
 config.misc.graph_mepg.servicetitle_mode = ConfigSelection(default = "picon+servicename", choices = [
 	("servicename", _("Service Name")),
 	("picon", _("Picon")),
-	("picon+servicename", _("Both")) ])
+	("picon+servicename", _("Picon and Service Name")) ])
 config.misc.graph_mepg.roundTo = ConfigSelection(default = 15, choices = [("900", _("%d minutes") % 15), ("1800", _("%d minutes") % 30), ("3600", _("%d minutes") % 60)])
 
 listscreen = config.misc.graph_mepg.default_mode.value
@@ -160,11 +160,9 @@ class EPGList(HTMLComponent, GUIComponent):
 	def isSelectable(self, service, service_name, events, picon):
 		return (events and len(events) and True) or False
 
-	def setShowPicon(self, value):
-		self.showPicon = value
-
-	def setShowServiceTitle(self, value):
-		self.showServiceTitle = value
+	def setShowServiceMode(self, value):
+		self.showServiceTitle = "servicename" in value
+		self.showPicon = "picon" in value
 		self.recalcEntrySize()
 		self.selEntry(0) #Select entry again so that the clipping region gets updated if needed
 
@@ -625,6 +623,7 @@ class TimelineText(HTMLComponent, GUIComponent):
 		self.time_base = 0
 		self.time_epoch = 0
 		self.font = gFont("Regular", 20)
+		self.datefmt = ""
 
 	GUI_WIDGET = eListbox
 
@@ -651,6 +650,12 @@ class TimelineText(HTMLComponent, GUIComponent):
 		instance.setContent(self.l)
 		self.l.setFont(0, self.font)
 
+	def setDateFormat(self, value):
+		if "servicename" in value:
+			self.datefmt = _("%A %d %B")
+		elif "picon" in value:
+			self.datefmt = _("%d-%m")
+
 	def setEntries(self, l, timeline_now, time_lines, force):
 		event_rect = l.getEventRect()
 		time_epoch = l.getTimeEpoch()
@@ -672,17 +677,11 @@ class TimelineText(HTMLComponent, GUIComponent):
 			incWidth = event_rect.width() / num_lines
 			timeStepsCalc = time_steps * 60
 
-			if "servicename" in config.misc.graph_mepg.servicetitle_mode.value:
-				datetext = strftime(_("%A %d %B"), localtime(time_base))
-			elif "picon" in config.misc.graph_mepg.servicetitle_mode.value:
-				datetext = strftime(_("%d-%m"), localtime(time_base))
-			else:
-				datetext = ""
 			res.append( MultiContentEntryText(
 				pos = (0, 0),
 				size = (service_rect.width(), itemHeight),
 				font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER,
-				text = datetext,
+				text = strftime(self.datefmt, localtime(time_base)),
 				color = self.foreColor, color_sel = self.foreColor,
 				backcolor = self.backColor, backcolor_sel = self.backColor,
 				border_width = self.borderWidth, border_color = self.borderColor))
@@ -889,8 +888,8 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		l.setEventFontsize()
 		l.setEpoch(config.misc.graph_mepg.prev_time_period.value)
 		l.setOverjump_Empty(config.misc.graph_mepg.overjump.value)
-		l.setShowPicon("picon" in config.misc.graph_mepg.servicetitle_mode.value)
-		l.setShowServiceTitle("servicename" in config.misc.graph_mepg.servicetitle_mode.value)
+		l.setShowServiceMode(config.misc.graph_mepg.servicetitle_mode.value)
+		self["timeline_text"].setDateFormat(config.misc.graph_mepg.servicetitle_mode.value)
 		now = time() - config.epg.histminutes.getValue() * 60
 		self.ask_time = now - now % int(config.misc.graph_mepg.roundTo.getValue())
 		l.fillMultiEPG(None, self.ask_time)
@@ -936,8 +935,8 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		l.fillMultiEPG(self.services, self.ask_time)
 		l.moveToService(serviceref)
 		l.setCurrentlyPlaying(serviceref)
-		l.setShowPicon("picon" in config.misc.graph_mepg.servicetitle_mode.value)
-		l.setShowServiceTitle("servicename" in config.misc.graph_mepg.servicetitle_mode.value)
+		l.setShowServiceMode(config.misc.graph_mepg.servicetitle_mode.value)
+		self["timeline_text"].setDateFormat(config.misc.graph_mepg.servicetitle_mode.value)
 		self.moveTimeLines()
 
 	def eventViewCallback(self, setEvent, setService, val):
