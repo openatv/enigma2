@@ -146,12 +146,12 @@ class InfoBarUnhandledKey:
 		self.onLayoutFinish.append(self.unhandledKeyDialog.hide)
 		eActionMap.getInstance().bindAction('', -0x7FFFFFFF, self.actionA) #highest prio
 		eActionMap.getInstance().bindAction('', 0x7FFFFFFF, self.actionB) #lowest prio
-		self.flags = (1<<1);
-		self.uflags = 0;
+		self.flags = (1<<1)
+		self.uflags = 0
 
 	#this function is called on every keypress!
 	def actionA(self, key, flag):
-		self.unhandledKeyDialog.hide();
+		self.unhandledKeyDialog.hide()
 		if flag != 4:
 			if self.flags & (1<<1):
 				self.flags = self.uflags = 0
@@ -657,7 +657,7 @@ class InfoBarNumberZap:
 					break
 				playable = not (serviceIterator.flags & (eServiceReference.isMarker|eServiceReference.isDirectory)) or (serviceIterator.flags & eServiceReference.isNumberedMarker)
 				if playable:
-					num -= 1;
+					num -= 1
 			if not num: #found service with searched number ?
 				return serviceIterator, 0
 		return None, num
@@ -1048,11 +1048,10 @@ class InfoBarEPG:
 
 		self["EPGActions"] = HelpableActionMap(self, "InfobarEPGActions",
 			{
-				"showEventInfo": (self.openEventView, _("show program information...")),
+				"InfoPressed": (self.InfoPressed, _("show program information...")),
 				"showEventInfoPlugin": (self.showEventInfoPlugins, _("list of EPG views...")),
 				"showInfobarOrEpgWhenInfobarAlreadyVisible": self.showEventInfoWhenNotVisible,
-				"InfoPressed": self.InfoPressed,
-				"EPGPressed": self.EPGPressed,
+				"EPGPressed":  (self.showDefaultEPG, _("show EPG...")),
 			})
 
 	def getEPGPluginList(self):
@@ -1080,17 +1079,12 @@ class InfoBarEPG:
 		if self.box_type.startswith('et') or self.box_type.startswith('odin') or self.box_type.startswith('venton') or self.box_type.startswith('tm') or self.box_type.startswith('gb'):
 			self.openEventView()
 		else:
-			self.EPGPressed()
+			self.showDefaultEPG()
 
 	def EPGPressed(self):
-		if self.defaultEPGType is not None:
-			self.defaultEPGType()
-			return
-
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
-
 		self.openGraphEPG()
 
 	def showEventInfoWhenNotVisible(self):
@@ -1265,6 +1259,7 @@ class InfoBarEPG:
 
 		pluginlist = self.getEPGPluginList()
 		if pluginlist:
+			pluginlist.append((_("Select default EPG type..."), self.SelectDefaultInfoPlugin))
 			self.session.openWithCallback(self.EventInfoPluginChosen, ChoiceBox, title=_("Please choose an extension..."), list = pluginlist, skin_name = "EPGExtensionsList")
 		else:
 			self.openSingleServiceEPG()
@@ -1274,10 +1269,16 @@ class InfoBarEPG:
 
 	def EventInfoPluginChosen(self, answer):
 		if answer is not None:
-			self.defaultEPGType=answer[1]
-			config.usage.defaultEPGType.value=answer[0]
-			config.usage.defaultEPGType.save()
 			answer[1]()
+
+	def SelectDefaultInfoPlugin(self):
+		self.session.openWithCallback(self.DefaultInfoPluginChosen, ChoiceBox, title=_("Please select a default EPG type..."), list = self.getEPGPluginList(), skin_name = "EPGExtensionsList")
+
+	def DefaultInfoPluginChosen(self, answer):
+		if answer is not None:
+			self.defaultEPGType = answer[1]
+			config.usage.defaultEPGType.value = answer[0]
+			config.usage.defaultEPGType.save()
 
 	def openSimilarList(self, eventid, refstr):
 		self.session.open(EPGSelection, refstr, None, eventid)
@@ -1300,6 +1301,12 @@ class InfoBarEPG:
 			assert self.eventView
 			if self.epglist:
 				self.eventView.setEvent(self.epglist[0])
+
+	def showDefaultEPG(self):
+		if self.defaultEPGType is not None:
+			self.defaultEPGType()
+			return
+		self.EPGPressed()
 
 	def openEventView(self):
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
