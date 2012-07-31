@@ -1597,9 +1597,9 @@ class NetworkAfp(Screen):
 
 	def checkNetworkStateFinished(self, result, retval,extra_args=None):
 		if (float(about.getImageVersionString()) < 3.0 and result.find('mipsel/Packages.gz, wget returned 1') != -1) or (float(about.getImageVersionString()) >= 3.0 and result.find('mips32el/Packages.gz, wget returned 1') != -1):
-			self.session.openWithCallback(self.close, MessageBox, _("Sorry feeds are down for maintenance, please try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Sorry feeds are down for maintenance, please try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		elif result.find('bad address') != -1:
-			self.session.openWithCallback(self.close, MessageBox, _("Your box is not connected to the internet, please check your network settings and try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Your box is not connected to the internet, please check your network settings and try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		else:
 			self.session.openWithCallback(self.InstallPackage,MessageBox,_('Your STB_BOX will be restarted after the installation of service\nReady to install "%s" ?') % self.service_name, MessageBox.TYPE_YESNO)
 
@@ -1610,6 +1610,10 @@ class NetworkAfp(Screen):
 			self.doInstall(self.installComplete, self.service_name)
 		else:
 			print 'INSTALL NO'
+			self.feedscheck.close()
+			self.close()
+
+	def InstallPackageFailed(self):
 			self.feedscheck.close()
 			self.close()
 
@@ -1849,9 +1853,9 @@ class NetworkNfs(Screen):
 
 	def checkNetworkStateFinished(self, result, retval,extra_args=None):
 		if (float(about.getImageVersionString()) < 3.0 and result.find('mipsel/Packages.gz, wget returned 1') != -1) or (float(about.getImageVersionString()) >= 3.0 and result.find('mips32el/Packages.gz, wget returned 1') != -1):
-			self.session.openWithCallback(self.close, MessageBox, _("Sorry feeds are down for maintenance, please try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Sorry feeds are down for maintenance, please try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		elif result.find('bad address') != -1:
-			self.session.openWithCallback(self.close, MessageBox, _("Your box is not connected to the internet, please check your network settings and try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Your box is not connected to the internet, please check your network settings and try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		else:
 			self.session.openWithCallback(self.InstallPackage,MessageBox,_('Your STB_BOX will be restarted after the installation of service\nReady to install "%s" ?') % self.service_name, MessageBox.TYPE_YESNO)
 
@@ -1862,6 +1866,10 @@ class NetworkNfs(Screen):
 			self.doInstall(self.installComplete, self.service_name)
 		else:
 			print 'INSTALL NO'
+			self.feedscheck.close()
+			self.close()
+
+	def InstallPackageFailed(self):
 			self.feedscheck.close()
 			self.close()
 
@@ -2011,9 +2019,9 @@ class NetworkOpenvpn(Screen):
 
 	def checkNetworkStateFinished(self, result, retval,extra_args=None):
 		if (float(about.getImageVersionString()) < 3.0 and result.find('mipsel/Packages.gz, wget returned 1') != -1) or (float(about.getImageVersionString()) >= 3.0 and result.find('mips32el/Packages.gz, wget returned 1') != -1):
-			self.session.openWithCallback(self.close, MessageBox, _("Sorry feeds are down for maintenance, please try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Sorry feeds are down for maintenance, please try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		elif result.find('bad address') != -1:
-			self.session.openWithCallback(self.close, MessageBox, _("Your box is not connected to the internet, please check your network settings and try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Your box is not connected to the internet, please check your network settings and try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		else:
 			self.session.openWithCallback(self.InstallPackage, MessageBox, _('Ready to install "%s" ?') % self.service_name, MessageBox.TYPE_YESNO)
 
@@ -2021,6 +2029,10 @@ class NetworkOpenvpn(Screen):
 		if val:
 			self.doInstall(self.installComplete, self.service_name)
 		else:
+			self.feedscheck.close()
+			self.close()
+
+	def InstallPackageFailed(self):
 			self.feedscheck.close()
 			self.close()
 
@@ -2189,9 +2201,9 @@ class NetworkSamba(Screen):
 
 	def checkNetworkStateFinished(self, result, retval,extra_args=None):
 		if (float(about.getImageVersionString()) < 3.0 and result.find('mipsel/Packages.gz, wget returned 1') != -1) or (float(about.getImageVersionString()) >= 3.0 and result.find('mips32el/Packages.gz, wget returned 1') != -1):
-			self.session.openWithCallback(self.close, MessageBox, _("Sorry feeds are down for maintenance, please try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Sorry feeds are down for maintenance, please try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		elif result.find('bad address') != -1:
-			self.session.openWithCallback(self.close, MessageBox, _("Your box is not connected to the internet, please check your network settings and try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Your box is not connected to the internet, please check your network settings and try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		else:
 			self.session.openWithCallback(self.InstallPackage, MessageBox, _('Ready to install "%s" ?') % self.service_name, MessageBox.TYPE_YESNO)
 
@@ -2199,6 +2211,10 @@ class NetworkSamba(Screen):
 		if val:
 			self.doInstall(self.installComplete, self.service_name)
 		else:
+			self.feedscheck.close()
+			self.close()
+
+	def InstallPackageFailed(self):
 			self.feedscheck.close()
 			self.close()
 
@@ -2480,9 +2496,9 @@ class NetworkInadyn(Screen):
 
 	def checkNetworkStateFinished(self, result, retval,extra_args=None):
 		if (float(about.getImageVersionString()) < 3.0 and result.find('mipsel/Packages.gz, wget returned 1') != -1) or (float(about.getImageVersionString()) >= 3.0 and result.find('mips32el/Packages.gz, wget returned 1') != -1):
-			self.session.openWithCallback(self.close, MessageBox, _("Sorry feeds are down for maintenance, please try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Sorry feeds are down for maintenance, please try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		elif result.find('bad address') != -1:
-			self.session.openWithCallback(self.close, MessageBox, _("Your box is not connected to the internet, please check your network settings and try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Your box is not connected to the internet, please check your network settings and try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		else:
 			self.session.openWithCallback(self.InstallPackage, MessageBox, _('Ready to install "%s" ?') % self.service_name, MessageBox.TYPE_YESNO)
 
@@ -2490,6 +2506,10 @@ class NetworkInadyn(Screen):
 		if val:
 			self.doInstall(self.installComplete, self.service_name)
 		else:
+			self.feedscheck.close()
+			self.close()
+
+	def InstallPackageFailed(self):
 			self.feedscheck.close()
 			self.close()
 
@@ -2879,9 +2899,9 @@ class NetworkuShare(Screen):
 
 	def checkNetworkStateFinished(self, result, retval,extra_args=None):
 		if (float(about.getImageVersionString()) < 3.0 and result.find('mipsel/Packages.gz, wget returned 1') != -1) or (float(about.getImageVersionString()) >= 3.0 and result.find('mips32el/Packages.gz, wget returned 1') != -1):
-			self.session.openWithCallback(self.close, MessageBox, _("Sorry feeds are down for maintenance, please try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Sorry feeds are down for maintenance, please try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		elif result.find('bad address') != -1:
-			self.session.openWithCallback(self.close, MessageBox, _("Your box is not connected to the internet, please check your network settings and try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Your box is not connected to the internet, please check your network settings and try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		else:
 			self.session.openWithCallback(self.InstallPackage, MessageBox, _('Ready to install "%s" ?') % self.service_name, MessageBox.TYPE_YESNO)
 
@@ -2889,6 +2909,10 @@ class NetworkuShare(Screen):
 		if val:
 			self.doInstall(self.installComplete, self.service_name)
 		else:
+			self.feedscheck.close()
+			self.close()
+
+	def InstallPackageFailed(self):
 			self.feedscheck.close()
 			self.close()
 
@@ -3425,9 +3449,9 @@ class NetworkMiniDLNA(Screen):
 
 	def checkNetworkStateFinished(self, result, retval,extra_args=None):
 		if (float(about.getImageVersionString()) < 3.0 and result.find('mipsel/Packages.gz, wget returned 1') != -1) or (float(about.getImageVersionString()) >= 3.0 and result.find('mips32el/Packages.gz, wget returned 1') != -1):
-			self.session.openWithCallback(self.close, MessageBox, _("Sorry feeds are down for maintenance, please try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Sorry feeds are down for maintenance, please try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		elif result.find('bad address') != -1:
-			self.session.openWithCallback(self.close, MessageBox, _("Your box is not connected to the internet, please check your network settings and try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Your box is not connected to the internet, please check your network settings and try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		else:
 			self.session.openWithCallback(self.InstallPackage, MessageBox, _('Ready to install "%s" ?') % self.service_name, MessageBox.TYPE_YESNO)
 
@@ -3435,6 +3459,10 @@ class NetworkMiniDLNA(Screen):
 		if val:
 			self.doInstall(self.installComplete, self.service_name)
 		else:
+			self.feedscheck.close()
+			self.close()
+
+	def InstallPackageFailed(self):
 			self.feedscheck.close()
 			self.close()
 
