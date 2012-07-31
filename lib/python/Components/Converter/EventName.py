@@ -107,6 +107,8 @@ class EventName(Converter, object):
 		elif self.type == self.ID:
 			return str(event.getEventId())
 		elif int(self.type) == 6 or int(self.type) >= 21:
+			if self.source is None:
+				return
 			reference = self.source.service
 			info = reference and self.source.info
 			if info is None:
