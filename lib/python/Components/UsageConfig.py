@@ -613,8 +613,10 @@ def InitUsageConfig():
 	config.epgselction.prev_time = ConfigClock(default = time())
 	config.epgselction.primetimehour = ConfigSelectionNumber(default = 20, stepwidth = 1, min = 00, max = 23, wraparound = True)
 	config.epgselction.primetimemins = ConfigSelectionNumber(default = 00, stepwidth = 1, min = 00, max = 59, wraparound = True)
-	config.epgselction.showpicon = ConfigYesNo(default = True)
-	config.epgselction.showservicetitle = ConfigYesNo(default = True)
+	config.epgselction.servicetitle_mode = ConfigSelection(default = "picon+servicename", choices = [
+	("servicename", _("Service Name")),
+	("picon", _("Picon")),
+	("picon+servicename", _("Picon and Service Name")) ])
 	config.epgselction.channel1 = ConfigYesNo(default = False)
 	config.epgselction.prev_time_period = ConfigSelectionNumber(default = 180, stepwidth = 1, min = 60, max = 300, wraparound = True)
 	config.epgselction.serv_fontsize_vixepg = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
