@@ -828,6 +828,8 @@ class ShowSoftcamPanelExtensions(ConfigListScreen, Screen):
 			self.list.append(getConfigListEntry(_("Start attempts"), config.softcam.restartAttempts))
 			self.list.append(getConfigListEntry(_("Time between start attempts (sec.)"), config.softcam.restartTime))
 			self.list.append(getConfigListEntry(_("Stop check when cam is running"), config.softcam.restartRunning))
+		self.list.append(getConfigListEntry(_("Show CCcamInfo in Extensions Menu"), config.cccaminfo.showInExtensions))
+		self.list.append(getConfigListEntry(_("Show OscamInfo in Extensions Menu"), config.oscaminfo.showInExtensions))
 		
 		self["config"].list = self.list
 		self["config"].setList(self.list)

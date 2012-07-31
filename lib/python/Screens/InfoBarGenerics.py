@@ -3415,13 +3415,25 @@ class InfoBarExtensions:
 		return _("CCcam Info")
 
 	def getCCcamInfo(self):
-		return []
+		if Directories.pathExists('/usr/bin/'):
+			softcams = os_listdir('/usr/bin/')
+		for softcam in softcams:
+			if softcam.lower().startswith('cccam') and config.cccaminfo.showInExtensions.value:
+				return [((boundFunction(self.getCCname), boundFunction(self.openCCcamInfo), lambda: True), None)] or []
+		else:
+			return []
 
 	def getOSname(self):
 		return _("OScam Info")
 
 	def getOScamInfo(self):
-		return []
+		if Directories.pathExists('/usr/bin/'):
+			softcams = os_listdir('/usr/bin/')
+		for softcam in softcams:
+			if softcam.lower().startswith('oscam') and config.oscaminfo.showInExtensions.value:
+				return [((boundFunction(self.getOSname), boundFunction(self.openOScamInfo), lambda: True), None)] or []
+		else:
+			return []
 
 	def RedPressed(self):
 		if isinstance(self, InfoBarEPG):

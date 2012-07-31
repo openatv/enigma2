@@ -12,6 +12,8 @@ from Screens.MessageBox import MessageBox
 from Screens.Console import Console
 from enigma import *
 import os
+from Screens.CCcamInfo import CCcamInfoMain
+from Screens.OScamInfo import OscamInfoMenu
 
 def Check_Softcam():
 	found = False
@@ -75,6 +77,10 @@ SOFTCAM_SKIN = """<screen name="SoftcamPanel" position="center,center" size="500
 config.softcam = ConfigSubsection()
 config.softcam.actCam = ConfigText(visible_width = 200)
 
+REFRESH = 0
+CCCAMINFO = 1
+OSCAMINFO = 2
+
 class SoftcamPanel(Screen):
 	def __init__(self, session):
 		global emuDir
@@ -85,6 +91,7 @@ class SoftcamPanel(Screen):
 		self.skin = SOFTCAM_SKIN
 		self.onShown.append(self.setWindowTitle)
 		self.partyfeed = None
+		self.YellowAction = REFRESH
 
 		self.mlist = []
 		self["Mlist"] = MenuList(self.mlist)
@@ -257,6 +264,12 @@ class SoftcamPanel(Screen):
 					print  '[SOFTCAM] set active cam to: ' + actcam
 					self.Label_restart_Enigma2(tel)
 					camrunning = 1
+					if actcam.upper().startswith('CCCAM'):
+						self.YellowAction = CCCAMINFO
+						self["key_yellow"].setText(_("CCcamInfo"))
+					elif actcam.upper().startswith('OSCAM'):
+						self.YellowAction = OSCAMINFO
+						self["key_yellow"].setText(_("OscamInfo"))
 					break
 				else:
 					tel +=1
@@ -379,9 +392,16 @@ class SoftcamPanel(Screen):
 		self.Timer.start(2000, True)		#reset timer
 
 	def Yellow(self):
-		self.ShowEmuList()
-		self.first = 0
-		self.layoutFinished()
+		if self.YellowAction == CCCAMINFO:
+			self.Timer.stop()
+			self.session.openWithCallback(self.ShowSoftcamCallback, CCcamInfoMain)
+		elif self.YellowAction == OSCAMINFO:
+			self.Timer.stop()
+			self.session.openWithCallback(self.ShowSoftcamCallback, OscamInfoMenu)
+		else:
+			self.ShowEmuList()
+			self.first = 0
+			self.layoutFinished()
 
 	def Green(self):
 		#// Start the CAM when pressing the GREEN button
