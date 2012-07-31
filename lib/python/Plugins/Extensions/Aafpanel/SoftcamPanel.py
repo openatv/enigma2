@@ -270,6 +270,9 @@ class SoftcamPanel(Screen):
 					elif actcam.upper().startswith('OSCAM'):
 						self.YellowAction = OSCAMINFO
 						self["key_yellow"].setText(_("OscamInfo"))
+					else:
+						self.YellowAction = REFRESH
+						self["key_yellow"].setText(_("Refresh"))
 					break
 				else:
 					tel +=1
@@ -278,6 +281,8 @@ class SoftcamPanel(Screen):
 				actcam = _("no CAM active")
 				self["actifcam"].setText(actcam )
 				self["key_green"].setText(_("Start"))
+				self.YellowAction = REFRESH
+				self["key_yellow"].setText(_("Refresh"))
 				if os.path.exists('/tmp/ecm.info') is True:
 					os.system("rm /tmp/ecm.info")
 				if os.path.exists('/tmp/ecm0.info') is True:
@@ -461,7 +466,8 @@ class SoftcamPanel(Screen):
 		self.ShowEmuList()
 		self.Timer.stop()
 		self.Startcam()
-		self.Yellow()
+		if self.YellowAction == REFRESH:
+			self.Yellow()
 		self.Timer.start(2000, True)		#reset timer
 
 	def Stopcam(self):
