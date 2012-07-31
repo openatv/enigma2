@@ -570,7 +570,7 @@ class EPGSelection(Screen, HelpableScreen):
 			self["timeline_text"].setTimeLineFontsize()
 			l.setEpoch(config.epgselction.prev_time_period.getValue())
 			l.setOverjump_Empty(config.epgselction.overjump.value)
-			l.setShowServiceMode(config.misc.graph_mepg.servicetitle_mode.value)
+			l.setShowServiceMode(config.epgselction.servicetitle_mode.value)
 			now = time() - int(config.epg.histminutes.getValue()) * 60
 			self.ask_time = now - now % (int(config.epgselction.roundTo.getValue()) * 60)
 			l.fillGraphEPG(None, self.ask_time)
@@ -611,7 +611,7 @@ class EPGSelection(Screen, HelpableScreen):
 			l.fillGraphEPG(self.services, self.ask_time)
 			l.moveToService(serviceref)
 			l.setCurrentlyPlaying(serviceref)
-			l.setShowServiceMode(config.misc.graph_mepg.servicetitle_mode.value)
+			l.setShowServiceMode(config.epgselction.servicetitle_mode.value)
 			self.moveTimeLines()
 			if config.epgselction.channel1.value:
 				l.instance.moveSelectionTo(0)
@@ -1566,7 +1566,7 @@ class EPGSelectionSetup(Screen, ConfigListScreen):
 			self.list.append(getConfigListEntry(_("Channel preview mode"), config.epgselction.preview_mode_vixepg,_("If set to 'yes' you can preview channels in the EPG list.")))
 			self.list.append(getConfigListEntry(_("Show bouquet on launch"), config.epgselction.showbouquet_vixepg,_("If set to 'yes' the bouquets will be shown each time you open the EPG.")))
 			self.list.append(getConfigListEntry(_("Picture in Graphics"), config.epgselction.pictureingraphics,_("If set to 'yes' shows a small TV-screen in the EPG.")))
-			self.list.append(getConfigListEntry(_("Service Title mode"), config.misc.graph_mepg.servicetitle_mode,_("Choose whether to show the channel names, picons, or both in the EPG.")))
+			self.list.append(getConfigListEntry(_("Service Title mode"), config.epgselction.servicetitle_mode,_("Choose whether to show the channel names, picons, or both in the EPG.")))
 			self.list.append(getConfigListEntry(_("Info Button (short)"), config.epgselction.Info,_("Set to what you want the button to do.")))
 			self.list.append(getConfigListEntry(_("Info Button (long)"), config.epgselction.InfoLong,_("Set to what you want the button to do.")))
 			self.list.append(getConfigListEntry(_("OK Button (short)"), config.epgselction.OK_vixepg,_("Set to what you want the button to do.")))
