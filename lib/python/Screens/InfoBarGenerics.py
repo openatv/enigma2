@@ -1036,13 +1036,12 @@ class InfoBarEPG:
 				iPlayableService.evUpdatedEventInfo: self.__evEventInfoChanged,
 			})
 
-		file = open('/etc/image-version', 'r')
-		lines = file.readlines()
-		file.close()
-		for x in lines:
+		self.box_type = None
+		for x in open('/etc/image-version', 'r').readlines():
 			splitted = x.split('=')
 			if splitted[0] == "box_type":
 				self.box_type = splitted[1].replace('\n','')
+				break
 
 		self.is_now_next = False
 		self.dlg_stack = [ ]
@@ -1060,7 +1059,9 @@ class InfoBarEPG:
 			})
 
 	def InfoPressed(self):
-		if config.plisettings.PLIINFO_mode.value == "eventview":
+		if self.box_type == 'vuduo' or self.box_type == 'vusolo' or self.box_type == 'vuuno':
+			self.EPGPressed()
+		elif config.plisettings.PLIINFO_mode.value == "eventview":
 			self.openEventView()
 		elif config.plisettings.PLIINFO_mode.value == "epgpress":
 			self.EPGPressed()
