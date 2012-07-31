@@ -84,8 +84,14 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.clock_prepost_pixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_prepost.png'))
 
 		self.nowEvPix = None
+		self.nowSelEvPix = None
 		self.othEvPix = None
 		self.selEvPix = None
+		self.nowServPix = None
+		self.recEvPix = None
+		self.recSelEvPix = None
+		self.zapEvPix = None
+		self.zapSelEvPix = None
 
 		self.borderColor = 0xC0C0C0
 		self.borderColorService = 0xC0C0C0
@@ -232,11 +238,9 @@ class EPGList(HTMLComponent, GUIComponent):
 	def isSelectable(self, service, service_name, events, picon):
 		return (events and len(events) and True) or False
 
-	def setShowPicon(self, value):
-		self.showPicon = value
-
-	def setShowServiceTitle(self, value):
-		self.showServiceTitle = value
+	def setShowServiceMode(self, value):
+		self.showServiceTitle = "servicename" in value
+		self.showPicon = "picon" in value
 		self.recalcEntrySize()
 		self.selEntry(0) #Select entry again so that the clipping region gets updated if needed
 
@@ -385,12 +389,27 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.picload.setPara((self.listWidth, itemHeight - 2 * self.eventBorderWidth, 0, 0, 1, 1, "#00000000"))
 			self.picload.startDecode(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/CurrentEvent.png'), 0, 0, False)
 			self.nowEvPix = self.picload.getData()
+			self.picload.startDecode(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/SelectedCurrentEvent.png'), 0, 0, False)
+			self.nowSelEvPix = self.picload.getData()
 
 			self.picload.startDecode(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/OtherEvent.png'), 0, 0, False)
 			self.othEvPix = self.picload.getData()
 
 			self.picload.startDecode(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/SelectedEvent.png'), 0, 0, False)
 			self.selEvPix = self.picload.getData()
+
+			self.picload.startDecode(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/CurrentService.png'), 0, 0, False)
+			self.nowServPix = self.picload.getData()
+
+			self.picload.startDecode(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/RecordEvent.png'), 0, 0, False)
+			self.recEvPix = self.picload.getData()
+			self.picload.startDecode(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/SelectedRecordEvent.png'), 0, 0, False)
+			self.recSelEvPix = self.picload.getData()
+
+			self.picload.startDecode(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/ZapEvent.png'), 0, 0, False)
+			self.zapEvPix = self.picload.getData()
+			self.picload.startDecode(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/SelectedZapEvent.png'), 0, 0, False)
+			self.zapSelEvPix = self.picload.getData()
 
 		elif self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_SINGLE or self.type == EPG_TYPE_SIMILAR:
 			if self.listHeight > 0:
@@ -475,9 +494,17 @@ class EPGList(HTMLComponent, GUIComponent):
 			w = width / 10 * 5;
 			self.descr_rect = Rect(xpos, 0, width, height)
 		elif self.type == EPG_TYPE_GRAPH:
-			w = config.epgselction.servicewidth.getValue();
+			if self.showServiceTitle:
+				w = width / 10 * 2;
+			else:     # if self.showPicon:    # this must be set if showServiceTitle is None
+				w = 2 * height - 2 * self.serviceBorderWidth  # FIXME: could do better...
 			self.service_rect = Rect(0, 0, w, height)
 			self.event_rect = Rect(w, 0, width - w, height)
+			piconHeight = height - 2 * self.serviceBorderWidth
+			piconWidth = 2 * piconHeight  # FIXME: could do better...
+			if piconWidth > w - 2 * self.serviceBorderWidth:
+				piconWidth = w - 2 * self.serviceBorderWidth
+			self.picon_size = eSize(piconWidth, piconHeight)
 		else: # EPG_TYPE_SIMILAR
 			fontwdith = config.epgselction.ev_fontsize_enhanced.getValue()
 			self.weekday_rect = Rect(0, 0, float(width / 100) * (10 + (fontwdith / 2)) , height)
@@ -486,12 +513,12 @@ class EPGList(HTMLComponent, GUIComponent):
 
 	def calcEntryPosAndWidthHelper(self, stime, duration, start, end, width):
 		xpos = (stime - start) * width / (end - start)
-		ewidth = (stime + duration - start) * width / (end - start) + 1
+		ewidth = (stime + duration - start) * width / (end - start)
 		ewidth -= xpos;
 		if xpos < 0:
 			ewidth += xpos;
 			xpos = 0;
-		if (xpos+ewidth) > width:
+		if (xpos + ewidth) > width:
 			ewidth = width - xpos
 		return xpos, ewidth
 
@@ -574,27 +601,22 @@ class EPGList(HTMLComponent, GUIComponent):
 		r1 = self.service_rect
 		r2 = self.event_rect
 		selected = self.cur_service[0] == service
-		if picon is None: # go find picon and cache its location
-			picon = getPiconName(service)
-			curIdx = self.l.getCurrentSelectionIndex()
-			self.list[curIdx] = (service, service_name, events, picon)
 
-		nowPlaying = self.currentlyPlaying.toString()
-		if nowPlaying is not None and nowPlaying == service:
+		# Picon and Service name
+		if self.currentlyPlaying is not None and self.currentlyPlaying.toString() == service:
 			serviceForeColor = self.foreColorServiceNow
 			serviceBackColor = self.backColorServiceNow
-			bgpng = self.nowEvPix
+			bgpng = self.nowServPix
 		else:
 			serviceForeColor = self.foreColorService
 			serviceBackColor = self.backColorService
 			bgpng = self.othEvPix
 
 		res = [ None ]
-		# Picon and Service name
-		if bgpng is not None:
+		if bgpng is not None:    # bacground for service rect
 			res.append(MultiContentEntryPixmapAlphaTest(
-					pos = (r1.x + self.eventBorderWidth, r1.y + self.eventBorderWidth),
-					size = (r1.w - 2 * self.eventBorderWidth, r1.h - 2 * self.eventBorderWidth),
+					pos = (r1.x + self.serviceBorderWidth, r1.y + self.serviceBorderWidth),
+					size = (r1.w - 2 * self.serviceBorderWidth, r1.h - 2 * self.serviceBorderWidth),
 					png = bgpng))
 		else:
 			res.append(MultiContentEntryText(
@@ -606,56 +628,48 @@ class EPGList(HTMLComponent, GUIComponent):
 					backcolor = serviceBackColor, backcolor_sel = serviceBackColor,
 					border_width = self.serviceBorderWidth, border_color = self.borderColorService) )
 
+		displayPicon = None
 		if self.showPicon:
-			piconHeight = r1.h - 2 * self.serviceBorderWidth
-			piconWidth = 2 * piconHeight  # FIXME: could do better...
-			if piconWidth > r1.w - 2 * self.serviceBorderWidth:
-				piconWidth = r1.w - 2 * self.serviceBorderWidth
+			if picon is None: # go find picon and cache its location
+				picon = getPiconName(service)
+				curIdx = self.l.getCurrentSelectionIndex()
+				self.list[curIdx] = (service, service_name, events, picon)
+			piconWidth = self.picon_size.width()
+			piconHeight = self.picon_size.height()
 			if picon != "":
 				self.picload.setPara((piconWidth, piconHeight, 1, 1, 1, 1, "#FFFFFFFF"))
-				self.picload.startDecode(picon, piconWidth, piconHeight, False)
+				self.picload.startDecode(picon, 0, 0, False)
 				displayPicon = self.picload.getData()
-
-				if displayPicon is not None:
-					res.append(MultiContentEntryPixmapAlphaBlend(
-						pos = (r1.x + self.serviceBorderWidth, r1.y + self.serviceBorderWidth),
-						size = (piconWidth, piconHeight),
-						png = displayPicon,
-						backcolor = serviceBackColor, backcolor_sel = serviceBackColor))
+			if displayPicon is not None:
+				res.append(MultiContentEntryPixmapAlphaTest(
+					pos = (r1.x + self.serviceBorderWidth, r1.y + self.serviceBorderWidth),
+					size = (piconWidth, piconHeight),
+					png = displayPicon,
+					backcolor = None, backcolor_sel = None) )
+			elif not self.showServiceTitle:
+				# no picon so show servicename anyway in picon space
+				namefont = 1
+				namefontflag = RT_HALIGN_LEFT | RT_VALIGN_CENTER | RT_WRAP
+				namewidth = piconWidth
+				piconWidth = 0
 		else:
 			piconWidth = 0
-		if self.showServiceTitle or picon == "" or not self.showPicon:
-			if picon == "" or not self.showPicon:
-				piconWidth = 0
 
-			bgpng = self.nowEvPix
-			# Service box background
-			if bgpng is not None:
-				res.append(MultiContentEntryPixmapAlphaTest(
-					pos = (r1.x + piconWidth + self.serviceBorderWidth + self.serviceNamePadding,
-							r1.y + self.serviceBorderWidth),
-					size = (r1.w - piconWidth - 2 * (self.serviceBorderWidth + self.serviceNamePadding),
-							r1.h - 2 * self.serviceBorderWidth),
-					png = bgpng))
-				res.append(MultiContentEntryText(
-					pos = (r1.x + piconWidth + self.serviceBorderWidth + self.serviceNamePadding,
-							r1.y + self.serviceBorderWidth),
-					size = (r1.w - piconWidth - 2 * (self.serviceBorderWidth + self.serviceNamePadding),
-							r1.h - 2 * self.serviceBorderWidth),
-					font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER,
-					text = service_name,
-					color = serviceForeColor, color_sel = serviceForeColor,
-					backcolor_sel = serviceBackColor))
-			else:
-				res.append(MultiContentEntryText(
-					pos = (r1.x + piconWidth + self.serviceBorderWidth + self.serviceNamePadding,
-							r1.y + self.serviceBorderWidth),
-					size = (r1.w - piconWidth - 2 * (self.serviceBorderWidth + self.serviceNamePadding),
-							r1.h - 2 * self.serviceBorderWidth),
-					font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER,
-					text = service_name,
-					color = serviceForeColor, color_sel = serviceForeColor,
-					backcolor = serviceBackColor, backcolor_sel = serviceBackColor))
+		if self.showServiceTitle: # we have more space so reset parms
+			namefont = 0
+			namefontflag = RT_HALIGN_LEFT | RT_VALIGN_CENTER
+			namewidth = r1.w - piconWidth
+
+		if self.showServiceTitle or displayPicon is None:
+			res.append(MultiContentEntryText(
+				pos = (r1.x + piconWidth + self.serviceBorderWidth + self.serviceNamePadding,
+					r1.y + self.serviceBorderWidth),
+				size = (namewidth - 2 * (self.serviceBorderWidth + self.serviceNamePadding),
+					r1.h - 2 * self.serviceBorderWidth),
+				font = namefont, flags = namefontflag,
+				text = service_name,
+				color = serviceForeColor, color_sel = serviceForeColor,
+				backcolor = None, backcolor_sel = None))
 
 		if self.othEvPix is not None:
 			res.append(MultiContentEntryPixmapAlphaTest(
@@ -673,6 +687,7 @@ class EPGList(HTMLComponent, GUIComponent):
 				border_width = 1, border_color = self.borderColor))
 
 		# Events for service
+		backColorSel = self.backColorSelected
 		if events:
 			start = self.time_base + self.offs * self.time_epoch * 60
 			end = start + self.time_epoch * 60
@@ -680,7 +695,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			top = r2.y
 			width = r2.w
 			height = r2.h
-#
+
 			now = time()
 			for ev in events:  #(event_id, event_title, begin_time, duration)
 				stime = ev[2]
@@ -693,76 +708,82 @@ class EPGList(HTMLComponent, GUIComponent):
 				else:
 					alignnment = RT_HALIGN_CENTER | RT_VALIGN_CENTER | RT_WRAP
 
-				if selected and self.select_rect.x == xpos + left and self.selEvPix:
-					print 'TEST1'
-					bgpng = self.selEvPix
+				if selected and self.select_rect.x == xpos + left:
 					if stime <= now and now < (stime + duration):
-						print 'TEST2'
-# 						bgpng = self.selEvPix
-						if bgpng is not None:
-							print 'TEST3'
-							foreColor = self.foreColorNow
-							backColor = None
-							foreColorSelected = self.foreColorNowSelected
-							backColorSelected = None
-						else:
-							print 'TEST4'
-							foreColor = self.foreColorNow
-							backColor = self.backColorNow
-							foreColorSelected = self.foreColorNowSelected
-							backColorSelected = self.backColorNowSelected
-					else:
-						print 'TEST5'
-						if bgpng is not None:
-							print 'TEST6'
-							foreColor = self.foreColor
-							backColor = None
-							foreColorSelected = self.foreColorNowSelected
-							backColorSelected = None
-						else:
-							print 'TEST7'
-							foreColor = self.foreColor
-							backColor = self.backColor
-							foreColorSelected = self.foreColorSelected
-							backColorSelected = self.backColorSelected
-
-
-				elif stime <= now and now < (stime + duration):
-					bgpng = self.nowEvPix
-					if bgpng is not None:
-						foreColor = self.foreColorNow
-						backColor = None
-						foreColorSelected = self.foreColorNowSelected
-						backColorSelected = None
-					else:
 						foreColor = self.foreColorNow
 						backColor = self.backColorNow
-						foreColorSelected = self.foreColorNowSelected
-						backColorSelected = self.backColorNowSelected
+						foreColorSel = self.foreColorNowSelected
+						backColorSel = self.backColorNowSelected
+						bgpng = self.nowSelEvPix
+						if bgpng is not None:
+							backColor = None
+							backColorSel = None
+					else:
+						foreColor = self.foreColor
+						backColor = self.backColor
+						foreColorSel = self.foreColorSelected
+						backColorSel = self.backColorSelected
+						bgpng = self.selEvPix
+						if bgpng is not None:
+							backColor = None
+							backColorSel = None
+				elif stime <= now and now < (stime + duration):
+					foreColor = self.foreColorNow
+					backColor = self.backColorNow
+					foreColorSel = self.foreColorNowSelected
+					backColorSel = self.backColorNowSelected
+					bgpng = self.nowEvPix
+					if bgpng is not None:
+						backColor = None
+						backColorSel = None
 				else:
+					backColor = self.backColor
+					foreColor = self.foreColor
+					foreColorSel = self.foreColorSelected
+					backColorSel = self.backColorSelected
 					bgpng = self.othEvPix
 					if bgpng is not None:
-						foreColor = self.foreColor
 						backColor = None
-						foreColorSelected = self.foreColorSelected
-						backColorSelected = None
-					else:
-						backColor = self.backColor
-						foreColor = self.foreColor
-						foreColorSelected = self.foreColorSelected
-						backColorSelected = self.backColorSelected
+						backColorSel = None
 
-				if rec:
+				if rec and selected and self.select_rect.x == xpos + left:
 					if rectype == "record":
 						foreColor = self.foreColorRecord
 						backColor = self.backColorRecord
-						foreColorSelected = self.foreColorRecordSelected
-						backColorSelected = self.backColorRecordSelected
+						foreColorSel = self.foreColorRecordSelected
+						backColorSel = self.backColorRecordSelected
+						bgpng = self.recSelEvPix
+						if bgpng is not None:
+							backColor = None
+							backColorSel = None
 					elif rectype == "justplay":
 						foreColor = self.foreColorZap
 						backColor = self.backColorZap
-						foreColorSelected = self.foreColorZapSelected
-						backColorSelected = self.backColorZapSelected
+						foreColorSel = self.foreColorZapSelected
+						backColorSel = self.backColorZapSelected
+						bgpng = self.zapSelEvPix
+						if bgpng is not None:
+							backColor = None
+							backColorSel = None
+				elif rec:
+					if rectype == "record":
+						foreColor = self.foreColorRecord
+						backColor = self.backColorRecord
+						foreColorSel = self.foreColorRecordSelected
+						backColorSel = self.backColorRecordSelected
+						bgpng = self.recEvPix
+						if bgpng is not None:
+							backColor = None
+							backColorSel = None
+					elif rectype == "justplay":
+						foreColor = self.foreColorZap
+						backColor = self.backColorZap
+						foreColorSel = self.foreColorZapSelected
+						backColorSel = self.backColorZapSelected
+						bgpng = self.zapEvPix
+						if bgpng is not None:
+							backColor = None
+							backColorSel = None
 #
 				# event box background
 				if bgpng is not None:
@@ -774,8 +795,8 @@ class EPGList(HTMLComponent, GUIComponent):
 					res.append(MultiContentEntryText(
 						pos = (left + xpos, top), size = (ewidth, height),
 						font = 1, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER,
-						text = "", color = foreColor, color_sel = foreColorSelected,
-						backcolor = backColor, backcolor_sel = backColorSelected,
+						text = "", color = None, color_sel = None,
+						backcolor = backColor, backcolor_sel = backColorSel,
 						border_width = self.eventBorderWidth, border_color = self.borderColor))
 
 				# event text
@@ -792,18 +813,18 @@ class EPGList(HTMLComponent, GUIComponent):
 						pos = (evX, evY), size = (evW, evH),
 						font = 1, flags = alignnment,
 						text = ev[1],
-						color = foreColor, color_sel = foreColorSelected,
-						backcolor_sel = backColorSelected))
+						color = foreColor, color_sel = foreColorSel,
+						backcolor = backColor, backcolor_sel = backColorSel))
 
 				# recording icons
 				if rec:
 					res.append(MultiContentEntryPixmapAlphaBlend(
 						pos = (left+xpos+ewidth-22, top+height-22), size = (21, 21),
 						png = self.getClockPixmap(service, stime, duration, ev[0]),
-						backcolor_sel = backColorSelected))
+						backcolor_sel = backColorSel))
 		return res
 
-	def selEntry(self, dir, visible=True):
+	def selEntry(self, dir, visible = True):
 		cur_service = self.cur_service    #(service, service_name, events, picon)
 		self.recalcEntrySize()
 		valid_event = self.cur_event is not None
@@ -1024,9 +1045,9 @@ class TimelineText(HTMLComponent, GUIComponent):
 		self.borderWidth = 1
 		self.time_base = 0
 		self.time_epoch = 0
-
 		self.timelineFontName = "Regular"
 		self.timelineFontSize = 20
+		self.datefmt = ""
 
 	GUI_WIDGET = eListbox
 
@@ -1060,7 +1081,7 @@ class TimelineText(HTMLComponent, GUIComponent):
 		self.setTimeLineFontsize()
 		instance.setContent(self.l)
 
-	def setEntries(self, l, timeline_now, time_lines):
+	def setEntries(self, l, timeline_now, time_lines, force):
 		event_rect = l.getEventRect()
 		time_epoch = l.getTimeEpoch()
 		time_base = l.getTimeBase()
@@ -1072,41 +1093,43 @@ class TimelineText(HTMLComponent, GUIComponent):
 
 		res = [ None ]
 
-		nowTime = localtime(time())
-		begTime = localtime(time_base)
-		self.ServiceWidth = config.epgselction.servicewidth.getValue()
-		if nowTime[2] != begTime[2]:
-			if self.ServiceWidth > 179:
-				datestr = strftime("%A %d %B", localtime(time_base))
-			elif self.ServiceWidth > 139:
-				datestr = strftime("%a %d %B", localtime(time_base))
-			elif self.ServiceWidth > 129:
-				datestr = strftime("%a %d %b", localtime(time_base))
-			elif self.ServiceWidth > 119:
-				datestr = strftime("%a %d", localtime(time_base))
-			elif self.ServiceWidth > 109:
-				datestr = strftime("%A", localtime(time_base))
-			else:
-				datestr = strftime("%a", localtime(time_base))
-		else:
-			datestr = '%s'%(_("Today"))
 		# Note: event_rect and service_rect are relative to the timeline_text position
 		# while the time lines are relative to the GraphEPG screen position!
-		if self.time_base != time_base or self.time_epoch != time_epoch:
+		if self.time_base != time_base or self.time_epoch != time_epoch or force:
 			service_rect = l.getServiceRect()
 			itemHeight = self.l.getItemSize().height()
 			time_steps = 60 if time_epoch > 180 else 30
 			num_lines = time_epoch / time_steps
 			incWidth = event_rect.width() / num_lines
 			timeStepsCalc = time_steps * 60
+
+			nowTime = localtime(time())
+			begTime = localtime(time_base)
+			self.ServiceWidth = service_rect.width()
+			if nowTime[2] != begTime[2]:
+				if self.ServiceWidth > 179:
+					datestr = strftime("%A %d %B", localtime(time_base))
+				elif self.ServiceWidth > 139:
+					datestr = strftime("%a %d %B", localtime(time_base))
+				elif self.ServiceWidth > 129:
+					datestr = strftime("%a %d %b", localtime(time_base))
+				elif self.ServiceWidth > 119:
+					datestr = strftime("%a %d", localtime(time_base))
+				elif self.ServiceWidth > 109:
+					datestr = strftime("%A", localtime(time_base))
+				else:
+					datestr = strftime("%a", localtime(time_base))
+			else:
+				datestr = '%s'%(_("Today"))
+
 			res.append( MultiContentEntryText(
-						pos = (0, 0),
-						size = (service_rect.width(), itemHeight),
-						font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_TOP,
-						text = _(datestr),
-						color = self.foreColor, color_sel = self.foreColor,
-						backcolor = self.backColor, backcolor_sel = self.backColor,
-						border_width = self.borderWidth, border_color = self.borderColor))
+				pos = (0, 0),
+				size = (service_rect.width(), itemHeight),
+				font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_TOP,
+				text = _(datestr),
+				color = self.foreColor, color_sel = self.foreColor,
+				backcolor = self.backColor, backcolor_sel = self.backColor,
+				border_width = self.borderWidth, border_color = self.borderColor))
 
 			xpos = 0 # eventLeft
 			for x in range(0, num_lines):
@@ -1114,13 +1137,12 @@ class TimelineText(HTMLComponent, GUIComponent):
 					pos = (service_rect.width() + xpos, 0),
 					size = (incWidth, itemHeight),
 					font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_TOP,
-					text = strftime("%H:%M", localtime( time_base + x * timeStepsCalc )),
+					text = strftime("%H:%M", localtime( time_base + x*timeStepsCalc )),
 					color = self.foreColor, color_sel = self.foreColor,
 					backcolor = self.backColor, backcolor_sel = self.backColor,
 					border_width = self.borderWidth, border_color = self.borderColor) )
 				line = time_lines[x]
 				old_pos = line.position
-				#if (old_pos[0] != xpos + eventLeft):
 				line.setPosition(xpos + eventLeft, old_pos[1])
 				line.visible = True
 				xpos += incWidth
@@ -1132,7 +1154,7 @@ class TimelineText(HTMLComponent, GUIComponent):
 
 		now = time()
 		if now >= time_base and now < (time_base + time_epoch * 60):
-			xpos = int((((now - time_base) * event_rect.width()) / (time_epoch * 60))-(timeline_now.instance.size().width() / 2))
+			xpos = int((((now - time_base) * event_rect.width()) / (time_epoch * 60)) - (timeline_now.instance.size().width() / 2))
 			old_pos = timeline_now.position
 			new_pos = (xpos + eventLeft, old_pos[1])
 			if old_pos != new_pos:

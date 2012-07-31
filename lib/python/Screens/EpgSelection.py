@@ -570,8 +570,7 @@ class EPGSelection(Screen, HelpableScreen):
 			self["timeline_text"].setTimeLineFontsize()
 			l.setEpoch(config.epgselction.prev_time_period.getValue())
 			l.setOverjump_Empty(config.epgselction.overjump.value)
-			l.setShowPicon(config.epgselction.showpicon.value)
-			l.setShowServiceTitle(config.epgselction.showservicetitle.value)
+			l.setShowServiceMode(config.misc.graph_mepg.servicetitle_mode.value)
 			now = time() - int(config.epg.histminutes.getValue()) * 60
 			self.ask_time = now - now % (int(config.epgselction.roundTo.getValue()) * 60)
 			l.fillGraphEPG(None, self.ask_time)
@@ -612,8 +611,7 @@ class EPGSelection(Screen, HelpableScreen):
 			l.fillGraphEPG(self.services, self.ask_time)
 			l.moveToService(serviceref)
 			l.setCurrentlyPlaying(serviceref)
-			l.setShowPicon(config.epgselction.showpicon.value)
-			l.setShowServiceTitle(config.epgselction.showservicetitle.value)
+			l.setShowServiceMode(config.misc.graph_mepg.servicetitle_mode.value)
 			self.moveTimeLines()
 			if config.epgselction.channel1.value:
 				l.instance.moveSelectionTo(0)
@@ -649,7 +647,7 @@ class EPGSelection(Screen, HelpableScreen):
 	def moveDown(self):
 		self["list"].moveTo(self["list"].instance.moveDown)
 
-	def updEvent(self, dir, visible=True):
+	def updEvent(self, dir, visible = True):
 		ret = self["list"].selEntry(dir, visible)
 		if ret:
 			self.moveTimeLines(True)
@@ -1294,10 +1292,9 @@ class EPGSelection(Screen, HelpableScreen):
 			self.key_green_choice = self.ADD_TIMER
 
 	def moveTimeLines(self, force=False):
-		self.updateTimelineTimer.start((60 - (int(time()) % 60)) * 1000)        #keep syncronised
-		self["timeline_text"].setEntries(self["list"], self["timeline_now"], self.time_lines)
+		self.updateTimelineTimer.start((60 - (int(time()) % 60)) * 1000)	#keep syncronised
+		self["timeline_text"].setEntries(self["list"], self["timeline_now"], self.time_lines, force)
 		self["list"].l.invalidate() # not needed when the zPosition in the skin is correct! ?????
-		self["list"].fillGraphEPG(None, self.ask_time)
 
 	def refreshData(self, force=False):
 		self.refreshTimer.stop()
@@ -1569,8 +1566,7 @@ class EPGSelectionSetup(Screen, ConfigListScreen):
 			self.list.append(getConfigListEntry(_("Channel preview mode"), config.epgselction.preview_mode_vixepg,_("If set to 'yes' you can preview channels in the EPG list.")))
 			self.list.append(getConfigListEntry(_("Show bouquet on launch"), config.epgselction.showbouquet_vixepg,_("If set to 'yes' the bouquets will be shown each time you open the EPG.")))
 			self.list.append(getConfigListEntry(_("Picture in Graphics"), config.epgselction.pictureingraphics,_("If set to 'yes' shows a small TV-screen in the EPG.")))
-			self.list.append(getConfigListEntry(_("Show Picons"), config.epgselction.showpicon,_("If set to 'yes' shows the channel picons in the EPG.")))
-			self.list.append(getConfigListEntry(_("Show Service Names "), config.epgselction.showservicetitle,_("If set to 'yes' shows the channel names in the EPG.")))
+			self.list.append(getConfigListEntry(_("Service Title mode"), config.misc.graph_mepg.servicetitle_mode,_("Choose whether to show the channel names, picons, or both in the EPG.")))
 			self.list.append(getConfigListEntry(_("Info Button (short)"), config.epgselction.Info,_("Set to what you want the button to do.")))
 			self.list.append(getConfigListEntry(_("Info Button (long)"), config.epgselction.InfoLong,_("Set to what you want the button to do.")))
 			self.list.append(getConfigListEntry(_("OK Button (short)"), config.epgselction.OK_vixepg,_("Set to what you want the button to do.")))
@@ -1583,7 +1579,6 @@ class EPGSelectionSetup(Screen, ConfigListScreen):
 			self.list.append(getConfigListEntry(_("Number of rows"), config.epgselction.itemsperpage_vixepg, _("This allows you change the number of rows shown.")))
 			self.list.append(getConfigListEntry(_("Event Fontsize"), config.epgselction.ev_fontsize_vixepg, _("This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size")))
 			self.list.append(getConfigListEntry(_("Service Fontsize"), config.epgselction.serv_fontsize_vixepg, _("This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size")))
-			self.list.append(getConfigListEntry(_("Service width"), config.epgselction.servicewidth,_("Set the width allocated to the service name.")))
 			self.list.append(getConfigListEntry(_("Timeline Fontsize"), config.epgselction.tl_fontsize_vixepg, _("This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size")))
 			self.list.append(getConfigListEntry(_("Time Scale"), config.epgselction.prev_time_period,_("Choose the amount of time that will be presented.")))
 		elif self.type == 4:
