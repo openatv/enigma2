@@ -671,21 +671,6 @@ class EPGList(HTMLComponent, GUIComponent):
 				color = serviceForeColor, color_sel = serviceForeColor,
 				backcolor = None, backcolor_sel = None))
 
-		if self.othEvPix is not None:
-			res.append(MultiContentEntryPixmapAlphaTest(
-				pos = (r2.x, r2.y),
-				size = (r2.w, r2.h),
-				png = self.othEvPix))
-		else:
-			res.append(MultiContentEntryText(
-				pos = (r2.x, r2.y),
-				size = (r2.w, r2.h),
-				font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER,
-				text = "",
-				color = self.foreColor, color_sel = self.foreColor,
-				backcolor = self.backColor, backcolor_sel = self.backColorSelected,
-				border_width = 1, border_color = self.borderColor))
-
 		# Events for service
 		backColorSel = self.backColorSelected
 		if events:
@@ -784,7 +769,7 @@ class EPGList(HTMLComponent, GUIComponent):
 						if bgpng is not None:
 							backColor = None
 							backColorSel = None
-#
+
 				# event box background
 				if bgpng is not None:
 					res.append(MultiContentEntryPixmapAlphaTest(
@@ -805,10 +790,6 @@ class EPGList(HTMLComponent, GUIComponent):
 				evW = ewidth - 2 * (self.eventBorderWidth + self.eventNamePadding)
 				evH = height - 2 * self.eventBorderWidth
 				if evW > 0:
-					if bgpng is not None:
-						res.append(MultiContentEntryPixmapAlphaTest(
-							pos = (left + xpos, top), size = (ewidth, height),
-							png = bgpng))
 					res.append(MultiContentEntryText(
 						pos = (evX, evY), size = (evW, evH),
 						font = 1, flags = alignnment,
@@ -822,6 +803,22 @@ class EPGList(HTMLComponent, GUIComponent):
 						pos = (left+xpos+ewidth-22, top+height-22), size = (21, 21),
 						png = self.getClockPixmap(service, stime, duration, ev[0]),
 						backcolor_sel = backColorSel))
+		else:
+			# event box background
+			if self.othEvPix is not None:
+				res.append(MultiContentEntryPixmapAlphaTest(
+					pos = (r2.x + self.eventBorderWidth, r2.y + self.eventBorderWidth),
+					size = (r2.w - 2 * self.eventBorderWidth, r2.h - 2 * self.eventBorderWidth),
+					png = self.othEvPix))
+			else:
+				res.append(MultiContentEntryText(
+					pos = (r2.x + self.eventBorderWidth, r2.y + self.eventBorderWidth),
+					size = (r2.w - 2 * self.eventBorderWidth, r2.h - 2 * self.eventBorderWidth),
+					font = 1, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER,
+					text = "",
+					color = self.foreColor, color_sel = self.foreColor,
+					backcolor = self.backColor, backcolor_sel = self.backColorSelected,
+					border_width = self.eventBorderWidth, border_color = self.borderColor))
 		return res
 
 	def selEntry(self, dir, visible = True):
