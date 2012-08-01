@@ -1331,8 +1331,10 @@ class EPGSelection(Screen, HelpableScreen):
 					self.zapFunc(ref.ref)
 					self["list"].setCurrentlyPlaying(ref.ref)
 					self["list"].l.invalidate()
+					self.closeRecursive = False
 					self.closeScreen()
 				else:
+					self.closeRecursive = False
 					self.closeScreen()
 		else:
 			try:
