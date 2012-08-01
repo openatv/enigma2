@@ -575,13 +575,13 @@ class EPGSelection(Screen, HelpableScreen):
 			self.ask_time = now - now % (int(config.epgselction.roundTo.getValue()) * 60)
 			l.fillGraphEPG(None, self.ask_time)
 			self.moveTimeLines()
+			self.close(True)
 		else:
 			l = self["list"]
 			l.setItemsPerPage()
 			l.setEventFontsize()
 			l.recalcEntrySize()
 			l.sortSingleEPG(int(config.epgselction.sort.value))
-		self.close(True)
 
 	def togglePIG(self):
 		if not config.epgselction.pictureingraphics.value:

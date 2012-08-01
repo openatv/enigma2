@@ -1182,7 +1182,7 @@ class InfoBarEPG:
 				else:
 					cb = None
 				services = self.getBouquetServices(self.epg_bouquet)
-				self.session.openWithCallback(self.closeGraphEPG, EPGSelection, services, self.zapToService, None, cb, self.EPGtype, self.StartBouquet)
+				self.session.openWithCallback(self.GraphEPG_cleanup, EPGSelection, services, self.zapToService, None, cb, self.EPGtype, self.StartBouquet)
 
 	def changeServiceCB(self, direction, epg):
 		if self.serviceSel:
@@ -1235,7 +1235,7 @@ class InfoBarEPG:
 		self.GraphEPG_cleanup()
 		self.reopen(ret)
 
-	def GraphEPG_cleanup(self):
+	def GraphEPG_cleanup(self, ret=False):
 		global epg
 		epg = None
 
