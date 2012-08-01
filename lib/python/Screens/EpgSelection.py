@@ -1365,12 +1365,12 @@ class EPGSelection(Screen, HelpableScreen):
 					if not switchto == currch:
 						if ref and switchto.find('alternatives') != -1:
 							self.zapFunc(ref.ref)
-							self.close(True)
+							self.close(False)
 						else:
 							self.zapFunc(ref.ref)
 							self.refreshTimer.start(10000)
 					else:
-						self.close(True)
+						self.close(False)
 		elif self.type == EPG_TYPE_SINGLE:
 			currch = self.session.nav.getCurrentlyPlayingServiceReference()
 			currch = currch.toString()
