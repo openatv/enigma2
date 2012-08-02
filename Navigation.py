@@ -85,7 +85,7 @@ class Navigation:
 				self.currentlyPlayingServiceReference = playref
 				InfoBarInstance = InfoBar.instance
 				if InfoBarInstance is not None:
-					InfoBarInstance.servicelist.servicelist.setCurrent(playref)
+					InfoBarInstance.servicelist.servicelist.setCurrent(ref)
 				if self.pnav.playService(playref):
 					print "Failed to start", playref
 					self.currentlyPlayingServiceReference = None
@@ -100,8 +100,7 @@ class Navigation:
 	def recordService(self, ref, simulate=False):
 		service = None
 		if not simulate: print "recording service: %s" % (str(ref))
-		if isinstance(ref, ServiceReference.ServiceReference):
-			ref = ref.ref
+		if isinstance(ref, ServiceReference.ServiceReference):			ref = ref.ref
 		if ref:
 			if ref.flags & eServiceReference.isGroup:
 				ref = getBestPlayableServiceReference(ref, eServiceReference(), simulate)
