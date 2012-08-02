@@ -447,7 +447,7 @@ int eDVBFrontend::PreferredFrontendIndex = -1;
 
 eDVBFrontend::eDVBFrontend(const char *devicenodename, int fe, int &ok, bool simulate, eDVBFrontend *simulate_fe)
 	:m_simulate(simulate), m_enabled(false), m_type(-1), m_simulate_fe(simulate_fe), m_dvbid(fe), m_slotid(fe)
-	,m_fd(-1), m_rotor_mode(false), m_need_rotor_workaround(false), m_can_handle_dvbs2(false)
+	,m_fd(-1), m_rotor_mode(false), m_need_rotor_workaround(false)
 	,m_state(stateClosed), m_timeout(0), m_tuneTimer(0)
 {
 	m_filename = devicenodename;
@@ -507,11 +507,26 @@ int eDVBFrontend::openFrontend()
 			}
 			strncpy(m_description, fe_info.name, sizeof(m_description));
 
+#ifdef DTV_ENUM_DELSYS
+			struct dtv_property p[1];
+			p[0].cmd = DTV_ENUM_DELSYS;
+			struct dtv_properties cmdseq;
+			cmdseq.num = 1;
+			cmdseq.props = p;
+			if (::ioctl(m_fd, FE_GET_PROPERTY, &cmdseq) >= 0)
+			{
+				 for (; p[0].u.buffer.len > 0; p[0].u.buffer.len--)
+				 {
+					fe_delivery_system_t delsys = (fe_delivery_system_t)p[0].u.buffer.data[p[0].u.buffer.len - 1];
+					m_delsys[delsys] = true;
+				}
+			}
+#endif
+
 			switch (fe_info.type)
 			{
 			case FE_QPSK:
 				m_type = iDVBFrontend::feSatellite;
-				m_can_handle_dvbs2 = (fe_info.caps & FE_CAN_2G_MODULATION);
 				break;
 			case FE_QAM:
 				m_type = iDVBFrontend::feCable;
@@ -2209,8 +2224,8 @@ void eDVBFrontend::setFrontend(bool recvEvents)
 			switch (oparm.atsc.system)
 			{
 			default:
-			case eDVBFrontendParametersATSC::System_ATSC: p[cmdseq.num].u.data = SYS_DVBT; break;
-			case eDVBFrontendParametersATSC::System_DVB_C_ANNEX_B: p[cmdseq.num].u.data = SYS_DVBT2; break;
+			case eDVBFrontendParametersATSC::System_ATSC: p[cmdseq.num].u.data = SYS_ATSC; break;
+			case eDVBFrontendParametersATSC::System_DVB_C_ANNEX_B: p[cmdseq.num].u.data = SYS_DVBC_ANNEX_B; break;
 			}
 			cmdseq.num++;
 
@@ -2597,20 +2612,40 @@ int eDVBFrontend::isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm)
 	if (m_type == eDVBFrontend::feSatellite)
 	{
 		ASSERT(m_sec);
+		std::map<fe_delivery_system_t, bool>::iterator it = m_delsys.find(SYS_DVBS2);
+		bool can_handle_dvbs2 = (it != m_delsys.end()) ? it->second : false;
 		eDVBFrontendParametersSatellite sat_parm;
 		int ret = feparm->getDVBS(sat_parm);
 		ASSERT(!ret);
-		if (sat_parm.system == eDVBFrontendParametersSatellite::System_DVB_S2 && !m_can_handle_dvbs2)
+		if (sat_parm.system == eDVBFrontendParametersSatellite::System_DVB_S2 && !can_handle_dvbs2)
 			return 0;
 		ret = m_sec->canTune(sat_parm, this, 1 << m_slotid);
-		if (ret > 1 && sat_parm.system == eDVBFrontendParametersSatellite::System_DVB_S && m_can_handle_dvbs2)
+		if (ret > 1 && sat_parm.system == eDVBFrontendParametersSatellite::System_DVB_S && can_handle_dvbs2)
 			ret -= 1;
 		return ret;
 	}
 	else if (m_type == eDVBFrontend::feCable)
 		return 2;  // more prio for cable frontends
 	else if (m_type == eDVBFrontend::feTerrestrial)
+	{
+		std::map<fe_delivery_system_t, bool>::iterator it = m_delsys.find(SYS_DVBT2);
+		bool can_handle_dvbt2 = (it != m_delsys.end()) ? it->second : false;
+		eDVBFrontendParametersTerrestrial parm;
+		if (feparm->getDVBT(parm) < 0 )
+		{
+			return 0;
+		}
+		if (parm.system == eDVBFrontendParametersTerrestrial::System_DVB_T2)
+		{
+			return can_handle_dvbt2 ? 1 : 0;
+		}
+		else
+		{
+			/* prefer to use a T tuner, try to keep T2 free for T2 transponders */
+			return can_handle_dvbt2 ? 1 : 2;
+		}
 		return 1;
+	}
 	else if (m_type == eDVBFrontend::feATSC)
 		return 2; /* same prio as DVB-C */
 	return 0;
@@ -2641,9 +2676,13 @@ bool eDVBFrontend::setSlotInfo(ePyObject obj)
 		!!strstr(m_description, "Alps BSBE2") ||
 		!!strstr(m_description, "Alps -S") ||
 		!!strstr(m_description, "BCM4501");
-	m_can_handle_dvbs2 = IsDVBS2 == Py_True;
+	if (IsDVBS2 == Py_True)
+	{
+		/* HACK for legacy dvb api without DELSYS support */
+		m_delsys[SYS_DVBS2] = true;
+	}
 	eDebugNoSimulate("setSlotInfo for dvb frontend %d to slotid %d, descr %s, need rotorworkaround %s, enabled %s, DVB-S2 %s",
-		m_dvbid, m_slotid, m_description, m_need_rotor_workaround ? "Yes" : "No", m_enabled ? "Yes" : "No", m_can_handle_dvbs2 ? "Yes" : "No" );
+		m_dvbid, m_slotid, m_description, m_need_rotor_workaround ? "Yes" : "No", m_enabled ? "Yes" : "No", (IsDVBS2 == Py_True) ? "Yes" : "No" );
 	return true;
 arg_error:
 	PyErr_SetString(PyExc_StandardError,
