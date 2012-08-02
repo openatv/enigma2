@@ -74,7 +74,7 @@ class Test(Screen):
 def main(session, **kwargs):
 	session.open(Test)
 	#session.openWithCallback(test, MessageBox, _("Test-Messagebox?"), timeout = 10)
-	#session.openWithCallback(test, ChoiceBox, title="Delete everything on this Dreambox?", list=[(_("yes"), "yes"), (_("no"), "no"), (_("perhaps"), "perhaps"), (_("ask me tomorrow"), "ask me tomorrow"), (_("leave me alone with this!"), "yes")])
+	#session.openWithCallback(test, ChoiceBox, title="Delete everything on this receiver?", list=[(_("yes"), "yes"), (_("no"), "no"), (_("perhaps"), "perhaps"), (_("ask me tomorrow"), "ask me tomorrow"), (_("leave me alone with this!"), "yes")])
 	
 def test(returnValue):
 	print "You entered", returnValue

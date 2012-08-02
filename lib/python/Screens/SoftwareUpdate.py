@@ -89,7 +89,7 @@ class UpdatePlugin(Screen):
 		if default:
 		        self.startActualUpdate(True)
 		else:
-			message += _("Do you want to update your Dreambox?")+"\n"+_("After pressing OK, please wait!")
+			message += _("Do you want to update your Satellite receiver?")+"\n"+_("After pressing OK, please wait!")
 			self.session.openWithCallback(self.startActualUpdate, MessageBox, message, default = default, picon = picon)
 
 	def startActualUpdate(self,answer):
@@ -149,7 +149,7 @@ class UpdatePlugin(Screen):
 			elif self.ipkg.currentCommand == IpkgComponent.CMD_UPGRADE_LIST:
 				self.total_packages = len(self.ipkg.getFetchedList())
 				if self.total_packages:
-					message = _("Do you want to update your Dreambox?") + "\n(%s " % self.total_packages + _("Packages") + ")"
+					message = _("Do you want to update your Satellite receiver?") + "\n(%s " % self.total_packages + _("Packages") + ")"
 					choices = [(_("Unattended upgrade without GUI and reboot system"), "cold"),
 						(_("Upgrade and ask to reboot"), "hot"),
 						(_("Cancel"), "")]
@@ -165,11 +165,11 @@ class UpdatePlugin(Screen):
 			else:
 				self.activityTimer.stop()
 				self.activityslider.setValue(0)
-				error = _("your dreambox might be unusable now. Please consult the manual for further assistance before rebooting your dreambox.")
+				error = _("your receiver might be unusable now. Please consult the manual for further assistance before rebooting your receiver.")
 				if self.packages == 0:
 					error = _("No packages were upgraded yet. So you can check your network and try again.")
 				if self.updating:
-					error = _("Your dreambox isn't connected to the internet properly. Please check it and try again.")
+					error = _("Your receiver isn't connected to the internet properly. Please check it and try again.")
 				self.status.setText(_("Error") +  " - " + error)
 		#print event, "-", param
 		pass
@@ -190,7 +190,7 @@ class UpdatePlugin(Screen):
 	def exit(self):
 		if not self.ipkg.isRunning():
 			if self.packages != 0 and self.error == 0:
-				self.session.openWithCallback(self.exitAnswer, MessageBox, _("Upgrade finished.") +" "+_("Do you want to reboot your Dreambox?"))
+				self.session.openWithCallback(self.exitAnswer, MessageBox, _("Upgrade finished.") +" "+_("Do you want to reboot your Satellite receiver?"))
 			else:
 				self.close()
 		else:

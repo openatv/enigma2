@@ -631,7 +631,7 @@ class NFIDownload(Screen):
 			self.showHint()
 
 	def showHint(self, ret=None):
-		self.session.open(MessageBox, _("To update your Dreambox firmware, please follow these steps:\n1) Turn off your box with the rear power switch and make sure the bootable USB stick is plugged in.\n2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n3) Wait for bootup and follow instructions of the wizard."), type = MessageBox.TYPE_INFO)
+		self.session.open(MessageBox, _("To update your receiver firmware, please follow these steps:\n1) Turn off your box with the rear power switch and make sure the bootable USB stick is plugged in.\n2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n3) Wait for bootup and follow instructions of the wizard."), type = MessageBox.TYPE_INFO)
 		self.umountCallback = self.keyRed
 		self.umount()
 
@@ -643,7 +643,7 @@ class NFIDownload(Screen):
 		self.feedDownloader16.getList(self.gotFeed, self.feed_failed)
 		
 	def feed_failed(self, message=""):
-		self["status"].text = _("Could not connect to Dreambox .NFI Image Feed Server:") + "\n" + str(message) + "\n" + _("Please check your network settings!")
+		self["status"].text = _("Could not connect to receiver .NFI Image Feed Server:") + "\n" + str(message) + "\n" + _("Please check your network settings!")
 
 	def gotFeed(self, feedlist, OE_vers):
 		print "[gotFeed]", OE_vers
@@ -690,7 +690,7 @@ class NFIDownload(Screen):
 
 	def askStartWizard(self):
 		self.branch = STICK_WIZARD
-		message = _("""This plugin creates a USB stick which can be used to update the firmware of your Dreambox without the need for a network or WLAN connection.
+		message = _("""This plugin creates a USB stick which can be used to update the firmware of your receiver without the need for a network or WLAN connection.
 First, a USB stick needs to be prepared so that it becomes bootable.
 In the next step, an NFI image file can be downloaded from the update server and saved on the USB stick.
 If you already have a prepared bootable USB stick, please insert it now. Otherwise plug in a USB stick with a minimum size of 64 MB!""")

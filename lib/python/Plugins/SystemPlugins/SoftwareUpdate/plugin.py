@@ -30,7 +30,7 @@ class UpdatePlugin(Screen):
 		self["slider"] = self.slider
 		self.activityslider = Slider(0, 100)
 		self["activityslider"] = self.activityslider
-		self.status = StaticText(_("Upgrading Dreambox... Please wait"))
+		self.status = StaticText(_("Upgrading Satellite receiver... Please wait"))
 		self["status"] = self.status
 		self.package = StaticText()
 		self["package"] = self.package
@@ -113,11 +113,11 @@ class UpdatePlugin(Screen):
 			else:
 				self.activityTimer.stop()
 				self.activityslider.setValue(0)
-				error = _("your dreambox might be unusable now. Please consult the manual for further assistance before rebooting your dreambox.")
+				error = _("your receiver might be unusable now. Please consult the manual for further assistance before rebooting your receiver.")
 				if self.packages == 0:
 					error = _("No packages were upgraded yet. So you can check your network and try again.")
 				if self.updating:
-					error = _("Your dreambox isn't connected to the internet properly. Please check it and try again.")
+					error = _("Your receiver isn't connected to the internet properly. Please check it and try again.")
 				self.status.setText(_("Error") +  " - " + error)
 		#print event, "-", param
 		pass
@@ -128,7 +128,7 @@ class UpdatePlugin(Screen):
 	def exit(self):
 		if not self.ipkg.isRunning():
 			if self.packages != 0 and self.error == 0:
-				self.session.openWithCallback(self.exitAnswer, MessageBox, _("Upgrade finished. Do you want to reboot your Dreambox?"))
+				self.session.openWithCallback(self.exitAnswer, MessageBox, _("Upgrade finished. Do you want to reboot your Satellite receiver?"))
 			else:
 				self.close()
 			

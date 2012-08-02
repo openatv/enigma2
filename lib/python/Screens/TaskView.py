@@ -126,10 +126,10 @@ class JobView(InfoBarNotifications, Screen, ConfigListScreen):
 		from Screens.MessageBox import MessageBox
 		if self.settings.afterEvent.getValue() == "deepstandby":
 			if not Screens.Standby.inTryQuitMainloop:
-				Notifications.AddNotificationWithCallback(self.sendTryQuitMainloopNotification, MessageBox, _("A sleep timer wants to shut down\nyour Dreambox. Shutdown now?"), timeout = 20)
+				Notifications.AddNotificationWithCallback(self.sendTryQuitMainloopNotification, MessageBox, _("A sleep timer wants to shut down\nyour Satellite receiver. Shutdown now?"), timeout = 20)
 		elif self.settings.afterEvent.getValue() == "standby":
 			if not Screens.Standby.inStandby:
-				Notifications.AddNotificationWithCallback(self.sendStandbyNotification, MessageBox, _("A sleep timer wants to set your\nDreambox to standby. Do that now?"), timeout = 20)
+				Notifications.AddNotificationWithCallback(self.sendStandbyNotification, MessageBox, _("A sleep timer wants to set your\nSatellite receiver to standby. Do that now?"), timeout = 20)
 
 	def checkNotifications(self):
 		InfoBarNotifications.checkNotifications(self)

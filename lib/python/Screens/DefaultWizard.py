@@ -38,7 +38,7 @@ class DefaultWizard(WizardLanguage, DreamInfoHandler):
 	def statusCallback(self, status, progress):
 		print "statusCallback:", status, progress
 		if status == DreamInfoHandler.STATUS_DONE:
-			self["text"].setText(_("The installation of the default settings is finished. You can now continue configuring your Dreambox by pressing the OK button on the remote control."))
+			self["text"].setText(_("The installation of the default settings is finished. You can now continue configuring your receiver by pressing the OK button on the remote control."))
 			self.markDone()
 			self.disableKeys = False
 

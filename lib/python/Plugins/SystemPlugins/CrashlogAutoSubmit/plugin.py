@@ -23,7 +23,7 @@ config.plugins.crashlogautosubmit.sendlog = ConfigSelection(default = "rename", 
 	("delete", _("Delete crashlogs")), ("rename", _("Rename crashlogs"))])
 config.plugins.crashlogautosubmit.attachemail = ConfigYesNo(default = False)
 config.plugins.crashlogautosubmit.email = ConfigText(default = "myemail@home.com", fixed_size = False)
-config.plugins.crashlogautosubmit.name = ConfigText(default = "Dreambox User", fixed_size = False)
+config.plugins.crashlogautosubmit.name = ConfigText(default = "Receiver User", fixed_size = False)
 config.plugins.crashlogautosubmit.sendAnonCrashlog = ConfigYesNo(default = True)
 config.plugins.crashlogautosubmit.addNetwork = ConfigYesNo(default = False)
 config.plugins.crashlogautosubmit.addWlan = ConfigYesNo(default = False)
@@ -176,7 +176,7 @@ class CrashlogAutoSubmitConfiguration(Screen, ConfigListScreen):
 			self.enableVKeyIcon()
 			self.showKeypad()
 		elif current == self.AnonCrashlogEntry:
-			self["status"].setText(_("Adds enigma2 settings and dreambox model informations like SN, rev... if enabled."))
+			self["status"].setText(_("Adds enigma2 settings and receiver model informations like SN, rev... if enabled."))
 			self.disableVKeyIcon()
 		elif current == self.NetworkEntry:
 			self["status"].setText(_("Adds network configuration if enabled."))
@@ -264,7 +264,7 @@ def mxServerFound(mxServer,session):
 		user_email = ""
 	else:
 		user_email = "\nUser supplied email address: " + str(config.plugins.crashlogautosubmit.email.value)
-	if str(config.plugins.crashlogautosubmit.name.value) ==  "Dreambox User":
+	if str(config.plugins.crashlogautosubmit.name.value) ==  "Receiver User":
 		user_name = ""
 	else:
 		user_name = "\n\nOptional supplied name: " + str(config.plugins.crashlogautosubmit.name.value)
@@ -336,7 +336,7 @@ def mxServerFound(mxServer,session):
 
 	if len(crashLogFilelist):
 		if config.plugins.crashlogautosubmit.sendmail.value == "send":
-			Notifications.AddNotificationWithCallback(handleAnswer, ChoiceBox, title=_("Crashlogs found!\nSend them to Dream Multimedia?"), list = list)
+			Notifications.AddNotificationWithCallback(handleAnswer, ChoiceBox, title=_("Crashlogs found!\nSend them to the Image Developper?"), list = list)
 		elif config.plugins.crashlogautosubmit.sendmail.value == "send_always":
 			send_mail()
 	else:

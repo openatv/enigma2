@@ -41,7 +41,7 @@ class SleepTimerEdit(Screen):
 		self.status = True
 		self.updateColors()
 		
-		self["pretext"] = Label(_("Shutdown Dreambox after"))
+		self["pretext"] = Label(_("Shutdown receiver after"))
 		self["aftertext"] = Label(_("minutes"))
 		
 		self["actions"] = NumberActionMap(["SleepTimerEditorActions", "TextEntryActions", "KeyboardInputActions"], 
