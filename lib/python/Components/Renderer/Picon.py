@@ -1,6 +1,6 @@
 import os
 from Renderer import Renderer
-from enigma import ePixmap
+from enigma import ePixmap, eServiceCenter, eServiceReference
 from Tools.Directories import pathExists, SCOPE_SKIN_IMAGE, SCOPE_CURRENT_SKIN, resolveFilename
 from Components.Harddisk import harddiskmanager
 
@@ -59,6 +59,13 @@ def findPicon(serviceName):
 	return ""
 
 def getPiconName(serviceName):
+	if serviceName.startswith('1:134'):
+		#If service has alternatives use the first reference in the alternatives list
+		alternativceServices = eServiceCenter.getInstance().list(eServiceReference(serviceName))
+		alternativeChannels = alternativceServices and alternativceServices.getContent("S", True)
+		if not alternativeChannels:
+			return ""
+		serviceName = alternativeChannels[0]
 	#remove the path and name fields, and replace ':' by '_'
 	sname = '_'.join(serviceName.split(':', 10)[:10])
 	pngname = findPicon(sname)
