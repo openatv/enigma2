@@ -1,6 +1,7 @@
 #ifndef __dvb_frontend_h
 #define __dvb_frontend_h
 
+#include <map>
 #include <lib/dvb/idvb.h>
 
 class eDVBFrontendParameters: public iDVBFrontendParameters
@@ -81,7 +82,7 @@ private:
 	int m_fd;
 	bool m_rotor_mode;
 	bool m_need_rotor_workaround;
-	bool m_can_handle_dvbs2;
+	std::map<fe_delivery_system_t, bool> m_delsys;
 	std::string m_filename;
 	char m_description[128];
 	dvb_frontend_info fe_info;
