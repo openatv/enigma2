@@ -667,7 +667,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		self["statuspic"].hide()
 		
 		self.oktext = _("Press OK on your remote control to continue.")
-		self.reboottext = _("Your Dreambox will restart after pressing OK on your remote control.")
+		self.reboottext = _("Your receiver will restart after pressing OK on your remote control.")
 		self.errortext = _("No working wireless network interface found.\n Please verify that you have attached a compatible WLAN device or enable your local network interface.")
 		self.missingwlanplugintxt = _("The wireless LAN plugin is not installed!\nPlease install it.")
 		
@@ -796,11 +796,11 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 
 	def loadDescription(self):
 		if self["menulist"].getCurrent()[1] == 'edit':
-			self["description"].setText(_("Edit the network configuration of your Dreambox.\n" ) + self.oktext )
+			self["description"].setText(_("Edit the network configuration of your receiver.\n" ) + self.oktext )
 		if self["menulist"].getCurrent()[1] == 'test':
-			self["description"].setText(_("Test the network configuration of your Dreambox.\n" ) + self.oktext )
+			self["description"].setText(_("Test the network configuration of your receiver.\n" ) + self.oktext )
 		if self["menulist"].getCurrent()[1] == 'dns':
-			self["description"].setText(_("Edit the Nameserver configuration of your Dreambox.\n" ) + self.oktext )
+			self["description"].setText(_("Edit the Nameserver configuration of your receiver.\n" ) + self.oktext )
 		if self["menulist"].getCurrent()[1] == 'scanwlan':
 			self["description"].setText(_("Scan your network for wireless access points and connect to them using your selected wireless device.\n" ) + self.oktext )
 		if self["menulist"].getCurrent()[1] == 'wlanstatus':

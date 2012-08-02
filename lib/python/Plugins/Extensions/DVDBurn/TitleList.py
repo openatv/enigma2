@@ -215,7 +215,7 @@ class TitleList(Screen, HelpableScreen):
 		if source is None:
 			return None
 		if not source.getPath().endswith(".ts"):
-			self.session.open(MessageBox,text = _("You can only burn Dreambox recordings!"), type = MessageBox.TYPE_ERROR)
+			self.session.open(MessageBox,text = _("You can only burn receiver recordings!"), type = MessageBox.TYPE_ERROR)
 			return None
 		t = self.project.addService(source)
 		try:
@@ -353,7 +353,7 @@ class TitleList(Screen, HelpableScreen):
 		t = self.current_edit_title
 		t.titleEditDone(cutlist)
 		if t.VideoType != 0:
-			self.session.openWithCallback(self.DVDformatCB,MessageBox,text = _("The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to create a Dreambox format data DVD (which will not play in stand-alone DVD players) instead?"), type = MessageBox.TYPE_YESNO)
+			self.session.openWithCallback(self.DVDformatCB,MessageBox,text = _("The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to create a special format data DVD (which will not play in stand-alone DVD players) instead?"), type = MessageBox.TYPE_YESNO)
 		else:
 			self.updateTitleList()
 

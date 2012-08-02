@@ -4,7 +4,7 @@ from twisted.python import failure
 
 class HTTPProgressDownloader(client.HTTPDownloader):
 	def __init__(self, url, outfile, headers=None):
-		client.HTTPDownloader.__init__(self, url, outfile, headers=headers, agent="Dreambox HTTP Downloader")
+		client.HTTPDownloader.__init__(self, url, outfile, headers=headers, agent="STB HTTP Downloader")
 		self.status = None
 		self.progress_callback = None
 		self.deferred = defer.Deferred()

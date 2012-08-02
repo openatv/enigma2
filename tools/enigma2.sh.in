@@ -25,7 +25,7 @@ fi
 
 LIBS=@libdir@/libopen.so.0.0.0
 
-#check for dreambox specific passthrough helper lib
+#check for receiver specific passthrough helper lib
 if [ -e @libdir@/libpassthrough.so ]; then
 	LIBS="$LIBS @libdir@/libpassthrough.so"
 fi
