@@ -60,9 +60,8 @@ def findPicon(serviceName):
 	return ""
 
 def getPiconName(serviceName):
-	serviceName = GetWithAlternative(serviceName)
 	#remove the path and name fields, and replace ':' by '_'
-	sname = '_'.join(serviceName.split(':', 10)[:10])
+	sname = '_'.join(GetWithAlternative(serviceName).split(':', 10)[:10])
 	pngname = findPicon(sname)
 	if not pngname:
 		fields = sname.split('_', 3)
