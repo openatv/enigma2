@@ -45,6 +45,7 @@ class SymbolsCheckPoller:
 		self.service = self.session.nav.getCurrentService()
 		self.Subtitle()
 		self.ParentalControl()
+		del self.service
 
 	def Recording(self):
 		if not fileExists("/proc/stb/lcd/symbol_recording") or not fileExists("/proc/stb/lcd/symbol_record_1") or not fileExists("/proc/stb/lcd/symbol_record_2"):
