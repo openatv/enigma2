@@ -146,6 +146,8 @@ class UpdatePlugin(Screen):
 			self.session.openWithCallback(self.close, MessageBox, _("Sorry feeds are down for maintenance, please try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		elif result.find('bad address') != -1:
 			self.session.openWithCallback(self.close, MessageBox, _("Your STB_BOX is not connected to the internet, please check your network settings and try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+		elif result.find('Collected errors') != -1:
+			self.session.openWithCallback(self.close, MessageBox, _("A background update check is is progress, please wait a few minutes and try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		else:
 			self.startCheck()
 
