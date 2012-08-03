@@ -24,7 +24,7 @@ from ServiceReference import ServiceReference
 from Tools.LoadPixmap import LoadPixmap
 from enigma import eEPGCache, eListbox, ePicLoad, gFont, eListboxPythonMultiContent, \
 	RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, RT_VALIGN_CENTER, RT_WRAP, \
-	eSize, eRect, eTimer
+	eSize, eRect, eTimer, eServiceCenter, eServiceReference
 from GraphMultiEpgSetup import GraphMultiEpgSetup
 from time import localtime, time, strftime
 
@@ -189,6 +189,13 @@ class EPGList(HTMLComponent, GUIComponent):
 			for x in range(len(self.list)):
 				if self.list[x][0] == serviceref.toString():
 					return x
+				if self.list[x][0].startswith('1:134:'):
+					#search through alternative channel list
+					alternativeServices = eServiceCenter.getInstance().list(eServiceReference(self.list[x][0]))
+					alternativeChannels = alternativeServices and alternativeServices.getContent("S", True)
+					for channel in alternativeChannels:
+						if channel == serviceref.toString():
+							return x
 		return None
 		
 	def moveToService(self, serviceref):
@@ -344,9 +351,19 @@ class EPGList(HTMLComponent, GUIComponent):
 		r1 = self.service_rect
 		r2 = self.event_rect
 		selected = self.cur_service[0] == service
+		currentlyPlayingService = self.currentlyPlaying.toString()
+		currentlyPlaying = currentlyPlayingService == service
+
+		#search through alternative channel list when required
+		if not currentlyPlaying and service.startswith('1:134:'):
+			alternativeServices = eServiceCenter.getInstance().list(eServiceReference(service))
+			alternativeChannels = alternativeServices and alternativeServices.getContent("S", True)
+			for channel in alternativeChannels:
+				if channel == currentlyPlayingService:
+					currentlyPlaying = True
 
 		# Picon and Service name
-		if self.currentlyPlaying is not None and self.currentlyPlaying.toString() == service:
+		if currentlyPlaying:
 			serviceForeColor = self.foreColorServiceSelected
 			serviceBackColor = self.backColorServiceSelected
 			bgpng = self.nowEvPix
