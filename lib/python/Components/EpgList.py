@@ -4,6 +4,7 @@ from GUIComponent import GUIComponent
 from enigma import eEPGCache, eListbox, eListboxPythonMultiContent, gFont, \
 	RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, RT_VALIGN_CENTER
 
+from Tools.Alternatives import CompareWithAlternatives
 from Tools.LoadPixmap import LoadPixmap
 
 from time import localtime, time
@@ -308,7 +309,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		index = 0
 		refstr = serviceref.toString()
 		for x in self.list:
-			if x[1] == refstr:
+			if CompareWithAlternatives(x[1], refstr):
 				self.instance.moveSelectionTo(index)
 				break
 			index += 1
