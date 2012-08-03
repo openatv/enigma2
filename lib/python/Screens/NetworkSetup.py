@@ -1613,7 +1613,7 @@ class NetworkAfp(Screen):
 			self.feedscheck.close()
 			self.close()
 
-	def InstallPackageFailed(self):
+	def InstallPackageFailed(self, val):
 			self.feedscheck.close()
 			self.close()
 
@@ -1869,7 +1869,7 @@ class NetworkNfs(Screen):
 			self.feedscheck.close()
 			self.close()
 
-	def InstallPackageFailed(self):
+	def InstallPackageFailed(self, val):
 			self.feedscheck.close()
 			self.close()
 
@@ -2032,7 +2032,7 @@ class NetworkOpenvpn(Screen):
 			self.feedscheck.close()
 			self.close()
 
-	def InstallPackageFailed(self):
+	def InstallPackageFailed(self, val):
 			self.feedscheck.close()
 			self.close()
 
@@ -2214,7 +2214,7 @@ class NetworkSamba(Screen):
 			self.feedscheck.close()
 			self.close()
 
-	def InstallPackageFailed(self):
+	def InstallPackageFailed(self, val):
 			self.feedscheck.close()
 			self.close()
 
@@ -2509,7 +2509,7 @@ class NetworkInadyn(Screen):
 			self.feedscheck.close()
 			self.close()
 
-	def InstallPackageFailed(self):
+	def InstallPackageFailed(self, val):
 			self.feedscheck.close()
 			self.close()
 
@@ -2912,7 +2912,7 @@ class NetworkuShare(Screen):
 			self.feedscheck.close()
 			self.close()
 
-	def InstallPackageFailed(self):
+	def InstallPackageFailed(self, val):
 			self.feedscheck.close()
 			self.close()
 
@@ -3462,7 +3462,7 @@ class NetworkMiniDLNA(Screen):
 			self.feedscheck.close()
 			self.close()
 
-	def InstallPackageFailed(self):
+	def InstallPackageFailed(self, val):
 			self.feedscheck.close()
 			self.close()
 
