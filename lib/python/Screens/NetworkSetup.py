@@ -1614,8 +1614,8 @@ class NetworkAfp(Screen):
 			self.close()
 
 	def InstallPackageFailed(self, val):
-			self.feedscheck.close()
-			self.close()
+		self.feedscheck.close()
+		self.close()
 
 	def doInstall(self, callback, pkgname):
 		print 'INSTALLING: SHOW PLEASE WAIT MESSAGE'
@@ -1870,8 +1870,8 @@ class NetworkNfs(Screen):
 			self.close()
 
 	def InstallPackageFailed(self, val):
-			self.feedscheck.close()
-			self.close()
+		self.feedscheck.close()
+		self.close()
 
 	def doInstall(self, callback, pkgname):
 		print 'INSTALLING: DISABLING REMOTE'
@@ -2033,8 +2033,8 @@ class NetworkOpenvpn(Screen):
 			self.close()
 
 	def InstallPackageFailed(self, val):
-			self.feedscheck.close()
-			self.close()
+		self.feedscheck.close()
+		self.close()
 
 	def doInstall(self, callback, pkgname):
 		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO, enable_input = False)
@@ -2215,8 +2215,8 @@ class NetworkSamba(Screen):
 			self.close()
 
 	def InstallPackageFailed(self, val):
-			self.feedscheck.close()
-			self.close()
+		self.feedscheck.close()
+		self.close()
 
 	def doInstall(self, callback, pkgname):
 		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO, enable_input = False)
@@ -2510,8 +2510,8 @@ class NetworkInadyn(Screen):
 			self.close()
 
 	def InstallPackageFailed(self, val):
-			self.feedscheck.close()
-			self.close()
+		self.feedscheck.close()
+		self.close()
 
 	def doInstall(self, callback, pkgname):
 		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO, enable_input = False)
@@ -2913,8 +2913,8 @@ class NetworkuShare(Screen):
 			self.close()
 
 	def InstallPackageFailed(self, val):
-			self.feedscheck.close()
-			self.close()
+		self.feedscheck.close()
+		self.close()
 
 	def doInstall(self, callback, pkgname):
 		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO, enable_input = False)
@@ -3463,8 +3463,8 @@ class NetworkMiniDLNA(Screen):
 			self.close()
 
 	def InstallPackageFailed(self, val):
-			self.feedscheck.close()
-			self.close()
+		self.feedscheck.close()
+		self.close()
 
 	def doInstall(self, callback, pkgname):
 		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO, enable_input = False)
