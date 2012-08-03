@@ -5,4 +5,4 @@ install_PYTHON = \
 	KeyBindings.py BoundFunction.py ISO639.py Notifications.py __init__.py \
 	RedirectOutput.py DreamboxHardware.py Import.py Event.py CList.py \
 	LoadPixmap.py Profile.py HardwareInfo.py Transponder.py ASCIItranslit.py \
-	Downloader.py Trashcan.py GetEcmInfo.py
+	Downloader.py Trashcan.py GetEcmInfo.py Alternatives.py
