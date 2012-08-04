@@ -1,0 +1,20 @@
+<default>
+	  <prerequisites>
+                    <hardware type="dm8000" />
+                    <tag type="System" />
+	  </prerequisites>
+          <info>
+                    <author>Dream Multimedia</author>
+                    <name>FrontprocessorUpgrade</name>
+                    <packagename>enigma2-plugin-systemplugins-frontprocessorupgrade</packagename>
+		    <packagetype>internal</packagetype> <!-- internal/public , public is default, internal metas are not displayed inside plugin manager -->
+                    <shortdescription>Internal firmware updater</shortdescription>
+                    <description>This system tool is internally used to program the hardware with firmware updates.
+                    </description>
+	  </info>
+
+	  <files type="package"> <!-- without version, without .ipk -->
+		<file type="package" name="enigma2-plugin-systemplugins-frontprocessorupgrade" />
+	</files>
+
+</default>

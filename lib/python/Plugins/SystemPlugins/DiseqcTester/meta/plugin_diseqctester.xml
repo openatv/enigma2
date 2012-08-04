@@ -1,0 +1,20 @@
+<default>
+	  <prerequisites>
+                    <tag type="SAT" />
+                    <tag type="System" />
+	  </prerequisites>
+          <info>
+                    <author>Dream Multimedia</author>
+                    <name>DiseqcTester</name>
+                    <packagename>enigma2-plugin-systemplugins-diseqctester</packagename>
+                    <shortdescription>Test your DiSEqC equipment</shortdescription>
+                    <description>With the DiseqcTester plugin you can test your satellite equipment for DiSEqC compatibility and errors.
+                    </description>
+                    <screenshot src="http://www.dreamboxupdate.com/preview/plugin_diseqctester_en.jpg" />
+          </info>
+
+	  <files type="package"> <!-- without version, without .ipk -->
+		<file type="package" name="enigma2-plugin-systemplugins-diseqctester" />
+	  </files>
+
+</default>

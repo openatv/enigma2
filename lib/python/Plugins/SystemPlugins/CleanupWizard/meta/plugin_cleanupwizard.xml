@@ -1,0 +1,18 @@
+<default>
+	  <prerequisites>
+                    <tag type="System" />
+	  </prerequisites>
+          <info>
+                    <author>Dream Multimedia</author>
+                    <name>CleanupWizard</name>
+                    <packagename>enigma2-plugin-systemplugins-cleanupwizard</packagename>
+                    <shortdescription>Automatically informs you on low internal memory</shortdescription>
+                    <description>The CleanupWizard informs you when the internal free memory of your dreambox has dropped below a definable threshold.
+		    You can use this wizard to remove some plugins. </description>
+                    <screenshot src="http://www.dreamboxupdate.com/preview/plugin_cleanupwizard_en.jpg" />
+          </info>
+
+	  <files type="package"> <!-- without version, without .ipk -->
+		<file type="package" name="enigma2-plugin-systemplugins-cleanupwizard" />
+	  </files>
+</default>

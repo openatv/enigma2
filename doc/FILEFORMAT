@@ -1,0 +1,66 @@
+== TS FILES ==
+
+TS files are plain recordings, including PMT and PAT.
+
+They don't have a private header. 
+
+== .meta FILES ==
+
+.meta files have currently up to 7 lines:
+
+<service reference>
+<name>
+<description>
+<recording time>
+[<tags>]
+[<length>]
+[<filesize>]
+
+The service reference contains the Service-ID of the recorded service. With
+that ID, you can find the PMT and the elementary streams.
+
+As a backup method, just find the first available PMT and use that.
+
+Strings are always UTF-8 encoded.
+
+tags is a space-delimited list of tags assigned to this movie.
+
+length is the length of the recording, in PTS-units (1/90000s). filesize was
+the filesize at the time the length was calculated, so you can validate if
+this is still up-to-date or must be recalculated.
+
+== .ap FILES ==
+
+Stored offsets and PTS values. They are collected while recording. Only 
+GOP starts are stored.
+
+File format is network-ordered (i.e. big endian), each entry contains
+two 64 bit values (PTS, offset).
+
+PTS values are not corrected (i.e. they aren't zero-based), offsets are
+relative to the beginning of the file (or first file, when we implement
+splitting)
+
+== .cut FILES ==
+
+Also network ordered, they contain a 64bit value (PTS) and 32bit value
+(type) for each cut. (If you want file offsets, use the .ap file to look up
+the PTS values.)
+
+Type is:
+
+0 - 'in' point
+1 - 'out' point
+2 - mark
+
+If the first 'out'-point is not preceeded by an 'in'-point, there is an 
+implicit 'in' point at zero.
+
+If the there is no final 'out' point, the end-of-file is an implicit
+'out'-point.
+
+Note that the PTS values are zero-based and continouus. If you want absolute
+PTS values, you can either:
+ - use the .ap file, find discontinuities, and interpolate between the APs
+ - or just use the first PTS value as an offset, and work around PTS
+   wraparounds. (simple method)

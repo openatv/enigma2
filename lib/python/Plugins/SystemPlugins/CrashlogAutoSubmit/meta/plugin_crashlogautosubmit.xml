@@ -1,0 +1,19 @@
+<default>
+	  <prerequisites>
+                    <tag type="System" />
+	  </prerequisites>
+          <info>
+                    <author>Dream Multimedia</author>
+                    <name>CrashlogAutoSubmit</name>
+                    <packagename>enigma2-plugin-systemplugins-crashlogautosubmit</packagename>
+                    <shortdescription>Automatically send crashlogs to Dream Multimedia</shortdescription>
+                    <description>With the CrashlogAutoSubmit plugin it is possible to automatically
+		    mail crashlogs found on your hard drive to Dream Multimedia.
+                    </description>
+                    <screenshot src="http://www.dreamboxupdate.com/preview/plugin_crashlogautosubmit_en.jpg" />
+          </info>
+
+	  <files type="package"> <!-- without version, without .ipk -->
+		<file type="package" name="enigma2-plugin-systemplugins-crashlogautosubmit" />
+	  </files>
+</default>

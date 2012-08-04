@@ -1,0 +1,46 @@
+<default>
+	<prerequisites>
+		<!-- hardware can occur more than once -->
+		<hardware type="dm800se" />
+	</prerequisites>
+	
+	<info>
+		<author>Dream Multimedia GmbH</author>
+		<name>Dream Multimedia Default</name>
+	</info>
+
+		<!-- available types: "directories" -->
+	<files type="directories">
+		<!--file type="skin" directory="test_skin/" flag="default" name="Default Skin" /-->
+		<file type="config" name="settings.800se" />
+		<!--file type="services" name="lamedb.192">
+			<prerequisites>
+				<bcastsystem type="DVB-S" />
+				<satellite type="192" />
+			</prerequisites>
+		</file-->
+		<file type="favourites" directory="" name="bouquets.tv">
+			<prerequisites>
+				<bcastsystem type="DVB-S" />
+				<!--satellite type="192" /-->
+			</prerequisites>
+		</file>
+		<file type="favourites" directory="hdbouquets/" name="userbouquet.favourites.tv">
+			<prerequisites>
+				<bcastsystem type="DVB-S" />
+				<!--satellite type="192" /-->
+			</prerequisites>
+		</file>
+		<file type="config" name="settings.c">
+			<prerequisites>
+				<bcastsystem type="DVB-C" />
+			</prerequisites>
+		</file>
+		<file type="config" name="settings.t">
+			<prerequisites>
+				<bcastsystem type="DVB-T" />
+			</prerequisites>
+		</file>
+		<!--file type="package" directory="packages/" name="small-test_1.0_mipsel.ipk" /-->
+	</files>
+</default>

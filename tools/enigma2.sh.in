@@ -1,0 +1,83 @@
+#!/bin/sh
+
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+datarootdir=@datarootdir@
+
+if [ -x @bindir@/showiframe ]; then
+	if [ -f @sysconfdir@/enigma2/backdrop.mvi ]; then
+		@bindir@/showiframe @sysconfdir@/enigma2/backdrop.mvi
+	elif [ -f @datadir@/backdrop.mvi ]; then
+		@bindir@/showiframe @datadir@/backdrop.mvi
+	fi
+fi
+
+# hook to execute scripts always before enigma2 start
+if [ -x @bindir@/enigma2_pre_start.sh ]; then
+	@bindir@/enigma2_pre_start.sh
+fi
+
+if [ -d /home/root ]; then
+	cd /home/root
+fi
+
+LIBS=@libdir@/libopen.so.0.0.0
+
+#check for dreambox specific passthrough helper lib
+if [ -e @libdir@/libpassthrough.so ]; then
+	LIBS="$LIBS @libdir@/libpassthrough.so"
+fi
+
+sync
+if [ "$(grep config.crash.enabledebug /etc/enigma2/settings)" == "config.crash.enabledebug=true" ]; then
+	if [ "$(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')" != "" -a -d "$(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')" ]; then
+		LD_PRELOAD=$LIBS @bindir@/enigma2 &> $(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')Enigma2-$(date +%d-%m-%Y_%H-%M-%S).log
+	else
+		LD_PRELOAD=$LIBS @bindir@/enigma2 &> /home/root/logs/Enigma2-$(date +%d-%m-%Y_%H-%M-%S).log
+	fi
+else
+	LD_PRELOAD=$LIBS @bindir@/enigma2
+fi
+
+# enigma2 exit codes:
+#
+# 1 - halt
+# 2 - reboot
+# 3 - restart enigma
+#
+# >128 signal
+
+ret=$?
+case $ret in
+	1)
+		/sbin/halt
+		;;
+	2)
+		/sbin/reboot
+		;;
+	3)
+		rm -fR /home/root/.gstreamer-0.10
+		;;
+	4)
+		/sbin/rmmod lcd
+		/usr/sbin/fpupgrade --upgrade 2>&1 | tee /home/root/fpupgrade.log
+		sleep 1;
+		/sbin/rmmod fp
+		/sbin/modprobe fp
+		/sbin/reboot
+		;;
+	42)
+		if [ -f /media/hdd/var/lib/opkg/status -a -f /media/usb/var/lib/opkg/status ]; then
+			opkg --add-dest /:/ --add-dest /media/hdd:/media/hdd --add-dest /media/usb:/media/usb upgrade 2>&1 | tee /home/root/ipkgupgrade.log
+		elif [ -f /media/hdd/var/lib/opkg/status ]; then
+			opkg --add-dest /:/ --add-dest /media/hdd:/media/hdd upgrade 2>&1 | tee /home/root/ipkgupgrade.log
+		elif [ -f /media/usb/var/lib/opkg/status ]; then
+			opkg --add-dest /:/ --add-dest /media/usb:/media/usb upgrade 2>&1 | tee /home/root/ipkgupgrade.log
+		else
+			opkg upgrade 2>&1 | tee /home/root/ipkgupgrade.log
+		fi
+		/sbin/reboot
+		;;
+	*)
+		;;
+esac
