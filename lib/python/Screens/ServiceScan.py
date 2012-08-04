@@ -5,6 +5,8 @@ from Components.Label import Label
 from Components.ActionMap import ActionMap
 from Components.FIFOList import FIFOList
 from Components.Sources.FrontendInfo import FrontendInfo
+from Screens.InfoBar import InfoBar
+from enigma import eServiceCenter
 
 class ServiceScanSummary(Screen):
 	skin = """
@@ -32,9 +34,20 @@ class ServiceScan(Screen):
 	def ok(self):
 		print "ok"
 		if self["scan"].isDone():
+			if self.currentServiceList is not None:
+				bouquets = self.currentServiceList.getBouquetList()
+				for x in bouquets:
+					if x[0] == 'Last Scanned':
+						self.currentServiceList.setRoot(x[1])
+						services = eServiceCenter.getInstance().list(self.currentServiceList.servicelist.getRoot())
+						channels = services and services.getContent("R", True)
+						if channels:
+							self.playedService = channels[0]
+			self.session.nav.playService(self.playedService)
 			self.close()
-	
+
 	def cancel(self):
+		self.session.nav.playService(self.playedService)
 		self.close()
 		
 	def __init__(self, session, scanList):
@@ -42,8 +55,14 @@ class ServiceScan(Screen):
 		
 		self.scanList = scanList
 		
+		self.currentServiceList = None
+		infoBarInstance = InfoBar.instance
+		if infoBarInstance is not None:
+			self.currentServiceList = infoBarInstance.servicelist
+
+		self.playedService = self.currentServiceList.servicelist.getCurrent()
 		self.session.nav.stopService()
-		
+
 		self["scan_progress"] = ProgressBar()
 		self["scan_state"] = Label(_("scan state"))
 		self["network"] = Label()
