@@ -43,6 +43,7 @@ class ServiceScan(Screen):
 						channels = services and services.getContent("R", True)
 						if channels:
 							self.session.postScanService = channels[0]
+							self.currentServiceList.addToHistory(self.session.postScanService)
 			self.close()
 
 	def cancel(self):
