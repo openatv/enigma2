@@ -63,6 +63,12 @@ class ServiceScan(Screen):
 		self.playedService = self.currentServiceList.servicelist.getCurrent()
 		self.session.nav.stopService()
 
+		if self.session.pipshown:
+			if self.currentServiceList and self.currentServiceList.dopipzap:
+				self.currentServiceList.togglePipzap()
+			del self.session.pip
+			self.session.pipshown = False
+
 		self["scan_progress"] = ProgressBar()
 		self["scan_state"] = Label(_("scan state"))
 		self["network"] = Label()
