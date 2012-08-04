@@ -323,7 +323,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		{
 			"ok": self.keyGo,
 			"cancel": self.keyCancel,
-			"menu": self.closeRecursive,
+			"menu": self.doCloseRecursive,
 		}, -2)
 
 		self.statusTimer = eTimer()
@@ -912,6 +912,10 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 			x[1].cancel()
 		self.close()
 
+	def doCloseRecursive(self):
+		self.session.nav.playService(self.session.postScanService)
+		self.closeRecursive()
+
 class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport):
 	def getNetworksForNim(self, nim):
 		if nim.isCompatible("DVB-S"):
@@ -930,7 +934,7 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		{
 			"ok": self.keyGo,
 			"cancel": self.keyCancel,
-			"menu": self.closeRecursive,
+			"menu": self.doCloseRecursive,
 		}, -2)
 
 		self.list = []
@@ -1071,6 +1075,10 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport):
 	def keyCancel(self):
 		self.session.nav.playService(self.session.postScanService)
 		self.close()
+
+	def doCloseRecursive(self):
+		self.session.nav.playService(self.session.postScanService)
+		self.closeRecursive()
 
 	def Satexists(self, tlist, pos):
 		for x in tlist:
