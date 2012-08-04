@@ -1267,6 +1267,8 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 					}
 					children = gst_bin_iterate_recurse(GST_BIN(m_gst_playbin));
 					audioSink = GST_ELEMENT_CAST(gst_iterator_find_custom(children, (GCompareFunc)match_sinktype, (gpointer)"GstDVBAudioSink"));
+					gst_iterator_free(children);
+					children = gst_bin_iterate_recurse(GST_BIN(m_gst_playbin));
 					videoSink = GST_ELEMENT_CAST(gst_iterator_find_custom(children, (GCompareFunc)match_sinktype, (gpointer)"GstDVBVideoSink"));
 					gst_iterator_free(children);
 
