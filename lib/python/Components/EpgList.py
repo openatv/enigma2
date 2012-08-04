@@ -7,6 +7,7 @@ from Components.Renderer.Picon import getPiconName
 from skin import parseColor, parseFont
 from enigma import eEPGCache, eListbox, eListboxPythonMultiContent, ePicLoad, gFont, eRect, eSize, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, RT_VALIGN_CENTER, RT_VALIGN_TOP, RT_WRAP
 
+from Tools.Alternatives import CompareWithAlternatives
 from Tools.LoadPixmap import LoadPixmap
 
 from time import localtime, time, strftime
@@ -267,7 +268,7 @@ class EPGList(HTMLComponent, GUIComponent):
 	def getIndexFromService(self, serviceref):
 		if serviceref is not None:
 			for x in range(len(self.list)):
-				if self.list[x][0] == serviceref.toString():
+				if CompareWithAlternatives(self.list[x][0], serviceref.toString()):
 					return x
 		return None
 
@@ -603,7 +604,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		selected = self.cur_service[0] == service
 
 		# Picon and Service name
-		if self.currentlyPlaying is not None and self.currentlyPlaying.toString() == service:
+		if CompareWithAlternatives(service, self.currentlyPlaying and self.currentlyPlaying.toString()):
 			serviceForeColor = self.foreColorServiceNow
 			serviceBackColor = self.backColorServiceNow
 			bgpng = self.nowServPix

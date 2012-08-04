@@ -22,6 +22,7 @@ from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN
 from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT
 from ServiceReference import ServiceReference
 from Tools.LoadPixmap import LoadPixmap
+from Tools.Alternatives import CompareWithAlternatives
 from enigma import eEPGCache, eListbox, ePicLoad, gFont, eListboxPythonMultiContent, \
 	RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, RT_VALIGN_CENTER, RT_WRAP, \
 	eSize, eRect, eTimer
@@ -187,7 +188,7 @@ class EPGList(HTMLComponent, GUIComponent):
 	def getIndexFromService(self, serviceref):
 		if serviceref is not None:
 			for x in range(len(self.list)):
-				if self.list[x][0] == serviceref.toString():
+				if CompareWithAlternatives(self.list[x][0], serviceref.toString()):
 					return x
 		return None
 		
@@ -346,7 +347,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		selected = self.cur_service[0] == service
 
 		# Picon and Service name
-		if self.currentlyPlaying is not None and self.currentlyPlaying.toString() == service:
+		if CompareWithAlternatives(service, self.currentlyPlaying and self.currentlyPlaying.toString()):
 			serviceForeColor = self.foreColorServiceSelected
 			serviceBackColor = self.backColorServiceSelected
 			bgpng = self.nowEvPix
@@ -927,10 +928,10 @@ class GraphMultiEPG(Screen, HelpableScreen):
 	def onCreate(self):
 		serviceref = self.session.nav.getCurrentlyPlayingServiceReference()
 		l = self["list"]
+		l.setShowServiceMode(config.misc.graph_mepg.servicetitle_mode.value)
 		l.fillMultiEPG(self.services, self.ask_time)
 		l.moveToService(serviceref)
 		l.setCurrentlyPlaying(serviceref)
-		l.setShowServiceMode(config.misc.graph_mepg.servicetitle_mode.value)
 		self["timeline_text"].setDateFormat(config.misc.graph_mepg.servicetitle_mode.value)
 		self.moveTimeLines()
 

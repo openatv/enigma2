@@ -24,7 +24,7 @@ class GraphMultiEpgSetup(Screen, ConfigListScreen):
 
 	def __init__(self, session, args = None):
 		Screen.__init__(self, session)
-		self.setup_title = _("Graph MEpg Settings")
+		self.setTitle(_("GraphMultiEpg Settings"))
 		
 		self["oktext"] = Label(_("OK"))
 		self["canceltext"] = Label(_("Cancel"))
