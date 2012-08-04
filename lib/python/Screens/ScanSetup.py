@@ -907,6 +907,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 				self.session.open(MessageBox, _("Nothing to scan!\nPlease setup your tuner settings before you start a service scan."), MessageBox.TYPE_ERROR)
 
 	def keyCancel(self):
+		self.session.nav.playService(self.session.postScanService)
 		for x in self["config"].list:
 			x[1].cancel()
 		self.close()
@@ -1068,6 +1069,7 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		self.buildTransponderList()
 
 	def keyCancel(self):
+		self.session.nav.playService(self.session.postScanService)
 		self.close()
 
 	def Satexists(self, tlist, pos):

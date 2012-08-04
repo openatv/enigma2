@@ -42,12 +42,10 @@ class ServiceScan(Screen):
 						services = eServiceCenter.getInstance().list(self.currentServiceList.servicelist.getRoot())
 						channels = services and services.getContent("R", True)
 						if channels:
-							self.playedService = channels[0]
-			self.session.nav.playService(self.playedService)
+							self.session.postScanService = channels[0]
 			self.close()
 
 	def cancel(self):
-		self.session.nav.playService(self.playedService)
 		self.close()
 		
 	def __init__(self, session, scanList):
@@ -60,7 +58,7 @@ class ServiceScan(Screen):
 		if infoBarInstance is not None:
 			self.currentServiceList = infoBarInstance.servicelist
 
-		self.playedService = self.currentServiceList.servicelist.getCurrent()
+		self.session.postScanService = self.currentServiceList.servicelist.getCurrent()
 		self.session.nav.stopService()
 
 		if self.session.pipshown:
