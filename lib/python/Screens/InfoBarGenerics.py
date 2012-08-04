@@ -1644,7 +1644,7 @@ class InfoBarPiP:
 		else:
 			self.session.pip = self.session.instantiateDialog(PictureInPicture)
 			self.session.pip.show()
-			newservice = self.session.nav.getCurrentlyPlayingServiceReference()
+			newservice = self.servicelist.servicelist.getCurrent()
 			if self.session.pip.playService(newservice):
 				self.session.pipshown = True
 				self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
@@ -1653,23 +1653,15 @@ class InfoBarPiP:
 				del self.session.pip
 
 	def swapPiP(self):
-		swapservice = self.session.nav.getCurrentlyPlayingServiceReference()
+		swapservice = self.servicelist.servicelist.getCurrent()
 		pipref = self.session.pip.getCurrentService()
 		if swapservice and pipref and pipref.toString() != swapservice.toString():
+				currentServicePath = self.servicelist.getCurrentServicePath()
+				self.servicelist.setCurrentServicePath(self.session.pip.servicePath)	
 				self.session.pip.playService(swapservice)
-
-				slist = self.servicelist
-				if slist:
-					# TODO: this behaves real bad on subservices
-					if slist.dopipzap:
-						slist.servicelist.setCurrent(swapservice)
-					else:
-						slist.servicelist.setCurrent(pipref)
-
-					slist.addToHistory(pipref) # add service to history
-					slist.lastservice.value = pipref.toString() # save service as last playing one
 				self.session.nav.stopService() # stop portal
 				self.session.nav.playService(pipref) # start subservice
+				self.session.pip.servicePath = currentServicePath
 
 	def movePiP(self):
 		self.session.open(PiPSetup, pip = self.session.pip)
