@@ -521,6 +521,30 @@ int eDVBFrontend::openFrontend()
 					m_delsys[delsys] = true;
 				}
 			}
+#else
+			/* old DVB API, fill delsys map with some defaults */
+			switch (fe_info.type)
+			{
+			case FE_QPSK:
+				m_delsys[SYS_DVBS] = true;
+#ifdef FE_CAN_2G_MODULATION
+				if (fe_info.caps & FE_CAN_2G_MODULATION) m_delsys[SYS_DVBS2] = true;
+#endif
+				break;
+			case FE_QAM:
+#ifdef SYS_DVBC_ANNEX_A
+				m_delsys[SYS_DVBC_ANNEX_A] = true;
+#else
+				m_delsys[SYS_DVBC_ANNEX_AC] = true;
+#endif
+				break;
+			case FE_OFDM:
+				m_delsys[SYS_DVBT] = true;
+#ifdef FE_CAN_2G_MODULATION
+				if (fe_info.caps & FE_CAN_2G_MODULATION) m_delsys[SYS_DVBT2] = true;
+#endif
+				break;
+			}
 #endif
 
 			switch (fe_info.type)
