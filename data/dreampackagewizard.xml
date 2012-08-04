@@ -1,0 +1,62 @@
+<wizard>
+	<step id="welcome" nextstep="nothingtoinstall">
+		<condition>
+packagelist = self.fillPackagesList()
+self.runWizard = (len(packagelist) > 0)
+self.condition = self.runWizard
+		</condition>
+		<text value="You can choose, what you want to install..." />
+		<!--list type="dynamic" source="listDefaults" evaluation="selectionMade" /-->
+		<config type="dynamic" source="getConfigList" evaluation="selectionMade" />
+		<code pos="after">
+self.disableKeys = True
+		</code>
+	</step>
+	<step id="nopackages" nextstep="install">
+		<condition>
+self.condition = self.runWizard or not self.silent
+		</condition>
+		<text value="The package doesn't contain anything." />
+	</step>
+	
+	<step id="nothingtoinstall" nextstep="install">
+		<condition>
+if self.runWizard:
+	self.condition = True
+	for x in self.packagesConfig:
+		if x.value:
+			self.condition = False
+			break
+else:
+	self.condition = False
+		</condition>
+		<text value="You chose not to install anything. Please press OK finish the install wizard." />
+		<!--list type="dynamic" source="listDefaults" evaluation="selectionMade" /-->
+		<code>
+self.disableKeys = False
+		</code>
+		<code pos="after">
+self.markDone()
+		</code>
+	</step>
+	
+	<step id="install">
+		<condition>
+self.condition = False
+if self.runWizard:
+	for x in self.packagesConfig:
+		if x.value:
+			self.condition = True
+			break 
+		</condition>
+		<code>
+self.disableKeys = True			
+		</code>
+		<code>
+#print "len of packageslist", len(self.packageslist)
+#if (len(self.packageslist) == 1):
+	#self.installPackage(0)
+		</code>
+		<text value="Installing package content... Please wait..." />
+	</step>
+</wizard>

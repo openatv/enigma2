@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<unicable version="20100522">
+<!--
+structur of tree
+unicable (version)
+  |
+  |\
+  | \
+  | lnb
+  |  |
+  |  |\
+  |  | \
+  |  | manufacturer (name)
+  |  |  |\
+  |  |  | \
+  |  |  | product (name, position, sc11-scr8. lofl, lofh, loft)
+  |  |  |
+  |  |  |\
+  |  |  | \
+  |  |  | product
+  |  |  
+  |  |\
+  |  | \
+  |  | manufacturer
+  |  |  |\
+  |  |  | \
+  |  |  | product
+  |  |  |
+  |  |  |\
+  |  |  | \
+  |  |  | product
+  |
+   \
+    \
+    matrix
+     |
+     |\
+     | \
+     | manufacturer
+     |  |\
+     |  | \
+     |  | product
+     |  |
+     |  |\
+     |  | \
+     |  | product
+     |  
+     |\
+     | \
+     | manufacturer
+     |  |\
+     |  | \
+     |  | product
+     |  |
+     |  |\
+     |  | \
+     |  | product
+
+-->
+
+	<lnb>
+		<manufacturer name="DUR-line">
+			<product name="Unicable LNB" scr1="1210" scr2="1420" scr3="1680" scr4="2040"/>
+		</manufacturer>
+		<manufacturer name="G-STAR">
+			<product name="GS-404-L1" scr1="1280" scr2="1382" scr3="1484"/>
+			<product name="GS-406-L1" scr1="1280" scr2="1382" scr3="1484" scr4="1586" scr5="1688" scr6="1790"/>
+		</manufacturer>
+		<manufacturer name="Humax">
+			<product name="150 SCR" scr1="1210" scr2="1420" scr3="1680" scr4="2040"/>
+		</manufacturer>
+		<manufacturer name="Inverto">
+			<product name="IDLP-40UNIQD+S" scr1="1680" scr2="1420" scr3="2040" scr4="1210"/>
+			<product name="IDLB-QUDL-UNI2L-OPP" scr1="1210" scr2="1420" scr3="1680" scr4="2040"/>
+		</manufacturer>
+		<manufacturer name="Kathrein">
+			<product name="UAS481"  lofl="10200" lofh="10200" scr1="1400" scr2="1516" scr3="1632" scr4="1748"/>
+		</manufacturer>
+		<manufacturer name="Kreiling">
+			<product name="KR1440" scr1="1680" scr2="1420" scr3="2040" scr4="1210"/>
+		</manufacturer>
+		<manufacturer name="Radix">
+			<product name="Unicable LNB" scr1="1680" scr2="1420" scr3="2040" scr4="1210"/>
+		</manufacturer>
+		<manufacturer name="Wisi">
+			<product name="OC 05" scr1="1210" scr2="1420" scr3="1680" scr4="2040"/>
+		</manufacturer>
+	</lnb>
+	<matrix>
+		<manufacturer name="Ankaro">
+			<product name="UCS 51440" scr1="1400" scr2="1632" scr3="1284" scr4="1516"/>
+			<product name="UCS 51820" scr1="1400" scr2="1632" scr3="1284" scr4="1516" scr5="1864" scr6="2096" scr7="1748" scr8="1980"/>
+			<product name="UCS 51840" scr1="1400" scr2="1632" scr3="1284" scr4="1516" scr5="1864" scr6="2096" scr7="1748" scr8="1980"/>
+			<product name="UCS 52240" scr1="1400" scr2="1632"/>
+			<product name="UCS 52420" scr1="1400" scr2="1632" scr3="1284" scr4="1516"/>
+			<product name="UCS 52440" scr1="1400" scr2="1632" scr3="1284" scr4="1516"/>
+			<product name="UCS 91440" positions="2" scr1="1400" scr2="1632" scr3="1284" scr4="1516"/>
+			<product name="UCS 91820" positions="2" scr1="1400" scr2="1632" scr3="1284" scr4="1516" scr5="1864" scr6="2096" scr7="1748" scr8="1980"/>
+			<product name="UCS 91840" positions="2" scr1="1400" scr2="1632" scr3="1284" scr4="1516" scr5="1864" scr6="2096" scr7="1748" scr8="1980"/>
+			<product name="UCS 92240" positions="2" scr1="1400" scr2="1632"/>
+			<product name="UCS 92420" positions="2" scr1="1400" scr2="1632" scr3="1284" scr4="1516"/>
+			<product name="UCS 92440" positions="2" scr1="1400" scr2="1632" scr3="1284" scr4="1516"/>
+		</manufacturer>
+		<manufacturer name="DCT Delta">
+			<product name="SUM518" scr1="1284" scr2="1400" scr3="1516" scr4="1632" scr5="1748" scr6="1864" scr7="1980" scr8="2096"/>
+			<product name="SUM918" positions="2" scr1="1284" scr2="1400" scr3="1516" scr4="1632" scr5="1748" scr6="1864" scr7="1980" scr8="2096"/>
+			<product name="SUM928" positions="2" scr1="1284" scr2="1400" scr3="1516" scr4="1632" scr5="1748" scr6="1864" scr7="1980" scr8="2096"/>
+		</manufacturer>
+		<manufacturer name="Dura-Sat">
+			<product name="UCP18" scr1="1284" scr2="1400" scr3="1516" scr4="1632" scr5="1748" scr6="1864" scr7="1980" scr8="2096"/>
+			<product name="VDU543NT" scr1="1280" scr2="1382" scr3="1484"/>
+			<product name="VDU563NT" scr1="1280" scr2="1382" scr3="1484"/>
+			<product name="VDU583NT" scr1="1280" scr2="1382" scr3="1484"/>
+			<product name="VDU586NT" scr1="1280" scr2="1382" scr3="1484" scr4="1586" scr5="1688" scr6="1790"/>
+			<product name="VDU983NT" positions="2" scr1="1280" scr2="1382" scr3="1484"/>
+		</manufacturer>
+		<manufacturer name="G-STAR">
+			<product name="GS-506-S1" scr1="1280" scr2="1382" scr3="1484"/>
+			<product name="GS-516-S1" scr1="1280" scr2="1382" scr3="1484" scr4="1586" scr5="1688" scr6="1790"/>
+		</manufacturer>
+		<manufacturer name="Inverto">
+			<product name="IDLP-UST11O-CUO1O-8PP" scr1="1076" scr2="1178" scr3="1280" scr4="1382" scr5="1484" scr6="1586" scr7="1688" scr8="1790"/>
+		</manufacturer>
+		<manufacturer name="JULTEC">
+			<product name="JPS0501-6" scr1="1280" scr2="1382" scr3="1484" scr4="1586" scr5="1688" scr6="1790"/>
+			<product name="JPS0502-3" scr1="1280" scr2="1382" scr3="1484"/>
+			<product name="JPS0502-6" scr1="1280" scr2="1382" scr3="1484" scr4="1586" scr5="1688" scr6="1790"/>
+			<product name="JPS0504-3" scr1="1280" scr2="1382" scr3="1484"/>
+		</manufacturer>
+		<manufacturer name="Kathrein">
+			<product name="EXR501" scr1="1400" scr2="1516" scr3="1632" scr4="1748"/>
+			<product name="EXR551" scr1="1400" scr2="1516" scr3="1632" scr4="1748"/>
+			<product name="EXR552" scr1="1400" scr2="1516"/>
+			<product name="EXR1541" scr1="1284" scr2="1400" scr3="1516" scr4="1632"/>
+			<product name="EXR1542" scr1="1284" scr2="1400" scr3="1516" scr4="1632"/>
+			<product name="EXR1581" scr1="1284" scr2="1400" scr3="1516" scr4="1632" scr5="1748" scr6="1864" scr7="1980" scr8="2096"/>
+			<product name="EXR1942" positions="2" scr1="1284" scr2="1400" scr3="1516" scr4="1632"/>
+			<product name="EXR1981" positions="2" scr1="1284" scr2="1400" scr3="1516" scr4="1632" scr5="1748" scr6="1864" scr7="1980" scr8="2096"/>
+			<product name="EXR2541" scr1="1284" scr2="1400" scr3="1516" scr4="1632"/>
+			<product name="EXR2542" scr1="1284" scr2="1400" scr3="1516" scr4="1632"/>
+			<product name="EXR2581" scr1="1284" scr2="1400" scr3="1516" scr4="1632" scr5="1748" scr6="1864" scr7="1980" scr8="2096"/>
+			<product name="EXR2942" positions="2" scr1="1284" scr2="1400" scr3="1516" scr4="1632"/>
+			<product name="EXR2981" positions="2" scr1="1284" scr2="1400" scr3="1516" scr4="1632" scr5="1748" scr6="1864" scr7="1980" scr8="2096"/>
+			<product name="EXU908" positions="2" scr1="1284" scr2="1400" scr3="1516" scr4="1632"/>
+		</manufacturer>
+		<manufacturer name="ROTEK">
+			<product name="EKL2/1" scr1="1400" scr2="1516"/>
+			<product name="EKL2/1E" scr3="1632" scr4="1748"/>
+		</manufacturer>
+		<manufacturer name="Smart">
+			<product name="DPA 51" scr1="1284" scr2="1400" scr3="1516" scr4="1632" scr5="1748" scr6="1864" scr7="1980" scr8="2096"/>
+		</manufacturer>
+		<manufacturer name="Technisat">
+			<product name="TechniRouter 5/1x8" scr1="1284" scr2="1400" scr3="1516" scr4="1632" scr5="1748" scr6="1864" scr7="1980" scr8="2096"/>
+			<product name="TechniRouter 9/1x8" positions="2" scr1="1284" scr2="1400" scr3="1516" scr4="1632" scr5="1748" scr6="1864" scr7="1980" scr8="2096"/>
+			<product name="TechniRouter 5/2x4" scr1="1284" scr2="1400" scr3="1516" scr4="1632"/>
+			<product name="TechniRouter 9/2x4" positions="2" scr1="1284" scr2="1400" scr3="1516" scr4="1632"/>
+		</manufacturer>
+		<manufacturer name="Telstar">
+			<product name="SCR 5/1x8" scr1="1284" scr2="1400" scr3="1516" scr4="1632" scr5="1748" scr6="1864" scr7="1980" scr8="2096"/>
+			<product name="SCR 9/1x8" positions="2" scr1="1284" scr2="1400" scr3="1516" scr4="1632" scr5="1748" scr6="1864" scr7="1980" scr8="2096"/>
+			<product name="SCR 5/2x4" scr1="1284" scr2="1400" scr3="1516" scr4="1632"/>
+			<product name="SCR 9/2x4" positions="2" scr1="1284" scr2="1400" scr3="1516" scr4="1632"/>
+		</manufacturer>
+		<manufacturer name="Wisi">
+			<product name="DY 64 1810" scr1="1178" scr2="1280" scr3="1382" scr4="1484" scr5="1586" scr6="1688" scr7="1790" scr8="1892"/>
+			<product name="DY 64 2410" scr1="1178" scr2="1280" scr3="1382" scr4="1484"/>
+			<product name="DY 68 1810" positions="2" scr1="1178" scr2="1280" scr3="1382" scr4="1484" scr5="1586" scr6="1688" scr7="1790" scr8="1892"/>
+			<product name="DY 68 2410" positions="2" scr1="1178" scr2="1280" scr3="1382" scr4="1484"/>
+		</manufacturer>
+	</matrix>
+</unicable>

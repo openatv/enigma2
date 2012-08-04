@@ -1,0 +1,161 @@
+enigma2 plugins
+===============
+
+Enigma2 plugins are always written in python. If you really have to call
+C/C++ functions from your code, you can supply a python module with it,
+implementing your functions.
+
+Let's write a plugin. We call it "OurSmallTest", and it should be a test
+plugin. Thus we choose "DemoPlugins" as a category. The category is just to
+organize plugins in the filesystem.
+
+The simplest plugin looks like the following:
+
+Plugins/DemoPlugins/OurSmallTest/plugin.py:
+
+"from Plugins.Plugin import PluginDescriptor
+
+def main(session, **kwargs):
+	print "Hello world!"
+
+def Plugins(**kwargs):
+ 	return PluginDescriptor(
+		name="Our Small Test", 
+		description="plugin to test some capabilities", 
+		where = PluginDescriptor.WHERE_PLUGINMENU,
+		fnc=main)"
+
+Basically, you're writing a "python module", which is called
+Plugins.DemoPlugins.OurSmallTest.plugin. This corresponds to the
+Plugins/DemoPlugins/OurSmallTest/plugin.py file.
+
+This module must define a single function called "Plugins". The functions is
+called for every Plugin, and should return (a list of)
+PluginDescriptor-Objects. A PluginDescriptor is a simple object, holding the
+Plugin's name, description, picture etc., and an entry point.
+
+In the first line, we import that class. It's contained in a module called
+Plugins.Plugin.
+
+At the end, we define the "Plugins"-Functions. As said, it returns a
+constructed PluginDescriptor-object (in fact it can return either one or a
+list of descriptors, here it returns exactly one). We use keyword arguments
+to supply the Plugin's information, like the name, the descripttion etc.
+
+We also supply an entry point, called "fnc". It's set to the "main"
+function, which is defined before. Our entry point is called with a number
+of arguments, depending on where the plugin was launched from. In this case,
+it's a "session" argument. You need the session argument if you want to do
+graphical output. A session basically connects to "user". There is always
+one sessions which corresponds to the main screen output, but there can also
+be other sessions, which yet have to be implemented. (A possible example is a
+networked remote session.) If you don't need that argument, just ignore it.
+
+A plugin can decide where it wants to be displayed. A possible example is
+the plugin menu out of the main menu. In the "where" argument to the
+descriptor, you can supply one (or a list of) "WHERE_"-identifiers. We use
+WHERE_PLUGINMENU. There will be other ones, for example for the blue button,
+or specific other menus.
+
+Now, if you copy this plugin in-place, it should be listed in the plugin
+browser in the main menu. You can press "ok" on the plugin, and the "main"
+function, which was specified as the plugin's entry point, is executed.
+
+If you want to open a graphical screen, you might want the entry point to
+look like:
+
+def main(session):
+	session.open(MyScreen)
+
+with MyScreen being a GUI screen.
+
+About the **kwargs:
+This somewhat special syntax (in fact the name 'kwargs' is arbitrary, but
+stands for "keyword arguments") collects all addition keyword arguments
+(i.e. named parameters). For example. the Plugins()-call gets a "path"
+parameter, and probably more in the future. You must ignore all additional
+keywords which you don't need!
+
+skins
+=====
+
+Generally, you can include the skin in your Screens by having a static (or
+non-static, if you really want) variable "skin", for example:
+
+class OurSmallTestScreen(Screen):
+	skin = "<skin>...</skin>"
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		...
+
+However, users can override the skin from their skin.xml. Note that the
+Screen's name (unless you override this, which is possible) is used for
+determining which skin is used. Thus, if you're choosing generic skin names
+like "TheScreen", it's likely to cause namespace clashes.
+
+Thus, please use skin names (i.e. Screen-names, unless you're overriding the
+skin name) which are unique enough to not clash. In doubt, prepend the
+pluginname like in our example.
+
+autostarting plugins
+====================
+
+you can configure your plugin to automatically start on enigma startup, and
+end on shutdown.
+
+you just have to use "WHERE_AUTOSTART". your entry point must (fnc) look 
+like:
+
+def autostartEntry(raeson, **kwargs):
+	if reason == 0: # startup
+		print "startup"
+	elif reason == 1:
+		print "shutdown"
+
+autostart plugins should always be configurable, and should default to an
+OFF state!
+
+Configuration
+=============
+
+Speaking about configuration, plugins must live in 
+
+config.plugins.<PluginName>
+
+and nowhere else!
+
+You are, however, free to change settings which are already existing. If you
+
+Dependencies
+============
+
+Plugin dependencies (one plugin requires another plugin) should generally be
+avoided, but are possible. If there are dependencies, the .ipk file must
+list them.
+
+If possible, make them optional. If your plugin doesn't support one feature
+because another plugin isn't installed, that's fine (but should be noted in
+the docs).
+
+Categories
+==========
+
+Currently defined categories are:
+
+* DemoPlugins: Plugins fore pure demonstration purposes
+* Extensions: User interface extensions
+* SystemPlugins: Hardware specific plugins
+
+Plugin Names
+============
+
+A plugin name:
+ - should always start with a Uppercase letter,
+ - must not start with the word "Dream",
+ - nor end with "Plugin",
+ - should be unique even across Categories,
+ - must be understandable by english speaking people,
+   (unless it's a geographically restricted plugin)
+ - is not user changeable (that is, the user is not allowed to rename the
+   plugin directory)
+ - shouldn't be a generic word

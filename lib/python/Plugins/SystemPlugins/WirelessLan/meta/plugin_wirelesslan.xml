@@ -1,0 +1,19 @@
+<default>
+	  <prerequisites>
+                    <tag type="Network" />
+                    <tag type="System" />
+	  </prerequisites>
+          <info>
+                    <author>Dream Multimedia</author>
+                    <name>WirelessLan</name>
+                    <packagename>enigma2-plugin-systemplugins-wirelesslan</packagename>
+                    <shortdescription>Configure your WLAN network interface</shortdescription>
+                    <description>The WirelessLan plugin helps you configuring your WLAN network interface.</description>
+                    <screenshot src="http://www.dreamboxupdate.com/preview/plugin_wirelesslan_en.jpg" />
+          </info>
+
+	  <files type="package"> <!-- without version, without .ipk -->
+		<file type="package" name="enigma2-plugin-systemplugins-wirelesslan" />
+	</files>
+
+</default>

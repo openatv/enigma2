@@ -1,0 +1,41 @@
+<keymap>
+	<map context="ModemActions">
+		<key id="KEY_ENTER" mapto="ok" flags="m" />
+		<key id="KEY_EXIT" mapto="cancel" flags="m" />
+		<key id="KEY_ESC" mapto="cancel" flags="m" />
+		<key id="KEY_RED" mapto="disconnect" flags="m" />
+		<key id="KEY_GREEN" mapto="connect" flags="m" />
+		<device name="dreambox remote control (native)">
+			<key id="KEY_MUTE" mapto="deleteForward" flags="mr" />
+			<key id="KEY_NEXT" mapto="deleteForward" flags="mr" />
+			<key id="KEY_PREVIOUS" mapto="deleteBackward" flags="mr" />
+		</device>
+		<device name="dreambox advanced remote control (native)">
+			<key id="KEY_MUTE" mapto="deleteForward" flags="mr" />
+			<key id="KEY_NEXT" mapto="deleteForward" flags="mr" />
+			<key id="KEY_PREVIOUS" mapto="deleteBackward" flags="mr" />
+		</device>
+		<key id="KEY_LEFT" mapto="left" flags="mr" />
+		<key id="KEY_RIGHT" mapto="right" flags="mr" />
+		<key id="KEY_1" mapto="1" flags="m" />
+		<key id="KEY_2" mapto="2" flags="m" />
+		<key id="KEY_3" mapto="3" flags="m" />
+		<key id="KEY_4" mapto="4" flags="m" />
+		<key id="KEY_5" mapto="5" flags="m" />
+		<key id="KEY_6" mapto="6" flags="m" />
+		<key id="KEY_7" mapto="7" flags="m" />
+		<key id="KEY_8" mapto="8" flags="m" />
+		<key id="KEY_9" mapto="9" flags="m" />
+		<key id="KEY_0" mapto="0" flags="m" />
+	</map>
+	<map context="ListboxDisableActions">
+		<key id="KEY_UP" mapto="moveUp" flags="mr" />
+		<key id="KEY_DOWN" mapto="moveDown" flags="mr" />
+		<key id="KEY_HOME" mapto="moveTop" flags="mr" />
+		<key id="KEY_END" mapto="moveEnd" flags="mr" />
+		<key id="KEY_PAGEUP" mapto="pageUp" flags="mr" />
+		<key id="KEY_PAGEDOWN" mapto="pageDown" flags="mr" />
+		<key id="KEY_LEFT" mapto="pageUp" flags="mr" />
+		<key id="KEY_RIGHT" mapto="pageDown" flags="mr" />
+	</map>
+</keymap>

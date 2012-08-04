@@ -1,0 +1,19 @@
+<keymap>
+	<map context="DVDTitleList">
+		<key id="KEY_RED" mapto="removeCurrentTitle" flags="m" />
+		<key id="KEY_GREEN" mapto="addTitle" flags="m" />
+		<key id="KEY_YELLOW" mapto="titleProperties" flags="m" />
+		<key id="KEY_BLUE" mapto="settings" flags="m" />
+		<key id="KEY_RECORD" mapto="burnProject" flags="m" />
+		<key id="KEY_0" mapto="burnProject" flags="m" />
+		<key id="KEY_VIDEO" mapto="addTitle" flags="m" />
+	</map>
+	<map context="DVDToolbox">
+		<key id="KEY_UP" mapto="pageUp" flags="mr" />
+		<key id="KEY_DOWN" mapto="pageDown" flags="mr" />
+		<key id="KEY_PAGEUP" mapto="pageUp" flags="mr" />
+		<key id="KEY_PAGEDOWN" mapto="pageDown" flags="mr" />
+		<key id="KEY_LEFT" mapto="pageUp" flags="mr" />
+		<key id="KEY_RIGHT" mapto="pageDown" flags="mr" />
+	</map>
+</keymap>

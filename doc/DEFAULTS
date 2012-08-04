@@ -1,0 +1,116 @@
+Contents:
+1) What is a default?
+2) Where are defaults used?
+3) How do you build a default?
+4) What are the contents of an .info file?
+5) What about .dmpkg files?
+6) Details about the default types
+
+1) What is a default?
+
+A default can consist of one or many of the following:
+- skins
+- lamedbs
+- config files
+- favourite files
+- ipk packages
+
+2) Where are defaults used?
+There are several places, where defaults are used. Some require user interaction and some don't.
+- First of all an "image default" is installed, when you start e2 for the first time. No user interaction is needed for that.
+- After that e2 tries to mount a "preset partion" (also called "dealer partition"). If this partition contains defaults,
+  the user is presented with a list of these defaults and can choose to install/not install each of these defaults.
+- You can create ".dmpkg files" and put them on a SD card (or something, that will be given to the FileScanner.
+- The default satlists feature uses defaults.
+
+3) How do you build a default?
+A default contains at least an .info file (see next section for details). The .info file contains meta information about data,
+that this default consists of. Furthermore the default can contain the data, you wish to install (skin, lamedbs etc.). The data
+can also lie on some http server.
+
+4) What are the contents of an .info file?
+The .info file is an XMl file containing meta information about what this default contains. The basic structure
+is as follows:
+<default>
+	<prerequisites>
+		...
+	</prerequisites>
+	<info>
+		...
+	</info>
+	<files type="directories">
+		...
+	</files>
+</default>
+
+Prerequisites can be used globally for this default (as seen in the sketch above) or in the <files> area for specific files
+(see below for details). Prerequisites can have the following tags:
+<hardware type="<boxtype>"> (e.g. boxtype "dm8000")
+<bcastsystem type="<system>"> (e.g. DVB-S, DVB-T, DVB-C)
+<satellite type="<orbitalposition>"> (e.g. 192 for Astra 19.2E)
+
+Used in the global section of the .info file, the default can ONLY be installed if ALL prerequisites are fulfilled. Something
+similar applies to the use of prerequisites in the <files> section. But in contrary to not being able to install the whole
+default, the prerequisites in the <files> section can only exclude distinct <file> entries. For example, you have a lamedb
+containing only services and transponders for Astra 19.2E and this is the only stuff in your default. Then you would define
+a <bcastsystem type="DVB-S"> in the global section, so that cable or terrestrial boxes don't get the possibility for the
+useless default and use a <satellite type="192"> whith the <file> tag for the lamedb with the 19.2 transponders/services.
+
+The <info> tag must contain a <name> tag and can (but should!) contain an <author> tag:
+<info>
+	<author>Dream Multimedia GmbH</author>
+	<name>Dream Multimedia Default</name>
+</info>
+The <name> tag is presented to the user as the name for the default to install.
+
+The <files> tag can contain several <file> tags. Each <file> tag must have "type" and a "name" attribute and can have a directory
+attribute which is the directory relative to the .info file, where the file in the "name" attribute is stored (exception:
+type="skin" => "name" is the description of the skin, since skins are always stored in whole directories, not single files).
+The "type" attribute can be "skin", "config", "services", "favourites" or "package".
+A short example for every type:
+<file type="skin" directory="test_skin/" flag="default" name="Default Skin" />
+<file type="config" name="settings.8000" />
+<file type="services" name="lamedb.192" />
+<file type="favourites" directory="" name="bouquets.tv" />		
+<file type="favourites" directory="" name="userbouquet.favourites.tv" />
+<file type="package" directory="packages/" name="small-test_1.0_mipsel.ipk" />
+
+As mentioned above, each <file> tag can have it's own prerequisites. An example for a lamedb, containing only transponders for Astra
+19.2 would be:
+<file type="services" name="lamedb.192">
+	<prerequisites>
+		<bcastsystem type="DVB-S" />
+		<satellite type="192" />
+	</prerequisites>
+</file>
+So this would only install the lamedb.192 file, if you have a DVB-S NIM in your box AND some of the tuners is configured to 19.2.
+
+5) What about .dmpkg files?
+.dmpkg files are nothing else than tar'ed defaults. You can also use gzipped tars.
+
+6) Details about the default types
+- "image default"
+  An image default is stored in /usr/share/enigma2/defaults. You can have several defaults at the same time, but you should keep
+  in mind, that these defaults are all installed without user interaction. So defaults with contrary contents should be avoided
+  (e.g. setting a default parameter in one settings file and setting another setting for the same parameter in another could lead
+  to unexpected behaviour, since the installation order is undetermined and completely random. so use prerequisites insted)
+  The "image default" is also used to set box specific config elements (for example show the new RC on a dm8000) and install the
+  default bouquets.
+- The "preset partition" defaults are stored in /usr/share/enigma2/dealer or in an mtd partition which must be calles "preset partition".
+  The user is presented a list of the names of the installable
+  (installable means, that all prerequisites in the global section are met) defaults and can choose the defaults to install.
+  This can be used for customizing a users box. For example, a dealer can put in a skin, the settings for the user's sat dish etc.
+  into the preset partition. This partition will not be overwritten by an original Dream image. So if the user installs a new image
+  from the Dream website, the default settings are presented to the user in the start wizard of the new image.
+- .dmpkg Packages are already explained in detail. This could be used to easily distribute update for packages (e.g. the e2 core package)
+  for quick hotfixes on boxes without internet connection. The advantage over normal .ipk packages is, that one .dmpkg package
+  can contain more than one .ipk package.
+- Default satlists are stored either in the "image default"-directory or in the "preset partition" directory. The satlists must contain a
+  <tag> tag in the global <prerequisites> tag:
+  <prerequisites>
+    <tag type="services" />
+  	<bcastsystem type="DVB-S" />
+    <satellite type="192" />
+  </prerequisites>
+  Only if this tag is present, the user get's this default presented in the default satlist selection (and nowhere else!).
+  

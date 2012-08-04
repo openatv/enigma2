@@ -1,0 +1,165 @@
+Skins are now converted to use a "source"/"covert"/"render"-mechanism.
+
+A "source" is a data-source. For example, the infobar has a source called
+"CurrentService", which is the currently displayed service, i.e. the channel
+the user is watching at the moment.
+
+Now, a "current service" has a lot of properties, like
+ - Service Name
+ - service number
+ - flags like "are subservices available?"
+ - playback position, length, ...
+
+Say you want to display the "service name" on screen. Only "renderers" can
+paint on the screen. The most basic renderer is the "Label"-Renderer, which
+can display a text. The "service name" is a text, so we use the
+"Label"-renderer. We also know that "CurrentService" is our source.
+
+But the renderer can only display texts, not "services". It needs something
+to turn a "service" into a "text", i.e. something which extracts the service
+name out of a service.
+
+That's where "converters" come into action. If we want to extract the
+servicename from a service, we need the "ServiceName"-converter. The
+"ServiceName"-converter can not only extract the service *name*, but also
+the provider name (another property of a service), so we have to specify
+what we want.
+
+So our skin data could look like:
+
+<widget source="CurrentService" render="Label" position="69,25"
+		size="427,26" font="Regular;22" backgroundColor="#101258" >
+	<convert type="ServiceName">Name</convert>
+</widget>
+
+The "call chain" consists of
+
+"CurrentService" -> "ServiceName(NAME)" -> "Label"
+
+
+The are the following source types:
+
+Clock - the current time
+EventInfo - the current now&next events
+MenuList - a menu
+CurrentService - the currently playing service
+FrontendStatus - frontend status, like BER, Signal Strength etc.
+Boolean - a usually fixed boolean value, for example "is record possible?"
+
+Actually used sources are defined in a "Screen". That is, a Screen offers
+sources, which you can use inside your skin.
+
+The "Infobar", for example, offers the following sources:
+
+Event_Now
+Event_Next
+CurrentService
+RecordingPossible
+TimeshiftPossible
+ExtensionsAvailable
+Clock
+
+Then there are the following "Converters":
+
+ClockToText - turns a 'Clock' source into a text
+  Parameters: 
+    "WithSeconds": "hh:mm:ss"
+    "InMinutes"  : "mm min"
+    "Date"       : "Wednesday, 07 June, 2006"
+    "Default"    : "hh:mm"
+EventName - extracts the event name
+  Parameters:
+    "Description": Extracts the description of the event
+    "ExtendedDescription": Extracts the extended description of the event
+    "Name": extracts the name of the event
+EventTime - extracts the event time
+  Parameters: 
+    "EndTime": extracts the end time of the event
+    "Remaining": extracts the remaining time of the event
+    "StartTime": extracts the start time of the event
+    "Duration": extracts the duration of the event
+    "Progress": extracts the progress of the event
+RemainingToText - turns a "remaining"-time into text ("xxx m", or "+xx m")
+  It automatically uses the event length when the remaining time is invalid
+StringList - turns a menulist into a list usable for a "Listbox"-renderer
+FrontendInfo - extracts specific information out of a frontend
+  Parameters:
+    BER
+    SNR
+    AGC
+    LOCK
+
+  You can either use a "Progress" or "Label" renderer, or, with Lock or
+  BER, you can use a ConditionalShowHide to show a "warning symbol" when
+  BER is >0.
+
+ServiceInfo - extracts info out of a service
+  Parameters:
+    HasTeletext
+    IsMultichannel
+    IsCrypted
+    IsWidescreen
+    SubservicesAvailable
+ConditionalShowHide - conditionally show/hide a widgets based on the
+                      source's boolean output
+  Optional parameter: "Invert" - inverts the sense, i.e. show when boolean
+                      value is false
+ServicePosition - extracts the current service play position out of a
+                  service
+  Parameters:
+    "Length"
+    "Position"
+    "Remaining"
+    "Gauge"
+ServiceName
+  Parameters:
+    "Name"
+    "Provider"
+
+Then there are the following renderers:
+Label
+Progress
+Listbox
+Pixmap
+PositionGauge
+FixedLabel
+
+You can also put multiple converters in a row. Each one will pick up the
+output of the last coverter.
+
+Of course you can only connect items which are compatible. Right now you
+have to look at the examples :)
+
+Some more examples:
+
+"SUBSERVICES AVAILABLE DISPLAY"
+===============================
+
+			<widget source="CurrentService" render="Pixmap" pixmap="button_green.png" position="320,132" size="27,12" >
+				<convert type="ServiceInfo">SubservicesAvailable</convert>
+				<convert type="ConditionalShowHide" />
+			</widget>
+
+will display a pixmap whenever the "CurrentService" has
+"SubservicesAvailable".
+
+"CURRENT SERVICE POSITION IN A POSITION GAUGE"
+==============================================
+
+			<widget source="CurrentService" render="PositionGauge" position="247,60" size="225,20" zPosition="2" pointer="position_pointer.png:3,5" >
+				<convert type="ServicePosition">Gauge</convert>
+			</widget>
+
+The "ServicePosition" is extracted from the CurrentService, and the
+PositionGauge picks that information up and displays it on screen.
+
+"START TIME OF CURRENT EVENT"
+=============================
+
+			<widget source="Event_Now" render="Label" position="210,68" size="60,22" font="Regular;20" backgroundColor="dark">
+				<convert type="EventTime">StartTime</convert>
+				<convert type="ClockToText">Default</convert>
+			</widget>
+The StartTime is extracted from the Event_Now (current event), and converted
+into text with the standard (hh:mm) style, then displayed with the
+"Label"-renderer.
