@@ -319,10 +319,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		del self.feinfo
 		del self.service
 
-		if `session.infobar`.endswith(".InfoBar'>"):
-			self.session.postScanService = session.infobar.servicelist.servicelist.getCurrent()
-		else:
-			self.session.postScanService = session.nav.getCurrentlyPlayingServiceReference()
+		self.session.postScanService = session.nav.getCurrentlyPlayingServiceReference(True)
 
 		self["actions"] = NumberActionMap(["SetupActions", "MenuActions"],
 		{
