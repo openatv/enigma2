@@ -1653,15 +1653,15 @@ class InfoBarPiP:
 				del self.session.pip
 
 	def swapPiP(self):
-		swapservice = self.servicelist.servicelist.getCurrent()
+		swapservice = self.session.nav.getCurrentlyPlayingServiceReference(True)
 		pipref = self.session.pip.getCurrentService()
 		if swapservice and pipref and pipref.toString() != swapservice.toString():
-				currentServicePath = self.servicelist.getCurrentServicePath()
-				self.servicelist.setCurrentServicePath(self.session.pip.servicePath)	
-				self.session.pip.playService(swapservice)
-				self.session.nav.stopService() # stop portal
-				self.session.nav.playService(pipref) # start subservice
-				self.session.pip.servicePath = currentServicePath
+			currentServicePath = self.servicelist.getCurrentServicePath()
+			self.servicelist.setCurrentServicePath(self.session.pip.servicePath)	
+			self.session.pip.playService(swapservice)
+			self.session.nav.stopService() # stop portal
+			self.session.nav.playService(pipref) # start subservice
+			self.session.pip.servicePath = currentServicePath
 
 	def movePiP(self):
 		self.session.open(PiPSetup, pip = self.session.pip)
