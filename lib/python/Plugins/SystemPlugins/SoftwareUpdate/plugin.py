@@ -30,7 +30,7 @@ class UpdatePlugin(Screen):
 		self["slider"] = self.slider
 		self.activityslider = Slider(0, 100)
 		self["activityslider"] = self.activityslider
-		self.status = StaticText(_("Upgrading Satellite receiver... Please wait"))
+		self.status = StaticText(_("Upgrading receiver... Please wait"))
 		self["status"] = self.status
 		self.package = StaticText()
 		self["package"] = self.package
@@ -128,7 +128,7 @@ class UpdatePlugin(Screen):
 	def exit(self):
 		if not self.ipkg.isRunning():
 			if self.packages != 0 and self.error == 0:
-				self.session.openWithCallback(self.exitAnswer, MessageBox, _("Upgrade finished. Do you want to reboot your Satellite receiver?"))
+				self.session.openWithCallback(self.exitAnswer, MessageBox, _("Upgrade finished. Do you want to reboot your receiver?"))
 			else:
 				self.close()
 			
