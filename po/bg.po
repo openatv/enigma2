@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-07-25 16:21+0200\n"
+"POT-Creation-Date: 2012-08-05 10:00+0200\n"
 "PO-Revision-Date: 2010-03-26 23:44+0200\n"
 "Last-Translator: Мартин Петков <marto74bg@yahoo.co.uk>\n"
 "Language-Team: Bulgarian\n"
@@ -28,10 +28,8 @@ msgstr ""
 
 msgid ""
 "\n"
-"Backup your Dreambox settings."
+"Backup your receiver settings."
 msgstr ""
-"\n"
-"Копие на вашите Clarke-Tech настройки."
 
 msgid ""
 "\n"
@@ -42,17 +40,13 @@ msgstr ""
 
 msgid ""
 "\n"
-"Manage extensions or plugins for your Dreambox"
+"Manage extensions or plugins for your receiver"
 msgstr ""
-"\n"
-"Управление на плъгини за вашия Clarke-Tech"
 
 msgid ""
 "\n"
-"Online update of your Dreambox software."
+"Online update of your receiver software."
 msgstr ""
-"\n"
-"Мрежова актуализация за вашия Clarke-Tech софтуер"
 
 msgid ""
 "\n"
@@ -63,24 +57,20 @@ msgstr ""
 
 msgid ""
 "\n"
-"Restore your Dreambox settings."
-msgstr ""
-"\n"
-"Възстановяване на вашите Clarke-Tech настройки."
-
-msgid ""
-"\n"
-"Restore your Dreambox with a new firmware."
-msgstr ""
-"\n"
-"Възстановяване на вашия Clarke-Tech с нов фирмуер."
-
-msgid ""
-"\n"
 "Restore your backups by date."
 msgstr ""
 "\n"
 "Възстановяване на вашите копия по дата."
+
+msgid ""
+"\n"
+"Restore your receiver settings."
+msgstr ""
+
+msgid ""
+"\n"
+"Restore your receiver with a new firmware."
+msgstr ""
 
 msgid ""
 "\n"
@@ -142,6 +132,9 @@ msgstr ""
 msgid "%2d:%02d:%02d"
 msgstr ""
 
+msgid "%A %d %B"
+msgstr ""
+
 #. TRANSLATORS: long date representations dayname daynum monthname in strftime() format! See 'man strftime'
 msgid "%A %e %B"
 msgstr ""
@@ -194,6 +187,9 @@ msgstr[1] ""
 #, python-format
 msgid "%d services found!"
 msgstr "%d намерени програми!"
+
+msgid "%d-%m"
+msgstr ""
 
 msgid "%d.%B %Y"
 msgstr ""
@@ -340,17 +336,13 @@ msgstr ""
 
 msgid ""
 "A finished record timer wants to set your\n"
-"Dreambox to standby. Do that now?"
+"receiver to standby. Do that now?"
 msgstr ""
-"Таймера при завършване на запис желае да постави\n"
-"Clarke-Tech в стендбай. Да го направи ли сега?"
 
 msgid ""
 "A finished record timer wants to shut down\n"
-"your Dreambox. Shutdown now?"
+"your receiver. Shutdown now?"
 msgstr ""
-"Таймера при завършване на запис желае да изключи\n"
-"вашия Clarke-Tech. Изключване сега?"
 
 msgid "A graphical EPG for all services of an specific bouquet"
 msgstr "Графичен режим на EPG за всички програми от определен букет"
@@ -404,17 +396,13 @@ msgstr ""
 
 msgid ""
 "A sleep timer wants to set your\n"
-"Dreambox to standby. Do that now?"
+"receiver to standby. Do that now?"
 msgstr ""
-"Таймера за сън иска да превключи\n"
-"Clarke-Tech в стендбай. Да го направи ли сега?"
 
 msgid ""
 "A sleep timer wants to shut down\n"
-"your Dreambox. Shutdown now?"
+"your receiver. Shutdown now?"
 msgstr ""
-"Таймера за сън иска да изключи\n"
-"вашия Clarke-Tech. Изключване сега?"
 
 msgid "A small overview of the available icon states and actions."
 msgstr ""
@@ -505,7 +493,7 @@ msgid "Add/Remove timer for current event"
 msgstr ""
 
 msgid ""
-"Adds enigma2 settings and dreambox model informations like SN, rev... if "
+"Adds enigma2 settings and receiver model informations like SN, rev... if "
 "enabled."
 msgstr ""
 
@@ -558,7 +546,7 @@ msgstr ""
 
 msgid ""
 "After the start wizard is completed, you need to protect single services. "
-"Refer to your dreambox's manual on how to do that."
+"Refer to your receiver's manual on how to do that."
 msgstr ""
 
 msgid "Album"
@@ -1154,8 +1142,8 @@ msgstr ""
 msgid "Copy"
 msgstr ""
 
-msgid "Could not connect to Dreambox .NFI Image Feed Server:"
-msgstr "Не мога да се свържа с Clarke-Tech .NFI имидж сървър:"
+msgid "Could not connect to receiver .NFI Image Feed Server:"
+msgstr ""
 
 msgid "Could not load Medium! No disc inserted?"
 msgstr "Не мога да заредя диска! Не е поставен диск?"
@@ -1185,7 +1173,7 @@ msgstr "Настройки CrashlogAutoSubmit..."
 
 msgid ""
 "Crashlogs found!\n"
-"Send them to Dream Multimedia?"
+"Send them to the Image Developper?"
 msgstr ""
 
 msgid "Create DVD-ISO"
@@ -1217,6 +1205,9 @@ msgid "Current Transponder"
 msgstr "Текущ Транспондер"
 
 msgid "Current device: "
+msgstr ""
+
+msgid "Current event EPG"
 msgstr ""
 
 msgid "Current settings:"
@@ -1540,7 +1531,7 @@ msgstr "Искате ли да извърша друго ръчно сканир
 msgid "Do you want to download the image to %s ?"
 msgstr ""
 
-msgid "Do you want to enable the parental control feature on your dreambox?"
+msgid "Do you want to enable the parental control feature on your receiver?"
 msgstr ""
 
 msgid "Do you want to install the package:\n"
@@ -1552,8 +1543,8 @@ msgstr "Да възпроизведа ли DVD в устройството?"
 msgid "Do you want to preview this DVD before burning?"
 msgstr "Искате ли да прегледате това DVD преди записа?"
 
-msgid "Do you want to reboot your Dreambox?"
-msgstr "Искате ли да рестартирам вашия Clarke-Tech?"
+msgid "Do you want to reboot your receiver?"
+msgstr ""
 
 msgid "Do you want to remove the package:\n"
 msgstr "Искате ли да премахна пакета:\n"
@@ -1571,15 +1562,13 @@ msgstr ""
 "Искате ли да изпратите ваши данни(име и email) за да се свържем с вас при "
 "нужда?"
 
-msgid "Do you want to update your Dreambox?"
-msgstr "Искате ли да актуализирате вашия Clarke-Tech?"
+msgid "Do you want to update your receiver?"
+msgstr ""
 
 msgid ""
-"Do you want to update your Dreambox?\n"
+"Do you want to update your receiver?\n"
 "After pressing OK, please wait!"
 msgstr ""
-"Искате ли да актуализирате вашия Clarke-Tech?\n"
-"След натискане OK, моля изчакайте!"
 
 msgid "Do you want to upgrade the package:\n"
 msgstr "Искате ли да ъпгрейднете този пакет:\n"
@@ -1628,12 +1617,6 @@ msgstr "Изтегляне"
 
 msgid "Downloading plugin information. Please wait..."
 msgstr "Изтеглям информация за плъгина. Моля изчакайте..."
-
-msgid "Dreambox format data DVD (HDTV compatible)"
-msgstr ""
-
-msgid "Dreambox software because updates are available."
-msgstr ""
 
 msgid "Dutch"
 msgstr "Холандски"
@@ -1687,11 +1670,11 @@ msgstr "Редакт. листа с канали"
 msgid "Edit settings"
 msgstr "Редакт.настройки"
 
-msgid "Edit the Nameserver configuration of your Dreambox.\n"
-msgstr "Редактиране DNS настройките за вашия Clarke-Tech.\n"
+msgid "Edit the Nameserver configuration of your receiver.\n"
+msgstr ""
 
-msgid "Edit the network configuration of your Dreambox.\n"
-msgstr "Редактиране мрежовите настройки за вашия Clarke-Tech.\n"
+msgid "Edit the network configuration of your receiver.\n"
+msgstr ""
 
 msgid "Edit title"
 msgstr "Редакт.заглавие"
@@ -2102,7 +2085,7 @@ msgstr ""
 msgid "GotoX calibration"
 msgstr ""
 
-msgid "Graph MEpg Settings"
+msgid "GraphMultiEpg Settings"
 msgstr ""
 
 msgid "Graphical Multi EPG"
@@ -3000,7 +2983,7 @@ msgstr "Не, но рестартирай от начало"
 msgid "No, do nothing."
 msgstr "Не не прави нищо."
 
-msgid "No, just start my dreambox"
+msgid "No, just start my receiver"
 msgstr ""
 
 msgid "No, never"
@@ -3209,6 +3192,12 @@ msgstr "Телефонен номер"
 msgid "PiPSetup"
 msgstr "PiP Настройки"
 
+msgid "Picon"
+msgstr ""
+
+msgid "Picon and Service Name"
+msgstr ""
+
 msgid "PicturePlayer"
 msgstr "Плеър за Снимки"
 
@@ -3340,6 +3329,9 @@ msgstr "Натиснете ОК за да продължите."
 
 msgid "Please press OK!"
 msgstr "Моля натиснете ОК!"
+
+msgid "Please select a default EPG type..."
+msgstr ""
 
 msgid "Please select a playlist to delete..."
 msgstr "Моля изберете плейлист за изтриване..."
@@ -4122,6 +4114,9 @@ msgstr "Изберете канал за запис"
 msgid "Select copy destination for:"
 msgstr ""
 
+msgid "Select default EPG type..."
+msgstr ""
+
 msgid "Select desired image from feed list"
 msgstr ""
 
@@ -4188,11 +4183,17 @@ msgstr "Сръбски"
 msgid "Service"
 msgstr "Канали"
 
+msgid "Service Name"
+msgstr ""
+
 msgid "Service Scan"
 msgstr "Търсене на Канали"
 
 msgid "Service Searching"
 msgstr "Търсене на Канали"
+
+msgid "Service Title mode"
+msgstr ""
 
 msgid "Service has been added to the favourites."
 msgstr "Каналът беше добавен към предпочитани."
@@ -4305,12 +4306,6 @@ msgstr "Покажи Инфо"
 msgid "Show Message when Recording starts"
 msgstr "Показвай съобщение когато започне  запис"
 
-msgid "Show Picons"
-msgstr ""
-
-msgid "Show Service Names "
-msgstr ""
-
 msgid "Show WLAN Status"
 msgstr "Покажи WLAN Състояние"
 
@@ -4371,8 +4366,8 @@ msgstr "Показва статуса на вашата безжична LAN в�
 msgid "Shutdown"
 msgstr ""
 
-msgid "Shutdown Dreambox after"
-msgstr "Изключи Clarke-Tech след"
+msgid "Shutdown receiver after"
+msgstr ""
 
 msgid "Side by Side"
 msgstr ""
@@ -4766,8 +4761,8 @@ msgstr "Тест Тип"
 msgid "Test mode"
 msgstr "Тестов режим"
 
-msgid "Test the network configuration of your Dreambox.\n"
-msgstr "Тест на мрежовите настройки на вашия Clarke-Tech.\n"
+msgid "Test the network configuration of your receiver.\n"
+msgstr ""
 
 msgid "Test-Messagebox?"
 msgstr "Тест-Кутия за съобщения?"
@@ -4790,14 +4785,12 @@ msgstr ""
 
 msgid ""
 "Thank you for using the wizard. Your box is now ready to use.\n"
-"Please press OK to start using your Dreambox."
+"Please press OK to start using your receiver."
 msgstr ""
-"Благодаря ви,че използвахте помощника. Приемника е вече готов за ползване.\n"
-"Моля натиснете OK за да започнете да използвате вашия Clarke-Tech."
 
 msgid ""
 "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to "
-"create a Dreambox format data DVD (which will not play in stand-alone DVD "
+"create a special format data DVD (which will not play in stand-alone DVD "
 "players) instead?"
 msgstr ""
 
@@ -4873,11 +4866,8 @@ msgstr "Инсталирането на стандартните листи с �
 
 msgid ""
 "The installation of the default settings is finished. You can now continue "
-"configuring your Dreambox by pressing the OK button on the remote control."
+"configuring your receiver by pressing the OK button on the remote control."
 msgstr ""
-"Инсталирането на стандартните листи с канали завърши. Сега вие можете да  "
-"продължите с настройките на вашия Clarke-Tech с натискане ОК на "
-"дистанционното."
 
 msgid "The md5sum validation failed, the file may be corrupted!"
 msgstr ""
@@ -4980,16 +4970,12 @@ msgid ""
 "content on the disc."
 msgstr ""
 
-#, python-format
-msgid "This Dreambox can't decode %s streams!"
-msgstr "Този Clarke-Tech не може да декодира %s стриймове!"
-
 msgid "This is step number 2."
 msgstr "Това е стъпка номер 2."
 
 msgid ""
 "This plugin creates a USB stick which can be used to update the firmware of "
-"your Dreambox without the need for a network or WLAN connection.\n"
+"your receiver without the need for a network or WLAN connection.\n"
 "First, a USB stick needs to be prepared so that it becomes bootable.\n"
 "In the next step, an NFI image file can be downloaded from the update server "
 "and saved on the USB stick.\n"
@@ -5008,6 +4994,10 @@ msgstr "Плъгинът ще се инсталира."
 
 msgid "This plugin will be removed."
 msgstr "Плъгинът ще бъде премахнат."
+
+#, python-format
+msgid "This receiver can't decode %s streams!"
+msgstr ""
 
 msgid ""
 "This test checks for configured Nameservers.\n"
@@ -5162,7 +5152,7 @@ msgid "To subtitle selection"
 msgstr ""
 
 msgid ""
-"To update your Dreambox firmware, please follow these steps:\n"
+"To update your receiver firmware, please follow these steps:\n"
 "1) Turn off your box with the rear power switch and make sure the bootable "
 "USB stick is plugged in.\n"
 "2) Turn mains back on and hold the DOWN button on the front panel pressed "
@@ -5356,14 +5346,14 @@ msgstr ""
 msgid "Upgrade finished."
 msgstr "Ъпгрейда завърши."
 
-msgid "Upgrade finished. Do you want to reboot your Dreambox?"
-msgstr "Ъпгрейда завърши. Искате ли да рестартирате вашия Clarke-Tech?"
+msgid "Upgrade finished. Do you want to reboot your receiver?"
+msgstr ""
 
 msgid "Upgrading"
 msgstr "Ъпгрейдвам"
 
-msgid "Upgrading Dreambox... Please wait"
-msgstr "Ъпгрейдвам Clarke-Tech... Моля изчакайте"
+msgid "Upgrading receiver... Please wait"
+msgstr ""
 
 msgid "Use"
 msgstr "Използвай"
@@ -5674,18 +5664,15 @@ msgstr ""
 
 msgid ""
 "Welcome to the Image upgrade wizard. The wizard will assist you in upgrading "
-"the firmware of your Dreambox by providing a backup facility for your "
+"the firmware of your receiver by providing a backup facility for your "
 "current settings and a short explanation of how to upgrade your firmware."
 msgstr ""
-"Добре дошли при помощника за ъпгред на имиджа. Помощника ще ви помогне при "
-"ъпгрейдването firmware на вашия Clarke-Tech осигурявайки backup за вашите "
-"текущи настройки и кратко обяснение, как да ъпгрейднете вашия firmware."
 
 msgid ""
 "Welcome to the cleanup wizard.\n"
 "\n"
 "We have detected that your available internal memory has dropped below 2MB.\n"
-"To ensure stable operation of your Dreambox, the internal memory should be "
+"To ensure stable operation of your receiver, the internal memory should be "
 "cleaned up.\n"
 "You can use this wizard to remove some extensions.\n"
 msgstr ""
@@ -5693,8 +5680,8 @@ msgstr ""
 msgid ""
 "Welcome.\n"
 "\n"
-"If you want to connect your Dreambox to the Internet, this wizard will guide "
-"you through the basic network setup of your Dreambox.\n"
+"If you want to connect your receiver to the Internet, this wizard will guide "
+"you through the basic network setup of your receiver.\n"
 "\n"
 "Press OK to start configuring your network"
 msgstr ""
@@ -5702,13 +5689,9 @@ msgstr ""
 msgid ""
 "Welcome.\n"
 "\n"
-"This start wizard will guide you through the basic setup of your Dreambox.\n"
+"This start wizard will guide you through the basic setup of your receiver.\n"
 "Press the OK button on your remote control to move to the next step."
 msgstr ""
-"Добре дошли.\n"
-"\n"
-"Този помощник ще ви помогне с основните настройки на вашия Clarke-Tech.\n"
-"Натиснете бутон ОК на дистанционното за преминаване напред."
 
 msgid "Welcome..."
 msgstr "Добре дошли..."
@@ -5850,7 +5833,7 @@ msgstr ""
 msgid "You can install this plugin."
 msgstr "Можете да инсталирате този плъгин."
 
-msgid "You can only burn Dreambox recordings!"
+msgid "You can only burn receiver recordings!"
 msgstr ""
 
 msgid "You can remove this plugin."
@@ -5902,9 +5885,9 @@ msgid "You have to wait %s!"
 msgstr "Трябва да изчакате %s!"
 
 msgid ""
-"You need a PC connected to your dreambox. If you need further instructions, "
+"You need a PC connected to your receiver. If you need further instructions, "
 "please visit the website http://www.dm7025.de.\n"
-"Your dreambox will now be halted. After you have performed the update "
+"Your receiver will now be halted. After you have performed the update "
 "instructions from the website, your new firmware will ask you to restore "
 "your settings."
 msgstr ""
@@ -5926,18 +5909,6 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Your Dreambox is now ready to use.\n"
-"\n"
-"Your internet connection is working now.\n"
-"\n"
-"Please press OK to continue."
-msgstr ""
-
-msgid "Your Dreambox will restart after pressing OK on your remote control."
-msgstr ""
-"Вашия Clarke-Tech ще се рестартира след натискане ОK на дистанционното."
-
-msgid ""
 "Your backup succeeded. We will now continue to explain the further upgrade "
 "process."
 msgstr ""
@@ -5952,14 +5923,6 @@ msgstr ""
 "двуслоен DVD!"
 
 msgid "Your current collection will get lost!"
-msgstr ""
-
-msgid "Your dreambox is shutting down. Please stand by..."
-msgstr ""
-
-msgid ""
-"Your dreambox isn't connected to the internet properly. Please check it and "
-"try again."
 msgstr ""
 
 msgid "Your email address:"
@@ -5991,10 +5954,29 @@ msgstr "Вашето име (по избор):"
 msgid "Your network configuration has been activated."
 msgstr "Вашата мрежова конфигурация е активирана."
 
+msgid ""
+"Your receiver is now ready to use.\n"
+"\n"
+"Your internet connection is working now.\n"
+"\n"
+"Please press OK to continue."
+msgstr ""
+
 msgid "Your receiver is rebooting"
 msgstr ""
 
 msgid "Your receiver is shutting down"
+msgstr ""
+
+msgid "Your receiver is shutting down. Please stand by..."
+msgstr ""
+
+msgid ""
+"Your receiver isn't connected to the internet properly. Please check it and "
+"try again."
+msgstr ""
+
+msgid "Your receiver will restart after pressing OK on your remote control."
 msgstr ""
 
 msgid ""
@@ -6833,6 +6815,9 @@ msgstr "предишен канал"
 msgid "previous channel in history"
 msgstr "предишен посетен канал"
 
+msgid "receiver software because updates are available."
+msgstr ""
+
 msgid "record"
 msgstr "запис"
 
@@ -7068,6 +7053,9 @@ msgstr ""
 msgid "special events"
 msgstr ""
 
+msgid "special format data DVD (HDTV compatible)"
+msgstr ""
+
 msgid "sports (general)"
 msgstr ""
 
@@ -7258,8 +7246,8 @@ msgid "yes (keep feeds)"
 msgstr "да (запази фийдове)"
 
 msgid ""
-"your dreambox might be unusable now. Please consult the manual for further "
-"assistance before rebooting your dreambox."
+"your receiver might be unusable now. Please consult the manual for further "
+"assistance before rebooting your receiver."
 msgstr ""
 
 msgid "zap"

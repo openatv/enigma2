@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-07-25 16:21+0200\n"
+"POT-Creation-Date: 2012-08-05 10:00+0200\n"
 "PO-Revision-Date: 2011-05-07 12:23+0200\n"
 "Last-Translator: Baldur <bsveinsson@gmail.com>\n"
 "Language-Team: Polar Team/LT Team <baddi@oreind.is>\n"
@@ -34,10 +34,8 @@ msgstr ""
 
 msgid ""
 "\n"
-"Backup your Dreambox settings."
+"Backup your receiver settings."
 msgstr ""
-"\n"
-"Taka afrit af stillingum."
 
 msgid ""
 "\n"
@@ -48,18 +46,13 @@ msgstr ""
 
 msgid ""
 "\n"
-"Manage extensions or plugins for your Dreambox"
+"Manage extensions or plugins for your receiver"
 msgstr ""
-"\n"
-"Umsýsla á viðbótum eða íforritum fyrir móttakarann þinn"
 
-#
 msgid ""
 "\n"
-"Online update of your Dreambox software."
+"Online update of your receiver software."
 msgstr ""
-"\n"
-"Uppfærsla hugbúnaðar beint af neti."
 
 #
 msgid ""
@@ -72,26 +65,20 @@ msgstr ""
 #
 msgid ""
 "\n"
-"Restore your Dreambox settings."
-msgstr ""
-"\n"
-"Setja inn þínar stillingar aftur."
-
-#
-msgid ""
-"\n"
-"Restore your Dreambox with a new firmware."
-msgstr ""
-"\n"
-"Setja inn nýtt stýrikerfi í Dreamboxið þitt."
-
-#
-msgid ""
-"\n"
 "Restore your backups by date."
 msgstr ""
 "\n"
 "Setja inn stilligar eftir dagsetningu."
+
+msgid ""
+"\n"
+"Restore your receiver settings."
+msgstr ""
+
+msgid ""
+"\n"
+"Restore your receiver with a new firmware."
+msgstr ""
 
 msgid ""
 "\n"
@@ -163,6 +150,9 @@ msgstr ""
 msgid "%2d:%02d:%02d"
 msgstr ""
 
+msgid "%A %d %B"
+msgstr ""
+
 #. TRANSLATORS: long date representations dayname daynum monthname in strftime() format! See 'man strftime'
 msgid "%A %e %B"
 msgstr ""
@@ -219,6 +209,9 @@ msgstr[1] ""
 #, python-format
 msgid "%d services found!"
 msgstr "%d rásir fundnar!"
+
+msgid "%d-%m"
+msgstr ""
 
 #
 msgid "%d.%B %Y"
@@ -398,21 +391,15 @@ msgstr ""
 msgid "A demo plugin for TPM usage."
 msgstr "Íforrits sýnishorn."
 
-#
 msgid ""
 "A finished record timer wants to set your\n"
-"Dreambox to standby. Do that now?"
+"receiver to standby. Do that now?"
 msgstr ""
-"Tímastilling vill setja Dreamboxið í\n"
-"biðstöðu. Viltu gera það núna?"
 
-#
 msgid ""
 "A finished record timer wants to shut down\n"
-"your Dreambox. Shutdown now?"
+"your receiver. Shutdown now?"
 msgstr ""
-"Tímastilling vill slökkva á Dreamboxinu.\n"
-"Viltu gera það núna?"
 
 #
 msgid "A graphical EPG for all services of an specific bouquet"
@@ -473,21 +460,15 @@ msgstr ""
 "\n"
 "Viltu hætta að nota það?"
 
-#
 msgid ""
 "A sleep timer wants to set your\n"
-"Dreambox to standby. Do that now?"
+"receiver to standby. Do that now?"
 msgstr ""
-"Tímastilling vill setja Dreamboxið í\n"
-"biðstöðu. Viltu gera það núna?"
 
-#
 msgid ""
 "A sleep timer wants to shut down\n"
-"your Dreambox. Shutdown now?"
+"your receiver. Shutdown now?"
 msgstr ""
-"Tímastilling vill slökkva á Dreamboxinu.\n"
-"Viltu gera það núna?"
 
 #
 msgid "A small overview of the available icon states and actions."
@@ -596,11 +577,9 @@ msgid "Add/Remove timer for current event"
 msgstr ""
 
 msgid ""
-"Adds enigma2 settings and dreambox model informations like SN, rev... if "
+"Adds enigma2 settings and receiver model informations like SN, rev... if "
 "enabled."
 msgstr ""
-"Bætir við enigma2 stillingum og dreambox gerðar upplýsingum eins og SN, "
-"útgáfa... ef virkt."
 
 msgid "Adds network configuration if enabled."
 msgstr "Bætir við net stillingum ef virkt."
@@ -650,10 +629,8 @@ msgstr ""
 
 msgid ""
 "After the start wizard is completed, you need to protect single services. "
-"Refer to your dreambox's manual on how to do that."
+"Refer to your receiver's manual on how to do that."
 msgstr ""
-"Eftir að ráðgjafinn er búinn þá þarft þú að læsa sumum rásum. Skoðaðu "
-"leiðbeiningarnar til að sjá hvernig á að gera það."
 
 msgid "Album"
 msgstr "Album"
@@ -1255,8 +1232,8 @@ msgstr ""
 msgid "Copy"
 msgstr ""
 
-msgid "Could not connect to Dreambox .NFI Image Feed Server:"
-msgstr "Gat ekki tengt við Dreambox .NFI stýrikerfis vefþjón:"
+msgid "Could not connect to receiver .NFI Image Feed Server:"
+msgstr ""
 
 msgid "Could not load Medium! No disc inserted?"
 msgstr "Gat ekki lesið disk! Er enginn diskur í drifi?"
@@ -1286,10 +1263,8 @@ msgstr "Stilling sjálfvirkrar hrunskýrslu sendingar..."
 
 msgid ""
 "Crashlogs found!\n"
-"Send them to Dream Multimedia?"
+"Send them to the Image Developper?"
 msgstr ""
-"Hrunskýrsla fannst!\n"
-"Senda hana til Dream Multimedia?"
 
 msgid "Create DVD-ISO"
 msgstr "Búa til DVD-ISO"
@@ -1321,6 +1296,9 @@ msgstr "Núverandi sendir"
 
 msgid "Current device: "
 msgstr "Núverandi tæki: "
+
+msgid "Current event EPG"
+msgstr ""
 
 msgid "Current settings:"
 msgstr "Núverandi stilling:"
@@ -1695,9 +1673,8 @@ msgstr "Viltu leita aftur handvirkt?"
 msgid "Do you want to download the image to %s ?"
 msgstr "Viltu hlaða niður stýrikerfinu á %s ?"
 
-#
-msgid "Do you want to enable the parental control feature on your dreambox?"
-msgstr "Viltu gera virkan foreldrastýrðan aðgang að dreamboxinu?"
+msgid "Do you want to enable the parental control feature on your receiver?"
+msgstr ""
 
 #
 msgid "Do you want to install the package:\n"
@@ -1711,9 +1688,8 @@ msgstr "Viltu spila DVD diskinn sem er í spilaranum?"
 msgid "Do you want to preview this DVD before burning?"
 msgstr "Viltu forskoða þennan DVD disk fyrir brennslu?"
 
-#
-msgid "Do you want to reboot your Dreambox?"
-msgstr "Viltu endurræsa Dreamboxinu?"
+msgid "Do you want to reboot your receiver?"
+msgstr ""
 
 #
 msgid "Do you want to remove the package:\n"
@@ -1734,17 +1710,13 @@ msgid ""
 msgstr ""
 "Viltu senda með netfang og nafn svo að við getum haft samband ef að þarf?"
 
-#
-msgid "Do you want to update your Dreambox?"
-msgstr "Viltu uppfæra Dreamboxið þitt?"
+msgid "Do you want to update your receiver?"
+msgstr ""
 
-#
 msgid ""
-"Do you want to update your Dreambox?\n"
+"Do you want to update your receiver?\n"
 "After pressing OK, please wait!"
 msgstr ""
-"Viltu uppfæra Dreamboxið þitt?\n"
-"Þú þarft að bíða eftir að hafa ýtt á OK!"
 
 #
 msgid "Do you want to upgrade the package:\n"
@@ -1800,14 +1772,6 @@ msgstr "Hleð niður"
 
 msgid "Downloading plugin information. Please wait..."
 msgstr "Hala niður íforrits upplýsingum. Vinsamlega bíðið..."
-
-#
-msgid "Dreambox format data DVD (HDTV compatible)"
-msgstr "Dreambox gagna formaður DVD diskur (HDTV samhæfður)"
-
-#
-msgid "Dreambox software because updates are available."
-msgstr "Hugbúnaður uppfærslur eru tiltækar fyrir Dreamboxið."
 
 #
 msgid "Dutch"
@@ -1870,13 +1834,11 @@ msgstr "Breyta rása lista"
 msgid "Edit settings"
 msgstr "Breyta stillingum"
 
-#
-msgid "Edit the Nameserver configuration of your Dreambox.\n"
-msgstr "Breyta nafnaþjóns stillingum Dreamboxins.\n"
+msgid "Edit the Nameserver configuration of your receiver.\n"
+msgstr ""
 
-#
-msgid "Edit the network configuration of your Dreambox.\n"
-msgstr "Breyta stillingum netkorts í Dreamboxinu.\n"
+msgid "Edit the network configuration of your receiver.\n"
+msgstr ""
 
 #
 msgid "Edit title"
@@ -2351,7 +2313,7 @@ msgstr ""
 msgid "GotoX calibration"
 msgstr ""
 
-msgid "Graph MEpg Settings"
+msgid "GraphMultiEpg Settings"
 msgstr ""
 
 #
@@ -3418,9 +3380,8 @@ msgstr "Nei, en byrja frá byrjun"
 msgid "No, do nothing."
 msgstr "Nei, ekki gera neitt."
 
-#
-msgid "No, just start my dreambox"
-msgstr "Nei, ræstu bara boxið mitt"
+msgid "No, just start my receiver"
+msgstr ""
 
 msgid "No, never"
 msgstr "Nei, aldrei"
@@ -3665,6 +3626,12 @@ msgstr "Síma númer"
 msgid "PiPSetup"
 msgstr "Uppsetning Mynd í Mynd"
 
+msgid "Picon"
+msgstr ""
+
+msgid "Picon and Service Name"
+msgstr ""
+
 #
 msgid "PicturePlayer"
 msgstr "Mynd spilari"
@@ -3822,6 +3789,9 @@ msgstr "Ýttu á OK til að halda áfram."
 #
 msgid "Please press OK!"
 msgstr "Ýtið á OK!"
+
+msgid "Please select a default EPG type..."
+msgstr ""
 
 #
 msgid "Please select a playlist to delete..."
@@ -4781,6 +4751,9 @@ msgstr "Veldu rás til að taka upp frá"
 msgid "Select copy destination for:"
 msgstr ""
 
+msgid "Select default EPG type..."
+msgstr ""
+
 msgid "Select desired image from feed list"
 msgstr "Veldu stýrikerfi af listanum"
 
@@ -4862,6 +4835,9 @@ msgstr "Serneska"
 msgid "Service"
 msgstr "Rás"
 
+msgid "Service Name"
+msgstr ""
+
 #
 msgid "Service Scan"
 msgstr "Leita að rásum"
@@ -4869,6 +4845,9 @@ msgstr "Leita að rásum"
 #
 msgid "Service Searching"
 msgstr "Leita að rásum"
+
+msgid "Service Title mode"
+msgstr ""
 
 msgid "Service has been added to the favourites."
 msgstr "Rás hefur verið bætt við eftirlætis lista."
@@ -4999,12 +4978,6 @@ msgstr "Sýna upplýsingar"
 msgid "Show Message when Recording starts"
 msgstr "Sýna skilaboð við byrjun upptöku"
 
-msgid "Show Picons"
-msgstr ""
-
-msgid "Show Service Names "
-msgstr ""
-
 #
 msgid "Show WLAN Status"
 msgstr "Sýna WLAN stöðu"
@@ -5073,9 +5046,8 @@ msgstr "Sýnir stöðu þráðlausrar nettenginar.\n"
 msgid "Shutdown"
 msgstr "Slökkva"
 
-#
-msgid "Shutdown Dreambox after"
-msgstr "Slökkva á móttakara eftir"
+msgid "Shutdown receiver after"
+msgstr ""
 
 msgid "Side by Side"
 msgstr ""
@@ -5553,9 +5525,8 @@ msgstr "Prufa gerð"
 msgid "Test mode"
 msgstr "Prufu hamur"
 
-#
-msgid "Test the network configuration of your Dreambox.\n"
-msgstr "Prófa stillingar netkorts í Dreamboxinu.\n"
+msgid "Test the network configuration of your receiver.\n"
+msgstr ""
 
 #
 msgid "Test-Messagebox?"
@@ -5580,18 +5551,14 @@ msgstr ""
 
 msgid ""
 "Thank you for using the wizard. Your box is now ready to use.\n"
-"Please press OK to start using your Dreambox."
+"Please press OK to start using your receiver."
 msgstr ""
-"Takk fyrir að nota ráðgjafann. Núna er móttakarinn tilbúinn til notkunar.\n"
-"Ýttu á OK til að byrja að nota móttakarann."
 
 msgid ""
 "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to "
-"create a Dreambox format data DVD (which will not play in stand-alone DVD "
+"create a special format data DVD (which will not play in stand-alone DVD "
 "players) instead?"
 msgstr ""
-"DVD staðallinn er ekki með möguleika á H.264 (HDTV). Viltu búa til Dreambox "
-"gagna disk (sem ekki er hægt að venjulegum DVD spilara) í staðinn?"
 
 msgid ""
 "The NetworkWizard extension is not installed!\n"
@@ -5675,13 +5642,10 @@ msgstr ""
 msgid "The installation of the default services lists is finished."
 msgstr "Innsetning sjálfgefins rásalista er lokið."
 
-#
 msgid ""
 "The installation of the default settings is finished. You can now continue "
-"configuring your Dreambox by pressing the OK button on the remote control."
+"configuring your receiver by pressing the OK button on the remote control."
 msgstr ""
-"Innsetning sjálfgefins rásalista er lokið. Þú getur nú haldið áfram að "
-"stilla Dreamboxið með því að ýta á OK takkann á fjarstýringunni."
 
 msgid "The md5sum validation failed, the file may be corrupted!"
 msgstr "Md5sum prufun tókst ekki, skráin er sennilega skemmd!"
@@ -5806,30 +5770,18 @@ msgstr ""
 "honum."
 
 #
-#, python-format
-msgid "This Dreambox can't decode %s streams!"
-msgstr "Þetta Dreambox getur ekki afrugað %s strauma!"
-
-#
 msgid "This is step number 2."
 msgstr "Þetta er hluti númer 2"
 
 msgid ""
 "This plugin creates a USB stick which can be used to update the firmware of "
-"your Dreambox without the need for a network or WLAN connection.\n"
+"your receiver without the need for a network or WLAN connection.\n"
 "First, a USB stick needs to be prepared so that it becomes bootable.\n"
 "In the next step, an NFI image file can be downloaded from the update server "
 "and saved on the USB stick.\n"
 "If you already have a prepared bootable USB stick, please insert it now. "
 "Otherwise plug in a USB stick with a minimum size of 64 MB!"
 msgstr ""
-"Þetta íforrit útbýr USB staut sem er hægt að nota til að uppfæta stýrikerfið "
-"í Dreamboxinu án þess að nota tölvu.\n"
-"Fyrst þarf að undirbúa USB stautinn þannig að hægt verði að ræsa frá honum.\n"
-"Næst þarf að hlaða niður NFI stýrikerfi frá uppfærslu vefþjóni sem er vistað "
-"á USB stautnum.\n"
-"Ef þú hefur nú þegar útbúið USB staut þá skaltu setja það í núna. Annars "
-"skaltu setja USB staut sem er minnst 64MB sem er hægt að nota!"
 
 msgid "This plugin is installed."
 msgstr "Þetta íforrit er uppsett."
@@ -5842,6 +5794,10 @@ msgstr "Þetta íforrit verður sett inn."
 
 msgid "This plugin will be removed."
 msgstr "Þetta íforrit verður tekið út."
+
+#, python-format
+msgid "This receiver can't decode %s streams!"
+msgstr ""
 
 #
 msgid ""
@@ -6026,20 +5982,13 @@ msgid "To subtitle selection"
 msgstr ""
 
 msgid ""
-"To update your Dreambox firmware, please follow these steps:\n"
+"To update your receiver firmware, please follow these steps:\n"
 "1) Turn off your box with the rear power switch and make sure the bootable "
 "USB stick is plugged in.\n"
 "2) Turn mains back on and hold the DOWN button on the front panel pressed "
 "for 10 seconds.\n"
 "3) Wait for bootup and follow instructions of the wizard."
 msgstr ""
-"TIl að uppfæra stýrikerfið í Dreamboxinu farðu þá eftir þessum "
-"leiðbeiningum:\n"
-"1. Slökktu á móttakaranum með rofanum aftaná boxinu og vertu viss um að "
-"ræsanlegi USB stauturinn er tengdur.\n"
-"2. Kveiktu á móttakaranum og haltu inn NIÐUR takkanum framaná móttakaranum í "
-"10 sekúndur.\\3. Bíddu eftir að móttakarinn ræsi og farðu eftir "
-"leiðbeiningum ráðgjafans."
 
 #
 msgid "Today"
@@ -6269,17 +6218,15 @@ msgstr ""
 msgid "Upgrade finished."
 msgstr "Uppfærslu lokið."
 
-#
-msgid "Upgrade finished. Do you want to reboot your Dreambox?"
-msgstr "Uppfærslu lokið. Viltu endurræsa Dreamboxinu þínu?"
+msgid "Upgrade finished. Do you want to reboot your receiver?"
+msgstr ""
 
 #
 msgid "Upgrading"
 msgstr "Uppfæri"
 
-#
-msgid "Upgrading Dreambox... Please wait"
-msgstr "Uppfæri Dreamboxið...vinsamlegast bíðið"
+msgid "Upgrading receiver... Please wait"
+msgstr ""
 
 #
 msgid "Use"
@@ -6655,54 +6602,34 @@ msgstr ""
 
 msgid ""
 "Welcome to the Image upgrade wizard. The wizard will assist you in upgrading "
-"the firmware of your Dreambox by providing a backup facility for your "
+"the firmware of your receiver by providing a backup facility for your "
 "current settings and a short explanation of how to upgrade your firmware."
 msgstr ""
-"Velkominn til stýrikerfis uppfærslu ráðgjafann. Ráðgjafinn aðstoðar þig við "
-"að uppfæra stýrikerfi Dreamboxins með því að sjá um afritun af þínum "
-"stillingum og sýnir svo hverning uppfærslan fer fram."
 
-#
 msgid ""
 "Welcome to the cleanup wizard.\n"
 "\n"
 "We have detected that your available internal memory has dropped below 2MB.\n"
-"To ensure stable operation of your Dreambox, the internal memory should be "
+"To ensure stable operation of your receiver, the internal memory should be "
 "cleaned up.\n"
 "You can use this wizard to remove some extensions.\n"
 msgstr ""
-"Velkomin í hreinsunar álfinn.\n"
-"\n"
-"Tekið var eftir að laust minni er komið niður fyrir 2MB.\n"
-"Til að tryggja stoðuga notkun á Drauma boxinu þá þarf að taka til í "
-"minninu.\n"
-"Þú getur notað álfinn til að taka út auka forrit.\n"
 
 msgid ""
 "Welcome.\n"
 "\n"
-"If you want to connect your Dreambox to the Internet, this wizard will guide "
-"you through the basic network setup of your Dreambox.\n"
+"If you want to connect your receiver to the Internet, this wizard will guide "
+"you through the basic network setup of your receiver.\n"
 "\n"
 "Press OK to start configuring your network"
 msgstr ""
-"Velkomin (n).\n"
-"\n"
-"Ef þú vilt tengja Dreamboxið við veraldarvefinn þá getur þessi ráðgjafi "
-"hjálpað þér að setja upp grunnstillingar til þess.\n"
-"\n"
-"Ýttu á OK til að byrja stillingar á netkortinu"
 
 msgid ""
 "Welcome.\n"
 "\n"
-"This start wizard will guide you through the basic setup of your Dreambox.\n"
+"This start wizard will guide you through the basic setup of your receiver.\n"
 "Press the OK button on your remote control to move to the next step."
 msgstr ""
-"Velkomin.\n"
-"\n"
-"Þessi ráðgjafi hjálpar þér í gegnum grunnstillingar á Dreamboxinu.\n"
-"Ýttu á OK hnappinn á fjarstýringunni til að fara á næsta þrep."
 
 #
 msgid "Welcome..."
@@ -6871,8 +6798,8 @@ msgstr ""
 msgid "You can install this plugin."
 msgstr "Þú getur sett inn þetta íforrit."
 
-msgid "You can only burn Dreambox recordings!"
-msgstr "Þú getur bara brennt Dreambox upptökur!"
+msgid "You can only burn receiver recordings!"
+msgstr ""
 
 msgid "You can remove this plugin."
 msgstr "Þú getur tekið út þetta íforrit."
@@ -6931,19 +6858,13 @@ msgstr ""
 msgid "You have to wait %s!"
 msgstr "Þú þarf að bíða %s!"
 
-#
 msgid ""
-"You need a PC connected to your dreambox. If you need further instructions, "
+"You need a PC connected to your receiver. If you need further instructions, "
 "please visit the website http://www.dm7025.de.\n"
-"Your dreambox will now be halted. After you have performed the update "
+"Your receiver will now be halted. After you have performed the update "
 "instructions from the website, your new firmware will ask you to restore "
 "your settings."
 msgstr ""
-"Þú þarft að hafa tölvu tengda við dreamboxið. Ef þú þarft nánari upplýsingar "
-"þá skoðaðu síðuna http://www.dm7025.de.\n"
-"Dreamboxið verður núna stoppað. Eftir að þú hefur uppfært samkvæmt "
-"leiðbeinungunum á síðunni þá mun nýja stýrikerfið biðja þig um að setja "
-"aftur inn afritið."
 
 msgid ""
 "You need to set a PIN code and hide it from your children.\n"
@@ -6970,25 +6891,6 @@ msgstr ""
 
 #
 msgid ""
-"Your Dreambox is now ready to use.\n"
-"\n"
-"Your internet connection is working now.\n"
-"\n"
-"Please press OK to continue."
-msgstr ""
-"Dreamboxið þitt er tilbúið til notkunar.\n"
-"\n"
-"Veraldarvefs tengingu er komið á.\n"
-"\n"
-"Ýttu á OK til að halda áfram."
-
-#
-msgid "Your Dreambox will restart after pressing OK on your remote control."
-msgstr ""
-"Dreamboxið þitt mun endurræsa sig eftir að þú ýtir á OK á fjarstýringunni."
-
-#
-msgid ""
 "Your backup succeeded. We will now continue to explain the further upgrade "
 "process."
 msgstr "Það tókst að taka afrit. Nú höldum við áfram með uppfærsluna."
@@ -7003,16 +6905,6 @@ msgstr ""
 
 msgid "Your current collection will get lost!"
 msgstr "Núverandi safn þitt mun glatast!"
-
-#
-msgid "Your dreambox is shutting down. Please stand by..."
-msgstr "Dreamboxið er að slökkva á sér. Vinsamlega bíðið..."
-
-#
-msgid ""
-"Your dreambox isn't connected to the internet properly. Please check it and "
-"try again."
-msgstr "Dreamboxið er ekki tengt við internetið. Athugaðu það og reyndu aftur."
 
 #
 msgid "Your email address:"
@@ -7048,10 +6940,29 @@ msgstr "Nafn þitt (aukalega):"
 msgid "Your network configuration has been activated."
 msgstr "Stillingar netkerfis hafa verið gerðar virkar."
 
+msgid ""
+"Your receiver is now ready to use.\n"
+"\n"
+"Your internet connection is working now.\n"
+"\n"
+"Please press OK to continue."
+msgstr ""
+
 msgid "Your receiver is rebooting"
 msgstr ""
 
 msgid "Your receiver is shutting down"
+msgstr ""
+
+msgid "Your receiver is shutting down. Please stand by..."
+msgstr ""
+
+msgid ""
+"Your receiver isn't connected to the internet properly. Please check it and "
+"try again."
+msgstr ""
+
+msgid "Your receiver will restart after pressing OK on your remote control."
 msgstr ""
 
 #
@@ -8065,6 +7976,9 @@ msgstr "fyrri rás"
 msgid "previous channel in history"
 msgstr "fyrri rás í sögu"
 
+msgid "receiver software because updates are available."
+msgstr ""
+
 #
 msgid "record"
 msgstr "taka upp"
@@ -8353,6 +8267,9 @@ msgstr "sérstafir"
 msgid "special events"
 msgstr ""
 
+msgid "special format data DVD (HDTV compatible)"
+msgstr ""
+
 msgid "sports (general)"
 msgstr ""
 
@@ -8581,13 +8498,10 @@ msgstr "já"
 msgid "yes (keep feeds)"
 msgstr "já (halda fæðirásum)"
 
-#
 msgid ""
-"your dreambox might be unusable now. Please consult the manual for further "
-"assistance before rebooting your dreambox."
+"your receiver might be unusable now. Please consult the manual for further "
+"assistance before rebooting your receiver."
 msgstr ""
-"Dreamboxið þitt gæti verið óstöðugt núna.  Athugaðu leiðbeiningar um aðstoð "
-"með að endurræsa Dreamboxið."
 
 #
 msgid "zap"

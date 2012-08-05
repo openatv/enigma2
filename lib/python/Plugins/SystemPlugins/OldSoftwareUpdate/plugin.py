@@ -34,7 +34,7 @@ class Upgrade(Screen):
 		
 	def go(self):
 		if self.update:
-			self.session.openWithCallback(self.doUpdate, MessageBox, _("Do you want to update your Dreambox?\nAfter pressing OK, please wait!"))		
+			self.session.openWithCallback(self.doUpdate, MessageBox, _("Do you want to update your receiver?\nAfter pressing OK, please wait!"))		
 		else:
 			self.close()
 	
@@ -133,7 +133,7 @@ class Ipkg(Screen):
 		
 	def go(self):
 		if self.update:
-			self.session.openWithCallback(self.doUpdate, MessageBox, _("Do you want to update your Dreambox?\nAfter pressing OK, please wait!"))		
+			self.session.openWithCallback(self.doUpdate, MessageBox, _("Do you want to update your receiver?\nAfter pressing OK, please wait!"))		
 		else:
 			self.close()
 	

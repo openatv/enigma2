@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-07-25 16:21+0200\n"
+"POT-Creation-Date: 2012-08-05 10:00+0200\n"
 "PO-Revision-Date: 2012-04-03 19:02+0100\n"
 "Last-Translator: \n"
 "Language-Team: None <tbt_dk@hotmail.com>\n"
@@ -33,13 +33,10 @@ msgstr ""
 "\n"
 "Efter tryk på OK, vent venligst!"
 
-#
 msgid ""
 "\n"
-"Backup your Dreambox settings."
+"Backup your receiver settings."
 msgstr ""
-"\n"
-"Lav backup af din Dreambox opsætning."
 
 #
 msgid ""
@@ -49,21 +46,15 @@ msgstr ""
 "\n"
 "Rediger kildeadressen til opgradering."
 
-#
 msgid ""
 "\n"
-"Manage extensions or plugins for your Dreambox"
+"Manage extensions or plugins for your receiver"
 msgstr ""
-"\n"
-"Håndter udvidelser eller plugins til din Dreambox"
 
-#
 msgid ""
 "\n"
-"Online update of your Dreambox software."
+"Online update of your receiver software."
 msgstr ""
-"\n"
-"Online opdatering_ ikke for Ferrari Bokse!."
 
 #
 msgid ""
@@ -76,26 +67,20 @@ msgstr ""
 #
 msgid ""
 "\n"
-"Restore your Dreambox settings."
-msgstr ""
-"\n"
-"Gendan din Dreambox opsætning."
-
-#
-msgid ""
-"\n"
-"Restore your Dreambox with a new firmware."
-msgstr ""
-"\n"
-"Gendan din Dreambox med ny firmware."
-
-#
-msgid ""
-"\n"
 "Restore your backups by date."
 msgstr ""
 "\n"
 "Gendan dine backups efter dato."
+
+msgid ""
+"\n"
+"Restore your receiver settings."
+msgstr ""
+
+msgid ""
+"\n"
+"Restore your receiver with a new firmware."
+msgstr ""
 
 #
 msgid ""
@@ -165,6 +150,9 @@ msgstr ""
 msgid "%2d:%02d:%02d"
 msgstr ""
 
+msgid "%A %d %B"
+msgstr ""
+
 #. TRANSLATORS: long date representations dayname daynum monthname in strftime() format! See 'man strftime'
 msgid "%A %e %B"
 msgstr ""
@@ -221,6 +209,9 @@ msgstr[1] "%d sekunder"
 #, python-format
 msgid "%d services found!"
 msgstr "%d kanaler fundet!"
+
+msgid "%d-%m"
+msgstr ""
 
 #
 msgid "%d.%B %Y"
@@ -398,17 +389,13 @@ msgstr "En demo udvidelse til brug for TPM"
 
 msgid ""
 "A finished record timer wants to set your\n"
-"Dreambox to standby. Do that now?"
+"receiver to standby. Do that now?"
 msgstr ""
-"En afsluttet optagelsestimer vil gerne sætte din\n"
-"Dreambox til standby.Vil du gøre det nu?"
 
 msgid ""
 "A finished record timer wants to shut down\n"
-"your Dreambox. Shutdown now?"
+"your receiver. Shutdown now?"
 msgstr ""
-"En afsluttet optagelsestimer vil gerne slukke\n"
-"din Dreambox. Slukke nu?"
 
 #
 msgid "A graphical EPG for all services of an specific bouquet"
@@ -472,21 +459,15 @@ msgstr ""
 "\n"
 "Vil du deaktivere den anden netværksenhed?"
 
-#
 msgid ""
 "A sleep timer wants to set your\n"
-"Dreambox to standby. Do that now?"
+"receiver to standby. Do that now?"
 msgstr ""
-"En sleep timer vil gerne sætte din\n"
-"Dreambox til standby. Vil du gøre det nu?"
 
-#
 msgid ""
 "A sleep timer wants to shut down\n"
-"your Dreambox. Shutdown now?"
+"your receiver. Shutdown now?"
 msgstr ""
-"En sleep timer vil gerne slukke\n"
-"din Dreambox. Slukke nu?"
 
 #
 msgid "A small overview of the available icon states and actions."
@@ -601,13 +582,10 @@ msgstr "Tilføj til favoritter"
 msgid "Add/Remove timer for current event"
 msgstr "Tilføj/Fjern timer for dette program"
 
-#
 msgid ""
-"Adds enigma2 settings and dreambox model informations like SN, rev... if "
+"Adds enigma2 settings and receiver model informations like SN, rev... if "
 "enabled."
 msgstr ""
-"Tilføjer enigma2 indstillinger og dreambox model informationer som SN, "
-"rev... hvis aktiveret"
 
 #
 msgid "Adds network configuration if enabled."
@@ -666,13 +644,10 @@ msgstr "Efter opgave"
 msgid "After pressing OK, please wait!"
 msgstr "Vent venligst efter tryk på OK!"
 
-#
 msgid ""
 "After the start wizard is completed, you need to protect single services. "
-"Refer to your dreambox's manual on how to do that."
+"Refer to your receiver's manual on how to do that."
 msgstr ""
-"Efter start guiden er færdig, skal du beskytte enkelte kanaler. Se venligst "
-"i din DreamBox's manual hvordan du gør det."
 
 #
 msgid "Album"
@@ -1406,9 +1381,8 @@ msgstr "konverter filsystemet ext3 til ext4"
 msgid "Copy"
 msgstr "Kopier"
 
-#
-msgid "Could not connect to Dreambox .NFI Image Feed Server:"
-msgstr "Kunne ikke forbinde til Dreambox .NFI image feed serveren:"
+msgid "Could not connect to receiver .NFI Image Feed Server:"
+msgstr ""
 
 #
 msgid "Could not load Medium! No disc inserted?"
@@ -1443,13 +1417,10 @@ msgstr "Opsætning for automatisk nedbrudslog"
 msgid "CrashlogAutoSubmit settings..."
 msgstr "Opsætning for automatisk nedbrudslog..."
 
-#
 msgid ""
 "Crashlogs found!\n"
-"Send them to Dream Multimedia?"
+"Send them to the Image Developper?"
 msgstr ""
-"Nedbrudslogs fundet!\n"
-"Send dem til Dream Multimedia?"
 
 #
 msgid "Create DVD-ISO"
@@ -1485,6 +1456,9 @@ msgstr "Nuværende Transponder"
 
 msgid "Current device: "
 msgstr "Nuværende Enhed"
+
+msgid "Current event EPG"
+msgstr ""
 
 #
 msgid "Current settings:"
@@ -1882,9 +1856,8 @@ msgstr "Vil du lave en anden manuel søgning?"
 msgid "Do you want to download the image to %s ?"
 msgstr "Vil du downloade imaget til %s ?"
 
-#
-msgid "Do you want to enable the parental control feature on your dreambox?"
-msgstr "Vil du aktivere forældre kontrol muligheden på DreamBoxen?"
+msgid "Do you want to enable the parental control feature on your receiver?"
+msgstr ""
 
 #
 msgid "Do you want to install the package:\n"
@@ -1898,9 +1871,8 @@ msgstr "Vil du afspille DVD i drevet?"
 msgid "Do you want to preview this DVD before burning?"
 msgstr "Vil du gennemse denne DVD inden brænding?"
 
-#
-msgid "Do you want to reboot your Dreambox?"
-msgstr "Vil du genstarte din Dreambox?"
+msgid "Do you want to reboot your receiver?"
+msgstr ""
 
 #
 msgid "Do you want to remove the package:\n"
@@ -1922,17 +1894,13 @@ msgstr ""
 "Vil du videregive din email adresse og dit navn, så vi kan kontakte dig om "
 "nødvendigt?"
 
-#
-msgid "Do you want to update your Dreambox?"
-msgstr "Vil du opdatere din Dreambox?"
+msgid "Do you want to update your receiver?"
+msgstr ""
 
-#
 msgid ""
-"Do you want to update your Dreambox?\n"
+"Do you want to update your receiver?\n"
 "After pressing OK, please wait!"
 msgstr ""
-"Vil du opdatere din Dreambox?\n"
-"Efter tryk på OK, vent venligst!"
 
 #
 msgid "Do you want to upgrade the package:\n"
@@ -1994,14 +1962,6 @@ msgstr "Henter"
 #
 msgid "Downloading plugin information. Please wait..."
 msgstr "Henter plugin informationer. Vent venligst..."
-
-#
-msgid "Dreambox format data DVD (HDTV compatible)"
-msgstr "Dreambox format data DVD (HDTV kompatibel)"
-
-#
-msgid "Dreambox software because updates are available."
-msgstr "Dreambox software fordi der er tilgængelige opdateringer."
 
 #
 msgid "Dutch"
@@ -2068,13 +2028,11 @@ msgstr "Ændre kanallister"
 msgid "Edit settings"
 msgstr "Ændre indstillinger"
 
-#
-msgid "Edit the Nameserver configuration of your Dreambox.\n"
-msgstr "Ændre Navneserver konfiguration på din Dreambox.\n"
+msgid "Edit the Nameserver configuration of your receiver.\n"
+msgstr ""
 
-#
-msgid "Edit the network configuration of your Dreambox.\n"
-msgstr "Ændre din netværks konfiguration på  Dreamboxen.\n"
+msgid "Edit the network configuration of your receiver.\n"
+msgstr ""
 
 #
 msgid "Edit title"
@@ -2578,8 +2536,8 @@ msgstr "Gå til specifik dato/tid"
 msgid "GotoX calibration"
 msgstr "Gå til X calibrering"
 
-msgid "Graph MEpg Settings"
-msgstr "Graph Mepg indstillinger"
+msgid "GraphMultiEpg Settings"
+msgstr ""
 
 #
 msgid "Graphical Multi EPG"
@@ -3670,9 +3628,8 @@ msgstr "Nej, men genstart fra begyndelse"
 msgid "No, do nothing."
 msgstr "Nej, gør intet."
 
-#
-msgid "No, just start my dreambox"
-msgstr "Nej, bare start min Dreambox"
+msgid "No, just start my receiver"
+msgstr ""
 
 msgid "No, never"
 msgstr "Nej, aldrig"
@@ -3921,6 +3878,12 @@ msgstr "Telefonnummer"
 msgid "PiPSetup"
 msgstr "BiB opsætning"
 
+msgid "Picon"
+msgstr ""
+
+msgid "Picon and Service Name"
+msgstr ""
+
 #
 msgid "PicturePlayer"
 msgstr "Billed afspiller"
@@ -4084,6 +4047,9 @@ msgstr "Tryk venligst på OK for at fortsætte."
 #
 msgid "Please press OK!"
 msgstr "Tryk venligst OK!"
+
+msgid "Please select a default EPG type..."
+msgstr ""
 
 #
 msgid "Please select a playlist to delete..."
@@ -5061,6 +5027,9 @@ msgstr "Vælg optagekanal"
 msgid "Select copy destination for:"
 msgstr "Vælg kopi destination for"
 
+msgid "Select default EPG type..."
+msgstr ""
+
 msgid "Select desired image from feed list"
 msgstr "Vælg ønsket imgage fra listen"
 
@@ -5143,6 +5112,9 @@ msgstr "Serbisk"
 msgid "Service"
 msgstr "Kanal info"
 
+msgid "Service Name"
+msgstr ""
+
 #
 msgid "Service Scan"
 msgstr "Kanal søgning"
@@ -5150,6 +5122,9 @@ msgstr "Kanal søgning"
 #
 msgid "Service Searching"
 msgstr "Kanal søgning"
+
+msgid "Service Title mode"
+msgstr ""
 
 #
 msgid "Service has been added to the favourites."
@@ -5281,12 +5256,6 @@ msgstr "Vis info"
 msgid "Show Message when Recording starts"
 msgstr "Vis besked, når optagelse starter"
 
-msgid "Show Picons"
-msgstr "Vis Picons"
-
-msgid "Show Service Names "
-msgstr "Vis kanalnavn"
-
 #
 msgid "Show WLAN Status"
 msgstr "Vis WLAN Status"
@@ -5358,9 +5327,8 @@ msgstr "Vis tilstanden af din trådløse LAN opkobling.\n"
 msgid "Shutdown"
 msgstr "Afslut"
 
-#
-msgid "Shutdown Dreambox after"
-msgstr "Slukke Dreambox efter"
+msgid "Shutdown receiver after"
+msgstr ""
 
 msgid "Side by Side"
 msgstr "Side ved side"
@@ -5845,9 +5813,8 @@ msgstr "Afprøv type"
 msgid "Test mode"
 msgstr "Test type"
 
-#
-msgid "Test the network configuration of your Dreambox.\n"
-msgstr "Test netværks konfiguration på din Dreambox.\n"
+msgid "Test the network configuration of your receiver.\n"
+msgstr ""
 
 #
 msgid "Test-Messagebox?"
@@ -5870,23 +5837,16 @@ msgstr ""
 "Tak for brug af hjælperen.\n"
 "Tryk venligst OK for at fortsætte."
 
-#
 msgid ""
 "Thank you for using the wizard. Your box is now ready to use.\n"
-"Please press OK to start using your Dreambox."
+"Please press OK to start using your receiver."
 msgstr ""
-"Tak fordi du brugte Startassistenten. Din Dreambox er nu klar til brug .\n"
-"Tryk venligst OK, for at starte den."
 
-#
 msgid ""
 "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to "
-"create a Dreambox format data DVD (which will not play in stand-alone DVD "
+"create a special format data DVD (which will not play in stand-alone DVD "
 "players) instead?"
 msgstr ""
-"DVD standarderne understøtter ikke H.264 (HDTV) video streams. Vil du i "
-"stedet oprette en Dreambox format DVD (som ikke kan afspilles i en "
-"almindelig DVD afspiller)? "
 
 #
 msgid ""
@@ -5976,13 +5936,10 @@ msgstr ""
 msgid "The installation of the default services lists is finished."
 msgstr "Installationen af standard kanal lister er færdig."
 
-#
 msgid ""
 "The installation of the default settings is finished. You can now continue "
-"configuring your Dreambox by pressing the OK button on the remote control."
+"configuring your receiver by pressing the OK button on the remote control."
 msgstr ""
-"Installationen af standard indstillinger er fuldført. Du kan nu fortsætte "
-"med konfigurationen af din Dreambox ved at trykke OK på din fjernbetjening."
 
 msgid "The md5sum validation failed, the file may be corrupted!"
 msgstr ""
@@ -6115,17 +6072,12 @@ msgstr ""
 "på disken."
 
 #
-#, python-format
-msgid "This Dreambox can't decode %s streams!"
-msgstr "Dreamboxen kan ikke afkode %s streams!"
-
-#
 msgid "This is step number 2."
 msgstr "Dette er skridt nummer 2."
 
 msgid ""
 "This plugin creates a USB stick which can be used to update the firmware of "
-"your Dreambox without the need for a network or WLAN connection.\n"
+"your receiver without the need for a network or WLAN connection.\n"
 "First, a USB stick needs to be prepared so that it becomes bootable.\n"
 "In the next step, an NFI image file can be downloaded from the update server "
 "and saved on the USB stick.\n"
@@ -6148,6 +6100,10 @@ msgstr "Dette plugin vil blive installeret"
 #
 msgid "This plugin will be removed."
 msgstr "Dette plugin vil blive fjernet"
+
+#, python-format
+msgid "This receiver can't decode %s streams!"
+msgstr ""
 
 #
 msgid ""
@@ -6337,7 +6293,7 @@ msgid "To subtitle selection"
 msgstr "Til undertekst valg"
 
 msgid ""
-"To update your Dreambox firmware, please follow these steps:\n"
+"To update your receiver firmware, please follow these steps:\n"
 "1) Turn off your box with the rear power switch and make sure the bootable "
 "USB stick is plugged in.\n"
 "2) Turn mains back on and hold the DOWN button on the front panel pressed "
@@ -6585,17 +6541,15 @@ msgstr "Opgrader og spørg om genstart"
 msgid "Upgrade finished."
 msgstr "Opgradering afsluttet"
 
-#
-msgid "Upgrade finished. Do you want to reboot your Dreambox?"
-msgstr "Opgradering færdig. Vil du genstarte din DreamBox?"
+msgid "Upgrade finished. Do you want to reboot your receiver?"
+msgstr ""
 
 #
 msgid "Upgrading"
 msgstr "Opdaterer"
 
-#
-msgid "Upgrading Dreambox... Please wait"
-msgstr "Opdaterer Dreambox... Vent venligst"
+msgid "Upgrading receiver... Please wait"
+msgstr ""
 
 #
 msgid "Use"
@@ -6975,61 +6929,36 @@ msgstr ""
 "\n"
 "Søg derefter til slutningen, tryk OK, vælg 'afslut klip'. Det er det hele."
 
-#
 msgid ""
 "Welcome to the Image upgrade wizard. The wizard will assist you in upgrading "
-"the firmware of your Dreambox by providing a backup facility for your "
+"the firmware of your receiver by providing a backup facility for your "
 "current settings and a short explanation of how to upgrade your firmware."
 msgstr ""
-"Velkommen til Image opdaterings assistenten. Denne vil hjælpe dig gennem "
-"opdateringen. Firmwaren i din Dreambox giver dig mulighed for at lave backup "
-"af dine indstillinger, her er en kort gennemgang."
 
-#
 msgid ""
 "Welcome to the cleanup wizard.\n"
 "\n"
 "We have detected that your available internal memory has dropped below 2MB.\n"
-"To ensure stable operation of your Dreambox, the internal memory should be "
+"To ensure stable operation of your receiver, the internal memory should be "
 "cleaned up.\n"
 "You can use this wizard to remove some extensions.\n"
 msgstr ""
-"Velkommen til oprydningshjælperen.\n"
-"\n"
-"Vi har opdaget, at den tilgængelige interne hukommelse er faldet til under "
-"2MB.\n"
-"For at sikre stabil drift af din Dreambox, bør der ryddes op i den interne "
-"hukommelse.\n"
-"Du kan benytte denne hjælper til at fjerne nogle udvidelser.\n"
 
-#
 msgid ""
 "Welcome.\n"
 "\n"
-"If you want to connect your Dreambox to the Internet, this wizard will guide "
-"you through the basic network setup of your Dreambox.\n"
+"If you want to connect your receiver to the Internet, this wizard will guide "
+"you through the basic network setup of your receiver.\n"
 "\n"
 "Press OK to start configuring your network"
 msgstr ""
-"Velkommen.\n"
-"\n"
-"Hvis du vil forbinde din Dreambox til internettet, vil denne hjælper guide "
-"dig gennem den grundlæggende netværksopsætning af din Dreambox.\n"
-"\n"
-"Tryk OK for at starte opsætningen af dit netværk"
 
-#
 msgid ""
 "Welcome.\n"
 "\n"
-"This start wizard will guide you through the basic setup of your Dreambox.\n"
+"This start wizard will guide you through the basic setup of your receiver.\n"
 "Press the OK button on your remote control to move to the next step."
 msgstr ""
-"Din Dreambox ønsker dig Velkommen.\n"
-"\n"
-"Denne Start assistenten vil føre dig igennem grundopsætningen af din "
-"Dreambox.\n"
-"Tryk venligst OK på fjernbetjeningen, for at gå til næste trin."
 
 #
 msgid "Welcome..."
@@ -7200,9 +7129,8 @@ msgstr "Du kan fortsætte med at se TV mens dette kører."
 msgid "You can install this plugin."
 msgstr "Du kan installere dette plugin"
 
-#
-msgid "You can only burn Dreambox recordings!"
-msgstr "Du kan kun brænde Dreamboxoptagelser!"
+msgid "You can only burn receiver recordings!"
+msgstr ""
 
 #
 msgid "You can remove this plugin."
@@ -7263,19 +7191,13 @@ msgstr ""
 msgid "You have to wait %s!"
 msgstr "Du må vente %s!"
 
-#
 msgid ""
-"You need a PC connected to your dreambox. If you need further instructions, "
+"You need a PC connected to your receiver. If you need further instructions, "
 "please visit the website http://www.dm7025.de.\n"
-"Your dreambox will now be halted. After you have performed the update "
+"Your receiver will now be halted. After you have performed the update "
 "instructions from the website, your new firmware will ask you to restore "
 "your settings."
 msgstr ""
-"Du skal have en PC forbundet til din Dreambox. Hvis du mangler yderligere "
-"Informationer, så gå til websiden http://www.dm7025.de.\n"
-"Din Dreambox bliver slukket nu. Efter du har udført opdateringen "
-"Instruktioner fra websiden, vil den nye firmware vil bede dig om at "
-"geninstallere, dine indstillinger."
 
 msgid ""
 "You need to set a PIN code and hide it from your children.\n"
@@ -7300,24 +7222,6 @@ msgstr ""
 
 #
 msgid ""
-"Your Dreambox is now ready to use.\n"
-"\n"
-"Your internet connection is working now.\n"
-"\n"
-"Please press OK to continue."
-msgstr ""
-"Din Dreambox er nu klar til brug.\n"
-"\n"
-"Din internetforbindelse fungerer nu.\n"
-"\n"
-"Tryk OK for at fortsætte."
-
-#
-msgid "Your Dreambox will restart after pressing OK on your remote control."
-msgstr "Din Dreambox vil genstarte efter OK tryk på din fjernbetjening."
-
-#
-msgid ""
 "Your backup succeeded. We will now continue to explain the further upgrade "
 "process."
 msgstr ""
@@ -7335,18 +7239,6 @@ msgstr ""
 #
 msgid "Your current collection will get lost!"
 msgstr ""
-
-#
-msgid "Your dreambox is shutting down. Please stand by..."
-msgstr "Din Dreambox slukker nu. Vent venligst..."
-
-#
-msgid ""
-"Your dreambox isn't connected to the internet properly. Please check it and "
-"try again."
-msgstr ""
-"Din Dreambox er ikke korrekt tilsluttet internet. Venligst kontroler dette "
-"og prøv igen."
 
 #
 msgid "Your email address:"
@@ -7385,11 +7277,30 @@ msgstr "Dit navn (valgfrit):"
 msgid "Your network configuration has been activated."
 msgstr "Din netværks opsætning er blevet aktiveret."
 
+msgid ""
+"Your receiver is now ready to use.\n"
+"\n"
+"Your internet connection is working now.\n"
+"\n"
+"Please press OK to continue."
+msgstr ""
+
 msgid "Your receiver is rebooting"
 msgstr "Din modtager genstarter"
 
 msgid "Your receiver is shutting down"
 msgstr "Din modtager lukker ned"
+
+msgid "Your receiver is shutting down. Please stand by..."
+msgstr ""
+
+msgid ""
+"Your receiver isn't connected to the internet properly. Please check it and "
+"try again."
+msgstr ""
+
+msgid "Your receiver will restart after pressing OK on your remote control."
+msgstr ""
 
 #
 msgid ""
@@ -8410,6 +8321,9 @@ msgstr "forrige kanal"
 msgid "previous channel in history"
 msgstr "forrige sete kanal"
 
+msgid "receiver software because updates are available."
+msgstr ""
+
 #
 msgid "record"
 msgstr "optage"
@@ -8700,6 +8614,9 @@ msgstr "special karakterer"
 msgid "special events"
 msgstr ""
 
+msgid "special format data DVD (HDTV compatible)"
+msgstr ""
+
 msgid "sports (general)"
 msgstr ""
 
@@ -8930,13 +8847,10 @@ msgstr "ja"
 msgid "yes (keep feeds)"
 msgstr "ja (behold feeds)"
 
-#
 msgid ""
-"your dreambox might be unusable now. Please consult the manual for further "
-"assistance before rebooting your dreambox."
+"your receiver might be unusable now. Please consult the manual for further "
+"assistance before rebooting your receiver."
 msgstr ""
-"din Dreambox kan være ubrugelig nu. Se venligst i manualen for assistance "
-"før du genstarter din dreambox."
 
 #
 msgid "zap"

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-07-25 16:21+0200\n"
+"POT-Creation-Date: 2012-08-05 10:00+0200\n"
 "PO-Revision-Date: 2008-09-28 14:03+0200\n"
 "Last-Translator: stepan_kv <stepan_kv@mail.ru>\n"
 "Language-Team: http://sat-ukraine.info/\n"
@@ -33,13 +33,10 @@ msgstr ""
 "\n"
 "Після натиснення на OK зачекайте!"
 
-#
 msgid ""
 "\n"
-"Backup your Dreambox settings."
+"Backup your receiver settings."
 msgstr ""
-"\n"
-"Створення резервної копії налаштувань Dreambox'a."
 
 #
 msgid ""
@@ -49,19 +46,15 @@ msgstr ""
 "\n"
 "Змінити адресу джерела оновлення."
 
-#
 msgid ""
 "\n"
-"Manage extensions or plugins for your Dreambox"
+"Manage extensions or plugins for your receiver"
 msgstr ""
 
-#
 msgid ""
 "\n"
-"Online update of your Dreambox software."
+"Online update of your receiver software."
 msgstr ""
-"\n"
-"Онлайн оновлення пакетів вашого Dreambox'a."
 
 #
 msgid ""
@@ -74,26 +67,20 @@ msgstr ""
 #
 msgid ""
 "\n"
-"Restore your Dreambox settings."
-msgstr ""
-"\n"
-"Відновлення системних налаштувань вашого Dreambox'a."
-
-#
-msgid ""
-"\n"
-"Restore your Dreambox with a new firmware."
-msgstr ""
-"\n"
-"Встановлення нового іміджу на Dreambox."
-
-#
-msgid ""
-"\n"
 "Restore your backups by date."
 msgstr ""
 "\n"
 "Відновлення резервних копій за датою."
+
+msgid ""
+"\n"
+"Restore your receiver settings."
+msgstr ""
+
+msgid ""
+"\n"
+"Restore your receiver with a new firmware."
+msgstr ""
 
 #
 msgid ""
@@ -163,6 +150,9 @@ msgstr ""
 msgid "%2d:%02d:%02d"
 msgstr ""
 
+msgid "%A %d %B"
+msgstr ""
+
 #. TRANSLATORS: long date representations dayname daynum monthname in strftime() format! See 'man strftime'
 msgid "%A %e %B"
 msgstr ""
@@ -219,6 +209,9 @@ msgstr[1] ""
 #, python-format
 msgid "%d services found!"
 msgstr "%d каналів знайдено!"
+
+msgid "%d-%m"
+msgstr ""
 
 #
 msgid "%d.%B %Y"
@@ -404,21 +397,15 @@ msgstr ""
 msgid "A demo plugin for TPM usage."
 msgstr ""
 
-#
 msgid ""
 "A finished record timer wants to set your\n"
-"Dreambox to standby. Do that now?"
+"receiver to standby. Do that now?"
 msgstr ""
-"Запис закінчено. Таймер переведе ваш Dreambox\n"
-"в режим очікування. Зробити це?"
 
-#
 msgid ""
 "A finished record timer wants to shut down\n"
-"your Dreambox. Shutdown now?"
+"your receiver. Shutdown now?"
 msgstr ""
-"Запис закінчено. Таймер зараз вимкне ваш\n"
-"Dreambox. Зробити це?"
 
 #
 msgid "A graphical EPG for all services of an specific bouquet"
@@ -474,21 +461,15 @@ msgid ""
 "Do you want to disable the second network interface?"
 msgstr ""
 
-#
 msgid ""
 "A sleep timer wants to set your\n"
-"Dreambox to standby. Do that now?"
+"receiver to standby. Do that now?"
 msgstr ""
-"Таймер переведе ваш Dreambox\n"
-"в режим очікування. Зробити це?"
 
-#
 msgid ""
 "A sleep timer wants to shut down\n"
-"your Dreambox. Shutdown now?"
+"your receiver. Shutdown now?"
 msgstr ""
-"Таймер зараз вимкне\n"
-"ваш Dreambox. Зробити це?"
 
 #
 msgid "A small overview of the available icon states and actions."
@@ -604,13 +585,10 @@ msgstr "Додати до фаворитів"
 msgid "Add/Remove timer for current event"
 msgstr ""
 
-#
 msgid ""
-"Adds enigma2 settings and dreambox model informations like SN, rev... if "
+"Adds enigma2 settings and receiver model informations like SN, rev... if "
 "enabled."
 msgstr ""
-"Додавати параметри Енігми2 і інформацію про Dreambox, таку як сер.номер та "
-"іншу... якщо доступна"
 
 #
 msgid "Adds network configuration if enabled."
@@ -669,13 +647,10 @@ msgstr "Після виконання"
 msgid "After pressing OK, please wait!"
 msgstr ""
 
-#
 msgid ""
 "After the start wizard is completed, you need to protect single services. "
-"Refer to your dreambox's manual on how to do that."
+"Refer to your receiver's manual on how to do that."
 msgstr ""
-"Після завершення роботи помічника Ви можете встановити обмеження на деякі "
-"сервіси. Як це зробити, Ви можете прочитати в інструкції. "
 
 #
 msgid "Album"
@@ -1409,9 +1384,8 @@ msgstr ""
 msgid "Copy"
 msgstr ""
 
-#
-msgid "Could not connect to Dreambox .NFI Image Feed Server:"
-msgstr "Підключення з сервером Dreambox .NFI Image не вдалось:"
+msgid "Could not connect to receiver .NFI Image Feed Server:"
+msgstr ""
 
 #
 msgid "Could not load Medium! No disc inserted?"
@@ -1446,10 +1420,9 @@ msgstr "Налаштування CrashlogAutoSubmit"
 msgid "CrashlogAutoSubmit settings..."
 msgstr "Налаштування CrashlogAutoSubmit..."
 
-#
 msgid ""
 "Crashlogs found!\n"
-"Send them to Dream Multimedia?"
+"Send them to the Image Developper?"
 msgstr ""
 
 #
@@ -1485,6 +1458,9 @@ msgid "Current Transponder"
 msgstr "Поточний транспондер"
 
 msgid "Current device: "
+msgstr ""
+
+msgid "Current event EPG"
 msgstr ""
 
 #
@@ -1879,9 +1855,8 @@ msgstr "Хочете виконати ще один ручний пошук ка
 msgid "Do you want to download the image to %s ?"
 msgstr ""
 
-#
-msgid "Do you want to enable the parental control feature on your dreambox?"
-msgstr "Ви хочете встановити батьківський контроль на Dreambox?"
+msgid "Do you want to enable the parental control feature on your receiver?"
+msgstr ""
 
 #
 msgid "Do you want to install the package:\n"
@@ -1895,9 +1870,8 @@ msgstr "Ви хочете відтворити DVD, який є в привод�
 msgid "Do you want to preview this DVD before burning?"
 msgstr "Ви хочете переглянути цей DVD перед записом?"
 
-#
-msgid "Do you want to reboot your Dreambox?"
-msgstr "Бажаєте перезавантажити Dreambox?"
+msgid "Do you want to reboot your receiver?"
+msgstr ""
 
 #
 msgid "Do you want to remove the package:\n"
@@ -1919,17 +1893,13 @@ msgstr ""
 "Бажаєте віправити свою електронну адресу і ім'я, щоб ми могли зв'язатися з "
 "Вами у разі потреби?"
 
-#
-msgid "Do you want to update your Dreambox?"
-msgstr "Бажаєте оновити пакети?"
+msgid "Do you want to update your receiver?"
+msgstr ""
 
-#
 msgid ""
-"Do you want to update your Dreambox?\n"
+"Do you want to update your receiver?\n"
 "After pressing OK, please wait!"
 msgstr ""
-"Бажаєте оновити ПЗ вашого Dreambox?\n"
-"Після натискання OK, будь ласка зачекайте!"
 
 #
 msgid "Do you want to upgrade the package:\n"
@@ -1991,14 +1961,6 @@ msgstr "Завантажується..."
 #
 msgid "Downloading plugin information. Please wait..."
 msgstr "Завантаження інформації про додатки. Зачекайте..."
-
-#
-msgid "Dreambox format data DVD (HDTV compatible)"
-msgstr "DVD дані в Dreambox-формат (HDTV-сумісний)"
-
-#
-msgid "Dreambox software because updates are available."
-msgstr "ПЗ Dreambox, тому що оновлення доступні."
 
 #
 msgid "Dutch"
@@ -2065,13 +2027,11 @@ msgstr "Редагувати список каналів"
 msgid "Edit settings"
 msgstr "редагування налаштувань"
 
-#
-msgid "Edit the Nameserver configuration of your Dreambox.\n"
-msgstr "Редагувати налаштування Nameserver вашого Dreambox.\n"
+msgid "Edit the Nameserver configuration of your receiver.\n"
+msgstr ""
 
-#
-msgid "Edit the network configuration of your Dreambox.\n"
-msgstr "Редагувати налаштування мережі Dreambox.\n"
+msgid "Edit the network configuration of your receiver.\n"
+msgstr ""
 
 #
 msgid "Edit title"
@@ -2572,7 +2532,7 @@ msgstr ""
 msgid "GotoX calibration"
 msgstr ""
 
-msgid "Graph MEpg Settings"
+msgid "GraphMultiEpg Settings"
 msgstr ""
 
 #
@@ -3668,9 +3628,8 @@ msgstr "Ні, але відтворити фільм з початку"
 msgid "No, do nothing."
 msgstr "Ні, не робити нічого."
 
-#
-msgid "No, just start my dreambox"
-msgstr "Ні, просто ввімкнути мого Dreambox'a"
+msgid "No, just start my receiver"
+msgstr ""
 
 msgid "No, never"
 msgstr ""
@@ -3920,6 +3879,12 @@ msgstr "Телефонний номер"
 msgid "PiPSetup"
 msgstr "Налаштування PiP"
 
+msgid "Picon"
+msgstr ""
+
+msgid "Picon and Service Name"
+msgstr ""
+
 #
 msgid "PicturePlayer"
 msgstr "Перегляд зображень"
@@ -4077,6 +4042,9 @@ msgstr "Будь ласка натисніть OK для продовження.
 #
 msgid "Please press OK!"
 msgstr "Натисніть OK!"
+
+msgid "Please select a default EPG type..."
+msgstr ""
 
 #
 msgid "Please select a playlist to delete..."
@@ -5048,6 +5016,9 @@ msgstr "Виберіть канал для запису з"
 msgid "Select copy destination for:"
 msgstr ""
 
+msgid "Select default EPG type..."
+msgstr ""
+
 msgid "Select desired image from feed list"
 msgstr ""
 
@@ -5130,6 +5101,9 @@ msgstr "Сербська"
 msgid "Service"
 msgstr "Інформація каналу"
 
+msgid "Service Name"
+msgstr ""
+
 #
 msgid "Service Scan"
 msgstr "Пошук каналів"
@@ -5137,6 +5111,9 @@ msgstr "Пошук каналів"
 #
 msgid "Service Searching"
 msgstr "Пошук каналів"
+
+msgid "Service Title mode"
+msgstr ""
 
 #
 msgid "Service has been added to the favourites."
@@ -5268,12 +5245,6 @@ msgstr "Показати інформацію"
 msgid "Show Message when Recording starts"
 msgstr "Показати повідомлення, коли запис розпочався"
 
-msgid "Show Picons"
-msgstr ""
-
-msgid "Show Service Names "
-msgstr ""
-
 #
 msgid "Show WLAN Status"
 msgstr "Показати WLAN статус"
@@ -5345,9 +5316,8 @@ msgstr "Показати стан безпровідного LAN з'єднанн
 msgid "Shutdown"
 msgstr ""
 
-#
-msgid "Shutdown Dreambox after"
-msgstr "Вимкнути Dreambox після"
+msgid "Shutdown receiver after"
+msgstr ""
 
 msgid "Side by Side"
 msgstr ""
@@ -5825,9 +5795,8 @@ msgstr "Тест налаштувань DiSEqC"
 msgid "Test mode"
 msgstr "Тестовий режим"
 
-#
-msgid "Test the network configuration of your Dreambox.\n"
-msgstr "Тест мережевого з'єднання Вашого Dreambox'а.\n"
+msgid "Test the network configuration of your receiver.\n"
+msgstr ""
 
 #
 msgid "Test-Messagebox?"
@@ -5848,23 +5817,16 @@ msgid ""
 "Please press OK to continue."
 msgstr ""
 
-#
 msgid ""
 "Thank you for using the wizard. Your box is now ready to use.\n"
-"Please press OK to start using your Dreambox."
+"Please press OK to start using your receiver."
 msgstr ""
-"Дякуємо за використання помічника. Ваш Dreambox готовий до використання.\n"
-"Будь-ласка натисніть OK, для користування Dreambox'ом."
 
-#
 msgid ""
 "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to "
-"create a Dreambox format data DVD (which will not play in stand-alone DVD "
+"create a special format data DVD (which will not play in stand-alone DVD "
 "players) instead?"
 msgstr ""
-"DVD-стандарт не підтримує H.264 (HDTV) відео. Ви хочете створити DVD з "
-"даними в Dreambox-форматі (який не буде програватись в стандартних DVD "
-"програвачах)?"
 
 #
 msgid ""
@@ -5944,13 +5906,10 @@ msgstr ""
 msgid "The installation of the default services lists is finished."
 msgstr "Встановлення стандартного списку каналів завершено."
 
-#
 msgid ""
 "The installation of the default settings is finished. You can now continue "
-"configuring your Dreambox by pressing the OK button on the remote control."
+"configuring your receiver by pressing the OK button on the remote control."
 msgstr ""
-"Встановлення стандартних параметрів завершено. Ви можете продовжити "
-"налаштування Dreambox'а натиснувши OK на пульті."
 
 msgid "The md5sum validation failed, the file may be corrupted!"
 msgstr ""
@@ -6075,17 +6034,12 @@ msgstr ""
 "диску"
 
 #
-#, python-format
-msgid "This Dreambox can't decode %s streams!"
-msgstr "Dreambox не в змозі декодувати %s потік!"
-
-#
 msgid "This is step number 2."
 msgstr "Це крок номер 2."
 
 msgid ""
 "This plugin creates a USB stick which can be used to update the firmware of "
-"your Dreambox without the need for a network or WLAN connection.\n"
+"your receiver without the need for a network or WLAN connection.\n"
 "First, a USB stick needs to be prepared so that it becomes bootable.\n"
 "In the next step, an NFI image file can be downloaded from the update server "
 "and saved on the USB stick.\n"
@@ -6108,6 +6062,10 @@ msgstr "Цей додаток буде встановлено"
 #
 msgid "This plugin will be removed."
 msgstr "Цей додаток буде видалено"
+
+#, python-format
+msgid "This receiver can't decode %s streams!"
+msgstr ""
 
 #
 msgid ""
@@ -6296,7 +6254,7 @@ msgid "To subtitle selection"
 msgstr ""
 
 msgid ""
-"To update your Dreambox firmware, please follow these steps:\n"
+"To update your receiver firmware, please follow these steps:\n"
 "1) Turn off your box with the rear power switch and make sure the bootable "
 "USB stick is plugged in.\n"
 "2) Turn mains back on and hold the DOWN button on the front panel pressed "
@@ -6545,17 +6503,15 @@ msgstr ""
 msgid "Upgrade finished."
 msgstr "Оновлення завершено."
 
-#
-msgid "Upgrade finished. Do you want to reboot your Dreambox?"
-msgstr "Оновлення завершено. Бажаєте перезавантажити Dreambox?"
+msgid "Upgrade finished. Do you want to reboot your receiver?"
+msgstr ""
 
 #
 msgid "Upgrading"
 msgstr "Оновлення"
 
-#
-msgid "Upgrading Dreambox... Please wait"
-msgstr "Оновлення Dreambox'a... Прохання зачекати"
+msgid "Upgrading receiver... Please wait"
+msgstr ""
 
 #
 msgid "Use"
@@ -6936,53 +6892,36 @@ msgstr ""
 "Перейдіть до місця, котре слугуватиме кінцем файлу. Натисніть ОК,вибравши "
 "'кінець вирізання'. Це все."
 
-#
 msgid ""
 "Welcome to the Image upgrade wizard. The wizard will assist you in upgrading "
-"the firmware of your Dreambox by providing a backup facility for your "
+"the firmware of your receiver by providing a backup facility for your "
 "current settings and a short explanation of how to upgrade your firmware."
 msgstr ""
-"Ласкаво просимо до помічника оновлення Іміджів. Він допоможе Вам в оновленні "
-"програмного забезпечення, забезпечуючи резервне копіювання параметрів та "
-"налаштувань і коротко пояснить як оновити програмне забезпечення."
 
-#
 msgid ""
 "Welcome to the cleanup wizard.\n"
 "\n"
 "We have detected that your available internal memory has dropped below 2MB.\n"
-"To ensure stable operation of your Dreambox, the internal memory should be "
+"To ensure stable operation of your receiver, the internal memory should be "
 "cleaned up.\n"
 "You can use this wizard to remove some extensions.\n"
 msgstr ""
-"Ласкаво просимо до майстер очищення.\n"
-"\n"
-"Виявлено, що внутрішньої пам'яті доступно менше 2Мб.\n"
-"Щоб забезпечити стабільну роботу Вашого Dreambox, внутрішня пам'ять повинна "
-"бути очищена.\n"
-"Ви можете використати цей майстер для видалення деяких компонентів.\n"
 
-#
 msgid ""
 "Welcome.\n"
 "\n"
-"If you want to connect your Dreambox to the Internet, this wizard will guide "
-"you through the basic network setup of your Dreambox.\n"
+"If you want to connect your receiver to the Internet, this wizard will guide "
+"you through the basic network setup of your receiver.\n"
 "\n"
 "Press OK to start configuring your network"
 msgstr ""
 
-#
 msgid ""
 "Welcome.\n"
 "\n"
-"This start wizard will guide you through the basic setup of your Dreambox.\n"
+"This start wizard will guide you through the basic setup of your receiver.\n"
 "Press the OK button on your remote control to move to the next step."
 msgstr ""
-"Ласкаво просимо.\n"
-"\n"
-"Цей помічник допоможе Вам зробити основні налаштування вашого Dreambox'а\n"
-"Натисніть на ОК щоб перейти до слідуючого кроку."
 
 #
 msgid "Welcome..."
@@ -7153,8 +7092,7 @@ msgstr ""
 msgid "You can install this plugin."
 msgstr "Ви можете встановити цей додаток"
 
-#
-msgid "You can only burn Dreambox recordings!"
+msgid "You can only burn receiver recordings!"
 msgstr ""
 
 #
@@ -7215,18 +7153,13 @@ msgstr ""
 msgid "You have to wait %s!"
 msgstr "Необхідно почекати %s!"
 
-#
 msgid ""
-"You need a PC connected to your dreambox. If you need further instructions, "
+"You need a PC connected to your receiver. If you need further instructions, "
 "please visit the website http://www.dm7025.de.\n"
-"Your dreambox will now be halted. After you have performed the update "
+"Your receiver will now be halted. After you have performed the update "
 "instructions from the website, your new firmware will ask you to restore "
 "your settings."
 msgstr ""
-"Вам потрібно з'єднати PC з Вашим Drembox'ом. Якщо необхідно більше "
-"інформації, будь ласка відвідайте сайт http://www.dm7025.de.\n"
-"Зараз Ваш Drembox буде вимкнено. Після виконання всіх інструкцій з сайта, "
-"Ваше нове програмне забезпечення запропонує відновити свої налаштування."
 
 msgid ""
 "You need to set a PIN code and hide it from your children.\n"
@@ -7247,19 +7180,6 @@ msgstr ""
 
 #
 msgid ""
-"Your Dreambox is now ready to use.\n"
-"\n"
-"Your internet connection is working now.\n"
-"\n"
-"Please press OK to continue."
-msgstr ""
-
-#
-msgid "Your Dreambox will restart after pressing OK on your remote control."
-msgstr "Ваш Dreambox перезавантажиться після натиснення ОК на пульті ДУ."
-
-#
-msgid ""
 "Your backup succeeded. We will now continue to explain the further upgrade "
 "process."
 msgstr ""
@@ -7277,18 +7197,6 @@ msgstr ""
 #
 msgid "Your current collection will get lost!"
 msgstr ""
-
-#
-msgid "Your dreambox is shutting down. Please stand by..."
-msgstr "Ваш Dreambox вимикається. Прохання зачекати..."
-
-#
-msgid ""
-"Your dreambox isn't connected to the internet properly. Please check it and "
-"try again."
-msgstr ""
-"Ваш Dreambox не під'єднаний до інтернету належним чином. Будь ласка "
-"перевірте і спробуйте знов."
 
 #
 msgid "Your email address:"
@@ -7322,10 +7230,29 @@ msgstr "Ваше ім'я (необов'язково):"
 msgid "Your network configuration has been activated."
 msgstr "Конфігурація вашої мережі активована."
 
+msgid ""
+"Your receiver is now ready to use.\n"
+"\n"
+"Your internet connection is working now.\n"
+"\n"
+"Please press OK to continue."
+msgstr ""
+
 msgid "Your receiver is rebooting"
 msgstr ""
 
 msgid "Your receiver is shutting down"
+msgstr ""
+
+msgid "Your receiver is shutting down. Please stand by..."
+msgstr ""
+
+msgid ""
+"Your receiver isn't connected to the internet properly. Please check it and "
+"try again."
+msgstr ""
+
+msgid "Your receiver will restart after pressing OK on your remote control."
 msgstr ""
 
 #
@@ -8344,6 +8271,9 @@ msgstr "попередній канал"
 msgid "previous channel in history"
 msgstr "попередній канал в історії"
 
+msgid "receiver software because updates are available."
+msgstr ""
+
 #
 msgid "record"
 msgstr "запис"
@@ -8634,6 +8564,9 @@ msgstr ""
 msgid "special events"
 msgstr ""
 
+msgid "special format data DVD (HDTV compatible)"
+msgstr ""
+
 msgid "sports (general)"
 msgstr ""
 
@@ -8864,13 +8797,10 @@ msgstr "Так"
 msgid "yes (keep feeds)"
 msgstr "Так"
 
-#
 msgid ""
-"your dreambox might be unusable now. Please consult the manual for further "
-"assistance before rebooting your dreambox."
+"your receiver might be unusable now. Please consult the manual for further "
+"assistance before rebooting your receiver."
 msgstr ""
-"Ваш Dreambox зараз може бути непридатним для роботи. Будь ласка перегляньте "
-"інструкцію користувача перед тим як перезавантажити ваш Dreambox."
 
 #
 msgid "zap"

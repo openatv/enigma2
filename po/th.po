@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1-En-Th\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-07-25 16:21+0200\n"
+"POT-Creation-Date: 2012-08-05 10:00+0200\n"
 "PO-Revision-Date: 2010-04-08 18:13+0700\n"
 "Last-Translator: Tony - Thaidreambox\n"
 "Language-Team: Tony @ Thai Dreambox <tonyboyth@gmail.com>\n"
@@ -35,10 +35,8 @@ msgstr ""
 
 msgid ""
 "\n"
-"Backup your Dreambox settings."
+"Backup your receiver settings."
 msgstr ""
-"\n"
-"สำรองการตั้งค่าดรีมบอกซ์"
 
 msgid ""
 "\n"
@@ -49,15 +47,13 @@ msgstr ""
 
 msgid ""
 "\n"
-"Manage extensions or plugins for your Dreambox"
+"Manage extensions or plugins for your receiver"
 msgstr ""
 
 msgid ""
 "\n"
-"Online update of your Dreambox software."
+"Online update of your receiver software."
 msgstr ""
-"\n"
-"ปรับปรุงดรีมบอกซ์แบบออนไลน์"
 
 msgid ""
 "\n"
@@ -68,24 +64,20 @@ msgstr ""
 
 msgid ""
 "\n"
-"Restore your Dreambox settings."
-msgstr ""
-"\n"
-"นำค่าดรีมบอกซ์ที่ตั้งไว้กลับมาใช้"
-
-msgid ""
-"\n"
-"Restore your Dreambox with a new firmware."
-msgstr ""
-"\n"
-"นำสำรองกลับมาใช้กับเฟิร์มแวร์ใหม่"
-
-msgid ""
-"\n"
 "Restore your backups by date."
 msgstr ""
 "\n"
 "นำสำรองกลับมาใช้ตามวันที่"
+
+msgid ""
+"\n"
+"Restore your receiver settings."
+msgstr ""
+
+msgid ""
+"\n"
+"Restore your receiver with a new firmware."
+msgstr ""
 
 msgid ""
 "\n"
@@ -149,6 +141,9 @@ msgstr ""
 msgid "%2d:%02d:%02d"
 msgstr ""
 
+msgid "%A %d %B"
+msgstr ""
+
 #. TRANSLATORS: long date representations dayname daynum monthname in strftime() format! See 'man strftime'
 msgid "%A %e %B"
 msgstr ""
@@ -201,6 +196,9 @@ msgstr[1] ""
 #, python-format
 msgid "%d services found!"
 msgstr "บริการนี้ %d ไม่มี!"
+
+msgid "%d-%m"
+msgstr ""
 
 msgid "%d.%B %Y"
 msgstr "%d.%B %Y"
@@ -347,17 +345,13 @@ msgstr ""
 
 msgid ""
 "A finished record timer wants to set your\n"
-"Dreambox to standby. Do that now?"
+"receiver to standby. Do that now?"
 msgstr ""
-"บันทึกรายการเสร็จแล้ว เครื่องดรีมบอกซ์\n"
-"กำลังจะ Standby ให้ทำตอนนี้หรือไม่?"
 
 msgid ""
 "A finished record timer wants to shut down\n"
-"your Dreambox. Shutdown now?"
+"your receiver. Shutdown now?"
 msgstr ""
-"บันทึกรายการเสร็จแล้ว เครื่องดรีมบอกซ์\n"
-"กำลังจะปิด (Shutdown) ต้องการให้ปิดตอนนี้หรือไม่?"
 
 msgid "A graphical EPG for all services of an specific bouquet"
 msgstr "แสดงผังรายการแบบกราฟิกของกลุ่มรายการที่เลือก"
@@ -407,17 +401,13 @@ msgstr ""
 
 msgid ""
 "A sleep timer wants to set your\n"
-"Dreambox to standby. Do that now?"
+"receiver to standby. Do that now?"
 msgstr ""
-"เครื่องดรีมบอกซ์กำลังจะ Standby\n"
-"ต้องการ Standby ตอนนี้หรือไม่?"
 
 msgid ""
 "A sleep timer wants to shut down\n"
-"your Dreambox. Shutdown now?"
+"your receiver. Shutdown now?"
 msgstr ""
-"เครื่องดรีมบอกซ์กำลังจะปิด (Shutdown)\n"
-"ต้องการปิดตอนนี้หรือไม่?"
 
 msgid "A small overview of the available icon states and actions."
 msgstr "ไอคอนแสดงสถานะและการทำงานต่างๆ"
@@ -508,9 +498,9 @@ msgid "Add/Remove timer for current event"
 msgstr ""
 
 msgid ""
-"Adds enigma2 settings and dreambox model informations like SN, rev... if "
+"Adds enigma2 settings and receiver model informations like SN, rev... if "
 "enabled."
-msgstr "เติมข้อมูลการตั้งค่า รุ่นของดรีมบอกซ์ เช่น หมายเลขเครื่อง ชุดแก้ไจ ถ้าต้องการ"
+msgstr ""
 
 msgid "Adds network configuration if enabled."
 msgstr "ตั้งค่าเครือข่าย ถ้าจะใช้งาน"
@@ -559,8 +549,8 @@ msgstr ""
 
 msgid ""
 "After the start wizard is completed, you need to protect single services. "
-"Refer to your dreambox's manual on how to do that."
-msgstr "เมื่อจบการทำงานของตัวช่วย ท่านต้องเปิดส่วนป้องกันบริการ อ่านเพิ่มเติมจากคู่มือดรีมบอกซ์"
+"Refer to your receiver's manual on how to do that."
+msgstr ""
 
 msgid "Album"
 msgstr "อัลบัม"
@@ -1155,8 +1145,8 @@ msgstr ""
 msgid "Copy"
 msgstr ""
 
-msgid "Could not connect to Dreambox .NFI Image Feed Server:"
-msgstr "ติดต่อเซอร์พเวอร์ดรีมบอกซ์เพื่อโหลดอิมเมจ .NFI ไม่ได้"
+msgid "Could not connect to receiver .NFI Image Feed Server:"
+msgstr ""
 
 msgid "Could not load Medium! No disc inserted?"
 msgstr "โหลดไม่ได้ ยังไม่ได้ใส่แผ่นหรือเปล่า?"
@@ -1186,10 +1176,8 @@ msgstr "ตั้งค่าส่งรายงานปัญหาเคร
 
 msgid ""
 "Crashlogs found!\n"
-"Send them to Dream Multimedia?"
+"Send them to the Image Developper?"
 msgstr ""
-"พบรายงานปัญหาเครื่อง!\n"
-"ส่งข้อมูลให้ Dream Multimedia หรือไม่?"
 
 msgid "Create DVD-ISO"
 msgstr "สร้างแผ่นดีวีดีแบบ ISO"
@@ -1220,6 +1208,9 @@ msgid "Current Transponder"
 msgstr "ทรานสปอนเดอร์ปัจจุบัน"
 
 msgid "Current device: "
+msgstr ""
+
+msgid "Current event EPG"
 msgstr ""
 
 msgid "Current settings:"
@@ -1543,8 +1534,8 @@ msgstr "ท่านต้องการที่จะทำการค้น
 msgid "Do you want to download the image to %s ?"
 msgstr ""
 
-msgid "Do you want to enable the parental control feature on your dreambox?"
-msgstr "ท่านต้องการที่จะใช้งานส่วนควบคุมอายุการรับชมในเครื่องดรีมบอกซ์ของท่านหรือไม่?"
+msgid "Do you want to enable the parental control feature on your receiver?"
+msgstr ""
 
 msgid "Do you want to install the package:\n"
 msgstr "ท่านต้องการที่จะติดตั้งส่วนประกอบนี้:\n"
@@ -1555,8 +1546,8 @@ msgstr "ท่านต้องการที่จะเล่นแผ่น
 msgid "Do you want to preview this DVD before burning?"
 msgstr "ดูเนื้อหาดีวีดีก่อนเขียนลงแผ่นหรือไม่?"
 
-msgid "Do you want to reboot your Dreambox?"
-msgstr "จะให้เครื่อดรีมบอกซ์ จะเริ่มระบบใหม่ (Reboot) หรือไม่?"
+msgid "Do you want to reboot your receiver?"
+msgstr ""
 
 msgid "Do you want to remove the package:\n"
 msgstr "ท่านต้องการที่จะลบส่วนประกอบนี้:\n"
@@ -1572,15 +1563,13 @@ msgid ""
 "if needed?"
 msgstr "ต้องการส่งอีเมลล์และชื่อของท่านเพื่อให้เราติดต่อเมื่อต้องการหรือไม่?"
 
-msgid "Do you want to update your Dreambox?"
-msgstr "ตกลงที่จะปรับปรุงเครื่องดรีมบอกซ์ของท่านหรือไม่?"
+msgid "Do you want to update your receiver?"
+msgstr ""
 
 msgid ""
-"Do you want to update your Dreambox?\n"
+"Do you want to update your receiver?\n"
 "After pressing OK, please wait!"
 msgstr ""
-"ตกลงที่จะปรับปรุงดรีมบอกซ์ของท่านหรือไม่?\n"
-"กดปุ่ม OK แล้วรอสักครู่!"
 
 msgid "Do you want to upgrade the package:\n"
 msgstr "ยืนยันจะปรับปรุงส่วนประกอบนี้:\n"
@@ -1629,12 +1618,6 @@ msgstr "กำลังดาวน์โหลด"
 
 msgid "Downloading plugin information. Please wait..."
 msgstr "กำลังดาวน์โหลดข้อมูล Plugin กรุณารอสักครู่..."
-
-msgid "Dreambox format data DVD (HDTV compatible)"
-msgstr "ฟอร์เมตดีวีดีแบบข้อมูล (ใช้ได้กับ HDTV)"
-
-msgid "Dreambox software because updates are available."
-msgstr "มีซอพท์แวร์สำหรับปรับปรุงเครื่องดรีมบอกซ์"
 
 msgid "Dutch"
 msgstr "ภาษาดัช"
@@ -1688,11 +1671,11 @@ msgstr "แก้ไขสารบัญบริการ"
 msgid "Edit settings"
 msgstr "แก้ไขการตั้งค่า"
 
-msgid "Edit the Nameserver configuration of your Dreambox.\n"
-msgstr "แก้ไขการตั้งค่า Nameserver บนเครื่องดรีมบอกซ์ของท่าน\n"
+msgid "Edit the Nameserver configuration of your receiver.\n"
+msgstr ""
 
-msgid "Edit the network configuration of your Dreambox.\n"
-msgstr "แก้ไขการตั้งค่าเครือข่ายเครื่อดรีมบอกซ์ของท่าน\n"
+msgid "Edit the network configuration of your receiver.\n"
+msgstr ""
 
 msgid "Edit title"
 msgstr "แก้ไขชื่อเรื่อง"
@@ -2109,7 +2092,7 @@ msgstr ""
 msgid "GotoX calibration"
 msgstr ""
 
-msgid "Graph MEpg Settings"
+msgid "GraphMultiEpg Settings"
 msgstr ""
 
 msgid "Graphical Multi EPG"
@@ -3001,8 +2984,8 @@ msgstr "ไม่ - กลับไปเริ่มต้นใหม่"
 msgid "No, do nothing."
 msgstr "ไม่ - ไม่ต้องการทำ"
 
-msgid "No, just start my dreambox"
-msgstr "ไม่ - เพิ่งเริ่มใช้งานเครื่องดรีมบอกซ์"
+msgid "No, just start my receiver"
+msgstr ""
 
 msgid "No, never"
 msgstr ""
@@ -3207,6 +3190,12 @@ msgstr "เลขหมาย"
 msgid "PiPSetup"
 msgstr "ตั้งค่า PIP"
 
+msgid "Picon"
+msgstr ""
+
+msgid "Picon and Service Name"
+msgstr ""
+
 msgid "PicturePlayer"
 msgstr "ดูภาพ"
 
@@ -3335,6 +3324,9 @@ msgstr "กรุณากดปุ่ม OK เพื่อทำงานต�
 
 msgid "Please press OK!"
 msgstr "กรุณากดปุ่ม OK!"
+
+msgid "Please select a default EPG type..."
+msgstr ""
 
 msgid "Please select a playlist to delete..."
 msgstr "กรุณาเลือกสารบัญรายการที่จะลบ..."
@@ -4115,6 +4107,9 @@ msgstr "เลือกบันทึกรายการจาก"
 msgid "Select copy destination for:"
 msgstr ""
 
+msgid "Select default EPG type..."
+msgstr ""
+
 msgid "Select desired image from feed list"
 msgstr ""
 
@@ -4181,11 +4176,17 @@ msgstr "ภาษาเซอร์เบี่ยน"
 msgid "Service"
 msgstr "บริการ"
 
+msgid "Service Name"
+msgstr ""
+
 msgid "Service Scan"
 msgstr "ค้นหาบริการ"
 
 msgid "Service Searching"
 msgstr "กำลังค้นหาบริการ"
+
+msgid "Service Title mode"
+msgstr ""
 
 msgid "Service has been added to the favourites."
 msgstr "บริการนี้ถูกเพิ่มเข้ารายการโปรดแล้ว"
@@ -4298,12 +4299,6 @@ msgstr "แสดงข้อมูล"
 msgid "Show Message when Recording starts"
 msgstr "แสดงข้อความเริ่มเมื่อบับทึกรายการ"
 
-msgid "Show Picons"
-msgstr ""
-
-msgid "Show Service Names "
-msgstr ""
-
 msgid "Show WLAN Status"
 msgstr "แสดงสถานะของ WLAN"
 
@@ -4364,8 +4359,8 @@ msgstr "แสดงสถานะการเชื่อมต่อเคร
 msgid "Shutdown"
 msgstr ""
 
-msgid "Shutdown Dreambox after"
-msgstr "ปิดเครื่องดรีมบอกซ์หลังจาก"
+msgid "Shutdown receiver after"
+msgstr ""
 
 msgid "Side by Side"
 msgstr ""
@@ -4759,8 +4754,8 @@ msgstr "ประเภทการทดสอบ"
 msgid "Test mode"
 msgstr "โหมดทดสอบ"
 
-msgid "Test the network configuration of your Dreambox.\n"
-msgstr "ทดสอบการตั้งค่าเครือข่ายของเครื่องดรีมบอกซ์\n"
+msgid "Test the network configuration of your receiver.\n"
+msgstr ""
 
 msgid "Test-Messagebox?"
 msgstr "ทดสอบกล่องข้อความ?"
@@ -4783,18 +4778,14 @@ msgstr ""
 
 msgid ""
 "Thank you for using the wizard. Your box is now ready to use.\n"
-"Please press OK to start using your Dreambox."
+"Please press OK to start using your receiver."
 msgstr ""
-"ขอขอบคุณที่ใช้บริการตัวช่วยตั้งค่า เครื่องของท่านสามารถใช้งานได้ตามปกติแล้ว\n"
-"กรุณากดปุ่ม OK เพื่อเริ่มใช้งานดรีมบอกซ์ของท่าน"
 
 msgid ""
 "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to "
-"create a Dreambox format data DVD (which will not play in stand-alone DVD "
+"create a special format data DVD (which will not play in stand-alone DVD "
 "players) instead?"
 msgstr ""
-"ตามมาตรฐานของดีวีดีไม่รองรับ H.264 (HDTV) "
-"ต้องการบันทึกไฟล์จากดรีมบอกซ์ในโหมดข้อมูลแทนหรือไม่ (ไม่สามารถเล่นกับเครื่องเล่นได้)?"
 
 msgid ""
 "The NetworkWizard extension is not installed!\n"
@@ -4867,10 +4858,8 @@ msgstr "การติดตั้งบริการเริ่มต้น
 
 msgid ""
 "The installation of the default settings is finished. You can now continue "
-"configuring your Dreambox by pressing the OK button on the remote control."
+"configuring your receiver by pressing the OK button on the remote control."
 msgstr ""
-"การติดตั้งตามค่าเริ่มต้นเสร็จแล้ว ท่านสามารถดำเนินการตั้งค่าอื่นๆ สำหรับ Dreambox "
-"ของท่านต่อโดยกดปุ่ม OK ที่รีโมท"
 
 msgid "The md5sum validation failed, the file may be corrupted!"
 msgstr ""
@@ -4970,16 +4959,12 @@ msgid ""
 "content on the disc."
 msgstr "แผ่น DVD-RW นี้ได้รับการฟอร์แมทมาแล้ว หากทำซ้ำจะเป็นการลบข้อมูลออกทั้งหมด"
 
-#, python-format
-msgid "This Dreambox can't decode %s streams!"
-msgstr "Dreambox เครื่องนี้ไม่สามารถอ่านสัญญาณ %s ได้!"
-
 msgid "This is step number 2."
 msgstr "ขั้นตอนที่ 2"
 
 msgid ""
 "This plugin creates a USB stick which can be used to update the firmware of "
-"your Dreambox without the need for a network or WLAN connection.\n"
+"your receiver without the need for a network or WLAN connection.\n"
 "First, a USB stick needs to be prepared so that it becomes bootable.\n"
 "In the next step, an NFI image file can be downloaded from the update server "
 "and saved on the USB stick.\n"
@@ -4998,6 +4983,10 @@ msgstr "ปลั๊กอินตัวนี้จะถูกติดตั
 
 msgid "This plugin will be removed."
 msgstr "ปลั๊กอินตัวนี้จะถูกลบออก"
+
+#, python-format
+msgid "This receiver can't decode %s streams!"
+msgstr ""
 
 msgid ""
 "This test checks for configured Nameservers.\n"
@@ -5151,7 +5140,7 @@ msgid "To subtitle selection"
 msgstr ""
 
 msgid ""
-"To update your Dreambox firmware, please follow these steps:\n"
+"To update your receiver firmware, please follow these steps:\n"
 "1) Turn off your box with the rear power switch and make sure the bootable "
 "USB stick is plugged in.\n"
 "2) Turn mains back on and hold the DOWN button on the front panel pressed "
@@ -5345,14 +5334,14 @@ msgstr ""
 msgid "Upgrade finished."
 msgstr "อัพเกรดเสร็จสิ้น"
 
-msgid "Upgrade finished. Do you want to reboot your Dreambox?"
-msgstr "อัพเกรดเสร็จแล้ว ท่านต้องการที่จะบูทเครื่องดรีมบอกซ์หรือไม่?"
+msgid "Upgrade finished. Do you want to reboot your receiver?"
+msgstr ""
 
 msgid "Upgrading"
 msgstr "กำลังอัพเกรด"
 
-msgid "Upgrading Dreambox... Please wait"
-msgstr "กำลังอัพเกรดเครื่องดรีมบอกซ์... กรุณารอสักครู่"
+msgid "Upgrading receiver... Please wait"
+msgstr ""
 
 msgid "Use"
 msgstr "ใช้"
@@ -5665,52 +5654,34 @@ msgstr ""
 
 msgid ""
 "Welcome to the Image upgrade wizard. The wizard will assist you in upgrading "
-"the firmware of your Dreambox by providing a backup facility for your "
+"the firmware of your receiver by providing a backup facility for your "
 "current settings and a short explanation of how to upgrade your firmware."
 msgstr ""
-"ยินดีต้อนรับสู่ตัวช่วยในการอัพเกรด "
-"ตัวช่วยนี้จะช่วยท่านทำการอัพเกรดเฟริ์มแวร์บนเครื่องดรีมบอกซ์โดยที่การตั้งค่าต่างๆ "
-"ในปัตจจุบันจะถูกสำรองไว้ อีกทั้งยังแสดงรายละเอียดสั้นๆ แนะทำท่านตลอดการอัพเกรดอีกด้วย"
 
 msgid ""
 "Welcome to the cleanup wizard.\n"
 "\n"
 "We have detected that your available internal memory has dropped below 2MB.\n"
-"To ensure stable operation of your Dreambox, the internal memory should be "
+"To ensure stable operation of your receiver, the internal memory should be "
 "cleaned up.\n"
 "You can use this wizard to remove some extensions.\n"
 msgstr ""
-"ยินดีต้อนรับ สู่ตัวช่วยในการทำความสะอาดระบบ\n"
-"\n"
-"เราพบว่า เนื้อที่ในหน่วยความจำที่สามารถใช้งานได้ของเครื่องมีน้อยกว่า 2MB.\n"
-"เพื่อให้เครื่อง Dreambox ของท่านทำงานได้อย่างปกติ หน่วยความจำภายในต้องถูกทำความสะอาด\n"
-"โดยที่ท่านสามารถใช้ตัวช่วยนี้ลบข้อมูลที่ไม่จำเป็น เช่น ส่วนเพิ่มเติมต่างๆ \n"
 
 msgid ""
 "Welcome.\n"
 "\n"
-"If you want to connect your Dreambox to the Internet, this wizard will guide "
-"you through the basic network setup of your Dreambox.\n"
+"If you want to connect your receiver to the Internet, this wizard will guide "
+"you through the basic network setup of your receiver.\n"
 "\n"
 "Press OK to start configuring your network"
 msgstr ""
-"ยินดีต้อนรับ\n"
-"\n"
-"หากท่านต้องการให้เครื่องดรีมบอกซ์ ของท่านเชื่อมต่ออินเตอร์เน็ต "
-"ตัวช่วยนี้จะช่วยแนะนำท่านตั้งค่าเครือข่ายเบื้องต้นกับเครื่องดีมบอกซ์ของท่าน\n"
-"\n"
-"กรุณากดปุ่ม OK เพื่อตั้งค่าเครือข่าย"
 
 msgid ""
 "Welcome.\n"
 "\n"
-"This start wizard will guide you through the basic setup of your Dreambox.\n"
+"This start wizard will guide you through the basic setup of your receiver.\n"
 "Press the OK button on your remote control to move to the next step."
 msgstr ""
-"ยินดีต้อนรับ\n"
-"\n"
-"ตัวช่วยนี้จะนำท่านไปสู่การตั้งค่าพื้นฐานกับเครื่องของท่าน\n"
-"กรุณากดปุ่ม OK เพื่อดำเนินการขั้นต่อไป"
 
 msgid "Welcome..."
 msgstr "ยินดีต้อนรับ..."
@@ -5849,7 +5820,7 @@ msgstr ""
 msgid "You can install this plugin."
 msgstr "ท่านสามารถติดตั้งปลั๊กอินตัวนี้ได้"
 
-msgid "You can only burn Dreambox recordings!"
+msgid "You can only burn receiver recordings!"
 msgstr ""
 
 msgid "You can remove this plugin."
@@ -5895,9 +5866,9 @@ msgid "You have to wait %s!"
 msgstr "ต้องรอประมาณ %s!"
 
 msgid ""
-"You need a PC connected to your dreambox. If you need further instructions, "
+"You need a PC connected to your receiver. If you need further instructions, "
 "please visit the website http://www.dm7025.de.\n"
-"Your dreambox will now be halted. After you have performed the update "
+"Your receiver will now be halted. After you have performed the update "
 "instructions from the website, your new firmware will ask you to restore "
 "your settings."
 msgstr ""
@@ -5919,22 +5890,6 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Your Dreambox is now ready to use.\n"
-"\n"
-"Your internet connection is working now.\n"
-"\n"
-"Please press OK to continue."
-msgstr ""
-"เครื่องของท่านพร้อมใช้งานแล้ว\n"
-"\n"
-"การเชื่อมต่ออินเตอร์เน็ทพร้อมแล้ว\n"
-"\n"
-"กดปุ่ม OK เพื่อทำงานต่อ"
-
-msgid "Your Dreambox will restart after pressing OK on your remote control."
-msgstr "เครื่องจะทำการเริ่มระบบใหม่เมื่อท่านกดปุ่ม OK"
-
-msgid ""
 "Your backup succeeded. We will now continue to explain the further upgrade "
 "process."
 msgstr "การสำรองข้อมูลเสร็จสิ้น และจะต่อด้วยขั้ตอนในการปรับปรุงซอพท์แวร์"
@@ -5946,14 +5901,6 @@ msgstr "ข้อมูลที่เลือกใหญ่กว่าดี
 
 msgid "Your current collection will get lost!"
 msgstr ""
-
-msgid "Your dreambox is shutting down. Please stand by..."
-msgstr "กำลังจะปิดเครื่อง (Shutdown) กรุณารอสักครับ"
-
-msgid ""
-"Your dreambox isn't connected to the internet properly. Please check it and "
-"try again."
-msgstr "เครื่องของท่านไม่สามารถเชื่อต่ออินเตอร์เน็ทได้ โปรดตรวจสอบแล้วลองใหม่"
 
 msgid "Your email address:"
 msgstr "อีเมลล์ของท่าน:"
@@ -5984,10 +5931,29 @@ msgstr "ชื่อ (ทางเลือก) :"
 msgid "Your network configuration has been activated."
 msgstr "เครือข่ายของท่านสามารถใช้งานได้แล้ว"
 
+msgid ""
+"Your receiver is now ready to use.\n"
+"\n"
+"Your internet connection is working now.\n"
+"\n"
+"Please press OK to continue."
+msgstr ""
+
 msgid "Your receiver is rebooting"
 msgstr ""
 
 msgid "Your receiver is shutting down"
+msgstr ""
+
+msgid "Your receiver is shutting down. Please stand by..."
+msgstr ""
+
+msgid ""
+"Your receiver isn't connected to the internet properly. Please check it and "
+"try again."
+msgstr ""
+
+msgid "Your receiver will restart after pressing OK on your remote control."
 msgstr ""
 
 msgid ""
@@ -6826,6 +6792,9 @@ msgstr "ช่องรายการก่อนหน้า"
 msgid "previous channel in history"
 msgstr "รายการก่อนหน้าที่จำไว้"
 
+msgid "receiver software because updates are available."
+msgstr ""
+
 msgid "record"
 msgstr "บันทึก"
 
@@ -7061,6 +7030,9 @@ msgstr ""
 msgid "special events"
 msgstr ""
 
+msgid "special format data DVD (HDTV compatible)"
+msgstr ""
+
 msgid "sports (general)"
 msgstr ""
 
@@ -7251,9 +7223,9 @@ msgid "yes (keep feeds)"
 msgstr "ใช่ (เก็บฟีดนี้ไว้)"
 
 msgid ""
-"your dreambox might be unusable now. Please consult the manual for further "
-"assistance before rebooting your dreambox."
-msgstr "เครื่องของท่านไม่เสถียรพอที่จะใช้งาน แนะนำให้ศึกษาคู่มือการใช้งานก่อนบูทเครื่อง"
+"your receiver might be unusable now. Please consult the manual for further "
+"assistance before rebooting your receiver."
+msgstr ""
 
 msgid "zap"
 msgstr "เปลี่ยนช่อง"
