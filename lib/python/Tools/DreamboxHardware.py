@@ -64,17 +64,9 @@ def getFPWasTimerWakeup():
 
 	if boxtype == 'gb800se' or boxtype == 'gb800solo' or boxtype == 'gb800ue':
 		if not wasTimerWakeup:
-			from os import path, system
-			from time import time, strftime, localtime
+			from os import path
 			if path.isfile("/var/.was_wakeup_timer"):
-				ll = open('/var/.was_wakeup_timer', 'r').readline()
-				if len(ll) > 0:
-					wakeUpTime = int(ll)
-				else:
-					wakeUpTime = 0
-				system("echo wakeuptime=%s, current time=%s > /tmp/wakeup.txt" %(strftime("%d/%m/%Y %H:%M",localtime(wakeUpTime)), strftime("%H:%M",localtime(time()))))
-				if (wakeUpTime - time()) < 300:
-					wasTimerWakeup = True
+				wasTimerWakeup = True
 	
 	if wasTimerWakeup:
 		# clear hardware status
@@ -90,11 +82,6 @@ def clearFPWasTimerWakeup():
 			ioctl(fp.fileno(), 10)
 		except IOError:
 			print "clearFPWasTimerWakeup failed!"
-
-	if boxtype == 'gb800se' or boxtype == 'gb800solo' or boxtype == 'gb800ue':
-		from os import path, system
-		if path.isfile("/var/.was_wakeup_timer"):
-			system("rm -f /var/.was_wakeup_timer")
 
 def getBoxtype():
 	try:

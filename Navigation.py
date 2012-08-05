@@ -37,7 +37,7 @@ class Navigation:
 				# before we initiate the standby command.
 				self.standbytimer = eTimer()
 				self.standbytimer.callback.append(self.gotostandby)
-				self.standbytimer.start(15000, True)
+				self.standbytimer.start(25000, True)
 				# We need to give the systemclock the chance to sync with the transponder time, 
 				# before we will make the decision about whether or not we need to shutdown 
 				# after the upcoming recording has completed
@@ -48,7 +48,25 @@ class Navigation:
 
 	def gotostandby(self):
 		from Tools import Notifications
+		if config.misc.boxtype.value == 'gb800se' or config.misc.boxtype.value == 'gb800solo' or config.misc.boxtype.value == 'gb800ue':
+			from time import time, strftime, localtime
+			from os import path, system
+			if path.isfile("/var/.was_wakeup_timer"):
+				ll = open('/var/.was_wakeup_timer', 'r').readline()
+				if len(ll) > 0:
+					wakeUpTime = int(ll)
+				else:
+					wakeUpTime = 0
+				system("echo wakeuptime=%s, current time=%s > /tmp/wakeup.txt" %(strftime("%d/%m/%Y %H:%M",localtime(wakeUpTime)), strftime("%d/%m/%Y %H:%M",localtime(time()))))
+				self.clearFPWasTimerWakeup()
+				if (wakeUpTime - time()) > 300:
+					return
 		Notifications.AddNotification(Screens.Standby.Standby)
+
+	def clearFPWasTimerWakeup(self):
+		from os import path, system
+		if path.isfile("/var/.was_wakeup_timer"):
+			system("rm -f /var/.was_wakeup_timer")
 
 	def checkShutdownAfterRecording(self):
 		if len(self.getRecordings()) or abs(self.RecordTimer.getNextRecordingTime() - time()) <= 360:
