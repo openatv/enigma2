@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2_v2.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-07-25 16:21+0200\n"
+"POT-Creation-Date: 2012-08-05 10:00+0200\n"
 "PO-Revision-Date: 2012-01-31 13:14+0200\n"
 "Last-Translator: DimFil <dimfil.sat@gmail.com>\n"
 "Language-Team: \n"
@@ -32,13 +32,10 @@ msgstr ""
 "\n"
 "Αφού πιέσετε ΟΚ, παρακαλώ περιμένετε!"
 
-#
 msgid ""
 "\n"
-"Backup your Dreambox settings."
+"Backup your receiver settings."
 msgstr ""
-"\n"
-"Αντίγραφο ασφαλείας των ρυθμίσεων."
 
 #
 msgid ""
@@ -48,21 +45,15 @@ msgstr ""
 "\n"
 "Επεξεργασία της πηγής αναβαθμίσεων"
 
-#
 msgid ""
 "\n"
-"Manage extensions or plugins for your Dreambox"
+"Manage extensions or plugins for your receiver"
 msgstr ""
-"\n"
-"Διαχείριση επεκτάσεων ή προσθέτων του δέκτη"
 
-#
 msgid ""
 "\n"
-"Online update of your Dreambox software."
+"Online update of your receiver software."
 msgstr ""
-"\n"
-"Διαδικτυακή ενημέρωση του λογισμικού του δέκτη"
 
 #
 msgid ""
@@ -73,23 +64,6 @@ msgstr ""
 "Πιέστε ΟΚ στο τηλεχειριστήριο για συνέχεια."
 
 #
-msgid ""
-"\n"
-"Restore your Dreambox settings."
-msgstr ""
-"\n"
-"Αποκατάσταση των ρυθμίσεων."
-
-#
-#
-msgid ""
-"\n"
-"Restore your Dreambox with a new firmware."
-msgstr ""
-"\n"
-"Αποκατάσταση του δέκτη με νέο λογισμικό"
-
-#
 #
 msgid ""
 "\n"
@@ -97,6 +71,16 @@ msgid ""
 msgstr ""
 "\n"
 "Αποκατάσταση των αντιγράφων ασφαλείας κατά ημερομηνία."
+
+msgid ""
+"\n"
+"Restore your receiver settings."
+msgstr ""
+
+msgid ""
+"\n"
+"Restore your receiver with a new firmware."
+msgstr ""
 
 #
 #
@@ -178,6 +162,9 @@ msgstr ""
 msgid "%2d:%02d:%02d"
 msgstr ""
 
+msgid "%A %d %B"
+msgstr ""
+
 #. TRANSLATORS: long date representations dayname daynum monthname in strftime() format! See 'man strftime'
 msgid "%A %e %B"
 msgstr ""
@@ -238,6 +225,9 @@ msgstr[1] ""
 #, python-format
 msgid "%d services found!"
 msgstr "%d υπηρεσίες βρέθηκαν!"
+
+msgid "%d-%m"
+msgstr ""
 
 #
 #
@@ -459,23 +449,15 @@ msgstr ""
 msgid "A demo plugin for TPM usage."
 msgstr "Δοκιμαστικό πρόσθετο για χρήση TPM"
 
-#
-#
 msgid ""
 "A finished record timer wants to set your\n"
-"Dreambox to standby. Do that now?"
+"receiver to standby. Do that now?"
 msgstr ""
-"Μία ολοκληρωμένη εγγραφή θέτει το δέκτη σε αναμονή\n"
-"Να εκτελεστεί τώρα;"
 
-#
-#
 msgid ""
 "A finished record timer wants to shut down\n"
-"your Dreambox. Shutdown now?"
+"your receiver. Shutdown now?"
 msgstr ""
-"Μία ολοκληρωμένη εγγραφή θέτει το δέκτη σε βαθιά αναμονή\n"
-"Να εκτελεστεί τώρα;"
 
 #
 #
@@ -542,23 +524,15 @@ msgstr ""
 "\n"
 "Θέλετε να απενεργοποιήσετε το δεύτερο προσαρμογέα δικτύου;"
 
-#
-#
 msgid ""
 "A sleep timer wants to set your\n"
-"Dreambox to standby. Do that now?"
+"receiver to standby. Do that now?"
 msgstr ""
-"Ο χρονοδιακόπτης απενεργοποίησης θέτει το δέκτη σε αναμονή.\n"
-"Να εκτελεστεί τώρα;"
 
-#
-#
 msgid ""
 "A sleep timer wants to shut down\n"
-"your Dreambox. Shutdown now?"
+"your receiver. Shutdown now?"
 msgstr ""
-"Ο χρονοδιακόπτης απενεργοποίησης θέτει το δέκτη σε βαθιά αναμονή.\n"
-"Να εκτελεστεί τώρα;"
 
 #
 #
@@ -700,14 +674,10 @@ msgstr "Προσθήκη στα αγαπημένα"
 msgid "Add/Remove timer for current event"
 msgstr ""
 
-#
-#
 msgid ""
-"Adds enigma2 settings and dreambox model informations like SN, rev... if "
+"Adds enigma2 settings and receiver model informations like SN, rev... if "
 "enabled."
 msgstr ""
-"Προσθέτει πληροφορίες ρυθμίσεων enigma2 και μοντέλου δέκτη όπως ΣΑ, έκδοση "
-"κλπ."
 
 #
 #
@@ -777,14 +747,10 @@ msgstr "Μετά το πρόγραμμα"
 msgid "After pressing OK, please wait!"
 msgstr "Μετά το OK, παρακαλώ περιμένετε!"
 
-#
-#
 msgid ""
 "After the start wizard is completed, you need to protect single services. "
-"Refer to your dreambox's manual on how to do that."
+"Refer to your receiver's manual on how to do that."
 msgstr ""
-"Μετά το τέλος του Οδηγού πρέπει να προστατευτούν τα «single services». "
-"Διάβαστε στο user manual του δέκτη για το πώς γίνεται."
 
 #
 #
@@ -1683,10 +1649,8 @@ msgstr "Μετατροπή συστήματος αρχείων ext3 σε ext4"
 msgid "Copy"
 msgstr "Αντιγραφή"
 
-#
-#
-msgid "Could not connect to Dreambox .NFI Image Feed Server:"
-msgstr "Αδύνατη σύνδεση στο  δέκτη. Διακομιστής λογισμικού NFI:"
+msgid "Could not connect to receiver .NFI Image Feed Server:"
+msgstr ""
 
 #
 #
@@ -1729,13 +1693,10 @@ msgstr "Ρυθμίσης αυτόματης υποβολής σφαλμάτων"
 msgid "CrashlogAutoSubmit settings..."
 msgstr "Ρυθμίσης αυτόματης υποβολής σφαλμάτων..."
 
-#
 msgid ""
 "Crashlogs found!\n"
-"Send them to Dream Multimedia?"
+"Send them to the Image Developper?"
 msgstr ""
-"Βρέθηκαν καταγραφές σφαλμάτων!\n"
-"Να αποσταλούν;"
 
 #
 #
@@ -1781,6 +1742,9 @@ msgstr "Tρέχων αναμεταδότης"
 #
 msgid "Current device: "
 msgstr "Τρέχουσα συσκευή:"
+
+msgid "Current event EPG"
+msgstr ""
 
 #
 #
@@ -2262,10 +2226,8 @@ msgstr "Θέλετε να πραγματοποιηθεί μία ακόμα χε�
 msgid "Do you want to download the image to %s ?"
 msgstr "Είστε σίγουρος για λήψη λογισμικού;"
 
-#
-#
-msgid "Do you want to enable the parental control feature on your dreambox?"
-msgstr "Θέλετε να ενεργοποιηθεί η γονική προστασία στο δέκτη σας;"
+msgid "Do you want to enable the parental control feature on your receiver?"
+msgstr ""
 
 #
 #
@@ -2282,10 +2244,8 @@ msgstr "Θέλετε να παίξει το DVD στη συσκευή;"
 msgid "Do you want to preview this DVD before burning?"
 msgstr "Θέλετε να γίνει προεπισκόπιση αυτού του DVD πριν την εγγραφή;"
 
-#
-#
-msgid "Do you want to reboot your Dreambox?"
-msgstr "Θέλετε να γίνει επανεκκίνηση του δέκτη;"
+msgid "Do you want to reboot your receiver?"
+msgstr ""
 
 #
 #
@@ -2311,19 +2271,13 @@ msgstr ""
 "Θέλετε να εισάγετε το email και το όνομά σας για να επικοινωνήσουμε αν "
 "χρειαστεί;"
 
-#
-#
-msgid "Do you want to update your Dreambox?"
-msgstr "Θέλετε να γίνει αναβάθμιση του δέκτη;"
+msgid "Do you want to update your receiver?"
+msgstr ""
 
-#
-#
 msgid ""
-"Do you want to update your Dreambox?\n"
+"Do you want to update your receiver?\n"
 "After pressing OK, please wait!"
 msgstr ""
-"Θέλετε να αναβαθμίσετε το δέκτη σας;\n"
-"Μετά το ΟΚ, παρακαλώ περίμενετε!"
 
 #
 #
@@ -2401,16 +2355,6 @@ msgstr "Λήψη"
 #
 msgid "Downloading plugin information. Please wait..."
 msgstr "Λήψη πληροφοριών προσθέτων. Παρακαλώ περιμένετε ..."
-
-#
-#
-msgid "Dreambox format data DVD (HDTV compatible)"
-msgstr "Dreambox format data DVD (HDTV compatible)"
-
-#
-#
-msgid "Dreambox software because updates are available."
-msgstr "λογισμικό δέκτη γιατί διατίθενται ενημερώσεις."
 
 #
 msgid "Dutch"
@@ -2493,15 +2437,11 @@ msgstr "Επεξεργασία λίστας υπηρεσιών"
 msgid "Edit settings"
 msgstr "Επεξεργασία ρυθμίσεων"
 
-#
-#
-msgid "Edit the Nameserver configuration of your Dreambox.\n"
-msgstr "Επεξεργασία ρυθμίσεων Nameserver του δέκτη.\n"
+msgid "Edit the Nameserver configuration of your receiver.\n"
+msgstr ""
 
-#
-#
-msgid "Edit the network configuration of your Dreambox.\n"
-msgstr "Επεξεργασία ρυθμίσεων δικτύου του δέκτη.\n"
+msgid "Edit the network configuration of your receiver.\n"
+msgstr ""
 
 #
 #
@@ -3102,9 +3042,8 @@ msgstr ""
 msgid "GotoX calibration"
 msgstr ""
 
-#
-msgid "Graph MEpg Settings"
-msgstr "Ρυθμίσεις Γραφικού EPG"
+msgid "GraphMultiEpg Settings"
+msgstr ""
 
 #
 #
@@ -4420,10 +4359,8 @@ msgstr "Όχι. Επανεκκίνηση απο την αρχή."
 msgid "No, do nothing."
 msgstr "Όχι. Μην κάνεις τίποτα."
 
-#
-#
-msgid "No, just start my dreambox"
-msgstr "Όχι, απλώς εκκίνηση του δέκτη"
+msgid "No, just start my receiver"
+msgstr ""
 
 #
 msgid "No, never"
@@ -4721,6 +4658,12 @@ msgstr "Τηλεφωνικός αριθμός"
 msgid "PiPSetup"
 msgstr "Εγκατάσταση PiP"
 
+msgid "Picon"
+msgstr ""
+
+msgid "Picon and Service Name"
+msgstr ""
+
 #
 #
 msgid "PicturePlayer"
@@ -4918,6 +4861,9 @@ msgstr "Παρακαλώ πιέστε ΟΚ για συνέχεια."
 #
 msgid "Please press OK!"
 msgstr "Παρακαλώ πιέστε ΟΚ!"
+
+msgid "Please select a default EPG type..."
+msgstr ""
 
 #
 #
@@ -6128,6 +6074,9 @@ msgstr "Επιλέξτε κανάλι για εγγραφή"
 msgid "Select copy destination for:"
 msgstr "Επιλέξτε προορισμό αντιγραφής για:"
 
+msgid "Select default EPG type..."
+msgstr ""
+
 msgid "Select desired image from feed list"
 msgstr "Επιλέξτε επιθυμητό λογισμικό από τη λίστα"
 
@@ -6229,6 +6178,9 @@ msgstr "Σερβικά"
 msgid "Service"
 msgstr "Υπηρεσία"
 
+msgid "Service Name"
+msgstr ""
+
 #
 #
 msgid "Service Scan"
@@ -6238,6 +6190,9 @@ msgstr "Ανεύρεση υπηρεσιών"
 #
 msgid "Service Searching"
 msgstr "Αναζήτηση υπηρεσίων"
+
+msgid "Service Title mode"
+msgstr ""
 
 #
 #
@@ -6392,12 +6347,6 @@ msgstr "Εμφάνιση πληροφοριών"
 msgid "Show Message when Recording starts"
 msgstr "Εμφάνιση μηνύματος κατά την εκκίνηση εγραφής"
 
-msgid "Show Picons"
-msgstr ""
-
-msgid "Show Service Names "
-msgstr ""
-
 #
 #
 msgid "Show WLAN Status"
@@ -6492,10 +6441,8 @@ msgstr "Εμφανίζει την κατάσταση του ασύρματου �
 msgid "Shutdown"
 msgstr "Τερματισμός"
 
-#
-#
-msgid "Shutdown Dreambox after"
-msgstr "Κλείσε το δέκτη μετά από"
+msgid "Shutdown receiver after"
+msgstr ""
 
 #
 msgid "Side by Side"
@@ -7076,10 +7023,8 @@ msgstr "Τύπος ελέγχου"
 msgid "Test mode"
 msgstr "Κατάσταση ελέγχου"
 
-#
-#
-msgid "Test the network configuration of your Dreambox.\n"
-msgstr "Ελέγξτε τις ρυθμίσεις δικτύου του δέκτη.\n"
+msgid "Test the network configuration of your receiver.\n"
+msgstr ""
 
 #
 #
@@ -7108,26 +7053,16 @@ msgstr ""
 "Σας ευχαριστούμε που χρησιμοποιήσατε τον Οδηγό.\n"
 "Παρακαλώ πιέστε ΟΚ για συνέχεια."
 
-#
-#
 msgid ""
 "Thank you for using the wizard. Your box is now ready to use.\n"
-"Please press OK to start using your Dreambox."
+"Please press OK to start using your receiver."
 msgstr ""
-"Σας ευχαριστούμε που χρησιμοποιήσατε τον Οδηγό. Ο δέκτης σας είναι έτοιμος "
-"για χρήση.\n"
-"Πιέστε ΟΚ για να ξεκινήσετε τη χρήση του δέκτη."
 
-#
-#
 msgid ""
 "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to "
-"create a Dreambox format data DVD (which will not play in stand-alone DVD "
+"create a special format data DVD (which will not play in stand-alone DVD "
 "players) instead?"
 msgstr ""
-"The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to "
-"create a Dreambox format data DVD (which will not play in stand-alone DVD "
-"players) instead?"
 
 #
 #
@@ -7223,14 +7158,10 @@ msgstr ""
 msgid "The installation of the default services lists is finished."
 msgstr "Η εγκατάσταση προρυθμισμένων υπηρεσιών ολοκληρώθηε."
 
-#
-#
 msgid ""
 "The installation of the default settings is finished. You can now continue "
-"configuring your Dreambox by pressing the OK button on the remote control."
+"configuring your receiver by pressing the OK button on the remote control."
 msgstr ""
-"Η εγκατάσταση προρυθμισμένων ρυθμίσεων ολοκληρώθηκε. Μπορείτε να συνεχίσετε "
-"την παραμετροποίηση του δέκτη πιέζοντας ΟΚ στο τηλεχειριστήριο."
 
 msgid "The md5sum validation failed, the file may be corrupted!"
 msgstr ""
@@ -7387,32 +7318,19 @@ msgstr ""
 "content on the disc."
 
 #
-# , python-format
-#, python-format
-msgid "This Dreambox can't decode %s streams!"
-msgstr "Αυτός ο δέκτης δε μπορεί να αποκωδικοποιήσει %s streams!"
-
-#
 #
 msgid "This is step number 2."
 msgstr "Αυτό είναι το βήμα 2"
 
 msgid ""
 "This plugin creates a USB stick which can be used to update the firmware of "
-"your Dreambox without the need for a network or WLAN connection.\n"
+"your receiver without the need for a network or WLAN connection.\n"
 "First, a USB stick needs to be prepared so that it becomes bootable.\n"
 "In the next step, an NFI image file can be downloaded from the update server "
 "and saved on the USB stick.\n"
 "If you already have a prepared bootable USB stick, please insert it now. "
 "Otherwise plug in a USB stick with a minimum size of 64 MB!"
 msgstr ""
-"Αυτό το πρόσθετο δημιουργεί ένα usb stick που μπορεί να χρησιμοποιηθεί για "
-"αναβάθμιση του Dreambox χωρίς ανάγκη ύπαρξης δικτύου.\n"
-"Καταρχήν, ένα usb stick πρέπει να προετοιμασθεί ώστε να είναι εκκινήσιμο.\n"
-"Στο επόμενο βήμα, ένα αρχείο NFI μπορεί να αποθηκευτεί σε αυτό από τον "
-"διακομιστή ενημερώσεων.\n"
-"Εάν έχετε ένα ήδη έτοιμο usb stick, παρακαλώ συνδέστε το τώρα. Αλλιώς "
-"συνδέστε ένα usb stick ελάχιστης χωρητικότητας 64MB!"
 
 #
 #
@@ -7433,6 +7351,10 @@ msgstr "Το πρόσθετο θα εγκατασταθεί."
 #
 msgid "This plugin will be removed."
 msgstr "Το πρόσθετο θα διαγραφεί."
+
+#, python-format
+msgid "This receiver can't decode %s streams!"
+msgstr ""
 
 #
 #
@@ -7652,20 +7574,13 @@ msgid "To subtitle selection"
 msgstr "Επιλογή υποτίτλων"
 
 msgid ""
-"To update your Dreambox firmware, please follow these steps:\n"
+"To update your receiver firmware, please follow these steps:\n"
 "1) Turn off your box with the rear power switch and make sure the bootable "
 "USB stick is plugged in.\n"
 "2) Turn mains back on and hold the DOWN button on the front panel pressed "
 "for 10 seconds.\n"
 "3) Wait for bootup and follow instructions of the wizard."
 msgstr ""
-"Για ενημέρωση του λογισμικού του Dreambox, παρακαλώ ακολουθήστε τα παρακάτω "
-"βήματα:\n"
-"1) Απενεργοποιήστε το δέκτη από τον κεντρικό διακόπτη τροφοδοσίας και "
-"βεβαιωθείτε ότι έχει συνδεθεί το usb stick.\n"
-"2) Θέστε εντός τον κεντρικό διακόπτη τροφοδοσίας και κρατήστε πατημένο το "
-"κουμπί ΚΑΤΩ στην οθόνη ενδείξεων για 10 δευτερόλεπτα.\n"
-"3) Περιμένετε για εκκίνηση και ακολουθήστε τις οδηγίες του Οδηγού."
 
 #
 #
@@ -7959,18 +7874,16 @@ msgstr "Αναβάθμιση και ερώτηση για επανεκκίνησ
 msgid "Upgrade finished."
 msgstr "Η αναβάθμιση τελείωσε."
 
-msgid "Upgrade finished. Do you want to reboot your Dreambox?"
-msgstr "Η αναβάθμιση ολοκληρώθηκε. Θέλετε να επανεκκινήσετε το δέκτη;"
+msgid "Upgrade finished. Do you want to reboot your receiver?"
+msgstr ""
 
 #
 #
 msgid "Upgrading"
 msgstr "Εκτελείται αναβάθμιση"
 
-#
-#
-msgid "Upgrading Dreambox... Please wait"
-msgstr "Εκτελείται αναβάθμιση δέκτη... Παρακαλώ περιμένετε"
+msgid "Upgrading receiver... Please wait"
+msgstr ""
 
 #
 #
@@ -8428,64 +8341,36 @@ msgstr ""
 "Στη συνέχεια αναζητήστε το τέλος του τμήματος, πιέστε ΟΚ, επιλέξτε \"end cut"
 "\". Αυτό είναι όλο."
 
-#
-#
 msgid ""
 "Welcome to the Image upgrade wizard. The wizard will assist you in upgrading "
-"the firmware of your Dreambox by providing a backup facility for your "
+"the firmware of your receiver by providing a backup facility for your "
 "current settings and a short explanation of how to upgrade your firmware."
 msgstr ""
-"Καλώς ορίσατε στον Οδηγό αναβάθμισης λογισμικού. Ο Οδηγός θα σας βοηθήσει "
-"στην αναβάθμιση του λογισμικού του δέκτη παρέχοντας δυνατότητα αντιγράφου "
-"ασφαλείας των ρυθμίσεών σας και σύντομη επεξήγηση της διαδικασίας."
 
-#
-#
 msgid ""
 "Welcome to the cleanup wizard.\n"
 "\n"
 "We have detected that your available internal memory has dropped below 2MB.\n"
-"To ensure stable operation of your Dreambox, the internal memory should be "
+"To ensure stable operation of your receiver, the internal memory should be "
 "cleaned up.\n"
 "You can use this wizard to remove some extensions.\n"
 msgstr ""
-"Καλώς ορίσατε στον Οδηγό εκκαθάρισης.\n"
-"\n"
-"Η διαθέσιμη εσωτερική μνήμη του δέκτη είναι κάτω από 2MB.\n"
-"Για να διασφαλιστεί η σταθερή διαδικασία του δέκτη, η μνήμη πρέπει να "
-"εκκαθαριστεί.\n"
-"Με τη χρήση αυτού του Οδηγού μπορείτε να αφαιρέσετε μερικές επεκτάσεις.\n"
 
-#
-#
 msgid ""
 "Welcome.\n"
 "\n"
-"If you want to connect your Dreambox to the Internet, this wizard will guide "
-"you through the basic network setup of your Dreambox.\n"
+"If you want to connect your receiver to the Internet, this wizard will guide "
+"you through the basic network setup of your receiver.\n"
 "\n"
 "Press OK to start configuring your network"
 msgstr ""
-"Καλώς ορίσατε.\n"
-"\n"
-"Εάν θέλετε να συνδέσετε το δέκτη στο διαδίκτυο, αυτό ο Οδηγός θα σας "
-"καθοδηγήσει στα βήματα της διαδικασίας ρύθμισης δικτύου του δέκτη.\n"
-"\n"
-"Πιέστε ΟΚ για εκκίνηση ρύθμισης του δικτύου."
 
-#
-#
 msgid ""
 "Welcome.\n"
 "\n"
-"This start wizard will guide you through the basic setup of your Dreambox.\n"
+"This start wizard will guide you through the basic setup of your receiver.\n"
 "Press the OK button on your remote control to move to the next step."
 msgstr ""
-"Καλώς ορίσατε.\n"
-"\n"
-"Αυτός ο Οδηγός εκκίνησης θα σας καθοδηγήσει στη διαδικασία βασικής "
-"εγκατάστασης του δέκτη.\n"
-"Πιέστε ΟΚ στο τηλεχειριστήριο για μετάβαση στο επόμενο βήμα."
 
 #
 #
@@ -8697,10 +8582,8 @@ msgstr "Μπορείτε να συνεχίσετε να βλέπετε TV κλπ
 msgid "You can install this plugin."
 msgstr "Μπορείτε να εγκαταστήσετε το πρόσθετο."
 
-#
-#
-msgid "You can only burn Dreambox recordings!"
-msgstr "Μπορείτε να εγγράψετε μόνο εγγραφές από δέκτη!"
+msgid "You can only burn receiver recordings!"
+msgstr ""
 
 #
 #
@@ -8768,20 +8651,13 @@ msgstr ""
 msgid "You have to wait %s!"
 msgstr "Περιμένετε για %s!"
 
-#
-#
 msgid ""
-"You need a PC connected to your dreambox. If you need further instructions, "
+"You need a PC connected to your receiver. If you need further instructions, "
 "please visit the website http://www.dm7025.de.\n"
-"Your dreambox will now be halted. After you have performed the update "
+"Your receiver will now be halted. After you have performed the update "
 "instructions from the website, your new firmware will ask you to restore "
 "your settings."
 msgstr ""
-"You need a PC connected to your dreambox. If you need further instructions, "
-"please visit the website http://www.dm7025.de.\n"
-"Your dreambox will now be halted. After you have performed the update "
-"instructions from the website, your new firmware will ask you to restore "
-"your settings."
 
 msgid ""
 "You need to set a PIN code and hide it from your children.\n"
@@ -8811,26 +8687,6 @@ msgstr ""
 #
 #
 msgid ""
-"Your Dreambox is now ready to use.\n"
-"\n"
-"Your internet connection is working now.\n"
-"\n"
-"Please press OK to continue."
-msgstr ""
-"Ο δέκτης σας είναι τώρα έτοιμος για χρήση.\n"
-"\n"
-"Η σύνδεση με το διαδίκτυο είναι έτοιμη.\n"
-"\n"
-"Πιέστε ΟΚ για συνέχεια."
-
-#
-#
-msgid "Your Dreambox will restart after pressing OK on your remote control."
-msgstr "Ο δέκτης θα επανεκκινήσει πιέζοντας ΟΚ στο τηλεχειριστήριο."
-
-#
-#
-msgid ""
 "Your backup succeeded. We will now continue to explain the further upgrade "
 "process."
 msgstr ""
@@ -8850,20 +8706,6 @@ msgstr ""
 #
 msgid "Your current collection will get lost!"
 msgstr "Η τρέχουσα συλλογή σας θα χαθεί!"
-
-#
-#
-msgid "Your dreambox is shutting down. Please stand by..."
-msgstr "Ο δέκτης τερματίζεται. Παρακαλώ περιμένετε..."
-
-#
-#
-msgid ""
-"Your dreambox isn't connected to the internet properly. Please check it and "
-"try again."
-msgstr ""
-"Ο δέκτης σας δεν είναι συνδεδεμένος στο διαδίκτυο σωστά. Παρακαλώ ελέγξτε "
-"και ξαναπροσπαθήστε."
 
 #
 #
@@ -8903,10 +8745,29 @@ msgstr "Το όνομά σας (προαιρετικά):"
 msgid "Your network configuration has been activated."
 msgstr "Η ρύθμιση δικτύου ενεργοποιήθηκε."
 
+msgid ""
+"Your receiver is now ready to use.\n"
+"\n"
+"Your internet connection is working now.\n"
+"\n"
+"Please press OK to continue."
+msgstr ""
+
 msgid "Your receiver is rebooting"
 msgstr ""
 
 msgid "Your receiver is shutting down"
+msgstr ""
+
+msgid "Your receiver is shutting down. Please stand by..."
+msgstr ""
+
+msgid ""
+"Your receiver isn't connected to the internet properly. Please check it and "
+"try again."
+msgstr ""
+
+msgid "Your receiver will restart after pressing OK on your remote control."
 msgstr ""
 
 #
@@ -10118,6 +9979,9 @@ msgstr "προηγούμενο κανάλι"
 msgid "previous channel in history"
 msgstr "προηγούμενο κανάλι στο ιστορικό"
 
+msgid "receiver software because updates are available."
+msgstr ""
+
 #
 #
 msgid "record"
@@ -10470,6 +10334,9 @@ msgstr "ειδικοί χαρακτήρες"
 msgid "special events"
 msgstr ""
 
+msgid "special format data DVD (HDTV compatible)"
+msgstr ""
+
 msgid "sports (general)"
 msgstr ""
 
@@ -10730,13 +10597,10 @@ msgstr "ναι"
 msgid "yes (keep feeds)"
 msgstr "ναι (σώσε feeds)"
 
-#
 msgid ""
-"your dreambox might be unusable now. Please consult the manual for further "
-"assistance before rebooting your dreambox."
+"your receiver might be unusable now. Please consult the manual for further "
+"assistance before rebooting your receiver."
 msgstr ""
-"ο δέκτης σας ενδέχεται να μη μπορεί να χρησιμοποιηθεί τώρα. Παρακαλώ "
-"συμβουλευθείτε το manual πριν την επανεκκίνηση."
 
 #
 #

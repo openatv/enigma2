@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-07-25 16:21+0200\n"
+"POT-Creation-Date: 2012-08-05 10:00+0200\n"
 "PO-Revision-Date: 2011-09-07 11:13+0200\n"
 "Last-Translator: Zulfikar <zveyis@gmail.com>\n"
 "Language-Team: http://hobiagaci.com <z.veyisoglu@hobiagaci.com>\n"
@@ -33,13 +33,10 @@ msgstr ""
 "\n"
 "Lütfen OK'a bastıktan sonra bekleyin!"
 
-#
 msgid ""
 "\n"
-"Backup your Dreambox settings."
+"Backup your receiver settings."
 msgstr ""
-"\n"
-"Dreambox ayarlarınızı yedekleyin."
 
 #
 msgid ""
@@ -49,21 +46,15 @@ msgstr ""
 "\n"
 "Güncelleme sunucusu adresini düzenleyin."
 
-#
 msgid ""
 "\n"
-"Manage extensions or plugins for your Dreambox"
+"Manage extensions or plugins for your receiver"
 msgstr ""
-"\n"
-"Dreambox eklentilerinizi yönetin"
 
-#
 msgid ""
 "\n"
-"Online update of your Dreambox software."
+"Online update of your receiver software."
 msgstr ""
-"\n"
-"Dreambox yazılımını çevrimiçi güncelleyin."
 
 #
 msgid ""
@@ -76,26 +67,20 @@ msgstr ""
 #
 msgid ""
 "\n"
-"Restore your Dreambox settings."
-msgstr ""
-"\n"
-"Dreambox ayarlarınızı geri yükleyin."
-
-#
-msgid ""
-"\n"
-"Restore your Dreambox with a new firmware."
-msgstr ""
-"\n"
-"Dreambox yeni bellenimini, sistem yedeğinizle birlikte geri yükleyin."
-
-#
-msgid ""
-"\n"
 "Restore your backups by date."
 msgstr ""
 "\n"
 "Yedeklerinizi tarihe göre geri yükleyin."
+
+msgid ""
+"\n"
+"Restore your receiver settings."
+msgstr ""
+
+msgid ""
+"\n"
+"Restore your receiver with a new firmware."
+msgstr ""
 
 #
 msgid ""
@@ -169,6 +154,9 @@ msgstr ""
 msgid "%2d:%02d:%02d"
 msgstr ""
 
+msgid "%A %d %B"
+msgstr ""
+
 #. TRANSLATORS: long date representations dayname daynum monthname in strftime() format! See 'man strftime'
 msgid "%A %e %B"
 msgstr ""
@@ -222,6 +210,9 @@ msgstr[0] ""
 #, python-format
 msgid "%d services found!"
 msgstr "%d kanal bulundu!"
+
+msgid "%d-%m"
+msgstr ""
 
 #
 msgid "%d.%B %Y"
@@ -407,21 +398,15 @@ msgstr ""
 msgid "A demo plugin for TPM usage."
 msgstr ""
 
-#
 msgid ""
 "A finished record timer wants to set your\n"
-"Dreambox to standby. Do that now?"
+"receiver to standby. Do that now?"
 msgstr ""
-"Bitmiş olan bir kayıt zamanlayıcısı Dreambox'ı\n"
-"hazırda bekleme kipine almak istiyor. Şimdi alınsın mı?"
 
-#
 msgid ""
 "A finished record timer wants to shut down\n"
-"your Dreambox. Shutdown now?"
+"your receiver. Shutdown now?"
 msgstr ""
-"Bitmiş olan bir kayıt zamanlayıcısı Dreambox'ı\n"
-"kapatmak istiyor. Şimdi kapatılsın mı?"
 
 msgid "A graphical EPG for all services of an specific bouquet"
 msgstr "Belirtilen buketteki tüm kanallar için görsel EPG"
@@ -481,21 +466,15 @@ msgstr ""
 "\n"
 "İkinci ağ arayüzünü devre dışı bırakmak istiyor musunuz?"
 
-#
 msgid ""
 "A sleep timer wants to set your\n"
-"Dreambox to standby. Do that now?"
+"receiver to standby. Do that now?"
 msgstr ""
-"Zamanlanmış bir görev Dreambox'ı\n"
-"hazırda bekleme kipine almak istiyor. Şimdi alınsın mı?"
 
-#
 msgid ""
 "A sleep timer wants to shut down\n"
-"your Dreambox. Shutdown now?"
+"your receiver. Shutdown now?"
 msgstr ""
-"Zamanlanmış bir görev Dreambox'ı\n"
-"kapatmak istiyor. Şimdi kapatılsın mı?"
 
 msgid "A small overview of the available icon states and actions."
 msgstr "İkonların anlamlarını ve görevlerini burada görebilirsiniz."
@@ -609,13 +588,10 @@ msgstr "Favorilere ekle"
 msgid "Add/Remove timer for current event"
 msgstr ""
 
-#
 msgid ""
-"Adds enigma2 settings and dreambox model informations like SN, rev... if "
+"Adds enigma2 settings and receiver model informations like SN, rev... if "
 "enabled."
 msgstr ""
-"Evet derseniz, enigma2 ayarlarınız ve dreambox model bilgisi (SN, "
-"revizyon..) gönderilecektir."
 
 #
 msgid "Adds network configuration if enabled."
@@ -672,14 +648,10 @@ msgstr "Eylem bittikten sonra"
 msgid "After pressing OK, please wait!"
 msgstr ""
 
-#
 msgid ""
 "After the start wizard is completed, you need to protect single services. "
-"Refer to your dreambox's manual on how to do that."
+"Refer to your receiver's manual on how to do that."
 msgstr ""
-"Sihirbaz tamamlandıktan sonra, kanal korumasına ihtiyacınız olacak. Nasıl "
-"yapılacağını öğrenmek istiyorsanız Dreambox'ınızın kullanım kılavuzuna "
-"başvurun."
 
 #
 msgid "Album"
@@ -1409,9 +1381,8 @@ msgstr ""
 msgid "Copy"
 msgstr ""
 
-#
-msgid "Could not connect to Dreambox .NFI Image Feed Server:"
-msgstr "Dreambox .NFI bellenim sunucusuna bağlanamıyor:"
+msgid "Could not connect to receiver .NFI Image Feed Server:"
+msgstr ""
 
 #
 msgid "Could not load Medium! No disc inserted?"
@@ -1446,13 +1417,10 @@ msgstr "Hata günlüğü gönderme ayarları"
 msgid "CrashlogAutoSubmit settings..."
 msgstr "Hata günlüğü gönderme ayarları"
 
-#
 msgid ""
 "Crashlogs found!\n"
-"Send them to Dream Multimedia?"
+"Send them to the Image Developper?"
 msgstr ""
-"Hata günlüğü bulundu!\n"
-"Dream Multimedia'ya göndermek ister misiniz?"
 
 #
 msgid "Create DVD-ISO"
@@ -1488,6 +1456,9 @@ msgstr "Geçerli Transponder"
 
 msgid "Current device: "
 msgstr "Geçerli aygıt:"
+
+msgid "Current event EPG"
+msgstr ""
 
 #
 msgid "Current settings:"
@@ -1882,9 +1853,8 @@ msgstr "Başka kanal araması yapacak mısınız?"
 msgid "Do you want to download the image to %s ?"
 msgstr "%s bellenimini indirmek istiyor musunuz?"
 
-#
-msgid "Do you want to enable the parental control feature on your dreambox?"
-msgstr "Ebeveyn kontrolü özelliğini etkinleştirmek ister misiniz?"
+msgid "Do you want to enable the parental control feature on your receiver?"
+msgstr ""
 
 #
 msgid "Do you want to install the package:\n"
@@ -1898,9 +1868,8 @@ msgstr "DVD'yi oynatmak istiyor musunuz?"
 msgid "Do you want to preview this DVD before burning?"
 msgstr "DVD'yi yazmadan önce önizleme yapmak istiyor musunuz?"
 
-#
-msgid "Do you want to reboot your Dreambox?"
-msgstr "Dreambox'ı yeniden başlatmak istiyor musunuz?"
+msgid "Do you want to reboot your receiver?"
+msgstr ""
 
 #
 msgid "Do you want to remove the package:\n"
@@ -1922,17 +1891,13 @@ msgstr ""
 "İhtiyaç duyduğumuzda size ulaşabilmemizi istiyorsanız, eposta adresinizi ve "
 "adınızı giriniz."
 
-#
-msgid "Do you want to update your Dreambox?"
-msgstr "Dreambox'ı güncellemek istiyor musunuz?"
+msgid "Do you want to update your receiver?"
+msgstr ""
 
-#
 msgid ""
-"Do you want to update your Dreambox?\n"
+"Do you want to update your receiver?\n"
 "After pressing OK, please wait!"
 msgstr ""
-"Dreambox'ı güncellemek istiyor musunuz?\n"
-"Lütfen OK'a bastıktan sonra bekleyin!"
 
 #
 msgid "Do you want to upgrade the package:\n"
@@ -1998,14 +1963,6 @@ msgid "Downloading plugin information. Please wait..."
 msgstr "Eklenti bilgisi indiriliyor. Lütfen bekleyin..."
 
 #
-msgid "Dreambox format data DVD (HDTV compatible)"
-msgstr "Dreambox DVD biçimi (HDTV uyumlu)"
-
-#
-msgid "Dreambox software because updates are available."
-msgstr "Dreambox güncellemelerini yükleyin"
-
-#
 msgid "Dutch"
 msgstr "Flemenkçe"
 
@@ -2069,13 +2026,11 @@ msgstr "Kanal listesini düzenle"
 msgid "Edit settings"
 msgstr "Ayarları düzenle"
 
-#
-msgid "Edit the Nameserver configuration of your Dreambox.\n"
-msgstr "Dreambox'ınızın isim sunucu (DNS) ayarlarını yapılandırın.\n"
+msgid "Edit the Nameserver configuration of your receiver.\n"
+msgstr ""
 
-#
-msgid "Edit the network configuration of your Dreambox.\n"
-msgstr "Dreambox'ınızın ağ ayarlarını yapılandırın.\n"
+msgid "Edit the network configuration of your receiver.\n"
+msgstr ""
 
 #
 msgid "Edit title"
@@ -2579,7 +2534,7 @@ msgstr ""
 msgid "GotoX calibration"
 msgstr ""
 
-msgid "Graph MEpg Settings"
+msgid "GraphMultiEpg Settings"
 msgstr ""
 
 #
@@ -3671,9 +3626,8 @@ msgstr "Hayır, ama en başından başlat"
 msgid "No, do nothing."
 msgstr "Hayır, birşey yapma"
 
-#
-msgid "No, just start my dreambox"
-msgstr "Hayır, Dreambox'ımı şimdi başlat"
+msgid "No, just start my receiver"
+msgstr ""
 
 msgid "No, never"
 msgstr "Hayır, hiçbir zaman"
@@ -3922,6 +3876,12 @@ msgstr "Telefon numarası"
 msgid "PiPSetup"
 msgstr "PiP Kurulumu"
 
+msgid "Picon"
+msgstr ""
+
+msgid "Picon and Service Name"
+msgstr ""
+
 #
 msgid "PicturePlayer"
 msgstr "Resim Oynatıcı"
@@ -4083,6 +4043,9 @@ msgstr "Devam etmek için lütfen OK'a basın"
 #
 msgid "Please press OK!"
 msgstr "Lütfen OK'a basın!"
+
+msgid "Please select a default EPG type..."
+msgstr ""
 
 #
 msgid "Please select a playlist to delete..."
@@ -5057,6 +5020,9 @@ msgstr "Kaydın yapılacağı kanalı seçin"
 msgid "Select copy destination for:"
 msgstr ""
 
+msgid "Select default EPG type..."
+msgstr ""
+
 msgid "Select desired image from feed list"
 msgstr ""
 
@@ -5139,6 +5105,9 @@ msgstr "Sırpça"
 msgid "Service"
 msgstr "Kanal"
 
+msgid "Service Name"
+msgstr ""
+
 #
 msgid "Service Scan"
 msgstr "Kanal Arama"
@@ -5146,6 +5115,9 @@ msgstr "Kanal Arama"
 #
 msgid "Service Searching"
 msgstr "Uydu yapılandırma"
+
+msgid "Service Title mode"
+msgstr ""
 
 #
 msgid "Service has been added to the favourites."
@@ -5279,12 +5251,6 @@ msgstr "Bilgiyi Göster"
 msgid "Show Message when Recording starts"
 msgstr "Zamanlanmış kayıt başladığında mesaj göster"
 
-msgid "Show Picons"
-msgstr ""
-
-msgid "Show Service Names "
-msgstr ""
-
 #
 msgid "Show WLAN Status"
 msgstr "WLAN Durumunu Göster"
@@ -5355,9 +5321,8 @@ msgstr "Kablosuz ağ bağlantısı durumunu gösterir.\n"
 msgid "Shutdown"
 msgstr "Kapat"
 
-#
-msgid "Shutdown Dreambox after"
-msgstr "Zamanlayıcı süresi: "
+msgid "Shutdown receiver after"
+msgstr ""
 
 msgid "Side by Side"
 msgstr ""
@@ -5833,9 +5798,8 @@ msgstr "Test tipi"
 msgid "Test mode"
 msgstr "Test kipi"
 
-#
-msgid "Test the network configuration of your Dreambox.\n"
-msgstr "Dreambox'ınızın ağ yapılandırmasını test edin.\n"
+msgid "Test the network configuration of your receiver.\n"
+msgstr ""
 
 #
 msgid "Test-Messagebox?"
@@ -5858,24 +5822,16 @@ msgstr ""
 "Sihirbazı kullandığınız için teşekkür ederiz.\n"
 "Devam etmek için lütfen OK tuşuna basın."
 
-#
 msgid ""
 "Thank you for using the wizard. Your box is now ready to use.\n"
-"Please press OK to start using your Dreambox."
+"Please press OK to start using your receiver."
 msgstr ""
-"Sihirbazı kullandığınız için teşekkür ederiz. Dreambox'ınız kullanıma "
-"hazır.\n"
-"Dreambox'ınızı kullanmaya başlamak için OK tuşuna basın."
 
-#
 msgid ""
 "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to "
-"create a Dreambox format data DVD (which will not play in stand-alone DVD "
+"create a special format data DVD (which will not play in stand-alone DVD "
 "players) instead?"
 msgstr ""
-"Standart DVD biçimi H.264 (HDTV) video biçimini desteklemez. Bunun yerine "
-"Dreambox'ın DVD biçiminde (standart DVD oynatıcılarda oynatamazsınız) "
-"oluşturmak ister misiniz?"
 
 msgid ""
 "The NetworkWizard extension is not installed!\n"
@@ -5959,13 +5915,10 @@ msgstr ""
 msgid "The installation of the default services lists is finished."
 msgstr "Varsayılan kanal listesi kurulumu tamamlandı."
 
-#
 msgid ""
 "The installation of the default settings is finished. You can now continue "
-"configuring your Dreambox by pressing the OK button on the remote control."
+"configuring your receiver by pressing the OK button on the remote control."
 msgstr ""
-"Varsayılan kanal listesi kurulumu tamamlandı. OK tuşuna bastıktan sonra "
-"Dreambox'ınızı yapılandırmaya devam edebilirsiniz."
 
 msgid "The md5sum validation failed, the file may be corrupted!"
 msgstr ""
@@ -6094,17 +6047,12 @@ msgstr ""
 "içeriğini silecektir."
 
 #
-#, python-format
-msgid "This Dreambox can't decode %s streams!"
-msgstr "Dreambox %s streamlarını çözemez!"
-
-#
 msgid "This is step number 2."
 msgstr "2 numaralı adım."
 
 msgid ""
 "This plugin creates a USB stick which can be used to update the firmware of "
-"your Dreambox without the need for a network or WLAN connection.\n"
+"your receiver without the need for a network or WLAN connection.\n"
 "First, a USB stick needs to be prepared so that it becomes bootable.\n"
 "In the next step, an NFI image file can be downloaded from the update server "
 "and saved on the USB stick.\n"
@@ -6125,6 +6073,10 @@ msgstr "Bu eklenti yüklenebilir."
 
 msgid "This plugin will be removed."
 msgstr "Bu eklenti kaldırılabilir."
+
+#, python-format
+msgid "This receiver can't decode %s streams!"
+msgstr ""
 
 #
 msgid ""
@@ -6309,7 +6261,7 @@ msgid "To subtitle selection"
 msgstr ""
 
 msgid ""
-"To update your Dreambox firmware, please follow these steps:\n"
+"To update your receiver firmware, please follow these steps:\n"
 "1) Turn off your box with the rear power switch and make sure the bootable "
 "USB stick is plugged in.\n"
 "2) Turn mains back on and hold the DOWN button on the front panel pressed "
@@ -6554,18 +6506,15 @@ msgstr ""
 msgid "Upgrade finished."
 msgstr "Güncelleme tamamlandı."
 
-#
-msgid "Upgrade finished. Do you want to reboot your Dreambox?"
+msgid "Upgrade finished. Do you want to reboot your receiver?"
 msgstr ""
-"Güncelleme tamamlandı. Dreambox'ınızı yeniden başlatmak istiyor musunuz?"
 
 #
 msgid "Upgrading"
 msgstr "Yazılımı güncelle"
 
-#
-msgid "Upgrading Dreambox... Please wait"
-msgstr "Dreambox güncelleniyor... Lütfen bekleyin"
+msgid "Upgrading receiver... Please wait"
+msgstr ""
 
 #
 msgid "Use"
@@ -6945,60 +6894,36 @@ msgstr ""
 "Sonrasında kesmek istediğiniz bölümün sonuna konumlanın. Tekrar OK tuşuna "
 "basın ve 'kesimi burada bitir' deyin."
 
-#
 msgid ""
 "Welcome to the Image upgrade wizard. The wizard will assist you in upgrading "
-"the firmware of your Dreambox by providing a backup facility for your "
+"the firmware of your receiver by providing a backup facility for your "
 "current settings and a short explanation of how to upgrade your firmware."
 msgstr ""
-"Bellenim güncelleme sihirbazına hoş geldiniz. Bu sihirbaz, Dreambox bellenim "
-"güncellemesi esnasında, geçerli ayarlarınızın yedeğini almanıza imkan "
-"sağlayacak ve kısa açıklamalarla bellenimi nasıl güncelleyeceğinizi "
-"anlatacaktır."
 
-#
 msgid ""
 "Welcome to the cleanup wizard.\n"
 "\n"
 "We have detected that your available internal memory has dropped below 2MB.\n"
-"To ensure stable operation of your Dreambox, the internal memory should be "
+"To ensure stable operation of your receiver, the internal memory should be "
 "cleaned up.\n"
 "You can use this wizard to remove some extensions.\n"
 msgstr ""
-"Temizlik sihirbazına hoşgeldiniz.\n"
-"\n"
-"Cihazınızın kullanılabilir dahili belleği 2MB'ın altına düşmüş durumda.\n"
-"Dreambox'ınızın sağlıklı çalışabilmesi için, kullanılabilir dahili bellek "
-"alanının artırılması gerekmektedir.\n"
-"Bu sihirbazı kullanarak ihtiyaç duymadığınız eklentileri kaldırabilirsiniz.\n"
 
-#
 msgid ""
 "Welcome.\n"
 "\n"
-"If you want to connect your Dreambox to the Internet, this wizard will guide "
-"you through the basic network setup of your Dreambox.\n"
+"If you want to connect your receiver to the Internet, this wizard will guide "
+"you through the basic network setup of your receiver.\n"
 "\n"
 "Press OK to start configuring your network"
 msgstr ""
-"Hoşgeldiniz.\n"
-"\n"
-"Dreambox'ınızı internete bağlamak istiyorsanız, bu sihirbaz size ağ "
-"yapılandırmanızı yapabilmeniz için rehberlik yapacaktır.\n"
-"\n"
-"Ağ yapılandırmasına başlamak için OK tuşuna basın"
 
-#
 msgid ""
 "Welcome.\n"
 "\n"
-"This start wizard will guide you through the basic setup of your Dreambox.\n"
+"This start wizard will guide you through the basic setup of your receiver.\n"
 "Press the OK button on your remote control to move to the next step."
 msgstr ""
-"Hoşgeldiniz.\n"
-"\n"
-"Bu sihirbaz Dreambox'ınızı yapılandırmanız için yardımcı olacaktır.\n"
-"Kumandanızın OK tuşuna basarak sonraki adıma geçebilirsiniz."
 
 #
 msgid "Welcome..."
@@ -7171,9 +7096,8 @@ msgstr ""
 msgid "You can install this plugin."
 msgstr "Bu eklentiyi yükleyebilirsiniz."
 
-#
-msgid "You can only burn Dreambox recordings!"
-msgstr "Yalnızca Dreambox'ta kaydettiğiniz videoları yazabilirsiniz!"
+msgid "You can only burn receiver recordings!"
+msgstr ""
 
 #
 msgid "You can remove this plugin."
@@ -7237,20 +7161,13 @@ msgstr ""
 msgid "You have to wait %s!"
 msgstr "Bekleme süresi : %s!"
 
-#
 msgid ""
-"You need a PC connected to your dreambox. If you need further instructions, "
+"You need a PC connected to your receiver. If you need further instructions, "
 "please visit the website http://www.dm7025.de.\n"
-"Your dreambox will now be halted. After you have performed the update "
+"Your receiver will now be halted. After you have performed the update "
 "instructions from the website, your new firmware will ask you to restore "
 "your settings."
 msgstr ""
-"Dreambox'ınızın PC bağlantısına ihtiyacı var. Daha fazla açıklamaya "
-"ihtiyacınız varsa, lütfen http://www.dream-multimedia-tv.de adresini ziyaret "
-"edin.\n"
-"Dreambox'ınız şimdi kapatılıyor. Web sitesinde belirtilen güncelleme "
-"talimatlarını yerine getirdikten sonra yeni bellenim, ayarlarınızı geri "
-"yüklemek isteyip istemediğiniz sorusunu soracaktır."
 
 msgid ""
 "You need to set a PIN code and hide it from your children.\n"
@@ -7275,25 +7192,6 @@ msgstr ""
 
 #
 msgid ""
-"Your Dreambox is now ready to use.\n"
-"\n"
-"Your internet connection is working now.\n"
-"\n"
-"Please press OK to continue."
-msgstr ""
-"Drambox'ınız kullanımınız için hazır.\n"
-"\n"
-"Internet bağlantınız çalışıyor.\n"
-"\n"
-"Devam etmek için lütfen OK tuşuna basın."
-
-#
-msgid "Your Dreambox will restart after pressing OK on your remote control."
-msgstr ""
-"Kumandanızda OK tuşuna bastıktan sonra Dreambox'ınız yeniden başlatılacak."
-
-#
-msgid ""
 "Your backup succeeded. We will now continue to explain the further upgrade "
 "process."
 msgstr "Yedek başarıyla alındı. Şimdi güncelleme işlemine devam edeceğiz."
@@ -7309,17 +7207,6 @@ msgstr ""
 #
 msgid "Your current collection will get lost!"
 msgstr ""
-
-#
-msgid "Your dreambox is shutting down. Please stand by..."
-msgstr "Dreambox'ınız kapatılıyor. Lütfen bekleyin..."
-
-#
-msgid ""
-"Your dreambox isn't connected to the internet properly. Please check it and "
-"try again."
-msgstr ""
-"Dreambox'ınız internete bağlı değil. Kontrol ettikten sonra tekrar deneyin."
 
 #
 msgid "Your email address:"
@@ -7355,10 +7242,29 @@ msgstr "Adınız (opsiyonel):"
 msgid "Your network configuration has been activated."
 msgstr "Ağ yapılandırmanız etkinleştirildi."
 
+msgid ""
+"Your receiver is now ready to use.\n"
+"\n"
+"Your internet connection is working now.\n"
+"\n"
+"Please press OK to continue."
+msgstr ""
+
 msgid "Your receiver is rebooting"
 msgstr ""
 
 msgid "Your receiver is shutting down"
+msgstr ""
+
+msgid "Your receiver is shutting down. Please stand by..."
+msgstr ""
+
+msgid ""
+"Your receiver isn't connected to the internet properly. Please check it and "
+"try again."
+msgstr ""
+
+msgid "Your receiver will restart after pressing OK on your remote control."
 msgstr ""
 
 #
@@ -8380,6 +8286,9 @@ msgstr "Önceki kanal"
 msgid "previous channel in history"
 msgstr "Hafızadaki önceki kanal"
 
+msgid "receiver software because updates are available."
+msgstr ""
+
 #
 msgid "record"
 msgstr "kaydet"
@@ -8669,6 +8578,9 @@ msgstr "özel karakterler"
 msgid "special events"
 msgstr ""
 
+msgid "special format data DVD (HDTV compatible)"
+msgstr ""
+
 msgid "sports (general)"
 msgstr ""
 
@@ -8899,13 +8811,10 @@ msgstr "evet"
 msgid "yes (keep feeds)"
 msgstr "evet (beslemeleri tut)"
 
-#
 msgid ""
-"your dreambox might be unusable now. Please consult the manual for further "
-"assistance before rebooting your dreambox."
+"your receiver might be unusable now. Please consult the manual for further "
+"assistance before rebooting your receiver."
 msgstr ""
-"Dreambox'ınız şu an kullanılamaz durumda. Lütfen Dreambox'ınızı yeniden "
-"açmadan önce kullanım kılavuzundan yardım alın."
 
 #
 msgid "zap"

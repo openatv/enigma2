@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-07-25 16:21+0200\n"
+"POT-Creation-Date: 2012-08-05 10:00+0200\n"
 "PO-Revision-Date: 2012-06-14 17:48+0200\n"
 "Last-Translator: Timo Jarvenpaa <timojarvenpaa@hotmail.com>\n"
 "Language-Team: none\n"
@@ -33,13 +33,10 @@ msgstr ""
 "\n"
 "Kun olet painanut OK-näppäintä, odota!"
 
-#
 msgid ""
 "\n"
-"Backup your Dreambox settings."
+"Backup your receiver settings."
 msgstr ""
-"\n"
-"Varmuuskopioi asetukset."
 
 #
 msgid ""
@@ -49,21 +46,15 @@ msgstr ""
 "\n"
 "Muokkaa päivityksen osoitetta."
 
-#
 msgid ""
 "\n"
-"Manage extensions or plugins for your Dreambox"
+"Manage extensions or plugins for your receiver"
 msgstr ""
-"\n"
-"Muokkaa laajennuksia ja lisäosia"
 
-#
 msgid ""
 "\n"
-"Online update of your Dreambox software."
+"Online update of your receiver software."
 msgstr ""
-"\n"
-"Päivitä ohjelmisto online-päivityksen kautta."
 
 #
 msgid ""
@@ -77,26 +68,20 @@ msgstr ""
 #
 msgid ""
 "\n"
-"Restore your Dreambox settings."
-msgstr ""
-"\n"
-"Palauta asetukset varmuuskopiosta."
-
-#
-msgid ""
-"\n"
-"Restore your Dreambox with a new firmware."
-msgstr ""
-"\n"
-"Palauta ohjelmisto perustilaan."
-
-#
-msgid ""
-"\n"
 "Restore your backups by date."
 msgstr ""
 "\n"
 "Palauta varmuuskopiot päivän mukaan."
+
+msgid ""
+"\n"
+"Restore your receiver settings."
+msgstr ""
+
+msgid ""
+"\n"
+"Restore your receiver with a new firmware."
+msgstr ""
 
 #
 msgid ""
@@ -167,6 +152,9 @@ msgstr "%2d:%02d"
 msgid "%2d:%02d:%02d"
 msgstr "%2d:%02d:%02d"
 
+msgid "%A %d %B"
+msgstr ""
+
 #. TRANSLATORS: long date representations dayname daynum monthname in strftime() format! See 'man strftime'
 msgid "%A %e %B"
 msgstr "%A %e. %Bta"
@@ -222,6 +210,9 @@ msgstr[1] "%d sekuntia"
 #, python-format
 msgid "%d services found!"
 msgstr "%d kanavaa löydetty!"
+
+msgid "%d-%m"
+msgstr ""
 
 #
 msgid "%d.%B %Y"
@@ -391,21 +382,15 @@ msgstr ""
 msgid "A demo plugin for TPM usage."
 msgstr "Demo-lisäosa TPM:n käyttöön"
 
-#
 msgid ""
 "A finished record timer wants to set your\n"
-"Dreambox to standby. Do that now?"
+"receiver to standby. Do that now?"
 msgstr ""
-"Juuri päättynyt ajastus haluaa sammuttaa\n"
-"laitteen valmiustilaan. Sammutetaanko nyt?"
 
-#
 msgid ""
 "A finished record timer wants to shut down\n"
-"your Dreambox. Shutdown now?"
+"your receiver. Shutdown now?"
 msgstr ""
-"Juuri päättynyt ajastus haluaa sammuttaa\n"
-"laitteen virransäästötilaan. Sammutetaanko nyt?"
 
 #
 msgid "A graphical EPG for all services of an specific bouquet"
@@ -467,21 +452,15 @@ msgstr ""
 "\n"
 "Kytketäänkö se pois päältä?"
 
-#
 msgid ""
 "A sleep timer wants to set your\n"
-"Dreambox to standby. Do that now?"
+"receiver to standby. Do that now?"
 msgstr ""
-"Uniajastimeen asetettu aika on kulunut umpeen.\n"
-"Siirrytäänkö valmiustilaan?"
 
-#
 msgid ""
 "A sleep timer wants to shut down\n"
-"your Dreambox. Shutdown now?"
+"your receiver. Shutdown now?"
 msgstr ""
-"Uniajastimeen asetettu aika on kulunut umpeen.\n"
-"Sammutetaanko viritin virransäästötilaa?"
 
 msgid "A small overview of the available icon states and actions."
 msgstr "Kuvaus kuvakkeiden tiloista ja toiminnoista."
@@ -596,13 +575,10 @@ msgstr "Lisää suosikkilistalle"
 msgid "Add/Remove timer for current event"
 msgstr "Lisää/poista ajastus nykyiselle ohjelmalle"
 
-#
 msgid ""
-"Adds enigma2 settings and dreambox model informations like SN, rev... if "
+"Adds enigma2 settings and receiver model informations like SN, rev... if "
 "enabled."
 msgstr ""
-"Jos valinta on ei, lisätään Enigma2:n asetukset, laitteen malli, sarjanumero "
-"yms."
 
 #
 msgid "Adds network configuration if enabled."
@@ -660,13 +636,10 @@ msgstr "Ajastuksen jälkeen"
 msgid "After pressing OK, please wait!"
 msgstr "Odota OK:n painamisen jälkeen"
 
-#
 msgid ""
 "After the start wizard is completed, you need to protect single services. "
-"Refer to your dreambox's manual on how to do that."
+"Refer to your receiver's manual on how to do that."
 msgstr ""
-"Kun alkuasennus on päättynyt, pitää sinun valita lapsilukolla suojattavat "
-"kanavat. Katso ohjekirjasta kuinka se tehdään."
 
 #
 msgid "Album"
@@ -1393,9 +1366,8 @@ msgstr "Muunna tiedostojärjestelmästä ext3 ext4:ään"
 msgid "Copy"
 msgstr "Kopioi"
 
-#
-msgid "Could not connect to Dreambox .NFI Image Feed Server:"
-msgstr "NFI-ohjelmistopäivityksien palvelimelle ei saatu yhteyttä:"
+msgid "Could not connect to receiver .NFI Image Feed Server:"
+msgstr ""
 
 #
 msgid "Could not load Medium! No disc inserted?"
@@ -1431,10 +1403,8 @@ msgstr "Kaatumislokien automaattilähetys..."
 
 msgid ""
 "Crashlogs found!\n"
-"Send them to Dream Multimedia?"
+"Send them to the Image Developper?"
 msgstr ""
-"Kaatumislokeja löytyi!\n"
-"Lähetetäänkö ne Dream Multimedialle?"
 
 #
 msgid "Create DVD-ISO"
@@ -1470,6 +1440,9 @@ msgstr "Nykyinen lähetin"
 
 msgid "Current device: "
 msgstr "Nykyinen laite: "
+
+msgid "Current event EPG"
+msgstr ""
 
 #
 msgid "Current settings:"
@@ -1863,18 +1836,8 @@ msgstr "Haluatko tehdä uuden manuaalihaun?"
 msgid "Do you want to download the image to %s ?"
 msgstr "Haluatko ladata ohjelmistopäivityksen %s :lle ?"
 
-#
-#  Ohjatun asennuksen (Start Wizard) lapsilukkoruutu
-msgid "Do you want to enable the parental control feature on your dreambox?"
+msgid "Do you want to enable the parental control feature on your receiver?"
 msgstr ""
-"Laitteessa on lapsilukko-\n"
-"ominaisuus: halutut kanavat\n"
-"voidaan asettaa erikseen\n"
-"määriteltävän tunnusluvun\n"
-"taakse.\n"
-"\n"
-"Haluatko ottaa lapsilukon\n"
-"käyttöön?"
 
 #
 msgid "Do you want to install the package:\n"
@@ -1888,9 +1851,8 @@ msgstr "Haluatko toistaa asemassa olevan DVD:n?"
 msgid "Do you want to preview this DVD before burning?"
 msgstr "Haluatko esikatsella tämän DVD:n ennen polttoa?"
 
-#
-msgid "Do you want to reboot your Dreambox?"
-msgstr "Haluatko käynnistää laitteen uudelleen?"
+msgid "Do you want to reboot your receiver?"
+msgstr ""
 
 #
 msgid "Do you want to remove the package:\n"
@@ -1914,17 +1876,13 @@ msgstr ""
 "Haluatko lähettää sähköpostiosoitteesi ja nimesi mahdollista yhteydenottoa "
 "varten?"
 
-#
-msgid "Do you want to update your Dreambox?"
-msgstr "Haluatko päivittää laitteen?"
+msgid "Do you want to update your receiver?"
+msgstr ""
 
-#
 msgid ""
-"Do you want to update your Dreambox?\n"
+"Do you want to update your receiver?\n"
 "After pressing OK, please wait!"
 msgstr ""
-"Haluatko päivittää laitteen?\n"
-"Paina OK ja odota!"
 
 #
 msgid "Do you want to upgrade the package:\n"
@@ -1986,13 +1944,6 @@ msgstr "Ladataan"
 #
 msgid "Downloading plugin information. Please wait..."
 msgstr "Ladataan tietoja lisäosista. Odota..."
-
-#
-msgid "Dreambox format data DVD (HDTV compatible)"
-msgstr "DB-tiedostomuotoinen DVD (HDTV-yht.sopiva)"
-
-msgid "Dreambox software because updates are available."
-msgstr "laitteen ohjelmistoa koska päivityksiä on saatavilla."
 
 #
 msgid "Dutch"
@@ -2058,17 +2009,11 @@ msgstr "Muokkaa kanavalistaa"
 msgid "Edit settings"
 msgstr "Muokkaa asetuksia"
 
-#
-msgid "Edit the Nameserver configuration of your Dreambox.\n"
+msgid "Edit the Nameserver configuration of your receiver.\n"
 msgstr ""
-"Muokkaan nimipalvelimen asetuksia.\n"
-"\n"
 
-#
-msgid "Edit the network configuration of your Dreambox.\n"
+msgid "Edit the network configuration of your receiver.\n"
 msgstr ""
-"Muokkaa lähiverkon asetuksia.\n"
-"\n"
 
 #
 msgid "Edit title"
@@ -2558,8 +2503,8 @@ msgstr "Mene määrättyy tietoon/aikaan"
 msgid "GotoX calibration"
 msgstr "MeneX kalibrointi"
 
-msgid "Graph MEpg Settings"
-msgstr "Graph MEpg -asetukset"
+msgid "GraphMultiEpg Settings"
+msgstr ""
 
 #
 msgid "Graphical Multi EPG"
@@ -3642,9 +3587,8 @@ msgstr "Ei, aloita alusta"
 msgid "No, do nothing."
 msgstr "Ei, älä tee mitään."
 
-#
-msgid "No, just start my dreambox"
-msgstr "Ei, käynnistä vain viritin"
+msgid "No, just start my receiver"
+msgstr ""
 
 msgid "No, never"
 msgstr "Ei koskaan"
@@ -3891,6 +3835,12 @@ msgstr "Puhelinnumero"
 msgid "PiPSetup"
 msgstr "PiP-kuvan asetukset"
 
+msgid "Picon"
+msgstr ""
+
+msgid "Picon and Service Name"
+msgstr ""
+
 #
 msgid "PicturePlayer"
 msgstr "Kuvien katselu"
@@ -4050,6 +4000,9 @@ msgstr "Jatka painamalla OK."
 #
 msgid "Please press OK!"
 msgstr "Paina OK."
+
+msgid "Please select a default EPG type..."
+msgstr ""
 
 #
 msgid "Please select a playlist to delete..."
@@ -5014,6 +4967,9 @@ msgstr "Valitse tallennettava kanava"
 msgid "Select copy destination for:"
 msgstr "Valitse kohde kopioinnille:"
 
+msgid "Select default EPG type..."
+msgstr ""
+
 msgid "Select desired image from feed list"
 msgstr "Valitse haluamasi ohjelmistopäivitys feed-luettelosta"
 
@@ -5096,6 +5052,9 @@ msgstr "Serbia"
 msgid "Service"
 msgstr "Kanava"
 
+msgid "Service Name"
+msgstr ""
+
 #
 msgid "Service Scan"
 msgstr "Kanavien haku"
@@ -5103,6 +5062,9 @@ msgstr "Kanavien haku"
 #
 msgid "Service Searching"
 msgstr "Kanavien haku"
+
+msgid "Service Title mode"
+msgstr ""
 
 #
 msgid "Service has been added to the favourites."
@@ -5235,12 +5197,6 @@ msgstr "Näytä tiedot"
 msgid "Show Message when Recording starts"
 msgstr "Näytä ilmoitus tallennuksen alkamisesta"
 
-msgid "Show Picons"
-msgstr "Näytä Piconit"
-
-msgid "Show Service Names "
-msgstr "Näytä kanavan nimet"
-
 #
 msgid "Show WLAN Status"
 msgstr "Näytä WLAN:in tila"
@@ -5311,9 +5267,8 @@ msgstr "Näyttää WLAN-yhteyden tilan.\n"
 msgid "Shutdown"
 msgstr "Sammuta"
 
-#
-msgid "Shutdown Dreambox after"
-msgstr "Sammuta laite jälkeenpäin"
+msgid "Shutdown receiver after"
+msgstr ""
 
 msgid "Side by Side"
 msgstr "Sivuttain"
@@ -5786,11 +5741,8 @@ msgstr "Testin tyyppi"
 msgid "Test mode"
 msgstr "Virityskuvan lähetys"
 
-#
-msgid "Test the network configuration of your Dreambox.\n"
+msgid "Test the network configuration of your receiver.\n"
 msgstr ""
-"Testaa lähiverkon toiminta.\n"
-"\n"
 
 #
 msgid "Test-Messagebox?"
@@ -5812,33 +5764,16 @@ msgstr ""
 "Ohjattu verkkoasennus on päättynyt.\n"
 "Jatka painamalla OK-näppäintä."
 
-#
-#  Ohjatun alkuasennuksen loppuviesti. Teksti on tässä tarkasti
-#  sovitettu tilaansa ja käyttäjäkokemusta on yritetty parantaa
-#  antamalla ohje siitä, mitä seuraavaksi tapahtuu. Älä muuta
-#  tekstin rivitystä tai sisältöä testaamatta ensin tarkasti,
-#  että teksti rivittyy tv-ruudulla oikein.
 msgid ""
 "Thank you for using the wizard. Your box is now ready to use.\n"
-"Please press OK to start using your Dreambox."
+"Please press OK to start using your receiver."
 msgstr ""
-"Laitteesi on nyt käyttökunnossa.\n"
-"Ohjattu asennus päättyy tähän.\n"
-"\n"
-"Kun painat OK, pääset suosikki-\n"
-"listalle. Käytä kanavien valin-\n"
-"taan ja järjestelyyn MENU- ja\n"
-"värinäppäimien takaa löytyviä\n"
-"toimintoja."
 
-#
 msgid ""
 "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to "
-"create a Dreambox format data DVD (which will not play in stand-alone DVD "
+"create a special format data DVD (which will not play in stand-alone DVD "
 "players) instead?"
 msgstr ""
-"DVD-standardi ei tue H.264 (HDTV) videota. Haluatko luoda laitteen omassa "
-"formaatissa olevan data-DVD:n? Levy ei toistu normaaleissa DVD-soittimissa."
 
 msgid ""
 "The NetworkWizard extension is not installed!\n"
@@ -5924,13 +5859,10 @@ msgstr ""
 msgid "The installation of the default services lists is finished."
 msgstr "Oletuskanavalistojen asennus on suoritettu."
 
-#
 msgid ""
 "The installation of the default settings is finished. You can now continue "
-"configuring your Dreambox by pressing the OK button on the remote control."
+"configuring your receiver by pressing the OK button on the remote control."
 msgstr ""
-"Oletusarvojen asennus on suoritettu. Voit jatkaa laitteen asetusten "
-"muokkausta painamalla OK."
 
 msgid "The md5sum validation failed, the file may be corrupted!"
 msgstr "MD5-tarkistus epäonnistui, tiedosto voi olla vioittunut!"
@@ -6060,31 +5992,18 @@ msgstr ""
 "sisällön."
 
 #
-#, python-format
-msgid "This Dreambox can't decode %s streams!"
-msgstr "Tämä laite ei pysty purkamaan %s lähteitä!"
-
-#
 msgid "This is step number 2."
 msgstr "Tämä on vaihe 2."
 
 msgid ""
 "This plugin creates a USB stick which can be used to update the firmware of "
-"your Dreambox without the need for a network or WLAN connection.\n"
+"your receiver without the need for a network or WLAN connection.\n"
 "First, a USB stick needs to be prepared so that it becomes bootable.\n"
 "In the next step, an NFI image file can be downloaded from the update server "
 "and saved on the USB stick.\n"
 "If you already have a prepared bootable USB stick, please insert it now. "
 "Otherwise plug in a USB stick with a minimum size of 64 MB!"
 msgstr ""
-"Tämä lisäosa luo USB-muistitikun jolla laitteen ohjelmisto voidaan päivittää "
-"ilman verkkoyhteyttä. \n"
-"Aluksi USB-muistitikku pitää alustaa jotta siitä tulee automaattisesti "
-"käynnistyvä.\n"
-"Seuraavaksi NFI-tiedosto voidaan ladata päivityspalvelimelta ja tallentaa "
-"USB-muistitikulle.\n"
-"Jos olet jo tehnyt automaattisesti käynnistyvän USB-muistitikun, kytke se "
-"nyt. Muussa tapauksessa kytke vähintään 64MB:n kokoinen USB-muistitikku."
 
 #
 msgid "This plugin is installed."
@@ -6101,6 +6020,10 @@ msgstr "Tämä lisäosa asennetaan."
 #
 msgid "This plugin will be removed."
 msgstr "Tämä lisäosa poistetaan."
+
+#, python-format
+msgid "This receiver can't decode %s streams!"
+msgstr ""
 
 #
 msgid ""
@@ -6291,19 +6214,13 @@ msgid "To subtitle selection"
 msgstr "Avaa tekstitysvalinta"
 
 msgid ""
-"To update your Dreambox firmware, please follow these steps:\n"
+"To update your receiver firmware, please follow these steps:\n"
 "1) Turn off your box with the rear power switch and make sure the bootable "
 "USB stick is plugged in.\n"
 "2) Turn mains back on and hold the DOWN button on the front panel pressed "
 "for 10 seconds.\n"
 "3) Wait for bootup and follow instructions of the wizard."
 msgstr ""
-"Päivitä laitteen ohjelmisto näiden ohjeiden mukaisesti:\n"
-"1) Kytke virta pois päältä takapaneelin kytkimestä ja liitä automaattisesti "
-"käynnistyvä USB-muistitikku.\n"
-"2) Kytke virta takaisin päälle ja pidä etupaneelin nuoli alas -näppäintä 10 "
-"sekuntia pohjassa.\n"
-"3) Odota käynnistymistä ja seuraa ohjeita."
 
 #
 msgid "Today"
@@ -6539,17 +6456,15 @@ msgstr "Päivitä ja kysy uudelleenkäynnistystä"
 msgid "Upgrade finished."
 msgstr "Päivitys suoritettu."
 
-#
-msgid "Upgrade finished. Do you want to reboot your Dreambox?"
-msgstr "Päivitys suoritettu. Haluatko käynnistää laitteen uudelleen?"
+msgid "Upgrade finished. Do you want to reboot your receiver?"
+msgstr ""
 
 #
 msgid "Upgrading"
 msgstr "Päivitetään"
 
-#
-msgid "Upgrading Dreambox... Please wait"
-msgstr "Laite päivitetään... Odota"
+msgid "Upgrading receiver... Please wait"
+msgstr ""
 
 #
 msgid "Use"
@@ -6938,67 +6853,36 @@ msgstr ""
 "Hae seuraavaksi kohta, johon haluat lopettaa leikkauksen. Paina OK-näppäintä "
 "ja valitse 'Lopeta leikkaus'."
 
-#
 msgid ""
 "Welcome to the Image upgrade wizard. The wizard will assist you in upgrading "
-"the firmware of your Dreambox by providing a backup facility for your "
+"the firmware of your receiver by providing a backup facility for your "
 "current settings and a short explanation of how to upgrade your firmware."
 msgstr ""
-"Tervetuloa ohjelmiston päivitysavustajaan. Avustaja opastaa ohjelmiston "
-"päivityksessä ja varmuuskopioinnissa sekä asetusten palauttamisessa "
-"päivityksen jälkeen."
 
-#
 msgid ""
 "Welcome to the cleanup wizard.\n"
 "\n"
 "We have detected that your available internal memory has dropped below 2MB.\n"
-"To ensure stable operation of your Dreambox, the internal memory should be "
+"To ensure stable operation of your receiver, the internal memory should be "
 "cleaned up.\n"
 "You can use this wizard to remove some extensions.\n"
 msgstr ""
-"Tervetuloa puhdistusavustajaan.\n"
-"\n"
-"Tunnistimme, että vapaa sisäinen muisti putosi alle 2MB:n.\n"
-"Jotta laitteen toiminta olisi vakaata, pitää sisäistä muistia vapauttaa.\n"
-"Voit poistaa lisäosia tällä avustajalla.\n"
 
-#
 msgid ""
 "Welcome.\n"
 "\n"
-"If you want to connect your Dreambox to the Internet, this wizard will guide "
-"you through the basic network setup of your Dreambox.\n"
+"If you want to connect your receiver to the Internet, this wizard will guide "
+"you through the basic network setup of your receiver.\n"
 "\n"
 "Press OK to start configuring your network"
 msgstr ""
-"Tervetuloa.\n"
-"\n"
-"Jos haluat yhdistää laitteen verkkoon, auttaa tämä avustaja määrittämään "
-"lähiverhon perusasetukset.\n"
-"\n"
-"Siirry seuraavaan vaiheeseen painamalla OK-nappia."
 
-#  Ohjatun alkuasennuksen (Start Wizard) aloitusruutu. Teksti on
-#  sovitettu melko tarkasti tilaansa, joten muutoksia ei ole syytä
-#  tehdä testaamatta niitä ensin käytännössä. Tekstiin on lisätty
-#  alkukielisestä versiosta puuttuva rauhoittava huomautus siitä,
-#  että ohjattua asennusta ei ole pakko käyttää, jos on niin kova
-#  guru, ettei sellaisia hömpötyksiä koe tarvitsevansa.
 msgid ""
 "Welcome.\n"
 "\n"
-"This start wizard will guide you through the basic setup of your Dreambox.\n"
+"This start wizard will guide you through the basic setup of your receiver.\n"
 "Press the OK button on your remote control to move to the next step."
 msgstr ""
-"Tervetuloa.\n"
-"\n"
-"Tämä asennustoiminto neuvoo\n"
-"kuinka laitat laitteen\n"
-"perusasetukset kuntoon.\n"
-"\n"
-"Aloita asennus painamalla\n"
-"kaukosäätimen OK-näppäintä."
 
 #
 msgid "Welcome..."
@@ -7171,8 +7055,8 @@ msgstr "Voit jatkaa TV:n katselua sillä aikaa kun tätä suoritetaan"
 msgid "You can install this plugin."
 msgstr "Voit asentaa tämän lisäosan."
 
-msgid "You can only burn Dreambox recordings!"
-msgstr "Voit polttaa vain laitteen omia tallenteita!"
+msgid "You can only burn receiver recordings!"
+msgstr ""
 
 #
 msgid "You can remove this plugin."
@@ -7229,18 +7113,13 @@ msgstr ""
 msgid "You have to wait %s!"
 msgstr "Sinun täytyy odottaa %s!"
 
-#
 msgid ""
-"You need a PC connected to your dreambox. If you need further instructions, "
+"You need a PC connected to your receiver. If you need further instructions, "
 "please visit the website http://www.dm7025.de.\n"
-"Your dreambox will now be halted. After you have performed the update "
+"Your receiver will now be halted. After you have performed the update "
 "instructions from the website, your new firmware will ask you to restore "
 "your settings."
 msgstr ""
-"Tarvitset PC:n, joka on yhdistetty laitteeseen. Katso lisätietoja http://www."
-"dm7025.de.\n"
-"Laite sammutetaan nyt. Kun olet tehnyt päivitystoimenpiteet sivuston "
-"mukaisesti, uusi ohjelmaversio pyytää sinua palauttamaan asetukset."
 
 msgid ""
 "You need to set a PIN code and hide it from your children.\n"
@@ -7267,24 +7146,6 @@ msgstr ""
 
 #
 msgid ""
-"Your Dreambox is now ready to use.\n"
-"\n"
-"Your internet connection is working now.\n"
-"\n"
-"Please press OK to continue."
-msgstr ""
-"Laite on nyt valmis käyttöön.\n"
-"\n"
-"Lähiverkkoyhteys toimii.\n"
-"\n"
-"Jatka painamalla OK-näppäintä."
-
-#
-msgid "Your Dreambox will restart after pressing OK on your remote control."
-msgstr "Laite käynnistyy uudelleen kun painat OK."
-
-#
-msgid ""
 "Your backup succeeded. We will now continue to explain the further upgrade "
 "process."
 msgstr "Varmuuskopiointi onnistui. Päivitys jatkuu eteenpäin."
@@ -7298,18 +7159,6 @@ msgstr ""
 
 msgid "Your current collection will get lost!"
 msgstr "Nykyinen kokoelma häviää!"
-
-#
-msgid "Your dreambox is shutting down. Please stand by..."
-msgstr "Laite sammutetaan. Odota..."
-
-#
-msgid ""
-"Your dreambox isn't connected to the internet properly. Please check it and "
-"try again."
-msgstr ""
-"Yhteyttä Internetiin ei kyetty muodostamaan. Tarkista verkkoasetukset ja "
-"yritä uudelleen."
 
 #
 msgid "Your email address:"
@@ -7347,11 +7196,30 @@ msgstr "Nimi (ei pakollinen):"
 msgid "Your network configuration has been activated."
 msgstr "Verkkoasetukset on aktivoitu."
 
+msgid ""
+"Your receiver is now ready to use.\n"
+"\n"
+"Your internet connection is working now.\n"
+"\n"
+"Please press OK to continue."
+msgstr ""
+
 msgid "Your receiver is rebooting"
 msgstr "Viritin käynnistyy uudelleen"
 
 msgid "Your receiver is shutting down"
 msgstr "Viritin sammutetaan"
+
+msgid "Your receiver is shutting down. Please stand by..."
+msgstr ""
+
+msgid ""
+"Your receiver isn't connected to the internet properly. Please check it and "
+"try again."
+msgstr ""
+
+msgid "Your receiver will restart after pressing OK on your remote control."
+msgstr ""
 
 #
 msgid ""
@@ -8377,6 +8245,9 @@ msgstr "Edellinen kanava"
 msgid "previous channel in history"
 msgstr "Edellinen kanava historiassa"
 
+msgid "receiver software because updates are available."
+msgstr ""
+
 #
 msgid "record"
 msgstr "tallennus"
@@ -8667,6 +8538,9 @@ msgstr "erikoismerkit"
 msgid "special events"
 msgstr ""
 
+msgid "special format data DVD (HDTV compatible)"
+msgstr ""
+
 msgid "sports (general)"
 msgstr ""
 
@@ -8898,14 +8772,10 @@ msgstr "Kyllä"
 msgid "yes (keep feeds)"
 msgstr "Kyllä (pidä feedit)"
 
-#
 msgid ""
-"your dreambox might be unusable now. Please consult the manual for further "
-"assistance before rebooting your dreambox."
+"your receiver might be unusable now. Please consult the manual for further "
+"assistance before rebooting your receiver."
 msgstr ""
-"Asennus ei onnistunut. Laite saattaa olla käyttökelvottomassa tilassa. "
-"Joudut ehkä asentamaan ohjelmiston uudelleen tietokoneen avulla. Katso "
-"käyttöoppaasta lisäohjeita ennen kuin käynnistät laitteen uudelleen."
 
 #
 msgid "zap"
