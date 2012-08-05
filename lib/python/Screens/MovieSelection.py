@@ -242,6 +242,7 @@ class MovieBrowserConfiguration(ConfigListScreen,Screen):
 			getConfigListEntry(_("show extended description"), cfg.description),
 			getConfigListEntry(_("Type"), cfg.listtype),
 			getConfigListEntry(_("Remember these settings for each folder"), config.movielist.settings_per_directory),
+			getConfigListEntry(_("Behavior when a movie reaches the end"), config.usage.on_movie_eof),
 			getConfigListEntry(_("Load Length of Movies in Movielist"), config.usage.load_length_of_movies_in_moviellist),
 			getConfigListEntry(_("Show status icons in Movielist"), config.usage.show_icons_in_movielist),
 			getConfigListEntry(_("Show icon for new/unseen items"), config.usage.movielist_unseen),
@@ -292,6 +293,7 @@ class MovieBrowserConfiguration(ConfigListScreen,Screen):
 			config.movielist.moviesort.save()
 			config.movielist.listtype.save()
 			config.movielist.description.save()
+			config.usage.on_movie_eof.save()
 		self.close(True)
 
 	def cancel(self):
@@ -454,8 +456,11 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.settings = {\
 			"listtype": config.movielist.listtype.value,
 			"moviesort": config.movielist.moviesort.value,
-			"description": config.movielist.description.value
+			"description": config.movielist.description.value,
+			"movieoff": config.usage.on_movie_eof.value
 		}
+		self.movieOff = self.settings["movieoff"]
+
 		self["list"] = MovieList(None, list_type=self.settings["listtype"], sort_type=self.settings["moviesort"], descr_state=self.settings["description"])
 
 		self.list = self["list"]
@@ -989,10 +994,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		config.movielist.moviesort.value = self.settings["moviesort"]
 		config.movielist.listtype.value = self.settings["listtype"]
 		config.movielist.description.value = self.settings["description"]
-
-		config.movielist.moviesort.save()
-		config.movielist.listtype.save()
-		config.movielist.description.save()
+		config.usage.on_movie_eof.value = self.settings["movieoff"]
 
 	def loadLocalSettings(self):
 		'Load settings, called when entering a directory'
@@ -1004,6 +1006,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			config.movielist.moviesort.value = config.movielist.moviesort.default
 			config.movielist.listtype.value = config.movielist.listtype.default
 			config.movielist.description.value = config.movielist.description.default
+			config.usage.on_movie_eof.value = config.usage.on_movie_eof.default
 			pass # ignore fail to open errors
 		except Exception, e:
 			print "Failed to load settings:", e
@@ -1020,9 +1023,13 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		if self.settings["moviesort"] != self["list"].sort_type:
 			self["list"].setSortType(self.settings["moviesort"])
 			needUpdate = True
+		if self.settings["movieoff"] != self.movieOff:
+			self.movieOff = self.settings["movieoff"]
+			needUpdate = True
 		config.movielist.moviesort.value = self.settings["moviesort"]
 		config.movielist.listtype.value = self.settings["listtype"]
 		config.movielist.description.value = self.settings["description"]
+		config.usage.on_movie_eof.value = self.settings["movieoff"]
 		return needUpdate
 
 	def sortBy(self, newType):
@@ -1064,7 +1071,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			self.applyConfigSettings({\
 				"listtype": config.movielist.listtype.value,
 				"moviesort": config.movielist.moviesort.value,
-				"description": config.movielist.description.value})
+				"description": config.movielist.description.value,
+				"movieoff": config.usage.on_movie_eof.value})
 			self.saveLocalSettings()
 			self._updateButtonTexts()
 			self.reloadList()
@@ -1758,8 +1766,9 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 
 	def setNextMovieOffStatus(self):
 		config.usage.on_movie_eof.selectNext()
-		config.usage.on_movie_eof.save()
-
+		self.settings["movieoff"] = config.usage.on_movie_eof.value
+		if config.movielist.settings_per_directory.value:
+			self.saveLocalSettings()
 
 class PlayList:
 	def __init__(self):
