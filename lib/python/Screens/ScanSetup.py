@@ -319,7 +319,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		del self.feinfo
 		del self.service
 
-		self.session.postScanService = session.nav.getCurrentlyPlayingServiceReference(True)
+		self.session.postScanService = session.nav.getCurrentlyPlayingServiceReference()
 
 		self["actions"] = NumberActionMap(["SetupActions", "MenuActions"],
 		{

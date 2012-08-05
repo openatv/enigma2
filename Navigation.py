@@ -95,7 +95,7 @@ class Navigation:
 			self.stopService()
 		return 1
 	
-	def getCurrentlyPlayingServiceReference(self, selected = False):
+	def getCurrentlyPlayingServiceReference(self, selected = True):
 		if selected and self.currentlyPlayingServiceReference:
 			return self.currentlyPlayingSelectedServiceReference
 		return self.currentlyPlayingServiceReference
