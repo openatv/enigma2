@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ims\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-05 10:00+0200\n"
+"POT-Creation-Date: 2012-08-05 13:21+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: ims <ims21@users.sourceforge.net>\n"
 "Language-Team: PLi <ims21@users.sourceforge.net>\n"
@@ -13,8 +13,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Language: Czech\n"
 "X-Poedit-Country: CZECH REPUBLIC\n"
-"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
-"|| n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #
 msgid ""
@@ -36,6 +35,8 @@ msgid ""
 "\n"
 "Backup your receiver settings."
 msgstr ""
+"\n"
+"Záloha nastavení Vašeho přijímače."
 
 #
 msgid ""
@@ -49,11 +50,15 @@ msgid ""
 "\n"
 "Manage extensions or plugins for your receiver"
 msgstr ""
+"\n"
+"Správa rozšíření nebo pluginů Vašeho přijímače"
 
 msgid ""
 "\n"
 "Online update of your receiver software."
 msgstr ""
+"\n"
+"Online aktualizace programového vybavení přijímače."
 
 #
 msgid ""
@@ -75,11 +80,15 @@ msgid ""
 "\n"
 "Restore your receiver settings."
 msgstr ""
+"\n"
+"Obnova nastavení Vašeho přijímače."
 
 msgid ""
 "\n"
 "Restore your receiver with a new firmware."
 msgstr ""
+"\n"
+"Obnova přijímače s novým firmware."
 
 #
 msgid ""
@@ -408,11 +417,15 @@ msgid ""
 "A finished record timer wants to set your\n"
 "receiver to standby. Do that now?"
 msgstr ""
+"Dokončený časovač nahrávání chce přepnout\n"
+"přijímač do standby módu. Přepnout?"
 
 msgid ""
 "A finished record timer wants to shut down\n"
 "your receiver. Shutdown now?"
 msgstr ""
+"Dokončený časovač nahrávání chce vypnout\n"
+"přijímač. Vypnout?"
 
 #
 msgid "A graphical EPG for all services of an specific bouquet"
@@ -477,11 +490,15 @@ msgid ""
 "A sleep timer wants to set your\n"
 "receiver to standby. Do that now?"
 msgstr ""
+"Časovač vypnutí chce přepnout přijímač\n"
+"do standby módu. Přepnout hned?"
 
 msgid ""
 "A sleep timer wants to shut down\n"
 "your receiver. Shutdown now?"
 msgstr ""
+"Časovač vypnutí chce vypnout přijímač.\n"
+"Vypnout?"
 
 #
 msgid "A small overview of the available icon states and actions."
@@ -600,7 +617,7 @@ msgstr "Přidat/Odstranit časovač pro aktuální událost"
 msgid ""
 "Adds enigma2 settings and receiver model informations like SN, rev... if "
 "enabled."
-msgstr ""
+msgstr "Přidá enigma2 nastavení a informace o přijímači, jako je SN, rev..., pokud je povoleno. "
 
 #
 msgid "Adds network configuration if enabled."
@@ -664,7 +681,7 @@ msgstr "Po stisknutí OK čekejte, prosím!"
 msgid ""
 "After the start wizard is completed, you need to protect single services. "
 "Refer to your receiver's manual on how to do that."
-msgstr ""
+msgstr "Po skončení průvodce je potřeba zabezpečit jednotlivé programy. Podívejte se do návodu od přijímače, jak to udělat."
 
 #
 msgid "Album"
@@ -1407,7 +1424,7 @@ msgid "Copy"
 msgstr "Kopírovat"
 
 msgid "Could not connect to receiver .NFI Image Feed Server:"
-msgstr ""
+msgstr "Nelze se připojit ke zdrojovému serveru s .NFI image"
 
 #
 msgid "Could not load Medium! No disc inserted?"
@@ -1446,6 +1463,8 @@ msgid ""
 "Crashlogs found!\n"
 "Send them to the Image Developper?"
 msgstr ""
+"Nalezen crashlog!\n"
+"Odeslat tvůrcům image?"
 
 #
 msgid "Create DVD-ISO"
@@ -1487,7 +1506,7 @@ msgid "Current device: "
 msgstr "Zvolené zařízení: "
 
 msgid "Current event EPG"
-msgstr ""
+msgstr "EPG aktuálního pořadu"
 
 #
 msgid "Current settings:"
@@ -1896,7 +1915,7 @@ msgid "Do you want to download the image to %s ?"
 msgstr "Chcete stáhnout image do %s?"
 
 msgid "Do you want to enable the parental control feature on your receiver?"
-msgstr ""
+msgstr "Chcete povolit rodičovskou kontrolu na Vašem přijímači?"
 
 #
 msgid "Do you want to install the package:\n"
@@ -1911,7 +1930,7 @@ msgid "Do you want to preview this DVD before burning?"
 msgstr "Chcete si toto DVD před vypálením prohlédnout?"
 
 msgid "Do you want to reboot your receiver?"
-msgstr ""
+msgstr "Chcete přijímač restartovat?"
 
 #
 msgid "Do you want to remove the package:\n"
@@ -1934,12 +1953,14 @@ msgstr ""
 "kontaktovat?"
 
 msgid "Do you want to update your receiver?"
-msgstr ""
+msgstr "Chcete zaktualizovat Váš přijímač?"
 
 msgid ""
 "Do you want to update your receiver?\n"
 "After pressing OK, please wait!"
 msgstr ""
+"Chcete aktualizovat Váš přijímač?\n"
+"Po stisknutí OK čekejte, prosím!"
 
 #
 msgid "Do you want to upgrade the package:\n"
@@ -2073,10 +2094,10 @@ msgid "Edit settings"
 msgstr "upravit nastavení"
 
 msgid "Edit the Nameserver configuration of your receiver.\n"
-msgstr ""
+msgstr "Upravit konfiguraci DNS.\n"
 
 msgid "Edit the network configuration of your receiver.\n"
-msgstr ""
+msgstr "Upravit konfiguraci sítě.\n"
 
 #
 msgid "Edit title"
@@ -2590,7 +2611,7 @@ msgid "GotoX calibration"
 msgstr "Kalibrace Přejít na X"
 
 msgid "GraphMultiEpg Settings"
-msgstr ""
+msgstr "Nastavení GraphMultiEPG"
 
 #
 msgid "Graphical Multi EPG"
@@ -3707,7 +3728,7 @@ msgid "No, do nothing."
 msgstr "Ne, nic nedělej."
 
 msgid "No, just start my receiver"
-msgstr ""
+msgstr "Ne, pouze spusť můj přijímač"
 
 msgid "No, never"
 msgstr "Ne, nikdy"
@@ -3959,10 +3980,10 @@ msgid "PiPSetup"
 msgstr "Nastavení PiP"
 
 msgid "Picon"
-msgstr ""
+msgstr "Pikony"
 
 msgid "Picon and Service Name"
-msgstr ""
+msgstr "Pikony a názvy programů"
 
 #
 msgid "PicturePlayer"
@@ -4132,7 +4153,7 @@ msgid "Please press OK!"
 msgstr "Prosím stiskněte OK!"
 
 msgid "Please select a default EPG type..."
-msgstr ""
+msgstr "Zvolte preferovaný typ EPG..."
 
 #
 msgid "Please select a playlist to delete..."
@@ -5127,7 +5148,7 @@ msgid "Select copy destination for:"
 msgstr "Zvolte umístění kopie pro:"
 
 msgid "Select default EPG type..."
-msgstr ""
+msgstr "Zvolte preferovaný typ EPG..."
 
 msgid "Select desired image from feed list"
 msgstr "Vyberte požadované image ze seznamu"
@@ -5214,7 +5235,7 @@ msgid "Service"
 msgstr "O programu"
 
 msgid "Service Name"
-msgstr ""
+msgstr "Název programu"
 
 #
 msgid "Service Scan"
@@ -5225,8 +5246,7 @@ msgid "Service Searching"
 msgstr "Hledání programů"
 
 msgid "Service Title mode"
-msgstr ""
-
+msgstr "Názvy programů"
 #
 msgid "Service has been added to the favourites."
 msgstr "Program byl přidán do oblíbených."
@@ -5434,7 +5454,7 @@ msgid "Shutdown"
 msgstr "Vypnout"
 
 msgid "Shutdown receiver after"
-msgstr ""
+msgstr "Vypnout přijímač po"
 
 msgid "Side by Side"
 msgstr "vedle sebe"
@@ -5925,7 +5945,7 @@ msgid "Test mode"
 msgstr "Testovací mód"
 
 msgid "Test the network configuration of your receiver.\n"
-msgstr ""
+msgstr "Otestovat síťovou konfiguraci přijímače.\n"
 
 #
 msgid "Test-Messagebox?"
@@ -5952,12 +5972,14 @@ msgid ""
 "Thank you for using the wizard. Your box is now ready to use.\n"
 "Please press OK to start using your receiver."
 msgstr ""
+"Děkujeme za použítí průvodce. Přijímač je nyní připraven k používání.\n"
+"Stiskněte OK a začněte přijímač používat."
 
 msgid ""
 "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to "
 "create a special format data DVD (which will not play in stand-alone DVD "
 "players) instead?"
-msgstr ""
+msgstr "DVD standard nepodporuje H.264 (HDTV) video streamy. Chcete místo toho vytvořit speciální formát data DVD (které ale nepůjde přehrát ve stolních DVD přehrávačích)?"
 
 #
 msgid ""
@@ -6051,7 +6073,7 @@ msgstr "Vybraný setting byl nainstalován."
 msgid ""
 "The installation of the default settings is finished. You can now continue "
 "configuring your receiver by pressing the OK button on the remote control."
-msgstr ""
+msgstr "Standardní nastavení bylo nainstalováno. Nyní můžete pokračovat v konfiguraci přijímače stisknutím OK na dálkovém ovladači."
 
 msgid "The md5sum validation failed, the file may be corrupted!"
 msgstr "Ověření md5sum selhalo, soubor může být poškozen!"
@@ -6185,6 +6207,10 @@ msgid ""
 "If you already have a prepared bootable USB stick, please insert it now. "
 "Otherwise plug in a USB stick with a minimum size of 64 MB!"
 msgstr ""
+"Tento plugin vytvoří USB zařízení, které může být použito k aktualizaci firmware Vašeho přijímače bez použití sítě nebo WLAN připojení.\n"
+"Nejprve je potřeba USB zařízení připravit jako bootovací.\n"
+"V dalším kroku může být stažen NFI soubor ze serveru s aktualizacemi a uložen na USB zařízení.\n"
+"Jestliže máte již připravené bootovací USB zařízení, připojte ho nyní. V opačném případě připojte USB zařízení o minimální velikosti 64 MB!"
 
 #
 msgid "This plugin is installed."
@@ -6204,7 +6230,7 @@ msgstr "Plugin bude odstraněn."
 
 #, python-format
 msgid "This receiver can't decode %s streams!"
-msgstr ""
+msgstr "Tento přijímač nemůže dekódovat %s streamů!"
 
 #
 msgid ""
@@ -6403,6 +6429,10 @@ msgid ""
 "for 10 seconds.\n"
 "3) Wait for bootup and follow instructions of the wizard."
 msgstr ""
+"Pro aktualizaci firmware Vašeho přijímače proveďte následující kroky:\n"
+"1) vypněte přijímač hlavním vypínačem vzadu na přístroji a ujistěte se, že bootovací USB zařízení je připojeno.\n"
+"2) zapněte hlavní vypínač a držte 10s stisknuté tlačítko DOWN na předním panelu.\n"
+"3) počkejte, až zařízení nabootuje a následujte instrukce průvodce."
 
 #
 msgid "Today"
@@ -6652,14 +6682,14 @@ msgid "Upgrade finished."
 msgstr "Aktualizace dokončena."
 
 msgid "Upgrade finished. Do you want to reboot your receiver?"
-msgstr ""
+msgstr "Upgrade skončil. Chcete restartovat váš přijímač?"
 
 #
 msgid "Upgrading"
 msgstr "Aktualizace"
 
 msgid "Upgrading receiver... Please wait"
-msgstr ""
+msgstr "Aktualizuji přijímač... Prosím, čekejte"
 
 #
 msgid "Use"
@@ -7047,6 +7077,7 @@ msgid ""
 "the firmware of your receiver by providing a backup facility for your "
 "current settings and a short explanation of how to upgrade your firmware."
 msgstr ""
+"Vítejte v průvodci aktualizace image. Průvodce pomůže při aktualizaci image Vašeho přijímače, provedení zálohy Vašeho nastavení a krátkého vysvětlení, jak zaktualizovat firmware."
 
 msgid ""
 "Welcome to the cleanup wizard.\n"
@@ -7056,6 +7087,11 @@ msgid ""
 "cleaned up.\n"
 "You can use this wizard to remove some extensions.\n"
 msgstr ""
+"Vítejte v průvodci vyčištěním.\n"
+"\n"
+"Bylo zjištěno, že Váše volná vnitřní pamět klesla pod 2 MB.\n"
+"K zajištění stabilního fungování Vašeho přijímače by se měla vnitřní paměť vyčistit.\n"
+" To můžete udělat tímto pomocníkem.\n"
 
 msgid ""
 "Welcome.\n"
@@ -7065,6 +7101,11 @@ msgid ""
 "\n"
 "Press OK to start configuring your network"
 msgstr ""
+"Vítáme Vás.\n"
+"\n"
+"Chcete-li připojit Váš přijímač do internetu, tento průvodce Vás provede základním nastavením sítě přijímače.\n"
+"\n"
+"Stiskněte OK pro spuštění konfigurace Vaší sítě"
 
 msgid ""
 "Welcome.\n"
@@ -7072,6 +7113,10 @@ msgid ""
 "This start wizard will guide you through the basic setup of your receiver.\n"
 "Press the OK button on your remote control to move to the next step."
 msgstr ""
+"Vítejte.\n"
+"\n"
+"Tento průvodce vás provede základním nastavením Vašeho přijímače.\n"
+"Stiskněte OK na dálkovém ovladači pro přesun na další krok."
 
 #
 msgid "Welcome..."
@@ -7248,7 +7293,7 @@ msgid "You can install this plugin."
 msgstr "Můžete instalovat tento plugin."
 
 msgid "You can only burn receiver recordings!"
-msgstr ""
+msgstr "Můžete vypalovat pouze nahrávky z přijímače!"
 
 #
 msgid "You can remove this plugin."
@@ -7316,6 +7361,8 @@ msgid ""
 "instructions from the website, your new firmware will ask you to restore "
 "your settings."
 msgstr ""
+"Potřebujete PC připojené k Vašemu přijímači. Pokud potřebujete další informace, navštivte stránku http://www.dm7025.de.\n"
+"Váš přijímač bude nyní zastaven. Poté, co provedete aktualizaci pomocí instrukcí popsaných na zmíněné stránce, se Vás přijímač zeptá na obnovu nastavení."
 
 msgid ""
 "You need to set a PIN code and hide it from your children.\n"
@@ -7405,6 +7452,11 @@ msgid ""
 "\n"
 "Please press OK to continue."
 msgstr ""
+"Váš přijímač je nyní připraven k používání.\n"
+"\n"
+"Vaše internetové připojení nyní pracuje.\n"
+"\n"
+"Prosím, stiskněte OK pro pokračování."
 
 msgid "Your receiver is rebooting"
 msgstr "Přijímač se restartuje"
@@ -7413,15 +7465,15 @@ msgid "Your receiver is shutting down"
 msgstr "Přijímač se vypíná"
 
 msgid "Your receiver is shutting down. Please stand by..."
-msgstr ""
+msgstr "Váš přijímač se vypíná. Prosím, počkejte..."
 
 msgid ""
 "Your receiver isn't connected to the internet properly. Please check it and "
 "try again."
-msgstr ""
+msgstr "Váš přijímač není správně připojen k internetu. Prosím, prověřte to a zkuste to znovu."
 
 msgid "Your receiver will restart after pressing OK on your remote control."
-msgstr ""
+msgstr "Váš přijímač bude restartován po stisknutí OK na dálkovém ovladači."
 
 #
 msgid ""
@@ -7698,7 +7750,7 @@ msgstr "blacklist"
 
 #
 msgid "blue"
-msgstr "modrá"
+msgstr "Modré"
 
 msgid "broadcasting/press"
 msgstr "vysílání/tisk"
@@ -8054,7 +8106,7 @@ msgstr "grabovat snímek jako bitmapu"
 
 #
 msgid "green"
-msgstr "zelená"
+msgstr "Zelené"
 
 msgid "handicraft"
 msgstr "ruční práce"
@@ -8453,7 +8505,7 @@ msgid "previous channel in history"
 msgstr "předchozí program v historii"
 
 msgid "receiver software because updates are available."
-msgstr ""
+msgstr "software přijímače, jelikož aktualizace jsou dostupné."
 
 #
 msgid "record"
@@ -8465,7 +8517,7 @@ msgstr "nahrávání.."
 
 #
 msgid "red"
-msgstr "červená"
+msgstr "Červené"
 
 #
 msgid "relative"
@@ -8752,7 +8804,7 @@ msgid "special events"
 msgstr "zvláštní události"
 
 msgid "special format data DVD (HDTV compatible)"
-msgstr ""
+msgstr "speciální formát data DVD (HDTV kompatibilní)"
 
 msgid "sports (general)"
 msgstr "sporty (obecně)"
@@ -8978,7 +9030,7 @@ msgstr "pracuji"
 
 #
 msgid "yellow"
-msgstr "žlutá"
+msgstr "Žluté"
 
 #
 msgid "yes"
@@ -8991,7 +9043,7 @@ msgstr "ano (uchovat zdroje)"
 msgid ""
 "your receiver might be unusable now. Please consult the manual for further "
 "assistance before rebooting your receiver."
-msgstr ""
+msgstr "Váš přijímač může být nyní nepoužitelný. Prosím, konzultujte s manuálem další pomoc před restartováním přijímače."
 
 #
 msgid "zap"
@@ -9000,3 +9052,4 @@ msgstr "přepnout"
 #
 msgid "zapped"
 msgstr "přepnutý"
+
