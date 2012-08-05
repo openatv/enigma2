@@ -39,7 +39,7 @@ class ChannelNumber(Renderer, VariableText):
 			if 'userbouquet.' in root.toCompareString():
 				services = serviceHandler.list(root)
 				channels = services and services.getContent("SN", True)
-				channelIndex = CurrentServiceList.servicelist.l.lookupService(CurrentServiceList.servicelist.getCurrent())
+				channelIndex = CurrentServiceList.servicelist.getCurrentIndex()
 				markersCounter = 0
 				for i in range(channelIndex):
 					if channels[i][0].startswith("1:64:"):
