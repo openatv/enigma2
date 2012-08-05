@@ -33,16 +33,18 @@ class ServiceScan(Screen):
 	def ok(self):
 		print "ok"
 		if self["scan"].isDone():
-			if self.currentServiceList is not None:
-				bouquets = self.currentServiceList.getBouquetList()
-				for x in bouquets:
-					if x[0] == 'Last Scanned':
-						self.currentServiceList.setRoot(x[1])
-						services = eServiceCenter.getInstance().list(self.currentServiceList.servicelist.getRoot())
-						channels = services and services.getContent("R", True)
-						if channels:
-							self.session.postScanService = channels[0]
-							self.currentServiceList.addToHistory(self.session.postScanService)
+			if `self.currentInfobar`.endswith(".InfoBar'>"):
+				self.currentServiceList = self.currentInfobar.servicelist
+				if self.currentServiceList is not None:
+					bouquets = self.currentServiceList.getBouquetList()
+					for x in bouquets:
+						if x[0] == 'Last Scanned':
+							self.currentServiceList.setRoot(x[1])
+							services = eServiceCenter.getInstance().list(self.currentServiceList.servicelist.getRoot())
+							channels = services and services.getContent("R", True)
+							if channels:
+								self.session.postScanService = channels[0]
+								self.currentServiceList.addToHistory(channels[0])
 			self.close()
 
 	def cancel(self):
@@ -53,7 +55,7 @@ class ServiceScan(Screen):
 		
 		self.scanList = scanList
 		
-		self.currentServiceList = session.infobar.servicelist
+		self.currentInfobar = session.infobar
 
 		self.session.nav.stopService()
 
