@@ -5,7 +5,6 @@ from Components.Label import Label
 from Components.ActionMap import ActionMap
 from Components.FIFOList import FIFOList
 from Components.Sources.FrontendInfo import FrontendInfo
-from Screens.InfoBar import InfoBar
 from enigma import eServiceCenter
 
 class ServiceScanSummary(Screen):
@@ -54,12 +53,8 @@ class ServiceScan(Screen):
 		
 		self.scanList = scanList
 		
-		self.currentServiceList = None
-		infoBarInstance = InfoBar.instance
-		if infoBarInstance is not None:
-			self.currentServiceList = infoBarInstance.servicelist
+		self.currentServiceList = session.infobar.servicelist
 
-		self.session.postScanService = self.currentServiceList.servicelist.getCurrent()
 		self.session.nav.stopService()
 
 		if self.session.pipshown:
