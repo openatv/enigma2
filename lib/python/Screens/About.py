@@ -335,6 +335,7 @@ class SystemNetworkInfo(Screen):
 				"cancel": self.close,
 				"ok": self.close,
 			})
+		self.iface = None
 		self.resetList()
 		self.updateStatusbar()
 		self.timer = eTimer()
