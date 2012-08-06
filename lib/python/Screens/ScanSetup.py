@@ -939,6 +939,8 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport):
 			"menu": self.doCloseRecursive,
 		}, -2)
 
+		self.session.postScanService = session.nav.getCurrentlyPlayingServiceReference()
+
 		self.list = []
 		tlist = []
 
