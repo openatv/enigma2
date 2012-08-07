@@ -98,6 +98,11 @@ class GetEcmInfo:
 							self.textvalue = cardid
 					except:
 						self.textvalue = decode
+					if info['response'] and info['prov'] and 'CaID 0x' in ecm[0] and 'pid 0x' in ecm[0]:
+						self.textvalue = self.textvalue + " (0.%ss)" % info['response']
+						info['caid'] = ecm[0][ecm[0].find('CaID 0x')+7:ecm[0].find(',')]
+						info['pid'] = ecm[0][ecm[0].find('pid 0x')+6:ecm[0].find(' =')]
+						info['provid'] = info.get('prov', '0')[:4]
 				else:
 					self.textvalue = decode
 			else:
