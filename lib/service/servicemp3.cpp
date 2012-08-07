@@ -339,7 +339,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 				ePythonConfigQuery::getConfigValue("config.mediaplayer.alternateUserAgent", m_useragent);
 		}
 		if ( m_useragent.length() == 0 )
-			m_useragent = "Dream Multimedia Dreambox Enigma2 Mediaplayer";
+			m_useragent = "Enigma2 Mediaplayer";
 	}
 	else if ( m_sourceinfo.containertype == ctCDA )
 	{
