@@ -210,6 +210,7 @@ class MovieBrowserConfiguration(ConfigListScreen,Screen):
 		configList.append(getConfigListEntry(_("Sort"), cfg.moviesort, _("Set the default sorting method.")))
 		configList.append(getConfigListEntry(_("show extended description"), cfg.description, _("Show or hide the extended description, (skin dependent).")))
 		configList.append(getConfigListEntry(_("Remember these settings for each folder"), config.movielist.settings_per_directory, _("When set each folder will show the previous state used, when off the default values will be shown.")))
+		configList.append(getConfigListEntry(_("Behavior when a movie reaches the end"), config.usage.on_movie_eof),_("On raching the end of a file during playback, you can choose the box's behaviour.")))
 		configList.append(getConfigListEntry(_("Show status icons in Movielist"), config.usage.show_icons_in_movielist, _("Shows the watched status of the movie.")))
 		if config.usage.show_icons_in_movielist.value:
 			configList.append(getConfigListEntry(_("Show icon for new/unseen items"), config.usage.movielist_unseen, _("Shows the icons when new/unseen, else will not show an icon.")))
@@ -263,7 +264,8 @@ class MovieBrowserConfiguration(ConfigListScreen,Screen):
 		if not config.movielist.settings_per_directory.value:
 			config.movielist.moviesort.save()
 			config.movielist.description.save()
-		config.movielist.useslim.save()
+			config.movielist.useslim.save()
+			config.usage.on_movie_eof.save()
 		self.close(True)
 
 	def cancel(self):
@@ -452,8 +454,11 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 
 		self.settings = {
 			"moviesort": config.movielist.moviesort.value,
-			"description": config.movielist.description.value
+			"description": config.movielist.description.value,
+			"movieoff": config.usage.on_movie_eof.value
 		}
+		self.movieOff = self.settings["movieoff"]
+
 		self["list"] = MovieList(None, sort_type=self.settings["moviesort"], descr_state=self.settings["description"])
 
 		self.list = self["list"]
@@ -1007,8 +1012,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		# Also set config items, in case the user has a read-only disk
 		config.movielist.moviesort.value = self.settings["moviesort"]
 		config.movielist.description.value = self.settings["description"]
-		config.movielist.moviesort.save()
-		config.movielist.description.save()
+		config.usage.on_movie_eof.value = self.settings["movieoff"]
 
 	def loadLocalSettings(self):
 		'Load settings, called when entering a directory'
@@ -1019,6 +1023,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		except IOError, e:
 			config.movielist.moviesort.value = config.movielist.moviesort.default
 			config.movielist.description.value = config.movielist.description.default
+			config.usage.on_movie_eof.value = config.usage.on_movie_eof.default
 			pass # ignore fail to open errors
 		except Exception, e:
 			print "Failed to load settings:", e
@@ -1032,8 +1037,12 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		if self.settings["moviesort"] != self["list"].sort_type:
 			self["list"].setSortType(int(self.settings["moviesort"]))
 			needUpdate = True
+		if self.settings["movieoff"] != self.movieOff:
+			self.movieOff = self.settings["movieoff"]
+			needUpdate = True
 		config.movielist.moviesort.value = self.settings["moviesort"]
 		config.movielist.description.value = self.settings["description"]
+		config.usage.on_movie_eof.value = self.settings["movieoff"]
 		return needUpdate
 
 	def sortBy(self, newType):
@@ -1071,8 +1080,10 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 
 	def configureDone(self, result):
 		if result:
-			self.applyConfigSettings({"moviesort": config.movielist.moviesort.value,
-				"description": config.movielist.description.value})
+			self.applyConfigSettings({\
+				"moviesort": config.movielist.moviesort.value,
+				"description": config.movielist.description.value,
+				"movieoff": config.usage.on_movie_eof.value})
 			self.saveLocalSettings()
 			self._updateButtonTexts()
 			self["list"].setItemsPerPage()
@@ -1773,8 +1784,9 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 
 	def setNextMovieOffStatus(self):
 		config.usage.on_movie_eof.selectNext()
-		config.usage.on_movie_eof.save()
-
+		self.settings["movieoff"] = config.usage.on_movie_eof.value
+		if config.movielist.settings_per_directory.value:
+			self.saveLocalSettings()
 
 class PlayList:
 	def __init__(self):
