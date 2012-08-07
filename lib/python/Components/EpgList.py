@@ -268,8 +268,14 @@ class EPGList(HTMLComponent, GUIComponent):
 	def getIndexFromService(self, serviceref):
 		if serviceref is not None:
 			for x in range(len(self.list)):
-				if CompareWithAlternatives(self.list[x][0], serviceref.toString()):
-					return x
+				if str(self.list[x][0]).startswith('1:'): # check for Graphical EPG
+					if CompareWithAlternatives(self.list[x][0], serviceref.toString()):
+						return x
+				elif str(self.list[x][1]).startswith('1:'): # check for Multi EPG
+					if CompareWithAlternatives(self.list[x][1], serviceref.toString()):
+						return x
+				else:
+					return None
 		return None
 
 	def moveToService(self, serviceref):
