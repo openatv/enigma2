@@ -115,7 +115,6 @@ class Navigation:
 
 	def stopRecordService(self, service):
 		ret = self.pnav and self.pnav.stopRecordService(service)
-		self.currentlyPlayingServiceReference = None
 		return ret
 
 	def getRecordings(self, simulate=False):
@@ -129,6 +128,7 @@ class Navigation:
 	def stopService(self):
 		if self.pnav:
 			self.pnav.stopService()
+		self.currentlyPlayingServiceReference = None
 
 	def pause(self, p):
 		return self.pnav and self.pnav.pause(p)
