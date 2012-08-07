@@ -61,6 +61,8 @@ class GetEcmInfo:
 							self.textvalue = decode
 					else:
 						self.textvalue = decode
+					if 'SysID' in ecm[1]:
+						info['prov'] = ecm[1].strip()[6:]
 					if info['response'] and info['prov'] and 'CaID 0x' in ecm[0] and 'pid 0x' in ecm[0]:
 						self.textvalue = self.textvalue + " (0.%ss)" % info['response']
 						info['caid'] = ecm[0][ecm[0].find('CaID 0x')+7:ecm[0].find(',')]
