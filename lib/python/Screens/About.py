@@ -326,6 +326,7 @@ class SystemNetworkInfo(Screen):
 		self["statuspic"] = MultiPixmap()
 		self["statuspic"].hide()
 
+		self.iface = None
 		self.createscreen()
 
 		self["key_red"] = StaticText(_("Close"))
@@ -335,7 +336,6 @@ class SystemNetworkInfo(Screen):
 				"cancel": self.close,
 				"ok": self.close,
 			})
-		self.iface = None
 		self.resetList()
 		self.updateStatusbar()
 		self.timer = eTimer()
