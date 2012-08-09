@@ -671,7 +671,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 
 				painter.renderPara(para, offset+ePoint(xoffs, yoffs));
 			}
-			else if (e == celServiceTypePixmap || e == celFolderPixmap || e == celMarkerPixmap)
+			else if (e == celServiceTypePixmap || e == celFolderPixmap || (e == celMarkerPixmap && !m_cursor->flags & eServiceReference::isNumberedMarker))
 			{
 				int orbpos = m_cursor->getUnsignedData(4) >> 16;
 				ePtr<gPixmap> &pixmap =
