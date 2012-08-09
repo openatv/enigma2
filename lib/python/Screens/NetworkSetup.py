@@ -1608,7 +1608,7 @@ class NetworkAfp(Screen):
 
 	def AfpStart(self):
 		if self.Installed == IPK_NotInstalled:
-			self.session.openWithCallback(self.checkAFPService, Screens.Console.Console, cmdlist = ['opkg update','ipkg --force-overwrite install netatalk'], closeOnSuccess = True)
+			self.session.openWithCallback(self.checkAFPService, Screens.Console.Console, cmdlist = ['opkg update','ipkg --force-overwrite install task-base-appletalk netatalk'], closeOnSuccess = True)
 		elif self.my_afp_run == False:
 			self.Console.ePopen('/etc/init.d/atalk start')
 			time.sleep(3)
@@ -1953,7 +1953,7 @@ class NetworkNfs(Screen):
 
 	def NfsStart(self):
 		if self.Installed == IPK_NotInstalled:
-			self.session.openWithCallback(self.checkNFSService, Screens.Console.Console, cmdlist = ['opkg update','ipkg --force-overwrite install nfs-utils'], closeOnSuccess = True)
+			self.session.openWithCallback(self.checkNFSService, Screens.Console.Console, cmdlist = ['opkg update','ipkg --force-overwrite install task-base-nfs'], closeOnSuccess = True)
 		elif self.my_nfs_run == False:
 			self.Console.ePopen('/etc/init.d/nfsserver start')
 			time.sleep(3)
@@ -2228,7 +2228,7 @@ class NetworkSamba(Screen):
 
 	def SambaStart(self):
 		if self.Installed == IPK_NotInstalled:
-			self.session.openWithCallback(self.checkSambaService, Screens.Console.Console, cmdlist = ['opkg update','ipkg --force-overwrite install sambaserver samba'], closeOnSuccess = True)
+			self.session.openWithCallback(self.checkSambaService, Screens.Console.Console, cmdlist = ['opkg update','ipkg --force-overwrite install task-base-smbfs'], closeOnSuccess = True)
 		elif self.my_Samba_run == False:
 			self.Console.ePopen('/etc/init.d/samba start')
 			time.sleep(3)
