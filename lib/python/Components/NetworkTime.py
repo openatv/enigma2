@@ -1,6 +1,8 @@
 from Components.Console import Console
 from config import config
-from enigma import eTimer
+from enigma import eTimer, eDVBLocalTimeHandler
+from Tools.DreamboxHardware import setRTCtime
+from time import time
 
 # _session = None
 #
@@ -28,8 +30,12 @@ class NTPSyncPoller:
 
 	def ntp_sync(self):
 		if config.misc.SyncTimeUsing.value == "1":
+			print '[NTP]: Updating'
 			self.Console.ePopen('/usr/bin/ntpdate -s -u pool.ntp.org', self.update_schedule)
 
 	def update_schedule(self, result = None, retval = None, extra_args = None):
-		print '[Time By]: Update NTP'
+		nowTime = time()
+		print '[NTP]: setting E2 time:',nowTime
+		setRTCtime(nowTime)
+		eDVBLocalTimeHandler.getInstance().setUseDVBTime(False)
 		self.timer.startLongTimer(int(config.misc.useNTPminutes.value) * 60)
