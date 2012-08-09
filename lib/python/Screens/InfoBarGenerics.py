@@ -361,35 +361,37 @@ class InfoBarNumberZap:
 		if retval > 0:
 			self.zapToNumber(retval)
 
-	def searchNumberHelper(self, serviceHandler, num, bouquet):
-		servicelist = serviceHandler.list(bouquet)
-		if not servicelist is None:
-			while num:
-				serviceIterator = servicelist.getNext()
-				if not serviceIterator.valid(): #check end of list
-					break
-				playable = not (serviceIterator.flags & (eServiceReference.isMarker|eServiceReference.isDirectory)) or (serviceIterator.flags & eServiceReference.isNumberedMarker)
-				if playable:
-					num -= 1
-			if not num: #found service with searched number ?
-				return serviceIterator, 0
-		return None, num
-
-	def zapToNumber(self, number):
-		bouquet = self.servicelist.bouquet_root
-		service = None
-		serviceHandler = eServiceCenter.getInstance()
-		if not config.usage.multibouquet.value:
-			service, number = self.searchNumberHelper(serviceHandler, number, bouquet)
-		else:
-			bouquetlist = serviceHandler.list(bouquet)
-			if not bouquetlist is None:
-				while number:
-					bouquet = bouquetlist.getNext()
-					if not bouquet.valid(): #check end of list
-						break
-					if bouquet.flags & eServiceReference.isDirectory:
-						service, number = self.searchNumberHelper(serviceHandler, number, bouquet)
+ 	def searchNumberHelper(self, serviceHandler, num, bouquet):
+ 		servicelist = serviceHandler.list(bouquet)
+ 		if not servicelist is None:
+			serviceIterator = servicelist.getNext()
+			while serviceIterator.valid():
+				if num == serviceIterator.getChannelNum():
+					return serviceIterator
+ 				serviceIterator = servicelist.getNext()
+		return None
+ 
+ 	def zapToNumber(self, number):
+ 		bouquet = self.servicelist.bouquet_root
+ 		service = None
+ 		serviceHandler = eServiceCenter.getInstance()
+ 		if not config.usage.multibouquet.value:
+			service = self.searchNumberHelper(serviceHandler, number, bouquet)
+ 		else:
+			service = self.searchNumberHelper(serviceHandler, number, bouquet) #search the current bouqeut first
+			if service is None:
+				bouquetlist = serviceHandler.list(bouquet)
+				if not bouquetlist is None:
+ 					bouquet = bouquetlist.getNext()
+					while bouquet.valid():
+						if bouquet.flags & eServiceReference.isDirectory:
+							service = self.searchNumberHelper(serviceHandler, number, bouquet)
+							if service is not None:
+								playable = not (service.flags & (eServiceReference.isMarker|eServiceReference.isDirectory)) or (service.flags & eServiceReference.isNumberedMarker)
+								if not playable:
+									service = None
+								break
+						bouquet = bouquetlist.getNext()
 		if not service is None:
 			if self.servicelist.getRoot() != bouquet: #already in correct bouquet?
 				self.servicelist.clearPath()

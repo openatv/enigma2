@@ -196,6 +196,12 @@ class ServiceList(HTMLComponent, GUIComponent):
 			self.l.sort()
 		self.selectionChanged()
 
+	def resetRoot(self):
+		index = self.instance.getCurrentIndex()
+		self.l.setRoot(self.root, False)
+		self.l.sort()
+		self.instance.moveSelectionTo(index)
+	
 	def removeCurrent(self):
 		self.l.removeCurrent()
 
