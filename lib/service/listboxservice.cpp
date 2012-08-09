@@ -565,6 +565,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 			painter.blit(local_style->m_selection, offset, eRect(), gPainter::BT_ALPHATEST);
 
 		int xoffset=0;  // used as offset when painting the folder/marker symbol or the serviceevent progress
+		time_t now = time(0);
 
 		for (int e = 0; e != celElements; ++e)
 		{
@@ -572,11 +573,8 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 			{
 				int flags=gPainter::RT_VALIGN_CENTER;
 				int yoffs = 0;
-				int xoffs = xoffset;
 				eRect &area = m_element_position[e];
 				std::string text = "<n/a>";
-				xoffset=0;
-
 				switch (e)
 				{
 				case celServiceNumber:
@@ -626,16 +624,31 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 							else
 								painter.setForegroundColor(gRGB(0xe7b53f));
 						}
+						break;
 					}
-					else
-						continue;
-
-					break;
+					continue;
+				}
+				case celServiceEventProgressbar:
+				{
+					if (area.width() > 0 && isPlayable && service_info && !service_info->getEvent(*m_cursor, evt))
+					{
+						char bla[10];
+						sprintf(bla, "%d %", (int)(100 * (now - evt->getBeginTime()) / evt->getDuration()));
+						text = bla;
+						flags|=gPainter::RT_HALIGN_RIGHT;
+						break;
+					}
+					continue;
 				}
 				}
 
 				eRect tmp = area;
-				tmp.setWidth(tmp.width()-xoffs);
+				int xoffs = 0;
+				if (e == celServiceName)
+				{
+					xoffs = xoffset;
+					tmp.setWidth(tmp.width()-xoffs);
+				}
 
 				eTextPara *para = new eTextPara(tmp);
 				para->setFont(m_element_font[e]);
@@ -718,7 +731,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 			style.drawFrame(painter, eRect(offset, m_itemsize), eWindowStyle::frameListboxEntry);
 
 		eRect area = m_element_position[celServiceEventProgressbar];
-		if (area.width() > 0 && evt)
+		if (area.width() > 0 && evt && !m_element_font[celServiceEventProgressbar])
 		{
 #define PB_BorderWidth 2
 #define PB_Height 6
@@ -726,7 +739,6 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 			int pb_ypos = offset.y() + (m_itemsize.height() - PB_Height - 2*PB_BorderWidth) / 2;
 			int pb_width = area.width()- 2*PB_BorderWidth;
 			gRGB ProgressbarBorderColor = 0xdfdfdf;
-			time_t now = time(0);
 			int evt_done = pb_width * (now - evt->getBeginTime()) / evt->getDuration();
 
 			// the progress data...
