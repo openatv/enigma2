@@ -242,7 +242,7 @@ static bool canDescrambleMultipleServices(int slotid)
 	if ( str == "auto" )
 	{
 		std::string appname = eDVBCI_UI::getInstance()->getAppName(slotid);
-		if (appname.find("AlphaCrypt") != std::string::npos)
+		if (appname.find("AlphaCrypt") != std::string::npos || appname.find("Multi") != std::string::npos)
 			return true;
 	}
 	else if (str == "yes")
