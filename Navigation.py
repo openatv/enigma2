@@ -32,6 +32,10 @@ class Navigation:
 		self.currentlyPlayingService = None
 		self.RecordTimer = RecordTimer.RecordTimer()
 		if getFPWasTimerWakeup():
+			if config.misc.boxtype.value == 'gb800se' or config.misc.boxtype.value == 'gb800solo' or config.misc.boxtype.value == 'gb800ue':
+				if not config.plugins.wakeupworkaround.value:
+					self.clearFPWasTimerWakeup()
+					return
 			if nextRecordTimerAfterEventActionAuto:
 				# We need to give the system the chance to fully startup, 
 				# before we initiate the standby command.
