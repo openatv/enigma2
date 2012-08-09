@@ -4,6 +4,7 @@
 #include <lib/dvb/epgcache.h>
 #include <lib/dvb/pmt.h>
 #include <lib/python/connections.h>
+#include <lib/dvb/db.h>
 
 void eListboxServiceContent::addService(const eServiceReference &service, bool beforeCurrent)
 {
@@ -23,6 +24,7 @@ void eListboxServiceContent::addService(const eServiceReference &service, bool b
 		m_cursor_number=0;
 		m_listbox->entryAdded(0);
 	}
+	eDVBDB::getInstance()->renumberBouquet();
 }
 
 void eListboxServiceContent::removeCurrent()
@@ -46,6 +48,7 @@ void eListboxServiceContent::removeCurrent()
 			m_listbox->entryRemoved(m_cursor_number);
 		}
 	}
+	eDVBDB::getInstance()->renumberBouquet();
 }
 
 void eListboxServiceContent::FillFinished()
@@ -579,24 +582,14 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 				{
 				case celServiceNumber:
 				{
-					if (m_cursor->flags & eServiceReference::isMarker && !(m_cursor->flags & eServiceReference::isNumberedMarker))
-						continue;
 					if (area.width() <= 0)
 						continue; // no point in going on if we won't paint anything
 
+					if( m_cursor->getChannelNum() == -1 )
+						continue;
+
 					char bla[10];
-					/* how we can do this better? :) */
-					int markers_before=0;
-					{
-						list::iterator tmp=m_cursor;
-						while(tmp != m_list.begin())
-						{
-							--tmp;
-							if (tmp->flags & eServiceReference::isMarker && !(tmp->flags & eServiceReference::isNumberedMarker))
-								++markers_before;
-						}
-					}
-					sprintf(bla, "%d", m_numberoffset + m_cursor_number + 1 - markers_before);
+					sprintf(bla, "%d", m_cursor->getChannelNum() );
 					text = bla;
 					flags|=gPainter::RT_HALIGN_RIGHT;
 					break;

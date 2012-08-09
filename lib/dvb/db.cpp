@@ -28,6 +28,7 @@ RESULT eBouquet::addService(const eServiceReference &ref, eServiceReference befo
 	}
 	else
 		m_services.push_back(ref);
+	eDVBDB::getInstance()->renumberBouquet();
 	return 0;
 }
 
@@ -38,6 +39,7 @@ RESULT eBouquet::removeService(const eServiceReference &ref)
 	if ( it == m_services.end() )
 		return -1;
 	m_services.erase(it);
+	eDVBDB::getInstance()->renumberBouquet();
 	return 0;
 }
 
@@ -70,6 +72,7 @@ RESULT eBouquet::moveService(const eServiceReference &ref, unsigned int pos)
 		else
 			std::iter_swap(source--, source);
 	}
+	eDVBDB::getInstance()->renumberBouquet();
 	return 0;
 }
 
@@ -638,13 +641,13 @@ void eDVBDB::saveServicelist()
 	saveServicelist(eEnv::resolve("${sysconfdir}/enigma2/lamedb").c_str());
 }
 
-void eDVBDB::loadBouquet(const char *path)
+int eDVBDB::loadBouquet(const char *path, int startChannelNum)
 {
 	std::string bouquet_name = path;
 	if (!bouquet_name.length())
 	{
 		eDebug("Bouquet load failed.. no path given..");
-		return;
+		return startChannelNum;
 	}
 	size_t pos = bouquet_name.rfind('/');
 	if ( pos != std::string::npos )
@@ -652,7 +655,7 @@ void eDVBDB::loadBouquet(const char *path)
 	if (bouquet_name.empty())
 	{
 		eDebug("Bouquet load failed.. no filename given..");
-		return;
+		return startChannelNum;
 	}
 	eBouquet &bouquet = m_bouquets[bouquet_name];
 	bouquet.m_filename = bouquet_name;
@@ -661,7 +664,7 @@ void eDVBDB::loadBouquet(const char *path)
 
 	std::string p = eEnv::resolve("${sysconfdir}/enigma2/");
 	p+=path;
-	eDebug("loading bouquet... %s", p.c_str());
+	eDebug("loading bouquet... %s %d", p.c_str(), startChannelNum);
 	FILE *fp=fopen(p.c_str(), "rt");
 	if (!fp)
 	{
@@ -728,10 +731,22 @@ void eDVBDB::loadBouquet(const char *path)
 					snprintf(buf, 256, "FROM BOUQUET \"%s\" ORDER BY bouquet", path.c_str());
 					tmp.path = buf;
 				}
-				loadBouquet(path.c_str());
+				if (strstr(path.c_str(), "alternatives."))
+					loadBouquet(path.c_str());
+				else
+					startChannelNum = loadBouquet(path.c_str(), startChannelNum);
 			}
 			list.push_back(tmp);
 			e = &list.back();
+			if( !(tmp.flags & (eServiceReference::isMarker|eServiceReference::isDirectory)) ||
+				(tmp.flags & eServiceReference::isNumberedMarker) )
+			{
+				e->number  = startChannelNum++;
+			}
+			else
+			{
+				e->number  = -1;
+			}
 			read_descr=true;
 			++entries;
 		}
@@ -747,6 +762,7 @@ void eDVBDB::loadBouquet(const char *path)
 	free(line);
 	fclose(fp);
 	eDebug("%d entries in Bouquet %s", entries, bouquet_name.c_str());
+	return startChannelNum;
 }
 
 void eDVBDB::reloadBouquets()
@@ -785,6 +801,75 @@ void eDVBDB::reloadBouquets()
 		parent.m_services.push_back(ref);
 		parent.flushChanges();
 	}
+}
+
+void eDVBDB::renumberBouquet()
+{
+	eDebug("Renumbering...");
+	renumberBouquet( m_bouquets["bouquets.tv"] );
+	renumberBouquet( m_bouquets["bouquets.radio"] );
+}
+
+int eDVBDB::renumberBouquet(eBouquet &bouquet, int startChannelNum)
+{
+	std::list<eServiceReference> &list = bouquet.m_services;
+	for (std::list<eServiceReference>::iterator it = list.begin(); it != list.end(); ++it)
+	{
+		eServiceReference &tmp = *it;
+		if ( tmp.flags&eServiceReference::canDescent )
+		{
+			size_t pos = tmp.path.rfind('/');
+			char buf[256];
+			std::string path = tmp.path;
+			if ( pos != std::string::npos )
+				path.erase(0, pos+1);
+			if (path.empty())
+			{
+				eDebug("Bouquet load failed.. no filename given..");
+				continue;
+			}
+			pos = path.find("FROM BOUQUET ");
+			if (pos != std::string::npos)
+			{
+				char endchr = path[pos+13];
+				if (endchr != '"')
+				{
+					eDebug("ignore invalid bouquet '%s' (only \" are allowed)", tmp.toString().c_str());
+					continue;
+				}
+				char *beg = &path[pos+14];
+				char *end = strchr(beg, endchr);
+				path.assign(beg, end - beg);
+			}
+			else
+			{
+				snprintf(buf, 256, "FROM BOUQUET \"%s\" ORDER BY bouquet", path.c_str());
+			}
+
+			if (!path.length())
+			{
+				continue;
+			}
+			pos = path.rfind('/');
+			if ( pos != std::string::npos )
+				path.erase(0, pos+1);
+			if (path.empty())
+			{
+				continue;
+			}
+			eBouquet &subBouquet = m_bouquets[path];
+			if (strstr(path.c_str(), "alternatives."))
+				renumberBouquet(subBouquet);
+			else
+				startChannelNum = renumberBouquet(subBouquet, startChannelNum);
+		}
+
+		if( !(tmp.flags & (eServiceReference::isMarker|eServiceReference::isDirectory)) ||
+		   (tmp.flags & eServiceReference::isNumberedMarker) )
+			tmp.number = startChannelNum++;
+		
+	}
+	return startChannelNum;
 }
 
 eDVBDB *eDVBDB::instance;
