@@ -73,7 +73,7 @@ AM_CONDITIONAL(GBHD800SE, test "$BOXTYPE" == gbhd800se)
 AM_CONDITIONAL(ODINM9, test "$BOXTYPE" == odinm9)
 AM_CONDITIONAL(HAVE_TEMPFANCONTROL, test "$BOXTYPE" == dm8000 -o "$BOXTYPE" == dm800se -o "$BOXTYPE" == dm500hd)
 AM_CONDITIONAL(HAVE_DISPLAY128, test "$BOXTYPE" == dm8000 -o "$BOXTYPE" == dm7020HD)
-AM_CONDITIONAL(HAVE_DISPLAY96, test "$BOXTYPE" == dm800 -o "$BOXTYPE" == dm800se)
+AM_CONDITIONAL(HAVE_DISPLAY96, test "$BOXTYPE" == dm800 -o "$BOXTYPE" == dm800se -o "$BOXTYPE" == gb800ue -o "$BOXTYPE" == gbquad)
 
 AC_ARG_WITH(textlcd,
 	AC_HELP_STRING([--with-textlcd], [use ascii based lcd, yes or no]),
