@@ -59,6 +59,9 @@ class Navigation:
 
 	def playService(self, ref, checkParentalControl = True, forceRestart = False):
 		oldref = self.currentlyPlayingServiceReference
+		InfoBarInstance = InfoBar.instance
+		if InfoBarInstance is not None:
+			InfoBarInstance.servicelist.servicelist.setCurrent(ref)
 		if ref and oldref and ref == oldref and not forceRestart:
 			print "ignore request to play already running service(1)"
 			return 0
@@ -84,9 +87,6 @@ class Navigation:
 				self.pnav.stopService()
 				self.currentlyPlayingServiceReference = playref
 				self.currentlyPlayingSelectedServiceReference = ref
-				InfoBarInstance = InfoBar.instance
-				if InfoBarInstance is not None:
-					InfoBarInstance.servicelist.servicelist.setCurrent(ref)
 				if self.pnav.playService(playref):
 					print "Failed to start", playref
 					self.currentlyPlayingServiceReference = None
