@@ -16,7 +16,6 @@ class ChannelNumber(Renderer, VariableText):
 			return
 		if what[1] != iPlayableService.evStart:
 			return
-		self.text = "---"
 		service = self.source.serviceref
 		num = service and service.getChannelNum() or -1
 		if (num == -1):
