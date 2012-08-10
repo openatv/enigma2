@@ -575,7 +575,7 @@ class EPGSelection(Screen, HelpableScreen):
 			self.ask_time = now - now % (int(config.epgselection.roundTo.getValue()) * 60)
 			l.fillGraphEPG(None, self.ask_time)
 			self.moveTimeLines()
-			self.close(True)
+			self.close('reopen')
 		else:
 			l = self["list"]
 			l.setItemsPerPage()
@@ -590,7 +590,7 @@ class EPGSelection(Screen, HelpableScreen):
 			config.epgselection.pictureingraphics.setValue(False)
 		config.epgselection.pictureingraphics.save()
 		configfile.save()
-		self.close(True)
+		self.close('reopen')
 
 	def hidewaitingtext(self):
 		self.listTimer.stop()
@@ -827,7 +827,7 @@ class EPGSelection(Screen, HelpableScreen):
 
 
 	def GraphEPGClose(self):
-		self.closeRecursive = True
+		self.closeRecursive = 'open'
 		ref = self["list"].getCurrent()[1]
 		if ref:
 			self.closeScreen()
@@ -1335,7 +1335,7 @@ class EPGSelection(Screen, HelpableScreen):
 	def zap(self):
 		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_MULTI:
 			if self.zapFunc :
-				self.closeRecursive = True
+				self.closeRecursive = 'reopen'
 				ref = self["list"].getCurrent()[1]
 				if ref:
 					self.zapFunc(ref.ref)
@@ -1384,7 +1384,7 @@ class EPGSelection(Screen, HelpableScreen):
 							self.zapFunc(ref.ref)
 							self.refreshTimer.start(10000)
 					else:
-						self.close(False)
+						self.close('close')
 		elif self.type == EPG_TYPE_SINGLE:
 			currch = self.session.nav.getCurrentlyPlayingServiceReference()
 			currch = currch.toString()
@@ -1394,7 +1394,7 @@ class EPGSelection(Screen, HelpableScreen):
 				self.session.nav.playService(self.currentService.ref)
 				self.refreshTimer.start(10000)
 			else:
-				self.close()
+				self.close('close')
 		elif self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
 			currch = self.session.nav.getCurrentlyPlayingServiceReference()
 			currch = currch.toString()
@@ -1404,7 +1404,7 @@ class EPGSelection(Screen, HelpableScreen):
 				self.servicelist.zap()
 				self.refreshTimer.start(10000)
 			else:
-				self.close()
+				self.close('close')
 
 	def keyNumberGlobal(self, number):
 		from Screens.InfoBarGenerics import NumberZap

@@ -1173,7 +1173,7 @@ class InfoBarEPG:
 		self.serviceSel = None
 
 	def openSingleServiceEPG(self):
-		self.session.open(EPGSelection, self.servicelist)
+		self.session.openWithCallback(self.reopen,EPGSelection, self.servicelist)
 
 	def openInfoBarEPG(self):
 		self.EPGtype = "infobar"
@@ -1217,8 +1217,11 @@ class InfoBarEPG:
 		epg = None
 
 	def reopen(self, answer):
-		if answer:
+		if answer == 'reopen':
 			self.openGraphEPG()
+		elif answer == 'close' and isMoviePlayerInfoBar(self):
+			self.lastservice = self.session.nav.getCurrentlyPlayingServiceReference()
+			self.close()
 
 	def showCoolTVGuide(self):
 		if Directories.fileExists("/usr/lib/enigma2/python/Plugins/Extensions/CoolTVGuide/plugin.pyo"):
