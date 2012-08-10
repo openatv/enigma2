@@ -55,7 +55,10 @@ class ServiceScan(Screen):
 
 		self.scanList = scanList
 
-		self.currentInfobar = session.infobar
+		if hasattr(session, 'infobar'):
+			self.currentInfobar = session.infobar
+		else:
+			self.currentInfobar = None
 
 		self.session.nav.stopService()
 
