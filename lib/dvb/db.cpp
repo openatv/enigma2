@@ -731,7 +731,7 @@ int eDVBDB::loadBouquet(const char *path, int startChannelNum)
 					snprintf(buf, 256, "FROM BOUQUET \"%s\" ORDER BY bouquet", path.c_str());
 					tmp.path = buf;
 				}
-				if (strstr(path.c_str(), "alternatives."))
+				if (path.find("alternatives.") == 0)
 					loadBouquet(path.c_str());
 				else
 					startChannelNum = loadBouquet(path.c_str(), startChannelNum);
@@ -741,11 +741,11 @@ int eDVBDB::loadBouquet(const char *path, int startChannelNum)
 			if( !(tmp.flags & (eServiceReference::isMarker|eServiceReference::isDirectory)) ||
 				(tmp.flags & eServiceReference::isNumberedMarker) )
 			{
-				e->number  = startChannelNum++;
+				e->number = startChannelNum++;
 			}
 			else
 			{
-				e->number  = -1;
+				e->number = 0;
 			}
 			read_descr=true;
 			++entries;
@@ -858,7 +858,7 @@ int eDVBDB::renumberBouquet(eBouquet &bouquet, int startChannelNum)
 				continue;
 			}
 			eBouquet &subBouquet = m_bouquets[path];
-			if (strstr(path.c_str(), "alternatives."))
+			if (path.find("alternatives.") == 0)
 				renumberBouquet(subBouquet);
 			else
 				startChannelNum = renumberBouquet(subBouquet, startChannelNum);
