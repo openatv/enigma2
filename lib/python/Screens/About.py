@@ -554,10 +554,12 @@ class ViewGitLog(Screen):
 		self['title_summary'] = StaticText()
 		self['text_summary'] = StaticText()
 		self["key_red"] = Button(_("Close"))
+		self["key_green"] = Button(_("OK"))
 		self["key_yellow"] = Button(_("Show E2 Log"))
 		self["myactions"] = ActionMap(['ColorActions', 'OkCancelActions', 'DirectionActions'],
 		{
 			'cancel': self.closeRecursive,
+			'green': self.closeRecursive,
 			"red": self.closeRecursive,
 			"yellow": self.changelogtype,
 			"left": self.pageUp,
