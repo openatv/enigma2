@@ -1977,12 +1977,13 @@ void eDVBChannel::AddUse()
 
 void eDVBChannel::ReleaseUse()
 {
-	if (!--m_use_count)
+	int count = --m_use_count;
+	if (!count)
 	{
 		m_state = state_release;
 		m_stateChanged(this);
 	}
-	else if (m_use_count == 1)
+	else if (count == 1)
 	{
 		m_state = state_last_instance;
 		m_stateChanged(this);
