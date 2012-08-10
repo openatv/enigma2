@@ -15,6 +15,6 @@ nodist_actionsinclude_HEADERS = \
 BUILT_SOURCES += actions/actionids.h
 CLEANFILES += actions/actionids.h
 
-actions/actionids.h: $(srcdir)/actions/parseactions.py $(top_srcdir)/lib/gui/*.h
+$(srcdir)/actions/actionids.h: $(srcdir)/actions/parseactions.py $(top_srcdir)/lib/gui/*.h
 	$(AM_V_GEN)$(PYTHON) $(srcdir)/actions/parseactions.py include $(top_srcdir)/lib/gui/*.h > $@
 	$(AM_V_at)$(PYTHON) $(srcdir)/actions/parseactions.py parse $(top_srcdir)/lib/gui/*.h >> $@
