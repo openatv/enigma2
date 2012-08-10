@@ -472,6 +472,7 @@ void eFastScan::fillBouquet(eBouquet *bouquet, std::map<int, eServiceReferenceDV
 			number++;
 		}
 		bouquet->flushChanges();
+		eDVBDB::getInstance()->renumberBouquet();
 	}
 }
 
