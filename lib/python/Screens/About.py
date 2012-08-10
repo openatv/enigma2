@@ -537,10 +537,8 @@ class ViewGitLog(Screen):
 		self.skin = """
 			<screen position="center,center" size="720,540" >
 				<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-				<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 				<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
 				<widget name="key_red" position="0,2" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-				<widget name="key_green" position="140,2" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
 				<widget name="key_yellow" position="280,2" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
 				<widget name="text" position="0,50" size="720,500" font="Regular;21" />
 			</screen>"""
@@ -556,7 +554,6 @@ class ViewGitLog(Screen):
 		self['title_summary'] = StaticText()
 		self['text_summary'] = StaticText()
 		self["key_red"] = Button(_("Close"))
-		self["key_green"] = Button(_("OK"))
 		self["key_yellow"] = Button(_("Show E2 Log"))
 		self["myactions"] = ActionMap(['ColorActions', 'OkCancelActions', 'DirectionActions'],
 		{
