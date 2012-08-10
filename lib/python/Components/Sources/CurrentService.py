@@ -2,6 +2,7 @@ from Components.PerServiceDisplay import PerServiceBase
 from enigma import iPlayableService
 from Source import Source
 from Components.Element import cached
+import NavigationInstance
 
 class CurrentService(PerServiceBase, Source):
 	def __init__(self, navcore):
@@ -28,6 +29,14 @@ class CurrentService(PerServiceBase, Source):
 		return self.navcore.getCurrentService()
 
 	service = property(getCurrentService)
+
+	@cached
+	def getCurrentServiceRef(self):
+		if NavigationInstance.instance is not None:
+			return NavigationInstance.instance.getCurrentlyPlayingServiceReference()
+		return None
+
+	serviceref = property(getCurrentServiceRef)
 
 	def destroy(self):
 		PerServiceBase.destroy(self)

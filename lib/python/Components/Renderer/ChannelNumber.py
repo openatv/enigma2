@@ -1,24 +1,13 @@
-from Components.config import config
 from Components.VariableText import VariableText
-from enigma import eLabel, eServiceCenter, iPlayableService
+from enigma import eLabel, iPlayableService
 from Renderer import Renderer
 from Screens.InfoBar import InfoBar
-
-firstChannelNumberClass = True
-text = ""
-
-if config.misc.boxtype.value == 'gb800se' or config.misc.boxtype.value == 'gb800solo':
-	from enigma import evfd
 
 class ChannelNumber(Renderer, VariableText):
 	def __init__(self):
 		Renderer.__init__(self)
 		VariableText.__init__(self)
 		self.text = "---"
-		global firstChannelNumberClass
-		self.firstChannelNumberClass  = firstChannelNumberClass
-		firstChannelNumberClass  = False
-
 	GUI_WIDGET = eLabel
 
 	def changed(self, what):
@@ -27,21 +16,10 @@ class ChannelNumber(Renderer, VariableText):
 			return
 		if what[1] != iPlayableService.evStart:
 			return
-		if not self.firstChannelNumberClass:
-			self.text = text
-			return
-		self.text = "---"
-		service = self.source.service
-		if service and service.info():
-			CurrentServiceList = InfoBar.instance.servicelist
-			root = CurrentServiceList.servicelist.getRoot()
-			if 'userbouquet.' in root.toCompareString():
-				services = eServiceCenter.getInstance().list(root)
-				channels = services and services.getContent("SN", True)
-				channelIndex = CurrentServiceList.servicelist.getCurrentIndex()
-				markersCounter = 0
-				for i in range(channelIndex):
-					if channels[i][0].startswith("1:64:"):
-						markersCounter = markersCounter + 1
-				self.text = str(CurrentServiceList.getBouquetNumOffset(root)+channelIndex+1-markersCounter)
-		text = self.text
+		service = self.source.serviceref
+		num = service and service.getChannelNum() or -1
+		if (num == -1):
+ 			self.text = '---'
+		else:
+			self.text = str(num)
+

@@ -900,6 +900,7 @@ class ChannelSelectionEdit:
 				self.bouquetNumOffsetCache = { }
 				mutableList.flushChanges() #FIXME dont flush on each single removed service
 				self.servicelist.removeCurrent()
+				self.servicelist.resetRoot()
 
 	def addServiceToBouquet(self, dest, service=None):
 		mutableList = self.getMutableList(dest)
@@ -917,6 +918,7 @@ class ChannelSelectionEdit:
 				pos2 = str2.find("FROM BOUQUET")
 				if pos1 != -1 and pos2 != -1 and str1[pos1:] == str2[pos2:]:
 					self.servicelist.addService(service)
+				self.servicelist.resetRoot()
 
 	def toggleMoveMode(self):
 		if self.movemode:
@@ -931,6 +933,7 @@ class ChannelSelectionEdit:
 			cur_root = self.getRoot()
 			if cur_root and cur_root == self.bouquet_root:
 				self.bouquetNumOffsetCache = { }
+			self.servicelist.resetRoot()
 		else:
 			self.mutableList = self.getMutableList()
 			self.movemode = True
