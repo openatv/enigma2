@@ -50,6 +50,7 @@ FLAG_SERVICE_NEW_FOUND = 64 #define in lib/dvb/idvb.h as dxNewFound = 64
 class BouquetSelector(Screen):
 	def __init__(self, session, bouquets, selectedFunc, enableWrapAround=False):
 		Screen.__init__(self, session)
+		Screen.setTitle(self, _("Choose Bouquet"))
 
 		self.selectedFunc=selectedFunc
 
@@ -82,6 +83,7 @@ class EPGBouquetSelector(Screen):
 		Screen.__init__(self, session)
 		self.curbouquet = curbouquet
 		self.skinName = "BouquetSelector"
+		Screen.setTitle(self, _("Choose Bouquet"))
 		self["actions"] = ActionMap(["OkCancelActions", "EPGSelectActions"],
 			{
 				"ok": self.okbuttonClick,
@@ -1051,7 +1053,7 @@ class ChannelSelectionBase(Screen):
 					if number > 0:
 						offset = number - 1
 						break
-		return offset			
+		return offset
 
 	def recallBouquetMode(self):
 		if self.mode == MODE_TV:
