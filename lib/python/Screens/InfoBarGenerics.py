@@ -983,9 +983,9 @@ class InfoBarSimpleEventView:
 	def __init__(self):
 		self["EPGActions"] = HelpableActionMap(self, "InfobarEPGActions",
 			{
-				"showEventInfo": (self.openEventView, _("show event details")),
+				"InfoPressed": (self.InfoPressed, _("show program information...")),
+				"EPGPressed":  (self.showDefaultEPG, _("show EPG...")),
 				"showInfobarOrEpgWhenInfobarAlreadyVisible": self.showEventInfoWhenNotVisible,
-				"InfoPressed": self.openEventView,
 			})
 
 	def showEventInfoWhenNotVisible(self):
@@ -998,31 +998,6 @@ class InfoBarSimpleEventView:
 			self.toggleShow()
 			return 1
 
-	def openEventView(self):
-		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
-			self.secondInfoBarScreen.hide()
-			self.secondInfoBarWasShown = False
-		epglist = [ ]
-		self.epglist = epglist
-		service = self.session.nav.getCurrentService()
-		ref = self.session.nav.getCurrentlyPlayingServiceReference()
-		info = service.info()
-		ptr=info.getEvent(0)
-		if ptr:
-			epglist.append(ptr)
-		ptr=info.getEvent(1)
-		if ptr:
-			epglist.append(ptr)
-		if epglist:
-			self.session.open(EventViewSimple, epglist[0], ServiceReference(ref), self.eventViewCallback)
-
-	def eventViewCallback(self, setEvent, setService, val): #used for now/next displaying
-		epglist = self.epglist
-		if len(epglist) > 1:
-			tmp = epglist[0]
-			epglist[0] = epglist[1]
-			epglist[1] = tmp
-			setEvent(epglist[0])
 
 class InfoBarEPG:
 	""" EPG - Opens an EPG list when the showEPGList action fires """
@@ -1050,8 +1025,8 @@ class InfoBarEPG:
 			{
 				"InfoPressed": (self.InfoPressed, _("show program information...")),
 				"showEventInfoPlugin": (self.showEventInfoPlugins, _("list of EPG views...")),
-				"showInfobarOrEpgWhenInfobarAlreadyVisible": self.showEventInfoWhenNotVisible,
 				"EPGPressed":  (self.showDefaultEPG, _("show EPG...")),
+				"showInfobarOrEpgWhenInfobarAlreadyVisible": self.showEventInfoWhenNotVisible,
 			})
 
 	def getEPGPluginList(self):
@@ -1329,9 +1304,6 @@ class InfoBarEPG:
 		if epglist:
 			self.eventView = self.session.openWithCallback(self.closed, EventViewEPGSelect, self.epglist[0], ServiceReference(ref), self.eventViewCallback, self.openSingleServiceEPG, self.openMultiServiceEPG, self.openSimilarList)
 			self.dlg_stack.append(self.eventView)
-		else:
-			print "no epg for the service avail.. so we show multiepg instead of eventinfo"
-			self.openMultiServiceEPG(False)
 
 	def eventViewCallback(self, setEvent, setService, val): #used for now/next displaying
 		epglist = self.epglist
@@ -3716,7 +3688,7 @@ class InfoBarPiP:
 		pipref = self.session.pip.getCurrentService()
 		if swapservice and pipref and pipref.toString() != swapservice.toString():
 			currentServicePath = self.servicelist.getCurrentServicePath()
-			self.servicelist.setCurrentServicePath(self.session.pip.servicePath)	
+			self.servicelist.setCurrentServicePath(self.session.pip.servicePath)
 			self.session.pip.playService(swapservice)
 			self.session.nav.stopService() # stop portal
 			self.session.nav.playService(pipref) # start subservice
