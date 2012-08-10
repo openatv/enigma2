@@ -591,7 +591,6 @@ class ChannelSelectionEdit:
 	def removeBouquet(self):
 		refstr = self.getCurrentSelection().toString()
 		print "removeBouquet", refstr
-		self.bouquetNumOffsetCache = { }
 		pos = refstr.find('FROM BOUQUET "')
 		filename = None
 		if pos != -1:
@@ -634,7 +633,6 @@ class ChannelSelectionEdit:
 
 	def endMarkedEdit(self, abort):
 		if not abort and self.mutableList is not None:
-			self.bouquetNumOffsetCache = { }
 			new_marked = set(self.servicelist.getMarked())
 			old_marked = set(self.__marked)
 			removed = old_marked - new_marked
@@ -676,7 +674,6 @@ class ChannelSelectionEdit:
 		mutableList = self.getMutableList()
 		if ref.valid() and mutableList is not None:
 			if not mutableList.removeService(ref):
-				self.bouquetNumOffsetCache = { }
 				mutableList.flushChanges() #FIXME dont flush on each single removed service
 				self.servicelist.removeCurrent()
 				self.servicelist.resetRoot()
@@ -687,7 +684,6 @@ class ChannelSelectionEdit:
 			if service is None: #use current selected service
 				service = self.servicelist.getCurrent()
 			if not mutableList.addService(service):
-				self.bouquetNumOffsetCache = { }
 				mutableList.flushChanges()
 				# do some voodoo to check if current_root is equal to dest
 				cur_root = self.getRoot();
@@ -710,8 +706,6 @@ class ChannelSelectionEdit:
 			self.setTitle(self.saved_title)
 			self.saved_title = None
 			cur_root = self.getRoot()
-			if cur_root and cur_root == self.bouquet_root:
-				self.bouquetNumOffsetCache = { }
 			self.servicelist.resetRoot()
 		else:
 			self.mutableList = self.getMutableList()
@@ -786,8 +780,6 @@ class ChannelSelectionBase(Screen):
 
 		self.pathChangeDisabled = False
 
-		self.bouquetNumOffsetCache = { }
-
 		self["ChannelSelectBaseActions"] = NumberActionMap(["ChannelSelectBaseActions", "NumberActions", "InputAsciiActions"],
 			{
 				"showFavourites": self.showFavourites,
@@ -817,28 +809,20 @@ class ChannelSelectionBase(Screen):
 		if not config.usage.multibouquet.value:
 			return 0
 		str = bouquet.toString()
-		offsetCount = 0
-		if not self.bouquetNumOffsetCache.has_key(str):
+		offset = 0
+		if 'userbouquet.' in bouquet.toCompareString():
 			serviceHandler = eServiceCenter.getInstance()
-			bouquetlist = serviceHandler.list(self.bouquet_root)
-			if not bouquetlist is None:
+			servicelist = serviceHandler.list(bouquet)
+			if not servicelist is None:
 				while True:
-					bouquetIterator = bouquetlist.getNext()
-					if not bouquetIterator.valid(): #end of list
+					serviceIterator = servicelist.getNext()
+					if not serviceIterator.valid(): #check if end of list
 						break
-					self.bouquetNumOffsetCache[bouquetIterator.toString()]=offsetCount
-					if not (bouquetIterator.flags & eServiceReference.isDirectory):
-						continue
-					servicelist = serviceHandler.list(bouquetIterator)
-					if not servicelist is None:
-						while True:
-							serviceIterator = servicelist.getNext()
-							if not serviceIterator.valid(): #check if end of list
-								break
-							playable = not (serviceIterator.flags & (eServiceReference.isDirectory|eServiceReference.isMarker))
-							if playable:
-								offsetCount += 1
-		return self.bouquetNumOffsetCache.get(str, offsetCount)
+					number = serviceIterator.getChannelNum()
+					if number > 0:
+						offset = number - 1
+						break
+		return offset			
 
 	def recallBouquetMode(self):
 		if self.mode == MODE_TV:
@@ -884,7 +868,6 @@ class ChannelSelectionBase(Screen):
 		isBouquet = (pos != -1) and (root.flags & eServiceReference.isDirectory)
 		if not inBouquetRootList and isBouquet:
 			self.servicelist.setMode(ServiceList.MODE_FAVOURITES)
-			self.servicelist.setNumberOffset(self.getBouquetNumOffset(root))
 		else:
 			self.servicelist.setMode(ServiceList.MODE_NORMAL)
 		self.servicelist.setRoot(root, justSet)

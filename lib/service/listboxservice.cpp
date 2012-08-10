@@ -271,7 +271,7 @@ void eListboxServiceContent::sort()
 DEFINE_REF(eListboxServiceContent);
 
 eListboxServiceContent::eListboxServiceContent()
-	:m_visual_mode(visModeSimple), m_size(0), m_current_marked(false), m_numberoffset(0), m_itemheight(25)
+	:m_visual_mode(visModeSimple), m_size(0), m_current_marked(false), m_itemheight(25)
 {
 	memset(m_color_set, 0, sizeof(m_color_set));
 	cursorHome();
