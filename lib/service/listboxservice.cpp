@@ -585,7 +585,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 					if (area.width() <= 0)
 						continue; // no point in going on if we won't paint anything
 
-					if( m_cursor->getChannelNum() == -1 )
+					if( m_cursor->getChannelNum() == 0 )
 						continue;
 
 					char bla[10];
