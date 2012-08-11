@@ -633,7 +633,7 @@ class EPGSelection(Screen, HelpableScreen):
 		elif self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
 			service = ServiceReference(self.servicelist.getCurrentSelection())
 			self["Service"].newService(service.ref)
-			title = ServiceReference(self.StartBouquet).getServiceName()
+			title = ServiceReference(self.servicelist.getRoot()).getServiceName()
 			title = title + ' - ' + service.getServiceName()
 			self.setTitle(title)
 			l.fillSingleEPG(service)
