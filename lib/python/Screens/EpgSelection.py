@@ -825,18 +825,6 @@ class EPGSelection(Screen, HelpableScreen):
 		else:
 			self.close(False)
 
-
-	def GraphEPGClose(self):
-		self.closeRecursive = 'open'
-		ref = self["list"].getCurrent()[1]
-		if ref:
-			self.closeScreen()
-
-	def closeScreen(self):
-		if self.type == EPG_TYPE_GRAPH:
-			config.epgselection.save()
-		self.close(self.closeRecursive)
-
 	def infoKeyPressed(self):
 		cur = self["list"].getCurrent()
 		event = cur[0]
@@ -1333,6 +1321,10 @@ class EPGSelection(Screen, HelpableScreen):
 		self.servicelist.setCurrentSelection(service) #select the service in servicelist
 
 	def zap(self):
+		if self.session.nav.getCurrentlyPlayingServiceReference().toString().find(':0:/') != -1:
+			from Screens.InfoBarGenerics import setResumePoint
+			setResumePoint(self.session)
+
 		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_MULTI:
 			if self.zapFunc :
 				self.closeRecursive = 'reopen'
@@ -1341,11 +1333,9 @@ class EPGSelection(Screen, HelpableScreen):
 					self.zapFunc(ref.ref)
 					self["list"].setCurrentlyPlaying(ref.ref)
 					self["list"].l.invalidate()
-					self.closeRecursive = False
-					self.closeScreen()
+					self.close('close')
 				else:
-					self.closeRecursive = False
-					self.closeScreen()
+					self.close('close')
 		else:
 			try:
 				currch = self.session.nav.getCurrentlyPlayingServiceReference()
@@ -1354,11 +1344,11 @@ class EPGSelection(Screen, HelpableScreen):
 				switchto = str(switchto)
 				if not switchto == currch:
 					self.servicelist.zap()
-					self.close()
+					self.close('close')
 				else:
-					self.close()
+					self.close('close')
 			except:
-				self.close()
+				self.close(False)
 
 	def ZapTo(self):
 		if self.session.nav.getCurrentlyPlayingServiceReference().toString().find(':0:/') != -1:
