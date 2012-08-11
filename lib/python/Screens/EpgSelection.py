@@ -1569,7 +1569,7 @@ class EPGSelectionSetup(Screen, ConfigListScreen):
 		self.editListEntry = None
 		self.list = [ ]
 		if self.type == 5:
-			self.list.append(getConfigListEntry(_("View mode"), config.epgselection.graphics_mode,_("If set to 'yes' epg will show graphics effect view.")))
+			self.list.append(getConfigListEntry(_("View mode"), config.epgselection.graphics_mode,_("This option allows you set the layout view (Text or Graphics).")))
 			self.list.append(getConfigListEntry(_("Channel preview mode"), config.epgselection.preview_mode_vixepg,_("If set to 'yes' you can preview channels in the EPG list.")))
 			self.list.append(getConfigListEntry(_("Show bouquet on launch"), config.epgselection.showbouquet_vixepg,_("If set to 'yes' the bouquets will be shown each time you open the EPG.")))
 			self.list.append(getConfigListEntry(_("Picture in Graphics"), config.epgselection.pictureingraphics,_("If set to 'yes' shows a small TV-screen in the EPG.")))
