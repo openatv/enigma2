@@ -114,7 +114,7 @@ class RecordingSettings(Screen,ConfigListScreen):
 			self.list.append(getConfigListEntry(_("Show Message when Recording starts"), config.usage.show_message_when_recording_starts, _("Do you want a pop-up message saying 'a recording has started'?")))
 			self.list.append(getConfigListEntry(_("Behavior when a movie is started"), config.usage.on_movie_start, _("On starting playback of a file, you can choose the box's behaviour.")))
 			self.list.append(getConfigListEntry(_("Behavior when a movie is stopped"), config.usage.on_movie_stop, _("On stopping playback of a file, you can choose the box's behaviour.")))
-			self.list.append(getConfigListEntry(_("Behavior when a movie reaches the end"), config.usage.on_movie_eof, _("On raching the end of a file during playback, you can choose the box's behaviour.")))
+			self.list.append(getConfigListEntry(_("Behavior when a movie reaches the end"), config.usage.on_movie_eof, _("On reaching the end of a file during playback, you can choose the box's behaviour.")))
 			self.list.append(getConfigListEntry(_("Behavior of 'pause' when paused"), config.seek.on_pause, _("Here you can select the behaviour of the 'puase'-button when playback has been paused.")))
 			self.list.append(getConfigListEntry(_("Custom skip time for '1'/'3'-keys"), config.seek.selfdefined_13, _("Set the skip-forward/backward time of the 1-3 number keys.")))
 			self.list.append(getConfigListEntry(_("Custom skip time for '4'/'6'-keys"), config.seek.selfdefined_46, _("Set the skip-forward/backward time of the 4-6 number keys.")))
