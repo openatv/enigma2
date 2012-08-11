@@ -329,6 +329,9 @@ class SystemNetworkInfo(Screen):
 		self.iface = None
 		self.createscreen()
 
+		self.resetList()
+		self.updateStatusbar()
+
 		self["key_red"] = StaticText(_("Close"))
 
 		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
@@ -336,11 +339,9 @@ class SystemNetworkInfo(Screen):
 				"cancel": self.close,
 				"ok": self.close,
 			})
-		self.resetList()
-		self.updateStatusbar()
-		self.timer = eTimer()
-		self.timer.timeout.get().append(self.resetList)
-		self.onShown.append(lambda: self.timer.start(8000))
+# 		self.timer = eTimer()
+# 		self.timer.timeout.get().append(self.resetList)
+# 		self.onShown.append(lambda: self.timer.start(500))
 		self.onClose.append(self.cleanup)
 
 	def createscreen(self):
