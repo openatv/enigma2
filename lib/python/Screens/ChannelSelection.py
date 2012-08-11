@@ -1218,8 +1218,8 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			{
 				"cancel": self.cancel,
 				"ok": self.channelSelected,
-				"keyRadio": self.setModeRadio,
-				"keyTV": self.setModeTv,
+				"keyRadio": self.doRadioButton,
+				"keyTV": self.doTVButton,
 			})
 
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
@@ -1283,6 +1283,12 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		if lastservice.valid():
 			self.setCurrentSelection(lastservice)
 
+	def doTVButton(self):
+		if self.mode == MODE_TV:
+			self.channelSelected(doClose = False)
+		else:
+			self.setModeTv()
+
 	def setModeTv(self):
 		if self.revertMode is None and config.servicelist.lastmode.value == "radio":
 			self.revertMode = MODE_RADIO
@@ -1292,6 +1298,12 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		config.servicelist.lastmode.value = "tv"
 		self.setTvMode()
 		self.setMode()
+
+	def doRadioButton(self):
+		if self.mode == MODE_RADIO:
+			self.channelSelected(doClose = False)
+		else:
+			self.setModeRadio()
 
 	def setModeRadio(self):
 		if self.revertMode is None and config.servicelist.lastmode.value == "tv":
@@ -1316,7 +1328,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		if lastservice.valid():
 			self.zap()
 
-	def channelSelected(self):
+	def channelSelected(self, doClose = True):
 		ref = self.getCurrentSelection()
 		if self.movemode:
 			self.toggleMoveMarked()
@@ -1331,7 +1343,8 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			if not root or not (root.flags & eServiceReference.isGroup):
 				self.zap(enable_pipzap = True)
 				self.asciiOff()
-				self.close(ref)
+				if doClose:
+					self.close(ref)
 
 	def togglePipzap(self):
 		assert(self.session.pip)
