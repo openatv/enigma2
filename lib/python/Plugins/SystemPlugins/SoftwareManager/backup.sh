@@ -393,22 +393,11 @@ if [ $TYPE = "GIGABLUE" ] ; then
 	echo $MODEL-$IMAGEVERSION > $MAINDEST/imageversion
 	macaddr=`ifconfig eth0 | awk '/HWaddr/ {print $5}' | tr -s : -`
 	[ -f $MAINDEST/../../burn.bat ] && rm $MAINDEST/../../burn.bat
-	touch $MAINDEST/../../burn.bat
 	if [ $MODEL = "solo" ]; then
+		touch $MAINDEST/../../burn.bat
 		echo "flash -noheader usbdisk0:gigablue/$MODEL/kernel.bin flash0.kernel " >> $MAINDEST/../../burn.bat
 		echo "flash -noheader usbdisk0:gigablue/$MODEL/rootfs.bin flash0.rootfs " >> $MAINDEST/../../burn.bat
 		echo 'setenv -p STARTUP "boot -z -elf flash0.kernel:"  ' >> $MAINDEST/../../burn.bat
-	else
-		echo "macprog2 $macaddr" >> $MAINDEST/../../burn.bat
-		echo "" >> $MAINDEST/../../burn.bat
-		echo "flash -noheader -forceerase usbdisk0:gigablue/$MODEL/kernel.bin nandflash0.kernel" >> $MAINDEST/../../burn.bat
-		echo "" >> $MAINDEST/../../burn.bat
-		echo "flash -noheader -forceerase usbdisk0:gigablue/$MODEL/rootfs.bin nandflash0.rootfs" >> $MAINDEST/../../burn.bat
-		echo "" >> $MAINDEST/../../burn.bat
-		echo 'setenv -p STARTUP "boot -z -elf nandflash0.kernel:"' >> $MAINDEST/../../burn.bat
-		echo "" >> $MAINDEST/../../burn.bat
-		echo "boot -z -elf nandflash0.kernel:" >> $MAINDEST/../../burn.bat
-		echo "" >> $MAINDEST/../../burn.bat
 	fi
 	cp $MAINDEST/../../burn.bat $EXTRA/..
 	mv $MAINDEST/../../burn.bat $MAINDEST/../../noburn.bat
