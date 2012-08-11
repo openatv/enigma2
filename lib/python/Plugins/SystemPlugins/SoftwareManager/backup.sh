@@ -398,9 +398,9 @@ if [ $TYPE = "GIGABLUE" ] ; then
 		echo "flash -noheader usbdisk0:gigablue/$MODEL/kernel.bin flash0.kernel " >> $MAINDEST/../../burn.bat
 		echo "flash -noheader usbdisk0:gigablue/$MODEL/rootfs.bin flash0.rootfs " >> $MAINDEST/../../burn.bat
 		echo 'setenv -p STARTUP "boot -z -elf flash0.kernel:"  ' >> $MAINDEST/../../burn.bat
+		cp $MAINDEST/../../burn.bat $EXTRA/..
+		mv $MAINDEST/../../burn.bat $MAINDEST/../../noburn.bat
 	fi
-	cp $MAINDEST/../../burn.bat $EXTRA/..
-	mv $MAINDEST/../../burn.bat $MAINDEST/../../noburn.bat
 	
 	cp -r $MAINDEST $EXTRA #copy the made back-up to images
 	if [ -f $MAINDEST/rootfs.bin -a -f $MAINDEST/kernel.bin -a -f $MAINDEST/imageversion -a -f $MAINDEST/noforce ]  ; then
