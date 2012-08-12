@@ -9,7 +9,7 @@ import SleepTimer
 import Screens.Standby
 import NavigationInstance
 import ServiceReference
-from Screens.InfoBar import InfoBar
+from Screens.InfoBar import InfoBar, MoviePlayer
 from os import path
 
 # TODO: remove pNavgation, eNavigation and rewrite this stuff in python.
@@ -17,13 +17,13 @@ class Navigation:
 	def __init__(self, nextRecordTimerAfterEventActionAuto=False):
 		if NavigationInstance.instance is not None:
 			raise NavigationInstance.instance
-		
+
 		NavigationInstance.instance = self
 		self.ServiceHandler = eServiceCenter.getInstance()
-		
+
 		import Navigation as Nav
 		Nav.navcore = self
-		
+
 		self.pnav = pNavigation()
 		self.pnav.m_event.get().append(self.dispatchEvent)
 		self.pnav.m_record_event.get().append(self.dispatchRecordEvent)
@@ -34,13 +34,13 @@ class Navigation:
 		self.RecordTimer = RecordTimer.RecordTimer()
 		if getFPWasTimerWakeup():
 			if nextRecordTimerAfterEventActionAuto:
-				# We need to give the system the chance to fully startup, 
+				# We need to give the system the chance to fully startup,
 				# before we initiate the standby command.
 				self.standbytimer = eTimer()
 				self.standbytimer.callback.append(self.gotostandby)
 				self.standbytimer.start(15000, True)
-				# We need to give the systemclock the chance to sync with the transponder time, 
-				# before we will make the decision about whether or not we need to shutdown 
+				# We need to give the systemclock the chance to sync with the transponder time,
+				# before we will make the decision about whether or not we need to shutdown
 				# after the upcoming recording has completed
 				self.recordshutdowntimer = eTimer()
 				self.recordshutdowntimer.callback.append(self.checkShutdownAfterRecording)
@@ -85,7 +85,7 @@ class Navigation:
 				open("/proc/stb/lcd/symbol_signal", "w").write("0")
 		elif path.exists("/proc/stb/lcd/symbol_signal") and config.lcd.mode.value == '0':
 			open("/proc/stb/lcd/symbol_signal", "w").write("0")
-		
+
 		if ref is None:
 			self.stopService()
 			return 0
@@ -110,6 +110,9 @@ class Navigation:
 				InfoBarInstance = InfoBar.instance
 				if InfoBarInstance is not None:
 					InfoBarInstance.servicelist.servicelist.setCurrent(ref)
+				MoviePlayerInstance = MoviePlayer.instance
+				if MoviePlayerInstance is not None:
+					MoviePlayerInstance.close()
 				if self.pnav.playService(playref):
 					print "Failed to start", playref
 					self.currentlyPlayingServiceReference = None
@@ -117,7 +120,7 @@ class Navigation:
 		else:
 			self.stopService()
 		return 1
-	
+
 	def getCurrentlyPlayingServiceReference(self, selected = True):
 		if selected and self.currentlyPlayingServiceReference:
 			return self.currentlyPlayingSelectedServiceReference

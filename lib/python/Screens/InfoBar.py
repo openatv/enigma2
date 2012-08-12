@@ -196,6 +196,8 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 	ENABLE_RESUME_SUPPORT = True
 	ALLOW_SUSPEND = True
 
+	instance = None
+
 	def __init__(self, session, service, slist = None, lastservice = None):
 		Screen.__init__(self, session)
 
@@ -234,6 +236,9 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 		self.onClose.append(self.__onClose)
 		self.onShow.append(self.doButtonsCheck)
 
+		assert MoviePlayer.instance is None, "class InfoBar is a singleton class and just one instance of this class is allowed!"
+		MoviePlayer.instance = self
+
 	def doButtonsCheck(self):
 		if config.vixsettings.ColouredButtons.value:
 			self["key_yellow"].setText(_("Search"))
@@ -241,6 +246,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 		self["key_blue"].setText(_("Extensions"))
 
 	def __onClose(self):
+		MoviePlayer.instance = None
 		from Screens.MovieSelection import Playlist
 		Playlist.clearPlayList()
 		self.session.nav.playService(self.lastservice)
