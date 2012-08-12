@@ -419,6 +419,7 @@ class EPGSelection(Screen, HelpableScreen):
 			self["epgactions"] = HelpableActionMap(self, "EPGSelectActions",
 				{
 					"info":				(self.Info, _("Show detailed event info")),
+					"epg":				(self.Info, _("Show detailed event info")),
 					"menu":				(self.createSetup, _("Setup menu")),
 				},-1)
 			self["epgactions"].csel = self
