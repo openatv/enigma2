@@ -340,6 +340,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 					Screens.Standby.inStandby.Power()
 				else:
 					self.log(11, "zapping")
+					NavigationInstance.instance.isMovieplayerActive()
 					NavigationInstance.instance.playService(self.service_ref.ref)
 				return True
 			else:
