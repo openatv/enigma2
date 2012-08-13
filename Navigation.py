@@ -76,7 +76,7 @@ class Navigation:
 		print "playing", ref and ref.toString()
 		if path.exists("/proc/stb/lcd/symbol_signal") and config.lcd.mode.value == '1':
 			try:
-				if not ref.toString().startswith('1:0:0:0:0:0:0:0:0:0:'):
+				if ref.toString().find('0:0:0:0:0:0:0:0:0') == -1:
 					signal = 1
 				else:
 					signal = 0
@@ -110,9 +110,6 @@ class Navigation:
 				InfoBarInstance = InfoBar.instance
 				if InfoBarInstance is not None:
 					InfoBarInstance.servicelist.servicelist.setCurrent(ref)
-				MoviePlayerInstance = MoviePlayer.instance
-				if MoviePlayerInstance is not None:
-					MoviePlayerInstance.close()
 				if self.pnav.playService(playref):
 					print "Failed to start", playref
 					self.currentlyPlayingServiceReference = None
@@ -125,6 +122,13 @@ class Navigation:
 		if selected and self.currentlyPlayingServiceReference:
 			return self.currentlyPlayingSelectedServiceReference
 		return self.currentlyPlayingServiceReference
+
+	def isMovieplayerActive(self):
+		MoviePlayerInstance = MoviePlayer.instance
+		if MoviePlayerInstance is not None and self.currentlyPlayingServiceReference.toString().find('0:0:0:0:0:0:0:0:0') != -1:
+			from Screens.InfoBarGenerics import setResumePoint
+			setResumePoint(MoviePlayer.instance.session)
+			MoviePlayerInstance.close()
 
 	def recordService(self, ref, simulate=False):
 		service = None
