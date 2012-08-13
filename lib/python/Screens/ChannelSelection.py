@@ -1353,6 +1353,8 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 				if doClose:
 					if self.dopipzap:
 						self.zapBack()
+					self.startServiceRef = None
+					self.startRoot = None
 					self.close(ref)
 
 	def togglePipzap(self):
@@ -1403,10 +1405,11 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			if ref is None or ref != nref:
 				self.new_service_played = True
 				self.session.nav.playService(nref)
-				if not preview_zap:
-					self.saveRoot()
-					self.saveChannel(nref)
-					config.servicelist.lastmode.save()
+			if not preview_zap:
+				self.saveRoot()
+				self.saveChannel(nref)
+				config.servicelist.lastmode.save()
+				if self.startServiceRef is None or nref != self.startServiceRef:
 					self.addToHistory(nref)
 
 			# Yes, we might double-check this, but we need to re-select pipservice if pipzap is active
