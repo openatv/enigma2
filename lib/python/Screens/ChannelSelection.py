@@ -862,6 +862,8 @@ class ChannelSelectionBase(Screen):
 		self.setTitle(title)
 
 	def setRoot(self, root, justSet=False):
+		if self.startRoot is None:
+			self.startRoot = self.getRoot()
 		path = root.getPath()
 		inBouquetRootList = path.find('FROM BOUQUET "bouquets.') != -1 #FIXME HACK
 		pos = path.find('FROM BOUQUET')
@@ -1228,6 +1230,9 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 				iPlayableService.evEnd: self.__evServiceEnd
 			})
 
+		self.startServiceRef = None
+		self.startRoot = None
+
 		self.history_tv = [ ]
 		self.history_radio = [ ]
 		self.history = self.history_tv
@@ -1279,7 +1284,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 	def setMode(self):
 		self.rootChanged = True
 		self.restoreRoot()
-		lastservice=eServiceReference(self.lastservice.value)
+		lastservice = eServiceReference(self.lastservice.value)
 		if lastservice.valid():
 			self.setCurrentSelection(lastservice)
 
@@ -1290,8 +1295,8 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			self.setModeTv()
 
 	def setModeTv(self):
-		if self.revertMode is None and config.servicelist.lastmode.value == "radio":
-			self.revertMode = MODE_RADIO
+		if self.revertMode is None:
+			self.revertMode = self.mode
 		self.history = self.history_tv
 		self.lastservice = config.tv.lastservice
 		self.lastroot = config.tv.lastroot
@@ -1306,8 +1311,8 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			self.setModeRadio()
 
 	def setModeRadio(self):
-		if self.revertMode is None and config.servicelist.lastmode.value == "tv":
-			self.revertMode = MODE_TV
+		if self.revertMode is None:
+			self.revertMode = self.mode
 		if config.usage.e1like_radio_mode.value:
 			self.history = self.history_radio
 			self.lastservice = config.radio.lastservice
@@ -1324,11 +1329,13 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 				self.setModeRadio()
 		else:
 			self.setModeTv()
-		lastservice=eServiceReference(self.lastservice.value)
+		lastservice = eServiceReference(self.lastservice.value)
 		if lastservice.valid():
 			self.zap()
 
 	def channelSelected(self, doClose = True):
+		if self.startServiceRef is None and not doClose:
+			self.startServiceRef = self.session.nav.getCurrentlyPlayingServiceReference()
 		ref = self.getCurrentSelection()
 		if self.movemode:
 			self.toggleMoveMarked()
@@ -1341,9 +1348,11 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		elif not (ref.flags & eServiceReference.isMarker): # no marker
 			root = self.getRoot()
 			if not root or not (root.flags & eServiceReference.isGroup):
-				self.zap(enable_pipzap = True)
+				self.zap(enable_pipzap = doClose, preview_zap = not doClose)
 				self.asciiOff()
 				if doClose:
+					if self.dopipzap:
+						self.zapBack()
 					self.close(ref)
 
 	def togglePipzap(self):
@@ -1381,8 +1390,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		self.buildTitleString()
 
 	#called from infoBar and channelSelected
-	def zap(self, enable_pipzap = False):
-		self.revertMode=None
+	def zap(self, enable_pipzap = False, preview_zap = False):
 		nref = self.getCurrentSelection()
 		if enable_pipzap and self.dopipzap:
 			ref = self.session.pip.getCurrentService()
@@ -1395,16 +1403,17 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			if ref is None or ref != nref:
 				self.new_service_played = True
 				self.session.nav.playService(nref)
-				self.saveRoot()
-				self.saveChannel(nref)
-				config.servicelist.lastmode.save()
-				self.addToHistory(nref)
+				if not preview_zap:
+					self.saveRoot()
+					self.saveChannel(nref)
+					config.servicelist.lastmode.save()
+					self.addToHistory(nref)
 
 			# Yes, we might double-check this, but we need to re-select pipservice if pipzap is active
 			# and we just wanted to zap in mainwindow once
 			# XXX: do we really want this? this also resets the service when zapping from context menu
 			#      which is irritating
-			if self.dopipzap:
+			if enable_pipzap and self.dopipzap:
 				# This unfortunately won't work with subservices
 				self.setCurrentSelection(self.session.pip.getCurrentService())
 
@@ -1488,7 +1497,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			pathstr = self.lastroot.value
 			if pathstr is not None and pathstr.find(refstr) == 0:
 				self.restoreRoot()
-				lastservice=eServiceReference(self.lastservice.value)
+				lastservice = eServiceReference(self.lastservice.value)
 				if lastservice.valid():
 					self.setCurrentSelection(lastservice)
 				return True
@@ -1535,7 +1544,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 				self.setCurrentSelection(self.session.pip.getCurrentService())
 			else:
 				self.restoreRoot()
-				lastservice=eServiceReference(self.lastservice.value)
+				lastservice = eServiceReference(self.lastservice.value)
 				if lastservice.valid() and self.getCurrentSelection() != lastservice:
 					self.setCurrentSelection(lastservice)
 		elif self.revertMode == MODE_TV:
@@ -1544,7 +1553,23 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			self.setModeRadio()
 		self.revertMode = None
 		self.asciiOff()
+		self.zapBack()
 		self.close(None)
+
+	def zapBack(self):
+		if self.startServiceRef and self.session.nav.getCurrentlyPlayingServiceReference() != self.startServiceRef:
+			if self.startRoot:
+				self.clearPath()
+				self.recallBouquetMode()
+				if self.bouquet_root:
+					self.enterPath(self.bouquet_root)
+				self.enterPath(self.startRoot)
+				self.saveRoot()
+			self.new_service_played = True
+			self.session.nav.playService(self.startServiceRef)
+			self.saveChannel(self.startServiceRef)
+		self.startServiceRef = None
+		self.startRoot = None
 
 class RadioInfoBar(Screen):
 	def __init__(self, session):
@@ -1590,7 +1615,7 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 		self.onClose.append(self.__onClose)
 
 	def __onClose(self):
-		lastservice=eServiceReference(config.tv.lastservice.value)
+		lastservice = eServiceReference(config.tv.lastservice.value)
 		self.session.nav.playService(lastservice)
 
 	def startRassInteractive(self):
@@ -1653,7 +1678,7 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 			pathstr = config.radio.lastroot.value
 			if pathstr is not None and pathstr.find(refstr) == 0:
 				self.restoreRoot()
-				lastservice=eServiceReference(config.radio.lastservice.value)
+				lastservice = eServiceReference(config.radio.lastservice.value)
 				if lastservice.valid():
 					self.setCurrentSelection(lastservice)
 				return True
@@ -1662,7 +1687,7 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 	def onCreate(self):
 		self.setRadioMode()
 		self.restoreRoot()
-		lastservice=eServiceReference(config.radio.lastservice.value)
+		lastservice = eServiceReference(config.radio.lastservice.value)
 		if lastservice.valid():
 			self.servicelist.setCurrent(lastservice)
 			self.session.nav.playService(lastservice)
