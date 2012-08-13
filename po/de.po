@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-07-28 20:01+0100\n"
-"PO-Revision-Date: 2012-07-29 19:30+0100\n"
+"POT-Creation-Date: 2012-08-06 22:18+0100\n"
+"PO-Revision-Date: 2012-08-12 22:51+0100\n"
 "Last-Translator: Ralf Biedermann <ralf.biedermann@rbsoft.de>\n"
 "Language-Team: Deutsch <> j-ot&Trial\n"
 "Language: de\n"
@@ -12,9 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 "X-Generator: Pootle 2.0.3\n"
-"X-Poedit-Language: German\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
-"X-Poedit-Country: GERMANY\n"
 
 msgid ""
 "\n"
@@ -135,13 +133,6 @@ msgstr ""
 msgid " and"
 msgstr "und"
 
-msgid ""
-" has been sent to the ViX beta team.\n"
-"please quote "
-msgstr ""
-" wurde zum ViX Beta Team geschickt.\n"
-"bitte zitieren "
-
 #. TRANSLATORS: short time representation hour:minute
 #, python-format
 msgid "%2d:%02d"
@@ -150,6 +141,9 @@ msgstr ""
 #. TRANSLATORS: full time representation hour:minute:seconds
 #, python-format
 msgid "%2d:%02d:%02d"
+msgstr ""
+
+msgid "%A %d %B"
 msgstr ""
 
 #. TRANSLATORS: long date representations dayname daynum monthname in strftime() format! See 'man strftime'
@@ -229,6 +223,9 @@ msgstr[1] "%d Sekunden"
 #, python-format
 msgid "%d services found!"
 msgstr "%d Sender gefunden!"
+
+msgid "%d-%m"
+msgstr ""
 
 msgid "%d.%B %Y"
 msgstr "%d.%B %Y"
@@ -404,6 +401,9 @@ msgstr "??"
 
 msgid "A"
 msgstr "A"
+
+msgid "A background update check is is progress, please wait a few minutes and try again."
+msgstr "Eine Updateprüfung läuft im Hintergrund. Bitte ein paar Minuten warten und erneut versuchen."
 
 #, python-format
 msgid ""
@@ -1288,7 +1288,7 @@ msgid "Changelog"
 msgstr "Changelog"
 
 msgid "Channel"
-msgstr "Sender"
+msgstr "Kanal"
 
 msgid "Channel +/- button mode"
 msgstr "Programm +/- Tastenmodus"
@@ -1412,6 +1412,9 @@ msgstr "Soll ein Icon angezeigt werden wenn sich ein Antennenrotor bewegt."
 
 msgid "Choose whether to control the A/V input of your TV with the scart connection."
 msgstr "Soll der A/V-Eingang vom Fernseher mit der SCART-Verbindung gesteuert werden."
+
+msgid "Choose whether to show the channel names, picons, or both in the EPG."
+msgstr "Wähle ob Sendernamen, Picon oder beides im EPG angezeigt werden soll."
 
 msgid "Choose which level of menu/setting's to display. 'Expert'-level shows all items."
 msgstr "Wähle Level der Anzeige für Menü/Einstellungen. 'Expert'-Level zeigt alle Punkte."
@@ -2230,9 +2233,6 @@ msgstr "EPG-Auswahl"
 msgid "EPG Setup"
 msgstr "EPG Einstellungen"
 
-msgid "EPG button mode"
-msgstr "EPG Taste bewirkt"
-
 msgid "EPG filename"
 msgstr "EPG Dateiname"
 
@@ -2776,11 +2776,17 @@ msgstr "Gehe zur vorherigen Seite der Sender"
 msgid "Goto specific data/time"
 msgstr "Gehe zum angegebenen Datum/Uhrzeit"
 
-msgid "Graph MEpg Settings"
-msgstr "Graphische M-EPG Einstellungen"
+msgid "GraphMultiEpg Settings"
+msgstr "GraphMultiEpg Einstellungen"
+
+msgid "Graphical EPG..."
+msgstr "Grafischer EPG"
 
 msgid "Graphical Multi EPG"
 msgstr "Grafischer Multi-EPG"
+
+msgid "Graphics"
+msgstr "Grafiken"
 
 msgid "Greek"
 msgstr "Griechisch"
@@ -2935,14 +2941,11 @@ msgstr "Mit 'JA' ist eine spzielle Seekbar während Timeshift verfügbar."
 msgid "If set to 'yes' channels without EPG will not be shown."
 msgstr "Wenn 'Ja' eingestellt ist werden Sender ohne EPG nicht angezeigt."
 
+msgid "If set to 'yes' epg will show 3D effect view."
+msgstr "Wenn 'Grafik' gewählt ist zeigt EPG 3D Effekte. 'Text' als Wahl bedeutet etwas schnellere Ausführung."
+
 msgid "If set to 'yes' shows a small TV-screen in the EPG."
 msgstr "Wenn 'Ja' eingestellt ist wird PIG (kleines TV-Bild) im EPG angezeigt."
-
-msgid "If set to 'yes' shows the channel names in the EPG."
-msgstr "Wenn 'Ja' eingestellt ist werden die Sendernamen im EPG angezeigt."
-
-msgid "If set to 'yes' shows the channel picons in the EPG."
-msgstr "Wenn 'Ja' eingestellt ist werden die Sendericon im EPG angezeigt."
 
 msgid "If set to 'yes' the EPG will alway open at the first channel. If set to 'no' the EPG will open on the present channel."
 msgstr "Wenn 'Ja' eingestellt ist öffnet sich das EPG jedes Mal auf dem ersten Sender. Wenn 'Nein' eingestellt ist öffnet sich das EPG auf dem aktuellen Sender."
@@ -3009,9 +3012,6 @@ msgstr ""
 
 msgid "Image Information"
 msgstr "Image Informationen"
-
-msgid "Image Release Notes"
-msgstr ""
 
 msgid "Image:"
 msgstr ""
@@ -4290,6 +4290,12 @@ msgstr "Telefonnummer"
 msgid "PiPSetup"
 msgstr "PiP Einstellung"
 
+msgid "Picon"
+msgstr "Picon"
+
+msgid "Picon and Service Name"
+msgstr "Picon und Sendername"
+
 msgid "Picture in Graphics"
 msgstr "Bild in Grafik"
 
@@ -4421,6 +4427,9 @@ msgstr "Zum Fortfahren bitte OK drücken."
 
 msgid "Please press OK!"
 msgstr "Bitte OK drücken"
+
+msgid "Please select a default EPG type..."
+msgstr "Bitte den Standard-EPG-Typ wählen..."
 
 msgid "Please select a playlist to delete..."
 msgstr "Bitte wähle eine Wiedergabeliste zum Löschen..."
@@ -4996,7 +5005,7 @@ msgid "Reread partition table"
 msgstr "Partitionstabelle erneut einlesen"
 
 msgid "Reserved"
-msgstr ""
+msgstr "Reserviert"
 
 msgid "Reset"
 msgstr "Zurücksetzen"
@@ -5356,6 +5365,9 @@ msgstr "Sender auswählen, von dem aufgenommen werden soll"
 msgid "Select copy destination for:"
 msgstr "Wähle Zielverzeichnis für:"
 
+msgid "Select default EPG type..."
+msgstr "Bitte den Standard-EPG-Typ wählen..."
+
 msgid "Select desired image from feed list"
 msgstr "Bestimmtes Image vom Feed-Server herunterladen"
 
@@ -5425,9 +5437,6 @@ msgstr "Wähle den Video-Modus"
 msgid "Select what you want the Channel +/- button to activate:"
 msgstr "Wähle was die Programm +/- Tasten bewirken sollen:"
 
-msgid "Select what you want the EPG button to activate:"
-msgstr "Wähle was die EPG Taste bewirken soll:"
-
 msgid "Select what you want the TV button to activate:"
 msgstr "Wähle was die TV Taste bewirken soll:"
 
@@ -5485,11 +5494,17 @@ msgstr "Sender Schriftgröße"
 msgid "Service Information"
 msgstr "Sender Information"
 
+msgid "Service Name"
+msgstr "Sendername"
+
 msgid "Service Scan"
 msgstr "Sendersuche"
 
 msgid "Service Searching"
 msgstr "Sendersuche"
+
+msgid "Service Title mode"
+msgstr "Sendertitel Modus"
 
 msgid "Service has been added to the favourites."
 msgstr "Sender wurde zu Favoriten hinzugefügt."
@@ -5532,9 +5547,6 @@ msgid ""
 msgstr ""
 "Kanal nicht verfügbar!\n"
 "Bitte Tuner-Konfiguration überprüfen!"
-
-msgid "Service width"
-msgstr "Sender Breite "
 
 msgid "Serviceinfo"
 msgstr "Sender Infos"
@@ -5650,9 +5662,6 @@ msgstr "Wähle die erlaubten Werte für den schnellen Vorlauf."
 msgid "Set the values for slow-motion speeds."
 msgstr "Setze die erlaubten Werte für die Zeitlupe."
 
-msgid "Set the width allocated to the service name."
-msgstr "Wähle die reservierte Breite des Sendernamens."
-
 msgid "Set time window to 1 hour"
 msgstr "Setze Zeitfenster auf 1 Stunde"
 
@@ -5753,9 +5762,6 @@ msgstr "Zeige CCcam in Erweiterungen?"
 msgid "Show Clients"
 msgstr "Zeige Klienten"
 
-msgid "Show CoolTVGuide"
-msgstr "Zeige CoolTVGuide"
-
 msgid "Show Display Icons"
 msgstr "Zeige Display Icons"
 
@@ -5767,9 +5773,6 @@ msgstr "Zeige EIT jetzt/später in Infobar"
 
 msgid "Show Games show"
 msgstr "Show/Quiz"
-
-msgid "Show Graphical EPG"
-msgstr "Zeige grafisches EPG"
 
 msgid "Show Info"
 msgstr "Zeige Infos"
@@ -5786,9 +5789,6 @@ msgstr "Zeige Zeit bei Wiedergabe als verbleibend/verstrichen"
 msgid "Show Message when Recording starts"
 msgstr "Zeige Nachricht wenn eine Aufnahme startet"
 
-msgid "Show Multi EPG"
-msgstr "Zeige Multi-EPG"
-
 msgid "Show OE Log"
 msgstr "Zeige OE Log"
 
@@ -5798,9 +5798,6 @@ msgstr "Zeige Oscam in Erweiterungen?"
 msgid "Show PVR status in MoviePlayer infobar"
 msgstr "Zeige PVR Status in der Infobar des Medienplayers"
 
-msgid "Show Picons"
-msgstr "Zeige Senderlogos"
-
 msgid "Show Picons *"
 msgstr "Zeige PIcons*"
 
@@ -5809,12 +5806,6 @@ msgstr "Zeige UHF Modulator Einstellungen..."
 
 msgid "Show Readers/Proxies"
 msgstr "Zeige Kartenleser/Proxies"
-
-msgid "Show Service Names "
-msgstr "Zeige Sendernamen"
-
-msgid "Show Single EPG"
-msgstr "Zeige EinfachEPG"
 
 msgid "Show Time Remaining/Elapsed"
 msgstr "Zeige Zeit bei TV verbleibend/verstrichen"
@@ -6399,6 +6390,9 @@ msgstr "Überprüfe die Netzwerk-Konfiguration der STB_BOX\n"
 
 msgid "Test-Messagebox?"
 msgstr "Test-Messagebox?"
+
+msgid "Text"
+msgstr ""
 
 msgid "Text border width"
 msgstr "Text Randbreite"
@@ -7523,6 +7517,9 @@ msgstr "Eine Liste der verfügbaren Software-Erweiterungen anzeigen."
 
 msgid "View list of available system extensions"
 msgstr "Eine Liste der verfügbaren System-Erweiterungen anzeigen."
+
+msgid "View mode"
+msgstr "Ansichts Modus"
 
 msgid "View teletext..."
 msgstr "Videotext anzeigen..."
@@ -8668,6 +8665,13 @@ msgstr "Handwerk"
 msgid "handled"
 msgstr "behandelt"
 
+msgid ""
+"has been sent to the ViX beta team.\n"
+"please quote"
+msgstr ""
+"ist zum ViX Beta Team geschickt worden.\n"
+"Bitte zitieren"
+
 msgid "hear radio..."
 msgstr "Radio hören..."
 
@@ -9161,6 +9165,9 @@ msgstr "Freigabe:"
 msgid "show DVD main menu"
 msgstr "Zeige das DVD Hauptmenü"
 
+msgid "show EPG..."
+msgstr ""
+
 msgid "show Infoline"
 msgstr "Infozeile anzeigen"
 
@@ -9309,7 +9316,7 @@ msgid "stepsize"
 msgstr "Schrittgröße"
 
 msgid "stereo"
-msgstr "stereo"
+msgstr "Stereo"
 
 msgid "stop PiP"
 msgstr "beende PiP"
@@ -9458,6 +9465,18 @@ msgstr "Wassersport"
 msgid "weekly"
 msgstr "wöchentlich"
 
+msgid "when asking question about this log"
+msgstr "wenn Fragen zu diesem Log gestellt werden"
+
+msgid ""
+"when asking question about this log\n"
+"\n"
+"A copy has been sent to yourself."
+msgstr ""
+"when asking question about this log\n"
+"\n"
+"Eine Kopie wurde zu dir selbst geschickt."
+
 msgid "white"
 msgstr "Weiß"
 
@@ -9506,3 +9525,48 @@ msgstr "umschalten"
 msgid "zapped"
 msgstr "umgeschaltet"
 
+#~ msgid ""
+#~ " has been sent to the ViX beta team.\n"
+#~ "please quote "
+#~ msgstr ""
+#~ " wurde zum ViX Beta Team geschickt.\n"
+#~ "bitte zitieren "
+
+#~ msgid "EPG button mode"
+#~ msgstr "EPG Taste bewirkt"
+
+#~ msgid "Graph MEpg Settings"
+#~ msgstr "Graphische M-EPG Einstellungen"
+
+#~ msgid "If set to 'yes' shows the channel names in the EPG."
+#~ msgstr "Wenn 'Ja' eingestellt ist werden die Sendernamen im EPG angezeigt."
+
+#~ msgid "If set to 'yes' shows the channel picons in the EPG."
+#~ msgstr "Wenn 'Ja' eingestellt ist werden die Sendericon im EPG angezeigt."
+
+#~ msgid "Select what you want the EPG button to activate:"
+#~ msgstr "Wähle was die EPG Taste bewirken soll:"
+
+#~ msgid "Service width"
+#~ msgstr "Sender Breite "
+
+#~ msgid "Set the width allocated to the service name."
+#~ msgstr "Wähle die reservierte Breite des Sendernamens."
+
+#~ msgid "Show CoolTVGuide"
+#~ msgstr "Zeige CoolTVGuide"
+
+#~ msgid "Show Graphical EPG"
+#~ msgstr "Zeige grafisches EPG"
+
+#~ msgid "Show Multi EPG"
+#~ msgstr "Zeige Multi-EPG"
+
+#~ msgid "Show Picons"
+#~ msgstr "Zeige Senderlogos"
+
+#~ msgid "Show Service Names "
+#~ msgstr "Zeige Sendernamen"
+
+#~ msgid "Show Single EPG"
+#~ msgstr "Zeige EinfachEPG"
