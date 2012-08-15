@@ -777,7 +777,8 @@ class GraphMultiEPG(Screen, HelpableScreen):
 				"nextBouquet": (self.nextBouquet,    _("Show bouquet selection menu")),
 				"prevBouquet": (self.prevBouquet,    _("Show bouquet selection menu")),
 				"nextService": (self.nextPressed,    _("Goto next page of events")),
-				"prevService": (self.prevPressed,    _("Goto previous page of events"))
+				"prevService": (self.prevPressed,    _("Goto previous page of events")),
+				"preview":     (self.preview,        _("Preview selected channel"))
 			}, -1)
 		self["epgactions"].csel = self
 
@@ -797,6 +798,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 			}, -1)
 		self["inputactions"].csel = self
 
+		self.prevRef = self.session.nav.getCurrentlyPlayingServiceReference()
 		self.updateTimelineTimer = eTimer()
 		self.updateTimelineTimer.callback.append(self.moveTimeLines)
 		self.updateTimelineTimer.start(60 * 1000)
@@ -892,6 +894,8 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		self.moveTimeLines(True)
 		
 	def closeScreen(self):
+		if self.prevRef is not None:
+			self.session.nav.playService(self.prevRef)
 		config.misc.graph_mepg.save()
 		self.close(self.closeRecursive)
 
@@ -946,14 +950,18 @@ class GraphMultiEPG(Screen, HelpableScreen):
 			setService(cur[1])
 			setEvent(cur[0])
 
+	def preview(self):
+		ref = self["list"].getCurrent()[1]
+		if ref:
+			self.session.nav.playService(ref.ref)
+
 	def zapTo(self):
 		if self.zapFunc and self.key_red_choice == self.ZAP:
-			self.closeRecursive = True
 			ref = self["list"].getCurrent()[1]
 			if ref:
 				self.zapFunc(ref.ref)
-				self["list"].setCurrentlyPlaying(ref.ref)
-				self["list"].l.invalidate()
+				config.misc.graph_mepg.save()
+				self.close(False)
 
 	def swapMode(self):
 		global listscreen
