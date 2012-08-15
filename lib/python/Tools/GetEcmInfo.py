@@ -98,43 +98,30 @@ class GetEcmInfo:
 							self.textvalue = cardid
 					except:
 						self.textvalue = decode
-					if ecm[1].startswith('SysID'):
-						info['prov'] = ecm[1].strip()[6:]
-					if info['response'] and 'CaID 0x' in ecm[0] and 'pid 0x' in ecm[0]:
-						self.textvalue = self.textvalue + " (0.%ss)" % info['response']
-						info['caid'] = ecm[0][ecm[0].find('CaID 0x')+7:ecm[0].find(',')]
-						info['pid'] = ecm[0][ecm[0].find('pid 0x')+6:ecm[0].find(' =')]
-						info['provid'] = info.get('prov', '0')[:4]
 				else:
 					self.textvalue = decode
+				if ecm[1].startswith('SysID'):
+					info['prov'] = ecm[1].strip()[6:]
+				if info['response'] and 'CaID 0x' in ecm[0] and 'pid 0x' in ecm[0]:
+					self.textvalue = self.textvalue + " (0.%ss)" % info['response']
+					info['caid'] = ecm[0][ecm[0].find('CaID 0x')+7:ecm[0].find(',')]
+					info['pid'] = ecm[0][ecm[0].find('pid 0x')+6:ecm[0].find(' =')]
+					info['provid'] = info.get('prov', '0')[:4]
 			else:
-				source = info.get('source', '')
+				source = info.get('source', None)
 				if source:
 					# MGcam
-					eEnc  = ""
-					eCaid = ""
-					eSrc = ""
-					eTime = "0"
+					info['caid'] = info['caid'][2:]
+					info['pid'] = info['pid'][2:]
+					info['provid'] = info['prov'][2:]
+					time = " ?"
 					for line in ecm:
-						line = line.strip()
-						if line.find('ECM') != -1:
-							linetmp = line.split(' ')
-							eEnc = linetmp[1]
-							eCaid = linetmp[5][2:-1]
-							continue
-						if line.find('source') != -1:
-							linetmp = line.split(' ')
-							try:
-								eSrc = linetmp[4][:-1]
-								continue
-							except:
-								eSrc = linetmp[1]
-								continue
 						if line.find('msec') != -1:
-							linetmp = line.split(' ')
-							eTime = linetmp[0]
-							continue
-					self.textvalue = "(%s %s %.3f @ %s)" % (eEnc,eCaid,(float(eTime)/1000),eSrc)
+							line = line.split(' ')
+							if line[0]:
+								time = " (%ss)" % (float(line[0])/1000)
+								continue
+					self.textvalue = source + time
 				else:
 					reader = info.get('reader', '')
 					if reader:

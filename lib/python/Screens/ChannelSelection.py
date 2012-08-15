@@ -1005,6 +1005,7 @@ class ChannelSelectionBase(Screen):
 		self.servicePathRadio = [ ]
 		self.servicePath = [ ]
 		self.rootChanged = False
+		self.startRoot = None
 
 		self.mode = MODE_TV
 		self.dopipzap = False
@@ -1481,7 +1482,6 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			})
 
 		self.startServiceRef = None
-		self.startRoot = None
 
 		self.history_tv = [ ]
 		self.history_radio = [ ]
