@@ -1,4 +1,4 @@
-SUBDIRS = menu icons buttons spinner GraphEPG lcd
+SUBDIRS = menu icons buttons spinner GraphEPG lcd piconbg
 
 installdir = $(pkgdatadir)/skin_default
 
