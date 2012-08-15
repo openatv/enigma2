@@ -139,10 +139,10 @@ def runGraphMultiEpg():
 		Session.openWithCallback(reopen, GraphMultiEPG, services, zapToService, cb, ServiceReference(epg_bouquet).getServiceName())
 
 def reopen(answer):
-	if answer:
+	if answer is None:
 		runGraphMultiEpg()
 	else:
-		closed()
+		closed(answer)
 
 def Plugins(**kwargs):
 	name = _("Graphical Multi EPG")
