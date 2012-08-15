@@ -726,7 +726,6 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		self.bouquetChangeCB = bouquetChangeCB
 		now = time() - config.epg.histminutes.getValue() * 60
 		self.ask_time = now - now % int(config.misc.graph_mepg.roundTo.getValue())
-		self.closeRecursive = False
 		self["key_red"] = Button("")
 		self["key_green"] = Button("")
 
@@ -897,7 +896,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		if self.prevRef is not None:
 			self.session.nav.playService(self.prevRef)
 		config.misc.graph_mepg.save()
-		self.close(self.closeRecursive)
+		self.close(False)
 
 	def infoKeyPressed(self):
 		cur = self["list"].getCurrent()
@@ -966,7 +965,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 	def swapMode(self):
 		global listscreen
 		listscreen = not listscreen
-		self.close(True)
+		self.close(None)
 
 	def eventSelected(self):
 		self.infoKeyPressed()
