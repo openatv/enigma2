@@ -16,7 +16,7 @@ class PiconBg(Renderer):
 		if self.instance:
 			pngname = resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/piconbg/"+config.usage.show_picon_bkgrn.value+".png")
 			if pngname:
-				self.instance.setScale(1)
+				#self.instance.setScale(1)
 				self.instance.setPixmapFromFile(pngname)
 				self.instance.show()
 			else:

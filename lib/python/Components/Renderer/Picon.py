@@ -136,7 +136,7 @@ class Picon(Renderer):
 				pngname = self.nopicon
 			if self.pngname != pngname:
 				if pngname:
-					self.instance.setScale(1)
+					#self.instance.setScale(1)
 					self.instance.setPixmapFromFile(pngname)
 					self.instance.show()
 				else:
