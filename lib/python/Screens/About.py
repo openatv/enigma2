@@ -334,7 +334,7 @@ class SystemNetworkInfo(Screen):
 
 		self["key_red"] = StaticText(_("Close"))
 
-		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
+		self["actions"] = ActionMap(["SetupActions", "ColorActions", "DirectionActions"],
 			{
 				"cancel": self.close,
 				"ok": self.close,
