@@ -410,7 +410,11 @@ class ChannelSelectionEPG:
 			self.session.openWithCallback(self.SingleServiceEPGClosed, EPGSelection, ref, serviceChangeCB=self.changeServiceCB)
 
 	def SingleServiceEPGClosed(self, ret=False):
-		self.setCurrentSelection(self.savedService)
+		service = self.getCurrentSelection()
+		if service is not None:
+			self.saveChannel(service)
+			self.addToHistory(service)
+			self.close()
 
 	def changeServiceCB(self, direction, epg):
 		beg = self.getCurrentSelection()
