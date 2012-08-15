@@ -953,6 +953,8 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		ref = self["list"].getCurrent()[1]
 		if ref:
 			self.session.nav.playService(ref.ref)
+			self["list"].setCurrentlyPlaying(ref.ref)
+			self["list"].l.invalidate()
 
 	def zapTo(self):
 		if self.zapFunc and self.key_red_choice == self.ZAP:
