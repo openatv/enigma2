@@ -338,6 +338,8 @@ class SystemNetworkInfo(Screen):
 			{
 				"cancel": self.close,
 				"ok": self.close,
+				"up": self["AboutScrollLabel"].pageUp,
+				"down": self["AboutScrollLabel"].pageDown
 			})
 # 		self.timer = eTimer()
 # 		self.timer.timeout.get().append(self.resetList)
