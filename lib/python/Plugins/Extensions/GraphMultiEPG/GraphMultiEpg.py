@@ -960,7 +960,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 			if ref:
 				self.zapFunc(ref.ref)
 				config.misc.graph_mepg.save()
-				self.close(False)
+				self.close(True)
 
 	def swapMode(self):
 		global listscreen
