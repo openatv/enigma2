@@ -159,9 +159,9 @@ class PliExtraInfo(Poll, Converter, object):
 	def createOrbPos(self,feraw):
 		orbpos = feraw.get("orbital_position")
 		if orbpos > 1800:
-			return str((float(3600 - orbpos)) / 10.0) + "W"
+			return str((float(3600 - orbpos)) / 10.0) + "\xc2\xb0W"
 		elif orbpos > 0:
-			return str((float(orbpos)) / 10.0) + "E"
+			return str((float(orbpos)) / 10.0) + "\xc2\xb0E"
 		return ""
 
 	def createProviderName(self,info):
