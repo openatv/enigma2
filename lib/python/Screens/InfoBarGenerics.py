@@ -648,28 +648,28 @@ class InfoBarNumberZap:
 		if retval > 0:
 			self.zapToNumber(retval)
 
- 	def searchNumberHelper(self, serviceHandler, num, bouquet):
- 		servicelist = serviceHandler.list(bouquet)
- 		if not servicelist is None:
+	def searchNumberHelper(self, serviceHandler, num, bouquet):
+		servicelist = serviceHandler.list(bouquet)
+		if not servicelist is None:
 			serviceIterator = servicelist.getNext()
 			while serviceIterator.valid():
 				if num == serviceIterator.getChannelNum():
 					return serviceIterator
- 				serviceIterator = servicelist.getNext()
+				serviceIterator = servicelist.getNext()
 		return None
- 
- 	def zapToNumber(self, number):
- 		bouquet = self.servicelist.bouquet_root
- 		service = None
- 		serviceHandler = eServiceCenter.getInstance()
- 		if not config.usage.multibouquet.value:
+
+	def zapToNumber(self, number):
+		bouquet = self.servicelist.bouquet_root
+		service = None
+		serviceHandler = eServiceCenter.getInstance()
+		if not config.usage.multibouquet.value:
 			service = self.searchNumberHelper(serviceHandler, number, bouquet)
- 		else:
+		else:
 			service = self.searchNumberHelper(serviceHandler, number, bouquet) #search the current bouqeut first
 			if service is None:
 				bouquetlist = serviceHandler.list(bouquet)
 				if not bouquetlist is None:
- 					bouquet = bouquetlist.getNext()
+					bouquet = bouquetlist.getNext()
 					while bouquet.valid():
 						if bouquet.flags & eServiceReference.isDirectory:
 							service = self.searchNumberHelper(serviceHandler, number, bouquet)
