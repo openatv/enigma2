@@ -187,28 +187,24 @@ class EPGSelection(Screen):
 
 	def zapTo(self):
 		if self.key_red_choice == self.ZAP:
-			lst = self["list"]
-			count = lst.getCurrentChangeCount()
-			if count == 0:
-				self.closeRecursive = True
-				ref = lst.getCurrent()[1]
-				if ref is None:
-					return
-				if self.zapFunc: # just used in multiepg
+			self.closeRecursive = True
+			self.zapSelectedService()
+			self.close(self.closeRecursive)
+
+	def zapSelectedService(self):
+		lst = self["list"]
+		count = lst.getCurrentChangeCount()
+		if count == 0:
+			ref = lst.getCurrent()[1]
+			if ref is not None:
+				if self.zapFunc:
 					self.zapFunc(ref.ref)
 				else:
 					self.session.nav.playService(ref.ref)
-				self.closeScreen()
 
 	def eventPreview(self):
 		if self.type != EPG_TYPE_SIMILAR:
-			lst = self["list"]
-			count = lst.getCurrentChangeCount()
-			if count == 0:
-				self.closeRecursive = True
-				ref = lst.getCurrent()[1]
-				if ref is not None:
-					self.session.nav.playService(ref.ref)
+			self.zapSelectedService()
 
 	def eventSelected(self):
 		self.infoKeyPressed()
