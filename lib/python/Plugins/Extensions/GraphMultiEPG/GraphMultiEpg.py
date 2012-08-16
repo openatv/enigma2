@@ -797,7 +797,6 @@ class GraphMultiEPG(Screen, HelpableScreen):
 			}, -1)
 		self["inputactions"].csel = self
 
-		self.prevRef = self.session.nav.getCurrentlyPlayingServiceReference()
 		self.updateTimelineTimer = eTimer()
 		self.updateTimelineTimer.callback.append(self.moveTimeLines)
 		self.updateTimelineTimer.start(60 * 1000)
@@ -893,8 +892,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		self.moveTimeLines(True)
 		
 	def closeScreen(self):
-		if self.prevRef is not None:
-			self.session.nav.playService(self.prevRef)
+		self.zapFunc(None, zapback = True)
 		config.misc.graph_mepg.save()
 		self.close(False)
 
@@ -952,7 +950,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 	def preview(self):
 		ref = self["list"].getCurrent()[1]
 		if ref:
-			self.session.nav.playService(ref.ref)
+			self.zapFunc(ref.ref, preview = True)
 			self["list"].setCurrentlyPlaying(ref.ref)
 			self["list"].l.invalidate()
 
