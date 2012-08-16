@@ -62,16 +62,24 @@ class SelectBouquet(Screen):
 	def cancelClick(self):
 		self.close(None)
 
-
-def zapToService(service):
+def zapToService(service, preview = False, zapback = False):
+	if Servicelist.startServiceRef is None:
+		Servicelist.startServiceRef = Session.nav.getCurrentlyPlayingServiceReference()
 	if not service is None:
-		if Servicelist.getRoot() != epg_bouquet: #already in correct bouquet?
-			Servicelist.clearPath()
-			if Servicelist.bouquet_root != epg_bouquet:
-				Servicelist.enterPath(Servicelist.bouquet_root)
-			Servicelist.enterPath(epg_bouquet)
-		Servicelist.setCurrentSelection(service) #select the service in Servicelist
-		Servicelist.zap()
+		if not preview and not zapback:
+			if Servicelist.getRoot() != epg_bouquet:
+				Servicelist.clearPath()
+				if Servicelist.bouquet_root != epg_bouquet:
+					Servicelist.enterPath(Servicelist.bouquet_root)
+				Servicelist.enterPath(epg_bouquet)
+		Servicelist.setCurrentSelection(service)
+		if not zapback or preview:
+			Servicelist.zap(not preview, preview)
+	if (Servicelist.dopipzap or zapback) and not preview:
+		Servicelist.zapBack()
+	if not preview:
+		Servicelist.startServiceRef = None
+		Servicelist.startRoot = None
 
 def getBouquetServices(bouquet):
 	services = [ ]
@@ -139,10 +147,10 @@ def runGraphMultiEpg():
 		Session.openWithCallback(reopen, GraphMultiEPG, services, zapToService, cb, ServiceReference(epg_bouquet).getServiceName())
 
 def reopen(answer):
-	if answer:
+	if answer is None:
 		runGraphMultiEpg()
 	else:
-		closed()
+		closed(answer)
 
 def Plugins(**kwargs):
 	name = _("Graphical Multi EPG")
