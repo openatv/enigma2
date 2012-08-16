@@ -365,7 +365,7 @@ class EPGSelection(Screen):
 				self.key_red_choice = self.EMPTY
 			return
 		elif self.key_red_choice != self.ZAP and self.type != EPG_TYPE_SIMILAR:
-				self["key_red"].setText("Zap")
+				self["key_red"].setText(_("Zap"))
 				self.key_red_choice = self.ZAP
 
 		if event is None:
