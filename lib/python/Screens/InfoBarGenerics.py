@@ -3825,6 +3825,17 @@ class InfoBarAAFpanel:
 		
 from RecordTimer import parseEvent, RecordTimerEntry
 
+class InfoBarQuickMenu:
+	def __init__(self):
+		self["QuickMenuActions"] = HelpableActionMap(self, "InfoBarQuickMenu",
+				{
+					"quickmenu": (self.quickmenuStart, _("Quick Menu...")),
+				})
+
+	def quickmenuStart(self):
+		from Plugins.Extensions.Aafpanel.QuickMenu import QuickMenu
+		self.session.open(QuickMenu)
+
 class InfoBarInstantRecord:
 	"""Instant Record - handles the instantRecord action in order to
 	start/stop instant records"""

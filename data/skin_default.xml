@@ -793,6 +793,16 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget name="green" position="200,0" zPosition="1" size="200,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
 		<widget name="list" position="0,45" size="600,355" scrollbarMode="showOnDemand" />
 	</screen>
+	<!--  Quick Menu  -->
+	<screen name="QuickMenu" position="center,center" size="1200,680" title="Quick Launch Menu">
+  		<ePixmap pixmap="skin_default/buttons/red-big.png" position="0,0" size="200,40" alphatest="on" />
+		<ePixmap pixmap="skin_default/buttons/green-big.png" position="200,0" size="200,40" alphatest="on" />
+		<widget name="key_red" position="0,0" zPosition="1" size="200,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+		<widget name="key_green" position="200,0" zPosition="1" size="200,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+		<widget name="list" position="0,45" size="600,355" />
+		<widget name="sublist" position="610,45" size="570,355" />
+  		<widget name="description" position="10,600" size="800,50" zPosition="1" font="Regular;22" halign="left" borderWidth="1" transparent="1" />
+  </screen>
 	<!-- Plugin downloads -->
 	<screen name="PluginDownloadBrowser" position="center,center" size="560,420" title="Downloadable plugins">
 		<widget name="text" position="0,0" zPosition="1" size="560,430" font="Regular;20" halign="center" valign="center" />
