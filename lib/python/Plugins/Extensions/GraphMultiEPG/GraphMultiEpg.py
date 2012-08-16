@@ -726,7 +726,6 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		self.bouquetChangeCB = bouquetChangeCB
 		now = time() - config.epg.histminutes.getValue() * 60
 		self.ask_time = now - now % int(config.misc.graph_mepg.roundTo.getValue())
-		self.closeRecursive = False
 		self["key_red"] = Button("")
 		self["key_green"] = Button("")
 
@@ -777,7 +776,8 @@ class GraphMultiEPG(Screen, HelpableScreen):
 				"nextBouquet": (self.nextBouquet,    _("Show bouquet selection menu")),
 				"prevBouquet": (self.prevBouquet,    _("Show bouquet selection menu")),
 				"nextService": (self.nextPressed,    _("Goto next page of events")),
-				"prevService": (self.prevPressed,    _("Goto previous page of events"))
+				"prevService": (self.prevPressed,    _("Goto previous page of events")),
+				"preview":     (self.preview,        _("Preview selected channel"))
 			}, -1)
 		self["epgactions"].csel = self
 
@@ -892,8 +892,9 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		self.moveTimeLines(True)
 		
 	def closeScreen(self):
+		self.zapFunc(None, zapback = True)
 		config.misc.graph_mepg.save()
-		self.close(self.closeRecursive)
+		self.close(False)
 
 	def infoKeyPressed(self):
 		cur = self["list"].getCurrent()
@@ -946,19 +947,25 @@ class GraphMultiEPG(Screen, HelpableScreen):
 			setService(cur[1])
 			setEvent(cur[0])
 
+	def preview(self):
+		ref = self["list"].getCurrent()[1]
+		if ref:
+			self.zapFunc(ref.ref, preview = True)
+			self["list"].setCurrentlyPlaying(ref.ref)
+			self["list"].l.invalidate()
+
 	def zapTo(self):
 		if self.zapFunc and self.key_red_choice == self.ZAP:
-			self.closeRecursive = True
 			ref = self["list"].getCurrent()[1]
 			if ref:
 				self.zapFunc(ref.ref)
-				self["list"].setCurrentlyPlaying(ref.ref)
-				self["list"].l.invalidate()
+				config.misc.graph_mepg.save()
+				self.close(True)
 
 	def swapMode(self):
 		global listscreen
 		listscreen = not listscreen
-		self.close(True)
+		self.close(None)
 
 	def eventSelected(self):
 		self.infoKeyPressed()
