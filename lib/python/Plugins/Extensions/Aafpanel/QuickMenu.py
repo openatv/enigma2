@@ -34,6 +34,7 @@ from Plugins.Extensions.Aafpanel.SoftcamPanel import *
 from Plugins.SystemPlugins.SoftwareManager.ImageBackup import ImageBackup
 from Plugins.SystemPlugins.SoftwareManager.plugin import UpdatePlugin
 from Plugins.SystemPlugins.SoftwareManager.BackupRestore import BackupScreen, RestoreScreen, BackupSelection, getBackupPath, getBackupFilename
+from Plugins.SystemPlugins.AutoResolution.plugin import AutoResSetupMenu
 
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_SKIN_IMAGE, SCOPE_SKIN
 from Tools.LoadPixmap import LoadPixmap
@@ -219,6 +220,8 @@ class QuickMenu(Screen):
 			self.sublist.append(QuickSubMenuEntryComponent("Audio Sync","Setup Audio Sync","Setup Audio Sync settings"))
 		self.sublist.append(QuickSubMenuEntryComponent("Auto Language","Auto Language Selection","Select your Language for Audio/Subtitles"))
 		self.sublist.append(QuickSubMenuEntryComponent("VideoEnhancement","VideoEnhancement Setup","VideoEnhancement Setup"))
+		self.sublist.append(QuickSubMenuEntryComponent("AutoResolution","AutoResolution Setup","Automatically change resolution"))
+
 		self["sublist"].l.setList(self.sublist)
 
 ######## Tuner Menu ##############################
@@ -363,6 +366,8 @@ class QuickMenu(Screen):
 			self.session.open(AC3LipSyncSetup, plugin_path_audiosync)
 		elif item[0] == _("VideoEnhancement"):
 			self.session.open(VideoEnhancementSetup)
+		elif item[0] == _("AutoResolution"):
+			self.session.open(AutoResSetupMenu)
 ######## Select TUNER Setup Menu ##############################
 		elif item[0] == _("Tuner Configuration"):
 			self.session.open(NimSelection)
