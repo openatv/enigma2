@@ -16,6 +16,8 @@ from Screens.PluginBrowser import PluginDownloadBrowser, PluginFilter, PluginBro
 from Screens.LanguageSelection import LanguageSelection
 from Screens.Satconfig import NimSelection
 from Screens.ScanSetup import ScanSimple, ScanSetup
+from Screens.Setup import Setup, getSetupTitle
+from Screens.HarddiskSetup import HarddiskSelection, HarddiskFsckSelection, HarddiskConvertExt4Selection
 
 from Plugins.Plugin import PluginDescriptor
 from Plugins.SystemPlugins.PositionerSetup.plugin import PositionerSetup, RotorNimSelection
@@ -25,6 +27,7 @@ from Plugins.SystemPlugins.NetworkBrowser.NetworkBrowser import NetworkBrowser
 from Plugins.SystemPlugins.NetworkWizard.NetworkWizard import NetworkWizard
 from Plugins.SystemPlugins.Videomode.plugin import VideoSetup
 from Plugins.SystemPlugins.Videomode.VideoHardware import video_hw
+from Plugins.SystemPlugins.VideoEnhancement.plugin import VideoEnhancementSetup
 from Plugins.Extensions.Aafpanel.RestartNetwork import RestartNetwork
 from Plugins.Extensions.Aafpanel.MountManager import HddMount
 from Plugins.Extensions.Aafpanel.SoftcamPanel import *
@@ -48,6 +51,15 @@ if path.exists("/usr/lib/enigma2/python/Plugins/Extensions/AudioSync"):
 	AUDIOSYNC = True
 else:
 	AUDIOSYNC = False
+
+def isFileSystemSupported(filesystem):
+	try:
+		for fs in open('/proc/filesystems', 'r'):
+			if fs.strip().endswith(filesystem):
+				return True
+		return False
+	except Exception, ex:
+		print "[Harddisk] Failed to read /proc/filesystems:", ex
 
 class QuickMenu(Screen):
 	def __init__(self, session):
@@ -153,6 +165,7 @@ class QuickMenu(Screen):
 		self.list.append(QuickMenuEntryComponent("Softcam","Start/stop/select cam","Start/stop/select your cam, You need to install first a softcam"))
 		self.list.append(QuickMenuEntryComponent("Software Manager","Update/Backup/Restore your box","Update/Backup your firmware, Backup/Restore settings"))
 		self.list.append(QuickMenuEntryComponent("Plugins","Download plugins","Shows available pluigns. Here you can download and install them"))
+		self.list.append(QuickMenuEntryComponent("Harddisk","Harddisk Setup","Setup your Harddisk"))
 		self["list"].l.setList(self.list)
 
 ######## Network Menu ##############################
@@ -204,7 +217,8 @@ class QuickMenu(Screen):
 		self.sublist.append(QuickSubMenuEntryComponent("AV Settings","Setup Videomode","Setup your Video Mode, Video Output and other Video Settings"))
 		if AUDIOSYNC == True:
 			self.sublist.append(QuickSubMenuEntryComponent("Audio Sync","Setup Audio Sync","Setup Audio Sync settings"))
-		self.sublist.append(QuickSubMenuEntryComponent("Language","Language selection","Select your Language"))
+		self.sublist.append(QuickSubMenuEntryComponent("Auto Language","Auto Language Selection","Select your Language for Audio/Subtitles"))
+		self.sublist.append(QuickSubMenuEntryComponent("VideoEnhancement","VideoEnhancement Setup","VideoEnhancement Setup"))
 		self["sublist"].l.setList(self.sublist)
 
 ######## Tuner Menu ##############################
@@ -235,6 +249,16 @@ class QuickMenu(Screen):
 		self.sublist.append(QuickSubMenuEntryComponent("Remove Plugins","Delete Plugins","Delete and unstall Plugins. This will remove the Plugin from your box"))
 		self.sublist.append(QuickSubMenuEntryComponent("Plugin Filter","Setup Plugin filter","Setup Plugin filter. Here you can select which Plugins are showed in the PluginBrowser"))
 		self.sublist.append(QuickSubMenuEntryComponent("IPK Installer","Install local extension","Scan for local extensions and install them"))
+		self["sublist"].l.setList(self.sublist)
+
+######## Harddisk Menu ##############################
+	def Qharddisk(self):
+		self.sublist = []
+		self.sublist.append(QuickSubMenuEntryComponent("Harddisk Setup","Harddisk Setup","Setup your Harddisk"))
+		self.sublist.append(QuickSubMenuEntryComponent("Initialization","Format HDD","Format your Harddisk"))
+		self.sublist.append(QuickSubMenuEntryComponent("Filesystem Check","Check HDD","Filesystem check your Harddisk"))
+		if isFileSystemSupported("ext4"):
+			self.sublist.append(QuickSubMenuEntryComponent("Convert ext3 to ext4","Convert filesystem ext3 to ext4","Convert filesystem ext3 to ext4"))
 		self["sublist"].l.setList(self.sublist)
 
 	def ok(self):
@@ -273,6 +297,9 @@ class QuickMenu(Screen):
 ######## Select PluginDownloadBrowser Menu ##############################
 		elif item[0] == _("Plugins"):
 			self.Qplugin()
+######## Select Tuner Setup Menu ##############################
+		elif item[0] == _("Harddisk"):
+			self.Qharddisk()
 
 		self["sublist"].selectionEnabled(0)
 
@@ -330,10 +357,12 @@ class QuickMenu(Screen):
 ######## Select AV Setup Menu ##############################
 		elif item[0] == _("AV Settings"):
 			self.session.open(VideoSetup, video_hw)
-		elif item[0] == _("Language"):
-			self.session.open(LanguageSelection)
+		elif item[0] == _("Auto Language"):
+			self.openSetup("autolanguagesetup")
 		elif item[0] == _("Audio Sync"):
 			self.session.open(AC3LipSyncSetup, plugin_path_audiosync)
+		elif item[0] == _("VideoEnhancement"):
+			self.session.open(VideoEnhancementSetup)
 ######## Select TUNER Setup Menu ##############################
 		elif item[0] == _("Tuner Configuration"):
 			self.session.open(NimSelection)
@@ -377,6 +406,22 @@ class QuickMenu(Screen):
 				main(self.session)
 			except:
 				self.session.open(MessageBox, _("Sorry MediaScanner is not installed!"), MessageBox.TYPE_INFO, timeout = 10)
+######## Select Harddisk Menu ############################################
+		elif item[0] == _("Harddisk Setup"):
+			self.openSetup("harddisk")
+		elif item[0] == _("Initialization"):
+			self.session.open(HarddiskSelection)
+		elif item[0] == _("Filesystem Check"):
+			self.session.open(HarddiskFsckSelection)
+		elif item[0] == _("Convert ext3 to ext4"):
+			self.session.open(HarddiskConvertExt4Selection)
+
+######## OPEN SETUP MENUS ####################
+	def openSetup(self, dialog):
+		self.session.openWithCallback(self.menuClosed, Setup, dialog)
+
+	def menuClosed(self, *res):
+		pass
 
 ######## NETWORK TOOLS #######################
 	def GetNetworkInterfaces(self):
