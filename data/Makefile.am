@@ -31,8 +31,12 @@ else
 if HAVE_DISPLAY128
 dist_pkgdata_DATA += skin_display128.xml
 else
+if HAVE_DISPLAYDM
+dist_pkgdata_DATA += skin_display.xml
+else
 SUBDIRS += lcd
 dist_pkgdata_DATA += skin_display_picon.xml skin_display_no_picon.xml
 endif
 endif
 endif
+enfif
