@@ -3833,8 +3833,16 @@ class InfoBarQuickMenu:
 				})
 
 	def quickmenuStart(self):
-		from Plugins.Extensions.Aafpanel.QuickMenu import QuickMenu
-		self.session.open(QuickMenu)
+		try:
+			if not self.session.pipshown:
+				from Plugins.Extensions.Aafpanel.QuickMenu import QuickMenu
+				self.session.open(QuickMenu)
+			else:
+				self.showExtensionSelection()
+		except:
+			print "[INFOBARGENERICS] QuickMenu: error pipshow, starting Quick Menu"
+			from Plugins.Extensions.Aafpanel.QuickMenu import QuickMenu
+			self.session.open(QuickMenu)
 
 class InfoBarInstantRecord:
 	"""Instant Record - handles the instantRecord action in order to
