@@ -159,109 +159,109 @@ class QuickMenu(Screen):
 		self.menu = 0
 		self.list = []
 		self.oldlist = []
-		self.list.append(QuickMenuEntryComponent("Network","Setup your local network","Setup your local network. For Wlan you need to boot with a USB-Wlan stick"))
-		self.list.append(QuickMenuEntryComponent("Mounts","Mount Setup","Setup your mounts for network"))
-		self.list.append(QuickMenuEntryComponent("AV Setup","Setup Videomode","Setup your Video Mode, Video Output and other Video Settings"))
-		self.list.append(QuickMenuEntryComponent("Tuner Setup","Setup Tuner","Setup your Tuner and search for channels"))
-		self.list.append(QuickMenuEntryComponent("Softcam","Start/stop/select cam","Start/stop/select your cam, You need to install first a softcam"))
-		self.list.append(QuickMenuEntryComponent("Software Manager","Update/Backup/Restore your box","Update/Backup your firmware, Backup/Restore settings"))
-		self.list.append(QuickMenuEntryComponent("Plugins","Download plugins","Shows available pluigns. Here you can download and install them"))
-		self.list.append(QuickMenuEntryComponent("Harddisk","Harddisk Setup","Setup your Harddisk"))
+		self.list.append(QuickMenuEntryComponent("Network",_("Setup your local network"),_("Setup your local network. For Wlan you need to boot with a USB-Wlan stick")))
+		self.list.append(QuickMenuEntryComponent("Mounts",_("Mount Setup"),_("Setup your mounts for network")))
+		self.list.append(QuickMenuEntryComponent("AV Setup",_("Setup Videomode"),_("Setup your Video Mode, Video Output and other Video Settings")))
+		self.list.append(QuickMenuEntryComponent("Tuner Setup",_("Setup Tuner"),_("Setup your Tuner and search for channels")))
+		self.list.append(QuickMenuEntryComponent("Softcam",_("Start/stop/select cam"),_("Start/stop/select your cam, You need to install first a softcam")))
+		self.list.append(QuickMenuEntryComponent("Software Manager",_("Update/Backup/Restore your box"),_("Update/Backup your firmware, Backup/Restore settings")))
+		self.list.append(QuickMenuEntryComponent("Plugins",_("Download plugins"),_("Shows available pluigns. Here you can download and install them")))
+		self.list.append(QuickMenuEntryComponent("Harddisk",_("Harddisk Setup"),_("Setup your Harddisk")))
 		self["list"].l.setList(self.list)
 
 ######## Network Menu ##############################
 	def Qnetwork(self):
 		self.sublist = []
-		self.sublist.append(QuickSubMenuEntryComponent("Network Wizard","Configure your Network","Use the Networkwizard to configure your Network. The wizard will help you to setup your network"))
+		self.sublist.append(QuickSubMenuEntryComponent("Network Wizard",_("Configure your Network"),_("Use the Networkwizard to configure your Network. The wizard will help you to setup your network")))
 		if len(self.adapters) > 1: # show only adapter selection if more as 1 adapter is installed
-			self.sublist.append(QuickSubMenuEntryComponent("Network Adapter Selection","Select Lan/Wlan","Setup your network interface. If no Wlan stick is used, you only can select Lan"))
+			self.sublist.append(QuickSubMenuEntryComponent("Network Adapter Selection",_("Select Lan/Wlan"),_("Setup your network interface. If no Wlan stick is used, you only can select Lan")))
 		if not self.activeInterface == None: # show only if there is already a adapter up
-			self.sublist.append(QuickSubMenuEntryComponent("Network Interface","Setup interface","Setup network. Here you can setup DHCP, IP, DNS"))
-		self.sublist.append(QuickSubMenuEntryComponent("Network Restart","Restart network to with current setup","Restart network and remount connections"))
-		self.sublist.append(QuickSubMenuEntryComponent("Network Services","Setup Network Services","Setup Network Services (Samba, Ftp, NFS, ...)"))
+			self.sublist.append(QuickSubMenuEntryComponent("Network Interface",_("Setup interface"),_("Setup network. Here you can setup DHCP, IP, DNS")))
+		self.sublist.append(QuickSubMenuEntryComponent("Network Restart",_("Restart network to with current setup"),_("Restart network and remount connections")))
+		self.sublist.append(QuickSubMenuEntryComponent("Network Services",_("Setup Network Services"),_("Setup Network Services (Samba, Ftp, NFS, ...)")))
 		self["sublist"].l.setList(self.sublist)
 
 #### Network Services Menu ##############################
 	def Qnetworkservices(self):
 		self.sublist = []
-		self.sublist.append(QuickSubMenuEntryComponent("Samba","Setup Samba","Setup Samba"))
-		self.sublist.append(QuickSubMenuEntryComponent("NFS","Setup NFS","Setup NFS"))
-		self.sublist.append(QuickSubMenuEntryComponent("FTP","Setup FTP","Setup FTP"))
-		self.sublist.append(QuickSubMenuEntryComponent("AFP","Setup AFP","Setup AFP"))
-		self.sublist.append(QuickSubMenuEntryComponent("OpenVPN","Setup OpenVPN","Setup OpenVPN"))
-		self.sublist.append(QuickSubMenuEntryComponent("MiniDLNA","Setup MiniDLNA","Setup MiniDLNA"))
-		self.sublist.append(QuickSubMenuEntryComponent("Inadyn","Setup Inadyn","Setup Inadyn"))
-		self.sublist.append(QuickSubMenuEntryComponent("SABnzbd","Setup SABnzbd","Setup SABnzbd"))
-		self.sublist.append(QuickSubMenuEntryComponent("uShare","Setup uShare","Setup uShare"))
-		self.sublist.append(QuickSubMenuEntryComponent("Telnet","Setup Telnet","Setup Telnet"))
+		self.sublist.append(QuickSubMenuEntryComponent("Samba",_("Setup Samba"),_("Setup Samba")))
+		self.sublist.append(QuickSubMenuEntryComponent("NFS",_("Setup NFS"),_("Setup NFS")))
+		self.sublist.append(QuickSubMenuEntryComponent("FTP",_("Setup FTP"),_("Setup FTP")))
+		self.sublist.append(QuickSubMenuEntryComponent("AFP",_("Setup AFP"),_("Setup AFP")))
+		self.sublist.append(QuickSubMenuEntryComponent("OpenVPN",_("Setup OpenVPN"),_("Setup OpenVPN")))
+		self.sublist.append(QuickSubMenuEntryComponent("MiniDLNA",_("Setup MiniDLNA"),_("Setup MiniDLNA")))
+		self.sublist.append(QuickSubMenuEntryComponent("Inadyn",_("Setup Inadyn"),_("Setup Inadyn")))
+		self.sublist.append(QuickSubMenuEntryComponent("SABnzbd",_("Setup SABnzbd"),_("Setup SABnzbd")))
+		self.sublist.append(QuickSubMenuEntryComponent("uShare",_("Setup uShare"),_("Setup uShare")))
+		self.sublist.append(QuickSubMenuEntryComponent("Telnet",_("Setup Telnet"),_("Setup Telnet")))
 		self["sublist"].l.setList(self.sublist)
 
 ######## Mount Settings Menu ##############################
 	def Qmount(self):
 		self.sublist = []
-		self.sublist.append(QuickSubMenuEntryComponent("Mount Manager","Manage network mounts","Setup your network mounts"))
-		self.sublist.append(QuickSubMenuEntryComponent("Network Browser","Search for network shares","Search for network shares"))
-		self.sublist.append(QuickSubMenuEntryComponent("Device Manager","Mounts Devices","Setup your Device mounts (USB, HDD, others...)"))
+		self.sublist.append(QuickSubMenuEntryComponent("Mount Manager",_("Manage network mounts"),_("Setup your network mounts")))
+		self.sublist.append(QuickSubMenuEntryComponent("Network Browser",_("Search for network shares"),_("Search for network shares")))
+		self.sublist.append(QuickSubMenuEntryComponent("Device Manager",_("Mounts Devices"),_("Setup your Device mounts (USB, HDD, others...)")))
 		self["sublist"].l.setList(self.sublist)
 
 ######## Softcam Menu ##############################
 	def Qsoftcam(self):
 		self.sublist = []
 		if Check_Softcam(): # show only when there is a softcam installed
-			self.sublist.append(QuickSubMenuEntryComponent("Softcam Panel","Control your Softcams","Use the Softcam Panel to control your Cam. This let you start/stop/select a cam"))
-		self.sublist.append(QuickSubMenuEntryComponent("Download Softcams","Download and install cam","Shows available softcams. Here you can download and install them"))
+			self.sublist.append(QuickSubMenuEntryComponent("Softcam Panel",_("Control your Softcams"),_("Use the Softcam Panel to control your Cam. This let you start/stop/select a cam")))
+		self.sublist.append(QuickSubMenuEntryComponent("Download Softcams",_("Download and install cam"),_("Shows available softcams. Here you can download and install them")))
 		self["sublist"].l.setList(self.sublist)
 
 ######## A/V Settings Menu ##############################
 	def Qavsetup(self):
 		self.sublist = []
-		self.sublist.append(QuickSubMenuEntryComponent("AV Settings","Setup Videomode","Setup your Video Mode, Video Output and other Video Settings"))
+		self.sublist.append(QuickSubMenuEntryComponent("AV Settings",_("Setup Videomode"),_("Setup your Video Mode, Video Output and other Video Settings")))
 		if AUDIOSYNC == True:
-			self.sublist.append(QuickSubMenuEntryComponent("Audio Sync","Setup Audio Sync","Setup Audio Sync settings"))
-		self.sublist.append(QuickSubMenuEntryComponent("Auto Language","Auto Language Selection","Select your Language for Audio/Subtitles"))
-		self.sublist.append(QuickSubMenuEntryComponent("VideoEnhancement","VideoEnhancement Setup","VideoEnhancement Setup"))
-		self.sublist.append(QuickSubMenuEntryComponent("AutoResolution","AutoResolution Setup","Automatically change resolution"))
+			self.sublist.append(QuickSubMenuEntryComponent("Audio Sync",_("Setup Audio Sync"),_("Setup Audio Sync settings")))
+		self.sublist.append(QuickSubMenuEntryComponent("Auto Language",_("Auto Language Selection"),_("Select your Language for Audio/Subtitles")))
+		self.sublist.append(QuickSubMenuEntryComponent("VideoEnhancement",_("VideoEnhancement Setup"),_("VideoEnhancement Setup")))
+		self.sublist.append(QuickSubMenuEntryComponent("AutoResolution",_("AutoResolution Setup"),_("Automatically change resolution")))
 
 		self["sublist"].l.setList(self.sublist)
 
 ######## Tuner Menu ##############################
 	def Qtuner(self):
 		self.sublist = []
-		self.sublist.append(QuickSubMenuEntryComponent("Tuner Configuration","Setup tuner(s)","Setup each tuner for your satellite system"))
-		self.sublist.append(QuickSubMenuEntryComponent("Positioner Setup","Setup rotor","Setup your positioner for your satellite system"))
-		self.sublist.append(QuickSubMenuEntryComponent("Automatic Scan","Service Searching","Automatic scan for services"))
-		self.sublist.append(QuickSubMenuEntryComponent("Manual Scan","Service Searching","Manual scan for services"))
-		self.sublist.append(QuickSubMenuEntryComponent("Sat Finder","Search Sats","Search Sats, check signal and lock"))
+		self.sublist.append(QuickSubMenuEntryComponent("Tuner Configuration",_("Setup tuner(s)"),_("Setup each tuner for your satellite system")))
+		self.sublist.append(QuickSubMenuEntryComponent("Positioner Setup",_("Setup rotor"),_("Setup your positioner for your satellite system")))
+		self.sublist.append(QuickSubMenuEntryComponent("Automatic Scan",_("Service Searching"),_("Automatic scan for services")))
+		self.sublist.append(QuickSubMenuEntryComponent("Manual Scan",_("Service Searching"),_("Manual scan for services")))
+		self.sublist.append(QuickSubMenuEntryComponent("Sat Finder",_("Search Sats"),_("Search Sats, check signal and lock")))
 		self["sublist"].l.setList(self.sublist)
 
 ######## Software Manager Menu ##############################
 	def Qsoftware(self):
 		self.sublist = []
-		self.sublist.append(QuickSubMenuEntryComponent("Software Update","Online software update","Check/Install online updates (you must have a working internet connection)"))
-		self.sublist.append(QuickSubMenuEntryComponent("Complete Backup","Backup your current image","Backup your current image to HDD or USB. This will make a 1:1 copy of your box"))
-		self.sublist.append(QuickSubMenuEntryComponent("Backup Settings","Backup your current settings","Backup your current settings. This includes E2-setup, channels, network and all selected files"))
-		self.sublist.append(QuickSubMenuEntryComponent("Restore Settings","Restore settings from a backup","Restore your settings back from a backup. After restore the box will restart to activated the new settings"))
-		self.sublist.append(QuickSubMenuEntryComponent("Select Backup files","Choose the files to backup","Here you can select which files should be added to backupfile. (default: E2-setup, channels, network"))
+		self.sublist.append(QuickSubMenuEntryComponent("Software Update",_("Online software update"),_("Check/Install online updates (you must have a working internet connection)")))
+		self.sublist.append(QuickSubMenuEntryComponent("Complete Backup",_("Backup your current image"),_("Backup your current image to HDD or USB. This will make a 1:1 copy of your box")))
+		self.sublist.append(QuickSubMenuEntryComponent("Backup Settings",_("Backup your current settings"),_("Backup your current settings. This includes E2-setup, channels, network and all selected files")))
+		self.sublist.append(QuickSubMenuEntryComponent("Restore Settings",_("Restore settings from a backup"),_("Restore your settings back from a backup. After restore the box will restart to activated the new settings")))
+		self.sublist.append(QuickSubMenuEntryComponent("Select Backup files",_("Choose the files to backup"),_("Here you can select which files should be added to backupfile. (default: E2-setup, channels, network")))
 		self["sublist"].l.setList(self.sublist)
 
 ######## Plugins Menu ##############################
 	def Qplugin(self):
 		self.sublist = []
-		self.sublist.append(QuickSubMenuEntryComponent("Plugin Browser","Open the Plugin Browser","Shows Plugins Browser. Here you can setup installed Plugin"))
-		self.sublist.append(QuickSubMenuEntryComponent("Download Plugins","Download and install Plugins","Shows available plugins. Here you can download and install them"))
-		self.sublist.append(QuickSubMenuEntryComponent("Remove Plugins","Delete Plugins","Delete and unstall Plugins. This will remove the Plugin from your box"))
-		self.sublist.append(QuickSubMenuEntryComponent("Plugin Filter","Setup Plugin filter","Setup Plugin filter. Here you can select which Plugins are showed in the PluginBrowser"))
-		self.sublist.append(QuickSubMenuEntryComponent("IPK Installer","Install local extension","Scan for local extensions and install them"))
+		self.sublist.append(QuickSubMenuEntryComponent("Plugin Browser",_("Open the Plugin Browser"),_("Shows Plugins Browser. Here you can setup installed Plugin")))
+		self.sublist.append(QuickSubMenuEntryComponent("Download Plugins",_("Download and install Plugins"),_("Shows available plugins. Here you can download and install them")))
+		self.sublist.append(QuickSubMenuEntryComponent("Remove Plugins",_("Delete Plugins"),_("Delete and unstall Plugins. This will remove the Plugin from your box")))
+		self.sublist.append(QuickSubMenuEntryComponent("Plugin Filter",_("Setup Plugin filter"),_("Setup Plugin filter. Here you can select which Plugins are showed in the PluginBrowser")))
+		self.sublist.append(QuickSubMenuEntryComponent("IPK Installer",_("Install local extension"),_("Scan for local extensions and install them")))
 		self["sublist"].l.setList(self.sublist)
 
 ######## Harddisk Menu ##############################
 	def Qharddisk(self):
 		self.sublist = []
-		self.sublist.append(QuickSubMenuEntryComponent("Harddisk Setup","Harddisk Setup","Setup your Harddisk"))
-		self.sublist.append(QuickSubMenuEntryComponent("Initialization","Format HDD","Format your Harddisk"))
-		self.sublist.append(QuickSubMenuEntryComponent("Filesystem Check","Check HDD","Filesystem check your Harddisk"))
+		self.sublist.append(QuickSubMenuEntryComponent("Harddisk Setup",_("Harddisk Setup"),_("Setup your Harddisk")))
+		self.sublist.append(QuickSubMenuEntryComponent("Initialization",_("Format HDD"),_("Format your Harddisk")))
+		self.sublist.append(QuickSubMenuEntryComponent("Filesystem Check",_("Check HDD"),_("Filesystem check your Harddisk")))
 		if isFileSystemSupported("ext4"):
-			self.sublist.append(QuickSubMenuEntryComponent("Convert ext3 to ext4","Convert filesystem ext3 to ext4","Convert filesystem ext3 to ext4"))
+			self.sublist.append(QuickSubMenuEntryComponent("Convert ext3 to ext4",_("Convert filesystem ext3 to ext4"),_("Convert filesystem ext3 to ext4")))
 		self["sublist"].l.setList(self.sublist)
 
 	def ok(self):

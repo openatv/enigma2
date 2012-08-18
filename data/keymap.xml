@@ -104,8 +104,12 @@
 		<key id="KEY_F3" mapto="openIMDB" flags="l" />
 		<key id="KEY_F4" mapto="showPluginBrowser" flags="l" />
 		<key id="KEY_F4" mapto="extensions" flags="b" />
-		<key id="KEY_BLUE" mapto="extensions" flags="b" />
+		<key id="KEY_BLUE" mapto="extensions" flags="l" />
 	</map>
+	
+	<map context="InfoBarQuickMenu">
+		<key id="KEY_BLUE" mapto="quickmenu" flags="b" />
+ 	</map>
 
 	<map context="SatlistShortcutAction">
 		<key id="KEY_BLUE" mapto="nothingconnected" flags="b" />
