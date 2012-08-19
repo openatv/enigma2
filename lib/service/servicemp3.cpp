@@ -1664,7 +1664,11 @@ void eServiceMP3::gstHTTPSourceSetAgent(GObject *object, GParamSpec *unused, gpo
 	g_object_get(_this->m_gst_playbin, "source", &source, NULL);
 	if (source)
 	{
-		g_object_set (G_OBJECT (source), "user-agent", _this->m_useragent.c_str(), NULL);
+		GObjectClass *klass = G_OBJECT_GET_CLASS(source);
+		if (g_object_class_find_property(klass, "user-agent"))
+		{
+			g_object_set(G_OBJECT(source), "user-agent", _this->m_useragent.c_str(), NULL);
+		}
 		gst_object_unref(source);
 	}
 }
