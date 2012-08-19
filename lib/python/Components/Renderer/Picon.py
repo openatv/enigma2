@@ -128,7 +128,7 @@ class Picon(Renderer):
 	def changed(self, what):
 		if self.instance:
 			pngname = ""
-			if what[0] != self.CHANGED_CLEAR:
+			if what[0] != self.CHANGED_CLEAR and len(what) > 1:
 				pngname = getPiconName(self.source.text)
 			if not pngname: # no picon for service found
 				pngname = self.defaultpngname
