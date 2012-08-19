@@ -264,8 +264,9 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 	m_cachedSubtitleStream = 0; /* report the first subtitle stream to be 'cached'. TODO: use an actual cache. */
 	m_subtitle_widget = 0;
 	m_currentTrickRatio = 1.0;
-	m_buffer_size = 5*1024*1024;
-	m_use_prefillbuffer = FALSE;
+	m_buffer_size = 5 * 1024 * 1024;
+	m_is_live = false;
+	m_use_prefillbuffer = false;
 	m_download_buffer_path = "";
 	m_prev_decoder_time = -1;
 	m_decoder_time_valid_state = 0;
@@ -335,7 +336,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 	if ( strstr(filename, "://") )
 		m_sourceinfo.is_streaming = TRUE;
 	if ( strstr(filename, " buffer=1") )
-		m_use_prefillbuffer = TRUE;
+		m_use_prefillbuffer = true;
 
 	gchar *uri;
 
@@ -412,7 +413,9 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 			 * (progressive download might not work for all formats)
 			 */
 			flags |= GST_PLAY_FLAG_BUFFERING;
+			/* increase the default 2 second / 2 MB buffer limitations to 5s / 5MB */
 			g_object_set(G_OBJECT(m_gst_playbin), "buffer-duration", 5LL * GST_SECOND, NULL);
+			g_object_set(G_OBJECT(m_gst_playbin), "buffer-size", m_buffer_size, NULL);
 		}
 		g_object_set (G_OBJECT (m_gst_playbin), "flags", flags, NULL);
 		g_object_set (G_OBJECT (m_gst_playbin), "uri", uri, NULL);
@@ -447,8 +450,6 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 		eDebug("eServiceMP3::sorry, can't play: %s",m_errorInfo.error_message.c_str());
 	}
 	g_free(uri);
-
-	setBufferSize(m_buffer_size);
 }
 
 eServiceMP3::~eServiceMP3()
@@ -1307,6 +1308,8 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 					videoSink = GST_ELEMENT_CAST(gst_iterator_find_custom(children, (GCompareFunc)match_sinktype, (gpointer)"GstDVBVideoSink"));
 					gst_iterator_free(children);
 
+					m_is_live = (gst_element_get_state(m_gst_playbin, NULL, NULL, 0LL) == GST_STATE_CHANGE_NO_PREROLL);
+
 					if (m_sourceinfo.is_streaming)
 					{
 						/*
@@ -1584,8 +1587,12 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 				 * we don't react to buffer level messages, unless we are configured to use a prefill buffer
 				 * (even if we are not configured to, we still use the buffer, but we rely on it to remain at the
 				 * healthy level at all times, without ever having to pause the stream)
+				 *
+				 * Also, it does not make sense to pause the stream if it is a live stream
+				 * (in which case the sink will not produce data while paused, so we won't
+				 * recover from an empty buffer)
 				 */
-				if (m_use_prefillbuffer)
+				if (m_use_prefillbuffer && !m_is_live)
 				{
 					if (m_bufferInfo.bufferPercent == 100)
 					{
