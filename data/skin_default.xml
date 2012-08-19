@@ -793,54 +793,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget name="green" position="200,0" zPosition="1" size="200,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
 		<widget name="list" position="0,45" size="600,355" scrollbarMode="showOnDemand" />
 	</screen>
-  <!-- Quick Launch Menu -->
-  <screen name="QuickMenu" position="center,center" size="1200,680" backgroundColor="black" flags="wfNoBorder">
-    <ePixmap position="0,0" zPosition="-10" size="1200,680" pixmap="DMConcinnity-HD/menu/fullbg2.png" />
-    <widget source="global.CurrentTime" render="Label" position="20,20" size="80,25" font="Regular;23" foregroundColor="black" backgroundColor="white" transparent="1">
-      <convert type="ClockToText">Default</convert>
-    </widget>
-    <widget source="global.CurrentTime" render="Label" position="110,20" size="140,25" font="Regular;23" foregroundColor="blue" backgroundColor="white" transparent="1">
-      <convert type="ClockToText">Format:%d.%m.%Y</convert>
-    </widget>
-    <eLabel text="Quick Launch Menu" position="436,15" size="747,43" font="Regular;35" halign="right" foregroundColor="black" backgroundColor="grey" transparent="1" />
-    <widget name="list" position="21,82" size="370,400" backgroundColor="black" backgroundColorSelected="grey" foregroundColorSelected="black" selectionPixmap="DMConcinnity-HD/menu/sel800x50.png" itemHeight="50" transparent="1" />
-    <widget name="sublist" position="410,82" size="300,400" backgroundColor="black" backgroundColorSelected="grey" foregroundColorSelected="black" selectionPixmap="DMConcinnity-HD/menu/sel800x50.png" itemHeight="50" />
-    <eLabel position="400,80" size="2,400" backgroundColor="darkgrey" />
-    <widget source="session.VideoPicture" render="Pig" position="720,75" size="450,300" backgroundColor="transparent" zPosition="1" />
-    <widget name="description" position="21,520" size="1150,110" zPosition="1" font="Regular;22" halign="center" backgroundColor="black" transparent="1" />
-    <ePixmap pixmap="DMConcinnity-HD/buttons/red.png" position="30,646" size="35,27" alphatest="blend" zPosition="0" />
-    <ePixmap pixmap="DMConcinnity-HD/buttons/green.png" position="300,646" size="35,27" alphatest="blend" zPosition="0" />
-    <ePixmap pixmap="DMConcinnity-HD/buttons/yellow.png" position="570,646" size="35,27" alphatest="blend" zPosition="0" />
-    <ePixmap pixmap="DMConcinnity-HD/buttons/blue.png" position="840,646" size="35,27" alphatest="blend" zPosition="0" />
-    <widget name="key_red" position="80,646" size="300,26" zPosition="1" font="Regular;22" halign="left" foregroundColor="black" backgroundColor="grey" transparent="1" />
-    <widget name="key_green" position="350,646" size="300,26" zPosition="1" font="Regular;22" halign="left" foregroundColor="black" backgroundColor="grey" transparent="1" />
-    <widget name="key_yellow" position="620,646" size="300,26" zPosition="1" font="Regular;22" halign="left" foregroundColor="black" backgroundColor="grey" transparent="1" />
-    <widget name="key_blue" position="890,646" size="300,26" zPosition="1" font="Regular;22" halign="left" foregroundColor="black" backgroundColor="grey" transparent="1" />
-  </screen>
-  <!-- Quick Menu Devices -->
-  <screen name="QuickMenuDevices" position="center,center" size=" 840,605" title="Devices" flags="wfNoBorder">
-    <ePixmap position="0,0" zPosition="-10" size="840,605" pixmap="DMConcinnity-HD/menu/setupbg.png" />
-    <widget source="global.CurrentTime" render="Label" position=" 20,20" size=" 80,25" font="Regular;23" foregroundColor="black" backgroundColor="white" transparent="1">
-      <convert type="ClockToText">Default</convert>
-    </widget>
-    <widget source="global.CurrentTime" render="Label" position="110,20" size="140,25" font="Regular;23" foregroundColor="blue" backgroundColor="white" transparent="1">
-      <convert type="ClockToText">Format:%d.%m.%Y</convert>
-    </widget>
-    <eLabel text="Available Devices" position="270,15" size="540,43" font="Regular;35" halign="right" foregroundColor="black" backgroundColor="white" transparent="1" />
-    <widget source="devicelist" render="Listbox" position="30,81" size="780,450" font="Regular;16" scrollbarMode="showOnDemand" transparent="1" backgroundColorSelected="grey" foregroundColorSelected="black">
-      <convert type="TemplatedMultiContent">
-				{"template": [
-				 MultiContentEntryText(pos = (90, 0), size = (600, 30), font=0, text = 0),
-				 MultiContentEntryText(pos = (110, 30), size = (600, 50), font=1, flags = RT_VALIGN_TOP, text = 1),
-				 MultiContentEntryPixmapAlphaBlend(pos = (0, 0), size = (80, 80), png = 2),
-				],
-				"fonts": [gFont("Regular", 24),gFont("Regular", 20)],
-				"itemHeight": 85
-				}
-			</convert>
-    </widget>
-    <widget name="lab1" zPosition="2" position="126,92" size="600,40" font="Regular;22" halign="center" backgroundColor="black" transparent="1" />
-  </screen>
+
 	<!-- Plugin downloads -->
 	<screen name="PluginDownloadBrowser" position="center,center" size="560,420" title="Downloadable plugins">
 		<widget name="text" position="0,0" zPosition="1" size="560,430" font="Regular;20" halign="center" valign="center" />

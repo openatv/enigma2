@@ -63,6 +63,23 @@ def isFileSystemSupported(filesystem):
 		print "[Harddisk] Failed to read /proc/filesystems:", ex
 
 class QuickMenu(Screen):
+	skin = """
+		<screen name="QuickMenu" position="center,center" size="1180,600" backgroundColor="black" flags="wfBorder">
+		<widget name="list" position="21,32" size="370,400" backgroundColor="black" itemHeight="50" transparent="1" />
+		<widget name="sublist" position="410,32" size="300,400" backgroundColor="black" itemHeight="50" />
+		<eLabel position="400,30" size="2,400" backgroundColor="darkgrey" zPosition="3" />
+		<widget source="session.VideoPicture" render="Pig" position="720,30" size="450,300" backgroundColor="transparent" zPosition="1" />
+		<widget name="description" position="22,445" size="1150,110" zPosition="1" font="Regular;22" halign="center" backgroundColor="black" transparent="1" />
+		<widget name="key_red" position="20,571" size="300,26" zPosition="1" font="Regular;22" halign="center" foregroundColor="white" backgroundColor="black" transparent="1" />
+		<widget name="key_green" position="325,571" size="300,26" zPosition="1" font="Regular;22" halign="center" foregroundColor="white" backgroundColor="black" transparent="1" />
+		<widget name="key_yellow" position="630,571" size="300,26" zPosition="1" font="Regular;22" halign="center" foregroundColor="white" backgroundColor="black" transparent="1" valign="center" />
+		<widget name="key_blue" position="935,571" size="234,26" zPosition="1" font="Regular;22" halign="center" foregroundColor="white" backgroundColor="black" transparent="1" />
+		<eLabel name="new eLabel" position="21,567" size="300,3" zPosition="3" backgroundColor="red" />
+		<eLabel name="new eLabel" position="325,567" size="300,3" zPosition="3" backgroundColor="green" />
+		<eLabel name="new eLabel" position="630,567" size="300,3" zPosition="3" backgroundColor="yellow" />
+		<eLabel name="new eLabel" position="935,567" size="234,3" zPosition="3" backgroundColor="blue" />
+		</screen> """
+
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Quick Launch Menu"))
@@ -542,6 +559,23 @@ class QuickMenuSubList(MenuList):
 		self.l.setItemHeight(50)
 
 class QuickMenuDevices(Screen):
+	skin = """
+		<screen name="QuickMenuDevices" position="center,center" size="840,525" title="Devices" flags="wfBorder">
+		<widget source="devicelist" render="Listbox" position="30,46" size="780,450" font="Regular;16" scrollbarMode="showOnDemand" transparent="1" backgroundColorSelected="grey" foregroundColorSelected="black">
+		<convert type="TemplatedMultiContent">
+				{"template": [
+				 MultiContentEntryText(pos = (90, 0), size = (600, 30), font=0, text = 0),
+				 MultiContentEntryText(pos = (110, 30), size = (600, 50), font=1, flags = RT_VALIGN_TOP, text = 1),
+				 MultiContentEntryPixmapAlphaBlend(pos = (0, 0), size = (80, 80), png = 2),
+				],
+				"fonts": [gFont("Regular", 24),gFont("Regular", 20)],
+				"itemHeight": 85
+				}
+			</convert>
+	</widget>
+	<widget name="lab1" zPosition="2" position="126,92" size="600,40" font="Regular;22" halign="center" backgroundColor="black" transparent="1" />
+	</screen> """
+
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Devices"))
@@ -682,4 +716,5 @@ class QuickMenuDevices(Screen):
 			png = LoadPixmap(mypixmap)
 			res = (name, des, png)
 			self.devicelist.append(res)
+
 
