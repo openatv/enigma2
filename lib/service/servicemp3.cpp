@@ -265,6 +265,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 	m_subtitle_widget = 0;
 	m_currentTrickRatio = 1.0;
 	m_buffer_size = 5 * 1024 * 1024;
+	m_ignore_buffering_messages = 0;
 	m_is_live = false;
 	m_use_prefillbuffer = false;
 	m_download_buffer_path = "";
@@ -1310,26 +1311,6 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 
 					m_is_live = (gst_element_get_state(m_gst_playbin, NULL, NULL, 0LL) == GST_STATE_CHANGE_NO_PREROLL);
 
-					if (m_sourceinfo.is_streaming)
-					{
-						/*
-						 * Run the sinks in sync mode, to improve the gstreamer buffer level control.
-						 * Normally, running in sync mode would quickly drain the hardware buffers.
-						 * Avoid that, by specifying a negative ts-offset, which should keep the buffers
-						 * filled up to a sufficient level.
-						 */
-						if (audioSink)
-						{
-							g_object_set(G_OBJECT(audioSink), "sync", TRUE, NULL);
-							g_object_set(G_OBJECT(audioSink), "ts-offset", -5LL * GST_SECOND, NULL);
-						}
-						if (videoSink)
-						{
-							g_object_set(G_OBJECT(videoSink), "sync", TRUE, NULL);
-							g_object_set(G_OBJECT(videoSink), "ts-offset", -5LL * GST_SECOND, NULL);
-						}
-					}
-
 					setAC3Delay(ac3_delay);
 					setPCMDelay(pcm_delay);
 				}	break;
@@ -1592,17 +1573,30 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 				 * (in which case the sink will not produce data while paused, so we won't
 				 * recover from an empty buffer)
 				 */
-				if (m_use_prefillbuffer && !m_is_live)
+				if (m_use_prefillbuffer && !m_is_live && --m_ignore_buffering_messages <= 0)
 				{
 					if (m_bufferInfo.bufferPercent == 100)
 					{
 						eDebug("start playing");
 						gst_element_set_state (m_gst_playbin, GST_STATE_PLAYING);
+						/*
+						 * when we start the pipeline, the contents of the buffer will immediately drain
+						 * into the (hardware buffers of the) sinks, so we will receive low buffer level
+						 * messages right away.
+						 * Ignore the first few buffering messages, giving the buffer the chance to recover
+						 * a bit, before we start handling empty buffer states again.
+						 */
+						m_ignore_buffering_messages = 5;
 					}
 					else if (m_bufferInfo.bufferPercent == 0)
 					{
 						eDebug("start pause");
 						gst_element_set_state (m_gst_playbin, GST_STATE_PAUSED);
+						m_ignore_buffering_messages = 0;
+					}
+					else
+					{
+						m_ignore_buffering_messages = 0;
 					}
 				}
 			}

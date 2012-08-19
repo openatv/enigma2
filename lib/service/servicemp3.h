@@ -195,6 +195,7 @@ private:
 	friend class eServiceFactoryMP3;
 	eServiceReference m_ref;
 	int m_buffer_size;
+	int m_ignore_buffering_messages;
 	bool m_is_live;
 	bool m_use_prefillbuffer;
 	bufferInfo m_bufferInfo;
