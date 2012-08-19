@@ -51,7 +51,7 @@ class EPGSelection(Screen):
 			self["key_yellow"] = Button()
 			self["key_blue"] = Button()
 			self.currentService=ServiceReference(service)
-			self.zapFunc = None
+			self.zapFunc = zapFunc
 			self.sort_type = 0
 			self.setSortDescription()
 		else:
@@ -76,7 +76,6 @@ class EPGSelection(Screen):
 		self.key_green_choice = self.ADD_TIMER
 		self.key_red_choice = self.EMPTY
 		self["list"] = EPGList(type = self.type, selChangedCB = self.onSelectionChanged, timer = session.nav.RecordTimer)
-		self.prevRef = self.session.nav.getCurrentlyPlayingServiceReference()
 
 		self["actions"] = ActionMap(["EPGSelectActions", "OkCancelActions"],
 			{
@@ -128,8 +127,8 @@ class EPGSelection(Screen):
 				self["list"].fillMultiEPG(self.services, ret[1])
 
 	def closeScreen(self):
-		if self.prevRef is not None:
-			self.session.nav.playService(self.prevRef)
+		if self.zapFunc:
+			self.zapFunc(None, zapback = True)
 		self.close(self.closeRecursive)
 
 	def infoKeyPressed(self):
@@ -186,25 +185,24 @@ class EPGSelection(Screen):
 			setEvent(cur[0])
 
 	def zapTo(self):
-		if self.key_red_choice == self.ZAP:
+		if self.key_red_choice == self.ZAP and self.zapFunc:
 			self.closeRecursive = True
 			self.zapSelectedService()
 			self.close(self.closeRecursive)
 
-	def zapSelectedService(self):
+	def zapSelectedService(self, prev=False):
 		lst = self["list"]
 		count = lst.getCurrentChangeCount()
 		if count == 0:
 			ref = lst.getCurrent()[1]
 			if ref is not None:
-				if self.zapFunc:
-					self.zapFunc(ref.ref)
-				else:
-					self.session.nav.playService(ref.ref)
+				self.zapFunc(ref.ref, preview = prev)
 
 	def eventPreview(self):
-		if self.type != EPG_TYPE_SIMILAR:
-			self.zapSelectedService()
+		if self.zapFunc:
+			# if enabled, then closed whole EPG with EXIT:
+			# self.closeRecursive = True
+			self.zapSelectedService(True)
 
 	def eventSelected(self):
 		self.infoKeyPressed()
@@ -364,7 +362,7 @@ class EPGSelection(Screen):
 				self["key_red"].setText("")
 				self.key_red_choice = self.EMPTY
 			return
-		elif self.key_red_choice != self.ZAP and self.type != EPG_TYPE_SIMILAR:
+		elif self.key_red_choice != self.ZAP and self.zapFunc is not None:
 				self["key_red"].setText(_("Zap"))
 				self.key_red_choice = self.ZAP
 

@@ -214,7 +214,7 @@ class InfoBarShowHide:
 
 	def disconnectShowHideNotifier(self, fnc):
 		if fnc in self.onShowHideNotifiers:
-				self.onShowHideNotifiers.remove(fnc)
+			self.onShowHideNotifiers.remove(fnc)
 
 	def serviceStarted(self):
 		if self.execing:
@@ -645,15 +645,23 @@ class InfoBarEPG:
 			self.toggleShow()
 			return 1
 
-	def zapToService(self, service):
-		if not service is None:
+	def zapToService(self, service, preview = False, zapback = False):
+		if self.servicelist.startServiceRef is None:
+			self.servicelist.startServiceRef = self.session.nav.getCurrentlyPlayingServiceReference()
+		if service is not None:
 			if self.servicelist.getRoot() != self.epg_bouquet: #already in correct bouquet?
 				self.servicelist.clearPath()
 				if self.servicelist.bouquet_root != self.epg_bouquet:
 					self.servicelist.enterPath(self.servicelist.bouquet_root)
 				self.servicelist.enterPath(self.epg_bouquet)
 			self.servicelist.setCurrentSelection(service) #select the service in servicelist
+		if not zapback or preview:
 			self.servicelist.zap(enable_pipzap = True)
+		if (self.servicelist.dopipzap or zapback) and not preview:
+			self.servicelist.zapBack()
+		if not preview:
+			self.servicelist.startServiceRef = None
+			self.servicelist.startRoot = None
 
 	def getBouquetServices(self, bouquet):
 		services = [ ]
@@ -755,7 +763,8 @@ class InfoBarEPG:
 				services = self.getBouquetServices(current_path)
 				self.serviceSel = SimpleServicelist(services)
 				if self.serviceSel.selectService(ref):
-					self.session.openWithCallback(self.SingleServiceEPGClosed, EPGSelection, ref, serviceChangeCB = self.changeServiceCB)
+					self.epg_bouquet = current_path
+					self.session.openWithCallback(self.SingleServiceEPGClosed, EPGSelection, ref, self.zapToService, serviceChangeCB = self.changeServiceCB)
 				else:
 					self.session.openWithCallback(self.SingleServiceEPGClosed, EPGSelection, ref)
 			else:
