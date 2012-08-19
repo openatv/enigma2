@@ -1577,8 +1577,13 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 				{
 					if (m_bufferInfo.bufferPercent == 100)
 					{
-						eDebug("start playing");
-						gst_element_set_state (m_gst_playbin, GST_STATE_PLAYING);
+						GstState state;
+						gst_element_get_state(m_gst_playbin, &state, NULL, 0LL);
+						if (state != GST_STATE_PLAYING)
+						{
+							eDebug("start playing");
+							gst_element_set_state (m_gst_playbin, GST_STATE_PLAYING);
+						}
 						/*
 						 * when we start the pipeline, the contents of the buffer will immediately drain
 						 * into the (hardware buffers of the) sinks, so we will receive low buffer level
