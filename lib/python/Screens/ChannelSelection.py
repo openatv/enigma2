@@ -407,14 +407,12 @@ class ChannelSelectionEPG:
 		ref=self.getCurrentSelection()
 		if ref:
 			self.savedService = ref
-			self.session.openWithCallback(self.SingleServiceEPGClosed, EPGSelection, ref, serviceChangeCB=self.changeServiceCB)
+			self.session.openWithCallback(self.SingleServiceEPGClosed, EPGSelection, ref, self.zapToService, serviceChangeCB=self.changeServiceCB)
 
 	def SingleServiceEPGClosed(self, ret=False):
 		if ret:
 			service = self.getCurrentSelection()
 			if service is not None:
-				self.saveChannel(service)
-				self.addToHistory(service)
 				self.close()
 		else:
 			self.setCurrentSelection(self.savedService)
@@ -430,6 +428,25 @@ class ChannelSelectionEPG:
 			if cur == beg or not (cur.flags & eServiceReference.isMarker):
 				break
 		epg.setService(ServiceReference(self.getCurrentSelection()))
+
+	def zapToService(self, service, preview = False, zapback = False):
+		if self.startServiceRef is None:
+			self.startServiceRef = self.session.nav.getCurrentlyPlayingServiceReference()
+		if service is not None:
+			epg_bouquet = self.servicelist and self.servicelist.getRoot()
+			if self.servicelist.getRoot() != epg_bouquet:
+				self.servicelist.clearPath()
+				if self.servicelist.bouquet_root != epg_bouquet:
+					self.servicelist.enterPath(self.servicelist.bouquet_root)
+				self.servicelist.enterPath(epg_bouquet)
+			self.servicelist.setCurrent(service)
+		if not zapback or preview:
+			self.zap(enable_pipzap = True)
+		if (self.dopipzap or zapback) and not preview:
+			self.zapBack()
+		if not preview:
+			self.startServiceRef = None
+			self.startRoot = None
 
 class ChannelSelectionEdit:
 	def __init__(self):
