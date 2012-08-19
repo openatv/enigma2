@@ -324,7 +324,8 @@ class SystemNetworkInfo(Screen):
 		self["IF"] = StaticText()
 		self["Statustext"] = StaticText()
 		self["statuspic"] = MultiPixmap()
-		self["statuspic"].hide()
+		self["statuspic"].setPixmapNum(1)
+		self["statuspic"].show()
 
 		self.iface = None
 		self.createscreen()
@@ -440,7 +441,6 @@ class SystemNetworkInfo(Screen):
 							iNetwork.checkNetworkState(self.checkNetworkCB)
 
 	def exit(self):
-		self.timer.stop()
 		self.close(True)
 
 	def updateStatusbar(self):
@@ -498,7 +498,7 @@ class SystemNetworkInfo(Screen):
 				self["statuspic"].setPixmapNum(1)
 				self["statuspic"].show()
 		except:
-			self["statuspic"].setPixmapNum(0)
+			pass
 
 	def createSummary(self):
 		return AboutSummary
