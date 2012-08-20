@@ -132,6 +132,8 @@ class ServiceInfo(Converter, object):
 			return self.getServiceInfoString(info, iServiceInformation.sFrameRate, lambda x: "%d fps" % ((x+500)/1000))
 		elif self.type == self.TRANSFERBPS:
 			return self.getServiceInfoString(info, iServiceInformation.sTransferBPS, lambda x: "%d kB/s" % (x/1024))
+		elif self.type == self.HAS_HBBTV:
+			return info.getInfoString(iServiceInformation.sHBBTVUrl)
 		return ""
 
 	text = property(getText)

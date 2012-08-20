@@ -195,10 +195,10 @@ private:
 	friend class eServiceFactoryMP3;
 	eServiceReference m_ref;
 	int m_buffer_size;
-	gint64 m_buffer_duration;
 	bool m_use_prefillbuffer;
 	bufferInfo m_bufferInfo;
 	errorInfo m_errorInfo;
+	std::string m_download_buffer_path;
 	eServiceMP3(eServiceReference ref);
 	Signal2<void,iPlayableService*,int> m_event;
 	enum
@@ -249,6 +249,7 @@ private:
 	void gstPoll(ePtr<GstMessageContainer> const &);
 	static void gstHTTPSourceSetAgent(GObject *source, GParamSpec *unused, gpointer user_data);
 	static gint match_sinktype(GstElement *element, gpointer type);
+	static void handleElementAdded(GstBin *bin, GstElement *element, gpointer user_data);
 
 	struct SubtitlePage
 	{
