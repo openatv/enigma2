@@ -12,6 +12,8 @@ class eHttpStream: public iTsSource, public eSocketBase, public Object
 
 	int streamSocket;
 
+	int openUrl(const std::string &url, std::string &newurl);
+
 	/* iTsSource */
 	off_t lseek(off_t offset, int whence);
 	ssize_t read(off_t offset, void *buf, size_t count);

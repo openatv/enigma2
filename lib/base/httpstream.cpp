@@ -15,7 +15,7 @@ eHttpStream::~eHttpStream()
 	close();
 }
 
-int eHttpStream::open(const char *url)
+int eHttpStream::openUrl(const std::string &url, std::string &newurl)
 {
 	int port;
 	std::string hostname;
@@ -27,6 +27,7 @@ int eHttpStream::open(const char *url)
 	char proto[100];
 	int statuscode = 0;
 	char statusmsg[100];
+	bool text = false;
 
 	close();
 
@@ -73,22 +74,67 @@ int eHttpStream::open(const char *url)
 	if (result <= 0) goto error;
 
 	result = sscanf(linebuf, "%99s %d %99s", proto, &statuscode, statusmsg);
-	if (result != 3 || statuscode != 200) 
+	if (result != 3 || (statuscode != 200 && statuscode != 302))
 	{
-		eDebug("eHttpStream::open: wrong http response code: %d", statuscode);
+		eDebug("%s: wrong http response code: %d", __FUNCTION__, statuscode);
 		goto error;
 	}
-	while (result > 0)
+
+	while (1)
 	{
 		result = readLine(streamSocket, &linebuf, &buflen);
+		if (!strcmp(linebuf, "Content-Type: application/text"))
+		{
+			/* assume we'll get a playlist, some text file containing a stream url */
+			text = true;
+		}
+		else if (text && !strncmp(linebuf, "http://", 7))
+		{
+			newurl = linebuf;
+			eDebug("%s: playlist entry: %s", __FUNCTION__, newurl.c_str());
+			break;
+		}
+		else if (statuscode == 302 && !strncmp(linebuf, "Location: ", 10))
+		{
+			newurl = &linebuf[10];
+			eDebug("%s: redirecting to: %s", __FUNCTION__, newurl.c_str());
+			break;
+		}
+		if (!text && result == 0) break;
+		if (result < 0) break;
 	}
 
 	free(linebuf);
 	return 0;
 error:
-	eDebug("eHttpStream::open failed");
+	eDebug("%s failed", __FUNCTION__);
 	free(linebuf);
 	close();
+	return -1;
+}
+
+int eHttpStream::open(const char *url)
+{
+	std::string currenturl, newurl;
+	currenturl = url;
+	for (unsigned int i = 0; i < 3; i++)
+	{
+		if (openUrl(currenturl, newurl) < 0)
+		{
+			/* connection failed */
+			return -1;
+		}
+		if (newurl == "")
+		{
+			/* we have a valid stream connection */
+			return 0;
+		}
+		/* switch to new url */
+		close();
+		currenturl = newurl;
+		newurl = "";
+	}
+	/* too many redirect / playlist levels (we accept one redirect + one playlist) */
 	return -1;
 }
 
