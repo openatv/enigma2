@@ -817,12 +817,12 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 	def LivePlay(self):
 		if not self.list.playInBackground:
 			if self.session.nav.getCurrentlyPlayingServiceReference():
-				if not self.session.nav.getCurrentlyPlayingServiceReference().toString().startswith('1:0:0:0:0:0:0:0:0:0'):
+				if self.session.nav.getCurrentlyPlayingServiceReference().toString().find(':0:/') == -1:
 					config.movielist.curentlyplayingservice.setValue(self.session.nav.getCurrentlyPlayingServiceReference().toString())
 		checkplaying = self.session.nav.getCurrentlyPlayingServiceReference()
 		if checkplaying:
 			checkplaying = checkplaying.toString()
-		if checkplaying is None or (config.movielist.curentlyplayingservice.value != checkplaying and not self.session.nav.getCurrentlyPlayingServiceReference().toString().startswith('1:0:0:0:0:0:0:0:0:0')):
+		if checkplaying is None or (config.movielist.curentlyplayingservice.value != checkplaying and self.session.nav.getCurrentlyPlayingServiceReference().toString().find(':0:/') == -1):
 			self.session.nav.playService(eServiceReference(config.movielist.curentlyplayingservice.value))
 		self.LivePlayTimer.stop()
 
@@ -1068,7 +1068,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		from Screens.InfoBar import InfoBar
 		infobar = InfoBar.instance
 		if self.session.nav.getCurrentlyPlayingServiceReference():
-			if not infobar.timeshift_enabled and not self.session.nav.getCurrentlyPlayingServiceReference().toString().startswith('1:0:0:0:0:0:0:0:0:0:'):
+			if not infobar.timeshift_enabled and self.session.nav.getCurrentlyPlayingServiceReference().toString().find(':0:/') == -1:
 				self.session.nav.stopService()
 		self.close(None)
 
