@@ -1,4 +1,5 @@
 #include <cstdio>
+#include <openssl/evp.h>
 
 #include <lib/base/httpstream.h>
 #include <lib/base/eerror.h>
@@ -42,6 +43,28 @@ int eHttpStream::openUrl(const std::string &url, std::string &newurl)
 		hostname = uri.substr(7, uri.length() - 7);
 		uri = "";
 	}
+	int authenticationindex = hostname.find("@");
+	if (authenticationindex > 0)
+	{
+		BIO *mbio, *b64bio, *bio;
+		char *p = (char*)NULL;
+		int length = 0;
+		authorizationData = hostname.substr(0, authenticationindex);
+		hostname = hostname.substr(authenticationindex + 1);
+		mbio = BIO_new(BIO_s_mem());
+		b64bio = BIO_new(BIO_f_base64());
+		bio = BIO_push(b64bio, mbio);
+		BIO_write(bio, authorizationData.c_str(), authorizationData.length());
+		BIO_flush(bio);
+		length = BIO_ctrl(mbio, BIO_CTRL_INFO, 0, (char*)&p);
+		authorizationData = "";
+		if (p && length > 0)
+		{
+			/* base64 output contains a linefeed, which we ignore */
+			authorizationData.append(p, length - 1);
+		}
+		BIO_free_all(bio);
+	}
 	int customportindex = hostname.find(":");
 	if (customportindex > 0) 
 	{
@@ -63,9 +86,14 @@ int eHttpStream::openUrl(const std::string &url, std::string &newurl)
 	request = "GET ";
 	request.append(uri).append(" HTTP/1.1\r\n");
 	request.append("Host: ").append(hostname).append("\r\n");
+	if (authorizationData != "")
+	{
+		request.append("Authorization: Basic ").append(authorizationData).append("\r\n");
+	}
 	request.append("Accept: */*\r\n");
 	request.append("Connection: close\r\n");
 	request.append("\r\n");
+
 	writeAll(streamSocket, request.c_str(), request.length());
 
 	linebuf = (char*)malloc(buflen);
