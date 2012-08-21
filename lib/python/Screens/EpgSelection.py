@@ -824,6 +824,7 @@ class EPGSelection(Screen, HelpableScreen):
 					self.session.nav.playService(self.StartRef)
 			self.close(self.closeRecursive)
 		else:
+			self.setServicelistSelection(self.StartBouquet, self.StartRef)
 			self.close(False)
 
 	def infoKeyPressed(self):
