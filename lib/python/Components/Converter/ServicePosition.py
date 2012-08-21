@@ -91,6 +91,9 @@ class ServicePosition(Poll, Converter, object):
 				e = (self.length / 90000) - s
 				return "%02d:%02d +%2dm" % (s/60, s%60, e/60)
 
+			if l < 0:
+				return ""
+
 			if not self.detailed:
 				l /= 90000
 

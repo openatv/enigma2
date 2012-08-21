@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-28 23:25+0200\n"
+"POT-Creation-Date: 2012-08-05 10:00+0200\n"
 "PO-Revision-Date: 2009-02-25 20:35+0200\n"
 "Last-Translator: Ivo Grinbergs <ivog@apollo.lv>\n"
 "Language-Team: Ivo / enigma2 (c) <ivog@apolllo.lv>\n"
@@ -32,13 +32,10 @@ msgstr ""
 "\n"
 "Nospiediet OK un gaidiet!"
 
-#
 msgid ""
 "\n"
-"Backup your Dreambox settings."
+"Backup your receiver settings."
 msgstr ""
-"\n"
-"Veidot Dreambox iestatījumu dublējumkopiju."
 
 #
 msgid ""
@@ -48,19 +45,15 @@ msgstr ""
 "\n"
 "Rediģēt atjaunināšanas avota adresi."
 
-#
 msgid ""
 "\n"
-"Manage extensions or plugins for your Dreambox"
+"Manage extensions or plugins for your receiver"
 msgstr ""
 
-#
 msgid ""
 "\n"
-"Online update of your Dreambox software."
+"Online update of your receiver software."
 msgstr ""
-"\n"
-"Dreambox programmatūras atjaunināšana tiešsaistē."
 
 #
 msgid ""
@@ -73,26 +66,20 @@ msgstr ""
 #
 msgid ""
 "\n"
-"Restore your Dreambox settings."
-msgstr ""
-"\n"
-"Atjaunot Dreambox iestatījumus."
-
-#
-msgid ""
-"\n"
-"Restore your Dreambox with a new firmware."
-msgstr ""
-"\n"
-"Atjaunot Dreambox ar jaunu programmatūru."
-
-#
-msgid ""
-"\n"
 "Restore your backups by date."
 msgstr ""
 "\n"
 "Atjaunot dublējumkopijas pēc datuma."
+
+msgid ""
+"\n"
+"Restore your receiver settings."
+msgstr ""
+
+msgid ""
+"\n"
+"Restore your receiver with a new firmware."
+msgstr ""
 
 #
 msgid ""
@@ -164,6 +151,9 @@ msgstr ""
 msgid "%2d:%02d:%02d"
 msgstr ""
 
+msgid "%A %d %B"
+msgstr ""
+
 #. TRANSLATORS: long date representations dayname daynum monthname in strftime() format! See 'man strftime'
 msgid "%A %e %B"
 msgstr ""
@@ -221,6 +211,9 @@ msgstr[1] ""
 msgid "%d services found!"
 msgstr "%d kanāli atrasti!"
 
+msgid "%d-%m"
+msgstr ""
+
 #
 msgid "%d.%B %Y"
 msgstr "%d.%B %Y"
@@ -233,6 +226,10 @@ msgstr ""
 #, python-format
 msgid "%s (%s)\n"
 msgstr "%s (%s)\n"
+
+#, python-format
+msgid "%s/%s: %s"
+msgstr ""
 
 #
 # ???
@@ -403,21 +400,15 @@ msgstr ""
 msgid "A demo plugin for TPM usage."
 msgstr ""
 
-#
 msgid ""
 "A finished record timer wants to set your\n"
-"Dreambox to standby. Do that now?"
+"receiver to standby. Do that now?"
 msgstr ""
-"Taimeris ir beidzis ierakstu un vēlas pārslēgt\n"
-"Dreambox gaidstāves režīmā. Vai darīt to tagad?"
 
-#
 msgid ""
 "A finished record timer wants to shut down\n"
-"your Dreambox. Shutdown now?"
+"your receiver. Shutdown now?"
 msgstr ""
-"Taimeris ir beidzis ierakstu un vēlas izslēgt\n"
-"Dreambox. Vai darīt to tagad?"
 
 #
 # ???
@@ -478,21 +469,15 @@ msgid ""
 "Do you want to disable the second network interface?"
 msgstr ""
 
-#
 msgid ""
 "A sleep timer wants to set your\n"
-"Dreambox to standby. Do that now?"
+"receiver to standby. Do that now?"
 msgstr ""
-"Miega taimeris vēlas pārslēgt\n"
-"Dreambox gaidstāves režīmā. Vai darīt to tagad?"
 
-#
 msgid ""
 "A sleep timer wants to shut down\n"
-"your Dreambox. Shutdown now?"
+"your receiver. Shutdown now?"
 msgstr ""
-"Miega taimeris vēlas izslēgt\n"
-"Dreambox. Vai darīt to tagad?"
 
 #
 msgid "A small overview of the available icon states and actions."
@@ -610,9 +595,8 @@ msgstr "Pievienot favorītiem"
 msgid "Add/Remove timer for current event"
 msgstr ""
 
-#
 msgid ""
-"Adds enigma2 settings and dreambox model informations like SN, rev... if "
+"Adds enigma2 settings and receiver model informations like SN, rev... if "
 "enabled."
 msgstr ""
 
@@ -673,14 +657,10 @@ msgstr "Pēc notikuma"
 msgid "After pressing OK, please wait!"
 msgstr ""
 
-#
-# ???
 msgid ""
 "After the start wizard is completed, you need to protect single services. "
-"Refer to your dreambox's manual on how to do that."
+"Refer to your receiver's manual on how to do that."
 msgstr ""
-"Pēc starta vednis ir pabeigts, jums ir jāaizsargā atsevišķi kanāli. "
-"Meklējiet dreambox rokasgrāmatā kā to izdarīt."
 
 #
 msgid "Album"
@@ -693,6 +673,9 @@ msgstr "Visi"
 #
 msgid "All Satellites"
 msgstr "Visi pavadoņi"
+
+msgid "All ages"
+msgstr ""
 
 msgid "Allocate"
 msgstr ""
@@ -790,6 +773,9 @@ msgstr ""
 #
 msgid "Artist"
 msgstr "Izpildītājs"
+
+msgid "Arts/Culture"
+msgstr ""
 
 #
 msgid "Ask before shutdown:"
@@ -1165,6 +1151,9 @@ msgstr "Pārbaude"
 msgid "Checking Filesystem..."
 msgstr "Pārbauda datņu sistēmu..."
 
+msgid "Children/Youth"
+msgstr ""
+
 #
 msgid "Choose Tuner"
 msgstr "Izvēlēties uztvērēju"
@@ -1304,9 +1293,6 @@ msgstr ""
 msgid "Compact Flash"
 msgstr "Compact Flash"
 
-msgid "Compatibilty Mode"
-msgstr ""
-
 #
 msgid "Complete"
 msgstr "Gatavs"
@@ -1392,6 +1378,9 @@ msgstr "Turpināt fonā"
 msgid "Continue playing"
 msgstr "Turpināt atskaņošanu"
 
+msgid "Continues play (loop)"
+msgstr ""
+
 #
 msgid "Contrast"
 msgstr "Kontrasts"
@@ -1408,9 +1397,8 @@ msgstr ""
 msgid "Copy"
 msgstr ""
 
-#
-msgid "Could not connect to Dreambox .NFI Image Feed Server:"
-msgstr "Nevar savienoties ar Dreambox .NFI imidža barotnes serveris:"
+msgid "Could not connect to receiver .NFI Image Feed Server:"
+msgstr ""
 
 #
 msgid "Could not load Medium! No disc inserted?"
@@ -1445,10 +1433,9 @@ msgstr ""
 msgid "CrashlogAutoSubmit settings..."
 msgstr ""
 
-#
 msgid ""
 "Crashlogs found!\n"
-"Send them to Dream Multimedia?"
+"Send them to the Image Developper?"
 msgstr ""
 
 #
@@ -1484,6 +1471,9 @@ msgid "Current Transponder"
 msgstr "Pašreizējais transponderis"
 
 msgid "Current device: "
+msgstr ""
+
+msgid "Current event EPG"
 msgstr ""
 
 #
@@ -1599,9 +1589,6 @@ msgstr "Dāņu"
 #
 msgid "Date"
 msgstr "Datums"
-
-msgid "Date/Time"
-msgstr ""
 
 #
 msgid "Decide if you want to enable or disable the Cleanup Wizard."
@@ -1756,9 +1743,6 @@ msgstr "Izslēgt"
 msgid "Disable Picture in Picture"
 msgstr "Izslēgt Picture in Picture"
 
-msgid "Disable Selecting Expired Events"
-msgstr ""
-
 msgid "Disable background scanning"
 msgstr ""
 
@@ -1804,6 +1788,9 @@ msgstr "Displeja iestatne"
 
 #
 msgid "Display and Userinterface"
+msgstr ""
+
+msgid "Display message before next played movie"
 msgstr ""
 
 #
@@ -1886,9 +1873,8 @@ msgstr "Vai vēleties manuāli meklēt citus kanālus?"
 msgid "Do you want to download the image to %s ?"
 msgstr ""
 
-#
-msgid "Do you want to enable the parental control feature on your dreambox?"
-msgstr "Vai vēlaties aktivizēt vecāku kontroles iespēju?"
+msgid "Do you want to enable the parental control feature on your receiver?"
+msgstr ""
 
 #
 msgid "Do you want to install the package:\n"
@@ -1902,9 +1888,8 @@ msgstr "Vai vēlaties atskaņot DVD?"
 msgid "Do you want to preview this DVD before burning?"
 msgstr "Vai vēleties skatīt šo DVD pirms rakstīšanas?"
 
-#
-msgid "Do you want to reboot your Dreambox?"
-msgstr "Vai vēlaties atsāknēt Dreambox?"
+msgid "Do you want to reboot your receiver?"
+msgstr ""
 
 #
 msgid "Do you want to remove the package:\n"
@@ -1924,17 +1909,13 @@ msgid ""
 "if needed?"
 msgstr ""
 
-#
-msgid "Do you want to update your Dreambox?"
-msgstr "Vai vēlaties atjaunināt Dreambox?"
+msgid "Do you want to update your receiver?"
+msgstr ""
 
-#
 msgid ""
-"Do you want to update your Dreambox?\n"
+"Do you want to update your receiver?\n"
 "After pressing OK, please wait!"
 msgstr ""
-"Vai vēlaties atjaunināt Dreambox?\n"
-"Nospiediet OK un gaidiet!"
 
 #
 msgid "Do you want to upgrade the package:\n"
@@ -1999,14 +1980,6 @@ msgid "Downloading plugin information. Please wait..."
 msgstr "Lejuplādē spraudņu informāciju. Lūdzu gaidiet..."
 
 #
-msgid "Dreambox format data DVD (HDTV compatible)"
-msgstr "Dreambox formāta datu DVD (savietojams ar HDTV)"
-
-#
-msgid "Dreambox software because updates are available."
-msgstr ""
-
-#
 msgid "Dutch"
 msgstr "Holandiešu"
 
@@ -2026,6 +1999,9 @@ msgid "EPG language selection 1"
 msgstr ""
 
 msgid "EPG language selection 2"
+msgstr ""
+
+msgid "EPG settings"
 msgstr ""
 
 #
@@ -2048,9 +2024,6 @@ msgstr "Rediģēt"
 msgid "Edit DNS"
 msgstr "Rediģēt DNS"
 
-msgid "Edit Search Title"
-msgstr ""
-
 #
 msgid "Edit Title"
 msgstr "Rediģēt nosaukumu"
@@ -2072,13 +2045,11 @@ msgstr "Rediģēt kanālu sarakstu"
 msgid "Edit settings"
 msgstr "Rediģēt iestatījumus"
 
-#
-msgid "Edit the Nameserver configuration of your Dreambox.\n"
-msgstr "Rediģēt Dreambox domēna vārdu servera konfigurāciju.\n"
+msgid "Edit the Nameserver configuration of your receiver.\n"
+msgstr ""
 
-#
-msgid "Edit the network configuration of your Dreambox.\n"
-msgstr "Rediģēt Dreambox tīkla konfigurāciju.\n"
+msgid "Edit the network configuration of your receiver.\n"
+msgstr ""
 
 #
 msgid "Edit title"
@@ -2086,6 +2057,9 @@ msgstr "Rediģēt nosaukumu"
 
 #
 msgid "Edit upgrade source url."
+msgstr ""
+
+msgid "Education/Science/..."
 msgstr ""
 
 #
@@ -2111,9 +2085,6 @@ msgid "Enable MHW EPG"
 msgstr ""
 
 msgid "Enable Netmed EPG"
-msgstr ""
-
-msgid "Enable Picon"
 msgstr ""
 
 msgid "Enable ViaSat EPG"
@@ -2226,16 +2197,7 @@ msgstr ""
 msgid "Ethernet network interface"
 msgstr ""
 
-msgid "Event"
-msgstr ""
-
-msgid "Event Fontsize"
-msgstr ""
-
 msgid "Event Fontsize (relative to skin size)"
-msgstr ""
-
-msgid "Event Info"
 msgstr ""
 
 #
@@ -2246,9 +2208,6 @@ msgid "Eventview menu"
 msgstr ""
 
 msgid "Everywhere"
-msgstr ""
-
-msgid "Exact Search"
 msgstr ""
 
 #
@@ -2589,7 +2548,7 @@ msgstr ""
 msgid "GotoX calibration"
 msgstr ""
 
-msgid "Graph MEpg Settings"
+msgid "GraphMultiEpg Settings"
 msgstr ""
 
 #
@@ -2644,9 +2603,6 @@ msgstr ""
 msgid "Hide CI messages"
 msgstr ""
 
-msgid "Hide Expired Title"
-msgstr ""
-
 msgid "Hide zap errors"
 msgstr ""
 
@@ -2692,9 +2648,6 @@ msgstr ""
 #
 msgid "Hungarian"
 msgstr "Ungāru"
-
-msgid "IMDB"
-msgstr ""
 
 #
 msgid "IP Address"
@@ -2950,15 +2903,12 @@ msgstr "Itāļu"
 msgid "Items per Page "
 msgstr ""
 
+msgid "Items per Page for Listscreen"
+msgstr ""
+
 #
 msgid "Job View"
 msgstr "Darbu skats"
-
-msgid "Jump to First Service"
-msgstr ""
-
-msgid "Jump to Last Service"
-msgstr ""
 
 #
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
@@ -3044,6 +2994,9 @@ msgstr "Iziet no DVD atskaņotāja?"
 msgid "Left"
 msgstr "Kreisais"
 
+msgid "Leisure hobies"
+msgstr ""
+
 #
 #. TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
 msgid "Letterbox"
@@ -3093,6 +3046,9 @@ msgstr "Saistītie nosaukumi ar DVD izvēlni"
 msgid "List available networks"
 msgstr ""
 
+msgid "List mode"
+msgstr ""
+
 #
 msgid "List of Storage Devices"
 msgstr "Atmiņas ierīču saraksts"
@@ -3102,6 +3058,9 @@ msgstr ""
 
 #, python-format
 msgid "List version %d, found %d channels"
+msgstr ""
+
+msgid "Listscreen default at start user interface"
 msgstr ""
 
 #
@@ -3242,9 +3201,6 @@ msgstr ""
 msgid "Menu"
 msgstr "Izvēlne"
 
-msgid "Merge Short/Long Descriptions"
-msgstr ""
-
 #
 msgid "Message"
 msgstr "Paziņojums"
@@ -3252,6 +3208,10 @@ msgstr "Paziņojums"
 #
 msgid "Message..."
 msgstr "Paziņojums..."
+
+#, python-format
+msgid "Minimum age %d years"
+msgstr ""
 
 msgid "Missing "
 msgstr ""
@@ -3331,6 +3291,9 @@ msgstr ""
 msgid "Movie location"
 msgstr ""
 
+msgid "Movie/Drama"
+msgstr ""
+
 #
 msgid "Movielist menu"
 msgstr "Filmu saraksta izvēlne"
@@ -3368,6 +3331,9 @@ msgstr ""
 #
 msgid "Multisat"
 msgstr "Daudzpavadņu"
+
+msgid "Music/Ballet/Dance"
+msgstr ""
 
 #
 msgid "Mute"
@@ -3492,12 +3458,12 @@ msgstr ""
 msgid "New version:"
 msgstr "Jauna versija:"
 
+msgid "News Current Affairs"
+msgstr ""
+
 #
 msgid "Next"
 msgstr "Nākamais"
-
-msgid "Next Bouquet"
-msgstr ""
 
 #
 msgid "No"
@@ -3671,9 +3637,8 @@ msgstr "Nē, bet restartēt no sākuma"
 msgid "No, do nothing."
 msgstr "Nē, nedarīt neko"
 
-#
-msgid "No, just start my dreambox"
-msgstr "Nē, vienkārši startēt dreambox"
+msgid "No, just start my receiver"
+msgstr ""
 
 msgid "No, never"
 msgstr ""
@@ -3698,6 +3663,9 @@ msgstr "nē"
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right)
 msgid "Nonlinear"
 msgstr "Nelineāri mērogot"
+
+msgid "Normal mode"
+msgstr ""
 
 #
 msgid "North"
@@ -3728,6 +3696,9 @@ msgstr ""
 "Lūdzu iestatiet uztvērēju pirms sākat meklēt kanālus."
 
 msgid "Nothing to upgrade"
+msgstr ""
+
+msgid "Now"
 msgstr ""
 
 #
@@ -3788,7 +3759,7 @@ msgstr ""
 msgid "On"
 msgstr "Ieslēgt"
 
-msgid "On Bouquet Switch goto first service"
+msgid "On end of movie"
 msgstr ""
 
 #
@@ -3866,18 +3837,6 @@ msgstr "Pakotņu pārvaldība"
 msgid "Packet manager"
 msgstr "Pakotņu pārvaldnieks"
 
-msgid "Page Down"
-msgstr ""
-
-msgid "Page Left"
-msgstr ""
-
-msgid "Page Right"
-msgstr ""
-
-msgid "Page Up"
-msgstr ""
-
 #
 #. TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
 msgid "Pan&Scan"
@@ -3903,9 +3862,6 @@ msgstr "Vecāku kontroles iestatne"
 msgid "Parental control type"
 msgstr "Vecāku kontroles veids"
 
-msgid "Partial Search"
-msgstr ""
-
 #
 msgid "Password"
 msgstr ""
@@ -3930,6 +3886,12 @@ msgstr ""
 #
 msgid "PiPSetup"
 msgstr "PiP iestatne"
+
+msgid "Picon"
+msgstr ""
+
+msgid "Picon and Service Name"
+msgstr ""
 
 #
 msgid "PicturePlayer"
@@ -3968,6 +3930,12 @@ msgid "Play audio in background"
 msgstr ""
 
 msgid "Play next"
+msgstr ""
+
+msgid "Play next (return to movie list)"
+msgstr ""
+
+msgid "Play next (return to previous service)"
 msgstr ""
 
 msgid "Play previous"
@@ -4084,6 +4052,9 @@ msgstr "Lūdzu spiediet OK, lai turpinātu."
 #
 msgid "Please press OK!"
 msgstr "Lūdzu spiediet OK!"
+
+msgid "Please select a default EPG type..."
+msgstr ""
 
 #
 msgid "Please select a playlist to delete..."
@@ -4369,9 +4340,6 @@ msgstr ""
 msgid "Preview menu"
 msgstr "Priekšskatījuma izvēlne"
 
-msgid "Previous Bouquet"
-msgstr ""
-
 #
 msgid "Primary DNS"
 msgstr "Primārā DNS"
@@ -4451,6 +4419,13 @@ msgstr "Ram Disks"
 #
 msgid "Random"
 msgstr "Nejauša"
+
+#, python-format
+msgid "Rating defined by broadcaster - %d"
+msgstr ""
+
+msgid "Rating undefined"
+msgstr ""
 
 #
 msgid "Really close without saving settings?"
@@ -4652,6 +4627,9 @@ msgstr ""
 msgid "Reread partition table"
 msgstr ""
 
+msgid "Reserved"
+msgstr ""
+
 #
 msgid "Reset"
 msgstr "Atstatīt"
@@ -4778,9 +4756,6 @@ msgstr ""
 msgid "Rotor turning speed"
 msgstr "Pozicioniera griešanās ātrums"
 
-msgid "Round Start Time To"
-msgstr ""
-
 msgid "Round start time on"
 msgstr ""
 
@@ -4861,9 +4836,6 @@ msgstr "Saglabāt"
 #
 msgid "Save Playlist"
 msgstr "Saglabāt repertuāru"
-
-msgid "Scale Picon"
-msgstr ""
 
 #
 msgid "Scaler sharpness"
@@ -4991,9 +4963,6 @@ msgstr ""
 "Meklē noklusētos lamedbs, sakārtotus pēc pavadoņiem ar pievienotu "
 "pozicioniera antenu"
 
-msgid "Search"
-msgstr ""
-
 #
 msgid "Search east"
 msgstr "Meklēt austrumos"
@@ -5056,6 +5025,9 @@ msgid "Select channel to record from"
 msgstr "Izvēlēties ierakstāmo kanālu"
 
 msgid "Select copy destination for:"
+msgstr ""
+
+msgid "Select default EPG type..."
 msgstr ""
 
 msgid "Select desired image from feed list"
@@ -5141,6 +5113,9 @@ msgstr ""
 msgid "Service"
 msgstr "Kanāls"
 
+msgid "Service Name"
+msgstr ""
+
 #
 msgid "Service Scan"
 msgstr "Kanālu meklēšana"
@@ -5148,6 +5123,9 @@ msgstr "Kanālu meklēšana"
 #
 msgid "Service Searching"
 msgstr "Kanālu meklēšana"
+
+msgid "Service Title mode"
+msgstr ""
 
 #
 msgid "Service has been added to the favourites."
@@ -5268,21 +5246,15 @@ msgstr ""
 msgid "Show EIT now/next in infobar"
 msgstr ""
 
+msgid "Show Games show"
+msgstr ""
+
 #
 msgid "Show Info"
 msgstr "Rādīt informāciju"
 
 #
 msgid "Show Message when Recording starts"
-msgstr ""
-
-msgid "Show Picons"
-msgstr ""
-
-msgid "Show Service Names "
-msgstr ""
-
-msgid "Show Service Title"
 msgstr ""
 
 #
@@ -5356,9 +5328,8 @@ msgstr "Rādīt bezvadu tīkla savienojuma statusu.\n"
 msgid "Shutdown"
 msgstr ""
 
-#
-msgid "Shutdown Dreambox after"
-msgstr "Izslēgt Dreambox pēc"
+msgid "Shutdown receiver after"
+msgstr ""
 
 msgid "Side by Side"
 msgstr ""
@@ -5380,9 +5351,6 @@ msgstr ""
 #
 msgid "Similar"
 msgstr "Tie paši"
-
-msgid "Similar Broadcast Search"
-msgstr ""
 
 #
 msgid "Similar broadcasts:"
@@ -5436,9 +5404,6 @@ msgstr ""
 msgid "Skip Empty Services"
 msgstr ""
 
-msgid "Skip Empty Services (may need restart)"
-msgstr ""
-
 #
 msgid "Sleep Timer"
 msgstr "Miega taimeris"
@@ -5470,6 +5435,9 @@ msgstr "Lēni"
 #
 msgid "Slow Motion speeds"
 msgstr "Palēninātās kustības ātrumi"
+
+msgid "Social/Political/Economics"
+msgstr ""
 
 msgid "SoftCam / CI"
 msgstr ""
@@ -5526,6 +5494,10 @@ msgstr ""
 "Izvēlētais dublējumkopijas galamērķis nav ierakstāms.\n"
 "Lūdzu izvēlieties citu."
 
+msgid ""
+"Sorry, deleting directories can (for now) only be done through the trash can."
+msgstr ""
+
 #
 msgid "Sorry, no Details available!"
 msgstr ""
@@ -5571,6 +5543,9 @@ msgstr "Spāņu"
 
 #
 msgid "Split preview mode"
+msgstr ""
+
+msgid "Sports"
 msgstr ""
 
 #
@@ -5738,6 +5713,9 @@ msgstr ""
 msgid "Swap Services"
 msgstr "Mainīit kanālus"
 
+msgid "Swap from normal to list mode"
+msgstr ""
+
 #
 msgid "Swedish"
 msgstr "Zviedru"
@@ -5829,9 +5807,8 @@ msgstr "Pārbaudes veids"
 msgid "Test mode"
 msgstr "Testa režīms"
 
-#
-msgid "Test the network configuration of your Dreambox.\n"
-msgstr "Pārbaudīt tīkla Dreambox konfigurāciju.\n"
+msgid "Test the network configuration of your receiver.\n"
+msgstr ""
 
 #
 msgid "Test-Messagebox?"
@@ -5852,23 +5829,16 @@ msgid ""
 "Please press OK to continue."
 msgstr ""
 
-#
 msgid ""
 "Thank you for using the wizard. Your box is now ready to use.\n"
-"Please press OK to start using your Dreambox."
+"Please press OK to start using your receiver."
 msgstr ""
-"Pateicamies par vedņa izmantošanu. Ierīce ir gatava lietošanai.\n"
-"Lūdzu spiediet OK, lai sāktu lietot Dreambox."
 
-#
 msgid ""
 "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to "
-"create a Dreambox format data DVD (which will not play in stand-alone DVD "
+"create a special format data DVD (which will not play in stand-alone DVD "
 "players) instead?"
 msgstr ""
-"DVD standarts neatbalsta H.264 (HDTV) attēla plūsmas. Vai jūs tā vietā "
-"vēlaties izveidot Dreambox formāta datu DVD (kuru nevarēs izmantot standarta "
-"DVD atskaņotājos)?"
 
 #
 msgid ""
@@ -5950,13 +5920,10 @@ msgstr ""
 msgid "The installation of the default services lists is finished."
 msgstr "Noklusēto kanālu sarakstu uzstādīšana ir pabeigta."
 
-#
 msgid ""
 "The installation of the default settings is finished. You can now continue "
-"configuring your Dreambox by pressing the OK button on the remote control."
+"configuring your receiver by pressing the OK button on the remote control."
 msgstr ""
-"Noklusēto iestatījumu uzstādīšana ir pabeigta. Tagad varat turpināt Dreambox "
-"konfigurēšanu, spiežot OK taustiņu uz tālvadības pults."
 
 msgid "The md5sum validation failed, the file may be corrupted!"
 msgstr ""
@@ -6083,17 +6050,12 @@ msgstr ""
 "saturu."
 
 #
-#, python-format
-msgid "This Dreambox can't decode %s streams!"
-msgstr ""
-
-#
 msgid "This is step number 2."
 msgstr "Šis ir solis numur 2."
 
 msgid ""
 "This plugin creates a USB stick which can be used to update the firmware of "
-"your Dreambox without the need for a network or WLAN connection.\n"
+"your receiver without the need for a network or WLAN connection.\n"
 "First, a USB stick needs to be prepared so that it becomes bootable.\n"
 "In the next step, an NFI image file can be downloaded from the update server "
 "and saved on the USB stick.\n"
@@ -6115,6 +6077,10 @@ msgstr ""
 
 #
 msgid "This plugin will be removed."
+msgstr ""
+
+#, python-format
+msgid "This receiver can't decode %s streams!"
 msgstr ""
 
 #
@@ -6216,21 +6182,6 @@ msgstr ""
 msgid "Time/Date Input"
 msgstr "Laiks / Datums"
 
-msgid "Timeline 120 minutes"
-msgstr ""
-
-msgid "Timeline 180 minutes"
-msgstr ""
-
-msgid "Timeline 240 minutes"
-msgstr ""
-
-msgid "Timeline 300 minutes"
-msgstr ""
-
-msgid "Timeline 60 minutes"
-msgstr ""
-
 #
 msgid "Timer"
 msgstr "Taimeris"
@@ -6317,7 +6268,7 @@ msgid "To subtitle selection"
 msgstr ""
 
 msgid ""
-"To update your Dreambox firmware, please follow these steps:\n"
+"To update your receiver firmware, please follow these steps:\n"
 "1) Turn off your box with the rear power switch and make sure the bootable "
 "USB stick is plugged in.\n"
 "2) Turn mains back on and hold the DOWN button on the front panel pressed "
@@ -6562,17 +6513,15 @@ msgstr ""
 msgid "Upgrade finished."
 msgstr "Atjaunināšana pabeigta."
 
-#
-msgid "Upgrade finished. Do you want to reboot your Dreambox?"
-msgstr "Atjaunināšana pabeigta. Vai vēlaties atsāknēt Dreambox?"
+msgid "Upgrade finished. Do you want to reboot your receiver?"
+msgstr ""
 
 #
 msgid "Upgrading"
 msgstr "Atjaunošana"
 
-#
-msgid "Upgrading Dreambox... Please wait"
-msgstr "Atjauno Dreambox... Lūdzu gaidiet"
+msgid "Upgrading receiver... Please wait"
+msgstr ""
 
 #
 msgid "Use"
@@ -6588,9 +6537,6 @@ msgstr ""
 #
 msgid "Use Interface"
 msgstr "Lietot interfeisu"
-
-msgid "Use Long Title"
-msgstr ""
 
 #
 msgid "Use Power Measurement"
@@ -6676,6 +6622,9 @@ msgid "Used service scan type"
 msgstr "Lietotais kanālu meklēšanas veids"
 
 msgid "User - bouquets"
+msgstr ""
+
+msgid "User Interface"
 msgstr ""
 
 #
@@ -6955,47 +6904,36 @@ msgstr ""
 "Tad ejiet uz beigām, spiediet OK, izvēlieties 'griezuma beigas'. Tas arī "
 "viss."
 
-#
 msgid ""
 "Welcome to the Image upgrade wizard. The wizard will assist you in upgrading "
-"the firmware of your Dreambox by providing a backup facility for your "
+"the firmware of your receiver by providing a backup facility for your "
 "current settings and a short explanation of how to upgrade your firmware."
 msgstr ""
-"Sveicināti imidža atjaunināšanas vednī. Vednis palīdzēs Jums atjaunot "
-"Dreambox programmatūru, sniedzot pašreizējo iestatījumu dublējumkopēšanas "
-"iespējas, kā arī īsumā izskaidros, kā veikt programmatūras atjaunināšanu."
 
-#
 msgid ""
 "Welcome to the cleanup wizard.\n"
 "\n"
 "We have detected that your available internal memory has dropped below 2MB.\n"
-"To ensure stable operation of your Dreambox, the internal memory should be "
+"To ensure stable operation of your receiver, the internal memory should be "
 "cleaned up.\n"
 "You can use this wizard to remove some extensions.\n"
 msgstr ""
 
-#
 msgid ""
 "Welcome.\n"
 "\n"
-"If you want to connect your Dreambox to the Internet, this wizard will guide "
-"you through the basic network setup of your Dreambox.\n"
+"If you want to connect your receiver to the Internet, this wizard will guide "
+"you through the basic network setup of your receiver.\n"
 "\n"
 "Press OK to start configuring your network"
 msgstr ""
 
-#
 msgid ""
 "Welcome.\n"
 "\n"
-"This start wizard will guide you through the basic setup of your Dreambox.\n"
+"This start wizard will guide you through the basic setup of your receiver.\n"
 "Press the OK button on your remote control to move to the next step."
 msgstr ""
-"Sveicināti.\n"
-"\n"
-"Šis sākuma vednis būs Jūsu ceļvedis Dreambox pamata iestatnē.\n"
-"Spiediet OK taustiņu uz tālvadības pults, lai pārietu uz nākamo soli."
 
 #
 msgid "Welcome..."
@@ -7166,8 +7104,7 @@ msgstr ""
 msgid "You can install this plugin."
 msgstr ""
 
-#
-msgid "You can only burn Dreambox recordings!"
+msgid "You can only burn receiver recordings!"
 msgstr ""
 
 #
@@ -7229,19 +7166,13 @@ msgstr ""
 msgid "You have to wait %s!"
 msgstr "Jums jāuzgaida %s!"
 
-#
 msgid ""
-"You need a PC connected to your dreambox. If you need further instructions, "
+"You need a PC connected to your receiver. If you need further instructions, "
 "please visit the website http://www.dm7025.de.\n"
-"Your dreambox will now be halted. After you have performed the update "
+"Your receiver will now be halted. After you have performed the update "
 "instructions from the website, your new firmware will ask you to restore "
 "your settings."
 msgstr ""
-"Personālajam datoram jābūt savienotam ar Dreambox. Ja Jums ir nepieciešamas "
-"turpmākas instrukcijas, lūdzu apmeklējiet vietni http://www.dm7025.de.\n"
-"Dreambox tagad tiks apturēts. Pēc tam, kad būs izpildītas atjaunināšanas "
-"instrukcijas no tīkla vietnes, jaunā programmatūra piedāvās Jums atjaunot "
-"iestatījumus."
 
 msgid ""
 "You need to set a PIN code and hide it from your children.\n"
@@ -7262,19 +7193,6 @@ msgstr ""
 
 #
 msgid ""
-"Your Dreambox is now ready to use.\n"
-"\n"
-"Your internet connection is working now.\n"
-"\n"
-"Please press OK to continue."
-msgstr ""
-
-#
-msgid "Your Dreambox will restart after pressing OK on your remote control."
-msgstr "Dreambox restartēsies pēc OK taustiņa nospiešanas uz tālvadības pults."
-
-#
-msgid ""
 "Your backup succeeded. We will now continue to explain the further upgrade "
 "process."
 msgstr ""
@@ -7290,18 +7208,6 @@ msgstr ""
 #
 msgid "Your current collection will get lost!"
 msgstr ""
-
-#
-msgid "Your dreambox is shutting down. Please stand by..."
-msgstr "Dreambox izslēdzas. Lūdzu gaidiet..."
-
-#
-msgid ""
-"Your dreambox isn't connected to the internet properly. Please check it and "
-"try again."
-msgstr ""
-"Dreambox nav pievienots internetam kā nākas. Lūdzu pārbaudiet un mēģiniet "
-"vēl."
 
 #
 msgid "Your email address:"
@@ -7335,10 +7241,29 @@ msgstr ""
 msgid "Your network configuration has been activated."
 msgstr "Tīkla konfigurācija aktivizēta."
 
+msgid ""
+"Your receiver is now ready to use.\n"
+"\n"
+"Your internet connection is working now.\n"
+"\n"
+"Please press OK to continue."
+msgstr ""
+
 msgid "Your receiver is rebooting"
 msgstr ""
 
 msgid "Your receiver is shutting down"
+msgstr ""
+
+msgid "Your receiver is shutting down. Please stand by..."
+msgstr ""
+
+msgid ""
+"Your receiver isn't connected to the internet properly. Please check it and "
+"try again."
+msgstr ""
+
+msgid "Your receiver will restart after pressing OK on your remote control."
 msgstr ""
 
 #
@@ -7350,9 +7275,6 @@ msgid ""
 msgstr ""
 
 msgid "Zap"
-msgstr ""
-
-msgid "Zap PIG"
 msgstr ""
 
 #
@@ -7503,9 +7425,18 @@ msgstr "pievienot kanālu favorītiem"
 msgid "add to parental protection"
 msgstr "pievienot vecāku kontrolei"
 
+msgid "adult movie/drama"
+msgstr ""
+
 #
 msgid "advanced"
 msgstr "paplašināts"
+
+msgid "adventure/western/war"
+msgstr ""
+
+msgid "advertisement/shopping"
+msgstr ""
 
 msgid "alphabetic reverse"
 msgstr ""
@@ -7522,6 +7453,12 @@ msgstr ""
 "vai tiešām vēlaties atjaunot\n"
 "šī dublējumkopija:\n"
 
+msgid "arts/culture (without music, general)"
+msgstr ""
+
+msgid "arts/culture magazine"
+msgstr ""
+
 #
 msgid "assigned CAIds:"
 msgstr ""
@@ -7534,6 +7471,9 @@ msgid "at beginning"
 msgstr ""
 
 msgid "at end"
+msgstr ""
+
+msgid "athletics"
 msgstr ""
 
 #
@@ -7570,6 +7510,13 @@ msgstr "fona attēls"
 msgid "backgroundcolor"
 msgstr "fona krāsa"
 
+msgid "ballet"
+msgstr ""
+
+#, python-format
+msgid "bc%s"
+msgstr ""
+
 #
 msgid "better"
 msgstr "labāks"
@@ -7577,6 +7524,9 @@ msgstr "labāks"
 #
 msgid "black"
 msgstr "melns"
+
+msgid "black & white"
+msgstr ""
 
 #
 msgid "blacklist"
@@ -7586,10 +7536,16 @@ msgstr "melnais saraksts"
 msgid "blue"
 msgstr "zils"
 
+msgid "broadcasting/press"
+msgstr ""
+
 #
 #, python-format
 msgid "burn audio track (%s)"
 msgstr "rakstīt skaņas celiņu (%s)"
+
+msgid "cartoon/puppets"
+msgstr ""
 
 msgid "center"
 msgstr ""
@@ -7606,6 +7562,9 @@ msgstr "mainīt ierakstīšanu (beigu laiks)"
 msgid "chapters"
 msgstr "nodaļas"
 
+msgid "childrens's/youth program (general)"
+msgstr ""
+
 #
 msgid "circular left"
 msgstr "cirkulārā kreisā"
@@ -7617,6 +7576,9 @@ msgstr "cirkulārā labā"
 #
 msgid "clear playlist"
 msgstr "notīrīt repertuāru"
+
+msgid "comedy"
+msgstr ""
 
 #
 msgid "complex"
@@ -7637,6 +7599,9 @@ msgstr "pievienots"
 #
 msgid "continue"
 msgstr "turpināt"
+
+msgid "cooking"
+msgstr ""
 
 #
 msgid "copy to bouquets"
@@ -7685,6 +7650,9 @@ msgstr "dzēst..."
 msgid "descramble and record ecm"
 msgstr ""
 
+msgid "detective/thriller"
+msgstr ""
+
 #
 msgid "disable"
 msgstr "izslēgt"
@@ -7701,6 +7669,9 @@ msgstr "izslēgts"
 msgid "disconnected"
 msgstr "atvienots"
 
+msgid "discussion/interview/debate"
+msgstr ""
+
 #
 msgid "do not change"
 msgstr "nemainīt"
@@ -7708,6 +7679,9 @@ msgstr "nemainīt"
 #
 msgid "do nothing"
 msgstr "nedarīt neko"
+
+msgid "documentary"
+msgstr ""
 
 msgid "don't descramble, record ecm"
 msgstr ""
@@ -7738,9 +7712,15 @@ msgstr ""
 msgid "east"
 msgstr ""
 
+msgid "economics/social advisory"
+msgstr ""
+
 #
 msgid "edit alternatives"
 msgstr "rediģēt alternatīvas"
+
+msgid "education/science/factual topics (general)"
+msgstr ""
 
 #
 msgid "empty"
@@ -7786,9 +7766,18 @@ msgstr "beigt favorītu rediģēšanu"
 msgid "enigma2 and network"
 msgstr "enigma2 un tīkls"
 
+msgid "entertainment (10-16 year old)"
+msgstr ""
+
+msgid "entertainment (6-14 year old)"
+msgstr ""
+
 #
 msgid "equal to"
 msgstr "vienāds ar"
+
+msgid "equestrian"
+msgstr ""
 
 #
 msgid "exit DVD player or return to file browser"
@@ -7818,7 +7807,13 @@ msgstr "iziet no tīkla saskarņu saraksta"
 msgid "exit networkadapter setup menu"
 msgstr "iziet no tīkla adaptera iestatīšanas izvēlnes"
 
+msgid "experimental film/video"
+msgstr ""
+
 msgid "false"
+msgstr ""
+
+msgid "fashion"
 msgstr ""
 
 #
@@ -7829,11 +7824,29 @@ msgstr "datņu formāti (BMP, PNG, JPG, GIF)"
 msgid "filename"
 msgstr "datnes nosaukums"
 
+msgid "film/cinema"
+msgstr ""
+
+msgid "fine arts"
+msgstr ""
+
 #
 msgid "fine-tune your display"
 msgstr "displeja precīzā pieregulēšana"
 
+msgid "fitness & health"
+msgstr ""
+
 msgid "fixed"
+msgstr ""
+
+msgid "folk/traditional music"
+msgstr ""
+
+msgid "football/soccer"
+msgstr ""
+
+msgid "foreign countries/expeditions"
 msgstr ""
 
 #
@@ -7851,6 +7864,15 @@ msgstr "brīva vieta uz diska"
 msgid "full transparency"
 msgstr ""
 
+msgid "further education"
+msgstr ""
+
+msgid "game show/quiz/contest"
+msgstr ""
+
+msgid "gardening"
+msgstr ""
+
 #
 msgid "go to deep standby"
 msgstr "iet uz dziļo gaidstāvi"
@@ -7866,6 +7888,9 @@ msgstr ""
 #
 msgid "green"
 msgstr "zaļš"
+
+msgid "handicraft"
+msgstr ""
 
 #
 msgid "hear radio..."
@@ -7890,6 +7915,9 @@ msgstr "horizontāli"
 msgid "immediate shutdown"
 msgstr "tūlītēja izslēgšana"
 
+msgid "information/education/school program"
+msgstr ""
+
 #
 msgid "init module"
 msgstr "inicializēšanas režīms"
@@ -7903,6 +7931,9 @@ msgid "insert mark here"
 msgstr "ievietot iezīmi"
 
 msgid "invalid type"
+msgstr ""
+
+msgid "jazz"
 msgstr ""
 
 #
@@ -7929,6 +7960,9 @@ msgstr "pārlēkt uz nākamo iezīmēto pozīciju"
 msgid "jump to previous marked position"
 msgstr "pārlēkt uz iepriekšējo iezīmēto pozīciju"
 
+msgid "languages"
+msgstr ""
+
 #
 msgid "leave movie player..."
 msgstr "iziet no filmu atskaņotāja..."
@@ -7936,6 +7970,9 @@ msgstr "iziet no filmu atskaņotāja..."
 #
 msgid "left"
 msgstr "kreisais"
+
+msgid "leisure hobbies (general)"
+msgstr ""
 
 #
 msgid "length"
@@ -7964,6 +8001,12 @@ msgstr "saraksta stils noklusētais"
 msgid "list style single line"
 msgstr "saraksta stils vienlīniju"
 
+msgid "literature"
+msgstr ""
+
+msgid "live broadcast"
+msgstr ""
+
 #
 msgid "load playlist"
 msgstr "ielādēt repertuāru"
@@ -7977,9 +8020,18 @@ msgstr "slēgts"
 msgid "loopthrough to"
 msgstr "loopthrough to"
 
+msgid "magazines/reports/documentary"
+msgstr ""
+
 #
 msgid "manual"
 msgstr "manuāls"
+
+msgid "martial sports"
+msgstr ""
+
+msgid "medicine/physiology/psychology"
+msgstr ""
 
 #
 msgid "menu"
@@ -7996,6 +8048,12 @@ msgstr "minūtēm"
 #
 msgid "month"
 msgstr "mēnesis"
+
+msgid "motor sport"
+msgstr ""
+
+msgid "motoring"
+msgstr ""
 
 #
 msgid "move PiP to main picture"
@@ -8021,13 +8079,37 @@ msgstr "pārvietot augšup uz iepriekšējo ierakstu"
 msgid "movie list"
 msgstr "filmu saraksts"
 
+msgid "movie/drama (general)"
+msgstr ""
+
 #
 msgid "multinorm"
 msgstr "multinorma"
 
+msgid "music/ballet/dance (general)"
+msgstr ""
+
+msgid "musical/opera"
+msgstr ""
+
+msgid "nature/animals/environment"
+msgstr ""
+
 #
 msgid "never"
 msgstr "nekad"
+
+msgid "new media"
+msgstr ""
+
+msgid "news magazine"
+msgstr ""
+
+msgid "news/current affairs (general)"
+msgstr ""
+
+msgid "news/weather report"
+msgstr ""
 
 #
 msgid "next channel"
@@ -8121,6 +8203,9 @@ msgstr "ieslēgts"
 msgid "on READ ONLY medium."
 msgstr "uz TIKAI LASĀMA datu nesēja."
 
+msgid "on end of movie"
+msgstr ""
+
 #
 msgid "once"
 msgstr "vienreiz"
@@ -8144,6 +8229,9 @@ msgstr "atvērt kanālu sarakstu (augšup)"
 msgid "original"
 msgstr ""
 
+msgid "original language"
+msgstr ""
+
 #
 msgid "pass"
 msgstr "šķērsot"
@@ -8151,6 +8239,9 @@ msgstr "šķērsot"
 #
 msgid "pause"
 msgstr "pauze"
+
+msgid "performing arts"
+msgstr ""
 
 msgid "play as picture in picture"
 msgstr ""
@@ -8178,6 +8269,12 @@ msgstr "lūdzu spiediet OK, kad esiet gatavs"
 msgid "please wait, loading picture..."
 msgstr "lūdzu gaiidiet, ielādē attēlu..."
 
+msgid "popular culture/traditional arts"
+msgstr ""
+
+msgid "pre-school children's program"
+msgstr ""
+
 #
 msgid "previous channel"
 msgstr "iepriekšējais kanāls"
@@ -8185,6 +8282,9 @@ msgstr "iepriekšējais kanāls"
 #
 msgid "previous channel in history"
 msgstr "iepriekšējais kanāls vēsturē"
+
+msgid "receiver software because updates are available."
+msgstr ""
 
 #
 msgid "record"
@@ -8199,6 +8299,12 @@ msgid "red"
 msgstr "sarkans"
 
 msgid "relative"
+msgstr ""
+
+msgid "religion"
+msgstr ""
+
+msgid "remarkable people"
 msgstr ""
 
 #
@@ -8268,6 +8374,12 @@ msgstr "attīt uz iepriekšējo nodaļu"
 msgid "right"
 msgstr "labais"
 
+msgid "rock/pop"
+msgstr ""
+
+msgid "romance"
+msgstr ""
+
 #
 msgid "save last directory on exit"
 msgstr "saglabāt pēdējo mapi, izejot"
@@ -8292,6 +8404,9 @@ msgstr "notiek meklēšana - %d%% pabeigts!"
 #
 msgid "scan state"
 msgstr "meklēšanas statuss"
+
+msgid "science fiction/fantasy/horror"
+msgstr ""
 
 #
 msgid "second cable of motorized LNB"
@@ -8328,6 +8443,12 @@ msgstr "izvēlēties filmu"
 #
 msgid "select the movie path"
 msgstr "izvēlēties filmas ceļu"
+
+msgid "serious music/classic music"
+msgstr ""
+
+msgid "serious/classical/religious/historical movie/drama"
+msgstr ""
 
 msgid "service PIN"
 msgstr ""
@@ -8376,6 +8497,12 @@ msgstr "rādīt izslēgšanas izvēlni"
 msgid "show single service EPG..."
 msgstr "rādīt viena kanāla EPG..."
 
+msgid "show softwaremanager in setup menu"
+msgstr ""
+
+msgid "show softwaremanager on blue button"
+msgstr ""
+
 #
 msgid "show tag menu"
 msgstr "rādīt etiķetes izvēlni"
@@ -8383,6 +8510,9 @@ msgstr "rādīt etiķetes izvēlni"
 #
 msgid "show transponder info"
 msgstr "rādīt transpondera informāciju"
+
+msgid "show/game show (general)"
+msgstr ""
 
 msgid "shuffle"
 msgstr ""
@@ -8423,6 +8553,15 @@ msgstr "pārlēkt uz priekšu (ievadīt laiku)"
 msgid "slide picture in loop"
 msgstr "slīdrādīt attēlus pa apli"
 
+msgid "soap/melodram/folkloric"
+msgstr ""
+
+msgid "social/political issues/economics (general)"
+msgstr ""
+
+msgid "social/spiritual science"
+msgstr ""
+
 #
 msgid "sort by date"
 msgstr "kārtot pēc datuma"
@@ -8432,6 +8571,18 @@ msgstr ""
 
 #
 msgid "special characters"
+msgstr ""
+
+msgid "special events"
+msgstr ""
+
+msgid "special format data DVD (HDTV compatible)"
+msgstr ""
+
+msgid "sports (general)"
+msgstr ""
+
+msgid "sports magazine"
 msgstr ""
 
 #
@@ -8508,9 +8659,21 @@ msgstr "iet uz nākamo skaņas celiņu"
 msgid "switch to the next subtitle language"
 msgstr "iet uz nākamo subtitru valodu"
 
+msgid "talk show"
+msgstr ""
+
+msgid "team sports"
+msgstr ""
+
+msgid "technology/natural science"
+msgstr ""
+
 #
 msgid "template file"
 msgstr "šablona datne"
+
+msgid "tennis/squash"
+msgstr ""
 
 #
 msgid "textcolor"
@@ -8533,6 +8696,9 @@ msgid "toggle time, chapter, audio, subtitle info"
 msgstr "Ie-/iz-slēgt laiku, nodaļu, skaņu, subtitru informāciju"
 
 msgid "top"
+msgstr ""
+
+msgid "tourism/travel"
 msgstr ""
 
 msgid "true"
@@ -8559,6 +8725,9 @@ msgstr ""
 msgid "unknown service"
 msgstr "nezināms kanāls"
 
+msgid "unpublished"
+msgstr ""
+
 #
 msgid "until standby/restart"
 msgstr ""
@@ -8566,6 +8735,9 @@ msgstr ""
 #
 msgid "user defined"
 msgstr "lietotāja definēts"
+
+msgid "variety show"
+msgstr ""
 
 #
 msgid "vertical"
@@ -8595,6 +8767,9 @@ msgstr "gaida"
 msgid "was removed successfully"
 msgstr ""
 
+msgid "water sport"
+msgstr ""
+
 #
 msgid "weekly"
 msgstr "iknedēļas"
@@ -8610,6 +8785,9 @@ msgid "whitelist"
 msgstr "baltais saraksts"
 
 msgid "width"
+msgstr ""
+
+msgid "winter sport"
 msgstr ""
 
 msgid "wireless network interface"
@@ -8631,13 +8809,10 @@ msgstr "jā"
 msgid "yes (keep feeds)"
 msgstr "jā (paturēt barotnes)"
 
-#
 msgid ""
-"your dreambox might be unusable now. Please consult the manual for further "
-"assistance before rebooting your dreambox."
+"your receiver might be unusable now. Please consult the manual for further "
+"assistance before rebooting your receiver."
 msgstr ""
-"Dreambox tagad var būt nelietojams. Lūdzu skatīt lietošanas instrukciju "
-"tālākai palīdzībai, pirms atsāknējat Dreambox."
 
 #
 msgid "zap"
@@ -8646,1026 +8821,3 @@ msgstr "pārslēgt"
 #
 msgid "zapped"
 msgstr "pārslēgts"
-
-#
-#~ msgid ""
-#~ "\n"
-#~ "Enigma2 will restart after the restore"
-#~ msgstr ""
-#~ "\n"
-#~ "Enigma2 restartēsies pēc atjaunošanas"
-
-#
-#~ msgid ""
-#~ "\n"
-#~ "Scan for local packages and install them."
-#~ msgstr ""
-#~ "\n"
-#~ "Meklēt lokālās pakotnes un uzstādīt tās."
-
-#
-#~ msgid " "
-#~ msgstr " "
-
-#
-#~ msgid "#000000"
-#~ msgstr "#000000"
-
-#
-#~ msgid "#0064c7"
-#~ msgstr "#0064c7"
-
-#
-#~ msgid "#25062748"
-#~ msgstr "#25062748"
-
-#
-#~ msgid "#389416"
-#~ msgstr "#389416"
-
-#
-#~ msgid "#80000000"
-#~ msgstr "#80000000"
-
-#
-#~ msgid "#80ffffff"
-#~ msgstr "#80ffffff"
-
-#
-#~ msgid "#bab329"
-#~ msgstr "#bab329"
-
-#
-#~ msgid "#f23d21"
-#~ msgstr "#f23d21"
-
-#
-#~ msgid "#ffffff"
-#~ msgstr "#ffffff"
-
-#
-#~ msgid "#ffffffff"
-#~ msgstr "#ffffffff"
-
-#
-#~ msgid ""
-#~ "%s\n"
-#~ "(%s, %d MB free)"
-#~ msgstr ""
-#~ "%s\n"
-#~ "(%s, %d MB brīvi)"
-
-#
-#~ msgid "* Only available when entering hidden SSID or network key"
-#~ msgstr "* Pieejams tikai ievadot slēptu SSID vai tīkla atslēgu"
-
-#
-#~ msgid ".NFI Download failed:"
-#~ msgstr ".NFI lejuplāde neizdevās:"
-
-#
-#~ msgid ""
-#~ ".NFI file passed md5sum signature check. You can safely flash this image!"
-#~ msgstr ""
-#~ ".NFI datne izsgāja md5sum paraksta pārbaudi. Varat droši lādēt šo imidžu!"
-
-#
-#~ msgid "30 minutes"
-#~ msgstr "30 minūtēm"
-
-#
-#~ msgid "5 minutes"
-#~ msgstr "5 minūtēm"
-
-#
-#~ msgid "5 seconds"
-#~ msgstr "5 sekundes"
-
-#
-#~ msgid "50 Hz"
-#~ msgstr "50 Hz"
-
-#
-#~ msgid "60 minutes"
-#~ msgstr "60 minūtēm"
-
-#
-#~ msgid "AC3 default"
-#~ msgstr "AC3 pēc noklusējuma"
-
-#
-#~ msgid "Advanced"
-#~ msgstr "Paplašināts"
-
-#
-#~ msgid "An error occured!"
-#~ msgstr "Kļūda!"
-
-#
-#~ msgid "Autoresolution Settings"
-#~ msgstr "Auto izšķirtspējas iestatījumi"
-
-#
-#~ msgid "Autoresolution..."
-#~ msgstr "Auto izšķirtspēja..."
-
-#
-#~ msgid "Backup is done. Please press OK to see the result."
-#~ msgstr ""
-#~ "Dublējumkopija izveidota. Lūdzu spiediet OK, lai apskatītu rezultātu."
-
-#
-#~ msgid "Backup running"
-#~ msgstr "Dublējumkopija tiek veidota"
-
-#
-#~ msgid "Backup running..."
-#~ msgstr "Dublējumkopija tiek veidota..."
-
-#, fuzzy
-#~ msgid "CDInfo"
-#~ msgstr "Infojosla"
-
-#
-#~ msgid "Call monitoring"
-#~ msgstr "Zvanu monitorings"
-
-#, fuzzy
-#~ msgid "Can't connect to server. Please check your network!"
-#~ msgstr "Lūdzu pārbaudiet tīkla iestatījumus!"
-
-#
-# ???
-#~ msgid "Cannot parse feed directory"
-#~ msgstr "Nevar analizēt barotnes katalogu"
-
-#
-#~ msgid "Catalan"
-#~ msgstr "Katāliešu"
-
-#
-#~ msgid "Change dir."
-#~ msgstr "Mainīt dir."
-
-#
-#~ msgid "Change service pin"
-#~ msgstr "Mainīt kanāla PIN"
-
-#
-#~ msgid "Change service pins"
-#~ msgstr "Mainīt kanālu PIN"
-
-#
-#~ msgid "Change setup pin"
-#~ msgstr "Mainīt iestatnes PIN"
-
-#
-#~ msgid "Choose source"
-#~ msgstr "Izvēlēties avotu"
-
-#
-#~ msgid "Code rate high"
-#~ msgstr "Augsts kodēšanas ātrums "
-
-#
-#~ msgid "Code rate low"
-#~ msgstr "Zems kodēšanas ātrums"
-
-#
-#~ msgid "Compact flash card"
-#~ msgstr "Compact flash karte"
-
-#
-#~ msgid "Connected to Fritz!Box!"
-#~ msgstr "Pieslēgts Fritz!Box!"
-
-#
-#~ msgid "Connecting to Fritz!Box..."
-#~ msgstr "Pieslēdzas Fritz!Box..."
-
-#
-#~ msgid ""
-#~ "Connection to Fritz!Box\n"
-#~ "failed! (%s)\n"
-#~ "retrying..."
-#~ msgstr ""
-#~ "Pieslēgšanās Fritz!Box\n"
-#~ "neizdevās! (%s)\n"
-#~ "atkārto..."
-
-#
-#~ msgid "Create movie folder failed"
-#~ msgstr "Neizdevās izveidot filmas mapi"
-
-#
-#~ msgid "Creating partition failed"
-#~ msgstr "Neizdevās izveidot sadaļu"
-
-#
-#~ msgid "Default services lists"
-#~ msgstr "Noklus. kanālu saraksti"
-
-#
-#~ msgid "Default settings"
-#~ msgstr "Noklusējuma iestatījumi"
-
-#
-#, fuzzy
-#~ msgid "Defaults"
-#~ msgstr "Noklusējuma iestatījumi"
-
-#
-#~ msgid "Deinterlacer Mode"
-#~ msgstr "Pārlecošās izvērses režīms"
-
-#
-#~ msgid "Delay"
-#~ msgstr "Aizkave"
-
-#
-#~ msgid "Destination directory"
-#~ msgstr "Galamērķa mape"
-
-#
-#~ msgid "Disable Subtitles"
-#~ msgstr "Izslēgt subtitrus"
-
-#
-#~ msgid ""
-#~ "Disconnected from\n"
-#~ "Fritz!Box! (%s)\n"
-#~ "retrying..."
-#~ msgstr ""
-#~ "Atvienots no\n"
-#~ "Fritz!Box! (%s)\n"
-#~ "atkārto..."
-
-#
-#~ msgid ""
-#~ "Do you really want to initialize the harddisk?\n"
-#~ "All data on the disk will be lost!"
-#~ msgstr ""
-#~ "Vai tiešām vēlaties inicializēt cieto disku?\n"
-#~ "Visi uz diska esošie dati tiks zaudēti!"
-
-#
-#~ msgid "Do you want to install default sat lists?"
-#~ msgstr "Vai vēlaties uzstādīt noklusētos pavadoņu sarakstus?"
-
-#
-#~ msgid "Done - Installed or upgraded %d packages with %d errors"
-#~ msgstr "Pabeigts - uzstādītas vai atjauninātas %d pakotnes ar %d kļūdām"
-
-#
-# ???
-#~ msgid "Download of USB flasher boot image failed: "
-#~ msgstr "USB lādētāja palaišanas imidža ielāde neizdevās:"
-
-#
-#~ msgid "Enable Autoresolution"
-#~ msgstr "Aktivizēt auto izšķirtspēju"
-
-#
-#~ msgid "Encryption Type"
-#~ msgstr "Šifrēšanas veids"
-
-#
-#~ msgid ""
-#~ "Enigma2 Skinselector v0.5 BETA\n"
-#~ "\n"
-#~ "If you experience any problems please contact\n"
-#~ "stephan@reichholf.net\n"
-#~ "\n"
-#~ "© 2006 - Stephan Reichholf"
-#~ msgstr ""
-#~ "Enigma2 Skinselector v0.5 BETA\n"
-#~ "\n"
-#~ "Problēmu gadījumā kontaktēties\n"
-#~ "stephan@reichholf.net\n"
-#~ "\n"
-#~ "© 2006 - Stephan Reichholf"
-
-#
-#~ msgid "Enter Fast Forward at speed"
-#~ msgstr "Ievadiet ātrās pārtīšanas ātrumu"
-
-#
-#~ msgid "Enter Rewind at speed"
-#~ msgstr "Ievadiet attīšanas ātrumu"
-
-#
-#~ msgid "Enter WLAN network name/SSID:"
-#~ msgstr "Ievadiet bezvadu tīkla nosaukumu /SSID:"
-
-#
-#~ msgid "Enter WLAN passphrase/key:"
-#~ msgstr "Ievadiet bezvadu tīkla paroli/atslēgu:"
-
-#
-#~ msgid "Everything is fine"
-#~ msgstr "Viss ir lieliski"
-
-#
-#~ msgid "Filesystem Check..."
-#~ msgstr "Failsistēmas pārbaude..."
-
-#
-#~ msgid "Filesystem contains uncorrectable errors"
-#~ msgstr "Failsistēma satur neizlabojamas kļūdas"
-
-#
-#~ msgid ""
-#~ "First we need to download the latest boot environment for the USB flasher."
-#~ msgstr ""
-#~ "No sākuma nepieciešams lejuplādēt pēdējo palaišanas vidi priekš USB "
-#~ "ielādes."
-
-#
-#~ msgid "Frame repeat count during non-smooth winding"
-#~ msgstr "Atkārtoto kadru skaits 'attēlu virknes' režīmā"
-
-#
-#~ msgid "Frisian"
-#~ msgstr "Frīzu"
-
-#
-#~ msgid "Fritz!Box FON IP address"
-#~ msgstr "Fritz!Box FON IP adrese"
-
-#
-#~ msgid "Fsck failed"
-#~ msgstr "Fsck neizdevās"
-
-#
-#~ msgid "Function not yet implemented"
-#~ msgstr "Funkcija vēl nav realizēta"
-
-#
-#~ msgid "Guard interval mode"
-#~ msgstr "Sardzes intervāla režīms"
-
-#
-#~ msgid "Hidden network SSID"
-#~ msgstr "Slēpts tīkla SSID"
-
-#
-#~ msgid "Hierarchy mode"
-#~ msgstr "Hierarhijas režīms"
-
-#
-#~ msgid "Icelandic"
-#~ msgstr "Islandiešu"
-
-#
-#~ msgid "If you can see this page, please press OK."
-#~ msgstr "Ja redzat šo lappusi, spiediet OK."
-
-#
-#~ msgid "Image flash utility"
-#~ msgstr "Imidža ielādes utilītprogramma"
-
-#
-#~ msgid "Image-Upgrade"
-#~ msgstr "Imidža atjaunināšana"
-
-#
-#~ msgid "Initialization..."
-#~ msgstr "Inicializācija..."
-
-#
-#~ msgid "Initializing Harddisk..."
-#~ msgstr "Inicializē cieto disku..."
-
-#
-#~ msgid "Input 1"
-#~ msgstr "1 ieeja"
-
-#
-#~ msgid "Input 10"
-#~ msgstr "10 ieeja"
-
-#
-#~ msgid "Input 11"
-#~ msgstr "11 ieeja"
-
-#
-#~ msgid "Input 12"
-#~ msgstr "12 ieeja"
-
-#
-#~ msgid "Input 13"
-#~ msgstr "13 ieeja"
-
-#
-#~ msgid "Input 14"
-#~ msgstr "14 ieeja"
-
-#
-#~ msgid "Input 15"
-#~ msgstr "15 ieeja"
-
-#
-#~ msgid "Input 16"
-#~ msgstr "16 ieeja"
-
-#
-#~ msgid "Input 2"
-#~ msgstr "2 ieeja"
-
-#
-#~ msgid "Input 3"
-#~ msgstr "3 ieeja"
-
-#
-#~ msgid "Input 4"
-#~ msgstr "4 ieeja"
-
-#
-#~ msgid "Input 5"
-#~ msgstr "5 ieeja"
-
-#
-#~ msgid "Input 6"
-#~ msgstr "6 ieeja"
-
-#
-#~ msgid "Input 7"
-#~ msgstr "7 ieeja"
-
-#
-#~ msgid "Input 8"
-#~ msgstr "8 ieeja"
-
-#
-#~ msgid "Input 9"
-#~ msgstr "9 ieeja"
-
-#
-#~ msgid "Install local IPKG"
-#~ msgstr "Uzstādīt lokālo IPKG"
-
-#
-#~ msgid "Integrated Ethernet"
-#~ msgstr "Iebūvētais Ethernet"
-
-#
-#~ msgid "Integrated Wireless"
-#~ msgstr "Iebūvētais Wireless"
-
-#
-#~ msgid "Invert display"
-#~ msgstr "Inverss displejs"
-
-#
-#~ msgid "Keymap"
-#~ msgstr "Taustiņu izkārtojums"
-
-#
-#~ msgid "Language..."
-#~ msgstr "Valoda..."
-
-#
-#~ msgid "Mkfs failed"
-#~ msgstr "Mkfs neizdevās"
-
-#
-#~ msgid "Mount failed"
-#~ msgstr "Montēšana neizdevās"
-
-#
-#~ msgid "Network SSID"
-#~ msgstr "Tīkla SSID"
-
-#
-#~ msgid "Network..."
-#~ msgstr "Tīkls..."
-
-#
-#~ msgid "New pin"
-#~ msgstr "Jauns pin kods"
-
-#
-#~ msgid "No 50 Hz, sorry. :("
-#~ msgstr "Nav 50 Hz, atvainojiet. :("
-
-#
-#~ msgid "No Networks found"
-#~ msgstr "Nav atrasts neviens tīkls"
-
-#
-#~ msgid "No useable USB stick found"
-#~ msgstr "Nav atrasta lietojama USB atmiņa"
-
-#
-#~ msgid "Online-Upgrade"
-#~ msgstr "Tiešsaistes atjaunināšana"
-
-#
-#~ msgid "Page"
-#~ msgstr "Lappuse"
-
-#
-#~ msgid "Please Reboot"
-#~ msgstr "Lūdzu atsāknēt"
-
-#
-#~ msgid "Please choose .NFI image file from feed server to download"
-#~ msgstr "Lūdzu izvēlēties .NFI imidža datni lejuplādei no barotnes servera"
-
-#
-#~ msgid ""
-#~ "Please disconnect all USB devices from your Dreambox and (re-)attach the "
-#~ "target USB stick (minimum size is 64 MB) now!"
-#~ msgstr ""
-#~ "Tagad lūdzu atvienojiet visas USB ierīces no Dreambox, un pievienojiet "
-#~ "atpakaļ USB atmiņu (minimālais izmērs 64 MB)!"
-
-#
-#~ msgid "Please enter the old pin code"
-#~ msgstr "Lūdzu ievadiet veco PIN kodu"
-
-#
-#~ msgid "Please select .NFI flash image file from medium"
-#~ msgstr "Lūdzu izvēlieties lādējamo .NFI imidža datni no datu nesēja"
-
-#
-#~ msgid "Please select target directory or medium"
-#~ msgstr "Lūdzu izvēlieties mērķa mapi vai datu nesēju"
-
-#
-#, fuzzy
-#~ msgid "Please wait (Step 2)"
-#~ msgstr "Lūdzu gaidiet..."
-
-#
-#~ msgid "Polarity"
-#~ msgstr "Polaritāte"
-
-#
-# ???
-#~ msgid "Positioner fine movement"
-#~ msgstr "Precīza pozicioniera kustība"
-
-#
-#~ msgid "Positioner movement"
-#~ msgstr "Pozicioniera kustība"
-
-#
-#~ msgid "Positioner storage"
-#~ msgstr "Pozicioniera atmiņa"
-
-#
-#~ msgid "RC Menu"
-#~ msgstr "Tālvadības pults izvēlne"
-
-#
-#~ msgid "RSS Feed URI"
-#~ msgstr "RSS barotnes URI"
-
-#
-#~ msgid "Reenter new pin"
-#~ msgstr "Ievadiet vēlreiz jauno pin"
-
-#
-#~ msgid "Remove the broken .NFI file?"
-#~ msgstr "Dzēst bojāto .NFI datni?"
-
-#
-#~ msgid "Remove the incomplete .NFI file?"
-#~ msgstr "Dzēst nepilnīgo .NFI datni?"
-
-#
-#~ msgid "Repeat"
-#~ msgstr "Atkārtot"
-
-#
-#~ msgid "Restart GUI"
-#~ msgstr "Restartēt GUI"
-
-#
-#~ msgid "Restore backups..."
-#~ msgstr "Atjaunot dublējumkopijas..."
-
-#
-#~ msgid "Restore running..."
-#~ msgstr "Notiek atjaunošana..."
-
-#
-#~ msgid ""
-#~ "Restoring the settings is done. Please press OK to activate the restored "
-#~ "settings now."
-#~ msgstr ""
-#~ "Iestatījumu atjaunošana pabeigta. Lūdzu spiediet OK, lai aktivizētu "
-#~ "atjaunotos iestatījumus."
-
-#
-#~ msgid "Return to file browser"
-#~ msgstr "Atgriezties uz datņu pārlūku"
-
-#
-#~ msgid "Running"
-#~ msgstr "Darbojas"
-
-#
-#~ msgid ""
-#~ "Scan your network for wireless Access Points and connect to them using "
-#~ "your WLAN USB Stick\n"
-#~ msgstr ""
-#~ "Meklēt bezvadu piekļuves punktus tīklā un savienoties ar tiem, lietojot "
-#~ "bezvadu tīkla USB ierīci\n"
-
-#
-#~ msgid "Select audio mode"
-#~ msgstr "Izvēlēties skaņas režīmu"
-
-#
-#~ msgid "Select files for backup. Currently selected:\n"
-#~ msgstr "Izvēlēties datnes dublējumkopēšanai. Pašreiz izvēlētas:\n"
-
-#
-#~ msgid "Select files/folders to backup..."
-#~ msgstr "Izvēlēties datnes/mapes dublējumkopēšanai..."
-
-#
-#~ msgid "Select image"
-#~ msgstr "Izvēlēties imidžu"
-
-#
-#~ msgid "Select video input"
-#~ msgstr "Izvēlēties attēla ieeju"
-
-#
-# ???
-#~ msgid "Selected source image"
-#~ msgstr "Izvēlētā avota imidžs"
-
-#
-#~ msgid "Set as default Interface"
-#~ msgstr "Iestatīt kā noklusēto interfeisu"
-
-#
-#~ msgid "Set limits"
-#~ msgstr "Iestatīt robežas"
-
-#
-#~ msgid "Show blinking clock in display during recording"
-#~ msgstr "Ieraksta laikā displejā rādīt mirgojošu pulksteni"
-
-#
-#~ msgid "Skin..."
-#~ msgstr "Ādiņa..."
-
-#
-#~ msgid "Software manager"
-#~ msgstr "Programmatūras pārvaldnieks"
-
-#
-#~ msgid "Software manager..."
-#~ msgstr "Programmatūras pārvaldnieks..."
-
-#
-#~ msgid "Somewhere else"
-#~ msgstr "Kaut kur citur"
-
-#
-#~ msgid ""
-#~ "Sorry, your backup destination is not writeable.\n"
-#~ "\n"
-#~ "Lūdzu izvēlieties citu."
-#~ msgstr ""
-#~ "Izvēlētais dublējumkopijas galamērķis nav ierakstāms.\n"
-#~ "\n"
-#~ "Lūdzu izvēlieties citu."
-
-#
-#~ msgid "Stereo"
-#~ msgstr "Stereo"
-
-#
-#~ msgid "Tag 1"
-#~ msgstr "Etiķete 1"
-
-#
-#~ msgid "Tag 2"
-#~ msgstr "Etiķete 2"
-
-#
-#~ msgid ""
-#~ "The USB stick is now bootable. Do you want to download the latest image "
-#~ "from the feed server and save it on the stick?"
-#~ msgstr ""
-#~ "USB atmiņas ierīce tagad ir sāknējama. Vai vēlaties lejuplādēt pēdējo "
-#~ "imidžu no barotnes servera un saglabāt to USB atmiņas ierīcē?"
-
-#
-#~ msgid ""
-#~ "The md5sum validation failed, the file may be corrupted! Are you sure "
-#~ "that you want to burn this image to flash memory? You are doing this at "
-#~ "your own risk!"
-#~ msgstr ""
-#~ "Md5sum validācija neizdevās, iespējams, ka datne ir bojāta! Vai tiešām "
-#~ "vēlaties rakstīt šo imidžu iekšējā atmiņā? Tā darot, Jūs riskējat!"
-
-#
-#~ msgid ""
-#~ "The md5sum validation failed, the file may be downloaded incompletely or "
-#~ "be corrupted!"
-#~ msgstr ""
-#~ "Md5sum validācija neizdevās, iespējams, ka datne ir nepilnīgi ielādēta "
-#~ "vai bojāta!"
-
-#
-#~ msgid "The pin code has been changed successfully."
-#~ msgstr "PIN kods veiksmīgi nomainīts."
-
-#
-#~ msgid "The pin codes you entered are different."
-#~ msgstr "Jūsu ievadītie PIN kodi ir atšķirīgi."
-
-#
-#~ msgid "This .NFI file does not contain a valid %s image!"
-#~ msgstr "Šī .NFI datne nesatur derīgu %s imidžu!"
-
-#
-#~ msgid ""
-#~ "This .NFI file does not have a md5sum signature and is not guaranteed to "
-#~ "work. Do you really want to burn this image to flash memory?"
-#~ msgstr ""
-#~ "Šai .NFI datnei nav md5sum paraksta un nav garantijas ka tā strādās. Vai "
-#~ "tiešām vēlaties šo imidžu rakstīt iekšējā atmiņā?"
-
-#
-#~ msgid ""
-#~ "This .NFI file has a valid md5 signature. Continue programming this image "
-#~ "to flash memory?"
-#~ msgstr ""
-#~ "Šai .NFI datnei ir derīgs md5sum paraksts. Vai turpināt imidža "
-#~ "programmēšanu iekšējā atmiņā?"
-
-#
-#~ msgid "This Dreambox can't decode %s video streams!"
-#~ msgstr "Šis Dreambox modelis nevar atkodēt %s attēla plūsmas!"
-
-#
-#~ msgid "This is unsupported at the moment."
-#~ msgstr "Tas šobrīd nav atbalstīts."
-
-#
-#~ msgid "Timeshift path..."
-#~ msgstr "Laikaiztures ceļš..."
-
-#
-#~ msgid ""
-#~ "To update your Dreambox firmware, please follow these steps:\n"
-#~ "1) Turn off your box with the rear power switch and plug in the bootable "
-#~ "USB stick.\n"
-#~ "2) Turn mains back on and hold the DOWN button on the front panel pressed "
-#~ "for 10 seconds.\n"
-#~ "3) Wait for bootup and follow instructions of the wizard."
-#~ msgstr ""
-#~ "Lūdzu veiciet šādus soļus, lai atjauninātu Dreambox programmatūru:\n"
-#~ "1) Izslēdziet ierīci ar aizmugures barošanas slēdzi un iespraudiet "
-#~ "sāknējamu USB atmiņu.\n"
-#~ "2) Ieslēdziet ierīci un 10 sekundes turiet nospiestu DOWN pogu uz "
-#~ "priekšējā paneļa.\n"
-#~ "3) Gaidiet līdz ielādējas un sekojiet vedņa norādījumiem."
-
-#
-#~ msgid "USB"
-#~ msgstr "USB"
-
-#
-#~ msgid "Ukrainian"
-#~ msgstr "Ukraiņu"
-
-#
-#~ msgid ""
-#~ "Unable to complete filesystem check.\n"
-#~ "Error: "
-#~ msgstr ""
-#~ "Nevar pabeigt failsistēmas pārbaudi.\n"
-#~ "Kļūda:"
-
-#
-#~ msgid ""
-#~ "Unable to initialize harddisk.\n"
-#~ "Error: "
-#~ msgstr ""
-#~ "Nevar inicializēt cieto disku. \n"
-#~ "Kļūca:"
-
-#
-#~ msgid "Unmount failed"
-#~ msgstr "Nomontēšana neizdevās"
-
-#, fuzzy
-#~ msgid "Update done..."
-#~ msgstr "Atjaunināt"
-
-#
-#, fuzzy
-#~ msgid "Updating, please wait..."
-#~ msgstr "Lūdzu gaidiet..."
-
-#
-#~ msgid "Use non-smooth winding at speeds above"
-#~ msgstr "Izmantot 'attēlu virknes' režīmu pie augstākminētajiem ātrumiem"
-
-#
-#~ msgid ""
-#~ "We will now test if your TV can also display this resolution at 50hz. If "
-#~ "your screen goes black, wait 20 seconds and it will switch back to 60hz.\n"
-#~ "Please press OK to begin."
-#~ msgstr ""
-#~ "Tagad pārbaudīsim vai Jūsu TV var attēlot šo izšķirtspēju arī pie 50 Hz. "
-#~ "Ja ekrāns paliek melns, pagaidiet 20 sekundes un tas pārslēgsies atpakaļ "
-#~ "uz 60 Hz.\n"
-#~ "Lūdzu spiediet OK, lai sāktu."
-
-#
-#~ msgid "Wireless"
-#~ msgstr "Bezvadu"
-
-#
-#~ msgid "Writing NFI image file to flash completed"
-#~ msgstr "NFI imidža datnes rakstīšana iekšējā atmiņā pabeigta"
-
-#
-#~ msgid ""
-#~ "You do not seem to have a harddisk in your Dreambox. So backing up to a "
-#~ "harddisk is not an option for you."
-#~ msgstr ""
-#~ "Izskatās, ka šajā Dreambox nav uzstādīts cietais disks. Tādēļ "
-#~ "dublējumkopijas veidošana uz cietā diska jums nav pieejama."
-
-#
-#~ msgid ""
-#~ "You have chosen to backup to a compact flash card. The card must be in "
-#~ "the slot. We do not verify if it is really used at the moment. So better "
-#~ "backup to the harddisk!\n"
-#~ "Please press OK to start the backup now."
-#~ msgstr ""
-#~ "Jūs izvēlējāties veidot dublējumkopiju CF kartē. Kartei jābūt ievietotai "
-#~ "slotā. Mēs nevaram pārbaudīt, vai tā patiešām ir pieejama. Tādēļ iesakām "
-#~ "veidot dublējumkopiju uz cietā diska!\n"
-#~ "Lūdzu spiediet OK, lai sāktu dublējumkopijas veidošanu."
-
-#
-#~ msgid ""
-#~ "You have chosen to backup to an usb drive. Better backup to the "
-#~ "harddisk!\n"
-#~ "Please press OK to start the backup now."
-#~ msgstr ""
-#~ "Jūs izvēlējāties veidot dublējumkopiju USB atmiņā. Labāk izmantojiet šim "
-#~ "mērķim cieto disku!\n"
-#~ "Lūdzu spiediet OK, lai sāktu dublējumkopijas veidošanu."
-
-#
-#~ msgid ""
-#~ "You have chosen to backup to your harddisk. Please press OK to start the "
-#~ "backup now."
-#~ msgstr ""
-#~ "Jūs izvēlējāties veidot dublējumkopiju uz cietā diska! Lūdzu spiediet OK, "
-#~ "lai sāktu dublējumkopijas veidošanu."
-
-#
-#~ msgid ""
-#~ "You need to set a pin code and hide it from your children.\n"
-#~ "\n"
-#~ "Do you want to set the pin now?"
-#~ msgstr ""
-#~ "Jums vajag uzstādīt PIN kodu un nerādīt to bērniem.\n"
-#~ "\n"
-#~ "Vai vēlaties tagad uzstādīt PIN kodu?"
-
-#
-#~ msgid "Your TV works with 50 Hz. Good!"
-#~ msgstr "Jūsu TV darbojas ar 50 Hz. Labi!"
-
-#
-#~ msgid ""
-#~ "Your network configuration has been activated.\n"
-#~ "A second configured interface has been found.\n"
-#~ "\n"
-#~ "Do you want to disable the second network interface?"
-#~ msgstr ""
-#~ "Tīkla konfigurācija aktivizēta.\n"
-#~ "Atrasts otrs konfigurētais interfeiss.\n"
-#~ "\n"
-#~ "Vai vēlaties deaktivizēt otru tīkla interfeisu?"
-
-#
-#~ msgid "choose destination directory"
-#~ msgstr "izvēlēties galamērķa mapi"
-
-#
-#~ msgid "committed, toneburst"
-#~ msgstr "aktīvā, toņsignāls"
-
-#
-#~ msgid "committed, uncommitted, toneburst"
-#~ msgstr "aktīvā, pasīvā, toņsignāls"
-
-#
-#~ msgid "exceeds dual layer medium!"
-#~ msgstr "pārsniedz divslāņu datu nesēja ietilpību!"
-
-#
-#~ msgid "exit network adapter setup menu"
-#~ msgstr "iziet no tīkla adaptera iestatīšanas izvēlnes"
-
-#
-#~ msgid "failed"
-#~ msgstr "neizdevās"
-
-#
-#~ msgid "hidden network"
-#~ msgstr "slēpts tīkls"
-
-#
-#~ msgid "hide extended description"
-#~ msgstr "slēpt paplašināto aprakstu"
-
-#
-#~ msgid "hour"
-#~ msgstr "stunda"
-
-#
-#~ msgid "hours"
-#~ msgstr "stundas"
-
-#
-#~ msgid ""
-#~ "incoming call!\n"
-#~ "%s calls on %s!"
-#~ msgstr ""
-#~ "ienākošais zvans!\n"
-#~ "%s zvani uz %s!"
-
-#
-#~ msgid "menulist"
-#~ msgstr "izvēlņu saraksts"
-
-#
-#~ msgid "minute"
-#~ msgstr "minūte"
-
-#
-#~ msgid "no HDD found"
-#~ msgstr "cietais disks nav atrasts"
-
-#
-#~ msgid "open virtual keyboard input help"
-#~ msgstr "atvērt virtuālās klaviatūras ievades palīgu"
-
-#
-#~ msgid "second"
-#~ msgstr "sekunde"
-
-#
-#~ msgid "select .NFI flash file"
-#~ msgstr "izvēlēties .NFI lādējamo datni"
-
-#
-#~ msgid "select image from server"
-#~ msgstr "izvēlēties imidžu no servera"
-
-#
-#~ msgid "service pin"
-#~ msgstr "kanāla PIN"
-
-#
-#~ msgid "setup pin"
-#~ msgstr "iestatnes PIN"
-
-#
-#~ msgid "show all"
-#~ msgstr "rādīt visu"
-
-#
-#~ msgid "show first selected tag"
-#~ msgstr "rādīt pirmo izvēlēto etiķeti"
-
-#
-#~ msgid "show second selected tag"
-#~ msgstr "rādīt otro izvēlēto etiķeti"
-
-#
-#~ msgid "toneburst, committed"
-#~ msgstr "toņsignāls, aktīvā"
-
-#
-#~ msgid "toneburst, committed, uncommitted"
-#~ msgstr "toņsignāls, aktīvā, pasīvā"
-
-#
-#~ msgid "toneburst, uncommitted, commmitted"
-#~ msgstr "toņsignāls, pasīvā, aktīvā"
-
-#
-#~ msgid "uncommitted, committed, toneburst"
-#~ msgstr "pasīvā, aktīvā, toņsignāls"
-
-#
-#~ msgid "until restart"
-#~ msgstr "līdz restartēšanai"

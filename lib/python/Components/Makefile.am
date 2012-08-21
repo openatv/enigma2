@@ -19,4 +19,4 @@ install_PYTHON = \
 	Element.py Playlist.py ParentalControl.py ParentalControlList.py \
 	Ipkg.py SelectionList.py Scanner.py SystemInfo.py DreamInfoHandler.py \
 	Task.py language_cache.py Console.py ResourceManager.py TuneTest.py \
-	Keyboard.py Sensors.py FanControl.py HdmiCec.py
+	Keyboard.py Sensors.py FanControl.py HdmiCec.py RcModel.py

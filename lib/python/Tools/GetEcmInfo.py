@@ -61,30 +61,28 @@ class GetEcmInfo:
 							self.textvalue = decode
 					else:
 						self.textvalue = decode
+					if ecm[1].startswith('SysID'):
+						info['prov'] = ecm[1].strip()[6:]
+					if info['response'] and 'CaID 0x' in ecm[0] and 'pid 0x' in ecm[0]:
+						self.textvalue = self.textvalue + " (0.%ss)" % info['response']
+						info['caid'] = ecm[0][ecm[0].find('CaID 0x')+7:ecm[0].find(',')]
+						info['pid'] = ecm[0][ecm[0].find('pid 0x')+6:ecm[0].find(' =')]
+						info['provid'] = info.get('prov', '0')[:4]
 				else:
-					source = info.get('source', '')
+					source = info.get('source', None)
 					if source:
 						# MGcam
-						eEnc  = ""
-						eCaid = ""
-						eSrc = ""
-						eTime = ""
+						info['caid'] = info['caid'][2:]
+						info['pid'] = info['pid'][2:]
+						info['provid'] = info['prov'][2:]
+						time = " ?"
 						for line in ecm:
-							line = line.strip() 
-							if line.find('ECM') != -1:
-								line = line.split(' ')
-								eEnc = line[1]
-								eCaid = line[5][2:-1]
-								continue
-							if line.find('source') != -1:
-								line = line.split(' ')
-								eSrc = line[4][:-1]
-								continue
 							if line.find('msec') != -1:
 								line = line.split(' ')
-								eTime = line[0]
-								continue
-						self.textvalue = "(%s %s %.3f @ %s)" % (eEnc,eCaid,(float(eTime)/1000),eSrc)
+								if line[0]:
+									time = " (%ss)" % (float(line[0])/1000)
+									continue
+						self.textvalue = source + time
 					else:
 						reader = info.get('reader', '')
 						if reader:

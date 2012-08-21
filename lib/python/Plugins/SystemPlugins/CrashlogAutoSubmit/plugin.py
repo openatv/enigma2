@@ -23,7 +23,7 @@ config.plugins.crashlogautosubmit.sendlog = ConfigSelection(default = "rename", 
 	("delete", _("Delete crashlogs")), ("rename", _("Rename crashlogs"))])
 config.plugins.crashlogautosubmit.attachemail = ConfigYesNo(default = False)
 config.plugins.crashlogautosubmit.email = ConfigText(default = "myemail@home.com", fixed_size = False)
-config.plugins.crashlogautosubmit.name = ConfigText(default = "STB-BOX User", fixed_size = False)
+config.plugins.crashlogautosubmit.name = ConfigText(default = "Receiver User", fixed_size = False)
 config.plugins.crashlogautosubmit.sendAnonCrashlog = ConfigYesNo(default = True)
 config.plugins.crashlogautosubmit.addNetwork = ConfigYesNo(default = False)
 config.plugins.crashlogautosubmit.addWlan = ConfigYesNo(default = False)
@@ -176,7 +176,7 @@ class CrashlogAutoSubmitConfiguration(Screen, ConfigListScreen):
 			self.enableVKeyIcon()
 			self.showKeypad()
 		elif current == self.AnonCrashlogEntry:
-			self["status"].setText(_("Adds STB-GUI settings and STB-BOX model informations like SN, rev... if enabled."))
+			self["status"].setText(_("Adds enigma2 settings and receiver model informations like SN, rev... if enabled."))
 			self.disableVKeyIcon()
 		elif current == self.NetworkEntry:
 			self["status"].setText(_("Adds network configuration if enabled."))
@@ -241,12 +241,12 @@ def mxServerFound(mxServer,session):
 	crashLogFilelist = []
 	message = StringIO.StringIO()
 	writer = MimeWriter.MimeWriter(message)
-	mailFrom = "STB-GUI@crashlog.openmips.com"
-	mailTo = "STB-GUI@crashlog.openmips.com"
+	mailFrom = "enigma2@crashlog.dream-multimedia-tv.de"
+	mailTo = "enigma2@crashlog.dream-multimedia-tv.de"
 	subject = "Automatically generated crashlogmail"
 	# Define the main body headers.
-	writer.addheader('To', "dream-multimedia-crashlogs <STB-GUI@crashlog.openmips.com>")
-	writer.addheader('From', "CrashlogAutoSubmitter <STB-GUI@crashlog.openmips.com>")
+	writer.addheader('To', "dream-multimedia-crashlogs <enigma2@crashlog.dream-multimedia-tv.de>")
+	writer.addheader('From', "CrashlogAutoSubmitter <enigma2@crashlog.dream-multimedia-tv.de>")
 	writer.addheader('Subject', str(subject))
 	writer.addheader('Date', smtp.rfc822date())
 	if config.plugins.crashlogautosubmit.attachemail.value is True:
@@ -264,7 +264,7 @@ def mxServerFound(mxServer,session):
 		user_email = ""
 	else:
 		user_email = "\nUser supplied email address: " + str(config.plugins.crashlogautosubmit.email.value)
-	if str(config.plugins.crashlogautosubmit.name.value) ==  "STB-BOX User":
+	if str(config.plugins.crashlogautosubmit.name.value) ==  "Receiver User":
 		user_name = ""
 	else:
 		user_name = "\n\nOptional supplied name: " + str(config.plugins.crashlogautosubmit.name.value)
@@ -301,7 +301,7 @@ def mxServerFound(mxServer,session):
 				subpart = writer.nextpart()
 				subpart.addheader("Content-Transfer-Encoding", 'base64')
 				subpart.addheader("Content-Disposition",'attachment; filename="%s"' % filename)
-				subpart.addheader('Content-Description', 'STB-GUI crashlog')
+				subpart.addheader('Content-Description', 'Enigma2 crashlog')
 				body = subpart.startbody("%s; name=%s" % ('application/octet-stream', filename))
 				mimetools.encode(open(crashlog, 'rb'), body, 'base64')
 		writer.lastpart()
@@ -330,13 +330,13 @@ def mxServerFound(mxServer,session):
 			print "[CrashlogAutoSubmit] - not sending crashlogs for this time."
 
 	for crashlog in os.listdir('/media/hdd'):
-		if crashlog.startswith("STB-GUI_crash_") and crashlog.endswith(".log"):
+		if crashlog.startswith("enigma2_crash_") and crashlog.endswith(".log"):
 			print "[CrashlogAutoSubmit] - found crashlog: ",os.path.basename(crashlog)
 			crashLogFilelist.append('/media/hdd/' + crashlog)
 
 	if len(crashLogFilelist):
 		if config.plugins.crashlogautosubmit.sendmail.value == "send":
-			Notifications.AddNotificationWithCallback(handleAnswer, ChoiceBox, title=_("Crashlogs found!\nSend them to Dream Multimedia?"), list = list)
+			Notifications.AddNotificationWithCallback(handleAnswer, ChoiceBox, title=_("Crashlogs found!\nSend them to the Image Developper?"), list = list)
 		elif config.plugins.crashlogautosubmit.sendmail.value == "send_always":
 			send_mail()
 	else:

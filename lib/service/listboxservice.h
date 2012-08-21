@@ -75,8 +75,6 @@ public:
 
 	int setCurrentMarked(bool);
 
-	void setNumberOffset(int offset) { m_numberoffset = offset; }
-	
 	int getItemHeight() { return m_itemheight; }
 	void setItemHeight(int height);
 
@@ -145,8 +143,6 @@ private:
 
 		/* support for movemode */
 	bool m_current_marked;
-
-	int m_numberoffset;
 
 	eServiceReference m_is_playable_ignore;
 

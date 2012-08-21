@@ -251,11 +251,6 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 	}
 	if (score && direct_connected)
 		score += 5; // increase score for tuners with direct sat connection
-	if (score && eDVBFrontend::getPreferredFrontend() >= 0 && slot_id == (1 << eDVBFrontend::getPreferredFrontend()))
-	{
-		/* make 'sure' we always prefer this frontend */
-		score += 100000;
-	}
 	eSecDebugNoSimulate("final score %d", score);
 	return score;
 }

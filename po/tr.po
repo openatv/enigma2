@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-28 23:25+0200\n"
+"POT-Creation-Date: 2012-08-05 10:00+0200\n"
 "PO-Revision-Date: 2011-09-07 11:13+0200\n"
 "Last-Translator: Zulfikar <zveyis@gmail.com>\n"
 "Language-Team: http://hobiagaci.com <z.veyisoglu@hobiagaci.com>\n"
@@ -33,13 +33,10 @@ msgstr ""
 "\n"
 "Lütfen OK'a bastıktan sonra bekleyin!"
 
-#
 msgid ""
 "\n"
-"Backup your Dreambox settings."
+"Backup your receiver settings."
 msgstr ""
-"\n"
-"Dreambox ayarlarınızı yedekleyin."
 
 #
 msgid ""
@@ -49,21 +46,15 @@ msgstr ""
 "\n"
 "Güncelleme sunucusu adresini düzenleyin."
 
-#
 msgid ""
 "\n"
-"Manage extensions or plugins for your Dreambox"
+"Manage extensions or plugins for your receiver"
 msgstr ""
-"\n"
-"Dreambox eklentilerinizi yönetin"
 
-#
 msgid ""
 "\n"
-"Online update of your Dreambox software."
+"Online update of your receiver software."
 msgstr ""
-"\n"
-"Dreambox yazılımını çevrimiçi güncelleyin."
 
 #
 msgid ""
@@ -76,26 +67,20 @@ msgstr ""
 #
 msgid ""
 "\n"
-"Restore your Dreambox settings."
-msgstr ""
-"\n"
-"Dreambox ayarlarınızı geri yükleyin."
-
-#
-msgid ""
-"\n"
-"Restore your Dreambox with a new firmware."
-msgstr ""
-"\n"
-"Dreambox yeni bellenimini, sistem yedeğinizle birlikte geri yükleyin."
-
-#
-msgid ""
-"\n"
 "Restore your backups by date."
 msgstr ""
 "\n"
 "Yedeklerinizi tarihe göre geri yükleyin."
+
+msgid ""
+"\n"
+"Restore your receiver settings."
+msgstr ""
+
+msgid ""
+"\n"
+"Restore your receiver with a new firmware."
+msgstr ""
 
 #
 msgid ""
@@ -169,6 +154,9 @@ msgstr ""
 msgid "%2d:%02d:%02d"
 msgstr ""
 
+msgid "%A %d %B"
+msgstr ""
+
 #. TRANSLATORS: long date representations dayname daynum monthname in strftime() format! See 'man strftime'
 msgid "%A %e %B"
 msgstr ""
@@ -223,6 +211,9 @@ msgstr[0] ""
 msgid "%d services found!"
 msgstr "%d kanal bulundu!"
 
+msgid "%d-%m"
+msgstr ""
+
 #
 msgid "%d.%B %Y"
 msgstr "%d.%B %Y"
@@ -235,6 +226,10 @@ msgstr ""
 #, python-format
 msgid "%s (%s)\n"
 msgstr "%s (%s)\n"
+
+#, python-format
+msgid "%s/%s: %s"
+msgstr ""
 
 #
 msgid "(ZAP)"
@@ -403,21 +398,15 @@ msgstr ""
 msgid "A demo plugin for TPM usage."
 msgstr ""
 
-#
 msgid ""
 "A finished record timer wants to set your\n"
-"Dreambox to standby. Do that now?"
+"receiver to standby. Do that now?"
 msgstr ""
-"Bitmiş olan bir kayıt zamanlayıcısı Dreambox'ı\n"
-"hazırda bekleme kipine almak istiyor. Şimdi alınsın mı?"
 
-#
 msgid ""
 "A finished record timer wants to shut down\n"
-"your Dreambox. Shutdown now?"
+"your receiver. Shutdown now?"
 msgstr ""
-"Bitmiş olan bir kayıt zamanlayıcısı Dreambox'ı\n"
-"kapatmak istiyor. Şimdi kapatılsın mı?"
 
 msgid "A graphical EPG for all services of an specific bouquet"
 msgstr "Belirtilen buketteki tüm kanallar için görsel EPG"
@@ -477,21 +466,15 @@ msgstr ""
 "\n"
 "İkinci ağ arayüzünü devre dışı bırakmak istiyor musunuz?"
 
-#
 msgid ""
 "A sleep timer wants to set your\n"
-"Dreambox to standby. Do that now?"
+"receiver to standby. Do that now?"
 msgstr ""
-"Zamanlanmış bir görev Dreambox'ı\n"
-"hazırda bekleme kipine almak istiyor. Şimdi alınsın mı?"
 
-#
 msgid ""
 "A sleep timer wants to shut down\n"
-"your Dreambox. Shutdown now?"
+"your receiver. Shutdown now?"
 msgstr ""
-"Zamanlanmış bir görev Dreambox'ı\n"
-"kapatmak istiyor. Şimdi kapatılsın mı?"
 
 msgid "A small overview of the available icon states and actions."
 msgstr "İkonların anlamlarını ve görevlerini burada görebilirsiniz."
@@ -605,13 +588,10 @@ msgstr "Favorilere ekle"
 msgid "Add/Remove timer for current event"
 msgstr ""
 
-#
 msgid ""
-"Adds enigma2 settings and dreambox model informations like SN, rev... if "
+"Adds enigma2 settings and receiver model informations like SN, rev... if "
 "enabled."
 msgstr ""
-"Evet derseniz, enigma2 ayarlarınız ve dreambox model bilgisi (SN, "
-"revizyon..) gönderilecektir."
 
 #
 msgid "Adds network configuration if enabled."
@@ -668,14 +648,10 @@ msgstr "Eylem bittikten sonra"
 msgid "After pressing OK, please wait!"
 msgstr ""
 
-#
 msgid ""
 "After the start wizard is completed, you need to protect single services. "
-"Refer to your dreambox's manual on how to do that."
+"Refer to your receiver's manual on how to do that."
 msgstr ""
-"Sihirbaz tamamlandıktan sonra, kanal korumasına ihtiyacınız olacak. Nasıl "
-"yapılacağını öğrenmek istiyorsanız Dreambox'ınızın kullanım kılavuzuna "
-"başvurun."
 
 #
 msgid "Album"
@@ -688,6 +664,9 @@ msgstr "Tümü"
 #
 msgid "All Satellites"
 msgstr "Tüm uydular"
+
+msgid "All ages"
+msgstr ""
 
 msgid "Allocate"
 msgstr ""
@@ -786,6 +765,9 @@ msgstr ""
 #
 msgid "Artist"
 msgstr "Sanatçı"
+
+msgid "Arts/Culture"
+msgstr ""
 
 #
 msgid "Ask before shutdown:"
@@ -1153,6 +1135,9 @@ msgstr "Kontrol et"
 msgid "Checking Filesystem..."
 msgstr "Dosya sistemi kontrol ediliyor..."
 
+msgid "Children/Youth"
+msgstr ""
+
 #
 msgid "Choose Tuner"
 msgstr "Tuner Seç"
@@ -1292,9 +1277,6 @@ msgstr "İletişim"
 msgid "Compact Flash"
 msgstr "Compact Flash"
 
-msgid "Compatibilty Mode"
-msgstr ""
-
 #
 msgid "Complete"
 msgstr "Tamamı"
@@ -1380,6 +1362,9 @@ msgstr "Arkaplanda devam et"
 msgid "Continue playing"
 msgstr "Oynatmaya devam et"
 
+msgid "Continues play (loop)"
+msgstr ""
+
 #
 msgid "Contrast"
 msgstr "Kontrast"
@@ -1396,9 +1381,8 @@ msgstr ""
 msgid "Copy"
 msgstr ""
 
-#
-msgid "Could not connect to Dreambox .NFI Image Feed Server:"
-msgstr "Dreambox .NFI bellenim sunucusuna bağlanamıyor:"
+msgid "Could not connect to receiver .NFI Image Feed Server:"
+msgstr ""
 
 #
 msgid "Could not load Medium! No disc inserted?"
@@ -1433,13 +1417,10 @@ msgstr "Hata günlüğü gönderme ayarları"
 msgid "CrashlogAutoSubmit settings..."
 msgstr "Hata günlüğü gönderme ayarları"
 
-#
 msgid ""
 "Crashlogs found!\n"
-"Send them to Dream Multimedia?"
+"Send them to the Image Developper?"
 msgstr ""
-"Hata günlüğü bulundu!\n"
-"Dream Multimedia'ya göndermek ister misiniz?"
 
 #
 msgid "Create DVD-ISO"
@@ -1475,6 +1456,9 @@ msgstr "Geçerli Transponder"
 
 msgid "Current device: "
 msgstr "Geçerli aygıt:"
+
+msgid "Current event EPG"
+msgstr ""
 
 #
 msgid "Current settings:"
@@ -1587,9 +1571,6 @@ msgstr "Danca"
 #
 msgid "Date"
 msgstr "Tarih"
-
-msgid "Date/Time"
-msgstr ""
 
 #
 msgid "Decide if you want to enable or disable the Cleanup Wizard."
@@ -1744,9 +1725,6 @@ msgstr "Kapat"
 msgid "Disable Picture in Picture"
 msgstr "Resim içinde resim (PIP) 'i kapat"
 
-msgid "Disable Selecting Expired Events"
-msgstr ""
-
 msgid "Disable background scanning"
 msgstr ""
 
@@ -1792,6 +1770,9 @@ msgstr "OLED ekran ayarları"
 #
 msgid "Display and Userinterface"
 msgstr "Görüntü yönetimi"
+
+msgid "Display message before next played movie"
+msgstr ""
 
 #
 #, python-format
@@ -1872,9 +1853,8 @@ msgstr "Başka kanal araması yapacak mısınız?"
 msgid "Do you want to download the image to %s ?"
 msgstr "%s bellenimini indirmek istiyor musunuz?"
 
-#
-msgid "Do you want to enable the parental control feature on your dreambox?"
-msgstr "Ebeveyn kontrolü özelliğini etkinleştirmek ister misiniz?"
+msgid "Do you want to enable the parental control feature on your receiver?"
+msgstr ""
 
 #
 msgid "Do you want to install the package:\n"
@@ -1888,9 +1868,8 @@ msgstr "DVD'yi oynatmak istiyor musunuz?"
 msgid "Do you want to preview this DVD before burning?"
 msgstr "DVD'yi yazmadan önce önizleme yapmak istiyor musunuz?"
 
-#
-msgid "Do you want to reboot your Dreambox?"
-msgstr "Dreambox'ı yeniden başlatmak istiyor musunuz?"
+msgid "Do you want to reboot your receiver?"
+msgstr ""
 
 #
 msgid "Do you want to remove the package:\n"
@@ -1912,17 +1891,13 @@ msgstr ""
 "İhtiyaç duyduğumuzda size ulaşabilmemizi istiyorsanız, eposta adresinizi ve "
 "adınızı giriniz."
 
-#
-msgid "Do you want to update your Dreambox?"
-msgstr "Dreambox'ı güncellemek istiyor musunuz?"
+msgid "Do you want to update your receiver?"
+msgstr ""
 
-#
 msgid ""
-"Do you want to update your Dreambox?\n"
+"Do you want to update your receiver?\n"
 "After pressing OK, please wait!"
 msgstr ""
-"Dreambox'ı güncellemek istiyor musunuz?\n"
-"Lütfen OK'a bastıktan sonra bekleyin!"
 
 #
 msgid "Do you want to upgrade the package:\n"
@@ -1988,14 +1963,6 @@ msgid "Downloading plugin information. Please wait..."
 msgstr "Eklenti bilgisi indiriliyor. Lütfen bekleyin..."
 
 #
-msgid "Dreambox format data DVD (HDTV compatible)"
-msgstr "Dreambox DVD biçimi (HDTV uyumlu)"
-
-#
-msgid "Dreambox software because updates are available."
-msgstr "Dreambox güncellemelerini yükleyin"
-
-#
 msgid "Dutch"
 msgstr "Flemenkçe"
 
@@ -2015,6 +1982,9 @@ msgid "EPG language selection 1"
 msgstr ""
 
 msgid "EPG language selection 2"
+msgstr ""
+
+msgid "EPG settings"
 msgstr ""
 
 #
@@ -2037,9 +2007,6 @@ msgstr "Düzenle"
 msgid "Edit DNS"
 msgstr "DNS Düzenle"
 
-msgid "Edit Search Title"
-msgstr ""
-
 #
 msgid "Edit Title"
 msgstr "Başlık Düzenle"
@@ -2059,13 +2026,11 @@ msgstr "Kanal listesini düzenle"
 msgid "Edit settings"
 msgstr "Ayarları düzenle"
 
-#
-msgid "Edit the Nameserver configuration of your Dreambox.\n"
-msgstr "Dreambox'ınızın isim sunucu (DNS) ayarlarını yapılandırın.\n"
+msgid "Edit the Nameserver configuration of your receiver.\n"
+msgstr ""
 
-#
-msgid "Edit the network configuration of your Dreambox.\n"
-msgstr "Dreambox'ınızın ağ ayarlarını yapılandırın.\n"
+msgid "Edit the network configuration of your receiver.\n"
+msgstr ""
 
 #
 msgid "Edit title"
@@ -2074,6 +2039,9 @@ msgstr "Başlığı düzenle"
 #
 msgid "Edit upgrade source url."
 msgstr "Güncelleme sunucusu adresini düzenleyin."
+
+msgid "Education/Science/..."
+msgstr ""
 
 #
 msgid "Electronic Program Guide"
@@ -2098,9 +2066,6 @@ msgid "Enable MHW EPG"
 msgstr ""
 
 msgid "Enable Netmed EPG"
-msgstr ""
-
-msgid "Enable Picon"
 msgstr ""
 
 msgid "Enable ViaSat EPG"
@@ -2220,16 +2185,7 @@ msgstr "Estçe"
 msgid "Ethernet network interface"
 msgstr "Ağ arayüzü"
 
-msgid "Event"
-msgstr ""
-
-msgid "Event Fontsize"
-msgstr ""
-
 msgid "Event Fontsize (relative to skin size)"
-msgstr ""
-
-msgid "Event Info"
 msgstr ""
 
 #
@@ -2240,9 +2196,6 @@ msgid "Eventview menu"
 msgstr ""
 
 msgid "Everywhere"
-msgstr ""
-
-msgid "Exact Search"
 msgstr ""
 
 #
@@ -2581,7 +2534,7 @@ msgstr ""
 msgid "GotoX calibration"
 msgstr ""
 
-msgid "Graph MEpg Settings"
+msgid "GraphMultiEpg Settings"
 msgstr ""
 
 #
@@ -2636,9 +2589,6 @@ msgstr "Gizlenmiş ağ"
 msgid "Hide CI messages"
 msgstr ""
 
-msgid "Hide Expired Title"
-msgstr ""
-
 msgid "Hide zap errors"
 msgstr ""
 
@@ -2684,9 +2634,6 @@ msgstr "Renk tonu"
 #
 msgid "Hungarian"
 msgstr "Macarca"
-
-msgid "IMDB"
-msgstr ""
 
 #
 msgid "IP Address"
@@ -2943,15 +2890,12 @@ msgstr "İtalyanca"
 msgid "Items per Page "
 msgstr ""
 
+msgid "Items per Page for Listscreen"
+msgstr ""
+
 #
 msgid "Job View"
 msgstr "Görev Göster"
-
-msgid "Jump to First Service"
-msgstr ""
-
-msgid "Jump to Last Service"
-msgstr ""
 
 #
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
@@ -3037,6 +2981,9 @@ msgstr "DVD Oynatıcıyı Kapat?"
 msgid "Left"
 msgstr "Sol"
 
+msgid "Leisure hobies"
+msgstr ""
+
 #
 #. TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
 msgid "Letterbox"
@@ -3086,6 +3033,9 @@ msgstr "DVD Menüsü ile bağlı başlıklar"
 msgid "List available networks"
 msgstr "Kullanılabilir ağ listesi"
 
+msgid "List mode"
+msgstr ""
+
 #
 msgid "List of Storage Devices"
 msgstr "Depolama Aygıtları"
@@ -3095,6 +3045,9 @@ msgstr ""
 
 #, python-format
 msgid "List version %d, found %d channels"
+msgstr ""
+
+msgid "Listscreen default at start user interface"
 msgstr ""
 
 #
@@ -3235,9 +3188,6 @@ msgstr ""
 msgid "Menu"
 msgstr "Menü"
 
-msgid "Merge Short/Long Descriptions"
-msgstr ""
-
 #
 msgid "Message"
 msgstr "Mesaj"
@@ -3245,6 +3195,10 @@ msgstr "Mesaj"
 #
 msgid "Message..."
 msgstr "Mesaj..."
+
+#, python-format
+msgid "Minimum age %d years"
+msgstr ""
 
 msgid "Missing "
 msgstr ""
@@ -3323,6 +3277,9 @@ msgstr ""
 msgid "Movie location"
 msgstr "Film konumu"
 
+msgid "Movie/Drama"
+msgstr ""
+
 #
 msgid "Movielist menu"
 msgstr "Film Listesi Menüsü"
@@ -3360,6 +3317,9 @@ msgstr "Çoklandırıcı"
 #
 msgid "Multisat"
 msgstr "Çoklu uydu"
+
+msgid "Music/Ballet/Dance"
+msgstr ""
 
 #
 msgid "Mute"
@@ -3484,12 +3444,12 @@ msgstr "Yeni şifre"
 msgid "New version:"
 msgstr "Yeni sürüm:"
 
+msgid "News Current Affairs"
+msgstr ""
+
 #
 msgid "Next"
 msgstr "Sonraki"
-
-msgid "Next Bouquet"
-msgstr ""
 
 #
 msgid "No"
@@ -3666,9 +3626,8 @@ msgstr "Hayır, ama en başından başlat"
 msgid "No, do nothing."
 msgstr "Hayır, birşey yapma"
 
-#
-msgid "No, just start my dreambox"
-msgstr "Hayır, Dreambox'ımı şimdi başlat"
+msgid "No, just start my receiver"
+msgstr ""
 
 msgid "No, never"
 msgstr "Hayır, hiçbir zaman"
@@ -3693,6 +3652,9 @@ msgstr "Yok"
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right)
 msgid "Nonlinear"
 msgstr "Doğrusal olmayan"
+
+msgid "Normal mode"
+msgstr ""
 
 #
 msgid "North"
@@ -3723,6 +3685,9 @@ msgstr ""
 "Lütfen kanal araması yapmadan önce tuner kurulumunuzu tamamlayın."
 
 msgid "Nothing to upgrade"
+msgstr ""
+
+msgid "Now"
 msgstr ""
 
 #
@@ -3783,7 +3748,7 @@ msgstr ""
 msgid "On"
 msgstr "Açık"
 
-msgid "On Bouquet Switch goto first service"
+msgid "On end of movie"
 msgstr ""
 
 #
@@ -3861,18 +3826,6 @@ msgstr "Paket yönetimi"
 msgid "Packet manager"
 msgstr "Paket yönetimi"
 
-msgid "Page Down"
-msgstr ""
-
-msgid "Page Left"
-msgstr ""
-
-msgid "Page Right"
-msgstr ""
-
-msgid "Page Up"
-msgstr ""
-
 #
 #. TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
 msgid "Pan&Scan"
@@ -3898,9 +3851,6 @@ msgstr "Ebeveyn kontrolü kurulumu"
 msgid "Parental control type"
 msgstr "Ebeveyn kontrolü tipi"
 
-msgid "Partial Search"
-msgstr ""
-
 #
 msgid "Password"
 msgstr "Parola"
@@ -3925,6 +3875,12 @@ msgstr "Telefon numarası"
 #
 msgid "PiPSetup"
 msgstr "PiP Kurulumu"
+
+msgid "Picon"
+msgstr ""
+
+msgid "Picon and Service Name"
+msgstr ""
 
 #
 msgid "PicturePlayer"
@@ -3963,6 +3919,12 @@ msgid "Play audio in background"
 msgstr ""
 
 msgid "Play next"
+msgstr ""
+
+msgid "Play next (return to movie list)"
+msgstr ""
+
+msgid "Play next (return to previous service)"
 msgstr ""
 
 msgid "Play previous"
@@ -4081,6 +4043,9 @@ msgstr "Devam etmek için lütfen OK'a basın"
 #
 msgid "Please press OK!"
 msgstr "Lütfen OK'a basın!"
+
+msgid "Please select a default EPG type..."
+msgstr ""
 
 #
 msgid "Please select a playlist to delete..."
@@ -4372,9 +4337,6 @@ msgstr "Önizleme"
 msgid "Preview menu"
 msgstr "Önizleme menüsü"
 
-msgid "Previous Bouquet"
-msgstr ""
-
 #
 msgid "Primary DNS"
 msgstr "Birincil DNS"
@@ -4454,6 +4416,13 @@ msgstr "Ram Disk"
 #
 msgid "Random"
 msgstr "Rastgele"
+
+#, python-format
+msgid "Rating defined by broadcaster - %d"
+msgstr ""
+
+msgid "Rating undefined"
+msgstr ""
 
 #
 msgid "Really close without saving settings?"
@@ -4654,6 +4623,9 @@ msgstr "İhtiyaç duyulan medya tipi:"
 msgid "Reread partition table"
 msgstr ""
 
+msgid "Reserved"
+msgstr ""
+
 #
 msgid "Reset"
 msgstr "Sıfırla"
@@ -4779,9 +4751,6 @@ msgstr ""
 msgid "Rotor turning speed"
 msgstr "Motor dönüş hızı"
 
-msgid "Round Start Time To"
-msgstr ""
-
 msgid "Round start time on"
 msgstr ""
 
@@ -4860,9 +4829,6 @@ msgstr "Kaydet"
 #
 msgid "Save Playlist"
 msgstr "Oynatma listesini kaydet"
-
-msgid "Scale Picon"
-msgstr ""
 
 #
 msgid "Scaler sharpness"
@@ -4991,10 +4957,6 @@ msgstr ""
 "yapar"
 
 #
-msgid "Search"
-msgstr "Ara"
-
-#
 msgid "Search east"
 msgstr "Doğu'yu ara"
 
@@ -5056,6 +5018,9 @@ msgid "Select channel to record from"
 msgstr "Kaydın yapılacağı kanalı seçin"
 
 msgid "Select copy destination for:"
+msgstr ""
+
+msgid "Select default EPG type..."
 msgstr ""
 
 msgid "Select desired image from feed list"
@@ -5140,6 +5105,9 @@ msgstr "Sırpça"
 msgid "Service"
 msgstr "Kanal"
 
+msgid "Service Name"
+msgstr ""
+
 #
 msgid "Service Scan"
 msgstr "Kanal Arama"
@@ -5147,6 +5115,9 @@ msgstr "Kanal Arama"
 #
 msgid "Service Searching"
 msgstr "Uydu yapılandırma"
+
+msgid "Service Title mode"
+msgstr ""
 
 #
 msgid "Service has been added to the favourites."
@@ -5269,6 +5240,9 @@ msgstr ""
 msgid "Show EIT now/next in infobar"
 msgstr ""
 
+msgid "Show Games show"
+msgstr ""
+
 #
 msgid "Show Info"
 msgstr "Bilgiyi Göster"
@@ -5276,15 +5250,6 @@ msgstr "Bilgiyi Göster"
 #
 msgid "Show Message when Recording starts"
 msgstr "Zamanlanmış kayıt başladığında mesaj göster"
-
-msgid "Show Picons"
-msgstr ""
-
-msgid "Show Service Names "
-msgstr ""
-
-msgid "Show Service Title"
-msgstr ""
 
 #
 msgid "Show WLAN Status"
@@ -5356,9 +5321,8 @@ msgstr "Kablosuz ağ bağlantısı durumunu gösterir.\n"
 msgid "Shutdown"
 msgstr "Kapat"
 
-#
-msgid "Shutdown Dreambox after"
-msgstr "Zamanlayıcı süresi: "
+msgid "Shutdown receiver after"
+msgstr ""
 
 msgid "Side by Side"
 msgstr ""
@@ -5380,9 +5344,6 @@ msgstr "Sinyal:"
 #
 msgid "Similar"
 msgstr "Benzer"
-
-msgid "Similar Broadcast Search"
-msgstr ""
 
 #
 msgid "Similar broadcasts:"
@@ -5433,9 +5394,6 @@ msgstr "Görsel Arayüzler"
 msgid "Skip Empty Services"
 msgstr ""
 
-msgid "Skip Empty Services (may need restart)"
-msgstr ""
-
 #
 msgid "Sleep Timer"
 msgstr "Uyku zamanlayıcı"
@@ -5467,6 +5425,9 @@ msgstr "Yavaş"
 #
 msgid "Slow Motion speeds"
 msgstr "Ağır çekim hızları"
+
+msgid "Social/Political/Economics"
+msgstr ""
 
 msgid "SoftCam / CI"
 msgstr ""
@@ -5523,6 +5484,10 @@ msgstr ""
 "Üzgünüm seçtiğiniz yedekleme hedefinde yazma hakkı yok.\n"
 "Lütfen başka bir hedef seçin."
 
+msgid ""
+"Sorry, deleting directories can (for now) only be done through the trash can."
+msgstr ""
+
 #
 msgid "Sorry, no Details available!"
 msgstr "Üzgünüm, detay bilgisi yok!"
@@ -5572,6 +5537,9 @@ msgstr "İspanyolca"
 #
 msgid "Split preview mode"
 msgstr "Önizleme penceresini böl"
+
+msgid "Sports"
+msgstr ""
 
 #
 msgid "Standby"
@@ -5737,6 +5705,9 @@ msgstr ""
 msgid "Swap Services"
 msgstr "Ana <-> PiP yer değiştir"
 
+msgid "Swap from normal to list mode"
+msgstr ""
+
 #
 msgid "Swedish"
 msgstr "İsveççe"
@@ -5827,9 +5798,8 @@ msgstr "Test tipi"
 msgid "Test mode"
 msgstr "Test kipi"
 
-#
-msgid "Test the network configuration of your Dreambox.\n"
-msgstr "Dreambox'ınızın ağ yapılandırmasını test edin.\n"
+msgid "Test the network configuration of your receiver.\n"
+msgstr ""
 
 #
 msgid "Test-Messagebox?"
@@ -5852,24 +5822,16 @@ msgstr ""
 "Sihirbazı kullandığınız için teşekkür ederiz.\n"
 "Devam etmek için lütfen OK tuşuna basın."
 
-#
 msgid ""
 "Thank you for using the wizard. Your box is now ready to use.\n"
-"Please press OK to start using your Dreambox."
+"Please press OK to start using your receiver."
 msgstr ""
-"Sihirbazı kullandığınız için teşekkür ederiz. Dreambox'ınız kullanıma "
-"hazır.\n"
-"Dreambox'ınızı kullanmaya başlamak için OK tuşuna basın."
 
-#
 msgid ""
 "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to "
-"create a Dreambox format data DVD (which will not play in stand-alone DVD "
+"create a special format data DVD (which will not play in stand-alone DVD "
 "players) instead?"
 msgstr ""
-"Standart DVD biçimi H.264 (HDTV) video biçimini desteklemez. Bunun yerine "
-"Dreambox'ın DVD biçiminde (standart DVD oynatıcılarda oynatamazsınız) "
-"oluşturmak ister misiniz?"
 
 msgid ""
 "The NetworkWizard extension is not installed!\n"
@@ -5953,13 +5915,10 @@ msgstr ""
 msgid "The installation of the default services lists is finished."
 msgstr "Varsayılan kanal listesi kurulumu tamamlandı."
 
-#
 msgid ""
 "The installation of the default settings is finished. You can now continue "
-"configuring your Dreambox by pressing the OK button on the remote control."
+"configuring your receiver by pressing the OK button on the remote control."
 msgstr ""
-"Varsayılan kanal listesi kurulumu tamamlandı. OK tuşuna bastıktan sonra "
-"Dreambox'ınızı yapılandırmaya devam edebilirsiniz."
 
 msgid "The md5sum validation failed, the file may be corrupted!"
 msgstr ""
@@ -6088,17 +6047,12 @@ msgstr ""
 "içeriğini silecektir."
 
 #
-#, python-format
-msgid "This Dreambox can't decode %s streams!"
-msgstr "Dreambox %s streamlarını çözemez!"
-
-#
 msgid "This is step number 2."
 msgstr "2 numaralı adım."
 
 msgid ""
 "This plugin creates a USB stick which can be used to update the firmware of "
-"your Dreambox without the need for a network or WLAN connection.\n"
+"your receiver without the need for a network or WLAN connection.\n"
 "First, a USB stick needs to be prepared so that it becomes bootable.\n"
 "In the next step, an NFI image file can be downloaded from the update server "
 "and saved on the USB stick.\n"
@@ -6119,6 +6073,10 @@ msgstr "Bu eklenti yüklenebilir."
 
 msgid "This plugin will be removed."
 msgstr "Bu eklenti kaldırılabilir."
+
+#, python-format
+msgid "This receiver can't decode %s streams!"
+msgstr ""
 
 #
 msgid ""
@@ -6221,21 +6179,6 @@ msgstr ""
 msgid "Time/Date Input"
 msgstr "Tarih/Saat Girişi"
 
-msgid "Timeline 120 minutes"
-msgstr ""
-
-msgid "Timeline 180 minutes"
-msgstr ""
-
-msgid "Timeline 240 minutes"
-msgstr ""
-
-msgid "Timeline 300 minutes"
-msgstr ""
-
-msgid "Timeline 60 minutes"
-msgstr ""
-
 #
 msgid "Timer"
 msgstr "Zamanlayıcı"
@@ -6318,7 +6261,7 @@ msgid "To subtitle selection"
 msgstr ""
 
 msgid ""
-"To update your Dreambox firmware, please follow these steps:\n"
+"To update your receiver firmware, please follow these steps:\n"
 "1) Turn off your box with the rear power switch and make sure the bootable "
 "USB stick is plugged in.\n"
 "2) Turn mains back on and hold the DOWN button on the front panel pressed "
@@ -6563,18 +6506,15 @@ msgstr ""
 msgid "Upgrade finished."
 msgstr "Güncelleme tamamlandı."
 
-#
-msgid "Upgrade finished. Do you want to reboot your Dreambox?"
+msgid "Upgrade finished. Do you want to reboot your receiver?"
 msgstr ""
-"Güncelleme tamamlandı. Dreambox'ınızı yeniden başlatmak istiyor musunuz?"
 
 #
 msgid "Upgrading"
 msgstr "Yazılımı güncelle"
 
-#
-msgid "Upgrading Dreambox... Please wait"
-msgstr "Dreambox güncelleniyor... Lütfen bekleyin"
+msgid "Upgrading receiver... Please wait"
+msgstr ""
 
 #
 msgid "Use"
@@ -6590,9 +6530,6 @@ msgstr ""
 #
 msgid "Use Interface"
 msgstr "Arayüzü Kullan"
-
-msgid "Use Long Title"
-msgstr ""
 
 #
 msgid "Use Power Measurement"
@@ -6676,6 +6613,9 @@ msgid "Used service scan type"
 msgstr "Kullanılan kanal arama tipi"
 
 msgid "User - bouquets"
+msgstr ""
+
+msgid "User Interface"
 msgstr ""
 
 #
@@ -6954,60 +6894,36 @@ msgstr ""
 "Sonrasında kesmek istediğiniz bölümün sonuna konumlanın. Tekrar OK tuşuna "
 "basın ve 'kesimi burada bitir' deyin."
 
-#
 msgid ""
 "Welcome to the Image upgrade wizard. The wizard will assist you in upgrading "
-"the firmware of your Dreambox by providing a backup facility for your "
+"the firmware of your receiver by providing a backup facility for your "
 "current settings and a short explanation of how to upgrade your firmware."
 msgstr ""
-"Bellenim güncelleme sihirbazına hoş geldiniz. Bu sihirbaz, Dreambox bellenim "
-"güncellemesi esnasında, geçerli ayarlarınızın yedeğini almanıza imkan "
-"sağlayacak ve kısa açıklamalarla bellenimi nasıl güncelleyeceğinizi "
-"anlatacaktır."
 
-#
 msgid ""
 "Welcome to the cleanup wizard.\n"
 "\n"
 "We have detected that your available internal memory has dropped below 2MB.\n"
-"To ensure stable operation of your Dreambox, the internal memory should be "
+"To ensure stable operation of your receiver, the internal memory should be "
 "cleaned up.\n"
 "You can use this wizard to remove some extensions.\n"
 msgstr ""
-"Temizlik sihirbazına hoşgeldiniz.\n"
-"\n"
-"Cihazınızın kullanılabilir dahili belleği 2MB'ın altına düşmüş durumda.\n"
-"Dreambox'ınızın sağlıklı çalışabilmesi için, kullanılabilir dahili bellek "
-"alanının artırılması gerekmektedir.\n"
-"Bu sihirbazı kullanarak ihtiyaç duymadığınız eklentileri kaldırabilirsiniz.\n"
 
-#
 msgid ""
 "Welcome.\n"
 "\n"
-"If you want to connect your Dreambox to the Internet, this wizard will guide "
-"you through the basic network setup of your Dreambox.\n"
+"If you want to connect your receiver to the Internet, this wizard will guide "
+"you through the basic network setup of your receiver.\n"
 "\n"
 "Press OK to start configuring your network"
 msgstr ""
-"Hoşgeldiniz.\n"
-"\n"
-"Dreambox'ınızı internete bağlamak istiyorsanız, bu sihirbaz size ağ "
-"yapılandırmanızı yapabilmeniz için rehberlik yapacaktır.\n"
-"\n"
-"Ağ yapılandırmasına başlamak için OK tuşuna basın"
 
-#
 msgid ""
 "Welcome.\n"
 "\n"
-"This start wizard will guide you through the basic setup of your Dreambox.\n"
+"This start wizard will guide you through the basic setup of your receiver.\n"
 "Press the OK button on your remote control to move to the next step."
 msgstr ""
-"Hoşgeldiniz.\n"
-"\n"
-"Bu sihirbaz Dreambox'ınızı yapılandırmanız için yardımcı olacaktır.\n"
-"Kumandanızın OK tuşuna basarak sonraki adıma geçebilirsiniz."
 
 #
 msgid "Welcome..."
@@ -7180,9 +7096,8 @@ msgstr ""
 msgid "You can install this plugin."
 msgstr "Bu eklentiyi yükleyebilirsiniz."
 
-#
-msgid "You can only burn Dreambox recordings!"
-msgstr "Yalnızca Dreambox'ta kaydettiğiniz videoları yazabilirsiniz!"
+msgid "You can only burn receiver recordings!"
+msgstr ""
 
 #
 msgid "You can remove this plugin."
@@ -7246,20 +7161,13 @@ msgstr ""
 msgid "You have to wait %s!"
 msgstr "Bekleme süresi : %s!"
 
-#
 msgid ""
-"You need a PC connected to your dreambox. If you need further instructions, "
+"You need a PC connected to your receiver. If you need further instructions, "
 "please visit the website http://www.dm7025.de.\n"
-"Your dreambox will now be halted. After you have performed the update "
+"Your receiver will now be halted. After you have performed the update "
 "instructions from the website, your new firmware will ask you to restore "
 "your settings."
 msgstr ""
-"Dreambox'ınızın PC bağlantısına ihtiyacı var. Daha fazla açıklamaya "
-"ihtiyacınız varsa, lütfen http://www.dream-multimedia-tv.de adresini ziyaret "
-"edin.\n"
-"Dreambox'ınız şimdi kapatılıyor. Web sitesinde belirtilen güncelleme "
-"talimatlarını yerine getirdikten sonra yeni bellenim, ayarlarınızı geri "
-"yüklemek isteyip istemediğiniz sorusunu soracaktır."
 
 msgid ""
 "You need to set a PIN code and hide it from your children.\n"
@@ -7284,25 +7192,6 @@ msgstr ""
 
 #
 msgid ""
-"Your Dreambox is now ready to use.\n"
-"\n"
-"Your internet connection is working now.\n"
-"\n"
-"Please press OK to continue."
-msgstr ""
-"Drambox'ınız kullanımınız için hazır.\n"
-"\n"
-"Internet bağlantınız çalışıyor.\n"
-"\n"
-"Devam etmek için lütfen OK tuşuna basın."
-
-#
-msgid "Your Dreambox will restart after pressing OK on your remote control."
-msgstr ""
-"Kumandanızda OK tuşuna bastıktan sonra Dreambox'ınız yeniden başlatılacak."
-
-#
-msgid ""
 "Your backup succeeded. We will now continue to explain the further upgrade "
 "process."
 msgstr "Yedek başarıyla alındı. Şimdi güncelleme işlemine devam edeceğiz."
@@ -7318,17 +7207,6 @@ msgstr ""
 #
 msgid "Your current collection will get lost!"
 msgstr ""
-
-#
-msgid "Your dreambox is shutting down. Please stand by..."
-msgstr "Dreambox'ınız kapatılıyor. Lütfen bekleyin..."
-
-#
-msgid ""
-"Your dreambox isn't connected to the internet properly. Please check it and "
-"try again."
-msgstr ""
-"Dreambox'ınız internete bağlı değil. Kontrol ettikten sonra tekrar deneyin."
 
 #
 msgid "Your email address:"
@@ -7364,10 +7242,29 @@ msgstr "Adınız (opsiyonel):"
 msgid "Your network configuration has been activated."
 msgstr "Ağ yapılandırmanız etkinleştirildi."
 
+msgid ""
+"Your receiver is now ready to use.\n"
+"\n"
+"Your internet connection is working now.\n"
+"\n"
+"Please press OK to continue."
+msgstr ""
+
 msgid "Your receiver is rebooting"
 msgstr ""
 
 msgid "Your receiver is shutting down"
+msgstr ""
+
+msgid "Your receiver is shutting down. Please stand by..."
+msgstr ""
+
+msgid ""
+"Your receiver isn't connected to the internet properly. Please check it and "
+"try again."
+msgstr ""
+
+msgid "Your receiver will restart after pressing OK on your remote control."
 msgstr ""
 
 #
@@ -7383,9 +7280,6 @@ msgstr ""
 "Lütfen sonraki adımda yapmak istediğiniz işlemi seçin."
 
 msgid "Zap"
-msgstr ""
-
-msgid "Zap PIG"
 msgstr ""
 
 msgid "Zap back to previously tuned service?"
@@ -7538,9 +7432,18 @@ msgstr "kanalı favorilere ekle"
 msgid "add to parental protection"
 msgstr "ebeveyn korumasına ekle"
 
+msgid "adult movie/drama"
+msgstr ""
+
 #
 msgid "advanced"
 msgstr "gelişmiş"
+
+msgid "adventure/western/war"
+msgstr ""
+
+msgid "advertisement/shopping"
+msgstr ""
 
 msgid "alphabetic reverse"
 msgstr ""
@@ -7557,6 +7460,12 @@ msgstr ""
 "Belirtilen yedeği geri yüklemek\n"
 "istediğinizden emin misiniz?:\n"
 
+msgid "arts/culture (without music, general)"
+msgstr ""
+
+msgid "arts/culture magazine"
+msgstr ""
+
 #
 msgid "assigned CAIds:"
 msgstr "Atanmış CAId'ler:"
@@ -7569,6 +7478,9 @@ msgid "at beginning"
 msgstr ""
 
 msgid "at end"
+msgstr ""
+
+msgid "athletics"
 msgstr ""
 
 #
@@ -7605,6 +7517,13 @@ msgstr "arkaplan resmi"
 msgid "backgroundcolor"
 msgstr "zemin rengi"
 
+msgid "ballet"
+msgstr ""
+
+#, python-format
+msgid "bc%s"
+msgstr ""
+
 #
 msgid "better"
 msgstr "daha iyi"
@@ -7612,6 +7531,9 @@ msgstr "daha iyi"
 #
 msgid "black"
 msgstr "siyah"
+
+msgid "black & white"
+msgstr ""
 
 #
 msgid "blacklist"
@@ -7621,10 +7543,16 @@ msgstr "kara liste"
 msgid "blue"
 msgstr "mavi"
 
+msgid "broadcasting/press"
+msgstr ""
+
 #
 #, python-format
 msgid "burn audio track (%s)"
 msgstr "(%s) ses izini yaz"
+
+msgid "cartoon/puppets"
+msgstr ""
 
 msgid "center"
 msgstr ""
@@ -7641,6 +7569,9 @@ msgstr "kaydı değiştir (bitiş zamanı)"
 msgid "chapters"
 msgstr "bölümler"
 
+msgid "childrens's/youth program (general)"
+msgstr ""
+
 #
 msgid "circular left"
 msgstr "dairesel sola"
@@ -7652,6 +7583,9 @@ msgstr "dairesel sağa"
 #
 msgid "clear playlist"
 msgstr "oynatma listesini temizle"
+
+msgid "comedy"
+msgstr ""
 
 #
 msgid "complex"
@@ -7672,6 +7606,9 @@ msgstr "bağlı"
 #
 msgid "continue"
 msgstr "devam et"
+
+msgid "cooking"
+msgstr ""
 
 #
 msgid "copy to bouquets"
@@ -7720,6 +7657,9 @@ msgstr "sil..."
 msgid "descramble and record ecm"
 msgstr ""
 
+msgid "detective/thriller"
+msgstr ""
+
 #
 msgid "disable"
 msgstr "kapat"
@@ -7736,6 +7676,9 @@ msgstr "devre dışı"
 msgid "disconnected"
 msgstr "bağlı değil"
 
+msgid "discussion/interview/debate"
+msgstr ""
+
 #
 msgid "do not change"
 msgstr "değiştirme"
@@ -7743,6 +7686,9 @@ msgstr "değiştirme"
 #
 msgid "do nothing"
 msgstr "birşey yapma"
+
+msgid "documentary"
+msgstr ""
 
 msgid "don't descramble, record ecm"
 msgstr ""
@@ -7773,9 +7719,15 @@ msgstr ""
 msgid "east"
 msgstr ""
 
+msgid "economics/social advisory"
+msgstr ""
+
 #
 msgid "edit alternatives"
 msgstr "alternatifleri düzenle"
+
+msgid "education/science/factual topics (general)"
+msgstr ""
 
 #
 msgid "empty"
@@ -7821,9 +7773,18 @@ msgstr "favori düzenlemeyi bitir"
 msgid "enigma2 and network"
 msgstr "enigma2 ve ağ"
 
+msgid "entertainment (10-16 year old)"
+msgstr ""
+
+msgid "entertainment (6-14 year old)"
+msgstr ""
+
 #
 msgid "equal to"
 msgstr "eşittir"
+
+msgid "equestrian"
+msgstr ""
 
 #
 msgid "exit DVD player or return to file browser"
@@ -7853,7 +7814,13 @@ msgstr "ağ arayüzleri listesinden çık"
 msgid "exit networkadapter setup menu"
 msgstr "ağ donanımı kurulum menüsünden çık"
 
+msgid "experimental film/video"
+msgstr ""
+
 msgid "false"
+msgstr ""
+
+msgid "fashion"
 msgstr ""
 
 #
@@ -7864,11 +7831,29 @@ msgstr "dosya biçimi (BMP, PNG, JPG, GIF)"
 msgid "filename"
 msgstr "dosyaadı"
 
+msgid "film/cinema"
+msgstr ""
+
+msgid "fine arts"
+msgstr ""
+
 #
 msgid "fine-tune your display"
 msgstr "ekran ince ayarı"
 
+msgid "fitness & health"
+msgstr ""
+
 msgid "fixed"
+msgstr ""
+
+msgid "folk/traditional music"
+msgstr ""
+
+msgid "football/soccer"
+msgstr ""
+
+msgid "foreign countries/expeditions"
 msgstr ""
 
 #
@@ -7886,6 +7871,15 @@ msgstr "boş disk alanı"
 msgid "full transparency"
 msgstr ""
 
+msgid "further education"
+msgstr ""
+
+msgid "game show/quiz/contest"
+msgstr ""
+
+msgid "gardening"
+msgstr ""
+
 #
 msgid "go to deep standby"
 msgstr "derin uyku kipine geç"
@@ -7901,6 +7895,9 @@ msgstr "bu çerçeveyi bitmap olarak yakala"
 #
 msgid "green"
 msgstr "yeşil"
+
+msgid "handicraft"
+msgstr ""
 
 #
 msgid "hear radio..."
@@ -7925,6 +7922,9 @@ msgstr "yatay (h)"
 msgid "immediate shutdown"
 msgstr "hemen kapat"
 
+msgid "information/education/school program"
+msgstr ""
+
 #
 msgid "init module"
 msgstr "modülü başlat"
@@ -7938,6 +7938,9 @@ msgid "insert mark here"
 msgstr "buraya işaret koy"
 
 msgid "invalid type"
+msgstr ""
+
+msgid "jazz"
 msgstr ""
 
 #
@@ -7964,6 +7967,9 @@ msgstr "sonraki işaretli noktaya git"
 msgid "jump to previous marked position"
 msgstr "önceki işaretli noktaya git"
 
+msgid "languages"
+msgstr ""
+
 #
 msgid "leave movie player..."
 msgstr "ortam oynatıcıdan çık..."
@@ -7971,6 +7977,9 @@ msgstr "ortam oynatıcıdan çık..."
 #
 msgid "left"
 msgstr "sol"
+
+msgid "leisure hobbies (general)"
+msgstr ""
 
 #
 msgid "length"
@@ -7998,6 +8007,12 @@ msgstr "Varsayılan liste biçimi"
 msgid "list style single line"
 msgstr "Tek satır halinde liste biçimi"
 
+msgid "literature"
+msgstr ""
+
+msgid "live broadcast"
+msgstr ""
+
 #
 msgid "load playlist"
 msgstr "oynatma listesi yükle"
@@ -8010,9 +8025,18 @@ msgstr "kilitli"
 msgid "loopthrough to"
 msgstr "üzerinden bağla"
 
+msgid "magazines/reports/documentary"
+msgstr ""
+
 #
 msgid "manual"
 msgstr "elle"
+
+msgid "martial sports"
+msgstr ""
+
+msgid "medicine/physiology/psychology"
+msgstr ""
 
 #
 msgid "menu"
@@ -8029,6 +8053,12 @@ msgstr "dakika"
 #
 msgid "month"
 msgstr "ay"
+
+msgid "motor sport"
+msgstr ""
+
+msgid "motoring"
+msgstr ""
 
 #
 msgid "move PiP to main picture"
@@ -8054,13 +8084,37 @@ msgstr "bir üste taşı"
 msgid "movie list"
 msgstr "film listesi"
 
+msgid "movie/drama (general)"
+msgstr ""
+
 #
 msgid "multinorm"
 msgstr "PAL/NTSC"
 
+msgid "music/ballet/dance (general)"
+msgstr ""
+
+msgid "musical/opera"
+msgstr ""
+
+msgid "nature/animals/environment"
+msgstr ""
+
 #
 msgid "never"
 msgstr "hiç"
+
+msgid "new media"
+msgstr ""
+
+msgid "news magazine"
+msgstr ""
+
+msgid "news/current affairs (general)"
+msgstr ""
+
+msgid "news/weather report"
+msgstr ""
 
 #
 msgid "next channel"
@@ -8152,6 +8206,9 @@ msgstr "açık"
 msgid "on READ ONLY medium."
 msgstr "yalnızca okunabilir (READ ONLY) medya"
 
+msgid "on end of movie"
+msgstr ""
+
 #
 msgid "once"
 msgstr "birkez"
@@ -8175,6 +8232,9 @@ msgstr "Kanal listesini aç (yukarı)"
 msgid "original"
 msgstr ""
 
+msgid "original language"
+msgstr ""
+
 #
 msgid "pass"
 msgstr "geç"
@@ -8182,6 +8242,9 @@ msgstr "geç"
 #
 msgid "pause"
 msgstr "duraklat"
+
+msgid "performing arts"
+msgstr ""
 
 msgid "play as picture in picture"
 msgstr ""
@@ -8209,6 +8272,12 @@ msgstr "Lütfen hazır olduğunuzda OK'a basın"
 msgid "please wait, loading picture..."
 msgstr "fotoğraf yükleniyor, lütfen bekleyin..."
 
+msgid "popular culture/traditional arts"
+msgstr ""
+
+msgid "pre-school children's program"
+msgstr ""
+
 #
 msgid "previous channel"
 msgstr "Önceki kanal"
@@ -8216,6 +8285,9 @@ msgstr "Önceki kanal"
 #
 msgid "previous channel in history"
 msgstr "Hafızadaki önceki kanal"
+
+msgid "receiver software because updates are available."
+msgstr ""
 
 #
 msgid "record"
@@ -8230,6 +8302,12 @@ msgid "red"
 msgstr "kırmızı"
 
 msgid "relative"
+msgstr ""
+
+msgid "religion"
+msgstr ""
+
+msgid "remarkable people"
 msgstr ""
 
 #
@@ -8299,6 +8377,12 @@ msgstr "önceki bölüme geri git"
 msgid "right"
 msgstr "sağ"
 
+msgid "rock/pop"
+msgstr ""
+
+msgid "romance"
+msgstr ""
+
 #
 msgid "save last directory on exit"
 msgstr "çıkarken, son klasörü kaydet"
@@ -8323,6 +8407,9 @@ msgstr "kanal araması devam ediyor - %d %% tamamlandı!"
 #
 msgid "scan state"
 msgstr "kanal arama durumu"
+
+msgid "science fiction/fantasy/horror"
+msgstr ""
 
 #
 msgid "second cable of motorized LNB"
@@ -8359,6 +8446,12 @@ msgstr "film seç"
 #
 msgid "select the movie path"
 msgstr "film yol adını seçin"
+
+msgid "serious music/classic music"
+msgstr ""
+
+msgid "serious/classical/religious/historical movie/drama"
+msgstr ""
 
 msgid "service PIN"
 msgstr ""
@@ -8407,6 +8500,12 @@ msgstr "kapatma menüsü"
 msgid "show single service EPG..."
 msgstr "Kanal EPG'sini göster..."
 
+msgid "show softwaremanager in setup menu"
+msgstr ""
+
+msgid "show softwaremanager on blue button"
+msgstr ""
+
 #
 msgid "show tag menu"
 msgstr "etiket menüsünü göster"
@@ -8414,6 +8513,9 @@ msgstr "etiket menüsünü göster"
 #
 msgid "show transponder info"
 msgstr "transponder bilgisini göster"
+
+msgid "show/game show (general)"
+msgstr ""
 
 msgid "shuffle"
 msgstr ""
@@ -8454,6 +8556,15 @@ msgstr "Sonraki kanala atla (kaç kez?)"
 msgid "slide picture in loop"
 msgstr "slayt görüntüsünü döndür"
 
+msgid "soap/melodram/folkloric"
+msgstr ""
+
+msgid "social/political issues/economics (general)"
+msgstr ""
+
+msgid "social/spiritual science"
+msgstr ""
+
 #
 msgid "sort by date"
 msgstr "tarihe göre sırala"
@@ -8463,6 +8574,18 @@ msgstr ""
 
 msgid "special characters"
 msgstr "özel karakterler"
+
+msgid "special events"
+msgstr ""
+
+msgid "special format data DVD (HDTV compatible)"
+msgstr ""
+
+msgid "sports (general)"
+msgstr ""
+
+msgid "sports magazine"
+msgstr ""
 
 #
 msgid "standard"
@@ -8538,9 +8661,21 @@ msgstr "sonraki ses izini seç"
 msgid "switch to the next subtitle language"
 msgstr "sonraki alt yazı dilini seç"
 
+msgid "talk show"
+msgstr ""
+
+msgid "team sports"
+msgstr ""
+
+msgid "technology/natural science"
+msgstr ""
+
 #
 msgid "template file"
 msgstr "taslak dosya"
+
+msgid "tennis/squash"
+msgstr ""
 
 #
 msgid "textcolor"
@@ -8563,6 +8698,9 @@ msgid "toggle time, chapter, audio, subtitle info"
 msgstr "zaman, bölüm, ses, altyazı bilgisini aç/kapa"
 
 msgid "top"
+msgstr ""
+
+msgid "tourism/travel"
 msgstr ""
 
 msgid "true"
@@ -8590,12 +8728,18 @@ msgstr "bilinmiyor"
 msgid "unknown service"
 msgstr "bilinmeyen kanal"
 
+msgid "unpublished"
+msgstr ""
+
 msgid "until standby/restart"
 msgstr "h.bekle/y.başlatana kadar"
 
 #
 msgid "user defined"
 msgstr "kullanıcı tanımlı"
+
+msgid "variety show"
+msgstr ""
 
 #
 msgid "vertical"
@@ -8625,6 +8769,9 @@ msgstr "bekleniyor"
 msgid "was removed successfully"
 msgstr "başarıyla kaldırıldı"
 
+msgid "water sport"
+msgstr ""
+
 #
 msgid "weekly"
 msgstr "haftalık"
@@ -8640,6 +8787,9 @@ msgid "whitelist"
 msgstr "beyaz liste"
 
 msgid "width"
+msgstr ""
+
+msgid "winter sport"
 msgstr ""
 
 msgid "wireless network interface"
@@ -8661,13 +8811,10 @@ msgstr "evet"
 msgid "yes (keep feeds)"
 msgstr "evet (beslemeleri tut)"
 
-#
 msgid ""
-"your dreambox might be unusable now. Please consult the manual for further "
-"assistance before rebooting your dreambox."
+"your receiver might be unusable now. Please consult the manual for further "
+"assistance before rebooting your receiver."
 msgstr ""
-"Dreambox'ınız şu an kullanılamaz durumda. Lütfen Dreambox'ınızı yeniden "
-"açmadan önce kullanım kılavuzundan yardım alın."
 
 #
 msgid "zap"
@@ -8676,3894 +8823,3 @@ msgstr "değiştir"
 #
 msgid "zapped"
 msgstr "kanal değiştirildi"
-
-#
-#~ msgid ""
-#~ "\n"
-#~ "Enigma2 will restart after the restore"
-#~ msgstr ""
-#~ "\n"
-#~ "Enigma2 geri yüklemeden sonra yeniden başlatılacak"
-
-#
-#~ msgid ""
-#~ "\n"
-#~ "Scan for local packages and install them."
-#~ msgstr ""
-#~ "\n"
-#~ "Yereldeki paketleri ara ve yükle."
-
-#
-#~ msgid " "
-#~ msgstr " "
-
-#
-#~ msgid " Results"
-#~ msgstr " Sonuçlar"
-
-#
-#~ msgid "\"?"
-#~ msgstr "\"?"
-
-#
-#~ msgid "#000000"
-#~ msgstr "#000000"
-
-#
-#~ msgid "#0064c7"
-#~ msgstr "#0064c7"
-
-#
-#~ msgid "#25062748"
-#~ msgstr "#25062748"
-
-#
-#~ msgid "#389416"
-#~ msgstr "#389416"
-
-#
-#~ msgid "#80000000"
-#~ msgstr "#80000000"
-
-#
-#~ msgid "#80ffffff"
-#~ msgstr "#80ffffff"
-
-#
-#~ msgid "#bab329"
-#~ msgstr "#bab329"
-
-#
-#~ msgid "#f23d21"
-#~ msgstr "#f23d21"
-
-#
-#~ msgid "#ffffff"
-#~ msgstr "#ffffff"
-
-#
-#~ msgid "#ffffffff"
-#~ msgstr "#ffffffff"
-
-#~ msgid ""
-#~ "%d conflict(s) encountered when trying to add new timers:\n"
-#~ "%s"
-#~ msgstr ""
-#~ "Yeni zamanlayıcı eklenirken %d çakışma oluştu:\n"
-#~ "%s"
-
-#
-#~ msgid "%i ms"
-#~ msgstr "%i ms"
-
-#
-#~ msgid ""
-#~ "%s\n"
-#~ "(%s, %d MB free)"
-#~ msgstr ""
-#~ "%s\n"
-#~ "(%s, %d MB boş)"
-
-#
-#~ msgid "%s delay:"
-#~ msgstr "%s gecikmesi:"
-
-#
-#~ msgid "%s:"
-#~ msgstr "%s:"
-
-#~ msgid "%s: %s at %s"
-#~ msgstr "%s: %s / %s"
-
-#
-#~ msgid "* Only available when entering hidden SSID or network key"
-#~ msgstr ""
-#~ "* Yalnızca gizlenmiş SSID veya ağ anahtarı girildiğinde kullanılabilir"
-
-#
-#~ msgid ".NFI Download failed:"
-#~ msgstr ".NFI dosyası indirilirken hata oluştu:"
-
-#
-#~ msgid ".NFI Flasher bootable USB stick successfully created."
-#~ msgstr ""
-#~ "USB bellek için önyükleme yapabilir .NFI Flaşlayıcı başarıyla oluşturuldu."
-
-#
-#~ msgid ""
-#~ ".NFI file passed md5sum signature check. You can safely flash this image!"
-#~ msgstr ""
-#~ ".NFI dosyası için yapılan md5sum imza doğrulaması onaylandı. Bu bellenimi "
-#~ "güvenle kullanabilirsiniz!"
-
-#
-#~ msgid "30 minutes"
-#~ msgstr "30 dakika"
-
-#
-#~ msgid "5 minutes"
-#~ msgstr "5 dakika"
-
-#
-#~ msgid "50 Hz"
-#~ msgstr "50 Hz"
-
-#
-#~ msgid "60 minutes"
-#~ msgstr "60 dakika"
-
-#~ msgid "A basic ftp client"
-#~ msgstr "FTP istemci"
-
-#~ msgid "A client for www.dyndns.org"
-#~ msgstr "DynDns istemcisi"
-
-#~ msgid "A graphical EPG interface"
-#~ msgstr "Görsel EPG arabirimi"
-
-#~ msgid "A graphical EPG interface and EPG tools manager"
-#~ msgstr "Görsel EPG arabirimi ve EPG yönetimi"
-
-#~ msgid "A graphical EPG interface."
-#~ msgstr "Görsel EPG arabirimi."
-
-#
-#~ msgid ""
-#~ "A mount entry with this name already exists!\n"
-#~ "Update existing entry and continue?\n"
-#~ msgstr ""
-#~ "Bu isimde bir bağlantı kaydı zaten mevcut!\n"
-#~ "Mevcut olanın üzerine yazmak ve devam etmek istiyor musunuz?\n"
-
-#~ msgid "A nice looking HD skin from Kerni"
-#~ msgstr "Kerni' nin güzel görünüşlü HD arayüzü"
-
-#~ msgid "A nice looking HD skin in Brushed Alu Design from Kerni."
-#~ msgstr "Kerni' nin güzel görünüşlü HD arayüzü"
-
-#~ msgid "A nice looking skin from Kerni"
-#~ msgstr "Kerni' nin güzel görünüşlü arayüzü"
-
-#
-#~ msgid "AC3 Lip Sync"
-#~ msgstr "AC3 Dudak senkronu"
-
-#
-#~ msgid "AC3 Lip Sync Setup"
-#~ msgstr "AC3 Dudak senkron ayarları"
-
-#
-#~ msgid "AC3 default"
-#~ msgstr "AC3 varsayılan"
-
-#
-#~ msgid "AGC"
-#~ msgstr "AGC"
-
-#
-#~ msgid "AGC:"
-#~ msgstr "AGC:"
-
-#
-#~ msgid "Abort this Wizard."
-#~ msgstr "Sihirbazdan çık."
-
-#
-#~ msgid "Active"
-#~ msgstr "Etkin"
-
-#
-#~ msgid ""
-#~ "Active/\n"
-#~ "Inactive"
-#~ msgstr ""
-#~ "Etkin/\n"
-#~ "Devre dışı"
-
-#
-#~ msgid "Add a new NFS or CIFS mount point to your Dreambox."
-#~ msgstr "Dreambox'ınıza yeni bir NFS veya CIFS ağ bağlantı noktası ekleyin."
-
-#
-#~ msgid "Add new AutoTimer"
-#~ msgstr "Yeni otomatik zamanlayıcı ekle"
-
-#
-#~ msgid "Add new network mount point"
-#~ msgstr "Yeni ağ bağlantı noktası ekle"
-
-#
-#~ msgid "Add timer as disabled on conflict"
-#~ msgstr "Çakışmalarda, zamanlayıcıyı 'devre dışı' ekle"
-
-#
-#~ msgid "Added: "
-#~ msgstr "Eklenme tarihi: "
-
-#
-#~ msgid "Address"
-#~ msgstr "Adres"
-
-#~ msgid "Adult streaming plugin"
-#~ msgstr "Yetişkinler için stream eklentisi"
-
-#~ msgid "Adult streaming plugin."
-#~ msgstr "Yetişkinler için stream eklentisi."
-
-#
-#~ msgid "Advanced"
-#~ msgstr "Gelişmiş"
-
-#~ msgid "Ai.HD skin-style control plugin"
-#~ msgstr "HD arayüz kontrol eklentisi"
-
-#
-#~ msgid "Album:"
-#~ msgstr "Albüm:"
-
-#
-#~ msgid "All Time"
-#~ msgstr "Tüm zamanlar"
-
-#
-#~ msgid "All keys"
-#~ msgstr "Tüm anahtarlar"
-
-#
-#~ msgid "All non-repeating timers"
-#~ msgstr "Tekrarlanmayan tüm zamanlayıcılar"
-
-#
-#~ msgid "All..."
-#~ msgstr "Tümü..."
-
-#
-#~ msgid "Allow zapping via Webinterface"
-#~ msgstr "Web arayüzünden kanal değişimine izin ver"
-
-#~ msgid "Allows user to download files from rapidshare in the background."
-#~ msgstr "Arkaplanda dosya sunucularından indirme yapabilirsiniz."
-
-#
-#~ msgid "Ammount of recordings left"
-#~ msgstr "Kayıt sayacı"
-
-#
-#~ msgid "An error occured!"
-#~ msgstr "Bir hata oluştu!"
-
-#
-#~ msgid "An error occured."
-#~ msgstr "Bir hata oluştu."
-
-#
-#~ msgid ""
-#~ "Are you sure you want to enable WLAN support?\n"
-#~ "Connect your Wlan USB Stick to your Dreambox and press OK.\n"
-#~ "\n"
-#~ msgstr ""
-#~ "WLAN desteğini açmak istediğinizden emin misiniz?\n"
-#~ "WLAN USB donanımını Dreambox'unuza takın ve OK'e basın.\n"
-#~ "\n"
-
-#
-#~ msgid ""
-#~ "Are you sure you want to enable your local network?\n"
-#~ "\n"
-#~ msgstr ""
-#~ "Yerel ağı aktif etmek istediğinizden emin msiiniz?\n"
-#~ "\n"
-
-#
-#~ msgid ""
-#~ "Are you sure you want to save this network mount?\n"
-#~ "\n"
-#~ msgstr ""
-#~ "Bu ağ bağlantı noktasını kaydetmek istiyor musunuz?\n"
-#~ "\n"
-
-#
-#~ msgid "Artist:"
-#~ msgstr "Sanatçı:"
-
-#
-#
-#
-#
-#~ msgid "Ascanding"
-#~ msgstr "Artan"
-
-#
-#~ msgid "Ascending"
-#~ msgstr "Artan"
-
-#~ msgid "Aspect ratio"
-#~ msgstr "En boy oranı"
-
-#~ msgid "Atheros"
-#~ msgstr "Atheros"
-
-#~ msgid "Audio Sync"
-#~ msgstr "Ses senkronu"
-
-#~ msgid "Audio Sync Setup"
-#~ msgstr "Ses senkron ayarları"
-
-#~ msgid ""
-#~ "AudoSync allows delaying the sound output (Bitstream/PCM) so that it is "
-#~ "synchronous to the picture."
-#~ msgstr ""
-#~ "Resim / ses uyuşmazlıklarında dudak senkronizasyonu yapmanıza yardımcı "
-#~ "olur."
-
-#
-#~ msgid "Australia"
-#~ msgstr "Avustralya"
-
-#
-#~ msgid "Authorization"
-#~ msgstr "Oturum izni"
-
-#
-#~ msgid "AutoTimer Editor"
-#~ msgstr "Otomatik zamanlayıcı editörü"
-
-#
-#~ msgid "AutoTimer Filters"
-#~ msgstr "Otomatik zamanlayıcı filtreleri"
-
-#
-#~ msgid "AutoTimer Services"
-#~ msgstr "Otomatik zamanlayıcı kanalları"
-
-#
-#~ msgid "AutoTimer Settings"
-#~ msgstr "Otomatik zamanlayıcı ayarları"
-
-#
-#~ msgid "AutoTimer overview"
-#~ msgstr "Otomatik zamanlayıcı incele"
-
-#~ msgid ""
-#~ "AutoTimer scans the EPG and creates Timers depending on user-defined "
-#~ "search  criteria."
-#~ msgstr ""
-#~ "Otomatik zamanlayıcı eklentisi, belirlediğiniz kriterlere göre EPG "
-#~ "bilgisinde arama yaparak zamanlanmış görev oluşturur. "
-
-#~ msgid "AutoTimer was added successfully"
-#~ msgstr "Otomatik zamanlayıcı başarıyla eklendi."
-
-#~ msgid "AutoTimer was changed successfully"
-#~ msgstr "Otomatik zamanlayıcı başarıyla güncellendi."
-
-#~ msgid "AutoTimer was removed"
-#~ msgstr "Otomatik zamanlayıcı kaldırıldı."
-
-#
-#~ msgid "Automatic SSID lookup"
-#~ msgstr "Otomatik SSID arama"
-
-#~ msgid "Automatic volume adjustment"
-#~ msgstr "Otomatik ses şiddeti düzenleyici"
-
-#~ msgid "Automatic volume adjustment for ac3/dts services."
-#~ msgstr "ac3/dts ses izleri için otomatik ses şiddeti düzenleyici."
-
-#~ msgid "Automatically change video resolution"
-#~ msgstr "Video çözünürlüğünü otomatik değiştirir."
-
-#~ msgid "Automatically refresh EPG"
-#~ msgstr "EPG'yi otomatik yenile"
-
-#~ msgid "Automatically send crashlogs to Dream Multimedia"
-#~ msgstr "Hata günlüklerini otomatik olarak Dream Multimedia'ya gönderir."
-
-#~ msgid "Autoresolution Switch"
-#~ msgstr "Otoçözünürlük anahtarı"
-
-#~ msgid "Autoresolution is not working in Scart/DVI-PC Mode"
-#~ msgstr ""
-#~ "Otoçözünürlük eklentisi Scart/DVI-PC bağlantılarını desteklememektedir."
-
-#~ msgid "Autoresolution settings"
-#~ msgstr "Otoçözünürlük ayarları"
-
-#~ msgid "Autoresolution videomode setup"
-#~ msgstr "Otoçözünürlük video kipi ayarları"
-
-#
-#~ msgid "Autos & Vehicles"
-#~ msgstr "Otomobil & Araçlar"
-
-#
-#~ msgid "Autowrite timer"
-#~ msgstr "Zamanlayıcı otomatik yazma"
-
-#~ msgid "BASIC-HD Skin by Ismail Demir"
-#~ msgstr "BASIC-HD arayüzü (İsmail Demir)"
-
-#~ msgid "BASIC-HD Skin for Dreambox Images created from Ismail Demir"
-#~ msgstr "İsmail Demir tarafından hazırlanan BASIC-HD arayüzü"
-
-#~ msgid "Back, lower USB Slot"
-#~ msgstr "Arka, alttaki USB yuvası"
-
-#~ msgid "Back, upper USB Slot"
-#~ msgstr "Arka, üstteki USB yuvası"
-
-#
-#~ msgid "Backup is done. Please press OK to see the result."
-#~ msgstr "Yedekleme tamamlandı. OK tuşuna basarak sonucu görebilirsiniz."
-
-#
-#~ msgid "Backup running"
-#~ msgstr "Yedekleme çalışıyor"
-
-#
-#~ msgid "Backup running..."
-#~ msgstr "Yedekleme çalışıyor..."
-
-#
-#~ msgid "Begin of \"after event\" timespan"
-#~ msgstr "Zaman aralığı başlangıcı"
-
-#
-#~ msgid "Begin of timespan"
-#~ msgstr "Zaman aralığı başlangıcı"
-
-#~ msgid "Bonjour/Avahi control plugin"
-#~ msgstr "Bonjour/Avahi yönetim eklentisi"
-
-#~ msgid "Bonjour/Avahi control plugin."
-#~ msgstr "Bonjour/Avahi kontrol eklentisi."
-
-#
-#~ msgid "Bouquets"
-#~ msgstr "Bukette"
-
-#
-#~ msgid "Brazil"
-#~ msgstr "Brazilya"
-
-#~ msgid "Browse for and connect to network shares"
-#~ msgstr "Ağ paylaşımlarına göz atın ve bağlanın."
-
-#
-#~ msgid "Browse network neighbourhood"
-#~ msgstr "Ağ komşularına gözat"
-
-#~ msgid "Burn your recordings to DVD"
-#~ msgstr "Kayıtlarınızı DVD'ye kaydedin."
-
-#~ msgid "CDInfo"
-#~ msgstr "CD bilgisi"
-
-#
-#~ msgid "CIFS share"
-#~ msgstr "CIFS paylaşım"
-
-#
-#~ msgid "Call monitoring"
-#~ msgstr "Çağrı görüntüleme"
-
-#~ msgid "Callmonitor for the Fritz!Box routers"
-#~ msgstr "Fritz!Box için Çağrı görüntüleyici"
-
-#~ msgid "Can't connect to server. Please check your network!"
-#~ msgstr "Sunucuya bağlanılamıyor. Lütfen ağ ayarlarını kontrol edin!"
-
-#
-#~ msgid "Canada"
-#~ msgstr "Kanada"
-
-#
-#~ msgid "Cannot parse feed directory"
-#~ msgstr "Besleme (feed) ayrıştırılamadı"
-
-#
-#~ msgid "Catalan"
-#~ msgstr "Katalanca"
-
-#
-#
-#
-#
-#~ msgid "Category"
-#~ msgstr "Kategori"
-
-#~ msgid "Center screen at the lower border"
-#~ msgstr "Ekranı alt çerçeveye ortala"
-
-#~ msgid "Center screen at the upper border"
-#~ msgstr "Ekranı üst çerçeveye ortala"
-
-#
-#~ msgid "Change"
-#~ msgstr "Değiştir"
-
-#~ msgid "Change active delay"
-#~ msgstr "Mevcut gecikmeyi değiştir"
-
-#~ msgid "Change default recording offset?"
-#~ msgstr ""
-#~ "Kayıtlarda kullanılan ön tanımlı marj süresini değiştirmek istiyor "
-#~ "musunuz?"
-
-#
-#~ msgid "Change dir."
-#~ msgstr "Klasör değiştir"
-
-#
-#~ msgid "Change hostname"
-#~ msgstr "Konak adını değiştir"
-
-#
-#~ msgid "Change service pin"
-#~ msgstr "Kanal şifresini değiştir"
-
-#
-#~ msgid "Change service pins"
-#~ msgstr "Kanal şifrelerini değiştir"
-
-#
-#~ msgid "Change setup pin"
-#~ msgstr "Kurulum şifresini değiştir"
-
-#
-#~ msgid "Change the hostname of your Dreambox."
-#~ msgstr "Dreambox'ınızın konak adını değiştirin."
-
-#
-#~ msgid "Channel audio:"
-#~ msgstr "Ses izi:"
-
-#
-#~ msgid "Channels"
-#~ msgstr "Kanalda"
-
-#
-#~ msgid "Choose source"
-#~ msgstr "Kaynak seç"
-
-#
-#~ msgid "Classic"
-#~ msgstr "Klasik"
-
-#~ msgid "Cleanup timerlist automatically"
-#~ msgstr "Zamanlayıcı listesini otomatik temizle"
-
-#~ msgid "Cleanup timerlist automatically."
-#~ msgstr "Zamanlayıcı listesini otomatik temizle."
-
-#
-#~ msgid "Clear history on Exit:"
-#~ msgstr "Çıkışta geçmişi temizle:"
-
-#
-#~ msgid "Close and forget changes"
-#~ msgstr "Değişiklikleri kaydetmeden kapat"
-
-#
-#~ msgid "Close and save changes"
-#~ msgstr "Değişiklikleri kaydet ve kapat"
-
-#
-#~ msgid "Code rate high"
-#~ msgstr "Yüksek kod oranı"
-
-#
-#~ msgid "Code rate low"
-#~ msgstr "Düşük kod oranı"
-
-#
-#~ msgid "Comedy"
-#~ msgstr "Komedi"
-
-#
-#~ msgid "Compact flash card"
-#~ msgstr "Compact flash kartı"
-
-#
-#~ msgid "Config"
-#~ msgstr "Ayarlar"
-
-#
-#~ msgid "Configuration for the Webinterface"
-#~ msgstr "Web arayüzünü yapılandırın"
-
-#
-#~ msgid "Configure AutoTimer behavior"
-#~ msgstr "Otomatik zamanlayıcı davranışını düzenle"
-
-#~ msgid "Configure your WLAN network interface"
-#~ msgstr "Kablosuz ağ arayüzünü yapılandırın"
-
-#
-#~ msgid "Configure your internal LAN again"
-#~ msgstr "Yeral ağ ayarlarınızı yeniden yapılandırın"
-
-#
-#~ msgid "Configure your wireless LAN"
-#~ msgstr "Kablosuz ağ ayarlarınızı yapılandırın"
-
-#
-#~ msgid "Confirm"
-#~ msgstr "Onayla"
-
-#
-#~ msgid "Connect to the Internet with a USB Wlan Stick"
-#~ msgstr "Internete USB WLAN donanımı ile bağlanın"
-
-#
-#~ msgid "Connect to the Internet with your local LAN"
-#~ msgstr "Internete yerel ağ donanımı ile bağlanın"
-
-#
-#~ msgid "Connected to Fritz!Box!"
-#~ msgstr "Fritz!Box! a bağlanıldı!"
-
-#
-#~ msgid "Connecting to Fritz!Box..."
-#~ msgstr "Fritz!Box'a bağlanılıyor..."
-
-#
-#~ msgid ""
-#~ "Connection to Fritz!Box\n"
-#~ "failed! (%s)\n"
-#~ "retrying..."
-#~ msgstr ""
-#~ "Fritz!Box bağlantısı\n"
-#~ "başarısız! (%s)\n"
-#~ "yeniden deneniyor..."
-
-#
-#~ msgid "Console"
-#~ msgstr "Konsol"
-
-#
-#~ msgid "Console..."
-#~ msgstr "Konsol..."
-
-#~ msgid "Control your internal system fan."
-#~ msgstr "Dahili sistem fanını kontrol edin."
-
-#~ msgid "Control your kids's tv usage"
-#~ msgstr "Çocuğunuzun TV kullanımını kontrol edin"
-
-#~ msgid "Control your system fan"
-#~ msgstr "Sistem fan'ını kontrol edin"
-
-#
-#~ msgid "Copying USB flasher boot image to stick..."
-#~ msgstr "Önyükleme yapabilir USB flaşlayıcı imajı belleğe kopyalanıyor..."
-
-#~ msgid ""
-#~ "Crashlogs found!\n"
-#~ "Send them to Dream Multimedia ?"
-#~ msgstr ""
-#~ "Hata günlüğü bulundu!\n"
-#~ "Dream Multimedia'ya göndermek ister misiniz?"
-
-#
-#~ msgid "Create a new AutoTimer."
-#~ msgstr "Yeni otomatik zamanlayıcı oluştur."
-
-#
-#~ msgid "Create a new timer using the classic editor"
-#~ msgstr "Klasik editörü kullanarak zamanlayıcı oluştur"
-
-#
-#~ msgid "Create a new timer using the wizard"
-#~ msgstr "Sihirbazı kullanarak zamanlayıcı oluştur"
-
-#
-#~ msgid "Create movie folder failed"
-#~ msgstr "Film klasörü (movie) oluşturulamadı"
-
-#
-#~ msgid "Creating partition failed"
-#~ msgstr "Diski bölümü oluşturulamadı"
-
-#
-#~ msgid "Custom (%s)"
-#~ msgstr "Özel (%s)"
-
-#
-#~ msgid "Custom location"
-#~ msgstr "Özel kayıt konumu"
-
-#
-#~ msgid "Custom offset"
-#~ msgstr "Özel marj süresi"
-
-#~ msgid "Customize Vali-XD skins"
-#~ msgstr "Vali-XD arayüzlerini özelleştir"
-
-#~ msgid "Customize Vali-XD skins by yourself."
-#~ msgstr "Vali-XD arayüzlerini tercihinize göre özelleştirin"
-
-#~ msgid "Cut your movies"
-#~ msgstr "Film düzenleyici"
-
-#~ msgid "Cut your movies."
-#~ msgstr "Filmlerinizi düzenleyin."
-
-#~ msgid "CutListEditor allows you to edit your movies"
-#~ msgstr "CutListEditor ile film dosyalarınızı düzenleyin"
-
-#
-#~ msgid "Czech Republic"
-#~ msgstr "Çek Cumhuriyeti"
-
-#~ msgid "DVD Drive"
-#~ msgstr "DVD Sürücü"
-
-#
-#~ msgid "DVD ENTER key"
-#~ msgstr "DVD ENTER tuşu"
-
-#
-#~ msgid "DVD down key"
-#~ msgstr "DVD aşağı tuşu"
-
-#
-#~ msgid "DVD left key"
-#~ msgstr "DVD sol tuşu"
-
-#
-#~ msgid "DVD right key"
-#~ msgstr "DVD sağ tuşu"
-
-#
-#~ msgid "DVD up key"
-#~ msgstr "DVD yukarı"
-
-#~ msgid "DVDPlayer plays your DVDs on your Dreambox"
-#~ msgstr "DVD Oynatıcı ile DVD'lerinizi Dreambox'ınızdan izleyin"
-
-#~ msgid ""
-#~ "DVDPlayer plays your DVDs on your Dreambox.\n"
-#~ "With the DVDPlayer you can play your DVDs on your Dreambox from a DVD or "
-#~ "even from an iso file or video_ts folder on your harddisc or network."
-#~ msgstr ""
-#~ "DVD Oynatıcı ile DVD'lerinizi Dreambox'ınızdan izleyebilirsiniz.\n"
-#~ "Program ile DVD'lerinizi doğrudan izleyebileceğiniz gibi, sabit disk ya "
-#~ "da ağ üzerinde yer alan ISO dosyası ya da video_ts klasörünü programa "
-#~ "tanıtarak da izleyebilirsiniz."
-
-#
-#~ msgid "Decompressing USB stick flasher boot image..."
-#~ msgstr ""
-#~ "Sıkıştırılmış önyükleme yapabilir USB bellek flaşlayıcı çıkartılıyor..."
-
-#~ msgid "Decrease delay"
-#~ msgstr "Gecikmeyi azalt"
-
-#~ msgid "Decrease delay by %i ms (can be set)"
-#~ msgstr "Gecikmeyi %i ms düşür (mümkünse)"
-
-#
-#~ msgid "Default services lists"
-#~ msgstr "Varsayılan kanal listesi"
-
-#
-#~ msgid "Default settings"
-#~ msgstr "Varsayılan ayarlar"
-
-#~ msgid "Defaults"
-#~ msgstr "Varsayılan"
-
-#~ msgid "Define a startup service"
-#~ msgstr "Açılış kanalını ayarla"
-
-#~ msgid "Define a startup service for your Dreambox."
-#~ msgstr "Dreambox açılışında görüntülenecek kanalı ayarlayın."
-
-#
-#~ msgid "Delay"
-#~ msgstr "Gecikme"
-
-#~ msgid "Delete mount"
-#~ msgstr "Bağlantı noktasını sil"
-
-#
-#~ msgid "Delete selected mount"
-#~ msgstr "Seçilen bağlantıyı sil"
-
-#
-#~ msgid "Descending"
-#~ msgstr "Azalan"
-
-#
-#~ msgid "Destination directory"
-#~ msgstr "Hedef Klasör"
-
-#
-#~ msgid "Details"
-#~ msgstr "Detaylar"
-
-#
-#~ msgid "Details for extension: "
-#~ msgstr "Eklenti detayları: "
-
-#
-#~ msgid "DiSEqC Mode"
-#~ msgstr "DiSEqC Modu"
-
-#
-#~ msgid "Dir:"
-#~ msgstr "Klasör:"
-
-#~ msgid "Direct playback of Youtube videos"
-#~ msgstr "Youtube videolarını oynatın"
-
-#
-#~ msgid "Disable Subtitles"
-#~ msgstr "Altyazıyı Kapat"
-
-#~ msgid "Discard changes and close plugin"
-#~ msgstr "Değişiklikleri göz ardı et ve eklentiyi kapat"
-
-#~ msgid "Discard changes and close screen"
-#~ msgstr "Değişiklikleri göz ardı et ve ekranı kapat"
-
-#
-#~ msgid ""
-#~ "Disconnected from\n"
-#~ "Fritz!Box! (%s)\n"
-#~ "retrying..."
-#~ msgstr ""
-#~ "Fritz!Box\n"
-#~ "bağlı değil! (%s)\n"
-#~ "yeniden deneniyor..."
-
-#
-#~ msgid "Display search results by:"
-#~ msgstr "Sonuçları sıralama türü:"
-
-#~ msgid "Display your photos on the TV"
-#~ msgstr "Fotoğrafları, televizyonunuzda görüntüleyin"
-
-#~ msgid "Displays movie information from the InternetMovieDatabase"
-#~ msgstr "Filme ait bilgileri imdb.org sitesi üzerinden görüntüler"
-
-#
-#~ msgid ""
-#~ "Do you really want to REMOVE\n"
-#~ "the plugin \""
-#~ msgstr ""
-#~ "%s programını KALDIRMAK\n"
-#~ "istediğinizden emin misiniz?"
-
-#
-#~ msgid ""
-#~ "Do you really want to download\n"
-#~ "the plugin \""
-#~ msgstr ""
-#~ "%s programını indirmek\n"
-#~ "istediğinizden emin misiniz? \""
-
-#
-#~ msgid ""
-#~ "Do you really want to initialize the harddisk?\n"
-#~ "All data on the disk will be lost!"
-#~ msgstr ""
-#~ "Sabit diski sıfırlamak istediğinizden emin misiniz?\n"
-#~ "Bütün verilerinizi kaybedebilirsiniz!"
-
-#
-#~ msgid "Do you want to continue installing or removing selected plugins?\n"
-#~ msgstr "Seçtiğiniz eklentiyi yüklemek veya kaldırmak istiyor musunuz?\n"
-
-#
-#~ msgid "Do you want to enter a username and password for this host?\n"
-#~ msgstr "Bu konak için kullanıcı adı ve parola tanımlamak istiyor musunuz?\n"
-
-#
-#~ msgid "Do you want to install default sat lists?"
-#~ msgstr "Varsayılan kanal listesini yüklemek ister misiniz?"
-
-#
-#~ msgid "Do you want to see more entries?"
-#~ msgstr "Daha fazla başlık görmek istiyor musunuz?"
-
-#
-#~ msgid "Done - Installed or upgraded %d packages with %d errors"
-#~ msgstr ""
-#~ "Tamamlandı - %d paket yüklendi veya güncellendi %d pakette hata oluştu"
-
-#
-#~ msgid "Download Video"
-#~ msgstr "Video'yu indir"
-
-#
-#~ msgid "Download location"
-#~ msgstr "İndirme konumu"
-
-#
-#~ msgid "Download of USB flasher boot image failed: "
-#~ msgstr ""
-#~ "Önyükleme yapabilir USB flaşlayıcı bellenim dosyası indirilirken hata "
-#~ "oluştu:"
-
-#
-#~ msgid "Downloading image description..."
-#~ msgstr "İmaj açıklaması indiriliyor..."
-
-#
-#~ msgid "Downloading screenshots. Please wait..."
-#~ msgstr "Ekran görüntüsü indiriliyor. Lütfen bekleyin..."
-
-#~ msgid "Driver for Ralink RT8070/RT3070/RT3370 based wireless-n USB devices."
-#~ msgstr "Ralink RT8070/RT3070/RT3370 çipli USB kablosuz alıcı sürücüleri."
-
-#~ msgid "Driver for Realtek r8712u based wireless-n USB devices."
-#~ msgstr "Realtek r8712u USB kablosuz alıcı sürücüsü."
-
-#
-#~ msgid "Duration: "
-#~ msgstr "Süre: "
-
-#
-#~ msgid "EPG encoding"
-#~ msgstr "EPG kodlaması"
-
-#~ msgid ""
-#~ "EPGRefresh will automatically switch to user-defined channels when the "
-#~ "box is idleing\n"
-#~ "(in standby mode without any running recordings) to perform updates of "
-#~ "the epg information on these channels."
-#~ msgstr ""
-#~ "EPG yenileyici, seçmiş olduğunuz kanallara ait elektronik program "
-#~ "rehberlerini,\n"
-#~ "cihaz bekleme konumunda boşta çalışırken (kayıt görevi yok ise) günceller."
-
-#
-#~ msgid "Edit AutoTimer"
-#~ msgstr "Otomatik zamanlayıcı düzenle"
-
-#
-#~ msgid "Edit AutoTimer filters"
-#~ msgstr "Otomatik zamanlayıcı filtrelerini düzenle"
-
-#
-#~ msgid "Edit AutoTimer services"
-#~ msgstr "Otomatik zamanlayıcı kanallarını düzenle"
-
-#
-#~ msgid "Edit IPKG source URL..."
-#~ msgstr "IPKG kaynak adresi..."
-
-#
-#~ msgid "Edit Timers and scan for new Events"
-#~ msgstr "Zamanlayıcı düzenle ve yeni eylemlerde ara"
-
-#
-#~ msgid "Edit new timer defaults"
-#~ msgstr "Varsayılan zamanlayıcı taslağını düzenleyin"
-
-#
-#~ msgid "Edit selected AutoTimer"
-#~ msgstr "Seçilen otomatik zamanlayıcıyı düzenle"
-
-#~ msgid "Edit tags of recorded movies"
-#~ msgstr "Kayıtlı filmlerinizin etiketlerini düzenleyin"
-
-#~ msgid "Edit tags of recorded movies."
-#~ msgstr "Kayıtlı filmlerinizin etiketlerini düzenleyin."
-
-#
-#~ msgid "Editing"
-#~ msgstr "Düzenleme"
-
-#
-#~ msgid "Editor for new AutoTimers"
-#~ msgstr "Yeni otomatik zamanlayıcı editörü"
-
-#
-#~ msgid "Education"
-#~ msgstr "Eğitim"
-
-#~ msgid "Emailclient is an IMAP4 e-mail viewer for the Dreambox."
-#~ msgstr "Eposta istemcisi, IMAP4 temelli bir eposta görüntüleyicidir."
-
-#
-#~ msgid "Enable /media"
-#~ msgstr "/media yönetimine izin ver"
-
-#~ msgid "Enable 1080p24 Mode"
-#~ msgstr "1080p24 kipini etkinleştir"
-
-#~ msgid "Enable 1080p25 Mode"
-#~ msgstr "1080p25 kipini etkinleştir"
-
-#~ msgid "Enable 1080p30 Mode"
-#~ msgstr "1080p30 kipini etkinleştir"
-
-#~ msgid "Enable 720p24 Mode"
-#~ msgstr "720p24 kipini etkinleştir"
-
-#~ msgid "Enable Autoresolution"
-#~ msgstr "Otoçözünürlüğü etkinleştir"
-
-#
-#~ msgid "Enable Filtering"
-#~ msgstr "Filtreleme"
-
-#~ msgid "Enable HTTP Access"
-#~ msgstr "HTTP erişimine izin ver"
-
-#~ msgid "Enable HTTP Authentication"
-#~ msgstr "HTTP erişiminde şifre sor"
-
-#~ msgid "Enable HTTPS Access"
-#~ msgstr "HTTPS erişiminine izin ver"
-
-#~ msgid "Enable HTTPS Authentication"
-#~ msgstr "HTTPS erişiminde şifre sor"
-
-#
-#~ msgid "Enable LAN"
-#~ msgstr "LAN'ı Aç"
-
-#
-#~ msgid "Enable Service Restriction"
-#~ msgstr "Kanal kısıtlaması"
-
-#~ msgid "Enable Streaming Authentication"
-#~ msgstr "Stream erişiminde şifre sor"
-
-#
-#~ msgid "Enable WLAN"
-#~ msgstr "WLAN'ı Aç"
-
-#
-#~ msgid ""
-#~ "Enable the local network of your Dreambox.\n"
-#~ "\n"
-#~ msgstr ""
-#~ "Dreambox'un yerel ağ bağlantısını aç.\n"
-#~ "\n"
-
-#~ msgid "Encrypted: %s"
-#~ msgstr "Şifrelenmiş : %s"
-
-#
-#~ msgid "Encryption Type"
-#~ msgstr "Şifreleme Tipi"
-
-#
-#~ msgid "End"
-#~ msgstr "Bitiş zamanı"
-
-#
-#~ msgid "End of \"after event\" timespan"
-#~ msgstr "Zaman aralığı sonu"
-
-#
-#~ msgid "End of timespan"
-#~ msgstr "Zaman aralığı sonu"
-
-#~ msgid ""
-#~ "Enigma2 Plugin to play AVI/DIVX/WMV/etc. videos from PC on your Dreambox. "
-#~ "Needs a running VLC from www.videolan.org on your pc."
-#~ msgstr ""
-#~ "AVI/DIVX/WMV/v.s türevi video dosyalarınızı PC üzerinden Dreambox'ınızda "
-#~ "izleyebilmenizi sağlar. Bu eklenti PC üzerinde çalışan VLC (videolan.org) "
-#~ "sürümüne ihtiyaç duymaktadır."
-
-#
-#~ msgid ""
-#~ "Enigma2 Skinselector v0.5 BETA\n"
-#~ "\n"
-#~ "If you experience any problems please contact\n"
-#~ "stephan@reichholf.net\n"
-#~ "\n"
-#~ "© 2006 - Stephan Reichholf"
-#~ msgstr ""
-#~ "Enigma2 Arayüz Seçtirici v0.5 BETA\n"
-#~ "\n"
-#~ "Herhangi bir hatayla karşılaşırsanız lüften\n"
-#~ "stephan@reichholf.net ile irtibata geçin\n"
-#~ "\n"
-#~ "Â© 2006 - Stephan Reichholf"
-
-#
-#~ msgid "Enter Fast Forward at speed"
-#~ msgstr "Hızlı sardırma hızı (FF)"
-
-#
-#~ msgid "Enter Rewind at speed"
-#~ msgstr "Geri sardırma hızı (RW)"
-
-#
-#~ msgid "Enter WLAN network name/SSID:"
-#~ msgstr "Kablosuz (WLAN) ağ adı/SSID girin:"
-
-#
-#~ msgid "Enter WLAN networkname/SSID:"
-#~ msgstr "Kablosuz (WLAN) ağ adı/SSID girin:"
-
-#
-#~ msgid "Enter WLAN passphrase/key:"
-#~ msgstr "WLAN ön paylaşımlı anahtarı (passphrase/key) girin:"
-
-#
-#~ msgid "Enter new hostname for your Dreambox"
-#~ msgstr "Dreambox'ınızın yeni konak adını girin"
-
-#
-#~ msgid "Enter options:"
-#~ msgstr "Seçenekleri girin:"
-
-#
-#~ msgid "Enter password:"
-#~ msgstr "Parola girin:"
-
-#
-#~ msgid "Enter share directory:"
-#~ msgstr "Paylaşım klasörünü girin:"
-
-#
-#~ msgid "Enter share name:"
-#~ msgstr "Paylaşım adını girin:"
-
-#
-#~ msgid "Enter user and password for host: "
-#~ msgstr "Konak için kullanıcı adı ve parola girin: "
-
-#
-#~ msgid "Enter username:"
-#~ msgstr "Kullanıcı adı girin:"
-
-#
-#~ msgid "Enter your search term(s)"
-#~ msgstr "Arama terim(ler)ini girin"
-
-#
-#~ msgid "Entertainment"
-#~ msgstr "Eğlence"
-
-#
-#~ msgid "Everything is fine"
-#~ msgstr "Herşey güzel"
-
-#
-#~ msgid "Exact match"
-#~ msgstr "Tam eşleşme"
-
-#
-#~ msgid "Exclude"
-#~ msgstr "Dışla"
-
-#
-#~ msgid "Execute \"after event\" during timespan"
-#~ msgstr "Zaman aralığındaki eylemden sonra çalıştır"
-
-#~ msgid "Execute TuxboxPlugins"
-#~ msgstr "Tuxbox eklentisini çalıştır"
-
-#
-#~ msgid "Exit wizard and configure later manually"
-#~ msgstr "Sihirbazdan çık ve ayarları daha sonra elle yap"
-
-#~ msgid ""
-#~ "FTPBrowser allows uploading and downloading files between your Dreambox "
-#~ "and a server using the file transfer protocol."
-#~ msgstr ""
-#~ "FTP istemcisi, Dreambox ve ftp sunucusu arasında dosya aktarımı yapmanızı "
-#~ "sağlar."
-
-#
-#~ msgid "Fetching feed entries"
-#~ msgstr "Bilgiler, youtube'dan alınıyor"
-
-#
-#~ msgid "Fetching search entries"
-#~ msgstr "Arama sonuçları getiriliyor"
-
-#
-#~ msgid "Filename and path"
-#~ msgstr "Dosya ve yol adı"
-
-#
-#~ msgid "Filesystem Check..."
-#~ msgstr "Dosya sistemi kontrolü..."
-
-#
-#~ msgid "Filesystem contains uncorrectable errors"
-#~ msgstr "Dosya sistemi içeriğinde düzeltilemeyen hatalar var"
-
-#
-#~ msgid "Film & Animation"
-#~ msgstr "Film & Animasyon"
-
-#
-#~ msgid "Filter"
-#~ msgstr "Filtre"
-
-#
-#~ msgid ""
-#~ "Filters are another powerful tool when matching events. An AutoTimer can "
-#~ "be restricted to certain Weekdays or only match an event with a text "
-#~ "inside eg it's Description.\n"
-#~ "Press BLUE to add a new restriction and YELLOW to remove the selected one."
-#~ msgstr ""
-#~ "Filtreler ise eşleştirme için kullanabileceğiniz diğer güçlü bir araçtır. "
-#~ "Belirli bir gün kısıtlaması yapabileceğiniz gibi EPG program detayında ki "
-#~ "metnini de sınırlama için kullanabilirsiniz.\n"
-#~ "Sınırlama eklemek için MAVİ tuşu, kaldırmak için istediğinizi seçtikten "
-#~ "sonra da SARI tuşu kullanabilirsiniz."
-
-#
-#~ msgid ""
-#~ "First we need to download the latest boot environment for the USB flasher."
-#~ msgstr ""
-#~ "Öncelikle en güncel önyükleme yapabilir USB flaşlayıcı ortamının "
-#~ "indirilmesi gerekiyor."
-
-#
-#~ msgid "Fix USB stick"
-#~ msgstr "USB belleği onar"
-
-#
-#~ msgid "Following tasks will be done after you press continue!"
-#~ msgstr "İlerle tuşuna bastıktan sonra aşağıdaki görevler yapılacak!"
-
-#
-#~ msgid "Font size"
-#~ msgstr "Yazıtipi boyutu"
-
-#
-#~ msgid ""
-#~ "Found a total of %d matching Events.\n"
-#~ "%d Timer were added and %d modified."
-#~ msgstr ""
-#~ "Toplam %d EPG eylemi eşleşmesi bulundu.\n"
-#~ "%d zamanlayıcı eklendi ve %d düzenlendi."
-
-#
-#~ msgid "Frame repeat count during non-smooth winding"
-#~ msgstr "Adım adım ilerletmede çerçeve tekrar sayısı "
-
-#
-#~ msgid "France"
-#~ msgstr "Fransa"
-
-#
-#~ msgid "Frisian"
-#~ msgstr "Frizyece"
-
-#~ msgid "Fritz!Box FON IP address"
-#~ msgstr "Fritz!Box IP adresi"
-
-#~ msgid "FritzCall shows incoming calls to your Fritz!Box on your Dreambox."
-#~ msgstr ""
-#~ "Fritz!Box üzerinden gelen çağrıları televizyondan görebilmenizi sağlar."
-
-#~ msgid "Front USB Slot"
-#~ msgstr "Öndeki USB yuvası"
-
-#
-#~ msgid "Fsck failed"
-#~ msgstr "Fsck (dosya sistemi tutarlılık kontrolü) başarısız"
-
-#
-#~ msgid "Function not yet implemented"
-#~ msgstr "Fonksiyon henüz uygulanmamış"
-
-#
-#~ msgid "Gaming"
-#~ msgstr "Oyun"
-
-#
-#~ msgid "General AC3 delay"
-#~ msgstr "Genel AC3 gecikmesi"
-
-#
-#~ msgid "General PCM delay"
-#~ msgstr "Genel PCM gecikmesi"
-
-#
-#~ msgid "Genre:"
-#~ msgstr "Tür:"
-
-#~ msgid "Genuine Dreambox"
-#~ msgstr "Dreambox'ınız orijinal mi?"
-
-#~ msgid "Genuine Dreambox validation failed!"
-#~ msgstr "Dreambox orijinallik kontrolü başarısız!"
-
-#~ msgid "German traffic information"
-#~ msgstr "Almanya trafik durum bilgisi"
-
-#
-#~ msgid "Germany"
-#~ msgstr "Almanya"
-
-#~ msgid "Global delay"
-#~ msgstr "Genel gecikme"
-
-#
-#~ msgid "Great Britain"
-#~ msgstr "Büyük Britanya"
-
-#
-#~ msgid "Guard interval mode"
-#~ msgstr "Koruma süre kipi"
-
-#
-#~ msgid "Guess existing timer based on begin/end"
-#~ msgstr "Başlama/Bitiş bilgisini mevcutlardan al"
-
-#
-#~ msgid "HD videos"
-#~ msgstr "HD videolar"
-
-#~ msgid "HTTP Port"
-#~ msgstr "HTTP portu"
-
-#~ msgid "HTTPS Port"
-#~ msgstr "HTTPS portu"
-
-#
-#~ msgid "Help"
-#~ msgstr "Yardım"
-
-#
-#~ msgid "Hidden network SSID"
-#~ msgstr "Gizlenmiş ağ SSID"
-
-#
-#~ msgid "Hidden networkname"
-#~ msgstr "Gizlenmiş ağ adı"
-
-#
-#~ msgid "Hierarchy mode"
-#~ msgstr "Hiyerarşi kipi"
-
-#
-#~ msgid "History"
-#~ msgstr "Geçmiş"
-
-#
-#~ msgid "Holland"
-#~ msgstr "Hollanda"
-
-#
-#~ msgid "Hong Kong"
-#~ msgstr "Hong Kong"
-
-#
-#~ msgid "Howto & Style"
-#~ msgstr "Moda"
-
-#~ msgid "IMAP4 e-mail viewer for the Dreambox"
-#~ msgstr "IMAP4 temelli Eposta görüntüleyici"
-
-#
-#~ msgid "IP:"
-#~ msgstr "IP:"
-
-#~ msgid "IRC Client for Enigma2"
-#~ msgstr "IRC istemcisi"
-
-#
-#~ msgid "Icelandic"
-#~ msgstr "İzlandaca"
-
-#
-#~ msgid "If you can see this page, please press OK."
-#~ msgstr "Bu sayfayı görebiliyorsanız, OK'a basınız."
-
-#
-#~ msgid "Image flash utility"
-#~ msgstr "Bellenim flaşlama aracı"
-
-#
-#~ msgid "Image-Upgrade"
-#~ msgstr "Bellenim Güncelle"
-
-#
-#~ msgid "Import AutoTimer"
-#~ msgstr "Otomatik zamanlayıcıyı içeri al"
-
-#
-#~ msgid "Import existing Timer"
-#~ msgstr "Mevcut zamanlayıcıyı içeri al"
-
-#
-#~ msgid "Import from EPG"
-#~ msgstr "EPG'den içeri al"
-
-#
-#~ msgid "Include"
-#~ msgstr "İçer"
-
-#~ msgid "Increase delay"
-#~ msgstr "Gecikmeyi artır"
-
-#~ msgid "Increase delay by %i ms (can be set)"
-#~ msgstr "Gecikmeyi %i ms arttır (mümkünse)"
-
-#
-#~ msgid "India"
-#~ msgstr "Hindistan"
-
-#
-#~ msgid "Initialization..."
-#~ msgstr "Sıfırlama..."
-
-#
-#~ msgid "Initializing Harddisk..."
-#~ msgstr "Sabitdisk sıfırlanıyor..."
-
-#
-#~ msgid "Install local IPKG"
-#~ msgstr "Çevrimdışı IPKG yükle"
-
-#
-#~ msgid "Install software updates..."
-#~ msgstr "Yazılım güncellemelerini yükle..."
-
-#
-#~ msgid ""
-#~ "Install/\n"
-#~ "Remove"
-#~ msgstr ""
-#~ "Yükle/\n"
-#~ "Kaldır"
-
-#
-#~ msgid "Integrated Ethernet"
-#~ msgstr "Entegre Ağ Donanımı"
-
-#
-#~ msgid "Integrated Wireless"
-#~ msgstr "Entegre Kablosuz Ağ Donanımı"
-
-#
-#~ msgid "Interface: %s"
-#~ msgstr "Arayüz: %s"
-
-#
-#~ msgid "Interfaces"
-#~ msgstr "Arayüzler"
-
-#~ msgid "Internal LAN adapter."
-#~ msgstr "Dahili ağ adaptörü."
-
-# File: tmp/enigma2_plugins/genuinedreambox/src/plugin.py, line: 304
-#~ msgid "Invalid response from Security service pls restart again"
-#~ msgstr ""
-#~ "Güvenlik servisinden geçersiz yanıt döndü. Lütfen yeniden çalıştırın."
-
-# File: tmp/enigma2_plugins/genuinedreambox/src/plugin.py, line: 132
-#~ msgid "Invalid response from server."
-#~ msgstr "Sunucudan geçersiz yanıt döndü."
-
-# File: tmp/enigma2_plugins/genuinedreambox/src/plugin.py, line: 177
-#~ msgid "Invalid response from server. Please report: %s"
-#~ msgstr "Sunucudan geçersiz yanıt döndü. Lütfen raporlayın: %s"
-
-#
-#~ msgid "Invalid selection"
-#~ msgstr "Geçersiz seçim"
-
-#
-#~ msgid "Invert display"
-#~ msgstr "Ekranı ters çevir"
-
-#
-#~ msgid "Ireland"
-#~ msgstr "İrlanda"
-
-#
-#~ msgid "Israel"
-#~ msgstr "İsrail"
-
-#
-#~ msgid ""
-#~ "It's possible to restrict an AutoTimer to certain Services or Bouquets or "
-#~ "to deny specific ones.\n"
-#~ "An Event will only match this AutoTimer if it's on a specific and not "
-#~ "denied Service (inside a Bouquet).\n"
-#~ "Press BLUE to add a new restriction and YELLOW to remove the selected one."
-#~ msgstr ""
-#~ "Otomatik zamanlayıcı da anahtar kelime eşleşmesini istediğiniz kanalları "
-#~ "veya buketleri sınırlayabilirsiniz.\n"
-#~ "Eşleştirme için girdiğiniz anahtar kelime, yalnızca belirttiğiniz kanal/"
-#~ "buketlerdeki EPG olaylarında aranabilir.\n"
-#~ "Sınırlama eklemek için MAVİ tuşu, kaldırmak için istediğinizi seçtikten "
-#~ "sonra da SARI tuşu kullanabilirsiniz."
-
-#
-#~ msgid "Italy"
-#~ msgstr "İtalya"
-
-#
-#~ msgid "Japan"
-#~ msgstr "Japonya"
-
-#~ msgid "Kerni's BrushedAlu-HD skin"
-#~ msgstr "Kerni'nin BrushedAlu-HD arayüzü"
-
-#~ msgid "Kerni's DreamMM-HD skin"
-#~ msgstr "Kerni'nin DreamMM-HD arayüzü"
-
-#~ msgid "Kerni's Elgato-HD skin"
-#~ msgstr "Kerni'nin Elgato-HD arayüzü"
-
-#~ msgid "Kerni's SWAIN skin"
-#~ msgstr "Kerni'nin SWAIN arayüzü"
-
-#~ msgid "Kerni's SWAIN-HD skin"
-#~ msgstr "Kerni'nin SWAIN-HD arayüzü"
-
-#~ msgid "Kerni's UltraViolet skin"
-#~ msgstr "Kerni'nin UltraViolet arayüzü"
-
-#~ msgid "Kerni's YADS-HD skin"
-#~ msgstr "Kerni'nin YADS-HD arayüzü"
-
-#~ msgid "Kerni's dTV-HD skin"
-#~ msgstr "Kerni'nin dTV-HD arayüzü"
-
-#~ msgid "Kerni's dTV-HD-Reloaded skin"
-#~ msgstr "Kerni'nin dTV-HD-Reloaded arayüzü"
-
-#~ msgid "Kerni's dmm-HD skin"
-#~ msgstr "Kerni'nin dmm-HD arayüzü"
-
-#~ msgid "Kerni's dreamTV-HD skin"
-#~ msgstr "Kerni'nin dreamTV-HD arayüzü"
-
-#~ msgid "Kerni's simple skin"
-#~ msgstr "Kerni'nin simple arayüzü"
-
-#~ msgid "Kerni-HD1 skin"
-#~ msgstr "Kerni-HD1 arayüzü"
-
-#~ msgid "Kerni-HD1R2 skin"
-#~ msgstr "Kerni-HD1R2 arayüzü"
-
-#~ msgid "Kernis HD1 skin"
-#~ msgstr "Kernis HD1 arayüzü"
-
-#
-#
-#
-#
-#
-#
-#~ msgid "Key"
-#~ msgstr "Tuş"
-
-#
-#~ msgid "Key %(Key)s successfully set to %(delay)i ms"
-#~ msgstr "%(Key)s tuşuna %(delay)i ms gecikme süresi atandı"
-
-#
-#~ msgid "Key %(key)s (current value: %(value)i ms)"
-#~ msgstr "%(key)s tuşu (mevcut değer: %(value)i ms)"
-
-#
-#~ msgid "Keymap"
-#~ msgstr "Tuş dizilimi (keymap)"
-
-#~ msgid "KiddyTimer allows to control your kids's daily tv usage."
-#~ msgstr ""
-#~ "KiddyTimer çocuların günlük TV kullanımını kontrol etmenize yardımcı olur."
-
-#
-#~ msgid "Language..."
-#~ msgstr "Dil ayarları"
-
-#
-#~ msgid "Lets you view/edit files in your Dreambox"
-#~ msgstr "Dreambox'ınızdaki dosyaları görün/düzenleyin"
-
-#
-#~ msgid "Load feed on startup:"
-#~ msgstr "Açılırken seçilen beslemeyi yükle:"
-
-#
-#~ msgid "Load movie-length"
-#~ msgstr "Kaydedilmiş dosyalarda süreyi göster"
-
-#
-#~ msgid "Local share name"
-#~ msgstr "Yerel paylaşım adı"
-
-#
-#~ msgid "Manage network shares"
-#~ msgstr "Ağ paylaşımlarını yönet"
-
-#
-#~ msgid "Manage your network shares..."
-#~ msgstr "Ağ paylaşımlarını yönetin. "
-
-#
-#~ msgid "Match Timespan: %02d:%02d - %02d:%02d"
-#~ msgstr "Zaman aralığı eşleştir:  %02d:%02d - %02d:%02d"
-
-#
-#~ msgid "Match title"
-#~ msgstr "Anahtar Kelime"
-
-#
-#~ msgid "Match title: %s"
-#~ msgstr "Anahtar Kelime: %s"
-
-#
-#~ msgid "Max. Bitrate: %s"
-#~ msgstr "Maks. Hız: %s"
-
-#
-#
-#
-#
-#
-#
-#~ msgid "Maximum delay"
-#~ msgstr "Maksimum gecikme"
-
-#
-#~ msgid "Maximum duration (in m)"
-#~ msgstr "Maksimum Süre (dk.)"
-
-#~ msgid "Merlin Music Player and iDream"
-#~ msgstr "Merlin Müzik Oynatıcı ve iDream"
-
-#
-#~ msgid "Mexico"
-#~ msgstr "Meksika"
-
-#
-#
-#
-#
-#
-#
-#~ msgid "Minimum delay"
-#~ msgstr "Minimum gecikme"
-
-#
-#~ msgid "Mkfs failed"
-#~ msgstr "Mkfs (disk biçimlendirme) başarısız"
-
-#
-#~ msgid "Modify existing timers"
-#~ msgstr "Zamanlayıcıları değiştir"
-
-#
-#~ msgid "Monthly"
-#~ msgstr "Aylık"
-
-#
-#~ msgid "More video entries."
-#~ msgstr "Daha çok video sonucu."
-
-#
-#~ msgid "Most discussed"
-#~ msgstr "En çok tartışılanlar"
-
-#
-#~ msgid "Most linked"
-#~ msgstr "En çok linklenenler"
-
-#
-#~ msgid "Most popular"
-#~ msgstr "En çok beğenilenler"
-
-#
-#~ msgid "Most recent"
-#~ msgstr "En yeniler"
-
-#
-#~ msgid "Most responded"
-#~ msgstr "En çok yorumlananlar"
-
-#
-#~ msgid "Most viewed"
-#~ msgstr "En çok izlenenler"
-
-#
-#~ msgid "Mount failed"
-#~ msgstr "Depolama aygıtı bağlama işlemi (mount) başarısız"
-
-#
-#~ msgid "Mount informations"
-#~ msgstr "Bağlantı bilgileri"
-
-#
-#~ msgid "Mount options"
-#~ msgstr "Bağlantı seçenekleri"
-
-#
-#~ msgid "Mount type"
-#~ msgstr "Bağlantı tipi"
-
-#
-#~ msgid "MountManager"
-#~ msgstr "Ağ diski yönetimi"
-
-#
-#~ msgid "MountView"
-#~ msgstr "Bağlantı noktalarına bak"
-
-#
-#~ msgid ""
-#~ "Mounted/\n"
-#~ "Unmounted"
-#~ msgstr ""
-#~ "Bağlı/\n"
-#~ "Bağlı değil"
-
-#
-#~ msgid "Mountpoints management"
-#~ msgstr "Bağlantı noktası yönetimi"
-
-#
-#~ msgid "Mounts editor"
-#~ msgstr "Bağlantı düzenleyici"
-
-#
-#~ msgid "Mounts management"
-#~ msgstr "Ağ Diski Yönetimi"
-
-#~ msgid "Move plugin screen"
-#~ msgstr "Eklenti ekranını taşı"
-
-#~ msgid "Move screen down"
-#~ msgstr "Ekranı aşağı taşı"
-
-#~ msgid "Move screen to the center of your TV"
-#~ msgstr "Ekranı TV ekranının ortasına ortala"
-
-#~ msgid "Move screen to the left"
-#~ msgstr "Ekranı sola taşı"
-
-#~ msgid "Move screen to the lower left corner"
-#~ msgstr "Ekranı sol alt köşeye taşı"
-
-#~ msgid "Move screen to the lower right corner"
-#~ msgstr "Ekranı sağ alt köşeye taşı"
-
-#~ msgid "Move screen to the middle of the left border"
-#~ msgstr "Ekranı sol çerçevenin ortasına taşı"
-
-#~ msgid "Move screen to the middle of the right border"
-#~ msgstr "Ekranı sağ çerçevenin ortasına taşı"
-
-#~ msgid "Move screen to the right"
-#~ msgstr "Ekranı sağa taşı"
-
-#~ msgid "Move screen to the upper left corner"
-#~ msgstr "Ekranı sol üst köşeye taşı"
-
-#~ msgid "Move screen to the upper right corner"
-#~ msgstr "Ekranı sağ üst köşeye taşı"
-
-#~ msgid "Move screen up"
-#~ msgstr "Ekranı yukarı taşı"
-
-#
-#~ msgid "Music"
-#~ msgstr "Müzik"
-
-#
-#~ msgid "My TubePlayer"
-#~ msgstr "MyTube oynatıcı"
-
-#
-#~ msgid "MyTube Settings"
-#~ msgstr "MyTube ayarları"
-
-#
-#~ msgid "MyTubePlayer"
-#~ msgstr "MyTube oynatıcı"
-
-#
-#~ msgid "MyTubePlayer Help"
-#~ msgstr "MyTube oynatıcı yardım"
-
-#
-#~ msgid "MyTubePlayer active video downloads"
-#~ msgstr "MyTube oynatıcı indirilen videolar"
-
-#
-#~ msgid "MyTubePlayer settings"
-#~ msgstr "MyTube oynatıcı ayarları"
-
-#
-#~ msgid "MyTubeVideoInfoScreen"
-#~ msgstr "MyTube video bilgi ekranı"
-
-#
-#~ msgid "MyTubeVideohelpScreen"
-#~ msgstr "MyTube video yardım ekranı"
-
-#
-#~ msgid "NFS share"
-#~ msgstr "NFS paylaşım"
-
-#~ msgid "Nemesis BlackBox Skin"
-#~ msgstr "Nemesis BlackBox arayüzü"
-
-#~ msgid "Nemesis BlackBox Skin for the Dreambox"
-#~ msgstr "Nemesis BlackBox arayüzü"
-
-#~ msgid "Nemesis Blueline Single Skin"
-#~ msgstr "Nemesis Blueline Single arayüzü"
-
-#~ msgid "Nemesis Blueline Single Skin for the Dreambox"
-#~ msgstr "Nemesis Blueline Single arayüzü"
-
-#~ msgid "Nemesis Blueline Skin"
-#~ msgstr "Nemesis Blueline arayüzü"
-
-#~ msgid "Nemesis Blueline Skin for the Dreambox"
-#~ msgstr "Nemesis Blueline arayüzü"
-
-#~ msgid "Nemesis Blueline.Extended Skin"
-#~ msgstr "Nemesis Blueline.Extended arayüzü"
-
-#~ msgid "Nemesis Blueline.Extended Skin for the Dreambox"
-#~ msgstr "Nemesis Blueline.Extended arayüzü"
-
-#~ msgid "Nemesis ChromeLine Cobolt Skin"
-#~ msgstr "Nemesis ChromeLine Cobolt arayüzü"
-
-#~ msgid "Nemesis ChromeLine Cobolt Skin for the Dreambox"
-#~ msgstr "Nemesis ChromeLine Cobolt arayüzü"
-
-#~ msgid "Nemesis ChromeLine Skin"
-#~ msgstr "Nemesis ChromeLine arayüzü"
-
-#~ msgid "Nemesis ChromeLine Skin for the Dreambox"
-#~ msgstr "Nemesis ChromeLine arayüzü"
-
-#~ msgid "Nemesis Flatline Blue Skin"
-#~ msgstr "Nemesis Flatline Blue arayüzü"
-
-#~ msgid "Nemesis Flatline Blue Skin for the Dreambox"
-#~ msgstr "Nemesis Flatline Blue arayüzü"
-
-#~ msgid "Nemesis Flatline Skin"
-#~ msgstr "Nemesis Flatline arayüzü"
-
-#~ msgid "Nemesis Flatline Skin for the Dreambox"
-#~ msgstr "Nemesis Flatline arayüzü"
-
-#~ msgid "Nemesis GlassLine Skin"
-#~ msgstr "Nemesis GlassLine arayüzü"
-
-#~ msgid "Nemesis GlassLine Skin for the Dreambox"
-#~ msgstr "Nemesis GlassLine arayüzü"
-
-#~ msgid "Nemesis Greenline Extended Skin"
-#~ msgstr "Nemesis Greenline arayüzü"
-
-#~ msgid "Nemesis Greenline Extended Skin for the Dreambox"
-#~ msgstr "Nemesis Greenline Extended arayüzü"
-
-#~ msgid "Nemesis Greenline Single Skin"
-#~ msgstr "Nemesis Greenline Single arayüzü"
-
-#~ msgid "Nemesis Greenline Single Skin for the Dreambox"
-#~ msgstr "Nemesis Greenline Single arayüzü"
-
-#~ msgid "Nemesis Greenline Skin"
-#~ msgstr "Nemesis Greenline arayüzü"
-
-#~ msgid "Nemesis Greenline Skin for the Dreambox"
-#~ msgstr "Nemesis Greenline arayüzü"
-
-#~ msgid "Nemesis Greyline Extended Skin"
-#~ msgstr "Nemesis Greyline Extended arayüzü"
-
-#~ msgid "Nemesis Greyline Extended Skin for the Dreambox"
-#~ msgstr "Nemesis Greyline Extended arayüzü"
-
-#~ msgid "Nemesis Greyline Single Skin"
-#~ msgstr "Nemesis Greyline Single arayüzü"
-
-#~ msgid "Nemesis Greyline Single Skin for the Dreambox"
-#~ msgstr "Nemesis Greyline Single arayüzü"
-
-#~ msgid "Nemesis Greyline Skin"
-#~ msgstr "Nemesis Greyline arayüzü"
-
-#~ msgid "Nemesis Greyline Skin for the Dreambox"
-#~ msgstr "Nemesis Greyline arayüzü"
-
-#~ msgid "Nemesis ShadowLine Skin"
-#~ msgstr "Nemesis ShadowLine arayüzü"
-
-#~ msgid "Nemesis ShadowLine Skin for the Dreambox"
-#~ msgstr "Nemesis ShadowLine arayüzü"
-
-#
-#~ msgid "Network SSID"
-#~ msgstr "Ağ SSID"
-
-#
-#~ msgid "Network..."
-#~ msgstr "Ağ ayarları"
-
-#
-#~ msgid "NetworkBrowser"
-#~ msgstr "Ağ gezgini"
-
-#
-#~ msgid "Never"
-#~ msgstr "Hiç"
-
-#
-#~ msgid "New Zealand"
-#~ msgstr "Yeni Zelanda"
-
-#
-#~ msgid "New pin"
-#~ msgstr "Yeni şifre"
-
-#
-#~ msgid "News & Politics"
-#~ msgstr "Haberler"
-
-#
-#~ msgid "No 50 Hz, sorry. :("
-#~ msgstr "50 Hz desteklemiyor, üzgünüm. :("
-
-#
-#~ msgid "No Networks found"
-#~ msgstr "Kablosuz Ağ bulunamadı"
-
-#
-#~ msgid "No network devices found!"
-#~ msgstr "Ağ aygıtı bulunamadı!"
-
-#
-#~ msgid "No new plugins found"
-#~ msgstr "Yeni eklenti bulunamadı"
-
-#
-#~ msgid "No playable video found! Stop playing this movie?"
-#~ msgstr "Oynatılabilir video bulunamadı! Film durdurulsun mu?"
-
-#
-#~ msgid "No useable USB stick found"
-#~ msgstr "Kullanılabilir USB bellek bulunamadı"
-
-#
-#~ msgid "No videos to display"
-#~ msgstr "Gösterilecek video yok"
-
-#
-#~ msgid "No wireless networks found! Please refresh."
-#~ msgstr ""
-#~ "Kablosuz ağ bulunamadı! Kontrollerinizi yaptıktan sonra Lütfen yenile "
-#~ "tuşuna basın."
-
-#
-#~ msgid ""
-#~ "No working local networkadapter found.\n"
-#~ "Please verify that you have attached a network cable and your Network is "
-#~ "configured correctly."
-#~ msgstr ""
-#~ "Çalışan yerel ağ donanımı bulunamadı.\n"
-#~ "Lütfen ağ kablonuzun bağlı olduğundan ve ağ ayarlarınızın doğru "
-#~ "yapılandırıldığından emin olun."
-
-#
-#~ msgid ""
-#~ "No working wireless interface found.\n"
-#~ " Please verify that you have attached a compatible WLAN USB Stick or "
-#~ "enable you local network interface."
-#~ msgstr ""
-#~ "Çalışan kablosuz ağ arayüzü bulunamadı.\n"
-#~ " Uyumlu WLAN USB donanımının takılı olduğundan emin olun veya yeral ağ "
-#~ "arayüzünü kullanın."
-
-#
-#~ msgid ""
-#~ "No working wireless interface found.\n"
-#~ " Please verify that you have attached a compatible WLAN device or enable "
-#~ "you local network interface."
-#~ msgstr ""
-#~ "Çalışan kablosuz ağ arayüzü bulunamadı.\n"
-#~ " Uyumlu WLAN USB donanımının takılı olduğundan emin olun veya yerel ağ "
-#~ "arayüzünü kullanın."
-
-#
-#~ msgid ""
-#~ "No working wireless interface found.\n"
-#~ " Please verify that you have attached a compatible WLAN device or enable "
-#~ "your local network interface."
-#~ msgstr ""
-#~ "Çalışan kablosuz ağ arayüzü bulunamadı.\n"
-#~ " Uyumlu WLAN USB donanımının takılı olduğundan emin olun veya yerel ağ "
-#~ "arayüzünü kullanın."
-
-#
-#~ msgid ""
-#~ "No working wireless networkadapter found.\n"
-#~ "Please verify that you have attached a compatible WLAN USB Stick and your "
-#~ "Network is configured correctly."
-#~ msgstr ""
-#~ "Çalışan kablosuz ağ donanımı bulunamadı.\n"
-#~ " Uyumlu WLAN USB donanımının takılı olduğundan emin olun ve ağ "
-#~ "ayarlarınızın doğru yapılandırıldığından emin olun."
-
-#
-#~ msgid "No, but play video again"
-#~ msgstr "Hayır, ama videoyu yeniden oynat"
-
-#
-#~ msgid "No, but switch to video entries."
-#~ msgstr "Hayır, ama video sonuçlarına geç."
-
-#
-#~ msgid "No, but switch to video search."
-#~ msgstr "Hayır, ama arama ekranına geç."
-
-#
-#~ msgid "No, let me choose default lists"
-#~ msgstr "Hayır, öntanımlı listeleri seçmeme izin ver"
-
-#
-#~ msgid "No, remove them."
-#~ msgstr "Hayır, boşluğu sil."
-
-#
-#~ msgid "Nonprofits & Activism"
-#~ msgstr "Kamu yararına dernek"
-
-#
-#~ msgid "Not fetching feed entries"
-#~ msgstr "Bilgiler youtube'dan alınamadı"
-
-#
-#~ msgid ""
-#~ "Now please insert the USB stick (minimum size is 64 MB) that you want to "
-#~ "format and use as .NFI image flasher. Press OK after you've put the stick "
-#~ "back in."
-#~ msgstr ""
-#~ "Lütfen şimdi .NFI imajını yazmak üzere biçimlendirilmesi gereken USB "
-#~ "bellek takın (en az 64MB kapasiteli). Hazırsanız kumandanızdan OK tuşuna "
-#~ "basın."
-
-#
-#~ msgid "Offset after recording (in m)"
-#~ msgstr "Kayıt sonrası marj süresi (dk.)"
-
-#
-#~ msgid "Offset before recording (in m)"
-#~ msgstr "Kayıt öncesi marj süresi (dk.)"
-
-#
-#~ msgid "On any service"
-#~ msgstr "Herhangi bir kanalda"
-
-#
-#~ msgid "On same service"
-#~ msgstr "Benzer kanalda"
-
-#
-#~ msgid "Online-Upgrade"
-#~ msgstr "Çevrimiçi Güncelle"
-
-#
-#~ msgid "Only AutoTimers created during this session"
-#~ msgstr "Yalnızca bu oturumda oluşturulan otomatik zamanlayıcılar"
-
-#
-#~ msgid "Only match during timespan"
-#~ msgstr "Yalnızca belirtilen zaman aralığında"
-
-#
-#~ msgid "Only on Service: %s"
-#~ msgstr "Yalnızca %s kanalında"
-
-#~ msgid "Open Context Menu"
-#~ msgstr "İçerik menüsünü aç"
-
-#~ msgid "Open plugin menu"
-#~ msgstr "Eklenti menüsünü aç"
-
-#
-#
-#
-#
-#~ msgid "Order by"
-#~ msgstr "Sıralama"
-
-#
-#~ msgid "Other..."
-#~ msgstr "Diğer..."
-
-#
-#~ msgid "Outer Bound (+/-)"
-#~ msgstr "Azami Gecikme (+/-)"
-
-#
-#~ msgid "Override found with alternative service"
-#~ msgstr "Alternatifli kanalda üzerine yaz"
-
-#
-#~ msgid "Package details for: "
-#~ msgstr "Belirtilen paketin detayları:"
-
-#
-#~ msgid "PacketManager"
-#~ msgstr "Paket yönetimi"
-
-#
-#~ msgid "Page"
-#~ msgstr "Sayfa"
-
-#
-#~ msgid "Partitioning USB stick..."
-#~ msgstr "USB bellek bölümlendiriliyor..."
-
-#
-#~ msgid "People & Blogs"
-#~ msgstr "İnsanlar"
-
-#
-#~ msgid "Pets & Animals"
-#~ msgstr "Hayvanlar"
-
-#
-#~ msgid "Play YouTube movies"
-#~ msgstr "YouTube filmlerini oynatın"
-
-#
-#~ msgid "Play next video"
-#~ msgstr "Sonraki videoyu oynat"
-
-#
-#~ msgid "Play video again"
-#~ msgstr "Videoyu yeniden oynat"
-
-#
-#~ msgid "Please Reboot"
-#~ msgstr "Lütfen yeniden başlatın"
-
-#
-#~ msgid ""
-#~ "Please attach your Zydas ZD1211B chipset compatibe WLAN USB Stick to your "
-#~ "Dreambox and press the OK button on your remote control to enable the "
-#~ "built in wireless network support"
-#~ msgstr ""
-#~ "Lütfen dahili kablosuz ağ desteğini etkinleştirmek için, Zydas ZD1211B "
-#~ "çipset uyumlu WLAN USB donanımını Dreambox'ınıza takın ve kumandanızdan "
-#~ "OK tuşuna basın..."
-
-#
-#~ msgid "Please choose .NFI image file from feed server to download"
-#~ msgstr "Lütfen sunucudan çekmek istediğiniz .NFI bellenim dosyasını seçin"
-
-#
-#~ msgid ""
-#~ "Please configure your local LAN internet connection by filling out the "
-#~ "needed values.\n"
-#~ "When you are ready please press OK to continue."
-#~ msgstr ""
-#~ "Lütfen ihtiyaç duyulan boş alanlara yerel ağ (LAN) ayarlarınızı girin.\n"
-#~ "Hazır olduğunuzda devam etmek için OK tuşuna basın."
-
-#
-#~ msgid ""
-#~ "Please configure your wireless LAN internet connection by filling out the "
-#~ "needed values.\n"
-#~ "When you are ready please press OK to continue."
-#~ msgstr ""
-#~ "Kablosuz ağ bağlantınızı yapılandırmak için gerekli boşlukları doldurun.\n"
-#~ "Hazır olduğunuzda devam etmek için OK tuşuna basın."
-
-#
-#~ msgid ""
-#~ "Please disconnect all USB devices from your Dreambox and (re-)attach the "
-#~ "target USB stick (minimum size is 64 MB) now!"
-#~ msgstr ""
-#~ "Lütfen tüm USB aygıtlarını Dreambox'ınızdan çıkarın ve işlem yapmak "
-#~ "istediğiniz USB belleği (min. 64MB kapasiteli) tekrar takın!"
-
-#
-#~ msgid "Please enter the old pin code"
-#~ msgstr "Lütfen eski şifreyi girin"
-
-#
-#~ msgid "Please enter your search term."
-#~ msgstr "Lütfen arama terimini girin."
-
-#
-#~ msgid "Please provide a Text to match"
-#~ msgstr "Lütfen eşleşme için bir metin tanımlayın"
-
-#
-#~ msgid "Please select .NFI flash image file from medium"
-#~ msgstr "Lütfen medyadan .NFI bellenim dosyasını seçin"
-
-#
-#~ msgid "Please select a standard feed or try searching for videos."
-#~ msgstr "Lütfen 'Beslemeler'i seçin veya video aramayı deneyin."
-
-#
-#~ msgid "Please select below the wireless network you want to connect to."
-#~ msgstr "Lütfen bağlanmak istediğiniz kablosuz ağı seçin."
-
-#
-#~ msgid "Please select keyword to filter..."
-#~ msgstr "Lütfen filtre için anahtar kelime girin..."
-
-#
-#~ msgid "Please select target directory or medium"
-#~ msgstr "Lütfen hedef klasörü veya medyayı seçin"
-
-#~ msgid "Please wait (Step 2)"
-#~ msgstr "Lütfen bekleyin (2. adım)"
-
-#
-#~ msgid "Please wait for activation of your network mount..."
-#~ msgstr "Ağ diski etkinleştirilirken lütfen bekleyin..."
-
-#
-#~ msgid "Please wait for md5 signature verification..."
-#~ msgstr "md5 imza doğrulamasının yapılabilmesi için lütfen bekleyin..."
-
-#
-#~ msgid "Please wait while removing your network mount..."
-#~ msgstr "Ağ diski kaldırılırken lütfen bekleyin..."
-
-#
-#~ msgid "Please wait while updating your network mount..."
-#~ msgstr "Ağ diski güncelleştirilirken lütfen bekleyin..."
-
-#
-#~ msgid "Plugin Download/Remove"
-#~ msgstr "Eklenti İndir/Kaldır"
-
-#
-#~ msgid "Plugin manager"
-#~ msgstr "Eklenti yönetimi"
-
-#
-#~ msgid "Poland"
-#~ msgstr "Polonya"
-
-#
-#~ msgid "Polarity"
-#~ msgstr "Polarite"
-
-#
-#~ msgid "Poll Interval (in h)"
-#~ msgstr "Tarama aralığı (saat)"
-
-#
-#~ msgid "Poll automatically"
-#~ msgstr "Otomatik tarama"
-
-#
-#~ msgid "Port"
-#~ msgstr "Port"
-
-#
-#~ msgid "Positioner fine movement"
-#~ msgstr "Pozisyoner ince ayarı"
-
-#
-#~ msgid "Positioner movement"
-#~ msgstr "Pozisyoner'i hareket ettir"
-
-#
-#~ msgid "Positioner storage"
-#~ msgstr "Pozisyoner konumunu hafızaya al"
-
-#~ msgid "PositionerSetup helps you installing a motorized dish"
-#~ msgstr "Pozisyoner kurulumu, motorlu çanağı ayarlamanızda yardımcı olur."
-
-#
-#~ msgid "Press OK to edit selected settings."
-#~ msgstr "Seçilen ayarları düzenlemek için OK tuşuna basın."
-
-#
-#~ msgid "Press OK to mount!"
-#~ msgstr "Diski bağlamak için OK tuşuna basın."
-
-#
-#~ msgid "Press OK to save settings."
-#~ msgstr "Ayarları kaydetmek için OK tuşuna basın."
-
-#
-#~ msgid "Press OK to select."
-#~ msgstr "Seçmek için OK tuşuna basın."
-
-#
-#~ msgid "Press OK to view full changelog"
-#~ msgstr "Günlüğün tamamını görmek için OK tuşuna basın"
-
-#
-#~ msgid ""
-#~ "Pressing OK enables the built in wireless LAN support of your Dreambox.\n"
-#~ "Wlan USB Sticks with Zydas ZD1211B and RAlink RT73 Chipset are "
-#~ "supported.\n"
-#~ "Connect your Wlan USB Stick to your Dreambox before pressing OK.\n"
-#~ "\n"
-#~ msgstr ""
-#~ "Dreambox'ınızda kablosuz ağ desteğini aktif hale getirmek için OK'a "
-#~ "basın.\n"
-#~ "WLAN USB donanımlarında, Zydas ZD1211B ve RAlink RT73 çipsetleri "
-#~ "desteklenmektedir.\n"
-#~ "OK'a basmadan önce WLAN USB donanımınızı Dreambox'ınıza takın.\n"
-
-#
-#~ msgid "Preview AutoTimer"
-#~ msgstr "Otomatik zamanlayıcı önizleme"
-
-#
-#~ msgid "Published"
-#~ msgstr "Yayın"
-
-#~ msgid "Python frontend for /tmp/mmi.socket."
-#~ msgstr "/tmp/mmi.socket için Python uç birimi."
-
-#
-#~ msgid "RC Menu"
-#~ msgstr "UK Menüsü"
-
-#
-#~ msgid "RSS Feed URI"
-#~ msgstr "RSS Besleme Adresi"
-
-#~ msgid "RT8070/RT3070/RT3370 USB wireless-n driver"
-#~ msgstr "RT8070/RT3070/RT3370 USB 802.11n sürücüsü"
-
-#~ msgid "Ralink"
-#~ msgstr "Ralink"
-
-#
-#~ msgid "Rating"
-#~ msgstr "Puan"
-
-#
-#~ msgid "Ratings: "
-#~ msgstr "Puan: "
-
-#
-#~ msgid "Really delete this Interface?"
-#~ msgstr "Bu arayüzü silmek istiyor musunuz?"
-
-#
-#~ msgid "Really delete this timer?"
-#~ msgstr "Bu zamanlayıcıyı silmek istediğinizden emin misiniz?"
-
-#
-#~ msgid "Really quit MyTube Player?"
-#~ msgstr "MyTube oynatıcı'dan çıkmak istiyor musunuz?"
-
-#
-#
-#
-#
-#
-#
-#~ msgid "Recalculate..."
-#~ msgstr "Tekr. hesapla"
-
-#
-#~ msgid "Recently featured"
-#~ msgstr "Son önerilenler"
-
-#
-#~ msgid "Record a maximum of x times"
-#~ msgstr "Maksimum x defa kaydet"
-
-#
-#~ msgid "Record on"
-#~ msgstr "Kaydedilecek"
-
-#
-#~ msgid "Recording paths..."
-#~ msgstr "Kayıt konumları..."
-
-#
-#~ msgid ""
-#~ "Recording(s) are in progress or coming up in few seconds... really reboot "
-#~ "now?"
-#~ msgstr ""
-#~ "KAYIT işlemi devam ediyor. Cihazı yeniden açmak istediğinizden emin "
-#~ "misiniz?"
-
-#
-#~ msgid ""
-#~ "Recording(s) are in progress or coming up in few seconds... really "
-#~ "restart now?"
-#~ msgstr ""
-#~ "KAYIT işlemi devam ediyor. Cihazı yeniden başlatmak istediğinizden emin "
-#~ "misiniz?"
-
-#
-#~ msgid ""
-#~ "Recording(s) are in progress or coming up in few seconds... really "
-#~ "shutdown now?"
-#~ msgstr ""
-#~ "KAYIT işlemi devam ediyor. Cihazı kapatmak istediğinizden emin misiniz?"
-
-#
-#~ msgid "Reenter new pin"
-#~ msgstr "Yeni şifreyi tekrar girin"
-
-#~ msgid "Refresh"
-#~ msgstr "Yenile"
-
-#
-#~ msgid "Related video entries."
-#~ msgstr "Benzer videolar"
-
-#
-#~ msgid "Relevance"
-#~ msgstr "Uygunluk"
-
-#~ msgid "Remember service pin"
-#~ msgstr "Kanal şifresini hatırla"
-
-#
-#~ msgid "Remounting stick partition..."
-#~ msgstr "USB bellek bölümlendirmesi (partition) yeniden yapılandırılıyor..."
-
-#
-#~ msgid "Remove selected AutoTimer"
-#~ msgstr "Seçilen otomatik zamanlayıcıyı kaldır"
-
-#
-#~ msgid "Remove the broken .NFI file?"
-#~ msgstr "Bozuk .NFI dosyası silinsin mi?"
-
-#
-#~ msgid "Remove the incomplete .NFI file?"
-#~ msgstr "Eksik .NFI dosyası silinsin mi?"
-
-#
-#~ msgid "Repeat"
-#~ msgstr "Tekrarla"
-
-#
-#~ msgid "Require Authorization"
-#~ msgstr "Oturum izni gerekli mi?"
-
-#
-#~ msgid "Require description to be unique"
-#~ msgstr "Tekil açıklama gerekiyor"
-
-#~ msgid "Rescan"
-#~ msgstr "Yeniden ara"
-
-#
-#~ msgid "Rescan network"
-#~ msgstr "Ağı yeniden ara"
-
-#
-#~ msgid "Reset count"
-#~ msgstr "Sayaç Sıfırlama"
-
-#~ msgid "Reset saved position"
-#~ msgstr "Kayıtlı pozisyonu sıfırla"
-
-#
-#~ msgid "Response video entries."
-#~ msgstr "Video sonuçlarını cevapla."
-
-#
-#~ msgid "Restart GUI"
-#~ msgstr "GUI'yi yeniden başlat"
-
-#
-#~ msgid "Restart your wireless interface"
-#~ msgstr "Kablosuz arabirimini yeniden başlat"
-
-#
-#~ msgid "Restore backups..."
-#~ msgstr "Yedekten geri yükle..."
-
-#
-#~ msgid "Restore running..."
-#~ msgstr "Geri yükleme çalışıyor..."
-
-#
-#~ msgid ""
-#~ "Restoring the settings is done. Please press OK to activate the restored "
-#~ "settings now."
-#~ msgstr ""
-#~ "Ayarların geri yüklemesi tamamlandı. Geri yüklenen ayarların "
-#~ "etkinleştirilmesi için OK tuşuna basın."
-
-#~ msgid "Retrieving network information. Please wait..."
-#~ msgstr "Ağ bilgisi getiriliyor. Lütfen bekleyin..."
-
-#
-#~ msgid "Return to file browser"
-#~ msgstr "Dosya yöneticisine geri dön"
-
-#
-#~ msgid "Running"
-#~ msgstr "Çalıştırılıyor"
-
-#
-#~ msgid "Russia"
-#~ msgstr "Rusya"
-
-#
-#~ msgid "SSL"
-#~ msgstr "SSL"
-
-#
-#~ msgid "SSL Encryption"
-#~ msgstr "SSL şifrelemesi"
-
-#~ msgid "Satfinder helps you to align your dish"
-#~ msgstr "Uydu arayıcı, çanak ayarlamalarınıza yardımcı olur."
-
-#
-#~ msgid "Satteliteequipment"
-#~ msgstr "Uydu ekipmanı"
-
-#
-#~ msgid "Save %s delay"
-#~ msgstr "%s gecikmesini kaydet"
-
-#
-#~ msgid "Save both delays"
-#~ msgstr "İki gecikmeyide kaydet"
-
-#
-#~ msgid "Save current %(audio)s delay of %(delay)i ms to key"
-#~ msgstr "Geçerli %(audio)s izi için %(delay)i ms gecikmeyi, tuşa kaydet"
-
-#~ msgid "Save values and close plugin"
-#~ msgstr "Değişiklikleri kaydet ve eklentiyi kapat"
-
-#~ msgid "Save values and close screen"
-#~ msgstr "Değişiklikleri kaydet ve pencereyi kapat"
-
-#
-#~ msgid "Saved %(audio)s value: %(delay)i ms"
-#~ msgstr "%(audio)s izi için %(delay)i ms gecikme kaydedildi"
-
-#
-#~ msgid ""
-#~ "Scan your network for wireless Access Points and connect to them using "
-#~ "your WLAN USB Stick\n"
-#~ msgstr ""
-#~ "Kablosuz ağ erişim noktalarını arayın ve WLAN USB donanımınızla "
-#~ "bağlanın.\n"
-
-#
-#~ msgid ""
-#~ "Scan your network for wireless Access Points and connect to them using "
-#~ "your selected wireless device.\n"
-#~ msgstr ""
-#~ "Ağınızdaki kablosuz erişim noktalarını arayın ve tercih ettiğiniz "
-#~ "kablosuz erişim aygıtına bağlanın.\n"
-
-#
-#~ msgid "Science & Technology"
-#~ msgstr "Bilim & Teknoloji"
-
-#
-#~ msgid "Search Term(s)"
-#~ msgstr "Arama terim(ler)i"
-
-#
-#~ msgid "Search category:"
-#~ msgstr "Arama kategorisi:"
-
-#
-#~ msgid "Search for"
-#~ msgstr "için Ara"
-
-#
-#~ msgid "Search for network shares"
-#~ msgstr "Ağ paylaşımlarını ara"
-
-#
-#~ msgid "Search for network shares..."
-#~ msgstr "Ağ paylaşımlarını arayın. "
-
-#
-#~ msgid "Search region:"
-#~ msgstr "Arama bölgesi:"
-
-#
-#~ msgid "Search restricted content:"
-#~ msgstr "Kısıtlanmış içerikte ara:"
-
-#
-#~ msgid "Search strictness"
-#~ msgstr "Arama hassasiyeti"
-
-#
-#~ msgid "Search type"
-#~ msgstr "Arama tipi"
-
-#
-#~ msgid "Searching your network. Please wait..."
-#~ msgstr "Ağınız aranıyor. Lütfen bekleyin..."
-
-#
-#, fuzzy
-#~ msgid "Security service not running."
-#~ msgstr "Eklenecek kanalı seçin..."
-
-#
-#~ msgid "Select IPKG source to edit..."
-#~ msgstr "IPKG kaynağını seçin..."
-
-#
-#~ msgid "Select a timer to import"
-#~ msgstr "İçeri almak için bir zamanlayıcı seçin"
-
-#
-#~ msgid "Select audio mode"
-#~ msgstr "Ses kanalını seçin"
-
-#
-#~ msgid "Select bouquet to record on"
-#~ msgstr "Kaydedilecek buketi seçin"
-
-#~ msgid "Select channel audio"
-#~ msgstr "Ses kanalını seçin"
-
-#
-#~ msgid "Select channel to record on"
-#~ msgstr "Kaydedilecek kanalı seçin"
-
-#
-#~ msgid "Select files for backup. Currently selected:\n"
-#~ msgstr "Yedeklemek istediğiniz dosyaları seçin. Mevcut seçiminiz:\n"
-
-#
-#~ msgid "Select files/folders to backup..."
-#~ msgstr "Yedekleme için dosya/klasör seçin..."
-
-#
-#~ msgid "Select image"
-#~ msgstr "Bellenim seçin"
-
-#
-#~ msgid "Select new feed to view."
-#~ msgstr "Görmek istediğiniz beslemeyi seçin."
-
-#
-#~ msgid "Select the key you want to set to %i ms"
-#~ msgstr "%i ms gecikmeyi atamak istediğiniz tuşu seçin"
-
-#
-#~ msgid "Select type of Filter"
-#~ msgstr "Filtre tipini seçin"
-
-#
-#~ msgid "Select video input"
-#~ msgstr "Görüntü girişini seç"
-
-#
-#~ msgid "Select your choice."
-#~ msgstr "Seçiminizi yapınız."
-
-#
-#~ msgid "Selected source image"
-#~ msgstr "Seçilen kaynak bellenim"
-
-#
-#~ msgid "Server IP"
-#~ msgstr "Sunucu IP"
-
-#
-#~ msgid "Server share"
-#~ msgstr "Paylaşım klasörü"
-
-#~ msgid "Service delay"
-#~ msgstr "Kanal gecikmesi"
-
-#
-#~ msgid "Set as default Interface"
-#~ msgstr "Varsayılan arayüz olarak ata"
-
-#
-#~ msgid "Set limits"
-#~ msgstr "Limitleri belirle"
-
-#
-#~ msgid "Set maximum duration"
-#~ msgstr "Maksimum süre tanımla"
-
-#
-#~ msgid "Setting key canceled"
-#~ msgstr "Tuş tanımlama iptal edildi"
-
-#
-#~ msgid "Setup for the AC3 Lip Sync Plugin"
-#~ msgstr "AC3 dudak senkron eklentisi"
-
-#~ msgid "Setup for the Audio Sync Plugin"
-#~ msgstr "AC3 dudak senkron eklentisi ayarları"
-
-#
-#~ msgid "Short Movies"
-#~ msgstr "Kısa Film"
-
-#
-#~ msgid "Show blinking clock in display during recording"
-#~ msgstr "OLED, kayıt esnasında yanıp sönsün"
-
-#
-#~ msgid "Show in extension menu"
-#~ msgstr "Eklentiler menüsünde göster"
-
-#~ msgid "Show info screen"
-#~ msgstr "Bilgi ekranını göster"
-
-#
-#~ msgid "Skin..."
-#~ msgstr "Arayüz"
-
-#
-#~ msgid "Slovakian"
-#~ msgstr "Slovakça"
-
-#
-#~ msgid "Software Update..."
-#~ msgstr "Yazılım Güncelle"
-
-#
-#~ msgid "Software manager"
-#~ msgstr "Yazılım yönetimi"
-
-#
-#~ msgid "Software manager..."
-#~ msgstr "Yazılım yönetimi"
-
-#
-#~ msgid "Softwaremanager..."
-#~ msgstr "Yazılım yönetimi"
-
-#
-#~ msgid "Somewhere else"
-#~ msgstr "Başka bir yere"
-
-#
-#~ msgid "Sorry, video is not available!"
-#~ msgstr "Üzgünüm, video mevcut değil!"
-
-#
-#~ msgid "Sort AutoTimer"
-#~ msgstr "Sırala"
-
-#
-#~ msgid "South Korea"
-#~ msgstr "Güney Kore"
-
-#
-#~ msgid "Spain"
-#~ msgstr "İspanya"
-
-#
-#~ msgid "Sports"
-#~ msgstr "Spor"
-
-#
-#~ msgid "Start"
-#~ msgstr "Başlama zamanı"
-
-#
-#~ msgid "Start Webinterface"
-#~ msgstr "Web arayüzünü başlat"
-
-#
-#~ msgid "Start with following feed:"
-#~ msgstr "Açılışta yüklenecek besleme:"
-
-#
-#~ msgid "Std. Feeds"
-#~ msgstr "Beslemeler"
-
-#
-#~ msgid "Step "
-#~ msgstr "Adım"
-
-#
-#~ msgid "Step in ms for arrow keys"
-#~ msgstr "<> tuşlarına basıldığında atlanacak süre (ms)"
-
-#
-#~ msgid "Step in ms for key %i"
-#~ msgstr "%i tuşuna basıldığında atlanacak süre (ms)"
-
-#
-#~ msgid "Step in ms for keys '%s'"
-#~ msgstr "'%s' tuşuna basıldığında atlanacak süre (ms)"
-
-#
-#~ msgid "Stereo"
-#~ msgstr "Steryo"
-
-#
-#~ msgid "Sweden"
-#~ msgstr "İsveç"
-
-#
-#~ msgid "Switch audio"
-#~ msgstr "Ses izini seç"
-
-#
-#
-#
-#
-#
-#
-#~ msgid "Switch to calculated key- delays"
-#~ msgstr "Hesaplanan tuş gecikmelerine geç"
-
-#
-#
-#
-#
-#
-#
-#~ msgid "Switch to user key- delays"
-#~ msgstr "Kullanıcı tuş gecikmelerine geç"
-
-#
-#~ msgid "Tag 1"
-#~ msgstr "Etiket 1"
-
-#
-#~ msgid "Tag 2"
-#~ msgstr "Etiket 2"
-
-#
-#~ msgid "Tags: "
-#~ msgstr "Etiketler: "
-
-#
-#~ msgid "Taiwan"
-#~ msgstr "Tayvan"
-
-# File: tmp/enigma2_plugins/genuinedreambox/src/plugin.py, line: 80
-#~ msgid "Test again"
-#~ msgstr "Testi tekrarla"
-
-#
-#~ msgid ""
-#~ "Thank you for using the wizard. Your Dreambox is now ready to use.\n"
-#~ "\n"
-#~ "Your local LAN internet connection is working now.\n"
-#~ "\n"
-#~ "Please press OK to continue."
-#~ msgstr ""
-#~ "Sihirbazı kullandığınız için teşekkür ederiz. Dreambox'ınız kullanıma "
-#~ "hazır.\n"
-#~ "\n"
-#~ "Yerel ağ bağlantınız çalışıyor.\n"
-#~ "\n"
-#~ "Devam etmek için OK tuşuna basın."
-
-#
-#~ msgid ""
-#~ "Thank you for using the wizard. Your Dreambox is now ready to use.\n"
-#~ "\n"
-#~ "Your wireless internet connection is working now.\n"
-#~ "\n"
-#~ "Please press OK to continue."
-#~ msgstr ""
-#~ "Sihirbazı kullandığınız için teşekkür ederiz. Dreambox'ınız kullanıma "
-#~ "hazır.\n"
-#~ "\n"
-#~ "Kablosuz ağ bağlantınız çalışıyor.\n"
-#~ "\n"
-#~ "Devam etmek için OK tuşuna basın."
-
-#
-#~ msgid ""
-#~ "Thank you for using the wizard. Your Dreambox is now ready to use.\n"
-#~ "Please press OK to start using your Dreambox."
-#~ msgstr ""
-#~ "Sihirbazı kullandığınız için teşekkür ederiz. Dreambox'ınız kullanıma "
-#~ "hazır.\n"
-#~ "Dreambox'ınızı kullanmak için hazırsanız OK tuşuna basın."
-
-#
-#~ msgid ""
-#~ "Thank you for using the wizard. Your box is now ready to use.\n"
-#~ "Please press OK to start using you Dreambox."
-#~ msgstr ""
-#~ "Sihirbazı kullandığınız için teşekkür ederiz. Dreambox'ınız kullanıma "
-#~ "hazır.\n"
-#~ "Dreambox'ınızı kullanmak için OK tuşuna basın."
-
-#
-#~ msgid ""
-#~ "Thank you for using the wizard. Your new AutoTimer has been added to the "
-#~ "List.\n"
-#~ "Please press OK to continue."
-#~ msgstr ""
-#~ "Sihirbazı kullandığınız için teşekkür ederiz. Yeni otomatik zamanlayıcı "
-#~ "listenize eklenmiştir.\n"
-#~ "Devam etmek için OK'a basınız."
-
-#
-#~ msgid ""
-#~ "The .NFI Image flasher USB stick is now ready to use. Please download an ."
-#~ "NFI image file from the feed server and save it on the stick. Then reboot "
-#~ "and hold the 'Down' key on the front panel to boot the .NFI flasher from "
-#~ "the stick!"
-#~ msgstr ""
-#~ ".NFI İmaj flaşlayıcı USB bellek kullanıma hazır. Lütfen .NFI imaj "
-#~ "dosyasını sunucudan çekin ve belleğe kaydedin. Ardından önyüklemenin USB "
-#~ "bellekten yapılabilmesi için cihazı yeniden açarken, ön panelde bulunan "
-#~ "'Down' tuşuna basılı tutun!"
-
-#
-#~ msgid ""
-#~ "The Timer will not be added to the List.\n"
-#~ "Please press OK to close this Wizard."
-#~ msgstr ""
-#~ "Zamanlayıcı listenize eklenmedi.\n"
-#~ "Sihirbazı kapatmak için OK'a basınız."
-
-#
-#~ msgid ""
-#~ "The Timespan of an AutoTimer is the first 'advanced' attribute. If a "
-#~ "timespan is specified an event will only match this AutoTimer if it lies "
-#~ "inside of this timespan."
-#~ msgstr ""
-#~ "Zaman aralığı, otomatik zamanlayıcı için ilk 'gelişmiş' özelliktir. Eğer "
-#~ "otomatik zamanlayıcı için bir zaman aralığı tanımlarsanız, yalnızca bu "
-#~ "aralıklaki eşleşmeler dikkate alınır."
-
-#
-#~ msgid ""
-#~ "The USB stick is now bootable. Do you want to download the latest image "
-#~ "from the feed server and save it on the stick?"
-#~ msgstr ""
-#~ "USB bellek artık önyükleme yapabilir. Yayınlanan son bellenimi sunucudan "
-#~ "indirmek ve usb belleğe kaydetmek istiyor musunuz?"
-
-#
-#~ msgid "The match attribute is mandatory."
-#~ msgstr "Eşleştirme yapmak zorunludur."
-
-#
-#~ msgid ""
-#~ "The md5sum validation failed, the file may be corrupted! Are you sure "
-#~ "that you want to burn this image to flash memory? You are doing this at "
-#~ "your own risk!"
-#~ msgstr ""
-#~ "md5sum imza doğrulama başarısız, dosya bozuk olabilir! Bu bellenimi flaş "
-#~ "belleğe yazmak istediğinizden emin misiniz? Onaylamanız halinde risk size "
-#~ "aittir!"
-
-#
-#~ msgid ""
-#~ "The md5sum validation failed, the file may be downloaded incompletely or "
-#~ "be corrupted!"
-#~ msgstr ""
-#~ "md5sum imza doğrulama başarısız, dosya tam indirilememiş veya bozuk "
-#~ "olabilir!"
-
-#
-#~ msgid "The pin code has been changed successfully."
-#~ msgstr "Şifre başarıyla değiştirildi."
-
-#
-#~ msgid "The pin codes you entered are different."
-#~ msgstr "Girdiğiniz şifreler birbiriyle uyuşmuyor."
-
-#
-#~ msgid "There was an error getting the feed entries. Please try again."
-#~ msgstr "Sonuçlar youtube'dan alınırken hata oluştu. Lütfen tekrar deneyin."
-
-#
-#~ msgid "This .NFI file does not contain a valid %s image!"
-#~ msgstr ".NFI dosyası geçerli bir %s bellenimi içermiyor!"
-
-#
-#~ msgid ""
-#~ "This .NFI file does not have a md5sum signature and is not guaranteed to "
-#~ "work. Do you really want to burn this image to flash memory?"
-#~ msgstr ""
-#~ ".NFI dosyası md5sum imzasına sahip değil ve çalışacağı garanti "
-#~ "edilemiyor. Bu bellenimi flaş belleğe yazmak istediğinizden emin misiniz?"
-
-#
-#~ msgid ""
-#~ "This .NFI file has a valid md5 signature. Continue programming this image "
-#~ "to flash memory?"
-#~ msgstr ""
-#~ ".NFI dosyası md5sum imzası doğrulandı. Bu bellenimi, flaş belleğe "
-#~ "programlamaya devam etmek istiyor musunuz?"
-
-#
-#~ msgid "This Dreambox can't decode %s video streams!"
-#~ msgstr "Dreambox %s video dosyalarını gösteremez!"
-
-#
-#~ msgid "This Month"
-#~ msgstr "Bu ay"
-
-#
-#~ msgid "This Week"
-#~ msgstr "Bu hafta"
-
-#
-#~ msgid "This is the help screen. Feed me with something to display."
-#~ msgstr "Bu yardım ekranıdır."
-
-#
-#~ msgid "This is unsupported at the moment."
-#~ msgstr "Bu işlem şuan desteklenmiyor."
-
-#
-#~ msgid "Timer type"
-#~ msgstr "Zamanlayıcı tipi"
-
-#
-#~ msgid "Timeshift path..."
-#~ msgstr "Zaman bükücü yol adı..."
-
-#
-#~ msgid "Title:"
-#~ msgstr "Başlık:"
-
-#
-#~ msgid ""
-#~ "To make sure you intend to do this, please remove the target USB stick "
-#~ "now and stick it back in upon prompt. Press OK when you have taken the "
-#~ "stick out."
-#~ msgstr ""
-#~ "Bunu yapmak istediğinizden eminseniz, lütfen hedef USB çubuğu yerinden "
-#~ "çıkarın ve istenildiğinde tekrar takın. USB çubuğu çıkardıysanız lütfen "
-#~ "OK tuşuna basın."
-
-#
-#~ msgid ""
-#~ "To update your Dreambox firmware, please follow these steps:\n"
-#~ "1) Turn off your box with the rear power switch and plug in the bootable "
-#~ "USB stick.\n"
-#~ "2) Turn mains back on and hold the DOWN button on the front panel pressed "
-#~ "for 10 seconds.\n"
-#~ "3) Wait for bootup and follow instructions of the wizard."
-#~ msgstr ""
-#~ "Lütfen Dreambox bellenimini güncellemek için, aşağıdaki adımları takip "
-#~ "edin:\n"
-#~ "1) Dreambox'ınızı, arkasındaki kapama anahtarından kapayın ve önyükleme "
-#~ "yapabilir USB belleği takın.\n"
-#~ "2) Ön panelde yer alan AŞAĞI tuşuna basın ve cihazı tekrar açın. 10 "
-#~ "saniye boyunca AŞAĞI tuşunu bırakmayın.\n"
-#~ "3) Önyüklemenin yapılmasını bekleyin ve sihirbazın yapacağı "
-#~ "yönlendirmeleri takip edin."
-
-#
-#~ msgid "Top favorites"
-#~ msgstr "Favoriler"
-
-#
-#~ msgid "Top rated"
-#~ msgstr "Yüksek oy alanlar"
-
-#
-#~ msgid "Travel & Events"
-#~ msgstr "Gezi"
-
-#
-#~ msgid "Trying to download the Youtube feed entries. Please wait..."
-#~ msgstr "Youtube sonuçları alınıyor. Lütfen bekleyin..."
-
-#
-#~ msgid "Trying to download the Youtube search results. Please wait..."
-#~ msgstr "Youtube arama sonuçları getiriliyor. Lütfen bekleyin..."
-
-#
-#~ msgid "USB"
-#~ msgstr "USB"
-
-#~ msgid ""
-#~ "USB stick wizard finished. Your dreambox will now restart with your new "
-#~ "image!"
-#~ msgstr ""
-#~ "USB bellek sihirbazı tamamlandı. Dreambox'ınız şimdi yeni bellenim ile "
-#~ "başlatılacak."
-
-#
-#~ msgid "Ukrainian"
-#~ msgstr "Ukraynaca"
-
-#
-#~ msgid ""
-#~ "Unable to complete filesystem check.\n"
-#~ "Error: "
-#~ msgstr "Dosya sistemi kontrolü tamamlanamadı"
-
-#
-#~ msgid ""
-#~ "Unable to initialize harddisk.\n"
-#~ "Error: "
-#~ msgstr ""
-#~ "Sabitdisk sıfırlaması yapılamıyor.\n"
-#~ "Hata:"
-
-#
-#~ msgid ""
-#~ "Undo\n"
-#~ "Install"
-#~ msgstr ""
-#~ "Yüklemeyi\n"
-#~ "Geri al"
-
-#
-#~ msgid ""
-#~ "Undo\n"
-#~ "Remove"
-#~ msgstr ""
-#~ "Kaldırmayı\n"
-#~ "Geri al"
-
-#
-#~ msgid "Unicable Matrix"
-#~ msgstr "Unicable Matris"
-
-#
-#~ msgid "United States"
-#~ msgstr "Amerika"
-
-#
-#~ msgid "Unmount failed"
-#~ msgstr "Depolama aygıtı çözme işlemi (unmount) başarısız"
-
-#~ msgid "Update done..."
-#~ msgstr "Güncelleme tamamlandı..."
-
-#~ msgid "Updating, please wait..."
-#~ msgstr "Güncelleniyor, lütfen bekleyin..."
-
-#
-#~ msgid "Use a custom location"
-#~ msgstr "Özel kayıt konumu seç"
-
-#
-#
-#
-#
-#
-#
-#~ msgid "Use calc. delays"
-#~ msgstr "Hesaplanmış gecikmeyi kullan"
-
-#
-#~ msgid "Use non-smooth winding at speeds above"
-#~ msgstr "Adım adım ilerletmeyi bu hızda kullan"
-
-#
-#
-#
-#
-#
-#
-#~ msgid "Use user delays"
-#~ msgstr "Kullanıcı gecikmesini kullan"
-
-#
-#~ msgid "User management"
-#~ msgstr "Kullanıcı yönetimi"
-
-#
-#~ msgid "Usermanager"
-#~ msgstr "Kullanıcı yönetimi"
-
-#
-#~ msgid "VideoSetup"
-#~ msgstr "Görüntü kurulumu"
-
-#
-#~ msgid "Videobrowser exit behavior:"
-#~ msgstr "Video gezgininden çıkıldığında:"
-
-#
-#~ msgid "Videoplayer stop/exit behavior:"
-#~ msgstr "Video oynatıcı durdurulduğunda/çıkıldığında:"
-
-#
-#~ msgid "View"
-#~ msgstr "İncele"
-
-#
-#~ msgid "View Count"
-#~ msgstr "İzlenme sayısı"
-
-#
-#~ msgid "View active downloads"
-#~ msgstr "İndirilen dosyaları göster"
-
-#~ msgid "View list of available Satteliteequipment extensions."
-#~ msgstr "Uydu ekipmanı eklentilerini buradan yönetebilirsiniz"
-
-#
-#~ msgid "View related videos"
-#~ msgstr "Benzer videoları göster"
-
-#
-#~ msgid "View response videos"
-#~ msgstr "Cevaplanan videoları göster"
-
-#
-#~ msgid "View, edit or delete mountpoints on your Dreambox."
-#~ msgstr ""
-#~ "Dreambox'ınızdaki ağ bağlantı noktalarını inceleyin, düzenleyin veya "
-#~ "silin."
-
-#
-#~ msgid "View, edit or delete usernames and passwords for your network."
-#~ msgstr "Ağınızdaki kullanıcı hesaplarını inceleyin, düzenleyin veya silin."
-
-#
-#~ msgid "Views: "
-#~ msgstr "İzlenme: "
-
-#
-#~ msgid "Wait time in ms before activation:"
-#~ msgstr "Aktivasyondan önce bekleme süresi (ms):"
-
-#
-#~ msgid "Waiting for USB stick to settle..."
-#~ msgstr "USB çubuğun takılması bekleniyor..."
-
-#
-#~ msgid ""
-#~ "We will now test if your TV can also display this resolution at 50hz. If "
-#~ "your screen goes black, wait 20 seconds and it will switch back to 60hz.\n"
-#~ "Please press OK to begin."
-#~ msgstr ""
-#~ "Şimdi, Televizyonunuzun bu çözünürlükte 50Hz 'deki davranışını test "
-#~ "edeceğiz. Eğer ekranınız siyah olarak kalırsa, 60Hz'e geçebilmek için 20 "
-#~ "saniye bekleyin.\n"
-#~ "Başlamak için lütfen OK tuşuna basın."
-
-#
-#~ msgid "Webinterface"
-#~ msgstr "Web arayüzü"
-
-#
-#~ msgid "Webinterface: Edit Interface"
-#~ msgstr "Web arayüzü: Arayüzleri düzenle"
-
-#
-#~ msgid "Webinterface: List of configured Interfaces"
-#~ msgstr "Web arayüzü: Yapılandırılmış arayüz listesi"
-
-#
-#~ msgid "Webinterface: Main Setup"
-#~ msgstr "Web arayüzü: Ana kurulum"
-
-#
-#~ msgid "Weekend"
-#~ msgstr "Haftasonu"
-
-#
-#~ msgid "Weekly (Monday)"
-#~ msgstr "Haftalık (Pazartesi)"
-
-#
-#~ msgid "Weekly (Sunday)"
-#~ msgstr "Haftalık (Pazar)"
-
-#
-#~ msgid ""
-#~ "Welcome to the MyTube Youtube Player.\n"
-#~ "\n"
-#~ "Use the Bouqet+ button to navigate to the search field and the Bouqet- to "
-#~ "navigate to the video entries.\n"
-#~ "\n"
-#~ "To play a movie just press OK on your remote control.\n"
-#~ "\n"
-#~ "Press info to see the movie description.\n"
-#~ "\n"
-#~ "Press the Menu button for additional options.\n"
-#~ "\n"
-#~ "The Help button shows this help again."
-#~ msgstr ""
-#~ "MyTube oynatıcıya hoşgeldiniz.\n"
-#~ "\n"
-#~ "Arama ekranına geçmek için BOUQUET+, video sonuçlarına geçmek için "
-#~ "BOUQUET- tuşunu,\n"
-#~ "\n"
-#~ "seçtiğiniz filmi oynatmak için OK tuşunu,\n"
-#~ "\n"
-#~ "film hakkında bilgi almak için INFO tuşunu\n"
-#~ "\n"
-#~ "ek özelliklere ulaşmak için MENU tuşunu,\n"
-#~ "\n"
-#~ "bu yardım ekranına ulaşmak için ise HELP tuşunu kullanın. "
-
-#
-#~ msgid ""
-#~ "Welcome to the MyTube Youtube Player.\n"
-#~ "\n"
-#~ "While entering your search term(s) you will get suggestions displayed "
-#~ "matching your search term.\n"
-#~ "\n"
-#~ "To select a suggestion press DOWN on your remote, select the desired "
-#~ "result and press OK on your remote to start the search.\n"
-#~ "\n"
-#~ "Press exit to get back to the input field."
-#~ msgstr ""
-#~ "MyTube oynatıcıya hoşgeldiniz.\n"
-#~ "\n"
-#~ "Arama terim(ler)inizi girerken, aramanızla eşleşen başlıklar "
-#~ "önerilecektir.\n"
-#~ "\n"
-#~ "Önerilerden size uygun olanı seçmek için AŞAĞI tuşuna basabilir aramayı "
-#~ "başlatmak için de OK tuşunu kullanabilirsiniz.\n"
-#~ "\n"
-#~ "Arama kutusuna dönmek için EXIT tuşuna basınız."
-
-#
-#~ msgid ""
-#~ "Welcome.\n"
-#~ "\n"
-#~ "If you want to connect your Dreambox to the Internet, this wizard will "
-#~ "guide you through the basic network setup of your Dreambox.\n"
-#~ "\n"
-#~ "Press the OK button on your remote control to move to the next step."
-#~ msgstr ""
-#~ "Hoşgeldiniz.\n"
-#~ "\n"
-#~ "Bu sihirbaz Dreambox'ınızın ağ ayarlarını yapabilmeniz için yardımcı "
-#~ "olacaktır.\n"
-#~ "\n"
-#~ "Kumandanızın OK tuşuna basarak sonraki adıma geçebilirsiniz."
-
-#
-#~ msgid ""
-#~ "Welcome.\n"
-#~ "\n"
-#~ "This Wizard will help you to create a new AutoTimer by providing "
-#~ "descriptions for common settings."
-#~ msgstr ""
-#~ "Hoşgeldiniz.\n"
-#~ "\n"
-#~ "Bu sihirbaz genel ayarlarınızla, yeni otomatik zamanlayıcı oluşturmanıza "
-#~ "yardımcı olur."
-
-#
-#~ msgid "Which delays do you want to set"
-#~ msgstr "Hangi gecikmeyi kaydetmek istiyorsunuz?"
-
-#
-#~ msgid "Wireless"
-#~ msgstr "Kablosuz"
-
-#
-#~ msgid "Wireless Network State"
-#~ msgstr "Kablosuz ağ durumu"
-
-#
-#~ msgid "Wizard"
-#~ msgstr "Sihirbaz"
-
-#
-#~ msgid "Writing NFI image file to flash completed"
-#~ msgstr "NFI bellenimin flaşa yazımı tamamlandı"
-
-#
-#~ msgid "Writing image file to NAND Flash"
-#~ msgstr "İmaj, NAND Flaşa yazılıyor"
-
-#
-#~ msgid "Year:"
-#~ msgstr "Yıl:"
-
-#
-#~ msgid "Yes, but play next video"
-#~ msgstr "Evet, ama sonraki videoyu oynat"
-
-#
-#~ msgid "Yes, but play previous video"
-#~ msgstr "Evet, ama önceki videoyu oynat"
-
-#
-#~ msgid "Yes, keep them."
-#~ msgstr "Evet, boşluk kalsın."
-
-#
-#~ msgid ""
-#~ "You can set the basic properties of an AutoTimer here.\n"
-#~ "While 'Name' is just a human-readable name displayed in the Overview, "
-#~ "'Match in title' is what is looked for in the EPG."
-#~ msgstr ""
-#~ "Basit özellikleriyle otomatik zamanlayıcıyı burada tanımlayabilirsiniz.\n"
-#~ "'Anahtar kelime', EPG programlarında aranacak olan eşleştirme kelime/"
-#~ "cümlesidir."
-
-#
-#~ msgid ""
-#~ "You did not provide a valid 'Match in title' Attribute for your new "
-#~ "AutoTimer.\n"
-#~ "As this is a mandatory Attribute you cannot continue without doing so."
-#~ msgstr ""
-#~ "Yeni otomatik zamanlayıcı başlık eşleştirmesi için geçerli bir 'Anahtar "
-#~ "kelime' tanımlamadınız.\n"
-#~ "Devam edebilmeniz için bu geçerli bir anahtar kelime belirtilmesi "
-#~ "zorunludur."
-
-#
-#~ msgid ""
-#~ "You do not seem to have a harddisk in your Dreambox. So backing up to a "
-#~ "harddisk is not an option for you."
-#~ msgstr ""
-#~ "Dreambox'a bağlı bir sabit disk görünmüyor. Bu işlem için sabit diski "
-#~ "kullanma opsiyonunuz bulunmamaktadır."
-
-#
-#~ msgid ""
-#~ "You entered \"%s\" as Text to match.\n"
-#~ "Do you want to remove trailing whitespaces?"
-#~ msgstr ""
-#~ "Metin eşleşmesi için \"%s\" girdiniz.\n"
-#~ "Anahtar kelimeden sonra bırakılan boşluklar silinsin mi?"
-
-#
-#~ msgid ""
-#~ "You have chosen to backup to a compact flash card. The card must be in "
-#~ "the slot. We do not verify if it is really used at the moment. So better "
-#~ "backup to the harddisk!\n"
-#~ "Please press OK to start the backup now."
-#~ msgstr ""
-#~ "Ayarlarınızın yedeğini CF (compact flash) karta almayı seçtiniz. Kart, "
-#~ "yuvasına takılmış olmalıdır. Sabit diske yedek almak daha güvenlidir!\n"
-#~ "Yedeklemeyi başlatmak için OK tuşuna basın."
-
-#
-#~ msgid ""
-#~ "You have chosen to backup to an usb drive. Better backup to the "
-#~ "harddisk!\n"
-#~ "Please press OK to start the backup now."
-#~ msgstr ""
-#~ "Ayarlarınızın yedeğini USB sürücüye almayı seçtiniz. Sabit diske yedek "
-#~ "almak daha güvenlidir!\n"
-#~ "Yedeklemeyi başlatmak için OK tuşuna basın."
-
-#
-#~ msgid ""
-#~ "You have chosen to backup to your harddisk. Please press OK to start the "
-#~ "backup now."
-#~ msgstr ""
-#~ "Ayarlarınızın yedeğini sabit diske almayı seçtiniz. Yedeklemeyi başlatmak "
-#~ "için lüften OK tuşuna basın."
-
-#
-#~ msgid ""
-#~ "You need to define some keywords first!\n"
-#~ "Press the menu-key to define keywords.\n"
-#~ "Do you want to define keywords now?"
-#~ msgstr ""
-#~ "Öncelikle bazı anahtar kelimeler girmeniz gerekiyor!\n"
-#~ "Menü tuşuna basın ve anahtar kelimeyi tanımlayın.\n"
-#~ "Anahtar kelimeyi şimdi tanımlamak ister misiniz??"
-
-#
-#~ msgid ""
-#~ "You need to set a pin code and hide it from your children.\n"
-#~ "\n"
-#~ "Do you want to set the pin now?"
-#~ msgstr ""
-#~ "Bir şifre tanımlamalı ve çocuklarınızdan gizlemelisiniz.\n"
-#~ "\n"
-#~ "Şimdi bir şifre tanımlamak istiyor musunuz?"
-
-#
-#~ msgid ""
-#~ "You successfully configured a new AutoTimer. Do you want to add it to the "
-#~ "list?\n"
-#~ "\n"
-#~ "You can go back a step by pressing EXIT on your remote."
-#~ msgstr ""
-#~ "Yeni otomatik zamanlayıcıyı başarıyla yapılandırdınız. Listeye eklemek "
-#~ "istiyor musunuz?\n"
-#~ "\n"
-#~ "Bir önceki adıma dönmek için kumandanızdaki EXIT tuşunu kullanınız."
-
-#
-#~ msgid ""
-#~ "Your 'Match in title' Attribute ends with a Whitespace.\n"
-#~ "Please confirm if this was intentional, if not they will be removed."
-#~ msgstr ""
-#~ "'Anahtar Kelime' den sonra bir boşluk bırakmışsınız.\n"
-#~ "Lütfen boşluğu bilinçli olarak, tutmak isteyip istemediğinizi belirtiniz?"
-
-#
-#~ msgid "Your TV works with 50 Hz. Good!"
-#~ msgstr "Televizyonunuz 50Hz destekliyor. Güzel!"
-
-#
-#~ msgid ""
-#~ "Your config file is not well-formed:\n"
-#~ "%s"
-#~ msgstr ""
-#~ "Yapılandırma dosyası düzgün değil:\n"
-#~ "%s"
-
-#
-#~ msgid ""
-#~ "Your local LAN internet connection is not working!\n"
-#~ "Please choose what you want to do next."
-#~ msgstr ""
-#~ "Yerel ağ üzerinden internet bağlantınız çalışmıyor\n"
-#~ "Lütfen ne yapmak istediğinizi bir sonraki adımda seçin"
-
-#
-#~ msgid ""
-#~ "Your network configuration has been activated.\n"
-#~ "A second configured interface has been found.\n"
-#~ "\n"
-#~ "Do you want to disable the second network interface?"
-#~ msgstr ""
-#~ "Ağ yapılandırmanız etkinleştirildi.\n"
-#~ "Yapılandırılmış ikinci bir arayüz bulundu.\n"
-#~ "\n"
-#~ "İkinci ağ arayüzünü devre dışı bırakmak istiyor musunuz?"
-
-#
-#~ msgid ""
-#~ "Your network is restarting.\n"
-#~ "You will be automatically forwarded to the next step."
-#~ msgstr ""
-#~ "Ağ yeniden başlatılıyor.\n"
-#~ "Otomatik olarak sonraki adıma yönlendirileceksiniz."
-
-#
-#~ msgid "Your network mount has been activated."
-#~ msgstr "Ağ diski bağlantınız etkinleştirildi."
-
-#
-#~ msgid "Your network mount has been removed."
-#~ msgstr "Ağ diski bağlantınız kaldırıldı."
-
-#
-#~ msgid "Your network mount has been updated."
-#~ msgstr "Ağ diski bağlantınız güncellendi."
-
-#
-#~ msgid ""
-#~ "Your wired LAN Adapter could not be started.\n"
-#~ "Do you want to reboot your Dreambox to apply the new configuration?\n"
-#~ msgstr ""
-#~ "Kablolu Ağ donanımınız başlatılamadı.\n"
-#~ "Yeni ayarların geçerli olabilmesi için Dreambox'u yeniden başlatmak ister "
-#~ "misiniz?\n"
-
-#
-#~ msgid ""
-#~ "Your wireless LAN Adapter could not be started.\n"
-#~ "Do you want to reboot your Dreambox to apply the new configuration?\n"
-#~ msgstr ""
-#~ "Kablosuz Ağ donanımınız başlatılamadı.\n"
-#~ "Yeni ayarların geçerli olabilmesi için Dreambox'u yeniden başlatmak ister "
-#~ "misiniz?\n"
-
-#
-#~ msgid ""
-#~ "Your wireless internet connection is not working!\n"
-#~ "Please choose what you want to do next."
-#~ msgstr ""
-#~ "Kablosuz internet bağlantınız çalışmıyor!\n"
-#~ "Lütfen sonraki adımda ne yapmak istediğinizi seçiniz."
-
-#~ msgid "Zydas"
-#~ msgstr "Zydas"
-
-#
-#~ msgid "add AutoTimer..."
-#~ msgstr "Otomatik zamanlayıcı ekle..."
-
-#
-#~ msgid "add filters"
-#~ msgstr "Filtre ekle"
-
-#
-#~ msgid "add services"
-#~ msgstr "Kanal Ekle"
-
-#
-#~ msgid "assigned CAIds"
-#~ msgstr "Atanmış CAId'ler"
-
-#
-#~ msgid "assigned Services/Provider"
-#~ msgstr "Atanmış Kanal/Yayıncılar"
-
-#
-#~ msgid "by Exif"
-#~ msgstr "Exif'ten al"
-
-#
-#~ msgid "case-insensitive search"
-#~ msgstr "büyük-küçük harf duyarsız arama"
-
-#
-#~ msgid "case-sensitive search"
-#~ msgstr "büyük-küçük harf duyarlı arama"
-
-#
-#~ msgid "choose destination directory"
-#~ msgstr "hedef klasörü seçin"
-
-#
-#~ msgid "color"
-#~ msgstr "renk"
-
-#~ msgid "default"
-#~ msgstr "varsayılan"
-
-#
-#~ msgid "delete"
-#~ msgstr "sil"
-
-#~ msgid "driver for Realtek USB wireless devices"
-#~ msgstr "Realtek USB kablosuz alıcı sürücüleri"
-
-#
-#~ msgid "edit filters"
-#~ msgstr "Filtreleri Düzenle"
-
-#
-#~ msgid "edit services"
-#~ msgstr "Kanal Düzenle"
-
-#
-#~ msgid "enter hidden network SSID"
-#~ msgstr "gizlenmiş ağ SSID'sini girin"
-
-#
-#~ msgid "equal to Socket A"
-#~ msgstr "Soket A'ya eşit"
-
-#
-#~ msgid "exact match"
-#~ msgstr "tam eşleşme"
-
-#
-#~ msgid "exceeds dual layer medium!"
-#~ msgstr "çift katman (dual layer) medya kapasitesini aşıyor!"
-
-#
-#~ msgid "exit network adapter setup menu"
-#~ msgstr "ağ donanımı kurulum menüsünden çık"
-
-#
-#~ msgid "failed"
-#~ msgstr "başarısız"
-
-#
-#~ msgid "font face"
-#~ msgstr "font tipi"
-
-#
-#~ msgid "full /etc directory"
-#~ msgstr "/etc klasörünün tamamı"
-
-#
-#~ msgid "headline"
-#~ msgstr "başlık"
-
-#
-#~ msgid "hidden network"
-#~ msgstr "gizlenmiş ağ"
-
-#
-#~ msgid "hidden..."
-#~ msgstr "gizlenmiş..."
-
-#
-#~ msgid "hide extended description"
-#~ msgstr "genişletilmiş açıklamayı gizle"
-
-#
-#~ msgid "highlighted button"
-#~ msgstr "belirtilmiş tuş"
-
-#
-#~ msgid "hour"
-#~ msgstr "saat"
-
-#
-#~ msgid "hours"
-#~ msgstr "saat"
-
-#
-#~ msgid "in Description"
-#~ msgstr "Açıklamada"
-
-#
-#~ msgid "in Shortdescription"
-#~ msgstr "Kısa açıklamada"
-
-#
-#~ msgid "in Title"
-#~ msgstr "Başlıkta"
-
-#
-#~ msgid "in..."
-#~ msgstr "içinde..."
-
-#
-#~ msgid ""
-#~ "incoming call!\n"
-#~ "%s calls on %s!"
-#~ msgstr ""
-#~ "gelen arama!\n"
-#~ "%s sizi arıyor %s!"
-
-#
-#~ msgid "menulist"
-#~ msgstr "menü listesi"
-
-#
-#~ msgid "minute"
-#~ msgstr "dakika"
-
-#
-#~ msgid "minutes and"
-#~ msgstr "dakika ve"
-
-#
-#
-#
-#
-#
-#
-#~ msgid "ms"
-#~ msgstr "ms"
-
-#
-#~ msgid "no HDD found"
-#~ msgstr "HDD bulunamadı"
-
-#
-#~ msgid "no Picture found"
-#~ msgstr "Resim/fotoğraf bulunamadı"
-
-#
-#~ msgid "no module"
-#~ msgstr "modül yok"
-
-#
-#~ msgid "on Weekday"
-#~ msgstr "Günde"
-
-#
-#~ msgid "only /etc/enigma2 directory"
-#~ msgstr "yalnızca /etc/enigma2 klasörü"
-
-#
-#~ msgid "open virtual keyboard input help"
-#~ msgstr "sanal klayve girişi yardımcısını aç"
-
-#
-#~ msgid "partial match"
-#~ msgstr "kısmi eşleşme"
-
-#
-#~ msgid "rebooting..."
-#~ msgstr "yeniden başlatılıyor..."
-
-#~ msgid "required medium type:"
-#~ msgstr "gereken medya tipi:"
-
-#
-#~ msgid "scan done! %d services found!"
-#~ msgstr "kanal araması tamamlandı! %d kanal bulundu!"
-
-#
-#~ msgid "scan done! No service found!"
-#~ msgstr "kanal araması tamamlandı! Kanal bulunamadı!"
-
-#
-#~ msgid "scan done! One service found!"
-#~ msgstr "kanal araması tamamlandı! Bir kanal bulundu!"
-
-#
-#~ msgid "scan in progress - %d %% done! %d services found!"
-#~ msgstr "kanal araması devam ediyor - %d %% tamamlandı! %d kanal bulundu!"
-
-#
-#~ msgid "second"
-#~ msgstr "saniye"
-
-#
-#~ msgid "seconds."
-#~ msgstr "saniye."
-
-#
-#~ msgid "select .NFI flash file"
-#~ msgstr ".NFI flaş dosyası seçin"
-
-#
-#~ msgid "select image from server"
-#~ msgstr "bellenimi sunucudan seç"
-
-#
-#~ msgid "service pin"
-#~ msgstr "kanal şifresi"
-
-#
-#~ msgid "sets the AC3 audio Delay (LipSync)"
-#~ msgstr "AC3 ses gecikmesini ayarlayın"
-
-#~ msgid "sets the Audio Delay (LipSync)"
-#~ msgstr "Ses gecikmesini ayarlayın"
-
-#
-#~ msgid "setup pin"
-#~ msgstr "kurulum şifresi"
-
-#
-#~ msgid "show all"
-#~ msgstr "tümünü göster"
-
-#
-#~ msgid "show first selected tag"
-#~ msgstr "seçili ilk etiketi göster"
-
-#
-#~ msgid "show first tag"
-#~ msgstr "ilk etiketi göster"
-
-#
-#~ msgid "show second selected tag"
-#~ msgstr "seçili ikinci etiketi göster"
-
-#
-#~ msgid "show second tag"
-#~ msgstr "saniye etiketini göster"
-
-#
-#~ msgid "spaces (top, between rows, left)"
-#~ msgstr "boşluklar (üst, satır arası, sol)"
-
-#
-#~ msgid "text"
-#~ msgstr "metin"
-
-#
-#~ msgid "until restart"
-#~ msgstr "yeniden başlatılana kadar"
-
-#~ msgid "use as HDD replacement"
-#~ msgstr "Sabitdisk gibi kullan"
-
-#
-#~ msgid "year"
-#~ msgstr "yıl"

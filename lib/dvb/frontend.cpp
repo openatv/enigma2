@@ -412,8 +412,8 @@ RESULT eDVBFrontendParameters::calcLockTimeout(unsigned int &timeout) const
 	{
 	case iDVBFrontend::feSatellite:
 	{
-			/* high symbol rate transponders tune faster, due to 
-				requiring less zigzag and giving more symbols faster. 
+			/* high symbol rate transponders tune faster, due to
+				requiring less zigzag and giving more symbols faster.
 
 				5s are definitely not enough on really low SR when
 				zigzag has to find the exact frequency first.
@@ -447,7 +447,7 @@ int eDVBFrontend::PreferredFrontendIndex = -1;
 
 eDVBFrontend::eDVBFrontend(const char *devicenodename, int fe, int &ok, bool simulate, eDVBFrontend *simulate_fe)
 	:m_simulate(simulate), m_enabled(false), m_type(-1), m_simulate_fe(simulate_fe), m_dvbid(fe), m_slotid(fe)
-	,m_fd(-1), m_rotor_mode(false), m_need_rotor_workaround(false), m_can_handle_dvbs2(false)
+	,m_fd(-1), m_rotor_mode(false), m_need_rotor_workaround(false)
 	,m_state(stateClosed), m_timeout(0), m_tuneTimer(0)
 {
 	m_filename = devicenodename;
@@ -505,6 +505,47 @@ int eDVBFrontend::openFrontend()
 				m_fd = -1;
 				return -1;
 			}
+			strncpy(m_description, fe_info.name, sizeof(m_description));
+
+#ifdef DTV_ENUM_DELSYS
+			struct dtv_property p[1];
+			p[0].cmd = DTV_ENUM_DELSYS;
+			struct dtv_properties cmdseq;
+			cmdseq.num = 1;
+			cmdseq.props = p;
+			if (::ioctl(m_fd, FE_GET_PROPERTY, &cmdseq) >= 0)
+			{
+				 for (; p[0].u.buffer.len > 0; p[0].u.buffer.len--)
+				 {
+					fe_delivery_system_t delsys = (fe_delivery_system_t)p[0].u.buffer.data[p[0].u.buffer.len - 1];
+					m_delsys[delsys] = true;
+				}
+			}
+#else
+			/* old DVB API, fill delsys map with some defaults */
+			switch (fe_info.type)
+			{
+			case FE_QPSK:
+				m_delsys[SYS_DVBS] = true;
+#ifdef FE_CAN_2G_MODULATION
+				if (fe_info.caps & FE_CAN_2G_MODULATION) m_delsys[SYS_DVBS2] = true;
+#endif
+				break;
+			case FE_QAM:
+#ifdef SYS_DVBC_ANNEX_A
+				m_delsys[SYS_DVBC_ANNEX_A] = true;
+#else
+				m_delsys[SYS_DVBC_ANNEX_AC] = true;
+#endif
+				break;
+			case FE_OFDM:
+				m_delsys[SYS_DVBT] = true;
+#ifdef FE_CAN_2G_MODULATION
+				if (fe_info.caps & FE_CAN_2G_MODULATION) m_delsys[SYS_DVBT2] = true;
+#endif
+				break;
+			}
+#endif
 
 			switch (fe_info.type)
 			{
@@ -842,7 +883,7 @@ int eDVBFrontend::readFrontendData(int type)
 			} else if (!strcmp(m_description, "Philips CU1216Mk3"))
 			{
 				int mse = (~snr) & 0xFF;
-				switch (oparm.cab.modulation) 
+				switch (oparm.cab.modulation)
 				{
 				case eDVBFrontendParametersCable::Modulation_QAM16: ret = fe_udiv(1950000, (32 * mse) + 138) + 1000; break;
 				case eDVBFrontendParametersCable::Modulation_QAM32: ret = fe_udiv(2150000, (40 * mse) + 500) + 1350; break;
@@ -868,7 +909,7 @@ int eDVBFrontend::readFrontendData(int type)
 			else if (!strcmp(m_description, "CXD1981"))
 			{
 				int mse = (~snr) & 0xFF;
-				switch (oparm.cab.modulation) 
+				switch (oparm.cab.modulation)
 				{
 				case eDVBFrontendParametersCable::Modulation_QAM16:
 				case eDVBFrontendParametersCable::Modulation_QAM64:
@@ -2068,7 +2109,7 @@ void eDVBFrontend::setFrontend(bool recvEvents)
 			p[cmdseq.num].u.data = SYS_DVBC_ANNEX_AC;
 #endif
 			cmdseq.num++;
-			
+
 			p[cmdseq.num].cmd = DTV_SYMBOL_RATE, p[cmdseq.num].u.data = oparm.cab.symbol_rate, cmdseq.num++;
 
 			p[cmdseq.num].cmd = DTV_INNER_FEC;
@@ -2207,8 +2248,8 @@ void eDVBFrontend::setFrontend(bool recvEvents)
 			switch (oparm.atsc.system)
 			{
 			default:
-			case eDVBFrontendParametersATSC::System_ATSC: p[cmdseq.num].u.data = SYS_DVBT; break;
-			case eDVBFrontendParametersATSC::System_DVB_C_ANNEX_B: p[cmdseq.num].u.data = SYS_DVBT2; break;
+			case eDVBFrontendParametersATSC::System_ATSC: p[cmdseq.num].u.data = SYS_ATSC; break;
+			case eDVBFrontendParametersATSC::System_DVB_C_ANNEX_B: p[cmdseq.num].u.data = SYS_DVBC_ANNEX_B; break;
 			}
 			cmdseq.num++;
 
@@ -2590,28 +2631,62 @@ RESULT eDVBFrontend::setData(int num, long val)
 int eDVBFrontend::isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm)
 {
 	int type;
+	int score = 0;
+	bool preferred = (eDVBFrontend::getPreferredFrontend() >= 0 && m_slotid == eDVBFrontend::getPreferredFrontend());
 	if (feparm->getSystem(type) || type != m_type || !m_enabled)
 		return 0;
 	if (m_type == eDVBFrontend::feSatellite)
 	{
 		ASSERT(m_sec);
+		std::map<fe_delivery_system_t, bool>::iterator it = m_delsys.find(SYS_DVBS2);
+		bool can_handle_dvbs2 = (it != m_delsys.end()) ? it->second : false;
 		eDVBFrontendParametersSatellite sat_parm;
 		int ret = feparm->getDVBS(sat_parm);
 		ASSERT(!ret);
-		if (sat_parm.system == eDVBFrontendParametersSatellite::System_DVB_S2 && !m_can_handle_dvbs2)
+		if (sat_parm.system == eDVBFrontendParametersSatellite::System_DVB_S2 && !can_handle_dvbs2)
 			return 0;
-		ret = m_sec->canTune(sat_parm, this, 1 << m_slotid);
-		if (ret > 1 && sat_parm.system == eDVBFrontendParametersSatellite::System_DVB_S && m_can_handle_dvbs2)
-			ret -= 1;
-		return ret;
+		score = m_sec->canTune(sat_parm, this, 1 << m_slotid);
+		if (score > 1 && sat_parm.system == eDVBFrontendParametersSatellite::System_DVB_S && can_handle_dvbs2)
+		{
+			/* prefer to use an S tuner, try to keep S2 free for S2 transponders */
+			score--;
+		}
 	}
 	else if (m_type == eDVBFrontend::feCable)
-		return 2;  // more prio for cable frontends
+	{
+		score = 2;
+	}
 	else if (m_type == eDVBFrontend::feTerrestrial)
-		return 1;
+	{
+		std::map<fe_delivery_system_t, bool>::iterator it = m_delsys.find(SYS_DVBT2);
+		bool can_handle_dvbt2 = (it != m_delsys.end()) ? it->second : false;
+		eDVBFrontendParametersTerrestrial parm;
+		if (feparm->getDVBT(parm) < 0)
+		{
+			return 0;
+		}
+		if (parm.system == eDVBFrontendParametersTerrestrial::System_DVB_T2 && !can_handle_dvbt2)
+		{
+			return 0;
+		}
+		score = 2;
+		if (parm.system == eDVBFrontendParametersTerrestrial::System_DVB_T && can_handle_dvbt2)
+		{
+			/* prefer to use a T tuner, try to keep T2 free for T2 transponders */
+			score--;
+		}
+	}
 	else if (m_type == eDVBFrontend::feATSC)
-		return 2; /* same prio as DVB-C */
-	return 0;
+	{
+		score = 2;
+	}
+
+	if (score && preferred)
+	{
+		/* make 'sure' we always prefer this frontend */
+		score += 100000; /* the offset has to be so rediculously high because of the high scores which are used for DVB-S(2) */
+	}
+	return score;
 }
 
 bool eDVBFrontend::setSlotInfo(ePyObject obj)
@@ -2639,9 +2714,13 @@ bool eDVBFrontend::setSlotInfo(ePyObject obj)
 		!!strstr(m_description, "Alps BSBE2") ||
 		!!strstr(m_description, "Alps -S") ||
 		!!strstr(m_description, "BCM4501");
-	m_can_handle_dvbs2 = IsDVBS2 == Py_True;
+	if (IsDVBS2 == Py_True)
+	{
+		/* HACK for legacy dvb api without DELSYS support */
+		m_delsys[SYS_DVBS2] = true;
+	}
 	eDebugNoSimulate("setSlotInfo for dvb frontend %d to slotid %d, descr %s, need rotorworkaround %s, enabled %s, DVB-S2 %s",
-		m_dvbid, m_slotid, m_description, m_need_rotor_workaround ? "Yes" : "No", m_enabled ? "Yes" : "No", m_can_handle_dvbs2 ? "Yes" : "No" );
+		m_dvbid, m_slotid, m_description, m_need_rotor_workaround ? "Yes" : "No", m_enabled ? "Yes" : "No", (IsDVBS2 == Py_True) ? "Yes" : "No" );
 	return true;
 arg_error:
 	PyErr_SetString(PyExc_StandardError,

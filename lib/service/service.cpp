@@ -30,6 +30,7 @@ eServiceReference::eServiceReference(const std::string &string)
 {
 	const char *c=string.c_str();
 	int pathl=0;
+	number = 0;
 
 	if (!string.length())
 		type = idInvalid;

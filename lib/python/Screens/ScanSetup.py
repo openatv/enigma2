@@ -319,11 +319,13 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		del self.feinfo
 		del self.service
 
+		self.session.postScanService = session.nav.getCurrentlyPlayingServiceReference()
+
 		self["actions"] = NumberActionMap(["SetupActions", "MenuActions"],
 		{
 			"ok": self.keyGo,
 			"cancel": self.keyCancel,
-			"menu": self.closeRecursive,
+			"menu": self.doCloseRecursive,
 		}, -2)
 
 		self.statusTimer = eTimer()
@@ -907,9 +909,14 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 				self.session.open(MessageBox, _("Nothing to scan!\nPlease setup your tuner settings before you start a service scan."), MessageBox.TYPE_ERROR)
 
 	def keyCancel(self):
+		self.session.nav.playService(self.session.postScanService)
 		for x in self["config"].list:
 			x[1].cancel()
 		self.close()
+
+	def doCloseRecursive(self):
+		self.session.nav.playService(self.session.postScanService)
+		self.closeRecursive()
 
 class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport):
 	def getNetworksForNim(self, nim):
@@ -929,8 +936,10 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		{
 			"ok": self.keyGo,
 			"cancel": self.keyCancel,
-			"menu": self.closeRecursive,
+			"menu": self.doCloseRecursive,
 		}, -2)
+
+		self.session.postScanService = session.nav.getCurrentlyPlayingServiceReference()
 
 		self.list = []
 		tlist = []
@@ -1068,11 +1077,15 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		self.buildTransponderList()
 
 	def keyCancel(self):
+		self.session.nav.playService(self.session.postScanService)
 		self.close()
+
+	def doCloseRecursive(self):
+		self.session.nav.playService(self.session.postScanService)
+		self.closeRecursive()
 
 	def Satexists(self, tlist, pos):
 		for x in tlist:
 			if x == pos:
 				return 1
 		return 0
-

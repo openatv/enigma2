@@ -16,8 +16,19 @@
 		<setup key="usage" title="Customize">
 			<item level="0" text="Setup Mode">config.usage.setup_level</item>
 			<item level="1" text="Zap mode" requires="ZapMode">config.misc.zapmode</item>
-			<item level="0" text="Show animation while busy">config.usage.show_spinner</item>
 			<item level="1" text="Enable teletext caching">config.usage.enable_tt_caching</item>
+			<item level="1" text="12V output" requires="12V_Output">config.usage.output_12V</item>
+			<item level="2" text="Alternative services tuner priority">config.usage.alternatives_priority</item>
+			<item level="2" text="Preferred tuner">config.usage.frontend_priority</item>
+			<item level="2" text="Disable background scanning">config.misc.disable_background_scan</item>
+			<item level="2" text="Create more detailed crash log">config.crash.details</item>
+			<item level="2" text="Include EIT in http streams">config.streaming.stream_eit</item>
+			<item level="2" text="Include AIT in http streams">config.streaming.stream_ait</item>
+			<item level="2" text="Include ECM in http streams">config.streaming.stream_ecm</item>
+			<item level="2" text="Descramble http streams">config.streaming.descramble</item>
+		</setup>
+		<setup key="userinterface" title="User Interface">
+			<item level="0" text="Show animation while busy">config.usage.show_spinner</item>
 			<item level="1" text="Show positioner movement">config.usage.showdish</item>
 			<item level="1" text="Enable multiple bouquets">config.usage.multibouquet</item>
 			<item level="1" text="Multi-EPG bouquet selection">config.usage.multiepg_ask_bouquet</item>
@@ -27,34 +38,27 @@
 			<item level="1" text="Action on short powerbutton press">config.usage.on_short_powerpress</item>
 			<item level="1" text="Position of finished Timers in Timerlist">config.usage.timerlist_finished_timer_position</item>
 			<item level="0" text="Infobar timeout">config.usage.infobar_timeout</item>
-			<item level="1" text="12V output" requires="12V_Output">config.usage.output_12V</item>
 			<item level="0" text="Show event-progress in channel selection">config.usage.show_event_progress_in_servicelist</item>
 			<item level="0" text="Show channel numbers in channel selection">config.usage.show_channel_numbers_in_servicelist</item>
 			<item level="2" text="Show infobar on channel change">config.usage.show_infobar_on_zap</item>
 			<item level="2" text="Show infobar on skip forward/backward">config.usage.show_infobar_on_skip</item>
 			<item level="2" text="Show infobar on event change">config.usage.show_infobar_on_event_change</item>
 			<item level="2" text="Show second infobar">config.usage.show_second_infobar</item>
+			<item level="2" text="Show background in Radio Mode">config.misc.showradiopic</item>
 			<item level="2" text="Hide zap errors">config.usage.hide_zap_errors</item>
 			<item level="2" text="Hide CI messages">config.usage.hide_ci_messages</item>
 			<item level="2" text="Show crypto info in infobar">config.usage.show_cryptoinfo</item>
 			<item level="2" text="Swap SNR in db with SNR in percentage on OSD">config.usage.swap_snr_on_osd</item>
 			<item level="2" text="Show EIT now/next in infobar">config.usage.show_eit_nownext</item>
 			<item level="2" text="Behavior of 0 key in PiP-mode">config.usage.pip_zero_button</item>
-			<item level="2" text="Alternative services tuner priority">config.usage.alternatives_priority</item>
-			<item level="2" text="Preferred tuner">config.usage.frontend_priority</item>
-			<item level="2" text="Disable background scanning">config.misc.disable_background_scan</item>
+		</setup>
+		<setup key="epgsettings" title="EPG settings">
 			<item level="2" text="Enable EIT EPG">config.epg.eit</item>
 			<item level="2" text="Enable MHW EPG">config.epg.mhw</item>
 			<item level="2" text="Enable freesat EPG">config.epg.freesat</item>
 			<item level="2" text="Enable ViaSat EPG">config.epg.viasat</item>
 			<item level="2" text="Enable Netmed EPG">config.epg.netmed</item>
 			<item level="2" text="Maintain old EPG data for">config.epg.histminutes</item>
-			<item level="2" text="Show background in Radio Mode">config.misc.showradiopic</item>
-			<item level="2" text="Create more detailed crash log">config.crash.details</item>
-			<item level="2" text="Include EIT in http streams">config.streaming.stream_eit</item>
-			<item level="2" text="Include AIT in http streams">config.streaming.stream_ait</item>
-			<item level="2" text="Include ECM in http streams">config.streaming.stream_ecm</item>
-			<item level="2" text="Descramble http streams">config.streaming.descramble</item>
 		</setup>
 		<setup key="subtitlesetup" title="Subtitle settings">
 			<item level="2" text="Teletext subtitle color">config.subtitles.ttx_subtitle_colors</item>
@@ -100,6 +104,7 @@
 			<item level="2" text="Behavior when a movie is started">config.usage.on_movie_start</item>
 			<item level="2" text="Behavior when a movie is stopped">config.usage.on_movie_stop</item>
 			<item level="2" text="Behavior when a movie reaches the end">config.usage.on_movie_eof</item>
+			<item level="2" text="Display message before next played movie">config.usage.next_movie_msg</item>
 			<item level="2" text="Behavior of 'pause' when paused">config.seek.on_pause</item>
 			<item level="2" text="Custom skip time for '1'/'3'-keys">config.seek.selfdefined_13</item>
 			<item level="2" text="Custom skip time for '4'/'6'-keys">config.seek.selfdefined_46</item>

@@ -51,7 +51,7 @@ class EPGSelection(Screen):
 			self["key_yellow"] = Button()
 			self["key_blue"] = Button()
 			self.currentService=ServiceReference(service)
-			self.zapFunc = None
+			self.zapFunc = zapFunc
 			self.sort_type = 0
 			self.setSortDescription()
 		else:
@@ -91,6 +91,7 @@ class EPGSelection(Screen):
 				"prevBouquet": self.prevBouquet, # just used in multi epg yet
 				"nextService": self.nextService, # just used in single epg yet
 				"prevService": self.prevService, # just used in single epg yet
+				"preview": self.eventPreview,
 			})
 		self["actions"].csel = self
 		self.onLayoutFinish.append(self.onCreate)
@@ -126,6 +127,8 @@ class EPGSelection(Screen):
 				self["list"].fillMultiEPG(self.services, ret[1])
 
 	def closeScreen(self):
+		if self.zapFunc:
+			self.zapFunc(None, zapback = True)
 		self.close(self.closeRecursive)
 
 	def infoKeyPressed(self):
@@ -181,14 +184,25 @@ class EPGSelection(Screen):
 			setService(cur[1])
 			setEvent(cur[0])
 
-	def zapTo(self): # just used in multiepg
-		if self.zapFunc and self.key_red_choice == self.ZAP:
-			lst = self["list"]
-			count = lst.getCurrentChangeCount()
-			if count == 0:
-				self.closeRecursive = True
-				ref = lst.getCurrent()[1]
-				self.zapFunc(ref.ref)
+	def zapTo(self):
+		if self.key_red_choice == self.ZAP and self.zapFunc:
+			self.closeRecursive = True
+			self.zapSelectedService()
+			self.close(self.closeRecursive)
+
+	def zapSelectedService(self, prev=False):
+		lst = self["list"]
+		count = lst.getCurrentChangeCount()
+		if count == 0:
+			ref = lst.getCurrent()[1]
+			if ref is not None:
+				self.zapFunc(ref.ref, preview = prev)
+
+	def eventPreview(self):
+		if self.zapFunc:
+			# if enabled, then closed whole EPG with EXIT:
+			# self.closeRecursive = True
+			self.zapSelectedService(True)
 
 	def eventSelected(self):
 		self.infoKeyPressed()
@@ -348,8 +362,8 @@ class EPGSelection(Screen):
 				self["key_red"].setText("")
 				self.key_red_choice = self.EMPTY
 			return
-		elif self.key_red_choice != self.ZAP and  self.type == EPG_TYPE_MULTI:
-				self["key_red"].setText("Zap")
+		elif self.key_red_choice != self.ZAP and self.zapFunc is not None:
+				self["key_red"].setText(_("Zap"))
 				self.key_red_choice = self.ZAP
 
 		if event is None:

@@ -84,26 +84,31 @@ public:
 // real existing service ( for dvb eServiceDVB )
 #ifndef SWIG
 	std::string name;
+	int number;
 #endif
 	std::string getName() const { return name; }
 	void setName( const std::string &n ) { name=n; }
+	int getChannelNum() const { return number; }
 
 	eServiceReference()
 		: type(idInvalid), flags(0)
 	{
 		memset(data, 0, sizeof(data));
+		number = 0;
 	}
 #ifndef SWIG
 	eServiceReference(int type, int flags)
 		: type(type), flags(flags)
 	{
 		memset(data, 0, sizeof(data));
+		number = 0;
 	}
 	eServiceReference(int type, int flags, int data0)
 		: type(type), flags(flags)
 	{
 		memset(data, 0, sizeof(data));
 		data[0]=data0;
+		number = 0;
 	}
 	eServiceReference(int type, int flags, int data0, int data1)
 		: type(type), flags(flags)
@@ -111,6 +116,7 @@ public:
 		memset(data, 0, sizeof(data));
 		data[0]=data0;
 		data[1]=data1;
+		number = 0;
 	}
 	eServiceReference(int type, int flags, int data0, int data1, int data2)
 		: type(type), flags(flags)
@@ -119,6 +125,7 @@ public:
 		data[0]=data0;
 		data[1]=data1;
 		data[2]=data2;
+		number = 0;
 	}
 	eServiceReference(int type, int flags, int data0, int data1, int data2, int data3)
 		: type(type), flags(flags)
@@ -128,6 +135,7 @@ public:
 		data[1]=data1;
 		data[2]=data2;
 		data[3]=data3;
+		number = 0;
 	}
 	eServiceReference(int type, int flags, int data0, int data1, int data2, int data3, int data4)
 		: type(type), flags(flags)
@@ -138,6 +146,7 @@ public:
 		data[2]=data2;
 		data[3]=data3;
 		data[4]=data4;
+		number = 0;
 	}
 	operator bool() const
 	{

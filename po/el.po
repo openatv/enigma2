@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2_v2.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-28 23:25+0200\n"
+"POT-Creation-Date: 2012-08-05 10:00+0200\n"
 "PO-Revision-Date: 2012-01-31 13:14+0200\n"
 "Last-Translator: DimFil <dimfil.sat@gmail.com>\n"
 "Language-Team: \n"
@@ -32,13 +32,10 @@ msgstr ""
 "\n"
 "Αφού πιέσετε ΟΚ, παρακαλώ περιμένετε!"
 
-#
 msgid ""
 "\n"
-"Backup your Dreambox settings."
+"Backup your receiver settings."
 msgstr ""
-"\n"
-"Αντίγραφο ασφαλείας των ρυθμίσεων."
 
 #
 msgid ""
@@ -48,21 +45,15 @@ msgstr ""
 "\n"
 "Επεξεργασία της πηγής αναβαθμίσεων"
 
-#
 msgid ""
 "\n"
-"Manage extensions or plugins for your Dreambox"
+"Manage extensions or plugins for your receiver"
 msgstr ""
-"\n"
-"Διαχείριση επεκτάσεων ή προσθέτων του δέκτη"
 
-#
 msgid ""
 "\n"
-"Online update of your Dreambox software."
+"Online update of your receiver software."
 msgstr ""
-"\n"
-"Διαδικτυακή ενημέρωση του λογισμικού του δέκτη"
 
 #
 msgid ""
@@ -73,23 +64,6 @@ msgstr ""
 "Πιέστε ΟΚ στο τηλεχειριστήριο για συνέχεια."
 
 #
-msgid ""
-"\n"
-"Restore your Dreambox settings."
-msgstr ""
-"\n"
-"Αποκατάσταση των ρυθμίσεων."
-
-#
-#
-msgid ""
-"\n"
-"Restore your Dreambox with a new firmware."
-msgstr ""
-"\n"
-"Αποκατάσταση του δέκτη με νέο λογισμικό"
-
-#
 #
 msgid ""
 "\n"
@@ -97,6 +71,16 @@ msgid ""
 msgstr ""
 "\n"
 "Αποκατάσταση των αντιγράφων ασφαλείας κατά ημερομηνία."
+
+msgid ""
+"\n"
+"Restore your receiver settings."
+msgstr ""
+
+msgid ""
+"\n"
+"Restore your receiver with a new firmware."
+msgstr ""
 
 #
 #
@@ -178,6 +162,9 @@ msgstr ""
 msgid "%2d:%02d:%02d"
 msgstr ""
 
+msgid "%A %d %B"
+msgstr ""
+
 #. TRANSLATORS: long date representations dayname daynum monthname in strftime() format! See 'man strftime'
 msgid "%A %e %B"
 msgstr ""
@@ -239,6 +226,9 @@ msgstr[1] ""
 msgid "%d services found!"
 msgstr "%d υπηρεσίες βρέθηκαν!"
 
+msgid "%d-%m"
+msgstr ""
+
 #
 #
 msgid "%d.%B %Y"
@@ -253,6 +243,10 @@ msgstr ""
 #, python-format
 msgid "%s (%s)\n"
 msgstr "%s (%s)\n"
+
+#, python-format
+msgid "%s/%s: %s"
+msgstr ""
 
 #
 #
@@ -455,23 +449,15 @@ msgstr ""
 msgid "A demo plugin for TPM usage."
 msgstr "Δοκιμαστικό πρόσθετο για χρήση TPM"
 
-#
-#
 msgid ""
 "A finished record timer wants to set your\n"
-"Dreambox to standby. Do that now?"
+"receiver to standby. Do that now?"
 msgstr ""
-"Μία ολοκληρωμένη εγγραφή θέτει το δέκτη σε αναμονή\n"
-"Να εκτελεστεί τώρα;"
 
-#
-#
 msgid ""
 "A finished record timer wants to shut down\n"
-"your Dreambox. Shutdown now?"
+"your receiver. Shutdown now?"
 msgstr ""
-"Μία ολοκληρωμένη εγγραφή θέτει το δέκτη σε βαθιά αναμονή\n"
-"Να εκτελεστεί τώρα;"
 
 #
 #
@@ -538,23 +524,15 @@ msgstr ""
 "\n"
 "Θέλετε να απενεργοποιήσετε το δεύτερο προσαρμογέα δικτύου;"
 
-#
-#
 msgid ""
 "A sleep timer wants to set your\n"
-"Dreambox to standby. Do that now?"
+"receiver to standby. Do that now?"
 msgstr ""
-"Ο χρονοδιακόπτης απενεργοποίησης θέτει το δέκτη σε αναμονή.\n"
-"Να εκτελεστεί τώρα;"
 
-#
-#
 msgid ""
 "A sleep timer wants to shut down\n"
-"your Dreambox. Shutdown now?"
+"your receiver. Shutdown now?"
 msgstr ""
-"Ο χρονοδιακόπτης απενεργοποίησης θέτει το δέκτη σε βαθιά αναμονή.\n"
-"Να εκτελεστεί τώρα;"
 
 #
 #
@@ -696,14 +674,10 @@ msgstr "Προσθήκη στα αγαπημένα"
 msgid "Add/Remove timer for current event"
 msgstr ""
 
-#
-#
 msgid ""
-"Adds enigma2 settings and dreambox model informations like SN, rev... if "
+"Adds enigma2 settings and receiver model informations like SN, rev... if "
 "enabled."
 msgstr ""
-"Προσθέτει πληροφορίες ρυθμίσεων enigma2 και μοντέλου δέκτη όπως ΣΑ, έκδοση "
-"κλπ."
 
 #
 #
@@ -773,14 +747,10 @@ msgstr "Μετά το πρόγραμμα"
 msgid "After pressing OK, please wait!"
 msgstr "Μετά το OK, παρακαλώ περιμένετε!"
 
-#
-#
 msgid ""
 "After the start wizard is completed, you need to protect single services. "
-"Refer to your dreambox's manual on how to do that."
+"Refer to your receiver's manual on how to do that."
 msgstr ""
-"Μετά το τέλος του Οδηγού πρέπει να προστατευτούν τα «single services». "
-"Διάβαστε στο user manual του δέκτη για το πώς γίνεται."
 
 #
 #
@@ -796,6 +766,9 @@ msgstr "Όλα"
 #
 msgid "All Satellites"
 msgstr "Όλοι οι δορυφόροι"
+
+msgid "All ages"
+msgstr ""
 
 msgid "Allocate"
 msgstr ""
@@ -912,6 +885,9 @@ msgstr ""
 #
 msgid "Artist"
 msgstr "Καλλιτέχνης"
+
+msgid "Arts/Culture"
+msgstr ""
 
 #
 #
@@ -1372,6 +1348,9 @@ msgstr "Έλεγχος"
 msgid "Checking Filesystem..."
 msgstr "Έλεγχος του Filesystem..."
 
+msgid "Children/Youth"
+msgstr ""
+
 #
 #
 msgid "Choose Tuner"
@@ -1542,9 +1521,6 @@ msgstr "Επικοινωνία"
 msgid "Compact Flash"
 msgstr "Compact Flash"
 
-msgid "Compatibilty Mode"
-msgstr ""
-
 #
 #
 msgid "Complete"
@@ -1649,6 +1625,9 @@ msgstr "Συνέχεια στο παρασκήνιο"
 msgid "Continue playing"
 msgstr "Συνέχεια αναπαραγωγής..."
 
+msgid "Continues play (loop)"
+msgstr ""
+
 #
 #
 msgid "Contrast"
@@ -1670,10 +1649,8 @@ msgstr "Μετατροπή συστήματος αρχείων ext3 σε ext4"
 msgid "Copy"
 msgstr "Αντιγραφή"
 
-#
-#
-msgid "Could not connect to Dreambox .NFI Image Feed Server:"
-msgstr "Αδύνατη σύνδεση στο  δέκτη. Διακομιστής λογισμικού NFI:"
+msgid "Could not connect to receiver .NFI Image Feed Server:"
+msgstr ""
 
 #
 #
@@ -1716,13 +1693,10 @@ msgstr "Ρυθμίσης αυτόματης υποβολής σφαλμάτων"
 msgid "CrashlogAutoSubmit settings..."
 msgstr "Ρυθμίσης αυτόματης υποβολής σφαλμάτων..."
 
-#
 msgid ""
 "Crashlogs found!\n"
-"Send them to Dream Multimedia?"
+"Send them to the Image Developper?"
 msgstr ""
-"Βρέθηκαν καταγραφές σφαλμάτων!\n"
-"Να αποσταλούν;"
 
 #
 #
@@ -1768,6 +1742,9 @@ msgstr "Tρέχων αναμεταδότης"
 #
 msgid "Current device: "
 msgstr "Τρέχουσα συσκευή:"
+
+msgid "Current event EPG"
+msgstr ""
 
 #
 #
@@ -1906,9 +1883,6 @@ msgstr "Δανικά"
 #
 msgid "Date"
 msgstr "Ημερομηνία"
-
-msgid "Date/Time"
-msgstr ""
 
 #
 #
@@ -2094,9 +2068,6 @@ msgstr "Απενεργοποίηση"
 msgid "Disable Picture in Picture"
 msgstr "Απενεργοποίηση Picture in Picture"
 
-msgid "Disable Selecting Expired Events"
-msgstr ""
-
 #
 #
 msgid "Disable background scanning"
@@ -2156,6 +2127,9 @@ msgstr "Ρυθμίσεις οθόνης ενδείξεων"
 #
 msgid "Display and Userinterface"
 msgstr "Απεικόνιση και Περιβάλλον Χρήστη"
+
+msgid "Display message before next played movie"
+msgstr ""
 
 #
 # , python-format
@@ -2252,10 +2226,8 @@ msgstr "Θέλετε να πραγματοποιηθεί μία ακόμα χε�
 msgid "Do you want to download the image to %s ?"
 msgstr "Είστε σίγουρος για λήψη λογισμικού;"
 
-#
-#
-msgid "Do you want to enable the parental control feature on your dreambox?"
-msgstr "Θέλετε να ενεργοποιηθεί η γονική προστασία στο δέκτη σας;"
+msgid "Do you want to enable the parental control feature on your receiver?"
+msgstr ""
 
 #
 #
@@ -2272,10 +2244,8 @@ msgstr "Θέλετε να παίξει το DVD στη συσκευή;"
 msgid "Do you want to preview this DVD before burning?"
 msgstr "Θέλετε να γίνει προεπισκόπιση αυτού του DVD πριν την εγγραφή;"
 
-#
-#
-msgid "Do you want to reboot your Dreambox?"
-msgstr "Θέλετε να γίνει επανεκκίνηση του δέκτη;"
+msgid "Do you want to reboot your receiver?"
+msgstr ""
 
 #
 #
@@ -2301,19 +2271,13 @@ msgstr ""
 "Θέλετε να εισάγετε το email και το όνομά σας για να επικοινωνήσουμε αν "
 "χρειαστεί;"
 
-#
-#
-msgid "Do you want to update your Dreambox?"
-msgstr "Θέλετε να γίνει αναβάθμιση του δέκτη;"
+msgid "Do you want to update your receiver?"
+msgstr ""
 
-#
-#
 msgid ""
-"Do you want to update your Dreambox?\n"
+"Do you want to update your receiver?\n"
 "After pressing OK, please wait!"
 msgstr ""
-"Θέλετε να αναβαθμίσετε το δέκτη σας;\n"
-"Μετά το ΟΚ, παρακαλώ περίμενετε!"
 
 #
 #
@@ -2393,16 +2357,6 @@ msgid "Downloading plugin information. Please wait..."
 msgstr "Λήψη πληροφοριών προσθέτων. Παρακαλώ περιμένετε ..."
 
 #
-#
-msgid "Dreambox format data DVD (HDTV compatible)"
-msgstr "Dreambox format data DVD (HDTV compatible)"
-
-#
-#
-msgid "Dreambox software because updates are available."
-msgstr "λογισμικό δέκτη γιατί διατίθενται ενημερώσεις."
-
-#
 msgid "Dutch"
 msgstr "Ολλανδικά"
 
@@ -2431,6 +2385,9 @@ msgstr "Επιλογή γλώσσας EPG 1"
 msgid "EPG language selection 2"
 msgstr "Επιλογή γλώσσας EPG 2"
 
+msgid "EPG settings"
+msgstr ""
+
 #
 # , python-format
 #, python-format
@@ -2454,9 +2411,6 @@ msgstr "Επεξεργασία"
 #
 msgid "Edit DNS"
 msgstr "Επεξεργασία DNS"
-
-msgid "Edit Search Title"
-msgstr ""
 
 #
 #
@@ -2483,15 +2437,11 @@ msgstr "Επεξεργασία λίστας υπηρεσιών"
 msgid "Edit settings"
 msgstr "Επεξεργασία ρυθμίσεων"
 
-#
-#
-msgid "Edit the Nameserver configuration of your Dreambox.\n"
-msgstr "Επεξεργασία ρυθμίσεων Nameserver του δέκτη.\n"
+msgid "Edit the Nameserver configuration of your receiver.\n"
+msgstr ""
 
-#
-#
-msgid "Edit the network configuration of your Dreambox.\n"
-msgstr "Επεξεργασία ρυθμίσεων δικτύου του δέκτη.\n"
+msgid "Edit the network configuration of your receiver.\n"
+msgstr ""
 
 #
 #
@@ -2502,6 +2452,9 @@ msgstr "Επεξεργασία τίτλου"
 #
 msgid "Edit upgrade source url."
 msgstr "Επιλέξτε πηγή αναβάθμισης για επεξεργασία"
+
+msgid "Education/Science/..."
+msgstr ""
 
 #
 #
@@ -2537,9 +2490,6 @@ msgstr "Ενεργοποίηση MHW EPG"
 #
 msgid "Enable Netmed EPG"
 msgstr "Ενεργοποίηση Netmed EPG"
-
-msgid "Enable Picon"
-msgstr ""
 
 #
 #
@@ -2683,17 +2633,7 @@ msgstr "Εσθονικά"
 msgid "Ethernet network interface"
 msgstr "Διεπαφή ενσύρματου δικτύου"
 
-msgid "Event"
-msgstr ""
-
-#
-msgid "Event Fontsize"
-msgstr "Μέγεθος γραμματοσειράς προγράμματος"
-
 msgid "Event Fontsize (relative to skin size)"
-msgstr ""
-
-msgid "Event Info"
 msgstr ""
 
 #
@@ -2708,9 +2648,6 @@ msgstr "Μενού προγραμμάτων"
 #
 msgid "Everywhere"
 msgstr "Παντού"
-
-msgid "Exact Search"
-msgstr ""
 
 #
 #
@@ -3105,9 +3042,8 @@ msgstr ""
 msgid "GotoX calibration"
 msgstr ""
 
-#
-msgid "Graph MEpg Settings"
-msgstr "Ρυθμίσεις Γραφικού EPG"
+msgid "GraphMultiEpg Settings"
+msgstr ""
 
 #
 #
@@ -3172,9 +3108,6 @@ msgstr "Κρυφό δίκτυο"
 msgid "Hide CI messages"
 msgstr "Απόκρυψη μηνυμάτων CI"
 
-msgid "Hide Expired Title"
-msgstr ""
-
 #
 #
 msgid "Hide zap errors"
@@ -3231,9 +3164,6 @@ msgstr "Hue"
 #
 msgid "Hungarian"
 msgstr "Ουγγρικά"
-
-msgid "IMDB"
-msgstr ""
 
 #
 #
@@ -3538,16 +3468,13 @@ msgstr "Ιταλικά"
 msgid "Items per Page "
 msgstr "Αντικείμενα ανά σελίδα"
 
+msgid "Items per Page for Listscreen"
+msgstr ""
+
 #
 #
 msgid "Job View"
 msgstr "Εμφάνιση εργασιών"
-
-msgid "Jump to First Service"
-msgstr ""
-
-msgid "Jump to Last Service"
-msgstr ""
 
 #
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
@@ -3653,6 +3580,9 @@ msgstr "Έξοδος από DVD Player;"
 msgid "Left"
 msgstr "Αριστερά"
 
+msgid "Leisure hobies"
+msgstr ""
+
 #
 #. TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
 msgid "Letterbox"
@@ -3711,6 +3641,9 @@ msgstr "Τίτλοι συνδεδεμένοι με μενού DVD"
 msgid "List available networks"
 msgstr "Λίστα διαθέσιμων δικτύων"
 
+msgid "List mode"
+msgstr ""
+
 #
 #
 msgid "List of Storage Devices"
@@ -3722,6 +3655,9 @@ msgstr ""
 #, python-format
 msgid "List version %d, found %d channels"
 msgstr "List version %d, found %d channels"
+
+msgid "Listscreen default at start user interface"
+msgstr ""
 
 #
 msgid "Lithuanian"
@@ -3892,9 +3828,6 @@ msgstr ""
 msgid "Menu"
 msgstr "Μενού"
 
-msgid "Merge Short/Long Descriptions"
-msgstr ""
-
 #
 #
 msgid "Message"
@@ -3904,6 +3837,10 @@ msgstr "Μήνυμα"
 #
 msgid "Message..."
 msgstr "Μήνυμα..."
+
+#, python-format
+msgid "Minimum age %d years"
+msgstr ""
 
 msgid "Missing "
 msgstr "Λείπει"
@@ -3999,6 +3936,9 @@ msgstr ""
 msgid "Movie location"
 msgstr "Τοποθεσία ταινιών"
 
+msgid "Movie/Drama"
+msgstr ""
+
 #
 #
 msgid "Movielist menu"
@@ -4042,6 +3982,9 @@ msgstr "Multiplex"
 #
 msgid "Multisat"
 msgstr "Multisat"
+
+msgid "Music/Ballet/Dance"
+msgstr ""
 
 #
 #
@@ -4196,13 +4139,13 @@ msgstr "Νέο PIN"
 msgid "New version:"
 msgstr "Νέα έκδοση:"
 
+msgid "News Current Affairs"
+msgstr ""
+
 #
 #
 msgid "Next"
 msgstr "Επόμενο"
-
-msgid "Next Bouquet"
-msgstr ""
 
 #
 #
@@ -4416,10 +4359,8 @@ msgstr "Όχι. Επανεκκίνηση απο την αρχή."
 msgid "No, do nothing."
 msgstr "Όχι. Μην κάνεις τίποτα."
 
-#
-#
-msgid "No, just start my dreambox"
-msgstr "Όχι, απλώς εκκίνηση του δέκτη"
+msgid "No, just start my receiver"
+msgstr ""
 
 #
 msgid "No, never"
@@ -4450,6 +4391,9 @@ msgstr "Κανένα"
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right)
 msgid "Nonlinear"
 msgstr "Μη γραμμικός"
+
+msgid "Normal mode"
+msgstr ""
 
 #
 #
@@ -4486,6 +4430,9 @@ msgstr ""
 #
 msgid "Nothing to upgrade"
 msgstr "Τίποτα για αναβάθμιση"
+
+msgid "Now"
+msgstr ""
 
 #
 #
@@ -4557,7 +4504,7 @@ msgstr "Ok"
 msgid "On"
 msgstr "Εντός"
 
-msgid "On Bouquet Switch goto first service"
+msgid "On end of movie"
 msgstr ""
 
 #
@@ -4650,18 +4597,6 @@ msgstr "Διαχείριση πακέτων"
 msgid "Packet manager"
 msgstr "Διαχείριση πακέτων"
 
-msgid "Page Down"
-msgstr ""
-
-msgid "Page Left"
-msgstr ""
-
-msgid "Page Right"
-msgstr ""
-
-msgid "Page Up"
-msgstr ""
-
 #
 #
 #. TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
@@ -4693,9 +4628,6 @@ msgstr "Παραμετροποίηση γονικού ελέγχου"
 msgid "Parental control type"
 msgstr "Είδος γονικού ελέγχου"
 
-msgid "Partial Search"
-msgstr ""
-
 #
 #
 msgid "Password"
@@ -4725,6 +4657,12 @@ msgstr "Τηλεφωνικός αριθμός"
 #
 msgid "PiPSetup"
 msgstr "Εγκατάσταση PiP"
+
+msgid "Picon"
+msgstr ""
+
+msgid "Picon and Service Name"
+msgstr ""
 
 #
 #
@@ -4772,6 +4710,12 @@ msgid "Play audio in background"
 msgstr "Αναπαραγωγή ήχου στο παρασκήνιο"
 
 msgid "Play next"
+msgstr ""
+
+msgid "Play next (return to movie list)"
+msgstr ""
+
+msgid "Play next (return to previous service)"
 msgstr ""
 
 msgid "Play previous"
@@ -4917,6 +4861,9 @@ msgstr "Παρακαλώ πιέστε ΟΚ για συνέχεια."
 #
 msgid "Please press OK!"
 msgstr "Παρακαλώ πιέστε ΟΚ!"
+
+msgid "Please select a default EPG type..."
+msgstr ""
 
 #
 #
@@ -5280,9 +5227,6 @@ msgstr "Προεπισκόπηση"
 msgid "Preview menu"
 msgstr "Μενού προεπισκόπησης"
 
-msgid "Previous Bouquet"
-msgstr ""
-
 #
 #
 msgid "Primary DNS"
@@ -5383,6 +5327,13 @@ msgstr "Δίσκος RAM"
 #
 msgid "Random"
 msgstr "Τυχαίο"
+
+#, python-format
+msgid "Rating defined by broadcaster - %d"
+msgstr ""
+
+msgid "Rating undefined"
+msgstr ""
 
 #
 #
@@ -5632,6 +5583,9 @@ msgstr "Απαιτείται τύπος μέσου:"
 msgid "Reread partition table"
 msgstr "Ανάγνωση πίνακα κατατμήσεων"
 
+msgid "Reserved"
+msgstr ""
+
 #
 #
 msgid "Reset"
@@ -5787,9 +5741,6 @@ msgstr ""
 msgid "Rotor turning speed"
 msgstr "Ταχύτητα του ρότορα"
 
-msgid "Round Start Time To"
-msgstr ""
-
 msgid "Round start time on"
 msgstr ""
 
@@ -5886,9 +5837,6 @@ msgstr "Αποθήκευση"
 #
 msgid "Save Playlist"
 msgstr "Αποθήκευση λίστας αναπαραγωγής"
-
-msgid "Scale Picon"
-msgstr ""
 
 #
 #
@@ -6047,9 +5995,6 @@ msgstr ""
 "Εκτελεί σάρωση αρχικής lamedb ταξινομημένης κατά δορυφόρο με συνδεδεμένο "
 "positioner"
 
-msgid "Search"
-msgstr ""
-
 #
 #
 msgid "Search east"
@@ -6128,6 +6073,9 @@ msgstr "Επιλέξτε κανάλι για εγγραφή"
 #
 msgid "Select copy destination for:"
 msgstr "Επιλέξτε προορισμό αντιγραφής για:"
+
+msgid "Select default EPG type..."
+msgstr ""
 
 msgid "Select desired image from feed list"
 msgstr "Επιλέξτε επιθυμητό λογισμικό από τη λίστα"
@@ -6230,6 +6178,9 @@ msgstr "Σερβικά"
 msgid "Service"
 msgstr "Υπηρεσία"
 
+msgid "Service Name"
+msgstr ""
+
 #
 #
 msgid "Service Scan"
@@ -6239,6 +6190,9 @@ msgstr "Ανεύρεση υπηρεσιών"
 #
 msgid "Service Searching"
 msgstr "Αναζήτηση υπηρεσίων"
+
+msgid "Service Title mode"
+msgstr ""
 
 #
 #
@@ -6380,6 +6334,9 @@ msgstr "Σύντομα ονόματα"
 msgid "Show EIT now/next in infobar"
 msgstr "Εμφάνιση ΕΙΤ τρέχων/απόμενο στη μπάρα πληροφοριών"
 
+msgid "Show Games show"
+msgstr ""
+
 #
 #
 msgid "Show Info"
@@ -6389,15 +6346,6 @@ msgstr "Εμφάνιση πληροφοριών"
 #
 msgid "Show Message when Recording starts"
 msgstr "Εμφάνιση μηνύματος κατά την εκκίνηση εγραφής"
-
-msgid "Show Picons"
-msgstr ""
-
-msgid "Show Service Names "
-msgstr ""
-
-msgid "Show Service Title"
-msgstr ""
 
 #
 #
@@ -6493,10 +6441,8 @@ msgstr "Εμφανίζει την κατάσταση του ασύρματου �
 msgid "Shutdown"
 msgstr "Τερματισμός"
 
-#
-#
-msgid "Shutdown Dreambox after"
-msgstr "Κλείσε το δέκτη μετά από"
+msgid "Shutdown receiver after"
+msgstr ""
 
 #
 msgid "Side by Side"
@@ -6522,9 +6468,6 @@ msgstr "Σήμα: "
 #
 msgid "Similar"
 msgstr "Παρόμοιο"
-
-msgid "Similar Broadcast Search"
-msgstr ""
 
 #
 #
@@ -6585,9 +6528,6 @@ msgstr "Θέματα"
 msgid "Skip Empty Services"
 msgstr ""
 
-msgid "Skip Empty Services (may need restart)"
-msgstr "Παράβλεψη κενών υπηρεσιών (ίσως χρειασθεί επανεκκίνηση)"
-
 #
 #
 msgid "Sleep Timer"
@@ -6625,6 +6565,9 @@ msgstr "Αργά"
 #
 msgid "Slow Motion speeds"
 msgstr "Ταχύτητα αργής κίνησης"
+
+msgid "Social/Political/Economics"
+msgstr ""
 
 #
 msgid "SoftCam / CI"
@@ -6692,6 +6635,10 @@ msgstr ""
 "Λυπάμαι, ο προορισμός αντιγράφων ασφαλείας δεν είναι εγγράψιμος. \n"
 "Παρακαλώ επιλέξτε έναν άλλο."
 
+msgid ""
+"Sorry, deleting directories can (for now) only be done through the trash can."
+msgstr ""
+
 #
 #
 msgid "Sorry, no Details available!"
@@ -6751,6 +6698,9 @@ msgstr "Ισπανικά"
 #
 msgid "Split preview mode"
 msgstr "Διαχωρισμός κατάστασης επισκόπησης"
+
+msgid "Sports"
+msgstr ""
 
 #
 #
@@ -6962,6 +6912,9 @@ msgstr "Αλλαγή SNR σε db με SNR επί τοις εκατό στην ο
 msgid "Swap Services"
 msgstr "Αντιμετάθεση υπηρεσιών"
 
+msgid "Swap from normal to list mode"
+msgstr ""
+
 #
 msgid "Swedish"
 msgstr "Σουηδικά"
@@ -7070,10 +7023,8 @@ msgstr "Τύπος ελέγχου"
 msgid "Test mode"
 msgstr "Κατάσταση ελέγχου"
 
-#
-#
-msgid "Test the network configuration of your Dreambox.\n"
-msgstr "Ελέγξτε τις ρυθμίσεις δικτύου του δέκτη.\n"
+msgid "Test the network configuration of your receiver.\n"
+msgstr ""
 
 #
 #
@@ -7102,26 +7053,16 @@ msgstr ""
 "Σας ευχαριστούμε που χρησιμοποιήσατε τον Οδηγό.\n"
 "Παρακαλώ πιέστε ΟΚ για συνέχεια."
 
-#
-#
 msgid ""
 "Thank you for using the wizard. Your box is now ready to use.\n"
-"Please press OK to start using your Dreambox."
+"Please press OK to start using your receiver."
 msgstr ""
-"Σας ευχαριστούμε που χρησιμοποιήσατε τον Οδηγό. Ο δέκτης σας είναι έτοιμος "
-"για χρήση.\n"
-"Πιέστε ΟΚ για να ξεκινήσετε τη χρήση του δέκτη."
 
-#
-#
 msgid ""
 "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to "
-"create a Dreambox format data DVD (which will not play in stand-alone DVD "
+"create a special format data DVD (which will not play in stand-alone DVD "
 "players) instead?"
 msgstr ""
-"The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to "
-"create a Dreambox format data DVD (which will not play in stand-alone DVD "
-"players) instead?"
 
 #
 #
@@ -7217,14 +7158,10 @@ msgstr ""
 msgid "The installation of the default services lists is finished."
 msgstr "Η εγκατάσταση προρυθμισμένων υπηρεσιών ολοκληρώθηε."
 
-#
-#
 msgid ""
 "The installation of the default settings is finished. You can now continue "
-"configuring your Dreambox by pressing the OK button on the remote control."
+"configuring your receiver by pressing the OK button on the remote control."
 msgstr ""
-"Η εγκατάσταση προρυθμισμένων ρυθμίσεων ολοκληρώθηκε. Μπορείτε να συνεχίσετε "
-"την παραμετροποίηση του δέκτη πιέζοντας ΟΚ στο τηλεχειριστήριο."
 
 msgid "The md5sum validation failed, the file may be corrupted!"
 msgstr ""
@@ -7381,32 +7318,19 @@ msgstr ""
 "content on the disc."
 
 #
-# , python-format
-#, python-format
-msgid "This Dreambox can't decode %s streams!"
-msgstr "Αυτός ο δέκτης δε μπορεί να αποκωδικοποιήσει %s streams!"
-
-#
 #
 msgid "This is step number 2."
 msgstr "Αυτό είναι το βήμα 2"
 
 msgid ""
 "This plugin creates a USB stick which can be used to update the firmware of "
-"your Dreambox without the need for a network or WLAN connection.\n"
+"your receiver without the need for a network or WLAN connection.\n"
 "First, a USB stick needs to be prepared so that it becomes bootable.\n"
 "In the next step, an NFI image file can be downloaded from the update server "
 "and saved on the USB stick.\n"
 "If you already have a prepared bootable USB stick, please insert it now. "
 "Otherwise plug in a USB stick with a minimum size of 64 MB!"
 msgstr ""
-"Αυτό το πρόσθετο δημιουργεί ένα usb stick που μπορεί να χρησιμοποιηθεί για "
-"αναβάθμιση του Dreambox χωρίς ανάγκη ύπαρξης δικτύου.\n"
-"Καταρχήν, ένα usb stick πρέπει να προετοιμασθεί ώστε να είναι εκκινήσιμο.\n"
-"Στο επόμενο βήμα, ένα αρχείο NFI μπορεί να αποθηκευτεί σε αυτό από τον "
-"διακομιστή ενημερώσεων.\n"
-"Εάν έχετε ένα ήδη έτοιμο usb stick, παρακαλώ συνδέστε το τώρα. Αλλιώς "
-"συνδέστε ένα usb stick ελάχιστης χωρητικότητας 64MB!"
 
 #
 #
@@ -7427,6 +7351,10 @@ msgstr "Το πρόσθετο θα εγκατασταθεί."
 #
 msgid "This plugin will be removed."
 msgstr "Το πρόσθετο θα διαγραφεί."
+
+#, python-format
+msgid "This receiver can't decode %s streams!"
+msgstr ""
 
 #
 #
@@ -7540,21 +7468,6 @@ msgstr "Κλίμακα χρόνου"
 msgid "Time/Date Input"
 msgstr "Εισαγωγή ημερομηνίας/ώρας"
 
-msgid "Timeline 120 minutes"
-msgstr ""
-
-msgid "Timeline 180 minutes"
-msgstr ""
-
-msgid "Timeline 240 minutes"
-msgstr ""
-
-msgid "Timeline 300 minutes"
-msgstr ""
-
-msgid "Timeline 60 minutes"
-msgstr ""
-
 #
 #
 msgid "Timer"
@@ -7661,20 +7574,13 @@ msgid "To subtitle selection"
 msgstr "Επιλογή υποτίτλων"
 
 msgid ""
-"To update your Dreambox firmware, please follow these steps:\n"
+"To update your receiver firmware, please follow these steps:\n"
 "1) Turn off your box with the rear power switch and make sure the bootable "
 "USB stick is plugged in.\n"
 "2) Turn mains back on and hold the DOWN button on the front panel pressed "
 "for 10 seconds.\n"
 "3) Wait for bootup and follow instructions of the wizard."
 msgstr ""
-"Για ενημέρωση του λογισμικού του Dreambox, παρακαλώ ακολουθήστε τα παρακάτω "
-"βήματα:\n"
-"1) Απενεργοποιήστε το δέκτη από τον κεντρικό διακόπτη τροφοδοσίας και "
-"βεβαιωθείτε ότι έχει συνδεθεί το usb stick.\n"
-"2) Θέστε εντός τον κεντρικό διακόπτη τροφοδοσίας και κρατήστε πατημένο το "
-"κουμπί ΚΑΤΩ στην οθόνη ενδείξεων για 10 δευτερόλεπτα.\n"
-"3) Περιμένετε για εκκίνηση και ακολουθήστε τις οδηγίες του Οδηγού."
 
 #
 #
@@ -7968,18 +7874,16 @@ msgstr "Αναβάθμιση και ερώτηση για επανεκκίνησ
 msgid "Upgrade finished."
 msgstr "Η αναβάθμιση τελείωσε."
 
-msgid "Upgrade finished. Do you want to reboot your Dreambox?"
-msgstr "Η αναβάθμιση ολοκληρώθηκε. Θέλετε να επανεκκινήσετε το δέκτη;"
+msgid "Upgrade finished. Do you want to reboot your receiver?"
+msgstr ""
 
 #
 #
 msgid "Upgrading"
 msgstr "Εκτελείται αναβάθμιση"
 
-#
-#
-msgid "Upgrading Dreambox... Please wait"
-msgstr "Εκτελείται αναβάθμιση δέκτη... Παρακαλώ περιμένετε"
+msgid "Upgrading receiver... Please wait"
+msgstr ""
 
 #
 #
@@ -7999,9 +7903,6 @@ msgstr "Χρήση θέσης υποτίτλων από DVB"
 #
 msgid "Use Interface"
 msgstr "Χρήση διεπαφής χρήστη"
-
-msgid "Use Long Title"
-msgstr ""
 
 #
 #
@@ -8104,6 +8005,9 @@ msgid "Used service scan type"
 msgstr "Used service scan type"
 
 msgid "User - bouquets"
+msgstr ""
+
+msgid "User Interface"
 msgstr ""
 
 #
@@ -8437,64 +8341,36 @@ msgstr ""
 "Στη συνέχεια αναζητήστε το τέλος του τμήματος, πιέστε ΟΚ, επιλέξτε \"end cut"
 "\". Αυτό είναι όλο."
 
-#
-#
 msgid ""
 "Welcome to the Image upgrade wizard. The wizard will assist you in upgrading "
-"the firmware of your Dreambox by providing a backup facility for your "
+"the firmware of your receiver by providing a backup facility for your "
 "current settings and a short explanation of how to upgrade your firmware."
 msgstr ""
-"Καλώς ορίσατε στον Οδηγό αναβάθμισης λογισμικού. Ο Οδηγός θα σας βοηθήσει "
-"στην αναβάθμιση του λογισμικού του δέκτη παρέχοντας δυνατότητα αντιγράφου "
-"ασφαλείας των ρυθμίσεών σας και σύντομη επεξήγηση της διαδικασίας."
 
-#
-#
 msgid ""
 "Welcome to the cleanup wizard.\n"
 "\n"
 "We have detected that your available internal memory has dropped below 2MB.\n"
-"To ensure stable operation of your Dreambox, the internal memory should be "
+"To ensure stable operation of your receiver, the internal memory should be "
 "cleaned up.\n"
 "You can use this wizard to remove some extensions.\n"
 msgstr ""
-"Καλώς ορίσατε στον Οδηγό εκκαθάρισης.\n"
-"\n"
-"Η διαθέσιμη εσωτερική μνήμη του δέκτη είναι κάτω από 2MB.\n"
-"Για να διασφαλιστεί η σταθερή διαδικασία του δέκτη, η μνήμη πρέπει να "
-"εκκαθαριστεί.\n"
-"Με τη χρήση αυτού του Οδηγού μπορείτε να αφαιρέσετε μερικές επεκτάσεις.\n"
 
-#
-#
 msgid ""
 "Welcome.\n"
 "\n"
-"If you want to connect your Dreambox to the Internet, this wizard will guide "
-"you through the basic network setup of your Dreambox.\n"
+"If you want to connect your receiver to the Internet, this wizard will guide "
+"you through the basic network setup of your receiver.\n"
 "\n"
 "Press OK to start configuring your network"
 msgstr ""
-"Καλώς ορίσατε.\n"
-"\n"
-"Εάν θέλετε να συνδέσετε το δέκτη στο διαδίκτυο, αυτό ο Οδηγός θα σας "
-"καθοδηγήσει στα βήματα της διαδικασίας ρύθμισης δικτύου του δέκτη.\n"
-"\n"
-"Πιέστε ΟΚ για εκκίνηση ρύθμισης του δικτύου."
 
-#
-#
 msgid ""
 "Welcome.\n"
 "\n"
-"This start wizard will guide you through the basic setup of your Dreambox.\n"
+"This start wizard will guide you through the basic setup of your receiver.\n"
 "Press the OK button on your remote control to move to the next step."
 msgstr ""
-"Καλώς ορίσατε.\n"
-"\n"
-"Αυτός ο Οδηγός εκκίνησης θα σας καθοδηγήσει στη διαδικασία βασικής "
-"εγκατάστασης του δέκτη.\n"
-"Πιέστε ΟΚ στο τηλεχειριστήριο για μετάβαση στο επόμενο βήμα."
 
 #
 #
@@ -8706,10 +8582,8 @@ msgstr "Μπορείτε να συνεχίσετε να βλέπετε TV κλπ
 msgid "You can install this plugin."
 msgstr "Μπορείτε να εγκαταστήσετε το πρόσθετο."
 
-#
-#
-msgid "You can only burn Dreambox recordings!"
-msgstr "Μπορείτε να εγγράψετε μόνο εγγραφές από δέκτη!"
+msgid "You can only burn receiver recordings!"
+msgstr ""
 
 #
 #
@@ -8777,20 +8651,13 @@ msgstr ""
 msgid "You have to wait %s!"
 msgstr "Περιμένετε για %s!"
 
-#
-#
 msgid ""
-"You need a PC connected to your dreambox. If you need further instructions, "
+"You need a PC connected to your receiver. If you need further instructions, "
 "please visit the website http://www.dm7025.de.\n"
-"Your dreambox will now be halted. After you have performed the update "
+"Your receiver will now be halted. After you have performed the update "
 "instructions from the website, your new firmware will ask you to restore "
 "your settings."
 msgstr ""
-"You need a PC connected to your dreambox. If you need further instructions, "
-"please visit the website http://www.dm7025.de.\n"
-"Your dreambox will now be halted. After you have performed the update "
-"instructions from the website, your new firmware will ask you to restore "
-"your settings."
 
 msgid ""
 "You need to set a PIN code and hide it from your children.\n"
@@ -8820,26 +8687,6 @@ msgstr ""
 #
 #
 msgid ""
-"Your Dreambox is now ready to use.\n"
-"\n"
-"Your internet connection is working now.\n"
-"\n"
-"Please press OK to continue."
-msgstr ""
-"Ο δέκτης σας είναι τώρα έτοιμος για χρήση.\n"
-"\n"
-"Η σύνδεση με το διαδίκτυο είναι έτοιμη.\n"
-"\n"
-"Πιέστε ΟΚ για συνέχεια."
-
-#
-#
-msgid "Your Dreambox will restart after pressing OK on your remote control."
-msgstr "Ο δέκτης θα επανεκκινήσει πιέζοντας ΟΚ στο τηλεχειριστήριο."
-
-#
-#
-msgid ""
 "Your backup succeeded. We will now continue to explain the further upgrade "
 "process."
 msgstr ""
@@ -8859,20 +8706,6 @@ msgstr ""
 #
 msgid "Your current collection will get lost!"
 msgstr "Η τρέχουσα συλλογή σας θα χαθεί!"
-
-#
-#
-msgid "Your dreambox is shutting down. Please stand by..."
-msgstr "Ο δέκτης τερματίζεται. Παρακαλώ περιμένετε..."
-
-#
-#
-msgid ""
-"Your dreambox isn't connected to the internet properly. Please check it and "
-"try again."
-msgstr ""
-"Ο δέκτης σας δεν είναι συνδεδεμένος στο διαδίκτυο σωστά. Παρακαλώ ελέγξτε "
-"και ξαναπροσπαθήστε."
 
 #
 #
@@ -8912,10 +8745,29 @@ msgstr "Το όνομά σας (προαιρετικά):"
 msgid "Your network configuration has been activated."
 msgstr "Η ρύθμιση δικτύου ενεργοποιήθηκε."
 
+msgid ""
+"Your receiver is now ready to use.\n"
+"\n"
+"Your internet connection is working now.\n"
+"\n"
+"Please press OK to continue."
+msgstr ""
+
 msgid "Your receiver is rebooting"
 msgstr ""
 
 msgid "Your receiver is shutting down"
+msgstr ""
+
+msgid "Your receiver is shutting down. Please stand by..."
+msgstr ""
+
+msgid ""
+"Your receiver isn't connected to the internet properly. Please check it and "
+"try again."
+msgstr ""
+
+msgid "Your receiver will restart after pressing OK on your remote control."
 msgstr ""
 
 #
@@ -8931,9 +8783,6 @@ msgstr ""
 "Επιλέξτε τι θέλετε να ακολουθήσει."
 
 msgid "Zap"
-msgstr ""
-
-msgid "Zap PIG"
 msgstr ""
 
 #
@@ -9120,10 +8969,19 @@ msgstr "προσθήκη υπηρεσίας στα αγαπημένα"
 msgid "add to parental protection"
 msgstr "προσθήκη στο γονικό έλεγχο"
 
+msgid "adult movie/drama"
+msgstr ""
+
 #
 #
 msgid "advanced"
 msgstr "προχωρημένο"
+
+msgid "adventure/western/war"
+msgstr ""
+
+msgid "advertisement/shopping"
+msgstr ""
 
 #
 msgid "alphabetic reverse"
@@ -9142,6 +9000,12 @@ msgstr ""
 "σίγουρα θέλετε να επαναφέρετε \n"
 "το παρακάτω αντίγραφο ασφαλείας:\n"
 
+msgid "arts/culture (without music, general)"
+msgstr ""
+
+msgid "arts/culture magazine"
+msgstr ""
+
 #
 #
 msgid "assigned CAIds:"
@@ -9159,6 +9023,9 @@ msgstr "στην αρχή"
 #
 msgid "at end"
 msgstr "στο τέλος"
+
+msgid "athletics"
+msgstr ""
 
 #
 # , python-format
@@ -9202,6 +9069,13 @@ msgstr "εικόνα φόντου"
 msgid "backgroundcolor"
 msgstr "χρώμα φόντου"
 
+msgid "ballet"
+msgstr ""
+
+#, python-format
+msgid "bc%s"
+msgstr ""
+
 #
 #
 msgid "better"
@@ -9211,6 +9085,9 @@ msgstr "καλύτερα"
 #
 msgid "black"
 msgstr "μαύρο"
+
+msgid "black & white"
+msgstr ""
 
 #
 #
@@ -9222,11 +9099,17 @@ msgstr "μη επιτρεπόμενα"
 msgid "blue"
 msgstr "μπλε"
 
+msgid "broadcasting/press"
+msgstr ""
+
 #
 # , python-format
 #, python-format
 msgid "burn audio track (%s)"
 msgstr "εγγραφή audio track (%s)"
+
+msgid "cartoon/puppets"
+msgstr ""
 
 msgid "center"
 msgstr ""
@@ -9246,6 +9129,9 @@ msgstr "αλλαγή εγγραφής (χρόνος τερματισμού)"
 msgid "chapters"
 msgstr "κεφάλαια"
 
+msgid "childrens's/youth program (general)"
+msgstr ""
+
 #
 #
 msgid "circular left"
@@ -9260,6 +9146,9 @@ msgstr "δεξιόστροφη"
 #
 msgid "clear playlist"
 msgstr "εκκαθάριση λίστας αναπαραγωγής"
+
+msgid "comedy"
+msgstr ""
 
 #
 #
@@ -9285,6 +9174,9 @@ msgstr "συνδεδεμένο"
 #
 msgid "continue"
 msgstr "συνέχεια"
+
+msgid "cooking"
+msgstr ""
 
 #
 #
@@ -9344,6 +9236,9 @@ msgstr "διαγραφή..."
 msgid "descramble and record ecm"
 msgstr ""
 
+msgid "detective/thriller"
+msgstr ""
+
 #
 msgid "disable"
 msgstr "απενεργοποίηση"
@@ -9362,6 +9257,9 @@ msgstr "απεργοποιημένο"
 msgid "disconnected"
 msgstr "αποσυνδεμένο"
 
+msgid "discussion/interview/debate"
+msgstr ""
+
 #
 #
 msgid "do not change"
@@ -9371,6 +9269,9 @@ msgstr "μην το αλλάζεις"
 #
 msgid "do nothing"
 msgstr "μην κάνεις τίποτα"
+
+msgid "documentary"
+msgstr ""
 
 msgid "don't descramble, record ecm"
 msgstr ""
@@ -9403,10 +9304,16 @@ msgstr ""
 msgid "east"
 msgstr ""
 
+msgid "economics/social advisory"
+msgstr ""
+
 #
 #
 msgid "edit alternatives"
 msgstr "επεξεργασία εναλλακτικών"
+
+msgid "education/science/factual topics (general)"
+msgstr ""
 
 #
 #
@@ -9460,10 +9367,19 @@ msgstr "τέλος επεξεργασίας αγαπημένων "
 msgid "enigma2 and network"
 msgstr "enigma2 και δίκτυο"
 
+msgid "entertainment (10-16 year old)"
+msgstr ""
+
+msgid "entertainment (6-14 year old)"
+msgstr ""
+
 #
 #
 msgid "equal to"
 msgstr "ίσο με"
+
+msgid "equestrian"
+msgstr ""
 
 #
 #
@@ -9500,7 +9416,13 @@ msgstr "έξοδος από λίστα διεπαφών δικτύου"
 msgid "exit networkadapter setup menu"
 msgstr "έξοδος από μενού ρυθμίσεων κάρτας δικτύου"
 
+msgid "experimental film/video"
+msgstr ""
+
 msgid "false"
+msgstr ""
+
+msgid "fashion"
 msgstr ""
 
 #
@@ -9513,14 +9435,32 @@ msgstr "fileformats (BMP, PNG, JPG, GIF)"
 msgid "filename"
 msgstr "όνομα αρχείου"
 
+msgid "film/cinema"
+msgstr ""
+
+msgid "fine arts"
+msgstr ""
+
 #
 #
 msgid "fine-tune your display"
 msgstr "μικρορύθμιση οθόνης"
 
+msgid "fitness & health"
+msgstr ""
+
 #
 msgid "fixed"
 msgstr "σταθερό"
+
+msgid "folk/traditional music"
+msgstr ""
+
+msgid "football/soccer"
+msgstr ""
+
+msgid "foreign countries/expeditions"
+msgstr ""
 
 #
 #
@@ -9541,6 +9481,15 @@ msgstr "ελεύθερος χώρος δίσκου"
 msgid "full transparency"
 msgstr "μέγιστη διαφάνεια"
 
+msgid "further education"
+msgstr ""
+
+msgid "game show/quiz/contest"
+msgstr ""
+
+msgid "gardening"
+msgstr ""
+
 #
 #
 msgid "go to deep standby"
@@ -9560,6 +9509,9 @@ msgstr "grab this frame as bitmap"
 #
 msgid "green"
 msgstr "πράσινο"
+
+msgid "handicraft"
+msgstr ""
 
 #
 #
@@ -9589,6 +9541,9 @@ msgstr "οριζόντια"
 msgid "immediate shutdown"
 msgstr "άμεσος τερματισμός"
 
+msgid "information/education/school program"
+msgstr ""
+
 #
 #
 msgid "init module"
@@ -9605,6 +9560,9 @@ msgid "insert mark here"
 msgstr "εισαγωγή σημειωτή"
 
 msgid "invalid type"
+msgstr ""
+
+msgid "jazz"
 msgstr ""
 
 #
@@ -9637,6 +9595,9 @@ msgstr "μετάβαση στην επόμενη σημειωμένη θέση"
 msgid "jump to previous marked position"
 msgstr "μετάβαση στην προηγούμενη σημειωμένη θέση"
 
+msgid "languages"
+msgstr ""
+
 #
 #
 msgid "leave movie player..."
@@ -9646,6 +9607,9 @@ msgstr "έξοδος απο το movie player..."
 #
 msgid "left"
 msgstr "αριστερά"
+
+msgid "leisure hobbies (general)"
+msgstr ""
 
 #
 #
@@ -9680,6 +9644,12 @@ msgstr "προεπιλεγμένη μορφή λίστας"
 msgid "list style single line"
 msgstr "λίστα μονής γραμμής"
 
+msgid "literature"
+msgstr ""
+
+msgid "live broadcast"
+msgstr ""
+
 #
 #
 msgid "load playlist"
@@ -9695,10 +9665,19 @@ msgstr "κλειδωμένο "
 msgid "loopthrough to"
 msgstr "loopthrough to"
 
+msgid "magazines/reports/documentary"
+msgstr ""
+
 #
 #
 msgid "manual"
 msgstr "χειροκίνητα"
+
+msgid "martial sports"
+msgstr ""
+
+msgid "medicine/physiology/psychology"
+msgstr ""
 
 #
 #
@@ -9719,6 +9698,12 @@ msgstr "λεπτά"
 #
 msgid "month"
 msgstr "μήνας"
+
+msgid "motor sport"
+msgstr ""
+
+msgid "motoring"
+msgstr ""
 
 #
 #
@@ -9750,15 +9735,39 @@ msgstr "μετάβαση στην προηγούμενη εγγραφή"
 msgid "movie list"
 msgstr "λίστα ταινιών"
 
+msgid "movie/drama (general)"
+msgstr ""
+
 #
 #
 msgid "multinorm"
 msgstr "multinorm"
 
+msgid "music/ballet/dance (general)"
+msgstr ""
+
+msgid "musical/opera"
+msgstr ""
+
+msgid "nature/animals/environment"
+msgstr ""
+
 #
 #
 msgid "never"
 msgstr "ποτέ"
+
+msgid "new media"
+msgstr ""
+
+msgid "news magazine"
+msgstr ""
+
+msgid "news/current affairs (general)"
+msgstr ""
+
+msgid "news/weather report"
+msgstr ""
 
 #
 #
@@ -9873,6 +9882,9 @@ msgstr "εντός"
 msgid "on READ ONLY medium."
 msgstr "on READ ONLY medium."
 
+msgid "on end of movie"
+msgstr ""
+
 #
 #
 msgid "once"
@@ -9902,6 +9914,9 @@ msgstr "άνοιγμα λίστας υπηρεσιών (πάνω)"
 msgid "original"
 msgstr "αρχικό"
 
+msgid "original language"
+msgstr ""
+
 #
 #
 msgid "pass"
@@ -9911,6 +9926,9 @@ msgstr "pass"
 #
 msgid "pause"
 msgstr "παύση"
+
+msgid "performing arts"
+msgstr ""
 
 #
 msgid "play as picture in picture"
@@ -9945,6 +9963,12 @@ msgstr "πιέστε OK όταν είστε έτοιμος"
 msgid "please wait, loading picture..."
 msgstr "περίμενετε, φορτώνεται η εικόνα..."
 
+msgid "popular culture/traditional arts"
+msgstr ""
+
+msgid "pre-school children's program"
+msgstr ""
+
 #
 #
 msgid "previous channel"
@@ -9954,6 +9978,9 @@ msgstr "προηγούμενο κανάλι"
 #
 msgid "previous channel in history"
 msgstr "προηγούμενο κανάλι στο ιστορικό"
+
+msgid "receiver software because updates are available."
+msgstr ""
 
 #
 #
@@ -9973,6 +10000,12 @@ msgstr "κόκκινο"
 #
 msgid "relative"
 msgstr "σχετικό"
+
+msgid "religion"
+msgstr ""
+
+msgid "remarkable people"
+msgstr ""
 
 #
 #
@@ -10058,6 +10091,12 @@ msgstr "μετάβαση στο προηγούμενο κεφάλαιο"
 msgid "right"
 msgstr "δεξιά"
 
+msgid "rock/pop"
+msgstr ""
+
+msgid "romance"
+msgstr ""
+
 #
 #
 msgid "save last directory on exit"
@@ -10088,6 +10127,9 @@ msgstr "σάρωση σε εξέλιξη - %d%% ολοκληρώθηκε!"
 #
 msgid "scan state"
 msgstr "κατάσταση σάρωσης"
+
+msgid "science fiction/fantasy/horror"
+msgstr ""
 
 #
 #
@@ -10133,6 +10175,12 @@ msgstr "επέλεξε ταινία"
 #
 msgid "select the movie path"
 msgstr "επέλεξε διαδρομή ταινίας"
+
+msgid "serious music/classic music"
+msgstr ""
+
+msgid "serious/classical/religious/historical movie/drama"
+msgstr ""
 
 #
 msgid "service PIN"
@@ -10193,6 +10241,12 @@ msgstr "εμφάνιση μενού τερματισμού"
 msgid "show single service EPG..."
 msgstr "εμφάνιση EPG μιας υπηρεσίας"
 
+msgid "show softwaremanager in setup menu"
+msgstr ""
+
+msgid "show softwaremanager on blue button"
+msgstr ""
+
 #
 #
 msgid "show tag menu"
@@ -10202,6 +10256,9 @@ msgstr "εμφάνιση μενού tag "
 #
 msgid "show transponder info"
 msgstr "εμφάνιση πληροφοριών αναμεταδότη"
+
+msgid "show/game show (general)"
+msgstr ""
 
 #
 msgid "shuffle"
@@ -10252,6 +10309,15 @@ msgstr "μεταπήδηση εμπρός (σε χρόνο)"
 msgid "slide picture in loop"
 msgstr "slide picture in loop"
 
+msgid "soap/melodram/folkloric"
+msgstr ""
+
+msgid "social/political issues/economics (general)"
+msgstr ""
+
+msgid "social/spiritual science"
+msgstr ""
+
 #
 #
 msgid "sort by date"
@@ -10264,6 +10330,18 @@ msgstr "ταξινόμηση λιστών αναπαραγωγής"
 #
 msgid "special characters"
 msgstr "ειδικοί χαρακτήρες"
+
+msgid "special events"
+msgstr ""
+
+msgid "special format data DVD (HDTV compatible)"
+msgstr ""
+
+msgid "sports (general)"
+msgstr ""
+
+msgid "sports magazine"
+msgstr ""
 
 #
 #
@@ -10356,10 +10434,22 @@ msgstr "μετάβαση σε επόμενο audio track"
 msgid "switch to the next subtitle language"
 msgstr "μετάβαση σε επόμενη γλώσσα υποτίτλων"
 
+msgid "talk show"
+msgstr ""
+
+msgid "team sports"
+msgstr ""
+
+msgid "technology/natural science"
+msgstr ""
+
 #
 #
 msgid "template file"
 msgstr "πρότυπο αρχείο"
+
+msgid "tennis/squash"
+msgstr ""
 
 #
 #
@@ -10390,6 +10480,9 @@ msgstr "εναλλαγή πληροφοριών χρόνου, κεφαλαίου
 msgid "top"
 msgstr "κορυφή"
 
+msgid "tourism/travel"
+msgstr ""
+
 msgid "true"
 msgstr ""
 
@@ -10418,6 +10511,9 @@ msgstr "άγνωστο"
 msgid "unknown service"
 msgstr "άγνωστη υπηρεσία"
 
+msgid "unpublished"
+msgstr ""
+
 #
 #
 msgid "until standby/restart"
@@ -10427,6 +10523,9 @@ msgstr "μέχρι την αναμονή/επανεκκίνηση"
 #
 msgid "user defined"
 msgstr "ορισμένο από το χρήστη"
+
+msgid "variety show"
+msgstr ""
 
 #
 msgid "vertical"
@@ -10456,6 +10555,9 @@ msgstr "αναμονή "
 msgid "was removed successfully"
 msgstr "διεγράφη επιτυχώς"
 
+msgid "water sport"
+msgstr ""
+
 #
 msgid "weekly"
 msgstr "εβδομαδιαία"
@@ -10472,6 +10574,9 @@ msgstr "λίστα επιτρεπομένων"
 
 msgid "width"
 msgstr "πλάτος"
+
+msgid "winter sport"
+msgstr ""
 
 msgid "wireless network interface"
 msgstr "διεπαφή ασύρματου δικτύου"
@@ -10492,13 +10597,10 @@ msgstr "ναι"
 msgid "yes (keep feeds)"
 msgstr "ναι (σώσε feeds)"
 
-#
 msgid ""
-"your dreambox might be unusable now. Please consult the manual for further "
-"assistance before rebooting your dreambox."
+"your receiver might be unusable now. Please consult the manual for further "
+"assistance before rebooting your receiver."
 msgstr ""
-"ο δέκτης σας ενδέχεται να μη μπορεί να χρησιμοποιηθεί τώρα. Παρακαλώ "
-"συμβουλευθείτε το manual πριν την επανεκκίνηση."
 
 #
 #
@@ -10509,351 +10611,3 @@ msgstr "zap"
 #
 msgid "zapped"
 msgstr "zapped"
-
-#
-#
-#~ msgid "#000000"
-#~ msgstr "#000000"
-
-#
-#
-#~ msgid "#0064c7"
-#~ msgstr "#0064c7"
-
-#
-#
-#~ msgid "#25062748"
-#~ msgstr "#25062748"
-
-#
-#
-#~ msgid "#389416"
-#~ msgstr "#389416"
-
-#
-#
-#~ msgid "#80000000"
-#~ msgstr "#80000000"
-
-#
-#
-#~ msgid "#80ffffff"
-#~ msgstr "#80ffffff"
-
-#
-#
-#~ msgid "#bab329"
-#~ msgstr "#bab329"
-
-#
-#
-#~ msgid "#f23d21"
-#~ msgstr "#f23d21"
-
-#~ msgid "#ff0000"
-#~ msgstr "#ff0000"
-
-#~ msgid "#ffff7f"
-#~ msgstr "#ffff7f"
-
-#
-#
-#~ msgid "#ffffff"
-#~ msgstr "#ffffff"
-
-#
-#
-#~ msgid "#ffffffff"
-#~ msgstr "#ffffffff"
-
-#
-#
-#~ msgid "30 minutes"
-#~ msgstr "30 λεπτά"
-
-#
-#
-#~ msgid "5 minutes"
-#~ msgstr "5 λεπτά"
-
-#
-#
-#~ msgid "60 minutes"
-#~ msgstr "60 λεπτά"
-
-#
-#~ msgid "Active"
-#~ msgstr "Ενεργό"
-
-#
-#~ msgid "Add a new NFS or CIFS mount point to your Dreambox."
-#~ msgstr "Προσθήκη νέας προσάρτησης NFS ή CIFS στο δέκτη."
-
-#
-#~ msgid "Add new network mount point"
-#~ msgstr "Προσθήκη νέας προσάρτησης δικτύου"
-
-#
-#~ msgid "April"
-#~ msgstr "Απρίλιος"
-
-#
-#~ msgid "Attempt to recover lost mounts (in background)"
-#~ msgstr "Προσπάθεια για ανάνηψη χαμένων προσαρτήσεων (στο παρασκήνιο)"
-
-#
-#~ msgid "August"
-#~ msgstr "Αύγουστος"
-
-#
-#~ msgid "Change hostname"
-#~ msgstr "Αλλαγή ονόματος host"
-
-#
-#~ msgid "Change the hostname of your Dreambox."
-#~ msgstr "Αλλαγή ονόματος host του δέκτη"
-
-#
-#
-#~ msgid "Create movie folder failed"
-#~ msgstr "Αποτυχία δημιουργίας φακέλου movie"
-
-#
-#
-#~ msgid "Creating partition failed"
-#~ msgstr "Αποτυχία δημιουργίας κατάτμησης"
-
-#
-#~ msgid "December"
-#~ msgstr "Δεκέμβριος"
-
-#
-#~ msgid "Descramble recordings"
-#~ msgstr "Αποκωδικοποίηση εγγραφών"
-
-#
-#~ msgid "Enter new hostname for your Dreambox"
-#~ msgstr "Εισαγωγή νέου ονόματος host του δέκτη"
-
-#
-#
-#~ msgid "Everything is fine"
-#~ msgstr "Όλα είναι εντάξει"
-
-#
-#~ msgid "February"
-#~ msgstr "Φεβρουάριος"
-
-#
-#
-#~ msgid "Filesystem contains uncorrectable errors"
-#~ msgstr "Το σύστημα αρχείων περιέχει λάθη που δεν διορθώνονται"
-
-#
-#
-#~ msgid "Fsck failed"
-#~ msgstr "Αποτυχία Fsck "
-
-#
-#~ msgid "Go to first movie"
-#~ msgstr "Μετάβαση στην πρώτη ταινία"
-
-#
-#~ msgid "Go to last item"
-#~ msgstr "Μετάβαση στο τελευταίο αντικείμενο"
-
-#
-#~ msgid "Go to top of list"
-#~ msgstr "Μετάβαση στην αρχή της λίστας"
-
-#
-#~ msgid "January"
-#~ msgstr "Ιανουάριος"
-
-#
-#~ msgid "July"
-#~ msgstr "Ιούλιος"
-
-#
-#~ msgid "June"
-#~ msgstr "Ιούνιος"
-
-#
-#~ msgid "Local share name"
-#~ msgstr "Όνομα τοπικού κοινόχρηστου"
-
-#
-#~ msgid "Manage your network shares..."
-#~ msgstr "Διαχείριση των προσαρτήσεων δικτύου..."
-
-#
-#~ msgid "March"
-#~ msgstr "Μάρτιος"
-
-#
-#~ msgid "May"
-#~ msgstr "Μάιος"
-
-#
-#
-#~ msgid "Mkfs failed"
-#~ msgstr "Αποτυχία mkfs"
-
-#
-#~ msgid "Mount again"
-#~ msgstr "Προσάρτηση ξανά"
-
-#
-#
-#~ msgid "Mount failed"
-#~ msgstr "Η προσάρτηση απέτυχε"
-
-#
-#~ msgid "Mount options"
-#~ msgstr "Επιλογές προσάρτισης"
-
-#
-#~ msgid "Mount type"
-#~ msgstr "Τύπος προσάρτησης"
-
-#
-#~ msgid "MountManager"
-#~ msgstr "Διαχειριστής προσαρτήσεων"
-
-#
-#~ msgid "Mountpoints management"
-#~ msgstr "Διαχείριση σημείων προσαρτήσεων"
-
-#
-#~ msgid "Mounts"
-#~ msgstr "Προσαρτήσεις"
-
-#
-#~ msgid "NetworkBrowser"
-#~ msgstr "Διαφυλλιστής δικτύου"
-
-#
-#~ msgid "November"
-#~ msgstr "Νοέμβριος"
-
-#~ msgid "Oktober"
-#~ msgstr "Οκτώβριος"
-
-#
-#
-#~ msgid "Please Reboot"
-#~ msgstr "Παρακαλώ κάντε επανεκκίνηση"
-
-#
-#
-#~ msgid "Positioner fine movement"
-#~ msgstr "Ελάχιστη κίνηση positioner"
-
-#
-#
-#~ msgid "Positioner movement"
-#~ msgstr "Κίνηση positioner"
-
-#
-#
-#~ msgid "Positioner storage"
-#~ msgstr "Αποθήκευση positioner"
-
-#
-#~ msgid "Press OK to expand this host"
-#~ msgstr "Πιέστε ΟΚ για ανάπτυξη του host"
-
-#
-#~ msgid "Press OK to select."
-#~ msgstr "Πιέστε ΟΚ για επιλογή."
-
-#
-#~ msgid "Record ECM"
-#~ msgstr "Εγγραφή ECM"
-
-#
-#
-#~ msgid "Recording demux buffer size"
-#~ msgstr "Μέγεθος demux buffer εγγραφής"
-
-#
-#~ msgid "Remember service PIN cancel"
-#~ msgstr "Αποθήκευση ακύρωσης PIN υπηρεσίας"
-
-#
-#~ msgid "Restart Softcam"
-#~ msgstr "Επανεκκίνηση Softcam"
-
-#
-#~ msgid "Search for network shares..."
-#~ msgstr "Αναζήτηση για κοινόχρηστα δικτύου..."
-
-#
-#~ msgid "Searching your network. Please wait..."
-#~ msgstr "Αναζήτηση στο δίκτυο. Παρακαλώ περιμένετε..."
-
-#
-#~ msgid "Select Softcam"
-#~ msgstr "Επιλογή Softcam"
-
-#
-#~ msgid "September"
-#~ msgstr "Σεπτέμβριος"
-
-#
-#~ msgid "Server IP"
-#~ msgstr "Διεύθυνση διακομιστή"
-
-#
-#~ msgid "Server share"
-#~ msgstr "Κοινόχρηστο διακομιστή"
-
-#
-#
-#~ msgid "Set limits"
-#~ msgstr "Ορισμός ορίων"
-
-#
-#~ msgid "Softcam setup..."
-#~ msgstr "Ρύθμιση softcam..."
-
-#
-#
-#~ msgid "Unmount failed"
-#~ msgstr "Η αποπροσάρτηση απέτυχε"
-
-#
-#~ msgid "User management"
-#~ msgstr "Διαχείριση χρηστών"
-
-#
-#~ msgid "View, edit or delete mountpoints on your Dreambox."
-#~ msgstr "Εμφάνιση, επεξεργασία ή διαγραφή σημείων προσαρτήσεων"
-
-#
-#~ msgid "View, edit or delete usernames and passwords for your network."
-#~ msgstr "Εμφάνιση, επεξεργασία ή διαγραφή username και password του δικτύου"
-
-#
-#
-#~ msgid "hour"
-#~ msgstr "ώρα"
-
-#
-#
-#~ msgid "hours"
-#~ msgstr "ώρες"
-
-#
-#
-#~ msgid "minute"
-#~ msgstr "λεπτό"
-
-#
-#
-#~ msgid "second"
-#~ msgstr "δευτερόλεπτο"
-
-#
-#~ msgid "use as HDD replacement"
-#~ msgstr "Χρήση ως HDD"

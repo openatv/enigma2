@@ -177,7 +177,7 @@ class ParentalControl:
 		else:
 			self.checkPinInterval = True
 			iMinutes = float(self.storeServicePin)
-			iSeconds = iMinutes*60
+			iSeconds = int(iMinutes*60)
 			self.pinIntervalSeconds = iSeconds
 	
 		self.configInitialized = True

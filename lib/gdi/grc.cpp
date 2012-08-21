@@ -661,12 +661,16 @@ void gDC::exec(const gOpcode *o)
 		para->renderString(o->parm.renderText->text, (flags & gPainter::RT_WRAP) ? RS_WRAP : 0, o->parm.renderText->border);
 		if (o->parm.renderText->text)
 			free(o->parm.renderText->text);
-		if (flags & gPainter::RT_HALIGN_RIGHT)
+		if (flags & gPainter::RT_HALIGN_LEFT)
+			para->realign(eTextPara::dirLeft);
+		else if (flags & gPainter::RT_HALIGN_RIGHT)
 			para->realign(eTextPara::dirRight);
 		else if (flags & gPainter::RT_HALIGN_CENTER)
 			para->realign((flags & gPainter::RT_WRAP) ? eTextPara::dirCenter : eTextPara::dirCenterIfFits);
 		else if (flags & gPainter::RT_HALIGN_BLOCK)
 			para->realign(eTextPara::dirBlock);
+		else
+			para->realign(eTextPara::dirBidi);
 		
 		ePoint offset = m_current_offset;
 		

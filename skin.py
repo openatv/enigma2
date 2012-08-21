@@ -12,6 +12,7 @@ from Components.Sources.Source import Source, ObsoleteSource
 from Tools.Directories import resolveFilename, SCOPE_SKIN, SCOPE_SKIN_IMAGE, SCOPE_FONTS, SCOPE_CURRENT_SKIN, SCOPE_CONFIG, fileExists
 from Tools.Import import my_import
 from Tools.LoadPixmap import LoadPixmap
+from Components.RcModel import rc_model
 
 colorNames = {}
 # Predefined fonts, typically used in built-in screens and for components like
@@ -47,6 +48,14 @@ def addSkin(name, scope = SCOPE_SKIN):
 		return True
 	return False
 
+# get own skin_user_skinname.xml file, if exist
+def skin_user_skinname():
+	name = "skin_user_" + config.skin.primary_skin.value[:config.skin.primary_skin.value.rfind('/')] + ".xml"
+	filename = resolveFilename(SCOPE_CONFIG, name)
+	if fileExists(filename):
+		return name
+	return None
+
 # we do our best to always select the "right" value
 # skins are loaded in order of priority: skin with
 # highest priority is loaded last, usually the user-provided
@@ -66,12 +75,18 @@ config.skin.primary_skin = ConfigText(default=DEFAULT_SKIN)
 
 profile("LoadSkin")
 try:
-	addSkin('skin_user.xml', SCOPE_CONFIG)
+	name = skin_user_skinname()
+	if name is not None:
+		addSkin(name, SCOPE_CONFIG)
+	else:
+		addSkin('skin_user.xml', SCOPE_CONFIG)
 except (SkinError, IOError, AssertionError), err:
 	print "not loading user skin: ", err
 
 # some boxes lie about their dimensions
 addSkin('skin_box.xml')
+# add optional discrete second infobar
+addSkin('skin_second_infobar.xml')
 # Only one of these is present, compliments of AM_CONDITIONAL
 display_skin_id = 1
 addSkin('skin_display.xml')
@@ -212,6 +227,11 @@ def collectAttributes(skinAttributes, node, context, skin_path_prefix=None, igno
 	if size is not None:
 		skinAttributes.append(('size', size))
 
+def morphRcImagePath(value):
+	if rc_model.rcIsDefault() is False:
+		if value == '/usr/share/enigma2/skin_default/rc.png' or value == '/usr/share/enigma2/skin_default/rcold.png':
+			value = rc_model.getRcLocation() + 'rc.png'
+	return value
 
 def loadPixmap(path, desktop):
 	cached = False
@@ -220,7 +240,7 @@ def loadPixmap(path, desktop):
 		options = path[option+1:].split(',')
 		path = path[:option]
 		cached = "cached" in options
-	ptr = LoadPixmap(path, desktop, cached)
+	ptr = LoadPixmap(morphRcImagePath(path), desktop, cached)
 	if ptr is None:
 		raise SkinError("pixmap file %s not found!" % (path))
 	return ptr

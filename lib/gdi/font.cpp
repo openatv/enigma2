@@ -844,7 +844,6 @@ nprint:				isprintable=0;
 	calc_bbox();
 	if (dir & FRIBIDI_MASK_RTL)
 	{
-		realign(dirRight);
 		doTopBottomReordering=true;
 	}
 	if (charCount)
@@ -1151,7 +1150,7 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &background, cons
 void eTextPara::realign(int dir)	// der code hier ist ein wenig merkwuerdig.
 {
 	glyphString::iterator begin(glyphs.begin()), c(glyphs.begin()), end(glyphs.begin()), last;
-	if (dir==dirLeft)
+	if (dir==dirLeft || (dir==dirBidi && !doTopBottomReordering))
 		return;
 	while (c != glyphs.end())
 	{
@@ -1191,6 +1190,7 @@ void eTextPara::realign(int dir)	// der code hier ist ein wenig merkwuerdig.
 			// fall-through on purpose
 		case dirRight:
 		case dirCenter:
+		case dirBidi:
 		{
 			int offset=area.width()-linelength;
 			if (dir==dirCenter)

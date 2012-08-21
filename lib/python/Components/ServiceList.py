@@ -183,9 +183,6 @@ class ServiceList(HTMLComponent, GUIComponent):
 					break
 		return dest
 
-	def setNumberOffset(self, offset):
-		self.l.setNumberOffset(offset)
-
 	def setPlayableIgnoreService(self, ref):
 		self.l.setIgnoreService(ref)
 
@@ -196,6 +193,12 @@ class ServiceList(HTMLComponent, GUIComponent):
 			self.l.sort()
 		self.selectionChanged()
 
+	def resetRoot(self):
+		index = self.instance.getCurrentIndex()
+		self.l.setRoot(self.root, False)
+		self.l.sort()
+		self.instance.moveSelectionTo(index)
+	
 	def removeCurrent(self):
 		self.l.removeCurrent()
 
@@ -237,6 +240,10 @@ class ServiceList(HTMLComponent, GUIComponent):
 		self.mode = mode
 		self.l.setItemHeight(self.ItemHeight)
 		self.l.setVisualMode(eListboxServiceContent.visModeComplex)
+		
+		progressBarWidth = 52
+		rowWidth = self.instance.size().width() - 30 #scrollbar is fixed 20 + 10 Extra marge
+
 		if mode == self.MODE_NORMAL or not config.usage.show_channel_numbers_in_servicelist.value:
 			channelNumberWidth = 0
 			channelNumberSpace = 0
@@ -244,13 +251,22 @@ class ServiceList(HTMLComponent, GUIComponent):
 			channelNumberWidth = 50
 			channelNumberSpace = 10
 
-		if config.usage.show_event_progress_in_servicelist.value:
-			self.l.setElementPosition(self.l.celServiceEventProgressbar, eRect(channelNumberWidth+channelNumberSpace, 0, 52, self.ItemHeight))
+		self.l.setElementPosition(self.l.celServiceNumber, eRect(0, 0, channelNumberWidth, self.ItemHeight))
+
+		if "left" in config.usage.show_event_progress_in_servicelist.value:
+			self.l.setElementPosition(self.l.celServiceEventProgressbar, eRect(channelNumberWidth+channelNumberSpace, 0, progressBarWidth , self.ItemHeight))
+			self.l.setElementPosition(self.l.celServiceName, eRect(channelNumberWidth+channelNumberSpace+progressBarWidth+10, 0, rowWidth - (channelNumberWidth+channelNumberSpace+progressBarWidth+10), self.ItemHeight))
+		elif "right" in config.usage.show_event_progress_in_servicelist.value:
+			self.l.setElementPosition(self.l.celServiceEventProgressbar, eRect(rowWidth-progressBarWidth, 0, progressBarWidth, self.ItemHeight))
+			self.l.setElementPosition(self.l.celServiceName, eRect(channelNumberWidth+channelNumberSpace, 0, rowWidth - (channelNumberWidth+channelNumberSpace+progressBarWidth+10), self.ItemHeight))
 		else:
-			self.l.setElementPosition(self.l.celServiceEventProgressbar, eRect(channelNumberWidth+channelNumberSpace, 0, 0, 0))
+			self.l.setElementPosition(self.l.celServiceEventProgressbar, eRect(0, 0, 0, 0))
+			self.l.setElementPosition(self.l.celServiceName, eRect(channelNumberWidth+channelNumberSpace, 0, rowWidth - (channelNumberWidth+channelNumberSpace), self.ItemHeight))
+
 		self.l.setElementFont(self.l.celServiceName, self.ServiceNameFont)
 		self.l.setElementFont(self.l.celServiceNumber, self.ServiceNumberFont)
-		self.l.setElementPosition(self.l.celServiceNumber, eRect(0, 0, channelNumberWidth, self.ItemHeight))
-		self.l.setElementPosition(self.l.celServiceName, eRect(channelNumberWidth+channelNumberSpace, 0, self.instance.size().width() - (channelNumberWidth+channelNumberSpace), self.ItemHeight))
 		self.l.setElementFont(self.l.celServiceInfo, self.ServiceInfoFont)
+		if "perc" in config.usage.show_event_progress_in_servicelist.value:
+			self.l.setElementFont(self.l.celServiceEventProgressbar, self.ServiceInfoFont)
+
 

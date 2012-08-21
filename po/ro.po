@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-28 23:25+0200\n"
+"POT-Creation-Date: 2012-08-05 10:00+0200\n"
 "PO-Revision-Date: 2010-03-09 21:03+0100\n"
 "Last-Translator: \n"
 "Language-Team: HDTV ROMANIA(superonic,costel_mbc,neutrin,otheitis,cipy_1982,"
@@ -34,10 +34,8 @@ msgstr ""
 
 msgid ""
 "\n"
-"Backup your Dreambox settings."
+"Backup your receiver settings."
 msgstr ""
-"\n"
-"Faceti backup setarile Ipbox."
 
 msgid ""
 "\n"
@@ -48,15 +46,13 @@ msgstr ""
 
 msgid ""
 "\n"
-"Manage extensions or plugins for your Dreambox"
+"Manage extensions or plugins for your receiver"
 msgstr ""
 
 msgid ""
 "\n"
-"Online update of your Dreambox software."
+"Online update of your receiver software."
 msgstr ""
-"\n"
-"Online actualizare a software-ului Ipbox."
 
 msgid ""
 "\n"
@@ -67,24 +63,20 @@ msgstr ""
 
 msgid ""
 "\n"
-"Restore your Dreambox settings."
-msgstr ""
-"\n"
-"Restaurare setari Ipbox."
-
-msgid ""
-"\n"
-"Restore your Dreambox with a new firmware."
-msgstr ""
-"\n"
-"Restaurare Ipbox cu un nou firmware."
-
-msgid ""
-"\n"
 "Restore your backups by date."
 msgstr ""
 "\n"
 "Restaurare backups dupa data."
+
+msgid ""
+"\n"
+"Restore your receiver settings."
+msgstr ""
+
+msgid ""
+"\n"
+"Restore your receiver with a new firmware."
+msgstr ""
 
 msgid ""
 "\n"
@@ -146,6 +138,9 @@ msgstr ""
 msgid "%2d:%02d:%02d"
 msgstr ""
 
+msgid "%A %d %B"
+msgstr ""
+
 #. TRANSLATORS: long date representations dayname daynum monthname in strftime() format! See 'man strftime'
 msgid "%A %e %B"
 msgstr ""
@@ -199,6 +194,9 @@ msgstr[1] ""
 msgid "%d services found!"
 msgstr "%d servicii gasite!"
 
+msgid "%d-%m"
+msgstr ""
+
 msgid "%d.%B %Y"
 msgstr ""
 
@@ -208,6 +206,10 @@ msgstr ""
 
 #, python-format
 msgid "%s (%s)\n"
+msgstr ""
+
+#, python-format
+msgid "%s/%s: %s"
 msgstr ""
 
 msgid "(ZAP)"
@@ -341,15 +343,13 @@ msgstr ""
 
 msgid ""
 "A finished record timer wants to set your\n"
-"Dreambox to standby. Do that now?"
+"receiver to standby. Do that now?"
 msgstr ""
-"Un timer care a terminat vrea sa pune\n"
-"Ipbox la standby.Il facem acuma?"
 
 msgid ""
 "A finished record timer wants to shut down\n"
-"your Dreambox. Shutdown now?"
-msgstr "Un timer care a terminat vrea sa face shut down ?"
+"your receiver. Shutdown now?"
+msgstr ""
 
 msgid "A graphical EPG for all services of an specific bouquet"
 msgstr "Un EPG cu grafice pt toate servicii de la un buchet"
@@ -403,17 +403,13 @@ msgstr ""
 
 msgid ""
 "A sleep timer wants to set your\n"
-"Dreambox to standby. Do that now?"
+"receiver to standby. Do that now?"
 msgstr ""
-"Un sleep timer vrea sa seteze\n"
-"Ipbox la standby.Il fac asta acuma?"
 
 msgid ""
 "A sleep timer wants to shut down\n"
-"your Dreambox. Shutdown now?"
+"your receiver. Shutdown now?"
 msgstr ""
-"Un sleep timer vrea sa face shut down\n"
-"Ipbox.Inchidere acuma?"
 
 msgid "A small overview of the available icon states and actions."
 msgstr ""
@@ -504,7 +500,7 @@ msgid "Add/Remove timer for current event"
 msgstr ""
 
 msgid ""
-"Adds enigma2 settings and dreambox model informations like SN, rev... if "
+"Adds enigma2 settings and receiver model informations like SN, rev... if "
 "enabled."
 msgstr ""
 
@@ -557,10 +553,8 @@ msgstr ""
 
 msgid ""
 "After the start wizard is completed, you need to protect single services. "
-"Refer to your dreambox's manual on how to do that."
+"Refer to your receiver's manual on how to do that."
 msgstr ""
-"Dupa completare start wizard,trebuie sa ptotejezi serviciile unice. Cisteste "
-"pe manual lui Ipbox cum sa faci asta."
 
 msgid "Album"
 msgstr "Album"
@@ -570,6 +564,9 @@ msgstr "Toate"
 
 msgid "All Satellites"
 msgstr "Toti Sateliti"
+
+msgid "All ages"
+msgstr ""
 
 msgid "Allocate"
 msgstr ""
@@ -653,6 +650,9 @@ msgstr ""
 
 msgid "Artist"
 msgstr "Artist"
+
+msgid "Arts/Culture"
+msgstr ""
 
 msgid "Ask before shutdown:"
 msgstr "Intreaba inainte de shutdown:"
@@ -954,6 +954,9 @@ msgstr "Verifica"
 msgid "Checking Filesystem..."
 msgstr "Se verifica sistemul de fisiere..."
 
+msgid "Children/Youth"
+msgstr ""
+
 msgid "Choose Tuner"
 msgstr "Alege un tuner"
 
@@ -1062,9 +1065,6 @@ msgstr "Comunicare"
 msgid "Compact Flash"
 msgstr "Compact Flash"
 
-msgid "Compatibilty Mode"
-msgstr ""
-
 msgid "Complete"
 msgstr "Incheiat"
 
@@ -1131,6 +1131,9 @@ msgstr "Continua in fundal"
 msgid "Continue playing"
 msgstr "Continua redarea"
 
+msgid "Continues play (loop)"
+msgstr ""
+
 msgid "Contrast"
 msgstr "Contrast"
 
@@ -1146,8 +1149,8 @@ msgstr ""
 msgid "Copy"
 msgstr ""
 
-msgid "Could not connect to Dreambox .NFI Image Feed Server:"
-msgstr "Conexiunea la Dreambox a esuat .NFI server de imagini:"
+msgid "Could not connect to receiver .NFI Image Feed Server:"
+msgstr ""
 
 msgid "Could not load Medium! No disc inserted?"
 msgstr "Nu s-a putut incarca! E vreun disc introdus?"
@@ -1178,7 +1181,7 @@ msgstr ""
 
 msgid ""
 "Crashlogs found!\n"
-"Send them to Dream Multimedia?"
+"Send them to the Image Developper?"
 msgstr ""
 
 msgid "Create DVD-ISO"
@@ -1210,6 +1213,9 @@ msgid "Current Transponder"
 msgstr "Transponderul curent"
 
 msgid "Current device: "
+msgstr ""
+
+msgid "Current event EPG"
 msgstr ""
 
 msgid "Current settings:"
@@ -1304,9 +1310,6 @@ msgstr "Daneza"
 
 msgid "Date"
 msgstr "Data"
-
-msgid "Date/Time"
-msgstr ""
 
 msgid "Decide if you want to enable or disable the Cleanup Wizard."
 msgstr ""
@@ -1429,9 +1432,6 @@ msgstr "Dezactivare"
 msgid "Disable Picture in Picture"
 msgstr "Dezactiveaza PiP (Imagine in Imagine)"
 
-msgid "Disable Selecting Expired Events"
-msgstr ""
-
 msgid "Disable background scanning"
 msgstr ""
 
@@ -1467,6 +1467,9 @@ msgstr "Configurare afisaj"
 
 msgid "Display and Userinterface"
 msgstr "Afisaj si interfata utilizator"
+
+msgid "Display message before next played movie"
+msgstr ""
 
 #, python-format
 msgid ""
@@ -1534,8 +1537,8 @@ msgstr "Doriti efectuarea unei alte operatiuni de scanare manuala?"
 msgid "Do you want to download the image to %s ?"
 msgstr ""
 
-msgid "Do you want to enable the parental control feature on your dreambox?"
-msgstr "Doriti activarea controlului parental?"
+msgid "Do you want to enable the parental control feature on your receiver?"
+msgstr ""
 
 msgid "Do you want to install the package:\n"
 msgstr "Doriti sa instalati pachetul:\n"
@@ -1546,8 +1549,8 @@ msgstr "Doriti redarea DVD-ului introdus?"
 msgid "Do you want to preview this DVD before burning?"
 msgstr "Doriti sa previzualizati acest DVD inainte de a fi scris?"
 
-msgid "Do you want to reboot your Dreambox?"
-msgstr "Doriti sa reporniti Dreamboxul dvs?"
+msgid "Do you want to reboot your receiver?"
+msgstr ""
 
 msgid "Do you want to remove the package:\n"
 msgstr "Doriti sa stergeti pachetul:\n"
@@ -1563,15 +1566,13 @@ msgid ""
 "if needed?"
 msgstr ""
 
-msgid "Do you want to update your Dreambox?"
-msgstr "Doriti sa actualizati Dreamboxul dvs?"
+msgid "Do you want to update your receiver?"
+msgstr ""
 
 msgid ""
-"Do you want to update your Dreambox?\n"
+"Do you want to update your receiver?\n"
 "After pressing OK, please wait!"
 msgstr ""
-"Doriti sa actualizati IPBOX dvs?\n"
-"Va rog sa asteptati dupa ce apasati OK!"
 
 msgid "Do you want to upgrade the package:\n"
 msgstr "Doriti actualizarea pachetului:\n"
@@ -1622,12 +1623,6 @@ msgstr "Se descarca"
 msgid "Downloading plugin information. Please wait..."
 msgstr "Se descarca informatiile Pluginului. Va rog sa asteptati..."
 
-msgid "Dreambox format data DVD (HDTV compatible)"
-msgstr "DVD format Dreambox (compatibil HDTV)"
-
-msgid "Dreambox software because updates are available."
-msgstr ""
-
 msgid "Dutch"
 msgstr "Olandeza"
 
@@ -1646,6 +1641,9 @@ msgstr ""
 msgid "EPG language selection 2"
 msgstr ""
 
+msgid "EPG settings"
+msgstr ""
+
 #, python-format
 msgid "ERROR - failed to scan (%s)!"
 msgstr "EROARE - scanare esuata (%s)!"
@@ -1662,9 +1660,6 @@ msgstr "Editare"
 msgid "Edit DNS"
 msgstr "Editare DNS"
 
-msgid "Edit Search Title"
-msgstr ""
-
 msgid "Edit Title"
 msgstr "Editare Titlu"
 
@@ -1680,16 +1675,19 @@ msgstr "Editare lista de servicii"
 msgid "Edit settings"
 msgstr "Editare setari"
 
-msgid "Edit the Nameserver configuration of your Dreambox.\n"
-msgstr "Editati configuratia Nameserver al Dreamboxului dvs.\n"
+msgid "Edit the Nameserver configuration of your receiver.\n"
+msgstr ""
 
-msgid "Edit the network configuration of your Dreambox.\n"
-msgstr "Editati setarile de retea ale Dreaboxului dvs.\n"
+msgid "Edit the network configuration of your receiver.\n"
+msgstr ""
 
 msgid "Edit title"
 msgstr "Editare titlu"
 
 msgid "Edit upgrade source url."
+msgstr ""
+
+msgid "Education/Science/..."
 msgstr ""
 
 msgid "Electronic Program Guide"
@@ -1711,9 +1709,6 @@ msgid "Enable MHW EPG"
 msgstr ""
 
 msgid "Enable Netmed EPG"
-msgstr ""
-
-msgid "Enable Picon"
 msgstr ""
 
 msgid "Enable ViaSat EPG"
@@ -1805,16 +1800,7 @@ msgstr ""
 msgid "Ethernet network interface"
 msgstr ""
 
-msgid "Event"
-msgstr ""
-
-msgid "Event Fontsize"
-msgstr ""
-
 msgid "Event Fontsize (relative to skin size)"
-msgstr ""
-
-msgid "Event Info"
 msgstr ""
 
 msgid "Eventview"
@@ -1824,9 +1810,6 @@ msgid "Eventview menu"
 msgstr ""
 
 msgid "Everywhere"
-msgstr ""
-
-msgid "Exact Search"
 msgstr ""
 
 msgid "Exceeds dual layer medium!"
@@ -2107,7 +2090,7 @@ msgstr ""
 msgid "GotoX calibration"
 msgstr ""
 
-msgid "Graph MEpg Settings"
+msgid "GraphMultiEpg Settings"
 msgstr ""
 
 msgid "Graphical Multi EPG"
@@ -2155,9 +2138,6 @@ msgstr ""
 msgid "Hide CI messages"
 msgstr ""
 
-msgid "Hide Expired Title"
-msgstr ""
-
 msgid "Hide zap errors"
 msgstr ""
 
@@ -2196,9 +2176,6 @@ msgstr ""
 
 msgid "Hungarian"
 msgstr "Maghiara"
-
-msgid "IMDB"
-msgstr ""
 
 msgid "IP Address"
 msgstr "IP Address"
@@ -2403,14 +2380,11 @@ msgstr "Italiana"
 msgid "Items per Page "
 msgstr ""
 
+msgid "Items per Page for Listscreen"
+msgstr ""
+
 msgid "Job View"
 msgstr "Vedere serviciu"
-
-msgid "Jump to First Service"
-msgstr ""
-
-msgid "Jump to Last Service"
-msgstr ""
 
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
 msgid "Just Scale"
@@ -2479,6 +2453,9 @@ msgstr "Parasiti player-ul DVD?"
 msgid "Left"
 msgstr "Stanga"
 
+msgid "Leisure hobies"
+msgstr ""
+
 #. TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
 msgid "Letterbox"
 msgstr "Letterbox"
@@ -2519,6 +2496,9 @@ msgstr "Titluri legate cu un meniu DVD"
 msgid "List available networks"
 msgstr ""
 
+msgid "List mode"
+msgstr ""
+
 msgid "List of Storage Devices"
 msgstr "Lista cu dispozitive de stocare"
 
@@ -2527,6 +2507,9 @@ msgstr ""
 
 #, python-format
 msgid "List version %d, found %d channels"
+msgstr ""
+
+msgid "Listscreen default at start user interface"
 msgstr ""
 
 msgid "Lithuanian"
@@ -2637,14 +2620,15 @@ msgstr ""
 msgid "Menu"
 msgstr "Meniu"
 
-msgid "Merge Short/Long Descriptions"
-msgstr ""
-
 msgid "Message"
 msgstr "Mesaj"
 
 msgid "Message..."
 msgstr "Mesaj..."
+
+#, python-format
+msgid "Minimum age %d years"
+msgstr ""
 
 msgid "Missing "
 msgstr ""
@@ -2712,6 +2696,9 @@ msgstr ""
 msgid "Movie location"
 msgstr ""
 
+msgid "Movie/Drama"
+msgstr ""
+
 msgid "Movielist menu"
 msgstr "Meniu lista filme"
 
@@ -2744,6 +2731,9 @@ msgstr ""
 
 msgid "Multisat"
 msgstr "Multisat"
+
+msgid "Music/Ballet/Dance"
+msgstr ""
 
 msgid "Mute"
 msgstr "Mut"
@@ -2843,11 +2833,11 @@ msgstr ""
 msgid "New version:"
 msgstr "Versiune noua:"
 
+msgid "News Current Affairs"
+msgstr ""
+
 msgid "Next"
 msgstr "Urmator"
-
-msgid "Next Bouquet"
-msgstr ""
 
 msgid "No"
 msgstr "Nu"
@@ -2995,8 +2985,8 @@ msgstr "Nu, dar reluati de la capat"
 msgid "No, do nothing."
 msgstr "Nu, nu face nimic."
 
-msgid "No, just start my dreambox"
-msgstr "Nu, doar porneste dreambox"
+msgid "No, just start my receiver"
+msgstr ""
 
 msgid "No, never"
 msgstr ""
@@ -3016,6 +3006,9 @@ msgstr "Niciunul"
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right)
 msgid "Nonlinear"
 msgstr "Nelinear"
+
+msgid "Normal mode"
+msgstr ""
 
 msgid "North"
 msgstr "Nord"
@@ -3042,6 +3035,9 @@ msgstr ""
 "Va rugam configurati setarile tuner-ului inainte de a incepe o scanare."
 
 msgid "Nothing to upgrade"
+msgstr ""
+
+msgid "Now"
 msgstr ""
 
 msgid "Now Playing"
@@ -3093,7 +3089,7 @@ msgstr ""
 msgid "On"
 msgstr "Pornit"
 
-msgid "On Bouquet Switch goto first service"
+msgid "On end of movie"
 msgstr ""
 
 msgid "One"
@@ -3159,18 +3155,6 @@ msgstr "Administrare pachet"
 msgid "Packet manager"
 msgstr "Manager pachet"
 
-msgid "Page Down"
-msgstr ""
-
-msgid "Page Left"
-msgstr ""
-
-msgid "Page Right"
-msgstr ""
-
-msgid "Page Up"
-msgstr ""
-
 #. TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
 msgid "Pan&Scan"
 msgstr "Pan&Scan"
@@ -3189,9 +3173,6 @@ msgstr "Configurare control parental"
 
 msgid "Parental control type"
 msgstr "Tip control parental"
-
-msgid "Partial Search"
-msgstr ""
 
 msgid "Password"
 msgstr ""
@@ -3213,6 +3194,12 @@ msgstr ""
 
 msgid "PiPSetup"
 msgstr "Configurare PiP"
+
+msgid "Picon"
+msgstr ""
+
+msgid "Picon and Service Name"
+msgstr ""
 
 msgid "PicturePlayer"
 msgstr "PicturePlayer"
@@ -3243,6 +3230,12 @@ msgid "Play audio in background"
 msgstr ""
 
 msgid "Play next"
+msgstr ""
+
+msgid "Play next (return to movie list)"
+msgstr ""
+
+msgid "Play next (return to previous service)"
 msgstr ""
 
 msgid "Play previous"
@@ -3337,6 +3330,9 @@ msgstr "Va rugam apasati OK pentru a continua"
 
 msgid "Please press OK!"
 msgstr "Va rugam apasati OK!"
+
+msgid "Please select a default EPG type..."
+msgstr ""
 
 msgid "Please select a playlist to delete..."
 msgstr "Va rugam selectati o lista de redare pentru a fi stearsa..."
@@ -3567,9 +3563,6 @@ msgstr ""
 msgid "Preview menu"
 msgstr "Meniu previzualizare"
 
-msgid "Previous Bouquet"
-msgstr ""
-
 msgid "Primary DNS"
 msgstr "DNS Primar"
 
@@ -3632,6 +3625,13 @@ msgstr "Disk Ram"
 
 msgid "Random"
 msgstr "Aleator"
+
+#, python-format
+msgid "Rating defined by broadcaster - %d"
+msgstr ""
+
+msgid "Rating undefined"
+msgstr ""
 
 msgid "Really close without saving settings?"
 msgstr "Inchideti fara sa salvati setarile?"
@@ -3794,6 +3794,9 @@ msgstr ""
 msgid "Reread partition table"
 msgstr ""
 
+msgid "Reserved"
+msgstr ""
+
 msgid "Reset"
 msgstr "Resetare"
 
@@ -3895,9 +3898,6 @@ msgstr ""
 msgid "Rotor turning speed"
 msgstr "Viteza de intoarcere a rotorului"
 
-msgid "Round Start Time To"
-msgstr ""
-
 msgid "Round start time on"
 msgstr ""
 
@@ -3960,9 +3960,6 @@ msgstr "Salvare"
 
 msgid "Save Playlist"
 msgstr "Salvare lista de redare"
-
-msgid "Scale Picon"
-msgstr ""
 
 msgid "Scaler sharpness"
 msgstr ""
@@ -4062,9 +4059,6 @@ msgid ""
 "Scans default lamedbs sorted by satellite with a connected dish positioner"
 msgstr "lamedbs implicicit sortat dupa satelit cu un pozitioner conectat"
 
-msgid "Search"
-msgstr ""
-
 msgid "Search east"
 msgstr "Cautati spre est"
 
@@ -4114,6 +4108,9 @@ msgid "Select channel to record from"
 msgstr "Selectare canal de inregistrat"
 
 msgid "Select copy destination for:"
+msgstr ""
+
+msgid "Select default EPG type..."
 msgstr ""
 
 msgid "Select desired image from feed list"
@@ -4182,11 +4179,17 @@ msgstr ""
 msgid "Service"
 msgstr "Serviciu"
 
+msgid "Service Name"
+msgstr ""
+
 msgid "Service Scan"
 msgstr "Scanare Serviciu"
 
 msgid "Service Searching"
 msgstr "Cautare Serviciu"
+
+msgid "Service Title mode"
+msgstr ""
 
 msgid "Service has been added to the favourites."
 msgstr "Serviciul a fost adaugat la favorite"
@@ -4290,19 +4293,13 @@ msgstr ""
 msgid "Show EIT now/next in infobar"
 msgstr ""
 
+msgid "Show Games show"
+msgstr ""
+
 msgid "Show Info"
 msgstr "Arata Informatii"
 
 msgid "Show Message when Recording starts"
-msgstr ""
-
-msgid "Show Picons"
-msgstr ""
-
-msgid "Show Service Names "
-msgstr ""
-
-msgid "Show Service Title"
 msgstr ""
 
 msgid "Show WLAN Status"
@@ -4365,8 +4362,8 @@ msgstr "Arata statusul conexiunii LAN wireless.\n"
 msgid "Shutdown"
 msgstr ""
 
-msgid "Shutdown Dreambox after"
-msgstr "Inchide Dreambox dupa"
+msgid "Shutdown receiver after"
+msgstr ""
 
 msgid "Side by Side"
 msgstr ""
@@ -4385,9 +4382,6 @@ msgstr ""
 
 msgid "Similar"
 msgstr "Similar"
-
-msgid "Similar Broadcast Search"
-msgstr ""
 
 msgid "Similar broadcasts:"
 msgstr "Transmisii similare"
@@ -4428,9 +4422,6 @@ msgstr "Skinuri"
 msgid "Skip Empty Services"
 msgstr ""
 
-msgid "Skip Empty Services (may need restart)"
-msgstr ""
-
 msgid "Sleep Timer"
 msgstr "Sleep timer"
 
@@ -4455,6 +4446,9 @@ msgstr "Incet"
 
 msgid "Slow Motion speeds"
 msgstr "Viteza imagine cu incetinitorul"
+
+msgid "Social/Political/Economics"
+msgstr ""
 
 msgid "SoftCam / CI"
 msgstr ""
@@ -4502,6 +4496,10 @@ msgstr ""
 "Destinatia aleasa pentru fisierele backup nu poate fi creata.\n"
 "Va rugam alegeti alta destinatie."
 
+msgid ""
+"Sorry, deleting directories can (for now) only be done through the trash can."
+msgstr ""
+
 msgid "Sorry, no Details available!"
 msgstr "Detaliile nu sunt disponibile!"
 
@@ -4541,6 +4539,9 @@ msgid "Spanish"
 msgstr "Spaniola"
 
 msgid "Split preview mode"
+msgstr ""
+
+msgid "Sports"
 msgstr ""
 
 msgid "Standby"
@@ -4680,6 +4681,9 @@ msgstr ""
 msgid "Swap Services"
 msgstr "Schimbare servicii"
 
+msgid "Swap from normal to list mode"
+msgstr ""
+
 msgid "Swedish"
 msgstr "Suedeza"
 
@@ -4753,8 +4757,8 @@ msgstr "Tipul de test"
 msgid "Test mode"
 msgstr "Mod de testare"
 
-msgid "Test the network configuration of your Dreambox.\n"
-msgstr "Testati configurarile de retea ale Dreambox-ului.\n"
+msgid "Test the network configuration of your receiver.\n"
+msgstr ""
 
 msgid "Test-Messagebox?"
 msgstr "Test-Messagebox?"
@@ -4775,20 +4779,14 @@ msgstr ""
 
 msgid ""
 "Thank you for using the wizard. Your box is now ready to use.\n"
-"Please press OK to start using your Dreambox."
+"Please press OK to start using your receiver."
 msgstr ""
-"Va multumim ca ati folosit acest wizard. Receptorul este gata de "
-"functionare.\n"
-"Va rugam apasati OK pentru a porni IPBOX."
 
 msgid ""
 "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to "
-"create a Dreambox format data DVD (which will not play in stand-alone DVD "
+"create a special format data DVD (which will not play in stand-alone DVD "
 "players) instead?"
 msgstr ""
-"Standardul DVD nu suporta formatul video H.264 (HDTV). Doriti sacreati un "
-"DVD in format IPBOX (Care nu va putea fi vizionat intr-un DVD player "
-"obisnuit)?"
 
 msgid ""
 "The NetworkWizard extension is not installed!\n"
@@ -4864,10 +4862,8 @@ msgstr "Instalarea serviciilor implicite este incheiata."
 
 msgid ""
 "The installation of the default settings is finished. You can now continue "
-"configuring your Dreambox by pressing the OK button on the remote control."
+"configuring your receiver by pressing the OK button on the remote control."
 msgstr ""
-"Instalarea setarilor implicite este incheiata. Acum puteti continuasa "
-"configurati Dreambox apasand tasta OK de pe telecomanda."
 
 msgid "The md5sum validation failed, the file may be corrupted!"
 msgstr ""
@@ -4973,16 +4969,12 @@ msgstr ""
 "Acest DVD RW este deja formatat - reformatarea presupune stergerea "
 "tuturorfisierelor de pe disc."
 
-#, python-format
-msgid "This Dreambox can't decode %s streams!"
-msgstr "Acest Dreambox nu poate decoda streamurile %s!"
-
 msgid "This is step number 2."
 msgstr "Acesta este pasul numarul 2"
 
 msgid ""
 "This plugin creates a USB stick which can be used to update the firmware of "
-"your Dreambox without the need for a network or WLAN connection.\n"
+"your receiver without the need for a network or WLAN connection.\n"
 "First, a USB stick needs to be prepared so that it becomes bootable.\n"
 "In the next step, an NFI image file can be downloaded from the update server "
 "and saved on the USB stick.\n"
@@ -5000,6 +4992,10 @@ msgid "This plugin will be installed."
 msgstr ""
 
 msgid "This plugin will be removed."
+msgstr ""
+
+#, python-format
+msgid "This receiver can't decode %s streams!"
 msgstr ""
 
 msgid ""
@@ -5088,21 +5084,6 @@ msgstr ""
 msgid "Time/Date Input"
 msgstr "Intrare Ora/Data"
 
-msgid "Timeline 120 minutes"
-msgstr ""
-
-msgid "Timeline 180 minutes"
-msgstr ""
-
-msgid "Timeline 240 minutes"
-msgstr ""
-
-msgid "Timeline 300 minutes"
-msgstr ""
-
-msgid "Timeline 60 minutes"
-msgstr ""
-
 msgid "Timer"
 msgstr "Timer"
 
@@ -5171,7 +5152,7 @@ msgid "To subtitle selection"
 msgstr ""
 
 msgid ""
-"To update your Dreambox firmware, please follow these steps:\n"
+"To update your receiver firmware, please follow these steps:\n"
 "1) Turn off your box with the rear power switch and make sure the bootable "
 "USB stick is plugged in.\n"
 "2) Turn mains back on and hold the DOWN button on the front panel pressed "
@@ -5367,14 +5348,14 @@ msgstr ""
 msgid "Upgrade finished."
 msgstr "Upgrate terminat."
 
-msgid "Upgrade finished. Do you want to reboot your Dreambox?"
-msgstr "Upgrade terminat. Vrei sa restartezu Dreamboxul tau?"
+msgid "Upgrade finished. Do you want to reboot your receiver?"
+msgstr ""
 
 msgid "Upgrading"
 msgstr "Upgradare"
 
-msgid "Upgrading Dreambox... Please wait"
-msgstr "pgradare DreamBox... Te rugam asteapta"
+msgid "Upgrading receiver... Please wait"
+msgstr ""
 
 msgid "Use"
 msgstr "Foloseste"
@@ -5387,9 +5368,6 @@ msgstr ""
 
 msgid "Use Interface"
 msgstr "Foloseste Interfata"
-
-msgid "Use Long Title"
-msgstr ""
 
 msgid "Use Power Measurement"
 msgstr "Foloseste Masurarea Energiei"
@@ -5461,6 +5439,9 @@ msgid "Used service scan type"
 msgstr "Tipul serviciului folosit pentru scanare"
 
 msgid "User - bouquets"
+msgstr ""
+
+msgid "User Interface"
 msgstr ""
 
 msgid "User defined"
@@ -5689,18 +5670,15 @@ msgstr ""
 
 msgid ""
 "Welcome to the Image upgrade wizard. The wizard will assist you in upgrading "
-"the firmware of your Dreambox by providing a backup facility for your "
+"the firmware of your receiver by providing a backup facility for your "
 "current settings and a short explanation of how to upgrade your firmware."
 msgstr ""
-"Bine ai venit la expertul de upgradare Imagine. Expertul va asista la "
-"upgradarea firmware-lui Boxului tau prin promovarea facilitatii de a salva "
-"setarile curente si o scurta explicatie cum sa faci upgrade la box."
 
 msgid ""
 "Welcome to the cleanup wizard.\n"
 "\n"
 "We have detected that your available internal memory has dropped below 2MB.\n"
-"To ensure stable operation of your Dreambox, the internal memory should be "
+"To ensure stable operation of your receiver, the internal memory should be "
 "cleaned up.\n"
 "You can use this wizard to remove some extensions.\n"
 msgstr ""
@@ -5708,8 +5686,8 @@ msgstr ""
 msgid ""
 "Welcome.\n"
 "\n"
-"If you want to connect your Dreambox to the Internet, this wizard will guide "
-"you through the basic network setup of your Dreambox.\n"
+"If you want to connect your receiver to the Internet, this wizard will guide "
+"you through the basic network setup of your receiver.\n"
 "\n"
 "Press OK to start configuring your network"
 msgstr ""
@@ -5717,13 +5695,9 @@ msgstr ""
 msgid ""
 "Welcome.\n"
 "\n"
-"This start wizard will guide you through the basic setup of your Dreambox.\n"
+"This start wizard will guide you through the basic setup of your receiver.\n"
 "Press the OK button on your remote control to move to the next step."
 msgstr ""
-"Bine ai venit.\n"
-"\n"
-"Acest expert de configurare te va ghida prin setarile de baza ale Boxului.\n"
-"Apasa butonu OK de la telecomanda pentru a merge mai departe."
 
 msgid "Welcome..."
 msgstr "Bine ai venit..."
@@ -5864,7 +5838,7 @@ msgstr ""
 msgid "You can install this plugin."
 msgstr ""
 
-msgid "You can only burn Dreambox recordings!"
+msgid "You can only burn receiver recordings!"
 msgstr ""
 
 msgid "You can remove this plugin."
@@ -5917,16 +5891,12 @@ msgid "You have to wait %s!"
 msgstr "Ai de asteptat %s!"
 
 msgid ""
-"You need a PC connected to your dreambox. If you need further instructions, "
+"You need a PC connected to your receiver. If you need further instructions, "
 "please visit the website http://www.dm7025.de.\n"
-"Your dreambox will now be halted. After you have performed the update "
+"Your receiver will now be halted. After you have performed the update "
 "instructions from the website, your new firmware will ask you to restore "
 "your settings."
 msgstr ""
-"Trebuie sa ai un PC conectat la Ipbox. Daca ai nevoie de instructiuni "
-"suplimentare,acceseaza site-ul http://www.dm7025.de.\n"
-"IPBOXul va fi oprit. Dupa ce ai facut updatedupa instructiunile de pe "
-"website, noul firmware va cere un restorela setari."
 
 msgid ""
 "You need to set a PIN code and hide it from your children.\n"
@@ -5945,17 +5915,6 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Your Dreambox is now ready to use.\n"
-"\n"
-"Your internet connection is working now.\n"
-"\n"
-"Please press OK to continue."
-msgstr ""
-
-msgid "Your Dreambox will restart after pressing OK on your remote control."
-msgstr "Dreamboxul se va restarta dupa ce apesi Ok pe telecomanda."
-
-msgid ""
 "Your backup succeeded. We will now continue to explain the further upgrade "
 "process."
 msgstr ""
@@ -5970,14 +5929,6 @@ msgstr ""
 
 msgid "Your current collection will get lost!"
 msgstr ""
-
-msgid "Your dreambox is shutting down. Please stand by..."
-msgstr "Dreamboxul este in curs de stingere. Asteapta..."
-
-msgid ""
-"Your dreambox isn't connected to the internet properly. Please check it and "
-"try again."
-msgstr "Dreamboxul nu este conectat la internet. Verifica si incearca din nou."
 
 msgid "Your email address:"
 msgstr ""
@@ -6006,10 +5957,29 @@ msgstr ""
 msgid "Your network configuration has been activated."
 msgstr "Configurarea retelei a fost activata."
 
+msgid ""
+"Your receiver is now ready to use.\n"
+"\n"
+"Your internet connection is working now.\n"
+"\n"
+"Please press OK to continue."
+msgstr ""
+
 msgid "Your receiver is rebooting"
 msgstr ""
 
 msgid "Your receiver is shutting down"
+msgstr ""
+
+msgid "Your receiver is shutting down. Please stand by..."
+msgstr ""
+
+msgid ""
+"Your receiver isn't connected to the internet properly. Please check it and "
+"try again."
+msgstr ""
+
+msgid "Your receiver will restart after pressing OK on your remote control."
 msgstr ""
 
 msgid ""
@@ -6020,9 +5990,6 @@ msgid ""
 msgstr ""
 
 msgid "Zap"
-msgstr ""
-
-msgid "Zap PIG"
 msgstr ""
 
 msgid "Zap back to previously tuned service?"
@@ -6141,8 +6108,17 @@ msgstr "adauga serviciu la favorite"
 msgid "add to parental protection"
 msgstr "adauga la protectie parentala"
 
+msgid "adult movie/drama"
+msgstr ""
+
 msgid "advanced"
 msgstr "avansat"
+
+msgid "adventure/western/war"
+msgstr ""
+
+msgid "advertisement/shopping"
+msgstr ""
 
 msgid "alphabetic reverse"
 msgstr ""
@@ -6157,6 +6133,12 @@ msgstr ""
 "esti sigur ca vrei restore\n"
 "dupa backup:\n"
 
+msgid "arts/culture (without music, general)"
+msgstr ""
+
+msgid "arts/culture magazine"
+msgstr ""
+
 msgid "assigned CAIds:"
 msgstr ""
 
@@ -6167,6 +6149,9 @@ msgid "at beginning"
 msgstr ""
 
 msgid "at end"
+msgstr ""
+
+msgid "athletics"
 msgstr ""
 
 #, python-format
@@ -6195,11 +6180,21 @@ msgstr "imagine fundal"
 msgid "backgroundcolor"
 msgstr "colorit fundal"
 
+msgid "ballet"
+msgstr ""
+
+#, python-format
+msgid "bc%s"
+msgstr ""
+
 msgid "better"
 msgstr "mai bine"
 
 msgid "black"
 msgstr "negru"
+
+msgid "black & white"
+msgstr ""
 
 msgid "blacklist"
 msgstr "lista neagra"
@@ -6207,9 +6202,15 @@ msgstr "lista neagra"
 msgid "blue"
 msgstr "albastru"
 
+msgid "broadcasting/press"
+msgstr ""
+
 #, python-format
 msgid "burn audio track (%s)"
 msgstr "burn track audio (%s)"
+
+msgid "cartoon/puppets"
+msgstr ""
 
 msgid "center"
 msgstr ""
@@ -6223,6 +6224,9 @@ msgstr "schimbare inregistrare (sfarsit)"
 msgid "chapters"
 msgstr "capitole"
 
+msgid "childrens's/youth program (general)"
+msgstr ""
+
 msgid "circular left"
 msgstr "circular stanga"
 
@@ -6231,6 +6235,9 @@ msgstr "circular dreapta"
 
 msgid "clear playlist"
 msgstr "sterge playlist"
+
+msgid "comedy"
+msgstr ""
 
 msgid "complex"
 msgstr "complex"
@@ -6246,6 +6253,9 @@ msgstr "conectat"
 
 msgid "continue"
 msgstr "continua"
+
+msgid "cooking"
+msgstr ""
 
 msgid "copy to bouquets"
 msgstr "copiaza in bouquete"
@@ -6284,6 +6294,9 @@ msgstr "sterge..."
 msgid "descramble and record ecm"
 msgstr ""
 
+msgid "detective/thriller"
+msgstr ""
+
 msgid "disable"
 msgstr "dezactiveaza"
 
@@ -6296,11 +6309,17 @@ msgstr "dezactivat"
 msgid "disconnected"
 msgstr "deconectat"
 
+msgid "discussion/interview/debate"
+msgstr ""
+
 msgid "do not change"
 msgstr "nu schimba"
 
 msgid "do nothing"
 msgstr "nu face nimic"
+
+msgid "documentary"
+msgstr ""
 
 msgid "don't descramble, record ecm"
 msgstr ""
@@ -6329,8 +6348,14 @@ msgstr ""
 msgid "east"
 msgstr ""
 
+msgid "economics/social advisory"
+msgstr ""
+
 msgid "edit alternatives"
 msgstr "editeaza alternative"
+
+msgid "education/science/factual topics (general)"
+msgstr ""
 
 msgid "empty"
 msgstr "gol"
@@ -6365,8 +6390,17 @@ msgstr "sfarsit editare favorite"
 msgid "enigma2 and network"
 msgstr "enigma2 si retea"
 
+msgid "entertainment (10-16 year old)"
+msgstr ""
+
+msgid "entertainment (6-14 year old)"
+msgstr ""
+
 msgid "equal to"
 msgstr "egal cu"
+
+msgid "equestrian"
+msgstr ""
 
 msgid "exit DVD player or return to file browser"
 msgstr "iesire DVD player sau inapoi la file browser"
@@ -6389,7 +6423,13 @@ msgstr "iesire interfata retea"
 msgid "exit networkadapter setup menu"
 msgstr "iesire meniu setari adaptor retea"
 
+msgid "experimental film/video"
+msgstr ""
+
 msgid "false"
+msgstr ""
+
+msgid "fashion"
 msgstr ""
 
 msgid "fileformats (BMP, PNG, JPG, GIF)"
@@ -6398,10 +6438,28 @@ msgstr "file formaturi (BMP, PNG, JPG, GIF)"
 msgid "filename"
 msgstr "filename"
 
+msgid "film/cinema"
+msgstr ""
+
+msgid "fine arts"
+msgstr ""
+
 msgid "fine-tune your display"
 msgstr "reglati fin display-ul"
 
+msgid "fitness & health"
+msgstr ""
+
 msgid "fixed"
+msgstr ""
+
+msgid "folk/traditional music"
+msgstr ""
+
+msgid "football/soccer"
+msgstr ""
+
+msgid "foreign countries/expeditions"
 msgstr ""
 
 msgid "forward to the next chapter"
@@ -6416,6 +6474,15 @@ msgstr "spatiu liber pe disk"
 msgid "full transparency"
 msgstr ""
 
+msgid "further education"
+msgstr ""
+
+msgid "game show/quiz/contest"
+msgstr ""
+
+msgid "gardening"
+msgstr ""
+
 msgid "go to deep standby"
 msgstr "treci la deep standby"
 
@@ -6427,6 +6494,9 @@ msgstr "capteaza imaginea ca bitmap"
 
 msgid "green"
 msgstr "verde"
+
+msgid "handicraft"
+msgstr ""
 
 msgid "hear radio..."
 msgstr "auzi radio"
@@ -6446,6 +6516,9 @@ msgstr "orizontal"
 msgid "immediate shutdown"
 msgstr "shutdown imediat"
 
+msgid "information/education/school program"
+msgstr ""
+
 msgid "init module"
 msgstr "init modul"
 
@@ -6456,6 +6529,9 @@ msgid "insert mark here"
 msgstr "introdu semn aici"
 
 msgid "invalid type"
+msgstr ""
+
+msgid "jazz"
 msgstr ""
 
 msgid "jump back to the previous title"
@@ -6476,11 +6552,17 @@ msgstr "dai la urmatoarea pozitie marcata"
 msgid "jump to previous marked position"
 msgstr "dai la pozitia marcata anterior"
 
+msgid "languages"
+msgstr ""
+
 msgid "leave movie player..."
 msgstr "iesi din movie player"
 
 msgid "left"
 msgstr "stanga"
+
+msgid "leisure hobbies (general)"
+msgstr ""
 
 msgid "length"
 msgstr "lungime"
@@ -6503,6 +6585,12 @@ msgstr "listeaza stilul default"
 msgid "list style single line"
 msgstr "listeaza stilul cu linie singura"
 
+msgid "literature"
+msgstr ""
+
+msgid "live broadcast"
+msgstr ""
+
 msgid "load playlist"
 msgstr "incarca playlist"
 
@@ -6512,8 +6600,17 @@ msgstr "inchis"
 msgid "loopthrough to"
 msgstr "treci la"
 
+msgid "magazines/reports/documentary"
+msgstr ""
+
 msgid "manual"
 msgstr "manual"
+
+msgid "martial sports"
+msgstr ""
+
+msgid "medicine/physiology/psychology"
+msgstr ""
 
 msgid "menu"
 msgstr "meniu"
@@ -6526,6 +6623,12 @@ msgstr "minute"
 
 msgid "month"
 msgstr "luna"
+
+msgid "motor sport"
+msgstr ""
+
+msgid "motoring"
+msgstr ""
 
 msgid "move PiP to main picture"
 msgstr "muta pip la imagine principala"
@@ -6545,11 +6648,35 @@ msgstr "muta sus la anterioara intrare"
 msgid "movie list"
 msgstr "lista cu filme"
 
+msgid "movie/drama (general)"
+msgstr ""
+
 msgid "multinorm"
 msgstr "multinorma"
 
+msgid "music/ballet/dance (general)"
+msgstr ""
+
+msgid "musical/opera"
+msgstr ""
+
+msgid "nature/animals/environment"
+msgstr ""
+
 msgid "never"
 msgstr "niciodata"
+
+msgid "new media"
+msgstr ""
+
+msgid "news magazine"
+msgstr ""
+
+msgid "news/current affairs (general)"
+msgstr ""
+
+msgid "news/weather report"
+msgstr ""
 
 msgid "next channel"
 msgstr "canalul urmator"
@@ -6623,6 +6750,9 @@ msgstr "pornit"
 msgid "on READ ONLY medium."
 msgstr "la READ ONLY mediu"
 
+msgid "on end of movie"
+msgstr ""
+
 msgid "once"
 msgstr "odata"
 
@@ -6641,11 +6771,17 @@ msgstr "deschide servicelist(sus)"
 msgid "original"
 msgstr ""
 
+msgid "original language"
+msgstr ""
+
 msgid "pass"
 msgstr "pass"
 
 msgid "pause"
 msgstr "pauza"
+
+msgid "performing arts"
+msgstr ""
 
 msgid "play as picture in picture"
 msgstr ""
@@ -6668,11 +6804,20 @@ msgstr "te rog apasa OK cand esti gata"
 msgid "please wait, loading picture..."
 msgstr "te rog asteapta, se incarca imagine"
 
+msgid "popular culture/traditional arts"
+msgstr ""
+
+msgid "pre-school children's program"
+msgstr ""
+
 msgid "previous channel"
 msgstr "canalul anterior"
 
 msgid "previous channel in history"
 msgstr "canalul anterior din istoric"
+
+msgid "receiver software because updates are available."
+msgstr ""
 
 msgid "record"
 msgstr "inregistrare"
@@ -6684,6 +6829,12 @@ msgid "red"
 msgstr "rosu"
 
 msgid "relative"
+msgstr ""
+
+msgid "religion"
+msgstr ""
+
+msgid "remarkable people"
 msgstr ""
 
 msgid "remove a nameserver entry"
@@ -6737,6 +6888,12 @@ msgstr "deruleaza la capitolul anterior"
 msgid "right"
 msgstr "dreapta"
 
+msgid "rock/pop"
+msgstr ""
+
+msgid "romance"
+msgstr ""
+
 msgid "save last directory on exit"
 msgstr "salveaza ultimul director la iesire"
 
@@ -6755,6 +6912,9 @@ msgstr "scanare in curs - %d%% terminata!"
 
 msgid "scan state"
 msgstr "starea scanarii"
+
+msgid "science fiction/fantasy/horror"
+msgstr ""
 
 msgid "second cable of motorized LNB"
 msgstr "cablul secund de la LNB motorizat"
@@ -6782,6 +6942,12 @@ msgstr "selecteaza film"
 
 msgid "select the movie path"
 msgstr "selecteaza calea filmului"
+
+msgid "serious music/classic music"
+msgstr ""
+
+msgid "serious/classical/religious/historical movie/drama"
+msgstr ""
 
 msgid "service PIN"
 msgstr ""
@@ -6822,11 +6988,20 @@ msgstr "arata meniul de shutdown"
 msgid "show single service EPG..."
 msgstr "arata EPG singular"
 
+msgid "show softwaremanager in setup menu"
+msgstr ""
+
+msgid "show softwaremanager on blue button"
+msgstr ""
+
 msgid "show tag menu"
 msgstr "arata meniul de tag-uri"
 
 msgid "show transponder info"
 msgstr "arata info despre transponder"
+
+msgid "show/game show (general)"
+msgstr ""
 
 msgid "shuffle"
 msgstr ""
@@ -6858,6 +7033,15 @@ msgstr "skin inainte (seteaza ceas)"
 msgid "slide picture in loop"
 msgstr "pune poza in loop"
 
+msgid "soap/melodram/folkloric"
+msgstr ""
+
+msgid "social/political issues/economics (general)"
+msgstr ""
+
+msgid "social/spiritual science"
+msgstr ""
+
 msgid "sort by date"
 msgstr "sorteaza dupa data"
 
@@ -6865,6 +7049,18 @@ msgid "sorting of playlists"
 msgstr ""
 
 msgid "special characters"
+msgstr ""
+
+msgid "special events"
+msgstr ""
+
+msgid "special format data DVD (HDTV compatible)"
+msgstr ""
+
+msgid "sports (general)"
+msgstr ""
+
+msgid "sports magazine"
 msgstr ""
 
 msgid "standard"
@@ -6924,8 +7120,20 @@ msgstr "mergi la urmatorul track audio"
 msgid "switch to the next subtitle language"
 msgstr "mergi la urmatoarea limba pentru subtitrari"
 
+msgid "talk show"
+msgstr ""
+
+msgid "team sports"
+msgstr ""
+
+msgid "technology/natural science"
+msgstr ""
+
 msgid "template file"
 msgstr "fisier template"
+
+msgid "tennis/squash"
+msgstr ""
 
 msgid "textcolor"
 msgstr "textcolor"
@@ -6943,6 +7151,9 @@ msgid "toggle time, chapter, audio, subtitle info"
 msgstr "schimba ceas, capitol, audio, info sutitrari"
 
 msgid "top"
+msgstr ""
+
+msgid "tourism/travel"
 msgstr ""
 
 msgid "true"
@@ -6966,11 +7177,17 @@ msgstr "necunoscut"
 msgid "unknown service"
 msgstr "serviciu necunoscut"
 
+msgid "unpublished"
+msgstr ""
+
 msgid "until standby/restart"
 msgstr ""
 
 msgid "user defined"
 msgstr "user definit"
+
+msgid "variety show"
+msgstr ""
 
 msgid "vertical"
 msgstr "vertical"
@@ -6993,6 +7210,9 @@ msgstr "in asteptare"
 msgid "was removed successfully"
 msgstr ""
 
+msgid "water sport"
+msgstr ""
+
 msgid "weekly"
 msgstr "saptamanal"
 
@@ -7006,6 +7226,9 @@ msgid "whitelist"
 msgstr "lista alba"
 
 msgid "width"
+msgstr ""
+
+msgid "winter sport"
 msgstr ""
 
 msgid "wireless network interface"
@@ -7024,718 +7247,12 @@ msgid "yes (keep feeds)"
 msgstr "da (pastreaza feed-uri)"
 
 msgid ""
-"your dreambox might be unusable now. Please consult the manual for further "
-"assistance before rebooting your dreambox."
+"your receiver might be unusable now. Please consult the manual for further "
+"assistance before rebooting your receiver."
 msgstr ""
-"dreamboxul poate fi inutilizabil acum. Te rog sa consulti manualul pentru "
-"asistenta inainte de reboot la dreambox."
 
 msgid "zap"
 msgstr "zap"
 
 msgid "zapped"
 msgstr "zapped"
-
-#~ msgid ""
-#~ "\n"
-#~ "Enigma2 will restart after the restore"
-#~ msgstr ""
-#~ "\n"
-#~ "E2 va reporni dupa restaurare"
-
-#~ msgid ""
-#~ "\n"
-#~ "Scan for local packages and install them."
-#~ msgstr ""
-#~ "\n"
-#~ "Scanare pentru pachete locale si instalarea lor."
-
-#~ msgid " "
-#~ msgstr " "
-
-#~ msgid ""
-#~ "%s\n"
-#~ "(%s, %d MB free)"
-#~ msgstr ""
-#~ "%s\n"
-#~ "(%s, %d MB libere)"
-
-#~ msgid "* Only available when entering hidden SSID or network key"
-#~ msgstr ""
-#~ "* Disponibil doar atunci cind intra SSID-ul ascuns sau chei de retea"
-
-#~ msgid ".NFI Download failed:"
-#~ msgstr ".NET descarcare nereusita"
-
-#~ msgid ""
-#~ ".NFI file passed md5sum signature check. You can safely flash this image!"
-#~ msgstr ""
-#~ ".NFI dosarul a trecut pe md5sum control.Aveti posibilitate sa instalati "
-#~ "cu singuranta aceasta imagina"
-
-#~ msgid "30 minutes"
-#~ msgstr "30 minute"
-
-#~ msgid "5 minutes"
-#~ msgstr "5 minute"
-
-#~ msgid "60 minutes"
-#~ msgstr "60 minute"
-
-#~ msgid "Advanced"
-#~ msgstr "Avansat"
-
-#~ msgid "Backup is done. Please press OK to see the result."
-#~ msgstr "Backup-ul este gata.Te rog apesa OK sa vezi rezultatul"
-
-#~ msgid "Backup running"
-#~ msgstr "Derulare Backup"
-
-#~ msgid "Backup running..."
-#~ msgstr "Derulare Backup..."
-
-#~ msgid "Burn to DVD..."
-#~ msgstr "Scrie pe DVD..."
-
-#~ msgid "Call monitoring"
-#~ msgstr "Monitorizarea apelurilor"
-
-#~ msgid "Cannot parse feed directory"
-#~ msgstr "Nu se poate analiza registrul sursa"
-
-#~ msgid "Catalan"
-#~ msgstr "Catalana"
-
-#~ msgid "Change dir."
-#~ msgstr "Schimba dir."
-
-#~ msgid "Change service pin"
-#~ msgstr "Schimba pinul de service"
-
-#~ msgid "Change service pins"
-#~ msgstr "Schimba pinurile serviciilor"
-
-#~ msgid "Change setup pin"
-#~ msgstr "Schimba pinul de configurare"
-
-#~ msgid "Choose source"
-#~ msgstr "Alege sursa"
-
-#~ msgid "Code rate high"
-#~ msgstr "Rata inalta de codificare"
-
-#~ msgid "Code rate low"
-#~ msgstr "Rata scazuta de codificare"
-
-#~ msgid "Compact flash card"
-#~ msgstr "Card Compact Flash"
-
-#~ msgid "Config"
-#~ msgstr "Config"
-
-#~ msgid "Connected to Fritz!Box!"
-#~ msgstr "Conectat la Fritz!Box!"
-
-#~ msgid "Connecting to Fritz!Box..."
-#~ msgstr "Se conecteaza la Fritz!Box..."
-
-#~ msgid ""
-#~ "Connection to Fritz!Box\n"
-#~ "failed! (%s)\n"
-#~ "retrying..."
-#~ msgstr ""
-#~ "Conexiunea la Fritz!Box\n"
-#~ "a esuat! (%s)\n"
-#~ "se incearca din nou..."
-
-#~ msgid "Create movie folder failed"
-#~ msgstr "Crearea directorului de filme a esuat"
-
-#~ msgid "Creating partition failed"
-#~ msgstr "Crearea partitiei a esuat"
-
-#~ msgid "Default services lists"
-#~ msgstr "Liste implicite de servicii"
-
-#~ msgid "Default settings"
-#~ msgstr "Setari implicite"
-
-#~ msgid "Delay"
-#~ msgstr "Intarziere"
-
-#~ msgid "Destination directory"
-#~ msgstr "Directorul destinatie"
-
-#~ msgid "Details"
-#~ msgstr "Detalii"
-
-#~ msgid "Disable Subtitles"
-#~ msgstr "Dezactiveaza subtitrari"
-
-#~ msgid ""
-#~ "Disconnected from\n"
-#~ "Fritz!Box! (%s)\n"
-#~ "retrying..."
-#~ msgstr ""
-#~ "Deconectat de la\n"
-#~ "Fritz!Box! (%s)\n"
-#~ "se incearca din nou..."
-
-#~ msgid ""
-#~ "Do you really want to initialize the harddisk?\n"
-#~ "All data on the disk will be lost!"
-#~ msgstr ""
-#~ "Confirmati initializarea hard diskului?\n"
-#~ "Toate datele de pe disc vor fi sterse!"
-
-#~ msgid "Do you want to continue installing or removing selected plugins?\n"
-#~ msgstr "Confirmati instalarea sau stergerea pluginurilor selectate?\n"
-
-#~ msgid "Do you want to install default sat lists?"
-#~ msgstr "Doriti instalarea listelor implicite de sateliti?"
-
-#~ msgid "Done - Installed or upgraded %d packages with %d errors"
-#~ msgstr "S-a finalizat instalarea sau actualizarea a %d pachete cu %d erori"
-
-#~ msgid "Download of USB flasher boot image failed: "
-#~ msgstr "Descarcarea imaginii USB flasher a esuat: "
-
-#~ msgid "Edit IPKG source URL..."
-#~ msgstr "Editarea URLului sursa al IPKG..."
-
-#~ msgid "Encryption Type"
-#~ msgstr "Tip de criptare"
-
-#~ msgid ""
-#~ "Enigma2 Skinselector v0.5 BETA\n"
-#~ "\n"
-#~ "If you experience any problems please contact\n"
-#~ "stephan@reichholf.net\n"
-#~ "\n"
-#~ "© 2006 - Stephan Reichholf"
-#~ msgstr ""
-#~ "Selector decoratiuni Enigma2 v0.5 BETA\n"
-#~ "\n"
-#~ "Pentru orice probleme va rugam contactati\n"
-#~ "stephan@reichholf.net\n"
-#~ "\n"
-#~ "© 2006 - Stephan Reichholf"
-
-#~ msgid "Enter Fast Forward at speed"
-#~ msgstr "Viteza de la care se trece pe Repede Inainte"
-
-#~ msgid "Enter Rewind at speed"
-#~ msgstr "Viteza la care se trece pe Repede Inapoi"
-
-#~ msgid "Enter WLAN network name/SSID:"
-#~ msgstr "Introduceti numele retelei WLAN/SSID:"
-
-#~ msgid "Enter WLAN passphrase/key:"
-#~ msgstr "Introduceti parola/cheia WLAN:"
-
-#~ msgid "Everything is fine"
-#~ msgstr "Totul este in regula"
-
-#~ msgid "Filesystem Check..."
-#~ msgstr "Verificarea sistemului de fisiere..."
-
-#~ msgid "Filesystem contains uncorrectable errors"
-#~ msgstr "Sistemul de fisiere contine erori imposibil de corectat"
-
-#~ msgid ""
-#~ "First we need to download the latest boot environment for the USB flasher."
-#~ msgstr ""
-#~ "Pentru inceput trebuie sa descarcam ultimul boot environment pentru USB "
-#~ "flasher"
-
-#~ msgid "Frame repeat count during non-smooth winding"
-#~ msgstr "Numarul repetitiilor cadrelor in timpul derularii neomogene"
-
-#~ msgid "Frisian"
-#~ msgstr "Friziana"
-
-#~ msgid "Fritz!Box FON IP address"
-#~ msgstr "Adresa IP a Fritz!Box! FON"
-
-#~ msgid "Fsck failed"
-#~ msgstr "Fsck a esuat"
-
-#~ msgid "Function not yet implemented"
-#~ msgstr "Functia nu este inca implementata"
-
-#~ msgid "General AC3 delay"
-#~ msgstr "Intarziere AC3 generala"
-
-#~ msgid "General PCM delay"
-#~ msgstr "Intarziere PCM generala"
-
-#~ msgid "Guard interval mode"
-#~ msgstr "Mod interval garda"
-
-#~ msgid "Hidden network SSID"
-#~ msgstr "SSID de retea ascuns"
-
-#~ msgid "Hierarchy mode"
-#~ msgstr "Mod ierarhie"
-
-#~ msgid "Icelandic"
-#~ msgstr "Islandeza"
-
-#~ msgid "If you can see this page, please press OK."
-#~ msgstr "Daca aceasta pagina este vizibila, va rog sa apasati OK."
-
-#~ msgid "Image flash utility"
-#~ msgstr "Utilitar flash imagine"
-
-#~ msgid "Image-Upgrade"
-#~ msgstr "Actualizare-Imagine"
-
-#~ msgid "Initialization..."
-#~ msgstr "Initializare..."
-
-#~ msgid "Initializing Harddisk..."
-#~ msgstr "Initializare harddisk"
-
-#~ msgid "Install local IPKG"
-#~ msgstr "Instalare IPKG local"
-
-#~ msgid "Install software updates..."
-#~ msgstr "Instalare actualizari software"
-
-#~ msgid ""
-#~ "Install/\n"
-#~ "Remove"
-#~ msgstr ""
-#~ "Install/\n"
-#~ "Remove"
-
-#~ msgid "Integrated Ethernet"
-#~ msgstr "Ethernet integrat"
-
-#~ msgid "Integrated Wireless"
-#~ msgstr "Wireless integrat"
-
-#~ msgid "Invert display"
-#~ msgstr "Display invers"
-
-#~ msgid "Keymap"
-#~ msgstr "Harta tastaturii"
-
-#~ msgid "Language..."
-#~ msgstr "Limba..."
-
-#~ msgid "Lets you view/edit files in your Dreambox"
-#~ msgstr "Va permite sa vedeti/editati fisierele din Dreambox"
-
-#~ msgid "Mkfs failed"
-#~ msgstr "Mkfs nereusit"
-
-#~ msgid "Mount failed"
-#~ msgstr "Mount esuat"
-
-#~ msgid "Network SSID"
-#~ msgstr "SSID retea"
-
-#~ msgid "Network..."
-#~ msgstr "Retea..."
-
-#~ msgid "New pin"
-#~ msgstr "Pin nou"
-
-#~ msgid "No 50 Hz, sorry. :("
-#~ msgstr "Fara 50 Hz, ne pare rau. :("
-
-#~ msgid "No Networks found"
-#~ msgstr "Nu s-a gasit nicio retea"
-
-#~ msgid "No useable USB stick found"
-#~ msgstr "Nu a fost gasit niciun stick USB functional"
-
-#~ msgid "Online-Upgrade"
-#~ msgstr "Actualizare-Online"
-
-#~ msgid "Package details for: "
-#~ msgstr "Detaliile pachetului pentru:"
-
-#~ msgid "Page"
-#~ msgstr "Pagina"
-
-#~ msgid "Please Reboot"
-#~ msgstr "Va rugam reporniti sistemul"
-
-#~ msgid "Please choose .NFI image file from feed server to download"
-#~ msgstr ""
-#~ "Va rugam selectati fisierul imagine .NFI pentru a fi descarcat din server "
-
-#~ msgid ""
-#~ "Please disconnect all USB devices from your Dreambox and (re-)attach the "
-#~ "target USB stick (minimum size is 64 MB) now!"
-#~ msgstr ""
-#~ "Va rugam deconectati toate dispozitivele USB de la Dreambox si (re-)"
-#~ "conectati stick-ul USB (marimea minima este de 64 MB) acum!"
-
-#~ msgid "Please enter the old pin code"
-#~ msgstr "Va rugam introduceti vechiul cod pin"
-
-#~ msgid "Please select .NFI flash image file from medium"
-#~ msgstr "Va rugam selectati imaginea .NFI flash din mediul de stocare"
-
-#~ msgid "Please select target directory or medium"
-#~ msgstr "Va rugam selectati directorul tinta sau mediul de stocare"
-
-#~ msgid "Plugin manager"
-#~ msgstr "Administrator plugin"
-
-#~ msgid "Polarity"
-#~ msgstr "Polaritate"
-
-#~ msgid "Positioner fine movement"
-#~ msgstr "Miscare fina pozitioner"
-
-#~ msgid "Positioner movement"
-#~ msgstr "Miscare pozitioner"
-
-#~ msgid "Positioner storage"
-#~ msgstr "Memorare pozitioner"
-
-#~ msgid "RC Menu"
-#~ msgstr "Meniu RC"
-
-#~ msgid "RSS Feed URI"
-#~ msgstr "Feed URI RSS"
-
-#~ msgid "Reenter new pin"
-#~ msgstr "Reintroduceti pinul nou"
-
-#~ msgid "Remove the broken .NFI file?"
-#~ msgstr "Stergeti fisierul .NFI deteriorat?"
-
-#~ msgid "Remove the incomplete .NFI file?"
-#~ msgstr "Stergeti fisierul .NFI incomplet?"
-
-#~ msgid "Repeat"
-#~ msgstr "Repetare"
-
-#~ msgid "Restart GUI"
-#~ msgstr "Restart GUI"
-
-#~ msgid "Restore backups..."
-#~ msgstr "Revenire la backups"
-
-#~ msgid "Restore running..."
-#~ msgstr "Restabilire setari in curs"
-
-#~ msgid ""
-#~ "Restoring the settings is done. Please press OK to activate the restored "
-#~ "settings now."
-#~ msgstr ""
-#~ "Restabilire setari terminata. Va rugam apasati OK pentru a activasetarile"
-
-#~ msgid "Return to file browser"
-#~ msgstr "Revenire la browser-ul de fisere"
-
-#~ msgid "Running"
-#~ msgstr "In functiune"
-
-#~ msgid "Satteliteequipment"
-#~ msgstr "Echipament satelit"
-
-#~ msgid ""
-#~ "Scan your network for wireless Access Points and connect to them using "
-#~ "your WLAN USB Stick\n"
-#~ msgstr ""
-#~ "Scaneza reteaua wireles pentru Puncte de acces si conectati-va la ele "
-#~ "folosind stick-ulUSB WLAN \n"
-
-#~ msgid "Select IPKG source to edit..."
-#~ msgstr "Selectare sursa IPKG pentru a fi editata"
-
-#~ msgid "Select audio mode"
-#~ msgstr "Selectare mod audio"
-
-#~ msgid "Select files for backup. Currently selected:\n"
-#~ msgstr "Selectare fisier pentru backup. Selectat acum:\n"
-
-#~ msgid "Select files/folders to backup..."
-#~ msgstr "Selectati fisiere/folder pentru backup"
-
-#~ msgid "Select image"
-#~ msgstr "Selectare imagine"
-
-#~ msgid "Select video input"
-#~ msgstr "Selectati intrarea video"
-
-#~ msgid "Selected source image"
-#~ msgstr "Selectati sursa pentru imagine"
-
-#~ msgid "Set as default Interface"
-#~ msgstr "Setare ca interfata implicita"
-
-#~ msgid "Set limits"
-#~ msgstr "Setare limite"
-
-#~ msgid "Show blinking clock in display during recording"
-#~ msgstr "Arata ceas intermitent pe display in timpul inregistrarii"
-
-#~ msgid "Skin..."
-#~ msgstr "Skin..."
-
-#~ msgid "Software manager"
-#~ msgstr "Manager software"
-
-#~ msgid "Software manager..."
-#~ msgstr "Manager software..."
-
-#~ msgid "Somewhere else"
-#~ msgstr "In alta parte"
-
-#~ msgid "Stereo"
-#~ msgstr "Stereo"
-
-#~ msgid "Tag 1"
-#~ msgstr "Tag 1"
-
-#~ msgid "Tag 2"
-#~ msgstr "Tag 2"
-
-#~ msgid ""
-#~ "The USB stick is now bootable. Do you want to download the latest image "
-#~ "from the feed server and save it on the stick?"
-#~ msgstr ""
-#~ "Stick-ul USB este acum butabil. Doriti sa descarcati ultima imaginede pe "
-#~ "server si sa o salvati pe stick?"
-
-#~ msgid ""
-#~ "The md5sum validation failed, the file may be corrupted! Are you sure "
-#~ "that you want to burn this image to flash memory? You are doing this at "
-#~ "your own risk!"
-#~ msgstr ""
-#~ "Validarea fisierului md5sum a esuat, fisierul ar putea fi corupt! Sunteti "
-#~ "sigurca doriti sa scrieti aceasta imagine in memoria flash? Faceti acest "
-#~ "lucru pecont propriu."
-
-#~ msgid ""
-#~ "The md5sum validation failed, the file may be downloaded incompletely or "
-#~ "be corrupted!"
-#~ msgstr ""
-#~ "Validarea fisierului md5sum a esuat, fisierul nu a fost descarcat in "
-#~ "totalitate sau estecorupt!"
-
-#~ msgid "The pin code has been changed successfully."
-#~ msgstr "Codul pin a fost schimbat."
-
-#~ msgid "The pin codes you entered are different."
-#~ msgstr "Codurile pin pe care le-ati introdus sunt diferite."
-
-#~ msgid "This .NFI file does not contain a valid %s image!"
-#~ msgstr "Cest fisier .NFI nu contine o imagine %s valida!"
-
-#~ msgid ""
-#~ "This .NFI file does not have a md5sum signature and is not guaranteed to "
-#~ "work. Do you really want to burn this image to flash memory?"
-#~ msgstr ""
-#~ "Acest fisier .NFI nu are inclusa o semnatura md5sum si nu "
-#~ "garantamfunctionarea sa. Doriti sa scrieti aceasta imagine in memoria "
-#~ "flash?"
-
-#~ msgid ""
-#~ "This .NFI file has a valid md5 signature. Continue programming this image "
-#~ "to flash memory?"
-#~ msgstr ""
-#~ "Acest fisier .NFI are o semnatura md5 valida. Continuati programarea "
-#~ "acestei imaginiin memoria flash?"
-
-#~ msgid "This Dreambox can't decode %s video streams!"
-#~ msgstr "Acest Dreambox nu poate decoda streamurile video %s!"
-
-#~ msgid "This is unsupported at the moment."
-#~ msgstr "Acesta nu este suportat in acest moment."
-
-#~ msgid "Timeshift path..."
-#~ msgstr "Cale timeshift..."
-
-#~ msgid ""
-#~ "To update your Dreambox firmware, please follow these steps:\n"
-#~ "1) Turn off your box with the rear power switch and plug in the bootable "
-#~ "USB stick.\n"
-#~ "2) Turn mains back on and hold the DOWN button on the front panel pressed "
-#~ "for 10 seconds.\n"
-#~ "3) Wait for bootup and follow instructions of the wizard."
-#~ msgstr ""
-#~ "Pnetru actualizarea firmware-ului Dreambox, va rugam urmati pasii "
-#~ "urmatori:\n"
-#~ "1) Opriti receptorul apasand butonul din spate si introduceti stick-ul "
-#~ "USBstick.\n"
-#~ "2) Porniti receptorul si tineti apasat tasta SAGEATA JOS de pe panoul "
-#~ "frontaltimp de 10 secunde.\n"
-#~ "3) Asteptati incarcarea softului si urmati instructiunile."
-
-#~ msgid "USB"
-#~ msgstr "USB"
-
-#~ msgid "Ukrainian"
-#~ msgstr "Ukrainian"
-
-#~ msgid ""
-#~ "Unable to complete filesystem check.\n"
-#~ "Error: "
-#~ msgstr "Error: Imposibil de terminat verificarea filesistem."
-
-#~ msgid ""
-#~ "Unable to initialize harddisk.\n"
-#~ "Error: "
-#~ msgstr "Error: Imposibil de initializat hard-disk."
-
-#~ msgid "Unmount failed"
-#~ msgstr "Unmount esuat"
-
-#~ msgid "Use non-smooth winding at speeds above"
-#~ msgstr "Use non-smooth winding at speeds above "
-
-#~ msgid "View"
-#~ msgstr "Vezi"
-
-#~ msgid "View list of available Satteliteequipment extensions."
-#~ msgstr "Vezi lista estensiilor EChipapentelor Satelit disponibile"
-
-#~ msgid ""
-#~ "We will now test if your TV can also display this resolution at 50hz. If "
-#~ "your screen goes black, wait 20 seconds and it will switch back to 60hz.\n"
-#~ "Please press OK to begin."
-#~ msgstr ""
-#~ "Acum o sa testam daca TV-ul tau suporta aceasta rezolutie la 50Hz. Daca "
-#~ "ecranul tau se face negru, asteapta 20 sec si se va schimba la 60hz.\n"
-#~ "Apasa ok pentru a incepe."
-
-#~ msgid "Wireless"
-#~ msgstr "Wireless"
-
-#~ msgid "Writing NFI image file to flash completed"
-#~ msgstr "Scriere imagine NFi in flash completa"
-
-#~ msgid ""
-#~ "You do not seem to have a harddisk in your Dreambox. So backing up to a "
-#~ "harddisk is not an option for you."
-#~ msgstr ""
-#~ "Se pare ca nu ai un hard disk instalat in IPbox. Deci un backuppe hard "
-#~ "disk nu este posibila."
-
-#~ msgid ""
-#~ "You have chosen to backup to a compact flash card. The card must be in "
-#~ "the slot. We do not verify if it is really used at the moment. So better "
-#~ "backup to the harddisk!\n"
-#~ "Please press OK to start the backup now."
-#~ msgstr ""
-#~ "Ai ales sa faci backup pe un flash card compact. Cardul trebuie sa fie in "
-#~ "slot. Nu verificam daca este folosit momentan. Deci mai bine faci backup "
-#~ "pe hard disk!\n"
-#~ "Te rog apasa OK pentru inceperea backup-ului."
-
-#~ msgid ""
-#~ "You have chosen to backup to your harddisk. Please press OK to start the "
-#~ "backup now."
-#~ msgstr ""
-#~ "Ai ales sa faci backup pe un hard disk. Apasa OK pentru incepereabackup-"
-#~ "ului."
-
-#~ msgid ""
-#~ "You need to set a pin code and hide it from your children.\n"
-#~ "\n"
-#~ "Do you want to set the pin now?"
-#~ msgstr ""
-#~ "Trebuie sa pui un cod pin si sa-l ascunzi de copii.\n"
-#~ "\n"
-#~ "Vrei sa pui un pin acum?"
-
-#~ msgid "Your TV works with 50 Hz. Good!"
-#~ msgstr "TV-ul tau merge la 50 Hz. Marfa!"
-
-#~ msgid ""
-#~ "Your network configuration has been activated.\n"
-#~ "A second configured interface has been found.\n"
-#~ "\n"
-#~ "Do you want to disable the second network interface?"
-#~ msgstr ""
-#~ "Configurarea retelei a fost activata.\n"
-#~ "O interfata secundara a fost detectata.\n"
-#~ "\n"
-#~ "Vrei sa dezactivezi interfata retelei secundare?"
-
-#~ msgid "assigned CAIds"
-#~ msgstr "asigneaza CAId-uri"
-
-#~ msgid "assigned Services/Provider"
-#~ msgstr "asigneaza Servicii/Provideri"
-
-#~ msgid "choose destination directory"
-#~ msgstr "alege directorul destinatie"
-
-#~ msgid "delete"
-#~ msgstr "sterge"
-
-#~ msgid "exceeds dual layer medium!"
-#~ msgstr "depaseste dual layer medium"
-
-#~ msgid "exit network adapter setup menu"
-#~ msgstr "iesire meniul de setari retea"
-
-#~ msgid "failed"
-#~ msgstr "esuat"
-
-#~ msgid "hidden network"
-#~ msgstr "retea ascunsa"
-
-#~ msgid "hide extended description"
-#~ msgstr "ascunde descriere extinsa"
-
-#~ msgid "hour"
-#~ msgstr "ora"
-
-#~ msgid "hours"
-#~ msgstr "ore"
-
-#~ msgid ""
-#~ "incoming call!\n"
-#~ "%s calls on %s!"
-#~ msgstr ""
-#~ "primeste apel!\n"
-#~ "%s apeluri la %s!"
-
-#~ msgid "menulist"
-#~ msgstr "lista meniu"
-
-#~ msgid "minute"
-#~ msgstr "minut"
-
-#~ msgid "no HDD found"
-#~ msgstr "niciun HDD gasit"
-
-#~ msgid "open virtual keyboard input help"
-#~ msgstr "deschide tastatura virtuala ajutatoare"
-
-#~ msgid "second"
-#~ msgstr "secunda"
-
-#~ msgid "select .NFI flash file"
-#~ msgstr "selecteaza flash file-ul .NFI "
-
-#~ msgid "select image from server"
-#~ msgstr "selecteaza imagine din server"
-
-#~ msgid "service pin"
-#~ msgstr "pin de service"
-
-#~ msgid "setup pin"
-#~ msgstr "pin de setup"
-
-#~ msgid "show all"
-#~ msgstr "arata total"
-
-#~ msgid "show first selected tag"
-#~ msgstr "arata primul selectat"
-
-#~ msgid "show second selected tag"
-#~ msgstr "arata a doua selectare"
-
-#~ msgid "until restart"
-#~ msgstr "pana la restart"

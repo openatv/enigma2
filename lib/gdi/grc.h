@@ -220,16 +220,17 @@ public:
 	enum
 	{
 			// todo, make mask. you cannot align both right AND center AND block ;)
-		RT_HALIGN_LEFT = 0,  /* default */
-		RT_HALIGN_RIGHT = 1,
-		RT_HALIGN_CENTER = 2,
-		RT_HALIGN_BLOCK = 4,
+		RT_HALIGN_BIDI = 0,  /* default */
+		RT_HALIGN_LEFT = 1,
+		RT_HALIGN_RIGHT = 2,
+		RT_HALIGN_CENTER = 4,
+		RT_HALIGN_BLOCK = 8,
 		
 		RT_VALIGN_TOP = 0,  /* default */
-		RT_VALIGN_CENTER = 8,
-		RT_VALIGN_BOTTOM = 16,
+		RT_VALIGN_CENTER = 16,
+		RT_VALIGN_BOTTOM = 32,
 		
-		RT_WRAP = 32
+		RT_WRAP = 64
 	};
 	void renderText(const eRect &position, const std::string &string, int flags=0, gRGB bordercolor=gRGB(), int border=0);
 	

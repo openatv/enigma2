@@ -38,7 +38,7 @@ class ServiceOrbitalPosition(Converter, object):
 			if self.type == self.SHORT:
 				return "%d.%d%s" % (pos/10, pos%10, direction)
 			else:
-				return "%d.%d ° %s" % (pos/10, pos%10, direction)
+				return "%d.%d\xc2\xb0 %s" % (pos/10, pos%10, direction)
 		else:
 			return ""
 

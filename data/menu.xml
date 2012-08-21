@@ -48,6 +48,8 @@
 			<menu weight="5" level="0" text="System" entryID="system_selection">
 				<id val="system" />
 				<item level="0" entryID="usage_setup"><setup id="usage" /></item>
+				<item level="0" entryID="user_interface"><setup id="userinterface" /></item> 
+				<item level="0" entryID="epg_settings"><setup id="epgsettings" /></item>
 				<item level="0" entryID="recording_setup"><setup id="recording" /></item>
 				<item level="2" entryID="subtitle_setup"><setup id="subtitlesetup" /></item>
 				<item level="1" entryID="autolanguage_setup"><setup id="autolanguagesetup" /></item>
@@ -81,21 +83,19 @@
 			</menu>
 			<item weight="15" level="0" text="Parental control" entryID="parental_setup"><screen module="ParentalControlSetup" screen="ParentalControlSetup" /></item>
 			<!--item level="0" text="Startwizard" entryID="startwizzard"><screen module="StartWizard" screen="StartWizard" /></item-->
-			<item weight="25" level="0" text="Factory reset" entryID="factory_reset">
-<code>
+			<item weight="15" level="0" text="Factory reset" entryID="factory_reset">
+				<code>
 from Screens.FactoryReset import FactoryReset
 def msgClosed(ret):
 	if ret:
 		from os import system, _exit
-		print"[FACTORY RESET] remove dir /etc/enigma2"
 		system("rm -R /etc/enigma2")
-		print"[FACTORY RESET] set network to DHCP"
-		system("cp -f /usr/share/enigma2/defaults/interfaces /etc/network/interfaces")
-		system("/etc/init.d/networking restart")
+		system("cp -R /usr/share/enigma2/defaults /etc/enigma2")
 		_exit(0)
 self.session.openWithCallback(msgClosed, FactoryReset)
 </code>
 			</item>
+			<item weight="15" level="0" text="Software update" entryID="software_update"><screen module="SoftwareUpdate" screen="UpdatePlugin" /></item>
 			<!--<item text="Parental Control"><setup id="parental" /></item>-->
 			<!--<item text="Expert -disabled-"><setup id="expert" /></item>-->
 		</menu>
