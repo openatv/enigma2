@@ -208,6 +208,8 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 	def leavePlayerOnExit(self):
 		if not self.shown:
 			self.leavePlayer()
+		else:
+			self.hide()
 
 	def deleteConfirmed(self, answer):
 		if answer:
