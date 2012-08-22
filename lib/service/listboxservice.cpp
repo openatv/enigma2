@@ -626,7 +626,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 					if (area.width() > 0 && isPlayable && service_info && !service_info->getEvent(*m_cursor, evt))
 					{
 						char bla[10];
-						sprintf(bla, "%d %", (int)(100 * (now - evt->getBeginTime()) / evt->getDuration()));
+						sprintf(bla, "%d %%", (int)(100 * (now - evt->getBeginTime()) / evt->getDuration()));
 						text = bla;
 						flags|=gPainter::RT_HALIGN_RIGHT;
 						break;
