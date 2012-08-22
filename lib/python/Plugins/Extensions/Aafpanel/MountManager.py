@@ -10,8 +10,9 @@ from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Components.ConfigList import ConfigListScreen
 from Components.config import getConfigListEntry, config, ConfigSelection, NoSave, configfile
-from Components.Sources.List import List
 from Components.Console import Console
+from Components.Sources.List import List
+from Components.Sources.StaticText import StaticText
 from Tools.LoadPixmap import LoadPixmap
 from os import system, rename, path, mkdir, remove
 from time import sleep
@@ -50,20 +51,17 @@ class HddMount(Screen):
 		self['key_yellow'] = Label("Unmount")
 		self['key_blue'] = Label("Mount")
 		self['lab1'] = Label()
+		self.onChangedEntry = [ ]
 		self.list = []
 		self['list'] = List(self.list)
 		self["list"].onSelectionChanged.append(self.selectionChanged)
-		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], 
-		{
-			'back': self.close,
-			'green': self.SetupMounts,
-			'red': self.saveMypoints,
-			'yellow': self.Unmount,
-			'blue': self.Mount,
-		})
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions', "MenuActions"], {'back': self.close, 'green': self.SetupMounts, 'red': self.saveMypoints, 'yellow': self.Unmount, 'blue': self.Mount, "menu": self.close})
 		self.activityTimer = eTimer()
 		self.activityTimer.timeout.get().append(self.updateList2)
 		self.updateList()
+
+	def createSummary(self):
+		return DevicesPanelSummary
 
 	def selectionChanged(self):
 		if len(self.list) == 0:
@@ -80,6 +78,18 @@ class HddMount(Screen):
 					self["key_red"].setText(" ")
 			except:
 				pass
+		if self.sel:
+			try:
+				name = str(self.sel[0])
+				desc = str(self.sel[1].replace('\t','  '))
+			except:
+				name = ""
+				desc = ""
+		else:
+			name = ""
+			desc = ""
+		for cb in self.onChangedEntry:
+			cb(name, desc)
 
 	def updateList(self, result = None, retval = None, extra_args = None):
 		scanning = _("Wait please while scanning for devices...")
@@ -145,6 +155,8 @@ class HddMount(Screen):
 		f = open('/tmp/devices.tmp', 'r')
 		swapdevices = f.read()
 		f.close()
+		if path.exists('/tmp/devices.tmp'):
+			remove('/tmp/devices.tmp')
 		swapdevices = swapdevices.replace('\n','')
 		swapdevices = swapdevices.split('/')
 		f = open('/proc/mounts', 'r')
@@ -174,7 +186,9 @@ class HddMount(Screen):
 			if line.find(device) != -1:
 				parts = line.strip().split()
 				size = int(parts[2])
-				if ((size / 1024) / 1024) > 1:
+				if (((float(size) / 1024) / 1024) / 1024) > 1:
+					des = _("Size: ") + str(round((((float(size) / 1024) / 1024) / 1024),2)) + _("TB")
+				elif ((size / 1024) / 1024) > 1:
 					des = _("Size: ") + str((size / 1024) / 1024) + _("GB")
 				else:
 					des = _("Size: ") + str(size / 1024) + _("MB")
@@ -185,7 +199,9 @@ class HddMount(Screen):
 					size = int(size)
 				except:
 					size = 0
-				if (((size / 2) / 1024) / 1024) > 1:
+				if ((((float(size) / 2) / 1024) / 1024) / 1024) > 1:
+					des = _("Size: ") + str(round(((((float(size) / 2) / 1024) / 1024) / 1024),2)) + _("TB")
+				elif (((size / 2) / 1024) / 1024) > 1:
 					des = _("Size: ") + str(((size / 2) / 1024) / 1024) + _("GB")
 				else:
 					des = _("Size: ") + str((size / 2) / 1024) + _("MB")
@@ -197,7 +213,7 @@ class HddMount(Screen):
 				rw = ' R/O'
 			else:
 				rw = ""
-			des += '\t' + _("Mount: ") + d1 + '\n' + _("Device: ") + ' /dev/' + device + '\t' + _("Type: ") + dtype + rw
+			des += '\t' + _("Mount: ") + d1 + '\n' + _("Device: ") + '/dev/' + device + '\t' + _("Type: ") + dtype + rw
 			png = LoadPixmap(mypixmap)
 			res = (name, des, png)
 			self.list.append(res)
@@ -261,23 +277,22 @@ class HddMount(Screen):
 		self.device = extra_args[0]
 		self.mountp = extra_args[1]
 		self.device_uuid_tmp = result.split('UUID=')
-		if str(self.device_uuid_tmp) != "['']":
-			self.device_uuid_tmp = self.device_uuid_tmp[1].replace('"',"")
-			self.device_uuid_tmp = self.device_uuid_tmp.replace('\n',"")
-			self.device_uuid = 'UUID=' + self.device_uuid_tmp
-			if not path.exists(self.mountp):
-				mkdir(self.mountp, 0755)
-			file('/etc/fstab.tmp', 'w').writelines([l for l in file('/etc/fstab').readlines() if '/media/hdd' not in l])
-			rename('/etc/fstab.tmp','/etc/fstab')
-			file('/etc/fstab.tmp', 'w').writelines([l for l in file('/etc/fstab').readlines() if self.device not in l])
-			rename('/etc/fstab.tmp','/etc/fstab')
-			file('/etc/fstab.tmp', 'w').writelines([l for l in file('/etc/fstab').readlines() if self.device_uuid not in l])
-			rename('/etc/fstab.tmp','/etc/fstab')
-			out = open('/etc/fstab', 'a')
-			line = self.device_uuid + '\t/media/hdd\tauto\tdefaults\t0 0\n'
-			out.write(line)
-			out.close()
-			self.Console.ePopen('mount /media/hdd', self.updateList)
+		self.device_uuid_tmp = self.device_uuid_tmp[1].replace('"',"")
+		self.device_uuid_tmp = self.device_uuid_tmp.replace('\n',"")
+		self.device_uuid = 'UUID=' + self.device_uuid_tmp
+		if not path.exists(self.mountp):
+			mkdir(self.mountp, 0755)
+		file('/etc/fstab.tmp', 'w').writelines([l for l in file('/etc/fstab').readlines() if '/media/hdd' not in l])
+		rename('/etc/fstab.tmp','/etc/fstab')
+		file('/etc/fstab.tmp', 'w').writelines([l for l in file('/etc/fstab').readlines() if self.device not in l])
+		rename('/etc/fstab.tmp','/etc/fstab')
+		file('/etc/fstab.tmp', 'w').writelines([l for l in file('/etc/fstab').readlines() if self.device_uuid not in l])
+		rename('/etc/fstab.tmp','/etc/fstab')
+		out = open('/etc/fstab', 'a')
+		line = self.device_uuid + '\t/media/hdd\tauto\tdefaults\t0 0\n'
+		out.write(line)
+		out.close()
+		self.Console.ePopen('mount /media/hdd', self.updateList)
 
 	def restBo(self, answer):
 		if answer is True:
@@ -303,7 +318,7 @@ class DevicePanelConf(Screen, ConfigListScreen):
 		Screen.setTitle(self, _("Choose where to mount your devices to:"))
 		self['key_green'] = Label(_("Save"))
 		self['key_red'] = Label(_("Cancel"))
-		self['Linconn'] = Label(_("Wait please while scanning your box devices..."))
+		self['Linconn'] = Label(_("Wait please while scanning your STB_BOX devices..."))
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'green': self.saveMypoints, 'red': self.close, 'back': self.close})
 		self.updateList()
 
@@ -316,6 +331,8 @@ class DevicePanelConf(Screen, ConfigListScreen):
 		f = open('/tmp/devices.tmp', 'r')
 		swapdevices = f.read()
 		f.close()
+		if path.exists('/tmp/devices.tmp'):
+			remove('/tmp/devices.tmp')
 		swapdevices = swapdevices.replace('\n','')
 		swapdevices = swapdevices.split('/')
 		f = open('/proc/partitions', 'r')
@@ -369,8 +386,6 @@ class DevicePanelConf(Screen, ConfigListScreen):
 			name = _("HARD DISK: ")
 			mypixmap = '/usr/lib/enigma2/python/Plugins/Extensions/Aafpanel/icons/dev_hdd.png'
 		name = name + model
-		if path.exists('/tmp/devices.tmp'):
-			remove('/tmp/devices.tmp')
 		f = open('/proc/mounts', 'r')
 		for line in f.readlines():
 			if line.find(device) != -1:
@@ -388,7 +403,9 @@ class DevicePanelConf(Screen, ConfigListScreen):
 			if line.find(device) != -1:
 				parts = line.strip().split()
 				size = int(parts[2])
-				if ((size / 1024) / 1024) > 1:
+				if (((float(size) / 1024) / 1024) / 1024) > 1:
+					des = _("Size: ") + str(round((((float(size) / 1024) / 1024) / 1024),2)) + _("TB")
+				elif ((size / 1024) / 1024) > 1:
 					des = _("Size: ") + str((size / 1024) / 1024) + _("GB")
 				else:
 					des = _("Size: ") + str(size / 1024) + _("MB")
@@ -399,7 +416,9 @@ class DevicePanelConf(Screen, ConfigListScreen):
 					size = int(size)
 				except:
 					size = 0
-				if (((size / 2) / 1024) / 1024) > 1:
+				if ((((float(size) / 2) / 1024) / 1024) / 1024) > 1:
+					des = _("Size: ") + str(round(((((float(size) / 2) / 1024) / 1024) / 1024),2)) + _("TB")
+				elif (((size / 2) / 1024) / 1024) > 1:
 					des = _("Size: ") + str(((size / 2) / 1024) / 1024) + _("GB")
 				else:
 					des = _("Size: ") + str((size / 2) / 1024) + _("MB")
@@ -411,8 +430,6 @@ class DevicePanelConf(Screen, ConfigListScreen):
 		('/media/usb', '/media/usb'),
 		('/media/usb2', '/media/usb2'),
 		('/media/usb3', '/media/usb3')]))
-		if (d1 == '/media/meoboot'):
-			item = NoSave(ConfigSelection(default='/media/meoboot', choices=[('/media/meoboot', '/media/meoboot')]))
 		if dtype == 'Linux':
 			dtype = 'ext3'
 		else:
@@ -433,31 +450,92 @@ class DevicePanelConf(Screen, ConfigListScreen):
 			self.type = x[3]
 			self.Console.ePopen('umount ' + self.device)
 			self.Console.ePopen("/sbin/blkid | grep " + self.device, self.add_fstab, [self.device, self.mountp] )
-		message = _("Devices changes need a system restart to take effects.\nRestart your Box now?")
+		message = _("Updating mount locations.")
+		ybox = self.session.openWithCallback(self.delay, MessageBox, message, type=MessageBox.TYPE_INFO, timeout=5, enable_input = False)
+		ybox.setTitle(_("Please wait."))
+
+	def delay(self, val):
+		message = _("Changes need a system restart to take effect.\nRestart your STB_BOX now?")
 		ybox = self.session.openWithCallback(self.restartBox, MessageBox, message, MessageBox.TYPE_YESNO)
-		ybox.setTitle(_("Restart box."))
+		ybox.setTitle(_("Restart STB_BOX."))
 
 	def add_fstab(self, result = None, retval = None, extra_args = None):
 		self.device = extra_args[0]
 		self.mountp = extra_args[1]
-		self.device_uuid_tmp = result.split('UUID=')
-		if str(self.device_uuid_tmp) != "['']":
-			self.device_uuid_tmp = self.device_uuid_tmp[1].replace('"',"")
-			self.device_uuid_tmp = self.device_uuid_tmp.replace('\n',"")
-			self.device_uuid = 'UUID=' + self.device_uuid_tmp
-			if not path.exists(self.mountp):
-				mkdir(self.mountp, 0755)
-			file('/etc/fstab.tmp', 'w').writelines([l for l in file('/etc/fstab').readlines() if self.device not in l])
-			rename('/etc/fstab.tmp','/etc/fstab')
-			file('/etc/fstab.tmp', 'w').writelines([l for l in file('/etc/fstab').readlines() if self.device_uuid not in l])
-			rename('/etc/fstab.tmp','/etc/fstab')
-			out = open('/etc/fstab', 'a')
-			line = self.device_uuid + '\t' + self.mountp + '\tauto\tdefaults\t0 0\n'
-			out.write(line)
-			out.close()
+		self.device_tmp = result.split(' ')
+		if self.device_tmp[0].startswith('UUID='):
+			self.device_uuid = self.device_tmp[0].replace('"',"")
+			self.device_uuid = self.device_uuid.replace('\n',"")
+		elif self.device_tmp[1].startswith('UUID='):
+			self.device_uuid = self.device_tmp[1].replace('"',"")
+			self.device_uuid = self.device_uuid.replace('\n',"")
+		elif self.device_tmp[2].startswith('UUID='):
+			self.device_uuid = self.device_tmp[2].replace('"',"")
+			self.device_uuid = self.device_uuid.replace('\n',"")
+		elif self.device_tmp[3].startswith('UUID='):
+			self.device_uuid = self.device_tmp[3].replace('"',"")
+			self.device_uuid = self.device_uuid.replace('\n',"")
+		try:
+			if self.device_tmp[0].startswith('TYPE='):
+				self.device_type = self.device_tmp[0].replace('TYPE=',"")
+				self.device_type = self.device_type.replace('"',"")
+				self.device_type = self.device_type.replace('\n',"")
+			elif self.device_tmp[1].startswith('TYPE='):
+				self.device_type = self.device_tmp[1].replace('TYPE=',"")
+				self.device_type = self.device_type.replace('"',"")
+				self.device_type = self.device_type.replace('\n',"")
+			elif self.device_tmp[2].startswith('TYPE='):
+				self.device_type = self.device_tmp[2].replace('TYPE=',"")
+				self.device_type = self.device_type.replace('"',"")
+				self.device_type = self.device_type.replace('\n',"")
+			elif self.device_tmp[3].startswith('TYPE='):
+				self.device_type = self.device_tmp[3].replace('TYPE=',"")
+				self.device_type = self.device_type.replace('"',"")
+				self.device_type = self.device_type.replace('\n',"")
+			elif self.device_tmp[4].startswith('TYPE='):
+				self.device_type = self.device_tmp[4].replace('TYPE=',"")
+				self.device_type = self.device_type.replace('"',"")
+				self.device_type = self.device_type.replace('\n',"")
+		except:
+			self.device_type = 'auto'
+				
+		if self.device_type.startswith('ext'):
+			self.device_type = 'auto'
+
+		if not path.exists(self.mountp):
+			mkdir(self.mountp, 0755)
+		file('/etc/fstab.tmp', 'w').writelines([l for l in file('/etc/fstab').readlines() if self.device not in l])
+		rename('/etc/fstab.tmp','/etc/fstab')
+		file('/etc/fstab.tmp', 'w').writelines([l for l in file('/etc/fstab').readlines() if self.device_uuid not in l])
+		rename('/etc/fstab.tmp','/etc/fstab')
+		out = open('/etc/fstab', 'a')
+		line = self.device_uuid + '\t' + self.mountp + '\t' + self.device_type + '\tdefaults\t0 0\n'
+		out.write(line)
+		out.close()
 
 	def restartBox(self, answer):
 		if answer is True:
 			self.session.open(TryQuitMainloop, 2)
 		else:
 			self.close()
+
+class DevicesPanelSummary(Screen):
+	def __init__(self, session, parent):
+		Screen.__init__(self, session, parent = parent)
+		self["entry"] = StaticText("")
+		self["desc"] = StaticText("")
+		self.onShow.append(self.addWatcher)
+		self.onHide.append(self.removeWatcher)
+
+	def addWatcher(self):
+		self.parent.onChangedEntry.append(self.selectionChanged)
+		self.parent.selectionChanged()
+
+	def removeWatcher(self):
+		self.parent.onChangedEntry.remove(self.selectionChanged)
+
+	def selectionChanged(self, name, desc):
+		self["entry"].text = name
+		self["desc"].text = desc
+
+
