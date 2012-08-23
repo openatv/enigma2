@@ -28,7 +28,8 @@ int eHttpStream::openUrl(const std::string &url, std::string &newurl)
 	char proto[100];
 	int statuscode = 0;
 	char statusmsg[100];
-	bool text = false;
+	bool playlist = false;
+	bool contenttypeparsed = false;
 
 	close();
 
@@ -111,12 +112,23 @@ int eHttpStream::openUrl(const std::string &url, std::string &newurl)
 	while (1)
 	{
 		result = readLine(streamSocket, &linebuf, &buflen);
-		if (!strcmp(linebuf, "Content-Type: application/text"))
+		if (!contenttypeparsed)
 		{
-			/* assume we'll get a playlist, some text file containing a stream url */
-			text = true;
+			char contenttype[32];
+			if (sscanf(linebuf, "Content-Type: %32s", contenttype) == 1)
+			{
+				contenttypeparsed = true;
+				if (!strcmp(contenttype, "application/text")
+				|| !strcmp(contenttype, "audio/x-mpegurl")
+				|| !strcmp(contenttype, "audio/mpegurl")
+				|| !strcmp(contenttype, "application/m3u"))
+				{
+					/* assume we'll get a playlist, some text file containing a stream url */
+					playlist = true;
+				}
+			}
 		}
-		else if (text && !strncmp(linebuf, "http://", 7))
+		else if (playlist && !strncmp(linebuf, "http://", 7))
 		{
 			newurl = linebuf;
 			eDebug("%s: playlist entry: %s", __FUNCTION__, newurl.c_str());
@@ -128,7 +140,7 @@ int eHttpStream::openUrl(const std::string &url, std::string &newurl)
 			eDebug("%s: redirecting to: %s", __FUNCTION__, newurl.c_str());
 			break;
 		}
-		if (!text && result == 0) break;
+		if (!playlist && result == 0) break;
 		if (result < 0) break;
 	}
 

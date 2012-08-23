@@ -161,7 +161,8 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 		
 		self["actions"] = HelpableActionMap(self, "MoviePlayerActions",
 			{
-				"leavePlayer": (self.leavePlayer, _("leave movie player..."))
+				"leavePlayer": (self.leavePlayer, _("leave movie player...")),
+				"leavePlayerOnExit": (self.leavePlayerOnExit, _("leave movie player..."))
 			})
 
 		self["DirectionActions"] = HelpableActionMap(self, "DirectionActions",
@@ -220,6 +221,12 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 	def leavePlayer(self):
 		setResumePoint(self.session)
 		self.handleLeave(config.usage.on_movie_stop.value)
+
+	def leavePlayerOnExit(self):
+		if not self.shown:
+			self.leavePlayer()
+		else:
+			self.hide()
 
 	def deleteConfirmed(self, answer):
 		if answer:
