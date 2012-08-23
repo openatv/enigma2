@@ -336,8 +336,6 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 	}
 	if ( strstr(filename, "://") )
 		m_sourceinfo.is_streaming = TRUE;
-	if ( strstr(filename, " buffer=1") )
-		m_use_prefillbuffer = true;
 
 	gchar *uri;
 
@@ -356,10 +354,19 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 		if ( m_useragent.length() == 0 )
 			m_useragent = "Enigma2 Mediaplayer";
 
-		if (::access("/hdd/movie", X_OK) >= 0)
+		if (strstr(filename, " buffer=1"))
 		{
-			/* It looks like /hdd points to a valid mount, so we can store a download buffer on it */
-			m_download_buffer_path = "/hdd/gstreamer_XXXXXXXXXX";
+			m_use_prefillbuffer = true;
+		}
+		else if (strstr(filename, " buffer=2"))
+		{
+			/* progressive download buffering */
+			if (::access("/hdd/movie", X_OK) >= 0)
+			{
+				/* It looks like /hdd points to a valid mount, so we can store a download buffer on it */
+				m_download_buffer_path = "/hdd/gstreamer_XXXXXXXXXX";
+			}
+			m_use_prefillbuffer = true;
 		}
 	}
 	else if ( m_sourceinfo.containertype == ctCDA )
