@@ -4,6 +4,7 @@ from Tools.Profile import profile
 import Screens.MovieSelection
 
 from Screen import Screen
+from Screens.MessageBox import MessageBox
 
 profile("LOAD:enigma")
 from enigma import iPlayableService
@@ -205,9 +206,11 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 		setResumePoint(self.session)
 		self.handleLeave(config.usage.on_movie_stop.value)
 
-	def leavePlayerOnExit(self):
-		if not self.shown:
+	def leavePlayerOnExit(self, answer = None):
+		if answer == True:
 			self.leavePlayer()
+		elif answer is None and not self.shown:
+			self.session.openWithCallback(self.leavePlayerOnExit, MessageBox, _("Exit Movieplayer?"), MessageBox.TYPE_YESNO, simple = True)
 		else:
 			self.hide()
 
@@ -238,14 +241,12 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 				info = serviceHandler.info(ref)
 				name = info and info.getName(ref) or _("this recording")
 				msg += _("Do you really want to delete %s?") % name
-				from Screens.MessageBox import MessageBox
 				self.session.openWithCallback(self.deleteConfirmed, MessageBox, msg)
 				return
 
 			elif answer == "quitanddeleteconfirmed":
 				offline = serviceHandler.offlineOperations(ref)
 				if offline.deleteFromDisk(0):
-					from Screens.MessageBox import MessageBox
 					self.session.openWithCallback(self.close, MessageBox, _("You cannot delete this!"), MessageBox.TYPE_ERROR)
 					return
 
@@ -395,7 +396,6 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 
 	def displayPlayedName(self, ref, index, n):
 		from Tools import Notifications
-		from Screens.MessageBox import MessageBox
 		Notifications.AddPopup(text = _("%s/%s: %s") % (index, n, self.ref2HumanName(ref)), type = MessageBox.TYPE_INFO, timeout = 5)
 
 	def ref2HumanName(self, ref):
