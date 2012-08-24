@@ -209,10 +209,10 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 	def leavePlayerOnExit(self, answer = None):
 		if answer == True:
 			self.leavePlayer()
-		elif answer is None and not self.shown:
-			self.session.openWithCallback(self.leavePlayerOnExit, MessageBox, _("Exit Movieplayer?"), MessageBox.TYPE_YESNO, simple = True)
-		else:
+		elif self.shown:
 			self.hide()
+		elif answer is None:
+			self.session.openWithCallback(self.leavePlayerOnExit, MessageBox, _("Exit Movieplayer?"), MessageBox.TYPE_YESNO, simple = True)
 
 	def deleteConfirmed(self, answer):
 		if answer:
