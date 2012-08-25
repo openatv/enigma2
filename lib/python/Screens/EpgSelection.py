@@ -808,23 +808,23 @@ class EPGSelection(Screen, HelpableScreen):
 					self.moveTimeLines(True)
 
 	def closing(self):
-		if self.session.nav.getCurrentlyPlayingServiceReference().toString() != self.StartRef.toString():
+		if self.session.nav.getCurrentlyPlayingServiceReference() and self.session.nav.getCurrentlyPlayingServiceReference().toString() != self.StartRef.toString():
 			if ((self.type == 5 and config.epgselection.preview_mode_vixepg.value) or (self.type == 4 and config.epgselection.preview_mode_infobar.value) or (self.type == 3 and config.epgselection.preview_mode_enhanced.value) or (self.type != 5 and self.type != 4 and self.type != 3 and config.epgselection.preview_mode.value)) and (self.StartRef and self.StartBouquet):
 				if self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_SINGLE:
-					self.session.nav.playService(self.StartRef)
+					if self.StartRef.toString().find(':0:/') == -1:
+						self.session.nav.playService(self.StartRef)
+						self.setServicelistSelection(self.StartBouquet, self.StartRef)
+					else:
+						self.session.nav.playService(self.StartRef)
 				elif self.type == EPG_TYPE_MULTI or self.type == EPG_TYPE_GRAPH:
 					if self.StartRef.toString().find(':0:/') == -1:
 						self.zapFunc(self.StartRef, self.StartBouquet)
 					else:
 						self.session.nav.playService(self.StartRef)
-			if self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
-				if self.StartRef.toString().find(':0:/') == -1:
-					self.setServicelistSelection(self.StartBouquet, self.StartRef)
-				else:
-					self.session.nav.playService(self.StartRef)
 			self.close(self.closeRecursive)
 		else:
-			self.setServicelistSelection(self.StartBouquet, self.StartRef)
+			if self.StartRef.toString().find(':0:/') == -1:
+				self.setServicelistSelection(self.StartBouquet, self.StartRef)
 			self.close(False)
 
 	def infoKeyPressed(self):
