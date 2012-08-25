@@ -153,7 +153,7 @@ eDVBLocalTimeHandler *eDVBLocalTimeHandler::instance;
 DEFINE_REF(eDVBLocalTimeHandler);
 
 eDVBLocalTimeHandler::eDVBLocalTimeHandler()
-	:m_use_dvb_time(false), m_updateNonTunedTimer(eTimer::create(eApp)), m_time_ready(false)
+	:m_use_dvb_time(true), m_updateNonTunedTimer(eTimer::create(eApp)), m_time_ready(false)
 {
 	if ( !instance )
 		instance=this;
@@ -225,6 +225,15 @@ void eDVBLocalTimeHandler::writeTimeOffsetData( const char* filename )
 void eDVBLocalTimeHandler::setUseDVBTime(bool b)
 {
 	if (m_use_dvb_time != b) {
+		if (!b)
+		{
+			time_t now = time(0);
+			if (now < 1072224000) /* 01.01.2004 */
+			{
+				eDebug("[eDVBLocalTimeHandler] invalid system time, refuse to disable transponder time sync");
+				return;
+			}
+		}
 		if (m_use_dvb_time) {
 			eDebug("[eDVBLocalTimeHandler] disable sync local time with transponder time!");
 			std::map<iDVBChannel*, channel_data>::iterator it =

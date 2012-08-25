@@ -588,9 +588,9 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 					if( m_cursor->getChannelNum() == 0 )
 						continue;
 
-					char bla[10];
-					sprintf(bla, "%d", m_cursor->getChannelNum() );
-					text = bla;
+					char buffer[15];
+					snprintf(buffer, sizeof(buffer), "%d", m_cursor->getChannelNum() );
+					text = buffer;
 					flags|=gPainter::RT_HALIGN_RIGHT;
 					break;
 				}
@@ -625,9 +625,9 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 				{
 					if (area.width() > 0 && isPlayable && service_info && !service_info->getEvent(*m_cursor, evt))
 					{
-						char bla[10];
-						sprintf(bla, "%d %", (int)(100 * (now - evt->getBeginTime()) / evt->getDuration()));
-						text = bla;
+						char buffer[15];
+						snprintf(buffer, sizeof(buffer), "%d %%", (int)(100 * (now - evt->getBeginTime()) / evt->getDuration()));
+						text = buffer;
 						flags|=gPainter::RT_HALIGN_RIGHT;
 						break;
 					}

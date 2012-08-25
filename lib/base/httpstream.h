@@ -11,6 +11,9 @@ class eHttpStream: public iTsSource, public eSocketBase, public Object
 	DECLARE_REF(eHttpStream);
 
 	int streamSocket;
+	std::string authorizationData;
+
+	int openUrl(const std::string &url, std::string &newurl);
 
 	/* iTsSource */
 	off_t lseek(off_t offset, int whence);

@@ -453,7 +453,7 @@ class InfoBarShowHide:
 
 	def disconnectShowHideNotifier(self, fnc):
 		if fnc in self.onShowHideNotifiers:
-				self.onShowHideNotifiers.remove(fnc)
+			self.onShowHideNotifiers.remove(fnc)
 
 	def serviceStarted(self):
 		if self.execing:
@@ -1075,7 +1075,7 @@ class InfoBarEPG:
 			return 1
 
 	def zapToService(self, service, bouquet=None):
-		if not service is None:
+		if service is not None:
 			if bouquet:
 				self.epg_bouquet = bouquet
 			if self.servicelist.getRoot() != self.epg_bouquet: #already in correct bouquet?
@@ -1278,8 +1278,7 @@ class InfoBarEPG:
 	def __evEventInfoChanged(self):
 		if self.is_now_next and len(self.dlg_stack) == 1:
 			self.getNowNext()
-			assert self.eventView
-			if self.epglist:
+			if self.eventView and self.epgList:
 				self.eventView.setEvent(self.epglist[0])
 
 	def showDefaultEPG(self):
