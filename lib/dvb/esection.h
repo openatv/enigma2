@@ -78,9 +78,6 @@ protected:
 public:
 	std::vector<Section*> &getSections() { return sections; }
 	unsigned char* getBufferData() { return m_section_data; }
-	eTable(bool debug=true): eGTable(debug)
-	{
-	}
 	~eTable()
 	{
 		for (std::set<int>::iterator i(avail.begin()); i != avail.end(); ++i)
