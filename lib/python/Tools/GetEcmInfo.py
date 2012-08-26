@@ -111,17 +111,30 @@ class GetEcmInfo:
 				source = info.get('source', None)
 				if source:
 					# MGcam
-					info['caid'] = info['caid'][2:]
-					info['pid'] = info['pid'][2:]
-					info['provid'] = info['prov'][2:]
-					time = " ?"
+					eEnc  = ""
+					eCaid = ""
+					eSrc = ""
+					eTime = "0"
 					for line in ecm:
-						if line.find('msec') != -1:
-							line = line.split(' ')
-							if line[0]:
-								time = " (%ss)" % (float(line[0])/1000)
+						line = line.strip()
+						if line.find('ECM') != -1:
+							linetmp = line.split(' ')
+							eEnc = linetmp[1]
+							eCaid = linetmp[5][2:-1]
+							continue
+						if line.find('source') != -1:
+							linetmp = line.split(' ')
+							try:
+								eSrc = linetmp[4][:-1]
 								continue
-					self.textvalue = source + time
+							except:
+								eSrc = linetmp[1]
+								continue
+						if line.find('msec') != -1:
+							linetmp = line.split(' ')
+							eTime = linetmp[0]
+							continue
+					self.textvalue = "(%s %s %.3f @ %s)" % (eEnc,eCaid,(float(eTime)/1000),eSrc)
 				else:
 					reader = info.get('reader', '')
 					if reader:
