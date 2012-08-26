@@ -117,12 +117,12 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		if checkOldTimers == True:
 			if self.begin < time() - 1209600:
 				self.begin = int(time())
-		
+
 		if self.end < self.begin:
 			self.end = self.begin
-		
+
 		assert isinstance(serviceref, ServiceReference)
-		
+
 		if serviceref.isRecordable():
 			self.service_ref = serviceref
 		else:
@@ -226,7 +226,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				if not rec_ref:
 					self.log(1, "'get best playable service for group... record' failed")
 					return False
-				
+
 			self.record_service = rec_ref and NavigationInstance.instance.recordService(rec_ref)
 
 			if not self.record_service:
@@ -304,7 +304,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 # 				self.disabled = True
 				self.failed = True
 				return False
-				
+
 			self.log(7, "prepare failed")
 			if self.first_try_prepare:
 				self.first_try_prepare = False
@@ -341,12 +341,22 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				else:
 					self.log(11, "zapping")
 					NavigationInstance.instance.isMovieplayerActive()
+					from Screens.ChannelSelection import ChannelSelection
+					ChannelSelectionInstance = ChannelSelection.instance
+					if ChannelSelectionInstance:
+						ChannelSelectionInstance.clearPath()
+						ChannelSelectionInstance.recallBouquetMode()
+						if ChannelSelectionInstance.bouquet_root:
+							ChannelSelectionInstance.enterPath(ChannelSelectionInstance.bouquet_root)
+						ChannelSelectionInstance.enterPath(self.service_ref.ref)
+						ChannelSelectionInstance.saveRoot()
+						ChannelSelectionInstance.addToHistory(self.service_ref.ref)
 					NavigationInstance.instance.playService(self.service_ref.ref)
 				return True
 			else:
 				self.log(11, "start recording")
 				record_res = self.record_service.start()
-				
+
 				if record_res:
 					self.log(13, "start record returned %d" % record_res)
 					self.do_backoff()
@@ -408,11 +418,11 @@ class RecordTimerEntry(timer.TimerEntry, object):
 	def getNextActivation(self):
 		if self.state == self.StateEnded or self.state == self.StateFailed:
 			return self.end
-		
+
 		next_state = self.state + 1
-		
-		return {self.StatePrepared: self.start_prepare, 
-				self.StateRunning: self.begin, 
+
+		return {self.StatePrepared: self.start_prepare,
+				self.StateRunning: self.begin,
 				self.StateEnded: self.end }[next_state]
 
 	def failureCB(self, answer):
@@ -427,7 +437,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		old_prepare = self.start_prepare
 		self.start_prepare = self.begin - self.prepare_time
 		self.backoff = 0
-		
+
 		if int(old_prepare) != int(self.start_prepare):
 			self.log(15, "record time changed, start prepare is now: %s" % ctime(self.start_prepare))
 
@@ -442,7 +452,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			# displayed only once, even if more timers are failing at the
 			# same time. (which is very likely in case of disk fullness)
 			Notifications.AddPopup(text = _("Write error while recording. Disk full?\n"), type = MessageBox.TYPE_ERROR, timeout = 0, id = "DiskFullMessage")
-			# ok, the recording has been stopped. we need to properly note 
+			# ok, the recording has been stopped. we need to properly note
 			# that in our state, with also keeping the possibility to re-try.
 			# TODO: this has to be done.
 		elif event == iRecordableService.evStart:
@@ -507,21 +517,21 @@ def createTimer(xml):
 	#filename = xml.get("filename").encode("utf-8")
 	entry = RecordTimerEntry(serviceref, begin, end, name, description, eit, disabled, justplay, afterevent, dirname = location, tags = tags, descramble = descramble, record_ecm = record_ecm)
 	entry.repeated = int(repeated)
-	
+
 	for l in xml.findall("log"):
 		time = int(l.get("time"))
 		code = int(l.get("code"))
 		msg = l.text.strip().encode("utf-8")
 		entry.log_entries.append((time, code, msg))
-	
+
 	return entry
 
 class RecordTimer(timer.Timer):
 	def __init__(self):
 		timer.Timer.__init__(self)
-		
+
 		self.Filename = Directories.resolveFilename(Directories.SCOPE_CONFIG, "timers.xml")
-		
+
 		try:
 			self.loadTimer()
 		except IOError:
@@ -566,7 +576,7 @@ class RecordTimer(timer.Timer):
 			if timer.isRunning() and not timer.justplay:
 				isRunning = True
 		return isRunning
-	
+
 	def loadTimer(self):
 		# TODO: PATH!
 		if not Directories.fileExists(self.Filename):
@@ -615,7 +625,7 @@ class RecordTimer(timer.Timer):
 			#t.set("begin", str(int(timer.begin)))
 			#t.set("end", str(int(timer.end)))
 			#t.set("serviceref", str(timer.service_ref))
-			#t.set("repeated", str(timer.repeated))			
+			#t.set("repeated", str(timer.repeated))
 			#t.set("name", timer.name)
 			#t.set("description", timer.description)
 			#t.set("afterevent", str({
@@ -646,7 +656,7 @@ class RecordTimer(timer.Timer):
 
 		list.append('<?xml version="1.0" ?>\n')
 		list.append('<timers>\n')
-		
+
 		for timer in self.timer_list + self.processed_timers:
 			if timer.dontSave:
 				continue
@@ -675,7 +685,7 @@ class RecordTimer(timer.Timer):
 			list.append(' descramble="' + str(int(timer.descramble)) + '"')
 			list.append(' record_ecm="' + str(int(timer.record_ecm)) + '"')
 			list.append('>\n')
-			
+
 			if config.recording.debug.value:
 				for time, code, msg in timer.log_entries:
 					list.append('<log')
@@ -684,7 +694,7 @@ class RecordTimer(timer.Timer):
 					list.append('>')
 					list.append(str(stringToXML(msg)))
 					list.append('</log>\n')
-			
+
 			list.append('</timer>\n')
 
 		list.append('</timers>\n')
@@ -824,7 +834,7 @@ class RecordTimer(timer.Timer):
 
 	def removeEntry(self, entry):
 		print "[Timer] Remove " + str(entry)
-		
+
 		# avoid re-enqueuing
 		entry.repeated = False
 
@@ -832,10 +842,10 @@ class RecordTimer(timer.Timer):
 		# this sets the end time to current time, so timer will be stopped.
 		entry.autoincrease = False
 		entry.abort()
-		
+
 		if entry.state != entry.StateEnded:
 			self.timeChanged(entry)
-		
+
 		print "state: ", entry.state
 		print "in processed: ", entry in self.processed_timers
 		print "in running: ", entry in self.timer_list
