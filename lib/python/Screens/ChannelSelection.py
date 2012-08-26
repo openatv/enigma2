@@ -1459,6 +1459,8 @@ config.servicelist.startuproot = ConfigText()
 config.servicelist.startupmode = ConfigText(default = "tv")
 
 class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelectionEPG, SelectionEventInfo):
+	instance = None
+
 	def __init__(self, session):
 		ChannelSelectionBase.__init__(self,session)
 		ChannelSelectionEdit.__init__(self)
@@ -1487,6 +1489,9 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 				iPlayableService.evStart: self.__evServiceStart,
 				iPlayableService.evEnd: self.__evServiceEnd
 			})
+
+		assert ChannelSelection.instance is None, "class InfoBar is a singleton class and just one instance of this class is allowed!"
+		ChannelSelection.instance = self
 
 		self.startServiceRef = None
 
