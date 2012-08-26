@@ -291,6 +291,8 @@ lib/python/Plugins/Extensions/GraphMultiEPG/Makefile
 lib/python/Plugins/Extensions/GraphMultiEPG/meta/Makefile
 lib/python/Plugins/Extensions/Volume_adjust/Makefile
 lib/python/Plugins/Extensions/Volume_adjust/nl/Makefile
+lib/python/Plugins/Extensions/HbbTV/Makefile
+lib/python/Plugins/Extensions/HbbTV/meta/Makefile
 lib/python/Plugins/PLi/Makefile
 lib/python/Plugins/SystemPlugins/CleanupWizard/Makefile
 lib/python/Plugins/SystemPlugins/CleanupWizard/meta/Makefile
