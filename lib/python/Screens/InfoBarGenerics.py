@@ -610,8 +610,6 @@ class InfoBarEPG:
 		self.bouquetSel = None
 		self.eventView = None
 		self.defaultEPGType = self.getDefaultEPGtype()
-		self.epgList = None
-
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
 				iPlayableService.evUpdatedEventInfo: self.__evEventInfoChanged,
