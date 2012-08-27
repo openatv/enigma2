@@ -1588,7 +1588,10 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 
 	def channelSelected(self):
 		ref = self.getCurrentSelection()
-		doClose = not config.usage.servicelistpreview_mode.value or ref == self.session.nav.getCurrentlyPlayingServiceReference()
+		try:
+			doClose = not config.usage.servicelistpreview_mode.value or ref == self.session.nav.getCurrentlyPlayingServiceReference()
+		except:
+			doClose = False
 		if self.startServiceRef is None and not doClose:
 			self.startServiceRef = self.session.nav.getCurrentlyPlayingServiceReference()
 		if self.movemode:
