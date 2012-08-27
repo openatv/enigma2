@@ -814,7 +814,7 @@ class InfoBarEPG:
 	def __evEventInfoChanged(self):
 		if self.is_now_next and len(self.dlg_stack) == 1:
 			self.getNowNext()
-			if self.eventView and self.epgList:
+			if self.eventView and self.epglist:
 				self.eventView.setEvent(self.epglist[0])
 
 	def showDefaultEPG(self):
