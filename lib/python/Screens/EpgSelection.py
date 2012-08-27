@@ -823,8 +823,8 @@ class EPGSelection(Screen, HelpableScreen):
 						self.session.nav.playService(self.StartRef)
 			self.close(self.closeRecursive)
 		else:
-			if self.StartRef.toString().find('0:0:0:0:0:0:0:0:0')== -1 and (self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR):
-				self.setServicelistSelection(self.StartBouquet, self.StartRef)
+			if self.StartRef and self.StartRef.toString().find('0:0:0:0:0:0:0:0:0') == -1 and (self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR):
+					self.setServicelistSelection(self.StartBouquet, self.StartRef)
 			self.close(False)
 
 	def infoKeyPressed(self):
