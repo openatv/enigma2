@@ -1588,6 +1588,8 @@ class EPGSelectionSetup(Screen, ConfigListScreen):
 			self.list.append(getConfigListEntry(_("Number of rows"), config.epgselection.itemsperpage_vixepg, _("This allows you change the number of rows shown.")))
 			self.list.append(getConfigListEntry(_("Event Fontsize"), config.epgselection.ev_fontsize_vixepg, _("This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size")))
 			self.list.append(getConfigListEntry(_("Service Fontsize"), config.epgselection.serv_fontsize_vixepg, _("This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size")))
+			self.list.append(getConfigListEntry(_("Service width"), config.epgselection.servicewidth,_("Set the width allocated to the service name.")))
+			self.list.append(getConfigListEntry(_("Picon width"), config.epgselection.piconwidth,_("Set the width allocated to the picon.")))
 			self.list.append(getConfigListEntry(_("Timeline Fontsize"), config.epgselection.tl_fontsize_vixepg, _("This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size")))
 			self.list.append(getConfigListEntry(_("Time Scale"), config.epgselection.prev_time_period,_("Choose the amount of time that will be presented.")))
 		elif self.type == 4:

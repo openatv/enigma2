@@ -632,7 +632,6 @@ def InitUsageConfig():
 	config.epgselection.itemsperpage_enhanced = ConfigSelectionNumber(default = 18, stepwidth = 1, min = 12, max = 40, wraparound = True)
 	config.epgselection.itemsperpage_multi = ConfigSelectionNumber(default = 18, stepwidth = 1, min = 12, max = 40, wraparound = True)
 	config.epgselection.itemsperpage_infobar = ConfigSelectionNumber(default = 2, stepwidth = 1, min = 2, max = 4, wraparound = True)
-	config.epgselection.servicewidth = ConfigSelectionNumber(default = 250, stepwidth = 1, min = 70, max = 500, wraparound = True)
 	config.epgselection.overjump = ConfigYesNo(default = False)
 	config.epgselection.pictureingraphics = ConfigYesNo(default = True)
 	config.epgselection.heightswitch = NoSave(ConfigYesNo(default = False))
