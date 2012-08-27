@@ -609,6 +609,7 @@ class InfoBarEPG:
 		self.dlg_stack = [ ]
 		self.bouquetSel = None
 		self.eventView = None
+		self.epglist = []
 		self.defaultEPGType = self.getDefaultEPGtype()
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
