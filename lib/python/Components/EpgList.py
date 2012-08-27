@@ -1,6 +1,6 @@
 from HTMLComponent import HTMLComponent
 from GUIComponent import GUIComponent
-from Components.config import config
+from Components.config import config, ConfigSelectionNumber
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaBlend, MultiContentEntryPixmapAlphaTest
 from Components.Renderer.Picon import getPiconName
 
@@ -133,7 +133,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.listHeight = None
 		self.listWidth = None
 		self.serviceBorderWidth = 1
-		self.serviceNamePadding = 0
+		self.serviceNamePadding = 3
 		self.eventBorderWidth = 1
 		self.eventNamePadding = 3
 		self.eventNameAlign = 'left'
@@ -501,14 +501,20 @@ class EPGList(HTMLComponent, GUIComponent):
 			w = width / 10 * 5;
 			self.descr_rect = Rect(xpos, 0, width, height)
 		elif self.type == EPG_TYPE_GRAPH:
+			piconw = 0
 			if self.showServiceTitle:
-				w = width / 10 * 2;
-			else:     # if self.showPicon:    # this must be set if showServiceTitle is None
+				w = width / 10 * 2
+				config.epgselection.servicewidth = ConfigSelectionNumber(default = w, stepwidth = 1, min = 70, max = 500, wraparound = True)
+				servicew = config.epgselection.servicewidth.getValue();
+			if self.showPicon:
 				w = 2 * height - 2 * self.serviceBorderWidth  # FIXME: could do better...
+				config.epgselection.piconwidth = ConfigSelectionNumber(default = w, stepwidth = 1, min = 70, max = 500, wraparound = True)
+				piconw = config.epgselection.piconwidth.getValue();
+			w = (piconw + servicew)
 			self.service_rect = Rect(0, 0, w, height)
 			self.event_rect = Rect(w, 0, width - w, height)
 			piconHeight = height - 2 * self.serviceBorderWidth
-			piconWidth = 2 * piconHeight  # FIXME: could do better...
+			piconWidth = piconw
 			if piconWidth > w - 2 * self.serviceBorderWidth:
 				piconWidth = w - 2 * self.serviceBorderWidth
 			self.picon_size = eSize(piconWidth, piconHeight)
@@ -648,7 +654,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			piconWidth = self.picon_size.width()
 			piconHeight = self.picon_size.height()
 			if picon != "":
-				self.picload.setPara((piconWidth, piconHeight, 1, 1, 1, 1, "#FFFFFFFF"))
+				self.picload.setPara((piconWidth, piconHeight, 0, 0, 1, 1, "#00000000"))
 				self.picload.startDecode(picon, 0, 0, False)
 				displayPicon = self.picload.getData()
 			if displayPicon is not None:
@@ -662,6 +668,8 @@ class EPGList(HTMLComponent, GUIComponent):
 				namefont = 1
 				namefontflag = RT_HALIGN_LEFT | RT_VALIGN_CENTER | RT_WRAP
 				namewidth = piconWidth
+				piconWidth = 0
+			else:
 				piconWidth = 0
 		else:
 			piconWidth = 0
