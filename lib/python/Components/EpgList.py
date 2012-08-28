@@ -501,6 +501,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			w = width / 10 * 5;
 			self.descr_rect = Rect(xpos, 0, width, height)
 		elif self.type == EPG_TYPE_GRAPH:
+			servicew = 0
 			piconw = 0
 			if self.showServiceTitle:
 				w = width / 10 * 2
