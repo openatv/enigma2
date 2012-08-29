@@ -5,7 +5,6 @@
 #include <unistd.h>
 #include <signal.h>
 #include <aio.h>
-#include <lib/base/systemsettings.h>
 #include <sys/sysinfo.h>
 #include <sys/mman.h>
 
@@ -29,22 +28,6 @@ static int determineBufferCount()
 }
 static const int demuxSize = 4*188*1024; // With the large userspace IO buffers, a 752k demux buffer is enough
 static int recordingBufferCount = determineBufferCount();
-
-static size_t flushSize = 0;
-
-// Defined and exported to SWIG in systemsettings.h
-int getFlushSize(void)
-{
-	return (int)flushSize;
-}
-
-void setFlushSize(int size)
-{
-	if (size >= 0)
-	{
-		flushSize = (size_t)size;
-	}
-}
 
 #include <linux/dvb/dmx.h>
 
@@ -515,6 +498,8 @@ int eDVBRecordFileThread::AsyncIO::wait()
 			eDebug("[eDVBRecordFileThread] wait: aio_return returned failure: %m");
 			return -1;
 		}
+		/* now start writing out the cache (nonblocking) */
+		sync_file_range(aio.aio_fildes, aio.aio_offset, aio.aio_nbytes, SYNC_FILE_RANGE_WRITE);
 	}
 	return 0;
 }
@@ -543,6 +528,8 @@ int eDVBRecordFileThread::AsyncIO::poll()
 		eDebug("[eDVBRecordFileThread] poll: aio_return returned failure: %m");
 		return -1;
 	}
+	/* now start writing out the cache (nonblocking) */
+	sync_file_range(aio.aio_fildes, aio.aio_offset, aio.aio_nbytes, SYNC_FILE_RANGE_WRITE);
 	return 0;
 }
 
@@ -587,21 +574,26 @@ int eDVBRecordFileThread::asyncWrite(int len)
 	diff = (1000000 * (now.tv_sec - starttime.tv_sec)) + now.tv_usec - starttime.tv_usec;
 	eDebug("[eFilePushThreadRecorder] aio_write: %9u us", (unsigned int)diff);
 #endif
-	
-	// do the flush thing if the user wanted it
-	if (flushSize != 0)
+
+	written_since_last_sync += len;
+	if (written_since_last_sync >= 8 * 1024 * 1024)
 	{
-		written_since_last_sync += len;
-		if (written_since_last_sync > flushSize)
-		{
-			int pr = posix_fadvise(m_fd_dest, offset_last_sync, 0, POSIX_FADV_DONTNEED);
-			if (pr != 0)
-			{
-				eDebug("[eDVBRecordFileThread] POSIX_FADV_DONTNEED returned %d", pr);
-			}
-			offset_last_sync += written_since_last_sync;
-			written_since_last_sync = 0;
-		}
+		/* data written more than 8MB ago should really be synced by now, wait for it */
+		sync_file_range(m_fd_dest, 0, offset_last_sync, SYNC_FILE_RANGE_WAIT_AFTER);
+		/*
+		 * Now advise the kernel to drop written out pages from the cache,
+		 * we do not need them anymore.
+		 * Note that POSIX_FADV_DONTNEED ignores dirty pages.
+		 * We will get them next time, because we use start offset 0 each time.
+		 */
+		posix_fadvise(m_fd_dest, 0, offset_last_sync, POSIX_FADV_DONTNEED);
+		offset_last_sync += written_since_last_sync;
+		written_since_last_sync = 0;
+#ifdef SHOW_WRITE_TIME
+		gettimeofday(&now, NULL);
+		diff = (1000000 * (now.tv_sec - starttime.tv_sec)) + now.tv_usec - starttime.tv_usec;
+		eDebug("[eFilePushThreadRecorder] sync_file_range: %9u us", (unsigned int)diff);
+#endif
 	}
 
 	// Count how many buffers are still "busy". Move backwards from current,
@@ -626,10 +618,6 @@ int eDVBRecordFileThread::asyncWrite(int len)
 	}
 	++m_buffer_use_histogram[busy_count];
 
-#ifdef SHOW_WRITE_TIME
-	gettimeofday(&starttime, NULL);
-#endif
-	
 	++m_current_buffer;
 	if (m_current_buffer == m_aio.end())
 		m_current_buffer = m_aio.begin();
@@ -665,6 +653,11 @@ void eDVBRecordFileThread::flush()
 	if (m_overflow_count)
 	{
 		eDebug("[eDVBRecordFileThread] Demux buffer overflows: %d", m_overflow_count);
+	}
+	if (m_fd_dest >= 0)
+	{
+		fdatasync(m_fd_dest);
+		posix_fadvise(m_fd_dest, 0, 0, POSIX_FADV_DONTNEED);
 	}
 }
 
