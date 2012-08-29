@@ -8,8 +8,6 @@
 #include <lib/base/systemsettings.h>
 #include <sys/sysinfo.h>
 #include <sys/mman.h>
-// For SYS_ stuff
-#include <syscall.h>
 
 //#define SHOW_WRITE_TIME
 static int determineBufferCount()
@@ -596,12 +594,7 @@ int eDVBRecordFileThread::asyncWrite(int len)
 		written_since_last_sync += len;
 		if (written_since_last_sync > flushSize)
 		{
-			int pr;
-#if defined SYS_fadvise64
-			pr = syscall(SYS_fadvise64, m_fd_dest, offset_last_sync, 0, 0, 0, POSIX_FADV_DONTNEED);
-#elif defined SYS_arm_fadvise64_64
-			pr = syscall(SYS_arm_fadvise64_64, m_fd_dest, offset_last_sync, 0, 0, 0, POSIX_FADV_DONTNEED);
-#endif
+			int pr = posix_fadvise(m_fd_dest, offset_last_sync, 0, POSIX_FADV_DONTNEED);
 			if (pr != 0)
 			{
 				eDebug("[eDVBRecordFileThread] POSIX_FADV_DONTNEED returned %d", pr);
