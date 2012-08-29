@@ -9,9 +9,6 @@
 #include <byteswap.h>
 #include <netinet/in.h>
 
-#ifndef BYTE_ORDER
-#error no byte order defined!
-#endif
 
 DEFINE_REF(eDVBServiceRecord);
 
