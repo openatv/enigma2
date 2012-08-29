@@ -313,13 +313,6 @@ int eDVBServiceRecord::doRecord()
 			return errOpenRecordFile;
 		}
 
-		/* Attempt to tune kernel caching strategies */
-		int pr = posix_fadvise(fd, 0, 0, POSIX_FADV_RANDOM);
-		if (pr)
-		{
-			eDebug("POSIX_FADV_RANDOM returned %d", pr);
-		}
-
 		ePtr<iDVBDemux> demux;
 		if (m_service_handler.getDataDemux(demux))
 		{
