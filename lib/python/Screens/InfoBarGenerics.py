@@ -659,7 +659,7 @@ class InfoBarNumberZap:
 		return None
 
 	def zapToNumber(self, number):
-		bouquet = self.servicelist.bouquet_root
+		bouquet = self.servicelist.getRoot()
 		service = None
 		serviceHandler = eServiceCenter.getInstance()
 		if not config.usage.multibouquet.value:
@@ -667,9 +667,9 @@ class InfoBarNumberZap:
 		else:
 			service = self.searchNumberHelper(serviceHandler, number, bouquet) #search the current bouqeut first
 			if service is None:
+				bouquet = self.servicelist.bouquet_root
 				bouquetlist = serviceHandler.list(bouquet)
 				if not bouquetlist is None:
-					bouquet = bouquetlist.getNext()
 					while bouquet.valid():
 						if bouquet.flags & eServiceReference.isDirectory:
 							service = self.searchNumberHelper(serviceHandler, number, bouquet)
@@ -1004,11 +1004,6 @@ class InfoBarSimpleEventView:
 class InfoBarEPG:
 	""" EPG - Opens an EPG list when the showEPGList action fires """
 	def __init__(self):
-		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
-			{
-				iPlayableService.evUpdatedEventInfo: self.__evEventInfoChanged,
-			})
-
 		file = open('/etc/image-version', 'r')
 		lines = file.readlines()
 		file.close()
@@ -1021,7 +1016,12 @@ class InfoBarEPG:
 		self.dlg_stack = [ ]
 		self.bouquetSel = None
 		self.eventView = None
+		self.epglist = []
 		self.defaultEPGType = self.getDefaultEPGtype()
+		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
+			{
+				iPlayableService.evUpdatedEventInfo: self.__evEventInfoChanged,
+			})
 
 		self["EPGActions"] = HelpableActionMap(self, "InfobarEPGActions",
 			{
@@ -1278,7 +1278,7 @@ class InfoBarEPG:
 	def __evEventInfoChanged(self):
 		if self.is_now_next and len(self.dlg_stack) == 1:
 			self.getNowNext()
-			if self.eventView and self.epgList:
+			if self.eventView and self.epglist:
 				self.eventView.setEvent(self.epglist[0])
 
 	def showDefaultEPG(self):
@@ -1306,7 +1306,7 @@ class InfoBarEPG:
 		else:
 			self.is_now_next = True
 		if epglist:
-			self.eventView = self.session.openWithCallback(self.closed, EventViewEPGSelect, self.epglist[0], ServiceReference(ref), self.eventViewCallback, self.openSingleServiceEPG, self.openMultiServiceEPG, self.openSimilarList)
+			self.eventView = self.session.openWithCallback(self.closed, EventViewEPGSelect, epglist[0], ServiceReference(ref), self.eventViewCallback, self.openSingleServiceEPG, self.openMultiServiceEPG, self.openSimilarList)
 			self.dlg_stack.append(self.eventView)
 
 	def eventViewCallback(self, setEvent, setService, val): #used for now/next displaying

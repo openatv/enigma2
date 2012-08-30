@@ -399,17 +399,6 @@ def InitUsageConfig():
 
 	config.seek.speeds_backward.addNotifier(updateEnterBackward, immediate_feedback = False)
 
-	def updateFlushSize(el):
-		enigma.setFlushSize(int(el.value))
-		print "[SETTING] getFlushSize=", enigma.getFlushSize()
-	config.misc.flush_size = ConfigSelection(default = "0", choices = [
-		("0", "Off"),
-		("524288", "512kB"),
-		("1048576", "1 MB"),
-		("2097152", "2 MB"),
-		("4194304", "4 MB")])
-	config.misc.flush_size.addNotifier(updateFlushSize, immediate_feedback = False)
-
 	def updateEraseSpeed(el):
 		enigma.eBackgroundFileEraser.getInstance().setEraseSpeed(int(el.value))
 	def updateEraseFlags(el):

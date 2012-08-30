@@ -135,7 +135,6 @@ class RecordingSettings(Screen,ConfigListScreen):
 			self.list.append(getConfigListEntry(_("Remove items from trash after (days)"), config.usage.movielist_trashcan_days, _("Select the number of days after which the box is allowed to permanently delete recordings (from the trashcan).")))
 			self.list.append(getConfigListEntry(_("Disk space to reserve for recordings (in GB)"), config.usage.movielist_trashcan_reserve, _("Itmes in trashcan will be deleted if less then the set space is available.")))
 		if config.usage.setup_level.index >= 2:
-			self.list.append(getConfigListEntry(_("Recording data sync size"), config.misc.flush_size, _("Only change for debugging; default is 'Off'.")))
 			self.list.append(getConfigListEntry(_("Background delete option"), config.misc.erase_flags, _("Only change for debugging; default is 'Internal hdd only'.")))
 			self.list.append(getConfigListEntry(_("Background delete speed"), config.misc.erase_speed, _("Only change for debugging; default is '20 MB/s'.")))
 			self.list.append(getConfigListEntry(_("Offline decode delay (ms)"), config.recording.offline_decode_delay, _("Change this value if your smartcard can't doesn't handle off-line decoding well; default is '1000'.")))
