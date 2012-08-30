@@ -769,7 +769,7 @@ bool eMPEGStreamInformationWriter::PendingWrite::poll()
 	int r = aio_return(&m_aio);
 	if (r < 0)
 	{
-		eDebug("[eDVBRecordFileThread] aio_return returned failure: %m");
+		eDebug("[eMPEGStreamInformationWriter] aio_return returned failure: %m");
 	}
 	free(m_buffer);
 	m_buffer = NULL;
