@@ -57,8 +57,8 @@ class EPGSelection(Screen):
 		else:
 			self.skinName = "EPGSelectionMulti"
 			self.type = EPG_TYPE_MULTI
-			self["key_yellow"] = Button(_("Prev"))
-			self["key_blue"] = Button(_("Next"))
+			self["key_yellow"] = Button(pgettext("button label, 'previous screen'", "Prev"))
+			self["key_blue"] = Button(pgettext("button label, 'next screen'", "Next"))
 			self["now_button"] = Pixmap()
 			self["next_button"] = Pixmap()
 			self["more_button"] = Pixmap()
