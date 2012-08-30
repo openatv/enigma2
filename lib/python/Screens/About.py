@@ -141,6 +141,7 @@ class Devices(Screen):
 		self["nims"] = StaticText()
 		self["hdd"] = StaticText()
 		self["mounts"] = StaticText()
+		self.mountinfo = ""
 		self.activityTimer = eTimer()
 		self.activityTimer.timeout.get().append(self.populate2)
 		self.populate()
@@ -184,7 +185,6 @@ class Devices(Screen):
 			hddinfo = _("none")
 		self["hdd"].setText(hddinfo)
 
-		self.mountinfo = ""
 		f = open('/proc/mounts', 'r')
 		for line in f.readlines():
 			self.parts = line.strip().split()
