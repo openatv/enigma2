@@ -80,9 +80,9 @@ class EventName(Converter, object):
 			else:
 				return getGenreStringSub(genre.getLevel1(), genre.getLevel2())
 		elif self.type == self.NAME_NOW:
-			return _("Now: ") + event.getEventName()
+			return _("Now") + ": " + event.getEventName()
 		elif self.type == self.NAME_NEXT:
-			return _("Next: ") + event.getEventName()
+			return _("Next") + ": " + event.getEventName()
 		elif self.type == self.SHORT_DESCRIPTION:
 			return event.getShortDescription()
 		elif self.type == self.EXTENDED_DESCRIPTION:
