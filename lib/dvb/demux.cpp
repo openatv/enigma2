@@ -26,7 +26,7 @@ static int determineBufferCount()
 		result = 8; // Smaller boxes: Use 1.5MB buffer (dm7025)
 	return result;
 }
-static const int demuxSize = 4*188*1024; // With the large userspace IO buffers, a 752k demux buffer is enough
+
 static int recordingBufferCount = determineBufferCount();
 
 #include <linux/dvb/dmx.h>
@@ -774,16 +774,7 @@ RESULT eDVBTSRecorder::start()
 		return -3;
 	}
 
-	{
-		int size = demuxSize;
-		if (m_packetsize != 188)
-		{
-			size /= 188;
-			size *= m_packetsize;
-		}
-		eDebug("Demux size: %d", size);
-		setBufferSize(size);
-	}
+	setBufferSize(1024*1024);
 
 	dmx_pes_filter_params flt;
 	flt.pes_type = DMX_PES_OTHER;
