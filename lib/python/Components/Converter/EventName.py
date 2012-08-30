@@ -93,7 +93,7 @@ class EventName(Converter, object):
 			else:
 				return getGenreStringSub(genre.getLevel1(), genre.getLevel2())
 		elif self.type == self.NAME_NOW:
-			return _("Now: ") + event.getEventName()
+			return pgettext("now/next: 'now' event label", "Now") + ": " + event.getEventName()
 		elif self.type == self.SHORT_DESCRIPTION:
 			return event.getShortDescription()
 		elif self.type == self.EXTENDED_DESCRIPTION:
@@ -116,7 +116,7 @@ class EventName(Converter, object):
 				self.list = [] if self.epgcache is None else self.epgcache.lookupEvent(test)
 				if self.list:
 						if self.type == self.NAME_NEXT and self.list[1][1]:
-							return _("Next: ") + self.list[1][1]
+							return pgettext("now/next: 'next' event label", "Next") + ": " + self.list[1][1]
 						elif self.type == self.NEXT_DESCRIPTION and (self.list[1][2] or self.list[1][3]):
 							description = self.list[1][2]
 							extended = self.list[1][3]
@@ -124,7 +124,7 @@ class EventName(Converter, object):
 								description += '\n'
 							return description + extended
 						elif self.type == self.THIRD_NAME and self.list[2][1]:
-							return self.list[2][1]
+							return pgettext("thrird evnet: 'third' event label", "Later") + ": " + self.list[2][1]
 						elif self.type == self.THIRD_DESCRIPTION and (self.list[2][2] or self.list[2][3]):
 							description = self.list[2][2]
 							extended = self.list[2][3]
@@ -137,7 +137,7 @@ class EventName(Converter, object):
 			except:
 				# failed to return any epg data.
 				if self.type == self.NAME_NEXT:
-					return _("Next: ") + event.getEventName()
+					return pgettext("now/next: 'next' event label", "Next") + ": " + event.getEventName()
 				return ""
 
 
