@@ -1259,6 +1259,7 @@ void eEPGCache::load()
 			}
 			else
 				eDebug("[EPGC] don't read old epg database");
+			posix_fadvise(fileno(f), 0, 0, POSIX_FADV_DONTNEED);
 			fclose(f);
 			// We got this far, so the EPG file is okay.
 			if (renameResult == 0)
