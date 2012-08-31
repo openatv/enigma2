@@ -225,7 +225,7 @@ class SystemMemoryInfo(Screen):
 		self["lab2"] = StaticText(_("By Team ViX"))
 		self["AboutScrollLabel"] = ScrollLabel()
 
-		self["actions"] = ActionMap(["SetupActions", "ColorActions", "TimerEditActions"],
+		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
 			{
 				"cancel": self.close,
 				"ok": self.close,
@@ -256,6 +256,7 @@ class SystemMemoryInfo(Screen):
 				SwapFree = out_lines[lidx].split()
 				self.AboutText += _("Free Swap:") + "\t" + SwapFree[1] + "\n\n"
 
+		self["actions"].setEnabled(False)
 		self.Console = Console()
 		self.Console.ePopen("df -mh / | grep -v '^Filesystem'", self.Stage1Complete)
 
@@ -270,12 +271,7 @@ class SystemMemoryInfo(Screen):
 		self.AboutText += _("Free:") + "\t" + RamFree + "\n\n"
 
 		self["AboutScrollLabel"].setText(self.AboutText)
-
-		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
-			{
-				"cancel": self.close,
-				"ok": self.close,
-			})
+		self["actions"].setEnabled(True)
 
 	def createSummary(self):
 		return AboutSummary
