@@ -153,6 +153,7 @@ class Devices(Screen):
 			})
 
 	def populate(self):
+		self["actions"].setEnabled(False)
 		scanning = _("Wait please while scanning for devices...")
 		self["nims"].setText(scanning)
 		self["hdd"].setText(scanning)
@@ -204,6 +205,7 @@ class Devices(Screen):
 			self.mountinfo += "\n"
 		self.mountinfo += "%s (%sB, %sB %s)" % (ipaddress, mounttotal, mountfree, _("free"))
 		self["mounts"].setText(self.mountinfo)
+		self["actions"].setEnabled(True)
 
 	def createSummary(self):
 		return AboutSummary
