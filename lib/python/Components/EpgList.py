@@ -503,14 +503,14 @@ class EPGList(HTMLComponent, GUIComponent):
 		elif self.type == EPG_TYPE_GRAPH:
 			servicew = 0
 			piconw = 0
+			servicewtmp = width / 10 * 2
+			config.epgselection.servicewidth = ConfigSelectionNumber(default = servicewtmp, stepwidth = 1, min = 70, max = 500, wraparound = True)
+			piconwtmp = 2 * height - 2 * self.serviceBorderWidth  # FIXME: could do better...
+			config.epgselection.piconwidth = ConfigSelectionNumber(default = piconwtmp, stepwidth = 1, min = 70, max = 500, wraparound = True)
 			if self.showServiceTitle:
-				w = width / 10 * 2
-				config.epgselection.servicewidth = ConfigSelectionNumber(default = w, stepwidth = 1, min = 70, max = 500, wraparound = True)
-				servicew = config.epgselection.servicewidth.getValue();
+				servicew = config.epgselection.servicewidth.getValue()
 			if self.showPicon:
-				w = 2 * height - 2 * self.serviceBorderWidth  # FIXME: could do better...
-				config.epgselection.piconwidth = ConfigSelectionNumber(default = w, stepwidth = 1, min = 70, max = 500, wraparound = True)
-				piconw = config.epgselection.piconwidth.getValue();
+				piconw = config.epgselection.piconwidth.getValue()
 			w = (piconw + servicew)
 			self.service_rect = Rect(0, 0, w, height)
 			self.event_rect = Rect(w, 0, width - w, height)
