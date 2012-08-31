@@ -192,6 +192,7 @@ class Devices(Screen):
 				self.Console.ePopen("df -mh " + self.parts[1] + " | grep -v '^Filesystem'", self.Stage1Complete)
 			else:
 				self["mounts"].setText(_('none'))
+				self["actions"].setEnabled(True)
 		f.close()
 
 	def Stage1Complete(self,result, retval, extra_args = None):
