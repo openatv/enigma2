@@ -144,13 +144,12 @@ class Devices(Screen):
 		self.mountinfo = ""
 		self.activityTimer = eTimer()
 		self.activityTimer.timeout.get().append(self.populate2)
-		self.populate()
-
 		self["actions"] = ActionMap(["SetupActions", "ColorActions", "TimerEditActions"],
 			{
 				"cancel": self.close,
 				"ok": self.close,
 			})
+		self.populate()
 
 	def populate(self):
 		self["actions"].setEnabled(False)
