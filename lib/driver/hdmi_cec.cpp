@@ -51,10 +51,20 @@ eHdmiCEC::eHdmiCEC()
 	physicalAddress[1] = 0x00;
 	logicalAddress = 3;
 	deviceType = 3;
+#ifdef DREAMBOX
+	hdmiFd = ::open("/dev/misc/hdmi_cec0", O_RDWR | O_NONBLOCK);
+#else
 	hdmiFd = ::open("/dev/hdmi_cec", O_RDWR | O_NONBLOCK);
+#endif
 	if (hdmiFd >= 0)
 	{
+
+#ifdef DREAMBOX
+		unsigned int val = 0;
+		::ioctl(hdmiFd, 4, &val);
+#else
 		::ioctl(hdmiFd, 0); /* flush old messages */
+#endif
 		getAddressInfo();
 		messageNotifier = eSocketNotifier::create(eApp, hdmiFd, eSocketNotifier::Read | eSocketNotifier::Priority);
 		CONNECT(messageNotifier->activated, eHdmiCEC::hdmiEvent);
@@ -87,6 +97,21 @@ void eHdmiCEC::getAddressInfo()
 {
 	if (hdmiFd >= 0)
 	{
+		bool hasdata = false;
+#if DREAMBOX
+		struct
+		{
+			unsigned char physical[2];
+			unsigned char logical;
+			unsigned char type;
+		} addressinfo;
+
+		if (::ioctl(hdmiFd, 1, &addressinfo) >= 0)
+		{
+			hasdata = true;
+			addressinfo.type = 0;
+		}
+#else
 		struct
 		{
 			unsigned char logical;
@@ -94,6 +119,11 @@ void eHdmiCEC::getAddressInfo()
 			unsigned char type;
 		} addressinfo;
 		if (::ioctl(hdmiFd, 1, &addressinfo) >= 0)
+		{
+			hasdata = true;
+		}
+#endif
+		if (hasdata)
 		{
 			deviceType = addressinfo.type;
 			logicalAddress = addressinfo.logical;
@@ -158,41 +188,58 @@ void eHdmiCEC::hdmiEvent(int what)
 	{
 		getAddressInfo();
 	}
+
+
 	if (what & eSocketNotifier::Read)
 	{
+		bool hasdata = false;
+#ifdef DREAMBOX
+		struct cec_rx_message rxmessage;
+		if (::ioctl(hdmiFd, 2, &rxmessage) >= 0)
+		{
+			hasdata = true;
+		}
+		unsigned int val = 0;
+		::ioctl(hdmiFd, 4, &val);
+#else
 		struct cec_message rxmessage;
 		if (::read(hdmiFd, &rxmessage, 2) == 2)
 		{
 			if (::read(hdmiFd, &rxmessage.data, rxmessage.length) == rxmessage.length)
 			{
-				bool keypressed = false;
-				static unsigned char pressedkey = 0;
-
-				eDebugNoNewLine("eHdmiCEC: received message");
-				for (int i = 0; i < rxmessage.length; i++)
-				{
-					eDebugNoNewLine(" %02X", rxmessage.data[i]);
-				}
-				eDebug(" ");
-				switch (rxmessage.data[0])
-				{
-					case 0x44: /* key pressed */
-						keypressed = true;
-						pressedkey = rxmessage.data[1];
-					case 0x45: /* key released */
-					{
-						long code = translateKey(pressedkey);
-						if (keypressed) code |= 0x80000000;
-						for (std::list<eRCDevice*>::iterator i(listeners.begin()); i != listeners.end(); ++i)
-						{
-							(*i)->handleCode(code);
-						}
-						break;
-					}
-				}
-				ePtr<iCECMessage> msg = new eCECMessage(rxmessage.address, rxmessage.data[0], (char*)&rxmessage.data[1], rxmessage.length);
-				messageReceived(msg);
+				hasdata = true;
 			}
+		}
+#endif
+		if (hasdata)
+		{
+			bool keypressed = false;
+			static unsigned char pressedkey = 0;
+
+			eDebugNoNewLine("eHdmiCEC: received message");
+			for (int i = 0; i < rxmessage.length; i++)
+			{
+				eDebugNoNewLine(" %02X", rxmessage.data[i]);
+			}
+			eDebug(" ");
+			switch (rxmessage.data[0])
+			{
+				case 0x44: /* key pressed */
+					keypressed = true;
+					pressedkey = rxmessage.data[1];
+				case 0x45: /* key released */
+				{
+					long code = translateKey(pressedkey);
+					if (keypressed) code |= 0x80000000;
+					for (std::list<eRCDevice*>::iterator i(listeners.begin()); i != listeners.end(); ++i)
+					{
+						(*i)->handleCode(code);
+					}
+					break;
+				}
+			}
+			ePtr<iCECMessage> msg = new eCECMessage(rxmessage.address, rxmessage.data[0], (char*)&rxmessage.data[1], rxmessage.length);
+			messageReceived(msg);
 		}
 	}
 }
@@ -324,18 +371,31 @@ void eHdmiCEC::sendMessage(struct cec_message &message)
 			eDebugNoNewLine(" %02X", message.data[i]);
 		}
 		eDebug(" ");
+#ifdef DREAMBOX
+		message.flag = 1;
+		::ioctl(hdmiFd, 3, &message);
+#else
 		::write(hdmiFd, &message, 2 + message.length);
+#endif
 	}
 }
 
 void eHdmiCEC::sendMessage(unsigned char address, unsigned char cmd, char *data, int length)
 {
 	struct cec_message message;
+#ifdef DREAMBOX
+	message.address = address;
+	if (length > (int)(sizeof(message.data) - 1)) length = sizeof(message.data) - 1;
+	message.length = length + 1;
+	message.data[0] = cmd;
+	memcpy(&message.data[1], data, length);
+#else
 	message.address = address;
 	if (length > (int)(sizeof(message.data) - 1)) length = sizeof(message.data) - 1;
 	message.length = length + 1;
 	memcpy(&message.data[1], data, length);
 	message.data[0] = cmd;
+#endif
 	sendMessage(message);
 }
 
