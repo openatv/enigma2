@@ -54,6 +54,9 @@ if test `echo "$BOXTYPE" | cut -b 1-2` == "dm"; then
 	AM_CONDITIONAL(DREAMBOX, 1)
 	AC_DEFINE(DREAMBOX, 1, [Dreambox hardware])
 	AM_CONDITIONAL(HAVE_TEMPFANCONTROL, test "$BOXTYPE" == dm8000 -o "$BOXTYPE" == dm800se -o "$BOXTYPE" == dm500hd)
+else
+	AM_CONDITIONAL(DREAMBOX, 0)
+	AM_CONDITIONAL(HAVE_TEMPFANCONTROL, 0)
 fi
 
 AC_ARG_WITH(textlcd,
