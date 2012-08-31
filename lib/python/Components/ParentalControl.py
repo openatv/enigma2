@@ -207,7 +207,7 @@ class ParentalControl:
 				self.sessionPinCached = True
 			if self.checkPinInterval == True:
 				self.sessionPinCached = True
-				self.sessionPinTimer.start(self.pinIntervalSeconds*1000,1)
+				self.sessionPinTimer.start(int(self.pinIntervalSeconds*1000))
 			self.callback(ref = service)
 		else:
 			#This is the new function of caching cancelling of service pin
