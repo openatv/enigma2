@@ -100,6 +100,16 @@ def InitUsageConfig():
 		('no', _("No")) ])
 	config.usage.show_channel_numbers_in_servicelist = ConfigYesNo(default = True)
 
+	def refreshServiceList(configElement):
+		from Screens.InfoBar import InfoBar
+		InfoBarInstance = InfoBar.instance
+		if InfoBarInstance is not None:
+			servicelist = InfoBarInstance.servicelist
+			if servicelist:
+				servicelist.setMode()
+	config.usage.show_event_progress_in_servicelist.addNotifier(refreshServiceList)
+	config.usage.show_channel_numbers_in_servicelist.addNotifier(refreshServiceList)
+
 	config.usage.blinking_display_clock_during_recording = ConfigYesNo(default = False)
 
 	config.usage.show_message_when_recording_starts = ConfigYesNo(default = True)
