@@ -32,10 +32,6 @@ class Navigation:
 		self.currentlyPlayingService = None
 		self.RecordTimer = RecordTimer.RecordTimer()
 		if getFPWasTimerWakeup():
-			if config.misc.boxtype.value == 'gb800se' or config.misc.boxtype.value == 'gb800solo' or config.misc.boxtype.value == 'gb800ue':
-				if not config.plugins.wakeupworkaround.value:
-					self.clearFPWasTimerWakeup()
-					return
 			if nextRecordTimerAfterEventActionAuto:
 				# We need to give the system the chance to fully startup, 
 				# before we initiate the standby command.
@@ -52,25 +48,7 @@ class Navigation:
 
 	def gotostandby(self):
 		from Tools import Notifications
-		if config.misc.boxtype.value == 'gb800se' or config.misc.boxtype.value == 'gb800solo' or config.misc.boxtype.value == 'gb800ue':
-			from time import time, strftime, localtime
-			from os import path, system
-			if path.isfile("/var/.was_wakeup_timer"):
-				ll = open('/var/.was_wakeup_timer', 'r').readline()
-				if len(ll) > 0:
-					wakeUpTime = int(ll)
-				else:
-					wakeUpTime = 0
-				system("echo wakeuptime=%s, current time=%s > /tmp/wakeup.txt" %(strftime("%d/%m/%Y %H:%M",localtime(wakeUpTime)), strftime("%d/%m/%Y %H:%M",localtime(time()))))
-				self.clearFPWasTimerWakeup()
-				if (wakeUpTime - time()) > 300:
-					return
 		Notifications.AddNotification(Screens.Standby.Standby)
-
-	def clearFPWasTimerWakeup(self):
-		from os import path, system
-		if path.isfile("/var/.was_wakeup_timer"):
-			system("rm -f /var/.was_wakeup_timer")
 
 	def checkShutdownAfterRecording(self):
 		if len(self.getRecordings()) or abs(self.RecordTimer.getNextRecordingTime() - time()) <= 360:

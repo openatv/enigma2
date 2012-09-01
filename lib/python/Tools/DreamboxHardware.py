@@ -62,12 +62,6 @@ def getFPWasTimerWakeup():
 		except IOError:
 			print "wasTimerWakeup failed!"
 
-	if boxtype == 'gb800se' or boxtype == 'gb800solo' or boxtype == 'gb800ue':
-		if not wasTimerWakeup:
-			from os import path
-			if path.isfile("/var/.was_wakeup_timer"):
-				wasTimerWakeup = True
-	
 	if wasTimerWakeup:
 		# clear hardware status
 		clearFPWasTimerWakeup()

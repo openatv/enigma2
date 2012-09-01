@@ -541,16 +541,8 @@ def runScreenTest():
 			print "dvb time sync disabled... so set RTC now to current linux time!", strftime("%Y/%m/%d %H:%M", localtime(nowTime))
 			setRTCtime(nowTime)
 		
-		if config.misc.boxtype.value == 'gb800se' or config.misc.boxtype.value == 'gb800solo' or config.misc.boxtype.value == 'gb800ue':
-			gigawutime = wptime+3600-timezone+300 # 3600 = summertime (must be fixed before the winter), 300 = gigabox already starts 5 min. earlier 
-			t_local = localtime(wptime+300)
-			t_utc = localtime(gigawutime)
-			print "set Gigabox wakeup time to %s (UTC=%s)" % (strftime("%Y/%m/%d %H:%M", t_local), strftime("%H:%M", t_utc))
-			setFPWakeuptime(gigawutime)
-			ret = os.system("echo %s > /var/.was_wakeup_timer" % int(wptime+300))
-		else:
-			print "set wakeup time to", strftime("%Y/%m/%d %H:%M", localtime(wptime))
-			setFPWakeuptime(wptime)
+		print "set wakeup time to", strftime("%Y/%m/%d %H:%M", localtime(wptime))
+		setFPWakeuptime(wptime)
 		recordTimerWakeupAuto = startTime[1] == 0 and startTime[2]
 	config.misc.isNextRecordTimerAfterEventActionAuto.value = recordTimerWakeupAuto
 	config.misc.isNextRecordTimerAfterEventActionAuto.save()

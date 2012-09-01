@@ -42,7 +42,6 @@ config.plugins.aafpanel_redpanel.enabledlong = ConfigYesNo(default=False)
 config.plugins.aafpanel_yellowkey = ConfigSubsection()
 config.plugins.aafpanel_yellowkey.list = ConfigSelection([('0',_("Audio Selection")),('1',_("Default (Timeshift)")), ('2',_("Toggle Pillarbox <> Pan&Scan"))])
 config.plugins.showaafpanelextensions = ConfigYesNo(default=False)
-config.plugins.wakeupworkaround = ConfigYesNo(default=True)
 
 	
 if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/plugin.pyo") is True:
@@ -131,14 +130,9 @@ class ConfigPORT(ConfigSequence):
 def main(session, **kwargs):
 		session.open(Aafpanel)
 
-def vfdgigawakeup(session, **kwargs):
-		session.open(VFDgigawakeup)
-
 def Apanel(menuid, **kwargs):
 	if menuid == "mainmenu":
 		return [("OpenAAF Panel", main, "Aafpanel", 11)]
-	elif menuid == "system" and boxversion.startswith("gb800"):
-		return [("VFD_Giga Wakeup", vfdgigawakeup, "vfdgigawakeup", 99)]
 	else:
 		return []
 
@@ -752,83 +746,6 @@ class YellowPanel(ConfigListScreen, Screen):
 		self.editListEntry = None
 		self.list = []
 		self.list.append(getConfigListEntry(_("Yellow Key Action"), config.plugins.aafpanel_yellowkey.list))
-		
-		self["config"].list = self.list
-		self["config"].setList(self.list)
-		if config.usage.sort_settings.value:
-			self["config"].list.sort()
-
-	def selectionChanged(self):
-		self["status"].setText(self["config"].getCurrent()[0])
-
-	def changedEntry(self):
-		for x in self.onChangedEntry:
-			x()
-		self.selectionChanged()
-
-	def getCurrentEntry(self):
-		return self["config"].getCurrent()[0]
-
-	def getCurrentValue(self):
-		return str(self["config"].getCurrent()[1].getText())
-
-	def saveAll(self):
-		for x in self["config"].list:
-			x[1].save()
-		configfile.save()
-
-	def keySave(self):
-		self.saveAll()
-		self.close()
-
-	def cancelConfirm(self, result):
-		if not result:
-			return
-		for x in self["config"].list:
-			x[1].cancel()
-		self.close()
-
-	def keyCancel(self):
-		if self["config"].isChanged():
-			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"))
-		else:
-			self.close()
-
-class VFDgigawakeup(ConfigListScreen, Screen):
-	def __init__(self, session):
-		Screen.__init__(self, session)
-		self.session = session
-		self.skinName = "Setup"
-		Screen.setTitle(self, _("VFD Giga wakeup workaround") + "...")
-		self["HelpWindow"] = Pixmap()
-		self["HelpWindow"].hide()
-		self["status"] = StaticText()
-		self["labelExitsave"] = Label("[Exit] = " +_("Cancel") +"              [Ok] =" +_("Save"))
-
-		self.onChangedEntry = [ ]
-		self.list = []
-		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
-		self.createSetup()
-
-		self["actions"] = ActionMap(["SetupActions", 'ColorActions'],
-		{
-			"ok": self.keySave,
-			"cancel": self.keyCancel,
-			"red": self.keyCancel,
-			"green": self.keySave,
-			"menu": self.keyCancel,
-		}, -2)
-
-		self["key_red"] = StaticText(_("Cancel"))
-		self["key_green"] = StaticText(_("OK"))
-		if not self.selectionChanged in self["config"].onSelectionChanged:
-			self["config"].onSelectionChanged.append(self.selectionChanged)
-		self.selectionChanged()
-
-	def createSetup(self):
-		self.editListEntry = None
-		self.list = []
-		self.list.append(getConfigListEntry(_("VFD Giga wakeup wakeupworkaround for recording"), config.plugins.wakeupworkaround))
 		
 		self["config"].list = self.list
 		self["config"].setList(self.list)
