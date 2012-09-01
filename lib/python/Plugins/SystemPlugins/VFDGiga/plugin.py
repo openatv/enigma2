@@ -156,8 +156,6 @@ ChannelnumberInstance = None
 def leaveStandby():
 	print "[VFD-GIGA] Leave Standby"
 
-	#SetTime()
-
 	if config.plugins.VFD_Giga.showClock.value == 'Off':
 		evfd.getInstance().vfd_write_string("    ")
 
@@ -175,7 +173,6 @@ def standbyCounterChanged(configElement):
 	from Screens.Standby import inStandby
 	inStandby.onClose.append(leaveStandby)
 
-	#SetTime()		
 
 	if config.plugins.VFD_Giga.showClock.value == 'Off':
 		evfd.getInstance().vfd_write_string("    ")
@@ -338,8 +335,6 @@ def controlgigaVfd():
 	global gReason
 	global mySession
 
-	#SetTime()
-
 	if gReason == 0 and mySession != None and gigaVfd == None:
 		print "[VFD-GIGA] Starting !!"
 		gigaVfd = VFD_Giga(mySession)
@@ -350,19 +345,27 @@ def controlgigaVfd():
 		gigaVfd = None
 
 def SetTime():
-	print "[VFD-GIGA] Set RTC time" 
+	print "[VFD-GIGA] Set RTC time"
 	import time
 	if time.localtime().tm_isdst == 0:
-		forsleep = int(time.time())-time.timezone
+		forsleep = time.timezone
 	else:
-		forsleep = int(time.time())+3600-time.timezone
-	try:
-		t_local = time.localtime(int(time.time()))
-		t_utc = time.localtime(forsleep)
-		print "set Gigabox RTC to %s (UTC=%s)" % (time.strftime("%Y/%m/%d %H:%M", t_local), time.strftime("%H:%M", t_utc))
-		open("/proc/stb/fp/rtc", "w").write(str(forsleep))
+		forsleep = 3600-time.timezone
+
+	t_local = time.localtime(int(time.time()))
+	print "set Gigabox RTC to %s (rtc_offset = %s sec.)" % (time.strftime("%Y/%m/%d %H:%M", t_local), forsleep)
+
+	# Set RTC OFFSET (diff. between UTC and Local Time)
+	try:		
+		open("/proc/stb/fp/rtc_offset", "w").write(str(forsleep))
 	except IOError:
-		print "[VFD-GIGA] setRTCtime failed!"
+		print "[VFD-GIGA] set RTC Offset failed!"
+
+	# Set RTC
+	try:		
+		open("/proc/stb/fp/rtc", "w").write(str(int(time.time())))
+	except IOError:
+		print "[VFD-GIGA] set RTC time failed!"
 
 def sessionstart(reason, **kwargs):
 	print "[VFD-GIGA] AutoStarting VFD_Giga"
