@@ -3889,9 +3889,12 @@ class InfoBarInstantRecord:
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
+		pirr = preferredInstantRecordPath()
 		if not config.timeshift.enabled.value or not self.timeshift_enabled:
-			if not findSafeRecordPath(preferredInstantRecordPath()) and not findSafeRecordPath(defaultMoviePath()):
-				self.session.open(MessageBox, _("Missing ") + "\n" + preferredInstantRecordPath() +
+			if not findSafeRecordPath(pirr) and not findSafeRecordPath(defaultMoviePath()):
+				if not pirr:
+					pirr = ""
+				self.session.open(MessageBox, _("Missing ") + "\n" + pirr +
 							 "\n" + _("No HDD found or HDD not initialized!"), MessageBox.TYPE_ERROR)
 				return
 
