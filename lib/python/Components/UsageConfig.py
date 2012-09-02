@@ -13,7 +13,6 @@ def InitUsageConfig():
 	config.usage = ConfigSubsection();
 	config.usage.showdish = ConfigYesNo(default = True)
 	config.usage.multibouquet = ConfigYesNo(default = True)
-	config.usage.multiepg_ask_bouquet = ConfigYesNo(default = False)
 
 	config.usage.alternative_number_mode = ConfigYesNo(default = False)
 	def alternativeNumberModeChange(configElement):
