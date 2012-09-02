@@ -1004,14 +1004,6 @@ class InfoBarSimpleEventView:
 class InfoBarEPG:
 	""" EPG - Opens an EPG list when the showEPGList action fires """
 	def __init__(self):
-		file = open('/etc/image-version', 'r')
-		lines = file.readlines()
-		file.close()
-		for x in lines:
-			splitted = x.split('=')
-			if splitted[0] == "box_type":
-				self.box_type = splitted[1].replace('\n','')
-
 		self.is_now_next = False
 		self.dlg_stack = [ ]
 		self.bouquetSel = None
@@ -1053,7 +1045,7 @@ class InfoBarEPG:
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
-		if self.box_type.startswith('et') or self.box_type.startswith('odin') or self.box_type.startswith('venton') or self.box_type.startswith('tm') or self.box_type.startswith('gb'):
+		if config.misc.boxtype.getValue().startswith('et') or config.misc.boxtype.getValue().startswith('odin') or config.misc.boxtype.getValue().startswith('venton') or config.misc.boxtype.getValue().startswith('tm') or config.misc.boxtype.getValue().startswith('gb'):
 			self.openEventView()
 		else:
 			self.showDefaultEPG()
