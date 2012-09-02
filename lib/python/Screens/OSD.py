@@ -1,6 +1,6 @@
 from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
-from Components.config import configfile , config, getConfigListEntry
+from Components.config import config, configfile, ConfigSubsection, ConfigSelectionNumber, ConfigSelection, ConfigSlider, ConfigYesNo, getConfigListEntry
 from Components.ConfigList import ConfigListScreen
 from Components.SystemInfo import SystemInfo
 from Components.Sources.StaticText import StaticText
@@ -37,7 +37,7 @@ class OSDSetup(Screen, ConfigListScreen):
 				"save": self.keySave,
 				"left": self.keyLeft,
 				"right": self.keyRight,
-				"yellow": self.keydefaults,
+				"yellow": self.keyDefault,
 			}, -2)
 
 		self.onChangedEntry = [ ]
@@ -72,7 +72,6 @@ class OSDSetup(Screen, ConfigListScreen):
 	def changedEntry(self):
 		for x in self.onChangedEntry:
 			x()
-		self.selectionChanged()
 
 	def getCurrentEntry(self):
 		return self["config"].getCurrent()[0]
@@ -88,10 +87,15 @@ class OSDSetup(Screen, ConfigListScreen):
 		ConfigListScreen.keyRight(self)
 		self.setPreviewPosition()
 
-	def keydefaults(self):
-		setDefaults()
-		self.setPreviewPosition()
-		self["config"].l.setList(self.list)
+	def keyDefault(self):
+		config.osd.alpha.setValue(255)
+
+		config.osd.dst_left.setValue(0)
+		config.osd.dst_width.setValue(720)
+		config.osd.dst_top.setValue(0)
+		config.osd.dst_height.setValue(576)
+
+		self.keyLeft()
 
 	def setPreviewPosition(self):
 		size_w = getDesktop(0).size().width()
@@ -152,20 +156,12 @@ def setPosition(dst_left, dst_width, dst_top, dst_height):
 	except:
 		return
 
-def setDefaults():
-	print'[OSD Setup] Set Defaults'
-	config.osd.dst_left.value = 0
-	config.osd.dst_width.value = 720
-	config.osd.dst_top.value = 0
-	config.osd.dst_height.value = 576
-	config.osd.alpha.value = 255
-	
 def setAlpha(alpha_value):
 	try:
 		print 'Setting OSD alpha:', str(alpha_value)
 		open("/proc/stb/video/alpha", "w").write(str(alpha_value))
 	except:
-		return	
+		return
 
 class OSD3DSetupScreen(Screen, ConfigListScreen):
 	skin = """
@@ -251,6 +247,7 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 	def keySave(self):
 		self.saveAll()
 		self.close()
+
 	def cancelConfirm(self, result):
 		if not result:
 			return
@@ -274,8 +271,8 @@ def applySettings(mode, znorm):
 		print 'Setting 3D depth:',znorm
 		open("/proc/stb/fb/znorm", "w").write('%d' % znorm)
 	except:
-		return	
-		
+		return		
+
 def applySettings2(mode, znorm, setmode):
 	try:
 		if setmode == "mode1":
@@ -293,52 +290,29 @@ def applySettings2(mode, znorm, setmode):
 			print 'Setting zoffset 3D mode:',znorm
 			open("/proc/stb/fb/primary/zoffset", "w").write('%d' % znorm)
 	except:
-		return		
+		return			
 
 def setConfiguredPosition():
-	setPosition(int(config.osd.dst_left.value), int(config.osd.dst_width.value), int(config.osd.dst_top.value), int(config.osd.dst_height.value))
+	if SystemInfo["CanChangeOsdPosition"]:
+		setPosition(int(config.osd.dst_left.value), int(config.osd.dst_width.value), int(config.osd.dst_top.value), int(config.osd.dst_height.value))
 
 def setConfiguredAplha():
-	setAlpha(int(config.osd.alpha.value))
+	if SystemInfo["CanChangeOsdAlpha"]:
+		setAlpha(int(config.osd.alpha.value))
+
 def setConfiguredSettings():
-	if config.misc.boxtype.value == 'gb800se' or config.misc.boxtype.value == 'gb800solo' or config.misc.boxtype.value == 'gb800ue':
-		applySettings2(config.osd.threeDmode.value, int(config.osd.threeDznorm.value), config.osd.threeDsetmode.value)
+	if SystemInfo["CanChange3DOsd"]:
+		if config.misc.boxtype.value == 'gb800se' or config.misc.boxtype.value == 'gb800solo' or config.misc.boxtype.value == 'gb800ue':
+			applySettings2(config.osd.threeDmode.value, int(config.osd.threeDznorm.value), config.osd.threeDsetmode.value)
+		else:
+			applySettings(config.osd.threeDmode.value, int(config.osd.threeDznorm.value))
+
+def InitOsd():
+	SystemInfo["CanChange3DOsd"] = (open("/proc/stb/fb/3dmode", "r") or open("/proc/stb/fb/primary/3d", "r")) and True or False
+	SystemInfo["CanChangeOsdAlpha"] = open("/proc/stb/video/alpha", "r") and True or False
+	SystemInfo["CanChangeOsdPosition"] = open("/proc/stb/fb/dst_left", "r") and True or False
+	SystemInfo["OsdSetup"] = SystemInfo["CanChangeOsdPosition"]
+	if SystemInfo["CanChangeOsdAlpha"] == True or SystemInfo["CanChangeOsdPosition"] == True:
+		SystemInfo["OsdMenu"] = True
 	else:
-		applySettings(config.osd.threeDmode.value, int(config.osd.threeDznorm.value))
-
-def isChangeOsdPositionSupported():
-	try:
-		can_osd_position = open("/proc/stb/fb/dst_left", "r") and True or False
-	except:
-		can_osd_position = False
-	return can_osd_position
-
-def isChangeOsdAlphaSupported():
-	try:
-		can_osd_alpha = open("/proc/stb/video/alpha", "r") and True or False
-	except:
-		can_osd_alpha = False
-	return can_osd_alpha
-
-def isChange3DOsdSupported():
-	try:
-		can_osd_3dmode = open("/proc/stb/fb/3dmode", "r") and True or False
-	except:
-		can_osd_3dmode = False
-	return can_osd_3dmode
-
-def isOsdSetupSupported():
-	if SystemInfo["CanChangeOsdAlpha"] == True or SystemInfo["CanChangeOsdPosition"] == True:
-		return True
-	return False
-
-def isOsdMenuSupported():
-	if SystemInfo["CanChangeOsdAlpha"] == True or SystemInfo["CanChangeOsdPosition"] == True:
-		return True
-	return False
-
-SystemInfo["CanChange3DOsd"] = isChange3DOsdSupported()
-SystemInfo["CanChangeOsdAlpha"] = isChangeOsdAlphaSupported()
-SystemInfo["CanChangeOsdPosition"] = isChangeOsdPositionSupported()
-SystemInfo["OsdSetup"] = isOsdSetupSupported()
-SystemInfo["OsdMenu"] = isOsdMenuSupported()
+		SystemInfo["OsdMenu"] = False
