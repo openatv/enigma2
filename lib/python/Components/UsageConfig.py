@@ -13,8 +13,15 @@ def InitUsageConfig():
 	config.usage = ConfigSubsection();
 	config.usage.showdish = ConfigYesNo(default = True)
 	config.usage.multibouquet = ConfigYesNo(default = True)
-	config.usage.multiepg_ask_bouquet = ConfigYesNo(default = False)
 
+	config.usage.alternative_number_mode = ConfigYesNo(default = False)
+	def alternativeNumberModeChange(configElement):
+		enigma.eDVBDB.getInstance().setNumberingMode(configElement.value)
+		refreshServiceList()
+	config.usage.alternative_number_mode.addNotifier(alternativeNumberModeChange)
+
+	config.usage.multiepg_ask_bouquet = ConfigYesNo(default = False)
+	
 	config.usage.quickzap_bouquet_change = ConfigYesNo(default = False)
 	config.usage.e1like_radio_mode = ConfigYesNo(default = True)
 	choicelist = []
@@ -99,14 +106,6 @@ def InitUsageConfig():
 		('percright', _("Percentage Right")),
 		('no', _("No")) ])
 	config.usage.show_channel_numbers_in_servicelist = ConfigYesNo(default = True)
-
-	def refreshServiceList(configElement):
-		from Screens.InfoBar import InfoBar
-		InfoBarInstance = InfoBar.instance
-		if InfoBarInstance is not None:
-			servicelist = InfoBarInstance.servicelist
-			if servicelist:
-				servicelist.setMode()
 	config.usage.show_event_progress_in_servicelist.addNotifier(refreshServiceList)
 	config.usage.show_channel_numbers_in_servicelist.addNotifier(refreshServiceList)
 
@@ -400,3 +399,10 @@ def preferredInstantRecordPath():
 def defaultMoviePath():
 	return config.usage.default_path.value
 
+def refreshServiceList(configElement = None):
+		from Screens.InfoBar import InfoBar
+		InfoBarInstance = InfoBar.instance
+		if InfoBarInstance is not None:
+			servicelist = InfoBarInstance.servicelist
+			if servicelist:
+				servicelist.setMode()
