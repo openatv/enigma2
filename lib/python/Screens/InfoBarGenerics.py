@@ -1593,6 +1593,7 @@ class InfoBarEPG:
 		self.epglist = epglist
 
 	def __evEventInfoChanged(self):
+		self.isInfo = True
 		if self.is_now_next and len(self.dlg_stack) == 1:
 			self.getNowNext()
 			if self.eventView and self.epglist:
