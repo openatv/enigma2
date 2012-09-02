@@ -22,14 +22,14 @@ class eDVBDB: public iDVBChannelList
 	{
 		ePtr<iDVBFrontendParameters> m_frontendParameters;
 	};
-	
+
 	std::map<eDVBChannelID, channel> m_channels;
-	
+
 	std::map<eServiceReferenceDVB, ePtr<eDVBService> > m_services;
-	
+
 	std::map<std::string, eBouquet> m_bouquets;
 
-	bool m_numberingMode;
+	bool m_numbering_mode;
 #ifdef SWIG
 	eDVBDB();
 	~eDVBDB();
@@ -53,7 +53,7 @@ public:
 	RESULT removeChannel(const eDVBChannelID &id);
 
 	RESULT getChannelFrontendData(const eDVBChannelID &id, ePtr<iDVBFrontendParameters> &parm);
-	
+
 	RESULT addService(const eServiceReferenceDVB &referenc, eDVBService *service);
 	RESULT getService(const eServiceReferenceDVB &reference, ePtr<eDVBService> &service);
 	RESULT flush();
