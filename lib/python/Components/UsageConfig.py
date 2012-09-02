@@ -307,11 +307,11 @@ def InitUsageConfig():
 	config.epg.cacheloadsched = ConfigYesNo(default = False)
 	config.epg.cachesavesched = ConfigYesNo(default = False)
 	def EpgCacheLoadSchedChanged(configElement):
-		import Screens.EpgLoadSave
-		Screens.EpgLoadSave.EpgCacheLoadCheck()
+		import EpgLoadSave
+		EpgLoadSave.EpgCacheLoadCheck()
 	def EpgCacheSaveSchedChanged(configElement):
-		import Screens.EpgLoadSave
-		Screens.EpgLoadSave.EpgCacheSaveCheck()
+		import EpgLoadSave
+		EpgLoadSave.EpgCacheSaveCheck()
 	config.epg.cacheloadsched.addNotifier(EpgCacheLoadSchedChanged, immediate_feedback = False)
 	config.epg.cachesavesched.addNotifier(EpgCacheSaveSchedChanged, immediate_feedback = False)
 	config.epg.cacheloadtimer = ConfigSelectionNumber(default = 24, stepwidth = 1, min = 1, max = 24, wraparound = True)
@@ -426,17 +426,6 @@ def InitUsageConfig():
 		updateChoices(config.seek.enter_backward, configElement.value)
 
 	config.seek.speeds_backward.addNotifier(updateEnterBackward, immediate_feedback = False)
-
-	def updateFlushSize(el):
-		enigma.setFlushSize(int(el.value))
-		print "[SETTING] getFlushSize=", enigma.getFlushSize()
-	config.misc.flush_size = ConfigSelection(default = "0", choices = [
-		("0", "Off"),
-		("524288", "512kB"),
-		("1048576", "1 MB"),
-		("2097152", "2 MB"),
-		("4194304", "4 MB")])
-	config.misc.flush_size.addNotifier(updateFlushSize, immediate_feedback = False)
 
 	def updateEraseSpeed(el):
 		enigma.eBackgroundFileEraser.getInstance().setEraseSpeed(int(el.value))
@@ -639,7 +628,7 @@ def InitUsageConfig():
 					("2", _("with exit button")),
 					("3", _("with left/right buttons"))])
 
-	config.epgselction = ConfigSubsection()
+	config.epgselection = ConfigSubsection()
 	config.epgselection.showbouquet_pliepg = ConfigYesNo(default = False)
 	config.epgselection.showbouquet_multi = ConfigYesNo(default = False)
 	config.epgselection.preview_mode_pliepg = ConfigYesNo(default = True)

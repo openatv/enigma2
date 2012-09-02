@@ -34,7 +34,6 @@ from Screens.TimeDateInput import TimeDateInput
 from Screens.TimerEdit import TimerEditList
 from Screens.UnhandledKey import UnhandledKey
 from ServiceReference import ServiceReference
-from Screens.SecondInfobar import SecondInfobar
 from skin import parseColor
 import os
 from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN
