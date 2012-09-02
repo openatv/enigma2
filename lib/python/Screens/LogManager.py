@@ -1,4 +1,4 @@
-from Screens.Screen import Screen
+﻿from Screens.Screen import Screen
 from Components.GUIComponent import GUIComponent
 from Components.VariableText import VariableText
 from Components.ActionMap import ActionMap, NumberActionMap
@@ -149,7 +149,6 @@ class LogManagerPoller:
 
 class LogManager(Screen):
 	skin = """<screen name="LogManager" position="center,center" size="560,400" title="Log Manager" flags="wfBorder">
-		<ePixmap pixmap="skin_default/buttons/key_menu.png" position="0,35" zPosition="4" size="35,25" alphatest="on" transparent="1" />
 		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
@@ -168,7 +167,7 @@ class LogManager(Screen):
 		Screen.__init__(self, session)
 		self.logtype = 'crashlogs'
 
-		self['myactions'] = ActionMap(['ColorActions', 'OkCancelActions', 'DirectionActions', "MenuActions"],
+		self['myactions'] = ActionMap(['ColorActions', 'OkCancelActions', 'DirectionActions'],
 			{
 				'ok': self.changeSelectionState,
 				'cancel': self.close,
@@ -176,7 +175,6 @@ class LogManager(Screen):
 				'green': self.showLog,
 				'yellow': self.deletelog,
 				'blue': self.sendlog,
-				'menu': self.createSetup,
 				"left": self.left,
 				"right": self.right,
 				"down": self.down,
@@ -246,12 +244,14 @@ class LogManager(Screen):
 	def exit(self):
 		self.close(None)
 
-	def createSetup(self):
-		self.session.open(LogManagerMenu)
-
 	def changeSelectionState(self):
-		self["list"].changeSelectionState()
-		self.selectedFiles = self["list"].getSelectedList()
+		try:
+			self.sel = self["list"].getCurrent()[0]
+		except:
+			self.sel = None
+		if self.sel:
+			self["list"].changeSelectionState()
+			self.selectedFiles = self["list"].getSelectedList()
 
 	def changelogtype(self):
 		self["LogsSize"].update(config.crash.debug_path.value)
@@ -419,9 +419,11 @@ class LogManager(Screen):
 					fp.close()
 					msg.attach(data)
 					self.saveSelection()
+					sentfiles = self.sel
 			else:
 				self.sel = self["list"].getCurrent()[0]
 				self.sel = str(self.sel[0])
+				sentfiles = self.sel
 				fp = open((self.defaultDir + self.sel), 'rb')
 				data = MIMEText(fp.read())
 				fp.close()
@@ -442,11 +444,11 @@ class LogManager(Screen):
 				if config.logmanager.usersendcopy.value:
 					s.sendmail(fromlogman, [tocrashlogs, fromlogman], msg.as_string())
 					s.quit()
-					self.session.open(MessageBox, _(self.sel + ' has been sent to the SVN team.\nplease quote ' + ref + ' when asking question about this log\n\nA copy has been sent to yourself.'), MessageBox.TYPE_INFO)
+					self.session.open(MessageBox, sentfiles + ' ' + _('has been sent to the SVN team team.\nplease quote') + ' ' + str(ref) + ' ' + _('when asking question about this log\n\nA copy has been sent to yourself.'), MessageBox.TYPE_INFO)
 				else:
 					s.sendmail(fromlogman, tocrashlogs, msg.as_string())
 					s.quit()
-					self.session.open(MessageBox, _(self.sel + ' has been sent to the SVN team.\nplease quote ' + ref + ' when asking question about this log'), MessageBox.TYPE_INFO)
+					self.session.open(MessageBox, sentfiles + ' ' + _('has been sent to the SVN team team.\nplease quote') + ' ' + str(ref) + ' ' + _('when asking question about this log'), MessageBox.TYPE_INFO)
 			except Exception,e:
 				self.session.open(MessageBox, _("Error:\n%s" % e), MessageBox.TYPE_INFO, timeout = 10)
 		else:
@@ -481,147 +483,6 @@ class LogManagerViewLog(Screen):
 
 	def cancel(self):
 		self.close()
-
-class LogManagerMenu(ConfigListScreen, Screen):
-	def __init__(self, session):
-		Screen.__init__(self, session)
-		self.session = session
-		self.setup_title =  _("Log Manager Setup")
-		self.skinName = "Setup"
-
-		self['footnote'] = Label()
-		self["HelpWindow"] = Pixmap()
-		self["HelpWindow"].hide()
-		self["VKeyIcon"] = Boolean(False)
-		self["status"] = StaticText()
-
-		self.onChangedEntry = [ ]
-		self.list = []
-		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
-		self.createSetup()
-
-		self["key_red"] = StaticText(_("Cancel"))
-		self["key_green"] = StaticText(_("OK"))
-
-		self["actions"] = NumberActionMap(["SetupActions", "MenuActions"],
-			{
-				"cancel": self.keyCancel,
-				"save": self.keySave,
-				"menu": self.closeRecursive,
-			}, -2)
-
-		self["VirtualKB"] = ActionMap(["VirtualKeyboardActions"],
-		{
-			"showVirtualKeyboard": self.KeyText,
-		}, -2)
-		self["VirtualKB"].setEnabled(False)
-
-		if not self.handleInputHelpers in self["config"].onSelectionChanged:
-			self["config"].onSelectionChanged.append(self.handleInputHelpers)
-		self.changedEntry()
-		self.onLayoutFinish.append(self.layoutFinished)
-		self.onClose.append(self.HideHelp)
-
-	def createSetup(self):
-		self.editListEntry = None
-		self.list = []
-		self.list.append(getConfigListEntry(_("Show in extensions list ?"), config.logmanager.showinextensions, _("Allows you to show/hide Log Manager in extensions (blue button).")))
-		self.list.append(getConfigListEntry(_("User Name"), config.logmanager.user, _("Enter your forum user name, to make it easier trace logs.")))
-		self.list.append(getConfigListEntry(_("e-Mail address"), config.logmanager.useremail, _("Enter your email address to send a copy of the log to.")))
-		self.list.append(getConfigListEntry(_("Send yourself a copy ?"), config.logmanager.usersendcopy, _("Allows you to send a copy of the log to yourself.")))
-		self["config"].list = self.list
-		self["config"].setList(self.list)
-		if config.usage.sort_settings.value:
-			self["config"].list.sort()
-
-	def handleInputHelpers(self):
- 		self["status"].setText(self["config"].getCurrent()[2])
-		if self["config"].getCurrent() is not None:
-			try:
-				from Components.config import ConfigText, ConfigPassword
-				if isinstance(self["config"].getCurrent()[1], ConfigText):
-					if self.has_key("VKeyIcon"):
-						self["VirtualKB"].setEnabled(True)
-						self["VKeyIcon"].boolean = True
-					if self.has_key("HelpWindow"):
-						if self["config"].getCurrent()[1].help_window.instance is not None:
-							helpwindowpos = self["HelpWindow"].getPosition()
-							from enigma import ePoint
-							self["config"].getCurrent()[1].help_window.instance.move(ePoint(helpwindowpos[0],helpwindowpos[1]))
-				else:
-					if self.has_key("VKeyIcon"):
-						self["VirtualKB"].setEnabled(False)
-						self["VKeyIcon"].boolean = False
-			except:
-				if self.has_key("VKeyIcon"):
-					self["VirtualKB"].setEnabled(False)
-					self["VKeyIcon"].boolean = False
-		else:
-			if self.has_key("VKeyIcon"):
-				self["VirtualKB"].setEnabled(False)
-				self["VKeyIcon"].boolean = False
-
-	def HideHelp(self):
-		if isinstance(self["config"].getCurrent()[1], ConfigText):
-			if self["config"].getCurrent()[1].help_window.instance is not None:
-				self["config"].getCurrent()[1].help_window.hide()
-
-	def KeyText(self):
-		from Screens.VirtualKeyBoard import VirtualKeyBoard
-		self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title = self["config"].getCurrent()[0], text = self["config"].getCurrent()[1].getValue())
-
-	def VirtualKeyBoardCallback(self, callback = None):
-		if callback is not None and len(callback):
-			self["config"].getCurrent()[1].setValue(callback)
-			self["config"].invalidate(self["config"].getCurrent())
-
-	def layoutFinished(self):
-		self.setTitle(_(self.setup_title))
-
-	# for summary:
-	def changedEntry(self):
-		self.item = self["config"].getCurrent()
-		for x in self.onChangedEntry:
-			x()
-		try:
-			if isinstance(self["config"].getCurrent()[1], ConfigYesNo) or isinstance(self["config"].getCurrent()[1], ConfigSelection):
-				self.createSetup()
-		except:
-			pass
-
-	def getCurrentEntry(self):
-		return self["config"].getCurrent() and self["config"].getCurrent()[0] or ""
-
-	def getCurrentValue(self):
-		return self["config"].getCurrent() and str(self["config"].getCurrent()[1].getText()) or ""
-
-	def createSummary(self):
-		from Screens.Setup import SetupSummary
-		return SetupSummary
-
-	def saveAll(self):
-		for x in self["config"].list:
-			x[1].save()
-
-	# keySave and keyCancel are just provided in case you need them.
-	# you have to call them by yourself.
-	def keySave(self):
-		self.saveAll()
-		self.close()
-
-	def cancelConfirm(self, result):
-		if not result:
-			return
-
-		for x in self["config"].list:
-			x[1].cancel()
-		self.close()
-
-	def keyCancel(self):
-		if self["config"].isChanged():
-			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"))
-		else:
-			self.close()
 
 class LogManagerFb(Screen):
 	skin = """

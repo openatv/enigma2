@@ -66,6 +66,8 @@ class ChoiceBox(Screen):
 		desktop_w = enigma.getDesktop(0).size().width()
 		desktop_h = enigma.getDesktop(0).size().height()
 		count = len(self.list)
+		if count > 15:
+			count = 15
 		if not self["text"].text:
 			# move list
 			textsize = (520,0)

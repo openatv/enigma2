@@ -9,12 +9,6 @@
 #include <byteswap.h>
 #include <netinet/in.h>
 
-// For SYS_ stuff
-#include <syscall.h>
-
-#ifndef BYTE_ORDER
-#error no byte order defined!
-#endif
 
 DEFINE_REF(eDVBServiceRecord);
 
@@ -315,11 +309,6 @@ int eDVBServiceRecord::doRecord()
 			m_event((iRecordableService*)this, evRecordFailed);
 			return errOpenRecordFile;
 		}
-
-		/* Attempt to tune kernel caching strategies */
-		int pr;
-		pr = syscall(SYS_fadvise64, fd, 0, 0, 0, 0, 0, POSIX_FADV_RANDOM);
-		eDebug("POSIX_FADV_RANDOM returned %d", pr);
 
 		ePtr<iDVBDemux> demux;
 		if (m_service_handler.getDataDemux(demux))

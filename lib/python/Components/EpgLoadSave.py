@@ -1,6 +1,6 @@
 import Components.Task
 from Screens.MessageBox import MessageBox
-from Components.config import config
+from Components.config import config, ConfigSelectionNumber, ConfigSubsection, ConfigYesNo
 from enigma import eTimer
 
 def EpgCacheLoadCheck(session=None, **kwargs):
@@ -96,7 +96,6 @@ class EpgCacheSaveCheckPoller:
 
 	def JobSched(self):
 		self.timer.startLongTimer(int(config.epg.cachesavetimer.getValue()) * 3600)
-
 
 class EpgSaveMsg(MessageBox):
 	def __init__(self, session):

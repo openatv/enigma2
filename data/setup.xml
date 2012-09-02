@@ -8,7 +8,6 @@
 		<item level="1" text="Action on long power button press" summary="Setup what a long press on the power button does.">config.usage.on_long_powerpress</item>
 		<item level="1" text="Action on short power button press" summary="Setup what a short press on the power button does.">config.usage.on_short_powerpress</item>
 		<item level="0" text="Setup Mode" summary="Choose which level of menu/setting's to display. 'Expert'-level shows all items.">config.usage.setup_level</item>
-		<item level="1" text="Online version check every (hours)" summary="Setup the interval to check for online updates. (in hours, 0 = Disable the check completely.)">config.usage.infobar_onlinechecktimer</item>
 		<item level="1" text="Zap mode" requires="ZapMode" summary="Setup how to control the channel changing.">config.misc.zapmode</item>
 		<item level="2" text="Enable panic button" summary="With this option enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history.">config.usage.panicbutton</item>
 		<item level="1" text="Enable teletext caching" summary="If Teletext caching is enabled, displaying pages will be much faster.">config.usage.enable_tt_caching</item>
@@ -20,24 +19,31 @@
 		<item level="2" text="Alternative services tuner priority" summary="Choose the order in which the tuner types will be used (for watching and recording).">config.usage.alternatives_priority</item>
 		<item level="2" text="Preferred tuner" summary="Choose with tuner will be used first. If set to 'auto' the system will give priority to the tuner having the lowest number of channels/satellites.">config.usage.frontend_priority</item>
 		<item level="2" text="Disable background scanning" summary="When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'no' if you're absolutely sure what you're doing.">config.misc.disable_background_scan</item>
+		<item level="1" text="Show alternative radio mode" summary="Use the alternative or the conventional radio mode.">config.usage.e1like_radio_mode</item>
 		<item level="1" text="Show background in Radio Mode" summary="Show background when tuned to a radio channel.">config.misc.showradiopic</item>
 		<item level="2" text="Include ECM in http streams" summary="This allows the ECM data to be included in the stream. This enables a client STB_BOX to decode it.">config.streaming.stream_ecm</item>
 		<item level="2" text="De-scramble http streams" summary="This allows the STB_BOX to decode the stream (if the ECM data is included in the stream and a valid card is availble).">config.streaming.descramble</item>
 		<item level="2" text="Enable Startup Bootvideo" summary="You can Enable or Disable the Startup Bootvideo.">config.misc.bootvideo</item>
 	</setup>
+
+	<setup key="onlineupdatesetup" title="Online Update">
+		<item level="1" text="Online update" summary="Perform an online update check">config.usage.infobar_onlinecheck</item>
+		<item level="1" text="Check every (hours)" summary="Setup the interval to check for online updates. (in hours)" requires="config.usage.infobar_onlinecheck">config.usage.infobar_onlinechecktimer</item>
+		<item level="1" text="Allow unstable (untested) updates" summary="With this option enabled the online checker will also check for experimental versions" requires="config.usage.infobar_onlinecheck">config.usage.infobar_onlineupdatebeta</item>
+	</setup>	
+	
 	<setup key="osdsetup" title="OSD Setup">
 		<item level="0" text="1st Infobar timeout" summary="Set the time to hide the infobar.">config.usage.infobar_timeout</item>
 		<item level="0" text="2nd infobar" summary="Set the screen type you get on pressing 'OK' when the info bar shows to 2nd infobar or event info.">config.usage.show_second_infobar</item>
 		<item level="0" text="2nd Infobar timeout" summary="Set the time to hide the second infobar. The bar also disappears on pressing 'OK'.">config.usage.second_infobar_timeout</item>
 		<item level="0" text="Show infobar picons" summary="Option to disable picons on the Infobar">config.usage.showpicon</item>
-		<item level="0" text="Show picon background colour" summary="This option allows you choose the background colour of transparent picons.">config.usage.show_picon_bkgrn</item>
 		<item level="0" text="Show infobar lite" summary="Set the screen type you get on pressing 'OK' when the info bar shows to 2nd infobar Lite or event info.">config.usage.show_infobar_lite</item>
 		<item level="0" text="Show animation while busy" summary="Show spinning logo when system is busy.">config.usage.show_spinner</item>
-		<item level="1" text="Show alternative radio mode" summary="Use the alternative or the conventional radio mode.">config.usage.e1like_radio_mode</item>
 		<item level="1" text="Show job tasks in extensions" summary="With this option you can hide Job Tasks from the extension screen (short blue button press).">config.usage.jobtaksextensions</item>
 		<item level="1" text="Show positioner movement" summary="Choose whether or not to show an icon when a motorized dish is moving.">config.usage.showdish</item>
 		<item level="0" text="Always show bouquets" summary="With this option set to 'yes' the channel lists will always show you the bouquet screen first. If set to 'no' the current bouquet will be opened.">config.usage.show_bouquetalways</item>
 		<item level="0" text="Channel selection on mode change" summary="If set to 'yes' the channel list will be shown after switching between radio and TV modes.">config.usage.show_servicelist</item>
+		<item level="2" text="Show crypto info in infobar" summary="Show encryption info in the infobar (if the skin allows that).">config.usage.show_cryptoinfo</item>
 		<item level="0" text="Show event-progress in channel selection" summary="If set to 'yes' the progress of the current event in the channel list is displayed.">config.usage.show_event_progress_in_servicelist</item>
 		<item level="0" text="Show channel numbers in channel selection" summary="If set to 'yes' the channel numbers in the channel list will be displayed.">config.usage.show_channel_numbers_in_servicelist</item>
 		<item level="0" text="Channel list service mode*" summary="This option allows you to choose from the two channel lists that are available.">config.usage.servicelist_mode</item>
@@ -45,7 +51,7 @@
 		<item level="1" text="Show infobar on channel change" summary="If set to 'yes' the infobar will be displayed when changing channels.">config.usage.show_infobar_on_zap</item>
 		<item level="1" text="Show infobar on skip forward/backward" summary="If set to 'yes; the infobar will be displayed when Fast Forwarding or Rewinding during media playback.">config.usage.show_infobar_on_skip</item>
 		<item level="1" text="Show infobar on event change" summary="If set to 'yes' the infobar will be displayed when a new event starts.">config.usage.show_infobar_on_event_change</item>
-		<item level="2" text="Show crypto info in infobar" summary="Show encryption info in the infobar (if the skin allows that).">config.usage.show_cryptoinfo</item>
+		<item level="0" text="Show picon background colour" summary="This option allows you choose the background colour of transparent picons.">config.usage.show_picon_bkgrn</item>
 		<item level="0" text="Show time remaining/elapsed" summary="This option allows you choose how to display remaining time, or elapsed time, or both.">config.usage.swap_time_remaining_on_osd</item>
 		<item level="0" text="Show time elapsed as positive" summary="This option allows you choose how to display elasped time  as + or -">config.usage.elapsed_time_positive_osd</item>
 		<item level="0" text="Show transponder remaining/elapsed as" summary="This option allows you choose how to display the remaining/elapsed time for live tv.">config.usage.swap_time_display_on_osd</item>
@@ -193,6 +199,7 @@
 		<item level="2" text="Behavior when a movie is started">config.usage.on_movie_start</item>
 		<item level="2" text="Behavior when a movie is stopped">config.usage.on_movie_stop</item>
 		<item level="2" text="Behavior when a movie reaches the end">config.usage.on_movie_eof</item>
+		<item level="2" text="Display message before next played movie">config.usage.next_movie_msg</item>
 		<item level="2" text="Behavior of 'pause' when paused">config.seek.on_pause</item>
 		<item level="2" text="Custom skip time for '1'/'3'-keys">config.seek.selfdefined_13</item>
 		<item level="2" text="Custom skip time for '4'/'6'-keys">config.seek.selfdefined_46</item>
@@ -209,7 +216,6 @@
 		<item level="1" text="Use trashcan in movielist">config.usage.movielist_trashcan</item>
 		<item level="1" text="Remove items from trash after (days)">config.usage.movielist_trashcan_days</item>
 		<item level="1" text="Disk space to reserve for recordings (in GB)">config.usage.movielist_trashcan_reserve</item>
-		<item level="2" text="Recording data sync size">config.misc.flush_size</item>
 		<item level="2" text="Background delete option">config.misc.erase_flags</item>
 		<item level="2" text="Background delete speed">config.misc.erase_speed</item>
 		<item level="2" text="Offline decode delay (ms)">config.recording.offline_decode_delay</item>

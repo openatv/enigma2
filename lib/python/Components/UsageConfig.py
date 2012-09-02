@@ -1,8 +1,7 @@
 from Components.Harddisk import harddiskmanager
 from config import config, ConfigSubsection, ConfigYesNo, ConfigSelection, ConfigText, ConfigNumber, ConfigSet, ConfigLocations, NoSave, ConfigClock, ConfigInteger, ConfigBoolean, ConfigPassword, ConfigIP, ConfigSlider, ConfigSelectionNumber
 from Tools.Directories import resolveFilename, SCOPE_HDD, SCOPE_TIMESHIFT
-from enigma import setTunerTypePriorityOrder, setPreferredTuner, setSpinnerOnOff, setEnableTtCachingOnOff;
-from enigma import Misc_Options, eEnv;
+from enigma import setTunerTypePriorityOrder, setPreferredTuner, setSpinnerOnOff, setEnableTtCachingOnOff, Misc_Options, eEnv
 from Components.NimManager import nimmanager
 from SystemInfo import SystemInfo
 import os
@@ -22,6 +21,7 @@ def InitUsageConfig():
 	except:
 		folderprefix=""
 		boxtype="not detected"
+
 	config.misc.boxtype = ConfigText(default = boxtype)
 	config.misc.useNTPminutes = ConfigSelection(default = "30", choices = [("30", "30" + " " +_("minutes")), ("60", _("Hour")), ("1440", _("Once per day"))])
 	config.misc.remotecontrol_text_support = ConfigYesNo(default = False)
@@ -36,9 +36,12 @@ def InitUsageConfig():
 	
 	config.usage.quickzap_bouquet_change = ConfigYesNo(default = False)
 	config.usage.e1like_radio_mode = ConfigYesNo(default = True)
+	config.usage.infobar_onlinecheck = ConfigYesNo(default = False)
 	config.usage.infobar_onlinechecktimer = ConfigInteger(default=0, limits=(0, 48))
 	config.usage.infobar_onlineupdatelastcheck = ConfigInteger(default=0)
 	config.usage.infobar_onlineupdatefound = NoSave(ConfigBoolean(default = False))
+	config.usage.infobar_onlineupdatebeta = ConfigYesNo(default = False)
+	config.usage.infobar_onlineupdateisunstable = ConfigInteger(default=0)
 
 	choicelist = []
 	for i in range(1, 12):
@@ -123,7 +126,9 @@ def InitUsageConfig():
 	config.usage.on_movie_stop = ConfigSelection(default = "movielist", choices = [
 		("ask", _("Ask user")), ("movielist", _("Return to movie list")), ("quit", _("Return to previous service")) ])
 	config.usage.on_movie_eof = ConfigSelection(default = "movielist", choices = [
-		("ask", _("Ask user")), ("movielist", _("Return to movie list")), ("quit", _("Return to previous service")), ("pause", _("Pause movie at end")) ])
+		("ask", _("Ask user")), ("movielist", _("Return to movie list")), ("quit", _("Return to previous service")), ("pause", _("Pause movie at end")), ("playlist", _("Play next (return to movie list)")),
+		("playlistquit", _("Play next (return to previous service)")), ("loop", _("Continues play (loop)"))])
+	config.usage.next_movie_msg = ConfigYesNo(default = True)
 
 	config.usage.setup_level = ConfigSelection(default = "expert", choices = [
 		("simple", _("Simple")),
@@ -175,11 +180,26 @@ def InitUsageConfig():
 					("1", _("Channel List")),
 					("2", _("Bouquet List"))])
 	config.usage.show_bouquetalways = ConfigYesNo(default = False)
-	config.usage.show_event_progress_in_servicelist = ConfigYesNo(default = True)
+	config.usage.show_event_progress_in_servicelist = ConfigSelection(default = 'barright', choices = [
+		('barleft', _("Progress Bar Left")),
+		('barright', _("Progress Bar Right")),
+		('percleft', _("Percentage Left")),
+		('percright', _("Percentage Right")),
+		('no', _("No")) ])
 	config.usage.show_channel_numbers_in_servicelist = ConfigYesNo(default = True)
 	config.usage.show_channel_jump_in_servicelist = ConfigSelection(default="alpha", choices = [
 					("alpha", _("Alpha")),
 					("number", _("Number"))])
+
+	def refreshServiceList(configElement):
+		from Screens.InfoBar import InfoBar
+		InfoBarInstance = InfoBar.instance
+		if InfoBarInstance is not None:
+			servicelist = InfoBarInstance.servicelist
+			if servicelist:
+				servicelist.setMode()
+	config.usage.show_event_progress_in_servicelist.addNotifier(refreshServiceList)
+	config.usage.show_channel_numbers_in_servicelist.addNotifier(refreshServiceList)
 
 	config.usage.blinking_display_clock_during_recording = ConfigYesNo(default = False)
 
@@ -222,7 +242,7 @@ def InitUsageConfig():
 
 	config.usage.hide_zap_errors = ConfigYesNo(default = True)
 	config.usage.hide_ci_messages = ConfigYesNo(default = True)
-	config.usage.show_cryptoinfo = ConfigYesNo(default = True)
+	config.usage.show_cryptoinfo = ConfigSelection([("0", _("Off")),("1", _("One line")),("2", _("Two lines"))], "2")
 	config.usage.show_eit_nownext = ConfigYesNo(default = True)
 
 	config.osd.dst_left = ConfigSelectionNumber(default = 0, stepwidth = 1, min = 0, max = 720, wraparound = False)
@@ -353,6 +373,7 @@ def InitUsageConfig():
 	config.timeshift.isRecording = NoSave(ConfigYesNo(default = False))
 
 	config.seek = ConfigSubsection()
+	config.seek.baractivation = ConfigSelection([("leftright", _("Long Left/Right")),("ffrw", _("Long << / >>"))], "leftright")
 	config.seek.sensibility = ConfigInteger(default=10, limits=(1, 10))
 	config.seek.selfdefined_13 = ConfigNumber(default=15)
 	config.seek.selfdefined_46 = ConfigNumber(default=60)
@@ -619,45 +640,48 @@ def InitUsageConfig():
 					("3", _("with left/right buttons"))])
 
 	config.epgselction = ConfigSubsection()
-	config.epgselction.showbouquet_pliepg = ConfigYesNo(default = False)
-	config.epgselction.showbouquet_multi = ConfigYesNo(default = False)
-	config.epgselction.preview_mode_pliepg = ConfigYesNo(default = True)
-	config.epgselction.preview_mode_enhanced = ConfigYesNo(default = True)
-	config.epgselction.preview_mode_infobar = ConfigYesNo(default = True)
-	config.epgselction.preview_mode = ConfigYesNo(default = True)
-	config.epgselction.OK = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap")
-	config.epgselction.OKLong = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap + Exit")
-	config.epgselction.OK_pliepg = ConfigSelection(choices = [("EventView",_("EventView")), ("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap")
-	config.epgselction.OKLong_pliepg = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap + Exit")
-	config.epgselction.OK_enhanced = ConfigSelection(choices = [("EventView",_("EventView")), ("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap")
-	config.epgselction.OKLong_enhanced = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap + Exit")
-	config.epgselction.OK_infobar = ConfigSelection(choices = [("EventView",_("EventView")), ("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap")
-	config.epgselction.OKLong_infobar = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap + Exit")
-	config.epgselction.Info = ConfigSelection(choices = [("Channel Info", _("Channel Info")), ("Single EPG", _("Single EPG"))], default = "Channel Info")
-	config.epgselction.InfoLong = ConfigSelection(choices = [("Channel Info", _("Channel Info")), ("Single EPG", _("Single EPG"))], default = "Single EPG")
-	config.epgselction.roundTo = ConfigSelection(default = "15", choices = [("15", _("%d minutes") % 15), ("30", _("%d minutes") % 30), ("60", _("%d minutes") % 60)])
-	config.epgselction.sort = ConfigSelection(default="Time", choices = [("Time", _("Time")),("AZ", _("Alphanumeric"))])
-	config.epgselction.prev_time = ConfigClock(default = time())
-	config.epgselction.primetimehour = ConfigSelectionNumber(default = 20, stepwidth = 1, min = 00, max = 23, wraparound = True)
-	config.epgselction.primetimemins = ConfigSelectionNumber(default = 00, stepwidth = 1, min = 00, max = 59, wraparound = True)
-	config.epgselction.showpicon = ConfigYesNo(default = True)
-	config.epgselction.showservicetitle = ConfigYesNo(default = True)
-	config.epgselction.channel1 = ConfigYesNo(default = False)
-	config.epgselction.prev_time_period = ConfigSelectionNumber(default = 180, stepwidth = 1, min = 60, max = 300, wraparound = True)
-	config.epgselction.serv_fontsize_pliepg = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
-	config.epgselction.ev_fontsize_pliepg = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
-	config.epgselction.tl_fontsize_pliepg = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
-	config.epgselction.ev_fontsize_enhanced = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
-	config.epgselction.ev_fontsize_multi = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
-	config.epgselction.ev_fontsize_infobar = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
-	config.epgselction.itemsperpage_pliepg = ConfigSelectionNumber(default = 8, stepwidth = 1, min = 3, max = 16, wraparound = True)
-	config.epgselction.itemsperpage_enhanced = ConfigSelectionNumber(default = 18, stepwidth = 1, min = 12, max = 40, wraparound = True)
-	config.epgselction.itemsperpage_multi = ConfigSelectionNumber(default = 18, stepwidth = 1, min = 12, max = 40, wraparound = True)
-	config.epgselction.itemsperpage_infobar = ConfigSelectionNumber(default = 2, stepwidth = 1, min = 2, max = 4, wraparound = True)
-	config.epgselction.servicewidth = ConfigSelectionNumber(default = 250, stepwidth = 1, min = 70, max = 500, wraparound = True)
-	config.epgselction.overjump = ConfigYesNo(default = False)
-	config.epgselction.pictureingraphics = ConfigYesNo(default = True)
-	config.epgselction.heightswitch = NoSave(ConfigYesNo(default = False))
+	config.epgselection.showbouquet_pliepg = ConfigYesNo(default = False)
+	config.epgselection.showbouquet_multi = ConfigYesNo(default = False)
+	config.epgselection.preview_mode_pliepg = ConfigYesNo(default = True)
+	config.epgselection.preview_mode_enhanced = ConfigYesNo(default = True)
+	config.epgselection.preview_mode_infobar = ConfigYesNo(default = True)
+	config.epgselection.preview_mode = ConfigYesNo(default = True)
+	config.epgselection.graphics_mode = ConfigSelection(choices = [("graphics",_("Graphics")), ("text", _("Text"))], default = "graphics")
+	config.epgselection.OK = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap")
+	config.epgselection.OKLong = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap + Exit")
+	config.epgselection.OK_pliepg = ConfigSelection(choices = [("EventView",_("EventView")), ("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap")
+	config.epgselection.OKLong_pliepg = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap + Exit")
+	config.epgselection.OK_enhanced = ConfigSelection(choices = [("EventView",_("EventView")), ("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap")
+	config.epgselection.OKLong_enhanced = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap + Exit")
+	config.epgselection.OK_infobar = ConfigSelection(choices = [("EventView",_("EventView")), ("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap")
+	config.epgselection.OKLong_infobar = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap + Exit")
+	config.epgselection.Info = ConfigSelection(choices = [("Channel Info", _("Channel Info")), ("Single EPG", _("Single EPG"))], default = "Channel Info")
+	config.epgselection.InfoLong = ConfigSelection(choices = [("Channel Info", _("Channel Info")), ("Single EPG", _("Single EPG"))], default = "Single EPG")
+	config.epgselection.roundTo = ConfigSelection(default = "15", choices = [("15", _("%d minutes") % 15), ("30", _("%d minutes") % 30), ("60", _("%d minutes") % 60)])
+	config.epgselection.sort = ConfigSelection(default="0", choices = [("0", _("Time")),("1", _("Alphanumeric"))])
+	config.epgselection.prev_time = ConfigClock(default = time())
+	config.epgselection.primetimehour = ConfigSelectionNumber(default = 20, stepwidth = 1, min = 00, max = 23, wraparound = True)
+	config.epgselection.primetimemins = ConfigSelectionNumber(default = 00, stepwidth = 1, min = 00, max = 59, wraparound = True)
+	config.epgselection.servicetitle_mode = ConfigSelection(default = "picon+servicename", choices = [
+	("servicename", _("Service Name")),
+	("picon", _("Picon")),
+	("picon+servicename", _("Picon and Service Name")) ])
+	config.epgselection.channel1 = ConfigYesNo(default = False)
+	config.epgselection.prev_time_period = ConfigSelectionNumber(default = 180, stepwidth = 1, min = 60, max = 300, wraparound = True)
+	config.epgselection.serv_fontsize_pliepg = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
+	config.epgselection.ev_fontsize_pliepg = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
+	config.epgselection.tl_fontsize_pliepg = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
+	config.epgselection.ev_fontsize_enhanced = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
+	config.epgselection.ev_fontsize_multi = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
+	config.epgselection.ev_fontsize_infobar = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
+	config.epgselection.itemsperpage_pliepg = ConfigSelectionNumber(default = 8, stepwidth = 1, min = 3, max = 16, wraparound = True)
+	config.epgselection.itemsperpage_enhanced = ConfigSelectionNumber(default = 18, stepwidth = 1, min = 12, max = 40, wraparound = True)
+	config.epgselection.itemsperpage_multi = ConfigSelectionNumber(default = 18, stepwidth = 1, min = 12, max = 40, wraparound = True)
+	config.epgselection.itemsperpage_infobar = ConfigSelectionNumber(default = 2, stepwidth = 1, min = 2, max = 4, wraparound = True)
+	config.epgselection.servicewidth = ConfigSelectionNumber(default = 250, stepwidth = 1, min = 70, max = 500, wraparound = True)
+	config.epgselection.overjump = ConfigYesNo(default = False)
+	config.epgselection.pictureingraphics = ConfigYesNo(default = True)
+	config.epgselection.heightswitch = NoSave(ConfigYesNo(default = False))
 
 	config.oscaminfo = ConfigSubsection()
 	config.oscaminfo.showInExtensions = ConfigYesNo(default=False)

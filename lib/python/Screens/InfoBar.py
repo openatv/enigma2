@@ -9,6 +9,7 @@ from Components.Pixmap import MultiPixmap
 from Plugins.Plugin import PluginDescriptor
 
 from Screen import Screen
+from Screens.MessageBox import MessageBox
 
 profile("LOAD:enigma")
 from enigma import iServiceInformation, iPlayableService
@@ -21,7 +22,7 @@ from Screens.InfoBarGenerics import InfoBarShowHide, \
 	InfoBarSubserviceSelection, InfoBarShowMovies, InfoBarTimeshift,  \
 	InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport, InfoBarSimpleEventView, \
 	InfoBarSummarySupport, InfoBarMoviePlayerSummarySupport, InfoBarTimeshiftState, InfoBarTeletextPlugin, InfoBarExtensions, \
-	InfoBarSubtitleSupport, InfoBarPiP, InfoBarPlugins, InfoBarServiceErrorPopupSupport, InfoBarJobman, InfoBarQuickMenu, \
+	InfoBarSubtitleSupport, InfoBarPiP, InfoBarPlugins, InfoBarServiceErrorPopupSupport, InfoBarJobman, InfoBarQuickMenu, InfoBarZoom, \
 	setResumePoint, delResumePoint
 
 profile("LOAD:InitBar_Components")
@@ -38,7 +39,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 	HelpableScreen, InfoBarAdditionalInfo, InfoBarNotifications, InfoBarDish, InfoBarUnhandledKey,
 	InfoBarSubserviceSelection, InfoBarTimeshift, InfoBarSeek,
 	InfoBarSummarySupport, InfoBarTimeshiftState, InfoBarTeletextPlugin, InfoBarExtensions,
-	InfoBarPiP, InfoBarPlugins, InfoBarSubtitleSupport, InfoBarServiceErrorPopupSupport, InfoBarJobman, InfoBarQuickMenu,
+	InfoBarPiP, InfoBarPlugins, InfoBarSubtitleSupport, InfoBarServiceErrorPopupSupport, InfoBarJobman, InfoBarQuickMenu, InfoBarZoom,
 	Screen):
 
 	ALLOW_SUSPEND = True
@@ -65,6 +66,11 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 				"openSleepTimer": (self.openSleepTimer, _("Show the Sleep Timer...")),
 			}, prio=2)
 
+		self["key_red"] = Label()
+		self["key_yellow"] = Label()
+		self["key_blue"] = Label()
+		self["key_green"] = Label()
+
 		self.allowPiP = True
 
 		for x in HelpableScreen, \
@@ -73,7 +79,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 				InfoBarInstantRecord, InfoBarAudioSelection, InfoBarRedButton, InfoBarUnhandledKey, InfoBarAAFpanel, InfoBarSecondInfobar, InfoBarResolutionSelection, \
 				InfoBarAdditionalInfo, InfoBarNotifications, InfoBarDish, InfoBarSubserviceSelection, InfoBarAspectSelection, \
 				InfoBarTimeshift, InfoBarSeek, InfoBarSummarySupport, InfoBarTimeshiftState, \
-				InfoBarTeletextPlugin, InfoBarExtensions, InfoBarPiP, InfoBarSubtitleSupport, InfoBarJobman, InfoBarQuickMenu, \
+				InfoBarTeletextPlugin, InfoBarExtensions, InfoBarPiP, InfoBarSubtitleSupport, InfoBarJobman, InfoBarQuickMenu, InfoBarZoom, \
 				InfoBarPlugins, InfoBarServiceErrorPopupSupport:
 			x.__init__(self)
 
@@ -88,6 +94,32 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		self.current_begin_time=0
 		assert InfoBar.instance is None, "class InfoBar is a singleton class and just one instance of this class is allowed!"
 		InfoBar.instance = self
+
+		if config.misc.initialchannelselection.value:
+			self.onShown.append(self.showMenu)
+
+		self.onShow.append(self.doButtonsCheck)
+
+	def showMenu(self):
+		self.onShown.remove(self.showMenu)
+		config.misc.initialchannelselection.value = False
+		config.misc.initialchannelselection.save()
+		self.mainMenu()
+
+	def doButtonsCheck(self):
+		if config.plisettings.ColouredButtons.value:
+			self["key_yellow"].setText(_("Search"))
+
+			if config.usage.defaultEPGType.value == "Graphical EPG..." or config.usage.defaultEPGType.value == "None":
+				self["key_red"].setText(_("Single EPG"))
+			else:
+				self["key_red"].setText(_("ViX EPG"))
+
+			if not config.plisettings.Subservice.value:
+				self["key_green"].setText(_("Timers"))
+			else:
+				self["key_green"].setText(_("Subservices"))
+		self["key_blue"].setText(_("Extensions"))
 
 	def __onClose(self):
 		InfoBar.instance = None
@@ -245,49 +277,72 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			self.session.open(MessageBox, _("The IMDb plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
 class MoviePlayer(InfoBarBase, InfoBarShowHide, \
-		InfoBarMenu, \
-		InfoBarSeek, InfoBarShowMovies, InfoBarAudioSelection, HelpableScreen, InfoBarNotifications,
+		InfoBarMenu, InfoBarEPG, InfoBarSeek, InfoBarShowMovies, InfoBarAudioSelection, HelpableScreen, InfoBarNotifications,
 		InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport, InfoBarSimpleEventView,
 		InfoBarMoviePlayerSummarySupport, InfoBarSubtitleSupport, Screen, InfoBarTeletextPlugin, InfoBarAspectSelection,
-		InfoBarServiceErrorPopupSupport, InfoBarExtensions, InfoBarPlugins, InfoBarPiP, InfoBarSecondInfobar, InfoBarResolutionSelection):
+		InfoBarServiceErrorPopupSupport, InfoBarExtensions, InfoBarPlugins, InfoBarPiP, InfoBarSecondInfobar, InfoBarResolutionSelection, InfoBarZoom):
 
 	ENABLE_RESUME_SUPPORT = True
 	ALLOW_SUSPEND = True
+
+	instance = None
 
 	def __init__(self, session, service, slist = None, lastservice = None):
 		Screen.__init__(self, session)
 		InfoBarAspectSelection.__init__(self)
 		InfoBarAudioSelection.__init__(self)
 		InfoBarSecondInfobar.__init__(self)	
+
+		self["key_yellow"] = Label()
+		self["key_blue"] = Label()
+		self["key_green"] = Label()
+
 		self["state"] = Label(text="")
 		self["speed"] = Label(text="")
 		self["statusicon"] = MultiPixmap()
 
 		self["actions"] = HelpableActionMap(self, "MoviePlayerActions",
 			{
-				"leavePlayer": (self.leavePlayer, _("leave movie player..."))
+				"leavePlayer": (self.leavePlayer, _("leave movie player...")),
+				"leavePlayerOnExit": (self.leavePlayerOnExit, _("leave movie player..."))
 			})
 
 		self.allowPiP = True
 
-		for x in HelpableScreen, InfoBarShowHide, InfoBarMenu, \
+		for x in HelpableScreen, InfoBarShowHide, InfoBarMenu, InfoBarEPG, \
 				InfoBarBase, InfoBarSeek, InfoBarShowMovies, \
 				InfoBarAudioSelection, InfoBarNotifications, InfoBarSimpleEventView, \
 				InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport, \
 				InfoBarMoviePlayerSummarySupport, InfoBarSubtitleSupport, \
 				InfoBarTeletextPlugin, InfoBarServiceErrorPopupSupport, InfoBarExtensions, \
-				InfoBarPlugins, InfoBarPiP:
+				InfoBarPlugins, InfoBarPiP, InfoBarZoom:
 			x.__init__(self)
 
 		self.onChangedEntry = [ ]
 		self.servicelist = slist
 		self.lastservice = lastservice or session.nav.getCurrentlyPlayingServiceReference()
 		session.nav.playService(service)
+		from Screens.MovieSelection import Playlist
+		self.playlist = Playlist.getPlayList()
+		self.cur_service = service
 		self.returning = False
 		self.playingservice = None
 		self.onClose.append(self.__onClose)
+		self.onShow.append(self.doButtonsCheck)
+
+		assert MoviePlayer.instance is None, "class InfoBar is a singleton class and just one instance of this class is allowed!"
+		MoviePlayer.instance = self
+
+	def doButtonsCheck(self):
+		if config.plisettings.ColouredButtons.value:
+			self["key_yellow"].setText(_("Search"))
+			self["key_green"].setText(_("Timers"))
+		self["key_blue"].setText(_("Extensions"))
 
 	def __onClose(self):
+		MoviePlayer.instance = None
+		from Screens.MovieSelection import Playlist
+		Playlist.clearPlayList()
 		self.session.nav.playService(self.lastservice)
 
 	def handleLeave(self, how):
@@ -316,6 +371,14 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 		setResumePoint(self.session)
 		self.handleLeave(config.usage.on_movie_stop.value)
 
+	def leavePlayerOnExit(self, answer = None):
+		if answer == True:
+			self.leavePlayer()
+		elif self.shown:
+			self.hide()
+		elif answer is None:
+			self.session.openWithCallback(self.leavePlayerOnExit, MessageBox, _("Exit Movieplayer?"), MessageBox.TYPE_YESNO, simple = True)
+
 	def deleteConfirmed(self, answer):
 		if answer:
 			self.leavePlayerConfirmed((True, "quitanddeleteconfirmed"))
@@ -343,14 +406,12 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 				info = serviceHandler.info(ref)
 				name = info and info.getName(ref) or _("this recording")
 				msg += _("Do you really want to delete %s?") % name
-				from Screens.MessageBox import MessageBox
 				self.session.openWithCallback(self.deleteConfirmed, MessageBox, msg)
 				return
 
 			elif answer == "quitanddeleteconfirmed":
 				offline = serviceHandler.offlineOperations(ref)
 				if offline.deleteFromDisk(0):
-					from Screens.MessageBox import MessageBox
 					self.session.openWithCallback(self.close, MessageBox, _("You cannot delete this!"), MessageBox.TYPE_ERROR)
 					return
 
@@ -364,6 +425,20 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 		elif answer == "restart":
 			self.doSeek(0)
 			self.setSeekState(self.SEEK_STATE_PLAY)
+		elif answer in ("playlist","playlistquit","loop"):
+			( next_service, item , lenght ) = self.nextPlaylistService(self.cur_service)
+			if next_service is not None:
+				if config.usage.next_movie_msg.value:
+					self.displayPlayedName(next_service, item, lenght)
+				self.session.nav.playService(next_service)
+				self.cur_service = next_service
+			else:
+				if answer == "playlist":
+					self.leavePlayerConfirmed([True,"movielist"])
+				elif answer == "loop" and lenght > 0:
+					self.leavePlayerConfirmed([True,"loop"])
+				else:
+					self.leavePlayerConfirmed([True,"quit"])
 
 	def doEofInternal(self, playing):
 		if not self.execing:
@@ -460,6 +535,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 
 	def movieSelected(self, service):
 		if service is not None:
+			self.cur_service = service
 			self.is_closing = False
 			self.session.nav.playService(service)
 			self.returning = False
@@ -475,3 +551,21 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 					self.session.nav.playService(ref)
 			except:
 				pass		
+
+	def nextPlaylistService(self, service):
+		n = len(self.playlist)
+		for item, i in zip(self.playlist,range(1,n+1)):
+			if item == service:
+				if i < n:
+					return (self.playlist[i], i+1, n)
+				elif config.usage.on_movie_eof.value == "loop" and n > 0:
+					return (self.playlist[0], 1, n)
+		return ( None, 0, 0 )
+
+	def displayPlayedName(self, ref, index, n):
+		from Tools import Notifications
+		Notifications.AddPopup(text = _("%s/%s: %s") % (index, n, self.ref2HumanName(ref)), type = MessageBox.TYPE_INFO, timeout = 5)
+
+	def ref2HumanName(self, ref):
+		from enigma import eServiceCenter
+		return eServiceCenter.getInstance().info(ref).getName(ref)

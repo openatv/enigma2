@@ -21,6 +21,19 @@
 
 #define HTTP_TIMEOUT 20
 
+typedef enum
+{
+	GST_PLAY_FLAG_VIDEO         = 0x00000001,
+	GST_PLAY_FLAG_AUDIO         = 0x00000002,
+	GST_PLAY_FLAG_TEXT          = 0x00000004,
+	GST_PLAY_FLAG_VIS           = 0x00000008,
+	GST_PLAY_FLAG_SOFT_VOLUME   = 0x00000010,
+	GST_PLAY_FLAG_NATIVE_AUDIO  = 0x00000020,
+	GST_PLAY_FLAG_NATIVE_VIDEO  = 0x00000040,
+	GST_PLAY_FLAG_DOWNLOAD      = 0x00000080,
+	GST_PLAY_FLAG_BUFFERING     = 0x000000100
+} GstPlayFlags;
+
 // eServiceFactoryMP3
 
 /*
@@ -251,9 +264,11 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 	m_cachedSubtitleStream = 0; /* report the first subtitle stream to be 'cached'. TODO: use an actual cache. */
 	m_subtitle_widget = 0;
 	m_currentTrickRatio = 1.0;
-	m_buffer_size = 5*1024*1024;
-	m_buffer_duration = 5 * GST_SECOND;
-	m_use_prefillbuffer = FALSE;
+	m_buffer_size = 5 * 1024 * 1024;
+	m_ignore_buffering_messages = 0;
+	m_is_live = false;
+	m_use_prefillbuffer = false;
+	m_download_buffer_path = "";
 	m_prev_decoder_time = -1;
 	m_decoder_time_valid_state = 0;
 	m_errorInfo.missing_codec = "";
@@ -321,8 +336,6 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 	}
 	if ( strstr(filename, "://") )
 		m_sourceinfo.is_streaming = TRUE;
-	if ( strstr(filename, " buffer=1") )
-		m_use_prefillbuffer = TRUE;
 
 	gchar *uri;
 
@@ -339,7 +352,22 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 				ePythonConfigQuery::getConfigValue("config.mediaplayer.alternateUserAgent", m_useragent);
 		}
 		if ( m_useragent.length() == 0 )
-			m_useragent = "Dream Multimedia Dreambox Enigma2 Mediaplayer";
+			m_useragent = "Enigma2 Mediaplayer";
+
+		if (strstr(filename, " buffer=1"))
+		{
+			m_use_prefillbuffer = true;
+		}
+		else if (strstr(filename, " buffer=2"))
+		{
+			/* progressive download buffering */
+			if (::access("/hdd/movie", X_OK) >= 0)
+			{
+				/* It looks like /hdd points to a valid mount, so we can store a download buffer on it */
+				m_download_buffer_path = "/hdd/gstreamer_XXXXXXXXXX";
+			}
+			m_use_prefillbuffer = true;
+		}
 	}
 	else if ( m_sourceinfo.containertype == ctCDA )
 	{
@@ -369,18 +397,34 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 	m_gst_playbin = gst_element_factory_make("playbin2", "playbin");
 	if ( m_gst_playbin )
 	{
-		g_object_set (G_OBJECT (m_gst_playbin), "uri", uri, NULL);
-		int flags = 0x47; // ( GST_PLAY_FLAG_VIDEO | GST_PLAY_FLAG_AUDIO | GST_PLAY_FLAG_NATIVE_VIDEO | GST_PLAY_FLAG_TEXT );
+		guint flags;
+		g_object_get(G_OBJECT (m_gst_playbin), "flags", &flags, NULL);
+		/* avoid video/audio conversion, let the (hardware) sinks handle that */
+		flags |= (GST_PLAY_FLAG_NATIVE_VIDEO | GST_PLAY_FLAG_NATIVE_AUDIO);
+		/* volume control is done by hardware */
+		flags &= ~GST_PLAY_FLAG_SOFT_VOLUME;
 		if ( m_sourceinfo.is_streaming )
 		{
 			g_signal_connect (G_OBJECT (m_gst_playbin), "notify::source", G_CALLBACK (gstHTTPSourceSetAgent), this);
-			if (m_use_prefillbuffer)
+			if (m_download_buffer_path != "")
 			{
-				g_object_set (G_OBJECT (m_gst_playbin), "buffer_duration", m_buffer_duration, NULL);
-				flags |= 0x100; // USE_BUFFERING
+				/* use progressive download buffering */
+				flags |= GST_PLAY_FLAG_DOWNLOAD;
+				g_signal_connect(G_OBJECT(m_gst_playbin), "element-added", G_CALLBACK(handleElementAdded), this);
+				/* limit file size */
+				g_object_set(m_gst_playbin, "ring-buffer-max-size", (guint64)(8LL * 1024LL * 1024LL), NULL);
 			}
+			/*
+			 * regardless whether or not we configured a progressive download file, use a buffer as well
+			 * (progressive download might not work for all formats)
+			 */
+			flags |= GST_PLAY_FLAG_BUFFERING;
+			/* increase the default 2 second / 2 MB buffer limitations to 5s / 5MB */
+			g_object_set(G_OBJECT(m_gst_playbin), "buffer-duration", 5LL * GST_SECOND, NULL);
+			g_object_set(G_OBJECT(m_gst_playbin), "buffer-size", m_buffer_size, NULL);
 		}
 		g_object_set (G_OBJECT (m_gst_playbin), "flags", flags, NULL);
+		g_object_set (G_OBJECT (m_gst_playbin), "uri", uri, NULL);
 		GstElement *subsink = gst_element_factory_make("subsink", "subtitle_sink");
 		if (!subsink)
 			eDebug("eServiceMP3::sorry, can't play: missing gst-plugin-subsink");
@@ -412,8 +456,6 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 		eDebug("eServiceMP3::sorry, can't play: %s",m_errorInfo.error_message.c_str());
 	}
 	g_free(uri);
-
-	setBufferSize(m_buffer_size);
 }
 
 eServiceMP3::~eServiceMP3()
@@ -1246,9 +1288,9 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 #endif
 #if 0
 						/* we should not use ts-offset to sync with the decoder time, we have to do our own decoder timekeeping */
-						g_object_set (G_OBJECT (subsink), "ts-offset", -2L * GST_SECOND, NULL);
+						g_object_set (G_OBJECT (subsink), "ts-offset", -2LL * GST_SECOND, NULL);
 						/* late buffers probably will not occur very often */
-						g_object_set (G_OBJECT (subsink), "max-lateness", 0L, NULL);
+						g_object_set (G_OBJECT (subsink), "max-lateness", 0LL, NULL);
 						/* avoid prerolling (it might not be a good idea to preroll a sparse stream) */
 						g_object_set (G_OBJECT (subsink), "async", TRUE, NULL);
 #endif
@@ -1267,8 +1309,12 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 					}
 					children = gst_bin_iterate_recurse(GST_BIN(m_gst_playbin));
 					audioSink = GST_ELEMENT_CAST(gst_iterator_find_custom(children, (GCompareFunc)match_sinktype, (gpointer)"GstDVBAudioSink"));
+					gst_iterator_free(children);
+					children = gst_bin_iterate_recurse(GST_BIN(m_gst_playbin));
 					videoSink = GST_ELEMENT_CAST(gst_iterator_find_custom(children, (GCompareFunc)match_sinktype, (gpointer)"GstDVBVideoSink"));
 					gst_iterator_free(children);
+
+					m_is_live = (gst_element_get_state(m_gst_playbin, NULL, NULL, 0LL) == GST_STATE_CHANGE_NO_PREROLL);
 
 					setAC3Delay(ac3_delay);
 					setPCMDelay(pcm_delay);
@@ -1454,7 +1500,7 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 
 			if ( m_errorInfo.missing_codec != "" )
 			{
-				if ( m_errorInfo.missing_codec.find("video/") == 0 || ( m_errorInfo.missing_codec.find("audio/") == 0 && getNumberOfTracks() == 0 ) )
+				if (m_errorInfo.missing_codec.find("video/") == 0 || (m_errorInfo.missing_codec.find("audio/") == 0 && m_audioStreams.empty()))
 					m_event((iPlayableService*)this, evUser+12);
 			}
 			break;
@@ -1521,27 +1567,55 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 			break;
 		}
 		case GST_MESSAGE_BUFFERING:
-		{
-			GstBufferingMode mode;
-			gst_message_parse_buffering(msg, &(m_bufferInfo.bufferPercent));
-			eDebug("Buffering %u percent done", m_bufferInfo.bufferPercent);
-			gst_message_parse_buffering_stats(msg, &mode, &(m_bufferInfo.avgInRate), &(m_bufferInfo.avgOutRate), &(m_bufferInfo.bufferingLeft));
-			m_event((iPlayableService*)this, evBuffering);
-			if (m_state == stRunning && m_use_prefillbuffer)
+			if (m_state == stRunning && m_sourceinfo.is_streaming)
 			{
-				if (m_bufferInfo.bufferPercent == 100)
+				GstBufferingMode mode;
+				gst_message_parse_buffering(msg, &(m_bufferInfo.bufferPercent));
+				eDebug("Buffering %u percent done", m_bufferInfo.bufferPercent);
+				gst_message_parse_buffering_stats(msg, &mode, &(m_bufferInfo.avgInRate), &(m_bufferInfo.avgOutRate), &(m_bufferInfo.bufferingLeft));
+				m_event((iPlayableService*)this, evBuffering);
+				/*
+				 * we don't react to buffer level messages, unless we are configured to use a prefill buffer
+				 * (even if we are not configured to, we still use the buffer, but we rely on it to remain at the
+				 * healthy level at all times, without ever having to pause the stream)
+				 *
+				 * Also, it does not make sense to pause the stream if it is a live stream
+				 * (in which case the sink will not produce data while paused, so we won't
+				 * recover from an empty buffer)
+				 */
+				if (m_use_prefillbuffer && !m_is_live && --m_ignore_buffering_messages <= 0)
 				{
-					eDebug("start playing");
-					gst_element_set_state (m_gst_playbin, GST_STATE_PLAYING);
-				}
-				if (m_bufferInfo.bufferPercent == 0)
-				{
-					eDebug("start pause");
-					gst_element_set_state (m_gst_playbin, GST_STATE_PAUSED);
+					if (m_bufferInfo.bufferPercent == 100)
+					{
+						GstState state;
+						gst_element_get_state(m_gst_playbin, &state, NULL, 0LL);
+						if (state != GST_STATE_PLAYING)
+						{
+							eDebug("start playing");
+							gst_element_set_state (m_gst_playbin, GST_STATE_PLAYING);
+						}
+						/*
+						 * when we start the pipeline, the contents of the buffer will immediately drain
+						 * into the (hardware buffers of the) sinks, so we will receive low buffer level
+						 * messages right away.
+						 * Ignore the first few buffering messages, giving the buffer the chance to recover
+						 * a bit, before we start handling empty buffer states again.
+						 */
+						m_ignore_buffering_messages = 5;
+					}
+					else if (m_bufferInfo.bufferPercent == 0)
+					{
+						eDebug("start pause");
+						gst_element_set_state (m_gst_playbin, GST_STATE_PAUSED);
+						m_ignore_buffering_messages = 0;
+					}
+					else
+					{
+						m_ignore_buffering_messages = 0;
+					}
 				}
 			}
 			break;
-		}
 		case GST_MESSAGE_STREAM_STATUS:
 		{
 			GstStreamStatusType type;
@@ -1605,8 +1679,42 @@ void eServiceMP3::gstHTTPSourceSetAgent(GObject *object, GParamSpec *unused, gpo
 	g_object_get(_this->m_gst_playbin, "source", &source, NULL);
 	if (source)
 	{
-		g_object_set (G_OBJECT (source), "user-agent", _this->m_useragent.c_str(), NULL);
+		GObjectClass *klass = G_OBJECT_GET_CLASS(source);
+		if (g_object_class_find_property(klass, "user-agent"))
+		{
+			g_object_set(G_OBJECT(source), "user-agent", _this->m_useragent.c_str(), NULL);
+		}
 		gst_object_unref(source);
+	}
+}
+
+void eServiceMP3::handleElementAdded(GstBin *bin, GstElement *element, gpointer user_data)
+{
+	eServiceMP3 *_this = (eServiceMP3*)user_data;
+	if (_this)
+	{
+		gchar *elementname = gst_element_get_name(element);
+
+		if (g_str_has_prefix(elementname, "queue2"))
+		{
+			if (_this->m_download_buffer_path != "")
+			{
+				g_object_set(G_OBJECT(element), "temp-template", _this->m_download_buffer_path.c_str(), NULL);
+			}
+			else
+			{
+				g_object_set(G_OBJECT(element), "temp-template", NULL, NULL);
+			}
+		}
+		else if (g_str_has_prefix(elementname, "uridecodebin") || g_str_has_prefix(elementname, "decodebin2"))
+		{
+			/*
+			 * Listen for queue2 element added to uridecodebin/decodebin2 as well.
+			 * Ignore other bins since they may have unrelated queues
+			 */
+				g_signal_connect(element, "element-added", G_CALLBACK(handleElementAdded), user_data);
+		}
+		g_free(elementname);
 	}
 }
 

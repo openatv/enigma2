@@ -325,6 +325,7 @@ void eCableScan::fillBouquet(eBouquet *bouquet, std::map<int, eServiceReferenceD
 			number++;
 		}
 		bouquet->flushChanges();
+		eDVBDB::getInstance()->renumberBouquet();
 	}
 }
 

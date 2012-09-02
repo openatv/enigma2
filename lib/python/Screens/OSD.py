@@ -31,10 +31,12 @@ class OSDSetup(Screen, ConfigListScreen):
 		self["key_green"] = StaticText(_("OK"))
 		self["key_yellow"] = StaticText(_("Default"))
 
-		self["actions"] = ActionMap(["ColorActions","SetupActions"],
+		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
 			{
 				"cancel": self.keyCancel,
 				"save": self.keySave,
+				"left": self.keyLeft,
+				"right": self.keyRight,
 				"yellow": self.keydefaults,
 			}, -2)
 
@@ -46,7 +48,7 @@ class OSDSetup(Screen, ConfigListScreen):
 		if SystemInfo["CanChangeOsdPosition"] == True:
 			self.list.append(getConfigListEntry(_("Move Left/Right"), config.osd.dst_left, _("Use the Left/Right buttons on your remote to move the OSD left/right")))
 			self.list.append(getConfigListEntry(_("Width"), config.osd.dst_width, _("Use the Left/Right buttons on your remote to adjust the size of the OSD. Left button decreases the size, Right increases the size.")))
-			self.list.append(getConfigListEntry(_("Move Up/Down"), config.osd.dst_top, _("Use the Left/Right buttons on your remote to move the OSD left/right")))
+			self.list.append(getConfigListEntry(_("Move Up/Down"), config.osd.dst_top, _("Use the Left/Right buttons on your remote to move the OSD up/down")))
 			self.list.append(getConfigListEntry(_("Height"), config.osd.dst_height, _("Use the Left/Right buttons on your remote to adjust the size of the OSD. Left button decreases the size, Right increases the size.")))
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)

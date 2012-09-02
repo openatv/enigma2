@@ -28,7 +28,7 @@ fi
 
 LIBS=@libdir@/libopen.so.0.0.0
 
-#check for dreambox specific passthrough helper lib
+#check for receiver specific passthrough helper lib
 if [ -e @libdir@/libpassthrough.so ]; then
 	LIBS="$LIBS @libdir@/libpassthrough.so"
 fi
@@ -76,9 +76,15 @@ case $ret in
 		/sbin/reboot
 		;;
 	42)
-		# bind the console (when available)
-# 		[ -f /sys/class/vtconsole/vtcon1/bind ] && echo 1 > /sys/class/vtconsole/vtcon1/bind
-		opkg upgrade 2>&1 | tee /home/root/ipkgupgrade.log
+		if [ -f /media/hdd/var/lib/opkg/status -a -f /media/usb/var/lib/opkg/status ]; then
+			opkg --add-dest /:/ --add-dest /media/hdd:/media/hdd --add-dest /media/usb:/media/usb upgrade 2>&1 | tee /home/root/ipkgupgrade.log
+		elif [ -f /media/hdd/var/lib/opkg/status ]; then
+			opkg --add-dest /:/ --add-dest /media/hdd:/media/hdd upgrade 2>&1 | tee /home/root/ipkgupgrade.log
+		elif [ -f /media/usb/var/lib/opkg/status ]; then
+			opkg --add-dest /:/ --add-dest /media/usb:/media/usb upgrade 2>&1 | tee /home/root/ipkgupgrade.log
+		else
+			opkg upgrade 2>&1 | tee /home/root/ipkgupgrade.log
+		fi
 		/sbin/reboot
 		;;
 	*)

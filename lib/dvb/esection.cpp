@@ -11,7 +11,7 @@ void eGTable::sectionRead(const __u8 *d)
 		/* if a section is missing, we retry reading the
 		   whole data up to 5 times. if after that the
 		   section is still missing, we timeout. */
-	if (m_tries > 5 * (last_section_number+1))
+	if (m_tries > 5 * totalSections(last_section_number))
 	{
 		timeout();
 		return;

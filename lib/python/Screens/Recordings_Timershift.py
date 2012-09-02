@@ -48,6 +48,8 @@ class RecordingSettings(Screen,ConfigListScreen):
 		    "ok": self.ok,
 			"menu": self.closeRecursive,
 		}, -2)
+		if not self.SelectionChanged in self["config"].onSelectionChanged:
+			self["config"].onSelectionChanged.append(self.SelectionChanged)
 
 	def checkReadWriteDir(self, configele):
 		print "checkReadWrite: ", configele.value
@@ -94,48 +96,54 @@ class RecordingSettings(Screen,ConfigListScreen):
 
 		self.list = []
 		if config.usage.setup_level.index >= 2:
-			self.default_entry = getConfigListEntry(_("Default movie location"), self.default_dirname)
+			self.default_entry = getConfigListEntry(_("Default movie location"), self.default_dirname, _("Set the default location for your recordings. Press 'OK' to add new locations, select left/right to select an existing location."))
 			self.list.append(self.default_entry)
-			self.timer_entry = getConfigListEntry(_("Timer record location"), self.timer_dirname)
+			self.timer_entry = getConfigListEntry(_("Timer record location"), self.timer_dirname, _("Set the default location for your timers. Press 'OK' to add new locations, select left/right to select an existing location."))
 			self.list.append(self.timer_entry)
-			self.instantrec_entry = getConfigListEntry(_("Instant record location"), self.instantrec_dirname)
+			self.instantrec_entry = getConfigListEntry(_("Instant record location"), self.instantrec_dirname, _("Set the default location for your instant recordings. Press 'OK' to add new locations, select left/right to select an existing location."))
 			self.list.append(self.instantrec_entry)
 		else:
-			self.default_entry = getConfigListEntry(_("Movie location"), self.default_dirname)
+			self.default_entry = getConfigListEntry(_("Movie location"), self.default_dirname, _("Set the default location for your recordings. Press 'OK' to add new locations, select left/right to select an existing location."))
 			self.list.append(self.default_entry)
 
 		if config.usage.setup_level.index >= 1:
-			self.list.append(getConfigListEntry(_("Recordings always have priority"), config.recording.asktozap))
-		self.list.append(getConfigListEntry(_("Margin before record (minutes)"), config.recording.margin_before))
-		self.list.append(getConfigListEntry(_("Margin after record"), config.recording.margin_after))
+			self.list.append(getConfigListEntry(_("Recordings always have priority"), config.recording.asktozap, _("Select 'Yes' if you want recordings to have priority over live-TV.")))
+		self.list.append(getConfigListEntry(_("Margin before record (minutes)"), config.recording.margin_before, _("Set the time you want recordings to start before the event start-time.")))
+		self.list.append(getConfigListEntry(_("Margin after record"), config.recording.margin_after, _("Set the time you want recordings to stop after the event stop-time.")))
 		if config.usage.setup_level.index >= 2:
-			self.list.append(getConfigListEntry(_("Show Message when Recording starts"), config.usage.show_message_when_recording_starts))
-			self.list.append(getConfigListEntry(_("Behavior when a movie is started"), config.usage.on_movie_start))
-			self.list.append(getConfigListEntry(_("Behavior when a movie is stopped"), config.usage.on_movie_stop))
-			self.list.append(getConfigListEntry(_("Behavior when a movie reaches the end"), config.usage.on_movie_eof))
-			self.list.append(getConfigListEntry(_("Behavior of 'pause' when paused"), config.seek.on_pause))
-			self.list.append(getConfigListEntry(_("Custom skip time for '1'/'3'-keys"), config.seek.selfdefined_13))
-			self.list.append(getConfigListEntry(_("Custom skip time for '4'/'6'-keys"), config.seek.selfdefined_46))
-			self.list.append(getConfigListEntry(_("Custom skip time for '7'/'9'-keys"), config.seek.selfdefined_79))
-			self.list.append(getConfigListEntry(_("Seekbar sensibility"), config.seek.sensibility))
-			self.list.append(getConfigListEntry(_("Fast Forward speeds"), config.seek.speeds_forward))
-			self.list.append(getConfigListEntry(_("Rewind speeds"), config.seek.speeds_backward))
-			self.list.append(getConfigListEntry(_("Slow Motion speeds"), config.seek.speeds_slowmotion))
-			self.list.append(getConfigListEntry(_("Initial Fast Forward speed"), config.seek.enter_forward))
-			self.list.append(getConfigListEntry(_("Initial Rewind speed"), config.seek.enter_backward))
-			self.list.append(getConfigListEntry(_("Limited character set for recording filenames"), config.recording.ascii_filenames))
-			self.list.append(getConfigListEntry(_("Composition of the recording filenames"), config.recording.filename_composition))
-			self.list.append(getConfigListEntry(_("Keep old timers for how many days"), config.recording.keep_timers))
+			self.list.append(getConfigListEntry(_("Show Message when Recording starts"), config.usage.show_message_when_recording_starts, _("Do you want a pop-up message saying 'a recording has started'?")))
+			self.list.append(getConfigListEntry(_("Behavior when a movie is started"), config.usage.on_movie_start, _("On starting playback of a file, you can choose the box's behaviour.")))
+			self.list.append(getConfigListEntry(_("Behavior when a movie is stopped"), config.usage.on_movie_stop, _("On stopping playback of a file, you can choose the box's behaviour.")))
+			self.list.append(getConfigListEntry(_("Behavior when a movie reaches the end"), config.usage.on_movie_eof, _("On reaching the end of a file during playback, you can choose the box's behaviour.")))
+			self.list.append(getConfigListEntry(_("Behavior of 'pause' when paused"), config.seek.on_pause, _("Here you can select the behaviour of the 'puase'-button when playback has been paused.")))
+			self.list.append(getConfigListEntry(_("Custom skip time for '1'/'3'-keys"), config.seek.selfdefined_13, _("Set the skip-forward/backward time of the 1-3 number keys.")))
+			self.list.append(getConfigListEntry(_("Custom skip time for '4'/'6'-keys"), config.seek.selfdefined_46, _("Set the skip-forward/backward time of the 4-6 number keys.")))
+			self.list.append(getConfigListEntry(_("Custom skip time for '7'/'9'-keys"), config.seek.selfdefined_79, _("Set the skip-forward/backward time of the 7-9 number keys.")))
+			self.list.append(getConfigListEntry(_("Display message before next played movie"), config.usage.next_movie_msg, _("Show a popup message after a recording has finished and before start next in queue.")))
+			self.list.append(getConfigListEntry(_("Seekbar activation"), config.seek.baractivation, _("Select seekbar to be activated by arrow L/R (long) or << >> (long).")))
+			self.list.append(getConfigListEntry(_("Seekbar sensibility"), config.seek.sensibility, _("Set the jump-size of the seekbar.")))
+			self.list.append(getConfigListEntry(_("Fast Forward speeds"), config.seek.speeds_forward, _("Set the values for fast-forward speeds.")))
+			self.list.append(getConfigListEntry(_("Rewind speeds"), config.seek.speeds_backward, _("Set the values for fast-backward speeds.")))
+			self.list.append(getConfigListEntry(_("Slow Motion speeds"), config.seek.speeds_slowmotion, _("Set the values for slow-motion speeds.")))
+			self.list.append(getConfigListEntry(_("Initial Fast Forward speed"), config.seek.enter_forward, _("Set the value for the initial fast-forward speed.")))
+			self.list.append(getConfigListEntry(_("Initial Rewind speed"), config.seek.enter_backward, _("Set the value for the initial fast-backward speed.")))
+			self.list.append(getConfigListEntry(_("Limited character set for recording filenames"), config.recording.ascii_filenames, _("Select 'Yes' if you want only a small number of characters to be used for recording names.")))
+			self.list.append(getConfigListEntry(_("Composition of the recording filenames"), config.recording.filename_composition, _("Select how you want recording names to be populated.")))
+			self.list.append(getConfigListEntry(_("Keep old timers for how many days"), config.recording.keep_timers, _("Set the number of days you want old timers to be kept.")))
 		if config.usage.setup_level.index >= 1:
-			self.list.append(getConfigListEntry(_("Use trashcan in movielist"), config.usage.movielist_trashcan))
-			self.list.append(getConfigListEntry(_("Remove items from trash after (days)"), config.usage.movielist_trashcan_days))
-			self.list.append(getConfigListEntry(_("Disk space to reserve for recordings (in GB)"), config.usage.movielist_trashcan_reserve))
+			self.list.append(getConfigListEntry(_("Use trashcan in movielist"), config.usage.movielist_trashcan, _("If set to 'Yes' recordings will be deleted to a trashcan. That way thay can still be played.")))
+			self.list.append(getConfigListEntry(_("Remove items from trash after (days)"), config.usage.movielist_trashcan_days, _("Select the number of days after which the box is allowed to permanently delete recordings (from the trashcan).")))
+			self.list.append(getConfigListEntry(_("Disk space to reserve for recordings (in GB)"), config.usage.movielist_trashcan_reserve, _("Itmes in trashcan will be deleted if less then the set space is available.")))
 		if config.usage.setup_level.index >= 2:
-			self.list.append(getConfigListEntry(_("Recording data sync size"), config.misc.flush_size))
-			self.list.append(getConfigListEntry(_("Background delete option"), config.misc.erase_flags))
-			self.list.append(getConfigListEntry(_("Background delete speed"), config.misc.erase_speed))
-			self.list.append(getConfigListEntry(_("Offline decode delay (ms)"), config.recording.offline_decode_delay))
+			self.list.append(getConfigListEntry(_("Background delete option"), config.misc.erase_flags, _("Only change for debugging; default is 'Internal hdd only'.")))
+			self.list.append(getConfigListEntry(_("Background delete speed"), config.misc.erase_speed, _("Only change for debugging; default is '20 MB/s'.")))
+			self.list.append(getConfigListEntry(_("Offline decode delay (ms)"), config.recording.offline_decode_delay, _("Change this value if your smartcard can't doesn't handle off-line decoding well; default is '1000'.")))
 		self["config"].setList(self.list)
+		if config.usage.sort_settings.value:
+			self["config"].list.sort()
+
+	def SelectionChanged(self):
+		self["status"].setText(self["config"].getCurrent()[2])
 
 	# for summary:
 	def changedEntry(self):
@@ -282,6 +290,8 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 		    "cancel": self.keyCancel,
 		    "ok": self.ok,
 		}, -2)
+		if not self.SelectionChanged in self["config"].onSelectionChanged:
+			self["config"].onSelectionChanged.append(self.SelectionChanged)
 
 	# for summary:
 	def changedEntry(self):
@@ -353,18 +363,23 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 		self.timeshift_dirname = ConfigSelection(default = default, choices = tmp)
 		self.timeshift_dirname.addNotifier(self.checkReadWriteDir, initial_call=False, immediate_feedback=False)
 		self.list = []
-		self.timeshift_entry = getConfigListEntry(_("Timeshift location"), self.timeshift_dirname)
+		self.timeshift_entry = getConfigListEntry(_("Timeshift location"), self.timeshift_dirname, _("Set the default location for your timeshift-files. Press 'OK' to add new locations, select left/right to select an existing location."))
 		self.list.append(self.timeshift_entry)
-		self.list.append(getConfigListEntry(_("Timeshift Enable"), config.timeshift.pauzekeyenabled))
-		self.list.append(getConfigListEntry(_("Permanent Timeshift Enable"), config.timeshift.enabled))
+		self.list.append(getConfigListEntry(_("Timeshift Enable"), config.timeshift.pauzekeyenabled, _("Enable or disable Timeshift. When activated, you can wind back until the time you zapped to a channel, and you can make recordings in retrospect.")))
+		self.list.append(getConfigListEntry(_("Permanent Timeshift Enable"), config.timeshift.enabled, _("Enable or disable Permanent Timeshift. When activated, you can wind back until the time you zapped to a channel, and you can make recordings in retrospect.")))
 		if config.usage.setup_level.index >= 2 and config.timeshift.enabled.value:
-			self.list.append(getConfigListEntry(_("Permanent Timeshift Max Events"), config.timeshift.maxevents))
-			self.list.append(getConfigListEntry(_("Permanent Timeshift Max Length"), config.timeshift.maxlength))
-			self.list.append(getConfigListEntry(_("Permanent Timeshift Start Delay"), config.timeshift.startdelay))
-			self.list.append(getConfigListEntry(_("Timeshift-Save Action on zap"), config.timeshift.favoriteSaveAction))
-			self.list.append(getConfigListEntry(_("Stop timeshift while recording?"), config.timeshift.stopwhilerecording))
-			self.list.append(getConfigListEntry(_("Use PTS seekbar while timeshifting? *"), config.timeshift.showinfobar))
+			self.list.append(getConfigListEntry(_("Permanent Timeshift Max Events"), config.timeshift.maxevents, _("Set the maximum number of events (programs) that timeshift may handle.")))
+			self.list.append(getConfigListEntry(_("Permanent Timeshift Max Length"), config.timeshift.maxlength, _("Set the maximum length a timeshift file may be.")))
+			self.list.append(getConfigListEntry(_("Permanent Timeshift Start Delay"), config.timeshift.startdelay, _("Timeshift will only start when the start delay time has passed. Thois prevents numurous very short files when zapping.")))
+			self.list.append(getConfigListEntry(_("Stop timeshift while recording?"), config.timeshift.stopwhilerecording, _("Select if timeshift must continue when set to record.")))
+			self.list.append(getConfigListEntry(_("Timeshift-Save Action on zap"), config.timeshift.favoriteSaveAction, _("Set what the required action must be when zapping while a timeshift has been set as recording.")))
+			self.list.append(getConfigListEntry(_("Use PTS seekbar while timeshifting? *"), config.timeshift.showinfobar, _("If set to 'yes' a special seekbar is available during timeshift.")))
 		self["config"].setList(self.list)
+		if config.usage.sort_settings.value:
+			self["config"].list.sort()
+
+	def SelectionChanged(self):
+		self["status"].setText(self["config"].getCurrent()[2])
 
 	def ok(self):
 		currentry = self["config"].getCurrent()
@@ -441,17 +456,27 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 				self.saveAll()
 				self.close()
 			else:
+				if config.timeshift.enabled.getValue():
+					self.session.open(
+						MessageBox,
+						_("The directory %s is not a EXT2, EXT3, EXT4 or NFS partition.\nMake sure you select a valid partition type.")%config.usage.timeshift_path.value,
+						type = MessageBox.TYPE_ERROR
+						)
+				else:
+					config.timeshift.enabled.setValue(False)
+					self.saveAll()
+					self.close()
+		else:
+			if config.timeshift.enabled.getValue():
 				self.session.open(
 					MessageBox,
 					_("The directory %s is not a EXT2, EXT3, EXT4 or NFS partition.\nMake sure you select a valid partition type.")%config.usage.timeshift_path.value,
 					type = MessageBox.TYPE_ERROR
 					)
-		else:
-			self.session.open(
-				MessageBox,
-				_("The directory %s is not a EXT2, EXT3, EXT4 or NFS partition.\nMake sure you select a valid partition type.")%config.usage.timeshift_path.value,
-				type = MessageBox.TYPE_ERROR
-				)
+			else:
+				config.timeshift.enabled.setValue(False)
+				self.saveAll()
+				self.close()
 
 	def cancelConfirm(self, result):
 		if not result:

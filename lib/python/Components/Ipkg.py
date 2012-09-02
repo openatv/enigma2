@@ -4,6 +4,7 @@ from Components.Harddisk import harddiskmanager
 from Components.config import config
 
 opkgDestinations = []
+opkgStatusPath = ''
 
 def opkgExtraDestinations():
 	global opkgDestinations
@@ -17,10 +18,17 @@ def opkgAddDestination(mountpoint):
 
 def onPartitionChange(why, part):
 	global opkgDestinations
+	global opkgStatusPath
 	mountpoint = os.path.normpath(part.mountpoint)
 	if mountpoint and not mountpoint.startswith('/media/net'):
 		if why == 'add':
-			if os.path.exists(os.path.join(mountpoint, 'usr/lib/opkg/status')):
+			if opkgStatusPath == '':
+				# recent opkg versions
+				opkgStatusPath = 'var/lib/opkg/status'
+				if not os.path.exists(os.path.join('/', opkgStatusPath)):
+					# older opkg versions
+					opkgStatusPath = 'usr/lib/opkg/status'
+			if os.path.exists(os.path.join(mountpoint, opkgStatusPath)):
 				opkgAddDestination(mountpoint)
 			if os.path.exists(os.path.join(mountpoint, 'var/lib/opkg/status')):
 				opkgAddDestination(mountpoint)
@@ -65,9 +73,9 @@ class IpkgComponent:
 
 	def setCurrentCommand(self, command = None):
 		self.currentCommand = command
-	
+
 	def runCmdEx(self, cmd):
-	        self.runCmd(opkgExtraDestinations() + ' ' + cmd)
+		self.runCmd(opkgExtraDestinations() + ' ' + cmd)
 
 	def runCmd(self, cmd):
 		print "executing", self.ipkg, cmd
@@ -185,6 +193,9 @@ class IpkgComponent:
 
 	def addCallback(self, callback):
 		self.callbackList.append(callback)
+
+	def removeCallback(self, callback):
+		self.callbackList.remove(callback)
 
 	def getFetchedList(self):
 		return self.fetchedList

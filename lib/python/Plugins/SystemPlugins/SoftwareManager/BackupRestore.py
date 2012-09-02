@@ -272,6 +272,7 @@ class RestoreMenu(Screen):
 			if (file.endswith(".tar.gz")):
 				self.flist.append((file))
 				self.entry = True
+		self.flist.sort(reverse=True)
 		self["filelist"].l.setList(self.flist)
 
 	def KeyOk(self):

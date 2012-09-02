@@ -201,7 +201,7 @@ class Session:
 			callback(*retval)
 
 	def execBegin(self, first=True, do_show = True):
-		assert not self.in_exec 
+		assert not self.in_exec
 		self.in_exec = True
 		c = self.current_dialog
 
@@ -556,7 +556,7 @@ def runScreenTest():
 	configfile.save()
 	from Screens import InfoBarGenerics
 	InfoBarGenerics.saveResumePoints()
-	
+
 	return 0
 
 profile("Init:skin")
@@ -618,14 +618,15 @@ if config.misc.boxtype.value == 'ventonhdx':
 
 profile("OSD")
 import Screens.OSD
+Screens.OSD.InitOsd()
 Screens.OSD.setConfiguredPosition()
 Screens.OSD.setConfiguredSettings()
 #Screens.OSD.setConfiguredAplha()
 
 profile("EpgCacheSched")
-import Screens.EpgLoadSave
-Screens.EpgLoadSave.EpgCacheSaveCheck()
-Screens.EpgLoadSave.EpgCacheLoadCheck()
+import Components.EpgLoadSave
+Components.EpgLoadSave.EpgCacheSaveCheck()
+Components.EpgLoadSave.EpgCacheLoadCheck()
 
 profile("RFMod")
 import Components.RFmod

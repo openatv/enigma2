@@ -28,6 +28,7 @@ private:
 	off_t m_splitsize, m_totallength, m_current_offset, m_base_offset, m_last_offset;
 	int m_nrfiles;
 	int m_current_file;
+	int m_fadvise_chunk;
 	std::string m_basename;
 
 	void scan();

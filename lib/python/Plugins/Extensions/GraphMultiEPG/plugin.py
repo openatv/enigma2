@@ -15,8 +15,8 @@ epg = None
 
 class SelectBouquet(Screen):
 	skin = """<screen name="SelectBouquet" position="center,center" size="300,240" title="Choose bouquet">
-              <widget name="menu" position="10,10" size="290,225" scrollbarMode="showOnDemand" />
-          </screen>"""
+		<widget name="menu" position="10,10" size="290,225" scrollbarMode="showOnDemand" />
+	</screen>"""
 
 	def __init__(self, session, bouquets, curbouquet, direction, enableWrapAround=True):
 		Screen.__init__(self, session)
@@ -62,16 +62,24 @@ class SelectBouquet(Screen):
 	def cancelClick(self):
 		self.close(None)
 
-
-def zapToService(service):
+def zapToService(service, preview = False, zapback = False):
+	if Servicelist.startServiceRef is None:
+		Servicelist.startServiceRef = Session.nav.getCurrentlyPlayingServiceReference()
 	if not service is None:
-		if Servicelist.getRoot() != epg_bouquet: #already in correct bouquet?
-			Servicelist.clearPath()
-			if Servicelist.bouquet_root != epg_bouquet:
-				Servicelist.enterPath(Servicelist.bouquet_root)
-			Servicelist.enterPath(epg_bouquet)
-		Servicelist.setCurrentSelection(service) #select the service in Servicelist
-		Servicelist.zap()
+		if not preview and not zapback:
+			if Servicelist.getRoot() != epg_bouquet:
+				Servicelist.clearPath()
+				if Servicelist.bouquet_root != epg_bouquet:
+					Servicelist.enterPath(Servicelist.bouquet_root)
+				Servicelist.enterPath(epg_bouquet)
+		Servicelist.setCurrentSelection(service)
+		if not zapback or preview:
+			Servicelist.zap(not preview, preview)
+	if (Servicelist.dopipzap or zapback) and not preview:
+		Servicelist.zapBack()
+	if not preview:
+		Servicelist.startServiceRef = None
+		Servicelist.startRoot = None
 
 def getBouquetServices(bouquet):
 	services = [ ]
@@ -124,13 +132,25 @@ def main(session, servicelist = None, **kwargs):
 	bouquets = Servicelist and Servicelist.getBouquetList()
 	global epg_bouquet
 	epg_bouquet = Servicelist and Servicelist.getRoot()
+	runGraphMultiEpg()
+
+def runGraphMultiEpg():
+	global Servicelist
+	global bouquets
+	global epg_bouquet
 	if epg_bouquet is not None:
 		if len(bouquets) > 1 :
 			cb = changeBouquetCB
 		else:
 			cb = None
 		services = getBouquetServices(epg_bouquet)
-		Session.openWithCallback(closed, GraphMultiEPG, services, zapToService, cb, ServiceReference(epg_bouquet).getServiceName())
+		Session.openWithCallback(reopen, GraphMultiEPG, services, zapToService, cb, ServiceReference(epg_bouquet).getServiceName())
+
+def reopen(answer):
+	if answer is None:
+		runGraphMultiEpg()
+	else:
+		closed(answer)
 
 def Plugins(**kwargs):
 	name = _("Graphical Multi EPG")

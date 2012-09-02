@@ -30,17 +30,31 @@ class VideoHardware:
 
 	rates["576p"] =			{ "50Hz": 	{ 50: "576p" } }
 
-	rates["720p"] =			{ "50Hz": 	{ 50: "720p50" },
-								"60Hz": 	{ 60: "720p" },
-								"multi": 	{ 50: "720p50", 60: "720p" } }
+	if config.misc.boxtype.value == 'gbquad':
+		rates["720p"] =			{ "24Hz": 	{ 24: "720p24" },
+									"25Hz": 	{ 25: "720p25" },
+									"30Hz": 	{ 30: "720p30" },
+									"50Hz": 	{ 50: "720p50" },
+									"60Hz": 	{ 60: "720p" },
+									"multi": 	{ 50: "720p50", 60: "720p" } }
+	else:
+		rates["720p"] =			{ "50Hz": 	{ 50: "720p50" },
+									"60Hz": 	{ 60: "720p" },
+									"multi": 	{ 50: "720p50", 60: "720p" } }
 
 	rates["1080i"] =		{ "50Hz":		{ 50: "1080i50" },
 								"60Hz":		{ 60: "1080i" },
 								"multi":	{ 50: "1080i50", 60: "1080i" } }
-								
-	rates["1080p"] =		{ "50Hz":	{ 50: "1080p50" },
-								"60Hz":	{ 60: "1080p" },
-								"multi": 	{ 50: "1080p50", 60: "1080p" } }							
+
+	if config.misc.boxtype.value == 'tmtwin':
+		rates["1080p"] =		{ "24Hz":		{ 24: "1080p24" },
+									"30Hz":		{ 30: "1080p30" } }
+	else:
+		rates["1080p"] =		{ 	"24Hz":		{ 24: "1080p24" },
+									"25Hz":		{ 25: "1080p25" },
+									"30Hz":		{ 30: "1080p30" },		
+									"50Hz":	{ 50: "1080p50" },
+									"60Hz":	{ 60: "1080p" }}							
 
 	rates["PC"] = {
 		"1024x768": { 60: "1024x768" }, # not possible on DM7025
@@ -61,9 +75,9 @@ class VideoHardware:
 	modes["Scart"] = ["PAL", "NTSC", "Multi"]
 	modes["DVI-PC"] = ["PC"]
 	
-	if config.misc.boxtype.value == 'gbquad':
-		modes["YPbPr"] = ["720p", "1080i", "576p", "480p", "576i", "480i", "1080p"]
-		modes["DVI"] = ["720p", "1080i", "576p", "480p", "576i", "480i", "1080p"]
+	if config.misc.boxtype.value == 'gbquad' or config.misc.boxtype.value == 'tmtwin':
+		modes["YPbPr"] = ["720p", "1080i", "1080p", "576p", "480p", "576i", "480i"]
+		modes["DVI"] = ["720p", "1080i", "1080p", "576p", "480p", "576i", "480i"]
 		widescreen_modes = set(["720p", "1080i", "1080p"])
 	else:
 		modes["YPbPr"] = ["720p", "1080i", "576p", "480p", "576i", "480i"]
@@ -173,6 +187,9 @@ class VideoHardware:
 
 	def setMode(self, port, mode, rate, force = None):
 		print "setMode - port:", port, "mode:", mode, "rate:", rate
+
+		config.av.videoport.value = port		# [iq]
+
 		# we can ignore "port"
 		self.current_mode = mode
 		self.current_port = port
@@ -186,8 +203,14 @@ class VideoHardware:
 			mode_60 = mode_50
 
 		try:
-			open("/proc/stb/video/videomode_50hz", "w").write(mode_50)
-			open("/proc/stb/video/videomode_60hz", "w").write(mode_60)
+			mode_etc = None
+			if mode == "1080p" or mode == "720p":
+				mode_etc = modes.get(int(rate[:2]))
+				open("/proc/stb/video/videomode", "w").write(mode_etc)
+			# not support 50Hz, 60Hz for 1080p
+			else:
+				open("/proc/stb/video/videomode_50hz", "w").write(mode_50)
+				open("/proc/stb/video/videomode_60hz", "w").write(mode_60)
 		except IOError:
 			try:
 				# fallback if no possibility to setup 50/60 hz mode
@@ -196,7 +219,10 @@ class VideoHardware:
 				print "setting videomode failed."
 
 		try:
-			open("/etc/videomode", "w").write(mode_50) # use 50Hz mode (if available) for booting
+			if mode == "1080p" or mode == "720p":
+				open("/etc/videomode", "w").write(mode_etc)
+			else:
+				open("/etc/videomode", "w").write(mode_50) # use 50Hz mode (if available) for booting
 		except IOError:
 			print "writing initial videomode to /etc/videomode failed."
 
@@ -265,6 +291,13 @@ class VideoHardware:
 			for (mode, rates) in modes:
 				config.av.videorate[mode] = ConfigSelection(choices = rates)
 		config.av.videoport = ConfigSelection(choices = lst)
+
+# tmtwin [
+		def setColorFormatAsPort(configElement):
+			if configElement.value == "YPbPr":
+				config.av.colorformat.value = "cvbs"
+		config.av.videoport.addNotifier(setColorFormatAsPort)
+# ]
 
 	def setConfiguredMode(self):
 		port = config.av.videoport.value

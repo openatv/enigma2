@@ -28,7 +28,7 @@ TUXBOX_APPS_DVB
 AM_CONDITIONAL(HAVE_GIT_DIR, test -d "$srcdir/.git")
 AM_CONDITIONAL(HAVE_FAKE_GIT_DIR, test -f "$srcdir/.git/last_commit_info")
 
-PKG_CHECK_MODULES(BASE, [freetype2 fribidi gstreamer-0.10 gstreamer-pbutils-0.10 libdvbsi++ libpng libxml-2.0 sigc++-1.2])
+PKG_CHECK_MODULES(BASE, [freetype2 fribidi gstreamer-0.10 gstreamer-pbutils-0.10 libdvbsi++ libpng libxml-2.0 sigc++-1.2 libssl libcrypto])
 PKG_CHECK_MODULES(LIBDDVD, libdreamdvd, HAVE_LIBDDVD="yes", HAVE_LIBDDVD="no")
 AM_CONDITIONAL(HAVE_LIBDDVD, test "$HAVE_LIBDDVD" = "yes")
 
@@ -53,28 +53,32 @@ AC_DEFINE_UNQUOTED(BOXTYPE,"$BOXTYPE",[box type])
 AM_CONDITIONAL(DREAMBOX, test `echo "$BOXTYPE" | cut -b 1-2` == "dm")
 AM_CONDITIONAL(VUPLUS, test `echo "$BOXTYPE" | cut -b 1-2` == "vu")
 AM_CONDITIONAL(XTREND, test `echo "$BOXTYPE" | cut -b 1-2` == "et")
+AM_CONDITIONAL(TECHNOMATE, test `echo "$BOXTYPE" | cut -b 1-2` == "tm")
 AM_CONDITIONAL(GIGABLUE, test `echo "$BOXTYPE" | cut -b 1-5` == "gb800")
-AM_CONDITIONAL(VENTON, test `echo "$BOXTYPE" | cut -b 1-3` == "ven")
 AM_CONDITIONAL(ODIN, test `echo "$BOXTYPE" | cut -b 1-4` == "odin")
+AM_CONDITIONAL(VENTON, test `echo "$BOXTYPE" | cut -b 1-6` == "venton")
 AM_CONDITIONAL(VUUNO, test "$BOXTYPE" == vuuno)
 AM_CONDITIONAL(VUULTIMO, test "$BOXTYPE" == vuultimo)
 AM_CONDITIONAL(VUSOLO, test "$BOXTYPE" == vusolo)
 AM_CONDITIONAL(VUDUO, test "$BOXTYPE" == vuduo)
-AM_CONDITIONAL(TMTWIN, test "$BOXTYPE" == tmtwin)
 AM_CONDITIONAL(ET5X00, test "$BOXTYPE" == et5x00)
 AM_CONDITIONAL(ET6X00, test "$BOXTYPE" == et6x00)
 AM_CONDITIONAL(ET9X00, test "$BOXTYPE" == et9x00)
-AM_CONDITIONAL(GB800SE, test "$BOXTYPE" == gb800se)
+AM_CONDITIONAL(ODINM9, test "$BOXTYPE" == odinm9)
+AM_CONDITIONAL(TMTWIN, test "$BOXTYPE" == tmtwin)
 AM_CONDITIONAL(GB800SOLO, test "$BOXTYPE" == gb800solo)
+AM_CONDITIONAL(GB800SE, test "$BOXTYPE" == gb800se)
 AM_CONDITIONAL(GB800UE, test "$BOXTYPE" == gb800ue)
 AM_CONDITIONAL(GBQUAD, test "$BOXTYPE" == gbquad)
 AM_CONDITIONAL(VENTONHDX, test "$BOXTYPE" == ventonhdx)
-AM_CONDITIONAL(GBHD800SE, test "$BOXTYPE" == gbhd800se)
-AM_CONDITIONAL(ODINM9, test "$BOXTYPE" == odinm9)
 AM_CONDITIONAL(HAVE_TEMPFANCONTROL, test "$BOXTYPE" == dm8000 -o "$BOXTYPE" == dm800se -o "$BOXTYPE" == dm500hd)
 AM_CONDITIONAL(HAVE_DISPLAY128, test "$BOXTYPE" == dm8000 -o "$BOXTYPE" == dm7020HD)
 AM_CONDITIONAL(HAVE_DISPLAY96, test "$BOXTYPE" == gb800ue -o "$BOXTYPE" == gbquad)
 AM_CONDITIONAL(HAVE_DISPLAYDM, test "$BOXTYPE" == dm800 -o "$BOXTYPE" == dm800se)
+
+if test `echo "$BOXTYPE" | cut -b 1-2` == "dm"; then
+	AC_DEFINE(DREAMBOX, 1, [Dreambox hardware])
+fi
 
 AC_ARG_WITH(textlcd,
 	AC_HELP_STRING([--with-textlcd], [use ascii based lcd, yes or no]),
@@ -138,6 +142,7 @@ fi
 if test x"$BOXTYPE" == "xventonhdx" ; then
 	AC_DEFINE(KEY_RECORD_TO_KEY_EPG, 1,[define when rc sends a KEY_RECORD event for its KEY_EPG key])
 	AC_DEFINE(KEY_TV_TO_KEY_VIDEO, 1,[define when rc sends a KEY_TV event for its KEY_VIDEO key])
+	AC_DEFINE(FORCE_NO_BLENDING_ACCELERATION, 1,[define when the framebuffer acceleration does not have alphablending support, though the autodetection might indicate that it does])
 fi
 
 if test x"$BOXTYPE" == "xet5x00" -o x"$BOXTYPE" == "xet6x00" -o x"$BOXTYPE" == "xet9x00" ; then
@@ -145,9 +150,9 @@ if test x"$BOXTYPE" == "xet5x00" -o x"$BOXTYPE" == "xet6x00" -o x"$BOXTYPE" == "
 # 	AC_DEFINE(FORCE_ADVANCED_REMOTE, 1,[define to fixup the input device identification when the remote control is actually an 'advanced' remote (with play/forward/rewind keys)])
 fi
 
-if test x"$BOXTYPE" == "xvuduo" -o x"$BOXTYPE" == "xvusolo" -o x"$BOXTYPE" == "xvuuno" -o x"$BOXTYPE" == "xvuultimo" -o x"$BOXTYPE" == "xgbhd800se"; then
+if test x"$BOXTYPE" == "xvuduo" -o x"$BOXTYPE" == "xvusolo" -o x"$BOXTYPE" == "xvuuno" -o x"$BOXTYPE" == "xvuultimo" -o x"$BOXTYPE" == "xtmtwin"; then
 	AC_DEFINE(FORCE_NO_BLENDING_ACCELERATION, 1,[define when the framebuffer acceleration does not have alphablending support, though the autodetection might indicate that it does])
-# 	AC_DEFINE(FORCE_ADVANCED_REMOTE, 1,[define to fixup the input device identification when the remote control is actually an 'advanced' remote (with play/forward/rewind keys)])
+ 	AC_DEFINE(FORCE_ADVANCED_REMOTE, 1,[define to fixup the input device identification when the remote control is actually an 'advanced' remote (with play/forward/rewind keys)])
 fi
 
 AC_ARG_WITH(libsdl,
@@ -219,12 +224,13 @@ data/rc_models/Makefile
 data/rc_models/et6x00/Makefile
 data/rc_models/et9500/Makefile
 data/rc_models/et9x00/Makefile
-data/rc_models/vu/Makefile
 data/rc_models/gb/Makefile
 data/rc_models/ini3000/Makefile
 data/rc_models/ini5000/Makefile
 data/rc_models/ini7000/Makefile
 data/rc_models/odin/Makefile
+data/rc_models/tm/Makefile
+data/rc_models/vu/Makefile
 data/skin_default/Makefile
 data/skin_default/menu/Makefile
 data/skin_default/icons/Makefile

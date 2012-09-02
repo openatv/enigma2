@@ -54,7 +54,7 @@ class VideoSetup(Screen, ConfigListScreen):
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def SelectionChanged(self):
- 		self["status"].setText(self["config"].getCurrent()[2])
+		self["status"].setText(self["config"].getCurrent()[2])
 
 	def layoutFinished(self):
 		self.setTitle(self.setup_title)

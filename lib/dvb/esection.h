@@ -23,6 +23,7 @@ class eGTable: public iObject, public Object
 protected:
 	static const bool m_debug = false;
 	virtual int createTable(unsigned int nr, const __u8 *data, unsigned int max)=0;
+	virtual int totalSections(int max) { return max + 1; }
 public:
 	Signal1<void, int> tableReady;
 	eGTable();

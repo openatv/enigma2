@@ -104,7 +104,7 @@ class CableTransponderSearchSupport:
 			if raw_channel:
 				frontend = raw_channel.getFrontend()
 				if frontend:
-					frontend.closeFrontend() # immediate close... 
+					frontend.closeFrontend() # immediate close...
 					del frontend
 					del raw_channel
 					return True
@@ -176,7 +176,7 @@ class CableTransponderSearchSupport:
 				tmpstr += " kHz "
 				tmpstr += data[0]
 				self.cable_search_session["text"].setText(tmpstr)
-		
+
 	def startCableTransponderSearch(self, nim_idx):
 		if not self.tryGetRawFrontend(nim_idx):
 			self.session.nav.stopService()
@@ -218,7 +218,7 @@ class CableTransponderSearchSupport:
 			cmd = "mediaclient --blindscan %d" % nim_idx
 		else:
 			cmd = "tda1002x --init --scan --verbose --wakeup --inv 2 --bus %d" % bus
-		
+
 		if cableConfig.scan_type.value == "bands":
 			cmd += " --scan-bands "
 			bands = 0
@@ -291,14 +291,14 @@ class DefaultSatLists(DefaultWizard):
 		import os
 		os.system("mount %s %s" % (resolveFilename(SCOPE_DEFAULTPARTITION), resolveFilename(SCOPE_DEFAULTPARTITIONMOUNTDIR)))
 		self.directory.append(resolveFilename(SCOPE_DEFAULTPARTITIONMOUNTDIR))
-				
+
 	def statusCallback(self, status, progress):
 		print "statusCallback:", status, progress
 		from Components.DreamInfoHandler import DreamInfoHandler
 		if status == DreamInfoHandler.STATUS_DONE:
 			self["text"].setText(_("The installation of the default services lists is finished.") + "\n\n" + _("Please press OK to continue."))
 			self.markDone()
-			self.disableKeys = False	
+			self.disableKeys = False
 
 class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 	def __init__(self, session):
@@ -314,17 +314,19 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		if self.service is not None:
 			self.feinfo = self.service.frontendInfo()
 			frontendData = self.feinfo and self.feinfo.getAll(True)
-		
+
 		self.createConfig(frontendData)
 
 		del self.feinfo
 		del self.service
 
+		self.session.postScanService = session.nav.getCurrentlyPlayingServiceReference()
+
 		self["actions"] = NumberActionMap(["SetupActions", "MenuActions"],
 		{
 			"ok": self.keyGo,
 			"cancel": self.keyCancel,
-			"menu": self.closeRecursive,
+			"menu": self.doCloseRecursive,
 		}, -2)
 
 		self.statusTimer = eTimer()
@@ -359,10 +361,10 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 
 		self.tunerEntry = getConfigListEntry(_("Tuner"), self.scan_nims)
 		self.list.append(self.tunerEntry)
-		
+
 		if self.scan_nims == [ ]:
 			return
-		
+
 		self.typeOfScanEntry = None
 		self.systemEntry = None
 		self.modulationEntry = None
@@ -783,7 +785,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		startScan = True
 		removeAll = True
 		index_to_scan = int(self.scan_nims.value)
-		
+
 		if self.scan_nims == [ ]:
 			self.session.open(MessageBox, _("No tuner is enabled!\nPlease setup your tuner settings before you start a service scan."), MessageBox.TYPE_ERROR)
 			return
@@ -796,7 +798,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 				# these lists are generated for each tuner, so this has work.
 				assert len(self.satList) > index_to_scan
 				assert len(self.scan_satselection) > index_to_scan
-				
+
 				nimsats = self.satList[index_to_scan]
 				selsatidx = self.scan_satselection[index_to_scan].index
 
@@ -908,10 +910,14 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 				self.session.open(MessageBox, _("Nothing to scan!\nPlease setup your tuner settings before you start a service scan."), MessageBox.TYPE_ERROR)
 
 	def keyCancel(self):
+		self.session.nav.playService(self.session.postScanService)
 		for x in self["config"].list:
 			x[1].cancel()
 		self.close()
 
+	def doCloseRecursive(self):
+		self.session.nav.playService(self.session.postScanService)
+		self.closeRecursive()
 class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport):
 	def getNetworksForNim(self, nim):
 		if nim.isCompatible("DVB-S"):
@@ -931,8 +937,10 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		{
 			"ok": self.keyGo,
 			"cancel": self.keyCancel,
-			"menu": self.closeRecursive,
+			"menu": self.doCloseRecursive,
 		}, -2)
+
+		self.session.postScanService = session.nav.getCurrentlyPlayingServiceReference()
 
 		self.list = []
 		tlist = []
@@ -946,7 +954,7 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport):
 
 			need_scan = False
 			networks = self.getNetworksForNim(nim)
-			
+
 			print "nim %d provides" % nim.slot, networks
 			print "known:", known_networks
 
@@ -957,7 +965,7 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport):
 					need_scan = True
 					print x, "not in ", known_networks
 					known_networks.append(x)
-					
+
 			# don't offer to scan nims if nothing is connected
 			if not nimmanager.somethingConnected(nim.slot):
 				need_scan = False
@@ -1070,11 +1078,14 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		self.buildTransponderList()
 
 	def keyCancel(self):
+		self.session.nav.playService(self.session.postScanService)
 		self.close()
 
+	def doCloseRecursive(self):
+		self.session.nav.playService(self.session.postScanService)
+		self.closeRecursive()
 	def Satexists(self, tlist, pos):
 		for x in tlist:
 			if x == pos:
 				return 1
 		return 0
-

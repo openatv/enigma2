@@ -39,8 +39,8 @@ class Language:
 		self.addLanguage("Norsk", "no", "NO")
 		self.addLanguage("Polski", "pl", "PL")
 		self.addLanguage("Português", "pt", "PT")
+		self.addLanguage("Romanian",    "ro", "RO")
 		self.addLanguage("Русский", "ru", "RU")
-		self.addLanguage("Русский",     "ru", "RU")
 		self.addLanguage("Slovensky", "sk", "SK")
 		self.addLanguage("Slovenščina", "sl", "SI")
 		self.addLanguage("Srpski", "sr", "YU")
@@ -62,7 +62,7 @@ class Language:
 		try:
 			lang = self.lang[index]
 			print "Activating language " + lang[0]
-			gettext.translation('enigma2', resolveFilename(SCOPE_LANGUAGE, ""), languages=[lang[1]]).install(names=("ngettext"))
+			gettext.translation('enigma2', resolveFilename(SCOPE_LANGUAGE, ""), languages=[lang[1]]).install(names=("ngettext", "pgettext"))
 			self.activeLanguage = index
 			for x in self.callbacks:
 				x()

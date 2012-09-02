@@ -656,13 +656,12 @@ class NimManager:
 			#print "SATS", self.satellites
 			#print "TRANSPONDERS", self.transponders
 
-		if self.hasNimType("DVB-C"):
+		if self.hasNimType("DVB-C") or self.hasNimType("DVB-T"):
 			print "Reading cables.xml"
 			db.readCables(self.cablesList, self.transponderscable)
 #			print "CABLIST", self.cablesList
 #			print "TRANSPONDERS", self.transponders
 
-		if self.hasNimType("DVB-T"):
 			print "Reading terrestrial.xml"
 			db.readTerrestrials(self.terrestrialsList, self.transpondersterrestrial)
 #			print "TERLIST", self.terrestrialsList
