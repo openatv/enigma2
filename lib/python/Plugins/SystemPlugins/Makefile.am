@@ -6,14 +6,6 @@ SUBDIRS = PositionerSetup Satfinder SoftwareManager \
 	VideoEnhancement WirelessLan NetworkWizard VideoClippingSetup \
 	SatelliteEquipmentControl DiseqcTester HdmiCEC
 
-if VUUNO
-SUBDIRS += FirmwareUpgrade
-endif
-
-if VUULTIMO
-SUBDIRS += FirmwareUpgrade
-endif
-
 if HAVE_TEMPFANCONTROL
 SUBDIRS += TempFanControl
 endif
