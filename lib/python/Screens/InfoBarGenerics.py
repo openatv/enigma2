@@ -646,12 +646,12 @@ class InfoBarShowHide:
 
 	def LongOKPressed(self):
 		if isinstance(self, InfoBarEPG):
-			if config.vixsettings.QuickEPG_mode.value == "1":
+			if config.plisettings.QuickEPG_mode.value == "1":
 				self.openInfoBarEPG()
 
 	def keyHide(self):
 		if self.__state == self.STATE_HIDDEN:
-			if config.vixsettings.QuickEPG_mode.value == "2":
+			if config.plisettings.QuickEPG_mode.value == "2":
 				self.openInfoBarEPG()
 			else:
 				self.hide()
