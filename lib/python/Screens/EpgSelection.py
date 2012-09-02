@@ -1174,7 +1174,7 @@ class EPGSelection(Screen, HelpableScreen):
 		self.moveTimeLines()
 
 	def OK(self):
-		if config.epgselction.OK_pliepg.value == "EventView":
+		if config.epgselection.OK_pliepg.value == "EventView":
 				self.infoKeyPressed()
 		elif config.epgselection.OK_pliepg.value == "Zap" or config.epgselection.OK_enhanced.value == "Zap" or config.epgselection.OK_infobar.value == "Zap":
 			self.ZapTo()
@@ -1183,7 +1183,7 @@ class EPGSelection(Screen, HelpableScreen):
 				self["list"].setCurrentlyPlaying(serviceref)
 				self["list"].fillGraphEPG(None, self.ask_time)
 				self.moveTimeLines(True)
-		if config.epgselction.OK_pliepg.value == "EventView":
+		if config.epgselection.OK_pliepg.value == "EventView":
 				self.infoKeyPressed()		
 		elif config.epgselection.OK_pliepg.value == "Zap + Exit" or config.epgselection.OK_enhanced.value == "Zap + Exit" or config.epgselection.OK_infobar.value == "Zap + Exit":
 			self.zap()
