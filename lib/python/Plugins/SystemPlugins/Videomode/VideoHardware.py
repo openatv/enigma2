@@ -204,7 +204,7 @@ class VideoHardware:
 
 		try:
 			mode_etc = None
-			if mode == "1080p" or mode == "720p":
+			if mode == "1080p":
 				mode_etc = modes.get(int(rate[:2]))
 				open("/proc/stb/video/videomode", "w").write(mode_etc)
 			# not support 50Hz, 60Hz for 1080p
@@ -219,7 +219,7 @@ class VideoHardware:
 				print "setting videomode failed."
 
 		try:
-			if mode == "1080p" or mode == "720p":
+			if mode == "1080p":
 				open("/etc/videomode", "w").write(mode_etc)
 			else:
 				open("/etc/videomode", "w").write(mode_50) # use 50Hz mode (if available) for booting
