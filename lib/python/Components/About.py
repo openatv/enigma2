@@ -101,6 +101,19 @@ def getImageTypeString():
 	except IOError:
 		return "unavailable"
 
+def getImageDistroString():
+	try:
+		file = open('/etc/image-version', 'r')
+		lines = file.readlines()
+		file.close()
+		for x in lines:
+			splitted = x.split('=')
+			if splitted[0] == "comment":
+				distro =  splitted[1].replace('\n','')
+		return distro
+	except IOError:
+		return "unavailable"
+
 import socket, fcntl, struct
 
 def _ifinfo(sock, addr, ifname):
