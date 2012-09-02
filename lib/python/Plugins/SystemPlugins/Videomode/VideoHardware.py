@@ -313,17 +313,21 @@ class VideoHardware:
 			policy_choices = {"pillarbox": "panscan", "panscan": "letterbox", "nonlinear": "nonlinear", "scale": "bestfit"}
 			if path.exists("/proc/stb/video/policy_choices") and "auto" in open("/proc/stb/video/policy_choices").readline():
 				policy_choices.update({"auto": "auto"})
+			else:
+				policy_choices.update({"auto": "bestfit"})
 			policy = policy_choices[config.av.policy_43.value]
 			policy2_choices = {"letterbox": "letterbox", "panscan": "panscan", "scale": "bestfit"}
 			if path.exists("/proc/stb/video/policy2_choices") and "auto" in open("/proc/stb/video/policy2_choices").readline():
 				policy2_choices.update({"auto": "auto"})
+			else:
+				policy2_choices.update({"auto": "bestfit"})
 			policy2 = policy2_choices[config.av.policy_169.value]
 		elif is_auto:
 			aspect = "any"
 			policy = "bestfit"
 		else:
 			aspect = "4:3"
-			policy = {"letterbox": "letterbox", "panscan": "panscan", "scale": "bestfit"}[config.av.policy_169.value]
+			policy = {"letterbox": "letterbox", "panscan": "panscan", "scale": "bestfit", "audo": "bestfit"}[config.av.policy_169.value]
 
 		if not config.av.wss.value:
 			wss = "auto(4:3_off)"
