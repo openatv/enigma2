@@ -67,9 +67,9 @@ public:
 	void searchAllReferences(std::vector<eServiceReference> &result, int tsid, int onid, int sid);
 	eDVBDB();
 	virtual ~eDVBDB();
-	void setNumberingMode(bool numberingMode);
 	int renumberBouquet(eBouquet &bouquet, int startChannelNum = 1);
 #endif
+	void setNumberingMode(bool numberingMode);
 	void renumberBouquet();
 	void loadServicelist(const char *filename);
 	static eDVBDB *getInstance() { return instance; }
