@@ -311,7 +311,7 @@ def InitOsd():
 	try:
 		SystemInfo["CanChange3DOsd"] = (open("/proc/stb/fb/3dmode", "r") or open("/proc/stb/fb/primary/3d", "r")) and True or False
 	except:
-		SystemInfo["CanChange3DOsd"] = = False
+		SystemInfo["CanChange3DOsd"] = False
 	try:
 		SystemInfo["CanChangeOsdAlpha"] = open("/proc/stb/video/alpha", "r") and True or False
 	except:
