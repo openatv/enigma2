@@ -308,9 +308,18 @@ def setConfiguredSettings():
 			applySettings(config.osd.threeDmode.value, int(config.osd.threeDznorm.value))
 
 def InitOsd():
-	SystemInfo["CanChange3DOsd"] = (open("/proc/stb/fb/3dmode", "r") or open("/proc/stb/fb/primary/3d", "r")) and True or False
-	SystemInfo["CanChangeOsdAlpha"] = open("/proc/stb/video/alpha", "r") and True or False
-	SystemInfo["CanChangeOsdPosition"] = open("/proc/stb/fb/dst_left", "r") and True or False
+	try:
+		SystemInfo["CanChange3DOsd"] = (open("/proc/stb/fb/3dmode", "r") or open("/proc/stb/fb/primary/3d", "r")) and True or False
+	except:
+		SystemInfo["CanChange3DOsd"] = = False
+	try:
+		SystemInfo["CanChangeOsdAlpha"] = open("/proc/stb/video/alpha", "r") and True or False
+	except:
+		SystemInfo["CanChangeOsdAlpha"] = False
+	try:	
+		SystemInfo["CanChangeOsdPosition"] = open("/proc/stb/fb/dst_left", "r") and True or False
+	except:
+		SystemInfo["CanChangeOsdPosition"] = False
 	SystemInfo["OsdSetup"] = SystemInfo["CanChangeOsdPosition"]
 	if SystemInfo["CanChangeOsdAlpha"] == True or SystemInfo["CanChangeOsdPosition"] == True:
 		SystemInfo["OsdMenu"] = True
