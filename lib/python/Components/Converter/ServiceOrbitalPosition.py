@@ -44,9 +44,10 @@ class ServiceOrbitalPosition(Converter, object):
 					return "%d.%d\xc2\xb0 %s" % (pos/10, pos%10, direction)
 			return tunerType
 		if ref:
-			if ref.toString().startswith("4097:0:"):
+			refString = ref.toString().lower()
+			if "%3a//" in refString:
 				return _("Stream")
-			if ref.toString().startswith("1:134:"):
+			if refString.startswith("1:134:"):
 				return _("Altern")
 		return ""
 
