@@ -632,17 +632,24 @@ class InfoBarShowHide:
 		self.onShowHideNotifiers = []
 
 		self.standardInfoBar = False
+		self.lastSecondInfoBar = 0
 		self.secondInfoBarScreen = ""
 		if isStandardInfoBar(self):
-			if config.usage.show_second_infobar.value == "3" and config.skin.primary_skin.value == "DMConcinnity-HD/skin.xml":
-				self.secondInfoBarScreen = self.session.instantiateDialog(SecondInfoBarECM)
-			else:
-				self.secondInfoBarScreen = self.session.instantiateDialog(SecondInfoBar)
+			self.SwitchSecondInfoBarScreen()
 			self.secondInfoBarScreen.hide()
 			self.standardInfoBar = True
 		self.secondInfoBarWasShown = False
 		self.EventViewIsShown = False
 		self.pvrStateDialog = None
+
+	def SwitchSecondInfoBarScreen(self):
+		if self.lastSecondInfoBar == config.usage.show_second_infobar.value:
+			return
+		if config.usage.show_second_infobar.value == "3" and config.skin.primary_skin.value == "DMConcinnity-HD/skin.xml":
+			self.secondInfoBarScreen = self.session.instantiateDialog(SecondInfoBarECM)
+		else:
+			self.secondInfoBarScreen = self.session.instantiateDialog(SecondInfoBar)
+		self.lastSecondInfoBar = config.usage.show_second_infobar.value
 
 	def LongOKPressed(self):
 		if isinstance(self, InfoBarEPG):
@@ -731,11 +738,13 @@ class InfoBarShowHide:
 			self.secondInfoBarWasShown = False
 			self.EventViewIsShown = False
 		elif self.secondInfoBarScreen and config.usage.show_second_infobar.value == "2" and not self.secondInfoBarScreen.shown:
+			self.SwitchSecondInfoBarScreen()
 			self.hide()
 			self.secondInfoBarScreen.show()
 			self.secondInfoBarWasShown = True
 			self.startHideTimer()
 		elif self.secondInfoBarScreen and config.usage.show_second_infobar.value == "3" and not self.secondInfoBarScreen.shown:
+			self.SwitchSecondInfoBarScreen()
 			self.hide()
 			self.secondInfoBarScreen.show()
 			self.secondInfoBarWasShown = True
