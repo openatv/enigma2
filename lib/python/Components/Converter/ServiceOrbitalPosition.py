@@ -6,14 +6,11 @@ from Components.Element import cached
 class ServiceOrbitalPosition(Converter, object):
 	FULL = 0
 	SHORT = 1
-	ORBORTUNERSYSTEM = 2
 
 	def __init__(self, type):
 		Converter.__init__(self, type)
 		if type == "Short":
 			self.type = self.SHORT
-		elif type == "OrbitalPositionOrTunerSystem":
-			self.type = self.ORBORTUNERSYSTEM
 		else:
 			self.type = self.FULL
 
@@ -32,18 +29,25 @@ class ServiceOrbitalPosition(Converter, object):
 			transponder_info = info.getInfoObject(ref, iServiceInformation.sTransponderData)
 		else:
 			transponder_info = info.getInfoObject(iServiceInformation.sTransponderData)
-		if transponder_info and "orbital_position" in transponder_info.keys():
-			pos = int(transponder_info["orbital_position"])
-			direction = 'E'
-			if pos > 1800:
-				pos = 3600 - pos
-				direction = 'W'
-			if self.type == self.SHORT:
-				return "%d.%d%s" % (pos/10, pos%10, direction)
-			else:
-				return "%d.%d\xc2\xb0 %s" % (pos/10, pos%10, direction)
-		elif self.ORBORTUNERSYSTEM and transponder_info:
-			return transponder_info["tuner_type"]
+
+		if transponder_info:
+			tunerType = transponder_info["tuner_type"]
+			if tunerType == "DVB-S":
+				pos = int(transponder_info["orbital_position"])
+				direction = 'E'
+				if pos > 1800:
+					pos = 3600 - pos
+					direction = 'W'
+				if self.type == self.SHORT:
+					return "%d.%d%s" % (pos/10, pos%10, direction)
+				else:
+					return "%d.%d\xc2\xb0 %s" % (pos/10, pos%10, direction)
+			return tunerType
+		if ref:
+			if ref.toString().startswith("4097:0:"):
+				return _("Stream")
+			if ref.toString().startswith("1:134:"):
+				return _("Altern")
 		return ""
 
 	text = property(getText)
