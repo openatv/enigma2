@@ -6,11 +6,14 @@ from Components.Element import cached
 class ServiceOrbitalPosition(Converter, object):
 	FULL = 0
 	SHORT = 1
+	ORBORTUNERSYSTEM = 2
 
 	def __init__(self, type):
 		Converter.__init__(self, type)
 		if type == "Short":
 			self.type = self.SHORT
+		elif type == "OrbitalPositionOrTunerSystem":
+			self.type = self.ORBORTUNERSYSTEM
 		else:
 			self.type = self.FULL
 
@@ -39,8 +42,9 @@ class ServiceOrbitalPosition(Converter, object):
 				return "%d.%d%s" % (pos/10, pos%10, direction)
 			else:
 				return "%d.%d\xc2\xb0 %s" % (pos/10, pos%10, direction)
-		else:
-			return ""
+		elif self.ORBORTUNERSYSTEM and transponder_info:
+			return transponder_info["tuner_type"]
+		return ""
 
 	text = property(getText)
 
