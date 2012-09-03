@@ -629,7 +629,7 @@ eMPEGStreamInformationWriter::~eMPEGStreamInformationWriter()
 int eMPEGStreamInformationWriter::startSave(const std::string& filename)
 {
 	m_filename = filename;
-	m_structure_write_fd = ::open((m_filename + ".sc").c_str(), O_RDWR | O_CREAT | O_TRUNC, 0644);
+	m_structure_write_fd = ::open((m_filename + ".sc").c_str(), O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	m_buffer_filled = 0;
 	m_write_buffer = NULL;
 	return 0;
@@ -769,7 +769,7 @@ bool eMPEGStreamInformationWriter::PendingWrite::poll()
 	int r = aio_return(&m_aio);
 	if (r < 0)
 	{
-		eDebug("[eDVBRecordFileThread] aio_return returned failure: %m");
+		eDebug("[eMPEGStreamInformationWriter] aio_return returned failure: %m");
 	}
 	free(m_buffer);
 	m_buffer = NULL;

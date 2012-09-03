@@ -105,7 +105,7 @@ def main(session, **kwargs):
 
 def Plugins(**kwargs):
 	from os import path
-	if path.exists("/dev/hdmi_cec"):
+	if path.exists("/dev/hdmi_cec") or path.exists("/dev/misc/hdmi_cec0"):
 		import Components.HdmiCec
 		from Plugins.Plugin import PluginDescriptor
 		return [PluginDescriptor(name = "HDMI CEC setup", description = _("Adjust HDMI CEC settings"), where = PluginDescriptor.WHERE_PLUGINMENU, fnc = main)]

@@ -258,6 +258,8 @@ class InfoBarShowHide:
 			self.show()
 			if self.secondInfoBarScreen:
 				self.secondInfoBarScreen.hide()
+		elif isStandardInfoBar(self) and config.usage.show_second_infobar.value == "EPG":
+			self.showDefaultEPG()
 		elif self.secondInfoBarScreen and config.usage.show_second_infobar.value and not self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.show()
 			self.startHideTimer()
@@ -372,7 +374,7 @@ class InfoBarNumberZap:
 		return None
 
 	def zapToNumber(self, number):
-		bouquet = self.servicelist.bouquet_root
+		bouquet = self.servicelist.getRoot()
 		service = None
 		serviceHandler = eServiceCenter.getInstance()
 		if not config.usage.multibouquet.value:
@@ -380,9 +382,9 @@ class InfoBarNumberZap:
 		else:
 			service = self.searchNumberHelper(serviceHandler, number, bouquet) #search the current bouqeut first
 			if service is None:
+				bouquet = self.servicelist.bouquet_root
 				bouquetlist = serviceHandler.list(bouquet)
 				if not bouquetlist is None:
-					bouquet = bouquetlist.getNext()
 					while bouquet.valid():
 						if bouquet.flags & eServiceReference.isDirectory:
 							service = self.searchNumberHelper(serviceHandler, number, bouquet)
@@ -605,15 +607,16 @@ class SimpleServicelist:
 class InfoBarEPG:
 	""" EPG - Opens an EPG list when the showEPGList action fires """
 	def __init__(self):
-		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
-			{
-				iPlayableService.evUpdatedEventInfo: self.__evEventInfoChanged,
-			})
 		self.is_now_next = False
 		self.dlg_stack = [ ]
 		self.bouquetSel = None
 		self.eventView = None
+		self.epglist = []
 		self.defaultEPGType = self.getDefaultEPGtype()
+		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
+			{
+				iPlayableService.evUpdatedEventInfo: self.__evEventInfoChanged,
+			})
 
 		self["EPGActions"] = HelpableActionMap(self, "InfobarEPGActions",
 			{
@@ -812,7 +815,7 @@ class InfoBarEPG:
 	def __evEventInfoChanged(self):
 		if self.is_now_next and len(self.dlg_stack) == 1:
 			self.getNowNext()
-			if self.eventView and self.epgList:
+			if self.eventView and self.epglist:
 				self.eventView.setEvent(self.epglist[0])
 
 	def showDefaultEPG(self):
@@ -837,7 +840,7 @@ class InfoBarEPG:
 		else:
 			self.is_now_next = True
 		if epglist:
-			self.eventView = self.session.openWithCallback(self.closed, EventViewEPGSelect, self.epglist[0], ServiceReference(ref), self.eventViewCallback, self.openSingleServiceEPG, self.openMultiServiceEPG, self.openSimilarList)
+			self.eventView = self.session.openWithCallback(self.closed, EventViewEPGSelect, epglist[0], ServiceReference(ref), self.eventViewCallback, self.openSingleServiceEPG, self.openMultiServiceEPG, self.openSimilarList)
 			self.dlg_stack.append(self.eventView)
 		else:
 			print "no epg for the service avail.. so we show multiepg instead of eventinfo"
@@ -1838,8 +1841,11 @@ class InfoBarInstantRecord:
 			self.session.nav.RecordTimer.timeChanged(entry)
 
 	def instantRecord(self):
-		if not findSafeRecordPath(preferredInstantRecordPath()) and not findSafeRecordPath(defaultMoviePath()):
-			self.session.open(MessageBox, _("Missing ") + "\n" + preferredInstantRecordPath() +
+		pirr = preferredInstantRecordPath()
+		if not findSafeRecordPath(pirr) and not findSafeRecordPath(defaultMoviePath()):
+			if not pirr:
+				pirr = ""
+			self.session.open(MessageBox, _("Missing ") + "\n" + pirr +
 						 "\n" + _("No HDD found or HDD not initialized!"), MessageBox.TYPE_ERROR)
 			return
 
