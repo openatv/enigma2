@@ -32,7 +32,6 @@ class ServiceScan(Screen):
 
 	def ok(self):
 		print "ok"
-		self.stop()
 		if self["scan"].isDone():
 			if `self.currentInfobar`.endswith(".InfoBar'>"):
 				if self.currentServiceList is not None:
@@ -48,7 +47,6 @@ class ServiceScan(Screen):
 			self.close()
 
 	def cancel(self):
-		self.stop()
 		self.close()
 
 	def __init__(self, session, scanList):
@@ -87,7 +85,11 @@ class ServiceScan(Screen):
 				"cancel": self.cancel
 			})
 
+		self.onClose.append(self.__onClose)
 		self.onFirstExecBegin.append(self.doServiceScan)
+
+	def __onClose(self):
+		self.stop()
 
 	def start(self):
 		if self.finish_check not in self.timer.callback:
