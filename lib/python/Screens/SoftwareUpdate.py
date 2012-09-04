@@ -228,7 +228,7 @@ class UpdatePlugin(Screen):
 					socket.setdefaulttimeout(3)
 					config.usage.infobar_onlineupdatefound.setValue(True)
 					try:
-						config.usage.infobar_onlineupdateisunstable.setValue(urlopen("http://enigma2.world-of-satellite.com/feeds/status").read())
+						config.usage.infobar_onlineupdateisunstable.setValue(urlopen("http://enigma2.world-of-satellite.com/feeds/" + about.getImageVersionString() + "/status").read())
 					except:
 						config.usage.infobar_onlineupdateisunstable.setValue(1)
 					socket.setdefaulttimeout(currentTimeoutDefault)
