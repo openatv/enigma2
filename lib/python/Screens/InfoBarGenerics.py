@@ -1021,28 +1021,6 @@ class InfoBarSimpleEventView:
 			self.toggleShow()
 			return 1
 
-	def InfoPressed(self):
-		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
-			self.secondInfoBarScreen.hide()
-			self.secondInfoBarWasShown = False
-		if self.box_type == 'vuduo' or self.box_type == 'vusolo' or self.box_type == 'vuuno':
-			self.EPGPressed()
-		elif config.plisettings.PLIINFO_mode.value == "eventview":
-			self.openEventView()
-		elif config.plisettings.PLIINFO_mode.value == "epgpress":
-			self.EPGPressed()
-		elif config.plisettings.PLIINFO_mode.value == "single":
-			self.openSingleServiceEPG()
-		elif config.plisettings.PLIINFO_mode.value == "coolinfoguide":
-			self.showCoolInfoGuide()
-		elif config.plisettings.PLIINFO_mode.value == "coolsingleguide":
-			self.showCoolSingleGuide()
-
-	def showDefaultEPG(self):
-		if self.defaultEPGType is not None:
-			self.defaultEPGType()
-			return
-		self.EPGPressed()
 
 class SimpleServicelist:
 	def __init__(self, services):
@@ -3761,28 +3739,6 @@ class InfoBarExtensions:
 					no_plugin = False
 				except Exception, e:
 					self.session.open(MessageBox, _("The MediaPlayer plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
-
-	def openEventView(self):
-		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
-			self.secondInfoBarScreen.hide()
-			self.secondInfoBarWasShown = False
-		ref = self.session.nav.getCurrentlyPlayingServiceReference()
-		self.getNowNext()
-		epglist = self.epglist
-		if not epglist:
-			self.is_now_next = False
-			epg = eEPGCache.getInstance()
-			ptr = ref and ref.valid() and epg.lookupEventTime(ref, -1)
-			if ptr:
-				epglist.append(ptr)
-				ptr = epg.lookupEventTime(ref, ptr.getBeginTime(), +1)
-				if ptr:
-					epglist.append(ptr)
-		else:
-			self.is_now_next = True
-		if epglist:
-			self.eventView = self.session.openWithCallback(self.closed, EventViewEPGSelect, epglist[0], ServiceReference(ref), self.eventViewCallback, self.openSingleServiceEPG, self.openMultiServiceEPG, self.openSimilarList)
-			self.dlg_stack.append(self.eventView)
 
 from Tools.BoundFunction import boundFunction
 import inspect
