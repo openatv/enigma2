@@ -39,7 +39,7 @@ libenigma_driver_a_SOURCES += \
 endif
 
 if GIGABLUE
-libenigma_driver_a_SOURCES += \	
+libenigma_driver_a_SOURCES += \
 	vfd.cpp \
 	vfd.h
 endif
