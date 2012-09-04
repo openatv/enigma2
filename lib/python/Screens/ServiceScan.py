@@ -48,6 +48,7 @@ class ServiceScan(Screen):
 			self.close()
 
 	def cancel(self):
+		self.stop()
 		self.close()
 
 	def __init__(self, session, scanList):
@@ -100,7 +101,7 @@ class ServiceScan(Screen):
 
 	def finish_check(self):
 		if not self["scan"].isDone():
-			self.timer.startLongTimer(30)
+			self.timer.startLongTimer(60)
 		else:
 			self.stop()
 			self.close()
