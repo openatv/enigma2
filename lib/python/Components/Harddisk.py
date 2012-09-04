@@ -1,4 +1,4 @@
-﻿import os
+import os
 import time
 from os import system, listdir, statvfs, popen, makedirs, stat, major, minor, path, access
 from Tools.Directories import SCOPE_HDD, SCOPE_TIMESHIFT, resolveFilename, pathExists
