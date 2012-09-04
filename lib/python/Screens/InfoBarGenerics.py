@@ -1006,21 +1006,36 @@ class InfoBarSimpleEventView:
 	def __init__(self):
 		self["EPGActions"] = HelpableActionMap(self, "InfobarEPGActions",
 			{
-				"InfoPressed": (self.InfoPressed, _("show program information...")),
-				"EPGPressed":  (self.showDefaultEPG, _("show EPG...")),
+				"InfoPressed": (self.selectInfoPressed, _("show program information...")),
+				"EPGPressed":  (self.selectshowDefaultEPG, _("show EPG...")),
 				"showInfobarOrEpgWhenInfobarAlreadyVisible": self.showEventInfoWhenNotVisible,
 			})
+
+	def selectInfoPressed(self):
+		try:
+			self.InfoPressed()
+		except:
+			pass
+
+	def selectshowDefaultEPG(self):
+		try:
+			self.showDefaultEPG()
+		except:
+			pass
 
 	def showEventInfoWhenNotVisible(self):
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
-		if self.shown:
-			self.openEventView()
-		else:
-			self.toggleShow()
-			return 1
-
+		try:
+			if self.shown:
+				self.openEventView()
+			else:
+				self.toggleShow()
+				return 1
+		except:
+			if not self.shown:
+				return 1
 
 class SimpleServicelist:
 	def __init__(self, services):
