@@ -243,7 +243,7 @@ class HdmiCec:
 						self.wakeup()
 				elif cmd == 0x46 and config.hdmicec.tv_wakeup_detection.value == "osdnamerequest":
 					self.wakeup()
-				elif config.hdmicec.tv_wakeup_detection.value == "activity":
+				elif cmd != 0x36 and config.hdmicec.tv_wakeup_detection.value == "activity":
 					self.wakeup()
 
 	def configVolumeForwarding(self, configElement):
