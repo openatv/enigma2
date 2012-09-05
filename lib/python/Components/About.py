@@ -103,7 +103,7 @@ def getImageTypeString():
 
 def getImageDistroString():
 	try:
-		file = open('/etc/image-version', 'r')
+		file = open(resolveFilename(SCOPE_SYSETC, 'image-version'), 'r')
 		lines = file.readlines()
 		file.close()
 		for x in lines:
