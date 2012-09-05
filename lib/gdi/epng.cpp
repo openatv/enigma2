@@ -11,19 +11,6 @@ extern "C" {
 
 int loadPNG(ePtr<gPixmap> &result, const char *filename, int accel)
 {
-	//DDamir fix for LCD
-	char fname[50];
-	sprintf(fname,"/tmp/.lcd");
-	int lcd = 0;
-	FILE *in = fopen(fname,"r");
-	if (in)
-	{
-		lcd = 1;
-		fclose(in);
-		remove(fname);
-	}
-	//DDamir fix for LCD
-	
 	__u8 header[8];
 	FILE *fp=fopen(filename, "rb");
 	
@@ -121,13 +108,6 @@ int loadPNG(ePtr<gPixmap> &result, const char *filename, int accel)
 				surface->clut.data[i].r=palette[i].red;
 				surface->clut.data[i].g=palette[i].green;
 				surface->clut.data[i].b=palette[i].blue;
-				//DDamir fix for LCD
-				if (lcd == 1)
-				{
-					surface->clut.data[i].r=palette[i].blue;
-					surface->clut.data[i].b=palette[i].red;
-				}
-				//DDamir fix for LCD
 			}
 			if (png_get_valid(png_ptr, info_ptr, PNG_INFO_tRNS))
 			{
