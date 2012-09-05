@@ -1,6 +1,6 @@
 from Components.Harddisk import harddiskmanager
 from config import config, ConfigSubsection, ConfigYesNo, ConfigSelection, ConfigText, ConfigNumber, ConfigSet, ConfigLocations, NoSave, ConfigClock, ConfigInteger, ConfigBoolean, ConfigPassword, ConfigIP, ConfigSlider, ConfigSelectionNumber
-from Tools.Directories import resolveFilename, SCOPE_HDD, SCOPE_TIMESHIFT
+from Tools.Directories import resolveFilename, SCOPE_HDD, SCOPE_TIMESHIFT, SCOPE_SYSETC
 from enigma import setTunerTypePriorityOrder, setPreferredTuner, setSpinnerOnOff, setEnableTtCachingOnOff, Misc_Options, eEnv
 from Components.NimManager import nimmanager
 from SystemInfo import SystemInfo
@@ -10,7 +10,7 @@ from time import time
 
 def InitUsageConfig():
 	try:
-		file = open('/etc/image-version', 'r')
+		file = open(resolveFilename(SCOPE_SYSETC, 'image-version'), 'r')
 		lines = file.readlines()
 		file.close()
 		for x in lines:
