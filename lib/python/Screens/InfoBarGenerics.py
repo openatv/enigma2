@@ -845,7 +845,7 @@ class InfoBarChannelSelection:
 			InfoBarTimeshift.saveTimeshiftActions(self, postaction="switchChannelUp")
 		else:
 			if not config.usage.show_bouquetalways.value:
- # 				self.servicelist.moveUp()
+# 				self.servicelist.moveUp()
 				self.session.execDialog(self.servicelist)
 			else:
 				self.servicelist.showFavourites()
@@ -1368,7 +1368,10 @@ class InfoBarEPG:
 			self.openSingleServiceEPG()
 
 	def runPlugin(self, plugin):
-		plugin(session = self.session, servicelist = self.servicelist)
+		try:
+			plugin(session = self.session, servicelist = self.servicelist)
+		except:
+			plugin(session = self.session, servicelist = None)
 
 	def EventInfoPluginChosen(self, answer):
 		if answer is not None:
@@ -3474,7 +3477,7 @@ class InfoBarExtensions:
 					"extensions": (self.showExtensionSelection, _("view extensions...")),
 					"RedPressed": (self.RedPressed, _("Show epg")),
 					"showPluginBrowser": (self.showPluginBrowser, _("Show the plugin browser..")),
-					"showEventInfo": (self.openEventView, _("Show the infomation on current event.")),
+					"showEventInfo": (self.SelectopenEventView, _("Show the infomation on current event.")),
 					"openTimerList": (self.showTimerList, _("Show the tv player...")),
 					"openAutoTimerList": (self.showAutoTimerList, _("Show the tv player...")),
 					"openEPGSearch": (self.showEPGSearch, _("Show the tv player...")),
@@ -3486,7 +3489,7 @@ class InfoBarExtensions:
 				{
 					"extensions": (self.showExtensionSelection, _("view extensions...")),
 					"showPluginBrowser": (self.showPluginBrowser, _("Show the plugin browser..")),
-					"showEventInfo": (self.openEventView, _("Show the infomation on current event.")),
+					"showEventInfo": (self.SelectopenEventView, _("Show the infomation on current event.")),
 					"showMediaPlayer": (self.showMediaPlayer, _("Show the media player...")),
 				}, 1) # lower priority
 
@@ -3496,6 +3499,12 @@ class InfoBarExtensions:
 		self.addExtension(extension = self.getOScamInfo, type = InfoBarExtensions.EXTENSION_LIST)
 		self.addExtension(extension = self.getSoftcamPanel, type = InfoBarExtensions.EXTENSION_LIST)
 		self.addExtension(extension = self.getRestartNetwork, type = InfoBarExtensions.EXTENSION_LIST)
+
+	def SelectopenEventView(self):
+		try:
+			self.openEventView()
+		except:
+			pass
 
 	def getLMname(self):
 		return _("Log Manager")
