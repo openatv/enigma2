@@ -29,6 +29,13 @@ def InitUsageConfig():
 	config.usage = ConfigSubsection();
 	config.usage.showdish = ConfigSelection(default = "flashing", choices = [("flashing", _("Flashing")), ("normal", _("Not Flashing")), ("off", _("Off"))])
 	config.usage.multibouquet = ConfigYesNo(default = True)
+
+	config.usage.alternative_number_mode = ConfigYesNo(default = False)
+	def alternativeNumberModeChange(configElement):
+		enigma.eDVBDB.getInstance().setNumberingMode(configElement.value)
+		refreshServiceList()
+	config.usage.alternative_number_mode.addNotifier(alternativeNumberModeChange)
+
 	config.usage.panicbutton = ConfigYesNo(default = True)
 	config.usage.multiepg_ask_bouquet = ConfigYesNo(default = False)
 
@@ -712,3 +719,10 @@ def preferredInstantRecordPath():
 def defaultMoviePath():
 	return config.usage.default_path.value
 
+def refreshServiceList(configElement = None):
+		from Screens.InfoBar import InfoBar
+		InfoBarInstance = InfoBar.instance
+		if InfoBarInstance is not None:
+			servicelist = InfoBarInstance.servicelist
+			if servicelist:
+				servicelist.setMode()

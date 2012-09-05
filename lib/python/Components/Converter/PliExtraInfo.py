@@ -340,6 +340,12 @@ class PliExtraInfo(Poll, Converter, object):
 			return str((float(orbpos)) / 10.0) + "\xc2\xb0 E"
 		return ""
 
+	def createOrbPosOrTunerSystem(self,fedata,feraw):
+		orbpos = self.createOrbPos(feraw)
+		if orbpos is not "":
+			return orbpos
+		return self.createTunerSystem(fedata)
+
 	def createTransponderName(self,feraw):
 		orb_pos = ""
 		orbpos = feraw.get("orbital_position")
@@ -720,9 +726,12 @@ class PliExtraInfo(Poll, Converter, object):
 
 		if self.type == "TunerSystem":
 			return self.createTunerSystem(fedata)
-			
+
+		if self.type == "OrbitalPositionOrTunerSystem":
+			return self.createOrbPosOrTunerSystem(fedata,feraw)
+
 		if self.type == "PIDInfo":
-			return createPIDInfo(info)
+			return self.createPIDInfo(info)
 
 		return _("invalid type")
 
