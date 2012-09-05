@@ -1006,36 +1006,43 @@ class InfoBarSimpleEventView:
 	def __init__(self):
 		self["EPGActions"] = HelpableActionMap(self, "InfobarEPGActions",
 			{
-				"InfoPressed": (self.selectInfoPressed, _("show program information...")),
-				"EPGPressed":  (self.selectshowDefaultEPG, _("show EPG...")),
+				"showEventInfo": (self.openEventView, _("show event details")),
+				"InfoPressed": (self.openEventView, _("show event details")),
 				"showInfobarOrEpgWhenInfobarAlreadyVisible": self.showEventInfoWhenNotVisible,
 			})
 
-	def selectInfoPressed(self):
-		try:
-			self.InfoPressed()
-		except:
-			pass
+	def openEventView(self):
+		epglist = [ ]
+		self.epglist = epglist
+		service = self.session.nav.getCurrentService()
+		ref = self.session.nav.getCurrentlyPlayingServiceReference()
+		info = service.info()
+		ptr=info.getEvent(0)
+		if ptr:
+			epglist.append(ptr)
+		ptr=info.getEvent(1)
+		if ptr:
+			epglist.append(ptr)
+		if epglist:
+			self.session.open(EventViewSimple, epglist[0], ServiceReference(ref), self.eventViewCallback)
 
-	def selectshowDefaultEPG(self):
-		try:
-			self.showDefaultEPG()
-		except:
-			pass
+	def eventViewCallback(self, setEvent, setService, val): #used for now/next displaying
+		epglist = self.epglist
+		if len(epglist) > 1:
+			tmp = epglist[0]
+			epglist[0] = epglist[1]
+			epglist[1] = tmp
+			setEvent(epglist[0])
 
 	def showEventInfoWhenNotVisible(self):
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
-		try:
-			if self.shown:
-				self.openEventView()
-			else:
-				self.toggleShow()
-				return 1
-		except:
-			if not self.shown:
-				return 1
+		if self.shown:
+			self.openEventView()
+		else:
+			self.toggleShow()
+			return 1
 
 class SimpleServicelist:
 	def __init__(self, services):
