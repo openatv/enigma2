@@ -41,6 +41,11 @@ class VideoHardware:
 	if config.misc.boxtype.value == 'tmtwin':
 		rates["1080p"] =		{ "24Hz":		{ 24: "1080p24" },
 									"30Hz":		{ 30: "1080p30" } }
+	else:
+		rates["1080p"] =		{ "50Hz":		{ 50: "1080p50" },
+									"60Hz":		{ 60: "1080p60" },
+									"multi":	{ 50: "1080p50", 60: "1080p60" } }
+
 
 	rates["PC"] = {
 		"1024x768": { 60: "1024x768" }, # not possible on DM7025
@@ -59,18 +64,9 @@ class VideoHardware:
 	}
 
 	modes["Scart"] = ["PAL", "NTSC", "Multi"]
-	if config.misc.boxtype.value == 'tmtwin':
-		modes["YPbPr"] = ["720p", "1080i", "1080p", "576p", "480p", "576i", "480i"]
-		modes["DVI"] = ["720p", "1080i", "1080p", "576p", "480p", "576i", "480i"]
-	else:
-		modes["YPbPr"] = ["720p", "1080i", "576p", "480p", "576i", "480i"]
-		modes["DVI"] = ["720p", "1080i", "576p", "480p", "576i", "480i"]
+	modes["YPbPr"] = ["720p", "1080i", "576p", "480p", "576i", "480i"]
+	modes["DVI"] = ["720p", "1080p", "1080i", "576p", "480p", "576i", "480i"]
 	modes["DVI-PC"] = ["PC"]
-
-	if config.misc.boxtype.value == 'tmtwin':
-		widescreen_modes = set(["720p", "1080i", "1080p"])
-	else:
-		widescreen_modes = set(["720p", "1080i"])
 
 	def getOutputAspect(self):
 		ret = (16,9)
@@ -113,13 +109,22 @@ class VideoHardware:
 			del self.modes["DVI-PC"]
 
 		self.createConfig()
-#		self.on_hotplug.append(self.createConfig)
-
 		self.readPreferredModes()
+
+		portlist = self.getPortList()
+		has1080p50 = False
+		for port in portlist:
+			if port == 'DVI' and HardwareInfo().has_hdmi():
+				if "1080p50" in self.modes_available:
+					has1080p50 = True
+
+		if has1080p50:
+			self.widescreen_modes = set(["720p", "1080i", "1080p"])
+		else:
+			self.widescreen_modes = set(["720p", "1080i"])
 
 		# take over old AVSwitch component :)
 		from Components.AVSwitch import AVSwitch
-#		config.av.colorformat.notifiers = [ ]
 		config.av.aspectratio.notifiers = [ ]
 		config.av.tvsystem.notifiers = [ ]
 		config.av.wss.notifiers = [ ]
@@ -129,11 +134,6 @@ class VideoHardware:
 		config.av.wss.addNotifier(self.updateAspect)
 		config.av.policy_169.addNotifier(self.updateAspect)
 		config.av.policy_43.addNotifier(self.updateAspect)
-
-		# until we have the hotplug poll socket
-#		self.timer = eTimer()
-#		self.timer.callback.append(self.readPreferredModes)
-#		self.timer.start(1000)
 
 	def readAvailableModes(self):
 		try:
@@ -161,11 +161,6 @@ class VideoHardware:
 	def isModeAvailable(self, port, mode, rate):
 		rate = self.rates[mode][rate]
 		for mode in rate.values():
-			# DVI modes must be in "modes_preferred"
-#			if port == "DVI":
-#				if mode not in self.modes_preferred and not config.av.edid_override.value:
-#					print "no, not preferred"
-#					return False
 			if mode not in self.modes_available:
 				return False
 		return True
@@ -192,10 +187,10 @@ class VideoHardware:
 
 		try:
 			mode_etc = None
-			if mode == "1080p":
+			if mode == "1080p" and config.misc.boxtype.value == 'tmtwin':
 				mode_etc = modes.get(int(rate[:2]))
 				open("/proc/stb/video/videomode", "w").write(mode_etc)
-			# not support 50Hz, 60Hz for 1080p
+				# not support 50Hz, 60Hz for 1080p
 			else:
 				open("/proc/stb/video/videomode_50hz", "w").write(mode_50)
 				open("/proc/stb/video/videomode_60hz", "w").write(mode_60)
@@ -207,7 +202,7 @@ class VideoHardware:
 				print "setting videomode failed."
 
 		try:
-			if mode == "1080p":
+			if mode == "1080p" and config.misc.boxtype.value == 'tmtwin':
 				open("/etc/videomode", "w").write(mode_etc)
 			else:
 				open("/etc/videomode", "w").write(mode_50) # use 50Hz mode (if available) for booting
@@ -343,17 +338,21 @@ class VideoHardware:
 			policy_choices = {"pillarbox": "panscan", "panscan": "letterbox", "nonlinear": "nonlinear", "scale": "bestfit"}
 			if path.exists("/proc/stb/video/policy_choices") and "auto" in open("/proc/stb/video/policy_choices").readline():
 				policy_choices.update({"auto": "auto"})
+			else:
+				policy_choices.update({"auto": "bestfit"})
 			policy = policy_choices[config.av.policy_43.value]
 			policy2_choices = {"letterbox": "letterbox", "panscan": "panscan", "scale": "bestfit"}
 			if path.exists("/proc/stb/video/policy2_choices") and "auto" in open("/proc/stb/video/policy2_choices").readline():
 				policy2_choices.update({"auto": "auto"})
+			else:
+				policy2_choices.update({"auto": "bestfit"})
 			policy2 = policy2_choices[config.av.policy_169.value]
 		elif is_auto:
 			aspect = "any"
 			policy = "bestfit"
 		else:
 			aspect = "4:3"
-			policy = {"letterbox": "letterbox", "panscan": "panscan", "scale": "bestfit"}[config.av.policy_169.value]
+			policy = {"letterbox": "letterbox", "panscan": "panscan", "scale": "bestfit", "auto": "bestfit"}[config.av.policy_169.value]
 
 		if not config.av.wss.value:
 			wss = "auto(4:3_off)"
