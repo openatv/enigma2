@@ -13,6 +13,8 @@ public:
 	void setPixmap(gPixmap *pixmap);
 	void setPixmap(ePtr<gPixmap> &pixmap);
 	void setPixmapFromFile(const char *filename);
+	//DDamir fix for LCD
+	void setPixmapFromFileLCD(const char *filename);
 	void setAlphatest(int alphatest); /* 1 for alphatest, 2 for alphablend */
 	void setScale(int scale);
 	void setBorderWidth(int pixel);
