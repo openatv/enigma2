@@ -11,6 +11,7 @@ from Components.Ipkg import IpkgComponent
 from Components.ScrollLabel import ScrollLabel
 from Components.Sources.StaticText import StaticText
 from Components.Slider import Slider
+import Components.Task
 from enigma import eTimer
 from os import rename, path, remove
 
@@ -102,7 +103,7 @@ class SoftwareUpdateChanges(Screen):
 		self.close((_("Unattended upgrade without GUI and reboot system"), "cold"))
 
 	def closeRecursive(self):
-		self.close((_("Cancel"), ""))
+		self.close(("fullmenu", "fullmenu"))
 
 class UpdatePlugin(Screen):
 	skin = """
@@ -220,32 +221,30 @@ class UpdatePlugin(Screen):
 				self.updating = False
 				self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE_LIST)
 			elif self.ipkg.currentCommand == IpkgComponent.CMD_UPGRADE_LIST:
-				self.total_packages = len(self.ipkg.getFetchedList())
+				from urllib import urlopen
+				import socket
+				currentTimeoutDefault = socket.getdefaulttimeout()
+				socket.setdefaulttimeout(3)
+				try:
+					config.usage.infobar_onlineupdateisunstable.setValue(urlopen("http://enigma2.world-of-satellite.com/feeds/" + about.getImageVersionString() + "/status").read())
+				except:
+					config.usage.infobar_onlineupdateisunstable.setValue(1)
+				socket.setdefaulttimeout(currentTimeoutDefault)
+				self.total_packages = None
+				if config.usage.infobar_onlineupdateisunstable.value == '1' and config.usage.infobar_onlineupdatebeta.value:
+					message = _("The current update maybe unstable") + "\n" + _("Are you sure you want to update your STB_BOX?") + "\n(%s " % self.total_packages + _("Packages") + ")"
+ 					self.total_packages = len(self.ipkg.getFetchedList())
+				elif config.usage.infobar_onlineupdateisunstable.value == '0':
+					message = _("Do you want to update your STB_BOX?") + "\n(%s " % self.total_packages + _("Packages") + ")"
+					self.total_packages = len(self.ipkg.getFetchedList())
 				if self.total_packages:
-					from urllib import urlopen
-					import socket
-					currentTimeoutDefault = socket.getdefaulttimeout()
-					socket.setdefaulttimeout(3)
 					config.usage.infobar_onlineupdatefound.setValue(True)
-					try:
-						config.usage.infobar_onlineupdateisunstable.setValue(urlopen("http://enigma2.world-of-satellite.com/feeds/" + about.getImageVersionString() + "/status").read())
-					except:
-						config.usage.infobar_onlineupdateisunstable.setValue(1)
-					socket.setdefaulttimeout(currentTimeoutDefault)
-					if config.usage.infobar_onlineupdateisunstable.value == '1' and config.usage.infobar_onlineupdatebeta.value:
-						message = _("The current update maybe unstable") + "\n" + _("Are you sure you want to update your STB_BOX?") + "\n(%s " % self.total_packages + _("Packages") + ")"
-						choices = [(_("View the changes"), "changes"),
-							(_("Unattended upgrade without GUI and reboot system"), "cold"),
-							(_("Cancel"), "")]
-						self.session.openWithCallback(self.startActualUpgrade, ChoiceBox, title=message, list=choices)
-					elif config.usage.infobar_onlineupdateisunstable.value == '0':
-						message = _("Do you want to update your STB_BOX?") + "\n(%s " % self.total_packages + _("Packages") + ")"
-						choices = [(_("View the changes"), "changes"),
-							(_("Unattended upgrade without GUI and reboot system"), "cold"),
-							(_("Cancel"), "")]
-						self.session.openWithCallback(self.startActualUpgrade, ChoiceBox, title=message, list=choices)
-					else:
-						self.session.openWithCallback(self.close, MessageBox, _("Nothing to upgrade"), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+					choices = [(_("View the changes"), "changes"),
+						(_("Unattended upgrade without GUI and reboot system"), "cold")]
+					if path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/BackupManager.pyo"):
+						choices.append((_("Perform a setting backup"), "backup"))
+					choices.append((_("Cancel"), ""))
+					self.session.openWithCallback(self.startActualUpgrade, ChoiceBox, title=message, list=choices)
 				else:
 					self.session.openWithCallback(self.close, MessageBox, _("Nothing to upgrade"), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 			elif self.error == 0:
@@ -267,18 +266,43 @@ class UpdatePlugin(Screen):
 		pass
 
 	def startActualUpgrade(self, answer):
+		print 'ANSWER:',answer
 		if not answer or not answer[1]:
 			self.close()
 			return
 
-		if answer[1] == "changes":
+		if answer[1] == "menu" or answer[1] == "fullmenu":
+			if config.usage.infobar_onlineupdateisunstable.value == '1' and config.usage.infobar_onlineupdatebeta.value:
+				message = _("The current update maybe unstable") + "\n" + _("Are you sure you want to update your STB_BOX?") + "\n(%s " % self.total_packages + _("Packages") + ")"
+			elif config.usage.infobar_onlineupdateisunstable.value == '0':
+				message = _("Do you want to update your STB_BOX?") + "\n(%s " % self.total_packages + _("Packages") + ")"
+			choices = [(_("View the changes"), "changes"),
+				(_("Unattended upgrade without GUI and reboot system"), "cold")]
+			if answer[1] == "fullmenu":
+				choices.append((_("Perform a setting backup"), "backup"))
+			choices.append((_("Cancel"), ""))
+			self.session.openWithCallback(self.startActualUpgrade, ChoiceBox, title=message, list=choices)
+		elif answer[1] == "changes":
 			self.session.openWithCallback(self.startActualUpgrade,SoftwareUpdateChanges)
+		elif answer[1] == "backup":
+			from Plugins.SystemPlugins.ViX.BackupManager import BackupFiles
+			self.BackupFiles = BackupFiles(self.session)
+			Components.Task.job_manager.AddJob(self.BackupFiles.createBackupJob())
+			for job in Components.Task.job_manager.getPendingJobs():
+				jobname = str(job.name)
+			self.showJobView(job)
+
 		elif answer[1] == "cold":
 			self.session.open(TryQuitMainloop,retvalue=42)
 			self.close()
 
 	def modificationCallback(self, res):
 		self.ipkg.write(res and "N" or "Y")
+
+	def showJobView(self, job):
+		from Screens.TaskView import JobView
+		Components.Task.job_manager.in_background = False
+		self.session.openWithCallback(self.startActualUpgrade(("menu", "menu")), JobView, job,  cancelable = False, backgroundable = False, afterEventChangeable = False)
 
 	def exit(self):
 		if not self.ipkg.isRunning():
