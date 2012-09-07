@@ -135,7 +135,7 @@ if test x"$BOXTYPE" == "xgb800se" -o x"$BOXTYPE" == "xgb800solo" -o x"$BOXTYPE" 
 	AC_DEFINE(KEY_GUIDE_TO_KEY_EPG, 1,[define when rc sends a KEY_HELP event for its KEY_EPG key])
 fi
 
-if test x"$BOXTYPE" == "xdm8000" -o x"$BOXTYPE" == "xdm7020hd" -o x"$BOXTYPE" == "xventonhdx"; then
+if test x"$BOXTYPE" == "xdm8000" -o x"$BOXTYPE" == "xdm7020hd" -o x"$BOXTYPE" == "xdm800" -o x"$BOXTYPE" == "xdm800se" -o x"$BOXTYPE" == "xdm500hd" -o x"$BOXTYPE" == "xventonhdx"; then
 	AC_DEFINE(KEY_PLAY_ACTUALLY_IS_KEY_PLAYPAUSE, 1,[define when rc sends a KEY_PLAY event for its KEY_PLAYPAUSE key])
 fi
 
