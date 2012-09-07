@@ -977,10 +977,11 @@ class EPGSelection(Screen, HelpableScreen):
 			from Plugins.Extensions.AutoTimer.plugin import main, autostart
 			from Plugins.Extensions.AutoTimer.AutoTimer import AutoTimer
 			from Plugins.Extensions.AutoTimer.AutoPoller import AutoPoller
-			autopoller = AutoPoller()
-			autotimer = AutoTimer()
 			global autotimer
 			global autopoller
+			autopoller = AutoPoller()
+			autotimer = AutoTimer()
+
 
 			try:
 				autotimer.readXml()
@@ -1333,7 +1334,7 @@ class EPGSelection(Screen, HelpableScreen):
 			self.servicelist.clearPath()
 			self.servicelist.enterPath(self.servicelist.bouquet_root)
 			self.servicelist.enterPath(bouquet)
-		self.servicelist.setCurrentSelection(service) #select the service in servicelist
+		self.servicelist.setCurrent(service) #select the service in servicelist
 
 	def zap(self):
 		if self.session.nav.getCurrentlyPlayingServiceReference().toString().find('0:0:0:0:0:0:0:0:0')!= -1:
@@ -1646,7 +1647,7 @@ class EPGSelectionSetup(Screen, ConfigListScreen):
 	def changedEntry(self):
 		for x in self.onChangedEntry:
 			x()
- 		self.selectionChanged()
+		self.selectionChanged()
 
 	def getCurrentEntry(self):
 		return self["config"].getCurrent()[0]
