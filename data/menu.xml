@@ -132,7 +132,7 @@ self.session.open(SABnzbdSetupScreen)
 					<item level="2" text="Telnet Setup" entryID="nettelnet_setup"><screen module="NetworkSetup" screen="NetworkTelnet"/></item>
 					<item level="2" text="uShare Setup" entryID="netushare_setup"><screen module="NetworkSetup" screen="NetworkuShare"/></item>
 				</menu>
-				<item level="1" entryID="onlineupdate_setup"><setup id="onlineupdatesetup"/></item>
+				<item level="1" entryID="onlineupdate_setup"><setup id="softwareupdate"/></item>
 				<menu level="2" text="OSD" entryID="osd_setup" requires="OsdMenu">
 					<id val="osd_menu" />
 					<item level="0" entryID="osd_setup"><setup id="osdsetup" /></item>

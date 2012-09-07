@@ -24,10 +24,12 @@
 		<item level="2" text="Include ECM in http streams" summary="This allows the ECM data to be included in the stream. This enables a client STB_BOX to decode it.">config.streaming.stream_ecm</item>
 		<item level="2" text="De-scramble http streams" summary="This allows the STB_BOX to decode the stream (if the ECM data is included in the stream and a valid card is available).">config.streaming.descramble</item>
 	</setup>
-	<setup key="onlineupdatesetup" title="Online Update">
-		<item level="1" text="Online update" summary="Perform an online update check">config.usage.infobar_onlinecheck</item>
-		<item level="1" text="Check every (hours)" summary="Setup the interval to check for online updates. (in hours)" requires="config.usage.infobar_onlinecheck">config.usage.infobar_onlinechecktimer</item>
-		<item level="1" text="Allow unstable (untested) updates" summary="With this option enabled the online checker will also check for experimental versions" requires="config.usage.infobar_onlinecheck">config.usage.infobar_onlineupdatebeta</item>
+	<setup key="softwareupdate" title="Software Update">
+		<item level="1" text="Background check" summary="Perform an online update check in the background">config.softwareupdate.check</item>
+		<item level="1" text="Check every (hours)" summary="Setup the interval to check for online updates. (in hours)" requires="config.softwareupdate.check">config.softwareupdate.checktimer</item>
+		<item level="1" text="Allow unstable (untested) updates" summary="With this option enabled the online checker will also check for experimental versions" requires="config.softwareupdate.check">config.softwareupdate.updatebeta</item>
+		<item level="1" text="Automatic setting backup" summary="Perform a setting backup before updating.">config.softwareupdate.autosettingsbackup</item>
+		<item level="1" text="Automatic image backup" summary="Perform a image backup before updating.">config.softwareupdate.autoimagebackup</item>
 	</setup>
 	<setup key="osdsetup" title="OSD Setup">
 		<item level="0" text="1st Infobar timeout" summary="Set the time to hide the infobar.">config.usage.infobar_timeout</item>

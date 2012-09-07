@@ -32,9 +32,9 @@ class OnlineUpdateCheckPoller:
 		self.timer.stop()
 
 	def onlineupdate_check(self):
-		if config.usage.infobar_onlinecheck.value:
+		if config.softwareupdate.check.value:
 			Components.Task.job_manager.AddJob(self.createCheckJob())
-		self.timer.startLongTimer(config.usage.infobar_onlinechecktimer.value * 3600)
+		self.timer.startLongTimer(config.softwareupdate.checktimer.value * 3600)
 
 	def createCheckJob(self):
 		job = Components.Task.Job(_("OnlineVersionCheck"))
@@ -60,16 +60,16 @@ class OnlineUpdateCheckPoller:
 					import socket
 					currentTimeoutDefault = socket.getdefaulttimeout()
 					socket.setdefaulttimeout(3)
-					config.usage.infobar_onlineupdatefound.setValue(True)
+					config.softwareupdate.updatefound.setValue(True)
 					try:
-						config.usage.infobar_onlineupdateisunstable.setValue(urlopen("http://enigma2.world-of-satellite.com/feeds/" + about.getImageVersionString() + "/status").read())
+						config.softwareupdate.updateisunstable.setValue(urlopen("http://enigma2.world-of-satellite.com/feeds/" + about.getImageVersionString() + "/status").read())
 					except:
-						config.usage.infobar_onlineupdateisunstable.setValue(1)
+						config.softwareupdate.updateisunstable.setValue(1)
 					socket.setdefaulttimeout(currentTimeoutDefault)
 				else:
-					config.usage.infobar_onlineupdatefound.setValue(False)
+					config.softwareupdate.updatefound.setValue(False)
 			else:
-				config.usage.infobar_onlineupdatefound.setValue(False)
+				config.softwareupdate.updatefound.setValue(False)
 		pass
 
 class VersionCheck:
@@ -77,8 +77,8 @@ class VersionCheck:
 		pass
 
 	def getStableUpdateAvailable(self):
-		if config.usage.infobar_onlineupdatefound.value and config.usage.infobar_onlinecheck.value:
-			if config.usage.infobar_onlineupdateisunstable.value == '0':
+		if config.softwareupdate.updatefound.value and config.softwareupdate.check.value:
+			if config.softwareupdate.updateisunstable.value == '0':
 # 				print '[OnlineVersionCheck] New Release updates found'
 				return True
 			else:
@@ -88,8 +88,8 @@ class VersionCheck:
 			return False
 
 	def getUnstableUpdateAvailable(self):
-		if config.usage.infobar_onlineupdatefound.value and config.usage.infobar_onlinecheck.value:
-			if config.usage.infobar_onlineupdateisunstable.value == '1' and config.usage.infobar_onlineupdatebeta.value:
+		if config.softwareupdate.updatefound.value and config.softwareupdate.check.value:
+			if config.softwareupdate.updateisunstable.value == '1' and config.softwareupdate.updatebeta.value:
 # 				print '[OnlineVersionCheck] New Experimental updates found'
 				return True
 			else:
