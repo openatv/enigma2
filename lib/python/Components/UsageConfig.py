@@ -344,6 +344,11 @@ def InitUsageConfig():
 	config.softwareupdate.updatebeta = ConfigYesNo(default = False)
 	config.softwareupdate.updateisunstable = ConfigInteger(default=0)
 
+	config.softcammanager = ConfigSubsection()
+	config.softcammanager.softcams_autostart = ConfigLocations(default='')
+	config.softcammanager.softcamtimerenabled = ConfigYesNo(default = True)
+	config.softcammanager.softcamtimer = ConfigNumber(default = 6)
+
 	config.timeshift = ConfigSubsection()
 	config.timeshift.enabled = ConfigYesNo(default = False)
 	config.timeshift.maxevents = ConfigInteger(default=5, limits=(1, 99))
