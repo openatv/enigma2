@@ -93,7 +93,7 @@ class BackupScreen(Screen, ConfigListScreen):
 			if not "/tmp/changed-configfiles.txt" in self.backupdirs:
 				self.backupdirs = self.backupdirs + " /tmp/changed-configfiles.txt"
 
-			cmd1 = "ipkg list-installed | grep 'enigma2-plugin-' > /tmp/installed-list.txt"
+			cmd1 = "ipkg list-installed | egrep 'enigma2-plugin-|task-base' > /tmp/installed-list.txt"
 			cmd2 = "ipkg list-changed-conffiles > /tmp/changed-configfiles.txt"
 			cmd3 = "tar -czvf " + self.fullbackupfilename + " " + self.backupdirs
 			cmd = [cmd1, cmd2, cmd3]
@@ -415,7 +415,7 @@ class installedPlugins(Screen):
 
 	def doList(self):
 		print"[SOFTWARE MANAGER] read installed package list"
-		self.container.execute("ipkg list-installed | grep 'enigma2-plugin-'")
+		self.container.execute("ipkg list-installed | egrep 'enigma2-plugin-|task-base'")
 
 	def dataAvail(self, strData):
 		if self.type == self.LIST:
@@ -449,7 +449,7 @@ class installedPlugins(Screen):
 		self.Menulist = []
 		for x in self.PluginList:
 			if x not in self.pluginsInstalled:
-				self.Menulist.append(SettingsEntry(x[15:] , True))
+				self.Menulist.append(SettingsEntry(x , True))
 		if len(self.Menulist) == 0:
 			self.close()
 		else:
@@ -500,7 +500,7 @@ class RestorePlugins(Screen):
 		pluginlist = []
 		for x in self.list:
 			if x[2]:
-				pluginlist.append('enigma2-plugin-' + x[0])
+				pluginlist.append(x[0])
 		if len(pluginlist) > 0:
 			self.session.open(Console, title = _("Installing plugins..."), cmdlist = ['ipkg --force-overwrite install ' + ' '.join(pluginlist)], finishedCallback = self.exit, closeOnSuccess = True)
 
