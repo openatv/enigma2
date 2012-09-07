@@ -1334,7 +1334,10 @@ class EPGSelection(Screen, HelpableScreen):
 			self.servicelist.clearPath()
 			self.servicelist.enterPath(self.servicelist.bouquet_root)
 			self.servicelist.enterPath(bouquet)
-		self.servicelist.setCurrent(service) #select the service in servicelist
+		try:
+			self.servicelist.setCurrentSelection(service) #select the service in servicelist
+		except:
+			self.servicelist.setCurrent(service)
 
 	def zap(self):
 		if self.session.nav.getCurrentlyPlayingServiceReference().toString().find('0:0:0:0:0:0:0:0:0')!= -1:
