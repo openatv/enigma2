@@ -281,7 +281,8 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 
 	def leavePlayerOnExit(self, answer = None):
 		if answer == True:
-			self.leavePlayer()
+			setResumePoint(self.session)
+			self.handleLeave("quit")
 		elif self.shown:
 			self.hide()
 		elif answer is None:
