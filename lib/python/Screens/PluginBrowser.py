@@ -325,15 +325,15 @@ class PluginDownloadBrowser(Screen):
 			currentTimeoutDefault = socket.getdefaulttimeout()
 			socket.setdefaulttimeout(3)
 			try:
-				config.usage.infobar_onlineupdateisunstable.setValue(urlopen("http://enigma2.world-of-satellite.com/feeds/" + about.getImageVersionString() + "/status").read())
+				config.softwareupdate.updateisunstable.setValue(urlopen("http://enigma2.world-of-satellite.com/feeds/" + about.getImageVersionString() + "/status").read())
 			except:
-				config.usage.infobar_onlineupdateisunstable.setValue(1)
+				config.softwareupdate.updateisunstable.setValue(1)
 			socket.setdefaulttimeout(currentTimeoutDefault)
 
-			if config.usage.infobar_onlineupdateisunstable.value == '1' and config.usage.infobar_onlineupdatebeta.value:
+			if config.softwareupdate.updateisunstable.value == '1' and config.softwareupdate.updatebeta.value:
 				self["text"].setText(_("WARNING: feeds maybe unstable.") + '\n' + _("Downloading plugin information. Please wait..."))
 				self.container.execute(self.ipkg + " update")
-			elif config.usage.infobar_onlineupdateisunstable.value == '1' and not config.usage.infobar_onlineupdatebeta.value:
+			elif config.softwareupdate.updateisunstable.value == '1' and not config.softwareupdate.updatebeta.value:
 				self["text"].setText(_("Sorry feeds seem be in an unstable state, if you wish to use them please enable 'Allow unstable updates' in online update setup."))
 			else:
 				self.container.execute(self.ipkg + " update")

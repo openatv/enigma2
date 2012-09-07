@@ -16,7 +16,6 @@ def InitUsageConfig():
 		for x in lines:
 			splitted = x.split('=')
 			if splitted[0] == "box_type":
-				folderprefix = splitted[1].replace('\n','') # 0 = release, 1 = experimental
 				boxtype = splitted[1].replace('\n','') # 0 = release, 1 = experimental
 	except:
 		folderprefix=""
@@ -41,13 +40,6 @@ def InitUsageConfig():
 
 	config.usage.quickzap_bouquet_change = ConfigYesNo(default = False)
 	config.usage.e1like_radio_mode = ConfigYesNo(default = True)
-
-	config.usage.infobar_onlinecheck = ConfigYesNo(default = True)
-	config.usage.infobar_onlinechecktimer = ConfigInteger(default=6, limits=(1, 48))
-	config.usage.infobar_onlineupdatelastcheck = ConfigInteger(default=0)
-	config.usage.infobar_onlineupdatefound = NoSave(ConfigBoolean(default = False))
-	config.usage.infobar_onlineupdatebeta = ConfigYesNo(default = False)
-	config.usage.infobar_onlineupdateisunstable = ConfigInteger(default=0)
 
 	choicelist = []
 	for i in range(1, 12):
@@ -342,6 +334,16 @@ def InitUsageConfig():
 	config.network.Inadyn_autostart = ConfigYesNo(default = True)
 	config.network.uShare_autostart = ConfigYesNo(default = True)
 
+	config.softwareupdate = ConfigSubsection()
+	config.softwareupdate.autosettingsbackup = ConfigYesNo(default = True)
+	config.softwareupdate.autoimagebackup = ConfigYesNo(default = False)
+	config.softwareupdate.check = ConfigYesNo(default = True)
+	config.softwareupdate.checktimer = ConfigInteger(default=6, limits=(1, 48))
+	config.softwareupdate.updatelastcheck = ConfigInteger(default=0)
+	config.softwareupdate.updatefound = NoSave(ConfigBoolean(default = False))
+	config.softwareupdate.updatebeta = ConfigYesNo(default = False)
+	config.softwareupdate.updateisunstable = ConfigInteger(default=0)
+
 	config.timeshift = ConfigSubsection()
 	config.timeshift.enabled = ConfigYesNo(default = False)
 	config.timeshift.maxevents = ConfigInteger(default=5, limits=(1, 99))
@@ -554,34 +556,6 @@ def InitUsageConfig():
 	config.logmanager.path = ConfigText(default = "/")
 	config.logmanager.additionalinfo = NoSave(ConfigText(default = ""))
 	config.logmanager.sentfiles = ConfigLocations(default='')
-
-	config.softcammanager = ConfigSubsection()
-	config.softcammanager.softcams_autostart = ConfigLocations(default='')
-	config.softcammanager.softcamtimerenabled = ConfigYesNo(default = True)
-	config.softcammanager.softcamtimer = ConfigNumber(default = 6)
-
-	config.imagemanager = ConfigSubsection()
-	config.imagemanager.folderprefix = ConfigText(default=folderprefix, fixed_size=False)
-	config.imagemanager.backuplocation = ConfigSelection(choices = hddchoises)
-	config.imagemanager.schedule = ConfigYesNo(default = False)
-	config.imagemanager.scheduletime = ConfigClock(default = 0) # 1:00
-	config.imagemanager.repeattype = ConfigSelection(default = "daily", choices = [("daily", _("Daily")), ("weekly", _("Weekly")), ("monthly", _("30 Days"))])
-	config.imagemanager.backupretry = ConfigNumber(default = 30)
-	config.imagemanager.backupretrycount = NoSave(ConfigNumber(default = 0))
-	config.imagemanager.nextscheduletime = NoSave(ConfigNumber(default = 0))
-	config.imagemanager.restoreimage = NoSave(ConfigText(default=folderprefix, fixed_size=False))
-
-	config.backupmanager = ConfigSubsection()
-	config.backupmanager.folderprefix = ConfigText(default=folderprefix, fixed_size=False)
-	config.backupmanager.backuplocation = ConfigSelection(choices = hddchoises)
-	config.backupmanager.schedule = ConfigYesNo(default = False)
-	config.backupmanager.scheduletime = ConfigClock(default = 0) # 1:00
-	config.backupmanager.repeattype = ConfigSelection(default = "daily", choices = [("daily", _("Daily")), ("weekly", _("Weekly")), ("monthly", _("30 Days"))])
-	config.backupmanager.backupretry = ConfigNumber(default = 30)
-	config.backupmanager.backupretrycount = NoSave(ConfigNumber(default = 0))
-	config.backupmanager.nextscheduletime = NoSave(ConfigNumber(default = 0))
-	config.backupmanager.backupdirs = ConfigLocations(default=[eEnv.resolve('${sysconfdir}/enigma2/'), eEnv.resolve('${sysconfdir}/fstab'), eEnv.resolve('${sysconfdir}/hostname'), eEnv.resolve('${sysconfdir}/network/interfaces'), eEnv.resolve('${sysconfdir}/passwd'), eEnv.resolve('${sysconfdir}/etc/shadow'), eEnv.resolve('${sysconfdir}/resolv.conf'), eEnv.resolve('${sysconfdir}/ushare.conf'), eEnv.resolve('${sysconfdir}/inadyn.conf'), eEnv.resolve('${sysconfdir}/tuxbox/config/'), eEnv.resolve('${sysconfdir}/wpa_supplicant.conf'), '/usr/softcams/'])
-	config.backupmanager.lastlog = ConfigText(default=' ', fixed_size=False)
 
 	config.vixsettings = ConfigSubsection()
 	config.vixsettings.Subservice = ConfigYesNo(default = False)
