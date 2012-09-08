@@ -391,8 +391,10 @@ class PliExtraInfo(Poll, Converter, object):
 
 	def changed(self, what):
 		if what[0] == self.CHANGED_SPECIFIC:
-			if what[1] in (iPlayableService.evEnd, iPlayableService.evStart, iPlayableService.evUpdatedInfo):
+			if what[1] in (iPlayableService.evEnd, iPlayableService.evStart):
 				self.updateFEdata = True
+			else:
+				self.updateFEdata = False
 			Converter.changed(self, what)
 		elif what[0] == self.CHANGED_POLL and self.updateFEdata is not None:
 			self.updateFEdata = False
