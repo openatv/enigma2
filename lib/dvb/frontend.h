@@ -140,7 +140,7 @@ public:
 	RESULT getData(int num, long &data);
 	RESULT setData(int num, long val);
 
-	int readFrontendData(int type); // bitErrorRate, signalPower, signalQualitydB, signalQuality, locked, synced
+	int readFrontendData(int type); // iFrontendInformation_ENUMS
 	void getFrontendStatus(ePyObject dest);
 	void getTransponderData(ePyObject dest, bool original);
 	void getFrontendData(ePyObject dest);

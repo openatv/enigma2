@@ -741,7 +741,7 @@ int eDVBFrontend::readFrontendData(int type)
 {
 	switch(type)
 	{
-		case bitErrorRate:
+		case iFrontendInformation_ENUMS::bitErrorRate:
 		{
 			uint32_t ber=0;
 			if (!m_simulate)
@@ -751,8 +751,8 @@ int eDVBFrontend::readFrontendData(int type)
 			}
 			return ber;
 		}
-		case signalQuality:
-		case signalQualitydB: /* this will move into the driver */
+		case iFrontendInformation_ENUMS::signalQuality:
+		case iFrontendInformation_ENUMS::signalQualitydB: /* this will move into the driver */
 		{
 			int sat_max = 1600; // for stv0288 / bsbe2
 			int ret = 0x12345678;
@@ -920,7 +920,7 @@ int eDVBFrontend::readFrontendData(int type)
 				}
 			}
 
-			if (type == signalQuality)
+			if (type == iFrontendInformation_ENUMS::signalQuality)
 			{
 				if (ret == 0x12345678) // no snr db calculation avail.. return untouched snr value..
 					return snr;
@@ -940,7 +940,7 @@ int eDVBFrontend::readFrontendData(int type)
 				eDebug("no SNR dB calculation for frontendtype %s yet", m_description); */
 			return ret;
 		}
-		case signalPower:
+		case iFrontendInformation_ENUMS::signalPower:
 		{
 			uint16_t strength=0;
 			if (!m_simulate)
@@ -950,7 +950,7 @@ int eDVBFrontend::readFrontendData(int type)
 			}
 			return strength;
 		}
-		case locked:
+		case iFrontendInformation_ENUMS::lockState:
 		{
 			fe_status_t status;
 			if (!m_simulate)
@@ -961,7 +961,7 @@ int eDVBFrontend::readFrontendData(int type)
 			}
 			return 1;
 		}
-		case synced:
+		case iFrontendInformation_ENUMS::syncState:
 		{
 			fe_status_t status;
 			if (!m_simulate)
@@ -972,7 +972,7 @@ int eDVBFrontend::readFrontendData(int type)
 			}
 			return 1;
 		}
-		case frontendNumber:
+		case iFrontendInformation_ENUMS::frontendNumber:
 			return m_slotid;
 	}
 	return 0;
@@ -1394,7 +1394,7 @@ void eDVBFrontend::getFrontendStatus(ePyObject dest)
 	if (dest && PyDict_Check(dest))
 	{
 		const char *tmp = "UNKNOWN";
-		switch(m_state)
+		switch (m_state)
 		{
 			case stateIdle:
 				tmp="IDLE";
@@ -1415,11 +1415,11 @@ void eDVBFrontend::getFrontendStatus(ePyObject dest)
 				break;
 		}
 		PutToDict(dest, "tuner_state", tmp);
-		PutToDict(dest, "tuner_locked", readFrontendData(locked));
-		PutToDict(dest, "tuner_synced", readFrontendData(synced));
-		PutToDict(dest, "tuner_bit_error_rate", readFrontendData(bitErrorRate));
-		PutToDict(dest, "tuner_signal_quality", readFrontendData(signalQuality));
-		int sigQualitydB = readFrontendData(signalQualitydB);
+		PutToDict(dest, "tuner_locked", readFrontendData(iFrontendInformation_ENUMS::lockState));
+		PutToDict(dest, "tuner_synced", readFrontendData(iFrontendInformation_ENUMS::syncState));
+		PutToDict(dest, "tuner_bit_error_rate", readFrontendData(iFrontendInformation_ENUMS::bitErrorRate));
+		PutToDict(dest, "tuner_signal_quality", readFrontendData(iFrontendInformation_ENUMS::signalQuality));
+		int sigQualitydB = readFrontendData(iFrontendInformation_ENUMS::signalQualitydB);
 		if (sigQualitydB == 0x12345678) // not support yet
 		{
 			ePyObject obj=Py_None;
@@ -1428,7 +1428,7 @@ void eDVBFrontend::getFrontendStatus(ePyObject dest)
 		}
 		else
 			PutToDict(dest, "tuner_signal_quality_db", sigQualitydB);
-		PutToDict(dest, "tuner_signal_power", readFrontendData(signalPower));
+		PutToDict(dest, "tuner_signal_power", readFrontendData(iFrontendInformation_ENUMS::signalPower));
 	}
 }
 
@@ -1785,12 +1785,12 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 					break;
 				}
 				int signal = 0;
-				int isLocked = readFrontendData(locked);
+				int isLocked = readFrontendData(iFrontendInformation_ENUMS::lockState);
 				m_idleInputpower[0] = m_idleInputpower[1] = 0;
 				--m_timeoutCount;
 				if (!m_timeoutCount && m_retryCount > 0)
 					--m_retryCount;
-				if (isLocked && ((abs((signal = readFrontendData(signalQualitydB)) - cmd.lastSignal) < 40) || !cmd.lastSignal))
+				if (isLocked && ((abs((signal = readFrontendData(iFrontendInformation_ENUMS::signalQualitydB)) - cmd.lastSignal) < 40) || !cmd.lastSignal))
 				{
 					if (cmd.lastSignal)
 						eDebugNoSimulate("[SEC] locked step %d ok (%d %d)", cmd.okcount, signal, cmd.lastSignal);
