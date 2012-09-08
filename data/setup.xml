@@ -12,6 +12,7 @@
 		<item level="2" text="Enable panic button" summary="With this option enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history.">config.usage.panicbutton</item>
 		<item level="1" text="Enable teletext caching" summary="If Teletext caching is enabled, displaying pages will be much faster.">config.usage.enable_tt_caching</item>
 		<item level="0" text="Enable multiple bouquets" summary="Services may be grouped in bouquets. If this option is enabled, you can use more then one bouquet.">config.usage.multibouquet</item>
+		<item level="1" text="Alternative numbering Mode" summary="With this option enabled, Channel numbers will start with '1' in each bouquet.">config.usage.alternative_number_mode</item>
 		<item level="1" text="Change bouquets in quickzap" summary="Services may be grouped in bouquets. If this option is enabled you can zap to a channel in another bouquet then you are in at present.">config.usage.quickzap_bouquet_change</item>
 		<item level="1" text="12V output" requires="12V_Output" summary="12V output">config.usage.output_12V</item>
 		<item level="0" text="Channel list preview" summary="If set to 'yes' you can preview channels in the channel list. Press 'OK' to preview the selected channel, press a 2nd 'OK' to exit and zap to that channel, pressing 'EXIT' to return to the channel you started at.">config.usage.servicelistpreview_mode</item>
@@ -26,10 +27,12 @@
 		<item level="2" text="Enable Startup Bootvideo" summary="You can Enable or Disable the Startup Bootvideo.">config.misc.bootvideo</item>
 	</setup>
 
-	<setup key="onlineupdatesetup" title="Online Update">
-		<item level="1" text="Online update" summary="Perform an online update check">config.usage.infobar_onlinecheck</item>
-		<item level="1" text="Check every (hours)" summary="Setup the interval to check for online updates. (in hours)" requires="config.usage.infobar_onlinecheck">config.usage.infobar_onlinechecktimer</item>
-		<item level="1" text="Allow unstable (untested) updates" summary="With this option enabled the online checker will also check for experimental versions" requires="config.usage.infobar_onlinecheck">config.usage.infobar_onlineupdatebeta</item>
+	<setup key="softwareupdate" title="Software Update">
+		<item level="1" text="Background check" summary="Perform an online update check in the background">config.softwareupdate.check</item>
+		<item level="1" text="Check every (hours)" summary="Setup the interval to check for online updates. (in hours)" requires="config.softwareupdate.check">config.softwareupdate.checktimer</item>
+		<item level="1" text="Allow unstable (untested) updates" summary="With this option enabled the online checker will also check for experimental versions" requires="config.softwareupdate.check">config.softwareupdate.updatebeta</item>
+		<item level="1" text="Automatic setting backup" summary="Perform a setting backup before updating.">config.softwareupdate.autosettingsbackup</item>
+		<item level="1" text="Automatic image backup" summary="Perform a image backup before updating.">config.softwareupdate.autoimagebackup</item>
 	</setup>	
 	
 	<setup key="osdsetup" title="OSD Setup">
@@ -176,6 +179,7 @@
 		<item level="0" text="QuickEPG mode" summary="Select how to activate the Quick EPG mode:">config.plisettings.QuickEPG_mode</item>
 		<item level="0" text="TV button mode" summary="Select what you want the TV button to activate:">config.usage.tvradiobutton_mode</item>
 		<item level="0" text="Channel +/- button mode" summary="Select what you want the Channel +/- button to activate:">config.usage.channelbutton_mode</item>
+		<item level="0" text="Use AAF coloured Buttons *" summary="Select if you want to use the AAF coloured Buttons (set to 'no' if you want to use (Multi) Quick Button).">config.plisettings.ColouredButtons</item>
 	</setup>
 	<setup key="softcamsetup" title="Softcam Setup">
 		<item level="2" text="Show CCcam in extensions ?" summary="Allows you to show/hide CCcam in extensions (blue button).">config.cccaminfo.showInExtensions</item>
@@ -186,6 +190,10 @@
 		<item level="2" text="Create more detailed crash log" summary="Allows more detailed to be in the crash log">config.crash.details</item>
 		<item level="2" text="Enable Debug log" summary="Allows you to enable the debug log. They contain very detailed information of everything the system does.">config.crash.enabledebug</item>
 		<item level="2" text="Limit Debug log size (MB)" summary="Allows you to set the maximum size of the Debug log size (MB). When that size is reached, a new file will be created.">config.crash.debugloglimit</item>
+		<item level="2" text="Show Log Manager in extensions list ?" summary="Allows you to show/hide Log Manager in extensions (blue button).">config.logmanager.showinextensions</item>
+		<item level="2" text="User Name" summary="Enter your forum user name, to make it easier trace logs.">config.logmanager.user</item>
+		<item level="2" text="e-Mail address" summary="Enter your email address to send a copy of the log to.">config.logmanager.useremail</item>
+		<item level="2" text="Send yourself a copy ?" summary="Allows you to send a copy of the log to yourself.">config.logmanager.usersendcopy</item>
 		<item level="2" text="Maximum no of days:" summary="Logs older then the set no of days will be deleted.">config.crash.daysloglimit</item>
 		<item level="2" text="Maximum space used (MB):" summary="If logs are using the set maximum space used the eldest will be deleted.">config.crash.sizeloglimit</item>
 	</setup>

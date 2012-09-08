@@ -72,7 +72,7 @@ void eListboxServiceContent::setRoot(const eServiceReference &root, bool justSet
 		return;
 	}
 	ASSERT(m_service_center);
-	
+
 	if (m_service_center->list(m_root, m_lst))
 		eDebug("no list available!");
 	else if (m_lst->getContent(m_list))
@@ -150,7 +150,6 @@ int eListboxServiceContent::getPrevMarkerPos()
 		if ((i->flags & eServiceReference::isMarker) && !(i->flags & eServiceReference::isInvisible))
 			break;
 	}
-	
 	return cursorResolve(index);
 }
 
@@ -167,7 +166,6 @@ int eListboxServiceContent::getNextMarkerPos()
 		if ((i->flags & eServiceReference::isMarker) && !(i->flags & eServiceReference::isInvisible))
 			break;
 	}
-
 	return cursorResolve(index);
 }
 
@@ -216,7 +214,7 @@ int eListboxServiceContent::lookupService(const eServiceReference &ref)
 		/* otherwise, search in the list.. */
 	int index = 0;
 	for (list::const_iterator i(m_list.begin()); i != m_list.end(); ++i, ++index);
-	
+
 		/* this is ok even when the index was not found. */
 	return index;
 }
@@ -436,14 +434,14 @@ int eListboxServiceContent::cursorResolve(int cursor_position)
 	{
 		if (count == cursor_position)
 			break;
-			
+
 		count++;
-		
+
 		if (i->flags & eServiceReference::isInvisible)
 			continue;
 		m_stripped_cursor++;
 	}
-	
+
 	return m_stripped_cursor;
 }
 
@@ -485,10 +483,10 @@ int eListboxServiceContent::size()
 			continue;
 		size++;
 	}
-	
+
 	return size;
 }
-	
+
 void eListboxServiceContent::setSize(const eSize &size)
 {
 	m_itemsize = size;

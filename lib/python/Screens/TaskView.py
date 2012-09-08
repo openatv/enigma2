@@ -8,7 +8,7 @@ import Screens.Standby
 from Tools import Notifications
 
 class JobView(InfoBarNotifications, Screen, ConfigListScreen):
-	def __init__(self, session, job, parent=None, cancelable = True, backgroundable = True, afterEventChangeable = True):
+	def __init__(self, session, job, parent=None, cancelable = True, backgroundable = True, afterEventChangeable = True , afterEvent=None):
 		from Components.Sources.StaticText import StaticText
 		from Components.Sources.Progress import Progress
 		from Components.Sources.Boolean import Boolean
@@ -18,6 +18,8 @@ class JobView(InfoBarNotifications, Screen, ConfigListScreen):
 		ConfigListScreen.__init__(self, [])
 		self.parent = parent
 		self.job = job
+		if afterEvent:
+			self.job.afterEvent = afterEvent
 
 		self["job_name"] = StaticText(job.name)
 		self["job_progress"] = Progress()

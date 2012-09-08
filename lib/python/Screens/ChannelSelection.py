@@ -1437,7 +1437,7 @@ class ChannelSelectionBase(Screen):
 				info = service.info()
 				if info:
 					provider = info.getInfoString(iServiceInformation.sProvider)
-					op = int("".join(self.session.nav.getCurrentlyPlayingServiceReference().toString().split(':', 10)[6:7])[:-4],16)
+					op = int(self.session.nav.getCurrentlyPlayingServiceReference().toString().split(':')[6][:-4] or "0",16)
 					refstr = '1:7:0:0:0:0:0:0:0:0:(provider == \"%s\") && (satellitePosition == %s) && %s ORDER BY name:%s'%(provider,op,self.service_types[self.service_types.rfind(':')+1:],provider)
 					self.servicelist.setCurrent(eServiceReference(refstr))
 		else:
