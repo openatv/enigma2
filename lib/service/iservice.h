@@ -184,7 +184,7 @@ public:
 			return r < 0;
 		return path < c.path;
 	}
-	
+
 	int valid() const
 	{
 		return type != idInvalid;
@@ -222,18 +222,18 @@ typedef long long pts_t;
 	/* About the usage of SWIG_VOID:
 	   SWIG_VOID(real_returntype_t) hides a return value from swig. This is used for
 	   the "superflouus" RESULT return values.
-	   
+
 	   Python code has to check the returned pointer against 0. This works,
-	   as all functions returning instances in smartpointers AND having a 
+	   as all functions returning instances in smartpointers AND having a
 	   RESULT have to BOTH return non-zero AND set the pointer to zero.
-	   
+
 	   Python code thus can't check for the reason, but the reason isn't
 	   user-servicable anyway. If you want to return a real reason which
 	   goes beyong "it just doesn't work", use extra variables for this,
 	   not the RESULT.
-	   
+
 	   Hide the result only if there is another way to check for failure! */
-	   
+
 class eServiceEvent;
 
 SWIG_IGNORE(iStaticServiceInformation);
@@ -737,7 +737,7 @@ public:
 
 		/* for transferring a service... */
 	virtual SWIG_VOID(RESULT) getListOfFilenames(std::list<std::string> &SWIG_OUTPUT)=0;
-	
+
 		/* a blocking call to reindex a file */
 	virtual int reindex() = 0;
 
@@ -825,6 +825,7 @@ public:
 			/* when iServiceInformation is implemented:*/
 		evUpdatedEventInfo,
 		evUpdatedInfo,
+		evNewProgramInfo,
 
 			/* when seek() is implemented: */
 		evSeekableStatusChanged, /* for example when timeshifting */
