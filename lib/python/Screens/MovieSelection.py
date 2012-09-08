@@ -1051,7 +1051,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.updateDescription()
 
 	def abort(self):
-		Playlist.clearPlayList()
+		global playlist
+		del playlist[:]
 		if self.list.playInBackground:
 			self.list.playInBackground = None
 			self.session.nav.stopService()
@@ -1132,7 +1133,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				self["list"].moveToFirstMovie()
 		self["freeDiskSpace"].update()
 		self["waitingtext"].visible = False
-		Playlist.refreshPlayList(self["list"])
+		self.createPlaylist()
 		if self.playGoTo:
 			if self.isItemPlayable(self.list.getCurrentIndex() + 1):
 				if self.playGoTo > 0:
@@ -1770,27 +1771,19 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		if config.movielist.settings_per_directory.value:
 			self.saveLocalSettings()
 
-class PlayList:
-	def __init__(self):
-		self.playList = []
-
-	def refreshPlayList(self,list):
-		self.playList = []
-		for index in range(len(list)):
-			item = list.getItem(index)
+	def createPlaylist(self):
+		global playlist
+		items = playlist
+		del items[:]
+		for index, item in enumerate(self["list"]):
 			if item:
+				item = item[0]
 				path = item.getPath()
 				if not item.flags & eServiceReference.mustDescent:
 					ext = os.path.splitext(path)[1].lower()
 					if ext in IMAGE_EXTENSIONS:
 						continue
 					else:
-						self.playList.append(list.getItem(index))
+						items.append(item)
 
-	def getPlayList(self):
-		return self.playList
-
-	def clearPlayList(self):
-		self.playList = []
-
-Playlist = PlayList()
+playlist = []
