@@ -462,7 +462,7 @@ class MovieList(GUIComponent):
 		if self.list:
 			if len(self.list) > index:
 				return self.list[index] and self.list[index][0]
-					
+
 	GUI_WIDGET = eListbox
 
 	def postWidgetCreate(self, instance):
@@ -492,6 +492,12 @@ class MovieList(GUIComponent):
 
 	def __len__(self):
 		return len(self.list)
+
+	def __getitem__(self, index):
+		return self.list[index]
+
+	def __iter__(self):
+		return self.list.__iter__()
 
 	def load(self, root, filter_tags):
 		# this lists our root service, then building a 
