@@ -1417,7 +1417,8 @@ void eDVBFrontend::getFrontendStatus(ePyObject dest)
 	if (dest && PyDict_Check(dest))
 	{
 		int status = 0;
-		int snr = 0;
+		int acg = 0;
+		int ber = 0;
 		int signalquality = 0;
 		int signalqualitydb = 0;
 		const char *tmp = "UNKNOWN";
@@ -1441,13 +1442,20 @@ void eDVBFrontend::getFrontendStatus(ePyObject dest)
 			default:
 				break;
 		}
+		if (m_state != stateTuning)
+		{
+			int snr = 0;
+			/* we are not tuning, get the remaining tunerstatus info */
+			status = readFrontendData(iFrontendInformation_ENUMS::frontendStatus);
+			snr = readFrontendData(iFrontendInformation_ENUMS::snrValue);
+			calculateSignalQuality(snr, signalquality, signalqualitydb);
+			acg = readFrontendData(iFrontendInformation_ENUMS::signalPower);
+			ber = readFrontendData(iFrontendInformation_ENUMS::bitErrorRate);
+		}
 		PutToDict(dest, "tuner_state", tmp);
-		status = readFrontendData(iFrontendInformation_ENUMS::frontendStatus);
 		PutToDict(dest, "tuner_locked", !!(status & FE_HAS_LOCK));
 		PutToDict(dest, "tuner_synced", !!(status & FE_HAS_SYNC));
-		PutToDict(dest, "tuner_bit_error_rate", readFrontendData(iFrontendInformation_ENUMS::bitErrorRate));
-		snr = readFrontendData(iFrontendInformation_ENUMS::snrValue);
-		calculateSignalQuality(snr, signalquality, signalqualitydb);
+		PutToDict(dest, "tuner_bit_error_rate", ber);
 		PutToDict(dest, "tuner_signal_quality", signalquality);
 		if (signalqualitydb == 0x12345678) /* not yet supported */
 		{
@@ -1459,7 +1467,7 @@ void eDVBFrontend::getFrontendStatus(ePyObject dest)
 		{
 			PutToDict(dest, "tuner_signal_quality_db", signalqualitydb);
 		}
-		PutToDict(dest, "tuner_signal_power", readFrontendData(iFrontendInformation_ENUMS::signalPower));
+		PutToDict(dest, "tuner_signal_power", acg);
 	}
 }
 
