@@ -192,13 +192,7 @@ def InitUsageConfig():
 					("alpha", _("Alpha")),
 					("number", _("Number"))])
 
-	def refreshServiceList(configElement):
-		from Screens.InfoBar import InfoBar
-		InfoBarInstance = InfoBar.instance
-		if InfoBarInstance is not None:
-			servicelist = InfoBarInstance.servicelist
-			if servicelist:
-				servicelist.setMode()
+	
 	config.usage.show_event_progress_in_servicelist.addNotifier(refreshServiceList)
 	config.usage.show_channel_numbers_in_servicelist.addNotifier(refreshServiceList)
 
@@ -720,3 +714,10 @@ def preferredInstantRecordPath():
 def defaultMoviePath():
 	return config.usage.default_path.value
 
+def refreshServiceList(configElement = None):
+	from Screens.InfoBar import InfoBar
+	InfoBarInstance = InfoBar.instance
+	if InfoBarInstance is not None:
+		servicelist = InfoBarInstance.servicelist
+		if servicelist:
+			servicelist.setMode()
