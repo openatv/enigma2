@@ -356,7 +356,8 @@ class RestoreScreen(Screen, ConfigListScreen):
 			self.restartGUI()
 
 	def restartGUI(self, ret = None):
-		self.session.open(TryQuitMainloop, 2)
+		self.console = eConsoleAppContainer()
+		self.console.execute("init 4;reboot")
 
 	def runAsync(self, finished_cb):
 		self.doRestore()
