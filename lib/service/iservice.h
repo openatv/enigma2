@@ -426,6 +426,8 @@ public:
 		syncState,
 		frontendNumber,
 		signalQualitydB,
+		frontendStatus,
+		snrValue,
 	};
 };
 

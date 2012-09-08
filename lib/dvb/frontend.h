@@ -116,6 +116,8 @@ private:
 	int tuneLoopInt();
 	void setFrontend(bool recvEvents=true);
 	bool setSecSequencePos(int steps);
+	void calculateSignalQuality(int snr, int &signalquality, int &signalqualitydb);
+
 	static int PriorityOrder;
 	static int PreferredFrontendIndex;
 public:
