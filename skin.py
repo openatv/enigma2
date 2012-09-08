@@ -98,8 +98,12 @@ addSkin('skin_second_infobar.xml')
 config.skin.display_skin = ConfigYesNo(default = False)
 display_skin_id = 1
 
-if addSkin('skin_display96.xml'):
+if addSkin('skin_display.xml'):
 	# Color OLED DM800 / DM800SE
+	display_skin_id = 2
+
+if addSkin('skin_display96.xml'):
+	# Quad and 800UE
 	display_skin_id = 2
 	
 if addSkin('skin_display128.xml'):
