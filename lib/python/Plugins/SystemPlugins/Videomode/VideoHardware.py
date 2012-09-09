@@ -52,9 +52,9 @@ class VideoHardware:
 	else:
 		rates["1080p"] =		{ 	"24Hz":		{ 24: "1080p24" },
 									"25Hz":		{ 25: "1080p25" },
-									"30Hz":		{ 30: "1080p30" },		
+									"30Hz":		{ 30: "1080p30" },
 									"50Hz":	{ 50: "1080p50" },
-									"60Hz":	{ 60: "1080p" }}							
+									"60Hz":	{ 60: "1080p" }}
 
 	rates["PC"] = {
 		"1024x768": { 60: "1024x768" }, # not possible on DM7025
@@ -369,7 +369,7 @@ class VideoHardware:
 			policy = "bestfit"
 		else:
 			aspect = "4:3"
-			policy = {"letterbox": "letterbox", "panscan": "panscan", "scale": "bestfit", "audo": "bestfit"}[config.av.policy_169.value]
+			policy = {"letterbox": "letterbox", "panscan": "panscan", "scale": "bestfit", "auto": "bestfit"}[config.av.policy_169.value]
 
 		if not config.av.wss.value:
 			wss = "auto(4:3_off)"
