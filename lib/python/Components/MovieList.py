@@ -416,11 +416,16 @@ class MovieList(GUIComponent):
 	def __len__(self):
 		return len(self.list)
 
+	def __getitem__(self, index):
+		return self.list[index]
+
+	def __iter__(self):
+		return self.list.__iter__()
+
 	def load(self, root, filter_tags):
 		# this lists our root service, then building a
 		# nice list
-
-		self.list = [ ]
+		del self.list[:]
 		serviceHandler = eServiceCenter.getInstance()
 		numberOfDirs = 0
 
@@ -463,7 +468,7 @@ class MovieList(GUIComponent):
 			name = info.getName(serviceref)
 			if this_tags == ['']:
 				# No tags? Auto tag!
-				this_tags = [x for x in name.replace(',',' ').replace('.',' ').split() if len(x)>1]
+				this_tags = name.replace(',',' ').replace('.',' ').split()
 			else:
 				realtags.update(this_tags)
 			for tag in this_tags:
@@ -471,15 +476,15 @@ class MovieList(GUIComponent):
 					tags[tag].append(name)
 				else:
 					tags[tag] = [name]
-			this_tags = set(this_tags)
-
-			# filter_tags is either None (which means no filter at all), or
+			# filter_tags is either None (which means no filter at all), or 
 			# a set. In this case, all elements of filter_tags must be present,
-			# otherwise the entry will be dropped.
-			if filter_tags is not None and not this_tags.issuperset(filter_tags):
-				print "Skipping", name, "tags=", this_tags, " filter=", filter_tags
-				continue
-
+			# otherwise the entry will be dropped.			
+			if filter_tags is not None:
+				this_tags = set(this_tags)
+				if not this_tags.issuperset(filter_tags):
+					print "Skipping", name, "tags=", this_tags, " filter=", filter_tags
+					continue
+		
 			self.list.append((serviceref, info, begin, -1))
 
 		self.firstFileEntry = numberOfDirs
@@ -526,11 +531,22 @@ class MovieList(GUIComponent):
 				item = rtags.get(movies, [])
 				if not item: rtags[movies] = item
 				item.append(tag)
-		# format the tag lists so that they are in 'original' order
 		self.tags = {}
 		for movies, tags in rtags.items():
 			movie = movies[0]
-			tags.sort(key = movie.find)
+			if (len(tags) > 1):
+				# format the tag lists so that they are in 'original' order
+				tags.sort(key = movie.find)
+				first = movie.find(tags[0])
+				last = movie.find(tags[-1])
+				match = movie[first:last]
+				# Check if the set has a complete sentence in common
+				for m in movies[1:]:
+					if m[first:last] != match:
+						break
+				else:
+					self.tags[match + tags[-1]] = set(tags)
+					continue
 			self.tags[' '.join(tags)] = set(tags)
 
 	def buildAlphaNumericSortKey(self, x):

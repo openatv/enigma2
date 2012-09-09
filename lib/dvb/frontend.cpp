@@ -737,11 +737,204 @@ static inline uint32_t fe_udiv(uint32_t a, uint32_t b)
 	return (a + b / 2) / b;
 }
 
+void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &signalqualitydb)
+{
+	int sat_max = 1600; // for stv0288 / bsbe2
+	int ret = 0x12345678;
+	if (!strcmp(m_description, "AVL2108")) // ET9000
+	{
+		ret = (int)(snr / 40.5);
+		sat_max = 1618;
+	}
+	else if (strstr("Nova-T StickNovaT 500StickDTB03", m_description)) // dib0700
+	{
+		if ( snr > 300 )
+			ret = 0; //error condition
+		else
+			ret = (int)(snr * 10);
+	}
+	else if (!strcmp(m_description, "BCM4501 (internal)"))
+	{
+		float SDS_SNRE = snr << 16;
+		float snr_in_db;
+
+		if (oparm.sat.system == eDVBFrontendParametersSatellite::System_DVB_S) // DVB-S1 / QPSK
+		{
+			static float SNR_COEFF[6] = {
+				100.0 / 4194304.0,
+				-7136.0 / 4194304.0,
+				197418.0 / 4194304.0,
+				-2602183.0 / 4194304.0,
+				20377212.0 / 4194304.0,
+				-37791203.0 / 4194304.0,
+			};
+			float fval1 = 12.44714 - (2.0 * log10(SDS_SNRE / 256.0)),
+						fval2 = pow(10.0, fval1)-1;
+			fval1 = 10.0 * log10(fval2);
+
+			if (fval1 < 10.0)
+			{
+				fval2 = SNR_COEFF[0];
+				for (int i=1; i<6; ++i)
+				{
+					fval2 *= fval1;
+					fval2 += SNR_COEFF[i];
+				}
+				fval1 = fval2;
+			}
+			snr_in_db = fval1;
+		}
+		else
+		{
+			float fval1 = SDS_SNRE / 268435456.0,
+					fval2, fval3, fval4;
+
+			if (oparm.sat.modulation == eDVBFrontendParametersSatellite::Modulation_QPSK)
+			{
+				fval2 = 6.76;
+				fval3 = 4.35;
+			}
+			else // 8PSK
+			{
+				fval1 *= 0.5;
+				fval2 = 8.06;
+				fval3 = 6.18;
+			}
+			fval4 = -10.0 * log10(fval1);
+			fval1 = fval4;
+			for (int i=0; i < 5; ++i)
+				fval1 = fval4 - fval2 * log10(1.0+pow(10.0, (fval3-fval1)/fval2));
+			snr_in_db = fval1;
+		}
+		sat_max = 1750;
+		ret = (int)(snr_in_db * 100);
+	}
+	else if (strstr(m_description, "Alps BSBE1 C01A") ||
+		strstr(m_description, "Alps -S(STV0288)"))
+	{
+		if (snr == 0)
+			ret = 0;
+		else if (snr == 0xFFFF) // i think this should not happen
+			ret = 100*100;
+		else
+		{
+			enum { REALVAL, REGVAL };
+			const long CN_lookup[31][2] = {
+				{20,8900}, {25,8680}, {30,8420}, {35,8217}, {40,7897},
+				{50,7333}, {60,6747}, {70,6162}, {80,5580}, {90,5029},
+				{100,4529}, {110,4080}, {120,3685}, {130,3316}, {140,2982},
+				{150,2688}, {160,2418}, {170,2188}, {180,1982}, {190,1802},
+				{200,1663}, {210,1520}, {220,1400}, {230,1295}, {240,1201},
+				{250,1123}, {260,1058}, {270,1004}, {280,957}, {290,920},
+				{300,890}
+			};
+			int add=strchr(m_description, '.') ? 0xA250 : 0xA100;
+			long regval = 0xFFFF - ((snr / 3) + add), // revert some dvb api calulations to get the real register value
+				Imin=0,
+				Imax=30,
+				i;
+			if(INRANGE(CN_lookup[Imin][REGVAL],regval,CN_lookup[Imax][REGVAL]))
+			{
+				while((Imax-Imin)>1)
+				{
+					i=(Imax+Imin)/2;
+					if(INRANGE(CN_lookup[Imin][REGVAL],regval,CN_lookup[i][REGVAL]))
+						Imax = i;
+					else
+						Imin = i;
+				}
+				ret = (((regval - CN_lookup[Imin][REGVAL])
+						* (CN_lookup[Imax][REALVAL] - CN_lookup[Imin][REALVAL])
+						/ (CN_lookup[Imax][REGVAL] - CN_lookup[Imin][REGVAL]))
+						+ CN_lookup[Imin][REALVAL]) * 10;
+			}
+			else
+				ret = 100;
+		}
+	}
+	else if (!strcmp(m_description, "Alps BSBE1 702A") ||  // some frontends with STV0299
+		!strcmp(m_description, "Alps -S") ||
+		!strcmp(m_description, "Philips -S") ||
+		!strcmp(m_description, "LG -S") )
+	{
+		sat_max = 1500;
+		ret = (int)((snr-39075)/17.647);
+	}
+	else if (!strcmp(m_description, "Alps BSBE2"))
+	{
+		ret = (int)((snr >> 7) * 10);
+	}
+	else if (!strcmp(m_description, "Philips CU1216Mk3"))
+	{
+		int mse = (~snr) & 0xFF;
+		switch (oparm.cab.modulation)
+		{
+		case eDVBFrontendParametersCable::Modulation_QAM16: ret = fe_udiv(1950000, (32 * mse) + 138) + 1000; break;
+		case eDVBFrontendParametersCable::Modulation_QAM32: ret = fe_udiv(2150000, (40 * mse) + 500) + 1350; break;
+		case eDVBFrontendParametersCable::Modulation_QAM64: ret = fe_udiv(2100000, (40 * mse) + 500) + 1250; break;
+		case eDVBFrontendParametersCable::Modulation_QAM128: ret = fe_udiv(1850000, (38 * mse) + 400) + 1380; break;
+		case eDVBFrontendParametersCable::Modulation_QAM256: ret = fe_udiv(1800000, (100 * mse) + 40) + 2030; break;
+		default: break;
+		}
+	}
+	else if (!strcmp(m_description, "Philips TU1216"))
+	{
+		snr = 0xFF - (snr & 0xFF);
+		if (snr != 0)
+			ret = 10 * (int)(-100 * (log10(snr) - log10(255)));
+	}
+	else if (strstr(m_description, "BCM4506") || strstr(m_description, "BCM4505"))
+	{
+		ret = (snr * 100) >> 8;
+	}
+	else if (!strcmp(m_description, "Genpix"))
+	{
+		ret = (int)((snr << 1) / 5);
+	}
+	else if (!strcmp(m_description, "CXD1981"))
+	{
+		int mse = (~snr) & 0xFF;
+		switch (oparm.cab.modulation)
+		{
+		case eDVBFrontendParametersCable::Modulation_QAM16:
+		case eDVBFrontendParametersCable::Modulation_QAM64:
+		case eDVBFrontendParametersCable::Modulation_QAM256: ret = (int)(-950 * log(((double)mse) / 760)); break;
+		case eDVBFrontendParametersCable::Modulation_QAM32:
+		case eDVBFrontendParametersCable::Modulation_QAM128: ret = (int)(-875 * log(((double)mse) / 650)); break;
+		default: break;
+		}
+	}
+
+	signalqualitydb = ret;
+	if (ret == 0x12345678) // no snr db calculation avail.. return untouched snr value..
+	{
+		signalquality = snr;
+	}
+	else
+	{
+		switch (m_type)
+		{
+		case feSatellite:
+			signalquality = (ret >= sat_max ? 65536 : ret * 65536 / sat_max);
+			break;
+		case feCable: // we assume a max of 42db here
+			signalquality = (ret >= 4200 ? 65536 : ret * 65536 / 4200);
+			break;
+		case feTerrestrial: // we assume a max of 29db here
+			signalquality = (ret >= 2900 ? 65536 : ret * 65536 / 2900);
+			break;
+		case feATSC: // we assume a max of 42db here
+			signalquality = (ret >= 4200 ? 65536 : ret * 65536 / 4200);
+			break;
+		}
+	}
+}
+
 int eDVBFrontend::readFrontendData(int type)
 {
 	switch(type)
 	{
-		case bitErrorRate:
+		case iFrontendInformation_ENUMS::bitErrorRate:
 		{
 			uint32_t ber=0;
 			if (!m_simulate)
@@ -751,196 +944,33 @@ int eDVBFrontend::readFrontendData(int type)
 			}
 			return ber;
 		}
-		case signalQuality:
-		case signalQualitydB: /* this will move into the driver */
+		case iFrontendInformation_ENUMS::snrValue:
 		{
-			int sat_max = 1600; // for stv0288 / bsbe2
-			int ret = 0x12345678;
-			uint16_t snr=0;
-			if (m_simulate)
-				return 0;
-			if (ioctl(m_fd, FE_READ_SNR, &snr) < 0 && errno != ERANGE)
-				eDebug("FE_READ_SNR failed (%m)");
-			else if (!strcmp(m_description, "AVL2108")) // ET9000
+			uint16_t snr = 0;
+			if (!m_simulate)
 			{
-				ret = (int)(snr / 40.5);
-				sat_max = 1618;
+				if (ioctl(m_fd, FE_READ_SNR, &snr) < 0 && errno != ERANGE)
+					eDebug("FE_READ_SNR failed (%m)");
 			}
-			else if (strstr("Nova-T StickNovaT 500StickDTB03", m_description)) // dib0700
-				if ( snr > 300 )
-					ret = 0; //error condition
-				else
-					ret = (int)(snr * 10);
-			else if (!strcmp(m_description, "BCM4501 (internal)"))
-			{
-				float SDS_SNRE = snr << 16;
-				float snr_in_db;
-
-				if (oparm.sat.system == eDVBFrontendParametersSatellite::System_DVB_S) // DVB-S1 / QPSK
-				{
-					static float SNR_COEFF[6] = {
-						100.0 / 4194304.0,
-						-7136.0 / 4194304.0,
-						197418.0 / 4194304.0,
-						-2602183.0 / 4194304.0,
-						20377212.0 / 4194304.0,
-						-37791203.0 / 4194304.0,
-					};
-					float fval1 = 12.44714 - (2.0 * log10(SDS_SNRE / 256.0)),
-	    				  fval2 = pow(10.0, fval1)-1;
-					fval1 = 10.0 * log10(fval2);
-
-					if (fval1 < 10.0)
-					{
-						fval2 = SNR_COEFF[0];
-						for (int i=1; i<6; ++i)
-						{
-							fval2 *= fval1;
-							fval2 += SNR_COEFF[i];
-						}
-						fval1 = fval2;
-					}
-					snr_in_db = fval1;
-				}
-				else
-				{
-					float fval1 = SDS_SNRE / 268435456.0,
-						  fval2, fval3, fval4;
-
-					if (oparm.sat.modulation == eDVBFrontendParametersSatellite::Modulation_QPSK)
-					{
-						fval2 = 6.76;
-						fval3 = 4.35;
-					}
-					else // 8PSK
-					{
-						fval1 *= 0.5;
-						fval2 = 8.06;
-						fval3 = 6.18;
-					}
-					fval4 = -10.0 * log10(fval1);
-					fval1 = fval4;
-					for (int i=0; i < 5; ++i)
-						fval1 = fval4 - fval2 * log10(1.0+pow(10.0, (fval3-fval1)/fval2));
-					snr_in_db = fval1;
-				}
-				sat_max = 1750;
-				ret = (int)(snr_in_db * 100);
-			}
-			else if (strstr(m_description, "Alps BSBE1 C01A") ||
-				strstr(m_description, "Alps -S(STV0288)"))
-			{
-				if (snr == 0)
-					ret = 0;
-				else if (snr == 0xFFFF) // i think this should not happen
-					ret = 100*100;
-				else
-				{
-					enum { REALVAL, REGVAL };
-					const long CN_lookup[31][2] = {
-						{20,8900}, {25,8680}, {30,8420}, {35,8217}, {40,7897},
-						{50,7333}, {60,6747}, {70,6162}, {80,5580}, {90,5029},
-						{100,4529}, {110,4080}, {120,3685}, {130,3316}, {140,2982},
-						{150,2688}, {160,2418}, {170,2188}, {180,1982}, {190,1802},
-						{200,1663}, {210,1520}, {220,1400}, {230,1295}, {240,1201},
-						{250,1123}, {260,1058}, {270,1004}, {280,957}, {290,920},
-						{300,890}
-					};
-					int add=strchr(m_description, '.') ? 0xA250 : 0xA100;
-					long regval = 0xFFFF - ((snr / 3) + add), // revert some dvb api calulations to get the real register value
-						Imin=0,
-						Imax=30,
-						i;
-					if(INRANGE(CN_lookup[Imin][REGVAL],regval,CN_lookup[Imax][REGVAL]))
-					{
-						while((Imax-Imin)>1)
-						{
-							i=(Imax+Imin)/2;
-							if(INRANGE(CN_lookup[Imin][REGVAL],regval,CN_lookup[i][REGVAL]))
-								Imax = i;
-							else
-								Imin = i;
-						}
-						ret = (((regval - CN_lookup[Imin][REGVAL])
-								* (CN_lookup[Imax][REALVAL] - CN_lookup[Imin][REALVAL])
-								/ (CN_lookup[Imax][REGVAL] - CN_lookup[Imin][REGVAL]))
-								+ CN_lookup[Imin][REALVAL]) * 10;
-					}
-					else
-						ret = 100;
-				}
-			}
-			else if (!strcmp(m_description, "Alps BSBE1 702A") ||  // some frontends with STV0299
-				!strcmp(m_description, "Alps -S") ||
-				!strcmp(m_description, "Philips -S") ||
-				!strcmp(m_description, "LG -S") )
-			{
-				sat_max = 1500;
-				ret = (int)((snr-39075)/17.647);
-			} else if (!strcmp(m_description, "Alps BSBE2"))
-			{
-				ret = (int)((snr >> 7) * 10);
-			} else if (!strcmp(m_description, "Philips CU1216Mk3"))
-			{
-				int mse = (~snr) & 0xFF;
-				switch (oparm.cab.modulation)
-				{
-				case eDVBFrontendParametersCable::Modulation_QAM16: ret = fe_udiv(1950000, (32 * mse) + 138) + 1000; break;
-				case eDVBFrontendParametersCable::Modulation_QAM32: ret = fe_udiv(2150000, (40 * mse) + 500) + 1350; break;
-				case eDVBFrontendParametersCable::Modulation_QAM64: ret = fe_udiv(2100000, (40 * mse) + 500) + 1250; break;
-				case eDVBFrontendParametersCable::Modulation_QAM128: ret = fe_udiv(1850000, (38 * mse) + 400) + 1380; break;
-				case eDVBFrontendParametersCable::Modulation_QAM256: ret = fe_udiv(1800000, (100 * mse) + 40) + 2030; break;
-				default: break;
-				}
-			} else if (!strcmp(m_description, "Philips TU1216"))
-			{
-				snr = 0xFF - (snr & 0xFF);
-				if (snr != 0)
-					ret = 10 * (int)(-100 * (log10(snr) - log10(255)));
-			}
-			else if (strstr(m_description, "BCM4506") || strstr(m_description, "BCM4505"))
-			{
-				ret = (snr * 100) >> 8;
-			}
-			else if (!strcmp(m_description, "Genpix"))
-			{
-				ret = (int)((snr << 1) / 5);
-			}
-			else if (!strcmp(m_description, "CXD1981"))
-			{
-				int mse = (~snr) & 0xFF;
-				switch (oparm.cab.modulation)
-				{
-				case eDVBFrontendParametersCable::Modulation_QAM16:
-				case eDVBFrontendParametersCable::Modulation_QAM64:
-				case eDVBFrontendParametersCable::Modulation_QAM256: ret = (int)(-950 * log(((double)mse) / 760)); break;
-				case eDVBFrontendParametersCable::Modulation_QAM32:
-				case eDVBFrontendParametersCable::Modulation_QAM128: ret = (int)(-875 * log(((double)mse) / 650)); break;
-				default: break;
-				}
-			}
-
-			if (type == signalQuality)
-			{
-				if (ret == 0x12345678) // no snr db calculation avail.. return untouched snr value..
-					return snr;
-				switch(m_type)
-				{
-					case feSatellite:
-						return ret >= sat_max ? 65536 : ret * 65536 / sat_max;
-					case feCable: // we assume a max of 42db here
-						return ret >= 4200 ? 65536 : ret * 65536 / 4200;
-					case feTerrestrial: // we assume a max of 29db here
-						return ret >= 2900 ? 65536 : ret * 65536 / 2900;
-					case feATSC: // we assume a max of 42db here
-						return ret >= 4200 ? 65536 : ret * 65536 / 4200;
-				}
-			}
-/* else
-				eDebug("no SNR dB calculation for frontendtype %s yet", m_description); */
-			return ret;
+			return snr;
 		}
-		case signalPower:
+		case iFrontendInformation_ENUMS::signalQuality:
+		case iFrontendInformation_ENUMS::signalQualitydB: /* this will move into the driver */
+		{
+			int snr = readFrontendData(iFrontendInformation_ENUMS::snrValue);
+			int signalquality = 0;
+			int signalqualitydb = 0;
+			calculateSignalQuality(snr, signalquality, signalqualitydb);
+			if (type == iFrontendInformation_ENUMS::signalQuality)
+			{
+				return signalquality;
+			}
+			else
+			{
+				return signalqualitydb;
+			}
+		}
+		case iFrontendInformation_ENUMS::signalPower:
 		{
 			uint16_t strength=0;
 			if (!m_simulate)
@@ -950,30 +980,23 @@ int eDVBFrontend::readFrontendData(int type)
 			}
 			return strength;
 		}
-		case locked:
-		{
-			fe_status_t status;
-			if (!m_simulate)
-			{
-				if ( ioctl(m_fd, FE_READ_STATUS, &status) < 0 && errno != ERANGE )
-					eDebug("FE_READ_STATUS failed (%m)");
-				return !!(status&FE_HAS_LOCK);
-			}
-			return 1;
-		}
-		case synced:
-		{
-			fe_status_t status;
-			if (!m_simulate)
-			{
-				if ( ioctl(m_fd, FE_READ_STATUS, &status) < 0 && errno != ERANGE )
-					eDebug("FE_READ_STATUS failed (%m)");
-				return !!(status&FE_HAS_SYNC);
-			}
-			return 1;
-		}
-		case frontendNumber:
+		case iFrontendInformation_ENUMS::lockState:
+			return !!(readFrontendData(iFrontendInformation_ENUMS::frontendStatus) & FE_HAS_LOCK);
+		case iFrontendInformation_ENUMS::syncState:
+			return !!(readFrontendData(iFrontendInformation_ENUMS::frontendStatus) & FE_HAS_SYNC);
+		case iFrontendInformation_ENUMS::frontendNumber:
 			return m_slotid;
+		case iFrontendInformation_ENUMS::frontendStatus:
+		{
+			fe_status_t status;
+			if (!m_simulate)
+			{
+				if ( ioctl(m_fd, FE_READ_STATUS, &status) < 0 && errno != ERANGE )
+					eDebug("FE_READ_STATUS failed (%m)");
+				return (int)status;
+			}
+			return (FE_HAS_SYNC | FE_HAS_LOCK);
+		}
 	}
 	return 0;
 }
@@ -1393,8 +1416,13 @@ void eDVBFrontend::getFrontendStatus(ePyObject dest)
 {
 	if (dest && PyDict_Check(dest))
 	{
+		int status = 0;
+		int acg = 0;
+		int ber = 0;
+		int signalquality = 0;
+		int signalqualitydb = 0;
 		const char *tmp = "UNKNOWN";
-		switch(m_state)
+		switch (m_state)
 		{
 			case stateIdle:
 				tmp="IDLE";
@@ -1414,21 +1442,32 @@ void eDVBFrontend::getFrontendStatus(ePyObject dest)
 			default:
 				break;
 		}
-		PutToDict(dest, "tuner_state", tmp);
-		PutToDict(dest, "tuner_locked", readFrontendData(locked));
-		PutToDict(dest, "tuner_synced", readFrontendData(synced));
-		PutToDict(dest, "tuner_bit_error_rate", readFrontendData(bitErrorRate));
-		PutToDict(dest, "tuner_signal_quality", readFrontendData(signalQuality));
-		int sigQualitydB = readFrontendData(signalQualitydB);
-		if (sigQualitydB == 0x12345678) // not support yet
+		if (m_state != stateTuning)
 		{
-			ePyObject obj=Py_None;
+			int snr = 0;
+			/* we are not tuning, get the remaining tunerstatus info */
+			status = readFrontendData(iFrontendInformation_ENUMS::frontendStatus);
+			snr = readFrontendData(iFrontendInformation_ENUMS::snrValue);
+			calculateSignalQuality(snr, signalquality, signalqualitydb);
+			acg = readFrontendData(iFrontendInformation_ENUMS::signalPower);
+			ber = readFrontendData(iFrontendInformation_ENUMS::bitErrorRate);
+		}
+		PutToDict(dest, "tuner_state", tmp);
+		PutToDict(dest, "tuner_locked", !!(status & FE_HAS_LOCK));
+		PutToDict(dest, "tuner_synced", !!(status & FE_HAS_SYNC));
+		PutToDict(dest, "tuner_bit_error_rate", ber);
+		PutToDict(dest, "tuner_signal_quality", signalquality);
+		if (signalqualitydb == 0x12345678) /* not yet supported */
+		{
+			ePyObject obj = Py_None;
 			Py_INCREF(obj);
 			PutToDict(dest, "tuner_signal_quality_db", obj);
 		}
 		else
-			PutToDict(dest, "tuner_signal_quality_db", sigQualitydB);
-		PutToDict(dest, "tuner_signal_power", readFrontendData(signalPower));
+		{
+			PutToDict(dest, "tuner_signal_quality_db", signalqualitydb);
+		}
+		PutToDict(dest, "tuner_signal_power", acg);
 	}
 }
 
@@ -1785,12 +1824,12 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 					break;
 				}
 				int signal = 0;
-				int isLocked = readFrontendData(locked);
+				int isLocked = readFrontendData(iFrontendInformation_ENUMS::lockState);
 				m_idleInputpower[0] = m_idleInputpower[1] = 0;
 				--m_timeoutCount;
 				if (!m_timeoutCount && m_retryCount > 0)
 					--m_retryCount;
-				if (isLocked && ((abs((signal = readFrontendData(signalQualitydB)) - cmd.lastSignal) < 40) || !cmd.lastSignal))
+				if (isLocked && ((abs((signal = readFrontendData(iFrontendInformation_ENUMS::signalQualitydB)) - cmd.lastSignal) < 40) || !cmd.lastSignal))
 				{
 					if (cmd.lastSignal)
 						eDebugNoSimulate("[SEC] locked step %d ok (%d %d)", cmd.okcount, signal, cmd.lastSignal);

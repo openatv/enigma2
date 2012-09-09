@@ -15,6 +15,7 @@ class CurrentService(PerServiceBase, Source):
 				# which is not always provided.
 				iPlayableService.evUpdatedInfo: self.serviceEvent,
 				iPlayableService.evUpdatedEventInfo: self.serviceEvent,
+				iPlayableService.evNewProgramInfo: self.serviceEvent,
 				iPlayableService.evCuesheetChanged: self.serviceEvent,
 				iPlayableService.evVideoSizeChanged: self.serviceEvent,
 				iPlayableService.evHBBTVInfo: self.serviceEvent
