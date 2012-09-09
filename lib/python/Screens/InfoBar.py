@@ -388,7 +388,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 			if item == service:
 				i += 1
 				if i < len(playlist):
-					return (playlist[i], i, len(playlist))
+					return (playlist[i], i+1, len(playlist))
 				elif config.usage.on_movie_eof.value == "loop":
 					return (playlist[0], 1, len(playlist))
 		return ( None, 0, 0 )
