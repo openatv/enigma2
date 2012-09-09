@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-06 22:18+0100\n"
-"PO-Revision-Date: 2012-08-12 22:51+0100\n"
+"POT-Creation-Date: 2012-08-31 20:33+0100\n"
+"PO-Revision-Date: 2012-09-03 17:55+0100\n"
 "Last-Translator: Ralf Biedermann <ralf.biedermann@rbsoft.de>\n"
 "Language-Team: Deutsch <> j-ot&Trial\n"
 "Language: de\n"
@@ -1356,6 +1356,9 @@ msgstr "Suche nach Updates..."
 msgid "Children/Youth"
 msgstr "Kinder/Jugend"
 
+msgid "Choose Bouquet"
+msgstr "Wähle Favoritenliste"
+
 msgid "Choose Tuner"
 msgstr "Tuner wählen"
 
@@ -2481,6 +2484,9 @@ msgstr "Beenden"
 msgid "Exit EPG"
 msgstr "Verlasse EPG"
 
+msgid "Exit Movieplayer?"
+msgstr "Movieplayer verlassen?"
+
 msgid "Exit editor"
 msgstr "Editor beenden"
 
@@ -2941,9 +2947,6 @@ msgstr "Mit 'JA' ist eine spzielle Seekbar während Timeshift verfügbar."
 msgid "If set to 'yes' channels without EPG will not be shown."
 msgstr "Wenn 'Ja' eingestellt ist werden Sender ohne EPG nicht angezeigt."
 
-msgid "If set to 'yes' epg will show 3D effect view."
-msgstr "Wenn 'Grafik' gewählt ist zeigt EPG 3D Effekte. 'Text' als Wahl bedeutet etwas schnellere Ausführung."
-
 msgid "If set to 'yes' shows a small TV-screen in the EPG."
 msgstr "Wenn 'Ja' eingestellt ist wird PIG (kleines TV-Bild) im EPG angezeigt."
 
@@ -3314,6 +3317,10 @@ msgstr "Letzte Geschwindigkeit"
 
 msgid "Last used share: "
 msgstr "Letzte benutzte Freigabe:"
+
+msgctxt "thrird evnet: 'third' event label"
+msgid "Later"
+msgstr ""
 
 msgid "Latitude"
 msgstr "Breitengrad"
@@ -3805,6 +3812,7 @@ msgstr "Neue Version:"
 msgid "News Current Affairs"
 msgstr "Nachrichten/Gegenwart"
 
+msgctxt "now/next: 'next' event label"
 msgid "Next"
 msgstr "Demnächst"
 
@@ -4027,6 +4035,7 @@ msgstr ""
 msgid "Nothing to upgrade"
 msgstr "Keine Aktualisierungen"
 
+msgctxt "now/next: 'now' event label"
 msgid "Now"
 msgstr "Jetzt"
 
@@ -4105,6 +4114,9 @@ msgstr "Am Ende eines Films"
 msgid "On raching the end of a file during playback, you can choose the box's behaviour."
 msgstr "Du kannst bestimmen was am Ende der Wiedergabe einer Aufnahme passieren soll."
 
+msgid "On reaching the end of a file during playback, you can choose the box's behaviour."
+msgstr "Am Ende der Wiedergabe eines Filmes kann das Verhalten bestimmt werden."
+
 msgid "On starting playback of a file, you can choose the box's behaviour."
 msgstr "Du kannst bestimmen was am Anfang der WIedergabe einer Aufnahme passieren soll."
 
@@ -4135,8 +4147,8 @@ msgstr "Nur frei empfangbare Sender speichern"
 msgid "Only change for debugging; default is '20 MB/s'."
 msgstr "Nur zur Fehlersuche ändern. Standard ist '20MB/s'."
 
-msgid "Only change for debugging; default is 'Off'."
-msgstr "Nur zur Fehlersuche ändern. Standard ist 'AUS'."
+msgid "Only change for debugging; default is 'Internal hdd only'."
+msgstr "Nur zu Debuggen ändern; Voreinstellung ist 'nur interne Festplatte'."
 
 msgid "Only extensions."
 msgstr "Nur Erweiterungen."
@@ -4260,6 +4272,12 @@ msgstr "Spitzenlast (max. Warteschlange pro Arbeitsthread)"
 msgid "Percentage"
 msgstr "Prozent"
 
+msgid "Percentage Left"
+msgstr "Prozent links"
+
+msgid "Percentage Right"
+msgstr "Prozent rechts"
+
 msgid "Perform an online update check"
 msgstr "Online nach einer Aktualisierung suchen"
 
@@ -4295,6 +4313,9 @@ msgstr "Picon"
 
 msgid "Picon and Service Name"
 msgstr "Picon und Sendername"
+
+msgid "Picon width"
+msgstr "PIcon Breite"
 
 msgid "Picture in Graphics"
 msgstr "Bild in Grafik"
@@ -4675,6 +4696,9 @@ msgstr "Vorschau"
 msgid "Preview menu"
 msgstr "Vorschau des DVD-Menüs"
 
+msgid "Preview selected channel"
+msgstr "Vorschau gewählter Sender"
+
 msgid "Primary DNS"
 msgstr "Erster DNS"
 
@@ -4698,6 +4722,12 @@ msgstr "Profil: Lokale Box"
 
 msgid "Progress"
 msgstr "Fortschritt"
+
+msgid "Progress Bar Left"
+msgstr "Fortschrittsbalken links"
+
+msgid "Progress Bar Right"
+msgstr "Fortschrittsbalken rechts"
 
 msgid "Progress Small"
 msgstr "Fortschritt klein"
@@ -4846,9 +4876,6 @@ msgstr "Aufnahme Einstellungen"
 
 msgid "Recording Setup"
 msgstr "Aufnahme Einstellungen"
-
-msgid "Recording data sync size"
-msgstr "Aufnahmepuffer"
 
 msgid "Recording in progress"
 msgstr "Aktive Aufnahmen"
@@ -5548,6 +5575,9 @@ msgstr ""
 "Kanal nicht verfügbar!\n"
 "Bitte Tuner-Konfiguration überprüfen!"
 
+msgid "Service width"
+msgstr "Sender Breite "
+
 msgid "Serviceinfo"
 msgstr "Sender Infos"
 
@@ -5661,6 +5691,12 @@ msgstr "Wähle die erlaubten Werte für den schnellen Vorlauf."
 
 msgid "Set the values for slow-motion speeds."
 msgstr "Setze die erlaubten Werte für die Zeitlupe."
+
+msgid "Set the width allocated to the picon."
+msgstr "Breite für PIcon einstellen."
+
+msgid "Set the width allocated to the service name."
+msgstr "Wähle die reservierte Breite des Sendernamens."
 
 msgid "Set time window to 1 hour"
 msgstr "Setze Zeitfenster auf 1 Stunde"
@@ -6690,6 +6726,9 @@ msgstr "Diese Option erlaubt dir zu wählen ob verbleibende/verstrichene Zeit od
 
 msgid "This option allows you choose the background colour of transparent picons."
 msgstr "Diese Option erlaubt es die Hintergrundfarbe von transparenten PIcons festzulegen."
+
+msgid "This option allows you set the layout view (Text or Graphics)."
+msgstr "Hier kann das Aussehen vom EPG eingestellt werden (Text oder Grafik)."
 
 msgid "This option allows you to boost the blue tones in the picture."
 msgstr "Diese Option erlaubt es den Blauanteil des Bildes zu verstärken."
@@ -8037,9 +8076,6 @@ msgstr ""
 msgid "Your backup succeeded. We will now continue to explain the further upgrade process."
 msgstr "Die Sicherung ist geglückt. Die STB_BOX wird nun den weiteren Aktualisierungs-Prozess erklären."
 
-msgid "Your box is not connected to the internet, please check your network settings and try again."
-msgstr "Die STB_BOX ist nicht mit dem Internet verbunden. Bitte Netzwerkeinstellungen überprüfen und erneut versuchen."
-
 msgid "Your collection exceeds the size of a single layer medium, you will need a blank dual layer DVD!"
 msgstr "Die Zusammenstellung überschreitet die Größe eines einfachen Mediums, es wirdein Dual-Layer-Rohling benötigt!"
 
@@ -9166,7 +9202,7 @@ msgid "show DVD main menu"
 msgstr "Zeige das DVD Hauptmenü"
 
 msgid "show EPG..."
-msgstr ""
+msgstr "Zeige EPG..."
 
 msgid "show Infoline"
 msgstr "Infozeile anzeigen"
@@ -9524,49 +9560,3 @@ msgstr "umschalten"
 
 msgid "zapped"
 msgstr "umgeschaltet"
-
-#~ msgid ""
-#~ " has been sent to the ViX beta team.\n"
-#~ "please quote "
-#~ msgstr ""
-#~ " wurde zum ViX Beta Team geschickt.\n"
-#~ "bitte zitieren "
-
-#~ msgid "EPG button mode"
-#~ msgstr "EPG Taste bewirkt"
-
-#~ msgid "Graph MEpg Settings"
-#~ msgstr "Graphische M-EPG Einstellungen"
-
-#~ msgid "If set to 'yes' shows the channel names in the EPG."
-#~ msgstr "Wenn 'Ja' eingestellt ist werden die Sendernamen im EPG angezeigt."
-
-#~ msgid "If set to 'yes' shows the channel picons in the EPG."
-#~ msgstr "Wenn 'Ja' eingestellt ist werden die Sendericon im EPG angezeigt."
-
-#~ msgid "Select what you want the EPG button to activate:"
-#~ msgstr "Wähle was die EPG Taste bewirken soll:"
-
-#~ msgid "Service width"
-#~ msgstr "Sender Breite "
-
-#~ msgid "Set the width allocated to the service name."
-#~ msgstr "Wähle die reservierte Breite des Sendernamens."
-
-#~ msgid "Show CoolTVGuide"
-#~ msgstr "Zeige CoolTVGuide"
-
-#~ msgid "Show Graphical EPG"
-#~ msgstr "Zeige grafisches EPG"
-
-#~ msgid "Show Multi EPG"
-#~ msgstr "Zeige Multi-EPG"
-
-#~ msgid "Show Picons"
-#~ msgstr "Zeige Senderlogos"
-
-#~ msgid "Show Service Names "
-#~ msgstr "Zeige Sendernamen"
-
-#~ msgid "Show Single EPG"
-#~ msgstr "Zeige EinfachEPG"
