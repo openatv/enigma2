@@ -292,7 +292,15 @@ int eDVBCAHandler::registerService(const eServiceReferenceDVB &ref, int adapter,
 	/*
 	 * our servicelist has changed, but we have to wait till we receive PMT data
 	 * for this service, before we distribute a new list of CAPMT objects to our clients.
+	 *
+	 * Unless we have a pmt section in our cache, for this service.
 	 */
+
+	std::map<eServiceReferenceDVB, ePtr<eTable<ProgramMapSection> > >::const_iterator cacheit = pmtCache.find(ref);
+	if (cacheit != pmtCache.end() && cacheit->second)
+	{
+		processPMTForService(caservice, cacheit->second);
+	}
 	return 0;
 }
 
@@ -377,6 +385,7 @@ void eDVBCAHandler::serviceGone()
 			delete *it;
 			it = clients.erase(it);
 		}
+		pmtCache.clear();
 	}
 }
 
@@ -404,23 +413,15 @@ void eDVBCAHandler::distributeCAPMT()
 	}
 }
 
-void eDVBCAHandler::handlePMT(const eServiceReferenceDVB &ref, eTable<ProgramMapSection> *ptr)
+void eDVBCAHandler::processPMTForService(eDVBCAService *service, eTable<ProgramMapSection> *ptr)
 {
-	bool isUpdate;
-	CAServiceMap::iterator it = services.find(ref);
-	if (it == services.end())
-	{
-		/* not one of our services */
-		return;
-	}
-
-	isUpdate = (it->second->getCAPMTVersion() >= 0);
+	bool isUpdate = (service->getCAPMTVersion() >= 0);
 
 	/* prepare the data */
-	if (it->second->buildCAPMT(ptr) < 0) return; /* probably equal version, ignore */
+	if (service->buildCAPMT(ptr) < 0) return; /* probably equal version, ignore */
 
 	/* send the data to the listening client */
-	it->second->sendCAPMT();
+	service->sendCAPMT();
 
 	if (isUpdate)
 	{
@@ -429,7 +430,7 @@ void eDVBCAHandler::handlePMT(const eServiceReferenceDVB &ref, eTable<ProgramMap
 		{
 			if (client_it->state() == eSocket::Connection)
 			{
-				it->second->writeCAPMTObject(*client_it, LIST_UPDATE);
+				service->writeCAPMTObject(*client_it, LIST_UPDATE);
 			}
 		}
 	}
@@ -441,6 +442,20 @@ void eDVBCAHandler::handlePMT(const eServiceReferenceDVB &ref, eTable<ProgramMap
 		 */
 		distributeCAPMT();
 	}
+}
+
+void eDVBCAHandler::handlePMT(const eServiceReferenceDVB &ref, eTable<ProgramMapSection> *ptr)
+{
+	CAServiceMap::iterator it = services.find(ref);
+	if (it == services.end())
+	{
+		/* not one of our services */
+		return;
+	}
+
+	processPMTForService(it->second, ptr);
+
+	pmtCache[ref] = ptr;
 }
 
 eDVBCAService::eDVBCAService(const eServiceReferenceDVB &service)

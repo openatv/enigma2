@@ -159,8 +159,10 @@ DECLARE_REF(eDVBCAHandler);
 	CAServiceMap services;
 	ePtrList<ePMTClient> clients;
 	ePtr<eTimer> serviceLeft;
+	std::map<eServiceReferenceDVB, ePtr<eTable<ProgramMapSection> > > pmtCache;
 
 	void newConnection(int socket);
+	void processPMTForService(eDVBCAService *service, eTable<ProgramMapSection> *ptr);
 	void distributeCAPMT();
 	void serviceGone();
 #endif

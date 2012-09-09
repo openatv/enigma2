@@ -72,6 +72,8 @@ class eDVBServicePMTHandler: public Object
 	void SDTScanEvent(int);
 	ePtr<eConnection> m_scan_event_connection;
 
+	void registerCAService();
+
 	void PMTready(int error);
 	void PATready(int error);
 	void AITready(int error);
