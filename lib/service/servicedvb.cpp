@@ -1151,6 +1151,8 @@ void eDVBServicePlay::serviceEvent(int event)
 		}
 		if (!m_timeshift_active)
 			m_event((iPlayableService*)this, evUpdatedInfo);
+
+		m_event((iPlayableService*)this, evNewProgramInfo);
 		break;
 	}
 	case eDVBServicePMTHandler::eventPreStart:
