@@ -48,8 +48,8 @@ class HdmiCec:
 		if config.hdmicec.handle_deepstandby_events.value:
 			if not getFPWasTimerWakeup():
 				self.wakeupMessages()
-		if fileExists("/proc/stb/hdmi/preemphasis"):		
-			self.sethdmipreemphasis()
+#		if fileExists("/proc/stb/hdmi/preemphasis"):		
+#			self.sethdmipreemphasis()
 
 	def getPhysicalAddress(self):
 		physicaladdress = eHdmiCEC.getInstance().getPhysicalAddress()
