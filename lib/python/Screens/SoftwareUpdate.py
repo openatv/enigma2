@@ -236,11 +236,11 @@ class UpdatePlugin(Screen):
 				socket.setdefaulttimeout(currentTimeoutDefault)
 				self.total_packages = None
 				if config.softwareupdate.updateisunstable.value == '1' and config.softwareupdate.updatebeta.value:
-					message = _("The current update maybe unstable") + "\n" + _("Are you sure you want to update your STB_BOX?") + "\n(%s " % self.total_packages + _("Packages") + ")"
- 					self.total_packages = len(self.ipkg.getFetchedList())
-				elif config.softwareupdate.updateisunstable.value == '0':
-					message = _("Do you want to update your STB_BOX?") + "\n(%s " % self.total_packages + _("Packages") + ")"
 					self.total_packages = len(self.ipkg.getFetchedList())
+					message = _("The current update maybe unstable") + "\n" + _("Are you sure you want to update your STB_BOX?") + "\n(%s " % self.total_packages + _("Packages") + ")"
+				elif config.softwareupdate.updateisunstable.value == '0':
+					self.total_packages = len(self.ipkg.getFetchedList())
+					message = _("Do you want to update your STB_BOX?") + "\n(%s " % self.total_packages + _("Packages") + ")"
 				if self.total_packages:
 					config.softwareupdate.updatefound.setValue(True)
 					choices = [(_("View the changes"), "changes"),
