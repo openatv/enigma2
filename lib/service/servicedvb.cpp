@@ -2047,8 +2047,10 @@ int eDVBServicePlay::selectAudioStream(int i)
 				c.) we are not selecting the default entry. (we wouldn't change
 				    anything in the best case, or destroy the default setting in
 				    case the real default is not yet available.)
+				d.) we have only one audiostream (overwrite the cache to make sure
+				    the cache contains the correct audio pid and type)
 			*/
-	if (m_dvb_service && ((i != -1)
+	if (m_dvb_service && ((i != -1) || (program.audioStreams.size() == 1)
 		|| ((m_dvb_service->getCacheEntry(eDVBService::cAPID) == -1) && (m_dvb_service->getCacheEntry(eDVBService::cAC3PID)==-1))))
 	{
 		if (apidtype == eDVBAudio::aMPEG)
@@ -2775,7 +2777,7 @@ void eDVBServicePlay::updateDecoder(bool sendSeekableStateChanged)
 		/* don't worry about non-existing services, nor pvr services */
 		if (m_dvb_service)
 		{
-				/* (audio pid will be set in selectAudioTrack */
+			/* (audio pid will be set in selectAudioTrack) */
 			if (vpid >= 0)
 			{
 				m_dvb_service->setCacheEntry(eDVBService::cVPID, vpid);
