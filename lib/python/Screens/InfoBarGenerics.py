@@ -3529,7 +3529,18 @@ class InfoBarExtensions:
 		if s:
 			info = s.info()
 			event = info.getEvent(0) # 0 = now, 1 = next
-			name = event and event.getEventName() or ''
+			if event:
+				name = event and event.getEventName() or ''
+			else:
+				name = self.session.nav.getCurrentlyPlayingServiceReference().toString()
+				name = name.split('/')
+				name = name[-1]
+				name = name.replace('.',' ')
+				name = name.split('-')
+				name = name[0]
+				if name.endswith(' '):
+					name = name[:-1]
+		if name:
 			self.session.open(EPGSearch, name, False)
 		else:
 			self.session.open(EPGSearch)
