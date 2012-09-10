@@ -1,9 +1,8 @@
-# coding: utf-8
-from config import config, configfile, ConfigSlider, ConfigSubsection, ConfigYesNo, ConfigText
-
-import struct, sys, time, errno
+from config import config, ConfigSlider, ConfigSubsection, ConfigYesNo, ConfigText, ConfigInteger
+from os import listdir, open as os_open, close as os_close, write as os_write, O_RDWR, O_NONBLOCK
+from Tools.Directories import pathExists
 from fcntl import ioctl
-from os import path as os_path, listdir, open as os_open, close as os_close, write as os_write, read as os_read, O_RDWR, O_NONBLOCK
+import struct
 
 # asm-generic/ioctl.h
 IOC_NRBITS = 8L
@@ -28,7 +27,7 @@ class inputDevices:
 		self.Devices = {}
 		self.currentDevice = ""
 		self.getInputDevices()
-	
+
 	def getInputDevices(self):
 		devices = listdir("/dev/input/")
 
@@ -42,10 +41,10 @@ class inputDevices:
 			except (IOError,OSError), err:
 				print '[iInputDevices] getInputDevices  <ERROR: ioctl(EVIOCGNAME): ' + str(err) + ' >'
 				self.name = None
-			
+
 			if self.name:
 				self.Devices[evdev] = {'name': self.name, 'type': self.getInputDeviceType(self.name),'enabled': False, 'configuredName': None }
-	
+
 
 	def getInputDeviceType(self,name):
 		if name.find("remote control") != -1:
@@ -57,7 +56,7 @@ class inputDevices:
 		else:
 			print "Unknown device type:",name
 			return None
-			
+
 	def getDeviceName(self, x):
 		if x in self.Devices.keys():
 			return self.Devices[x].get("name", x)
@@ -71,13 +70,13 @@ class inputDevices:
 		#print "[iInputDevices] setting for device", device, "attribute", attribute, " to value", value
 		if self.Devices.has_key(device):
 			self.Devices[device][attribute] = value
-			
+
 	def getDeviceAttribute(self, device, attribute):
 		if self.Devices.has_key(device):
 			if self.Devices[device].has_key(attribute):
 				return self.Devices[device][attribute]
 		return None
-			
+
 	def setEnabled(self, device, value):
 		oldval = self.getDeviceAttribute(device, 'enabled')
 		#print "[iInputDevices] setEnabled for device %s to %s from %s" % (device,value,oldval)
@@ -88,7 +87,7 @@ class inputDevices:
 	def setName(self, device, value):
 		#print "[iInputDevices] setName for device %s to %s" % (device,value)
 		self.setDeviceAttribute(device, 'configuredName', value)
-		
+
 	#struct input_event {
 	#	struct timeval time;    -> ignored
 	#	__u16 type;             -> EV_REP (0x14)
@@ -124,11 +123,11 @@ class inputDevices:
 
 
 class InitInputDevices:
-	
+
 	def __init__(self):
 		self.currentDevice = ""
 		self.createConfig()
-	
+
 	def createConfig(self, *args):
 		config.inputDevices = ConfigSubsection()
 		for device in sorted(iInputDevices.Devices.iterkeys()):
@@ -161,7 +160,7 @@ class InitInputDevices:
 			iInputDevices.setRepeat(self.currentDevice, configElement.value)
 		elif iInputDevices.currentDevice != "":
 			iInputDevices.setRepeat(iInputDevices.currentDevice, configElement.value)
-		
+
 	def inputDevicesDelayChanged(self,configElement):
 		if self.currentDevice != "" and iInputDevices.currentDevice == "":
 			iInputDevices.setDelay(self.currentDevice, configElement.value)
@@ -190,3 +189,34 @@ class InitInputDevices:
 
 
 iInputDevices = inputDevices()
+
+
+config.plugins.remotecontroltype = ConfigSubsection()
+config.plugins.remotecontroltype.rctype = ConfigInteger(default = 0)
+
+class RcTypeControl():
+	def __init__(self):
+		if pathExists('/proc/stb/ir/rc/type') and pathExists('/proc/stb/info/boxtype'):
+			self.isSupported = True
+
+			fd = open('/proc/stb/info/boxtype', 'r')
+			self.boxType = fd.read()
+			fd.close()
+
+			if config.plugins.remotecontroltype.rctype.value != 0:
+				self.writeRcType(config.plugins.remotecontroltype.rctype.value)
+		else:
+			self.isSupported = False
+
+	def multipleRcSupported(self):
+		return self.isSupported
+
+	def getBoxType(self):
+		return self.boxType
+
+	def writeRcType(self, rctype):
+		fd = open('/proc/stb/ir/rc/type', 'w')
+		fd.write('%d' % (rctype))
+		fd.close()
+
+iRcTypeControl = RcTypeControl()
