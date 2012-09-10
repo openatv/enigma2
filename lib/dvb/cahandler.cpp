@@ -385,7 +385,10 @@ void eDVBCAHandler::serviceGone()
 			delete *it;
 			it = clients.erase(it);
 		}
-		pmtCache.clear();
+		if (pmtCache.size() > 500)
+		{
+			pmtCache.clear();
+		}
 	}
 }
 
