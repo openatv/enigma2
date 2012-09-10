@@ -174,7 +174,7 @@ public:
 
 	int registerService(const eServiceReferenceDVB &service, int adapter, int demux_nums[2], int servicetype, eDVBCAService *&caservice);
 	int unregisterService(const eServiceReferenceDVB &service , int adapter, int demux_nums[2], eTable<ProgramMapSection> *ptr);
-	void handlePMT(const eServiceReferenceDVB &service, eTable<ProgramMapSection> *ptr);
+	void handlePMT(const eServiceReferenceDVB &service, ePtr<eTable<ProgramMapSection> > &ptr);
 	void connectionLost(ePMTClient *client);
 
 	static eDVBCAHandler *getInstance() { return instance; }

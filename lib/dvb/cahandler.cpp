@@ -444,7 +444,7 @@ void eDVBCAHandler::processPMTForService(eDVBCAService *service, eTable<ProgramM
 	}
 }
 
-void eDVBCAHandler::handlePMT(const eServiceReferenceDVB &ref, eTable<ProgramMapSection> *ptr)
+void eDVBCAHandler::handlePMT(const eServiceReferenceDVB &ref, ePtr<eTable<ProgramMapSection> > &ptr)
 {
 	CAServiceMap::iterator it = services.find(ref);
 	if (it == services.end())
