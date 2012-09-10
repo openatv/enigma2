@@ -307,6 +307,7 @@ class UpdatePlugin(Screen):
 		self.ipkg.write(res and "N" or "Y")
 
 	def doSettingsBackup(self):
+		backup = None
 		from Plugins.SystemPlugins.ViX.BackupManager import BackupFiles
 		self.BackupFiles = BackupFiles(self.session)
 		Components.Task.job_manager.AddJob(self.BackupFiles.createBackupJob())
@@ -314,9 +315,11 @@ class UpdatePlugin(Screen):
 		for job in Components.Task.job_manager.getPendingJobs():
 			if job.name.startswith(_("BackupManager")):
 				backup = job
-		self.showJobView(backup)
+		if backup:
+			self.showJobView(backup)
 
 	def doImageBackup(self):
+		backup = None
 		from Plugins.SystemPlugins.ViX.ImageManager import ImageBackup
 		self.ImageBackup = ImageBackup(self.session)
 		Components.Task.job_manager.AddJob(self.ImageBackup.createBackupJob())
@@ -324,7 +327,8 @@ class UpdatePlugin(Screen):
 		for job in Components.Task.job_manager.getPendingJobs():
 			if job.name.startswith(_("ImageManager")):
 				backup = job
-		self.showJobView(backup)
+		if backup:
+			self.showJobView(backup)
 
 	def doAutoBackup(self, val = False):
 		self.autobackuprunning = True
