@@ -1,6 +1,7 @@
 from Screen import Screen
 from Components.ActionMap import NumberActionMap
 from Components.config import config, ConfigNothing
+from Components.Label import Label
 from Components.SystemInfo import SystemInfo
 from Components.ConfigList import ConfigListScreen
 from Components.Sources.StaticText import StaticText
@@ -49,6 +50,8 @@ class SetupSummary(Screen):
 	def selectionChanged(self):
 		self["SetupEntry"].text = self.parent.getCurrentEntry()
 		self["SetupValue"].text = self.parent.getCurrentValue()
+		if hasattr(self.parent,"getCurrentSummary"):
+			self.parent["summary"].text = self.parent.getCurrentSummary()
 
 class Setup(ConfigListScreen, Screen):
 
@@ -85,6 +88,7 @@ class Setup(ConfigListScreen, Screen):
 		#check for list.entries > 0 else self.close
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
+		self["summary"] = Label(_(""))
 
 		self["actions"] = NumberActionMap(["SetupActions", "MenuActions"], 
 			{
@@ -112,6 +116,9 @@ class Setup(ConfigListScreen, Screen):
 	def getCurrentValue(self):
 		return self["config"].getCurrent() and str(self["config"].getCurrent()[1].getText()) or ""
 
+	def getCurrentSummary(self):
+		return len(self["config"].getCurrent()) > 2 and self["config"].getCurrent()[2] or ""
+
 	def createSummary(self):
 		return SetupSummary
 
@@ -134,6 +141,7 @@ class Setup(ConfigListScreen, Screen):
 					continue;
 
 				item_text = _(x.get("text", "??").encode("UTF-8"))
+				item_summary = _(x.get("summary", " ").encode("UTF-8"))
 				b = eval(x.text or "");
 				if b == "":
 					continue
@@ -142,7 +150,7 @@ class Setup(ConfigListScreen, Screen):
 				# the first b is the item itself, ignored by the configList.
 				# the second one is converted to string.
 				if not isinstance(item, ConfigNothing):
-					list.append( (item_text, item) )
+					list.append( (item_text, item, item_summary) )
 
 def getSetupTitle(id):
 	xmldata = setupdom.getroot()
