@@ -117,7 +117,7 @@ class Setup(ConfigListScreen, Screen):
 		return self["config"].getCurrent() and str(self["config"].getCurrent()[1].getText()) or ""
 
 	def getCurrentSummary(self):
-		return len(self["config"].getCurrent()) > 2 and self["config"].getCurrent()[2] or ""
+		return self["config"].getCurrent() and len(self["config"].getCurrent()) > 2 and self["config"].getCurrent()[2] or ""
 
 	def createSummary(self):
 		return SetupSummary
