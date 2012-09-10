@@ -462,7 +462,7 @@ void eDVBCAHandler::handlePMT(const eServiceReferenceDVB &ref, ePtr<eTable<Progr
 }
 
 eDVBCAService::eDVBCAService(const eServiceReferenceDVB &service)
-	: eUnixDomainSocket(eApp), m_service(service), m_adapter(0), m_service_type_mask(0), m_prev_build_hash(0), m_version(-1), m_retryTimer(eTimer::create(eApp))
+	: eUnixDomainSocket(eApp), m_service(service), m_adapter(0), m_service_type_mask(0), m_prev_build_hash(0), m_crc32(0), m_version(-1), m_retryTimer(eTimer::create(eApp))
 {
 	memset(m_used_demux, 0xFF, sizeof(m_used_demux));
 	CONNECT(connectionClosed_, eDVBCAService::connectionLost);
@@ -535,6 +535,7 @@ int eDVBCAService::buildCAPMT(eTable<ProgramMapSection> *ptr)
 
 	uint8_t demux_mask = 0;
 	int data_demux = -1;
+	uint32_t crc = 0;
 
 	int iter = 0, max_demux_slots = getNumberOfDemuxes();
 	while ( iter < max_demux_slots )
@@ -556,8 +557,6 @@ int eDVBCAService::buildCAPMT(eTable<ProgramMapSection> *ptr)
 		return -1;
 	}
 
-	eDebug("demux %d mask %02x prevhash %llx", data_demux, demux_mask, m_prev_build_hash);
-
 	uint64_t build_hash = m_adapter;
 	build_hash <<= 8;
 	build_hash |= data_demux;
@@ -570,15 +569,15 @@ int eDVBCAService::buildCAPMT(eTable<ProgramMapSection> *ptr)
 	build_hash <<= 16;
 	build_hash |= (m_service_type_mask & 0xffff);
 
-	if ( build_hash == m_prev_build_hash )
-	{
-		eDebug("[eDVBCAService] don't build/send the same CA PMT twice");
-		return -1;
-	}
-
-	std::vector<ProgramMapSection*>::const_iterator i=ptr->getSections().begin();
+	std::vector<ProgramMapSection*>::const_iterator i = ptr->getSections().begin();
 	if ( i != ptr->getSections().end() )
 	{
+		crc = (*i)->getCrc32();
+		if (build_hash == m_prev_build_hash && crc == m_crc32)
+		{
+			eDebug("[eDVBCAService] don't build/send the same CA PMT twice");
+			return -1;
+		}
 		CaProgramMapSection capmt(*i++, m_prev_build_hash ? LIST_UPDATE : LIST_ONLY, CMD_OK_DESCRAMBLING);
 
 		while( i != ptr->getSections().end() )
@@ -635,6 +634,7 @@ int eDVBCAService::buildCAPMT(eTable<ProgramMapSection> *ptr)
 
 	m_prev_build_hash = build_hash;
 	m_version = pmt_version;
+	m_crc32 = crc;
 	return 0;
 }
 
