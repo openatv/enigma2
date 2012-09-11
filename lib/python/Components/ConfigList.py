@@ -79,7 +79,7 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 		instance.setContent(self.l)
 
 	def preWidgetRemove(self, instance):
-		if isinstance(self.current,tuple) and len(self.current) == 2:
+		if isinstance(self.current,tuple) and len(self.current) >= 2:
 			self.current[1].onDeselect(self.session)
 		instance.selectionChanged.get().remove(self.selectionChanged)
 		instance.setContent(None)

@@ -42,6 +42,8 @@ class SetupSummary(Screen):
 	def selectionChanged(self):
 		self["SetupEntry"].text = self.parent.getCurrentEntry()
 		self["SetupValue"].text = self.parent.getCurrentValue()
+		if hasattr(self.parent,"getCurrentSummary"):
+			self.parent["summary"].text = self.parent.getCurrentSummary()
 
 class Setup(ConfigListScreen, Screen):
 
@@ -94,6 +96,7 @@ class Setup(ConfigListScreen, Screen):
 		#check for list.entries > 0 else self.close
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
+		self["summary"] = Label(_(""))
 
 		self["actions"] = NumberActionMap(["SetupActions", "MenuActions"],
 			{
@@ -200,6 +203,9 @@ class Setup(ConfigListScreen, Screen):
 
 	def getCurrentValue(self):
 		return self["config"].getCurrent() and str(self["config"].getCurrent()[1].getText()) or ""
+
+	def getCurrentSummary(self):
+		return self["config"].getCurrent() and len(self["config"].getCurrent()) > 2 and self["config"].getCurrent()[2] or ""
 
 	def createSummary(self):
 		return SetupSummary

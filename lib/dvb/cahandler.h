@@ -106,6 +106,7 @@ class eDVBCAService: public eUnixDomainSocket
 	uint8_t m_adapter;
 	uint32_t m_service_type_mask;
 	uint64_t m_prev_build_hash;
+	uint32_t m_crc32;
 	int m_version;
 	unsigned char m_capmt[2048];
 	ePtr<eTimer> m_retryTimer;
@@ -174,7 +175,7 @@ public:
 
 	int registerService(const eServiceReferenceDVB &service, int adapter, int demux_nums[2], int servicetype, eDVBCAService *&caservice);
 	int unregisterService(const eServiceReferenceDVB &service , int adapter, int demux_nums[2], eTable<ProgramMapSection> *ptr);
-	void handlePMT(const eServiceReferenceDVB &service, eTable<ProgramMapSection> *ptr);
+	void handlePMT(const eServiceReferenceDVB &service, ePtr<eTable<ProgramMapSection> > &ptr);
 	void connectionLost(ePMTClient *client);
 
 	static eDVBCAHandler *getInstance() { return instance; }
