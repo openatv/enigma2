@@ -554,24 +554,35 @@ class NumberZap(Screen):
 		self.Timer.stop()
 		self.close(int(self["number"].getText()))
 
+	def handleServiceName(self):
+		service, bouquet = self.searchNumber(int(self["number"].getText()))
+		self ["servicename"].text = ServiceReference(service).getServiceName()
+
 	def keyNumberGlobal(self, number):
 		self.Timer.start(5000, True)		#reset timer
 		self.field = self.field + str(number)
 		self["number"].setText(self.field)
 		self["number_summary"].setText(self.field)
+
+		self.handleServiceName()
+
 		if len(self.field) >= 4:
 			self.keyOK()
 
-	def __init__(self, session, number):
+	def __init__(self, session, number, searchNumberFunction):
 		Screen.__init__(self, session)
 		self.onChangedEntry = [ ]
 		self.field = str(number)
+		self.searchNumber = searchNumberFunction
 
 		self["channel"] = Label(_("Channel:"))
 		self["channel_summary"] = StaticText(_("Channel:"))
 
 		self["number"] = Label(self.field)
 		self["number_summary"] = StaticText(self.field)
+		self["servicename"] = Label()
+
+		self.handleServiceName()
 
 		self["actions"] = NumberActionMap( [ "SetupActions" ],
 			{
@@ -639,7 +650,7 @@ class InfoBarNumberZap:
 					self.servicelist.recallPrevService()
 		else:
 			if self.has_key("TimeshiftActions") and not self.timeshift_enabled:
-				self.session.openWithCallback(self.numberEntered, NumberZap, number)
+				self.session.openWithCallback(self.numberEntered, NumberZap, number, self.searchNumber)
 		if number and config.timeshift.enabled.value and self.timeshift_enabled and not self.isSeekable():
 			self.session.openWithCallback(self.numberEntered, NumberZap, number)
 
@@ -658,7 +669,7 @@ class InfoBarNumberZap:
 				serviceIterator = servicelist.getNext()
 		return None
 
-	def zapToNumber(self, number):
+	def searchNumber(self, number):
 		bouquet = self.servicelist.getRoot()
 		service = None
 		serviceHandler = eServiceCenter.getInstance()
@@ -681,6 +692,10 @@ class InfoBarNumberZap:
 							if config.usage.alternative_number_mode.value:
 								break
 						bouquet = bouquetlist.getNext()
+		return service, bouquet
+
+	def zapToNumber(self, number):
+		service, bouquet = self.searchNumber(number)
 		if not service is None:
 			if self.servicelist.getRoot() != bouquet: #already in correct bouquet?
 				self.servicelist.clearPath()
