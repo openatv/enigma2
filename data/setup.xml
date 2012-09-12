@@ -21,7 +21,7 @@
 		<item level="2" text="Alternative services tuner priority" description="Choose the order in which the tuner types will be used (for watching and recording).">config.usage.alternatives_priority</item>
 		<item level="2" text="Preferred tuner" description="Choose which tuner will be used first. If set to 'auto' the system will give priority to the tuner having the lowest number of channels/satellites.">config.usage.frontend_priority</item>
 		<item level="2" text="Disable background scanning" description="When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure what you're doing.">config.misc.disable_background_scan</item>
-		<item level="2" text="Create more detailed crash log" description="Add more detailed to the crash log">config.crash.details</item>
+		<item level="2" text="Create more detailed crash log" description="Add more details to the crash log">config.crash.details</item>
 		<item level="2" text="Include EIT in http streams" description="EIT data will be included in http streams.">config.streaming.stream_eit</item>
 		<item level="2" text="Include AIT in http streams" description="AIT data will be included in http streams">config.streaming.stream_ait</item>
 		<item level="2" text="Include ECM in http streams" description="ECM data will be included in the stream. This enables a client receiver to decode it.">config.streaming.stream_ecm</item>
@@ -87,7 +87,7 @@
 		<item level="1" text="Subtitle language selection 2" description="Set the subtitle language selection 2">config.autolanguage.subtitle_autoselect2</item>
 		<item level="1" text="Subtitle language selection 3" description="Set the subtitle language selection 3">config.autolanguage.subtitle_autoselect3</item>
 		<item level="1" text="Subtitle language selection 4" description="Set the subtitle language selection 4 (lowest priority)">config.autolanguage.subtitle_autoselect4</item>
-		<item level="1" text="Allow Subtitle equals Audio mask" description="Enables subtitles when the audio language is the same as the audio language.">config.autolanguage.equal_languages</item>
+		<item level="1" text="Allow Subtitle equals Audio mask" description="Usually when the subtitle language is the same as the audio language subtitles are surpressed. This option allows showing subtitles when they are the same.">config.autolanguage.equal_languages</item>
 		<item level="1" text="Allow hearing impaired subtitles" description="Enable hearing impaired subtitles">config.autolanguage.subtitle_hearingimpaired</item>
 		<item level="1" text="Prefer hearing impaired subtitles" description="Prefer hearing impaired subtitles over normal subtitles.">config.autolanguage.subtitle_defaultimpaired</item>
 		<item level="1" text="Prefer DVB-grafical subtitles" description="Prefer the DVB-graphical subtitles over Teletext subtitles.">config.autolanguage.subtitle_defaultdvb</item>
