@@ -16,16 +16,15 @@ config.misc.videowizardenabled = ConfigBoolean(default = True)
 class VideoSetup(Screen, ConfigListScreen):
 	def __init__(self, session, hw):
 		Screen.__init__(self, session)
-		self.onChangedEntry = [ ]
 		self.skinName = ["Setup" ]
 		self.setup_title = _("A/V Settings")
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self["VKeyIcon"] = Boolean(False)
 		self['footnote'] = Label()
-		self["status"] = StaticText()
 
 		self.hw = hw
+		self.onChangedEntry = [ ]
 
 		# handle hotplug by re-creating setup
 		self.onShow.append(self.startHotplug)
@@ -44,15 +43,11 @@ class VideoSetup(Screen, ConfigListScreen):
 
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
+		self["description"] = Label(_(""))
 
-		if not self.SelectionChanged in self["config"].onSelectionChanged:
-			self["config"].onSelectionChanged.append(self.SelectionChanged)
 		self.createSetup()
 		self.grabLastGoodMode()
 		self.onLayoutFinish.append(self.layoutFinished)
-
-	def SelectionChanged(self):
-		self["status"].setText(self["config"].getCurrent()[2])
 
 	def layoutFinished(self):
 		self.setTitle(self.setup_title)
@@ -116,8 +111,11 @@ class VideoSetup(Screen, ConfigListScreen):
 				getConfigListEntry(_("General PCM Delay"), config.av.generalPCMdelay, _("This option sets up the general audio delay of Analog sound tracks."))
 			))
 
-# 		if not isinstance(config.av.scaler_sharpness, ConfigNothing):
-# 			self.list.append(getConfigListEntry(_("Scaler sharpness"), config.av.scaler_sharpness, _("This option sets up the picture sharpness.")))
+#		if SystemInfo["CanChangeOsdAlpha"]:
+#			self.list.append(getConfigListEntry(_("OSD transparency"), config.av.osd_alpha, _("This option sets the transparency of the OSD")))
+
+#		if not isinstance(config.av.scaler_sharpness, ConfigNothing):
+#			self.list.append(getConfigListEntry(_("Scaler sharpness"), config.av.scaler_sharpness, _("This option sets up the picture sharpness.")))
 
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
@@ -168,6 +166,9 @@ class VideoSetup(Screen, ConfigListScreen):
 
 	def getCurrentValue(self):
 		return str(self["config"].getCurrent()[1].getText())
+
+	def getCurrentDescription(self):
+		return self["config"].getCurrent() and len(self["config"].getCurrent()) > 2 and self["config"].getCurrent()[2] or ""
 
 	def createSummary(self):
 		from Screens.Setup import SetupSummary
