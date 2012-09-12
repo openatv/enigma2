@@ -30,7 +30,6 @@ profile("ChannelSelection.py 2.3")
 from Components.Input import Input
 profile("ChannelSelection.py 3")
 from Components.ChoiceList import ChoiceList, ChoiceEntryComponent
-from Components.SystemInfo import SystemInfo
 from RecordTimer import RecordTimerEntry, AFTEREVENT
 from TimerEntry import TimerEntry
 from Screens.InputBox import InputBox, PinInput
@@ -180,8 +179,13 @@ class SettingsMenu(ConfigListScreen, Screen):
 	def createSetup(self):
 		self.editListEntry = None
 		self.list = []
+		self.list.append(getConfigListEntry(_("Alternative numbering Mode"), config.usage.alternative_number_mode, _("With this option enabled, Channel numbers will start with '1' in each bouquet.")))
+		self.list.append(getConfigListEntry(_("Always show bouquets"), config.usage.show_bouquetalways, _("With this option set to 'yes' the channel lists will always show you the bouquet screen first. If set to 'no' the current bouquet will be opened.")))
 		self.list.append(getConfigListEntry(_("Channel list preview"), config.usage.servicelistpreview_mode, _("If set to 'yes' you can preview channels in the channel list. Press 'OK' to preview the selected channel, press a 2nd 'OK' to exit and zap to that channel, pressing 'EXIT' to return to the channel you started at.")))
 		self.list.append(getConfigListEntry(_("Channel list service mode*"), config.usage.servicelist_mode, _("This option allows you to choose from the two channel lists that are available.")))
+		self.list.append(getConfigListEntry(_("Channel selection on mode change"), config.usage.show_servicelist, _("If set to 'yes' the channel list will be shown after switching between radio and TV modes.")))
+		self.list.append(getConfigListEntry(_("Enable multiple bouquets"), config.usage.multibouquet, _("Services may be grouped in bouquets. If this option is enabled, you can use more then one bouquet.")))
+		self.list.append(getConfigListEntry(_("Enable panic button"), config.usage.panicbutton, _("With this option enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history.")))
 		self.list.append(getConfigListEntry(_("Jump first press in channel selection*"), config.usage.show_channel_jump_in_servicelist, _("This option allows you to choose what the first button press jumps to in channel list screen, (so pressing '2' jumps to 'A' or '2' first)")))
 		self.list.append(getConfigListEntry(_("Show event-progress in channel selection"), config.usage.show_event_progress_in_servicelist, _("If set to 'yes' the progress of the current event in the channel list is displayed.")))
 		self.list.append(getConfigListEntry(_("Show channel numbers in channel selection"), config.usage.show_channel_numbers_in_servicelist, _("If set to 'yes' the channel numbers in the channel list will be displayed.")))
@@ -189,6 +193,9 @@ class SettingsMenu(ConfigListScreen, Screen):
 		self.list.append(getConfigListEntry(_("Service number font size"), config.usage.servicenum_fontsize, _("This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size")))
 		self.list.append(getConfigListEntry(_("Service name font size"), config.usage.servicename_fontsize, _("This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size")))
 		self.list.append(getConfigListEntry(_("Service info font size"), config.usage.serviceinfo_fontsize, _("This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size")))
+		if SystemInfo["ZapMode"]:
+			self.list.append(getConfigListEntry(_("Zap mode"), config.misc.zapmode, _("Setup how to control the channel changing.")))
+
 		self["config"].list = self.list
 		self["config"].setList(self.list)
 		if config.usage.sort_settings.value:
@@ -199,6 +206,8 @@ class SettingsMenu(ConfigListScreen, Screen):
 
 	# for summary:
 	def changedEntry(self):
+		if self["config"].getCurrent()[0] == _("Zap mode"):
+			self.createSetup()
 		for x in self.onChangedEntry:
 			x()
 		self.selectionChanged()
