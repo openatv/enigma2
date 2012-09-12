@@ -468,21 +468,24 @@ class MovieList(GUIComponent):
 			name = info.getName(serviceref)
 			if this_tags == ['']:
 				# No tags? Auto tag!
-				this_tags = name.replace(',',' ').replace('.',' ').split()
+				this_tags = name.replace(',',' ').replace('.',' ').replace('_',' ').replace(':',' ').split()
 			else:
 				realtags.update(this_tags)
 			for tag in this_tags:
-				if tags.has_key(tag):
-					tags[tag].append(name)
-				else:
-					tags[tag] = [name]
-			# filter_tags is either None (which means no filter at all), or 
+				if len(tag) >= 4:
+					if tags.has_key(tag):
+						tags[tag].append(name)
+					else:
+						tags[tag] = [name]
+			# filter_tags is either None (which means no filter at all), or
 			# a set. In this case, all elements of filter_tags must be present,
-			# otherwise the entry will be dropped.			
+			# otherwise the entry will be dropped.
 			if filter_tags is not None:
+				this_tags_fullname = [" ".join(this_tags)]
+				this_tags_fullname = set(this_tags_fullname)
 				this_tags = set(this_tags)
-				if not this_tags.issuperset(filter_tags):
-					print "Skipping", name, "tags=", this_tags, " filter=", filter_tags
+				if not this_tags.issuperset(filter_tags) and not this_tags_fullname.issuperset(filter_tags):
+# 					print "Skipping", name, "tags=", this_tags, " filter=", filter_tags
 					continue
 		
 			self.list.append((serviceref, info, begin, -1))
