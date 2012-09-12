@@ -652,7 +652,7 @@ class InfoBarNumberZap:
 			if self.has_key("TimeshiftActions") and not self.timeshift_enabled:
 				self.session.openWithCallback(self.numberEntered, NumberZap, number, self.searchNumber)
 		if number and config.timeshift.enabled.value and self.timeshift_enabled and not self.isSeekable():
-			self.session.openWithCallback(self.numberEntered, NumberZap, number)
+			self.session.openWithCallback(self.numberEntered, NumberZap, number, self.searchNumber)
 
 	def numberEntered(self, retval):
 #		print self.servicelist
