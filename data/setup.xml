@@ -19,7 +19,7 @@
 		<item level="1" text="Enable teletext caching" description="If Teletext caching is enabled, displaying pages will be much faster.">config.usage.enable_tt_caching</item>
 		<item level="1" text="12V output" description="12V output" requires="12V_Output.">config.usage.output_12V</item>
 		<item level="2" text="Alternative services tuner priority" description="Choose the order in which the tuner types will be used (for watching and recording).">config.usage.alternatives_priority</item>
-		<item level="2" text="Preferred tuner" description="Choose with tuner will be used first. If set to 'auto' the system will give priority to the tuner having the lowest number of channels/satellites.">config.usage.frontend_priority</item>
+		<item level="2" text="Preferred tuner" description="Choose which tuner will be used first. If set to 'auto' the system will give priority to the tuner having the lowest number of channels/satellites.">config.usage.frontend_priority</item>
 		<item level="2" text="Disable background scanning" description="When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure what you're doing.">config.misc.disable_background_scan</item>
 		<item level="2" text="Create more detailed crash log" description="Add more detailed to the crash log">config.crash.details</item>
 		<item level="2" text="Include EIT in http streams" description="EIT data will be included in http streams.">config.streaming.stream_eit</item>
@@ -96,34 +96,34 @@
 		<item level="1" text="EPG language selection 2" description="Set the EPG language selection 2">config.autolanguage.audio_epglanguage_alternative</item>
 	</setup>
 	<setup key="recording" title="Record">
-		<item level="1" text="Recordings always have priority">config.recording.asktozap</item>
-		<item level="0" text="Margin before record (minutes)">config.recording.margin_before</item>
-		<item level="0" text="Margin after record">config.recording.margin_after</item>
-		<item level="2" text="Show Message when Recording starts">config.usage.show_message_when_recording_starts</item>
-		<item level="2" text="Load Length of Movies in Movielist">config.usage.load_length_of_movies_in_moviellist</item>
-		<item level="2" text="Show status icons in Movielist">config.usage.show_icons_in_movielist</item>
-		<item level="2" text="Behavior when a movie is started">config.usage.on_movie_start</item>
-		<item level="2" text="Behavior when a movie is stopped">config.usage.on_movie_stop</item>
-		<item level="2" text="Behavior when a movie reaches the end">config.usage.on_movie_eof</item>
-		<item level="2" text="Display message before next played movie">config.usage.next_movie_msg</item>
-		<item level="2" text="Behavior of 'pause' when paused">config.seek.on_pause</item>
-		<item level="2" text="Custom skip time for '1'/'3'-keys">config.seek.selfdefined_13</item>
-		<item level="2" text="Custom skip time for '4'/'6'-keys">config.seek.selfdefined_46</item>
-		<item level="2" text="Custom skip time for '7'/'9'-keys">config.seek.selfdefined_79</item>
-		<item level="2" text="Fast Forward speeds">config.seek.speeds_forward</item>
-		<item level="2" text="Rewind speeds">config.seek.speeds_backward</item>
-		<item level="2" text="Slow Motion speeds">config.seek.speeds_slowmotion</item>
-		<item level="2" text="Initial Fast Forward speed">config.seek.enter_forward</item>
-		<item level="2" text="Initial Rewind speed">config.seek.enter_backward</item>
-		<item level="2" text="Limited character set for recording filenames">config.recording.ascii_filenames</item>
-		<item level="2" text="Composition of the recording filenames">config.recording.filename_composition</item>
-		<item level="2" text="Keep old timers for how many days">config.recording.keep_timers</item>
-		<item level="1" text="Use trashcan in movielist">config.usage.movielist_trashcan</item>
-		<item level="1" text="Remove items from trash after (days)">config.usage.movielist_trashcan_days</item>
-		<item level="1" text="Disk space to reserve for recordings (in GB)">config.usage.movielist_trashcan_reserve</item>
-		<item level="2" text="Background delete option">config.misc.erase_flags</item>
-		<item level="2" text="Background delete speed">config.misc.erase_speed</item>
-		<item level="2" text="Offline decode delay (ms)">config.recording.offline_decode_delay</item>
+		<item level="1" text="Recordings always have priority" description="When a recording needs to be started it is allowed to interrupt the whatched service">config.recording.asktozap</item>
+		<item level="0" text="Margin before record (minutes)" description="Add a margin to a programmed timer to the start of a event when initiated from the EPG">config.recording.margin_before</item>
+		<item level="0" text="Margin after record" description="Add a margin to a programmed timer post the end of a event when initiated from the EPG">config.recording.margin_after</item>
+		<item level="2" text="Show Message when Recording starts" description="Show a popup when a recording does start">config.usage.show_message_when_recording_starts</item>
+		<item level="2" text="Load Length of Movies in Movielist" description="Show the lenght of a recording in the movielist (this might cause some additional loading time)">config.usage.load_length_of_movies_in_moviellist</item>
+		<item level="2" text="Show status icons in Movielist" description="Configure the type of status indication icons shown in the movielist">config.usage.show_icons_in_movielist</item>
+		<item level="2" text="Behavior when a movie is started" description="Configure the behaviour when a movie is started">config.usage.on_movie_start</item>
+		<item level="2" text="Behavior when a movie is stopped" description="Configure the behaviour when a movie is manually stopped">config.usage.on_movie_stop</item>
+		<item level="2" text="Behavior when a movie reaches the end" description="Configure the behaviour when a movie reaches the end">config.usage.on_movie_eof</item>
+		<item level="2" text="Display message before next played movie" description="Show a popup when the next recording of movie is started">config.usage.next_movie_msg</item>
+		<item level="2" text="Behavior of 'pause' when paused" description="Configure the behaviour when the pause">config.seek.on_pause</item>
+		<item level="2" text="Custom skip time for '1'/'3'-keys" description="Configure the time of the stepskip on the '1'/'3'-keys">config.seek.selfdefined_13</item>
+		<item level="2" text="Custom skip time for '4'/'6'-keys" description="Configure the time of the stepskip on the '4'/'6'-keys">config.seek.selfdefined_46</item>
+		<item level="2" text="Custom skip time for '7'/'9'-keys" description="Configure the time of the stepskip on the '7'/'9'-keys">config.seek.selfdefined_79</item>
+		<item level="2" text="Fast Forward speeds" description="Configure the possible fast forward speeds">config.seek.speeds_forward</item>
+		<item level="2" text="Rewind speeds" description="Configure the possible rewind speeds">config.seek.speeds_backward</item>
+		<item level="2" text="Slow Motion speeds" description="Configure the slow motion speeds">config.seek.speeds_slowmotion</item>
+		<item level="2" text="Initial Fast Forward speed" description="Set the initial fast forward speed">config.seek.enter_forward</item>
+		<item level="2" text="Initial Rewind speed" description="Set the initial rewind speed">config.seek.enter_backward</item>
+		<item level="2" text="Limited character set for recording filenames" description="Limit the characters that can be used in recording filenames - this to allow the functionality on operating systems that do not allow all kinds of characters">config.recording.ascii_filenames</item>
+		<item level="2" text="Composition of the recording filenames" description="Configure the way recording filenames are composed">config.recording.filename_composition</item>
+		<item level="2" text="Delete old timers after how many days" description="Configure the number of days old timers are kept and then auto deleted from the timers list">config.recording.keep_timers</item>
+		<item level="1" text="Use trashcan in movielist" description="Enables the trashcan feature">config.usage.movielist_trashcan</item>
+		<item level="1" text="Remove items from trash after (days)" description="Configure the number of thays that items are automaticaly removed from the trashcan">config.usage.movielist_trashcan_days</item>
+		<item level="1" text="Disk space to reserve for recordings (in GB)" description="Define the number of GB to be made free by removing files from the trashcan before a recording starts">config.usage.movielist_trashcan_reserve</item>
+		<item level="2" text="Background delete option" description="Configure on which sources the background delete option should be used">config.misc.erase_flags</item>
+		<item level="2" text="Background delete speed" description="Configure the speed of the background delete feature">config.misc.erase_speed</item>
+		<item level="2" text="Offline decode delay (ms)" description="Configure the offline decode delay in ms">config.recording.offline_decode_delay</item>
 	</setup>
 	<setup key="harddisk" title="Harddisk setup" >
 		<item level="0" text="Harddisk standby after" description="Configure the Harddisk to go to standby after being idle for a specific time">config.usage.hdd_standby</item>
