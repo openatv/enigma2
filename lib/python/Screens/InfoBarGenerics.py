@@ -548,15 +548,15 @@ class InfoBarShowHide:
 class NumberZap(Screen):
 	def quit(self):
 		self.Timer.stop()
-		self.close(0)
+		self.close()
 
 	def keyOK(self):
 		self.Timer.stop()
-		self.close(int(self["number"].getText()))
+		self.close(self.service, self.bouquet)
 
 	def handleServiceName(self):
-		service, bouquet = self.searchNumber(int(self["number"].getText()))
-		self ["servicename"].text = ServiceReference(service).getServiceName()
+		self.service, self.bouquet = self.searchNumber(int(self["number"].getText()))
+		self ["servicename"].text = ServiceReference(self.service).getServiceName()
 
 	def keyNumberGlobal(self, number):
 		self.Timer.start(5000, True)		#reset timer
@@ -637,7 +637,6 @@ class InfoBarNumberZap:
 			InfoBarTimeshift.saveTimeshiftActions(self)
 			return
 
-#		print "You pressed number " + str(number)
 		if number == 0:
 			if isinstance(self, InfoBarPiP) and self.pipHandles0Action():
 				self.pipDoHandle0Action()
@@ -654,10 +653,9 @@ class InfoBarNumberZap:
 		if number and config.timeshift.enabled.value and self.timeshift_enabled and not self.isSeekable():
 			self.session.openWithCallback(self.numberEntered, NumberZap, number, self.searchNumber)
 
-	def numberEntered(self, retval):
-#		print self.servicelist
-		if retval > 0:
-			self.zapToNumber(retval)
+	def numberEntered(self, service = None, bouquet = None):
+		if not service is None:
+			self.zapToNumber(service, bouquet)
 
 	def searchNumberHelper(self, serviceHandler, num, bouquet):
 		servicelist = serviceHandler.list(bouquet)
@@ -694,8 +692,7 @@ class InfoBarNumberZap:
 						bouquet = bouquetlist.getNext()
 		return service, bouquet
 
-	def zapToNumber(self, number):
-		service, bouquet = self.searchNumber(number)
+	def zapToNumber(self, service, bouquet):
 		if not service is None:
 			if self.servicelist.getRoot() != bouquet: #already in correct bouquet?
 				self.servicelist.clearPath()
