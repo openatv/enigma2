@@ -42,8 +42,8 @@ class SetupSummary(Screen):
 	def selectionChanged(self):
 		self["SetupEntry"].text = self.parent.getCurrentEntry()
 		self["SetupValue"].text = self.parent.getCurrentValue()
-		if hasattr(self.parent,"getCurrentSummary"):
-			self.parent["summary"].text = self.parent.getCurrentSummary()
+		if hasattr(self.parent,"getCurrentDescription"):
+			self.parent["description"].text = self.parent.getCurrentDescription()
 
 class Setup(ConfigListScreen, Screen):
 
@@ -96,7 +96,7 @@ class Setup(ConfigListScreen, Screen):
 		#check for list.entries > 0 else self.close
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
-		self["summary"] = Label(_(""))
+		self["description"] = Label(_(""))
 
 		self["actions"] = NumberActionMap(["SetupActions", "MenuActions"],
 			{
@@ -139,7 +139,6 @@ class Setup(ConfigListScreen, Screen):
 		self["config"].setCurrentIndex(newIdx)
 
 	def handleInputHelpers(self):
- 		self["status"].setText(self["config"].getCurrent()[2])
 		if self["config"].getCurrent() is not None:
 			try:
 				if isinstance(self["config"].getCurrent()[1], ConfigText) or isinstance(self["config"].getCurrent()[1], ConfigPassword):
@@ -204,7 +203,7 @@ class Setup(ConfigListScreen, Screen):
 	def getCurrentValue(self):
 		return self["config"].getCurrent() and str(self["config"].getCurrent()[1].getText()) or ""
 
-	def getCurrentSummary(self):
+	def getCurrentDescription(self):
 		return self["config"].getCurrent() and len(self["config"].getCurrent()) > 2 and self["config"].getCurrent()[2] or ""
 
 	def createSummary(self):
@@ -236,17 +235,16 @@ class Setup(ConfigListScreen, Screen):
 					continue;
 
 				item_text = _(x.get("text", "??").encode("UTF-8"))
-				item_summary = _(x.get("summary", "??").encode("UTF-8"))
+				item_description = _(x.get("description", " ").encode("UTF-8"))
 				b = eval(x.text or "");
 				if b == "":
 					continue
 				#add to configlist
 				item = b
-
 				# the first b is the item itself, ignored by the configList.
 				# the second one is converted to string.
 				if not isinstance(item, ConfigNothing):
-					list.append((item_text, item, item_summary))
+					list.append((item_text, item, item_description))
 
 def getSetupTitle(id):
 	setupfile = file(eEnv.resolve('${datadir}/enigma2/setup.xml'), 'r')
@@ -255,7 +253,7 @@ def getSetupTitle(id):
 	xmldata = setupdom.getroot()
 	for x in xmldata.findall("setup"):
 		if x.get("key") == id:
-			if _(x.get("title", "").encode("UTF-8")) == _("OSD Setup") or _(x.get("title", "").encode("UTF-8")) == _("Logs Setup") or _(x.get("title", "").encode("UTF-8")) == _("Softcam Setup") or _(x.get("title", "").encode("UTF-8")) == _("EPG Setup"):
+			if _(x.get("title", "").encode("UTF-8")) == _("EPG settings") or _(x.get("title", "").encode("UTF-8")) == _("Logs settings") or _(x.get("title", "").encode("UTF-8")) == _("OSD settings") or _(x.get("title", "").encode("UTF-8")) == _("Softcam setings"):
 				return _("Settings...")
 			return x.get("title", "").encode("UTF-8")
 	raise SetupError("unknown setup id '%s'!" % repr(id))
