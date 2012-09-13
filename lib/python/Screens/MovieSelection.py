@@ -316,6 +316,11 @@ class MovieContextMenu(Screen):
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
 		menu = []
+		menu.append((_("Settings") + "...", csel.configure))
+		menu.append((_("Device Mounts") + "...", csel.showDeviceMounts))
+		menu.append((_("Network Mounts") + "...", csel.showNetworkMounts))
+		menu.append((_("Add Bookmark"), csel.do_addbookmark))
+		menu.append((_("Create Directory"), csel.do_createdir))
 		if service:
 			if (service.flags & eServiceReference.mustDescent):
 				if isTrashFolder(service):
@@ -324,21 +329,15 @@ class MovieContextMenu(Screen):
 					menu.append((_("Move"), csel.do_move))
 					menu.append((_("Rename"), csel.do_rename))
 			else:
-				menu = [(_("Delete"), csel.do_delete),
-					(_("Move"), csel.do_move),
-					(_("Copy"), csel.do_copy),
-					(_("Reset playback position"), csel.do_reset),
-					(_("Rename"), csel.do_rename),
-					(_("Start offline decode"), csel.do_decode),
-					]
+				menu.append((_("Delete"), csel.do_delete))
+				menu.append((_("Move"), csel.do_move))
+				menu.append((_("Copy"), csel.do_copy))
+				menu.append((_("Reset playback position"), csel.do_reset))
+				menu.append((_("Rename"), csel.do_rename))
+				menu.append((_("Start offline decode"), csel.do_decode))
 				# Plugins expect a valid selection, so only include them if we selected a non-dir
 				menu.extend([(p.description, boundFunction(p, session, service)) for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST)])
 
-		menu.append((_("Add Bookmark"), csel.do_addbookmark))
-		menu.append((_("create directory"), csel.do_createdir))
-		menu.append((_("Device Mounts") + "...", csel.showDeviceMounts))
-		menu.append((_("Network Mounts") + "...", csel.showNetworkMounts))
-		menu.append((_("Settings") + "...", csel.configure))
 		self["config"] = MenuList(menu)
 
 	def createSummary(self):
@@ -1232,7 +1231,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 	def showTagsMenu(self, tagele):
 		self.selected_tags_ele = tagele
 		lst = [(_("show all tags"), None)] + [(tag, self.getTagDescription(tag)) for tag in self.tags]
-		self.session.openWithCallback(self.tagChosen, ChoiceBox, title=_("Please select tag to filter..."), list = lst)
+		self.session.openWithCallback(self.tagChosen, ChoiceBox, title=_("Please select tag to filter..."), list = lst, skin_name = "MovieListTags")
 
 	def showTagWarning(self):
 		mbox=self.session.open(MessageBox, _("No tags are set on these movies."), MessageBox.TYPE_ERROR)
