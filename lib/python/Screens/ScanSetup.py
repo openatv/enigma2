@@ -311,6 +311,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 
 		self.list = []
 		ConfigListScreen.__init__(self, self.list)
+		self["header"] = Label(_("Manual Scan"))
 		if not self.scan_nims.value == "":
 			self.createSetup()
 			self["introduction"] = Label(_("Press OK to start the scan"))
