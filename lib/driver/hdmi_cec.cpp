@@ -109,7 +109,8 @@ void eHdmiCEC::getAddressInfo()
 		if (::ioctl(hdmiFd, 1, &addressinfo) >= 0)
 		{
 			hasdata = true;
-			addressinfo.type = 0;
+			/* we do not get the correct device type, use 3 (STB) */
+			addressinfo.type = 3;
 		}
 #else
 		struct
@@ -188,7 +189,6 @@ void eHdmiCEC::hdmiEvent(int what)
 	{
 		getAddressInfo();
 	}
-
 
 	if (what & eSocketNotifier::Read)
 	{
@@ -383,19 +383,11 @@ void eHdmiCEC::sendMessage(struct cec_message &message)
 void eHdmiCEC::sendMessage(unsigned char address, unsigned char cmd, char *data, int length)
 {
 	struct cec_message message;
-#ifdef DREAMBOX
 	message.address = address;
 	if (length > (int)(sizeof(message.data) - 1)) length = sizeof(message.data) - 1;
 	message.length = length + 1;
 	message.data[0] = cmd;
 	memcpy(&message.data[1], data, length);
-#else
-	message.address = address;
-	if (length > (int)(sizeof(message.data) - 1)) length = sizeof(message.data) - 1;
-	message.length = length + 1;
-	memcpy(&message.data[1], data, length);
-	message.data[0] = cmd;
-#endif
 	sendMessage(message);
 }
 

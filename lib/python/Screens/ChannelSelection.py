@@ -144,104 +144,6 @@ class SilentBouquetSelector:
 	def getCurrent(self):
 		return self.bouquets[self.pos]
 
-class SettingsMenu(ConfigListScreen, Screen):
-	def __init__(self, session):
-		Screen.__init__(self, session)
-		self.session = session
-		self.skinName = "Setup"
-		Screen.setTitle(self, _("Settings..."))
-		self['footnote'] = Label(_("* = Restart Required"))
-		self["HelpWindow"] = Pixmap()
-		self["HelpWindow"].hide()
-		self["VKeyIcon"] = Boolean(False)
-		self["status"] = StaticText()
-
-		self.onChangedEntry = [ ]
-		self.list = []
-		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
-		self.createSetup()
-
-		self["actions"] = ActionMap(["SetupActions", 'ColorActions'],
-		{
-			"ok": self.keySave,
-			"cancel": self.keyCancel,
-			"red": self.keyCancel,
-			"green": self.keySave,
-			"menu": self.keyCancel,
-		}, -2)
-
-		self["key_red"] = StaticText(_("Cancel"))
-		self["key_green"] = StaticText(_("OK"))
-		if not self.selectionChanged in self["config"].onSelectionChanged:
-			self["config"].onSelectionChanged.append(self.selectionChanged)
-		self.selectionChanged()
-
-	def createSetup(self):
-		self.editListEntry = None
-		self.list = []
-		self.list.append(getConfigListEntry(_("Alternative numbering Mode"), config.usage.alternative_number_mode, _("With this option enabled, Channel numbers will start with '1' in each bouquet.")))
-		self.list.append(getConfigListEntry(_("Always show bouquets"), config.usage.show_bouquetalways, _("With this option set to 'yes' the channel lists will always show you the bouquet screen first. If set to 'no' the current bouquet will be opened.")))
-		self.list.append(getConfigListEntry(_("Channel list preview"), config.usage.servicelistpreview_mode, _("If set to 'yes' you can preview channels in the channel list. Press 'OK' to preview the selected channel, press a 2nd 'OK' to exit and zap to that channel, pressing 'EXIT' to return to the channel you started at.")))
-		self.list.append(getConfigListEntry(_("Channel list service mode*"), config.usage.servicelist_mode, _("This option allows you to choose from the two channel lists that are available.")))
-		self.list.append(getConfigListEntry(_("Channel selection on mode change"), config.usage.show_servicelist, _("If set to 'yes' the channel list will be shown after switching between radio and TV modes.")))
-		self.list.append(getConfigListEntry(_("Enable multiple bouquets"), config.usage.multibouquet, _("Services may be grouped in bouquets. If this option is enabled, you can use more then one bouquet.")))
-		self.list.append(getConfigListEntry(_("Enable panic button"), config.usage.panicbutton, _("With this option enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history.")))
-		self.list.append(getConfigListEntry(_("Jump first press in channel selection*"), config.usage.show_channel_jump_in_servicelist, _("This option allows you to choose what the first button press jumps to in channel list screen, (so pressing '2' jumps to 'A' or '2' first)")))
-		self.list.append(getConfigListEntry(_("Show event-progress in channel selection"), config.usage.show_event_progress_in_servicelist, _("If set to 'yes' the progress of the current event in the channel list is displayed.")))
-		self.list.append(getConfigListEntry(_("Show channel numbers in channel selection"), config.usage.show_channel_numbers_in_servicelist, _("If set to 'yes' the channel numbers in the channel list will be displayed.")))
-		self.list.append(getConfigListEntry(_("Number of rows"), config.usage.serviceitems_per_page, _("This allows you change the number of rows shown.")))
-		self.list.append(getConfigListEntry(_("Service number font size"), config.usage.servicenum_fontsize, _("This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size")))
-		self.list.append(getConfigListEntry(_("Service name font size"), config.usage.servicename_fontsize, _("This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size")))
-		self.list.append(getConfigListEntry(_("Service info font size"), config.usage.serviceinfo_fontsize, _("This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size")))
-		if SystemInfo["ZapMode"]:
-			self.list.append(getConfigListEntry(_("Zap mode"), config.misc.zapmode, _("Setup how to control the channel changing.")))
-
-		self["config"].list = self.list
-		self["config"].setList(self.list)
-		if config.usage.sort_settings.value:
-			self["config"].list.sort()
-
-	def selectionChanged(self):
-		self["status"].setText(self["config"].getCurrent()[2])
-
-	# for summary:
-	def changedEntry(self):
-		if self["config"].getCurrent()[0] == _("Zap mode"):
-			self.createSetup()
-		for x in self.onChangedEntry:
-			x()
-		self.selectionChanged()
-
-	def getCurrentEntry(self):
-		return self["config"].getCurrent()[0]
-
-	def getCurrentValue(self):
-		return str(self["config"].getCurrent()[1].getText())
-
-	def saveAll(self):
-		for x in self["config"].list:
-			x[1].save()
-		configfile.save()
-
-	# keySave and keyCancel are just provided in case you need them.
-	# you have to call them by yourself.
-	def keySave(self):
-		self.saveAll()
-		self.close()
-
-	def cancelConfirm(self, result):
-		if not result:
-			return
-		for x in self["config"].list:
-			x[1].cancel()
-		self.close()
-
-	def keyCancel(self):
-		if self["config"].isChanged():
-			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"))
-		else:
-			self.close()
-
 # csel.bouquet_mark_edit values
 OFF = 0
 EDIT_BOUQUET = 1
@@ -276,7 +178,7 @@ class ChannelContextMenu(Screen):
 		inBouquet = csel.getMutableList() is not None
 		haveBouquets = config.usage.multibouquet.value
 
-		menu.append(ChoiceEntryComponent(text = (_("Settings..."), self.createSetup)))
+		menu.append(ChoiceEntryComponent(text = (_("Settings..."), boundFunction(self.openSetup, "channelselection"))))
 		if not (current_sel_path or current_sel_flags & (eServiceReference.isDirectory|eServiceReference.isMarker)):
 			append_when_current_valid(current, menu, (_("show transponder info"), self.showServiceInformations), level = 2)
 		if csel.bouquet_mark_edit == OFF and not csel.movemode:
@@ -359,7 +261,6 @@ class ChannelContextMenu(Screen):
 						append_when_current_valid(current, menu, (_("end alternatives edit"), self.bouquetMarkEnd), level = 0)
 						append_when_current_valid(current, menu, (_("abort alternatives edit"), self.bouquetMarkAbort), level = 0)
 
-		menu.append(ChoiceEntryComponent(text = (_("back"), self.cancelClick)))
 		self["menu"] = ChoiceList(menu)
 
 	def createSetup(self):
@@ -374,6 +275,10 @@ class ChannelContextMenu(Screen):
 
 	def okbuttonClick(self):
 		self["menu"].getCurrent()[0][1]()
+
+	def openSetup(self, key):
+		from Screens.Setup import Setup
+		self.session.open(Setup, key)
 
 	def cancelClick(self):
 		self.close(False)
