@@ -109,7 +109,8 @@ void eHdmiCEC::getAddressInfo()
 		if (::ioctl(hdmiFd, 1, &addressinfo) >= 0)
 		{
 			hasdata = true;
-			addressinfo.type = 0;
+			/* we do not get the correct device type, use 3 (STB) */
+			addressinfo.type = 3;
 		}
 #else
 		struct
