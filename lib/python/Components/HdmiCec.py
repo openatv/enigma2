@@ -2,7 +2,7 @@ import struct
 import os
 from config import config, ConfigSelection, ConfigYesNo, ConfigSubsection, ConfigText
 from enigma import eHdmiCEC, eRCInput
-from Tools.DreamboxHardware import getFPWasTimerWakeup
+from Tools.StbHardware import getFPWasTimerWakeup
 
 config.hdmicec = ConfigSubsection()
 config.hdmicec.enabled = ConfigYesNo(default = True)
@@ -39,7 +39,7 @@ class HdmiCec:
 		config.misc.standbyCounter.addNotifier(self.onEnterStandby, initial_call = False)
 		config.misc.DeepStandby.addNotifier(self.onEnterDeepStandby, initial_call = False)
 		self.setFixedPhysicalAddress(config.hdmicec.fixed_physical_address.value)
-		
+
 		self.volumeForwardingEnabled = False
 		self.volumeForwardingDestination = 0
 		eRCInput.getInstance().pyKeyEvent.get().append(self.keyEvent)
@@ -193,7 +193,7 @@ class HdmiCec:
 				self.sendMessage(message.getAddress(), 'osdname')
 			elif cmd == 0x7e or cmd == 0x72: # system audio mode status
 				if data[0] == '\x01':
-					self.volumeForwardingDestination = 5; # on: send volume keys to receiver 
+					self.volumeForwardingDestination = 5; # on: send volume keys to receiver
 				else:
 					self.volumeForwardingDestination = 0; # off: send volume keys to tv
 				if config.hdmicec.volume_forwarding.value:
