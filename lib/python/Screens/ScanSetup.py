@@ -1,5 +1,4 @@
 from Screen import Screen
-from Screens.DefaultWizard import DefaultWizard
 from ServiceScan import ServiceScan
 from Components.config import config, ConfigSubsection, ConfigSelection, \
 	ConfigYesNo, ConfigInteger, getConfigListEntry, ConfigSlider, ConfigEnableDisable
@@ -7,14 +6,13 @@ from Components.ActionMap import NumberActionMap, ActionMap
 from Components.ConfigList import ConfigListScreen
 from Components.NimManager import nimmanager, getConfigSatlist
 from Components.Label import Label
-from Tools.Directories import resolveFilename, SCOPE_DEFAULTPARTITIONMOUNTDIR, SCOPE_DEFAULTDIR, SCOPE_DEFAULTPARTITION
 from Tools.HardwareInfo import HardwareInfo
 from Screens.MessageBox import MessageBox
 from enigma import eTimer, eDVBFrontendParametersSatellite, eComponentScan, \
 	eDVBSatelliteEquipmentControl, eDVBFrontendParametersTerrestrial, \
 	eDVBFrontendParametersCable, eConsoleAppContainer, eDVBResourceManager
 
-def buildTerTransponder(frequency, 
+def buildTerTransponder(frequency,
 		inversion=2, bandwidth = 7000000, fechigh = 6, feclow = 6,
 		modulation = 2, transmission = 2, guard = 4,
 		hierarchy = 4, system = 0):
@@ -104,7 +102,7 @@ class CableTransponderSearchSupport:
 			if raw_channel:
 				frontend = raw_channel.getFrontend()
 				if frontend:
-					frontend.closeFrontend() # immediate close... 
+					frontend.closeFrontend() # immediate close...
 					del frontend
 					del raw_channel
 					return True
@@ -176,7 +174,7 @@ class CableTransponderSearchSupport:
 				tmpstr += " kHz "
 				tmpstr += data[0]
 				self.cable_search_session["text"].setText(tmpstr)
-		
+
 	def startCableTransponderSearch(self, nim_idx):
 		if not self.tryGetRawFrontend(nim_idx):
 			self.session.nav.stopService()
@@ -218,7 +216,7 @@ class CableTransponderSearchSupport:
 			cmd = "mediaclient --blindscan %d" % nim_idx
 		else:
 			cmd = "tda1002x --init --scan --verbose --wakeup --inv 2 --bus %d" % bus
-		
+
 		if cableConfig.scan_type.value == "bands":
 			cmd += " --scan-bands "
 			bands = 0
@@ -279,27 +277,6 @@ class CableTransponderSearchSupport:
 		tmpstr += "\n\n..."
 		self.cable_search_session = self.session.openWithCallback(self.cableTransponderSearchSessionClosed, MessageBox, tmpstr, MessageBox.TYPE_INFO)
 
-class DefaultSatLists(DefaultWizard):
-	def __init__(self, session, silent = True, showSteps = False):
-		self.xmlfile = "defaultsatlists.xml"
-		DefaultWizard.__init__(self, session, silent, showSteps, neededTag = "services")
-		print "configuredSats:", nimmanager.getConfiguredSats()
-
-	def setDirectory(self):
-		self.directory = []
-		self.directory.append(resolveFilename(SCOPE_DEFAULTDIR))
-		import os
-		os.system("mount %s %s" % (resolveFilename(SCOPE_DEFAULTPARTITION), resolveFilename(SCOPE_DEFAULTPARTITIONMOUNTDIR)))
-		self.directory.append(resolveFilename(SCOPE_DEFAULTPARTITIONMOUNTDIR))
-				
-	def statusCallback(self, status, progress):
-		print "statusCallback:", status, progress
-		from Components.DreamInfoHandler import DreamInfoHandler
-		if status == DreamInfoHandler.STATUS_DONE:
-			self["text"].setText(_("The installation of the default services lists is finished.") + "\n\n" + _("Please press OK to continue."))
-			self.markDone()
-			self.disableKeys = False	
-
 class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -313,7 +290,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		if self.service is not None:
 			self.feinfo = self.service.frontendInfo()
 			frontendData = self.feinfo and self.feinfo.getAll(True)
-		
+
 		self.createConfig(frontendData)
 
 		del self.feinfo
@@ -360,10 +337,10 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 
 		self.tunerEntry = getConfigListEntry(_("Tuner"), self.scan_nims)
 		self.list.append(self.tunerEntry)
-		
+
 		if self.scan_nims == [ ]:
 			return
-		
+
 		self.typeOfScanEntry = None
 		self.systemEntry = None
 		self.modulationEntry = None
@@ -784,7 +761,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		startScan = True
 		removeAll = True
 		index_to_scan = int(self.scan_nims.value)
-		
+
 		if self.scan_nims == [ ]:
 			self.session.open(MessageBox, _("No tuner is enabled!\nPlease setup your tuner settings before you start a service scan."), MessageBox.TYPE_ERROR)
 			return
@@ -797,7 +774,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 				# these lists are generated for each tuner, so this has work.
 				assert len(self.satList) > index_to_scan
 				assert len(self.scan_satselection) > index_to_scan
-				
+
 				nimsats = self.satList[index_to_scan]
 				selsatidx = self.scan_satselection[index_to_scan].index
 
@@ -953,7 +930,7 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport):
 
 			need_scan = False
 			networks = self.getNetworksForNim(nim)
-			
+
 			print "nim %d provides" % nim.slot, networks
 			print "known:", known_networks
 
@@ -964,10 +941,10 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport):
 					need_scan = True
 					print x, "not in ", known_networks
 					known_networks.append(x)
-					
+
 			# don't offer to scan nims if nothing is connected
 			if not nimmanager.somethingConnected(nim.slot):
-				need_scan = False				
+				need_scan = False
 
 			if need_scan:
 				nims_to_scan.append(nim)

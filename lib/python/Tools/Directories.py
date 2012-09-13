@@ -30,9 +30,6 @@ SCOPE_PLUGINS = 9
 SCOPE_MEDIA = 10
 SCOPE_PLAYLIST = 11
 SCOPE_CURRENT_SKIN = 12
-SCOPE_DEFAULTDIR = 13
-SCOPE_DEFAULTPARTITION = 14
-SCOPE_DEFAULTPARTITIONMOUNTDIR = 15
 SCOPE_METADIR = 16
 SCOPE_CURRENT_PLUGIN = 17
 
@@ -53,12 +50,9 @@ defaultPaths = {
 		SCOPE_HDD: ("/hdd/movie/", PATH_DONTCREATE),
 		SCOPE_MEDIA: ("/media/", PATH_DONTCREATE),
 		SCOPE_PLAYLIST: (eEnv.resolve("${sysconfdir}/enigma2/playlist/"), PATH_CREATE),
-		
+
 		SCOPE_USERETC: ("", PATH_DONTCREATE), # user home directory
-		
-		SCOPE_DEFAULTDIR: (eEnv.resolve("${datadir}/enigma2/defaults/"), PATH_CREATE),
-		SCOPE_DEFAULTPARTITION: ("/dev/mtdblock6", PATH_DONTCREATE),
-		SCOPE_DEFAULTPARTITIONMOUNTDIR: (eEnv.resolve("${datadir}/enigma2/dealer"), PATH_CREATE),
+
 		SCOPE_METADIR: (eEnv.resolve("${datadir}/meta"), PATH_CREATE),
 	}
 
@@ -197,9 +191,9 @@ def getRecordingFilename(basename, dirname = None):
 	# filter out non-allowed characters
 	non_allowed_characters = "/.\\:*?<>|\""
 	filename = ""
-	
+
 	basename = basename.replace('\xc2\x86', '').replace('\xc2\x87', '')
-	
+
 	for c in basename:
 		if c in non_allowed_characters or ord(c) < 32:
 			c = "_"

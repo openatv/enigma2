@@ -90,7 +90,6 @@ from Components.PluginComponent import plugins
 
 profile("LOAD:Wizard")
 from Screens.Wizard import wizardManager
-from Screens.DefaultWizard import *
 from Screens.StartWizard import *
 from Screens.TutorialWizard import *
 import Screens.Rc
@@ -194,7 +193,7 @@ class Session:
 			callback(*retval)
 
 	def execBegin(self, first=True, do_show = True):
-		assert not self.in_exec 
+		assert not self.in_exec
 		self.in_exec = True
 		c = self.current_dialog
 
@@ -535,7 +534,7 @@ def runScreenTest():
 	configfile.save()
 	from Screens import InfoBarGenerics
 	InfoBarGenerics.saveResumePoints()
-	
+
 	return 0
 
 profile("Init:skin")
