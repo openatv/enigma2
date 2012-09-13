@@ -555,8 +555,9 @@ class NumberZap(Screen):
 		self.close(self.service, self.bouquet)
 
 	def handleServiceName(self):
-		self.service, self.bouquet = self.searchNumber(int(self["number"].getText()))
-		self ["servicename"].text = ServiceReference(self.service).getServiceName()
+		if not self.searchNumber is None:
+			self.service, self.bouquet = self.searchNumber(int(self["number"].getText()))
+			self ["servicename"].text = ServiceReference(self.service).getServiceName()
 
 	def keyNumberGlobal(self, number):
 		self.Timer.start(5000, True)		#reset timer
@@ -569,7 +570,7 @@ class NumberZap(Screen):
 		if len(self.field) >= 4:
 			self.keyOK()
 
-	def __init__(self, session, number, searchNumberFunction):
+	def __init__(self, session, number, searchNumberFunction = None):
 		Screen.__init__(self, session)
 		self.onChangedEntry = [ ]
 		self.field = str(number)
