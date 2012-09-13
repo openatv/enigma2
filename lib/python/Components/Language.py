@@ -69,7 +69,7 @@ class Language:
 		except:
 			print "Selected language does not exist!"
 		try:
-			locale.setlocale(locale.LC_TIME, self.getLanguage())
+			locale.setlocale(locale.LC_TIME, (self.getLanguage(), 'UTF-8'))
 		except:
 			print "Failed to set LC_TIME to " + self.getLanguage() + ". Setting it to 'C'"
 			locale.setlocale(locale.LC_TIME, 'C')
