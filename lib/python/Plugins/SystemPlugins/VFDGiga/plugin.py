@@ -325,7 +325,7 @@ class VFD_Giga:
 		config.misc.standbyCounter.addNotifier(standbyCounterChanged, initial_call = False)
 
 def main(menuid):
-	if not config.misc.boxtype.value == 'gb800se' or not config.misc.boxtype.value == 'gb800solo':
+	if not config.misc.boxtype.value == 'gb800se' and not config.misc.boxtype.value == 'gb800solo':
 		return [ ]
 	if menuid != "system":
 		return [ ]
