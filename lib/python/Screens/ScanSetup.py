@@ -6,12 +6,13 @@ from Components.ActionMap import NumberActionMap, ActionMap
 from Components.ConfigList import ConfigListScreen
 from Components.NimManager import nimmanager, getConfigSatlist
 from Components.Label import Label
+from Components.Sources.StaticText import StaticText
 from Tools.Directories import resolveFilename, SCOPE_DEFAULTPARTITIONMOUNTDIR, SCOPE_DEFAULTDIR, SCOPE_DEFAULTPARTITION
 from Tools.HardwareInfo import HardwareInfo
 from Screens.MessageBox import MessageBox
 from enigma import eTimer, eDVBFrontendParametersSatellite, eComponentScan, eDVBSatelliteEquipmentControl, eDVBFrontendParametersTerrestrial, eDVBFrontendParametersCable, eConsoleAppContainer, eDVBResourceManager
 
-def buildTerTransponder(frequency, 
+def buildTerTransponder(frequency,
 		inversion=2, bandwidth = 7000000, fechigh = 6, feclow = 6,
 		modulation = 2, transmission = 2, guard = 4,
 		hierarchy = 4, system = 0):
@@ -319,10 +320,15 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 
 		self.session.postScanService = session.nav.getCurrentlyPlayingServiceReference()
 
+		self["key_red"] = StaticText(_("Close"))
+		self["key_green"] = StaticText(_("Scan"))
+
 		self["actions"] = NumberActionMap(["SetupActions", "MenuActions"],
 		{
 			"ok": self.keyGo,
 			"cancel": self.keyCancel,
+			"red": self.keyCancel,
+			"green": self.keyGo,
 			"menu": self.doCloseRecursive,
 		}, -2)
 
@@ -932,10 +938,14 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		Screen.setTitle(self, _("Automatic Scan"))
 
 		self["actions"] = ActionMap(["SetupActions", "MenuActions"],
+		self["key_red"] = StaticText(_("Close"))
+		self["key_green"] = StaticText(_("Scan"))
+
 		{
 			"ok": self.keyGo,
 			"cancel": self.keyCancel,
-			"menu": self.doCloseRecursive,
+			"red": self.keyCancel,
+			"green": self.keyGo,
 		}, -2)
 
 		self.session.postScanService = session.nav.getCurrentlyPlayingServiceReference()
