@@ -57,11 +57,13 @@ preferredTagEditor = None
 
 # this kludge is needed because ConfigSelection only takes numbers
 # and someone appears to be fascinated by 'enums'.
-l_moviesort = [(str(MovieList.SORT_RECORDED), _("sort by date"), '03/02/01'),
-	(str(MovieList.SORT_ALPHANUMERIC), _("alphabetic sort"), 'A-Z'),
+l_moviesort = [(str(MovieList.SORT_RECORDED), _("by date"), '03/02/01'),
+	(str(MovieList.SORT_ALPHANUMERIC), _("alphabetic"), 'A-Z'),
+	(str(MovieList.SORT_ALPHANUMERIC_FLAT), _("flat alphabetic"), 'A-Z Flat'),
 	(str(MovieList.SHUFFLE), _("shuffle"), '?'),
 	(str(MovieList.SORT_RECORDED_REVERSE), _("reverse by date"), '01/02/03'),
 	(str(MovieList.SORT_ALPHANUMERIC_REVERSE), _("alphabetic reverse"), 'Z-A')]
+	(str(MovieList.SORT_ALPHANUMERIC_FLAT_REVERSE), _("flat alphabetic reverse"), 'Z-A Flat')]
 l_listtype = [(str(MovieList.LISTTYPE_ORIGINAL), _("list style default")),
 	(str(MovieList.LISTTYPE_COMPACT_DESCRIPTION), _("list style compact with description")),
 	(str(MovieList.LISTTYPE_COMPACT), _("list style compact")),
@@ -989,7 +991,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			path = os.path.join(config.movielist.last_videodir.value, ".e2settings.pkl")
 			pickle.dump(self.settings, open(path, "wb"))
 		except Exception, e:
-			print "Failed to save settings:", e
+			print "Failed to save settings to %s: %s" % (path, e)
 		# Also set config items, in case the user has a read-only disk 
 		config.movielist.moviesort.value = self.settings["moviesort"]
 		config.movielist.listtype.value = self.settings["listtype"]
@@ -1007,9 +1009,18 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			config.movielist.listtype.value = config.movielist.listtype.default
 			config.movielist.description.value = config.movielist.description.default
 			config.usage.on_movie_eof.value = config.usage.on_movie_eof.default
+			if self.settings["moviesort"] != config.movielist.moviesort.value:
+				self.sortBy(config.movielist.moviesort.value)
+			if self.settings["listtype"] != config.movielist.listtype.value:
+				self.listType(config.movielist.listtype.value)
+			if self.settings["description"] != config.movielist.description.value:
+				self.showDescription(config.movielist.description.value)
+			if self.settings["movieoff"] != config.usage.on_movie_eof.value:
+				self.settings["movieoff"] = config.usage.on_movie_eof.value
+				self.movieOff = self.settings["movieoff"]
 			pass # ignore fail to open errors
 		except Exception, e:
-			print "Failed to load settings:", e
+			print "Failed to load settings from %s: %s" % (path, e)
 
 	def applyConfigSettings(self, updates):
 		needUpdate = ("description" in updates) and (updates["description"] != self.settings["description"]) 
