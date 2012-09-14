@@ -73,7 +73,7 @@ class Language:
 		except:
 			print "Failed to set LC_TIME to " + self.getLanguage() + ". Setting it to 'C'"
 			locale.setlocale(locale.LC_TIME, 'C')
-		os.environ["LC_TIME"] = self.getLanguage()
+		os.environ["LC_TIME"] = self.getLanguage() + '.UTF-8'
 
 	def activateLanguageIndex(self, index):
 		if index < len(self.langlist):
