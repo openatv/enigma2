@@ -1054,7 +1054,7 @@ class ChannelSelectionBase(Screen):
 									service_name = ("%d.%d" + h) % (orbpos / 10, orbpos % 10)
 							service.setName("%s - %s" % (service_name, service_type))
 							self.servicelist.addService(service)
-						cur_ref = self.session.nav.getCurrentlyPlayingServiceReference()
+						cur_ref = self.session.nav.getCurrentlyPlayingServiceReference(False)
 						if cur_ref:
 							pos = self.service_types.rfind(':')
 							refstr = '%s (channelID == %08x%04x%04x) && %s ORDER BY name' %(self.service_types[:pos+1],
