@@ -124,7 +124,7 @@ class EventName(Converter, object):
 								description += '\n'
 							return description + extended
 						elif self.type == self.THIRD_NAME and self.list[2][1]:
-							return pgettext("thrird evnet: 'third' event label", "Later") + ": " + self.list[2][1]
+							return pgettext("third event: 'third' event label", "Later") + ": " + self.list[2][1]
 						elif self.type == self.THIRD_DESCRIPTION and (self.list[2][2] or self.list[2][3]):
 							description = self.list[2][2]
 							extended = self.list[2][3]

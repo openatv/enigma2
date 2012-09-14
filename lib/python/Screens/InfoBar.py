@@ -332,16 +332,16 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 			self.doSeek(0)
 			self.setSeekState(self.SEEK_STATE_PLAY)
 		elif answer in ("playlist","playlistquit","loop"):
-			( next_service, item , lenght ) = self.nextPlaylistService(self.cur_service)
+			( next_service, item , length ) = self.nextPlaylistService(self.cur_service)
 			if next_service is not None:
 				if config.usage.next_movie_msg.value:
-					self.displayPlayedName(next_service, item, lenght)
+					self.displayPlayedName(next_service, item, length)
 				self.session.nav.playService(next_service)
 				self.cur_service = next_service
 			else:
 				if answer == "playlist":
 					self.leavePlayerConfirmed([True,"movielist"])
-				elif answer == "loop" and lenght > 0:
+				elif answer == "loop" and length > 0:
 					self.leavePlayerConfirmed([True,"loop"])
 				else:
 					self.leavePlayerConfirmed([True,"quit"])

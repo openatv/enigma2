@@ -24,7 +24,7 @@ class RecordingSettings(Screen,ConfigListScreen):
 		from Components.Sources.StaticText import StaticText
 		Screen.__init__(self, session)
 		self.skinName = "Setup"
-		self.setup_title = _("Recording Settings")
+		self.setup_title = _("Recording settings")
 		Screen.setTitle(self, _(self.setup_title))
 		self["status"] = StaticText()
 		self['footnote'] = Label()
@@ -133,7 +133,7 @@ class RecordingSettings(Screen,ConfigListScreen):
 		if config.usage.setup_level.index >= 1:
 			self.list.append(getConfigListEntry(_("Use trashcan in movielist"), config.usage.movielist_trashcan, _("If set to 'Yes' recordings will be deleted to a trashcan. That way thay can still be played.")))
 			self.list.append(getConfigListEntry(_("Remove items from trash after (days)"), config.usage.movielist_trashcan_days, _("Select the number of days after which the box is allowed to permanently delete recordings (from the trashcan).")))
-			self.list.append(getConfigListEntry(_("Disk space to reserve for recordings (in GB)"), config.usage.movielist_trashcan_reserve, _("Itmes in trashcan will be deleted if less then the set space is available.")))
+			self.list.append(getConfigListEntry(_("Disk space to reserve for recordings (in GB)"), config.usage.movielist_trashcan_reserve, _("Items in trashcan will be deleted if less then the set space is available.")))
 		if config.usage.setup_level.index >= 2:
 			self.list.append(getConfigListEntry(_("Background delete option"), config.misc.erase_flags, _("Only change for debugging; default is 'Internal hdd only'.")))
 			self.list.append(getConfigListEntry(_("Background delete speed"), config.misc.erase_speed, _("Only change for debugging; default is '20 MB/s'.")))
@@ -267,7 +267,7 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 		from Components.Sources.StaticText import StaticText
 		Screen.__init__(self, session)
 		self.skinName = "Setup"
-		self.setup_title = _("Timshift Settings")
+		self.setup_title = _("Timeshift settings")
 		Screen.setTitle(self, _(self.setup_title))
 		self["status"] = StaticText()
 		self['footnote'] = Label(_("* = Restart timeshift required"))
@@ -369,7 +369,7 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 		if config.usage.setup_level.index >= 2 and config.timeshift.enabled.value:
 			self.list.append(getConfigListEntry(_("Permanent Timeshift Max Events"), config.timeshift.maxevents, _("Set the maximum number of events (programs) that timeshift may handle.")))
 			self.list.append(getConfigListEntry(_("Permanent Timeshift Max Length"), config.timeshift.maxlength, _("Set the maximum length a timeshift file may be.")))
-			self.list.append(getConfigListEntry(_("Permanent Timeshift Start Delay"), config.timeshift.startdelay, _("Timeshift will only start when the start delay time has passed. Thois prevents numurous very short files when zapping.")))
+			self.list.append(getConfigListEntry(_("Permanent Timeshift Start Delay"), config.timeshift.startdelay, _("Timeshift will only start when the start delay time has passed. This prevents numurous very short files when zapping.")))
 			self.list.append(getConfigListEntry(_("Stop timeshift while recording?"), config.timeshift.stopwhilerecording, _("Select if timeshift must continue when set to record.")))
 			self.list.append(getConfigListEntry(_("Timeshift-Save Action on zap"), config.timeshift.favoriteSaveAction, _("Set what the required action must be when zapping while a timeshift has been set as recording.")))
 			self.list.append(getConfigListEntry(_("Use PTS seekbar while timeshifting? *"), config.timeshift.showinfobar, _("If set to 'yes' a special seekbar is available during timeshift.")))
