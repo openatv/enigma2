@@ -6,6 +6,7 @@ from Components.ConfigList import ConfigListScreen
 from Components.MenuList import MenuList
 from Components.NimManager import nimmanager
 from Components.config import getConfigListEntry, config, ConfigNothing, ConfigSelection, updateConfigElement, ConfigSatlist
+from Components.Sources.StaticText import StaticText
 from Components.Sources.List import List
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
@@ -488,10 +489,15 @@ class NimSelection(Screen):
 
 		self.setResultClass()
 
-		self["actions"] = ActionMap(["OkCancelActions"],
+		self["key_red"] = StaticText(_("Close"))
+		self["key_green"] = StaticText(_("Select"))
+
+		self["actions"] = ActionMap(["SetupActions",],
 		{
-			"ok": self.okbuttonClick ,
-			"cancel": self.close
+			"ok": self.okbuttonClick,
+			"cancel": self.close,
+			"red": self.close,
+			"green": self.okbuttonClick,
 		}, -2)
 
 	def setResultClass(self):
