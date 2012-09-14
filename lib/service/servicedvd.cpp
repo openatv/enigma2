@@ -245,7 +245,7 @@ void eServiceDVD::gotMessage(int /*what*/)
 		}
 		case DDVD_SHOWOSD_AUDIO:
 		{
-			eDebug("DVD_SHOWOSD_STRING!");
+			eDebug("DVD_SHOWOSD_AUDIO!");
 			m_event(this, evUser+6);
 			break;
 		}
