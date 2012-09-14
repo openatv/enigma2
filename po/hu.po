@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-07-07 18:42+0100\n"
+"POT-Creation-Date: 2012-09-14 17:59+0100\n"
 "PO-Revision-Date: 2012-07-11 17:32+0100\n"
 "Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
 "Language-Team: Mediavox, robertut <info@mediavox.hu, robertut@yahoo.com>\n"
@@ -37,7 +37,8 @@ msgstr ""
 
 msgid ""
 "\n"
-"An Input/output error usually indicates a corrupted filesystem! Please check the filesystem of your timeshift-device!"
+"An Input/output error usually indicates a corrupted filesystem! Please check "
+"the filesystem of your timeshift-device!"
 msgstr ""
 
 #
@@ -150,11 +151,6 @@ msgstr ""
 msgid " and"
 msgstr ""
 
-msgid ""
-" has been sent to the ViX beta team.\n"
-"please quote "
-msgstr ""
-
 #. TRANSLATORS: short time representation hour:minute
 #, python-format
 msgid "%2d:%02d"
@@ -163,6 +159,9 @@ msgstr ""
 #. TRANSLATORS: full time representation hour:minute:seconds
 #, python-format
 msgid "%2d:%02d:%02d"
+msgstr ""
+
+msgid "%A %d %B"
 msgstr ""
 
 #. TRANSLATORS: long date representations dayname daynum monthname in strftime() format! See 'man strftime'
@@ -247,6 +246,9 @@ msgstr[1] ""
 msgid "%d services found!"
 msgstr "%d csatornát találtam!"
 
+msgid "%d-%m"
+msgstr ""
+
 #
 msgid "%d.%B %Y"
 msgstr "%Y. %B %d."
@@ -259,6 +261,10 @@ msgstr ""
 #, python-format
 msgid "%s (%s)\n"
 msgstr "%s (%s)\n"
+
+#, python-format
+msgid "%s/%s: %s"
+msgstr ""
 
 #, python-format
 msgid "'%s' contains %d file(s) and %d sub-directories.\n"
@@ -281,9 +287,6 @@ msgstr "(üres)"
 #
 msgid "(show optional DVD audio menu)"
 msgstr "(DVD audió menü megjelenítése, ha van)"
-
-msgid "* = Close EPG Required"
-msgstr ""
 
 msgid "* = Restart Required"
 msgstr ""
@@ -384,10 +387,10 @@ msgstr ""
 msgid "3"
 msgstr "3"
 
-msgid "30 Days"
+msgid "3D Mode"
 msgstr ""
 
-msgid "3D Mode"
+msgid "3D setup"
 msgstr ""
 
 msgid "3X"
@@ -459,6 +462,11 @@ msgstr "??"
 msgid "A"
 msgstr "A"
 
+msgid ""
+"A background update check is is progress, please wait a few minutes and try "
+"again."
+msgstr ""
+
 #
 #, python-format
 msgid ""
@@ -506,15 +514,25 @@ msgstr ""
 "Mit szeretne tenni?"
 
 #
-msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
-msgstr "Egy felvétel éppen fut. Ha a forgatórendszert be akarja állítani, akkor elötte állítsa meg a felvételt."
+msgid ""
+"A recording is currently running. Please stop the recording before trying to "
+"configure the positioner."
+msgstr ""
+"Egy felvétel éppen fut. Ha a forgatórendszert be akarja állítani, akkor "
+"elötte állítsa meg a felvételt."
 
-msgid "A recording is currently running. Please stop the recording before trying to scan."
+msgid ""
+"A recording is currently running. Please stop the recording before trying to "
+"scan."
 msgstr ""
 
 #
-msgid "A recording is currently running. Please stop the recording before trying to start the satfinder."
-msgstr "Egy felvétel éppen fut. Ha futtani kívánja a Műholdkeresőt, akkor elötte állítsa meg a felvételt."
+msgid ""
+"A recording is currently running. Please stop the recording before trying to "
+"start the satfinder."
+msgstr ""
+"Egy felvétel éppen fut. Ha futtani kívánja a Műholdkeresőt, akkor elötte "
+"állítsa meg a felvételt."
 
 #
 #, python-format
@@ -575,7 +593,16 @@ msgstr "AA"
 msgid "AB"
 msgstr "AB"
 
+msgid "AC3 downmix"
+msgstr ""
+
 msgid "AFP Setup"
+msgstr ""
+
+msgid "AFP setup"
+msgstr ""
+
+msgid "AIT data will be included in http streams"
 msgstr ""
 
 #, python-format
@@ -598,15 +625,14 @@ msgstr "Névjegy..."
 msgid "Accesspoint:"
 msgstr "Hozzáférési pont:"
 
-msgid "Action on long power button press"
+msgid "Action"
 msgstr ""
 
-msgid "Action on short power button press"
+msgid "Action on long powerbutton press"
 msgstr ""
 
-#
-msgid "Action:"
-msgstr "Művelet:"
+msgid "Action on short powerbutton press"
+msgstr ""
 
 msgid "Activate"
 msgstr ""
@@ -618,6 +644,9 @@ msgstr "Kép-a-Képben bekapcsolása"
 #
 msgid "Activate network settings"
 msgstr "Hálózati beállítások aktiválása"
+
+msgid "Activate rewrapping of the teletext subtitles"
+msgstr ""
 
 msgid "Activate the chosen network settings."
 msgstr ""
@@ -651,6 +680,12 @@ msgid "Add WLAN configuration?"
 msgstr "Vezeték nélküli hálózati konfiguráció hozzáadása?"
 
 msgid "Add a auto timer for current event"
+msgstr ""
+
+msgid "Add a margin after the end time of programmed timers referred to EPG"
+msgstr ""
+
+msgid "Add a margin before the start time of programmed timers referred to EPG"
 msgstr ""
 
 #
@@ -699,7 +734,8 @@ msgstr ""
 msgid "Address"
 msgstr ""
 
-msgid "Adds enigma2 settings and STB_BOX informations like SN, rev... if enabled."
+msgid ""
+"Adds enigma2 settings and STB_BOX informations like SN, rev... if enabled."
 msgstr ""
 
 #
@@ -714,8 +750,16 @@ msgid "Adjust 3D settings"
 msgstr ""
 
 #
-msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
-msgstr "Állítsa be úgy a színeket, hogy a színcsíkok megkülönböztethetők legyenek, de a telítettség a lehető legmegfelelőbb legyen. Ha az eredménnyel elégedett, akkor nyomja le az OK gombot a kép finomhangolás bezárásához, vagy a számgombok segítségével válasszon másik teszt ábrát."
+msgid ""
+"Adjust the color settings so that all the color shades are distinguishable, "
+"but appear as saturated as possible. If you are happy with the result, press "
+"OK to close the video fine-tuning, or use the number keys to select other "
+"test screens."
+msgstr ""
+"Állítsa be úgy a színeket, hogy a színcsíkok megkülönböztethetők legyenek, "
+"de a telítettség a lehető legmegfelelőbb legyen. Ha az eredménnyel "
+"elégedett, akkor nyomja le az OK gombot a kép finomhangolás bezárásához, "
+"vagy a számgombok segítségével válasszon másik teszt ábrát."
 
 #
 msgid "Advanced Options"
@@ -745,12 +789,14 @@ msgstr "Haladó visszaállítás"
 msgid "After event"
 msgstr "Esemény után"
 
-msgid "After pressing OK, please wait!"
-msgstr ""
-
 #
-msgid "After the start wizard is completed, you need to protect single services. Refer to your STB_BOX's manual on how to do that."
-msgstr "Miután az indítási varázsló befejeződött, le kell védenie a szimpla szolgáltatásokat. Olvassa el a készülék kezelési útmutatóját, további információért."
+msgid ""
+"After the start wizard is completed, you need to protect single services. "
+"Refer to your STB_BOX's manual on how to do that."
+msgstr ""
+"Miután az indítási varázsló befejeződött, le kell védenie a szimpla "
+"szolgáltatásokat. Olvassa el a készülék kezelési útmutatóját, további "
+"információért."
 
 #
 msgid "Album"
@@ -767,6 +813,9 @@ msgstr "Összes"
 msgid "All Satellites"
 msgstr "Összes műhold"
 
+msgid "All ages"
+msgstr ""
+
 msgid "Allow Subtitle equals Audio mask"
 msgstr ""
 
@@ -776,28 +825,7 @@ msgstr "Hallássérülteknek szánt feliratok engedélyezése"
 msgid "Allow unstable (untested) updates"
 msgstr ""
 
-msgid "Allows AIT to be included in http streams"
-msgstr ""
-
-msgid "Allows EIT data to be included in http streams."
-msgstr ""
-
-msgid "Allows displaying subtitle that equals the chosen audio."
-msgstr ""
-
-msgid "Allows displaying the special hearing impaired subtitles"
-msgstr ""
-
-msgid "Allows epg data of a passed event to be displayed. Handy when you want to know something about an event that is about to finish or has just finished. (minutes):"
-msgstr ""
-
 msgid "Allows more detailed to be in the crash log"
-msgstr ""
-
-msgid "Allows the EIT now/next eventdata to be displayed in infobar."
-msgstr ""
-
-msgid "Allows the Harddisk to go to standby after being idle for:"
 msgstr ""
 
 msgid "Allows the STB_BOX to read the stored EPG data regularly."
@@ -806,103 +834,26 @@ msgstr ""
 msgid "Allows the STB_BOX to store the EPG data regularly."
 msgstr ""
 
-msgid "Allows the STB_BOX to use the EIT EPG when tuned to a service. This data will be stored by the STB_BOX."
-msgstr ""
-
-msgid "Allows the STB_BOX to use the FreeSat EPG when tuned to a service. This data will be stored by the STB_BOX."
-msgstr ""
-
-msgid "Allows the STB_BOX to use the MHW EPG when tuned to a service. This data will be stored by the STB_BOX."
-msgstr ""
-
-msgid "Allows the STB_BOX to use the Netmed EPG when tuned to a service. This data will be stored by the STB_BOX."
-msgstr ""
-
-msgid "Allows the STB_BOX to use the ViaSat EPG when tuned to a service. This data will be stored by the STB_BOX."
-msgstr ""
-
 msgid "Allows you setup the button to do what you choose."
-msgstr ""
-
-msgid "Allows you to activate rewrapping of the teletext subtitles"
-msgstr ""
-
-msgid "Allows you to center the position of the DVB subtitles."
 msgstr ""
 
 msgid "Allows you to choose the Picons to be displayed on the frontpanel."
 msgstr ""
 
-msgid "Allows you to enable the debug log. They contain very detailed information of everything the system does."
+msgid ""
+"Allows you to enable the debug log. They contain very detailed information "
+"of everything the system does."
 msgstr ""
 
 msgid "Allows you to enable/disable displaying icons on the frontpanel."
 msgstr ""
 
-msgid "Allows you to prefer the DVB-graphical subtitles over Teletext subtitles."
-msgstr ""
-
-msgid "Allows you to prefer the special hearing impaired subtitles over normal subtitles."
-msgstr ""
-
 msgid "Allows you to send a copy of the log to yourself."
 msgstr ""
 
-msgid "Allows you to set audio language 1"
-msgstr ""
-
-msgid "Allows you to set audio language 2"
-msgstr ""
-
-msgid "Allows you to set audio language 3"
-msgstr ""
-
-msgid "Allows you to set audio language 4"
-msgstr ""
-
-msgid "Allows you to set the EPG language selection 1"
-msgstr ""
-
-msgid "Allows you to set the EPG language selection 2"
-msgstr ""
-
-msgid "Allows you to set the Teletext subtitle delay when timing lacks."
-msgstr ""
-
-msgid "Allows you to set the alignment of the Teletext subtitles."
-msgstr ""
-
-msgid "Allows you to set the border width of the Teletext subtitles. This makes the titles more easy to read on a light background."
-msgstr ""
-
-msgid "Allows you to set the colour of the Teletext subtitles."
-msgstr ""
-
-msgid "Allows you to set the font size of the Teletext subtitles."
-msgstr ""
-
-msgid "Allows you to set the maximum size of the Debug log size (MB). When that size is reached, a new file will be created."
-msgstr ""
-
-msgid "Allows you to set the position of the DVB subtitles."
-msgstr ""
-
-msgid "Allows you to set the position of the Teletext subtitles."
-msgstr ""
-
-msgid "Allows you to set the subtitle language selection 1"
-msgstr ""
-
-msgid "Allows you to set the subtitle language selection 2"
-msgstr ""
-
-msgid "Allows you to set the subtitle language selection 3"
-msgstr ""
-
-msgid "Allows you to set the subtitle language selection 4"
-msgstr ""
-
-msgid "Allows you to set the transparency of the DVB subtitles."
+msgid ""
+"Allows you to set the maximum size of the Debug log size (MB). When that "
+"size is reached, a new file will be created."
 msgstr ""
 
 msgid "Allows you to show/hide CCcam in extensions (blue button)."
@@ -914,23 +865,20 @@ msgstr ""
 msgid "Allows you to show/hide OScam in extensions (blue button)."
 msgstr ""
 
-msgid "Allows you to use Yellow pango DVB subtitles"
-msgstr ""
-
-msgid "Allows you to use power measurement (if your STB_BOX supports that)"
-msgstr ""
-
-msgid "Allows you to use the original position of the Teletext subtitles."
-msgstr ""
-
-msgid "Allows you to use yellow DVB subtitles."
-msgstr ""
-
 #
 msgid "Alpha"
 msgstr "Alfa"
 
 msgid "Alphanumeric"
+msgstr ""
+
+msgid "Altern"
+msgstr ""
+
+msgid "Alternative numbering Mode"
+msgstr ""
+
+msgid "Alternative radio mode"
 msgstr ""
 
 #
@@ -1023,13 +971,18 @@ msgstr ""
 msgid "Are you sure you want to send this log:\n"
 msgstr ""
 
+msgid "Are you sure you want to update your STB_BOX?"
+msgstr ""
+
 #
 msgid "Artist"
 msgstr "Előadó"
 
-#
-msgid "Ask before shutdown:"
-msgstr "Kikapcsolás elött rákérdez:"
+msgid "Arts/Culture"
+msgstr ""
+
+msgid "Ask before shutdown"
+msgstr ""
 
 #
 msgid "Ask user"
@@ -1078,9 +1031,6 @@ msgstr "Authoring mód"
 msgid "Auto"
 msgstr "Automata"
 
-msgid "Auto Language Selection"
-msgstr ""
-
 #
 msgid "Auto chapter split every ? minutes (0=never)"
 msgstr "Automatikus fejezet készítés ? percenként (0=soha)"
@@ -1088,6 +1038,9 @@ msgstr "Automatikus fejezet készítés ? percenként (0=soha)"
 #
 msgid "Auto flesh"
 msgstr "Auto-flash"
+
+msgid "Auto language selection"
+msgstr ""
 
 #
 msgid "Auto scart switching"
@@ -1101,10 +1054,19 @@ msgstr "Automatikus"
 msgid "Automatic Scan"
 msgstr "Automatikus keresés"
 
+msgid "Automatic image backup"
+msgstr ""
+
 msgid "Automatic refresh"
 msgstr ""
 
 msgid "Automatic save"
+msgstr ""
+
+msgid "Automatic scan"
+msgstr ""
+
+msgid "Automatic setting backup"
 msgstr ""
 
 msgid "Automatically update Client/Server View?"
@@ -1151,6 +1113,9 @@ msgstr "Vissza"
 msgid "Background"
 msgstr "Háttér"
 
+msgid "Background check"
+msgstr ""
+
 msgid "Background delete option"
 msgstr "Törlés a háttérben"
 
@@ -1181,6 +1146,9 @@ msgstr "Mentés folyamatban..."
 #
 msgid "Backup system settings"
 msgstr "Rendszerbeállítás mentése"
+
+msgid "BackupManager"
+msgstr ""
 
 #
 msgid "Band"
@@ -1291,14 +1259,16 @@ msgstr "Busz: "
 msgid "Button"
 msgstr ""
 
-msgid "Button Setup"
+msgid "Button setup"
 msgstr ""
 
 msgid "By Team ViX"
 msgstr ""
 
 #
-msgid "By pressing the OK Button on your remote control, the info bar is being displayed."
+msgid ""
+"By pressing the OK Button on your remote control, the info bar is being "
+"displayed."
 msgstr "Az OK gomb megnyomásával kijelzésre kerül az info-sáv."
 
 #
@@ -1351,6 +1321,9 @@ msgid "CCcam Share Info"
 msgstr ""
 
 msgid "CCcam Shares Info"
+msgstr ""
+
+msgid "CCcam info"
 msgstr ""
 
 msgid "CF Drive"
@@ -1410,6 +1383,9 @@ msgstr ""
 msgid "Cardserial"
 msgstr ""
 
+msgid "Center the position of the DVB subtitles."
+msgstr ""
+
 msgid "Centered DVB subtitles"
 msgstr "Középre zárt DVB felirat"
 
@@ -1437,7 +1413,9 @@ msgstr "Beállítás PIN"
 msgid "Change step size"
 msgstr "Lépték módosítása"
 
-msgid "Change this value if your smartcard can't doesn't handle off-line decoding well; default is '1000'."
+msgid ""
+"Change this value if your smartcard can't doesn't handle off-line decoding "
+"well; default is '1000'."
 msgstr ""
 
 msgid "Changelog"
@@ -1463,6 +1441,12 @@ msgstr ""
 msgid "Channel Selection"
 msgstr "Csatorna választás"
 
+msgid "Channel Selection Configuration"
+msgstr ""
+
+msgid "Channel list on mode change"
+msgstr ""
+
 msgid "Channel list preview"
 msgstr ""
 
@@ -1474,9 +1458,6 @@ msgid "Channel not in services list"
 msgstr "A csatorna nem szerepel a szolgáltatási listában"
 
 msgid "Channel preview mode"
-msgstr ""
-
-msgid "Channel selection on mode change"
 msgstr ""
 
 #
@@ -1519,6 +1500,12 @@ msgstr ""
 msgid "Checking for Updates..."
 msgstr ""
 
+msgid "Children/Youth"
+msgstr ""
+
+msgid "Choose Bouquet"
+msgstr ""
+
 #
 msgid "Choose Tuner"
 msgstr "Válasszon Tuner-t"
@@ -1555,13 +1542,19 @@ msgstr ""
 msgid "Choose the location for crash and debuglogs."
 msgstr ""
 
-msgid "Choose the location where the EPG data will be stored when the STB_BOX is shut down. The location must be available at boot time."
+msgid ""
+"Choose the location where the EPG data will be stored when the STB_BOX is "
+"shut down. The location must be available at boot time."
 msgstr ""
 
-msgid "Choose the name of the file that holds the EPG data when the STB_BOX is shut down. This can be handy to differentiate between several boxes."
+msgid ""
+"Choose the name of the file that holds the EPG data when the STB_BOX is shut "
+"down. This can be handy to differentiate between several boxes."
 msgstr ""
 
-msgid "Choose the order in which the tuner types will be used (for watching and recording)."
+msgid ""
+"Choose the order in which the tuner types will be used (for watching and "
+"recording)."
 msgstr ""
 
 msgid "Choose time interval to which the graphics will be rounded off."
@@ -1580,16 +1573,24 @@ msgstr ""
 msgid "Choose whether or not to show an icon when a motorized dish is moving."
 msgstr ""
 
-msgid "Choose whether to control the A/V input of your TV with the scart connection."
+msgid ""
+"Choose whether to control the A/V input of your TV with the scart connection."
 msgstr ""
 
-msgid "Choose which level of menu/setting's to display. 'Expert'-level shows all items."
+msgid "Choose whether to show the channel names, picons, or both in the EPG."
+msgstr ""
+
+msgid ""
+"Choose which level of menu/setting's to display. 'Expert'-level shows all "
+"items."
 msgstr ""
 
 msgid "Choose which tuner to configure."
 msgstr ""
 
-msgid "Choose with tuner will be used first. If set to 'auto' the system will give priority to the tuner having the lowest number of channels/satellites."
+msgid ""
+"Choose which tuner will be used first. If set to 'auto' the system will give "
+"priority to the tuner having the lowest number of channels/satellites."
 msgstr ""
 
 #
@@ -1691,6 +1692,9 @@ msgstr "CI modulfogadó"
 msgid "Common Interface Assignment"
 msgstr "CI hozzárendelés"
 
+msgid "Common interface"
+msgstr ""
+
 #
 msgid "CommonInterface"
 msgstr "CommonInterface"
@@ -1725,6 +1729,68 @@ msgstr "Interfész konfigurálása"
 #
 msgid "Configure nameservers"
 msgstr "Névszerverek (DNS) konfigurálása"
+
+msgid "Configure on which devices the background delete option should be used"
+msgstr ""
+
+msgid "Configure remote control type"
+msgstr ""
+
+msgid ""
+"Configure the Harddisk to go to standby after being idle for a specific time"
+msgstr ""
+
+msgid "Configure the behaviour of 'pause' when the movie is paused"
+msgstr ""
+
+msgid "Configure the behaviour when a movie is manually stopped"
+msgstr ""
+
+msgid "Configure the behaviour when a movie is started"
+msgstr ""
+
+msgid "Configure the behaviour when a movie reaches the end"
+msgstr ""
+
+msgid ""
+"Configure the number of days old timers are kept and then auto deleted from "
+"the timers list"
+msgstr ""
+
+msgid ""
+"Configure the number of days that items are automaticaly removed from the "
+"trashcan"
+msgstr ""
+
+msgid "Configure the offline decode delay in ms"
+msgstr ""
+
+msgid "Configure the possible fast forward speeds"
+msgstr ""
+
+msgid "Configure the possible rewind speeds"
+msgstr ""
+
+msgid "Configure the slow motion speeds"
+msgstr ""
+
+msgid "Configure the speed of the background delete feature"
+msgstr ""
+
+msgid "Configure the time of the stepskip on the '1'/'3'-keys"
+msgstr ""
+
+msgid "Configure the time of the stepskip on the '4'/'6'-keys"
+msgstr ""
+
+msgid "Configure the time of the stepskip on the '7'/'9'-keys"
+msgstr ""
+
+msgid "Configure the type of status indication icons shown in the movielist"
+msgstr ""
+
+msgid "Configure the way recording filenames are composed"
+msgstr ""
 
 #
 msgid "Configure your internal LAN"
@@ -1796,9 +1862,15 @@ msgstr "Lejátszás folytatása"
 msgid "Continues"
 msgstr ""
 
+msgid "Continues play (loop)"
+msgstr ""
+
 #
 msgid "Contrast"
 msgstr "Kontraszt"
+
+msgid "Control of the position how finished timer are shown in the Timer List."
+msgstr ""
 
 msgid "Convert ext3 to ext4"
 msgstr "Konvertálás ext3-ról ext4-re"
@@ -1879,6 +1951,9 @@ msgstr ""
 #
 msgid "Create DVD-ISO"
 msgstr "DVD képfájl készítés"
+
+msgid "Create Directory"
+msgstr ""
 
 msgid "Create Filesystem"
 msgstr ""
@@ -1986,6 +2061,15 @@ msgstr "DHCP"
 msgid "DLNA support"
 msgstr ""
 
+msgid "DMM advanced"
+msgstr ""
+
+msgid "DMM normal"
+msgstr ""
+
+msgid "DTS downmix"
+msgstr ""
+
 #
 msgid "DUAL LAYER DVD"
 msgstr "Kétréteges DVD"
@@ -2028,9 +2112,6 @@ msgstr ""
 msgid "DVD media toolbox"
 msgstr "DVD media toolbox"
 
-msgid "Daily"
-msgstr ""
-
 #
 msgid "Danish"
 msgstr "Dán"
@@ -2038,9 +2119,6 @@ msgstr "Dán"
 #
 msgid "Date"
 msgstr "Dátum"
-
-msgid "De-scramble http streams"
-msgstr ""
 
 msgid "Debug Logs"
 msgstr ""
@@ -2061,6 +2139,9 @@ msgstr "Döntse el, hogy mi történjen a hibanaplókkal beküldés után."
 msgid "Deep Standby"
 msgstr "Mély-készenlét"
 
+msgid "Deep standby"
+msgstr ""
+
 #
 msgid "Default"
 msgstr "Alapértelmezett"
@@ -2074,6 +2155,11 @@ msgid "Default movie location"
 msgstr "Felvételek tárhelye"
 
 msgid "Defaults"
+msgstr ""
+
+msgid ""
+"Define the number of GB to be made free by removing files from the trashcan "
+"before a recording starts"
 msgstr ""
 
 msgid "Delay before key repeat starts:"
@@ -2111,6 +2197,9 @@ msgstr ""
 "Nem beállított műholdak törlése?\n"
 "%s?"
 
+msgid "Delete old timers after how many days"
+msgstr ""
+
 msgid "Deleted"
 msgstr ""
 
@@ -2122,6 +2211,9 @@ msgid "Deleted items"
 msgstr ""
 
 msgid "Depth"
+msgstr ""
+
+msgid "Descramble http streams"
 msgstr ""
 
 #
@@ -2148,7 +2240,7 @@ msgstr ""
 msgid "Device Mounts"
 msgstr ""
 
-msgid "Device Setup"
+msgid "Device setup"
 msgstr ""
 
 msgid "Devicename:"
@@ -2224,10 +2316,6 @@ msgid "Disable crashlog reporting"
 msgstr "Hibanapló automatikus küldésének tiltása"
 
 #
-msgid "Disable timer"
-msgstr "Időzítés tiltása"
-
-#
 msgid "Disabled"
 msgstr "Letiltva"
 
@@ -2255,12 +2343,17 @@ msgid "Display >16:9 content as"
 msgstr "16:9-nél szélesebb tartalom megjelenítése:"
 
 #
-msgid "Display Setup"
-msgstr "Kis kijelző"
-
-#
 msgid "Display and Userinterface"
 msgstr "Képernyő és felhasználói felület"
+
+msgid "Display message before next played movie"
+msgstr ""
+
+msgid "Display settings"
+msgstr ""
+
+msgid "Display the EIT now/next eventdata in infobar."
+msgstr ""
 
 #
 msgid ""
@@ -2317,7 +2410,8 @@ msgstr ""
 #
 #, python-format
 msgid "Do you really want to remove directory %s from the disk?"
-msgstr "Biztos benne, hogy el szeretné távolítani a %s mappaat a merevlemezről?"
+msgstr ""
+"Biztos benne, hogy el szeretné távolítani a %s mappaat a merevlemezről?"
 
 #
 #, python-format
@@ -2404,8 +2498,12 @@ msgid ""
 msgstr ""
 
 #
-msgid "Do you want to submit your email address and name so that we can contact you if needed?"
-msgstr "Megadná a nevét és e-mail címét, hogy szükség esetén felvehessük Önnel a kapcsolatot?"
+msgid ""
+"Do you want to submit your email address and name so that we can contact you "
+"if needed?"
+msgstr ""
+"Megadná a nevét és e-mail címét, hogy szükség esetén felvehessük Önnel a "
+"kapcsolatot?"
 
 #
 msgid "Do you want to update your STB_BOX?"
@@ -2452,7 +2550,9 @@ msgstr "Kész - %d csomag telepítése vagy frissítése rendben megtörtént"
 #
 #, python-format
 msgid "Done - Installed, upgraded or removed %d packages with %d errors"
-msgstr "Kész - %d csomag telepítése, frissítése vagy eltávolítása megtörtént %d hibával"
+msgstr ""
+"Kész - %d csomag telepítése, frissítése vagy eltávolítása megtörtént %d "
+"hibával"
 
 #
 msgid "Download"
@@ -2512,10 +2612,18 @@ msgstr ""
 msgid "ECM avg"
 msgstr ""
 
+msgid ""
+"ECM data will be included in the stream. This enables a client receiver to "
+"decode it."
+msgstr ""
+
 msgid "ECM last"
 msgstr ""
 
 msgid "ECM-Time"
+msgstr ""
+
+msgid "EIT data will be included in http streams."
 msgstr ""
 
 msgid "EPG"
@@ -2534,9 +2642,6 @@ msgstr "Elektronikus műsorújság"
 msgid "EPG Setup"
 msgstr ""
 
-msgid "EPG button mode"
-msgstr ""
-
 msgid "EPG filename"
 msgstr ""
 
@@ -2549,10 +2654,16 @@ msgstr ""
 msgid "EPG location"
 msgstr ""
 
+msgid "EPG settings"
+msgstr ""
+
 #
 #, python-format
 msgid "ERROR - failed to scan (%s)!"
 msgstr "HIBA - nem sikerült a keresés (%s)!"
+
+msgid "ET9x00/6500"
+msgstr ""
 
 #
 msgid "East"
@@ -2605,6 +2716,9 @@ msgstr "Cím módosítása"
 msgid "Edit upgrade source url."
 msgstr "A frissítési forrás URL-jének szerkesztése."
 
+msgid "Education/Science/..."
+msgstr ""
+
 msgid "Elapsed"
 msgstr ""
 
@@ -2642,14 +2756,25 @@ msgstr "Netmed EPG engedélyezése"
 msgid "Enable ViaSat EPG"
 msgstr "ViaSat EPG engedélyezése"
 
+msgid ""
+"Enable and set the duration of the second infobar (press OK twice) that may "
+"include more information on the current service."
+msgstr ""
+
 msgid "Enable freesat EPG"
 msgstr "Freesat EPG engedélyezése"
+
+msgid "Enable hearing impaired subtitles"
+msgstr ""
 
 #
 msgid "Enable multiple bouquets"
 msgstr "Többszörös bouquetek engedélyezése"
 
-msgid "Enable or disable Permanent Timeshift. When activated, you can wind back until the time you zapped to a channel, and you can make recordings in retrospect."
+msgid ""
+"Enable or disable Permanent Timeshift. When activated, you can wind back "
+"until the time you zapped to a channel, and you can make recordings in "
+"retrospect."
 msgstr ""
 
 msgid "Enable panic button"
@@ -2669,6 +2794,23 @@ msgstr "Időzítés engedélyezése"
 #
 msgid "Enabled"
 msgstr "Engedélyezve"
+
+msgid ""
+"Enables EPG data of events in the past to be displayed. Handy when you want "
+"to know something about an event that is about to finish or has just "
+"finished (minutes)."
+msgstr ""
+
+msgid ""
+"Enables a feature so that the receiver can decrypt streams (if the ECM data "
+"is included in the stream and a valid card is available)."
+msgstr ""
+
+msgid "Enables channel numbers in the channel selection screen"
+msgstr ""
+
+msgid "Enables the trashcan feature"
+msgstr ""
 
 #
 msgid "Encrypted: "
@@ -2710,6 +2852,9 @@ msgid ""
 "stephan@reichholf.net\n"
 "\n"
 "© 2006 - Stephan Reichholf"
+msgstr ""
+
+msgid "Enimga2 Changes"
 msgstr ""
 
 #
@@ -2770,6 +2915,9 @@ msgstr ""
 msgid "Estonian"
 msgstr "Észt"
 
+msgid "Et5000/6000"
+msgstr ""
+
 msgid "Ethernet network interface"
 msgstr ""
 
@@ -2813,6 +2961,9 @@ msgid "Exit"
 msgstr "Kilépés"
 
 msgid "Exit EPG"
+msgstr ""
+
+msgid "Exit Movieplayer?"
 msgstr ""
 
 #
@@ -2882,6 +3033,9 @@ msgstr ""
 msgid "FTP Setup"
 msgstr ""
 
+msgid "FTP setup"
+msgstr ""
+
 #
 msgid "Factory reset"
 msgstr "Gyári alapbeállítások"
@@ -2943,6 +3097,9 @@ msgstr ""
 msgid "Filesystem Check"
 msgstr "Fájlrendszer ellenőrzése"
 
+msgid "Filesystem check"
+msgstr ""
+
 #
 msgid "Finetune"
 msgstr "Finomhangolás"
@@ -2979,9 +3136,6 @@ msgid "Following tasks will be done after you press OK!"
 msgstr "Végrehajtás az OK gomb lenyomása után történik"
 
 msgid "Fontsize"
-msgstr ""
-
-msgid "For more information see www.openpli.org"
 msgstr ""
 
 #
@@ -3071,9 +3225,15 @@ msgstr ""
 msgid "General AC3 Delay"
 msgstr "Általános AC3 késleltetés"
 
+msgid "General AC3 delay (ms)"
+msgstr ""
+
 #
 msgid "General PCM Delay"
 msgstr "Általános PCM késleltetés"
+
+msgid "General PCM delay (ms)"
+msgstr ""
 
 #
 msgid "Genre"
@@ -3161,12 +3321,18 @@ msgstr ""
 msgid "Goto specific data/time"
 msgstr ""
 
-msgid "Graph MEpg Settings"
+msgid "GraphMultiEpg Settings"
+msgstr ""
+
+msgid "Graphical EPG..."
 msgstr ""
 
 #
 msgid "Graphical Multi EPG"
 msgstr "Grafikus multi EPG"
+
+msgid "Graphics"
+msgstr ""
 
 #
 msgid "Greek"
@@ -3218,7 +3384,9 @@ msgstr ""
 msgid "Height"
 msgstr ""
 
-msgid "Here you can select the behaviour of the 'puase'-button when playback has been paused."
+msgid ""
+"Here you can select the behaviour of the 'puase'-button when playback has "
+"been paused."
 msgstr ""
 
 msgid "Hidden network"
@@ -3226,6 +3394,12 @@ msgstr ""
 
 msgid "Hide CI messages"
 msgstr "CI-üzenetek elrejtése"
+
+msgid "Hide any Common Interface card error messages."
+msgstr ""
+
+msgid "Hide any zap error messages."
+msgstr ""
 
 msgid "Hide zap errors"
 msgstr "Csatornaváltási hibák elrejtése"
@@ -3324,10 +3498,13 @@ msgstr ""
 msgid "If Teletext caching is enabled, displaying pages will be much faster."
 msgstr ""
 
-msgid "If logs are using the set maximum space used the eldest will be deleted."
+msgid ""
+"If logs are using the set maximum space used the eldest will be deleted."
 msgstr ""
 
-msgid "If set to 'Yes' recordings will be deleted to a trashcan. That way thay can still be played."
+msgid ""
+"If set to 'Yes' recordings will be deleted to a trashcan. That way thay can "
+"still be played."
 msgstr ""
 
 msgid "If set to 'yes' a special seekbar is available during timeshift."
@@ -3339,22 +3516,9 @@ msgstr ""
 msgid "If set to 'yes' shows a small TV-screen in the EPG."
 msgstr ""
 
-msgid "If set to 'yes' shows the channel names in the EPG."
-msgstr ""
-
-msgid "If set to 'yes' shows the channel picons in the EPG."
-msgstr ""
-
-msgid "If set to 'yes' the EPG will alway open at the first channel. If set to 'no' the EPG will open on the present channel."
-msgstr ""
-
-msgid "If set to 'yes' the STB_BOX will use AC3 sound (when available)."
-msgstr ""
-
-msgid "If set to 'yes' the STB_BOX will use the audio stream that has been used earlier."
-msgstr ""
-
-msgid "If set to 'yes' the STB_BOX will use the subtitles that has been used earlier."
+msgid ""
+"If set to 'yes' the EPG will alway open at the first channel. If set to 'no' "
+"the EPG will open on the present channel."
 msgstr ""
 
 msgid "If set to 'yes' the bouquets will be shown each time you open the EPG"
@@ -3363,10 +3527,9 @@ msgstr ""
 msgid "If set to 'yes' the bouquets will be shown each time you open the EPG."
 msgstr ""
 
-msgid "If set to 'yes' the channel list will be shown after switching between radio and TV modes."
-msgstr ""
-
-msgid "If set to 'yes' the channel numbers in the channel list will be displayed."
+msgid ""
+"If set to 'yes' the channel list will be shown after switching between radio "
+"and TV modes."
 msgstr ""
 
 msgid "If set to 'yes' the infobar will be displayed when a new event starts."
@@ -3375,19 +3538,36 @@ msgstr ""
 msgid "If set to 'yes' the infobar will be displayed when changing channels."
 msgstr ""
 
-msgid "If set to 'yes' the progress of the current event in the channel list is displayed."
+msgid "If set to 'yes' the receiver will use AC3 sound (when available)."
+msgstr ""
+
+msgid ""
+"If set to 'yes' the receiver will use the audio stream that has been used "
+"earlier."
+msgstr ""
+
+msgid ""
+"If set to 'yes' the receiver will use the subtitles that has been used "
+"earlier."
 msgstr ""
 
 msgid "If set to 'yes' you can preview channels in the EPG list."
 msgstr ""
 
-msgid "If set to 'yes' you can preview channels in the channel list. Press 'OK' to preview the selected channel, press a 2nd 'OK' to exit and zap to that channel, pressing 'EXIT' to return to the channel you started at."
+msgid ""
+"If set to 'yes' you can preview channels in the channel list. Press 'OK' to "
+"preview the selected channel, press a 2nd 'OK' to exit and zap to that "
+"channel, pressing 'EXIT' to return to the channel you started at."
 msgstr ""
 
-msgid "If set to 'yes; the infobar will be displayed when Fast Forwarding or Rewinding during media playback."
+msgid ""
+"If set to 'yes; the infobar will be displayed when Fast Forwarding or "
+"Rewinding during media playback."
 msgstr ""
 
-msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times):"
+msgid ""
+"If the text is too long to be displayed on the front panel, it will be "
+"repeated (number of times):"
 msgstr ""
 
 #
@@ -3400,23 +3580,33 @@ msgstr ""
 
 #
 msgid ""
-"If your TV has a brightness or contrast enhancement, disable it. If there is something called \"dynamic\", set it to standard. Adjust the backlight level to a value suiting your taste. Turn down contrast on your TV as much as possible.\n"
-"Then turn the brightness setting as low as possible, but make sure that the two lowermost shades of gray stay distinguishable.\n"
-"Do not care about the bright shades now. They will be set up in the next step.\n"
+"If your TV has a brightness or contrast enhancement, disable it. If there is "
+"something called \"dynamic\", set it to standard. Adjust the backlight level "
+"to a value suiting your taste. Turn down contrast on your TV as much as "
+"possible.\n"
+"Then turn the brightness setting as low as possible, but make sure that the "
+"two lowermost shades of gray stay distinguishable.\n"
+"Do not care about the bright shades now. They will be set up in the next "
+"step.\n"
 "If you are happy with the result, press OK."
 msgstr ""
-"Amennyiben a TV készülékében van képjavító opció, vagy speciális beállítások mint pl. \"dinamikus\", akkor azokat kapcsolja ki. Állítsa be a fényerőt a kívánsága szerint. Vegye le a kontrasztot a TV készüléken amennyire csak lehetséges.\n"
-"Majd vegye le a fényerőt amilyen alacsonyra csak lehetséges, de figyelje a két legalsó szürke csíkot, hogy azok éppen megkülönböztethetőek legyenek.\n"
-"Most ne törődjön a fényes csíkokkal. Ezeket a következő lépésben fogjuk beállítani.\n"
+"Amennyiben a TV készülékében van képjavító opció, vagy speciális beállítások "
+"mint pl. \"dinamikus\", akkor azokat kapcsolja ki. Állítsa be a fényerőt a "
+"kívánsága szerint. Vegye le a kontrasztot a TV készüléken amennyire csak "
+"lehetséges.\n"
+"Majd vegye le a fényerőt amilyen alacsonyra csak lehetséges, de figyelje a "
+"két legalsó szürke csíkot, hogy azok éppen megkülönböztethetőek legyenek.\n"
+"Most ne törődjön a fényes csíkokkal. Ezeket a következő lépésben fogjuk "
+"beállítani.\n"
 "Ha az eredmény megfelelő, nyomja le az OK gombot."
 
 msgid "Image Information"
 msgstr ""
 
-msgid "Image Release Notes"
+msgid "Image:"
 msgstr ""
 
-msgid "Image:"
+msgid "ImageManager"
 msgstr ""
 
 #
@@ -3424,13 +3614,18 @@ msgid "In Progress"
 msgstr "Folyamatban"
 
 #
-msgid "In order to record a timer, the TV was switched to the recording service!\n"
-msgstr "Az időzítés esedékessége miatt átkapcsoltam a beprogramozott csatornára!\n"
+msgid ""
+"In order to record a timer, the TV was switched to the recording service!\n"
+msgstr ""
+"Az időzítés esedékessége miatt átkapcsoltam a beprogramozott csatornára!\n"
 
 msgid "Inadyn Log"
 msgstr ""
 
 msgid "Inadyn Setup"
+msgstr ""
+
+msgid "Inadyn setup"
 msgstr ""
 
 msgid "Include AIT in http streams"
@@ -3625,6 +3820,9 @@ msgstr ""
 msgid "Ipkg"
 msgstr "Ipkg"
 
+msgid "Is this setting ok?"
+msgstr ""
+
 #
 msgid "Is this videomode ok?"
 msgstr "Megfelelő ez a videómód?"
@@ -3633,10 +3831,14 @@ msgstr "Megfelelő ez a videómód?"
 msgid "Italian"
 msgstr "Olasz"
 
+msgid ""
+"Items in trashcan will be deleted if less then the set space is available."
+msgstr ""
+
 msgid "Items per Page "
 msgstr ""
 
-msgid "Itmes in trashcan will be deleted if less then the set space is available."
+msgid "Items per Page for Listscreen"
 msgstr ""
 
 #
@@ -3686,9 +3888,8 @@ msgstr "Billentyűzet"
 msgid "Keyboard Map"
 msgstr "Billentyűkiozsztás"
 
-#
-msgid "Keyboard Setup"
-msgstr "Billentyűzet beállítása"
+msgid "Keyboard setup"
+msgstr ""
 
 msgid "Kill partition table"
 msgstr ""
@@ -3765,6 +3966,10 @@ msgstr "Utolsó sebesség"
 msgid "Last used share: "
 msgstr ""
 
+msgctxt "third event: 'third' event label"
+msgid "Later"
+msgstr ""
+
 #
 msgid "Latitude"
 msgstr "Szélességi fok"
@@ -3780,6 +3985,9 @@ msgstr "Kilépés a DVD lejátszóból?"
 #
 msgid "Left"
 msgstr "Bal"
+
+msgid "Leisure hobies"
+msgstr ""
 
 #
 #. TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
@@ -3798,6 +4006,12 @@ msgstr ""
 #
 msgid "Limit east"
 msgstr "Keleti limit"
+
+msgid ""
+"Limit the characters that can be used in recording filenames - this allows "
+"the functionality on operating systems that do not allow all kinds of "
+"characters"
+msgstr ""
 
 #
 msgid "Limit west"
@@ -3830,12 +4044,18 @@ msgstr "DVD menüvel linkelt címek"
 msgid "List available networks"
 msgstr ""
 
+msgid "List mode"
+msgstr ""
+
 #
 msgid "List of Storage Devices"
 msgstr "Tárolóeszközök listája"
 
 #, python-format
 msgid "List version %d, found %d channels"
+msgstr ""
+
+msgid "Listscreen default at start user interface"
 msgstr ""
 
 #
@@ -3884,16 +4104,16 @@ msgstr ""
 msgid "Logs"
 msgstr ""
 
-msgid "Logs Manager"
-msgstr ""
-
-msgid "Logs Setup"
-msgstr ""
-
 msgid "Logs location"
 msgstr ""
 
+msgid "Logs manager"
+msgstr ""
+
 msgid "Logs older then the set no of days will be deleted."
+msgstr ""
+
+msgid "Logs settings"
 msgstr ""
 
 msgid "Long << / >>"
@@ -3959,6 +4179,9 @@ msgid "Manual Scan"
 msgstr "Kézi keresés"
 
 msgid "Manual configuration"
+msgstr ""
+
+msgid "Manual scan"
 msgstr ""
 
 #
@@ -4050,6 +4273,13 @@ msgstr ""
 msgid "MiniDLNA Setup"
 msgstr ""
 
+msgid "MiniDLNA setup"
+msgstr ""
+
+#, python-format
+msgid "Minimum age %d years"
+msgstr ""
+
 msgid "Mins"
 msgstr ""
 
@@ -4097,6 +4327,9 @@ msgstr ""
 msgid "Mounts Setup"
 msgstr ""
 
+msgid "Mounts setup"
+msgstr ""
+
 msgid "Move"
 msgstr "Áthelyezés"
 
@@ -4140,6 +4373,9 @@ msgstr ""
 msgid "Movie location"
 msgstr "Filmek tárhelye"
 
+msgid "Movie/Drama"
+msgstr ""
+
 #
 msgid "Movielist menu"
 msgstr "Filmlista menü"
@@ -4166,6 +4402,9 @@ msgstr ""
 msgid "Multisat"
 msgstr "Multisat"
 
+msgid "Music/Ballet/Dance"
+msgstr ""
+
 #
 msgid "Mute"
 msgstr "Némítás"
@@ -4184,9 +4423,13 @@ msgstr "NFI Image Flash-elés"
 
 #
 msgid "NFI image flashing completed. Press Yellow to Reboot!"
-msgstr "NFI image flashelése megörtént. nyomja le a Sárga gombot az újraindításhoz!"
+msgstr ""
+"NFI image flashelése megörtént. nyomja le a Sárga gombot az újraindításhoz!"
 
 msgid "NFS Setup"
+msgstr ""
+
+msgid "NFS setup"
 msgstr ""
 
 msgid "NIM"
@@ -4315,6 +4558,13 @@ msgstr ""
 msgid "New version:"
 msgstr "Új verzió:"
 
+msgid "News Current Affairs"
+msgstr ""
+
+msgctxt "now/next: 'next' event label"
+msgid "Next"
+msgstr ""
+
 #
 msgid "No"
 msgstr "Nem"
@@ -4373,8 +4623,12 @@ msgid "No event info found, recording indefinitely."
 msgstr "Nincs esemény infó, felvétel korlátlanul."
 
 #
-msgid "No fast winding possible yet.. but you can use the number buttons to skip forward/backward!"
-msgstr "Gyorscsévélési lehetőség nincs még... de a szám-gombokkal lehet ugranni előre vagy hátra!"
+msgid ""
+"No fast winding possible yet.. but you can use the number buttons to skip "
+"forward/backward!"
+msgstr ""
+"Gyorscsévélési lehetőség nincs még... de a szám-gombokkal lehet ugranni "
+"előre vagy hátra!"
 
 #
 msgid "No free tuner!"
@@ -4401,8 +4655,11 @@ msgid "No of items switch (increase or reduced)"
 msgstr ""
 
 #
-msgid "No packages were upgraded yet. So you can check your network and try again."
-msgstr "Még nem lett egy csomag sem frissítve. Ellenőrizze a hálózati beállításokat és próbálja újra."
+msgid ""
+"No packages were upgraded yet. So you can check your network and try again."
+msgstr ""
+"Még nem lett egy csomag sem frissítve. Ellenőrizze a hálózati beállításokat "
+"és próbálja újra."
 
 #
 msgid "No positioner capable frontend found."
@@ -4461,24 +4718,30 @@ msgstr ""
 #
 msgid ""
 "No working local network adapter found.\n"
-"Please verify that you have attached a network cable and your network is configured correctly."
+"Please verify that you have attached a network cable and your network is "
+"configured correctly."
 msgstr ""
 "Nem található egyetlen működőképes helyi hálózati illesztő sem.\n"
-"Kérem, ellenőrizze, hogy a hálózati kábel csatlakoztatva van, és a hálózati paraméterek megfelelően be vannak állítva."
+"Kérem, ellenőrizze, hogy a hálózati kábel csatlakoztatva van, és a hálózati "
+"paraméterek megfelelően be vannak állítva."
 
 msgid ""
 "No working wireless network adapter found.\n"
-"Please verify that you have attached a compatible WLAN device and your network is configured correctly."
+"Please verify that you have attached a compatible WLAN device and your "
+"network is configured correctly."
 msgstr ""
 "Nem található egyetlen működőképes vezeték nélküli hálózati illesztő sem.\n"
-"Kérem, ellenőrizze, hogy egy kompatibilis vezeték nélküli hálózati illesztő csatlakoztatva van, és a hálózati paraméterek megfelelően be vannak állítva."
+"Kérem, ellenőrizze, hogy egy kompatibilis vezeték nélküli hálózati illesztő "
+"csatlakoztatva van, és a hálózati paraméterek megfelelően be vannak állítva."
 
 msgid ""
 "No working wireless network interface found.\n"
-" Please verify that you have attached a compatible WLAN device or enable your local network interface."
+" Please verify that you have attached a compatible WLAN device or enable "
+"your local network interface."
 msgstr ""
 "Nem található egyetlen működőképes vezeték nélküli hálózati illesztő sem.\n"
-"Kérem, ellenőrizze, hogy egy kompatibilis vezeték nélküli hálózati illesztő csatlakoztatva van, és a hálózati paraméterek megfelelően be vannak állítva."
+"Kérem, ellenőrizze, hogy egy kompatibilis vezeték nélküli hálózati illesztő "
+"csatlakoztatva van, és a hálózati paraméterek megfelelően be vannak állítva."
 
 #
 msgid "No, but restart from begin"
@@ -4522,6 +4785,9 @@ msgstr "nincs"
 msgid "Nonlinear"
 msgstr "Nem-lineáris (szélek széthúzása)"
 
+msgid "Normal mode"
+msgstr ""
+
 #
 msgid "North"
 msgstr "Észak"
@@ -4535,8 +4801,12 @@ msgstr ""
 
 #
 #, python-format
-msgid "Not enough diskspace. Please free up some diskspace and try again. (%d MB required, %d MB available)"
-msgstr "Nincs elég tárhely. Kérem, szabadítson fel némi helyet és próbálja újra. (%d MB területre lenne szükség, %d MB hely szabad jelenleg)"
+msgid ""
+"Not enough diskspace. Please free up some diskspace and try again. (%d MB "
+"required, %d MB available)"
+msgstr ""
+"Nincs elég tárhely. Kérem, szabadítson fel némi helyet és próbálja újra. (%d "
+"MB területre lenne szükség, %d MB hely szabad jelenleg)"
 
 #, python-format
 msgid ""
@@ -4561,18 +4831,31 @@ msgstr ""
 msgid "Nothing to upgrade"
 msgstr ""
 
+msgctxt "now/next: 'now' event label"
+msgid "Now"
+msgstr ""
+
 #
 msgid "Now Playing"
 msgstr "Most "
 
 #
-msgid "Now, use the contrast setting to turn up the brightness of the background as much as possible, but make sure that you can still see the difference between the two brightest levels of shades.If you have done that, press OK."
-msgstr "Most a kontraszt beállítás segítségével állítsa be a háttér világosságát a lehető legmagasabb értékre, de arra ügyeljen, hogy a két világos csík között látható legyen a különbség. Ha befejezte, az OK gomb lenyomásával léphet ki."
+msgid ""
+"Now, use the contrast setting to turn up the brightness of the background as "
+"much as possible, but make sure that you can still see the difference "
+"between the two brightest levels of shades.If you have done that, press OK."
+msgstr ""
+"Most a kontraszt beállítás segítségével állítsa be a háttér világosságát a "
+"lehető legmagasabb értékre, de arra ügyeljen, hogy a két világos csík között "
+"látható legyen a különbség. Ha befejezte, az OK gomb lenyomásával léphet ki."
 
 msgid "Number"
 msgstr ""
 
 msgid "Number of rows"
+msgstr ""
+
+msgid "OE Changes"
 msgstr ""
 
 #
@@ -4600,9 +4883,6 @@ msgstr "OK, néhány bővítmény eltávolítása"
 msgid "ONID"
 msgstr ""
 
-msgid "OSD"
-msgstr ""
-
 msgid "OSD 3D Setup"
 msgstr ""
 
@@ -4613,10 +4893,10 @@ msgstr ""
 msgid "OSD Settings"
 msgstr "OSD beállítások"
 
-msgid "OSD Setup"
+msgid "OSD name request"
 msgstr ""
 
-msgid "OSD name request"
+msgid "OSD settings"
 msgstr ""
 
 #
@@ -4624,6 +4904,9 @@ msgid "OSD visibility"
 msgstr "OSD áttetszőség"
 
 msgid "OScam Info"
+msgstr ""
+
+msgid "OScam info"
 msgstr ""
 
 #
@@ -4637,7 +4920,17 @@ msgstr ""
 msgid "On"
 msgstr "Be"
 
-msgid "On raching the end of a file during playback, you can choose the box's behaviour."
+msgid "On end of movie"
+msgstr ""
+
+msgid ""
+"On reaching the end of a file during playback, you can choose the box's "
+"behavior."
+msgstr ""
+
+msgid ""
+"On reaching the end of a file during playback, you can choose the box's "
+"behaviour."
 msgstr ""
 
 msgid "On starting playback of a file, you can choose the box's behaviour."
@@ -4656,12 +4949,6 @@ msgstr "Egy"
 msgid "One line"
 msgstr ""
 
-msgid "Online Update"
-msgstr ""
-
-msgid "Online update"
-msgstr ""
-
 msgid "OnlineVersionCheck"
 msgstr ""
 
@@ -4672,14 +4959,14 @@ msgstr "Csak FTA keresés"
 msgid "Only change for debugging; default is '20 MB/s'."
 msgstr ""
 
-msgid "Only change for debugging; default is 'Off'."
+msgid "Only change for debugging; default is 'Internal hdd only'."
 msgstr ""
 
 #
 msgid "Only extensions."
 msgstr "Csak bővítmények!"
 
-msgid "OpenVPN Setup"
+msgid "OpenVPN setup"
 msgstr ""
 
 msgid "OpenVpn Log"
@@ -4815,7 +5102,30 @@ msgstr ""
 msgid "Percentage"
 msgstr ""
 
-msgid "Perform an online update check"
+msgid "Percentage Left"
+msgstr ""
+
+msgid "Percentage Right"
+msgstr ""
+
+msgid "Perform a full image backup"
+msgstr ""
+
+msgid "Perform a image backup before updating."
+msgstr ""
+
+msgid "Perform a setting backup before updating."
+msgstr ""
+
+msgid "Perform a setting backup,"
+msgstr ""
+
+msgid ""
+"Perform a setting backup, making a backup before updating is strongly "
+"advised."
+msgstr ""
+
+msgid "Perform an online update check in the background"
 msgstr ""
 
 msgid "Permanent Timeshift Enable"
@@ -4847,7 +5157,16 @@ msgstr "Telefonszám"
 msgid "PiPSetup"
 msgstr "Kép-a-Képben beállítások"
 
-msgid "Picture in Graphics*"
+msgid "Picon"
+msgstr ""
+
+msgid "Picon and Service Name"
+msgstr ""
+
+msgid "Picon width"
+msgstr ""
+
+msgid "Picture in Graphics"
 msgstr ""
 
 #
@@ -4889,6 +5208,12 @@ msgstr ""
 msgid "Play next"
 msgstr ""
 
+msgid "Play next (return to movie list)"
+msgstr ""
+
+msgid "Play next (return to previous service)"
+msgstr ""
+
 msgid "Play previous"
 msgstr ""
 
@@ -4904,8 +5229,11 @@ msgstr "Kérem, válassza ki a keresendő hordozót"
 msgid "Please add titles to the compilation."
 msgstr ""
 
-msgid "Please be aware, that anyone can disable the parental control, if you have not set a PIN."
-msgstr "Figyelem: a szülői zárat bárki kikapcsolhatja, ha nincs beállítva PIN-kód!"
+msgid ""
+"Please be aware, that anyone can disable the parental control, if you have "
+"not set a PIN."
+msgstr ""
+"Figyelem: a szülői zárat bárki kikapcsolhatja, ha nincs beállítva PIN-kód!"
 
 #
 msgid "Please change recording endtime"
@@ -4935,21 +5263,25 @@ msgstr "Kérem, válassza ki azt a csatornalistát melyet telepíteni szeretne."
 
 #
 msgid ""
-"Please configure or verify your Nameservers by filling out the required values.\n"
+"Please configure or verify your Nameservers by filling out the required "
+"values.\n"
 "When you are ready press OK to continue."
 msgstr ""
-"Kérem, ellenőrizze vagy állítsa be a névszervereket, a kért adatok kitöltésével.\n"
+"Kérem, ellenőrizze vagy állítsa be a névszervereket, a kért adatok "
+"kitöltésével.\n"
 "Befejezés után, nyomja le az OK gombot a folytatáshoz."
 
 msgid ""
-"Please configure your internet connection by filling out the required values.\n"
+"Please configure your internet connection by filling out the required "
+"values.\n"
 "When you are ready press OK to continue."
 msgstr ""
 "Kérem, állítsa be az interket kapcsolatát a kért adatok kitöltésével.\n"
 "Befejezés után, nyomja le az OK gombot a folytatáshoz."
 
 msgid "Please do not change any values unless you know what you are doing!"
-msgstr "Ha nem tudja mi mit jelent, akkor kérem, ne változtassa meg az adatokat!"
+msgstr ""
+"Ha nem tudja mi mit jelent, akkor kérem, ne változtassa meg az adatokat!"
 
 #
 msgid "Please enter a name for the new bouquet"
@@ -4991,8 +5323,12 @@ msgid "Please follow the instructions on the TV"
 msgstr "Kérem, kövesse a TV készüléken megjelenő instrukciókat."
 
 #
-msgid "Please note that the previously selected media could not be accessed and therefore the default directory is being used instead."
-msgstr "Az előbb kiválaszott média nem elérhető és ezért inkább az alapmappa lesz használva."
+msgid ""
+"Please note that the previously selected media could not be accessed and "
+"therefore the default directory is being used instead."
+msgstr ""
+"Az előbb kiválaszott média nem elérhető és ezért inkább az alapmappa lesz "
+"használva."
 
 #
 msgid "Please press OK to continue."
@@ -5001,6 +5337,9 @@ msgstr "A folytatáshoz nyomja le az OK-t."
 #
 msgid "Please press OK!"
 msgstr "Nyomja le az OK-t!"
+
+msgid "Please select a default EPG type..."
+msgstr ""
 
 #
 msgid "Please select a playlist to delete..."
@@ -5043,11 +5382,13 @@ msgstr "Válassza ki a felvételek útvonalát..."
 
 #
 msgid ""
-"Please select the network interface that you want to use for your internet connection.\n"
+"Please select the network interface that you want to use for your internet "
+"connection.\n"
 "\n"
 "Please press OK to continue."
 msgstr ""
-"Kérem, válassza ki azt a hálózati interfészt, amit használni kíván az internet kapcsolathoz.\n"
+"Kérem, válassza ki azt a hálózati interfészt, amit használni kíván az "
+"internet kapcsolathoz.\n"
 "\n"
 "Nyomja le az OK gombot a folytatáshoz."
 
@@ -5081,11 +5422,16 @@ msgid ""
 msgstr ""
 "Az iránygombokkal mozgathatja a Kép-a-Képben ablakot.\n"
 "A Bouquet +/- gombokkal átméretezheti az ablakot.\n"
-"Az OK gombbal visszamehet a TV módra, vagy az EXIT gombbal befejezheti a mozgatást."
+"Az OK gombbal visszamehet a TV módra, vagy az EXIT gombbal befejezheti a "
+"mozgatást."
 
 #
-msgid "Please use the UP and DOWN keys to select your language. Afterwards press the OK button."
-msgstr "Kérem, használja a FEL és LE gombokat a nyelv kiválasztásához. Ez után nyomja le az OK gombot."
+msgid ""
+"Please use the UP and DOWN keys to select your language. Afterwards press "
+"the OK button."
+msgstr ""
+"Kérem, használja a FEL és LE gombokat a nyelv kiválasztásához. Ez után "
+"nyomja le az OK gombot."
 
 #
 msgid "Please wait for activation of your network configuration..."
@@ -5186,6 +5532,9 @@ msgstr "Portugál"
 msgid "Position of finished Timers in Timerlist"
 msgstr "Befejezett időzítések helye az időzítések listájában"
 
+msgid "Position setup"
+msgstr ""
+
 #
 msgid "Positioner"
 msgstr "Forgatómotor"
@@ -5217,7 +5566,7 @@ msgstr "Előreprogramozott transzponder"
 msgid "Prefer AC3"
 msgstr "AC3 hangsáv előnyben részesítése"
 
-msgid "Prefer DVB-graphical subtitles"
+msgid "Prefer DVB-grafical subtitles"
 msgstr ""
 
 msgid "Prefer audio stream stored by service"
@@ -5226,8 +5575,14 @@ msgstr "A csatorna saját hangfolyamának előnyben részesítése"
 msgid "Prefer hearing impaired subtitles"
 msgstr "Hallássérülteknek szánt feliratok előnyben részesítése"
 
+msgid "Prefer hearing impaired subtitles over normal subtitles."
+msgstr ""
+
 msgid "Prefer subtitle stored by service"
 msgstr "A csatorna saját feliratának előnyben részesítése"
+
+msgid "Prefer the DVB-graphical subtitles over Teletext subtitles."
+msgstr ""
 
 msgid "Preferred tuner"
 msgstr "Előnyben részesített tuner"
@@ -5290,7 +5645,8 @@ msgid "Press OK to toggle the selection."
 msgstr "Nyomja le az OK gombot a jelölés változtatásához."
 
 msgid "Press yellow to set this interface as default interface."
-msgstr "Nyomja le a sárga gombot, hogy ezt az interfészt jelölje alapértelmezettnek."
+msgstr ""
+"Nyomja le a sárga gombot, hogy ezt az interfészt jelölje alapértelmezettnek."
 
 #
 msgid "Preview"
@@ -5299,6 +5655,9 @@ msgstr "Előnézet"
 #
 msgid "Preview menu"
 msgstr "Előnézeti menü"
+
+msgid "Preview selected channel"
+msgstr ""
 
 #
 msgid "Primary DNS"
@@ -5325,6 +5684,12 @@ msgid "Profile: Local box"
 msgstr ""
 
 msgid "Progress"
+msgstr ""
+
+msgid "Progress Bar Left"
+msgstr ""
+
+msgid "Progress Bar Right"
 msgstr ""
 
 msgid "Progress Small"
@@ -5412,6 +5777,13 @@ msgstr "Rádió"
 msgid "Random"
 msgstr "Véletlenszerű"
 
+#, python-format
+msgid "Rating defined by broadcaster - %d"
+msgstr ""
+
+msgid "Rating undefined"
+msgstr ""
+
 msgid "Read Userdata from oscam.conf"
 msgstr ""
 
@@ -5486,16 +5858,10 @@ msgstr "A felvételi idő rövidítve lett időzítés ütközés miatt: %s"
 msgid "Recording"
 msgstr "Felvétel"
 
-msgid "Recording Settings"
-msgstr ""
-
-msgid "Recording Setup"
-msgstr ""
-
-msgid "Recording data sync size"
-msgstr "Felvételi adatok sync-méret"
-
 msgid "Recording in progress"
+msgstr ""
+
+msgid "Recording settings"
 msgstr ""
 
 msgid "Recording type"
@@ -5569,6 +5935,9 @@ msgid "Remember these settings for each folder"
 msgstr ""
 
 msgid "Remote box"
+msgstr ""
+
+msgid "Remote type"
 msgstr ""
 
 #
@@ -5671,6 +6040,9 @@ msgid "Required medium type:"
 msgstr "Szükséges hordozó típusa"
 
 msgid "Reread partition table"
+msgstr ""
+
+msgid "Reserved"
 msgstr ""
 
 #
@@ -5816,6 +6188,9 @@ msgstr "S-Video"
 msgid "SABnzbd Setup"
 msgstr ""
 
+msgid "SABnzbd setup"
+msgstr ""
+
 msgid "SID"
 msgstr ""
 
@@ -5841,13 +6216,15 @@ msgstr ""
 msgid "Samba Setup"
 msgstr ""
 
+msgid "Samba setup"
+msgstr ""
+
 #
 msgid "Sat"
 msgstr "Szo"
 
-#
-msgid "Sat / Dish Setup"
-msgstr "Műhold / Antenna beállítás"
+msgid "Sat / Dish setup"
+msgstr ""
 
 #
 msgid "Satellite"
@@ -5923,6 +6300,9 @@ msgstr "Skálázó élesség"
 #
 msgid "Scaling Mode"
 msgstr "Skálázási mód"
+
+msgid "Scan"
+msgstr ""
 
 #
 msgid "Scan "
@@ -6016,7 +6396,9 @@ msgstr "US középsáv szkennelése"
 msgid "Scan band US SUPER"
 msgstr "US szupersáv szkennelése"
 
-msgid "Scan your network for wireless access points and connect to them using your selected wireless device.\n"
+msgid ""
+"Scan your network for wireless access points and connect to them using your "
+"selected wireless device.\n"
 msgstr ""
 
 #, python-format
@@ -6034,7 +6416,8 @@ msgid "Scanning..."
 msgstr ""
 
 #
-msgid "Scans default lamedbs sorted by satellite with a connected dish positioner"
+msgid ""
+"Scans default lamedbs sorted by satellite with a connected dish positioner"
 msgstr "Műholdanként rendezett Lamedb keresése csatlakoztatott pozícionerhez"
 
 msgid "Scrolling Speed"
@@ -6060,7 +6443,8 @@ msgstr "Elérhető frissítések keresése. Kérem, várjon..."
 
 #
 msgid "Searching for new installed or removed packages. Please wait..."
-msgstr "Újonnan telepített, vagy eltávolított csomagok keresése. Kérem, várjon..."
+msgstr ""
+"Újonnan telepített, vagy eltávolított csomagok keresése. Kérem, várjon..."
 
 #
 msgid "Secondary DNS"
@@ -6080,7 +6464,9 @@ msgstr ""
 msgid "Select"
 msgstr "Megjelölés"
 
-msgid "Select 'Yes' if you want only a small number of characters to be used for recording names."
+msgid ""
+"Select 'Yes' if you want only a small number of characters to be used for "
+"recording names."
 msgstr ""
 
 msgid "Select 'Yes' if you want recordings to have priority over live-TV."
@@ -6113,6 +6499,9 @@ msgstr "Csatorna kiválasztása melyről fel szeretne venni"
 msgid "Select copy destination for:"
 msgstr ""
 
+msgid "Select default EPG type..."
+msgstr ""
+
 msgid "Select desired image from feed list"
 msgstr ""
 
@@ -6141,7 +6530,9 @@ msgstr ""
 msgid "Select if you want the Subservice mode to be activated."
 msgstr ""
 
-msgid "Select if you want to use the ViX coloured Buttons (set to 'no' if you want to use (Multi) Quick Button)."
+msgid ""
+"Select if you want to use the ViX coloured Buttons (set to 'no' if you want "
+"to use (Multi) Quick Button)."
 msgstr ""
 
 msgid "Select input device"
@@ -6173,7 +6564,9 @@ msgstr ""
 msgid "Select service to add..."
 msgstr "Válasszon hozzáadandó szolgáltást..."
 
-msgid "Select the number of days after which the box is allowed to permanently delete recordings (from the trashcan)."
+msgid ""
+"Select the number of days after which the box is allowed to permanently "
+"delete recordings (from the trashcan)."
 msgstr ""
 
 #
@@ -6189,9 +6582,6 @@ msgid "Select video mode"
 msgstr "Válassza ki a video módot"
 
 msgid "Select what you want the Channel +/- button to activate:"
-msgstr ""
-
-msgid "Select what you want the EPG button to activate:"
 msgstr ""
 
 msgid "Select what you want the TV button to activate:"
@@ -6258,13 +6648,15 @@ msgstr ""
 msgid "Service Information"
 msgstr ""
 
+msgid "Service Name"
+msgstr ""
+
 #
 msgid "Service Scan"
 msgstr "Csatornakeresés"
 
-#
-msgid "Service Searching"
-msgstr "Csatornakeresés"
+msgid "Service Title mode"
+msgstr ""
 
 #
 msgid "Service has been added to the favourites."
@@ -6306,6 +6698,9 @@ msgstr ""
 msgid "Service scan"
 msgstr "Csatornakeresés"
 
+msgid "Service searching"
+msgstr ""
+
 #
 msgid ""
 "Service unavailable!\n"
@@ -6325,10 +6720,14 @@ msgstr "Csatorna"
 msgid "Services"
 msgstr "Csatornák"
 
-msgid "Services may be grouped in bouquets. If this option is enabled you can zap to a channel in another bouquet then you are in at present."
+msgid ""
+"Services may be grouped in bouquets. If this option is enabled you can zap "
+"to a channel in another bouquet then you are in at present."
 msgstr ""
 
-msgid "Services may be grouped in bouquets. If this option is enabled, you can use more then one bouquet."
+msgid ""
+"Services may be grouped in bouquets. If this option is enabled, you can use "
+"more then one bouquet."
 msgstr ""
 
 #
@@ -6355,31 +6754,80 @@ msgstr "Jelölje meg mint alapértelmezett interfészt"
 msgid "Set limits"
 msgstr ""
 
+msgid "Set the EPG language selection 1"
+msgstr ""
+
+msgid "Set the EPG language selection 2"
+msgstr ""
+
+msgid "Set the Teletext subtitle delay when timing lacks."
+msgstr ""
+
+msgid "Set the alignment of the Teletext subtitles."
+msgstr ""
+
+msgid "Set the audio language 1 (highest priority)"
+msgstr ""
+
+msgid "Set the audio language 2"
+msgstr ""
+
+msgid "Set the audio language 3"
+msgstr ""
+
+msgid "Set the audio language 4 (lowest priority)"
+msgstr ""
+
+msgid ""
+"Set the border width of the Teletext subtitles. This makes the titles more "
+"easy to read on a light background."
+msgstr ""
+
 msgid "Set the brightness level for normal operation."
 msgstr ""
 
 msgid "Set the brightness level for standby."
 msgstr ""
 
+msgid "Set the colour of the Teletext subtitles."
+msgstr ""
+
 msgid "Set the contrast level."
 msgstr ""
 
-msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid ""
+"Set the default location for your instant recordings. Press 'OK' to add new "
+"locations, select left/right to select an existing location."
 msgstr ""
 
-msgid "Set the default location for your recordings. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid ""
+"Set the default location for your recordings. Press 'OK' to add new "
+"locations, select left/right to select an existing location."
 msgstr ""
 
-msgid "Set the default location for your timers. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid ""
+"Set the default location for your timers. Press 'OK' to add new locations, "
+"select left/right to select an existing location."
 msgstr ""
 
-msgid "Set the default location for your timeshift-files. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid ""
+"Set the default location for your timeshift-files. Press 'OK' to add new "
+"locations, select left/right to select an existing location."
 msgstr ""
 
 msgid "Set the default sorting method."
 msgstr ""
 
 msgid "Set the desired configuration mode."
+msgstr ""
+
+msgid "Set the font size of the Teletext subtitles."
+msgstr ""
+
+msgid "Set the initial fast forward speed"
+msgstr ""
+
+msgid "Set the initial rewind speed"
 msgstr ""
 
 msgid "Set the jump-size of the seekbar."
@@ -6394,7 +6842,10 @@ msgstr ""
 msgid "Set the number of days you want old timers to be kept."
 msgstr ""
 
-msgid "Set the screen type you get on pressing 'OK' when the info bar shows to 2nd infobar or event info."
+msgid "Set the position of the DVB subtitles."
+msgstr ""
+
+msgid "Set the position of the Teletext subtitles."
 msgstr ""
 
 msgid "Set the scrolling speed of text on the front display."
@@ -6409,16 +6860,36 @@ msgstr ""
 msgid "Set the skip-forward/backward time of the 7-9 number keys."
 msgstr ""
 
+msgid "Set the subtitle language selection 1 (highest priority)"
+msgstr ""
+
+msgid "Set the subtitle language selection 2"
+msgstr ""
+
+msgid "Set the subtitle language selection 3"
+msgstr ""
+
+msgid "Set the subtitle language selection 4 (lowest priority)"
+msgstr ""
+
 msgid "Set the time to hide the infobar."
 msgstr ""
 
-msgid "Set the time to hide the second infobar. The bar also disappears on pressing 'OK'."
+msgid ""
+"Set the time to hide the second infobar. The bar also disappears on pressing "
+"'OK'."
 msgstr ""
 
 msgid "Set the time you want recordings to start before the event start-time."
 msgstr ""
 
 msgid "Set the time you want recordings to stop after the event stop-time."
+msgstr ""
+
+msgid "Set the transparency of the DVB subtitles."
+msgstr ""
+
+msgid "Set the type of the progress indication in the channel selection screen"
 msgstr ""
 
 msgid "Set the value for the initial fast-backward speed."
@@ -6434,6 +6905,9 @@ msgid "Set the values for fast-forward speeds."
 msgstr ""
 
 msgid "Set the values for slow-motion speeds."
+msgstr ""
+
+msgid "Set the width allocated to the picon."
 msgstr ""
 
 msgid "Set the width allocated to the service name."
@@ -6463,7 +6937,9 @@ msgstr ""
 msgid "Set to what you want the button to do."
 msgstr ""
 
-msgid "Set what the required action must be when zapping while a timeshift has been set as recording."
+msgid ""
+"Set what the required action must be when zapping while a timeshift has been "
+"set as recording."
 msgstr ""
 
 msgid "Set your Latitude:"
@@ -6472,7 +6948,9 @@ msgstr ""
 msgid "Set your Longitude:"
 msgstr ""
 
-msgid "Sets the root folder of movie list, to remove the '..' from benign shown in that folder."
+msgid ""
+"Sets the root folder of movie list, to remove the '..' from benign shown in "
+"that folder."
 msgstr ""
 
 #
@@ -6496,9 +6974,6 @@ msgstr ""
 msgid "Setup menu"
 msgstr ""
 
-msgid "Setup network time synchronization interval."
-msgstr ""
-
 msgid "Setup the interval to check for online updates. (in hours)"
 msgstr ""
 
@@ -6508,12 +6983,11 @@ msgstr ""
 msgid "Setup what a short press on the power button does."
 msgstr ""
 
-msgid "Setup your timezone."
-msgstr ""
-
 #
 #, python-format
-msgid "Shall the USB stick wizard proceed and program the image file %s into flash memory?"
+msgid ""
+"Shall the USB stick wizard proceed and program the image file %s into flash "
+"memory?"
 msgstr ""
 
 msgid "Share Folder's"
@@ -6544,16 +7018,16 @@ msgstr ""
 msgid "Show Clients"
 msgstr ""
 
-msgid "Show CoolTVGuide"
+msgid "Show Display Icons"
 msgstr ""
 
-msgid "Show Display Icons"
+msgid "Show E2 Log"
 msgstr ""
 
 msgid "Show EIT now/next in infobar"
 msgstr "Most/Következő információ megjelenítése az infosorban"
 
-msgid "Show Graphical EPG"
+msgid "Show Games show"
 msgstr ""
 
 #
@@ -6573,16 +7047,13 @@ msgstr ""
 msgid "Show Message when Recording starts"
 msgstr "Üzenet megjelenítése amikor a felévtel indul"
 
-msgid "Show Multi EPG"
+msgid "Show OE Log"
 msgstr ""
 
 msgid "Show OScam in extensions ?"
 msgstr ""
 
 msgid "Show PVR status in MoviePlayer infobar"
-msgstr ""
-
-msgid "Show Picons"
 msgstr ""
 
 msgid "Show Picons *"
@@ -6592,12 +7063,6 @@ msgid "Show RFmod setup..."
 msgstr ""
 
 msgid "Show Readers/Proxies"
-msgstr ""
-
-msgid "Show Service Names "
-msgstr ""
-
-msgid "Show Single EPG"
 msgstr ""
 
 msgid "Show Time Remaining/Elapsed"
@@ -6616,13 +7081,21 @@ msgstr ""
 msgid "Show WLAN Status"
 msgstr "A vezeték nélküli hálózat állapotának megjelenítése"
 
-msgid "Show alternative radio mode"
+msgid ""
+"Show a popup message after a recording has finished and before start next in "
+"queue."
+msgstr ""
+
+msgid "Show a popup when a recording starts"
+msgstr ""
+
+msgid "Show a popup when one movie has finished and the next one will start"
 msgstr ""
 
 msgid "Show animation while busy"
 msgstr "Animáció megjelenítése amikor a szoftver foglalt"
 
-msgid "Show background in radio mode"
+msgid "Show background in Radio Mode"
 msgstr ""
 
 msgid "Show background when tuned to a radio channel."
@@ -6703,6 +7176,11 @@ msgstr "Állapot-jelző ikonok megjelenítése a felvétel-listában"
 msgid "Show the infomation on current event."
 msgstr ""
 
+msgid ""
+"Show the length of a recording in the movielist (this might cause some "
+"additional loading time)"
+msgstr ""
+
 msgid "Show the media player..."
 msgstr ""
 
@@ -6740,9 +7218,8 @@ msgstr ""
 msgid "Shutdown"
 msgstr "Kikapcsolás"
 
-#
-msgid "Shutdown STB_BOX after"
-msgstr "Kapcsolja le a készüléket miután"
+msgid "Shutdown in (mins)"
+msgstr ""
 
 msgid "Side by Side"
 msgstr ""
@@ -6797,7 +7274,7 @@ msgstr "Lépés (GOP)"
 msgid "Skin Setting"
 msgstr ""
 
-msgid "Skin Setup"
+msgid "Skin setup"
 msgstr ""
 
 #
@@ -6811,9 +7288,8 @@ msgstr ""
 msgid "Sleep Timer"
 msgstr "Elalvás időzítő"
 
-#
-msgid "Sleep timer action:"
-msgstr "Elalvásidőzítő művelet:"
+msgid "Sleep timer"
+msgstr ""
 
 #
 msgid "Slideshow Interval (sec.)"
@@ -6839,15 +7315,24 @@ msgstr "Lassú"
 msgid "Slow Motion speeds"
 msgstr "Lassítási sebességek"
 
+msgid "Social/Political/Economics"
+msgstr ""
+
 msgid "SoftCam / CI"
 msgstr "SoftCam/CI"
 
-msgid "Softcam Setup"
+msgid "Softcam setings"
+msgstr ""
+
+msgid "Softcam settings"
 msgstr ""
 
 #
 msgid "Software"
 msgstr "Szoftver"
+
+msgid "Software Update"
+msgstr ""
 
 #
 msgid "Software management"
@@ -6886,7 +7371,9 @@ msgstr ""
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr ""
 
-msgid "Sorry feeds seem be in an unstable state, if you wish to use them please enable 'Allow unstable updates' in online update setup."
+msgid ""
+"Sorry feeds seem be in an unstable state, if you wish to use them please "
+"enable 'Allow unstable updates' in online update setup."
 msgstr ""
 
 #
@@ -6967,6 +7454,9 @@ msgstr "Spanyol"
 #
 msgid "Split preview mode"
 msgstr "Megosztott előnézeti mód"
+
+msgid "Sports"
+msgstr ""
 
 msgid "Standard"
 msgstr ""
@@ -7077,6 +7567,9 @@ msgstr "Pozíció tárolása"
 msgid "Stored position"
 msgstr "Tárolt pozíció"
 
+msgid "Stream"
+msgstr ""
+
 msgid "Stream request"
 msgstr ""
 
@@ -7089,9 +7582,6 @@ msgstr ""
 #
 msgid "Subservices"
 msgstr "Alcsatornák"
-
-msgid "Subtitle Settings"
-msgstr ""
 
 msgid "Subtitle delay when timing lacks"
 msgstr "Felirat időtartama, ha nincs időzítve"
@@ -7115,6 +7605,9 @@ msgstr "Felirat kiválasztása"
 msgid "Subtitle selection..."
 msgstr ""
 
+msgid "Subtitle settings"
+msgstr ""
+
 #
 msgid "Subtitles"
 msgstr "Feliratok"
@@ -7136,6 +7629,9 @@ msgstr ""
 #
 msgid "Swap Services"
 msgstr "Csatornák cserélése"
+
+msgid "Swap from normal to list mode"
+msgstr ""
 
 #
 msgid "Swedish"
@@ -7176,9 +7672,6 @@ msgstr ""
 msgid "Sync time using"
 msgstr ""
 
-msgid "Synchronize systemtime using transponder or internet."
-msgstr ""
-
 #
 msgid "System"
 msgstr "Rendszer"
@@ -7202,7 +7695,13 @@ msgstr "A TS fájl túl nagy az 'ISO9660 level 1' szabvány szerint!"
 msgid "TSID"
 msgstr ""
 
+msgid "TV System"
+msgstr ""
+
 msgid "TV button mode"
+msgstr ""
+
+msgid "TV physical address report"
 msgstr ""
 
 msgid "TXT PID"
@@ -7226,6 +7725,9 @@ msgid "Telnet Port"
 msgstr ""
 
 msgid "Telnet Setup"
+msgstr ""
+
+msgid "Telnet setup"
 msgstr ""
 
 #
@@ -7259,6 +7761,9 @@ msgstr "A készülék hálózati konfigurációjának ellenőrzése.\n"
 #
 msgid "Test-Messagebox?"
 msgstr "Teszteljem az Üzenet-dobozt?"
+
+msgid "Text"
+msgstr ""
 
 msgid "Text border width"
 msgstr "Betűk körvonal-vastagsága"
@@ -7296,8 +7801,14 @@ msgid ""
 msgstr ""
 
 #
-msgid "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to create a STB_BOX format data DVD (which will not play in stand-alone DVD players) instead?"
-msgstr "A DVD szabvány nem támogatja a H.264 (HDTV) videó streamet. Szeretne ehelyett létrehozni egy STB_BOX formátumó adat DVD-t (mely azonban nem játszható le a hagyományos lejátszókban)?"
+msgid ""
+"The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to "
+"create a STB_BOX format data DVD (which will not play in stand-alone DVD "
+"players) instead?"
+msgstr ""
+"A DVD szabvány nem támogatja a H.264 (HDTV) videó streamet. Szeretne "
+"ehelyett létrehozni egy STB_BOX formátumó adat DVD-t (mely azonban nem "
+"játszható le a hagyományos lejátszókban)?"
 
 msgid ""
 "The EPGSearch plugin is not installed!\n"
@@ -7365,7 +7876,7 @@ msgstr ""
 msgid "The backup failed. Please choose a different backup location."
 msgstr "A mentés nem sikerült. Válasszon másik célt ahova menthetem."
 
-msgid "The current beta image could not be stable"
+msgid "The current update maybe unstable"
 msgstr ""
 
 #, python-format
@@ -7405,8 +7916,12 @@ msgid "The installation of the default services lists is finished."
 msgstr "A csatornalisták telepítése elkészült."
 
 #
-msgid "The installation of the default settings is finished. You can now continue configuring your STB_BOX by pressing the OK button on the remote control."
-msgstr "A beállítások telepítése elkészült. Az OK gomb megnyomásával folytathatja a  készülék további beállítását."
+msgid ""
+"The installation of the default settings is finished. You can now continue "
+"configuring your STB_BOX by pressing the OK button on the remote control."
+msgstr ""
+"A beállítások telepítése elkészült. Az OK gomb megnyomásával folytathatja a  "
+"készülék további beállítását."
 
 msgid "The md5sum validation failed, the file may be corrupted!"
 msgstr ""
@@ -7441,9 +7956,6 @@ msgstr "Az elalvás időzítő aktiválva lett."
 msgid "The sleep timer has been disabled."
 msgstr "Az elalvásidőzítő ki van kapcsolva"
 
-msgid "The status of the current beta image could not be checked because www.openpli.org could not be reached for some reason"
-msgstr ""
-
 #
 msgid "The timer file (timers.xml) is corrupt and could not be loaded."
 msgstr "A timer fájl (timers.xml) sérült és nem lehet betölteni."
@@ -7463,11 +7975,16 @@ msgstr ""
 "Kérem, telepítse."
 
 #
-msgid "The wizard can backup your current settings. Do you want to do a backup now?"
-msgstr "A varázsló el tudja menteni a jelenlegi beállításait. szeretne most egy mentést csinálni?"
+msgid ""
+"The wizard can backup your current settings. Do you want to do a backup now?"
+msgstr ""
+"A varázsló el tudja menteni a jelenlegi beállításait. szeretne most egy "
+"mentést csinálni?"
 
 #, python-format
-msgid "The wizard found a configuration backup. Do you want to restore your old settings from %s?"
+msgid ""
+"The wizard found a configuration backup. Do you want to restore your old "
+"settings from %s?"
 msgstr ""
 
 #
@@ -7511,28 +8028,29 @@ msgstr ""
 
 #
 msgid "There was an error downloading the packetlist. Please try again."
-msgstr "A csomaglista letöltése hiba miatt lehetetlen. Kérem, próbálja meg újra."
+msgstr ""
+"A csomaglista letöltése hiba miatt lehetetlen. Kérem, próbálja meg újra."
 
 #
 msgid "There was an error. The package:"
 msgstr "Hiba történt. A csomag:"
 
 #
-msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
-msgstr "Ez a DVD RW medium már meg van formázva - a lemez újraformázásával minden adat el fog veszni."
+msgid ""
+"This DVD RW medium is already formatted - reformatting will erase all "
+"content on the disc."
+msgstr ""
+"Ez a DVD RW medium már meg van formázva - a lemez újraformázásával minden "
+"adat el fog veszni."
 
 #
 #, python-format
 msgid "This STB_BOX can't decode %s streams!"
 msgstr ""
 
-msgid "This allows the ECM data to be included in the stream. This enables a client STB_BOX to decode it."
-msgstr ""
-
-msgid "This allows the STB_BOX to decode the stream (if the ECM data is included in the stream and a valid card is available)."
-msgstr ""
-
-msgid "This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size"
+msgid ""
+"This allows you change the font size relative to skin size, so 1 increases "
+"by 1 point size, and -1 decreases by 1 point size"
 msgstr ""
 
 msgid "This allows you change the number of rows shown."
@@ -7542,7 +8060,9 @@ msgstr ""
 msgid "This is step number 2."
 msgstr "Ez a 2. lépés."
 
-msgid "This option allows to reduce the block-noise in the picture. Obviously this is at the cost of the picture's sharpness."
+msgid ""
+"This option allows to reduce the block-noise in the picture. Obviously this "
+"is at the cost of the picture's sharpness."
 msgstr ""
 
 msgid "This option allows to set the level of dynamic contrast of the picture."
@@ -7551,19 +8071,31 @@ msgstr ""
 msgid "This option allows you choose how to display elapsed time  as + or -"
 msgstr ""
 
-msgid "This option allows you choose how to display remaining time, or elapsed time, or both."
+msgid ""
+"This option allows you choose how to display remaining time, or elapsed "
+"time, or both."
 msgstr ""
 
-msgid "This option allows you choose how to display the remaining/elapsed time for Media playback."
+msgid ""
+"This option allows you choose how to display the remaining/elapsed time for "
+"Media playback."
 msgstr ""
 
-msgid "This option allows you choose how to display the remaining/elapsed time for live tv."
+msgid ""
+"This option allows you choose how to display the remaining/elapsed time for "
+"live tv."
 msgstr ""
 
-msgid "This option allows you choose how to display the remaining/elapsed time for media playback."
+msgid ""
+"This option allows you choose how to display the remaining/elapsed time for "
+"media playback."
 msgstr ""
 
-msgid "This option allows you choose the background colour of transparent picons."
+msgid ""
+"This option allows you choose the background colour of transparent picons."
+msgstr ""
+
+msgid "This option allows you set the layout view (Text or Graphics)."
 msgstr ""
 
 msgid "This option allows you to boost the blue tones in the picture."
@@ -7572,31 +8104,29 @@ msgstr ""
 msgid "This option allows you to boost the green tones in the picture."
 msgstr ""
 
-msgid "This option allows you to choose from the two channel lists that are available."
+msgid ""
+"This option allows you to choose from the two channel lists that are "
+"available."
 msgstr ""
 
-msgid "This option allows you to choose what the first button press jumps to in channel list screen, (so pressing '2' jumps to 'A' or '2' first)"
-msgstr ""
-
-msgid "This option allows you to control how finished timer are shown in the Timer List."
+msgid ""
+"This option allows you to choose what the first button press jumps to in "
+"channel list screen, (so pressing '2' jumps to 'A' or '2' first)"
 msgstr ""
 
 msgid "This option allows you to disable sorting of the menus"
 msgstr ""
 
-msgid "This option allows you to disable sorting of the option in setting screen's"
+msgid ""
+"This option allows you to disable sorting of the option in setting screen's"
 msgstr ""
 
 msgid "This option allows you to disable sorting of the plugin browser."
 msgstr ""
 
-msgid "This option allows you to hide any Common Interface card error messages."
-msgstr ""
-
-msgid "This option allows you to hide any zap error messages."
-msgstr ""
-
-msgid "This option allows you to the SNR as a percentage (not all receivers support this)."
+msgid ""
+"This option allows you to the SNR as a percentage (not all receivers support "
+"this)."
 msgstr ""
 
 msgid "This option allows you to view the old and new settings side by side."
@@ -7614,10 +8144,15 @@ msgstr ""
 msgid "This option lets you show the option in the extension screen"
 msgstr ""
 
-msgid "This option moves the PVR status from the seprate window into the MoviePlayer infobar."
+msgid ""
+"This option moves the PVR status from the seprate window into the "
+"MoviePlayer infobar."
 msgstr ""
 
-msgid "This option set the level of surpression of musquito noise (Musquito Noise is random aliasing as a reslut of strong compression). Obviously this goes at the cost of picture details."
+msgid ""
+"This option set the level of surpression of musquito noise (Musquito Noise "
+"is random aliasing as a result of strong compression). Obviously this goes "
+"at the cost of picture details."
 msgstr ""
 
 msgid "This option sets  the picture contrast."
@@ -7635,10 +8170,14 @@ msgstr ""
 msgid "This option sets the picture saturation."
 msgstr ""
 
-msgid "This option sets the scaler sharpness, used when scretching picture from 4:3 to 16:9."
+msgid ""
+"This option sets the scaler sharpness, used when stretching picture from 4:3 "
+"to 16:9."
 msgstr ""
 
-msgid "This option sets the surpression of false digital contours, that are the result of a limited number of discrete values."
+msgid ""
+"This option sets the surpression of false digital contours, that are the "
+"result of a limited number of discrete values."
 msgstr ""
 
 msgid "This option sets up the connection method."
@@ -7647,10 +8186,13 @@ msgstr ""
 msgid "This option sets up the general audio delay of Analog sound tracks."
 msgstr ""
 
-msgid "This option sets up the general audio delay of Dolby Digital sound tracks."
+msgid ""
+"This option sets up the general audio delay of Dolby Digital sound tracks."
 msgstr ""
 
-msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
+msgid ""
+"This option sets up the picture sharpness, used when the picture is being "
+"upscaled."
 msgstr ""
 
 msgid "This option sets up the screen aspect ratio."
@@ -7666,10 +8208,13 @@ msgid "This option sets up the screen resolution."
 msgstr ""
 
 msgid ""
-"This plugin creates a USB stick which can be used to update the firmware of your STB_BOX without the need for a network or WLAN connection.\n"
+"This plugin creates a USB stick which can be used to update the firmware of "
+"your STB_BOX without the need for a network or WLAN connection.\n"
 "First, a USB stick needs to be prepared so that it becomes bootable.\n"
-"In the next step, an NFI image file can be downloaded from the update server and saved on the USB stick.\n"
-"If you already have a prepared bootable USB stick, please insert it now. Otherwise plug in a USB stick with a minimum size of 64 MB!"
+"In the next step, an NFI image file can be downloaded from the update server "
+"and saved on the USB stick.\n"
+"If you already have a prepared bootable USB stick, please insert it now. "
+"Otherwise plug in a USB stick with a minimum size of 64 MB!"
 msgstr ""
 
 #
@@ -7693,12 +8238,14 @@ msgid ""
 "This test checks for configured Nameservers.\n"
 "If you get a \"unconfirmed\" message:\n"
 "- please check your DHCP, cabling and Adapter setup\n"
-"- if you configured your Nameservers manually please verify your entries in the \"Nameserver\" Configuration"
+"- if you configured your Nameservers manually please verify your entries in "
+"the \"Nameserver\" Configuration"
 msgstr ""
 "Ez a teszt leellenőrzi a beállított névszervereket.\n"
 "Ha eredményként \"nem igazolt\", akkor:\n"
 "- ellenőrizze a DHCP beállítást, a kábelezért és az interfész beállításait\n"
-"- ha a névszervert kézzel állította be, akkor ellenőrizze a bejegyzéseket a \"Névszerver\" beállításokban"
+"- ha a névszervert kézzel állította be, akkor ellenőrizze a bejegyzéseket a "
+"\"Névszerver\" beállításokban"
 
 #
 msgid ""
@@ -7707,7 +8254,8 @@ msgid ""
 "- verify that a network cable is attached\n"
 "- verify that the cable is not broken"
 msgstr ""
-"Ez a teszt leellenőrzi, hogy a hálótzati adapterhez van-e kábel csatlakoztatva.\n"
+"Ez a teszt leellenőrzi, hogy a hálótzati adapterhez van-e kábel "
+"csatlakoztatva.\n"
 "Ha válaszként a \"nincs csatlakoztatva\" üzenetet kapja, akkor:\n"
 "- ellenőrizze, hogy van-e kábel csatlakoztatva\n"
 "- ellenőrizze, hogy a csatlakoztatott kábel szakadt-e"
@@ -7719,26 +8267,22 @@ msgid ""
 "- no valid IP Address was found\n"
 "- please check your DHCP, cabling and adapter setup"
 msgstr ""
-"Ez a teszt leellenőrzi, hogy a hálótzati interfész kapott-e érvényes IP címet.\n"
+"Ez a teszt leellenőrzi, hogy a hálótzati interfész kapott-e érvényes IP "
+"címet.\n"
 "Ha válaszként a \"nem igazolt\" választ kapja, akkor:\n"
 "- nem található érvényes IP cím\n"
 "- ellenőrizze a DHCP beállításokat, a kábelezést és az interfész beállításait"
 
-#
 msgid ""
-"This test checks whether your LAN Adapter is set up for automatic IP Address configuration with DHCP.\n"
+"This test checks whether your LAN Adapter is set up for automatic IP Address "
+"configuration with DHCP.\n"
 "If you get a \"disabled\" message:\n"
 " - then your LAN Adapter is configured for manual IP Setup\n"
-"- verify thay you have entered correct IP informations in the AdapterSetup dialog.\n"
-"If you get an \"enabeld\" message:\n"
+"- verify thay you have entered correct IP informations in the AdapterSetup "
+"dialog.\n"
+"If you get an \"enabled\" message:\n"
 "-verify that you have a configured and working DHCP Server in your network."
 msgstr ""
-"Ez a teszt leellenőrzi hogy a hálótzati interfész be lett-e állítva az automatikus IP cím lekéréséhez DHCP-vel.\n"
-"Ha válaszként a \"kikapcsolva\" üzenetet kapja, akkor:\n"
-"- a hálótzati interfész csak manuális IP cím megadására lett beállítva\n"
-"- ellenőrizze, hogy helyes IP adatokat adott meg az interfész beállításaiban\n"
-"Ha válaszként a \"engedélyezve\" üzenetet kapja, akkor:\n"
-"- ellenőrizze hogy a hálózatában létezik-e jól beállított és működő DHCP szerver."
 
 #
 msgid "This test detects your configured LAN-Adapter."
@@ -7774,13 +8318,13 @@ msgstr "Idő"
 msgid "Time Scale"
 msgstr ""
 
-msgid "Time Settings"
-msgstr ""
-
 msgid "Time Update in Minutes"
 msgstr ""
 
 msgid "Time Update in Minutes:"
+msgstr ""
+
+msgid "Time settings"
 msgstr ""
 
 #
@@ -7847,12 +8391,6 @@ msgstr ""
 msgid "Timeshift"
 msgstr "Időcsúsztatás"
 
-msgid "Timeshift Settings"
-msgstr ""
-
-msgid "Timeshift Setup"
-msgstr ""
-
 #
 msgid "Timeshift location"
 msgstr "Időcsúsztatás tárhelye"
@@ -7867,10 +8405,15 @@ msgstr ""
 msgid "Timeshift saved to your harddisk!"
 msgstr ""
 
+msgid "Timeshift settings"
+msgstr ""
+
 msgid "Timeshift will get saved at end of event!"
 msgstr ""
 
-msgid "Timeshift will only start when the start delay time has passed. Thois prevents numurous very short files when zapping."
+msgid ""
+"Timeshift will only start when the start delay time has passed. This "
+"prevents numurous very short files when zapping."
 msgstr ""
 
 msgid "Timeshift-Save Action on zap"
@@ -7878,9 +8421,6 @@ msgstr ""
 
 msgid "Timezone"
 msgstr "Időzóna"
-
-msgid "Timshift Settings"
-msgstr ""
 
 #
 msgid "Title"
@@ -7902,13 +8442,18 @@ msgstr "Felirat kiválasztása"
 
 msgid ""
 "To update your STB_BOX firmware, please follow these steps:\n"
-"1) Turn off your box with the rear power switch and make sure the bootable USB stick is plugged in.\n"
-"2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n"
+"1) Turn off your box with the rear power switch and make sure the bootable "
+"USB stick is plugged in.\n"
+"2) Turn mains back on and hold the DOWN button on the front panel pressed "
+"for 10 seconds.\n"
 "3) Wait for bootup and follow instructions of the wizard."
 msgstr ""
 
 msgid "Today"
 msgstr "Ma"
+
+msgid "Toggle Picture In Graphics"
+msgstr ""
 
 msgid "Toggle aspect ratio..."
 msgstr ""
@@ -7996,11 +8541,13 @@ msgstr "Hátralevő próbálkozások száma:"
 
 #
 msgid "Try to find used Transponders in cable network.. please wait..."
-msgstr "Felhasználói transzponderek keresése a kábeles hálózaton.. Kérem, várjon..."
+msgstr ""
+"Felhasználói transzponderek keresése a kábeles hálózaton.. Kérem, várjon..."
 
 #
 msgid "Try to find used transponders in cable network.. please wait..."
-msgstr "Felhasználói transzponderek keresése a kábeles hálózaton.. Kérem, várjon..."
+msgstr ""
+"Felhasználói transzponderek keresése a kábeles hálózaton.. Kérem, várjon..."
 
 #
 msgid "Trying to download a new packetlist. Please wait..."
@@ -8171,7 +8718,7 @@ msgstr "Szoftver-katalógus frissítése"
 msgid "Updating... Please wait... This can take some minutes..."
 msgstr "Frissítés... Kérem, várjon... Ez akár pár percig is eltarthat..."
 
-msgid "Upgrade and ask to reboot"
+msgid "Upgrade and reboot system"
 msgstr ""
 
 #
@@ -8231,6 +8778,9 @@ msgstr ""
 msgid "Use ViX coloured Buttons *"
 msgstr ""
 
+msgid "Use Yellow pango DVB subtitles"
+msgstr ""
+
 #
 msgid "Use a gateway"
 msgstr "Átjáró használata"
@@ -8251,10 +8801,23 @@ msgstr "Eredeti teletext-elhelyezés megtartása"
 msgid "Use power measurement"
 msgstr "Teljesítmény-felvétel mérése"
 
+msgid ""
+"Use power measurement to detect when the rotor stops turning (if your Vu+ "
+"Duo supports that)"
+msgstr ""
+
 msgid "Use slim screen"
 msgstr ""
 
-msgid "Use the Left/Right buttons on your remote to adjust the size of the OSD. Left button decreases the size, Right increases the size."
+msgid "Use the EIT EPG when tuned to a service."
+msgstr ""
+
+msgid "Use the FreeSat EPG when tuned to a service."
+msgstr ""
+
+msgid ""
+"Use the Left/Right buttons on your remote to adjust the size of the OSD. "
+"Left button decreases the size, Right increases the size."
 msgstr ""
 
 msgid "Use the Left/Right buttons on your remote to move the OSD left/right"
@@ -8263,13 +8826,23 @@ msgstr ""
 msgid "Use the Left/Right buttons on your remote to move the OSD up/down"
 msgstr ""
 
+msgid "Use the MHW EPG when tuned to a service."
+msgstr ""
+
+msgid "Use the Netmed EPG when tuned to a service."
+msgstr ""
+
 #
 msgid "Use the Networkwizard to configure selected network adapter"
-msgstr "A hálózati Varázsló használata a kijelölt hálózati interfész konfigurálásához"
+msgstr ""
+"A hálózati Varázsló használata a kijelölt hálózati interfész konfigurálásához"
 
 #
 msgid "Use the Networkwizard to configure your Network\n"
 msgstr "A hálózat beállításához használja a hálózati Varázslót\n"
+
+msgid "Use the ViaSat EPG when tuned to a service."
+msgstr ""
 
 msgid "Use the alternative or the conventional radio mode."
 msgstr ""
@@ -8287,9 +8860,15 @@ msgstr ""
 "\n"
 "Állítsa be az A tunert"
 
+msgid "Use the original position of the Teletext subtitles."
+msgstr ""
+
 #
-msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
-msgstr "A fel/le nyílgombokkal változtathatja az opciót. Ez után nyomja le az OK-t."
+msgid ""
+"Use the up/down keys on your remote control to select an option. After that, "
+"press OK."
+msgstr ""
+"A fel/le nyílgombokkal változtathatja az opciót. Ez után nyomja le az OK-t."
 
 msgid "Use this input device settings?"
 msgstr "Használhatók ezek a beviteli eszköz beállítások?"
@@ -8316,6 +8895,9 @@ msgstr "Ennél a műholdnál használja az USALS-t"
 msgid "Use wizard to set up basic features"
 msgstr "Használja a varázslót az alapbeállításokhoz"
 
+msgid "Use yellow DVB subtitles."
+msgstr ""
+
 #
 msgid "Used service scan type"
 msgstr "Használt szolgáltatás keresési típusa"
@@ -8333,6 +8915,9 @@ msgstr ""
 msgid "User defined"
 msgstr "Felh. által megadva"
 
+msgid "User interface"
+msgstr ""
+
 #
 msgid "Username"
 msgstr "Felhasználónév"
@@ -8349,6 +8934,12 @@ msgstr ""
 msgid "Using old profile: "
 msgstr ""
 
+msgid ""
+"Usually when the subtitle language is the same as the audio language "
+"subtitles are surpressed. This option allows showing subtitles when they are "
+"the same."
+msgstr ""
+
 #
 msgid "VCR scart"
 msgstr "VCR scart"
@@ -8356,6 +8947,9 @@ msgstr "VCR scart"
 #
 msgid "VMGM (intro trailer)"
 msgstr "VMGM (Intro trailer)"
+
+msgid "VU+"
+msgstr ""
 
 msgid "Version:"
 msgstr ""
@@ -8411,13 +9005,15 @@ msgstr "Videó-beállítások"
 msgid ""
 "Video input selection\n"
 "\n"
-"Please press OK if you can see this page on your TV (or select a different input port).\n"
+"Please press OK if you can see this page on your TV (or select a different "
+"input port).\n"
 "\n"
 "The next input port will be automatically probed in 10 seconds."
 msgstr ""
 "Video bementi kiválasztás\n"
 "\n"
-"nyomja le az OK-t ha látja ezt a képet a TV képernyőn (vagy válasszon más bemeneti portot).\n"
+"nyomja le az OK-t ha látja ezt a képet a TV képernyőn (vagy válasszon más "
+"bemeneti portot).\n"
 "A következő bemeneti port automatikusan átkapcsol 10 mp múlva."
 
 #
@@ -8512,9 +9108,15 @@ msgstr "Az elérhető szoftveres bővítmények listázása"
 msgid "View list of available system extensions"
 msgstr "Az elérhető rendszer-Bővítmények listázása"
 
+msgid "View mode"
+msgstr ""
+
 #
 msgid "View teletext..."
 msgstr "Teletext megtekintése..."
+
+msgid "View the changes"
+msgstr ""
 
 #
 msgid "Virtual KeyBoard"
@@ -8530,6 +9132,29 @@ msgstr "Feszültség"
 #
 msgid "Volume"
 msgstr "Hangerő"
+
+msgid "STB_BOX advanced remote control (native)"
+msgstr ""
+
+#
+msgid "STB_BOX format data DVD (HDTV compatible)"
+msgstr "STB_BOX formátumú adat DVD (HDTV kompatibilis)"
+
+msgid "STB_BOX front panel"
+msgstr ""
+
+msgid "STB_BOX ir keyboard"
+msgstr "infra billentyűzet"
+
+msgid "STB_BOX ir mouse"
+msgstr "infra egér"
+
+msgid "STB_BOX remote control (native)"
+msgstr "eredeti távirányító"
+
+#
+msgid "STB_BOX software because updates are available."
+msgstr "(a készülék szoftverének frissítése)"
 
 #
 msgid "W"
@@ -8608,65 +9233,72 @@ msgstr "Szerda"
 msgid "Weekday"
 msgstr "Hétköznap"
 
-msgid "Weekly"
-msgstr ""
-
 #
 msgid ""
 "Welcome to the Cutlist editor.\n"
 "\n"
-"Seek to the start of the stuff you want to cut away. Press OK, select 'start cut'.\n"
+"Seek to the start of the stuff you want to cut away. Press OK, select 'start "
+"cut'.\n"
 "\n"
 "Then seek to the end, press OK, select 'end cut'. That's it."
 msgstr ""
 "Üdvözlöm a Vágólista szerkesztőben.\n"
 "\n"
-"Keresse meg a kivágandó rész elejét majd nyomja le az OK gombot és válassza ki a 'Vágás eleje' opciót.\n"
+"Keresse meg a kivágandó rész elejét majd nyomja le az OK gombot és válassza "
+"ki a 'Vágás eleje' opciót.\n"
 "\n"
-"Majd menjen a kivágandó rész végére, nyomja le az OK gombot és válassza a \"Vágás vége\" opciót. Ennyi az egész."
+"Majd menjen a kivágandó rész végére, nyomja le az OK gombot és válassza a "
+"\"Vágás vége\" opciót. Ennyi az egész."
 
 #
-msgid "Welcome to the Image upgrade wizard. The wizard will assist you in upgrading the firmware of your STB_BOX by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware."
-msgstr "Üdvözlöm az Image frissítés varázslójában. A varázsló segít Önnek a készülékének firmware frissítésében. Ismerteti a mentési tulajdonságokat, így beállításai sem vesznek el, továbbá elmagyarázza hogyan frissítse készülékét az új firmware-el."
+msgid ""
+"Welcome to the Image upgrade wizard. The wizard will assist you in upgrading "
+"the firmware of your STB_BOX by providing a backup facility for your current "
+"settings and a short explanation of how to upgrade your firmware."
+msgstr ""
+"Üdvözlöm az Image frissítés varázslójában. A varázsló segít Önnek a "
+"készülékének firmware frissítésében. Ismerteti a mentési tulajdonságokat, "
+"így beállításai sem vesznek el, továbbá elmagyarázza hogyan frissítse "
+"készülékét az új firmware-el."
 
 #
 msgid ""
 "Welcome to the cleanup wizard.\n"
 "\n"
 "We have detected that your available internal memory has dropped below 2MB.\n"
-"To ensure stable operation of your STB_BOX, the internal memory should be cleaned up.\n"
+"To ensure stable operation of your STB_BOX, the internal memory should be "
+"cleaned up.\n"
 "You can use this wizard to remove some extensions.\n"
 msgstr ""
 "Üdvözöljük a takarító varázslóban!\n"
 "\n"
-"A rendszer jelzései szerint, a belső memóriában a szabad kapacitás 2MB alá csökkent.\n"
-"A készülék stabil üzemelésének biztosításához, a belső memóriát takarítani szükséges.\n"
+"A rendszer jelzései szerint, a belső memóriában a szabad kapacitás 2MB alá "
+"csökkent.\n"
+"A készülék stabil üzemelésének biztosításához, a belső memóriát takarítani "
+"szükséges.\n"
 "Ez a Varázsló segíthet Önnek abban, hogy néhány bővítményt eltávolíthasson.\n"
 
 msgid ""
 "Welcome.\n"
 "\n"
-"If you want to connect your STB_BOX to the Internet, this wizard will guide you through the basic network setup of your STB_BOX.\n"
+"If you want to connect your STB_BOX to the Internet, this wizard will guide "
+"you through the basic network setup of your STB_BOX.\n"
 "\n"
 "Press OK to start configuring your network"
 msgstr ""
 "Üdvözüljük.\n"
 "\n"
-"Ha szeretné a készülékét az Internetre csatlakoztatni, ez a Varázsló segíthet Önnek, hogy az alap-konfigurációt létrehozhassa.\n"
+"Ha szeretné a készülékét az Internetre csatlakoztatni, ez a Varázsló "
+"segíthet Önnek, hogy az alap-konfigurációt létrehozhassa.\n"
 "\n"
 "Kérem, nyomja le az OK gombot a hákózat konfigurálásához"
 
-#
 msgid ""
 "Welcome.\n"
 "\n"
-"This start wizard will guide you through the basic setup of your Xtrend ET9.\n"
+"This start wizard will guide you through the basic setup of your STB_BOX.\n"
 "Press the OK button on your remote control to move to the next step."
 msgstr ""
-"Üdvözlöm.\n"
-"\n"
-"Ez az Indítási Varázsló végig fogja Önt vezetni a készülék alapbeállításain.\n"
-"nyomja le az OK gombot a távirányítón a következő lépéshez."
 
 #
 msgid "Welcome..."
@@ -8684,22 +9316,38 @@ msgstr "Mit szeretne lekeresni?"
 msgid "What to do with submitted crashlogs?"
 msgstr "Mit szeretne tenni az elküldött hibanaplókkal?"
 
-msgid "When set each folder will show the previous state used, when off the default values will be shown."
+msgid ""
+"When a recording needs to be started it is allowed to interrupt the watched "
+"service"
+msgstr ""
+
+msgid ""
+"When set each folder will show the previous state used, when off the default "
+"values will be shown."
 msgstr ""
 
 msgid "When set the PIG will return to live after a movie has stopped playing."
 msgstr ""
 
-msgid "When the event has a aspect ratio of 16:9, choose whether to scale/stretch the picture."
+msgid ""
+"When the event has a aspect ratio of 16:9, choose whether to scale/stretch "
+"the picture."
 msgstr ""
 
-msgid "When the event has a aspect ratio of 4:3, choose whether to scale/stretch the picture."
+msgid ""
+"When the event has a aspect ratio of 4:3, choose whether to scale/stretch "
+"the picture."
 msgstr ""
 
-msgid "When the event has a aspect ratio of 4:3, choose whether to stretch the picture to fill the screen."
+msgid ""
+"When the event has a aspect ratio of 4:3, choose whether to stretch the "
+"picture to fill the screen."
 msgstr ""
 
-msgid "When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure what you're doing."
+msgid ""
+"When tuned to a service the system will normally scan the transponder for "
+"any changes and save them. Only set to 'yes' if you're absolutely sure what "
+"you're doing."
 msgstr ""
 
 msgid "When using scart connection, choose what color format to use."
@@ -8713,8 +9361,10 @@ msgid ""
 "\n"
 "Really do a factory reset?"
 msgstr ""
-"Ha visszaállítja a készüléket a gyári állapotba, minden beállítása el fog veszni\n"
-"(beleérve a bouquet-eket, a kedvenceket, lekeresett csatornákat, műholdakat...)!\n"
+"Ha visszaállítja a készüléket a gyári állapotba, minden beállítása el fog "
+"veszni\n"
+"(beleérve a bouquet-eket, a kedvenceket, lekeresett csatornákat, "
+"műholdakat...)!\n"
 "A gyári állapotba helyezés után, a készülék automatikusan újra fog indulni.\n"
 "\n"
 "Biztos benne, hogy gyári állapotba állítja a készüléket?"
@@ -8751,16 +9401,29 @@ msgstr ""
 msgid "Wireless network state"
 msgstr ""
 
-msgid "With this option enabled the online checker will also check for experimental versions"
+msgid ""
+"With this option enabled the online checker will also check for experimental "
+"versions"
 msgstr ""
 
-msgid "With this option enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history."
+msgid ""
+"With this option enabled, Channel numbers will start with '1' in each "
+"bouquet."
 msgstr ""
 
-msgid "With this option set to 'yes' the channel lists will always show you the bouquet screen first. If set to 'no' the current bouquet will be opened."
+msgid ""
+"With this option enabled, pressing '0' will zap you to the first channel in "
+"your first bouquet and delete your zap-history."
 msgstr ""
 
-msgid "With this option you can hide Job Tasks from the extension screen (short blue button press)."
+msgid ""
+"With this option set to 'yes' the channel lists will always show you the "
+"bouquet screen first. If set to 'no' the current bouquet will be opened."
+msgstr ""
+
+msgid ""
+"With this option you can hide Job Tasks from the extension screen (short "
+"blue button press)."
 msgstr ""
 
 #
@@ -8779,29 +9442,6 @@ msgstr "Az írás sikertelen!"
 
 msgid "XBox 360 support"
 msgstr ""
-
-msgid "STB_BOX advanced remote control (native)"
-msgstr ""
-
-#
-msgid "STB_BOX format data DVD (HDTV compatible)"
-msgstr "STB_BOX formátumú adat DVD (HDTV kompatibilis)"
-
-msgid "STB_BOX front panel"
-msgstr ""
-
-msgid "STB_BOX ir keyboard"
-msgstr "infra billentyűzet"
-
-msgid "STB_BOX ir mouse"
-msgstr "infra egér"
-
-msgid "STB_BOX remote control (native)"
-msgstr "eredeti távirányító"
-
-#
-msgid "STB_BOX software because updates are available."
-msgstr "(a készülék szoftverének frissítése)"
 
 msgid "YPbPr"
 msgstr "YPbPr"
@@ -8893,8 +9533,12 @@ msgid "You can cancel the removal."
 msgstr "Az eltávolítás folyamata leállítható."
 
 #
-msgid "You can choose some default settings now. Please select the settings you want to be installed."
-msgstr "Most kiválaszthat pár alaphelyzeti bállítást. Kérem, válassza ki azt a beállítást melyet telepíteni szeretne."
+msgid ""
+"You can choose some default settings now. Please select the settings you "
+"want to be installed."
+msgstr ""
+"Most kiválaszthat pár alaphelyzeti bállítást. Kérem, válassza ki azt a "
+"beállítást melyet telepíteni szeretne."
 
 #
 msgid "You can choose, what you want to install..."
@@ -8942,30 +9586,50 @@ msgid "You chose not to install any default services lists."
 msgstr "Nem választott ki egyetlen csatornalistát sem."
 
 #
-msgid "You chose not to install any default settings. You can however install the default settings later in the settings menu."
-msgstr "Nem választott ki telepítésre egyetlen beállítást sem. Később természetesen bármikor telepítheti ezeket a beállítások menüben."
+msgid ""
+"You chose not to install any default settings. You can however install the "
+"default settings later in the settings menu."
+msgstr ""
+"Nem választott ki telepítésre egyetlen beállítást sem. Később természetesen "
+"bármikor telepítheti ezeket a beállítások menüben."
 
 #
-msgid "You chose not to install anything. Please press OK finish the install wizard."
-msgstr "Úgy döntött, hogy nem telepít semmit. Az OK gomb megnyomásával bezárhatja a varázslót."
+msgid ""
+"You chose not to install anything. Please press OK finish the install wizard."
+msgstr ""
+"Úgy döntött, hogy nem telepít semmit. Az OK gomb megnyomásával bezárhatja a "
+"varázslót."
 
 msgid "You didn't select a channel to record from."
 msgstr "Nem választott ki csatornát, ahonnan történjen a felvétel."
 
-msgid "You have already sent this log, are you sure you want to resend this log:\n"
+msgid ""
+"You have already sent this log, are you sure you want to resend this log:\n"
 msgstr ""
 
 #
-msgid "You have chosen to backup your settings. Please press OK to start the backup now."
+msgid ""
+"You have chosen to backup your settings. Please press OK to start the backup "
+"now."
 msgstr ""
 
 #
-msgid "You have chosen to create a new .NFI flasher bootable USB stick. This will repartition the USB stick and therefore all data on it will be erased."
-msgstr "Azt választotta hogy létrehoz egy új .NFI flasher bootolható USB sticket. Ez az USB sticket újra fogja partícionálni, ezért az azon található összes adat el fog veszni."
+msgid ""
+"You have chosen to create a new .NFI flasher bootable USB stick. This will "
+"repartition the USB stick and therefore all data on it will be erased."
+msgstr ""
+"Azt választotta hogy létrehoz egy új .NFI flasher bootolható USB sticket. Ez "
+"az USB sticket újra fogja partícionálni, ezért az azon található összes adat "
+"el fog veszni."
 
 #
-msgid "You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now."
-msgstr "Ön azt választotta, hogy a beállításokat visszaállítja egy koráábi biztonsági mentésből. A folyamat végén, az Enigma2 újra fog indulni. Kérem, nyomja le az OK gombot a folytatáshoz."
+msgid ""
+"You have chosen to restore your settings. Enigma2 will restart after "
+"restore. Please press OK to start the restore now."
+msgstr ""
+"Ön azt választotta, hogy a beállításokat visszaállítja egy koráábi "
+"biztonsági mentésből. A folyamat végén, az Enigma2 újra fog indulni. Kérem, "
+"nyomja le az OK gombot a folytatáshoz."
 
 msgid ""
 "You have not setup your user info in the setup screen\n"
@@ -8985,11 +9649,17 @@ msgstr "Várnia kell (%s)!"
 
 #
 msgid ""
-"You need a PC connected to your STB_BOX. If you need further instructions, please visit the website http://www.dm7025.de.\n"
-"Your STB_BOX will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
+"You need a PC connected to your STB_BOX. If you need further instructions, "
+"please visit the website http://www.dm7025.de.\n"
+"Your STB_BOX will now be halted. After you have performed the update "
+"instructions from the website, your new firmware will ask you to restore "
+"your settings."
 msgstr ""
-"Szüksége lesz egy PC kapcsolatra a készülékhez. Amennyiben segítségre van szüksége, kérem, látogasson el a http://www.pli-images.org weboldalra.\n"
-"A készülék most meg fog állni. Miután végrehajtotta a weboldalon olvasható utasításokat, az új firmware fel fogja Önt kérni a saját beállításainak visszatöltésére."
+"Szüksége lesz egy PC kapcsolatra a készülékhez. Amennyiben segítségre van "
+"szüksége, kérem, látogasson el a http://www.pli-images.org weboldalra.\n"
+"A készülék most meg fog állni. Miután végrehajtotta a weboldalon olvasható "
+"utasításokat, az új firmware fel fogja Önt kérni a saját beállításainak "
+"visszatöltésére."
 
 msgid ""
 "You need to set a PIN code and hide it from your children.\n"
@@ -9004,6 +9674,11 @@ msgid "You system does not support ext4"
 msgstr "Az ön rendszere nem támogatja az ext4-et."
 
 msgid "Your STB will restart after pressing OK on your remote control."
+msgstr ""
+
+msgid ""
+"Your STB_BOX is not connected to the internet, please check your network "
+"settings and try again."
 msgstr ""
 
 #
@@ -9042,8 +9717,17 @@ msgid "Your STB_BOX is shutting down. Please stand by..."
 msgstr "A készülék most kikapcsol. Kérem, várjon..."
 
 #
-msgid "Your STB_BOX isn't connected to the internet properly. Please check it and try again."
-msgstr "A készülék nem csatlakozik helyesen az internetre. Kérem, nézze át a beállításokat és próbálja újra."
+msgid ""
+"Your STB_BOX isn't connected to the internet properly. Please check it and "
+"try again."
+msgstr ""
+"A készülék nem csatlakozik helyesen az internetre. Kérem, nézze át a "
+"beállításokat és próbálja újra."
+
+msgid ""
+"Your STB_BOX might be unusable now. Please consult the manual for further "
+"assistance before rebooting your STB_BOX."
+msgstr ""
 
 #, python-format
 msgid ""
@@ -9062,15 +9746,20 @@ msgid ""
 "Do you want to remove now ?"
 msgstr ""
 
-msgid "Your backup succeeded. We will now continue to explain the further upgrade process."
-msgstr "A mentés sikerült. Most folytatjuk és elmagyarázom Önnek a további frissítési folyamatot."
-
-msgid "Your box is not connected to the internet, please check your network settings and try again."
+msgid ""
+"Your backup succeeded. We will now continue to explain the further upgrade "
+"process."
 msgstr ""
+"A mentés sikerült. Most folytatjuk és elmagyarázom Önnek a további "
+"frissítési folyamatot."
 
 #
-msgid "Your collection exceeds the size of a single layer medium, you will need a blank dual layer DVD!"
-msgstr "A gyüjteményének mérete meghaladja egy sima rétegű DVD kapacitását, egy dupla-rétegű üres DVD lemezre lesz szüksége!"
+msgid ""
+"Your collection exceeds the size of a single layer medium, you will need a "
+"blank dual layer DVD!"
+msgstr ""
+"A gyüjteményének mérete meghaladja egy sima rétegű DVD kapacitását, egy "
+"dupla-rétegű üres DVD lemezre lesz szüksége!"
 
 #, python-format
 msgid ""
@@ -9197,11 +9886,15 @@ msgstr "[mozgatás mód]"
 
 #
 msgid "a gui to assign services/providers to common interface modules"
-msgstr "egy felhasználói felület, mely lehetővé teszi szolgáltatók/csatornák hozzárendelését CI modulokhoz"
+msgstr ""
+"egy felhasználói felület, mely lehetővé teszi szolgáltatók/csatornák "
+"hozzárendelését CI modulokhoz"
 
 #
 msgid "a gui to assign services/providers/caids to common interface modules"
-msgstr "egy felhasználói felület, mely lehetővé teszi szolgáltatók/csatornák/CAId-ek hozzárendelését CI modulokhoz"
+msgstr ""
+"egy felhasználói felület, mely lehetővé teszi szolgáltatók/csatornák/CAId-ek "
+"hozzárendelését CI modulokhoz"
 
 #
 msgid "abort alternatives edit"
@@ -9301,9 +9994,18 @@ msgstr "hozzáadás a gyermekzár védelemhez"
 msgid "address:"
 msgstr ""
 
+msgid "adult movie/drama"
+msgstr ""
+
 #
 msgid "advanced"
 msgstr "haladó"
+
+msgid "adventure/western/war"
+msgstr ""
+
+msgid "advertisement/shopping"
+msgstr ""
 
 msgid "alphabetic reverse"
 msgstr ""
@@ -9315,6 +10017,12 @@ msgstr "ábécé szerinti rendezés"
 msgid ""
 "are you sure you want to restore\n"
 "following backup:\n"
+msgstr ""
+
+msgid "arts/culture (without music, general)"
+msgstr ""
+
+msgid "arts/culture magazine"
 msgstr ""
 
 msgid "as plugin in extended bar"
@@ -9333,6 +10041,9 @@ msgstr "az elején"
 
 msgid "at end"
 msgstr "a végén"
+
+msgid "athletics"
+msgstr ""
 
 #
 #, python-format
@@ -9368,6 +10079,13 @@ msgstr "háttérkép"
 msgid "backgroundcolor"
 msgstr "háttér szín"
 
+msgid "ballet"
+msgstr ""
+
+#, python-format
+msgid "bc%s"
+msgstr ""
+
 #
 msgid "better"
 msgstr "jobb"
@@ -9376,6 +10094,9 @@ msgstr "jobb"
 msgid "black"
 msgstr "fekete"
 
+msgid "black & white"
+msgstr ""
+
 #
 msgid "blacklist"
 msgstr "feketelista"
@@ -9383,6 +10104,9 @@ msgstr "feketelista"
 #
 msgid "blue"
 msgstr "kék"
+
+msgid "broadcasting/press"
+msgstr ""
 
 #
 #, python-format
@@ -9396,6 +10120,9 @@ msgid "card"
 msgstr ""
 
 msgid "card reader"
+msgstr ""
+
+msgid "cartoon/puppets"
 msgstr ""
 
 #
@@ -9414,6 +10141,9 @@ msgstr "felvétel módosítása (vége időpont)"
 msgid "chapters"
 msgstr "jelenetek"
 
+msgid "childrens's/youth program (general)"
+msgstr ""
+
 msgid "circular left"
 msgstr "forgó balos"
 
@@ -9426,6 +10156,9 @@ msgid "clear playlist"
 msgstr "playlista törlése"
 
 msgid "close share view"
+msgstr ""
+
+msgid "comedy"
 msgstr ""
 
 #
@@ -9447,6 +10180,9 @@ msgstr "csatlakoztatva"
 #
 msgid "continue"
 msgstr "Folytatás"
+
+msgid "cooking"
+msgstr ""
 
 msgid "copy"
 msgstr ""
@@ -9504,6 +10240,9 @@ msgstr "törlés..."
 msgid "descramble and record ecm"
 msgstr ""
 
+msgid "detective/thriller"
+msgstr ""
+
 #
 msgid "disable"
 msgstr "letiltás"
@@ -9520,6 +10259,9 @@ msgstr "kikapcsolva"
 msgid "disconnected"
 msgstr "nincs csatlakoztatva"
 
+msgid "discussion/interview/debate"
+msgstr ""
+
 #
 msgid "do not change"
 msgstr "ne változtassa meg"
@@ -9527,6 +10269,9 @@ msgstr "ne változtassa meg"
 #
 msgid "do nothing"
 msgstr "ne csináljon semmit"
+
+msgid "documentary"
+msgstr ""
 
 msgid "don't descramble, record ecm"
 msgstr ""
@@ -9548,9 +10293,15 @@ msgstr ""
 msgid "ecm.info"
 msgstr ""
 
+msgid "economics/social advisory"
+msgstr ""
+
 #
 msgid "edit alternatives"
 msgstr "alternatívák módosítása"
+
+msgid "education/science/factual topics (general)"
+msgstr ""
 
 #
 msgid "empty"
@@ -9595,9 +10346,18 @@ msgstr "kedvencek módosításának vége"
 msgid "enigma2 and network"
 msgstr "enigma2 és hálózat"
 
+msgid "entertainment (10-16 year old)"
+msgstr ""
+
+msgid "entertainment (6-14 year old)"
+msgstr ""
+
 #
 msgid "equal to"
 msgstr "egyenlő"
+
+msgid "equestrian"
+msgstr ""
 
 #
 msgid "exit DVD player or return to file browser"
@@ -9630,6 +10390,9 @@ msgstr "kliépés a hálózati interfészek listájából"
 msgid "exit networkadapter setup menu"
 msgstr "kliépés a hálózati adapter beállításaiból"
 
+msgid "experimental film/video"
+msgstr ""
+
 msgid "extensions."
 msgstr ""
 
@@ -9637,6 +10400,9 @@ msgid "failed"
 msgstr ""
 
 msgid "false"
+msgstr ""
+
+msgid "fashion"
 msgstr ""
 
 msgid "file oscam.conf could not be found"
@@ -9649,11 +10415,29 @@ msgstr "fájlformátumok (BMP, PNG, JPG, GIF)"
 msgid "filename"
 msgstr "fájlnév"
 
+msgid "film/cinema"
+msgstr ""
+
+msgid "fine arts"
+msgstr ""
+
 #
 msgid "fine-tune your display"
 msgstr "megjelenítő finom beállítása"
 
+msgid "fitness & health"
+msgstr ""
+
 msgid "fixed"
+msgstr ""
+
+msgid "folk/traditional music"
+msgstr ""
+
+msgid "football/soccer"
+msgstr ""
+
+msgid "foreign countries/expeditions"
 msgstr ""
 
 #
@@ -9671,6 +10455,15 @@ msgstr "szabad tárterület a merevlemezen."
 #
 msgid "full transparency"
 msgstr "teljesen áttetsző"
+
+msgid "further education"
+msgstr ""
+
+msgid "game show/quiz/contest"
+msgstr ""
+
+msgid "gardening"
+msgstr ""
 
 msgid "get the cards' server"
 msgstr ""
@@ -9691,7 +10484,15 @@ msgstr "pillanatkép mentése"
 msgid "green"
 msgstr "zöld"
 
+msgid "handicraft"
+msgstr ""
+
 msgid "handled"
+msgstr ""
+
+msgid ""
+"has been sent to the ViX beta team.\n"
+"please quote"
 msgstr ""
 
 #
@@ -9723,6 +10524,9 @@ msgstr "azonnali kikapcsolás"
 msgid "increase uphop by 1"
 msgstr ""
 
+msgid "information/education/school program"
+msgstr ""
+
 #
 msgid "init module"
 msgstr "modul inicializálása"
@@ -9736,6 +10540,12 @@ msgid "insert mark here"
 msgstr "jelző elhelyezése ide"
 
 msgid "invalid type"
+msgstr ""
+
+msgid "is strongly advised."
+msgstr ""
+
+msgid "jazz"
 msgstr ""
 
 #
@@ -9762,6 +10572,9 @@ msgstr "ugrás a következő megjelölt ponthoz"
 msgid "jump to previous marked position"
 msgstr "ugrás az előző megjelölt ponthoz"
 
+msgid "languages"
+msgstr ""
+
 #
 msgid "leave movie player..."
 msgstr "kilépés a lejátszóból..."
@@ -9770,6 +10583,9 @@ msgstr "kilépés a lejátszóból..."
 msgid "left"
 msgstr "balra"
 
+msgid "leisure hobbies (general)"
+msgstr ""
+
 #
 msgid "length"
 msgstr "hossz"
@@ -9777,6 +10593,12 @@ msgstr "hossz"
 #
 msgid "list of EPG views..."
 msgstr "EPG-nézetek listája..."
+
+msgid "literature"
+msgstr ""
+
+msgid "live broadcast"
+msgstr ""
 
 #
 msgid "load playlist"
@@ -9790,9 +10612,21 @@ msgstr "zárolt"
 msgid "loopthrough to"
 msgstr "átfűzés ide"
 
+msgid "magazines/reports/documentary"
+msgstr ""
+
+msgid "making a backup before updating"
+msgstr ""
+
 #
 msgid "manual"
 msgstr "kézi"
+
+msgid "martial sports"
+msgstr ""
+
+msgid "medicine/physiology/psychology"
+msgstr ""
 
 #
 msgid "menu"
@@ -9809,6 +10643,12 @@ msgstr "perc"
 #
 msgid "month"
 msgstr "hónap"
+
+msgid "motor sport"
+msgstr ""
+
+msgid "motoring"
+msgstr ""
 
 msgid "move"
 msgstr ""
@@ -9837,6 +10677,9 @@ msgstr "ugrás az előző tételhez"
 msgid "movie list"
 msgstr "felvételek listája"
 
+msgid "movie/drama (general)"
+msgstr ""
+
 msgid "ms"
 msgstr ""
 
@@ -9844,9 +10687,30 @@ msgstr ""
 msgid "multinorm"
 msgstr "többnormás"
 
+msgid "music/ballet/dance (general)"
+msgstr ""
+
+msgid "musical/opera"
+msgstr ""
+
+msgid "nature/animals/environment"
+msgstr ""
+
 #
 msgid "never"
 msgstr "soha"
+
+msgid "new media"
+msgstr ""
+
+msgid "news magazine"
+msgstr ""
+
+msgid "news/current affairs (general)"
+msgstr ""
+
+msgid "news/weather report"
+msgstr ""
 
 #
 msgid "next channel"
@@ -9940,6 +10804,9 @@ msgstr "be"
 msgid "on READ ONLY medium."
 msgstr "a csak olvasható hordozón."
 
+msgid "on end of movie"
+msgstr ""
+
 #
 msgid "once"
 msgstr "egyszeri"
@@ -9970,6 +10837,9 @@ msgstr "csatornalista megnyitása (fel)"
 msgid "original"
 msgstr "eredeti"
 
+msgid "original language"
+msgstr ""
+
 msgid "packages selected."
 msgstr ""
 
@@ -9983,6 +10853,9 @@ msgstr "művelet"
 #
 msgid "pause"
 msgstr "Szünet"
+
+msgid "performing arts"
+msgstr ""
 
 msgid "pid:"
 msgstr ""
@@ -10016,6 +10889,12 @@ msgstr "kérem vérjon, kép betöltése..."
 msgid "please wait..."
 msgstr ""
 
+msgid "popular culture/traditional arts"
+msgstr ""
+
+msgid "pre-school children's program"
+msgstr ""
+
 #
 msgid "previous channel"
 msgstr "Előző csatorna"
@@ -10043,6 +10922,12 @@ msgid "red"
 msgstr "piros"
 
 msgid "relative"
+msgstr ""
+
+msgid "religion"
+msgstr ""
+
+msgid "remarkable people"
 msgstr ""
 
 #
@@ -10115,6 +11000,12 @@ msgstr "visszatekerés az előző chapterhez"
 msgid "right"
 msgstr "jobbra"
 
+msgid "rock/pop"
+msgstr ""
+
+msgid "romance"
+msgstr ""
+
 #
 msgid "save last directory on exit"
 msgstr "az utolsó mappa mentése kilépéskor"
@@ -10145,6 +11036,9 @@ msgstr "keresés folyamatban - %d%% kész!"
 #
 msgid "scan state"
 msgstr "keresési állapot"
+
+msgid "science fiction/fantasy/horror"
+msgstr ""
 
 #
 msgid "second cable of motorized LNB"
@@ -10180,6 +11074,12 @@ msgstr "felvétel kiválasztása"
 msgid "select the movie path"
 msgstr "válassza ki a felvételek útvonalát"
 
+msgid "serious music/classic music"
+msgstr ""
+
+msgid "serious/classical/religious/historical movie/drama"
+msgstr ""
+
 msgid "service PIN"
 msgstr "szervíz-PIN"
 
@@ -10195,6 +11095,9 @@ msgstr ""
 #
 msgid "show DVD main menu"
 msgstr "DVD főmenü megjelenítése"
+
+msgid "show EPG..."
+msgstr ""
 
 #
 msgid "show Infoline"
@@ -10258,6 +11161,12 @@ msgstr ""
 msgid "show shutdown menu"
 msgstr "kikapcsolási menü"
 
+msgid "show softwaremanager in plugin menu"
+msgstr ""
+
+msgid "show softwaremanager on blue button"
+msgstr ""
+
 #
 msgid "show tag menu"
 msgstr "cimke menü megjelenítése"
@@ -10265,6 +11174,9 @@ msgstr "cimke menü megjelenítése"
 #
 msgid "show transponder info"
 msgstr "transzponder infó megjelenítése"
+
+msgid "show/game show (general)"
+msgstr ""
 
 msgid "shuffle"
 msgstr ""
@@ -10275,10 +11187,6 @@ msgstr "playlista megkeverése"
 
 #
 msgid "shut down"
-msgstr "kikapcsolás"
-
-#
-msgid "shutdown"
 msgstr "kikapcsolás"
 
 #
@@ -10305,6 +11213,15 @@ msgstr "Ugrás előre (adja meg az időt)"
 msgid "slide picture in loop"
 msgstr "képek megjelenítése végtelenül"
 
+msgid "soap/melodram/folkloric"
+msgstr ""
+
+msgid "social/political issues/economics (general)"
+msgstr ""
+
+msgid "social/spiritual science"
+msgstr ""
+
 #
 msgid "sort by date"
 msgstr "rendezés dátum szerint"
@@ -10316,13 +11233,18 @@ msgstr ""
 msgid "special characters"
 msgstr "speciális karakterek"
 
+msgid "special events"
+msgstr ""
+
+msgid "sports (general)"
+msgstr ""
+
+msgid "sports magazine"
+msgstr ""
+
 #
 msgid "standard"
 msgstr "hagyományos"
-
-#
-msgid "standby"
-msgstr "készenlét"
 
 #
 msgid "start cut here"
@@ -10393,9 +11315,21 @@ msgstr "átkapcsolás a következő felirat nyelvre"
 msgid "system:"
 msgstr ""
 
+msgid "talk show"
+msgstr ""
+
+msgid "team sports"
+msgstr ""
+
+msgid "technology/natural science"
+msgstr ""
+
 #
 msgid "template file"
 msgstr "sablon-fájl"
+
+msgid "tennis/squash"
+msgstr ""
 
 #
 msgid "textcolor"
@@ -10420,6 +11354,9 @@ msgstr "idő, chapter, hangsáv, feliratsáv választás"
 msgid "top"
 msgstr ""
 
+msgid "tourism/travel"
+msgstr ""
+
 msgid "true"
 msgstr ""
 
@@ -10438,6 +11375,9 @@ msgstr ""
 msgid "uShare Setup"
 msgstr ""
 
+msgid "uShare setup"
+msgstr ""
+
 #
 msgid "unconfirmed"
 msgstr "nem igazolt"
@@ -10449,6 +11389,9 @@ msgstr "ismeretlen"
 #
 msgid "unknown service"
 msgstr "ismeretlen csatorna"
+
+msgid "unpublished"
+msgstr ""
 
 #
 msgid "until standby/restart"
@@ -10462,6 +11405,9 @@ msgid "user defined"
 msgstr "egyedi meghatározás"
 
 msgid "using:"
+msgstr ""
+
+msgid "variety show"
 msgstr ""
 
 #
@@ -10492,9 +11438,21 @@ msgstr "várakozás"
 msgid "was removed successfully"
 msgstr "sikeresen eltávolítva"
 
+msgid "water sport"
+msgstr ""
+
 #
 msgid "weekly"
 msgstr "hetente"
+
+msgid "when asking question about this log"
+msgstr ""
+
+msgid ""
+"when asking question about this log\n"
+"\n"
+"A copy has been sent to yourself."
+msgstr ""
 
 #
 msgid "white"
@@ -10505,6 +11463,9 @@ msgid "whitelist"
 msgstr "engedélyezett lista"
 
 msgid "width"
+msgstr ""
+
+msgid "winter sport"
 msgstr ""
 
 msgid "wireless network interface"
@@ -10539,8 +11500,12 @@ msgid "yes (keep feeds)"
 msgstr "igen (feed-ek megtartása)"
 
 #
-msgid "your STB_BOX might be unusable now. Please consult the manual for further assistance before rebooting your STB_BOX."
-msgstr "A készüléke most lehet, hogy használhatatlanná vált. Kérem, vegye fel a kapcsolatot a szervízzel, vagy szakemberrel újraindítás elött."
+msgid ""
+"your STB_BOX might be unusable now. Please consult the manual for further "
+"assistance before rebooting your STB_BOX."
+msgstr ""
+"A készüléke most lehet, hogy használhatatlanná vált. Kérem, vegye fel a "
+"kapcsolatot a szervízzel, vagy szakemberrel újraindítás elött."
 
 #
 msgid "zap"
@@ -10550,3 +11515,85 @@ msgstr "ugrás"
 msgid "zapped"
 msgstr "ugrott"
 
+#
+#~ msgid "Action:"
+#~ msgstr "Művelet:"
+
+#
+#~ msgid "Ask before shutdown:"
+#~ msgstr "Kikapcsolás elött rákérdez:"
+
+#
+#~ msgid "Disable timer"
+#~ msgstr "Időzítés tiltása"
+
+#
+#~ msgid "Display Setup"
+#~ msgstr "Kis kijelző"
+
+#
+#~ msgid "Keyboard Setup"
+#~ msgstr "Billentyűzet beállítása"
+
+#~ msgid "Recording data sync size"
+#~ msgstr "Felvételi adatok sync-méret"
+
+#
+#~ msgid "Sat / Dish Setup"
+#~ msgstr "Műhold / Antenna beállítás"
+
+#
+#~ msgid "Service Searching"
+#~ msgstr "Csatornakeresés"
+
+#
+#~ msgid "Shutdown STB_BOX after"
+#~ msgstr "Kapcsolja le a készüléket miután"
+
+#
+#~ msgid "Sleep timer action:"
+#~ msgstr "Elalvásidőzítő művelet:"
+
+#
+#~ msgid ""
+#~ "This test checks whether your LAN Adapter is set up for automatic IP "
+#~ "Address configuration with DHCP.\n"
+#~ "If you get a \"disabled\" message:\n"
+#~ " - then your LAN Adapter is configured for manual IP Setup\n"
+#~ "- verify thay you have entered correct IP informations in the "
+#~ "AdapterSetup dialog.\n"
+#~ "If you get an \"enabeld\" message:\n"
+#~ "-verify that you have a configured and working DHCP Server in your "
+#~ "network."
+#~ msgstr ""
+#~ "Ez a teszt leellenőrzi hogy a hálótzati interfész be lett-e állítva az "
+#~ "automatikus IP cím lekéréséhez DHCP-vel.\n"
+#~ "Ha válaszként a \"kikapcsolva\" üzenetet kapja, akkor:\n"
+#~ "- a hálótzati interfész csak manuális IP cím megadására lett beállítva\n"
+#~ "- ellenőrizze, hogy helyes IP adatokat adott meg az interfész "
+#~ "beállításaiban\n"
+#~ "Ha válaszként a \"engedélyezve\" üzenetet kapja, akkor:\n"
+#~ "- ellenőrizze hogy a hálózatában létezik-e jól beállított és működő DHCP "
+#~ "szerver."
+
+#
+#~ msgid ""
+#~ "Welcome.\n"
+#~ "\n"
+#~ "This start wizard will guide you through the basic setup of your Xtrend "
+#~ "ET9.\n"
+#~ "Press the OK button on your remote control to move to the next step."
+#~ msgstr ""
+#~ "Üdvözlöm.\n"
+#~ "\n"
+#~ "Ez az Indítási Varázsló végig fogja Önt vezetni a készülék "
+#~ "alapbeállításain.\n"
+#~ "nyomja le az OK gombot a távirányítón a következő lépéshez."
+
+#
+#~ msgid "shutdown"
+#~ msgstr "kikapcsolás"
+
+#
+#~ msgid "standby"
+#~ msgstr "készenlét"
