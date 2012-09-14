@@ -210,7 +210,7 @@ class MovieBrowserConfiguration(ConfigListScreen,Screen):
 		configList.append(getConfigListEntry(_("Sort"), cfg.moviesort, _("Set the default sorting method.")))
 		configList.append(getConfigListEntry(_("show extended description"), cfg.description, _("Show or hide the extended description, (skin dependent).")))
 		configList.append(getConfigListEntry(_("Remember these settings for each folder"), config.movielist.settings_per_directory, _("When set each folder will show the previous state used, when off the default values will be shown.")))
-		configList.append(getConfigListEntry(_("Behavior when a movie reaches the end"), config.usage.on_movie_eof,_("On raching the end of a file during playback, you can choose the box's behaviour.")))
+		configList.append(getConfigListEntry(_("Behavior when a movie reaches the end"), config.usage.on_movie_eof,_("On reaching the end of a file during playback, you can choose the box's behavior.")))
 		configList.append(getConfigListEntry(_("Show status icons in Movielist"), config.usage.show_icons_in_movielist, _("Shows the watched status of the movie.")))
 		if config.usage.show_icons_in_movielist.value:
 			configList.append(getConfigListEntry(_("Show icon for new/unseen items"), config.usage.movielist_unseen, _("Shows the icons when new/unseen, else will not show an icon.")))
