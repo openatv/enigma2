@@ -1689,6 +1689,9 @@ class InfoBarPiP:
 			self.session.nav.stopService() # stop portal
 			self.session.nav.playService(pipref) # start subservice
 			self.session.pip.servicePath = currentServicePath
+			if self.servicelist.dopipzap:
+				# This unfortunately won't work with subservices
+				self.servicelist.setCurrentSelection(self.session.pip.getCurrentService())
 
 	def movePiP(self):
 		self.session.open(PiPSetup, pip = self.session.pip)
