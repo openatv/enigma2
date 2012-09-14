@@ -246,8 +246,9 @@ class NameserverSetup(Screen, ConfigListScreen, HelpableScreen):
 		print "backup-list:", self.backupNameserverList
 
 		self["key_red"] = StaticText(_("Cancel"))
-		self["key_green"] = StaticText(_("Add"))
-		self["key_yellow"] = StaticText(_("Delete"))
+		self["key_green"] = StaticText(_("Save"))
+		self["key_yellow"] = StaticText(_("Add"))
+		self["key_blue"] = StaticText(_("Delete"))
 
 		self["introduction"] = StaticText(_("Press OK to activate the settings."))
 		self.createConfig()
@@ -261,8 +262,9 @@ class NameserverSetup(Screen, ConfigListScreen, HelpableScreen):
 		self["ColorActions"] = HelpableActionMap(self, "ColorActions",
 			{
 			"red": (self.cancel, _("exit nameserver configuration")),
-			"green": (self.add, _("add a nameserver entry")),
-			"yellow": (self.remove, _("remove a nameserver entry")),
+			"green": (self.ok, _("activate current configuration")),
+			"yellow": (self.add, _("add a nameserver entry")),
+			"blue": (self.remove, _("remove a nameserver entry")),
 			})
 
 		self["actions"] = NumberActionMap(["SetupActions"],
@@ -350,6 +352,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 		self["ColorActions"] = HelpableActionMap(self, "ColorActions",
 			{
 			"red": (self.keyCancel, _("exit network adapter configuration")),
+			"green": (self.keySave, _("activate network adapter configuration")),
 			"blue": (self.KeyBlue, _("open nameserver configuration")),
 			})
 
@@ -382,6 +385,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 		self["Adapter"] = StaticText()
 		self["introduction2"] = StaticText(_("Press OK to activate the settings."))
 		self["key_red"] = StaticText(_("Cancel"))
+		self["key_green"] = StaticText(_("Save"))
 		self["key_blue"] = StaticText(_("Edit DNS"))
 
 		self["VKeyIcon"] = Boolean(False)
