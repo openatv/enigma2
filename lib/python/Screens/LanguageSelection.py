@@ -37,10 +37,15 @@ class LanguageSelection(Screen):
 		self.updateList()
 		self.onLayoutFinish.append(self.selectActiveLanguage)
 
-		self["actions"] = ActionMap(["OkCancelActions"],
+		self["key_red"] = Label(_("Cancel"))
+		self["key_green"] = Label(_("Save"))
+
+		self["actions"] = ActionMap(["SetupActions"],
 		{
 			"ok": self.save,
 			"cancel": self.cancel,
+			"red": self.cancel,
+			"green": self.save,
 		}, -1)
 
 	def selectActiveLanguage(self):
