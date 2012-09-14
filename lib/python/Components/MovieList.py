@@ -124,6 +124,8 @@ class MovieList(GUIComponent):
 	SHUFFLE = 3
 	SORT_ALPHANUMERIC_REVERSE = 4
 	SORT_RECORDED_REVERSE = 5
+	SORT_ALPHANUMERIC_FLAT = 6
+	SORT_ALPHANUMERIC_FLAT_REVERSE = 7
 
 	LISTTYPE_ORIGINAL = 1
 	LISTTYPE_COMPACT_DESCRIPTION = 2
@@ -565,6 +567,10 @@ class MovieList(GUIComponent):
 		self.parentDirectory = 0
 		if self.sort_type == MovieList.SORT_ALPHANUMERIC:
 			self.list.sort(key=self.buildAlphaNumericSortKey)
+		elif self.sort_type == MovieList.SORT_ALPHANUMERIC_FLAT:
+			self.list.sort(key=self.buildAlphaNumericFlatSortKey)
+		elif self.sort_type == MovieList.SORT_ALPHANUMERIC_FLAT_REVERSE:
+			self.list.sort(key=self.buildAlphaNumericFlatSortKey, reverse = True)
 		else:
 			#always sort first this way to avoid shuffle and reverse-sort directories
 			self.list.sort(key=self.buildBeginTimeSortKey)
@@ -583,14 +589,16 @@ class MovieList(GUIComponent):
 			if not rootPath.endswith('/'):
 				rootPath += '/'
 			if rootPath != parent:
-				dirlist = self.list[:numberOfDirs]
-				for index, item in enumerate(dirlist):
-					itempath = os.path.normpath(item[0].getPath())
-					if not itempath.endswith('/'):
-						itempath += '/'
-					if itempath == rootPath: 
-						self.parentDirectory = index
-						break
+				# with new sort types directories may be in between files, so scan whole
+				# list for parentDirectory index. Usually it is the first one anyway
+				for index, item in enumerate(self.list):
+					if item[0].flags & eServiceReference.mustDescent:
+						itempath = os.path.normpath(item[0].getPath())
+						if not itempath.endswith('/'):
+							itempath += '/'
+						if itempath == rootPath:
+							self.parentDirectory = index
+							break
 		self.root = root
 		# finally, store a list of all tags which were found. these can be presented
 		# to the user to filter the list
@@ -631,6 +639,21 @@ class MovieList(GUIComponent):
 			return (0, name and name.lower() or "", -x[2])
 		return (1, name and name.lower() or "", -x[2])
 		
+	def buildAlphaNumericFlatSortKey(self, x):
+		# x = ref,info,begin,...
+		ref = x[0]
+		name = x[1] and x[1].getName(ref)
+		if name and ref.flags & eServiceReference.mustDescent:
+			# only use directory basename for sorting
+			p = os.path.split(name)
+			if not p[1]:
+				# if path ends in '/', p is blank.
+				p = os.path.split(p[0])
+			name = p[1]
+                print "Sorting for -%s-" % name
+
+		return (1, name and name.lower() or "", -x[2])
+
 	def buildBeginTimeSortKey(self, x):
 		ref = x[0]
 		if ref.flags & eServiceReference.mustDescent:
