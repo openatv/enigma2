@@ -1005,19 +1005,13 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			updates = pickle.load(open(path, "rb"))
 			self.applyConfigSettings(updates)
 		except IOError, e:
-			config.movielist.moviesort.value = config.movielist.moviesort.default
-			config.movielist.listtype.value = config.movielist.listtype.default
-			config.movielist.description.value = config.movielist.description.default
-			config.usage.on_movie_eof.value = config.usage.on_movie_eof.default
-			if self.settings["moviesort"] != config.movielist.moviesort.value:
-				self.sortBy(config.movielist.moviesort.value)
-			if self.settings["listtype"] != config.movielist.listtype.value:
-				self.listType(config.movielist.listtype.value)
-			if self.settings["description"] != config.movielist.description.value:
-				self.showDescription(config.movielist.description.value)
-			if self.settings["movieoff"] != config.usage.on_movie_eof.value:
-				self.settings["movieoff"] = config.usage.on_movie_eof.value
-				self.movieOff = self.settings["movieoff"]
+			updates = {\
+				"listtype": config.movielist.listtype.default,
+				"moviesort": config.movielist.moviesort.default,
+				"description": config.movielist.description.default,
+				"movieoff": config.usage.on_movie_eof.default
+			}
+			self.applyConfigSettings(updates)
 			pass # ignore fail to open errors
 		except Exception, e:
 			print "Failed to load settings from %s: %s" % (path, e)
@@ -1127,8 +1121,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			self["freeDiskSpace"].path = path
 		if self.reload_sel is None:
 			self.reload_sel = self.getCurrent()
-		if config.movielist.settings_per_directory.value:
-			self.loadLocalSettings()
 		self["list"].reload(self.current_ref, self.selected_tags)
 		self.updateTags()
 		title = _("Recorded files...")
@@ -1173,6 +1165,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			if os.path.isdir(res):
 				config.movielist.last_videodir.value = res
 				config.movielist.last_videodir.save()
+				self.loadLocalSettings()
 				self.setCurrentRef(res)
 				self["freeDiskSpace"].path = res
 				if selItem:
