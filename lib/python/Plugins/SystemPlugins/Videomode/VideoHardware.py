@@ -5,6 +5,13 @@ from Tools.CList import CList
 from Tools.HardwareInfo import HardwareInfo
 from os import path
 
+try:
+	file = open("/proc/stb/info/chipset", "r")
+	chipset = file.readline().strip()
+	file.close()
+except:
+	chipset = "unknown"
+
 # The "VideoHardware" is the interface to /proc/stb/video.
 # It generates hotplug events, and gives you the list of
 # available and preferred modes, as well as handling the currently
@@ -13,7 +20,7 @@ class VideoHardware:
 	rates = { } # high-level, use selectable modes.
 
 	modes = { }  # a list of (high-level) modes for a certain port.
-
+	
 	rates["PAL"] =			{ "50Hz":		{ 50: "pal" },
 								"60Hz":		{ 60: "pal60" },
 								"multi":	{ 50: "pal", 60: "pal60" } }
@@ -30,7 +37,7 @@ class VideoHardware:
 
 	rates["576p"] =			{ "50Hz": 	{ 50: "576p" } }
 
-	if config.misc.boxtype.value == 'gbquad':
+	if chipset == 'bcm7358' or chipset == 'bcm7356' or chipset == 'bcm7405':
 		rates["720p"] =			{ "24Hz": 	{ 24: "720p24" },
 									"25Hz": 	{ 25: "720p25" },
 									"30Hz": 	{ 30: "720p30" },
@@ -46,10 +53,11 @@ class VideoHardware:
 								"60Hz":		{ 60: "1080i" },
 								"multi":	{ 50: "1080i50", 60: "1080i" } }
 
-	if config.misc.boxtype.value == 'tmtwin':
+	if chipset == 'bcm7405':
 		rates["1080p"] =		{ "24Hz":		{ 24: "1080p24" },
+									"25Hz":		{ 25: "1080p25" },
 									"30Hz":		{ 30: "1080p30" } }
-	else:
+	elif chipset == 'bcm7358' or chipset == 'bcm7356':
 		rates["1080p"] =		{ 	"24Hz":		{ 24: "1080p24" },
 									"25Hz":		{ 25: "1080p25" },
 									"30Hz":		{ 30: "1080p30" },
@@ -75,7 +83,7 @@ class VideoHardware:
 	modes["Scart"] = ["PAL", "NTSC", "Multi"]
 	modes["DVI-PC"] = ["PC"]
 	
-	if config.misc.boxtype.value == 'gbquad' or config.misc.boxtype.value == 'tmtwin':
+	if chipset == 'bcm7358' or chipset == 'bcm7356' or chipset == 'bcm7405':
 		modes["YPbPr"] = ["720p", "1080i", "1080p", "576p", "480p", "576i", "480i"]
 		modes["DVI"] = ["720p", "1080i", "1080p", "576p", "480p", "576i", "480i"]
 		widescreen_modes = set(["720p", "1080i", "1080p"])
@@ -204,7 +212,7 @@ class VideoHardware:
 
 		try:
 			mode_etc = None
-			if mode == "1080p":
+			if rate == "24Hz" or rate == "25Hz" or rate == "30Hz":
 				mode_etc = modes.get(int(rate[:2]))
 				open("/proc/stb/video/videomode", "w").write(mode_etc)
 			# not support 50Hz, 60Hz for 1080p
@@ -219,7 +227,7 @@ class VideoHardware:
 				print "setting videomode failed."
 
 		try:
-			if mode == "1080p":
+			if rate == "24Hz" or rate == "25Hz" or rate == "30Hz":
 				open("/etc/videomode", "w").write(mode_etc)
 			else:
 				open("/etc/videomode", "w").write(mode_50) # use 50Hz mode (if available) for booting
