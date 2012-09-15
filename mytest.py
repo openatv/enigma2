@@ -504,6 +504,13 @@ def runScreenTest():
 	config.misc.startCounter.save()
 
 	profile("wakeup")
+	
+	try:
+		from Plugins.SystemPlugins.VFDControl.plugin import SetTime
+		SetTime()
+	except:
+		print"Failed SetTime from VFDControl !!"
+
 	from time import time, strftime, localtime
 	from Tools.DreamboxHardware import setFPWakeuptime, getFPWakeuptime, setRTCtime
 	#get currentTime
@@ -522,7 +529,7 @@ def runScreenTest():
 		if (startTime[0] - nowTime) < 270: # no time to switch box back on
 			wptime = nowTime + 30  # so switch back on in 30 seconds
 		else:
-			wptime = startTime[0] - 240
+			wptime = startTime[0] - 120
 		if not config.misc.useTransponderTime.value:
 			print "dvb time sync disabled... so set RTC now to current linux time!", strftime("%Y/%m/%d %H:%M", localtime(nowTime))
 			setRTCtime(nowTime)
