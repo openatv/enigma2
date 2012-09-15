@@ -517,6 +517,13 @@ def runScreenTest():
 	config.misc.startCounter.save()
 
 	profile("wakeup")
+	
+	try:
+		if config.misc.boxtype.value == 'gb800se' or config.misc.boxtype.value == 'gb800solo' or config.misc.boxtype.value == 'gb800ue' or config.misc.boxtype.value == 'gbquad':
+			from Plugins.SystemPlugins.VFDControl.plugin import SetTime
+			SetTime()
+	except:
+		print"Failed SetTime from VFDControl !!"
 
 	from time import time, strftime, localtime
 	from Tools.DreamboxHardware import setFPWakeuptime, getFPWakeuptime, setRTCtime
@@ -536,11 +543,14 @@ def runScreenTest():
 		if (startTime[0] - nowTime) < 270: # no time to switch box back on
 			wptime = nowTime + 30  # so switch back on in 30 seconds
 		else:
-			wptime = startTime[0] - 240
+			if config.misc.boxtype.value == 'gb800se' or config.misc.boxtype.value == 'gb800solo' or config.misc.boxtype.value == 'gb800ue' or config.misc.boxtype.value == 'gbquad':
+				wptime = startTime[0] - 120 # Gigaboxes already starts 2 min. before wakeup time
+			else:
+				wptime = startTime[0] - 240
 		if not config.misc.SyncTimeUsing.value == "0":
 			print "dvb time sync disabled... so set RTC now to current linux time!", strftime("%Y/%m/%d %H:%M", localtime(nowTime))
 			setRTCtime(nowTime)
-		
+
 		print "set wakeup time to", strftime("%Y/%m/%d %H:%M", localtime(wptime))
 		setFPWakeuptime(wptime)
 		recordTimerWakeupAuto = startTime[1] == 0 and startTime[2]
