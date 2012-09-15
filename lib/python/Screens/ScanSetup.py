@@ -938,14 +938,10 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		Screen.setTitle(self, _("Automatic Scan"))
 
 		self["actions"] = ActionMap(["SetupActions", "MenuActions"],
-		self["key_red"] = StaticText(_("Close"))
-		self["key_green"] = StaticText(_("Scan"))
-
 		{
 			"ok": self.keyGo,
 			"cancel": self.keyCancel,
-			"red": self.keyCancel,
-			"green": self.keyGo,
+			"menu": self.doCloseRecursive,
 		}, -2)
 
 		self.session.postScanService = session.nav.getCurrentlyPlayingServiceReference()
