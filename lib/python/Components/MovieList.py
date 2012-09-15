@@ -650,7 +650,7 @@ class MovieList(GUIComponent):
 				# if path ends in '/', p is blank.
 				p = os.path.split(p[0])
 			name = p[1]
-                print "Sorting for -%s-" % name
+                # print "Sorting for -%s-" % name
 
 		return (1, name and name.lower() or "", -x[2])
 
