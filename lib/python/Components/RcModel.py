@@ -12,6 +12,8 @@ class RcModel:
 	RCTYPE_INI7000 = 8
 	RCTYPE_ODIN = 9
 	RCTYPE_TM = 10
+	RCTYPE_ET6500 = 11
+	RCTYPE_ET4000 = 12
 
 	def __init__(self):
 		self.currentRcType = self.RCTYPE_DMM
@@ -49,12 +51,16 @@ class RcModel:
 					self.currentRcType = self.RCTYPE_ET6X00
 				elif rc == '8':
 					self.currentRcType = self.RCTYPE_VU
-				elif rc == '9':
+				elif rc == '9' and model == 'et9500':
 					self.currentRcType = self.RCTYPE_ET9500
+				elif rc == '9' and model == 'et6500':
+					self.currentRcType = self.RCTYPE_ET6500	
 				elif rc == '11' and model == 'et9200':
 					self.currentRcType = self.RCTYPE_ET9500
 				elif rc == '11' and model == 'et9000':
 					self.currentRcType = self.RCTYPE_ET9x00
+				elif rc == '13' and model == 'et4000':
+					self.currentRcType = self.RCTYPE_ET4000
 			elif model == 'gigablue':
 				self.currentRcType = self.RCTYPE_GB
 			elif model == 'ini-3000':
@@ -73,6 +79,10 @@ class RcModel:
 			return '/usr/share/enigma2/rc_models/et6x00/'
 		elif self.currentRcType == self.RCTYPE_ET9500:
 			return '/usr/share/enigma2/rc_models/et9500/'
+		elif self.currentRcType == self.RCTYPE_ET6500:
+			return '/usr/share/enigma2/rc_models/et6500/'
+		elif self.currentRcType == self.RCTYPE_ET4000:
+			return '/usr/share/enigma2/rc_models/et4000/'	
 		elif self.currentRcType == self.RCTYPE_GB:
 			return '/usr/share/enigma2/rc_models/gb/'
 		elif self.currentRcType == self.RCTYPE_INI3000:

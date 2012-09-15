@@ -61,6 +61,7 @@ AM_CONDITIONAL(VUUNO, test "$BOXTYPE" == vuuno)
 AM_CONDITIONAL(VUULTIMO, test "$BOXTYPE" == vuultimo)
 AM_CONDITIONAL(VUSOLO, test "$BOXTYPE" == vusolo)
 AM_CONDITIONAL(VUDUO, test "$BOXTYPE" == vuduo)
+AM_CONDITIONAL(ET4X00, test "$BOXTYPE" == et4x00)
 AM_CONDITIONAL(ET5X00, test "$BOXTYPE" == et5x00)
 AM_CONDITIONAL(ET6X00, test "$BOXTYPE" == et6x00)
 AM_CONDITIONAL(ET9X00, test "$BOXTYPE" == et9x00)
@@ -145,7 +146,7 @@ if test x"$BOXTYPE" == "xventonhdx" ; then
 	AC_DEFINE(FORCE_NO_BLENDING_ACCELERATION, 1,[define when the framebuffer acceleration does not have alphablending support, though the autodetection might indicate that it does])
 fi
 
-if test x"$BOXTYPE" == "xet5x00" -o x"$BOXTYPE" == "xet6x00" -o x"$BOXTYPE" == "xet9x00" ; then
+if test x"$BOXTYPE" == "xet4x00" -o x"$BOXTYPE" == "xet5x00" -o x"$BOXTYPE" == "xet6x00" -o x"$BOXTYPE" == "xet9x00" ; then
 	AC_DEFINE(KEY_PLAY_ACTUALLY_IS_KEY_PLAYPAUSE, 1,[define when rc sends a KEY_PLAY event for its KEY_PLAYPAUSE key])
 # 	AC_DEFINE(FORCE_ADVANCED_REMOTE, 1,[define to fixup the input device identification when the remote control is actually an 'advanced' remote (with play/forward/rewind keys)])
 fi
@@ -221,7 +222,9 @@ data/extensions/Makefile
 data/keymaps/Makefile
 data/lcd/Makefile
 data/rc_models/Makefile
+data/rc_models/et4000/Makefile
 data/rc_models/et6x00/Makefile
+data/rc_models/et6500/Makefile
 data/rc_models/et9500/Makefile
 data/rc_models/et9x00/Makefile
 data/rc_models/gb/Makefile
@@ -231,6 +234,7 @@ data/rc_models/ini7000/Makefile
 data/rc_models/odin/Makefile
 data/rc_models/tm/Makefile
 data/rc_models/vu/Makefile
+data/rc_models/vu2/Makefile
 data/skin_default/Makefile
 data/skin_default/menu/Makefile
 data/skin_default/icons/Makefile
