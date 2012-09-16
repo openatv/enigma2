@@ -1352,7 +1352,7 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 			GError *err;
 			gst_message_parse_error (msg, &err, &debug);
 			g_free (debug);
-			eWarning("Gstreamer error: %s (domain:%i, code:%i) from %s", err->message, err->domain, err->code, sourceName );
+			eWarning("Gstreamer error: %s (%i) from %s", err->message, err->code, sourceName );
 			if ( err->domain == GST_STREAM_ERROR )
 			{
 				if ( err->code == GST_STREAM_ERROR_CODEC_NOT_FOUND )
@@ -1363,11 +1363,6 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 						m_event((iPlayableService*)this, evUser+10);
 				}
 			}
-			else //if( err->domain == 1232 )
-			{
-				if ( err->code == 5 )
-        	                        m_event((iPlayableService*)this, evUser+20);
-			}			
 			g_error_free(err);
 			break;
 		}

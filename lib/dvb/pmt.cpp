@@ -22,7 +22,6 @@
 #include <dvbsi++/simple_application_location_descriptor.h>
 #include <dvbsi++/simple_application_boundary_descriptor.h>
 #include <dvbsi++/transport_protocol_descriptor.h>
-#include <dvbsi++/application_name_descriptor.h>
 
 eDVBServicePMTHandler::eDVBServicePMTHandler()
 	:m_ca_servicePtr(0), m_dvb_scan(0), m_decode_demux_num(0xFF), m_no_pat_entry_delay(eTimer::create())
@@ -217,58 +216,18 @@ void eDVBServicePMTHandler::PATready(int)
 		serviceEvent(eventNoPAT);
 }
 
-static void eraseHbbTVApplications(HbbTVApplicationInfoList  *applications)
-{
-	if(applications->size() == 0)
-		return;
-	for(HbbTVApplicationInfoListConstIterator info = applications->begin() ; info != applications->end() ; ++info)
-		delete(*info);
-	applications->clear();
-}
-
-void saveData(int orgid, unsigned char* data, int sectionLength)
-{
-	int fd = 0, rc = 0;
-	char fileName[255] = {0};
-	sprintf(fileName, "/tmp/ait.%d", orgid);
-	if((fd = open(fileName, O_RDWR|O_CREAT|O_TRUNC)) < 0)
-	{
-		eDebug("Fail to save a AIT Data.");
-		return;
-	}
-	rc = write(fd, data, sectionLength);
-	eDebug("Save Data Len : [%d]", rc);
-	close(fd);
-}
 void eDVBServicePMTHandler::AITready(int error)
 {
 	eDebug("AITready");
 	ePtr<eTable<ApplicationInformationSection> > ptr;
 	if (!m_AIT.getCurrent(ptr))
 	{
-		int orgid = 0, appid = 0;
-		m_ApplicationName = m_HBBTVUrl = "";
-
-		eraseHbbTVApplications(&m_HbbTVApplications);
-
-		memcpy(m_AITData, ptr->getBufferData(), 4096);
-
-		int sectionLength = 0;
+		m_HBBTVUrl = "";
 		for (std::vector<ApplicationInformationSection*>::const_iterator it = ptr->getSections().begin(); it != ptr->getSections().end(); ++it)
 		{
-			std::list<ApplicationInformation *>::const_iterator i = (*it)->getApplicationInformation()->begin();
-			sectionLength += (*it)->getSectionLength();
-			eDebug("Section Length : %d, Total Section Length : %d", (*it)->getSectionLength(), sectionLength);
-			for (; i != (*it)->getApplicationInformation()->end(); ++i)
+			for (std::list<ApplicationInformation *>::const_iterator i = (*it)->getApplicationInformation()->begin(); i != (*it)->getApplicationInformation()->end(); ++i)
 			{
-				std::string hbbtvUrl = "", applicaionName = "";
-
-				int controlCode = (*i)->getApplicationControlCode();
-				ApplicationIdentifier * applicationIdentifier = (*i)->getApplicationIdentifier();
-				orgid = applicationIdentifier->getOrganisationId();
-				appid = applicationIdentifier->getApplicationId();
-				eDebug("found applicaions ids >> pid : %x, orgid : %d, appid : %d", m_ait_pid, orgid, appid);
-				if (controlCode == 1 || controlCode == 2) /* 1:AUTOSTART, 2:ETC */
+				if ((*i)->getApplicationControlCode() == 0x01) /* AUTOSTART */
 				{
 					for (DescriptorConstIterator desc = (*i)->getDescriptors()->begin();
 						desc != (*i)->getDescriptors()->end(); ++desc)
@@ -278,17 +237,7 @@ void eDVBServicePMTHandler::AITready(int error)
 						case APPLICATION_DESCRIPTOR:
 							break;
 						case APPLICATION_NAME_DESCRIPTOR:
-						{
-							ApplicationNameDescriptor *nameDescriptor  = (ApplicationNameDescriptor*)(*desc);
-							ApplicationNameConstIterator interactionit = nameDescriptor->getApplicationNames()->begin();
-							for(; interactionit != nameDescriptor->getApplicationNames()->end(); ++interactionit)
-							{
-								applicaionName = (*interactionit)->getApplicationName();
-								if(controlCode == 1) m_ApplicationName = applicaionName;
-								break;
-							}
 							break;
-						}
 						case TRANSPORT_PROTOCOL_DESCRIPTOR:
 						{
 							TransportProtocolDescriptor *transport = (TransportProtocolDescriptor*)(*desc);
@@ -303,16 +252,12 @@ void eDVBServicePMTHandler::AITready(int error)
 							case 2: /* ip */
 								break;
 							case 3: /* interaction */
+								for (InterActionTransportConstIterator interactionit = transport->getInteractionTransports()->begin(); interactionit != transport->getInteractionTransports()->end(); ++interactionit)
 								{
-									InterActionTransportConstIterator interactionit = transport->getInteractionTransports()->begin();
-									for(; interactionit != transport->getInteractionTransports()->end(); ++interactionit)
-									{
-										hbbtvUrl = (*interactionit)->getUrlBase()->getUrl();
-										if(controlCode == 1) m_HBBTVUrl = hbbtvUrl;
-										break;
-									}
+									m_HBBTVUrl = (*interactionit)->getUrlBase()->getUrl();
 									break;
 								}
+								break;
 							}
 							break;
 						}
@@ -321,7 +266,7 @@ void eDVBServicePMTHandler::AITready(int error)
 						case SIMPLE_APPLICATION_LOCATION_DESCRIPTOR:
 						{
 							SimpleApplicationLocationDescriptor *applicationlocation = (SimpleApplicationLocationDescriptor*)(*desc);
-							hbbtvUrl += applicationlocation->getInitialPath();
+							m_HBBTVUrl += applicationlocation->getInitialPath();
 							break;
 						}
 						case APPLICATION_USAGE_DESCRIPTOR:
@@ -331,24 +276,16 @@ void eDVBServicePMTHandler::AITready(int error)
 						}
 					}
 				}
-				m_HbbTVApplications.push_back(new HbbTVApplicationInfo(controlCode, orgid, appid, hbbtvUrl, applicaionName));
 			}
 		}
-
-		if (m_HbbTVApplications.size())
+		if (!m_HBBTVUrl.empty())
 		{
-			saveData(orgid, m_AITData, sectionLength);//4096);
-			for(HbbTVApplicationInfoListConstIterator infoiter = m_HbbTVApplications.begin() ; infoiter != m_HbbTVApplications.end() ; ++infoiter)
-				eDebug("Found : control[%d], name[%s], url[%s]", 
-					(*infoiter)->m_ControlCode, (*infoiter)->m_ApplicationName.c_str(), (*infoiter)->m_HbbTVUrl.c_str());
 			serviceEvent(eventHBBTVInfo);
 		}
-		else eDebug("No found anything.");
 	}
 	/* for now, do not keep listening for table updates */
 	m_AIT.stop();
 }
-
 
 void eDVBServicePMTHandler::OCready(int error)
 {
@@ -401,26 +338,6 @@ PyObject *eDVBServicePMTHandler::getCaIds(bool pair)
 	}
 
 	return ret ? (PyObject*)ret : (PyObject*)PyList_New(0);
-}
-
-PyObject *eDVBServicePMTHandler::getHbbTVApplications(void)
-{
-	ePyObject ret= PyList_New(0);;
-	if(m_HbbTVApplications.size())
-	{
-		for(HbbTVApplicationInfoListConstIterator infoiter = m_HbbTVApplications.begin() ; infoiter != m_HbbTVApplications.end() ; ++infoiter)
-		{
-			ePyObject tuple = PyTuple_New(5);
-			PyTuple_SET_ITEM(tuple, 0, PyInt_FromLong((*infoiter)->m_ControlCode));
-			PyTuple_SET_ITEM(tuple, 1, PyString_FromString((*infoiter)->m_ApplicationName.c_str()));
-			PyTuple_SET_ITEM(tuple, 2, PyString_FromString((*infoiter)->m_HbbTVUrl.c_str()));
-			PyTuple_SET_ITEM(tuple, 3, PyInt_FromLong((*infoiter)->m_OrgId));
-			PyTuple_SET_ITEM(tuple, 4, PyInt_FromLong((*infoiter)->m_AppId));
-			PyList_Append(ret, tuple);
-			Py_DECREF(tuple);
-		}
-	}
-	return (PyObject*)ret;
 }
 
 int eDVBServicePMTHandler::getProgramInfo(program &program)

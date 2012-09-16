@@ -1888,11 +1888,6 @@ PyObject *eDVBServicePlay::getInfoObject(int w)
 		return m_service_handler.getCaIds(true);
 	case sTransponderData:
 		return eStaticServiceDVBInformation().getInfoObject(m_reference, w);
-	case sHBBTVUrl:
-	{
-		eDVBServicePMTHandler &h = m_timeshift_active ? m_service_handler_timeshift : m_service_handler;
-		return h.getHbbTVApplications();
-	}	
 	default:
 		break;
 	}
