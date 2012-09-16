@@ -1000,21 +1000,30 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 
 	def loadLocalSettings(self):
 		'Load settings, called when entering a directory'
-		try:
-			path = os.path.join(config.movielist.last_videodir.value, ".e2settings.pkl")
-			updates = pickle.load(open(path, "rb"))
+		if config.movielist.settings_per_directory.value:
+			try:
+				path = os.path.join(config.movielist.last_videodir.value, ".e2settings.pkl")
+				updates = pickle.load(open(path, "rb"))
+				self.applyConfigSettings(updates)
+			except IOError, e:
+				updates = {
+					"listtype": config.movielist.listtype.default,
+					"moviesort": config.movielist.moviesort.default,
+					"description": config.movielist.description.default,
+					"movieoff": config.usage.on_movie_eof.default
+				}
+				self.applyConfigSettings(updates)
+				pass # ignore fail to open errors
+			except Exception, e:
+				print "Failed to load settings from %s: %s" % (path, e)
+		else:
+			updates = {
+				"listtype": config.movielist.listtype.value,
+				"moviesort": config.movielist.moviesort.value,
+				"description": config.movielist.description.value,
+				"movieoff": config.usage.on_movie_eof.value
+				}
 			self.applyConfigSettings(updates)
-		except IOError, e:
-			updates = {\
-				"listtype": config.movielist.listtype.default,
-				"moviesort": config.movielist.moviesort.default,
-				"description": config.movielist.description.default,
-				"movieoff": config.usage.on_movie_eof.default
-			}
-			self.applyConfigSettings(updates)
-			pass # ignore fail to open errors
-		except Exception, e:
-			print "Failed to load settings from %s: %s" % (path, e)
 
 	def applyConfigSettings(self, updates):
 		needUpdate = ("description" in updates) and (updates["description"] != self.settings["description"]) 
