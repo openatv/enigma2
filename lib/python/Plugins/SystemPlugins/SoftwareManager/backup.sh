@@ -29,7 +29,7 @@ MTDKERNEL="mtd1"
 ## TESTING WHICH KIND OF SATELLITE RECEIVER IS USED
 ## TESTING THE XTREND AND CLARK TECH MODELS
 MODEL=$( cat /etc/model )
-if [ $MODEL = "et9x00" ] || [ $MODEL = "et5x00" ] || [ $MODEL = "et6x00" ] ; then
+if [ $MODEL = "et9x00" ] || [ $MODEL = "et5x00" ] || [ $MODEL = "et6x00" ] || [ $MODEL = "et4x00" ]; then
 	TYPE=ET
 	MKUBIFS_ARGS="-m 2048 -e 126976 -c 4096"
 	UBINIZE_ARGS="-m 2048 -p 128KiB"
@@ -221,7 +221,7 @@ if [ $TYPE = "ET" ] ; then
 		echo $EXTRA
 		echo "_________________________________________________"
 		echo " "
-		if [ ${MODEL:0:3}x00 = "et9x00" ] ; then
+		if [ ${MODEL:0:3}x00 = "et9x00" ] || [ $MODEL = "et6500" ]; then
 			echo "To restore the image: "
 			echo "Place the USB-flash drive in the (front) USB-port "
 			echo "and switch the $MODEL off and on with the "
@@ -229,15 +229,7 @@ if [ $TYPE = "ET" ] ; then
 			echo "Follow the instructions on the front-display."
 			echo "Please wait....   almost ready"
 
-		elif [ $MODEL = "et6500" ] ; then
-			echo "To restore the image: "
-			echo "Place the USB-flash drive in the (front) USB-port "
-			echo "and switch the $MODEL off and on with the "
-			echo "powerswitch on the back of the $MODEL"
-			echo "Follow the instructions on the front-display."
-			echo "Please wait....   almost ready"
-
-		elif [ $MODEL = "et6000" ] ; then
+		elif [ $MODEL = "et5x00" ] || [ $MODEL = "et6x00" ] || [ $MODEL = "et4x00" ] ; then
 			echo "To restore the image:\n "
 			echo "Place the USB-flash drive in the (front) USB-port "
 			echo "and switch the $MODEL off and on with the "
@@ -245,17 +237,7 @@ if [ $TYPE = "ET" ] ; then
 			echo "Press arrow up from frontpanel to start loading."
 			echo " "
 			echo "Please wait a little bit longer, almost ready "
-
-			
-		elif [ ${MODEL:0:3}x00 = "et5x00" ] ; then
-			echo "To restore the image:\n "
-			echo "Place the USB-flash drive in the (front) USB-port "
-			echo "and switch the $MODEL off and on with the "
-			echo "powerswitch on the back of the $MODEL"
-			echo "Press arrow up from frontpanel to start loading."
-			echo " "
-			echo "Please wait a little bit longer, almost ready "
-
+	
 		else
 			echo "Please check te manual of the receiver "
 			echo "on how to restore the image"
