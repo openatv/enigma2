@@ -21,7 +21,12 @@ if [ -d /home/root ]; then
 	cd /home/root
 fi
 
-LIBS=@libdir@/libopen.so.0.0.0
+#check for sundtek tuner helper lib
+if [ -e /opt/lib/libmediaclient.so ]; then
+	LIBS="/opt/lib/libmediaclient.so /usr/lib/libopen.so.0.0.0"
+else
+	LIBS="/usr/lib/libopen.so.0.0.0"
+fi
 
 #check for receiver specific passthrough helper lib
 if [ -e @libdir@/libpassthrough.so ]; then
