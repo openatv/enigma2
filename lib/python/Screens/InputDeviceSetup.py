@@ -31,7 +31,6 @@ class InputDeviceSelection(Screen,HelpableScreen):
 							"fonts": [gFont("Regular", 28),gFont("Regular", 20)],
 							"itemHeight": 70
 							}
-
 			</convert>
 		</widget>
 		<ePixmap pixmap="skin_default/div-h.png" position="0,340" zPosition="1" size="560,2"/>
@@ -79,7 +78,7 @@ class InputDeviceSelection(Screen,HelpableScreen):
 	def cleanup(self):
 		self.currentIndex = 0
 
-	def buildInterfaceList(self,device,description,type ):
+	def buildInterfaceList(self, device, description, type):
 		divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/div-h.png"))
 		activepng = None
 		devicepng = None
@@ -108,16 +107,16 @@ class InputDeviceSelection(Screen,HelpableScreen):
 				devicepng = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/input_mouse.png"))
 		else:
 			devicepng = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/input_rcnew.png"))
-		return((device, description, devicepng, divpng))
+		return ((device, description, devicepng, divpng))
 
 	def updateList(self):
 		self.list = []
 		for x in self.devices:
 			dev_type = iInputDevices.getDeviceAttribute(x[1], 'type')
-			self.list.append(self.buildInterfaceList(x[1],_(x[0]), dev_type ))
+			self.list.append(self.buildInterfaceList(x[1],_(x[0]), dev_type))
 
 		if iRcTypeControl.multipleRcSupported():
-			self.list.append(self.buildInterfaceList('rctype',_('Configure remote control type'), None))
+			self.list.append(self.buildInterfaceList('rctype', _('Configure remote control type'), None))
 
 		self["list"].setList(self.list)
 		self["list"].setIndex(self.currentIndex)
@@ -182,7 +181,7 @@ class InputDeviceSetup(Screen, ConfigListScreen):
 		self["introduction"] = StaticText()
 
 		# for generating strings into .po only
-		devicenames = [_("dreambox front panel"),_("dreambox front panel"),_("dreambox remote control (native)"),_("dreambox advanced remote control (native)"),_("dreambox ir keyboard"),_("dreambox ir mouse")]
+		devicenames = [_("dreambox front panel"),_("dreambox remote control (native)"),_("dreambox advanced remote control (native)"),_("dreambox ir keyboard"),_("dreambox ir mouse")]
 
 		self.createSetup()
 		self.onLayoutFinish.append(self.layoutFinished)
@@ -263,7 +262,7 @@ class InputDeviceSetup(Screen, ConfigListScreen):
 			self.keySave()
 
 	def apply(self):
-		self.session.openWithCallback(self.confirm, MessageBox, _("Use this input device settings?"), MessageBox.TYPE_YESNO, timeout = 20, default = True)
+		self.session.openWithCallback(self.confirm, MessageBox, _("Use these input device settings?"), MessageBox.TYPE_YESNO, timeout = 20, default = True)
 
 	def cancelConfirm(self, result):
 		if not result:
@@ -298,8 +297,8 @@ class RemoteControlType(Screen, ConfigListScreen):
 	rcList = [
 			("0", _("Default")),
 			("4", _("DMM normal")), ("6", _("DMM advanced")),
-			("11", _("ET9x00/6500")), ("7", _("Et5000/6000")),
-			("8", _("VU+")),
+			("11", "et9x00/6500"), ("7", "et5000/6000"),
+			("8", "VU+"),
 		]
 
 	defaultRcList = [
@@ -329,7 +328,7 @@ class RemoteControlType(Screen, ConfigListScreen):
 
 		rctype = config.plugins.remotecontroltype.rctype.value
 		self.rctype = ConfigSelection(choices = self.rcList, default = str(rctype))
-		self.list.append(getConfigListEntry(_("Remote type"), self.rctype))
+		self.list.append(getConfigListEntry(_("Remote control type"), self.rctype))
 		self["config"].list = self.list
 
 		self.defaultRcType = None
