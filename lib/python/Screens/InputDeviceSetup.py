@@ -78,7 +78,7 @@ class InputDeviceSelection(Screen,HelpableScreen):
 	def cleanup(self):
 		self.currentIndex = 0
 
-	def buildInterfaceList(self, device, description, type):
+	def buildInterfaceList(self, device, description, type, isinputdevice = True):
 		divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/div-h.png"))
 		activepng = None
 		devicepng = None
@@ -105,18 +105,19 @@ class InputDeviceSelection(Screen,HelpableScreen):
 				devicepng = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/input_mouse-configured.png"))
 			else:
 				devicepng = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/input_mouse.png"))
-		else:
+		elif isinputdevice:
 			devicepng = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/input_rcnew.png"))
 		return ((device, description, devicepng, divpng))
 
 	def updateList(self):
 		self.list = []
+
+		if iRcTypeControl.multipleRcSupported():
+			self.list.append(self.buildInterfaceList('rctype', _('Configure remote control type'), None, False))
+
 		for x in self.devices:
 			dev_type = iInputDevices.getDeviceAttribute(x[1], 'type')
 			self.list.append(self.buildInterfaceList(x[1],_(x[0]), dev_type))
-
-		if iRcTypeControl.multipleRcSupported():
-			self.list.append(self.buildInterfaceList('rctype', _('Configure remote control type'), None))
 
 		self["list"].setList(self.list)
 		self["list"].setIndex(self.currentIndex)
