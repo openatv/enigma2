@@ -88,7 +88,7 @@ class UpdatePlugin(Screen):
 			default = False
 		socket.setdefaulttimeout(currentTimeoutDefault)
 		if default:
-		        self.startActualUpdate(True)
+			self.startActualUpdate(True)
 		else:
 			message += _("Do you want to update your receiver?")+"\n"+_("After pressing OK, please wait!")
 			self.session.openWithCallback(self.startActualUpdate, MessageBox, message, default = default, picon = picon)
