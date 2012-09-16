@@ -6,7 +6,7 @@ from Components.ActionMap import ActionMap, NumberActionMap
 from Components.Ipkg import IpkgComponent
 from Components.Sources.StaticText import StaticText
 from Components.Slider import Slider
-from enigma import eTimer
+from enigma import eTimer, getBoxType
 
 class UpdatePlugin(Screen):
 	skin = """
@@ -69,16 +69,9 @@ class UpdatePlugin(Screen):
 		picon = None
 		default = True
 		try:
-			if os.path.isfile("/proc/stb/info/boxtype"):
-				boxType = open("/proc/stb/info/boxtype").read().strip().lower()
-				boxType = boxType[:3] + 'x' + boxType[4:]
-			elif os.path.isfile("/proc/stb/info/vumodel"):
-				boxType = "vu" + open("/proc/stb/info/vumodel").read().strip().lower()
-			elif os.path.isfile("/proc/stb/info/model"):
-				boxType = open("/proc/stb/info/model").read().strip().lower()
 			# TODO: Use Twisted's URL fetcher, urlopen is evil. And it can
 			# run in parallel to the package update.
-			if boxType in urlopen("http://openpli.org/status").read():
+			if getBoxType() in urlopen("http://openpli.org/status").read():
 				message = _("The current beta image could not be stable") + "\n" + _("For more information see www.openpli.org") + "\n"
 				picon = MessageBox.TYPE_ERROR
 				default = False
