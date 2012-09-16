@@ -289,26 +289,37 @@ class InfoBarShowHide:
 class NumberZap(Screen):
 	def quit(self):
 		self.Timer.stop()
-		self.close(0)
+		self.close()
 
 	def keyOK(self):
 		self.Timer.stop()
-		self.close(int(self["number"].getText()))
+		self.close(self.service, self.bouquet)
+
+	def handleServiceName(self):
+		if not self.searchNumber is None:
+			self.service, self.bouquet = self.searchNumber(int(self["number"].getText()))
+			self ["servicename"].text = ServiceReference(self.service).getServiceName()
 
 	def keyNumberGlobal(self, number):
 		self.Timer.start(3000, True)		#reset timer
 		self.field = self.field + str(number)
 		self["number"].setText(self.field)
-		if len(self.field) >= 4:
+
+		self.handleServiceName()
+
+		if len(self.field) >= 5:
 			self.keyOK()
 
-	def __init__(self, session, number):
+	def __init__(self, session, number, searchNumberFunction = None):
 		Screen.__init__(self, session)
 		self.field = str(number)
+		self.searchNumber = searchNumberFunction
 
 		self["channel"] = Label(_("Channel:"))
-
 		self["number"] = Label(self.field)
+		self["servicename"] = Label()
+
+		self.handleServiceName()
 
 		self["actions"] = NumberActionMap( [ "SetupActions" ],
 			{
@@ -348,7 +359,6 @@ class InfoBarNumberZap:
 			})
 
 	def keyNumberGlobal(self, number):
-#		print "You pressed number " + str(number)
 		if number == 0:
 			if isinstance(self, InfoBarPiP) and self.pipHandles0Action():
 				self.pipDoHandle0Action()
@@ -356,12 +366,11 @@ class InfoBarNumberZap:
 				self.servicelist.recallPrevService()
 		else:
 			if self.has_key("TimeshiftActions") and not self.timeshift_enabled:
-				self.session.openWithCallback(self.numberEntered, NumberZap, number)
+				self.session.openWithCallback(self.numberEntered, NumberZap, number, self.searchNumber)
 
-	def numberEntered(self, retval):
-#		print self.servicelist
-		if retval > 0:
-			self.zapToNumber(retval)
+	def numberEntered(self, service = None, bouquet = None):
+		if not service is None:
+			self.zapToNumber(service, bouquet)
 
 	def searchNumberHelper(self, serviceHandler, num, bouquet):
 		servicelist = serviceHandler.list(bouquet)
@@ -373,7 +382,7 @@ class InfoBarNumberZap:
 				serviceIterator = servicelist.getNext()
 		return None
 
-	def zapToNumber(self, number):
+	def searchNumber(self, number):
 		bouquet = self.servicelist.getRoot()
 		service = None
 		serviceHandler = eServiceCenter.getInstance()
@@ -396,6 +405,9 @@ class InfoBarNumberZap:
 							if config.usage.alternative_number_mode.value:
 								break
 						bouquet = bouquetlist.getNext()
+		return service, bouquet
+
+	def zapToNumber(self, service, bouquet):
 		if not service is None:
 			if self.servicelist.getRoot() != bouquet: #already in correct bouquet?
 				self.servicelist.clearPath()
@@ -1677,6 +1689,9 @@ class InfoBarPiP:
 			self.session.nav.stopService() # stop portal
 			self.session.nav.playService(pipref) # start subservice
 			self.session.pip.servicePath = currentServicePath
+			if self.servicelist.dopipzap:
+				# This unfortunately won't work with subservices
+				self.servicelist.setCurrentSelection(self.session.pip.getCurrentService())
 
 	def movePiP(self):
 		self.session.open(PiPSetup, pip = self.session.pip)

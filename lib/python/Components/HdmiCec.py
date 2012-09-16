@@ -2,7 +2,7 @@ import struct
 import os
 from config import config, ConfigSelection, ConfigYesNo, ConfigSubsection, ConfigText
 from enigma import eHdmiCEC, eRCInput
-from Tools.DreamboxHardware import getFPWasTimerWakeup
+from Tools.StbHardware import getFPWasTimerWakeup
 
 config.hdmicec = ConfigSubsection()
 config.hdmicec.enabled = ConfigYesNo(default = False)
@@ -15,6 +15,7 @@ config.hdmicec.handle_tv_wakeup = ConfigYesNo(default = False)
 config.hdmicec.tv_wakeup_detection = ConfigSelection(
 	choices = {
 	"wakeup": _("Wakeup"),
+	"tvreportphysicaladdress": _("TV physical address report"),
 	"sourcerequest": _("Source request"),
 	"streamrequest": _("Stream request"),
 	"osdnamerequest": _("OSD name request"),
@@ -38,7 +39,7 @@ class HdmiCec:
 		config.misc.standbyCounter.addNotifier(self.onEnterStandby, initial_call = False)
 		config.misc.DeepStandby.addNotifier(self.onEnterDeepStandby, initial_call = False)
 		self.setFixedPhysicalAddress(config.hdmicec.fixed_physical_address.value)
-		
+
 		self.volumeForwardingEnabled = False
 		self.volumeForwardingDestination = 0
 		eRCInput.getInstance().pyKeyEvent.get().append(self.keyEvent)
@@ -192,7 +193,7 @@ class HdmiCec:
 				self.sendMessage(message.getAddress(), 'osdname')
 			elif cmd == 0x7e or cmd == 0x72: # system audio mode status
 				if data[0] == '\x01':
-					self.volumeForwardingDestination = 5; # on: send volume keys to receiver 
+					self.volumeForwardingDestination = 5; # on: send volume keys to receiver
 				else:
 					self.volumeForwardingDestination = 0; # off: send volume keys to tv
 				if config.hdmicec.volume_forwarding.value:
@@ -234,6 +235,9 @@ class HdmiCec:
 			if config.hdmicec.handle_tv_wakeup.value:
 				if cmd == 0x04 and config.hdmicec.tv_wakeup_detection.value == "wakeup":
 					self.wakeup()
+				elif cmd == 0x84 and config.hdmicec.tv_wakeup_detection.value == "tvreportphysicaladdress":
+					if (ord(data[0]) * 256 + ord(data[1])) == 0 and ord(data[2]) == 0:
+						self.wakeup()
 				elif cmd == 0x85 and config.hdmicec.tv_wakeup_detection.value == "sourcerequest":
 					self.wakeup()
 				elif cmd == 0x86 and config.hdmicec.tv_wakeup_detection.value == "streamrequest":
@@ -243,7 +247,7 @@ class HdmiCec:
 						self.wakeup()
 				elif cmd == 0x46 and config.hdmicec.tv_wakeup_detection.value == "osdnamerequest":
 					self.wakeup()
-				elif config.hdmicec.tv_wakeup_detection.value == "activity":
+				elif cmd != 0x36 and config.hdmicec.tv_wakeup_detection.value == "activity":
 					self.wakeup()
 
 	def configVolumeForwarding(self, configElement):

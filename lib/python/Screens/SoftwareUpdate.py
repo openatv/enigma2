@@ -71,6 +71,7 @@ class UpdatePlugin(Screen):
 		try:
 			if os.path.isfile("/proc/stb/info/boxtype"):
 				boxType = open("/proc/stb/info/boxtype").read().strip().lower()
+				boxType = boxType[:3] + 'x' + boxType[4:]
 			elif os.path.isfile("/proc/stb/info/vumodel"):
 				boxType = "vu" + open("/proc/stb/info/vumodel").read().strip().lower()
 			elif os.path.isfile("/proc/stb/info/model"):

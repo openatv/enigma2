@@ -26,8 +26,8 @@ class FPUpgrade(Screen):
 	def __init__(self, session):
 		self.skin = FPUpgrade.skin
 		Screen.__init__(self, session)
-		
-		from Tools.DreamboxHardware import getFPVersion
+
+		from Tools.StbHardware import getFPVersion
 		version = str(getFPVersion() or "N/A")
 		newversion = str(getUpgradeVersion() or "N/A")
 
@@ -69,7 +69,7 @@ class SystemMessage(Screen):
 		self.close()
 
 def Plugins(**kwargs):
-	from Tools.DreamboxHardware import getFPVersion
+	from Tools.StbHardware import getFPVersion
 	from Screens.MessageBox import MessageBox
 
 	version = getFPVersion()

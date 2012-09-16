@@ -124,6 +124,8 @@ class MovieList(GUIComponent):
 	SHUFFLE = 3
 	SORT_ALPHANUMERIC_REVERSE = 4
 	SORT_RECORDED_REVERSE = 5
+	SORT_ALPHANUMERIC_FLAT = 6
+	SORT_ALPHANUMERIC_FLAT_REVERSE = 7
 
 	LISTTYPE_ORIGINAL = 1
 	LISTTYPE_COMPACT_DESCRIPTION = 2
@@ -462,7 +464,7 @@ class MovieList(GUIComponent):
 		if self.list:
 			if len(self.list) > index:
 				return self.list[index] and self.list[index][0]
-					
+
 	GUI_WIDGET = eListbox
 
 	def postWidgetCreate(self, instance):
@@ -493,14 +495,19 @@ class MovieList(GUIComponent):
 	def __len__(self):
 		return len(self.list)
 
+	def __getitem__(self, index):
+		return self.list[index]
+
+	def __iter__(self):
+		return self.list.__iter__()
+
 	def load(self, root, filter_tags):
 		# this lists our root service, then building a 
 		# nice list
-		
-		self.list = [ ]
+		del self.list[:]
 		serviceHandler = eServiceCenter.getInstance()
 		numberOfDirs = 0
-		
+
 		reflist = serviceHandler.list(root)
 		if reflist is None:
 			print "listing of movies failed"
@@ -537,7 +544,7 @@ class MovieList(GUIComponent):
 			name = info.getName(serviceref)
 			if this_tags == ['']:
 				# No tags? Auto tag!
-				this_tags = [x for x in name.replace(',',' ').replace('.',' ').split() if len(x)>1]
+				this_tags = name.replace(',',' ').replace('.',' ').split()
 			else:
 				realtags.update(this_tags)
 			for tag in this_tags:
@@ -545,14 +552,14 @@ class MovieList(GUIComponent):
 					tags[tag].append(name)
 				else:
 					tags[tag] = [name]
-			this_tags = set(this_tags)
-		
 			# filter_tags is either None (which means no filter at all), or 
 			# a set. In this case, all elements of filter_tags must be present,
 			# otherwise the entry will be dropped.			
-			if filter_tags is not None and not this_tags.issuperset(filter_tags):
-				print "Skipping", name, "tags=", this_tags, " filter=", filter_tags
-				continue
+			if filter_tags is not None:
+				this_tags = set(this_tags)
+				if not this_tags.issuperset(filter_tags):
+					print "Skipping", name, "tags=", this_tags, " filter=", filter_tags
+					continue
 		
 			self.list.append((serviceref, info, begin, -1))
 		
@@ -560,6 +567,10 @@ class MovieList(GUIComponent):
 		self.parentDirectory = 0
 		if self.sort_type == MovieList.SORT_ALPHANUMERIC:
 			self.list.sort(key=self.buildAlphaNumericSortKey)
+		elif self.sort_type == MovieList.SORT_ALPHANUMERIC_FLAT:
+			self.list.sort(key=self.buildAlphaNumericFlatSortKey)
+		elif self.sort_type == MovieList.SORT_ALPHANUMERIC_FLAT_REVERSE:
+			self.list.sort(key=self.buildAlphaNumericFlatSortKey, reverse = True)
 		else:
 			#always sort first this way to avoid shuffle and reverse-sort directories
 			self.list.sort(key=self.buildBeginTimeSortKey)
@@ -578,14 +589,16 @@ class MovieList(GUIComponent):
 			if not rootPath.endswith('/'):
 				rootPath += '/'
 			if rootPath != parent:
-				dirlist = self.list[:numberOfDirs]
-				for index, item in enumerate(dirlist):
-					itempath = os.path.normpath(item[0].getPath())
-					if not itempath.endswith('/'):
-						itempath += '/'
-					if itempath == rootPath: 
-						self.parentDirectory = index
-						break
+				# with new sort types directories may be in between files, so scan whole
+				# list for parentDirectory index. Usually it is the first one anyway
+				for index, item in enumerate(self.list):
+					if item[0].flags & eServiceReference.mustDescent:
+						itempath = os.path.normpath(item[0].getPath())
+						if not itempath.endswith('/'):
+							itempath += '/'
+						if itempath == rootPath:
+							self.parentDirectory = index
+							break
 		self.root = root
 		# finally, store a list of all tags which were found. these can be presented
 		# to the user to filter the list
@@ -600,11 +613,22 @@ class MovieList(GUIComponent):
 				item = rtags.get(movies, [])
 				if not item: rtags[movies] = item
 				item.append(tag)
-		# format the tag lists so that they are in 'original' order
 		self.tags = {}
 		for movies, tags in rtags.items():
 			movie = movies[0]
-			tags.sort(key = movie.find)
+			if (len(tags) > 1):
+				# format the tag lists so that they are in 'original' order
+				tags.sort(key = movie.find)
+				first = movie.find(tags[0])
+				last = movie.find(tags[-1])
+				match = movie[first:last]
+				# Check if the set has a complete sentence in common
+				for m in movies[1:]:
+					if m[first:last] != match:
+						break
+				else:
+					self.tags[match + tags[-1]] = set(tags)
+					continue
 			self.tags[' '.join(tags)] = set(tags)
 
 	def buildAlphaNumericSortKey(self, x):
@@ -615,6 +639,21 @@ class MovieList(GUIComponent):
 			return (0, name and name.lower() or "", -x[2])
 		return (1, name and name.lower() or "", -x[2])
 		
+	def buildAlphaNumericFlatSortKey(self, x):
+		# x = ref,info,begin,...
+		ref = x[0]
+		name = x[1] and x[1].getName(ref)
+		if name and ref.flags & eServiceReference.mustDescent:
+			# only use directory basename for sorting
+			p = os.path.split(name)
+			if not p[1]:
+				# if path ends in '/', p is blank.
+				p = os.path.split(p[0])
+			name = p[1]
+                # print "Sorting for -%s-" % name
+
+		return (1, name and name.lower() or "", -x[2])
+
 	def buildBeginTimeSortKey(self, x):
 		ref = x[0]
 		if ref.flags & eServiceReference.mustDescent:

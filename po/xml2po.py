@@ -25,7 +25,7 @@ class parseXML(ContentHandler, LexicalHandler):
 			self.last_comment = comment
 
 	def startElement(self, name, attrs):
-		for x in ["text", "title", "value", "caption"]:
+		for x in ["text", "title", "value", "caption", "description"]:
 			try:
 				k = str(attrs[x])
 				if k.strip() != "" and not self.ishex.match(k):

@@ -1,7 +1,7 @@
 from enigma import eServiceCenter, eServiceReference, eTimer, pNavigation, getBestPlayableServiceReference, iPlayableService
 from Components.ParentalControl import parentalControl
 from Tools.BoundFunction import boundFunction
-from Tools.DreamboxHardware import setFPWakeuptime, getFPWakeuptime, getFPWasTimerWakeup
+from Tools.StbHardware import setFPWakeuptime, getFPWakeuptime, getFPWasTimerWakeup
 from time import time
 import RecordTimer
 import SleepTimer
@@ -15,13 +15,13 @@ class Navigation:
 	def __init__(self, nextRecordTimerAfterEventActionAuto=False):
 		if NavigationInstance.instance is not None:
 			raise NavigationInstance.instance
-		
+
 		NavigationInstance.instance = self
 		self.ServiceHandler = eServiceCenter.getInstance()
-		
+
 		import Navigation as Nav
 		Nav.navcore = self
-		
+
 		self.pnav = pNavigation()
 		self.pnav.m_event.get().append(self.dispatchEvent)
 		self.pnav.m_record_event.get().append(self.dispatchRecordEvent)
@@ -37,8 +37,8 @@ class Navigation:
 				self.standbytimer = eTimer()
 				self.standbytimer.callback.append(self.gotostandby)
 				self.standbytimer.start(25000, True)
-				# We need to give the systemclock the chance to sync with the transponder time, 
-				# before we will make the decision about whether or not we need to shutdown 
+				# We need to give the systemclock the chance to sync with the transponder time,
+				# before we will make the decision about whether or not we need to shutdown
 				# after the upcoming recording has completed
 				self.recordshutdowntimer = eTimer()
 				self.recordshutdowntimer.callback.append(self.checkShutdownAfterRecording)
@@ -103,7 +103,7 @@ class Navigation:
 		else:
 			self.stopService()
 		return 1
-	
+
 	def getCurrentlyPlayingServiceReference(self, selected = True):
 		if selected and self.currentlyPlayingServiceReference:
 			return self.currentlyPlayingSelectedServiceReference
