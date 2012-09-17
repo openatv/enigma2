@@ -8,7 +8,7 @@ install_PYTHON = \
 	EpgSelection.py EventView.py Mute.py Standby.py ServiceInfo.py \
 	InfoBarGenerics.py HelpMenu.py Wizard.py __init__.py \
 	Dish.py LanguageSelection.py StartWizard.py PiPSetup.py \
-	TutorialWizard.py PluginBrowser.py MinuteInput.py Scart.py PVRState.py \
+	PluginBrowser.py MinuteInput.py Scart.py PVRState.py \
 	Console.py InputBox.py ChoiceBox.py SimpleSummary.py \
 	TimerSelection.py PictureInPicture.py TimeDateInput.py \
 	SubtitleDisplay.py SubservicesQuickzap.py ParentalControlSetup.py NumericalTextInputHelpDialog.py \

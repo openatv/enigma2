@@ -1137,15 +1137,6 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget source="TranslatorName" render="Label" position="10,55" size="380,20" font="Regular;20" />
 		<widget source="TranslationInfo" render="Label" position="10,100" size="380,250" font="Regular;20" />
 	</screen>
-	<!-- Tutorial Wizard -->
-	<screen name="TutorialWizard" position="fill" title="Welcome..." flags="wfNoBorder">
-		<widget name="text" position="50,100" size="440,200" font="Regular;23" />
-		<widget name="list" position="50,300" zPosition="1" size="440,200" />
-		<widget name="rc" pixmap="skin_default/rc.png" position="500,600" zPosition="10" size="154,475" alphatest="on"/>
-		<widget name="arrowdown" pixmap="skin_default/arrowdown.png" position="0,0" zPosition="11" size="37,70" alphatest="on"/>
-		<widget name="arrowup" pixmap="skin_default/arrowup.png" position="-100,-100" zPosition="11" size="37,70" alphatest="on"/>
-		<widget name="arrowup2" pixmap="skin_default/arrowup.png" position="-100,-100" zPosition="11" size="37,70" alphatest="on"/>
-	</screen>
 	<!-- Volumebar -->
 	<screen name="Volume" position="253,60" zPosition="1" size="214,21" title="Volume" flags="wfNoBorder">
 		<ePixmap pixmap="skin_default/volume.png" position="0,0" size="214,21" />
