@@ -1,4 +1,3 @@
-from Screens.Satconfig import NimSelection
 from Screens.Screen import Screen
 from Plugins.Plugin import PluginDescriptor
 from Components.ConfigList import ConfigListScreen, ConfigList
@@ -13,54 +12,6 @@ from enigma import eDVBFrontendParametersSatellite, eDVBFrontendParameters, eDVB
 
 
 class AutoDiseqc(Screen, ConfigListScreen):
-	def __init__(self, session, args = None):
-		Screen.__init__(self, session)
-
-		self.feid = args
-		self.list = []
-		ConfigListScreen.__init__(self, self.list)
-
-		self.enabled = ConfigYesNo(default = True)
-		diseqc_modes = {2: _("diseqc_a_b"), 4: _("diseqc_a_b_c_d")}
-		self.menu_type = ConfigSelection(choices = diseqc_modes, default = 2)
-		self.simple_tone = ConfigYesNo(True)
-		self.simple_sat_change = ConfigYesNo(False)
-
-		self.createMenu()
-
-	def createMenu(self):
-		self.list = []
-		self.list.append(getConfigListEntry(_("Use AutoDiseqc"), self.enabled))
-		if self.enabled.value:
-			self.list.append(getConfigListEntry(_("Diseqc mode"), self.menu_type))
-			self.list.append(getConfigListEntry(_("Set Voltage and 22KHz"), self.simple_tone))
-			self.list.append(getConfigListEntry(_("Send DiSEqC only on satellite change"), self.simple_sat_change))
-		self["config"].list = self.list
-		self["config"].l.setList(self.list)
-
-	def keyLeft(self):
-		ConfigListScreen.keyLeft(self)
-		self.createMenu()
-
-	def keyRight(self):
-		ConfigListScreen.keyRight(self)
-		self.createMenu()
-
-	def run(self):
-		if self.enabled.value:
-			self.session.open(AutoDiseqcRun, self.feid, self.menu_type.value, self.simple_tone, self.simple_sat_change)
-		else:
-			if self.feid == 0:
-				config.misc.startwizard.autodiseqc_a.value = False
-			elif self.feid == 1:
-				config.misc.startwizard.autodiseqc_b.value = False
-			elif self.feid == 2:
-				config.misc.startwizard.autodiseqc_c.value = False
-			elif self.feid == 3:
-				config.misc.startwizard.autodiseqc_d.value = False
-
-
-class AutoDiseqcRun(Screen, ConfigListScreen):
 	skin = """
 		<screen position="c-250,c-100" size="500,250" title=" ">
 			<widget source="statusbar" render="Label" position="10,5" zPosition="10" size="e-10,60" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
@@ -125,7 +76,7 @@ class AutoDiseqcRun(Screen, ConfigListScreen):
 	SAT_TABLE_NAME = 12
 
 	def __init__(self, session, feid, nr_of_ports, simple_tone, simple_sat_change):
-		self.skin = AutoDiseqcRun.skin
+		self.skin = AutoDiseqc.skin
 		Screen.__init__(self, session)
 
 		self["statusbar"] = StaticText(" ")
@@ -177,12 +128,12 @@ class AutoDiseqcRun(Screen, ConfigListScreen):
 	def keySave(self):
 		if self.state == 99 and len(self.found_sats) > 0:
 			self.setupSave()
-			self.close()
+			self.close(True)
 
 	def keyCancel(self):
 		if self.state == 99:
 			self.setupClear()
-			self.close()
+			self.close(False)
 
 	def keyOK(self):
 		return
@@ -258,14 +209,6 @@ class AutoDiseqcRun(Screen, ConfigListScreen):
 			self["key_green"].setText(_("Correct"))
 
 	def setupSave(self):
-		if self.feid == 0:
-			config.misc.startwizard.autodiseqc_a.value = True
-		elif self.feid == 1:
-			config.misc.startwizard.autodiseqc_b.value = True
-		elif self.feid == 2:
-			config.misc.startwizard.autodiseqc_c.value = True
-		elif self.feid == 3:
-			config.misc.startwizard.autodiseqc_d.value = True
 		self.clearNimEntries()
 		for x in self.found_sats:
 			if x[0] == "A":
@@ -279,14 +222,6 @@ class AutoDiseqcRun(Screen, ConfigListScreen):
 		self.saveAndReloadNimConfig()
 
 	def setupClear(self):
-		if self.feid == 0:
-			config.misc.startwizard.autodiseqc_a.value = False
-		elif self.feid == 1:
-			config.misc.startwizard.autodiseqc_b.value = False
-		elif self.feid == 2:
-			config.misc.startwizard.autodiseqc_c.value = False
-		elif self.feid == 3:
-			config.misc.startwizard.autodiseqc_d.value = False
 		self.clearNimEntries()
 		config.Nims[self.feid].diseqcA.value = ""
 		config.Nims[self.feid].diseqcB.value = ""
