@@ -90,7 +90,6 @@ def msgClosed(ret):
 	if ret:
 		from os import system, _exit
 		system("rm -R /etc/enigma2")
-		system("cp -R /usr/share/enigma2/defaults /etc/enigma2")
 		_exit(0)
 self.session.openWithCallback(msgClosed, FactoryReset)
 </code>
