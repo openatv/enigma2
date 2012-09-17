@@ -2,6 +2,7 @@
 from enigma import eConsoleAppContainer
 from Components.Console import Console
 from Components.About import about
+from Components.PackageInfo import PackageInfoHandler
 from Components.Language import language
 from Components.Sources.List import List
 from Components.Ipkg import IpkgComponent
@@ -11,7 +12,7 @@ from Tools.HardwareInfo import HardwareInfo
 from time import time
 
 
-class SoftwareTools():
+class SoftwareTools(PackageInfoHandler):
 	lastDownloadDate = None
 	NetworkConnectionAvailable = None
 	list_updating = False
@@ -28,6 +29,7 @@ class SoftwareTools():
 		else:
 			self.ImageVersion = 'Stable'
 		self.language = language.getLanguage()[:2] # getLanguage returns e.g. "fi_FI" for "language_country"
+		PackageInfoHandler.__init__(self, self.statusCallback, blocking = False, neededTag = 'ALL_TAGS', neededFlag = self.ImageVersion)
 		self.directory = resolveFilename(SCOPE_METADIR)
 		self.hardware_info = HardwareInfo()
 		self.list = List([])
@@ -38,6 +40,9 @@ class SoftwareTools():
 		self.unwanted_extensions = ('-dbg', '-dev', '-doc', '-staticdev')
 		self.ipkg = IpkgComponent()
 		self.ipkg.addCallback(self.ipkgCallback)
+
+	def statusCallback(self, status, progress):
+		pass
 
 	def startSoftwareTools(self, callback = None):
 		if callback is not None:
