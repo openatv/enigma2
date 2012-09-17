@@ -32,6 +32,11 @@ class NTPSyncPoller:
 		if config.misc.SyncTimeUsing.value == "1":
 			print '[NTP]: Updating'
 			self.Console.ePopen('/usr/bin/ntpdate -s -u pool.ntp.org', self.update_schedule)
+		else:
+			nowTime = time()
+			print '[TransponderTime]: setting E2 time:',nowTime
+			eDVBLocalTimeHandler.getInstance().setUseDVBTime(True)
+			setRTCtime(nowTime)
 
 	def update_schedule(self, result = None, retval = None, extra_args = None):
 		nowTime = time()

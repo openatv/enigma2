@@ -24,7 +24,25 @@ def setFPWakeuptime(wutime):
 		except IOError:
 			print "setFPWakeupTime failed!"
 
+def setRTCoffset():
+	import time
+	if time.localtime().tm_isdst == 0:
+		forsleep = time.timezone
+	else:
+		forsleep = 3600-time.timezone
+
+	t_local = time.localtime(int(time.time()))
+	print "set RTC to %s (rtc_offset = %s sec.)" % (time.strftime("%Y/%m/%d %H:%M", t_local), forsleep)
+
+	# Set RTC OFFSET (diff. between UTC and Local Time)
+	try:
+		open("/proc/stb/fp/rtc_offset", "w").write(str(forsleep))
+	except IOError:
+		print "set RTC Offset failed!"
+
 def setRTCtime(wutime):
+	if boxtype.startswith('gb'):
+		setRTCoffset()
 	try:
 		open("/proc/stb/fp/rtc", "w").write(str(wutime))
 	except IOError:
