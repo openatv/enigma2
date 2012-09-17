@@ -157,7 +157,6 @@ class AutoDiseqcRun(Screen, ConfigListScreen):
 					del self.session.pip
 					if not self.openFrontend():
 						self.frontend = None
-		self.frontend.closeFrontend()
 
 		self["actions"] = ActionMap(["SetupActions"],
 		{
@@ -232,10 +231,6 @@ class AutoDiseqcRun(Screen, ConfigListScreen):
 			self.state += 1
 
 		elif self.state == 1:
-			if self.openFrontend():
-				self.state += 1
-
-		elif self.state == 2:
 			InitNimManager(nimmanager)
 
 			self.tuner = Tuner(self.frontend)
@@ -271,7 +266,6 @@ class AutoDiseqcRun(Screen, ConfigListScreen):
 			config.misc.startwizard.autodiseqc_c.value = True
 		elif self.feid == 3:
 			config.misc.startwizard.autodiseqc_d.value = True
-
 		self.clearNimEntries()
 		for x in self.found_sats:
 			if x[0] == "A":
@@ -314,6 +308,7 @@ class AutoDiseqcRun(Screen, ConfigListScreen):
 		config.Nims[self.feid].save()
 		configfile.save()
 		configfile.load()
+		nimmanager.sec.update()
 
 	def tunerStatusCallback(self):
 		dict = {}
@@ -354,8 +349,6 @@ class AutoDiseqcRun(Screen, ConfigListScreen):
 			if len(self.sat_frequencies) == self.index:
 				self.index = 0
 				self.port_index += 1
-
-		self.frontend.closeFrontend()
 
 		if len(self.found_sats) > 0:
 			self.list = []
