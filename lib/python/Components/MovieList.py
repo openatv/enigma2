@@ -616,20 +616,31 @@ class MovieList(GUIComponent):
 		self.tags = {}
 		for movies, tags in rtags.items():
 			movie = movies[0]
-			if (len(tags) > 1):
-				# format the tag lists so that they are in 'original' order
-				tags.sort(key = movie.find)
-				first = movie.find(tags[0])
-				last = movie.find(tags[-1])
-				match = movie[first:last]
-				# Check if the set has a complete sentence in common
-				for m in movies[1:]:
-					if m[first:last] != match:
+			# format the tag lists so that they are in 'original' order
+			tags.sort(key = movie.find)
+			first = movie.find(tags[0])
+			last = movie.find(tags[-1]) + len(tags[-1])
+			match = movie
+			start = 0
+			end = len(movie)
+			# Check if the set has a complete sentence in common, and how far
+			for m in movies[1:]:
+				if m[start:end] != match:
+					if not m.startswith(movie[:last]):
+						start = first
+					if not m.endswith(movie[first:]):
+						end = last
+					match = movie[start:end]
+					if m[start:end] != match:
+						match = ''
 						break
-				else:
-					self.tags[match + tags[-1]] = set(tags)
-					continue
-			self.tags[' '.join(tags)] = set(tags)
+			if match:
+				self.tags[match] = set(tags)
+				continue
+			else:
+				match = ' '.join(tags)
+				if len(match) > 2: #Omit small words
+					self.tags[match] = set(tags)
 
 	def buildAlphaNumericSortKey(self, x):
 		# x = ref,info,begin,...
