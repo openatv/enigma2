@@ -9,8 +9,20 @@ self.selectKey("OK")
 		<step id="introduction" >
 			<text value="Use the up/down keys on your remote control to select an option. After that, press OK." />
 			<list>
-				<listentry caption="Use wizard to set up basic features" step="update" />
+				<listentry caption="Use wizard to set up basic features" step="network" />
 				<listentry caption="Exit wizard" step="end" />
+			</list>
+			<code>
+self.clearSelectedKeys()
+self.selectKey("UP")
+self.selectKey("DOWN")
+			</code>
+		</step>
+		<step id="network" >
+			<text value="Please connect your receiver to the internet" />
+			<list>
+				<listentry caption="Check if your receiver is connected to the internet" step="update" />
+				<listentry caption="Skip internet check (disables automatic pacakges installation in this wizard)" step="nima" />
 			</list>
 			<code>
 self.clearSelectedKeys()
@@ -26,12 +38,27 @@ self.clearSelectedKeys()
 self.selectKey("OK")
 			</code>
 		</step>
+		<step id="networkfailed" >
+			<condition>
+self.condition = not config.misc.installwizard.ipkgloaded.value
+			</condition>
+			<text value="Your receiver is not connected to the internet" />
+			<list>
+				<listentry caption="Recheck if your receiver is connected to the internet" step="update" />
+				<listentry caption="Skip internet check (disables automatic pacakges installation in this wizard)" step="nima" />
+			</list>
+			<code>
+self.clearSelectedKeys()
+self.selectKey("UP")
+self.selectKey("DOWN")
+			</code>
+		</step>
 		<step id="nima">
 			<condition>
 from Components.NimManager import nimmanager
 self.condition = len(nimmanager.nim_slots) > 0 and not nimmanager.nim_slots[0].empty and config.misc.startwizard.shownimconfig.value
 			</condition>
-			<text value="Use the left and right buttons to change an option.\n\nPlease set up tuner A" />
+			<text value="Please set up tuner A" />
 			<config screen="NimSetup" module="Satconfig" args="0" type="ConfigList" />
 			<code>
 self.clearSelectedKeys()
@@ -147,5 +174,9 @@ self.selectKey("RIGHT")
 		</step>
 		<step id="end" laststep="true">
 			<text value="Thank you for using the wizard. Your box is now ready to use.\nPlease press OK to start using your receiver." />
+			<code>
+self.clearSelectedKeys()
+self.selectKey("OK")
+			</code>
 		</step>
 </wizard>
