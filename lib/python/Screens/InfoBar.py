@@ -119,8 +119,8 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		service = self.session.nav.getCurrentService()
 		if service is not None: # workaround to avoid an error when service is None
 			info = service.info()
-			AudioPID = info.getInfo(iServiceInformation.sAudioPID)
-			VideoPID = info.getInfo(iServiceInformation.sVideoPID)
+			AudioPID = info.getInfo(enigma.iServiceInformation.sAudioPID)
+			VideoPID = info.getInfo(enigma.iServiceInformation.sVideoPID)
 		else:
 			AudioPID = 1
 			VideoPID = 1
