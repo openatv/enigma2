@@ -27,7 +27,9 @@ class InstallWizard(Screen, ConfigListScreen):
 		ConfigListScreen.__init__(self, self.list)
 
 		if self.index == self.STATE_UPDATE:
-			modes = {0: _("Press OK")}
+			config.misc.installwizard.hasnetwork.value = False
+			config.misc.installwizard.ipkgloaded.value = False
+			modes = {0: " "}
 			self.enabled = ConfigSelection(choices = modes, default = 0)
 			self.adapters = [(iNetwork.getFriendlyAdapterName(x),x) for x in iNetwork.getAdapterList()]
 			is_found = False
@@ -37,7 +39,9 @@ class InstallWizard(Screen, ConfigListScreen):
 						self.ipConfigEntry = ConfigIP(default = iNetwork.getAdapterAttribute(x[1], "ip"))
 						iNetwork.checkNetworkState(self.checkNetworkCB)
 						if_found = True
-						break
+					else:
+						iNetwork.restartNetwork(self.checkNetworkLinkCB)
+					break
 			if is_found is False:
 				self.createMenu()
 		elif self.index == self.STATE_CHOISE_CHANNELLIST:
@@ -56,13 +60,23 @@ class InstallWizard(Screen, ConfigListScreen):
 			config.misc.installwizard.hasnetwork.value = True
 		self.createMenu()
 
+	def checkNetworkLinkCB(self, retval):
+		if retval:
+			iNetwork.checkNetworkState(self.checkNetworkCB)
+		else:
+			self.createMenu()
+
 	def createMenu(self):
+		try:
+			test = self.index
+		except:
+			return
 		self.list = []
 		if self.index == self.STATE_UPDATE:
 			if config.misc.installwizard.hasnetwork.value:
-				self.list.append(getConfigListEntry(_("Yes, your receiver's ip is %s and connected") % (self.ipConfigEntry.getText()), self.enabled))
+				self.list.append(getConfigListEntry(_("Yes your receiver's ip is %s and connected") % (self.ipConfigEntry.getText()), self.enabled))
 			else:
-				self.list.append(getConfigListEntry(_("No, your receiver is not connected"), self.enabled))
+				self.list.append(getConfigListEntry(_("No your receiver is not connected"), self.enabled))
 		elif self.index == self.STATE_CHOISE_CHANNELLIST:
 			self.list.append(getConfigListEntry(_("Install channellist"), self.enabled))
 			if self.enabled.value:
