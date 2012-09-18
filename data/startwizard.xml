@@ -9,13 +9,21 @@ self.selectKey("OK")
 		<step id="introduction" >
 			<text value="Use the up/down keys on your remote control to select an option. After that, press OK." />
 			<list>
-				<listentry caption="Use wizard to set up basic features" step="nima" />
+				<listentry caption="Use wizard to set up basic features" step="update" />
 				<listentry caption="Exit wizard" step="end" />
 			</list>
 			<code>
 self.clearSelectedKeys()
 self.selectKey("UP")
 self.selectKey("DOWN")
+			</code>
+		</step>
+		<step id="update">
+			<text value="Checking if your receiver is connected to the internet" />
+			<config screen="InstallWizard" module="InstallWizard" args="0" type="ConfigList" />
+			<code>
+self.clearSelectedKeys()
+self.selectKey("OK")
 			</code>
 		</step>
 		<step id="nima">
@@ -70,11 +78,24 @@ self.selectKey("LEFT")
 self.selectKey("RIGHT")
 			</code>
 		</step>
+		<step id="channels">
+			<condition>
+from Components.NimManager import nimmanager
+self.condition = nimmanager.somethingConnected() and config.misc.installwizard.hasnetwork.value and config.misc.installwizard.ipkgloaded.value
+			</condition>
+			<text value="Would you like to install a channellist?" />
+			<config screen="InstallWizard" module="InstallWizard" args="1" type="ConfigList" />
+			<code>
+self.clearSelectedKeys()
+self.selectKey("LEFT")
+self.selectKey("RIGHT")
+			</code>
+		</step>
 		<step id="scanquestion">
 			<text value="Do you want to do a service scan?" />
 			<condition>
 from Components.NimManager import nimmanager
-self.condition = config.misc.startwizard.doservicescan.value and nimmanager.somethingConnected()
+self.condition = config.misc.startwizard.doservicescan.value and nimmanager.somethingConnected() and not config.misc.installwizard.channellistdownloaded.value
 			</condition>
 			<code>
 self.hideRc()
@@ -82,13 +103,13 @@ self.hideRc()
 			<list>
 				<listentry caption="Yes, do an automatic scan now" step="scan" />
 				<listentry caption="Yes, do a manual scan now" step="manualscan" />
-				<listentry caption="No, scan later manually" step="end" />
+				<listentry caption="No, scan later manually" step="softcam" />
 			</list>
 		</step>
-		<step id="scan" nextstep="end">
+		<step id="scan" nextstep="softcam">
 			<condition>
 from Components.NimManager import nimmanager
-self.condition = config.misc.startwizard.doservicescan.value and nimmanager.somethingConnected()
+self.condition = config.misc.startwizard.doservicescan.value and nimmanager.somethingConnected() and not config.misc.installwizard.channellistdownloaded.value
 			</condition>			
 			<text value="What do you want to scan?" />
 			<config screen="ScanSimple" module="ScanSetup" type="ConfigList" />
@@ -96,7 +117,7 @@ self.condition = config.misc.startwizard.doservicescan.value and nimmanager.some
 		<step id="manualscan">
 			<condition>
 from Components.NimManager import nimmanager
-self.condition = config.misc.startwizard.doservicescan.value and nimmanager.somethingConnected()
+self.condition = config.misc.startwizard.doservicescan.value and nimmanager.somethingConnected() and not config.misc.installwizard.channellistdownloaded.value
 			</condition>
 			<text value="What do you want to scan?" />
 			<config screen="ScanSetup" module="ScanSetup" type="ConfigList" />
@@ -104,13 +125,25 @@ self.condition = config.misc.startwizard.doservicescan.value and nimmanager.some
 		<step id="nextscan">
 			<condition>
 from Components.NimManager import nimmanager
-self.condition = config.misc.startwizard.doservicescan.value and nimmanager.somethingConnected()
+self.condition = config.misc.startwizard.doservicescan.value and nimmanager.somethingConnected() and not config.misc.installwizard.channellistdownloaded.value
 			</condition>
 			<text value="Do you want to do another manual service scan?" />
 			<list>
 				<listentry caption="Yes, do another manual scan now" step="manualscan" />
-				<listentry caption="No, scan later manually" step="end" />
+				<listentry caption="No, scan later manually" step="softcam" />
 			</list>
+		</step>
+		<step id="softcam">
+			<condition>
+self.condition = config.misc.installwizard.hasnetwork.value and config.misc.installwizard.ipkgloaded.value
+			</condition>
+			<text value="Would you like to install a softcam?" />
+			<config screen="InstallWizard" module="InstallWizard" args="2" type="ConfigList" />
+			<code>
+self.clearSelectedKeys()
+self.selectKey("LEFT")
+self.selectKey("RIGHT")
+			</code>
 		</step>
 		<step id="end" laststep="true">
 			<text value="Thank you for using the wizard. Your box is now ready to use.\nPlease press OK to start using your receiver." />
