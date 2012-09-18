@@ -6,7 +6,7 @@ from Components.ActionMap import ActionMap, NumberActionMap
 from Components.Ipkg import IpkgComponent
 from Components.Sources.StaticText import StaticText
 from Components.Slider import Slider
-from enigma import eTimer
+from enigma import eTimer, getBoxType, eDVBDB
 
 class UpdatePlugin(Screen):
 	skin = """
@@ -38,6 +38,8 @@ class UpdatePlugin(Screen):
 		self.processed_packages = []
 		self.total_packages = None
 
+		self.channellist_only = 0
+		self.channellist_name = ''
 		self.updating = False
 		self.ipkg = IpkgComponent()
 		self.ipkg.addCallback(self.ipkgCallback)
@@ -69,28 +71,21 @@ class UpdatePlugin(Screen):
 		picon = None
 		default = True
 		try:
-			if os.path.isfile("/proc/stb/info/boxtype"):
-				boxType = open("/proc/stb/info/boxtype").read().strip().lower()
-				boxType = boxType[:3] + 'x' + boxType[4:]
-			elif os.path.isfile("/proc/stb/info/vumodel"):
-				boxType = "vu" + open("/proc/stb/info/vumodel").read().strip().lower()
-			elif os.path.isfile("/proc/stb/info/model"):
-				boxType = open("/proc/stb/info/model").read().strip().lower()
 			# TODO: Use Twisted's URL fetcher, urlopen is evil. And it can
 			# run in parallel to the package update.
-			if boxType in urlopen("http://openpli.org/status").read():
-				message = _("The current beta image could not be stable") + "\n" + _("For more information see www.openpli.org") + "\n"
+			if getBoxType() in urlopen("http://openpli.org/status").read():
+				message = _("The current beta image might not be stable.\nFor more information see www.openpli.org.")
 				picon = MessageBox.TYPE_ERROR
 				default = False
 		except:
-			message = _("The status of the current beta image could not be checked because www.openpli.org could not be reached for some reason") + "\n"
+			message = _("The status of the current beta image could not be checked because www.openpli.org can not be reached.")
 			picon = MessageBox.TYPE_ERROR
 			default = False
 		socket.setdefaulttimeout(currentTimeoutDefault)
 		if default:
-		        self.startActualUpdate(True)
+			self.startActualUpdate(True)
 		else:
-			message += _("Do you want to update your receiver?")+"\n"+_("After pressing OK, please wait!")
+			message += "\n" + _("Do you want to update your receiver?")
 			self.session.openWithCallback(self.startActualUpdate, MessageBox, message, default = default, picon = picon)
 
 	def startActualUpdate(self,answer):
@@ -139,7 +134,7 @@ class UpdatePlugin(Screen):
 				self.session.openWithCallback(
 					self.modificationCallback,
 					MessageBox,
-					_("A configuration file (%s) was modified since Installation.\nDo you want to keep your version?") % (param)
+					_("A configuration file (%s) has been modified since it was installed.\nDo you want to keep your modifications?") % (param)
 				)
 		elif event == IpkgComponent.EVENT_ERROR:
 			self.error += 1
@@ -151,29 +146,52 @@ class UpdatePlugin(Screen):
 				self.total_packages = len(self.ipkg.getFetchedList())
 				if self.total_packages:
 					message = _("Do you want to update your receiver?") + "\n(%s " % self.total_packages + _("Packages") + ")"
-					choices = [(_("Unattended upgrade without GUI and reboot system"), "cold"),
-						(_("Upgrade and ask to reboot"), "hot"),
+					choices = [(_("Update and reboot (recommended)"), "cold"),
+						(_("Update and ask to reboot"), "hot"),
+						(_("Update channel list only"), "channels"),
 						(_("Cancel"), "")]
 					self.session.openWithCallback(self.startActualUpgrade, ChoiceBox, title=message, list=choices)
 				else:
-				        self.session.openWithCallback(self.close, MessageBox, _("Nothing to upgrade"), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+					self.session.openWithCallback(self.close, MessageBox, _("No updates available"), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+			elif self.channellist_only > 0:
+				if self.channellist_only == 1:
+					self.setEndMessage(_("Could not find installed channel list."))
+				elif self.channellist_only == 2:
+					self.slider.setValue(2)
+					self.ipkg.startCmd(IpkgComponent.CMD_REMOVE, {'package': self.channellist_name})
+					self.channellist_only += 1
+				elif self.channellist_only == 3:
+					self.slider.setValue(3)
+					self.ipkg.startCmd(IpkgComponent.CMD_INSTALL, {'package': self.channellist_name})
+					self.channellist_only += 1
+				elif self.channellist_only == 4:
+					self.setEndMessage(_("Update completed. %d packages were installed.") % self.packages)
+					eDVBDB.getInstance().reloadBouquets()
+					eDVBDB.getInstance().reloadServicelist()
 			elif self.error == 0:
-				self.slider.setValue(4)
-				self.activityTimer.stop()
-				self.activityslider.setValue(0)
-				self.package.setText(_("Done - Installed or upgraded %d packages") % self.packages)
-				self.status.setText(self.oktext)
+				self.setEndMessage(_("Update completed. %d packages were installed.") % self.packages)
 			else:
 				self.activityTimer.stop()
 				self.activityslider.setValue(0)
-				error = _("your receiver might be unusable now. Please consult the manual for further assistance before rebooting your receiver.")
+				error = _("Your receiver might be unusable now. Please consult the manual for further assistance before rebooting your receiver.")
 				if self.packages == 0:
-					error = _("No packages were upgraded yet. So you can check your network and try again.")
+					error = _("No updates available. Please try again later.")
 				if self.updating:
-					error = _("Your receiver isn't connected to the internet properly. Please check it and try again.")
+					error = _("Update failed. Your receiver does not have a working internet connection.")
 				self.status.setText(_("Error") +  " - " + error)
+		elif event == IpkgComponent.EVENT_LISTITEM:
+			if 'enigma2-plugin-settings-' in param[0] and self.channellist_only > 0:
+				self.channellist_name = param[0]
+				self.channellist_only = 2
 		#print event, "-", param
 		pass
+
+	def setEndMessage(self, txt):
+		self.slider.setValue(4)
+		self.activityTimer.stop()
+		self.activityslider.setValue(0)
+		self.package.setText(txt)
+		self.status.setText(self.oktext)
 
 	def startActualUpgrade(self, answer):
 		if not answer or not answer[1]:
@@ -182,6 +200,10 @@ class UpdatePlugin(Screen):
 		if answer[1] == "cold":
 			self.session.open(TryQuitMainloop,retvalue=42)
 			self.close()
+		if answer[1] == "channels":
+			self.channellist_only = 1
+			self.slider.setValue(1)
+			self.ipkg.startCmd(IpkgComponent.CMD_LIST, args = {'installed_only': True})
 		else:
 			self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE, args = {'test_only': False})
 
@@ -190,8 +212,8 @@ class UpdatePlugin(Screen):
 
 	def exit(self):
 		if not self.ipkg.isRunning():
-			if self.packages != 0 and self.error == 0:
-				self.session.openWithCallback(self.exitAnswer, MessageBox, _("Upgrade finished.") +" "+_("Do you want to reboot your receiver?"))
+			if self.packages != 0 and self.error == 0 and self.channellist_only == 0:
+				self.session.openWithCallback(self.exitAnswer, MessageBox, _("Update completed. Do you want to reboot your receiver?"))
 			else:
 				self.close()
 		else:

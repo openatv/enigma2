@@ -17,6 +17,6 @@ install_PYTHON = \
 	FIFOList.py ServiceEventTracker.py Input.py TimerSanityCheck.py FileList.py \
 	MultiContent.py MediaPlayer.py TunerInfo.py VideoWindow.py ChoiceList.py \
 	Element.py Playlist.py ParentalControl.py ParentalControlList.py \
-	Ipkg.py SelectionList.py Scanner.py SystemInfo.py \
+	Ipkg.py SelectionList.py Scanner.py SystemInfo.py PackageInfo.py \
 	Task.py language_cache.py Console.py ResourceManager.py TuneTest.py \
 	Keyboard.py Sensors.py FanControl.py HdmiCec.py RcModel.py

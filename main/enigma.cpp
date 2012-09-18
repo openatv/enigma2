@@ -316,6 +316,11 @@ const char *getEnigmaVersionString()
 	return std::string(date + '-' + branch).c_str();
 }
 
+const char *getBoxType()
+{
+	return BOXTYPE;
+}
+
 #include <malloc.h>
 
 void dump_malloc_stats(void)
