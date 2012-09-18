@@ -6,7 +6,7 @@ from Components.ActionMap import ActionMap, NumberActionMap
 from Components.Ipkg import IpkgComponent
 from Components.Sources.StaticText import StaticText
 from Components.Slider import Slider
-from enigma import eTimer, getBoxType
+from enigma import eTimer, getBoxType, eDVBDB
 
 class UpdatePlugin(Screen):
 	skin = """
@@ -38,6 +38,8 @@ class UpdatePlugin(Screen):
 		self.processed_packages = []
 		self.total_packages = None
 
+		self.channellist_only = 0
+		self.channellist_name = ''
 		self.updating = False
 		self.ipkg = IpkgComponent()
 		self.ipkg.addCallback(self.ipkgCallback)
@@ -146,16 +148,28 @@ class UpdatePlugin(Screen):
 					message = _("Do you want to update your receiver?") + "\n(%s " % self.total_packages + _("Packages") + ")"
 					choices = [(_("Update and reboot (recommended)"), "cold"),
 						(_("Update and ask to reboot"), "hot"),
+						(_("Update channel list only"), "channels"),
 						(_("Cancel"), "")]
 					self.session.openWithCallback(self.startActualUpgrade, ChoiceBox, title=message, list=choices)
 				else:
 					self.session.openWithCallback(self.close, MessageBox, _("No updates available"), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+			elif self.channellist_only > 0:
+				if self.channellist_only == 1:
+					self.setEndMessage(_("Could not find installed channel list."))
+				elif self.channellist_only == 2:
+					self.slider.setValue(2)
+					self.ipkg.startCmd(IpkgComponent.CMD_REMOVE, {'package': self.channellist_name})
+					self.channellist_only += 1
+				elif self.channellist_only == 3:
+					self.slider.setValue(3)
+					self.ipkg.startCmd(IpkgComponent.CMD_INSTALL, {'package': self.channellist_name})
+					self.channellist_only += 1
+				elif self.channellist_only == 4:
+					self.setEndMessage(_("Update completed. %d packages were installed.") % self.packages)
+					eDVBDB.getInstance().reloadBouquets()
+					eDVBDB.getInstance().reloadServicelist()
 			elif self.error == 0:
-				self.slider.setValue(4)
-				self.activityTimer.stop()
-				self.activityslider.setValue(0)
-				self.package.setText(_("Update completed. %d packages were installed.") % self.packages)
-				self.status.setText(self.oktext)
+				self.setEndMessage(_("Update completed. %d packages were installed.") % self.packages)
 			else:
 				self.activityTimer.stop()
 				self.activityslider.setValue(0)
@@ -165,8 +179,19 @@ class UpdatePlugin(Screen):
 				if self.updating:
 					error = _("Update failed. Your receiver does not have a working internet connection.")
 				self.status.setText(_("Error") +  " - " + error)
+		elif event == IpkgComponent.EVENT_LISTITEM:
+			if 'enigma2-plugin-settings-' in param[0] and self.channellist_only > 0:
+				self.channellist_name = param[0]
+				self.channellist_only = 2
 		#print event, "-", param
 		pass
+
+	def setEndMessage(self, txt):
+		self.slider.setValue(4)
+		self.activityTimer.stop()
+		self.activityslider.setValue(0)
+		self.package.setText(txt)
+		self.status.setText(self.oktext)
 
 	def startActualUpgrade(self, answer):
 		if not answer or not answer[1]:
@@ -175,6 +200,10 @@ class UpdatePlugin(Screen):
 		if answer[1] == "cold":
 			self.session.open(TryQuitMainloop,retvalue=42)
 			self.close()
+		if answer[1] == "channels":
+			self.channellist_only = 1
+			self.slider.setValue(1)
+			self.ipkg.startCmd(IpkgComponent.CMD_LIST, args = {'installed_only': True})
 		else:
 			self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE, args = {'test_only': False})
 
@@ -183,7 +212,7 @@ class UpdatePlugin(Screen):
 
 	def exit(self):
 		if not self.ipkg.isRunning():
-			if self.packages != 0 and self.error == 0:
+			if self.packages != 0 and self.error == 0 and self.channellist_only == 0:
 				self.session.openWithCallback(self.exitAnswer, MessageBox, _("Update completed. Do you want to reboot your receiver?"))
 			else:
 				self.close()
