@@ -78,9 +78,9 @@ class InstallWizard(Screen, ConfigListScreen):
 			else:
 				self.list.append(getConfigListEntry(_("No your receiver is not connected"), self.enabled))
 		elif self.index == self.STATE_CHOISE_CHANNELLIST:
-			self.list.append(getConfigListEntry(_("Install channellist"), self.enabled))
+			self.list.append(getConfigListEntry(_("Install channel list"), self.enabled))
 			if self.enabled.value:
-				self.list.append(getConfigListEntry(_("Channellist type"), self.channellist_type))
+				self.list.append(getConfigListEntry(_("Channel list type"), self.channellist_type))
 		elif self.index == self.STATE_CHOISE_SOFTCAM:
 			self.list.append(getConfigListEntry(_("Install softcam"), self.enabled))
 			if self.enabled.value:
@@ -105,7 +105,7 @@ class InstallWizard(Screen, ConfigListScreen):
 			if config.misc.installwizard.hasnetwork.value:
 				self.session.open(InstallWizardIpkgUpdater, self.index, _('Please wait updating packages'), IpkgComponent.CMD_UPDATE)
 		elif self.index == self.STATE_CHOISE_CHANNELLIST and self.enabled.value:
-			self.session.open(InstallWizardIpkgUpdater, self.index, _('Please wait downloading channellist'), IpkgComponent.CMD_REMOVE, {'package': 'enigma2-plugin-settings-henksat-' + self.channellist_type.value})
+			self.session.open(InstallWizardIpkgUpdater, self.index, _('Please wait downloading channel list'), IpkgComponent.CMD_REMOVE, {'package': 'enigma2-plugin-settings-henksat-' + self.channellist_type.value})
 		elif self.index == self.STATE_CHOISE_SOFTCAM and self.enabled.value:
 			self.session.open(InstallWizardIpkgUpdater, self.index, _('Please wait downloading softcam'), IpkgComponent.CMD_INSTALL, {'package': 'enigma2-plugin-softcams-' + self.softcam_type.value})
 		return

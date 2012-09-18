@@ -110,7 +110,7 @@ self.selectKey("RIGHT")
 from Components.NimManager import nimmanager
 self.condition = nimmanager.somethingConnected() and config.misc.installwizard.hasnetwork.value and config.misc.installwizard.ipkgloaded.value
 			</condition>
-			<text value="Would you like to install a channellist?" />
+			<text value="Would you like to install a channel list?" />
 			<config screen="InstallWizard" module="InstallWizard" args="1" type="ConfigList" />
 			<code>
 self.clearSelectedKeys()
