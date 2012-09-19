@@ -487,7 +487,7 @@ def runScreenTest():
 	profile("Init:PowerKey")
 	power = PowerKey(session)
 
-	if config.misc.boxtype.value == 'odinm9':
+	if config.misc.boxtype.value == 'odinm9' or config.misc.boxtype.value == 'ventonhdx':
 		profile("VFDSYMBOLS")
 		import Components.VfdSymbols
 		Components.VfdSymbols.SymbolsCheck(session)
@@ -502,7 +502,7 @@ def runScreenTest():
 	profile("RunReactor")
 	profile_final()
 
-	if config.misc.boxtype.value == 'gb800se' or config.misc.boxtype.value == 'gb800solo' or config.misc.boxtype.value == 'gb800ue':
+	if config.misc.boxtype.value == 'gb800se' or config.misc.boxtype.value == 'gb800solo':
 		from enigma import evfd, eConsoleAppContainer
 		try:
 			cmd = 'vfdctl "    openaaf starting e2"; vfdctl -a'

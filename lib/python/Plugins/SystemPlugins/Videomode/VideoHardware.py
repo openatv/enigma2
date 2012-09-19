@@ -133,7 +133,7 @@ class VideoHardware:
 			del self.modes["DVI-PC"]
 		if config.misc.boxtype.value == 'et4x00':
 			del self.modes["YPbPr"]
-		if config.misc.boxtype.value == 'gbquad':
+		if config.misc.boxtype.value == 'gbquad' or config.misc.boxtype.value == 'et5x00':
 			del self.modes["Scart"]
 
 		self.createConfig()

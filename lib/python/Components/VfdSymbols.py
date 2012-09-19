@@ -48,23 +48,30 @@ class SymbolsCheckPoller:
 		del self.service
 
 	def Recording(self):
-		if not fileExists("/proc/stb/lcd/symbol_recording") or not fileExists("/proc/stb/lcd/symbol_record_1") or not fileExists("/proc/stb/lcd/symbol_record_2"):
-			return
-	
-		recordings = len(NavigationInstance.instance.getRecordings())
-
-		if recordings > 0:
-			open("/proc/stb/lcd/symbol_recording", "w").write("1")
-			if recordings == 1:
-				open("/proc/stb/lcd/symbol_record_1", "w").write("1")
-				open("/proc/stb/lcd/symbol_record_2", "w").write("0")
-			elif recordings >= 2:
-				open("/proc/stb/lcd/symbol_record_1", "w").write("1")
-				open("/proc/stb/lcd/symbol_record_2", "w").write("1")
+		if fileExists("/proc/stb/lcd/symbol_circle"):
+			recordings = len(NavigationInstance.instance.getRecordings())
+			if recordings > 0:
+				open("/proc/stb/lcd/symbol_circle", "w").write("3")
+			else:
+				open("/proc/stb/lcd/symbol_circle", "w").write("0")
 		else:
-			open("/proc/stb/lcd/symbol_recording", "w").write("0")
-			open("/proc/stb/lcd/symbol_record_1", "w").write("0")
-			open("/proc/stb/lcd/symbol_record_2", "w").write("0")
+			if not fileExists("/proc/stb/lcd/symbol_recording") or not fileExists("/proc/stb/lcd/symbol_record_1") or not fileExists("/proc/stb/lcd/symbol_record_2"):
+				return
+	
+			recordings = len(NavigationInstance.instance.getRecordings())
+		
+			if recordings > 0:
+				open("/proc/stb/lcd/symbol_recording", "w").write("1")
+				if recordings == 1:
+					open("/proc/stb/lcd/symbol_record_1", "w").write("1")
+					open("/proc/stb/lcd/symbol_record_2", "w").write("0")
+				elif recordings >= 2:
+					open("/proc/stb/lcd/symbol_record_1", "w").write("1")
+					open("/proc/stb/lcd/symbol_record_2", "w").write("1")
+			else:
+				open("/proc/stb/lcd/symbol_recording", "w").write("0")
+				open("/proc/stb/lcd/symbol_record_1", "w").write("0")
+				open("/proc/stb/lcd/symbol_record_2", "w").write("0")
 
 
 	def Subtitle(self):

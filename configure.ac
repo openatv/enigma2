@@ -141,7 +141,7 @@ if test x"$BOXTYPE" == "xdm8000" -o x"$BOXTYPE" == "xdm7020hd" -o x"$BOXTYPE" ==
 fi
 
 if test x"$BOXTYPE" == "xventonhdx" ; then
-	AC_DEFINE(KEY_RECORD_TO_KEY_EPG, 1,[define when rc sends a KEY_RECORD event for its KEY_EPG key])
+#	AC_DEFINE(KEY_RECORD_TO_KEY_EPG, 1,[define when rc sends a KEY_RECORD event for its KEY_EPG key])
 	AC_DEFINE(KEY_TV_TO_KEY_VIDEO, 1,[define when rc sends a KEY_TV event for its KEY_VIDEO key])
 	AC_DEFINE(FORCE_NO_BLENDING_ACCELERATION, 1,[define when the framebuffer acceleration does not have alphablending support, though the autodetection might indicate that it does])
 fi
