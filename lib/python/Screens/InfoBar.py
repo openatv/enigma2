@@ -46,8 +46,8 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			{
 				"showMovies": (self.showMovies, _("Play recorded movies...")),
 				"toogleTvRadio": (self.toogleTvRadio, _("toggels betwenn tv and radio...")),
-				"showRadio": (self.toogleTvRadio, _("Show the radio player...")),
-				"showTv": (self.toogleTvRadio, _("Show the tv player...")),
+				"showRadio": (self.showRadio, _("Show the radio player...")),
+				"showTv": (self.showTv, _("Show the tv player...")),
 			}, prio=2)
 		
 		self.allowPiP = True
