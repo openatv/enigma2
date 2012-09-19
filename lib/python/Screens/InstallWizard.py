@@ -46,12 +46,12 @@ class InstallWizard(Screen, ConfigListScreen):
 				self.createMenu()
 		elif self.index == self.STATE_CHOISE_CHANNELLIST:
 			self.enabled = ConfigYesNo(default = True)
-			modes = {"19e": _("Astra1"), "23e": _("Astra3"), "19e-23e": _("Astra1 Astra3"), "19e-23e-28e": _("Astra1 Astra2 Astra3"), "13e-19e-23e-28e": _("Astra1 Astra2 Astra3 Hotbird")}
+			modes = {"19e": "Astra 1", "23e": "Astra 3", "19e-23e": "Astra 1 Astra 3", "19e-23e-28e": "Astra 1 Astra 2 Astra 3", "13e-19e-23e-28e": "Astra 1 Astra 2 Astra 3 Hotbird"}
 			self.channellist_type = ConfigSelection(choices = modes, default = "19e")
 			self.createMenu()
 		elif self.index == self.STATE_CHOISE_SOFTCAM:
 			self.enabled = ConfigYesNo(default = True)
-			modes = {"cccam": _("default (CCcam)"), "scam": _("scam")}
+			modes = {"cccam": _("default") + " (CCcam)"), "scam": "scam"}
 			self.softcam_type = ConfigSelection(choices = modes, default = "cccam")
 			self.createMenu()
 
@@ -74,9 +74,9 @@ class InstallWizard(Screen, ConfigListScreen):
 		self.list = []
 		if self.index == self.STATE_UPDATE:
 			if config.misc.installwizard.hasnetwork.value:
-				self.list.append(getConfigListEntry(_("Yes your receiver's ip is %s and connected") % (self.ipConfigEntry.getText()), self.enabled))
+				self.list.append(getConfigListEntry(_("Your internet connection is working (ip: %s)") % (self.ipConfigEntry.getText()), self.enabled))
 			else:
-				self.list.append(getConfigListEntry(_("No your receiver is not connected"), self.enabled))
+				self.list.append(getConfigListEntry(_("Your receiver does not have an internet connection"), self.enabled))
 		elif self.index == self.STATE_CHOISE_CHANNELLIST:
 			self.list.append(getConfigListEntry(_("Install channel list"), self.enabled))
 			if self.enabled.value:
@@ -103,11 +103,11 @@ class InstallWizard(Screen, ConfigListScreen):
 	def run(self):
 		if self.index == self.STATE_UPDATE:
 			if config.misc.installwizard.hasnetwork.value:
-				self.session.open(InstallWizardIpkgUpdater, self.index, _('Please wait updating packages'), IpkgComponent.CMD_UPDATE)
+				self.session.open(InstallWizardIpkgUpdater, self.index, _('Please wait (updating packages)'), IpkgComponent.CMD_UPDATE)
 		elif self.index == self.STATE_CHOISE_CHANNELLIST and self.enabled.value:
-			self.session.open(InstallWizardIpkgUpdater, self.index, _('Please wait downloading channel list'), IpkgComponent.CMD_REMOVE, {'package': 'enigma2-plugin-settings-henksat-' + self.channellist_type.value})
+			self.session.open(InstallWizardIpkgUpdater, self.index, _('Please wait (downloading channel list)'), IpkgComponent.CMD_REMOVE, {'package': 'enigma2-plugin-settings-henksat-' + self.channellist_type.value})
 		elif self.index == self.STATE_CHOISE_SOFTCAM and self.enabled.value:
-			self.session.open(InstallWizardIpkgUpdater, self.index, _('Please wait downloading softcam'), IpkgComponent.CMD_INSTALL, {'package': 'enigma2-plugin-softcams-' + self.softcam_type.value})
+			self.session.open(InstallWizardIpkgUpdater, self.index, _('Please wait (downloading softcam)'), IpkgComponent.CMD_INSTALL, {'package': 'enigma2-plugin-softcams-' + self.softcam_type.value})
 		return
 
 

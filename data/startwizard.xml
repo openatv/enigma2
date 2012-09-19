@@ -21,8 +21,8 @@ self.selectKey("DOWN")
 		<step id="network" >
 			<text value="Please connect your receiver to the internet" />
 			<list>
-				<listentry caption="Check if your receiver is connected to the internet" step="update" />
-				<listentry caption="Skip internet check (disables automatic pacakges installation in this wizard)" step="nima" />
+				<listentry caption="Check the internet connection" step="update" />
+				<listentry caption="Skip internet connection check (disables automatic package installation)" step="nima" />
 			</list>
 			<code>
 self.clearSelectedKeys()
@@ -31,7 +31,7 @@ self.selectKey("DOWN")
 			</code>
 		</step>
 		<step id="update">
-			<text value="Checking if your receiver is connected to the internet" />
+			<text value="Checking the internet connection" />
 			<config screen="InstallWizard" module="InstallWizard" args="0" type="ConfigList" />
 			<code>
 self.clearSelectedKeys()
@@ -44,8 +44,8 @@ self.condition = not config.misc.installwizard.ipkgloaded.value
 			</condition>
 			<text value="Your receiver is not connected to the internet" />
 			<list>
-				<listentry caption="Recheck if your receiver is connected to the internet" step="update" />
-				<listentry caption="Skip internet check (disables automatic pacakges installation in this wizard)" step="nima" />
+				<listentry caption="Check the internet connection again" step="update" />
+				<listentry caption="Skip internet connection check (disables automatic package installation)" step="nima" />
 			</list>
 			<code>
 self.clearSelectedKeys()
@@ -110,7 +110,7 @@ self.selectKey("RIGHT")
 from Components.NimManager import nimmanager
 self.condition = nimmanager.somethingConnected() and config.misc.installwizard.hasnetwork.value and config.misc.installwizard.ipkgloaded.value
 			</condition>
-			<text value="Would you like to install a channel list?" />
+			<text value="Do you want to install a channel list?" />
 			<config screen="InstallWizard" module="InstallWizard" args="1" type="ConfigList" />
 			<code>
 self.clearSelectedKeys()
@@ -173,7 +173,7 @@ self.selectKey("RIGHT")
 			</code>
 		</step>
 		<step id="end" laststep="true">
-			<text value="Thank you for using the wizard. Your box is now ready to use.\nPlease press OK to start using your receiver." />
+			<text value="Thank you for using the wizard. Your receiver is now ready for use.\nPress OK to start using your receiver." />
 			<code>
 self.clearSelectedKeys()
 self.selectKey("OK")
