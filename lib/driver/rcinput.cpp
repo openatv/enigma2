@@ -98,6 +98,15 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	}
 #endif
 
+#if KEY_SEARCH_TO_KEY_BOOKMARK
+	if (ev->code == KEY_SEARCH)
+	{
+		/* Venton HD3 rc has a KEY_WWW key, which sends KEY_SEARCH events. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_BOOKMARKS;
+		
+	}
+#endif
+
 #if KEY_RECORD_TO_KEY_EPG
 	if (ev->code == KEY_RECORD)
 	{
