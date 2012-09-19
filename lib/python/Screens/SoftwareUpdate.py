@@ -73,7 +73,7 @@ class UpdatePlugin(Screen):
 		try:
 			# TODO: Use Twisted's URL fetcher, urlopen is evil. And it can
 			# run in parallel to the package update.
-			if getBoxType() in urlopen("http://openpli.org/status").read():
+			if getBoxType() in urlopen("http://openpli.org/status").read().split(','):
 				message = _("The current beta image might not be stable.\nFor more information see www.openpli.org.")
 				picon = MessageBox.TYPE_ERROR
 				default = False
