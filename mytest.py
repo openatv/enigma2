@@ -39,6 +39,8 @@ from Components.config import config, configfile, ConfigText, ConfigYesNo, Confi
 InitFallbackFiles()
 
 profile("config.misc")
+from Tools.StbHardware import getBoxtype
+config.misc.boxtype = ConfigText(default = getBoxtype())
 config.misc.radiopic = ConfigText(default = resolveFilename(SCOPE_CURRENT_SKIN, "radio.mvi"))
 config.misc.blackradiopic = ConfigText(default = resolveFilename(SCOPE_CURRENT_SKIN, "black.mvi"))
 config.misc.isNextRecordTimerAfterEventActionAuto = ConfigYesNo(default=False)
@@ -503,7 +505,7 @@ def runScreenTest():
 	profile("wakeup")
 
 	from time import time, strftime, localtime
-	from Tools.DreamboxHardware import setFPWakeuptime, getFPWakeuptime, setRTCtime
+	from Tools.StbHardware import setFPWakeuptime, getFPWakeuptime, setRTCtime
 	#get currentTime
 	nowTime = time()
 	wakeupList = [
@@ -520,7 +522,10 @@ def runScreenTest():
 		if (startTime[0] - nowTime) < 270: # no time to switch box back on
 			wptime = nowTime + 30  # so switch back on in 30 seconds
 		else:
-			wptime = startTime[0] - 240
+			if config.misc.boxtype.getValue().startswith("gb"):
+				wptime = startTime[0] - 120 # Gigaboxes already starts 2 min. before wakeup time
+			else:
+				wptime = startTime[0] - 240
 		if not config.misc.SyncTimeUsing.value == "0":
 			print "dvb time sync disabled... so set RTC now to current linux time!", strftime("%Y/%m/%d %H:%M", localtime(nowTime))
 			setRTCtime(nowTime)

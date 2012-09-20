@@ -1,4 +1,4 @@
-﻿from Screen import Screen
+from Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.Button import Button
 from Components.Sources.StaticText import StaticText
@@ -15,8 +15,7 @@ from Plugins.SystemPlugins.WirelessLan.Wlan import iWlan, iStatus, getWlanConfig
 from Components.Pixmap import MultiPixmap
 from Components.Network import iNetwork
 
-from Tools.DreamboxHardware import getFPVersion
-from os import path, popen
+from Tools.StbHardware import getFPVersion
 
 class About(Screen):
 	def __init__(self, session):

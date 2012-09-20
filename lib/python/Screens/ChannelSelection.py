@@ -1181,7 +1181,7 @@ class ChannelSelectionBase(Screen):
 									service_name = ("%d.%d" + h) % (orbpos / 10, orbpos % 10)
 							service.setName("%s - %s" % (service_name, service_type))
 							self.servicelist.addService(service)
-						cur_ref = self.session.nav.getCurrentlyPlayingServiceReference()
+						cur_ref = self.session.nav.getCurrentlyPlayingServiceReference(False)
 						if cur_ref:
 							pos = self.service_types.rfind(':')
 							refstr = '%s (channelID == %08x%04x%04x) && %s ORDER BY name' %(self.service_types[:pos+1],
@@ -1583,13 +1583,13 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 				if self.startServiceRef is None or nref != self.startServiceRef:
 					self.addToHistory(nref)
 
-			# Yes, we might double-check this, but we need to re-select pipservice if pipzap is active
-			# and we just wanted to zap in mainwindow once
-			# XXX: do we really want this? this also resets the service when zapping from context menu
-			#      which is irritating
-			if enable_pipzap and self.dopipzap:
-				# This unfortunately won't work with subservices
-				self.setCurrentSelection(self.session.pip.getCurrentService())
+				# Yes, we might double-check this, but we need to re-select pipservice if pipzap is active
+				# and we just wanted to zap in mainwindow once
+				# XXX: do we really want this? this also resets the service when zapping from context menu
+				#      which is irritating
+				if self.dopipzap:
+					# This unfortunately won't work with subservices
+					self.setCurrentSelection(self.session.pip.getCurrentService())
 
 	def newServicePlayed(self):
 		ret = self.new_service_played
@@ -1713,11 +1713,11 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 
 	def cancel(self):
 		if self.revertMode is None:
+			self.restoreRoot()
 			if self.dopipzap:
 				# This unfortunately won't work with subservices
 				self.setCurrentSelection(self.session.pip.getCurrentService())
 			else:
-				self.restoreRoot()
 				lastservice = eServiceReference(self.lastservice.value)
 				if lastservice.valid() and self.getCurrentSelection() != lastservice:
 					self.setCurrentSelection(lastservice)
@@ -1745,6 +1745,9 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			self.saveChannel(self.startServiceRef)
 		self.startServiceRef = None
 		self.startRoot = None
+		if self.dopipzap:
+			# This unfortunately won't work with subservices
+			self.setCurrentSelection(self.session.pip.getCurrentService())
 
 class RadioInfoBar(Screen):
 	def __init__(self, session):

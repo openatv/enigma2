@@ -9,19 +9,6 @@ import enigma
 from time import time
 
 def InitUsageConfig():
-	try:
-		file = open(resolveFilename(SCOPE_SYSETC, 'image-version'), 'r')
-		lines = file.readlines()
-		file.close()
-		for x in lines:
-			splitted = x.split('=')
-			if splitted[0] == "box_type":
-				boxtype = splitted[1].replace('\n','') # 0 = release, 1 = experimental
-	except:
-		folderprefix=""
-		boxtype="not detected"
-
-	config.misc.boxtype = ConfigText(default = boxtype)
 	config.misc.useNTPminutes = ConfigSelection(default = "30", choices = [("30", "30" + " " +_("minutes")), ("60", _("Hour")), ("1440", _("Once per day"))])
 	config.misc.remotecontrol_text_support = ConfigYesNo(default = False)
 
