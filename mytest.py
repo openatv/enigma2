@@ -99,7 +99,6 @@ from Components.PluginComponent import plugins
 
 profile("LOAD:Wizard")
 from Screens.Wizard import wizardManager
-from Screens.DefaultWizard import *
 from Screens.StartWizard import *
 import Screens.Rc
 from Tools.BoundFunction import boundFunction
