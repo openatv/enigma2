@@ -645,7 +645,8 @@ class InfoBarNumberZap:
 				if config.usage.panicbutton.value:
 					self.servicelist.history = [ ]
 					self.servicelist.history_pos = 0
-					self.zapToNumber(1)
+					service, bouquet = self.searchNumber(1)
+					self.zapToNumber(service, bouquet)
 				else:
 					self.servicelist.recallPrevService()
 		else:
