@@ -19,10 +19,6 @@ from datetime import datetime
 class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 	def createSimpleSetup(self, list, mode):
 		nim = self.nimConfig
-		if self.nimConfig.configMode.value == "auto":
-			list.append(getConfigListEntry(_("Set voltage and 22KHz"), nim.simpleDiSEqCSetVoltageTone))
-			list.append(getConfigListEntry(_("Send DiSEqC only on satellite change"), nim.simpleDiSEqCOnlyOnSatChange))
-			return
 
 		if mode == "single":
 			list.append(getConfigListEntry(_("Satellite"), nim.diseqcA))
@@ -67,8 +63,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 
 	def createConfigMode(self):
 		if self.nim.isCompatible("DVB-S"):
-			choices = { "auto":  _("automatic configuration"),
-						"nothing": _("not configured"),
+			choices = {"nothing": _("not configured"),
 						"simple": _("simple"),
 						"advanced": _("advanced")}
 			if len(nimmanager.canEqualTo(self.slotid)) > 0:
@@ -77,7 +72,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				choices["satposdepends"] = _("second cable of motorized LNB")
 			if len(nimmanager.canConnectTo(self.slotid)) > 0:
 				choices["loopthrough"] = _("loopthrough to")
-			self.nimConfig.configMode.setChoices(choices, default = "auto")
+			self.nimConfig.configMode.setChoices(choices, default = "simple")
 
 	def createSetup(self):
 		print "Creating setup"
@@ -104,11 +99,6 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		self.advancedSCR = None
 		self.advancedConnected = None
 
-		diseqc_mode_choices = [
-			("diseqc_a_b", "DiSEqC A/B"), ("diseqc_a_b_c_d", "DiSEqC A/B/C/D"),
-			]
-		self.diseqc_mode_choices = ConfigSelection(choices = diseqc_mode_choices, default = "diseqc_a_b")
-
 		if self.nim.isMultiType():
 			multiType = self.nimConfig.multiType
 			self.multiType = getConfigListEntry(_("Tuner type"), multiType)
@@ -125,9 +115,6 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 					self.createSimpleSetup(self.list, self.nimConfig.diseqcMode.value)
 				if self.nimConfig.diseqcMode.value == "positioner":
 					self.createPositionerSetup(self.list)
-			if self.nimConfig.configMode.value == "auto":
-				self.list.append(getConfigListEntry(_("Mode"), self.diseqc_mode_choices))
-				self.createSimpleSetup(self.list, self.nimConfig.diseqcMode.value)
 			elif self.nimConfig.configMode.value == "equal":
 				choices = []
 				nimlist = nimmanager.canEqualTo(self.nim.slot)
@@ -233,9 +220,20 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				break
 
 	def run(self):
-		if self.nim.config_mode == "auto":
-			self.autoDiseqcRun()
-			return
+		if self.nimConfig.configMode.value == "simple":
+			autodiseqc_ports = 0
+			if self.nimConfig.diseqcMode.value == "single":
+				if self.nimConfig.diseqcA.orbital_position == 3600:
+					autodiseqc_ports = 1
+			elif self.nimConfig.diseqcMode.value == "diseqc_a_b":
+				if self.nimConfig.diseqcA.orbital_position == 3600 or self.nimConfig.diseqcB.orbital_position == 3600:
+					autodiseqc_ports = 2
+			elif self.nimConfig.diseqcMode.value == "diseqc_a_b_c_d":
+				if self.nimConfig.diseqcA.orbital_position == 3600 or self.nimConfig.diseqcB.orbital_position == 3600 or self.nimConfig.diseqcC.orbital_position == 3600 or self.nimConfig.diseqcD.orbital_position == 3600:
+					autodiseqc_ports = 4
+			if autodiseqc_ports:
+				self.autoDiseqcRun(autodiseqc_ports)
+				return False
 		if self.have_advanced and self.nim.config_mode == "advanced":
 			self.fillAdvancedList()
 		for x in self.list:
@@ -248,24 +246,17 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			x[1].save()
 		nimmanager.sec.update()
 		self.saveAll()
+		return True
 
-	def autoDiseqcRun(self):
-		nim = self.nimConfig
-		if self.diseqc_mode_choices.value == 'diseqc_a_b':
-			nr_of_ports = 2
-		else:
-			nr_of_ports = 4
-		self.session.openWithCallback(self.autoDiseqcCallback, AutoDiseqc, self.slotid, nr_of_ports, nim.simpleDiSEqCSetVoltageTone, nim.simpleDiSEqCOnlyOnSatChange)
+	def autoDiseqcRun(self, ports):
+		self.session.openWithCallback(self.autoDiseqcCallback, AutoDiseqc, self.slotid, ports, self.nimConfig.simpleDiSEqCSetVoltageTone, self.nimConfig.simpleDiSEqCOnlyOnSatChange)
 
 	def autoDiseqcCallback(self, result):
 		from Screens.Wizard import Wizard
 		if Wizard.instance is not None:
-			if result is False:
-				Wizard.instance.back()
+			Wizard.instance.back()
 		else:
-			if self.nimConfig.configMode.value == "auto":
-				self.nimConfig.configMode.value = "nothing"
-			self.close()
+			self.createSetup()
 
 	def fillListWithAdvancedSatEntrys(self, Sat):
 		lnbnum = int(Sat.lnb.value)
@@ -403,10 +394,8 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 
 	def keySave(self):
 		old_configured_sats = nimmanager.getConfiguredSats()
-		if self.nim.config_mode == "auto":
-			self.autoDiseqcRun()
+		if not self.run():
 			return
-		self.run()
 		new_configured_sats = nimmanager.getConfiguredSats()
 		self.unconfed_sats = old_configured_sats - new_configured_sats
 		self.satpos_to_remove = None

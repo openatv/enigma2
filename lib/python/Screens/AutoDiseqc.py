@@ -169,8 +169,10 @@ class AutoDiseqc(Screen, ConfigListScreen):
 
 			if self.nr_of_ports == 4:
 				config.Nims[self.feid].diseqcMode.value = "diseqc_a_b_c_d"
-			else:
+			elif self.nr_of_ports == 2:
 				config.Nims[self.feid].diseqcMode.value = "diseqc_a_b"
+			else:
+				config.Nims[self.feid].diseqcMode.value = "single"
 
 			config.Nims[self.feid].configMode.value = "simple"
 			config.Nims[self.feid].simpleDiSEqCSetVoltageTone = self.simple_tone
@@ -221,14 +223,6 @@ class AutoDiseqc(Screen, ConfigListScreen):
 
 	def setupClear(self):
 		self.clearNimEntries()
-		config.Nims[self.feid].diseqcA.value = ""
-		config.Nims[self.feid].diseqcB.value = ""
-		config.Nims[self.feid].diseqcC.value = ""
-		config.Nims[self.feid].diseqcD.value = ""
-		config.Nims[self.feid].diseqcMode.value = ""
-		config.Nims[self.feid].configMode.value = ""
-		config.Nims[self.feid].simpleDiSEqCSetVoltageTone.value = True
-		config.Nims[self.feid].simpleDiSEqCOnlyOnSatChange.value = False
 		self.saveAndReloadNimConfig()
 
 	def clearNimEntries(self):

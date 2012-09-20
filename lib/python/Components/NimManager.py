@@ -1165,7 +1165,7 @@ def InitNimManager(nimmgr):
 
 	positioner_mode_choices = [("usals", _("USALS")), ("manual", _("manual"))]
 
-	diseqc_satlist_choices = [(3601, _('nothing connected'), 1)] + nimmgr.satList
+	diseqc_satlist_choices = [(3600, _('automatic'), 1), (3601, _('nothing connected'), 1)] + nimmgr.satList
 	
 	longitude_orientation_choices = [("east", _("East")), ("west", _("West"))]
 	latitude_orientation_choices = [("north", _("North")), ("south", _("South"))]
@@ -1431,8 +1431,8 @@ def InitNimManager(nimmgr):
 			nim.simpleSingleSendDiSEqC = ConfigYesNo(False)
 			nim.simpleDiSEqCSetVoltageTone = ConfigYesNo(True)
 			nim.simpleDiSEqCOnlyOnSatChange = ConfigYesNo(False)
-			nim.diseqcA = getConfigSatlist(192, diseqc_satlist_choices)
-			nim.diseqcB = getConfigSatlist(130, diseqc_satlist_choices)
+			nim.diseqcA = ConfigSatlist(list = diseqc_satlist_choices)
+			nim.diseqcB = ConfigSatlist(list = diseqc_satlist_choices)
 			nim.diseqcC = ConfigSatlist(list = diseqc_satlist_choices)
 			nim.diseqcD = ConfigSatlist(list = diseqc_satlist_choices)
 			nim.positionerMode = ConfigSelection(positioner_mode_choices, "usals")
@@ -1451,7 +1451,7 @@ def InitNimManager(nimmgr):
 			etime = datetime(1970, 1, 1, 19, 0);
 			nim.fastTurningEnd = ConfigDateTime(default = mktime(etime.timetuple()), formatstring = _("%H:%M"), increment = 900)
 			config_mode_choices = [("nothing", _("nothing connected")),
-				("simple", _("simple")), ("advanced", _("advanced")), ("auto",  _("automatic configuration"))]
+				("simple", _("simple")), ("advanced", _("advanced"))]
 			if len(nimmgr.getNimListOfType(slot.type, exception = x)) > 0:
 				config_mode_choices.append(("equal", _("equal to")))
 				config_mode_choices.append(("satposdepends", _("second cable of motorized LNB")))
