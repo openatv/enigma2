@@ -279,36 +279,6 @@ self.autoResize()
 			</panel>
 		</panel>
 	</screen>
-	<screen name="DefaultSatLists" position="fill" title="Welcome..." flags="wfNoBorder" >
-			<widget name="text" position="153,50" size="340,270" font="Regular;23" />
-			<widget source="list" render="Listbox" position="50,300" size="440,200" scrollbarMode="showOnDemand" >
-				<convert type="StringList" />
-			</widget>
-			<ePixmap pixmap="skin_default/buttons/button_red.png" position="40,225" size="15,16" alphatest="on" />
-			<widget name="languagetext" position="55,225" size="95,30" font="Regular;18" />
-			<widget name="config" position="50,300" zPosition="1" size="440,200" transparent="1" scrollbarMode="showOnDemand" />            
-			<!--widget name="stepslider" position="50,500" zPosition="1" borderWidth="2" size="440,20" backgroundColor="dark" /-->
-			<widget name="wizard" pixmap="skin_default/wizard.png" position="40,50" zPosition="10" size="110,174" transparent="1" alphatest="on"/>
-			<widget name="rc" pixmap="skin_default/rc.png" position="500,600" zPosition="10" size="154,471" transparent="1" alphatest="on"/>
-			<widget name="arrowdown" pixmap="skin_default/arrowdown.png" position="-100,-100" zPosition="11" size="37,70" transparent="1" alphatest="on"/>
-			<widget name="arrowup" pixmap="skin_default/arrowup.png" position="-100,-100" zPosition="11" size="37,70" transparent="1" alphatest="on"/>
-			<widget name="arrowup2" pixmap="skin_default/arrowup.png" position="-100,-100" zPosition="11" size="37,70" transparent="1" alphatest="on"/>
-	</screen>
-	<screen name="DreamPackageWizard" position="fill" title="Welcome..." flags="wfNoBorder" >
-			<widget name="text" position="153,50" size="340,270" font="Regular;23" />
-			<widget source="list" render="Listbox" position="50,300" size="440,200" scrollbarMode="showOnDemand" >
-				<convert type="StringList" />
-			</widget>
-			<ePixmap pixmap="skin_default/buttons/button_red.png" position="40,225" size="15,16" alphatest="on" />
-			<widget name="languagetext" position="55,225" size="95,30" font="Regular;18" />
-			<widget name="config" position="50,300" zPosition="1" size="440,200" transparent="1" scrollbarMode="showOnDemand" />            
-			<!--widget name="stepslider" position="50,500" zPosition="1" borderWidth="2" size="440,20" backgroundColor="dark" /-->
-			<widget name="wizard" pixmap="skin_default/wizard.png" position="40,50" zPosition="10" size="110,174" transparent="1" alphatest="on"/>
-			<widget name="rc" pixmap="skin_default/rc.png" position="500,600" zPosition="10" size="154,471" transparent="1" alphatest="on"/>
-			<widget name="arrowdown" pixmap="skin_default/arrowdown.png" position="-100,-100" zPosition="11" size="37,70" transparent="1" alphatest="on"/>
-			<widget name="arrowup" pixmap="skin_default/arrowup.png" position="-100,-100" zPosition="11" size="37,70" transparent="1" alphatest="on"/>
-			<widget name="arrowup2" pixmap="skin_default/arrowup.png" position="-100,-100" zPosition="11" size="37,70" transparent="1" alphatest="on"/>
-	</screen>
 	<!-- Dish -->
 	<screen name="Dish" flags="wfNoBorder" position="86,100" size="130,200" title="Dish" zPosition="1" backgroundColor="#11396D" >
 		<widget name="Dishpixmap" position="0,0"  size="130,160" zPosition="-1" pixmap="skin_default/icons/dish.png" transparent="1" alphatest="on" />
@@ -502,7 +472,6 @@ self.autoResize()
 		<panel name="WizardMarginsTemplate"/>
 		<panel position="left" size="110,*">
 			<panel position="top" size="*,50"/>
-			<widget name="wizard" pixmap="skin_default/wizard.png" position="top" zPosition="10" size="110,174" alphatest="on"/>
 		</panel>
 		<panel name="RemoteControlTemplate"/>
 		<panel position="left" size="10,*" />
@@ -1055,7 +1024,6 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 	<screen name="WizardPictureLangTemplate">
 		<panel position="left" size="110,*">
 			<panel position="top" size="*,50"/>
-			<widget name="wizard" pixmap="skin_default/wizard.png" position="top" zPosition="10" size="110,174" alphatest="on"/>
 			<ePixmap pixmap="skin_default/buttons/button_red.png" position="left" zPosition="0" size="15,16" alphatest="on" />
 			<widget name="languagetext" position="fill" font="Regular;18" />
 		</panel>
@@ -1168,15 +1136,6 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<eLabel position="10,20" size="380,23" font="Regular;23" text="Translation:" />
 		<widget source="TranslatorName" render="Label" position="10,55" size="380,20" font="Regular;20" />
 		<widget source="TranslationInfo" render="Label" position="10,100" size="380,250" font="Regular;20" />
-	</screen>
-	<!-- Tutorial Wizard -->
-	<screen name="TutorialWizard" position="fill" title="Welcome..." flags="wfNoBorder">
-		<widget name="text" position="50,100" size="440,200" font="Regular;23" />
-		<widget name="list" position="50,300" zPosition="1" size="440,200" />
-		<widget name="rc" pixmap="skin_default/rc.png" position="500,600" zPosition="10" size="154,475" alphatest="on"/>
-		<widget name="arrowdown" pixmap="skin_default/arrowdown.png" position="0,0" zPosition="11" size="37,70" alphatest="on"/>
-		<widget name="arrowup" pixmap="skin_default/arrowup.png" position="-100,-100" zPosition="11" size="37,70" alphatest="on"/>
-		<widget name="arrowup2" pixmap="skin_default/arrowup.png" position="-100,-100" zPosition="11" size="37,70" alphatest="on"/>
 	</screen>
 	<!-- Volumebar -->
 	<screen name="Volume" position="253,60" zPosition="1" size="214,21" title="Volume" flags="wfNoBorder">

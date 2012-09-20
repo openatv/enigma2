@@ -411,11 +411,10 @@ class Network:
 				callback(True,mode)
 
 	def checkNetworkState(self,statecallback):
-		# www.dream-multimedia-tv.de, www.heise.de, www.google.de
 		self.NetworkState = 0
-		cmd1 = "ping -c 1 82.149.226.170"
-		cmd2 = "ping -c 1 193.99.144.85"
-		cmd3 = "ping -c 1 209.85.148.99"
+		cmd1 = "ping -c 1 www.openpli.org"
+		cmd2 = "ping -c 1 www.google.nl"
+		cmd3 = "ping -c 1 www.google.com"
 		self.PingConsole = Console()
 		self.PingConsole.ePopen(cmd1, self.checkNetworkStateFinished,statecallback)
 		self.PingConsole.ePopen(cmd2, self.checkNetworkStateFinished,statecallback)

@@ -11,6 +11,7 @@ from Components.Sources.List import List
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
 from Screens.ServiceStopScreen import ServiceStopScreen
+from Screens.AutoDiseqc import AutoDiseqc
 
 from time import mktime, localtime
 from datetime import datetime
@@ -18,6 +19,11 @@ from datetime import datetime
 class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 	def createSimpleSetup(self, list, mode):
 		nim = self.nimConfig
+		if self.nimConfig.configMode.value == "auto":
+			list.append(getConfigListEntry(_("Set Voltage and 22KHz"), nim.simpleDiSEqCSetVoltageTone))
+			list.append(getConfigListEntry(_("Send DiSEqC only on satellite change"), nim.simpleDiSEqCOnlyOnSatChange))
+			return
+
 		if mode == "single":
 			list.append(getConfigListEntry(_("Satellite"), nim.diseqcA))
 			list.append(getConfigListEntry(_("Send DiSEqC"), nim.simpleSingleSendDiSEqC))
@@ -61,19 +67,17 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 
 	def createConfigMode(self):
 		if self.nim.isCompatible("DVB-S"):
-			choices = { "nothing": _("not configured"),
+			choices = { "auto":  _("automatic configuration"),
+						"nothing": _("not configured"),
 						"simple": _("simple"),
 						"advanced": _("advanced")}
-			#if len(nimmanager.getNimListOfType(nimmanager.getNimType(self.slotid), exception = x)) > 0:
-			#	choices["equal"] = _("equal to")
-			#	choices["satposdepends"] = _("second cable of motorized LNB")
 			if len(nimmanager.canEqualTo(self.slotid)) > 0:
 				choices["equal"] = _("equal to")
 			if len(nimmanager.canDependOn(self.slotid)) > 0:
 				choices["satposdepends"] = _("second cable of motorized LNB")
 			if len(nimmanager.canConnectTo(self.slotid)) > 0:
 				choices["loopthrough"] = _("loopthrough to")
-			self.nimConfig.configMode.setChoices(choices, default = "nothing")
+			self.nimConfig.configMode.setChoices(choices, default = "auto")
 
 	def createSetup(self):
 		print "Creating setup"
@@ -100,6 +104,11 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		self.advancedSCR = None
 		self.advancedConnected = None
 
+		diseqc_mode_choices = [
+			("diseqc_a_b", _("DiSEqC A/B")), ("diseqc_a_b_c_d", _("DiSEqC A/B/C/D")),
+			]
+		self.diseqc_mode_choices = ConfigSelection(choices = diseqc_mode_choices, default = "diseqc_a_b")
+
 		if self.nim.isMultiType():
 			multiType = self.nimConfig.multiType
 			self.multiType = getConfigListEntry(_("Tuner type"), multiType)
@@ -116,23 +125,22 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 					self.createSimpleSetup(self.list, self.nimConfig.diseqcMode.value)
 				if self.nimConfig.diseqcMode.value == "positioner":
 					self.createPositionerSetup(self.list)
+			if self.nimConfig.configMode.value == "auto":
+				self.list.append(getConfigListEntry(_("Mode"), self.diseqc_mode_choices))
+				self.createSimpleSetup(self.list, self.nimConfig.diseqcMode.value)
 			elif self.nimConfig.configMode.value == "equal":
 				choices = []
 				nimlist = nimmanager.canEqualTo(self.nim.slot)
 				for id in nimlist:
-					#choices.append((str(id), str(chr(65 + id))))
 					choices.append((str(id), nimmanager.getNimDescription(id)))
 				self.nimConfig.connectedTo.setChoices(choices)
-				#self.nimConfig.connectedTo = updateConfigElement(self.nimConfig.connectedTo, ConfigSelection(choices = choices))
 				self.list.append(getConfigListEntry(_("Tuner"), self.nimConfig.connectedTo))
 			elif self.nimConfig.configMode.value == "satposdepends":
 				choices = []
 				nimlist = nimmanager.canDependOn(self.nim.slot)
 				for id in nimlist:
-					#choices.append((str(id), str(chr(65 + id))))
 					choices.append((str(id), nimmanager.getNimDescription(id)))
 				self.nimConfig.connectedTo.setChoices(choices)
-				#self.nimConfig.connectedTo = updateConfigElement(self.nimConfig.connectedTo, ConfigSelection(choices = choices))
 				self.list.append(getConfigListEntry(_("Tuner"), self.nimConfig.connectedTo))
 			elif self.nimConfig.configMode.value == "loopthrough":
 				choices = []
@@ -141,7 +149,6 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				for id in connectable:
 					choices.append((str(id), nimmanager.getNimDescription(id)))
 				self.nimConfig.connectedTo.setChoices(choices)
-				#self.nimConfig.connectedTo = updateConfigElement(self.nimConfig.connectedTo, ConfigSelection(choices = choices))
 				self.list.append(getConfigListEntry(_("Connected to"), self.nimConfig.connectedTo))
 			elif self.nimConfig.configMode.value == "nothing":
 				pass
@@ -224,6 +231,9 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				break
 
 	def run(self):
+		if self.nim.config_mode == "auto":
+			self.autoDiseqcRun()
+			return
 		if self.have_advanced and self.nim.config_mode == "advanced":
 			self.fillAdvancedList()
 		for x in self.list:
@@ -236,6 +246,24 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			x[1].save()
 		nimmanager.sec.update()
 		self.saveAll()
+
+	def autoDiseqcRun(self):
+		nim = self.nimConfig
+		if self.diseqc_mode_choices.value == 'diseqc_a_b':
+			nr_of_ports = 2
+		else:
+			nr_of_ports = 4
+		self.session.openWithCallback(self.autoDiseqcCallback, AutoDiseqc, self.slotid, nr_of_ports, nim.simpleDiSEqCSetVoltageTone, nim.simpleDiSEqCOnlyOnSatChange)
+
+	def autoDiseqcCallback(self, result):
+		from Screens.Wizard import Wizard
+		if Wizard.instance is not None:
+			if result is False:
+				Wizard.instance.back()
+		else:
+			if self.nimConfig.configMode.value == "auto":
+				self.nimConfig.configMode.value = "nothing"
+			self.close()
 
 	def fillListWithAdvancedSatEntrys(self, Sat):
 		lnbnum = int(Sat.lnb.value)
@@ -256,8 +284,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				self.list.append(getConfigListEntry(_("LOF/L"), currLnb.lofl))
 				self.list.append(getConfigListEntry(_("LOF/H"), currLnb.lofh))
 				self.list.append(getConfigListEntry(_("Threshold"), currLnb.threshold))
-#			self.list.append(getConfigListEntry(_("12V Output"), currLnb.output_12v))
-
+			
 			if currLnb.lof.value == "unicable":
 				self.advancedUnicable = getConfigListEntry("Unicable "+_("Configuration Mode"), currLnb.unicable)
 				self.list.append(self.advancedUnicable)
@@ -376,6 +403,9 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 
 	def keySave(self):
 		old_configured_sats = nimmanager.getConfiguredSats()
+		if self.nim.config_mode == "auto":
+			self.autoDiseqcRun()
+			return
 		self.run()
 		new_configured_sats = nimmanager.getConfiguredSats()
 		self.unconfed_sats = old_configured_sats - new_configured_sats

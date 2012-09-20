@@ -13,10 +13,6 @@
 	<code> .. code .. </code>
 		"exec"s code
 -->
-		<!--<item text="Standby debug">quitMainloop(0)</item>
-		<item text="Network setup" entryID="network_setup">self.openSetup("network")</item>-->
-		<!--<item text="CI"><screen module="Ci" screen="CiSelection" /></item>-->
-		<!--<item text="Radio"><code>print "radio mode"</code></item>-->
 		<menu level="0" text="Timers" entryID="timer_menu">
 			<id val="timermenu" />
 			<item weight="100" level="0" text="Timers" entryID="timer_edit"><screen module="TimerEdit" screen="TimerEditList" /></item>
@@ -35,28 +31,16 @@
 		<item level="1" text="Plugins" entryID="plugin_selection"><screen module="PluginBrowser" screen="PluginBrowser" /></item>
 		<menu level="0" text="Setup" flushConfigOnClose="1" entryID="setup_selection" >
 			<id val="setup" />
-			<!--<menu text="Service Organising">
-				<item text="New Bouquets"></item>
-				<item text="Add to Bouquets"></item>
-				<item text="Edit Bouquets"></item>
-			</menu>-->
 			<menu weight="7" level="0" text="Service searching" entryID="service_searching_selection">
 				<id val="scan" />
 				<item weight="10" text="Tuner configuration" entryID="tuner_setup"><screen module="Satconfig" screen="NimSelection" /></item>
-				<!--<item text="Default services lists" entryID="default_lists"><screen module="ScanSetup" screen="DefaultSatLists" /></item>-->
+
 				<item weight="20" text="Automatic scan" entryID="auto_scan"><screen module="ScanSetup" screen="ScanSimple" /></item>
-				<!--<item text="Automatic Scan"><screen module="ServiceScan" /></item>-->
 				<item weight="30" text="Manual scan" entryID="manual_scan"><screen module="ScanSetup" /></item>
-				<!--<item text="Rotor Control"></item>
-				<item text="Edit Transponder"></item>
-				<item text="Satfinder"></item>-->
 			</menu>
 			<menu weight="5" level="0" text="System" entryID="system_selection">
 				<id val="system" />
 				<item level="1" entryID="autolanguage_setup"><setup id="autolanguagesetup" /></item>
-<!--
-				<item level="0" entryID="av_setup"><setup id="avsetup"/></item>
- -->
 				<item level="0" entryID="remote_setup"><setup id="remotesetup"/></item>
 				<item level="0" entryID="usage_setup"><setup id="usage" /></item>
 				<item requires="Display"><setup level="1" id="lcd" /></item>
@@ -102,9 +86,7 @@ from Plugins.SystemPlugins.HdmiCEC.plugin import HdmiCECSetupScreen
 self.session.open(HdmiCECSetupScreen)
 </code>
 				</item>
-<!--
 				<item level="1" text="Input devices" entryID="input_device_setup"><screen module="InputDeviceSetup" screen="InputDeviceSelection" /></item>
- -->
 				<item text="Keyboard"><setup id="keyboard" /></item>
 				<item level="0" text="Language" entryID="language_setup"><screen module="LanguageSelection" /></item>
 				<menu level="2" text="Logs" entryID="logs_setup">
@@ -139,7 +121,6 @@ self.session.open(SABnzbdSetupScreen)
 				<item level="2" entryID="subtitle_setup"><setup id="subtitlesetup" /></item>
 				<item level="0" text="Timeshift settings" entryID="timshift_setup"><screen module="Recordings_Timershift" screen="TimeshiftSettings" /></item>
 				<item level="0" entryID="time_setup"><setup id="time"/></item>
-				<!--<item level="0" text="Video setup" entryID="video_setup"><screen module="VideoSetup" /></item>-->
 				<menu level="2" text="User interface" entryID="osd_setup" requires="OsdMenu">
 					<id val="osd_menu" />
 					<item level="0" entryID="osd_setup"><setup id="osdsetup" /></item>
@@ -170,13 +151,9 @@ self.session.openWithCallback(msgClosed, FactoryReset)
 </code>
 			</item>
 			<item weight="15" level="0" text="Software update" entryID="software_update"><screen module="SoftwareUpdate" screen="UpdatePlugin" /></item>
-			<!--<item text="Parental Control"><setup id="parental" /></item>-->
-			<!--<item text="Expert -disabled-"><setup id="expert" /></item>-->
 		</menu>
-		<!--<item text="Unser Setup">self.openSetup("Blaselfasel")</item>-->
 		<menu text="Standby / Restart" entryID="standby_restart_list">
 			<id val="shutdown" />
-			<!--<item text="Standby"><code>quitMainloop(0)</code></item>-->
 			<item text="Sleep timer" entryID="sleep"><screen module="SleepTimerEdit" screen="SleepTimerEdit" /></item>
 			<item text="Standby" entryID="standby"><screen module="Standby" screen="Standby"/></item>
 			<item text="Restart" entryID="restart"><screen module="Standby" screen="TryQuitMainloop">2</screen></item>
