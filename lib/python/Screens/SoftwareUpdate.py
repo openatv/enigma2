@@ -101,6 +101,9 @@ class UpdatePlugin(Screen):
 			self.activity = 0
 		self.activityslider.setValue(self.activity)
 
+	def showUpdateCompletedMessage(self):
+		self.setEndMessage(ngettext("Update completed, %d package was installed.", "Update completed, %d packages were installed.", self.packages) % self.packages)
+
 	def ipkgCallback(self, event, param):
 		if event == IpkgComponent.EVENT_DOWNLOAD:
 			self.status.setText(_("Downloading"))
@@ -145,7 +148,7 @@ class UpdatePlugin(Screen):
 			elif self.ipkg.currentCommand == IpkgComponent.CMD_UPGRADE_LIST:
 				self.total_packages = len(self.ipkg.getFetchedList())
 				if self.total_packages:
-					message = _("Do you want to update your receiver?") + "\n(%s " % self.total_packages + _("Packages") + ")"
+					message = _("Do you want to update your receiver?") + "\n(" + (ngettext("%s updated package available", "%s updated packages available", self.total_packages) % self.total_packages) + ")"
 					choices = [(_("Update and reboot (recommended)"), "cold"),
 						(_("Update and ask to reboot"), "hot"),
 						(_("Update channel list only"), "channels"),
@@ -165,11 +168,11 @@ class UpdatePlugin(Screen):
 					self.ipkg.startCmd(IpkgComponent.CMD_INSTALL, {'package': self.channellist_name})
 					self.channellist_only += 1
 				elif self.channellist_only == 4:
-					self.setEndMessage(_("Update completed. %d packages were installed.") % self.packages)
+					self.showUpdateCompletedMessage()
 					eDVBDB.getInstance().reloadBouquets()
 					eDVBDB.getInstance().reloadServicelist()
 			elif self.error == 0:
-				self.setEndMessage(_("Update completed. %d packages were installed.") % self.packages)
+				self.showUpdateCompletedMessage()
 			else:
 				self.activityTimer.stop()
 				self.activityslider.setValue(0)
