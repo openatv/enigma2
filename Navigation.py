@@ -2,7 +2,7 @@ from enigma import eServiceCenter, eServiceReference, eTimer, pNavigation, getBe
 from Components.ParentalControl import parentalControl
 from Components.config import config
 from Tools.BoundFunction import boundFunction
-from Tools.DreamboxHardware import setFPWakeuptime, getFPWakeuptime, getFPWasTimerWakeup
+from Tools.StbHardware import setFPWakeuptime, getFPWakeuptime, getFPWasTimerWakeup
 from time import time
 import RecordTimer
 import SleepTimer

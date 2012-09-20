@@ -62,7 +62,7 @@
 				<item requires="Display"><setup level="1" id="lcd" /></item>
 				<menu level="2" text="EPG" entryID="epg_menu">
 					<id val="epg" />
-					<item level="0" entryID="epg_setup"><setup id="epgsetup" /></item>
+					<item level="0" entryID="epg_setup"><setup id="epgsettings" /></item>
 					<menu level="2" text="Load/Save" entryID="epgloadsave_menu">
 						<id val="epgloadsave_menu" />
 						<item level="0" entryID="saveepgcache" text="Save EPG">

@@ -1,9 +1,6 @@
-SUBDIRS = countries fonts defaults extensions keymaps skin_default rc_models
+SUBDIRS = countries fonts extensions keymaps skin_default rc_models
 
 dist_pkgdata_DATA = \
-	defaultsatlists.xml \
-	defaultwizard.xml \
-	dreampackagewizard.xml \
 	encoding.conf \
 	keymap.xml \
 	menu.xml \

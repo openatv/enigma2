@@ -2,7 +2,7 @@ import struct
 import os
 from config import config, ConfigSelection, ConfigYesNo, ConfigSubsection, ConfigText
 from enigma import eHdmiCEC, eRCInput
-from Tools.DreamboxHardware import getFPWasTimerWakeup
+from Tools.StbHardware import getFPWasTimerWakeup
 
 config.hdmicec = ConfigSubsection()
 config.hdmicec.enabled = ConfigYesNo(default = False)

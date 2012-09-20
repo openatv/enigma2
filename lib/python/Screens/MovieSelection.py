@@ -63,11 +63,13 @@ preferredTagEditor = None
 
 # this kludge is needed because ConfigSelection only takes numbers
 # and someone appears to be fascinated by 'enums'.
-l_moviesort = [(str(MovieList.SORT_RECORDED), _("sort by date"), '03/02/01'),
-	(str(MovieList.SORT_ALPHANUMERIC), _("alphabetic sort"), 'A-Z'),
+l_moviesort = [(str(MovieList.SORT_RECORDED), _("by date"), '03/02/01'),
+	(str(MovieList.SORT_ALPHANUMERIC), _("alphabetic"), 'A-Z'),
+	(str(MovieList.SORT_ALPHANUMERIC_FLAT), _("flat alphabetic"), 'A-Z Flat'),
 	(str(MovieList.SHUFFLE), _("shuffle"), '?'),
 	(str(MovieList.SORT_RECORDED_REVERSE), _("reverse by date"), '01/02/03'),
-	(str(MovieList.SORT_ALPHANUMERIC_REVERSE), _("alphabetic reverse"), 'Z-A')]
+	(str(MovieList.SORT_ALPHANUMERIC_REVERSE), _("alphabetic reverse"), 'Z-A'),
+	(str(MovieList.SORT_ALPHANUMERIC_FLAT_REVERSE), _("flat alphabetic reverse"), 'Z-A Flat')]
 
 def defaultMoviePath():
 	result = config.usage.default_path.value
@@ -1007,25 +1009,36 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			path = os.path.join(config.movielist.last_videodir.value, ".e2settings.pkl")
 			pickle.dump(self.settings, open(path, "wb"))
 		except Exception, e:
-			print "Failed to save settings:", e
-		# Also set config items, in case the user has a read-only disk
+			print "Failed to save settings to %s: %s" % (path, e)
+		# Also set config items, in case the user has a read-only disk 
 		config.movielist.moviesort.value = self.settings["moviesort"]
 		config.movielist.description.value = self.settings["description"]
 		config.usage.on_movie_eof.value = self.settings["movieoff"]
 
 	def loadLocalSettings(self):
 		'Load settings, called when entering a directory'
-		try:
-			path = os.path.join(config.movielist.last_videodir.value, ".e2settings.pkl")
-			updates = pickle.load(open(path, "rb"))
+		if config.movielist.settings_per_directory.value:
+			try:
+				path = os.path.join(config.movielist.last_videodir.value, ".e2settings.pkl")
+				updates = pickle.load(open(path, "rb"))
+				self.applyConfigSettings(updates)
+			except IOError, e:
+				updates = {
+					"moviesort": config.movielist.moviesort.default,
+					"description": config.movielist.description.default,
+					"movieoff": config.usage.on_movie_eof.default
+				}
+				self.applyConfigSettings(updates)
+				pass # ignore fail to open errors
+			except Exception, e:
+				print "Failed to load settings from %s: %s" % (path, e)
+		else:
+			updates = {
+				"moviesort": config.movielist.moviesort.value,
+				"description": config.movielist.description.value,
+				"movieoff": config.usage.on_movie_eof.value
+				}
 			self.applyConfigSettings(updates)
-		except IOError, e:
-			config.movielist.moviesort.value = config.movielist.moviesort.default
-			config.movielist.description.value = config.movielist.description.default
-			config.usage.on_movie_eof.value = config.usage.on_movie_eof.default
-			pass # ignore fail to open errors
-		except Exception, e:
-			print "Failed to load settings:", e
 
 	def applyConfigSettings(self, updates):
 		needUpdate = ("description" in updates) and (updates["description"] != self.settings["description"])
@@ -1128,8 +1141,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			self["TrashcanSize"].update(config.movielist.last_videodir.value)
 		if self.reload_sel is None:
 			self.reload_sel = self.getCurrent()
-		if config.movielist.settings_per_directory.value:
-			self.loadLocalSettings()
 		self["list"].reload(self.current_ref, self.selected_tags)
 		self.updateTags()
 		title = ""
@@ -1174,6 +1185,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			if os.path.isdir(res):
 				config.movielist.last_videodir.value = res
 				config.movielist.last_videodir.save()
+				self.loadLocalSettings()
 				self.setCurrentRef(res)
 				self["freeDiskSpace"].path = res
 				self["TrashcanSize"].update(res)
