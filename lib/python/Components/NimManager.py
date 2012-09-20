@@ -525,7 +525,7 @@ class NIM(object):
 		# get a friendly description for a slot name.
 		# we name them "Tuner A/B/C/...", because that's what's usually written on the back
 		# of the device.
-		return _("Tuner ") + chr(ord('A') + self.slot)
+		return _("Tuner") + " " + chr(ord('A') + self.slot)
 
 	slot_name = property(getSlotName)
 
@@ -1160,7 +1160,7 @@ def InitNimManager(nimmgr):
 
 	diseqc_mode_choices = [
 		("single", _("Single")), ("toneburst_a_b", _("Toneburst A/B")),
-		("diseqc_a_b", _("DiSEqC A/B")), ("diseqc_a_b_c_d", _("DiSEqC A/B/C/D")),
+		("diseqc_a_b", "DiSEqC A/B"), ("diseqc_a_b_c_d", "DiSEqC A/B/C/D"),
 		("positioner", _("Positioner"))]
 
 	positioner_mode_choices = [("usals", _("USALS")), ("manual", _("manual"))]
@@ -1172,8 +1172,8 @@ def InitNimManager(nimmgr):
 	turning_speed_choices = [("fast", _("Fast")), ("slow", _("Slow")), ("fast epoch", _("Fast epoch"))]
 
 	advanced_satlist_choices = nimmgr.satList + [
-		(3601, _('All Satellites')+' 1', 1), (3602, _('All Satellites')+' 2', 1),
-		(3603, _('All Satellites')+' 3', 1), (3604, _('All Satellites')+' 4', 1)]
+		(3601, _('All satellites')+' 1', 1), (3602, _('All satellites')+' 2', 1),
+		(3603, _('All satellites')+' 3', 1), (3604, _('All satellites')+' 4', 1)]
 	advanced_lnb_choices = [("0", "not available")] + [(str(y), "LNB " + str(y)) for y in range(1, 33)]
 	advanced_voltage_choices = [("polarization", _("Polarization")), ("13V", _("13 V")), ("18V", _("18 V"))]
 	advanced_tonemode_choices = [("band", _("Band")), ("on", _("On")), ("off", _("Off"))]
