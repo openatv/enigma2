@@ -62,7 +62,7 @@ class VideoSetup(Screen, ConfigListScreen):
 		# if we have modes for this port:
 		if config.av.videoport.value in config.av.videomode:
 			# add mode- and rate-selection:
-			self.list.append(getConfigListEntry(_("Mode"), config.av.videomode[config.av.videoport.value], _("This option sets up the screen resolution.")))
+			self.list.append(getConfigListEntry(pgettext("Video output mode", "Mode"), config.av.videomode[config.av.videoport.value], _("This option sets up the screen resolution.")))
 			if config.av.videomode[config.av.videoport.value].value == 'PC':
 				self.list.append(getConfigListEntry(_("Resolution"), config.av.videorate[config.av.videomode[config.av.videoport.value].value], _("This option sets up the screen resolution, when in PC mode.")))
 			else:
