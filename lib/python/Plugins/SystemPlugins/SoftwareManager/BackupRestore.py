@@ -82,9 +82,9 @@ class BackupScreen(Screen, ConfigListScreen):
 				self.session.open(Console, title = _("Backup is running..."), cmdlist = ["tar -czvf " + self.fullbackupfilename + " " + self.backupdirs],finishedCallback = self.backupFinishedCB, closeOnSuccess = True)
 		except OSError:
 			if self.finished_cb:
-				self.session.openWithCallback(self.finished_cb, MessageBox, _("Sorry your backup destination is not writeable.\nPlease choose an other one."), MessageBox.TYPE_INFO, timeout = 10 )
+				self.session.openWithCallback(self.finished_cb, MessageBox, _("Sorry, your backup destination is not writeable.\nPlease select a different one."), MessageBox.TYPE_INFO, timeout = 10 )
 			else:
-				self.session.openWithCallback(self.backupErrorCB,MessageBox, _("Sorry your backup destination is not writeable.\nPlease choose an other one."), MessageBox.TYPE_INFO, timeout = 10 )
+				self.session.openWithCallback(self.backupErrorCB,MessageBox, _("Sorry, your backup destination is not writeable.\nPlease select a different one."), MessageBox.TYPE_INFO, timeout = 10 )
 
 	def backupFinishedCB(self,retval = None):
 		self.close(True)
@@ -253,7 +253,7 @@ class RestoreMenu(Screen):
 			self.sel = self["filelist"].getCurrent()
 			if self.sel:
 				self.val = self.path + "/" + self.sel
-				self.session.openWithCallback(self.startRestore, MessageBox, _("Are you sure you want to restore\nfollowing backup:\n") + self.sel + _("\nSystem will restart after the restore!"))
+				self.session.openWithCallback(self.startRestore, MessageBox, _("Are you sure you want to restore\nthe following backup:\n%s\nYour receiver will restart after the backup has been restored!") % (self.sel))
 
 	def keyCancel(self):
 		self.close()
@@ -261,14 +261,14 @@ class RestoreMenu(Screen):
 	def startRestore(self, ret = False):
 		if (ret == True):
 			self.exe = True
-			self.session.open(Console, title = _("Restore running"), cmdlist = ["tar -xzvf " + self.path + "/" + self.sel + " -C /", "killall -9 enigma2"])
+			self.session.open(Console, title = _("Restoring..."), cmdlist = ["tar -xzvf " + self.path + "/" + self.sel + " -C /", "killall -9 enigma2"])
 
 	def deleteFile(self):
 		if (self.exe == False) and (self.entry == True):
 			self.sel = self["filelist"].getCurrent()
 			if self.sel:
 				self.val = self.path + "/" + self.sel
-				self.session.openWithCallback(self.startDelete, MessageBox, _("Are you sure you want to delete\nfollowing backup:\n") + self.sel)
+				self.session.openWithCallback(self.startDelete, MessageBox, _("Are you sure you want to delete\nthe following backup:\n") + self.sel)
 
 	def startDelete(self, ret = False):
 		if (ret == True):
@@ -309,7 +309,7 @@ class RestoreScreen(Screen, ConfigListScreen):
 		self.setWindowTitle()
 
 	def setWindowTitle(self):
-		self.setTitle(_("Restore is running..."))
+		self.setTitle(_("Restoring..."))
 
 	def doRestore(self):
 		if path.exists("/proc/stb/vmpeg/0/dst_width"):
@@ -317,9 +317,9 @@ class RestoreScreen(Screen, ConfigListScreen):
 		else:
 			restorecmdlist = ["tar -xzvf " + self.fullbackupfilename + " -C /", "killall -9 enigma2"]
 		if self.finished_cb:
-			self.session.openWithCallback(self.finished_cb, Console, title = _("Restore is running..."), cmdlist = restorecmdlist)
+			self.session.openWithCallback(self.finished_cb, Console, title = _("Restoring..."), cmdlist = restorecmdlist)
 		else:
-			self.session.open(Console, title = _("Restore is running..."), cmdlist = restorecmdlist)
+			self.session.open(Console, title = _("Restoring..."), cmdlist = restorecmdlist)
 
 	def backupFinishedCB(self,retval = None):
 		self.close(True)
