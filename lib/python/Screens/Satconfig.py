@@ -19,10 +19,6 @@ from datetime import datetime
 class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 	def createSimpleSetup(self, list, mode):
 		nim = self.nimConfig
-		if self.nimConfig.configMode.value == "auto":
-			list.append(getConfigListEntry(_("Set Voltage and 22KHz"), nim.simpleDiSEqCSetVoltageTone))
-			list.append(getConfigListEntry(_("Send DiSEqC only on satellite change"), nim.simpleDiSEqCOnlyOnSatChange))
-			return
 
 		if mode == "single":
 			list.append(getConfigListEntry(_("Satellite"), nim.diseqcA))
@@ -36,7 +32,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				list.append(getConfigListEntry(_("Port C"), nim.diseqcC))
 				list.append(getConfigListEntry(_("Port D"), nim.diseqcD))
 			if mode != "toneburst_a_b":
-				list.append(getConfigListEntry(_("Set Voltage and 22KHz"), nim.simpleDiSEqCSetVoltageTone))
+				list.append(getConfigListEntry(_("Set voltage and 22KHz"), nim.simpleDiSEqCSetVoltageTone))
 				list.append(getConfigListEntry(_("Send DiSEqC only on satellite change"), nim.simpleDiSEqCOnlyOnSatChange))
 
 	def createPositionerSetup(self, list):
@@ -46,7 +42,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		list.append(getConfigListEntry(_("Latitude"), nim.latitude))
 		list.append(getConfigListEntry(" ", nim.latitudeOrientation))
 		if SystemInfo["CanMeasureFrontendInputPower"]:
-			self.advancedPowerMeasurement = getConfigListEntry(_("Use Power Measurement"), nim.powerMeasurement)
+			self.advancedPowerMeasurement = getConfigListEntry(_("Use power measurement"), nim.powerMeasurement)
 			list.append(self.advancedPowerMeasurement)
 			if nim.powerMeasurement.value:
 				list.append(getConfigListEntry(_("Power threshold in mA"), nim.powerThreshold))
@@ -67,8 +63,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 
 	def createConfigMode(self):
 		if self.nim.isCompatible("DVB-S"):
-			choices = { "auto":  _("automatic configuration"),
-						"nothing": _("not configured"),
+			choices = {"nothing": _("not configured"),
 						"simple": _("simple"),
 						"advanced": _("advanced")}
 			if len(nimmanager.canEqualTo(self.slotid)) > 0:
@@ -77,7 +72,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				choices["satposdepends"] = _("second cable of motorized LNB")
 			if len(nimmanager.canConnectTo(self.slotid)) > 0:
 				choices["loopthrough"] = _("loopthrough to")
-			self.nimConfig.configMode.setChoices(choices, default = "auto")
+			self.nimConfig.configMode.setChoices(choices, default = "simple")
 
 	def createSetup(self):
 		print "Creating setup"
@@ -104,30 +99,22 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		self.advancedSCR = None
 		self.advancedConnected = None
 
-		diseqc_mode_choices = [
-			("diseqc_a_b", _("DiSEqC A/B")), ("diseqc_a_b_c_d", _("DiSEqC A/B/C/D")),
-			]
-		self.diseqc_mode_choices = ConfigSelection(choices = diseqc_mode_choices, default = "diseqc_a_b")
-
 		if self.nim.isMultiType():
 			multiType = self.nimConfig.multiType
 			self.multiType = getConfigListEntry(_("Tuner type"), multiType)
 			self.list.append(self.multiType)
 
 		if self.nim.isCompatible("DVB-S"):
-			self.configMode = getConfigListEntry(_("Configuration Mode"), self.nimConfig.configMode)
+			self.configMode = getConfigListEntry(_("Configuration mode"), self.nimConfig.configMode)
 			self.list.append(self.configMode)
 
 			if self.nimConfig.configMode.value == "simple":			#simple setup
-				self.diseqcModeEntry = getConfigListEntry(_("Mode"), self.nimConfig.diseqcMode)
+				self.diseqcModeEntry = getConfigListEntry(pgettext("Satellite configuration mode", "Mode"), self.nimConfig.diseqcMode)
 				self.list.append(self.diseqcModeEntry)
 				if self.nimConfig.diseqcMode.value in ("single", "toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d"):
 					self.createSimpleSetup(self.list, self.nimConfig.diseqcMode.value)
 				if self.nimConfig.diseqcMode.value == "positioner":
 					self.createPositionerSetup(self.list)
-			if self.nimConfig.configMode.value == "auto":
-				self.list.append(getConfigListEntry(_("Mode"), self.diseqc_mode_choices))
-				self.createSimpleSetup(self.list, self.nimConfig.diseqcMode.value)
 			elif self.nimConfig.configMode.value == "equal":
 				choices = []
 				nimlist = nimmanager.canEqualTo(self.nim.slot)
@@ -165,9 +152,9 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 					self.fillListWithAdvancedSatEntrys(currSat)
 				self.have_advanced = True
 			if self.nim.description == "Alps BSBE2" and config.usage.setup_level.index >= 2: # expert
-				self.list.append(getConfigListEntry(_("Tone Amplitude"), self.nimConfig.toneAmplitude))
+				self.list.append(getConfigListEntry(_("Tone amplitude"), self.nimConfig.toneAmplitude))
 		elif self.nim.isCompatible("DVB-C"):
-			self.configMode = getConfigListEntry(_("Configuration Mode"), self.nimConfig.configMode)
+			self.configMode = getConfigListEntry(_("Configuration mode"), self.nimConfig.configMode)
 			self.list.append(self.configMode)
 			if self.nimConfig.configMode.value == "enabled":
 				self.list.append(getConfigListEntry(_("Network ID"), self.nimConfig.cable.scan_networkid))
@@ -177,32 +164,34 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 					self.list.append(getConfigListEntry(_("Provider to scan"), self.nimConfig.cable.scan_provider))
 				else:
 					if self.nimConfig.cable.scan_type.value == "bands":
-						self.list.append(getConfigListEntry(_("Scan band EU VHF I"), self.nimConfig.cable.scan_band_EU_VHF_I))
-						self.list.append(getConfigListEntry(_("Scan band EU MID"), self.nimConfig.cable.scan_band_EU_MID))
-						self.list.append(getConfigListEntry(_("Scan band EU VHF III"), self.nimConfig.cable.scan_band_EU_VHF_III))
-						self.list.append(getConfigListEntry(_("Scan band EU UHF IV"), self.nimConfig.cable.scan_band_EU_UHF_IV))
-						self.list.append(getConfigListEntry(_("Scan band EU UHF V"), self.nimConfig.cable.scan_band_EU_UHF_V))
-						self.list.append(getConfigListEntry(_("Scan band EU SUPER"), self.nimConfig.cable.scan_band_EU_SUPER))
-						self.list.append(getConfigListEntry(_("Scan band EU HYPER"), self.nimConfig.cable.scan_band_EU_HYPER))
-						self.list.append(getConfigListEntry(_("Scan band US LOW"), self.nimConfig.cable.scan_band_US_LOW))
-						self.list.append(getConfigListEntry(_("Scan band US MID"), self.nimConfig.cable.scan_band_US_MID))
-						self.list.append(getConfigListEntry(_("Scan band US HIGH"), self.nimConfig.cable.scan_band_US_HIGH))
-						self.list.append(getConfigListEntry(_("Scan band US SUPER"), self.nimConfig.cable.scan_band_US_SUPER))
-						self.list.append(getConfigListEntry(_("Scan band US HYPER"), self.nimConfig.cable.scan_band_US_HYPER))
+						# TRANSLATORS: option name, indicating which type of (DVB-C) band should be scanned. The name of the band is printed in '%s'. E.g.: 'Scan EU MID band'
+						self.list.append(getConfigListEntry(_("Scan %s band") % ("EU VHF I"), self.nimConfig.cable.scan_band_EU_VHF_I))
+						self.list.append(getConfigListEntry(_("Scan %s band") % ("EU MID"), self.nimConfig.cable.scan_band_EU_MID))
+						self.list.append(getConfigListEntry(_("Scan %s band") % ("EU VHF III"), self.nimConfig.cable.scan_band_EU_VHF_III))
+						self.list.append(getConfigListEntry(_("Scan %s band") % ("EU UHF IV"), self.nimConfig.cable.scan_band_EU_UHF_IV))
+						self.list.append(getConfigListEntry(_("Scan %s band") % ("EU UHF V"), self.nimConfig.cable.scan_band_EU_UHF_V))
+						self.list.append(getConfigListEntry(_("Scan %s band") % ("EU SUPER"), self.nimConfig.cable.scan_band_EU_SUPER))
+						self.list.append(getConfigListEntry(_("Scan %s band") % ("EU HYPER"), self.nimConfig.cable.scan_band_EU_HYPER))
+						self.list.append(getConfigListEntry(_("Scan %s band") % ("US LOW"), self.nimConfig.cable.scan_band_US_LOW))
+						self.list.append(getConfigListEntry(_("Scan %s band") % ("US MID"), self.nimConfig.cable.scan_band_US_MID))
+						self.list.append(getConfigListEntry(_("Scan %s band") % ("US HIGH"), self.nimConfig.cable.scan_band_US_HIGH))
+						self.list.append(getConfigListEntry(_("Scan %s band") % ("US SUPER"), self.nimConfig.cable.scan_band_US_SUPER))
+						self.list.append(getConfigListEntry(_("Scan %s band") % ("US HYPER"), self.nimConfig.cable.scan_band_US_HYPER))
 					elif self.nimConfig.cable.scan_type.value == "steps":
 						self.list.append(getConfigListEntry(_("Frequency scan step size(khz)"), self.nimConfig.cable.scan_frequency_steps))
-					self.list.append(getConfigListEntry(_("Scan QAM16"), self.nimConfig.cable.scan_mod_qam16))
-					self.list.append(getConfigListEntry(_("Scan QAM32"), self.nimConfig.cable.scan_mod_qam32))
-					self.list.append(getConfigListEntry(_("Scan QAM64"), self.nimConfig.cable.scan_mod_qam64))
-					self.list.append(getConfigListEntry(_("Scan QAM128"), self.nimConfig.cable.scan_mod_qam128))
-					self.list.append(getConfigListEntry(_("Scan QAM256"), self.nimConfig.cable.scan_mod_qam256))
-					self.list.append(getConfigListEntry(_("Scan SR6900"), self.nimConfig.cable.scan_sr_6900))
-					self.list.append(getConfigListEntry(_("Scan SR6875"), self.nimConfig.cable.scan_sr_6875))
+					# TRANSLATORS: option name, indicating which type of (DVB-C) modulation should be scanned. The modulation type is printed in '%s'. E.g.: 'Scan QAM16'
+					self.list.append(getConfigListEntry(_("Scan %s") % ("QAM16"), self.nimConfig.cable.scan_mod_qam16))
+					self.list.append(getConfigListEntry(_("Scan %s") % ("QAM32"), self.nimConfig.cable.scan_mod_qam32))
+					self.list.append(getConfigListEntry(_("Scan %s") % ("QAM64"), self.nimConfig.cable.scan_mod_qam64))
+					self.list.append(getConfigListEntry(_("Scan %s") % ("QAM128"), self.nimConfig.cable.scan_mod_qam128))
+					self.list.append(getConfigListEntry(_("Scan %s") % ("QAM256"), self.nimConfig.cable.scan_mod_qam256))
+					self.list.append(getConfigListEntry(_("Scan %s") % ("SR6900"), self.nimConfig.cable.scan_sr_6900))
+					self.list.append(getConfigListEntry(_("Scan %s") % ("SR6875"), self.nimConfig.cable.scan_sr_6875))
 					self.list.append(getConfigListEntry(_("Scan additional SR"), self.nimConfig.cable.scan_sr_ext1))
 					self.list.append(getConfigListEntry(_("Scan additional SR"), self.nimConfig.cable.scan_sr_ext2))
 			self.have_advanced = False
 		elif self.nim.isCompatible("DVB-T"):
-			self.configMode = getConfigListEntry(_("Configuration Mode"), self.nimConfig.configMode)
+			self.configMode = getConfigListEntry(_("Configuration mode"), self.nimConfig.configMode)
 			self.list.append(self.configMode)
 			self.have_advanced = False
 			if self.nimConfig.configMode.value == "enabled":
@@ -231,9 +220,20 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				break
 
 	def run(self):
-		if self.nim.config_mode == "auto":
-			self.autoDiseqcRun()
-			return
+		if self.nimConfig.configMode.value == "simple":
+			autodiseqc_ports = 0
+			if self.nimConfig.diseqcMode.value == "single":
+				if self.nimConfig.diseqcA.orbital_position == 3600:
+					autodiseqc_ports = 1
+			elif self.nimConfig.diseqcMode.value == "diseqc_a_b":
+				if self.nimConfig.diseqcA.orbital_position == 3600 or self.nimConfig.diseqcB.orbital_position == 3600:
+					autodiseqc_ports = 2
+			elif self.nimConfig.diseqcMode.value == "diseqc_a_b_c_d":
+				if self.nimConfig.diseqcA.orbital_position == 3600 or self.nimConfig.diseqcB.orbital_position == 3600 or self.nimConfig.diseqcC.orbital_position == 3600 or self.nimConfig.diseqcD.orbital_position == 3600:
+					autodiseqc_ports = 4
+			if autodiseqc_ports:
+				self.autoDiseqcRun(autodiseqc_ports)
+				return False
 		if self.have_advanced and self.nim.config_mode == "advanced":
 			self.fillAdvancedList()
 		for x in self.list:
@@ -246,24 +246,17 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			x[1].save()
 		nimmanager.sec.update()
 		self.saveAll()
+		return True
 
-	def autoDiseqcRun(self):
-		nim = self.nimConfig
-		if self.diseqc_mode_choices.value == 'diseqc_a_b':
-			nr_of_ports = 2
-		else:
-			nr_of_ports = 4
-		self.session.openWithCallback(self.autoDiseqcCallback, AutoDiseqc, self.slotid, nr_of_ports, nim.simpleDiSEqCSetVoltageTone, nim.simpleDiSEqCOnlyOnSatChange)
+	def autoDiseqcRun(self, ports):
+		self.session.openWithCallback(self.autoDiseqcCallback, AutoDiseqc, self.slotid, ports, self.nimConfig.simpleDiSEqCSetVoltageTone, self.nimConfig.simpleDiSEqCOnlyOnSatChange)
 
 	def autoDiseqcCallback(self, result):
 		from Screens.Wizard import Wizard
 		if Wizard.instance is not None:
-			if result is False:
-				Wizard.instance.back()
+			Wizard.instance.back()
 		else:
-			if self.nimConfig.configMode.value == "auto":
-				self.nimConfig.configMode.value = "nothing"
-			self.close()
+			self.createSetup()
 
 	def fillListWithAdvancedSatEntrys(self, Sat):
 		lnbnum = int(Sat.lnb.value)
@@ -278,22 +271,22 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 
 		if currLnb:
 			self.list.append(getConfigListEntry(_("Priority"), currLnb.prio))
-			self.advancedLof = getConfigListEntry(_("LOF"), currLnb.lof)
+			self.advancedLof = getConfigListEntry("LOF", currLnb.lof)
 			self.list.append(self.advancedLof)
 			if currLnb.lof.value == "user_defined":
-				self.list.append(getConfigListEntry(_("LOF/L"), currLnb.lofl))
-				self.list.append(getConfigListEntry(_("LOF/H"), currLnb.lofh))
+				self.list.append(getConfigListEntry("LOF/L", currLnb.lofl))
+				self.list.append(getConfigListEntry("LOF/H", currLnb.lofh))
 				self.list.append(getConfigListEntry(_("Threshold"), currLnb.threshold))
-			
+
 			if currLnb.lof.value == "unicable":
-				self.advancedUnicable = getConfigListEntry("Unicable "+_("Configuration Mode"), currLnb.unicable)
+				self.advancedUnicable = getConfigListEntry("Unicable "+_("Configuration mode"), currLnb.unicable)
 				self.list.append(self.advancedUnicable)
 				if currLnb.unicable.value == "unicable_user":
 					self.advancedSCR = getConfigListEntry(_("Channel"), currLnb.satcruser)
 					self.list.append(self.advancedSCR)
 					self.list.append(getConfigListEntry(_("Frequency"), currLnb.satcrvcouser[currLnb.satcruser.index]))
-					self.list.append(getConfigListEntry(_("LOF/L"), currLnb.lofl))
-					self.list.append(getConfigListEntry(_("LOF/H"), currLnb.lofh))
+					self.list.append(getConfigListEntry("LOF/L", currLnb.lofl))
+					self.list.append(getConfigListEntry("LOF/H", currLnb.lofh))
 					self.list.append(getConfigListEntry(_("Threshold"), currLnb.threshold))
 				elif currLnb.unicable.value == "unicable_matrix":
 					manufacturer_name = currLnb.unicableMatrixManufacturer.value
@@ -365,7 +358,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 					self.list.append(getConfigListEntry(_("Latitude"), currLnb.latitude))
 					self.list.append(getConfigListEntry(" ", currLnb.latitudeOrientation))
 					if SystemInfo["CanMeasureFrontendInputPower"]:
-						self.advancedPowerMeasurement = getConfigListEntry(_("Use Power Measurement"), currLnb.powerMeasurement)
+						self.advancedPowerMeasurement = getConfigListEntry(_("Use power measurement"), currLnb.powerMeasurement)
 						self.list.append(self.advancedPowerMeasurement)
 						if currLnb.powerMeasurement.value:
 							self.list.append(getConfigListEntry(_("Power threshold in mA"), currLnb.powerThreshold))
@@ -380,7 +373,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 						if currLnb.powerMeasurement.value:
 							currLnb.powerMeasurement.value = False
 							currLnb.powerMeasurement.save()
-					self.advancedUsalsEntry = getConfigListEntry(_("Use usals for this sat"), Sat.usals)
+					self.advancedUsalsEntry = getConfigListEntry(_("Use USALS for this sat"), Sat.usals)
 					self.list.append(self.advancedUsalsEntry)
 					if not Sat.usals.value:
 						self.list.append(getConfigListEntry(_("Stored position"), Sat.rotorposition))
@@ -388,11 +381,9 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 					self.list.append(getConfigListEntry(_("Horizontal turning speed") + " [" + chr(176) + "/sec]", currLnb.turningspeedH))
 					self.list.append(getConfigListEntry(_("Vertical turning speed") + " [" + chr(176) + "/sec]", currLnb.turningspeedV))
 
-
-
 	def fillAdvancedList(self):
 		self.list = [ ]
-		self.configMode = getConfigListEntry(_("Configuration Mode"), self.nimConfig.configMode)
+		self.configMode = getConfigListEntry(_("Configuration mode"), self.nimConfig.configMode)
 		self.list.append(self.configMode)
 		self.advancedSatsEntry = getConfigListEntry(_("Satellite"), self.nimConfig.advanced.sats)
 		self.list.append(self.advancedSatsEntry)
@@ -403,10 +394,8 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 
 	def keySave(self):
 		old_configured_sats = nimmanager.getConfiguredSats()
-		if self.nim.config_mode == "auto":
-			self.autoDiseqcRun()
+		if not self.run():
 			return
-		self.run()
 		new_configured_sats = nimmanager.getConfiguredSats()
 		self.unconfed_sats = old_configured_sats - new_configured_sats
 		self.satpos_to_remove = None
@@ -438,7 +427,8 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				sat_name = ("%d.%d" + h) % (orbpos / 10, orbpos % 10)
 
 			if confirmed[1] == "yes" or confirmed[1] == "no":
-				self.session.openWithCallback(self.deleteConfirmed, ChoiceBox, _("Delete no more configured satellite\n%s?") %(sat_name), [(_("Yes"), "yes"), (_("No"), "no"), (_("Yes to all"), "yestoall"), (_("No to all"), "notoall")])
+				# TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
+				self.session.openWithCallback(self.deleteConfirmed, ChoiceBox, _("%s is no longer used. Should it be deleted?") %(sat_name), [(_("Yes"), "yes"), (_("No"), "no"), (_("Yes to all"), "yestoall"), (_("No to all"), "notoall")])
 			if confirmed[1] == "yestoall" or confirmed[1] == "notoall":
 				self.deleteConfirmed(confirmed)
 			break
@@ -581,7 +571,7 @@ class NimSelection(Screen):
 						elif nimConfig.diseqcMode.value == "positioner":
 							text = _("Positioner") + ":"
 							if nimConfig.positionerMode.value == "usals":
-								text += _("USALS")
+								text += "USALS"
 							elif nimConfig.positionerMode.value == "manual":
 								text += _("manual")
 						else:
