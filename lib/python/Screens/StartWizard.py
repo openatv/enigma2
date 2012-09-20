@@ -10,10 +10,6 @@ from LanguageSelection import LanguageWizard
 config.misc.firstrun = ConfigBoolean(default = True)
 config.misc.startwizard = ConfigSubsection()
 config.misc.startwizard.shownimconfig = ConfigBoolean(default = True)
-config.misc.startwizard.autodiseqc_a = ConfigBoolean(default = False)
-config.misc.startwizard.autodiseqc_b = ConfigBoolean(default = False)
-config.misc.startwizard.autodiseqc_c = ConfigBoolean(default = False)
-config.misc.startwizard.autodiseqc_d = ConfigBoolean(default = False)
 config.misc.startwizard.doservicescan = ConfigBoolean(default = True)
 config.misc.languageselected = ConfigBoolean(default = True)
 

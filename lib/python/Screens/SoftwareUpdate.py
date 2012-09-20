@@ -12,7 +12,7 @@ from Components.ScrollLabel import ScrollLabel
 from Components.Sources.StaticText import StaticText
 from Components.Slider import Slider
 import Components.Task
-from enigma import eTimer
+from enigma import eTimer, getBoxType, eDVBDB
 from os import rename, path, remove
 
 class SoftwareUpdateChanges(Screen):
@@ -216,7 +216,7 @@ class UpdatePlugin(Screen):
 				self.session.openWithCallback(
 					self.modificationCallback,
 					MessageBox,
-					_("A configuration file (%s) was modified since Installation.\nDo you want to keep your version?") % (param)
+					_("A configuration file (%s) has been modified since it was installed.\nDo you want to keep your modifications?") % (param)
 				)
 		elif event == IpkgComponent.EVENT_ERROR:
 			self.error += 1
@@ -250,27 +250,50 @@ class UpdatePlugin(Screen):
 							choices.append((_("Perform a setting backup,") + '\n\t' + _("making a backup before updating") + '\n\t' +_("is strongly advised."), "backup"))
 						if not config.softwareupdate.autoimagebackup.getValue():
 							choices.append((_("Perform a full image backup"), "imagebackup"))
+					choices.append(_("Update channel list only"), "channels"))
 					choices.append((_("Cancel"), ""))
 					self.session.openWithCallback(self.startActualUpgrade, ChoiceBox, title=message, list=choices)
 				else:
 					self.session.openWithCallback(self.close, MessageBox, _("Nothing to upgrade"), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+			elif self.channellist_only > 0:
+				if self.channellist_only == 1:
+					self.setEndMessage(_("Could not find installed channel list."))
+				elif self.channellist_only == 2:
+					self.slider.setValue(2)
+					self.ipkg.startCmd(IpkgComponent.CMD_REMOVE, {'package': self.channellist_name})
+					self.channellist_only += 1
+				elif self.channellist_only == 3:
+					self.slider.setValue(3)
+					self.ipkg.startCmd(IpkgComponent.CMD_INSTALL, {'package': self.channellist_name})
+					self.channellist_only += 1
+				elif self.channellist_only == 4:
+					self.setEndMessage(_("Update completed. %d packages were installed.") % self.packages)
+					eDVBDB.getInstance().reloadBouquets()
+					eDVBDB.getInstance().reloadServicelist()
 			elif self.error == 0:
-				self.slider.setValue(4)
-				self.activityTimer.stop()
-				self.activityslider.setValue(0)
-				self.package.setText(_("Done - Installed or upgraded %d packages") % self.packages)
-				self.status.setText(self.oktext)
+				self.setEndMessage(_("Update completed. %d packages were installed.") % self.packages)
 			else:
 				self.activityTimer.stop()
 				self.activityslider.setValue(0)
 				error = _("Your STB_BOX might be unusable now. Please consult the manual for further assistance before rebooting your STB_BOX.")
 				if self.packages == 0:
-					error = _("No packages were upgraded yet. So you can check your network and try again.")
+					error = _("No updates available. Please try again later.")
 				if self.updating:
 					error = _("Your STB_BOX isn't connected to the internet properly. Please check it and try again.")
 				self.status.setText(_("Error") +  " - " + error)
+		elif event == IpkgComponent.EVENT_LISTITEM:
+			if 'enigma2-plugin-settings-' in param[0] and self.channellist_only > 0:
+				self.channellist_name = param[0]
+				self.channellist_only = 2
 		#print event, "-", param
 		pass
+
+	def setEndMessage(self, txt):
+		self.slider.setValue(4)
+		self.activityTimer.stop()
+		self.activityslider.setValue(0)
+		self.package.setText(txt)
+		self.status.setText(self.oktext)
 
 	def startActualUpgrade(self, answer):
 		if not answer or not answer[1]:
@@ -288,6 +311,7 @@ class UpdatePlugin(Screen):
 				choices.append((_("Perform a setting backup, making a backup before updating is strongly advised."), "backup"))
 			if not self.ImageBackupDone and not config.softwareupdate.autoimagebackup.getValue():
 				choices.append((_("Perform a full image backup"), "imagebackup"))
+			choices.append(_("Update channel list only"), "channels"))
 			choices.append((_("Cancel"), ""))
 			self.session.openWithCallback(self.startActualUpgrade, ChoiceBox, title=message, list=choices)
 		elif answer[1] == "changes":
@@ -296,6 +320,10 @@ class UpdatePlugin(Screen):
 			self.doSettingsBackup()
 		elif answer[1] == "imagebackup":
 			self.doImageBackup()
+		elif answer[1] == "channels":
+			self.channellist_only = 1
+			self.slider.setValue(1)
+			self.ipkg.startCmd(IpkgComponent.CMD_LIST, args = {'installed_only': True})
 		elif answer[1] == "cold":
 			if config.softwareupdate.autosettingsbackup.getValue() or config.softwareupdate.autoimagebackup.getValue():
 				self.doAutoBackup()
@@ -354,7 +382,7 @@ class UpdatePlugin(Screen):
 
 	def exit(self):
 		if not self.ipkg.isRunning():
-			if self.packages != 0 and self.error == 0:
+			if self.packages != 0 and self.error == 0 and self.channellist_only == 0:
 				self.session.openWithCallback(self.exitAnswer, MessageBox, _("Upgrade finished.") +" "+_("Do you want to reboot your STB_BOX?"))
 			else:
 				self.close()
