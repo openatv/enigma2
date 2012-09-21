@@ -203,7 +203,7 @@ class UpdatePlugin(Screen):
 		if answer[1] == "cold":
 			self.session.open(TryQuitMainloop,retvalue=42)
 			self.close()
-		if answer[1] == "channels":
+		elif answer[1] == "channels":
 			self.channellist_only = 1
 			self.slider.setValue(1)
 			self.ipkg.startCmd(IpkgComponent.CMD_LIST, args = {'installed_only': True})
