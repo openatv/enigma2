@@ -310,7 +310,7 @@ void eDVBLocalTimeHandler::updateTime( time_t tp_time, eDVBChannel *chan, int up
 				/*emit*/ m_timeUpdated();
 			}
 			else
-				eDebug("[eDVBLocalTimerHandler] shit RTC not ready :(");
+				eDebug("[eDVBLocalTimerHandler]    getRTC returned time=0. RTC problem?");
 		}
 	}
 	else
