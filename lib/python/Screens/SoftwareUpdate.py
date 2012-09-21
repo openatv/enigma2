@@ -253,7 +253,7 @@ class UpdatePlugin(Screen):
 							choices.append((_("Perform a setting backup,") + '\n\t' + _("making a backup before updating") + '\n\t' +_("is strongly advised."), "backup"))
 						if not config.softwareupdate.autoimagebackup.getValue():
 							choices.append((_("Perform a full image backup"), "imagebackup"))
-					choices.append(_("Update channel list only"), "channels"))
+					choices.append((_("Update channel list only"), "channels"))
 					choices.append((_("Cancel"), ""))
 					self.session.openWithCallback(self.startActualUpgrade, ChoiceBox, title=message, list=choices)
 				else:
@@ -314,7 +314,7 @@ class UpdatePlugin(Screen):
 				choices.append((_("Perform a setting backup, making a backup before updating is strongly advised."), "backup"))
 			if not self.ImageBackupDone and not config.softwareupdate.autoimagebackup.getValue():
 				choices.append((_("Perform a full image backup"), "imagebackup"))
-			choices.append(_("Update channel list only"), "channels"))
+			choices.append((_("Update channel list only"), "channels"))
 			choices.append((_("Cancel"), ""))
 			self.session.openWithCallback(self.startActualUpgrade, ChoiceBox, title=message, list=choices)
 		elif answer[1] == "changes":
