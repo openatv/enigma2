@@ -160,18 +160,6 @@ self.condition = config.misc.startwizard.doservicescan.value and nimmanager.some
 				<listentry caption="No, scan later manually" step="end" />
 			</list>
 		</step>
-		<step id="softcam">
-			<condition>
-self.condition = config.misc.installwizard.hasnetwork.value and config.misc.installwizard.ipkgloaded.value
-			</condition>
-			<text value="Would you like to install a softcam?" />
-			<config screen="InstallWizard" module="InstallWizard" args="2" type="ConfigList" />
-			<code>
-self.clearSelectedKeys()
-self.selectKey("LEFT")
-self.selectKey("RIGHT")
-			</code>
-		</step>
 		<step id="end" laststep="true">
 			<text value="Thank you for using the wizard. Your STB_BOX is now ready for use.\nPress OK to start using your receiver." />
 			<code>
