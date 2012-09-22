@@ -550,10 +550,6 @@ class ViewGitLog(Screen):
 		Screen.__init__(self, session)
 		self.skinName = "SoftwareUpdateChanges"
 		self.setTitle(_("OE Changes"))
-		if path.exists('/tmp/oe-git.log'):
-			remove('/tmp/oe-git.log')
-		if path.exists('/tmp/e2-git.log'):
-			remove('/tmp/e2-git.log')
 		self.logtype = 'oe'
 		self["text"] = ScrollLabel()
 		self['title_summary'] = StaticText()
@@ -597,7 +593,7 @@ class ViewGitLog(Screen):
 		fd.close()
 		releasenotes = releasenotes.replace('\nopenvix: build',"\n\nopenvix: build")
 		self["text"].setText(releasenotes)
-		summarytext = releasenotes.split(':\n')
+		summarytext = releasenotes
 		try:
 			self['title_summary'].setText(summarytext[0]+':')
 			self['text_summary'].setText(summarytext[1])
