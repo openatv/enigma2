@@ -1400,38 +1400,48 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def keyNumberGlobal(self, number):
 		from Screens.InfoBarGenerics import NumberZap
-		self.session.openWithCallback(self.numberEntered, NumberZap, number)
+		self.session.openWithCallback(self.numberEntered, NumberZap, number, self.searchNumber)
 
-	def numberEntered(self, retval):
-		if retval > 0:
-			self.zapToNumber(retval)
+	def numberEntered(self, service = None, bouquet = None):
+		if not service is None:
+			self.zapToNumber(service, bouquet)
 
 	def searchNumberHelper(self, serviceHandler, num, bouquet):
 		servicelist = serviceHandler.list(bouquet)
 		if not servicelist is None:
-			while num:
+			serviceIterator = servicelist.getNext()
+			while serviceIterator.valid():
+				if num == serviceIterator.getChannelNum():
+					return serviceIterator
 				serviceIterator = servicelist.getNext()
-				if not serviceIterator.valid(): #check end of list
-					break
-				playable = not (serviceIterator.flags & (eServiceReference.isMarker|eServiceReference.isDirectory))
-				if playable:
-					num -= 1;
-			if not num: #found service with searched number ?
-				return serviceIterator, 0
-		return None, num
+		return None
 
-	def zapToNumber(self, number):
-		bouquet = self.servicelist.bouquet_root
+	def searchNumber(self, number):
+		bouquet = self.servicelist.getRoot()
 		service = None
 		serviceHandler = eServiceCenter.getInstance()
-		bouquetlist = serviceHandler.list(bouquet)
-		if not bouquetlist is None:
-			while number:
-				bouquet = bouquetlist.getNext()
-				if not bouquet.valid(): #check end of list
-					break
-				if bouquet.flags & eServiceReference.isDirectory:
-					service, number = self.searchNumberHelper(serviceHandler, number, bouquet)
+		service = self.searchNumberHelper(serviceHandler, number, bouquet)
+		if config.usage.multibouquet.value:
+			service = self.searchNumberHelper(serviceHandler, number, bouquet) #search the current bouqeut first
+			if service is None:
+				bouquet = self.servicelist.bouquet_root
+				bouquetlist = serviceHandler.list(bouquet)
+				if not bouquetlist is None:
+					bouquet = bouquetlist.getNext()
+					while bouquet.valid():
+						if bouquet.flags & eServiceReference.isDirectory:
+							service = self.searchNumberHelper(serviceHandler, number, bouquet)
+							if service is not None:
+								playable = not (service.flags & (eServiceReference.isMarker|eServiceReference.isDirectory)) or (service.flags & eServiceReference.isNumberedMarker)
+								if not playable:
+									service = None
+								break
+							if config.usage.alternative_number_mode.value:
+								break
+						bouquet = bouquetlist.getNext()
+		return service, bouquet
+
+	def zapToNumber(self, service, bouquet):
 		if not service is None:
 			self.setServicelistSelection(bouquet, service)
 		self.onCreate()
