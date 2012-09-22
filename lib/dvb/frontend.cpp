@@ -887,6 +887,10 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 	{
 		ret = (snr * 100) >> 8;
 	}
+	else if (!strcmp(m_description, "Vuplus DVB-S NIM"))
+	{
+		ret = (int)((((float(snr) / (65536.0 / 100.0)) * 0.1600) + (float)0.2100) * 100);
+	}
 	else if (!strcmp(m_description, "Genpix"))
 	{
 		ret = (int)((snr << 1) / 5);
