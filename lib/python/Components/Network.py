@@ -33,16 +33,14 @@ class Network:
 		self.getInterfaces()
 
 	def onRemoteRootFS(self):
-		if self.remoteRootFS == None:
-			fp = file('/proc/mounts', 'r')
-			mounts = fp.readlines()
-			fp.close()
-			self.remoteRootFS = False
-			for line in mounts:
-				parts = line.strip().split()
+		if self.remoteRootFS is None:
+			import Harddisk
+			for parts in Harddisk.getProcMounts():
 				if parts[1] == '/' and parts[2] == 'nfs':
 					self.remoteRootFS = True
 					break
+			else:
+				self.remoteRootFS = False
 		return self.remoteRootFS
 
 	def isBlacklisted(self, iface):
