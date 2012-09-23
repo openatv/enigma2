@@ -996,27 +996,6 @@ class InfoBarMenu:
 	def mainMenuClosed(self, *val):
 		self.session.infobar = None
 
-class InfoBarSimpleEventView:
-	""" Opens the Eventview for now/next """
-	def __init__(self):
-		self["EPGActions"] = HelpableActionMap(self, "InfobarEPGActions",
-			{
-				"InfoPressed": (self.InfoPressed, _("show program information...")),
-				"EPGPressed":  (self.showDefaultEPG, _("show EPG...")),
-				"showInfobarOrEpgWhenInfobarAlreadyVisible": self.showEventInfoWhenNotVisible,
-			})
-
-	def showEventInfoWhenNotVisible(self):
-		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
-			self.secondInfoBarScreen.hide()
-			self.secondInfoBarWasShown = False
-		if self.shown:
-			self.openEventView()
-		else:
-			self.toggleShow()
-			return 1
-
-
 class InfoBarEPG:
 	""" EPG - Opens an EPG list when the showEPGList action fires """
 	def __init__(self):
@@ -1245,12 +1224,15 @@ class InfoBarEPG:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
 
-		pluginlist = self.getEPGPluginList()
-		if pluginlist:
-			pluginlist.append((_("Select default EPG type..."), self.SelectDefaultInfoPlugin))
-			self.session.openWithCallback(self.EventInfoPluginChosen, ChoiceBox, title=_("Please choose an extension..."), list = pluginlist, skin_name = "EPGExtensionsList")
+		if not isMoviePlayerInfoBar:
+			pluginlist = self.getEPGPluginList()
+			if pluginlist:
+				pluginlist.append((_("Select default EPG type..."), self.SelectDefaultInfoPlugin))
+				self.session.openWithCallback(self.EventInfoPluginChosen, ChoiceBox, title=_("Please choose an extension..."), list = pluginlist, skin_name = "EPGExtensionsList")
+			else:
+				self.openSingleServiceEPG()
 		else:
-			self.openSingleServiceEPG()
+			self.openEventView()
 
 	def runPlugin(self, plugin):
 		plugin(session = self.session, servicelist = self.servicelist)
