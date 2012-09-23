@@ -36,7 +36,7 @@ class SecConfigure:
 		self.configuredSatellites.add(orbpos)
 
 	def addLNBSimple(self, sec, slotid, diseqcmode, toneburstmode = diseqcParam.NO, diseqcpos = diseqcParam.SENDNO, orbpos = 0, longitude = 0, latitude = 0, loDirection = 0, laDirection = 0, turningSpeed = rotorParam.FAST, useInputPower=True, inputPowerDelta=50, fastDiSEqC = False, setVoltageTone = True, diseqc13V = False):
-		if orbpos is None or orbpos == 3601:
+		if orbpos is None or orbpos == 3600 or orbpos == 3601:
 			return
 		#simple defaults
 		sec.addLNB()
@@ -934,16 +934,16 @@ class NimManager:
 			if configMode == "simple":
 				dm = nim.diseqcMode.value
 				if dm in ("single", "toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d"):
-					if nim.diseqcA.orbital_position != 3601:
-						list.append(self.satList[nim.diseqcA.index-1])
+					if nim.diseqcA.orbital_position < 3600:
+						list.append(self.satList[nim.diseqcA.index - 2])
 				if dm in ("toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d"):
-					if nim.diseqcB.orbital_position != 3601:
-						list.append(self.satList[nim.diseqcB.index-1])
+					if nim.diseqcB.orbital_position < 3600:
+						list.append(self.satList[nim.diseqcB.index - 2])
 				if dm == "diseqc_a_b_c_d":
-					if nim.diseqcC.orbital_position != 3601:
-						list.append(self.satList[nim.diseqcC.index-1])
-					if nim.diseqcD.orbital_position != 3601:
-						list.append(self.satList[nim.diseqcD.index-1])
+					if nim.diseqcC.orbital_position < 3600:
+						list.append(self.satList[nim.diseqcC.index - 2])
+					if nim.diseqcD.orbital_position < 3600:
+						list.append(self.satList[nim.diseqcD.index - 2])
 				if dm == "positioner":
 					for x in self.satList:
 						list.append(x)
