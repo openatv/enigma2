@@ -59,7 +59,7 @@ class Satfinder(ScanSetup):
 	def createSetup(self):
 		self.typeOfTuningEntry = None
 		self.satEntry = None
-		
+
 		self.list = []
 
 		self.typeOfTuningEntry = getConfigListEntry(_('Tune'), self.tuning_type)
@@ -140,7 +140,7 @@ class Satfinder(ScanSetup):
 		self.tuning_type = ConfigSelection(choices = [("manual_transponder", _("Manual transponder")), ("predefined_transponder", _("Predefined transponder"))])
 		self.tuning_sat = getConfigSatlist(192, nimmanager.getSatListForNim(self.feid))
 		ScanSetup.createConfig(self, None)
-		
+
 		self.updateSats()
 
 		for x in (self.tuning_type, self.tuning_sat, self.scan_sat.frequency,
@@ -228,7 +228,7 @@ class SatNimSelection(Screen):
 		<screen position="140,165" size="400,130" title="select Slot">
 			<widget name="nimlist" position="20,10" size="360,100" />
 		</screen>"""
-		
+
 	def __init__(self, session):
 		Screen.__init__(self, session)
 
