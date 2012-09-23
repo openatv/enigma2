@@ -1544,7 +1544,7 @@ class NetworkMountsMenu(Screen,HelpableScreen):
 
 class NetworkAfp(Screen):
 	skin = """
-		<screen position="center,center" size="560,310" title="Samba Setup">
+		<screen position="center,center" size="560,310">
 			<widget name="lab1" position="20,90" size="150,30" font="Regular;20" valign="center" transparent="0"/>
 			<widget name="labactive" position="180,90" size="250,30" font="Regular;20" valign="center" transparent="0"/>
 			<widget name="lab2" position="20,160" size="150,30" font="Regular;20" valign="center" transparent="0"/>
@@ -1715,7 +1715,7 @@ class NetworkAfp(Screen):
 
 class NetworkFtp(Screen):
 	skin = """
-		<screen position="center,center" size="340,310" title="Ftp Setup">
+		<screen position="center,center" size="340,310">
 			<widget name="lab1" position="20,30" size="300,80" font="Regular;20" valign="center" transparent="1"/>
 			<widget name="lab2" position="20,150" size="150,30" font="Regular;20" valign="center" transparent="1"/>
 			<widget name="labstop" position="170,150" size="100,30" font="Regular;20" valign="center"  halign="center" backgroundColor="red"/>
@@ -1804,7 +1804,7 @@ class NetworkFtp(Screen):
 
 class NetworkNfs(Screen):
 	skin = """
-		<screen position="center,center" size="420,310" title="NFS Setup">
+		<screen position="center,center" size="420,310" >
 			<widget name="lab1" position="20,50" size="200,30" font="Regular;20" valign="center" transparent="0"/>
 			<widget name="labactive" position="220,50" size="150,30" font="Regular;20" valign="center" transparent="0"/>
 			<widget name="lab2" position="20,100" size="200,30" font="Regular;20" valign="center" transparent="0"/>
@@ -1971,7 +1971,7 @@ class NetworkNfs(Screen):
 
 class NetworkOpenvpn(Screen):
 	skin = """
-		<screen position="center,center" size="560,310" title="OpenVpn Setup">
+		<screen position="center,center" size="560,310" >
 			<widget name="lab1" position="20,90" size="150,30" font="Regular;20" valign="center" transparent="0"/>
 			<widget name="labactive" position="180,90" size="250,30" font="Regular;20" valign="center" transparent="0"/>
 			<widget name="lab2" position="20,160" size="150,30" font="Regular;20" valign="center" transparent="0"/>
@@ -2129,7 +2129,7 @@ class NetworkOpenvpn(Screen):
 
 class NetworkVpnLog(Screen):
 	skin = """
-		<screen position="80,100" size="560,400" title="OpenVpn Log">
+		<screen position="80,100" size="560,400" >
 				<widget name="infotext" position="10,10" size="540,380" font="Regular;18" />
 		</screen>"""
 
@@ -2153,7 +2153,7 @@ class NetworkVpnLog(Screen):
 
 class NetworkSamba(Screen):
 	skin = """
-		<screen position="center,center" size="560,310" title="Samba Setup">
+		<screen position="center,center" size="560,310" ">
 			<widget name="lab1" position="20,90" size="150,30" font="Regular;20" valign="center" transparent="0"/>
 			<widget name="labactive" position="180,90" size="250,30" font="Regular;20" valign="center" transparent="0"/>
 			<widget name="lab2" position="20,160" size="150,30" font="Regular;20" valign="center" transparent="0"/>
@@ -2209,14 +2209,19 @@ class NetworkSamba(Screen):
 		elif result.find('bad address') != -1:
 			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Your STB_BOX is not connected to the internet, please check your network settings and try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		else:
-			self.session.openWithCallback(self.InstallPackage, MessageBox, _('Ready to install "%s" ?') % self.service_name, MessageBox.TYPE_YESNO)
+			self.session.openWithCallback(self.QuestionCallback, MessageBox, _('Ready to install "%s" ?') % self.service_name, MessageBox.TYPE_YESNO)
 
-	def InstallPackage(self, val):
+	def QuestionCallback(self, val):
 		if val:
-			self.doInstall(self.installComplete, self.service_name)
+			self.session.openWithCallback(self.InstallPackage, MessageBox, _('Do you want to also install samba client ?\nThis allows you to mount your windows shares on this device.'), MessageBox.TYPE_YESNO)
 		else:
 			self.feedscheck.close()
 			self.close()
+
+	def InstallPackage(self, val):
+		if val:
+			self.service_name = self.service_name + ' task-base-smbfs-client'
+		self.doInstall(self.installComplete, self.service_name)
 
 	def InstallPackageFailed(self, val):
 		self.feedscheck.close()
@@ -2313,7 +2318,7 @@ class NetworkSamba(Screen):
 
 class NetworkSambaLog(Screen):
 	skin = """
-		<screen position="80,100" size="560,400" title="Samba Log">
+		<screen position="80,100" size="560,400" >
 				<widget name="infotext" position="10,10" size="540,380" font="Regular;18" />
 		</screen>"""
 
@@ -2337,7 +2342,7 @@ class NetworkSambaLog(Screen):
 
 class NetworkTelnet(Screen):
 	skin = """
-		<screen position="center,center" size="340,310" title="Telnet Setup">
+		<screen position="center,center" size="340,310" >
 			<widget name="lab1" position="20,30" size="300,80" font="Regular;20" valign="center" transparent="1"/>
 			<widget name="lab2" position="20,150" size="150,30" font="Regular;20" valign="center" transparent="1"/>
 			<widget name="labstop" position="170,150" size="100,30" font="Regular;20" valign="center"  halign="center" backgroundColor="red"/>
@@ -2425,7 +2430,7 @@ class NetworkTelnet(Screen):
 
 class NetworkInadyn(Screen):
 	skin = """
-		<screen position="center,center" size="590,410" title="Inadyn Manager">
+		<screen position="center,center" size="590,410" >
 			<widget name="autostart" position="10,0" size="100,24" font="Regular;20" valign="center" transparent="0" />
 			<widget name="labdisabled" position="110,0" size="100,24" font="Regular;20" valign="center" halign="center" backgroundColor="red" zPosition="1" />
 			<widget name="labactive" position="110,0" size="100,24" font="Regular;20" valign="center" halign="center" backgroundColor="green" zPosition="2" />
@@ -2644,7 +2649,7 @@ class NetworkInadyn(Screen):
 
 class NetworkInadynSetup(Screen, ConfigListScreen):
 	skin = """
-		<screen name="InadynSetup" position="center,center" size="440,350" title="Inadyn Setup">
+		<screen name="InadynSetup" position="center,center" size="440,350" >
 			<widget name="config" position="10,10" size="420,240" scrollbarMode="showOnDemand" />
 			<widget name="HelpWindow" pixmap="skin_default/vkey_icon.png" position="170,300" zPosition="1" size="440,350" transparent="1" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/red.png" position="130,310" size="140,40" alphatest="on" />
@@ -2783,7 +2788,7 @@ class NetworkInadynSetup(Screen, ConfigListScreen):
 
 class NetworkInadynLog(Screen):
 	skin = """
-		<screen name="InadynLog" position="center,center" size="590,410" title="Inadyn Log">
+		<screen name="InadynLog" position="center,center" size="590,410" >
 			<widget name="infotext" position="10,10" size="590,410" font="Console;16" />
 		</screen>"""
 
@@ -2807,7 +2812,7 @@ config.networkushare = ConfigSubsection();
 config.networkushare.mediafolders = NoSave(ConfigLocations(default=""))
 class NetworkuShare(Screen):
 	skin = """
-		<screen position="center,center" size="590,410" title="uShare Manager">
+		<screen position="center,center" size="590,410" >
 			<widget name="autostart" position="10,0" size="100,24" font="Regular;20" valign="center" transparent="0" />
 			<widget name="labdisabled" position="110,0" size="100,24" font="Regular;20" valign="center" halign="center" backgroundColor="red" zPosition="1" />
 			<widget name="labactive" position="110,0" size="100,24" font="Regular;20" valign="center" halign="center" backgroundColor="green" zPosition="2" />
@@ -3363,7 +3368,7 @@ config.networkminidlna = ConfigSubsection();
 config.networkminidlna.mediafolders = NoSave(ConfigLocations(default=""))
 class NetworkMiniDLNA(Screen):
 	skin = """
-		<screen position="center,center" size="590,410" title="MiniDLNA Manager">
+		<screen position="center,center" size="590,410" >
 			<widget name="autostart" position="10,0" size="100,24" font="Regular;20" valign="center" transparent="0" />
 			<widget name="labdisabled" position="110,0" size="100,24" font="Regular;20" valign="center" halign="center" backgroundColor="red" zPosition="1" />
 			<widget name="labactive" position="110,0" size="100,24" font="Regular;20" valign="center" halign="center" backgroundColor="green" zPosition="2" />
