@@ -218,9 +218,6 @@ lib/python/Plugins/Extensions/TuxboxPlugins/meta/Makefile
 lib/python/Plugins/Extensions/StreamTV/Makefile
 lib/python/Plugins/Extensions/StreamTV/icons/Makefile
 lib/python/Plugins/Extensions/StreamTV/meta/Makefile
-lib/python/Plugins/Extensions/WebBrowser/Makefile
-lib/python/Plugins/Extensions/WebBrowser/meta/Makefile
-lib/python/Plugins/Extensions/WebBrowser/keymap/Makefile
 lib/python/Plugins/Extensions/DLNAServer/Makefile
 lib/python/Plugins/Extensions/DLNAServer/meta/Makefile
 lib/python/Plugins/Extensions/DLNABrowser/Makefile
