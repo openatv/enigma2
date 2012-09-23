@@ -3583,6 +3583,8 @@ class InfoBarExtensions:
 
 	def addExtension(self, extension, key = None, type = EXTENSION_SINGLE):
 		self.list.append((type, extension, key))
+		if config.usage.sort_extensionslist.value:
+			self.list.sort()
 
 	def updateExtension(self, extension, key = None):
 		self.extensionsList.append(extension)
@@ -3612,6 +3614,7 @@ class InfoBarExtensions:
 
 
 	def showExtensionSelection(self):
+		print"[INFOBARGENERICS] showExtensionSelection"
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
