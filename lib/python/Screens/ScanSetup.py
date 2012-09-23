@@ -300,7 +300,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		self["key_red"] = StaticText(_("Close"))
 		self["key_green"] = StaticText(_("Scan"))
 
-		self["actions"] = NumberActionMap(["SetupActions", "MenuActions"],
+		self["actions"] = NumberActionMap(["SetupActions", "MenuActions", "ColorActions"],
 		{
 			"ok": self.keyGo,
 			"cancel": self.keyCancel,
