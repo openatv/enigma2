@@ -15,11 +15,15 @@ def readFile(filename):
 
 def getProcMounts():
 	try:
-		mounts = open("/proc/mounts")
+		mounts = open("/proc/mounts", 'r')
 	except IOError, ex:
 		print "[Harddisk] Failed to open /proc/mounts", ex
 		return []
-	return [line.strip().split(' ') for line in mounts]
+	result = [line.strip().split(' ') for line in mounts]
+	for item in result:
+		# Spaces are encoded as \040 in mounts
+		item[1] = item[1].replace('\\040', ' ')
+	return result
 
 def createMovieFolder():
 	movie = resolveFilename(SCOPE_HDD)
