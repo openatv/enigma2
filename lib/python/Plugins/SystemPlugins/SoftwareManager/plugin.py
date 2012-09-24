@@ -1745,16 +1745,17 @@ class PacketManager(Screen, NumericalTextInput):
 		pass
 
 	def IpkgList_Finished(self, result, retval, extra_args = None):
+		result = result.replace('\n ',' - ')
 		if result:
 			self.packetlist = []
 			last_name = ""
 			for x in result.splitlines():
 				tokens = x.split(' - ')
 				name = tokens[0].strip()
-				if not any(name.endswith(x) for x in self.unwanted_extensions):
+				if not any((name.endswith(x) or name.find('locale') != -1) for x in self.unwanted_extensions):
 					l = len(tokens)
 					version = l > 1 and tokens[1].strip() or ""
-					descr = l > 2 and tokens[2].strip() or ""
+					descr = l > 3 and tokens[3].strip() or l > 2 and tokens[2].strip() or ""
 					if name == last_name:
 						continue
 					last_name = name
