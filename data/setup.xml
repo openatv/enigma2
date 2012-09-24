@@ -15,6 +15,7 @@
 	</setup>
 	<setup key="usage" title="Customize">
 		<item level="0" text="Setup Mode" description="Choose which level of menu/settings to display. 'Expert'-level shows all items.">config.usage.setup_level</item>
+		<item level="1" text="Zap mode" requires="ZapMode" description="Choose the way of behaviour while changing services">config.misc.zapmode</item>
 		<item level="1" text="Enable teletext caching" description="When enabled, teletext pages will be cached, allowing faster access.">config.usage.enable_tt_caching</item>
 		<item level="1" text="12V output" description="12V output" requires="12V_Output.">config.usage.output_12V</item>
 		<item level="2" text="Alternative services tuner priority" description="Configure which tuner type will be preferred, when the same service is available on different types of tuners.">config.usage.alternatives_priority</item>
