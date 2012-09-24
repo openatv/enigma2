@@ -3633,7 +3633,6 @@ class InfoBarExtensions:
 
 
 	def showExtensionSelection(self):
-		print"[INFOBARGENERICS] showExtensionSelection"
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
@@ -3696,7 +3695,7 @@ class InfoBarExtensions:
 			from Plugins.Extensions.Aafpanel.RestartNetwork import RestartNetwork
 			self.session.open(RestartNetwork)
 		except:
-			print'[INFOBARGENERICS] failed to restart newwork'
+			print'[INFOBARGENERICS] failed to restart network'
 
 	def showAutoTimerList(self):
 		if os_path.exists("/usr/lib/enigma2/python/Plugins/Extensions/AutoTimer/plugin.pyo"):
@@ -3951,7 +3950,6 @@ class InfoBarAAFpanel:
 
 	def selectRedKeytask(self):
 		if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/WebBrowser/browser.pyo") is True:
-			print"[INFOBARGENERICS] HBBTV"
 			service = self.session.nav.getCurrentService()
 			info = service and service.info()
 			if info and info.getInfoString(iServiceInformation.sHBBTVUrl) != "":
@@ -4322,14 +4320,12 @@ class InfoBarSubserviceSelection:
 			service = self.session.nav.getCurrentService()
 			subservices = service and service.subServices()
 			if not subservices or subservices.getNumberOfSubservices() == 0:
-				print '[GREEN_BUTTON] Show PluginBrowser'
 				try:
 					from Screens.PluginBrowser import PluginBrowser
 					self.session.open(PluginBrowser)
 				except:
 					pass
 			else:
-				print '[GREEN_BUTTON] Show SubserviceSelection'
 				self.subserviceSelection()
 
 	def __removeNotifications(self):
