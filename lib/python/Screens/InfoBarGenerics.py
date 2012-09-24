@@ -1239,7 +1239,7 @@ class InfoBarEPG:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
 
-		if not isMoviePlayerInfoBar:
+		if not isMoviePlayerInfoBar(self):
 			pluginlist = self.getEPGPluginList()
 			if pluginlist:
 				pluginlist.append((_("Select default EPG type..."), self.SelectDefaultInfoPlugin))
