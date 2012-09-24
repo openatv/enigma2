@@ -2506,9 +2506,28 @@ class InfoBarTimeshift:
 			self.activateTimeshiftEndAndPause()
 
 	def selectRedkeyTimeshiftEnd(self, back = True):
-		if config.plugins.aafpanel_redpanel.enabled.value:
-			from Plugins.Extensions.Aafpanel.plugin import Aafpanel
-			self.session.open(Aafpanel, services = self.servicelist)
+		if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/WebBrowser/browser.pyo") is True:
+			service = self.session.nav.getCurrentService()
+			info = service and service.info()
+			if info and info.getInfoString(iServiceInformation.sHBBTVUrl) != "":
+				for x in self.onHBBTVActivation:
+					x()
+					
+			elif config.plugins.aafpanel_redpanel.enabled.value == True:
+				try:
+					from Plugins.Extensions.Aafpanel.plugin import Aafpanel
+					self.session.open(Aafpanel, services = self.servicelist)
+				except:
+					pass
+			else:
+				self.activateTimeshiftEnd()		
+		
+		elif config.plugins.aafpanel_redpanel.enabled.value == True:
+			try:
+				from Plugins.Extensions.Aafpanel.plugin import Aafpanel
+				self.session.open(Aafpanel, services = self.servicelist)
+			except:
+				pass
 		else:
 			self.activateTimeshiftEnd()
 
@@ -3932,6 +3951,7 @@ class InfoBarAAFpanel:
 
 	def selectRedKeytask(self):
 		if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/WebBrowser/browser.pyo") is True:
+			print"[INFOBARGENERICS] HBBTV"
 			service = self.session.nav.getCurrentService()
 			info = service and service.info()
 			if info and info.getInfoString(iServiceInformation.sHBBTVUrl) != "":
