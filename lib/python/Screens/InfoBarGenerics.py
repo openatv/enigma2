@@ -43,7 +43,7 @@ from timer import TimerEntry
 
 from Tools import Directories, ASCIItranslit, Notifications
 
-from enigma import eBackgroundFileEraser, eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, iPlayableService, eServiceReference, eServiceCenter, eEPGCache, eActionMap
+from enigma import eBackgroundFileEraser, eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, iPlayableService, eServiceReference, eEPGCache, eActionMap
 
 from time import time, localtime, strftime
 from os import stat as os_stat, listdir as os_listdir, link as os_link, path as os_path, system as os_system, statvfs, remove as os_remove
@@ -646,6 +646,21 @@ class InfoBarNumberZap:
 					self.servicelist.history = [ ]
 					self.servicelist.history_pos = 0
 					service, bouquet = self.searchNumber(1)
+					rootstr = ''
+					serviceHandler = eServiceCenter.getInstance()
+					bqrootstr = '1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "bouquets.tv" ORDER BY bouquet'
+					number = 1
+					cur = eServiceReference(rootstr)
+					bouquet = eServiceReference(bqrootstr)
+					bouquetlist = serviceHandler.list(bouquet)
+					if not bouquetlist is None:
+						while True:
+							bouquet = bouquetlist.getNext()
+							if not bouquet.valid(): break
+							if bouquet.flags & eServiceReference.isDirectory:
+								self.servicelist.setRoot(bouquet)
+								service, bouquet2 = self.searchNumber(1)
+								if not service is None: break
 					self.zapToNumber(service, bouquet)
 				else:
 					self.servicelist.recallPrevService()
