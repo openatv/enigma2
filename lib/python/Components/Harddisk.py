@@ -15,8 +15,12 @@ def readFile(filename):
 
 def getProcMounts():
 	try:
-		mounts = open("/proc/mounts")
-		return [line.strip().split(' ') for line in mounts]
+		mounts = open("/proc/mounts" 'r')
+		result = [line.strip().split(' ') for line in mounts]
+		for item in result:
+			# Spaces are encoded as \040 in mounts
+			item[1] = item[1].replace('\\040', ' ')
+		return result
 	except IOError, ex:
 		print "[Harddisk] Failed to open /proc/mounts", ex
 		return []
