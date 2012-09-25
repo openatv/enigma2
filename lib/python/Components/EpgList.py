@@ -423,6 +423,8 @@ class EPGList(HTMLComponent, GUIComponent):
 				itemHeight = self.listHeight / config.epgselection.itemsperpage_enhanced.getValue()
 			else:
 				itemHeight = 32
+			if itemHeight < 25:
+				itemHeight = 25
 			self.l.setItemHeight(itemHeight)
 			self.instance.resize(eSize(self.listWidth, self.listHeight / itemHeight * itemHeight))
 		elif self.type == EPG_TYPE_MULTI:
@@ -430,6 +432,8 @@ class EPGList(HTMLComponent, GUIComponent):
 				itemHeight = self.listHeight / config.epgselection.itemsperpage_multi.getValue()
 			else:
 				itemHeight = 32
+			if itemHeight < 25:
+				itemHeight = 25
 			self.l.setItemHeight(itemHeight)
 			self.instance.resize(eSize(self.listWidth, self.listHeight / itemHeight * itemHeight))
 		elif self.type == EPG_TYPE_INFOBAR:
@@ -437,7 +441,9 @@ class EPGList(HTMLComponent, GUIComponent):
 				itemHeight = float(self.listHeight / config.epgselection.itemsperpage_infobar.getValue())
 			else:
 				itemHeight = 32
-			self.l.setItemHeight(int(itemHeight))
+			if itemHeight < 25:
+				itemHeight = 25
+			self.l.setItemHeight(itemHeight)
 
 	def setServiceFontsize(self):
 		self.l.setFont(0, gFont(self.serviceFontNameGraph, self.serviceFontSizeGraph + config.epgselection.serv_fontsize_vixepg.getValue()))
