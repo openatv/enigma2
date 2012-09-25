@@ -90,7 +90,7 @@ def load_cache(cache_file):
 
 class UpdatePluginMenu(Screen):
 	skin = """
-		<screen name="UpdatePluginMenu" position="center,center" size="610,410" title="Software management" >
+		<screen name="UpdatePluginMenu" position="center,center" size="610,410" >
 			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
 			<ePixmap pixmap="skin_default/border_menu_350.png" position="5,50" zPosition="1" size="350,300" transparent="1" alphatest="on" />
@@ -119,6 +119,7 @@ class UpdatePluginMenu(Screen):
 
 	def __init__(self, session, args = 0):
 		Screen.__init__(self, session)
+		Screen.setTitle(self, _("Software management"))
 		self.skin_path = plugin_path
 		self.menu = args
 		self.list = []
@@ -526,7 +527,7 @@ class SoftwareManagerInfo(Screen):
 class PluginManager(Screen, PackageInfoHandler):
 
 	skin = """
-		<screen name="PluginManager" position="center,center" size="560,440" title="Extensions management" >
+		<screen name="PluginManager" position="center,center" size="560,440" >
 			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
@@ -560,6 +561,7 @@ class PluginManager(Screen, PackageInfoHandler):
 
 	def __init__(self, session, plugin_path = None, args = None):
 		Screen.__init__(self, session)
+		Screen.setTitle(self, _("Extensions management"))
 		self.session = session
 		self.skin_path = plugin_path
 		if self.skin_path == None:
@@ -977,7 +979,7 @@ class PluginManager(Screen, PackageInfoHandler):
 
 class PluginManagerInfo(Screen):
 	skin = """
-		<screen name="PluginManagerInfo" position="center,center" size="560,450" title="Plugin manager activity information" >
+		<screen name="PluginManagerInfo" position="center,center" size="560,450" >
 			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
@@ -1001,6 +1003,7 @@ class PluginManagerInfo(Screen):
 
 	def __init__(self, session, plugin_path, cmdlist = None):
 		Screen.__init__(self, session)
+		Screen.setTitle(self, _("Plugin manager activity information"))
 		self.session = session
 		self.skin_path = plugin_path
 		self.cmdlist = cmdlist
@@ -1080,7 +1083,7 @@ class PluginManagerInfo(Screen):
 
 class PluginManagerHelp(Screen):
 	skin = """
-		<screen name="PluginManagerHelp" position="center,center" size="560,450" title="Plugin manager help" >
+		<screen name="PluginManagerHelp" position="center,center" size="560,450" >
 			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
 			<widget source="list" render="Listbox" position="5,50" size="550,350" scrollbarMode="showOnDemand" selectionDisabled="1">
@@ -1102,6 +1105,7 @@ class PluginManagerHelp(Screen):
 
 	def __init__(self, session, plugin_path):
 		Screen.__init__(self, session)
+		Screen.setTitle(self, _("Plugin manager help"))
 		self.session = session
 		self.skin_path = plugin_path
 
@@ -1166,6 +1170,7 @@ class PluginDetails(Screen, PackageInfoHandler):
 		</screen>"""
 	def __init__(self, session, plugin_path, packagedata = None):
 		Screen.__init__(self, session)
+		Screen.setTitle(self, _("Plugin details"))
 		self.skin_path = plugin_path
 		self.language = language.getLanguage()[:2] # getLanguage returns e.g. "fi_FI" for "language_country"
 		self.attributes = None
@@ -1363,6 +1368,7 @@ class IPKGMenu(Screen):
 
 	def __init__(self, session, plugin_path):
 		Screen.__init__(self, session)
+		Screen.setTitle(self, _("Select upgrade source to edit."))
 		self.skin_path = plugin_path
 
 		self["key_red"] = StaticText(_("Close"))
