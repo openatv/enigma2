@@ -256,6 +256,10 @@ lib/python/Plugins/Extensions/SocketMMI/meta/Makefile
 lib/python/Plugins/Extensions/SocketMMI/src/Makefile
 lib/python/Plugins/Extensions/TuxboxPlugins/Makefile
 lib/python/Plugins/Extensions/TuxboxPlugins/meta/Makefile
+lib/python/Plugins/Extensions/nStreamPlayer/Makefile
+lib/python/Plugins/Extensions/nStreamPlayer/img/Makefile
+lib/python/Plugins/Extensions/nStreamPlayer/picon35x35/Makefile
+lib/python/Plugins/Extensions/IniMyTube/Makefile
 lib/python/Plugins/SystemPlugins/CableScan/Makefile
 lib/python/Plugins/SystemPlugins/CommonInterfaceAssignment/Makefile
 lib/python/Plugins/SystemPlugins/CommonInterfaceAssignment/meta/Makefile
@@ -294,6 +298,8 @@ lib/python/Plugins/SystemPlugins/Videomode/Makefile
 lib/python/Plugins/SystemPlugins/Videomode/meta/Makefile
 lib/python/Plugins/SystemPlugins/WirelessLan/Makefile
 lib/python/Plugins/SystemPlugins/WirelessLan/meta/Makefile
+lib/python/Plugins/SystemPlugins/IniFanSetup/Makefile
+lib/python/Plugins/SystemPlugins/IniVFD/Makefile
 lib/python/Tools/Makefile
 po/Makefile
 main/Makefile
