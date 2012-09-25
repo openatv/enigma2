@@ -519,7 +519,8 @@ def runScreenTest():
 	profile("wakeup")
 	from time import time, strftime, localtime
 	from Tools.DreamboxHardware import setFPWakeuptime, getFPWakeuptime, setRTCtime, setRTCoffset
-	setRTCoffset()
+	if config.misc.boxtype.value.startswith('gb'):
+		setRTCoffset()
 	#get currentTime
 	nowTime = time()
 	wakeupList = [
