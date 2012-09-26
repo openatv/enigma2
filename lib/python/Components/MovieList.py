@@ -289,7 +289,7 @@ class MovieList(GUIComponent):
 						data.icon = self.iconMoviePlayRec
 					else:
 						data.icon = self.iconMovieRec
-				elif switch == 'p':
+				elif switch == 'p' or switch == 's':
 					data.part = 0
 					if self.playInBackground and serviceref == self.playInBackground:
 						data.partcol = 0xffc71d
@@ -312,39 +312,34 @@ class MovieList(GUIComponent):
 						if config.usage.movielist_unseen.value:
 							data.part = 100
 							data.partcol = 0x206333
-
-		len = data.len
-		if len > 0:
-			len = "%d:%02d" % (len / 60, len % 60)
-		else:
-			len = ""
-
-		if data.icon is not None:
-			iconSize = 22
-			pos = (0,1)
-			res.append(MultiContentEntryPixmapAlphaTest(pos=pos, size=(iconSize,20), png=data.icon))
-		switch = config.usage.show_icons_in_movielist.value
-		if switch == 'p' or switch == 's':
-			if switch == 'p':
-				iconSize = 48
+			len = data.len
+			if len > 0:
+				len = "%d:%02d" % (len / 60, len % 60)
 			else:
+				len = ""
+
+			iconSize = 0
+			if switch == 'i':
 				iconSize = 22
+			elif switch == 'p':
+				iconSize = 48
+			elif switch == 's':
+				iconSize = 22
+
 			if data.part is not None:
 				res.append(MultiContentEntryProgress(pos=(0,5), size=(iconSize-2,16), percent=data.part, borderWidth=2, foreColor=data.partcol, foreColorSelected=None, backColor=None, backColorSelected=None))
-		elif switch == 'i':
-			iconSize = 22
-		else:
-			iconSize = 0
+			else:
+				res.append(MultiContentEntryPixmapAlphaTest(pos=(0,1), size=(iconSize,20), png=data.icon))
 
-		begin_string = ""
-		if begin > 0:
-			begin_string = ', '.join(FuzzyTime(begin, inPast = True))
+			begin_string = ""
+			if begin > 0:
+				begin_string = ', '.join(FuzzyTime(begin, inPast = True))
 
-		ih = self.itemHeight
-		lenSize = ih * 3 # 25 -> 75
-		dateSize = ih * 145 / 25   # 25 -> 145
-		res.append(MultiContentEntryText(pos=(iconSize, 0), size=(width-iconSize-dateSize, ih), font = 0, flags = RT_HALIGN_LEFT, text = data.txt))
-		res.append(MultiContentEntryText(pos=(width-dateSize, 0), size=(dateSize, ih), font=1, flags=RT_HALIGN_RIGHT|RT_VALIGN_CENTER, text=begin_string))
+			ih = self.itemHeight
+			lenSize = ih * 3 # 25 -> 75
+			dateSize = ih * 145 / 25   # 25 -> 145
+			res.append(MultiContentEntryText(pos=(iconSize, 0), size=(width-iconSize-dateSize, ih), font = 0, flags = RT_HALIGN_LEFT, text = data.txt))
+			res.append(MultiContentEntryText(pos=(width-dateSize, 0), size=(dateSize, ih), font=1, flags=RT_HALIGN_RIGHT|RT_VALIGN_CENTER, text=begin_string))
 		return res
 
 	def moveToFirstMovie(self):
@@ -489,7 +484,7 @@ class MovieList(GUIComponent):
 				if not this_tags.issuperset(filter_tags) and not this_tags_fullname.issuperset(filter_tags):
 # 					print "Skipping", name, "tags=", this_tags, " filter=", filter_tags
 					continue
-		
+
 			self.list.append((serviceref, info, begin, -1))
 
 		self.firstFileEntry = numberOfDirs

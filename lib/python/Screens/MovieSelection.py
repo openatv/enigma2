@@ -971,20 +971,20 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 					if self.playAsDVD(path):
 						return
 				if ext in IMAGE_EXTENSIONS:
-				        try:
-				                from Plugins.Extensions.PicturePlayer import ui
-				                # Build the list for the PicturePlayer UI
+					try:
+						from Plugins.Extensions.PicturePlayer import ui
+						# Build the list for the PicturePlayer UI
 						filelist = []
 						index = 0
 						for item in self.list.list:
 							p = item[0].getPath()
 							if p == path:
-							        index = len(filelist)
+								index = len(filelist)
 							if os.path.splitext(p)[1].lower() in IMAGE_EXTENSIONS:
-							        filelist.append(((p,False), None))
-				                self.session.open(ui.Pic_Full_View, filelist, index, path)
+								filelist.append(((p,False), None))
+						self.session.open(ui.Pic_Full_View, filelist, index, path)
 					except Exception, ex:
-					        print "[ML] Cannot display", str(ex)
+						print "[ML] Cannot display", str(ex)
 					return
 				self.movieSelected()
 
@@ -996,9 +996,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			self.close(current)
 
 	def doContext(self):
-		current = self.getCurrent()
-		if current is not None:
-			self.session.openWithCallback(self.doneContext, MovieContextMenu, self, current)
+		current = self.getCurrent() or None
+		self.session.openWithCallback(self.doneContext, MovieContextMenu, self, current)
 
 	def doneContext(self, action):
 		if action is not None:
@@ -1010,7 +1009,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			pickle.dump(self.settings, open(path, "wb"))
 		except Exception, e:
 			print "Failed to save settings to %s: %s" % (path, e)
-		# Also set config items, in case the user has a read-only disk 
+		# Also set config items, in case the user has a read-only disk
 		config.movielist.moviesort.value = self.settings["moviesort"]
 		config.movielist.description.value = self.settings["description"]
 		config.usage.on_movie_eof.value = self.settings["movieoff"]
@@ -1695,8 +1694,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		offline = serviceHandler.offlineOperations(current)
 		try:
 			if offline is None:
-			        from enigma import eBackgroundFileEraser
-			        eBackgroundFileEraser.getInstance().erase(os.path.realpath(current.getPath()))
+				from enigma import eBackgroundFileEraser
+				eBackgroundFileEraser.getInstance().erase(os.path.realpath(current.getPath()))
 			else:
 				if offline.deleteFromDisk(0):
 					raise Exception, "Offline delete failed"
@@ -1753,10 +1752,10 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.trashinfo.update(current.getPath())
 
 	def can_gohome(self, item):
-	        return True
+		return True
 
 	def do_gohome(self):
-	        self.gotFilename(defaultMoviePath())
+		self.gotFilename(defaultMoviePath())
 
 	def do_sort(self):
 		index = 0
