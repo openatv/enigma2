@@ -443,7 +443,7 @@ class EPGList(HTMLComponent, GUIComponent):
 				itemHeight = 32
 			if itemHeight < 25:
 				itemHeight = 25
-			self.l.setItemHeight(itemHeight)
+			self.l.setItemHeight(int(itemHeight))
 
 	def setServiceFontsize(self):
 		self.l.setFont(0, gFont(self.serviceFontNameGraph, self.serviceFontSizeGraph + config.epgselection.serv_fontsize_vixepg.getValue()))
