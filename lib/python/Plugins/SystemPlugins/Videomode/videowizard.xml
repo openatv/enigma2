@@ -33,4 +33,10 @@ self.selectKey("UP")
 self.selectKey("DOWN")
 		</code>
 	</step>
+	<step id="end">
+		<code>
+self.hw.saveMode(self.port, self.mode, self.rate)
+from Components.config import configfile
+configfile.save() 
+		</code>
 </wizard>
