@@ -247,6 +247,7 @@ class MovieList(GUIComponent):
 		self.invalidateItem(self.getCurrentIndex())
 
 	def buildMovieListEntry(self, serviceref, info, begin, data):
+		switch = config.usage.show_icons_in_movielist.value
 		width = self.l.getItemSize().width()
 		pathName = serviceref.getPath()
 		res = [ None ]
@@ -282,7 +283,6 @@ class MovieList(GUIComponent):
 			data.txt = info.getName(serviceref)
 			data.icon = None
 			data.part = None
-			switch = config.usage.show_icons_in_movielist.value
 			if os.path.split(pathName)[1] in self.runningTimers:
 				if switch == 'i':
 					if self.playInBackground and serviceref == self.playInBackground:
@@ -312,34 +312,38 @@ class MovieList(GUIComponent):
 						if config.usage.movielist_unseen.value:
 							data.part = 100
 							data.partcol = 0x206333
-			len = data.len
-			if len > 0:
-				len = "%d:%02d" % (len / 60, len % 60)
+		len = data.len
+		if len > 0:
+			len = "%d:%02d" % (len / 60, len % 60)
+		else:
+			len = ""
+
+		iconSize = 0
+		if switch == 'i':
+			iconSize = 22
+			res.append(MultiContentEntryPixmapAlphaTest(pos=(0,1), size=(iconSize,20), png=data.icon))
+		elif switch == 'p':
+			iconSize = 48
+			if data.part is not None and data.part > 0:
+				res.append(MultiContentEntryProgress(pos=(0,5), size=(iconSize-2,16), percent=data.part, borderWidth=2, foreColor=data.partcol, foreColorSelected=None, backColor=None, backColorSelected=None))
 			else:
-				len = ""
-
-			iconSize = 0
-			if switch == 'i':
-				iconSize = 22
-			elif switch == 'p':
-				iconSize = 48
-			elif switch == 's':
-				iconSize = 22
-
-			if data.part is not None:
+				res.append(MultiContentEntryPixmapAlphaTest(pos=(0,1), size=(iconSize,20), png=data.icon))
+		elif switch == 's':
+			iconSize = 22
+			if data.part is not None and data.part > 0:
 				res.append(MultiContentEntryProgress(pos=(0,5), size=(iconSize-2,16), percent=data.part, borderWidth=2, foreColor=data.partcol, foreColorSelected=None, backColor=None, backColorSelected=None))
 			else:
 				res.append(MultiContentEntryPixmapAlphaTest(pos=(0,1), size=(iconSize,20), png=data.icon))
 
-			begin_string = ""
-			if begin > 0:
-				begin_string = ', '.join(FuzzyTime(begin, inPast = True))
+		begin_string = ""
+		if begin > 0:
+			begin_string = ', '.join(FuzzyTime(begin, inPast = True))
 
-			ih = self.itemHeight
-			lenSize = ih * 3 # 25 -> 75
-			dateSize = ih * 145 / 25   # 25 -> 145
-			res.append(MultiContentEntryText(pos=(iconSize, 0), size=(width-iconSize-dateSize, ih), font = 0, flags = RT_HALIGN_LEFT, text = data.txt))
-			res.append(MultiContentEntryText(pos=(width-dateSize, 0), size=(dateSize, ih), font=1, flags=RT_HALIGN_RIGHT|RT_VALIGN_CENTER, text=begin_string))
+		ih = self.itemHeight
+		lenSize = ih * 3 # 25 -> 75
+		dateSize = ih * 145 / 25   # 25 -> 145
+		res.append(MultiContentEntryText(pos=(iconSize, 0), size=(width-iconSize-dateSize, ih), font = 0, flags = RT_HALIGN_LEFT, text = data.txt))
+		res.append(MultiContentEntryText(pos=(width-dateSize, 0), size=(dateSize, ih), font=1, flags=RT_HALIGN_RIGHT|RT_VALIGN_CENTER, text=begin_string))
 		return res
 
 	def moveToFirstMovie(self):
