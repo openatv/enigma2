@@ -35,6 +35,12 @@ class Satfinder(ScanSetup):
 		self.initcomplete = False
 		self.feid = feid
 		self.oldref = None
+		self.frontendData = None
+		service = session and session.nav.getCurrentService()
+		feinfo = service and service.frontendInfo()
+		self.frontendData = feinfo and feinfo.getAll(True)
+		del feinfo
+		del service
 
 		if not self.openFrontend():
 			self.oldref = session.nav.getCurrentlyPlayingServiceReference()
@@ -139,8 +145,11 @@ class Satfinder(ScanSetup):
 	def createConfig(self, foo):
 		self.tuning_transponder = None
 		self.tuning_type = ConfigSelection(choices = [("manual_transponder", _("Manual transponder")), ("predefined_transponder", _("Predefined transponder"))])
-		self.tuning_sat = getConfigSatlist(192, nimmanager.getSatListForNim(self.feid))
-		ScanSetup.createConfig(self, None)
+		orbital_position = 192
+		if self.frontendData and self.frontendData.has_key('orbital_position'):
+			orbital_position = self.frontendData['orbital_position']
+		self.tuning_sat = getConfigSatlist(orbital_position, nimmanager.getSatListForNim(self.feid))
+		ScanSetup.createConfig(self, self.frontendData)
 
 		self.updateSats()
 

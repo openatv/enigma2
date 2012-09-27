@@ -14,6 +14,7 @@ class JobView(InfoBarNotifications, Screen, ConfigListScreen):
 		from Components.Sources.Boolean import Boolean
 		from Components.ActionMap import ActionMap
 		Screen.__init__(self, session, parent)
+		Screen.setTitle(self, _("Job View"))
 		InfoBarNotifications.__init__(self)
 		ConfigListScreen.__init__(self, [])
 		self.parent = parent

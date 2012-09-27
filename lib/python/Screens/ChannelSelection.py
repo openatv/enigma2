@@ -157,6 +157,7 @@ class ChannelContextMenu(Screen):
 	def __init__(self, session, csel):
 
 		Screen.__init__(self, session)
+		Screen.setTitle(self, _("Channel list context menu"))
 		#raise Exception("we need a better summary screen here")
 		self.csel = csel
 		self.bsel = None
