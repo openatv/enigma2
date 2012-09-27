@@ -46,11 +46,12 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			{
 				"showMovies": (self.showMovies, _("Play recorded movies...")),
 				"toogleTvRadio": (self.toogleTvRadio, _("toggels betwenn tv and radio...")),
-				"showRadio": (self.showRadio, _("Show the radio player...")),
-				"showTv": (self.showTv, _("Show the tv player...")),
+				#"showRadio": (self.showRadio, _("Show the radio player...")),
+				#"showTv": (self.showTv, _("Show the tv player...")),
 			}, prio=2)
 		
 		self.allowPiP = True
+		self.radioTV = 0
 		
 		for x in HelpableScreen, \
 				InfoBarBase, InfoBarShowHide, \
@@ -116,18 +117,21 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			self.session.openWithCallback(self.ChannelSelectionRadioClosed, ChannelSelectionRadio, self)
 			
 	def toogleTvRadio(self): 
-		service = self.session.nav.getCurrentService()
-		if service is not None: # workaround to avoid an error when service is None
-			info = service.info()
-			AudioPID = info.getInfo(enigma.iServiceInformation.sAudioPID)
-			VideoPID = info.getInfo(enigma.iServiceInformation.sVideoPID)
-		else:
-			AudioPID = 1
-			VideoPID = 1
+		#service = self.session.nav.getCurrentService()
+		#if service is not None: # workaround to avoid an error when service is None
+		#	info = service.info()
+		#	AudioPID = info.getInfo(enigma.iServiceInformation.sAudioPID)
+		#	VideoPID = info.getInfo(enigma.iServiceInformation.sVideoPID)
+		#else:
+		#	AudioPID = 1
+		#	VideoPID = 1
 
-		if VideoPID == -1: 
+		#if VideoPID == -1: 
+		if self.radioTV == 1:
+			self.radioTV = 0
 			self.showTv() 
 		else: 
+			self.radioTV = 1
 			self.showRadio()	
 
 	def ChannelSelectionRadioClosed(self, *arg):
