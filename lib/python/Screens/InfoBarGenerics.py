@@ -645,22 +645,31 @@ class InfoBarNumberZap:
 				if config.usage.panicbutton.value:
 					self.servicelist.history = [ ]
 					self.servicelist.history_pos = 0
-					service, bouquet = self.searchNumber(1)
-					rootstr = ''
+					if config.usage.multibouquet.value:
+						bqrootstr = '1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "bouquets.tv" ORDER BY bouquet'
+					else:
+						bqrootstr = '%s FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet'%(self.service_types)
 					serviceHandler = eServiceCenter.getInstance()
-					bqrootstr = '1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "bouquets.tv" ORDER BY bouquet'
-					number = 1
-					cur = eServiceReference(rootstr)
+					rootbouquet = eServiceReference(bqrootstr)
 					bouquet = eServiceReference(bqrootstr)
 					bouquetlist = serviceHandler.list(bouquet)
 					if not bouquetlist is None:
 						while True:
 							bouquet = bouquetlist.getNext()
-							if not bouquet.valid(): break
 							if bouquet.flags & eServiceReference.isDirectory:
+								self.servicelist.clearPath()
 								self.servicelist.setRoot(bouquet)
-								service, bouquet2 = self.searchNumber(1)
-								if not service is None: break
+								servicelist = serviceHandler.list(bouquet)
+								if not servicelist is None:
+									serviceIterator = servicelist.getNext()
+									while serviceIterator.valid():
+										service, bouquet2 = self.searchNumber(1)
+										if service == serviceIterator: break
+										serviceIterator = servicelist.getNext()
+									if serviceIterator.valid() and service == serviceIterator: break
+						self.servicelist.enterPath(rootbouquet)
+						self.servicelist.enterPath(bouquet)
+						self.servicelist.saveRoot()
 					self.zapToNumber(service, bouquet)
 				else:
 					self.servicelist.recallPrevService()

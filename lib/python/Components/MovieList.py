@@ -247,6 +247,7 @@ class MovieList(GUIComponent):
 		self.invalidateItem(self.getCurrentIndex())
 
 	def buildMovieListEntry(self, serviceref, info, begin, data):
+		switch = config.usage.show_icons_in_movielist.value
 		width = self.l.getItemSize().width()
 		pathName = serviceref.getPath()
 		res = [ None ]
@@ -282,14 +283,13 @@ class MovieList(GUIComponent):
 			data.txt = info.getName(serviceref)
 			data.icon = None
 			data.part = None
-			switch = config.usage.show_icons_in_movielist.value
 			if os.path.split(pathName)[1] in self.runningTimers:
 				if switch == 'i':
 					if self.playInBackground and serviceref == self.playInBackground:
 						data.icon = self.iconMoviePlayRec
 					else:
 						data.icon = self.iconMovieRec
-				elif switch == 'p':
+				elif switch == 'p' or switch == 's':
 					data.part = 0
 					if self.playInBackground and serviceref == self.playInBackground:
 						data.partcol = 0xffc71d
@@ -312,29 +312,28 @@ class MovieList(GUIComponent):
 						if config.usage.movielist_unseen.value:
 							data.part = 100
 							data.partcol = 0x206333
-
 		len = data.len
 		if len > 0:
 			len = "%d:%02d" % (len / 60, len % 60)
 		else:
 			len = ""
 
-		if data.icon is not None:
+		iconSize = 0
+		if switch == 'i':
 			iconSize = 22
-			pos = (0,1)
-			res.append(MultiContentEntryPixmapAlphaTest(pos=pos, size=(iconSize,20), png=data.icon))
-		switch = config.usage.show_icons_in_movielist.value
-		if switch == 'p' or switch == 's':
-			if switch == 'p':
-				iconSize = 48
-			else:
-				iconSize = 22
-			if data.part is not None:
+			res.append(MultiContentEntryPixmapAlphaTest(pos=(0,1), size=(iconSize,20), png=data.icon))
+		elif switch == 'p':
+			iconSize = 48
+			if data.part is not None and data.part > 0:
 				res.append(MultiContentEntryProgress(pos=(0,5), size=(iconSize-2,16), percent=data.part, borderWidth=2, foreColor=data.partcol, foreColorSelected=None, backColor=None, backColorSelected=None))
-		elif switch == 'i':
+			else:
+				res.append(MultiContentEntryPixmapAlphaTest(pos=(0,1), size=(iconSize,20), png=data.icon))
+		elif switch == 's':
 			iconSize = 22
-		else:
-			iconSize = 0
+			if data.part is not None and data.part > 0:
+				res.append(MultiContentEntryProgress(pos=(0,5), size=(iconSize-2,16), percent=data.part, borderWidth=2, foreColor=data.partcol, foreColorSelected=None, backColor=None, backColorSelected=None))
+			else:
+				res.append(MultiContentEntryPixmapAlphaTest(pos=(0,1), size=(iconSize,20), png=data.icon))
 
 		begin_string = ""
 		if begin > 0:
@@ -489,7 +488,7 @@ class MovieList(GUIComponent):
 				if not this_tags.issuperset(filter_tags) and not this_tags_fullname.issuperset(filter_tags):
 # 					print "Skipping", name, "tags=", this_tags, " filter=", filter_tags
 					continue
-		
+
 			self.list.append((serviceref, info, begin, -1))
 
 		self.firstFileEntry = numberOfDirs
