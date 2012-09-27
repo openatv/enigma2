@@ -1602,7 +1602,14 @@ class PacketManager(Screen, NumericalTextInput):
 		self.onLayoutFinish.append(self.rebuildList)
 
 		rcinput = eRCInput.getInstance()
-		rcinput.setKeyboardMode(rcinput.kmAscii)
+		if config.usage.show_channel_jump_in_servicelist.value == "alpha":
+			rcinput.setUseableChars(u'abcdefghijklmnopqrstuvwxyz1234567890')
+		else:
+			rcinput.setUseableChars(u'1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ')
+		if config.misc.remotecontrol_text_support.value:
+			rcinput.setKeyboardMode(rcinput.kmNone)
+		else:
+			rcinput.setKeyboardMode(rcinput.kmAscii)
 
 	def keyNumberGlobal(self, val):
 		key = self.getKey(val)
