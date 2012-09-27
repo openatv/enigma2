@@ -304,7 +304,7 @@ class UpdatePlugin(Screen):
 			return
 
 		if answer[1] == "menu":
-			if config.softwareupdate.updateisunstable.value == '1' and config.softwareupdate.updatebeta.value:
+			if config.softwareupdate.updateisunstable.value == '1':
 				message = _("The current update maybe unstable") + "\n" + _("Are you sure you want to update your STB_BOX?") + "\n(%s " % self.total_packages + _("Packages") + ")"
 			elif config.softwareupdate.updateisunstable.value == '0':
 				message = _("Do you want to update your STB_BOX?") + "\n(%s " % self.total_packages + _("Packages") + ")"
