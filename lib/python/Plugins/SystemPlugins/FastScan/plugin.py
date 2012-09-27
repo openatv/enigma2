@@ -12,7 +12,6 @@ from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Components.ProgressBar import ProgressBar
 from Components.ActionMap import ActionMap
-from Components.NimManager import nimmanager
 
 from enigma import eFastScan
 
@@ -159,7 +158,7 @@ class FastScanScreen(ConfigListScreen, Screen):
 		provider_list.append((str(31),  'Slovak Republic'))
 
 		self.scan_provider = ConfigSelection(choices = provider_list)
-		self.scan_hd = ConfigYesNo(default = False)
+		self.scan_hd = ConfigYesNo(default = True)
 		self.scan_keepnumbering = ConfigYesNo(default = False)
 		self.scan_keepsettings = ConfigYesNo(default = False)
 
