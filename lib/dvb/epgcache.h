@@ -135,7 +135,7 @@ private:
 	__u8 ByteSize;
 	__u8 type;
 	static descriptorMap descriptors;
-	static __u8 data[4108];
+	static __u8 data[];
 	static int CacheSize;
 	static bool isCacheCorrupt;
 	static void load(FILE *);
