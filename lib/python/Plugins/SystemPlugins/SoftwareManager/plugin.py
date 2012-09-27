@@ -1557,7 +1557,10 @@ class PacketManager(Screen, NumericalTextInput):
 		self.session = session
 		self.skin_path = plugin_path
 
-		self.setUseableChars(u'1234567890abcdefghijklmnopqrstuvwxyz')
+		if config.usage.show_channel_jump_in_servicelist.value == "alpha":
+			self.setUseableChars(u'abcdefghijklmnopqrstuvwxyz1234567890')
+		else:
+			self.setUseableChars(u'1234567890abcdefghijklmnopqrstuvwxyz')
 
 		self["shortcuts"] = NumberActionMap(["ShortcutActions", "WizardActions", "NumberActions", "InputActions", "InputAsciiActions", "KeyboardInputActions" ],
 		{
@@ -1602,10 +1605,6 @@ class PacketManager(Screen, NumericalTextInput):
 		self.onLayoutFinish.append(self.rebuildList)
 
 		rcinput = eRCInput.getInstance()
-		if config.usage.show_channel_jump_in_servicelist.value == "alpha":
-			rcinput.setUseableChars(u'abcdefghijklmnopqrstuvwxyz1234567890')
-		else:
-			rcinput.setUseableChars(u'1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ')
 		if config.misc.remotecontrol_text_support.value:
 			rcinput.setKeyboardMode(rcinput.kmNone)
 		else:
