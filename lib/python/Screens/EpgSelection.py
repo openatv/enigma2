@@ -357,7 +357,7 @@ class EPGSelection(Screen, HelpableScreen):
 		HelpableScreen.__init__(self)
 		self["okactions"] = HelpableActionMap(self, "OkCancelActions",
 			{
-				"cancel": (self.closing, _("Exit EPG")),
+				"cancel": (self.closeScreen, _("Exit EPG")),
 				"OK":     (self.OK, _("Zap to channel (setup in menu)")),
 				"OKLong": (self.OKLong, _("Zap to channel and close (setup in menu)")),
 			}, -1)
@@ -811,7 +811,15 @@ class EPGSelection(Screen, HelpableScreen):
 					l.fillGraphEPG(None, self.ask_time)
 					self.moveTimeLines(True)
 
-	def closing(self):
+	def closeScreen(self):
+		try:
+			if not self.StartRef:
+				self.StartRef = None
+		except:
+			print"[EpgSelection] No Start Service"
+			self.close(False)
+			return
+
 		if self.session.nav.getCurrentlyPlayingServiceReference() and self.session.nav.getCurrentlyPlayingServiceReference().toString() != self.StartRef.toString():
 			if ((self.type == 5 and config.epgselection.preview_mode_pliepg.value) or (self.type == 4 and config.epgselection.preview_mode_infobar.value) or (self.type == 3 and config.epgselection.preview_mode_enhanced.value) or (self.type != 5 and self.type != 4 and self.type != 3 and config.epgselection.preview_mode.value)) and (self.StartRef and self.StartBouquet):
 				if self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_SINGLE:
