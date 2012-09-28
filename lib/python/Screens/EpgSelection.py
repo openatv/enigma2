@@ -810,7 +810,7 @@ class EPGSelection(Screen, HelpableScreen):
 	def closing(self):
 		if self.session.nav.getCurrentlyPlayingServiceReference() and self.session.nav.getCurrentlyPlayingServiceReference().toString() != self.StartRef.toString():
 			if ((self.type == 5 and config.epgselection.preview_mode_vixepg.value) or (self.type == 4 and config.epgselection.preview_mode_infobar.value) or (self.type == 3 and config.epgselection.preview_mode_enhanced.value) or (self.type != 5 and self.type != 4 and self.type != 3 and config.epgselection.preview_mode.value)) and (self.StartRef and self.StartBouquet):
-				if self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_SINGLE:
+				if self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
 					if self.StartRef.toString().find('0:0:0:0:0:0:0:0:0')== -1:
 						self.session.nav.playService(self.StartRef)
 						self.setServicelistSelection(self.StartBouquet, self.StartRef)
