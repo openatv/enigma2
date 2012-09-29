@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-14 17:59+0100\n"
+"POT-Creation-Date: 2012-09-28 16:57+0100\n"
 "PO-Revision-Date: 2012-09-14 19:13-0000\n"
 "Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
 "Language-Team: Persian Professionals <persianpros@yahoo.com>\n"
@@ -111,14 +111,6 @@ msgstr ""
 "\n"
 "دستگاه مورد نظر برای تهیه نسخه پشتیبان را انتخاب کنید\n"
 "دستگاه فعلی: "
-
-#
-msgid ""
-"\n"
-"System will restart after the restore!"
-msgstr ""
-"\n"
-"سیستم بعد از بازگردانی دوباره راه اندازی میشود"
 
 msgid ""
 "\n"
@@ -240,6 +232,16 @@ msgstr "%k:%M %e/%m"
 msgid "%s (%s)\n"
 msgstr "%s (%s)\n"
 
+#. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
+#, python-format
+msgid "%s is no longer used. Should it be deleted?"
+msgstr ""
+
+#, python-format
+msgid "%s updated package available"
+msgid_plural "%s updated packages available"
+msgstr[0] ""
+
 #, python-format
 msgid "%s/%s: %s"
 msgstr ""
@@ -272,12 +274,6 @@ msgstr ""
 #
 msgid "* Only available if more than one interface is active."
 msgstr "فقط زمانی در دسترس است که بیش از یک رابط فعال باشد"
-
-msgid "/usr/share/enigma2 directory"
-msgstr "شاخه /usr/share/enigma2"
-
-msgid "/var directory"
-msgstr "پوشه /var"
 
 msgid "0"
 msgstr "0"
@@ -412,6 +408,12 @@ msgstr ""
 
 #, python-format
 msgid ""
+"A configuration file (%s) has been modified since it was installed.\n"
+"Do you want to keep your modifications?"
+msgstr ""
+
+#, python-format
+msgid ""
 "A configuration file (%s) was modified since Installation.\n"
 "Do you want to keep your version?"
 msgstr ""
@@ -513,6 +515,9 @@ msgstr ""
 msgid "A/V Settings"
 msgstr "تنظیمات تصویر و صدا"
 
+msgid "A/V settings"
+msgstr ""
+
 msgid "AA"
 msgstr "AA"
 
@@ -526,9 +531,6 @@ msgid "AFP Setup"
 msgstr ""
 
 msgid "AFP setup"
-msgstr ""
-
-msgid "AIT data will be included in http streams"
 msgstr ""
 
 #, python-format
@@ -566,9 +568,6 @@ msgstr "فعال کردن تصویر در تصویر"
 msgid "Activate network settings"
 msgstr "فعال کردن تنظیمات شبکه"
 
-msgid "Activate rewrapping of the teletext subtitles"
-msgstr ""
-
 msgid "Activate the chosen network settings."
 msgstr ""
 
@@ -593,9 +592,6 @@ msgstr "اضافه کردن علامت"
 msgid "Add Timer"
 msgstr ""
 
-msgid "Add WLAN configuration?"
-msgstr "اضافه کردن پیکربندی شبکه بدون سیم ؟"
-
 msgid "Add a auto timer for current event"
 msgstr ""
 
@@ -616,9 +612,6 @@ msgstr ""
 
 msgid "Add a zap timer for current event"
 msgstr ""
-
-msgid "Add network configuration?"
-msgstr "اضافه کردن پیکربندی شبکه؟"
 
 msgid "Add timer"
 msgstr "اضافه کردن زمان"
@@ -643,17 +636,6 @@ msgstr ""
 
 msgid "Address"
 msgstr ""
-
-msgid ""
-"Adds enigma2 settings and STB_BOX informations like SN, rev... if enabled."
-msgstr ""
-
-msgid "Adds network configuration if enabled."
-msgstr "اضافه کردن پیکربندی شبکه در صورت فعال بودن"
-
-#
-msgid "Adds wlan configuration if enabled."
-msgstr "افزودن پیکربندی شبکه بدون سیم اگر فعال است"
 
 msgid "Adjust 3D settings"
 msgstr "تنظیمات 3 بعدی"
@@ -682,21 +664,14 @@ msgstr "پلاگین پیشرفته نرم افزار"
 msgid "Advanced Video Enhancement Setup"
 msgstr "تنظیمات پیشرفته بهینه تصویر"
 
-msgid "Advanced Video Setup"
-msgstr "تنظیمات پیشرفته تصویر"
-
 msgid "Advanced restore"
 msgstr "بازگردانی پیشرفته"
 
+msgid "Advanced video setup"
+msgstr ""
+
 msgid "After event"
 msgstr "بعد از رویداد"
-
-msgid ""
-"After the start wizard is completed, you need to protect single services. "
-"Refer to your STB_BOX's manual on how to do that."
-msgstr ""
-"بعد از این که هدایتگر کامل شد ، شما باید از کانال های تنها حفاظت کنید  ، "
-"رجوع شود به دفترچه راهنمای دستگاه که چگونه انجام شود"
 
 msgid "Album"
 msgstr "آلبوم"
@@ -707,10 +682,10 @@ msgstr ""
 msgid "All"
 msgstr "همه"
 
-msgid "All Satellites"
-msgstr "همه ماهواره ها"
-
 msgid "All ages"
+msgstr ""
+
+msgid "All satellites"
 msgstr ""
 
 msgid "Allow Subtitle equals Audio mask"
@@ -771,7 +746,7 @@ msgstr ""
 msgid "Altern"
 msgstr ""
 
-msgid "Alternative numbering Mode"
+msgid "Alternative numbering mode"
 msgstr ""
 
 msgid "Alternative radio mode"
@@ -783,21 +758,17 @@ msgstr "اولویت کانال های متناوب تیونر"
 msgid "Always ask"
 msgstr "همیشه پرسیده شود"
 
-msgid "Always ask before sending"
-msgstr "همیشه قبل از ارسال پرسیده شود"
-
 msgid "Always show bouquets"
 msgstr ""
 
 msgid "An empty filename is illegal."
 msgstr "بدون نام بودن برای یک فایل غیر مجاز است"
 
+msgid "An error occurred while downloading the packetlist. Please try again."
+msgstr ""
+
 msgid "An unknown error occured!"
 msgstr "خطای نامشخصی رخ داد"
-
-#
-msgid "Anonymize crashlog?"
-msgstr "ناشناس کردن گزارش خطای دستگاه ؟"
 
 msgid "Any activity"
 msgstr "هر فعالیتی"
@@ -815,10 +786,8 @@ msgstr ""
 
 msgid ""
 "Are you sure you want to delete\n"
-"following backup:\n"
+"the following backup:\n"
 msgstr ""
-"آیا مطمئن هستید که میخواهید\n"
-"این نسخه پشتیبان را حذف کنید\n"
 
 msgid "Are you sure you want to delete all selected logs:\n"
 msgstr ""
@@ -839,20 +808,18 @@ msgstr ""
 "آیا مطمئن هستید که میخواهید رابط های شبکه خود را دوباره راه اندازی کنید ؟\n"
 "\n"
 
+#, python-format
 msgid ""
 "Are you sure you want to restore\n"
-"following backup:\n"
+"the following backup:\n"
+"%s\n"
+"Your receiver will restart after the backup has been restored!"
 msgstr ""
-"آیا مطمئن هستید که میخواهید\n"
-"این نسخه پشتیبان را بازگردانی کنید\n"
 
-#
 msgid ""
-"Are you sure you want to restore your Enigma2 backup?\n"
-"Enigma2 will restart after the restore"
+"Are you sure you want to restore the backup?\n"
+"Your receiver will restart after the backup has been restored!"
 msgstr ""
-"آیا مطمئن هستید که میخواهید نسخه پشتیبان انیگما 2 خود را بازگردانی کنید ؟\n"
-"انیگما 2 بعد از این بازگردانی دوباره راه اندازی میشود"
 
 msgid "Are you sure you want to save the EPG Cache to:\n"
 msgstr ""
@@ -877,6 +844,9 @@ msgstr "پرسش از کاربر"
 
 msgid "Aspect Ratio"
 msgstr "نسبت تصویر"
+
+msgid "Aspect ratio"
+msgstr ""
 
 msgid "Attach a file"
 msgstr ""
@@ -930,6 +900,9 @@ msgstr "خودکار"
 
 msgid "Automatic Scan"
 msgstr "اسکن خودکار"
+
+msgid "Automatic configuration is finished"
+msgstr ""
 
 msgid "Automatic image backup"
 msgstr ""
@@ -991,17 +964,8 @@ msgstr ""
 msgid "Background delete speed"
 msgstr ""
 
-msgid "Backup"
-msgstr "نسخه پشتیبان"
-
-msgid "Backup Location"
-msgstr "محل نسخه پشتیبان"
-
-msgid "Backup Mode"
-msgstr "حالت نسخه پشتیبان"
-
-msgid "Backup done."
-msgstr "نسخه پشتیبان تهیه شد"
+msgid "Backup completed."
+msgstr ""
 
 msgid "Backup failed."
 msgstr "تهیه نسخه پشتیبان ناموفق"
@@ -1117,11 +1081,6 @@ msgstr ""
 msgid "By Team ViX"
 msgstr ""
 
-msgid ""
-"By pressing the OK Button on your remote control, the info bar is being "
-"displayed."
-msgstr "با فشار دادن دکمه OK نوار اطلاعات نمایش داده خواهد شد"
-
 msgid "C"
 msgstr "C"
 
@@ -1175,9 +1134,6 @@ msgstr ""
 msgid "CCcam info"
 msgstr ""
 
-msgid "CF Drive"
-msgstr "CF درایو"
-
 #
 msgid "CI assignment"
 msgstr "CI وظیفه"
@@ -1227,10 +1183,7 @@ msgstr ""
 msgid "Cardserial"
 msgstr ""
 
-msgid "Center the position of the DVB subtitles."
-msgstr ""
-
-msgid "Centered DVB subtitles"
+msgid "Center DVB subtitles"
 msgstr ""
 
 msgid "Change bouquets in quickzap"
@@ -1283,6 +1236,9 @@ msgstr "انتخاب کانال"
 msgid "Channel Selection Configuration"
 msgstr ""
 
+msgid "Channel list context menu"
+msgstr ""
+
 msgid "Channel list on mode change"
 msgstr ""
 
@@ -1290,6 +1246,9 @@ msgid "Channel list preview"
 msgstr ""
 
 msgid "Channel list service mode*"
+msgstr ""
+
+msgid "Channel list type"
 msgstr ""
 
 msgid "Channel not in services list"
@@ -1319,6 +1278,12 @@ msgstr "بررسی"
 msgid "Check every (hours)"
 msgstr ""
 
+msgid "Check the internet connection"
+msgstr ""
+
+msgid "Check the internet connection again"
+msgstr ""
+
 msgid "Checking Feeds"
 msgstr ""
 
@@ -1329,6 +1294,15 @@ msgid "Checking Logs..."
 msgstr ""
 
 msgid "Checking for Updates..."
+msgstr ""
+
+msgid "Checking the internet connection"
+msgstr ""
+
+#, python-format
+msgid ""
+"Checking tuner %d\n"
+"DiSEqC port %s for %s"
 msgstr ""
 
 msgid "Children/Youth"
@@ -1368,18 +1342,13 @@ msgid "Choose the location for crash and debuglogs."
 msgstr ""
 
 msgid ""
-"Choose the location where the EPG data will be stored when the STB_BOX is "
-"shut down. The location must be available at boot time."
+"Choose the location where the EPG data will be stored when the GigaBlue HD "
+"800 Solo is shut down. The location must be available at boot time."
 msgstr ""
 
 msgid ""
-"Choose the name of the file that holds the EPG data when the STB_BOX is shut "
-"down. This can be handy to differentiate between several boxes."
-msgstr ""
-
-msgid ""
-"Choose the order in which the tuner types will be used (for watching and "
-"recording)."
+"Choose the name of the file that holds the EPG data when the GigaBlue HD 800 "
+"Solo is shut down. This can be handy to differentiate between several boxes."
 msgstr ""
 
 msgid "Choose time interval to which the graphics will be rounded off."
@@ -1392,6 +1361,10 @@ msgid "Choose upgrade source"
 msgstr "انتخاب منبع به روز رسانی"
 
 msgid "Choose what you want the button '0' to do when PIP is active."
+msgstr ""
+
+msgid ""
+"Choose whether multi channel sound tracks should be downmixed to stereo."
 msgstr ""
 
 msgid "Choose whether or not to show an icon when a motorized dish is moving."
@@ -1412,11 +1385,6 @@ msgstr ""
 msgid "Choose which tuner to configure."
 msgstr ""
 
-msgid ""
-"Choose which tuner will be used first. If set to 'auto' the system will give "
-"priority to the tuner having the lowest number of channels/satellites."
-msgstr ""
-
 msgid "Choose your Skin"
 msgstr "انتخاب اسکین"
 
@@ -1431,15 +1399,6 @@ msgstr ""
 
 msgid "Cleanup"
 msgstr "پاک سازی"
-
-msgid "Cleanup Wizard"
-msgstr "هدایتگر پاک سازی"
-
-msgid "Cleanup Wizard settings"
-msgstr "تنظیمات هدایتگر پاک سازی"
-
-msgid "CleanupWizard"
-msgstr "هدایتگر پاک سازی"
 
 msgid "Clear before scan"
 msgstr "پاک سازی قبل از اسکن"
@@ -1479,6 +1438,9 @@ msgstr "تنظیمات مجموعه"
 
 msgid "Color Format"
 msgstr "فرمت رنگ"
+
+msgid "Color format"
+msgstr ""
 
 msgid "Command execution..."
 msgstr "اجرای فرمان"
@@ -1520,6 +1482,9 @@ msgstr ""
 msgid "Configuration Mode"
 msgstr "حالت پیکربندی"
 
+msgid "Configuration mode"
+msgstr ""
+
 msgid "Configure interface"
 msgstr "رابط مشترک"
 
@@ -1550,6 +1515,20 @@ msgid "Configure the behaviour when a movie reaches the end"
 msgstr ""
 
 msgid ""
+"Configure the border width of the subtitles. The dark border makes the "
+"subtitles easier to read on a light background."
+msgstr ""
+
+msgid "Configure the color of the teletext subtitles."
+msgstr ""
+
+msgid "Configure the font size of the subtitles."
+msgstr ""
+
+msgid "Configure the horizontal alignment of the subtitles."
+msgstr ""
+
+msgid ""
 "Configure the number of days old timers are kept and then auto deleted from "
 "the timers list"
 msgstr ""
@@ -1574,6 +1553,9 @@ msgstr ""
 msgid "Configure the speed of the background delete feature"
 msgstr ""
 
+msgid "Configure the subtitle delay when timing information is not available."
+msgstr ""
+
 msgid "Configure the time of the stepskip on the '1'/'3'-keys"
 msgstr ""
 
@@ -1583,10 +1565,31 @@ msgstr ""
 msgid "Configure the time of the stepskip on the '7'/'9'-keys"
 msgstr ""
 
+msgid ""
+"Configure the transparency of the black background of graphical DVB "
+"subtitles."
+msgstr ""
+
 msgid "Configure the type of status indication icons shown in the movielist"
 msgstr ""
 
+msgid ""
+"Configure the vertical position of the subtitles, measured from the bottom "
+"of the screen."
+msgstr ""
+
 msgid "Configure the way recording filenames are composed"
+msgstr ""
+
+msgid ""
+"Configure which tuner type will be preferred, when the same service is "
+"available on different types of tuners."
+msgstr ""
+
+msgid ""
+"Configure which tuner will be preferred, when more than one tuner is "
+"available. If set to 'auto' the system will give priority to the tuner "
+"having the lowest number of channels/satellites."
 msgstr ""
 
 #
@@ -1673,6 +1676,9 @@ msgstr ""
 msgid "Copy"
 msgstr "رونوشت"
 
+msgid "Correct"
+msgstr ""
+
 msgid ""
 "Could not activate Permanent-Timeshift!\n"
 "Timeshift-Path does not exist"
@@ -1680,6 +1686,9 @@ msgstr ""
 
 msgid "Could not connect to STB_BOX .NFI Image Feed Server:"
 msgstr "ارتباط با سرور ایمیج NFI دستگاه میسر نیست"
+
+msgid "Could not find installed channel list."
+msgstr ""
 
 msgid "Could not load Medium! No disc inserted?"
 msgstr "رسانه قابل لود شدن نیست ، دیسک داخل گذاشته نشده است ؟"
@@ -1705,29 +1714,6 @@ msgstr "با توجه به کانال نامعتبر %s ضبط کردن مقدو
 
 msgid "Crash Logs"
 msgstr ""
-
-msgid "Crashlog settings"
-msgstr "تنظیمات گزارش خطای دستگاه"
-
-#
-msgid "CrashlogAutoSubmit"
-msgstr "ارسال خودکار گزارش های خطای دستگاه"
-
-#
-msgid "CrashlogAutoSubmit settings"
-msgstr "تنظیمات ارسال خودکار گزارش های خطای دستگاه"
-
-#
-msgid "CrashlogAutoSubmit settings..."
-msgstr "تنظیمات ارسال خودکار گزارش های خطای دستگاه"
-
-#
-msgid ""
-"Crashlogs found!\n"
-"Send them to Dream Multimedia?"
-msgstr ""
-"گزارش های خطای دستگاه یافت شدند\n"
-"برای شرکت Dream Multimedia ارسال شوند ؟"
 
 #
 msgid "Create DVD-ISO"
@@ -1800,17 +1786,14 @@ msgstr "پرش سفارشی زمان برای کلید های 4 و 6"
 msgid "Custom skip time for '7'/'9'-keys"
 msgstr "پرش سفارشی زمان برای کلید های 7 و 9"
 
-msgid "Custom text alignment"
-msgstr "تراز متن سفارشی"
-
-msgid "Custom text position"
-msgstr "موقعیت متن سفارشی"
-
 msgid "Customize"
 msgstr "سفارشی"
 
 msgid "Cut"
 msgstr "برش"
+
+msgid "Cutlist editor"
+msgstr ""
 
 msgid "Cutlist editor..."
 msgstr "ویرایشگر برش لیست"
@@ -1883,15 +1866,6 @@ msgstr "تاریخ"
 msgid "Debug Logs"
 msgstr ""
 
-msgid "Decide if you want to enable or disable the Cleanup Wizard."
-msgstr "تصمیم بگیرید که آیا میخواهید هدایتگر پاک ساز فعال شود یا غیر فعال"
-
-msgid "Decide what should be done when crashlogs are found."
-msgstr "تصمیم بگیرید که وقتی گزارش خطا یافت شد چه باید شود"
-
-msgid "Decide what should happen to the crashlogs after submission."
-msgstr "تصمیم بگیرید که بعد از ثبت گزارش خطا باید با آنها چه کرد"
-
 msgid "Deep Standby"
 msgstr "خاموشی کامل"
 
@@ -1928,22 +1902,11 @@ msgstr ""
 msgid "Delete Confirmation"
 msgstr ""
 
-msgid "Delete crashlogs"
-msgstr "حذف گزارش های خطای دستگاه"
-
 msgid "Delete entry"
 msgstr "حذف مورد"
 
 msgid "Delete failed!"
 msgstr "حذف ناموفق"
-
-#, python-format
-msgid ""
-"Delete no more configured satellite\n"
-"%s?"
-msgstr ""
-"ماهواره پیکربندی شده بیش از این حذف نشود\n"
-"%s?"
 
 msgid "Delete old timers after how many days"
 msgstr ""
@@ -2006,6 +1969,10 @@ msgstr "DiSEqC A/B/C/D"
 msgid "DiSEqC mode"
 msgstr "DiSEqC حالت"
 
+#, python-format
+msgid "DiSEqC port %s: %s"
+msgstr ""
+
 msgid "DiSEqC repeats"
 msgstr "DiSEqC تکرار"
 
@@ -2043,10 +2010,6 @@ msgstr "غیر فعال کردن تصویر در تصویر"
 
 msgid "Disable background scanning"
 msgstr ""
-
-#
-msgid "Disable crashlog reporting"
-msgstr "غیر فعال کردن گزارش های خطای دستگاه"
 
 msgid "Disabled"
 msgstr "غیر فعال شد"
@@ -2143,13 +2106,13 @@ msgid "Do you want to add any additional information ?"
 msgstr ""
 
 msgid ""
-"Do you want to attach a text file to explain the log ?\n"
-"(choose 'No' to type message using virtual keyboard.)"
+"Do you want to also install samba client ?\n"
+"This allows you to mount your windows shares on this device."
 msgstr ""
 
 msgid ""
-"Do you want to backup now?\n"
-"After pressing OK, please wait!"
+"Do you want to attach a text file to explain the log ?\n"
+"(choose 'No' to type message using virtual keyboard.)"
 msgstr ""
 
 msgid "Do you want to burn this collection to DVD medium?"
@@ -2170,8 +2133,8 @@ msgstr "آیا میخواهید اسکن دستی کانال دیگری انجا
 msgid "Do you want to download the image to %s ?"
 msgstr "آیا میخواهید ایمیج را در %s دانلود کنید ؟"
 
-msgid "Do you want to enable the parental control feature on your STB_BOX?"
-msgstr "آیا میخواهید ویژگی کنترل والدین را در دستگاه خود فعال کنید ؟"
+msgid "Do you want to install a channel list?"
+msgstr ""
 
 msgid "Do you want to install the package:\n"
 msgstr "آیا میخواهید بسته را نصب کنید :\n"
@@ -2184,6 +2147,9 @@ msgstr "آیا میخواهید قبل از رایت کردن DVD آن را مش
 
 msgid "Do you want to reboot your STB_BOX?"
 msgstr "آیا میخواهید دستگاه شما دوباره راه اندازی شود ؟"
+
+msgid "Do you want to reboot your receiver?"
+msgstr ""
 
 msgid "Do you want to remove the package:\n"
 msgstr "آیا میخواهید بسته را حذف کنید :\n"
@@ -2199,36 +2165,11 @@ msgid ""
 "(choose 'No' to only send the currently selected file.)"
 msgstr ""
 
-#
-msgid ""
-"Do you want to submit your email address and name so that we can contact you "
-"if needed?"
-msgstr ""
-"آیا میخواهید آدرس ایمیل و نام خود را ارسال کنید تا هنگامی که نیاز باشد با "
-"شما تماس بگیریم ؟"
-
 msgid "Do you want to update your STB_BOX?"
 msgstr "آیا میخواهید دستگاه خود را به روز رسانی کنید ؟"
 
-msgid ""
-"Do you want to update your STB_BOX?\n"
-"After pressing OK, please wait!"
-msgstr ""
-"آیا میخواهید دستگاه خود را به روز رسانی کنید ؟\n"
-"بعد از فشار دادن دکمه OK لطفا صبر کنید"
-
 msgid "Do you want to upgrade the package:\n"
 msgstr "آیا میخواهید بسته به روز رسانی شود :\n"
-
-msgid "Do you want to upgrade?"
-msgstr ""
-
-msgid "Do you want to view a tutorial?"
-msgstr "آیا میخواهید خود آموز را مشاهده کنید ؟"
-
-#
-msgid "Don't ask, just send"
-msgstr "پرسیده نشود فقط ارسال شود"
 
 msgid "Don't save"
 msgstr ""
@@ -2238,10 +2179,6 @@ msgstr ""
 
 msgid "Don't stop current event but disable coming events"
 msgstr "رخداد فعلی متوقف نشود اما رخداد های بعدی غیر فعال شوند"
-
-#, python-format
-msgid "Done - Installed or upgraded %d packages"
-msgstr "انجام شد ، تعداد %d مورد نصب یا به روز رسانی شد"
 
 #, python-format
 msgid "Done - Installed, upgraded or removed %d packages with %d errors"
@@ -2271,9 +2208,6 @@ msgstr "در حال دانلود"
 
 msgid "Downloading plugin information. Please wait..."
 msgstr "در حال دانلود کردن اطلاعات پلاگین ها - لطفا صبر کنید"
-
-msgid "Downmix the Dolby Digital sound tracks to PCM."
-msgstr ""
 
 msgid "Drivers:"
 msgstr ""
@@ -2306,9 +2240,6 @@ msgid "ECM last"
 msgstr ""
 
 msgid "ECM-Time"
-msgstr ""
-
-msgid "EIT data will be included in http streams."
 msgstr ""
 
 msgid "EPG"
@@ -2344,9 +2275,6 @@ msgstr ""
 #, python-format
 msgid "ERROR - failed to scan (%s)!"
 msgstr "خطا ، اسکن انجام نشد (%s)"
-
-msgid "ET9x00/6500"
-msgstr ""
 
 msgid "East"
 msgstr "شرق"
@@ -2405,10 +2333,6 @@ msgstr "فعال"
 
 msgid "Enable 5V for active antenna"
 msgstr "فعال کردن 5 ولت برای آنتن فعال"
-
-#
-msgid "Enable Cleanup Wizard?"
-msgstr "فعال کردن هدایتگر پاک سازی؟"
 
 msgid "Enable Debug log"
 msgstr ""
@@ -2471,9 +2395,6 @@ msgid ""
 "is included in the stream and a valid card is available)."
 msgstr ""
 
-msgid "Enables channel numbers in the channel selection screen"
-msgstr ""
-
 msgid "Enables the trashcan feature"
 msgstr ""
 
@@ -2529,10 +2450,6 @@ msgstr "رمز را وارد کنید"
 msgid "Enter the service pin"
 msgstr "رمز کانال را وارد کنید"
 
-#
-msgid "Enter your email address so that we can contact you if needed."
-msgstr "ایمیل خود را وارد کنید تا بتوانیم در هنگام نیاز با شما تماس بگیریم"
-
 msgid "Enter your email address to send a copy of the log to."
 msgstr ""
 
@@ -2571,9 +2488,6 @@ msgstr ""
 #
 msgid "Estonian"
 msgstr "استونیایی"
-
-msgid "Et5000/6000"
-msgstr ""
 
 msgid "Ethernet network interface"
 msgstr "رابط شبکه Ethernet"
@@ -2625,9 +2539,6 @@ msgstr "خروج از انتخاب دستگاه ورودی"
 
 msgid "Exit network wizard"
 msgstr "خروج از هدایتگر شبکه"
-
-msgid "Exit the cleanup wizard"
-msgstr "خروج از هدایتگر پاک سازی"
 
 msgid "Exit the wizard"
 msgstr "خروج از هدایتگر"
@@ -2768,6 +2679,10 @@ msgstr "فرمت"
 msgid "Forward volume keys"
 msgstr ""
 
+#, python-format
+msgid "Found %d position(s) of %d total"
+msgstr ""
+
 msgid "Frame size in full view"
 msgstr "اندازه فریم در نمایش کامل"
 
@@ -2833,16 +2748,14 @@ msgstr "دروازه"
 msgid "General"
 msgstr ""
 
-#
-msgid "General AC3 Delay"
-msgstr "تاخیر عمومی AC3"
+msgid "General AC3 delay"
+msgstr ""
 
 msgid "General AC3 delay (ms)"
 msgstr ""
 
-#
-msgid "General PCM Delay"
-msgstr "تاخیر عمومی PCM"
+msgid "General PCM delay"
+msgstr ""
 
 msgid "General PCM delay (ms)"
 msgstr ""
@@ -2864,6 +2777,27 @@ msgstr ""
 
 msgid "Getting plugin information. Please wait..."
 msgstr "در حال جمع آوری اطلاعات پلاگین ها - لطفا صبر کنید"
+
+msgid "STB_BOX advanced remote control (native)"
+msgstr "ریموت کنترل پیشرفته دستگاه (محلی)"
+
+msgid "STB_BOX format data DVD (HDTV compatible)"
+msgstr "فرمت داده DVD (سازگار با HDTV)"
+
+msgid "STB_BOX front panel"
+msgstr "پنل جلوی دستگاه"
+
+msgid "STB_BOX ir keyboard"
+msgstr "کیبورد مادون قرمز دستگاه"
+
+msgid "STB_BOX ir mouse"
+msgstr "موس مادون قرمز دستگاه"
+
+msgid "STB_BOX remote control (native)"
+msgstr "ریموت کنترل دستگاه (محلی)"
+
+msgid "STB_BOX software because updates are available."
+msgstr "نرم افزار دستگاه چون به روز رسانی فعال است"
 
 msgid "Go down the list"
 msgstr "برو پایین لیست"
@@ -2996,10 +2930,10 @@ msgstr "شبکه مخفی"
 msgid "Hide CI messages"
 msgstr "پنهان کردن پیام های CI"
 
-msgid "Hide any Common Interface card error messages."
+msgid "Hide any zap error messages."
 msgstr ""
 
-msgid "Hide any zap error messages."
+msgid "Hide error messages from the Common Interface module."
 msgstr ""
 
 msgid "Hide zap errors"
@@ -3051,9 +2985,6 @@ msgstr ""
 msgid "How many minutes do you want to record?"
 msgstr "چند دقیقه میخواهید ضبط کنید؟"
 
-msgid "How to handle found crashlogs?"
-msgstr "چگونه به گزارش های خطای یافت شده رسیدگی شود ؟"
-
 msgid "Hue"
 msgstr "رنگ"
 
@@ -3087,9 +3018,6 @@ msgid "Icons"
 msgstr "آیکون"
 
 msgid "Idle Time: "
-msgstr ""
-
-msgid "If Teletext caching is enabled, displaying pages will be much faster."
 msgstr ""
 
 msgid ""
@@ -3217,10 +3145,6 @@ msgstr ""
 msgid "Include EIT in http streams"
 msgstr ""
 
-#
-msgid "Include your email and name (optional) in the mail?"
-msgstr "شامل ایمیل و نام (اختیاری) شما بشود ؟"
-
 msgid "Increase time scale"
 msgstr ""
 
@@ -3275,6 +3199,9 @@ msgstr "ورودی"
 msgid "Input device setup"
 msgstr "تنظیم دستگاه ورودی"
 
+msgid "Input devices"
+msgstr ""
+
 msgid "Install"
 msgstr "نصب"
 
@@ -3285,6 +3212,9 @@ msgstr "نصب ایمیج جدید توسط USB stick"
 #
 msgid "Install a new image with your web browser"
 msgstr "نصب ایمیج جدید توسط مرورگر وب خود"
+
+msgid "Install channel list"
+msgstr ""
 
 msgid "Install extensions."
 msgstr "نصب بسته ها"
@@ -3305,9 +3235,6 @@ msgstr ""
 msgid "Install plugins"
 msgstr ""
 
-msgid "Install settings, skins, software..."
-msgstr "در حال نصب تنظیمات ، اسکین ها ، نرم افزار و ..."
-
 msgid "Installation finished."
 msgstr "نصب پایان یافت"
 
@@ -3319,15 +3246,6 @@ msgstr ""
 
 msgid "Installing Software..."
 msgstr "در حال نصب نرم افزار"
-
-msgid "Installing default sat lists... Please wait..."
-msgstr "در حال نصب لیست های ماهواره پیش فرض ، لطفا صبر کنید"
-
-msgid "Installing defaults... Please wait..."
-msgstr "در حال نصب تنظیمات پیش فرض ، لطفا صبر کنید"
-
-msgid "Installing package content... Please wait..."
-msgstr "نصب محتویات بسته ، لطفا صبر کنید"
 
 msgid "Instant Record..."
 msgstr ""
@@ -3376,9 +3294,8 @@ msgstr "Ipkg"
 msgid "Is this setting ok?"
 msgstr ""
 
-#
-msgid "Is this videomode ok?"
-msgstr "آیا این حالت تصویر درست است ؟"
+msgid "Is this video mode ok?"
+msgstr ""
 
 msgid "Italian"
 msgstr "ایتالیایی"
@@ -3471,15 +3388,6 @@ msgstr ""
 
 msgid "LNB"
 msgstr "LNB"
-
-msgid "LOF"
-msgstr "LOF"
-
-msgid "LOF/H"
-msgstr "LOF/H"
-
-msgid "LOF/L"
-msgstr "LOF/L"
 
 msgid "Label"
 msgstr ""
@@ -3789,8 +3697,13 @@ msgstr ""
 msgid "Missing "
 msgstr "مفقود"
 
+msgctxt "Satellite configuration mode"
 msgid "Mode"
-msgstr "حالت"
+msgstr ""
+
+msgctxt "Video output mode"
+msgid "Mode"
+msgstr ""
 
 msgid "Model: "
 msgstr "مدل:"
@@ -4098,11 +4011,6 @@ msgstr "هیچ شبکه ای یافت نشد"
 msgid "No of items switch (increase or reduced)"
 msgstr ""
 
-msgid ""
-"No packages were upgraded yet. So you can check your network and try again."
-msgstr ""
-"هیچ بسته ای به روز رسانی نشده است ، تنظیمات شبکه را بررسی و دوباره سعی کنید"
-
 msgid "No positioner capable frontend found."
 msgstr ""
 
@@ -4129,6 +4037,9 @@ msgid ""
 msgstr ""
 "هیچ تیونری فعال نشده است\n"
 "لطفا قبل از شروع اسکن کانال ابتدا تنظیمات تیونر را انجام دهید"
+
+msgid "No updates available. Please try again later."
+msgstr ""
 
 msgid ""
 "No valid service PIN found!\n"
@@ -4178,15 +4089,8 @@ msgstr "خیر ، فقط دستگاه من روشن شود"
 msgid "No, never"
 msgstr "خیر ، هیچ وقت"
 
-msgid "No, not now"
-msgstr "خیر ، حالا نه"
-
 msgid "No, scan later manually"
 msgstr "خیر ، اسکن دستی در آینده انجام میشود"
-
-#
-msgid "No, send them never"
-msgstr "خیر ، هیچ وقت ارسال نشوند"
 
 msgid "NodeID"
 msgstr ""
@@ -4274,13 +4178,6 @@ msgstr ""
 
 msgid "OK, guide me through the upgrade process"
 msgstr "من را به روند به روز رسانی راهنمایی کنید"
-
-msgid "OK, remove another extensions"
-msgstr "OK ، حذف یک بسته دیگر"
-
-#
-msgid "OK, remove some extensions"
-msgstr "تعدادی بسته نرم افزاری حذف کنید"
 
 msgid "ONID"
 msgstr "ONID"
@@ -4370,10 +4267,6 @@ msgstr ""
 msgid "OpenVpn Setup"
 msgstr ""
 
-#
-msgid "Optionally enter your name if you want to."
-msgstr "اگر مایل هستید نام خود را وارد کنید (اختیاری)"
-
 msgid "Orbital Position"
 msgstr "موقعیت مداری"
 
@@ -4395,10 +4288,10 @@ msgstr "دیگر"
 msgid "Output"
 msgstr "خروجی"
 
-msgid "Overwrite configuration files ?"
-msgstr "بازنویسی فایل های پیکربندی ؟"
-
 msgid "Overwrite configuration files during software upgrade?"
+msgstr ""
+
+msgid "Overwrite configuration files?"
 msgstr ""
 
 msgid "PAL"
@@ -4419,12 +4312,6 @@ msgstr ""
 
 msgid "Package list update"
 msgstr "به روز رسانی لیست بسته های نرم افزاری"
-
-msgid "Package removal failed.\n"
-msgstr "حذف بسته ناموفق\n"
-
-msgid "Package removed successfully.\n"
-msgstr "بسته با موفقیت حذف شد\n"
 
 msgid "Packages"
 msgstr "پکیج ها"
@@ -4453,6 +4340,9 @@ msgstr "شاخه اصلی"
 
 msgid "Parental control"
 msgstr "کنترل والدین"
+
+msgid "Parental control editor"
+msgstr ""
 
 msgid "Parental control services Editor"
 msgstr "ویرایشگر کانال های کنترل والدین"
@@ -4598,11 +4488,6 @@ msgstr "لطفا یک رسانه را برای اسکن انتخاب کنید"
 msgid "Please add titles to the compilation."
 msgstr ""
 
-msgid ""
-"Please be aware, that anyone can disable the parental control, if you have "
-"not set a PIN."
-msgstr ""
-
 msgid "Please change recording endtime"
 msgstr "لطفا زمان پایان ضبط کردن را تغییر دهید"
 
@@ -4615,14 +4500,8 @@ msgstr ""
 msgid "Please choose an extension..."
 msgstr "لطفا یک بسته انتخاب کنید"
 
-msgid "Please choose he package..."
-msgstr "لطفا یک بسته انتخاب کنید"
-
 msgid "Please choose reader"
 msgstr ""
-
-msgid "Please choose the default services lists you want to install."
-msgstr "لطفا لیست های پیش فرض مورد نظر خود را برای نصب انتخاب کنید"
 
 #
 msgid ""
@@ -4636,6 +4515,9 @@ msgid ""
 "Please configure your internet connection by filling out the required "
 "values.\n"
 "When you are ready press OK to continue."
+msgstr ""
+
+msgid "Please connect your receiver to the internet"
 msgstr ""
 
 msgid "Please do not change any values unless you know what you are doing!"
@@ -4662,13 +4544,6 @@ msgstr "لطفا رمز درست را وارد کنید"
 msgid "Please enter the old PIN code"
 msgstr "لطفا رمز قبلی را وارد کنید"
 
-#
-msgid "Please enter your email address here:"
-msgstr "لطفا آدرس ایمیل خود را اینجا بنویسید:"
-
-msgid "Please enter your name here (optional):"
-msgstr "لطفا نام خود را وارد کنید (اختیاری) :"
-
 msgid "Please follow the instructions on the TV"
 msgstr "لطفا دستورالعمل هایی که در تلوزیون مشاهده میکنید را دنبال کنید"
 
@@ -4679,9 +4554,6 @@ msgstr ""
 
 msgid "Please press OK to continue."
 msgstr "لطفا دکمه OK را برای ادامه دادن فشار دهید"
-
-msgid "Please press OK!"
-msgstr "لطفا دکمه OK را فشار دهید"
 
 msgid "Please select a default EPG type..."
 msgstr ""
@@ -4700,12 +4572,6 @@ msgstr "لطفا یک کانال فرعی انتخاب کنید"
 
 msgid "Please select an NFI file and press green key to flash!"
 msgstr ""
-
-msgid "Please select an extension to remove."
-msgstr "لطفا یک بسته را برای حذف کردن انتخاب کنید"
-
-msgid "Please select an option below."
-msgstr "لطفا یک مورد زیر را انتخاب کنید"
 
 msgid "Please select medium to use as backup location"
 msgstr "لطفا یک وسیله را برای استفاده به عنوان محل نسخه پشتیبان انتخاب کنید"
@@ -4731,6 +4597,9 @@ msgid ""
 "Please press OK to continue."
 msgstr ""
 
+msgid "Please set up tuner A"
+msgstr ""
+
 msgid "Please set up tuner B"
 msgstr "لطفا تیونر دوم را تنظیم کنید"
 
@@ -4751,19 +4620,18 @@ msgid ""
 "the OK button."
 msgstr ""
 
+msgid "Please wait (downloading channel list)"
+msgstr ""
+
+msgid "Please wait (updating packages)"
+msgstr ""
+
 #
 msgid "Please wait for activation of your network configuration..."
 msgstr "لطفا صبر کنید تا پیکربندی شبکه شما فعال شود"
 
-msgid "Please wait while removing selected package..."
-msgstr "لطفا صبر کنید تا بسته های انتخاب شده حذف شوند"
-
 msgid "Please wait while scanning is in progress..."
 msgstr "وقتی اسکن در حال انجام است لطفا صبر کنید"
-
-#
-msgid "Please wait while searching for removable packages..."
-msgstr "لطفا صبر کنید تا پیکج های قابل حذف جستجو شوند"
 
 msgid "Please wait while we configure your network..."
 msgstr "لطفا صبر کنید ، ما در حال پیکربندی شبکه شما هستیم"
@@ -4793,6 +4661,9 @@ msgstr ""
 
 msgid "Plugin browser"
 msgstr "مرورگر پلاگین"
+
+msgid "Plugin details"
+msgstr ""
 
 #
 msgid "Plugin manager activity information"
@@ -5149,10 +5020,10 @@ msgstr ""
 msgid "Reenter new PIN"
 msgstr "رمز جدید را دوباره وارد کنید"
 
-msgid "Refresh Rate"
+msgid "Refresh every (in hours)"
 msgstr ""
 
-msgid "Refresh every (in hours)"
+msgid "Refresh rate"
 msgstr ""
 
 msgid "Refresh rate selection."
@@ -5192,7 +5063,7 @@ msgstr ""
 msgid "Remote box"
 msgstr ""
 
-msgid "Remote type"
+msgid "Remote control type"
 msgstr ""
 
 msgid "Remove"
@@ -5213,9 +5084,6 @@ msgstr "حذف علامت"
 msgid "Remove currently selected title"
 msgstr "حذف عنوان انتخاب شده فعلی"
 
-msgid "Remove failed."
-msgstr "حذف ناموفق"
-
 msgid "Remove finished."
 msgstr "حذف پایان یافت"
 
@@ -5231,10 +5099,6 @@ msgstr "حذف زمان"
 msgid "Remove title"
 msgstr "حذف عنوان"
 
-#
-msgid "Removed successfully."
-msgstr "با موفقیت حذف شد"
-
 msgid "Removing"
 msgstr "در حال حذف کردن"
 
@@ -5247,10 +5111,6 @@ msgstr "حذف پوشه %s ناموفق بود (شاید پوشه خالی نی�
 
 msgid "Rename"
 msgstr "تغییر نام"
-
-#
-msgid "Rename crashlogs"
-msgstr "تغییر نام گزارش های خطای دستگاه"
 
 msgid "Rename failed!"
 msgstr ""
@@ -5335,11 +5195,11 @@ msgstr "بازگردانی نسخه های پشتیبان"
 msgid "Restore is running..."
 msgstr "بازگردانی در حال اجرا است"
 
-msgid "Restore running"
-msgstr "بازگردانی در حال انجام است"
-
 msgid "Restore system settings"
 msgstr "بازگردانی تنظیمات سیستم"
+
+msgid "Restoring..."
+msgstr ""
 
 msgid "Resume from last position"
 msgstr "ادامه از مکان قبلی"
@@ -5509,71 +5369,24 @@ msgstr ""
 msgid "Scan "
 msgstr "اسکن"
 
+#. TRANSLATORS: option name, indicating which type of (DVB-C) modulation should be scanned. The modulation type is printed in '%s'. E.g.: 'Scan QAM16'
+#, python-format
+msgid "Scan %s"
+msgstr ""
+
+#. TRANSLATORS: option name, indicating which type of (DVB-C) band should be scanned. The name of the band is printed in '%s'. E.g.: 'Scan EU MID band'
+#, python-format
+msgid "Scan %s band"
+msgstr ""
+
 msgid "Scan Files..."
 msgstr "اسکن فایل ها"
-
-msgid "Scan QAM128"
-msgstr "جستجوی QAM128"
-
-msgid "Scan QAM16"
-msgstr "جستجوی QAM16"
-
-msgid "Scan QAM256"
-msgstr "جستجوی QAM256"
-
-msgid "Scan QAM32"
-msgstr "جستجوی QAM32"
-
-msgid "Scan QAM64"
-msgstr "جستجوی QAM64"
-
-msgid "Scan SR6875"
-msgstr "جستجوی SR6875"
-
-msgid "Scan SR6900"
-msgstr "جستجوی SR6900"
 
 msgid "Scan Wireless Networks"
 msgstr "اسکن شبکه های بدون سیم"
 
 msgid "Scan additional SR"
 msgstr ""
-
-msgid "Scan band EU HYPER"
-msgstr "اسکن باند EU HYPER"
-
-msgid "Scan band EU MID"
-msgstr "اسکن باند EU MID"
-
-msgid "Scan band EU SUPER"
-msgstr "اسکن باند EU SUPER"
-
-msgid "Scan band EU UHF IV"
-msgstr "اسکن باند EU UHF IV"
-
-msgid "Scan band EU UHF V"
-msgstr "اسکن باند EU UHF V"
-
-msgid "Scan band EU VHF I"
-msgstr "اسکن باند EU VHF I"
-
-msgid "Scan band EU VHF III"
-msgstr "اسکن باند EU VHF III"
-
-msgid "Scan band US HIGH"
-msgstr "اسکن باند US HIGH"
-
-msgid "Scan band US HYPER"
-msgstr "اسکن باند US HYPER"
-
-msgid "Scan band US LOW"
-msgstr "اسکن باند US LOW"
-
-msgid "Scan band US MID"
-msgstr "اسکن باند US MID"
-
-msgid "Scan band US SUPER"
-msgstr "اسکن باند US SUPER"
 
 msgid ""
 "Scan your network for wireless access points and connect to them using your "
@@ -5707,9 +5520,6 @@ msgstr "انتخاب دستگاه ورودی"
 
 msgid "Select interface"
 msgstr "انتخاب رابط"
-
-msgid "Select package"
-msgstr "انتخاب بسته"
 
 msgid "Select provider to add..."
 msgstr "انتخاب ارائه دهنده برای اضافه کردن"
@@ -5862,13 +5672,13 @@ msgid "Services"
 msgstr "کانال ها"
 
 msgid ""
-"Services may be grouped in bouquets. If this option is enabled you can zap "
-"to a channel in another bouquet then you are in at present."
+"Services may be grouped in bouquets. When enabled you can zap to a channel "
+"in another bouquet then you are in at present."
 msgstr ""
 
 msgid ""
-"Services may be grouped in bouquets. If this option is enabled, you can use "
-"more then one bouquet."
+"Services may be grouped in bouquets. When enabled, you can use more then one "
+"bouquet."
 msgstr ""
 
 msgid "Set End Time"
@@ -5876,14 +5686,6 @@ msgstr "تنظیم زمان پایان"
 
 msgid "Set System"
 msgstr ""
-
-#
-msgid "Set Voltage and 22KHz"
-msgstr "تنظیم ولتاژ و 22KHz"
-
-#
-msgid "Set available internal memory threshold for the warning."
-msgstr "تنظیم حافظه داخلی در دسترس برای آستانه هشدار"
 
 msgid "Set fixed"
 msgstr ""
@@ -5901,12 +5703,6 @@ msgstr ""
 msgid "Set the EPG language selection 2"
 msgstr ""
 
-msgid "Set the Teletext subtitle delay when timing lacks."
-msgstr ""
-
-msgid "Set the alignment of the Teletext subtitles."
-msgstr ""
-
 msgid "Set the audio language 1 (highest priority)"
 msgstr ""
 
@@ -5919,18 +5715,10 @@ msgstr ""
 msgid "Set the audio language 4 (lowest priority)"
 msgstr ""
 
-msgid ""
-"Set the border width of the Teletext subtitles. This makes the titles more "
-"easy to read on a light background."
-msgstr ""
-
 msgid "Set the brightness level for normal operation."
 msgstr ""
 
 msgid "Set the brightness level for standby."
-msgstr ""
-
-msgid "Set the colour of the Teletext subtitles."
 msgstr ""
 
 msgid "Set the contrast level."
@@ -5962,9 +5750,6 @@ msgstr ""
 msgid "Set the desired configuration mode."
 msgstr ""
 
-msgid "Set the font size of the Teletext subtitles."
-msgstr ""
-
 msgid "Set the initial fast forward speed"
 msgstr ""
 
@@ -5981,12 +5766,6 @@ msgid "Set the maximum number of events (programs) that timeshift may handle."
 msgstr ""
 
 msgid "Set the number of days you want old timers to be kept."
-msgstr ""
-
-msgid "Set the position of the DVB subtitles."
-msgstr ""
-
-msgid "Set the position of the Teletext subtitles."
 msgstr ""
 
 msgid "Set the scrolling speed of text on the front display."
@@ -6027,10 +5806,8 @@ msgstr ""
 msgid "Set the time you want recordings to stop after the event stop-time."
 msgstr ""
 
-msgid "Set the transparency of the DVB subtitles."
-msgstr ""
-
-msgid "Set the type of the progress indication in the channel selection screen"
+msgid ""
+"Set the type of the progress indication in the channel selection screen."
 msgstr ""
 
 msgid "Set the value for the initial fast-backward speed."
@@ -6076,6 +5853,9 @@ msgid "Set to the desired primetime (minutes."
 msgstr ""
 
 msgid "Set to what you want the button to do."
+msgstr ""
+
+msgid "Set voltage and 22KHz"
 msgstr ""
 
 msgid ""
@@ -6252,7 +6032,7 @@ msgstr ""
 msgid "Show detailed event info"
 msgstr ""
 
-msgid "Show encryption info in the infobar (if the skin allows that)."
+msgid "Show encryption info in the infobar (when supported by the skin)."
 msgstr ""
 
 msgid "Show epg"
@@ -6402,6 +6182,10 @@ msgstr "اسکین ها"
 msgid "Skip Empty Services"
 msgstr ""
 
+msgid ""
+"Skip internet connection check (disables automatic package installation)"
+msgstr ""
+
 msgid "Sleep Timer"
 msgstr "زمان خواب"
 
@@ -6468,10 +6252,6 @@ msgstr "بعضی از پلاگین ها در دسترس نیستند:\n"
 msgid "Sorry Inadyn Config is Missing"
 msgstr ""
 
-#
-msgid "Sorry MediaScanner is not installed!"
-msgstr "متاسفانه MediaScanner نصب نشده است"
-
 msgid "Sorry MiniDLNA Config is Missing"
 msgstr ""
 
@@ -6486,40 +6266,23 @@ msgid ""
 "enable 'Allow unstable updates' in online update setup."
 msgstr ""
 
-#
-msgid "Sorry no backups found!"
-msgstr "متاسفانه هیچ نسخه پشتیبانی یافت نشد"
-
 msgid "Sorry uShare Config is Missing"
 msgstr ""
 
-msgid ""
-"Sorry your Backup destination does not exist\n"
-"\n"
-"Please choose an other one."
+#, python-format
+msgid "Sorry, %s has not been installed!"
 msgstr ""
 
-#
-msgid ""
-"Sorry your backup destination is not writeable.\n"
-"Please choose an other one."
+msgid "Sorry, no backups found!"
 msgstr ""
-"متاسفانه مقصد نسخه پشتیبان شما قابل نوشتن نیست\n"
-"لطفا محل دیگری را انتخاب کنید"
 
-#
-msgid "Sorry, no Details available!"
-msgstr "متاسفانه هیچ جزئیاتی در دسترس نیست"
+msgid "Sorry, no details available!"
+msgstr ""
 
-#
 msgid ""
 "Sorry, your backup destination is not writeable.\n"
-"\n"
-"Please choose another one."
+"Please select a different one."
 msgstr ""
-"متاسفانه مقصد نسخه پشتیبان شما قابل نوشتن نیست\n"
-"\n"
-"لطفا محل دیگری را انتخاب کنید"
 
 msgid "Sort"
 msgstr ""
@@ -6671,7 +6434,16 @@ msgstr ""
 msgid "Subservices"
 msgstr "کانال های فرعی"
 
+msgid "Subtitle alignment"
+msgstr ""
+
+msgid "Subtitle border width"
+msgstr ""
+
 msgid "Subtitle delay when timing lacks"
+msgstr ""
+
+msgid "Subtitle font size"
 msgstr ""
 
 msgid "Subtitle language selection 1"
@@ -6685,6 +6457,9 @@ msgstr "انتخاب زبان زیرنویس 3"
 
 msgid "Subtitle language selection 4"
 msgstr "انتخاب زبان زیرنویس 4"
+
+msgid "Subtitle position"
+msgstr ""
 
 msgid "Subtitle selection"
 msgstr "انتخاب زیرنویس"
@@ -6828,12 +6603,6 @@ msgstr "جعبه پیام های تست ؟"
 msgid "Text"
 msgstr ""
 
-msgid "Text border width"
-msgstr "پهنای حاشیه نوشته"
-
-msgid "Text font size"
-msgstr "اندازه فونت نوشته"
-
 msgid "Thai"
 msgstr "تایلندی"
 
@@ -6845,8 +6614,9 @@ msgstr ""
 "برای ادامه دادن دکمه OK را فشار دهید"
 
 msgid ""
-"Thank you for using the wizard. Your STB_BOX is now ready to use.\n"
-"Please press OK to start using your STB_BOX."
+"Thank you for using the wizard. Your STB_BOX is now ready for "
+"use.\n"
+"Press OK to start using your receiver."
 msgstr ""
 
 msgid ""
@@ -6861,8 +6631,8 @@ msgstr ""
 
 msgid ""
 "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to "
-"create a STB_BOX format data DVD (which will not play in stand-alone DVD "
-"players) instead?"
+"create a STB_BOX format data DVD (which will not play in stand-"
+"alone DVD players) instead?"
 msgstr ""
 
 msgid ""
@@ -6873,6 +6643,12 @@ msgstr ""
 msgid ""
 "The Filesystem on your Timeshift-Device does not support hardlinks.\n"
 "Make sure it is formatted in EXT2 or EXT3!"
+msgstr ""
+
+msgid "The STB_BOX reads the stored EPG data every (hours)."
+msgstr ""
+
+msgid "The STB_BOX stores the EPG data every (hours)."
 msgstr ""
 
 msgid ""
@@ -6921,12 +6697,6 @@ msgid ""
 "due to an error in mytest.py"
 msgstr ""
 
-msgid "The STB_BOX reads the stored EPG data every (hours)."
-msgstr ""
-
-msgid "The STB_BOX stores the EPG data every (hours)."
-msgstr ""
-
 msgid "The backup failed. Please choose a different backup location."
 msgstr "نسخه پشتیبان ناموفق ، لطفا محل دیگری را برای نسخه پشتیبان انتخاب کنید"
 
@@ -6965,24 +6735,8 @@ msgstr ""
 msgid "The following files were found..."
 msgstr "فایل های زیر یافت شدند"
 
-msgid "The installation of the default services lists is finished."
-msgstr "نصب لیست های کانال های پیش فرض به پایان رسید"
-
-msgid ""
-"The installation of the default settings is finished. You can now continue "
-"configuring your STB_BOX by pressing the OK button on the remote control."
-msgstr ""
-"نصب تنظیمات پیش فرض پایان یافت ، شما میتوانید برای ادامه پیکربندی دستگاه خود "
-"دکمه OK روی ریموت کنترل را فشار دهید"
-
 msgid "The md5sum validation failed, the file may be corrupted!"
 msgstr "تایید md5sum ناموفق بود ، فایل احتمالا خراب است"
-
-msgid "The package doesn't contain anything."
-msgstr "این بسته شامل چیزی نمیشود"
-
-msgid "The package:"
-msgstr "بسته :"
 
 #, python-format
 msgid "The path %s already exists."
@@ -7039,22 +6793,16 @@ msgstr "هدایتگر به پایان رسید"
 msgid "There are at least "
 msgstr "آنها حداقل هستند"
 
+#, python-format
+msgid "There are at least %s updates available."
+msgstr ""
+
 #
 msgid "There are currently no outstanding actions."
 msgstr ""
 
-msgid "There are no default services lists in your image."
-msgstr "هیچ لیست کانال پیش فرضی در ایمیج شما وجود ندارد"
-
-msgid "There are no default settings in your image."
-msgstr "هیچ تنظیمات پیش فرضی در ایمیج شما وجود ندارد"
-
 msgid "There are no updates available."
 msgstr "هیچ آپدیتی وجود ندارد"
-
-#
-msgid "There are now "
-msgstr "آنها هم اکنون هستند"
 
 msgid "There is no [webif] section in oscam.conf"
 msgstr ""
@@ -7065,12 +6813,6 @@ msgid ""
 msgstr ""
 "ممکن است فضای کافی در پارتیشن انتخاب شده وجود نداشته باشد\n"
 "آیا میخواهید ادامه دهید ؟"
-
-msgid "There was an error downloading the packetlist. Please try again."
-msgstr "یک خطا هنگام دانلود لیست بسته ها رخ داد ، لطفا دوباره سعی کنید"
-
-msgid "There was an error. The package:"
-msgstr "یک خطا رخ داد ، بسته :"
 
 msgid ""
 "This DVD RW medium is already formatted - reformatting will erase all "
@@ -7088,9 +6830,6 @@ msgstr ""
 
 msgid "This allows you change the number of rows shown."
 msgstr ""
-
-msgid "This is step number 2."
-msgstr "این مرحله دوم است"
 
 msgid ""
 "This option allows to reduce the block-noise in the picture. Obviously this "
@@ -7164,6 +6903,28 @@ msgstr ""
 msgid "This option allows you to view the old and new settings side by side."
 msgstr ""
 
+msgid ""
+"This option configures the general audio delay of Dolby Digital sound tracks."
+msgstr ""
+
+msgid "This option configures the general audio delay of stereo sound tracks."
+msgstr ""
+
+msgid "This option configures the screen aspect ratio."
+msgstr ""
+
+msgid "This option configures the screen refresh rate."
+msgstr ""
+
+msgid "This option configures the screen resolution in PC output mode."
+msgstr ""
+
+msgid "This option configures the video output mode (or resolution)."
+msgstr ""
+
+msgid "This option configures which video output connector will be used."
+msgstr ""
+
 msgid "This option lets you adjust the 3D depth"
 msgstr ""
 
@@ -7212,36 +6973,15 @@ msgid ""
 "result of a limited number of discrete values."
 msgstr ""
 
-msgid "This option sets up the connection method."
-msgstr ""
-
-msgid "This option sets up the general audio delay of Analog sound tracks."
-msgstr ""
-
-msgid ""
-"This option sets up the general audio delay of Dolby Digital sound tracks."
-msgstr ""
-
 msgid ""
 "This option sets up the picture sharpness, used when the picture is being "
 "upscaled."
 msgstr ""
 
-msgid "This option sets up the screen aspect ratio."
-msgstr ""
-
-msgid "This option sets up the screen refresh-rate."
-msgstr ""
-
-msgid "This option sets up the screen resolution, when in PC mode."
-msgstr ""
-
-msgid "This option sets up the screen resolution."
-msgstr ""
-
 msgid ""
 "This plugin creates a USB stick which can be used to update the firmware of "
-"your STB_BOX without the need for a network or WLAN connection.\n"
+"your STB_BOX without the need for a network or WLAN "
+"connection.\n"
 "First, a USB stick needs to be prepared so that it becomes bootable.\n"
 "In the next step, an NFI image file can be downloaded from the update server "
 "and saved on the USB stick.\n"
@@ -7448,8 +7188,8 @@ msgstr ""
 msgid "Toggle aspect ratio..."
 msgstr ""
 
-msgid "Tone Amplitude"
-msgstr "دامنه تن"
+msgid "Tone amplitude"
+msgstr ""
 
 msgid "Tone mode"
 msgstr "حالت Tone"
@@ -7542,9 +7282,6 @@ msgstr "دریافت سیگنال ناموفق"
 msgid "Tuner"
 msgstr "تیونر"
 
-msgid "Tuner "
-msgstr "تیونر"
-
 msgid "Tuner Slot"
 msgstr "شکاف تیونر"
 
@@ -7556,6 +7293,10 @@ msgstr ""
 
 msgid "Tuner status"
 msgstr "وضعیت تیونر"
+
+#, python-format
+msgid "Tuner status %s"
+msgstr ""
 
 msgid "Tuner type"
 msgstr "نوع تیونر"
@@ -7584,9 +7325,6 @@ msgstr ""
 
 msgid "USALS"
 msgstr "USALS"
-
-msgid "USB Stick"
-msgstr "USB Stick"
 
 msgid "USB stick wizard"
 msgstr "USB stick هدایتگر"
@@ -7649,6 +7387,14 @@ msgstr "پشتیبانی نشده"
 msgid "Update"
 msgstr "به روز رسانی"
 
+msgid "Update channel list only"
+msgstr ""
+
+#, python-format
+msgid "Update completed, %d package was installed."
+msgid_plural "Update completed, %d packages were installed."
+msgstr[0] ""
+
 msgid "Update interval (in seconds)"
 msgstr ""
 
@@ -7656,18 +7402,9 @@ msgstr ""
 msgid "Updatefeed not available."
 msgstr "Updatefeed در دسترس نیست"
 
-msgid "Updates your STB_BOX's software"
-msgstr ""
-
-msgid "Updating finished. Here is the result:"
-msgstr "به روز رسانی انجام شد ، نتیجه این است"
-
 #
 msgid "Updating software catalog"
 msgstr "به روز رسانی فهرست نرم افزار"
-
-msgid "Updating... Please wait... This can take some minutes..."
-msgstr "در حال به روز رسانی ، لطفا صبر کنید ، ممکن است چند دقیقه زمان ببرد"
 
 msgid "Upgrade and reboot system"
 msgstr ""
@@ -7675,14 +7412,8 @@ msgstr ""
 msgid "Upgrade finished."
 msgstr "به روز رسانی پایان یافت"
 
-msgid "Upgrade finished. Do you want to reboot your STB_BOX?"
-msgstr ""
-
 msgid "Upgrading"
 msgstr "در حال به روز رسانی"
-
-msgid "Upgrading STB_BOX... Please wait"
-msgstr "در حال به روز رسانی دستگاه ، لطفا صبر کنید"
 
 msgid "Uphops +"
 msgstr ""
@@ -7703,9 +7434,6 @@ msgstr "استفاده"
 msgid "Use DHCP"
 msgstr "استفاده از DHCP"
 
-msgid "Use DVB subtitles position"
-msgstr ""
-
 msgid "Use Interface"
 msgstr "استفاده از رابط"
 
@@ -7715,16 +7443,13 @@ msgstr ""
 msgid "Use PTS seekbar while timeshifting? *"
 msgstr ""
 
-msgid "Use Power Measurement"
-msgstr "استفاده از اندازه گیری توان"
-
 msgid "Use TV remote control"
 msgstr ""
 
-msgid "Use ViX coloured Buttons *"
+msgid "Use USALS for this sat"
 msgstr ""
 
-msgid "Use Yellow pango DVB subtitles"
+msgid "Use ViX coloured Buttons *"
 msgstr ""
 
 msgid "Use a gateway"
@@ -7739,6 +7464,9 @@ msgstr ""
 msgid "Use official channel numbering"
 msgstr ""
 
+msgid "Use original DVB subtitle position"
+msgstr ""
+
 msgid "Use original teletext position"
 msgstr ""
 
@@ -7746,8 +7474,8 @@ msgid "Use power measurement"
 msgstr "استفاده از اندازه گیری توان"
 
 msgid ""
-"Use power measurement to detect when the rotor stops turning (if your Vu+ "
-"Duo supports that)"
+"Use power measurement to detect when the rotor stops turning (if your "
+"STB_BOX supports that)"
 msgstr ""
 
 msgid "Use slim screen"
@@ -7792,24 +7520,15 @@ msgid "Use the alternative screen"
 msgstr ""
 
 msgid ""
-"Use the left and right buttons to change an option.\n"
-"\n"
-"Please set up tuner A"
-msgstr ""
-
-msgid "Use the original position of the Teletext subtitles."
-msgstr ""
-
-msgid ""
 "Use the up/down keys on your remote control to select an option. After that, "
 "press OK."
 msgstr ""
 
-msgid "Use this input device settings?"
+msgid "Use these input device settings?"
 msgstr ""
 
-msgid "Use this settings?"
-msgstr "استفاده از این تنظیمات ؟"
+msgid "Use these settings?"
+msgstr ""
 
 #
 msgid "Use this video enhancement settings?"
@@ -7822,13 +7541,7 @@ msgstr "استفاده از زمان کانال در حال اجرای فعلی"
 msgid "Use trashcan in movielist"
 msgstr ""
 
-msgid "Use usals for this sat"
-msgstr "استفاده از usals برای این ماهواره"
-
 msgid "Use wizard to set up basic features"
-msgstr ""
-
-msgid "Use yellow DVB subtitles."
 msgstr ""
 
 msgid "Used service scan type"
@@ -7876,9 +7589,6 @@ msgstr "VCR scart"
 msgid "VMGM (intro trailer)"
 msgstr "VMGM (intro trailer)"
 
-msgid "VU+"
-msgstr ""
-
 msgid "Version:"
 msgstr ""
 
@@ -7900,20 +7610,8 @@ msgstr ""
 msgid "Video Fine-Tuning"
 msgstr "بهینه سازی تصویر"
 
-msgid "Video Fine-Tuning Wizard"
-msgstr "هدایتگر بهینه سازی تصویر"
-
-msgid "Video Output"
-msgstr "خروجی تصویر"
-
 msgid "Video PID"
 msgstr "PID تصویر"
-
-msgid "Video Setup"
-msgstr "تنظیمات تصویر"
-
-msgid "Video Wizard"
-msgstr "هدایتگر تصویر"
 
 #
 msgid "Video enhancement preview"
@@ -7934,6 +7632,15 @@ msgstr ""
 
 msgid "Video mode selection."
 msgstr "انتخاب حالت تصویر"
+
+msgid "Video output"
+msgstr ""
+
+msgid "Video setup"
+msgstr ""
+
+msgid "Video wizard"
+msgstr ""
 
 msgid "Videocodec"
 msgstr ""
@@ -8040,27 +7747,6 @@ msgstr "حالت ولتاژ"
 msgid "Volume"
 msgstr "حجم"
 
-msgid "STB_BOX advanced remote control (native)"
-msgstr "ریموت کنترل پیشرفته دستگاه (محلی)"
-
-msgid "STB_BOX format data DVD (HDTV compatible)"
-msgstr "فرمت داده DVD (سازگار با HDTV)"
-
-msgid "STB_BOX front panel"
-msgstr "پنل جلوی دستگاه"
-
-msgid "STB_BOX ir keyboard"
-msgstr "کیبورد مادون قرمز دستگاه"
-
-msgid "STB_BOX ir mouse"
-msgstr "موس مادون قرمز دستگاه"
-
-msgid "STB_BOX remote control (native)"
-msgstr "ریموت کنترل دستگاه (محلی)"
-
-msgid "STB_BOX software because updates are available."
-msgstr "نرم افزار دستگاه چون به روز رسانی فعال است"
-
 msgid "W"
 msgstr "W"
 
@@ -8113,10 +7799,6 @@ msgstr ""
 msgid "Wakeup your STB_BOX from standby"
 msgstr ""
 
-#
-msgid "Warn if free space drops below (kB):"
-msgstr "هشدار دادن اگر فضای خالی به کمتر از این میزان کیلوبایت رسید"
-
 msgid "Web Interface"
 msgstr ""
 
@@ -8140,26 +7822,18 @@ msgstr ""
 
 msgid ""
 "Welcome to the Image upgrade wizard. The wizard will assist you in upgrading "
-"the firmware of your STB_BOX by providing a backup facility for your current "
-"settings and a short explanation of how to upgrade your firmware."
-msgstr ""
-
-#
-msgid ""
-"Welcome to the cleanup wizard.\n"
-"\n"
-"We have detected that your available internal memory has dropped below 2MB.\n"
-"To ensure stable operation of your STB_BOX, the internal memory should be "
-"cleaned up.\n"
-"You can use this wizard to remove some extensions.\n"
+"the firmware of your STB_BOX by providing a backup facility for "
+"your current settings and a short explanation of how to upgrade your "
+"firmware."
 msgstr ""
 
 #
 msgid ""
 "Welcome.\n"
 "\n"
-"If you want to connect your STB_BOX to the Internet, this wizard will guide "
-"you through the basic network setup of your STB_BOX.\n"
+"If you want to connect your STB_BOX to the Internet, this "
+"wizard will guide you through the basic network setup of your GigaBlue HD "
+"800 Solo.\n"
 "\n"
 "Press OK to start configuring your network"
 msgstr ""
@@ -8167,7 +7841,8 @@ msgstr ""
 msgid ""
 "Welcome.\n"
 "\n"
-"This start wizard will guide you through the basic setup of your STB_BOX.\n"
+"This start wizard will guide you through the basic setup of your GigaBlue HD "
+"800 Solo.\n"
 "Press the OK button on your remote control to move to the next step."
 msgstr ""
 
@@ -8180,13 +7855,65 @@ msgstr "غرب"
 msgid "What do you want to scan?"
 msgstr "چه چیزی را میخواهید اسکن کنید؟"
 
-#
-msgid "What to do with submitted crashlogs?"
-msgstr "گزارش های خطای دستگاه چه شوند ؟"
-
 msgid ""
 "When a recording needs to be started it is allowed to interrupt the watched "
 "service"
+msgstr ""
+
+msgid ""
+"When enabled the online checker will also check for experimental versions"
+msgstr ""
+
+msgid ""
+"When enabled, AIT data will be included in http streams. This allows a "
+"client receiver to use HbbTV."
+msgstr ""
+
+msgid ""
+"When enabled, EIT data will be included in http streams. This allows a "
+"client receiver to show EPG."
+msgstr ""
+
+msgid "When enabled, channel numbering will start at '1' for each bouquet."
+msgstr ""
+
+msgid ""
+"When enabled, external subtitles (in media files) will be displayed in "
+"yellow, instead of the original color."
+msgstr ""
+
+msgid "When enabled, graphical DVB subtitles will be centered horizontally."
+msgstr ""
+
+msgid ""
+"When enabled, graphical DVB subtitles will be displayed at their original "
+"position."
+msgstr ""
+
+msgid ""
+"When enabled, graphical DVB subtitles will be displayed in yellow, instead "
+"of the original color."
+msgstr ""
+
+msgid ""
+"When enabled, pressing '0' will zap you to the first channel in your first "
+"bouquet and delete your zap-history."
+msgstr ""
+
+msgid "When enabled, show channel numbers in the channel selection screen."
+msgstr ""
+
+msgid "When enabled, teletext pages will be cached, allowing faster access."
+msgstr ""
+
+msgid ""
+"When enabled, teletext subtitles will be displayed at their original "
+"position."
+msgstr ""
+
+msgid ""
+"When enabled, the original line breaks will be removed from the teletext "
+"subtitles."
 msgstr ""
 
 msgid ""
@@ -8198,17 +7925,17 @@ msgid "When set the PIG will return to live after a movie has stopped playing."
 msgstr ""
 
 msgid ""
-"When the event has a aspect ratio of 16:9, choose whether to scale/stretch "
+"When the content has an aspect ratio of 16:9, choose whether to scale/"
+"stretch the picture."
+msgstr ""
+
+msgid ""
+"When the content has an aspect ratio of 4:3, choose whether to scale/stretch "
 "the picture."
 msgstr ""
 
 msgid ""
-"When the event has a aspect ratio of 4:3, choose whether to scale/stretch "
-"the picture."
-msgstr ""
-
-msgid ""
-"When the event has a aspect ratio of 4:3, choose whether to stretch the "
+"When the content has an aspect ratio of 4:3, choose whether to stretch the "
 "picture to fill the screen."
 msgstr ""
 
@@ -8225,7 +7952,8 @@ msgstr ""
 msgid ""
 "When you do a factory reset, you will lose ALL your configuration data\n"
 "(including bouquets, services, satellite data ...)\n"
-"After completion of factory reset, your STB_BOX will restart automatically!\n"
+"After completion of factory reset, your STB_BOX will restart "
+"automatically!\n"
 "\n"
 "Really do a factory reset?"
 msgstr ""
@@ -8262,21 +7990,6 @@ msgid "Wireless network state"
 msgstr "کیفیت شبکه بدون سیم"
 
 msgid ""
-"With this option enabled the online checker will also check for experimental "
-"versions"
-msgstr ""
-
-msgid ""
-"With this option enabled, Channel numbers will start with '1' in each "
-"bouquet."
-msgstr ""
-
-msgid ""
-"With this option enabled, pressing '0' will zap you to the first channel in "
-"your first bouquet and delete your zap-history."
-msgstr ""
-
-msgid ""
 "With this option set to 'yes' the channel lists will always show you the "
 "bouquet screen first. If set to 'no' the current bouquet will be opened."
 msgstr ""
@@ -8298,6 +8011,9 @@ msgstr ""
 msgid "Write failed!"
 msgstr "عمل رایت ناموفق شد"
 
+msgid "Wrong"
+msgstr ""
+
 msgid "XBox 360 support"
 msgstr ""
 
@@ -8310,7 +8026,7 @@ msgstr "سال"
 msgid "Yellow DVB subtitles"
 msgstr ""
 
-msgid "Yellow pango subtitles"
+msgid "Yellow external subtitles"
 msgstr ""
 
 msgid "Yes"
@@ -8324,10 +8040,6 @@ msgstr "بله همیشه"
 
 msgid "Yes, and delete this movie"
 msgstr "بله ، و حذف این فیلم"
-
-#
-msgid "Yes, and don't ask again"
-msgstr "بله ، و دوباره پرسیده نشود"
 
 msgid "Yes, backup my settings!"
 msgstr "بله ، از تنظیمات من نسخه پشتیبان تهیه شود"
@@ -8349,9 +8061,6 @@ msgstr "بله ، بازگردانی تنظیمات حالا"
 
 msgid "Yes, returning to movie list"
 msgstr "بله ، بازگشت به لیست فیلم"
-
-msgid "Yes, view the tutorial"
-msgstr "بله ، مشاهده خودآموز"
 
 msgid "Yesterday"
 msgstr "دیروز"
@@ -8377,16 +8086,6 @@ msgstr "شما میتوانید عملیات نصب را لغو کنید"
 #
 msgid "You can cancel the removal."
 msgstr "شما میتوانید عملیات حذف را لغو کنید"
-
-msgid ""
-"You can choose some default settings now. Please select the settings you "
-"want to be installed."
-msgstr ""
-"شما هم اکنون میتوانید تعدادی تنظیمات پیش فرض انتخاب کنید ، لطفا تنظیمات مورد "
-"نظر خود را برای نصب انتخاب کنید"
-
-msgid "You can choose, what you want to install..."
-msgstr "انتخاب با شما است ، میتوانید هر انتخابی برای نصب داشته باشید"
 
 msgid "You can continue watching TV etc. while this is running."
 msgstr ""
@@ -8421,22 +8120,6 @@ msgstr ""
 
 msgid "You cannot delete this!"
 msgstr "شما نمیتوانید این را حذف کنید"
-
-msgid "You chose not to install any default services lists."
-msgstr "شما هیچ لیست کانال پیش فرضی را برای نصب انتخاب نکرده اید"
-
-msgid ""
-"You chose not to install any default settings. You can however install the "
-"default settings later in the settings menu."
-msgstr ""
-"شما هیچ تنظیمات پیش فرضی را برای نصب انتخاب نکرده اید ، اگرچه در آینده "
-"میتوانید تنظیمات پیش فرض توسط منوی تنظیمات نصب کنید"
-
-msgid ""
-"You chose not to install anything. Please press OK finish the install wizard."
-msgstr ""
-"شما هیچ چیزی برای نصب انتخاب نکرده اید ، لطفا دکمه OK را برای پایان هدایتگر "
-"نصب فشار دهید"
 
 msgid "You didn't select a channel to record from."
 msgstr "شما کانالی برای شروع ضبط انتخاب نکرده اید"
@@ -8481,28 +8164,19 @@ msgid "You have to wait %s!"
 msgstr "لطفا صبر کنید %s"
 
 msgid ""
-"You need a PC connected to your STB_BOX. If you need further instructions, "
-"please visit the website http://www.dm7025.de.\n"
-"Your STB_BOX will now be halted. After you have performed the update "
-"instructions from the website, your new firmware will ask you to restore "
-"your settings."
-msgstr ""
-
-msgid ""
-"You need to set a PIN code and hide it from your children.\n"
-"\n"
-"Do you want to set the pin now?"
+"You need a PC connected to your STB_BOX. If you need further "
+"instructions, please visit the website http://www.dm7025.de.\n"
+"Your STB_BOX will now be halted. After you have performed the "
+"update instructions from the website, your new firmware will ask you to "
+"restore your settings."
 msgstr ""
 
 msgid "You system does not support ext4"
 msgstr ""
 
-msgid "Your STB will restart after pressing OK on your remote control."
-msgstr ""
-
 msgid ""
-"Your STB_BOX is not connected to the internet, please check your network "
-"settings and try again."
+"Your STB_BOX is not connected to the internet, please check "
+"your network settings and try again."
 msgstr ""
 
 msgid ""
@@ -8539,23 +8213,25 @@ msgid "Your STB_BOX is shutting down. Please stand by..."
 msgstr ""
 
 msgid ""
-"Your STB_BOX isn't connected to the internet properly. Please check it and "
-"try again."
+"Your STB_BOX isn't connected to the internet properly. Please "
+"check it and try again."
 msgstr "دستگاه شما به اینترنت متصل نیست ، لطفا بررسی و دوباره سعی کنید"
 
 msgid ""
-"Your STB_BOX might be unusable now. Please consult the manual for further "
-"assistance before rebooting your STB_BOX."
+"Your STB_BOX might be unusable now. Please consult the manual "
+"for further assistance before rebooting your STB_BOX."
 msgstr ""
 
 #, python-format
 msgid ""
-"Your STB_BOX will be restarted after the installation of service\n"
+"Your STB_BOX will be restarted after the installation of "
+"service\n"
 "Ready to install \"%s\" ?"
 msgstr ""
 
 msgid ""
-"Your STB_BOX will be restarted after the installation of service.\n"
+"Your STB_BOX will be restarted after the installation of "
+"service.\n"
 "\n"
 "Do you want to install now ?"
 msgstr ""
@@ -8563,6 +8239,9 @@ msgstr ""
 msgid ""
 "Your STB_BOX will be restarted after the removal of service\n"
 "Do you want to remove now ?"
+msgstr ""
+
+msgid "Your STB will restart after pressing OK on your remote control."
 msgstr ""
 
 msgid ""
@@ -8586,10 +8265,6 @@ msgstr ""
 msgid "Your current collection will get lost!"
 msgstr "مجموعه فعلی شما گم خواهد شد"
 
-#
-msgid "Your email address:"
-msgstr "آدرس ایمیل شما"
-
 msgid ""
 "Your frontprocessor firmware must be upgraded.\n"
 "Press OK to start upgrade."
@@ -8609,12 +8284,18 @@ msgstr ""
 "ارتباط اینترنتی شما کار نمیکند\n"
 "لطفا آنچه را میخواهید بعد از این انجام دهید انتخاب کنید"
 
-#
-msgid "Your name (optional):"
-msgstr "نام شما (اختیاری)"
+#, python-format
+msgid "Your internet connection is working (ip: %s)"
+msgstr ""
 
 msgid "Your network configuration has been activated."
 msgstr "پیکربندی شبکه شما فعال شد"
+
+msgid "Your receiver does not have an internet connection"
+msgstr ""
+
+msgid "Your receiver is not connected to the internet"
+msgstr ""
 
 #
 msgid ""
@@ -8782,16 +8463,11 @@ msgstr ""
 msgid "advertisement/shopping"
 msgstr ""
 
+msgid "alphabetic"
+msgstr ""
+
 msgid "alphabetic reverse"
 msgstr "معکوس حروف الفبا"
-
-msgid "alphabetic sort"
-msgstr "چیدمان بر اساس حروف الفبا"
-
-msgid ""
-"are you sure you want to restore\n"
-"following backup:\n"
-msgstr ""
 
 msgid "arts/culture (without music, general)"
 msgstr ""
@@ -8833,8 +8509,8 @@ msgstr "آهنگ های صوتی"
 msgid "auto"
 msgstr "خودکار"
 
-msgid "available"
-msgstr "در دسترس"
+msgid "automatic"
+msgstr ""
 
 msgid "back"
 msgstr "بازگشت"
@@ -8873,6 +8549,9 @@ msgstr ""
 #, python-format
 msgid "burn audio track (%s)"
 msgstr "رایت کردن آهنگ صوتی  (%s)"
+
+msgid "by date"
+msgstr ""
 
 msgid "caid:"
 msgstr ""
@@ -8939,10 +8618,6 @@ msgstr ""
 
 msgid "copy to bouquets"
 msgstr "رونوشت در لیست"
-
-#
-msgid "could not be removed"
-msgstr "نمیتواند حذف شود"
 
 msgid "create directory"
 msgstr "ایجاد شاخه"
@@ -9065,9 +8740,6 @@ msgstr "پایان برش اینجا"
 msgid "end favourites edit"
 msgstr "پایان ویرایش مورد علاقه"
 
-msgid "enigma2 and network"
-msgstr "انیگما 2 و شبکه"
-
 msgid "entertainment (10-16 year old)"
 msgstr ""
 
@@ -9144,6 +8816,12 @@ msgid "fitness & health"
 msgstr ""
 
 msgid "fixed"
+msgstr ""
+
+msgid "flat alphabetic"
+msgstr ""
+
+msgid "flat alphabetic reverse"
 msgstr ""
 
 msgid "folk/traditional music"
@@ -9821,9 +9499,6 @@ msgstr ""
 msgid "social/spiritual science"
 msgstr ""
 
-msgid "sort by date"
-msgstr "چیدمان بر اساس تاریخ"
-
 msgid "sorting of playlists"
 msgstr ""
 
@@ -9999,10 +9674,6 @@ msgstr "صبر کردن برای mmi"
 msgid "waiting"
 msgstr "صبر کردن"
 
-#
-msgid "was removed successfully"
-msgstr "با موفقیت حذف شد"
-
 msgid "water sport"
 msgstr ""
 
@@ -10057,16 +9728,577 @@ msgstr "بله"
 msgid "yes (keep feeds)"
 msgstr "بله نگه داشتن feeds"
 
-msgid ""
-"your STB_BOX might be unusable now. Please consult the manual for further "
-"assistance before rebooting your STB_BOX."
-msgstr ""
-"دستگاه شما احتمالا غیر قابل استفاده شده است ، لطفا قبل از راه اندازی مجدد "
-"دستگاه دفترچه راهنما را برای کمک بیشتر مطالعه کنید ، به شما توصیه میشود "
-"دوباره ایمیج نصب کنید"
-
 msgid "zap"
 msgstr "حذف"
 
 msgid "zapped"
 msgstr "حذف شد"
+
+#
+#~ msgid ""
+#~ "\n"
+#~ "System will restart after the restore!"
+#~ msgstr ""
+#~ "\n"
+#~ "سیستم بعد از بازگردانی دوباره راه اندازی میشود"
+
+#~ msgid "/usr/share/enigma2 directory"
+#~ msgstr "شاخه /usr/share/enigma2"
+
+#~ msgid "/var directory"
+#~ msgstr "پوشه /var"
+
+#~ msgid "Add WLAN configuration?"
+#~ msgstr "اضافه کردن پیکربندی شبکه بدون سیم ؟"
+
+#~ msgid "Add network configuration?"
+#~ msgstr "اضافه کردن پیکربندی شبکه؟"
+
+#~ msgid "Adds network configuration if enabled."
+#~ msgstr "اضافه کردن پیکربندی شبکه در صورت فعال بودن"
+
+#
+#~ msgid "Adds wlan configuration if enabled."
+#~ msgstr "افزودن پیکربندی شبکه بدون سیم اگر فعال است"
+
+#~ msgid "Advanced Video Setup"
+#~ msgstr "تنظیمات پیشرفته تصویر"
+
+#~ msgid ""
+#~ "After the start wizard is completed, you need to protect single services. "
+#~ "Refer to your STB_BOX's manual on how to do that."
+#~ msgstr ""
+#~ "بعد از این که هدایتگر کامل شد ، شما باید از کانال های تنها حفاظت کنید  ، "
+#~ "رجوع شود به دفترچه راهنمای دستگاه که چگونه انجام شود"
+
+#~ msgid "All Satellites"
+#~ msgstr "همه ماهواره ها"
+
+#~ msgid "Always ask before sending"
+#~ msgstr "همیشه قبل از ارسال پرسیده شود"
+
+#
+#~ msgid "Anonymize crashlog?"
+#~ msgstr "ناشناس کردن گزارش خطای دستگاه ؟"
+
+#~ msgid ""
+#~ "Are you sure you want to delete\n"
+#~ "following backup:\n"
+#~ msgstr ""
+#~ "آیا مطمئن هستید که میخواهید\n"
+#~ "این نسخه پشتیبان را حذف کنید\n"
+
+#~ msgid ""
+#~ "Are you sure you want to restore\n"
+#~ "following backup:\n"
+#~ msgstr ""
+#~ "آیا مطمئن هستید که میخواهید\n"
+#~ "این نسخه پشتیبان را بازگردانی کنید\n"
+
+#
+#~ msgid ""
+#~ "Are you sure you want to restore your Enigma2 backup?\n"
+#~ "Enigma2 will restart after the restore"
+#~ msgstr ""
+#~ "آیا مطمئن هستید که میخواهید نسخه پشتیبان انیگما 2 خود را بازگردانی "
+#~ "کنید ؟\n"
+#~ "انیگما 2 بعد از این بازگردانی دوباره راه اندازی میشود"
+
+#~ msgid "Backup"
+#~ msgstr "نسخه پشتیبان"
+
+#~ msgid "Backup Location"
+#~ msgstr "محل نسخه پشتیبان"
+
+#~ msgid "Backup Mode"
+#~ msgstr "حالت نسخه پشتیبان"
+
+#~ msgid "Backup done."
+#~ msgstr "نسخه پشتیبان تهیه شد"
+
+#~ msgid ""
+#~ "By pressing the OK Button on your remote control, the info bar is being "
+#~ "displayed."
+#~ msgstr "با فشار دادن دکمه OK نوار اطلاعات نمایش داده خواهد شد"
+
+#~ msgid "CF Drive"
+#~ msgstr "CF درایو"
+
+#~ msgid "Cleanup Wizard"
+#~ msgstr "هدایتگر پاک سازی"
+
+#~ msgid "Cleanup Wizard settings"
+#~ msgstr "تنظیمات هدایتگر پاک سازی"
+
+#~ msgid "CleanupWizard"
+#~ msgstr "هدایتگر پاک سازی"
+
+#~ msgid "Crashlog settings"
+#~ msgstr "تنظیمات گزارش خطای دستگاه"
+
+#
+#~ msgid "CrashlogAutoSubmit"
+#~ msgstr "ارسال خودکار گزارش های خطای دستگاه"
+
+#
+#~ msgid "CrashlogAutoSubmit settings"
+#~ msgstr "تنظیمات ارسال خودکار گزارش های خطای دستگاه"
+
+#
+#~ msgid "CrashlogAutoSubmit settings..."
+#~ msgstr "تنظیمات ارسال خودکار گزارش های خطای دستگاه"
+
+#
+#~ msgid ""
+#~ "Crashlogs found!\n"
+#~ "Send them to Dream Multimedia?"
+#~ msgstr ""
+#~ "گزارش های خطای دستگاه یافت شدند\n"
+#~ "برای شرکت Dream Multimedia ارسال شوند ؟"
+
+#~ msgid "Custom text alignment"
+#~ msgstr "تراز متن سفارشی"
+
+#~ msgid "Custom text position"
+#~ msgstr "موقعیت متن سفارشی"
+
+#~ msgid "Decide if you want to enable or disable the Cleanup Wizard."
+#~ msgstr "تصمیم بگیرید که آیا میخواهید هدایتگر پاک ساز فعال شود یا غیر فعال"
+
+#~ msgid "Decide what should be done when crashlogs are found."
+#~ msgstr "تصمیم بگیرید که وقتی گزارش خطا یافت شد چه باید شود"
+
+#~ msgid "Decide what should happen to the crashlogs after submission."
+#~ msgstr "تصمیم بگیرید که بعد از ثبت گزارش خطا باید با آنها چه کرد"
+
+#~ msgid "Delete crashlogs"
+#~ msgstr "حذف گزارش های خطای دستگاه"
+
+#~ msgid ""
+#~ "Delete no more configured satellite\n"
+#~ "%s?"
+#~ msgstr ""
+#~ "ماهواره پیکربندی شده بیش از این حذف نشود\n"
+#~ "%s?"
+
+#
+#~ msgid "Disable crashlog reporting"
+#~ msgstr "غیر فعال کردن گزارش های خطای دستگاه"
+
+#~ msgid ""
+#~ "Do you want to enable the parental control feature on your GigaBlue HD "
+#~ "800 Solo?"
+#~ msgstr "آیا میخواهید ویژگی کنترل والدین را در دستگاه خود فعال کنید ؟"
+
+#
+#~ msgid ""
+#~ "Do you want to submit your email address and name so that we can contact "
+#~ "you if needed?"
+#~ msgstr ""
+#~ "آیا میخواهید آدرس ایمیل و نام خود را ارسال کنید تا هنگامی که نیاز باشد با "
+#~ "شما تماس بگیریم ؟"
+
+#~ msgid ""
+#~ "Do you want to update your STB_BOX?\n"
+#~ "After pressing OK, please wait!"
+#~ msgstr ""
+#~ "آیا میخواهید دستگاه خود را به روز رسانی کنید ؟\n"
+#~ "بعد از فشار دادن دکمه OK لطفا صبر کنید"
+
+#~ msgid "Do you want to view a tutorial?"
+#~ msgstr "آیا میخواهید خود آموز را مشاهده کنید ؟"
+
+#
+#~ msgid "Don't ask, just send"
+#~ msgstr "پرسیده نشود فقط ارسال شود"
+
+#~ msgid "Done - Installed or upgraded %d packages"
+#~ msgstr "انجام شد ، تعداد %d مورد نصب یا به روز رسانی شد"
+
+#
+#~ msgid "Enable Cleanup Wizard?"
+#~ msgstr "فعال کردن هدایتگر پاک سازی؟"
+
+#
+#~ msgid "Enter your email address so that we can contact you if needed."
+#~ msgstr "ایمیل خود را وارد کنید تا بتوانیم در هنگام نیاز با شما تماس بگیریم"
+
+#~ msgid "Exit the cleanup wizard"
+#~ msgstr "خروج از هدایتگر پاک سازی"
+
+#
+#~ msgid "General AC3 Delay"
+#~ msgstr "تاخیر عمومی AC3"
+
+#
+#~ msgid "General PCM Delay"
+#~ msgstr "تاخیر عمومی PCM"
+
+#~ msgid "How to handle found crashlogs?"
+#~ msgstr "چگونه به گزارش های خطای یافت شده رسیدگی شود ؟"
+
+#
+#~ msgid "Include your email and name (optional) in the mail?"
+#~ msgstr "شامل ایمیل و نام (اختیاری) شما بشود ؟"
+
+#~ msgid "Install settings, skins, software..."
+#~ msgstr "در حال نصب تنظیمات ، اسکین ها ، نرم افزار و ..."
+
+#~ msgid "Installing default sat lists... Please wait..."
+#~ msgstr "در حال نصب لیست های ماهواره پیش فرض ، لطفا صبر کنید"
+
+#~ msgid "Installing defaults... Please wait..."
+#~ msgstr "در حال نصب تنظیمات پیش فرض ، لطفا صبر کنید"
+
+#~ msgid "Installing package content... Please wait..."
+#~ msgstr "نصب محتویات بسته ، لطفا صبر کنید"
+
+#
+#~ msgid "Is this videomode ok?"
+#~ msgstr "آیا این حالت تصویر درست است ؟"
+
+#~ msgid "LOF"
+#~ msgstr "LOF"
+
+#~ msgid "LOF/H"
+#~ msgstr "LOF/H"
+
+#~ msgid "LOF/L"
+#~ msgstr "LOF/L"
+
+#~ msgid "Mode"
+#~ msgstr "حالت"
+
+#~ msgid ""
+#~ "No packages were upgraded yet. So you can check your network and try "
+#~ "again."
+#~ msgstr ""
+#~ "هیچ بسته ای به روز رسانی نشده است ، تنظیمات شبکه را بررسی و دوباره سعی "
+#~ "کنید"
+
+#~ msgid "No, not now"
+#~ msgstr "خیر ، حالا نه"
+
+#
+#~ msgid "No, send them never"
+#~ msgstr "خیر ، هیچ وقت ارسال نشوند"
+
+#~ msgid "OK, remove another extensions"
+#~ msgstr "OK ، حذف یک بسته دیگر"
+
+#
+#~ msgid "OK, remove some extensions"
+#~ msgstr "تعدادی بسته نرم افزاری حذف کنید"
+
+#
+#~ msgid "Optionally enter your name if you want to."
+#~ msgstr "اگر مایل هستید نام خود را وارد کنید (اختیاری)"
+
+#~ msgid "Overwrite configuration files ?"
+#~ msgstr "بازنویسی فایل های پیکربندی ؟"
+
+#~ msgid "Package removal failed.\n"
+#~ msgstr "حذف بسته ناموفق\n"
+
+#~ msgid "Package removed successfully.\n"
+#~ msgstr "بسته با موفقیت حذف شد\n"
+
+#~ msgid "Please choose he package..."
+#~ msgstr "لطفا یک بسته انتخاب کنید"
+
+#~ msgid "Please choose the default services lists you want to install."
+#~ msgstr "لطفا لیست های پیش فرض مورد نظر خود را برای نصب انتخاب کنید"
+
+#
+#~ msgid "Please enter your email address here:"
+#~ msgstr "لطفا آدرس ایمیل خود را اینجا بنویسید:"
+
+#~ msgid "Please enter your name here (optional):"
+#~ msgstr "لطفا نام خود را وارد کنید (اختیاری) :"
+
+#~ msgid "Please press OK!"
+#~ msgstr "لطفا دکمه OK را فشار دهید"
+
+#~ msgid "Please select an extension to remove."
+#~ msgstr "لطفا یک بسته را برای حذف کردن انتخاب کنید"
+
+#~ msgid "Please select an option below."
+#~ msgstr "لطفا یک مورد زیر را انتخاب کنید"
+
+#~ msgid "Please wait while removing selected package..."
+#~ msgstr "لطفا صبر کنید تا بسته های انتخاب شده حذف شوند"
+
+#
+#~ msgid "Please wait while searching for removable packages..."
+#~ msgstr "لطفا صبر کنید تا پیکج های قابل حذف جستجو شوند"
+
+#~ msgid "Remove failed."
+#~ msgstr "حذف ناموفق"
+
+#
+#~ msgid "Removed successfully."
+#~ msgstr "با موفقیت حذف شد"
+
+#
+#~ msgid "Rename crashlogs"
+#~ msgstr "تغییر نام گزارش های خطای دستگاه"
+
+#~ msgid "Restore running"
+#~ msgstr "بازگردانی در حال انجام است"
+
+#~ msgid "Scan QAM128"
+#~ msgstr "جستجوی QAM128"
+
+#~ msgid "Scan QAM16"
+#~ msgstr "جستجوی QAM16"
+
+#~ msgid "Scan QAM256"
+#~ msgstr "جستجوی QAM256"
+
+#~ msgid "Scan QAM32"
+#~ msgstr "جستجوی QAM32"
+
+#~ msgid "Scan QAM64"
+#~ msgstr "جستجوی QAM64"
+
+#~ msgid "Scan SR6875"
+#~ msgstr "جستجوی SR6875"
+
+#~ msgid "Scan SR6900"
+#~ msgstr "جستجوی SR6900"
+
+#~ msgid "Scan band EU HYPER"
+#~ msgstr "اسکن باند EU HYPER"
+
+#~ msgid "Scan band EU MID"
+#~ msgstr "اسکن باند EU MID"
+
+#~ msgid "Scan band EU SUPER"
+#~ msgstr "اسکن باند EU SUPER"
+
+#~ msgid "Scan band EU UHF IV"
+#~ msgstr "اسکن باند EU UHF IV"
+
+#~ msgid "Scan band EU UHF V"
+#~ msgstr "اسکن باند EU UHF V"
+
+#~ msgid "Scan band EU VHF I"
+#~ msgstr "اسکن باند EU VHF I"
+
+#~ msgid "Scan band EU VHF III"
+#~ msgstr "اسکن باند EU VHF III"
+
+#~ msgid "Scan band US HIGH"
+#~ msgstr "اسکن باند US HIGH"
+
+#~ msgid "Scan band US HYPER"
+#~ msgstr "اسکن باند US HYPER"
+
+#~ msgid "Scan band US LOW"
+#~ msgstr "اسکن باند US LOW"
+
+#~ msgid "Scan band US MID"
+#~ msgstr "اسکن باند US MID"
+
+#~ msgid "Scan band US SUPER"
+#~ msgstr "اسکن باند US SUPER"
+
+#~ msgid "Select package"
+#~ msgstr "انتخاب بسته"
+
+#
+#~ msgid "Set Voltage and 22KHz"
+#~ msgstr "تنظیم ولتاژ و 22KHz"
+
+#
+#~ msgid "Set available internal memory threshold for the warning."
+#~ msgstr "تنظیم حافظه داخلی در دسترس برای آستانه هشدار"
+
+#
+#~ msgid "Sorry MediaScanner is not installed!"
+#~ msgstr "متاسفانه MediaScanner نصب نشده است"
+
+#
+#~ msgid "Sorry no backups found!"
+#~ msgstr "متاسفانه هیچ نسخه پشتیبانی یافت نشد"
+
+#
+#~ msgid ""
+#~ "Sorry your backup destination is not writeable.\n"
+#~ "Please choose an other one."
+#~ msgstr ""
+#~ "متاسفانه مقصد نسخه پشتیبان شما قابل نوشتن نیست\n"
+#~ "لطفا محل دیگری را انتخاب کنید"
+
+#
+#~ msgid "Sorry, no Details available!"
+#~ msgstr "متاسفانه هیچ جزئیاتی در دسترس نیست"
+
+#
+#~ msgid ""
+#~ "Sorry, your backup destination is not writeable.\n"
+#~ "\n"
+#~ "Please choose another one."
+#~ msgstr ""
+#~ "متاسفانه مقصد نسخه پشتیبان شما قابل نوشتن نیست\n"
+#~ "\n"
+#~ "لطفا محل دیگری را انتخاب کنید"
+
+#~ msgid "Text border width"
+#~ msgstr "پهنای حاشیه نوشته"
+
+#~ msgid "Text font size"
+#~ msgstr "اندازه فونت نوشته"
+
+#~ msgid "The installation of the default services lists is finished."
+#~ msgstr "نصب لیست های کانال های پیش فرض به پایان رسید"
+
+#~ msgid ""
+#~ "The installation of the default settings is finished. You can now "
+#~ "continue configuring your STB_BOX by pressing the OK button "
+#~ "on the remote control."
+#~ msgstr ""
+#~ "نصب تنظیمات پیش فرض پایان یافت ، شما میتوانید برای ادامه پیکربندی دستگاه "
+#~ "خود دکمه OK روی ریموت کنترل را فشار دهید"
+
+#~ msgid "The package doesn't contain anything."
+#~ msgstr "این بسته شامل چیزی نمیشود"
+
+#~ msgid "The package:"
+#~ msgstr "بسته :"
+
+#~ msgid "There are no default services lists in your image."
+#~ msgstr "هیچ لیست کانال پیش فرضی در ایمیج شما وجود ندارد"
+
+#~ msgid "There are no default settings in your image."
+#~ msgstr "هیچ تنظیمات پیش فرضی در ایمیج شما وجود ندارد"
+
+#
+#~ msgid "There are now "
+#~ msgstr "آنها هم اکنون هستند"
+
+#~ msgid "There was an error downloading the packetlist. Please try again."
+#~ msgstr "یک خطا هنگام دانلود لیست بسته ها رخ داد ، لطفا دوباره سعی کنید"
+
+#~ msgid "There was an error. The package:"
+#~ msgstr "یک خطا رخ داد ، بسته :"
+
+#~ msgid "This is step number 2."
+#~ msgstr "این مرحله دوم است"
+
+#~ msgid "Tone Amplitude"
+#~ msgstr "دامنه تن"
+
+#~ msgid "Tuner "
+#~ msgstr "تیونر"
+
+#~ msgid "USB Stick"
+#~ msgstr "USB Stick"
+
+#~ msgid "Updating finished. Here is the result:"
+#~ msgstr "به روز رسانی انجام شد ، نتیجه این است"
+
+#~ msgid "Updating... Please wait... This can take some minutes..."
+#~ msgstr "در حال به روز رسانی ، لطفا صبر کنید ، ممکن است چند دقیقه زمان ببرد"
+
+#~ msgid "Upgrading STB_BOX... Please wait"
+#~ msgstr "در حال به روز رسانی دستگاه ، لطفا صبر کنید"
+
+#~ msgid "Use Power Measurement"
+#~ msgstr "استفاده از اندازه گیری توان"
+
+#~ msgid "Use this settings?"
+#~ msgstr "استفاده از این تنظیمات ؟"
+
+#~ msgid "Use usals for this sat"
+#~ msgstr "استفاده از usals برای این ماهواره"
+
+#~ msgid "Video Fine-Tuning Wizard"
+#~ msgstr "هدایتگر بهینه سازی تصویر"
+
+#~ msgid "Video Output"
+#~ msgstr "خروجی تصویر"
+
+#~ msgid "Video Setup"
+#~ msgstr "تنظیمات تصویر"
+
+#~ msgid "Video Wizard"
+#~ msgstr "هدایتگر تصویر"
+
+#
+#~ msgid "Warn if free space drops below (kB):"
+#~ msgstr "هشدار دادن اگر فضای خالی به کمتر از این میزان کیلوبایت رسید"
+
+#
+#~ msgid "What to do with submitted crashlogs?"
+#~ msgstr "گزارش های خطای دستگاه چه شوند ؟"
+
+#
+#~ msgid "Yes, and don't ask again"
+#~ msgstr "بله ، و دوباره پرسیده نشود"
+
+#~ msgid "Yes, view the tutorial"
+#~ msgstr "بله ، مشاهده خودآموز"
+
+#~ msgid ""
+#~ "You can choose some default settings now. Please select the settings you "
+#~ "want to be installed."
+#~ msgstr ""
+#~ "شما هم اکنون میتوانید تعدادی تنظیمات پیش فرض انتخاب کنید ، لطفا تنظیمات "
+#~ "مورد نظر خود را برای نصب انتخاب کنید"
+
+#~ msgid "You can choose, what you want to install..."
+#~ msgstr "انتخاب با شما است ، میتوانید هر انتخابی برای نصب داشته باشید"
+
+#~ msgid "You chose not to install any default services lists."
+#~ msgstr "شما هیچ لیست کانال پیش فرضی را برای نصب انتخاب نکرده اید"
+
+#~ msgid ""
+#~ "You chose not to install any default settings. You can however install "
+#~ "the default settings later in the settings menu."
+#~ msgstr ""
+#~ "شما هیچ تنظیمات پیش فرضی را برای نصب انتخاب نکرده اید ، اگرچه در آینده "
+#~ "میتوانید تنظیمات پیش فرض توسط منوی تنظیمات نصب کنید"
+
+#~ msgid ""
+#~ "You chose not to install anything. Please press OK finish the install "
+#~ "wizard."
+#~ msgstr ""
+#~ "شما هیچ چیزی برای نصب انتخاب نکرده اید ، لطفا دکمه OK را برای پایان "
+#~ "هدایتگر نصب فشار دهید"
+
+#
+#~ msgid "Your email address:"
+#~ msgstr "آدرس ایمیل شما"
+
+#
+#~ msgid "Your name (optional):"
+#~ msgstr "نام شما (اختیاری)"
+
+#~ msgid "alphabetic sort"
+#~ msgstr "چیدمان بر اساس حروف الفبا"
+
+#~ msgid "available"
+#~ msgstr "در دسترس"
+
+#
+#~ msgid "could not be removed"
+#~ msgstr "نمیتواند حذف شود"
+
+#~ msgid "enigma2 and network"
+#~ msgstr "انیگما 2 و شبکه"
+
+#~ msgid "sort by date"
+#~ msgstr "چیدمان بر اساس تاریخ"
+
+#
+#~ msgid "was removed successfully"
+#~ msgstr "با موفقیت حذف شد"
+
+#~ msgid ""
+#~ "your STB_BOX might be unusable now. Please consult the "
+#~ "manual for further assistance before rebooting your STB_BOX."
+#~ msgstr ""
+#~ "دستگاه شما احتمالا غیر قابل استفاده شده است ، لطفا قبل از راه اندازی مجدد "
+#~ "دستگاه دفترچه راهنما را برای کمک بیشتر مطالعه کنید ، به شما توصیه میشود "
+#~ "دوباره ایمیج نصب کنید"

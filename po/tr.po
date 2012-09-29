@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-14 17:59+0100\n"
+"POT-Creation-Date: 2012-09-28 16:57+0100\n"
 "PO-Revision-Date: 2012-09-14 19:10-0000\n"
 "Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
 "Language-Team: CÜNEYT OCAKLILAR <ocaklilar@gmail.com>\n"
@@ -123,14 +123,6 @@ msgstr ""
 "\n"
 "Yedekleme aygıtını seçin.\n"
 "Geçerli aygıt: "
-
-#
-msgid ""
-"\n"
-"System will restart after the restore!"
-msgstr ""
-"\n"
-"Sistem, geri yüklemeden sonra yeniden başlayacak!"
 
 #
 msgid ""
@@ -259,6 +251,16 @@ msgstr ""
 msgid "%s (%s)\n"
 msgstr "%s (%s)\n"
 
+#. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
+#, python-format
+msgid "%s is no longer used. Should it be deleted?"
+msgstr ""
+
+#, python-format
+msgid "%s updated package available"
+msgid_plural "%s updated packages available"
+msgstr[0] ""
+
 #, python-format
 msgid "%s/%s: %s"
 msgstr ""
@@ -294,14 +296,6 @@ msgstr ""
 #
 msgid "* Only available if more than one interface is active."
 msgstr "* Yalnızca birden fazla arayüz olduğunda kullanılabilir."
-
-#
-msgid "/usr/share/enigma2 directory"
-msgstr "/usr/share/enigma2 klasörü"
-
-#
-msgid "/var directory"
-msgstr "/var klasörü"
 
 #
 msgid "0"
@@ -456,7 +450,8 @@ msgstr "<bilinmiyor>"
 #, fuzzy
 msgid "??"
 msgstr ""
-"Güncelleme tamamlandı. STB_BOX'nun yeniden başlatılmasını istiyor musunuz?"
+"Güncelleme tamamlandı. STB_BOX'nun yeniden başlatılmasını "
+"istiyor musunuz?"
 
 #
 msgid "A"
@@ -465,6 +460,12 @@ msgstr "A"
 msgid ""
 "A background update check is is progress, please wait a few minutes and try "
 "again."
+msgstr ""
+
+#, python-format
+msgid ""
+"A configuration file (%s) has been modified since it was installed.\n"
+"Do you want to keep your modifications?"
 msgstr ""
 
 #
@@ -583,6 +584,9 @@ msgstr ""
 msgid "A/V Settings"
 msgstr "Ses/Görüntü ayarları"
 
+msgid "A/V settings"
+msgstr ""
+
 #
 msgid "AA"
 msgstr "AA"
@@ -598,9 +602,6 @@ msgid "AFP Setup"
 msgstr "AFP Kurulumu"
 
 msgid "AFP setup"
-msgstr ""
-
-msgid "AIT data will be included in http streams"
 msgstr ""
 
 #, python-format
@@ -643,9 +644,6 @@ msgstr "Resim içinde resim (PIP) etkinleştir"
 msgid "Activate network settings"
 msgstr "Ağ ayarlarını etkinleştir"
 
-msgid "Activate rewrapping of the teletext subtitles"
-msgstr ""
-
 msgid "Activate the chosen network settings."
 msgstr "Seçilen ağ ayarlarını etinleştir."
 
@@ -673,10 +671,6 @@ msgstr "Yer imi ekle"
 msgid "Add Timer"
 msgstr "Zamanlayıcı ekle"
 
-#
-msgid "Add WLAN configuration?"
-msgstr "Kablosuz ağ ayarlarınız eklensin mi?"
-
 msgid "Add a auto timer for current event"
 msgstr "Geçerli etkinliğe oto-zamanlayıcı ekle"
 
@@ -699,10 +693,6 @@ msgstr "Geçerli etkinliğe kayıt zamanlayıcı ekle"
 
 msgid "Add a zap timer for current event"
 msgstr "Geçerli etkinliğe zap zamanlayıcı ekle"
-
-#
-msgid "Add network configuration?"
-msgstr "Ağ yapılandırması eklensin mi?"
 
 #
 msgid "Add timer"
@@ -731,20 +721,6 @@ msgstr "Ek Bilgi"
 
 msgid "Address"
 msgstr "Adres"
-
-msgid ""
-"Adds enigma2 settings and STB_BOX informations like SN, rev... if enabled."
-msgstr ""
-"Etkinleştiildiğinde, Enigma2 ayarlarını ve STB_BOX bilgisini (SN, revizyon "
-"gibi) ekler."
-
-#
-msgid "Adds network configuration if enabled."
-msgstr "Etkin ise, ağ kurulumu ekler."
-
-#
-msgid "Adds wlan configuration if enabled."
-msgstr "Etkin ise, kablosuz ağ kurulumu ekler."
 
 msgid "Adjust 3D settings"
 msgstr "3D Ayarları"
@@ -776,24 +752,15 @@ msgid "Advanced Video Enhancement Setup"
 msgstr "Gelişmiş görüntü iyileştirme kurulumu"
 
 #
-msgid "Advanced Video Setup"
-msgstr "Gelişmiş Görüntü Kurulumu"
-
-#
 msgid "Advanced restore"
 msgstr "Gelişmiş geri yükleme"
+
+msgid "Advanced video setup"
+msgstr ""
 
 #
 msgid "After event"
 msgstr "Etkinlikten sonra"
-
-#
-msgid ""
-"After the start wizard is completed, you need to protect single services. "
-"Refer to your STB_BOX's manual on how to do that."
-msgstr ""
-"Sihirbaz tamamlandıktan sonra, kanal korumasına ihtiyacınız olacak. Nasıl "
-"yapılacağını öğrenmek istiyorsanız STB_BOX'nun kullanım kılavuzuna başvurun."
 
 #
 msgid "Album"
@@ -806,11 +773,10 @@ msgstr "Arma"
 msgid "All"
 msgstr "Tüm"
 
-#
-msgid "All Satellites"
-msgstr "Tüm Uydular"
-
 msgid "All ages"
+msgstr ""
+
+msgid "All satellites"
 msgstr ""
 
 msgid "Allow Subtitle equals Audio mask"
@@ -876,7 +842,7 @@ msgstr "Alfanümerik"
 msgid "Altern"
 msgstr ""
 
-msgid "Alternative numbering Mode"
+msgid "Alternative numbering mode"
 msgstr ""
 
 msgid "Alternative radio mode"
@@ -890,10 +856,6 @@ msgstr "Alternatifli kanallarda tuner önceliği"
 msgid "Always ask"
 msgstr "Herzaman sor"
 
-#
-msgid "Always ask before sending"
-msgstr "Göndermeden önce sor"
-
 msgid "Always show bouquets"
 msgstr "Buketleri hep göster"
 
@@ -901,13 +863,12 @@ msgstr "Buketleri hep göster"
 msgid "An empty filename is illegal."
 msgstr "Boş dosya adı geçersiz."
 
+msgid "An error occurred while downloading the packetlist. Please try again."
+msgstr ""
+
 #
 msgid "An unknown error occured!"
 msgstr "Bilinmeyen bir hata oluştu!"
-
-#
-msgid "Anonymize crashlog?"
-msgstr "Çökme günlüğüne detay bilgiler eklensin mi?"
 
 msgid "Any activity"
 msgstr "Herhangi bir eylem"
@@ -924,13 +885,10 @@ msgstr ""
 "Bu ağ yapılandırmasını etkinleştirmek istiyor musunuz?\n"
 "\n"
 
-#
 msgid ""
 "Are you sure you want to delete\n"
-"following backup:\n"
+"the following backup:\n"
 msgstr ""
-"Aşağıdaki belirtilen yedeği\n"
-"silmek istiyor musunuz?:\n"
 
 msgid "Are you sure you want to delete all selected logs:\n"
 msgstr "Bütün seçilmiş günlükleri silmek isitiyor musunuz:\n"
@@ -953,21 +911,18 @@ msgstr ""
 "Ağ arayüzlerini yeniden başlatmak istiyor musunuz?\n"
 "\n"
 
-#
+#, python-format
 msgid ""
 "Are you sure you want to restore\n"
-"following backup:\n"
+"the following backup:\n"
+"%s\n"
+"Your receiver will restart after the backup has been restored!"
 msgstr ""
-"Aşağıdaki belirtilen yedeği\n"
-"geri yüklemek istiyor musunuz?:\n"
 
-#
 msgid ""
-"Are you sure you want to restore your Enigma2 backup?\n"
-"Enigma2 will restart after the restore"
+"Are you sure you want to restore the backup?\n"
+"Your receiver will restart after the backup has been restored!"
 msgstr ""
-"Enigma2 yedeğinizi geri yüklemek istiyor musunuz?\n"
-"Geri yükleme işleminden sonra Enigma2 yeniden başlayacaktır"
 
 msgid "Are you sure you want to save the EPG Cache to:\n"
 msgstr "EPG önbelleğini buraya saklamak istediğinizden emin misiniz:\n"
@@ -995,6 +950,9 @@ msgstr "Sor"
 #
 msgid "Aspect Ratio"
 msgstr "En boy oranı"
+
+msgid "Aspect ratio"
+msgstr ""
 
 msgid "Attach a file"
 msgstr "Bir dosya iliştir"
@@ -1056,6 +1014,9 @@ msgstr "Otomatik"
 #
 msgid "Automatic Scan"
 msgstr "Otomatik Tarama"
+
+msgid "Automatic configuration is finished"
+msgstr ""
 
 msgid "Automatic image backup"
 msgstr ""
@@ -1125,21 +1086,8 @@ msgstr "Arkaplan silme seçimi"
 msgid "Background delete speed"
 msgstr "Arkaplan silme hızı"
 
-#
-msgid "Backup"
-msgstr "Yedekle"
-
-#
-msgid "Backup Location"
-msgstr "Yedek Konumu"
-
-#
-msgid "Backup Mode"
-msgstr "Yedekleme Kipi"
-
-#
-msgid "Backup done."
-msgstr "Yedekleme bitti."
+msgid "Backup completed."
+msgstr ""
 
 #
 msgid "Backup failed."
@@ -1270,12 +1218,6 @@ msgid "By Team ViX"
 msgstr "ViX Ekibi tarafından"
 
 #
-msgid ""
-"By pressing the OK Button on your remote control, the info bar is being "
-"displayed."
-msgstr "OK'a basıldığında bilgi-çubuğu gösterilsin mi?"
-
-#
 msgid "C"
 msgstr "C"
 
@@ -1335,10 +1277,6 @@ msgid "CCcam info"
 msgstr ""
 
 #
-msgid "CF Drive"
-msgstr "CF Sürücü"
-
-#
 msgid "CI assignment"
 msgstr "CI ataması"
 
@@ -1392,11 +1330,8 @@ msgstr "Kartlar: 0"
 msgid "Cardserial"
 msgstr "Kart SN"
 
-msgid "Center the position of the DVB subtitles."
+msgid "Center DVB subtitles"
 msgstr ""
-
-msgid "Centered DVB subtitles"
-msgstr "Ortalanmış DVB altyazı"
 
 #
 msgid "Change bouquets in quickzap"
@@ -1453,6 +1388,9 @@ msgstr "Kanal Seçimi"
 msgid "Channel Selection Configuration"
 msgstr ""
 
+msgid "Channel list context menu"
+msgstr ""
+
 msgid "Channel list on mode change"
 msgstr ""
 
@@ -1461,6 +1399,9 @@ msgstr "Kanal Liste Önizlemesi"
 
 msgid "Channel list service mode*"
 msgstr "Kanal Liste servis kipi*"
+
+msgid "Channel list type"
+msgstr ""
 
 #
 msgid "Channel not in services list"
@@ -1496,6 +1437,12 @@ msgstr "Kontrol et"
 msgid "Check every (hours)"
 msgstr ""
 
+msgid "Check the internet connection"
+msgstr ""
+
+msgid "Check the internet connection again"
+msgstr ""
+
 msgid "Checking Feeds"
 msgstr ""
 
@@ -1508,6 +1455,15 @@ msgstr "Günlükler kontrol ediliyor..."
 
 msgid "Checking for Updates..."
 msgstr "Güncellemeler kontrol ediliyor..."
+
+msgid "Checking the internet connection"
+msgstr ""
+
+#, python-format
+msgid ""
+"Checking tuner %d\n"
+"DiSEqC port %s for %s"
+msgstr ""
 
 msgid "Children/Youth"
 msgstr ""
@@ -1552,23 +1508,18 @@ msgid "Choose the location for crash and debuglogs."
 msgstr "Çökme ve hata ayıklama günlük konumunu seçin."
 
 msgid ""
-"Choose the location where the EPG data will be stored when the STB_BOX is "
-"shut down. The location must be available at boot time."
+"Choose the location where the EPG data will be stored when the GigaBlue HD "
+"800 Solo is shut down. The location must be available at boot time."
 msgstr ""
-"STB_BOX kapandığında EPG bilgisinin saklanacağı yeri seçin. Önyükleme "
-"sırasında konum hazır olmalıdır."
+"STB_BOX kapandığında EPG bilgisinin saklanacağı yeri seçin. "
+"Önyükleme sırasında konum hazır olmalıdır."
 
 msgid ""
-"Choose the name of the file that holds the EPG data when the STB_BOX is shut "
-"down. This can be handy to differentiate between several boxes."
+"Choose the name of the file that holds the EPG data when the GigaBlue HD 800 "
+"Solo is shut down. This can be handy to differentiate between several boxes."
 msgstr ""
-"STB_BOX kapandığında EPG bilgisinin saklanacağı dosya adını seçin. Birden "
-"çok alıcı kullanıldığında, faydalı olabilir."
-
-msgid ""
-"Choose the order in which the tuner types will be used (for watching and "
-"recording)."
-msgstr "İzlemede ve kayıtta kullanılacak tuner tip sırasını seçin."
+"STB_BOX kapandığında EPG bilgisinin saklanacağı dosya adını "
+"seçin. Birden çok alıcı kullanıldığında, faydalı olabilir."
 
 msgid "Choose time interval to which the graphics will be rounded off."
 msgstr "Grafiklerin tamamlanacağı zaman aralığını seçin."
@@ -1582,6 +1533,10 @@ msgstr "Yükseltme sunucu ayarları"
 
 msgid "Choose what you want the button '0' to do when PIP is active."
 msgstr "PIP etkinken '0' tuşunun eylemini seçin."
+
+msgid ""
+"Choose whether multi channel sound tracks should be downmixed to stereo."
+msgstr ""
 
 msgid "Choose whether or not to show an icon when a motorized dish is moving."
 msgstr "Motorize çanak hareketinde ikon görüntü durumunu seçin."
@@ -1602,11 +1557,6 @@ msgstr ""
 msgid "Choose which tuner to configure."
 msgstr "Yapılandırılacak tuneri seçin."
 
-msgid ""
-"Choose which tuner will be used first. If set to 'auto' the system will give "
-"priority to the tuner having the lowest number of channels/satellites."
-msgstr ""
-
 #
 msgid "Choose your Skin"
 msgstr "Görsel-arayüzü seçin"
@@ -1625,18 +1575,6 @@ msgstr "Çöpler boşaltılıyor"
 #
 msgid "Cleanup"
 msgstr "Temizle"
-
-#
-msgid "Cleanup Wizard"
-msgstr "Temizlik sihirbazı"
-
-#
-msgid "Cleanup Wizard settings"
-msgstr "Temizlik sihirbazı ayarları"
-
-#
-msgid "CleanupWizard"
-msgstr "Temizlik sihirbazı"
 
 #
 msgid "Clear before scan"
@@ -1685,6 +1623,9 @@ msgstr "Derleme ayarları"
 #
 msgid "Color Format"
 msgstr "Renk Biçimi"
+
+msgid "Color format"
+msgstr ""
 
 #
 msgid "Command execution..."
@@ -1736,6 +1677,9 @@ msgstr "Kurulum dosyası %s saklandı."
 msgid "Configuration Mode"
 msgstr "Yapılandırma Kipi"
 
+msgid "Configuration mode"
+msgstr ""
+
 #
 msgid "Configure interface"
 msgstr "Arayüz yapılandırması"
@@ -1767,6 +1711,20 @@ msgid "Configure the behaviour when a movie reaches the end"
 msgstr ""
 
 msgid ""
+"Configure the border width of the subtitles. The dark border makes the "
+"subtitles easier to read on a light background."
+msgstr ""
+
+msgid "Configure the color of the teletext subtitles."
+msgstr ""
+
+msgid "Configure the font size of the subtitles."
+msgstr ""
+
+msgid "Configure the horizontal alignment of the subtitles."
+msgstr ""
+
+msgid ""
 "Configure the number of days old timers are kept and then auto deleted from "
 "the timers list"
 msgstr ""
@@ -1791,6 +1749,9 @@ msgstr ""
 msgid "Configure the speed of the background delete feature"
 msgstr ""
 
+msgid "Configure the subtitle delay when timing information is not available."
+msgstr ""
+
 msgid "Configure the time of the stepskip on the '1'/'3'-keys"
 msgstr ""
 
@@ -1800,10 +1761,31 @@ msgstr ""
 msgid "Configure the time of the stepskip on the '7'/'9'-keys"
 msgstr ""
 
+msgid ""
+"Configure the transparency of the black background of graphical DVB "
+"subtitles."
+msgstr ""
+
 msgid "Configure the type of status indication icons shown in the movielist"
 msgstr ""
 
+msgid ""
+"Configure the vertical position of the subtitles, measured from the bottom "
+"of the screen."
+msgstr ""
+
 msgid "Configure the way recording filenames are composed"
+msgstr ""
+
+msgid ""
+"Configure which tuner type will be preferred, when the same service is "
+"available on different types of tuners."
+msgstr ""
+
+msgid ""
+"Configure which tuner will be preferred, when more than one tuner is "
+"available. If set to 'auto' the system will give priority to the tuner "
+"having the lowest number of channels/satellites."
 msgstr ""
 
 #
@@ -1902,6 +1884,9 @@ msgstr "Cool TV Guide"
 msgid "Copy"
 msgstr "Kopyala"
 
+msgid "Correct"
+msgstr ""
+
 msgid ""
 "Could not activate Permanent-Timeshift!\n"
 "Timeshift-Path does not exist"
@@ -1912,6 +1897,9 @@ msgstr ""
 #
 msgid "Could not connect to STB_BOX .NFI Image Feed Server:"
 msgstr "STB_BOX .NFI besleme sunucusuna bağlanamıyor:"
+
+msgid "Could not find installed channel list."
+msgstr ""
 
 #
 msgid "Could not load Medium! No disc inserted?"
@@ -1940,30 +1928,6 @@ msgstr "Geçeriz kanal %s kayıt edilemiyor"
 
 msgid "Crash Logs"
 msgstr "Çökme Günlükleri"
-
-#
-msgid "Crashlog settings"
-msgstr "Çökme günlüğü ayarları"
-
-#
-msgid "CrashlogAutoSubmit"
-msgstr "CrashlogAutoSubmit"
-
-#
-msgid "CrashlogAutoSubmit settings"
-msgstr "CrashlogAutoSubmit ayarları"
-
-#
-msgid "CrashlogAutoSubmit settings..."
-msgstr "CrashlogAutoSubmit ayarları..."
-
-#
-msgid ""
-"Crashlogs found!\n"
-"Send them to Dream Multimedia?"
-msgstr ""
-"Çökme günlüğü bulundu!\n"
-"göndermek ister misiniz?"
 
 #
 msgid "Create DVD-ISO"
@@ -2045,12 +2009,6 @@ msgstr "'4'/'6' tuşlarında atlanılacak süre"
 msgid "Custom skip time for '7'/'9'-keys"
 msgstr "'7'/'9' tuşlarında atlanılacak süre"
 
-msgid "Custom text alignment"
-msgstr "Özel metin hizalaması"
-
-msgid "Custom text position"
-msgstr "Özel metin konumu"
-
 #
 msgid "Customize"
 msgstr "Özelleştir"
@@ -2058,6 +2016,9 @@ msgstr "Özelleştir"
 #
 msgid "Cut"
 msgstr "Kes"
+
+msgid "Cutlist editor"
+msgstr ""
 
 msgid "Cutlist editor..."
 msgstr "Film düzenleyici..."
@@ -2139,21 +2100,6 @@ msgid "Debug Logs"
 msgstr "Hata ayıklama Günlükleri"
 
 #
-msgid "Decide if you want to enable or disable the Cleanup Wizard."
-msgstr ""
-"Temizlik sihirbazını buradan etkinleştirebilir veya devre dışı "
-"bırakabilirsiniz"
-
-#
-msgid "Decide what should be done when crashlogs are found."
-msgstr "Çökme günlüğü bulunduğunda, yapılmasını istediğiniz eylemi seçin."
-
-#
-msgid "Decide what should happen to the crashlogs after submission."
-msgstr ""
-"Çökme günlüğü gönderildikten sonra, yapılmasını istediğiniz eylemi seçin."
-
-#
 msgid "Deep Standby"
 msgstr "Derin Bekleme"
 
@@ -2195,25 +2141,12 @@ msgid "Delete Confirmation"
 msgstr "Silme Onayı"
 
 #
-msgid "Delete crashlogs"
-msgstr "Çökme günlüklerini sil"
-
-#
 msgid "Delete entry"
 msgstr "Seçimi sil"
 
 #
 msgid "Delete failed!"
 msgstr "Silme işlemi başarısız!"
-
-#
-#, python-format
-msgid ""
-"Delete no more configured satellite\n"
-"%s?"
-msgstr ""
-"Yapılandırırken ihtiyaç duymadığınız %s\n"
-"uydusunu silmek istiyor musunuz?"
 
 msgid "Delete old timers after how many days"
 msgstr ""
@@ -2283,6 +2216,10 @@ msgstr "DiSEqC A/B/C/D"
 msgid "DiSEqC mode"
 msgstr "DiSEqC kipi"
 
+#, python-format
+msgid "DiSEqC port %s: %s"
+msgstr ""
+
 #
 msgid "DiSEqC repeats"
 msgstr "DiSEqC tekrarı"
@@ -2328,10 +2265,6 @@ msgstr "Resim içinde resim (PIP) kapat"
 
 msgid "Disable background scanning"
 msgstr "Arkaplan taramasını kapat"
-
-#
-msgid "Disable crashlog reporting"
-msgstr "Çökme günlüğü raporlamayı kapat"
 
 #
 msgid "Disabled"
@@ -2443,19 +2376,16 @@ msgid "Do you want to add any additional information ?"
 msgstr "Daha fazla bilgi eklemek istiyor musunuz?"
 
 msgid ""
+"Do you want to also install samba client ?\n"
+"This allows you to mount your windows shares on this device."
+msgstr ""
+
+msgid ""
 "Do you want to attach a text file to explain the log ?\n"
 "(choose 'No' to type message using virtual keyboard.)"
 msgstr ""
 "Günlüğe açıklama olarak bir metin dosyası eklemek ister misiniz?\n"
 "(Sanal klavye ile mesaj yazmak için 'hayır' seçin.)"
-
-#
-msgid ""
-"Do you want to backup now?\n"
-"After pressing OK, please wait!"
-msgstr ""
-"Şimdi yedek almak istiyor musunuz?\n"
-"OK'a bastıktan sonra, lütfen bekleyin!"
 
 #
 msgid "Do you want to burn this collection to DVD medium?"
@@ -2480,9 +2410,8 @@ msgstr "Başka kanal taraması yapacak mısınız?"
 msgid "Do you want to download the image to %s ?"
 msgstr "%s imajını indirmek istiyor musunuz?"
 
-#
-msgid "Do you want to enable the parental control feature on your STB_BOX?"
-msgstr "Ebeveyn kontrolü özelliğini etkinleştirmek ister misiniz?"
+msgid "Do you want to install a channel list?"
+msgstr ""
 
 #
 msgid "Do you want to install the package:\n"
@@ -2499,6 +2428,9 @@ msgstr "DVD'yi yazmadan önce önizleme yapmak istiyor musunuz?"
 #
 msgid "Do you want to reboot your STB_BOX?"
 msgstr "STB_BOX'yu yeniden başlatmak istiyor musunuz?"
+
+msgid "Do you want to reboot your receiver?"
+msgstr ""
 
 #
 msgid "Do you want to remove the package:\n"
@@ -2520,39 +2452,12 @@ msgstr ""
 "(Sadece geçerli dosyayı göndermek için 'Hayır' seçin .)"
 
 #
-msgid ""
-"Do you want to submit your email address and name so that we can contact you "
-"if needed?"
-msgstr ""
-"İhtiyaç duyduğumuzda size ulaşabilmemizi istiyorsanız, eposta adresinizi ve "
-"adınızı girin."
-
-#
 msgid "Do you want to update your STB_BOX?"
 msgstr "STB_BOX'yu güncellemek istiyor musunuz?"
 
 #
-msgid ""
-"Do you want to update your STB_BOX?\n"
-"After pressing OK, please wait!"
-msgstr ""
-"STB_BOX'yu güncellemek istiyor musunuz?\n"
-"OK'a bastıktan sonra, lütfen bekleyin!"
-
-#
 msgid "Do you want to upgrade the package:\n"
 msgstr "Seçilen paketi yükseltmek istiyor musunuz?:\n"
-
-msgid "Do you want to upgrade?"
-msgstr "Yükseltmek istiyor musunuz?"
-
-#
-msgid "Do you want to view a tutorial?"
-msgstr "Bir öğretici izlemek ister misiniz?"
-
-#
-msgid "Don't ask, just send"
-msgstr "Sorma, yalnızca gönder"
 
 msgid "Don't save"
 msgstr "Saklama"
@@ -2563,11 +2468,6 @@ msgstr "Zaman-kaydırmayı film olarak saklama"
 #
 msgid "Don't stop current event but disable coming events"
 msgstr "Geçerli etkinliği durdurma ama gelecek etkinlikleri kapat"
-
-#
-#, python-format
-msgid "Done - Installed or upgraded %d packages"
-msgstr "Tamamlandı - %d paket yüklendi veya yükseltildi"
 
 #
 #, python-format
@@ -2607,9 +2507,6 @@ msgstr "İndiriliyor"
 msgid "Downloading plugin information. Please wait..."
 msgstr "Eklenti bilgisi indiriliyor. Lütfen bekleyin..."
 
-msgid "Downmix the Dolby Digital sound tracks to PCM."
-msgstr "Dolby Digital sesi PCM'e downmix"
-
 msgid "Drivers:"
 msgstr "Sürücüler:"
 
@@ -2644,9 +2541,6 @@ msgstr "ECM son"
 
 msgid "ECM-Time"
 msgstr "ECM-Zaman"
-
-msgid "EIT data will be included in http streams."
-msgstr ""
 
 msgid "EPG"
 msgstr "EPG"
@@ -2684,9 +2578,6 @@ msgstr ""
 msgid "ERROR - failed to scan (%s)!"
 msgstr "HATA - tarama başarısız (%s)!"
 
-msgid "ET9x00/6500"
-msgstr ""
-
 #
 msgid "East"
 msgstr "Doğu"
@@ -2723,7 +2614,8 @@ msgstr "Ayarları düzenle"
 
 #
 msgid "Edit the Nameserver configuration of your STB_BOX.\n"
-msgstr "STB_BOX'nun ad sunucu (DNS) yapılandırmasını düzenleyin.\n"
+msgstr ""
+"STB_BOX'nun ad sunucu (DNS) yapılandırmasını düzenleyin.\n"
 
 #
 msgid "Edit the network configuration of your STB_BOX.\n"
@@ -2757,10 +2649,6 @@ msgstr "Etkinleştir"
 #
 msgid "Enable 5V for active antenna"
 msgstr "aktif anten için 5V gerilimi etkinleştir"
-
-#
-msgid "Enable Cleanup Wizard?"
-msgstr "Temizlik sihirbazı etkinleştirilsin mi?"
 
 msgid "Enable Debug log"
 msgstr "Hata ayıklama günlüğünü etkinleştir"
@@ -2825,9 +2713,6 @@ msgstr ""
 msgid ""
 "Enables a feature so that the receiver can decrypt streams (if the ECM data "
 "is included in the stream and a valid card is available)."
-msgstr ""
-
-msgid "Enables channel numbers in the channel selection screen"
 msgstr ""
 
 msgid "Enables the trashcan feature"
@@ -2895,12 +2780,6 @@ msgstr "PIN girin"
 msgid "Enter the service pin"
 msgstr "Kanal PINi girin"
 
-#
-msgid "Enter your email address so that we can contact you if needed."
-msgstr ""
-"İhtiyaç duyduğumuzda size ulaşabilmemizi istiyorsanız, eposta adresinizi "
-"girin."
-
 msgid "Enter your email address to send a copy of the log to."
 msgstr ""
 
@@ -2944,9 +2823,6 @@ msgstr ""
 #
 msgid "Estonian"
 msgstr "Estçe"
-
-msgid "Et5000/6000"
-msgstr ""
 
 msgid "Ethernet network interface"
 msgstr "Ağ arayüzü"
@@ -3006,10 +2882,6 @@ msgstr "Giriş aygıtı seçiminden çık."
 #
 msgid "Exit network wizard"
 msgstr "Ağ sihirbazından çık"
-
-#
-msgid "Exit the cleanup wizard"
-msgstr "Temizlik sihirbazından çık"
 
 #
 msgid "Exit the wizard"
@@ -3176,6 +3048,10 @@ msgstr "Biçimlendir"
 msgid "Forward volume keys"
 msgstr "İleri ses tuşları"
 
+#, python-format
+msgid "Found %d position(s) of %d total"
+msgstr ""
+
 #
 msgid "Frame size in full view"
 msgstr "Tam izleme çerçeve boyutu"
@@ -3253,16 +3129,14 @@ msgstr "Ağ geçidi"
 msgid "General"
 msgstr "Genel"
 
-#
-msgid "General AC3 Delay"
-msgstr "Genel AC3 gecikmesi"
+msgid "General AC3 delay"
+msgstr ""
 
 msgid "General AC3 delay (ms)"
 msgstr ""
 
-#
-msgid "General PCM Delay"
-msgstr "Genel PCM gecikmesi"
+msgid "General PCM delay"
+msgstr ""
 
 msgid "General PCM delay (ms)"
 msgstr ""
@@ -3287,6 +3161,29 @@ msgstr "Etkinlik Bilgisi alınamadı!"
 #
 msgid "Getting plugin information. Please wait..."
 msgstr "Eklenti bilgisi alınıyor. Lütfen bekleyin..."
+
+msgid "STB_BOX advanced remote control (native)"
+msgstr "STB_BOX gelişmiş uzaktan kumanda (yerel)"
+
+#
+msgid "STB_BOX format data DVD (HDTV compatible)"
+msgstr "STB_BOX DVD biçimi (HDTV uyumlu)"
+
+msgid "STB_BOX front panel"
+msgstr "STB_BOX ön panel"
+
+msgid "STB_BOX ir keyboard"
+msgstr "STB_BOX IR klavye"
+
+msgid "STB_BOX ir mouse"
+msgstr "STB_BOX IR fare"
+
+msgid "STB_BOX remote control (native)"
+msgstr "STB_BOX uzaktan kumanda (yerel)"
+
+#
+msgid "STB_BOX software because updates are available."
+msgstr "STB_BOX güncellemeleri var."
 
 msgid "Go down the list"
 msgstr "Listede aşağı git"
@@ -3427,10 +3324,10 @@ msgstr "Gizlenmiş ağ"
 msgid "Hide CI messages"
 msgstr "CI mesajlarını gizle"
 
-msgid "Hide any Common Interface card error messages."
+msgid "Hide any zap error messages."
 msgstr ""
 
-msgid "Hide any zap error messages."
+msgid "Hide error messages from the Common Interface module."
 msgstr ""
 
 msgid "Hide zap errors"
@@ -3486,10 +3383,6 @@ msgid "How many minutes do you want to record?"
 msgstr "Kaç dakikalık kayıt başlatmak istiyorsunuz?"
 
 #
-msgid "How to handle found crashlogs?"
-msgstr "Bulunan çökme günlükleri ne yapılsın?"
-
-#
 msgid "Hue"
 msgstr "Renk tonu"
 
@@ -3526,9 +3419,6 @@ msgstr "Ikonlar"
 
 msgid "Idle Time: "
 msgstr "Atıl Zaman: "
-
-msgid "If Teletext caching is enabled, displaying pages will be much faster."
-msgstr "Teletext önbelleği etkinse, sayfalar daha hızlı görüntülenir."
 
 msgid ""
 "If logs are using the set maximum space used the eldest will be deleted."
@@ -3677,10 +3567,6 @@ msgstr "ECM http akımına dahil edilsin"
 msgid "Include EIT in http streams"
 msgstr "EIT http akımına dahil edilsin"
 
-#
-msgid "Include your email and name (optional) in the mail?"
-msgstr "İletide ad (seçimli) ve eposta bilginiz gönderilsin mi?"
-
 msgid "Increase time scale"
 msgstr "Zaman ölçeğini arttır"
 
@@ -3743,6 +3629,9 @@ msgstr "Giriş"
 msgid "Input device setup"
 msgstr "Giriş aygıt kurulumu"
 
+msgid "Input devices"
+msgstr ""
+
 #
 msgid "Install"
 msgstr "Yükle"
@@ -3754,6 +3643,9 @@ msgstr "Yeni imajı USB bellekten yükle"
 #
 msgid "Install a new image with your web browser"
 msgstr "Yeni imajı web tarayıcı ile yükle"
+
+msgid "Install channel list"
+msgstr ""
 
 #
 msgid "Install extensions."
@@ -3777,10 +3669,6 @@ msgid "Install plugins"
 msgstr "Eklentileri yükle"
 
 #
-msgid "Install settings, skins, software..."
-msgstr "Yapılandırma ayarı, görsel-arayüz, yazılım yükleyin..."
-
-#
 msgid "Installation finished."
 msgstr "Yükleme bitti."
 
@@ -3794,18 +3682,6 @@ msgstr ""
 #
 msgid "Installing Software..."
 msgstr "Yazılım yükleniyor..."
-
-#
-msgid "Installing default sat lists... Please wait..."
-msgstr "Varsayılan uydu listesi yükleniyor... Lütfen bekleyin..."
-
-#
-msgid "Installing defaults... Please wait..."
-msgstr "Varsayılan bilgiler yükleniyor... Lütfen bekleyin..."
-
-#
-msgid "Installing package content... Please wait..."
-msgstr "Paket içeriği yükleniyor... Lütfen bekleyin..."
 
 #
 msgid "Instant Record..."
@@ -3862,9 +3738,8 @@ msgstr "Ipkg"
 msgid "Is this setting ok?"
 msgstr ""
 
-#
-msgid "Is this videomode ok?"
-msgstr "Bu görüntü kipi tamam mı?"
+msgid "Is this video mode ok?"
+msgstr ""
 
 #
 msgid "Italian"
@@ -3964,18 +3839,6 @@ msgstr "Beklemede LED parlaklığı"
 #
 msgid "LNB"
 msgstr "LNB"
-
-#
-msgid "LOF"
-msgstr "LOF"
-
-#
-msgid "LOF/H"
-msgstr "LOF/H"
-
-#
-msgid "LOF/L"
-msgstr "LOF/L"
 
 msgid "Label"
 msgstr "Etiket"
@@ -4334,9 +4197,13 @@ msgstr "Dak. San."
 msgid "Missing "
 msgstr "Eksik"
 
-#
+msgctxt "Satellite configuration mode"
 msgid "Mode"
-msgstr "Kip"
+msgstr ""
+
+msgctxt "Video output mode"
+msgid "Mode"
+msgstr ""
 
 #
 msgid "Model: "
@@ -4697,12 +4564,6 @@ msgid "No of items switch (increase or reduced)"
 msgstr "Değişen öğeler (artan veya azalan)"
 
 #
-msgid ""
-"No packages were upgraded yet. So you can check your network and try again."
-msgstr ""
-"Hiçbir paket yükseltilmedi. Ağınızı kontrol ettikten sonra tekrar deneyin."
-
-#
 msgid "No positioner capable frontend found."
 msgstr "Konumlayıcı uyumlu uç ekipman bulunamadı."
 
@@ -4732,6 +4593,9 @@ msgid ""
 msgstr ""
 "Tuner etkinleştirilmemiş!\n"
 "Lütfen kanal taramasına başlamadan önce tuner ayarlarınızı yapın."
+
+msgid "No updates available. Please try again later."
+msgstr ""
 
 #
 msgid ""
@@ -4802,16 +4666,8 @@ msgid "No, never"
 msgstr "Hayır, hiçbir zaman"
 
 #
-msgid "No, not now"
-msgstr "Hayır, şimdi değil"
-
-#
 msgid "No, scan later manually"
 msgstr "Hayır, taramayı daha sonra el ile yapacağım"
-
-#
-msgid "No, send them never"
-msgstr "Hayır, asla gönderme"
 
 msgid "NodeID"
 msgstr "NodeID"
@@ -4920,14 +4776,6 @@ msgstr ""
 msgid "OK, guide me through the upgrade process"
 msgstr "Tamam, yükseltme işleminde bana rehberlik yap."
 
-#
-msgid "OK, remove another extensions"
-msgstr "Tamam, diğer genişletmeleri kaldır"
-
-#
-msgid "OK, remove some extensions"
-msgstr "Tamam, bazı genişletmeleri kaldır"
-
 msgid "ONID"
 msgstr "ONID"
 
@@ -5024,10 +4872,6 @@ msgid "OpenVpn Setup"
 msgstr "OpenVPN Kurulumu"
 
 #
-msgid "Optionally enter your name if you want to."
-msgstr "Adınızı göndermek istiyorsanız adınızı girin."
-
-#
 msgid "Orbital Position"
 msgstr "Uydu yörüngesi"
 
@@ -5049,11 +4893,11 @@ msgstr "Diğer"
 msgid "Output"
 msgstr "Çıkış"
 
-msgid "Overwrite configuration files ?"
-msgstr "Yapılandırma dosyalarının üzerine yazılsın mı?"
-
 msgid "Overwrite configuration files during software upgrade?"
 msgstr "Yazılımı yükseltilirken yapılandırma dosyaları değiştirilsin mi?"
+
+msgid "Overwrite configuration files?"
+msgstr ""
 
 #
 msgid "PAL"
@@ -5076,14 +4920,6 @@ msgstr "PTS Eklentii Hatası: %s"
 #
 msgid "Package list update"
 msgstr "Paket listesi güncellemesi"
-
-#
-msgid "Package removal failed.\n"
-msgstr "Paket kaldırılırken hata oluştu.\n"
-
-#
-msgid "Package removed successfully.\n"
-msgstr "Paket başarıyla kaldırıldı.\n"
 
 msgid "Packages"
 msgstr "Paketler"
@@ -5117,6 +4953,9 @@ msgstr "Üst Klasör"
 #
 msgid "Parental control"
 msgstr "Ebeveyn kontrolü"
+
+msgid "Parental control editor"
+msgstr ""
 
 #
 msgid "Parental control services Editor"
@@ -5278,11 +5117,6 @@ msgstr "Lütfen Taramak istediğiniz Ortamı Seçin"
 msgid "Please add titles to the compilation."
 msgstr "Lütfen derlemeye başlık ekleyin."
 
-msgid ""
-"Please be aware, that anyone can disable the parental control, if you have "
-"not set a PIN."
-msgstr "PIN tanımlanmazsa, herhangi biri ebeveyn kontrolünü kapatabilir."
-
 #
 msgid "Please change recording endtime"
 msgstr "Lütfen kayıt bitiş zamanını değiştirin"
@@ -5298,16 +5132,8 @@ msgstr "Lütfen CCcam-Okuyucu seçin"
 msgid "Please choose an extension..."
 msgstr "Lütfen bir genişletme seçin..."
 
-#
-msgid "Please choose he package..."
-msgstr "Lütfen paketi seçin..."
-
 msgid "Please choose reader"
 msgstr "Lütfen okuyucu seçin"
-
-#
-msgid "Please choose the default services lists you want to install."
-msgstr "Lütfen yüklemek istediğiniz varsayılan kanal listesini seçin."
 
 #
 msgid ""
@@ -5327,6 +5153,9 @@ msgid ""
 msgstr ""
 "Lütfen internet bağlantınızı, gerekli alanları doldurarak yapılandırın.\n"
 "Hazır olduğunuzda, devam etmek için OK'a basın."
+
+msgid "Please connect your receiver to the internet"
+msgstr ""
 
 #
 msgid "Please do not change any values unless you know what you are doing!"
@@ -5360,14 +5189,6 @@ msgid "Please enter the old PIN code"
 msgstr "Lütfen eski PINi girin"
 
 #
-msgid "Please enter your email address here:"
-msgstr "Lütfen e-posta adresinizi buraya girin:"
-
-#
-msgid "Please enter your name here (optional):"
-msgstr "Lütfen adınızı buraya giriniz (seçimli):"
-
-#
 msgid "Please follow the instructions on the TV"
 msgstr "Lütfen TV'deki yönergeyi takip edin."
 
@@ -5380,10 +5201,6 @@ msgstr "Seçtiğiniz ortama erişilemedi, yerine varsayılan klasör kullanılı
 #
 msgid "Please press OK to continue."
 msgstr "Lütfen devam etmek için OK'a basın."
-
-#
-msgid "Please press OK!"
-msgstr "Lütfen OK'a basın!"
 
 msgid "Please select a default EPG type..."
 msgstr ""
@@ -5406,14 +5223,6 @@ msgstr "Lütfen bir alt servis seçin..."
 
 msgid "Please select an NFI file and press green key to flash!"
 msgstr "Lütfen NFI dosyasını seçtikten sonra flaşlamak için yeşil tuşa basın!"
-
-#
-msgid "Please select an extension to remove."
-msgstr "Lütfen kaldırılacak bir genişletme seçin."
-
-#
-msgid "Please select an option below."
-msgstr "Lütfen aşağıdaki seçeneklerden birini seçin."
 
 #
 msgid "Please select medium to use as backup location"
@@ -5448,6 +5257,9 @@ msgstr ""
 "\n"
 "Devam etmek için OK'a basın."
 
+msgid "Please set up tuner A"
+msgstr ""
+
 #
 msgid "Please set up tuner B"
 msgstr "Lütfen Tuner B'yi yapılandırın"
@@ -5478,21 +5290,19 @@ msgstr ""
 "Lütfen dil seçiminizi yapmak için YUKARI ve AŞAĞI tuşlarını kullanın, "
 "sonrasında OK'a basın."
 
+msgid "Please wait (downloading channel list)"
+msgstr ""
+
+msgid "Please wait (updating packages)"
+msgstr ""
+
 #
 msgid "Please wait for activation of your network configuration..."
 msgstr "Lütfen ağ yapılandırmanızın etkinleştirilmesi için bekleyin..."
 
 #
-msgid "Please wait while removing selected package..."
-msgstr "Lütfen seçtiğiniz paket kaldırılırken bekleyin..."
-
-#
 msgid "Please wait while scanning is in progress..."
 msgstr "Lütfen tarama yapılırken bekleyin..."
-
-#
-msgid "Please wait while searching for removable packages..."
-msgstr "Lütfen kaldırılabilir paketler aranırken bekleyin..."
 
 #
 msgid "Please wait while we configure your network..."
@@ -5527,6 +5337,9 @@ msgstr "Eklentiler Listesi"
 #
 msgid "Plugin browser"
 msgstr "Eklenti listesi"
+
+msgid "Plugin details"
+msgstr ""
 
 #
 msgid "Plugin manager activity information"
@@ -5936,12 +5749,11 @@ msgstr "Zaman ölçeğini azalt"
 msgid "Reenter new PIN"
 msgstr "Yeni PINi tekrar girin"
 
-#
-msgid "Refresh Rate"
-msgstr "Yenileme hızı"
-
 msgid "Refresh every (in hours)"
 msgstr "Her (saat) yenile"
+
+msgid "Refresh rate"
+msgstr ""
 
 #
 msgid "Refresh rate selection."
@@ -5981,7 +5793,7 @@ msgstr "Bu ayarları her klasör için hatırla"
 msgid "Remote box"
 msgstr "Uzak kutu"
 
-msgid "Remote type"
+msgid "Remote control type"
 msgstr ""
 
 #
@@ -6008,10 +5820,6 @@ msgid "Remove currently selected title"
 msgstr "Seçilen geçerli başlığı kaldır"
 
 #
-msgid "Remove failed."
-msgstr "Kaldırma başarısız."
-
-#
 msgid "Remove finished."
 msgstr "Kaldırma işlemi bitti."
 
@@ -6031,10 +5839,6 @@ msgid "Remove title"
 msgstr "Başlığı kaldır"
 
 #
-msgid "Removed successfully."
-msgstr "Başarıyla kaldırıldı."
-
-#
 msgid "Removing"
 msgstr "Kaldırılıyor"
 
@@ -6049,10 +5853,6 @@ msgstr "%s klasörü silinemedi. (Klasör boş olmayabilir.)"
 #
 msgid "Rename"
 msgstr "Ad değiştir "
-
-#
-msgid "Rename crashlogs"
-msgstr "Çökme günlük adlarını değiştir"
 
 msgid "Rename failed!"
 msgstr "Ad değiştirme başarısız!"
@@ -6151,12 +5951,11 @@ msgid "Restore is running..."
 msgstr "Geri yükleme çalışıyor..."
 
 #
-msgid "Restore running"
-msgstr "Geri yükleme çalışıyor"
-
-#
 msgid "Restore system settings"
 msgstr "Sistem ayarlarını geri yükle"
+
+msgid "Restoring..."
+msgstr ""
 
 #
 msgid "Resume from last position"
@@ -6351,37 +6150,19 @@ msgstr ""
 msgid "Scan "
 msgstr "Tara"
 
+#. TRANSLATORS: option name, indicating which type of (DVB-C) modulation should be scanned. The modulation type is printed in '%s'. E.g.: 'Scan QAM16'
+#, python-format
+msgid "Scan %s"
+msgstr ""
+
+#. TRANSLATORS: option name, indicating which type of (DVB-C) band should be scanned. The name of the band is printed in '%s'. E.g.: 'Scan EU MID band'
+#, python-format
+msgid "Scan %s band"
+msgstr ""
+
 #
 msgid "Scan Files..."
 msgstr "Dosyaları tara..."
-
-#
-msgid "Scan QAM128"
-msgstr "QAM128 tara"
-
-#
-msgid "Scan QAM16"
-msgstr "QAM16 tara"
-
-#
-msgid "Scan QAM256"
-msgstr "QAM256 tara"
-
-#
-msgid "Scan QAM32"
-msgstr "QAM32 tara"
-
-#
-msgid "Scan QAM64"
-msgstr "QAM64 tara"
-
-#
-msgid "Scan SR6875"
-msgstr "SR6875 tara"
-
-#
-msgid "Scan SR6900"
-msgstr "SR6900 tara"
 
 #
 msgid "Scan Wireless Networks"
@@ -6390,54 +6171,6 @@ msgstr "Kablosuz Ağları Tara"
 #
 msgid "Scan additional SR"
 msgstr "Ek SR'leri tara"
-
-#
-msgid "Scan band EU HYPER"
-msgstr "EU HYPER bantını tara"
-
-#
-msgid "Scan band EU MID"
-msgstr "EU MID bantını tara"
-
-#
-msgid "Scan band EU SUPER"
-msgstr "EU SUPER bantını tara"
-
-#
-msgid "Scan band EU UHF IV"
-msgstr "EU UHF IV bantını tara"
-
-#
-msgid "Scan band EU UHF V"
-msgstr "EU UHF V bantını tara"
-
-#
-msgid "Scan band EU VHF I"
-msgstr "EU VHF I bantını tara"
-
-#
-msgid "Scan band EU VHF III"
-msgstr "EU VHF III bantını tara"
-
-#
-msgid "Scan band US HIGH"
-msgstr "US HIGH bantını tara"
-
-#
-msgid "Scan band US HYPER"
-msgstr "US HYPER bantını tara"
-
-#
-msgid "Scan band US LOW"
-msgstr "US LOW bantını tara"
-
-#
-msgid "Scan band US MID"
-msgstr "US MID bantını tara"
-
-#
-msgid "Scan band US SUPER"
-msgstr "US SUPER bantını tara"
 
 msgid ""
 "Scan your network for wireless access points and connect to them using your "
@@ -6592,10 +6325,6 @@ msgstr "Giriş aygıtı seçin."
 #
 msgid "Select interface"
 msgstr "Arayüz seçin"
-
-#
-msgid "Select package"
-msgstr "Paket seçin"
 
 #
 msgid "Select provider to add..."
@@ -6769,18 +6498,14 @@ msgid "Services"
 msgstr "Kanallar"
 
 msgid ""
-"Services may be grouped in bouquets. If this option is enabled you can zap "
-"to a channel in another bouquet then you are in at present."
+"Services may be grouped in bouquets. When enabled you can zap to a channel "
+"in another bouquet then you are in at present."
 msgstr ""
-"Kanallar buketler içinde gruplanabilir. Bu seçenek etkinleştirilirse, farklı "
-"bir buketteki kanala geçtikten sonra geri dönebilirsiniz."
 
 msgid ""
-"Services may be grouped in bouquets. If this option is enabled, you can use "
-"more then one bouquet."
+"Services may be grouped in bouquets. When enabled, you can use more then one "
+"bouquet."
 msgstr ""
-"Kanallar buketler içinde gruplanabilir. Bu seçenek etkinleştirilirse, birden "
-"çok buketi kullanabilirsiniz."
 
 #
 msgid "Set End Time"
@@ -6788,16 +6513,6 @@ msgstr "Bitiş Zamanını ayarla"
 
 msgid "Set System"
 msgstr "Sistemi ayarla"
-
-#
-msgid "Set Voltage and 22KHz"
-msgstr "Voltaj ve 22KHz ayarla"
-
-#
-msgid "Set available internal memory threshold for the warning."
-msgstr ""
-"Dahili belleğin belirtilen değere düşmesi halinde uyarı verilecek alt limiti "
-"girin."
 
 #, fuzzy
 msgid "Set fixed"
@@ -6816,12 +6531,6 @@ msgstr ""
 msgid "Set the EPG language selection 2"
 msgstr ""
 
-msgid "Set the Teletext subtitle delay when timing lacks."
-msgstr ""
-
-msgid "Set the alignment of the Teletext subtitles."
-msgstr ""
-
 msgid "Set the audio language 1 (highest priority)"
 msgstr ""
 
@@ -6834,19 +6543,11 @@ msgstr ""
 msgid "Set the audio language 4 (lowest priority)"
 msgstr ""
 
-msgid ""
-"Set the border width of the Teletext subtitles. This makes the titles more "
-"easy to read on a light background."
-msgstr ""
-
 msgid "Set the brightness level for normal operation."
 msgstr "Normal işlemdeki parlaklık seviyesini ayarla"
 
 msgid "Set the brightness level for standby."
 msgstr "Beklemedeki parlaklık seviyesini ayarla"
-
-msgid "Set the colour of the Teletext subtitles."
-msgstr ""
 
 msgid "Set the contrast level."
 msgstr "Kontrast seviyesini ayarla"
@@ -6877,9 +6578,6 @@ msgstr "Varsayılan sıralama yöntemini ayarla"
 msgid "Set the desired configuration mode."
 msgstr "İstenilen yapılandırma kipini ayarla"
 
-msgid "Set the font size of the Teletext subtitles."
-msgstr ""
-
 msgid "Set the initial fast forward speed"
 msgstr ""
 
@@ -6896,12 +6594,6 @@ msgid "Set the maximum number of events (programs) that timeshift may handle."
 msgstr ""
 
 msgid "Set the number of days you want old timers to be kept."
-msgstr ""
-
-msgid "Set the position of the DVB subtitles."
-msgstr ""
-
-msgid "Set the position of the Teletext subtitles."
 msgstr ""
 
 msgid "Set the scrolling speed of text on the front display."
@@ -6942,10 +6634,8 @@ msgstr ""
 msgid "Set the time you want recordings to stop after the event stop-time."
 msgstr ""
 
-msgid "Set the transparency of the DVB subtitles."
-msgstr ""
-
-msgid "Set the type of the progress indication in the channel selection screen"
+msgid ""
+"Set the type of the progress indication in the channel selection screen."
 msgstr ""
 
 msgid "Set the value for the initial fast-backward speed."
@@ -6992,6 +6682,9 @@ msgstr "İstenilen seçkin zamanı ayarla (dakika)."
 
 msgid "Set to what you want the button to do."
 msgstr "Tuşun eylemini seçin."
+
+msgid "Set voltage and 22KHz"
+msgstr ""
 
 msgid ""
 "Set what the required action must be when zapping while a timeshift has been "
@@ -7175,10 +6868,8 @@ msgstr "Bilgi-çubuğunda kripto göster"
 msgid "Show detailed event info"
 msgstr "Detaylı etkinlik bilgisi göster"
 
-msgid "Show encryption info in the infobar (if the skin allows that)."
+msgid "Show encryption info in the infobar (when supported by the skin)."
 msgstr ""
-"Bilgi-çubuğunda şifreleme bilgisini göster (eğer görsel-arayüz bunu "
-"destekliyorsa)"
 
 msgid "Show epg"
 msgstr ""
@@ -7344,6 +7035,10 @@ msgstr "Görsel-arayüzler"
 msgid "Skip Empty Services"
 msgstr "Boş Kanalları atla"
 
+msgid ""
+"Skip internet connection check (disables automatic package installation)"
+msgstr ""
+
 #
 msgid "Sleep Timer"
 msgstr "Uyku zamanlayıcı"
@@ -7419,10 +7114,6 @@ msgstr "Bazı eklentiler kullanılabilir değil:\n"
 msgid "Sorry Inadyn Config is Missing"
 msgstr "Üzgünüm, Inadyn Yapılandırması eksik"
 
-#
-msgid "Sorry MediaScanner is not installed!"
-msgstr "Üzgünüm, MediaScanner yüklü değil!"
-
 msgid "Sorry MiniDLNA Config is Missing"
 msgstr "Üzgünüm, MiniDLNA Yapılandırması eksik"
 
@@ -7437,44 +7128,23 @@ msgid ""
 "enable 'Allow unstable updates' in online update setup."
 msgstr ""
 
-#
-msgid "Sorry no backups found!"
-msgstr "Üzgünüm, yedekleme dosyası bulunamadı!"
-
 msgid "Sorry uShare Config is Missing"
 msgstr "Üzgünüm, uShare Yapılandırması eksik"
 
-#
-msgid ""
-"Sorry your Backup destination does not exist\n"
-"\n"
-"Please choose an other one."
+#, python-format
+msgid "Sorry, %s has not been installed!"
 msgstr ""
-"Yedek almak istediğiniz hedef bulunamadı\n"
-"\n"
-"Lütfen başka bir hedef seçin."
 
-#
-msgid ""
-"Sorry your backup destination is not writeable.\n"
-"Please choose an other one."
+msgid "Sorry, no backups found!"
 msgstr ""
-"Üzgünüm, seçtiğiniz yedekleme hedefine yazma izni yok.\n"
-"Lütfen başka bir hedef seçin."
 
-#
-msgid "Sorry, no Details available!"
-msgstr "Üzgünüm, detay bilgisi yok!"
+msgid "Sorry, no details available!"
+msgstr ""
 
-#
 msgid ""
 "Sorry, your backup destination is not writeable.\n"
-"\n"
-"Please choose another one."
+"Please select a different one."
 msgstr ""
-"Üzgünüm, seçtiğiniz yedekleme hedefine yazma izni yok.\n"
-"\n"
-"Lütfen başka bir hedef seçin."
 
 msgid "Sort"
 msgstr "Sırala"
@@ -7648,8 +7318,17 @@ msgstr "Alt servis kipi"
 msgid "Subservices"
 msgstr "Alt servisler"
 
+msgid "Subtitle alignment"
+msgstr ""
+
+msgid "Subtitle border width"
+msgstr ""
+
 msgid "Subtitle delay when timing lacks"
 msgstr "Zamanlama noksanlığında altyazı gecikmesi"
+
+msgid "Subtitle font size"
+msgstr ""
 
 msgid "Subtitle language selection 1"
 msgstr "1. Altyazı dil seçimi"
@@ -7662,6 +7341,9 @@ msgstr "3. Altyazı dil seçimi"
 
 msgid "Subtitle language selection 4"
 msgstr "4. Altyazı dil seçimi"
+
+msgid "Subtitle position"
+msgstr ""
 
 #
 msgid "Subtitle selection"
@@ -7825,12 +7507,6 @@ msgstr "Mesaj kutusu test edilsin mi?"
 msgid "Text"
 msgstr ""
 
-msgid "Text border width"
-msgstr "Metin kenar kalınlığı"
-
-msgid "Text font size"
-msgstr "Metin font boyutu"
-
 msgid "Thai"
 msgstr ""
 
@@ -7842,13 +7518,11 @@ msgstr ""
 "Sihirbazı kullandığınız için teşekkür ederiz.\n"
 "Lütfen devam etmek için OK'a basın."
 
-#
 msgid ""
-"Thank you for using the wizard. Your STB_BOX is now ready to use.\n"
-"Please press OK to start using your STB_BOX."
+"Thank you for using the wizard. Your STB_BOX is now ready for "
+"use.\n"
+"Press OK to start using your receiver."
 msgstr ""
-"Sihirbazı kullandığınız için teşekkür ederiz. STB_BOX kullanıma hazır.\n"
-"Lütfen STB_BOX'yu kullanmaya başlamak için OK'a basın."
 
 msgid ""
 "The AutoTimer plugin is not installed!\n"
@@ -7867,8 +7541,8 @@ msgstr ""
 #
 msgid ""
 "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to "
-"create a STB_BOX format data DVD (which will not play in stand-alone DVD "
-"players) instead?"
+"create a STB_BOX format data DVD (which will not play in stand-"
+"alone DVD players) instead?"
 msgstr ""
 "Standart DVD biçimi H.264 (HDTV) görüntü akımını desteklemez. Bunun yerine Vu"
 "+ Uno'nun DVD biçiminde (standart DVD oynatıcılarda oynatamazsınız) "
@@ -7885,6 +7559,12 @@ msgid ""
 "The Filesystem on your Timeshift-Device does not support hardlinks.\n"
 "Make sure it is formatted in EXT2 or EXT3!"
 msgstr ""
+
+msgid "The STB_BOX reads the stored EPG data every (hours)."
+msgstr "STB_BOX saklanmış EPG bilgisini her (saat) okur."
+
+msgid "The STB_BOX stores the EPG data every (hours)."
+msgstr "STB_BOX EPG bilgisini her (saat) saklar."
 
 msgid ""
 "The IMDb plugin is not installed!\n"
@@ -7944,12 +7624,6 @@ msgstr ""
 "Alıcınızın Arayüzü yeniden başlatılıyor\n"
 "mytest.py deki bir hata nedeniyle"
 
-msgid "The STB_BOX reads the stored EPG data every (hours)."
-msgstr "STB_BOX saklanmış EPG bilgisini her (saat) okur."
-
-msgid "The STB_BOX stores the EPG data every (hours)."
-msgstr "STB_BOX EPG bilgisini her (saat) saklar."
-
 #
 msgid "The backup failed. Please choose a different backup location."
 msgstr "Yedek alınamadı. Lütfen başka bir yedekleme konumu seçin."
@@ -7993,28 +7667,8 @@ msgstr ""
 msgid "The following files were found..."
 msgstr "Aşağıdaki dosyalar bulundu..."
 
-#
-msgid "The installation of the default services lists is finished."
-msgstr "Varsayılan kanal listesi yüklenmesi bitti."
-
-#
-msgid ""
-"The installation of the default settings is finished. You can now continue "
-"configuring your STB_BOX by pressing the OK button on the remote control."
-msgstr ""
-"Varsayılan kanal listesi yüklenmesi bitti. OK'a bastıktan sonra alıcınızı "
-"yapılandırmaya devam edebilirsiniz."
-
 msgid "The md5sum validation failed, the file may be corrupted!"
 msgstr "md5sum doğrulaması başarısız, dosya bozulmuş olabilir!"
-
-#
-msgid "The package doesn't contain anything."
-msgstr "Bu paket herhangi birşey içermiyor."
-
-#
-msgid "The package:"
-msgstr "Paket:"
 
 #
 #, python-format
@@ -8081,25 +7735,17 @@ msgstr "Sihirbaz şimdi bitti."
 msgid "There are at least "
 msgstr "En az "
 
+#, python-format
+msgid "There are at least %s updates available."
+msgstr ""
+
 #
 msgid "There are currently no outstanding actions."
 msgstr "Göze çarpan bir görev yok."
 
 #
-msgid "There are no default services lists in your image."
-msgstr "İmajınızda kayıtlı varsayılan kanal listesi yok."
-
-#
-msgid "There are no default settings in your image."
-msgstr "İmajınızda kayıtlı varsayılan ayar yok."
-
-#
 msgid "There are no updates available."
 msgstr "Kullanılabilir güncelleme yok."
-
-#
-msgid "There are now "
-msgstr "Şimdi var"
 
 msgid "There is no [webif] section in oscam.conf"
 msgstr "oscam.conf içinde [webif] bölümü yok"
@@ -8111,14 +7757,6 @@ msgid ""
 msgstr ""
 "Seçtiğiniz disk bölüntüsü yeterli boş alana sahip olmayabilir.\n"
 "Devam etmek istiyor musunuz?"
-
-#
-msgid "There was an error downloading the packetlist. Please try again."
-msgstr "Paket listesi indirilirken hata oluştu. Lütfen tekrar deneyin."
-
-#
-msgid "There was an error. The package:"
-msgstr "Hata oluştu. Paket:"
 
 #
 msgid ""
@@ -8142,10 +7780,6 @@ msgstr ""
 
 msgid "This allows you change the number of rows shown."
 msgstr "Gösterilen satır sayısını değiştirmenizi sağlar."
-
-#
-msgid "This is step number 2."
-msgstr "2 numaralı adım."
 
 msgid ""
 "This option allows to reduce the block-noise in the picture. Obviously this "
@@ -8229,6 +7863,28 @@ msgstr "SNR'nin yüzde olarak görünmesini sağlar (her alıcı bunu destekleme
 msgid "This option allows you to view the old and new settings side by side."
 msgstr ""
 
+msgid ""
+"This option configures the general audio delay of Dolby Digital sound tracks."
+msgstr ""
+
+msgid "This option configures the general audio delay of stereo sound tracks."
+msgstr ""
+
+msgid "This option configures the screen aspect ratio."
+msgstr ""
+
+msgid "This option configures the screen refresh rate."
+msgstr ""
+
+msgid "This option configures the screen resolution in PC output mode."
+msgstr ""
+
+msgid "This option configures the video output mode (or resolution)."
+msgstr ""
+
+msgid "This option configures which video output connector will be used."
+msgstr ""
+
 msgid "This option lets you adjust the 3D depth"
 msgstr "3D derinlik ayarını sağlar"
 
@@ -8278,44 +7934,23 @@ msgid ""
 "result of a limited number of discrete values."
 msgstr ""
 
-msgid "This option sets up the connection method."
-msgstr "Bağlantı yöntemi ayarı"
-
-msgid "This option sets up the general audio delay of Analog sound tracks."
-msgstr "Analog ses izlerinde, genel ses gecikme ayarı."
-
-msgid ""
-"This option sets up the general audio delay of Dolby Digital sound tracks."
-msgstr "Dolby Digital ses izlerinde, genel ses gecikme ayarı."
-
 msgid ""
 "This option sets up the picture sharpness, used when the picture is being "
 "upscaled."
 msgstr ""
 
-msgid "This option sets up the screen aspect ratio."
-msgstr "Görüntü oran ayarı"
-
-msgid "This option sets up the screen refresh-rate."
-msgstr "Ekran yenileme hızı ayarı"
-
-msgid "This option sets up the screen resolution, when in PC mode."
-msgstr "PC kipindeki ekran çözünürlük ayarı."
-
-msgid "This option sets up the screen resolution."
-msgstr "Ekran çözünürlük ayarı."
-
 msgid ""
 "This plugin creates a USB stick which can be used to update the firmware of "
-"your STB_BOX without the need for a network or WLAN connection.\n"
+"your STB_BOX without the need for a network or WLAN "
+"connection.\n"
 "First, a USB stick needs to be prepared so that it becomes bootable.\n"
 "In the next step, an NFI image file can be downloaded from the update server "
 "and saved on the USB stick.\n"
 "If you already have a prepared bootable USB stick, please insert it now. "
 "Otherwise plug in a USB stick with a minimum size of 64 MB!"
 msgstr ""
-"Bu eklenti, STB_BOX bellenim güncellenmesininde kullanılacak USB belleği "
-"hazırlar.\n"
+"Bu eklenti, STB_BOX bellenim güncellenmesininde kullanılacak "
+"USB belleği hazırlar.\n"
 "İlk önce, USB belleğinin önyüklenebilir olarak hazırlanması gerekir.\n"
 "Sonraki adımda, güncelleme sunucusundan bir NFI imajı indirilir ve USB "
 "belleği üzerine saklanır.\n"
@@ -8565,9 +8200,8 @@ msgstr ""
 msgid "Toggle aspect ratio..."
 msgstr ""
 
-#
-msgid "Tone Amplitude"
-msgstr "Ton genliği"
+msgid "Tone amplitude"
+msgstr ""
 
 #
 msgid "Tone mode"
@@ -8681,10 +8315,6 @@ msgid "Tuner"
 msgstr "Tuner"
 
 #
-msgid "Tuner "
-msgstr "Tuner "
-
-#
 msgid "Tuner Slot"
 msgstr "Tuner Yuvası"
 
@@ -8698,6 +8328,10 @@ msgstr "Tuner ayarları"
 #
 msgid "Tuner status"
 msgstr "Tuner durumu"
+
+#, python-format
+msgid "Tuner status %s"
+msgstr ""
 
 msgid "Tuner type"
 msgstr "Tuner tipi"
@@ -8730,10 +8364,6 @@ msgstr "Tip:"
 #
 msgid "USALS"
 msgstr "DiSEqC 1.3 (USALS) (Uluslararası Oto. Uydu Kon. Sist)"
-
-#
-msgid "USB Stick"
-msgstr "USB Bellek"
 
 #
 msgid "USB stick wizard"
@@ -8808,6 +8438,14 @@ msgstr "Desteklenmiyor"
 msgid "Update"
 msgstr "Güncelle"
 
+msgid "Update channel list only"
+msgstr ""
+
+#, python-format
+msgid "Update completed, %d package was installed."
+msgid_plural "Update completed, %d packages were installed."
+msgstr[0] ""
+
 msgid "Update interval (in seconds)"
 msgstr "Güncelleme periyodu (saniye)"
 
@@ -8815,21 +8453,8 @@ msgid "Updatefeed not available."
 msgstr "Güncelleme beslemesi yok."
 
 #
-msgid "Updates your STB_BOX's software"
-msgstr "Uydu alıcınızın yazılımını günceller"
-
-#
-msgid "Updating finished. Here is the result:"
-msgstr "Güncelleme bitti. Sonuç:"
-
-#
 msgid "Updating software catalog"
 msgstr "Yazılım kataloğu güncelleniyor"
-
-#
-msgid "Updating... Please wait... This can take some minutes..."
-msgstr ""
-"Güncelleniyor... Lütfen bekleyin... Bu işlem birkaç dakika sürebilir..."
 
 msgid "Upgrade and reboot system"
 msgstr ""
@@ -8839,16 +8464,8 @@ msgid "Upgrade finished."
 msgstr "Yükseltme bitti."
 
 #
-msgid "Upgrade finished. Do you want to reboot your STB_BOX?"
-msgstr "Yükseltme bitti. STB_BOX'yu yeniden başlatmak istiyor musunuz?"
-
-#
 msgid "Upgrading"
 msgstr "Yükseltiliyor"
-
-#
-msgid "Upgrading STB_BOX... Please wait"
-msgstr "STB_BOX yükseltiliyor... Lütfen bekleyin"
 
 #, fuzzy
 msgid "Uphops +"
@@ -8873,9 +8490,6 @@ msgstr "Kullan"
 msgid "Use DHCP"
 msgstr "DHCP Kullan"
 
-msgid "Use DVB subtitles position"
-msgstr "DVB altyazı konumunu kullan"
-
 #
 msgid "Use Interface"
 msgstr "Arayüzü Kullan"
@@ -8886,17 +8500,13 @@ msgstr ""
 msgid "Use PTS seekbar while timeshifting? *"
 msgstr ""
 
-#
-msgid "Use Power Measurement"
-msgstr "Güç Ölçümünü Kullan"
-
 msgid "Use TV remote control"
 msgstr "TV kumandası kullan"
 
-msgid "Use ViX coloured Buttons *"
+msgid "Use USALS for this sat"
 msgstr ""
 
-msgid "Use Yellow pango DVB subtitles"
+msgid "Use ViX coloured Buttons *"
 msgstr ""
 
 #
@@ -8912,6 +8522,9 @@ msgstr "Hızlı tarama kanal numaralama kullan"
 msgid "Use official channel numbering"
 msgstr "Resmi kanal numaralama kullan"
 
+msgid "Use original DVB subtitle position"
+msgstr ""
+
 msgid "Use original teletext position"
 msgstr "Özgün teletext konumu kullan"
 
@@ -8920,8 +8533,8 @@ msgid "Use power measurement"
 msgstr "Güç ölçümü kullan"
 
 msgid ""
-"Use power measurement to detect when the rotor stops turning (if your Vu+ "
-"Duo supports that)"
+"Use power measurement to detect when the rotor stops turning (if your "
+"STB_BOX supports that)"
 msgstr ""
 
 msgid "Use slim screen"
@@ -8970,30 +8583,17 @@ msgstr "Alternatik ekranı kullan"
 
 #
 msgid ""
-"Use the left and right buttons to change an option.\n"
-"\n"
-"Please set up tuner A"
-msgstr ""
-"Seçeneği değiştirmek için sol ve sağ tuşlarını kullanın.\n"
-"\n"
-"Lütfen Tuner A'yı yapılandırın"
-
-msgid "Use the original position of the Teletext subtitles."
-msgstr ""
-
-#
-msgid ""
 "Use the up/down keys on your remote control to select an option. After that, "
 "press OK."
 msgstr ""
 "Seçiminizi yapmak için yukarı/aşağı tuşlarıını kullanın, sonrasında OK'a "
 "basın."
 
-msgid "Use this input device settings?"
-msgstr "Bu giriş aygıt ayarları kullanılsın mı?"
+msgid "Use these input device settings?"
+msgstr ""
 
-msgid "Use this settings?"
-msgstr "Bu ayarlar kullanılsın mı?"
+msgid "Use these settings?"
+msgstr ""
 
 #
 msgid "Use this video enhancement settings?"
@@ -9007,15 +8607,8 @@ msgid "Use trashcan in movielist"
 msgstr "Film listesinde çöp sepeti kullan"
 
 #
-msgid "Use usals for this sat"
-msgstr "Bu uydu için DiSEqC 1.3 (USALS) kullan."
-
-#
 msgid "Use wizard to set up basic features"
 msgstr "Basit özellikleri ayarlamak için sihirbazı kullan"
-
-msgid "Use yellow DVB subtitles."
-msgstr ""
 
 #
 msgid "Used service scan type"
@@ -9067,9 +8660,6 @@ msgstr "VCR scart"
 msgid "VMGM (intro trailer)"
 msgstr "VMGM (tanıtım filmi)"
 
-msgid "VU+"
-msgstr ""
-
 msgid "Version:"
 msgstr "Sürüm:"
 
@@ -9093,24 +8683,8 @@ msgstr "Görüntü İyileştirme Ayarları"
 msgid "Video Fine-Tuning"
 msgstr "Görüntü ince ayarı"
 
-#
-msgid "Video Fine-Tuning Wizard"
-msgstr "Görüntü İnce Ayar Sihirbazı"
-
-#
-msgid "Video Output"
-msgstr "Görüntü çıkışı"
-
 msgid "Video PID"
 msgstr "Görüntü PID"
-
-#
-msgid "Video Setup"
-msgstr "Görüntü Kurulumu"
-
-#
-msgid "Video Wizard"
-msgstr "Görüntü Sihirbazı"
 
 #
 msgid "Video enhancement preview"
@@ -9139,6 +8713,15 @@ msgstr ""
 #
 msgid "Video mode selection."
 msgstr "Görüntü kipi seçimi."
+
+msgid "Video output"
+msgstr ""
+
+msgid "Video setup"
+msgstr ""
+
+msgid "Video wizard"
+msgstr ""
 
 msgid "Videocodec"
 msgstr "Görüntü kodeği"
@@ -9253,29 +8836,6 @@ msgstr "Voltaj kipi"
 msgid "Volume"
 msgstr "Ses"
 
-msgid "STB_BOX advanced remote control (native)"
-msgstr "STB_BOX gelişmiş uzaktan kumanda (yerel)"
-
-#
-msgid "STB_BOX format data DVD (HDTV compatible)"
-msgstr "STB_BOX DVD biçimi (HDTV uyumlu)"
-
-msgid "STB_BOX front panel"
-msgstr "STB_BOX ön panel"
-
-msgid "STB_BOX ir keyboard"
-msgstr "STB_BOX IR klavye"
-
-msgid "STB_BOX ir mouse"
-msgstr "STB_BOX IR fare"
-
-msgid "STB_BOX remote control (native)"
-msgstr "STB_BOX uzaktan kumanda (yerel)"
-
-#
-msgid "STB_BOX software because updates are available."
-msgstr "STB_BOX güncellemeleri var."
-
 #
 msgid "W"
 msgstr "B"
@@ -9334,10 +8894,6 @@ msgstr "TV'den uyandır sinyali"
 msgid "Wakeup your STB_BOX from standby"
 msgstr "Alıcıyı uyandır"
 
-#
-msgid "Warn if free space drops below (kB):"
-msgstr "Boş alan belirtilen eşiğin altına inince uyar (kB):"
-
 msgid "Web Interface"
 msgstr "Web Arayüzü"
 
@@ -9373,51 +8929,37 @@ msgstr ""
 #
 msgid ""
 "Welcome to the Image upgrade wizard. The wizard will assist you in upgrading "
-"the firmware of your STB_BOX by providing a backup facility for your current "
-"settings and a short explanation of how to upgrade your firmware."
+"the firmware of your STB_BOX by providing a backup facility for "
+"your current settings and a short explanation of how to upgrade your "
+"firmware."
 msgstr ""
-"İmaj yükseltme sihirbazına hoş geldiniz. Bu sihirbaz, STB_BOX bellenim "
-"yükseltmesi esnasında, geçerli ayarlarınızın yedeğini almanıza imkan "
-"sağlayacak ve kısa açıklamalarla bellenimi nasıl yükselteceğinizi "
+"İmaj yükseltme sihirbazına hoş geldiniz. Bu sihirbaz, STB_BOX "
+"bellenim yükseltmesi esnasında, geçerli ayarlarınızın yedeğini almanıza "
+"imkan sağlayacak ve kısa açıklamalarla bellenimi nasıl yükselteceğinizi "
 "anlatacaktır."
-
-#
-msgid ""
-"Welcome to the cleanup wizard.\n"
-"\n"
-"We have detected that your available internal memory has dropped below 2MB.\n"
-"To ensure stable operation of your STB_BOX, the internal memory should be "
-"cleaned up.\n"
-"You can use this wizard to remove some extensions.\n"
-msgstr ""
-"Temizlik sihirbazına hoşgeldiniz.\n"
-"\n"
-"Cihazınızın kullanılabilir dahili belleği 2MB'ın altına düşmüş durumda.\n"
-"STB_BOX'nun sağlıklı çalışabilmesi için, kullanılabilir dahili bellek "
-"alanının artırılması gerekmektedir.\n"
-"Bu sihirbazı kullanarak ihtiyaç duymadığınız genişletmeleri "
-"kaldırabilirsiniz.\n"
 
 #
 msgid ""
 "Welcome.\n"
 "\n"
-"If you want to connect your STB_BOX to the Internet, this wizard will guide "
-"you through the basic network setup of your STB_BOX.\n"
+"If you want to connect your STB_BOX to the Internet, this "
+"wizard will guide you through the basic network setup of your GigaBlue HD "
+"800 Solo.\n"
 "\n"
 "Press OK to start configuring your network"
 msgstr ""
 "Hoşgeldiniz.\n"
 "\n"
-"STB_BOX'yu internete bağlamak istiyorsanız, bu sihirbaz size ağınızı "
-"yapılandırmanız için rehberlik yapacaktır.\n"
+"STB_BOX'yu internete bağlamak istiyorsanız, bu sihirbaz size "
+"ağınızı yapılandırmanız için rehberlik yapacaktır.\n"
 "\n"
 "Ağ yapılandırmasına başlamak için OK'a basın."
 
 msgid ""
 "Welcome.\n"
 "\n"
-"This start wizard will guide you through the basic setup of your STB_BOX.\n"
+"This start wizard will guide you through the basic setup of your GigaBlue HD "
+"800 Solo.\n"
 "Press the OK button on your remote control to move to the next step."
 msgstr ""
 
@@ -9433,13 +8975,65 @@ msgstr "Batı"
 msgid "What do you want to scan?"
 msgstr "Ne taramak istiyorsunuz?"
 
-#
-msgid "What to do with submitted crashlogs?"
-msgstr "Gönderilen çökme günlükleri ne yapılsın?"
-
 msgid ""
 "When a recording needs to be started it is allowed to interrupt the watched "
 "service"
+msgstr ""
+
+msgid ""
+"When enabled the online checker will also check for experimental versions"
+msgstr ""
+
+msgid ""
+"When enabled, AIT data will be included in http streams. This allows a "
+"client receiver to use HbbTV."
+msgstr ""
+
+msgid ""
+"When enabled, EIT data will be included in http streams. This allows a "
+"client receiver to show EPG."
+msgstr ""
+
+msgid "When enabled, channel numbering will start at '1' for each bouquet."
+msgstr ""
+
+msgid ""
+"When enabled, external subtitles (in media files) will be displayed in "
+"yellow, instead of the original color."
+msgstr ""
+
+msgid "When enabled, graphical DVB subtitles will be centered horizontally."
+msgstr ""
+
+msgid ""
+"When enabled, graphical DVB subtitles will be displayed at their original "
+"position."
+msgstr ""
+
+msgid ""
+"When enabled, graphical DVB subtitles will be displayed in yellow, instead "
+"of the original color."
+msgstr ""
+
+msgid ""
+"When enabled, pressing '0' will zap you to the first channel in your first "
+"bouquet and delete your zap-history."
+msgstr ""
+
+msgid "When enabled, show channel numbers in the channel selection screen."
+msgstr ""
+
+msgid "When enabled, teletext pages will be cached, allowing faster access."
+msgstr ""
+
+msgid ""
+"When enabled, teletext subtitles will be displayed at their original "
+"position."
+msgstr ""
+
+msgid ""
+"When enabled, the original line breaks will be removed from the teletext "
+"subtitles."
 msgstr ""
 
 msgid ""
@@ -9453,25 +9047,19 @@ msgid "When set the PIG will return to live after a movie has stopped playing."
 msgstr "Ayarlanırsa, izlenen film durdurulduğunda PIG canlı yayına döner."
 
 msgid ""
-"When the event has a aspect ratio of 16:9, choose whether to scale/stretch "
-"the picture."
+"When the content has an aspect ratio of 16:9, choose whether to scale/"
+"stretch the picture."
 msgstr ""
-"Etkinlik 16:9 oranında ise, görüntünün orantılanacağını veya yayılacağını "
-"seçin."
 
 msgid ""
-"When the event has a aspect ratio of 4:3, choose whether to scale/stretch "
+"When the content has an aspect ratio of 4:3, choose whether to scale/stretch "
 "the picture."
 msgstr ""
-"Etkinlik 4:3 oranında ise, görüntünün orantılanacağını veya yayılacağını "
-"seçin."
 
 msgid ""
-"When the event has a aspect ratio of 4:3, choose whether to stretch the "
+"When the content has an aspect ratio of 4:3, choose whether to stretch the "
 "picture to fill the screen."
 msgstr ""
-"Etkinlik 4:3 oranında ise, görüntünün ekranı doldurması için yayılacağını "
-"seçin."
 
 msgid ""
 "When tuned to a service the system will normally scan the transponder for "
@@ -9488,7 +9076,8 @@ msgstr "Scart bağantı kullanıldığında, renk biçimini seçin."
 msgid ""
 "When you do a factory reset, you will lose ALL your configuration data\n"
 "(including bouquets, services, satellite data ...)\n"
-"After completion of factory reset, your STB_BOX will restart automatically!\n"
+"After completion of factory reset, your STB_BOX will restart "
+"automatically!\n"
 "\n"
 "Really do a factory reset?"
 msgstr ""
@@ -9535,21 +9124,6 @@ msgid "Wireless network state"
 msgstr "Kablosuz ağ durumu"
 
 msgid ""
-"With this option enabled the online checker will also check for experimental "
-"versions"
-msgstr ""
-
-msgid ""
-"With this option enabled, Channel numbers will start with '1' in each "
-"bouquet."
-msgstr ""
-
-msgid ""
-"With this option enabled, pressing '0' will zap you to the first channel in "
-"your first bouquet and delete your zap-history."
-msgstr "Etkin ise, '0' buketteki ilk kanalı seçer ve zap geçmişini siler."
-
-msgid ""
 "With this option set to 'yes' the channel lists will always show you the "
 "bouquet screen first. If set to 'no' the current bouquet will be opened."
 msgstr ""
@@ -9579,6 +9153,9 @@ msgstr ""
 msgid "Write failed!"
 msgstr "Yazma başarısız!"
 
+msgid "Wrong"
+msgstr ""
+
 msgid "XBox 360 support"
 msgstr "XBox 360 desteği"
 
@@ -9593,8 +9170,8 @@ msgstr "Yıl"
 msgid "Yellow DVB subtitles"
 msgstr "Sarı DVB altyazı"
 
-msgid "Yellow pango subtitles"
-msgstr "Sarı pango altyazı"
+msgid "Yellow external subtitles"
+msgstr ""
 
 #
 msgid "Yes"
@@ -9610,10 +9187,6 @@ msgstr "Evet, her zaman"
 #
 msgid "Yes, and delete this movie"
 msgstr "Evet, ve bu filmi sil"
-
-#
-msgid "Yes, and don't ask again"
-msgstr "Evet, ve tekrar sorma"
 
 #
 msgid "Yes, backup my settings!"
@@ -9642,10 +9215,6 @@ msgstr "Evet, şimdi ayarları geri yükle"
 #
 msgid "Yes, returning to movie list"
 msgstr "Evet, film listesine dön"
-
-#
-msgid "Yes, view the tutorial"
-msgstr "Evet, öğreticiyi izle"
 
 msgid "Yesterday"
 msgstr "Dün"
@@ -9677,18 +9246,6 @@ msgstr "Yüklemeyi iptal edebilirsiniz."
 #
 msgid "You can cancel the removal."
 msgstr "Kaldırmayı iptal edebilirsiniz."
-
-#
-msgid ""
-"You can choose some default settings now. Please select the settings you "
-"want to be installed."
-msgstr ""
-"Şimdi varsayılan ayarlarlardan bazılarını seçebililirsiniz. Lütfen yüklemek "
-"istediğiniz ayarları seçin."
-
-#
-msgid "You can choose, what you want to install..."
-msgstr "Yüklemek istediğinizi seçebilirsiniz..."
 
 msgid "You can continue watching TV etc. while this is running."
 msgstr "Bu çalışırken TV izlemeye devam edebilirsiniz."
@@ -9726,26 +9283,6 @@ msgstr "Netmask ayarlayabilirsiniz."
 #
 msgid "You cannot delete this!"
 msgstr "Bunu silemezsiniz!"
-
-#
-msgid "You chose not to install any default services lists."
-msgstr "Varsayılan kanal listesi yüklemeyi seçmediniz."
-
-#
-msgid ""
-"You chose not to install any default settings. You can however install the "
-"default settings later in the settings menu."
-msgstr ""
-"Varsayılan ayar yüklemeyi seçmediniz. Daha sonra yüklemek isterseniz "
-"'Kurulum' menüsünde yer alan 'Varsayılan ayarlar' seçeneğini "
-"kullanabilirsiniz."
-
-#
-msgid ""
-"You chose not to install anything. Please press OK finish the install wizard."
-msgstr ""
-"Yüklenecek bir şey seçmediniz. Lütfen yükleme sihirbazından çıkmak için OK'a "
-"basın."
 
 msgid "You didn't select a channel to record from."
 msgstr "Kayıt yapılacak kanalı seçmediniz."
@@ -9799,36 +9336,25 @@ msgstr "%s beklemelisiniz!"
 
 #
 msgid ""
-"You need a PC connected to your STB_BOX. If you need further instructions, "
-"please visit the website http://www.dm7025.de.\n"
-"Your STB_BOX will now be halted. After you have performed the update "
-"instructions from the website, your new firmware will ask you to restore "
-"your settings."
+"You need a PC connected to your STB_BOX. If you need further "
+"instructions, please visit the website http://www.dm7025.de.\n"
+"Your STB_BOX will now be halted. After you have performed the "
+"update instructions from the website, your new firmware will ask you to "
+"restore your settings."
 msgstr ""
-"STB_BOX'nun PC bağlantısına ihtiyacı var. Daha fazla açıklamaya ihtiyacınız "
-"varsa, lütfen http://www.dream-multimedia-tv.de adresini ziyaret edin.\n"
-"STB_BOX şimdi kapatılıyor. Web sitesinde belirtilen güncelleme yönergesini "
-"takip ettikten sonra yeni bellenim, ayarlarınızı geri yüklemek isteyip "
-"istemediğinizi soracaktır."
-
-msgid ""
-"You need to set a PIN code and hide it from your children.\n"
-"\n"
-"Do you want to set the pin now?"
-msgstr ""
-"Çocuklarınızdan gizlemek için bir PIN oluşturmalısınız.\n"
-"\n"
-"Şimdi oluşturmak ister misiniz?"
+"STB_BOX'nun PC bağlantısına ihtiyacı var. Daha fazla açıklamaya "
+"ihtiyacınız varsa, lütfen http://www.dream-multimedia-tv.de adresini ziyaret "
+"edin.\n"
+"STB_BOX şimdi kapatılıyor. Web sitesinde belirtilen güncelleme "
+"yönergesini takip ettikten sonra yeni bellenim, ayarlarınızı geri yüklemek "
+"isteyip istemediğinizi soracaktır."
 
 msgid "You system does not support ext4"
 msgstr "Sisteminiz ext4 desteklemiyor"
 
-msgid "Your STB will restart after pressing OK on your remote control."
-msgstr "OK'a bastığınızda alıcınız yeniden başlayacak."
-
 msgid ""
-"Your STB_BOX is not connected to the internet, please check your network "
-"settings and try again."
+"Your STB_BOX is not connected to the internet, please check "
+"your network settings and try again."
 msgstr ""
 
 #
@@ -9869,24 +9395,27 @@ msgstr "STB_BOX kapatılıyor. Lütfen bekleyin..."
 
 #
 msgid ""
-"Your STB_BOX isn't connected to the internet properly. Please check it and "
-"try again."
+"Your STB_BOX isn't connected to the internet properly. Please "
+"check it and try again."
 msgstr ""
-"STB_BOX internete bağlı değil. Lütfen kontrol ettikten sonra tekrar deneyin."
+"STB_BOX internete bağlı değil. Lütfen kontrol ettikten sonra "
+"tekrar deneyin."
 
 msgid ""
-"Your STB_BOX might be unusable now. Please consult the manual for further "
-"assistance before rebooting your STB_BOX."
+"Your STB_BOX might be unusable now. Please consult the manual "
+"for further assistance before rebooting your STB_BOX."
 msgstr ""
 
 #, python-format
 msgid ""
-"Your STB_BOX will be restarted after the installation of service\n"
+"Your STB_BOX will be restarted after the installation of "
+"service\n"
 "Ready to install \"%s\" ?"
 msgstr ""
 
 msgid ""
-"Your STB_BOX will be restarted after the installation of service.\n"
+"Your STB_BOX will be restarted after the installation of "
+"service.\n"
 "\n"
 "Do you want to install now ?"
 msgstr ""
@@ -9895,6 +9424,9 @@ msgid ""
 "Your STB_BOX will be restarted after the removal of service\n"
 "Do you want to remove now ?"
 msgstr ""
+
+msgid "Your STB will restart after pressing OK on your remote control."
+msgstr "OK'a bastığınızda alıcınız yeniden başlayacak."
 
 #
 msgid ""
@@ -9922,10 +9454,6 @@ msgid "Your current collection will get lost!"
 msgstr "Geçerli derlemeniz kaybolacak!"
 
 #
-msgid "Your email address:"
-msgstr "E-posta adresiniz:"
-
-#
 msgid ""
 "Your frontprocessor firmware must be upgraded.\n"
 "Press OK to start upgrade."
@@ -9950,13 +9478,19 @@ msgstr ""
 "İnternet bağlantınız çalışmıyor!\n"
 "Lütfen sonraki aşamada yapmak istediğiniz işlemi seçin."
 
-#
-msgid "Your name (optional):"
-msgstr "Adınız (seçimli):"
+#, python-format
+msgid "Your internet connection is working (ip: %s)"
+msgstr ""
 
 #
 msgid "Your network configuration has been activated."
 msgstr "Ağ yapılandırmanız etkinleştirildi."
+
+msgid "Your receiver does not have an internet connection"
+msgstr ""
+
+msgid "Your receiver is not connected to the internet"
+msgstr ""
 
 #
 msgid ""
@@ -10155,20 +9689,11 @@ msgstr ""
 msgid "advertisement/shopping"
 msgstr ""
 
+msgid "alphabetic"
+msgstr ""
+
 msgid "alphabetic reverse"
 msgstr "ters alfabetik"
-
-#
-msgid "alphabetic sort"
-msgstr "alfabetik sıralama"
-
-#
-msgid ""
-"are you sure you want to restore\n"
-"following backup:\n"
-msgstr ""
-"Belirtilen yedeği geri yüklemek\n"
-"istediğinizden emin misiniz?:\n"
 
 msgid "arts/culture (without music, general)"
 msgstr ""
@@ -10214,9 +9739,8 @@ msgstr "ses izleri"
 msgid "auto"
 msgstr "otomatik"
 
-#
-msgid "available"
-msgstr "kullanılabilir"
+msgid "automatic"
+msgstr ""
 
 #
 msgid "back"
@@ -10263,6 +9787,9 @@ msgstr ""
 #, python-format
 msgid "burn audio track (%s)"
 msgstr "(%s) ses izini yaz"
+
+msgid "by date"
+msgstr ""
 
 #, fuzzy
 msgid "caid:"
@@ -10342,10 +9869,6 @@ msgstr "kopya"
 #
 msgid "copy to bouquets"
 msgstr "buketlere kopyala"
-
-#
-msgid "could not be removed"
-msgstr "kaldırılamadı"
 
 #
 msgid "create directory"
@@ -10496,10 +10019,6 @@ msgstr "kesimi burada bitir"
 msgid "end favourites edit"
 msgstr "favori düzenlemeyi bitir"
 
-#
-msgid "enigma2 and network"
-msgstr "enigma2 ve ağ"
-
 msgid "entertainment (10-16 year old)"
 msgstr ""
 
@@ -10585,6 +10104,12 @@ msgstr ""
 
 msgid "fixed"
 msgstr "sabitlendi"
+
+msgid "flat alphabetic"
+msgstr ""
+
+msgid "flat alphabetic reverse"
+msgstr ""
 
 msgid "folk/traditional music"
 msgstr ""
@@ -11377,10 +10902,6 @@ msgstr ""
 msgid "social/spiritual science"
 msgstr ""
 
-#
-msgid "sort by date"
-msgstr "tarihe göre sırala"
-
 msgid "sorting of playlists"
 msgstr "çalma liste sıralaması"
 
@@ -11587,10 +11108,6 @@ msgstr "mmi bekle..."
 msgid "waiting"
 msgstr "bekliyor"
 
-#
-msgid "was removed successfully"
-msgstr "başarıyla kaldırıldı"
-
 msgid "water sport"
 msgstr ""
 
@@ -11652,17 +11169,884 @@ msgid "yes (keep feeds)"
 msgstr "evet (beslemeleri tut)"
 
 #
-msgid ""
-"your STB_BOX might be unusable now. Please consult the manual for further "
-"assistance before rebooting your STB_BOX."
-msgstr ""
-"STB_BOX şu an kullanılamaz durumda. Lütfen STB_BOX'yu yeniden açmadan önce "
-"kullanım kılavuzundan yardım alın."
-
-#
 msgid "zap"
 msgstr "zap"
 
 #
 msgid "zapped"
 msgstr "zapped"
+
+#
+#~ msgid ""
+#~ "\n"
+#~ "System will restart after the restore!"
+#~ msgstr ""
+#~ "\n"
+#~ "Sistem, geri yüklemeden sonra yeniden başlayacak!"
+
+#
+#~ msgid "/usr/share/enigma2 directory"
+#~ msgstr "/usr/share/enigma2 klasörü"
+
+#
+#~ msgid "/var directory"
+#~ msgstr "/var klasörü"
+
+#
+#~ msgid "Add WLAN configuration?"
+#~ msgstr "Kablosuz ağ ayarlarınız eklensin mi?"
+
+#
+#~ msgid "Add network configuration?"
+#~ msgstr "Ağ yapılandırması eklensin mi?"
+
+#~ msgid ""
+#~ "Adds enigma2 settings and STB_BOX informations like SN, "
+#~ "rev... if enabled."
+#~ msgstr ""
+#~ "Etkinleştiildiğinde, Enigma2 ayarlarını ve STB_BOX bilgisini "
+#~ "(SN, revizyon gibi) ekler."
+
+#
+#~ msgid "Adds network configuration if enabled."
+#~ msgstr "Etkin ise, ağ kurulumu ekler."
+
+#
+#~ msgid "Adds wlan configuration if enabled."
+#~ msgstr "Etkin ise, kablosuz ağ kurulumu ekler."
+
+#
+#~ msgid "Advanced Video Setup"
+#~ msgstr "Gelişmiş Görüntü Kurulumu"
+
+#
+#~ msgid ""
+#~ "After the start wizard is completed, you need to protect single services. "
+#~ "Refer to your STB_BOX's manual on how to do that."
+#~ msgstr ""
+#~ "Sihirbaz tamamlandıktan sonra, kanal korumasına ihtiyacınız olacak. Nasıl "
+#~ "yapılacağını öğrenmek istiyorsanız STB_BOX'nun kullanım "
+#~ "kılavuzuna başvurun."
+
+#
+#~ msgid "All Satellites"
+#~ msgstr "Tüm Uydular"
+
+#
+#~ msgid "Always ask before sending"
+#~ msgstr "Göndermeden önce sor"
+
+#
+#~ msgid "Anonymize crashlog?"
+#~ msgstr "Çökme günlüğüne detay bilgiler eklensin mi?"
+
+#
+#~ msgid ""
+#~ "Are you sure you want to delete\n"
+#~ "following backup:\n"
+#~ msgstr ""
+#~ "Aşağıdaki belirtilen yedeği\n"
+#~ "silmek istiyor musunuz?:\n"
+
+#
+#~ msgid ""
+#~ "Are you sure you want to restore\n"
+#~ "following backup:\n"
+#~ msgstr ""
+#~ "Aşağıdaki belirtilen yedeği\n"
+#~ "geri yüklemek istiyor musunuz?:\n"
+
+#
+#~ msgid ""
+#~ "Are you sure you want to restore your Enigma2 backup?\n"
+#~ "Enigma2 will restart after the restore"
+#~ msgstr ""
+#~ "Enigma2 yedeğinizi geri yüklemek istiyor musunuz?\n"
+#~ "Geri yükleme işleminden sonra Enigma2 yeniden başlayacaktır"
+
+#
+#~ msgid "Backup"
+#~ msgstr "Yedekle"
+
+#
+#~ msgid "Backup Location"
+#~ msgstr "Yedek Konumu"
+
+#
+#~ msgid "Backup Mode"
+#~ msgstr "Yedekleme Kipi"
+
+#
+#~ msgid "Backup done."
+#~ msgstr "Yedekleme bitti."
+
+#
+#~ msgid ""
+#~ "By pressing the OK Button on your remote control, the info bar is being "
+#~ "displayed."
+#~ msgstr "OK'a basıldığında bilgi-çubuğu gösterilsin mi?"
+
+#
+#~ msgid "CF Drive"
+#~ msgstr "CF Sürücü"
+
+#~ msgid "Centered DVB subtitles"
+#~ msgstr "Ortalanmış DVB altyazı"
+
+#~ msgid ""
+#~ "Choose the order in which the tuner types will be used (for watching and "
+#~ "recording)."
+#~ msgstr "İzlemede ve kayıtta kullanılacak tuner tip sırasını seçin."
+
+#
+#~ msgid "Cleanup Wizard"
+#~ msgstr "Temizlik sihirbazı"
+
+#
+#~ msgid "Cleanup Wizard settings"
+#~ msgstr "Temizlik sihirbazı ayarları"
+
+#
+#~ msgid "CleanupWizard"
+#~ msgstr "Temizlik sihirbazı"
+
+#
+#~ msgid "Crashlog settings"
+#~ msgstr "Çökme günlüğü ayarları"
+
+#
+#~ msgid "CrashlogAutoSubmit"
+#~ msgstr "CrashlogAutoSubmit"
+
+#
+#~ msgid "CrashlogAutoSubmit settings"
+#~ msgstr "CrashlogAutoSubmit ayarları"
+
+#
+#~ msgid "CrashlogAutoSubmit settings..."
+#~ msgstr "CrashlogAutoSubmit ayarları..."
+
+#
+#~ msgid ""
+#~ "Crashlogs found!\n"
+#~ "Send them to Dream Multimedia?"
+#~ msgstr ""
+#~ "Çökme günlüğü bulundu!\n"
+#~ "göndermek ister misiniz?"
+
+#~ msgid "Custom text alignment"
+#~ msgstr "Özel metin hizalaması"
+
+#~ msgid "Custom text position"
+#~ msgstr "Özel metin konumu"
+
+#
+#~ msgid "Decide if you want to enable or disable the Cleanup Wizard."
+#~ msgstr ""
+#~ "Temizlik sihirbazını buradan etkinleştirebilir veya devre dışı "
+#~ "bırakabilirsiniz"
+
+#
+#~ msgid "Decide what should be done when crashlogs are found."
+#~ msgstr "Çökme günlüğü bulunduğunda, yapılmasını istediğiniz eylemi seçin."
+
+#
+#~ msgid "Decide what should happen to the crashlogs after submission."
+#~ msgstr ""
+#~ "Çökme günlüğü gönderildikten sonra, yapılmasını istediğiniz eylemi seçin."
+
+#
+#~ msgid "Delete crashlogs"
+#~ msgstr "Çökme günlüklerini sil"
+
+#
+#~ msgid ""
+#~ "Delete no more configured satellite\n"
+#~ "%s?"
+#~ msgstr ""
+#~ "Yapılandırırken ihtiyaç duymadığınız %s\n"
+#~ "uydusunu silmek istiyor musunuz?"
+
+#
+#~ msgid "Disable crashlog reporting"
+#~ msgstr "Çökme günlüğü raporlamayı kapat"
+
+#
+#~ msgid ""
+#~ "Do you want to backup now?\n"
+#~ "After pressing OK, please wait!"
+#~ msgstr ""
+#~ "Şimdi yedek almak istiyor musunuz?\n"
+#~ "OK'a bastıktan sonra, lütfen bekleyin!"
+
+#
+#~ msgid ""
+#~ "Do you want to enable the parental control feature on your GigaBlue HD "
+#~ "800 Solo?"
+#~ msgstr "Ebeveyn kontrolü özelliğini etkinleştirmek ister misiniz?"
+
+#
+#~ msgid ""
+#~ "Do you want to submit your email address and name so that we can contact "
+#~ "you if needed?"
+#~ msgstr ""
+#~ "İhtiyaç duyduğumuzda size ulaşabilmemizi istiyorsanız, eposta adresinizi "
+#~ "ve adınızı girin."
+
+#
+#~ msgid ""
+#~ "Do you want to update your STB_BOX?\n"
+#~ "After pressing OK, please wait!"
+#~ msgstr ""
+#~ "STB_BOX'yu güncellemek istiyor musunuz?\n"
+#~ "OK'a bastıktan sonra, lütfen bekleyin!"
+
+#~ msgid "Do you want to upgrade?"
+#~ msgstr "Yükseltmek istiyor musunuz?"
+
+#
+#~ msgid "Do you want to view a tutorial?"
+#~ msgstr "Bir öğretici izlemek ister misiniz?"
+
+#
+#~ msgid "Don't ask, just send"
+#~ msgstr "Sorma, yalnızca gönder"
+
+#
+#~ msgid "Done - Installed or upgraded %d packages"
+#~ msgstr "Tamamlandı - %d paket yüklendi veya yükseltildi"
+
+#~ msgid "Downmix the Dolby Digital sound tracks to PCM."
+#~ msgstr "Dolby Digital sesi PCM'e downmix"
+
+#
+#~ msgid "Enable Cleanup Wizard?"
+#~ msgstr "Temizlik sihirbazı etkinleştirilsin mi?"
+
+#
+#~ msgid "Enter your email address so that we can contact you if needed."
+#~ msgstr ""
+#~ "İhtiyaç duyduğumuzda size ulaşabilmemizi istiyorsanız, eposta adresinizi "
+#~ "girin."
+
+#
+#~ msgid "Exit the cleanup wizard"
+#~ msgstr "Temizlik sihirbazından çık"
+
+#
+#~ msgid "General AC3 Delay"
+#~ msgstr "Genel AC3 gecikmesi"
+
+#
+#~ msgid "General PCM Delay"
+#~ msgstr "Genel PCM gecikmesi"
+
+#
+#~ msgid "How to handle found crashlogs?"
+#~ msgstr "Bulunan çökme günlükleri ne yapılsın?"
+
+#~ msgid ""
+#~ "If Teletext caching is enabled, displaying pages will be much faster."
+#~ msgstr "Teletext önbelleği etkinse, sayfalar daha hızlı görüntülenir."
+
+#
+#~ msgid "Include your email and name (optional) in the mail?"
+#~ msgstr "İletide ad (seçimli) ve eposta bilginiz gönderilsin mi?"
+
+#
+#~ msgid "Install settings, skins, software..."
+#~ msgstr "Yapılandırma ayarı, görsel-arayüz, yazılım yükleyin..."
+
+#
+#~ msgid "Installing default sat lists... Please wait..."
+#~ msgstr "Varsayılan uydu listesi yükleniyor... Lütfen bekleyin..."
+
+#
+#~ msgid "Installing defaults... Please wait..."
+#~ msgstr "Varsayılan bilgiler yükleniyor... Lütfen bekleyin..."
+
+#
+#~ msgid "Installing package content... Please wait..."
+#~ msgstr "Paket içeriği yükleniyor... Lütfen bekleyin..."
+
+#
+#~ msgid "Is this videomode ok?"
+#~ msgstr "Bu görüntü kipi tamam mı?"
+
+#
+#~ msgid "LOF"
+#~ msgstr "LOF"
+
+#
+#~ msgid "LOF/H"
+#~ msgstr "LOF/H"
+
+#
+#~ msgid "LOF/L"
+#~ msgstr "LOF/L"
+
+#
+#~ msgid "Mode"
+#~ msgstr "Kip"
+
+#
+#~ msgid ""
+#~ "No packages were upgraded yet. So you can check your network and try "
+#~ "again."
+#~ msgstr ""
+#~ "Hiçbir paket yükseltilmedi. Ağınızı kontrol ettikten sonra tekrar deneyin."
+
+#
+#~ msgid "No, not now"
+#~ msgstr "Hayır, şimdi değil"
+
+#
+#~ msgid "No, send them never"
+#~ msgstr "Hayır, asla gönderme"
+
+#
+#~ msgid "OK, remove another extensions"
+#~ msgstr "Tamam, diğer genişletmeleri kaldır"
+
+#
+#~ msgid "OK, remove some extensions"
+#~ msgstr "Tamam, bazı genişletmeleri kaldır"
+
+#
+#~ msgid "Optionally enter your name if you want to."
+#~ msgstr "Adınızı göndermek istiyorsanız adınızı girin."
+
+#~ msgid "Overwrite configuration files ?"
+#~ msgstr "Yapılandırma dosyalarının üzerine yazılsın mı?"
+
+#
+#~ msgid "Package removal failed.\n"
+#~ msgstr "Paket kaldırılırken hata oluştu.\n"
+
+#
+#~ msgid "Package removed successfully.\n"
+#~ msgstr "Paket başarıyla kaldırıldı.\n"
+
+#~ msgid ""
+#~ "Please be aware, that anyone can disable the parental control, if you "
+#~ "have not set a PIN."
+#~ msgstr "PIN tanımlanmazsa, herhangi biri ebeveyn kontrolünü kapatabilir."
+
+#
+#~ msgid "Please choose he package..."
+#~ msgstr "Lütfen paketi seçin..."
+
+#
+#~ msgid "Please choose the default services lists you want to install."
+#~ msgstr "Lütfen yüklemek istediğiniz varsayılan kanal listesini seçin."
+
+#
+#~ msgid "Please enter your email address here:"
+#~ msgstr "Lütfen e-posta adresinizi buraya girin:"
+
+#
+#~ msgid "Please enter your name here (optional):"
+#~ msgstr "Lütfen adınızı buraya giriniz (seçimli):"
+
+#
+#~ msgid "Please press OK!"
+#~ msgstr "Lütfen OK'a basın!"
+
+#
+#~ msgid "Please select an extension to remove."
+#~ msgstr "Lütfen kaldırılacak bir genişletme seçin."
+
+#
+#~ msgid "Please select an option below."
+#~ msgstr "Lütfen aşağıdaki seçeneklerden birini seçin."
+
+#
+#~ msgid "Please wait while removing selected package..."
+#~ msgstr "Lütfen seçtiğiniz paket kaldırılırken bekleyin..."
+
+#
+#~ msgid "Please wait while searching for removable packages..."
+#~ msgstr "Lütfen kaldırılabilir paketler aranırken bekleyin..."
+
+#
+#~ msgid "Refresh Rate"
+#~ msgstr "Yenileme hızı"
+
+#
+#~ msgid "Remove failed."
+#~ msgstr "Kaldırma başarısız."
+
+#
+#~ msgid "Removed successfully."
+#~ msgstr "Başarıyla kaldırıldı."
+
+#
+#~ msgid "Rename crashlogs"
+#~ msgstr "Çökme günlük adlarını değiştir"
+
+#
+#~ msgid "Restore running"
+#~ msgstr "Geri yükleme çalışıyor"
+
+#
+#~ msgid "Scan QAM128"
+#~ msgstr "QAM128 tara"
+
+#
+#~ msgid "Scan QAM16"
+#~ msgstr "QAM16 tara"
+
+#
+#~ msgid "Scan QAM256"
+#~ msgstr "QAM256 tara"
+
+#
+#~ msgid "Scan QAM32"
+#~ msgstr "QAM32 tara"
+
+#
+#~ msgid "Scan QAM64"
+#~ msgstr "QAM64 tara"
+
+#
+#~ msgid "Scan SR6875"
+#~ msgstr "SR6875 tara"
+
+#
+#~ msgid "Scan SR6900"
+#~ msgstr "SR6900 tara"
+
+#
+#~ msgid "Scan band EU HYPER"
+#~ msgstr "EU HYPER bantını tara"
+
+#
+#~ msgid "Scan band EU MID"
+#~ msgstr "EU MID bantını tara"
+
+#
+#~ msgid "Scan band EU SUPER"
+#~ msgstr "EU SUPER bantını tara"
+
+#
+#~ msgid "Scan band EU UHF IV"
+#~ msgstr "EU UHF IV bantını tara"
+
+#
+#~ msgid "Scan band EU UHF V"
+#~ msgstr "EU UHF V bantını tara"
+
+#
+#~ msgid "Scan band EU VHF I"
+#~ msgstr "EU VHF I bantını tara"
+
+#
+#~ msgid "Scan band EU VHF III"
+#~ msgstr "EU VHF III bantını tara"
+
+#
+#~ msgid "Scan band US HIGH"
+#~ msgstr "US HIGH bantını tara"
+
+#
+#~ msgid "Scan band US HYPER"
+#~ msgstr "US HYPER bantını tara"
+
+#
+#~ msgid "Scan band US LOW"
+#~ msgstr "US LOW bantını tara"
+
+#
+#~ msgid "Scan band US MID"
+#~ msgstr "US MID bantını tara"
+
+#
+#~ msgid "Scan band US SUPER"
+#~ msgstr "US SUPER bantını tara"
+
+#
+#~ msgid "Select package"
+#~ msgstr "Paket seçin"
+
+#~ msgid ""
+#~ "Services may be grouped in bouquets. If this option is enabled you can "
+#~ "zap to a channel in another bouquet then you are in at present."
+#~ msgstr ""
+#~ "Kanallar buketler içinde gruplanabilir. Bu seçenek etkinleştirilirse, "
+#~ "farklı bir buketteki kanala geçtikten sonra geri dönebilirsiniz."
+
+#~ msgid ""
+#~ "Services may be grouped in bouquets. If this option is enabled, you can "
+#~ "use more then one bouquet."
+#~ msgstr ""
+#~ "Kanallar buketler içinde gruplanabilir. Bu seçenek etkinleştirilirse, "
+#~ "birden çok buketi kullanabilirsiniz."
+
+#
+#~ msgid "Set Voltage and 22KHz"
+#~ msgstr "Voltaj ve 22KHz ayarla"
+
+#
+#~ msgid "Set available internal memory threshold for the warning."
+#~ msgstr ""
+#~ "Dahili belleğin belirtilen değere düşmesi halinde uyarı verilecek alt "
+#~ "limiti girin."
+
+#~ msgid "Show encryption info in the infobar (if the skin allows that)."
+#~ msgstr ""
+#~ "Bilgi-çubuğunda şifreleme bilgisini göster (eğer görsel-arayüz bunu "
+#~ "destekliyorsa)"
+
+#
+#~ msgid "Sorry MediaScanner is not installed!"
+#~ msgstr "Üzgünüm, MediaScanner yüklü değil!"
+
+#
+#~ msgid "Sorry no backups found!"
+#~ msgstr "Üzgünüm, yedekleme dosyası bulunamadı!"
+
+#
+#~ msgid ""
+#~ "Sorry your Backup destination does not exist\n"
+#~ "\n"
+#~ "Please choose an other one."
+#~ msgstr ""
+#~ "Yedek almak istediğiniz hedef bulunamadı\n"
+#~ "\n"
+#~ "Lütfen başka bir hedef seçin."
+
+#
+#~ msgid ""
+#~ "Sorry your backup destination is not writeable.\n"
+#~ "Please choose an other one."
+#~ msgstr ""
+#~ "Üzgünüm, seçtiğiniz yedekleme hedefine yazma izni yok.\n"
+#~ "Lütfen başka bir hedef seçin."
+
+#
+#~ msgid "Sorry, no Details available!"
+#~ msgstr "Üzgünüm, detay bilgisi yok!"
+
+#
+#~ msgid ""
+#~ "Sorry, your backup destination is not writeable.\n"
+#~ "\n"
+#~ "Please choose another one."
+#~ msgstr ""
+#~ "Üzgünüm, seçtiğiniz yedekleme hedefine yazma izni yok.\n"
+#~ "\n"
+#~ "Lütfen başka bir hedef seçin."
+
+#~ msgid "Text border width"
+#~ msgstr "Metin kenar kalınlığı"
+
+#~ msgid "Text font size"
+#~ msgstr "Metin font boyutu"
+
+#
+#~ msgid ""
+#~ "Thank you for using the wizard. Your STB_BOX is now ready to "
+#~ "use.\n"
+#~ "Please press OK to start using your STB_BOX."
+#~ msgstr ""
+#~ "Sihirbazı kullandığınız için teşekkür ederiz. STB_BOX "
+#~ "kullanıma hazır.\n"
+#~ "Lütfen STB_BOX'yu kullanmaya başlamak için OK'a basın."
+
+#
+#~ msgid "The installation of the default services lists is finished."
+#~ msgstr "Varsayılan kanal listesi yüklenmesi bitti."
+
+#
+#~ msgid ""
+#~ "The installation of the default settings is finished. You can now "
+#~ "continue configuring your STB_BOX by pressing the OK button "
+#~ "on the remote control."
+#~ msgstr ""
+#~ "Varsayılan kanal listesi yüklenmesi bitti. OK'a bastıktan sonra alıcınızı "
+#~ "yapılandırmaya devam edebilirsiniz."
+
+#
+#~ msgid "The package doesn't contain anything."
+#~ msgstr "Bu paket herhangi birşey içermiyor."
+
+#
+#~ msgid "The package:"
+#~ msgstr "Paket:"
+
+#
+#~ msgid "There are no default services lists in your image."
+#~ msgstr "İmajınızda kayıtlı varsayılan kanal listesi yok."
+
+#
+#~ msgid "There are no default settings in your image."
+#~ msgstr "İmajınızda kayıtlı varsayılan ayar yok."
+
+#
+#~ msgid "There are now "
+#~ msgstr "Şimdi var"
+
+#
+#~ msgid "There was an error downloading the packetlist. Please try again."
+#~ msgstr "Paket listesi indirilirken hata oluştu. Lütfen tekrar deneyin."
+
+#
+#~ msgid "There was an error. The package:"
+#~ msgstr "Hata oluştu. Paket:"
+
+#
+#~ msgid "This is step number 2."
+#~ msgstr "2 numaralı adım."
+
+#~ msgid "This option sets up the connection method."
+#~ msgstr "Bağlantı yöntemi ayarı"
+
+#~ msgid "This option sets up the general audio delay of Analog sound tracks."
+#~ msgstr "Analog ses izlerinde, genel ses gecikme ayarı."
+
+#~ msgid ""
+#~ "This option sets up the general audio delay of Dolby Digital sound tracks."
+#~ msgstr "Dolby Digital ses izlerinde, genel ses gecikme ayarı."
+
+#~ msgid "This option sets up the screen aspect ratio."
+#~ msgstr "Görüntü oran ayarı"
+
+#~ msgid "This option sets up the screen refresh-rate."
+#~ msgstr "Ekran yenileme hızı ayarı"
+
+#~ msgid "This option sets up the screen resolution, when in PC mode."
+#~ msgstr "PC kipindeki ekran çözünürlük ayarı."
+
+#~ msgid "This option sets up the screen resolution."
+#~ msgstr "Ekran çözünürlük ayarı."
+
+#
+#~ msgid "Tone Amplitude"
+#~ msgstr "Ton genliği"
+
+#
+#~ msgid "Tuner "
+#~ msgstr "Tuner "
+
+#
+#~ msgid "USB Stick"
+#~ msgstr "USB Bellek"
+
+#
+#~ msgid "Updates your STB_BOX's software"
+#~ msgstr "Uydu alıcınızın yazılımını günceller"
+
+#
+#~ msgid "Updating finished. Here is the result:"
+#~ msgstr "Güncelleme bitti. Sonuç:"
+
+#
+#~ msgid "Updating... Please wait... This can take some minutes..."
+#~ msgstr ""
+#~ "Güncelleniyor... Lütfen bekleyin... Bu işlem birkaç dakika sürebilir..."
+
+#
+#~ msgid "Upgrade finished. Do you want to reboot your STB_BOX?"
+#~ msgstr ""
+#~ "Yükseltme bitti. STB_BOX'yu yeniden başlatmak istiyor "
+#~ "musunuz?"
+
+#
+#~ msgid "Upgrading STB_BOX... Please wait"
+#~ msgstr "STB_BOX yükseltiliyor... Lütfen bekleyin"
+
+#~ msgid "Use DVB subtitles position"
+#~ msgstr "DVB altyazı konumunu kullan"
+
+#
+#~ msgid "Use Power Measurement"
+#~ msgstr "Güç Ölçümünü Kullan"
+
+#
+#~ msgid ""
+#~ "Use the left and right buttons to change an option.\n"
+#~ "\n"
+#~ "Please set up tuner A"
+#~ msgstr ""
+#~ "Seçeneği değiştirmek için sol ve sağ tuşlarını kullanın.\n"
+#~ "\n"
+#~ "Lütfen Tuner A'yı yapılandırın"
+
+#~ msgid "Use this input device settings?"
+#~ msgstr "Bu giriş aygıt ayarları kullanılsın mı?"
+
+#~ msgid "Use this settings?"
+#~ msgstr "Bu ayarlar kullanılsın mı?"
+
+#
+#~ msgid "Use usals for this sat"
+#~ msgstr "Bu uydu için DiSEqC 1.3 (USALS) kullan."
+
+#
+#~ msgid "Video Fine-Tuning Wizard"
+#~ msgstr "Görüntü İnce Ayar Sihirbazı"
+
+#
+#~ msgid "Video Output"
+#~ msgstr "Görüntü çıkışı"
+
+#
+#~ msgid "Video Setup"
+#~ msgstr "Görüntü Kurulumu"
+
+#
+#~ msgid "Video Wizard"
+#~ msgstr "Görüntü Sihirbazı"
+
+#
+#~ msgid "Warn if free space drops below (kB):"
+#~ msgstr "Boş alan belirtilen eşiğin altına inince uyar (kB):"
+
+#
+#~ msgid ""
+#~ "Welcome to the cleanup wizard.\n"
+#~ "\n"
+#~ "We have detected that your available internal memory has dropped below "
+#~ "2MB.\n"
+#~ "To ensure stable operation of your STB_BOX, the internal "
+#~ "memory should be cleaned up.\n"
+#~ "You can use this wizard to remove some extensions.\n"
+#~ msgstr ""
+#~ "Temizlik sihirbazına hoşgeldiniz.\n"
+#~ "\n"
+#~ "Cihazınızın kullanılabilir dahili belleği 2MB'ın altına düşmüş durumda.\n"
+#~ "STB_BOX'nun sağlıklı çalışabilmesi için, kullanılabilir "
+#~ "dahili bellek alanının artırılması gerekmektedir.\n"
+#~ "Bu sihirbazı kullanarak ihtiyaç duymadığınız genişletmeleri "
+#~ "kaldırabilirsiniz.\n"
+
+#
+#~ msgid "What to do with submitted crashlogs?"
+#~ msgstr "Gönderilen çökme günlükleri ne yapılsın?"
+
+#~ msgid ""
+#~ "When the event has a aspect ratio of 16:9, choose whether to scale/"
+#~ "stretch the picture."
+#~ msgstr ""
+#~ "Etkinlik 16:9 oranında ise, görüntünün orantılanacağını veya yayılacağını "
+#~ "seçin."
+
+#~ msgid ""
+#~ "When the event has a aspect ratio of 4:3, choose whether to scale/stretch "
+#~ "the picture."
+#~ msgstr ""
+#~ "Etkinlik 4:3 oranında ise, görüntünün orantılanacağını veya yayılacağını "
+#~ "seçin."
+
+#~ msgid ""
+#~ "When the event has a aspect ratio of 4:3, choose whether to stretch the "
+#~ "picture to fill the screen."
+#~ msgstr ""
+#~ "Etkinlik 4:3 oranında ise, görüntünün ekranı doldurması için yayılacağını "
+#~ "seçin."
+
+#~ msgid ""
+#~ "With this option enabled, pressing '0' will zap you to the first channel "
+#~ "in your first bouquet and delete your zap-history."
+#~ msgstr "Etkin ise, '0' buketteki ilk kanalı seçer ve zap geçmişini siler."
+
+#~ msgid "Yellow pango subtitles"
+#~ msgstr "Sarı pango altyazı"
+
+#
+#~ msgid "Yes, and don't ask again"
+#~ msgstr "Evet, ve tekrar sorma"
+
+#
+#~ msgid "Yes, view the tutorial"
+#~ msgstr "Evet, öğreticiyi izle"
+
+#
+#~ msgid ""
+#~ "You can choose some default settings now. Please select the settings you "
+#~ "want to be installed."
+#~ msgstr ""
+#~ "Şimdi varsayılan ayarlarlardan bazılarını seçebililirsiniz. Lütfen "
+#~ "yüklemek istediğiniz ayarları seçin."
+
+#
+#~ msgid "You can choose, what you want to install..."
+#~ msgstr "Yüklemek istediğinizi seçebilirsiniz..."
+
+#
+#~ msgid "You chose not to install any default services lists."
+#~ msgstr "Varsayılan kanal listesi yüklemeyi seçmediniz."
+
+#
+#~ msgid ""
+#~ "You chose not to install any default settings. You can however install "
+#~ "the default settings later in the settings menu."
+#~ msgstr ""
+#~ "Varsayılan ayar yüklemeyi seçmediniz. Daha sonra yüklemek isterseniz "
+#~ "'Kurulum' menüsünde yer alan 'Varsayılan ayarlar' seçeneğini "
+#~ "kullanabilirsiniz."
+
+#
+#~ msgid ""
+#~ "You chose not to install anything. Please press OK finish the install "
+#~ "wizard."
+#~ msgstr ""
+#~ "Yüklenecek bir şey seçmediniz. Lütfen yükleme sihirbazından çıkmak için "
+#~ "OK'a basın."
+
+#~ msgid ""
+#~ "You need to set a PIN code and hide it from your children.\n"
+#~ "\n"
+#~ "Do you want to set the pin now?"
+#~ msgstr ""
+#~ "Çocuklarınızdan gizlemek için bir PIN oluşturmalısınız.\n"
+#~ "\n"
+#~ "Şimdi oluşturmak ister misiniz?"
+
+#
+#~ msgid "Your email address:"
+#~ msgstr "E-posta adresiniz:"
+
+#
+#~ msgid "Your name (optional):"
+#~ msgstr "Adınız (seçimli):"
+
+#
+#~ msgid "alphabetic sort"
+#~ msgstr "alfabetik sıralama"
+
+#
+#~ msgid ""
+#~ "are you sure you want to restore\n"
+#~ "following backup:\n"
+#~ msgstr ""
+#~ "Belirtilen yedeği geri yüklemek\n"
+#~ "istediğinizden emin misiniz?:\n"
+
+#
+#~ msgid "available"
+#~ msgstr "kullanılabilir"
+
+#
+#~ msgid "could not be removed"
+#~ msgstr "kaldırılamadı"
+
+#
+#~ msgid "enigma2 and network"
+#~ msgstr "enigma2 ve ağ"
+
+#
+#~ msgid "sort by date"
+#~ msgstr "tarihe göre sırala"
+
+#
+#~ msgid "was removed successfully"
+#~ msgstr "başarıyla kaldırıldı"
+
+#
+#~ msgid ""
+#~ "your STB_BOX might be unusable now. Please consult the "
+#~ "manual for further assistance before rebooting your STB_BOX."
+#~ msgstr ""
+#~ "STB_BOX şu an kullanılamaz durumda. Lütfen GigaBlue HD 800 "
+#~ "Solo'yu yeniden açmadan önce kullanım kılavuzundan yardım alın."
